@@ -225,6 +225,7 @@ _mods/Packages/sql-upgrade_1.0to1.1.info.txt -text
 _mods/Packages/sql-upgrade_1.1to1.2.info.txt -text
 _mods/Packages/sql-upgrade_1.2to1.3.info.txt -text
 _mods/Packages/sql-upgrade_1.3to1.4.info.txt -text
+_mods/Packages/sql-upgrade_1.4to1.5.info.txt -text
 _mods/Packages/themes-3dblue.info.txt -text
 _mods/Packages/themes-508.info.txt -text
 _mods/Packages/themes-akwa.info.txt -text
