@@ -990,6 +990,8 @@ tiki/lib/Date/TimeZone.php -text
 tiki/lib/Date/TimeZoneWindows.php -text
 tiki/lib/NNTP.php -text
 tiki/lib/bablotron.php -text
+tiki/lib/backups/backupslib.php -text
+tiki/lib/categories/categlib.php -text
 tiki/lib/class.ezpdf.php.exe -text
 tiki/lib/class_calendar.php -text
 tiki/lib/class_rdf_parser.php -text
@@ -997,6 +999,7 @@ tiki/lib/class_rss_parser.php -text
 tiki/lib/commentslib.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
+tiki/lib/faqs/faqlib.php -text
 tiki/lib/htmlpages/htmlpageslib.php -text
 tiki/lib/jHotDraw/ATEXT1.gif -text
 tiki/lib/jHotDraw/ATEXT2.gif -text
@@ -1068,13 +1071,16 @@ tiki/lib/pclzip.lib.php -text
 tiki/lib/phplot.php -text
 tiki/lib/quizzes/quizlib.php -text
 tiki/lib/searchlib.php -text
+tiki/lib/stats/statslib.php -text
 tiki/lib/structures/structlib.php -text
 tiki/lib/surveys/surveylib.php -text
 tiki/lib/tar.class.php -text
 tiki/lib/tasks/tasklib.php -text
+tiki/lib/templates/templateslib.php -text
 tiki/lib/tiki-js.js -text
 tiki/lib/tikilib.php -text
 tiki/lib/trackers/trackerlib.php -text
+tiki/lib/usermodules/usermoduleslib.php -text
 tiki/lib/userslib.php -text
 tiki/lib/webmail/API.txt -text
 tiki/lib/webmail/class.rc4crypt.php -text
