@@ -2177,6 +2177,7 @@ tiki/lib/smarty_tiki/modifier.tiki_short_date.php -text
 tiki/lib/smarty_tiki/modifier.tiki_short_datetime.php -text
 tiki/lib/smarty_tiki/modifier.tiki_short_time.php -text
 tiki/lib/smarty_tiki/modifier.times.php -text
+tiki/lib/smarty_tiki/modifier.truncate.php -text
 tiki/lib/smarty_tiki/modifier.userlink.php -text
 tiki/lib/smarty_tiki/outputfilter.highlight.php -text
 tiki/lib/smarty_tiki/prefilter.tr.php -text
