@@ -41,6 +41,7 @@ tiki/Smarty/plugins/function.gallery.php -text
 tiki/Smarty/plugins/function.html_options.php -text
 tiki/Smarty/plugins/function.html_select_date.php -text
 tiki/Smarty/plugins/function.html_select_time.php -text
+tiki/Smarty/plugins/function.mailto.php -text
 tiki/Smarty/plugins/function.math.php -text
 tiki/Smarty/plugins/function.menu.php -text
 tiki/Smarty/plugins/function.poll.php -text
@@ -83,6 +84,7 @@ tiki/Smarty/plugins/modifier.times.php -text
 tiki/Smarty/plugins/modifier.truncate.php -text
 tiki/Smarty/plugins/modifier.upper.php -text
 tiki/Smarty/plugins/modifier.wordwrap.php -text
+tiki/Smarty/plugins/outputfilter.trimwhitespace.php -text
 tiki/Smarty/plugins/shared.make_timestamp.php -text
 tiki/article_image.php -text
 tiki/backups/license.txt -text
@@ -1059,6 +1061,9 @@ tiki/modules/cache/.cvsignore -text
 tiki/modules/cache/license.txt -text
 tiki/modules/mod-breadcrumb.php -text
 tiki/modules/mod-comm_received_objects.php -text
+tiki/modules/mod-directory_last_sites.php -text
+tiki/modules/mod-directory_stats.php -text
+tiki/modules/mod-directory_top_sites.php -text
 tiki/modules/mod-featured_links.php -text
 tiki/modules/mod-forums_best_voted_topics.php -text
 tiki/modules/mod-forums_last_topics.php -text
@@ -1186,6 +1191,9 @@ tiki/templates/modules/mod-breadcrumb.tpl.nocache -text
 tiki/templates/modules/mod-calendar.tpl -text
 tiki/templates/modules/mod-calendar.tpl.nocache -text
 tiki/templates/modules/mod-comm_received_objects.tpl -text
+tiki/templates/modules/mod-directory_last_sites.tpl -text
+tiki/templates/modules/mod-directory_stats.tpl -text
+tiki/templates/modules/mod-directory_top_sites.tpl -text
 tiki/templates/modules/mod-featured_links.tpl -text
 tiki/templates/modules/mod-forums_best_voted_topics.tpl -text
 tiki/templates/modules/mod-forums_last_topics.tpl -text
@@ -1325,6 +1333,7 @@ tiki/templates/tiki-change_password.tpl -text
 tiki/templates/tiki-chat.tpl -text
 tiki/templates/tiki-chat_box.tpl -text
 tiki/templates/tiki-chatroom.tpl -text
+tiki/templates/tiki-contact.tpl -text
 tiki/templates/tiki-custom_home.tpl -text
 tiki/templates/tiki-custom_home_2.tpl -text
 tiki/templates/tiki-directory_add_site.tpl -text
@@ -1501,6 +1510,7 @@ tiki/tiki-chat_loader.php -text
 tiki/tiki-chat_users.php -text
 tiki/tiki-chatroom.php -text
 tiki/tiki-cms_rankings.php -text
+tiki/tiki-contact.php -text
 tiki/tiki-custom_home.php -text
 tiki/tiki-directory_add_site.php -text
 tiki/tiki-directory_admin.php -text
