@@ -719,6 +719,7 @@ tiki/doc/devtools/extract-img-db-to-fs.php -text
 tiki/doc/devtools/ggg-trace.php -text
 tiki/doc/devtools/index.php -text
 tiki/doc/devtools/lastcvs.sh -text
+tiki/doc/devtools/mergelang.pl -text
 tiki/doc/devtools/phpstrip.sh -text
 tiki/doc/devtools/restorehelp.php -text
 tiki/doc/devtools/sharetiki.sh -text
@@ -2064,6 +2065,7 @@ tiki/lib/rss/atom-style.css -text svneol=unset#application/octet-stream
 tiki/lib/rss/index.php -text
 tiki/lib/rss/rss-style.css -text svneol=unset#application/octet-stream
 tiki/lib/rss/rsslib.php -text
+tiki/lib/score/events.php -text
 tiki/lib/score/index.php -text
 tiki/lib/score/scorelib.php -text
 tiki/lib/search/index.php -text
