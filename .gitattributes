@@ -2823,7 +2823,6 @@ tiki/templates/tiki-view_tracker_item.tpl -text
 tiki/templates/tiki-webmail.tpl -text
 tiki/templates/tiki-webmail_contacts.tpl -text
 tiki/templates/tiki.tpl -text
-tiki/templates_c/.cvsignore -text
 tiki/templates_c/README -text
 tiki/testrpc.php -text
 tiki/tests/parse_data.php -text
