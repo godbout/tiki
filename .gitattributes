@@ -3113,7 +3113,6 @@ tiki/tiki-change_password.php -text
 tiki/tiki-charts.php -text
 tiki/tiki-chat.php -text
 tiki/tiki-chat_box.php -text
-tiki/tiki-chat_center.html -text
 tiki/tiki-chat_loader.php -text
 tiki/tiki-chat_users.php -text
 tiki/tiki-chatroom.php -text
@@ -3317,7 +3316,6 @@ tiki/tiki-theme_control_objects.php -text
 tiki/tiki-theme_control_sections.php -text
 tiki/tiki-upload_file.php -text
 tiki/tiki-upload_image.php -text
-tiki/tiki-usage_chart -text
 tiki/tiki-usage_chart.php -text
 tiki/tiki-user_assigned_modules.php -text
 tiki/tiki-user_bookmarks.php -text
