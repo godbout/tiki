@@ -192,6 +192,11 @@ _mods/themes/isabelsworld/styles/isabelsworld.css -text
 _mods/themes/isabelsworld/styles/isabelsworld/teddy2.gif -text
 _mods/themes/isabelsworld/templates/styles/isabelsworld/tiki-bot_bar.tpl -text
 _mods/themes/isabelsworld/templates/styles/isabelsworld/tiki-top_bar.tpl -text
+_mods/themes/zaksworld/README -text
+_mods/themes/zaksworld/styles/zaksworld.css -text
+_mods/themes/zaksworld/styles/zaksworld/rattle.gif -text
+_mods/themes/zaksworld/templates/styles/zaksworld/tiki-bot_bar.tpl -text
+_mods/themes/zaksworld/templates/styles/zaksworld/tiki-top_bar.tpl -text
 _phplayers/ACKNOWLEDGEMENTS -text
 _phplayers/CHANGELOG -text
 _phplayers/CHANGE_TEMPLATE_CLASS_NAME.sh -text
