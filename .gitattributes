@@ -1288,6 +1288,7 @@ tiki/templates/tiki-chatroom.tpl -text
 tiki/templates/tiki-custom_home.tpl -text
 tiki/templates/tiki-custom_home_2.tpl -text
 tiki/templates/tiki-directory_admin.tpl -text
+tiki/templates/tiki-directory_admin_bar.tpl -text
 tiki/templates/tiki-directory_admin_categories.tpl -text
 tiki/templates/tiki-directory_admin_related.tpl -text
 tiki/templates/tiki-directory_admin_sites.tpl -text
