@@ -2937,6 +2937,7 @@ tiki/lib/pear/tests/XML_Parser/tests/005.phpt -text
 tiki/lib/pear/tests/XML_Parser/tests/test2.xml -text
 tiki/lib/pear/tests/XML_Parser/tests/test3.xml -text
 tiki/lib/pear/tests/XML_Tree/tests/test.php -text
+tiki/lib/permissions/permissionlib.php -text
 tiki/lib/phplot.php -text
 tiki/lib/polls/index.php -text
 tiki/lib/polls/polllib.php -text
