@@ -2875,6 +2875,7 @@ tiki/lib/userprefs/index.php -text
 tiki/lib/userprefs/scrambleEmail.php -text
 tiki/lib/userprefs/userprefslib.php -text
 tiki/lib/userslib.php -text
+tiki/lib/userslib/userslib_admin.php -text
 tiki/lib/weather/Weather.php -text
 tiki/lib/weather/WebCell.php -text
 tiki/lib/weather/changelog.txt -text
