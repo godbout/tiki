@@ -2253,6 +2253,15 @@ tiki/styles/jalist2/maincap.png -text
 tiki/styles/jalist2/menucap.png -text
 tiki/styles/mozilla.css -text
 tiki/styles/mozilla/mozilla-menubar.png -text
+tiki/styles/neat.css -text svneol=unset#application/octet-stream
+tiki/styles/neat/addFavorite.gif -text
+tiki/styles/neat/document_icon.gif -text
+tiki/styles/neat/folder_icon.gif -text
+tiki/styles/neat/linkOpaque.gif -text
+tiki/styles/neat/linkTransparent.gif -text
+tiki/styles/neat/logoIcon.gif -text
+tiki/styles/neat/print_icon.gif -text
+tiki/styles/neat/user.gif -text
 tiki/styles/slides/wiredot.png -text svneol=unset#unset
 tiki/styles/slideshows/slidestyle.css -text
 tiki/styles/subsilver.css -text
@@ -2406,6 +2415,11 @@ tiki/templates/styles/jalist2/tiki-print.tpl -text
 tiki/templates/styles/jalist2/tiki-print_article.tpl -text
 tiki/templates/styles/jalist2/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/jalist2/tiki.tpl -text
+tiki/templates/styles/neat/error.tpl -text
+tiki/templates/styles/neat/tiki-print.tpl -text
+tiki/templates/styles/neat/tiki-print_article.tpl -text
+tiki/templates/styles/neat/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/neat/tiki.tpl -text
 tiki/templates/styles/subsilver/error.tpl -text
 tiki/templates/styles/subsilver/tiki-print.tpl -text
 tiki/templates/styles/subsilver/tiki-print_article.tpl -text
