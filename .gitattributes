@@ -1178,6 +1178,8 @@ _mods/themes/purplemetal/theme/templates/styles/purplemetal/tiki-editpage.tpl -t
 _mods/themes/purplemetal/theme/templates/styles/purplemetal/tiki-show_page.tpl -text
 _mods/themes/purplemetal/theme/templates/styles/purplemetal/tiki-user_menu.tpl -text
 _mods/themes/purplemetal/theme/templates/styles/purplemetal/tiki.tpl -text
+_mods/themes/redgrey/styles/redgrey.css -text
+_mods/themes/redgrey/styles/redgrey/tikibutton2.png -text
 _mods/themes/redmetal/Readme -text
 _mods/themes/redmetal/theme/styles/redmetal.css -text
 _mods/themes/redmetal/theme/styles/redmetal/bg.gif -text
