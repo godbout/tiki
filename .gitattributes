@@ -1052,6 +1052,7 @@ tiki/lib/webmail/webmaillib.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_avatar.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_center.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_code.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_example.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_split.php -text
