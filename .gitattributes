@@ -682,6 +682,8 @@ tiki/img/avatars/576.gif -text
 tiki/img/avatars/577.gif -text
 tiki/img/avatars/578.gif -text
 tiki/img/avatars/579.gif -text
+tiki/img/background.png -text
+tiki/img/cord.png -text
 tiki/img/css.gif -text
 tiki/img/css1.png -text
 tiki/img/custom/article.jpeg -text
@@ -1178,6 +1180,7 @@ tiki/templates/tiki-removepage.tpl -text
 tiki/templates/tiki-rollback.tpl -text
 tiki/templates/tiki-search_stats.tpl -text
 tiki/templates/tiki-searchresults.tpl -text
+tiki/templates/tiki-send_newsletters.tpl -text
 tiki/templates/tiki-send_objects.tpl -text
 tiki/templates/tiki-shoutbox.tpl -text
 tiki/templates/tiki-show_page.tpl -text
@@ -1355,6 +1358,7 @@ tiki/tiki-search_stats.php -text
 tiki/tiki-searchresults.php -text
 tiki/tiki-section_options -text
 tiki/tiki-section_options.php -text
+tiki/tiki-send_newsletters.php -text
 tiki/tiki-send_objects.php -text
 tiki/tiki-setup.php -text
 tiki/tiki-setup_base.php -text
