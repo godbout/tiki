@@ -1470,6 +1470,8 @@ tiki/img/icons2/dreistern.gif -text
 tiki/img/icons2/edit.gif -text
 tiki/img/icons2/einstern.gif -text
 tiki/img/icons2/email.gif -text
+tiki/img/icons2/enlargeH.gif -text
+tiki/img/icons2/enlargeW.gif -text
 tiki/img/icons2/error.gif -text
 tiki/img/icons2/event-attendees.gif -text
 tiki/img/icons2/event.gif -text
@@ -1548,6 +1550,8 @@ tiki/img/icons2/preference.gif -text
 tiki/img/icons2/prev.gif -text
 tiki/img/icons2/project.gif -text
 tiki/img/icons2/projects.gif -text
+tiki/img/icons2/reduceH.gif -text
+tiki/img/icons2/reduceW.gif -text
 tiki/img/icons2/reload.gif -text
 tiki/img/icons2/search.gif -text
 tiki/img/icons2/shim.gif -text
