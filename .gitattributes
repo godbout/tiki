@@ -2167,6 +2167,7 @@ tiki/lib/wiki-plugins-dist/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_example.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_module.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_split.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_sql.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_wikigraph.php -text
