@@ -1918,6 +1918,7 @@ tiki/lib/ban/banlib.php -text
 tiki/lib/banners/bannerlib.php -text
 tiki/lib/blogs/bloglib.php -text
 tiki/lib/bookmarks/bookmarklib.php -text
+tiki/lib/cache/cachelib.php -text
 tiki/lib/calendar/calendarlib.php -text
 tiki/lib/calendar/iCal/class.iCal.inc.php -text
 tiki/lib/calendar/iCal/class.iCalAlarm.inc.php -text
