@@ -346,6 +346,7 @@ _smarty/core/core.write_compiled_include.php -text
 _smarty/core/core.write_compiled_resource.php -text
 _smarty/core/core.write_file.php -text
 _smarty/debug.tpl -text
+_smarty/libs/plugins/compiler.assign.php -text
 _smarty/plugins/block.strip.php -text
 _smarty/plugins/block.textformat.php -text
 _smarty/plugins/function.assign.php -text
