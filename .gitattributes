@@ -2740,6 +2740,11 @@ tiki/styles/notheme/notheme-table.css -text
 tiki/styles/notheme/notheme-tc.css -text
 tiki/styles/notheme/notheme-wiki.css -text
 tiki/styles/olive.css -text svneol=unset#application/octet-stream
+tiki/styles/simple.css -text
+tiki/styles/simple/admin_move.gif -text
+tiki/styles/simple/delete.gif -text
+tiki/styles/simple/down.gif -text
+tiki/styles/simple/up.gif -text
 tiki/styles/slides/wiredot.png -text svneol=unset#unset
 tiki/styles/slideshows/slidestyle.css -text
 tiki/styles/subsilver.css -text
@@ -2997,6 +3002,14 @@ tiki/templates/styles/olive/tiki-print.tpl -text
 tiki/templates/styles/olive/tiki-print_article.tpl -text
 tiki/templates/styles/olive/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/olive/tiki.tpl -text
+tiki/templates/styles/simple/error.tpl -text
+tiki/templates/styles/simple/modules/mod-application_menu.tpl -text
+tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
+tiki/templates/styles/simple/modules/module-title.tpl -text
+tiki/templates/styles/simple/tiki-print.tpl -text
+tiki/templates/styles/simple/tiki-print_article.tpl -text
+tiki/templates/styles/simple/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/simple/tiki.tpl -text
 tiki/templates/styles/subsilver/error.tpl -text
 tiki/templates/styles/subsilver/tiki-print.tpl -text
 tiki/templates/styles/subsilver/tiki-print_article.tpl -text
