@@ -1062,6 +1062,7 @@ tiki/lib/wiki-plugins-dist/wikiplugin_sql.php -text
 tiki/lib/wiki-plugins/wikiplugin_avatar.php -text
 tiki/lib/wiki-plugins/wikiplugin_center.php -text
 tiki/lib/wiki-plugins/wikiplugin_code.php -text
+tiki/lib/wiki-plugins/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
@@ -1419,6 +1420,8 @@ tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
+tiki/templates/tiki-newsreader_groups.tpl -text
+tiki/templates/tiki-newsreader_news.tpl -text
 tiki/templates/tiki-newsreader_servers.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
@@ -1660,6 +1663,8 @@ tiki/tiki-mailin.php -text
 tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
 tiki/tiki-newsletters.php -text
+tiki/tiki-newsreader_groups.php -text
+tiki/tiki-newsreader_news.php -text
 tiki/tiki-newsreader_servers.php -text
 tiki/tiki-objectpermissions.php -text
 tiki/tiki-old_polls.php -text
