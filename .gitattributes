@@ -234,6 +234,7 @@ _mods/Packages/themes-ztheme.info.txt -text
 _mods/Packages/wikiplugins-ebay.info.txt -text
 _mods/Packages/wikiplugins-formula.info.txt -text
 _mods/Packages/wikiplugins-phplot.info.txt -text
+_mods/Packages/wikiplugins-redirect.info.txt -text
 _mods/Packages/wikiplugins-scroll.info.txt -text
 _mods/Packages/wikiplugins-svg.info.txt -text
 _mods/README -text
