@@ -2836,6 +2836,14 @@ tiki/styles/simple/down.gif -text
 tiki/styles/simple/up.gif -text
 tiki/styles/slides/wiredot.png -text svneol=unset#unset
 tiki/styles/slideshows/slidestyle.css -text
+tiki/styles/smartiki.css -text
+tiki/styles/smartiki/checkerboard-orange.gif -text
+tiki/styles/smartiki/favicon.ico -text
+tiki/styles/smartiki/php-logo.gif -text
+tiki/styles/smartiki/small_submit_white.gif -text
+tiki/styles/smartiki/smarty-logo-orange.gif -text
+tiki/styles/smartiki/smarty_icon.gif -text
+tiki/styles/smartiki/spacer.gif -text
 tiki/styles/subsilver.css -text
 tiki/styles/subsilver/cellpic1.gif -text
 tiki/styles/subsilver/cellpic2.jpg -text
@@ -3469,6 +3477,13 @@ tiki/templates/styles/simple/modules/mod-application_menu.tpl -text
 tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
 tiki/templates/styles/simple/tiki-print_article.tpl -text
 tiki/templates/styles/simple/tiki.tpl -text
+tiki/templates/styles/smartiki/babelfish.tpl -text
+tiki/templates/styles/smartiki/error.tpl -text
+tiki/templates/styles/smartiki/tiki-print.tpl -text
+tiki/templates/styles/smartiki/tiki-print_article.tpl -text
+tiki/templates/styles/smartiki/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/smartiki/tiki-user_menu.tpl -text
+tiki/templates/styles/smartiki/tiki.tpl -text
 tiki/templates/styles/tiki/error.tpl -text
 tiki/templates/styles/tiki/header.tpl -text
 tiki/templates/styles/tiki/modules/mod-application_menu.tpl -text
