@@ -3790,6 +3790,7 @@ tiki/templates/tiki-list_quizzes.tpl -text
 tiki/templates/tiki-list_submissions.tpl -text
 tiki/templates/tiki-list_surveys.tpl -text
 tiki/templates/tiki-list_trackers.tpl -text
+tiki/templates/tiki-list_users.tpl -text
 tiki/templates/tiki-listmovies.tpl -text
 tiki/templates/tiki-listpages.tpl -text
 tiki/templates/tiki-live_support_admin.tpl -text
