@@ -3369,6 +3369,7 @@ tiki/templates/tiki-page.tpl -text
 tiki/templates/tiki-page_bar.tpl -text
 tiki/templates/tiki-pagehistory.tpl -text
 tiki/templates/tiki-pagepermissions.tpl -text
+tiki/templates/tiki-pagination.tpl -text
 tiki/templates/tiki-pick_avatar.tpl -text
 tiki/templates/tiki-plugin_trackerlist.tpl -text
 tiki/templates/tiki-poll.tpl -text
@@ -3760,6 +3761,7 @@ tiki/tiki-page_loader.php -text
 tiki/tiki-pagehistory.php -text
 tiki/tiki-pagepermissions.php -text
 tiki/tiki-pagesetup.php -text
+tiki/tiki-pagination.php -text
 tiki/tiki-pdf.php -text
 tiki/tiki-phpinfo.php -text
 tiki/tiki-pick_avatar.php -text
