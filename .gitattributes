@@ -2641,9 +2641,6 @@ tiki/templates/styles/jalist2/tiki.tpl -text
 tiki/templates/styles/matrix/error.tpl -text
 tiki/templates/styles/matrix/tiki-bot_bar.tpl -text
 tiki/templates/styles/matrix/tiki-my_tiki.tpl -text
-tiki/templates/styles/matrix/tiki-print.tpl -text
-tiki/templates/styles/matrix/tiki-print_article.tpl -text
-tiki/templates/styles/matrix/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/matrix/tiki-top_bar.tpl -text
 tiki/templates/styles/matrix/tiki.tpl -text
 tiki/templates/styles/moreneat/modules/mod-application_menu.tpl -text
@@ -2681,9 +2678,6 @@ tiki/templates/styles/notheme/babelfish.tpl -text
 tiki/templates/styles/notheme/error.tpl -text
 tiki/templates/styles/notheme/tiki-bot_bar.tpl -text
 tiki/templates/styles/notheme/tiki-my_tiki.tpl -text
-tiki/templates/styles/notheme/tiki-print.tpl -text
-tiki/templates/styles/notheme/tiki-print_article.tpl -text
-tiki/templates/styles/notheme/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/notheme/tiki-top_bar.tpl -text
 tiki/templates/styles/notheme/tiki.tpl -text
 tiki/templates/styles/olive/tiki-print.tpl -text
