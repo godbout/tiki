@@ -3018,6 +3018,7 @@ tiki/tests/parse_data/test8 -text
 tiki/tests/parse_data/test8.output -text
 tiki/tests/parse_data/test9 -text
 tiki/tests/parse_data/test9.output -text
+tiki/textareaSize.php -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_banners.php -text
 tiki/tiki-admin_banning.php -text
