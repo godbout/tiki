@@ -1,6 +1,5 @@
 * text=auto !eol
 _adodb/adodb-csvlib.inc.php -text
-_adodb/adodb-datadict.inc.php -text
 _adodb/adodb-error.inc.php -text
 _adodb/adodb-errorhandler.inc.php -text
 _adodb/adodb-errorpear.inc.php -text
