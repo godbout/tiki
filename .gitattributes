@@ -898,6 +898,7 @@ tiki/lib/webmail/example.1.php -text
 tiki/lib/webmail/htmlMimeMail.php -text
 tiki/lib/webmail/mimeDecode.php -text
 tiki/lib/webmail/pop3.php -text
+tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/lib/ziplib.php -text
