@@ -3508,6 +3508,7 @@ tiki/styles/redmetal/red_toprightbg.gif -text
 tiki/styles/redmetal/tile_back.gif -text
 tiki/styles/simple.css -text
 tiki/styles/simple/admin_move.gif -text
+tiki/styles/simple/bg.png -text
 tiki/styles/simple/close.png -text
 tiki/styles/simple/close_out.png -text
 tiki/styles/simple/delete.gif -text
@@ -3607,6 +3608,7 @@ tiki/templates/mail/submission_notification.tpl -text
 tiki/templates/mail/submission_notification_subject.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
+tiki/templates/mail/user_validation_mail_subject.tpl -text
 tiki/templates/mail/user_watch_blog_post.tpl -text
 tiki/templates/mail/user_watch_blog_post_subject.tpl -text
 tiki/templates/mail/user_watch_map_changed.tpl -text
@@ -3848,6 +3850,7 @@ tiki/templates/styles/simple/module.tpl -text
 tiki/templates/styles/simple/modules/index.php -text
 tiki/templates/styles/simple/modules/mod-application_menu.tpl -text
 tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
+tiki/templates/styles/simple/modules/mod-switch_lang2.tpl -text
 tiki/templates/styles/simple/tiki-print_article.tpl -text
 tiki/templates/styles/simple/tiki-show_page.tpl -text
 tiki/templates/styles/simple/tiki.tpl -text
