@@ -3710,6 +3710,7 @@ tiki/templates/tiki-view_tracker_item.tpl -text
 tiki/templates/tiki-view_tracker_more_info.tpl -text
 tiki/templates/tiki-webmail.tpl -text
 tiki/templates/tiki-webmail_contacts.tpl -text
+tiki/templates/tiki-wiki3D.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/README -text
@@ -4124,6 +4125,8 @@ tiki/tiki-wap.php -text
 tiki/tiki-webmail.php -text
 tiki/tiki-webmail_contacts.php -text
 tiki/tiki-webmail_download_attachment.php -text
+tiki/tiki-wiki3D.php -text
+tiki/tiki-wiki3D_xml.php -text
 tiki/tiki-wiki_graph.php -text
 tiki/tiki-wiki_rankings.php -text
 tiki/tiki-wiki_rss.php -text
