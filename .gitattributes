@@ -3355,6 +3355,7 @@ tiki/tiki-remote_backup.php -text
 tiki/tiki-removepage.php -text
 tiki/tiki-rename_page.php -text
 tiki/tiki-rollback.php -text
+tiki/tiki-rss.php -text
 tiki/tiki-search_stats.php -text
 tiki/tiki-searchresults.php -text
 tiki/tiki-section_options.php -text
