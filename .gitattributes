@@ -2411,6 +2411,7 @@ tiki/lib/refererstats/refererlib.php -text
 tiki/lib/registration/registrationlib.php -text
 tiki/lib/rss/rss-style.css -text svneol=unset#application/octet-stream
 tiki/lib/rss/rsslib.php -text
+tiki/lib/score/scorelib.php -text
 tiki/lib/search/refresh-functions.php -text
 tiki/lib/search/refresh.php -text
 tiki/lib/search/searchlib.php -text
