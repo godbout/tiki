@@ -904,6 +904,7 @@ tiki/lib/pclzip-trace.lib.php -text
 tiki/lib/pclzip.lib.php -text
 tiki/lib/phplot.php -text
 tiki/lib/quizzes/quizlib.php -text
+tiki/lib/structures/structlib.php -text
 tiki/lib/surveys/surveylib.php -text
 tiki/lib/tar.class.php -text
 tiki/lib/tiki-js.js -text
