@@ -2784,6 +2784,8 @@ tiki/lib/smarty_tiki/resource.style.php -text
 tiki/lib/snoopy/README -text
 tiki/lib/snoopy/Snoopy.class.inc -text
 tiki/lib/snoopy/index.php -text
+tiki/lib/static/index.php -text
+tiki/lib/static/staticlib.php -text
 tiki/lib/stats/index.php -text
 tiki/lib/stats/statslib.php -text
 tiki/lib/structures/index.php -text
@@ -3976,6 +3978,7 @@ tiki/templates/tiki-slideshow.tpl -text
 tiki/templates/tiki-smileys.tpl -text
 tiki/templates/tiki-special_chars.html -text
 tiki/templates/tiki-special_chars.php -text
+tiki/templates/tiki-static.tpl -text
 tiki/templates/tiki-stats.tpl -text
 tiki/templates/tiki-survey_stats.tpl -text
 tiki/templates/tiki-survey_stats_survey.tpl -text

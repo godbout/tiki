@@ -11,6 +11,7 @@ tiki/modules/cache
 tiki/modules/cache/*
 tiki/phpmyadmin
 tiki/project.index
+tiki/static
 tiki/temp/article*
 tiki/temp/cache
 tiki/temp/dbg-watch.*
