@@ -3132,6 +3132,7 @@ tiki/templates/babelfish.tpl -text
 tiki/templates/bidi.tpl -text
 tiki/templates/categorize.tpl -text
 tiki/templates/comments.tpl -text
+tiki/templates/confirm.tpl -text
 tiki/templates/copyrights.tpl -text svneol=unset#application/octet-stream
 tiki/templates/debug/index.php -text
 tiki/templates/debug/tiki-debug_console_help.tpl -text
