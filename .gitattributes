@@ -525,6 +525,7 @@ tiki/templates/tiki-featured_link.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
 tiki/templates/tiki-forums.tpl -text
 tiki/templates/tiki-galleries.tpl -text
+tiki/templates/tiki-import_phpwiki.tpl -text
 tiki/templates/tiki-lastchanges.tpl -text
 tiki/templates/tiki-likepages.tpl -text
 tiki/templates/tiki-list_articles.tpl -text
@@ -681,6 +682,7 @@ tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
 tiki/tiki-image_galleries_rss.php -text
 tiki/tiki-image_gallery_rss.php -text
+tiki/tiki-import_phpwiki.php -text
 tiki/tiki-index.php -text
 tiki/tiki-index_raw.php -text
 tiki/tiki-lastchanges.php -text
