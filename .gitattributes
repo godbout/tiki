@@ -222,6 +222,7 @@ _mods/Packages/services-mailman.info.txt -text
 _mods/Packages/sql-upgrade_0.95to1.0.info.txt -text
 _mods/Packages/sql-upgrade_0.9to0.95.info.txt -text
 _mods/Packages/sql-upgrade_1.0to1.1.info.txt -text
+_mods/Packages/sql-upgrade_1.1to1.2.info.txt -text
 _mods/Packages/themes-3dblue.info.txt -text
 _mods/Packages/themes-508.info.txt -text
 _mods/Packages/themes-akwa.info.txt -text
