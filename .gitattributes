@@ -2154,9 +2154,11 @@ tiki/lib/pear/DB/ifx.php -text
 tiki/lib/pear/DB/msql.php -text
 tiki/lib/pear/DB/mssql.php -text
 tiki/lib/pear/DB/mysql.php -text
+tiki/lib/pear/DB/mysql4.php -text
 tiki/lib/pear/DB/oci8.php -text
 tiki/lib/pear/DB/odbc.php -text
 tiki/lib/pear/DB/pgsql.php -text
+tiki/lib/pear/DB/sqlite.php -text
 tiki/lib/pear/DB/storage.php -text
 tiki/lib/pear/DB/sybase.php -text
 tiki/lib/pear/HTTP.php -text
