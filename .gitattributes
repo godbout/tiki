@@ -2752,6 +2752,8 @@ tiki/lib/wiki3d/Action.class -text svneol=unset#unset
 tiki/lib/wiki3d/Action.java -text
 tiki/lib/wiki3d/AnimationThread.class -text svneol=unset#unset
 tiki/lib/wiki3d/AnimationThread.java -text
+tiki/lib/wiki3d/BalanceThread.class -text svneol=unset#unset
+tiki/lib/wiki3d/BalanceThread.java -text
 tiki/lib/wiki3d/Camera.class -text svneol=unset#unset
 tiki/lib/wiki3d/Camera.java -text
 tiki/lib/wiki3d/Can3d.class -text svneol=unset#unset
