@@ -2836,6 +2836,8 @@ tiki/templates/modules/mod-who_is_there.tpl.nocache -text
 tiki/templates/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
+tiki/templates/structures_toc.tpl -text
+tiki/templates/structures_toc_level.tpl -text
 tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
 tiki/templates/styles/akwa/tiki.tpl -text
 tiki/templates/styles/bluemetal/error.tpl -text
