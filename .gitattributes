@@ -2470,6 +2470,7 @@ tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
 tiki/lib/wiki-plugins/wikiplugin_titlesearch.php -text
+tiki/lib/wiki-plugins/wikiplugin_tracker.php -text
 tiki/lib/wiki-plugins/wikiplugin_translated.php -text
 tiki/lib/wiki-plugins/wikiplugin_usercount.php -text
 tiki/lib/wiki-plugins/wikiplugin_wikigraph.php -text
