@@ -1590,6 +1590,7 @@ tiki/lib/jHotDraw/example.draw -text
 tiki/lib/jHotDraw/example.gif -text
 tiki/lib/jHotDraw/example.map -text
 tiki/lib/jHotDraw/twikidraw.jar -text
+tiki/lib/jgraphpad/jgraphpad.jar -text
 tiki/lib/mailin/mailinlib.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/menulib.php -text
