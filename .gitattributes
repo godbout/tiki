@@ -237,6 +237,7 @@ _mods/Packages/themes-classicblue.info.txt -text
 _mods/Packages/themes-greenjelly.info.txt -text
 _mods/Packages/themes-greenmetal.info.txt -text
 _mods/Packages/themes-isabelsworld.info.txt -text
+_mods/Packages/themes-matrix.info.txt -text
 _mods/Packages/themes-nhs.info.txt -text
 _mods/Packages/themes-purplemetal.info.txt -text
 _mods/Packages/themes-redgrey.info.txt -text
@@ -1176,6 +1177,7 @@ _mods/themes/isabelsworld/styles/isabelsworld.css -text
 _mods/themes/isabelsworld/styles/isabelsworld/teddy2.gif -text
 _mods/themes/isabelsworld/templates/styles/isabelsworld/tiki-bot_bar.tpl -text
 _mods/themes/isabelsworld/templates/styles/isabelsworld/tiki-top_bar.tpl -text
+_mods/themes/matrix/README -text
 _mods/themes/matrix/styles/matrix.css -text
 _mods/themes/matrix/styles/matrix.light.css -text
 _mods/themes/matrix/styles/matrix/img/dark.png -text
