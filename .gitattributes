@@ -2273,6 +2273,7 @@ tiki/setup.sh -text
 tiki/setup_virtual.sh -text
 tiki/show_image.php -text
 tiki/styles/BiDi/BiDi.css -text
+tiki/styles/README.matrix-theme -text
 tiki/styles/bluegreen.css -text
 tiki/styles/boreal.css -text
 tiki/styles/boreal/bg.jpg -text
