@@ -3666,6 +3666,7 @@ tiki/templates/tiki-browse_gallery.tpl -text
 tiki/templates/tiki-browse_image.tpl -text
 tiki/templates/tiki-calendar.tpl -text
 tiki/templates/tiki-calendar_box.tpl -text
+tiki/templates/tiki-categpermissions.tpl -text
 tiki/templates/tiki-change_password.tpl -text
 tiki/templates/tiki-charts.tpl -text
 tiki/templates/tiki-chat.tpl -text
