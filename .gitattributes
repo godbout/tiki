@@ -2854,7 +2854,6 @@ tiki/templates/styles/geo/tiki-show_page.tpl -text
 tiki/templates/styles/gmsih/tiki-bot_bar.tpl -text
 tiki/templates/styles/gmsih/tiki-page_bar.tpl -text
 tiki/templates/styles/gmsih/tiki-show_page.tpl -text
-tiki/templates/styles/gmsih/tiki-user_menu.tpl -text
 tiki/templates/styles/gmsih/tiki.tpl -text
 tiki/templates/styles/matrix/error.tpl -text
 tiki/templates/styles/matrix/tiki-bot_bar.tpl -text
