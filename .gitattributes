@@ -2519,7 +2519,6 @@ tiki/lib/weather/weather.tpl -text
 tiki/lib/webmail/API.txt -text
 tiki/lib/webmail/class.rc4crypt.php -text
 tiki/lib/webmail/decodemessage.php -text
-tiki/lib/webmail/encodestring.php -text
 tiki/lib/webmail/example.1.php -text
 tiki/lib/webmail/htmlMimeMail.php -text
 tiki/lib/webmail/mimeDecode.php -text
