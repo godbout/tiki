@@ -2919,6 +2919,7 @@ tiki/lib/wiki-plugins/wikiplugin_miniquiz.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
 tiki/lib/wiki-plugins/wikiplugin_mono.php -text
 tiki/lib/wiki-plugins/wikiplugin_pluginmanager.php -text
+tiki/lib/wiki-plugins/wikiplugin_quote.php -text
 tiki/lib/wiki-plugins/wikiplugin_regex.php -text
 tiki/lib/wiki-plugins/wikiplugin_sf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sheet.php -text
