@@ -4331,6 +4331,9 @@ tiki/tiki-notepad_read.php -text
 tiki/tiki-notepad_write.php -text
 tiki/tiki-objectpermissions.php -text
 tiki/tiki-old_polls.php -text
+tiki/tiki-opnet.php -text
+tiki/tiki-opnet_admin.php -text
+tiki/tiki-opnet_result.php -text
 tiki/tiki-orphan_pages.php -text
 tiki/tiki-packager.php -text
 tiki/tiki-page.php -text
