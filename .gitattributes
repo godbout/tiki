@@ -53,6 +53,7 @@ tiki/Smarty/plugins/function.rcontent.php -text
 tiki/Smarty/plugins/function.rss.php -text
 tiki/Smarty/plugins/function.sameurl.php -text
 tiki/Smarty/plugins/function.showdate.php -text
+tiki/Smarty/plugins/modifier.act_icon.php -text
 tiki/Smarty/plugins/modifier.adjust.php -text
 tiki/Smarty/plugins/modifier.avatarize.php -text
 tiki/Smarty/plugins/modifier.capitalize.php -text
@@ -64,6 +65,7 @@ tiki/Smarty/plugins/modifier.countryflag.php -text
 tiki/Smarty/plugins/modifier.date_format.php -text
 tiki/Smarty/plugins/modifier.debug_print_var.php -text
 tiki/Smarty/plugins/modifier.default.php -text
+tiki/Smarty/plugins/modifier.duration.php -text
 tiki/Smarty/plugins/modifier.escape.php -text
 tiki/Smarty/plugins/modifier.iconify.php -text
 tiki/Smarty/plugins/modifier.indent.php -text
