@@ -2269,6 +2269,7 @@ tiki/lib/wiki-plugins/wikiplugin_titlesearch.php -text
 tiki/lib/wiki-plugins/wikiplugin_wikigraph.php -text
 tiki/lib/wiki/exportlib.php -text
 tiki/lib/wiki/histlib.php -text
+tiki/lib/wiki/pluginslib.php -text
 tiki/lib/wiki/wikilib.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
