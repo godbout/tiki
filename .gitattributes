@@ -2968,6 +2968,7 @@ tiki/templates/mail/submission_notification.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
 tiki/templates/mail/user_watch_blog_post.tpl -text
+tiki/templates/mail/user_watch_blog_post_subject.tpl -text
 tiki/templates/mail/user_watch_map_changed.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed_subject.tpl -text
