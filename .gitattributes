@@ -2934,6 +2934,7 @@ tiki/tiki-pv_chart.php -text
 tiki/tiki-quiz_result_stats.php -text
 tiki/tiki-quiz_stats.php -text
 tiki/tiki-quiz_stats_quiz.php -text
+tiki/tiki-random_num_img.php -text
 tiki/tiki-ranking.php -text
 tiki/tiki-read_article.php -text
 tiki/tiki-received_articles.php -text
