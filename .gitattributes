@@ -1523,6 +1523,7 @@ tiki/doc/readme.txt -text
 tiki/dump/.cvsignore -text
 tiki/dump/index.php -text
 tiki/favicon.png -text
+tiki/fixperms.sh -text
 tiki/games/README -text
 tiki/games/flash/README -text
 tiki/games/flash/index.php -text
@@ -1672,6 +1673,7 @@ tiki/img/flags/China.gif -text
 tiki/img/flags/Colombia.gif -text
 tiki/img/flags/Cook_Islands.gif -text
 tiki/img/flags/Costa_Rica.gif -text
+tiki/img/flags/Cote_d_Ivoire.gif -text
 tiki/img/flags/Croatia.gif -text
 tiki/img/flags/Cuba.gif -text
 tiki/img/flags/Cyprus.gif -text
@@ -1712,6 +1714,7 @@ tiki/img/flags/Kuwait.gif -text
 tiki/img/flags/Latvia.gif -text
 tiki/img/flags/Lebanon.gif -text
 tiki/img/flags/Lithuania.gif -text
+tiki/img/flags/Luxemburg.gif -text
 tiki/img/flags/Malawi.gif -text
 tiki/img/flags/Malaysia.gif -text
 tiki/img/flags/Malta.gif -text
@@ -1833,6 +1836,7 @@ tiki/img/icons/add.gif -text
 tiki/img/icons/addressbook.gif -text
 tiki/img/icons/admin_articles.png -text
 tiki/img/icons/admin_blogs.png -text
+tiki/img/icons/admin_community.png -text
 tiki/img/icons/admin_directory.png -text
 tiki/img/icons/admin_faqs.png -text
 tiki/img/icons/admin_features.png -text
@@ -1847,6 +1851,7 @@ tiki/img/icons/admin_maps.png -text
 tiki/img/icons/admin_metatags.png -text
 tiki/img/icons/admin_polls.png -text
 tiki/img/icons/admin_rss.png -text
+tiki/img/icons/admin_score.png -text
 tiki/img/icons/admin_search.png -text
 tiki/img/icons/admin_sections.png -text
 tiki/img/icons/admin_trackers.png -text
@@ -2735,6 +2740,7 @@ tiki/lib/mime/mimelib.php -text
 tiki/lib/mime/mimetypes.php -text
 tiki/lib/minical/index.php -text
 tiki/lib/minical/minicallib.php -text
+tiki/lib/mods/modslib.php -text
 tiki/lib/modules/index.php -text
 tiki/lib/modules/modlib.php -text
 tiki/lib/multilingual/multilinguallib.php -text
@@ -3250,6 +3256,7 @@ tiki/modules/mod-messages_unread_messages.php -text
 tiki/modules/mod-num_submissions.php -text
 tiki/modules/mod-old_articles.php -text
 tiki/modules/mod-online_users.php -text
+tiki/modules/mod-quick_edit.php -text
 tiki/modules/mod-random_pages.php -text
 tiki/modules/mod-shoutbox.php -text
 tiki/modules/mod-since_last_visit.php -text
@@ -3536,7 +3543,9 @@ tiki/temp/mail_attachs/index.php -text
 tiki/templates/attachments.tpl -text
 tiki/templates/babelfish.tpl -text
 tiki/templates/bidi.tpl -text
+tiki/templates/categobjects.tpl -text
 tiki/templates/categorize.tpl -text
+tiki/templates/categpath.tpl -text
 tiki/templates/comment.tpl -text
 tiki/templates/comments.tpl -text
 tiki/templates/confirm.tpl -text
@@ -3833,6 +3842,7 @@ tiki/templates/tiki-admin-include-maps.tpl -text
 tiki/templates/tiki-admin-include-metatags.tpl -text
 tiki/templates/tiki-admin-include-polls.tpl -text
 tiki/templates/tiki-admin-include-rss.tpl -text
+tiki/templates/tiki-admin-include-score.tpl -text
 tiki/templates/tiki-admin-include-search.tpl -text
 tiki/templates/tiki-admin-include-trackers.tpl -text
 tiki/templates/tiki-admin-include-userfiles.tpl -text
@@ -4025,6 +4035,8 @@ tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-mailin.tpl -text
 tiki/templates/tiki-minical.tpl -text
 tiki/templates/tiki-minical_prefs.tpl -text
+tiki/templates/tiki-mods.tpl -text
+tiki/templates/tiki-mods_config.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
@@ -4233,6 +4245,7 @@ tiki/tiki-admin_include_maps.php -text
 tiki/tiki-admin_include_metatags.php -text
 tiki/tiki-admin_include_polls.php -text
 tiki/tiki-admin_include_rss.php -text
+tiki/tiki-admin_include_score.php -text
 tiki/tiki-admin_include_search.php -text
 tiki/tiki-admin_include_trackers.php -text
 tiki/tiki-admin_include_userfiles.php -text
@@ -4449,6 +4462,7 @@ tiki/tiki-minical_export.php -text
 tiki/tiki-minical_prefs.php -text
 tiki/tiki-minical_reminders.php -text
 tiki/tiki-mobile.php -text
+tiki/tiki-mods.php -text
 tiki/tiki-module_controls.php -text
 tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
