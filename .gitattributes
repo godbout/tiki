@@ -2830,6 +2830,14 @@ tiki/templates/styles/neat/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/neat/tiki-show_page.tpl -text
 tiki/templates/styles/neat/tiki-top_bar.tpl -text
 tiki/templates/styles/neat/tiki.tpl -text
+tiki/templates/styles/notheme-II/error.tpl -text
+tiki/templates/styles/notheme-II/tiki-bot_bar.tpl -text
+tiki/templates/styles/notheme-II/tiki-my_tiki.tpl -text
+tiki/templates/styles/notheme-II/tiki-print.tpl -text
+tiki/templates/styles/notheme-II/tiki-print_article.tpl -text
+tiki/templates/styles/notheme-II/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/notheme-II/tiki-top_bar.tpl -text
+tiki/templates/styles/notheme-II/tiki.tpl -text
 tiki/templates/styles/notheme/error.tpl -text
 tiki/templates/styles/notheme/tiki-bot_bar.tpl -text
 tiki/templates/styles/notheme/tiki-my_tiki.tpl -text
