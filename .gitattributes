@@ -1453,6 +1453,7 @@ tiki/templates/tiki-admin_content_templates.tpl -text
 tiki/templates/tiki-admin_content_templatess.tpl -text
 tiki/templates/tiki-admin_cookies.tpl -text
 tiki/templates/tiki-admin_drawings.tpl -text
+tiki/templates/tiki-admin_dsn.tpl -text
 tiki/templates/tiki-admin_forums.tpl -text
 tiki/templates/tiki-admin_hotwords.tpl -text
 tiki/templates/tiki-admin_html_page_content.tpl -text
@@ -1684,6 +1685,7 @@ tiki/tiki-admin_chat.php -text
 tiki/tiki-admin_content_templates.php -text
 tiki/tiki-admin_cookies.php -text
 tiki/tiki-admin_drawings.php -text
+tiki/tiki-admin_dsn.php -text
 tiki/tiki-admin_forums.php -text
 tiki/tiki-admin_hotwords.php -text
 tiki/tiki-admin_html_page_content.php -text
