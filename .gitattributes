@@ -1208,6 +1208,8 @@ _mods/themes/redmetal/theme/templates/styles/redmetal/tiki-editpage.tpl -text
 _mods/themes/redmetal/theme/templates/styles/redmetal/tiki-show_page.tpl -text
 _mods/themes/redmetal/theme/templates/styles/redmetal/tiki-user_menu.tpl -text
 _mods/themes/redmetal/theme/templates/styles/redmetal/tiki.tpl -text
+_mods/themes/specialsauce/styles/specialsauce.css -text
+_mods/themes/specialsauce/templates/tiki.tpl -text
 _mods/themes/tarynsworld/README -text
 _mods/themes/tarynsworld/styles/tarynsworld.css -text
 _mods/themes/tarynsworld/styles/tarynsworld/001.gif -text
