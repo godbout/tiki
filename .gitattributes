@@ -568,6 +568,7 @@ _smarty/libs/core/core.write_compiled_resource.php -text
 _smarty/libs/core/core.write_file.php -text
 _smarty/libs/debug.tpl -text
 _smarty/libs/plugins/block.textformat.php -text
+_smarty/libs/plugins/block.translation.php -text
 _smarty/libs/plugins/compiler.assign.php -text
 _smarty/libs/plugins/function.assign_debug_info.php -text
 _smarty/libs/plugins/function.config_load.php -text
