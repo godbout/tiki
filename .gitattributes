@@ -2157,6 +2157,7 @@ tiki/lib/smarty_tiki/function.helplink.php -text
 tiki/lib/smarty_tiki/function.html_select_date.php -text
 tiki/lib/smarty_tiki/function.html_select_time.php -text
 tiki/lib/smarty_tiki/function.jspopup.php -text
+tiki/lib/smarty_tiki/function.memusage.php -text
 tiki/lib/smarty_tiki/function.menu.php -text
 tiki/lib/smarty_tiki/function.poll.php -text
 tiki/lib/smarty_tiki/function.rcontent.php -text
