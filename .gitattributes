@@ -3443,6 +3443,7 @@ tiki/templates/tiki-special_chars.php -text
 tiki/templates/tiki-stats.tpl -text
 tiki/templates/tiki-survey_stats.tpl -text
 tiki/templates/tiki-survey_stats_survey.tpl -text
+tiki/templates/tiki-syslog.tpl -text
 tiki/templates/tiki-take_quiz.tpl -text
 tiki/templates/tiki-take_survey.tpl -text
 tiki/templates/tiki-theme_control.tpl -text
@@ -3842,6 +3843,7 @@ tiki/tiki-survey_stats.php -text
 tiki/tiki-survey_stats_survey.php -text
 tiki/tiki-switch_lang.php -text
 tiki/tiki-switch_theme.php -text
+tiki/tiki-syslog.php -text
 tiki/tiki-take_quiz.php -text
 tiki/tiki-take_survey.php -text
 tiki/tiki-tc.php -text
