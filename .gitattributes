@@ -3754,6 +3754,7 @@ tiki/tests/core/init.scripts/40-smarty.php -text
 tiki/tests/core/init.scripts/99-zap_init_vars.php -text
 tiki/tests/core/tiki-hardcoded-config.php -text
 tiki/tests/index.php -text
+tiki/tests/mail_test.php -text
 tiki/tests/parse_data.php -text
 tiki/tests/parse_data/index.php -text
 tiki/tests/parse_data/test1 -text
