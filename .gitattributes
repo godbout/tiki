@@ -2499,6 +2499,11 @@ tiki/lib/search/refresh.php -text
 tiki/lib/search/searchlib.php -text
 tiki/lib/search/searchstatslib.php -text
 tiki/lib/searchlib.php -text
+tiki/lib/sheet/control.js -text
+tiki/lib/sheet/formula.js -text
+tiki/lib/sheet/grid.js -text
+tiki/lib/sheet/grid.php -text
+tiki/lib/sheet/panel.js -text
 tiki/lib/shoutbox/index.php -text
 tiki/lib/shoutbox/shoutboxlib.php -text
 tiki/lib/smarty_tiki/block.repeat.php -text
