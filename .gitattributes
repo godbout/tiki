@@ -542,6 +542,7 @@ tiki/templates/tiki-list_games.tpl -text
 tiki/templates/tiki-list_posts.tpl -text
 tiki/templates/tiki-list_quizzes.tpl -text
 tiki/templates/tiki-list_submissions.tpl -text
+tiki/templates/tiki-list_surveys.tpl -text
 tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
@@ -583,7 +584,10 @@ tiki/templates/tiki-slideshow.tpl -text
 tiki/templates/tiki-special_chars.html -text
 tiki/templates/tiki-special_chars.php -text
 tiki/templates/tiki-stats.tpl -text
+tiki/templates/tiki-survey_stats.tpl -text
+tiki/templates/tiki-survey_stats_survey.tpl -text
 tiki/templates/tiki-take_quiz.tpl -text
+tiki/templates/tiki-take_survey.tpl -text
 tiki/templates/tiki-top_bar.tpl -text
 tiki/templates/tiki-upload_file.tpl -text
 tiki/templates/tiki-upload_image.tpl -text
@@ -704,6 +708,7 @@ tiki/tiki-list_games.php -text
 tiki/tiki-list_posts.php -text
 tiki/tiki-list_quizzes.php -text
 tiki/tiki-list_submissions.php -text
+tiki/tiki-list_surveys.php -text
 tiki/tiki-list_trackers.php -text
 tiki/tiki-listpages.php -text
 tiki/tiki-login.php -text
@@ -748,7 +753,10 @@ tiki/tiki-setup_base.php -text
 tiki/tiki-shoutbox.php -text
 tiki/tiki-slideshow.php -text
 tiki/tiki-stats.php -text
+tiki/tiki-survey_stats.php -text
+tiki/tiki-survey_stats_survey.php -text
 tiki/tiki-take_quiz.php -text
+tiki/tiki-take_survey.php -text
 tiki/tiki-upload_file.php -text
 tiki/tiki-upload_image.php -text
 tiki/tiki-usage_chart -text
