@@ -1163,6 +1163,7 @@ tiki/templates/tiki-list_submissions.tpl -text
 tiki/templates/tiki-list_surveys.tpl -text
 tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
+tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
@@ -1338,6 +1339,7 @@ tiki/tiki-list_surveys.php -text
 tiki/tiki-list_trackers.php -text
 tiki/tiki-listpages.php -text
 tiki/tiki-login.php -text
+tiki/tiki-login_scr.php -text
 tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
 tiki/tiki-modules.php -text
