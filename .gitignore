@@ -1,3 +1,4 @@
+tiki/.htaccess
 tiki/.project
 tiki/backups/*
 tiki/db/local.php
