@@ -86,7 +86,6 @@ tiki/lib/tikilib.php -text
 tiki/lib/userslib.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
-tiki/log.txt -text
 tiki/modules/cache/mod-Oso.tpl.cache -text
 tiki/modules/cache/mod-Un[!!-~]pato.tpl.cache -text
 tiki/modules/cache/mod-admin_menu.tpl.cache -text
@@ -207,7 +206,6 @@ tiki/tiki-admin.php -text
 tiki/tiki-admin_hotwords.php -text
 tiki/tiki-admin_links.php -text
 tiki/tiki-admin_modules.php -text
-tiki/tiki-admin_modules.tpl -text
 tiki/tiki-admin_topics.php -text
 tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
@@ -249,7 +247,6 @@ tiki/tiki-read_article.php -text
 tiki/tiki-register.php -text
 tiki/tiki-removepage.php -text
 tiki/tiki-rollback.php -text
-tiki/tiki-rss.php -text
 tiki/tiki-searchresults.php -text
 tiki/tiki-setup.php -text
 tiki/tiki-upload-image.php -text
@@ -259,7 +256,5 @@ tiki/tiki-userversions.php -text
 tiki/tiki-view_articles.php -text
 tiki/tiki-view_blog.php -text
 tiki/tiki-view_cache.php -text
-tiki/tiki_admin_topics.php -text
-tiki/tiki_pagepermissions.php -text
 tiki/topic_image.php -text
 tiki/xmlrpc.php -text
