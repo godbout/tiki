@@ -3389,6 +3389,8 @@ tiki/templates/tiki-register_site.tpl -text
 tiki/templates/tiki-remind_password.tpl -text
 tiki/templates/tiki-removepage.tpl -text
 tiki/templates/tiki-rename_page.tpl -text
+tiki/templates/tiki-replicate.tpl -text
+tiki/templates/tiki-replicate_console.tpl -text
 tiki/templates/tiki-rollback.tpl -text
 tiki/templates/tiki-search_stats.tpl -text
 tiki/templates/tiki-searchindex.tpl -text
@@ -3778,6 +3780,8 @@ tiki/tiki-remind_password.php -text
 tiki/tiki-remote_backup.php -text
 tiki/tiki-removepage.php -text
 tiki/tiki-rename_page.php -text
+tiki/tiki-replicate.php -text
+tiki/tiki-replicate_console.php -text
 tiki/tiki-rollback.php -text
 tiki/tiki-rss.php -text
 tiki/tiki-rss_error.php -text
