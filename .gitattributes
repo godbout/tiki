@@ -103,6 +103,7 @@ tiki/db/tiki_1.1to1.2.sql -text
 tiki/db/tiki_1.2to1.3.sql -text
 tiki/db/tiki_1.3to1.4.sql -text
 tiki/db/tiki_1.4to1.5.sql -text
+tiki/db/tiki_1.5to1.6.sql -text
 tiki/display_banner.php -text
 tiki/doc/readme.txt -text
 tiki/dump/new.tar -text
@@ -1008,6 +1009,13 @@ tiki/styles/jalist/grad.png -text
 tiki/styles/jalist/maincap.png -text
 tiki/styles/jalist/menucap.png -text
 tiki/styles/jalist2.css -text
+tiki/styles/jalist2/bg.png -text
+tiki/styles/jalist2/fcap.png -text
+tiki/styles/jalist2/grad.gif -text
+tiki/styles/jalist2/grad.jpg -text
+tiki/styles/jalist2/grad.png -text
+tiki/styles/jalist2/maincap.png -text
+tiki/styles/jalist2/menucap.png -text
 tiki/styles/slides/wiredot.png -text svneol=unset#unset
 tiki/styles/slideshows/slidestyle.css -text
 tiki/styles/subsilver.css -text
