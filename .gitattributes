@@ -2172,6 +2172,7 @@ tiki/lib/wiki-plugins-dist/wikiplugin_split.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_sql.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_wikigraph.php -text
 tiki/lib/wiki-plugins/wikiplugin_avatar.php -text
+tiki/lib/wiki-plugins/wikiplugin_box.php -text
 tiki/lib/wiki-plugins/wikiplugin_center.php -text
 tiki/lib/wiki-plugins/wikiplugin_code.php -text
 tiki/lib/wiki-plugins/wikiplugin_copyright.php -text
