@@ -1902,6 +1902,14 @@ tiki/lib/commentslib.php -text
 tiki/lib/copyrights/copyrightslib.php -text
 tiki/lib/csslib.php -text
 tiki/lib/dcs/dcslib.php -text
+tiki/lib/debug/debug-command_csc.php -text
+tiki/lib/debug/debug-command_perm.php -text
+tiki/lib/debug/debug-command_print.php -text
+tiki/lib/debug/debug-command_slist.php -text
+tiki/lib/debug/debug-command_sprint.php -text
+tiki/lib/debug/debugger-common.php -text
+tiki/lib/debug/debugger-ext.php -text
+tiki/lib/debug/debugger.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
 tiki/lib/drawings/drawlib.php -text
