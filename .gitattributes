@@ -3210,6 +3210,7 @@ tiki/templates/tiki-admin_polls.tpl -text
 tiki/templates/tiki-admin_quicktags.tpl -text
 tiki/templates/tiki-admin_rssmodules.tpl -text
 tiki/templates/tiki-admin_score.tpl -text
+tiki/templates/tiki-admin_shoutbox_words.tpl -text
 tiki/templates/tiki-admin_structures.tpl -text
 tiki/templates/tiki-admin_survey_questions.tpl -text
 tiki/templates/tiki-admin_surveys.tpl -text
@@ -3557,6 +3558,7 @@ tiki/tiki-admin_polls.php -text
 tiki/tiki-admin_quicktags.php -text
 tiki/tiki-admin_rssmodules.php -text
 tiki/tiki-admin_score.php -text
+tiki/tiki-admin_shoutbox_words.php -text
 tiki/tiki-admin_structures.php -text
 tiki/tiki-admin_survey_questions.php -text
 tiki/tiki-admin_surveys.php -text
