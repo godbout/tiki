@@ -2341,6 +2341,27 @@ tiki/styles/akwa/aqua-tab-active.png -text
 tiki/styles/akwa/aqua-tab.png -text
 tiki/styles/akwa/dark.png -text
 tiki/styles/bluegreen.css -text
+tiki/styles/bluemetal.css -text
+tiki/styles/bluemetal/blue_barbg.gif -text
+tiki/styles/bluemetal/blue_barleft.gif -text
+tiki/styles/bluemetal/blue_barright.gif -text
+tiki/styles/bluemetal/blue_botbg.gif -text
+tiki/styles/bluemetal/blue_bottombg.gif -text
+tiki/styles/bluemetal/blue_bottomleft.gif -text
+tiki/styles/bluemetal/blue_bottomright.gif -text
+tiki/styles/bluemetal/blue_cornerbg.gif -text
+tiki/styles/bluemetal/blue_leftbg.gif -text
+tiki/styles/bluemetal/blue_rightbg.gif -text
+tiki/styles/bluemetal/blue_rtsidebg.gif -text
+tiki/styles/bluemetal/blue_topbg.gif -text
+tiki/styles/bluemetal/blue_topleft.gif -text
+tiki/styles/bluemetal/blue_topleftbg.gif -text
+tiki/styles/bluemetal/blue_topright.gif -text
+tiki/styles/bluemetal/blue_toprightbg.gif -text
+tiki/styles/bluemetal/nav_m.gif -text
+tiki/styles/bluemetal/page_0.gif -text
+tiki/styles/bluemetal/page_back.png -text
+tiki/styles/bluemetal/tile_back.gif -text
 tiki/styles/boreal.css -text
 tiki/styles/boreal/bg.jpg -text
 tiki/styles/boreal/contentmenu.gif -text
@@ -2625,6 +2646,8 @@ tiki/templates/modules/user_module.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
 tiki/templates/styles/akwa/tiki.tpl -text
+tiki/templates/styles/bluemetal/error.tpl -text
+tiki/templates/styles/bluemetal/tiki.tpl -text
 tiki/templates/styles/codex/error.tpl -text
 tiki/templates/styles/codex/tiki.tpl -text
 tiki/templates/styles/geo/modules/mod-login_box.tpl -text
