@@ -38,6 +38,7 @@ tiki/Smarty/plugins/function.elapsed.php -text
 tiki/Smarty/plugins/function.eval.php -text
 tiki/Smarty/plugins/function.fetch.php -text
 tiki/Smarty/plugins/function.gallery.php -text
+tiki/Smarty/plugins/function.helplink.php -text
 tiki/Smarty/plugins/function.html_options.php -text
 tiki/Smarty/plugins/function.html_select_date.php -text
 tiki/Smarty/plugins/function.html_select_time.php -text
