@@ -1552,6 +1552,7 @@ tiki/lang/da/language.php -text
 tiki/lang/de/language.php -text
 tiki/lang/dk/language.php -text
 tiki/lang/en/language.php -text
+tiki/lang/es/language.php -text
 tiki/lang/fr/language.php -text
 tiki/lang/he/language.php -text
 tiki/lang/it/language.php -text
@@ -1562,7 +1563,6 @@ tiki/lang/no/language.php -text
 tiki/lang/pl/language.php -text
 tiki/lang/ru/language.php -text
 tiki/lang/sk/language.php -text
-tiki/lang/sp/language.php -text
 tiki/lang/sr/language.php -text
 tiki/lang/sv/language.php -text
 tiki/lang/sw/language.php -text
