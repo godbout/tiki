@@ -982,6 +982,7 @@ tiki/lib/class_rss_parser.php -text
 tiki/lib/commentslib.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
+tiki/lib/htmlpages/htmlpageslib.php -text
 tiki/lib/jHotDraw/ATEXT1.gif -text
 tiki/lib/jHotDraw/ATEXT2.gif -text
 tiki/lib/jHotDraw/ATEXT3.gif -text
