@@ -973,6 +973,13 @@ _mods/templates/sdl_menu/lib/tiki-js.js -text
 _mods/templates/sdl_menu/templates/modules/mod-application_menu.tpl -text
 _mods/themes/README -text
 _mods/themes/akwa/styles/akwa.css -text
+_mods/themes/akwa/styles/akwa/aqua-header.png -text
+_mods/themes/akwa/styles/akwa/aqua-menubar-over.png -text
+_mods/themes/akwa/styles/akwa/aqua-menubar.png -text
+_mods/themes/akwa/styles/akwa/aqua-tab-active.png -text
+_mods/themes/akwa/styles/akwa/aqua-tab.png -text
+_mods/themes/akwa/styles/akwa/dark.png -text
+_mods/themes/akwa/styles/akwa/index.php -text
 _mods/themes/akwa/templates/styles/akwa/index.php -text
 _mods/themes/akwa/templates/styles/akwa/tiki-bot_bar.tpl -text
 _mods/themes/akwa/templates/styles/akwa/tiki.tpl -text
