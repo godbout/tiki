@@ -1128,6 +1128,9 @@ tiki/lib/pclerror.lib.php -text
 tiki/lib/pcltrace.lib.php -text
 tiki/lib/pclzip-trace.lib.php -text
 tiki/lib/pclzip.lib.php -text
+tiki/lib/pear/Auth/Auth.php -text
+tiki/lib/pear/Auth/Container.php -text
+tiki/lib/pear/Auth/Container/LDAP.php -text
 tiki/lib/pear/CMD.php -text
 tiki/lib/pear/DB.php -text
 tiki/lib/pear/DB/IDEAS -text
