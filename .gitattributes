@@ -1353,6 +1353,7 @@ tiki/img/icons/admin_maps.png -text
 tiki/img/icons/admin_metatags.png -text
 tiki/img/icons/admin_polls.png -text
 tiki/img/icons/admin_rss.png -text
+tiki/img/icons/admin_search.png -text
 tiki/img/icons/admin_sections.png -text
 tiki/img/icons/admin_trackers.png -text
 tiki/img/icons/admin_userfiles.png -text
@@ -3496,6 +3497,7 @@ tiki/templates/tiki-admin-include-maps.tpl -text
 tiki/templates/tiki-admin-include-metatags.tpl -text
 tiki/templates/tiki-admin-include-polls.tpl -text
 tiki/templates/tiki-admin-include-rss.tpl -text
+tiki/templates/tiki-admin-include-search.tpl -text
 tiki/templates/tiki-admin-include-trackers.tpl -text
 tiki/templates/tiki-admin-include-userfiles.tpl -text
 tiki/templates/tiki-admin-include-webmail.tpl -text
@@ -3836,6 +3838,7 @@ tiki/tiki-admin_include_maps.php -text
 tiki/tiki-admin_include_metatags.php -text
 tiki/tiki-admin_include_polls.php -text
 tiki/tiki-admin_include_rss.php -text
+tiki/tiki-admin_include_search.php -text
 tiki/tiki-admin_include_trackers.php -text
 tiki/tiki-admin_include_userfiles.php -text
 tiki/tiki-admin_include_webmail.php -text
@@ -4069,6 +4072,7 @@ tiki/tiki-removepage.php -text
 tiki/tiki-rename_page.php -text
 tiki/tiki-rollback.php -text
 tiki/tiki-rss.php -text
+tiki/tiki-rss_error.php -text
 tiki/tiki-rss_readcache.php -text
 tiki/tiki-search_stats.php -text
 tiki/tiki-searchindex.php -text
