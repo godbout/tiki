@@ -2568,6 +2568,7 @@ tiki/modules/mod-online_users.php -text
 tiki/modules/mod-random_pages.php -text
 tiki/modules/mod-shoutbox.php -text
 tiki/modules/mod-since_last_visit.php -text
+tiki/modules/mod-switch_theme.php -text
 tiki/modules/mod-tail.php -text
 tiki/modules/mod-top_active_blogs.php -text
 tiki/modules/mod-top_articles.php -text
@@ -2847,6 +2848,7 @@ tiki/templates/modules/mod-search_wiki_page.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl.nocache -text
 tiki/templates/modules/mod-since_last_visit.tpl -text
+tiki/templates/modules/mod-switch_theme.tpl -text
 tiki/templates/modules/mod-tail.tpl -text
 tiki/templates/modules/mod-top_active_blogs.tpl -text
 tiki/templates/modules/mod-top_articles.tpl -text
@@ -3603,6 +3605,7 @@ tiki/tiki-slideshow2.php -text
 tiki/tiki-stats.php -text
 tiki/tiki-survey_stats.php -text
 tiki/tiki-survey_stats_survey.php -text
+tiki/tiki-switch_theme.php -text
 tiki/tiki-take_quiz.php -text
 tiki/tiki-take_survey.php -text
 tiki/tiki-tc.php -text
