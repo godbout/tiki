@@ -1640,6 +1640,7 @@ tiki/tiki-setup_base.php -text
 tiki/tiki-shoutbox.php -text
 tiki/tiki-show_user_avatar.php -text
 tiki/tiki-slideshow.php -text
+tiki/tiki-slideshow2.php -text
 tiki/tiki-stats.php -text
 tiki/tiki-survey_stats.php -text
 tiki/tiki-survey_stats_survey.php -text
