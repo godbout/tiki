@@ -2263,6 +2263,7 @@ tiki/tiki-editpage.php -text
 tiki/tiki-eph.php -text
 tiki/tiki-eph_admin.php -text
 tiki/tiki-error.php -text
+tiki/tiki-export_pdf.php -text
 tiki/tiki-export_wiki_pages.php -text
 tiki/tiki-faq_questions.php -text
 tiki/tiki-featured_link.php -text
