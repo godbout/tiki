@@ -2505,6 +2505,7 @@ tiki/lib/sheet/formula.js -text
 tiki/lib/sheet/grid.js -text
 tiki/lib/sheet/grid.php -text
 tiki/lib/sheet/panel.js -text
+tiki/lib/sheet/style.css -text
 tiki/lib/shoutbox/index.php -text
 tiki/lib/shoutbox/shoutboxlib.php -text
 tiki/lib/smarty_tiki/block.repeat.php -text
@@ -3692,6 +3693,7 @@ tiki/templates/tiki-user_watches.tpl -text
 tiki/templates/tiki-userfiles.tpl -text
 tiki/templates/tiki-usermenu.tpl -text
 tiki/templates/tiki-userversions.tpl -text
+tiki/templates/tiki-view-sheets.tpl -text
 tiki/templates/tiki-view_articles.tpl -text
 tiki/templates/tiki-view_banner.tpl -text
 tiki/templates/tiki-view_blog.tpl -text
@@ -4114,6 +4116,7 @@ tiki/tiki-view_forum.php -text
 tiki/tiki-view_forum_thread.php -text
 tiki/tiki-view_irc.php -text
 tiki/tiki-view_minical_topic.php -text
+tiki/tiki-view_sheets.php -text
 tiki/tiki-view_tracker.php -text
 tiki/tiki-view_tracker_item.php -text
 tiki/tiki-view_tracker_more_info.php -text
