@@ -3195,6 +3195,7 @@ tiki/tiki-create_webhelp.php -text
 tiki/tiki-custom_home.php -text
 tiki/tiki-debug_console.php -text
 tiki/tiki-directory_add_site.php -text
+tiki/tiki-directory_add_tiki_site.php -text
 tiki/tiki-directory_admin.php -text
 tiki/tiki-directory_admin_categories.php -text
 tiki/tiki-directory_admin_related.php -text
@@ -3356,6 +3357,7 @@ tiki/tiki-received_articles.php -text
 tiki/tiki-received_pages.php -text
 tiki/tiki-referer_stats.php -text
 tiki/tiki-register.php -text
+tiki/tiki-register_site.php -text
 tiki/tiki-remind_password.php -text
 tiki/tiki-remote_backup.php -text
 tiki/tiki-removepage.php -text
