@@ -2578,6 +2578,7 @@ tiki/styles/neat/print_icon.gif -text
 tiki/styles/neat/user.gif -text
 tiki/styles/notheme.css -text
 tiki/styles/notheme/notheme-box.css -text
+tiki/styles/notheme/notheme-calendar.css -text
 tiki/styles/notheme/notheme-categories.css -text
 tiki/styles/notheme/notheme-debug.css -text
 tiki/styles/notheme/notheme-dir.css -text
