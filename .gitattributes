@@ -3037,6 +3037,7 @@ tiki/modules/mod-last_modif_tracker_items.php -text
 tiki/modules/mod-last_modified_blogs.php -text
 tiki/modules/mod-last_submissions.php -text
 tiki/modules/mod-last_tracker_items.php -text
+tiki/modules/mod-last_visitors.php -text
 tiki/modules/mod-live_support.php -text
 tiki/modules/mod-logged_users.php -text
 tiki/modules/mod-messages_unread_messages.php -text
@@ -3506,6 +3507,7 @@ tiki/templates/modules/mod-last_modif_tracker_items.tpl -text
 tiki/templates/modules/mod-last_modified_blogs.tpl -text
 tiki/templates/modules/mod-last_submissions.tpl -text
 tiki/templates/modules/mod-last_tracker_items.tpl -text
+tiki/templates/modules/mod-last_visitors.tpl -text
 tiki/templates/modules/mod-live_support.tpl -text
 tiki/templates/modules/mod-logged_users.tpl -text
 tiki/templates/modules/mod-logged_users.tpl.nocache -text
