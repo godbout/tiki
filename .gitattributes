@@ -2464,13 +2464,17 @@ tiki/styles/neat/user.gif -text
 tiki/styles/notheme.II.css -text
 tiki/styles/notheme.III.css -text
 tiki/styles/notheme.css -text
+tiki/styles/notheme/notheme-II-article.css -text
 tiki/styles/notheme/notheme-II-tc.css -text
 tiki/styles/notheme/notheme-III-box.css -text
+tiki/styles/notheme/notheme-article.css -text
 tiki/styles/notheme/notheme-box.css -text
 tiki/styles/notheme/notheme-calendar.css -text
 tiki/styles/notheme/notheme-categories.css -text
 tiki/styles/notheme/notheme-debug.css -text
 tiki/styles/notheme/notheme-dir.css -text
+tiki/styles/notheme/notheme-doxygen.css -text
+tiki/styles/notheme/notheme-faq.css -text
 tiki/styles/notheme/notheme-general.css -text
 tiki/styles/notheme/notheme-other.css -text
 tiki/styles/notheme/notheme-table.css -text
