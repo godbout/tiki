@@ -12,5 +12,6 @@ tiki/temp/dbg-watch.*
 tiki/templates_c
 tiki/templates_c/%%*
 tiki/templates_c/??
+tiki/templates_c/_smarty_cached_paths
 tiki/templates_c/preferences.php
 tiki/var
