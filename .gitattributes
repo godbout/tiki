@@ -207,6 +207,15 @@ _jscalendar/lang/calendar-zh.js -text
 _jscalendar/lang/index.php -text
 _jscalendar/menuarrow.gif -text
 _jscalendar/menuarrow2.gif -text
+_mods/Installed/00_list.txt -text
+_mods/Packages/00_list.txt -text
+_mods/Packages/avatars-dragonballz.info.txt -text
+_mods/Packages/avatars-goldorak.info.txt -text
+_mods/Packages/avatars-mcdonald.info.txt -text
+_mods/Packages/avatars-xmen.info.txt -text
+_mods/Packages/themes-zaksworld.info.txt -text
+_mods/Packages/themes-ztheme.info.txt -text
+_mods/Packages/wikiplugins-svg.info.txt -text
 _mods/README -text
 _mods/authentication/Readme -text
 _mods/avatars/tikiavatars/avatars.tar.gz -text
