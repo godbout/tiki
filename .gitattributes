@@ -1293,6 +1293,11 @@ tiki/templates/styles/default2/tiki-print.tpl -text
 tiki/templates/styles/default2/tiki-print_article.tpl -text
 tiki/templates/styles/default2/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/default2/tiki.tpl -text
+tiki/templates/styles/elegant/error.tpl -text
+tiki/templates/styles/elegant/tiki-print.tpl -text
+tiki/templates/styles/elegant/tiki-print_article.tpl -text
+tiki/templates/styles/elegant/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/elegant/tiki.tpl -text
 tiki/templates/styles/jalist/error.tpl -text
 tiki/templates/styles/jalist/tiki-print.tpl -text
 tiki/templates/styles/jalist/tiki-print_article.tpl -text
