@@ -195,6 +195,7 @@ _phplayers/DUMPS/pgsql.demo_data.dump -text
 _phplayers/DUMPS/pgsql.start.dump -text
 _phplayers/LICENSE -text
 _phplayers/LOGOS/README -text
+_phplayers/LOGOS/index.php -text
 _phplayers/LOGOS/powered_by_phplm.png -text
 _phplayers/LOGOS/powered_by_phplm_b01.png -text
 _phplayers/LOGOS/powered_by_phplm_b02.png -text
@@ -216,6 +217,7 @@ _phplayers/README.PHPDOC -text
 _phplayers/README.ihtml -text
 _phplayers/THEMES/galeon-theme.tar.gz -text
 _phplayers/THEMES/gmc-theme.tar.gz -text
+_phplayers/THEMES/index.php -text
 _phplayers/THEMES/kde-theme.tar.gz -text
 _phplayers/THEMES/mozilla-theme.tar.gz -text
 _phplayers/THEMES/nautilus-gnome-theme.tar.gz -text
@@ -302,12 +304,14 @@ _phplayers/layersmenu-vertical-2.txt -text
 _phplayers/layerstreemenu-hidden.css -text
 _phplayers/layerstreemenu.css -text
 _phplayers/lib/PHPLIB.php -text
+_phplayers/lib/index.php -text
 _phplayers/lib/layersmenu-common.inc.php -text
 _phplayers/lib/layersmenu-process.inc.php -text
 _phplayers/lib/layersmenu.inc.php -text
 _phplayers/lib/phptreemenu.inc.php -text
 _phplayers/lib/plainmenu.inc.php -text
 _phplayers/lib/treemenu.inc.php -text
+_phplayers/libjs/index.php -text
 _phplayers/libjs/layersmenu-browser_detection.js -text
 _phplayers/libjs/layersmenu-footer.ijs -text
 _phplayers/libjs/layersmenu-header.ijs -text
@@ -317,6 +321,7 @@ _phplayers/libjs/layersmenu.js -text
 _phplayers/libjs/layerstreemenu-cookies.js -text
 _phplayers/libjs/layerstreemenu.ijs -text
 _phplayers/phplayersindex.php -text
+_phplayers/templates/index.php -text
 _phplayers/templates/layersmenu-horizontal_menu-full.ihtml -text
 _phplayers/templates/layersmenu-horizontal_menu-keramik.ihtml -text
 _phplayers/templates/layersmenu-horizontal_menu-old.ihtml -text
