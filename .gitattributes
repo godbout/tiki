@@ -61,9 +61,12 @@ tiki/article_image.php -text
 tiki/banner_click.php -text
 tiki/banner_image.php -text
 tiki/changelog.txt -text
+tiki/comments.php -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki.sql -text
+tiki/db/tiki_0.95to1.0.sql -text
 tiki/db/tiki_0.9to0.95.sql -text
+tiki/db/tiki_1.0to1.1.sql -text
 tiki/display_banner.php -text
 tiki/doc/tiki.doc -text
 tiki/doc/tiki.pdf -text
@@ -258,6 +261,7 @@ tiki/tiki-blog_rss.php -text
 tiki/tiki-browse_gallery.php -text
 tiki/tiki-browse_image.php -text
 tiki/tiki-cms_rankings.php -text
+tiki/tiki-download_file.php -text
 tiki/tiki-edit_article.php -text
 tiki/tiki-edit_banner.php -text
 tiki/tiki-edit_blog.php -text
@@ -267,6 +271,8 @@ tiki/tiki-edit_templates.php -text
 tiki/tiki-editarticle.php -text
 tiki/tiki-editpage.php -text
 tiki/tiki-featured_link.php -text
+tiki/tiki-file_galleries.php -text
+tiki/tiki-file_galleries_rankings.php -text
 tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
 tiki/tiki-index.php -text
@@ -277,6 +283,7 @@ tiki/tiki-list_banners.php -text
 tiki/tiki-list_blogs.php -text
 tiki/tiki-list_cache.php -text
 tiki/tiki-list_contents.php -text
+tiki/tiki-list_file_gallery.php -text
 tiki/tiki-list_gallery.php -text
 tiki/tiki-list_posts.php -text
 tiki/tiki-list_submissions.php -text
@@ -298,6 +305,7 @@ tiki/tiki-rollback.php -text
 tiki/tiki-searchresults.php -text
 tiki/tiki-setup.php -text
 tiki/tiki-upload-image.php -text
+tiki/tiki-upload_file.php -text
 tiki/tiki-upload_image.php -text
 tiki/tiki-user_preferences.php -text
 tiki/tiki-userversions.php -text
