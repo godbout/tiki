@@ -350,7 +350,6 @@ tiki/games/README -text
 tiki/games/flash/README -text
 tiki/games/thumbs/README -text
 tiki/get_strings.php -text
-tiki/images/Thumbs.db -text
 tiki/images/book.gif -text
 tiki/images/ed_about.gif -text
 tiki/images/ed_align_center.gif -text
@@ -1572,7 +1571,6 @@ tiki/img/icons2/zweistern.gif -text
 tiki/img/leftbar.gif -text
 tiki/img/mainbar.gif -text
 tiki/img/mysql.gif -text
-tiki/img/mytiki/Thumbs.db -text
 tiki/img/mytiki/admin.gif -text
 tiki/img/mytiki/bookmarks.gif -text
 tiki/img/mytiki/files.gif -text
@@ -1696,7 +1694,6 @@ tiki/lib/Galaxia/img/icons/FallOut.gif -text
 tiki/lib/Galaxia/img/icons/Instance.gif -text
 tiki/lib/Galaxia/img/icons/Openflow.gif -text
 tiki/lib/Galaxia/img/icons/Process.gif -text
-tiki/lib/Galaxia/img/icons/Thumbs.db -text
 tiki/lib/Galaxia/img/icons/Token.gif -text
 tiki/lib/Galaxia/img/icons/Transaction.gif -text
 tiki/lib/Galaxia/img/icons/Transition.gif -text
