@@ -991,15 +991,18 @@ tiki/lib/Date/TimeZoneWindows.php -text
 tiki/lib/NNTP.php -text
 tiki/lib/bablotron.php -text
 tiki/lib/backups/backupslib.php -text
+tiki/lib/blogs/bloglib.php -text
 tiki/lib/categories/categlib.php -text
 tiki/lib/class.ezpdf.php.exe -text
 tiki/lib/class_calendar.php -text
 tiki/lib/class_rdf_parser.php -text
 tiki/lib/class_rss_parser.php -text
+tiki/lib/commcenter/commlib.php -text
 tiki/lib/commentslib.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
 tiki/lib/faqs/faqlib.php -text
+tiki/lib/filegals/filegallib.php -text
 tiki/lib/htmlpages/htmlpageslib.php -text
 tiki/lib/jHotDraw/ATEXT1.gif -text
 tiki/lib/jHotDraw/ATEXT2.gif -text
@@ -1059,6 +1062,7 @@ tiki/lib/jHotDraw/example.map -text
 tiki/lib/jHotDraw/twikidraw.jar -text
 tiki/lib/mailin/mailinlib.php -text
 tiki/lib/md5.js -text
+tiki/lib/menubuilder/menulib.php -text
 tiki/lib/messu/messulib.php -text
 tiki/lib/newsletters/nllib.php -text
 tiki/lib/newsreader/newslib.php -text
