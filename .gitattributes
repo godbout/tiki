@@ -2823,6 +2823,7 @@ tiki/templates/styles/whitebluegrey/tiki-print.tpl -text
 tiki/templates/styles/whitebluegrey/tiki-print_article.tpl -text
 tiki/templates/styles/whitebluegrey/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/whitebluegrey/tiki.tpl -text
+tiki/templates/textareaSize.tpl -text
 tiki/templates/tiki-admin-include-anchors.tpl -text
 tiki/templates/tiki-admin-include-blogs.tpl -text
 tiki/templates/tiki-admin-include-cms.tpl -text
