@@ -210,7 +210,7 @@ tiki/index.php -text
 tiki/jhot.php -text
 tiki/lang/de/language.php -text
 tiki/lang/en/language.php -text
-tiki/lang/po/language.php -text
+tiki/lang/fr/language.php -text
 tiki/lang/sp/language.php -text
 tiki/lib/bablotron.php -text
 tiki/lib/class.ezpdf.php.exe -text
