@@ -201,6 +201,8 @@ _mods/themes/zaksworld/styles/zaksworld.css -text
 _mods/themes/zaksworld/styles/zaksworld/rattle.gif -text
 _mods/themes/zaksworld/templates/styles/zaksworld/tiki-bot_bar.tpl -text
 _mods/themes/zaksworld/templates/styles/zaksworld/tiki-top_bar.tpl -text
+_mods/themes/ztheme/README -text
+_mods/themes/ztheme/styles/ztheme.css -text
 _phplayers/ACKNOWLEDGEMENTS -text
 _phplayers/CHANGELOG -text
 _phplayers/CHANGE_TEMPLATE_CLASS_NAME.sh -text
