@@ -42,6 +42,7 @@ tiki/Smarty/plugins/function.helplink.php -text
 tiki/Smarty/plugins/function.html_options.php -text
 tiki/Smarty/plugins/function.html_select_date.php -text
 tiki/Smarty/plugins/function.html_select_time.php -text
+tiki/Smarty/plugins/function.jspopup.php -text
 tiki/Smarty/plugins/function.mailto.php -text
 tiki/Smarty/plugins/function.math.php -text
 tiki/Smarty/plugins/function.menu.php -text
