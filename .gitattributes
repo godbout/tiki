@@ -1036,6 +1036,7 @@ tiki/lib/searchlib.php -text
 tiki/lib/structures/structlib.php -text
 tiki/lib/surveys/surveylib.php -text
 tiki/lib/tar.class.php -text
+tiki/lib/tasks/tasklib.php -text
 tiki/lib/tiki-js.js -text
 tiki/lib/tikilib.php -text
 tiki/lib/trackers/trackerlib.php -text
@@ -1053,6 +1054,7 @@ tiki/lib/wiki-plugins/wikiplugin_center.php -text
 tiki/lib/wiki-plugins/wikiplugin_code.php -text
 tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
+tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki/wikilib.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
