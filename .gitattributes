@@ -214,6 +214,7 @@ _mods/Packages/avatars-dragonballz.info.txt -text
 _mods/Packages/avatars-goldorak.info.txt -text
 _mods/Packages/avatars-mcdonald.info.txt -text
 _mods/Packages/avatars-xmen.info.txt -text
+_mods/Packages/themes-508.info.txt -text
 _mods/Packages/themes-akwa.info.txt -text
 _mods/Packages/themes-bluemetal.info.txt -text
 _mods/Packages/themes-classicblue.info.txt -text
@@ -972,6 +973,8 @@ _mods/templates/sdl_collection/templates/tiki-webmail_contacts.tpl -text
 _mods/templates/sdl_menu/README -text
 _mods/templates/sdl_menu/lib/tiki-js.js -text
 _mods/templates/sdl_menu/templates/modules/mod-application_menu.tpl -text
+_mods/themes/508/styles/508.css -text
+_mods/themes/508/templates/styles/508/tiki.tpl -text
 _mods/themes/README -text
 _mods/themes/akwa/styles/akwa.css -text
 _mods/themes/akwa/styles/akwa/aqua-header.png -text
