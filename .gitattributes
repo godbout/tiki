@@ -2371,6 +2371,7 @@ tiki/styles/matrix/matrix-tc.css -text
 tiki/styles/matrix/matrix-wiki.css -text
 tiki/styles/matrix/matrix-wiki.f.css -text
 tiki/styles/matrix/matrix-wiki.l.css -text
+tiki/styles/moreneat.css -text
 tiki/styles/mose.css -text
 tiki/styles/mose/bgtitlebox.png -text
 tiki/styles/mose/fo.gif -text
@@ -2557,6 +2558,14 @@ tiki/templates/styles/matrix/tiki-print_article.tpl -text
 tiki/templates/styles/matrix/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/matrix/tiki-top_bar.tpl -text
 tiki/templates/styles/matrix/tiki.tpl -text
+tiki/templates/styles/moreneat/error.tpl -text
+tiki/templates/styles/moreneat/header.tpl -text
+tiki/templates/styles/moreneat/modules/mod-application_menu.tpl -text
+tiki/templates/styles/moreneat/tiki-print.tpl -text
+tiki/templates/styles/moreneat/tiki-print_article.tpl -text
+tiki/templates/styles/moreneat/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/moreneat/tiki-show_page.tpl -text
+tiki/templates/styles/moreneat/tiki.tpl -text
 tiki/templates/styles/mose/error.tpl -text
 tiki/templates/styles/mose/modules/mod-application_menu.tpl -text
 tiki/templates/styles/mose/tiki-bot_bar.tpl -text
