@@ -210,12 +210,16 @@ tiki/tiki-admin_topics.php -text
 tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
 tiki/tiki-adminusers_old.php -text
+tiki/tiki-articles_rss.php -text
 tiki/tiki-assignpermission.php -text
 tiki/tiki-assignuser.php -text
 tiki/tiki-backlinks.php -text
 tiki/tiki-blog_post.php -text
+tiki/tiki-blog_rankings.php -text
+tiki/tiki-blog_rss.php -text
 tiki/tiki-browse_gallery.php -text
 tiki/tiki-browse_image.php -text
+tiki/tiki-cms_rankings.php -text
 tiki/tiki-edit_article.php -text
 tiki/tiki-edit_blog.php -text
 tiki/tiki-edit_submission.php -text
@@ -223,6 +227,7 @@ tiki/tiki-editarticle.php -text
 tiki/tiki-editpage.php -text
 tiki/tiki-featured_link.php -text
 tiki/tiki-galleries.php -text
+tiki/tiki-galleries_rankings.php -text
 tiki/tiki-index.php -text
 tiki/tiki-lastchanges.php -text
 tiki/tiki-likepages.php -text
@@ -256,5 +261,7 @@ tiki/tiki-userversions.php -text
 tiki/tiki-view_articles.php -text
 tiki/tiki-view_blog.php -text
 tiki/tiki-view_cache.php -text
+tiki/tiki-wiki_rankings.php -text
+tiki/tiki-wiki_rss.php -text
 tiki/topic_image.php -text
 tiki/xmlrpc.php -text
