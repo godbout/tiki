@@ -2674,6 +2674,7 @@ tiki/modules/mod-top_pages.php -text
 tiki/modules/mod-top_quizzes.php -text
 tiki/modules/mod-top_visited_blogs.php -text
 tiki/modules/mod-top_visited_faqs.php -text
+tiki/modules/mod-upcoming_events.php -text
 tiki/modules/mod-user_blogs.php -text
 tiki/modules/mod-user_bookmarks.php -text
 tiki/modules/mod-user_image_galleries.php -text
