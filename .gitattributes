@@ -1,5 +1,4 @@
 * text=auto !eol
-_adodb/adodb-cryptsession.php -text
 _adodb/adodb-csvlib.inc.php -text
 _adodb/adodb-datadict.inc.php -text
 _adodb/adodb-error.inc.php -text
@@ -12,13 +11,10 @@ _adodb/adodb-pager.inc.php -text
 _adodb/adodb-pear.inc.php -text
 _adodb/adodb-perf.inc.php -text
 _adodb/adodb-php4.inc.php -text
-_adodb/adodb-session-clob.php -text
-_adodb/adodb-session.php -text
 _adodb/adodb-time.inc.php -text
 _adodb/adodb-xmlschema.inc.php -text
 _adodb/adodb-xmlschema.zip -text
 _adodb/adodb.inc.php -text
-_adodb/crypt.inc.php -text
 _adodb/cute_icons_for_site/adodb.gif -text
 _adodb/cute_icons_for_site/adodb.png -text
 _adodb/cute_icons_for_site/adodb2.gif -text
