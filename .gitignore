@@ -8,6 +8,7 @@ tiki/lib/Galaxia/processes/*
 tiki/modules/cache
 tiki/modules/cache/*
 tiki/phpmyadmin
+tiki/temp/cache
 tiki/temp/dbg-watch.*
 tiki/temp/sf*
 tiki/temp/topic.*
