@@ -3424,5 +3424,8 @@ tiki/tiki-wiki_rss.php -text
 tiki/tiki-ws_client.php -text
 tiki/tiki-ws_server.php -text
 tiki/tiki-xmlrpc_services.php -text
+tiki/tikimovies/README -text
+tiki/tikimovies/controller.swf -text svneol=unset#unset
+tiki/tikimovies/sample.xml -text
 tiki/topic_image.php -text
 tiki/xmlrpc.php -text
