@@ -52,6 +52,7 @@ tiki/Smarty/plugins/function.popup_init.php -text
 tiki/Smarty/plugins/function.rcontent.php -text
 tiki/Smarty/plugins/function.rss.php -text
 tiki/Smarty/plugins/function.showdate.php -text
+tiki/Smarty/plugins/modifier.adjust.php -text
 tiki/Smarty/plugins/modifier.avatarize.php -text
 tiki/Smarty/plugins/modifier.capitalize.php -text
 tiki/Smarty/plugins/modifier.count_characters.php -text
