@@ -1811,6 +1811,7 @@ tiki/tiki-logout.php -text
 tiki/tiki-mailin.php -text
 tiki/tiki-minical.php -text
 tiki/tiki-minical_prefs.php -text
+tiki/tiki-minical_reminders.php -text
 tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
 tiki/tiki-mytiki_shared.php -text
