@@ -2593,6 +2593,9 @@ tiki/styles/geo.css -text
 tiki/styles/geo/backmap.png -text
 tiki/styles/geo/fond2tete.png -text
 tiki/styles/geo/fondtete.png -text
+tiki/styles/gmsih.css -text
+tiki/styles/gmsih/fleche.png -text
+tiki/styles/gmsih/fleche2.png -text
 tiki/styles/integrator/README -text
 tiki/styles/integrator/default.css -text
 tiki/styles/integrator/doxygen.css -text
