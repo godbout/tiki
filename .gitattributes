@@ -2888,6 +2888,7 @@ tiki/templates/tiki-directory_footer.tpl -text
 tiki/templates/tiki-directory_ranking.tpl -text
 tiki/templates/tiki-directory_search.tpl -text
 tiki/templates/tiki-directory_validate_sites.tpl -text
+tiki/templates/tiki-doxyview.tpl -text
 tiki/templates/tiki-edit_article.tpl -text
 tiki/templates/tiki-edit_banner.tpl -text
 tiki/templates/tiki-edit_blog.tpl -text
@@ -3204,6 +3205,7 @@ tiki/tiki-download_forum_attachment.php -text
 tiki/tiki-download_item_attachment.php -text
 tiki/tiki-download_userfile.php -text
 tiki/tiki-download_wiki_attachment.php -text
+tiki/tiki-doxyview.php -text
 tiki/tiki-edit_article.php -text
 tiki/tiki-edit_banner.php -text
 tiki/tiki-edit_blog.php -text
