@@ -2468,6 +2468,7 @@ tiki/templates/tiki-view_banner.tpl -text
 tiki/templates/tiki-view_blog.tpl -text
 tiki/templates/tiki-view_blog_post.tpl -text
 tiki/templates/tiki-view_cache.tpl -text
+tiki/templates/tiki-view_chart.tpl -text
 tiki/templates/tiki-view_faq.tpl -text
 tiki/templates/tiki-view_forum.tpl -text
 tiki/templates/tiki-view_forum_thread.tpl -text
@@ -2763,6 +2764,7 @@ tiki/tiki-view_blog.php -text
 tiki/tiki-view_blog_post.php -text
 tiki/tiki-view_blog_post_image.php -text
 tiki/tiki-view_cache.php -text
+tiki/tiki-view_chart.php -text
 tiki/tiki-view_eph.php -text
 tiki/tiki-view_faq.php -text
 tiki/tiki-view_forum.php -text
