@@ -2286,6 +2286,7 @@ tiki/messu-read.php -text
 tiki/modules/.cvsignore -text
 tiki/modules/cache/.cvsignore -text
 tiki/modules/cache/README -text
+tiki/modules/mod-articles.php -text
 tiki/modules/mod-breadcrumb.php -text
 tiki/modules/mod-comm_received_objects.php -text
 tiki/modules/mod-directory_last_sites.php -text
@@ -2569,6 +2570,7 @@ tiki/templates/messu-read.tpl -text
 tiki/templates/modules/mod-admin_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl.nocache -text
+tiki/templates/modules/mod-articles.tpl -text
 tiki/templates/modules/mod-breadcrumb.tpl -text
 tiki/templates/modules/mod-breadcrumb.tpl.nocache -text
 tiki/templates/modules/mod-calendar.tpl -text
