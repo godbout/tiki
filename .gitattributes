@@ -1401,6 +1401,7 @@ tiki/img/wiki_up/.cvsignore -text
 tiki/img/wiki_up/license.txt -text
 tiki/index.php -text
 tiki/jhot.php -text
+tiki/lang/cn/language.php -text
 tiki/lang/de/language.php -text
 tiki/lang/dk/language.php -text
 tiki/lang/en/language.php -text
