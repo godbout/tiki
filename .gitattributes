@@ -3246,6 +3246,7 @@ tiki/styles/notheme/notheme-other.css -text
 tiki/styles/notheme/notheme-table.css -text
 tiki/styles/notheme/notheme-tc.css -text
 tiki/styles/notheme/notheme-wiki.css -text
+tiki/styles/olive-blue.css -text svneol=unset#application/octet-stream
 tiki/styles/olive.css -text svneol=unset#application/octet-stream
 tiki/styles/purplemetal.css -text
 tiki/styles/purplemetal/index.php -text
