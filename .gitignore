@@ -10,6 +10,7 @@ tiki/lib/smarty
 tiki/modules/cache
 tiki/modules/cache/*
 tiki/phpmyadmin
+tiki/project.index
 tiki/temp/cache
 tiki/temp/dbg-watch.*
 tiki/temp/sf*
