@@ -1862,6 +1862,7 @@ tiki/lib/Galaxia/src/common/Observable.php -text
 tiki/lib/Galaxia/src/common/Observer.php -text
 tiki/lib/NNTP.php -text
 tiki/lib/admin/adminlib.php -text
+tiki/lib/articles/artlib.php -text
 tiki/lib/bablotron.php -text
 tiki/lib/backups/backupslib.php -text
 tiki/lib/ban/banlib.php -text
@@ -1883,6 +1884,7 @@ tiki/lib/directory/dirlib.php -text
 tiki/lib/drawings/drawlib.php -text
 tiki/lib/ephemerides/ephlib.php -text
 tiki/lib/faqs/faqlib.php -text
+tiki/lib/featured_links/flinkslib.php -text
 tiki/lib/filegals/filegallib.php -text
 tiki/lib/games/gamelib.php -text
 tiki/lib/graphviz/GraphViz.php -text
@@ -1982,6 +1984,7 @@ tiki/lib/messu/messulib.php -text
 tiki/lib/mime/mimelib.php -text
 tiki/lib/mime/mimetypes.php -text
 tiki/lib/minical/minicallib.php -text
+tiki/lib/modules/modlib.php -text
 tiki/lib/newsletters/nllib.php -text
 tiki/lib/newsreader/newslib.php -text
 tiki/lib/notepad/notepadlib.php -text
@@ -2047,6 +2050,7 @@ tiki/lib/phplot.php -text
 tiki/lib/polls/polllib.php -text
 tiki/lib/potlib.php -text
 tiki/lib/quizzes/quizlib.php -text
+tiki/lib/rankings/ranklib.php -text
 tiki/lib/refererstats/refererlib.php -text
 tiki/lib/registration/registrationlib.php -text
 tiki/lib/rss/rsslib.php -text
@@ -2100,6 +2104,7 @@ tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
 tiki/lib/wiki-plugins/wikiplugin_wikigraph.php -text
 tiki/lib/wiki/exportlib.php -text
+tiki/lib/wiki/histlib.php -text
 tiki/lib/wiki/wikilib.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
