@@ -3009,6 +3009,7 @@ tiki/modules/mod-last_created_quizzes.php -text
 tiki/modules/mod-last_file_galleries.php -text
 tiki/modules/mod-last_files.php -text
 tiki/modules/mod-last_image_galleries.php -text
+tiki/modules/mod-last_modif_events.php -text
 tiki/modules/mod-last_modif_pages.php -text
 tiki/modules/mod-last_modif_tracker_items.php -text
 tiki/modules/mod-last_modified_blogs.php -text
@@ -3477,6 +3478,7 @@ tiki/templates/modules/mod-last_created_quizzes.tpl -text
 tiki/templates/modules/mod-last_file_galleries.tpl -text
 tiki/templates/modules/mod-last_files.tpl -text
 tiki/templates/modules/mod-last_image_galleries.tpl -text
+tiki/templates/modules/mod-last_modif_events.tpl -text
 tiki/templates/modules/mod-last_modif_pages.tpl -text
 tiki/templates/modules/mod-last_modif_tracker_items.tpl -text
 tiki/templates/modules/mod-last_modified_blogs.tpl -text
