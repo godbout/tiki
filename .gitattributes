@@ -2120,6 +2120,9 @@ tiki/lib/tasks/tasklib.php -text
 tiki/lib/templates/templateslib.php -text
 tiki/lib/themecontrol/tcontrol.php -text
 tiki/lib/tiki-js.js -text
+tiki/lib/tikibot/README -text
+tiki/lib/tikibot/start.php -text
+tiki/lib/tikibot/wollabot.ini -text
 tiki/lib/tikidate.php -text
 tiki/lib/tikidblib-debug.php -text
 tiki/lib/tikidblib.php -text
