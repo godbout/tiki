@@ -1006,6 +1006,7 @@ tiki/lib/commentslib.php -text
 tiki/lib/dcs/dcslib.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
+tiki/lib/ephemerides/ephlib.php -text
 tiki/lib/faqs/faqlib.php -text
 tiki/lib/filegals/filegallib.php -text
 tiki/lib/games/gamelib.php -text
@@ -1097,6 +1098,7 @@ tiki/lib/taglines/taglinelib.php -text
 tiki/lib/tar.class.php -text
 tiki/lib/tasks/tasklib.php -text
 tiki/lib/templates/templateslib.php -text
+tiki/lib/themecontrol/tcontrol.php -text
 tiki/lib/tiki-js.js -text
 tiki/lib/tikilib.php -text
 tiki/lib/trackers/trackerlib.php -text
@@ -1147,6 +1149,7 @@ tiki/modules/mod-comm_received_objects.php -text
 tiki/modules/mod-directory_last_sites.php -text
 tiki/modules/mod-directory_stats.php -text
 tiki/modules/mod-directory_top_sites.php -text
+tiki/modules/mod-eph.php -text
 tiki/modules/mod-featured_links.php -text
 tiki/modules/mod-forums_best_voted_topics.php -text
 tiki/modules/mod-forums_last_topics.php -text
@@ -1280,6 +1283,7 @@ tiki/templates/modules/mod-comm_received_objects.tpl -text
 tiki/templates/modules/mod-directory_last_sites.tpl -text
 tiki/templates/modules/mod-directory_stats.tpl -text
 tiki/templates/modules/mod-directory_top_sites.tpl -text
+tiki/templates/modules/mod-eph.tpl -text
 tiki/templates/modules/mod-featured_links.tpl -text
 tiki/templates/modules/mod-forums_best_voted_topics.tpl -text
 tiki/templates/modules/mod-forums_last_topics.tpl -text
@@ -1461,6 +1465,8 @@ tiki/templates/tiki-edit_structure.tpl -text
 tiki/templates/tiki-edit_submission.tpl -text
 tiki/templates/tiki-edit_templates.tpl -text
 tiki/templates/tiki-editpage.tpl -text
+tiki/templates/tiki-eph.tpl -text
+tiki/templates/tiki-eph_admin.tpl -text
 tiki/templates/tiki-faq_questions.tpl -text
 tiki/templates/tiki-featured_link.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
@@ -1541,6 +1547,9 @@ tiki/templates/tiki-survey_stats.tpl -text
 tiki/templates/tiki-survey_stats_survey.tpl -text
 tiki/templates/tiki-take_quiz.tpl -text
 tiki/templates/tiki-take_survey.tpl -text
+tiki/templates/tiki-theme_control.tpl -text
+tiki/templates/tiki-theme_control_objects.tpl -text
+tiki/templates/tiki-theme_control_sections.tpl -text
 tiki/templates/tiki-top_bar.tpl -text
 tiki/templates/tiki-upload_file.tpl -text
 tiki/templates/tiki-upload_image.tpl -text
@@ -1692,6 +1701,8 @@ tiki/tiki-edit_submission.php -text
 tiki/tiki-edit_templates.php -text
 tiki/tiki-editdrawing.php -text
 tiki/tiki-editpage.php -text
+tiki/tiki-eph.php -text
+tiki/tiki-eph_admin.php -text
 tiki/tiki-error.php -text
 tiki/tiki-export_wiki_pages.php -text
 tiki/tiki-faq_questions.php -text
@@ -1793,7 +1804,11 @@ tiki/tiki-survey_stats.php -text
 tiki/tiki-survey_stats_survey.php -text
 tiki/tiki-take_quiz.php -text
 tiki/tiki-take_survey.php -text
+tiki/tiki-tc.php -text
 tiki/tiki-tests.php -text
+tiki/tiki-theme_control.php -text
+tiki/tiki-theme_control_objects.php -text
+tiki/tiki-theme_control_sections.php -text
 tiki/tiki-upload_file.php -text
 tiki/tiki-upload_image.php -text
 tiki/tiki-usage_chart -text
@@ -1811,6 +1826,7 @@ tiki/tiki-view_banner.php -text
 tiki/tiki-view_blog.php -text
 tiki/tiki-view_blog_post.php -text
 tiki/tiki-view_cache.php -text
+tiki/tiki-view_eph.php -text
 tiki/tiki-view_faq.php -text
 tiki/tiki-view_forum.php -text
 tiki/tiki-view_forum_thread.php -text
