@@ -1331,6 +1331,7 @@ tiki/img/icons/visit_info.gif -text
 tiki/img/icons/visited_path.gif -text
 tiki/img/icons/weather.gif -text
 tiki/img/icons/whelp.gif -text
+tiki/img/icons/whelp_toc.gif -text
 tiki/img/icons/xclipboard.gif -text
 tiki/img/icons/zoom.gif -text
 tiki/img/icons2/1.gif -text
@@ -2866,6 +2867,7 @@ tiki/templates/tiki-chat_box.tpl -text
 tiki/templates/tiki-chatroom.tpl -text
 tiki/templates/tiki-config_pdf.tpl -text
 tiki/templates/tiki-contact.tpl -text
+tiki/templates/tiki-create_webhelp.tpl -text
 tiki/templates/tiki-custom_home.tpl -text
 tiki/templates/tiki-custom_home_2.tpl -text
 tiki/templates/tiki-debug_console.tpl -text
@@ -3187,6 +3189,7 @@ tiki/tiki-chatroom.php -text
 tiki/tiki-cms_rankings.php -text
 tiki/tiki-config_pdf.php -text
 tiki/tiki-contact.php -text
+tiki/tiki-create_webhelp.php -text
 tiki/tiki-custom_home.php -text
 tiki/tiki-debug_console.php -text
 tiki/tiki-directory_add_site.php -text
