@@ -2272,7 +2272,7 @@ tiki/popups/old_insert_image.html -text
 tiki/popups/popup.js -text
 tiki/popups/select_color.html -text
 tiki/received_article_image.php -text
-tiki/robot.txt -text
+tiki/robots.txt -text
 tiki/select_banner.php -text
 tiki/setup.php -text
 tiki/setup.sh -text
