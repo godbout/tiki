@@ -2728,6 +2728,7 @@ tiki/templates/styles/neat/tiki-print_article.tpl -text
 tiki/templates/styles/neat/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/neat/tiki-show_page.tpl -text
 tiki/templates/styles/neat/tiki-top_bar.tpl -text
+tiki/templates/styles/neat/tiki-user_menu.tpl -text
 tiki/templates/styles/neat/tiki.tpl -text
 tiki/templates/styles/notheme/babelfish.tpl -text
 tiki/templates/styles/notheme/error.tpl -text
