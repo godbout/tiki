@@ -940,6 +940,7 @@ tiki/lang/en/language.php -text
 tiki/lang/fr/language.php -text
 tiki/lang/he/language.php -text
 tiki/lang/it/language.php -text
+tiki/lang/pl/language.php -text
 tiki/lang/ru/language.php -text
 tiki/lang/sp/language.php -text
 tiki/lang/tw/language.php -text
@@ -1242,6 +1243,11 @@ tiki/templates/styles/jalist/tiki-print.tpl -text
 tiki/templates/styles/jalist/tiki-print_article.tpl -text
 tiki/templates/styles/jalist/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/jalist/tiki.tpl -text
+tiki/templates/styles/jalist2/error.tpl -text
+tiki/templates/styles/jalist2/tiki-print.tpl -text
+tiki/templates/styles/jalist2/tiki-print_article.tpl -text
+tiki/templates/styles/jalist2/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/jalist2/tiki.tpl -text
 tiki/templates/styles/subsilver/error.tpl -text
 tiki/templates/styles/subsilver/tiki-print.tpl -text
 tiki/templates/styles/subsilver/tiki-print_article.tpl -text
