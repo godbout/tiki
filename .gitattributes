@@ -2785,6 +2785,7 @@ tiki/templates/mail/wiki_change_notification.tpl -text
 tiki/templates/map/tiki-map.tpl -text
 tiki/templates/map/tiki-map_download.tpl -text
 tiki/templates/map/tiki-map_edit.tpl -text
+tiki/templates/map/tiki-map_upload.tpl -text
 tiki/templates/messu-broadcast.tpl -text
 tiki/templates/messu-compose.tpl -text
 tiki/templates/messu-mailbox.tpl -text
@@ -3525,6 +3526,7 @@ tiki/tiki-mailin.php -text
 tiki/tiki-map.phtml -text
 tiki/tiki-map_download.phtml -text
 tiki/tiki-map_edit.php -text
+tiki/tiki-map_upload.php -text
 tiki/tiki-minical.php -text
 tiki/tiki-minical_export.php -text
 tiki/tiki-minical_prefs.php -text
