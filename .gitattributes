@@ -951,6 +951,10 @@ _mods/templates/sdl_menu/README -text
 _mods/templates/sdl_menu/lib/tiki-js.js -text
 _mods/templates/sdl_menu/templates/modules/mod-application_menu.tpl -text
 _mods/themes/README -text
+_mods/themes/greenjelly/styles/greenjelly.css -text
+_mods/themes/greenjelly/styles/greenjelly/botbar.jpg -text
+_mods/themes/greenjelly/styles/greenjelly/greenjellytitle.jpg -text
+_mods/themes/greenjelly/styles/greenjelly/tab-active.jpg -text
 _mods/themes/isabelsworld/README -text
 _mods/themes/isabelsworld/styles/isabelsworld.css -text
 _mods/themes/isabelsworld/styles/isabelsworld/teddy2.gif -text
