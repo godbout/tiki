@@ -296,6 +296,7 @@ tiki/db/convert_nulls_to_non_nulls.sql -text
 tiki/db/convertscripts/mysql3tomysql4.php -text
 tiki/db/convertscripts/mysql3tooci8.php -text
 tiki/db/convertscripts/mysql3topgsql72.php -text
+tiki/db/convertscripts/mysql3tosqlite.php -text
 tiki/db/convertscripts/mysql3tosybase.php -text
 tiki/db/dbg_console.sql -text
 tiki/db/fulltext.sql -text
@@ -314,6 +315,7 @@ tiki/db/profiles/mk_profile.sh -text
 tiki/db/tiki-1.8-mysql.sql -text
 tiki/db/tiki-1.8-oci8.sql -text
 tiki/db/tiki-1.8-pgsql.sql -text
+tiki/db/tiki-1.8-sqlite.sql -text
 tiki/db/tiki-1.8-sybase.sql -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki-integrator.sql -text
