@@ -961,6 +961,7 @@ _mods/templates/README -text
 _mods/templates/directory_browse/README -text
 _mods/templates/directory_browse/templates/tiki-directory_browse.tpl -text
 _mods/templates/kuro/README -text
+_mods/templates/kuro/img/tiki/tikilogo2.png -text
 _mods/templates/kuro/styles/kuroBK.css -text
 _mods/templates/kuro/styles/kuroBK/bottombg.png -text
 _mods/templates/kuro/styles/kuroBK/bottomleft.png -text
