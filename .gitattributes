@@ -911,6 +911,8 @@ _mods/images/tikiwiki/tikibutton3.png -text
 _mods/images/tikiwiki/tikibutton3.xcf -text svneol=unset#unset
 _mods/images/tikiwiki/tikibutton4.png -text
 _mods/images/tikiwiki/tikibutton4.xcf -text svneol=unset#unset
+_mods/sqls/comments_fix_1.7to1.8.sql -text
+_mods/sqls/structure_fix_1.7to1.8.sql -text
 _mods/sqls/tiki_0.95to1.0.sql -text
 _mods/sqls/tiki_0.9to0.95.sql -text
 _mods/sqls/tiki_1.0to1.1.sql -text
