@@ -1794,8 +1794,11 @@ tiki/img/icons2/search.gif -text
 tiki/img/icons2/shim.gif -text
 tiki/img/icons2/smartfolder.gif -text
 tiki/img/icons2/status_closed.gif -text
+tiki/img/icons2/status_closed_off.gif -text
 tiki/img/icons2/status_open.gif -text
+tiki/img/icons2/status_open_off.gif -text
 tiki/img/icons2/status_pending.gif -text
+tiki/img/icons2/status_pending_off.gif -text
 tiki/img/icons2/system.gif -text
 tiki/img/icons2/tasks.gif -text
 tiki/img/icons2/tick.gif -text
