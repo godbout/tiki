@@ -1254,7 +1254,6 @@ tiki/db/convert_nulls_to_non_nulls.php -text
 tiki/db/convert_nulls_to_non_nulls.sql -text
 tiki/db/convertscripts/convertsqls.sh -text
 tiki/db/convertscripts/index.php -text
-tiki/db/convertscripts/mysql3tomysql4.php -text
 tiki/db/convertscripts/mysql3tooci8.php -text
 tiki/db/convertscripts/mysql3topgsql72.php -text
 tiki/db/convertscripts/mysql3tosqlite.php -text
@@ -2775,6 +2774,7 @@ tiki/lib/smarty_tiki/modifier.countryflag.php -text
 tiki/lib/smarty_tiki/modifier.dbg.php -text
 tiki/lib/smarty_tiki/modifier.div.php -text
 tiki/lib/smarty_tiki/modifier.duration.php -text
+tiki/lib/smarty_tiki/modifier.duration_short.php -text
 tiki/lib/smarty_tiki/modifier.iconify.php -text
 tiki/lib/smarty_tiki/modifier.kbsize.php -text
 tiki/lib/smarty_tiki/modifier.nlbr.php -text
@@ -2958,6 +2958,7 @@ tiki/lib/wiki-plugins/wikiplugin_regex.php -text
 tiki/lib/wiki-plugins/wikiplugin_sf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sheet.php -text
 tiki/lib/wiki-plugins/wikiplugin_showpages.php -text
+tiki/lib/wiki-plugins/wikiplugin_snarf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
@@ -3638,6 +3639,7 @@ tiki/templates/styles/mose/tiki-bot_bar.tpl -text
 tiki/templates/styles/mose/tiki-mytiki_bar.tpl -text
 tiki/templates/styles/mose/tiki-send_newsletters.tpl -text
 tiki/templates/styles/mose/tiki-top_bar.tpl -text
+tiki/templates/styles/mose/tiki-user_menu.tpl -text
 tiki/templates/styles/mose/tiki.tpl -text
 tiki/templates/styles/neat/index.php -text
 tiki/templates/styles/neat/modules/index.php -text
@@ -3693,14 +3695,11 @@ tiki/templates/styles/specialsauce/tiki.tpl -text
 tiki/templates/styles/tiki/error.tpl -text
 tiki/templates/styles/tiki/index.php -text
 tiki/templates/styles/tiki/modules/index.php -text
-tiki/templates/styles/tiki/modules/mod-application_menu.tpl -text
 tiki/templates/styles/tiki/modules/mod-featured_links.tpl -text
-tiki/templates/styles/tiki/tiki-editpage.tpl -text
 tiki/templates/styles/tiki/tiki-show_page.tpl -text
 tiki/templates/styles/tiki/tiki-top_links.tpl -text
 tiki/templates/styles/tiki/tiki-top_tiki_bar.tpl -text
 tiki/templates/styles/tiki/tiki-top_user_menu.tpl -text
-tiki/templates/styles/tiki/tiki-user_menu.tpl -text
 tiki/templates/styles/tiki/tiki.tpl -text
 tiki/templates/styles/tikigod/tiki-show_page.tpl -text
 tiki/templates/styles/tikigod/tiki-top_bar.tpl -text
@@ -3794,6 +3793,7 @@ tiki/templates/tiki-change_password.tpl -text
 tiki/templates/tiki-charts.tpl -text
 tiki/templates/tiki-chat.tpl -text
 tiki/templates/tiki-chat_box.tpl -text
+tiki/templates/tiki-chat_users.tpl -text
 tiki/templates/tiki-chatroom.tpl -text
 tiki/templates/tiki-config_pdf.tpl -text
 tiki/templates/tiki-contact.tpl -text
