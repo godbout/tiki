@@ -1885,6 +1885,8 @@ tiki/lib/faqs/faqlib.php -text
 tiki/lib/filegals/filegallib.php -text
 tiki/lib/games/gamelib.php -text
 tiki/lib/graphviz/GraphViz.php -text
+tiki/lib/hawhaw/hawhaw.inc -text
+tiki/lib/hawhaw/hawiki.inc -text
 tiki/lib/hotwords/hotwordlib.php -text
 tiki/lib/htmlarea/dialog.js -text
 tiki/lib/htmlarea/example.html -text
@@ -2560,6 +2562,7 @@ tiki/templates/tiki-live_support_admin.tpl -text
 tiki/templates/tiki-live_support_chat_window.tpl -text
 tiki/templates/tiki-live_support_client.tpl -text
 tiki/templates/tiki-live_support_console.tpl -text
+tiki/templates/tiki-live_support_transcripts.tpl -text
 tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-minical.tpl -text
 tiki/templates/tiki-minical_prefs.tpl -text
@@ -2851,6 +2854,7 @@ tiki/tiki-live_support_client.php -text
 tiki/tiki-live_support_console.php -text
 tiki/tiki-live_support_message.php -text
 tiki/tiki-live_support_server.php -text
+tiki/tiki-live_support_transcripts.php -text
 tiki/tiki-login.php -text
 tiki/tiki-login_scr.php -text
 tiki/tiki-login_validate.php -text
@@ -2957,6 +2961,7 @@ tiki/tiki-view_forum_thread.php -text
 tiki/tiki-view_minical_topic.php -text
 tiki/tiki-view_tracker.php -text
 tiki/tiki-view_tracker_item.php -text
+tiki/tiki-wap.php -text
 tiki/tiki-webmail.php -text
 tiki/tiki-webmail_contacts.php -text
 tiki/tiki-webmail_download_attachment.php -text
