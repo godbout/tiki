@@ -3003,6 +3003,7 @@ tiki/templates/styles/olive/tiki-print_article.tpl -text
 tiki/templates/styles/olive/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/olive/tiki.tpl -text
 tiki/templates/styles/simple/error.tpl -text
+tiki/templates/styles/simple/header.tpl -text
 tiki/templates/styles/simple/modules/mod-application_menu.tpl -text
 tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
 tiki/templates/styles/simple/modules/module-title.tpl -text
