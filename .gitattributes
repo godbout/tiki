@@ -292,6 +292,7 @@ tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/license.txt -text
 tiki/modules/.cvsignore -text
+tiki/modules/cache/.cvsignore -text
 tiki/modules/cache/license.txt -text
 tiki/modules/mod-breadcrumb.php -text
 tiki/modules/mod-comm_received_objects.php -text
@@ -555,6 +556,7 @@ tiki/templates/tiki-view_faq.tpl -text
 tiki/templates/tiki-view_forum.tpl -text
 tiki/templates/tiki-view_forum_thread.tpl -text
 tiki/templates/tiki.tpl -text
+tiki/templates_c/.cvsignore -text
 tiki/templates_c/license.txt -text
 tiki/testrpc.php -text
 tiki/tiki-admin.php -text
