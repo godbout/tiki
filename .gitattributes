@@ -859,14 +859,15 @@ _mods/avatars/tikiavatars/exploded/579.gif -text
 _mods/devtools/README -text
 _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
+_mods/features/cc/cc.php -text
 _mods/features/cc/htdocs/cc.php -text
 _mods/features/cc/lib/cclib.php -text
 _mods/features/cc/templates/admincc.tpl -text
 _mods/features/cc/templates/app.tpl -text
+_mods/features/cc/templates/ccform.tpl -text
 _mods/features/cc/templates/help.tpl -text
 _mods/features/cc/templates/history.tpl -text
 _mods/features/cc/templates/index.tpl -text
-_mods/features/cc/templates/newcc.tpl -text
 _mods/features/cc/templates/registercc.tpl -text
 _mods/features/cc/templates/tr_record.tpl -text
 _mods/features/dlp/Readme -text
