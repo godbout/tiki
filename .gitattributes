@@ -107,6 +107,7 @@ tiki/categorize_list.php -text
 tiki/changelog.txt -text
 tiki/comments.php -text
 tiki/commxmlrpc.php -text
+tiki/copyrights.php -text
 tiki/db/.cvsignore -text
 tiki/db/fulltext.sql -text
 tiki/db/tiki-db.php -text
@@ -1880,6 +1881,7 @@ tiki/lib/class_rdf_parser.php -text
 tiki/lib/class_rss_parser.php -text
 tiki/lib/commcenter/commlib.php -text
 tiki/lib/commentslib.php -text
+tiki/lib/copyrights/copyrightslib.php -text
 tiki/lib/dcs/dcslib.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
@@ -2144,6 +2146,7 @@ tiki/lib/wiki-plugins-dist/README -text
 tiki/lib/wiki-plugins-dist/wikiplugin_avatar.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_center.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_code.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_copyright.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_example.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_gauge.php -text
@@ -2154,6 +2157,7 @@ tiki/lib/wiki-plugins-dist/wikiplugin_wikigraph.php -text
 tiki/lib/wiki-plugins/wikiplugin_avatar.php -text
 tiki/lib/wiki-plugins/wikiplugin_center.php -text
 tiki/lib/wiki-plugins/wikiplugin_code.php -text
+tiki/lib/wiki-plugins/wikiplugin_copyright.php -text
 tiki/lib/wiki-plugins/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
@@ -2327,6 +2331,7 @@ tiki/temp/mail_attachs/license.txt -text
 tiki/templates/bidi.tpl -text
 tiki/templates/categorize.tpl -text
 tiki/templates/comments.tpl -text
+tiki/templates/copyrights.tpl -text svneol=unset#application/octet-stream
 tiki/templates/error.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/header.tpl -text
