@@ -3357,4 +3357,5 @@ tiki/tikimovies/README -text
 tiki/tikimovies/controller.swf -text svneol=unset#unset
 tiki/tikimovies/sample.xml -text
 tiki/topic_image.php -text
+tiki/user_avatar.php -text
 tiki/xmlrpc.php -text
