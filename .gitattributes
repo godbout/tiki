@@ -1938,8 +1938,9 @@ tiki/lib/htmlarea/readme.html -text
 tiki/lib/htmlarea/test.cgi -text
 tiki/lib/htmlpages/htmlpageslib.php -text
 tiki/lib/imagegals/imagegallib.php -text
-tiki/lib/ircbot/ircbotlib.php -text
-tiki/lib/ircbot/tikiwiki.php -text
+tiki/lib/irc/irclib.php -text
+tiki/lib/irc/split_logs.php -text
+tiki/lib/irc/tikiwiki.php -text
 tiki/lib/jHotDraw/ATEXT1.gif -text
 tiki/lib/jHotDraw/ATEXT2.gif -text
 tiki/lib/jHotDraw/ATEXT3.gif -text
