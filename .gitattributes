@@ -1875,6 +1875,15 @@ tiki/lib/ban/banlib.php -text
 tiki/lib/banners/bannerlib.php -text
 tiki/lib/blogs/bloglib.php -text
 tiki/lib/bookmarks/bookmarklib.php -text
+tiki/lib/calendar/calendarlib.php -text
+tiki/lib/calendar/iCal/class.iCal.inc.php -text
+tiki/lib/calendar/iCal/class.iCalAlarm.inc.php -text
+tiki/lib/calendar/iCal/class.iCalBase.inc.php -text
+tiki/lib/calendar/iCal/class.iCalEvent.inc.php -text
+tiki/lib/calendar/iCal/class.iCalFreeBusy.inc.php -text
+tiki/lib/calendar/iCal/class.iCalJournal.inc.php -text
+tiki/lib/calendar/iCal/class.iCalToDo.inc.php -text
+tiki/lib/calendar/iCal/index.php -text
 tiki/lib/categories/categlib.php -text
 tiki/lib/charts/chartlib.php -text
 tiki/lib/chat/chatlib.php -text
@@ -2306,6 +2315,7 @@ tiki/styles/jalist2/grad.jpg -text
 tiki/styles/jalist2/grad.png -text
 tiki/styles/jalist2/maincap.png -text
 tiki/styles/jalist2/menucap.png -text
+tiki/styles/mose.css -text
 tiki/styles/mozilla.css -text
 tiki/styles/mozilla/mozilla-menubar.png -text
 tiki/styles/neat.css -text svneol=unset#application/octet-stream
@@ -2522,6 +2532,7 @@ tiki/templates/tiki-admin-include-wiki-history.tpl -text
 tiki/templates/tiki-admin-include-wiki.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_banning.tpl -text
+tiki/templates/tiki-admin_calendars.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
 tiki/templates/tiki-admin_chart_items.tpl -text
 tiki/templates/tiki-admin_charts.tpl -text
@@ -2565,6 +2576,7 @@ tiki/templates/tiki-bot_bar.tpl -text
 tiki/templates/tiki-browse_categories.tpl -text
 tiki/templates/tiki-browse_gallery.tpl -text
 tiki/templates/tiki-browse_image.tpl -text
+tiki/templates/tiki-calendar.tpl -text
 tiki/templates/tiki-change_password.tpl -text
 tiki/templates/tiki-charts.tpl -text
 tiki/templates/tiki-chat.tpl -text
@@ -2795,6 +2807,7 @@ tiki/tests/parse_data/test9.output -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_banners.php -text
 tiki/tiki-admin_banning.php -text
+tiki/tiki-admin_calendars.php -text
 tiki/tiki-admin_categories.php -text
 tiki/tiki-admin_chart_items.php -text
 tiki/tiki-admin_charts.php -text
@@ -2841,6 +2854,7 @@ tiki/tiki-blogs_rss.php -text
 tiki/tiki-browse_categories.php -text
 tiki/tiki-browse_gallery.php -text
 tiki/tiki-browse_image.php -text
+tiki/tiki-calendar.php -text
 tiki/tiki-change_password.php -text
 tiki/tiki-charts.php -text
 tiki/tiki-chat.php -text
