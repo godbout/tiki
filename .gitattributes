@@ -319,17 +319,6 @@ _smarty/plugins/outputfilter.trimwhitespace.php -text
 _smarty/plugins/shared.escape_special_chars.php -text
 _smarty/plugins/shared.make_timestamp.php -text
 tiki/.cvsignore -text
-tiki/CVSROOT/checkoutlist -text
-tiki/CVSROOT/commitinfo -text
-tiki/CVSROOT/config -text
-tiki/CVSROOT/cvswrappers -text
-tiki/CVSROOT/editinfo -text
-tiki/CVSROOT/loginfo -text
-tiki/CVSROOT/modules -text
-tiki/CVSROOT/notify -text
-tiki/CVSROOT/rcsinfo -text
-tiki/CVSROOT/taginfo -text
-tiki/CVSROOT/verifymsg -text
 tiki/INSTALL -text
 tiki/README -text
 tiki/article_image.php -text
