@@ -231,13 +231,13 @@ _mods/Packages/sql-upgrade_1.5to1.6.info.txt -text
 _mods/Packages/sql-upgrade_1.6to1.7.info.txt -text
 _mods/Packages/sql-upgrade_1.7to1.8.info.txt -text
 _mods/Packages/themes-3dblue.info.txt -text
-_mods/Packages/themes-508.info.txt -text
 _mods/Packages/themes-akwa.info.txt -text
 _mods/Packages/themes-bluemetal.info.txt -text
 _mods/Packages/themes-classicblue.info.txt -text
 _mods/Packages/themes-greenjelly.info.txt -text
 _mods/Packages/themes-greenmetal.info.txt -text
 _mods/Packages/themes-isabelsworld.info.txt -text
+_mods/Packages/themes-m508.info.txt -text
 _mods/Packages/themes-matrix.info.txt -text
 _mods/Packages/themes-nhs.info.txt -text
 _mods/Packages/themes-purplemetal.info.txt -text
