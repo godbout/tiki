@@ -58,9 +58,12 @@ _adodb/drivers/adodb-postgres.inc.php -text
 _adodb/drivers/adodb-postgres64.inc.php -text
 _adodb/drivers/adodb-postgres7.inc.php -text
 _adodb/drivers/adodb-proxy.inc.php -text
+_adodb/drivers/adodb-sapdb.inc.php -text
 _adodb/drivers/adodb-sqlanywhere.inc.php -text
+_adodb/drivers/adodb-sqlite.inc.php -text
 _adodb/drivers/adodb-sybase.inc.php -text
 _adodb/drivers/adodb-vfp.inc.php -text
+_adodb/lang/adodb-cz.inc.php -text
 _adodb/lang/adodb-en.inc.php -text
 _adodb/lang/adodb-fr.inc.php -text
 _adodb/license.txt -text
