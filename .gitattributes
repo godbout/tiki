@@ -1115,12 +1115,15 @@ tiki/lib/Galaxia/compiler/switch_pos.php -text
 tiki/lib/Galaxia/compiler/switch_pre.php -text
 tiki/lib/Galaxia/docs/doxygen -text
 tiki/lib/Galaxia/docs/html/API_2Base_8php-source.html -text
+tiki/lib/Galaxia/docs/html/API_8php-source.html -text
+tiki/lib/Galaxia/docs/html/ActivityManager_8php-source.html -text
 tiki/lib/Galaxia/docs/html/Activity_8php-source.html -text
 tiki/lib/Galaxia/docs/html/BaseActivity_8php-source.html -text
 tiki/lib/Galaxia/docs/html/BaseManager_8php-source.html -text
 tiki/lib/Galaxia/docs/html/End_8php-source.html -text
 tiki/lib/Galaxia/docs/html/GUI_8php-source.html -text
 tiki/lib/Galaxia/docs/html/GraphViz_8php-source.html -text
+tiki/lib/Galaxia/docs/html/InstanceManager_8php-source.html -text
 tiki/lib/Galaxia/docs/html/Instance_8php-source.html -text
 tiki/lib/Galaxia/docs/html/Join_8php-source.html -text
 tiki/lib/Galaxia/docs/html/Library__order__10_2code_2activities_2end_8php-source.html -text
@@ -1145,6 +1148,7 @@ tiki/lib/Galaxia/docs/html/ProcessManager_8php-source.html -text
 tiki/lib/Galaxia/docs/html/ProcessMonitor_2Base_8php-source.html -text
 tiki/lib/Galaxia/docs/html/ProcessMonitor_8php-source.html -text
 tiki/lib/Galaxia/docs/html/Process_8php-source.html -text
+tiki/lib/Galaxia/docs/html/RoleManager_8php-source.html -text
 tiki/lib/Galaxia/docs/html/Role_8php-source.html -text
 tiki/lib/Galaxia/docs/html/Split_8php-source.html -text
 tiki/lib/Galaxia/docs/html/Standalone_8php-source.html -text
@@ -1170,20 +1174,36 @@ tiki/lib/Galaxia/docs/html/classBaseActivity-members.html -text
 tiki/lib/Galaxia/docs/html/classBaseActivity.html -text
 tiki/lib/Galaxia/docs/html/classBaseActivity__coll__graph.png -text
 tiki/lib/Galaxia/docs/html/classBaseActivity__inherit__graph.png -text
+tiki/lib/Galaxia/docs/html/classInstance-members.html -text
+tiki/lib/Galaxia/docs/html/classInstance.html -text
+tiki/lib/Galaxia/docs/html/classInstance__coll__graph.png -text
+tiki/lib/Galaxia/docs/html/classInstance__inherit__graph.png -text
 tiki/lib/Galaxia/docs/html/classObservable-members.html -text
 tiki/lib/Galaxia/docs/html/classObservable.html -text
 tiki/lib/Galaxia/docs/html/classObservable__inherit__graph.png -text
 tiki/lib/Galaxia/docs/html/classObserver-members.html -text
 tiki/lib/Galaxia/docs/html/classObserver.html -text
 tiki/lib/Galaxia/docs/html/classObserver__inherit__graph.png -text
+tiki/lib/Galaxia/docs/html/classProcess-members.html -text
+tiki/lib/Galaxia/docs/html/classProcess.html -text
 tiki/lib/Galaxia/docs/html/classProcessManager-members.html -text
 tiki/lib/Galaxia/docs/html/classProcessManager.html -text
 tiki/lib/Galaxia/docs/html/classProcessManager__coll__graph.png -text
 tiki/lib/Galaxia/docs/html/classProcessManager__inherit__graph.png -text
+tiki/lib/Galaxia/docs/html/classProcess__coll__graph.png -text
+tiki/lib/Galaxia/docs/html/classProcess__inherit__graph.png -text
+tiki/lib/Galaxia/docs/html/classRole-members.html -text
+tiki/lib/Galaxia/docs/html/classRole.html -text
 tiki/lib/Galaxia/docs/html/classRoleManager-members.html -text
 tiki/lib/Galaxia/docs/html/classRoleManager.html -text
 tiki/lib/Galaxia/docs/html/classRoleManager__coll__graph.png -text
 tiki/lib/Galaxia/docs/html/classRoleManager__inherit__graph.png -text
+tiki/lib/Galaxia/docs/html/classRole__coll__graph.png -text
+tiki/lib/Galaxia/docs/html/classRole__inherit__graph.png -text
+tiki/lib/Galaxia/docs/html/classWorkitem-members.html -text
+tiki/lib/Galaxia/docs/html/classWorkitem.html -text
+tiki/lib/Galaxia/docs/html/classWorkitem__coll__graph.png -text
+tiki/lib/Galaxia/docs/html/classWorkitem__inherit__graph.png -text
 tiki/lib/Galaxia/docs/html/classes.html -text
 tiki/lib/Galaxia/docs/html/code_2activities_2Accepted_8php-source.html -text
 tiki/lib/Galaxia/docs/html/code_2activities_2Check__book_8php-source.html -text
@@ -1204,6 +1224,7 @@ tiki/lib/Galaxia/docs/html/code_2activities_2standalone_8php-source.html -text
 tiki/lib/Galaxia/docs/html/code_2activities_2start_8php-source.html -text
 tiki/lib/Galaxia/docs/html/code_2activities_2switch_8php-source.html -text
 tiki/lib/Galaxia/docs/html/code_2templates_2hacer__cosas_8php-source.html -text
+tiki/lib/Galaxia/docs/html/common_2Base_8php-source.html -text
 tiki/lib/Galaxia/docs/html/compiled_2Accepted_8php-source.html -text
 tiki/lib/Galaxia/docs/html/compiled_2Check__book_8php-source.html -text
 tiki/lib/Galaxia/docs/html/compiled_2Rejected_8php-source.html -text
@@ -1279,6 +1300,7 @@ tiki/lib/Galaxia/docs/html/processes_2foo__216_2code_2shared_8php-source.html -t
 tiki/lib/Galaxia/docs/html/shared_8php-source.html -text
 tiki/lib/Galaxia/docs/html/split__pos_8php-source.html -text
 tiki/lib/Galaxia/docs/html/split__pre_8php-source.html -text
+tiki/lib/Galaxia/docs/html/src_2GUI_2GUI_8php-source.html -text
 tiki/lib/Galaxia/docs/html/src_2ProcessManager_2ActivityManager_8php-source.html -text
 tiki/lib/Galaxia/docs/html/src_2ProcessManager_2GraphViz_8php-source.html -text
 tiki/lib/Galaxia/docs/html/src_2ProcessManager_2ProcessManager_8php-source.html -text
@@ -1313,16 +1335,28 @@ tiki/lib/Galaxia/docs/latex/classActivityManager__inherit__graph.eps -text svneo
 tiki/lib/Galaxia/docs/latex/classBaseActivity.tex -text
 tiki/lib/Galaxia/docs/latex/classBaseActivity__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classBaseActivity__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classInstance.tex -text
+tiki/lib/Galaxia/docs/latex/classInstance__coll__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classInstance__inherit__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classObservable.tex -text
 tiki/lib/Galaxia/docs/latex/classObservable__inherit__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classObserver.tex -text
 tiki/lib/Galaxia/docs/latex/classObserver__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classProcess.tex -text
 tiki/lib/Galaxia/docs/latex/classProcessManager.tex -text
 tiki/lib/Galaxia/docs/latex/classProcessManager__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classProcessManager__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classProcess__coll__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classProcess__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classRole.tex -text
 tiki/lib/Galaxia/docs/latex/classRoleManager.tex -text
 tiki/lib/Galaxia/docs/latex/classRoleManager__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classRoleManager__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classRole__coll__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classRole__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classWorkitem.tex -text
+tiki/lib/Galaxia/docs/latex/classWorkitem__coll__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classWorkitem__inherit__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/doxygen.sty -text
 tiki/lib/Galaxia/docs/latex/hierarchy.tex -text
 tiki/lib/Galaxia/docs/latex/namespaceImage.tex -text
@@ -1334,12 +1368,20 @@ tiki/lib/Galaxia/docs/rtf/classActivityManager__coll__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classActivityManager__inherit__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classBaseActivity__coll__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classBaseActivity__inherit__graph.png -text
+tiki/lib/Galaxia/docs/rtf/classInstance__coll__graph.png -text
+tiki/lib/Galaxia/docs/rtf/classInstance__inherit__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classObservable__inherit__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classObserver__inherit__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classProcessManager__coll__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classProcessManager__inherit__graph.png -text
+tiki/lib/Galaxia/docs/rtf/classProcess__coll__graph.png -text
+tiki/lib/Galaxia/docs/rtf/classProcess__inherit__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classRoleManager__coll__graph.png -text
 tiki/lib/Galaxia/docs/rtf/classRoleManager__inherit__graph.png -text
+tiki/lib/Galaxia/docs/rtf/classRole__coll__graph.png -text
+tiki/lib/Galaxia/docs/rtf/classRole__inherit__graph.png -text
+tiki/lib/Galaxia/docs/rtf/classWorkitem__coll__graph.png -text
+tiki/lib/Galaxia/docs/rtf/classWorkitem__inherit__graph.png -text
 tiki/lib/Galaxia/docs/rtf/refman.rtf -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/img/icons/Activity.gif -text
 tiki/lib/Galaxia/img/icons/Archive.gif -text
