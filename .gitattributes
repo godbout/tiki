@@ -2790,6 +2790,7 @@ tiki/tiki-chat_loader.php -text
 tiki/tiki-chat_users.php -text
 tiki/tiki-chatroom.php -text
 tiki/tiki-cms_rankings.php -text
+tiki/tiki-config_pdf.php -text
 tiki/tiki-contact.php -text
 tiki/tiki-custom_home.php -text
 tiki/tiki-directory_add_site.php -text
