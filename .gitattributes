@@ -223,6 +223,7 @@ tiki/db/pgsql/tiki_mysql.sql -text
 tiki/db/pgsql/tiki_pgsql.sql -text
 tiki/db/profiles/default-inserts.sql -text
 tiki/db/profiles/dump_prefs.sql -text
+tiki/db/profiles/mk_profile.sh -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_0.95to1.0.sql -text
