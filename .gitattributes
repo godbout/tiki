@@ -3141,6 +3141,7 @@ tiki/templates/attachments.tpl -text
 tiki/templates/babelfish.tpl -text
 tiki/templates/bidi.tpl -text
 tiki/templates/categorize.tpl -text
+tiki/templates/comment.tpl -text
 tiki/templates/comments.tpl -text
 tiki/templates/confirm.tpl -text
 tiki/templates/copyrights.tpl -text svneol=unset#application/octet-stream
