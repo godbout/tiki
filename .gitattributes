@@ -1924,15 +1924,39 @@ tiki/lib/Galaxia/docs/html/tiki-index__p_8php-source.html -text
 tiki/lib/Galaxia/docs/html/todo.html -text
 tiki/lib/Galaxia/docs/latex/Makefile -text
 tiki/lib/Galaxia/docs/latex/annotated.tex -text
+tiki/lib/Galaxia/docs/latex/classActivity.tex -text
 tiki/lib/Galaxia/docs/latex/classActivityManager.tex -text
 tiki/lib/Galaxia/docs/latex/classActivityManager__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classActivityManager__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classActivity__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classActivity__inherit__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classBase.tex -text
 tiki/lib/Galaxia/docs/latex/classBaseActivity.tex -text
 tiki/lib/Galaxia/docs/latex/classBaseActivity__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classBaseActivity__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classBaseManager.tex -text
+tiki/lib/Galaxia/docs/latex/classBaseManager__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classBaseManager__inherit__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classBase__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classBase__inherit__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classEnd.tex -text
+tiki/lib/Galaxia/docs/latex/classEnd__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classEnd__inherit__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classGUI.tex -text
+tiki/lib/Galaxia/docs/latex/classGUI__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classGUI__inherit__graph.eps -text
 tiki/lib/Galaxia/docs/latex/classInstance.tex -text
+tiki/lib/Galaxia/docs/latex/classInstanceManager.tex -text
+tiki/lib/Galaxia/docs/latex/classInstanceManager__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classInstanceManager__inherit__graph.eps -text
 tiki/lib/Galaxia/docs/latex/classInstance__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classInstance__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classJoin.tex -text
+tiki/lib/Galaxia/docs/latex/classJoin__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classJoin__inherit__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classLogger.tex -text
+tiki/lib/Galaxia/docs/latex/classLogger__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classLogger__inherit__graph.eps -text
 tiki/lib/Galaxia/docs/latex/classObservable.tex -text
 tiki/lib/Galaxia/docs/latex/classObservable__inherit__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classObserver.tex -text
@@ -1941,6 +1965,9 @@ tiki/lib/Galaxia/docs/latex/classProcess.tex -text
 tiki/lib/Galaxia/docs/latex/classProcessManager.tex -text
 tiki/lib/Galaxia/docs/latex/classProcessManager__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classProcessManager__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classProcessMonitor.tex -text
+tiki/lib/Galaxia/docs/latex/classProcessMonitor__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classProcessMonitor__inherit__graph.eps -text
 tiki/lib/Galaxia/docs/latex/classProcess__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classProcess__inherit__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classRole.tex -text
@@ -1949,6 +1976,18 @@ tiki/lib/Galaxia/docs/latex/classRoleManager__coll__graph.eps -text svneol=unset
 tiki/lib/Galaxia/docs/latex/classRoleManager__inherit__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classRole__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classRole__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/classSplit.tex -text
+tiki/lib/Galaxia/docs/latex/classSplit__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classSplit__inherit__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classStandalone.tex -text
+tiki/lib/Galaxia/docs/latex/classStandalone__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classStandalone__inherit__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classStart.tex -text
+tiki/lib/Galaxia/docs/latex/classStart__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classStart__inherit__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classSwitchActivity.tex -text
+tiki/lib/Galaxia/docs/latex/classSwitchActivity__coll__graph.eps -text
+tiki/lib/Galaxia/docs/latex/classSwitchActivity__inherit__graph.eps -text
 tiki/lib/Galaxia/docs/latex/classWorkitem.tex -text
 tiki/lib/Galaxia/docs/latex/classWorkitem__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classWorkitem__inherit__graph.eps -text svneol=unset#application/octet-stream
