@@ -1110,6 +1110,7 @@ _mods/wiki-plugins/formula/wiki-plugins/tex2png -text
 _mods/wiki-plugins/formula/wiki-plugins/wikiplugin_formula.php -text
 _mods/wiki-plugins/scroll/wiki-plugins/wikiplugin_scroll.php -text
 _mods/wiki-plugins/svg/wiki-plugins/wikiplugin_svg.php -text
+_mods/wiki-plugins/wikigraph/Readme -text
 _phplayers/ACKNOWLEDGEMENTS -text
 _phplayers/CHANGELOG -text
 _phplayers/CHANGE_TEMPLATE_CLASS_NAME.sh -text
