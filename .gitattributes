@@ -1043,6 +1043,7 @@ tiki/lib/md5.js -text
 tiki/lib/messu/messulib.php -text
 tiki/lib/newsletters/nllib.php -text
 tiki/lib/newsreader/newslib.php -text
+tiki/lib/notepad/notepadlib.php -text
 tiki/lib/overlib.js -text
 tiki/lib/pclerror.lib.php -text
 tiki/lib/pcltrace.lib.php -text
@@ -1446,6 +1447,9 @@ tiki/templates/tiki-newsreader_groups.tpl -text
 tiki/templates/tiki-newsreader_news.tpl -text
 tiki/templates/tiki-newsreader_read.tpl -text
 tiki/templates/tiki-newsreader_servers.tpl -text
+tiki/templates/tiki-notepad_list.tpl -text
+tiki/templates/tiki-notepad_read.tpl -text
+tiki/templates/tiki-notepad_write.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
 tiki/templates/tiki-orphan_pages.tpl -text
@@ -1685,11 +1689,15 @@ tiki/tiki-logout.php -text
 tiki/tiki-mailin.php -text
 tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
+tiki/tiki-mytiki_shared.php -text
 tiki/tiki-newsletters.php -text
 tiki/tiki-newsreader_groups.php -text
 tiki/tiki-newsreader_news.php -text
 tiki/tiki-newsreader_read.php -text
 tiki/tiki-newsreader_servers.php -text
+tiki/tiki-notepad_list.php -text
+tiki/tiki-notepad_read.php -text
+tiki/tiki-notepad_write.php -text
 tiki/tiki-objectpermissions.php -text
 tiki/tiki-old_polls.php -text
 tiki/tiki-orphan_pages.php -text
