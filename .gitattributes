@@ -81,6 +81,7 @@ tiki/categorize_list.php -text
 tiki/changelog.txt -text
 tiki/comments.php -text
 tiki/commxmlrpc.php -text
+tiki/db/.cvsignore -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_0.95to1.0.sql -text
@@ -336,6 +337,7 @@ tiki/modules/mod-user_pages.php -text
 tiki/received_article_image.php -text
 tiki/select_banner.php -text
 tiki/setup.php -text
+tiki/setup.sh -text
 tiki/show_image.php -text
 tiki/styles/dblue.css -text
 tiki/styles/dblue/back1.jpeg -text
