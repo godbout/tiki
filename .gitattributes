@@ -1842,6 +1842,7 @@ tiki/lib/Galaxia/img/icons/weather.gif -text
 tiki/lib/Galaxia/img/icons/xclipboard.gif -text
 tiki/lib/Galaxia/img/icons/zoom.gif -text
 tiki/lib/Galaxia/log/license.txt -text
+tiki/lib/Galaxia/processes/.cvsignore -text
 tiki/lib/Galaxia/processes/license.txt -text
 tiki/lib/Galaxia/src/API/Base.php -text
 tiki/lib/Galaxia/src/API/BaseActivity.php -text

@@ -3,6 +3,7 @@ tiki/backups/*
 tiki/db/local.php
 tiki/dump/*
 tiki/img/wiki_up/*
+tiki/lib/Galaxia/processes/*
 tiki/modules/cache
 tiki/modules/cache/*
 tiki/templates_c
