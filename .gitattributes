@@ -2411,6 +2411,7 @@ tiki/styles/geo/backmap.png -text
 tiki/styles/geo/fond2tete.png -text
 tiki/styles/geo/fondtete.png -text
 tiki/styles/integrator/README -text
+tiki/styles/integrator/default.css -text
 tiki/styles/integrator/doxygen.css -text
 tiki/styles/jalist.css -text
 tiki/styles/jalist/bg.png -text
@@ -2477,6 +2478,7 @@ tiki/styles/neat/user.gif -text
 tiki/styles/notheme.II.css -text
 tiki/styles/notheme.III.css -text
 tiki/styles/notheme.css -text
+tiki/styles/notheme/default.css -text
 tiki/styles/notheme/doxygen.css -text
 tiki/styles/notheme/notheme-II-article.css -text
 tiki/styles/notheme/notheme-II-tc.css -text
