@@ -70,6 +70,7 @@ tiki/Smarty/plugins/modifier.spacify.php -text
 tiki/Smarty/plugins/modifier.string_format.php -text
 tiki/Smarty/plugins/modifier.strip.php -text
 tiki/Smarty/plugins/modifier.strip_tags.php -text
+tiki/Smarty/plugins/modifier.times.php -text
 tiki/Smarty/plugins/modifier.truncate.php -text
 tiki/Smarty/plugins/modifier.upper.php -text
 tiki/Smarty/plugins/modifier.wordwrap.php -text
