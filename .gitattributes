@@ -21,6 +21,7 @@ tiki/Smarty/debug.tpl -text
 tiki/Smarty/index.php -text
 tiki/Smarty/misc/fix_vars.php -text
 tiki/Smarty/plugins/block.repeat.php -text
+tiki/Smarty/plugins/block.textformat.php -text
 tiki/Smarty/plugins/block.tr.php -text
 tiki/Smarty/plugins/function.assign.php -text
 tiki/Smarty/plugins/function.assign_debug_info.php -text
@@ -43,6 +44,7 @@ tiki/Smarty/plugins/function.popup.php -text
 tiki/Smarty/plugins/function.popup_init.php -text
 tiki/Smarty/plugins/function.rcontent.php -text
 tiki/Smarty/plugins/function.rss.php -text
+tiki/Smarty/plugins/function.showdate.php -text
 tiki/Smarty/plugins/modifier.capitalize.php -text
 tiki/Smarty/plugins/modifier.count_characters.php -text
 tiki/Smarty/plugins/modifier.count_paragraphs.php -text
@@ -58,6 +60,7 @@ tiki/Smarty/plugins/modifier.regex_replace.php -text
 tiki/Smarty/plugins/modifier.replace.php -text
 tiki/Smarty/plugins/modifier.spacify.php -text
 tiki/Smarty/plugins/modifier.string_format.php -text
+tiki/Smarty/plugins/modifier.strip.php -text
 tiki/Smarty/plugins/modifier.strip_tags.php -text
 tiki/Smarty/plugins/modifier.truncate.php -text
 tiki/Smarty/plugins/modifier.upper.php -text
