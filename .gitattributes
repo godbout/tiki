@@ -954,6 +954,11 @@ tiki/img/icn/wav.gif -text
 tiki/img/icn/wri.gif -text
 tiki/img/icn/xls.gif -text
 tiki/img/icn/zip.gif -text
+tiki/img/icons/1stars.gif -text
+tiki/img/icons/2stars.gif -text
+tiki/img/icons/3stars.gif -text
+tiki/img/icons/4stars.gif -text
+tiki/img/icons/5stars.gif -text
 tiki/img/icons/Activity.gif -text
 tiki/img/icons/Archive.gif -text
 tiki/img/icons/FallOut.gif -text
@@ -983,6 +988,7 @@ tiki/img/icons/admin_trackers.png -text
 tiki/img/icons/admin_userfiles.png -text
 tiki/img/icons/admin_webmail.png -text
 tiki/img/icons/admin_wiki.png -text
+tiki/img/icons/attachment.gif -text
 tiki/img/icons/auto_focus.gif -text
 tiki/img/icons/back.gif -text
 tiki/img/icons/bk.gif -text
@@ -1113,6 +1119,7 @@ tiki/img/icons/mode_desc.gif -text
 tiki/img/icons/mode_tree.gif -text
 tiki/img/icons/move.gif -text
 tiki/img/icons/move_topic.gif -text
+tiki/img/icons/moved.gif -text
 tiki/img/icons/myinfo.gif -text
 tiki/img/icons/netscape.gif -text
 tiki/img/icons/new.gif -text
@@ -1120,7 +1127,9 @@ tiki/img/icons/new_3day.gif -text
 tiki/img/icons/new_day.gif -text
 tiki/img/icons/new_week.gif -text
 tiki/img/icons/next.gif -text
+tiki/img/icons/offline.gif -text
 tiki/img/icons/ofo.gif -text
+tiki/img/icons/online.gif -text
 tiki/img/icons/opera.gif -text
 tiki/img/icons/plus.gif -text
 tiki/img/icons/pm.gif -text
