@@ -1898,6 +1898,7 @@ tiki/lib/class_rss_parser.php -text
 tiki/lib/commcenter/commlib.php -text
 tiki/lib/commentslib.php -text
 tiki/lib/copyrights/copyrightslib.php -text
+tiki/lib/csslib.php -text
 tiki/lib/dcs/dcslib.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
@@ -2632,6 +2633,7 @@ tiki/templates/tiki-directory_validate_sites.tpl -text
 tiki/templates/tiki-edit_article.tpl -text
 tiki/templates/tiki-edit_banner.tpl -text
 tiki/templates/tiki-edit_blog.tpl -text
+tiki/templates/tiki-edit_css.tpl -text
 tiki/templates/tiki-edit_help.tpl -text
 tiki/templates/tiki-edit_help_tool.tpl -text
 tiki/templates/tiki-edit_image.tpl -text
@@ -2915,6 +2917,7 @@ tiki/tiki-download_wiki_attachment.php -text
 tiki/tiki-edit_article.php -text
 tiki/tiki-edit_banner.php -text
 tiki/tiki-edit_blog.php -text
+tiki/tiki-edit_css.php -text
 tiki/tiki-edit_image.php -text
 tiki/tiki-edit_languages.php -text
 tiki/tiki-edit_programmed_content.php -text
