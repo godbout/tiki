@@ -3188,7 +3188,6 @@ tiki/tiki-admin_tracker_fields.php -text
 tiki/tiki-admin_trackers.php -text
 tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
-tiki/tiki-adminusers_old.php -text
 tiki/tiki-articles_rss.php -text
 tiki/tiki-assignpermission.php -text
 tiki/tiki-assignuser.php -text
