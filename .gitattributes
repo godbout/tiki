@@ -939,6 +939,7 @@ tiki/lang/dk/language.php -text
 tiki/lang/en/language.php -text
 tiki/lang/fr/language.php -text
 tiki/lang/he/language.php -text
+tiki/lang/it/language.php -text
 tiki/lang/ru/language.php -text
 tiki/lang/sp/language.php -text
 tiki/lang/tw/language.php -text
@@ -1133,6 +1134,10 @@ tiki/styles/subsilver.css -text
 tiki/styles/subsilver/cellpic1.gif -text
 tiki/styles/subsilver/cellpic2.jpg -text
 tiki/styles/subsilver/cellpic3.gif -text
+tiki/styles/tranquil.css -text
+tiki/styles/tranquil/cellpic1.gif -text
+tiki/styles/tranquil/cellpic2.jpg -text
+tiki/styles/tranquil/cellpic3.gif -text
 tiki/temp/license.txt -text
 tiki/temp/mail_attachs/license.txt -text
 tiki/templates/bidi.tpl -text
@@ -1242,6 +1247,11 @@ tiki/templates/styles/subsilver/tiki-print.tpl -text
 tiki/templates/styles/subsilver/tiki-print_article.tpl -text
 tiki/templates/styles/subsilver/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/subsilver/tiki.tpl -text
+tiki/templates/styles/tranquil/error.tpl -text
+tiki/templates/styles/tranquil/tiki-print.tpl -text
+tiki/templates/styles/tranquil/tiki-print_article.tpl -text
+tiki/templates/styles/tranquil/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/tranquil/tiki.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
 tiki/templates/tiki-admin_chat.tpl -text
