@@ -977,6 +977,7 @@ tiki/styles/subsilver/cellpic2.jpg -text
 tiki/styles/subsilver/cellpic3.gif -text
 tiki/temp/license.txt -text
 tiki/temp/mail_attachs/license.txt -text
+tiki/templates/bidi.tpl -text
 tiki/templates/categorize.tpl -text
 tiki/templates/comments.tpl -text
 tiki/templates/error.tpl -text
