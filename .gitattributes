@@ -1002,6 +1002,7 @@ _mods/templates/kuro/templates/styles/kuroBK/datetime.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/error.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/footer.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/footer.tpl+rdf -text
+_mods/templates/kuro/templates/styles/kuroBK/header.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/index.php -text
 _mods/templates/kuro/templates/styles/kuroBK/log-srch-msg.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/reveal.tpl -text
@@ -1011,6 +1012,7 @@ _mods/templates/kuro/templates/styles/kuroBK/tiki-copyright.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/tiki-editpage.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/tiki-show_page.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/tiki-show_page_header.tpl -text
+_mods/templates/kuro/templates/styles/kuroBK/tiki-site_header.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/tiki-top_bar.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/tiki-top_bar0.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/tiki-top_bar2.tpl -text
