@@ -972,6 +972,7 @@ _mods/themes/zaksworld/templates/styles/zaksworld/tiki-top_bar.tpl -text
 _mods/themes/ztheme/README -text
 _mods/themes/ztheme/styles/ztheme.css -text
 _mods/wiki-plugins/README -text
+_mods/wiki-plugins/ebay/README -text
 _mods/wiki-plugins/formula/README -text
 _mods/wiki-plugins/formula/wiki-plugins/tex2png -text
 _mods/wiki-plugins/formula/wiki-plugins/wikiplugin_formula.php -text
