@@ -2215,6 +2215,7 @@ tiki/lib/hawhaw/hawtikilib.php -text
 tiki/lib/hawhaw/index.php -text
 tiki/lib/hawhaw/link.wav -text svneol=unset#unset
 tiki/lib/homework/homeworklib.php -text
+tiki/lib/homework/index.php -text
 tiki/lib/hotwords/hotwordlib.php -text
 tiki/lib/hotwords/index.php -text
 tiki/lib/htmlarea/dialog.js -text
@@ -2323,6 +2324,7 @@ tiki/lib/jpgraph/src/jpgraph_radar.php -text
 tiki/lib/jpgraph/src/jpgraph_regstat.php -text
 tiki/lib/jpgraph/src/jpgraph_scatter.php -text
 tiki/lib/jpgraph/src/jpgraph_stock.php -text
+tiki/lib/jukebox/index.php -text
 tiki/lib/jukebox/jukeboxlib.php -text
 tiki/lib/live_support/index.php -text
 tiki/lib/live_support/live-support.js -text svneol=unset#application/octet-stream
