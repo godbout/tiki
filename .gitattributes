@@ -2582,6 +2582,7 @@ tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
 tiki/lib/wiki-plugins/wikiplugin_titlesearch.php -text
 tiki/lib/wiki-plugins/wikiplugin_tracker.php -text
+tiki/lib/wiki-plugins/wikiplugin_trackerlist.php -text
 tiki/lib/wiki-plugins/wikiplugin_translated.php -text
 tiki/lib/wiki-plugins/wikiplugin_usercount.php -text
 tiki/lib/wiki-plugins/wikiplugin_wikigraph.php -text
@@ -3396,6 +3397,7 @@ tiki/templates/tiki-page_bar.tpl -text
 tiki/templates/tiki-pagehistory.tpl -text
 tiki/templates/tiki-pagepermissions.tpl -text
 tiki/templates/tiki-pick_avatar.tpl -text
+tiki/templates/tiki-plugin_trackerlist.tpl -text
 tiki/templates/tiki-poll.tpl -text
 tiki/templates/tiki-poll_form.tpl -text
 tiki/templates/tiki-poll_results.tpl -text
