@@ -3526,6 +3526,7 @@ tiki/templates/tiki-edit_topic.tpl -text
 tiki/templates/tiki-editpage.tpl -text
 tiki/templates/tiki-eph.tpl -text
 tiki/templates/tiki-eph_admin.tpl -text
+tiki/templates/tiki-export-sheets.tpl -text
 tiki/templates/tiki-faq_questions.tpl -text
 tiki/templates/tiki-featured_link.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
@@ -3571,6 +3572,7 @@ tiki/templates/tiki-hw_teacher_assignment_edit_preview.tpl -text
 tiki/templates/tiki-hw_teacher_assignments.tpl -text
 tiki/templates/tiki-hw_teacher_last_changes.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
+tiki/templates/tiki-import-sheets.tpl -text
 tiki/templates/tiki-import_phpwiki.tpl -text
 tiki/templates/tiki-index_p.tpl -text
 tiki/templates/tiki-install.tpl -text
@@ -3901,6 +3903,7 @@ tiki/tiki-eph_admin.php -text
 tiki/tiki-error.php -text
 tiki/tiki-error_simple.php -text
 tiki/tiki-export_pdf.php -text
+tiki/tiki-export_sheet.php -text
 tiki/tiki-export_wiki_pages.php -text
 tiki/tiki-faq_questions.php -text
 tiki/tiki-featured_link.php -text
@@ -3955,6 +3958,7 @@ tiki/tiki-image_galleries_rss.php -text
 tiki/tiki-image_gallery_rss.php -text
 tiki/tiki-imexport_languages.php -text
 tiki/tiki-import_phpwiki.php -text
+tiki/tiki-import_sheet.php -text
 tiki/tiki-index.php -text
 tiki/tiki-index_p.php -text
 tiki/tiki-index_raw.php -text
