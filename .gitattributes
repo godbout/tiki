@@ -890,6 +890,17 @@ tiki/img/icons/icon_folder.gif -text
 tiki/img/leftbar.gif -text
 tiki/img/mainbar.gif -text
 tiki/img/mysql.gif -text
+tiki/img/mytiki/Thumbs.db -text
+tiki/img/mytiki/bookmarks.gif -text
+tiki/img/mytiki/files.gif -text
+tiki/img/mytiki/messages.gif -text
+tiki/img/mytiki/modules.gif -text
+tiki/img/mytiki/mytiki.gif -text
+tiki/img/mytiki/news.gif -text
+tiki/img/mytiki/notes.gif -text
+tiki/img/mytiki/prefs.gif -text
+tiki/img/mytiki/tasks.gif -text
+tiki/img/mytiki/webmail.gif -text
 tiki/img/pear.png -text
 tiki/img/php.gif -text
 tiki/img/php.png -text
