@@ -214,6 +214,7 @@ tiki/db/profiles/_default.prf -text
 tiki/db/profiles/default-inserts.sql -text
 tiki/db/profiles/fishclub.prf -text
 tiki/db/profiles/mk_profile.sh -text
+tiki/db/profiles/slash.prf -text
 tiki/db/tiki-1.8-mysql.sql -text
 tiki/db/tiki-1.8-oci8.sql -text
 tiki/db/tiki-1.8-pgsql.sql -text
