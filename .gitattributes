@@ -65,7 +65,9 @@ _adodb/drivers/adodb-sybase.inc.php -text
 _adodb/drivers/adodb-vfp.inc.php -text
 _adodb/lang/adodb-cz.inc.php -text
 _adodb/lang/adodb-en.inc.php -text
+_adodb/lang/adodb-es.inc.php -text
 _adodb/lang/adodb-fr.inc.php -text
+_adodb/lang/adodb-ru1251.inc.php -text
 _adodb/license.txt -text
 _adodb/old-changelog.htm -text
 _adodb/pivottable.inc.php -text
