@@ -221,7 +221,6 @@ tiki/db/tiki-1.8-pgsql.sql -text
 tiki/db/tiki-1.8-sqlite.sql -text
 tiki/db/tiki-1.8-sybase.sql -text
 tiki/db/tiki-db.php -text
-tiki/db/tiki-integrator.sql -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_0.95to1.0.sql -text
 tiki/db/tiki_0.9to0.95.sql -text
