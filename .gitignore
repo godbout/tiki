@@ -9,6 +9,7 @@ tiki/modules/cache
 tiki/modules/cache/*
 tiki/phpmyadmin
 tiki/temp/dbg-watch.*
+tiki/temp/sf*
 tiki/templates_c
 tiki/templates_c/%%*
 tiki/templates_c/??
