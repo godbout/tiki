@@ -3169,6 +3169,7 @@ tiki/templates/tiki-view_forum_thread.tpl -text
 tiki/templates/tiki-view_irc.tpl -text
 tiki/templates/tiki-view_tracker.tpl -text
 tiki/templates/tiki-view_tracker_item.tpl -text
+tiki/templates/tiki-view_tracker_more_info.tpl -text
 tiki/templates/tiki-webmail.tpl -text
 tiki/templates/tiki-webmail_contacts.tpl -text
 tiki/templates/tiki.tpl -text
@@ -3540,6 +3541,7 @@ tiki/tiki-view_irc.php -text
 tiki/tiki-view_minical_topic.php -text
 tiki/tiki-view_tracker.php -text
 tiki/tiki-view_tracker_item.php -text
+tiki/tiki-view_tracker_more_info.php -text
 tiki/tiki-wap.php -text
 tiki/tiki-webmail.php -text
 tiki/tiki-webmail_contacts.php -text
