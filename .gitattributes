@@ -1681,6 +1681,7 @@ tiki/lib/Galaxia/compiler/start_pre.php -text
 tiki/lib/Galaxia/compiler/switch_pos.php -text
 tiki/lib/Galaxia/compiler/switch_pre.php -text
 tiki/lib/Galaxia/config.php -text
+tiki/lib/Galaxia/config.tikiwiki.php -text
 tiki/lib/Galaxia/config.xaraya.php -text
 tiki/lib/Galaxia/docs/doxygen -text
 tiki/lib/Galaxia/img/icons/Activity.gif -text
