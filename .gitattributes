@@ -2271,6 +2271,7 @@ tiki/modules/mod-user_bookmarks.php -text
 tiki/modules/mod-user_image_galleries.php -text
 tiki/modules/mod-user_pages.php -text
 tiki/modules/mod-user_tasks.php -text
+tiki/modules/mod-who_is_there.php -text
 tiki/phpOpenTracker.php -text
 tiki/popups/about.html -text
 tiki/popups/blank.html -text
@@ -2498,6 +2499,7 @@ tiki/templates/modules/mod-user_pages.php.nocache -text
 tiki/templates/modules/mod-user_pages.tpl -text
 tiki/templates/modules/mod-user_pages.tpl.nocache -text
 tiki/templates/modules/mod-user_tasks.tpl -text
+tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/styles/bluegreen/error.tpl -text
 tiki/templates/styles/bluegreen/tiki-print.tpl -text
