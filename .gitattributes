@@ -2746,6 +2746,38 @@ tiki/lib/wiki/histlib.php -text
 tiki/lib/wiki/index.php -text
 tiki/lib/wiki/pluginslib.php -text
 tiki/lib/wiki/wikilib.php -text
+tiki/lib/wiki3d/Action.class -text svneol=unset#unset
+tiki/lib/wiki3d/Action.java -text
+tiki/lib/wiki3d/AnimationThread.class -text svneol=unset#unset
+tiki/lib/wiki3d/AnimationThread.java -text
+tiki/lib/wiki3d/Camera.class -text svneol=unset#unset
+tiki/lib/wiki3d/Camera.java -text
+tiki/lib/wiki3d/Can3d.class -text svneol=unset#unset
+tiki/lib/wiki3d/Can3d.java -text
+tiki/lib/wiki3d/CanvaxVertex.class -text svneol=unset#unset
+tiki/lib/wiki3d/CanvaxVertex.java -text
+tiki/lib/wiki3d/CenterNode.class -text svneol=unset#unset
+tiki/lib/wiki3d/CenterNode.java -text
+tiki/lib/wiki3d/Config.class -text svneol=unset#unset
+tiki/lib/wiki3d/Config.java -text
+tiki/lib/wiki3d/Face.class -text svneol=unset#unset
+tiki/lib/wiki3d/Face.java -text
+tiki/lib/wiki3d/Matrix3D.class -text svneol=unset#unset
+tiki/lib/wiki3d/Matrix3D.java -text
+tiki/lib/wiki3d/Node.class -text svneol=unset#unset
+tiki/lib/wiki3d/Node.java -text
+tiki/lib/wiki3d/ObjectVertex.class -text svneol=unset#unset
+tiki/lib/wiki3d/ObjectVertex.java -text
+tiki/lib/wiki3d/Pos.class -text svneol=unset#unset
+tiki/lib/wiki3d/Pos.java -text
+tiki/lib/wiki3d/SpeedVector.class -text svneol=unset#unset
+tiki/lib/wiki3d/SpeedVector.java -text
+tiki/lib/wiki3d/Vertex.class -text svneol=unset#unset
+tiki/lib/wiki3d/Vertex.java -text
+tiki/lib/wiki3d/Vertexes.class -text svneol=unset#unset
+tiki/lib/wiki3d/Vertexes.java -text
+tiki/lib/wiki3d/XmlReader.class -text svneol=unset#unset
+tiki/lib/wiki3d/XmlReader.java -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/lib/ziplib.php -text
@@ -3732,7 +3764,7 @@ tiki/templates/tiki-view_tracker_item.tpl -text
 tiki/templates/tiki-view_tracker_more_info.tpl -text
 tiki/templates/tiki-webmail.tpl -text
 tiki/templates/tiki-webmail_contacts.tpl -text
-tiki/templates/tiki-wiki3D.tpl -text
+tiki/templates/tiki-wiki3d.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/README -text
@@ -4147,8 +4179,8 @@ tiki/tiki-wap.php -text
 tiki/tiki-webmail.php -text
 tiki/tiki-webmail_contacts.php -text
 tiki/tiki-webmail_download_attachment.php -text
-tiki/tiki-wiki3D.php -text
-tiki/tiki-wiki3D_xml.php -text
+tiki/tiki-wiki3d.php -text
+tiki/tiki-wiki3d_xml.php -text
 tiki/tiki-wiki_graph.php -text
 tiki/tiki-wiki_rankings.php -text
 tiki/tiki-wiki_rss.php -text
