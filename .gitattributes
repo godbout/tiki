@@ -1629,6 +1629,14 @@ tiki/img/icons/weather.gif -text
 tiki/img/icons/whelp.gif -text
 tiki/img/icons/whelp_toc.gif -text
 tiki/img/icons/xclipboard.gif -text
+tiki/img/icons/zoom+.gif -text
+tiki/img/icons/zoom+2.gif -text
+tiki/img/icons/zoom+3.gif -text
+tiki/img/icons/zoom+4.gif -text
+tiki/img/icons/zoom-.gif -text
+tiki/img/icons/zoom-2.gif -text
+tiki/img/icons/zoom-3.gif -text
+tiki/img/icons/zoom-4.gif -text
 tiki/img/icons/zoom.gif -text
 tiki/img/icons2/1.gif -text
 tiki/img/icons2/8.gif -text
@@ -2324,6 +2332,7 @@ tiki/lib/logs/logslib.php -text
 tiki/lib/mail/maillib.php -text
 tiki/lib/mailin/index.php -text
 tiki/lib/mailin/mailinlib.php -text
+tiki/lib/map/map.js -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/index.php -text
 tiki/lib/menubuilder/menulib.php -text
