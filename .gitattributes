@@ -176,7 +176,6 @@ _smarty/plugins/shared.make_timestamp.php -text
 tiki/.cvsignore -text
 tiki/INSTALL -text
 tiki/README -text
-tiki/Smarty/.cvsignore -text
 tiki/article_image.php -text
 tiki/backups/.cvsignore -text
 tiki/backups/README -text
