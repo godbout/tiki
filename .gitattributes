@@ -1427,6 +1427,10 @@ _mods/wiki-plugins/redirect/wiki-plugins/wikiplugin_redirect.php -text
 _mods/wiki-plugins/scroll/wiki-plugins/wikiplugin_scroll.php -text
 _mods/wiki-plugins/svg/wiki-plugins/wikiplugin_svg.php -text
 _mods/wiki-plugins/wikigraph/Readme -text
+_mods/wiki-plugins/wikigraph/graphviz/GraphViz.php -text
+_mods/wiki-plugins/wikigraph/graphviz/index.php -text
+_mods/wiki-plugins/wikigraph/graphviz/tiki-wiki_graph.php -text
+_mods/wiki-plugins/wikigraph/graphviz/wikigraphlib.php -text
 _mods/wiki-plugins/wikigraph/wiki-plugins/wikiplugin_wikigraph.php -text
 _mods/wiki-plugins/wmv/Readme -text
 _phplayers/ACKNOWLEDGEMENTS -text
