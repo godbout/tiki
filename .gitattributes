@@ -1052,6 +1052,7 @@ tiki/lib/ephemerides/ephlib.php -text
 tiki/lib/faqs/faqlib.php -text
 tiki/lib/filegals/filegallib.php -text
 tiki/lib/games/gamelib.php -text
+tiki/lib/graphviz/GraphViz.php -text
 tiki/lib/hotwords/hotwordlib.php -text
 tiki/lib/htmlpages/htmlpageslib.php -text
 tiki/lib/imagegals/imagegallib.php -text
@@ -1168,6 +1169,7 @@ tiki/lib/wiki-plugins-dist/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_split.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_sql.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_wikigraph.php -text
 tiki/lib/wiki-plugins/wikiplugin_avatar.php -text
 tiki/lib/wiki-plugins/wikiplugin_center.php -text
 tiki/lib/wiki-plugins/wikiplugin_code.php -text
@@ -1176,6 +1178,7 @@ tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
+tiki/lib/wiki-plugins/wikiplugin_wikigraph.php -text
 tiki/lib/wiki/exportlib.php -text
 tiki/lib/wiki/wikilib.php -text
 tiki/lib/xmlrpc.inc -text
@@ -1910,6 +1913,7 @@ tiki/tiki-view_tracker_item.php -text
 tiki/tiki-webmail.php -text
 tiki/tiki-webmail_contacts.php -text
 tiki/tiki-webmail_download_attachment.php -text
+tiki/tiki-wiki_graph.php -text
 tiki/tiki-wiki_link_structure.php -text
 tiki/tiki-wiki_rankings.php -text
 tiki/tiki-wiki_rss.php -text
