@@ -4066,6 +4066,7 @@ tiki/tiki-send_newsletters.php -text
 tiki/tiki-send_objects.php -text
 tiki/tiki-setup.php -text
 tiki/tiki-setup_base.php -text
+tiki/tiki-sheets.php -text
 tiki/tiki-shoutbox.php -text
 tiki/tiki-show_raw_links.php -text
 tiki/tiki-show_user_avatar.php -text
