@@ -2846,6 +2846,12 @@ tiki/templates/styles/geo/modules/mod-login_box.tpl -text
 tiki/templates/styles/geo/tiki-bot_bar.tpl -text
 tiki/templates/styles/geo/tiki-send_newsletters.tpl -text
 tiki/templates/styles/geo/tiki-show_page.tpl -text
+tiki/templates/styles/gmsih/tiki-bot_bar.tpl -text
+tiki/templates/styles/gmsih/tiki-page_bar.tpl -text
+tiki/templates/styles/gmsih/tiki-show_page.tpl -text
+tiki/templates/styles/gmsih/tiki-top_bar.tpl -text
+tiki/templates/styles/gmsih/tiki-user_menu.tpl -text
+tiki/templates/styles/gmsih/tiki.tpl -text
 tiki/templates/styles/matrix/error.tpl -text
 tiki/templates/styles/matrix/tiki-bot_bar.tpl -text
 tiki/templates/styles/matrix/tiki-my_tiki.tpl -text
