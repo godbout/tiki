@@ -3608,6 +3608,7 @@ tiki/templates/tiki-forums.tpl -text
 tiki/templates/tiki-forums_reported.tpl -text svneol=unset#application/octet-stream
 tiki/templates/tiki-g-activity_completed.tpl -text
 tiki/templates/tiki-g-admin_activities.tpl -text
+tiki/templates/tiki-g-admin_graph.tpl -text
 tiki/templates/tiki-g-admin_instance.tpl -text
 tiki/templates/tiki-g-admin_processes.tpl -text
 tiki/templates/tiki-g-admin_roles.tpl -text
@@ -3953,6 +3954,7 @@ tiki/tiki-forums.php -text
 tiki/tiki-forums_reported.php -text
 tiki/tiki-forums_rss.php -text
 tiki/tiki-g-admin_activities.php -text
+tiki/tiki-g-admin_graph.php -text
 tiki/tiki-g-admin_instance.php -text
 tiki/tiki-g-admin_processes.php -text
 tiki/tiki-g-admin_roles.php -text
