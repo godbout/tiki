@@ -2159,7 +2159,6 @@ tiki/lib/live_support/live-support.js -text svneol=unset#application/octet-strea
 tiki/lib/live_support/lsadminlib.php -text
 tiki/lib/live_support/lslib.php -text
 tiki/lib/mailin/mailinlib.php -text
-tiki/lib/mantislib.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/menulib.php -text
 tiki/lib/messu/messulib.php -text
@@ -3215,9 +3214,6 @@ tiki/templates/tiki-live_support_console.tpl -text
 tiki/templates/tiki-live_support_transcripts.tpl -text
 tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-mailin.tpl -text
-tiki/templates/tiki-mantis-current_project.tpl -text
-tiki/templates/tiki-mantis-main.tpl -text
-tiki/templates/tiki-mantis-view_bugs.tpl -text
 tiki/templates/tiki-minical.tpl -text
 tiki/templates/tiki-minical_prefs.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
@@ -3570,8 +3566,6 @@ tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
 tiki/tiki-mailin-code.php -text
 tiki/tiki-mailin.php -text
-tiki/tiki-mantis-main.php -text
-tiki/tiki-mantis-view_bugs.php -text
 tiki/tiki-map.phtml -text
 tiki/tiki-map_download.phtml -text
 tiki/tiki-map_edit.php -text
