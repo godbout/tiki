@@ -1224,6 +1224,7 @@ tiki/tiki-admin_links.php -text
 tiki/tiki-admin_menu_options.php -text
 tiki/tiki-admin_menus.php -text
 tiki/tiki-admin_modules.php -text
+tiki/tiki-admin_newsletter_subscriptions.php -text
 tiki/tiki-admin_newsletters.php -text
 tiki/tiki-admin_notifications.php -text
 tiki/tiki-admin_poll_options.php -text
@@ -1315,6 +1316,7 @@ tiki/tiki-login.php -text
 tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
 tiki/tiki-modules.php -text
+tiki/tiki-newsletters.php -text
 tiki/tiki-objectpermissions.php -text
 tiki/tiki-old_polls.php -text
 tiki/tiki-orphan_pages.php -text
