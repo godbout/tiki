@@ -1643,6 +1643,7 @@ tiki/lib/rss/rsslib.php -text
 tiki/lib/search/searchstatslib.php -text
 tiki/lib/searchlib.php -text
 tiki/lib/shoutbox/shoutboxlib.php -text
+tiki/lib/snoopy/README -text
 tiki/lib/snoopy/Snoopy.class.inc -text
 tiki/lib/stats/statslib.php -text
 tiki/lib/structures/structlib.php -text
