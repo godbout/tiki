@@ -217,8 +217,11 @@ _mods/Packages/themes-bluemetal.info.txt -text
 _mods/Packages/themes-classicblue.info.txt -text
 _mods/Packages/themes-greenjelly.info.txt -text
 _mods/Packages/themes-greenmetal.info.txt -text
+_mods/Packages/themes-isabelsworld.info.txt -text
+_mods/Packages/themes-nhs.info.txt -text
 _mods/Packages/themes-purplemetal.info.txt -text
 _mods/Packages/themes-redmetal.info.txt -text
+_mods/Packages/themes-veryorange.info.txt -text
 _mods/Packages/themes-zaksworld.info.txt -text
 _mods/Packages/themes-ztheme.info.txt -text
 _mods/Packages/wikiplugins-svg.info.txt -text
