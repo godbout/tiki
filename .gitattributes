@@ -1207,6 +1207,12 @@ _mods/themes/matrix/styles/matrix/matrix-tc.css -text
 _mods/themes/matrix/styles/matrix/matrix-wiki.css -text
 _mods/themes/matrix/styles/matrix/matrix-wiki.f.css -text
 _mods/themes/matrix/styles/matrix/matrix-wiki.l.css -text
+_mods/themes/matrix/templates/error.tpl -text
+_mods/themes/matrix/templates/index.php -text
+_mods/themes/matrix/templates/tiki-bot_bar.tpl -text
+_mods/themes/matrix/templates/tiki-my_tiki.tpl -text
+_mods/themes/matrix/templates/tiki-top_bar.tpl -text
+_mods/themes/matrix/templates/tiki.tpl -text
 _mods/themes/nhs/README -text
 _mods/themes/nhs/styles/nhs.css -text
 _mods/themes/purplemetal/Readme -text
