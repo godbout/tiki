@@ -2065,6 +2065,7 @@ tiki/lib/searchlib.php -text
 tiki/lib/shoutbox/shoutboxlib.php -text
 tiki/lib/smarty_tiki/block.repeat.php -text
 tiki/lib/smarty_tiki/block.sortlinks.php -text
+tiki/lib/smarty_tiki/block.tikimodule.php -text
 tiki/lib/smarty_tiki/block.tr.php -text
 tiki/lib/smarty_tiki/function.banner.php -text
 tiki/lib/smarty_tiki/function.content.php -text
