@@ -2934,6 +2934,7 @@ tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
 tiki/lib/wiki-plugins/wikiplugin_thumb.php -text
 tiki/lib/wiki-plugins/wikiplugin_titlesearch.php -text
+tiki/lib/wiki-plugins/wikiplugin_topfriends.php -text
 tiki/lib/wiki-plugins/wikiplugin_tracker.php -text
 tiki/lib/wiki-plugins/wikiplugin_trackerlist.php -text
 tiki/lib/wiki-plugins/wikiplugin_translated.php -text
@@ -3537,6 +3538,7 @@ tiki/templates/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/modules/mod-wiki_last_comments.tpl.nocache -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/plugins/plugin-box.tpl -text
+tiki/templates/plugins/plugin-topfriends.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/structures_toc-endul.tpl -text
 tiki/templates/structures_toc-leaf.tpl -text
