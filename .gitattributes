@@ -2739,6 +2739,7 @@ tiki/templates/mail/user_validation_mail.tpl -text
 tiki/templates/mail/user_watch_blog_post.tpl -text
 tiki/templates/mail/user_watch_map_changed.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed.tpl -text
+tiki/templates/mail/user_watch_wiki_page_comment.tpl -text
 tiki/templates/mail/wiki_change_notification.tpl -text
 tiki/templates/map/tiki-map.tpl -text
 tiki/templates/map/tiki-map_download.tpl -text
