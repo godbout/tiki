@@ -2046,6 +2046,7 @@ tiki/lib/phpOpenTracker/phpOpenTracker.php -text
 tiki/lib/phplot.php -text
 tiki/lib/polls/polllib.php -text
 tiki/lib/potlib.php -text
+tiki/lib/quicktags/quicktagslib.php -text
 tiki/lib/quizzes/quizlib.php -text
 tiki/lib/rankings/ranklib.php -text
 tiki/lib/refererstats/refererlib.php -text
@@ -2728,6 +2729,7 @@ tiki/templates/tiki-admin_newsletters.tpl -text
 tiki/templates/tiki-admin_notifications.tpl -text
 tiki/templates/tiki-admin_poll_options.tpl -text
 tiki/templates/tiki-admin_polls.tpl -text
+tiki/templates/tiki-admin_quicktags.tpl -text
 tiki/templates/tiki-admin_rssmodules.tpl -text
 tiki/templates/tiki-admin_structures.tpl -text
 tiki/templates/tiki-admin_survey_questions.tpl -text
@@ -3045,6 +3047,7 @@ tiki/tiki-admin_newsletters.php -text
 tiki/tiki-admin_notifications.php -text
 tiki/tiki-admin_poll_options.php -text
 tiki/tiki-admin_polls.php -text
+tiki/tiki-admin_quicktags.php -text
 tiki/tiki-admin_rssmodules.php -text
 tiki/tiki-admin_structures.php -text
 tiki/tiki-admin_survey_questions.php -text
