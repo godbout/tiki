@@ -2573,6 +2573,7 @@ tiki/modules/mod-forums_most_visited_forums.php -text
 tiki/modules/mod-google.php -text
 tiki/modules/mod-last_articles.php -text
 tiki/modules/mod-last_blog_posts.php -text
+tiki/modules/mod-last_category_objects.php -text
 tiki/modules/mod-last_created_blogs.php -text
 tiki/modules/mod-last_created_faqs.php -text
 tiki/modules/mod-last_created_quizzes.php -text
@@ -2980,6 +2981,7 @@ tiki/templates/modules/mod-forums_most_visited_forums.tpl -text
 tiki/templates/modules/mod-google.tpl -text
 tiki/templates/modules/mod-last_articles.tpl -text
 tiki/templates/modules/mod-last_blog_posts.tpl -text
+tiki/templates/modules/mod-last_category_objects.tpl -text
 tiki/templates/modules/mod-last_created_blogs.tpl -text
 tiki/templates/modules/mod-last_created_faqs.tpl -text
 tiki/templates/modules/mod-last_created_quizzes.tpl -text
