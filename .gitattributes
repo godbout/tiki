@@ -2263,6 +2263,7 @@ tiki/lib/wiki-plugins/wikiplugin_sf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
+tiki/lib/wiki-plugins/wikiplugin_titlesearch.php -text
 tiki/lib/wiki-plugins/wikiplugin_wikigraph.php -text
 tiki/lib/wiki/exportlib.php -text
 tiki/lib/wiki/histlib.php -text
