@@ -2208,6 +2208,7 @@ tiki/lib/pear/Net/Socket.php -text
 tiki/lib/pear/Net/URL.php -text
 tiki/lib/pear/PEAR.php -text
 tiki/lib/pear/PHPUnit.php -text
+tiki/lib/pear/Parser.php -text
 tiki/lib/pear/SOAP/Base.php -text
 tiki/lib/pear/SOAP/Client.php -text
 tiki/lib/pear/SOAP/Disco.php -text
@@ -2254,6 +2255,13 @@ tiki/lib/pear/SOAP/example/tcp_server.php -text
 tiki/lib/pear/SOAP/example/wsdl_client.php -text
 tiki/lib/pear/SOAP/tools/genproxy.php -text
 tiki/lib/pear/System.php -text
+tiki/lib/pear/tests/001.phpt -text
+tiki/lib/pear/tests/002.phpt -text
+tiki/lib/pear/tests/003.phpt -text
+tiki/lib/pear/tests/004.phpt -text
+tiki/lib/pear/tests/005.phpt -text
+tiki/lib/pear/tests/test2.xml -text
+tiki/lib/pear/tests/test3.xml -text
 tiki/lib/phpOpenTracker/API.php -text
 tiki/lib/phpOpenTracker/API/Clickpath.php -text
 tiki/lib/phpOpenTracker/API/Plugin.php -text
