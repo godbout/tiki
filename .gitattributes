@@ -70,6 +70,13 @@ tiki/Smarty/plugins/modifier.spacify.php -text
 tiki/Smarty/plugins/modifier.string_format.php -text
 tiki/Smarty/plugins/modifier.strip.php -text
 tiki/Smarty/plugins/modifier.strip_tags.php -text
+tiki/Smarty/plugins/modifier.tiki_date_format.php -text
+tiki/Smarty/plugins/modifier.tiki_long_date.php -text
+tiki/Smarty/plugins/modifier.tiki_long_datetime.php -text
+tiki/Smarty/plugins/modifier.tiki_long_time.php -text
+tiki/Smarty/plugins/modifier.tiki_short_date.php -text
+tiki/Smarty/plugins/modifier.tiki_short_datetime.php -text
+tiki/Smarty/plugins/modifier.tiki_short_time.php -text
 tiki/Smarty/plugins/modifier.times.php -text
 tiki/Smarty/plugins/modifier.truncate.php -text
 tiki/Smarty/plugins/modifier.upper.php -text
@@ -819,6 +826,10 @@ tiki/lang/de/language.php -text
 tiki/lang/en/language.php -text
 tiki/lang/fr/language.php -text
 tiki/lang/sp/language.php -text
+tiki/lib/Date.php -text
+tiki/lib/Date/Calc.php -text
+tiki/lib/Date/Human.php -text
+tiki/lib/Date/TimeZone.php -text
 tiki/lib/bablotron.php -text
 tiki/lib/class.ezpdf.php.exe -text
 tiki/lib/class_calendar.php -text
