@@ -3493,6 +3493,7 @@ tiki/templates/tiki-admin-include-fgal.tpl -text
 tiki/templates/tiki-admin-include-forums.tpl -text
 tiki/templates/tiki-admin-include-gal.tpl -text
 tiki/templates/tiki-admin-include-general.tpl -text
+tiki/templates/tiki-admin-include-jukebox.tpl -text
 tiki/templates/tiki-admin-include-list-sections.tpl -text
 tiki/templates/tiki-admin-include-login.tpl -text
 tiki/templates/tiki-admin-include-maps.tpl -text
