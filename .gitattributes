@@ -879,6 +879,7 @@ tiki/lib/jHotDraw/example.gif -text
 tiki/lib/jHotDraw/example.map -text
 tiki/lib/jHotDraw/twikidraw.jar -text
 tiki/lib/md5.js -text
+tiki/lib/newsletters/nllib.php -text
 tiki/lib/overlib.js -text
 tiki/lib/pclerror.lib.php -text
 tiki/lib/pcltrace.lib.php -text
@@ -1076,6 +1077,7 @@ tiki/templates/tiki-admin_links.tpl -text
 tiki/templates/tiki-admin_menu_options.tpl -text
 tiki/templates/tiki-admin_menus.tpl -text
 tiki/templates/tiki-admin_modules.tpl -text
+tiki/templates/tiki-admin_newsletters.tpl -text
 tiki/templates/tiki-admin_notifications.tpl -text
 tiki/templates/tiki-admin_poll_options.tpl -text
 tiki/templates/tiki-admin_polls.tpl -text
@@ -1222,6 +1224,7 @@ tiki/tiki-admin_links.php -text
 tiki/tiki-admin_menu_options.php -text
 tiki/tiki-admin_menus.php -text
 tiki/tiki-admin_modules.php -text
+tiki/tiki-admin_newsletters.php -text
 tiki/tiki-admin_notifications.php -text
 tiki/tiki-admin_poll_options.php -text
 tiki/tiki-admin_polls.php -text
