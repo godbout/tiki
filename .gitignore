@@ -1,4 +1,4 @@
-tiki/db/randomcharshere.php
+tiki/db/local.php
 tiki/modules/cache
 tiki/modules/cache/*
 tiki/templates_c
