@@ -1361,6 +1361,7 @@ tiki/templates/tiki-edit_blog.tpl -text
 tiki/templates/tiki-edit_help.tpl -text
 tiki/templates/tiki-edit_help_tool.tpl -text
 tiki/templates/tiki-edit_image.tpl -text
+tiki/templates/tiki-edit_languages.tpl -text
 tiki/templates/tiki-edit_programmed_content.tpl -text
 tiki/templates/tiki-edit_question_options.tpl -text
 tiki/templates/tiki-edit_quiz.tpl -text
@@ -1375,6 +1376,7 @@ tiki/templates/tiki-featured_link.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
 tiki/templates/tiki-forums.tpl -text
 tiki/templates/tiki-galleries.tpl -text
+tiki/templates/tiki-imexport_languages.tpl -text
 tiki/templates/tiki-import_phpwiki.tpl -text
 tiki/templates/tiki-lastchanges.tpl -text
 tiki/templates/tiki-likepages.tpl -text
@@ -1536,6 +1538,7 @@ tiki/tiki-edit_article.php -text
 tiki/tiki-edit_banner.php -text
 tiki/tiki-edit_blog.php -text
 tiki/tiki-edit_image.php -text
+tiki/tiki-edit_languages.php -text
 tiki/tiki-edit_programmed_content.php -text
 tiki/tiki-edit_question_options.php -text
 tiki/tiki-edit_quiz.php -text
@@ -1562,6 +1565,7 @@ tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
 tiki/tiki-image_galleries_rss.php -text
 tiki/tiki-image_gallery_rss.php -text
+tiki/tiki-imexport_languages.php -text
 tiki/tiki-import_phpwiki.php -text
 tiki/tiki-index.php -text
 tiki/tiki-index_raw.php -text
