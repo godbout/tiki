@@ -3670,6 +3670,7 @@ tiki/templates/tiki-notepad_write.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
 tiki/templates/tiki-orphan_pages.tpl -text
+tiki/templates/tiki-packager_admin_packages.tpl -text
 tiki/templates/tiki-page.tpl -text
 tiki/templates/tiki-page_bar.tpl -text
 tiki/templates/tiki-pagehistory.tpl -text
@@ -4039,6 +4040,7 @@ tiki/tiki-notepad_write.php -text
 tiki/tiki-objectpermissions.php -text
 tiki/tiki-old_polls.php -text
 tiki/tiki-orphan_pages.php -text
+tiki/tiki-packager.php -text
 tiki/tiki-page.php -text
 tiki/tiki-page_loader.php -text
 tiki/tiki-pagehistory.php -text
