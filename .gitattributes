@@ -2779,6 +2779,7 @@ tiki/styles/purplemetal/purple_topleft.gif -text
 tiki/styles/purplemetal/purple_topleftbg.gif -text
 tiki/styles/purplemetal/purple_topright.gif -text
 tiki/styles/purplemetal/purple_toprightbg.gif -text
+tiki/styles/redgrey.css -text
 tiki/styles/redgrey/tikibutton2.png -text
 tiki/styles/redmetal.css -text
 tiki/styles/redmetal/bg.gif -text
@@ -3017,6 +3018,11 @@ tiki/templates/styles/purplemetal/tiki-editpage.tpl -text
 tiki/templates/styles/purplemetal/tiki-show_page.tpl -text
 tiki/templates/styles/purplemetal/tiki-user_menu.tpl -text
 tiki/templates/styles/purplemetal/tiki.tpl -text
+tiki/templates/styles/redgrey/error.tpl -text
+tiki/templates/styles/redgrey/tiki-bot_bar.tpl -text
+tiki/templates/styles/redgrey/tiki-show_page.tpl -text
+tiki/templates/styles/redgrey/tiki-top_bar.tpl -text
+tiki/templates/styles/redgrey/tiki.tpl -text
 tiki/templates/styles/redmetal/error.tpl -text
 tiki/templates/styles/redmetal/tiki-editpage.tpl -text
 tiki/templates/styles/redmetal/tiki-show_page.tpl -text
