@@ -12,6 +12,27 @@ if(!isset($_REQUEST["page"])) {
   $smarty->assign_by_ref('page',$_REQUEST["page"]); 
 }
 
+if(substr($page,0,8)=="UserPage") {
+  $name = substr($page,8);
+  if($user != $name) {
+    if($tiki_p_admin != 'y') { 
+      $smarty->assign('msg',tra("You cannot edit this page because it is a user personal page"));
+      $smarty->display('error.tpl');
+      die;
+    }
+  }
+}
+
+if($_REQUEST["page"]=='SandBox' && $feature_sandbox!='y') {
+  $smarty->assign('msg',tra("The SandBox is disabled"));
+  $smarty->display('error.tpl');
+  die;	
+}
+
+if(!isset($_REQUEST["comment"])) {
+  $_REQUEST["comment"]='';
+}
+
 /*
 if(!page_exists($page)) {
   $smarty->assign('msg',tra("Page cannot be found"));
@@ -64,7 +85,7 @@ if($tiki_p_admin != 'y') {
   }
 }
 
-$smarty->assign('allowhtml','n');
+$smarty->assign('allowhtml','y');
 
 /*
 if(!$user && $anonCanEdit<>'y') {
@@ -139,6 +160,7 @@ if(isset($_REQUEST["save"])) {
     $tikilib->update_page($_REQUEST["page"],$edit,$_REQUEST["comment"],$user,$_SERVER["REMOTE_ADDR"]);
   }
   header("location: tiki-index.php?page=$page");
+  die;
 }
 
 
