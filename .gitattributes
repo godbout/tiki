@@ -3074,6 +3074,7 @@ tiki/templates/tiki-live_support_client.tpl -text
 tiki/templates/tiki-live_support_console.tpl -text
 tiki/templates/tiki-live_support_transcripts.tpl -text
 tiki/templates/tiki-login.tpl -text
+tiki/templates/tiki-mailin.tpl -text
 tiki/templates/tiki-minical.tpl -text
 tiki/templates/tiki-minical_prefs.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
@@ -3421,6 +3422,7 @@ tiki/tiki-login.php -text
 tiki/tiki-login_scr.php -text
 tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
+tiki/tiki-mailin-code.php -text
 tiki/tiki-mailin.php -text
 tiki/tiki-map.phtml -text
 tiki/tiki-map_download.phtml -text
