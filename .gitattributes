@@ -1158,7 +1158,7 @@ _mods/themes/zaksworld/templates/styles/zaksworld/tiki-top_bar.tpl -text
 _mods/themes/ztheme/README -text
 _mods/themes/ztheme/styles/ztheme.css -text
 _mods/thirdparty/colorado_resource/Readme -text
-_mods/thirdparty/tiki-mailman.php -text
+_mods/thirdparty/sample:tiki-mailman.php -text
 _mods/wiki-plugins/README -text
 _mods/wiki-plugins/book/Readme -text
 _mods/wiki-plugins/ebay/README -text
