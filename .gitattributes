@@ -3629,6 +3629,7 @@ tiki/templates/tiki-g-user_instances.tpl -text
 tiki/templates/tiki-g-user_processes.tpl -text
 tiki/templates/tiki-g-view_workitem.tpl -text
 tiki/templates/tiki-galleries.tpl -text
+tiki/templates/tiki-hw_student_assignments.tpl -text
 tiki/templates/tiki-hw_teacher_assignment_edit.tpl -text
 tiki/templates/tiki-hw_teacher_assignment_edit_preview.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
