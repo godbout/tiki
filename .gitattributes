@@ -1335,6 +1335,7 @@ tiki/img/icons/whelp_toc.gif -text
 tiki/img/icons/xclipboard.gif -text
 tiki/img/icons/zoom.gif -text
 tiki/img/icons2/1.gif -text
+tiki/img/icons2/8.gif -text
 tiki/img/icons2/admin.gif -text
 tiki/img/icons2/admin_delete.gif -text
 tiki/img/icons2/admin_hide.gif -text
@@ -1437,6 +1438,7 @@ tiki/img/icons2/move.gif -text
 tiki/img/icons2/nav_dot.gif -text
 tiki/img/icons2/nav_dot_left.gif -text
 tiki/img/icons2/nav_dot_right.gif -text
+tiki/img/icons2/nav_down.gif -text
 tiki/img/icons2/nav_first.gif -text
 tiki/img/icons2/nav_home.gif -text
 tiki/img/icons2/nav_last.gif -text
