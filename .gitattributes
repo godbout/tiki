@@ -2475,6 +2475,7 @@ tiki/templates/modules/mod-online_users.tpl -text
 tiki/templates/modules/mod-quick_edit.tpl -text
 tiki/templates/modules/mod-random_pages.tpl -text
 tiki/templates/modules/mod-search_box.tpl -text
+tiki/templates/modules/mod-search_wiki_page.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl.nocache -text
 tiki/templates/modules/mod-since_last_visit.tpl -text
