@@ -189,6 +189,14 @@ _mods/README -text
 _mods/devtools/README -text
 _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
+_mods/images/tikiwiki/tikibutton.png -text
+_mods/images/tikiwiki/tikibutton.xcf -text svneol=unset#unset
+_mods/images/tikiwiki/tikibutton2.png -text
+_mods/images/tikiwiki/tikibutton2.xcf -text svneol=unset#unset
+_mods/images/tikiwiki/tikibutton3.png -text
+_mods/images/tikiwiki/tikibutton3.xcf -text svneol=unset#unset
+_mods/images/tikiwiki/tikibutton4.png -text
+_mods/images/tikiwiki/tikibutton4.xcf -text svneol=unset#unset
 _mods/taglines/README -text
 _mods/taglines/rcogley/README -text
 _mods/taglines/rcogley/taglines.txt -text
