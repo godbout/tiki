@@ -2550,7 +2550,8 @@ tiki/templates/messu-compose.tpl -text
 tiki/templates/messu-mailbox.tpl -text
 tiki/templates/messu-nav.tpl -text
 tiki/templates/messu-read.tpl -text
-tiki/templates/module-title.tpl -text
+tiki/templates/module-error.tpl -text
+tiki/templates/module.tpl -text
 tiki/templates/modules/mod-admin_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl.nocache -text
