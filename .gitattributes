@@ -99,7 +99,7 @@ tiki/Smarty/plugins/resource.style.php -text
 tiki/Smarty/plugins/shared.make_timestamp.php -text
 tiki/article_image.php -text
 tiki/backups/.cvsignore -text
-tiki/backups/license.txt -text
+tiki/backups/README -text
 tiki/banner_click.php -text
 tiki/banner_image.php -text
 tiki/bin/cvschangeroot.sh -text
@@ -126,9 +126,9 @@ tiki/display_banner.php -text
 tiki/doc/readme.txt -text
 tiki/dump/.cvsignore -text
 tiki/dump/new.tar -text
-tiki/games/flash/license.txt -text
-tiki/games/license.txt -text
-tiki/games/thumbs/license.txt -text
+tiki/games/README -text
+tiki/games/flash/README -text
+tiki/games/thumbs/README -text
 tiki/get_strings.php -text
 tiki/images/Thumbs.db -text
 tiki/images/book.gif -text
@@ -1842,9 +1842,9 @@ tiki/lib/Galaxia/img/icons/visited_path.gif -text
 tiki/lib/Galaxia/img/icons/weather.gif -text
 tiki/lib/Galaxia/img/icons/xclipboard.gif -text
 tiki/lib/Galaxia/img/icons/zoom.gif -text
-tiki/lib/Galaxia/log/license.txt -text
+tiki/lib/Galaxia/log/README -text
 tiki/lib/Galaxia/processes/.cvsignore -text
-tiki/lib/Galaxia/processes/license.txt -text
+tiki/lib/Galaxia/processes/README -text
 tiki/lib/Galaxia/src/API/Base.php -text
 tiki/lib/Galaxia/src/API/BaseActivity.php -text
 tiki/lib/Galaxia/src/API/Instance.php -text
@@ -2202,7 +2202,7 @@ tiki/messu-mailbox.php -text
 tiki/messu-read.php -text
 tiki/modules/.cvsignore -text
 tiki/modules/cache/.cvsignore -text
-tiki/modules/cache/license.txt -text
+tiki/modules/cache/README -text
 tiki/modules/mod-breadcrumb.php -text
 tiki/modules/mod-comm_received_objects.php -text
 tiki/modules/mod-directory_last_sites.php -text
@@ -2378,8 +2378,8 @@ tiki/styles/tranquil/cellpic1.gif -text
 tiki/styles/tranquil/cellpic2.jpg -text
 tiki/styles/tranquil/cellpic3.gif -text
 tiki/styles/whitebluegrey.css -text
-tiki/temp/license.txt -text
-tiki/temp/mail_attachs/license.txt -text
+tiki/temp/README -text
+tiki/temp/mail_attachs/README -text
 tiki/templates/attachments.tpl -text
 tiki/templates/bidi.tpl -text
 tiki/templates/categorize.tpl -text
@@ -2824,7 +2824,7 @@ tiki/templates/tiki-webmail.tpl -text
 tiki/templates/tiki-webmail_contacts.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates_c/.cvsignore -text
-tiki/templates_c/license.txt -text
+tiki/templates_c/README -text
 tiki/testrpc.php -text
 tiki/tests/parse_data.php -text
 tiki/tests/parse_data/test1 -text
