@@ -1823,6 +1823,8 @@ tiki/lib/jpgraph/src/jpgraph_radar.php -text
 tiki/lib/jpgraph/src/jpgraph_regstat.php -text
 tiki/lib/jpgraph/src/jpgraph_scatter.php -text
 tiki/lib/jpgraph/src/jpgraph_stock.php -text
+tiki/lib/live_support/live-support.js -text svneol=unset#application/octet-stream
+tiki/lib/live_support/lslib.php -text
 tiki/lib/mailin/mailinlib.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/menulib.php -text
@@ -2407,6 +2409,10 @@ tiki/templates/tiki-list_submissions.tpl -text
 tiki/templates/tiki-list_surveys.tpl -text
 tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
+tiki/templates/tiki-live_support_admin.tpl -text
+tiki/templates/tiki-live_support_client.tpl -text
+tiki/templates/tiki-live_support_console.tpl -text
+tiki/templates/tiki-live_support_operator.tpl -text svneol=unset#application/octet-stream
 tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-minical.tpl -text
 tiki/templates/tiki-minical_prefs.tpl -text
@@ -2691,6 +2697,12 @@ tiki/tiki-list_submissions.php -text
 tiki/tiki-list_surveys.php -text
 tiki/tiki-list_trackers.php -text
 tiki/tiki-listpages.php -text
+tiki/tiki-live_support_admin.php -text
+tiki/tiki-live_support_chat_frame.php -text
+tiki/tiki-live_support_client.php -text
+tiki/tiki-live_support_console.php -text
+tiki/tiki-live_support_operator.php -text
+tiki/tiki-live_support_server.php -text
 tiki/tiki-login.php -text
 tiki/tiki-login_scr.php -text
 tiki/tiki-login_validate.php -text
