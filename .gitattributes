@@ -1242,7 +1242,6 @@ tiki/templates/styles/subsilver/tiki-print.tpl -text
 tiki/templates/styles/subsilver/tiki-print_article.tpl -text
 tiki/templates/styles/subsilver/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/subsilver/tiki.tpl -text
-tiki/templates/tik-remind_password.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
 tiki/templates/tiki-admin_chat.tpl -text
