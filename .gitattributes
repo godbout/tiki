@@ -252,6 +252,7 @@ _mods/Packages/themes-zaksworld.info.txt -text
 _mods/Packages/themes-ztheme.info.txt -text
 _mods/Packages/wikiplugins-ebay.info.txt -text
 _mods/Packages/wikiplugins-formula.info.txt -text
+_mods/Packages/wikiplugins-galaxia_sweet_ui.info.txt -text
 _mods/Packages/wikiplugins-group.info.txt -text
 _mods/Packages/wikiplugins-perm.info.txt -text
 _mods/Packages/wikiplugins-phplot.info.txt -text
@@ -1329,6 +1330,14 @@ _mods/wiki-plugins/ebay/wiki-plugins/wikiplugin_ebay.php -text
 _mods/wiki-plugins/formula/README -text
 _mods/wiki-plugins/formula/wiki-plugins/tex2png -text
 _mods/wiki-plugins/formula/wiki-plugins/wikiplugin_formula.php -text
+_mods/wiki-plugins/galaxia_sweet_ui/README -text
+_mods/wiki-plugins/galaxia_sweet_ui/templates/wikiplugin_galaxiainstances.tpl -text
+_mods/wiki-plugins/galaxia_sweet_ui/templates/wikiplugin_galaxiamultiroute.tpl -text
+_mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/galaxia_plugins_common.php -text
+_mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiainstances.php -text
+_mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiamultiroute.php -text
+_mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiasequence.php -text
+_mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiastandalone.php -text
 _mods/wiki-plugins/group/README -text
 _mods/wiki-plugins/group/wiki-plugins/wikiplugin_group.php -text
 _mods/wiki-plugins/pagename/Readme -text
