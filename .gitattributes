@@ -3620,7 +3620,6 @@ tiki/templates/styles/smartiki/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/smartiki/tiki.tpl -text
 tiki/templates/styles/specialsauce/tiki.tpl -text
 tiki/templates/styles/tiki/error.tpl -text
-tiki/templates/styles/tiki/header.tpl -text
 tiki/templates/styles/tiki/index.php -text
 tiki/templates/styles/tiki/modules/index.php -text
 tiki/templates/styles/tiki/modules/mod-application_menu.tpl -text
