@@ -2960,6 +2960,7 @@ tiki/templates/mail/forum_post_notification.tpl -text
 tiki/templates/mail/messu_message_notification.tpl -text
 tiki/templates/mail/messu_message_notification_subject.tpl -text
 tiki/templates/mail/new_user_notification.tpl -text
+tiki/templates/mail/new_user_notification_subject.tpl -text
 tiki/templates/mail/newsletter_byebye.tpl -text
 tiki/templates/mail/newsletter_byebye_subject.tpl -text
 tiki/templates/mail/newsletter_unsubscribe.tpl -text
@@ -2969,6 +2970,7 @@ tiki/templates/mail/notification_subject.tpl -text
 tiki/templates/mail/password_reminder.tpl -text
 tiki/templates/mail/password_reminder_subject.tpl -text
 tiki/templates/mail/submission_notification.tpl -text
+tiki/templates/mail/submission_notification_subject.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
 tiki/templates/mail/user_watch_blog_post.tpl -text
