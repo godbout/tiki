@@ -1414,6 +1414,7 @@ tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
 tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
+tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
@@ -1702,6 +1703,7 @@ tiki/tiki-survey_stats.php -text
 tiki/tiki-survey_stats_survey.php -text
 tiki/tiki-take_quiz.php -text
 tiki/tiki-take_survey.php -text
+tiki/tiki-tests.php -text
 tiki/tiki-upload_file.php -text
 tiki/tiki-upload_image.php -text
 tiki/tiki-usage_chart -text
