@@ -1155,6 +1155,7 @@ tiki/styles/subsilver.css -text
 tiki/styles/subsilver/cellpic1.gif -text
 tiki/styles/subsilver/cellpic2.jpg -text
 tiki/styles/subsilver/cellpic3.gif -text
+tiki/styles/tceti.css -text
 tiki/styles/tranquil.css -text
 tiki/styles/tranquil/cellpic1.gif -text
 tiki/styles/tranquil/cellpic2.jpg -text
@@ -1284,6 +1285,11 @@ tiki/templates/styles/subsilver/tiki-print.tpl -text
 tiki/templates/styles/subsilver/tiki-print_article.tpl -text
 tiki/templates/styles/subsilver/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/subsilver/tiki.tpl -text
+tiki/templates/styles/tceti/error.tpl -text
+tiki/templates/styles/tceti/tiki-print.tpl -text
+tiki/templates/styles/tceti/tiki-print_article.tpl -text
+tiki/templates/styles/tceti/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/tceti/tiki.tpl -text
 tiki/templates/styles/tranquil/error.tpl -text
 tiki/templates/styles/tranquil/tiki-print.tpl -text
 tiki/templates/styles/tranquil/tiki-print_article.tpl -text
