@@ -1929,6 +1929,8 @@ tiki/lib/htmlarea/readme.html -text
 tiki/lib/htmlarea/test.cgi -text
 tiki/lib/htmlpages/htmlpageslib.php -text
 tiki/lib/imagegals/imagegallib.php -text
+tiki/lib/ircbot/ircbotlib.php -text
+tiki/lib/ircbot/tikiwiki.php -text
 tiki/lib/jHotDraw/ATEXT1.gif -text
 tiki/lib/jHotDraw/ATEXT2.gif -text
 tiki/lib/jHotDraw/ATEXT3.gif -text
@@ -2047,6 +2049,7 @@ tiki/lib/pear/DB/sybase.php -text
 tiki/lib/pear/HTTP.php -text
 tiki/lib/pear/HTTP/Request.php -text
 tiki/lib/pear/HTTP/docs/example.php -text
+tiki/lib/pear/IRC.php -text
 tiki/lib/pear/Mail.php -text
 tiki/lib/pear/PEAR.php -text
 tiki/lib/pear/PHPUnit.php -text
@@ -2829,6 +2832,7 @@ tiki/templates/tiki-view_chart_item.tpl -text
 tiki/templates/tiki-view_faq.tpl -text
 tiki/templates/tiki-view_forum.tpl -text
 tiki/templates/tiki-view_forum_thread.tpl -text
+tiki/templates/tiki-view_irc.tpl -text
 tiki/templates/tiki-view_tracker.tpl -text
 tiki/templates/tiki-view_tracker_item.tpl -text
 tiki/templates/tiki-webmail.tpl -text
@@ -3143,6 +3147,7 @@ tiki/tiki-view_eph.php -text
 tiki/tiki-view_faq.php -text
 tiki/tiki-view_forum.php -text
 tiki/tiki-view_forum_thread.php -text
+tiki/tiki-view_irc.php -text
 tiki/tiki-view_minical_topic.php -text
 tiki/tiki-view_tracker.php -text
 tiki/tiki-view_tracker_item.php -text
