@@ -3337,6 +3337,7 @@ tiki/templates/tiki-galleries.tpl -text
 tiki/templates/tiki-hw_editpage.tpl -text
 tiki/templates/tiki-hw_page.tpl -text
 tiki/templates/tiki-hw_pagehistory.tpl -text
+tiki/templates/tiki-hw_rollback.tpl -text
 tiki/templates/tiki-hw_student_assignment.tpl -text
 tiki/templates/tiki-hw_student_assignments.tpl -text
 tiki/templates/tiki-hw_teacher_assignment_edit.tpl -text
@@ -3692,6 +3693,7 @@ tiki/tiki-handlers.php -text
 tiki/tiki-hw_editpage.php -text
 tiki/tiki-hw_page.php -text
 tiki/tiki-hw_pagehistory.php -text
+tiki/tiki-hw_rollback.php -text
 tiki/tiki-hw_student_assignment.php -text
 tiki/tiki-hw_student_assignments.php -text
 tiki/tiki-hw_student_last_changes.php -text
