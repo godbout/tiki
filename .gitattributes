@@ -3039,6 +3039,7 @@ tiki/templates/tiki-show_page.tpl -text
 tiki/templates/tiki-show_page_raw.tpl -text
 tiki/templates/tiki-simple_plugin.tpl -text
 tiki/templates/tiki-slideshow.tpl -text
+tiki/templates/tiki-smileys.tpl -text
 tiki/templates/tiki-special_chars.html -text
 tiki/templates/tiki-special_chars.php -text
 tiki/templates/tiki-stats.tpl -text
