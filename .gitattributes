@@ -2873,6 +2873,7 @@ tiki/templates/tiki-admin_tracker_fields.tpl -text
 tiki/templates/tiki-admin_trackers.tpl -text
 tiki/templates/tiki-admingroups.tpl -text
 tiki/templates/tiki-adminusers.tpl -text
+tiki/templates/tiki-article_types.tpl -text
 tiki/templates/tiki-assignpermission.tpl -text
 tiki/templates/tiki-assignuser.tpl -text
 tiki/templates/tiki-backlinks.tpl -text
@@ -3186,6 +3187,7 @@ tiki/tiki-admin_tracker_fields.php -text
 tiki/tiki-admin_trackers.php -text
 tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
+tiki/tiki-article_types.php -text
 tiki/tiki-articles_rss.php -text
 tiki/tiki-assignpermission.php -text
 tiki/tiki-assignuser.php -text
