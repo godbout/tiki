@@ -3284,6 +3284,16 @@ tiki/templates/tiki.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/README -text
 tiki/testrpc.php -text
+tiki/tests/core/core.php -text
+tiki/tests/core/database.php -text
+tiki/tests/core/extensions.php -text
+tiki/tests/core/init.scripts/00-include_path.php -text
+tiki/tests/core/init.scripts/05-database.php -text
+tiki/tests/core/init.scripts/10-cookies_hack.php -text
+tiki/tests/core/init.scripts/40-smarty.php -text
+tiki/tests/core/init.scripts/99-zap_init_vars.php -text
+tiki/tests/core/local.php -text
+tiki/tests/core/tiki-hardcoded-config.php -text
 tiki/tests/parse_data.php -text
 tiki/tests/parse_data/test1 -text
 tiki/tests/parse_data/test1.output -text
