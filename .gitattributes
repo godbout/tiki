@@ -287,6 +287,7 @@ tiki/lib/userslib.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/license.txt -text
+tiki/modules/cache/license.txt -text
 tiki/modules/mod-breadcrumb.php -text
 tiki/modules/mod-comm_received_objects.php -text
 tiki/modules/mod-featured_links.php -text
