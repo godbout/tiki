@@ -1019,7 +1019,6 @@ _mods/templates/kuro/templates/styles/kuroBK/footer.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/footer.tpl+rdf -text
 _mods/templates/kuro/templates/styles/kuroBK/header.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/index.php -text
-_mods/templates/kuro/templates/styles/kuroBK/log-srch-msg.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/reveal.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/tiki-bot_bar.tpl -text
 _mods/templates/kuro/templates/styles/kuroBK/tiki-bot_bar2.tpl -text
