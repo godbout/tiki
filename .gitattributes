@@ -1151,6 +1151,11 @@ tiki/img/icons/timer.gif -text
 tiki/img/icons/timer2.gif -text
 tiki/img/icons/today.gif -text
 tiki/img/icons/toleft.gif -text
+tiki/img/icons/topic_delete.gif -text
+tiki/img/icons/topic_lock.gif -text
+tiki/img/icons/topic_move.gif -text
+tiki/img/icons/topic_split.gif -text
+tiki/img/icons/topic_unlock.gif -text
 tiki/img/icons/toright.gif -text
 tiki/img/icons/trash.gif -text
 tiki/img/icons/trdot.gif -text
@@ -2349,6 +2354,7 @@ tiki/templates/tiki-eph_admin.tpl -text
 tiki/templates/tiki-faq_questions.tpl -text
 tiki/templates/tiki-featured_link.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
+tiki/templates/tiki-forum_queue.tpl -text
 tiki/templates/tiki-forums.tpl -text
 tiki/templates/tiki-g-activity_completed.tpl -text
 tiki/templates/tiki-g-admin_activities.tpl -text
@@ -2626,6 +2632,7 @@ tiki/tiki-file_galleries.php -text
 tiki/tiki-file_galleries_rankings.php -text
 tiki/tiki-file_galleries_rss.php -text
 tiki/tiki-file_gallery_rss.php -text
+tiki/tiki-forum_queue.php -text
 tiki/tiki-forum_rankings.php -text
 tiki/tiki-forum_rss.php -text
 tiki/tiki-forums.php -text
