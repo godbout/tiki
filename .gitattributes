@@ -430,6 +430,7 @@ tiki/db/profiles/fishclub.prf -text
 tiki/db/profiles/mk_profile.sh -text
 tiki/db/profiles/slash.prf -text
 tiki/db/structure_fix_1.7to1.8.php -text
+tiki/db/structure_fix_1.7to1.8.sql -text
 tiki/db/tiki-1.8-mysql.sql -text
 tiki/db/tiki-1.8-oci8.sql -text
 tiki/db/tiki-1.8-pgsql.sql -text
@@ -2307,6 +2308,7 @@ tiki/lib/refererstats/refererlib.php -text
 tiki/lib/registration/registrationlib.php -text
 tiki/lib/rss/rss-style.css -text svneol=unset#application/octet-stream
 tiki/lib/rss/rsslib.php -text
+tiki/lib/search/refresh-functions.php -text
 tiki/lib/search/refresh.php -text
 tiki/lib/search/searchlib.php -text
 tiki/lib/search/searchstatslib.php -text
@@ -2996,6 +2998,9 @@ tiki/templates/modules/mod-who_is_there.tpl.nocache -text
 tiki/templates/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
+tiki/templates/structures_toc-endul.tpl -text
+tiki/templates/structures_toc-leaf.tpl -text
+tiki/templates/structures_toc-startul.tpl -text
 tiki/templates/structures_toc.tpl -text
 tiki/templates/structures_toc_level.tpl -text
 tiki/templates/styles/3dblue/error.tpl -text
@@ -3005,6 +3010,7 @@ tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
 tiki/templates/styles/akwa/tiki.tpl -text
 tiki/templates/styles/blank/tiki.tpl -text
 tiki/templates/styles/bluemetal/error.tpl -text
+tiki/templates/styles/bluemetal/error_ticket.tpl -text
 tiki/templates/styles/bluemetal/tiki-editpage.tpl -text
 tiki/templates/styles/bluemetal/tiki-show_page.tpl -text
 tiki/templates/styles/bluemetal/tiki-user_menu.tpl -text
@@ -3019,6 +3025,7 @@ tiki/templates/styles/geo/tiki-bot_bar.tpl -text
 tiki/templates/styles/geo/tiki-send_newsletters.tpl -text
 tiki/templates/styles/geo/tiki-show_page.tpl -text
 tiki/templates/styles/greenmetal/error.tpl -text
+tiki/templates/styles/greenmetal/error_ticket.tpl -text
 tiki/templates/styles/greenmetal/tiki-editpage.tpl -text
 tiki/templates/styles/greenmetal/tiki-show_page.tpl -text
 tiki/templates/styles/greenmetal/tiki-user_menu.tpl -text
@@ -3457,6 +3464,7 @@ tiki/templates/styles/notheme/tiki-my_tiki.tpl -text
 tiki/templates/styles/notheme/tiki-top_bar.tpl -text
 tiki/templates/styles/notheme/tiki.tpl -text
 tiki/templates/styles/purplemetal/error.tpl -text
+tiki/templates/styles/purplemetal/error_ticket.tpl -text
 tiki/templates/styles/purplemetal/tiki-editpage.tpl -text
 tiki/templates/styles/purplemetal/tiki-show_page.tpl -text
 tiki/templates/styles/purplemetal/tiki-user_menu.tpl -text
@@ -3467,6 +3475,7 @@ tiki/templates/styles/redgrey/tiki-show_page.tpl -text
 tiki/templates/styles/redgrey/tiki-top_bar.tpl -text
 tiki/templates/styles/redgrey/tiki.tpl -text
 tiki/templates/styles/redmetal/error.tpl -text
+tiki/templates/styles/redmetal/error_ticket.tpl -text
 tiki/templates/styles/redmetal/tiki-editpage.tpl -text
 tiki/templates/styles/redmetal/tiki-show_page.tpl -text
 tiki/templates/styles/redmetal/tiki-user_menu.tpl -text
