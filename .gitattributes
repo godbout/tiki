@@ -499,6 +499,7 @@ tiki/doc/readme.txt -text
 tiki/dump/.cvsignore -text
 tiki/dump/new.tar -text
 tiki/favicon.png -text
+tiki/function.js_maxlength.php -text
 tiki/games/README -text
 tiki/games/flash/README -text
 tiki/games/thumbs/README -text
@@ -1823,6 +1824,7 @@ tiki/img/wiki_up/.cvsignore -text
 tiki/img/wiki_up/README -text
 tiki/index.php -text
 tiki/jhot.php -text
+tiki/lang/br/language.php -text
 tiki/lang/cn/language.php -text
 tiki/lang/cs/language.php -text
 tiki/lang/da/language.php -text
@@ -1844,6 +1846,7 @@ tiki/lang/sk/language.php -text
 tiki/lang/sr/language.php -text
 tiki/lang/sv/language.php -text
 tiki/lang/tw/language.php -text
+tiki/lib/.cvsignore -text
 tiki/lib/Babelfish.php -text
 tiki/lib/Date/Calc.php -text
 tiki/lib/Date/Human.php -text
@@ -2341,6 +2344,7 @@ tiki/lib/quizzes/quizlib.php -text
 tiki/lib/rankings/ranklib.php -text
 tiki/lib/refererstats/refererlib.php -text
 tiki/lib/registration/registrationlib.php -text
+tiki/lib/rss/atom-style.css -text svneol=unset#application/octet-stream
 tiki/lib/rss/rss-style.css -text svneol=unset#application/octet-stream
 tiki/lib/rss/rsslib.php -text
 tiki/lib/score/scorelib.php -text
@@ -2364,6 +2368,7 @@ tiki/lib/smarty_tiki/function.gallery.php -text
 tiki/lib/smarty_tiki/function.helplink.php -text
 tiki/lib/smarty_tiki/function.html_select_date.php -text
 tiki/lib/smarty_tiki/function.html_select_time.php -text
+tiki/lib/smarty_tiki/function.js_maxlength.php -text
 tiki/lib/smarty_tiki/function.jspopup.php -text
 tiki/lib/smarty_tiki/function.memusage.php -text
 tiki/lib/smarty_tiki/function.menu.php -text
@@ -2567,6 +2572,7 @@ tiki/modules/mod-directory_top_sites.php -text
 tiki/modules/mod-eph.php -text
 tiki/modules/mod-featured_links.php -text
 tiki/modules/mod-forums_best_voted_topics.php -text
+tiki/modules/mod-forums_last_posts.php -text
 tiki/modules/mod-forums_last_topics.php -text
 tiki/modules/mod-forums_most_commented_forums.php -text
 tiki/modules/mod-forums_most_read_topics.php -text
@@ -2975,6 +2981,7 @@ tiki/templates/modules/mod-directory_top_sites.tpl -text
 tiki/templates/modules/mod-eph.tpl -text
 tiki/templates/modules/mod-featured_links.tpl -text
 tiki/templates/modules/mod-forums_best_voted_topics.tpl -text
+tiki/templates/modules/mod-forums_last_posts.tpl -text svneol=unset#application/octet-stream
 tiki/templates/modules/mod-forums_last_topics.tpl -text
 tiki/templates/modules/mod-forums_most_commented_forums.tpl -text
 tiki/templates/modules/mod-forums_most_read_topics.tpl -text
@@ -3574,6 +3581,7 @@ tiki/tiki-article_types.php -text
 tiki/tiki-articles_rss.php -text
 tiki/tiki-assignpermission.php -text
 tiki/tiki-assignuser.php -text
+tiki/tiki-atom.php -text
 tiki/tiki-backlinks.php -text
 tiki/tiki-backup.php -text
 tiki/tiki-blog_post.php -text

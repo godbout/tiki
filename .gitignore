@@ -6,6 +6,7 @@ tiki/db/local.php
 tiki/dump/*
 tiki/img/wiki_up/*
 tiki/lib/Galaxia/processes/*
+tiki/lib/smarty
 tiki/modules/cache
 tiki/modules/cache/*
 tiki/phpmyadmin
