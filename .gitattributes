@@ -824,8 +824,10 @@ tiki/img/wiki_up/license.txt -text
 tiki/index.php -text
 tiki/jhot.php -text
 tiki/lang/de/language.php -text
+tiki/lang/dk/language.php -text
 tiki/lang/en/language.php -text
 tiki/lang/fr/language.php -text
+tiki/lang/ru/language.php -text
 tiki/lang/sp/language.php -text
 tiki/lang/tw/language.php -text
 tiki/lib/Date.php -text
@@ -839,6 +841,7 @@ tiki/lib/class_rdf_parser.php -text
 tiki/lib/class_rss_parser.php -text
 tiki/lib/commentslib.php -text
 tiki/lib/diff.php -text
+tiki/lib/directory/dirlib.php -text
 tiki/lib/jHotDraw/ATEXT1.gif -text
 tiki/lib/jHotDraw/ATEXT2.gif -text
 tiki/lib/jHotDraw/ATEXT3.gif -text
@@ -1166,6 +1169,8 @@ tiki/templates/tiki-chat_box.tpl -text
 tiki/templates/tiki-chatroom.tpl -text
 tiki/templates/tiki-custom_home.tpl -text
 tiki/templates/tiki-custom_home_2.tpl -text
+tiki/templates/tiki-directory_admin.tpl -text
+tiki/templates/tiki-directory_admin_categories.tpl -text
 tiki/templates/tiki-edit_article.tpl -text
 tiki/templates/tiki-edit_banner.tpl -text
 tiki/templates/tiki-edit_blog.tpl -text
@@ -1327,6 +1332,8 @@ tiki/tiki-chat_users.php -text
 tiki/tiki-chatroom.php -text
 tiki/tiki-cms_rankings.php -text
 tiki/tiki-custom_home.php -text
+tiki/tiki-directory_admin.php -text
+tiki/tiki-directory_admin_categories.php -text
 tiki/tiki-download_file.php -text
 tiki/tiki-download_item_attachment.php -text
 tiki/tiki-download_wiki_attachment.php -text
