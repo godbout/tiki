@@ -239,6 +239,7 @@ tiki/Smarty/debug.tpl -text
 tiki/Smarty/index.php -text
 tiki/Smarty/misc/fix_vars.php -text
 tiki/Smarty/plugins/block.repeat.php -text
+tiki/Smarty/plugins/block.sortlinks.php -text
 tiki/Smarty/plugins/block.textformat.php -text
 tiki/Smarty/plugins/block.tr.php -text
 tiki/Smarty/plugins/function.assign.php -text
