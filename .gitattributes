@@ -2531,6 +2531,15 @@ tiki/lib/notepad/notepadlib.php -text
 tiki/lib/notifications/index.php -text
 tiki/lib/notifications/notificationemaillib.php -text
 tiki/lib/notifications/notificationlib.php -text
+tiki/lib/opinion_network/index.php -text
+tiki/lib/opinion_network/javascript/boxsizing.htc -text
+tiki/lib/opinion_network/javascript/handle.horizontal.png -text
+tiki/lib/opinion_network/javascript/handle.vertical.png -text
+tiki/lib/opinion_network/javascript/range.js -text
+tiki/lib/opinion_network/javascript/slider.js -text
+tiki/lib/opinion_network/javascript/timer.js -text
+tiki/lib/opinion_network/javascript/winclassic.css -text
+tiki/lib/opinion_network/opnetlib.php -text
 tiki/lib/overlib.js -text
 tiki/lib/packages/packagerlib.php -text
 tiki/lib/pclzip.lib.php -text
