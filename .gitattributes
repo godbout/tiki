@@ -2401,13 +2401,14 @@ tiki/styles/dblue/dbluebot.jpg -text
 tiki/styles/dblue/dbluetop.jpg -text
 tiki/styles/default.css -text
 tiki/styles/default2.css -text
-tiki/styles/doxygen.css -text
 tiki/styles/elegant.css -text
 tiki/styles/geo-light.css -text
 tiki/styles/geo.css -text
 tiki/styles/geo/backmap.png -text
 tiki/styles/geo/fond2tete.png -text
 tiki/styles/geo/fondtete.png -text
+tiki/styles/integrator/README -text
+tiki/styles/integrator/doxygen.css -text
 tiki/styles/jalist.css -text
 tiki/styles/jalist/bg.png -text
 tiki/styles/jalist/fcap.png -text
@@ -2473,6 +2474,7 @@ tiki/styles/neat/user.gif -text
 tiki/styles/notheme.II.css -text
 tiki/styles/notheme.III.css -text
 tiki/styles/notheme.css -text
+tiki/styles/notheme/doxygen.css -text
 tiki/styles/notheme/notheme-II-article.css -text
 tiki/styles/notheme/notheme-II-tc.css -text
 tiki/styles/notheme/notheme-III-box.css -text
@@ -2482,7 +2484,6 @@ tiki/styles/notheme/notheme-calendar.css -text
 tiki/styles/notheme/notheme-categories.css -text
 tiki/styles/notheme/notheme-debug.css -text
 tiki/styles/notheme/notheme-dir.css -text
-tiki/styles/notheme/notheme-doxygen.css -text
 tiki/styles/notheme/notheme-faq.css -text
 tiki/styles/notheme/notheme-general.css -text
 tiki/styles/notheme/notheme-other.css -text
