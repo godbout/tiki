@@ -1590,6 +1590,7 @@ tiki/templates/tiki-referer_stats.tpl -text
 tiki/templates/tiki-register.tpl -text
 tiki/templates/tiki-remind_password.tpl -text
 tiki/templates/tiki-removepage.tpl -text
+tiki/templates/tiki-rename_page.tpl -text
 tiki/templates/tiki-rollback.tpl -text
 tiki/templates/tiki-search_stats.tpl -text
 tiki/templates/tiki-searchresults.tpl -text
@@ -1778,6 +1779,7 @@ tiki/tiki-forums.php -text
 tiki/tiki-forums_rss.php -text
 tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
+tiki/tiki-handlers.php -text
 tiki/tiki-image_galleries_rss.php -text
 tiki/tiki-image_gallery_rss.php -text
 tiki/tiki-imexport_languages.php -text
@@ -1848,7 +1850,9 @@ tiki/tiki-received_pages.php -text
 tiki/tiki-referer_stats.php -text
 tiki/tiki-register.php -text
 tiki/tiki-remind_password.php -text
+tiki/tiki-remote_backup.php -text
 tiki/tiki-removepage.php -text
+tiki/tiki-rename_page.php -text
 tiki/tiki-rollback.php -text
 tiki/tiki-search_stats.php -text
 tiki/tiki-searchresults.php -text
