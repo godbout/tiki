@@ -2561,6 +2561,7 @@ tiki/templates/tiki-charts.tpl -text
 tiki/templates/tiki-chat.tpl -text
 tiki/templates/tiki-chat_box.tpl -text
 tiki/templates/tiki-chatroom.tpl -text
+tiki/templates/tiki-config_pdf.tpl -text
 tiki/templates/tiki-contact.tpl -text
 tiki/templates/tiki-custom_home.tpl -text
 tiki/templates/tiki-custom_home_2.tpl -text
