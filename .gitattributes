@@ -188,6 +188,7 @@ _jscalendar/menuarrow2.gif -text
 _mods/README -text
 _mods/devtools/README -text
 _mods/devtools/tikimerge.sh -text
+_mods/devtools/tikimergerev.sh -text
 _mods/taglines/README -text
 _mods/taglines/rcogley/README -text
 _mods/taglines/rcogley/taglines.txt -text
