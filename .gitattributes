@@ -874,6 +874,13 @@ _mods/devtools/README -text
 _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
 _mods/features/cc/cc.php -text
+_mods/features/cc/img/cancel_transaction.png -text
+_mods/features/cc/img/currency.png -text
+_mods/features/cc/img/edit_c.png -text
+_mods/features/cc/img/pending_register_c.png -text
+_mods/features/cc/img/register_c.png -text
+_mods/features/cc/img/transaction.png -text
+_mods/features/cc/img/unregister_c.png -text
 _mods/features/cc/lib/cclib.php -text
 _mods/features/cc/modules/mod-my_ledger.php -text
 _mods/features/cc/templates/currencies.tpl -text
