@@ -1893,6 +1893,7 @@ tiki/lib/phpOpenTracker/conf/phpOpenTracker.ini -text
 tiki/lib/phpOpenTracker/conf/user_agents.ini -text
 tiki/lib/phplot.php -text
 tiki/lib/polls/polllib.php -text
+tiki/lib/potlib.php -text
 tiki/lib/quizzes/quizlib.php -text
 tiki/lib/refererstats/refererlib.php -text
 tiki/lib/registration/registrationlib.php -text
