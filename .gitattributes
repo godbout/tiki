@@ -955,6 +955,7 @@ tiki/lib/Date.php -text
 tiki/lib/Date/Calc.php -text
 tiki/lib/Date/Human.php -text
 tiki/lib/Date/TimeZone.php -text
+tiki/lib/Date/TimeZoneWindows.php -text
 tiki/lib/bablotron.php -text
 tiki/lib/class.ezpdf.php.exe -text
 tiki/lib/class_calendar.php -text
