@@ -2634,6 +2634,7 @@ tiki/temp/.cvsignore -text
 tiki/temp/README -text
 tiki/temp/mail_attachs/README -text
 tiki/templates/attachments.tpl -text
+tiki/templates/babelfish.tpl -text
 tiki/templates/bidi.tpl -text
 tiki/templates/categorize.tpl -text
 tiki/templates/comments.tpl -text
@@ -2852,6 +2853,7 @@ tiki/templates/styles/neat/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/neat/tiki-show_page.tpl -text
 tiki/templates/styles/neat/tiki-top_bar.tpl -text
 tiki/templates/styles/neat/tiki.tpl -text
+tiki/templates/styles/notheme/babelfish.tpl -text
 tiki/templates/styles/notheme/error.tpl -text
 tiki/templates/styles/notheme/tiki-bot_bar.tpl -text
 tiki/templates/styles/notheme/tiki-my_tiki.tpl -text
