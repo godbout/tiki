@@ -1573,6 +1573,7 @@ tiki/img/flags/Wales.gif -text
 tiki/img/flags/Yugoslavia.gif -text
 tiki/img/flags/Zambia.gif -text
 tiki/img/flags/Zimbabwe.gif -text
+tiki/img/flags/flagnames.php -text
 tiki/img/flags/index.php -text
 tiki/img/google.gif -text
 tiki/img/googleg.gif -text
@@ -2791,6 +2792,7 @@ tiki/lib/templates/index.php -text
 tiki/lib/templates/templateslib.php -text
 tiki/lib/themecontrol/index.php -text
 tiki/lib/themecontrol/tcontrol.php -text
+tiki/lib/tiki-dynamic-js.php -text
 tiki/lib/tiki-js.js -text
 tiki/lib/tikibot/README -text
 tiki/lib/tikibot/index.php -text
@@ -3750,6 +3752,7 @@ tiki/templates/tiki-admin_trackers.tpl -text
 tiki/templates/tiki-admingroups.tpl -text
 tiki/templates/tiki-adminusers.tpl -text
 tiki/templates/tiki-article_types.tpl -text
+tiki/templates/tiki-articles-js.tpl -text
 tiki/templates/tiki-assignpermission.tpl -text
 tiki/templates/tiki-assignuser.tpl -text
 tiki/templates/tiki-backlinks.tpl -text
@@ -4150,6 +4153,7 @@ tiki/tiki-chatroom.php -text
 tiki/tiki-cms_rankings.php -text
 tiki/tiki-config_pdf.php -text
 tiki/tiki-contact.php -text
+tiki/tiki-cookie-jar.php -text
 tiki/tiki-create_webhelp.php -text
 tiki/tiki-custom_home.php -text
 tiki/tiki-debug_console.php -text
