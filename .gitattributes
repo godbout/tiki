@@ -2125,9 +2125,6 @@ tiki/lib/newsreader/newslib.php -text
 tiki/lib/notepad/notepadlib.php -text
 tiki/lib/notifications/notificationlib.php -text
 tiki/lib/overlib.js -text
-tiki/lib/pclerror.lib.php -text
-tiki/lib/pcltrace.lib.php -text
-tiki/lib/pclzip-trace.lib.php -text
 tiki/lib/pclzip.lib.php -text
 tiki/lib/pear/Auth/Auth.php -text
 tiki/lib/pear/Auth/Container.php -text
