@@ -49,6 +49,7 @@ tiki/Smarty/plugins/function.popup_init.php -text
 tiki/Smarty/plugins/function.rcontent.php -text
 tiki/Smarty/plugins/function.rss.php -text
 tiki/Smarty/plugins/function.showdate.php -text
+tiki/Smarty/plugins/modifier.avatarize.php -text
 tiki/Smarty/plugins/modifier.capitalize.php -text
 tiki/Smarty/plugins/modifier.count_characters.php -text
 tiki/Smarty/plugins/modifier.count_paragraphs.php -text
@@ -1337,6 +1338,7 @@ tiki/tiki-send_objects.php -text
 tiki/tiki-setup.php -text
 tiki/tiki-setup_base.php -text
 tiki/tiki-shoutbox.php -text
+tiki/tiki-show_user_avatar.php -text
 tiki/tiki-slideshow.php -text
 tiki/tiki-stats.php -text
 tiki/tiki-survey_stats.php -text
