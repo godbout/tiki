@@ -219,3 +219,4 @@ tiki/tiki-upload_image.php -text
 tiki/tiki-userversions.php -text
 tiki/tiki-view_cache.php -text
 tiki/tiki_pagepermissions.php -text
+tiki/topic_image.php -text
