@@ -2117,6 +2117,8 @@ tiki/lib/templates/templateslib.php -text
 tiki/lib/themecontrol/tcontrol.php -text
 tiki/lib/tiki-js.js -text
 tiki/lib/tikidate.php -text
+tiki/lib/tikidblib-debug.php -text
+tiki/lib/tikidblib.php -text
 tiki/lib/tikilib.php -text
 tiki/lib/trackers/trackerlib.php -text
 tiki/lib/tree/categ_admin_tree.php -text
