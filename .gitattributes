@@ -163,9 +163,13 @@ tiki/lang/old.php -text
 tiki/lang/po/language.php -text
 tiki/lang/sp/language.php -text
 tiki/lang/sp/old.php -text
+tiki/lib/bablotron.php -text
 tiki/lib/class.ezpdf.php.exe -text
 tiki/lib/class_calendar.php -text
+tiki/lib/class_rdf_parser.php -text
+tiki/lib/class_rss_parser.php -text
 tiki/lib/commentslib.php -text
+tiki/lib/diff.php -text
 tiki/lib/tar.class.php -text
 tiki/lib/tikilib.php -text
 tiki/lib/userslib.php -text
