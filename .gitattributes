@@ -2704,6 +2704,7 @@ tiki/templates/modules/mod-user_tasks.tpl -text
 tiki/templates/modules/mod-user_tasks.tpl.nocache -text
 tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl.nocache -text
+tiki/templates/modules/module-title.tpl -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/styles/akwa/error.tpl -text
 tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
