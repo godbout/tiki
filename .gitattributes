@@ -3908,6 +3908,10 @@ tiki/templates/tiki-notepad_read.tpl -text
 tiki/templates/tiki-notepad_write.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
+tiki/templates/tiki-opnet.tpl -text
+tiki/templates/tiki-opnet_admin.tpl -text
+tiki/templates/tiki-opnet_result.tpl -text
+tiki/templates/tiki-opnetheader.tpl -text
 tiki/templates/tiki-orphan_pages.tpl -text
 tiki/templates/tiki-packager_admin_packages.tpl -text
 tiki/templates/tiki-page.tpl -text
