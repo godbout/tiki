@@ -2265,6 +2265,7 @@ tiki/received_article_image.php -text
 tiki/select_banner.php -text
 tiki/setup.php -text
 tiki/setup.sh -text
+tiki/setup_virtual.sh -text
 tiki/show_image.php -text
 tiki/styles/BiDi/BiDi.css -text
 tiki/styles/bluegreen.css -text
