@@ -2126,14 +2126,6 @@ tiki/lang/tw/index.php -text
 tiki/lang/tw/language.php -text
 tiki/lib/.cvsignore -text
 tiki/lib/Babelfish.php -text
-tiki/lib/CAS/CAS.php -text
-tiki/lib/CAS/PGTStorage/pgt-db.php -text
-tiki/lib/CAS/PGTStorage/pgt-file.php -text
-tiki/lib/CAS/PGTStorage/pgt-main.php -text
-tiki/lib/CAS/client.php -text
-tiki/lib/CAS/languages/english.php -text
-tiki/lib/CAS/languages/french.php -text
-tiki/lib/CAS/languages/languages.php -text
 tiki/lib/Date/Calc.php -text
 tiki/lib/Date/Human.php -text
 tiki/lib/Date/TimeZone.php -text
