@@ -3140,6 +3140,7 @@ tiki/templates/tiki-edit_quiz_results.tpl -text
 tiki/templates/tiki-edit_structure.tpl -text
 tiki/templates/tiki-edit_submission.tpl -text
 tiki/templates/tiki-edit_templates.tpl -text
+tiki/templates/tiki-edit_topic.tpl -text
 tiki/templates/tiki-editpage.tpl -text
 tiki/templates/tiki-eph.tpl -text
 tiki/templates/tiki-eph_admin.tpl -text
@@ -3453,6 +3454,7 @@ tiki/tiki-edit_quiz_results.php -text
 tiki/tiki-edit_structure.php -text
 tiki/tiki-edit_submission.php -text
 tiki/tiki-edit_templates.php -text
+tiki/tiki-edit_topic.php -text
 tiki/tiki-editdrawing.php -text
 tiki/tiki-editpage.php -text
 tiki/tiki-eph.php -text
