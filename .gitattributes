@@ -702,6 +702,7 @@ tiki/doc/devtools/ggg-trace.php -text
 tiki/doc/devtools/index.php -text
 tiki/doc/devtools/lastcvs.sh -text
 tiki/doc/devtools/phpstrip.sh -text
+tiki/doc/devtools/restorehelp.php -text
 tiki/doc/devtools/sharetiki.sh -text
 tiki/doc/devtools/sqlupgrade.sh -text
 tiki/doc/devtools/synctiki.sh -text
@@ -2094,6 +2095,8 @@ tiki/lang/da/index.php -text
 tiki/lang/da/language.php -text
 tiki/lang/de/index.php -text
 tiki/lang/de/language.php -text
+tiki/lang/el/index.php -text
+tiki/lang/el/language.php -text
 tiki/lang/en-uk/index.php -text
 tiki/lang/en-uk/language.php -text
 tiki/lang/en/index.php -text
