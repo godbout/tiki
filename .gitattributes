@@ -846,6 +846,13 @@ _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
 _mods/features/dlp/Readme -text
 _mods/features/galaxia/README -text
+_mods/features/jukebox/tikiroot/lib/jukebox/jukeboxlib.php -text
+_mods/features/jukebox/tikiroot/templates/tiki-jukebox_albums.tpl -text
+_mods/features/jukebox/tikiroot/templates/tiki-jukebox_genres.tpl -text
+_mods/features/jukebox/tikiroot/templates/tiki-jukebox_tracks.tpl -text
+_mods/features/jukebox/tikiroot/tiki-jukebox_albums.php -text
+_mods/features/jukebox/tikiroot/tiki-jukebox_genres.php -text
+_mods/features/jukebox/tikiroot/tiki-jukebox_tracks.php -text
 _mods/features/tiki-sheet/README -text
 _mods/features/tiki-sheet/tikiroot/lib/sheet/conf/config.inc.php -text
 _mods/features/tiki-sheet/tikiroot/lib/sheet/control.js -text
