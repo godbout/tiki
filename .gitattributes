@@ -2433,6 +2433,7 @@ tiki/lib/debug/index.php -text
 tiki/lib/diff.php -text
 tiki/lib/diff/difflib.php -text
 tiki/lib/diff/renderer.php -text
+tiki/lib/diff/renderer_sidebyside.php -text
 tiki/lib/diff/renderer_unified.php -text
 tiki/lib/directory/dirlib.php -text
 tiki/lib/directory/index.php -text
