@@ -982,9 +982,12 @@ tiki/templates/comments.tpl -text
 tiki/templates/error.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/header.tpl -text
+tiki/templates/mail/confirm_newsletter_subscription.tpl -text
 tiki/templates/mail/forum_post_notification.tpl -text
 tiki/templates/mail/license.txt -text
 tiki/templates/mail/new_user_notification.tpl -text
+tiki/templates/mail/newsletter_byebye.tpl -text
+tiki/templates/mail/newsletter_welcome.tpl -text
 tiki/templates/mail/password_reminder.tpl -text
 tiki/templates/mail/submission_notification.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
@@ -1077,6 +1080,7 @@ tiki/templates/tiki-admin_links.tpl -text
 tiki/templates/tiki-admin_menu_options.tpl -text
 tiki/templates/tiki-admin_menus.tpl -text
 tiki/templates/tiki-admin_modules.tpl -text
+tiki/templates/tiki-admin_newsletter_subscriptions.tpl -text
 tiki/templates/tiki-admin_newsletters.tpl -text
 tiki/templates/tiki-admin_notifications.tpl -text
 tiki/templates/tiki-admin_poll_options.tpl -text
@@ -1141,6 +1145,7 @@ tiki/templates/tiki-list_submissions.tpl -text
 tiki/templates/tiki-list_surveys.tpl -text
 tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
+tiki/templates/tiki-newsletters.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
 tiki/templates/tiki-orphan_pages.tpl -text
