@@ -1423,6 +1423,7 @@ tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
 tiki/templates/tiki-newsreader_groups.tpl -text
 tiki/templates/tiki-newsreader_news.tpl -text
+tiki/templates/tiki-newsreader_read.tpl -text
 tiki/templates/tiki-newsreader_servers.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
@@ -1666,6 +1667,7 @@ tiki/tiki-my_tiki.php -text
 tiki/tiki-newsletters.php -text
 tiki/tiki-newsreader_groups.php -text
 tiki/tiki-newsreader_news.php -text
+tiki/tiki-newsreader_read.php -text
 tiki/tiki-newsreader_servers.php -text
 tiki/tiki-objectpermissions.php -text
 tiki/tiki-old_polls.php -text
