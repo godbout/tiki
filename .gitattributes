@@ -3008,6 +3008,7 @@ tiki/modules/mod-user_bookmarks.php -text
 tiki/modules/mod-user_image_galleries.php -text
 tiki/modules/mod-user_pages.php -text
 tiki/modules/mod-user_tasks.php -text
+tiki/modules/mod-users_rank.php -text
 tiki/modules/mod-whats_related.php -text
 tiki/modules/mod-who_is_there.php -text
 tiki/modules/mod-wiki_last_comments.php -text
@@ -3490,6 +3491,7 @@ tiki/templates/modules/mod-user_pages.tpl.nocache -text
 tiki/templates/modules/mod-user_tasks.tpl -text
 tiki/templates/modules/mod-user_tasks.tpl.nocache -text
 tiki/templates/modules/mod-usergroup_tracker.tpl -text
+tiki/templates/modules/mod-users_rank.tpl -text
 tiki/templates/modules/mod-whats_related.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl.nocache -text
