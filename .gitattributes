@@ -2361,6 +2361,7 @@ tiki/styles/tranquil/cellpic3.gif -text
 tiki/styles/whitebluegrey.css -text
 tiki/temp/license.txt -text
 tiki/temp/mail_attachs/license.txt -text
+tiki/templates/attachments.tpl -text
 tiki/templates/bidi.tpl -text
 tiki/templates/categorize.tpl -text
 tiki/templates/comments.tpl -text
