@@ -423,14 +423,6 @@ tiki/db/convertscripts/mysql3tosqlite.php -text
 tiki/db/convertscripts/mysql3tosybase.php -text
 tiki/db/dbg_console.sql -text
 tiki/db/fulltext.sql -text
-tiki/db/oracle/md5.sql -text
-tiki/db/pgsql/MigratingFromMySQLtoPostgreSQL.htm -text
-tiki/db/pgsql/mysql-functions.sql -text
-tiki/db/pgsql/mysql2pgsql.pl -text
-tiki/db/pgsql/mysql2pgsql.sh -text
-tiki/db/pgsql/psql.log -text
-tiki/db/pgsql/tiki_mysql.sql -text
-tiki/db/pgsql/tiki_pgsql.sql -text
 tiki/db/profiles/BasicEnabled.prf -text
 tiki/db/profiles/_default.prf -text
 tiki/db/profiles/default-inserts.sql -text
