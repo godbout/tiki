@@ -2142,6 +2142,7 @@ tiki/modules/mod-last_modif_tracker_items.php -text
 tiki/modules/mod-last_modified_blogs.php -text
 tiki/modules/mod-last_submissions.php -text
 tiki/modules/mod-last_tracker_items.php -text
+tiki/modules/mod-live_support.php -text
 tiki/modules/mod-logged_users.php -text
 tiki/modules/mod-messages_unread_messages.php -text
 tiki/modules/mod-num_submissions.php -text
@@ -2313,6 +2314,7 @@ tiki/templates/modules/mod-last_modif_tracker_items.tpl -text
 tiki/templates/modules/mod-last_modified_blogs.tpl -text
 tiki/templates/modules/mod-last_submissions.tpl -text
 tiki/templates/modules/mod-last_tracker_items.tpl -text
+tiki/templates/modules/mod-live_support.tpl -text
 tiki/templates/modules/mod-logged_users.tpl -text
 tiki/templates/modules/mod-login_box.tpl -text
 tiki/templates/modules/mod-login_box.tpl.nocache -text
@@ -2524,6 +2526,7 @@ tiki/templates/tiki-featured_link.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
 tiki/templates/tiki-forum_queue.tpl -text
 tiki/templates/tiki-forums.tpl -text
+tiki/templates/tiki-forums_reported.tpl -text svneol=unset#application/octet-stream
 tiki/templates/tiki-g-activity_completed.tpl -text
 tiki/templates/tiki-g-admin_activities.tpl -text
 tiki/templates/tiki-g-admin_instance.tpl -text
@@ -2810,6 +2813,7 @@ tiki/tiki-forum_queue.php -text
 tiki/tiki-forum_rankings.php -text
 tiki/tiki-forum_rss.php -text
 tiki/tiki-forums.php -text
+tiki/tiki-forums_reported.php -text
 tiki/tiki-forums_rss.php -text
 tiki/tiki-g-admin_activities.php -text
 tiki/tiki-g-admin_instance.php -text
