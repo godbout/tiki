@@ -2390,6 +2390,8 @@ tiki/templates/bidi.tpl -text
 tiki/templates/categorize.tpl -text
 tiki/templates/comments.tpl -text
 tiki/templates/copyrights.tpl -text svneol=unset#application/octet-stream
+tiki/templates/debug/tiki-debug_console_help.tpl -text
+tiki/templates/debug/tiki-debug_permissions.tpl -text
 tiki/templates/error.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/header.tpl -text
