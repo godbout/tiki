@@ -2700,7 +2700,7 @@ tiki/templates/styles/tiki/tiki.tpl -text
 tiki/templates/styles/trollparty/tiki-bot_bar.tpl -text
 tiki/templates/styles/trollparty/tiki-send_newsletters.tpl -text
 tiki/templates/styles/trollparty/tiki-show_page.tpl -text
-tiki/templates/textareaSize.tpl -text
+tiki/templates/textareasize.tpl -text
 tiki/templates/tiki-admin-include-anchors.tpl -text
 tiki/templates/tiki-admin-include-blogs.tpl -text
 tiki/templates/tiki-admin-include-cms.tpl -text
@@ -3020,7 +3020,6 @@ tiki/tests/parse_data/test8 -text
 tiki/tests/parse_data/test8.output -text
 tiki/tests/parse_data/test9 -text
 tiki/tests/parse_data/test9.output -text
-tiki/textareaSize.php -text
 tiki/textareasize.php -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_banners.php -text
