@@ -1168,6 +1168,7 @@ _mods/wiki-plugins/formula/wiki-plugins/tex2png -text
 _mods/wiki-plugins/formula/wiki-plugins/wikiplugin_formula.php -text
 _mods/wiki-plugins/pagename/Readme -text
 _mods/wiki-plugins/phplot/Readme -text
+_mods/wiki-plugins/phplot/wiki-plugins/wikiplugin_phplot.php -text
 _mods/wiki-plugins/scroll/wiki-plugins/wikiplugin_scroll.php -text
 _mods/wiki-plugins/svg/wiki-plugins/wikiplugin_svg.php -text
 _mods/wiki-plugins/wikigraph/Readme -text
