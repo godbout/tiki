@@ -3158,7 +3158,6 @@ tiki/lib/smarty_tiki/function.memusage.php -text
 tiki/lib/smarty_tiki/function.menu.php -text
 tiki/lib/smarty_tiki/function.phplayers.php -text
 tiki/lib/smarty_tiki/function.poll.php -text
-tiki/lib/smarty_tiki/function.querytable.php -text
 tiki/lib/smarty_tiki/function.rcontent.php -text
 tiki/lib/smarty_tiki/function.rss.php -text
 tiki/lib/smarty_tiki/function.sameurl.php -text
@@ -4677,7 +4676,6 @@ tiki/tiki-print_blog_post.php -text
 tiki/tiki-print_multi_pages.php -text
 tiki/tiki-print_pages.php -text
 tiki/tiki-pv_chart.php -text
-tiki/tiki-querytable.php -text
 tiki/tiki-quiz_edit.php -text
 tiki/tiki-quiz_result_stats.php -text
 tiki/tiki-quiz_stats.php -text
