@@ -2513,6 +2513,7 @@ tiki/lib/webmail/example.1.php -text
 tiki/lib/webmail/htmlMimeMail.php -text
 tiki/lib/webmail/mimeDecode.php -text
 tiki/lib/webmail/pop3.php -text
+tiki/lib/webmail/tikimaillib.php -text
 tiki/lib/webmail/webmaillib.php -text
 tiki/lib/wiki-plugins-dist/README -text
 tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
@@ -2944,9 +2945,11 @@ tiki/templates/mail/blogs_send_link.tpl -text
 tiki/templates/mail/confirm_newsletter_subscription.tpl -text
 tiki/templates/mail/forum_post_notification.tpl -text
 tiki/templates/mail/messu_message_notification.tpl -text
+tiki/templates/mail/messu_message_notification_subject.tpl -text
 tiki/templates/mail/new_user_notification.tpl -text
 tiki/templates/mail/newsletter_byebye.tpl -text
 tiki/templates/mail/newsletter_byebye_subject.tpl -text
+tiki/templates/mail/newsletter_unsubscribe.tpl -text
 tiki/templates/mail/newsletter_welcome.tpl -text
 tiki/templates/mail/newsletter_welcome_subject.tpl -text
 tiki/templates/mail/password_reminder.tpl -text
