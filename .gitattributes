@@ -212,7 +212,6 @@ tiki/lang/en/old.php -text
 tiki/lang/fr/language.php -text
 tiki/lang/po/language.php -text
 tiki/lang/sp/language.php -text
-tiki/lang/sp/old.php -text
 tiki/lib/bablotron.php -text
 tiki/lib/class.ezpdf.php.exe -text
 tiki/lib/class_calendar.php -text
