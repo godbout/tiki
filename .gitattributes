@@ -526,7 +526,6 @@ _phplayers/templates/layersmenu-sub_menu.ihtml -text
 _phplayers/templates/layersmenu-vertical_menu-galaxy.ihtml -text
 _phplayers/templates/layersmenu-vertical_menu-old.ihtml -text
 _phplayers/templates/layersmenu-vertical_menu.ihtml -text
-_smarty/.cvsignore -text
 _smarty/BUGS -text
 _smarty/COPYING.lib -text svneol=unset#application/octet-stream
 _smarty/ChangeLog -text
@@ -536,7 +535,6 @@ _smarty/NEWS -text
 _smarty/README -text
 _smarty/RELEASE_NOTES -text
 _smarty/TODO -text
-_smarty/core/index.php -text
 _smarty/demo/configs/test.conf -text
 _smarty/demo/index.php -text
 _smarty/demo/templates/footer.tpl -text
