@@ -3660,6 +3660,7 @@ tiki/templates/tiki-searchresults.tpl -text
 tiki/templates/tiki-send_blog_post.tpl -text
 tiki/templates/tiki-send_newsletters.tpl -text
 tiki/templates/tiki-send_objects.tpl -text
+tiki/templates/tiki-sheets.tpl -text
 tiki/templates/tiki-shoutbox.tpl -text
 tiki/templates/tiki-show_page.tpl -text
 tiki/templates/tiki-show_page_raw.tpl -text
