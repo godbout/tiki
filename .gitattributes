@@ -215,6 +215,7 @@ _mods/Packages/avatars-gnumes.info.txt -text
 _mods/Packages/avatars-goldorak.info.txt -text
 _mods/Packages/avatars-mcdonald.info.txt -text
 _mods/Packages/avatars-xmen.info.txt -text
+_mods/Packages/features-import-phpwiki.info.txt -text
 _mods/Packages/features-tiki-sheet.info.txt -text
 _mods/Packages/features-userprefstats.info.txt -text
 _mods/Packages/menus-tikiring.info.txt -text
