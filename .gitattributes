@@ -1262,6 +1262,8 @@ tiki/db/dbg_console.sql -text
 tiki/db/fulltext.sql -text
 tiki/db/index.php -text
 tiki/db/local_multi.php -text
+tiki/db/oracle/index.php -text
+tiki/db/pgsql/index.php -text
 tiki/db/profiles/BasicEnabled.prf -text
 tiki/db/profiles/_default.prf -text
 tiki/db/profiles/default-inserts.sql -text
@@ -1448,6 +1450,7 @@ tiki/img/custom/wiki3.jpeg -text
 tiki/img/custom/wiki4.jpeg -text
 tiki/img/custom/wiki5.jpeg -text
 tiki/img/flagged.gif -text
+tiki/img/flags/Algeria.gif -text
 tiki/img/flags/American_Samoa.gif -text
 tiki/img/flags/Angola.gif -text
 tiki/img/flags/Antigua.gif -text
@@ -2462,6 +2465,8 @@ tiki/lib/filegals/filegallib.php -text
 tiki/lib/filegals/index.php -text
 tiki/lib/games/gamelib.php -text
 tiki/lib/games/index.php -text
+tiki/lib/graph2/ARIALBD.TTF -text svneol=unset#unset
+tiki/lib/graph2/graph.php -text
 tiki/lib/graphviz/GraphViz.php -text
 tiki/lib/graphviz/index.php -text
 tiki/lib/hawhaw/hawhaw.inc -text
@@ -2519,6 +2524,7 @@ tiki/lib/mail/maillib.php -text
 tiki/lib/mail/mimelib.php -text
 tiki/lib/mailin/index.php -text
 tiki/lib/mailin/mailinlib.php -text
+tiki/lib/map/index.php -text
 tiki/lib/map/map.js -text
 tiki/lib/map/usermap.php -text
 tiki/lib/md5.js -text
@@ -2962,6 +2968,7 @@ tiki/lib/wiki-plugins/wikiplugin_snarf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
+tiki/lib/wiki-plugins/wikiplugin_sub.php -text
 tiki/lib/wiki-plugins/wikiplugin_thumb.php -text
 tiki/lib/wiki-plugins/wikiplugin_titlesearch.php -text
 tiki/lib/wiki-plugins/wikiplugin_topfriends.php -text
@@ -3031,6 +3038,8 @@ tiki/modules/mod-last_created_quizzes.php -text
 tiki/modules/mod-last_file_galleries.php -text
 tiki/modules/mod-last_files.php -text
 tiki/modules/mod-last_image_galleries.php -text
+tiki/modules/mod-last_images.php -text
+tiki/modules/mod-last_images_th.php -text
 tiki/modules/mod-last_modif_events.php -text
 tiki/modules/mod-last_modif_pages.php -text
 tiki/modules/mod-last_modif_tracker_items.php -text
@@ -3370,8 +3379,10 @@ tiki/styles/simple/index.php -text
 tiki/styles/simple/up.gif -text
 tiki/styles/slides/index.php -text
 tiki/styles/slides/wiredot.png -text svneol=unset#unset
+tiki/styles/slideshows/clear.css -text
 tiki/styles/slideshows/index.php -text
 tiki/styles/slideshows/slidestyle.css -text
+tiki/styles/slideshows/tiki.css -text
 tiki/styles/smartiki.css -text
 tiki/styles/smartiki/checkerboard-orange.gif -text
 tiki/styles/smartiki/favicon.ico -text
@@ -3501,6 +3512,8 @@ tiki/templates/modules/mod-last_created_quizzes.tpl -text
 tiki/templates/modules/mod-last_file_galleries.tpl -text
 tiki/templates/modules/mod-last_files.tpl -text
 tiki/templates/modules/mod-last_image_galleries.tpl -text
+tiki/templates/modules/mod-last_images.tpl -text
+tiki/templates/modules/mod-last_images_th.tpl -text
 tiki/templates/modules/mod-last_modif_events.tpl -text
 tiki/templates/modules/mod-last_modif_pages.tpl -text
 tiki/templates/modules/mod-last_modif_tracker_items.tpl -text
@@ -3522,6 +3535,7 @@ tiki/templates/modules/mod-online_users.tpl -text
 tiki/templates/modules/mod-online_users.tpl.nocache -text
 tiki/templates/modules/mod-quick_edit.tpl -text
 tiki/templates/modules/mod-random_pages.tpl -text
+tiki/templates/modules/mod-register.tpl -text
 tiki/templates/modules/mod-search_box.tpl -text
 tiki/templates/modules/mod-search_new.tpl -text
 tiki/templates/modules/mod-search_wiki_page.tpl -text
@@ -3698,6 +3712,7 @@ tiki/templates/styles/tiki/error.tpl -text
 tiki/templates/styles/tiki/index.php -text
 tiki/templates/styles/tiki/modules/index.php -text
 tiki/templates/styles/tiki/modules/mod-featured_links.tpl -text
+tiki/templates/styles/tiki/modules/mod-quick_edit.tpl -text
 tiki/templates/styles/tiki/tiki-show_page.tpl -text
 tiki/templates/styles/tiki/tiki-top_links.tpl -text
 tiki/templates/styles/tiki/tiki-top_tiki_bar.tpl -text
@@ -4481,4 +4496,5 @@ tiki/tikimovies/controller.swf -text svneol=unset#unset
 tiki/tikimovies/index.php -text
 tiki/tikimovies/sample.xml -text
 tiki/topic_image.php -text
+tiki/whelp/index.php -text
 tiki/xmlrpc.php -text
