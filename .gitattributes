@@ -1539,7 +1539,6 @@ tiki/lang/ru/language.php -text
 tiki/lang/sp/language.php -text
 tiki/lang/sw/language.php -text
 tiki/lang/tw/language.php -text
-tiki/lib/Date.php -text
 tiki/lib/Date/Calc.php -text
 tiki/lib/Date/Human.php -text
 tiki/lib/Date/TimeZone.php -text
@@ -1995,7 +1994,6 @@ tiki/lib/Galaxia/src/ProcessMonitor/ProcessMonitor.php -text
 tiki/lib/Galaxia/src/common/Base.php -text
 tiki/lib/Galaxia/src/common/Observable.php -text
 tiki/lib/Galaxia/src/common/Observer.php -text
-tiki/lib/NNTP.php -text
 tiki/lib/admin/adminlib.php -text
 tiki/lib/articles/artlib.php -text
 tiki/lib/bablotron.php -text
@@ -2191,11 +2189,17 @@ tiki/lib/pear/DB/pgsql.php -text
 tiki/lib/pear/DB/sqlite.php -text
 tiki/lib/pear/DB/storage.php -text
 tiki/lib/pear/DB/sybase.php -text
+tiki/lib/pear/Date.php -text
+tiki/lib/pear/Date/Calc.php -text
+tiki/lib/pear/Date/Human.php -text
+tiki/lib/pear/Date/TimeZone.php -text
+tiki/lib/pear/Date/TimeZoneWindows.php -text
 tiki/lib/pear/HTTP.php -text
 tiki/lib/pear/HTTP/Request.php -text
 tiki/lib/pear/HTTP/docs/example.php -text
 tiki/lib/pear/IRC.php -text
 tiki/lib/pear/Mail.php -text
+tiki/lib/pear/NNTP.php -text
 tiki/lib/pear/Net/DIME.php -text
 tiki/lib/pear/Net/Socket.php -text
 tiki/lib/pear/Net/URL.php -text
