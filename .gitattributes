@@ -3370,6 +3370,7 @@ tiki/templates/tiki-hw_pagehistory.tpl -text
 tiki/templates/tiki-hw_rollback.tpl -text
 tiki/templates/tiki-hw_student_assignment.tpl -text
 tiki/templates/tiki-hw_student_assignments.tpl -text
+tiki/templates/tiki-hw_student_last_changes.tpl -text
 tiki/templates/tiki-hw_teacher_assignment_edit.tpl -text
 tiki/templates/tiki-hw_teacher_assignment_edit_preview.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
