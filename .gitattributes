@@ -256,6 +256,7 @@ tiki/templates/footer.tpl -text
 tiki/templates/header.tpl -text
 tiki/templates/modules/mod-admin_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl -text
+tiki/templates/modules/mod-breadcrumb.tpl -text
 tiki/templates/modules/mod-calendar.tpl -text
 tiki/templates/modules/mod-calendar.tpl.nocache -text
 tiki/templates/modules/mod-comm_received_objects.tpl -text
@@ -267,6 +268,7 @@ tiki/templates/modules/mod-forums_most_read_topics.tpl -text
 tiki/templates/modules/mod-forums_most_visited_forums.tpl -text
 tiki/templates/modules/mod-last_blog_posts.tpl -text
 tiki/templates/modules/mod-last_created_blogs.tpl -text
+tiki/templates/modules/mod-last_created_faqs.tpl -text
 tiki/templates/modules/mod-last_file_galleries.tpl -text
 tiki/templates/modules/mod-last_files.tpl -text
 tiki/templates/modules/mod-last_image_galleries.tpl -text
@@ -279,6 +281,7 @@ tiki/templates/modules/mod-login_box.tpl.nocache -text
 tiki/templates/modules/mod-logo.tpl -text
 tiki/templates/modules/mod-num_submissions.tpl -text
 tiki/templates/modules/mod-old_articles.tpl -text
+tiki/templates/modules/mod-quick_edit.tpl -text
 tiki/templates/modules/mod-random_pages.tpl -text
 tiki/templates/modules/mod-search_box.tpl -text
 tiki/templates/modules/mod-top_active_blogs.tpl -text
@@ -290,8 +293,10 @@ tiki/templates/modules/mod-top_images.tpl -text
 tiki/templates/modules/mod-top_images_th.tpl -text
 tiki/templates/modules/mod-top_pages.tpl -text
 tiki/templates/modules/mod-top_visited_blogs.tpl -text
+tiki/templates/modules/mod-top_visited_faqs.tpl -text
 tiki/templates/modules/mod-user_blogs.tpl -text
 tiki/templates/modules/mod-user_blogs.tpl.nocache -text
+tiki/templates/modules/mod-user_bookmarks.tpl -text
 tiki/templates/modules/mod-user_image_galleries.tpl -text
 tiki/templates/modules/mod-user_image_galleries.tpl.nocache -text
 tiki/templates/modules/mod-user_pages.php.nocache -text
