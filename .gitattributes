@@ -972,6 +972,10 @@ _mods/templates/sdl_menu/README -text
 _mods/templates/sdl_menu/lib/tiki-js.js -text
 _mods/templates/sdl_menu/templates/modules/mod-application_menu.tpl -text
 _mods/themes/README -text
+_mods/themes/akwa/styles/akwa.css -text
+_mods/themes/akwa/templates/styles/akwa/index.php -text
+_mods/themes/akwa/templates/styles/akwa/tiki-bot_bar.tpl -text
+_mods/themes/akwa/templates/styles/akwa/tiki.tpl -text
 _mods/themes/bluemetal/Readme -text
 _mods/themes/bluemetal/theme/styles/bluemetal.css -text
 _mods/themes/bluemetal/theme/styles/bluemetal/blue_barbg.gif -text
