@@ -1228,6 +1228,7 @@ _smarty/plugins/index.php -text
 tiki/.cvsignore -text
 tiki/INSTALL -text
 tiki/README -text
+tiki/about.php -text
 tiki/article_image.php -text
 tiki/backups/.cvsignore -text
 tiki/backups/README -text
@@ -1245,6 +1246,7 @@ tiki/copyright.txt -text
 tiki/copyrights.php -text
 tiki/db/.cvsignore -text
 tiki/db/Makefile -text
+tiki/db/case_patch.php -text
 tiki/db/comments_fix1.sql -text
 tiki/db/comments_fix2.sql -text
 tiki/db/comments_fix_1.7to1.8.sql -text
@@ -2167,6 +2169,7 @@ tiki/lang/sv/index.php -text
 tiki/lang/sv/language.php -text
 tiki/lang/tw/index.php -text
 tiki/lang/tw/language.php -text
+tiki/lang/uk/language.php -text
 tiki/lib/.cvsignore -text
 tiki/lib/Babelfish.php -text
 tiki/lib/Date/Calc.php -text
