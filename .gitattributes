@@ -2960,6 +2960,7 @@ tiki/templates/tiki-admin_rssmodules.tpl -text
 tiki/templates/tiki-admin_structures.tpl -text
 tiki/templates/tiki-admin_survey_questions.tpl -text
 tiki/templates/tiki-admin_surveys.tpl -text
+tiki/templates/tiki-admin_system.tpl -text
 tiki/templates/tiki-admin_topics.tpl -text
 tiki/templates/tiki-admin_tracker_fields.tpl -text
 tiki/templates/tiki-admin_trackers.tpl -text
@@ -3282,6 +3283,7 @@ tiki/tiki-admin_rssmodules.php -text
 tiki/tiki-admin_structures.php -text
 tiki/tiki-admin_survey_questions.php -text
 tiki/tiki-admin_surveys.php -text
+tiki/tiki-admin_system.php -text
 tiki/tiki-admin_topics.php -text
 tiki/tiki-admin_tracker_fields.php -text
 tiki/tiki-admin_trackers.php -text
