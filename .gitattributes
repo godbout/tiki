@@ -2139,6 +2139,44 @@ tiki/lib/tikibot/wollabot.ini -text
 tiki/lib/tikidate.php -text
 tiki/lib/tikidblib-debug.php -text
 tiki/lib/tikidblib.php -text
+tiki/lib/tikihelp/content.html -text
+tiki/lib/tikihelp/css/main.css -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/css/menu.css -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/css/toolbar.css -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/history.html -text
+tiki/lib/tikihelp/icons/diffDoc.gif -text
+tiki/lib/tikihelp/icons/diffFolder.gif -text
+tiki/lib/tikihelp/icons/ftv2blank.gif -text
+tiki/lib/tikihelp/icons/ftv2doc.gif -text
+tiki/lib/tikihelp/icons/ftv2folderclosed.gif -text
+tiki/lib/tikihelp/icons/ftv2folderopen.gif -text
+tiki/lib/tikihelp/icons/ftv2lastnode.gif -text
+tiki/lib/tikihelp/icons/ftv2link.gif -text
+tiki/lib/tikihelp/icons/ftv2mlastnode.gif -text
+tiki/lib/tikihelp/icons/ftv2mnode.gif -text
+tiki/lib/tikihelp/icons/ftv2node.gif -text
+tiki/lib/tikihelp/icons/ftv2plastnode.gif -text
+tiki/lib/tikihelp/icons/ftv2pnode.gif -text
+tiki/lib/tikihelp/icons/ftv2vertline.gif -text
+tiki/lib/tikihelp/icons/isologo.gif -text
+tiki/lib/tikihelp/icons/printicon.gif -text
+tiki/lib/tikihelp/icons/searchicon.gif -text
+tiki/lib/tikihelp/icons/toc.gif -text
+tiki/lib/tikihelp/icons/wht_go.gif -text
+tiki/lib/tikihelp/index.html -text
+tiki/lib/tikihelp/js/global.js -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/js/highlight.js -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/js/toolbar.js -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/menu.html -text
+tiki/lib/tikihelp/menu/example.txt -text
+tiki/lib/tikihelp/menu/ftiens4.js -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/menu/menuNodes.js -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/menu/options.cfg -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/menu/ua.js -text svneol=unset#application/octet-stream
+tiki/lib/tikihelp/readme.txt -text
+tiki/lib/tikihelp/results.html -text
+tiki/lib/tikihelp/searchdata.html -text
+tiki/lib/tikihelp/toolbar.html -text
 tiki/lib/tikilib.php -text
 tiki/lib/trackers/trackerlib.php -text
 tiki/lib/tree/categ_admin_tree.php -text
