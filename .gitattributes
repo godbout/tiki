@@ -1180,6 +1180,11 @@ _mods/themes/purplemetal/theme/templates/styles/purplemetal/tiki-user_menu.tpl -
 _mods/themes/purplemetal/theme/templates/styles/purplemetal/tiki.tpl -text
 _mods/themes/redgrey/styles/redgrey.css -text
 _mods/themes/redgrey/styles/redgrey/tikibutton2.png -text
+_mods/themes/redgrey/templates/error.tpl -text
+_mods/themes/redgrey/templates/tiki-bot_bar.tpl -text
+_mods/themes/redgrey/templates/tiki-show_page.tpl -text
+_mods/themes/redgrey/templates/tiki-top_bar.tpl -text
+_mods/themes/redgrey/templates/tiki.tpl -text
 _mods/themes/redmetal/Readme -text
 _mods/themes/redmetal/theme/styles/redmetal.css -text
 _mods/themes/redmetal/theme/styles/redmetal/bg.gif -text
