@@ -1892,6 +1892,7 @@ tiki/tiki-view_eph.php -text
 tiki/tiki-view_faq.php -text
 tiki/tiki-view_forum.php -text
 tiki/tiki-view_forum_thread.php -text
+tiki/tiki-view_minical_topic.php -text
 tiki/tiki-view_tracker.php -text
 tiki/tiki-view_tracker_item.php -text
 tiki/tiki-webmail.php -text
