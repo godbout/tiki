@@ -4038,6 +4038,8 @@ tiki/tiki-browse_categories.php -text
 tiki/tiki-browse_gallery.php -text
 tiki/tiki-browse_image.php -text
 tiki/tiki-calendar.php -text
+tiki/tiki-categpermissions.php -text
+tiki/tiki-categsetup.php -text
 tiki/tiki-change_password.php -text
 tiki/tiki-charts.php -text
 tiki/tiki-chat.php -text
