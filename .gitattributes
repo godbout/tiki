@@ -1003,7 +1003,7 @@ tiki/lib/class_rdf_parser.php -text
 tiki/lib/class_rss_parser.php -text
 tiki/lib/commcenter/commlib.php -text
 tiki/lib/commentslib.php -text
-tiki/lib/dcs/dsclib.php -text
+tiki/lib/dcs/dcslib.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
 tiki/lib/faqs/faqlib.php -text
