@@ -877,6 +877,7 @@ _mods/features/cc/cc.php -text
 _mods/features/cc/lib/cclib.php -text
 _mods/features/cc/templates/currencies.tpl -text
 _mods/features/cc/templates/currencies_form.tpl -text
+_mods/features/cc/templates/currency_admin.tpl -text
 _mods/features/cc/templates/index.tpl -text
 _mods/features/cc/templates/ledgers.tpl -text
 _mods/features/cc/templates/transactions.tpl -text
