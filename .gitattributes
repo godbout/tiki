@@ -1049,6 +1049,16 @@ tiki/templates/modules/mod-user_pages.php.nocache -text
 tiki/templates/modules/mod-user_pages.tpl -text
 tiki/templates/modules/mod-user_pages.tpl.nocache -text
 tiki/templates/modules/user_module.tpl -text
+tiki/templates/styles/dblue/error.tpl -text
+tiki/templates/styles/dblue/tiki.tpl -text
+tiki/templates/styles/default/error.tpl -text
+tiki/templates/styles/default/tiki.tpl -text
+tiki/templates/styles/default2/error.tpl -text
+tiki/templates/styles/default2/tiki.tpl -text
+tiki/templates/styles/jalist/error.tpl -text
+tiki/templates/styles/jalist/tiki.tpl -text
+tiki/templates/styles/subsilver/error.tpl -text
+tiki/templates/styles/subsilver/tiki.tpl -text
 tiki/templates/tik-remind_password.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
