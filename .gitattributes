@@ -2599,11 +2599,13 @@ tiki/lib/search/searchlib.php -text
 tiki/lib/search/searchstatslib.php -text
 tiki/lib/searchlib.php -text
 tiki/lib/sheet/control.js -text
+tiki/lib/sheet/excel/index.php -text
 tiki/lib/sheet/excel/reader.php -text
 tiki/lib/sheet/excel/reader_ole.php -text
 tiki/lib/sheet/excel/writer.php -text
 tiki/lib/sheet/excel/writer/biffwriter.php -text
 tiki/lib/sheet/excel/writer/format.php -text
+tiki/lib/sheet/excel/writer/index.php -text
 tiki/lib/sheet/excel/writer/parser.php -text
 tiki/lib/sheet/excel/writer/validator.php -text
 tiki/lib/sheet/excel/writer/workbook.php -text
@@ -2611,9 +2613,12 @@ tiki/lib/sheet/excel/writer/worksheet.php -text
 tiki/lib/sheet/formula.js -text
 tiki/lib/sheet/grid.js -text
 tiki/lib/sheet/grid.php -text
+tiki/lib/sheet/index.php -text
 tiki/lib/sheet/ole.php -text
+tiki/lib/sheet/ole/index.php -text
 tiki/lib/sheet/ole/pps.php -text
 tiki/lib/sheet/ole/pps/file.php -text
+tiki/lib/sheet/ole/pps/index.php -text
 tiki/lib/sheet/ole/pps/root.php -text
 tiki/lib/sheet/panel.js -text
 tiki/lib/sheet/style.css -text
