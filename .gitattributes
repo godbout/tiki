@@ -2616,6 +2616,9 @@ tiki/templates/mail/user_validation_mail.tpl -text
 tiki/templates/mail/user_watch_blog_post.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed.tpl -text
 tiki/templates/mail/wiki_change_notification.tpl -text
+tiki/templates/map/tiki-map.tpl -text
+tiki/templates/map/tiki-map_download.tpl -text
+tiki/templates/map/tiki-map_edit.tpl -text
 tiki/templates/messu-broadcast.tpl -text
 tiki/templates/messu-compose.tpl -text
 tiki/templates/messu-mailbox.tpl -text
@@ -3338,6 +3341,9 @@ tiki/tiki-login_scr.php -text
 tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
 tiki/tiki-mailin.php -text
+tiki/tiki-map.phtml -text
+tiki/tiki-map_download.php -text
+tiki/tiki-map_edit.php -text
 tiki/tiki-minical.php -text
 tiki/tiki-minical_export.php -text
 tiki/tiki-minical_prefs.php -text
