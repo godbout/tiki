@@ -1828,8 +1828,10 @@ tiki/doc/devtools/synctiki.sh -text
 tiki/doc/devtools/tiki-create_md5.php -text
 tiki/doc/devtools/tiki_create_md5.php -text
 tiki/doc/devtools/tikilite.sh -text
+tiki/doc/devtools/tikimails.sh -text
 tiki/doc/devtools/tikimerge.sh -text
 tiki/doc/devtools/tikirelease.sh -text
+tiki/doc/devtools/tikireleasediff.sh -text
 tiki/doc/devtools/tikiwiki.spec -text
 tiki/doc/devtools/twcvsbackup.cron -text
 tiki/doc/htaccess -text
@@ -1848,6 +1850,8 @@ tiki/games/index.php -text
 tiki/games/thumbs/README -text
 tiki/games/thumbs/index.php -text
 tiki/get_strings.php -text
+tiki/green.favicon.png -text
+tiki/help.php -text
 tiki/images/.htaccess -text svneol=unset#application/octet-stream
 tiki/images/book.gif -text
 tiki/images/code.png -text
@@ -2181,6 +2185,7 @@ tiki/img/icons/admin_trackers.png -text
 tiki/img/icons/admin_userfiles.png -text
 tiki/img/icons/admin_webmail.png -text
 tiki/img/icons/admin_wiki.png -text
+tiki/img/icons/archives.gif -text
 tiki/img/icons/attachment.gif -text
 tiki/img/icons/auto_focus.gif -text
 tiki/img/icons/back.gif -text
@@ -2325,6 +2330,7 @@ tiki/img/icons/mini_rectangle.gif -text
 tiki/img/icons/mini_square.gif -text
 tiki/img/icons/mini_triangle.gif -text
 tiki/img/icons/minus.gif -text
+tiki/img/icons/mo.png -text
 tiki/img/icons/mode_desc.gif -text
 tiki/img/icons/mode_tree.gif -text
 tiki/img/icons/move.gif -text
@@ -2339,6 +2345,7 @@ tiki/img/icons/new_week.gif -text
 tiki/img/icons/next.gif -text
 tiki/img/icons/offline.gif -text
 tiki/img/icons/ofo.gif -text
+tiki/img/icons/omo.png -text
 tiki/img/icons/online.gif -text
 tiki/img/icons/opera.gif -text
 tiki/img/icons/plus.gif -text
@@ -2429,6 +2436,7 @@ tiki/img/icons2/alert.gif -text
 tiki/img/icons2/arrow-down.gif -text
 tiki/img/icons2/arrow-right.gif -text
 tiki/img/icons2/arrow.gif -text
+tiki/img/icons2/arrow_fliped.gif -text
 tiki/img/icons2/browse.gif -text
 tiki/img/icons2/burst_mail.gif -text
 tiki/img/icons2/cal.gif -text
@@ -2667,6 +2675,7 @@ tiki/lang/da/index.php -text
 tiki/lang/da/language.php -text
 tiki/lang/de/index.php -text
 tiki/lang/de/language.php -text
+tiki/lang/dk/index.php -text
 tiki/lang/el/index.php -text
 tiki/lang/el/language.php -text
 tiki/lang/en-uk/index.php -text
@@ -2679,7 +2688,9 @@ tiki/lang/fr/index.php -text
 tiki/lang/fr/language.php -text
 tiki/lang/he/index.php -text
 tiki/lang/he/language.php -text
+tiki/lang/hr/index.php -text
 tiki/lang/hr/language.php -text svneol=unset#application/octet-stream
+tiki/lang/hu/index.php -text
 tiki/lang/hu/language.php -text
 tiki/lang/index.php -text
 tiki/lang/it/index.php -text
@@ -2695,14 +2706,17 @@ tiki/lang/no/index.php -text
 tiki/lang/no/language.php -text
 tiki/lang/pl/index.php -text
 tiki/lang/pl/language.php -text
+tiki/lang/po/index.php -text
 tiki/lang/pt-br/index.php -text
 tiki/lang/pt-br/language.php -text
 tiki/lang/pt/index.php -text
 tiki/lang/pt/language.php -text
 tiki/lang/ru/index.php -text
 tiki/lang/ru/language.php -text
+tiki/lang/sb/language.php -text
 tiki/lang/sk/index.php -text
 tiki/lang/sk/language.php -text
+tiki/lang/sp/index.php -text
 tiki/lang/sr-latn/index.php -text
 tiki/lang/sr-latn/language.php -text
 tiki/lang/sr/ChangeLog -text
@@ -2710,9 +2724,12 @@ tiki/lang/sr/index.php -text
 tiki/lang/sr/language.php -text
 tiki/lang/sv/index.php -text
 tiki/lang/sv/language.php -text
+tiki/lang/sw/index.php -text
+tiki/lang/tv/index.php -text
 tiki/lang/tv/language.php -text
 tiki/lang/tw/index.php -text
 tiki/lang/tw/language.php -text
+tiki/lang/uk/index.php -text
 tiki/lang/uk/language.php -text
 tiki/lib/.cvsignore -text
 tiki/lib/.htaccess -text svneol=unset#application/octet-stream
@@ -2930,6 +2947,7 @@ tiki/lib/blogs/bloglib.php -text
 tiki/lib/blogs/index.php -text
 tiki/lib/bookmarks/bookmarklib.php -text
 tiki/lib/bookmarks/index.php -text
+tiki/lib/breadcrumblib.php -text
 tiki/lib/cache/cachelib.php -text
 tiki/lib/cache/index.php -text
 tiki/lib/calendar/calendarlib.php -text
@@ -3072,6 +3090,7 @@ tiki/lib/mime/mimelib.php -text
 tiki/lib/mime/mimetypes.php -text
 tiki/lib/minical/index.php -text
 tiki/lib/minical/minicallib.php -text
+tiki/lib/mods/index.php -text
 tiki/lib/mods/modslib.php -text
 tiki/lib/modules/index.php -text
 tiki/lib/modules/modlib.php -text
@@ -3203,7 +3222,6 @@ tiki/lib/pear/tests/XML_Parser/tests/test2.xml -text
 tiki/lib/pear/tests/XML_Parser/tests/test3.xml -text
 tiki/lib/pear/tests/XML_Tree/tests/test.php -text
 tiki/lib/permissions/permissionlib.php -text
-tiki/lib/phplot.php -text
 tiki/lib/polls/index.php -text
 tiki/lib/polls/polllib.php -text
 tiki/lib/polls/polllib_shared.php -text
@@ -3289,6 +3307,7 @@ tiki/lib/smarty_tiki/block.tikimodule.php -text
 tiki/lib/smarty_tiki/block.tr.php -text
 tiki/lib/smarty_tiki/block.translation.php -text
 tiki/lib/smarty_tiki/function.banner.php -text
+tiki/lib/smarty_tiki/function.breadcrumbs.php -text
 tiki/lib/smarty_tiki/function.content.php -text
 tiki/lib/smarty_tiki/function.cookie.php -text
 tiki/lib/smarty_tiki/function.ed.php -text
@@ -3334,7 +3353,9 @@ tiki/lib/smarty_tiki/modifier.tiki_short_datetime.php -text
 tiki/lib/smarty_tiki/modifier.tiki_short_time.php -text
 tiki/lib/smarty_tiki/modifier.times.php -text
 tiki/lib/smarty_tiki/modifier.truncate.php -text
+tiki/lib/smarty_tiki/modifier.user_date_format.php -text
 tiki/lib/smarty_tiki/modifier.userlink.php -text
+tiki/lib/smarty_tiki/modifier.utf8unicode.php -text
 tiki/lib/smarty_tiki/outputfilter.highlight.php -text
 tiki/lib/smarty_tiki/outputfilter.ticket.php -text
 tiki/lib/smarty_tiki/prefilter.ticket.php -text
@@ -3364,6 +3385,7 @@ tiki/lib/themecontrol/index.php -text
 tiki/lib/themecontrol/tcontrol.php -text
 tiki/lib/tiki-dynamic-js.php -text
 tiki/lib/tiki-js.js -text
+tiki/lib/tikiaccesslib.php -text
 tiki/lib/tikibot/README -text
 tiki/lib/tikibot/index.php -text
 tiki/lib/tikibot/modules/Wollabot_Base.php -text
@@ -3547,10 +3569,14 @@ tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/lib/ziplib.php -text
 tiki/license.txt -text
+tiki/messu-archive.php -text
 tiki/messu-broadcast.php -text
 tiki/messu-compose.php -text
 tiki/messu-mailbox.php -text
 tiki/messu-read.php -text
+tiki/messu-read_archive.php -text
+tiki/messu-read_sent.php -text
+tiki/messu-sent.php -text
 tiki/modules/.cvsignore -text
 tiki/modules/.htaccess -text svneol=unset#application/octet-stream
 tiki/modules/cache/.cvsignore -text
@@ -3703,6 +3729,7 @@ tiki/styles/dblue/dbluebot.jpg -text
 tiki/styles/dblue/dbluetop.jpg -text
 tiki/styles/dblue/index.php -text
 tiki/styles/default.css -text
+tiki/styles/default/index.php -text
 tiki/styles/default/sitelogo.png -text
 tiki/styles/default2.css -text
 tiki/styles/elegant.css -text
@@ -3710,6 +3737,7 @@ tiki/styles/gemsi.css -text
 tiki/styles/gemsi/fleche.jpg -text
 tiki/styles/gemsi/fleche.png -text
 tiki/styles/gemsi/fleche2.png -text
+tiki/styles/gemsi/index.php -text
 tiki/styles/geo-light.css -text
 tiki/styles/geo.css -text
 tiki/styles/geo/backmap.png -text
@@ -3844,6 +3872,7 @@ tiki/styles/slideshows/tiki.css -text
 tiki/styles/smartiki.css -text
 tiki/styles/smartiki/checkerboard-orange.gif -text
 tiki/styles/smartiki/favicon.ico -text
+tiki/styles/smartiki/index.php -text
 tiki/styles/smartiki/php-logo.gif -text
 tiki/styles/smartiki/small_submit_white.gif -text
 tiki/styles/smartiki/smarty-logo-orange.gif -text
@@ -3870,8 +3899,13 @@ tiki/styles/tranquil/cellpic1.gif -text
 tiki/styles/tranquil/cellpic2.jpg -text
 tiki/styles/tranquil/cellpic3.gif -text
 tiki/styles/tranquil/index.php -text
+tiki/styles/transitions/1.8to1.9.css -text
+tiki/styles/transitions/index.php -text
 tiki/styles/trollparty.css -text
 tiki/styles/underworld.css -text
+tiki/styles/vidiki.css -text
+tiki/styles/vidiki/shadow.png -text
+tiki/styles/vidiki/title_background.png -text
 tiki/styles/whitebluegrey.css -text
 tiki/temp/.cvsignore -text
 tiki/temp/.htaccess -text svneol=unset#application/octet-stream
@@ -3954,11 +3988,15 @@ tiki/templates/map/tiki-map_download.tpl -text
 tiki/templates/map/tiki-map_edit.tpl -text
 tiki/templates/map/tiki-map_history.tpl -text
 tiki/templates/map/tiki-map_upload.tpl -text
+tiki/templates/messu-archive.tpl -text
 tiki/templates/messu-broadcast.tpl -text
 tiki/templates/messu-compose.tpl -text
 tiki/templates/messu-mailbox.tpl -text
 tiki/templates/messu-nav.tpl -text
 tiki/templates/messu-read.tpl -text
+tiki/templates/messu-read_archive.tpl -text
+tiki/templates/messu-read_sent.tpl -text
+tiki/templates/messu-sent.tpl -text
 tiki/templates/module-error.tpl -text
 tiki/templates/module.tpl -text
 tiki/templates/modules/index.php -text
@@ -4023,6 +4061,7 @@ tiki/templates/modules/mod-register.tpl -text
 tiki/templates/modules/mod-search_box.tpl -text
 tiki/templates/modules/mod-search_new.tpl -text
 tiki/templates/modules/mod-search_wiki_page.tpl -text
+tiki/templates/modules/mod-search_wiki_page_new.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl.nocache -text
 tiki/templates/modules/mod-since_last_visit.tpl -text
@@ -4068,6 +4107,7 @@ tiki/templates/modules/user_module.tpl -text
 tiki/templates/plugins/plugin-box.tpl -text
 tiki/templates/plugins/plugin-topfriends.tpl -text
 tiki/templates/poll.tpl -text
+tiki/templates/sent_newsletters.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/structures_toc-endul.tpl -text
 tiki/templates/structures_toc-leaf.tpl -text
@@ -4177,6 +4217,10 @@ tiki/templates/styles/tikigod/tiki.tpl -text
 tiki/templates/styles/trollparty/tiki-bot_bar.tpl -text
 tiki/templates/styles/trollparty/tiki-send_newsletters.tpl -text
 tiki/templates/styles/trollparty/tiki-show_page.tpl -text
+tiki/templates/styles/vidiki/error.tpl -text
+tiki/templates/styles/vidiki/tiki-page_bar.tpl -text
+tiki/templates/styles/vidiki/tiki-user_menu.tpl -text
+tiki/templates/styles/vidiki/tiki.tpl -text
 tiki/templates/tables/index.php -text
 tiki/templates/tables/tiki_pages.tpl -text
 tiki/templates/textareasize.tpl -text
@@ -4259,6 +4303,7 @@ tiki/templates/tiki-assignpermission.tpl -text
 tiki/templates/tiki-assignuser.tpl -text
 tiki/templates/tiki-backlinks.tpl -text
 tiki/templates/tiki-backup.tpl -text
+tiki/templates/tiki-batch_upload.tpl -text
 tiki/templates/tiki-blog_post.tpl -text
 tiki/templates/tiki-bot_bar.tpl -text
 tiki/templates/tiki-browse_categories.tpl -text
@@ -4326,6 +4371,7 @@ tiki/templates/tiki-g-activity_completed.tpl -text
 tiki/templates/tiki-g-admin_activities.tpl -text
 tiki/templates/tiki-g-admin_graph.tpl -text
 tiki/templates/tiki-g-admin_instance.tpl -text
+tiki/templates/tiki-g-admin_instance_activity.tpl -text
 tiki/templates/tiki-g-admin_processes.tpl -text
 tiki/templates/tiki-g-admin_roles.tpl -text
 tiki/templates/tiki-g-admin_shared_source.tpl -text
@@ -4343,6 +4389,7 @@ tiki/templates/tiki-g-user_activities.tpl -text
 tiki/templates/tiki-g-user_bar.tpl -text
 tiki/templates/tiki-g-user_instances.tpl -text
 tiki/templates/tiki-g-user_processes.tpl -text
+tiki/templates/tiki-g-view_comment.tpl -text
 tiki/templates/tiki-g-view_workitem.tpl -text
 tiki/templates/tiki-galleries.tpl -text
 tiki/templates/tiki-history-sheets.tpl -text
@@ -4405,6 +4452,7 @@ tiki/templates/tiki-mods_admin.tpl -text
 tiki/templates/tiki-mods_config.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
+tiki/templates/tiki-newsletter_archives.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
 tiki/templates/tiki-newsreader_groups.tpl -text
 tiki/templates/tiki-newsreader_news.tpl -text
@@ -4428,6 +4476,7 @@ tiki/templates/tiki-pagepermissions.tpl -text
 tiki/templates/tiki-pagination.tpl -text
 tiki/templates/tiki-pick_avatar.tpl -text
 tiki/templates/tiki-plugin_poll.tpl -text
+tiki/templates/tiki-plugin_sql.tpl -text
 tiki/templates/tiki-plugin_trackerlist.tpl -text
 tiki/templates/tiki-poll.tpl -text
 tiki/templates/tiki-poll_form.tpl -text
@@ -4496,6 +4545,9 @@ tiki/templates/tiki-user_information.tpl -text
 tiki/templates/tiki-user_menu.tpl -text
 tiki/templates/tiki-user_preferences.tpl -text
 tiki/templates/tiki-user_tasks.tpl -text
+tiki/templates/tiki-user_tasks_edit.tpl -text
+tiki/templates/tiki-user_tasks_list.tpl -text
+tiki/templates/tiki-user_tasks_view.tpl -text
 tiki/templates/tiki-user_watches.tpl -text
 tiki/templates/tiki-userfiles.tpl -text
 tiki/templates/tiki-usermenu.tpl -text
@@ -4619,6 +4671,7 @@ tiki/tiki-assignuser.php -text
 tiki/tiki-atom.php -text
 tiki/tiki-backlinks.php -text
 tiki/tiki-backup.php -text
+tiki/tiki-batch_upload.php -text
 tiki/tiki-blog_post.php -text
 tiki/tiki-blog_rankings.php -text
 tiki/tiki-blog_rss.php -text
@@ -4704,6 +4757,7 @@ tiki/tiki-friends.php -text
 tiki/tiki-g-admin_activities.php -text
 tiki/tiki-g-admin_graph.php -text
 tiki/tiki-g-admin_instance.php -text
+tiki/tiki-g-admin_instance_activity.php -text
 tiki/tiki-g-admin_processes.php -text
 tiki/tiki-g-admin_roles.php -text
 tiki/tiki-g-admin_shared_source.php -text
@@ -4718,6 +4772,7 @@ tiki/tiki-g-save_process.php -text
 tiki/tiki-g-user_activities.php -text
 tiki/tiki-g-user_instances.php -text
 tiki/tiki-g-user_processes.php -text
+tiki/tiki-g-view_comment.php -text
 tiki/tiki-g-view_workitem.php -text
 tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
@@ -4806,6 +4861,7 @@ tiki/tiki-module_controls.php -text
 tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
 tiki/tiki-mytiki_shared.php -text
+tiki/tiki-newsletter_archives.php -text
 tiki/tiki-newsletters.php -text
 tiki/tiki-newsreader_groups.php -text
 tiki/tiki-newsreader_news.php -text
@@ -4841,6 +4897,7 @@ tiki/tiki-print_pages.php -text
 tiki/tiki-project.php -text
 tiki/tiki-project_register.php -text
 tiki/tiki-pv_chart.php -text
+tiki/tiki-quiz_download_answer.php -text
 tiki/tiki-quiz_edit.php -text
 tiki/tiki-quiz_result_stats.php -text
 tiki/tiki-quiz_stats.php -text
