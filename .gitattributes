@@ -2431,6 +2431,9 @@ tiki/lib/debug/debugger-ext.php -text
 tiki/lib/debug/debugger.php -text
 tiki/lib/debug/index.php -text
 tiki/lib/diff.php -text
+tiki/lib/diff/difflib.php -text
+tiki/lib/diff/renderer.php -text
+tiki/lib/diff/renderer_unified.php -text
 tiki/lib/directory/dirlib.php -text
 tiki/lib/directory/index.php -text
 tiki/lib/drawings/drawlib.php -text
@@ -2499,6 +2502,7 @@ tiki/lib/live_support/lsadminlib.php -text
 tiki/lib/live_support/lslib.php -text
 tiki/lib/logs/logslib.php -text
 tiki/lib/mail/maillib.php -text
+tiki/lib/mail/mimelib.php -text
 tiki/lib/mailin/index.php -text
 tiki/lib/mailin/mailinlib.php -text
 tiki/lib/map/map.js -text
@@ -3120,6 +3124,7 @@ tiki/styles/boreal/maincap.png -text
 tiki/styles/boreal/menucap.png -text
 tiki/styles/boreal/pixel.gif -text
 tiki/styles/boreal/rightbar.gif -text
+tiki/styles/classicblue.css -text
 tiki/styles/codex.css -text svneol=unset#application/octet-stream
 tiki/styles/codex/index.php -text
 tiki/styles/codex/page_0.gif -text
@@ -3551,6 +3556,12 @@ tiki/templates/styles/bluemetal/tiki-editpage.tpl -text
 tiki/templates/styles/bluemetal/tiki-show_page.tpl -text
 tiki/templates/styles/bluemetal/tiki-user_menu.tpl -text
 tiki/templates/styles/bluemetal/tiki.tpl -text
+tiki/templates/styles/classicblue/error.tpl -text
+tiki/templates/styles/classicblue/modules/mod-login_box.tpl -text
+tiki/templates/styles/classicblue/tiki-editpage.tpl -text
+tiki/templates/styles/classicblue/tiki-show_page.tpl -text
+tiki/templates/styles/classicblue/tiki-user_menu.tpl -text
+tiki/templates/styles/classicblue/tiki.tpl -text
 tiki/templates/styles/codex/error.tpl -text
 tiki/templates/styles/codex/index.php -text
 tiki/templates/styles/codex/tiki.tpl -text
