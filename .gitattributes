@@ -2574,6 +2574,7 @@ tiki/styles/akwa/aqua-menubar.png -text
 tiki/styles/akwa/aqua-tab-active.png -text
 tiki/styles/akwa/aqua-tab.png -text
 tiki/styles/akwa/dark.png -text
+tiki/styles/blank.css -text
 tiki/styles/bluegreen.css -text
 tiki/styles/bluemetal.css -text
 tiki/styles/bluemetal/blue_barbg.gif -text
@@ -2953,6 +2954,7 @@ tiki/templates/structures_toc.tpl -text
 tiki/templates/structures_toc_level.tpl -text
 tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
 tiki/templates/styles/akwa/tiki.tpl -text
+tiki/templates/styles/blank/tiki.tpl -text
 tiki/templates/styles/bluemetal/error.tpl -text
 tiki/templates/styles/bluemetal/tiki-editpage.tpl -text
 tiki/templates/styles/bluemetal/tiki-show_page.tpl -text
