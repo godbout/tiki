@@ -2964,6 +2964,7 @@ tiki/templates/mail/newsletter_unsubscribe.tpl -text
 tiki/templates/mail/newsletter_welcome.tpl -text
 tiki/templates/mail/newsletter_welcome_subject.tpl -text
 tiki/templates/mail/password_reminder.tpl -text
+tiki/templates/mail/password_reminder_subject.tpl -text
 tiki/templates/mail/submission_notification.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
