@@ -2988,8 +2988,6 @@ tiki/lib/wiki3d/XmlReader.class -text svneol=unset#unset
 tiki/lib/wiki3d/XmlReader.java -text
 tiki/lib/wiki3d/morcego-0.3.jar -text
 tiki/lib/wiki3d/xmlrpc-1.2-b1.jar -text
-tiki/lib/xml/index.php -text
-tiki/lib/xml/xmlparserlib.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/lib/ziplib.php -text
