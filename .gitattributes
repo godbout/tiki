@@ -90,6 +90,7 @@ tiki/Smarty/plugins/modifier.tiki_short_time.php -text
 tiki/Smarty/plugins/modifier.times.php -text
 tiki/Smarty/plugins/modifier.truncate.php -text
 tiki/Smarty/plugins/modifier.upper.php -text
+tiki/Smarty/plugins/modifier.userlink.php -text
 tiki/Smarty/plugins/modifier.wordwrap.php -text
 tiki/Smarty/plugins/outputfilter.trimwhitespace.php -text
 tiki/Smarty/plugins/prefilter.tr.php -text
@@ -936,6 +937,7 @@ tiki/img/icons/admin_webmail.png -text
 tiki/img/icons/admin_wiki.png -text
 tiki/img/icons/blue.gif -text
 tiki/img/icons/bluehalf.gif -text
+tiki/img/icons/config.gif -text
 tiki/img/icons/cool.gif -text
 tiki/img/icons/del.gif -text
 tiki/img/icons/edit.gif -text
@@ -990,6 +992,7 @@ tiki/img/icons/info.gif -text
 tiki/img/icons/lock_topic.gif -text
 tiki/img/icons/minus.gif -text
 tiki/img/icons/move_topic.gif -text
+tiki/img/icons/myinfo.gif -text
 tiki/img/icons/new_3day.gif -text
 tiki/img/icons/new_day.gif -text
 tiki/img/icons/new_week.gif -text
@@ -2499,6 +2502,7 @@ tiki/tiki-view_articles.php -text
 tiki/tiki-view_banner.php -text
 tiki/tiki-view_blog.php -text
 tiki/tiki-view_blog_post.php -text
+tiki/tiki-view_blog_post_image.php -text
 tiki/tiki-view_cache.php -text
 tiki/tiki-view_eph.php -text
 tiki/tiki-view_faq.php -text
