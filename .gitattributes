@@ -2733,6 +2733,8 @@ tiki/lib/wiki3d/Vertex.class -text svneol=unset#unset
 tiki/lib/wiki3d/Vertex.java -text
 tiki/lib/wiki3d/XmlReader.class -text svneol=unset#unset
 tiki/lib/wiki3d/XmlReader.java -text
+tiki/lib/wiki3d/morcego-0.0.1.jar -text
+tiki/lib/wiki3d/xmlrpc-1.2-b1.jar -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/lib/ziplib.php -text
@@ -4155,7 +4157,7 @@ tiki/tiki-webmail.php -text
 tiki/tiki-webmail_contacts.php -text
 tiki/tiki-webmail_download_attachment.php -text
 tiki/tiki-wiki3d.php -text
-tiki/tiki-wiki3d_xml.php -text
+tiki/tiki-wiki3d_xmlrpc.php -text
 tiki/tiki-wiki_graph.php -text
 tiki/tiki-wiki_rankings.php -text
 tiki/tiki-wiki_rss.php -text
