@@ -3523,7 +3523,6 @@ tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
 tiki/tiki-mailin.php -text
 tiki/tiki-map.phtml -text
-tiki/tiki-map_download.php -text
 tiki/tiki-map_download.phtml -text
 tiki/tiki-map_edit.php -text
 tiki/tiki-minical.php -text
