@@ -2653,7 +2653,6 @@ tiki/templates/styles/moreneat/tiki-user_menu.tpl -text
 tiki/templates/styles/moreneat/tiki.tpl -text
 tiki/templates/styles/mose/modules/mod-application_menu.tpl -text
 tiki/templates/styles/mose/tiki-bot_bar.tpl -text
-tiki/templates/styles/mose/tiki-custom_home.tpl -text
 tiki/templates/styles/mose/tiki-mytiki_bar.tpl -text
 tiki/templates/styles/mose/tiki-print.tpl -text
 tiki/templates/styles/mose/tiki-print_article.tpl -text
