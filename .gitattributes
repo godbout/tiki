@@ -94,6 +94,7 @@ _adodb/toexport.inc.php -text
 _adodb/tohtml.inc.php -text
 _adodb/tute.htm -text
 tiki/.cvsignore -text
+tiki/.htaccess -text svneol=unset#application/octet-stream
 tiki/INSTALL -text
 tiki/README -text
 tiki/Smarty/.cvsignore -text
