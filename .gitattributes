@@ -2949,6 +2949,9 @@ tiki/templates/tiki.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/README -text
 tiki/testrpc.php -text
+tiki/tests/appmenu/mod-application_menu2.php -text
+tiki/tests/appmenu/mod-application_menu2.tpl -text
+tiki/tests/appmenu/parsemod.pl -text
 tiki/tests/core/acl_tree.php -text
 tiki/tests/core/core.php -text
 tiki/tests/core/database.php -text
