@@ -1263,6 +1263,24 @@ tiki/styles/boreal/maincap.png -text
 tiki/styles/boreal/menucap.png -text
 tiki/styles/boreal/pixel.gif -text
 tiki/styles/boreal/rightbar.gif -text
+tiki/styles/codex.css -text svneol=unset#application/octet-stream
+tiki/styles/codex/page_0.gif -text
+tiki/styles/codex/page_1_1.png -text
+tiki/styles/codex/page_1_2.png -text
+tiki/styles/codex/page_1_3.png -text
+tiki/styles/codex/page_1_4.png -text
+tiki/styles/codex/page_1_5.png -text
+tiki/styles/codex/page_2_1.png -text
+tiki/styles/codex/page_2_2.png -text
+tiki/styles/codex/page_2_3.png -text
+tiki/styles/codex/page_2_5.png -text
+tiki/styles/codex/page_3_1.png -text
+tiki/styles/codex/page_3_2.png -text
+tiki/styles/codex/page_3_2a.png -text
+tiki/styles/codex/page_3_3.png -text
+tiki/styles/codex/page_3_4.png -text
+tiki/styles/codex/page_3_5.png -text
+tiki/styles/codex/page_back.png -text
 tiki/styles/dblue.css -text
 tiki/styles/dblue/back1.jpeg -text
 tiki/styles/dblue/dbluebot.jpg -text
@@ -1400,6 +1418,11 @@ tiki/templates/styles/boreal/tiki-print.tpl -text
 tiki/templates/styles/boreal/tiki-print_article.tpl -text
 tiki/templates/styles/boreal/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/boreal/tiki.tpl -text
+tiki/templates/styles/codex/error.tpl -text
+tiki/templates/styles/codex/tiki-print.tpl -text
+tiki/templates/styles/codex/tiki-print_article.tpl -text
+tiki/templates/styles/codex/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/codex/tiki.tpl -text
 tiki/templates/styles/dblue/error.tpl -text
 tiki/templates/styles/dblue/tiki-print.tpl -text
 tiki/templates/styles/dblue/tiki-print_article.tpl -text
