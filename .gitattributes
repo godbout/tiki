@@ -466,6 +466,7 @@ tiki/db/tiki_sybase.sql -text
 tiki/display_banner.php -text
 tiki/doc/devtools/README.txt -text
 tiki/doc/devtools/lastcvs.sh -text
+tiki/doc/devtools/tikilight.sh -text
 tiki/doc/devtools/tikimerge.sh -text
 tiki/doc/devtools/tikirelease.sh -text
 tiki/doc/devtools/tikiwiki.spec -text
