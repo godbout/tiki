@@ -2120,6 +2120,7 @@ tiki/lib/mantislib.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/menulib.php -text
 tiki/lib/messu/messulib.php -text
+tiki/lib/mime/mimeextensions.php -text
 tiki/lib/mime/mimelib.php -text
 tiki/lib/mime/mimetypes.php -text
 tiki/lib/minical/minicallib.php -text
@@ -2405,6 +2406,7 @@ tiki/lib/webmail/webmaillib.php -text
 tiki/lib/wiki-plugins-dist/README -text
 tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
 tiki/lib/wiki-plugins/wikiplugin_article.php -text
+tiki/lib/wiki-plugins/wikiplugin_attach.php -text
 tiki/lib/wiki-plugins/wikiplugin_avatar.php -text
 tiki/lib/wiki-plugins/wikiplugin_backlinks.php -text
 tiki/lib/wiki-plugins/wikiplugin_box.php -text
