@@ -1396,9 +1396,9 @@ tiki/img/webmail/replied.gif -text
 tiki/img/webmail/search.gif -text
 tiki/img/webmail/settings.gif -text
 tiki/img/webmail/view.gif -text
-tiki/img/wiki/license.txt -text
+tiki/img/wiki/README -text
 tiki/img/wiki_up/.cvsignore -text
-tiki/img/wiki_up/license.txt -text
+tiki/img/wiki_up/README -text
 tiki/index.php -text
 tiki/jhot.php -text
 tiki/lang/cn/language.php -text
