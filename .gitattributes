@@ -90,6 +90,7 @@ tiki/db/tiki_1.0to1.1.sql -text
 tiki/db/tiki_1.1to1.2.sql -text
 tiki/db/tiki_1.2to1.3.sql -text
 tiki/db/tiki_1.3to1.4.sql -text
+tiki/db/tiki_1.4to1.5.sql -text
 tiki/display_banner.php -text
 tiki/doc/readme.txt -text
 tiki/dump/new.tar -text
@@ -97,6 +98,8 @@ tiki/games/flash/license.txt -text
 tiki/games/license.txt -text
 tiki/games/thumbs/license.txt -text
 tiki/get_strings.php -text
+tiki/img/background.png -text
+tiki/img/cord.png -text
 tiki/img/css.gif -text
 tiki/img/css1.png -text
 tiki/img/custom/article.jpeg -text
@@ -279,6 +282,7 @@ tiki/lib/jHotDraw/example.draw -text
 tiki/lib/jHotDraw/example.gif -text
 tiki/lib/jHotDraw/example.map -text
 tiki/lib/jHotDraw/twikidraw.jar -text
+tiki/lib/md5.js -text
 tiki/lib/overlib.js -text
 tiki/lib/pclerror.lib.php -text
 tiki/lib/pcltrace.lib.php -text
@@ -311,8 +315,10 @@ tiki/modules/mod-last_file_galleries.php -text
 tiki/modules/mod-last_files.php -text
 tiki/modules/mod-last_image_galleries.php -text
 tiki/modules/mod-last_modif_pages.php -text
+tiki/modules/mod-last_modif_tracker_items.php -text
 tiki/modules/mod-last_modified_blogs.php -text
 tiki/modules/mod-last_submissions.php -text
+tiki/modules/mod-last_tracker_items.php -text
 tiki/modules/mod-logged_users.php -text
 tiki/modules/mod-num_submissions.php -text
 tiki/modules/mod-old_articles.php -text
@@ -354,6 +360,8 @@ tiki/styles/jalist/grad.jpg -text
 tiki/styles/jalist/grad.png -text
 tiki/styles/jalist/maincap.png -text
 tiki/styles/jalist/menucap.png -text
+tiki/styles/slides/wiredot.png -text svneol=unset#unset
+tiki/styles/slidestyle.css -text
 tiki/styles/subsilver.css -text
 tiki/styles/subsilver/cellpic1.gif -text
 tiki/styles/subsilver/cellpic2.jpg -text
@@ -369,6 +377,7 @@ tiki/templates/mail/license.txt -text
 tiki/templates/mail/new_user_notification.tpl -text
 tiki/templates/mail/password_reminder.tpl -text
 tiki/templates/mail/submission_notification.tpl -text
+tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
 tiki/templates/mail/wiki_change_notification.tpl -text
 tiki/templates/modules/mod-admin_menu.tpl -text
@@ -393,8 +402,10 @@ tiki/templates/modules/mod-last_file_galleries.tpl -text
 tiki/templates/modules/mod-last_files.tpl -text
 tiki/templates/modules/mod-last_image_galleries.tpl -text
 tiki/templates/modules/mod-last_modif_pages.tpl -text
+tiki/templates/modules/mod-last_modif_tracker_items.tpl -text
 tiki/templates/modules/mod-last_modified_blogs.tpl -text
 tiki/templates/modules/mod-last_submissions.tpl -text
+tiki/templates/modules/mod-last_tracker_items.tpl -text
 tiki/templates/modules/mod-logged_users.tpl -text
 tiki/templates/modules/mod-login_box.tpl -text
 tiki/templates/modules/mod-login_box.tpl.nocache -text
@@ -451,6 +462,8 @@ tiki/templates/tiki-admin_poll_options.tpl -text
 tiki/templates/tiki-admin_polls.tpl -text
 tiki/templates/tiki-admin_rssmodules.tpl -text
 tiki/templates/tiki-admin_topics.tpl -text
+tiki/templates/tiki-admin_tracker_fields.tpl -text
+tiki/templates/tiki-admin_trackers.tpl -text
 tiki/templates/tiki-admingroups.tpl -text
 tiki/templates/tiki-adminusers.tpl -text
 tiki/templates/tiki-assignpermission.tpl -text
@@ -500,6 +513,7 @@ tiki/templates/tiki-list_games.tpl -text
 tiki/templates/tiki-list_posts.tpl -text
 tiki/templates/tiki-list_quizzes.tpl -text
 tiki/templates/tiki-list_submissions.tpl -text
+tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
@@ -536,6 +550,7 @@ tiki/templates/tiki-send_objects.tpl -text
 tiki/templates/tiki-shoutbox.tpl -text
 tiki/templates/tiki-show_page.tpl -text
 tiki/templates/tiki-show_page_raw.tpl -text
+tiki/templates/tiki-slideshow.tpl -text
 tiki/templates/tiki-special_chars.html -text
 tiki/templates/tiki-special_chars.php -text
 tiki/templates/tiki-stats.tpl -text
@@ -555,6 +570,8 @@ tiki/templates/tiki-view_cache.tpl -text
 tiki/templates/tiki-view_faq.tpl -text
 tiki/templates/tiki-view_forum.tpl -text
 tiki/templates/tiki-view_forum_thread.tpl -text
+tiki/templates/tiki-view_tracker.tpl -text
+tiki/templates/tiki-view_tracker_item.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/license.txt -text
@@ -580,6 +597,8 @@ tiki/tiki-admin_poll_options.php -text
 tiki/tiki-admin_polls.php -text
 tiki/tiki-admin_rssmodules.php -text
 tiki/tiki-admin_topics.php -text
+tiki/tiki-admin_tracker_fields.php -text
+tiki/tiki-admin_trackers.php -text
 tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
 tiki/tiki-adminusers_old.php -text
@@ -604,6 +623,7 @@ tiki/tiki-chatroom.php -text
 tiki/tiki-cms_rankings.php -text
 tiki/tiki-custom_home.php -text
 tiki/tiki-download_file.php -text
+tiki/tiki-download_item_attachment.php -text
 tiki/tiki-download_wiki_attachment.php -text
 tiki/tiki-edit_article.php -text
 tiki/tiki-edit_banner.php -text
@@ -649,6 +669,7 @@ tiki/tiki-list_games.php -text
 tiki/tiki-list_posts.php -text
 tiki/tiki-list_quizzes.php -text
 tiki/tiki-list_submissions.php -text
+tiki/tiki-list_trackers.php -text
 tiki/tiki-listpages.php -text
 tiki/tiki-login.php -text
 tiki/tiki-login_validate.php -text
@@ -690,6 +711,7 @@ tiki/tiki-send_objects.php -text
 tiki/tiki-setup.php -text
 tiki/tiki-setup_base.php -text
 tiki/tiki-shoutbox.php -text
+tiki/tiki-slideshow.php -text
 tiki/tiki-stats.php -text
 tiki/tiki-take_quiz.php -text
 tiki/tiki-upload_file.php -text
@@ -708,6 +730,8 @@ tiki/tiki-view_cache.php -text
 tiki/tiki-view_faq.php -text
 tiki/tiki-view_forum.php -text
 tiki/tiki-view_forum_thread.php -text
+tiki/tiki-view_tracker.php -text
+tiki/tiki-view_tracker_item.php -text
 tiki/tiki-wiki_link_structure.php -text
 tiki/tiki-wiki_rankings.php -text
 tiki/tiki-wiki_rss.php -text
