@@ -477,6 +477,7 @@ tiki/db/profiles/mk_profile.sh -text
 tiki/db/profiles/slash.prf -text
 tiki/db/structure_fix_1.7to1.8.php -text
 tiki/db/structure_fix_1.7to1.8.sql -text
+tiki/db/tiki-1.8-mssql.sql -text
 tiki/db/tiki-1.8-mysql.sql -text
 tiki/db/tiki-1.8-oci8.sql -text
 tiki/db/tiki-1.8-pgsql.sql -text
@@ -2673,6 +2674,7 @@ tiki/lib/wiki-plugins/wikiplugin_div.php -text
 tiki/lib/wiki-plugins/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/wiki-plugins/wikiplugin_fancytable.php -text
+tiki/lib/wiki-plugins/wikiplugin_flash.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins/wikiplugin_jabber.php -text
 tiki/lib/wiki-plugins/wikiplugin_lang.php -text
@@ -2779,6 +2781,7 @@ tiki/modules/mod-top_active_blogs.php -text
 tiki/modules/mod-top_articles.php -text
 tiki/modules/mod-top_file_galleries.php -text
 tiki/modules/mod-top_files.php -text
+tiki/modules/mod-top_forum_posters.php -text
 tiki/modules/mod-top_games.php -text
 tiki/modules/mod-top_image_galleries.php -text
 tiki/modules/mod-top_images.php -text
@@ -2892,6 +2895,7 @@ tiki/styles/codex/page_3_3.png -text
 tiki/styles/codex/page_3_4.png -text
 tiki/styles/codex/page_3_5.png -text
 tiki/styles/codex/page_back.png -text
+tiki/styles/damian.css -text
 tiki/styles/dblue.css -text
 tiki/styles/dblue/back1.jpeg -text
 tiki/styles/dblue/dbluebot.jpg -text
@@ -3249,6 +3253,7 @@ tiki/templates/modules/mod-top_active_blogs.tpl -text
 tiki/templates/modules/mod-top_articles.tpl -text
 tiki/templates/modules/mod-top_file_galleries.tpl -text
 tiki/templates/modules/mod-top_files.tpl -text
+tiki/templates/modules/mod-top_forum_posters.tpl -text
 tiki/templates/modules/mod-top_games.tpl -text
 tiki/templates/modules/mod-top_image_galleries.tpl -text
 tiki/templates/modules/mod-top_images.tpl -text
@@ -3298,6 +3303,10 @@ tiki/templates/styles/bluemetal/tiki.tpl -text
 tiki/templates/styles/codex/error.tpl -text
 tiki/templates/styles/codex/index.php -text
 tiki/templates/styles/codex/tiki.tpl -text
+tiki/templates/styles/damian/tiki-bot_bar.tpl -text
+tiki/templates/styles/damian/tiki-show_page.tpl -text
+tiki/templates/styles/damian/tiki-top_bar.tpl -text
+tiki/templates/styles/damian/tiki.tpl -text
 tiki/templates/styles/gemsi/tiki-bot_bar.tpl -text
 tiki/templates/styles/gemsi/tiki-page_bar.tpl -text
 tiki/templates/styles/gemsi/tiki-show_page.tpl -text
@@ -3865,6 +3874,7 @@ tiki/tiki-contact.php -text
 tiki/tiki-create_webhelp.php -text
 tiki/tiki-custom_home.php -text
 tiki/tiki-debug_console.php -text
+tiki/tiki-directories_rss.php -text svneol=unset#application/octet-stream
 tiki/tiki-directory_add_site.php -text
 tiki/tiki-directory_add_tiki_site.php -text
 tiki/tiki-directory_admin.php -text
@@ -3874,6 +3884,7 @@ tiki/tiki-directory_admin_sites.php -text
 tiki/tiki-directory_browse.php -text
 tiki/tiki-directory_ranking.php -text
 tiki/tiki-directory_redirect.php -text
+tiki/tiki-directory_rss.php -text svneol=unset#application/octet-stream
 tiki/tiki-directory_search.php -text
 tiki/tiki-directory_validate_sites.php -text
 tiki/tiki-download_file.php -text
