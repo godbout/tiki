@@ -793,6 +793,7 @@ _mods/avatars/tikiavatars/exploded/579.gif -text
 _mods/devtools/README -text
 _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
+_mods/features/dlp/Readme -text
 _mods/images/tikiwiki/tikibutton.png -text
 _mods/images/tikiwiki/tikibutton.xcf -text svneol=unset#unset
 _mods/images/tikiwiki/tikibutton2.png -text
