@@ -1116,6 +1116,8 @@ tiki/lib/mailin/mailinlib.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/menulib.php -text
 tiki/lib/messu/messulib.php -text
+tiki/lib/mime/mimelib.php -text
+tiki/lib/mime/mimetypes.php -text
 tiki/lib/minical/minicallib.php -text
 tiki/lib/newsletters/nllib.php -text
 tiki/lib/newsreader/newslib.php -text
