@@ -1043,6 +1043,11 @@ _mods/templates/sdl_menu/README -text
 _mods/templates/sdl_menu/lib/tiki-js.js -text
 _mods/templates/sdl_menu/templates/modules/mod-application_menu.tpl -text
 _mods/themes/3dblue/README -text
+_mods/themes/3dblue/styles/3dblue.css -text
+_mods/themes/3dblue/styles/3dblue/header.jpg -text
+_mods/themes/3dblue/styles/3dblue/modheader.gif -text
+_mods/themes/3dblue/styles/3dblue/modl.gif -text
+_mods/themes/3dblue/styles/3dblue/modr.gif -text
 _mods/themes/508/styles/508.css -text
 _mods/themes/508/templates/styles/508/tiki.tpl -text
 _mods/themes/README -text
