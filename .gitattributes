@@ -2669,6 +2669,9 @@ tiki/lib/webmail/tikimaillib.php -text
 tiki/lib/webmail/webmaillib.php -text
 tiki/lib/wiki-plugins-dist/README -text
 tiki/lib/wiki-plugins-dist/index.php -text
+tiki/lib/wiki-plugins-dist/tex2png -text
+tiki/lib/wiki-plugins-dist/wikiplugin_formula.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_formula.readme -text
 tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
 tiki/lib/wiki-plugins/index.php -text
 tiki/lib/wiki-plugins/wikiplugin_article.php -text
