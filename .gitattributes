@@ -2410,9 +2410,9 @@ tiki/templates/tiki-list_surveys.tpl -text
 tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
 tiki/templates/tiki-live_support_admin.tpl -text
+tiki/templates/tiki-live_support_chat_window.tpl -text
 tiki/templates/tiki-live_support_client.tpl -text
 tiki/templates/tiki-live_support_console.tpl -text
-tiki/templates/tiki-live_support_operator.tpl -text svneol=unset#application/octet-stream
 tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-minical.tpl -text
 tiki/templates/tiki-minical_prefs.tpl -text
@@ -2699,9 +2699,9 @@ tiki/tiki-list_trackers.php -text
 tiki/tiki-listpages.php -text
 tiki/tiki-live_support_admin.php -text
 tiki/tiki-live_support_chat_frame.php -text
+tiki/tiki-live_support_chat_window.php -text
 tiki/tiki-live_support_client.php -text
 tiki/tiki-live_support_console.php -text
-tiki/tiki-live_support_operator.php -text
 tiki/tiki-live_support_server.php -text
 tiki/tiki-login.php -text
 tiki/tiki-login_scr.php -text
