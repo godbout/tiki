@@ -668,11 +668,6 @@ tiki/db/profiles/mk_profile.sh -text
 tiki/db/profiles/slash.prf -text
 tiki/db/structure_fix_1.7to1.8.php -text
 tiki/db/structure_fix_1.7to1.8.sql -text
-tiki/db/tiki-1.9-mysql.sql -text
-tiki/db/tiki-1.9-oci8.sql -text
-tiki/db/tiki-1.9-pgsql.sql -text
-tiki/db/tiki-1.9-sqlite.sql -text
-tiki/db/tiki-1.9-sybase.sql -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_0.95to1.0.sql -text
