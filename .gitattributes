@@ -2416,9 +2416,12 @@ tiki/templates/styles/jalist2/tiki-print_article.tpl -text
 tiki/templates/styles/jalist2/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/jalist2/tiki.tpl -text
 tiki/templates/styles/neat/error.tpl -text
+tiki/templates/styles/neat/modules/mod-application_menu.tpl -text
 tiki/templates/styles/neat/tiki-print.tpl -text
 tiki/templates/styles/neat/tiki-print_article.tpl -text
 tiki/templates/styles/neat/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/neat/tiki-show_page.tpl -text
+tiki/templates/styles/neat/tiki-top_bar.tpl -text
 tiki/templates/styles/neat/tiki.tpl -text
 tiki/templates/styles/subsilver/error.tpl -text
 tiki/templates/styles/subsilver/tiki-print.tpl -text
