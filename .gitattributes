@@ -2893,6 +2893,7 @@ tiki/templates/tiki-admin-include-gal.tpl -text
 tiki/templates/tiki-admin-include-general.tpl -text
 tiki/templates/tiki-admin-include-list-sections.tpl -text
 tiki/templates/tiki-admin-include-login.tpl -text
+tiki/templates/tiki-admin-include-maps.tpl -text
 tiki/templates/tiki-admin-include-polls.tpl -text
 tiki/templates/tiki-admin-include-rss.tpl -text
 tiki/templates/tiki-admin-include-trackers.tpl -text
@@ -3204,6 +3205,7 @@ tiki/tiki-admin_include_forums.php -text
 tiki/tiki-admin_include_gal.php -text
 tiki/tiki-admin_include_general.php -text
 tiki/tiki-admin_include_login.php -text
+tiki/tiki-admin_include_maps.php -text
 tiki/tiki-admin_include_polls.php -text
 tiki/tiki-admin_include_rss.php -text
 tiki/tiki-admin_include_trackers.php -text
