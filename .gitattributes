@@ -858,6 +858,8 @@ _mods/devtools/tikimergerev.sh -text
 _mods/features/dlp/Readme -text
 _mods/features/galaxia/README -text
 _mods/features/import-phpwiki/README -text
+_mods/features/import-phpwiki/tikiroot/templates/tiki-import_phpwiki.tpl -text
+_mods/features/import-phpwiki/tikiroot/tiki-import_phpwiki.php -text
 _mods/features/jukebox/tikiroot/lib/jukebox/jukeboxlib.php -text
 _mods/features/jukebox/tikiroot/templates/tiki-jukebox_albums.tpl -text
 _mods/features/jukebox/tikiroot/templates/tiki-jukebox_genres.tpl -text
