@@ -1785,6 +1785,7 @@ tiki/lib/class_rdf_parser.php -text
 tiki/lib/class_rss_parser.php -text
 tiki/lib/commcenter/commlib.php -text
 tiki/lib/commentslib.php -text
+tiki/lib/compat/array_fill.func.php -text
 tiki/lib/copyrights/copyrightslib.php -text
 tiki/lib/csslib.php -text
 tiki/lib/dcs/dcslib.php -text
