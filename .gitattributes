@@ -914,6 +914,7 @@ tiki/img/mytiki/admin.gif -text
 tiki/img/mytiki/bookmarks.gif -text
 tiki/img/mytiki/files.gif -text
 tiki/img/mytiki/messages.gif -text
+tiki/img/mytiki/minical.gif -text
 tiki/img/mytiki/modules.gif -text
 tiki/img/mytiki/myfiles.gif -text
 tiki/img/mytiki/mytiki.gif -text
@@ -1124,6 +1125,7 @@ tiki/lib/wiki-plugins-dist/wikiplugin_code.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_example.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_gauge.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_split.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_sql.php -text
 tiki/lib/wiki-plugins/wikiplugin_avatar.php -text
@@ -1203,6 +1205,7 @@ tiki/setup.php -text
 tiki/setup.sh -text
 tiki/show_image.php -text
 tiki/styles/BiDi/BiDi.css -text
+tiki/styles/bluegreen.css -text
 tiki/styles/boreal.css -text
 tiki/styles/boreal/bg.jpg -text
 tiki/styles/boreal/contentmenu.gif -text
@@ -1251,6 +1254,7 @@ tiki/styles/tranquil.css -text
 tiki/styles/tranquil/cellpic1.gif -text
 tiki/styles/tranquil/cellpic2.jpg -text
 tiki/styles/tranquil/cellpic3.gif -text
+tiki/styles/whitebluegrey.css -text
 tiki/temp/license.txt -text
 tiki/temp/mail_attachs/license.txt -text
 tiki/templates/bidi.tpl -text
@@ -1343,6 +1347,11 @@ tiki/templates/modules/mod-user_pages.tpl -text
 tiki/templates/modules/mod-user_pages.tpl.nocache -text
 tiki/templates/modules/mod-user_tasks.tpl -text
 tiki/templates/modules/user_module.tpl -text
+tiki/templates/styles/bluegreen/error.tpl -text
+tiki/templates/styles/bluegreen/tiki-print.tpl -text
+tiki/templates/styles/bluegreen/tiki-print_article.tpl -text
+tiki/templates/styles/bluegreen/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/bluegreen/tiki.tpl -text
 tiki/templates/styles/boreal/error.tpl -text
 tiki/templates/styles/boreal/tiki-print.tpl -text
 tiki/templates/styles/boreal/tiki-print_article.tpl -text
@@ -1393,6 +1402,11 @@ tiki/templates/styles/tranquil/tiki-print.tpl -text
 tiki/templates/styles/tranquil/tiki-print_article.tpl -text
 tiki/templates/styles/tranquil/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/tranquil/tiki.tpl -text
+tiki/templates/styles/whitebluegrey/error.tpl -text
+tiki/templates/styles/whitebluegrey/tiki-print.tpl -text
+tiki/templates/styles/whitebluegrey/tiki-print_article.tpl -text
+tiki/templates/styles/whitebluegrey/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/whitebluegrey/tiki.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
 tiki/templates/tiki-admin_chat.tpl -text
