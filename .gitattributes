@@ -2601,6 +2601,7 @@ tiki/robots.txt -text
 tiki/select_banner.php -text
 tiki/setup.php -text
 tiki/setup.sh -text
+tiki/setup_smarty.php -text
 tiki/show_image.php -text
 tiki/styles/BiDi/BiDi.css -text
 tiki/styles/README.matrix-theme -text
