@@ -549,6 +549,7 @@ tiki/templates/tiki-view_faq.tpl -text
 tiki/templates/tiki-view_forum.tpl -text
 tiki/templates/tiki-view_forum_thread.tpl -text
 tiki/templates/tiki.tpl -text
+tiki/templates_c/license.txt -text
 tiki/testrpc.php -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_banners.php -text
