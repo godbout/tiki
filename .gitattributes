@@ -1,5 +1,6 @@
 * text=auto !eol
 tiki/.cvsignore -text
+tiki/.htaccess -text svneol=unset#application/octet-stream
 tiki/README -text
 tiki/Smarty/.cvsignore -text
 tiki/Smarty/AUTHORS -text
