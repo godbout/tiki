@@ -2127,7 +2127,6 @@ tiki/lib/tikibot/modules/amiop.php -text
 tiki/lib/tikibot/modules/faq.php -text
 tiki/lib/tikibot/modules/fortune.php -text
 tiki/lib/tikibot/modules/google.php -text
-tiki/lib/tikibot/modules/kick.php -text
 tiki/lib/tikibot/modules/nickometer.php -text
 tiki/lib/tikibot/modules/php.def -text
 tiki/lib/tikibot/modules/phpfunctions.php -text
