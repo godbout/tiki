@@ -4188,6 +4188,7 @@ tiki/tiki-list_quizzes.php -text
 tiki/tiki-list_submissions.php -text
 tiki/tiki-list_surveys.php -text
 tiki/tiki-list_trackers.php -text
+tiki/tiki-list_users.php -text
 tiki/tiki-listmovies.php -text
 tiki/tiki-listpages.php -text
 tiki/tiki-live_support_admin.php -text
