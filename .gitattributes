@@ -2663,6 +2663,7 @@ tiki/lib/webmail/decodemessage.php -text
 tiki/lib/webmail/example.1.php -text
 tiki/lib/webmail/htmlMimeMail.php -text
 tiki/lib/webmail/index.php -text
+tiki/lib/webmail/mail.php -text
 tiki/lib/webmail/mimeDecode.php -text
 tiki/lib/webmail/pop3.php -text
 tiki/lib/webmail/tikimaillib.php -text
