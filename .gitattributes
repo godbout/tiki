@@ -3622,6 +3622,8 @@ tiki/templates/tiki-g-monitor_instances.tpl -text
 tiki/templates/tiki-g-monitor_processes.tpl -text
 tiki/templates/tiki-g-monitor_stats.tpl -text
 tiki/templates/tiki-g-monitor_workitems.tpl -text
+tiki/templates/tiki-g-my_activities.tpl -text
+tiki/templates/tiki-g-my_instances.tpl -text
 tiki/templates/tiki-g-proc_bar.tpl -text
 tiki/templates/tiki-g-user_activities.tpl -text
 tiki/templates/tiki-g-user_bar.tpl -text
@@ -3968,6 +3970,8 @@ tiki/tiki-g-monitor_activities.php -text
 tiki/tiki-g-monitor_instances.php -text
 tiki/tiki-g-monitor_processes.php -text
 tiki/tiki-g-monitor_workitems.php -text
+tiki/tiki-g-my_activities.php -text
+tiki/tiki-g-my_instances.php -text
 tiki/tiki-g-run_activity.php -text
 tiki/tiki-g-save_process.php -text
 tiki/tiki-g-user_activities.php -text
