@@ -2243,6 +2243,7 @@ tiki/lib/wiki-plugins-dist/wikiplugin_wikigraph.php -text
 tiki/lib/wiki-plugins/wikiplugin_alignedbox.php -text
 tiki/lib/wiki-plugins/wikiplugin_article.php -text
 tiki/lib/wiki-plugins/wikiplugin_avatar.php -text
+tiki/lib/wiki-plugins/wikiplugin_backlinks.php -text
 tiki/lib/wiki-plugins/wikiplugin_box.php -text
 tiki/lib/wiki-plugins/wikiplugin_category.php -text
 tiki/lib/wiki-plugins/wikiplugin_catorphans.php -text
