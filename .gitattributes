@@ -1,4 +1,6 @@
 * text=auto !eol
+tiki/.cvsignore -text
+tiki/README -text
 tiki/Smarty/.cvsignore -text
 tiki/Smarty/AUTHORS -text
 tiki/Smarty/BUGS -text
@@ -73,6 +75,7 @@ tiki/article_image.php -text
 tiki/backups/license.txt -text
 tiki/banner_click.php -text
 tiki/banner_image.php -text
+tiki/bin/cvschangeroot.sh -text
 tiki/categorize.php -text
 tiki/categorize_list.php -text
 tiki/changelog.txt -text
@@ -287,6 +290,7 @@ tiki/lib/userslib.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/license.txt -text
+tiki/modules/.cvsignore -text
 tiki/modules/cache/license.txt -text
 tiki/modules/mod-breadcrumb.php -text
 tiki/modules/mod-comm_received_objects.php -text
