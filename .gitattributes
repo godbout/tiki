@@ -1879,6 +1879,7 @@ tiki/lib/commentslib.php -text
 tiki/lib/dcs/dcslib.php -text
 tiki/lib/diff.php -text
 tiki/lib/directory/dirlib.php -text
+tiki/lib/drawings/drawlib.php -text
 tiki/lib/ephemerides/ephlib.php -text
 tiki/lib/faqs/faqlib.php -text
 tiki/lib/filegals/filegallib.php -text
@@ -2848,6 +2849,7 @@ tiki/tiki-live_support_chat_frame.php -text
 tiki/tiki-live_support_chat_window.php -text
 tiki/tiki-live_support_client.php -text
 tiki/tiki-live_support_console.php -text
+tiki/tiki-live_support_message.php -text
 tiki/tiki-live_support_server.php -text
 tiki/tiki-login.php -text
 tiki/tiki-login_scr.php -text
