@@ -3838,6 +3838,7 @@ tiki/tiki-admin_include_fgal.php -text
 tiki/tiki-admin_include_forums.php -text
 tiki/tiki-admin_include_gal.php -text
 tiki/tiki-admin_include_general.php -text
+tiki/tiki-admin_include_jukebox.php -text
 tiki/tiki-admin_include_login.php -text
 tiki/tiki-admin_include_maps.php -text
 tiki/tiki-admin_include_metatags.php -text
