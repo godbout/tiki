@@ -3335,6 +3335,7 @@ tiki/templates/tiki-g-user_processes.tpl -text
 tiki/templates/tiki-g-view_workitem.tpl -text
 tiki/templates/tiki-galleries.tpl -text
 tiki/templates/tiki-hw_editpage.tpl -text
+tiki/templates/tiki-hw_grading_queue.tpl -text
 tiki/templates/tiki-hw_page.tpl -text
 tiki/templates/tiki-hw_pagehistory.tpl -text
 tiki/templates/tiki-hw_rollback.tpl -text
@@ -3704,6 +3705,7 @@ tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
 tiki/tiki-handlers.php -text
 tiki/tiki-hw_editpage.php -text
+tiki/tiki-hw_grading_queue.php -text
 tiki/tiki-hw_page.php -text
 tiki/tiki-hw_pagehistory.php -text
 tiki/tiki-hw_rollback.php -text
