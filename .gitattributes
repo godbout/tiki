@@ -2154,6 +2154,7 @@ tiki/lib/jpgraph/src/jpgraph_radar.php -text
 tiki/lib/jpgraph/src/jpgraph_regstat.php -text
 tiki/lib/jpgraph/src/jpgraph_scatter.php -text
 tiki/lib/jpgraph/src/jpgraph_stock.php -text
+tiki/lib/jukebox/jukeboxlib.php -text
 tiki/lib/live_support/live-support.js -text svneol=unset#application/octet-stream
 tiki/lib/live_support/lsadminlib.php -text
 tiki/lib/live_support/lslib.php -text
