@@ -2999,6 +2999,7 @@ tiki/templates/tiki-received_articles.tpl -text
 tiki/templates/tiki-received_pages.tpl -text
 tiki/templates/tiki-referer_stats.tpl -text
 tiki/templates/tiki-register.tpl -text
+tiki/templates/tiki-register_site.tpl -text
 tiki/templates/tiki-remind_password.tpl -text
 tiki/templates/tiki-removepage.tpl -text
 tiki/templates/tiki-rename_page.tpl -text
