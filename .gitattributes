@@ -1943,6 +1943,7 @@ tiki/templates/mail/password_reminder.tpl -text
 tiki/templates/mail/submission_notification.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
+tiki/templates/mail/user_watch_wiki_page_changed.tpl -text
 tiki/templates/mail/wiki_change_notification.tpl -text
 tiki/templates/messu-broadcast.tpl -text
 tiki/templates/messu-compose.tpl -text
@@ -2298,6 +2299,7 @@ tiki/templates/tiki-user_information.tpl -text
 tiki/templates/tiki-user_menu.tpl -text
 tiki/templates/tiki-user_preferences.tpl -text
 tiki/templates/tiki-user_tasks.tpl -text
+tiki/templates/tiki-user_watches.tpl -text
 tiki/templates/tiki-userfiles.tpl -text
 tiki/templates/tiki-usermenu.tpl -text
 tiki/templates/tiki-userversions.tpl -text
@@ -2590,6 +2592,7 @@ tiki/tiki-user_cached_bookmark.php -text
 tiki/tiki-user_information.php -text
 tiki/tiki-user_preferences.php -text
 tiki/tiki-user_tasks.php -text
+tiki/tiki-user_watches.php -text
 tiki/tiki-userfiles.php -text
 tiki/tiki-usermenu.php -text
 tiki/tiki-userversions.php -text
