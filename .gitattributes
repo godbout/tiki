@@ -503,6 +503,7 @@ tiki/doc/devtools/extract-img-db-to-fs.php -text
 tiki/doc/devtools/ggg-trace.php -text
 tiki/doc/devtools/index.php -text
 tiki/doc/devtools/lastcvs.sh -text
+tiki/doc/devtools/sharetiki.sh -text
 tiki/doc/devtools/sqlupgrade.sh -text
 tiki/doc/devtools/synctiki.sh -text
 tiki/doc/devtools/tikilite.sh -text
