@@ -3622,6 +3622,7 @@ tiki/templates/styles/moreneat/modules/index.php -text
 tiki/templates/styles/moreneat/modules/mod-application_menu.tpl -text
 tiki/templates/styles/moreneat/tiki-editpage.tpl -text
 tiki/templates/styles/moreneat/tiki-show_page.tpl -text
+tiki/templates/styles/moreneat/tiki-static.tpl -text
 tiki/templates/styles/moreneat/tiki-user_menu.tpl -text
 tiki/templates/styles/moreneat/tiki.tpl -text
 tiki/templates/styles/mose/index.php -text
