@@ -960,6 +960,7 @@ _mods/taglines/rcogley/taglines.txt -text
 _mods/templates/README -text
 _mods/templates/directory_browse/README -text
 _mods/templates/directory_browse/templates/tiki-directory_browse.tpl -text
+_mods/templates/kuro/README -text
 _mods/templates/sdl_collection/README -text
 _mods/templates/sdl_collection/templates/attachments.tpl -text
 _mods/templates/sdl_collection/templates/categorize.tpl -text
