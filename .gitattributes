@@ -1752,6 +1752,7 @@ tiki/modules/mod-user_bookmarks.php -text
 tiki/modules/mod-user_image_galleries.php -text
 tiki/modules/mod-user_pages.php -text
 tiki/modules/mod-user_tasks.php -text
+tiki/phpOpenTracker.php -text
 tiki/popups/about.html -text
 tiki/popups/blank.html -text
 tiki/popups/custom2.html -text
@@ -1845,6 +1846,7 @@ tiki/templates/comments.tpl -text
 tiki/templates/error.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/header.tpl -text
+tiki/templates/mail/blogs_send_link.tpl -text
 tiki/templates/mail/confirm_newsletter_subscription.tpl -text
 tiki/templates/mail/forum_post_notification.tpl -text
 tiki/templates/mail/license.txt -text
