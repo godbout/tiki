@@ -10,6 +10,7 @@ _adodb/adodb-lib.inc.php -text
 _adodb/adodb-pager.inc.php -text
 _adodb/adodb-pear.inc.php -text
 _adodb/adodb-perf.inc.php -text
+_adodb/adodb-perf.inc.php.#.LENS-03-09-05 -text
 _adodb/adodb-php4.inc.php -text
 _adodb/adodb-time.inc.php -text
 _adodb/adodb-time.zip -text
@@ -28,9 +29,11 @@ _adodb/datadict/datadict-mssql.inc.php -text
 _adodb/datadict/datadict-mysql.inc.php -text
 _adodb/datadict/datadict-oci8.inc.php -text
 _adodb/datadict/datadict-postgres.inc.php -text
+_adodb/datadict/datadict-sapdb.inc.php -text
 _adodb/datadict/datadict-sybase.inc.php -text
 _adodb/docs/docs-adodb.htm -text
 _adodb/docs/docs-datadict.htm -text
+_adodb/docs/docs-oracle.htm -text
 _adodb/docs/docs-perf.htm -text
 _adodb/docs/docs-session.htm -text
 _adodb/docs/old-changelog.htm -text
@@ -39,6 +42,7 @@ _adodb/docs/tips_portable_sql.htm -text
 _adodb/docs/tute.htm -text
 _adodb/drivers/adodb-access.inc.php -text
 _adodb/drivers/adodb-ado.inc.php -text
+_adodb/drivers/adodb-ado5.inc.php -text
 _adodb/drivers/adodb-ado_access.inc.php -text
 _adodb/drivers/adodb-ado_mssql.inc.php -text
 _adodb/drivers/adodb-borland_ibase.inc.php -text
@@ -65,6 +69,7 @@ _adodb/drivers/adodb-odbc_oracle.inc.php -text
 _adodb/drivers/adodb-odbtp.inc.php -text
 _adodb/drivers/adodb-odbtp_unicode.inc.php -text
 _adodb/drivers/adodb-oracle.inc.php -text
+_adodb/drivers/adodb-pdo.inc.php -text
 _adodb/drivers/adodb-postgres.inc.php -text
 _adodb/drivers/adodb-postgres64.inc.php -text
 _adodb/drivers/adodb-postgres7.inc.php -text
@@ -72,8 +77,10 @@ _adodb/drivers/adodb-proxy.inc.php -text
 _adodb/drivers/adodb-sapdb.inc.php -text
 _adodb/drivers/adodb-sqlanywhere.inc.php -text
 _adodb/drivers/adodb-sqlite.inc.php -text
+_adodb/drivers/adodb-sqlitepo.inc.php -text
 _adodb/drivers/adodb-sybase.inc.php -text
 _adodb/drivers/adodb-vfp.inc.php -text
+_adodb/lang/adodb-ar.inc.php -text
 _adodb/lang/adodb-bg.inc.php -text
 _adodb/lang/adodb-bgutf8.inc.php -text
 _adodb/lang/adodb-ca.inc.php -text
@@ -83,6 +90,7 @@ _adodb/lang/adodb-de.inc.php -text
 _adodb/lang/adodb-en.inc.php -text
 _adodb/lang/adodb-es.inc.php -text
 _adodb/lang/adodb-fr.inc.php -text
+_adodb/lang/adodb-hu.inc.php -text
 _adodb/lang/adodb-it.inc.php -text
 _adodb/lang/adodb-nl.inc.php -text
 _adodb/lang/adodb-pl.inc.php -text
@@ -122,6 +130,7 @@ _adodb/session/old/adodb-session.php -text
 _adodb/session/old/crypt.inc.php -text
 _adodb/tests/benchmark.php -text
 _adodb/tests/client.php -text
+_adodb/tests/pdo.php -text
 _adodb/tests/test-datadict.php -text
 _adodb/tests/test-perf.php -text
 _adodb/tests/test-pgblob.php -text
@@ -150,6 +159,7 @@ _adodb/tohtml.inc.php -text
 _adodb/xmlschema.dtd -text
 _adodb/xsl/convert-0.1-0.2.xsl -text
 _adodb/xsl/convert-0.2-0.1.xsl -text
+_adodb/xsl/remove-0.2.xsl -text
 _jscalendar/README -text
 _jscalendar/calendar-blue.css -text
 _jscalendar/calendar-blue2.css -text
