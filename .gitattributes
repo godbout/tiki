@@ -3103,6 +3103,7 @@ tiki/templates/modules/mod-user_pages.tpl -text
 tiki/templates/modules/mod-user_pages.tpl.nocache -text
 tiki/templates/modules/mod-user_tasks.tpl -text
 tiki/templates/modules/mod-user_tasks.tpl.nocache -text
+tiki/templates/modules/mod-usergroup_tracker.tpl -text
 tiki/templates/modules/mod-whats_related.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl.nocache -text
