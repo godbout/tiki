@@ -3795,6 +3795,7 @@ tiki/templates/tiki-print_article.tpl -text
 tiki/templates/tiki-print_blog_post.tpl -text
 tiki/templates/tiki-print_multi_pages.tpl -text
 tiki/templates/tiki-print_pages.tpl -text
+tiki/templates/tiki-quiz_edit.tpl -text
 tiki/templates/tiki-quiz_result_stats.tpl -text
 tiki/templates/tiki-quiz_stats.tpl -text
 tiki/templates/tiki-quiz_stats_quiz.tpl -text
@@ -4205,6 +4206,7 @@ tiki/tiki-print_multi_pages.php -text
 tiki/tiki-print_pages.php -text
 tiki/tiki-pv_chart.php -text
 tiki/tiki-querytable.php -text
+tiki/tiki-quiz_edit.php -text
 tiki/tiki-quiz_result_stats.php -text
 tiki/tiki-quiz_stats.php -text
 tiki/tiki-quiz_stats_quiz.php -text
