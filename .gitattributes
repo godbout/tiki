@@ -2558,6 +2558,7 @@ tiki/templates/messu-compose.tpl -text
 tiki/templates/messu-mailbox.tpl -text
 tiki/templates/messu-nav.tpl -text
 tiki/templates/messu-read.tpl -text
+tiki/templates/module-title.tpl -text
 tiki/templates/modules/mod-admin_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl.nocache -text
@@ -2641,7 +2642,6 @@ tiki/templates/modules/mod-user_tasks.tpl.nocache -text
 tiki/templates/modules/mod-whats_related.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl.nocache -text
-tiki/templates/modules/module-title.tpl -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
