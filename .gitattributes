@@ -2423,6 +2423,7 @@ tiki/lib/tikihelp/results.html -text
 tiki/lib/tikihelp/searchdata.html -text
 tiki/lib/tikihelp/toolbar.html -text
 tiki/lib/tikilib.php -text
+tiki/lib/tikiticketlib.php -text
 tiki/lib/trackers/trackerlib.php -text
 tiki/lib/tree/categ_admin_tree.php -text
 tiki/lib/tree/categ_browse_tree.php -text
