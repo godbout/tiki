@@ -659,14 +659,6 @@ tiki/db/dbg_console.sql -text
 tiki/db/fulltext.sql -text
 tiki/db/index.php -text
 tiki/db/local_multi.php -text
-tiki/db/oracle/md5.sql -text
-tiki/db/pgsql/MigratingFromMySQLtoPostgreSQL.htm -text
-tiki/db/pgsql/mysql-functions.sql -text
-tiki/db/pgsql/mysql2pgsql.pl -text
-tiki/db/pgsql/mysql2pgsql.sh -text
-tiki/db/pgsql/psql.log -text
-tiki/db/pgsql/tiki_mysql.sql -text
-tiki/db/pgsql/tiki_pgsql.sql -text
 tiki/db/profiles/BasicEnabled.prf -text
 tiki/db/profiles/_default.prf -text
 tiki/db/profiles/default-inserts.sql -text
@@ -727,7 +719,6 @@ tiki/doc/readme.txt -text
 tiki/dump/.cvsignore -text
 tiki/dump/index.php -text
 tiki/favicon.png -text
-tiki/function.js_maxlength.php -text
 tiki/games/README -text
 tiki/games/flash/README -text
 tiki/games/flash/index.php -text
