@@ -2684,9 +2684,9 @@ tiki/templates/styles/notheme/tiki-top_bar.tpl -text
 tiki/templates/styles/notheme/tiki.tpl -text
 tiki/templates/styles/simple/error.tpl -text
 tiki/templates/styles/simple/header.tpl -text
+tiki/templates/styles/simple/module-title.tpl -text
 tiki/templates/styles/simple/modules/mod-application_menu.tpl -text
 tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
-tiki/templates/styles/simple/modules/module-title.tpl -text
 tiki/templates/styles/simple/tiki-print_article.tpl -text
 tiki/templates/styles/simple/tiki.tpl -text
 tiki/templates/styles/tiki/error.tpl -text
