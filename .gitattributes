@@ -2362,7 +2362,6 @@ tiki/popups/select_color.html -text
 tiki/received_article_image.php -text
 tiki/robots.txt -text
 tiki/select_banner.php -text
-tiki/setup.php -text
 tiki/setup.sh -text
 tiki/setup_smarty.php -text
 tiki/show_image.php -text
