@@ -3956,6 +3956,11 @@ tiki/tiki-g-view_workitem.php -text
 tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
 tiki/tiki-handlers.php -text
+tiki/tiki-hw_student_assignments.php -text
+tiki/tiki-hw_student_last_changes.php -text
+tiki/tiki-hw_teacher_assignments.php -text
+tiki/tiki-hw_teacher_grading_queue.php -text
+tiki/tiki-hw_teacher_last_changes.php -text
 tiki/tiki-image_galleries_rss.php -text
 tiki/tiki-image_gallery_rss.php -text
 tiki/tiki-imexport_languages.php -text
