@@ -215,6 +215,7 @@ _mods/Packages/avatars-gnumes.info.txt -text
 _mods/Packages/avatars-goldorak.info.txt -text
 _mods/Packages/avatars-mcdonald.info.txt -text
 _mods/Packages/avatars-xmen.info.txt -text
+_mods/Packages/features-userprefstats.info.txt -text
 _mods/Packages/menus-tikiring.info.txt -text
 _mods/Packages/services-mailman.info.txt -text
 _mods/Packages/themes-508.info.txt -text
@@ -835,6 +836,8 @@ _mods/devtools/README -text
 _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
 _mods/features/dlp/Readme -text
+_mods/features/userprefstats/stats.php -text
+_mods/features/userprefstats/stats.tpl -text
 _mods/images/tikiwiki/tikibutton.png -text
 _mods/images/tikiwiki/tikibutton.xcf -text svneol=unset#unset
 _mods/images/tikiwiki/tikibutton2.png -text
