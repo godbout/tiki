@@ -953,6 +953,7 @@ tiki/select_banner.php -text
 tiki/setup.php -text
 tiki/setup.sh -text
 tiki/show_image.php -text
+tiki/styles/BiDi/BiDi.css -text
 tiki/styles/dblue.css -text
 tiki/styles/dblue/back1.jpeg -text
 tiki/styles/dblue/dbluebot.jpg -text
