@@ -1810,6 +1810,7 @@ tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
 tiki/tiki-mailin.php -text
 tiki/tiki-minical.php -text
+tiki/tiki-minical_export.php -text
 tiki/tiki-minical_prefs.php -text
 tiki/tiki-minical_reminders.php -text
 tiki/tiki-modules.php -text
