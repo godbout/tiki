@@ -1311,6 +1311,7 @@ tiki/doc/devtools/phpstrip.sh -text
 tiki/doc/devtools/restorehelp.php -text
 tiki/doc/devtools/sharetiki.sh -text
 tiki/doc/devtools/sqlupgrade.sh -text
+tiki/doc/devtools/sync.php -text
 tiki/doc/devtools/synctiki.sh -text
 tiki/doc/devtools/tikilite.sh -text
 tiki/doc/devtools/tikimerge.sh -text
@@ -1835,6 +1836,13 @@ tiki/img/icons/s_red.gif -text
 tiki/img/icons/search_path.gif -text
 tiki/img/icons/select.gif -text
 tiki/img/icons/star.gif -text
+tiki/img/icons/star_blue.gif -text
+tiki/img/icons/star_green.gif -text
+tiki/img/icons/star_grey.gif -text
+tiki/img/icons/star_orange.gif -text
+tiki/img/icons/star_purple.gif -text
+tiki/img/icons/star_red.gif -text
+tiki/img/icons/star_yellow.gif -text
 tiki/img/icons/stop.gif -text
 tiki/img/icons/support_off.gif -text
 tiki/img/icons/support_on.gif -text
@@ -2513,6 +2521,7 @@ tiki/lib/mail/mimelib.php -text
 tiki/lib/mailin/index.php -text
 tiki/lib/mailin/mailinlib.php -text
 tiki/lib/map/map.js -text
+tiki/lib/map/usermap.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/index.php -text
 tiki/lib/menubuilder/menulib.php -text
@@ -2948,6 +2957,7 @@ tiki/lib/wiki-plugins/wikiplugin_quote.php -text
 tiki/lib/wiki-plugins/wikiplugin_regex.php -text
 tiki/lib/wiki-plugins/wikiplugin_sf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sheet.php -text
+tiki/lib/wiki-plugins/wikiplugin_showpages.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
@@ -2958,6 +2968,7 @@ tiki/lib/wiki-plugins/wikiplugin_tracker.php -text
 tiki/lib/wiki-plugins/wikiplugin_trackerlist.php -text
 tiki/lib/wiki-plugins/wikiplugin_translated.php -text
 tiki/lib/wiki-plugins/wikiplugin_usercount.php -text
+tiki/lib/wiki-plugins/wikiplugin_versions.php -text
 tiki/lib/wiki-plugins/wikiplugin_wikigraph.php -text
 tiki/lib/wiki/exportlib.php -text
 tiki/lib/wiki/histlib.php -text
