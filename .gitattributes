@@ -2140,6 +2140,7 @@ tiki/lib/tabs/utils.js -text svneol=unset#application/octet-stream
 tiki/lib/tabs/viewport.js -text svneol=unset#application/octet-stream
 tiki/lib/tabs/winxp.css -text svneol=unset#application/octet-stream
 tiki/lib/taglines/taglinelib.php -text
+tiki/lib/tail/taillib.php -text
 tiki/lib/tar.class.php -text
 tiki/lib/tasks/tasklib.php -text
 tiki/lib/templates/templateslib.php -text
@@ -2233,6 +2234,7 @@ tiki/modules/mod-online_users.php -text
 tiki/modules/mod-random_pages.php -text
 tiki/modules/mod-shoutbox.php -text
 tiki/modules/mod-since_last_visit.php -text
+tiki/modules/mod-tail.php -text
 tiki/modules/mod-top_active_blogs.php -text
 tiki/modules/mod-top_articles.php -text
 tiki/modules/mod-top_file_galleries.php -text
@@ -2429,6 +2431,7 @@ tiki/templates/modules/mod-search_box.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl.nocache -text
 tiki/templates/modules/mod-since_last_visit.tpl -text
+tiki/templates/modules/mod-tail.tpl -text
 tiki/templates/modules/mod-top_active_blogs.tpl -text
 tiki/templates/modules/mod-top_articles.tpl -text
 tiki/templates/modules/mod-top_file_galleries.tpl -text
