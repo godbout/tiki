@@ -479,6 +479,7 @@ tiki/games/README -text
 tiki/games/flash/README -text
 tiki/games/thumbs/README -text
 tiki/get_strings.php -text
+tiki/ggg-trace.php -text
 tiki/images/book.gif -text
 tiki/images/ed_about.gif -text
 tiki/images/ed_align_center.gif -text
