@@ -1707,6 +1707,7 @@ tiki/img/flags/Iraq.gif -text
 tiki/img/flags/Ireland.gif -text
 tiki/img/flags/Israel.gif -text
 tiki/img/flags/Italy.gif -text
+tiki/img/flags/Ivory_Coast.gif -text
 tiki/img/flags/Jamaica.gif -text
 tiki/img/flags/Japan.gif -text
 tiki/img/flags/Jordan.gif -text
@@ -2876,6 +2877,7 @@ tiki/lib/pear/tests/XML_Tree/tests/test.php -text
 tiki/lib/phplot.php -text
 tiki/lib/polls/index.php -text
 tiki/lib/polls/polllib.php -text
+tiki/lib/polls/polllib_shared.php -text
 tiki/lib/quicktags/index.php -text
 tiki/lib/quicktags/quicktagslib.php -text
 tiki/lib/quizzes/index.php -text
