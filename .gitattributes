@@ -984,6 +984,13 @@ _mods/themes/bluemetal/theme/templates/styles/bluemetal/tiki-show_page.tpl -text
 _mods/themes/bluemetal/theme/templates/styles/bluemetal/tiki-user_menu.tpl -text
 _mods/themes/bluemetal/theme/templates/styles/bluemetal/tiki.tpl -text
 _mods/themes/classicblue/Readme -text
+_mods/themes/classicblue/theme/styles/classicblue.css -text
+_mods/themes/classicblue/theme/templates/styles/classicblue/error.tpl -text
+_mods/themes/classicblue/theme/templates/styles/classicblue/modules/mod-login_box.tpl -text
+_mods/themes/classicblue/theme/templates/styles/classicblue/tiki-editpage.tpl -text
+_mods/themes/classicblue/theme/templates/styles/classicblue/tiki-show_page.tpl -text
+_mods/themes/classicblue/theme/templates/styles/classicblue/tiki-user_menu.tpl -text
+_mods/themes/classicblue/theme/templates/styles/classicblue/tiki.tpl -text
 _mods/themes/greenjelly/styles/greenjelly.css -text
 _mods/themes/greenjelly/styles/greenjelly/botbar.jpg -text
 _mods/themes/greenjelly/styles/greenjelly/greenjellytitle.jpg -text
