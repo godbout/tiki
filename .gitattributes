@@ -2068,8 +2068,6 @@ tiki/img/wiki_up/README -text
 tiki/img/wiki_up/index.php -text
 tiki/index.php -text
 tiki/jhot.php -text
-tiki/lang/br/index.php -text
-tiki/lang/br/language.php -text
 tiki/lang/cn/index.php -text
 tiki/lang/cn/language.php -text
 tiki/lang/cs/index.php -text
@@ -2101,6 +2099,8 @@ tiki/lang/no/index.php -text
 tiki/lang/no/language.php -text
 tiki/lang/pl/index.php -text
 tiki/lang/pl/language.php -text
+tiki/lang/pt-br/index.php -text
+tiki/lang/pt-br/language.php -text
 tiki/lang/pt/index.php -text
 tiki/lang/pt/language.php -text
 tiki/lang/ru/index.php -text
