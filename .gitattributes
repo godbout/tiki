@@ -230,6 +230,8 @@ _mods/Packages/themes-redmetal.info.txt -text
 _mods/Packages/themes-veryorange.info.txt -text
 _mods/Packages/themes-zaksworld.info.txt -text
 _mods/Packages/themes-ztheme.info.txt -text
+_mods/Packages/wikiplugins-ebay.info.txt -text
+_mods/Packages/wikiplugins-scroll.info.txt -text
 _mods/Packages/wikiplugins-svg.info.txt -text
 _mods/README -text
 _mods/authentication/Readme -text
