@@ -1823,6 +1823,7 @@ tiki/tiki-newsreader_groups.php -text
 tiki/tiki-newsreader_news.php -text
 tiki/tiki-newsreader_read.php -text
 tiki/tiki-newsreader_servers.php -text
+tiki/tiki-notepad_get.php -text
 tiki/tiki-notepad_list.php -text
 tiki/tiki-notepad_read.php -text
 tiki/tiki-notepad_write.php -text
