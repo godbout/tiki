@@ -975,8 +975,6 @@ _mods/wiki-plugins/README -text
 _mods/wiki-plugins/formula/README -text
 _mods/wiki-plugins/formula/wiki-plugins/tex2png -text
 _mods/wiki-plugins/formula/wiki-plugins/wikiplugin_formula.php -text
-_mods/wiki-plugins/wikiplugin_scroll.php -text
-_mods/wiki-plugins/wikiplugin_svg.php -text
 _phplayers/ACKNOWLEDGEMENTS -text
 _phplayers/CHANGELOG -text
 _phplayers/CHANGE_TEMPLATE_CLASS_NAME.sh -text
