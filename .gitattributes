@@ -1023,6 +1023,7 @@ tiki/lang/it/language.php -text
 tiki/lang/pl/language.php -text
 tiki/lang/ru/language.php -text
 tiki/lang/sp/language.php -text
+tiki/lang/sw/language.php -text
 tiki/lang/tw/language.php -text
 tiki/lib/Date.php -text
 tiki/lib/Date/Calc.php -text
