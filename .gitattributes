@@ -65,6 +65,7 @@ tiki/Smarty/plugins/modifier.countryflag.php -text
 tiki/Smarty/plugins/modifier.date_format.php -text
 tiki/Smarty/plugins/modifier.debug_print_var.php -text
 tiki/Smarty/plugins/modifier.default.php -text
+tiki/Smarty/plugins/modifier.div.php -text
 tiki/Smarty/plugins/modifier.duration.php -text
 tiki/Smarty/plugins/modifier.escape.php -text
 tiki/Smarty/plugins/modifier.iconify.php -text
