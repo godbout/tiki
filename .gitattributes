@@ -212,6 +212,9 @@ tiki/copyrights.php -text
 tiki/db/.cvsignore -text
 tiki/db/convert_nulls_to_non_nulls.php -text
 tiki/db/convert_nulls_to_non_nulls.sql -text
+tiki/db/convertscripts/mysql3tooci8.php -text
+tiki/db/convertscripts/mysql3topgsql72.php -text
+tiki/db/convertscripts/mysql3tosybase.php -text
 tiki/db/dbg_console.sql -text
 tiki/db/fulltext.sql -text
 tiki/db/pgsql/MigratingFromMySQLtoPostgreSQL.htm -text
