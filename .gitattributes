@@ -374,6 +374,7 @@ tiki/db/tiki_sybase.sql -text
 tiki/display_banner.php -text
 tiki/doc/devtools/README.txt -text
 tiki/doc/devtools/lastcvs.sh -text
+tiki/doc/devtools/tikirelease.sh -text
 tiki/doc/devtools/tikiwiki.spec -text
 tiki/doc/htaccess -text
 tiki/doc/htaccess.readme -text

@@ -7,6 +7,7 @@ tiki/img/wiki_up/*
 tiki/lib/Galaxia/processes/*
 tiki/modules/cache
 tiki/modules/cache/*
+tiki/phpmyadmin
 tiki/temp/dbg-watch.*
 tiki/templates_c
 tiki/templates_c/%%*
