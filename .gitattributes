@@ -2227,7 +2227,6 @@ tiki/lib/wiki-plugins/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/wiki-plugins/wikiplugin_fancytable.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
-tiki/lib/wiki-plugins/wikiplugin_include.php -text
 tiki/lib/wiki-plugins/wikiplugin_jabber.php -text
 tiki/lib/wiki-plugins/wikiplugin_lang.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
