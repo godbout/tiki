@@ -2897,6 +2897,7 @@ tiki/lib/wiki-plugins-dist/README -text
 tiki/lib/wiki-plugins-dist/index.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_bloglist.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_lsdir.php -text
 tiki/lib/wiki-plugins/index.php -text
 tiki/lib/wiki-plugins/wikiplugin_agentinfo.php -text
 tiki/lib/wiki-plugins/wikiplugin_article.php -text
@@ -2920,7 +2921,6 @@ tiki/lib/wiki-plugins/wikiplugin_flash.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins/wikiplugin_jabber.php -text
 tiki/lib/wiki-plugins/wikiplugin_lang.php -text
-tiki/lib/wiki-plugins/wikiplugin_lsdir.php -text
 tiki/lib/wiki-plugins/wikiplugin_miniquiz.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
 tiki/lib/wiki-plugins/wikiplugin_mono.php -text
