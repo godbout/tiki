@@ -840,6 +840,7 @@ _mods/devtools/README -text
 _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
 _mods/features/dlp/Readme -text
+_mods/features/galaxia/README -text
 _mods/features/tiki-sheet/README -text
 _mods/features/tiki-sheet/tikiroot/lib/sheet/conf/config.inc.php -text
 _mods/features/tiki-sheet/tikiroot/lib/sheet/control.js -text
