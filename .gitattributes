@@ -1551,6 +1551,7 @@ tiki/lib/banners/bannerlib.php -text
 tiki/lib/blogs/bloglib.php -text
 tiki/lib/bookmarks/bookmarklib.php -text
 tiki/lib/categories/categlib.php -text
+tiki/lib/charts/chartlib.php -text
 tiki/lib/chat/chatlib.php -text
 tiki/lib/class.ezpdf.php.exe -text
 tiki/lib/class_calendar.php -text
@@ -2101,6 +2102,7 @@ tiki/templates/tiki-admin-include-webmail.tpl -text
 tiki/templates/tiki-admin-include-wiki.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
+tiki/templates/tiki-admin_charts.tpl -text
 tiki/templates/tiki-admin_chat.tpl -text
 tiki/templates/tiki-admin_content_templates.tpl -text
 tiki/templates/tiki-admin_content_templatess.tpl -text
@@ -2359,6 +2361,7 @@ tiki/tests/parse_data/test9.output -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_banners.php -text
 tiki/tiki-admin_categories.php -text
+tiki/tiki-admin_charts.php -text
 tiki/tiki-admin_chat.php -text
 tiki/tiki-admin_content_templates.php -text
 tiki/tiki-admin_cookies.php -text
