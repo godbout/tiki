@@ -2767,6 +2767,8 @@ tiki/lib/wiki3d/Config.class -text svneol=unset#unset
 tiki/lib/wiki3d/Config.java -text
 tiki/lib/wiki3d/Face.class -text svneol=unset#unset
 tiki/lib/wiki3d/Face.java -text
+tiki/lib/wiki3d/Graph.class -text svneol=unset#unset
+tiki/lib/wiki3d/Graph.java -text
 tiki/lib/wiki3d/Matrix3D.class -text svneol=unset#unset
 tiki/lib/wiki3d/Matrix3D.java -text
 tiki/lib/wiki3d/Node.class -text svneol=unset#unset
