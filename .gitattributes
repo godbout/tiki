@@ -2571,6 +2571,7 @@ tiki/select_banner.php -text
 tiki/setup.sh -text
 tiki/setup_smarty.php -text
 tiki/show_image.php -text
+tiki/styles/3dblue.css -text
 tiki/styles/3dblue/header.jpg -text
 tiki/styles/3dblue/modheader.gif -text
 tiki/styles/3dblue/modl.gif -text
