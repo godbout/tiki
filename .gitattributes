@@ -413,6 +413,7 @@ tiki/db/.cvsignore -text
 tiki/db/Makefile -text
 tiki/db/comments_fix1.sql -text
 tiki/db/comments_fix2.sql -text
+tiki/db/comments_fix_1.7to1.8.sql -text
 tiki/db/convert_nulls_to_non_nulls.php -text
 tiki/db/convert_nulls_to_non_nulls.sql -text
 tiki/db/convertscripts/convertsqls.sh -text
