@@ -898,6 +898,7 @@ _mods/features/jukebox/tikiroot/tiki-jukebox_genres.php -text
 _mods/features/jukebox/tikiroot/tiki-jukebox_tracks.php -text
 _mods/features/phpsource/README -text
 _mods/features/phpsource/lib/php/phplib.php -text
+_mods/features/phpsource/tiki-phpsource.php -text
 _mods/features/tiki-sheet/README -text
 _mods/features/tiki-sheet/tikiroot/lib/sheet/conf/config.inc.php -text
 _mods/features/tiki-sheet/tikiroot/lib/sheet/control.js -text
