@@ -875,11 +875,13 @@ _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
 _mods/features/cc/cc.php -text
 _mods/features/cc/lib/cclib.php -text
+_mods/features/cc/modules/mod-my_ledger.php -text
 _mods/features/cc/templates/currencies.tpl -text
 _mods/features/cc/templates/currencies_form.tpl -text
 _mods/features/cc/templates/currency_admin.tpl -text
 _mods/features/cc/templates/index.tpl -text
 _mods/features/cc/templates/ledgers.tpl -text
+_mods/features/cc/templates/modules/mod-my_ledger.tpl -text
 _mods/features/cc/templates/transactions.tpl -text
 _mods/features/cc/templates/transactions_form.tpl -text
 _mods/features/dlp/Readme -text
