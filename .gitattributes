@@ -307,6 +307,7 @@ tiki/db/pgsql/mysql2pgsql.sh -text
 tiki/db/pgsql/psql.log -text
 tiki/db/pgsql/tiki_mysql.sql -text
 tiki/db/pgsql/tiki_pgsql.sql -text
+tiki/db/profiles/_default.prf -text
 tiki/db/profiles/default-inserts.sql -text
 tiki/db/profiles/dump_prefs.sql -text
 tiki/db/profiles/mk_profile.sh -text
