@@ -60,7 +60,9 @@ tiki/Smarty/plugins/modifier.default.php -text
 tiki/Smarty/plugins/modifier.escape.php -text
 tiki/Smarty/plugins/modifier.iconify.php -text
 tiki/Smarty/plugins/modifier.indent.php -text
+tiki/Smarty/plugins/modifier.kbsize.php -text
 tiki/Smarty/plugins/modifier.lower.php -text
+tiki/Smarty/plugins/modifier.nlbr.php -text
 tiki/Smarty/plugins/modifier.regex_replace.php -text
 tiki/Smarty/plugins/modifier.replace.php -text
 tiki/Smarty/plugins/modifier.spacify.php -text
@@ -390,6 +392,7 @@ tiki/styles/subsilver/cellpic1.gif -text
 tiki/styles/subsilver/cellpic2.jpg -text
 tiki/styles/subsilver/cellpic3.gif -text
 tiki/temp/license.txt -text
+tiki/temp/mail_attachs/license.txt -text
 tiki/templates/categorize.tpl -text
 tiki/templates/comments.tpl -text
 tiki/templates/error.tpl -text
@@ -596,6 +599,7 @@ tiki/templates/tiki-view_forum_thread.tpl -text
 tiki/templates/tiki-view_tracker.tpl -text
 tiki/templates/tiki-view_tracker_item.tpl -text
 tiki/templates/tiki-webmail.tpl -text
+tiki/templates/tiki-webmail_contacts.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/license.txt -text
@@ -758,6 +762,7 @@ tiki/tiki-view_forum_thread.php -text
 tiki/tiki-view_tracker.php -text
 tiki/tiki-view_tracker_item.php -text
 tiki/tiki-webmail.php -text
+tiki/tiki-webmail_contacts.php -text
 tiki/tiki-webmail_download_attachment.php -text
 tiki/tiki-wiki_link_structure.php -text
 tiki/tiki-wiki_rankings.php -text
