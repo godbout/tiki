@@ -20,6 +20,7 @@ tiki/templates_c
 tiki/templates_c/*%%*
 tiki/templates_c/??
 tiki/templates_c/_smarty_cached_paths
+tiki/templates_c/cleancache.cmd
 tiki/templates_c/preferences.php
 tiki/tiki-emptycache.php
 tiki/var
