@@ -1073,6 +1073,7 @@ tiki/lib/mailin/mailinlib.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/menulib.php -text
 tiki/lib/messu/messulib.php -text
+tiki/lib/minical/minicallib.php -text
 tiki/lib/newsletters/nllib.php -text
 tiki/lib/newsreader/newslib.php -text
 tiki/lib/notepad/notepadlib.php -text
@@ -1103,6 +1104,7 @@ tiki/lib/tiki-js.js -text
 tiki/lib/tikilib.php -text
 tiki/lib/trackers/trackerlib.php -text
 tiki/lib/userfiles/userfileslib.php -text
+tiki/lib/usermenu/usermenulib.php -text
 tiki/lib/usermodules/usermoduleslib.php -text
 tiki/lib/userprefs/userprefslib.php -text
 tiki/lib/userslib.php -text
@@ -1492,6 +1494,7 @@ tiki/templates/tiki-list_surveys.tpl -text
 tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
 tiki/templates/tiki-login.tpl -text
+tiki/templates/tiki-minical.php -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
@@ -1560,6 +1563,7 @@ tiki/templates/tiki-user_menu.tpl -text
 tiki/templates/tiki-user_preferences.tpl -text
 tiki/templates/tiki-user_tasks.tpl -text
 tiki/templates/tiki-userfiles.tpl -text
+tiki/templates/tiki-usermenu.tpl -text
 tiki/templates/tiki-userversions.tpl -text
 tiki/templates/tiki-view_articles.tpl -text
 tiki/templates/tiki-view_banner.tpl -text
@@ -1746,6 +1750,7 @@ tiki/tiki-login_scr.php -text
 tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
 tiki/tiki-mailin.php -text
+tiki/tiki-minical.php -text
 tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
 tiki/tiki-mytiki_shared.php -text
@@ -1820,6 +1825,7 @@ tiki/tiki-user_information.php -text
 tiki/tiki-user_preferences.php -text
 tiki/tiki-user_tasks.php -text
 tiki/tiki-userfiles.php -text
+tiki/tiki-usermenu.php -text
 tiki/tiki-userversions.php -text
 tiki/tiki-view_articles.php -text
 tiki/tiki-view_banner.php -text
