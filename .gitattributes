@@ -2753,8 +2753,6 @@ tiki/lib/wiki3d/Balancer.class -text svneol=unset#unset
 tiki/lib/wiki3d/Balancer.java -text
 tiki/lib/wiki3d/Camera.class -text svneol=unset#unset
 tiki/lib/wiki3d/Camera.java -text
-tiki/lib/wiki3d/Can3d.class -text svneol=unset#unset
-tiki/lib/wiki3d/Can3d.java -text
 tiki/lib/wiki3d/Config.class -text svneol=unset#unset
 tiki/lib/wiki3d/Config.java -text
 tiki/lib/wiki3d/Face.class -text svneol=unset#unset
@@ -2767,8 +2765,6 @@ tiki/lib/wiki3d/Navigator.class -text svneol=unset#unset
 tiki/lib/wiki3d/Navigator.java -text
 tiki/lib/wiki3d/Node.class -text svneol=unset#unset
 tiki/lib/wiki3d/Node.java -text
-tiki/lib/wiki3d/Pos.class -text svneol=unset#unset
-tiki/lib/wiki3d/Pos.java -text
 tiki/lib/wiki3d/SpeedVector.class -text svneol=unset#unset
 tiki/lib/wiki3d/SpeedVector.java -text
 tiki/lib/wiki3d/Vertex.class -text svneol=unset#unset
