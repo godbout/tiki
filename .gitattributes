@@ -3376,10 +3376,18 @@ tiki/styles/redmetal/red_toprightbg.gif -text
 tiki/styles/redmetal/tile_back.gif -text
 tiki/styles/simple.css -text
 tiki/styles/simple/admin_move.gif -text
+tiki/styles/simple/close.png -text
+tiki/styles/simple/close_out.png -text
 tiki/styles/simple/delete.gif -text
 tiki/styles/simple/down.gif -text
+tiki/styles/simple/down.png -text
+tiki/styles/simple/down_out.png -text
 tiki/styles/simple/index.php -text
+tiki/styles/simple/move.png -text
+tiki/styles/simple/move_out.png -text
 tiki/styles/simple/up.gif -text
+tiki/styles/simple/up.png -text
+tiki/styles/simple/up_out.png -text
 tiki/styles/slides/index.php -text
 tiki/styles/slides/wiredot.png -text svneol=unset#unset
 tiki/styles/slideshows/clear.css -text
@@ -3448,6 +3456,9 @@ tiki/templates/mail/blogs_send_link.tpl -text
 tiki/templates/mail/confirm_newsletter_subscription.tpl -text
 tiki/templates/mail/forum_post_notification.tpl -text
 tiki/templates/mail/index.php -text
+tiki/templates/mail/mailin_help.tpl -text
+tiki/templates/mail/mailin_help_subject.tpl -text
+tiki/templates/mail/mailin_reply_subject.tpl -text
 tiki/templates/mail/messu_message_notification.tpl -text
 tiki/templates/mail/messu_message_notification_subject.tpl -text
 tiki/templates/mail/new_user_notification.tpl -text
@@ -3549,6 +3560,7 @@ tiki/templates/modules/mod-since_last_visit_new.tpl -text
 tiki/templates/modules/mod-switch_lang.tpl -text
 tiki/templates/modules/mod-switch_lang2.tpl -text
 tiki/templates/modules/mod-switch_theme.tpl -text
+tiki/templates/modules/mod-switch_theme.tpl.nocache -text
 tiki/templates/modules/mod-tail.tpl -text
 tiki/templates/modules/mod-top_active_blogs.tpl -text
 tiki/templates/modules/mod-top_articles.tpl -text
@@ -3705,6 +3717,7 @@ tiki/templates/styles/simple/modules/index.php -text
 tiki/templates/styles/simple/modules/mod-application_menu.tpl -text
 tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
 tiki/templates/styles/simple/tiki-print_article.tpl -text
+tiki/templates/styles/simple/tiki-show_page.tpl -text
 tiki/templates/styles/simple/tiki.tpl -text
 tiki/templates/styles/smartiki/babelfish.tpl -text
 tiki/templates/styles/smartiki/error.tpl -text
