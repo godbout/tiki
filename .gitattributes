@@ -3731,6 +3731,7 @@ tiki/tiki-hw_student_assignment.php -text
 tiki/tiki-hw_student_assignments.php -text
 tiki/tiki-hw_student_last_changes.php -text
 tiki/tiki-hw_teacher_assignment_edit.php -text
+tiki/tiki-hw_teacher_assignment_print.php -text
 tiki/tiki-hw_teacher_assignments.php -text
 tiki/tiki-hw_teacher_grading_queue.php -text
 tiki/tiki-hw_teacher_last_changes.php -text
