@@ -207,6 +207,8 @@ tiki/db/.cvsignore -text
 tiki/db/convert_nulls_to_non_nulls.php -text
 tiki/db/convert_nulls_to_non_nulls.sql -text
 tiki/db/fulltext.sql -text
+tiki/db/pgsql/MigratingFromMySQLtoPostgreSQL.htm -text
+tiki/db/pgsql/mysql-functions.sql -text
 tiki/db/pgsql/mysql2pgsql.pl -text
 tiki/db/pgsql/mysql2pgsql.sh -text
 tiki/db/pgsql/psql.log -text
