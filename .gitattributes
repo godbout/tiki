@@ -1126,6 +1126,7 @@ tiki/img/icons/ico_color.gif -text
 tiki/img/icons/ico_copy.gif -text
 tiki/img/icons/ico_cut.gif -text
 tiki/img/icons/ico_emote.gif -text
+tiki/img/icons/ico_friend.gif -text
 tiki/img/icons/ico_friend.png -text
 tiki/img/icons/ico_img.gif -text
 tiki/img/icons/ico_indent.gif -text
@@ -2320,6 +2321,7 @@ tiki/lib/wiki-plugins/wikiplugin_sheet.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
+tiki/lib/wiki-plugins/wikiplugin_thumb.php -text
 tiki/lib/wiki-plugins/wikiplugin_titlesearch.php -text
 tiki/lib/wiki-plugins/wikiplugin_tracker.php -text
 tiki/lib/wiki-plugins/wikiplugin_trackerlist.php -text
@@ -2945,6 +2947,7 @@ tiki/templates/styles/bluemetal/tiki.tpl -text
 tiki/templates/styles/codex/error.tpl -text
 tiki/templates/styles/codex/index.php -text
 tiki/templates/styles/codex/tiki.tpl -text
+tiki/templates/styles/damian/module.tpl -text
 tiki/templates/styles/damian/tiki-bot_bar.tpl -text
 tiki/templates/styles/damian/tiki-show_page.tpl -text
 tiki/templates/styles/damian/tiki-top_bar.tpl -text
