@@ -252,6 +252,8 @@ _mods/Packages/themes-zaksworld.info.txt -text
 _mods/Packages/themes-ztheme.info.txt -text
 _mods/Packages/wikiplugins-ebay.info.txt -text
 _mods/Packages/wikiplugins-formula.info.txt -text
+_mods/Packages/wikiplugins-group.info.txt -text
+_mods/Packages/wikiplugins-perm.info.txt -text
 _mods/Packages/wikiplugins-phplot.info.txt -text
 _mods/Packages/wikiplugins-redirect.info.txt -text
 _mods/Packages/wikiplugins-scroll.info.txt -text
@@ -1327,7 +1329,11 @@ _mods/wiki-plugins/ebay/wiki-plugins/wikiplugin_ebay.php -text
 _mods/wiki-plugins/formula/README -text
 _mods/wiki-plugins/formula/wiki-plugins/tex2png -text
 _mods/wiki-plugins/formula/wiki-plugins/wikiplugin_formula.php -text
+_mods/wiki-plugins/group/README -text
+_mods/wiki-plugins/group/wiki-plugins/wikiplugin_group.php -text
 _mods/wiki-plugins/pagename/Readme -text
+_mods/wiki-plugins/perm/README -text
+_mods/wiki-plugins/perm/wiki-plugins/wikiplugin_perm.php -text
 _mods/wiki-plugins/phplot/Readme -text
 _mods/wiki-plugins/phplot/wiki-plugins/wikiplugin_phplot.php -text
 _mods/wiki-plugins/redirect/README -text
