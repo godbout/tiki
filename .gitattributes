@@ -230,6 +230,7 @@ _mods/Packages/themes-nhs.info.txt -text
 _mods/Packages/themes-purplemetal.info.txt -text
 _mods/Packages/themes-redmetal.info.txt -text
 _mods/Packages/themes-tarynsworld.info.txt -text
+_mods/Packages/themes-underworld.info.txt -text
 _mods/Packages/themes-veryorange.info.txt -text
 _mods/Packages/themes-zaksworld.info.txt -text
 _mods/Packages/themes-ztheme.info.txt -text
@@ -1200,6 +1201,7 @@ _mods/themes/tarynsworld/README -text
 _mods/themes/tarynsworld/styles/tarynsworld.css -text
 _mods/themes/tarynsworld/styles/tarynsworld/001.gif -text
 _mods/themes/underworld/README -text
+_mods/themes/underworld/styles/underworld.css -text
 _mods/themes/veryorange/README -text
 _mods/themes/veryorange/styles/veryorange.css -text
 _mods/themes/zaksworld/README -text
