@@ -3172,6 +3172,8 @@ tiki/templates/styles/musus/debug/tiki-debug_permissions.tpl -text
 tiki/templates/styles/musus/debug/tiki-debug_tikitables.tpl -text
 tiki/templates/styles/musus/debug/tiki-debug_watch_tab.tpl -text
 tiki/templates/styles/musus/error.tpl -text
+tiki/templates/styles/musus/error_simple.tpl -text
+tiki/templates/styles/musus/error_ticket.tpl -text
 tiki/templates/styles/musus/footer.tpl -text
 tiki/templates/styles/musus/header.tpl -text
 tiki/templates/styles/musus/mail/blogs_send_link.tpl -text
@@ -3287,6 +3289,9 @@ tiki/templates/styles/musus/modules/mod-who_is_there.tpl.nocache -text
 tiki/templates/styles/musus/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/styles/musus/modules/user_module.tpl -text
 tiki/templates/styles/musus/structures.tpl -text
+tiki/templates/styles/musus/structures_toc-endul.tpl -text
+tiki/templates/styles/musus/structures_toc-leaf.tpl -text
+tiki/templates/styles/musus/structures_toc-startul.tpl -text
 tiki/templates/styles/musus/structures_toc.tpl -text
 tiki/templates/styles/musus/structures_toc_level.tpl -text
 tiki/templates/styles/musus/tables/tiki_pages.tpl -text
@@ -3301,11 +3306,14 @@ tiki/templates/styles/musus/tiki-admin-include-fgal.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-forums.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-gal.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-general.tpl -text
+tiki/templates/styles/musus/tiki-admin-include-jukebox.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-list-sections.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-login.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-maps.tpl -text
+tiki/templates/styles/musus/tiki-admin-include-metatags.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-polls.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-rss.tpl -text
+tiki/templates/styles/musus/tiki-admin-include-search.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-trackers.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-userfiles.tpl -text
 tiki/templates/styles/musus/tiki-admin-include-webmail.tpl -text
@@ -3344,6 +3352,7 @@ tiki/templates/styles/musus/tiki-admin_rssmodules.tpl -text
 tiki/templates/styles/musus/tiki-admin_structures.tpl -text
 tiki/templates/styles/musus/tiki-admin_survey_questions.tpl -text
 tiki/templates/styles/musus/tiki-admin_surveys.tpl -text
+tiki/templates/styles/musus/tiki-admin_system.tpl -text
 tiki/templates/styles/musus/tiki-admin_topics.tpl -text
 tiki/templates/styles/musus/tiki-admin_tracker_fields.tpl -text
 tiki/templates/styles/musus/tiki-admin_trackers.tpl -text
@@ -3412,6 +3421,7 @@ tiki/templates/styles/musus/tiki-forums.tpl -text
 tiki/templates/styles/musus/tiki-forums_reported.tpl -text
 tiki/templates/styles/musus/tiki-g-activity_completed.tpl -text
 tiki/templates/styles/musus/tiki-g-admin_activities.tpl -text
+tiki/templates/styles/musus/tiki-g-admin_graph.tpl -text
 tiki/templates/styles/musus/tiki-g-admin_instance.tpl -text
 tiki/templates/styles/musus/tiki-g-admin_processes.tpl -text
 tiki/templates/styles/musus/tiki-g-admin_roles.tpl -text
@@ -3423,6 +3433,8 @@ tiki/templates/styles/musus/tiki-g-monitor_instances.tpl -text
 tiki/templates/styles/musus/tiki-g-monitor_processes.tpl -text
 tiki/templates/styles/musus/tiki-g-monitor_stats.tpl -text
 tiki/templates/styles/musus/tiki-g-monitor_workitems.tpl -text
+tiki/templates/styles/musus/tiki-g-my_activities.tpl -text
+tiki/templates/styles/musus/tiki-g-my_instances.tpl -text
 tiki/templates/styles/musus/tiki-g-proc_bar.tpl -text
 tiki/templates/styles/musus/tiki-g-user_activities.tpl -text
 tiki/templates/styles/musus/tiki-g-user_bar.tpl -text
@@ -3430,11 +3442,17 @@ tiki/templates/styles/musus/tiki-g-user_instances.tpl -text
 tiki/templates/styles/musus/tiki-g-user_processes.tpl -text
 tiki/templates/styles/musus/tiki-g-view_workitem.tpl -text
 tiki/templates/styles/musus/tiki-galleries.tpl -text
+tiki/templates/styles/musus/tiki-hw_page.tpl -text
+tiki/templates/styles/musus/tiki-hw_student_assignments.tpl -text
+tiki/templates/styles/musus/tiki-hw_teacher_assignment_edit.tpl -text
+tiki/templates/styles/musus/tiki-hw_teacher_assignment_edit_preview.tpl -text
 tiki/templates/styles/musus/tiki-imexport_languages.tpl -text
 tiki/templates/styles/musus/tiki-import_phpwiki.tpl -text
 tiki/templates/styles/musus/tiki-index_p.tpl -text
 tiki/templates/styles/musus/tiki-install.tpl -text
 tiki/templates/styles/musus/tiki-integrator.tpl -text
+tiki/templates/styles/musus/tiki-jukebox_albums.tpl -text
+tiki/templates/styles/musus/tiki-jukebox_genres.tpl -text
 tiki/templates/styles/musus/tiki-lastchanges.tpl -text
 tiki/templates/styles/musus/tiki-likepages.tpl -text
 tiki/templates/styles/musus/tiki-list_articles.tpl -text
@@ -3460,6 +3478,7 @@ tiki/templates/styles/musus/tiki-live_support_client.tpl -text
 tiki/templates/styles/musus/tiki-live_support_console.tpl -text
 tiki/templates/styles/musus/tiki-live_support_transcripts.tpl -text
 tiki/templates/styles/musus/tiki-login.tpl -text
+tiki/templates/styles/musus/tiki-mailin.tpl -text
 tiki/templates/styles/musus/tiki-minical.tpl -text
 tiki/templates/styles/musus/tiki-minical_prefs.tpl -text
 tiki/templates/styles/musus/tiki-my_tiki.tpl -text
@@ -3475,6 +3494,7 @@ tiki/templates/styles/musus/tiki-notepad_write.tpl -text
 tiki/templates/styles/musus/tiki-objectpermissions.tpl -text
 tiki/templates/styles/musus/tiki-old_polls.tpl -text
 tiki/templates/styles/musus/tiki-orphan_pages.tpl -text
+tiki/templates/styles/musus/tiki-packager_admin_packages.tpl -text
 tiki/templates/styles/musus/tiki-page.tpl -text
 tiki/templates/styles/musus/tiki-page_bar.tpl -text
 tiki/templates/styles/musus/tiki-pagehistory.tpl -text
@@ -3553,6 +3573,7 @@ tiki/templates/styles/musus/tiki-view_forum_thread.tpl -text
 tiki/templates/styles/musus/tiki-view_irc.tpl -text
 tiki/templates/styles/musus/tiki-view_tracker.tpl -text
 tiki/templates/styles/musus/tiki-view_tracker_item.tpl -text
+tiki/templates/styles/musus/tiki-view_tracker_more_info.tpl -text
 tiki/templates/styles/musus/tiki-webmail.tpl -text
 tiki/templates/styles/musus/tiki-webmail_contacts.tpl -text
 tiki/templates/styles/musus/tiki.tpl -text
