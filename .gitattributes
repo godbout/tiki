@@ -2512,6 +2512,7 @@ tiki/lib/wiki-plugins/wikiplugin_dl.php -text
 tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/wiki-plugins/wikiplugin_fancytable.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
+tiki/lib/wiki-plugins/wikiplugin_include.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
 tiki/lib/wiki-plugins/wikiplugin_mono.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
