@@ -902,6 +902,16 @@ _mods/images/tikiwiki/tikibutton3.png -text
 _mods/images/tikiwiki/tikibutton3.xcf -text svneol=unset#unset
 _mods/images/tikiwiki/tikibutton4.png -text
 _mods/images/tikiwiki/tikibutton4.xcf -text svneol=unset#unset
+_mods/sqls/tiki_0.95to1.0.sql -text
+_mods/sqls/tiki_0.9to0.95.sql -text
+_mods/sqls/tiki_1.0to1.1.sql -text
+_mods/sqls/tiki_1.1to1.2.sql -text
+_mods/sqls/tiki_1.2to1.3.sql -text
+_mods/sqls/tiki_1.3to1.4.sql -text
+_mods/sqls/tiki_1.4to1.5.sql -text
+_mods/sqls/tiki_1.5to1.6.sql -text
+_mods/sqls/tiki_1.6to1.7.sql -text
+_mods/sqls/tiki_1.7to1.8.sql -text
 _mods/taglines/README -text
 _mods/taglines/rcogley/README -text
 _mods/taglines/rcogley/taglines.txt -text
