@@ -876,6 +876,7 @@ tiki/img/icn/xls.gif -text
 tiki/img/icn/zip.gif -text
 tiki/img/icons/blue.gif -text
 tiki/img/icons/bluehalf.gif -text
+tiki/img/icons/edit.gif -text
 tiki/img/icons/folder.gif -text
 tiki/img/icons/folder_announce.gif -text
 tiki/img/icons/folder_announce_new.gif -text
@@ -886,7 +887,11 @@ tiki/img/icons/folder_locked_new.gif -text
 tiki/img/icons/folder_new.gif -text
 tiki/img/icons/folder_sticky.gif -text
 tiki/img/icons/folder_sticky_new.gif -text
+tiki/img/icons/ico_save.gif -text
+tiki/img/icons/icon38.gif -text
 tiki/img/icons/icon_folder.gif -text
+tiki/img/icons/lock_topic.gif -text
+tiki/img/icons/unlock_topic.gif -text
 tiki/img/leftbar.gif -text
 tiki/img/mainbar.gif -text
 tiki/img/mysql.gif -text
