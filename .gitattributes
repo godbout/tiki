@@ -1588,6 +1588,7 @@ tiki/templates/tiki-forums.tpl -text
 tiki/templates/tiki-galleries.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
 tiki/templates/tiki-import_phpwiki.tpl -text
+tiki/templates/tiki-install.tpl -text
 tiki/templates/tiki-lastchanges.tpl -text
 tiki/templates/tiki-likepages.tpl -text
 tiki/templates/tiki-list_articles.tpl -text
@@ -1844,6 +1845,7 @@ tiki/tiki-imexport_languages.php -text
 tiki/tiki-import_phpwiki.php -text
 tiki/tiki-index.php -text
 tiki/tiki-index_raw.php -text
+tiki/tiki-install.php -text
 tiki/tiki-lastchanges.php -text
 tiki/tiki-layout_options.php -text
 tiki/tiki-likepages.php -text
