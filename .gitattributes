@@ -1510,6 +1510,7 @@ tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
 tiki/templates/tiki-login.tpl -text
 tiki/templates/tiki-minical.tpl -text
+tiki/templates/tiki-minical_prefs.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
@@ -1766,6 +1767,7 @@ tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
 tiki/tiki-mailin.php -text
 tiki/tiki-minical.php -text
+tiki/tiki-minical_prefs.php -text
 tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
 tiki/tiki-mytiki_shared.php -text
