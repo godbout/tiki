@@ -3690,6 +3690,7 @@ tiki/templates/styles/tiki/tiki-top_tiki_bar.tpl -text
 tiki/templates/styles/tiki/tiki-top_user_menu.tpl -text
 tiki/templates/styles/tiki/tiki-user_menu.tpl -text
 tiki/templates/styles/tiki/tiki.tpl -text
+tiki/templates/styles/tikigod/tiki-show_page.tpl -text
 tiki/templates/styles/tikigod/tiki-top_bar.tpl -text
 tiki/templates/styles/tikigod/tiki.tpl -text
 tiki/templates/styles/trollparty/tiki-bot_bar.tpl -text
