@@ -3301,6 +3301,7 @@ tiki/styles/neat/linkTransparent.gif -text
 tiki/styles/neat/logoIcon.gif -text
 tiki/styles/neat/print_icon.gif -text
 tiki/styles/neat/user.gif -text
+tiki/styles/nornia.css -text
 tiki/styles/notheme.II.css -text
 tiki/styles/notheme.III.css -text
 tiki/styles/notheme.css -text
@@ -3667,6 +3668,8 @@ tiki/templates/styles/neat/tiki-show_page.tpl -text
 tiki/templates/styles/neat/tiki-top_bar.tpl -text
 tiki/templates/styles/neat/tiki-user_menu.tpl -text
 tiki/templates/styles/neat/tiki.tpl -text
+tiki/templates/styles/nornia/error.tpl -text
+tiki/templates/styles/nornia/tiki.tpl -text
 tiki/templates/styles/notheme/babelfish.tpl -text
 tiki/templates/styles/notheme/error.tpl -text
 tiki/templates/styles/notheme/index.php -text
