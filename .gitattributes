@@ -2218,6 +2218,7 @@ tiki/lib/tree/tree.php -text
 tiki/lib/userfiles/userfileslib.php -text
 tiki/lib/usermenu/usermenulib.php -text
 tiki/lib/usermodules/usermoduleslib.php -text
+tiki/lib/userprefs/scrambleEmail.php -text
 tiki/lib/userprefs/userprefslib.php -text
 tiki/lib/userslib.php -text
 tiki/lib/webmail/API.txt -text
