@@ -1864,6 +1864,7 @@ tiki/lib/NNTP.php -text
 tiki/lib/admin/adminlib.php -text
 tiki/lib/bablotron.php -text
 tiki/lib/backups/backupslib.php -text
+tiki/lib/ban/banlib.php -text
 tiki/lib/banners/bannerlib.php -text
 tiki/lib/blogs/bloglib.php -text
 tiki/lib/bookmarks/bookmarklib.php -text
@@ -2431,6 +2432,7 @@ tiki/templates/tiki-admin-include-wiki-features.tpl -text
 tiki/templates/tiki-admin-include-wiki-history.tpl -text
 tiki/templates/tiki-admin-include-wiki.tpl -text
 tiki/templates/tiki-admin.tpl -text
+tiki/templates/tiki-admin_banning.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
 tiki/templates/tiki-admin_chart_items.tpl -text
 tiki/templates/tiki-admin_charts.tpl -text
@@ -2701,6 +2703,7 @@ tiki/tests/parse_data/test9 -text
 tiki/tests/parse_data/test9.output -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_banners.php -text
+tiki/tiki-admin_banning.php -text
 tiki/tiki-admin_categories.php -text
 tiki/tiki-admin_chart_items.php -text
 tiki/tiki-admin_charts.php -text
@@ -2911,7 +2914,6 @@ tiki/tiki-rename_page.php -text
 tiki/tiki-rollback.php -text
 tiki/tiki-search_stats.php -text
 tiki/tiki-searchresults.php -text
-tiki/tiki-section_options -text
 tiki/tiki-section_options.php -text
 tiki/tiki-send_blog_post.php -text
 tiki/tiki-send_newsletters.php -text
