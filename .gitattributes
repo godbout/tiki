@@ -2308,6 +2308,7 @@ tiki/modules/mod-user_pages.php -text
 tiki/modules/mod-user_tasks.php -text
 tiki/modules/mod-whats_related.php -text
 tiki/modules/mod-who_is_there.php -text
+tiki/modules/mod-wiki_last_comments.php -text
 tiki/popups/about.html -text
 tiki/popups/blank.html -text
 tiki/popups/custom2.html -text
@@ -2637,6 +2638,7 @@ tiki/templates/modules/mod-user_tasks.tpl.nocache -text
 tiki/templates/modules/mod-whats_related.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl.nocache -text
+tiki/templates/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
