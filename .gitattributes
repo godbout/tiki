@@ -2261,6 +2261,8 @@ tiki/templates/tiki-admin-include-rss.tpl -text
 tiki/templates/tiki-admin-include-trackers.tpl -text
 tiki/templates/tiki-admin-include-userfiles.tpl -text
 tiki/templates/tiki-admin-include-webmail.tpl -text
+tiki/templates/tiki-admin-include-wiki-features.tpl -text
+tiki/templates/tiki-admin-include-wiki-history.tpl -text
 tiki/templates/tiki-admin-include-wiki.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
