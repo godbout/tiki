@@ -2276,6 +2276,7 @@ tiki/lib/phpOpenTracker/conf/lock.ini.dist -text
 tiki/lib/phpOpenTracker/conf/operating_systems.ini -text
 tiki/lib/phpOpenTracker/conf/phpOpenTracker.ini -text
 tiki/lib/phpOpenTracker/conf/user_agents.ini -text
+tiki/lib/phpOpenTracker/phpOpenTracker.php -text
 tiki/lib/phplot.php -text
 tiki/lib/polls/polllib.php -text
 tiki/lib/potlib.php -text
@@ -2426,7 +2427,6 @@ tiki/modules/mod-user_image_galleries.php -text
 tiki/modules/mod-user_pages.php -text
 tiki/modules/mod-user_tasks.php -text
 tiki/modules/mod-who_is_there.php -text
-tiki/phpOpenTracker.php -text
 tiki/popups/about.html -text
 tiki/popups/blank.html -text
 tiki/popups/custom2.html -text
