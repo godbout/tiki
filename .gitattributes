@@ -307,8 +307,11 @@ tiki/lib/tar.class.php -text
 tiki/lib/tiki-js.js -text
 tiki/lib/tikilib.php -text
 tiki/lib/userslib.php -text
+tiki/lib/webmail/API.txt -text
 tiki/lib/webmail/class.rc4crypt.php -text
 tiki/lib/webmail/decodemessage.php -text
+tiki/lib/webmail/example.1.php -text
+tiki/lib/webmail/htmlMimeMail.php -text
 tiki/lib/webmail/mimeDecode.php -text
 tiki/lib/webmail/pop3.php -text
 tiki/lib/xmlrpc.inc -text
