@@ -188,6 +188,7 @@ _phplayers/ACKNOWLEDGEMENTS -text
 _phplayers/CHANGELOG -text
 _phplayers/CHANGE_TEMPLATE_CLASS_NAME.sh -text
 _phplayers/COPYING -text
+_phplayers/DUMPS/index.php -text
 _phplayers/DUMPS/mysql.demo_data.dump -text
 _phplayers/DUMPS/mysql.start.dump -text
 _phplayers/DUMPS/pgsql.demo_data.dump -text
