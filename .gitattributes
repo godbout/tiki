@@ -148,6 +148,7 @@ _jscalendar/calendar.js -text
 _jscalendar/calendar.php -text
 _jscalendar/calendar_stripped.js -text
 _jscalendar/img.gif -text
+_jscalendar/index.php -text
 _jscalendar/lang/calendar-af.js -text
 _jscalendar/lang/calendar-br-utf8.js -text
 _jscalendar/lang/calendar-br.js -text
@@ -184,6 +185,7 @@ _jscalendar/lang/calendar-sp.js -text
 _jscalendar/lang/calendar-sv.js -text
 _jscalendar/lang/calendar-tr.js -text
 _jscalendar/lang/calendar-zh.js -text
+_jscalendar/lang/index.php -text
 _jscalendar/menuarrow.gif -text
 _jscalendar/menuarrow2.gif -text
 _mods/README -text
@@ -534,11 +536,13 @@ _smarty/NEWS -text
 _smarty/README -text
 _smarty/RELEASE_NOTES -text
 _smarty/TODO -text
+_smarty/core/index.php -text
 _smarty/demo/configs/test.conf -text
 _smarty/demo/index.php -text
 _smarty/demo/templates/footer.tpl -text
 _smarty/demo/templates/header.tpl -text
 _smarty/demo/templates/index.tpl -text
+_smarty/index.php -text
 _smarty/libs/Config_File.class.php -text
 _smarty/libs/Smarty.class.php -text
 _smarty/libs/Smarty_Compiler.class.php -text
@@ -618,6 +622,7 @@ _smarty/plugins/block.strip.php -text
 _smarty/plugins/function.fetch.php.diff -text
 _smarty/plugins/function.html_select_date.php.diff -text
 _smarty/plugins/function.html_select_time.php.diff -text
+_smarty/plugins/index.php -text
 tiki/.cvsignore -text
 tiki/INSTALL -text
 tiki/README -text
@@ -3442,6 +3447,7 @@ tiki/templates/modules/mod-whats_related.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl.nocache -text
 tiki/templates/modules/mod-wiki_last_comments.tpl -text
+tiki/templates/modules/mod-wiki_last_comments.tpl.nocache -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/structures_toc-endul.tpl -text
