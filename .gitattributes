@@ -98,6 +98,7 @@ tiki/Smarty/plugins/prefilter.tr.php -text
 tiki/Smarty/plugins/resource.style.php -text
 tiki/Smarty/plugins/shared.make_timestamp.php -text
 tiki/article_image.php -text
+tiki/backups/.cvsignore -text
 tiki/backups/license.txt -text
 tiki/banner_click.php -text
 tiki/banner_image.php -text
@@ -123,6 +124,7 @@ tiki/db/tiki_1.5to1.6.sql -text
 tiki/db/tiki_1.6to1.7.sql -text
 tiki/display_banner.php -text
 tiki/doc/readme.txt -text
+tiki/dump/.cvsignore -text
 tiki/dump/new.tar -text
 tiki/games/flash/license.txt -text
 tiki/games/license.txt -text
@@ -1395,6 +1397,7 @@ tiki/img/webmail/search.gif -text
 tiki/img/webmail/settings.gif -text
 tiki/img/webmail/view.gif -text
 tiki/img/wiki/license.txt -text
+tiki/img/wiki_up/.cvsignore -text
 tiki/img/wiki_up/license.txt -text
 tiki/index.php -text
 tiki/jhot.php -text

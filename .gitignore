@@ -1,5 +1,8 @@
 tiki/.project
+tiki/backups/*
 tiki/db/local.php
+tiki/dump/*
+tiki/img/wiki_up/*
 tiki/modules/cache
 tiki/modules/cache/*
 tiki/templates_c
