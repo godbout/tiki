@@ -1115,6 +1115,7 @@ tiki/modules/mod-user_blogs.php -text
 tiki/modules/mod-user_bookmarks.php -text
 tiki/modules/mod-user_image_galleries.php -text
 tiki/modules/mod-user_pages.php -text
+tiki/modules/mod-user_tasks.php -text
 tiki/received_article_image.php -text
 tiki/select_banner.php -text
 tiki/setup.php -text
@@ -1257,6 +1258,7 @@ tiki/templates/modules/mod-user_image_galleries.tpl.nocache -text
 tiki/templates/modules/mod-user_pages.php.nocache -text
 tiki/templates/modules/mod-user_pages.tpl -text
 tiki/templates/modules/mod-user_pages.tpl.nocache -text
+tiki/templates/modules/mod-user_tasks.tpl -text
 tiki/templates/modules/user_module.tpl -text
 tiki/templates/styles/boreal/error.tpl -text
 tiki/templates/styles/boreal/tiki-print.tpl -text
@@ -1457,6 +1459,7 @@ tiki/templates/tiki-user_bookmarks.tpl -text
 tiki/templates/tiki-user_information.tpl -text
 tiki/templates/tiki-user_menu.tpl -text
 tiki/templates/tiki-user_preferences.tpl -text
+tiki/templates/tiki-user_tasks.tpl -text
 tiki/templates/tiki-userversions.tpl -text
 tiki/templates/tiki-view_articles.tpl -text
 tiki/templates/tiki-view_banner.tpl -text
@@ -1657,6 +1660,7 @@ tiki/tiki-user_bookmarks.php -text
 tiki/tiki-user_cached_bookmark.php -text
 tiki/tiki-user_information.php -text
 tiki/tiki-user_preferences.php -text
+tiki/tiki-user_tasks.php -text
 tiki/tiki-userversions.php -text
 tiki/tiki-view_articles.php -text
 tiki/tiki-view_banner.php -text
