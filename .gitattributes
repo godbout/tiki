@@ -3218,6 +3218,7 @@ tiki/tests/parse_data/test8 -text
 tiki/tests/parse_data/test8.output -text
 tiki/tests/parse_data/test9 -text
 tiki/tests/parse_data/test9.output -text
+tiki/tests/test_cvs_file.txt -text
 tiki/textareasize.php -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_banners.php -text
