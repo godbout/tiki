@@ -2466,62 +2466,6 @@ tiki/lib/irc/index.php -text
 tiki/lib/irc/irclib.php -text
 tiki/lib/irc/split_logs.php -text
 tiki/lib/irc/tikiwiki.php -text
-tiki/lib/jHotDraw/ATEXT1.gif -text
-tiki/lib/jHotDraw/ATEXT2.gif -text
-tiki/lib/jHotDraw/ATEXT3.gif -text
-tiki/lib/jHotDraw/BORDDEC1.gif -text
-tiki/lib/jHotDraw/BORDDEC2.gif -text
-tiki/lib/jHotDraw/BORDDEC3.gif -text
-tiki/lib/jHotDraw/CONN1.gif -text
-tiki/lib/jHotDraw/CONN2.gif -text
-tiki/lib/jHotDraw/CONN3.gif -text
-tiki/lib/jHotDraw/DIAMOND2.gif -text
-tiki/lib/jHotDraw/DIAMOND3.gif -text
-tiki/lib/jHotDraw/ELLIPSE1.gif -text
-tiki/lib/jHotDraw/ELLIPSE2.gif -text
-tiki/lib/jHotDraw/ELLIPSE3.gif -text
-tiki/lib/jHotDraw/ERASER2.gif -text
-tiki/lib/jHotDraw/ERASER3.gif -text
-tiki/lib/jHotDraw/LINE1.gif -text
-tiki/lib/jHotDraw/LINE2.gif -text
-tiki/lib/jHotDraw/LINE3.gif -text
-tiki/lib/jHotDraw/OCONN1.gif -text
-tiki/lib/jHotDraw/OCONN2.gif -text
-tiki/lib/jHotDraw/OCONN3.gif -text
-tiki/lib/jHotDraw/PERT2.gif -text
-tiki/lib/jHotDraw/PERT3.gif -text
-tiki/lib/jHotDraw/POLYGON1.gif -text
-tiki/lib/jHotDraw/POLYGON2.gif -text
-tiki/lib/jHotDraw/POLYGON3.gif -text
-tiki/lib/jHotDraw/RECT1.gif -text
-tiki/lib/jHotDraw/RECT2.gif -text
-tiki/lib/jHotDraw/RECT3.gif -text
-tiki/lib/jHotDraw/RRECT1.gif -text
-tiki/lib/jHotDraw/RRECT2.gif -text
-tiki/lib/jHotDraw/RRECT3.gif -text
-tiki/lib/jHotDraw/SCRIBBL1.gif -text
-tiki/lib/jHotDraw/SCRIBBL2.gif -text
-tiki/lib/jHotDraw/SCRIBBL3.gif -text
-tiki/lib/jHotDraw/SEL1.gif -text
-tiki/lib/jHotDraw/SEL2.gif -text
-tiki/lib/jHotDraw/SEL3.gif -text
-tiki/lib/jHotDraw/TEXT1.gif -text
-tiki/lib/jHotDraw/TEXT2.gif -text
-tiki/lib/jHotDraw/TEXT3.gif -text
-tiki/lib/jHotDraw/TOBACK2.gif -text
-tiki/lib/jHotDraw/TOBACK3.gif -text
-tiki/lib/jHotDraw/TOFRONT2.gif -text
-tiki/lib/jHotDraw/TOFRONT3.gif -text
-tiki/lib/jHotDraw/TRIANGLE2.gif -text
-tiki/lib/jHotDraw/TRIANGLE3.gif -text
-tiki/lib/jHotDraw/URL1.gif -text
-tiki/lib/jHotDraw/URL2.gif -text
-tiki/lib/jHotDraw/URL3.gif -text
-tiki/lib/jHotDraw/applettest.html -text
-tiki/lib/jHotDraw/example.draw -text
-tiki/lib/jHotDraw/example.gif -text
-tiki/lib/jHotDraw/example.map -text
-tiki/lib/jHotDraw/twikidraw.jar -text
 tiki/lib/jgraphpad/index.php -text
 tiki/lib/jgraphpad/jgraphpad.jar -text
 tiki/lib/jukebox/index.php -text
@@ -2807,17 +2751,6 @@ tiki/lib/structures/index.php -text
 tiki/lib/structures/structlib.php -text
 tiki/lib/surveys/index.php -text
 tiki/lib/surveys/surveylib.php -text
-tiki/lib/tabs/aqua-tab-active.png -text
-tiki/lib/tabs/aqua-tab.png -text
-tiki/lib/tabs/aqua.css -text svneol=unset#application/octet-stream
-tiki/lib/tabs/cookie.js -text svneol=unset#application/octet-stream
-tiki/lib/tabs/global.js -text svneol=unset#application/octet-stream
-tiki/lib/tabs/index.php -text
-tiki/lib/tabs/mozilla.css -text svneol=unset#application/octet-stream
-tiki/lib/tabs/tabs.js -text svneol=unset#application/octet-stream
-tiki/lib/tabs/utils.js -text svneol=unset#application/octet-stream
-tiki/lib/tabs/viewport.js -text svneol=unset#application/octet-stream
-tiki/lib/tabs/winxp.css -text svneol=unset#application/octet-stream
 tiki/lib/taglines/index.php -text
 tiki/lib/taglines/taglinelib.php -text
 tiki/lib/tail/index.php -text
