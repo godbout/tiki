@@ -2316,6 +2316,11 @@ tiki/styles/jalist2/grad.png -text
 tiki/styles/jalist2/maincap.png -text
 tiki/styles/jalist2/menucap.png -text
 tiki/styles/mose.css -text
+tiki/styles/mose/bgtitlebox.png -text
+tiki/styles/mose/fo.gif -text
+tiki/styles/mose/lightfeu.png -text
+tiki/styles/mose/shadowfeu.png -text
+tiki/styles/mose/topimage172x14.png -text
 tiki/styles/mozilla.css -text
 tiki/styles/mozilla/mozilla-menubar.png -text
 tiki/styles/neat.css -text svneol=unset#application/octet-stream
@@ -2482,6 +2487,17 @@ tiki/templates/styles/jalist2/tiki-print.tpl -text
 tiki/templates/styles/jalist2/tiki-print_article.tpl -text
 tiki/templates/styles/jalist2/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/jalist2/tiki.tpl -text
+tiki/templates/styles/mose/error.tpl -text
+tiki/templates/styles/mose/modules/mod-application_menu.tpl -text
+tiki/templates/styles/mose/tiki-bot_bar.tpl -text
+tiki/templates/styles/mose/tiki-custom_home.tpl -text
+tiki/templates/styles/mose/tiki-mytiki_bar.tpl -text
+tiki/templates/styles/mose/tiki-print.tpl -text
+tiki/templates/styles/mose/tiki-print_article.tpl -text
+tiki/templates/styles/mose/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/mose/tiki-send_newsletters.tpl -text
+tiki/templates/styles/mose/tiki-top_bar.tpl -text
+tiki/templates/styles/mose/tiki.tpl -text
 tiki/templates/styles/neat/error.tpl -text
 tiki/templates/styles/neat/modules/mod-application_menu.tpl -text
 tiki/templates/styles/neat/tiki-print.tpl -text
