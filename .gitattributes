@@ -3115,6 +3115,7 @@ tiki/templates/structures_toc_level.tpl -text
 tiki/templates/styles/3dblue/error.tpl -text
 tiki/templates/styles/3dblue/error_ticket.tpl -text
 tiki/templates/styles/3dblue/tiki.tpl -text
+tiki/templates/styles/508/tiki.tpl -text
 tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
 tiki/templates/styles/akwa/tiki.tpl -text
 tiki/templates/styles/blank/tiki.tpl -text
