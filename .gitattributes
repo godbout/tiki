@@ -2066,6 +2066,7 @@ tiki/templates/mail/password_reminder.tpl -text
 tiki/templates/mail/submission_notification.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
+tiki/templates/mail/user_watch_blog_post.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed.tpl -text
 tiki/templates/mail/wiki_change_notification.tpl -text
 tiki/templates/messu-broadcast.tpl -text
