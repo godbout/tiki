@@ -3871,6 +3871,7 @@ tiki/templates/tiki-hw_teacher_last_changes.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
 tiki/templates/tiki-import-sheets.tpl -text
 tiki/templates/tiki-import_phpwiki.tpl -text
+tiki/templates/tiki-import_structuredtext.tpl -text
 tiki/templates/tiki-index_p.tpl -text
 tiki/templates/tiki-install.tpl -text
 tiki/templates/tiki-integrator.tpl -text
@@ -4075,6 +4076,7 @@ tiki/tests/parse_data/test8 -text
 tiki/tests/parse_data/test8.output -text
 tiki/tests/parse_data/test9 -text
 tiki/tests/parse_data/test9.output -text
+tiki/tests/test_cookies.html -text
 tiki/tests/test_cvs_file.txt -text
 tiki/tests/test_file_2.txt -text
 tiki/textareasize.php -text
@@ -4272,6 +4274,7 @@ tiki/tiki-image_gallery_rss.php -text
 tiki/tiki-imexport_languages.php -text
 tiki/tiki-import_phpwiki.php -text
 tiki/tiki-import_sheet.php -text
+tiki/tiki-import_structuredtext.php -text
 tiki/tiki-index.php -text
 tiki/tiki-index_p.php -text
 tiki/tiki-index_raw.php -text
