@@ -2062,6 +2062,14 @@ tiki/lib/snoopy/Snoopy.class.inc -text
 tiki/lib/stats/statslib.php -text
 tiki/lib/structures/structlib.php -text
 tiki/lib/surveys/surveylib.php -text
+tiki/lib/tabs/aqua.css -text svneol=unset#application/octet-stream
+tiki/lib/tabs/cookie.js -text svneol=unset#application/octet-stream
+tiki/lib/tabs/global.js -text svneol=unset#application/octet-stream
+tiki/lib/tabs/mozilla.css -text svneol=unset#application/octet-stream
+tiki/lib/tabs/tabs.js -text svneol=unset#application/octet-stream
+tiki/lib/tabs/utils.js -text svneol=unset#application/octet-stream
+tiki/lib/tabs/viewport.js -text svneol=unset#application/octet-stream
+tiki/lib/tabs/winxp.css -text svneol=unset#application/octet-stream
 tiki/lib/taglines/taglinelib.php -text
 tiki/lib/tar.class.php -text
 tiki/lib/tasks/tasklib.php -text
