@@ -1312,6 +1312,7 @@ tiki/doc/devtools/lastcvs.sh -text
 tiki/doc/devtools/mergelang.pl -text
 tiki/doc/devtools/phpstrip.sh -text
 tiki/doc/devtools/restorehelp.php -text
+tiki/doc/devtools/set_perms.py -text
 tiki/doc/devtools/sharetiki.sh -text
 tiki/doc/devtools/sqlupgrade.sh -text
 tiki/doc/devtools/sync.php -text
