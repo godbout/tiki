@@ -2749,22 +2749,12 @@ tiki/lib/wiki/histlib.php -text
 tiki/lib/wiki/index.php -text
 tiki/lib/wiki/pluginslib.php -text
 tiki/lib/wiki/wikilib.php -text
-tiki/lib/wiki3d/Action.class -text svneol=unset#unset
-tiki/lib/wiki3d/Action.java -text
-tiki/lib/wiki3d/AnimationThread.class -text svneol=unset#unset
-tiki/lib/wiki3d/AnimationThread.java -text
-tiki/lib/wiki3d/BalanceThread.class -text svneol=unset#unset
-tiki/lib/wiki3d/BalanceThread.java -text
 tiki/lib/wiki3d/Balancer.class -text svneol=unset#unset
 tiki/lib/wiki3d/Balancer.java -text
 tiki/lib/wiki3d/Camera.class -text svneol=unset#unset
 tiki/lib/wiki3d/Camera.java -text
 tiki/lib/wiki3d/Can3d.class -text svneol=unset#unset
 tiki/lib/wiki3d/Can3d.java -text
-tiki/lib/wiki3d/CanvaxVertex.class -text svneol=unset#unset
-tiki/lib/wiki3d/CanvaxVertex.java -text
-tiki/lib/wiki3d/CenterNode.class -text svneol=unset#unset
-tiki/lib/wiki3d/CenterNode.java -text
 tiki/lib/wiki3d/Config.class -text svneol=unset#unset
 tiki/lib/wiki3d/Config.java -text
 tiki/lib/wiki3d/Face.class -text svneol=unset#unset
@@ -2777,16 +2767,12 @@ tiki/lib/wiki3d/Navigator.class -text svneol=unset#unset
 tiki/lib/wiki3d/Navigator.java -text
 tiki/lib/wiki3d/Node.class -text svneol=unset#unset
 tiki/lib/wiki3d/Node.java -text
-tiki/lib/wiki3d/ObjectVertex.class -text svneol=unset#unset
-tiki/lib/wiki3d/ObjectVertex.java -text
 tiki/lib/wiki3d/Pos.class -text svneol=unset#unset
 tiki/lib/wiki3d/Pos.java -text
 tiki/lib/wiki3d/SpeedVector.class -text svneol=unset#unset
 tiki/lib/wiki3d/SpeedVector.java -text
 tiki/lib/wiki3d/Vertex.class -text svneol=unset#unset
 tiki/lib/wiki3d/Vertex.java -text
-tiki/lib/wiki3d/Vertexes.class -text svneol=unset#unset
-tiki/lib/wiki3d/Vertexes.java -text
 tiki/lib/wiki3d/XmlReader.class -text svneol=unset#unset
 tiki/lib/wiki3d/XmlReader.java -text
 tiki/lib/xmlrpc.inc -text
