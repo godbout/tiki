@@ -1922,6 +1922,7 @@ tiki/lib/htmlparser/htmlparser.inc -text
 tiki/lib/htmlparser/readme.eng.txt -text
 tiki/lib/htmlparser/rebuildgrammar.php -text
 tiki/lib/imagegals/imagegallib.php -text
+tiki/lib/integrator/integrator.php -text
 tiki/lib/irc/irclib.php -text
 tiki/lib/irc/split_logs.php -text
 tiki/lib/irc/tikiwiki.php -text
@@ -2841,6 +2842,8 @@ tiki/templates/tiki-admin_forums.tpl -text
 tiki/templates/tiki-admin_hotwords.tpl -text
 tiki/templates/tiki-admin_html_page_content.tpl -text
 tiki/templates/tiki-admin_html_pages.tpl -text
+tiki/templates/tiki-admin_integrator.tpl -text
+tiki/templates/tiki-admin_integrator_rules.tpl -text
 tiki/templates/tiki-admin_layout.tpl -text
 tiki/templates/tiki-admin_links.tpl -text
 tiki/templates/tiki-admin_mailin.tpl -text
@@ -2945,6 +2948,7 @@ tiki/templates/tiki-imexport_languages.tpl -text
 tiki/templates/tiki-import_phpwiki.tpl -text
 tiki/templates/tiki-index_p.tpl -text
 tiki/templates/tiki-install.tpl -text
+tiki/templates/tiki-integrator.tpl -text
 tiki/templates/tiki-lastchanges.tpl -text
 tiki/templates/tiki-likepages.tpl -text
 tiki/templates/tiki-list_articles.tpl -text
@@ -2956,6 +2960,7 @@ tiki/templates/tiki-list_faqs.tpl -text
 tiki/templates/tiki-list_file_gallery.tpl -text
 tiki/templates/tiki-list_gallery.tpl -text
 tiki/templates/tiki-list_games.tpl -text
+tiki/templates/tiki-list_integrator_repositories.tpl -text
 tiki/templates/tiki-list_posts.tpl -text
 tiki/templates/tiki-list_quizzes.tpl -text
 tiki/templates/tiki-list_submissions.tpl -text
@@ -3150,6 +3155,8 @@ tiki/tiki-admin_include_trackers.php -text
 tiki/tiki-admin_include_userfiles.php -text
 tiki/tiki-admin_include_webmail.php -text
 tiki/tiki-admin_include_wiki.php -text
+tiki/tiki-admin_integrator.php -text
+tiki/tiki-admin_integrator_rules.php -text
 tiki/tiki-admin_layout.php -text
 tiki/tiki-admin_links.php -text
 tiki/tiki-admin_mailin.php -text
@@ -3274,6 +3281,7 @@ tiki/tiki-index.php -text
 tiki/tiki-index_p.php -text
 tiki/tiki-index_raw.php -text
 tiki/tiki-install.php -text
+tiki/tiki-integrator.php -text
 tiki/tiki-lastchanges.php -text
 tiki/tiki-layout_options.php -text
 tiki/tiki-likepages.php -text
@@ -3286,6 +3294,7 @@ tiki/tiki-list_faqs.php -text
 tiki/tiki-list_file_gallery.php -text
 tiki/tiki-list_gallery.php -text
 tiki/tiki-list_games.php -text
+tiki/tiki-list_integrator_repositories.php -text
 tiki/tiki-list_posts.php -text
 tiki/tiki-list_quizzes.php -text
 tiki/tiki-list_submissions.php -text
