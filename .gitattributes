@@ -682,8 +682,6 @@ tiki/img/avatars/576.gif -text
 tiki/img/avatars/577.gif -text
 tiki/img/avatars/578.gif -text
 tiki/img/avatars/579.gif -text
-tiki/img/background.png -text
-tiki/img/cord.png -text
 tiki/img/css.gif -text
 tiki/img/css1.png -text
 tiki/img/custom/article.jpeg -text
@@ -970,7 +968,7 @@ tiki/styles/jalist/grad.png -text
 tiki/styles/jalist/maincap.png -text
 tiki/styles/jalist/menucap.png -text
 tiki/styles/slides/wiredot.png -text svneol=unset#unset
-tiki/styles/slidestyle.css -text
+tiki/styles/slideshows/slidestyle.css -text
 tiki/styles/subsilver.css -text
 tiki/styles/subsilver/cellpic1.gif -text
 tiki/styles/subsilver/cellpic2.jpg -text
