@@ -2507,13 +2507,10 @@ tiki/styles/jalist2/menucap.png -text
 tiki/styles/matrix.css -text
 tiki/styles/matrix.light.css -text
 tiki/styles/matrix/img/dark.png -text
-tiki/styles/matrix/img/error-page.png -text
 tiki/styles/matrix/img/grey.png -text
 tiki/styles/matrix/img/ltgreen.png -text
 tiki/styles/matrix/img/matrix.jpg -text
-tiki/styles/matrix/img/module.data.png -text
 tiki/styles/matrix/img/red.png -text
-tiki/styles/matrix/img/wiki-page.png -text
 tiki/styles/matrix/matrix-box.css -text
 tiki/styles/matrix/matrix-box.f.css -text
 tiki/styles/matrix/matrix-box.l.css -text
