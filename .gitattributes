@@ -60,8 +60,8 @@ tiki/changelog.txt -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_0.9to0.95.sql -text
-tiki/doc/tiki09.doc -text
-tiki/doc/tiki09.pdf -text
+tiki/doc/tiki.doc -text
+tiki/doc/tiki.pdf -text
 tiki/dump/new.tar -text
 tiki/get_strings.php -text
 tiki/img/css.gif -text
