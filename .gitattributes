@@ -2221,6 +2221,7 @@ tiki/lib/modules/modlib.php -text
 tiki/lib/newsletters/nllib.php -text
 tiki/lib/newsreader/newslib.php -text
 tiki/lib/notepad/notepadlib.php -text
+tiki/lib/notifications/notificationemaillib.php -text
 tiki/lib/notifications/notificationlib.php -text
 tiki/lib/overlib.js -text
 tiki/lib/packages/packagerlib.php -text
@@ -2963,6 +2964,7 @@ tiki/templates/mail/newsletter_byebye_subject.tpl -text
 tiki/templates/mail/newsletter_unsubscribe.tpl -text
 tiki/templates/mail/newsletter_welcome.tpl -text
 tiki/templates/mail/newsletter_welcome_subject.tpl -text
+tiki/templates/mail/notification_subject.tpl -text
 tiki/templates/mail/password_reminder.tpl -text
 tiki/templates/mail/password_reminder_subject.tpl -text
 tiki/templates/mail/submission_notification.tpl -text
