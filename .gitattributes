@@ -2306,6 +2306,7 @@ tiki/templates/tiki-browse_categories.tpl -text
 tiki/templates/tiki-browse_gallery.tpl -text
 tiki/templates/tiki-browse_image.tpl -text
 tiki/templates/tiki-change_password.tpl -text
+tiki/templates/tiki-charts.tpl -text
 tiki/templates/tiki-chat.tpl -text
 tiki/templates/tiki-chat_box.tpl -text
 tiki/templates/tiki-chatroom.tpl -text
@@ -2470,6 +2471,7 @@ tiki/templates/tiki-view_blog.tpl -text
 tiki/templates/tiki-view_blog_post.tpl -text
 tiki/templates/tiki-view_cache.tpl -text
 tiki/templates/tiki-view_chart.tpl -text
+tiki/templates/tiki-view_chart_item.tpl -text
 tiki/templates/tiki-view_faq.tpl -text
 tiki/templates/tiki-view_forum.tpl -text
 tiki/templates/tiki-view_forum_thread.tpl -text
@@ -2571,6 +2573,7 @@ tiki/tiki-browse_categories.php -text
 tiki/tiki-browse_gallery.php -text
 tiki/tiki-browse_image.php -text
 tiki/tiki-change_password.php -text
+tiki/tiki-charts.php -text
 tiki/tiki-chat.php -text
 tiki/tiki-chat_box.php -text
 tiki/tiki-chat_center.html -text
@@ -2766,6 +2769,7 @@ tiki/tiki-view_blog_post.php -text
 tiki/tiki-view_blog_post_image.php -text
 tiki/tiki-view_cache.php -text
 tiki/tiki-view_chart.php -text
+tiki/tiki-view_chart_item.php -text
 tiki/tiki-view_eph.php -text
 tiki/tiki-view_faq.php -text
 tiki/tiki-view_forum.php -text
