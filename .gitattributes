@@ -2048,6 +2048,7 @@ tiki/lib/registration/registrationlib.php -text
 tiki/lib/rss/rss-style.css -text svneol=unset#application/octet-stream
 tiki/lib/rss/rsslib.php -text
 tiki/lib/search/refresh.php -text
+tiki/lib/search/searchlib.php -text
 tiki/lib/search/searchstatslib.php -text
 tiki/lib/searchlib.php -text
 tiki/lib/shoutbox/shoutboxlib.php -text
@@ -2521,6 +2522,7 @@ tiki/templates/modules/mod-online_users.tpl.nocache -text
 tiki/templates/modules/mod-quick_edit.tpl -text
 tiki/templates/modules/mod-random_pages.tpl -text
 tiki/templates/modules/mod-search_box.tpl -text
+tiki/templates/modules/mod-search_new.tpl -text
 tiki/templates/modules/mod-search_wiki_page.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl.nocache -text
@@ -2939,6 +2941,7 @@ tiki/templates/tiki-removepage.tpl -text
 tiki/templates/tiki-rename_page.tpl -text
 tiki/templates/tiki-rollback.tpl -text
 tiki/templates/tiki-search_stats.tpl -text
+tiki/templates/tiki-searchindex.tpl -text
 tiki/templates/tiki-searchresults.tpl -text
 tiki/templates/tiki-send_blog_post.tpl -text
 tiki/templates/tiki-send_newsletters.tpl -text
@@ -3294,6 +3297,7 @@ tiki/tiki-rollback.php -text
 tiki/tiki-rss.php -text
 tiki/tiki-rss_readcache.php -text
 tiki/tiki-search_stats.php -text
+tiki/tiki-searchindex.php -text
 tiki/tiki-searchresults.php -text
 tiki/tiki-section_options.php -text
 tiki/tiki-send_blog_post.php -text
