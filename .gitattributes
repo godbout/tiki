@@ -3142,6 +3142,7 @@ tiki/tiki-change_password.php -text
 tiki/tiki-charts.php -text
 tiki/tiki-chat.php -text
 tiki/tiki-chat_box.php -text
+tiki/tiki-chat_center.html -text
 tiki/tiki-chat_loader.php -text
 tiki/tiki-chat_users.php -text
 tiki/tiki-chatroom.php -text
