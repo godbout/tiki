@@ -2843,6 +2843,7 @@ tiki/templates/debug/tiki-debug_tikitables.tpl -text
 tiki/templates/debug/tiki-debug_watch_tab.tpl -text
 tiki/templates/error.tpl -text
 tiki/templates/error_simple.tpl -text
+tiki/templates/error_ticket.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/header.tpl -text
 tiki/templates/mail/blogs_send_link.tpl -text
