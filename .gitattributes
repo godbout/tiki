@@ -2798,6 +2798,7 @@ tiki/lib/wiki-plugins-dist/README -text
 tiki/lib/wiki-plugins-dist/index.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
 tiki/lib/wiki-plugins/index.php -text
+tiki/lib/wiki-plugins/wikiplugin_agentinfo.php -text
 tiki/lib/wiki-plugins/wikiplugin_article.php -text
 tiki/lib/wiki-plugins/wikiplugin_articles.php -text
 tiki/lib/wiki-plugins/wikiplugin_attach.php -text
