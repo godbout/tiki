@@ -873,7 +873,9 @@ _mods/avatars/tikiavatars/exploded/579.gif -text
 _mods/devtools/README -text
 _mods/devtools/tikimerge.sh -text
 _mods/devtools/tikimergerev.sh -text
+_mods/features/cc/cc-admin.php -text
 _mods/features/cc/cc.php -text
+_mods/features/cc/ccsp.php -text
 _mods/features/cc/img/cancel_transaction.png -text
 _mods/features/cc/img/currency.png -text
 _mods/features/cc/img/edit_c.png -text
@@ -883,6 +885,7 @@ _mods/features/cc/img/transaction.png -text
 _mods/features/cc/img/unregister_c.png -text
 _mods/features/cc/lib/cclib.php -text
 _mods/features/cc/modules/mod-my_ledger.php -text
+_mods/features/cc/templates/admin.tpl -text
 _mods/features/cc/templates/currencies.tpl -text
 _mods/features/cc/templates/currencies_form.tpl -text
 _mods/features/cc/templates/currency_admin.tpl -text
