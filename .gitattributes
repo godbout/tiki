@@ -3257,6 +3257,7 @@ tiki/templates/structures_toc.tpl -text
 tiki/templates/structures_toc_level.tpl -text
 tiki/templates/styles/3dblue/error.tpl -text
 tiki/templates/styles/3dblue/error_ticket.tpl -text
+tiki/templates/styles/3dblue/tiki-top_bar.tpl -text
 tiki/templates/styles/3dblue/tiki.tpl -text
 tiki/templates/styles/508/tiki.tpl -text
 tiki/templates/styles/akwa/index.php -text
