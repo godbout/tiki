@@ -3107,7 +3107,6 @@ tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl.nocache -text
 tiki/templates/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/modules/user_module.tpl -text
-tiki/templates/pleaselogin.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/structures_toc-endul.tpl -text
 tiki/templates/structures_toc-leaf.tpl -text
