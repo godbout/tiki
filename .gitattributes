@@ -2261,6 +2261,7 @@ tiki/lib/wiki-plugins/wikiplugin_include.php -text
 tiki/lib/wiki-plugins/wikiplugin_jabber.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
 tiki/lib/wiki-plugins/wikiplugin_mono.php -text
+tiki/lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 tiki/lib/wiki-plugins/wikiplugin_sf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
