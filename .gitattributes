@@ -3669,6 +3669,7 @@ tiki/templates/tiki-index_p.tpl -text
 tiki/templates/tiki-install.tpl -text
 tiki/templates/tiki-integrator.tpl -text
 tiki/templates/tiki-jukebox_albums.tpl -text
+tiki/templates/tiki-jukebox_genres.tpl -text
 tiki/templates/tiki-lastchanges.tpl -text
 tiki/templates/tiki-likepages.tpl -text
 tiki/templates/tiki-list_articles.tpl -text
