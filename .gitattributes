@@ -656,6 +656,7 @@ tiki/tiki-edit_submission.php -text
 tiki/tiki-edit_templates.php -text
 tiki/tiki-editdrawing.php -text
 tiki/tiki-editpage.php -text
+tiki/tiki-error.php -text
 tiki/tiki-faq_questions.php -text
 tiki/tiki-featured_link.php -text
 tiki/tiki-file_galleries.php -text
