@@ -3906,6 +3906,7 @@ tiki/templates/tiki-webmail.tpl -text
 tiki/templates/tiki-webmail_contacts.tpl -text
 tiki/templates/tiki-wiki3d.tpl -text
 tiki/templates/tiki.tpl -text
+tiki/templates/translated-lang.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/README -text
 tiki/templates_c/index.php -text
