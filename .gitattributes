@@ -2192,6 +2192,7 @@ tiki/lib/jukebox/jukeboxlib.php -text
 tiki/lib/live_support/live-support.js -text svneol=unset#application/octet-stream
 tiki/lib/live_support/lsadminlib.php -text
 tiki/lib/live_support/lslib.php -text
+tiki/lib/logs/logslib.php -text
 tiki/lib/mailin/mailinlib.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/menulib.php -text
