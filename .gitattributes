@@ -702,6 +702,7 @@ tiki/db/tiki_sybase.sql -text
 tiki/display_banner.php -text
 tiki/doc/devtools/README.txt -text
 tiki/doc/devtools/add1tiki2multi.py -text
+tiki/doc/devtools/cvsup.sh -text
 tiki/doc/devtools/extract-img-db-to-fs.php -text
 tiki/doc/devtools/ggg-trace.php -text
 tiki/doc/devtools/index.php -text
