@@ -117,6 +117,7 @@ tiki/db/tiki_1.2to1.3.sql -text
 tiki/db/tiki_1.3to1.4.sql -text
 tiki/db/tiki_1.4to1.5.sql -text
 tiki/db/tiki_1.5to1.6.sql -text
+tiki/db/tiki_1.6to1.7.sql -text
 tiki/display_banner.php -text
 tiki/doc/readme.txt -text
 tiki/dump/new.tar -text
@@ -1174,6 +1175,7 @@ tiki/lib/Galaxia/docs/html/da__10_2code_2shared_8php-source.html -text
 tiki/lib/Galaxia/docs/html/da__10_2code_2templates_2start_8php-source.html -text
 tiki/lib/Galaxia/docs/html/da__10_2compiled_2end_8php-source.html -text
 tiki/lib/Galaxia/docs/html/da__10_2compiled_2start_8php-source.html -text
+tiki/lib/Galaxia/docs/html/doxygen.css -text
 tiki/lib/Galaxia/docs/html/doxygen.png -text
 tiki/lib/Galaxia/docs/html/end__pos_8php-source.html -text
 tiki/lib/Galaxia/docs/html/end__pre_8php-source.html -text
@@ -1186,6 +1188,7 @@ tiki/lib/Galaxia/docs/html/fsdfsd__ocsfsf__10_2code_2templates_2start_8php-sourc
 tiki/lib/Galaxia/docs/html/fsdfsd__ocsfsf__10_2compiled_2end_8php-source.html -text
 tiki/lib/Galaxia/docs/html/fsdfsd__ocsfsf__10_2compiled_2start_8php-source.html -text
 tiki/lib/Galaxia/docs/html/functions.html -text
+tiki/lib/Galaxia/docs/html/graph_legend.dot -text
 tiki/lib/Galaxia/docs/html/graph_legend.html -text
 tiki/lib/Galaxia/docs/html/graph_legend.png -text
 tiki/lib/Galaxia/docs/html/hierarchy.html -text
@@ -1248,6 +1251,7 @@ tiki/lib/Galaxia/docs/html/tiki-galleries_8php-source.html -text
 tiki/lib/Galaxia/docs/html/tiki-galleries__rankings_8php-source.html -text
 tiki/lib/Galaxia/docs/html/tiki-index__p_8php-source.html -text
 tiki/lib/Galaxia/docs/html/todo.html -text
+tiki/lib/Galaxia/docs/latex/Makefile -text
 tiki/lib/Galaxia/docs/latex/annotated.tex -text
 tiki/lib/Galaxia/docs/latex/classActivityManager.tex -text
 tiki/lib/Galaxia/docs/latex/classActivityManager__coll__graph.eps -text svneol=unset#application/octet-stream
@@ -1265,6 +1269,7 @@ tiki/lib/Galaxia/docs/latex/classProcessManager__inherit__graph.eps -text svneol
 tiki/lib/Galaxia/docs/latex/classRoleManager.tex -text
 tiki/lib/Galaxia/docs/latex/classRoleManager__coll__graph.eps -text svneol=unset#application/octet-stream
 tiki/lib/Galaxia/docs/latex/classRoleManager__inherit__graph.eps -text svneol=unset#application/octet-stream
+tiki/lib/Galaxia/docs/latex/doxygen.sty -text
 tiki/lib/Galaxia/docs/latex/hierarchy.tex -text
 tiki/lib/Galaxia/docs/latex/namespaceImage.tex -text
 tiki/lib/Galaxia/docs/latex/namespaces.tex -text
