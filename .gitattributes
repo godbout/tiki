@@ -529,7 +529,6 @@ tiki/doc/index.php -text
 tiki/doc/readme.txt -text
 tiki/dump/.cvsignore -text
 tiki/dump/index.php -text
-tiki/dump/new.tar -text
 tiki/favicon.png -text
 tiki/games/README -text
 tiki/games/flash/README -text
