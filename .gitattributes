@@ -82,6 +82,7 @@ tiki/changelog.txt -text
 tiki/comments.php -text
 tiki/commxmlrpc.php -text
 tiki/db/.cvsignore -text
+tiki/db/fulltext.sql -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_0.95to1.0.sql -text
