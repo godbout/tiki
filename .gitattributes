@@ -2975,29 +2975,22 @@ tiki/lib/wiki/histlib.php -text
 tiki/lib/wiki/index.php -text
 tiki/lib/wiki/pluginslib.php -text
 tiki/lib/wiki/wikilib.php -text
-tiki/lib/wiki3d/Balancer.class -text svneol=unset#unset
-tiki/lib/wiki3d/Balancer.java -text
-tiki/lib/wiki3d/Camera.class -text svneol=unset#unset
-tiki/lib/wiki3d/Camera.java -text
-tiki/lib/wiki3d/Config.class -text svneol=unset#unset
-tiki/lib/wiki3d/Config.java -text
-tiki/lib/wiki3d/Face.class -text svneol=unset#unset
-tiki/lib/wiki3d/Face.java -text
-tiki/lib/wiki3d/Graph.class -text svneol=unset#unset
-tiki/lib/wiki3d/Graph.java -text
-tiki/lib/wiki3d/Matrix3D.class -text svneol=unset#unset
-tiki/lib/wiki3d/Matrix3D.java -text
-tiki/lib/wiki3d/Navigator.class -text svneol=unset#unset
-tiki/lib/wiki3d/Navigator.java -text
-tiki/lib/wiki3d/Node.class -text svneol=unset#unset
-tiki/lib/wiki3d/Node.java -text
 tiki/lib/wiki3d/SpeedVector.class -text svneol=unset#unset
-tiki/lib/wiki3d/SpeedVector.java -text
-tiki/lib/wiki3d/Vertex.class -text svneol=unset#unset
-tiki/lib/wiki3d/Vertex.java -text
-tiki/lib/wiki3d/XmlReader.class -text svneol=unset#unset
-tiki/lib/wiki3d/XmlReader.java -text
 tiki/lib/wiki3d/morcego-0.3.jar -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Animator.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Balancer.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Config.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Feeder.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Graph.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/GraphDataRetriever.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Matrix3D.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Morcego.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Node.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Renderer.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/SpeedVector.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Spinner.java -text
+tiki/lib/wiki3d/src/java/br/arca/morcego/Vertex.java -text
+tiki/lib/wiki3d/src/java/org/apache/xmlrpc/XmlRpcAppletClient.java -text
 tiki/lib/wiki3d/xmlrpc-1.2-b1.jar -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
