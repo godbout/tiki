@@ -86,6 +86,7 @@ tiki/Smarty/plugins/modifier.upper.php -text
 tiki/Smarty/plugins/modifier.wordwrap.php -text
 tiki/Smarty/plugins/outputfilter.trimwhitespace.php -text
 tiki/Smarty/plugins/prefilter.tr.php -text
+tiki/Smarty/plugins/resource.style.php -text
 tiki/Smarty/plugins/shared.make_timestamp.php -text
 tiki/article_image.php -text
 tiki/backups/license.txt -text
