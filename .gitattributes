@@ -3559,6 +3559,8 @@ tiki/templates/tiki-hw_editpage.tpl -text
 tiki/templates/tiki-hw_grading_queue.tpl -text
 tiki/templates/tiki-hw_page.tpl -text
 tiki/templates/tiki-hw_pagehistory.tpl -text
+tiki/templates/tiki-hw_quiz_import.tpl -text
+tiki/templates/tiki-hw_quiz_import_done.tpl -text
 tiki/templates/tiki-hw_rollback.tpl -text
 tiki/templates/tiki-hw_student_assignment.tpl -text
 tiki/templates/tiki-hw_student_assignments.tpl -text
@@ -3937,6 +3939,7 @@ tiki/tiki-hw_editpage.php -text
 tiki/tiki-hw_grading_queue.php -text
 tiki/tiki-hw_page.php -text
 tiki/tiki-hw_pagehistory.php -text
+tiki/tiki-hw_quiz_import.php -text
 tiki/tiki-hw_rollback.php -text
 tiki/tiki-hw_student_assignment.php -text
 tiki/tiki-hw_student_assignment_print.php -text
