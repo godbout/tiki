@@ -2470,6 +2470,7 @@ tiki/lib/search/refresh.php -text
 tiki/lib/search/searchlib.php -text
 tiki/lib/search/searchstatslib.php -text
 tiki/lib/searchlib.php -text
+tiki/lib/sheet/OLE.php -text
 tiki/lib/sheet/control.js -text
 tiki/lib/sheet/formula.js -text
 tiki/lib/sheet/grid.js -text
