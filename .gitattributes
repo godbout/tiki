@@ -975,6 +975,20 @@ tiki/setup.php -text
 tiki/setup.sh -text
 tiki/show_image.php -text
 tiki/styles/BiDi/BiDi.css -text
+tiki/styles/boreal.css -text
+tiki/styles/boreal/bg.jpg -text
+tiki/styles/boreal/contentmenu.gif -text
+tiki/styles/boreal/fcap.png -text
+tiki/styles/boreal/grad.gif -text
+tiki/styles/boreal/grad.jpg -text
+tiki/styles/boreal/grad.png -text
+tiki/styles/boreal/index.html -text svneol=unset#application/octet-stream
+tiki/styles/boreal/leftbar.gif -text
+tiki/styles/boreal/mainbar.gif -text
+tiki/styles/boreal/maincap.png -text
+tiki/styles/boreal/menucap.png -text
+tiki/styles/boreal/pixel.gif -text
+tiki/styles/boreal/rightbar.gif -text
 tiki/styles/dblue.css -text
 tiki/styles/dblue/back1.jpeg -text
 tiki/styles/dblue/dbluebot.jpg -text
@@ -989,6 +1003,7 @@ tiki/styles/jalist/grad.jpg -text
 tiki/styles/jalist/grad.png -text
 tiki/styles/jalist/maincap.png -text
 tiki/styles/jalist/menucap.png -text
+tiki/styles/jalist2.css -text
 tiki/styles/slides/wiredot.png -text svneol=unset#unset
 tiki/styles/slideshows/slidestyle.css -text
 tiki/styles/subsilver.css -text
@@ -1074,15 +1089,35 @@ tiki/templates/modules/mod-user_pages.php.nocache -text
 tiki/templates/modules/mod-user_pages.tpl -text
 tiki/templates/modules/mod-user_pages.tpl.nocache -text
 tiki/templates/modules/user_module.tpl -text
+tiki/templates/styles/boreal/error.tpl -text
+tiki/templates/styles/boreal/tiki-print.tpl -text
+tiki/templates/styles/boreal/tiki-print_article.tpl -text
+tiki/templates/styles/boreal/tiki-print_multi_pages.tpl -text
+tiki/templates/styles/boreal/tiki.tpl -text
 tiki/templates/styles/dblue/error.tpl -text
+tiki/templates/styles/dblue/tiki-print.tpl -text
+tiki/templates/styles/dblue/tiki-print_article.tpl -text
+tiki/templates/styles/dblue/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/dblue/tiki.tpl -text
 tiki/templates/styles/default/error.tpl -text
+tiki/templates/styles/default/tiki-print.tpl -text
+tiki/templates/styles/default/tiki-print_article.tpl -text
+tiki/templates/styles/default/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/default/tiki.tpl -text
 tiki/templates/styles/default2/error.tpl -text
+tiki/templates/styles/default2/tiki-print.tpl -text
+tiki/templates/styles/default2/tiki-print_article.tpl -text
+tiki/templates/styles/default2/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/default2/tiki.tpl -text
 tiki/templates/styles/jalist/error.tpl -text
+tiki/templates/styles/jalist/tiki-print.tpl -text
+tiki/templates/styles/jalist/tiki-print_article.tpl -text
+tiki/templates/styles/jalist/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/jalist/tiki.tpl -text
 tiki/templates/styles/subsilver/error.tpl -text
+tiki/templates/styles/subsilver/tiki-print.tpl -text
+tiki/templates/styles/subsilver/tiki-print_article.tpl -text
+tiki/templates/styles/subsilver/tiki-print_multi_pages.tpl -text
 tiki/templates/styles/subsilver/tiki.tpl -text
 tiki/templates/tik-remind_password.tpl -text
 tiki/templates/tiki-admin.tpl -text
@@ -1107,6 +1142,7 @@ tiki/templates/tiki-admin_notifications.tpl -text
 tiki/templates/tiki-admin_poll_options.tpl -text
 tiki/templates/tiki-admin_polls.tpl -text
 tiki/templates/tiki-admin_rssmodules.tpl -text
+tiki/templates/tiki-admin_structures.tpl -text
 tiki/templates/tiki-admin_survey_questions.tpl -text
 tiki/templates/tiki-admin_surveys.tpl -text
 tiki/templates/tiki-admin_topics.tpl -text
@@ -1140,6 +1176,7 @@ tiki/templates/tiki-edit_question_options.tpl -text
 tiki/templates/tiki-edit_quiz.tpl -text
 tiki/templates/tiki-edit_quiz_questions.tpl -text
 tiki/templates/tiki-edit_quiz_results.tpl -text
+tiki/templates/tiki-edit_structure.tpl -text
 tiki/templates/tiki-edit_submission.tpl -text
 tiki/templates/tiki-edit_templates.tpl -text
 tiki/templates/tiki-editpage.tpl -text
@@ -1259,6 +1296,7 @@ tiki/tiki-admin_notifications.php -text
 tiki/tiki-admin_poll_options.php -text
 tiki/tiki-admin_polls.php -text
 tiki/tiki-admin_rssmodules.php -text
+tiki/tiki-admin_structures.php -text
 tiki/tiki-admin_survey_questions.php -text
 tiki/tiki-admin_surveys.php -text
 tiki/tiki-admin_topics.php -text
@@ -1300,6 +1338,7 @@ tiki/tiki-edit_question_options.php -text
 tiki/tiki-edit_quiz.php -text
 tiki/tiki-edit_quiz_questions.php -text
 tiki/tiki-edit_quiz_results.php -text
+tiki/tiki-edit_structure.php -text
 tiki/tiki-edit_submission.php -text
 tiki/tiki-edit_templates.php -text
 tiki/tiki-editdrawing.php -text
