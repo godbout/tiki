@@ -2969,6 +2969,7 @@ tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/structures_toc.tpl -text
 tiki/templates/structures_toc_level.tpl -text
 tiki/templates/styles/3dblue/error.tpl -text
+tiki/templates/styles/3dblue/error_ticket.tpl -text
 tiki/templates/styles/3dblue/tiki.tpl -text
 tiki/templates/styles/akwa/tiki-bot_bar.tpl -text
 tiki/templates/styles/akwa/tiki.tpl -text
