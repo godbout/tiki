@@ -204,6 +204,8 @@ tiki/comments.php -text
 tiki/commxmlrpc.php -text
 tiki/copyrights.php -text
 tiki/db/.cvsignore -text
+tiki/db/convert_nulls_to_non_nulls.php -text
+tiki/db/convert_nulls_to_non_nulls.sql -text
 tiki/db/fulltext.sql -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki.sql -text
