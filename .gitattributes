@@ -2079,6 +2079,7 @@ tiki/lib/htmlparser/readme.eng.txt -text
 tiki/lib/htmlparser/rebuildgrammar.php -text
 tiki/lib/imagegals/imagegallib.php -text
 tiki/lib/init/initlib.php -text
+tiki/lib/init/setup_inc.php -text
 tiki/lib/integrator/integrator.php -text
 tiki/lib/irc/irclib.php -text
 tiki/lib/irc/split_logs.php -text
