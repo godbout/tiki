@@ -1910,6 +1910,7 @@ tiki/lib/games/gamelib.php -text
 tiki/lib/graphviz/GraphViz.php -text
 tiki/lib/hawhaw/hawhaw.inc -text
 tiki/lib/hawhaw/hawiki.inc -text
+tiki/lib/hawhaw/link.wav -text svneol=unset#unset
 tiki/lib/hotwords/hotwordlib.php -text
 tiki/lib/htmlarea/dialog.js -text
 tiki/lib/htmlarea/example.html -text
