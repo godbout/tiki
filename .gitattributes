@@ -3186,6 +3186,7 @@ tiki/templates/tiki-admin-include-trackers.tpl -text
 tiki/templates/tiki-admin-include-userfiles.tpl -text
 tiki/templates/tiki-admin-include-webmail.tpl -text
 tiki/templates/tiki-admin-include-wiki.tpl -text
+tiki/templates/tiki-admin-include-wikiatt.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_banning.tpl -text
 tiki/templates/tiki-admin_calendars.tpl -text
@@ -3551,6 +3552,7 @@ tiki/tiki-admin_include_trackers.php -text
 tiki/tiki-admin_include_userfiles.php -text
 tiki/tiki-admin_include_webmail.php -text
 tiki/tiki-admin_include_wiki.php -text
+tiki/tiki-admin_include_wikiatt.php -text
 tiki/tiki-admin_integrator.php -text
 tiki/tiki-admin_integrator_rules.php -text
 tiki/tiki-admin_layout.php -text
