@@ -22,7 +22,6 @@ tiki/Smarty/index.php -text
 tiki/Smarty/misc/fix_vars.php -text
 tiki/Smarty/plugins/block.repeat.php -text
 tiki/Smarty/plugins/block.tr.php -text
-tiki/Smarty/plugins/calendar.tpl -text
 tiki/Smarty/plugins/function.assign.php -text
 tiki/Smarty/plugins/function.assign_debug_info.php -text
 tiki/Smarty/plugins/function.banner.php -text
@@ -229,6 +228,7 @@ tiki/styles/dblue.css -text
 tiki/styles/dblue/back1.jpeg -text
 tiki/styles/dblue/dbluebot.jpg -text
 tiki/styles/dblue/dbluetop.jpg -text
+tiki/styles/default.css -text
 tiki/styles/default2.css -text
 tiki/styles/subsilver.css -text
 tiki/styles/subsilver/cellpic1.gif -text
@@ -374,6 +374,7 @@ tiki/templates/tiki-searchresults.tpl -text
 tiki/templates/tiki-send_objects.tpl -text
 tiki/templates/tiki-show_page.tpl -text
 tiki/templates/tiki-special_chars.html -text
+tiki/templates/tiki-special_chars.php -text
 tiki/templates/tiki-stats.tpl -text
 tiki/templates/tiki-top_bar.tpl -text
 tiki/templates/tiki-upload_file.tpl -text
