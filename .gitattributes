@@ -3372,6 +3372,7 @@ tiki/templates/tiki-hw_student_assignments.tpl -text
 tiki/templates/tiki-hw_student_last_changes.tpl -text
 tiki/templates/tiki-hw_teacher_assignment_edit.tpl -text
 tiki/templates/tiki-hw_teacher_assignment_edit_preview.tpl -text
+tiki/templates/tiki-hw_teacher_assignments.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
 tiki/templates/tiki-import_phpwiki.tpl -text
 tiki/templates/tiki-index_p.tpl -text
