@@ -101,6 +101,7 @@ _adodb/tute.htm -text
 _smarty/Config_File.class.php -text
 _smarty/Smarty.class.php -text
 _smarty/Smarty_Compiler.class.php -text
+_smarty/core/core.assemble_auto_filename.php -text
 _smarty/core/core.assemble_plugin_filepath.php -text
 _smarty/core/core.assign_smarty_interface.php -text
 _smarty/core/core.create_dir_structure.php -text
@@ -120,10 +121,12 @@ _smarty/core/core.rmdir.php -text
 _smarty/core/core.run_insert_handler.php -text
 _smarty/core/core.smarty_include_php.php -text
 _smarty/core/core.write_cache_file.php -text
+_smarty/core/core.write_cache_paths_file.php -text
 _smarty/core/core.write_compiled_include.php -text
 _smarty/core/core.write_compiled_resource.php -text
 _smarty/core/core.write_file.php -text
 _smarty/debug.tpl -text
+_smarty/plugins/block.strip.php -text
 _smarty/plugins/block.textformat.php -text
 _smarty/plugins/function.assign.php -text
 _smarty/plugins/function.assign_debug_info.php -text
