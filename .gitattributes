@@ -34,6 +34,7 @@ tiki/Smarty/plugins/function.debug.php -text
 tiki/Smarty/plugins/function.elapsed.php -text
 tiki/Smarty/plugins/function.eval.php -text
 tiki/Smarty/plugins/function.fetch.php -text
+tiki/Smarty/plugins/function.gallery.php -text
 tiki/Smarty/plugins/function.html_options.php -text
 tiki/Smarty/plugins/function.html_select_date.php -text
 tiki/Smarty/plugins/function.html_select_time.php -text
@@ -214,6 +215,7 @@ tiki/modules/mod-num_submissions.php -text
 tiki/modules/mod-old_articles.php -text
 tiki/modules/mod-random_pages.php -text
 tiki/modules/mod-shoutbox.php -text
+tiki/modules/mod-since_last_visit.php -text
 tiki/modules/mod-top_active_blogs.php -text
 tiki/modules/mod-top_articles.php -text
 tiki/modules/mod-top_file_galleries.php -text
@@ -256,6 +258,13 @@ tiki/templates/comments.tpl -text
 tiki/templates/error.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/header.tpl -text
+tiki/templates/mail/forum_post_notification.tpl -text
+tiki/templates/mail/license.txt -text
+tiki/templates/mail/new_user_notification.tpl -text
+tiki/templates/mail/password_reminder.tpl -text
+tiki/templates/mail/submission_notification.tpl -text
+tiki/templates/mail/user_validation_mail.tpl -text
+tiki/templates/mail/wiki_change_notification.tpl -text
 tiki/templates/modules/mod-admin_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl -text
 tiki/templates/modules/mod-breadcrumb.tpl -text
@@ -289,6 +298,7 @@ tiki/templates/modules/mod-quick_edit.tpl -text
 tiki/templates/modules/mod-random_pages.tpl -text
 tiki/templates/modules/mod-search_box.tpl -text
 tiki/templates/modules/mod-shoutbox.tpl -text
+tiki/templates/modules/mod-since_last_visit.tpl -text
 tiki/templates/modules/mod-top_active_blogs.tpl -text
 tiki/templates/modules/mod-top_articles.tpl -text
 tiki/templates/modules/mod-top_file_galleries.tpl -text
@@ -348,7 +358,9 @@ tiki/templates/tiki-custom_home_2.tpl -text
 tiki/templates/tiki-edit_article.tpl -text
 tiki/templates/tiki-edit_banner.tpl -text
 tiki/templates/tiki-edit_blog.tpl -text
+tiki/templates/tiki-edit_help.tpl -text
 tiki/templates/tiki-edit_help_tool.tpl -text
+tiki/templates/tiki-edit_image.tpl -text
 tiki/templates/tiki-edit_programmed_content.tpl -text
 tiki/templates/tiki-edit_question_options.tpl -text
 tiki/templates/tiki-edit_quiz.tpl -text
@@ -473,6 +485,7 @@ tiki/tiki-download_file.php -text
 tiki/tiki-edit_article.php -text
 tiki/tiki-edit_banner.php -text
 tiki/tiki-edit_blog.php -text
+tiki/tiki-edit_image.php -text
 tiki/tiki-edit_programmed_content.php -text
 tiki/tiki-edit_question_options.php -text
 tiki/tiki-edit_quiz.php -text
