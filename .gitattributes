@@ -14,13 +14,10 @@ _adodb/adodb-php4.inc.php -text
 _adodb/adodb-time.inc.php -text
 _adodb/adodb-time.zip -text
 _adodb/adodb-xmlschema.inc.php -text
-_adodb/adodb-xmlschema.zip -text
 _adodb/adodb.inc.php -text
 _adodb/contrib/toxmlrpc.inc.php -text
 _adodb/cute_icons_for_site/adodb.gif -text
-_adodb/cute_icons_for_site/adodb.png -text
 _adodb/cute_icons_for_site/adodb2.gif -text
-_adodb/cute_icons_for_site/adodb2.png -text
 _adodb/datadict/datadict-access.inc.php -text
 _adodb/datadict/datadict-db2.inc.php -text
 _adodb/datadict/datadict-firebird.inc.php -text
@@ -32,10 +29,6 @@ _adodb/datadict/datadict-mysql.inc.php -text
 _adodb/datadict/datadict-oci8.inc.php -text
 _adodb/datadict/datadict-postgres.inc.php -text
 _adodb/datadict/datadict-sybase.inc.php -text
-_adodb/docs-adodb.htm -text
-_adodb/docs-datadict.htm -text
-_adodb/docs-perf.htm -text
-_adodb/docs-session.htm -text
 _adodb/docs/docs-adodb.htm -text
 _adodb/docs/docs-datadict.htm -text
 _adodb/docs/docs-perf.htm -text
@@ -98,7 +91,6 @@ _adodb/lang/adodb-ro.inc.php -text
 _adodb/lang/adodb-ru1251.inc.php -text
 _adodb/lang/adodb-sv.inc.php -text
 _adodb/license.txt -text
-_adodb/old-changelog.htm -text
 _adodb/pear/Auth/Container/ADOdb.php -text
 _adodb/pear/readme.Auth.txt -text
 _adodb/perf/perf-db2.inc.php -text
@@ -108,7 +100,6 @@ _adodb/perf/perf-mysql.inc.php -text
 _adodb/perf/perf-oci8.inc.php -text
 _adodb/perf/perf-postgres.inc.php -text
 _adodb/pivottable.inc.php -text
-_adodb/readme.htm -text
 _adodb/readme.txt -text
 _adodb/rsfilter.inc.php -text
 _adodb/server.php -text
@@ -154,10 +145,8 @@ _adodb/tests/testsessions.php -text
 _adodb/tests/time.php -text
 _adodb/tests/tmssql.php -text
 _adodb/tests/xmlschema.xml -text
-_adodb/tips_portable_sql.htm -text
 _adodb/toexport.inc.php -text
 _adodb/tohtml.inc.php -text
-_adodb/tute.htm -text
 _adodb/xmlschema.dtd -text
 _adodb/xsl/convert-0.1-0.2.xsl -text
 _adodb/xsl/convert-0.2-0.1.xsl -text
