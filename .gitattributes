@@ -2166,6 +2166,7 @@ tiki/templates/tiki-preview_article.tpl -text
 tiki/templates/tiki-preview_post.tpl -text
 tiki/templates/tiki-print.tpl -text
 tiki/templates/tiki-print_article.tpl -text
+tiki/templates/tiki-print_blog_post.tpl -text
 tiki/templates/tiki-print_multi_pages.tpl -text
 tiki/templates/tiki-print_pages.tpl -text
 tiki/templates/tiki-quiz_result_stats.tpl -text
@@ -2183,6 +2184,7 @@ tiki/templates/tiki-rename_page.tpl -text
 tiki/templates/tiki-rollback.tpl -text
 tiki/templates/tiki-search_stats.tpl -text
 tiki/templates/tiki-searchresults.tpl -text
+tiki/templates/tiki-send_blog_post.tpl -text
 tiki/templates/tiki-send_newsletters.tpl -text
 tiki/templates/tiki-send_objects.tpl -text
 tiki/templates/tiki-shoutbox.tpl -text
@@ -2448,6 +2450,7 @@ tiki/tiki-poll_form.php -text
 tiki/tiki-poll_results.php -text
 tiki/tiki-print.php -text
 tiki/tiki-print_article.php -text
+tiki/tiki-print_blog_post.php -text
 tiki/tiki-print_multi_pages.php -text
 tiki/tiki-print_pages.php -text
 tiki/tiki-pv_chart.php -text
@@ -2469,6 +2472,7 @@ tiki/tiki-search_stats.php -text
 tiki/tiki-searchresults.php -text
 tiki/tiki-section_options -text
 tiki/tiki-section_options.php -text
+tiki/tiki-send_blog_post.php -text
 tiki/tiki-send_newsletters.php -text
 tiki/tiki-send_objects.php -text
 tiki/tiki-setup.php -text
