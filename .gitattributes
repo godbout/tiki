@@ -1495,7 +1495,6 @@ tiki/templates/tiki-list_surveys.tpl -text
 tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-listpages.tpl -text
 tiki/templates/tiki-login.tpl -text
-tiki/templates/tiki-minical.php -text
 tiki/templates/tiki-minical.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
