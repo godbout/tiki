@@ -2166,6 +2166,9 @@ tiki/lib/pear/HTTP/Request.php -text
 tiki/lib/pear/HTTP/docs/example.php -text
 tiki/lib/pear/IRC.php -text
 tiki/lib/pear/Mail.php -text
+tiki/lib/pear/Net/DIME.php -text
+tiki/lib/pear/Net/Socket.php -text
+tiki/lib/pear/Net/URL.php -text
 tiki/lib/pear/PEAR.php -text
 tiki/lib/pear/PHPUnit.php -text
 tiki/lib/pear/SOAP/Base.php -text
