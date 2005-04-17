@@ -3240,6 +3240,7 @@ tiki/lib/sheet/panel.js -text
 tiki/lib/sheet/style.css -text
 tiki/lib/shoutbox/index.php -text
 tiki/lib/shoutbox/shoutboxlib.php -text
+tiki/lib/smarty_tiki/block.compact.php -text
 tiki/lib/smarty_tiki/block.repeat.php -text
 tiki/lib/smarty_tiki/block.sortlinks.php -text
 tiki/lib/smarty_tiki/block.strip.php -text
