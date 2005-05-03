@@ -4029,6 +4029,7 @@ tiki/templates/modules/mod-top_pages.tpl -text
 tiki/templates/modules/mod-top_quizzes.tpl -text
 tiki/templates/modules/mod-top_visited_blogs.tpl -text
 tiki/templates/modules/mod-top_visited_faqs.tpl -text
+tiki/templates/modules/mod-upcoming_events.tpl -text svneol=unset#application/octet-stream
 tiki/templates/modules/mod-user_blogs.tpl -text
 tiki/templates/modules/mod-user_blogs.tpl.nocache -text
 tiki/templates/modules/mod-user_bookmarks.tpl -text
