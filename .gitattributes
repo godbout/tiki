@@ -4087,7 +4087,6 @@ tiki/templates/styles/neat/modules/index.php -text
 tiki/templates/styles/neat/modules/mod-application_menu.tpl -text
 tiki/templates/styles/neat/tiki-editpage.tpl -text
 tiki/templates/styles/neat/tiki-show_page.tpl -text
-tiki/templates/styles/neat/tiki-top_bar.tpl -text
 tiki/templates/styles/neat/tiki-user_menu.tpl -text
 tiki/templates/styles/neat/tiki.tpl -text
 tiki/templates/styles/notheme/babelfish.tpl -text
