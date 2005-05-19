@@ -3553,6 +3553,7 @@ tiki/lib/wiki/Text/Wiki/Parse/Tiki/Underline.php -text
 tiki/lib/wiki/Text/Wiki/Parse/Tiki/Url.php -text
 tiki/lib/wiki/Text/Wiki/Parse/Tiki/Wikilink.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Anchor.php -text
+tiki/lib/wiki/Text/Wiki/Render/Xhtml/Box.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Code.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Colortext.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Preformatted.php -text
