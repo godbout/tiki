@@ -3562,6 +3562,7 @@ tiki/lib/wiki/Text/Wiki/Render/Xhtml/Specialchar.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Titlebar.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Toc.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Underline.php -text
+tiki/lib/wiki/Text/Wiki/Render/Xhtml/Wikilink.php -text
 tiki/lib/wiki/Text/Wiki/Tiki.php -text
 tiki/lib/wiki/exportlib.php -text
 tiki/lib/wiki/histlib.php -text
