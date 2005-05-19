@@ -1720,6 +1720,7 @@ tiki/db/tiki-secdb_1.10_mysql.sql -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_1.7to1.8.sql -text
 tiki/db/tiki_1.8to1.9.sql -text
+tiki/db/tiki_1.9to1.10.sql -text
 tiki/db/tiki_ddl.sql -text
 tiki/db/tiki_mysql.sql -text
 tiki/db/tiki_oracle.err.sql -text
