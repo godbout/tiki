@@ -1701,7 +1701,6 @@ tiki/db/fulltext.sql -text
 tiki/db/index.php -text
 tiki/db/oracle/index.php -text
 tiki/db/oracle/md5.sql -text
-tiki/db/profiles/BasicEnabled.prf -text
 tiki/db/profiles/_default.prf -text
 tiki/db/profiles/basicEnabled.prf -text
 tiki/db/profiles/default-inserts.sql -text
