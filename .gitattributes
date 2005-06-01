@@ -3557,6 +3557,7 @@ tiki/lib/wiki/Text/Wiki/Render/Xhtml/Box.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Code.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Colortext.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Page.php -text
+tiki/lib/wiki/Text/Wiki/Render/Xhtml/Plugin.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Preformatted.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Specialchar.php -text
 tiki/lib/wiki/Text/Wiki/Render/Xhtml/Titlebar.php -text
