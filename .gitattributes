@@ -2972,6 +2972,7 @@ tiki/lib/feedcreator/feedcreator.class.php -text
 tiki/lib/feedcreator/lgpl.txt -text
 tiki/lib/filegals/filegallib.php -text
 tiki/lib/filegals/index.php -text
+tiki/lib/freetag/freetag.sql -text
 tiki/lib/games/gamelib.php -text
 tiki/lib/games/index.php -text
 tiki/lib/graph-engine/abstract.gridbased.php -text
