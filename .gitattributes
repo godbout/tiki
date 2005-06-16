@@ -1731,6 +1731,7 @@ tiki/display_banner.php -text
 tiki/doc/99_tiki-apache.conf -text
 tiki/doc/devtools/README.txt -text
 tiki/doc/devtools/add1tiki2multi.py -text
+tiki/doc/devtools/cleanCatTrackers.php -text
 tiki/doc/devtools/csscheck.sh -text
 tiki/doc/devtools/cvsup.sh -text
 tiki/doc/devtools/diffsql.sh -text svneol=unset#application/octet-stream
@@ -2248,6 +2249,7 @@ tiki/img/icons/icon_name.gif -text
 tiki/img/icons/icon_row.gif -text
 tiki/img/icons/icon_size.gif -text
 tiki/img/icons/icon_ultima.gif -text
+tiki/img/icons/icon_ultima_no.gif -text
 tiki/img/icons/icon_unwatch.png -text
 tiki/img/icons/icon_watch.png -text
 tiki/img/icons/iconalign.gif -text
@@ -3775,6 +3777,10 @@ tiki/styles/geo/fond2tete.png -text
 tiki/styles/geo/fondtete.png -text
 tiki/styles/geo/index.php -text
 tiki/styles/hec.css -text
+tiki/styles/hec/annuler.gif -text
+tiki/styles/hec/attente.gif -text
+tiki/styles/hec/confirmer.gif -text
+tiki/styles/hec/fleche_h2.gif -text
 tiki/styles/hec/fond.gif -text
 tiki/styles/index.php -text
 tiki/styles/integrator/README -text
