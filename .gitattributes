@@ -1716,6 +1716,10 @@ tiki/db/tiki-1.10-sqlite.sql -text
 tiki/db/tiki-1.10-sybase.sql -text
 tiki/db/tiki-db.php -text
 tiki/db/tiki-secdb_1.10_mysql.sql -text
+tiki/db/tiki-secdb_1.7.X_mysql.sql -text
+tiki/db/tiki-secdb_1.8.X_mysql.sql -text
+tiki/db/tiki-secdb_1.9_mysql.sql -text
+tiki/db/tiki-secdb_pre_1.7_mysql.sql -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_1.7to1.8.sql -text
 tiki/db/tiki_1.8to1.9.sql -text
