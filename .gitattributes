@@ -3517,6 +3517,7 @@ tiki/lib/wiki-plugins/wikiplugin_trackerlist.php -text
 tiki/lib/wiki-plugins/wikiplugin_translated.php -text
 tiki/lib/wiki-plugins/wikiplugin_usercount.php -text
 tiki/lib/wiki-plugins/wikiplugin_versions.php -text
+tiki/lib/wiki-plugins/wikiplugin_wantedpages.php -text
 tiki/lib/wiki/Text/Wiki/Parse/Tiki/Anchor.php -text
 tiki/lib/wiki/Text/Wiki/Parse/Tiki/Blockquote.php -text
 tiki/lib/wiki/Text/Wiki/Parse/Tiki/Bold.php -text
