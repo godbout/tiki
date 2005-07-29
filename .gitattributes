@@ -3169,6 +3169,7 @@ tiki/lib/pear/SOAP/example/tcp_server.php -text
 tiki/lib/pear/SOAP/example/wsdl_client.php -text
 tiki/lib/pear/SOAP/tools/genproxy.php -text
 tiki/lib/pear/System.php -text
+tiki/lib/pear/Text/Wiki.php -text
 tiki/lib/pear/XML/Parser.php -text
 tiki/lib/pear/XML/Tree.php -text
 tiki/lib/pear/XML/Tree/Node.php -text
