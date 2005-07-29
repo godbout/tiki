@@ -3172,6 +3172,7 @@ tiki/lib/pear/System.php -text
 tiki/lib/pear/Text/Wiki.php -text
 tiki/lib/pear/Text/Wiki/Parse.php -text
 tiki/lib/pear/Text/Wiki/Render.php -text
+tiki/lib/pear/Text/Wiki/Render/Xhtml.php -text
 tiki/lib/pear/Text/Wiki/Tiki.php -text
 tiki/lib/pear/XML/Parser.php -text
 tiki/lib/pear/XML/Tree.php -text
