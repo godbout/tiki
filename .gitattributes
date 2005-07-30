@@ -3674,6 +3674,7 @@ tiki/modules/index.php -text
 tiki/modules/mod-articles.php -text
 tiki/modules/mod-assistant.php -text
 tiki/modules/mod-breadcrumb.php -text
+tiki/modules/mod-categories.php -text
 tiki/modules/mod-change_category.php -text
 tiki/modules/mod-comm_received_objects.php -text
 tiki/modules/mod-directory_last_sites.php -text
@@ -4063,6 +4064,7 @@ tiki/templates/modules/mod-breadcrumb.tpl -text
 tiki/templates/modules/mod-breadcrumb.tpl.nocache -text
 tiki/templates/modules/mod-calendar.tpl -text
 tiki/templates/modules/mod-calendar.tpl.nocache -text
+tiki/templates/modules/mod-categories.tpl -text
 tiki/templates/modules/mod-change_category.tpl -text
 tiki/templates/modules/mod-comm_received_objects.tpl -text
 tiki/templates/modules/mod-directory_last_sites.tpl -text
