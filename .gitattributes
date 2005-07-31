@@ -3609,7 +3609,6 @@ tiki/lib/wiki-plugins/wikiplugin_translated.php -text
 tiki/lib/wiki-plugins/wikiplugin_usercount.php -text
 tiki/lib/wiki-plugins/wikiplugin_versions.php -text
 tiki/lib/wiki-plugins/wikiplugin_wantedpages.php -text
-tiki/lib/wiki/Text/Wiki/Tiki.php -text
 tiki/lib/wiki/exportlib.php -text
 tiki/lib/wiki/histlib.php -text
 tiki/lib/wiki/index.php -text
