@@ -1748,6 +1748,7 @@ tiki/doc/devtools/lastcvs.sh -text
 tiki/doc/devtools/mergelang.pl -text
 tiki/doc/devtools/mods.sh -text
 tiki/doc/devtools/phpstrip.sh -text
+tiki/doc/devtools/premerge_report.sh -text
 tiki/doc/devtools/restorehelp.php -text
 tiki/doc/devtools/set_perms.py -text
 tiki/doc/devtools/sharetiki.sh -text
@@ -3132,13 +3133,16 @@ tiki/lib/pear/SOAP/Server.php -text
 tiki/lib/pear/SOAP/Server/Email.php -text
 tiki/lib/pear/SOAP/Server/Email_Gateway.php -text
 tiki/lib/pear/SOAP/Server/TCP.php -text
+tiki/lib/pear/SOAP/Server/index.php -text
 tiki/lib/pear/SOAP/Transport.php -text
 tiki/lib/pear/SOAP/Transport/HTTP.php -text
 tiki/lib/pear/SOAP/Transport/SMTP.php -text
 tiki/lib/pear/SOAP/Transport/TCP.php -text
+tiki/lib/pear/SOAP/Transport/index.php -text
 tiki/lib/pear/SOAP/Type/dateTime.php -text
 tiki/lib/pear/SOAP/Type/duration.php -text
 tiki/lib/pear/SOAP/Type/hexBinary.php -text
+tiki/lib/pear/SOAP/Type/index.php -text
 tiki/lib/pear/SOAP/Value.php -text
 tiki/lib/pear/SOAP/WSDL.php -text
 tiki/lib/pear/SOAP/example/amazon/amazon.php -text
@@ -3159,6 +3163,7 @@ tiki/lib/pear/SOAP/example/email_pop_server.php -text
 tiki/lib/pear/SOAP/example/email_server.php -text
 tiki/lib/pear/SOAP/example/example_server.php -text
 tiki/lib/pear/SOAP/example/example_types.php -text
+tiki/lib/pear/SOAP/example/index.php -text
 tiki/lib/pear/SOAP/example/server.php -text
 tiki/lib/pear/SOAP/example/server2.php -text
 tiki/lib/pear/SOAP/example/smtp.php -text
@@ -3167,7 +3172,9 @@ tiki/lib/pear/SOAP/example/tcp_client.php -text
 tiki/lib/pear/SOAP/example/tcp_daemon.pl -text svneol=unset#application/octet-stream
 tiki/lib/pear/SOAP/example/tcp_server.php -text
 tiki/lib/pear/SOAP/example/wsdl_client.php -text
+tiki/lib/pear/SOAP/index.php -text
 tiki/lib/pear/SOAP/tools/genproxy.php -text
+tiki/lib/pear/SOAP/tools/index.php -text
 tiki/lib/pear/System.php -text
 tiki/lib/pear/Text/Wiki.php -text
 tiki/lib/pear/Text/Wiki/Parse.php -text
@@ -3263,15 +3270,22 @@ tiki/lib/pear/Text/Wiki/Tiki.php -text
 tiki/lib/pear/XML/Parser.php -text
 tiki/lib/pear/XML/Tree.php -text
 tiki/lib/pear/XML/Tree/Node.php -text
+tiki/lib/pear/XML/Tree/index.php -text
+tiki/lib/pear/XML/index.php -text
 tiki/lib/pear/index.php -text
+tiki/lib/pear/tests/XML_Parser/index.php -text
 tiki/lib/pear/tests/XML_Parser/tests/001.phpt -text
 tiki/lib/pear/tests/XML_Parser/tests/002.phpt -text
 tiki/lib/pear/tests/XML_Parser/tests/003.phpt -text
 tiki/lib/pear/tests/XML_Parser/tests/004.phpt -text
 tiki/lib/pear/tests/XML_Parser/tests/005.phpt -text
+tiki/lib/pear/tests/XML_Parser/tests/index.php -text
 tiki/lib/pear/tests/XML_Parser/tests/test2.xml -text
 tiki/lib/pear/tests/XML_Parser/tests/test3.xml -text
+tiki/lib/pear/tests/XML_Tree/index.php -text
+tiki/lib/pear/tests/XML_Tree/tests/index.php -text
 tiki/lib/pear/tests/XML_Tree/tests/test.php -text
+tiki/lib/pear/tests/index.php -text
 tiki/lib/polls/index.php -text
 tiki/lib/polls/polllib.php -text
 tiki/lib/polls/polllib_shared.php -text
@@ -3587,6 +3601,7 @@ tiki/lib/wiki-plugins/wikiplugin_lang.php -text
 tiki/lib/wiki-plugins/wikiplugin_miniquiz.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
 tiki/lib/wiki-plugins/wikiplugin_mono.php -text
+tiki/lib/wiki-plugins/wikiplugin_objecthits.php -text
 tiki/lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 tiki/lib/wiki-plugins/wikiplugin_poll.php -text
 tiki/lib/wiki-plugins/wikiplugin_quote.php -text
@@ -3657,6 +3672,7 @@ tiki/modules/cache/.htaccess -text svneol=unset#application/octet-stream
 tiki/modules/cache/README -text
 tiki/modules/cache/index.php -text
 tiki/modules/index.php -text
+tiki/modules/mod-adsense.php -text
 tiki/modules/mod-articles.php -text
 tiki/modules/mod-assistant.php -text
 tiki/modules/mod-breadcrumb.php -text
@@ -3719,6 +3735,7 @@ tiki/modules/mod-top_games.php -text
 tiki/modules/mod-top_image_galleries.php -text
 tiki/modules/mod-top_images.php -text
 tiki/modules/mod-top_images_th.php -text
+tiki/modules/mod-top_objects.php -text
 tiki/modules/mod-top_pages.php -text
 tiki/modules/mod-top_quizzes.php -text
 tiki/modules/mod-top_visited_blogs.php -text
@@ -4042,6 +4059,7 @@ tiki/templates/module-error.tpl -text
 tiki/templates/module.tpl -text
 tiki/templates/modules/index.php -text
 tiki/templates/modules/mod-admin_menu.tpl -text
+tiki/templates/modules/mod-adsense.tpl -text
 tiki/templates/modules/mod-application_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl.nocache -text
 tiki/templates/modules/mod-articles.tpl -text
@@ -4123,6 +4141,7 @@ tiki/templates/modules/mod-top_games.tpl -text
 tiki/templates/modules/mod-top_image_galleries.tpl -text
 tiki/templates/modules/mod-top_images.tpl -text
 tiki/templates/modules/mod-top_images_th.tpl -text
+tiki/templates/modules/mod-top_objects.tpl -text
 tiki/templates/modules/mod-top_pages.tpl -text
 tiki/templates/modules/mod-top_quizzes.tpl -text
 tiki/templates/modules/mod-top_visited_blogs.tpl -text
@@ -4204,6 +4223,7 @@ tiki/templates/styles/notheme/tiki-bot_bar.tpl -text
 tiki/templates/styles/notheme/tiki-my_tiki.tpl -text
 tiki/templates/styles/notheme/tiki-top_bar.tpl -text
 tiki/templates/styles/notheme/tiki.tpl -text
+tiki/templates/styles/simple/categpath.tpl -text
 tiki/templates/styles/simple/error.tpl -text
 tiki/templates/styles/simple/header.tpl -text
 tiki/templates/styles/simple/index.php -text
