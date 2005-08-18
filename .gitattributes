@@ -3267,7 +3267,10 @@ tiki/lib/pear/Text/Wiki/Render/Xhtml/Underline.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Url.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Wikilink.php -text
 tiki/lib/pear/Text/Wiki/Tiki.php -text
+tiki/lib/pear/XML/Dump.php -text
 tiki/lib/pear/XML/Parser.php -text
+tiki/lib/pear/XML/RPC.php -text
+tiki/lib/pear/XML/Server.php -text
 tiki/lib/pear/XML/Tree.php -text
 tiki/lib/pear/XML/Tree/Node.php -text
 tiki/lib/pear/XML/Tree/index.php -text
