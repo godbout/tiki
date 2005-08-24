@@ -3289,6 +3289,8 @@ tiki/lib/pear/tests/XML_Tree/index.php -text
 tiki/lib/pear/tests/XML_Tree/tests/index.php -text
 tiki/lib/pear/tests/XML_Tree/tests/test.php -text
 tiki/lib/pear/tests/index.php -text
+tiki/lib/phplayers_tiki/index.php -text
+tiki/lib/phplayers_tiki/tiki-phplayers.php -text
 tiki/lib/polls/index.php -text
 tiki/lib/polls/polllib.php -text
 tiki/lib/polls/polllib_shared.php -text
@@ -3980,6 +3982,7 @@ tiki/templates/_htaccess -text
 tiki/templates/attachments.tpl -text
 tiki/templates/babelfish.tpl -text
 tiki/templates/bidi.tpl -text
+tiki/templates/browsedcategory.tpl -text
 tiki/templates/categobjects.tpl -text
 tiki/templates/categorize.tpl -text
 tiki/templates/categpath.tpl -text
