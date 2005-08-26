@@ -2620,6 +2620,9 @@ tiki/img/wiki_up/.cvsignore -text
 tiki/img/wiki_up/README -text
 tiki/img/wiki_up/index.php -text
 tiki/index.php -text
+tiki/installer/_htaccess -text
+tiki/installer/index.php -text
+tiki/installer/tiki-installer.php -text
 tiki/jhot.php -text
 tiki/lang/_htaccess -text
 tiki/lang/ar/index.php -text
