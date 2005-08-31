@@ -253,6 +253,7 @@ _mods/Packages/wikiplugins-ebay.info.txt -text
 _mods/Packages/wikiplugins-formula.info.txt -text
 _mods/Packages/wikiplugins-galaxia_sweet_ui.info.txt -text
 _mods/Packages/wikiplugins-group.info.txt -text
+_mods/Packages/wikiplugins-js.info.txt -text
 _mods/Packages/wikiplugins-perm.info.txt -text
 _mods/Packages/wikiplugins-phplot.info.txt -text
 _mods/Packages/wikiplugins-plazes.info.txt -text
@@ -1386,6 +1387,7 @@ _mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiasequence.php 
 _mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiastandalone.php -text
 _mods/wiki-plugins/group/README -text
 _mods/wiki-plugins/group/wiki-plugins/wikiplugin_group.php -text
+_mods/wiki-plugins/js/wiki-plugins/wikiplugin_js.php -text
 _mods/wiki-plugins/pagename/Readme -text
 _mods/wiki-plugins/perm/README -text
 _mods/wiki-plugins/perm/wiki-plugins/wikiplugin_perm.php -text
