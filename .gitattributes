@@ -218,6 +218,7 @@ _mods/Packages/avatars-xmen.info.txt -text
 _mods/Packages/features-cc.info.txt -text
 _mods/Packages/features-import-phpwiki.info.txt -text
 _mods/Packages/features-userprefstats.info.txt -text
+_mods/Packages/lib-nusoap.info.txt -text
 _mods/Packages/menus-tikiring.info.txt -text
 _mods/Packages/services-mailman.info.txt -text
 _mods/Packages/sql-upgrade_0.95to1.0.info.txt -text
@@ -915,6 +916,18 @@ _mods/images/tikiwiki/tikibutton3.png -text
 _mods/images/tikiwiki/tikibutton3.xcf -text svneol=unset#unset
 _mods/images/tikiwiki/tikibutton4.png -text
 _mods/images/tikiwiki/tikibutton4.xcf -text svneol=unset#unset
+_mods/lib/nusoap/class.nusoap_base.php -text
+_mods/lib/nusoap/class.soap_fault.php -text
+_mods/lib/nusoap/class.soap_parser.php -text
+_mods/lib/nusoap/class.soap_server.php -text
+_mods/lib/nusoap/class.soap_transport_http.php -text
+_mods/lib/nusoap/class.soap_val.php -text
+_mods/lib/nusoap/class.soapclient.php -text
+_mods/lib/nusoap/class.wsdl.php -text
+_mods/lib/nusoap/class.wsdlcache.php -text
+_mods/lib/nusoap/class.xmlschema.php -text
+_mods/lib/nusoap/nusoap.php -text
+_mods/lib/nusoap/nusoapmime.php -text
 _mods/sqls/comments_fix_1.7to1.8.sql -text
 _mods/sqls/structure_fix_1.7to1.8.sql -text
 _mods/sqls/tiki_0.95to1.0.sql -text
