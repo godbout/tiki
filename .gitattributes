@@ -3255,6 +3255,7 @@ tiki/lib/pear/Text/Wiki/Render/Xhtml/Deflist.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Delimiter.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Embed.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Emphasis.php -text
+tiki/lib/pear/Text/Wiki/Render/Xhtml/Font.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Freelink.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Function.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Heading.php -text
@@ -3274,6 +3275,7 @@ tiki/lib/pear/Text/Wiki/Render/Xhtml/Prefilter.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Preformatted.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Raw.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Revise.php -text
+tiki/lib/pear/Text/Wiki/Render/Xhtml/Smiley.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Specialchar.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Strong.php -text
 tiki/lib/pear/Text/Wiki/Render/Xhtml/Subscript.php -text
