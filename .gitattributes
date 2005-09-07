@@ -3424,6 +3424,7 @@ tiki/lib/smarty_tiki/function.sameurl.php -text
 tiki/lib/smarty_tiki/function.showdate.php -text
 tiki/lib/smarty_tiki/function.tikicon.php -text
 tiki/lib/smarty_tiki/function.var_dump.php -text
+tiki/lib/smarty_tiki/function.wikistructure.php -text
 tiki/lib/smarty_tiki/index.php -text
 tiki/lib/smarty_tiki/modifier.act_icon.php -text
 tiki/lib/smarty_tiki/modifier.adjust.php -text
