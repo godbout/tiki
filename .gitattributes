@@ -4632,7 +4632,6 @@ tiki/tests/test_cvs_file.txt -text
 tiki/tests/test_file_2.txt -text
 tiki/textareasize.php -text
 tiki/tiki-admin.php -text
-tiki/tiki-admin_banners.php -text
 tiki/tiki-admin_banning.php -text
 tiki/tiki-admin_calendars.php -text
 tiki/tiki-admin_categories.php -text
