@@ -937,6 +937,7 @@ _mods/modules/calculator/calc.js -text
 _mods/modules/calculator/mod-calc.php -text
 _mods/modules/calculator/mod-calc.tpl -text
 _mods/modules/calculator/readme -text
+_mods/modules/clock/mod-clock.php -text
 _mods/modules/clock/mod-clock.tpl -text
 _mods/modules/clock/readme -text
 _mods/modules/plazes/mod-plazes.php -text
