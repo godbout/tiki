@@ -1408,6 +1408,7 @@ _mods/wiki-plugins/phplot/Readme -text
 _mods/wiki-plugins/phplot/wiki-plugins/wikiplugin_phplot.php -text
 _mods/wiki-plugins/plazes/README -text
 _mods/wiki-plugins/plazes/wiki-plugins/wikiplugin_plazes.php -text
+_mods/wiki-plugins/plazes/wiki-plugins/wikiplugin_plazeswhereis.php -text
 _mods/wiki-plugins/redirect/README -text
 _mods/wiki-plugins/redirect/wiki-plugins/wikiplugin_redirect.php -text
 _mods/wiki-plugins/scroll/wiki-plugins/wikiplugin_scroll.php -text
