@@ -942,6 +942,8 @@ _mods/sqls/tiki_1.4to1.5.sql -text
 _mods/sqls/tiki_1.5to1.6.sql -text
 _mods/sqls/tiki_1.6to1.7.sql -text
 _mods/sqls/tiki_1.7to1.8.sql -text
+_mods/sqls/tiki_1.8to1.9.sql -text
+_mods/sqls/tiki_1.9to1.9.1.sql -text
 _mods/taglines/README -text
 _mods/taglines/rcogley/README -text
 _mods/taglines/rcogley/taglines.txt -text
