@@ -238,6 +238,7 @@ _mods/Packages/sql-upgrade_1.6to1.7.info.txt -text
 _mods/Packages/sql-upgrade_1.7to1.8.info.txt -text
 _mods/Packages/sql-upgrade_1.8to1.9.info.txt -text
 _mods/Packages/sql-upgrade_1.9to1.9.1.info.txt -text
+_mods/Packages/taglines-rcogley.info.txt -text
 _mods/Packages/themes-3dblue.info.txt -text
 _mods/Packages/themes-akwa.info.txt -text
 _mods/Packages/themes-bluemetal.info.txt -text
