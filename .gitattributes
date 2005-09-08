@@ -933,6 +933,8 @@ _mods/lib/nusoap/nusoap.php -text
 _mods/lib/nusoap/nusoapmime.php -text
 _mods/modules/calculator/mod-calc.tpl -text
 _mods/modules/calculator/readme -text
+_mods/modules/clock/mod-clock.tpl -text
+_mods/modules/clock/readme -text
 _mods/modules/plazes/mod-plazes.php -text
 _mods/modules/plazes/mod-plazes.tpl -text
 _mods/modules/plazes/readme -text
