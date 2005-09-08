@@ -931,6 +931,8 @@ _mods/lib/nusoap/class.wsdlcache.php -text
 _mods/lib/nusoap/class.xmlschema.php -text
 _mods/lib/nusoap/nusoap.php -text
 _mods/lib/nusoap/nusoapmime.php -text
+_mods/modules/plazes/mod-plazes.php -text
+_mods/modules/plazes/mod-plazes.tpl -text
 _mods/modules/plazes/readme -text
 _mods/sqls/comments_fix_1.7to1.8.sql -text
 _mods/sqls/structure_fix_1.7to1.8.sql -text
