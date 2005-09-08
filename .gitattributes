@@ -943,6 +943,8 @@ _mods/modules/clock/readme -text
 _mods/modules/plazes/mod-plazes.php -text
 _mods/modules/plazes/mod-plazes.tpl -text
 _mods/modules/plazes/readme -text
+_mods/modules/worldclock/mod-worldclock.tpl -text
+_mods/modules/worldclock/readme -text
 _mods/sqls/comments_fix_1.7to1.8.sql -text
 _mods/sqls/structure_fix_1.7to1.8.sql -text
 _mods/sqls/tiki_0.95to1.0.sql -text
