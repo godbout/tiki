@@ -53,6 +53,9 @@ _adodb/drivers/adodb-odbtp.inc.php -text
 _adodb/drivers/adodb-odbtp_unicode.inc.php -text
 _adodb/drivers/adodb-oracle.inc.php -text
 _adodb/drivers/adodb-pdo.inc.php -text
+_adodb/drivers/adodb-pdo_mysql.inc.php -text
+_adodb/drivers/adodb-pdo_oci.inc.php -text
+_adodb/drivers/adodb-pdo_pgsql.inc.php -text
 _adodb/drivers/adodb-postgres.inc.php -text
 _adodb/drivers/adodb-postgres64.inc.php -text
 _adodb/drivers/adodb-postgres7.inc.php -text
@@ -85,6 +88,7 @@ _adodb/lang/adodb-pt-br.inc.php -text
 _adodb/lang/adodb-ro.inc.php -text
 _adodb/lang/adodb-ru1251.inc.php -text
 _adodb/lang/adodb-sv.inc.php -text
+_adodb/lang/adodb-uk1251.inc.php -text
 _adodb/license.txt -text
 _adodb/perf/perf-db2.inc.php -text
 _adodb/perf/perf-informix.inc.php -text
@@ -113,6 +117,7 @@ _adodb/session/old/adodb-cryptsession.php -text
 _adodb/session/old/adodb-session-clob.php -text
 _adodb/session/old/adodb-session.php -text
 _adodb/session/old/crypt.inc.php -text
+_adodb/session/session_schema.xml -text
 _adodb/toexport.inc.php -text
 _adodb/tohtml.inc.php -text
 _jscalendar/ChangeLog -text
