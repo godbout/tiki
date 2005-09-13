@@ -1,5 +1,6 @@
 * text=auto !eol
 _adodb/adodb-csvlib.inc.php -text
+_adodb/adodb-datadict.inc.php -text
 _adodb/adodb-error.inc.php -text
 _adodb/adodb-errorhandler.inc.php -text
 _adodb/adodb-errorpear.inc.php -text
@@ -11,6 +12,7 @@ _adodb/adodb-pear.inc.php -text
 _adodb/adodb-perf.inc.php -text
 _adodb/adodb-php4.inc.php -text
 _adodb/adodb-time.inc.php -text
+_adodb/adodb-xmlschema.inc.php -text
 _adodb/adodb.inc.php -text
 _adodb/datadict/datadict-access.inc.php -text
 _adodb/datadict/datadict-db2.inc.php -text
@@ -120,6 +122,7 @@ _adodb/session/old/crypt.inc.php -text
 _adodb/session/session_schema.xml -text
 _adodb/toexport.inc.php -text
 _adodb/tohtml.inc.php -text
+_adodb/xmlschema.dtd -text
 _jscalendar/ChangeLog -text
 _jscalendar/README -text
 _jscalendar/bugtest-hidden-selects.html -text
