@@ -4355,6 +4355,7 @@ tiki/templates/tiki-admin-include-webmail.tpl -text
 tiki/templates/tiki-admin-include-wiki.tpl -text
 tiki/templates/tiki-admin-include-wikiatt.tpl -text
 tiki/templates/tiki-admin.tpl -text
+tiki/templates/tiki-admin_actionlog.tpl -text
 tiki/templates/tiki-admin_banning.tpl -text
 tiki/templates/tiki-admin_calendars.tpl -text
 tiki/templates/tiki-admin_categories.tpl -text
@@ -4662,6 +4663,7 @@ tiki/tests/test_cvs_file.txt -text
 tiki/tests/test_file_2.txt -text
 tiki/textareasize.php -text
 tiki/tiki-admin.php -text
+tiki/tiki-admin_actionlog.php -text
 tiki/tiki-admin_banning.php -text
 tiki/tiki-admin_calendars.php -text
 tiki/tiki-admin_categories.php -text
