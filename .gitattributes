@@ -918,6 +918,14 @@ _mods/features/jukebox/tikiroot/tiki-jukebox_tracks.php -text
 _mods/features/phpsource/README -text
 _mods/features/phpsource/lib/php/phplib.php -text
 _mods/features/phpsource/tiki-phpsource.php -text
+_mods/features/solve/db/vtiger_portal_bug_fields.php -text
+_mods/features/solve/db/vtiger_portal_case_fields.php -text
+_mods/features/solve/db/vtiger_portal_configuration.php -text
+_mods/features/solve/lib/solve/presentation.php -text
+_mods/features/solve/lib/solve/solvebugs.php -text
+_mods/features/solve/lib/solve/solvecases.php -text
+_mods/features/solve/lib/solve/solvelib.php -text
+_mods/features/solve/solve.php -text
 _mods/features/solve/styles/napkin.css -text
 _mods/features/solve/styles/napkin/images/napkin.jpg -text
 _mods/features/solve/templates/styles/napkin/header.tpl -text
