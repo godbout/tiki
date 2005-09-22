@@ -921,6 +921,7 @@ _mods/features/phpsource/tiki-phpsource.php -text
 _mods/features/solve/db/vtiger_portal_bug_fields.php -text
 _mods/features/solve/db/vtiger_portal_case_fields.php -text
 _mods/features/solve/db/vtiger_portal_configuration.php -text
+_mods/features/solve/lib/solve/configuration.php -text
 _mods/features/solve/lib/solve/presentation.php -text
 _mods/features/solve/lib/solve/solvebugs.php -text
 _mods/features/solve/lib/solve/solvecases.php -text
