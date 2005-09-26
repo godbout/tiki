@@ -974,6 +974,7 @@ _mods/modules/clock/mod-clock.tpl -text
 _mods/modules/clock/readme -text
 _mods/modules/extcalculator/calc.js -text
 _mods/modules/extcalculator/mod-extcalc.tpl -text
+_mods/modules/join/templates/modules/mod-join_box.tpl -text
 _mods/modules/plazes/mod-plazes.php -text
 _mods/modules/plazes/mod-plazes.tpl -text
 _mods/modules/plazes/readme -text
