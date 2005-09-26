@@ -3012,6 +3012,7 @@ tiki/lib/compat/index.php -text
 tiki/lib/copyrights/copyrightslib.php -text
 tiki/lib/copyrights/index.php -text
 tiki/lib/csslib.php -text
+tiki/lib/db/tiki_registration_fields.php -text
 tiki/lib/db/tikitable.php -text
 tiki/lib/dcs/dcslib.php -text
 tiki/lib/dcs/index.php -text
