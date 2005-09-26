@@ -231,6 +231,7 @@ _mods/Packages/menus-tikiring.info.txt -text
 _mods/Packages/modules-calculator.info.txt -text
 _mods/Packages/modules-clock.info.txt -text
 _mods/Packages/modules-extcalculator.info.txt -text
+_mods/Packages/modules-join.info.txt -text
 _mods/Packages/modules-plazes.info.txt -text
 _mods/Packages/modules-worldclock.info.txt -text
 _mods/Packages/services-mailman.info.txt -text
