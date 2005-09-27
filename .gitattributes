@@ -927,6 +927,7 @@ _mods/features/solve/lib/solve/presentation.php -text
 _mods/features/solve/lib/solve/solvebugs.php -text
 _mods/features/solve/lib/solve/solvecases.php -text
 _mods/features/solve/lib/solve/solvelib.php -text
+_mods/features/solve/lib/vtigerregistrationlib.php -text
 _mods/features/solve/solve.php -text
 _mods/features/solve/styles/napkin.css -text
 _mods/features/solve/styles/napkin/images/napkin.jpg -text
