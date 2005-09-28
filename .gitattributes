@@ -224,6 +224,7 @@ _mods/Packages/avatars-goldorak.info.txt -text
 _mods/Packages/avatars-mcdonald.info.txt -text
 _mods/Packages/avatars-xmen.info.txt -text
 _mods/Packages/features-cc.info.txt -text
+_mods/Packages/features-config.info.txt -text
 _mods/Packages/features-import-phpwiki.info.txt -text
 _mods/Packages/features-solve.info.txt -text
 _mods/Packages/features-userprefstats.info.txt -text
@@ -906,6 +907,9 @@ _mods/features/cc/templates/ledgers.tpl -text
 _mods/features/cc/templates/modules/mod-my_ledger.tpl -text
 _mods/features/cc/templates/transactions.tpl -text
 _mods/features/cc/templates/transactions_form.tpl -text
+_mods/features/config/tiki-admin-include-list-admin-sections.tpl -text
+_mods/features/config/tiki-admin.php -text
+_mods/features/config/tiki-admin.tpl -text
 _mods/features/dlp/Readme -text
 _mods/features/galaxia/README -text
 _mods/features/import-phpwiki/README -text
