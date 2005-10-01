@@ -3289,7 +3289,6 @@ tiki/lib/pear/Text/Wiki/Parse/Tiki/Delimiter.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Embed.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Emphasis.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Freelink.php -text
-tiki/lib/pear/Text/Wiki/Parse/Tiki/Function.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Heading.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Horiz.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Html.php -text
@@ -3301,7 +3300,6 @@ tiki/lib/pear/Text/Wiki/Parse/Tiki/List.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Newline.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Page.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Paragraph.php -text
-tiki/lib/pear/Text/Wiki/Parse/Tiki/Phplookup.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Plugin.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Prefilter.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Preformatted.php -text
