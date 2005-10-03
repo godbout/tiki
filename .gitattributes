@@ -3305,6 +3305,7 @@ tiki/lib/pear/Text/Wiki/Parse/Tiki/Prefilter.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Preformatted.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Raw.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Revise.php -text
+tiki/lib/pear/Text/Wiki/Parse/Tiki/Smiley.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Specialchar.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Strong.php -text
 tiki/lib/pear/Text/Wiki/Parse/Tiki/Subscript.php -text
