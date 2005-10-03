@@ -1,6 +1,5 @@
 * text=auto !eol
 _adodb/adodb-csvlib.inc.php -text
-_adodb/adodb-datadict.inc.php -text
 _adodb/adodb-error.inc.php -text
 _adodb/adodb-errorhandler.inc.php -text
 _adodb/adodb-errorpear.inc.php -text
@@ -12,7 +11,6 @@ _adodb/adodb-pear.inc.php -text
 _adodb/adodb-perf.inc.php -text
 _adodb/adodb-php4.inc.php -text
 _adodb/adodb-time.inc.php -text
-_adodb/adodb-xmlschema.inc.php -text
 _adodb/adodb.inc.php -text
 _adodb/datadict/datadict-access.inc.php -text
 _adodb/datadict/datadict-db2.inc.php -text
@@ -122,7 +120,6 @@ _adodb/session/old/crypt.inc.php -text
 _adodb/session/session_schema.xml -text
 _adodb/toexport.inc.php -text
 _adodb/tohtml.inc.php -text
-_adodb/xmlschema.dtd -text
 _jscalendar/ChangeLog -text
 _jscalendar/README -text
 _jscalendar/bugtest-hidden-selects.html -text
@@ -1775,6 +1772,7 @@ tiki/copyright.txt -text
 tiki/copyrights.php -text
 tiki/db/.cvsignore -text
 tiki/db/Makefile -text
+tiki/db/README.txt -text
 tiki/db/_htaccess -text
 tiki/db/case_patch.php -text
 tiki/db/comments_fix_1.7to1.8.sql -text
@@ -1844,6 +1842,7 @@ tiki/doc/devtools/premerge_report.sh -text
 tiki/doc/devtools/restorehelp.php -text
 tiki/doc/devtools/set_perms.py -text
 tiki/doc/devtools/sharetiki.sh -text
+tiki/doc/devtools/sharetikidev.sh -text
 tiki/doc/devtools/sqlupgrade.sh -text
 tiki/doc/devtools/stripbraces.pl -text
 tiki/doc/devtools/stripcomments.pl -text
@@ -2387,6 +2386,7 @@ tiki/img/icons/move.gif -text
 tiki/img/icons/move_topic.gif -text
 tiki/img/icons/moved.gif -text
 tiki/img/icons/myinfo.gif -text
+tiki/img/icons/na_pict.gif -text
 tiki/img/icons/netscape.gif -text
 tiki/img/icons/new.gif -text
 tiki/img/icons/new_3day.gif -text
@@ -3703,6 +3703,7 @@ tiki/lib/wiki-plugins/wikiplugin_formula.php -text
 tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins/wikiplugin_jabber.php -text
 tiki/lib/wiki-plugins/wikiplugin_lang.php -text
+tiki/lib/wiki-plugins/wikiplugin_map.php -text
 tiki/lib/wiki-plugins/wikiplugin_miniquiz.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
 tiki/lib/wiki-plugins/wikiplugin_mono.php -text
@@ -3895,6 +3896,12 @@ tiki/styles/boreal/maincap.png -text
 tiki/styles/boreal/menucap.png -text
 tiki/styles/boreal/pixel.gif -text
 tiki/styles/boreal/rightbar.gif -text
+tiki/styles/brtiki.css -text
+tiki/styles/brtiki/background_repeat.jpg -text
+tiki/styles/brtiki/background_top.jpg -text
+tiki/styles/brtiki/logo.jpg -text
+tiki/styles/brtiki/modulos.jpg -text
+tiki/styles/brtiki/top_right.jpg -text
 tiki/styles/codex.css -text svneol=unset#application/octet-stream
 tiki/styles/codex/index.php -text
 tiki/styles/codex/page_0.gif -text
@@ -4283,6 +4290,7 @@ tiki/templates/structures_toc-startul.tpl -text
 tiki/templates/structures_toc.tpl -text
 tiki/templates/structures_toc_level.tpl -text
 tiki/templates/styles/blank/tiki.tpl -text
+tiki/templates/styles/brtiki/tiki-top_bar.tpl -text
 tiki/templates/styles/codex/error.tpl -text
 tiki/templates/styles/codex/index.php -text
 tiki/templates/styles/codex/tiki.tpl -text
