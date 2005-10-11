@@ -935,7 +935,6 @@ _mods/features/solve/solve.php -text
 _mods/features/solve/styles/napkin.css -text
 _mods/features/solve/styles/napkin/images/napkin.jpg -text
 _mods/features/solve/templates/styles/napkin/header.tpl -text
-_mods/features/solve/templates/styles/napkin/modules/mod-join_box.tpl -text
 _mods/features/solve/templates/styles/napkin/modules/mod-login_box.tpl -text
 _mods/features/solve/templates/styles/napkin/solve-bugs.tpl -text
 _mods/features/solve/templates/styles/napkin/solve-bugs_list.tpl -text
