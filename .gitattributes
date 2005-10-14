@@ -4559,6 +4559,7 @@ tiki/templates/tiki-list_articles.tpl -text
 tiki/templates/tiki-list_banners.tpl -text
 tiki/templates/tiki-list_blogs.tpl -text
 tiki/templates/tiki-list_cache.tpl -text
+tiki/templates/tiki-list_comments.tpl -text
 tiki/templates/tiki-list_contents.tpl -text
 tiki/templates/tiki-list_faqs.tpl -text
 tiki/templates/tiki-list_file_gallery.tpl -text
@@ -4918,6 +4919,7 @@ tiki/tiki-list_articles.php -text
 tiki/tiki-list_banners.php -text
 tiki/tiki-list_blogs.php -text
 tiki/tiki-list_cache.php -text
+tiki/tiki-list_comments.php -text
 tiki/tiki-list_contents.php -text
 tiki/tiki-list_faqs.php -text
 tiki/tiki-list_file_gallery.php -text
