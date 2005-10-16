@@ -1810,6 +1810,7 @@ tiki/db/tiki-secdb_pre_1.7_mysql.sql -text
 tiki/db/tiki.sql -text
 tiki/db/tiki_1.7to1.8.sql -text
 tiki/db/tiki_1.8to1.9.sql -text
+tiki/db/tiki_1.9.1to1.9.2.sql -text
 tiki/db/tiki_1.9to1.10.sql -text
 tiki/db/tiki_1.9to1.9.1.sql -text
 tiki/db/tiki_ddl.sql -text
@@ -3676,6 +3677,7 @@ tiki/lib/wiki-plugins-dist/index.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_bloglist.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_lsdir.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_snarf.php -text
 tiki/lib/wiki-plugins/index.php -text
 tiki/lib/wiki-plugins/wikiplugin_agentinfo.php -text
 tiki/lib/wiki-plugins/wikiplugin_alink.php -text
@@ -4120,6 +4122,8 @@ tiki/templates/mail/mailin_help_subject.tpl -text
 tiki/templates/mail/mailin_reply_subject.tpl -text
 tiki/templates/mail/messu_message_notification.tpl -text
 tiki/templates/mail/messu_message_notification_subject.tpl -text
+tiki/templates/mail/moderate_activation_mail.tpl -text
+tiki/templates/mail/moderate_activation_mail_subject.tpl -text
 tiki/templates/mail/moderate_validation_mail.tpl -text
 tiki/templates/mail/moderate_validation_mail_subject.tpl -text
 tiki/templates/mail/new_user_notification.tpl -text
