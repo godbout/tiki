@@ -3690,6 +3690,7 @@ tiki/lib/wiki-plugins/wikiplugin_attach.php -text
 tiki/lib/wiki-plugins/wikiplugin_avatar.php -text
 tiki/lib/wiki-plugins/wikiplugin_backlinks.php -text
 tiki/lib/wiki-plugins/wikiplugin_box.php -text
+tiki/lib/wiki-plugins/wikiplugin_calendar.php -text
 tiki/lib/wiki-plugins/wikiplugin_category.php -text
 tiki/lib/wiki-plugins/wikiplugin_catorphans.php -text
 tiki/lib/wiki-plugins/wikiplugin_catpath.php -text
@@ -4652,6 +4653,7 @@ tiki/templates/tiki-send_newsletters.tpl -text
 tiki/templates/tiki-send_objects.tpl -text
 tiki/templates/tiki-sheets.tpl -text
 tiki/templates/tiki-shoutbox.tpl -text
+tiki/templates/tiki-show_calendar.tpl -text
 tiki/templates/tiki-show_page.tpl -text
 tiki/templates/tiki-show_page_raw.tpl -text
 tiki/templates/tiki-simple_plugin.tpl -text
@@ -5033,6 +5035,7 @@ tiki/tiki-setup.php -text
 tiki/tiki-setup_base.php -text
 tiki/tiki-sheets.php -text
 tiki/tiki-shoutbox.php -text
+tiki/tiki-show_calendar.php -text
 tiki/tiki-show_raw_links.php -text
 tiki/tiki-show_user_avatar.php -text
 tiki/tiki-slideshow.php -text
