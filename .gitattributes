@@ -1865,6 +1865,8 @@ tiki/dump/.cvsignore -text
 tiki/dump/index.php -text
 tiki/favicon.png -text
 tiki/fixperms.sh -text
+tiki/freetag_apply.php -text
+tiki/freetag_list.php -text
 tiki/function.js_maxlength.php -text
 tiki/games/README -text
 tiki/games/flash/README -text
