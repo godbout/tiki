@@ -4112,6 +4112,7 @@ tiki/templates/error.tpl -text
 tiki/templates/error_simple.tpl -text
 tiki/templates/error_ticket.tpl -text
 tiki/templates/footer.tpl -text
+tiki/templates/freetag.tpl -text
 tiki/templates/header.tpl -text
 tiki/templates/index.php -text
 tiki/templates/information.tpl -text
