@@ -1732,11 +1732,6 @@ _smarty/libs/plugins/shared.escape_special_chars.php -text
 _smarty/libs/plugins/shared.make_timestamp.php -text
 _smarty/misc/smarty_icon.README -text
 _smarty/misc/smarty_icon.gif -text
-_smarty/plugins/block.strip.php -text
-_smarty/plugins/function.fetch.php.diff -text
-_smarty/plugins/function.html_select_date.php.diff -text
-_smarty/plugins/function.html_select_time.php.diff -text
-_smarty/plugins/index.php -text
 _smarty/unit_test/README -text
 _smarty/unit_test/config.php -text
 _smarty/unit_test/configs/globals_double_quotes.conf -text
