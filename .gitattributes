@@ -1835,6 +1835,7 @@ tiki/doc/devtools/mergelang.pl -text
 tiki/doc/devtools/mods.sh -text
 tiki/doc/devtools/phpstrip.sh -text
 tiki/doc/devtools/premerge_report.sh -text
+tiki/doc/devtools/removehtaccess.sh -text
 tiki/doc/devtools/restorehelp.php -text
 tiki/doc/devtools/set_perms.py -text
 tiki/doc/devtools/sharetiki.sh -text
