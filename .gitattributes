@@ -1809,6 +1809,7 @@ tiki/db/tiki_1.8to1.9.sql -text
 tiki/db/tiki_1.9.1to1.9.2.sql -text
 tiki/db/tiki_1.9to1.10.sql -text
 tiki/db/tiki_1.9to1.9.1.sql -text
+tiki/db/tiki_1.9to1.9.2.sql -text
 tiki/db/tiki_ddl.sql -text
 tiki/db/tiki_mysql.sql -text
 tiki/db/tiki_oracle.err.sql -text
@@ -1824,6 +1825,7 @@ tiki/doc/devtools/cleanCatTrackers.php -text
 tiki/doc/devtools/cleanwatch.sh -text
 tiki/doc/devtools/csscheck.sh -text
 tiki/doc/devtools/cvsup.sh -text
+tiki/doc/devtools/diffsql.cmd -text
 tiki/doc/devtools/diffsql.sh -text svneol=unset#application/octet-stream
 tiki/doc/devtools/extract-img-db-to-fs.php -text
 tiki/doc/devtools/findstyledef.pl -text svneol=unset#application/octet-stream
@@ -4160,6 +4162,7 @@ tiki/templates/map/index.php -text
 tiki/templates/map/tiki-map.tpl -text
 tiki/templates/map/tiki-map_download.tpl -text
 tiki/templates/map/tiki-map_edit.tpl -text
+tiki/templates/map/tiki-map_frame.tpl -text
 tiki/templates/map/tiki-map_history.tpl -text
 tiki/templates/map/tiki-map_upload.tpl -text
 tiki/templates/messu-archive.tpl -text
