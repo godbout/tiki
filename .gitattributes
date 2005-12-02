@@ -3801,7 +3801,7 @@ tiki/modules/mod-forums_most_read_topics.php -text
 tiki/modules/mod-forums_most_visited_forums.php -text
 tiki/modules/mod-freetag.php -text
 tiki/modules/mod-freetags_most_popular.php -text
-tiki/modules/mod-freetags_user_popular.php -text
+tiki/modules/mod-freetags_prefered.php -text
 tiki/modules/mod-google.php -text
 tiki/modules/mod-last_actions.php -text
 tiki/modules/mod-last_articles.php -text
@@ -4206,7 +4206,7 @@ tiki/templates/modules/mod-forums_most_read_topics.tpl -text
 tiki/templates/modules/mod-forums_most_visited_forums.tpl -text
 tiki/templates/modules/mod-freetag.tpl -text
 tiki/templates/modules/mod-freetags_most_popular.tpl -text
-tiki/templates/modules/mod-freetags_user_popular.tpl -text
+tiki/templates/modules/mod-freetags_prefered.tpl -text
 tiki/templates/modules/mod-google.tpl -text
 tiki/templates/modules/mod-last_actions.tpl -text
 tiki/templates/modules/mod-last_actions.tpl.nocache -text svneol=unset#application/octet-stream
