@@ -4522,6 +4522,7 @@ tiki/templates/tiki-edit_submission.tpl -text
 tiki/templates/tiki-edit_templates.tpl -text
 tiki/templates/tiki-edit_topic.tpl -text
 tiki/templates/tiki-edit_translation.tpl -text
+tiki/templates/tiki-edit_wiki_section.tpl -text
 tiki/templates/tiki-editpage.tpl -text
 tiki/templates/tiki-eph.tpl -text
 tiki/templates/tiki-eph_admin.tpl -text
@@ -4867,6 +4868,7 @@ tiki/tiki-edit_submission.php -text
 tiki/tiki-edit_templates.php -text
 tiki/tiki-edit_topic.php -text
 tiki/tiki-edit_translation.php -text
+tiki/tiki-edit_wiki_section.php -text
 tiki/tiki-editdrawing.php -text
 tiki/tiki-editpage.php -text
 tiki/tiki-eph.php -text
