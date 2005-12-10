@@ -4361,10 +4361,13 @@ tiki/templates/styles/simple/modules/mod-last_modif_pages.tpl -text
 tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
 tiki/templates/styles/simple/modules/mod-switch_lang2.tpl -text
 tiki/templates/styles/simple/modules/mod-wiki_last_comments.tpl -text
+tiki/templates/styles/simple/tiki-blog_post.tpl -text
 tiki/templates/styles/simple/tiki-print_article.tpl -text
 tiki/templates/styles/simple/tiki-show_page.tpl -text
 tiki/templates/styles/simple/tiki-site_header.tpl -text
 tiki/templates/styles/simple/tiki-top_bar.tpl -text
+tiki/templates/styles/simple/tiki-view_blog.tpl -text
+tiki/templates/styles/simple/tiki-view_blog_post.tpl -text
 tiki/templates/styles/simple/tiki.tpl -text
 tiki/templates/styles/smartiki/babelfish.tpl -text
 tiki/templates/styles/smartiki/error.tpl -text
