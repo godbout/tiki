@@ -4536,6 +4536,7 @@ tiki/templates/tiki-file_galleries.tpl -text
 tiki/templates/tiki-forum_queue.tpl -text
 tiki/templates/tiki-forums.tpl -text
 tiki/templates/tiki-forums_reported.tpl -text svneol=unset#application/octet-stream
+tiki/templates/tiki-freetag_list_objects.tpl -text
 tiki/templates/tiki-friends.tpl -text
 tiki/templates/tiki-g-activity_completed.tpl -text
 tiki/templates/tiki-g-admin_activities.tpl -text
