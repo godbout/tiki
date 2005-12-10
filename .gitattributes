@@ -4893,6 +4893,7 @@ tiki/tiki-forum_rss.php -text
 tiki/tiki-forums.php -text
 tiki/tiki-forums_reported.php -text
 tiki/tiki-forums_rss.php -text
+tiki/tiki-freetag_list_objects.php -text
 tiki/tiki-friends.php -text
 tiki/tiki-g-admin_activities.php -text
 tiki/tiki-g-admin_graph.php -text
