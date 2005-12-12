@@ -4523,6 +4523,7 @@ tiki/templates/tiki-batch_upload.tpl -text
 tiki/templates/tiki-blog_post.tpl -text
 tiki/templates/tiki-bot_bar.tpl -text
 tiki/templates/tiki-browse_categories.tpl -text
+tiki/templates/tiki-browse_freetags.tpl -text
 tiki/templates/tiki-browse_gallery.tpl -text
 tiki/templates/tiki-browse_image.tpl -text
 tiki/templates/tiki-calendar.tpl -text
@@ -4864,6 +4865,7 @@ tiki/tiki-blog_rankings.php -text
 tiki/tiki-blog_rss.php -text
 tiki/tiki-blogs_rss.php -text
 tiki/tiki-browse_categories.php -text
+tiki/tiki-browse_freetags.php -text
 tiki/tiki-browse_gallery.php -text
 tiki/tiki-browse_image.php -text
 tiki/tiki-calendar.php -text
@@ -4940,6 +4942,7 @@ tiki/tiki-forum_rss.php -text
 tiki/tiki-forums.php -text
 tiki/tiki-forums_reported.php -text
 tiki/tiki-forums_rss.php -text
+tiki/tiki-freetag3d_xmlrpc.php -text
 tiki/tiki-freetag_list_objects.php -text
 tiki/tiki-friends.php -text
 tiki/tiki-g-admin_activities.php -text
