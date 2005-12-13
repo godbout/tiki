@@ -3038,6 +3038,8 @@ tiki/lib/compat/array_fill.func.php -text
 tiki/lib/compat/index.php -text
 tiki/lib/copyrights/copyrightslib.php -text
 tiki/lib/copyrights/index.php -text
+tiki/lib/cpaint/cpaint2.inc.compressed.js -text
+tiki/lib/cpaint/cpaint2.inc.php -text
 tiki/lib/csslib.php -text
 tiki/lib/db/tiki_registration_fields.php -text
 tiki/lib/db/tikitable.php -text
@@ -3081,6 +3083,7 @@ tiki/lib/feedcreator/feedcreator.class.php -text
 tiki/lib/feedcreator/lgpl.txt -text
 tiki/lib/filegals/filegallib.php -text
 tiki/lib/filegals/index.php -text
+tiki/lib/freetag/freetag_ajax.js -text
 tiki/lib/freetag/freetaglib.php -text
 tiki/lib/freetag/index.php -text
 tiki/lib/games/gamelib.php -text
@@ -4944,6 +4947,7 @@ tiki/tiki-forums_reported.php -text
 tiki/tiki-forums_rss.php -text
 tiki/tiki-freetag3d_xmlrpc.php -text
 tiki/tiki-freetag_list_objects.php -text
+tiki/tiki-freetag_list_objects_ajax.php -text
 tiki/tiki-friends.php -text
 tiki/tiki-g-admin_activities.php -text
 tiki/tiki-g-admin_graph.php -text
