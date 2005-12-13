@@ -3826,6 +3826,7 @@ tiki/modules/cache/README -text
 tiki/modules/cache/index.php -text
 tiki/modules/index.php -text
 tiki/modules/mod-adsense.php -text
+tiki/modules/mod-article_topics.php -text
 tiki/modules/mod-articles.php -text
 tiki/modules/mod-assistant.php -text
 tiki/modules/mod-breadcrumb.php -text
@@ -4229,6 +4230,7 @@ tiki/templates/modules/mod-admin_menu.tpl -text
 tiki/templates/modules/mod-adsense.tpl -text
 tiki/templates/modules/mod-application_menu.tpl -text
 tiki/templates/modules/mod-application_menu.tpl.nocache -text
+tiki/templates/modules/mod-article_topics.tpl -text
 tiki/templates/modules/mod-articles.tpl -text
 tiki/templates/modules/mod-assistant.tpl -text
 tiki/templates/modules/mod-breadcrumb.tpl -text
