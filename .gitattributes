@@ -3411,6 +3411,7 @@ tiki/lib/rankings/ranklib.php -text
 tiki/lib/refererstats/index.php -text
 tiki/lib/refererstats/refererlib.php -text
 tiki/lib/registration/index.php -text
+tiki/lib/registration/register_ajax.js -text
 tiki/lib/registration/registrationlib.php -text
 tiki/lib/rss/atom-style.css -text svneol=unset#application/octet-stream
 tiki/lib/rss/index.php -text
@@ -5082,6 +5083,7 @@ tiki/tiki-received_articles.php -text
 tiki/tiki-received_pages.php -text
 tiki/tiki-referer_stats.php -text
 tiki/tiki-register.php -text
+tiki/tiki-register_ajax.php -text
 tiki/tiki-register_site.php -text
 tiki/tiki-remind_password.php -text
 tiki/tiki-remote_backup.php -text
