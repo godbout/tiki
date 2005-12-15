@@ -4458,6 +4458,7 @@ tiki/templates/tiki-admin-include-faqs.tpl -text
 tiki/templates/tiki-admin-include-features.tpl -text
 tiki/templates/tiki-admin-include-fgal.tpl -text
 tiki/templates/tiki-admin-include-forums.tpl -text
+tiki/templates/tiki-admin-include-freetags.tpl -text
 tiki/templates/tiki-admin-include-gal.tpl -text
 tiki/templates/tiki-admin-include-general.tpl -text
 tiki/templates/tiki-admin-include-intertiki.tpl -text
@@ -4814,6 +4815,7 @@ tiki/tiki-admin_include_faqs.php -text
 tiki/tiki-admin_include_features.php -text
 tiki/tiki-admin_include_fgal.php -text
 tiki/tiki-admin_include_forums.php -text
+tiki/tiki-admin_include_freetags.php -text
 tiki/tiki-admin_include_gal.php -text
 tiki/tiki-admin_include_general.php -text
 tiki/tiki-admin_include_intertiki.php -text
