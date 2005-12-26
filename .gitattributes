@@ -3702,6 +3702,7 @@ tiki/lib/wiki-plugins/wikiplugin_category.php -text
 tiki/lib/wiki-plugins/wikiplugin_catorphans.php -text
 tiki/lib/wiki-plugins/wikiplugin_catpath.php -text
 tiki/lib/wiki-plugins/wikiplugin_center.php -text
+tiki/lib/wiki-plugins/wikiplugin_chart.php -text
 tiki/lib/wiki-plugins/wikiplugin_code.php -text
 tiki/lib/wiki-plugins/wikiplugin_copyright.php -text
 tiki/lib/wiki-plugins/wikiplugin_countdown.php -text
