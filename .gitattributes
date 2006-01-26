@@ -3827,6 +3827,7 @@ tiki/modules/mod-adsense.php -text
 tiki/modules/mod-article_topics.php -text
 tiki/modules/mod-articles.php -text
 tiki/modules/mod-assistant.php -text
+tiki/modules/mod-blog_last_comments.php -text
 tiki/modules/mod-breadcrumb.php -text
 tiki/modules/mod-categories.php -text
 tiki/modules/mod-change_category.php -text
@@ -4234,6 +4235,7 @@ tiki/templates/modules/mod-application_menu.tpl.nocache -text
 tiki/templates/modules/mod-article_topics.tpl -text
 tiki/templates/modules/mod-articles.tpl -text
 tiki/templates/modules/mod-assistant.tpl -text
+tiki/templates/modules/mod-blog_last_comments.tpl -text
 tiki/templates/modules/mod-breadcrumb.tpl -text
 tiki/templates/modules/mod-breadcrumb.tpl.nocache -text
 tiki/templates/modules/mod-calendar.tpl -text
