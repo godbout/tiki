@@ -3085,6 +3085,8 @@ tiki/lib/diff/Renderer.php -text
 tiki/lib/diff/difflib.php -text
 tiki/lib/diff/renderer_bytes.php -text
 tiki/lib/diff/renderer_character.php -text
+tiki/lib/diff/renderer_character_inline.php -text
+tiki/lib/diff/renderer_inline.php -text
 tiki/lib/diff/renderer_sidebyside.php -text
 tiki/lib/diff/renderer_unified.php -text
 tiki/lib/directory/dirlib.php -text
