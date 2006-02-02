@@ -3061,6 +3061,7 @@ tiki/lib/cpaint/cpaint2.inc.compressed.js -text
 tiki/lib/cpaint/cpaint2.inc.php -text
 tiki/lib/cpaint/json.php -text
 tiki/lib/cpaint/tiki-ajax.js -text
+tiki/lib/cpaint/tiki-ajax_quicktags.js -text
 tiki/lib/csslib.php -text
 tiki/lib/db/tiki_registration_fields.php -text
 tiki/lib/db/tikitable.php -text
@@ -4867,6 +4868,7 @@ tiki/tiki-admin_tracker_fields.php -text
 tiki/tiki-admin_trackers.php -text
 tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
+tiki/tiki-ajax_quicktags.php -text
 tiki/tiki-article_types.php -text
 tiki/tiki-articles_rss.php -text
 tiki/tiki-assignpermission.php -text
