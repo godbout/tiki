@@ -3060,6 +3060,7 @@ tiki/lib/cpaint/cpaint2.config.php -text
 tiki/lib/cpaint/cpaint2.inc.compressed.js -text
 tiki/lib/cpaint/cpaint2.inc.php -text
 tiki/lib/cpaint/json.php -text
+tiki/lib/cpaint/tiki-ajax.js -text
 tiki/lib/csslib.php -text
 tiki/lib/db/tiki_registration_fields.php -text
 tiki/lib/db/tikitable.php -text
