@@ -4729,6 +4729,7 @@ tiki/templates/tiki-admin_trackers.tpl -text
 tiki/templates/tiki-admingroups.tpl -text
 tiki/templates/tiki-adminusers.tpl -text
 tiki/templates/tiki-ajax_header.tpl -text
+tiki/templates/tiki-ajax_table.tpl -text
 tiki/templates/tiki-article_types.tpl -text
 tiki/templates/tiki-articles-js.tpl -text
 tiki/templates/tiki-assignpermission.tpl -text
