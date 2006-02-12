@@ -3077,6 +3077,7 @@ tiki/lib/copyrights/copyrightslib.php -text
 tiki/lib/copyrights/index.php -text
 tiki/lib/cpaint/cpaint2.config.php -text
 tiki/lib/cpaint/cpaint2.inc.compressed.js -text
+tiki/lib/cpaint/cpaint2.inc.js -text
 tiki/lib/cpaint/cpaint2.inc.php -text
 tiki/lib/cpaint/json.php -text
 tiki/lib/cpaint/tiki-ajax.js -text
