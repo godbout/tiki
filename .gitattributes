@@ -3064,6 +3064,8 @@ tiki/lib/categories/index.php -text
 tiki/lib/charts/chartlib.php -text
 tiki/lib/charts/index.php -text
 tiki/lib/chat/chatlib.php -text
+tiki/lib/chat/im.js -text
+tiki/lib/chat/im_ui.js -text
 tiki/lib/chat/index.php -text
 tiki/lib/class_calendar.php -text
 tiki/lib/class_rdf_parser.php -text
