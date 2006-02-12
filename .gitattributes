@@ -4465,6 +4465,7 @@ tiki/templates/modules/mod-freetag.tpl -text
 tiki/templates/modules/mod-freetags_most_popular.tpl -text
 tiki/templates/modules/mod-freetags_prefered.tpl -text
 tiki/templates/modules/mod-google.tpl -text
+tiki/templates/modules/mod-instant_messaging.tpl -text
 tiki/templates/modules/mod-last_actions.tpl -text
 tiki/templates/modules/mod-last_actions.tpl.nocache -text svneol=unset#application/octet-stream
 tiki/templates/modules/mod-last_articles.tpl -text
