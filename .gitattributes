@@ -5213,6 +5213,7 @@ tiki/tiki-graph_formula.php -text
 tiki/tiki-graph_sheet.php -text
 tiki/tiki-handlers.php -text
 tiki/tiki-history_sheets.php -text
+tiki/tiki-im_ajax.php -text
 tiki/tiki-image_galleries_rss.php -text
 tiki/tiki-image_gallery_rss.php -text
 tiki/tiki-imexport_languages.php -text
