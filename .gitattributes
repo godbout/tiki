@@ -3200,6 +3200,8 @@ tiki/lib/mailin/index.php -text
 tiki/lib/mailin/mailinlib.php -text
 tiki/lib/map/index.php -text
 tiki/lib/map/map.js -text
+tiki/lib/map/map_cp.php -text
+tiki/lib/map/map_query.php -text
 tiki/lib/map/usermap.php -text
 tiki/lib/md5.js -text
 tiki/lib/menubuilder/index.php -text
