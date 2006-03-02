@@ -1819,6 +1819,7 @@ tiki/categorize_list.php -text
 tiki/changelog.txt -text
 tiki/comments.php -text
 tiki/commxmlrpc.php -text
+tiki/contribution.php -text
 tiki/copyright.txt -text
 tiki/copyrights.php -text
 tiki/db/.cvsignore -text
@@ -3097,6 +3098,8 @@ tiki/lib/commcenter/index.php -text
 tiki/lib/commentslib.php -text
 tiki/lib/compat/array_fill.func.php -text
 tiki/lib/compat/index.php -text
+tiki/lib/contribution/contributionlib.php -text
+tiki/lib/contribution/index.php -text
 tiki/lib/copyrights/copyrightslib.php -text
 tiki/lib/copyrights/index.php -text
 tiki/lib/cpaint/cpaint2.config.php -text
@@ -4405,6 +4408,7 @@ tiki/templates/categpath.tpl -text
 tiki/templates/comment.tpl -text
 tiki/templates/comments.tpl -text
 tiki/templates/confirm.tpl -text
+tiki/templates/contribution.tpl -text
 tiki/templates/copyrights.tpl -text svneol=unset#application/octet-stream
 tiki/templates/debug/index.php -text
 tiki/templates/debug/tiki-debug_console_help.tpl -text
@@ -4753,6 +4757,7 @@ tiki/templates/tiki-admin_chart_items.tpl -text
 tiki/templates/tiki-admin_charts.tpl -text
 tiki/templates/tiki-admin_chat.tpl -text
 tiki/templates/tiki-admin_content_templates.tpl -text
+tiki/templates/tiki-admin_contribution.tpl -text
 tiki/templates/tiki-admin_cookies.tpl -text
 tiki/templates/tiki-admin_drawings.tpl -text
 tiki/templates/tiki-admin_dsn.tpl -text
@@ -5069,6 +5074,7 @@ tiki/tiki-admin_chart_items.php -text
 tiki/tiki-admin_charts.php -text
 tiki/tiki-admin_chat.php -text
 tiki/tiki-admin_content_templates.php -text
+tiki/tiki-admin_contribution.php -text
 tiki/tiki-admin_cookies.php -text
 tiki/tiki-admin_drawings.php -text
 tiki/tiki-admin_dsn.php -text
