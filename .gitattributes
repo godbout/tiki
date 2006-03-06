@@ -1809,6 +1809,7 @@ tiki/ajax/test_content.php -text
 tiki/ajax/test_item.php -text
 tiki/ajax/test_list.php -text
 tiki/ajax/test_scalar.php -text
+tiki/ajax/tra.php -text
 tiki/article_image.php -text
 tiki/backups/.cvsignore -text
 tiki/backups/README -text
