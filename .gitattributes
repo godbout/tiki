@@ -1805,7 +1805,10 @@ tiki/INSTALL -text
 tiki/README -text
 tiki/_htaccess -text
 tiki/about.php -text
-tiki/ajax/test.php -text
+tiki/ajax/test_content.php -text
+tiki/ajax/test_item.php -text
+tiki/ajax/test_list.php -text
+tiki/ajax/test_scalar.php -text
 tiki/article_image.php -text
 tiki/backups/.cvsignore -text
 tiki/backups/README -text
@@ -4794,6 +4797,7 @@ tiki/templates/tiki-admin_tracker_fields.tpl -text
 tiki/templates/tiki-admin_trackers.tpl -text
 tiki/templates/tiki-admingroups.tpl -text
 tiki/templates/tiki-adminusers.tpl -text
+tiki/templates/tiki-ajax_example.tpl -text
 tiki/templates/tiki-ajax_header.tpl -text
 tiki/templates/tiki-ajax_table.tpl -text
 tiki/templates/tiki-article_types.tpl -text
@@ -5139,6 +5143,7 @@ tiki/tiki-admin_trackers.php -text
 tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
 tiki/tiki-ajax.php -text
+tiki/tiki-ajax_example.php -text
 tiki/tiki-ajax_quicktags.php -text
 tiki/tiki-article_types.php -text
 tiki/tiki-articles_rss.php -text
