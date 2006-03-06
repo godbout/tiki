@@ -1805,6 +1805,7 @@ tiki/INSTALL -text
 tiki/README -text
 tiki/_htaccess -text
 tiki/about.php -text
+tiki/ajax/test.php -text
 tiki/article_image.php -text
 tiki/backups/.cvsignore -text
 tiki/backups/README -text
@@ -5137,6 +5138,7 @@ tiki/tiki-admin_tracker_fields.php -text
 tiki/tiki-admin_trackers.php -text
 tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
+tiki/tiki-ajax.php -text
 tiki/tiki-ajax_quicktags.php -text
 tiki/tiki-article_types.php -text
 tiki/tiki-articles_rss.php -text
