@@ -5049,6 +5049,7 @@ tiki/templates/tiki-view_tracker_more_info.tpl -text
 tiki/templates/tiki-webmail.tpl -text
 tiki/templates/tiki-webmail_contacts.tpl -text
 tiki/templates/tiki-wiki3d.tpl -text
+tiki/templates/tiki-xajax_example.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates/translated-lang.tpl -text
 tiki/templates_c/.cvsignore -text
