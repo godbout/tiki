@@ -4064,6 +4064,11 @@ tiki/lib/x/x_misc.js -text
 tiki/lib/x/x_slide.js -text
 tiki/lib/x/x_table.js -text
 tiki/lib/x/x_win.js -text
+tiki/lib/xajax/LICENSE.txt -text
+tiki/lib/xajax/README.txt -text
+tiki/lib/xajax/xajax.inc.php -text
+tiki/lib/xajax/xajaxCompress.php -text
+tiki/lib/xajax/xajaxResponse.inc.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/lib/ziplib.php -text
