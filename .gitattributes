@@ -1805,6 +1805,7 @@ tiki/INSTALL -text
 tiki/README -text
 tiki/_htaccess -text
 tiki/about.php -text
+tiki/ajax/quicktags_list_objects.php -text
 tiki/ajax/test_content.php -text
 tiki/ajax/test_item.php -text
 tiki/ajax/test_list.php -text
@@ -5151,7 +5152,6 @@ tiki/tiki-admingroups.php -text
 tiki/tiki-adminusers.php -text
 tiki/tiki-ajax.php -text
 tiki/tiki-ajax_example.php -text
-tiki/tiki-ajax_quicktags.php -text
 tiki/tiki-article_types.php -text
 tiki/tiki-articles_rss.php -text
 tiki/tiki-assignpermission.php -text
