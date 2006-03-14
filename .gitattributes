@@ -5172,6 +5172,7 @@ tiki/tiki-browse_image.php -text
 tiki/tiki-browse_users.php -text
 tiki/tiki-calendar.php -text
 tiki/tiki-calendar_import.php -text
+tiki/tiki-calendar_setup.php -text
 tiki/tiki-calendars_rss.php -text
 tiki/tiki-categpermissions.php -text
 tiki/tiki-change_password.php -text
