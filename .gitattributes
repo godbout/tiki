@@ -3108,6 +3108,7 @@ tiki/lib/contribution/contributionlib.php -text
 tiki/lib/contribution/index.php -text
 tiki/lib/copyrights/copyrightslib.php -text
 tiki/lib/copyrights/index.php -text
+tiki/lib/cpaint/ajaxlib.php -text
 tiki/lib/cpaint/cpaint2.config.php -text
 tiki/lib/cpaint/cpaint2.inc.compressed.js -text
 tiki/lib/cpaint/cpaint2.inc.js -text
