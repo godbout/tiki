@@ -1899,6 +1899,7 @@ tiki/doc/devtools/index.php -text
 tiki/doc/devtools/lastcvs.sh -text
 tiki/doc/devtools/mergelang.pl -text
 tiki/doc/devtools/mods.sh -text
+tiki/doc/devtools/parse_changelog.pl -text
 tiki/doc/devtools/phpstrip.sh -text
 tiki/doc/devtools/premerge_report.sh -text
 tiki/doc/devtools/removehtaccess.sh -text
