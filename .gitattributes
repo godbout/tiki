@@ -4019,6 +4019,8 @@ tiki/lib/wiki/exportlib.php -text
 tiki/lib/wiki/histlib.php -text
 tiki/lib/wiki/index.php -text
 tiki/lib/wiki/pluginslib.php -text
+tiki/lib/wiki/wiki-ajax.js -text
+tiki/lib/wiki/wiki-ajax.php -text
 tiki/lib/wiki/wikilib.php -text
 tiki/lib/wiki3d/README.txt -text
 tiki/lib/wiki3d/morcego-0.4.0.jar -text
@@ -4797,6 +4799,7 @@ tiki/templates/tiki-admin_poll_options.tpl -text
 tiki/templates/tiki-admin_polls.tpl -text
 tiki/templates/tiki-admin_quicktags.tpl -text
 tiki/templates/tiki-admin_quicktags_content.tpl -text
+tiki/templates/tiki-admin_quicktags_edit.tpl -text
 tiki/templates/tiki-admin_rssmodules.tpl -text
 tiki/templates/tiki-admin_score.tpl -text
 tiki/templates/tiki-admin_security.tpl -text
