@@ -4796,6 +4796,7 @@ tiki/templates/tiki-admin_notifications.tpl -text
 tiki/templates/tiki-admin_poll_options.tpl -text
 tiki/templates/tiki-admin_polls.tpl -text
 tiki/templates/tiki-admin_quicktags.tpl -text
+tiki/templates/tiki-admin_quicktags_content.tpl -text
 tiki/templates/tiki-admin_rssmodules.tpl -text
 tiki/templates/tiki-admin_score.tpl -text
 tiki/templates/tiki-admin_security.tpl -text
