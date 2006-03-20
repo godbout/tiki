@@ -1806,11 +1806,7 @@ tiki/README -text
 tiki/_htaccess -text
 tiki/about.php -text
 tiki/ajax/quicktags_list_objects.php -text
-tiki/ajax/test_content.php -text
-tiki/ajax/test_item.php -text
-tiki/ajax/test_list.php -text
-tiki/ajax/test_scalar.php -text
-tiki/ajax/tra.php -text
+tiki/ajax/wiki.php -text
 tiki/article_image.php -text
 tiki/backups/.cvsignore -text
 tiki/backups/README -text
@@ -3063,6 +3059,12 @@ tiki/lib/Galaxia/src/index.php -text
 tiki/lib/_htaccess -text
 tiki/lib/admin/adminlib.php -text
 tiki/lib/admin/index.php -text
+tiki/lib/ajax/LICENSE.txt -text
+tiki/lib/ajax/README.txt -text
+tiki/lib/ajax/tiki-ajax.php -text
+tiki/lib/ajax/xajax.inc.php -text
+tiki/lib/ajax/xajaxCompress.php -text
+tiki/lib/ajax/xajaxResponse.inc.php -text
 tiki/lib/articles/artlib.php -text
 tiki/lib/articles/index.php -text
 tiki/lib/bablotron.php -text
@@ -4068,11 +4070,6 @@ tiki/lib/x/x_misc.js -text
 tiki/lib/x/x_slide.js -text
 tiki/lib/x/x_table.js -text
 tiki/lib/x/x_win.js -text
-tiki/lib/xajax/LICENSE.txt -text
-tiki/lib/xajax/README.txt -text
-tiki/lib/xajax/xajax.inc.php -text
-tiki/lib/xajax/xajaxCompress.php -text
-tiki/lib/xajax/xajaxResponse.inc.php -text
 tiki/lib/xmlrpc.inc -text
 tiki/lib/xmlrpcs.inc -text
 tiki/lib/ziplib.php -text
@@ -4807,7 +4804,6 @@ tiki/templates/tiki-admin_tracker_fields.tpl -text
 tiki/templates/tiki-admin_trackers.tpl -text
 tiki/templates/tiki-admingroups.tpl -text
 tiki/templates/tiki-adminusers.tpl -text
-tiki/templates/tiki-ajax_example.tpl -text
 tiki/templates/tiki-ajax_header.tpl -text
 tiki/templates/tiki-ajax_table.tpl -text
 tiki/templates/tiki-article_types.tpl -text
@@ -4936,6 +4932,7 @@ tiki/templates/tiki-list_trackers.tpl -text
 tiki/templates/tiki-list_users.tpl -text
 tiki/templates/tiki-listmovies.tpl -text
 tiki/templates/tiki-listpages.tpl -text
+tiki/templates/tiki-listpages_content.tpl -text
 tiki/templates/tiki-live_support_admin.tpl -text
 tiki/templates/tiki-live_support_chat_window.tpl -text
 tiki/templates/tiki-live_support_client.tpl -text
@@ -5058,7 +5055,6 @@ tiki/templates/tiki-view_tracker_more_info.tpl -text
 tiki/templates/tiki-webmail.tpl -text
 tiki/templates/tiki-webmail_contacts.tpl -text
 tiki/templates/tiki-wiki3d.tpl -text
-tiki/templates/tiki-xajax_example.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates/translated-lang.tpl -text
 tiki/templates_c/.cvsignore -text
@@ -5472,6 +5468,4 @@ tiki/tikimovies/index.php -text
 tiki/tikimovies/sample.xml -text
 tiki/topic_image.php -text
 tiki/whelp/index.php -text
-tiki/xajax_js/xajax.js -text
-tiki/xajax_js/xajax_uncompressed.js -text
 tiki/xmlrpc.php -text
