@@ -1893,6 +1893,7 @@ tiki/doc/devtools/findstyledef.sh -text svneol=unset#application/octet-stream
 tiki/doc/devtools/ggg-trace.php -text
 tiki/doc/devtools/index.php -text
 tiki/doc/devtools/lastcvs.sh -text
+tiki/doc/devtools/make_ajax_template.pl -text
 tiki/doc/devtools/mergelang.pl -text
 tiki/doc/devtools/mods.sh -text
 tiki/doc/devtools/parse_changelog.pl -text
