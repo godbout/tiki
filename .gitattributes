@@ -3065,6 +3065,8 @@ tiki/lib/ajax/tiki-ajax.php -text
 tiki/lib/ajax/xajax.inc.php -text
 tiki/lib/ajax/xajaxCompress.php -text
 tiki/lib/ajax/xajaxResponse.inc.php -text
+tiki/lib/ajax/xajax_js/xajax.js -text
+tiki/lib/ajax/xajax_js/xajax_uncompressed.js -text
 tiki/lib/articles/artlib.php -text
 tiki/lib/articles/index.php -text
 tiki/lib/bablotron.php -text
