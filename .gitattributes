@@ -1806,7 +1806,6 @@ tiki/README -text
 tiki/_htaccess -text
 tiki/about.php -text
 tiki/ajax/quicktags_list_objects.php -text
-tiki/ajax/wiki.php -text
 tiki/article_image.php -text
 tiki/backups/.cvsignore -text
 tiki/backups/README -text
