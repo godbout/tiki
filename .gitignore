@@ -6,6 +6,8 @@ tiki/backups/*
 tiki/db/local.php
 tiki/dummy.php
 tiki/dump/*
+tiki/img/wiki/*.gif
+tiki/img/wiki/*.pad_xml
 tiki/img/wiki_up/*
 tiki/lib/Galaxia/processes/*
 tiki/lib/smarty
