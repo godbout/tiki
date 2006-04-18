@@ -3182,6 +3182,7 @@ tiki/lib/directory/dirlib.php -text
 tiki/lib/directory/index.php -text
 tiki/lib/drawings/drawlib.php -text
 tiki/lib/drawings/index.php -text
+tiki/lib/encoding/lib-encoding.php -text
 tiki/lib/ephemerides/ephlib.php -text
 tiki/lib/ephemerides/index.php -text
 tiki/lib/events/evlib.php -text
