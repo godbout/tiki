@@ -162,6 +162,7 @@ _jscalendar/lang/calendar-de.js -text
 _jscalendar/lang/calendar-du.js -text
 _jscalendar/lang/calendar-el.js -text
 _jscalendar/lang/calendar-en.js -text
+_jscalendar/lang/calendar-es-utf8.js -text
 _jscalendar/lang/calendar-es.js -text
 _jscalendar/lang/calendar-fi.js -text
 _jscalendar/lang/calendar-fr-utf8.js -text
@@ -4697,6 +4698,8 @@ tiki/templates/mail/user_watch_map_changed.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed_subject.tpl -text
 tiki/templates/mail/user_watch_wiki_page_comment.tpl -text
+tiki/templates/mail/user_watch_wiki_page_renamed.tpl -text
+tiki/templates/mail/user_watch_wiki_page_renamed_subject.tpl -text
 tiki/templates/mail/user_welcome_msg.tpl -text
 tiki/templates/map/index.php -text
 tiki/templates/map/tiki-map.tpl -text
@@ -4960,6 +4963,7 @@ tiki/templates/tiki-admin-include-forums.tpl -text
 tiki/templates/tiki-admin-include-freetags.tpl -text
 tiki/templates/tiki-admin-include-gal.tpl -text
 tiki/templates/tiki-admin-include-general.tpl -text
+tiki/templates/tiki-admin-include-gmap.tpl -text
 tiki/templates/tiki-admin-include-intertiki.tpl -text
 tiki/templates/tiki-admin-include-list-sections.tpl -text
 tiki/templates/tiki-admin-include-login.tpl -text
@@ -5089,6 +5093,7 @@ tiki/templates/tiki-editpage.tpl -text
 tiki/templates/tiki-eph.tpl -text
 tiki/templates/tiki-eph_admin.tpl -text
 tiki/templates/tiki-export-sheets.tpl -text
+tiki/templates/tiki-export_tracker.tpl -text
 tiki/templates/tiki-faq_questions.tpl -text
 tiki/templates/tiki-featured_link.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
@@ -5121,6 +5126,7 @@ tiki/templates/tiki-g-user_processes.tpl -text
 tiki/templates/tiki-g-view_comment.tpl -text
 tiki/templates/tiki-g-view_workitem.tpl -text
 tiki/templates/tiki-galleries.tpl -text
+tiki/templates/tiki-gmap_locator.tpl -text
 tiki/templates/tiki-graph-sheets.tpl -text
 tiki/templates/tiki-history-sheets.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
@@ -5325,6 +5331,7 @@ tiki/tiki-admin_include_forums.php -text
 tiki/tiki-admin_include_freetags.php -text
 tiki/tiki-admin_include_gal.php -text
 tiki/tiki-admin_include_general.php -text
+tiki/tiki-admin_include_gmap.php -text
 tiki/tiki-admin_include_intertiki.php -text
 tiki/tiki-admin_include_jukebox.php -text
 tiki/tiki-admin_include_login.php -text
@@ -5450,6 +5457,7 @@ tiki/tiki-error_simple.php -text
 tiki/tiki-export_pdf.php -text
 tiki/tiki-export_pdf_reader.php -text
 tiki/tiki-export_sheet.php -text
+tiki/tiki-export_tracker.php -text
 tiki/tiki-export_wiki_pages.php -text
 tiki/tiki-faq_questions.php -text
 tiki/tiki-featured_link.php -text
@@ -5488,6 +5496,7 @@ tiki/tiki-g-view_comment.php -text
 tiki/tiki-g-view_workitem.php -text
 tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
+tiki/tiki-gmap_locator.php -text
 tiki/tiki-graph_formula.php -text
 tiki/tiki-graph_sheet.php -text
 tiki/tiki-handlers.php -text

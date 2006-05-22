@@ -1,6 +1,8 @@
 _mods/Installed/*.txt
 _smarty/templates_c
+tiki/.htaccess
 tiki/.project
+tiki/.settings
 tiki/ZendStudioServer
 tiki/backups/*
 tiki/db/local.php
