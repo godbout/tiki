@@ -907,11 +907,14 @@ _mods/features/aulawiki/aulawiki-workspace_types.php -text
 _mods/features/aulawiki/aulawiki-workspace_types_resources.php -text
 _mods/features/aulawiki/aulawiki-workspaces.php -text
 _mods/features/aulawiki/aulawiki-ws_assigned_modules.php -text
+_mods/features/aulawiki/images/aulawiki/config.gif -text
+_mods/features/aulawiki/images/aulawiki/copy.gif -text
 _mods/features/aulawiki/images/aulawiki/degrada.gif -text
 _mods/features/aulawiki/images/aulawiki/degrada2.gif -text
 _mods/features/aulawiki/images/aulawiki/degrada2gris.gif -text
 _mods/features/aulawiki/images/aulawiki/degrada2verde.gif -text
 _mods/features/aulawiki/images/aulawiki/degrada3.gif -text
+_mods/features/aulawiki/images/aulawiki/delete.gif -text
 _mods/features/aulawiki/images/aulawiki/edu_article.gif -text
 _mods/features/aulawiki/images/aulawiki/edu_assignments.gif -text
 _mods/features/aulawiki/images/aulawiki/edu_blog.gif -text
