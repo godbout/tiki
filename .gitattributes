@@ -231,6 +231,7 @@ _mods/Packages/features-userprefstats.info.txt -text
 _mods/Packages/lib-nusoap.info.txt -text
 _mods/Packages/lib-vtiger.info.txt -text
 _mods/Packages/menus-tikiring.info.txt -text
+_mods/Packages/modules-blogroll.info.txt -text
 _mods/Packages/modules-calculator.info.txt -text
 _mods/Packages/modules-clock.info.txt -text
 _mods/Packages/modules-extcalculator.info.txt -text
@@ -1163,6 +1164,8 @@ _mods/lib/vtiger/includes/sugarLeads.php -text
 _mods/lib/vtiger/includes/sugarNote.php -text
 _mods/lib/vtiger/includes/sugarUser.php -text
 _mods/lib/vtiger/vtiger.php -text
+_mods/modules/blogroll/modules/mod-blogroll.php -text
+_mods/modules/blogroll/templates/modules/mod-blogroll.tpl -text
 _mods/modules/calculator/mod-calc.tpl -text
 _mods/modules/calculator/readme -text
 _mods/modules/clock/mod-clock.tpl -text
