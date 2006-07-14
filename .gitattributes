@@ -2500,6 +2500,8 @@ tiki/img/icons/admin_filegal_grey.png -text
 tiki/img/icons/admin_forums.png -text
 tiki/img/icons/admin_forums_grey.png -text
 tiki/img/icons/admin_general.png -text
+tiki/img/icons/admin_gmap.png -text
+tiki/img/icons/admin_gmap_grey.png -text
 tiki/img/icons/admin_homework.png -text
 tiki/img/icons/admin_imagegal.png -text
 tiki/img/icons/admin_imagegal_grey.png -text
@@ -4379,6 +4381,7 @@ tiki/modules/mod-last_tracker_items.php -text
 tiki/modules/mod-last_visitors.php -text
 tiki/modules/mod-live_support.php -text
 tiki/modules/mod-logged_users.php -text
+tiki/modules/mod-menupage.php -text
 tiki/modules/mod-messages_unread_messages.php -text
 tiki/modules/mod-num_submissions.php -text
 tiki/modules/mod-old_articles.php -text
@@ -4538,6 +4541,7 @@ tiki/styles/jalist2/maincap.png -text
 tiki/styles/jalist2/menucap.png -text
 tiki/styles/lesjetesdelencre.css -text
 tiki/styles/lesjetesdelencre/tetiere1.jpg -text
+tiki/styles/lite/lite.css -text
 tiki/styles/moreneat.css -text
 tiki/styles/mose.css -text
 tiki/styles/mose/bgtitlebox.png -text
@@ -4806,6 +4810,7 @@ tiki/templates/modules/mod-logged_users.tpl.nocache -text
 tiki/templates/modules/mod-login_box.tpl -text
 tiki/templates/modules/mod-login_box.tpl.nocache -text
 tiki/templates/modules/mod-logo.tpl -text
+tiki/templates/modules/mod-menupage.tpl -text
 tiki/templates/modules/mod-messages_unread_messages.tpl -text
 tiki/templates/modules/mod-messages_unread_messages.tpl.nocache -text
 tiki/templates/modules/mod-num_submissions.tpl -text
@@ -4816,6 +4821,7 @@ tiki/templates/modules/mod-quick_edit.tpl -text
 tiki/templates/modules/mod-random_images.tpl -text
 tiki/templates/modules/mod-random_pages.tpl -text
 tiki/templates/modules/mod-register.tpl -text
+tiki/templates/modules/mod-rsslist.tpl -text
 tiki/templates/modules/mod-search_box.tpl -text
 tiki/templates/modules/mod-search_new.tpl -text
 tiki/templates/modules/mod-search_wiki_page.tpl -text
@@ -5154,6 +5160,7 @@ tiki/templates/tiki-g-view_comment.tpl -text
 tiki/templates/tiki-g-view_workitem.tpl -text
 tiki/templates/tiki-galleries.tpl -text
 tiki/templates/tiki-gmap_locator.tpl -text
+tiki/templates/tiki-gmap_usermap.tpl -text
 tiki/templates/tiki-graph-sheets.tpl -text
 tiki/templates/tiki-history-sheets.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
@@ -5524,6 +5531,7 @@ tiki/tiki-g-view_workitem.php -text
 tiki/tiki-galleries.php -text
 tiki/tiki-galleries_rankings.php -text
 tiki/tiki-gmap_locator.php -text
+tiki/tiki-gmap_usermap.php -text
 tiki/tiki-graph_formula.php -text
 tiki/tiki-graph_sheet.php -text
 tiki/tiki-handlers.php -text
