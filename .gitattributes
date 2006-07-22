@@ -3609,9 +3609,6 @@ tiki/lib/pear/SOAP/tools/genproxy.php -text
 tiki/lib/pear/SOAP/tools/index.php -text
 tiki/lib/pear/System.php -text
 tiki/lib/pear/Text/Wiki.php -text
-tiki/lib/pear/Text/Wiki/Parse.php -text
-tiki/lib/pear/Text/Wiki/Render.php -text
-tiki/lib/pear/Text/Wiki/Tiki.php -text
 tiki/lib/pear/XML/Dump.php -text
 tiki/lib/pear/XML/Parser.php -text
 tiki/lib/pear/XML/RPC.php -text
