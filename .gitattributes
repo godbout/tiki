@@ -5456,6 +5456,7 @@ tiki/tiki-index_p.php -text
 tiki/tiki-index_raw.php -text
 tiki/tiki-install.php -text
 tiki/tiki-integrator.php -text
+tiki/tiki-interactive_trans.php -text
 tiki/tiki-jscalendar.php -text
 tiki/tiki-lastchanges.php -text
 tiki/tiki-layout_options.php -text
