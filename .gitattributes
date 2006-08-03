@@ -5078,6 +5078,7 @@ tiki/templates/tiki-import_structuredtext.tpl -text
 tiki/templates/tiki-index_p.tpl -text
 tiki/templates/tiki-install.tpl -text
 tiki/templates/tiki-integrator.tpl -text
+tiki/templates/tiki-interactive_trans.tpl -text
 tiki/templates/tiki-lastchanges.tpl -text
 tiki/templates/tiki-likepages.tpl -text
 tiki/templates/tiki-list_articles.tpl -text
