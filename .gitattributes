@@ -2300,9 +2300,17 @@ tiki/images/workspaces/edu_workspaceInactive.png -text
 tiki/images/workspaces/edu_workspace_grey.png -text
 tiki/images/workspaces/edu_workspace_inactive.png -text
 tiki/images/workspaces/edu_workspaces.png -text
+tiki/images/workspaces/edu_zones.png -text
+tiki/images/workspaces/edu_zones_add.png -text
+tiki/images/workspaces/edu_zones_edit.png -text
+tiki/images/workspaces/edu_zones_remove.png -text
 tiki/images/workspaces/help.png -text
 tiki/images/workspaces/info.png -text
 tiki/images/workspaces/key.gif -text
+tiki/images/workspaces/module.png -text
+tiki/images/workspaces/module_add.png -text
+tiki/images/workspaces/module_edit.png -text
+tiki/images/workspaces/module_remove.png -text
 tiki/images/workspaces/page.gif -text
 tiki/images/workspaces/pageNueva.gif -text
 tiki/images/workspaces/user_blue.gif -text
