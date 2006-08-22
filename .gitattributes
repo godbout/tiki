@@ -2304,6 +2304,7 @@ tiki/images/workspaces/edu_zones.png -text
 tiki/images/workspaces/edu_zones_add.png -text
 tiki/images/workspaces/edu_zones_edit.png -text
 tiki/images/workspaces/edu_zones_remove.png -text
+tiki/images/workspaces/grayarrow.gif -text
 tiki/images/workspaces/help.png -text
 tiki/images/workspaces/info.png -text
 tiki/images/workspaces/key.gif -text
@@ -2313,6 +2314,7 @@ tiki/images/workspaces/module_edit.png -text
 tiki/images/workspaces/module_remove.png -text
 tiki/images/workspaces/page.gif -text
 tiki/images/workspaces/pageNueva.gif -text
+tiki/images/workspaces/redarrow.gif -text
 tiki/images/workspaces/user_blue.gif -text
 tiki/images/workspaces/user_red.gif -text
 tiki/img/_htaccess -text
