@@ -2393,6 +2393,7 @@ tiki/img/flags/Ecuador.gif -text
 tiki/img/flags/Egypt.gif -text
 tiki/img/flags/El_Salvador.gif -text
 tiki/img/flags/Estonia.gif -text
+tiki/img/flags/Europe.gif -text
 tiki/img/flags/Federated_States_of_Micronesia.gif -text
 tiki/img/flags/Fiji.gif -text
 tiki/img/flags/Finland.gif -text
@@ -2485,6 +2486,7 @@ tiki/img/flags/Uruguay.gif -text
 tiki/img/flags/Vanuatu.gif -text
 tiki/img/flags/Venezuela.gif -text
 tiki/img/flags/Wales.gif -text
+tiki/img/flags/World.gif -text
 tiki/img/flags/Yugoslavia.gif -text
 tiki/img/flags/Zambia.gif -text
 tiki/img/flags/Zimbabwe.gif -text
@@ -2568,6 +2570,7 @@ tiki/img/icons/admin_general.png -text
 tiki/img/icons/admin_gmap.png -text
 tiki/img/icons/admin_gmap_grey.png -text
 tiki/img/icons/admin_homework.png -text
+tiki/img/icons/admin_i18n.png -text
 tiki/img/icons/admin_imagegal.png -text
 tiki/img/icons/admin_imagegal_grey.png -text
 tiki/img/icons/admin_intertiki.png -text
@@ -2834,6 +2837,7 @@ tiki/img/icons/zoom-2.gif -text
 tiki/img/icons/zoom-3.gif -text
 tiki/img/icons/zoom-4.gif -text
 tiki/img/icons/zoom.gif -text
+tiki/img/icons/zoom_equal.gif -text
 tiki/img/icons2/1.gif -text
 tiki/img/icons2/8.gif -text
 tiki/img/icons2/admin.gif -text
@@ -2865,6 +2869,8 @@ tiki/img/icons2/computer.gif -text
 tiki/img/icons2/contact.gif -text
 tiki/img/icons2/contacts.gif -text
 tiki/img/icons2/corner-dots.gif -text
+tiki/img/icons2/cycle_next.gif -text
+tiki/img/icons2/cycle_prev.gif -text
 tiki/img/icons2/delete.gif -text
 tiki/img/icons2/delete2.gif -text
 tiki/img/icons2/delete_all.gif -text
@@ -2967,6 +2973,8 @@ tiki/img/icons2/reduceW.gif -text
 tiki/img/icons2/reload.gif -text
 tiki/img/icons2/search.gif -text
 tiki/img/icons2/shim.gif -text
+tiki/img/icons2/slide2first.gif -text
+tiki/img/icons2/slide2last.gif -text
 tiki/img/icons2/smartfolder.gif -text
 tiki/img/icons2/status_closed.gif -text
 tiki/img/icons2/status_closed_off.gif -text
@@ -3518,6 +3526,7 @@ tiki/lib/htmlparser/htmlparser.inc -text
 tiki/lib/htmlparser/index.php -text
 tiki/lib/htmlparser/readme.eng.txt -text
 tiki/lib/htmlparser/rebuildgrammar.php -text
+tiki/lib/imagegals/imagegallib.js -text
 tiki/lib/imagegals/imagegallib.php -text
 tiki/lib/imagegals/index.php -text
 tiki/lib/index.php -text
@@ -3878,6 +3887,8 @@ tiki/lib/phpcas/source/examples/example_session_proxy.php -text
 tiki/lib/phpcas/source/examples/example_session_service.php -text
 tiki/lib/phpcas/source/examples/example_simple.php -text
 tiki/lib/phplayers_tiki/index.php -text
+tiki/lib/phplayers_tiki/lib/index.php -text
+tiki/lib/phplayers_tiki/lib/layersmenu-common.inc.php -text
 tiki/lib/phplayers_tiki/tiki-phplayers.php -text
 tiki/lib/polls/index.php -text
 tiki/lib/polls/polllib.php -text
@@ -4032,6 +4043,7 @@ tiki/lib/smarty_tiki/prefilter.tr.php -text
 tiki/lib/smarty_tiki/resource.style.php -text
 tiki/lib/snoopy/README -text
 tiki/lib/snoopy/Snoopy.class.inc -text
+tiki/lib/snoopy/Snoopy.class.php -text
 tiki/lib/snoopy/index.php -text
 tiki/lib/stats/index.php -text
 tiki/lib/stats/statslib.php -text
@@ -4216,6 +4228,7 @@ tiki/lib/wiki-plugins/wikiplugin_rss.php -text
 tiki/lib/wiki-plugins/wikiplugin_sf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sheet.php -text
 tiki/lib/wiki-plugins/wikiplugin_showpages.php -text
+tiki/lib/wiki-plugins/wikiplugin_skype.php -text
 tiki/lib/wiki-plugins/wikiplugin_snarf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
@@ -4226,6 +4239,7 @@ tiki/lib/wiki-plugins/wikiplugin_thumb.php -text
 tiki/lib/wiki-plugins/wikiplugin_titlesearch.php -text
 tiki/lib/wiki-plugins/wikiplugin_topfriends.php -text
 tiki/lib/wiki-plugins/wikiplugin_tracker.php -text
+tiki/lib/wiki-plugins/wikiplugin_trackerfilter.php -text
 tiki/lib/wiki-plugins/wikiplugin_trackerlist.php -text
 tiki/lib/wiki-plugins/wikiplugin_translated.php -text
 tiki/lib/wiki-plugins/wikiplugin_usercount.php -text
@@ -4782,6 +4796,7 @@ tiki/templates/modules/mod-directory_last_sites.tpl -text
 tiki/templates/modules/mod-directory_stats.tpl -text
 tiki/templates/modules/mod-directory_top_sites.tpl -text
 tiki/templates/modules/mod-eph.tpl -text
+tiki/templates/modules/mod-events.tpl -text
 tiki/templates/modules/mod-featured_links.tpl -text
 tiki/templates/modules/mod-forums_best_voted_topics.tpl -text
 tiki/templates/modules/mod-forums_last_posts.tpl -text svneol=unset#application/octet-stream
@@ -4953,6 +4968,12 @@ tiki/templates/styles/simple/modules/mod-last_images_th.tpl -text
 tiki/templates/styles/simple/modules/mod-last_modif_pages.tpl -text
 tiki/templates/styles/simple/modules/mod-login_box.tpl -text
 tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
+tiki/templates/styles/simple/modules/mod-register.tpl -text
+tiki/templates/styles/simple/modules/mod-search_box.tpl -text
+tiki/templates/styles/simple/modules/mod-search_new.tpl -text
+tiki/templates/styles/simple/modules/mod-search_wiki_page.tpl -text
+tiki/templates/styles/simple/modules/mod-search_wiki_page_new.tpl -text
+tiki/templates/styles/simple/modules/mod-shoutbox.tpl -text
 tiki/templates/styles/simple/modules/mod-switch_lang.tpl -text
 tiki/templates/styles/simple/modules/mod-switch_lang2.tpl -text
 tiki/templates/styles/simple/modules/mod-switch_theme.tpl -text
@@ -5017,6 +5038,7 @@ tiki/templates/tiki-admin-include-freetags.tpl -text
 tiki/templates/tiki-admin-include-gal.tpl -text
 tiki/templates/tiki-admin-include-general.tpl -text
 tiki/templates/tiki-admin-include-gmap.tpl -text
+tiki/templates/tiki-admin-include-i18n.tpl -text
 tiki/templates/tiki-admin-include-intertiki.tpl -text
 tiki/templates/tiki-admin-include-list-sections.tpl -text
 tiki/templates/tiki-admin-include-login.tpl -text
@@ -5246,6 +5268,7 @@ tiki/templates/tiki-pagination.tpl -text
 tiki/templates/tiki-pick_avatar.tpl -text
 tiki/templates/tiki-plugin_poll.tpl -text
 tiki/templates/tiki-plugin_sql.tpl -text
+tiki/templates/tiki-plugin_trackerfilter.tpl -text
 tiki/templates/tiki-plugin_trackerlist.tpl -text
 tiki/templates/tiki-poll.tpl -text
 tiki/templates/tiki-poll_form.tpl -text
@@ -5357,6 +5380,7 @@ tiki/templates/tiki-workspaces_view_module.tpl -text
 tiki/templates/tiki-workspaces_zones.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates/translated-lang.tpl -text
+tiki/templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/.htaccess -text svneol=unset#application/octet-stream
 tiki/templates_c/README -text
@@ -5408,6 +5432,7 @@ tiki/tiki-admin_include_freetags.php -text
 tiki/tiki-admin_include_gal.php -text
 tiki/tiki-admin_include_general.php -text
 tiki/tiki-admin_include_gmap.php -text
+tiki/tiki-admin_include_i18n.php -text
 tiki/tiki-admin_include_intertiki.php -text
 tiki/tiki-admin_include_jukebox.php -text
 tiki/tiki-admin_include_login.php -text
@@ -5584,6 +5609,7 @@ tiki/tiki-image_gallery_rss.php -text
 tiki/tiki-imexport_languages.php -text
 tiki/tiki-import_sheet.php -text
 tiki/tiki-import_structuredtext.php -text
+tiki/tiki-import_tracker.php -text
 tiki/tiki-index.php -text
 tiki/tiki-index_p.php -text
 tiki/tiki-index_raw.php -text
