@@ -4895,6 +4895,7 @@ tiki/templates/modules/mod-who_is_there.tpl -text
 tiki/templates/modules/mod-who_is_there.tpl.nocache -text
 tiki/templates/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/modules/mod-wiki_last_comments.tpl.nocache -text
+tiki/templates/modules/mod-workspaces_assistant.tpl -text
 tiki/templates/modules/mod-workspaces_break.tpl -text
 tiki/templates/modules/mod-workspaces_calendar.tpl -text
 tiki/templates/modules/mod-workspaces_calendar.tpl.nocache -text
