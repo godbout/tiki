@@ -3996,6 +3996,7 @@ tiki/lib/smarty_tiki/block.tikimodule.php -text
 tiki/lib/smarty_tiki/block.tr.php -text
 tiki/lib/smarty_tiki/block.translation.php -text
 tiki/lib/smarty_tiki/block.ws_help.php -text
+tiki/lib/smarty_tiki/function.article.php -text
 tiki/lib/smarty_tiki/function.banner.php -text
 tiki/lib/smarty_tiki/function.breadcrumbs.php -text
 tiki/lib/smarty_tiki/function.content.php -text
