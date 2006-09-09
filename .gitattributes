@@ -4202,6 +4202,7 @@ tiki/lib/wiki-plugins-dist/wikiplugin_include.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_lsdir.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_regex.php -text
 tiki/lib/wiki-plugins-dist/wikiplugin_snarf.php -text
+tiki/lib/wiki-plugins-dist/wikiplugin_userlist.php -text
 tiki/lib/wiki-plugins/index.php -text
 tiki/lib/wiki-plugins/wikiplugin_agentinfo.php -text
 tiki/lib/wiki-plugins/wikiplugin_alink.php -text
