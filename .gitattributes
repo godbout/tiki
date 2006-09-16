@@ -4688,6 +4688,7 @@ tiki/styles/vidiki/shadow.png -text
 tiki/styles/vidiki/title_background.png -text
 tiki/styles/whitebluegrey.css -text
 tiki/styles/workspaces.css -text
+tiki/styles/yahoodev.css -text
 tiki/temp/.cvsignore -text
 tiki/temp/README -text
 tiki/temp/_htaccess -text
