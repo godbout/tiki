@@ -3,6 +3,7 @@ _smarty/templates_c
 tiki/.htaccess
 tiki/.project
 tiki/.settings
+tiki/ZendPlatform
 tiki/ZendStudioServer
 tiki/backups/*
 tiki/db/local.php
