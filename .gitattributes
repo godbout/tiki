@@ -2186,6 +2186,7 @@ tiki/games/thumbs/index.php -text
 tiki/get_strings.php -text
 tiki/green.favicon.png -text
 tiki/help.php -text
+tiki/htaccess.sh -text
 tiki/images/_htaccess -text
 tiki/images/book.gif -text
 tiki/images/code.png -text
@@ -3053,6 +3054,7 @@ tiki/img/silk/locked.png -text
 tiki/img/silk/locked_new.png -text
 tiki/img/silk/page.png -text
 tiki/img/silk/page_new.png -text
+tiki/img/silk/readme.txt -text
 tiki/img/silk/sticky.png -text
 tiki/img/silk/sticky_new.png -text
 tiki/img/smarty.gif -text

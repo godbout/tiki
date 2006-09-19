@@ -14,6 +14,8 @@ tiki/img/wiki/*.pad_xml
 tiki/img/wiki_up/*
 tiki/lib/Galaxia/processes/*
 tiki/lib/smarty
+tiki/maps
+tiki/mods
 tiki/modules/cache
 tiki/modules/cache/*
 tiki/phpmyadmin
