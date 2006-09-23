@@ -4477,6 +4477,9 @@ tiki/modules/mod-workspaces_viewpage.php -text
 tiki/modules/mod-workspaces_viewstructure.php -text
 tiki/modules/mod-workspaces_who_is_there.php -text
 tiki/parse_tiki.php -text
+tiki/pics/jini/file-manager48x48.png -text
+tiki/pics/jini/gnome-sound-recorder48x48.png -text
+tiki/pics/jini/mplayer48x48.png -text
 tiki/poll_categorize.php -text
 tiki/popups/about.html -text
 tiki/popups/blank.html -text
