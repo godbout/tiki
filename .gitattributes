@@ -5167,6 +5167,7 @@ tiki/templates/tiki-assignuser.tpl -text
 tiki/templates/tiki-backlinks.tpl -text
 tiki/templates/tiki-backup.tpl -text
 tiki/templates/tiki-batch_upload.tpl -text
+tiki/templates/tiki-batch_upload_files.tpl -text
 tiki/templates/tiki-blog_post.tpl -text
 tiki/templates/tiki-bot_bar.tpl -text
 tiki/templates/tiki-browse_categories.tpl -text
@@ -5542,6 +5543,7 @@ tiki/tiki-atom.php -text
 tiki/tiki-backlinks.php -text
 tiki/tiki-backup.php -text
 tiki/tiki-batch_upload.php -text
+tiki/tiki-batch_upload_files.php -text
 tiki/tiki-blog_post.php -text
 tiki/tiki-blog_rankings.php -text
 tiki/tiki-blog_rss.php -text
