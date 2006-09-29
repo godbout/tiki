@@ -4608,6 +4608,8 @@ tiki/pics/icons/disk.png -text
 tiki/pics/icons/eye.png -text
 tiki/pics/icons/feed.png -text
 tiki/pics/icons/help.png -text
+tiki/pics/icons/key.png -text
+tiki/pics/icons/key_active.png -text
 tiki/pics/icons/lock.png -text
 tiki/pics/icons/monitor.png -text
 tiki/pics/icons/no_eye.png -text
@@ -4616,6 +4618,7 @@ tiki/pics/icons/pencil.png -text
 tiki/pics/icons/pencil_add.png -text
 tiki/pics/icons/shape_square_edit.png -text
 tiki/pics/icons/useagelist.txt -text
+tiki/pics/icons/wrench.png -text
 tiki/pics/large/blogs.png -text
 tiki/pics/large/blogs48x48.png -text
 tiki/pics/large/boot.png -text
