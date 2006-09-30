@@ -4604,9 +4604,12 @@ tiki/modules/mod-workspaces_viewstructure.php -text
 tiki/modules/mod-workspaces_who_is_there.php -text
 tiki/parse_tiki.php -text
 tiki/pics/icons/cross.png -text
+tiki/pics/icons/database.png -text
 tiki/pics/icons/disk.png -text
+tiki/pics/icons/email.png -text
 tiki/pics/icons/eye.png -text
 tiki/pics/icons/feed.png -text
+tiki/pics/icons/group.png -text
 tiki/pics/icons/help.png -text
 tiki/pics/icons/key.png -text
 tiki/pics/icons/key_active.png -text
