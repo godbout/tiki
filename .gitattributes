@@ -4609,6 +4609,7 @@ tiki/pics/icons/disk.png -text
 tiki/pics/icons/email.png -text
 tiki/pics/icons/eye.png -text
 tiki/pics/icons/feed.png -text
+tiki/pics/icons/flag_blue.png -text
 tiki/pics/icons/group.png -text
 tiki/pics/icons/help.png -text
 tiki/pics/icons/key.png -text
@@ -4619,8 +4620,17 @@ tiki/pics/icons/no_eye.png -text
 tiki/pics/icons/page_edit.png -text
 tiki/pics/icons/pencil.png -text
 tiki/pics/icons/pencil_add.png -text
+tiki/pics/icons/printer.png -text
+tiki/pics/icons/resultset_down.png -text
+tiki/pics/icons/resultset_first.png -text
+tiki/pics/icons/resultset_last.png -text
+tiki/pics/icons/resultset_next.png -text
+tiki/pics/icons/resultset_previous.png -text
+tiki/pics/icons/resultset_up.png -text
 tiki/pics/icons/shape_square_edit.png -text
 tiki/pics/icons/useagelist.txt -text
+tiki/pics/icons/user_gray.png -text
+tiki/pics/icons/user_red.png -text
 tiki/pics/icons/wrench.png -text
 tiki/pics/large/blogs.png -text
 tiki/pics/large/blogs48x48.png -text
