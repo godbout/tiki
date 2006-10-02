@@ -4398,6 +4398,7 @@ tiki/lib/wiki-plugins/wikiplugin_topfriends.php -text
 tiki/lib/wiki-plugins/wikiplugin_tracker.php -text
 tiki/lib/wiki-plugins/wikiplugin_trackerfilter.php -text
 tiki/lib/wiki-plugins/wikiplugin_trackerlist.php -text
+tiki/lib/wiki-plugins/wikiplugin_trackerstat.php -text
 tiki/lib/wiki-plugins/wikiplugin_translated.php -text
 tiki/lib/wiki-plugins/wikiplugin_usercount.php -text
 tiki/lib/wiki-plugins/wikiplugin_versions.php -text
@@ -5707,6 +5708,7 @@ tiki/templates/tiki-workspaces_zones.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates/translated-lang.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
+tiki/templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/.htaccess -text svneol=unset#application/octet-stream
 tiki/templates_c/README -text
