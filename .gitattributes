@@ -4402,6 +4402,7 @@ tiki/lib/wiki-plugins/wikiplugin_trackerstat.php -text
 tiki/lib/wiki-plugins/wikiplugin_translated.php -text
 tiki/lib/wiki-plugins/wikiplugin_usercount.php -text
 tiki/lib/wiki-plugins/wikiplugin_versions.php -text
+tiki/lib/wiki-plugins/wikiplugin_vote.php -text
 tiki/lib/wiki-plugins/wikiplugin_wantedpages.php -text
 tiki/lib/wiki/exportlib.php -text
 tiki/lib/wiki/histlib.php -text
@@ -5709,6 +5710,7 @@ tiki/templates/tiki.tpl -text
 tiki/templates/translated-lang.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
+tiki/templates/wiki-plugins/wikiplugin_vote.tpl -text
 tiki/templates_c/.cvsignore -text
 tiki/templates_c/.htaccess -text svneol=unset#application/octet-stream
 tiki/templates_c/README -text
