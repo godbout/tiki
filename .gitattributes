@@ -5748,6 +5748,7 @@ tiki/templates/tiki-workspaces_view_module.tpl -text
 tiki/templates/tiki-workspaces_zones.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates/translated-lang.tpl -text
+tiki/templates/wiki-plugins/error_tracker.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_vote.tpl -text
