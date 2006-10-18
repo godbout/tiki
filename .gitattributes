@@ -5754,10 +5754,6 @@ tiki/templates/wiki-plugins/error_tracker.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_vote.tpl -text
-tiki/templates_c/.cvsignore -text
-tiki/templates_c/.htaccess -text svneol=unset#application/octet-stream
-tiki/templates_c/README -text
-tiki/templates_c/index.php -text
 tiki/testrpc.php -text
 tiki/tests/_htaccess -text
 tiki/tests/branch_test_file.txt -text
