@@ -3766,6 +3766,7 @@ tiki/lib/notifications/notificationlib.php -text
 tiki/lib/objectlib.php -text
 tiki/lib/overlib.js -text
 tiki/lib/pclzip.lib.php -text
+tiki/lib/pear/Auth.php -text
 tiki/lib/pear/Auth/Anonymous.php -text
 tiki/lib/pear/Auth/Auth.php -text
 tiki/lib/pear/Auth/Container.php -text
