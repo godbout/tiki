@@ -2654,7 +2654,6 @@ tiki/img/flags/Surinam.gif -text
 tiki/img/flags/Sweden.gif -text
 tiki/img/flags/Switzerland.gif -text
 tiki/img/flags/Taiwan.gif -text
-tiki/img/flags/Tanzania.gif -text
 tiki/img/flags/Thailand.gif -text
 tiki/img/flags/Tonga.gif -text
 tiki/img/flags/Trinidad_Tobago.gif -text
@@ -3782,10 +3781,24 @@ tiki/lib/notifications/notificationlib.php -text
 tiki/lib/objectlib.php -text
 tiki/lib/overlib.js -text
 tiki/lib/pclzip.lib.php -text
+tiki/lib/pear/Auth/Anonymous.php -text
 tiki/lib/pear/Auth/Auth.php -text
 tiki/lib/pear/Auth/Container.php -text
+tiki/lib/pear/Auth/Container/DB.php -text
+tiki/lib/pear/Auth/Container/DBLite.php -text
+tiki/lib/pear/Auth/Container/File.php -text
+tiki/lib/pear/Auth/Container/IMAP.php -text
 tiki/lib/pear/Auth/Container/LDAP.php -text
+tiki/lib/pear/Auth/Container/MDB.php -text
+tiki/lib/pear/Auth/Container/MDB2.php -text
+tiki/lib/pear/Auth/Container/PEAR.php -text
+tiki/lib/pear/Auth/Container/POP3.php -text
+tiki/lib/pear/Auth/Container/RADIUS.php -text
+tiki/lib/pear/Auth/Container/SMBPasswd.php -text
+tiki/lib/pear/Auth/Container/SOAP.php -text
 tiki/lib/pear/Auth/Container/index.php -text
+tiki/lib/pear/Auth/Container/vpopmail.php -text
+tiki/lib/pear/Auth/Controller.php -text
 tiki/lib/pear/Auth/index.php -text
 tiki/lib/pear/CMD.php -text
 tiki/lib/pear/DB.php -text
@@ -4424,11 +4437,13 @@ tiki/lib/wiki-plugins/wikiplugin_objecthits.php -text
 tiki/lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 tiki/lib/wiki-plugins/wikiplugin_poll.php -text
 tiki/lib/wiki-plugins/wikiplugin_quote.php -text
+tiki/lib/wiki-plugins/wikiplugin_regex.php -text
 tiki/lib/wiki-plugins/wikiplugin_rss.php -text
 tiki/lib/wiki-plugins/wikiplugin_sf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sheet.php -text
 tiki/lib/wiki-plugins/wikiplugin_showpages.php -text
 tiki/lib/wiki-plugins/wikiplugin_skype.php -text
+tiki/lib/wiki-plugins/wikiplugin_snarf.php -text
 tiki/lib/wiki-plugins/wikiplugin_sort.php -text
 tiki/lib/wiki-plugins/wikiplugin_split.php -text
 tiki/lib/wiki-plugins/wikiplugin_sql.php -text
@@ -4453,7 +4468,30 @@ tiki/lib/wiki/pluginslib.php -text
 tiki/lib/wiki/wiki-ajax.js -text
 tiki/lib/wiki/wiki-ajax.php -text
 tiki/lib/wiki/wikilib.php -text
+tiki/lib/wiki3d/Balancer.class -text svneol=unset#unset
+tiki/lib/wiki3d/Balancer.java -text
+tiki/lib/wiki3d/Camera.class -text svneol=unset#unset
+tiki/lib/wiki3d/Camera.java -text
+tiki/lib/wiki3d/Config.class -text svneol=unset#unset
+tiki/lib/wiki3d/Config.java -text
+tiki/lib/wiki3d/Face.class -text svneol=unset#unset
+tiki/lib/wiki3d/Face.java -text
+tiki/lib/wiki3d/Graph.class -text svneol=unset#unset
+tiki/lib/wiki3d/Graph.java -text
+tiki/lib/wiki3d/Matrix3D.class -text svneol=unset#unset
+tiki/lib/wiki3d/Matrix3D.java -text
+tiki/lib/wiki3d/Navigator.class -text svneol=unset#unset
+tiki/lib/wiki3d/Navigator.java -text
+tiki/lib/wiki3d/Node.class -text svneol=unset#unset
+tiki/lib/wiki3d/Node.java -text
 tiki/lib/wiki3d/README.txt -text
+tiki/lib/wiki3d/SpeedVector.class -text svneol=unset#unset
+tiki/lib/wiki3d/SpeedVector.java -text
+tiki/lib/wiki3d/Vertex.class -text svneol=unset#unset
+tiki/lib/wiki3d/Vertex.java -text
+tiki/lib/wiki3d/XmlReader.class -text svneol=unset#unset
+tiki/lib/wiki3d/XmlReader.java -text
+tiki/lib/wiki3d/morcego-0.3.jar -text
 tiki/lib/wiki3d/morcego-0.4.0.jar -text
 tiki/lib/wiki3d/src/java/br/arca/morcego/Config.java -text
 tiki/lib/wiki3d/src/java/br/arca/morcego/Morcego.java -text
@@ -5096,6 +5134,8 @@ tiki/templates/mail/user_watch_file_gallery_changed_subject.tpl -text
 tiki/templates/mail/user_watch_file_gallery_remove_file.tpl -text
 tiki/templates/mail/user_watch_file_gallery_upload.tpl -text
 tiki/templates/mail/user_watch_map_changed.tpl -text
+tiki/templates/mail/user_watch_wiki_new_attach.tpl -text
+tiki/templates/mail/user_watch_wiki_new_attach_subject.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed_subject.tpl -text
 tiki/templates/mail/user_watch_wiki_page_comment.tpl -text
@@ -5772,6 +5812,7 @@ tiki/tests/test_file_2.txt -text
 tiki/textareasize.php -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_actionlog.php -text
+tiki/tiki-admin_banners.php -text
 tiki/tiki-admin_banning.php -text
 tiki/tiki-admin_calendars.php -text
 tiki/tiki-admin_categories.php -text
