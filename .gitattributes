@@ -1803,6 +1803,7 @@ _mods/wiki-plugins/mindmap/mindmap/freemindbrowser.jar -text
 _mods/wiki-plugins/mindmap/mindmap/index.php -text
 _mods/wiki-plugins/mindmap/mindmap/visorFreemind.swf -text
 _mods/wiki-plugins/mindmap/mindmap/wikiplugin-mindmap.mm -text
+_mods/wiki-plugins/mindmap/templates/wikiplugin_mindmap.tpl -text
 _mods/wiki-plugins/mindmap/wiki-plugins/wikiplugin_mindmap.php -text
 _mods/wiki-plugins/pagename/Readme -text
 _mods/wiki-plugins/perm/README -text
