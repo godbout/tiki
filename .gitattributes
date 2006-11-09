@@ -3580,14 +3580,6 @@ tiki/lib/breadcrumblib.php -text
 tiki/lib/cache/cachelib.php -text
 tiki/lib/cache/index.php -text
 tiki/lib/calendar/calendarlib.php -text
-tiki/lib/calendar/iCal/class.iCal.inc.php -text
-tiki/lib/calendar/iCal/class.iCalAlarm.inc.php -text
-tiki/lib/calendar/iCal/class.iCalBase.inc.php -text
-tiki/lib/calendar/iCal/class.iCalEvent.inc.php -text
-tiki/lib/calendar/iCal/class.iCalFreeBusy.inc.php -text
-tiki/lib/calendar/iCal/class.iCalJournal.inc.php -text
-tiki/lib/calendar/iCal/class.iCalToDo.inc.php -text
-tiki/lib/calendar/iCal/index.php -text
 tiki/lib/calendar/index.php -text
 tiki/lib/categories/categlib.php -text
 tiki/lib/categories/index.php -text
