@@ -3779,7 +3779,6 @@ tiki/lib/pear/Auth/Container/index.php -text
 tiki/lib/pear/Auth/Container/vpopmail.php -text
 tiki/lib/pear/Auth/Controller.php -text
 tiki/lib/pear/Auth/index.php -text
-tiki/lib/pear/CMD.php -text
 tiki/lib/pear/DB.php -text
 tiki/lib/pear/DB/IDEAS -text
 tiki/lib/pear/DB/MAINTAINERS -text
