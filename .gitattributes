@@ -4185,6 +4185,7 @@ tiki/lib/smarty_tiki/function.helplink.php -text
 tiki/lib/smarty_tiki/function.html_select_date.php -text
 tiki/lib/smarty_tiki/function.html_select_time.php -text
 tiki/lib/smarty_tiki/function.js_maxlength.php -text
+tiki/lib/smarty_tiki/function.jscalendar.php -text
 tiki/lib/smarty_tiki/function.jspopup.php -text
 tiki/lib/smarty_tiki/function.memusage.php -text
 tiki/lib/smarty_tiki/function.menu.php -text
