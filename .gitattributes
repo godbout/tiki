@@ -2258,7 +2258,6 @@ tiki/db/tiki-secdb_1.8.X_mysql.sql -text
 tiki/db/tiki-secdb_1.9_mysql.sql -text
 tiki/db/tiki-secdb_pre_1.7_mysql.sql -text
 tiki/db/tiki.sql -text
-tiki/db/tiki_1.7to1.8.sql -text
 tiki/db/tiki_1.8to1.9.sql -text
 tiki/db/tiki_1.9.1to1.9.2.sql -text
 tiki/db/tiki_1.9to1.10.sql -text
