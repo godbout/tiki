@@ -4083,7 +4083,6 @@ tiki/lib/phplayers_tiki/tiki-phplayers.php -text
 tiki/lib/polls/index.php -text
 tiki/lib/polls/polllib.php -text
 tiki/lib/polls/polllib_shared.php -text
-tiki/lib/projects/projectlib.php -text
 tiki/lib/quicktags/index.php -text
 tiki/lib/quicktags/quicktagslib.php -text
 tiki/lib/quizzes/index.php -text
