@@ -4399,6 +4399,7 @@ tiki/lib/wiki-plugins/wikiplugin_copyright.php -text
 tiki/lib/wiki-plugins/wikiplugin_countdown.php -text
 tiki/lib/wiki-plugins/wikiplugin_div.php -text
 tiki/lib/wiki-plugins/wikiplugin_dl.php -text
+tiki/lib/wiki-plugins/wikiplugin_events.php -text
 tiki/lib/wiki-plugins/wikiplugin_example.php -text
 tiki/lib/wiki-plugins/wikiplugin_fancytable.php -text
 tiki/lib/wiki-plugins/wikiplugin_flash.php -text
