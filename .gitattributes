@@ -5350,7 +5350,6 @@ tiki/templates/styles/smartiki/error.tpl -text
 tiki/templates/styles/smartiki/tiki-print.tpl -text
 tiki/templates/styles/smartiki/tiki-print_article.tpl -text
 tiki/templates/styles/smartiki/tiki-print_multi_pages.tpl -text
-tiki/templates/styles/smartiki/tiki.tpl -text
 tiki/templates/styles/tiki/error.tpl -text
 tiki/templates/styles/tiki/header.tpl -text
 tiki/templates/styles/tiki/index.php -text
