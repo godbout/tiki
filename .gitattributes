@@ -4508,13 +4508,6 @@ tiki/lib/wiki3d/src/test/br/arca/morcego/ConfigTest.java -text
 tiki/lib/wiki3d/src/test/br/arca/morcego/Matrix3DTest.java -text
 tiki/lib/wiki3d/src/test/br/arca/morcego/Vertex3DTest.java -text
 tiki/lib/wiki3d/xmlrpc-1.2-b1.jar -text
-tiki/lib/workspaces/printlib.php -text
-tiki/lib/workspaces/resourceslib.php -text
-tiki/lib/workspaces/roleslib.php -text
-tiki/lib/workspaces/typeslib.php -text
-tiki/lib/workspaces/userlib.php -text
-tiki/lib/workspaces/workspacelib.php -text
-tiki/lib/workspaces/workspacemoduleslib.php -text
 tiki/lib/x/index.php -text
 tiki/lib/x/x.js -text
 tiki/lib/x/x_anim.js -text
