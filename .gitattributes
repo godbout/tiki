@@ -4649,6 +4649,7 @@ tiki/pics/icons/database.png -text
 tiki/pics/icons/delete.png -text
 tiki/pics/icons/disk.png -text
 tiki/pics/icons/disk_lock.png -text
+tiki/pics/icons/disk_multiple.png -text
 tiki/pics/icons/email.png -text
 tiki/pics/icons/email_edit.png -text
 tiki/pics/icons/email_go.png -text
@@ -5062,6 +5063,7 @@ tiki/templates/freetag.tpl -text
 tiki/templates/header.tpl -text
 tiki/templates/index.php -text
 tiki/templates/information.tpl -text
+tiki/templates/list_file_gallery.tpl -text
 tiki/templates/mail/blogs_send_link.tpl -text
 tiki/templates/mail/confirm_newsletter_subscription.tpl -text
 tiki/templates/mail/forum_post_notification.tpl -text
