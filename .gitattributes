@@ -3711,6 +3711,7 @@ tiki/lib/index.php -text
 tiki/lib/init/index.php -text
 tiki/lib/init/initlib.php -text
 tiki/lib/init/setup_inc.php -text
+tiki/lib/init/tra.php -text
 tiki/lib/integrator/index.php -text
 tiki/lib/integrator/integrator.php -text
 tiki/lib/irc/index.php -text
