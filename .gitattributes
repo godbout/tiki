@@ -5526,6 +5526,7 @@ tiki/templates/tiki-export-sheets.tpl -text
 tiki/templates/tiki-export_tracker.tpl -text
 tiki/templates/tiki-faq_questions.tpl -text
 tiki/templates/tiki-featured_link.tpl -text
+tiki/templates/tiki-file_archives.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
 tiki/templates/tiki-forum_queue.tpl -text
 tiki/templates/tiki-forums.tpl -text
@@ -5897,6 +5898,7 @@ tiki/tiki-export_tracker.php -text
 tiki/tiki-export_wiki_pages.php -text
 tiki/tiki-faq_questions.php -text
 tiki/tiki-featured_link.php -text
+tiki/tiki-file_archives.php -text
 tiki/tiki-file_galleries.php -text
 tiki/tiki-file_galleries_rankings.php -text
 tiki/tiki-file_galleries_rss.php -text
