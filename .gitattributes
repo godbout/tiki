@@ -5500,7 +5500,6 @@ tiki/templates/tiki-directory_footer.tpl -text
 tiki/templates/tiki-directory_ranking.tpl -text
 tiki/templates/tiki-directory_search.tpl -text
 tiki/templates/tiki-directory_validate_sites.tpl -text
-tiki/templates/tiki-edit_actionlog.tpl -text
 tiki/templates/tiki-edit_article.tpl -text
 tiki/templates/tiki-edit_banner.tpl -text
 tiki/templates/tiki-edit_blog.tpl -text
