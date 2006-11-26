@@ -1785,6 +1785,14 @@ _mods/wiki-plugins/README -text
 _mods/wiki-plugins/book/Readme -text
 _mods/wiki-plugins/ebay/README -text
 _mods/wiki-plugins/ebay/wiki-plugins/wikiplugin_ebay.php -text
+_mods/wiki-plugins/flowplayer/Readme -text
+_mods/wiki-plugins/flowplayer/flowplayer/FlowPlayer.swf -text svneol=unset#unset
+_mods/wiki-plugins/flowplayer/flowplayer/FlowPlayerLP.swf -text svneol=unset#unset
+_mods/wiki-plugins/flowplayer/flowplayer/FlowPlayerLight.swf -text svneol=unset#unset
+_mods/wiki-plugins/flowplayer/flowplayer/LICENSE.txt -text
+_mods/wiki-plugins/flowplayer/flowplayer/README.txt -text
+_mods/wiki-plugins/flowplayer/flowplayer/flowPlayer.js -text
+_mods/wiki-plugins/flowplayer/wiki-plugins/wikiplugin_flowplayer.php -text
 _mods/wiki-plugins/formula/README -text
 _mods/wiki-plugins/formula/wiki-plugins/tex2png -text
 _mods/wiki-plugins/formula/wiki-plugins/wikiplugin_formula.php -text
