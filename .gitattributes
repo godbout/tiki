@@ -4371,6 +4371,7 @@ tiki/lib/weather/socket_test.php -text
 tiki/lib/weather/weather.tpl -text
 tiki/lib/webmail/API.txt -text
 tiki/lib/webmail/class.rc4crypt.php -text
+tiki/lib/webmail/contactlib.php -text
 tiki/lib/webmail/decodemessage.php -text
 tiki/lib/webmail/example.1.php -text
 tiki/lib/webmail/htmlMimeMail.php -text
@@ -5496,6 +5497,7 @@ tiki/templates/tiki-chat_users.tpl -text
 tiki/templates/tiki-chatroom.tpl -text
 tiki/templates/tiki-config_pdf.tpl -text
 tiki/templates/tiki-contact.tpl -text
+tiki/templates/tiki-contacts.tpl -text
 tiki/templates/tiki-create_webhelp.tpl -text
 tiki/templates/tiki-custom_home.tpl -text
 tiki/templates/tiki-debug_console.tpl -text
@@ -5857,6 +5859,7 @@ tiki/tiki-chatroom.php -text
 tiki/tiki-cms_rankings.php -text
 tiki/tiki-config_pdf.php -text
 tiki/tiki-contact.php -text
+tiki/tiki-contacts.php -text
 tiki/tiki-cookie-jar.php -text
 tiki/tiki-create_webhelp.php -text
 tiki/tiki-custom_home.php -text
