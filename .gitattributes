@@ -716,6 +716,7 @@ _mods/Packages/wikiplugins-redirect.info.txt -text
 _mods/Packages/wikiplugins-scroll.info.txt -text
 _mods/Packages/wikiplugins-svg.info.txt -text
 _mods/Packages/wikiplugins-wikigraph.info.txt -text
+_mods/Packages/wikiplugins-xspf_player.info.txt -text
 _mods/README -text
 _mods/authentication/Readme -text
 _mods/authentication/phpcas/lib/userslib.php -text
@@ -2254,6 +2255,11 @@ _mods/wiki-plugins/wikigraph/graphviz/tiki-wiki_graph.php -text
 _mods/wiki-plugins/wikigraph/graphviz/wikigraphlib.php -text
 _mods/wiki-plugins/wikigraph/wiki-plugins/wikiplugin_wikigraph.php -text
 _mods/wiki-plugins/wmv/Readme -text
+_mods/wiki-plugins/xspf_player/wiki-plugins/wikiplugin_xspf.php -text
+_mods/wiki-plugins/xspf_player/xspf_player/license.txt -text
+_mods/wiki-plugins/xspf_player/xspf_player/musicplayer.swf -text svneol=unset#unset
+_mods/wiki-plugins/xspf_player/xspf_player/xspf_player.swf -text svneol=unset#unset
+_mods/wiki-plugins/xspf_player/xspf_player/xspf_player_slim.swf -text svneol=unset#unset
 _phplayers/ACKNOWLEDGEMENTS -text
 _phplayers/CHANGELOG -text
 _phplayers/CHANGE_TEMPLATE_CLASS_NAME.sh -text
