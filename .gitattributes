@@ -5500,6 +5500,7 @@ tiki/templates/error.tpl -text
 tiki/templates/error_simple.tpl -text
 tiki/templates/error_ticket.tpl -text
 tiki/templates/fck-edit.tpl -text
+tiki/templates/file_galleries.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/freetag.tpl -text
 tiki/templates/header.tpl -text
