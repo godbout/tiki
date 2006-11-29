@@ -4609,6 +4609,7 @@ tiki/lib/smarty_tiki/function.content.php -text
 tiki/lib/smarty_tiki/function.cookie.php -text
 tiki/lib/smarty_tiki/function.count.php -text
 tiki/lib/smarty_tiki/function.ed.php -text
+tiki/lib/smarty_tiki/function.editform.php -text
 tiki/lib/smarty_tiki/function.elapsed.php -text
 tiki/lib/smarty_tiki/function.gallery.php -text
 tiki/lib/smarty_tiki/function.help.php -text
@@ -4718,6 +4719,7 @@ tiki/lib/tikibot/wollabot.ini -text
 tiki/lib/tikidate.php -text
 tiki/lib/tikidblib-debug.php -text
 tiki/lib/tikidblib.php -text
+tiki/lib/tikifck.php -text
 tiki/lib/tikihelp/content.html -text
 tiki/lib/tikihelp/css/index.php -text
 tiki/lib/tikihelp/css/main.css -text svneol=unset#application/octet-stream
@@ -5491,6 +5493,7 @@ tiki/templates/debug/tiki-debug_watch_tab.tpl -text
 tiki/templates/error.tpl -text
 tiki/templates/error_simple.tpl -text
 tiki/templates/error_ticket.tpl -text
+tiki/templates/fck-edit.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/freetag.tpl -text
 tiki/templates/header.tpl -text
