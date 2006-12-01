@@ -4018,6 +4018,7 @@ tiki/lib/cache/cachelib.php -text
 tiki/lib/cache/index.php -text
 tiki/lib/calendar/calendarlib.php -text
 tiki/lib/calendar/index.php -text
+tiki/lib/calendar/tikicalendarlib.php -text
 tiki/lib/categories/categlib.php -text
 tiki/lib/categories/index.php -text
 tiki/lib/charts/chartlib.php -text
@@ -5840,6 +5841,7 @@ tiki/templates/styles/workspaces/tiki-user_preferences.tpl -text
 tiki/templates/tables/index.php -text
 tiki/templates/tables/tiki_pages.tpl -text
 tiki/templates/textareasize.tpl -text
+tiki/templates/tiki-action_calendar.tpl -text
 tiki/templates/tiki-admin-include-anchors.tpl -text
 tiki/templates/tiki-admin-include-blogs.tpl -text
 tiki/templates/tiki-admin-include-calendar.tpl -text
@@ -5937,7 +5939,12 @@ tiki/templates/tiki-browse_users.tpl -text
 tiki/templates/tiki-calendar.tpl -text
 tiki/templates/tiki-calendar_add_event.tpl -text
 tiki/templates/tiki-calendar_box.tpl -text
+tiki/templates/tiki-calendar_calmode.tpl -text
+tiki/templates/tiki-calendar_daymode.tpl -text
+tiki/templates/tiki-calendar_edit_item.tpl -text
 tiki/templates/tiki-calendar_import.tpl -text
+tiki/templates/tiki-calendar_listmode.tpl -text
+tiki/templates/tiki-calendar_nav.tpl -text
 tiki/templates/tiki-categpermissions.tpl -text
 tiki/templates/tiki-change_password.tpl -text
 tiki/templates/tiki-charts.tpl -text
@@ -6024,6 +6031,7 @@ tiki/templates/tiki-gmap_locator.tpl -text
 tiki/templates/tiki-gmap_usermap.tpl -text
 tiki/templates/tiki-graph-sheets.tpl -text
 tiki/templates/tiki-history-sheets.tpl -text
+tiki/templates/tiki-ical.tpl -text
 tiki/templates/tiki-imexport_languages.tpl -text
 tiki/templates/tiki-import-sheets.tpl -text
 tiki/templates/tiki-import_structuredtext.tpl -text
@@ -6198,6 +6206,7 @@ tiki/tests/test_csv_sandbox.txt -text
 tiki/tests/test_cvs_file.txt -text
 tiki/tests/test_file_2.txt -text
 tiki/textareasize.php -text
+tiki/tiki-action_calendar.php -text
 tiki/tiki-admin.php -text
 tiki/tiki-admin_actionlog.php -text
 tiki/tiki-admin_banners.php -text
@@ -6294,7 +6303,10 @@ tiki/tiki-browse_gallery.php -text
 tiki/tiki-browse_image.php -text
 tiki/tiki-browse_users.php -text
 tiki/tiki-calendar.php -text
+tiki/tiki-calendar_edit_item.php -text
+tiki/tiki-calendar_export_ical.php -text
 tiki/tiki-calendar_import.php -text
+tiki/tiki-calendar_nav.php -text
 tiki/tiki-calendar_setup.php -text
 tiki/tiki-calendars_rss.php -text
 tiki/tiki-categpermissions.php -text
