@@ -5937,7 +5937,6 @@ tiki/templates/tiki-browse_gallery.tpl -text
 tiki/templates/tiki-browse_image.tpl -text
 tiki/templates/tiki-browse_users.tpl -text
 tiki/templates/tiki-calendar.tpl -text
-tiki/templates/tiki-calendar_add_event.tpl -text
 tiki/templates/tiki-calendar_box.tpl -text
 tiki/templates/tiki-calendar_calmode.tpl -text
 tiki/templates/tiki-calendar_daymode.tpl -text
