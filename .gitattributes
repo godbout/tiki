@@ -5360,6 +5360,7 @@ tiki/remote.php -text
 tiki/robots.txt -text
 tiki/select_banner.php -text
 tiki/setup.sh -text
+tiki/setup_fckeditor.php -text
 tiki/setup_smarty.php -text
 tiki/show_image.php -text
 tiki/styles/BiDi/BiDi.css -text
