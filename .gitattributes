@@ -5802,6 +5802,7 @@ tiki/templates/modules/user_module.tpl -text
 tiki/templates/plugins/plugin-topfriends.tpl -text
 tiki/templates/poll.tpl -text
 tiki/templates/sent_newsletters.tpl -text
+tiki/templates/setup_fckeditor.tpl -text
 tiki/templates/structures.tpl -text svneol=unset#application/octet-stream
 tiki/templates/structures_toc-endul.tpl -text
 tiki/templates/structures_toc-leaf.tpl -text
