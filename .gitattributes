@@ -2656,6 +2656,7 @@ tiki/contribution.php -text
 tiki/copyright.txt -text
 tiki/copyrights.php -text
 tiki/css/calendar.css -text
+tiki/css/freetags.css -text
 tiki/css/jscalendar.css -text
 tiki/db/.cvsignore -text
 tiki/db/Makefile -text
@@ -5617,6 +5618,7 @@ tiki/templates/fck-edit.tpl -text
 tiki/templates/file_galleries.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/freetag.tpl -text
+tiki/templates/freetag_list.tpl -text
 tiki/templates/header.tpl -text
 tiki/templates/index.php -text
 tiki/templates/information.tpl -text
