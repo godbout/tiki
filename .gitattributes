@@ -4176,8 +4176,6 @@ tiki/lib/fckeditor_tiki/plugins/tikilink/fckplugin.js -text
 tiki/lib/fckeditor_tiki/plugins/tikilink/fcktikilink.css -text
 tiki/lib/fckeditor_tiki/plugins/tikilink/fcktikilink.js -text
 tiki/lib/fckeditor_tiki/plugins/tikilink/templates/fck_tikilink.tpl -text
-tiki/lib/fckeditor_tiki/styles/fck-smartiki.css -text
-tiki/lib/fckeditor_tiki/styles/fck-tikineat.css -text
 tiki/lib/fckeditor_tiki/tikistyles.xml -text
 tiki/lib/fckeditor_tiki/tikitemplates.xml -text
 tiki/lib/featured_links/flinkslib.php -text
