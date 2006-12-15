@@ -4882,6 +4882,7 @@ tiki/lib/tikihelp/toolbar.html -text
 tiki/lib/tikihelplib.php -text
 tiki/lib/tikilib.php -text
 tiki/lib/tikiticketlib.php -text
+tiki/lib/trackers/dynamic_list.js -text
 tiki/lib/trackers/index.php -text
 tiki/lib/trackers/trackerlib.php -text
 tiki/lib/trackers/trkWithMirrorTablesLib.php -text
@@ -6661,6 +6662,7 @@ tiki/tiki-tc.php -text
 tiki/tiki-theme_control.php -text
 tiki/tiki-theme_control_objects.php -text
 tiki/tiki-theme_control_sections.php -text
+tiki/tiki-tracker_http_request.php -text
 tiki/tiki-tracker_rss.php -text
 tiki/tiki-upload_file.php -text
 tiki/tiki-upload_image.php -text
