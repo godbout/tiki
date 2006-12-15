@@ -5853,7 +5853,6 @@ tiki/templates/styles/mose/index.php -text
 tiki/templates/styles/mose/modules/index.php -text
 tiki/templates/styles/mose/modules/mod-application_menu.tpl -text
 tiki/templates/styles/mose/tiki-bot_bar.tpl -text
-tiki/templates/styles/mose/tiki-mytiki_bar.tpl -text
 tiki/templates/styles/mose/tiki-send_newsletters.tpl -text
 tiki/templates/styles/mose/tiki-top_bar.tpl -text
 tiki/templates/styles/mose/tiki-user_menu.tpl -text
