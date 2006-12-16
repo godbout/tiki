@@ -5971,6 +5971,7 @@ tiki/templates/tiki-admin-include-userfiles.tpl -text
 tiki/templates/tiki-admin-include-webmail.tpl -text
 tiki/templates/tiki-admin-include-wiki.tpl -text
 tiki/templates/tiki-admin-include-wikiatt.tpl -text
+tiki/templates/tiki-admin-include-wysiwyg.tpl -text
 tiki/templates/tiki-admin.tpl -text
 tiki/templates/tiki-admin_actionlog.tpl -text
 tiki/templates/tiki-admin_banning.tpl -text
