@@ -5928,15 +5928,6 @@ tiki/templates/styles/vidiki/error.tpl -text
 tiki/templates/styles/vidiki/tiki-page_bar.tpl -text
 tiki/templates/styles/vidiki/tiki-user_menu.tpl -text
 tiki/templates/styles/vidiki/tiki.tpl -text
-tiki/templates/styles/workspaces/index.php -text
-tiki/templates/styles/workspaces/module.tpl -text
-tiki/templates/styles/workspaces/modules/index.php -text
-tiki/templates/styles/workspaces/modules/mod-application_menu.tpl -text
-tiki/templates/styles/workspaces/tiki-show_page.tpl -text
-tiki/templates/styles/workspaces/tiki-user_edumenu.tpl -text
-tiki/templates/styles/workspaces/tiki-user_information.tpl -text
-tiki/templates/styles/workspaces/tiki-user_menu.tpl -text
-tiki/templates/styles/workspaces/tiki-user_preferences.tpl -text
 tiki/templates/tables/index.php -text
 tiki/templates/tables/tiki_pages.tpl -text
 tiki/templates/textareasize.tpl -text
