@@ -6592,6 +6592,7 @@ tiki/tiki-pagehistory.php -text
 tiki/tiki-pagepermissions.php -text
 tiki/tiki-pagesetup.php -text
 tiki/tiki-pagination.php -text
+tiki/tiki-parsemode_setup.php -text
 tiki/tiki-pdf.php -text
 tiki/tiki-phpinfo.php -text
 tiki/tiki-pick_avatar.php -text
