@@ -2655,6 +2655,7 @@ tiki/commxmlrpc.php -text
 tiki/contribution.php -text
 tiki/copyright.txt -text
 tiki/copyrights.php -text
+tiki/css/admin.css -text
 tiki/css/calendar.css -text
 tiki/css/freetags.css -text
 tiki/css/jscalendar.css -text
