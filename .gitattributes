@@ -6346,6 +6346,7 @@ tiki/tiki-admin_include_userfiles.php -text
 tiki/tiki-admin_include_webmail.php -text
 tiki/tiki-admin_include_wiki.php -text
 tiki/tiki-admin_include_wikiatt.php -text
+tiki/tiki-admin_include_wysiwyg.php -text
 tiki/tiki-admin_integrator.php -text
 tiki/tiki-admin_integrator_rules.php -text
 tiki/tiki-admin_layout.php -text
