@@ -719,8 +719,6 @@ _mods/Packages/wikiplugins-svg.info.txt -text
 _mods/Packages/wikiplugins-wikigraph.info.txt -text
 _mods/Packages/wikiplugins-xspf_player.info.txt -text
 _mods/README -text
-_mods/authentication/Readme -text
-_mods/authentication/phpcas/lib/userslib.php -text
 _mods/avatars/gnumes/angnume.png -text
 _mods/avatars/gnumes/bignume.png -text
 _mods/avatars/gnumes/chewingnume.png -text
