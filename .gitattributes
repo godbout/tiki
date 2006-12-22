@@ -2742,6 +2742,7 @@ tiki/doc/devtools/mergelang.pl -text
 tiki/doc/devtools/mods.sh -text
 tiki/doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
 tiki/doc/devtools/parse_changelog.pl -text
+tiki/doc/devtools/parse_tiki.php -text
 tiki/doc/devtools/phpstrip.sh -text
 tiki/doc/devtools/premerge_report.sh -text
 tiki/doc/devtools/recover_wiki_from_google.pl -text
@@ -2756,6 +2757,7 @@ tiki/doc/devtools/stripcomments.pl -text
 tiki/doc/devtools/sync.php -text
 tiki/doc/devtools/synctiki.sh -text
 tiki/doc/devtools/tiki-create_md5.php -text
+tiki/doc/devtools/tiki-show_raw_links.php -text
 tiki/doc/devtools/tiki_create_md5.php -text
 tiki/doc/devtools/tikilite.sh -text
 tiki/doc/devtools/tikimails.sh -text
@@ -4994,7 +4996,6 @@ tiki/modules/mod-users_rank.php -text
 tiki/modules/mod-whats_related.php -text
 tiki/modules/mod-who_is_there.php -text
 tiki/modules/mod-wiki_last_comments.php -text
-tiki/parse_tiki.php -text
 tiki/pics/icons/accept.png -text
 tiki/pics/icons/add.png -text
 tiki/pics/icons/application_form_magnify.png -text
@@ -6440,7 +6441,6 @@ tiki/tiki-setup_base.php -text
 tiki/tiki-sheets.php -text
 tiki/tiki-shoutbox.php -text
 tiki/tiki-show_calendar.php -text
-tiki/tiki-show_raw_links.php -text
 tiki/tiki-show_user_avatar.php -text
 tiki/tiki-slideshow.php -text
 tiki/tiki-slideshow2.php -text
