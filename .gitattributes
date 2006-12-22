@@ -4271,10 +4271,6 @@ tiki/lib/init/setup_inc.php -text
 tiki/lib/init/tra.php -text
 tiki/lib/integrator/index.php -text
 tiki/lib/integrator/integrator.php -text
-tiki/lib/irc/index.php -text
-tiki/lib/irc/irclib.php -text
-tiki/lib/irc/split_logs.php -text
-tiki/lib/irc/tikiwiki.php -text
 tiki/lib/jgraphpad/index.php -text
 tiki/lib/jgraphpad/jgraphpad.jar -text
 tiki/lib/live_support/index.php -text
@@ -6504,7 +6500,6 @@ tiki/tiki-view_eph.php -text
 tiki/tiki-view_faq.php -text
 tiki/tiki-view_forum.php -text
 tiki/tiki-view_forum_thread.php -text
-tiki/tiki-view_irc.php -text
 tiki/tiki-view_minical_topic.php -text
 tiki/tiki-view_sheets.php -text
 tiki/tiki-view_tracker.php -text
