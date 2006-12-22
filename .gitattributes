@@ -4226,7 +4226,6 @@ tiki/lib/hawhaw/link.wav -text svneol=unset#unset
 tiki/lib/hawhaw/skin/magnify/magnify.jpg -text
 tiki/lib/hawhaw/skin/magnify/skin.css -text
 tiki/lib/headerlib.php -text
-tiki/lib/homework/index.php -text
 tiki/lib/hotwords/hotwordlib.php -text
 tiki/lib/hotwords/index.php -text
 tiki/lib/htmlarea/dialog.js -text
