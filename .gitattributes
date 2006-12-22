@@ -4730,15 +4730,6 @@ tiki/lib/userprefs/index.php -text
 tiki/lib/userprefs/scrambleEmail.php -text
 tiki/lib/userprefs/userprefslib.php -text
 tiki/lib/userslib.php -text
-tiki/lib/weather/Weather.php -text
-tiki/lib/weather/WebCell.php -text
-tiki/lib/weather/changelog.txt -text
-tiki/lib/weather/get_weather_inc.php -text
-tiki/lib/weather/index.php -text
-tiki/lib/weather/readme.txt -text
-tiki/lib/weather/setup_inc.php -text
-tiki/lib/weather/socket_test.php -text
-tiki/lib/weather/weather.tpl -text
 tiki/lib/webmail/API.txt -text
 tiki/lib/webmail/class.rc4crypt.php -text
 tiki/lib/webmail/contactlib.php -text
