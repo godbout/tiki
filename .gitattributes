@@ -4606,10 +4606,6 @@ tiki/lib/smarty_tiki/outputfilter.ticket.php -text
 tiki/lib/smarty_tiki/prefilter.ticket.php -text
 tiki/lib/smarty_tiki/prefilter.tr.php -text
 tiki/lib/smarty_tiki/resource.style.php -text
-tiki/lib/snoopy/README -text
-tiki/lib/snoopy/Snoopy.class.inc -text
-tiki/lib/snoopy/Snoopy.class.php -text
-tiki/lib/snoopy/index.php -text
 tiki/lib/stats/index.php -text
 tiki/lib/stats/statslib.php -text
 tiki/lib/structures/index.php -text
