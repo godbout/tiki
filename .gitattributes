@@ -5588,7 +5588,6 @@ tiki/templates/structures_toc.tpl -text
 tiki/templates/structures_toc_level.tpl -text
 tiki/templates/styles/blank/tiki.tpl -text
 tiki/templates/styles/brtiki/tiki-top_bar.tpl -text
-tiki/templates/styles/codex/error.tpl -text
 tiki/templates/styles/codex/index.php -text
 tiki/templates/styles/codex/tiki.tpl -text
 tiki/templates/styles/damian/module.tpl -text
@@ -5626,7 +5625,6 @@ tiki/templates/styles/neat/tiki-show_page.tpl -text
 tiki/templates/styles/neat/tiki-user_menu.tpl -text
 tiki/templates/styles/neat/tiki.tpl -text
 tiki/templates/styles/notheme/babelfish.tpl -text
-tiki/templates/styles/notheme/error.tpl -text
 tiki/templates/styles/notheme/index.php -text
 tiki/templates/styles/notheme/tiki-bot_bar.tpl -text
 tiki/templates/styles/notheme/tiki-my_tiki.tpl -text
@@ -5634,7 +5632,6 @@ tiki/templates/styles/notheme/tiki-top_bar.tpl -text
 tiki/templates/styles/notheme/tiki.tpl -text
 tiki/templates/styles/simple/categpath.tpl -text
 tiki/templates/styles/simple/confirm.tpl -text
-tiki/templates/styles/simple/error.tpl -text
 tiki/templates/styles/simple/header.tpl -text
 tiki/templates/styles/simple/index.php -text
 tiki/templates/styles/simple/module.tpl -text
@@ -5666,11 +5663,9 @@ tiki/templates/styles/simple/tiki-view_blog.tpl -text
 tiki/templates/styles/simple/tiki-view_blog_post.tpl -text
 tiki/templates/styles/simple/tiki.tpl -text
 tiki/templates/styles/smartiki/babelfish.tpl -text
-tiki/templates/styles/smartiki/error.tpl -text
 tiki/templates/styles/smartiki/tiki-print.tpl -text
 tiki/templates/styles/smartiki/tiki-print_article.tpl -text
 tiki/templates/styles/smartiki/tiki-print_multi_pages.tpl -text
-tiki/templates/styles/tiki/error.tpl -text
 tiki/templates/styles/tiki/header.tpl -text
 tiki/templates/styles/tiki/index.php -text
 tiki/templates/styles/tiki/modules/index.php -text
@@ -5686,7 +5681,6 @@ tiki/templates/styles/tikigod/tiki.tpl -text
 tiki/templates/styles/trollparty/tiki-bot_bar.tpl -text
 tiki/templates/styles/trollparty/tiki-send_newsletters.tpl -text
 tiki/templates/styles/trollparty/tiki-show_page.tpl -text
-tiki/templates/styles/vidiki/error.tpl -text
 tiki/templates/styles/vidiki/tiki-page_bar.tpl -text
 tiki/templates/styles/vidiki/tiki-user_menu.tpl -text
 tiki/templates/styles/vidiki/tiki.tpl -text
