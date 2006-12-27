@@ -4101,8 +4101,6 @@ tiki/lib/ajax/xajax_js/xajax_uncompressed.js -text
 tiki/lib/articles/artlib.php -text
 tiki/lib/articles/index.php -text
 tiki/lib/bablotron.php -text
-tiki/lib/backups/backupslib.php -text
-tiki/lib/backups/index.php -text
 tiki/lib/ban/banlib.php -text
 tiki/lib/ban/index.php -text
 tiki/lib/banners/bannerlib.php -text
@@ -5760,7 +5758,6 @@ tiki/templates/tiki-articles-js.tpl -text
 tiki/templates/tiki-assignpermission.tpl -text
 tiki/templates/tiki-assignuser.tpl -text
 tiki/templates/tiki-backlinks.tpl -text
-tiki/templates/tiki-backup.tpl -text
 tiki/templates/tiki-batch_upload.tpl -text
 tiki/templates/tiki-batch_upload_files.tpl -text
 tiki/templates/tiki-blog_post.tpl -text
@@ -6113,7 +6110,6 @@ tiki/tiki-assignpermission.php -text
 tiki/tiki-assignuser.php -text
 tiki/tiki-atom.php -text
 tiki/tiki-backlinks.php -text
-tiki/tiki-backup.php -text
 tiki/tiki-batch_upload.php -text
 tiki/tiki-batch_upload_files.php -text
 tiki/tiki-blog_post.php -text
