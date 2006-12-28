@@ -2707,7 +2707,6 @@ tiki/db/tiki-secdb_1.7.X_mysql.sql -text
 tiki/db/tiki-secdb_1.8.X_mysql.sql -text
 tiki/db/tiki-secdb_1.9_mysql.sql -text
 tiki/db/tiki-secdb_pre_1.7_mysql.sql -text
-tiki/db/tiki.sql -text
 tiki/db/tiki_1.8to1.9.sql -text
 tiki/db/tiki_1.9.1to1.9.2.sql -text
 tiki/db/tiki_1.9to1.10.sql -text
@@ -4178,8 +4177,6 @@ tiki/lib/directory/index.php -text
 tiki/lib/drawings/drawlib.php -text
 tiki/lib/drawings/index.php -text
 tiki/lib/encoding/lib-encoding.php -text
-tiki/lib/ephemerides/ephlib.php -text
-tiki/lib/ephemerides/index.php -text
 tiki/lib/events/evlib.php -text
 tiki/lib/events/index.php -text
 tiki/lib/faqs/faqlib.php -text
@@ -4849,7 +4846,6 @@ tiki/modules/mod-comm_received_objects.php -text
 tiki/modules/mod-directory_last_sites.php -text
 tiki/modules/mod-directory_stats.php -text
 tiki/modules/mod-directory_top_sites.php -text
-tiki/modules/mod-eph.php -text
 tiki/modules/mod-featured_links.php -text
 tiki/modules/mod-forums_best_voted_topics.php -text
 tiki/modules/mod-forums_last_posts.php -text
@@ -5454,7 +5450,6 @@ tiki/templates/modules/mod-comm_received_objects.tpl -text
 tiki/templates/modules/mod-directory_last_sites.tpl -text
 tiki/templates/modules/mod-directory_stats.tpl -text
 tiki/templates/modules/mod-directory_top_sites.tpl -text
-tiki/templates/modules/mod-eph.tpl -text
 tiki/templates/modules/mod-events.tpl -text
 tiki/templates/modules/mod-featured_links.tpl -text
 tiki/templates/modules/mod-forums_best_voted_topics.tpl -text
@@ -5814,8 +5809,6 @@ tiki/templates/tiki-edit_topic.tpl -text
 tiki/templates/tiki-edit_translation.tpl -text
 tiki/templates/tiki-edit_wiki_section.tpl -text
 tiki/templates/tiki-editpage.tpl -text
-tiki/templates/tiki-eph.tpl -text
-tiki/templates/tiki-eph_admin.tpl -text
 tiki/templates/tiki-export-sheets.tpl -text
 tiki/templates/tiki-export_tracker.tpl -text
 tiki/templates/tiki-faq_questions.tpl -text
@@ -6176,8 +6169,6 @@ tiki/tiki-edit_translation.php -text
 tiki/tiki-edit_wiki_section.php -text
 tiki/tiki-editdrawing.php -text
 tiki/tiki-editpage.php -text
-tiki/tiki-eph.php -text
-tiki/tiki-eph_admin.php -text
 tiki/tiki-error.php -text
 tiki/tiki-error_simple.php -text
 tiki/tiki-export_pdf.php -text
@@ -6400,7 +6391,6 @@ tiki/tiki-view_blog_post_image.php -text
 tiki/tiki-view_cache.php -text
 tiki/tiki-view_chart.php -text
 tiki/tiki-view_chart_item.php -text
-tiki/tiki-view_eph.php -text
 tiki/tiki-view_faq.php -text
 tiki/tiki-view_forum.php -text
 tiki/tiki-view_forum_thread.php -text
