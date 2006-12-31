@@ -4699,6 +4699,7 @@ tiki/lib/wiki-plugins/wikiplugin_gauge.php -text
 tiki/lib/wiki-plugins/wikiplugin_group.php -text
 tiki/lib/wiki-plugins/wikiplugin_jabber.php -text
 tiki/lib/wiki-plugins/wikiplugin_lang.php -text
+tiki/lib/wiki-plugins/wikiplugin_lastmod.php -text
 tiki/lib/wiki-plugins/wikiplugin_map.php -text
 tiki/lib/wiki-plugins/wikiplugin_miniquiz.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
