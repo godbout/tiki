@@ -4361,6 +4361,7 @@ tiki/lib/pear/DB/sybase.php -text
 tiki/lib/pear/Date.php -text
 tiki/lib/pear/Date/Calc.php -text
 tiki/lib/pear/Date/Human.php -text
+tiki/lib/pear/Date/Span.php -text
 tiki/lib/pear/Date/TimeZone.php -text
 tiki/lib/pear/Date/TimeZoneWindows.php -text
 tiki/lib/pear/Date/index.php -text
