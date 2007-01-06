@@ -6432,10 +6432,6 @@ tiki/tiki-wiki_rankings.php -text
 tiki/tiki-wiki_rss.php -text
 tiki/tiki-xajax_example.php -text
 tiki/tiki-xmlrpc_services.php -text
-tiki/tikimovies/README -text
-tiki/tikimovies/controller.swf -text svneol=unset#unset
-tiki/tikimovies/index.php -text
-tiki/tikimovies/sample.xml -text
 tiki/topic_image.php -text
 tiki/whelp/index.php -text
 tiki/xmlrpc.php -text
