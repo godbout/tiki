@@ -2667,6 +2667,7 @@ tiki/copyright.txt -text
 tiki/copyrights.php -text
 tiki/css/admin.css -text
 tiki/css/calendar.css -text
+tiki/css/cssmenu.css -text
 tiki/css/freetags.css -text
 tiki/css/jscalendar.css -text
 tiki/db/.cvsignore -text
@@ -5997,6 +5998,7 @@ tiki/templates/tiki-upload_file.tpl -text
 tiki/templates/tiki-upload_image.tpl -text
 tiki/templates/tiki-user_assigned_modules.tpl -text
 tiki/templates/tiki-user_bookmarks.tpl -text
+tiki/templates/tiki-user_cssmenu.tpl -text
 tiki/templates/tiki-user_information.tpl -text
 tiki/templates/tiki-user_menu.tpl -text
 tiki/templates/tiki-user_preferences.tpl -text
