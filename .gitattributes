@@ -4185,6 +4185,11 @@ tiki/lib/events/evlib.php -text
 tiki/lib/events/index.php -text
 tiki/lib/faqs/faqlib.php -text
 tiki/lib/faqs/index.php -text
+tiki/lib/fckeditor_tiki/plugins/tikiimage/fck_tikiimage.php -text
+tiki/lib/fckeditor_tiki/plugins/tikiimage/fckplugin.js -text
+tiki/lib/fckeditor_tiki/plugins/tikiimage/fcktikiimage.css -text
+tiki/lib/fckeditor_tiki/plugins/tikiimage/fcktikiimage.js -text
+tiki/lib/fckeditor_tiki/plugins/tikiimage/templates/fck_tikilink.tpl -text
 tiki/lib/fckeditor_tiki/plugins/tikilink/fck_tikilink.php -text
 tiki/lib/fckeditor_tiki/plugins/tikilink/fckplugin.js -text
 tiki/lib/fckeditor_tiki/plugins/tikilink/fcktikilink.css -text
@@ -5008,6 +5013,7 @@ tiki/pics/icons/no_eye.png -text
 tiki/pics/icons/page_edit.png -text
 tiki/pics/icons/page_white_acrobat.png -text
 tiki/pics/icons/page_white_link.png -text
+tiki/pics/icons/page_white_picture.png -text
 tiki/pics/icons/palette.png -text
 tiki/pics/icons/pencil.png -text
 tiki/pics/icons/pencil_add.png -text
