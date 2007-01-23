@@ -4536,9 +4536,11 @@ tiki/lib/smarty_tiki/modifier.dbg.php -text
 tiki/lib/smarty_tiki/modifier.div.php -text
 tiki/lib/smarty_tiki/modifier.duration.php -text
 tiki/lib/smarty_tiki/modifier.duration_short.php -text
+tiki/lib/smarty_tiki/modifier.how_many_user_inscriptions.php -text
 tiki/lib/smarty_tiki/modifier.iconify.php -text
 tiki/lib/smarty_tiki/modifier.kbsize.php -text
 tiki/lib/smarty_tiki/modifier.lcfirst.php -text
+tiki/lib/smarty_tiki/modifier.max_user_inscriptions.php -text
 tiki/lib/smarty_tiki/modifier.nlbr.php -text
 tiki/lib/smarty_tiki/modifier.quoted.php -text
 tiki/lib/smarty_tiki/modifier.star.php -text
