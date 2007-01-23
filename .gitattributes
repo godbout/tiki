@@ -716,6 +716,7 @@ _mods/Packages/wikiplugins-plazes.info.txt -text
 _mods/Packages/wikiplugins-redirect.info.txt -text
 _mods/Packages/wikiplugins-scroll.info.txt -text
 _mods/Packages/wikiplugins-svg.info.txt -text
+_mods/Packages/wikiplugins-trackeritemfield.info.txt -text
 _mods/Packages/wikiplugins-wikigraph.info.txt -text
 _mods/Packages/wikiplugins-xspf_player.info.txt -text
 _mods/README -text
@@ -2258,6 +2259,7 @@ _mods/wiki-plugins/redirect/README -text
 _mods/wiki-plugins/redirect/wiki-plugins/wikiplugin_redirect.php -text
 _mods/wiki-plugins/scroll/wiki-plugins/wikiplugin_scroll.php -text
 _mods/wiki-plugins/svg/wiki-plugins/wikiplugin_svg.php -text
+_mods/wiki-plugins/trackeritemfield/wiki-plugins/wikiplugin_trackeritemfield.php -text
 _mods/wiki-plugins/wikigraph/Readme -text
 _mods/wiki-plugins/wikigraph/graphviz/GraphViz.php -text
 _mods/wiki-plugins/wikigraph/graphviz/index.php -text
