@@ -2259,6 +2259,7 @@ _mods/wiki-plugins/redirect/README -text
 _mods/wiki-plugins/redirect/wiki-plugins/wikiplugin_redirect.php -text
 _mods/wiki-plugins/scroll/wiki-plugins/wikiplugin_scroll.php -text
 _mods/wiki-plugins/svg/wiki-plugins/wikiplugin_svg.php -text
+_mods/wiki-plugins/trackeritemfield/smarty_tiki/block.itemfield.php -text
 _mods/wiki-plugins/trackeritemfield/wiki-plugins/wikiplugin_trackeritemfield.php -text
 _mods/wiki-plugins/wikigraph/Readme -text
 _mods/wiki-plugins/wikigraph/graphviz/GraphViz.php -text
