@@ -6153,7 +6153,6 @@ tiki/tiki-calendar.php -text
 tiki/tiki-calendar_edit_item.php -text
 tiki/tiki-calendar_export_ical.php -text
 tiki/tiki-calendar_import.php -text
-tiki/tiki-calendar_nav.php -text
 tiki/tiki-calendar_setup.php -text
 tiki/tiki-calendars_rss.php -text
 tiki/tiki-categpermissions.php -text
