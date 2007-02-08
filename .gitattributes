@@ -4557,6 +4557,7 @@ tiki/lib/smarty_tiki/modifier.tiki_short_date.php -text
 tiki/lib/smarty_tiki/modifier.tiki_short_datetime.php -text
 tiki/lib/smarty_tiki/modifier.tiki_short_time.php -text
 tiki/lib/smarty_tiki/modifier.times.php -text
+tiki/lib/smarty_tiki/modifier.tr_if.php -text
 tiki/lib/smarty_tiki/modifier.truncate.php -text
 tiki/lib/smarty_tiki/modifier.user_date_format.php -text
 tiki/lib/smarty_tiki/modifier.userlink.php -text
@@ -6044,6 +6045,7 @@ tiki/templates/tiki-webmail_contacts.tpl -text
 tiki/templates/tiki-wiki3d.tpl -text
 tiki/templates/tiki.tpl -text
 tiki/templates/translated-lang.tpl -text
+tiki/templates/wiki-discussion.tpl -text
 tiki/templates/wiki-plugins/error_tracker.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
