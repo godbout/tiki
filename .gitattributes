@@ -4527,7 +4527,6 @@ tiki/lib/smarty_tiki/function.popup_init.php -text
 tiki/lib/smarty_tiki/function.rcontent.php -text
 tiki/lib/smarty_tiki/function.rss.php -text
 tiki/lib/smarty_tiki/function.sameurl.php -text
-tiki/lib/smarty_tiki/function.showdate.php -text
 tiki/lib/smarty_tiki/function.tikicon.php -text
 tiki/lib/smarty_tiki/function.var_dump.php -text
 tiki/lib/smarty_tiki/function.wikistructure.php -text
