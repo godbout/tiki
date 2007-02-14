@@ -1503,6 +1503,7 @@ _mods/features/aulawiki/tiki-workspaces_view_structure.php -text
 _mods/features/cartoweb/README -text
 _mods/features/cartoweb/db/cartoweb.sql -text
 _mods/features/cartoweb/db/line.sql -text
+_mods/features/cartoweb/db/local2.php -text
 _mods/features/cartoweb/db/lwpostgis.mst.sql -text
 _mods/features/cartoweb/db/mapdb.sql -text
 _mods/features/cartoweb/db/point.sql -text
