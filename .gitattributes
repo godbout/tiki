@@ -4368,7 +4368,6 @@ tiki/lib/mailin/index.php -text
 tiki/lib/mailin/mailinlib.php -text
 tiki/lib/map/index.php -text
 tiki/lib/map/map.js -text
-tiki/lib/map/map_cp.php -text
 tiki/lib/map/map_query.php -text
 tiki/lib/map/maplib.php -text
 tiki/lib/map/usermap.php -text
@@ -6531,4 +6530,5 @@ tiki/tiki-xajax_example.php -text
 tiki/tiki-xmlrpc_services.php -text
 tiki/topic_image.php -text
 tiki/whelp/index.php -text
+tiki/x_maps.php -text
 tiki/xmlrpc.php -text
