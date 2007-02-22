@@ -647,6 +647,7 @@ _mods/Packages/features-cartoweb.info.txt -text
 _mods/Packages/features-cc.info.txt -text
 _mods/Packages/features-config.info.txt -text
 _mods/Packages/features-import-phpwiki.info.txt -text
+_mods/Packages/features-kamap.info.txt -text
 _mods/Packages/features-phpcas.info.txt -text
 _mods/Packages/features-solve.info.txt -text
 _mods/Packages/features-tikidav.info.txt -text
