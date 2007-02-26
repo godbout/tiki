@@ -1390,6 +1390,8 @@ _mods/features/aulawiki/images/workspaces/user_blue.gif -text
 _mods/features/aulawiki/images/workspaces/user_red.gif -text
 _mods/features/aulawiki/lib/aulawiki/assignmentslib.php -text
 _mods/features/aulawiki/lib/aulawiki/periodslib.php -text
+_mods/features/aulawiki/lib/aulawiki/studieslib.php -text
+_mods/features/aulawiki/lib/aulawiki/subjectlib.php -text
 _mods/features/aulawiki/lib/smarty_tiki/block.tiki_workspaces_module.php -text
 _mods/features/aulawiki/lib/smarty_tiki/block.ws_help.php -text
 _mods/features/aulawiki/lib/smarty_tiki/function.edumenu.php -text
