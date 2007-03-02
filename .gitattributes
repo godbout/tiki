@@ -2743,6 +2743,7 @@ tiki/backups/README -text
 tiki/backups/index.php -text
 tiki/banner_click.php -text
 tiki/banner_image.php -text
+tiki/bin/.cvsignore -text
 tiki/bin/_htaccess -text
 tiki/bin/cvschangeroot.sh -text
 tiki/bin/index.php -text
@@ -2879,6 +2880,7 @@ tiki/get_strings.php -text
 tiki/green.favicon.png -text
 tiki/help.php -text
 tiki/htaccess.sh -text
+tiki/images/.cvsignore -text
 tiki/images/_htaccess -text
 tiki/images/a_pixel.gif -text
 tiki/images/book.gif -text
@@ -3025,6 +3027,7 @@ tiki/images/workspaces/pageNueva.gif -text
 tiki/images/workspaces/redarrow.gif -text
 tiki/images/workspaces/user_blue.gif -text
 tiki/images/workspaces/user_red.gif -text
+tiki/img/.cvsignore -text
 tiki/img/_htaccess -text
 tiki/img/adodb.png -text
 tiki/img/avatars/README -text
@@ -3929,10 +3932,12 @@ tiki/img/wiki_up/.cvsignore -text
 tiki/img/wiki_up/README -text
 tiki/img/wiki_up/index.php -text
 tiki/index.php -text
+tiki/installer/.cvsignore -text
 tiki/installer/_htaccess -text
 tiki/installer/index.php -text
 tiki/installer/tiki-installer.php -text
 tiki/jhot.php -text
+tiki/lang/.cvsignore -text
 tiki/lang/_htaccess -text
 tiki/lang/ar/index.php -text
 tiki/lang/ar/language.php -text
@@ -5569,6 +5574,7 @@ tiki/temp/cache/index.php -text
 tiki/temp/index.php -text
 tiki/temp/mail_attachs/README -text
 tiki/temp/mail_attachs/index.php -text
+tiki/templates/.cvsignore -text
 tiki/templates/_htaccess -text
 tiki/templates/attachments.tpl -text
 tiki/templates/babelfish.tpl -text
@@ -6253,6 +6259,7 @@ tiki/templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 tiki/templates/wiki-plugins/wikiplugin_vote.tpl -text
 tiki/testrpc.php -text
+tiki/tests/.cvsignore -text
 tiki/tests/_htaccess -text
 tiki/tests/index.php -text
 tiki/tests/test_cvs_file.txt -text
