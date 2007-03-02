@@ -5570,6 +5570,7 @@ tiki/styles/whitebluegrey.css -text
 tiki/temp/.cvsignore -text
 tiki/temp/README -text
 tiki/temp/_htaccess -text
+tiki/temp/cache/.cvsignore -text
 tiki/temp/cache/index.php -text
 tiki/temp/index.php -text
 tiki/temp/mail_attachs/README -text
