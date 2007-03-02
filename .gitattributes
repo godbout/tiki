@@ -6483,6 +6483,7 @@ tiki/tiki-index.php -text
 tiki/tiki-index_p.php -text
 tiki/tiki-index_raw.php -text
 tiki/tiki-install.php -text
+tiki/tiki-install_disable.php -text
 tiki/tiki-integrator.php -text
 tiki/tiki-interactive_trans.php -text
 tiki/tiki-jscalendar.php -text
