@@ -1434,7 +1434,6 @@ _mods/features/aulawiki/modules/mod-workspaces_viewstructure.php -text
 _mods/features/aulawiki/modules/mod-workspaces_who_is_there.php -text
 _mods/features/aulawiki/styles/workspaces.css -text
 _mods/features/aulawiki/templates/aulawiki-assignments_admin.tpl -text
-_mods/features/aulawiki/templates/aulawiki-print_page.tpl -text
 _mods/features/aulawiki/templates/aulawiki-view_gradebook.tpl -text
 _mods/features/aulawiki/templates/aulawiki-view_gradebook_xml.tpl -text
 _mods/features/aulawiki/templates/modules/mod-aulawiki_assignments.tpl -text
