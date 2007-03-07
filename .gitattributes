@@ -5271,6 +5271,7 @@ tiki/pics/large/blogs.png -text
 tiki/pics/large/blogs48x48.png -text
 tiki/pics/large/boot.png -text
 tiki/pics/large/boot48x48.png -text
+tiki/pics/large/copyright48x48.png -text
 tiki/pics/large/date.png -text
 tiki/pics/large/date48x48.png -text
 tiki/pics/large/evolution.png -text
@@ -5917,6 +5918,7 @@ tiki/templates/tiki-admin-include-blogs.tpl -text
 tiki/templates/tiki-admin-include-calendar.tpl -text
 tiki/templates/tiki-admin-include-cms.tpl -text
 tiki/templates/tiki-admin-include-community.tpl -text
+tiki/templates/tiki-admin-include-copyright.tpl -text
 tiki/templates/tiki-admin-include-directory.tpl -text
 tiki/templates/tiki-admin-include-faqs.tpl -text
 tiki/templates/tiki-admin-include-features.tpl -text
@@ -6289,6 +6291,7 @@ tiki/tiki-admin_include_blogs.php -text
 tiki/tiki-admin_include_calendar.php -text
 tiki/tiki-admin_include_cms.php -text
 tiki/tiki-admin_include_community.php -text
+tiki/tiki-admin_include_copyright.php -text
 tiki/tiki-admin_include_directory.php -text
 tiki/tiki-admin_include_faqs.php -text
 tiki/tiki-admin_include_features.php -text
