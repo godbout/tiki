@@ -5639,6 +5639,8 @@ tiki/templates/mail/password_reminder.tpl -text
 tiki/templates/mail/password_reminder_subject.tpl -text
 tiki/templates/mail/submission_notification.tpl -text
 tiki/templates/mail/submission_notification_subject.tpl -text
+tiki/templates/mail/tellAFriend.tpl -text
+tiki/templates/mail/tellAFriend_subject.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/tracker_changed_notification_subject.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
@@ -6215,6 +6217,7 @@ tiki/templates/tiki-survey_stats_survey.tpl -text
 tiki/templates/tiki-syslog.tpl -text
 tiki/templates/tiki-take_quiz.tpl -text
 tiki/templates/tiki-take_survey.tpl -text
+tiki/templates/tiki-tell_a_friend.tpl -text
 tiki/templates/tiki-theme_control.tpl -text
 tiki/templates/tiki-theme_control_objects.tpl -text
 tiki/templates/tiki-theme_control_sections.tpl -text
@@ -6619,6 +6622,7 @@ tiki/tiki-syslog.php -text
 tiki/tiki-take_quiz.php -text
 tiki/tiki-take_survey.php -text
 tiki/tiki-tc.php -text
+tiki/tiki-tell_a_friend.php -text
 tiki/tiki-theme_control.php -text
 tiki/tiki-theme_control_objects.php -text
 tiki/tiki-theme_control_sections.php -text
