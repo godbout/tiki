@@ -653,6 +653,7 @@ _mods/Packages/features-solve.info.txt -text
 _mods/Packages/features-tikidav.info.txt -text
 _mods/Packages/features-tinvoice.info.txt -text
 _mods/Packages/features-userprefstats.info.txt -text
+_mods/Packages/lib-jpgraph.info.txt -text
 _mods/Packages/lib-nusoap.info.txt -text
 _mods/Packages/lib-vtiger.info.txt -text
 _mods/Packages/menus-tikiring.info.txt -text
@@ -1710,6 +1711,47 @@ _mods/images/tikiwiki/tikibutton3.png -text
 _mods/images/tikiwiki/tikibutton3.xcf -text svneol=unset#unset
 _mods/images/tikiwiki/tikibutton4.png -text
 _mods/images/tikiwiki/tikibutton4.xcf -text svneol=unset#unset
+_mods/lib/jpgraph/CHANGELOG -text
+_mods/lib/jpgraph/src/flags.dat -text svneol=unset#unset
+_mods/lib/jpgraph/src/flags_thumb100x100.dat -text svneol=unset#unset
+_mods/lib/jpgraph/src/flags_thumb35x35.dat -text svneol=unset#unset
+_mods/lib/jpgraph/src/flags_thumb60x60.dat -text svneol=unset#unset
+_mods/lib/jpgraph/src/imgdata_balls.inc -text
+_mods/lib/jpgraph/src/imgdata_bevels.inc -text
+_mods/lib/jpgraph/src/imgdata_diamonds.inc -text
+_mods/lib/jpgraph/src/imgdata_pushpins.inc -text
+_mods/lib/jpgraph/src/imgdata_squares.inc -text
+_mods/lib/jpgraph/src/imgdata_stars.inc -text
+_mods/lib/jpgraph/src/index.php -text
+_mods/lib/jpgraph/src/jpg-config.inc.php -text
+_mods/lib/jpgraph/src/jpgraph.php -text
+_mods/lib/jpgraph/src/jpgraph_antispam-digits.php -text
+_mods/lib/jpgraph/src/jpgraph_antispam.php -text
+_mods/lib/jpgraph/src/jpgraph_bar.php -text
+_mods/lib/jpgraph/src/jpgraph_canvas.php -text
+_mods/lib/jpgraph/src/jpgraph_canvtools.php -text
+_mods/lib/jpgraph/src/jpgraph_date.php -text
+_mods/lib/jpgraph/src/jpgraph_errhandler.inc.php -text
+_mods/lib/jpgraph/src/jpgraph_error.php -text
+_mods/lib/jpgraph/src/jpgraph_flags.php -text
+_mods/lib/jpgraph/src/jpgraph_gantt.php -text
+_mods/lib/jpgraph/src/jpgraph_gb2312.php -text
+_mods/lib/jpgraph/src/jpgraph_gradient.php -text
+_mods/lib/jpgraph/src/jpgraph_iconplot.php -text
+_mods/lib/jpgraph/src/jpgraph_imgtrans.php -text
+_mods/lib/jpgraph/src/jpgraph_line.php -text
+_mods/lib/jpgraph/src/jpgraph_log.php -text
+_mods/lib/jpgraph/src/jpgraph_mgraph.php -text
+_mods/lib/jpgraph/src/jpgraph_pie.php -text
+_mods/lib/jpgraph/src/jpgraph_pie3d.php -text
+_mods/lib/jpgraph/src/jpgraph_plotband.php -text
+_mods/lib/jpgraph/src/jpgraph_plotmark.inc.php -text
+_mods/lib/jpgraph/src/jpgraph_polar.php -text
+_mods/lib/jpgraph/src/jpgraph_radar.php -text
+_mods/lib/jpgraph/src/jpgraph_regstat.php -text
+_mods/lib/jpgraph/src/jpgraph_scatter.php -text
+_mods/lib/jpgraph/src/jpgraph_stock.php -text
+_mods/lib/jpgraph/src/jpgraph_utils.inc.php -text
 _mods/lib/nusoap/class.nusoap_base.php -text
 _mods/lib/nusoap/class.soap_fault.php -text
 _mods/lib/nusoap/class.soap_parser.php -text
