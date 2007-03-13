@@ -713,6 +713,7 @@ _mods/Packages/wikiplugins-formula.info.txt -text
 _mods/Packages/wikiplugins-galaxia_sweet_ui.info.txt -text
 _mods/Packages/wikiplugins-group.info.txt -text
 _mods/Packages/wikiplugins-js.info.txt -text
+_mods/Packages/wikiplugins-listpages.info.txt -text
 _mods/Packages/wikiplugins-mindmap.info.txt -text
 _mods/Packages/wikiplugins-perm.info.txt -text
 _mods/Packages/wikiplugins-phplot.info.txt -text
@@ -2370,6 +2371,8 @@ _mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiastandalone.ph
 _mods/wiki-plugins/group/README -text
 _mods/wiki-plugins/group/wiki-plugins/wikiplugin_group.php -text
 _mods/wiki-plugins/js/wiki-plugins/wikiplugin_js.php -text
+_mods/wiki-plugins/listpages/templates/wikiplugin_listpagenames.tpl -text
+_mods/wiki-plugins/listpages/wiki-plugins/wikiplugin_listpages.php -text
 _mods/wiki-plugins/mindmap/mindmap/flashobject.js -text
 _mods/wiki-plugins/mindmap/mindmap/freemindbrowser.jar -text
 _mods/wiki-plugins/mindmap/mindmap/index.php -text
