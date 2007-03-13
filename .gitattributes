@@ -1800,6 +1800,8 @@ _mods/modules/top_page_editors/mod-top_page_editors.php -text
 _mods/modules/top_page_editors/mod-top_page_editors.tpl -text
 _mods/modules/top_voted_comments/mod-top_voted_comments.php -text
 _mods/modules/top_voted_comments/mod-top_voted_comments.tpl -text
+_mods/modules/users_list/mod-users_list.php -text
+_mods/modules/users_list/mod-users_list.tpl -text
 _mods/modules/worldclock/mod-worldclock.tpl -text
 _mods/modules/worldclock/readme -text
 _mods/sqls/comments_fix_1.7to1.8.sql -text
