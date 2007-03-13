@@ -668,6 +668,7 @@ _mods/Packages/modules-top_commenters.info.txt -text
 _mods/Packages/modules-top_edited_pages.info.txt -text
 _mods/Packages/modules-top_page_editors.info.txt -text
 _mods/Packages/modules-top_voted_comments.info.txt -text
+_mods/Packages/modules-users_list.info.txt -text
 _mods/Packages/modules-worldclock.info.txt -text
 _mods/Packages/services-mailman.info.txt -text
 _mods/Packages/sql-upgrade_0.95to1.0.info.txt -text
