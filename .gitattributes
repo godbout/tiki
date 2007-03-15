@@ -5119,6 +5119,7 @@ tiki/messu-read.php -text
 tiki/messu-read_archive.php -text
 tiki/messu-read_sent.php -text
 tiki/messu-sent.php -text
+tiki/modsadm.php -text
 tiki/modules/.cvsignore -text
 tiki/modules/_htaccess -text
 tiki/modules/cache/.cvsignore -text
