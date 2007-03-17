@@ -1638,6 +1638,12 @@ _mods/features/kamap/kamap/xhr.js -text
 _mods/features/kamap/lib/map/maplib.php -text
 _mods/features/kamap/templates/map/tiki-kamap.tpl -text
 _mods/features/kamap/tiki-kamap.php -text
+_mods/features/mapeditor/templates/tiki-mapeditor_edit.tpl -text
+_mods/features/mapeditor/templates/tiki-mapeditor_edit_layer.tpl -text
+_mods/features/mapeditor/templates/tiki-mapeditor_edit_layergroup.tpl -text
+_mods/features/mapeditor/templates/tiki-mapeditor_layer.tpl -text
+_mods/features/mapeditor/templates/tiki-mapeditor_layers.tpl -text
+_mods/features/mapeditor/templates/tiki-mapeditor_maps.tpl -text
 _mods/features/mapeditor/tiki-mapeditor_edit.php -text
 _mods/features/mapeditor/tiki-mapeditor_edit_layer.php -text
 _mods/features/mapeditor/tiki-mapeditor_layers.php -text
