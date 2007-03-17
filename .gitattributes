@@ -1638,6 +1638,10 @@ _mods/features/kamap/kamap/xhr.js -text
 _mods/features/kamap/lib/map/maplib.php -text
 _mods/features/kamap/templates/map/tiki-kamap.tpl -text
 _mods/features/kamap/tiki-kamap.php -text
+_mods/features/mapeditor/README -text
+_mods/features/mapeditor/db/local2.php -text
+_mods/features/mapeditor/lib/map/editorlib.php -text
+_mods/features/mapeditor/lib/tree/layer_list_tree.php -text
 _mods/features/mapeditor/templates/tiki-mapeditor_edit.tpl -text
 _mods/features/mapeditor/templates/tiki-mapeditor_edit_layer.tpl -text
 _mods/features/mapeditor/templates/tiki-mapeditor_edit_layergroup.tpl -text
@@ -1646,6 +1650,7 @@ _mods/features/mapeditor/templates/tiki-mapeditor_layers.tpl -text
 _mods/features/mapeditor/templates/tiki-mapeditor_maps.tpl -text
 _mods/features/mapeditor/tiki-mapeditor_edit.php -text
 _mods/features/mapeditor/tiki-mapeditor_edit_layer.php -text
+_mods/features/mapeditor/tiki-mapeditor_edit_layergroup.php -text
 _mods/features/mapeditor/tiki-mapeditor_layers.php -text
 _mods/features/mapeditor/tiki-mapeditor_maps.php -text
 _mods/features/phpcas/COPYRIGHT -text
