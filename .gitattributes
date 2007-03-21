@@ -5646,6 +5646,7 @@ tiki/temp/mail_attachs/README -text
 tiki/temp/mail_attachs/index.php -text
 tiki/templates/.cvsignore -text
 tiki/templates/_htaccess -text
+tiki/templates/antibot.tpl -text
 tiki/templates/attachments.tpl -text
 tiki/templates/babelfish.tpl -text
 tiki/templates/bidi.tpl -text
@@ -5673,6 +5674,7 @@ tiki/templates/error_simple.tpl -text
 tiki/templates/error_ticket.tpl -text
 tiki/templates/fck-edit.tpl -text
 tiki/templates/file_galleries.tpl -text
+tiki/templates/find.tpl -text
 tiki/templates/footer.tpl -text
 tiki/templates/freetag.tpl -text
 tiki/templates/freetag_list.tpl -text
