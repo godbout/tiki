@@ -5249,6 +5249,7 @@ tiki/pics/icons/delete.png -text
 tiki/pics/icons/disk.png -text
 tiki/pics/icons/disk_lock.png -text
 tiki/pics/icons/disk_multiple.png -text
+tiki/pics/icons/down.png -text
 tiki/pics/icons/email.png -text
 tiki/pics/icons/email_edit.png -text
 tiki/pics/icons/email_go.png -text
@@ -5324,6 +5325,7 @@ tiki/pics/icons/text_italic.png -text
 tiki/pics/icons/text_list_numbers.png -text
 tiki/pics/icons/text_underline.png -text
 tiki/pics/icons/thumb_up.png -text
+tiki/pics/icons/up.png -text
 tiki/pics/icons/upload.png -text
 tiki/pics/icons/useagelist.txt -text
 tiki/pics/icons/user.png -text
