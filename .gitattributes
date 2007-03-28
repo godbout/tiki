@@ -177,12 +177,6 @@ _fckeditor/editor/_source/fckjscoreextensions.js -text
 _fckeditor/editor/_source/fckscriptloader.js -text
 _fckeditor/editor/_source/index.php -text
 _fckeditor/editor/_source/internals/fck.js -text
-_fckeditor/editor/_source/internals/fck_1.js -text
-_fckeditor/editor/_source/internals/fck_1_gecko.js -text
-_fckeditor/editor/_source/internals/fck_1_ie.js -text
-_fckeditor/editor/_source/internals/fck_2.js -text
-_fckeditor/editor/_source/internals/fck_2_gecko.js -text
-_fckeditor/editor/_source/internals/fck_2_ie.js -text
 _fckeditor/editor/_source/internals/fck_contextmenu.js -text
 _fckeditor/editor/_source/internals/fck_gecko.js -text
 _fckeditor/editor/_source/internals/fck_ie.js -text
@@ -221,8 +215,6 @@ _fckeditor/editor/_source/internals/fckxhtml_ie.js -text
 _fckeditor/editor/_source/internals/fckxhtmlentities.js -text
 _fckeditor/editor/_source/internals/index.php -text
 _fckeditor/editor/css/behaviors/disablehandles.htc -text
-_fckeditor/editor/css/behaviors/hiddenfield.gif -text
-_fckeditor/editor/css/behaviors/hiddenfield.htc -text
 _fckeditor/editor/css/behaviors/index.php -text
 _fckeditor/editor/css/behaviors/showtableborders.htc -text
 _fckeditor/editor/css/fck_editorarea.css -text
@@ -245,7 +237,6 @@ _fckeditor/editor/dialog/common/index.php -text
 _fckeditor/editor/dialog/common/moz-bindings.xml -text
 _fckeditor/editor/dialog/fck_about.html -text
 _fckeditor/editor/dialog/fck_about/index.php -text
-_fckeditor/editor/dialog/fck_about/lgpl.html -text
 _fckeditor/editor/dialog/fck_about/logo_fckeditor.gif -text
 _fckeditor/editor/dialog/fck_about/logo_fredck.gif -text
 _fckeditor/editor/dialog/fck_anchor.html -text
@@ -303,7 +294,6 @@ _fckeditor/editor/dialog/fck_template/images/template3.gif -text
 _fckeditor/editor/dialog/fck_template/index.php -text
 _fckeditor/editor/dialog/fck_textarea.html -text
 _fckeditor/editor/dialog/fck_textfield.html -text
-_fckeditor/editor/dialog/fck_universalkey.html -text
 _fckeditor/editor/dialog/fck_universalkey/00.gif -text
 _fckeditor/editor/dialog/fck_universalkey/data.js -text
 _fckeditor/editor/dialog/fck_universalkey/diacritic.js -text
@@ -313,11 +303,9 @@ _fckeditor/editor/dialog/fck_universalkey/index.php -text
 _fckeditor/editor/dialog/fck_universalkey/keyboard_layout.gif -text
 _fckeditor/editor/dialog/fck_universalkey/multihexa.js -text
 _fckeditor/editor/dialog/index.php -text
-_fckeditor/editor/fckblank.html -text
 _fckeditor/editor/fckdebug.html -text
 _fckeditor/editor/fckdialog.html -text
 _fckeditor/editor/fckeditor.html -text
-_fckeditor/editor/fckeditor.original.html -text
 _fckeditor/editor/filemanager/browser/default/browser.css -text
 _fckeditor/editor/filemanager/browser/default/browser.html -text
 _fckeditor/editor/filemanager/browser/default/connectors/index.php -text
@@ -439,9 +427,6 @@ _fckeditor/editor/images/smiley/msn/whatchutalkingabout_smile.gif -text
 _fckeditor/editor/images/smiley/msn/wink_smile.gif -text
 _fckeditor/editor/images/spacer.gif -text
 _fckeditor/editor/index.php -text
-_fckeditor/editor/js/fckeditorcode_gecko.js -text
-_fckeditor/editor/js/fckeditorcode_ie.js -text
-_fckeditor/editor/js/index.php -text
 _fckeditor/editor/lang/_getfontformat.html -text
 _fckeditor/editor/lang/_translationstatus.txt -text
 _fckeditor/editor/lang/af.js -text
