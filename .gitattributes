@@ -122,10 +122,19 @@ _adodb/toexport.inc.php -text
 _adodb/tohtml.inc.php -text
 _fckeditor/README_tikiwiki.txt -text
 _fckeditor/editor/_source/classes/fckcontextmenu.js -text
+_fckeditor/editor/_source/classes/fckdocumentfragment_gecko.js -text
+_fckeditor/editor/_source/classes/fckdocumentfragment_ie.js -text
+_fckeditor/editor/_source/classes/fckdomrange.js -text
+_fckeditor/editor/_source/classes/fckdomrange_gecko.js -text
+_fckeditor/editor/_source/classes/fckdomrange_ie.js -text
 _fckeditor/editor/_source/classes/fckeditingarea.js -text
+_fckeditor/editor/_source/classes/fckelementpath.js -text
+_fckeditor/editor/_source/classes/fckenterkey.js -text
 _fckeditor/editor/_source/classes/fckevents.js -text
 _fckeditor/editor/_source/classes/fckicon.js -text
 _fckeditor/editor/_source/classes/fckiecleanup.js -text
+_fckeditor/editor/_source/classes/fckimagepreloader.js -text
+_fckeditor/editor/_source/classes/fckkeystrokehandler.js -text
 _fckeditor/editor/_source/classes/fckmenublock.js -text
 _fckeditor/editor/_source/classes/fckmenublockpanel.js -text
 _fckeditor/editor/_source/classes/fckmenuitem.js -text
@@ -147,6 +156,7 @@ _fckeditor/editor/_source/classes/fcktoolbarfontsizecombo.js -text
 _fckeditor/editor/_source/classes/fcktoolbarpanelbutton.js -text
 _fckeditor/editor/_source/classes/fcktoolbarspecialcombo.js -text
 _fckeditor/editor/_source/classes/fcktoolbarstylecombo.js -text
+_fckeditor/editor/_source/classes/fckw3crange.js -text
 _fckeditor/editor/_source/classes/fckxml_gecko.js -text
 _fckeditor/editor/_source/classes/fckxml_ie.js -text
 _fckeditor/editor/_source/classes/index.php -text
@@ -164,6 +174,7 @@ _fckeditor/editor/_source/commandclasses/index.php -text
 _fckeditor/editor/_source/fckconstants.js -text
 _fckeditor/editor/_source/fckeditorapi.js -text
 _fckeditor/editor/_source/fckjscoreextensions.js -text
+_fckeditor/editor/_source/fckscriptloader.js -text
 _fckeditor/editor/_source/index.php -text
 _fckeditor/editor/_source/internals/fck.js -text
 _fckeditor/editor/_source/internals/fck_1.js -text
@@ -173,6 +184,8 @@ _fckeditor/editor/_source/internals/fck_2.js -text
 _fckeditor/editor/_source/internals/fck_2_gecko.js -text
 _fckeditor/editor/_source/internals/fck_2_ie.js -text
 _fckeditor/editor/_source/internals/fck_contextmenu.js -text
+_fckeditor/editor/_source/internals/fck_gecko.js -text
+_fckeditor/editor/_source/internals/fck_ie.js -text
 _fckeditor/editor/_source/internals/fckbrowserinfo.js -text
 _fckeditor/editor/_source/internals/fckcodeformatter.js -text
 _fckeditor/editor/_source/internals/fckcommands.js -text
@@ -182,7 +195,10 @@ _fckeditor/editor/_source/internals/fckdialog.js -text
 _fckeditor/editor/_source/internals/fckdialog_gecko.js -text
 _fckeditor/editor/_source/internals/fckdialog_ie.js -text
 _fckeditor/editor/_source/internals/fckdocumentprocessor.js -text
+_fckeditor/editor/_source/internals/fckdomtools.js -text
 _fckeditor/editor/_source/internals/fcklanguagemanager.js -text
+_fckeditor/editor/_source/internals/fcklisthandler.js -text
+_fckeditor/editor/_source/internals/fcklistslib.js -text
 _fckeditor/editor/_source/internals/fckplugins.js -text
 _fckeditor/editor/_source/internals/fckregexlib.js -text
 _fckeditor/editor/_source/internals/fckselection.js -text
@@ -214,6 +230,7 @@ _fckeditor/editor/css/fck_internal.css -text
 _fckeditor/editor/css/fck_showtableborders_gecko.css -text
 _fckeditor/editor/css/images/fck_anchor.gif -text
 _fckeditor/editor/css/images/fck_flashlogo.gif -text
+_fckeditor/editor/css/images/fck_hiddenfield.gif -text
 _fckeditor/editor/css/images/fck_pagebreak.gif -text
 _fckeditor/editor/css/images/index.php -text
 _fckeditor/editor/css/index.php -text
@@ -269,7 +286,9 @@ _fckeditor/editor/dialog/fck_spellerpages/spellerpages/controlWindow.js -text
 _fckeditor/editor/dialog/fck_spellerpages/spellerpages/controls.html -text
 _fckeditor/editor/dialog/fck_spellerpages/spellerpages/index.php -text
 _fckeditor/editor/dialog/fck_spellerpages/spellerpages/server-scripts/index.php -text
+_fckeditor/editor/dialog/fck_spellerpages/spellerpages/server-scripts/spellchecker.cfm -text
 _fckeditor/editor/dialog/fck_spellerpages/spellerpages/server-scripts/spellchecker.php -text
+_fckeditor/editor/dialog/fck_spellerpages/spellerpages/server-scripts/spellchecker.pl -text
 _fckeditor/editor/dialog/fck_spellerpages/spellerpages/spellChecker.js -text
 _fckeditor/editor/dialog/fck_spellerpages/spellerpages/spellchecker.html -text
 _fckeditor/editor/dialog/fck_spellerpages/spellerpages/spellerStyle.css -text
@@ -339,6 +358,7 @@ _fckeditor/editor/filemanager/browser/default/images/icons/32/js.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/32/mdb.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/32/mp3.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/32/pdf.gif -text
+_fckeditor/editor/filemanager/browser/default/images/icons/32/png.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/32/ppt.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/32/rdp.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/32/swf.gif -text
@@ -366,6 +386,7 @@ _fckeditor/editor/filemanager/browser/default/images/icons/js.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/mdb.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/mp3.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/pdf.gif -text
+_fckeditor/editor/filemanager/browser/default/images/icons/png.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/ppt.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/rdp.gif -text
 _fckeditor/editor/filemanager/browser/default/images/icons/swf.gif -text
@@ -423,6 +444,7 @@ _fckeditor/editor/js/fckeditorcode_ie.js -text
 _fckeditor/editor/js/index.php -text
 _fckeditor/editor/lang/_getfontformat.html -text
 _fckeditor/editor/lang/_translationstatus.txt -text
+_fckeditor/editor/lang/af.js -text
 _fckeditor/editor/lang/ar.js -text
 _fckeditor/editor/lang/bg.js -text
 _fckeditor/editor/lang/bn.js -text
@@ -537,6 +559,9 @@ _fckeditor/editor/skins/silver/index.php -text
 _fckeditor/fckconfig.js -text
 _fckeditor/fckeditor.js -text
 _fckeditor/fckeditor.php -text
+_fckeditor/fckeditor_php4.php -text
+_fckeditor/fckeditor_php5.php -text
+_fckeditor/fckpackager.xml -text
 _fckeditor/fckstyles.xml -text
 _fckeditor/fcktemplates.xml -text
 _fckeditor/index.php -text
