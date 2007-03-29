@@ -727,6 +727,7 @@ _mods/Packages/wikiplugins-group.info.txt -text
 _mods/Packages/wikiplugins-js.info.txt -text
 _mods/Packages/wikiplugins-listpages.info.txt -text
 _mods/Packages/wikiplugins-mindmap.info.txt -text
+_mods/Packages/wikiplugins-mouseover.info.txt -text
 _mods/Packages/wikiplugins-perm.info.txt -text
 _mods/Packages/wikiplugins-phplot.info.txt -text
 _mods/Packages/wikiplugins-plazes.info.txt -text
