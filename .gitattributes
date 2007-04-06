@@ -6153,6 +6153,7 @@ tiki/templates/tiki-faq_questions.tpl -text
 tiki/templates/tiki-featured_link.tpl -text
 tiki/templates/tiki-file_archives.tpl -text
 tiki/templates/tiki-file_galleries.tpl -text
+tiki/templates/tiki-file_info_box.tpl -text
 tiki/templates/tiki-forum_queue.tpl -text
 tiki/templates/tiki-forums.tpl -text
 tiki/templates/tiki-forums_reported.tpl -text svneol=unset#application/octet-stream
