@@ -427,6 +427,8 @@ _fckeditor/editor/images/smiley/msn/whatchutalkingabout_smile.gif -text
 _fckeditor/editor/images/smiley/msn/wink_smile.gif -text
 _fckeditor/editor/images/spacer.gif -text
 _fckeditor/editor/index.php -text
+_fckeditor/editor/js/fckeditorcode_gecko.js -text
+_fckeditor/editor/js/fckeditorcode_ie.js -text
 _fckeditor/editor/lang/_getfontformat.html -text
 _fckeditor/editor/lang/_translationstatus.txt -text
 _fckeditor/editor/lang/af.js -text
