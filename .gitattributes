@@ -2899,6 +2899,7 @@ tiki/doc/devtools/cvsup.sh -text
 tiki/doc/devtools/diffsql.cmd -text
 tiki/doc/devtools/diffsql.sh -text svneol=unset#application/octet-stream
 tiki/doc/devtools/extract-img-db-to-fs.php -text
+tiki/doc/devtools/fckpackager.php -text
 tiki/doc/devtools/findstyledef.pl -text svneol=unset#application/octet-stream
 tiki/doc/devtools/findstyledef.sh -text svneol=unset#application/octet-stream
 tiki/doc/devtools/ggg-trace.php -text
