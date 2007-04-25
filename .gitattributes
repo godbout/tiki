@@ -5695,6 +5695,7 @@ tiki/templates/information.tpl -text
 tiki/templates/list_file_gallery.tpl -text
 tiki/templates/mail/blogs_send_link.tpl -text
 tiki/templates/mail/confirm_newsletter_subscription.tpl -text
+tiki/templates/mail/forum_outbound.tpl -text
 tiki/templates/mail/forum_post_notification.tpl -text
 tiki/templates/mail/index.php -text
 tiki/templates/mail/mailin_help.tpl -text
