@@ -121,6 +121,7 @@ _adodb/session/session_schema.xml -text
 _adodb/toexport.inc.php -text
 _adodb/tohtml.inc.php -text
 _fckeditor/README_tikiwiki.txt -text
+_fckeditor/_htaccess -text
 _fckeditor/editor/_source/classes/fckcontextmenu.js -text
 _fckeditor/editor/_source/classes/fckdocumentfragment_gecko.js -text
 _fckeditor/editor/_source/classes/fckdocumentfragment_ie.js -text
@@ -4469,6 +4470,7 @@ tiki/lib/events/evlib.php -text
 tiki/lib/events/index.php -text
 tiki/lib/faqs/faqlib.php -text
 tiki/lib/faqs/index.php -text
+tiki/lib/fckeditor_tiki/_htaccess -text
 tiki/lib/fckeditor_tiki/plugins/tikiimage/fck_tikiimage.php -text
 tiki/lib/fckeditor_tiki/plugins/tikiimage/fckplugin.js -text
 tiki/lib/fckeditor_tiki/plugins/tikiimage/fcktikiimage.css -text
