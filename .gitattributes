@@ -5019,6 +5019,7 @@ tiki/lib/wiki-plugins/wikiplugin_map.php -text
 tiki/lib/wiki-plugins/wikiplugin_miniquiz.php -text
 tiki/lib/wiki-plugins/wikiplugin_module.php -text
 tiki/lib/wiki-plugins/wikiplugin_mono.php -text
+tiki/lib/wiki-plugins/wikiplugin_myspace.php -text
 tiki/lib/wiki-plugins/wikiplugin_objecthits.php -text
 tiki/lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 tiki/lib/wiki-plugins/wikiplugin_poll.php -text
