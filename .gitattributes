@@ -5698,6 +5698,8 @@ tiki/templates/information.tpl -text
 tiki/templates/list_file_gallery.tpl -text
 tiki/templates/mail/blogs_send_link.tpl -text
 tiki/templates/mail/confirm_newsletter_subscription.tpl -text
+tiki/templates/mail/confirm_user_email.tpl -text
+tiki/templates/mail/confirm_user_email_subject.tpl -text
 tiki/templates/mail/forum_outbound.tpl -text
 tiki/templates/mail/forum_post_notification.tpl -text
 tiki/templates/mail/index.php -text
@@ -6473,6 +6475,7 @@ tiki/tiki-chat_users.php -text
 tiki/tiki-chatroom.php -text
 tiki/tiki-cms_rankings.php -text
 tiki/tiki-config_pdf.php -text
+tiki/tiki-confirm_user_email.php -text
 tiki/tiki-contact.php -text
 tiki/tiki-contacts.php -text
 tiki/tiki-cookie-jar.php -text
