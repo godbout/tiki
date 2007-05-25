@@ -5730,6 +5730,8 @@ tiki/templates/mail/tellAFriend.tpl -text
 tiki/templates/mail/tellAFriend_subject.tpl -text
 tiki/templates/mail/tracker_changed_notification.tpl -text
 tiki/templates/mail/tracker_changed_notification_subject.tpl -text
+tiki/templates/mail/unsuccessful_logins.tpl -text
+tiki/templates/mail/unsuccessful_logins_subject.tpl -text
 tiki/templates/mail/user_validation_mail.tpl -text
 tiki/templates/mail/user_validation_mail_subject.tpl -text
 tiki/templates/mail/user_validation_msg.tpl -text
