@@ -4843,6 +4843,7 @@ tiki/lib/smarty_tiki/modifier.tr_if.php -text
 tiki/lib/smarty_tiki/modifier.truncate.php -text
 tiki/lib/smarty_tiki/modifier.user_date_format.php -text
 tiki/lib/smarty_tiki/modifier.userlink.php -text
+tiki/lib/smarty_tiki/modifier.username.php -text
 tiki/lib/smarty_tiki/modifier.utf8unicode.php -text
 tiki/lib/smarty_tiki/outputfilter.highlight.php -text
 tiki/lib/smarty_tiki/outputfilter.ticket.php -text
