@@ -5968,7 +5968,6 @@ tiki/templates/styles/simple/modules/mod-last_blog_posts.tpl -text
 tiki/templates/styles/simple/modules/mod-last_files.tpl -text
 tiki/templates/styles/simple/modules/mod-last_images_th.tpl -text
 tiki/templates/styles/simple/modules/mod-last_modif_pages.tpl -text
-tiki/templates/styles/simple/modules/mod-login_box.tpl -text
 tiki/templates/styles/simple/modules/mod-quick_edit.tpl -text
 tiki/templates/styles/simple/modules/mod-register.tpl -text
 tiki/templates/styles/simple/modules/mod-search_box.tpl -text
