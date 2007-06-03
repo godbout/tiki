@@ -5977,7 +5977,6 @@ tiki/templates/styles/simple/modules/mod-search_wiki_page_new.tpl -text
 tiki/templates/styles/simple/modules/mod-shoutbox.tpl -text
 tiki/templates/styles/simple/modules/mod-switch_lang.tpl -text
 tiki/templates/styles/simple/modules/mod-switch_lang2.tpl -text
-tiki/templates/styles/simple/modules/mod-switch_theme.tpl -text
 tiki/templates/styles/simple/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/styles/simple/tiki-blog_post.tpl -text
 tiki/templates/styles/simple/tiki-print_article.tpl -text
