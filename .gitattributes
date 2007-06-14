@@ -661,6 +661,7 @@ _mods/Packages/features-tikidav.info.txt -text
 _mods/Packages/features-tinvoice.info.txt -text
 _mods/Packages/features-userprefstats.info.txt -text
 _mods/Packages/lib-fpdf.info.txt -text
+_mods/Packages/lib-fpdf_freefonts.info.txt -text
 _mods/Packages/lib-jpgraph.info.txt -text
 _mods/Packages/lib-nusoap.info.txt -text
 _mods/Packages/lib-vtiger.info.txt -text
@@ -1849,6 +1850,30 @@ _mods/lib/fpdf/tutorial/tuto6.htm -text
 _mods/lib/fpdf/tutorial/tuto6.php -text
 _mods/lib/fpdf/tutorial/tuto7.htm -text
 _mods/lib/fpdf/tutorial/tuto7.php -text
+_mods/lib/fpdf_freefonts/font/FreeMono.php -text
+_mods/lib/fpdf_freefonts/font/FreeMono.z -text
+_mods/lib/fpdf_freefonts/font/FreeMonoBold.php -text
+_mods/lib/fpdf_freefonts/font/FreeMonoBold.z -text
+_mods/lib/fpdf_freefonts/font/FreeMonoBoldOblique.php -text
+_mods/lib/fpdf_freefonts/font/FreeMonoBoldOblique.z -text
+_mods/lib/fpdf_freefonts/font/FreeMonoOblique.php -text
+_mods/lib/fpdf_freefonts/font/FreeMonoOblique.z -text
+_mods/lib/fpdf_freefonts/font/FreeSans.php -text
+_mods/lib/fpdf_freefonts/font/FreeSans.z -text
+_mods/lib/fpdf_freefonts/font/FreeSansBold.php -text
+_mods/lib/fpdf_freefonts/font/FreeSansBold.z -text
+_mods/lib/fpdf_freefonts/font/FreeSansBoldOblique.php -text
+_mods/lib/fpdf_freefonts/font/FreeSansBoldOblique.z -text
+_mods/lib/fpdf_freefonts/font/FreeSansOblique.php -text
+_mods/lib/fpdf_freefonts/font/FreeSansOblique.z -text
+_mods/lib/fpdf_freefonts/font/FreeSerif.php -text
+_mods/lib/fpdf_freefonts/font/FreeSerif.z -text
+_mods/lib/fpdf_freefonts/font/FreeSerifBold.php -text
+_mods/lib/fpdf_freefonts/font/FreeSerifBold.z -text
+_mods/lib/fpdf_freefonts/font/FreeSerifBoldItalic.php -text
+_mods/lib/fpdf_freefonts/font/FreeSerifBoldItalic.z -text
+_mods/lib/fpdf_freefonts/font/FreeSerifItalic.php -text
+_mods/lib/fpdf_freefonts/font/FreeSerifItalic.z -text
 _mods/lib/jpgraph/CHANGELOG -text
 _mods/lib/jpgraph/src/flags.dat -text svneol=unset#unset
 _mods/lib/jpgraph/src/flags_thumb100x100.dat -text svneol=unset#unset
