@@ -1724,6 +1724,7 @@ _mods/features/tikidav/lib/tikidav/ziplib.php -text
 _mods/features/tikidav/tiki-dowload_wiki_attachmentOOo.php -text
 _mods/features/tikidav/tikidav.php -text
 _mods/features/tinvoice/lib/tinvoice/tinvoicelib.php -text
+_mods/features/tinvoice/lib/tinvoice/tinvoicepdf.php -text
 _mods/features/tinvoice/templates/tiki-tinvoice_edit.tpl -text
 _mods/features/tinvoice/templates/tiki-tinvoice_graph.tpl -text
 _mods/features/tinvoice/templates/tiki-tinvoice_list.tpl -text
