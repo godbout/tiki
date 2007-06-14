@@ -661,6 +661,7 @@ _mods/Packages/features-tikidav.info.txt -text
 _mods/Packages/features-tinvoice.info.txt -text
 _mods/Packages/features-userprefstats.info.txt -text
 _mods/Packages/lib-fpdf.info.txt -text
+_mods/Packages/lib-fpdf_bitstreamvera.info.txt -text svneol=unset#application/octet-stream
 _mods/Packages/lib-fpdf_freefonts.info.txt -text
 _mods/Packages/lib-jpgraph.info.txt -text
 _mods/Packages/lib-nusoap.info.txt -text
@@ -1850,6 +1851,26 @@ _mods/lib/fpdf/tutorial/tuto6.htm -text
 _mods/lib/fpdf/tutorial/tuto6.php -text
 _mods/lib/fpdf/tutorial/tuto7.htm -text
 _mods/lib/fpdf/tutorial/tuto7.php -text
+_mods/lib/fpdf_bitstreamvera/font/Vera.php -text
+_mods/lib/fpdf_bitstreamvera/font/Vera.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraBI.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraBI.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraBd.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraBd.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraIt.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraIt.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraMoBI.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraMoBI.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraMoBd.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraMoBd.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraMoIt.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraMoIt.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraMono.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraMono.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraSe.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraSe.z -text
+_mods/lib/fpdf_bitstreamvera/font/VeraSeBd.php -text
+_mods/lib/fpdf_bitstreamvera/font/VeraSeBd.z -text
 _mods/lib/fpdf_freefonts/font/FreeMono.php -text
 _mods/lib/fpdf_freefonts/font/FreeMono.z -text
 _mods/lib/fpdf_freefonts/font/FreeMonoBold.php -text
