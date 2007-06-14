@@ -1937,6 +1937,9 @@ _mods/lib/jpgraph/src/jpgraph_regstat.php -text
 _mods/lib/jpgraph/src/jpgraph_scatter.php -text
 _mods/lib/jpgraph/src/jpgraph_stock.php -text
 _mods/lib/jpgraph/src/jpgraph_utils.inc.php -text
+_mods/lib/jpgraph/src/lang/de.inc.php -text
+_mods/lib/jpgraph/src/lang/en.inc.php -text
+_mods/lib/jpgraph/src/lang/prod.inc.php -text
 _mods/lib/nusoap/class.nusoap_base.php -text
 _mods/lib/nusoap/class.soap_fault.php -text
 _mods/lib/nusoap/class.soap_parser.php -text
