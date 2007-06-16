@@ -3619,6 +3619,7 @@ tiki/img/icons/admin_blogs.png -text
 tiki/img/icons/admin_blogs_grey.png -text
 tiki/img/icons/admin_calendar.png -text
 tiki/img/icons/admin_calendar_grey.png -text
+tiki/img/icons/admin_category.png -text
 tiki/img/icons/admin_community.png -text
 tiki/img/icons/admin_directory.png -text
 tiki/img/icons/admin_directory_grey.png -text
@@ -3658,6 +3659,8 @@ tiki/img/icons/admin_search_grey.png -text
 tiki/img/icons/admin_sections.png -text
 tiki/img/icons/admin_siteid.png -text
 tiki/img/icons/admin_siteid_grey.png -text
+tiki/img/icons/admin_textarea.png -text
+tiki/img/icons/admin_theme.png -text
 tiki/img/icons/admin_trackers.png -text
 tiki/img/icons/admin_trackers_grey.png -text
 tiki/img/icons/admin_userfiles.png -text
@@ -6179,6 +6182,7 @@ tiki/templates/tiki-action_calendar.tpl -text
 tiki/templates/tiki-admin-include-anchors.tpl -text
 tiki/templates/tiki-admin-include-blogs.tpl -text
 tiki/templates/tiki-admin-include-calendar.tpl -text
+tiki/templates/tiki-admin-include-category.tpl -text
 tiki/templates/tiki-admin-include-cms.tpl -text
 tiki/templates/tiki-admin-include-community.tpl -text
 tiki/templates/tiki-admin-include-copyright.tpl -text
@@ -6197,11 +6201,14 @@ tiki/templates/tiki-admin-include-list-sections.tpl -text
 tiki/templates/tiki-admin-include-login.tpl -text
 tiki/templates/tiki-admin-include-maps.tpl -text
 tiki/templates/tiki-admin-include-metatags.tpl -text
+tiki/templates/tiki-admin-include-module.tpl -text
 tiki/templates/tiki-admin-include-polls.tpl -text
 tiki/templates/tiki-admin-include-rss.tpl -text
 tiki/templates/tiki-admin-include-score.tpl -text
 tiki/templates/tiki-admin-include-search.tpl -text
 tiki/templates/tiki-admin-include-siteid.tpl -text
+tiki/templates/tiki-admin-include-textarea.tpl -text
+tiki/templates/tiki-admin-include-theme.tpl -text
 tiki/templates/tiki-admin-include-trackers.tpl -text
 tiki/templates/tiki-admin-include-userfiles.tpl -text
 tiki/templates/tiki-admin-include-webmail.tpl -text
@@ -6555,6 +6562,7 @@ tiki/tiki-admin_html_page_content.php -text
 tiki/tiki-admin_html_pages.php -text
 tiki/tiki-admin_include_blogs.php -text
 tiki/tiki-admin_include_calendar.php -text
+tiki/tiki-admin_include_category.php -text
 tiki/tiki-admin_include_cms.php -text
 tiki/tiki-admin_include_community.php -text
 tiki/tiki-admin_include_copyright.php -text
@@ -6573,11 +6581,14 @@ tiki/tiki-admin_include_jukebox.php -text
 tiki/tiki-admin_include_login.php -text
 tiki/tiki-admin_include_maps.php -text
 tiki/tiki-admin_include_metatags.php -text
+tiki/tiki-admin_include_module.php -text
 tiki/tiki-admin_include_polls.php -text
 tiki/tiki-admin_include_rss.php -text
 tiki/tiki-admin_include_score.php -text
 tiki/tiki-admin_include_search.php -text
 tiki/tiki-admin_include_siteid.php -text
+tiki/tiki-admin_include_textarea.php -text
+tiki/tiki-admin_include_theme.php -text
 tiki/tiki-admin_include_trackers.php -text
 tiki/tiki-admin_include_userfiles.php -text
 tiki/tiki-admin_include_webmail.php -text
@@ -6872,6 +6883,7 @@ tiki/tiki-setup.php -text
 tiki/tiki-setup_base.php -text
 tiki/tiki-sheets.php -text
 tiki/tiki-shoutbox.php -text
+tiki/tiki-show_all_images.php -text
 tiki/tiki-show_calendar.php -text
 tiki/tiki-show_user_avatar.php -text
 tiki/tiki-slideshow.php -text
