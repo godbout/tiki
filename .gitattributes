@@ -1731,6 +1731,7 @@ _mods/features/tinvoice/templates/tiki-tinvoice_list.tpl -text
 _mods/features/tinvoice/templates/tiki-tinvoice_prefs.tpl -text
 _mods/features/tinvoice/tiki-tinvoice_chart.php -text
 _mods/features/tinvoice/tiki-tinvoice_edit.php -text
+_mods/features/tinvoice/tiki-tinvoice_graph.php -text
 _mods/features/tinvoice/tiki-tinvoice_list.php -text
 _mods/features/tinvoice/tiki-tinvoice_prefs.php -text
 _mods/features/userprefstats/stats.php -text
