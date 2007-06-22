@@ -3822,6 +3822,7 @@ tiki/img/icons/mode_tree.gif -text
 tiki/img/icons/move.gif -text
 tiki/img/icons/move_topic.gif -text
 tiki/img/icons/moved.gif -text
+tiki/img/icons/multimedia.png -text
 tiki/img/icons/myinfo.gif -text
 tiki/img/icons/na_pict.gif -text
 tiki/img/icons/netscape.gif -text
@@ -6582,6 +6583,7 @@ tiki/tiki-admin_include_login.php -text
 tiki/tiki-admin_include_maps.php -text
 tiki/tiki-admin_include_metatags.php -text
 tiki/tiki-admin_include_module.php -text
+tiki/tiki-admin_include_multimedia.php -text
 tiki/tiki-admin_include_polls.php -text
 tiki/tiki-admin_include_rss.php -text
 tiki/tiki-admin_include_score.php -text
