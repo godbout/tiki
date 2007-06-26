@@ -6203,6 +6203,7 @@ tiki/templates/tiki-admin-include-login.tpl -text
 tiki/templates/tiki-admin-include-maps.tpl -text
 tiki/templates/tiki-admin-include-metatags.tpl -text
 tiki/templates/tiki-admin-include-module.tpl -text
+tiki/templates/tiki-admin-include-multimedia.tpl -text
 tiki/templates/tiki-admin-include-polls.tpl -text
 tiki/templates/tiki-admin-include-rss.tpl -text
 tiki/templates/tiki-admin-include-score.tpl -text
