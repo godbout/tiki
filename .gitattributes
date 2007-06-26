@@ -6947,6 +6947,9 @@ tiki/tiki-wiki_rankings.php -text
 tiki/tiki-wiki_rss.php -text
 tiki/tiki-xajax_example.php -text
 tiki/tiki-xmlrpc_services.php -text
+tiki/tikimovies/controller.swf -text svneol=unset#unset
+tiki/tikimovies/multiplayer.swf -text svneol=unset#unset
+tiki/tikimovies/multiplayer.xml -text
 tiki/topic_image.php -text
 tiki/whelp/index.php -text
 tiki/x_maps.php -text
