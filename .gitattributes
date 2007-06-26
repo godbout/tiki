@@ -5407,6 +5407,7 @@ tiki/modules/mod-users_rank.php -text
 tiki/modules/mod-whats_related.php -text
 tiki/modules/mod-who_is_there.php -text
 tiki/modules/mod-wiki_last_comments.php -text
+tiki/multiplayer.xml -text
 tiki/pics/icons/accept.png -text
 tiki/pics/icons/add.png -text
 tiki/pics/icons/application_form_magnify.png -text
