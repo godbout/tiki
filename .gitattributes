@@ -6072,6 +6072,7 @@ tiki/templates/modules/mod-who_is_there.tpl.nocache -text
 tiki/templates/modules/mod-wiki_last_comments.tpl -text
 tiki/templates/modules/mod-wiki_last_comments.tpl.nocache -text
 tiki/templates/modules/user_module.tpl -text
+tiki/templates/multiplayer.tpl -text
 tiki/templates/plugins/plugin-topfriends.tpl -text
 tiki/templates/poll.tpl -text
 tiki/templates/sent_newsletters.tpl -text
