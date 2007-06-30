@@ -2555,6 +2555,13 @@ _mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiainstances.php
 _mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiamultiroute.php -text
 _mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiasequence.php -text
 _mods/wiki-plugins/galaxia_sweet_ui/wiki-plugins/wikiplugin_galaxiastandalone.php -text
+_mods/wiki-plugins/gmap/gmap_wikiplugin_save.php -text
+_mods/wiki-plugins/gmap/templates/wiki-plugins/wikiplugin-backlinkgmap.tpl -text
+_mods/wiki-plugins/gmap/templates/wiki-plugins/wikiplugin-gmap.tpl -text
+_mods/wiki-plugins/gmap/templates/wiki-plugins/wikiplugin-routegmap.tpl -text
+_mods/wiki-plugins/gmap/templates/wiki-plugins/wikiplugin-structuregmap.tpl -text
+_mods/wiki-plugins/gmap/wiki-plugins/gmapwikipluginlib.php -text
+_mods/wiki-plugins/gmap/wiki-plugins/wikiplugin_gmap.php -text
 _mods/wiki-plugins/group/README -text
 _mods/wiki-plugins/group/wiki-plugins/wikiplugin_group.php -text
 _mods/wiki-plugins/js/wiki-plugins/wikiplugin_js.php -text
