@@ -3309,6 +3309,7 @@ tiki/img/custom/wiki2.jpeg -text
 tiki/img/custom/wiki3.jpeg -text
 tiki/img/custom/wiki4.jpeg -text
 tiki/img/custom/wiki5.jpeg -text
+tiki/img/edge.gif -text
 tiki/img/flagged.gif -text
 tiki/img/flags/Afghanistan.gif -text
 tiki/img/flags/Aland_Islands.gif -text
@@ -3603,6 +3604,7 @@ tiki/img/icn/wav.gif -text
 tiki/img/icn/wri.gif -text
 tiki/img/icn/xls.gif -text
 tiki/img/icn/zip.gif -text
+tiki/img/icon_back_top.gif -text
 tiki/img/icons/1stars.gif -text
 tiki/img/icons/2stars.gif -text
 tiki/img/icons/3stars.gif -text
@@ -5853,6 +5855,9 @@ tiki/templates/browsedcategory.tpl -text
 tiki/templates/categobjects.tpl -text
 tiki/templates/categorize.tpl -text
 tiki/templates/categpath.tpl -text
+tiki/templates/comment-body.tpl -text
+tiki/templates/comment-footer.tpl -text
+tiki/templates/comment-header.tpl -text
 tiki/templates/comment.tpl -text
 tiki/templates/comments.tpl -text
 tiki/templates/confirm.tpl -text
