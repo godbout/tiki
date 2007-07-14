@@ -655,6 +655,7 @@ _mods/Packages/features-config.info.txt -text
 _mods/Packages/features-import-phpwiki.info.txt -text
 _mods/Packages/features-kamap.info.txt -text
 _mods/Packages/features-mapeditor.info.txt -text
+_mods/Packages/features-multicam.info.txt -text
 _mods/Packages/features-phpcas.info.txt -text
 _mods/Packages/features-solve.info.txt -text
 _mods/Packages/features-tikidav.info.txt -text
@@ -1665,6 +1666,8 @@ _mods/features/mapeditor/tiki-mapeditor_edit_layer.php -text
 _mods/features/mapeditor/tiki-mapeditor_edit_layergroup.php -text
 _mods/features/mapeditor/tiki-mapeditor_layers.php -text
 _mods/features/mapeditor/tiki-mapeditor_maps.php -text
+_mods/features/multicam/sample:multicam.php -text
+_mods/features/multicam/templates/multicam.tpl -text
 _mods/features/phpcas/COPYRIGHT -text
 _mods/features/phpcas/README -text
 _mods/features/phpcas/source/CAS/CAS.php -text
