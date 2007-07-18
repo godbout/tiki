@@ -4280,11 +4280,6 @@ tiki/lang/uk/index.php -text
 tiki/lang/uk/language.php -text
 tiki/lib/.cvsignore -text
 tiki/lib/Babelfish.php -text
-tiki/lib/Date/Calc.php -text
-tiki/lib/Date/Human.php -text
-tiki/lib/Date/TimeZone.php -text
-tiki/lib/Date/TimeZoneWindows.php -text
-tiki/lib/Date/index.php -text
 tiki/lib/Galaxia/API.php -text
 tiki/lib/Galaxia/GUI.php -text
 tiki/lib/Galaxia/ProcessManager.php -text
