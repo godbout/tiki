@@ -5070,6 +5070,7 @@ tiki/lib/search/refresh.php -text
 tiki/lib/search/searchlib.php -text
 tiki/lib/search/searchstatslib.php -text
 tiki/lib/searchlib.php -text
+tiki/lib/sharelib.php -text
 tiki/lib/sheet/conf/config.inc.php -text
 tiki/lib/sheet/control.js -text
 tiki/lib/sheet/excel/index.php -text
@@ -6639,6 +6640,7 @@ tiki/templates/tiki-notepad_write.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
 tiki/templates/tiki-orphan_pages.tpl -text
+tiki/templates/tiki-p_share_page.tpl -text
 tiki/templates/tiki-page.tpl -text
 tiki/templates/tiki-page_bar.tpl -text
 tiki/templates/tiki-pagehistory.tpl -text
@@ -7047,6 +7049,7 @@ tiki/tiki-notepad_write.php -text
 tiki/tiki-objectpermissions.php -text
 tiki/tiki-old_polls.php -text
 tiki/tiki-orphan_pages.php -text
+tiki/tiki-p_share_page.php -text
 tiki/tiki-page.php -text
 tiki/tiki-page_loader.php -text
 tiki/tiki-pagehistory.php -text
