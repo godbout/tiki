@@ -3180,6 +3180,7 @@ tiki/doc/devtools/tikimerge.sh -text
 tiki/doc/devtools/tikirelease.sh -text
 tiki/doc/devtools/tikireleasediff.sh -text
 tiki/doc/devtools/tikiwiki.spec -text
+tiki/doc/devtools/translate_buttons-v02.pl -text
 tiki/doc/devtools/twcvsbackup.cron -text
 tiki/doc/devtools/usergeo.php -text
 tiki/doc/htaccess -text
