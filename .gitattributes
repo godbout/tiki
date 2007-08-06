@@ -4847,6 +4847,9 @@ tiki/lib/mods/index.php -text
 tiki/lib/mods/modslib.php -text
 tiki/lib/modules/index.php -text
 tiki/lib/modules/modlib.php -text
+tiki/lib/mootools/README.tikiwiki -text
+tiki/lib/mootools/index.php -text
+tiki/lib/mootools/mootools.js -text svneol=unset#application/octet-stream
 tiki/lib/multilingual/multilinguallib.php -text
 tiki/lib/newsletters/index.php -text
 tiki/lib/newsletters/nllib.php -text
