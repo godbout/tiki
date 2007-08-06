@@ -3073,6 +3073,7 @@ tiki/categorize_list.php -text
 tiki/changelog.txt -text
 tiki/comments.php -text
 tiki/commxmlrpc.php -text
+tiki/components/comp-wiki.php -text
 tiki/contribution.php -text
 tiki/copyright.txt -text
 tiki/copyrights.php -text
@@ -4932,6 +4933,7 @@ tiki/lib/mootools/src/Window/Window.DomReady.js -text
 tiki/lib/mootools/src/Window/Window.Size.js -text
 tiki/lib/mootools/src/scripts.json -text
 tiki/lib/multilingual/multilinguallib.php -text
+tiki/lib/mypage/mypagelib.php -text
 tiki/lib/newsletters/index.php -text
 tiki/lib/newsletters/nllib.php -text
 tiki/lib/newsreader/index.php -text
@@ -6713,6 +6715,7 @@ tiki/templates/tiki-mods.tpl -text
 tiki/templates/tiki-mods_admin.tpl -text
 tiki/templates/tiki-mods_config.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
+tiki/templates/tiki-mypage.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletter_archives.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
@@ -7121,6 +7124,7 @@ tiki/tiki-mods_admin.php -text
 tiki/tiki-module_controls.php -text
 tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
+tiki/tiki-mypage.php -text
 tiki/tiki-mytiki_shared.php -text
 tiki/tiki-newsletter_archives.php -text
 tiki/tiki-newsletters.php -text
