@@ -6716,6 +6716,7 @@ tiki/templates/tiki-mods_admin.tpl -text
 tiki/templates/tiki-mods_config.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mypage.tpl -text
+tiki/templates/tiki-mypage_edit.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletter_archives.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
@@ -7126,6 +7127,7 @@ tiki/tiki-modules.php -text
 tiki/tiki-my_tiki.php -text
 tiki/tiki-mypage.php -text
 tiki/tiki-mypage_ajax.php -text
+tiki/tiki-mypage_edit.php -text
 tiki/tiki-mytiki_shared.php -text
 tiki/tiki-newsletter_archives.php -text
 tiki/tiki-newsletters.php -text
