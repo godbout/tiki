@@ -4888,6 +4888,7 @@ tiki/lib/mootools/extensions/windoo/themes/windoo/s.gif -text
 tiki/lib/mootools/extensions/windoo/windoo.js -text svneol=unset#application/octet-stream
 tiki/lib/mootools/extensions/windoo/windoo.r89.js -text
 tiki/lib/mootools/index.php -text
+tiki/lib/mootools/make-js.php -text
 tiki/lib/mootools/mootools.js -text svneol=unset#application/octet-stream
 tiki/lib/mootools/packer/class.JavaScriptPacker.php -text
 tiki/lib/mootools/packer/class.JavaScriptPacker.php4 -text
