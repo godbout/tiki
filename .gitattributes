@@ -4849,6 +4849,8 @@ tiki/lib/mods/modslib.php -text
 tiki/lib/modules/index.php -text
 tiki/lib/modules/modlib.php -text
 tiki/lib/mootools/README.tikiwiki -text
+tiki/lib/mootools/extensions/grid/AjaxQueue.js -text
+tiki/lib/mootools/extensions/grid/LiveGrid.js -text
 tiki/lib/mootools/extensions/index.php -text
 tiki/lib/mootools/extensions/modules/multiple.open.accordion.js -text
 tiki/lib/mootools/extensions/reflection/reflection.js -text
