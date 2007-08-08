@@ -2726,6 +2726,7 @@ _phplayers/PATCHES/ONCLICK/onclick.patch -text
 _phplayers/PATCHES/README -text
 _phplayers/README.PHPDOC -text
 _phplayers/README.ihtml -text
+_phplayers/README.tikiwiki -text
 _phplayers/THEMES/galeon-theme.tar.gz -text
 _phplayers/THEMES/gmc-theme.tar.gz -text
 _phplayers/THEMES/index.php -text
