@@ -7156,6 +7156,7 @@ tiki/tiki-my_tiki.php -text
 tiki/tiki-mypage.php -text
 tiki/tiki-mypage_ajax.php -text
 tiki/tiki-mypage_edit.php -text
+tiki/tiki-mypages.php -text
 tiki/tiki-mytiki_shared.php -text
 tiki/tiki-newsletter_archives.php -text
 tiki/tiki-newsletters.php -text
