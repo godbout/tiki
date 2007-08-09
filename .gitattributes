@@ -3077,6 +3077,7 @@ tiki/categorize_list.php -text
 tiki/changelog.txt -text
 tiki/comments.php -text
 tiki/commxmlrpc.php -text
+tiki/components/comp-iframe.php -text
 tiki/components/comp-wiki.php -text
 tiki/contribution.php -text
 tiki/copyright.txt -text
