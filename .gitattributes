@@ -6745,6 +6745,7 @@ tiki/templates/tiki-mods_config.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mypage.tpl -text
 tiki/templates/tiki-mypage_edit.tpl -text
+tiki/templates/tiki-mypages.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-newsletter_archives.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
