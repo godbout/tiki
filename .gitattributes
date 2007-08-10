@@ -6762,6 +6762,7 @@ tiki/templates/tiki-mypage.tpl -text
 tiki/templates/tiki-mypage_edit.tpl -text
 tiki/templates/tiki-mypages.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
+tiki/templates/tiki-mytiki_mootabs.tpl -text
 tiki/templates/tiki-newsletter_archives.tpl -text
 tiki/templates/tiki-newsletters.tpl -text
 tiki/templates/tiki-newsreader_groups.tpl -text
