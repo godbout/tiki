@@ -6770,6 +6770,7 @@ tiki/templates/tiki-mods_admin.tpl -text
 tiki/templates/tiki-mods_config.tpl -text
 tiki/templates/tiki-my_tiki.tpl -text
 tiki/templates/tiki-mypage.tpl -text
+tiki/templates/tiki-mypage_types.tpl -text
 tiki/templates/tiki-mypages.tpl -text
 tiki/templates/tiki-mytiki_bar.tpl -text
 tiki/templates/tiki-mytiki_mootabs.tpl -text
@@ -7183,6 +7184,7 @@ tiki/tiki-my_tiki.php -text
 tiki/tiki-mypage.php -text
 tiki/tiki-mypage_ajax.php -text
 tiki/tiki-mypage_edit.php -text
+tiki/tiki-mypage_types.php -text
 tiki/tiki-mypages.php -text
 tiki/tiki-mytiki_shared.php -text
 tiki/tiki-newsletter_archives.php -text
