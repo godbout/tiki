@@ -4640,6 +4640,7 @@ tiki/lib/admin/index.php -text
 tiki/lib/ajax/LICENSE.txt -text
 tiki/lib/ajax/README.txt -text
 tiki/lib/ajax/ajaxlib.php -text
+tiki/lib/ajax/lib/activex_off.js -text
 tiki/lib/ajax/tiki-ajax.js -text
 tiki/lib/ajax/xajax.inc.php -text
 tiki/lib/ajax/xajaxCompress.php -text
