@@ -5253,6 +5253,7 @@ tiki/lib/shoutbox/index.php -text
 tiki/lib/shoutbox/shoutboxlib.php -text
 tiki/lib/smarty_tiki/block.ajax_href.php -text
 tiki/lib/smarty_tiki/block.compact.php -text
+tiki/lib/smarty_tiki/block.display.php -text
 tiki/lib/smarty_tiki/block.repeat.php -text
 tiki/lib/smarty_tiki/block.sortlinks.php -text
 tiki/lib/smarty_tiki/block.strip.php -text
