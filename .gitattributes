@@ -7201,6 +7201,7 @@ tiki/tiki-live_support_message.php -text
 tiki/tiki-live_support_server.php -text
 tiki/tiki-live_support_transcripts.php -text
 tiki/tiki-login.php -text
+tiki/tiki-login_openid.php -text
 tiki/tiki-login_scr.php -text
 tiki/tiki-login_validate.php -text
 tiki/tiki-logout.php -text
