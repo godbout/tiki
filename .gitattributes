@@ -6826,6 +6826,7 @@ tiki/templates/tiki-notepad_write.tpl -text
 tiki/templates/tiki-objectpermissions.tpl -text
 tiki/templates/tiki-old_polls.tpl -text
 tiki/templates/tiki-openid_register.tpl -text
+tiki/templates/tiki-openid_select.tpl -text
 tiki/templates/tiki-orphan_pages.tpl -text
 tiki/templates/tiki-p_share_page.tpl -text
 tiki/templates/tiki-page.tpl -text
