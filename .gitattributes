@@ -4867,6 +4867,7 @@ tiki/lib/mootools/extensions/mooRainbow/images/moor_boverlay.png -text
 tiki/lib/mootools/extensions/mooRainbow/images/moor_cursor.gif -text
 tiki/lib/mootools/extensions/mooRainbow/images/moor_slider.png -text
 tiki/lib/mootools/extensions/mooRainbow/images/moor_woverlay.png -text
+tiki/lib/mootools/extensions/mooRainbow/mooRainbow-mypage.css -text
 tiki/lib/mootools/extensions/mooRainbow/mooRainbow.css -text
 tiki/lib/mootools/extensions/mooRainbow/mooRainbow.js -text
 tiki/lib/mootools/extensions/mooRainbow/mooRainbow_compressed.js -text svneol=unset#application/octet-stream
