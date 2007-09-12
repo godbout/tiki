@@ -4978,6 +4978,7 @@ tiki/lib/mootools/src/Window/Window.Size.js -text
 tiki/lib/mootools/src/scripts.json -text
 tiki/lib/multilingual/multilinguallib.php -text
 tiki/lib/mypage/mypagelib.php -text
+tiki/lib/mypage/smarty_mypage.php -text
 tiki/lib/newsletters/index.php -text
 tiki/lib/newsletters/nllib.php -text
 tiki/lib/newsreader/index.php -text
