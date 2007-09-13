@@ -5371,6 +5371,9 @@ tiki/lib/structures/index.php -text
 tiki/lib/structures/structlib.php -text
 tiki/lib/surveys/index.php -text
 tiki/lib/surveys/surveylib.php -text
+tiki/lib/swffix/expressInstall.swf -text svneol=unset#unset
+tiki/lib/swffix/src/expressInstall.as -text
+tiki/lib/swffix/swffix.js -text
 tiki/lib/tabs/aqua-tab-active.png -text
 tiki/lib/tabs/aqua-tab.png -text
 tiki/lib/tabs/aqua.css -text svneol=unset#application/octet-stream
