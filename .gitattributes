@@ -4923,6 +4923,8 @@ tiki/lib/mootools/extensions/windoo/themes/windoo.mypage.css -text
 tiki/lib/mootools/extensions/windoo/themes/windoo.mypage/bg-center.gif -text
 tiki/lib/mootools/extensions/windoo/themes/windoo.mypage/bg-left.gif -text
 tiki/lib/mootools/extensions/windoo/themes/windoo.mypage/bg-right.gif -text
+tiki/lib/mootools/extensions/windoo/themes/windoo.mypage/border-4-000.png -text
+tiki/lib/mootools/extensions/windoo/themes/windoo.mypage/border-4-333.png -text
 tiki/lib/mootools/extensions/windoo/themes/windoo.mypage/buttons.gif -text
 tiki/lib/mootools/extensions/windoo/themes/windoo.mypage/hd-sprite.gif -text
 tiki/lib/mootools/extensions/windoo/themes/windoo.mypage/index.php -text
