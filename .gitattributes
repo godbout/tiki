@@ -5251,6 +5251,7 @@ tiki/lib/search/refresh.php -text
 tiki/lib/search/searchlib.php -text
 tiki/lib/search/searchstatslib.php -text
 tiki/lib/searchlib.php -text
+tiki/lib/setup/prefs.php -text
 tiki/lib/sharelib.php -text
 tiki/lib/sheet/conf/config.inc.php -text
 tiki/lib/sheet/control.js -text
