@@ -5277,6 +5277,7 @@ tiki/lib/setup/patches.php -text
 tiki/lib/setup/polls.php -text
 tiki/lib/setup/prefs.php -text
 tiki/lib/setup/sections.php -text
+tiki/lib/setup/set_paths.php -text
 tiki/lib/setup/site_closed.php -text
 tiki/lib/setup/stats.php -text
 tiki/lib/setup/theme.php -text
