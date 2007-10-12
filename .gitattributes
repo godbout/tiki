@@ -6372,6 +6372,8 @@ tiki/templates/mail/user_watch_object_entered_category.tpl -text
 tiki/templates/mail/user_watch_object_entered_category_subject.tpl -text
 tiki/templates/mail/user_watch_object_leaved_category.tpl -text
 tiki/templates/mail/user_watch_object_leaved_category_subject.tpl -text
+tiki/templates/mail/user_watch_structure.tpl -text
+tiki/templates/mail/user_watch_structure_subject.tpl -text
 tiki/templates/mail/user_watch_wiki_new_attach.tpl -text
 tiki/templates/mail/user_watch_wiki_new_attach_subject.tpl -text
 tiki/templates/mail/user_watch_wiki_page_changed.tpl -text
