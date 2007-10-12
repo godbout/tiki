@@ -5742,6 +5742,7 @@ tiki/modules/mod-forums_most_commented_forums.php -text
 tiki/modules/mod-forums_most_read_topics.php -text
 tiki/modules/mod-forums_most_visited_forums.php -text
 tiki/modules/mod-freetag.php -text
+tiki/modules/mod-freetags_current.php -text
 tiki/modules/mod-freetags_most_popular.php -text
 tiki/modules/mod-freetags_prefered.php -text
 tiki/modules/mod-google.php -text
@@ -6429,6 +6430,7 @@ tiki/templates/modules/mod-forums_most_commented_forums.tpl -text
 tiki/templates/modules/mod-forums_most_read_topics.tpl -text
 tiki/templates/modules/mod-forums_most_visited_forums.tpl -text
 tiki/templates/modules/mod-freetag.tpl -text
+tiki/templates/modules/mod-freetags_current.tpl -text
 tiki/templates/modules/mod-freetags_most_popular.tpl -text
 tiki/templates/modules/mod-freetags_prefered.tpl -text
 tiki/templates/modules/mod-google.tpl -text
