@@ -5743,6 +5743,7 @@ tiki/modules/mod-forums_most_read_topics.php -text
 tiki/modules/mod-forums_most_visited_forums.php -text
 tiki/modules/mod-freetag.php -text
 tiki/modules/mod-freetags_current.php -text
+tiki/modules/mod-freetags_morelikethis.php -text
 tiki/modules/mod-freetags_most_popular.php -text
 tiki/modules/mod-freetags_prefered.php -text
 tiki/modules/mod-google.php -text
