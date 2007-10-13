@@ -5127,7 +5127,6 @@ tiki/lib/pear/Net/URL.php -text
 tiki/lib/pear/Net/index.php -text
 tiki/lib/pear/OS/Guess.php -text
 tiki/lib/pear/PEAR.php -text
-tiki/lib/pear/PEAR/Autoloader.php -text
 tiki/lib/pear/PEAR/Builder.php -text
 tiki/lib/pear/PEAR/ChannelFile.php -text
 tiki/lib/pear/PEAR/ChannelFile/Parser.php -text
