@@ -3186,6 +3186,7 @@ tiki/doc/devtools/tiki_create_md5.php -text
 tiki/doc/devtools/tikilite.sh -text
 tiki/doc/devtools/tikimails.sh -text
 tiki/doc/devtools/tikimerge.sh -text
+tiki/doc/devtools/tikimerge_110to111.sh -text
 tiki/doc/devtools/tikirelease.sh -text
 tiki/doc/devtools/tikireleasediff.sh -text
 tiki/doc/devtools/tikiwiki.spec -text
