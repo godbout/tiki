@@ -4874,6 +4874,7 @@ tiki/lib/mootools/extensions/mooRainbow/mooRainbow-mypage.css -text
 tiki/lib/mootools/extensions/mooRainbow/mooRainbow.css -text
 tiki/lib/mootools/extensions/mooRainbow/mooRainbow.js -text
 tiki/lib/mootools/extensions/mooRainbow/mooRainbow_compressed.js -text svneol=unset#application/octet-stream
+tiki/lib/mootools/extensions/mooRainbow/mooRainbow_packed.js -text svneol=unset#application/octet-stream
 tiki/lib/mootools/extensions/reflection/reflection.js -text
 tiki/lib/mootools/extensions/tabs/SimpleTabs.js -text
 tiki/lib/mootools/extensions/windoo/index.php -text
@@ -4938,9 +4939,11 @@ tiki/lib/mootools/extensions/windoo/themes/windoo.nada/index.php -text
 tiki/lib/mootools/extensions/windoo/themes/windoo/index.php -text
 tiki/lib/mootools/extensions/windoo/themes/windoo/s.gif -text
 tiki/lib/mootools/extensions/windoo/windoo.js -text svneol=unset#application/octet-stream
+tiki/lib/mootools/extensions/windoo/windoo_packed.js -text svneol=unset#application/octet-stream
 tiki/lib/mootools/index.php -text
 tiki/lib/mootools/make-js.php -text
 tiki/lib/mootools/mootools.js -text svneol=unset#application/octet-stream
+tiki/lib/mootools/mootools_packed.js -text svneol=unset#application/octet-stream
 tiki/lib/mootools/packer/class.JavaScriptPacker.php -text
 tiki/lib/mootools/packer/class.JavaScriptPacker.php4 -text
 tiki/lib/mootools/packer/example-file.php -text
