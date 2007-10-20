@@ -3149,6 +3149,7 @@ tiki/doc/devtools/backupdb.sh -text
 tiki/doc/devtools/capitalize_buttons.pl -text
 tiki/doc/devtools/cleanCatTrackers.php -text
 tiki/doc/devtools/cleanwatch.sh -text
+tiki/doc/devtools/convert_templates_prefs-1.10.php -text
 tiki/doc/devtools/csscheck.sh -text
 tiki/doc/devtools/cssmap.pl -text
 tiki/doc/devtools/cvsup.sh -text
@@ -3172,6 +3173,7 @@ tiki/doc/devtools/premerge_report.sh -text
 tiki/doc/devtools/recover_wiki_from_google.pl -text
 tiki/doc/devtools/removehtaccess.sh -text
 tiki/doc/devtools/restorehelp.php -text
+tiki/doc/devtools/search_smarty_prefs-1.10.php -text
 tiki/doc/devtools/set_perms.py -text
 tiki/doc/devtools/sharetiki.sh -text
 tiki/doc/devtools/sharetikidev.sh -text
