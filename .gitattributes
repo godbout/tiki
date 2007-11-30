@@ -783,6 +783,7 @@ _mods/Packages/themes-redgrey.info.txt -text
 _mods/Packages/themes-redmetal.info.txt -text
 _mods/Packages/themes-specialsauce.info.txt -text
 _mods/Packages/themes-tarynsworld.info.txt -text
+_mods/Packages/themes-tiki.info.txt -text
 _mods/Packages/themes-underworld.info.txt -text
 _mods/Packages/themes-veryorange.info.txt -text
 _mods/Packages/themes-zaksworld.info.txt -text
@@ -2576,6 +2577,18 @@ _mods/themes/specialsauce/templates/tiki.tpl -text
 _mods/themes/tarynsworld/README -text
 _mods/themes/tarynsworld/styles/tarynsworld.css -text
 _mods/themes/tarynsworld/styles/tarynsworld/001.gif -text
+_mods/themes/tiki/styles/tiki.css -text
+_mods/themes/tiki/styles/tiki/mozilla-menubar.png -text
+_mods/themes/tiki/styles/tiki/tiki_face.png -text
+_mods/themes/tiki/styles/tiki/tiki_head.png -text
+_mods/themes/tiki/templates/styles/header.tpl -text
+_mods/themes/tiki/templates/styles/modules/mod-featured_links.tpl -text
+_mods/themes/tiki/templates/styles/modules/mod-quick_edit.tpl -text
+_mods/themes/tiki/templates/styles/tiki-show_page.tpl -text
+_mods/themes/tiki/templates/styles/tiki-top_links.tpl -text
+_mods/themes/tiki/templates/styles/tiki-top_tiki_bar.tpl -text
+_mods/themes/tiki/templates/styles/tiki-top_user_menu.tpl -text
+_mods/themes/tiki/templates/styles/tiki.tpl -text
 _mods/themes/tikipedia/README-FIRST.txt -text
 _mods/themes/tikipedia/theme/lib/wiki-plugins/wikiplugin_maketocbox.php -text
 _mods/themes/tikipedia/theme/lib/wiki-plugins/wikiplugin_thumbdiv.php -text
