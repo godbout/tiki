@@ -788,6 +788,7 @@ _mods/Packages/themes-underworld.info.txt -text
 _mods/Packages/themes-veryorange.info.txt -text
 _mods/Packages/themes-zaksworld.info.txt -text
 _mods/Packages/themes-ztheme.info.txt -text
+_mods/Packages/wikiplugins-author.info.txt -text
 _mods/Packages/wikiplugins-ebay.info.txt -text
 _mods/Packages/wikiplugins-flowplayer.info.txt -text
 _mods/Packages/wikiplugins-formula.info.txt -text
@@ -2628,6 +2629,7 @@ _mods/themes/ztheme/README -text
 _mods/themes/ztheme/styles/ztheme.css -text
 _mods/thirdparty/sample:tiki-mailman.php -text
 _mods/wiki-plugins/README -text
+_mods/wiki-plugins/author/wiki-plugins/wikiplugin_author.php -text
 _mods/wiki-plugins/book/Readme -text
 _mods/wiki-plugins/ebay/README -text
 _mods/wiki-plugins/ebay/wiki-plugins/wikiplugin_ebay.php -text
