@@ -729,6 +729,7 @@ _mods/Packages/features-solve.info.txt -text
 _mods/Packages/features-tikidav.info.txt -text
 _mods/Packages/features-tinvoice.info.txt -text
 _mods/Packages/features-userprefstats.info.txt -text
+_mods/Packages/goodies-batch_close_trackers.info.txt -text
 _mods/Packages/goodies-batch_load_pages.info.txt -text
 _mods/Packages/lib-fpdf.info.txt -text
 _mods/Packages/lib-fpdf_bitstreamvera.info.txt -text svneol=unset#application/octet-stream
@@ -1821,6 +1822,7 @@ _mods/features/tinvoice/tiki-tinvoice_transaction_edit.php -text
 _mods/features/tinvoice/tiki-tinvoice_transactions.php -text
 _mods/features/userprefstats/stats.php -text
 _mods/features/userprefstats/stats.tpl -text
+_mods/goodies/batch_close_trackers/batch_close_trackers.php -text
 _mods/goodies/batch_load_pages/batch_load_pages.php -text
 _mods/images/tikiwiki/tikibutton.png -text
 _mods/images/tikiwiki/tikibutton.xcf -text svneol=unset#unset
