@@ -4297,7 +4297,6 @@ tiki/img/wiki/index.php -text
 tiki/img/wiki_up/.cvsignore -text
 tiki/img/wiki_up/README -text
 tiki/img/wiki_up/index.php -text
-tiki/import/mwxml2tikixml.php -text
 tiki/index.php -text
 tiki/installer/.cvsignore -text
 tiki/installer/_htaccess -text
