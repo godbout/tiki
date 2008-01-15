@@ -1740,7 +1740,6 @@ _mods/features/mapeditor/tiki-mapeditor_edit_layer.php -text
 _mods/features/mapeditor/tiki-mapeditor_edit_layergroup.php -text
 _mods/features/mapeditor/tiki-mapeditor_layers.php -text
 _mods/features/mapeditor/tiki-mapeditor_maps.php -text
-_mods/features/multicam/sample:multicam.php -text
 _mods/features/multicam/templates/multicam.tpl -text
 _mods/features/phpcas/COPYRIGHT -text
 _mods/features/phpcas/README -text
