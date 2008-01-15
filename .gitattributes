@@ -734,6 +734,7 @@ _mods/Packages/goodies-batch_load_pages.info.txt -text
 _mods/Packages/lib-fpdf.info.txt -text
 _mods/Packages/lib-fpdf_bitstreamvera.info.txt -text svneol=unset#application/octet-stream
 _mods/Packages/lib-fpdf_freefonts.info.txt -text
+_mods/Packages/lib-html2pdf.info.txt -text
 _mods/Packages/lib-jpgraph.info.txt -text
 _mods/Packages/lib-nusoap.info.txt -text
 _mods/Packages/lib-vtiger.info.txt -text
@@ -1984,6 +1985,456 @@ _mods/lib/fpdf_freefonts/font/FreeSerifBoldItalic.php -text
 _mods/lib/fpdf_freefonts/font/FreeSerifBoldItalic.z -text
 _mods/lib/fpdf_freefonts/font/FreeSerifItalic.php -text
 _mods/lib/fpdf_freefonts/font/FreeSerifItalic.z -text
+_mods/lib/html2pdf/anchor.inc.php -text
+_mods/lib/html2pdf/background.image.php -text
+_mods/lib/html2pdf/background.php -text
+_mods/lib/html2pdf/background.position.php -text
+_mods/lib/html2pdf/box.block.inline.php -text
+_mods/lib/html2pdf/box.block.php -text
+_mods/lib/html2pdf/box.br.php -text
+_mods/lib/html2pdf/box.button.php -text
+_mods/lib/html2pdf/box.checkbutton.php -text
+_mods/lib/html2pdf/box.container.php -text
+_mods/lib/html2pdf/box.field.pageno.php -text
+_mods/lib/html2pdf/box.field.pages.php -text
+_mods/lib/html2pdf/box.frame.php -text
+_mods/lib/html2pdf/box.generic.inline.php -text
+_mods/lib/html2pdf/box.generic.php -text
+_mods/lib/html2pdf/box.iframe.php -text
+_mods/lib/html2pdf/box.img.php -text
+_mods/lib/html2pdf/box.inline.control.php -text
+_mods/lib/html2pdf/box.inline.php -text
+_mods/lib/html2pdf/box.input.text.php -text
+_mods/lib/html2pdf/box.legend.php -text
+_mods/lib/html2pdf/box.list-item.php -text
+_mods/lib/html2pdf/box.null.php -text
+_mods/lib/html2pdf/box.php -text
+_mods/lib/html2pdf/box.radiobutton.php -text
+_mods/lib/html2pdf/box.select.php -text
+_mods/lib/html2pdf/box.table.cell.php -text
+_mods/lib/html2pdf/box.table.php -text
+_mods/lib/html2pdf/box.table.row.php -text
+_mods/lib/html2pdf/box.table.section.php -text
+_mods/lib/html2pdf/box.text.php -text
+_mods/lib/html2pdf/box.text.string.php -text
+_mods/lib/html2pdf/box.utils.text-align.inc.php -text
+_mods/lib/html2pdf/box.whitespace.php -text
+_mods/lib/html2pdf/classes/include.php -text
+_mods/lib/html2pdf/classes/org/active-link/doc/DocHTML.php -text
+_mods/lib/html2pdf/classes/org/active-link/doc/Method.php -text
+_mods/lib/html2pdf/classes/org/active-link/doc/PHPClass.php -text
+_mods/lib/html2pdf/classes/org/active-link/net/HTTPClient.php -text
+_mods/lib/html2pdf/classes/org/active-link/net/HTTPServer.php -text
+_mods/lib/html2pdf/classes/org/active-link/net/Socket.php -text
+_mods/lib/html2pdf/classes/org/active-link/sys/File.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/Branch.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/Leaf.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/RSS.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/Tag.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/Tree.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/XML.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/XMLBranch.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/XMLDocument.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/XMLLeaf.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/XMLRPCClient.php -text
+_mods/lib/html2pdf/classes/org/active-link/xml/XPath.php -text
+_mods/lib/html2pdf/color.php -text
+_mods/lib/html2pdf/config.inc.php -text
+_mods/lib/html2pdf/config.parse.php -text
+_mods/lib/html2pdf/content_type.class.php -text
+_mods/lib/html2pdf/converter.class.php -text
+_mods/lib/html2pdf/css.apply.inc.php -text
+_mods/lib/html2pdf/css.background.color.inc.php -text
+_mods/lib/html2pdf/css.background.image.inc.php -text
+_mods/lib/html2pdf/css.background.inc.php -text
+_mods/lib/html2pdf/css.background.position.inc.php -text
+_mods/lib/html2pdf/css.background.repeat.inc.php -text
+_mods/lib/html2pdf/css.border.collapse.inc.php -text
+_mods/lib/html2pdf/css.border.inc.php -text
+_mods/lib/html2pdf/css.border.style.inc.php -text
+_mods/lib/html2pdf/css.bottom.inc.php -text
+_mods/lib/html2pdf/css.clear.inc.php -text
+_mods/lib/html2pdf/css.color.inc.php -text
+_mods/lib/html2pdf/css.colors.inc.php -text
+_mods/lib/html2pdf/css.content.inc.php -text
+_mods/lib/html2pdf/css.defaults.inc.php -text
+_mods/lib/html2pdf/css.display.inc.php -text
+_mods/lib/html2pdf/css.float.inc.php -text
+_mods/lib/html2pdf/css.font.inc.php -text
+_mods/lib/html2pdf/css.frame.inc.php -text
+_mods/lib/html2pdf/css.height.inc.php -text
+_mods/lib/html2pdf/css.inc.php -text
+_mods/lib/html2pdf/css.left.inc.php -text
+_mods/lib/html2pdf/css.line-height.inc.php -text
+_mods/lib/html2pdf/css.list-style-image.inc.php -text
+_mods/lib/html2pdf/css.list-style-position.inc.php -text
+_mods/lib/html2pdf/css.list-style-type.inc.php -text
+_mods/lib/html2pdf/css.list-style.inc.php -text
+_mods/lib/html2pdf/css.margin.inc.php -text
+_mods/lib/html2pdf/css.overflow.inc.php -text
+_mods/lib/html2pdf/css.padding.inc.php -text
+_mods/lib/html2pdf/css.page-break-after.inc.php -text
+_mods/lib/html2pdf/css.page-break.inc.php -text
+_mods/lib/html2pdf/css.parse.inc.php -text
+_mods/lib/html2pdf/css.parse.media.inc.php -text
+_mods/lib/html2pdf/css.position.inc.php -text
+_mods/lib/html2pdf/css.pseudo.add.margin.inc.php -text
+_mods/lib/html2pdf/css.pseudo.align.inc.php -text
+_mods/lib/html2pdf/css.pseudo.cellpadding.inc.php -text
+_mods/lib/html2pdf/css.pseudo.cellspacing.inc.php -text
+_mods/lib/html2pdf/css.pseudo.form.action.inc.php -text
+_mods/lib/html2pdf/css.pseudo.form.radiogroup.inc.php -text
+_mods/lib/html2pdf/css.pseudo.link.destination.inc.php -text
+_mods/lib/html2pdf/css.pseudo.link.target.inc.php -text
+_mods/lib/html2pdf/css.pseudo.listcounter.inc.php -text
+_mods/lib/html2pdf/css.pseudo.localalign.inc.php -text
+_mods/lib/html2pdf/css.pseudo.nowrap.inc.php -text
+_mods/lib/html2pdf/css.pseudo.table.border.inc.php -text
+_mods/lib/html2pdf/css.right.inc.php -text
+_mods/lib/html2pdf/css.rules.inc.php -text
+_mods/lib/html2pdf/css.selectors.inc.php -text
+_mods/lib/html2pdf/css.text-align.inc.php -text
+_mods/lib/html2pdf/css.text-decoration.inc.php -text
+_mods/lib/html2pdf/css.text-indent.inc.php -text
+_mods/lib/html2pdf/css.top.inc.php -text
+_mods/lib/html2pdf/css.utils.inc.php -text
+_mods/lib/html2pdf/css.valign.inc.php -text
+_mods/lib/html2pdf/css.vertical-align.inc.php -text
+_mods/lib/html2pdf/css.visibility.inc.php -text
+_mods/lib/html2pdf/css.white-space.inc.php -text
+_mods/lib/html2pdf/css.width.inc.php -text
+_mods/lib/html2pdf/css.z-index.inc.php -text
+_mods/lib/html2pdf/destination._http.class.php -text
+_mods/lib/html2pdf/destination._interface.class.php -text
+_mods/lib/html2pdf/destination.browser.class.php -text
+_mods/lib/html2pdf/destination.download.class.php -text
+_mods/lib/html2pdf/destination.file.class.php -text
+_mods/lib/html2pdf/doc.anchor.class.php -text
+_mods/lib/html2pdf/dom.activelink.inc.php -text
+_mods/lib/html2pdf/dom.php5.inc.php -text
+_mods/lib/html2pdf/encoding.cp1251.inc.php -text
+_mods/lib/html2pdf/encoding.cp866.inc.php -text
+_mods/lib/html2pdf/encoding.dingbats.inc.php -text
+_mods/lib/html2pdf/encoding.entities.inc.php -text
+_mods/lib/html2pdf/encoding.glyphs.inc.php -text
+_mods/lib/html2pdf/encoding.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-1.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-10.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-11.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-13.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-14.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-15.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-2.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-3.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-4.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-5.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-7.inc.php -text
+_mods/lib/html2pdf/encoding.iso-8859-9.inc.php -text
+_mods/lib/html2pdf/encoding.koi8-r.inc.php -text
+_mods/lib/html2pdf/encoding.symbol.inc.php -text
+_mods/lib/html2pdf/encoding.windows-1250.inc.php -text
+_mods/lib/html2pdf/encoding.windows-1251.inc.php -text
+_mods/lib/html2pdf/encoding.windows-1252.inc.php -text
+_mods/lib/html2pdf/fetched_data._html.class.php -text
+_mods/lib/html2pdf/fetched_data._interface.class.php -text
+_mods/lib/html2pdf/fetched_data.file.class.php -text
+_mods/lib/html2pdf/fetched_data.string.class.php -text
+_mods/lib/html2pdf/fetched_data.url.class.php -text
+_mods/lib/html2pdf/fetcher._interface.class.php -text
+_mods/lib/html2pdf/fetcher.local.class.php -text
+_mods/lib/html2pdf/fetcher.url.class.php -text
+_mods/lib/html2pdf/filter.data._interface.class.php -text
+_mods/lib/html2pdf/filter.data.doctype.class.php -text
+_mods/lib/html2pdf/filter.data.html2xhtml.class.php -text
+_mods/lib/html2pdf/filter.data.utf8.class.php -text
+_mods/lib/html2pdf/filter.data.xhtml2xhtml.class.php -text
+_mods/lib/html2pdf/filter.output._interface.class.php -text
+_mods/lib/html2pdf/filter.output.gzip.class.php -text
+_mods/lib/html2pdf/filter.output.ps2pdf.class.php -text
+_mods/lib/html2pdf/filter.post._interface.class.php -text
+_mods/lib/html2pdf/filter.pre._interface.class.php -text
+_mods/lib/html2pdf/filter.pre.fields.class.php -text
+_mods/lib/html2pdf/filter.pre.headfoot.class.php -text
+_mods/lib/html2pdf/flow_context.class.inc.php -text
+_mods/lib/html2pdf/flow_viewport.class.inc.php -text
+_mods/lib/html2pdf/font.class.php -text
+_mods/lib/html2pdf/font.constants.inc.php -text
+_mods/lib/html2pdf/font.pdf.inc.php -text
+_mods/lib/html2pdf/font.resolver.class.php -text
+_mods/lib/html2pdf/font_factory.class.php -text
+_mods/lib/html2pdf/fonts/arial.afm -text
+_mods/lib/html2pdf/fonts/arial.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/arialbd.afm -text
+_mods/lib/html2pdf/fonts/arialbd.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/arialbi.afm -text
+_mods/lib/html2pdf/fonts/arialbi.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/ariali.afm -text
+_mods/lib/html2pdf/fonts/ariali.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/cour.afm -text
+_mods/lib/html2pdf/fonts/cour.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/courbd.afm -text
+_mods/lib/html2pdf/fonts/courbd.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/courbi.afm -text
+_mods/lib/html2pdf/fonts/courbi.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/couri.afm -text
+_mods/lib/html2pdf/fonts/couri.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/georgia.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/georgiab.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/georgiai.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/georgiaz.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/symbol.afm -text
+_mods/lib/html2pdf/fonts/symbol.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/times.afm -text
+_mods/lib/html2pdf/fonts/times.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/timesbd.afm -text
+_mods/lib/html2pdf/fonts/timesbd.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/timesbi.afm -text
+_mods/lib/html2pdf/fonts/timesbi.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/timesi.afm -text
+_mods/lib/html2pdf/fonts/timesi.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/verdana.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/verdanab.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/verdanai.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fonts/verdanaz.ttf -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/Helvetica-Bold-iso-8859-1.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-Bold-iso-8859-5.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-Bold-iso-8859-7.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-BoldOblique-iso-8859-1.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-Oblique-iso-8859-1.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-cp1250.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-iso-8859-1.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-iso-8859-2.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-iso-8859-5.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-iso-8859-7.php -text
+_mods/lib/html2pdf/fpdf/font/Helvetica-symbol.php -text
+_mods/lib/html2pdf/fpdf/font/Times-Bold-iso-8859-1.php -text
+_mods/lib/html2pdf/fpdf/font/Times-Bold-iso-8859-5.php -text
+_mods/lib/html2pdf/fpdf/font/Times-Italic-iso-8859-1.php -text
+_mods/lib/html2pdf/fpdf/font/Times-Roman-iso-8859-1.php -text
+_mods/lib/html2pdf/fpdf/font/Times-Roman-iso-8859-5.php -text
+_mods/lib/html2pdf/fpdf/font/Times-Roman-iso-8859-7.php -text
+_mods/lib/html2pdf/fpdf/font/Times-Roman-symbol.php -text
+_mods/lib/html2pdf/fpdf/font/arial.php -text
+_mods/lib/html2pdf/fpdf/font/arial.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/arialbd.php -text
+_mods/lib/html2pdf/fpdf/font/arialbd.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/arialbi.php -text
+_mods/lib/html2pdf/fpdf/font/arialbi.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/ariali.php -text
+_mods/lib/html2pdf/fpdf/font/ariali.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/cour.php -text
+_mods/lib/html2pdf/fpdf/font/cour.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/courbd.php -text
+_mods/lib/html2pdf/fpdf/font/courbd.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/courbi.php -text
+_mods/lib/html2pdf/fpdf/font/courbi.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/couri.php -text
+_mods/lib/html2pdf/fpdf/font/couri.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/courier.php -text
+_mods/lib/html2pdf/fpdf/font/helvetica.php -text
+_mods/lib/html2pdf/fpdf/font/helveticab.php -text
+_mods/lib/html2pdf/fpdf/font/helveticabi.php -text
+_mods/lib/html2pdf/fpdf/font/helveticai.php -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp1250.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp1251.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp1252.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp1253.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp1254.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp1255.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp1257.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp1258.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cp874.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/cvt.pl -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-1.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-11.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-15.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-16.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-2.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-4.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-5.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-7.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/iso-8859-9.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/koi8-r.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/koi8-u.map -text
+_mods/lib/html2pdf/fpdf/font/makefont/makefont.orig.php -text
+_mods/lib/html2pdf/fpdf/font/makefont/makefont.php -text
+_mods/lib/html2pdf/fpdf/font/makefont/symbol.map -text
+_mods/lib/html2pdf/fpdf/font/symbol.php -text
+_mods/lib/html2pdf/fpdf/font/symbol.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/times.php -text
+_mods/lib/html2pdf/fpdf/font/times.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/timesb.php -text
+_mods/lib/html2pdf/fpdf/font/timesbd.php -text
+_mods/lib/html2pdf/fpdf/font/timesbd.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/timesbi.php -text
+_mods/lib/html2pdf/fpdf/font/timesbi.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/timesi.php -text
+_mods/lib/html2pdf/fpdf/font/timesi.z -text svneol=unset#unset
+_mods/lib/html2pdf/fpdf/font/zapfdingbats.php -text
+_mods/lib/html2pdf/fpdf/fpdf.orig.php -text
+_mods/lib/html2pdf/fpdf/fpdf.php -text
+_mods/lib/html2pdf/height.php -text
+_mods/lib/html2pdf/html.attrs.inc.php -text
+_mods/lib/html2pdf/html.list.inc.php -text
+_mods/lib/html2pdf/html2ps.php -text
+_mods/lib/html2pdf/image.class.php -text
+_mods/lib/html2pdf/index.php -text
+_mods/lib/html2pdf/layout._interface.class.php -text
+_mods/lib/html2pdf/layout.default.class.php -text
+_mods/lib/html2pdf/layout.ps.class.php -text
+_mods/lib/html2pdf/localalign.inc.php -text
+_mods/lib/html2pdf/manager.encoding.php -text
+_mods/lib/html2pdf/media.layout.inc.php -text
+_mods/lib/html2pdf/output._generic.class.php -text
+_mods/lib/html2pdf/output._generic.pdf.class.php -text
+_mods/lib/html2pdf/output._generic.ps.class.php -text
+_mods/lib/html2pdf/output._interface.class.php -text
+_mods/lib/html2pdf/output.fastps.class.php -text
+_mods/lib/html2pdf/output.fpdf.class.php -text
+_mods/lib/html2pdf/output.pdflib.class.php -text
+_mods/lib/html2pdf/output.ps.class.php -text
+_mods/lib/html2pdf/parser._interface.class.php -text
+_mods/lib/html2pdf/parser.xhtml.class.php -text
+_mods/lib/html2pdf/phpinfo.php -text
+_mods/lib/html2pdf/pipeline.class.php -text
+_mods/lib/html2pdf/pipeline.factory.class.php -text
+_mods/lib/html2pdf/postscript/array.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/background.image.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/background.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/border.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.block.inline.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.block.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.break.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.button.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.checkbutton.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.container.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.frame.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.generic.inline.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.generic.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.iframe.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.image.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.inline.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.inline.whitespace.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.input.check.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.input.radio.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.input.text.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.list-item.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.radiobutton.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.select.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.span.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.table.cell.fake.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.table.cell.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.table.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.table.row.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.text.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/box.whitespace.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/cellspan.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/class.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/color.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/containing_block.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/context.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.dingbats.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-10.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-11.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-13.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-14.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-15.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-2.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-3.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-4.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-5.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-7.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.iso-8859-9.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.koi8-r.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.symbol.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.windows-1250.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.windows-1251.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/encoding.windows-1252.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/fastps.footer.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/fastps.header.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/flow.block.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/flow.box.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/flow.float.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/flow.inline.block.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/flow.inline.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/flow.legend.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/flow.table.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/flow_viewport.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/font.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/footer.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/geometry.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/header.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/height.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/image.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/init.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/position.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/predicates.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/table.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/table.row.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/text-align.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/vertical-align.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/viewport.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/postscript/width.ps -text svneol=unset#application/octet-stream
+_mods/lib/html2pdf/ps.image.encoder.imagemagick.inc.php -text
+_mods/lib/html2pdf/ps.image.encoder.inc.php -text
+_mods/lib/html2pdf/ps.image.encoder.simple.inc.php -text
+_mods/lib/html2pdf/ps.l2.image.encoder.stream.inc.php -text
+_mods/lib/html2pdf/ps.l3.image.encoder.stream.inc.php -text
+_mods/lib/html2pdf/ps.text.inc.php -text
+_mods/lib/html2pdf/ps.unicode.inc.php -text
+_mods/lib/html2pdf/ps.utils.inc.php -text
+_mods/lib/html2pdf/ps.whitespace.inc.php -text
+_mods/lib/html2pdf/stubs.common.inc.php -text
+_mods/lib/html2pdf/stubs.file_get_contents.inc.php -text
+_mods/lib/html2pdf/systemcheck.php -text
+_mods/lib/html2pdf/tag.body.inc.php -text
+_mods/lib/html2pdf/tag.font.inc.php -text
+_mods/lib/html2pdf/tag.frame.inc.php -text
+_mods/lib/html2pdf/tag.img.inc.php -text
+_mods/lib/html2pdf/tag.input.inc.php -text
+_mods/lib/html2pdf/tag.select.inc.php -text
+_mods/lib/html2pdf/tag.span.inc.php -text
+_mods/lib/html2pdf/tag.table.inc.php -text
+_mods/lib/html2pdf/tag.td.inc.php -text
+_mods/lib/html2pdf/tag.ulol.inc.php -text
+_mods/lib/html2pdf/tag.utils.inc.php -text
+_mods/lib/html2pdf/templates/cannot_parse.html -text
+_mods/lib/html2pdf/templates/error._footer.tpl -text
+_mods/lib/html2pdf/templates/error._header.tpl -text
+_mods/lib/html2pdf/templates/error._http.tpl -text
+_mods/lib/html2pdf/templates/error._missing_afm.tpl -text
+_mods/lib/html2pdf/templates/error._no_fetchers.tpl -text
+_mods/lib/html2pdf/templates/http_error.html -text
+_mods/lib/html2pdf/templates/missing_afm.html -text
+_mods/lib/html2pdf/templates/missing_exec.html -text
+_mods/lib/html2pdf/templates/missing_gs.html -text
+_mods/lib/html2pdf/templates/missing_pdflib.html -text
+_mods/lib/html2pdf/templates/missing_url_fopen.html -text
+_mods/lib/html2pdf/test.php -text
+_mods/lib/html2pdf/test1.php -text
+_mods/lib/html2pdf/test2.php -text
+_mods/lib/html2pdf/tree.navigation.inc.php -text
+_mods/lib/html2pdf/treebuilder.class.php -text
+_mods/lib/html2pdf/utils_array.php -text
+_mods/lib/html2pdf/utils_graphic.php -text
+_mods/lib/html2pdf/utils_number.php -text
+_mods/lib/html2pdf/utils_text.php -text
+_mods/lib/html2pdf/utils_units.php -text
+_mods/lib/html2pdf/utils_url.php -text
+_mods/lib/html2pdf/width.php -text
+_mods/lib/html2pdf/xhtml.autoclose.inc.php -text
+_mods/lib/html2pdf/xhtml.comments.inc.php -text
+_mods/lib/html2pdf/xhtml.deflist.inc.php -text
+_mods/lib/html2pdf/xhtml.entities.inc.php -text
+_mods/lib/html2pdf/xhtml.lists.inc.php -text
+_mods/lib/html2pdf/xhtml.p.inc.php -text
+_mods/lib/html2pdf/xhtml.script.inc.php -text
+_mods/lib/html2pdf/xhtml.selects.inc.php -text
+_mods/lib/html2pdf/xhtml.style.inc.php -text
+_mods/lib/html2pdf/xhtml.tables.inc.php -text
+_mods/lib/html2pdf/xhtml.utils.inc.php -text
+_mods/lib/html2pdf/xml.validation.inc.php -text
 _mods/lib/jpgraph/CHANGELOG -text
 _mods/lib/jpgraph/src/flags.dat -text svneol=unset#unset
 _mods/lib/jpgraph/src/flags_thumb100x100.dat -text svneol=unset#unset
