@@ -3160,6 +3160,7 @@ _mods/wiki-plugins/submit/img/icons2/sphere.png -text
 _mods/wiki-plugins/submit/img/icons2/stumbleupon.png -text
 _mods/wiki-plugins/submit/img/icons2/technorati.png -text
 _mods/wiki-plugins/submit/img/icons2/yahoo.png -text
+_mods/wiki-plugins/submit/wiki-plugins/wikiplugin_submit.php -text
 _mods/wiki-plugins/svg/wiki-plugins/wikiplugin_svg.php -text
 _mods/wiki-plugins/trackeritemfield/smarty_tiki/block.itemfield.php -text
 _mods/wiki-plugins/trackeritemfield/wiki-plugins/wikiplugin_trackeritemfield.php -text
