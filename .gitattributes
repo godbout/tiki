@@ -795,6 +795,7 @@ _mods/Packages/themes-ztheme.info.txt -text
 _mods/Packages/wikiplugins-author.info.txt -text
 _mods/Packages/wikiplugins-dopplr.info.txt -text
 _mods/Packages/wikiplugins-ebay.info.txt -text
+_mods/Packages/wikiplugins-files.info.txt -text
 _mods/Packages/wikiplugins-flowplayer.info.txt -text
 _mods/Packages/wikiplugins-formula.info.txt -text
 _mods/Packages/wikiplugins-galaxia_sweet_ui.info.txt -text
@@ -3104,6 +3105,7 @@ _mods/wiki-plugins/book/Readme -text
 _mods/wiki-plugins/dopplr/wiki-plugins/wikiplugin_dopplr.php -text
 _mods/wiki-plugins/ebay/README -text
 _mods/wiki-plugins/ebay/wiki-plugins/wikiplugin_ebay.php -text
+_mods/wiki-plugins/files/wiki-plugins/wikiplugin_files.php -text
 _mods/wiki-plugins/flowplayer/Readme -text
 _mods/wiki-plugins/flowplayer/flowplayer/FlowPlayer.swf -text svneol=unset#unset
 _mods/wiki-plugins/flowplayer/flowplayer/FlowPlayerLP.swf -text svneol=unset#unset
