@@ -736,6 +736,7 @@ _mods/Packages/lib-fpdf_bitstreamvera.info.txt -text svneol=unset#application/oc
 _mods/Packages/lib-fpdf_freefonts.info.txt -text
 _mods/Packages/lib-html2pdf.info.txt -text
 _mods/Packages/lib-jpgraph.info.txt -text
+_mods/Packages/lib-mozilla2ps.info.txt -text
 _mods/Packages/lib-nusoap.info.txt -text
 _mods/Packages/lib-vtiger.info.txt -text
 _mods/Packages/menus-tikiring.info.txt -text
@@ -2480,6 +2481,18 @@ _mods/lib/jpgraph/src/jpgraph_utils.inc.php -text
 _mods/lib/jpgraph/src/lang/de.inc.php -text
 _mods/lib/jpgraph/src/lang/en.inc.php -text
 _mods/lib/jpgraph/src/lang/prod.inc.php -text
+_mods/lib/mozilla2ps/AUTHORS -text
+_mods/lib/mozilla2ps/COPYING -text
+_mods/lib/mozilla2ps/ChangeLog -text
+_mods/lib/mozilla2ps/README -text
+_mods/lib/mozilla2ps/application.ini -text
+_mods/lib/mozilla2ps/chrome/chrome.manifest -text
+_mods/lib/mozilla2ps/chrome/content/mozilla2ps/mozilla2ps.js -text
+_mods/lib/mozilla2ps/chrome/content/mozilla2ps/mozilla2ps.xul -text
+_mods/lib/mozilla2ps/chrome/locale/en-US/mozilla2ps/mozilla2ps.dtd -text
+_mods/lib/mozilla2ps/defaults/preferences/mozilla2ps-prefs.js -text
+_mods/lib/mozilla2ps/mod_urltopdf.php -text
+_mods/lib/mozilla2ps/mozilla2ps -text svneol=unset#unset
 _mods/lib/nusoap/class.nusoap_base.php -text
 _mods/lib/nusoap/class.soap_fault.php -text
 _mods/lib/nusoap/class.soap_parser.php -text
