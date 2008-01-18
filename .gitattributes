@@ -3105,6 +3105,7 @@ _mods/wiki-plugins/book/Readme -text
 _mods/wiki-plugins/dopplr/wiki-plugins/wikiplugin_dopplr.php -text
 _mods/wiki-plugins/ebay/README -text
 _mods/wiki-plugins/ebay/wiki-plugins/wikiplugin_ebay.php -text
+_mods/wiki-plugins/files/templates/wikiplugin_files.tpl -text
 _mods/wiki-plugins/files/wiki-plugins/wikiplugin_files.php -text
 _mods/wiki-plugins/flowplayer/Readme -text
 _mods/wiki-plugins/flowplayer/flowplayer/FlowPlayer.swf -text svneol=unset#unset
