@@ -810,6 +810,7 @@ _mods/Packages/wikiplugins-phplot.info.txt -text
 _mods/Packages/wikiplugins-plazes.info.txt -text
 _mods/Packages/wikiplugins-redirect.info.txt -text
 _mods/Packages/wikiplugins-scroll.info.txt -text
+_mods/Packages/wikiplugins-shelfari.info.txt -text
 _mods/Packages/wikiplugins-submit.info.txt -text
 _mods/Packages/wikiplugins-svg.info.txt -text
 _mods/Packages/wikiplugins-trackeritemfield.info.txt -text
@@ -3157,6 +3158,7 @@ _mods/wiki-plugins/plazes/wiki-plugins/wikiplugin_plazeswhereis.php -text
 _mods/wiki-plugins/redirect/README -text
 _mods/wiki-plugins/redirect/wiki-plugins/wikiplugin_redirect.php -text
 _mods/wiki-plugins/scroll/wiki-plugins/wikiplugin_scroll.php -text
+_mods/wiki-plugins/shelfari/wiki-plugins/wikiplugin_shelfari.php -text
 _mods/wiki-plugins/submit/img/icons2/blink.png -text
 _mods/wiki-plugins/submit/img/icons2/blinkbits.png -text
 _mods/wiki-plugins/submit/img/icons2/blogmarks.png -text
