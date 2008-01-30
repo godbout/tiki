@@ -3137,6 +3137,7 @@ _mods/wiki-plugins/gmap/wiki-plugins/wikiplugin_gmap.php -text
 _mods/wiki-plugins/group/README -text
 _mods/wiki-plugins/group/wiki-plugins/wikiplugin_group.php -text
 _mods/wiki-plugins/js/wiki-plugins/wikiplugin_js.php -text
+_mods/wiki-plugins/lastfm/wikiplugin_lastfm.php -text
 _mods/wiki-plugins/listpages/templates/wikiplugin_listpagenames.tpl -text
 _mods/wiki-plugins/listpages/wiki-plugins/wikiplugin_listpages.php -text
 _mods/wiki-plugins/mindmap/mindmap/flashobject.js -text
