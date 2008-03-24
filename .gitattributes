@@ -1,5 +1,4 @@
 * text=auto !eol
-/.cvsignore -text
 /INSTALL -text
 /README -text
 /_htaccess -text
