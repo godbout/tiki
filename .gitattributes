@@ -30,7 +30,6 @@ css/cssmenu_vert.css -text
 css/freetags.css -text
 css/ie6.css -text
 css/jscalendar.css -text
-db/.cvsignore -text
 db/_htaccess -text
 db/case_patch.php -text
 db/convertscripts/convertsqls.sh -text
@@ -118,7 +117,6 @@ doc/htaccess -text
 doc/htaccess.readme -text
 doc/index.php -text
 doc/readme.txt -text
-dump/.cvsignore -text
 dump/index.php -text
 /favicon.png -text
 /fgal_listing_conf.php -text
@@ -137,7 +135,6 @@ games/thumbs/index.php -text
 /green.favicon.png -text
 /help.php -text
 /htaccess.sh -text
-images/.cvsignore -text
 images/_htaccess -text
 images/a_pixel.gif -text
 images/book.gif -text
@@ -1198,12 +1195,10 @@ img/wiki_up/index.php -text
 import/import_mediawiki_dump.php -text
 import/mediawiki_dump.xsd -text
 /index.php -text
-installer/.cvsignore -text
 installer/_htaccess -text
 installer/index.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
-lang/.cvsignore -text
 lang/_htaccess -text
 lang/ar/index.php -text
 lang/ar/language.php -text
@@ -1283,7 +1278,6 @@ lang/tw/index.php -text
 lang/tw/language.php -text
 lang/uk/index.php -text
 lang/uk/language.php -text
-lib/.cvsignore -text
 lib/Babelfish.php -text
 lib/Date/Calc.php -text
 lib/Date/Human.php -text
@@ -2902,7 +2896,6 @@ lib/ziplib.php -text
 /messu-read_sent.php -text
 /messu-sent.php -text
 /modsadm.php -text
-modules/.cvsignore -text
 modules/_htaccess -text
 modules/cache/.cvsignore -text
 modules/cache/.htaccess -text svneol=unset#application/octet-stream
@@ -3470,7 +3463,6 @@ styles/vidiki.css -text
 styles/vidiki/shadow.png -text
 styles/vidiki/title_background.png -text
 styles/whitebluegrey.css -text
-temp/.cvsignore -text
 temp/README -text
 temp/_htaccess -text
 temp/cache/.cvsignore -text
@@ -3478,7 +3470,6 @@ temp/cache/index.php -text
 temp/index.php -text
 temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
-templates/.cvsignore -text
 templates/_htaccess -text
 templates/antibot.tpl -text
 templates/attachments.tpl -text
@@ -4277,7 +4268,6 @@ templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
 templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
-tests/.cvsignore -text
 tests/_htaccess -text
 tests/index.php -text
 tests/test_cvs_file.txt -text
