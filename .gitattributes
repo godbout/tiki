@@ -4,7 +4,6 @@
 /_htaccess -text
 /about.php -text
 /article_image.php -text
-backups/.cvsignore -text
 backups/README -text
 backups/index.php -text
 /banner_click.php -text
