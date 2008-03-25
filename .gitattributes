@@ -9,7 +9,6 @@ backups/README -text
 backups/index.php -text
 /banner_click.php -text
 /banner_image.php -text
-bin/.cvsignore -text
 bin/_htaccess -text
 bin/cvschangeroot.sh -text
 bin/index.php -text
