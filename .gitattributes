@@ -3295,12 +3295,6 @@ styles/boreal/maincap.png -text
 styles/boreal/menucap.png -text
 styles/boreal/pixel.gif -text
 styles/boreal/rightbar.gif -text
-styles/brtiki.css -text
-styles/brtiki/background_repeat.jpg -text
-styles/brtiki/background_top.jpg -text
-styles/brtiki/logo.jpg -text
-styles/brtiki/modulos.jpg -text
-styles/brtiki/top_right.jpg -text
 styles/codex.css -text svneol=unset#application/octet-stream
 styles/codex/index.php -text
 styles/codex/page_0.gif -text
@@ -3736,7 +3730,6 @@ templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
 templates/styles/blank/tiki.tpl -text
-templates/styles/brtiki/tiki-top_bar.tpl -text
 templates/styles/codex/index.php -text
 templates/styles/codex/tiki.tpl -text
 templates/styles/damian/module.tpl -text
