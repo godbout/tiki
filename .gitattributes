@@ -1813,6 +1813,7 @@ lib/ical/iCal/iCalendar.php -text
 lib/imagegals/imagegallib.js -text
 lib/imagegals/imagegallib.php -text
 lib/imagegals/index.php -text
+lib/images/abstract.php -text
 lib/images/gd.php -text
 lib/images/icons/3ds.png -text
 lib/images/icons/3ds.svg -text
