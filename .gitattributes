@@ -3451,7 +3451,6 @@ styles/transitions/1.8to1.9.css -text
 styles/transitions/1.9to1.10.css -text
 styles/transitions/index.php -text
 styles/trollparty.css -text
-styles/vidiki.css -text
 styles/vidiki/shadow.png -text
 styles/vidiki/title_background.png -text
 styles/whitebluegrey.css -text
@@ -3880,9 +3879,6 @@ templates/styles/tikinewt/tiki.tpl -text
 templates/styles/trollparty/tiki-bot_bar.tpl -text
 templates/styles/trollparty/tiki-send_newsletters.tpl -text
 templates/styles/trollparty/tiki-show_page.tpl -text
-templates/styles/vidiki/tiki-page_bar.tpl -text
-templates/styles/vidiki/tiki-user_menu.tpl -text
-templates/styles/vidiki/tiki.tpl -text
 templates/tables/index.php -text
 templates/tables/tiki_pages.tpl -text
 templates/textareasize.tpl -text
