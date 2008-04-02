@@ -3510,6 +3510,8 @@ templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
 templates/mail/confirm_newsletter_subscription.tpl -text
 templates/mail/confirm_user_email.tpl -text
+templates/mail/confirm_user_email_after_approval.tpl -text
+templates/mail/confirm_user_email_after_approval_subject.tpl -text
 templates/mail/confirm_user_email_subject.tpl -text
 templates/mail/forum_outbound.tpl -text
 templates/mail/forum_post_notification.tpl -text
