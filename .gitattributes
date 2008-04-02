@@ -3399,6 +3399,7 @@ styles/nornia.css -text
 styles/olive-blue.css -text svneol=unset#application/octet-stream
 styles/olive-red.css -text svneol=unset#application/octet-stream
 styles/olive.css -text svneol=unset#application/octet-stream
+styles/simple-amette.css -text
 styles/simple.css -text
 styles/simple/admin_move.gif -text
 styles/simple/bg.png -text
