@@ -3084,6 +3084,7 @@ pics/icons/new.png -text
 pics/icons/newspaper_go.png -text
 pics/icons/no_eye.png -text
 pics/icons/no_eye_arrow_down.png -text
+pics/icons/no_information.png -text
 pics/icons/note_add.png -text
 pics/icons/omodule.png -text
 pics/icons/package.png -text
@@ -3466,6 +3467,7 @@ templates/attachments.tpl -text
 templates/babelfish.tpl -text
 templates/bidi.tpl -text
 templates/blog-heading.tpl -text
+templates/browse_file_gallery.tpl -text
 templates/browsedcategory.tpl -text
 templates/categobjects.tpl -text
 templates/categorize.tpl -text
@@ -3504,6 +3506,7 @@ templates/header.tpl -text
 templates/index.php -text
 templates/information.tpl -text
 templates/list_file_gallery.tpl -text
+templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
 templates/mail/confirm_newsletter_subscription.tpl -text
 templates/mail/confirm_user_email.tpl -text
