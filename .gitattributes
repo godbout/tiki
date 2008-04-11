@@ -4285,6 +4285,7 @@ templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
 tests/_htaccess -text
 tests/index.php -text
+tests/messu-compose.tpl -text
 tests/test_cvs_file.txt -text
 /textareasize.php -text
 /tiki-action_calendar.php -text
