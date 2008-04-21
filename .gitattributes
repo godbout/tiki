@@ -3836,7 +3836,6 @@ templates/styles/smartiki/tiki-print_multi_pages.tpl -text
 templates/styles/tikigod/tiki-top_bar.tpl -text
 templates/styles/tikinewt/header.tpl -text
 templates/styles/tikinewt/index.php -text
-templates/styles/tikinewt/module.tpl -text
 templates/styles/tikinewt/tiki-bot_bar.tpl -text
 templates/styles/tikinewt/tiki-read_article.tpl -text
 templates/styles/tikinewt/tiki-site_header.tpl -text
