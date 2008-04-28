@@ -444,7 +444,6 @@ img/flags/Liechtenstein.gif -text
 img/flags/Lithuania.gif -text
 img/flags/Luxemburg.gif -text
 img/flags/Macao.gif -text
-img/flags/Macedonia.gif -text
 img/flags/Madagascar.gif -text
 img/flags/Malawi.gif -text
 img/flags/Malaysia.gif -text
@@ -460,7 +459,6 @@ img/flags/Mexico.gif -text
 img/flags/Moldova.gif -text
 img/flags/Monaco.gif -text
 img/flags/Mongolia.gif -text
-img/flags/Montenegro.gif -text
 img/flags/Montserrat.gif -text
 img/flags/Morocco.gif -text
 img/flags/Mozambique.gif -text
@@ -497,9 +495,12 @@ img/flags/Poland.gif -text
 img/flags/Portugal.gif -text
 img/flags/Puerto_Rico.gif -text
 img/flags/Quatar.gif -text
+img/flags/Republic_of_Macedonia.gif -text
+img/flags/Republic_of_Montenegro.gif -text
+img/flags/Republic_of_Serbia.gif -text
 img/flags/Reunion.gif -text
 img/flags/Romania.gif -text
-img/flags/Russia.gif -text
+img/flags/Russian_Federation.gif -text
 img/flags/Rwanda.gif -text
 img/flags/Saint_Helena.gif -text
 img/flags/Saint_Kitts_and_Nevis.gif -text
@@ -510,7 +511,6 @@ img/flags/San_Marino.gif -text
 img/flags/Sao_Tome_and_Principe.gif -text
 img/flags/Saudi_Arabia.gif -text
 img/flags/Senegal.gif -text
-img/flags/Serbia.gif -text
 img/flags/Seychelles.gif -text
 img/flags/Sierra_Leone.gif -text
 img/flags/Singapore.gif -text
