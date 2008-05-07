@@ -4441,6 +4441,7 @@ tests/test_cvs_file.txt -text
 /tiki-index.php -text
 /tiki-index_p.php -text
 /tiki-index_raw.php -text
+/tiki-information.php -text
 /tiki-install.php -text
 /tiki-install_disable.php -text
 /tiki-integrator.php -text
