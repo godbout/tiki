@@ -23,6 +23,7 @@ components/comp-wiki.php -text
 /copyrights.php -text
 css/admin.css -text
 css/calendar.css -text
+css/csshover.htc -text
 css/cssmenu.css -text
 css/cssmenu_horiz.css -text
 css/cssmenu_vert.css -text
