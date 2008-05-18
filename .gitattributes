@@ -4489,6 +4489,7 @@ tests/test_cvs_file.txt -text
 /tiki-logout.php -text
 /tiki-mailin-code.php -text
 /tiki-mailin.php -text
+/tiki-map.php -text
 /tiki-map.phtml -text
 /tiki-map_download.phtml -text
 /tiki-map_edit.php -text
