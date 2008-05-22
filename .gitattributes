@@ -3497,6 +3497,7 @@ temp/mail_attachs/index.php -text
 templates/_htaccess -text
 templates/antibot.tpl -text
 templates/attachments.tpl -text
+templates/attachments_tracker.tpl -text
 templates/babelfish.tpl -text
 templates/bidi.tpl -text
 templates/blog-heading.tpl -text
