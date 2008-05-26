@@ -3725,6 +3725,7 @@ templates/modules/mod-switch_lang.tpl -text
 templates/modules/mod-switch_lang2.tpl -text
 templates/modules/mod-switch_theme.tpl -text
 templates/modules/mod-switch_theme.tpl.nocache -text
+templates/modules/mod-tikitests.tpl -text
 templates/modules/mod-top_active_blogs.tpl -text
 templates/modules/mod-top_articles.tpl -text
 templates/modules/mod-top_file_galleries.tpl -text
@@ -4177,6 +4178,12 @@ templates/tiki-syslog.tpl -text
 templates/tiki-take_quiz.tpl -text
 templates/tiki-take_survey.tpl -text
 templates/tiki-tell_a_friend.tpl -text
+templates/tiki-tests_edit.tpl -text
+templates/tiki-tests_list.tpl -text
+templates/tiki-tests_menubar.tpl -text
+templates/tiki-tests_record.tpl -text
+templates/tiki-tests_replay.tpl -text
+templates/tiki-tests_topbar.tpl -text
 templates/tiki-theme_control.tpl -text
 templates/tiki-theme_control_objects.tpl -text
 templates/tiki-theme_control_sections.tpl -text
@@ -4636,6 +4643,16 @@ tests/test_cvs_file.txt -text
 /tiki-wiki_rankings.php -text
 /tiki-wiki_rss.php -text
 /tiki-xmlrpc_services.php -text
+tiki_tests/_htaccess -text
+tiki_tests/index.php -text
+tiki_tests/tests/_htaccess -text
+tiki_tests/tests/index.php -text
+tiki_tests/tiki-tests_edit.php -text
+tiki_tests/tiki-tests_list.php -text
+tiki_tests/tiki-tests_record.php -text
+tiki_tests/tiki-tests_replay.php -text
+tiki_tests/tiki-tests_show_xpath.php -text
+tiki_tests/tikitestslib.php -text
 tikimovies/controller.swf -text svneol=unset#unset
 tikimovies/multiplayer.swf -text svneol=unset#unset
 tikimovies/multiplayer.xml -text
