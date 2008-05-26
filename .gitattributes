@@ -3027,6 +3027,7 @@ pics/icons/arrow_right.png -text
 pics/icons/arrow_small.png -text
 pics/icons/assign.png -text
 pics/icons/attach.png -text
+pics/icons/bell.png -text
 pics/icons/book_open.png -text
 pics/icons/box.png -text
 pics/icons/bricks.png -text
@@ -3037,6 +3038,9 @@ pics/icons/chart_line.png -text
 pics/icons/chart_organisation.png -text
 pics/icons/comment_add.png -text
 pics/icons/comments.png -text
+pics/icons/control_pause.png -text
+pics/icons/control_play.png -text
+pics/icons/control_stop.png -text
 pics/icons/cross.png -text
 pics/icons/cross_admin.png -text
 pics/icons/database.png -text
