@@ -4647,7 +4647,6 @@ tests/test_cvs_file.txt -text
 /tiki-wiki_rankings.php -text
 /tiki-wiki_rss.php -text
 /tiki-xmlrpc_services.php -text
-tiki_tests/_htaccess -text
 tiki_tests/index.php -text
 tiki_tests/tests/_htaccess -text
 tiki_tests/tests/index.php -text
