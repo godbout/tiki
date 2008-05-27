@@ -2232,7 +2232,6 @@ lib/pear/Date/Calc.php -text
 lib/pear/Date/Human.php -text
 lib/pear/Date/Span.php -text
 lib/pear/Date/TimeZone.php -text
-lib/pear/Date/TimeZoneWindows.php -text
 lib/pear/Date/index.php -text
 lib/pear/HTTP/Request.php -text
 lib/pear/HTTP/Request/Listener.php -text
