@@ -4331,6 +4331,7 @@ tests/test_cvs_file.txt -text
 /tiki-admin_trackers.php -text
 /tiki-admingroups.php -text
 /tiki-adminusers.php -text
+/tiki-annotation_edit.php -text
 /tiki-approve_staging_page.php -text
 /tiki-article_types.php -text
 /tiki-articles_rss.php -text
