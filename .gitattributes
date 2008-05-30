@@ -2612,6 +2612,7 @@ lib/smarty_tiki/outputfilter.ticket.php -text
 lib/smarty_tiki/prefilter.ticket.php -text
 lib/smarty_tiki/prefilter.tr.php -text
 lib/smarty_tiki/resource.style.php -text
+lib/smarty_tiki/resource.wiki.php -text
 lib/stats/index.php -text
 lib/stats/statslib.php -text
 lib/structures/index.php -text
