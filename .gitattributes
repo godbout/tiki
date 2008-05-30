@@ -2755,6 +2755,7 @@ lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_agentinfo.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
 lib/wiki-plugins/wikiplugin_aname.php -text
+lib/wiki-plugins/wikiplugin_annotation.php -text
 lib/wiki-plugins/wikiplugin_article.php -text
 lib/wiki-plugins/wikiplugin_articles.php -text
 lib/wiki-plugins/wikiplugin_attach.php -text
