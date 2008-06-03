@@ -3016,6 +3016,8 @@ pics/icons/accept.png -text
 pics/icons/add.png -text
 pics/icons/application_add.png -text
 pics/icons/application_form_magnify.png -text
+pics/icons/application_get.png -text
+pics/icons/application_put.png -text
 pics/icons/application_side_contract.png -text
 pics/icons/application_side_tree.png -text
 pics/icons/arrow_in.png -text
@@ -4243,6 +4245,8 @@ templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
 templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
+templates/wiki_edit.tpl -text
+templates/wiki_edit_actions.tpl -text
 tests/_htaccess -text
 tests/index.php -text
 tests/messu-compose.tpl -text
