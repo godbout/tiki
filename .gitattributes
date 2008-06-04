@@ -1640,6 +1640,11 @@ lib/HTMLPurifier/URIScheme/mailto.php -text
 lib/HTMLPurifier/URIScheme/news.php -text
 lib/HTMLPurifier/URIScheme/nntp.php -text
 lib/HTMLPurifier/URISchemeRegistry.php -text
+lib/Horde/Yaml.php -text
+lib/Horde/Yaml/Dumper.php -text
+lib/Horde/Yaml/Exception.php -text
+lib/Horde/Yaml/Loader.php -text
+lib/Horde/Yaml/Node.php -text
 lib/_htaccess -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
@@ -2359,6 +2364,8 @@ lib/phplayers_tiki/tiki-phplayers.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
+lib/profilelib/installlib.php -text
+lib/profilelib/profilelib.php -text
 lib/quicktags/index.php -text
 lib/quicktags/quicktagslib.php -text
 lib/quizzes/index.php -text
