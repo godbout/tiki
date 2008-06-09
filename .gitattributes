@@ -2937,6 +2937,7 @@ modules/mod-articles.php -text
 modules/mod-assistant.php -text
 modules/mod-blog_last_comments.php -text
 modules/mod-breadcrumb.php -text
+modules/mod-calendar_new.php -text
 modules/mod-categories.php -text
 modules/mod-change_category.php -text
 modules/mod-comm_received_objects.php -text
@@ -3668,6 +3669,7 @@ templates/modules/mod-breadcrumb.tpl -text
 templates/modules/mod-breadcrumb.tpl.nocache -text
 templates/modules/mod-calendar.tpl -text
 templates/modules/mod-calendar.tpl.nocache -text
+templates/modules/mod-calendar_new.tpl -text
 templates/modules/mod-categories.tpl -text
 templates/modules/mod-change_category.tpl -text
 templates/modules/mod-comm_received_objects.tpl -text
