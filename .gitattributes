@@ -2366,6 +2366,7 @@ lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
 lib/profilelib/installlib.php -text
+lib/profilelib/listlib.php -text
 lib/profilelib/profilelib.php -text
 lib/quicktags/index.php -text
 lib/quicktags/quicktagslib.php -text
@@ -3903,6 +3904,7 @@ templates/tiki-admin-include-metatags.tpl -text
 templates/tiki-admin-include-module.tpl -text
 templates/tiki-admin-include-multimedia.tpl -text
 templates/tiki-admin-include-polls.tpl -text
+templates/tiki-admin-include-profiles.tpl -text
 templates/tiki-admin-include-rss.tpl -text
 templates/tiki-admin-include-score.tpl -text
 templates/tiki-admin-include-search.tpl -text
@@ -4307,6 +4309,7 @@ tests/test_cvs_file.txt -text
 /tiki-admin_include_module.php -text
 /tiki-admin_include_multimedia.php -text
 /tiki-admin_include_polls.php -text
+/tiki-admin_include_profiles.php -text
 /tiki-admin_include_rss.php -text
 /tiki-admin_include_score.php -text
 /tiki-admin_include_search.php -text
