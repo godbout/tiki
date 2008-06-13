@@ -70,7 +70,6 @@ doc/devtools/cleanwatch.sh -text
 doc/devtools/convert_templates_prefs-1.10.php -text
 doc/devtools/csscheck.sh -text
 doc/devtools/cssmap.pl -text
-doc/devtools/cvsup.sh -text
 doc/devtools/diffsql.cmd -text
 doc/devtools/diffsql.sh -text svneol=unset#application/octet-stream
 doc/devtools/extract-img-db-to-fs.php -text
@@ -98,6 +97,7 @@ doc/devtools/sharetikidev.sh -text
 doc/devtools/sqlupgrade.sh -text
 doc/devtools/stripbraces.pl -text
 doc/devtools/stripcomments.pl -text
+doc/devtools/svnup.sh -text
 doc/devtools/sync.php -text
 doc/devtools/synctiki.sh -text
 doc/devtools/tiki-create_md5.php -text
