@@ -2789,6 +2789,7 @@ lib/wiki-plugins/wikiplugin_flash.php -text
 lib/wiki-plugins/wikiplugin_formula.php -text
 lib/wiki-plugins/wikiplugin_gauge.php -text
 lib/wiki-plugins/wikiplugin_group.php -text
+lib/wiki-plugins/wikiplugin_include.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
