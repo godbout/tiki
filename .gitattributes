@@ -2754,7 +2754,6 @@ lib/webmail/webmaillib.php -text
 lib/wiki-plugins-dist/README -text
 lib/wiki-plugins-dist/index.php -text
 lib/wiki-plugins-dist/wikiplugin_bloglist.php -text
-lib/wiki-plugins-dist/wikiplugin_include.php -text
 lib/wiki-plugins-dist/wikiplugin_lsdir.php -text
 lib/wiki-plugins-dist/wikiplugin_regex.php -text
 lib/wiki-plugins-dist/wikiplugin_snarf.php -text
