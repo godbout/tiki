@@ -3378,6 +3378,8 @@ styles/default/index.php -text
 styles/default/sitelogo.png -text
 styles/default2.css -text
 styles/elegant.css -text
+styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
+styles/feb12/pagebg.jpg -text svneol=unset#image/jpeg
 styles/fmsc.css -text
 styles/fmsc/tetiere2.jpg -text
 styles/gemsi.css -text
