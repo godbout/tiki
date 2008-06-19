@@ -2172,6 +2172,7 @@ lib/pear/Auth/Controller.php -text
 lib/pear/Auth/Frontend/Html.php -text
 lib/pear/Auth/Frontend/md5.js -text
 lib/pear/Auth/OpenID.php -text
+lib/pear/Auth/OpenID/AX.php -text
 lib/pear/Auth/OpenID/Association.php -text
 lib/pear/Auth/OpenID/BigMath.php -text
 lib/pear/Auth/OpenID/Consumer.php -text
@@ -2185,9 +2186,11 @@ lib/pear/Auth/OpenID/FileStore.php -text
 lib/pear/Auth/OpenID/HMACSHA1.php -text
 lib/pear/Auth/OpenID/Interface.php -text
 lib/pear/Auth/OpenID/KVForm.php -text
+lib/pear/Auth/OpenID/MemcachedStore.php -text
 lib/pear/Auth/OpenID/Message.php -text
 lib/pear/Auth/OpenID/MySQLStore.php -text
 lib/pear/Auth/OpenID/Nonce.php -text
+lib/pear/Auth/OpenID/PAPE.php -text
 lib/pear/Auth/OpenID/Parse.php -text
 lib/pear/Auth/OpenID/PostgreSQLStore.php -text
 lib/pear/Auth/OpenID/SQLStore.php -text
