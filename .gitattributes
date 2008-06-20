@@ -2538,6 +2538,7 @@ lib/slideshow/slideshow.rc1.packed.js -text
 lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
+lib/smarty_tiki/block.itemfield.php -text
 lib/smarty_tiki/block.pagination_links.php -text
 lib/smarty_tiki/block.repeat.php -text
 lib/smarty_tiki/block.self_link.php -text
