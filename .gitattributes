@@ -2550,6 +2550,7 @@ lib/smarty_tiki/block.tr.php -text
 lib/smarty_tiki/block.translation.php -text
 lib/smarty_tiki/block.wiki.php -text
 lib/smarty_tiki/block.ws_help.php -text
+lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.article.php -text
 lib/smarty_tiki/function.banner.php -text
 lib/smarty_tiki/function.breadcrumbs.php -text
