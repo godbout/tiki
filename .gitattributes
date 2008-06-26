@@ -2798,6 +2798,7 @@ lib/wiki-plugins/wikiplugin_include.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
+lib/wiki-plugins/wikiplugin_listpages.php -text
 lib/wiki-plugins/wikiplugin_map.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
