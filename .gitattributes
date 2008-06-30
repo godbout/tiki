@@ -4264,6 +4264,7 @@ templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
 templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
+templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 templates/wikiplugin_listpagenames.tpl -text
