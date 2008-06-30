@@ -2798,6 +2798,7 @@ lib/wiki-plugins/wikiplugin_include.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
+lib/wiki-plugins/wikiplugin_listpages.php -text
 lib/wiki-plugins/wikiplugin_map.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
@@ -4265,6 +4266,7 @@ templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
+templates/wikiplugin_listpagenames.tpl -text
 tests/_htaccess -text
 tests/index.php -text
 tests/messu-compose.tpl -text
