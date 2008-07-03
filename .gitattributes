@@ -1735,6 +1735,8 @@ lib/events/index.php -text
 lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
 lib/fckeditor_tiki/_htaccess -text
+lib/fckeditor_tiki/plugins/CleanHTML/fckplugin.js -text
+lib/fckeditor_tiki/plugins/CleanHTML/html.png -text
 lib/fckeditor_tiki/plugins/tikiimage/fck_tikiimage.php -text
 lib/fckeditor_tiki/plugins/tikiimage/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikiimage/fcktikiimage.css -text
