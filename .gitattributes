@@ -2995,6 +2995,7 @@ modules/mod-live_support.php -text
 modules/mod-logged_users.php -text
 modules/mod-menupage.php -text
 modules/mod-messages_unread_messages.php -text
+modules/mod-minichat.php -text
 modules/mod-num_submissions.php -text
 modules/mod-old_articles.php -text
 modules/mod-online_users.php -text
@@ -3732,6 +3733,7 @@ templates/modules/mod-logo.tpl -text
 templates/modules/mod-menupage.tpl -text
 templates/modules/mod-messages_unread_messages.tpl -text
 templates/modules/mod-messages_unread_messages.tpl.nocache -text
+templates/modules/mod-minichat.tpl -text
 templates/modules/mod-num_submissions.tpl -text
 templates/modules/mod-old_articles.tpl -text
 templates/modules/mod-online_users.tpl -text
@@ -4545,6 +4547,7 @@ tests/test_cvs_file.txt -text
 /tiki-minical_export.php -text
 /tiki-minical_prefs.php -text
 /tiki-minical_reminders.php -text
+/tiki-minichat_ajax.php -text
 /tiki-mobile.php -text
 /tiki-mods.php -text
 /tiki-mods_admin.php -text
