@@ -2543,6 +2543,7 @@ lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
 lib/smarty_tiki/block.itemfield.php -text
 lib/smarty_tiki/block.pagination_links.php -text
+lib/smarty_tiki/block.remarksbox.php -text
 lib/smarty_tiki/block.repeat.php -text
 lib/smarty_tiki/block.self_link.php -text
 lib/smarty_tiki/block.sortlinks.php -text
@@ -2811,6 +2812,7 @@ lib/wiki-plugins/wikiplugin_objecthits.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
+lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
@@ -3796,6 +3798,7 @@ templates/multiplayer.tpl -text
 templates/pagehistory.tpl -text
 templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
+templates/remarksbox.tpl -text
 templates/sent_newsletters.tpl -text
 templates/setup_fckeditor.tpl -text
 templates/structures.tpl -text svneol=unset#application/octet-stream
