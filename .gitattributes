@@ -3830,7 +3830,6 @@ templates/styles/moreneat/index.php -text
 templates/styles/moreneat/modules/index.php -text
 templates/styles/moreneat/modules/mod-application_menu.tpl -text
 templates/styles/moreneat/tiki-show_page.tpl -text
-templates/styles/moreneat/tiki-user_menu.tpl -text
 templates/styles/moreneat/tiki.tpl -text
 templates/styles/mose/index.php -text
 templates/styles/mose/modules/index.php -text
@@ -3838,13 +3837,11 @@ templates/styles/mose/modules/mod-application_menu.tpl -text
 templates/styles/mose/tiki-bot_bar.tpl -text
 templates/styles/mose/tiki-send_newsletters.tpl -text
 templates/styles/mose/tiki-top_bar.tpl -text
-templates/styles/mose/tiki-user_menu.tpl -text
 templates/styles/neat/index.php -text
 templates/styles/neat/modules/index.php -text
 templates/styles/neat/modules/mod-application_menu.tpl -text
 templates/styles/neat/tiki-editpage.tpl -text
 templates/styles/neat/tiki-show_page.tpl -text
-templates/styles/neat/tiki-user_menu.tpl -text
 templates/styles/neat/tiki.tpl -text
 templates/styles/simple/categpath.tpl -text
 templates/styles/simple/confirm.tpl -text
