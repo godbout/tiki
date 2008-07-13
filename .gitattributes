@@ -3811,7 +3811,6 @@ templates/styles/neat/tiki-show_page.tpl -text
 templates/styles/neat/tiki.tpl -text
 templates/styles/simple/categpath.tpl -text
 templates/styles/simple/confirm.tpl -text
-templates/styles/simple/header.tpl -text
 templates/styles/simple/index.php -text
 templates/styles/simple/module.tpl -text
 templates/styles/simple/modules/index.php -text
@@ -3832,11 +3831,8 @@ templates/styles/simple/modules/mod-switch_lang.tpl -text
 templates/styles/simple/modules/mod-switch_lang2.tpl -text
 templates/styles/simple/tiki-blog_post.tpl -text
 templates/styles/simple/tiki-print_article.tpl -text
-templates/styles/simple/tiki-site_header.tpl -text
-templates/styles/simple/tiki-top_bar.tpl -text
 templates/styles/simple/tiki-view_blog.tpl -text
 templates/styles/simple/tiki-view_blog_post.tpl -text
-templates/styles/simple/tiki.tpl -text
 templates/styles/smartiki/babelfish.tpl -text
 templates/styles/smartiki/tiki-print.tpl -text
 templates/styles/smartiki/tiki-print_article.tpl -text
