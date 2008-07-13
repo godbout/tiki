@@ -8,7 +8,7 @@ backups/README -text
 backups/index.php -text
 /banner_click.php -text
 /banner_image.php -text
-bin/_htaccess -text
+bin/.htaccess -text
 bin/cvschangeroot.sh -text
 bin/index.php -text
 /categorize.php -text
@@ -27,7 +27,7 @@ css/cssmenu_vert.css -text
 css/freetags.css -text
 css/ie6.css -text
 css/jscalendar.css -text
-db/_htaccess -text
+db/.htaccess -text
 db/case_patch.php -text
 db/convertscripts/convertsqls.sh -text
 db/convertscripts/index.php -text
@@ -132,7 +132,7 @@ games/thumbs/index.php -text
 /green.favicon.png -text
 /help.php -text
 /htaccess.sh -text
-images/_htaccess -text
+images/.htaccess -text
 images/a_pixel.gif -text
 images/book.gif -text
 images/code.png -text
@@ -278,7 +278,7 @@ images/workspaces/pageNueva.gif -text
 images/workspaces/redarrow.gif -text
 images/workspaces/user_blue.gif -text
 images/workspaces/user_red.gif -text
-img/_htaccess -text
+img/.htaccess -text
 img/adodb.png -text
 img/avatars/README -text
 img/avatars/index.php -text
@@ -1190,11 +1190,11 @@ img/wiki_up/index.php -text
 import/import_mediawiki_dump.php -text
 import/mediawiki_dump.xsd -text
 /index.php -text
-installer/_htaccess -text
+installer/.htaccess -text
 installer/index.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
-lang/_htaccess -text
+lang/.htaccess -text
 lang/ar/index.php -text
 lang/ar/language.php -text
 lang/ca/index.php -text
@@ -1273,6 +1273,7 @@ lang/tw/index.php -text
 lang/tw/language.php -text
 lang/uk/index.php -text
 lang/uk/language.php -text
+lib/.htaccess -text
 lib/Babelfish.php -text
 lib/Date/Calc.php -text
 lib/Date/Human.php -text
@@ -1644,7 +1645,6 @@ lib/Horde/Yaml/Dumper.php -text
 lib/Horde/Yaml/Exception.php -text
 lib/Horde/Yaml/Loader.php -text
 lib/Horde/Yaml/Node.php -text
-lib/_htaccess -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
 lib/ajax/LICENSE.txt -text
@@ -1732,7 +1732,7 @@ lib/events/evlib.php -text
 lib/events/index.php -text
 lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
-lib/fckeditor_tiki/_htaccess -text
+lib/fckeditor_tiki/.htaccess -text
 lib/fckeditor_tiki/plugins/CleanHTML/fckplugin.js -text
 lib/fckeditor_tiki/plugins/CleanHTML/html.png -text
 lib/fckeditor_tiki/plugins/tikiimage/fck_tikiimage.php -text
@@ -2907,7 +2907,7 @@ lib/ziplib.php -text
 /messu-read_sent.php -text
 /messu-sent.php -text
 /modsadm.php -text
-modules/_htaccess -text
+modules/.htaccess -text
 modules/cache/.htaccess -text svneol=unset#application/octet-stream
 modules/cache/README -text
 modules/cache/index.php -text
@@ -3489,13 +3489,13 @@ styles/trollparty.css -text
 styles/vidiki/shadow.png -text
 styles/vidiki/title_background.png -text
 styles/whitebluegrey.css -text
+temp/.htaccess -text
 temp/README -text
-temp/_htaccess -text
 temp/cache/index.php -text
 temp/index.php -text
 temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
-templates/_htaccess -text
+templates/.htaccess -text
 templates/antibot.tpl -text
 templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
@@ -4238,7 +4238,7 @@ templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 templates/wikiplugin_listpagenames.tpl -text
-tests/_htaccess -text
+tests/.htaccess -text
 tests/index.php -text
 tests/messu-compose.tpl -text
 tests/test_cvs_file.txt -text
@@ -4643,7 +4643,7 @@ tests/test_cvs_file.txt -text
 /tiki-wiki_rss.php -text
 /tiki-xmlrpc_services.php -text
 tiki_tests/index.php -text
-tiki_tests/tests/_htaccess -text
+tiki_tests/tests/.htaccess -text
 tiki_tests/tests/index.php -text
 tiki_tests/tiki-tests_edit.php -text
 tiki_tests/tiki-tests_list.php -text
