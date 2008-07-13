@@ -16,8 +16,6 @@ bin/index.php -text
 /changelog.txt -text
 /comments.php -text
 /commxmlrpc.php -text
-components/comp-iframe.php -text
-components/comp-wiki.php -text
 /contribution.php -text
 /copyright.txt -text
 /copyrights.php -text
@@ -48,17 +46,17 @@ db/profiles/fishclub.prf -text
 db/profiles/index.php -text
 db/profiles/mk_profile.sh -text
 db/profiles/slash.prf -text
-db/tiki-1.10-mysql.sql -text
-db/tiki-1.10-mysqli.sql -text
-db/tiki-1.10-oci8.sql -text
-db/tiki-1.10-pgsql.sql -text
-db/tiki-1.10-sqlite.sql -text
-db/tiki-1.10-sybase.sql -text
+db/tiki-2.0-mysql.sql -text
+db/tiki-2.0-mysqli.sql -text
+db/tiki-2.0-oci8.sql -text
+db/tiki-2.0-pgsql.sql -text
+db/tiki-2.0-sqlite.sql -text
+db/tiki-2.0-sybase.sql -text
 db/tiki-db.php -text
-db/tiki-secdb_1.10_mysql.sql -text
+db/tiki-secdb_2.0_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
-db/tiki_1.9to1.10.sql -text
+db/tiki_1.9to2.0.sql -text
 /display_banner.php -text
 doc/99_tiki-apache.conf -text
 doc/devtools/README.txt -text
@@ -91,6 +89,7 @@ doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/removehtaccess.sh -text
 doc/devtools/restorehelp.php -text
 doc/devtools/search_smarty_prefs-1.10.php -text
+doc/devtools/securitycheck.php -text
 doc/devtools/set_perms.py -text
 doc/devtools/sharetiki.sh -text
 doc/devtools/sharetikidev.sh -text
@@ -490,7 +489,6 @@ img/flags/Papua_New_Guinea.gif -text
 img/flags/Paraguay.gif -text
 img/flags/Peru.gif -text
 img/flags/Philippines.gif -text
-img/flags/Phillippines.gif -text
 img/flags/Pitcairn.gif -text
 img/flags/Poland.gif -text
 img/flags/Portugal.gif -text
@@ -2009,7 +2007,6 @@ lib/mootools/extensions/mooRainbow/images/moor_boverlay.png -text
 lib/mootools/extensions/mooRainbow/images/moor_cursor.gif -text
 lib/mootools/extensions/mooRainbow/images/moor_slider.png -text
 lib/mootools/extensions/mooRainbow/images/moor_woverlay.png -text
-lib/mootools/extensions/mooRainbow/mooRainbow-mypage.css -text
 lib/mootools/extensions/mooRainbow/mooRainbow.css -text
 lib/mootools/extensions/mooRainbow/mooRainbow.js -text
 lib/mootools/extensions/mooRainbow/mooRainbow_compressed.js -text svneol=unset#application/octet-stream
@@ -2062,17 +2059,6 @@ lib/mootools/extensions/windoo/themes/windoo.aqua/ssouth.png -text
 lib/mootools/extensions/windoo/themes/windoo.aqua/ssw.png -text
 lib/mootools/extensions/windoo/themes/windoo.aqua/swest.png -text
 lib/mootools/extensions/windoo/themes/windoo.css -text
-lib/mootools/extensions/windoo/themes/windoo.mypage.css -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/bg-center.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/bg-left.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/bg-right.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/border-4-000.png -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/border-4-333.png -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/buttons.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/hd-sprite.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/index.php -text
-lib/mootools/extensions/windoo/themes/windoo.mypage/se-handle.gif -text
-lib/mootools/extensions/windoo/themes/windoo.mypage_view.css -text
 lib/mootools/extensions/windoo/themes/windoo.nada.css -text
 lib/mootools/extensions/windoo/themes/windoo.nada/index.php -text
 lib/mootools/extensions/windoo/themes/windoo/index.php -text
@@ -2085,8 +2071,6 @@ lib/mootools/mootools.js -text svneol=unset#application/octet-stream
 lib/mootools/mootools_packed.js -text svneol=unset#application/octet-stream
 lib/mootools/packer/class.JavaScriptPacker.php -text
 lib/mootools/packer/class.JavaScriptPacker.php4 -text
-lib/mootools/packer/example-file.php -text
-lib/mootools/packer/example-inline.php -text
 lib/mootools/packer/readme.txt -text
 lib/mootools/src/Class/Class.Extras.js -text
 lib/mootools/src/Class/Class.js -text
@@ -2133,9 +2117,6 @@ lib/mootools/src/Window/Window.DomReady.js -text
 lib/mootools/src/Window/Window.Size.js -text
 lib/mootools/src/scripts.json -text
 lib/multilingual/multilinguallib.php -text
-lib/mypage/mypage.js -text
-lib/mypage/mypagelib.php -text
-lib/mypage/smarty_mypage.php -text
 lib/newsletters/index.php -text
 lib/newsletters/nllib.php -text
 lib/newsreader/index.php -text
@@ -2623,6 +2604,7 @@ lib/smarty_tiki/modifier.times.php -text
 lib/smarty_tiki/modifier.tr_if.php -text
 lib/smarty_tiki/modifier.truex.php -text
 lib/smarty_tiki/modifier.truncate.php -text
+lib/smarty_tiki/modifier.ucfirst.php -text
 lib/smarty_tiki/modifier.userlink.php -text
 lib/smarty_tiki/modifier.username.php -text
 lib/smarty_tiki/modifier.utf8unicode.php -text
@@ -2665,23 +2647,6 @@ lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
 lib/tiki-js.js -text
 lib/tikiaccesslib.php -text
-lib/tikibot/README -text
-lib/tikibot/index.php -text
-lib/tikibot/modules/Wollabot_Base.php -text
-lib/tikibot/modules/act.php -text
-lib/tikibot/modules/amiop.php -text
-lib/tikibot/modules/faq.php -text
-lib/tikibot/modules/fortune.php -text
-lib/tikibot/modules/google.php -text
-lib/tikibot/modules/index.php -text
-lib/tikibot/modules/nickometer.php -text
-lib/tikibot/modules/php.def -text
-lib/tikibot/modules/phpfunctions.php -text
-lib/tikibot/modules/say.php -text
-lib/tikibot/modules/tiki.php -text
-lib/tikibot/modules/translate.php -text
-lib/tikibot/start.php -text
-lib/tikibot/wollabot.ini -text
 lib/tikidate.php -text
 lib/tikidblib-debug.php -text
 lib/tikidblib.php -text
@@ -2780,7 +2745,6 @@ lib/wiki-plugins/wikiplugin_attach.php -text
 lib/wiki-plugins/wikiplugin_avatar.php -text
 lib/wiki-plugins/wikiplugin_backlinks.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
-lib/wiki-plugins/wikiplugin_calendar.php -text
 lib/wiki-plugins/wikiplugin_category.php -text
 lib/wiki-plugins/wikiplugin_catorphans.php -text
 lib/wiki-plugins/wikiplugin_catpath.php -text
@@ -3517,9 +3481,9 @@ styles/tranquil/cellpic1.gif -text
 styles/tranquil/cellpic2.jpg -text
 styles/tranquil/cellpic3.gif -text
 styles/tranquil/index.php -text
-styles/transitions/1.8to1.10.css -text
 styles/transitions/1.8to1.9.css -text
-styles/transitions/1.9to1.10.css -text
+styles/transitions/1.8to2.0.css -text
+styles/transitions/1.9to2.0.css -text
 styles/transitions/index.php -text
 styles/trollparty.css -text
 styles/vidiki/shadow.png -text
@@ -3779,7 +3743,7 @@ templates/modules/mod-top_quizzes.tpl -text
 templates/modules/mod-top_visited_blogs.tpl -text
 templates/modules/mod-top_visited_faqs.tpl -text
 templates/modules/mod-translation.tpl -text
-templates/modules/mod-upcoming_events.tpl -text svneol=unset#application/octet-stream
+templates/modules/mod-upcoming_events.tpl -text
 templates/modules/mod-user_blogs.tpl -text
 templates/modules/mod-user_blogs.tpl.nocache -text
 templates/modules/mod-user_bookmarks.tpl -text
@@ -4132,11 +4096,6 @@ templates/tiki-mods.tpl -text
 templates/tiki-mods_admin.tpl -text
 templates/tiki-mods_config.tpl -text
 templates/tiki-my_tiki.tpl -text
-templates/tiki-mypage.tpl -text
-templates/tiki-mypage_content.tpl -text
-templates/tiki-mypage_sidebar.tpl -text
-templates/tiki-mypage_types.tpl -text
-templates/tiki-mypages.tpl -text
 templates/tiki-mytiki_bar.tpl -text
 templates/tiki-mytiki_mootabs.tpl -text
 templates/tiki-newsletter_archives.tpl -text
@@ -4153,7 +4112,6 @@ templates/tiki-old_polls.tpl -text
 templates/tiki-openid_register.tpl -text
 templates/tiki-openid_select.tpl -text
 templates/tiki-orphan_pages.tpl -text
-templates/tiki-p_share_page.tpl -text
 templates/tiki-page.tpl -text
 templates/tiki-page_bar.tpl -text
 templates/tiki-pagehistory.tpl -text
@@ -4561,11 +4519,6 @@ tests/test_cvs_file.txt -text
 /tiki-module_controls.php -text
 /tiki-modules.php -text
 /tiki-my_tiki.php -text
-/tiki-mypage.php -text
-/tiki-mypage_ajax.php -text
-/tiki-mypage_edit.php -text
-/tiki-mypage_types.php -text
-/tiki-mypages.php -text
 /tiki-mytiki_shared.php -text
 /tiki-newsletter_archives.php -text
 /tiki-newsletters.php -text
@@ -4580,7 +4533,6 @@ tests/test_cvs_file.txt -text
 /tiki-objectpermissions.php -text
 /tiki-old_polls.php -text
 /tiki-orphan_pages.php -text
-/tiki-p_share_page.php -text
 /tiki-page.php -text
 /tiki-page_loader.php -text
 /tiki-pagehistory.php -text

@@ -37,4 +37,5 @@ templates/.htaccess
 /templates_c
 tests/.htaccess
 /tiki-emptycache.php
+tiki_tests/tests
 /var
