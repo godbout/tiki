@@ -3803,7 +3803,6 @@ templates/styles/mose/modules/index.php -text
 templates/styles/mose/modules/mod-application_menu.tpl -text
 templates/styles/mose/tiki-bot_bar.tpl -text
 templates/styles/mose/tiki-send_newsletters.tpl -text
-templates/styles/mose/tiki-top_bar.tpl -text
 templates/styles/neat/index.php -text
 templates/styles/neat/modules/index.php -text
 templates/styles/neat/modules/mod-application_menu.tpl -text
