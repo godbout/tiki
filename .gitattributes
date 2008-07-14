@@ -42,7 +42,6 @@ db/oracle/md5.sql -text
 db/profiles/_default.prf -text
 db/profiles/basicEnabled.prf -text
 db/profiles/default-inserts.sql -text
-db/profiles/fishclub.prf -text
 db/profiles/index.php -text
 db/profiles/mk_profile.sh -text
 db/profiles/slash.prf -text
