@@ -3774,7 +3774,6 @@ templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
-templates/styles/blank/tiki.tpl -text
 templates/styles/codex/index.php -text
 templates/styles/codex/tiki.tpl -text
 templates/styles/damian/module.tpl -text
