@@ -2220,8 +2220,6 @@ lib/pear/Date/TimeZone.php -text
 lib/pear/Date/index.php -text
 lib/pear/HTTP/Request.php -text
 lib/pear/HTTP/Request/Listener.php -text
-lib/pear/HTTP/docs/example.php -text
-lib/pear/HTTP/docs/index.php -text
 lib/pear/HTTP/index.php -text
 lib/pear/NNTP.php -text
 lib/pear/Net/DIME.php -text
