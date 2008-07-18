@@ -2196,10 +2196,6 @@ lib/pear/Auth/Yadis/XRIRes.php -text
 lib/pear/Auth/Yadis/Yadis.php -text
 lib/pear/Auth/index.php -text
 lib/pear/DB.php -text
-lib/pear/DB/IDEAS -text
-lib/pear/DB/MAINTAINERS -text
-lib/pear/DB/STATUS -text
-lib/pear/DB/TESTERS -text
 lib/pear/DB/common.php -text
 lib/pear/DB/dbase.php -text
 lib/pear/DB/fbsql.php -text
@@ -2209,7 +2205,6 @@ lib/pear/DB/index.php -text
 lib/pear/DB/msql.php -text
 lib/pear/DB/mssql.php -text
 lib/pear/DB/mysql.php -text
-lib/pear/DB/mysql4.php -text
 lib/pear/DB/mysqli.php -text
 lib/pear/DB/oci8.php -text
 lib/pear/DB/odbc.php -text
