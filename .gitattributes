@@ -2571,6 +2571,7 @@ lib/smarty_tiki/index.php -text
 lib/smarty_tiki/modifier.act_icon.php -text
 lib/smarty_tiki/modifier.adjust.php -text
 lib/smarty_tiki/modifier.avatarize.php -text
+lib/smarty_tiki/modifier.compactisodate.php -text
 lib/smarty_tiki/modifier.countryflag.php -text
 lib/smarty_tiki/modifier.dbg.php -text
 lib/smarty_tiki/modifier.div.php -text
@@ -4021,7 +4022,6 @@ templates/tiki-view_chart_item.tpl -text
 templates/tiki-view_faq.tpl -text
 templates/tiki-view_forum.tpl -text
 templates/tiki-view_forum_thread.tpl -text
-templates/tiki-view_irc.tpl -text
 templates/tiki-view_tracker.tpl -text
 templates/tiki-view_tracker_item.tpl -text
 templates/tiki-view_tracker_more_info.tpl -text
