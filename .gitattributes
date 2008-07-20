@@ -4028,7 +4028,6 @@ templates/tiki-view_tracker_more_info.tpl -text
 templates/tiki-webmail.tpl -text
 templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
-templates/tiki.tpl -text svneol=native#unset
 templates/tiki_full.tpl -text
 templates/tracker_filter.tpl -text
 templates/tracker_item_field_input.tpl -text
