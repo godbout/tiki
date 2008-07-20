@@ -56,6 +56,7 @@ db/tiki-secdb_2.0_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
+db/tiki_2.0to3.0.sql -text
 /display_banner.php -text
 doc/99_tiki-apache.conf -text
 doc/devtools/README.txt -text
