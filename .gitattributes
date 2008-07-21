@@ -96,7 +96,9 @@ doc/devtools/sharetikidev.sh -text
 doc/devtools/sqlupgrade.sh -text
 doc/devtools/stripbraces.pl -text
 doc/devtools/stripcomments.pl -text
+doc/devtools/svnbranch.php -text
 doc/devtools/svnbranchupdate.php -text
+doc/devtools/svntools.php -text
 doc/devtools/svnup.sh -text
 doc/devtools/sync.php -text
 doc/devtools/synctiki.sh -text
