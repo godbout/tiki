@@ -2250,6 +2250,7 @@ lib/pear/Net/URL.php -text
 lib/pear/Net/index.php -text
 lib/pear/OS/Guess.php -text
 lib/pear/PEAR.php -text
+lib/pear/PEAR/Autoloader.php -text
 lib/pear/PEAR/Builder.php -text
 lib/pear/PEAR/ChannelFile.php -text
 lib/pear/PEAR/ChannelFile/Parser.php -text
@@ -2286,10 +2287,13 @@ lib/pear/PEAR/Downloader.php -text
 lib/pear/PEAR/Downloader/Package.php -text
 lib/pear/PEAR/ErrorStack.php -text
 lib/pear/PEAR/Exception.php -text
+lib/pear/PEAR/FixPHP5PEARWarnings.php -text
 lib/pear/PEAR/Frontend.php -text
 lib/pear/PEAR/Frontend/CLI.php -text
 lib/pear/PEAR/Installer.php -text
 lib/pear/PEAR/Installer/Role.php -text
+lib/pear/PEAR/Installer/Role/Cfg.php -text
+lib/pear/PEAR/Installer/Role/Cfg.xml -text
 lib/pear/PEAR/Installer/Role/Common.php -text
 lib/pear/PEAR/Installer/Role/Data.php -text
 lib/pear/PEAR/Installer/Role/Data.xml -text
@@ -2305,6 +2309,8 @@ lib/pear/PEAR/Installer/Role/Src.php -text
 lib/pear/PEAR/Installer/Role/Src.xml -text
 lib/pear/PEAR/Installer/Role/Test.php -text
 lib/pear/PEAR/Installer/Role/Test.xml -text
+lib/pear/PEAR/Installer/Role/Www.php -text
+lib/pear/PEAR/Installer/Role/Www.xml -text
 lib/pear/PEAR/PackageFile.php -text
 lib/pear/PEAR/PackageFile/Generator/v1.php -text
 lib/pear/PEAR/PackageFile/Generator/v2.php -text
