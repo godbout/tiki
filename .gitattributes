@@ -3351,9 +3351,9 @@ styles/slideshows/tiki.css -text
 styles/tikineat.css -text
 styles/tikinewt.css -text
 styles/tikinewt/bg_vertline.png -text
-styles/transitions/1.8to1.9.css -text
-styles/transitions/1.8to2.0.css -text
 styles/transitions/1.9to2.0.css -text
+styles/transitions/1.9to3.0.css -text
+styles/transitions/2.0to3.0.css -text
 styles/transitions/index.php -text
 temp/.htaccess -text
 temp/README -text
