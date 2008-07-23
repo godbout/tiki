@@ -41,9 +41,7 @@ db/oracle/index.php -text
 db/oracle/md5.sql -text
 db/profiles/_default.prf -text
 db/profiles/basicEnabled.prf -text
-db/profiles/default-inserts.sql -text
 db/profiles/index.php -text
-db/profiles/mk_profile.sh -text
 db/profiles/slash.prf -text
 db/tiki-2.0-mysql.sql -text
 db/tiki-2.0-mysqli.sql -text
