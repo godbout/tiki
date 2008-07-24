@@ -2248,7 +2248,6 @@ lib/pear/Net/URL.php -text
 lib/pear/Net/index.php -text
 lib/pear/OS/Guess.php -text
 lib/pear/PEAR.php -text
-lib/pear/PEAR/Autoloader.php -text
 lib/pear/PEAR/Builder.php -text
 lib/pear/PEAR/ChannelFile.php -text
 lib/pear/PEAR/ChannelFile/Parser.php -text
