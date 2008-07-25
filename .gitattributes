@@ -98,6 +98,7 @@ doc/devtools/stripcomments.pl -text
 doc/devtools/svnbranch.php -text
 doc/devtools/svnbranchupdate.php -text
 doc/devtools/svnmerge.php -text
+doc/devtools/svnrevert.sh -text
 doc/devtools/svntools.php -text
 doc/devtools/svnup.sh -text
 doc/devtools/sync.php -text
