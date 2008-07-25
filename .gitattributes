@@ -43,12 +43,6 @@ db/profiles/_default.prf -text
 db/profiles/basicEnabled.prf -text
 db/profiles/index.php -text
 db/profiles/slash.prf -text
-db/tiki-2.0-mysql.sql -text
-db/tiki-2.0-mysqli.sql -text
-db/tiki-2.0-oci8.sql -text
-db/tiki-2.0-pgsql.sql -text
-db/tiki-2.0-sqlite.sql -text
-db/tiki-2.0-sybase.sql -text
 db/tiki-db.php -text
 db/tiki-secdb_2.0_mysql.sql -text
 db/tiki.sql -text
