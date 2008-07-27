@@ -96,6 +96,7 @@ doc/devtools/sqlupgrade.sh -text
 doc/devtools/stripbraces.pl -text
 doc/devtools/stripcomments.pl -text
 doc/devtools/svnbranch.php -text
+doc/devtools/svnbranchreview.php -text
 doc/devtools/svnbranchupdate.php -text
 doc/devtools/svnmerge.php -text
 doc/devtools/svnrevert.sh -text
