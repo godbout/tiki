@@ -2976,6 +2976,7 @@ modules/mod-random_images.php -text
 modules/mod-random_pages.php -text
 modules/mod-shoutbox.php -text
 modules/mod-since_last_visit.php -text
+modules/mod-since_last_visit2.php -text
 modules/mod-since_last_visit_new.php -text
 modules/mod-switch_lang.php -text
 modules/mod-switch_lang2.php -text
@@ -3588,6 +3589,7 @@ templates/modules/mod-search_wiki_page_new.tpl -text
 templates/modules/mod-shoutbox.tpl -text
 templates/modules/mod-shoutbox.tpl.nocache -text
 templates/modules/mod-since_last_visit.tpl -text
+templates/modules/mod-since_last_visit2.tpl -text
 templates/modules/mod-since_last_visit_new.tpl -text
 templates/modules/mod-switch_lang.tpl -text
 templates/modules/mod-switch_lang2.tpl -text
