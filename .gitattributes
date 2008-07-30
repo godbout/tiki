@@ -1490,6 +1490,7 @@ lib/HTMLPurifier/AttrDef/CSS/BackgroundPosition.php -text
 lib/HTMLPurifier/AttrDef/CSS/Border.php -text
 lib/HTMLPurifier/AttrDef/CSS/Color.php -text
 lib/HTMLPurifier/AttrDef/CSS/Composite.php -text
+lib/HTMLPurifier/AttrDef/CSS/DenyElementDecorator.php -text
 lib/HTMLPurifier/AttrDef/CSS/Font.php -text
 lib/HTMLPurifier/AttrDef/CSS/FontFamily.php -text
 lib/HTMLPurifier/AttrDef/CSS/Length.php -text
@@ -1511,6 +1512,7 @@ lib/HTMLPurifier/AttrDef/HTML/Nmtokens.php -text
 lib/HTMLPurifier/AttrDef/HTML/Pixels.php -text
 lib/HTMLPurifier/AttrDef/Integer.php -text
 lib/HTMLPurifier/AttrDef/Lang.php -text
+lib/HTMLPurifier/AttrDef/Switch.php -text
 lib/HTMLPurifier/AttrDef/Text.php -text
 lib/HTMLPurifier/AttrDef/URI.php -text
 lib/HTMLPurifier/AttrDef/URI/Email.php -text
@@ -1601,8 +1603,10 @@ lib/HTMLPurifier/Injector/PurifierLinkify.php -text
 lib/HTMLPurifier/Language.php -text
 lib/HTMLPurifier/Language/classes/en-x-test.php -text
 lib/HTMLPurifier/Language/messages/en-x-test.php -text
+lib/HTMLPurifier/Language/messages/en-x-testmini.php -text
 lib/HTMLPurifier/Language/messages/en.php -text
 lib/HTMLPurifier/LanguageFactory.php -text
+lib/HTMLPurifier/Length.php -text
 lib/HTMLPurifier/Lexer.php -text
 lib/HTMLPurifier/Lexer/DOMLex.php -text
 lib/HTMLPurifier/Lexer/DirectLex.php -text
@@ -1643,6 +1647,7 @@ lib/HTMLPurifier/URIScheme/mailto.php -text
 lib/HTMLPurifier/URIScheme/news.php -text
 lib/HTMLPurifier/URIScheme/nntp.php -text
 lib/HTMLPurifier/URISchemeRegistry.php -text
+lib/HTMLPurifier/UnitConverter.php -text
 lib/Horde/Yaml.php -text
 lib/Horde/Yaml/Dumper.php -text
 lib/Horde/Yaml/Exception.php -text
@@ -2410,6 +2415,7 @@ lib/setup/patches.php -text
 lib/setup/phplayers.php -text
 lib/setup/polls.php -text
 lib/setup/prefs.php -text
+lib/setup/sanitization.php -text
 lib/setup/sections.php -text
 lib/setup/set_paths.php -text
 lib/setup/site_closed.php -text
