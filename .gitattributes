@@ -2591,6 +2591,7 @@ lib/smarty_tiki/modifier.dbg.php -text
 lib/smarty_tiki/modifier.div.php -text
 lib/smarty_tiki/modifier.duration.php -text
 lib/smarty_tiki/modifier.duration_short.php -text
+lib/smarty_tiki/modifier.escape.php -text
 lib/smarty_tiki/modifier.explode.php -text
 lib/smarty_tiki/modifier.how_many_user_inscriptions.php -text
 lib/smarty_tiki/modifier.htmldecode.php -text
