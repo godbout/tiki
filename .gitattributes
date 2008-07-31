@@ -2789,6 +2789,7 @@ lib/wiki-plugins/wikiplugin_myspace.php -text
 lib/wiki-plugins/wikiplugin_objecthits.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
+lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
@@ -3946,6 +3947,7 @@ templates/tiki-page_bar.tpl -text
 templates/tiki-pagehistory.tpl -text
 templates/tiki-pagination.tpl -text
 templates/tiki-pick_avatar.tpl -text
+templates/tiki-plugin_help.tpl -text
 templates/tiki-plugin_poll.tpl -text
 templates/tiki-plugin_sql.tpl -text
 templates/tiki-plugin_trackerfilter.tpl -text
@@ -4054,6 +4056,7 @@ templates/translated-lang.tpl -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
+templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroups.tpl -text
 templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
@@ -4153,7 +4156,6 @@ tests/test_cvs_file.txt -text
 /tiki-admin_trackers.php -text
 /tiki-admingroups.php -text
 /tiki-adminusers.php -text
-/tiki-annotation_edit.php -text
 /tiki-approve_staging_page.php -text
 /tiki-article_types.php -text
 /tiki-articles_rss.php -text
@@ -4291,6 +4293,7 @@ tests/test_cvs_file.txt -text
 /tiki-integrator.php -text
 /tiki-interactive_trans.php -text
 /tiki-jscalendar.php -text
+/tiki-jsplugin.php -text
 /tiki-lastchanges.php -text
 /tiki-layout_options.php -text
 /tiki-likepages.php -text
@@ -4467,6 +4470,7 @@ tests/test_cvs_file.txt -text
 /tiki-wiki3d_xmlrpc.php -text
 /tiki-wiki_rankings.php -text
 /tiki-wiki_rss.php -text
+/tiki-wikiplugin_edit.php -text
 /tiki-xmlrpc_services.php -text
 tiki_tests/index.php -text
 tiki_tests/tests/.htaccess -text
