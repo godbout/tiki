@@ -59,6 +59,7 @@ doc/99_tiki-apache.conf -text
 doc/devtools/README.txt -text
 doc/devtools/add1tiki2multi.py -text
 doc/devtools/backupdb.sh -text
+doc/devtools/buildincrement.php -text
 doc/devtools/capitalize_buttons.pl -text
 doc/devtools/cleanCatTrackers.php -text
 doc/devtools/cleanwatch.sh -text
