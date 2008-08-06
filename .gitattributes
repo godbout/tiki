@@ -4486,7 +4486,6 @@ tiki_tests/tikitestslib.php -text
 tikimovies/controller.swf -text svneol=unset#unset
 tikimovies/multiplayer.swf -text svneol=unset#unset
 tikimovies/multiplayer.xml -text
-/topic_image.php -text
 whelp/index.php -text
 /x_maps.php -text
 /xmlrpc.php -text
