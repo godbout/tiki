@@ -48,6 +48,8 @@ db/tiki-3.0-oci8.sql -text
 db/tiki-3.0-pgsql.sql -text
 db/tiki-3.0-sqlite.sql -text
 db/tiki-3.0-sybase.sql -text
+db/tiki-db-adodb.php -text
+db/tiki-db-pdo.php -text
 db/tiki-db.php -text
 db/tiki-secdb_2.0_mysql.sql -text
 db/tiki.sql -text
@@ -2662,8 +2664,12 @@ lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
 lib/tiki-js.js -text
 lib/tikiaccesslib.php -text
+lib/tikidate-pear-date.php -text
+lib/tikidate-php5.php -text
 lib/tikidate.php -text
+lib/tikidblib-adodb.php -text
 lib/tikidblib-debug.php -text
+lib/tikidblib-pdo.php -text
 lib/tikidblib.php -text
 lib/tikifck.php -text
 lib/tikihelp/content.html -text
@@ -2711,6 +2717,8 @@ lib/tikihelp/searchdata.html -text
 lib/tikihelp/toolbar.html -text
 lib/tikihelplib.php -text
 lib/tikilib.php -text
+lib/tikisession-adodb.php -text
+lib/tikisession-pdo.php -text
 lib/tikiticketlib.php -text
 lib/trackers/dynamic_list.js -text
 lib/trackers/index.php -text
