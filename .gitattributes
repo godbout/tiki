@@ -1763,6 +1763,7 @@ lib/feedcreator/feedcreator.class.php -text
 lib/feedcreator/lgpl.txt -text
 lib/filegals/filegallib.php -text
 lib/filegals/index.php -text
+lib/filegals/max_upload_size.php -text
 lib/freetag/freetaglib.php -text
 lib/freetag/index.php -text
 lib/games/gamelib.php -text
