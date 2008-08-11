@@ -2995,7 +2995,6 @@ modules/mod-random_images.php -text
 modules/mod-random_pages.php -text
 modules/mod-shoutbox.php -text
 modules/mod-since_last_visit.php -text
-modules/mod-since_last_visit2.php -text
 modules/mod-since_last_visit_new.php -text
 modules/mod-switch_lang.php -text
 modules/mod-switch_lang2.php -text
