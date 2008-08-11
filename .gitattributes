@@ -3608,7 +3608,6 @@ templates/modules/mod-search_wiki_page_new.tpl -text
 templates/modules/mod-shoutbox.tpl -text
 templates/modules/mod-shoutbox.tpl.nocache -text
 templates/modules/mod-since_last_visit.tpl -text
-templates/modules/mod-since_last_visit2.tpl -text
 templates/modules/mod-since_last_visit_new.tpl -text
 templates/modules/mod-switch_lang.tpl -text
 templates/modules/mod-switch_lang2.tpl -text
