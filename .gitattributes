@@ -4024,6 +4024,7 @@ templates/tiki-theme_control.tpl -text
 templates/tiki-theme_control_objects.tpl -text
 templates/tiki-theme_control_sections.tpl -text
 templates/tiki-upload_file.tpl -text
+templates/tiki-upload_file_progress.tpl -text
 templates/tiki-upload_image.tpl -text
 templates/tiki-user_assigned_modules.tpl -text
 templates/tiki-user_bookmarks.tpl -text
