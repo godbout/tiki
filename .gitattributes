@@ -2750,14 +2750,6 @@ lib/webmail/mimeDecode.php -text
 lib/webmail/net_pop3.php -text
 lib/webmail/tikimaillib.php -text
 lib/webmail/webmaillib.php -text
-lib/wiki-plugins-dist/README -text
-lib/wiki-plugins-dist/index.php -text
-lib/wiki-plugins-dist/wikiplugin_bloglist.php -text
-lib/wiki-plugins-dist/wikiplugin_jabber.php -text
-lib/wiki-plugins-dist/wikiplugin_lsdir.php -text
-lib/wiki-plugins-dist/wikiplugin_regex.php -text
-lib/wiki-plugins-dist/wikiplugin_snarf.php -text
-lib/wiki-plugins-dist/wikiplugin_userlist.php -text
 lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_agentinfo.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
@@ -2768,6 +2760,7 @@ lib/wiki-plugins/wikiplugin_articles.php -text
 lib/wiki-plugins/wikiplugin_attach.php -text
 lib/wiki-plugins/wikiplugin_avatar.php -text
 lib/wiki-plugins/wikiplugin_backlinks.php -text
+lib/wiki-plugins/wikiplugin_bloglist.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
 lib/wiki-plugins/wikiplugin_category.php -text
 lib/wiki-plugins/wikiplugin_catorphans.php -text
@@ -2787,9 +2780,11 @@ lib/wiki-plugins/wikiplugin_flash.php -text
 lib/wiki-plugins/wikiplugin_gauge.php -text
 lib/wiki-plugins/wikiplugin_group.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
+lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
 lib/wiki-plugins/wikiplugin_listpages.php -text
+lib/wiki-plugins/wikiplugin_lsdir.php -text
 lib/wiki-plugins/wikiplugin_map.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
@@ -2800,12 +2795,14 @@ lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
+lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
 lib/wiki-plugins/wikiplugin_showpages.php -text
 lib/wiki-plugins/wikiplugin_skype.php -text
+lib/wiki-plugins/wikiplugin_snarf.php -text
 lib/wiki-plugins/wikiplugin_sort.php -text
 lib/wiki-plugins/wikiplugin_split.php -text
 lib/wiki-plugins/wikiplugin_sql.php -text
@@ -2826,6 +2823,7 @@ lib/wiki-plugins/wikiplugin_trackerprefill.php -text
 lib/wiki-plugins/wikiplugin_trackerstat.php -text
 lib/wiki-plugins/wikiplugin_translated.php -text
 lib/wiki-plugins/wikiplugin_usercount.php -text
+lib/wiki-plugins/wikiplugin_userlist.php -text
 lib/wiki-plugins/wikiplugin_versions.php -text
 lib/wiki-plugins/wikiplugin_vote.php -text
 lib/wiki-plugins/wikiplugin_wantedpages.php -text
