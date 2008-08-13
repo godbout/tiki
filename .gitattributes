@@ -2541,7 +2541,6 @@ lib/smarty_tiki/block.remarksbox.php -text
 lib/smarty_tiki/block.repeat.php -text
 lib/smarty_tiki/block.self_link.php -text
 lib/smarty_tiki/block.sortlinks.php -text
-lib/smarty_tiki/block.strip.php -text
 lib/smarty_tiki/block.tikimodule.php -text
 lib/smarty_tiki/block.title.php -text
 lib/smarty_tiki/block.tr.php -text
