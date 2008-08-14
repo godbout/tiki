@@ -3742,7 +3742,6 @@ templates/tiki-admin_calendars.tpl -text
 templates/tiki-admin_categories.tpl -text
 templates/tiki-admin_chart_items.tpl -text
 templates/tiki-admin_charts.tpl -text
-templates/tiki-admin_chat.tpl -text
 templates/tiki-admin_content_templates.tpl -text
 templates/tiki-admin_contribution.tpl -text
 templates/tiki-admin_cookies.tpl -text
