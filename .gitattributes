@@ -4217,7 +4217,6 @@ tests/test_cvs_file.txt -text
 /tiki-faq_questions.php -text
 /tiki-featured_link.php -text
 /tiki-file_archives.php -text
-/tiki-file_galleries.php -text
 /tiki-file_galleries_rankings.php -text
 /tiki-file_galleries_rss.php -text
 /tiki-file_gallery_rss.php -text
