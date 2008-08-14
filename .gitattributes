@@ -3769,7 +3769,6 @@ templates/tiki-admin_quicktags.tpl -text
 templates/tiki-admin_quicktags_content.tpl -text
 templates/tiki-admin_quicktags_edit.tpl -text
 templates/tiki-admin_rssmodules.tpl -text
-templates/tiki-admin_score.tpl -text
 templates/tiki-admin_security.tpl -text
 templates/tiki-admin_shoutbox_words.tpl -text
 templates/tiki-admin_structures.tpl -text
@@ -4149,7 +4148,6 @@ tests/test_cvs_file.txt -text
 /tiki-admin_polls.php -text
 /tiki-admin_quicktags.php -text
 /tiki-admin_rssmodules.php -text
-/tiki-admin_score.php -text
 /tiki-admin_security.php -text
 /tiki-admin_shoutbox_words.php -text
 /tiki-admin_structures.php -text
