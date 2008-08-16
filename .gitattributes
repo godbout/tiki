@@ -102,6 +102,7 @@ doc/devtools/svnbranchreview.php -text
 doc/devtools/svnbranchupdate.php -text
 doc/devtools/svnmerge.php -text
 doc/devtools/svnrevert.sh -text
+doc/devtools/svnswitch.php -text
 doc/devtools/svntools.php -text
 doc/devtools/svnup.sh -text
 doc/devtools/sync.php -text
