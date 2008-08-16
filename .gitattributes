@@ -27,6 +27,7 @@ css/cssmenu_vert.css -text
 css/freetags.css -text
 css/ie6.css -text
 css/jscalendar.css -text
+css/spanky.css -text
 db/.htaccess -text
 db/case_patch.php -text
 db/convertscripts/convertsqls.sh -text
@@ -576,6 +577,10 @@ img/flags/readme.txt -text
 img/flags/the_former_Yugoslav_Republic_of_Macedonia.gif -text
 img/google.gif -text
 img/googleg.gif -text
+img/gradient.png -text
+img/gradient2.png -text
+img/gradient3.png -text
+img/gradient4.png -text
 img/graph/graph.barstack.png -text
 img/graph/graph.multibar.png -text
 img/graph/graph.multiline.png -text
@@ -1658,6 +1663,7 @@ lib/Horde/Yaml/Loader.php -text
 lib/Horde/Yaml/Node.php -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
+lib/admin/magiclib.php -text
 lib/ajax/LICENSE.txt -text
 lib/ajax/README.txt -text
 lib/ajax/ajaxlib.php -text
@@ -3347,6 +3353,7 @@ styles/slideshows/clear.css -text
 styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
+styles/spanky.css -text
 styles/tikineat.css -text
 styles/tikinewt.css -text
 styles/tikinewt/bg_vertline.png -text
@@ -3719,6 +3726,7 @@ templates/tiki-admin-include-wysiwyg.tpl -text
 templates/tiki-admin.tpl -text
 templates/tiki-admin_actionlog.tpl -text
 templates/tiki-admin_banning.tpl -text
+templates/tiki-admin_bar.tpl -text
 templates/tiki-admin_calendars.tpl -text
 templates/tiki-admin_categories.tpl -text
 templates/tiki-admin_chart_items.tpl -text
@@ -3729,6 +3737,7 @@ templates/tiki-admin_cookies.tpl -text
 templates/tiki-admin_drawings.tpl -text
 templates/tiki-admin_dsn.tpl -text
 templates/tiki-admin_external_wikis.tpl -text
+templates/tiki-admin_features.tpl -text
 templates/tiki-admin_forums.tpl -text
 templates/tiki-admin_hotwords.tpl -text
 templates/tiki-admin_html_page_content.tpl -text
@@ -3904,6 +3913,7 @@ templates/tiki-live_support_console.tpl -text
 templates/tiki-live_support_transcripts.tpl -text
 templates/tiki-login.tpl -text
 templates/tiki-login_confirm_email.tpl -text
+templates/tiki-magic.tpl -text
 templates/tiki-mailin.tpl -text
 templates/tiki-minical.tpl -text
 templates/tiki-minical_prefs.tpl -text
@@ -3931,6 +3941,7 @@ templates/tiki-page.tpl -text
 templates/tiki-page_bar.tpl -text
 templates/tiki-pagehistory.tpl -text
 templates/tiki-pagination.tpl -text
+templates/tiki-pandora.tpl -text
 templates/tiki-pick_avatar.tpl -text
 templates/tiki-plugin_help.tpl -text
 templates/tiki-plugin_poll.tpl -text
@@ -4063,6 +4074,7 @@ tests/test_cvs_file.txt -text
 /tiki-admin_actionlog.php -text
 /tiki-admin_banners.php -text
 /tiki-admin_banning.php -text
+/tiki-admin_bar.php -text
 /tiki-admin_calendars.php -text
 /tiki-admin_categories.php -text
 /tiki-admin_chart_items.php -text
@@ -4073,6 +4085,7 @@ tests/test_cvs_file.txt -text
 /tiki-admin_drawings.php -text
 /tiki-admin_dsn.php -text
 /tiki-admin_external_wikis.php -text
+/tiki-admin_features.php -text
 /tiki-admin_forums.php -text
 /tiki-admin_hotwords.php -text
 /tiki-admin_html_page_content.php -text
@@ -4217,6 +4230,7 @@ tests/test_cvs_file.txt -text
 /tiki-export_tracker.php -text
 /tiki-export_wiki_pages.php -text
 /tiki-faq_questions.php -text
+/tiki-feature-load-postprocessor.php -text
 /tiki-featured_link.php -text
 /tiki-file_archives.php -text
 /tiki-file_galleries_rankings.php -text
@@ -4312,6 +4326,7 @@ tests/test_cvs_file.txt -text
 /tiki-login_scr.php -text
 /tiki-login_validate.php -text
 /tiki-logout.php -text
+/tiki-magic.php -text
 /tiki-mailin-code.php -text
 /tiki-mailin.php -text
 /tiki-map.php -text
