@@ -3716,6 +3716,7 @@ templates/tiki-admin-include-profiles.tpl -text
 templates/tiki-admin-include-rss.tpl -text
 templates/tiki-admin-include-score.tpl -text
 templates/tiki-admin-include-search.tpl -text
+templates/tiki-admin-include-semantic.tpl -text
 templates/tiki-admin-include-textarea.tpl -text
 templates/tiki-admin-include-trackers.tpl -text
 templates/tiki-admin-include-userfiles.tpl -text
@@ -4120,6 +4121,7 @@ tests/test_cvs_file.txt -text
 /tiki-admin_include_rss.php -text
 /tiki-admin_include_score.php -text
 /tiki-admin_include_search.php -text
+/tiki-admin_include_semantic.php -text
 /tiki-admin_include_textarea.php -text
 /tiki-admin_include_trackers.php -text
 /tiki-admin_include_userfiles.php -text
