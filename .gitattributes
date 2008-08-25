@@ -2991,6 +2991,7 @@ modules/mod-online_users.php -text
 modules/mod-quick_edit.php -text
 modules/mod-random_images.php -text
 modules/mod-random_pages.php -text
+modules/mod-semantic_links.php -text
 modules/mod-shoutbox.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
@@ -3591,6 +3592,7 @@ templates/modules/mod-search_box.tpl -text
 templates/modules/mod-search_new.tpl -text
 templates/modules/mod-search_wiki_page.tpl -text
 templates/modules/mod-search_wiki_page_new.tpl -text
+templates/modules/mod-semantic_links.tpl -text
 templates/modules/mod-shoutbox.tpl -text
 templates/modules/mod-shoutbox.tpl.nocache -text
 templates/modules/mod-since_last_visit.tpl -text
