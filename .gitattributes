@@ -2006,6 +2006,10 @@ lib/mods/index.php -text
 lib/mods/modslib.php -text
 lib/modules/index.php -text
 lib/modules/modlib.php -text
+lib/mootools/Autocompleter.Request.js -text
+lib/mootools/Autocompleter.css -text
+lib/mootools/Autocompleter.js -text
+lib/mootools/Observer.js -text
 lib/mootools/README.tikiwiki -text
 lib/mootools/extensions/grid/AjaxQueue.js -text
 lib/mootools/extensions/grid/LiveGrid.js -text
