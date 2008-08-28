@@ -1664,6 +1664,7 @@ lib/Horde/Yaml/Loader.php -text
 lib/Horde/Yaml/Node.php -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
+lib/admin/magic-enumerations.php -text
 lib/admin/magiclib.php -text
 lib/ajax/LICENSE.txt -text
 lib/ajax/README.txt -text
