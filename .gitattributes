@@ -4058,6 +4058,7 @@ templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker_filter.tpl -text
+templates/tracker_item_field_googlemap_value.tpl -text
 templates/tracker_item_field_input.tpl -text
 templates/tracker_item_field_value.tpl -text
 templates/translated-lang.tpl -text
