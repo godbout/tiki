@@ -3720,6 +3720,7 @@ templates/tiki-admin-include-messages.tpl -text
 templates/tiki-admin-include-metatags.tpl -text
 templates/tiki-admin-include-module.tpl -text
 templates/tiki-admin-include-multimedia.tpl -text
+templates/tiki-admin-include-plugins.tpl -text
 templates/tiki-admin-include-polls.tpl -text
 templates/tiki-admin-include-profiles.tpl -text
 templates/tiki-admin-include-rss.tpl -text
@@ -4127,6 +4128,7 @@ tests/test_cvs_file.txt -text
 /tiki-admin_include_metatags.php -text
 /tiki-admin_include_module.php -text
 /tiki-admin_include_multimedia.php -text
+/tiki-admin_include_plugins.php -text
 /tiki-admin_include_polls.php -text
 /tiki-admin_include_profiles.php -text
 /tiki-admin_include_rss.php -text
