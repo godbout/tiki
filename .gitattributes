@@ -2755,6 +2755,7 @@ lib/webmail/mimeDecode.php -text
 lib/webmail/net_pop3.php -text
 lib/webmail/tikimaillib.php -text
 lib/webmail/webmaillib.php -text
+lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_agentinfo.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
@@ -3733,6 +3734,7 @@ templates/tiki-admin-include-textarea.tpl -text
 templates/tiki-admin-include-trackers.tpl -text
 templates/tiki-admin-include-userfiles.tpl -text
 templates/tiki-admin-include-webmail.tpl -text
+templates/tiki-admin-include-webservices.tpl -text
 templates/tiki-admin-include-wiki.tpl -text
 templates/tiki-admin-include-wikiatt.tpl -text
 templates/tiki-admin-include-wysiwyg.tpl -text
@@ -4141,6 +4143,7 @@ tests/test_cvs_file.txt -text
 /tiki-admin_include_trackers.php -text
 /tiki-admin_include_userfiles.php -text
 /tiki-admin_include_webmail.php -text
+/tiki-admin_include_webservices.php -text
 /tiki-admin_include_wiki.php -text
 /tiki-admin_include_wikiatt.php -text
 /tiki-admin_include_wysiwyg.php -text
