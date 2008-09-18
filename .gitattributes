@@ -2844,6 +2844,7 @@ lib/wiki/histlib.php -text
 lib/wiki/index.php -text
 lib/wiki/pluginslib.php -text
 lib/wiki/quantifylib.php -text
+lib/wiki/renderlib.php -text
 lib/wiki/semanticlib.php -text
 lib/wiki/wiki-ajax.js -text
 lib/wiki/wiki-ajax.php -text
@@ -3786,6 +3787,7 @@ templates/tiki-admin_trackers.tpl -text
 templates/tiki-admingroups.tpl -text
 templates/tiki-adminusers.tpl -text
 templates/tiki-ajax_header.tpl -text
+templates/tiki-all_languages.tpl -text
 templates/tiki-approve_staging_page.tpl -text
 templates/tiki-article_types.tpl -text
 templates/tiki-articles-js.tpl -text
@@ -4173,6 +4175,7 @@ tests/test_cvs_file.txt -text
 /tiki-admin_trackers.php -text
 /tiki-admingroups.php -text
 /tiki-adminusers.php -text
+/tiki-all_languages.php -text
 /tiki-approve_staging_page.php -text
 /tiki-article_types.php -text
 /tiki-articles_rss.php -text
