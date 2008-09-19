@@ -127,6 +127,7 @@ dump/index.php -text
 /favicon.png -text
 /fgal_listing_conf.php -text
 files/index.php -text
+files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /function.js_maxlength.php -text
