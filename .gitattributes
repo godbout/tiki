@@ -1704,8 +1704,6 @@ lib/class_rss_parser.php -text
 lib/commcenter/commlib.php -text
 lib/commcenter/index.php -text
 lib/commentslib.php -text
-lib/compat/array_fill.func.php -text
-lib/compat/index.php -text
 lib/contribution/contributionlib.php -text
 lib/contribution/index.php -text
 lib/copyrights/copyrightslib.php -text
@@ -2405,7 +2403,6 @@ lib/setup/breadcrumb.php -text
 lib/setup/categories.php -text
 lib/setup/challenge.php -text
 lib/setup/comments_zone.php -text
-lib/setup/compatibility.php -text
 lib/setup/cookies.php -text
 lib/setup/default_homepage.php -text
 lib/setup/dynamic_variables.php -text
