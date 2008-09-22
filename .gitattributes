@@ -2830,6 +2830,7 @@ lib/wiki-plugins/wikiplugin_trackeritemfield.php -text
 lib/wiki-plugins/wikiplugin_trackerlist.php -text
 lib/wiki-plugins/wikiplugin_trackerprefill.php -text
 lib/wiki-plugins/wikiplugin_trackerstat.php -text
+lib/wiki-plugins/wikiplugin_trackertimeline.php -text
 lib/wiki-plugins/wikiplugin_translated.php -text
 lib/wiki-plugins/wikiplugin_usercount.php -text
 lib/wiki-plugins/wikiplugin_userlist.php -text
@@ -4077,6 +4078,7 @@ templates/wiki-plugins/wikiplugin_subscribegroups.tpl -text
 templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
 templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
+templates/wiki-plugins/wikiplugin_trackertimeline.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
