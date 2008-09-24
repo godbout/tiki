@@ -1208,6 +1208,7 @@ import/mediawiki_dump.xsd -text
 installer/.htaccess -text
 installer/index.php -text
 installer/installlib.php -text
+installer/schema/00000000_schema_change_tiki.sql -text
 installer/schema/20080809_semlinks_tiki.sql -text
 installer/schema/20080827_bigfeaturetype_tiki.sql -text
 installer/schema/20080829_pagealiasdata_tiki.sql -text
