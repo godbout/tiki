@@ -1207,6 +1207,17 @@ import/mediawiki_dump.xsd -text
 /index.php -text
 installer/.htaccess -text
 installer/index.php -text
+installer/installlib.php -text
+installer/schema/20080809_semlinks.sql -text
+installer/schema/20080827_bigfeaturetype.sql -text
+installer/schema/20080829_pagealiasdata.sql -text
+installer/schema/20080829_pluginvalidation.sql -text
+installer/schema/20080901_pluginvalidation.sql -text
+installer/schema/20080902_trackerparsedesc.sql -text
+installer/schema/20080905_feature_tip.sql -text
+installer/schema/20080916_webservice_registry.sql -text
+installer/schema/20080922_calendar_customstatus.sql -text
+installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
 lang/.htaccess -text
