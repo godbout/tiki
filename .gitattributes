@@ -2787,6 +2787,7 @@ lib/wiki-plugins/wikiplugin_catpath.php -text
 lib/wiki-plugins/wikiplugin_center.php -text
 lib/wiki-plugins/wikiplugin_chart.php -text
 lib/wiki-plugins/wikiplugin_code.php -text
+lib/wiki-plugins/wikiplugin_content.php -text
 lib/wiki-plugins/wikiplugin_copyright.php -text
 lib/wiki-plugins/wikiplugin_countdown.php -text
 lib/wiki-plugins/wikiplugin_div.php -text
@@ -2802,6 +2803,7 @@ lib/wiki-plugins/wikiplugin_googleanalytics.php -text
 lib/wiki-plugins/wikiplugin_googledoc.php -text
 lib/wiki-plugins/wikiplugin_group.php -text
 lib/wiki-plugins/wikiplugin_iframe.php -text
+lib/wiki-plugins/wikiplugin_img.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
@@ -2819,6 +2821,7 @@ lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
+lib/wiki-plugins/wikiplugin_rcontent.php -text
 lib/wiki-plugins/wikiplugin_redirect.php -text
 lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
