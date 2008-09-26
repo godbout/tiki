@@ -1219,6 +1219,7 @@ installer/schema/20080905_feature_tip_tiki.sql -text
 installer/schema/20080916_webservice_registry_tiki.sql -text
 installer/schema/20080922_calendar_customstatus_tiki.sql -text
 installer/schema/20080924_webmail_tiki.sql -text
+installer/schema/20080926_bannerindex.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
