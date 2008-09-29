@@ -2789,6 +2789,7 @@ lib/wiki-plugins/wikiplugin_center.php -text
 lib/wiki-plugins/wikiplugin_chart.php -text
 lib/wiki-plugins/wikiplugin_code.php -text
 lib/wiki-plugins/wikiplugin_content.php -text
+lib/wiki-plugins/wikiplugin_cookie.php -text
 lib/wiki-plugins/wikiplugin_copyright.php -text
 lib/wiki-plugins/wikiplugin_countdown.php -text
 lib/wiki-plugins/wikiplugin_div.php -text
