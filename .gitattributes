@@ -2693,7 +2693,6 @@ lib/tikidblib.php -text
 lib/tikifck.php -text
 lib/tikihelp/content.html -text
 lib/tikihelp/css/index.php -text
-lib/tikihelp/css/main.css -text svneol=unset#application/octet-stream
 lib/tikihelp/css/menu.css -text svneol=unset#application/octet-stream
 lib/tikihelp/css/toolbar.css -text svneol=unset#application/octet-stream
 lib/tikihelp/history.html -text
