@@ -2659,6 +2659,7 @@ lib/surveys/surveylib.php -text
 lib/swffix/expressInstall.swf -text svneol=unset#unset
 lib/swffix/src/expressInstall.as -text
 lib/swffix/swffix.js -text
+lib/swfobject.js -text
 lib/tabs/aqua-tab-active.png -text
 lib/tabs/aqua-tab.png -text
 lib/tabs/aqua.css -text svneol=unset#application/octet-stream
