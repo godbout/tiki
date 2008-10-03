@@ -4041,6 +4041,7 @@ templates/tiki-site_header_login.tpl -text
 templates/tiki-slideshow.tpl -text
 templates/tiki-smileys.tpl -text
 templates/tiki-special_chars.html -text
+templates/tiki-sqllog.tpl -text
 templates/tiki-stats.tpl -text
 templates/tiki-survey_stats.tpl -text
 templates/tiki-survey_stats_survey.tpl -text
@@ -4469,6 +4470,7 @@ tests/test_cvs_file.txt -text
 /tiki-slideshow.php -text
 /tiki-slideshow2.php -text
 /tiki-special_chars.php -text
+/tiki-sqllog.php -text
 /tiki-stats.php -text
 /tiki-survey_stats.php -text
 /tiki-survey_stats_survey.php -text
