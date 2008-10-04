@@ -1220,6 +1220,7 @@ installer/schema/20080916_webservice_registry_tiki.sql -text
 installer/schema/20080922_calendar_customstatus_tiki.sql -text
 installer/schema/20080924_webmail_tiki.sql -text
 installer/schema/20080926_bannerindex.sql -text
+installer/schema/20081004_mindmap_menu_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -3961,6 +3962,7 @@ templates/tiki-login.tpl -text
 templates/tiki-login_confirm_email.tpl -text
 templates/tiki-magic.tpl -text
 templates/tiki-mailin.tpl -text
+templates/tiki-mindmap.tpl -text
 templates/tiki-minical.tpl -text
 templates/tiki-minical_prefs.tpl -text
 templates/tiki-mods.tpl -text
@@ -4391,6 +4393,7 @@ tests/test_cvs_file.txt -text
 /tiki-map_history.php -text
 /tiki-map_rss.php -text
 /tiki-map_upload.php -text
+/tiki-mindmap.php -text
 /tiki-minical.php -text
 /tiki-minical_export.php -text
 /tiki-minical_prefs.php -text
