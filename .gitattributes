@@ -1221,6 +1221,7 @@ installer/schema/20080922_calendar_customstatus_tiki.sql -text
 installer/schema/20080924_webmail_tiki.sql -text
 installer/schema/20080926_bannerindex.sql -text
 installer/schema/20081004_mindmap_menu_tiki.sql -text
+installer/schema/20081006_comments_moderation.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -2641,7 +2642,6 @@ lib/smarty_tiki/modifier.times.php -text
 lib/smarty_tiki/modifier.tr_if.php -text
 lib/smarty_tiki/modifier.truex.php -text
 lib/smarty_tiki/modifier.truncate.php -text
-lib/smarty_tiki/modifier.ucfirst.php -text
 lib/smarty_tiki/modifier.userlink.php -text
 lib/smarty_tiki/modifier.username.php -text
 lib/smarty_tiki/modifier.utf8unicode.php -text
@@ -3093,6 +3093,8 @@ pics/icons/chart_curve.png -text
 pics/icons/chart_line.png -text
 pics/icons/chart_organisation.png -text
 pics/icons/comment_add.png -text
+pics/icons/comment_approve.png -text
+pics/icons/comment_reject.png -text
 pics/icons/comments.png -text
 pics/icons/control_pause.png -text
 pics/icons/control_play.png -text
