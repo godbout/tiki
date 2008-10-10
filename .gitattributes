@@ -1224,6 +1224,7 @@ installer/schema/20080926_bannerindex.sql -text
 installer/schema/20081004_mindmap_menu_tiki.sql -text
 installer/schema/20081006_comments_moderation.sql -text
 installer/schema/20081008_bit_flags_nullable.sql -text
+installer/schema/20081010_filter_perms_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
