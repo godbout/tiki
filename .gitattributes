@@ -2423,6 +2423,7 @@ lib/setup/breadcrumb.php -text
 lib/setup/categories.php -text
 lib/setup/challenge.php -text
 lib/setup/comments_zone.php -text
+lib/setup/compat.php -text
 lib/setup/cookies.php -text
 lib/setup/default_homepage.php -text
 lib/setup/dynamic_variables.php -text
