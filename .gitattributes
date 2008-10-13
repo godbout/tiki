@@ -4120,7 +4120,6 @@ tests/test_cvs_file.txt -text
 /tiki-edit_wiki_section.php -text
 /tiki-editdrawing.php -text
 /tiki-editpage.php -text
-/tiki-error.php -text
 /tiki-error_simple.php -text
 /tiki-export_sheet.php -text
 /tiki-export_tracker.php -text
