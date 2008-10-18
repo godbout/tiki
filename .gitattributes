@@ -1218,12 +1218,12 @@ installer/schema/20080905_feature_tip_tiki.sql -text
 installer/schema/20080916_webservice_registry_tiki.sql -text
 installer/schema/20080922_calendar_customstatus_tiki.sql -text
 installer/schema/20080924_webmail_tiki.sql -text
-installer/schema/20080926_bannerindex.sql -text
+installer/schema/20080926_bannerindex_tiki.sql -text
 installer/schema/20081004_mindmap_menu_tiki.sql -text
-installer/schema/20081006_comments_moderation.sql -text
-installer/schema/20081008_bit_flags_nullable.sql -text
+installer/schema/20081006_comments_moderation_tiki.sql -text
+installer/schema/20081008_bit_flags_nullable_tiki.sql -text
 installer/schema/20081010_filter_perms_tiki.sql -text
-installer/schema/20081014_trust_input_perm.sql -text
+installer/schema/20081014_trust_input_perm_tiki.sql -text
 installer/schema/20081018_filter_perms_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
