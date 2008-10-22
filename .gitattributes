@@ -1226,6 +1226,7 @@ installer/schema/20081010_filter_perms_tiki.sql -text
 installer/schema/20081014_trust_input_perm_tiki.sql -text
 installer/schema/20081018_filter_perms_tiki.sql -text
 installer/schema/20081019_score_tiki.sql -text
+installer/schema/20081022_application_menu_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
