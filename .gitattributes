@@ -2422,6 +2422,7 @@ lib/smarty_tiki/function.count.php -text
 lib/smarty_tiki/function.ed.php -text
 lib/smarty_tiki/function.editform.php -text
 lib/smarty_tiki/function.elapsed.php -text
+lib/smarty_tiki/function.fgal_browse.php -text
 lib/smarty_tiki/function.fileinfo.php -text
 lib/smarty_tiki/function.gallery.php -text
 lib/smarty_tiki/function.help.php -text
