@@ -1230,6 +1230,7 @@ installer/schema/20081022_application_menu_tiki.sql -text
 installer/schema/20081024_fulltext_file_tiki.sql -text
 installer/schema/20081027_calendar_tiki.sql -text
 installer/schema/20081027_file_galleries_tiki.sql -text
+installer/schema/20081027_trackers_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
