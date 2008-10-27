@@ -2446,6 +2446,7 @@ lib/smarty_tiki/function.sameurl.php -text
 lib/smarty_tiki/function.select_all.php -text
 lib/smarty_tiki/function.set.php -text
 lib/smarty_tiki/function.show_sort.php -text
+lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.tikicon.php -text
 lib/smarty_tiki/function.tree.php -text
 lib/smarty_tiki/function.var_dump.php -text
