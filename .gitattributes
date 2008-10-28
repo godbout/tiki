@@ -1647,6 +1647,7 @@ lib/graph-engine/pdflib.php -text
 lib/graph-engine/ps.php -text
 lib/graph2/ARIALBD.TTF -text svneol=unset#unset
 lib/graph2/graph.php -text
+lib/groupalert/groupalertlib.php -text
 lib/hawhaw/hawhaw.inc -text
 lib/hawhaw/hawiki.inc -text
 lib/hawhaw/hawiki_cfg.inc -text
