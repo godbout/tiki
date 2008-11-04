@@ -2699,6 +2699,7 @@ lib/wiki-plugins/wikiplugin_sub.php -text
 lib/wiki-plugins/wikiplugin_subscribegroup.php -text
 lib/wiki-plugins/wikiplugin_subscribegroups.php -text
 lib/wiki-plugins/wikiplugin_sup.php -text
+lib/wiki-plugins/wikiplugin_survey.php -text
 lib/wiki-plugins/wikiplugin_tag.php -text
 lib/wiki-plugins/wikiplugin_thumb.php -text
 lib/wiki-plugins/wikiplugin_titlesearch.php -text
