@@ -3256,6 +3256,9 @@ styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
 styles/tikineat.css -text
+styles/tikineat/options/blue.css -text
+styles/tikineat/options/mono.css -text
+styles/tikineat/options/warm.css -text
 styles/tikinewt.css -text
 styles/transitions/1.8to2.2.css -text
 styles/transitions/1.9to2.2.css -text
