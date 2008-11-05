@@ -1236,6 +1236,7 @@ installer/schema/20081027_trackers_tiki.sql -text
 installer/schema/20081027_wysiwyg_history_tiki.sql -text
 installer/schema/20081029_tracker_index_tiki.sql -text
 installer/schema/20081102_application_menu_structures.sql -text
+installer/schema/20081105_calendar_items_allday_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
