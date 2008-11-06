@@ -2401,6 +2401,7 @@ lib/slideshow/icons/control_start_blue.png -text
 lib/slideshow/icons/control_stop.png -text
 lib/slideshow/icons/control_stop_blue.png -text
 lib/slideshow/slideshow.rc1.packed.js -text
+lib/smarty_tiki/block.add_help.php -text
 lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
@@ -2453,6 +2454,7 @@ lib/smarty_tiki/function.rss.php -text
 lib/smarty_tiki/function.sameurl.php -text
 lib/smarty_tiki/function.select_all.php -text
 lib/smarty_tiki/function.set.php -text
+lib/smarty_tiki/function.show_help.php -text
 lib/smarty_tiki/function.show_sort.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.tikicon.php -text
@@ -2921,6 +2923,7 @@ modules/mod-users_rank.php -text
 modules/mod-whats_related.php -text
 modules/mod-who_is_there.php -text
 modules/mod-wiki_last_comments.php -text
+pics/help_icon.png -text
 pics/icons/accept.png -text
 pics/icons/add.png -text
 pics/icons/application_add.png -text
@@ -3899,6 +3902,7 @@ templates/tiki-send_objects.tpl -text
 templates/tiki-sheets.tpl -text
 templates/tiki-shoutbox.tpl -text
 templates/tiki-show_calendar.tpl -text
+templates/tiki-show_help.tpl -text
 templates/tiki-show_page.tpl -text
 templates/tiki-show_page_raw.tpl -text
 templates/tiki-simple_plugin.tpl -text
