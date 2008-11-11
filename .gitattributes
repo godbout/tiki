@@ -2451,6 +2451,7 @@ lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup_init.php -text
 lib/smarty_tiki/function.query.php -text
 lib/smarty_tiki/function.rcontent.php -text
+lib/smarty_tiki/function.redirect.php -text
 lib/smarty_tiki/function.reindex_file_pixel.php -text
 lib/smarty_tiki/function.rss.php -text
 lib/smarty_tiki/function.sameurl.php -text
