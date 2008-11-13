@@ -1536,6 +1536,8 @@ lib/admin/magiclib.php -text
 lib/ajax/LICENSE.txt -text
 lib/ajax/README.txt -text
 lib/ajax/ajaxlib.php -text
+lib/ajax/autosave.js -text
+lib/ajax/autosave.php -text
 lib/ajax/lib/activex_off.js -text
 lib/ajax/tiki-ajax.js -text
 lib/ajax/xajax.inc.php -text
@@ -1619,6 +1621,20 @@ lib/faqs/index.php -text
 lib/fckeditor_tiki/.htaccess -text
 lib/fckeditor_tiki/plugins/CleanHTML/fckplugin.js -text
 lib/fckeditor_tiki/plugins/CleanHTML/html.png -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/ajaxAutoSave.css -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/ajaxAutoSave.html -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/ajaxAutoSave.js -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/fckplugin.js -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/images/ajaxAutoSaveClean.gif -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/images/ajaxAutoSaveDirty.gif -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/images/cross_animated.gif -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/images/loadingBig.gif -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/images/loadingSmall.gif -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/images/tick_animated.gif -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/lang/en.js -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/lang/fr.js -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/lang/nl.js -text
+lib/fckeditor_tiki/plugins/ajaxAutoSave/toggleFCKeditor.js -text
 lib/fckeditor_tiki/plugins/tikiimage/fck_tikiimage.php -text
 lib/fckeditor_tiki/plugins/tikiimage/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikiimage/fcktikiimage.css -text
@@ -2424,6 +2440,7 @@ lib/smarty_tiki/block.ws_help.php -text
 lib/smarty_tiki/compiler.assign.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.article.php -text
+lib/smarty_tiki/function.autosave.php -text
 lib/smarty_tiki/function.banner.php -text
 lib/smarty_tiki/function.breadcrumbs.php -text
 lib/smarty_tiki/function.button.php -text
@@ -4089,6 +4106,7 @@ tests/test_cvs_file.txt -text
 /tiki-assignpermission.php -text
 /tiki-assignuser.php -text
 /tiki-atom.php -text
+/tiki-auto_save.php -text
 /tiki-backlinks.php -text
 /tiki-batch_upload.php -text
 /tiki-batch_upload_files.php -text
