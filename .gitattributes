@@ -1540,11 +1540,6 @@ lib/ajax/autosave.js -text
 lib/ajax/autosave.php -text
 lib/ajax/lib/activex_off.js -text
 lib/ajax/tiki-ajax.js -text
-lib/ajax/xajax.inc.php -text
-lib/ajax/xajaxCompress.php -text
-lib/ajax/xajaxResponse.inc.php -text
-lib/ajax/xajax_js/xajax.js -text
-lib/ajax/xajax_js/xajax_uncompressed.js -text
 lib/articles/artlib.php -text
 lib/articles/index.php -text
 lib/bablotron.php -text
