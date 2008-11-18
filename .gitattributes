@@ -3607,8 +3607,6 @@ templates/styles/tikineat/tiki-site_header.tpl -text
 templates/styles/tikineat/tiki-top_bar.tpl -text
 templates/styles/tikineat/tiki.tpl -text
 templates/styles/tikinewt/index.php -text
-templates/tables/index.php -text
-templates/tables/tiki_pages.tpl -text
 templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
 templates/tiki-admin-include-ads.tpl -text
