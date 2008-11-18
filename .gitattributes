@@ -3302,6 +3302,7 @@ templates/bidi.tpl -text
 templates/blog-heading.tpl -text
 templates/browse_file_gallery.tpl -text
 templates/browsedcategory.tpl -text
+templates/categSelectAll.tpl -text
 templates/categobjects.tpl -text
 templates/categorize.tpl -text
 templates/categpath.tpl -text
