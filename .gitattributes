@@ -3764,6 +3764,7 @@ templates/tiki-edit_wiki_section.tpl -text
 templates/tiki-editpage.tpl -text
 templates/tiki-export-sheets.tpl -text
 templates/tiki-export_tracker.tpl -text
+templates/tiki-export_tracker_item.tpl -text
 templates/tiki-export_users.tpl -text
 templates/tiki-faq_questions.tpl -text
 templates/tiki-featured_link.tpl -text
