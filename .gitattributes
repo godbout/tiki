@@ -1241,6 +1241,7 @@ installer/schema/20081107_menu42_tiki.sql -text
 installer/schema/20081112_tiki_p_tracker_view_comments_tiki.sql -text
 installer/schema/20081114_tiki_banner_tiki.sql -text
 installer/schema/20081119_tiki_p_export_tracker_tiki.sql -text
+installer/schema/20081120_showCategories_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
