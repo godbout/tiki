@@ -2715,6 +2715,7 @@ lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
+lib/wiki-plugins/wikiplugin_sharethis.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
 lib/wiki-plugins/wikiplugin_showpages.php -text
 lib/wiki-plugins/wikiplugin_skype.php -text
