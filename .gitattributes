@@ -2144,6 +2144,7 @@ lib/pear/Net/DNS/RR/SRV.php -text
 lib/pear/Net/DNS/RR/TSIG.php -text
 lib/pear/Net/DNS/RR/TXT.php -text
 lib/pear/Net/DNS/Resolver.php -text
+lib/pear/Net/Ping.php -text
 lib/pear/Net/Socket.php -text
 lib/pear/Net/URL.php -text
 lib/pear/Net/index.php -text
