@@ -1591,6 +1591,7 @@ lib/core/test/AllTests.php -text
 lib/core/test/DeclFilter/AllTests.php -text
 lib/core/test/DeclFilter/BaseTest.php -text
 lib/core/test/DeclFilter/CatchAllFilterTest.php -text
+lib/core/test/DeclFilter/ConfigureTest.php -text
 lib/core/test/DeclFilter/StaticKeyTest.php -text
 lib/core/test/JitFilter/AccessTest.php -text
 lib/core/test/JitFilter/AllTests.php -text
