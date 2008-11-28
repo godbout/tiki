@@ -2340,7 +2340,6 @@ lib/setup/patches.php -text
 lib/setup/phplayers.php -text
 lib/setup/polls.php -text
 lib/setup/prefs.php -text
-lib/setup/sanitization.php -text
 lib/setup/sections.php -text
 lib/setup/set_paths.php -text
 lib/setup/site_closed.php -text
