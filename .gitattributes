@@ -1581,6 +1581,8 @@ lib/core/lib/DeclFilter.php -text
 lib/core/lib/DeclFilter/CatchAllFilterRule.php -text
 lib/core/lib/DeclFilter/CatchAllUnsetRule.php -text
 lib/core/lib/DeclFilter/FilterRule.php -text
+lib/core/lib/DeclFilter/KeyPatternFilterRule.php -text
+lib/core/lib/DeclFilter/KeyPatternUnsetRule.php -text
 lib/core/lib/DeclFilter/Rule.php -text
 lib/core/lib/DeclFilter/StaticKeyFilterRule.php -text
 lib/core/lib/DeclFilter/StaticKeyUnsetRule.php -text
@@ -1596,6 +1598,8 @@ lib/core/test/DeclFilter/BaseTest.php -text
 lib/core/test/DeclFilter/CatchAllFilterTest.php -text
 lib/core/test/DeclFilter/CatchAllUnsetTest.php -text
 lib/core/test/DeclFilter/ConfigureTest.php -text
+lib/core/test/DeclFilter/KeyPatternFilterTest.php -text
+lib/core/test/DeclFilter/KeyPatternUnsetTest.php -text
 lib/core/test/DeclFilter/StaticKeyFilterTest.php -text
 lib/core/test/DeclFilter/StaticKeyUnsetTest.php -text
 lib/core/test/JitFilter/AccessTest.php -text
