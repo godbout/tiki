@@ -1578,6 +1578,7 @@ lib/contribution/index.php -text
 lib/copyrights/copyrightslib.php -text
 lib/copyrights/index.php -text
 lib/core/lib/JitFilter.php -text
+lib/core/lib/TikiFilter.php -text
 lib/core/lib/TikiFilter/Callback.php -text
 lib/core/lib/TikiFilter/PreventXss.php -text
 lib/core/lib/TikiFilter/Word.php -text
