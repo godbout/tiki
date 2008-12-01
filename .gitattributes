@@ -36,7 +36,6 @@ db/convertscripts/mysql3tooci8.php -text
 db/convertscripts/mysql3topgsql72.php -text
 db/convertscripts/mysql3tosqlite.php -text
 db/convertscripts/mysql3tosybase.php -text
-db/features.csv -text
 db/fulltext.sql -text
 db/index.php -text
 db/oracle/index.php -text
