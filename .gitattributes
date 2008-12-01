@@ -2018,6 +2018,10 @@ lib/mootools/src/Remote/XHR.js -text
 lib/mootools/src/Window/Window.DomReady.js -text
 lib/mootools/src/Window/Window.Size.js -text
 lib/mootools/src/scripts.json -text
+lib/multilingual/BilingualAligner.php -text
+lib/multilingual/BilingualAlignerTest.php -text
+lib/multilingual/SentenceSegmentor.php -text
+lib/multilingual/SentenceSegmentorTest.php -text
 lib/multilingual/multilinguallib.php -text
 lib/newsletters/index.php -text
 lib/newsletters/nllib.php -text
