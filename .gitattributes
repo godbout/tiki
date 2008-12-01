@@ -2022,6 +2022,8 @@ lib/multilingual/BilingualAligner.php -text
 lib/multilingual/BilingualAlignerTest.php -text
 lib/multilingual/SentenceSegmentor.php -text
 lib/multilingual/SentenceSegmentorTest.php -text
+lib/multilingual/ShortesPathFinderTest.php -text
+lib/multilingual/ShortestPathFinder.php -text
 lib/multilingual/multilinguallib.php -text
 lib/newsletters/index.php -text
 lib/newsletters/nllib.php -text
