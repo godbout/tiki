@@ -1245,6 +1245,7 @@ installer/schema/20081119_tiki_p_export_tracker_tiki.sql -text
 installer/schema/20081120_showCategories_tiki.sql -text
 installer/schema/20081120_tiki_poll_structures_update.sql -text
 installer/schema/20081125_tiki_tracker_types.sql -text
+installer/schema/20081130_tiki_users_permission_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -2051,6 +2052,13 @@ lib/mootools/src/Remote/XHR.js -text
 lib/mootools/src/Window/Window.DomReady.js -text
 lib/mootools/src/Window/Window.Size.js -text
 lib/mootools/src/scripts.json -text
+lib/multilingual/AllTests.php -text
+lib/multilingual/BilingualAligner.php -text
+lib/multilingual/BilingualAlignerTest.php -text
+lib/multilingual/SentenceSegmentor.php -text
+lib/multilingual/SentenceSegmentorTest.php -text
+lib/multilingual/ShortestPathFinder.php -text
+lib/multilingual/ShortestPathFinderTest.php -text
 lib/multilingual/multilinguallib.php -text
 lib/newsletters/index.php -text
 lib/newsletters/nllib.php -text
@@ -2748,6 +2756,7 @@ lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
+lib/wiki-plugins/wikiplugin_share.php -text
 lib/wiki-plugins/wikiplugin_sharethis.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
 lib/wiki-plugins/wikiplugin_showpages.php -text
@@ -3286,6 +3295,8 @@ styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
 styles/amette/gradient.png -text
 styles/darkroom/button.png -text svneol=unset#image/png
+styles/darkroom/down.png -text
+styles/darkroom/right.css -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
 styles/feb12/pagebg.jpg -text svneol=unset#image/jpeg
 styles/index.php -text
