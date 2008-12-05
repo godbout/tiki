@@ -3329,6 +3329,7 @@ templates/comment-footer.tpl -text
 templates/comment-header.tpl -text
 templates/comment.tpl -text
 templates/comments.tpl -text
+templates/comments_button.tpl -text
 templates/confirm.tpl -text
 templates/contribution.tpl -text
 templates/copyrights.tpl -text svneol=unset#application/octet-stream
