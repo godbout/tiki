@@ -1245,6 +1245,7 @@ installer/schema/20081119_tiki_p_export_tracker_tiki.sql -text
 installer/schema/20081120_showCategories_tiki.sql -text
 installer/schema/20081120_tiki_poll_structures_update.sql -text
 installer/schema/20081125_tiki_tracker_types.sql -text
+installer/schema/20081127_calendar_recurrence_tiki.sql -text
 installer/schema/20081130_tiki_users_permission_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -1562,6 +1563,7 @@ lib/breadcrumblib.php -text
 lib/cache/cachelib.php -text
 lib/cache/index.php -text
 lib/calendar/calendarlib.php -text
+lib/calendar/calrecurrence.php -text
 lib/calendar/index.php -text
 lib/calendar/tikicalendarlib.php -text
 lib/categories/categlib.php -text
@@ -3066,6 +3068,8 @@ pics/icons/mime/zip.png -text
 pics/icons/minus_small.png -text
 pics/icons/module.png -text
 pics/icons/monitor.png -text
+pics/icons/more_info.gif -text
+pics/icons/multiple_cal.png -text
 pics/icons/new.png -text
 pics/icons/newspaper_go.png -text
 pics/icons/no_eye.png -text
@@ -3245,7 +3249,9 @@ pics/large/wysiwyg.png -text
 pics/large/wysiwyg48x48.png -text
 pics/large/xfce4-appfinder.png -text
 pics/large/xfce4-appfinder48x48.png -text
+pics/next.gif -text
 pics/overlay-disabled_item.png -text
+pics/prev.gif -text
 pics/trans.png -text
 /plugins_help.php -text
 /poll_categorize.php -text
@@ -3734,12 +3740,15 @@ templates/tiki-browse_gallery.tpl -text
 templates/tiki-browse_image.tpl -text
 templates/tiki-calendar.tpl -text
 templates/tiki-calendar_box.tpl -text
+templates/tiki-calendar_box_multiple.tpl -text
 templates/tiki-calendar_calmode.tpl -text
 templates/tiki-calendar_daymode.tpl -text
 templates/tiki-calendar_edit_item.tpl -text
 templates/tiki-calendar_import.tpl -text
 templates/tiki-calendar_listmode.tpl -text
 templates/tiki-calendar_nav.tpl -text
+templates/tiki-calendar_params_ical.tpl -text
+templates/tiki-calendar_weekmode.tpl -text
 templates/tiki-categpermissions.tpl -text
 templates/tiki-change_password.tpl -text
 templates/tiki-charts.tpl -text
@@ -4136,6 +4145,7 @@ tests/test_cvs_file.txt -text
 /tiki-calendar_edit_item.php -text
 /tiki-calendar_export_ical.php -text
 /tiki-calendar_import.php -text
+/tiki-calendar_params_ical.php -text
 /tiki-calendar_setup.php -text
 /tiki-calendars_rss.php -text
 /tiki-categpermissions.php -text
