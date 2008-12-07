@@ -1595,6 +1595,7 @@ lib/core/lib/JitFilter/Element.php -text
 lib/core/lib/TikiFilter.php -text
 lib/core/lib/TikiFilter/Callback.php -text
 lib/core/lib/TikiFilter/PreventXss.php -text
+lib/core/lib/TikiFilter/RawUnsafe.php -text
 lib/core/lib/TikiFilter/Word.php -text
 lib/core/test/AllTests.php -text
 lib/core/test/DeclFilter/AllTests.php -text
