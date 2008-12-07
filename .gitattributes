@@ -1591,6 +1591,7 @@ lib/core/lib/DeclFilter/StaticKeyFilterRule.php -text
 lib/core/lib/DeclFilter/StaticKeyUnsetRule.php -text
 lib/core/lib/DeclFilter/UnsetRule.php -text
 lib/core/lib/JitFilter.php -text
+lib/core/lib/JitFilter/Element.php -text
 lib/core/lib/TikiFilter.php -text
 lib/core/lib/TikiFilter/Callback.php -text
 lib/core/lib/TikiFilter/PreventXss.php -text
