@@ -1595,6 +1595,9 @@ lib/core/lib/DeclFilter/StaticKeyUnsetRule.php -text
 lib/core/lib/DeclFilter/UnsetRule.php -text
 lib/core/lib/JitFilter.php -text
 lib/core/lib/JitFilter/Element.php -text
+lib/core/lib/Multilingual/Aligner/BilingualAligner.php -text
+lib/core/lib/Multilingual/Aligner/SentenceSegmentor.php -text
+lib/core/lib/Multilingual/Aligner/ShortestPathFinder.php -text
 lib/core/lib/TikiFilter.php -text
 lib/core/lib/TikiFilter/Callback.php -text
 lib/core/lib/TikiFilter/PreventXss.php -text
@@ -1614,6 +1617,11 @@ lib/core/test/JitFilter/AccessTest.php -text
 lib/core/test/JitFilter/AllTests.php -text
 lib/core/test/JitFilter/FilterTest.php -text
 lib/core/test/JitFilter/IteratorTest.php -text
+lib/core/test/Multilingual/Aligner/AllTests.php -text
+lib/core/test/Multilingual/Aligner/BilingualAlignerTest.php -text
+lib/core/test/Multilingual/Aligner/SentenceSegmentorTest.php -text
+lib/core/test/Multilingual/Aligner/ShortestPathFinderTest.php -text
+lib/core/test/Multilingual/AllTests.php -text
 lib/core/test/TikiFilter/AllTests.php -text
 lib/core/test/TikiFilter/CallbackTest.php -text
 lib/core/test/TikiFilter/MapTest.php -text
@@ -2059,13 +2067,6 @@ lib/mootools/src/Remote/XHR.js -text
 lib/mootools/src/Window/Window.DomReady.js -text
 lib/mootools/src/Window/Window.Size.js -text
 lib/mootools/src/scripts.json -text
-lib/multilingual/AllTests.php -text
-lib/multilingual/BilingualAligner.php -text
-lib/multilingual/BilingualAlignerTest.php -text
-lib/multilingual/SentenceSegmentor.php -text
-lib/multilingual/SentenceSegmentorTest.php -text
-lib/multilingual/ShortestPathFinder.php -text
-lib/multilingual/ShortestPathFinderTest.php -text
 lib/multilingual/multilinguallib.php -text
 lib/newsletters/index.php -text
 lib/newsletters/nllib.php -text
