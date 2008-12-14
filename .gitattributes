@@ -1250,6 +1250,7 @@ installer/schema/20081130_tiki_users_permission_tiki.sql -text
 installer/schema/20081211_newsletter_files_tiki.sql -text
 installer/schema/20081211_score_tiki.sql -text
 installer/schema/20081212_tiki_p_view_backlinks_tiki.sql -text
+installer/schema/20081214_webservice_post_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
