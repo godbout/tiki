@@ -19,6 +19,7 @@ installer/.htaccess
 lang/.htaccess
 lib/.htaccess
 lib/Galaxia/processes/*
+lib/core/test/foo.txt
 lib/smarty
 /maps
 /mods
