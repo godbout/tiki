@@ -1237,7 +1237,7 @@ installer/schema/20081027_wysiwyg_history_tiki.sql -text
 installer/schema/20081029_tracker_index_tiki.sql -text
 installer/schema/20081102_application_menu_structures_tiki.sql -text
 installer/schema/20081105_calendar_items_allday_tiki.sql -text
-installer/schema/20081105_calendar_items_allday_update.sql -text
+installer/schema/20081105_calendar_items_allday_update_tiki.sql -text
 installer/schema/20081107_menu42_tiki.sql -text
 installer/schema/20081112_tiki_p_tracker_view_comments_tiki.sql -text
 installer/schema/20081114_tiki_banner_tiki.sql -text
