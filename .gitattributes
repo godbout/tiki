@@ -4011,6 +4011,7 @@ templates/tiki-userfiles.tpl -text
 templates/tiki-usermenu.tpl -text
 templates/tiki-userversions.tpl -text
 templates/tiki-view-sheets.tpl -text
+templates/tiki-view_articles-titleonly.tpl -text
 templates/tiki-view_articles.tpl -text
 templates/tiki-view_banner.tpl -text
 templates/tiki-view_blog.tpl -text
