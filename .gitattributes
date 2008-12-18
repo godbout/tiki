@@ -2554,6 +2554,7 @@ lib/smarty_tiki/modifier.truncate.php -text
 lib/smarty_tiki/modifier.userlink.php -text
 lib/smarty_tiki/modifier.username.php -text
 lib/smarty_tiki/modifier.utf8unicode.php -text
+lib/smarty_tiki/modifier.yesno.php -text
 lib/smarty_tiki/outputfilter.highlight.php -text
 lib/smarty_tiki/outputfilter.ticket.php -text
 lib/smarty_tiki/prefilter.ticket.php -text
