@@ -2532,6 +2532,7 @@ lib/smarty_tiki/modifier.htmldecode.php -text
 lib/smarty_tiki/modifier.iconify.php -text
 lib/smarty_tiki/modifier.isodate.php -text
 lib/smarty_tiki/modifier.kbsize.php -text
+lib/smarty_tiki/modifier.langname.php -text
 lib/smarty_tiki/modifier.lcfirst.php -text
 lib/smarty_tiki/modifier.max_user_inscriptions.php -text
 lib/smarty_tiki/modifier.nlbr.php -text
