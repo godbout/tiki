@@ -4360,7 +4360,6 @@ tests/test_cvs_file.txt -text
 /tiki-page.php -text
 /tiki-page_loader.php -text
 /tiki-pagehistory.php -text
-/tiki-pagesetup.php -text
 /tiki-parsemode_setup.php -text
 /tiki-phpinfo.php -text
 /tiki-pick_avatar.php -text
