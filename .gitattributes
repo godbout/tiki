@@ -4058,6 +4058,7 @@ tests/.htaccess -text
 tests/index.php -text
 tests/messu-compose.tpl -text
 tests/test_cvs_file.txt -text
+tests/testfile.txt -text
 /textareasize.php -text
 /tiki-action_calendar.php -text
 /tiki-admin.php -text
