@@ -3881,6 +3881,7 @@ templates/tiki-ical.tpl -text
 templates/tiki-imexport_languages.tpl -text
 templates/tiki-import-sheets.tpl -text
 templates/tiki-import_structuredtext.tpl -text
+templates/tiki-import_xml_zip.tpl -text
 templates/tiki-index_p.tpl -text
 templates/tiki-information.tpl -text
 templates/tiki-install.tpl -text
@@ -4299,6 +4300,7 @@ tests/testfile.txt -text
 /tiki-import_sheet.php -text
 /tiki-import_structuredtext.php -text
 /tiki-import_tracker.php -text
+/tiki-import_xml_zip.php -text
 /tiki-index.php -text
 /tiki-index_p.php -text
 /tiki-index_raw.php -text
