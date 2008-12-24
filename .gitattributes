@@ -2793,6 +2793,7 @@ lib/wiki/semanticlib.php -text
 lib/wiki/wiki-ajax.js -text
 lib/wiki/wiki-ajax.php -text
 lib/wiki/wikilib.php -text
+lib/wiki/xmllib.php -text
 lib/wiki3d/Balancer.class -text svneol=unset#unset
 lib/wiki3d/Balancer.java -text
 lib/wiki3d/Camera.class -text svneol=unset#unset
@@ -3813,6 +3814,8 @@ templates/tiki-edit_translation.tpl -text
 templates/tiki-edit_wiki_section.tpl -text
 templates/tiki-editpage.tpl -text
 templates/tiki-export-sheets.tpl -text
+templates/tiki-export_comment_xml.tpl -text
+templates/tiki-export_page_xml.tpl -text
 templates/tiki-export_tracker.tpl -text
 templates/tiki-export_tracker_item.tpl -text
 templates/tiki-export_users.tpl -text
