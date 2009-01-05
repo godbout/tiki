@@ -3635,6 +3635,14 @@ templates/multiplayer.tpl -text
 templates/pagehistory.tpl -text
 templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
+templates/print/print-decorator_indexed.tpl -text
+templates/print/print-decorator_indexrow.tpl -text
+templates/print/print-index_footer.tpl -text
+templates/print/print-index_header.tpl -text
+templates/print/print-object_wiki.tpl -text
+templates/print/print-page_footer.tpl -text
+templates/print/print-page_header.tpl -text
+templates/print/print-title_wiki.tpl -text
 templates/remarksbox.tpl -text
 templates/sent_newsletters.tpl -text
 templates/setup_fckeditor.tpl -text
@@ -4392,6 +4400,7 @@ tests/testfile.txt -text
 /tiki-print.php -text
 /tiki-print_article.php -text
 /tiki-print_blog_post.php -text
+/tiki-print_indexed.php -text
 /tiki-print_multi_pages.php -text
 /tiki-print_pages.php -text
 /tiki-pv_chart.php -text
