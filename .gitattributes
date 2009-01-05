@@ -3639,9 +3639,11 @@ templates/print/print-decorator_indexed.tpl -text
 templates/print/print-decorator_indexrow.tpl -text
 templates/print/print-index_footer.tpl -text
 templates/print/print-index_header.tpl -text
+templates/print/print-object_trackeritem.tpl -text
 templates/print/print-object_wiki.tpl -text
 templates/print/print-page_footer.tpl -text
 templates/print/print-page_header.tpl -text
+templates/print/print-title_trackeritem.tpl -text
 templates/print/print-title_wiki.tpl -text
 templates/remarksbox.tpl -text
 templates/sent_newsletters.tpl -text
