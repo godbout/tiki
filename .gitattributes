@@ -1719,8 +1719,6 @@ lib/graph-engine/graph.multiline.php -text
 lib/graph-engine/graph.pie.php -text
 lib/graph-engine/pdflib.php -text
 lib/graph-engine/ps.php -text
-lib/graph2/ARIALBD.TTF -text svneol=unset#unset
-lib/graph2/graph.php -text
 lib/groupalert/groupalertlib.php -text
 lib/groupalert/index.php -text
 lib/hawhaw/hawhaw.inc -text
