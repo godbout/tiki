@@ -4432,6 +4432,7 @@ tests/testfile.txt -text
 /tiki-searchindex.php -text
 /tiki-searchresults.php -text
 /tiki-section_options.php -text
+/tiki-sefurl.php -text
 /tiki-send_blog_post.php -text
 /tiki-send_newsletters.php -text
 /tiki-send_objects.php -text
