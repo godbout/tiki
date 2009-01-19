@@ -2321,6 +2321,7 @@ lib/phplayers_tiki/tiki-phplayers.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
+lib/profilelib/channellib.php -text
 lib/profilelib/installlib.php -text
 lib/profilelib/listlib.php -text
 lib/profilelib/profilelib.php -text
@@ -4208,6 +4209,7 @@ tests/testfile.txt -text
 /tiki-calendars_rss.php -text
 /tiki-categpermissions.php -text
 /tiki-change_password.php -text
+/tiki-channel.php -text
 /tiki-charts.php -text
 /tiki-cms_rankings.php -text
 /tiki-confirm_user_email.php -text
