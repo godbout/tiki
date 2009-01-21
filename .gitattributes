@@ -2719,6 +2719,7 @@ lib/wiki-plugins/wikiplugin_annotation.php -text
 lib/wiki-plugins/wikiplugin_article.php -text
 lib/wiki-plugins/wikiplugin_articles.php -text
 lib/wiki-plugins/wikiplugin_attach.php -text
+lib/wiki-plugins/wikiplugin_audioplayer.php -text
 lib/wiki-plugins/wikiplugin_avatar.php -text
 lib/wiki-plugins/wikiplugin_back.php -text
 lib/wiki-plugins/wikiplugin_backlinks.php -text
