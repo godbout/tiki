@@ -1252,7 +1252,7 @@ installer/schema/20081211_score_tiki.sql -text
 installer/schema/20081212_tiki_p_view_backlinks_tiki.sql -text
 installer/schema/20081214_webservice_post_tiki.sql -text
 installer/schema/20090106_group_watch_tiki.sql -text
-installer/schema/20090120_lost_2.0to3.0.sql -text
+installer/schema/20090120_lost_2.0to3.0_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
