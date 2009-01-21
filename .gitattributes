@@ -4086,6 +4086,7 @@ templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
 templates/wiki-plugins/wikiplugin_files.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
+templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroups.tpl -text
@@ -4097,7 +4098,6 @@ templates/wiki-plugins/wikiplugin_vote.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
-templates/wikiplugin_listpagenames.tpl -text
 tests/.htaccess -text
 tests/index.php -text
 tests/messu-compose.tpl -text
