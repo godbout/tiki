@@ -2762,11 +2762,11 @@ lib/wiki-plugins/wikiplugin_lastmod.php -text
 lib/wiki-plugins/wikiplugin_listpages.php -text
 lib/wiki-plugins/wikiplugin_lsdir.php -text
 lib/wiki-plugins/wikiplugin_map.php -text
+lib/wiki-plugins/wikiplugin_mediaplayer.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
 lib/wiki-plugins/wikiplugin_mono.php -text
 lib/wiki-plugins/wikiplugin_mouseover.php -text
-lib/wiki-plugins/wikiplugin_mp3_flv_player.php -text
 lib/wiki-plugins/wikiplugin_mwtable.php -text
 lib/wiki-plugins/wikiplugin_myspace.php -text
 lib/wiki-plugins/wikiplugin_objecthits.php -text
