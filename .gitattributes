@@ -1608,8 +1608,10 @@ lib/core/lib/TikiFilter/PreventXss.php -text
 lib/core/lib/TikiFilter/RawUnsafe.php -text
 lib/core/lib/TikiFilter/Word.php -text
 lib/core/lib/WikiParser/PluginArgumentParser.php -text
+lib/core/lib/WikiParser/PluginDefinition.php -text
 lib/core/lib/WikiParser/PluginMatcher.php -text
 lib/core/lib/WikiParser/PluginParser.php -text
+lib/core/lib/WikiParser/PluginRepository.php -text
 lib/core/lib/WikiParser/PluginRunner.php -text
 lib/core/test/AllTests.php -text
 lib/core/test/DeclFilter/AllTests.php -text
@@ -1639,6 +1641,8 @@ lib/core/test/WikiParser/AllTests.php -text
 lib/core/test/WikiParser/PluginArgumentParserTest.php -text
 lib/core/test/WikiParser/PluginMatcherTest.php -text
 lib/core/test/WikiParser/PluginParserTest.php -text
+lib/core/test/WikiParser/PluginRepositoryTest.php -text
+lib/core/test/WikiParser/wikiplugin_foo.php -text
 lib/csslib.php -text
 lib/db/tiki_registration_fields.php -text
 lib/db/tikitable.php -text
