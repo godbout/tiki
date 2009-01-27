@@ -1602,6 +1602,7 @@ lib/core/lib/JitFilter/Element.php -text
 lib/core/lib/Multilingual/Aligner/BilingualAligner.php -text
 lib/core/lib/Multilingual/Aligner/SentenceSegmentor.php -text
 lib/core/lib/Multilingual/Aligner/ShortestPathFinder.php -text
+lib/core/lib/Multilingual/MachineTranslation/GoogleTranslateWrapper.php -text
 lib/core/lib/TikiFilter.php -text
 lib/core/lib/TikiFilter/Callback.php -text
 lib/core/lib/TikiFilter/PreventXss.php -text
@@ -1632,6 +1633,8 @@ lib/core/test/Multilingual/Aligner/BilingualAlignerTest.php -text
 lib/core/test/Multilingual/Aligner/SentenceSegmentorTest.php -text
 lib/core/test/Multilingual/Aligner/ShortestPathFinderTest.php -text
 lib/core/test/Multilingual/AllTests.php -text
+lib/core/test/Multilingual/MachineTranslation/AllTests.php -text
+lib/core/test/Multilingual/MachineTranslation/GoogleTranslateWrapperTest.php -text
 lib/core/test/TikiFilter/AllTests.php -text
 lib/core/test/TikiFilter/CallbackTest.php -text
 lib/core/test/TikiFilter/MapTest.php -text

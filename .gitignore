@@ -20,6 +20,7 @@ lang/.htaccess
 lib/.htaccess
 lib/Galaxia/processes/*
 lib/core/test/foo.txt
+lib/core/test/temp/cache/*
 lib/smarty
 /maps
 /mods
