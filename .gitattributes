@@ -1642,6 +1642,7 @@ lib/core/test/TikiFilter/CallbackTest.php -text
 lib/core/test/TikiFilter/MapTest.php -text
 lib/core/test/TikiFilter/WordTest.php -text
 lib/core/test/TikiFilter/XssTest.php -text
+lib/core/test/TikiTestCase.php -text
 lib/core/test/WikiParser/AllTests.php -text
 lib/core/test/WikiParser/PluginArgumentParserTest.php -text
 lib/core/test/WikiParser/PluginMatcherTest.php -text
