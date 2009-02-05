@@ -3288,6 +3288,7 @@ styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/down.png -text
 styles/darkroom/options/small-type.css -text
 styles/darkroom/right.css -text
+styles/darkroom/right.png -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
 styles/feb12/header.jpg -text svneol=unset#image/jpeg
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
