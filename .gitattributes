@@ -2838,31 +2838,6 @@ lib/wiki/wiki-ajax.js -text
 lib/wiki/wiki-ajax.php -text
 lib/wiki/wikilib.php -text
 lib/wiki/xmllib.php -text
-lib/wiki3d/Balancer.class -text svneol=unset#unset
-lib/wiki3d/Balancer.java -text
-lib/wiki3d/Camera.class -text svneol=unset#unset
-lib/wiki3d/Camera.java -text
-lib/wiki3d/Config.class -text svneol=unset#unset
-lib/wiki3d/Config.java -text
-lib/wiki3d/Face.class -text svneol=unset#unset
-lib/wiki3d/Face.java -text
-lib/wiki3d/Graph.class -text svneol=unset#unset
-lib/wiki3d/Graph.java -text
-lib/wiki3d/Matrix3D.class -text svneol=unset#unset
-lib/wiki3d/Matrix3D.java -text
-lib/wiki3d/Navigator.class -text svneol=unset#unset
-lib/wiki3d/Navigator.java -text
-lib/wiki3d/Node.class -text svneol=unset#unset
-lib/wiki3d/Node.java -text
-lib/wiki3d/README.txt -text
-lib/wiki3d/SpeedVector.class -text svneol=unset#unset
-lib/wiki3d/SpeedVector.java -text
-lib/wiki3d/Vertex.class -text svneol=unset#unset
-lib/wiki3d/Vertex.java -text
-lib/wiki3d/XmlReader.class -text svneol=unset#unset
-lib/wiki3d/XmlReader.java -text
-lib/wiki3d/morcego-0.3.jar -text
-lib/wiki3d/morcego-0.4.0.jar -text
 lib/wiki3d/src/java/br/arca/morcego/Config.java -text
 lib/wiki3d/src/java/br/arca/morcego/Morcego.java -text
 lib/wiki3d/src/java/br/arca/morcego/component/DescriptionBox.java -text
@@ -2898,7 +2873,6 @@ lib/wiki3d/src/test/br/arca/morcego/CameraTest.java -text
 lib/wiki3d/src/test/br/arca/morcego/ConfigTest.java -text
 lib/wiki3d/src/test/br/arca/morcego/Matrix3DTest.java -text
 lib/wiki3d/src/test/br/arca/morcego/Vertex3DTest.java -text
-lib/wiki3d/xmlrpc-1.2-b1.jar -text
 lib/x/index.php -text
 lib/x/x.js -text
 lib/x/x_anim.js -text
