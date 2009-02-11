@@ -3234,6 +3234,12 @@ pics/large/metatags48x48.png -text
 pics/large/mplayer48x48.png -text
 pics/large/multimedia.png -text
 pics/large/multimedia48x48.png -text
+pics/large/plugins.png -text
+pics/large/plugins48x48.png -text
+pics/large/profiles.png -text
+pics/large/profiles48x48.png -text
+pics/large/semantic.png -text
+pics/large/semantic48x48.png -text
 pics/large/stock_about.png -text
 pics/large/stock_about48x48.png -text
 pics/large/stock_bold.png -text
@@ -3263,6 +3269,8 @@ pics/large/users.png -text
 pics/large/users48x48.png -text
 pics/large/vcard.png -text
 pics/large/vcard48x48.png -text
+pics/large/webservices.png -text
+pics/large/webservices48x48.png -text
 pics/large/wikipages.png -text
 pics/large/wikipages48x48.png -text
 pics/large/wysiwyg.png -text
