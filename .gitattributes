@@ -1260,6 +1260,7 @@ installer/schema/20090203_null_tiki.sql -text
 installer/schema/20090205_menucase_tiki.sql -text
 installer/schema/20090206_content_tpl_menu_tiki.sql -text
 installer/schema/20090211_mailnotification_tiki.sql -text
+installer/schema/20090212_forum_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
