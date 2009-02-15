@@ -4089,6 +4089,7 @@ templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 tests/.htaccess -text
+tests/example.txt -text
 tests/index.php -text
 tests/messu-compose.tpl -text
 tests/test_cvs_file.txt -text
