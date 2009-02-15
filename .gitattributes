@@ -3335,6 +3335,15 @@ styles/slideshows/clear.css -text
 styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
+styles/strasa/box_bottom.gif -text
+styles/strasa/box_top.gif -text
+styles/strasa/headerbg.jpg -text svneol=unset#image/jpeg
+styles/strasa/info_icon.png -text svneol=unset#image/png
+styles/strasa/link_icon.png -text svneol=unset#image/png
+styles/strasa/login.jpg -text svneol=unset#image/jpeg
+styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
+styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
+styles/strasa/register.jpg -text svneol=unset#image/jpeg
 styles/tikineat.css -text
 styles/tikineat/options/blue.css -text
 styles/tikineat/options/mono.css -text
