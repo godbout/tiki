@@ -2751,6 +2751,7 @@ lib/wiki-plugins/wikiplugin_content.php -text
 lib/wiki-plugins/wikiplugin_cookie.php -text
 lib/wiki-plugins/wikiplugin_copyright.php -text
 lib/wiki-plugins/wikiplugin_countdown.php -text
+lib/wiki-plugins/wikiplugin_dbreport.php -text
 lib/wiki-plugins/wikiplugin_div.php -text
 lib/wiki-plugins/wikiplugin_dl.php -text
 lib/wiki-plugins/wikiplugin_draw.php -text
@@ -2769,6 +2770,7 @@ lib/wiki-plugins/wikiplugin_gauge.php -text
 lib/wiki-plugins/wikiplugin_googleanalytics.php -text
 lib/wiki-plugins/wikiplugin_googledoc.php -text
 lib/wiki-plugins/wikiplugin_group.php -text
+lib/wiki-plugins/wikiplugin_html.php -text
 lib/wiki-plugins/wikiplugin_iframe.php -text
 lib/wiki-plugins/wikiplugin_image.php -text
 lib/wiki-plugins/wikiplugin_img.php -text
