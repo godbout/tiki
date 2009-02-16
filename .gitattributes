@@ -1243,7 +1243,7 @@ installer/schema/20081112_tiki_p_tracker_view_comments_tiki.sql -text
 installer/schema/20081114_tiki_banner_tiki.sql -text
 installer/schema/20081119_tiki_p_export_tracker_tiki.sql -text
 installer/schema/20081120_showCategories_tiki.sql -text
-installer/schema/20081120_tiki_poll_structures_update.sql -text
+installer/schema/20081120_tiki_poll_structures_update_tiki.sql -text
 installer/schema/20081125_tiki_tracker_types.sql -text
 installer/schema/20081127_calendar_recurrence_tiki.sql -text
 installer/schema/20081130_tiki_users_permission_tiki.sql -text
