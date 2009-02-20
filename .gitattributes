@@ -1261,6 +1261,7 @@ installer/schema/20090206_content_tpl_menu_tiki.sql -text
 installer/schema/20090206_poll_tiki.sql -text
 installer/schema/20090211_mailnotification_tiki.sql -text
 installer/schema/20090212_forum_tiki.sql -text
+installer/schema/20090220_admin_section_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
