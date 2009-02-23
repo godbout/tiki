@@ -4468,6 +4468,7 @@ tests/testfile.txt -text
 /tiki-take_survey.php -text
 /tiki-tc.php -text
 /tiki-tell_a_friend.php -text
+/tiki-testGD.php -text
 /tiki-theme_control.php -text
 /tiki-theme_control_objects.php -text
 /tiki-theme_control_sections.php -text
