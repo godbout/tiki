@@ -2761,6 +2761,7 @@ lib/wiki-plugins/wikiplugin_equation.php -text
 lib/wiki-plugins/wikiplugin_events.php -text
 lib/wiki-plugins/wikiplugin_example.php -text
 lib/wiki-plugins/wikiplugin_fade.php -text
+lib/wiki-plugins/wikiplugin_fancylist.php -text
 lib/wiki-plugins/wikiplugin_fancytable.php -text
 lib/wiki-plugins/wikiplugin_file.php -text
 lib/wiki-plugins/wikiplugin_files.php -text
@@ -3344,6 +3345,7 @@ styles/strasa/box_top.gif -text
 styles/strasa/headerbg.jpg -text svneol=unset#image/jpeg
 styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
+styles/strasa/list_icon.png -text
 styles/strasa/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
