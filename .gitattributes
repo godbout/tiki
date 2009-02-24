@@ -3226,6 +3226,8 @@ pics/large/gnome-settings-font48x48.png -text
 pics/large/gnome-sound-recorder48x48.png -text
 pics/large/google_maps.png -text
 pics/large/google_maps48x48.png -text
+pics/large/goto.png -text
+pics/large/goto48x48.png -text
 pics/large/i18n.png -text
 pics/large/i18n48x48.png -text
 pics/large/icon-configuration.png -text
@@ -3727,6 +3729,7 @@ templates/tiki-admin-include-profiles.tpl -text
 templates/tiki-admin-include-rss.tpl -text
 templates/tiki-admin-include-score.tpl -text
 templates/tiki-admin-include-search.tpl -text
+templates/tiki-admin-include-sefurl.tpl -text
 templates/tiki-admin-include-semantic.tpl -text
 templates/tiki-admin-include-textarea.tpl -text
 templates/tiki-admin-include-trackers.tpl -text
@@ -4154,6 +4157,7 @@ tests/testfile.txt -text
 /tiki-admin_include_rss.php -text
 /tiki-admin_include_score.php -text
 /tiki-admin_include_search.php -text
+/tiki-admin_include_sefurl.php -text
 /tiki-admin_include_semantic.php -text
 /tiki-admin_include_textarea.php -text
 /tiki-admin_include_trackers.php -text
