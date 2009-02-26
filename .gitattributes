@@ -1255,6 +1255,7 @@ installer/schema/20090106_group_watch_tiki.sql -text
 installer/schema/20090120_lost_2.0to3.0_tiki.sql -text
 installer/schema/20090120_sefurl_rules_tiki.sql -text
 installer/schema/20090129_callendar_search_tiki.sql -text
+installer/schema/200902026_admin_menu_tiki.sql -text
 installer/schema/20090203_null_tiki.sql -text
 installer/schema/20090205_menucase_tiki.sql -text
 installer/schema/20090206_content_tpl_menu_tiki.sql -text
