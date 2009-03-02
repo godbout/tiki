@@ -1205,6 +1205,7 @@ img/wiki/index.php -text
 img/wiki_up/README -text
 img/wiki_up/index.php -text
 import/import_mediawiki_dump.php -text
+import/index.php -text
 import/mediawiki_dump.xsd -text
 /index.php -text
 installer/.htaccess -text
