@@ -6,7 +6,6 @@
 /ZendPlatform
 /ZendStudioServer
 backups/*
-bin/.htaccess
 db/.htaccess
 db/local.php
 /dummy.php
