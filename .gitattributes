@@ -60,6 +60,7 @@ db/tiki_1.9to2.0.sql -text
 db/tiki_2.0to3.0.sql -text
 /display_banner.php -text
 doc/99_tiki-apache.conf -text
+doc/devtools/.htaccess -text
 doc/devtools/README.txt -text
 doc/devtools/add1tiki2multi.py -text
 doc/devtools/backupdb.sh -text
@@ -89,6 +90,7 @@ doc/devtools/phpstrip.sh -text
 doc/devtools/premerge_report.sh -text
 doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/release.php -text
+doc/devtools/release_changelog.php -text
 doc/devtools/removehtaccess.sh -text
 doc/devtools/restorehelp.php -text
 doc/devtools/search_smarty_prefs-2.0.php -text
@@ -1204,6 +1206,7 @@ img/wiki/index.php -text
 img/wiki_up/README -text
 img/wiki_up/index.php -text
 import/import_mediawiki_dump.php -text
+import/index.php -text
 import/mediawiki_dump.xsd -text
 /index.php -text
 installer/.htaccess -text
@@ -1264,6 +1267,7 @@ installer/schema/20090206_poll_tiki.sql -text
 installer/schema/20090211_mailnotification_tiki.sql -text
 installer/schema/20090212_forum_tiki.sql -text
 installer/schema/20090220_admin_section_tiki.sql -text
+installer/schema/20090301_browsertitle_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
