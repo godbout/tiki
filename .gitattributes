@@ -8,9 +8,6 @@ backups/README -text
 backups/index.php -text
 /banner_click.php -text
 /banner_image.php -text
-bin/.htaccess -text
-bin/cvschangeroot.sh -text
-bin/index.php -text
 /categorize.php -text
 /categorize_list.php -text
 /changelog.txt -text
@@ -91,6 +88,7 @@ doc/devtools/premerge_report.sh -text
 doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/release.php -text
 doc/devtools/release_changelog.php -text
+doc/devtools/release_copyright.php -text
 doc/devtools/removehtaccess.sh -text
 doc/devtools/restorehelp.php -text
 doc/devtools/search_smarty_prefs-2.0.php -text
