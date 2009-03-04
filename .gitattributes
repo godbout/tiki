@@ -2851,10 +2851,14 @@ lib/structures/index.php -text
 lib/structures/structlib.php -text
 lib/surveys/index.php -text
 lib/surveys/surveylib.php -text
-lib/swffix/expressInstall.swf -text svneol=unset#unset
-lib/swffix/src/expressInstall.as -text
-lib/swffix/swffix.js -text
-lib/swfobject.js -text
+lib/swfobject/expressInstall.swf -text
+lib/swfobject/index.html -text
+lib/swfobject/index_dynamic.html -text
+lib/swfobject/src/expressInstall.as -text
+lib/swfobject/src/expressInstall.fla -text
+lib/swfobject/src/swfobject.js -text
+lib/swfobject/swfobject.js -text
+lib/swfobject/test.swf -text
 lib/tabs/aqua-tab-active.png -text
 lib/tabs/aqua-tab.png -text
 lib/tabs/aqua.css -text svneol=unset#application/octet-stream
