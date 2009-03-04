@@ -1210,6 +1210,7 @@ import/mediawiki_dump.xsd -text
 installer/.htaccess -text
 installer/index.php -text
 installer/installlib.php -text
+installer/schema/20090301_browsertitle_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
