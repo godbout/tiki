@@ -1266,6 +1266,7 @@ installer/schema/20090211_mailnotification_tiki.sql -text
 installer/schema/20090212_forum_tiki.sql -text
 installer/schema/20090220_admin_section_tiki.sql -text
 installer/schema/20090301_browsertitle_tiki.sql -text
+installer/schema/20090304_tiki_p_view_backlink_without_s_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
