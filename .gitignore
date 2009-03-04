@@ -8,6 +8,7 @@
 backups/*
 db/.htaccess
 db/local.php
+db/virtuals.inc
 /dummy.php
 dump/*
 images/.htaccess
