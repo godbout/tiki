@@ -1210,6 +1210,7 @@ import/mediawiki_dump.xsd -text
 installer/.htaccess -text
 installer/index.php -text
 installer/installlib.php -text
+installer/schema/20080227_invite_tiki.sql -text
 installer/schema/20090301_browsertitle_tiki.sql -text
 installer/schema/20090304_tiki_p_view_backlink_without_s_tiki.sql -text
 installer/shell.php -text
@@ -3001,6 +3002,7 @@ lib/wiki-plugins/wikiplugin_iframe.php -text
 lib/wiki-plugins/wikiplugin_image.php -text
 lib/wiki-plugins/wikiplugin_img.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
+lib/wiki-plugins/wikiplugin_invite.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_js.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
@@ -3651,6 +3653,8 @@ templates/mail/confirm_user_email_subject.tpl -text
 templates/mail/forum_outbound.tpl -text
 templates/mail/forum_post_notification.tpl -text
 templates/mail/index.php -text
+templates/mail/mail_invite.tpl -text
+templates/mail/mail_invite_subject.tpl -text
 templates/mail/mailin_help.tpl -text
 templates/mail/mailin_help_subject.tpl -text
 templates/mail/mailin_reply_subject.tpl -text
@@ -4309,6 +4313,7 @@ templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
 templates/wiki-plugins/wikiplugin_files.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
+templates/wiki-plugins/wikiplugin_invite.tpl -text
 templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
