@@ -124,6 +124,7 @@ doc/htaccess.readme -text
 doc/index.php -text
 doc/readme.txt -text
 dump/index.php -text
+/favicon.ico -text
 /favicon.png -text
 /fgal_listing_conf.php -text
 files/index.php -text
