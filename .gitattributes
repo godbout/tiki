@@ -3633,10 +3633,6 @@ styles/strasa/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/strasa/register.jpg -text svneol=unset#image/jpeg
-styles/tikineat.css -text
-styles/tikineat/options/blue.css -text
-styles/tikineat/options/mono.css -text
-styles/tikineat/options/warm.css -text
 styles/tikinewt.css -text
 styles/transitions/1.8to2.2.css -text
 styles/transitions/1.9to2.2.css -text
@@ -3970,11 +3966,6 @@ templates/styles/simple/modules/mod-switch_lang2.tpl -text
 templates/styles/simple/tiki-print_article.tpl -text
 templates/styles/simple/tiki-view_blog.tpl -text
 templates/styles/simple/tiki-view_blog_post.tpl -text
-templates/styles/tikineat/header.tpl -text
-templates/styles/tikineat/tiki-bot_bar.tpl -text
-templates/styles/tikineat/tiki-site_header.tpl -text
-templates/styles/tikineat/tiki-top_bar.tpl -text
-templates/styles/tikineat/tiki.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
