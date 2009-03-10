@@ -3627,6 +3627,7 @@ styles/slideshows/tiki.css -text
 styles/strasa/box_bottom.gif -text
 styles/strasa/box_top.gif -text
 styles/strasa/headerbg.jpg -text svneol=unset#image/jpeg
+styles/strasa/headermenuitem-hover.png -text
 styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
