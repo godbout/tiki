@@ -1272,6 +1272,7 @@ installer/schema/20090306_menu_perms_tiki.sql -text
 installer/schema/20090306_text_for_menu_options_tiki.sql -text
 installer/schema/20090310_application_menu_tiki.sql -text
 installer/schema/20090310_feature_search_show_object_filter_tiki.sql -text
+installer/schema/20090311_remove_mod_menu_application_menu_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -3800,7 +3801,6 @@ templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
 templates/modules/mod-admin_menu.tpl -text
 templates/modules/mod-adsense.tpl -text
-templates/modules/mod-application_menu.tpl -text
 templates/modules/mod-application_menu.tpl.nocache -text
 templates/modules/mod-article_topics.tpl -text
 templates/modules/mod-articles.tpl -text
