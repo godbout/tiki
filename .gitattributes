@@ -1222,6 +1222,9 @@ installer/schema/20090301_browsertitle_tiki.sql -text
 installer/schema/20090304_tiki_p_view_backlink_without_s_tiki.sql -text
 installer/schema/20090306_menu_perms_tiki.sql -text
 installer/schema/20090306_text_for_menu_options_tiki.sql -text
+installer/schema/20090310_application_menu_tiki.sql -text
+installer/schema/20090310_feature_search_show_object_filter_tiki.sql -text
+installer/schema/20090311_remove_mod_menu_application_menu_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -3578,7 +3581,9 @@ styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
 styles/strasa/box_bottom.gif -text
 styles/strasa/box_top.gif -text
+styles/strasa/fold-topright.jpg -text
 styles/strasa/headerbg.jpg -text svneol=unset#image/jpeg
+styles/strasa/headermenuitem-hover.png -text
 styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
@@ -3751,7 +3756,6 @@ templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
 templates/modules/mod-admin_menu.tpl -text
 templates/modules/mod-adsense.tpl -text
-templates/modules/mod-application_menu.tpl -text
 templates/modules/mod-application_menu.tpl.nocache -text
 templates/modules/mod-article_topics.tpl -text
 templates/modules/mod-articles.tpl -text
