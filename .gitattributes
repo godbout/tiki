@@ -3417,15 +3417,19 @@ pics/trans.png -text
 /show_image.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
+styles/coelesce/coelesce.png -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom/button.png -text svneol=unset#image/png
+styles/darkroom/darkroom.png -text
 styles/darkroom/down.png -text
 styles/darkroom/options/small-type.css -text
+styles/darkroom/options/small-type.png -text
 styles/darkroom/right.css -text
 styles/darkroom/right.png -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
+styles/feb12/feb12.png -text
 styles/feb12/header.jpg -text svneol=unset#image/jpeg
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/index.php -text
@@ -3447,6 +3451,7 @@ styles/simple/down_out.png -text
 styles/simple/index.php -text
 styles/simple/move.png -text
 styles/simple/move_out.png -text
+styles/simple/simple.png -text
 styles/simple/up.gif -text
 styles/simple/up.png -text
 styles/simple/up_out.png -text
@@ -3466,7 +3471,9 @@ styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
 styles/strasa/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cold.css -text
+styles/strasa/options/cold.png -text
 styles/strasa/options/mono.css -text
+styles/strasa/options/mono.png -text
 styles/strasa/options/mono/box_bottom.gif -text
 styles/strasa/options/mono/box_top.gif -text
 styles/strasa/options/mono/fold-topright.jpg -text
@@ -3481,7 +3488,11 @@ styles/strasa/options/warm.css -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/strasa/register.jpg -text svneol=unset#image/jpeg
+styles/strasa/strasa.png -text
+styles/thenews/options/narrow_left_column.png -text
+styles/thenews/thenews.png -text
 styles/tikinewt.css -text
+styles/tikinewt/tikinewt.png -text
 styles/transitions/1.8to2.2.css -text
 styles/transitions/1.9to2.2.css -text
 styles/transitions/1.9to3.0.css -text
