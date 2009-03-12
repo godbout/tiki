@@ -1988,6 +1988,10 @@ lib/jquery/jquery-autocomplete/lib/thickbox-compressed.js -text
 lib/jquery/jquery-autocomplete/lib/thickbox.css -text
 lib/jquery/jquery-autocomplete/todo -text
 lib/jquery/jquery-tiki-readme.txt -text
+lib/jquery/jquery-ui-docs/AUTHORS.txt -text
+lib/jquery/jquery-ui-docs/GPL-LICENSE.txt -text
+lib/jquery/jquery-ui-docs/MIT-LICENSE.txt -text
+lib/jquery/jquery-ui-docs/version.txt -text
 lib/jquery/jquery.js -text
 lib/jquery/jquery.min.js -text
 lib/jquery/jquery.sheet/documentation.html -text
