@@ -1586,6 +1586,8 @@ lib/core/lib/WikiParser/PluginMatcher.php -text
 lib/core/lib/WikiParser/PluginParser.php -text
 lib/core/lib/WikiParser/PluginRepository.php -text
 lib/core/lib/WikiParser/PluginRunner.php -text
+lib/core/test/AcceptanceTests/AllTests.php -text
+lib/core/test/AcceptanceTests/SearchTest.php -text
 lib/core/test/AllTests.php -text
 lib/core/test/DeclFilter/AllTests.php -text
 lib/core/test/DeclFilter/BaseTest.php -text
