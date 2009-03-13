@@ -3425,7 +3425,7 @@ styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/darkroom.png -text
 styles/darkroom/down.png -text
 styles/darkroom/options/small-type.css -text
-styles/darkroom/options/small-type.png -text
+styles/darkroom/options/small-type/small-type.png -text
 styles/darkroom/right.css -text
 styles/darkroom/right.png -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
@@ -3471,9 +3471,8 @@ styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
 styles/strasa/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cold.css -text
-styles/strasa/options/cold.png -text
+styles/strasa/options/cold/cold.png -text
 styles/strasa/options/mono.css -text
-styles/strasa/options/mono.png -text
 styles/strasa/options/mono/box_bottom.gif -text
 styles/strasa/options/mono/box_top.gif -text
 styles/strasa/options/mono/fold-topright.jpg -text
@@ -3483,13 +3482,14 @@ styles/strasa/options/mono/info_icon.png -text
 styles/strasa/options/mono/link_icon.png -text
 styles/strasa/options/mono/list_icon.png -text
 styles/strasa/options/mono/login.jpg -text
+styles/strasa/options/mono/mono.png -text
 styles/strasa/options/mono/register.jpg -text
 styles/strasa/options/warm.css -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/strasa/register.jpg -text svneol=unset#image/jpeg
 styles/strasa/strasa.png -text
-styles/thenews/options/narrow_left_column.png -text
+styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
 styles/tikinewt.css -text
 styles/tikinewt/tikinewt.png -text
