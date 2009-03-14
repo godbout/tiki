@@ -2452,6 +2452,13 @@ lib/pear/index.php -text
 lib/phplayers_tiki/index.php -text
 lib/phplayers_tiki/lib/index.php -text
 lib/phplayers_tiki/lib/layersmenu-common.inc.php -text
+lib/phplayers_tiki/templates/index.php -text
+lib/phplayers_tiki/templates/layersmenu-horizontal_menu.ihtml -text
+lib/phplayers_tiki/templates/layersmenu-plain_menu.ihtml -text
+lib/phplayers_tiki/templates/layersmenu-sub_menu-galaxy.ihtml -text
+lib/phplayers_tiki/templates/layersmenu-sub_menu.ihtml -text
+lib/phplayers_tiki/templates/layersmenu-vertical_menu-galaxy.ihtml -text
+lib/phplayers_tiki/templates/layersmenu-vertical_menu.ihtml -text
 lib/phplayers_tiki/tiki-phplayers.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
