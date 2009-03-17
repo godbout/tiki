@@ -3051,6 +3051,7 @@ modules/mod-user_pages.php -text
 modules/mod-user_tasks.php -text
 modules/mod-user_tasks_public.php -text
 modules/mod-users_rank.php -text
+modules/mod-webmail_inbox.php -text
 modules/mod-whats_related.php -text
 modules/mod-who_is_there.php -text
 modules/mod-wiki_last_comments.php -text
@@ -3729,6 +3730,7 @@ templates/modules/mod-user_tasks.tpl.nocache -text
 templates/modules/mod-user_tasks_public.tpl -text
 templates/modules/mod-usergroup_tracker.tpl -text
 templates/modules/mod-users_rank.tpl -text
+templates/modules/mod-webmail_inbox.tpl -text
 templates/modules/mod-whats_related.tpl -text
 templates/modules/mod-who_is_there.tpl -text
 templates/modules/mod-who_is_there.tpl.nocache -text
