@@ -3748,7 +3748,6 @@ templates/styles/simple/modules/mod-search_wiki_page_new.tpl -text
 templates/styles/simple/modules/mod-shoutbox.tpl -text
 templates/styles/simple/modules/mod-switch_lang.tpl -text
 templates/styles/simple/modules/mod-switch_lang2.tpl -text
-templates/styles/simple/tiki-print_article.tpl -text
 templates/styles/simple/tiki-view_blog.tpl -text
 templates/styles/simple/tiki-view_blog_post.tpl -text
 templates/styles/tikinewt/index.php -text
