@@ -1166,6 +1166,7 @@ installer/index.php -text
 installer/installlib.php -text
 installer/schema/20080227_invite_tiki.sql -text
 installer/schema/20090205_forum_and_comments_locking_tiki.sql -text
+installer/schema/20090205_menus_items_icons_tiki.sql -text
 installer/schema/20090301_browsertitle_tiki.sql -text
 installer/schema/20090304_tiki_p_view_backlink_without_s_tiki.sql -text
 installer/schema/20090306_menu_perms_tiki.sql -text
@@ -2545,6 +2546,7 @@ lib/smarty_tiki/function.breadcrumbs.php -text
 lib/smarty_tiki/function.button.php -text
 lib/smarty_tiki/function.content.php -text
 lib/smarty_tiki/function.cookie.php -text
+lib/smarty_tiki/function.cookie_jar.php -text
 lib/smarty_tiki/function.count.php -text
 lib/smarty_tiki/function.ed.php -text
 lib/smarty_tiki/function.editform.php -text
@@ -3078,6 +3080,7 @@ pics/icons/flag_blue.png -text
 pics/icons/folder.png -text
 pics/icons/folder_add.png -text
 pics/icons/folder_go.png -text
+pics/icons/green_question.png -text
 pics/icons/group.png -text
 pics/icons/group_key.png -text
 pics/icons/help.png -text
@@ -3139,6 +3142,7 @@ pics/icons/no_information.png -text
 pics/icons/note_add.png -text
 pics/icons/ofolder.png -text
 pics/icons/omodule.png -text
+pics/icons/ovmodule.png -text
 pics/icons/package.png -text
 pics/icons/package_go.png -text
 pics/icons/page.png -text
@@ -3224,6 +3228,7 @@ pics/icons/user_delete.png -text
 pics/icons/user_go.png -text
 pics/icons/user_gray.png -text
 pics/icons/user_red.png -text
+pics/icons/vmodule.png -text
 pics/icons/wiki3d.png -text
 pics/icons/world.png -text
 pics/icons/world_add.png -text
@@ -3265,6 +3270,7 @@ pics/large/google_maps.png -text
 pics/large/google_maps48x48.png -text
 pics/large/goto.png -text
 pics/large/goto48x48.png -text
+pics/large/green_question48x48.png -text
 pics/large/i18n.png -text
 pics/large/i18n48x48.png -text
 pics/large/icon-configuration.png -text
@@ -3420,6 +3426,8 @@ styles/transitions/1.8to2.2.css -text
 styles/transitions/1.9to2.2.css -text
 styles/transitions/1.9to3.0.css -text
 styles/transitions/2.0to3.0.css -text
+styles/transitions/2.0to4.0.css -text
+styles/transitions/3.0to4.0.css -text
 styles/transitions/index.php -text
 temp/.htaccess -text
 temp/README -text
