@@ -3074,6 +3074,7 @@ pics/icons/exclamation.png -text
 pics/icons/eye.png -text
 pics/icons/eye_arrow_down.png -text
 pics/icons/eye_group.png -text
+pics/icons/eye_group_arrow_down.png -text
 pics/icons/eye_magnifier.png -text
 pics/icons/feed.png -text
 pics/icons/flag_blue.png -text
@@ -4022,6 +4023,7 @@ templates/tiki-newsreader_servers.tpl -text
 templates/tiki-notepad_list.tpl -text
 templates/tiki-notepad_read.tpl -text
 templates/tiki-notepad_write.tpl -text
+templates/tiki-object_watches.tpl -text
 templates/tiki-objectpermissions.tpl -text
 templates/tiki-old_polls.tpl -text
 templates/tiki-openid_register.tpl -text
@@ -4468,6 +4470,7 @@ tests/testfile.txt -text
 /tiki-notepad_list.php -text
 /tiki-notepad_read.php -text
 /tiki-notepad_write.php -text
+/tiki-object_watches.php -text
 /tiki-objectpermissions.php -text
 /tiki-old_polls.php -text
 /tiki-orphan_pages.php -text
