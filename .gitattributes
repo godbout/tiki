@@ -3426,17 +3426,18 @@ styles/slideshows/clear.css -text
 styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
-styles/strasa/box_bottom.gif -text
-styles/strasa/box_top.gif -text
-styles/strasa/fold-topright.jpg -text
-styles/strasa/headerbg.jpg -text svneol=unset#image/jpeg
-styles/strasa/headermenuitem-hover.png -text
 styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
-styles/strasa/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cold.css -text
+styles/strasa/options/cold/box_bottom.gif -text
+styles/strasa/options/cold/box_top.gif -text
 styles/strasa/options/cold/cold.png -text
+styles/strasa/options/cold/fold-topright.jpg -text
+styles/strasa/options/cold/headerbg.jpg -text svneol=unset#image/jpeg
+styles/strasa/options/cold/headermenuitem-hover.png -text
+styles/strasa/options/cold/login.jpg -text svneol=unset#image/jpeg
+styles/strasa/options/cold/register.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/box_bottom.gif -text
 styles/strasa/options/mono/box_top.gif -text
@@ -3452,7 +3453,6 @@ styles/strasa/options/mono/register.jpg -text
 styles/strasa/options/warm.css -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
-styles/strasa/register.jpg -text svneol=unset#image/jpeg
 styles/strasa/strasa.png -text
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
