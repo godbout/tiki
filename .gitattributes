@@ -1747,6 +1747,8 @@ lib/ical/iCal/TimeZone.php -text
 lib/ical/iCal/ToDo.php -text
 lib/ical/iCal/ValueDataType.php -text
 lib/ical/iCal/iCalendar.php -text
+lib/iepngfix/DD_belatedPNG-min.js -text
+lib/iepngfix/index.php -text
 lib/imagegals/imagegallib.js -text
 lib/imagegals/imagegallib.php -text
 lib/imagegals/index.php -text
