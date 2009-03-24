@@ -1538,6 +1538,7 @@ lib/core/lib/WikiParser/PluginParser.php -text
 lib/core/lib/WikiParser/PluginRepository.php -text
 lib/core/lib/WikiParser/PluginRunner.php -text
 lib/core/test/AcceptanceTests/AllTests.php -text
+lib/core/test/AcceptanceTests/MultilingualTest.php -text
 lib/core/test/AcceptanceTests/SearchTest.php -text
 lib/core/test/AllTests.php -text
 lib/core/test/DeclFilter/AllTests.php -text
@@ -1566,6 +1567,7 @@ lib/core/test/TikiFilter/CallbackTest.php -text
 lib/core/test/TikiFilter/MapTest.php -text
 lib/core/test/TikiFilter/WordTest.php -text
 lib/core/test/TikiFilter/XssTest.php -text
+lib/core/test/TikiSeleniumTestCase.php -text
 lib/core/test/TikiTestCase.php -text
 lib/core/test/WikiParser/AllTests.php -text
 lib/core/test/WikiParser/PluginArgumentParserTest.php -text
