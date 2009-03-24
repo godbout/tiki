@@ -2475,6 +2475,7 @@ lib/setup/prefs.php -text
 lib/setup/sections.php -text
 lib/setup/set_paths.php -text
 lib/setup/site_closed.php -text
+lib/setup/smarty.php -text
 lib/setup/stats.php -text
 lib/setup/theme.php -text
 lib/setup/tikisetup.class.php -text
@@ -2672,6 +2673,7 @@ lib/smarty_tiki/modifier.utf8unicode.php -text
 lib/smarty_tiki/modifier.yesno.php -text
 lib/smarty_tiki/outputfilter.highlight.php -text
 lib/smarty_tiki/outputfilter.ticket.php -text
+lib/smarty_tiki/prefilter.log_tpl.php -text
 lib/smarty_tiki/prefilter.ticket.php -text
 lib/smarty_tiki/prefilter.tr.php -text
 lib/smarty_tiki/resource.style.php -text
