@@ -4584,6 +4584,7 @@ tests/testfile.txt -text
 /tiki-view_tracker_more_info.php -text
 /tiki-wap.php -text
 /tiki-webmail.php -text
+/tiki-webmail_ajax.php -text
 /tiki-webmail_contacts.php -text
 /tiki-webmail_download_attachment.php -text
 /tiki-wiki3d.php -text
