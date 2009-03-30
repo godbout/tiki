@@ -2570,6 +2570,7 @@ lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
 lib/smarty_tiki/block.itemfield.php -text
+lib/smarty_tiki/block.jq.php -text
 lib/smarty_tiki/block.pagination_links.php -text
 lib/smarty_tiki/block.popup_link.php -text
 lib/smarty_tiki/block.remarksbox.php -text
@@ -2673,6 +2674,7 @@ lib/smarty_tiki/modifier.utf8unicode.php -text
 lib/smarty_tiki/modifier.yesno.php -text
 lib/smarty_tiki/outputfilter.highlight.php -text
 lib/smarty_tiki/outputfilter.ticket.php -text
+lib/smarty_tiki/prefilter.jq.php -text
 lib/smarty_tiki/prefilter.log_tpl.php -text
 lib/smarty_tiki/prefilter.ticket.php -text
 lib/smarty_tiki/prefilter.tr.php -text
