@@ -3458,6 +3458,7 @@ styles/strasa/options/warm.css -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/strasa/strasa.png -text
+styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
 styles/tikinewt.css -text
