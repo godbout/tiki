@@ -18,9 +18,6 @@ backups/index.php -text
 /copyrights.php -text
 css/admin.css -text
 css/calendar.css -text
-css/cssmenu.css -text
-css/cssmenu_horiz.css -text
-css/cssmenu_vert.css -text
 css/freetags.css -text
 css/ie6.css -text
 css/jscalendar.css -text
