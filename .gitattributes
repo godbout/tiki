@@ -1219,6 +1219,7 @@ installer/schema/20090311_remove_mod_menu_application_menu_tiki.sql -text
 installer/schema/20090316_index_tiki.sql -text
 installer/schema/20090330_quicktags_renames_tiki.sql -text
 installer/schema/20090401_replace_shoutjax_with_shoutbox_tiki.sql -text
+installer/schema/20090401_replace_switch_lang2_with_switch_lang_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -3055,7 +3056,6 @@ modules/mod-shoutbox.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
 modules/mod-switch_lang.php -text
-modules/mod-switch_lang2.php -text
 modules/mod-switch_theme.php -text
 modules/mod-top_active_blogs.php -text
 modules/mod-top_articles.php -text
@@ -3732,7 +3732,6 @@ templates/modules/mod-shoutbox.tpl.nocache -text
 templates/modules/mod-since_last_visit.tpl -text
 templates/modules/mod-since_last_visit_new.tpl -text
 templates/modules/mod-switch_lang.tpl -text
-templates/modules/mod-switch_lang2.tpl -text
 templates/modules/mod-switch_theme.tpl -text
 templates/modules/mod-switch_theme.tpl.nocache -text
 templates/modules/mod-tikitests.tpl -text
