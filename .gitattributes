@@ -1218,6 +1218,7 @@ installer/schema/20090310_feature_search_show_object_filter_tiki.sql -text
 installer/schema/20090311_remove_mod_menu_application_menu_tiki.sql -text
 installer/schema/20090316_index_tiki.sql -text
 installer/schema/20090330_quicktags_renames_tiki.sql -text
+installer/schema/20090401_newsletters_included_tiki.sql -text
 installer/schema/20090401_replace_shoutjax_with_shoutbox_tiki.sql -text
 installer/schema/20090401_replace_switch_lang2_with_switch_lang_tiki.sql -text
 installer/shell.php -text
