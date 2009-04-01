@@ -1218,6 +1218,7 @@ installer/schema/20090310_feature_search_show_object_filter_tiki.sql -text
 installer/schema/20090311_remove_mod_menu_application_menu_tiki.sql -text
 installer/schema/20090316_index_tiki.sql -text
 installer/schema/20090330_quicktags_renames_tiki.sql -text
+installer/schema/20090401_replace_shoutjax_with_shoutbox_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -3051,7 +3052,6 @@ modules/mod-random_images.php -text
 modules/mod-random_pages.php -text
 modules/mod-semantic_links.php -text
 modules/mod-shoutbox.php -text
-modules/mod-shoutjax.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
 modules/mod-switch_lang.php -text
@@ -3729,7 +3729,6 @@ templates/modules/mod-search_wiki_page_new.tpl -text
 templates/modules/mod-semantic_links.tpl -text
 templates/modules/mod-shoutbox.tpl -text
 templates/modules/mod-shoutbox.tpl.nocache -text
-templates/modules/mod-shoutjax.tpl -text
 templates/modules/mod-since_last_visit.tpl -text
 templates/modules/mod-since_last_visit_new.tpl -text
 templates/modules/mod-switch_lang.tpl -text
