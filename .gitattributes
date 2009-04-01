@@ -4582,7 +4582,6 @@ tests/testfile.txt -text
 /tiki-setup_base.php -text
 /tiki-sheets.php -text
 /tiki-shoutbox.php -text
-/tiki-shoutjax.php -text
 /tiki-show_all_images.php -text
 /tiki-show_calendar.php -text
 /tiki-show_user_avatar.php -text
