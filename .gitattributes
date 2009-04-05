@@ -18,9 +18,6 @@ backups/index.php -text
 /copyrights.php -text
 css/admin.css -text
 css/calendar.css -text
-css/cssmenu.css -text
-css/cssmenu_horiz.css -text
-css/cssmenu_vert.css -text
 css/freetags.css -text
 css/ie6.css -text
 css/jscalendar.css -text
@@ -131,7 +128,6 @@ files/index.php -text
 files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /freetag_apply.php -text
 /freetag_list.php -text
-/function.js_maxlength.php -text
 games/README -text
 games/flash/README -text
 games/flash/index.php -text
@@ -1176,7 +1172,10 @@ installer/schema/20090310_feature_search_show_object_filter_tiki.sql -text
 installer/schema/20090311_remove_mod_menu_application_menu_tiki.sql -text
 installer/schema/20090316_index_tiki.sql -text
 installer/schema/20090323_maxUserImpressions_banners_tiki.sql -text
+installer/schema/20090330_quicktags_renames_tiki.sql -text
 installer/schema/20090401_newsletters_included_tiki.sql -text
+installer/schema/20090401_replace_shoutjax_with_shoutbox_tiki.sql -text
+installer/schema/20090401_replace_switch_lang2_with_switch_lang_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -1956,7 +1955,32 @@ lib/jquery/superfish/images/shadow.png -text
 lib/jquery/superfish/js/jquery.bgiframe.min.js -text
 lib/jquery/superfish/js/superfish.js -text
 lib/jquery/superfish/js/supersubs.js -text
+lib/jquery/tablesorter/addons/pager/icons/first.png -text
+lib/jquery/tablesorter/addons/pager/icons/last.png -text
+lib/jquery/tablesorter/addons/pager/icons/next.png -text
+lib/jquery/tablesorter/addons/pager/icons/prev.png -text
+lib/jquery/tablesorter/addons/pager/jquery.tablesorter.pager.css -text
+lib/jquery/tablesorter/addons/pager/jquery.tablesorter.pager.js -text
+lib/jquery/tablesorter/changelog -text
+lib/jquery/tablesorter/jquery.metadata.js -text
+lib/jquery/tablesorter/jquery.tablesorter.js -text
+lib/jquery/tablesorter/jquery.tablesorter.min.js -text
+lib/jquery/tablesorter/themes/blue/asc.gif -text
+lib/jquery/tablesorter/themes/blue/bg.gif -text
+lib/jquery/tablesorter/themes/blue/blue.zip -text
+lib/jquery/tablesorter/themes/blue/desc.gif -text
+lib/jquery/tablesorter/themes/blue/style.css -text
+lib/jquery/tablesorter/themes/green/asc.png -text
+lib/jquery/tablesorter/themes/green/bg.png -text
+lib/jquery/tablesorter/themes/green/desc.png -text
+lib/jquery/tablesorter/themes/green/green.zip -text
+lib/jquery/tablesorter/themes/green/style.css -text
 lib/jquery_tiki/index.php -text
+lib/jquery_tiki/tablesorter/themes/tiki/asc.gif -text
+lib/jquery_tiki/tablesorter/themes/tiki/bg.gif -text
+lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
+lib/jquery_tiki/tablesorter/themes/tiki/desc.gif -text
+lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
 lib/live_support/index.php -text
 lib/live_support/live-support.js -text svneol=unset#application/octet-stream
@@ -2678,6 +2702,7 @@ lib/templates/templateslib.php -text
 lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
+lib/tiki-js-sorttable.js -text
 lib/tiki-js.js -text
 lib/tikiaccesslib.php -text
 lib/tikidate-pear-date.php -text
@@ -2817,6 +2842,7 @@ lib/wiki-plugins/wikiplugin_img.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
 lib/wiki-plugins/wikiplugin_invite.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
+lib/wiki-plugins/wikiplugin_jq.php -text
 lib/wiki-plugins/wikiplugin_js.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
@@ -2991,11 +3017,9 @@ modules/mod-random_images.php -text
 modules/mod-random_pages.php -text
 modules/mod-semantic_links.php -text
 modules/mod-shoutbox.php -text
-modules/mod-shoutjax.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
 modules/mod-switch_lang.php -text
-modules/mod-switch_lang2.php -text
 modules/mod-switch_theme.php -text
 modules/mod-top_active_blogs.php -text
 modules/mod-top_articles.php -text
@@ -3430,6 +3454,7 @@ styles/strasa/options/warm.css -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/strasa/strasa.png -text
+styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
 styles/tikinewt.css -text
@@ -3678,11 +3703,9 @@ templates/modules/mod-search_wiki_page_new.tpl -text
 templates/modules/mod-semantic_links.tpl -text
 templates/modules/mod-shoutbox.tpl -text
 templates/modules/mod-shoutbox.tpl.nocache -text
-templates/modules/mod-shoutjax.tpl -text
 templates/modules/mod-since_last_visit.tpl -text
 templates/modules/mod-since_last_visit_new.tpl -text
 templates/modules/mod-switch_lang.tpl -text
-templates/modules/mod-switch_lang2.tpl -text
 templates/modules/mod-switch_theme.tpl -text
 templates/modules/mod-switch_theme.tpl.nocache -text
 templates/modules/mod-tikitests.tpl -text
@@ -4533,7 +4556,6 @@ tests/testfile.txt -text
 /tiki-setup_base.php -text
 /tiki-sheets.php -text
 /tiki-shoutbox.php -text
-/tiki-shoutjax.php -text
 /tiki-show_all_images.php -text
 /tiki-show_calendar.php -text
 /tiki-show_user_avatar.php -text
