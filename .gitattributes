@@ -4518,6 +4518,7 @@ tests/testfile.txt -text
 /tiki-mobile.php -text
 /tiki-mods.php -text
 /tiki-mods_admin.php -text
+/tiki-module.php -text
 /tiki-module_controls.php -text
 /tiki-modules.php -text
 /tiki-my_tiki.php -text
