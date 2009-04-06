@@ -1203,6 +1203,7 @@ installer/schema/20090120_sefurl_rules_tiki.sql -text
 installer/schema/20090129_callendar_search_tiki.sql -text
 installer/schema/200902026_admin_menu_tiki.sql -text
 installer/schema/20090203_null_tiki.sql -text
+installer/schema/20090205_forum_and_comments_locking_tiki.sql -text
 installer/schema/20090205_menucase_tiki.sql -text
 installer/schema/20090206_content_tpl_menu_tiki.sql -text
 installer/schema/20090206_poll_tiki.sql -text
@@ -3177,6 +3178,7 @@ pics/icons/lock_break.png -text
 pics/icons/lock_delete.png -text
 pics/icons/lock_gray.png -text
 pics/icons/lock_new.png -text
+pics/icons/lock_red.png -text
 pics/icons/magnifier.png -text
 pics/icons/mime/c.png -text
 pics/icons/mime/cpp.png -text
