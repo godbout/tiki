@@ -3226,6 +3226,7 @@ pics/icons/page_new.png -text
 pics/icons/page_translate_from.png -text
 pics/icons/page_translate_to.png -text
 pics/icons/page_white_acrobat.png -text
+pics/icons/page_white_actionscript.png -text
 pics/icons/page_white_code.png -text
 pics/icons/page_white_link.png -text
 pics/icons/page_white_picture.png -text
@@ -3235,9 +3236,11 @@ pics/icons/pencil.png -text
 pics/icons/pencil_add.png -text
 pics/icons/picture.png -text
 pics/icons/picture_add.png -text
+pics/icons/pictures.png -text
 pics/icons/plus_small.png -text
 pics/icons/printer.png -text
 pics/icons/printer_add.png -text
+pics/icons/quotes.png -text
 pics/icons/readme.txt -text
 pics/icons/resultset_down.png -text
 pics/icons/resultset_first.png -text
