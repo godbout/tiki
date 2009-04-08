@@ -13,6 +13,7 @@ db/virtuals.inc
 dump/*
 images/.htaccess
 img/.htaccess
+img/trackers/*
 img/wiki/*.gif
 img/wiki/*.pad_xml
 img/wiki_up/*
@@ -24,6 +25,7 @@ lib/core/test/foo.txt
 lib/core/test/temp/cache/*
 lib/smarty
 /maps
+maps/*
 /mods
 modules/.htaccess
 modules/cache
@@ -46,6 +48,7 @@ temp/sf*
 temp/topic.*
 templates/.htaccess
 /templates_c
+templates_c/*
 tests/.htaccess
 /tiki-emptycache.php
 tiki_tests/tests

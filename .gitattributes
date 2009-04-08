@@ -2942,6 +2942,7 @@ lib/xmlrpc.inc -text
 lib/xmlrpcs.inc -text
 lib/ziplib.php -text
 /license.txt -text
+maps/index.php -text
 /messu-archive.php -text
 /messu-broadcast.php -text
 /messu-compose.php -text
@@ -3189,6 +3190,7 @@ pics/icons/page_new.png -text
 pics/icons/page_translate_from.png -text
 pics/icons/page_translate_to.png -text
 pics/icons/page_white_acrobat.png -text
+pics/icons/page_white_actionscript.png -text
 pics/icons/page_white_code.png -text
 pics/icons/page_white_link.png -text
 pics/icons/page_white_picture.png -text
@@ -3198,9 +3200,11 @@ pics/icons/pencil.png -text
 pics/icons/pencil_add.png -text
 pics/icons/picture.png -text
 pics/icons/picture_add.png -text
+pics/icons/pictures.png -text
 pics/icons/plus_small.png -text
 pics/icons/printer.png -text
 pics/icons/printer_add.png -text
+pics/icons/quotes.png -text
 pics/icons/readme.txt -text
 pics/icons/resultset_down.png -text
 pics/icons/resultset_first.png -text
@@ -4189,6 +4193,7 @@ templates/wiki-plugins/wikiplugin_ftp.tpl -text
 templates/wiki-plugins/wikiplugin_invite.tpl -text
 templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
+templates/wiki-plugins/wikiplugin_rss.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroups.tpl -text
 templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
@@ -4199,6 +4204,7 @@ templates/wiki-plugins/wikiplugin_vote.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
+templates_c/index.php -text
 tests/.htaccess -text
 tests/example.txt -text
 tests/index.php -text
@@ -4490,6 +4496,7 @@ tests/testfile.txt -text
 /tiki-mobile.php -text
 /tiki-mods.php -text
 /tiki-mods_admin.php -text
+/tiki-module.php -text
 /tiki-module_controls.php -text
 /tiki-modules.php -text
 /tiki-my_tiki.php -text
