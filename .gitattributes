@@ -1943,6 +1943,8 @@ lib/jquery/jquery.sheet/theme/ui.resizable.css -text
 lib/jquery/jquery.sheet/theme/ui.slider.css -text
 lib/jquery/jquery.sheet/theme/ui.tabs.css -text
 lib/jquery/jquery.sheet/theme/ui.theme.css -text
+lib/jquery/malsup-cycle/jquery.cycle.all.js -text
+lib/jquery/malsup-cycle/jquery.cycle.all.min.js -text
 lib/jquery/reflection-jquery/js/reflection.js -text
 lib/jquery/reflection-jquery/src/reflection.js -text
 lib/jquery/superfish/changelog.txt -text
@@ -3172,6 +3174,7 @@ pics/icons/monitor.png -text
 pics/icons/more_info.gif -text
 pics/icons/multiple_cal.png -text
 pics/icons/new.png -text
+pics/icons/newspaper_add.png -text
 pics/icons/newspaper_go.png -text
 pics/icons/no_eye.png -text
 pics/icons/no_eye_arrow_down.png -text
@@ -3966,6 +3969,7 @@ templates/tiki-faq_questions.tpl -text
 templates/tiki-featured_link.tpl -text
 templates/tiki-file_archives.tpl -text
 templates/tiki-file_galleries.tpl -text
+templates/tiki-file_gallery_slideshow.tpl -text
 templates/tiki-file_info_box.tpl -text
 templates/tiki-forum_import.tpl -text
 templates/tiki-forum_queue.tpl -text
