@@ -4236,6 +4236,7 @@ templates/wiki-plugins/wikiplugin_vote.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
+templates_c/index.php -text
 tests/.htaccess -text
 tests/example.txt -text
 tests/index.php -text
