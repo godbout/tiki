@@ -2587,6 +2587,7 @@ lib/smarty_tiki/function.ed.php -text
 lib/smarty_tiki/function.editform.php -text
 lib/smarty_tiki/function.elapsed.php -text
 lib/smarty_tiki/function.fgal_browse.php -text
+lib/smarty_tiki/function.filegal_manager_url.php -text
 lib/smarty_tiki/function.fileinfo.php -text
 lib/smarty_tiki/function.gallery.php -text
 lib/smarty_tiki/function.help.php -text
@@ -2823,7 +2824,6 @@ lib/wiki-plugins/wikiplugin_dl.php -text
 lib/wiki-plugins/wikiplugin_draw.php -text
 lib/wiki-plugins/wikiplugin_equation.php -text
 lib/wiki-plugins/wikiplugin_events.php -text
-lib/wiki-plugins/wikiplugin_example.php -text
 lib/wiki-plugins/wikiplugin_fade.php -text
 lib/wiki-plugins/wikiplugin_fancylist.php -text
 lib/wiki-plugins/wikiplugin_fancytable.php -text
@@ -3389,6 +3389,7 @@ pics/trans.png -text
 /show_image.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
+styles/coelesce/arrows-467aa7.png -text svneol=unset#image/png
 styles/coelesce/coelesce.png -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
