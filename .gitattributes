@@ -4114,6 +4114,7 @@ templates/tiki-plugin_poll.tpl -text
 templates/tiki-plugin_sql.tpl -text
 templates/tiki-plugin_trackerfilter.tpl -text
 templates/tiki-plugin_trackerlist.tpl -text
+templates/tiki-plugins.tpl -text
 templates/tiki-poll.tpl -text
 templates/tiki-poll_form.tpl -text
 templates/tiki-poll_results.tpl -text
@@ -4556,6 +4557,7 @@ tests/testfile.txt -text
 /tiki-parsemode_setup.php -text
 /tiki-phpinfo.php -text
 /tiki-pick_avatar.php -text
+/tiki-plugins.php -text
 /tiki-poll_form.php -text
 /tiki-poll_results.php -text
 /tiki-print.php -text
