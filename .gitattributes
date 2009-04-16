@@ -1222,6 +1222,8 @@ installer/schema/20090330_quicktags_renames_tiki.sql -text
 installer/schema/20090401_newsletters_included_tiki.sql -text
 installer/schema/20090401_replace_shoutjax_with_shoutbox_tiki.sql -text
 installer/schema/20090401_replace_switch_lang2_with_switch_lang_tiki.sql -text
+installer/schema/20090416_plugin_security_tiki.php -text
+installer/schema/20090416_plugin_security_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
