@@ -1176,6 +1176,10 @@ installer/schema/20090330_quicktags_renames_tiki.sql -text
 installer/schema/20090401_newsletters_included_tiki.sql -text
 installer/schema/20090401_replace_shoutjax_with_shoutbox_tiki.sql -text
 installer/schema/20090401_replace_switch_lang2_with_switch_lang_tiki.sql -text
+installer/schema/20090416_plugin_security_tiki.php -text
+installer/schema/20090416_plugin_security_tiki.sql -text
+installer/schema/20090416_quicktags_kil_email_tiki.sql -text
+installer/schema/20090416_quicktags_plugin_helpers_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -2769,6 +2773,7 @@ lib/trackers/trackerlib.php -text
 lib/trackers/trkWithMirrorTablesLib.php -text
 lib/tree/categ_admin_tree.php -text
 lib/tree/categ_browse_tree.php -text
+lib/tree/categ_picker_tree.php -text
 lib/tree/index.php -text
 lib/tree/tree.php -text
 lib/userfiles/index.php -text
@@ -3831,7 +3836,6 @@ templates/tiki-admin-include-messages.tpl -text
 templates/tiki-admin-include-metatags.tpl -text
 templates/tiki-admin-include-module.tpl -text
 templates/tiki-admin-include-multimedia.tpl -text
-templates/tiki-admin-include-plugins.tpl -text
 templates/tiki-admin-include-polls.tpl -text
 templates/tiki-admin-include-profiles.tpl -text
 templates/tiki-admin-include-rss.tpl -text
@@ -4083,6 +4087,7 @@ templates/tiki-plugin_poll.tpl -text
 templates/tiki-plugin_sql.tpl -text
 templates/tiki-plugin_trackerfilter.tpl -text
 templates/tiki-plugin_trackerlist.tpl -text
+templates/tiki-plugins.tpl -text
 templates/tiki-poll.tpl -text
 templates/tiki-poll_form.tpl -text
 templates/tiki-poll_results.tpl -text
@@ -4263,7 +4268,6 @@ tests/testfile.txt -text
 /tiki-admin_include_metatags.php -text
 /tiki-admin_include_module.php -text
 /tiki-admin_include_multimedia.php -text
-/tiki-admin_include_plugins.php -text
 /tiki-admin_include_polls.php -text
 /tiki-admin_include_profiles.php -text
 /tiki-admin_include_rss.php -text
@@ -4526,6 +4530,7 @@ tests/testfile.txt -text
 /tiki-parsemode_setup.php -text
 /tiki-phpinfo.php -text
 /tiki-pick_avatar.php -text
+/tiki-plugins.php -text
 /tiki-poll_form.php -text
 /tiki-poll_results.php -text
 /tiki-print.php -text
