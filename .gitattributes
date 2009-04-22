@@ -1864,7 +1864,7 @@ lib/integrator/index.php -text
 lib/integrator/integrator.php -text
 lib/jgraphpad/index.php -text
 lib/jgraphpad/jgraphpad.jar -text
-lib/jquery/cluetip/Changelog.txt -text
+lib/jquery/cluetip/README -text
 lib/jquery/cluetip/images/arrowdown.gif -text
 lib/jquery/cluetip/images/arrowleft.gif -text
 lib/jquery/cluetip/images/arrowright.gif -text
@@ -1877,6 +1877,7 @@ lib/jquery/cluetip/images/darrowdown.gif -text
 lib/jquery/cluetip/images/darrowleft.gif -text
 lib/jquery/cluetip/images/darrowright.gif -text
 lib/jquery/cluetip/images/darrowup.gif -text
+lib/jquery/cluetip/images/itunes.png -text
 lib/jquery/cluetip/images/rarrowdown.gif -text
 lib/jquery/cluetip/images/rarrowleft.gif -text
 lib/jquery/cluetip/images/rarrowright.gif -text
@@ -1885,12 +1886,11 @@ lib/jquery/cluetip/images/tl.gif -text
 lib/jquery/cluetip/images/tl.png -text
 lib/jquery/cluetip/images/tr.gif -text
 lib/jquery/cluetip/images/tr.png -text
+lib/jquery/cluetip/images/wait.gif -text
 lib/jquery/cluetip/jquery.cluetip.css -text
 lib/jquery/cluetip/jquery.cluetip.js -text
-lib/jquery/cluetip/jquery.dimensions-1.2.js -text
-lib/jquery/cluetip/jquery.dimensions.js -text
-lib/jquery/cluetip/jquery.hoverIntent.js -text
-lib/jquery/cluetip/wait.gif -text
+lib/jquery/cluetip/lib/jquery.bgiframe.min.js -text
+lib/jquery/cluetip/lib/jquery.hoverIntent.js -text
 lib/jquery/index.php -text
 lib/jquery/jquery-autocomplete/changelog.txt -text
 lib/jquery/jquery-autocomplete/jquery.autocomplete.css -text
@@ -3401,11 +3401,8 @@ styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/darkroom.png -text
-styles/darkroom/down.png -text
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/small-type.png -text
-styles/darkroom/right.css -text
-styles/darkroom/right.png -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
 styles/feb12/feb12.png -text
 styles/feb12/header.jpg -text svneol=unset#image/jpeg
@@ -3416,23 +3413,6 @@ styles/integrator/default.css -text
 styles/integrator/doxygen.css -text
 styles/integrator/index.php -text
 styles/lite/lite.css -text
-styles/simple.css -text
-styles/simple/admin_move.gif -text
-styles/simple/bg.png -text
-styles/simple/button_bg.png -text
-styles/simple/close.png -text
-styles/simple/close_out.png -text
-styles/simple/delete.gif -text
-styles/simple/down.gif -text
-styles/simple/down.png -text
-styles/simple/down_out.png -text
-styles/simple/index.php -text
-styles/simple/move.png -text
-styles/simple/move_out.png -text
-styles/simple/simple.png -text
-styles/simple/up.gif -text
-styles/simple/up.png -text
-styles/simple/up_out.png -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
 styles/slideshows/clear.css -text
@@ -3784,28 +3764,6 @@ templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
 templates/styles/index.php -text
-templates/styles/simple/categpath.tpl -text
-templates/styles/simple/confirm.tpl -text
-templates/styles/simple/index.php -text
-templates/styles/simple/module.tpl -text
-templates/styles/simple/modules/index.php -text
-templates/styles/simple/modules/mod-application_menu.tpl -text
-templates/styles/simple/modules/mod-forums_last_posts.tpl -text
-templates/styles/simple/modules/mod-last_blog_posts.tpl -text
-templates/styles/simple/modules/mod-last_files.tpl -text
-templates/styles/simple/modules/mod-last_images_th.tpl -text
-templates/styles/simple/modules/mod-last_modif_pages.tpl -text
-templates/styles/simple/modules/mod-quick_edit.tpl -text
-templates/styles/simple/modules/mod-register.tpl -text
-templates/styles/simple/modules/mod-search_box.tpl -text
-templates/styles/simple/modules/mod-search_new.tpl -text
-templates/styles/simple/modules/mod-search_wiki_page.tpl -text
-templates/styles/simple/modules/mod-search_wiki_page_new.tpl -text
-templates/styles/simple/modules/mod-shoutbox.tpl -text
-templates/styles/simple/modules/mod-switch_lang.tpl -text
-templates/styles/simple/modules/mod-switch_lang2.tpl -text
-templates/styles/simple/tiki-view_blog.tpl -text
-templates/styles/simple/tiki-view_blog_post.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
