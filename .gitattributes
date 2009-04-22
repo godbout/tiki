@@ -1905,7 +1905,7 @@ lib/integrator/index.php -text
 lib/integrator/integrator.php -text
 lib/jgraphpad/index.php -text
 lib/jgraphpad/jgraphpad.jar -text
-lib/jquery/cluetip/Changelog.txt -text
+lib/jquery/cluetip/README -text
 lib/jquery/cluetip/images/arrowdown.gif -text
 lib/jquery/cluetip/images/arrowleft.gif -text
 lib/jquery/cluetip/images/arrowright.gif -text
@@ -1918,6 +1918,7 @@ lib/jquery/cluetip/images/darrowdown.gif -text
 lib/jquery/cluetip/images/darrowleft.gif -text
 lib/jquery/cluetip/images/darrowright.gif -text
 lib/jquery/cluetip/images/darrowup.gif -text
+lib/jquery/cluetip/images/itunes.png -text
 lib/jquery/cluetip/images/rarrowdown.gif -text
 lib/jquery/cluetip/images/rarrowleft.gif -text
 lib/jquery/cluetip/images/rarrowright.gif -text
@@ -1926,12 +1927,11 @@ lib/jquery/cluetip/images/tl.gif -text
 lib/jquery/cluetip/images/tl.png -text
 lib/jquery/cluetip/images/tr.gif -text
 lib/jquery/cluetip/images/tr.png -text
+lib/jquery/cluetip/images/wait.gif -text
 lib/jquery/cluetip/jquery.cluetip.css -text
 lib/jquery/cluetip/jquery.cluetip.js -text
-lib/jquery/cluetip/jquery.dimensions-1.2.js -text
-lib/jquery/cluetip/jquery.dimensions.js -text
-lib/jquery/cluetip/jquery.hoverIntent.js -text
-lib/jquery/cluetip/wait.gif -text
+lib/jquery/cluetip/lib/jquery.bgiframe.min.js -text
+lib/jquery/cluetip/lib/jquery.hoverIntent.js -text
 lib/jquery/index.php -text
 lib/jquery/jquery-autocomplete/changelog.txt -text
 lib/jquery/jquery-autocomplete/jquery.autocomplete.css -text
