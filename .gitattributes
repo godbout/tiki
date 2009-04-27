@@ -1226,6 +1226,7 @@ installer/schema/20090416_plugin_security_tiki.php -text
 installer/schema/20090416_plugin_security_tiki.sql -text
 installer/schema/20090416_quicktags_kil_email_tiki.sql -text
 installer/schema/20090416_quicktags_plugin_helpers_tiki.sql -text
+installer/schema/20090427_filegal_optionalize_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
