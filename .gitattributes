@@ -2655,6 +2655,7 @@ lib/smarty_tiki/function.redirect.php -text
 lib/smarty_tiki/function.reindex_file_pixel.php -text
 lib/smarty_tiki/function.rss.php -text
 lib/smarty_tiki/function.sameurl.php -text
+lib/smarty_tiki/function.sefurl.php -text
 lib/smarty_tiki/function.select_all.php -text
 lib/smarty_tiki/function.set.php -text
 lib/smarty_tiki/function.show_help.php -text
