@@ -1180,6 +1180,7 @@ installer/schema/20090416_plugin_security_tiki.php -text
 installer/schema/20090416_plugin_security_tiki.sql -text
 installer/schema/20090416_quicktags_kil_email_tiki.sql -text
 installer/schema/20090416_quicktags_plugin_helpers_tiki.sql -text
+installer/schema/20090427_filegal_optionalize_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -3421,9 +3422,16 @@ styles/slideshows/clear.css -text
 styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
+styles/strasa/box_bottom.gif -text
+styles/strasa/box_top.gif -text
+styles/strasa/cold.png -text
+styles/strasa/fold-topright.jpg -text
+styles/strasa/headerbg.jpg -text
+styles/strasa/headermenuitem-hover.png -text
 styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
+styles/strasa/login.jpg -text
 styles/strasa/options/cold.css -text
 styles/strasa/options/cold/box_bottom.gif -text
 styles/strasa/options/cold/box_top.gif -text
@@ -3448,6 +3456,7 @@ styles/strasa/options/mono/register.jpg -text
 styles/strasa/options/warm.css -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
+styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
