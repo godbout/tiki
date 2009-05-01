@@ -1773,6 +1773,14 @@ lib/images/icons/mpeg.png -text
 lib/images/icons/mpeg.svg -text
 lib/images/icons/mpg.png -text
 lib/images/icons/mpg.svg -text
+lib/images/icons/odg.png -text
+lib/images/icons/odg.svg -text
+lib/images/icons/odp.png -text
+lib/images/icons/odp.svg -text
+lib/images/icons/ods.png -text
+lib/images/icons/ods.svg -text
+lib/images/icons/odt.png -text
+lib/images/icons/odt.svg -text
 lib/images/icons/ogg.png -text
 lib/images/icons/ogg.svg -text
 lib/images/icons/pbm.png -text
