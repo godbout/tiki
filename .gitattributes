@@ -1725,7 +1725,7 @@ lib/images/abstract.php -text
 lib/images/gd.php -text
 lib/images/icons/3ds.png -text
 lib/images/icons/3ds.svg -text
-lib/images/icons/7z.png -text
+lib/images/icons/7z.png -text svneol=unset#unset
 lib/images/icons/7z.svg -text
 lib/images/icons/abw.png -text
 lib/images/icons/abw.svg -text
@@ -1749,7 +1749,7 @@ lib/images/icons/dvi.png -text
 lib/images/icons/dvi.svg -text
 lib/images/icons/fig.png -text
 lib/images/icons/fig.svg -text
-lib/images/icons/flv.png -text
+lib/images/icons/flv.png -text svneol=unset#unset
 lib/images/icons/flv.svg -text
 lib/images/icons/gif.png -text
 lib/images/icons/gif.svg -text
@@ -1773,25 +1773,25 @@ lib/images/icons/mov.png -text
 lib/images/icons/mov.svg -text
 lib/images/icons/mp3.png -text
 lib/images/icons/mp3.svg -text
-lib/images/icons/mp4.png -text
+lib/images/icons/mp4.png -text svneol=unset#unset
 lib/images/icons/mp4.svg -text
 lib/images/icons/mpeg.png -text
 lib/images/icons/mpeg.svg -text
 lib/images/icons/mpg.png -text
 lib/images/icons/mpg.svg -text
-lib/images/icons/odg.png -text
+lib/images/icons/odg.png -text svneol=unset#unset
 lib/images/icons/odg.svg -text
-lib/images/icons/odp.png -text
+lib/images/icons/odp.png -text svneol=unset#unset
 lib/images/icons/odp.svg -text
-lib/images/icons/ods.png -text
+lib/images/icons/ods.png -text svneol=unset#unset
 lib/images/icons/ods.svg -text
-lib/images/icons/odt.png -text
+lib/images/icons/odt.png -text svneol=unset#unset
 lib/images/icons/odt.svg -text
 lib/images/icons/ogg.png -text
 lib/images/icons/ogg.svg -text
-lib/images/icons/ogm.png -text
+lib/images/icons/ogm.png -text svneol=unset#unset
 lib/images/icons/ogm.svg -text
-lib/images/icons/ogv.png -text
+lib/images/icons/ogv.png -text svneol=unset#unset
 lib/images/icons/ogv.svg -text
 lib/images/icons/pbm.png -text
 lib/images/icons/pbm.svg -text
@@ -1827,7 +1827,7 @@ lib/images/icons/rpm.png -text
 lib/images/icons/rpm.svg -text
 lib/images/icons/rtf.png -text
 lib/images/icons/rtf.svg -text
-lib/images/icons/svg.png -text
+lib/images/icons/svg.png -text svneol=unset#unset
 lib/images/icons/svg.svg -text
 lib/images/icons/swf.png -text
 lib/images/icons/swf.svg -text
