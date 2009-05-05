@@ -87,8 +87,6 @@ doc/devtools/phpstrip.sh -text
 doc/devtools/premerge_report.sh -text
 doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/release.php -text
-doc/devtools/release_changelog.php -text
-doc/devtools/release_copyright.php -text
 doc/devtools/removehtaccess.sh -text
 doc/devtools/restorehelp.php -text
 doc/devtools/search_smarty_prefs-2.0.php -text
@@ -220,70 +218,6 @@ images/star_orange.gif -text
 images/star_purple.gif -text
 images/star_red.gif -text
 images/star_yellow.gif -text
-images/workspaces/config.gif -text
-images/workspaces/copy.gif -text
-images/workspaces/degrada.gif -text
-images/workspaces/degrada2.gif -text
-images/workspaces/degrada2gris.gif -text
-images/workspaces/degrada2verde.gif -text
-images/workspaces/degrada3.gif -text
-images/workspaces/delete.gif -text
-images/workspaces/edu_article.gif -text
-images/workspaces/edu_assignments.gif -text
-images/workspaces/edu_blog.gif -text
-images/workspaces/edu_calendar.gif -text
-images/workspaces/edu_faq.gif -text
-images/workspaces/edu_filegallery.gif -text
-images/workspaces/edu_folder.png -text
-images/workspaces/edu_folder_closed.png -text
-images/workspaces/edu_folder_dim.png -text
-images/workspaces/edu_folder_open.png -text
-images/workspaces/edu_forum.gif -text
-images/workspaces/edu_group.gif -text
-images/workspaces/edu_group.jpg -text
-images/workspaces/edu_group_add.gif -text
-images/workspaces/edu_group_new.gif -text
-images/workspaces/edu_group_remove.gif -text
-images/workspaces/edu_imagegallery.gif -text
-images/workspaces/edu_nav_down.gif -text
-images/workspaces/edu_nav_left.gif -text
-images/workspaces/edu_nav_right.gif -text
-images/workspaces/edu_nav_up.gif -text
-images/workspaces/edu_paste.gif -text
-images/workspaces/edu_quiz.gif -text
-images/workspaces/edu_role.gif -text
-images/workspaces/edu_sheet.gif -text
-images/workspaces/edu_stop.gif -text
-images/workspaces/edu_structure.gif -text
-images/workspaces/edu_survey.gif -text
-images/workspaces/edu_tracker.gif -text
-images/workspaces/edu_user_new.gif -text
-images/workspaces/edu_wikipage.gif -text
-images/workspaces/edu_workspace.gif -text
-images/workspaces/edu_workspace.png -text
-images/workspaces/edu_workspaceActive.png -text
-images/workspaces/edu_workspaceActiveFOLDER.png -text
-images/workspaces/edu_workspaceFOLDER.png -text
-images/workspaces/edu_workspaceInactive.png -text
-images/workspaces/edu_workspace_grey.png -text
-images/workspaces/edu_workspace_inactive.png -text
-images/workspaces/edu_zones.png -text
-images/workspaces/edu_zones_add.png -text
-images/workspaces/edu_zones_edit.png -text
-images/workspaces/edu_zones_remove.png -text
-images/workspaces/grayarrow.gif -text
-images/workspaces/help.png -text
-images/workspaces/info.png -text
-images/workspaces/key.gif -text
-images/workspaces/module.png -text
-images/workspaces/module_add.png -text
-images/workspaces/module_edit.png -text
-images/workspaces/module_remove.png -text
-images/workspaces/page.gif -text
-images/workspaces/pageNueva.gif -text
-images/workspaces/redarrow.gif -text
-images/workspaces/user_blue.gif -text
-images/workspaces/user_red.gif -text
 img/.htaccess -text
 img/adodb.png -text
 img/avatars/README -text
@@ -1725,7 +1659,7 @@ lib/images/abstract.php -text
 lib/images/gd.php -text
 lib/images/icons/3ds.png -text
 lib/images/icons/3ds.svg -text
-lib/images/icons/7z.png -text svneol=unset#unset
+lib/images/icons/7z.png -text
 lib/images/icons/7z.svg -text
 lib/images/icons/abw.png -text
 lib/images/icons/abw.svg -text
@@ -1749,7 +1683,7 @@ lib/images/icons/dvi.png -text
 lib/images/icons/dvi.svg -text
 lib/images/icons/fig.png -text
 lib/images/icons/fig.svg -text
-lib/images/icons/flv.png -text svneol=unset#unset
+lib/images/icons/flv.png -text
 lib/images/icons/flv.svg -text
 lib/images/icons/gif.png -text
 lib/images/icons/gif.svg -text
@@ -1773,25 +1707,25 @@ lib/images/icons/mov.png -text
 lib/images/icons/mov.svg -text
 lib/images/icons/mp3.png -text
 lib/images/icons/mp3.svg -text
-lib/images/icons/mp4.png -text svneol=unset#unset
+lib/images/icons/mp4.png -text
 lib/images/icons/mp4.svg -text
 lib/images/icons/mpeg.png -text
 lib/images/icons/mpeg.svg -text
 lib/images/icons/mpg.png -text
 lib/images/icons/mpg.svg -text
-lib/images/icons/odg.png -text svneol=unset#unset
+lib/images/icons/odg.png -text
 lib/images/icons/odg.svg -text
-lib/images/icons/odp.png -text svneol=unset#unset
+lib/images/icons/odp.png -text
 lib/images/icons/odp.svg -text
-lib/images/icons/ods.png -text svneol=unset#unset
+lib/images/icons/ods.png -text
 lib/images/icons/ods.svg -text
-lib/images/icons/odt.png -text svneol=unset#unset
+lib/images/icons/odt.png -text
 lib/images/icons/odt.svg -text
 lib/images/icons/ogg.png -text
 lib/images/icons/ogg.svg -text
-lib/images/icons/ogm.png -text svneol=unset#unset
+lib/images/icons/ogm.png -text
 lib/images/icons/ogm.svg -text
-lib/images/icons/ogv.png -text svneol=unset#unset
+lib/images/icons/ogv.png -text
 lib/images/icons/ogv.svg -text
 lib/images/icons/pbm.png -text
 lib/images/icons/pbm.svg -text
@@ -1827,7 +1761,7 @@ lib/images/icons/rpm.png -text
 lib/images/icons/rpm.svg -text
 lib/images/icons/rtf.png -text
 lib/images/icons/rtf.svg -text
-lib/images/icons/svg.png -text svneol=unset#unset
+lib/images/icons/svg.png -text
 lib/images/icons/svg.svg -text
 lib/images/icons/swf.png -text
 lib/images/icons/swf.svg -text
@@ -2900,7 +2834,6 @@ lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
-lib/wiki-plugins/wikiplugin_share.php -text
 lib/wiki-plugins/wikiplugin_sharethis.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
 lib/wiki-plugins/wikiplugin_showpages.php -text
@@ -3230,6 +3163,7 @@ pics/icons/package.png -text
 pics/icons/package_go.png -text
 pics/icons/page.png -text
 pics/icons/page_edit.png -text
+pics/icons/page_edit_section.png -text
 pics/icons/page_gear.png -text
 pics/icons/page_link.png -text
 pics/icons/page_new.png -text
@@ -3416,6 +3350,7 @@ pics/large/wysiwyg48x48.png -text
 pics/large/xfce4-appfinder.png -text
 pics/large/xfce4-appfinder48x48.png -text
 pics/next.gif -text
+pics/next_anim.gif -text
 pics/overlay-disabled_item.png -text
 pics/prev.gif -text
 pics/trans.png -text
@@ -3488,7 +3423,6 @@ styles/strasa/options/mono/list_icon.png -text
 styles/strasa/options/mono/login.jpg -text
 styles/strasa/options/mono/mono.png -text
 styles/strasa/options/mono/register.jpg -text
-styles/strasa/options/warm.css -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/strasa/register.jpg -text
