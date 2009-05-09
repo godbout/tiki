@@ -3403,14 +3403,14 @@ styles/coelesce/coelesce.png -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
-styles/darkroom_3/button.png -text svneol=unset#image/png
-styles/darkroom_3/darkroom.png -text
-styles/darkroom_3/options/small-type.css -text
-styles/darkroom_3/options/small-type/small-type.png -text
-styles/feb12_3/columnbg.jpg -text svneol=unset#image/jpeg
-styles/feb12_3/feb12.png -text
-styles/feb12_3/header.jpg -text svneol=unset#image/jpeg
-styles/feb12_3/page.jpg -text svneol=unset#image/jpeg
+styles/darkroom/button.png -text svneol=unset#image/png
+styles/darkroom/darkroom.png -text
+styles/darkroom/options/small-type.css -text
+styles/darkroom/options/small-type/small-type.png -text
+styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
+styles/feb12/feb12.png -text
+styles/feb12/header.jpg -text svneol=unset#image/jpeg
+styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/index.php -text
 styles/integrator/README -text
 styles/integrator/default.css -text
@@ -3458,11 +3458,11 @@ styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
-styles/thenews_3/arrows-005faa.png -text svneol=unset#image/png
-styles/thenews_3/options/narrow_left_column/narrow_left_column.png -text
-styles/thenews_3/thenews.png -text
-styles/tikinewt_3.css -text
-styles/tikinewt_3/tikinewt.png -text
+styles/thenews/arrows-005faa.png -text svneol=unset#image/png
+styles/thenews/options/narrow_left_column/narrow_left_column.png -text
+styles/thenews/thenews.png -text
+styles/tikinewt.css -text
+styles/tikinewt/tikinewt.png -text
 styles/transitions/1.8to2.2.css -text
 styles/transitions/1.9to2.2.css -text
 styles/transitions/1.9to3.0.css -text
@@ -3770,7 +3770,7 @@ templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
 templates/styles/index.php -text
-templates/styles/tikinewt_3/index.php -text
+templates/styles/tikinewt/index.php -text
 templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
 templates/tiki-admin-include-ads.tpl -text
