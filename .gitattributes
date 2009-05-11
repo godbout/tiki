@@ -3477,6 +3477,10 @@ styles/strasa/options/mono/link_icon.png -text
 styles/strasa/options/mono/list_icon.png -text
 styles/strasa/options/mono/login.jpg -text
 styles/strasa/options/mono/mono.png -text
+styles/strasa/options/mono/pics/icons/folder.png -text
+styles/strasa/options/mono/pics/icons/index.php -text
+styles/strasa/options/mono/pics/icons/ofolder.png -text
+styles/strasa/options/mono/pics/index.php -text
 styles/strasa/options/mono/register.jpg -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
