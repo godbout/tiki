@@ -2881,6 +2881,7 @@ lib/wiki-plugins/wikiplugin_objecthits.php -text
 lib/wiki-plugins/wikiplugin_picture.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
+lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
 lib/wiki-plugins/wikiplugin_rcontent.php -text
@@ -3457,6 +3458,7 @@ styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
 styles/strasa/login.jpg -text
+styles/strasa/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cold.css -text
 styles/strasa/options/cold/box_bottom.gif -text
 styles/strasa/options/cold/box_top.gif -text
@@ -3465,6 +3467,7 @@ styles/strasa/options/cold/fold-topright.jpg -text
 styles/strasa/options/cold/headerbg.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cold/headermenuitem-hover.png -text
 styles/strasa/options/cold/login.jpg -text svneol=unset#image/jpeg
+styles/strasa/options/cold/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cold/register.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/box_bottom.gif -text
@@ -3476,6 +3479,7 @@ styles/strasa/options/mono/info_icon.png -text
 styles/strasa/options/mono/link_icon.png -text
 styles/strasa/options/mono/list_icon.png -text
 styles/strasa/options/mono/login.jpg -text
+styles/strasa/options/mono/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/mono/mono.png -text
 styles/strasa/options/mono/pics/icons/folder.png -text
 styles/strasa/options/mono/pics/icons/index.php -text
@@ -4200,6 +4204,7 @@ templates/wiki-plugins/wikiplugin_files.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
 templates/wiki-plugins/wikiplugin_invite.tpl -text
 templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
+templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
