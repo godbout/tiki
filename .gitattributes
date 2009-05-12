@@ -4124,7 +4124,6 @@ templates/tiki-send_newsletters.tpl -text
 templates/tiki-send_objects.tpl -text
 templates/tiki-sheets.tpl -text
 templates/tiki-shoutbox.tpl -text
-templates/tiki-show_calendar.tpl -text
 templates/tiki-show_help.tpl -text
 templates/tiki-show_page.tpl -text
 templates/tiki-show_page_raw.tpl -text
@@ -4573,7 +4572,6 @@ tests/testfile.txt -text
 /tiki-sheets.php -text
 /tiki-shoutbox.php -text
 /tiki-show_all_images.php -text
-/tiki-show_calendar.php -text
 /tiki-show_user_avatar.php -text
 /tiki-slideshow.php -text
 /tiki-slideshow2.php -text
