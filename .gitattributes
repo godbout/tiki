@@ -1172,6 +1172,7 @@ installer/schema/20090416_quicktags_plugin_helpers_tiki.sql -text
 installer/schema/20090427_filegal_optionalize_tiki.sql -text
 installer/schema/20090429_groupId_tiki.sql -text
 installer/schema/20090513_calendar_priority.sql -text
+installer/schema/20090513_swffix_tiki.sql -text
 installer/schema/20090513_wiki_similar_permission.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -3239,6 +3240,9 @@ pics/icons/pencil_add.png -text
 pics/icons/picture.png -text
 pics/icons/picture_add.png -text
 pics/icons/pictures.png -text
+pics/icons/plugin.png -text
+pics/icons/plugin_add.png -text
+pics/icons/plugin_edit.png -text
 pics/icons/plus_small.png -text
 pics/icons/printer.png -text
 pics/icons/printer_add.png -text
@@ -4201,6 +4205,7 @@ templates/tracker_item_field_value.tpl -text
 templates/translated-lang.tpl -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
+templates/wiki-plugins/wikiplugin_bloglist.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
 templates/wiki-plugins/wikiplugin_files.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
