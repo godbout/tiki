@@ -1169,6 +1169,7 @@ installer/tiki-installer.php -text
 lang/.htaccess -text
 lang/ar/index.php -text
 lang/ar/language.php -text
+lang/ca/custom.php_example -text
 lang/ca/index.php -text
 lang/ca/language.php -text
 lang/cn/index.php -text
@@ -1187,6 +1188,7 @@ lang/en-uk/index.php -text
 lang/en-uk/language.php -text
 lang/en/index.php -text
 lang/en/language.php -text
+lang/es/custom.php_example -text
 lang/es/index.php -text
 lang/es/language.php -text
 lang/fa/index.php -text
