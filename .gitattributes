@@ -3440,6 +3440,7 @@ styles/strasa/headerbg.jpg -text
 styles/strasa/headermenuitem-hover.png -text
 styles/strasa/ie6.css -text
 styles/strasa/ie7.css -text
+styles/strasa/ie8.css -text
 styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
