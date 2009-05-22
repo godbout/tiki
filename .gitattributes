@@ -3508,13 +3508,6 @@ styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
 styles/tikinewt.css -text
 styles/tikinewt/tikinewt.png -text
-styles/transitions/1.8to2.2.css -text
-styles/transitions/1.9to2.2.css -text
-styles/transitions/1.9to3.0.css -text
-styles/transitions/2.0to3.0.css -text
-styles/transitions/2.0to4.0.css -text
-styles/transitions/3.0to4.0.css -text
-styles/transitions/index.php -text
 temp/.htaccess -text
 temp/README -text
 temp/cache/index.php -text
