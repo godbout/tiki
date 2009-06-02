@@ -2985,6 +2985,7 @@ modules/cache/index.php -text
 modules/index.php -text
 modules/mod-action_calendar.php -text
 modules/mod-adsense.php -text
+modules/mod-article_by_rating.php -text
 modules/mod-article_topics.php -text
 modules/mod-articles.php -text
 modules/mod-assistant.php -text
@@ -3667,6 +3668,7 @@ templates/modules/mod-action_calendar.tpl -text
 templates/modules/mod-admin_menu.tpl -text
 templates/modules/mod-adsense.tpl -text
 templates/modules/mod-application_menu.tpl.nocache -text
+templates/modules/mod-article_by_rating.tpl -text
 templates/modules/mod-article_topics.tpl -text
 templates/modules/mod-articles.tpl -text
 templates/modules/mod-assistant.tpl -text
