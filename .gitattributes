@@ -2585,7 +2585,6 @@ lib/smarty_tiki/block.repeat.php -text
 lib/smarty_tiki/block.self_link.php -text
 lib/smarty_tiki/block.sortlinks.php -text
 lib/smarty_tiki/block.tab.php -text
-lib/smarty_tiki/block.tabs.php -text
 lib/smarty_tiki/block.tabset.php -text
 lib/smarty_tiki/block.textarea.php -text
 lib/smarty_tiki/block.tikimodule.php -text
