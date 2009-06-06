@@ -1171,6 +1171,7 @@ installer/schema/20090513_swffix_tiki.sql -text
 installer/schema/20090513_wiki_similar_permission_tiki.sql -text
 installer/schema/20090515_score_tiki.sql -text
 installer/schema/20090602_webmail_protocols_tiki.sql -text
+installer/schema/20090605_tiki_p_modify_tracker_items_pending_closed_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
