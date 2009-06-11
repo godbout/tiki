@@ -4049,6 +4049,7 @@ templates/tiki-list_file_gallery.tpl -text
 templates/tiki-list_gallery.tpl -text
 templates/tiki-list_games.tpl -text
 templates/tiki-list_integrator_repositories.tpl -text
+templates/tiki-list_object_permissions.tpl -text
 templates/tiki-list_posts.tpl -text
 templates/tiki-list_quizzes.tpl -text
 templates/tiki-list_submissions.tpl -text
@@ -4482,6 +4483,7 @@ tests/testfile.txt -text
 /tiki-list_gallery.php -text
 /tiki-list_games.php -text
 /tiki-list_integrator_repositories.php -text
+/tiki-list_object_permissions.php -text
 /tiki-list_posts.php -text
 /tiki-list_quizzes.php -text
 /tiki-list_submissions.php -text
