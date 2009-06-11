@@ -2436,7 +2436,7 @@ lib/refererstats/refererlib.php -text
 lib/registration/index.php -text
 lib/registration/register_ajax.js -text
 lib/registration/registrationlib.php -text
-lib/reports.php -text
+lib/reportslib.php -text
 lib/rss/atom-style.css -text svneol=unset#application/octet-stream
 lib/rss/index.php -text
 lib/rss/opml.css -text
