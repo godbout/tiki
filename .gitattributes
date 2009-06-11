@@ -2436,6 +2436,7 @@ lib/refererstats/refererlib.php -text
 lib/registration/index.php -text
 lib/registration/register_ajax.js -text
 lib/registration/registrationlib.php -text
+lib/reports.php -text
 lib/rss/atom-style.css -text svneol=unset#application/octet-stream
 lib/rss/index.php -text
 lib/rss/opml.css -text
@@ -3599,6 +3600,7 @@ templates/mail/newsletter_welcome_subject.tpl -text
 templates/mail/notification_subject.tpl -text
 templates/mail/password_reminder.tpl -text
 templates/mail/password_reminder_subject.tpl -text
+templates/mail/report.tpl -text
 templates/mail/submission_notification.tpl -text
 templates/mail/submission_notification_subject.tpl -text
 templates/mail/tellAFriend.tpl -text
@@ -4618,6 +4620,8 @@ tests/testfile.txt -text
 /tiki-user_contacts_prefs.php -text
 /tiki-user_information.php -text
 /tiki-user_preferences.php -text
+/tiki-user_reports.php -text
+/tiki-user_reports_send.php -text
 /tiki-user_tasks.php -text
 /tiki-user_watches.php -text
 /tiki-userfiles.php -text
