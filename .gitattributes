@@ -3757,6 +3757,7 @@ templates/modules/mod-since_last_visit_new.tpl -text
 templates/modules/mod-switch_lang.tpl -text
 templates/modules/mod-switch_theme.tpl -text
 templates/modules/mod-switch_theme.tpl.nocache -text
+templates/modules/mod-terminology.tpl -text
 templates/modules/mod-tikitests.tpl -text
 templates/modules/mod-top_active_blogs.tpl -text
 templates/modules/mod-top_articles.tpl -text
