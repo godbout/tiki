@@ -2906,6 +2906,7 @@ lib/wiki-plugins/wikiplugin_snarf.php -text
 lib/wiki-plugins/wikiplugin_sort.php -text
 lib/wiki-plugins/wikiplugin_split.php -text
 lib/wiki-plugins/wikiplugin_sql.php -text
+lib/wiki-plugins/wikiplugin_stat.php -text
 lib/wiki-plugins/wikiplugin_sub.php -text
 lib/wiki-plugins/wikiplugin_subscribegroup.php -text
 lib/wiki-plugins/wikiplugin_subscribegroups.php -text
@@ -4223,6 +4224,7 @@ templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
 templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
+templates/wiki-plugins/wikiplugin_stat.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroups.tpl -text
 templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
