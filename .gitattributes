@@ -1083,9 +1083,6 @@ img/wiki/README -text
 img/wiki/index.php -text
 img/wiki_up/README -text
 img/wiki_up/index.php -text
-import/import_mediawiki_dump.php -text
-import/index.php -text
-import/mediawiki_dump.xsd -text
 /index.php -text
 installer/.htaccess -text
 installer/index.php -text
@@ -4564,7 +4561,6 @@ tests/testfile.txt -text
 /tiki-image_galleries_rss.php -text
 /tiki-image_gallery_rss.php -text
 /tiki-imexport_languages.php -text
-/tiki-import_mwdump.php -text
 /tiki-import_sheet.php -text
 /tiki-import_structuredtext.php -text
 /tiki-import_tracker.php -text
