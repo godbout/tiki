@@ -1871,6 +1871,10 @@ lib/images/icons/zip.svg -text
 lib/images/images.php -text
 lib/images/imagick_new.php -text
 lib/images/imagick_old.php -text
+lib/importer/TikiImporter.php -text
+lib/importer/TikiImporter_Wiki.php -text
+lib/importer/TikiImporter_Wiki_Mediawiki.php -text
+lib/importer/mediawiki_dump.xsd -text
 lib/importerlib.php -text
 lib/index.php -text
 lib/init/index.php -text
@@ -4134,6 +4138,7 @@ templates/tiki-imexport_languages.tpl -text
 templates/tiki-import-sheets.tpl -text
 templates/tiki-import_structuredtext.tpl -text
 templates/tiki-import_xml_zip.tpl -text
+templates/tiki-importer.tpl -text
 templates/tiki-index_p.tpl -text
 templates/tiki-information.tpl -text
 templates/tiki-install.tpl -text
@@ -4564,6 +4569,7 @@ tests/testfile.txt -text
 /tiki-import_structuredtext.php -text
 /tiki-import_tracker.php -text
 /tiki-import_xml_zip.php -text
+/tiki-importer.php -text
 /tiki-index.php -text
 /tiki-index_p.php -text
 /tiki-index_raw.php -text
