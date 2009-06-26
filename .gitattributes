@@ -1574,6 +1574,7 @@ lib/core/test/WikiParser/PluginMatcherTest.php -text
 lib/core/test/WikiParser/PluginParserTest.php -text
 lib/core/test/WikiParser/PluginRepositoryTest.php -text
 lib/core/test/WikiParser/wikiplugin_foo.php -text
+lib/core/test/create_dump_db_file.php -text
 lib/csslib.php -text
 lib/db/tiki_registration_fields.php -text
 lib/dcs/dcslib.php -text
