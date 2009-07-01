@@ -1690,6 +1690,7 @@ lib/htmlparser/htmlparser.inc -text
 lib/htmlparser/index.php -text
 lib/htmlparser/readme.eng.txt -text
 lib/htmlparser/rebuildgrammar.php -text
+lib/htmlpurifier_tiki/HTMLPurifier.tiki.php -text
 lib/ical/File.php -text
 lib/ical/iCal.php -text
 lib/ical/iCal/Alarm.php -text
