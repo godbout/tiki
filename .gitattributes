@@ -1,4 +1,5 @@
 * text=auto !eol
+/AllTests.php -text
 /INSTALL -text
 /README -text
 /_htaccess -text
@@ -1540,7 +1541,9 @@ lib/core/test/AcceptanceTests/AllTests.php -text
 lib/core/test/AcceptanceTests/ListPagesTest.php -text
 lib/core/test/AcceptanceTests/MultilingualTest.php -text
 lib/core/test/AcceptanceTests/SearchTest.php -text
+lib/core/test/AcceptanceTests/TikiLibrariesAccessTest.php -text
 lib/core/test/AllTests.php -text
+lib/core/test/AllTestsAcceptance.php -text
 lib/core/test/DeclFilter/AllTests.php -text
 lib/core/test/DeclFilter/BaseTest.php -text
 lib/core/test/DeclFilter/CatchAllFilterTest.php -text
@@ -1577,6 +1580,7 @@ lib/core/test/WikiParser/PluginParserTest.php -text
 lib/core/test/WikiParser/PluginRepositoryTest.php -text
 lib/core/test/WikiParser/wikiplugin_foo.php -text
 lib/core/test/create_dump_db_file.php -text
+lib/core/test/restore_db_dump.php -text
 lib/csslib.php -text
 lib/db/tiki_registration_fields.php -text
 lib/dcs/dcslib.php -text
