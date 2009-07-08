@@ -1541,6 +1541,7 @@ lib/core/lib/WikiParser/PluginRunner.php -text
 lib/core/test/AcceptanceTests/AllTests.php -text
 lib/core/test/AcceptanceTests/ListPagesTest.php -text
 lib/core/test/AcceptanceTests/MultilingualTest.php -text
+lib/core/test/AcceptanceTests/MultilinguallibTest.php -text
 lib/core/test/AcceptanceTests/SearchTest.php -text
 lib/core/test/AcceptanceTests/TikiLibrariesAccessTest.php -text
 lib/core/test/AllTests.php -text
@@ -1558,7 +1559,6 @@ lib/core/test/JitFilter/AccessTest.php -text
 lib/core/test/JitFilter/AllTests.php -text
 lib/core/test/JitFilter/FilterTest.php -text
 lib/core/test/JitFilter/IteratorTest.php -text
-lib/core/test/JustAFewTests.php -text
 lib/core/test/Multilingual/Aligner/AllTests.php -text
 lib/core/test/Multilingual/Aligner/BilingualAlignerTest.php -text
 lib/core/test/Multilingual/Aligner/SentenceSegmentorTest.php -text
