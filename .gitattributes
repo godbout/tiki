@@ -4367,6 +4367,7 @@ tests/force-error_sql.php -text
 tests/index.php -text
 tests/messu-compose.tpl -text
 tests/test_cvs_file.txt -text
+tests/test_php_beautifier.php -text
 tests/testfile.txt -text
 /textareasize.php -text
 /tiki-action_calendar.php -text
