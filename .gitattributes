@@ -1878,6 +1878,11 @@ lib/images/images.php -text
 lib/images/imagick_new.php -text
 lib/images/imagick_old.php -text
 lib/importer/mediawiki_dump.xsd -text
+lib/importer/test/AllTests.php -text
+lib/importer/test/fixtures/mediawiki_contributor.xml -text
+lib/importer/test/tikiimporter_test.php -text
+lib/importer/test/tikiimporter_wiki_mediawiki_test.php -text
+lib/importer/test/tikiimporter_wiki_test.php -text
 lib/importer/tikiimporter.php -text
 lib/importer/tikiimporter_wiki.php -text
 lib/importer/tikiimporter_wiki_mediawiki.php -text
