@@ -1877,10 +1877,10 @@ lib/images/icons/zip.svg -text
 lib/images/images.php -text
 lib/images/imagick_new.php -text
 lib/images/imagick_old.php -text
-lib/importer/TikiImporter.php -text
-lib/importer/TikiImporter_Wiki.php -text
-lib/importer/TikiImporter_Wiki_Mediawiki.php -text
 lib/importer/mediawiki_dump.xsd -text
+lib/importer/tikiimporter.php -text
+lib/importer/tikiimporter_wiki.php -text
+lib/importer/tikiimporter_wiki_mediawiki.php -text
 lib/importerlib.php -text
 lib/index.php -text
 lib/init/index.php -text
