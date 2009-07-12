@@ -4373,7 +4373,6 @@ templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 templates_c/index.php -text
-/test_php_beautifier.php -text
 tests/.htaccess -text
 tests/example.txt -text
 tests/force-error_sql.php -text
