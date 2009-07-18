@@ -1532,6 +1532,7 @@ lib/core/lib/Multilingual/Aligner/ShortestPathFinder.php -text
 lib/core/lib/Multilingual/MachineTranslation/GoogleTranslateWrapper.php -text
 lib/core/lib/TikiDb.php -text
 lib/core/lib/TikiDb/Adodb.php -text
+lib/core/lib/TikiDb/Bridge.php -text
 lib/core/lib/TikiDb/ErrorHandler.php -text
 lib/core/lib/TikiDb/Exception.php -text
 lib/core/lib/TikiDb/Pdo.php -text
