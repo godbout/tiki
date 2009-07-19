@@ -1175,6 +1175,7 @@ installer/schema/20090623_actionlog_view_article_tiki.sql -text
 installer/schema/20090626_change_pear_auth_preferences_to_ldap.sql -text
 installer/schema/20090707_tiki_p_delete_account_tiki.sql -text
 installer/schema/20090713_tiki_importer_permission_and_menu_entry.sql -text
+installer/schema/20090715_sefurl_for_filegalleries.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
