@@ -1176,6 +1176,7 @@ installer/schema/20090626_change_pear_auth_preferences_to_ldap_tiki.sql -text
 installer/schema/20090707_tiki_p_delete_account_tiki.sql -text
 installer/schema/20090713_tiki_importer_permission_and_menu_entry_tiki.sql -text
 installer/schema/20090715_sefurl_for_filegalleries_tiki.sql -text
+installer/schema/20090720_perspectives_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
@@ -2450,6 +2451,7 @@ lib/pear/XML_Parser/tests/005.phpt -text
 lib/pear/XML_Parser/tests/test2.xml -text
 lib/pear/XML_Parser/tests/test3.xml -text
 lib/pear/index.php -text
+lib/perspectivelib.php -text
 lib/phplayers_tiki/index.php -text
 lib/phplayers_tiki/lib/index.php -text
 lib/phplayers_tiki/lib/layersmenu-common.inc.php -text
@@ -4651,6 +4653,7 @@ tests/testfile.txt -text
 /tiki-survey_stats.php -text
 /tiki-survey_stats_survey.php -text
 /tiki-switch_lang.php -text
+/tiki-switch_perspective.php -text
 /tiki-switch_theme.php -text
 /tiki-syslog.php -text
 /tiki-take_quiz.php -text
