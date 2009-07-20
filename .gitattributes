@@ -3088,6 +3088,7 @@ modules/mod-months_links.php -text
 modules/mod-num_submissions.php -text
 modules/mod-old_articles.php -text
 modules/mod-online_users.php -text
+modules/mod-perspective.php -text
 modules/mod-quick_edit.php -text
 modules/mod-random_images.php -text
 modules/mod-random_pages.php -text
@@ -3787,6 +3788,7 @@ templates/modules/mod-num_submissions.tpl -text
 templates/modules/mod-old_articles.tpl -text
 templates/modules/mod-online_users.tpl -text
 templates/modules/mod-online_users.tpl.nocache -text
+templates/modules/mod-perspective.tpl -text
 templates/modules/mod-quick_edit.tpl -text
 templates/modules/mod-random_images.tpl -text
 templates/modules/mod-random_pages.tpl -text
