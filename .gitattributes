@@ -3049,6 +3049,7 @@ modules/mod-directory_last_sites.php -text
 modules/mod-directory_stats.php -text
 modules/mod-directory_top_sites.php -text
 modules/mod-featured_links.php -text
+modules/mod-file_galleries.php -text
 modules/mod-forums_best_voted_topics.php -text
 modules/mod-forums_last_posts.php -text
 modules/mod-forums_last_topics.php -text
@@ -3742,6 +3743,7 @@ templates/modules/mod-directory_stats.tpl -text
 templates/modules/mod-directory_top_sites.tpl -text
 templates/modules/mod-events.tpl -text
 templates/modules/mod-featured_links.tpl -text
+templates/modules/mod-file_galleries.tpl -text
 templates/modules/mod-forums_best_voted_topics.tpl -text
 templates/modules/mod-forums_last_posts.tpl -text svneol=unset#application/octet-stream
 templates/modules/mod-forums_last_topics.tpl -text
