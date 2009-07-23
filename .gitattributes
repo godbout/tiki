@@ -1898,6 +1898,7 @@ lib/importer/test/fixtures/mediawiki_invalid.xml -text
 lib/importer/test/fixtures/mediawiki_page.xml -text
 lib/importer/test/fixtures/mediawiki_page_as_array.php -text
 lib/importer/test/fixtures/mediawiki_revision.xml -text
+lib/importer/test/fixtures/mediawiki_revision_invalid_syntax.xml -text
 lib/importer/test/fixtures/mediawiki_sample.xml -text
 lib/importer/test/tikiimporter_test.php -text
 lib/importer/test/tikiimporter_testcase.php -text
