@@ -1180,6 +1180,7 @@ installer/schema/20090713_tiki_importer_permission_and_menu_entry_tiki.sql -text
 installer/schema/20090715_sefurl_for_filegalleries_tiki.sql -text
 installer/schema/20090720_perspectives_tiki.sql -text
 installer/schema/20090721_webmail_ext_public_tiki.sql -text
+installer/schema/20090727_user_votings_index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 /jhot.php -text
