@@ -38,9 +38,6 @@ db/fulltext.sql -text
 db/index.php -text
 db/oracle/index.php -text
 db/oracle/md5.sql -text
-db/profiles/_default.prf -text
-db/profiles/basicEnabled.prf -text
-db/profiles/index.php -text
 db/tiki-4.0-mysql.sql -text
 db/tiki-4.0-mysqli.sql -text
 db/tiki-4.0-oci8.sql -text
