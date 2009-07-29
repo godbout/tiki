@@ -1942,6 +1942,9 @@ lib/jquery/cluetip/jquery.cluetip.css -text
 lib/jquery/cluetip/jquery.cluetip.js -text
 lib/jquery/cluetip/lib/jquery.bgiframe.min.js -text
 lib/jquery/cluetip/lib/jquery.hoverIntent.js -text
+lib/jquery/colorbox/README -text
+lib/jquery/colorbox/jquery.colorbox-min.js -text
+lib/jquery/colorbox/jquery.colorbox.js -text
 lib/jquery/index.php -text
 lib/jquery/jquery-autocomplete/changelog.txt -text
 lib/jquery/jquery-autocomplete/jquery.autocomplete.css -text
