@@ -2675,6 +2675,7 @@ lib/smarty_tiki/function.show_sort.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.tikicon.php -text
 lib/smarty_tiki/function.tree.php -text
+lib/smarty_tiki/function.treetable.php -text
 lib/smarty_tiki/function.var_dump.php -text
 lib/smarty_tiki/function.wikistructure.php -text
 lib/smarty_tiki/function.xajax_response.php -text
