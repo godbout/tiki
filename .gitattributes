@@ -1918,8 +1918,10 @@ lib/images/icons/zip.svg -text
 lib/images/images.php -text
 lib/images/imagick_new.php -text
 lib/images/imagick_old.php -text
+lib/importer/index.php -text
 lib/importer/mediawiki_dump.xsd -text
 lib/importer/test/AllTests.php -text
+lib/importer/test/fixtures/index.php -text
 lib/importer/test/fixtures/mediawiki_contributor.xml -text
 lib/importer/test/fixtures/mediawiki_invalid.xml -text
 lib/importer/test/fixtures/mediawiki_page.xml -text
@@ -1928,6 +1930,7 @@ lib/importer/test/fixtures/mediawiki_revision.xml -text
 lib/importer/test/fixtures/mediawiki_revision_invalid_syntax.xml -text
 lib/importer/test/fixtures/mediawiki_sample.xml -text
 lib/importer/test/fixtures/mediawiki_upload.xml -text
+lib/importer/test/index.php -text
 lib/importer/test/tikiimporter_test.php -text
 lib/importer/test/tikiimporter_testcase.php -text
 lib/importer/test/tikiimporter_wiki_mediawiki_test.php -text
