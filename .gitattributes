@@ -3070,7 +3070,6 @@ modules/mod-article_archives.php -text
 modules/mod-article_by_rating.php -text
 modules/mod-article_topics.php -text
 modules/mod-articles.php -text
-modules/mod-assistant.php -text
 modules/mod-blog_last_comments.php -text
 modules/mod-breadcrumb.php -text
 modules/mod-calendar_new.php -text
@@ -3093,6 +3092,7 @@ modules/mod-freetags_current.php -text
 modules/mod-freetags_morelikethis.php -text
 modules/mod-freetags_most_popular.php -text
 modules/mod-freetags_prefered.php -text
+modules/mod-func-assistant.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-google.php -text
 modules/mod-groups_emulation.php -text
