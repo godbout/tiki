@@ -2655,6 +2655,7 @@ lib/smarty_tiki/function.initials_filter_links.php -text
 lib/smarty_tiki/function.js_maxlength.php -text
 lib/smarty_tiki/function.jscalendar.php -text
 lib/smarty_tiki/function.jspopup.php -text
+lib/smarty_tiki/function.listfilter.php -text
 lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.phplayers.php -text
