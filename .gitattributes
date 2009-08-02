@@ -2065,6 +2065,16 @@ lib/jquery/tablesorter/themes/green/bg.png -text
 lib/jquery/tablesorter/themes/green/desc.png -text
 lib/jquery/tablesorter/themes/green/green.zip -text
 lib/jquery/tablesorter/themes/green/style.css -text
+lib/jquery/treeTable/CHANGELOG -text
+lib/jquery/treeTable/MIT_LICENSE -text
+lib/jquery/treeTable/README.markdown -text
+lib/jquery/treeTable/src/images/toggle-collapse-dark.png -text
+lib/jquery/treeTable/src/images/toggle-collapse-light.png -text
+lib/jquery/treeTable/src/images/toggle-expand-dark.png -text
+lib/jquery/treeTable/src/images/toggle-expand-light.png -text
+lib/jquery/treeTable/src/javascripts/jquery.treeTable.js -text
+lib/jquery/treeTable/src/javascripts/jquery.treeTable.min.js -text
+lib/jquery/treeTable/src/stylesheets/jquery.treeTable.css -text
 lib/jquery_tiki/index.php -text
 lib/jquery_tiki/tablesorter/themes/tiki/asc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/bg.gif -text
