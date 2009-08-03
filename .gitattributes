@@ -1177,6 +1177,7 @@ installer/schema/20090720_perspectives_tiki.sql -text
 installer/schema/20090721_webmail_ext_public_tiki.sql -text
 installer/schema/20090727_category_permissions_tiki.sql -text
 installer/schema/20090727_user_votings_index.php -text
+installer/schema/20090727_user_votings_index_tiki.sql -text
 installer/schema/20090730_p_list_newsletters_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
