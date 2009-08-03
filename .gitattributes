@@ -2813,12 +2813,12 @@ lib/test/importer/AllTests.php -text
 lib/test/importer/fixtures/index.php -text
 lib/test/importer/fixtures/mediawiki_contributor.xml -text
 lib/test/importer/fixtures/mediawiki_invalid.xml -text
+lib/test/importer/fixtures/mediawiki_invalid_upload.xml -text
 lib/test/importer/fixtures/mediawiki_page.xml -text
 lib/test/importer/fixtures/mediawiki_page_as_array.php -text
 lib/test/importer/fixtures/mediawiki_revision.xml -text
 lib/test/importer/fixtures/mediawiki_revision_invalid_syntax.xml -text
 lib/test/importer/fixtures/mediawiki_sample.xml -text
-lib/test/importer/fixtures/mediawiki_upload.xml -text
 lib/test/importer/index.php -text
 lib/test/importer/tikiimporter_test.php -text
 lib/test/importer/tikiimporter_testcase.php -text
