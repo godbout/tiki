@@ -3105,7 +3105,6 @@ modules/mod-featured_links.php -text
 modules/mod-file_galleries.php -text
 modules/mod-forums_best_voted_topics.php -text
 modules/mod-forums_last_posts.php -text
-modules/mod-forums_last_topics.php -text
 modules/mod-forums_most_commented_forums.php -text
 modules/mod-forums_most_read_topics.php -text
 modules/mod-forums_most_visited_forums.php -text
@@ -3801,7 +3800,6 @@ templates/modules/mod-featured_links.tpl -text
 templates/modules/mod-file_galleries.tpl -text
 templates/modules/mod-forums_best_voted_topics.tpl -text
 templates/modules/mod-forums_last_posts.tpl -text svneol=unset#application/octet-stream
-templates/modules/mod-forums_last_topics.tpl -text
 templates/modules/mod-forums_most_commented_forums.tpl -text
 templates/modules/mod-forums_most_read_topics.tpl -text
 templates/modules/mod-forums_most_visited_forums.tpl -text
