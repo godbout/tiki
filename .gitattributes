@@ -1174,6 +1174,7 @@ installer/schema/20090727_user_votings_index_tiki.sql -text
 installer/schema/20090730_p_list_newsletters_tiki.sql -text
 installer/schema/20090803_perspective_permission_tiki.sql -text
 installer/schema/20090804_menu_search_tiki.sql -text
+installer/schema/20090805_kill_newsreader.sql -text
 installer/schema/20090805_remove_games_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -2059,8 +2060,6 @@ lib/modules/modlib.php -text
 lib/multilingual/multilinguallib.php -text
 lib/newsletters/index.php -text
 lib/newsletters/nllib.php -text
-lib/newsreader/index.php -text
-lib/newsreader/newslib.php -text
 lib/notepad/index.php -text
 lib/notepad/notepadlib.php -text
 lib/notifications/index.php -text
@@ -4030,10 +4029,6 @@ templates/tiki-my_tiki.tpl -text
 templates/tiki-mytiki_bar.tpl -text
 templates/tiki-newsletter_archives.tpl -text
 templates/tiki-newsletters.tpl -text
-templates/tiki-newsreader_groups.tpl -text
-templates/tiki-newsreader_news.tpl -text
-templates/tiki-newsreader_read.tpl -text
-templates/tiki-newsreader_servers.tpl -text
 templates/tiki-notepad_list.tpl -text
 templates/tiki-notepad_read.tpl -text
 templates/tiki-notepad_write.tpl -text
@@ -4483,10 +4478,6 @@ tests/testfile.txt -text
 /tiki-mytiki_shared.php -text
 /tiki-newsletter_archives.php -text
 /tiki-newsletters.php -text
-/tiki-newsreader_groups.php -text
-/tiki-newsreader_news.php -text
-/tiki-newsreader_read.php -text
-/tiki-newsreader_servers.php -text
 /tiki-notepad_get.php -text
 /tiki-notepad_list.php -text
 /tiki-notepad_read.php -text
