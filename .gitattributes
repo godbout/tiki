@@ -1920,6 +1920,12 @@ lib/jquery/cluetip/lib/jquery.hoverIntent.js -text
 lib/jquery/colorbox/README -text
 lib/jquery/colorbox/jquery.colorbox-min.js -text
 lib/jquery/colorbox/jquery.colorbox.js -text
+lib/jquery/colorbox/styles/colorbox.css -text
+lib/jquery/colorbox/styles/images/border.png -text
+lib/jquery/colorbox/styles/images/controls.png -text
+lib/jquery/colorbox/styles/images/loading.gif -text
+lib/jquery/colorbox/styles/images/loading_background.png -text
+lib/jquery/colorbox/styles/images/overlay.png -text
 lib/jquery/index.php -text
 lib/jquery/jquery-autocomplete/changelog.txt -text
 lib/jquery/jquery-autocomplete/jquery.autocomplete.css -text
