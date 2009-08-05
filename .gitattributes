@@ -1175,10 +1175,10 @@ installer/schema/20090730_p_list_newsletters_tiki.sql -text
 installer/schema/20090803_perspective_permission_tiki.sql -text
 installer/schema/20090804_menu_search_tiki.sql -text
 installer/schema/20090805_kill_newsreader.sql -text
+installer/schema/20090805_remove_drawings_prefs_etc_tiki.sql -text
 installer/schema/20090805_remove_games_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
-/jhot.php -text
 lang/.htaccess -text
 lang/ar/index.php -text
 lang/ar/language.php -text
@@ -1607,8 +1607,6 @@ lib/diff/renderer_sidebyside.php -text
 lib/diff/renderer_unified.php -text
 lib/directory/dirlib.php -text
 lib/directory/index.php -text
-lib/drawings/drawlib.php -text
-lib/drawings/index.php -text
 lib/encoding/lib-encoding.php -text
 lib/equation/class.latexrender.php -text
 lib/equation/pictures/index.php -text
@@ -1882,8 +1880,6 @@ lib/init/setup_inc.php -text
 lib/init/tra.php -text
 lib/integrator/index.php -text
 lib/integrator/integrator.php -text
-lib/jgraphpad/index.php -text
-lib/jgraphpad/jgraphpad.jar -text
 lib/jquery/cluetip/README -text
 lib/jquery/cluetip/images/arrowdown.gif -text
 lib/jquery/cluetip/images/arrowleft.gif -text
@@ -2790,7 +2786,6 @@ lib/wiki-plugins/wikiplugin_datachannel.php -text
 lib/wiki-plugins/wikiplugin_dbreport.php -text
 lib/wiki-plugins/wikiplugin_div.php -text
 lib/wiki-plugins/wikiplugin_dl.php -text
-lib/wiki-plugins/wikiplugin_draw.php -text
 lib/wiki-plugins/wikiplugin_equation.php -text
 lib/wiki-plugins/wikiplugin_events.php -text
 lib/wiki-plugins/wikiplugin_fade.php -text
@@ -3828,7 +3823,6 @@ templates/tiki-admin_charts.tpl -text
 templates/tiki-admin_content_templates.tpl -text
 templates/tiki-admin_contribution.tpl -text
 templates/tiki-admin_cookies.tpl -text
-templates/tiki-admin_drawings.tpl -text
 templates/tiki-admin_dsn.tpl -text
 templates/tiki-admin_external_wikis.tpl -text
 templates/tiki-admin_features.tpl -text
@@ -4202,7 +4196,6 @@ tests/testfile.txt -text
 /tiki-admin_content_templates.php -text
 /tiki-admin_contribution.php -text
 /tiki-admin_cookies.php -text
-/tiki-admin_drawings.php -text
 /tiki-admin_dsn.php -text
 /tiki-admin_external_wikis.php -text
 /tiki-admin_features.php -text
@@ -4348,7 +4341,6 @@ tests/testfile.txt -text
 /tiki-edit_topic.php -text
 /tiki-edit_translation.php -text
 /tiki-edit_wiki_section.php -text
-/tiki-editdrawing.php -text
 /tiki-editpage.php -text
 /tiki-emulate_groups_switch.php -text
 /tiki-error_simple.php -text
