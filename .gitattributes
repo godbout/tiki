@@ -121,12 +121,6 @@ files/index.php -text
 files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /freetag_apply.php -text
 /freetag_list.php -text
-games/README -text
-games/flash/README -text
-games/flash/index.php -text
-games/index.php -text
-games/thumbs/README -text
-games/thumbs/index.php -text
 /get_strings.php -text
 /green.favicon.png -text
 /help.php -text
@@ -1659,8 +1653,6 @@ lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
 lib/freetag/freetaglib.php -text
 lib/freetag/index.php -text
-lib/games/gamelib.php -text
-lib/games/index.php -text
 lib/graph-engine/abstract.gridbased.php -text
 lib/graph-engine/core.php -text
 lib/graph-engine/gd.php -text
@@ -3015,7 +3007,6 @@ modules/mod-top_articles.php -text
 modules/mod-top_file_galleries.php -text
 modules/mod-top_files.php -text
 modules/mod-top_forum_posters.php -text
-modules/mod-top_games.php -text
 modules/mod-top_image_galleries.php -text
 modules/mod-top_images.php -text
 modules/mod-top_images_th.php -text
@@ -3725,7 +3716,6 @@ templates/modules/mod-top_articles.tpl -text
 templates/modules/mod-top_file_galleries.tpl -text
 templates/modules/mod-top_files.tpl -text
 templates/modules/mod-top_forum_posters.tpl -text
-templates/modules/mod-top_games.tpl -text
 templates/modules/mod-top_image_galleries.tpl -text
 templates/modules/mod-top_images.tpl -text
 templates/modules/mod-top_images_th.tpl -text
@@ -4009,7 +3999,6 @@ templates/tiki-list_contents.tpl -text
 templates/tiki-list_faqs.tpl -text
 templates/tiki-list_file_gallery.tpl -text
 templates/tiki-list_gallery.tpl -text
-templates/tiki-list_games.tpl -text
 templates/tiki-list_integrator_repositories.tpl -text
 templates/tiki-list_object_permissions.tpl -text
 templates/tiki-list_posts.tpl -text
@@ -4446,7 +4435,6 @@ tests/testfile.txt -text
 /tiki-list_faqs.php -text
 /tiki-list_file_gallery.php -text
 /tiki-list_gallery.php -text
-/tiki-list_games.php -text
 /tiki-list_integrator_repositories.php -text
 /tiki-list_object_permissions.php -text
 /tiki-list_posts.php -text
