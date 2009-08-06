@@ -4054,8 +4054,6 @@ templates/tiki-register_site.tpl -text
 templates/tiki-remind_password.tpl -text
 templates/tiki-removepage.tpl -text
 templates/tiki-rename_page.tpl -text
-templates/tiki-replicate.tpl -text
-templates/tiki-replicate_console.tpl -text
 templates/tiki-rollback.tpl -text
 templates/tiki-search_stats.tpl -text
 templates/tiki-searchindex.tpl -text
@@ -4487,11 +4485,8 @@ tests/testfile.txt -text
 /tiki-register_ajax.php -text
 /tiki-register_site.php -text
 /tiki-remind_password.php -text
-/tiki-remote_backup.php -text
 /tiki-removepage.php -text
 /tiki-rename_page.php -text
-/tiki-replicate.php -text
-/tiki-replicate_console.php -text
 /tiki-rollback.php -text
 /tiki-rss_error.php -text
 /tiki-search_stats.php -text
