@@ -1177,6 +1177,7 @@ installer/schema/20090804_menu_search_tiki.sql -text
 installer/schema/20090805_kill_newsreader_tiki.sql -text
 installer/schema/20090805_remove_drawings_prefs_etc_tiki.sql -text
 installer/schema/20090805_remove_games_tiki.sql -text
+installer/schema/20090806_group_permissions_tiki.sql -text
 installer/schema/20090806_remove_charts_tiki.sql -text
 installer/schema/20090806_strasa_option_rename_tiki.sql -text
 installer/shell.php -text
@@ -2806,6 +2807,7 @@ lib/wiki-plugins/wikiplugin_lsdir.php -text
 lib/wiki-plugins/wikiplugin_map.php -text
 lib/wiki-plugins/wikiplugin_mcalendar.php -text
 lib/wiki-plugins/wikiplugin_mediaplayer.php -text
+lib/wiki-plugins/wikiplugin_memberlist.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
 lib/wiki-plugins/wikiplugin_mono.php -text
@@ -4140,6 +4142,7 @@ templates/wiki-plugins/wikiplugin_files.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
 templates/wiki-plugins/wikiplugin_invite.tpl -text
 templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
+templates/wiki-plugins/wikiplugin_memberlist.tpl -text
 templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
