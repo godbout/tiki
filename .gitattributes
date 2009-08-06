@@ -2158,7 +2158,6 @@ lib/pear/Date/index.php -text
 lib/pear/HTTP/Request.php -text
 lib/pear/HTTP/Request/Listener.php -text
 lib/pear/HTTP/index.php -text
-lib/pear/NNTP.php -text
 lib/pear/Net/DIME.php -text
 lib/pear/Net/DNS.php -text
 lib/pear/Net/DNS/Header.php -text
