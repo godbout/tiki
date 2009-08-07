@@ -2509,6 +2509,7 @@ lib/smarty_tiki/function.phplayers.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup_init.php -text
 lib/smarty_tiki/function.query.php -text
+lib/smarty_tiki/function.quicktags.php -text
 lib/smarty_tiki/function.rcontent.php -text
 lib/smarty_tiki/function.redirect.php -text
 lib/smarty_tiki/function.reindex_file_pixel.php -text
@@ -3879,8 +3880,6 @@ templates/tiki-admin_notifications.tpl -text
 templates/tiki-admin_poll_options.tpl -text
 templates/tiki-admin_polls.tpl -text
 templates/tiki-admin_quicktags.tpl -text
-templates/tiki-admin_quicktags_content.tpl -text
-templates/tiki-admin_quicktags_edit.tpl -text
 templates/tiki-admin_rssmodules.tpl -text
 templates/tiki-admin_security.tpl -text
 templates/tiki-admin_shoutbox_words.tpl -text
@@ -3943,7 +3942,6 @@ templates/tiki-edit_banner.tpl -text
 templates/tiki-edit_blog.tpl -text
 templates/tiki-edit_css.tpl -text
 templates/tiki-edit_help.tpl -text
-templates/tiki-edit_help_tool.tpl -text
 templates/tiki-edit_image.tpl -text
 templates/tiki-edit_languages.tpl -text
 templates/tiki-edit_programmed_content.tpl -text
