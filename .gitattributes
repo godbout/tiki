@@ -26,6 +26,7 @@ css/jscalendar.css -text
 css/spanky.css -text
 db/.htaccess -text
 db/case_patch.php -text
+db/convertscripts/convert_pgsql.bat -text
 db/convertscripts/convertsqls.bat -text
 db/convertscripts/convertsqls.sh -text
 db/convertscripts/index.php -text
