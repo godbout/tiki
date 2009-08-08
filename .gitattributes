@@ -30,10 +30,11 @@ db/convertscripts/convert_pgsql.bat -text
 db/convertscripts/convertsqls.bat -text
 db/convertscripts/convertsqls.sh -text
 db/convertscripts/index.php -text
-db/convertscripts/mysql3tooci8.php -text
-db/convertscripts/mysql3topgsql72.php -text
-db/convertscripts/mysql3tosqlite.php -text
-db/convertscripts/mysql3tosybase.php -text
+db/convertscripts/mysql_to_oci8.php -text
+db/convertscripts/mysql_to_pgsql.php -text
+db/convertscripts/mysql_to_sqlite.php -text
+db/convertscripts/mysql_to_sybase.php -text
+db/convertscripts/tikiversion.php -text
 db/features.csv -text
 db/fulltext.sql -text
 db/index.php -text
