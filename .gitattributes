@@ -4118,7 +4118,6 @@ templates/tiki-simple_plugin.tpl -text
 templates/tiki-site_header.tpl -text
 templates/tiki-site_header_login.tpl -text
 templates/tiki-slideshow.tpl -text
-templates/tiki-smileys.tpl -text
 templates/tiki-special_chars.html -text
 templates/tiki-sqllog.tpl -text
 templates/tiki-stats.tpl -text
