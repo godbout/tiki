@@ -41,10 +41,8 @@ db/oracle/index.php -text
 db/oracle/md5.sql -text
 db/tiki-4.0-mysql.sql -text
 db/tiki-4.0-mysqli.sql -text
-db/tiki-4.0-oci8.sql -text
 db/tiki-4.0-pgsql.sql -text
 db/tiki-4.0-sqlite.sql -text
-db/tiki-4.0-sybase.sql -text
 db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
