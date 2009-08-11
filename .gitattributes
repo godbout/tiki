@@ -1186,6 +1186,7 @@ installer/schema/20090807_transitions_tiki.sql -text
 installer/schema/20090808_add_wiki_minor_edits_tiki.sql -text
 installer/schema/20090809_marc_needs_more_space_tiki.sql -text
 installer/schema/20090811_quizzes_tiki.sql -text
+installer/schema/20090811_rename_quicktags_to_toolbars_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -2195,8 +2196,6 @@ lib/profilelib/channellib.php -text
 lib/profilelib/installlib.php -text
 lib/profilelib/listlib.php -text
 lib/profilelib/profilelib.php -text
-lib/quicktags/index.php -text
-lib/quicktags/quicktagslib.php -text
 lib/quizzes/index.php -text
 lib/quizzes/quizlib.php -text
 lib/rankings/index.php -text
@@ -2374,7 +2373,6 @@ lib/smarty_tiki/function.phplayers.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup_init.php -text
 lib/smarty_tiki/function.query.php -text
-lib/smarty_tiki/function.quicktags.php -text
 lib/smarty_tiki/function.rcontent.php -text
 lib/smarty_tiki/function.redirect.php -text
 lib/smarty_tiki/function.reindex_file_pixel.php -text
@@ -2387,6 +2385,7 @@ lib/smarty_tiki/function.show_help.php -text
 lib/smarty_tiki/function.show_sort.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.tikicon.php -text
+lib/smarty_tiki/function.toolbars.php -text
 lib/smarty_tiki/function.tree.php -text
 lib/smarty_tiki/function.treetable.php -text
 lib/smarty_tiki/function.var_dump.php -text
@@ -2584,6 +2583,8 @@ lib/tikilib.php -text
 lib/tikisession-adodb.php -text
 lib/tikisession-pdo.php -text
 lib/tikiticketlib.php -text
+lib/toolbars/index.php -text
+lib/toolbars/toolbarslib.php -text
 lib/trackers/dynamic_list.js -text
 lib/trackers/index.php -text
 lib/trackers/trackerlib.php -text
@@ -3745,7 +3746,6 @@ templates/tiki-admin_newsletters.tpl -text
 templates/tiki-admin_notifications.tpl -text
 templates/tiki-admin_poll_options.tpl -text
 templates/tiki-admin_polls.tpl -text
-templates/tiki-admin_quicktags.tpl -text
 templates/tiki-admin_rssmodules.tpl -text
 templates/tiki-admin_security.tpl -text
 templates/tiki-admin_shoutbox_words.tpl -text
@@ -3753,6 +3753,7 @@ templates/tiki-admin_structures.tpl -text
 templates/tiki-admin_survey_questions.tpl -text
 templates/tiki-admin_surveys.tpl -text
 templates/tiki-admin_system.tpl -text
+templates/tiki-admin_toolbars.tpl -text
 templates/tiki-admin_topics.tpl -text
 templates/tiki-admin_tracker_fields.tpl -text
 templates/tiki-admin_trackers.tpl -text
@@ -4148,7 +4149,6 @@ tests/testfile.txt -text
 /tiki-admin_notifications.php -text
 /tiki-admin_poll_options.php -text
 /tiki-admin_polls.php -text
-/tiki-admin_quicktags.php -text
 /tiki-admin_rssmodules.php -text
 /tiki-admin_security.php -text
 /tiki-admin_shoutbox_words.php -text
@@ -4156,6 +4156,7 @@ tests/testfile.txt -text
 /tiki-admin_survey_questions.php -text
 /tiki-admin_surveys.php -text
 /tiki-admin_system.php -text
+/tiki-admin_toolbars.php -text
 /tiki-admin_topics.php -text
 /tiki-admin_tracker_fields.php -text
 /tiki-admin_trackers.php -text
