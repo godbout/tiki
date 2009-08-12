@@ -3719,6 +3719,7 @@ templates/tiki-admin-include-webmail.tpl -text
 templates/tiki-admin-include-webservices.tpl -text
 templates/tiki-admin-include-wiki.tpl -text
 templates/tiki-admin-include-wikiatt.tpl -text
+templates/tiki-admin-include-workspaces.tpl -text
 templates/tiki-admin-include-wysiwyg.tpl -text
 templates/tiki-admin.tpl -text
 templates/tiki-admin_actionlog.tpl -text
@@ -3915,12 +3916,14 @@ templates/tiki-login.tpl -text
 templates/tiki-login_confirm_email.tpl -text
 templates/tiki-magic.tpl -text
 templates/tiki-mailin.tpl -text
+templates/tiki-manage-workspaces.tpl -text
 templates/tiki-mindmap.tpl -text
 templates/tiki-minical.tpl -text
 templates/tiki-minical_prefs.tpl -text
 templates/tiki-mods.tpl -text
 templates/tiki-mods_admin.tpl -text
 templates/tiki-mods_config.tpl -text
+templates/tiki-my-workspaces.tpl -text
 templates/tiki-my_tiki.tpl -text
 templates/tiki-mytiki_bar.tpl -text
 templates/tiki-newsletter_archives.tpl -text
@@ -4041,6 +4044,7 @@ templates/tiki-webmail.tpl -text
 templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
 templates/tiki-wiki_topline.tpl -text
+templates/tiki-workspaces-index.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker_filter.tpl -text
 templates/tracker_item_field_googlemap_value.tpl -text
@@ -4138,6 +4142,7 @@ tests/testfile.txt -text
 /tiki-admin_include_webservices.php -text
 /tiki-admin_include_wiki.php -text
 /tiki-admin_include_wikiatt.php -text
+/tiki-admin_include_workspaces.php -text
 /tiki-admin_include_wysiwyg.php -text
 /tiki-admin_integrator.php -text
 /tiki-admin_integrator_rules.php -text
@@ -4344,6 +4349,7 @@ tests/testfile.txt -text
 /tiki-magic.php -text
 /tiki-mailin-code.php -text
 /tiki-mailin.php -text
+/tiki-manage-workspaces.php -text
 /tiki-map.php -text
 /tiki-map_download.phtml -text
 /tiki-map_edit.php -text
@@ -4361,6 +4367,7 @@ tests/testfile.txt -text
 /tiki-mods_admin.php -text
 /tiki-module_controls.php -text
 /tiki-modules.php -text
+/tiki-my-workspaces.php -text
 /tiki-my_tiki.php -text
 /tiki-mytiki_shared.php -text
 /tiki-newsletter_archives.php -text
@@ -4483,6 +4490,7 @@ tests/testfile.txt -text
 /tiki-wiki_rankings.php -text
 /tiki-wiki_rss.php -text
 /tiki-wikiplugin_edit.php -text
+/tiki-workspaces-index.php -text
 /tiki-xmlrpc_services.php -text
 tiki_tests/index.php -text
 tiki_tests/tests/.htaccess -text
