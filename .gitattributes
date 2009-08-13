@@ -1185,6 +1185,7 @@ installer/schema/20090806_strasa_option_rename_tiki.sql -text
 installer/schema/20090807_transitions_tiki.sql -text
 installer/schema/20090808_add_wiki_minor_edits_tiki.sql -text
 installer/schema/20090809_marc_needs_more_space_tiki.sql -text
+installer/schema/20090811_filegals_container_tiki.sql -text
 installer/schema/20090811_quizzes_tiki.sql -text
 installer/schema/20090811_rename_quicktags_to_toolbars_tiki.sql -text
 installer/shell.php -text
