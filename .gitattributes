@@ -3394,6 +3394,7 @@ templates/comments_button.tpl -text
 templates/confirm.tpl -text
 templates/contribution.tpl -text
 templates/copyrights.tpl -text svneol=unset#application/octet-stream
+templates/database-connection-error.tpl -text
 templates/debug/function.debugger.tpl -text
 templates/debug/index.php -text
 templates/debug/tiki-debug_console_help.tpl -text
