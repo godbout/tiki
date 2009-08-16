@@ -2203,8 +2203,10 @@ lib/prefs/auth.php -text
 lib/prefs/error.php -text
 lib/prefs/feature.php -text
 lib/prefs/global.php -text
+lib/prefs/page.php -text
 lib/prefs/sender.php -text
 lib/prefs/smarty.php -text
+lib/prefs/wiki.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
 lib/prefslib.php -text
