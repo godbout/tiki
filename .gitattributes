@@ -3059,7 +3059,9 @@ pics/icons/no_eye_arrow_down.png -text
 pics/icons/no_information.png -text
 pics/icons/note_add.png -text
 pics/icons/ofolder.png -text
+pics/icons/oleftcol.png -text svneol=unset#image/png
 pics/icons/omodule.png -text
+pics/icons/orightcol.png -text svneol=unset#image/png
 pics/icons/ovmodule.png -text
 pics/icons/package.png -text
 pics/icons/package_go.png -text
