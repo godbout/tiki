@@ -1169,6 +1169,7 @@ installer/schema/20090727_category_permissions_tiki.sql -text
 installer/schema/20090727_user_votings_index_tiki.sql -text
 installer/schema/20090730_p_list_newsletters_tiki.sql -text
 installer/schema/20090803_perspective_permission_tiki.sql -text
+installer/schema/20090804_kaltura_permissions_tiki.sql -text
 installer/schema/20090804_menu_search_tiki.sql -text
 installer/schema/20090805_kill_newsreader_tiki.sql -text
 installer/schema/20090805_remove_drawings_prefs_etc_tiki.sql -text
@@ -1182,6 +1183,7 @@ installer/schema/20090807_transitions_tiki.sql -text
 installer/schema/20090808_add_wiki_minor_edits_tiki.sql -text
 installer/schema/20090809_marc_needs_more_space_tiki.sql -text
 installer/schema/20090811_filegals_container_tiki.sql -text
+installer/schema/20090811_kaltura_editor_pref_tiki.sql -text
 installer/schema/20090811_quizzes_tiki.sql -text
 installer/schema/20090811_rename_quicktags_to_toolbars_tiki.sql -text
 installer/shell.php -text
@@ -2422,6 +2424,8 @@ lib/smarty_tiki/modifier.how_many_user_inscriptions.php -text
 lib/smarty_tiki/modifier.htmldecode.php -text
 lib/smarty_tiki/modifier.iconify.php -text
 lib/smarty_tiki/modifier.isodate.php -text
+lib/smarty_tiki/modifier.kaltura_date_format.php -text
+lib/smarty_tiki/modifier.kaltura_media_type.php -text
 lib/smarty_tiki/modifier.kbsize.php -text
 lib/smarty_tiki/modifier.langname.php -text
 lib/smarty_tiki/modifier.lcfirst.php -text
@@ -2621,6 +2625,14 @@ lib/userprefs/index.php -text
 lib/userprefs/scrambleEmail.php -text
 lib/userprefs/userprefslib.php -text
 lib/userslib.php -text
+lib/videogals/includes.php -text
+lib/videogals/kaltura.css -text
+lib/videogals/kaltura.js -text
+lib/videogals/kaltura_client.php -text
+lib/videogals/kaltura_client_base.php -text
+lib/videogals/kaltura_helpers.php -text
+lib/videogals/kalturaapi_php5_lib.php -text
+lib/videogals/videogallib.php -text
 lib/webmail/API.txt -text
 lib/webmail/class.rc4crypt.php -text
 lib/webmail/contactlib.php -text
@@ -2688,6 +2700,7 @@ lib/wiki-plugins/wikiplugin_invite.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_jq.php -text
 lib/wiki-plugins/wikiplugin_js.php -text
+lib/wiki-plugins/wikiplugin_kaltura.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
 lib/wiki-plugins/wikiplugin_listpages.php -text
@@ -3234,6 +3247,7 @@ pics/large/icon-configuration.png -text
 pics/large/icon-configuration48x48.png -text
 pics/large/intertiki.png -text
 pics/large/intertiki48x48.png -text
+pics/large/kaltura48x48.png -text
 pics/large/maps.png -text
 pics/large/maps48x48.png -text
 pics/large/messages.png -text
@@ -3805,6 +3819,7 @@ templates/tiki-browse_categories.tpl -text
 templates/tiki-browse_freetags.tpl -text
 templates/tiki-browse_gallery.tpl -text
 templates/tiki-browse_image.tpl -text
+templates/tiki-browse_video.tpl -text
 templates/tiki-calendar.tpl -text
 templates/tiki-calendar_box.tpl -text
 templates/tiki-calendar_box_multiple.tpl -text
@@ -3851,6 +3866,7 @@ templates/tiki-edit_submission.tpl -text
 templates/tiki-edit_templates.tpl -text
 templates/tiki-edit_topic.tpl -text
 templates/tiki-edit_translation.tpl -text
+templates/tiki-edit_video.tpl -text
 templates/tiki-edit_wiki_section.tpl -text
 templates/tiki-editpage.tpl -text
 templates/tiki-export-sheets.tpl -text
@@ -3911,6 +3927,7 @@ templates/tiki-information.tpl -text
 templates/tiki-install.tpl -text
 templates/tiki-integrator.tpl -text
 templates/tiki-interactive_trans.tpl -text
+templates/tiki-kaltura_video.tpl -text
 templates/tiki-lastchanges.tpl -text
 templates/tiki-likepages.tpl -text
 templates/tiki-list_articles.tpl -text
@@ -3923,6 +3940,7 @@ templates/tiki-list_faqs.tpl -text
 templates/tiki-list_file_gallery.tpl -text
 templates/tiki-list_gallery.tpl -text
 templates/tiki-list_integrator_repositories.tpl -text
+templates/tiki-list_kaltura_entries.tpl -text
 templates/tiki-list_object_permissions.tpl -text
 templates/tiki-list_posts.tpl -text
 templates/tiki-list_quizzes.tpl -text
@@ -4336,6 +4354,7 @@ tests/testfile.txt -text
 /tiki-interactive_trans.php -text
 /tiki-jscalendar.php -text
 /tiki-jsplugin.php -text
+/tiki-kaltura_video.php -text
 /tiki-lastchanges.php -text
 /tiki-layout_options.php -text
 /tiki-likepages.php -text
@@ -4349,6 +4368,7 @@ tests/testfile.txt -text
 /tiki-list_file_gallery.php -text
 /tiki-list_gallery.php -text
 /tiki-list_integrator_repositories.php -text
+/tiki-list_kaltura_entries.php -text
 /tiki-list_object_permissions.php -text
 /tiki-list_posts.php -text
 /tiki-list_quizzes.php -text
