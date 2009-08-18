@@ -2809,7 +2809,6 @@ modules/cache/README -text
 modules/cache/index.php -text
 modules/index.php -text
 modules/mod-action_calendar.php -text
-modules/mod-adsense.php -text
 modules/mod-article_archives.php -text
 modules/mod-article_by_rating.php -text
 modules/mod-article_topics.php -text
@@ -2835,6 +2834,7 @@ modules/mod-freetags_current.php -text
 modules/mod-freetags_morelikethis.php -text
 modules/mod-freetags_most_popular.php -text
 modules/mod-freetags_prefered.php -text
+modules/mod-func-adsense.php -text
 modules/mod-func-assistant.php -text
 modules/mod-func-category_transition.php -text
 modules/mod-func-switch_lang.php -text
