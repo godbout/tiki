@@ -2753,6 +2753,7 @@ lib/wiki-plugins/wikiplugin_trackertimeline.php -text
 lib/wiki-plugins/wikiplugin_translated.php -text
 lib/wiki-plugins/wikiplugin_usercount.php -text
 lib/wiki-plugins/wikiplugin_userlist.php -text
+lib/wiki-plugins/wikiplugin_userpref.php -text
 lib/wiki-plugins/wikiplugin_versions.php -text
 lib/wiki-plugins/wikiplugin_vote.php -text
 lib/wiki-plugins/wikiplugin_wantedpages.php -text
