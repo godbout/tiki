@@ -2814,7 +2814,6 @@ modules/mod-article_by_rating.php -text
 modules/mod-article_topics.php -text
 modules/mod-articles.php -text
 modules/mod-blog_last_comments.php -text
-modules/mod-breadcrumb.php -text
 modules/mod-calendar_new.php -text
 modules/mod-categories.php -text
 modules/mod-change_category.php -text
@@ -2836,6 +2835,7 @@ modules/mod-freetags_most_popular.php -text
 modules/mod-freetags_prefered.php -text
 modules/mod-func-adsense.php -text
 modules/mod-func-assistant.php -text
+modules/mod-func-breadcrumb.php -text
 modules/mod-func-category_transition.php -text
 modules/mod-func-google.php -text
 modules/mod-func-switch_lang.php -text
