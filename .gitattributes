@@ -2526,13 +2526,6 @@ lib/test/core/WikiParser/PluginRepositoryTest.php -text
 lib/test/core/WikiParser/wikiplugin_foo.php -text
 lib/test/core/bootstrap.php -text
 lib/test/core/phpunit.xml -text
-lib/test/core/temp/cache/569487e68e42b1b751d730660679a2b4 -text
-lib/test/core/temp/cache/72da5437e5ca43ae3afa4198274086c2 -text
-lib/test/core/temp/cache/b5232c1a71a08d878cb29f45acfd10fc -text
-lib/test/core/temp/cache/c974802d4741febf958d5de25fbe5199 -text
-lib/test/core/temp/cache/d9da17542751bb5edd637639beeacdb0 -text
-lib/test/core/temp/cache/e2697f0e2d63f550fa5677ff7f8257ce -text
-lib/test/core/temp/cache/ef3f446e1fe3ea6ff0cef46983b191f3 -text
 lib/test/importer/AllTests.php -text
 lib/test/importer/fixtures/index.php -text
 lib/test/importer/fixtures/mediawiki_contributor.xml -text
