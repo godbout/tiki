@@ -3741,6 +3741,7 @@ templates/tiki-admin-include-general.tpl -text
 templates/tiki-admin-include-gmap.tpl -text
 templates/tiki-admin-include-i18n.tpl -text
 templates/tiki-admin-include-intertiki.tpl -text
+templates/tiki-admin-include-kaltura.tpl -text
 templates/tiki-admin-include-list-sections.tpl -text
 templates/tiki-admin-include-login.tpl -text
 templates/tiki-admin-include-look.tpl -text
@@ -4168,6 +4169,7 @@ tests/testfile.txt -text
 /tiki-admin_include_gmap.php -text
 /tiki-admin_include_i18n.php -text
 /tiki-admin_include_intertiki.php -text
+/tiki-admin_include_kaltura.php -text
 /tiki-admin_include_login.php -text
 /tiki-admin_include_look.php -text
 /tiki-admin_include_maps.php -text
