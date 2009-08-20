@@ -1,3 +1,4 @@
+/*
 /.buildpath
 /.cache
 /.htaccess
@@ -5,6 +6,7 @@
 /.settings
 /ZendPlatform
 /ZendStudioServer
+/_htaccess
 backups/*
 db/.htaccess
 db/local.php
