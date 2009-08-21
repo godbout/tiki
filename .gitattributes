@@ -2362,7 +2362,6 @@ lib/smarty_tiki/function.fileinfo.php -text
 lib/smarty_tiki/function.gallery.php -text
 lib/smarty_tiki/function.help.php -text
 lib/smarty_tiki/function.helplink.php -text
-lib/smarty_tiki/function.html_select_date.php -text
 lib/smarty_tiki/function.html_select_time.php -text
 lib/smarty_tiki/function.icon.php -text
 lib/smarty_tiki/function.initials_filter_links.php -text
