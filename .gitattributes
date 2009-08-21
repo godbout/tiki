@@ -2414,6 +2414,7 @@ lib/smarty_tiki/modifier.iconify.php -text
 lib/smarty_tiki/modifier.isodate.php -text
 lib/smarty_tiki/modifier.kaltura_date_format.php -text
 lib/smarty_tiki/modifier.kaltura_media_type.php -text
+lib/smarty_tiki/modifier.kaltura_remix_user.php -text
 lib/smarty_tiki/modifier.kbsize.php -text
 lib/smarty_tiki/modifier.langname.php -text
 lib/smarty_tiki/modifier.lcfirst.php -text
@@ -2625,13 +2626,8 @@ lib/userprefs/index.php -text
 lib/userprefs/scrambleEmail.php -text
 lib/userprefs/userprefslib.php -text
 lib/userslib.php -text
-lib/videogals/includes.php -text
-lib/videogals/kaltura.css -text
-lib/videogals/kaltura.js -text
 lib/videogals/kaltura_client.php -text
 lib/videogals/kaltura_client_base.php -text
-lib/videogals/kaltura_helpers.php -text
-lib/videogals/kalturaapi_php5_lib.php -text
 lib/videogals/videogallib.php -text
 lib/webmail/API.txt -text
 lib/webmail/class.rc4crypt.php -text
