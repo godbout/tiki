@@ -2412,9 +2412,6 @@ lib/smarty_tiki/modifier.how_many_user_inscriptions.php -text
 lib/smarty_tiki/modifier.htmldecode.php -text
 lib/smarty_tiki/modifier.iconify.php -text
 lib/smarty_tiki/modifier.isodate.php -text
-lib/smarty_tiki/modifier.kaltura_date_format.php -text
-lib/smarty_tiki/modifier.kaltura_media_type.php -text
-lib/smarty_tiki/modifier.kaltura_remix_user.php -text
 lib/smarty_tiki/modifier.kbsize.php -text
 lib/smarty_tiki/modifier.langname.php -text
 lib/smarty_tiki/modifier.lcfirst.php -text
