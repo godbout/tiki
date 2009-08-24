@@ -1575,18 +1575,6 @@ lib/core/lib/WikiParser/PluginMatcher.php -text
 lib/core/lib/WikiParser/PluginParser.php -text
 lib/core/lib/WikiParser/PluginRepository.php -text
 lib/core/lib/WikiParser/PluginRunner.php -text
-lib/core/test/AcceptanceTests/AllTests.php -text
-lib/core/test/AcceptanceTests/ListPagesTest.php -text
-lib/core/test/AcceptanceTests/MultilingualTest.php -text
-lib/core/test/AcceptanceTests/MultilinguallibTest.php -text
-lib/core/test/AcceptanceTests/SearchTest.php -text
-lib/core/test/AcceptanceTests/TikiLibrariesAccessTest.php -text
-lib/core/test/AllTestsAcceptance.php -text
-lib/core/test/TikiAcceptanceTestDBRestorer.php -text
-lib/core/test/TikiSeleniumTestCase.php -text
-lib/core/test/create_dump_db_file.php -text
-lib/core/test/restore_db_dump.php -text
-lib/core/test/upgrade_test_database_dump_file.php -text
 lib/csslib.php -text
 lib/db/tiki_registration_fields.php -text
 lib/dcs/dcslib.php -text
@@ -2374,7 +2362,6 @@ lib/smarty_tiki/function.fileinfo.php -text
 lib/smarty_tiki/function.gallery.php -text
 lib/smarty_tiki/function.help.php -text
 lib/smarty_tiki/function.helplink.php -text
-lib/smarty_tiki/function.html_select_date.php -text
 lib/smarty_tiki/function.html_select_time.php -text
 lib/smarty_tiki/function.icon.php -text
 lib/smarty_tiki/function.initials_filter_links.php -text
@@ -2479,8 +2466,20 @@ lib/tasks/index.php -text
 lib/tasks/tasklib.php -text
 lib/templates/index.php -text
 lib/templates/templateslib.php -text
+lib/test/AcceptanceTests/AllTests.php -text
+lib/test/AcceptanceTests/ListPagesTest.php -text
+lib/test/AcceptanceTests/MultilingualTest.php -text
+lib/test/AcceptanceTests/MultilinguallibTest.php -text
+lib/test/AcceptanceTests/SearchTest.php -text
+lib/test/AcceptanceTests/TikiLibrariesAccessTest.php -text
+lib/test/AcceptanceTests/utils/create_dump_db_file.php -text
+lib/test/AcceptanceTests/utils/restore_db_dump.php -text
+lib/test/AcceptanceTests/utils/upgrade_test_database_dump_file.php -text
 lib/test/AllTests.php -text
+lib/test/AllTestsAcceptance.php -text
 lib/test/README -text
+lib/test/TikiAcceptanceTestDBRestorer.php -text
+lib/test/TikiSeleniumTestCase.php -text
 lib/test/TikiTestCase.php -text
 lib/test/core/AllTests.php -text
 lib/test/core/Category/ManipulatorTest.php -text
@@ -2746,6 +2745,7 @@ lib/wiki-plugins/wikiplugin_trackertimeline.php -text
 lib/wiki-plugins/wikiplugin_translated.php -text
 lib/wiki-plugins/wikiplugin_usercount.php -text
 lib/wiki-plugins/wikiplugin_userlist.php -text
+lib/wiki-plugins/wikiplugin_userpref.php -text
 lib/wiki-plugins/wikiplugin_versions.php -text
 lib/wiki-plugins/wikiplugin_vote.php -text
 lib/wiki-plugins/wikiplugin_wantedpages.php -text
@@ -2814,15 +2814,11 @@ modules/mod-article_by_rating.php -text
 modules/mod-article_topics.php -text
 modules/mod-articles.php -text
 modules/mod-blog_last_comments.php -text
-modules/mod-breadcrumb.php -text
 modules/mod-calendar_new.php -text
-modules/mod-categories.php -text
-modules/mod-change_category.php -text
 modules/mod-comm_received_objects.php -text
 modules/mod-directory_last_sites.php -text
 modules/mod-directory_stats.php -text
 modules/mod-directory_top_sites.php -text
-modules/mod-featured_links.php -text
 modules/mod-file_galleries.php -text
 modules/mod-forums_best_voted_topics.php -text
 modules/mod-forums_last_posts.php -text
@@ -2836,7 +2832,11 @@ modules/mod-freetags_most_popular.php -text
 modules/mod-freetags_prefered.php -text
 modules/mod-func-adsense.php -text
 modules/mod-func-assistant.php -text
+modules/mod-func-breadcrumb.php -text
+modules/mod-func-categories.php -text
 modules/mod-func-category_transition.php -text
+modules/mod-func-change_category.php -text
+modules/mod-func-featured_links.php -text
 modules/mod-func-google.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-groups_emulation.php -text
@@ -3160,6 +3160,7 @@ pics/icons/text_underline.png -text
 pics/icons/text_uppercase.png -text
 pics/icons/textfield.png -text
 pics/icons/thumb_up.png -text
+pics/icons/tick.png -text
 pics/icons/timeline_marker.png -text
 pics/icons/tree_collapse.png -text
 pics/icons/tree_collapse_corner.png -text
@@ -3306,6 +3307,7 @@ pics/trans.png -text
 /show_image.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
+styles/coelesce/arrows-295c8e.png -text svneol=unset#image/png
 styles/coelesce/arrows-467aa7.png -text svneol=unset#image/png
 styles/coelesce/coelesce.png -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
@@ -3381,6 +3383,7 @@ styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
 styles/tikinewt.css -text
+styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
 styles/tikinewt/tikinewt.png -text
 temp/.htaccess -text
 temp/README -text

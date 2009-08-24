@@ -1,3 +1,4 @@
+/*
 /.buildpath
 /.cache
 /.htaccess
@@ -5,6 +6,7 @@
 /.settings
 /ZendPlatform
 /ZendStudioServer
+/_htaccess
 backups/*
 db/.htaccess
 db/local.php
@@ -21,8 +23,6 @@ installer/.htaccess
 lang/.htaccess
 lib/.htaccess
 lib/Galaxia/processes/*
-lib/core/test/foo.txt
-lib/core/test/temp/cache/*
 lib/smarty
 /maps
 maps/*
