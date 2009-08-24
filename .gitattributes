@@ -2815,7 +2815,6 @@ modules/mod-article_topics.php -text
 modules/mod-articles.php -text
 modules/mod-blog_last_comments.php -text
 modules/mod-calendar_new.php -text
-modules/mod-change_category.php -text
 modules/mod-comm_received_objects.php -text
 modules/mod-directory_last_sites.php -text
 modules/mod-directory_stats.php -text
@@ -2837,6 +2836,7 @@ modules/mod-func-assistant.php -text
 modules/mod-func-breadcrumb.php -text
 modules/mod-func-categories.php -text
 modules/mod-func-category_transition.php -text
+modules/mod-func-change_category.php -text
 modules/mod-func-google.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-groups_emulation.php -text
