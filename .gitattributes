@@ -1186,6 +1186,7 @@ installer/schema/20090811_filegals_container_tiki.sql -text
 installer/schema/20090811_kaltura_editor_pref_tiki.sql -text
 installer/schema/20090811_quizzes_tiki.sql -text
 installer/schema/20090811_rename_quicktags_to_toolbars_tiki.sql -text
+installer/schema/20090823_kaltura_menu_options_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
