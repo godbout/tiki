@@ -4113,6 +4113,7 @@ tests/messu-compose.tpl -text
 tests/test_cvs_file.txt -text
 tests/test_php_beautifier.php -text
 tests/testfile.txt -text
+tests/upgrade_categperm.php -text
 /textareasize.php -text
 /tiki-action_calendar.php -text
 /tiki-admin.php -text
