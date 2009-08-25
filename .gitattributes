@@ -2819,7 +2819,6 @@ modules/mod-comm_received_objects.php -text
 modules/mod-directory_last_sites.php -text
 modules/mod-directory_stats.php -text
 modules/mod-directory_top_sites.php -text
-modules/mod-file_galleries.php -text
 modules/mod-forums_best_voted_topics.php -text
 modules/mod-forums_last_posts.php -text
 modules/mod-forums_most_commented_forums.php -text
@@ -2837,6 +2836,7 @@ modules/mod-func-categories.php -text
 modules/mod-func-category_transition.php -text
 modules/mod-func-change_category.php -text
 modules/mod-func-featured_links.php -text
+modules/mod-func-file_galleries.php -text
 modules/mod-func-google.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-groups_emulation.php -text
