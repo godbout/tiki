@@ -1174,6 +1174,7 @@ installer/schema/20090805_kill_newsreader_tiki.sql -text
 installer/schema/20090805_remove_drawings_prefs_etc_tiki.sql -text
 installer/schema/20090805_remove_games_tiki.sql -text
 installer/schema/20090806_group_permissions_tiki.sql -text
+installer/schema/20090806_menu_list_trackers_tiki.sql -text
 installer/schema/20090806_perms_featurechecks_tiki.sql -text
 installer/schema/20090806_remove_charts_tiki.sql -text
 installer/schema/20090806_remove_latin_collations_tiki.sql -text
@@ -1184,6 +1185,7 @@ installer/schema/20090809_marc_needs_more_space_tiki.sql -text
 installer/schema/20090811_filegals_container_tiki.sql -text
 installer/schema/20090811_quizzes_tiki.sql -text
 installer/schema/20090811_rename_quicktags_to_toolbars_tiki.sql -text
+installer/schema/20090826_group_expiration_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
