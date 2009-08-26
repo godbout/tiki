@@ -1174,6 +1174,7 @@ installer/schema/20090805_kill_newsreader_tiki.sql -text
 installer/schema/20090805_remove_drawings_prefs_etc_tiki.sql -text
 installer/schema/20090805_remove_games_tiki.sql -text
 installer/schema/20090806_group_permissions_tiki.sql -text
+installer/schema/20090806_menu_list_trackers_tiki.sql -text
 installer/schema/20090806_perms_featurechecks_tiki.sql -text
 installer/schema/20090806_remove_charts_tiki.sql -text
 installer/schema/20090806_remove_latin_collations_tiki.sql -text
@@ -1184,6 +1185,7 @@ installer/schema/20090809_marc_needs_more_space_tiki.sql -text
 installer/schema/20090811_filegals_container_tiki.sql -text
 installer/schema/20090811_quizzes_tiki.sql -text
 installer/schema/20090811_rename_quicktags_to_toolbars_tiki.sql -text
+installer/schema/20090826_group_expiration_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -2820,12 +2822,6 @@ modules/mod-comm_received_objects.php -text
 modules/mod-directory_last_sites.php -text
 modules/mod-directory_stats.php -text
 modules/mod-directory_top_sites.php -text
-modules/mod-file_galleries.php -text
-modules/mod-forums_best_voted_topics.php -text
-modules/mod-forums_last_posts.php -text
-modules/mod-forums_most_commented_forums.php -text
-modules/mod-forums_most_read_topics.php -text
-modules/mod-forums_most_visited_forums.php -text
 modules/mod-freetag.php -text
 modules/mod-freetags_current.php -text
 modules/mod-freetags_morelikethis.php -text
@@ -2838,7 +2834,15 @@ modules/mod-func-categories.php -text
 modules/mod-func-category_transition.php -text
 modules/mod-func-change_category.php -text
 modules/mod-func-featured_links.php -text
+modules/mod-func-file_galleries.php -text
+modules/mod-func-forums_best_voted_topics.php -text
+modules/mod-func-forums_last_posts.php -text
+modules/mod-func-forums_most_commented_forums.php -text
+modules/mod-func-forums_most_read_topics.php -text
+modules/mod-func-forums_most_visited_forums.php -text
 modules/mod-func-google.php -text
+modules/mod-func-logged_users.php -text
+modules/mod-func-menupage.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-groups_emulation.php -text
 modules/mod-last_actions.php -text
@@ -2862,8 +2866,6 @@ modules/mod-last_tracker_comments.php -text
 modules/mod-last_tracker_items.php -text
 modules/mod-last_visitors.php -text
 modules/mod-live_support.php -text
-modules/mod-logged_users.php -text
-modules/mod-menupage.php -text
 modules/mod-messages_unread_messages.php -text
 modules/mod-minichat.php -text
 modules/mod-months_links.php -text
@@ -3573,7 +3575,7 @@ templates/modules/mod-events.tpl -text
 templates/modules/mod-featured_links.tpl -text
 templates/modules/mod-file_galleries.tpl -text
 templates/modules/mod-forums_best_voted_topics.tpl -text
-templates/modules/mod-forums_last_posts.tpl -text svneol=unset#application/octet-stream
+templates/modules/mod-forums_last_posts.tpl -text
 templates/modules/mod-forums_most_commented_forums.tpl -text
 templates/modules/mod-forums_most_read_topics.tpl -text
 templates/modules/mod-forums_most_visited_forums.tpl -text
@@ -4114,6 +4116,7 @@ tests/messu-compose.tpl -text
 tests/test_cvs_file.txt -text
 tests/test_php_beautifier.php -text
 tests/testfile.txt -text
+tests/upgrade_categperm.php -text
 /textareasize.php -text
 /tiki-action_calendar.php -text
 /tiki-admin.php -text
