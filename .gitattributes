@@ -2849,6 +2849,7 @@ modules/mod-func-quick_edit.php -text
 modules/mod-func-random_pages.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
+modules/mod-func-user_pages.php -text
 modules/mod-func-whats_related.php -text
 modules/mod-groups_emulation.php -text
 modules/mod-last_actions.php -text
@@ -2900,7 +2901,6 @@ modules/mod-upcoming_events.php -text
 modules/mod-user_blogs.php -text
 modules/mod-user_bookmarks.php -text
 modules/mod-user_image_galleries.php -text
-modules/mod-user_pages.php -text
 modules/mod-user_tasks.php -text
 modules/mod-user_tasks_public.php -text
 modules/mod-users_rank.php -text
