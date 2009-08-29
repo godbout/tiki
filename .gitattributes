@@ -2842,6 +2842,7 @@ modules/mod-func-forums_most_visited_forums.php -text
 modules/mod-func-google.php -text
 modules/mod-func-logged_users.php -text
 modules/mod-func-menupage.php -text
+modules/mod-func-messages_unread_messages.php -text
 modules/mod-func-online_users.php -text
 modules/mod-func-quick_edit.php -text
 modules/mod-func-switch_lang.php -text
@@ -2868,7 +2869,6 @@ modules/mod-last_tracker_comments.php -text
 modules/mod-last_tracker_items.php -text
 modules/mod-last_visitors.php -text
 modules/mod-live_support.php -text
-modules/mod-messages_unread_messages.php -text
 modules/mod-minichat.php -text
 modules/mod-months_links.php -text
 modules/mod-num_submissions.php -text
