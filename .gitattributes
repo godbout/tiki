@@ -2845,6 +2845,7 @@ modules/mod-func-menupage.php -text
 modules/mod-func-messages_unread_messages.php -text
 modules/mod-func-online_users.php -text
 modules/mod-func-quick_edit.php -text
+modules/mod-func-random_pages.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
 modules/mod-groups_emulation.php -text
@@ -2875,7 +2876,6 @@ modules/mod-num_submissions.php -text
 modules/mod-old_articles.php -text
 modules/mod-perspective.php -text
 modules/mod-random_images.php -text
-modules/mod-random_pages.php -text
 modules/mod-semantic_links.php -text
 modules/mod-shoutbox.php -text
 modules/mod-since_last_visit.php -text
