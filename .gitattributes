@@ -989,6 +989,7 @@ img/icons2/world.gif -text
 img/icons2/zweistern.gif -text
 img/index.php -text
 img/leftbar.gif -text
+img/magnifying-glass-micro-icon.png -text
 img/mainbar.gif -text
 img/mytiki/admin.gif -text
 img/mytiki/bookmarks.gif -text
@@ -2684,6 +2685,7 @@ lib/wiki-plugins/wikiplugin_html.php -text
 lib/wiki-plugins/wikiplugin_iframe.php -text
 lib/wiki-plugins/wikiplugin_image.php -text
 lib/wiki-plugins/wikiplugin_img.php -text
+lib/wiki-plugins/wikiplugin_imgnew.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
 lib/wiki-plugins/wikiplugin_invite.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
