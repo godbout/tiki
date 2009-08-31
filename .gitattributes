@@ -4364,7 +4364,6 @@ tests/upgrade_categperm.php -text
 /tiki-login_scr.php -text
 /tiki-login_validate.php -text
 /tiki-logout.php -text
-/tiki-magic.php -text
 /tiki-mailin-code.php -text
 /tiki-mailin.php -text
 /tiki-manage-workspaces.php -text
