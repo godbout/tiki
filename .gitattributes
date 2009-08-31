@@ -2854,6 +2854,7 @@ modules/mod-func-quick_edit.php -text
 modules/mod-func-random_pages.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
+modules/mod-func-top_active_blogs.php -text
 modules/mod-func-user_blogs.php -text
 modules/mod-func-user_pages.php -text
 modules/mod-func-users_rank.php -text
@@ -2887,7 +2888,6 @@ modules/mod-shoutbox.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
 modules/mod-terminology.php -text
-modules/mod-top_active_blogs.php -text
 modules/mod-top_articles.php -text
 modules/mod-top_file_galleries.php -text
 modules/mod-top_files.php -text
