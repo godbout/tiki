@@ -2852,6 +2852,7 @@ modules/mod-func-top_files.php -text
 modules/mod-func-top_forum_posters.php -text
 modules/mod-func-top_objects.php -text
 modules/mod-func-top_pages.php -text
+modules/mod-func-top_quizzes.php -text
 modules/mod-func-user_blogs.php -text
 modules/mod-func-user_pages.php -text
 modules/mod-func-users_rank.php -text
@@ -2889,7 +2890,6 @@ modules/mod-top_articles.php -text
 modules/mod-top_image_galleries.php -text
 modules/mod-top_images.php -text
 modules/mod-top_images_th.php -text
-modules/mod-top_quizzes.php -text
 modules/mod-top_visited_blogs.php -text
 modules/mod-top_visited_faqs.php -text
 modules/mod-translation.php -text
