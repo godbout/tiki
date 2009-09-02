@@ -4135,7 +4135,6 @@ tests/upgrade_categperm.php -text
 /tiki-admin_actionlog.php -text
 /tiki-admin_banners.php -text
 /tiki-admin_banning.php -text
-/tiki-admin_bar.php -text
 /tiki-admin_calendars.php -text
 /tiki-admin_categories.php -text
 /tiki-admin_content_templates.php -text
@@ -4143,7 +4142,6 @@ tests/upgrade_categperm.php -text
 /tiki-admin_cookies.php -text
 /tiki-admin_dsn.php -text
 /tiki-admin_external_wikis.php -text
-/tiki-admin_features.php -text
 /tiki-admin_forums.php -text
 /tiki-admin_hotwords.php -text
 /tiki-admin_html_page_content.php -text
@@ -4293,7 +4291,6 @@ tests/upgrade_categperm.php -text
 /tiki-export_tracker.php -text
 /tiki-export_wiki_pages.php -text
 /tiki-faq_questions.php -text
-/tiki-feature-load-postprocessor.php -text
 /tiki-featured_link.php -text
 /tiki-file_archives.php -text
 /tiki-file_galleries_rankings.php -text
@@ -4393,7 +4390,6 @@ tests/upgrade_categperm.php -text
 /tiki-login_scr.php -text
 /tiki-login_validate.php -text
 /tiki-logout.php -text
-/tiki-magic.php -text
 /tiki-mailin-code.php -text
 /tiki-mailin.php -text
 /tiki-manage-workspaces.php -text
