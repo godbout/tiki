@@ -23,7 +23,6 @@ css/freetags.css -text
 css/ie6.css -text
 css/ie8.css -text
 css/jscalendar.css -text
-css/spanky.css -text
 db/.htaccess -text
 db/case_patch.php -text
 db/convertscripts/convert_pgsql.bat -text
@@ -33,7 +32,6 @@ db/convertscripts/index.php -text
 db/convertscripts/mysql_to_pgsql.php -text
 db/convertscripts/mysql_to_sqlite.php -text
 db/convertscripts/tikiversion.php -text
-db/features.csv -text
 db/fulltext.sql -text
 db/index.php -text
 db/tiki-4.0-mysql.sql -text
@@ -466,10 +464,6 @@ img/flags/index.php -text
 img/flags/readme.txt -text
 img/flags/the_former_Yugoslav_Republic_of_Macedonia.gif -text
 img/googleg.gif -text
-img/gradient.png -text
-img/gradient2.png -text
-img/gradient3.png -text
-img/gradient4.png -text
 img/graph/graph.barstack.png -text
 img/graph/graph.multibar.png -text
 img/graph/graph.multiline.png -text
@@ -989,6 +983,7 @@ img/icons2/world.gif -text
 img/icons2/zweistern.gif -text
 img/index.php -text
 img/leftbar.gif -text
+img/magnifying-glass-micro-icon.png -text
 img/mainbar.gif -text
 img/mytiki/admin.gif -text
 img/mytiki/bookmarks.gif -text
@@ -1482,8 +1477,6 @@ lib/Horde/Yaml/Loader.php -text
 lib/Horde/Yaml/Node.php -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
-lib/admin/magic-enumerations.php -text
-lib/admin/magiclib.php -text
 lib/ajax/LICENSE.txt -text
 lib/ajax/README.txt -text
 lib/ajax/ajaxlib.php -text
@@ -2684,6 +2677,7 @@ lib/wiki-plugins/wikiplugin_html.php -text
 lib/wiki-plugins/wikiplugin_iframe.php -text
 lib/wiki-plugins/wikiplugin_image.php -text
 lib/wiki-plugins/wikiplugin_img.php -text
+lib/wiki-plugins/wikiplugin_imgnew.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
 lib/wiki-plugins/wikiplugin_invite.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
@@ -4123,7 +4117,6 @@ tests/upgrade_categperm.php -text
 /tiki-admin_actionlog.php -text
 /tiki-admin_banners.php -text
 /tiki-admin_banning.php -text
-/tiki-admin_bar.php -text
 /tiki-admin_calendars.php -text
 /tiki-admin_categories.php -text
 /tiki-admin_content_templates.php -text
@@ -4131,7 +4124,6 @@ tests/upgrade_categperm.php -text
 /tiki-admin_cookies.php -text
 /tiki-admin_dsn.php -text
 /tiki-admin_external_wikis.php -text
-/tiki-admin_features.php -text
 /tiki-admin_forums.php -text
 /tiki-admin_hotwords.php -text
 /tiki-admin_html_page_content.php -text
@@ -4280,7 +4272,6 @@ tests/upgrade_categperm.php -text
 /tiki-export_tracker.php -text
 /tiki-export_wiki_pages.php -text
 /tiki-faq_questions.php -text
-/tiki-feature-load-postprocessor.php -text
 /tiki-featured_link.php -text
 /tiki-file_archives.php -text
 /tiki-file_galleries_rankings.php -text
@@ -4378,7 +4369,6 @@ tests/upgrade_categperm.php -text
 /tiki-login_scr.php -text
 /tiki-login_validate.php -text
 /tiki-logout.php -text
-/tiki-magic.php -text
 /tiki-mailin-code.php -text
 /tiki-mailin.php -text
 /tiki-manage-workspaces.php -text
