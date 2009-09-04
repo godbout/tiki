@@ -1631,8 +1631,11 @@ lib/fckeditor_tiki/plugins/tikiimage/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikiimage/fcktikiimage.css -text
 lib/fckeditor_tiki/plugins/tikiimage/fcktikiimage.js -text
 lib/fckeditor_tiki/plugins/tikiimage/templates/fck_tikilink.tpl -text
+lib/fckeditor_tiki/plugins/tikilink/fck_tikilink.php -text
 lib/fckeditor_tiki/plugins/tikilink/fckplugin.js -text
-lib/fckeditor_tiki/plugins/tikilink/index.php -text
+lib/fckeditor_tiki/plugins/tikilink/fcktikilink.css -text
+lib/fckeditor_tiki/plugins/tikilink/fcktikilink.js -text
+lib/fckeditor_tiki/plugins/tikilink/templates/fck_tikilink.tpl -text
 lib/fckeditor_tiki/tikistyles.xml -text
 lib/fckeditor_tiki/tikitemplates.xml -text
 lib/featured_links/flinkslib.php -text
