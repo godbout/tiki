@@ -2226,6 +2226,7 @@ lib/setup/compat.php -text
 lib/setup/cookies.php -text
 lib/setup/default_homepage.php -text
 lib/setup/dynamic_variables.php -text
+lib/setup/editmode.php -text
 lib/setup/error_reporting.php -text
 lib/setup/freetags.php -text
 lib/setup/fullscreen.php -text
@@ -4405,7 +4406,6 @@ tests/upgrade_categperm.php -text
 /tiki-page.php -text
 /tiki-page_loader.php -text
 /tiki-pagehistory.php -text
-/tiki-parsemode_setup.php -text
 /tiki-phpinfo.php -text
 /tiki-pick_avatar.php -text
 /tiki-plugins.php -text
