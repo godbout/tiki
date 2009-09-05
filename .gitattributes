@@ -1869,6 +1869,7 @@ lib/importer/mediawiki_dump.xsd -text
 lib/importer/tikiimporter.php -text
 lib/importer/tikiimporter_wiki.php -text
 lib/importer/tikiimporter_wiki_mediawiki.php -text
+lib/importer/xml.xsd -text
 lib/importerlib.php -text
 lib/index.php -text
 lib/init/index.php -text
