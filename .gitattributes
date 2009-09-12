@@ -4444,6 +4444,7 @@ tests/upgrade_categperm.php -text
 /tiki-section_options.php -text
 /tiki-sefurl.php -text
 /tiki-send_blog_post.php -text
+/tiki-send_mail.php -text
 /tiki-send_newsletters.php -text
 /tiki-send_objects.php -text
 /tiki-setup.php -text
