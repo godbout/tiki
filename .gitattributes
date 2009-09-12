@@ -2372,6 +2372,7 @@ lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.phplayers.php -text
 lib/smarty_tiki/function.poll.php -text
+lib/smarty_tiki/function.popup.php -text
 lib/smarty_tiki/function.popup_init.php -text
 lib/smarty_tiki/function.preference.php -text
 lib/smarty_tiki/function.query.php -text
