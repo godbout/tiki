@@ -1184,6 +1184,7 @@ installer/schema/20090826_group_expiration_tiki.sql -text
 installer/schema/20090904_wysiwyg_newsletters_tiki.sql -text
 installer/schema/20090911_tracker_item_change_user.sql -text
 installer/schema/20090912_change_feature_name_for_lesser_magic_tiki.sql -text
+installer/schema/20090913_adedby_tik_security.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
