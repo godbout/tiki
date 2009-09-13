@@ -3708,7 +3708,6 @@ templates/print/print-title_wiki.tpl -text
 templates/remarksbox.tpl -text
 templates/sent_newsletters.tpl -text
 templates/setup_fckeditor.tpl -text
-templates/structures.tpl -text svneol=unset#application/octet-stream
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
