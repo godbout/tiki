@@ -2191,6 +2191,7 @@ lib/prefs/global.php -text
 lib/prefs/page.php -text
 lib/prefs/sender.php -text
 lib/prefs/smarty.php -text
+lib/prefs/tiki.php -text
 lib/prefs/wiki.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
