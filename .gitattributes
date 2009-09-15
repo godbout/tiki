@@ -2346,7 +2346,6 @@ lib/smarty_tiki/block.ws_help.php -text
 lib/smarty_tiki/compiler.assign.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.article.php -text
-lib/smarty_tiki/function.autosave.php -text
 lib/smarty_tiki/function.banner.php -text
 lib/smarty_tiki/function.breadcrumbs.php -text
 lib/smarty_tiki/function.button.php -text
