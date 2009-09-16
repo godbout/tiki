@@ -1189,6 +1189,12 @@ installer/schema/20090811_quizzes_tiki.sql -text
 installer/schema/20090811_rename_quicktags_to_toolbars_tiki.sql -text
 installer/schema/20090823_kaltura_menu_options_tiki.sql -text
 installer/schema/20090826_group_expiration_tiki.sql -text
+installer/schema/20090904_wysiwyg_newsletters_tiki.sql -text
+installer/schema/20090911_tracker_item_change_user.sql -text
+installer/schema/20090912_change_feature_name_for_lesser_magic_tiki.sql -text
+installer/schema/20090913_adedby_tik_security.sql -text
+installer/schema/20090913_plugin_security_addedby_tiki.sql -text
+installer/schema/20090915_change_perms_for_browse_cats_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -1876,6 +1882,7 @@ lib/importer/mediawiki_dump.xsd -text
 lib/importer/tikiimporter.php -text
 lib/importer/tikiimporter_wiki.php -text
 lib/importer/tikiimporter_wiki_mediawiki.php -text
+lib/importer/xml.xsd -text
 lib/importerlib.php -text
 lib/index.php -text
 lib/init/index.php -text
@@ -2195,6 +2202,7 @@ lib/prefs/global.php -text
 lib/prefs/page.php -text
 lib/prefs/sender.php -text
 lib/prefs/smarty.php -text
+lib/prefs/tiki.php -text
 lib/prefs/wiki.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
@@ -2378,6 +2386,7 @@ lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.phplayers.php -text
 lib/smarty_tiki/function.poll.php -text
+lib/smarty_tiki/function.popup.php -text
 lib/smarty_tiki/function.popup_init.php -text
 lib/smarty_tiki/function.preference.php -text
 lib/smarty_tiki/function.query.php -text
@@ -3344,6 +3353,7 @@ styles/slideshows/clear.css -text
 styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
+styles/strasa/arrows-467aa7.png -text svneol=unset#image/png
 styles/strasa/box_bottom.gif -text
 styles/strasa/box_top.gif -text
 styles/strasa/cold.png -text
@@ -3369,6 +3379,7 @@ styles/strasa/options/cool/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/register.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/mono.css -text
+styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
 styles/strasa/options/mono/box_bottom.gif -text
 styles/strasa/options/mono/box_top.gif -text
 styles/strasa/options/mono/fold-topright.jpg -text
@@ -3715,6 +3726,7 @@ templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
 templates/styles/index.php -text
+templates/styles/strasa/tiki-site_header.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
@@ -4463,6 +4475,7 @@ tests/upgrade_categperm.php -text
 /tiki-section_options.php -text
 /tiki-sefurl.php -text
 /tiki-send_blog_post.php -text
+/tiki-send_mail.php -text
 /tiki-send_newsletters.php -text
 /tiki-send_objects.php -text
 /tiki-setup.php -text
