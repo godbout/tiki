@@ -1642,6 +1642,8 @@ lib/fckeditor_tiki/plugins/tikilink/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikilink/fcktikilink.css -text
 lib/fckeditor_tiki/plugins/tikilink/fcktikilink.js -text
 lib/fckeditor_tiki/plugins/tikilink/templates/fck_tikilink.tpl -text
+lib/fckeditor_tiki/plugins/tikiswitch/fckplugin.js -text
+lib/fckeditor_tiki/plugins/tikiswitch/index.php -text
 lib/fckeditor_tiki/tikistyles.xml -text
 lib/fckeditor_tiki/tikitemplates.xml -text
 lib/featured_links/flinkslib.php -text
@@ -2237,6 +2239,7 @@ lib/setup/compat.php -text
 lib/setup/cookies.php -text
 lib/setup/default_homepage.php -text
 lib/setup/dynamic_variables.php -text
+lib/setup/editmode.php -text
 lib/setup/error_reporting.php -text
 lib/setup/freetags.php -text
 lib/setup/fullscreen.php -text
@@ -2347,7 +2350,6 @@ lib/smarty_tiki/block.ws_help.php -text
 lib/smarty_tiki/compiler.assign.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.article.php -text
-lib/smarty_tiki/function.autosave.php -text
 lib/smarty_tiki/function.banner.php -text
 lib/smarty_tiki/function.breadcrumbs.php -text
 lib/smarty_tiki/function.button.php -text
@@ -2757,6 +2759,7 @@ lib/wiki-plugins/wikiplugin_vote.php -text
 lib/wiki-plugins/wikiplugin_wantedpages.php -text
 lib/wiki-plugins/wikiplugin_webservice.php -text
 lib/wiki-plugins/wikiplugin_youtube.php -text
+lib/wiki/editlib.php -text
 lib/wiki/exportlib.php -text
 lib/wiki/histlib.php -text
 lib/wiki/index.php -text
@@ -3093,6 +3096,7 @@ pics/icons/page_white_stack.png -text
 pics/icons/palette.png -text
 pics/icons/pencil.png -text
 pics/icons/pencil_add.png -text
+pics/icons/pencil_go.png -text
 pics/icons/picture.png -text
 pics/icons/picture_add.png -text
 pics/icons/pictures.png -text
@@ -3708,7 +3712,6 @@ templates/print/print-title_wiki.tpl -text
 templates/remarksbox.tpl -text
 templates/sent_newsletters.tpl -text
 templates/setup_fckeditor.tpl -text
-templates/structures.tpl -text svneol=unset#application/octet-stream
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
@@ -4416,7 +4419,6 @@ tests/upgrade_categperm.php -text
 /tiki-page.php -text
 /tiki-page_loader.php -text
 /tiki-pagehistory.php -text
-/tiki-parsemode_setup.php -text
 /tiki-phpinfo.php -text
 /tiki-pick_avatar.php -text
 /tiki-plugins.php -text
