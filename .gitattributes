@@ -1188,6 +1188,7 @@ installer/schema/20090912_change_feature_name_for_lesser_magic_tiki.sql -text
 installer/schema/20090913_adedby_tik_security.sql -text
 installer/schema/20090913_plugin_security_addedby_tiki.sql -text
 installer/schema/20090915_change_perms_for_browse_cats_tiki.sql -text
+installer/schema/20090918_transition_guards_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -1571,6 +1572,7 @@ lib/core/lib/TikiFilter/Callback.php -text
 lib/core/lib/TikiFilter/PreventXss.php -text
 lib/core/lib/TikiFilter/RawUnsafe.php -text
 lib/core/lib/TikiFilter/Word.php -text
+lib/core/lib/Transition.php -text
 lib/core/lib/WikiParser/PluginArgumentParser.php -text
 lib/core/lib/WikiParser/PluginDefinition.php -text
 lib/core/lib/WikiParser/PluginMatcher.php -text
@@ -2415,6 +2417,7 @@ lib/smarty_tiki/function.article.php -text
 lib/smarty_tiki/function.banner.php -text
 lib/smarty_tiki/function.breadcrumbs.php -text
 lib/smarty_tiki/function.button.php -text
+lib/smarty_tiki/function.categoryName.php -text
 lib/smarty_tiki/function.content.php -text
 lib/smarty_tiki/function.cookie.php -text
 lib/smarty_tiki/function.cookie_jar.php -text
@@ -2586,6 +2589,9 @@ lib/test/core/TikiFilter/CallbackTest.php -text
 lib/test/core/TikiFilter/MapTest.php -text
 lib/test/core/TikiFilter/WordTest.php -text
 lib/test/core/TikiFilter/XssTest.php -text
+lib/test/core/Transition/AtLeastTest.php -text
+lib/test/core/Transition/AtMostTest.php -text
+lib/test/core/Transition/BasicTest.php -text
 lib/test/core/WikiParser/PluginArgumentParserTest.php -text
 lib/test/core/WikiParser/PluginMatcherTest.php -text
 lib/test/core/WikiParser/PluginParserTest.php -text
