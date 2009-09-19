@@ -2055,9 +2055,12 @@ lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
 lib/prefs/auth.php -text
+lib/prefs/default.php -text
 lib/prefs/error.php -text
 lib/prefs/feature.php -text
 lib/prefs/global.php -text
+lib/prefs/log.php -text
+lib/prefs/mail.php -text
 lib/prefs/page.php -text
 lib/prefs/sender.php -text
 lib/prefs/smarty.php -text
