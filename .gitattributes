@@ -3591,6 +3591,7 @@ templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
+templates/styles/coelesce/tiki-site_header_login.tpl -text
 templates/styles/index.php -text
 templates/styles/strasa/tiki-site_header.tpl -text
 templates/styles/tikinewt/index.php -text
