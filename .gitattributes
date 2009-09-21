@@ -2056,10 +2056,12 @@ lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
 lib/prefs/auth.php -text
+lib/prefs/available.php -text
 lib/prefs/default.php -text
 lib/prefs/error.php -text
 lib/prefs/feature.php -text
 lib/prefs/global.php -text
+lib/prefs/language.php -text
 lib/prefs/log.php -text
 lib/prefs/mail.php -text
 lib/prefs/page.php -text
@@ -3572,6 +3574,7 @@ templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
 templates/prefs/flag.tpl -text
 templates/prefs/list.tpl -text
+templates/prefs/multilist.tpl -text
 templates/prefs/shared-dependencies.tpl -text
 templates/prefs/shared-flags.tpl -text
 templates/prefs/text.tpl -text
