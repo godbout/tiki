@@ -2659,6 +2659,7 @@ lib/wiki3d/pom.xml -text
 lib/workspaces/index.php -text
 lib/workspaces/wslib.php -text
 lib/workspaces/wstools/scriptCreator.php -text
+lib/workspaces/wstools/test.php -text
 lib/x/index.php -text
 lib/x/x.js -text
 lib/x/x_anim.js -text
