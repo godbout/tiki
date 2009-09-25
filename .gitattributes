@@ -1189,6 +1189,7 @@ installer/schema/20090918_transition_guards_tiki.sql -text
 installer/schema/20090921_logo_tiki.sql -text
 installer/schema/20090921_workspaces_tiki.sql -text
 installer/schema/20090923_mod_change_category_defaults_tiki.php -text
+installer/schema/20090925_online_logged_users_modules_merge_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -2727,12 +2728,10 @@ modules/mod-func-freetags_most_popular.php -text
 modules/mod-func-freetags_prefered.php -text
 modules/mod-func-google.php -text
 modules/mod-func-live_support.php -text
-modules/mod-func-logged_users.php -text
 modules/mod-func-menupage.php -text
 modules/mod-func-messages_unread_messages.php -text
 modules/mod-func-num_submissions.php -text
 modules/mod-func-old_articles.php -text
-modules/mod-func-online_users.php -text
 modules/mod-func-perspective.php -text
 modules/mod-func-quick_edit.php -text
 modules/mod-func-random_pages.php -text
@@ -2751,6 +2750,7 @@ modules/mod-func-user_blogs.php -text
 modules/mod-func-user_pages.php -text
 modules/mod-func-users_rank.php -text
 modules/mod-func-whats_related.php -text
+modules/mod-func-who_is_there.php -text
 modules/mod-groups_emulation.php -text
 modules/mod-last_actions.php -text
 modules/mod-last_articles.php -text
@@ -2791,7 +2791,6 @@ modules/mod-user_image_galleries.php -text
 modules/mod-user_tasks.php -text
 modules/mod-user_tasks_public.php -text
 modules/mod-webmail_inbox.php -text
-modules/mod-who_is_there.php -text
 modules/mod-wiki_last_comments.php -text
 modules/mod-youtube.php -text
 pics/help_icon.png -text
@@ -3500,7 +3499,6 @@ templates/modules/mod-last_tracker_comments.tpl -text
 templates/modules/mod-last_tracker_items.tpl -text
 templates/modules/mod-last_visitors.tpl -text
 templates/modules/mod-live_support.tpl -text
-templates/modules/mod-logged_users.tpl -text
 templates/modules/mod-logged_users.tpl.nocache -text
 templates/modules/mod-login_box.tpl -text
 templates/modules/mod-login_box.tpl.nocache -text
@@ -3512,7 +3510,6 @@ templates/modules/mod-minichat.tpl -text
 templates/modules/mod-months_links.tpl -text
 templates/modules/mod-num_submissions.tpl -text
 templates/modules/mod-old_articles.tpl -text
-templates/modules/mod-online_users.tpl -text
 templates/modules/mod-online_users.tpl.nocache -text
 templates/modules/mod-perspective.tpl -text
 templates/modules/mod-quick_edit.tpl -text
