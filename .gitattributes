@@ -2737,6 +2737,7 @@ modules/mod-func-freetags_prefered.php -text
 modules/mod-func-google.php -text
 modules/mod-func-last_created_blogs.php -text
 modules/mod-func-last_created_faqs.php -text
+modules/mod-func-last_modified_blogs.php -text
 modules/mod-func-live_support.php -text
 modules/mod-func-menupage.php -text
 modules/mod-func-messages_unread_messages.php -text
@@ -2775,7 +2776,6 @@ modules/mod-last_images_th.php -text
 modules/mod-last_modif_events.php -text
 modules/mod-last_modif_pages.php -text
 modules/mod-last_modif_tracker_items.php -text
-modules/mod-last_modified_blogs.php -text
 modules/mod-last_submissions.php -text
 modules/mod-last_tracker_comments.php -text
 modules/mod-last_tracker_items.php -text
