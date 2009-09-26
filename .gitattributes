@@ -2055,6 +2055,8 @@ lib/polls/polllib_shared.php -text
 lib/prefs/auth.php -text
 lib/prefs/available.php -text
 lib/prefs/change.php -text
+lib/prefs/contact.php -text
+lib/prefs/count.php -text
 lib/prefs/default.php -text
 lib/prefs/error.php -text
 lib/prefs/feature.php -text
@@ -2070,11 +2072,13 @@ lib/prefs/quantify.php -text
 lib/prefs/record.php -text
 lib/prefs/restrict.php -text
 lib/prefs/sender.php -text
+lib/prefs/session.php -text
 lib/prefs/show.php -text
 lib/prefs/site.php -text
 lib/prefs/smarty.php -text
 lib/prefs/tiki.php -text
 lib/prefs/use.php -text
+lib/prefs/user.php -text
 lib/prefs/wiki.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
