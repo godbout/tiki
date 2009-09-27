@@ -1190,6 +1190,7 @@ installer/schema/20090921_logo_tiki.sql -text
 installer/schema/20090921_workspaces_tiki.sql -text
 installer/schema/20090923_mod_change_category_defaults_tiki.php -text
 installer/schema/20090925_online_logged_users_modules_merge_tiki.sql -text
+installer/schema/20090927_top_images_modules_merge_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -2755,6 +2756,7 @@ modules/mod-func-top_active_blogs.php -text
 modules/mod-func-top_file_galleries.php -text
 modules/mod-func-top_files.php -text
 modules/mod-func-top_forum_posters.php -text
+modules/mod-func-top_images.php -text
 modules/mod-func-top_objects.php -text
 modules/mod-func-top_pages.php -text
 modules/mod-func-top_quizzes.php -text
@@ -2791,8 +2793,6 @@ modules/mod-since_last_visit_new.php -text
 modules/mod-terminology.php -text
 modules/mod-top_articles.php -text
 modules/mod-top_image_galleries.php -text
-modules/mod-top_images.php -text
-modules/mod-top_images_th.php -text
 modules/mod-translation.php -text
 modules/mod-upcoming_events.php -text
 modules/mod-user_bookmarks.php -text
@@ -3547,7 +3547,6 @@ templates/modules/mod-top_files.tpl -text
 templates/modules/mod-top_forum_posters.tpl -text
 templates/modules/mod-top_image_galleries.tpl -text
 templates/modules/mod-top_images.tpl -text
-templates/modules/mod-top_images_th.tpl -text
 templates/modules/mod-top_objects.tpl -text
 templates/modules/mod-top_pages.tpl -text
 templates/modules/mod-top_quizzes.tpl -text
