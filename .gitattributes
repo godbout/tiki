@@ -116,7 +116,6 @@ files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
-/green.favicon.png -text
 /help.php -text
 /htaccess.sh -text
 images/.htaccess -text
