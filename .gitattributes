@@ -2764,6 +2764,7 @@ modules/mod-func-top_quizzes.php -text
 modules/mod-func-top_visited_blogs.php -text
 modules/mod-func-top_visited_faqs.php -text
 modules/mod-func-user_blogs.php -text
+modules/mod-func-user_image_galleries.php -text
 modules/mod-func-user_pages.php -text
 modules/mod-func-users_rank.php -text
 modules/mod-func-whats_related.php -text
@@ -2797,7 +2798,6 @@ modules/mod-top_image_galleries.php -text
 modules/mod-translation.php -text
 modules/mod-upcoming_events.php -text
 modules/mod-user_bookmarks.php -text
-modules/mod-user_image_galleries.php -text
 modules/mod-user_tasks.php -text
 modules/mod-user_tasks_public.php -text
 modules/mod-webmail_inbox.php -text
