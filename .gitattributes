@@ -2,6 +2,7 @@
 /AllTests.php -text
 /INSTALL -text
 /README -text
+/_htaccess -text
 /about.php -text
 /article_image.php -text
 backups/README -text
