@@ -2739,6 +2739,7 @@ modules/mod-func-google.php -text
 modules/mod-func-last_created_blogs.php -text
 modules/mod-func-last_created_faqs.php -text
 modules/mod-func-last_created_quizzes.php -text
+modules/mod-func-last_file_galleries.php -text
 modules/mod-func-last_modified_blogs.php -text
 modules/mod-func-live_support.php -text
 modules/mod-func-menupage.php -text
@@ -2769,7 +2770,6 @@ modules/mod-last_actions.php -text
 modules/mod-last_articles.php -text
 modules/mod-last_blog_posts.php -text
 modules/mod-last_category_objects.php -text
-modules/mod-last_file_galleries.php -text
 modules/mod-last_files.php -text
 modules/mod-last_image_galleries.php -text
 modules/mod-last_images.php -text
