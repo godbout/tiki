@@ -1190,6 +1190,7 @@ installer/schema/20090921_workspaces_tiki.sql -text
 installer/schema/20090923_mod_change_category_defaults_tiki.php -text
 installer/schema/20090925_online_logged_users_modules_merge_tiki.sql -text
 installer/schema/20090927_top_images_modules_merge_tiki.sql -text
+installer/schema/20090928_galaxia_leftovers_tiki.sql -text
 installer/schema/20090928_transition_guards_text_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
