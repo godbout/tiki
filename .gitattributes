@@ -2064,6 +2064,7 @@ lib/phplayers_tiki/tiki-phplayers.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
+lib/prefs/allowmsg.php -text
 lib/prefs/auth.php -text
 lib/prefs/available.php -text
 lib/prefs/change.php -text
@@ -2080,6 +2081,7 @@ lib/prefs/load.php -text
 lib/prefs/log.php -text
 lib/prefs/mail.php -text
 lib/prefs/menus.php -text
+lib/prefs/messu.php -text
 lib/prefs/page.php -text
 lib/prefs/proxy.php -text
 lib/prefs/quantify.php -text
