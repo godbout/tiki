@@ -2094,6 +2094,7 @@ lib/prefs/sender.php -text
 lib/prefs/session.php -text
 lib/prefs/show.php -text
 lib/prefs/site.php -text
+lib/prefs/sitead.php -text
 lib/prefs/smarty.php -text
 lib/prefs/tiki.php -text
 lib/prefs/use.php -text
