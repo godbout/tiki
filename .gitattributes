@@ -2107,6 +2107,7 @@ lib/prefs/webmail.php -text
 lib/prefs/wiki.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
+lib/prefs/wysiwyg.php -text
 lib/prefslib.php -text
 lib/profilelib/channellib.php -text
 lib/profilelib/installlib.php -text
