@@ -2777,6 +2777,7 @@ modules/mod-func-last_image_galleries.php -text
 modules/mod-func-last_images.php -text
 modules/mod-func-last_modif_events.php -text
 modules/mod-func-last_modified_blogs.php -text
+modules/mod-func-last_tracker_comments.php -text
 modules/mod-func-last_tracker_items.php -text
 modules/mod-func-live_support.php -text
 modules/mod-func-menupage.php -text
@@ -2811,7 +2812,6 @@ modules/mod-last_actions.php -text
 modules/mod-last_articles.php -text
 modules/mod-last_modif_pages.php -text
 modules/mod-last_submissions.php -text
-modules/mod-last_tracker_comments.php -text
 modules/mod-last_visitors.php -text
 modules/mod-minichat.php -text
 modules/mod-months_links.php -text
