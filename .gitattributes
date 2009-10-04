@@ -2088,6 +2088,7 @@ lib/prefs/map.php -text
 lib/prefs/menus.php -text
 lib/prefs/messu.php -text
 lib/prefs/page.php -text
+lib/prefs/poll.php -text
 lib/prefs/proxy.php -text
 lib/prefs/quantify.php -text
 lib/prefs/record.php -text
