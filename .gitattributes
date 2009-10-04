@@ -2075,6 +2075,7 @@ lib/prefs/contact.php -text
 lib/prefs/count.php -text
 lib/prefs/default.php -text
 lib/prefs/error.php -text
+lib/prefs/faq.php -text
 lib/prefs/faqs.php -text
 lib/prefs/feature.php -text
 lib/prefs/freetags.php -text
