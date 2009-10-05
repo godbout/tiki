@@ -2792,6 +2792,7 @@ modules/mod-func-random_images.php -text
 modules/mod-func-random_pages.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
+modules/mod-func-terminology.php -text
 modules/mod-func-top_active_blogs.php -text
 modules/mod-func-top_file_galleries.php -text
 modules/mod-func-top_files.php -text
@@ -2820,7 +2821,6 @@ modules/mod-semantic_links.php -text
 modules/mod-shoutbox.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
-modules/mod-terminology.php -text
 modules/mod-top_articles.php -text
 modules/mod-translation.php -text
 modules/mod-upcoming_events.php -text
