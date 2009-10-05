@@ -3990,7 +3990,6 @@ templates/tiki-webmail.tpl -text
 templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
 templates/tiki-wiki_topline.tpl -text
-templates/tiki-workspaces-index.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker_filter.tpl -text
 templates/tracker_item_field_googlemap_value.tpl -text
@@ -4418,7 +4417,6 @@ tests/upgrade_categperm.php -text
 /tiki-wiki_rankings.php -text
 /tiki-wiki_rss.php -text
 /tiki-wikiplugin_edit.php -text
-/tiki-workspaces-index.php -text
 /tiki-xmlrpc_services.php -text
 tiki_tests/index.php -text
 tiki_tests/tests/.htaccess -text
