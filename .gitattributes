@@ -2074,6 +2074,7 @@ lib/prefs/change.php -text
 lib/prefs/contact.php -text
 lib/prefs/count.php -text
 lib/prefs/default.php -text
+lib/prefs/desc.php -text
 lib/prefs/error.php -text
 lib/prefs/faq.php -text
 lib/prefs/faqs.php -text
@@ -3611,6 +3612,7 @@ templates/prefs/multilist.tpl -text
 templates/prefs/shared-dependencies.tpl -text
 templates/prefs/shared-flags.tpl -text
 templates/prefs/text.tpl -text
+templates/prefs/textarea.tpl -text
 templates/print/print-decorator_indexed.tpl -text
 templates/print/print-decorator_indexrow.tpl -text
 templates/print/print-index_footer.tpl -text
