@@ -2766,6 +2766,7 @@ modules/mod-func-freetags_morelikethis.php -text
 modules/mod-func-freetags_most_popular.php -text
 modules/mod-func-freetags_prefered.php -text
 modules/mod-func-google.php -text
+modules/mod-func-last_actions.php -text
 modules/mod-func-last_blog_posts.php -text
 modules/mod-func-last_category_objects.php -text
 modules/mod-func-last_created_blogs.php -text
@@ -2809,7 +2810,6 @@ modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-groups_emulation.php -text
-modules/mod-last_actions.php -text
 modules/mod-last_articles.php -text
 modules/mod-last_modif_pages.php -text
 modules/mod-last_submissions.php -text
