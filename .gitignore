@@ -22,7 +22,6 @@ img/wiki_up/*
 installer/.htaccess
 lang/.htaccess
 lib/.htaccess
-lib/Galaxia/processes/*
 lib/smarty
 /maps
 maps/*
