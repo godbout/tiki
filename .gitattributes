@@ -2533,6 +2533,8 @@ lib/tikisession-adodb.php -text
 lib/tikisession-pdo.php -text
 lib/tikiticketlib.php -text
 lib/toolbars/index.php -text
+lib/toolbars/tiki-admin_toolbars.js -text
+lib/toolbars/tiki-admin_toolbars.min.js -text
 lib/toolbars/toolbarslib.php -text
 lib/trackers/dynamic_list.js -text
 lib/trackers/index.php -text
