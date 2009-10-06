@@ -3250,12 +3250,16 @@ styles/coelesce/arrows-295c8e.png -text svneol=unset#image/png
 styles/coelesce/arrows-467aa7.png -text svneol=unset#image/png
 styles/coelesce/coelesce.png -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
+styles/coelesce/pics/icons/oleftcol.png -text svneol=unset#image/png
+styles/coelesce/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/darkroom.png -text
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/small-type.png -text
+styles/darkroom/pics/icons/oleftcol.png -text svneol=unset#image/png
+styles/darkroom/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/empty.css -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
 styles/feb12/feb12.png -text
@@ -3318,13 +3322,19 @@ styles/strasa/options/mono/pics/index.php -text
 styles/strasa/options/mono/register.jpg -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
+styles/strasa/pics/icons/oleftcol.png -text svneol=unset#image/png
+styles/strasa/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
+styles/thenews/pics/icons/oleftcol.png -text svneol=unset#image/png
+styles/thenews/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/thenews/thenews.png -text
 styles/tikinewt.css -text
 styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
+styles/tikinewt/pics/icons/oleftcol.png -text svneol=unset#image/png
+styles/tikinewt/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/tikinewt/tikinewt.png -text
 temp/.htaccess -text
 temp/README -text
