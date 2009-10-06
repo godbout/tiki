@@ -2752,7 +2752,6 @@ modules/mod-article_by_rating.php -text
 modules/mod-article_topics.php -text
 modules/mod-articles.php -text
 modules/mod-calendar_new.php -text
-modules/mod-comm_received_objects.php -text
 modules/mod-func-adsense.php -text
 modules/mod-func-assistant.php -text
 modules/mod-func-blog_last_comments.php -text
@@ -2760,6 +2759,7 @@ modules/mod-func-breadcrumb.php -text
 modules/mod-func-categories.php -text
 modules/mod-func-category_transition.php -text
 modules/mod-func-change_category.php -text
+modules/mod-func-comm_received_objects.php -text
 modules/mod-func-directory_last_sites.php -text
 modules/mod-func-directory_stats.php -text
 modules/mod-func-directory_top_sites.php -text
