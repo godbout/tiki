@@ -1775,6 +1775,7 @@ lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
 lib/jquery_tiki/tablesorter/themes/tiki/desc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
+lib/jquery_tiki/tiki-jquery.min.js -text
 lib/live_support/index.php -text
 lib/live_support/live-support.js -text svneol=unset#application/octet-stream
 lib/live_support/lsadminlib.php -text
