@@ -980,6 +980,8 @@ img/icons2/world.gif -text
 img/icons2/zweistern.gif -text
 img/index.php -text
 img/leftbar.gif -text
+img/loading-light.gif -text
+img/loading.gif -text
 img/magnifying-glass-micro-icon.png -text
 img/mainbar.gif -text
 img/mytiki/admin.gif -text
@@ -999,6 +1001,8 @@ img/mytiki/prefs.gif -text
 img/mytiki/stock_contact.png -text
 img/mytiki/tasks.gif -text
 img/mytiki/webmail.gif -text
+img/overlay-85.png -text
+img/overlay-light.png -text
 img/php.png -text
 img/poweredbyhawhaw.gif -text
 img/rdf.gif -text
