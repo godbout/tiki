@@ -2811,6 +2811,7 @@ modules/mod-func-perspective.php -text
 modules/mod-func-quick_edit.php -text
 modules/mod-func-random_images.php -text
 modules/mod-func-random_pages.php -text
+modules/mod-func-register.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
 modules/mod-func-terminology.php -text
