@@ -29,7 +29,6 @@ db/convertscripts/convertsqls.bat -text
 db/convertscripts/convertsqls.sh -text
 db/convertscripts/index.php -text
 db/convertscripts/mysql_to_pgsql.php -text
-db/convertscripts/mysql_to_sqlite.php -text
 db/convertscripts/tikiversion.php -text
 db/fulltext.sql -text
 db/index.php -text
