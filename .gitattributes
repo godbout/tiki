@@ -2076,11 +2076,14 @@ lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
 lib/prefs/allowmsg.php -text
+lib/prefs/art.php -text
+lib/prefs/article.php -text
 lib/prefs/articles.php -text
 lib/prefs/auth.php -text
 lib/prefs/available.php -text
 lib/prefs/blogues.php -text
 lib/prefs/change.php -text
+lib/prefs/cms.php -text
 lib/prefs/contact.php -text
 lib/prefs/count.php -text
 lib/prefs/default.php -text
