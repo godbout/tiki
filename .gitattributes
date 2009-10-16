@@ -2818,6 +2818,7 @@ modules/mod-func-quick_edit.php -text
 modules/mod-func-random_images.php -text
 modules/mod-func-random_pages.php -text
 modules/mod-func-register.php -text
+modules/mod-func-semantic_links.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
 modules/mod-func-terminology.php -text
@@ -2846,7 +2847,6 @@ modules/mod-last_articles.php -text
 modules/mod-last_submissions.php -text
 modules/mod-last_visitors.php -text
 modules/mod-months_links.php -text
-modules/mod-semantic_links.php -text
 modules/mod-shoutbox.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
