@@ -1204,6 +1204,7 @@ installer/schema/20091008_reg_group_includes_anon_tiki.sql -text
 installer/schema/20091011_serurl_dl_order_tiki.sql -text
 installer/schema/20091013_fix_perms_tiki.sql -text
 installer/schema/20091015_application_menu_admin_renames_tiki.sql -text
+installer/schema/20091016_categorization_tracker_item_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
