@@ -2764,10 +2764,10 @@ modules/index.php -text
 modules/mod-action_calendar.php -text
 modules/mod-article_archives.php -text
 modules/mod-article_by_rating.php -text
-modules/mod-article_topics.php -text
 modules/mod-articles.php -text
 modules/mod-calendar_new.php -text
 modules/mod-func-adsense.php -text
+modules/mod-func-article_topics.php -text
 modules/mod-func-assistant.php -text
 modules/mod-func-blog_last_comments.php -text
 modules/mod-func-breadcrumb.php -text
