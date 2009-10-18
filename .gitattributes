@@ -2567,6 +2567,8 @@ lib/userprefs/index.php -text
 lib/userprefs/scrambleEmail.php -text
 lib/userprefs/userprefslib.php -text
 lib/userslib.php -text
+lib/videogals/KalturaClientBase_v3.php -text
+lib/videogals/KalturaClient_v3.php -text
 lib/videogals/kaltura_client.php -text
 lib/videogals/kaltura_client_base.php -text
 lib/videogals/videogallib.php -text
@@ -3862,6 +3864,7 @@ templates/tiki-information.tpl -text
 templates/tiki-install.tpl -text
 templates/tiki-integrator.tpl -text
 templates/tiki-interactive_trans.tpl -text
+templates/tiki-kaltura_upload.tpl -text
 templates/tiki-kaltura_video.tpl -text
 templates/tiki-lastchanges.tpl -text
 templates/tiki-likepages.tpl -text
@@ -3875,7 +3878,12 @@ templates/tiki-list_faqs.tpl -text
 templates/tiki-list_file_gallery.tpl -text
 templates/tiki-list_gallery.tpl -text
 templates/tiki-list_integrator_repositories.tpl -text
+templates/tiki-list_kaltura_browse_entries.tpl -text
 templates/tiki-list_kaltura_entries.tpl -text
+templates/tiki-list_kaltura_entries_actions.tpl -text
+templates/tiki-list_kaltura_entries_add_info.tpl -text
+templates/tiki-list_kaltura_media_entries.tpl -text
+templates/tiki-list_kaltura_mix_entries.tpl -text
 templates/tiki-list_object_permissions.tpl -text
 templates/tiki-list_posts.tpl -text
 templates/tiki-list_quizzes.tpl -text
@@ -4269,6 +4277,7 @@ tests/upgrade_categperm.php -text
 /tiki-interactive_trans.php -text
 /tiki-jscalendar.php -text
 /tiki-jsplugin.php -text
+/tiki-kaltura_upload.php -text
 /tiki-kaltura_video.php -text
 /tiki-lastchanges.php -text
 /tiki-layout_options.php -text
