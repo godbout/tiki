@@ -1205,6 +1205,7 @@ installer/schema/20091011_serurl_dl_order_tiki.sql -text
 installer/schema/20091013_fix_perms_tiki.sql -text
 installer/schema/20091015_application_menu_admin_renames_tiki.sql -text
 installer/schema/20091016_categorization_tracker_item_tiki.sql -text
+installer/schema/20091019_last_articles_modules_merge_tiki.php -text
 installer/script/20091019_users_perms_types_tidying_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -2849,7 +2850,6 @@ modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
-modules/mod-last_articles.php -text
 modules/mod-last_visitors.php -text
 modules/mod-months_links.php -text
 modules/mod-shoutbox.php -text
@@ -3558,7 +3558,6 @@ templates/modules/mod-google.tpl -text
 templates/modules/mod-groups_emulation.tpl -text
 templates/modules/mod-last_actions.tpl -text
 templates/modules/mod-last_actions.tpl.nocache -text svneol=unset#application/octet-stream
-templates/modules/mod-last_articles.tpl -text
 templates/modules/mod-last_blog_posts.tpl -text
 templates/modules/mod-last_category_objects.tpl -text
 templates/modules/mod-last_created_blogs.tpl -text
