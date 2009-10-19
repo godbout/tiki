@@ -2086,6 +2086,8 @@ lib/prefs/articles.php -text
 lib/prefs/auth.php -text
 lib/prefs/available.php -text
 lib/prefs/blogues.php -text
+lib/prefs/categories.php -text
+lib/prefs/categorypath.php -text
 lib/prefs/change.php -text
 lib/prefs/cms.php -text
 lib/prefs/contact.php -text
