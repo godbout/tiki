@@ -2774,9 +2774,9 @@ modules/cache/README -text
 modules/cache/index.php -text
 modules/index.php -text
 modules/mod-action_calendar.php -text
-modules/mod-article_archives.php -text
 modules/mod-calendar_new.php -text
 modules/mod-func-adsense.php -text
+modules/mod-func-article_archives.php -text
 modules/mod-func-article_topics.php -text
 modules/mod-func-articles.php -text
 modules/mod-func-assistant.php -text
