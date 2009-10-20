@@ -1207,8 +1207,8 @@ installer/schema/20091015_application_menu_admin_renames_tiki.sql -text
 installer/schema/20091016_categorization_tracker_item_tiki.sql -text
 installer/schema/20091019_article_by_rating_modules_merge_tiki.php -text
 installer/schema/20091019_last_articles_modules_merge_tiki.php -text
+installer/schema/20091019_users_perms_types_tidying_tiki.sql -text
 installer/schema/20091020_remove_charts_tiki.sql -text
-installer/script/20091019_users_perms_types_tidying_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
