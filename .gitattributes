@@ -1209,6 +1209,7 @@ installer/schema/20091019_article_by_rating_modules_merge_tiki.php -text
 installer/schema/20091019_last_articles_modules_merge_tiki.php -text
 installer/schema/20091019_users_perms_types_tidying_tiki.sql -text
 installer/schema/20091020_bigger_user_prefs_tiki.sql -text
+installer/schema/20091020_faq_created_tiki.sql -text
 installer/schema/20091020_kaltura_tiki.sql -text
 installer/schema/20091020_remove_charts_tiki.sql -text
 installer/shell.php -text
@@ -2818,6 +2819,7 @@ modules/mod-func-last_modified_blogs.php -text
 modules/mod-func-last_submissions.php -text
 modules/mod-func-last_tracker_comments.php -text
 modules/mod-func-last_tracker_items.php -text
+modules/mod-func-last_validated_faq_questions.php -text
 modules/mod-func-live_support.php -text
 modules/mod-func-menupage.php -text
 modules/mod-func-messages_unread_messages.php -text
@@ -3577,6 +3579,7 @@ templates/modules/mod-last_modified_blogs.tpl -text
 templates/modules/mod-last_submissions.tpl -text
 templates/modules/mod-last_tracker_comments.tpl -text
 templates/modules/mod-last_tracker_items.tpl -text
+templates/modules/mod-last_validated_faq_questions.tpl -text
 templates/modules/mod-last_visitors.tpl -text
 templates/modules/mod-live_support.tpl -text
 templates/modules/mod-logged_users.tpl.nocache -text
