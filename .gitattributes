@@ -1217,6 +1217,7 @@ installer/schema/20091020_faq_created_tiki.sql -text
 installer/schema/20091020_kaltura_tiki.sql -text
 installer/schema/20091020_moz_screencast_tiki.sql -text
 installer/schema/20091020_remove_charts_tiki.sql -text
+installer/schema/20091020_sefurl_trackeritem_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
