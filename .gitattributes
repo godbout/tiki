@@ -1009,6 +1009,10 @@ img/replied.gif -text
 img/rightbar.gif -text
 img/rss.png -text
 img/rss_podcast_80_15.png -text
+img/screencast-bar.png -text
+img/screencast-no-video.png -text
+img/screencast-player-close.png -text
+img/screencast-player-frame.png -text
 img/separator.gif -text
 img/smarty.gif -text
 img/smiles/icon_arrow.gif -text
@@ -1211,6 +1215,7 @@ installer/schema/20091019_users_perms_types_tidying_tiki.sql -text
 installer/schema/20091020_bigger_user_prefs_tiki.sql -text
 installer/schema/20091020_faq_created_tiki.sql -text
 installer/schema/20091020_kaltura_tiki.sql -text
+installer/schema/20091020_moz_screencast_tiki.sql -text
 installer/schema/20091020_remove_charts_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -1919,6 +1924,10 @@ lib/pear/Date/TimeZone.php -text
 lib/pear/Date/index.php -text
 lib/pear/HTTP/Request.php -text
 lib/pear/HTTP/Request/Listener.php -text
+lib/pear/HTTP/WebDAV/Client.php -text
+lib/pear/HTTP/WebDAV/Client/Stream.php -text
+lib/pear/HTTP/WebDAV/Tools/_parse_lock_response.php -text
+lib/pear/HTTP/WebDAV/Tools/_parse_propfind_response.php -text
 lib/pear/HTTP/index.php -text
 lib/pear/Net/DIME.php -text
 lib/pear/Net/DNS.php -text
@@ -2161,6 +2170,8 @@ lib/rss/rsslib.php -text
 lib/score/events.php -text
 lib/score/index.php -text
 lib/score/scorelib.php -text
+lib/screencasts/screencast.swf -text
+lib/screencasts/screencastlib.php -text
 lib/search/index.php -text
 lib/search/refresh-functions.php -text
 lib/search/refresh.php -text
@@ -2581,6 +2592,7 @@ lib/videogals/KalturaClient_v3.php -text
 lib/videogals/kaltura_client.php -text
 lib/videogals/kaltura_client_base.php -text
 lib/videogals/videogallib.php -text
+lib/webdav/webdavlib.php -text
 lib/webmail/API.txt -text
 lib/webmail/class.rc4crypt.php -text
 lib/webmail/contactlib.php -text
@@ -2676,6 +2688,7 @@ lib/wiki-plugins/wikiplugin_redirect.php -text
 lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
+lib/wiki-plugins/wikiplugin_screencast.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
 lib/wiki-plugins/wikiplugin_sharethis.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
@@ -2732,6 +2745,7 @@ lib/wiki3d/LICENSE.txt -text
 lib/wiki3d/README.txt -text
 lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
+lib/wikiplugin_screencast.js -text
 lib/workspaces/index.php -text
 lib/workspaces/wslib.php -text
 lib/workspaces/wstools/scriptCreator.php -text
