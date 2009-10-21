@@ -979,6 +979,8 @@ img/icons2/world.gif -text
 img/icons2/zweistern.gif -text
 img/index.php -text
 img/leftbar.gif -text
+img/listprogress-bar.png -text
+img/listprogress-slider.png -text
 img/loading-light.gif -text
 img/loading.gif -text
 img/magnifying-glass-micro-icon.png -text
@@ -1218,6 +1220,7 @@ installer/schema/20091020_kaltura_tiki.sql -text
 installer/schema/20091020_moz_screencast_tiki.sql -text
 installer/schema/20091020_remove_charts_tiki.sql -text
 installer/schema/20091020_sefurl_trackeritem_tiki.sql -text
+installer/schema/20091021_moz_pagelist_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -1833,6 +1836,7 @@ lib/notifications/notificationemaillib.php -text
 lib/notifications/notificationlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
+lib/pagelist/pagelistlib.php -text
 lib/pear/Auth.php -text
 lib/pear/Auth/Anonymous.php -text
 lib/pear/Auth/Auth.php -text
@@ -2666,6 +2670,7 @@ lib/wiki-plugins/wikiplugin_kaltura.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
 lib/wiki-plugins/wikiplugin_listpages.php -text
+lib/wiki-plugins/wikiplugin_listprogress.php -text
 lib/wiki-plugins/wikiplugin_lsdir.php -text
 lib/wiki-plugins/wikiplugin_map.php -text
 lib/wiki-plugins/wikiplugin_mcalendar.php -text
@@ -2678,6 +2683,7 @@ lib/wiki-plugins/wikiplugin_mouseover.php -text
 lib/wiki-plugins/wikiplugin_mwtable.php -text
 lib/wiki-plugins/wikiplugin_myspace.php -text
 lib/wiki-plugins/wikiplugin_objecthits.php -text
+lib/wiki-plugins/wikiplugin_pagelist.php -text
 lib/wiki-plugins/wikiplugin_picture.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
@@ -3771,6 +3777,7 @@ templates/tiki-admin_modules.tpl -text
 templates/tiki-admin_newsletter_subscriptions.tpl -text
 templates/tiki-admin_newsletters.tpl -text
 templates/tiki-admin_notifications.tpl -text
+templates/tiki-admin_pagelist.tpl -text
 templates/tiki-admin_poll_options.tpl -text
 templates/tiki-admin_polls.tpl -text
 templates/tiki-admin_rssmodules.tpl -text
@@ -4165,6 +4172,7 @@ tests/upgrade_categperm.php -text
 /tiki-admin_newsletter_subscriptions.php -text
 /tiki-admin_newsletters.php -text
 /tiki-admin_notifications.php -text
+/tiki-admin_pagelist.php -text
 /tiki-admin_poll_options.php -text
 /tiki-admin_polls.php -text
 /tiki-admin_rssmodules.php -text
