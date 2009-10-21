@@ -4442,6 +4442,7 @@ tests/upgrade_categperm.php -text
 /tiki-tracker_rss.php -text
 /tiki-upload_file.php -text
 /tiki-upload_image.php -text
+/tiki-upload_screencast_ajax.php -text
 /tiki-usage_chart.php -text
 /tiki-user_assigned_modules.php -text
 /tiki-user_bookmarks.php -text
