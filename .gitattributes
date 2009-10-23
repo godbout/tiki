@@ -1221,6 +1221,7 @@ installer/schema/20091020_moz_screencast_tiki.sql -text
 installer/schema/20091020_remove_charts_tiki.sql -text
 installer/schema/20091020_sefurl_trackeritem_tiki.sql -text
 installer/schema/20091021_moz_pagelist_tiki.sql -text
+installer/schema/20091023_bookmarks_name_lengthen_tiki.sql -text
 installer/schema/20091023_nul_categ_tiki.sql -text
 installer/schema/20091023_report_tiki.sql -text
 installer/shell.php -text
