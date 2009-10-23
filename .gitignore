@@ -1,6 +1,7 @@
 /.buildpath
 /.cache
 /.htaccess
+/.lastup
 /.project
 /.settings
 /ZendPlatform
@@ -20,6 +21,7 @@ img/wiki/*.pad_xml
 img/wiki_up/*
 installer/.htaccess
 lang/.htaccess
+/last.log
 lib/.htaccess
 lib/smarty
 /maps
