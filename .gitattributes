@@ -2877,6 +2877,7 @@ modules/mod-func-top_pages.php -text
 modules/mod-func-top_quizzes.php -text
 modules/mod-func-top_visited_blogs.php -text
 modules/mod-func-top_visited_faqs.php -text
+modules/mod-func-translation.php -text
 modules/mod-func-upcoming_events.php -text
 modules/mod-func-user_blogs.php -text
 modules/mod-func-user_bookmarks.php -text
@@ -2892,7 +2893,6 @@ modules/mod-func-youtube.php -text
 modules/mod-last_visitors.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
-modules/mod-translation.php -text
 modules/mod-webmail_inbox.php -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
