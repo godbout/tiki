@@ -2124,6 +2124,8 @@ lib/prefs/faqs.php -text
 lib/prefs/feature.php -text
 lib/prefs/fgal.php -text
 lib/prefs/file.php -text
+lib/prefs/forum.php -text
+lib/prefs/forums.php -text
 lib/prefs/freetags.php -text
 lib/prefs/global.php -text
 lib/prefs/lang.php -text
