@@ -1346,6 +1346,7 @@ lib/bookmarks/index.php -text
 lib/breadcrumblib.php -text
 lib/cache/cachelib.php -text
 lib/cache/index.php -text
+lib/cache/memcachelib.php -text
 lib/calendar/calendarlib.php -text
 lib/calendar/calrecurrence.php -text
 lib/calendar/index.php -text
@@ -2135,6 +2136,7 @@ lib/prefs/load.php -text
 lib/prefs/log.php -text
 lib/prefs/mail.php -text
 lib/prefs/map.php -text
+lib/prefs/memcache.php -text
 lib/prefs/menus.php -text
 lib/prefs/messu.php -text
 lib/prefs/metatag.php -text
