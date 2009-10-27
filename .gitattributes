@@ -2580,6 +2580,7 @@ lib/tikihelp/toolbar.html -text
 lib/tikihelplib.php -text
 lib/tikilib.php -text
 lib/tikisession-adodb.php -text
+lib/tikisession-memcache.php -text
 lib/tikisession-pdo.php -text
 lib/tikiticketlib.php -text
 lib/toolbars/index.php -text
