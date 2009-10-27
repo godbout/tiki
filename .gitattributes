@@ -979,12 +979,14 @@ img/icons2/world.gif -text
 img/icons2/zweistern.gif -text
 img/index.php -text
 img/leftbar.gif -text
+img/leftbarlight.gif -text
 img/listprogress-bar.png -text
 img/listprogress-slider.png -text
 img/loading-light.gif -text
 img/loading.gif -text
 img/magnifying-glass-micro-icon.png -text
 img/mainbar.gif -text
+img/mainbarlight.gif -text
 img/mytiki/admin.gif -text
 img/mytiki/bookmarks.gif -text
 img/mytiki/files.gif -text
@@ -1009,6 +1011,7 @@ img/poweredbyhawhaw.gif -text
 img/rdf.gif -text
 img/replied.gif -text
 img/rightbar.gif -text
+img/rightbarlight.gif -text
 img/rss.png -text
 img/rss_podcast_80_15.png -text
 img/screencast-bar.png -text
@@ -2351,6 +2354,7 @@ lib/smarty_tiki/function.popup.php -text
 lib/smarty_tiki/function.popup_init.php -text
 lib/smarty_tiki/function.preference.php -text
 lib/smarty_tiki/function.query.php -text
+lib/smarty_tiki/function.quotabar.php -text
 lib/smarty_tiki/function.rcontent.php -text
 lib/smarty_tiki/function.redirect.php -text
 lib/smarty_tiki/function.reindex_file_pixel.php -text
