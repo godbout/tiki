@@ -1347,6 +1347,7 @@ lib/breadcrumblib.php -text
 lib/cache/cachelib.php -text
 lib/cache/index.php -text
 lib/cache/memcachelib.php -text
+lib/cache/pagecache.php -text
 lib/calendar/calendarlib.php -text
 lib/calendar/calrecurrence.php -text
 lib/calendar/index.php -text
