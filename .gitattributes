@@ -3475,6 +3475,7 @@ templates/mail/confirm_user_email.tpl -text
 templates/mail/confirm_user_email_after_approval.tpl -text
 templates/mail/confirm_user_email_after_approval_subject.tpl -text
 templates/mail/confirm_user_email_subject.tpl -text
+templates/mail/fgal_quota_exceeded.tpl -text
 templates/mail/forum_outbound.tpl -text
 templates/mail/forum_post_notification.tpl -text
 templates/mail/index.php -text
