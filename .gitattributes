@@ -1383,6 +1383,7 @@ lib/core/lib/DeclFilter/UnsetRule.php -text
 lib/core/lib/JitFilter.php -text
 lib/core/lib/JitFilter/Element.php -text
 lib/core/lib/Multilingual/Aligner/BilingualAligner.php -text
+lib/core/lib/Multilingual/Aligner/SentenceAlignments.php -text
 lib/core/lib/Multilingual/Aligner/SentenceSegmentor.php -text
 lib/core/lib/Multilingual/Aligner/ShortestPathFinder.php -text
 lib/core/lib/Multilingual/MachineTranslation/GoogleTranslateWrapper.php -text
@@ -2476,6 +2477,7 @@ lib/test/core/JitFilter/FilterTest.php -text
 lib/test/core/JitFilter/IteratorTest.php -text
 lib/test/core/Multilingual/Aligner/AllTests.php -text
 lib/test/core/Multilingual/Aligner/BilingualAlignerTest.php -text
+lib/test/core/Multilingual/Aligner/SentenceAlignmentsTest.php -text
 lib/test/core/Multilingual/Aligner/SentenceSegmentorTest.php -text
 lib/test/core/Multilingual/Aligner/ShortestPathFinderTest.php -text
 lib/test/core/Multilingual/AllTests.php -text
