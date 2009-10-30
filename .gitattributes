@@ -2464,7 +2464,6 @@ lib/test/README -text
 lib/test/TikiAcceptanceTestDBRestorer.php -text
 lib/test/TikiSeleniumTestCase.php -text
 lib/test/TikiTestCase.php -text
-lib/test/core/AllTests.php -text
 lib/test/core/Category/ManipulatorTest.php -text
 lib/test/core/DeclFilter/BaseTest.php -text
 lib/test/core/DeclFilter/CatchAllFilterTest.php -text
