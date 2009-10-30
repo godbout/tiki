@@ -2476,13 +2476,10 @@ lib/test/core/DeclFilter/StaticKeyUnsetTest.php -text
 lib/test/core/JitFilter/AccessTest.php -text
 lib/test/core/JitFilter/FilterTest.php -text
 lib/test/core/JitFilter/IteratorTest.php -text
-lib/test/core/Multilingual/Aligner/AllTests.php -text
 lib/test/core/Multilingual/Aligner/BilingualAlignerTest.php -text
 lib/test/core/Multilingual/Aligner/SentenceAlignmentsTest.php -text
 lib/test/core/Multilingual/Aligner/SentenceSegmentorTest.php -text
 lib/test/core/Multilingual/Aligner/ShortestPathFinderTest.php -text
-lib/test/core/Multilingual/AllTests.php -text
-lib/test/core/Multilingual/MachineTranslation/AllTests.php -text
 lib/test/core/Multilingual/MachineTranslation/GoogleTranslateWrapperTest.php -text
 lib/test/core/Perms/AccessorTest.php -text
 lib/test/core/Perms/ApplierTest.php -text
