@@ -3375,6 +3375,7 @@ styles/strasa/options/cool/headermenuitem-hover.png -text
 styles/strasa/options/cool/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/register.jpg -text svneol=unset#image/jpeg
+styles/strasa/options/fixed.css -text
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
 styles/strasa/options/mono/box_bottom.gif -text
