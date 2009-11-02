@@ -1836,6 +1836,7 @@ lib/mime/mimelib.php -text
 lib/mime/mimetypes.php -text
 lib/minical/index.php -text
 lib/minical/minicallib.php -text
+lib/minify/JSMin.php -text
 lib/mods/index.php -text
 lib/mods/modslib.php -text
 lib/modules/index.php -text
@@ -3416,6 +3417,7 @@ temp/cache/index.php -text
 temp/index.php -text
 temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
+temp/public/.htaccess -text
 templates/.htaccess -text
 templates/antibot.tpl -text
 templates/attachments.tpl -text
