@@ -32,6 +32,7 @@ modules/cache
 modules/cache/*
 /phpmyadmin
 /project.index
+/svn-commit.tmp
 temp/.htaccess
 temp/article*
 temp/cache
