@@ -1229,6 +1229,7 @@ installer/schema/20091023_report_tiki.sql -text
 installer/schema/20091027_multiple_session_handler_tiki.sql -text
 installer/schema/20091028_quota_tiki.sql -text
 installer/schema/20091030_wiki_watch_tiki.sql -text
+installer/schema/20091103_upgrade_categperm_tiki.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -4117,7 +4118,6 @@ tests/messu-compose.tpl -text
 tests/test_cvs_file.txt -text
 tests/test_php_beautifier.php -text
 tests/testfile.txt -text
-tests/upgrade_categperm.php -text
 /textareasize.php -text
 /tiki-action_calendar.php -text
 /tiki-admin.php -text

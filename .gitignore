@@ -38,6 +38,7 @@ temp/article*
 temp/cache
 temp/cache/*
 temp/dbg-watch.*
+temp/public/minified_*
 temp/sf*
 temp/topic.*
 templates/.htaccess
