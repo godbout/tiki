@@ -1201,7 +1201,6 @@ installer/schema/20090913_plugin_security_addedby_tiki.sql -text
 installer/schema/20090915_change_perms_for_browse_cats_tiki.sql -text
 installer/schema/20090918_transition_guards_tiki.sql -text
 installer/schema/20090921_logo_tiki.sql -text
-installer/schema/20090921_workspaces_tiki.sql -text
 installer/schema/20090923_mod_change_category_defaults_tiki.php -text
 installer/schema/20090925_online_logged_users_modules_merge_tiki.sql -text
 installer/schema/20090927_top_images_modules_merge_tiki.sql -text
@@ -2322,7 +2321,6 @@ lib/smarty_tiki/block.title.php -text
 lib/smarty_tiki/block.tr.php -text
 lib/smarty_tiki/block.translation.php -text
 lib/smarty_tiki/block.wiki.php -text
-lib/smarty_tiki/block.ws_help.php -text
 lib/smarty_tiki/compiler.assign.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.article.php -text
@@ -2776,10 +2774,6 @@ lib/wiki3d/README.txt -text
 lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
 lib/wikiplugin_screencast.js -text
-lib/workspaces/index.php -text
-lib/workspaces/wslib.php -text
-lib/workspaces/wstools/scriptCreator.php -text
-lib/workspaces/wstools/test.php -text
 lib/x/index.php -text
 lib/x/x.js -text
 lib/x/x_anim.js -text
@@ -3296,8 +3290,6 @@ pics/large/webservices.png -text
 pics/large/webservices48x48.png -text
 pics/large/wikipages.png -text
 pics/large/wikipages48x48.png -text
-pics/large/workspaces.png -text
-pics/large/workspaces48x48.png -text
 pics/large/wysiwyg.png -text
 pics/large/wysiwyg48x48.png -text
 pics/large/xfce4-appfinder.png -text
@@ -3777,7 +3769,6 @@ templates/tiki-admin-include-webmail.tpl -text
 templates/tiki-admin-include-webservices.tpl -text
 templates/tiki-admin-include-wiki.tpl -text
 templates/tiki-admin-include-wikiatt.tpl -text
-templates/tiki-admin-include-workspaces.tpl -text
 templates/tiki-admin-include-wysiwyg.tpl -text
 templates/tiki-admin.tpl -text
 templates/tiki-admin_actionlog.tpl -text
@@ -3959,14 +3950,12 @@ templates/tiki-live_support_transcripts.tpl -text
 templates/tiki-login.tpl -text
 templates/tiki-login_confirm_email.tpl -text
 templates/tiki-mailin.tpl -text
-templates/tiki-manage-workspaces.tpl -text
 templates/tiki-mindmap.tpl -text
 templates/tiki-minical.tpl -text
 templates/tiki-minical_prefs.tpl -text
 templates/tiki-mods.tpl -text
 templates/tiki-mods_admin.tpl -text
 templates/tiki-mods_config.tpl -text
-templates/tiki-my-workspaces.tpl -text
 templates/tiki-my_tiki.tpl -text
 templates/tiki-mytiki_bar.tpl -text
 templates/tiki-newsletter_archives.tpl -text
@@ -4187,7 +4176,6 @@ tests/upgrade_categperm.php -text
 /tiki-admin_include_webservices.php -text
 /tiki-admin_include_wiki.php -text
 /tiki-admin_include_wikiatt.php -text
-/tiki-admin_include_workspaces.php -text
 /tiki-admin_include_wysiwyg.php -text
 /tiki-admin_integrator.php -text
 /tiki-admin_integrator_rules.php -text
@@ -4376,7 +4364,6 @@ tests/upgrade_categperm.php -text
 /tiki-logout.php -text
 /tiki-mailin-code.php -text
 /tiki-mailin.php -text
-/tiki-manage-workspaces.php -text
 /tiki-map.php -text
 /tiki-map_download.phtml -text
 /tiki-map_edit.php -text
@@ -4394,7 +4381,6 @@ tests/upgrade_categperm.php -text
 /tiki-mods_admin.php -text
 /tiki-module_controls.php -text
 /tiki-modules.php -text
-/tiki-my-workspaces.php -text
 /tiki-my_tiki.php -text
 /tiki-mytiki_shared.php -text
 /tiki-newsletter_archives.php -text
