@@ -1201,6 +1201,7 @@ installer/schema/20090913_plugin_security_addedby_tiki.sql -text
 installer/schema/20090915_change_perms_for_browse_cats_tiki.sql -text
 installer/schema/20090918_transition_guards_tiki.sql -text
 installer/schema/20090921_logo_tiki.sql -text
+installer/schema/20090921_workspaces_tiki.sql -text
 installer/schema/20090923_mod_change_category_defaults_tiki.php -text
 installer/schema/20090925_online_logged_users_modules_merge_tiki.sql -text
 installer/schema/20090927_top_images_modules_merge_tiki.sql -text
@@ -1809,7 +1810,6 @@ lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
 lib/jquery_tiki/tablesorter/themes/tiki/desc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
-lib/jquery_tiki/tiki-jquery.min.js -text
 lib/live_support/index.php -text
 lib/live_support/live-support.js -text svneol=unset#application/octet-stream
 lib/live_support/lsadminlib.php -text
@@ -2535,7 +2535,6 @@ lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
 lib/tiki-js-sorttable.js -text
 lib/tiki-js.js -text
-lib/tiki-js.min.js -text
 lib/tikiaccesslib.php -text
 lib/tikidate-pear-date.php -text
 lib/tikidate-php5.php -text
@@ -2591,7 +2590,6 @@ lib/tikisession-pdo.php -text
 lib/tikiticketlib.php -text
 lib/toolbars/index.php -text
 lib/toolbars/tiki-admin_toolbars.js -text
-lib/toolbars/tiki-admin_toolbars.min.js -text
 lib/toolbars/toolbarslib.php -text
 lib/trackers/dynamic_list.js -text
 lib/trackers/index.php -text
@@ -3101,6 +3099,7 @@ pics/icons/printer.png -text
 pics/icons/printer_add.png -text
 pics/icons/quotes.png -text
 pics/icons/readme.txt -text
+pics/icons/resultset.png -text
 pics/icons/resultset_down.png -text
 pics/icons/resultset_first.png -text
 pics/icons/resultset_last.png -text
@@ -3734,6 +3733,7 @@ templates/tiki-admin-include-calendar.tpl -text
 templates/tiki-admin-include-category.tpl -text
 templates/tiki-admin-include-cms.tpl -text
 templates/tiki-admin-include-community.tpl -text
+templates/tiki-admin-include-connect.tpl -text
 templates/tiki-admin-include-copyright.tpl -text
 templates/tiki-admin-include-directory.tpl -text
 templates/tiki-admin-include-faqs.tpl -text
@@ -4141,6 +4141,7 @@ tests/testfile.txt -text
 /tiki-admin_include_category.php -text
 /tiki-admin_include_cms.php -text
 /tiki-admin_include_community.php -text
+/tiki-admin_include_connect.php -text
 /tiki-admin_include_copyright.php -text
 /tiki-admin_include_directory.php -text
 /tiki-admin_include_faqs.php -text
