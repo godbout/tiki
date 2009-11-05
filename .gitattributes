@@ -1231,6 +1231,7 @@ installer/schema/20091027_multiple_session_handler_tiki.sql -text
 installer/schema/20091028_quota_tiki.sql -text
 installer/schema/20091030_wiki_watch_tiki.sql -text
 installer/schema/20091103_upgrade_categperm_tiki.php -text
+installer/schema/20091105_auth_tokens_tiki.sql -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -1853,6 +1854,7 @@ lib/notifications/notificationlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
 lib/pagelist/pagelistlib.php -text
+lib/pdflib.php -text
 lib/pear/Auth.php -text
 lib/pear/Auth/Anonymous.php -text
 lib/pear/Auth/Auth.php -text
@@ -2154,6 +2156,7 @@ lib/prefs/metatag.php -text
 lib/prefs/multidomain.php -text
 lib/prefs/page.php -text
 lib/prefs/poll.php -text
+lib/prefs/print.php -text
 lib/prefs/proxy.php -text
 lib/prefs/quantify.php -text
 lib/prefs/record.php -text
@@ -2639,6 +2642,7 @@ lib/wiki-plugins/wikiplugin_agentinfo.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
 lib/wiki-plugins/wikiplugin_aname.php -text
 lib/wiki-plugins/wikiplugin_annotation.php -text
+lib/wiki-plugins/wikiplugin_archivebuilder.php -text
 lib/wiki-plugins/wikiplugin_article.php -text
 lib/wiki-plugins/wikiplugin_articles.php -text
 lib/wiki-plugins/wikiplugin_attach.php -text
