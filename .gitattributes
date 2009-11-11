@@ -3341,7 +3341,6 @@ styles/darkroom/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/empty.css -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
 styles/feb12/feb12.png -text
-styles/feb12/header.jpg -text svneol=unset#image/jpeg
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/index.php -text
 styles/integrator/README -text
@@ -3583,7 +3582,6 @@ templates/module-error.tpl -text
 templates/module.tpl -text
 templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
-templates/modules/mod-admin_menu.tpl -text
 templates/modules/mod-adsense.tpl -text
 templates/modules/mod-application_menu.tpl.nocache -text
 templates/modules/mod-article_archives.tpl -text
