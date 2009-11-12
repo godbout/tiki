@@ -1238,6 +1238,7 @@ installer/schema/20091030_wiki_watch_tiki.sql -text
 installer/schema/20091103_upgrade_categperm_tiki.php -text
 installer/schema/20091105_auth_tokens_tiki.sql -text
 installer/schema/20091111_fgal_size_tiki.sql -text
+installer/schema/20091112_template_type_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
