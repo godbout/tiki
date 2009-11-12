@@ -2847,8 +2847,7 @@ modules/cache/.htaccess -text svneol=unset#application/octet-stream
 modules/cache/README -text
 modules/cache/index.php -text
 modules/index.php -text
-modules/mod-action_calendar.php -text
-modules/mod-calendar_new.php -text
+modules/mod-func-action_calendar.php -text
 modules/mod-func-adsense.php -text
 modules/mod-func-article_archives.php -text
 modules/mod-func-article_topics.php -text
@@ -2856,6 +2855,7 @@ modules/mod-func-articles.php -text
 modules/mod-func-assistant.php -text
 modules/mod-func-blog_last_comments.php -text
 modules/mod-func-breadcrumb.php -text
+modules/mod-func-calendar_new.php -text
 modules/mod-func-categories.php -text
 modules/mod-func-category_transition.php -text
 modules/mod-func-change_category.php -text
@@ -4359,7 +4359,6 @@ tests/testfile.txt -text
 /tiki-index_raw.php -text
 /tiki-information.php -text
 /tiki-install.php -text
-/tiki-install_disable.php -text
 /tiki-integrator.php -text
 /tiki-interactive_trans.php -text
 /tiki-jscalendar.php -text
