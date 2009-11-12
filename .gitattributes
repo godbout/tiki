@@ -21,6 +21,7 @@ css/calendar.css -text
 css/freetags.css -text
 css/ie6.css -text
 css/ie8.css -text
+css/index.php -text
 css/jscalendar.css -text
 db/.htaccess -text
 db/case_patch.php -text
@@ -111,6 +112,8 @@ dump/index.php -text
 /favicon.png -text
 /fgal_listing_conf.php -text
 files/index.php -text
+files/templates/index.php -text
+files/templates/listpages/index.php -text
 files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /freetag_apply.php -text
 /freetag_list.php -text
@@ -1234,6 +1237,8 @@ installer/schema/20091028_quota_tiki.sql -text
 installer/schema/20091030_wiki_watch_tiki.sql -text
 installer/schema/20091103_upgrade_categperm_tiki.php -text
 installer/schema/20091105_auth_tokens_tiki.sql -text
+installer/schema/20091111_fgal_size_tiki.sql -text
+installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 lang/.htaccess -text
@@ -1343,6 +1348,7 @@ lib/ajax/lib/activex_off.js -text
 lib/ajax/tiki-ajax.js -text
 lib/articles/artlib.php -text
 lib/articles/index.php -text
+lib/auth/index.php -text
 lib/auth/ldap.php -text
 lib/auth/tokens.php -text
 lib/bablotron.php -text
@@ -2887,6 +2893,8 @@ modules/mod-func-last_tracker_comments.php -text
 modules/mod-func-last_tracker_items.php -text
 modules/mod-func-last_validated_faq_questions.php -text
 modules/mod-func-live_support.php -text
+modules/mod-func-login_box.php -text
+modules/mod-func-logo.php -text
 modules/mod-func-menupage.php -text
 modules/mod-func-messages_unread_messages.php -text
 modules/mod-func-minichat.php -text
@@ -2924,6 +2932,7 @@ modules/mod-func-user_pages.php -text
 modules/mod-func-user_tasks.php -text
 modules/mod-func-user_tasks_public.php -text
 modules/mod-func-users_rank.php -text
+modules/mod-func-webmail_inbox.php -text
 modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
@@ -2931,7 +2940,6 @@ modules/mod-func-youtube.php -text
 modules/mod-last_visitors.php -text
 modules/mod-since_last_visit.php -text
 modules/mod-since_last_visit_new.php -text
-modules/mod-webmail_inbox.php -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
 pics/icons/add.png -text
@@ -3086,6 +3094,7 @@ pics/icons/newspaper_go.png -text
 pics/icons/no_eye.png -text
 pics/icons/no_eye_arrow_down.png -text
 pics/icons/no_information.png -text
+pics/icons/noparse.png -text
 pics/icons/note_add.png -text
 pics/icons/ofolder.png -text
 pics/icons/oleftcol.png -text svneol=unset#image/png
@@ -4144,12 +4153,7 @@ templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 templates_c/index.php -text
 tests/.htaccess -text
-tests/example.txt -text
-tests/force-error_sql.php -text
 tests/index.php -text
-tests/messu-compose.tpl -text
-tests/test_cvs_file.txt -text
-tests/test_php_beautifier.php -text
 tests/testfile.txt -text
 /textareasize.php -text
 /tiki-action_calendar.php -text
@@ -4339,7 +4343,6 @@ tests/testfile.txt -text
 /tiki-gmap_usermap.php -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
-/tiki-handlers.php -text
 /tiki-history_sheets.php -text
 /tiki-image_galleries_rss.php -text
 /tiki-image_gallery_rss.php -text
@@ -4454,7 +4457,6 @@ tests/testfile.txt -text
 /tiki-received_pages.php -text
 /tiki-referer_stats.php -text
 /tiki-register.php -text
-/tiki-register_ajax.php -text
 /tiki-register_site.php -text
 /tiki-remind_password.php -text
 /tiki-removepage.php -text
@@ -4478,7 +4480,6 @@ tests/testfile.txt -text
 /tiki-show_user_avatar.php -text
 /tiki-slideshow.php -text
 /tiki-slideshow2.php -text
-/tiki-special_chars.php -text
 /tiki-sqllog.php -text
 /tiki-stats.php -text
 /tiki-survey_stats.php -text
