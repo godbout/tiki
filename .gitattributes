@@ -3768,6 +3768,8 @@ templates/print/print-page_header.tpl -text
 templates/print/print-title_trackeritem.tpl -text
 templates/print/print-title_wiki.tpl -text
 templates/remarksbox.tpl -text
+templates/send_newsletter_footer.tpl -text
+templates/send_newsletter_header.tpl -text
 templates/sent_newsletters.tpl -text
 templates/setup_fckeditor.tpl -text
 templates/structures_toc-endul.tpl -text
