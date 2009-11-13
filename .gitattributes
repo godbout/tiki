@@ -41,7 +41,6 @@ db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
 db/tiki-pgsql-test.sql -text
-db/tiki-secdb_3.0_mysql.sql -text
 db/tiki-secdb_4.0_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
@@ -1238,6 +1237,7 @@ installer/schema/20091030_wiki_watch_tiki.sql -text
 installer/schema/20091103_upgrade_categperm_tiki.php -text
 installer/schema/20091105_auth_tokens_tiki.sql -text
 installer/schema/20091111_fgal_size_tiki.sql -text
+installer/schema/20091112_rename_mnu_application_menu_tiki.sql -text
 installer/schema/20091112_template_type_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2195,6 +2195,7 @@ lib/prefs/slide.php -text
 lib/prefs/smarty.php -text
 lib/prefs/style.php -text
 lib/prefs/tiki.php -text
+lib/prefs/tracker.php -text
 lib/prefs/use.php -text
 lib/prefs/user.php -text
 lib/prefs/users.php -text
@@ -2745,6 +2746,7 @@ lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
 lib/wiki-plugins/wikiplugin_rcontent.php -text
+lib/wiki-plugins/wikiplugin_realnamelist.php -text
 lib/wiki-plugins/wikiplugin_redirect.php -text
 lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
@@ -2894,6 +2896,7 @@ modules/mod-func-last_submissions.php -text
 modules/mod-func-last_tracker_comments.php -text
 modules/mod-func-last_tracker_items.php -text
 modules/mod-func-last_validated_faq_questions.php -text
+modules/mod-func-last_visitors.php -text
 modules/mod-func-live_support.php -text
 modules/mod-func-login_box.php -text
 modules/mod-func-logo.php -text
@@ -2908,11 +2911,19 @@ modules/mod-func-quick_edit.php -text
 modules/mod-func-random_images.php -text
 modules/mod-func-random_pages.php -text
 modules/mod-func-register.php -text
+modules/mod-func-rsslist.php -text
+modules/mod-func-search_box.php -text
+modules/mod-func-search_new.php -text
+modules/mod-func-search_wiki_page.php -text
+modules/mod-func-search_wiki_page_new.php -text
 modules/mod-func-semantic_links.php -text
 modules/mod-func-shoutbox.php -text
+modules/mod-func-since_last_visit.php -text
+modules/mod-func-since_last_visit_new.php -text
 modules/mod-func-switch_lang.php -text
 modules/mod-func-switch_theme.php -text
 modules/mod-func-terminology.php -text
+modules/mod-func-tikitests.php -text
 modules/mod-func-top_active_blogs.php -text
 modules/mod-func-top_articles.php -text
 modules/mod-func-top_file_galleries.php -text
@@ -2933,15 +2944,13 @@ modules/mod-func-user_image_galleries.php -text
 modules/mod-func-user_pages.php -text
 modules/mod-func-user_tasks.php -text
 modules/mod-func-user_tasks_public.php -text
+modules/mod-func-usergroup_tracker.php -text
 modules/mod-func-users_rank.php -text
 modules/mod-func-webmail_inbox.php -text
 modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
-modules/mod-last_visitors.php -text
-modules/mod-since_last_visit.php -text
-modules/mod-since_last_visit_new.php -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
 pics/icons/add.png -text
@@ -3255,6 +3264,8 @@ pics/large/display-capplet.png -text
 pics/large/display-capplet48x48.png -text
 pics/large/evolution.png -text
 pics/large/evolution48x48.png -text
+pics/large/feed-icon-48x48.png -text
+pics/large/feed-icon.png -text
 pics/large/file-manager.png -text
 pics/large/file-manager48x48.png -text
 pics/large/gftp.png -text
@@ -3281,6 +3292,7 @@ pics/large/icon-configuration.png -text
 pics/large/icon-configuration48x48.png -text
 pics/large/intertiki.png -text
 pics/large/intertiki48x48.png -text
+pics/large/kaltura.png -text
 pics/large/kaltura48x48.png -text
 pics/large/maps.png -text
 pics/large/maps48x48.png -text
@@ -3384,6 +3396,7 @@ styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
 styles/strasa/arrows-467aa7.png -text svneol=unset#image/png
+styles/strasa/arrows-a2ecff.png -text svneol=unset#image/png
 styles/strasa/body-bgd.png -text
 styles/strasa/box_bottom.gif -text
 styles/strasa/box_top.gif -text
@@ -3620,7 +3633,6 @@ templates/modules/mod-assistant.tpl -text
 templates/modules/mod-blog_last_comments.tpl -text
 templates/modules/mod-breadcrumb.tpl -text
 templates/modules/mod-breadcrumb.tpl.nocache -text
-templates/modules/mod-calendar.tpl -text
 templates/modules/mod-calendar.tpl.nocache -text
 templates/modules/mod-calendar_new.tpl -text
 templates/modules/mod-categories.tpl -text
@@ -3630,7 +3642,6 @@ templates/modules/mod-comm_received_objects.tpl -text
 templates/modules/mod-directory_last_sites.tpl -text
 templates/modules/mod-directory_stats.tpl -text
 templates/modules/mod-directory_top_sites.tpl -text
-templates/modules/mod-events.tpl -text
 templates/modules/mod-featured_links.tpl -text
 templates/modules/mod-file_galleries.tpl -text
 templates/modules/mod-forums_best_voted_topics.tpl -text
@@ -4055,7 +4066,6 @@ templates/tiki-rollback.tpl -text
 templates/tiki-search_stats.tpl -text
 templates/tiki-searchindex.tpl -text
 templates/tiki-searchresults.tpl -text
-templates/tiki-send_blog_post.tpl -text
 templates/tiki-send_newsletters.tpl -text
 templates/tiki-send_objects.tpl -text
 templates/tiki-sheets.tpl -text
@@ -4469,7 +4479,6 @@ tests/testfile.txt -text
 /tiki-searchresults.php -text
 /tiki-section_options.php -text
 /tiki-sefurl.php -text
-/tiki-send_blog_post.php -text
 /tiki-send_mail.php -text
 /tiki-send_newsletters.php -text
 /tiki-send_objects.php -text
