@@ -24,14 +24,12 @@ css/ie8.css -text
 css/index.php -text
 css/jscalendar.css -text
 db/.htaccess -text
-db/case_patch.php -text
 db/convertscripts/convert_pgsql.bat -text
 db/convertscripts/convertsqls.bat -text
 db/convertscripts/convertsqls.sh -text
 db/convertscripts/index.php -text
 db/convertscripts/mysql_to_pgsql.php -text
 db/convertscripts/tikiversion.php -text
-db/fulltext.sql -text
 db/index.php -text
 db/tiki-4.0-mysql.sql -text
 db/tiki-4.0-mysqli.sql -text
@@ -1239,6 +1237,7 @@ installer/schema/20091105_auth_tokens_tiki.sql -text
 installer/schema/20091111_fgal_size_tiki.sql -text
 installer/schema/20091112_rename_mnu_application_menu_tiki.sql -text
 installer/schema/20091112_template_type_tiki.sql -text
+installer/schema/20091113_old_categ_perm_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -3494,6 +3493,7 @@ styles/strasa/options/fixed_width.css -text
 styles/strasa/options/fixed_width/body-bg.png -text svneol=unset#image/png
 styles/strasa/options/fixed_width/box_bottom.gif -text
 styles/strasa/options/fixed_width/box_top.gif -text
+styles/strasa/options/fixed_width/fixed_width.png -text svneol=unset#image/png
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
 styles/strasa/options/mono/box_bottom.gif -text
@@ -3510,6 +3510,8 @@ styles/strasa/options/mono/mono.png -text
 styles/strasa/options/mono/pics/icons/folder.png -text
 styles/strasa/options/mono/pics/icons/index.php -text
 styles/strasa/options/mono/pics/icons/ofolder.png -text
+styles/strasa/options/mono/pics/icons/oleftcol.png -text svneol=unset#image/png
+styles/strasa/options/mono/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/strasa/options/mono/pics/index.php -text
 styles/strasa/options/mono/register.jpg -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
