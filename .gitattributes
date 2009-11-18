@@ -2755,6 +2755,7 @@ lib/wiki-plugins/wikiplugin_catpath.php -text
 lib/wiki-plugins/wikiplugin_center.php -text
 lib/wiki-plugins/wikiplugin_chart.php -text
 lib/wiki-plugins/wikiplugin_code.php -text
+lib/wiki-plugins/wikiplugin_colorbox.php -text
 lib/wiki-plugins/wikiplugin_content.php -text
 lib/wiki-plugins/wikiplugin_cookie.php -text
 lib/wiki-plugins/wikiplugin_copyright.php -text
@@ -4212,6 +4213,7 @@ templates/translated-lang.tpl -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
+templates/wiki-plugins/wikiplugin_colobox.tpl -text
 templates/wiki-plugins/wikiplugin_datachannel.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
 templates/wiki-plugins/wikiplugin_files.tpl -text
