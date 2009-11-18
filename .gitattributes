@@ -2202,6 +2202,7 @@ lib/prefs/blog.php -text
 lib/prefs/blogues.php -text
 lib/prefs/bot.php -text
 lib/prefs/box.php -text
+lib/prefs/cas.php -text
 lib/prefs/categories.php -text
 lib/prefs/categorypath.php -text
 lib/prefs/center.php -text
