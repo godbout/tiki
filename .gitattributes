@@ -1238,6 +1238,7 @@ installer/schema/20091111_fgal_size_tiki.sql -text
 installer/schema/20091112_rename_mnu_application_menu_tiki.sql -text
 installer/schema/20091112_template_type_tiki.sql -text
 installer/schema/20091113_old_categ_perm_tiki.sql -text
+installer/schema/20091118_sefurl_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
