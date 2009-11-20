@@ -2271,6 +2271,7 @@ lib/prefs/tiki.php -text
 lib/prefs/tracker.php -text
 lib/prefs/use.php -text
 lib/prefs/user.php -text
+lib/prefs/users.php -text
 lib/prefs/webmail.php -text
 lib/prefs/wiki.php -text
 lib/prefs/wikiplugin.php -text
