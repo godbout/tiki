@@ -2233,6 +2233,7 @@ lib/prefs/header.php -text
 lib/prefs/https.php -text
 lib/prefs/iepngfix.php -text
 lib/prefs/jquery.php -text
+lib/prefs/keep.php -text
 lib/prefs/lang.php -text
 lib/prefs/language.php -text
 lib/prefs/layout.php -text
@@ -2272,8 +2273,11 @@ lib/prefs/tracker.php -text
 lib/prefs/use.php -text
 lib/prefs/user.php -text
 lib/prefs/users.php -text
+lib/prefs/w.php -text
+lib/prefs/warn.php -text
 lib/prefs/webmail.php -text
 lib/prefs/wiki.php -text
+lib/prefs/wikiapproval.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
 lib/prefs/wysiwyg.php -text
