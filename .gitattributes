@@ -112,6 +112,7 @@ files/index.php -text
 files/templates/index.php -text
 files/templates/listpages/index.php -text
 files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
+files/test.swf -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
@@ -1240,6 +1241,7 @@ installer/schema/20091112_template_type_tiki.sql -text
 installer/schema/20091113_old_categ_perm_tiki.sql -text
 installer/schema/20091118_sefurl_tiki.sql -text
 installer/schema/20091120_poll_lookup_index_tiki.sql -text
+installer/schema/20091120_username_pattern_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
