@@ -1246,7 +1246,6 @@ installer/schema/20091123_metrics_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
-js/metrics.js -text
 lang/.htaccess -text
 lang/ar/index.php -text
 lang/ar/language.php -text
@@ -1916,6 +1915,7 @@ lib/menubuilder/menu.js -text
 lib/menubuilder/menulib.php -text
 lib/messu/index.php -text
 lib/messu/messulib.php -text
+lib/metrics.js -text
 lib/metrics/input-validation.php -text
 lib/metrics/metricslib.php -text
 lib/mime/index.php -text
@@ -3475,7 +3475,7 @@ styles/integrator/default.css -text
 styles/integrator/doxygen.css -text
 styles/integrator/index.php -text
 styles/lite/lite.css -text
-styles/mozmetrics.css -text
+styles/metrics.css -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
 styles/slideshows/clear.css -text
