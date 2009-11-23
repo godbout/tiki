@@ -1242,6 +1242,7 @@ installer/schema/20091113_old_categ_perm_tiki.sql -text
 installer/schema/20091118_sefurl_tiki.sql -text
 installer/schema/20091120_poll_lookup_index_tiki.sql -text
 installer/schema/20091120_username_pattern_tiki.sql -text
+installer/schema/20091123_dns_permission_tiki.sql -text
 installer/schema/20091123_metrics_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
