@@ -1201,7 +1201,6 @@ installer/schema/20090911_tracker_item_change_user_tiki.sql -text
 installer/schema/20090912_change_feature_name_for_lesser_magic_tiki.sql -text
 installer/schema/20090913_plugin_security_addedby_tiki.sql -text
 installer/schema/20090915_change_perms_for_browse_cats_tiki.sql -text
-installer/schema/20090918_transition_guards_tiki.sql -text
 installer/schema/20090921_logo_tiki.sql -text
 installer/schema/20090921_workspaces_tiki.sql -text
 installer/schema/20090923_mod_change_category_defaults_tiki.php -text
