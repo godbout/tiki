@@ -1248,6 +1248,7 @@ installer/schema/20091123_metrics_tiki.sql -text
 installer/schema/20091123_upgrade_categperm_2_tiki.php -text
 installer/schema/20091124_fgal_backlink_tiki.sql -text
 installer/schema/20091124_metrics_dsn_tiki.sql -text
+installer/schema/20091125_wiki_comments_per_page_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
