@@ -101,6 +101,8 @@ doc/devtools/tikimerge.sh -text
 doc/devtools/tikirelease.sh -text
 doc/devtools/tikireleasediff.sh -text
 doc/devtools/tikiwiki.spec -text
+doc/devtools/upto_4.1_delete_all_cetgory_perms.sql -text
+doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
 doc/devtools/usergeo.php -text
 doc/index.php -text
 doc/readme.txt -text
@@ -1243,6 +1245,7 @@ installer/schema/20091120_poll_lookup_index_tiki.sql -text
 installer/schema/20091120_username_pattern_tiki.sql -text
 installer/schema/20091123_dns_permission_tiki.sql -text
 installer/schema/20091123_metrics_tiki.sql -text
+installer/schema/20091123_upgrade_categperm_2_tiki.php -text
 installer/schema/20091124_fgal_backlink_tiki.sql -text
 installer/schema/20091124_metrics_dsn_tiki.sql -text
 installer/schema/index.php -text
