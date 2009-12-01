@@ -2675,6 +2675,7 @@ lib/tikihelp/css/index.php -text
 lib/tikihelp/css/menu.css -text svneol=unset#application/octet-stream
 lib/tikihelp/css/toolbar.css -text svneol=unset#application/octet-stream
 lib/tikihelp/history.html -text
+lib/tikihelp/icons/book_open.png -text
 lib/tikihelp/icons/diffDoc.gif -text
 lib/tikihelp/icons/diffFolder.gif -text
 lib/tikihelp/icons/ftv2blank.gif -text
@@ -2691,6 +2692,8 @@ lib/tikihelp/icons/ftv2pnode.gif -text
 lib/tikihelp/icons/ftv2vertline.gif -text
 lib/tikihelp/icons/history.gif -text
 lib/tikihelp/icons/index.php -text
+lib/tikihelp/icons/magnifier.png -text
+lib/tikihelp/icons/printer.png -text
 lib/tikihelp/icons/printicon.gif -text
 lib/tikihelp/icons/searchicon.gif -text
 lib/tikihelp/icons/toc.gif -text
