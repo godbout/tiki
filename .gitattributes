@@ -1252,6 +1252,7 @@ installer/schema/20091125_wiki_comments_per_page_tiki.sql -text
 installer/schema/20091126_dynamic_variables_i18n_tiki.sql -text
 installer/schema/20091204_filegal_wiki_syntax_tiki.sql -text
 installer/schema/20091204_tiki_p_view_newsletter_tiki.sql -text
+installer/schema/20091208_backlink_perms_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
