@@ -41,6 +41,7 @@ temp/dbg-watch.*
 temp/public/minified_*
 temp/sf*
 temp/topic.*
+temp/tracker_*
 templates/.htaccess
 /templates_c
 templates_c/*
