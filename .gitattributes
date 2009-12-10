@@ -1255,6 +1255,7 @@ installer/schema/20091204_tiki_p_view_newsletter_tiki.sql -text
 installer/schema/20091208_backlink_perms_tiki.sql -text
 installer/schema/20091209_rss_feeds_name_tiki.sql -text
 installer/schema/20091210_charset_tiki.sql -text
+installer/schema/20091210_dcs_type_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
