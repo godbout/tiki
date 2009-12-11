@@ -4018,7 +4018,6 @@ templates/tiki-calendar_listmode.tpl -text
 templates/tiki-calendar_nav.tpl -text
 templates/tiki-calendar_params_ical.tpl -text
 templates/tiki-calendar_weekmode.tpl -text
-templates/tiki-categpermissions.tpl -text
 templates/tiki-change_password.tpl -text
 templates/tiki-contact.tpl -text
 templates/tiki-contacts.tpl -text
