@@ -3868,6 +3868,7 @@ templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
 templates/prefs/flag.tpl -text
 templates/prefs/list.tpl -text
+templates/prefs/multicheckbox.tpl -text
 templates/prefs/multilist.tpl -text
 templates/prefs/password.tpl -text
 templates/prefs/radio.tpl -text
