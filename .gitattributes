@@ -1438,8 +1438,10 @@ lib/ajax/lib/activex_off.js -text
 lib/ajax/tiki-ajax.js -text
 lib/articles/artlib.php -text
 lib/articles/index.php -text
+lib/auth/PasswordHash.php -text
 lib/auth/index.php -text
 lib/auth/ldap.php -text
+lib/auth/phpbb.php -text
 lib/auth/tokens.php -text
 lib/bablotron.php -text
 lib/ban/banlib.php -text
