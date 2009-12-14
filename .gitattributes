@@ -1256,6 +1256,8 @@ installer/schema/20091208_backlink_perms_tiki.sql -text
 installer/schema/20091209_rss_feeds_name_tiki.sql -text
 installer/schema/20091210_charset_tiki.sql -text
 installer/schema/20091210_dcs_type_tiki.sql -text
+installer/schema/20091214_perspective_management_tiki.php -text
+installer/schema/20091214_perspective_management_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -2235,6 +2237,7 @@ lib/prefs/box.php -text
 lib/prefs/calendar.php -text
 lib/prefs/cas.php -text
 lib/prefs/categories.php -text
+lib/prefs/category.php -text
 lib/prefs/categorypath.php -text
 lib/prefs/center.php -text
 lib/prefs/change.php -text
@@ -4048,6 +4051,7 @@ templates/tiki-edit_help.tpl -text
 templates/tiki-edit_help_plugins.tpl -text
 templates/tiki-edit_image.tpl -text
 templates/tiki-edit_languages.tpl -text
+templates/tiki-edit_perspective.tpl -text
 templates/tiki-edit_programmed_content.tpl -text
 templates/tiki-edit_question_options.tpl -text
 templates/tiki-edit_quiz.tpl -text
@@ -4448,6 +4452,7 @@ tests/testfile.txt -text
 /tiki-edit_css.php -text
 /tiki-edit_image.php -text
 /tiki-edit_languages.php -text
+/tiki-edit_perspective.php -text
 /tiki-edit_programmed_content.php -text
 /tiki-edit_question_options.php -text
 /tiki-edit_quiz.php -text
