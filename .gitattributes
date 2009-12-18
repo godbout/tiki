@@ -35,11 +35,15 @@ db/tiki-4.0-mysql.sql -text
 db/tiki-4.0-mysqli.sql -text
 db/tiki-4.0-pgsql.sql -text
 db/tiki-4.0-sqlite.sql -text
+db/tiki-4.1-mysql.sql -text
+db/tiki-4.1-mysqli.sql -text
+db/tiki-4.1-pgsql.sql -text
 db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
 db/tiki-pgsql-test.sql -text
 db/tiki-secdb_4.0_mysql.sql -text
+db/tiki-secdb_4.1_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
