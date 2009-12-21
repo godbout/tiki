@@ -25,10 +25,12 @@ css/index.php -text
 css/jscalendar.css -text
 db/.htaccess -text
 db/convertscripts/convert_pgsql.bat -text
+db/convertscripts/convert_sqlite.bat -text
 db/convertscripts/convertsqls.bat -text
 db/convertscripts/convertsqls.sh -text
 db/convertscripts/index.php -text
 db/convertscripts/mysql_to_pgsql.php -text
+db/convertscripts/mysql_to_sqlite.php -text
 db/convertscripts/tikiversion.php -text
 db/index.php -text
 db/tiki-4.0-mysql.sql -text
@@ -38,6 +40,7 @@ db/tiki-4.0-sqlite.sql -text
 db/tiki-4.1-mysql.sql -text
 db/tiki-4.1-mysqli.sql -text
 db/tiki-4.1-pgsql.sql -text
+db/tiki-4.1-sqlite.sql -text
 db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
