@@ -2300,6 +2300,7 @@ lib/prefs/proxy.php -text
 lib/prefs/quantify.php -text
 lib/prefs/record.php -text
 lib/prefs/restrict.php -text
+lib/prefs/rss.php -text
 lib/prefs/search.php -text
 lib/prefs/sender.php -text
 lib/prefs/session.php -text
