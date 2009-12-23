@@ -3601,6 +3601,7 @@ temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
 temp/public/.htaccess -text
 templates/.htaccess -text
+templates/advanced_search_help.tpl -text
 templates/antibot.tpl -text
 templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
