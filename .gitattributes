@@ -2273,7 +2273,6 @@ lib/prefs/freetags.php -text
 lib/prefs/generate.php -text
 lib/prefs/global.php -text
 lib/prefs/header.php -text
-lib/prefs/highlight.php -text
 lib/prefs/http.php -text
 lib/prefs/https.php -text
 lib/prefs/iepngfix.php -text
@@ -2285,7 +2284,6 @@ lib/prefs/layout.php -text
 lib/prefs/ldap.php -text
 lib/prefs/load.php -text
 lib/prefs/log.php -text
-lib/prefs/login.php -text
 lib/prefs/long.php -text
 lib/prefs/lowercase.php -text
 lib/prefs/mail.php -text
