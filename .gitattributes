@@ -1266,6 +1266,7 @@ installer/schema/20091210_dcs_type_tiki.sql -text
 installer/schema/20091214_perspective_management_tiki.php -text
 installer/schema/20091214_perspective_management_tiki.sql -text
 installer/schema/20091216_show_backlinks_tiki.sql -text
+installer/schema/20091228_page_keywords_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -4001,6 +4002,7 @@ templates/tiki-admin_html_page_content.tpl -text
 templates/tiki-admin_html_pages.tpl -text
 templates/tiki-admin_integrator.tpl -text
 templates/tiki-admin_integrator_rules.tpl -text
+templates/tiki-admin_keywords.tpl -text
 templates/tiki-admin_layout.tpl -text
 templates/tiki-admin_links.tpl -text
 templates/tiki-admin_mailin.tpl -text
@@ -4395,6 +4397,7 @@ tests/testfile.txt -text
 /tiki-admin_include_wysiwyg.php -text
 /tiki-admin_integrator.php -text
 /tiki-admin_integrator_rules.php -text
+/tiki-admin_keywords.php -text
 /tiki-admin_layout.php -text
 /tiki-admin_links.php -text
 /tiki-admin_mailin.php -text
