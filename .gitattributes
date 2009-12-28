@@ -2314,6 +2314,7 @@ lib/prefs/restrict.php -text
 lib/prefs/rnd.php -text
 lib/prefs/rss.php -text
 lib/prefs/search.php -text
+lib/prefs/section.php -text
 lib/prefs/sender.php -text
 lib/prefs/session.php -text
 lib/prefs/shib.php -text
