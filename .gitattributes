@@ -2271,6 +2271,7 @@ lib/prefs/header.php -text
 lib/prefs/http.php -text
 lib/prefs/https.php -text
 lib/prefs/iepngfix.php -text
+lib/prefs/index.php -text
 lib/prefs/jquery.php -text
 lib/prefs/keep.php -text
 lib/prefs/lang.php -text
@@ -2315,6 +2316,7 @@ lib/prefs/session.php -text
 lib/prefs/shib.php -text
 lib/prefs/short.php -text
 lib/prefs/show.php -text
+lib/prefs/showAuthor.php -text
 lib/prefs/site.php -text
 lib/prefs/sitead.php -text
 lib/prefs/sitelogo.php -text
@@ -2323,6 +2325,7 @@ lib/prefs/slide.php -text
 lib/prefs/smarty.php -text
 lib/prefs/style.php -text
 lib/prefs/tiki.php -text
+lib/prefs/title.php -text
 lib/prefs/tracker.php -text
 lib/prefs/unsuccessful.php -text
 lib/prefs/url.php -text
