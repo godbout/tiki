@@ -1261,6 +1261,7 @@ installer/schema/20091214_perspective_management_tiki.php -text
 installer/schema/20091214_perspective_management_tiki.sql -text
 installer/schema/20091216_show_backlinks_tiki.sql -text
 installer/schema/20091228_page_keywords_tiki.sql -text
+installer/schema/20100101_search_modules_merge_tiki.sql -text
 installer/schema/20100101_search_wiki_page_modules_merge_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -3059,7 +3060,6 @@ modules/mod-func-random_pages.php -text
 modules/mod-func-register.php -text
 modules/mod-func-rsslist.php -text
 modules/mod-func-search_box.php -text
-modules/mod-func-search_new.php -text
 modules/mod-func-search_wiki_page.php -text
 modules/mod-func-semantic_links.php -text
 modules/mod-func-shoutbox.php -text
@@ -3847,7 +3847,6 @@ templates/modules/mod-random_pages.tpl -text
 templates/modules/mod-register.tpl -text
 templates/modules/mod-rsslist.tpl -text
 templates/modules/mod-search_box.tpl -text
-templates/modules/mod-search_new.tpl -text
 templates/modules/mod-search_wiki_page.tpl -text
 templates/modules/mod-semantic_links.tpl -text
 templates/modules/mod-shoutbox.tpl -text
