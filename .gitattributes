@@ -1264,6 +1264,7 @@ installer/schema/20091228_page_keywords_tiki.sql -text
 installer/schema/20100101_search_modules_merge_tiki.sql -text
 installer/schema/20100101_search_wiki_page_modules_merge_tiki.sql -text
 installer/schema/20100104_tiki_p_tracker_revote_ratings_tiki.sql -text
+installer/schema/20100106_forum_att_list_nb_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
