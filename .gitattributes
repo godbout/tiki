@@ -1265,6 +1265,7 @@ installer/schema/20100101_search_modules_merge_tiki.sql -text
 installer/schema/20100101_search_wiki_page_modules_merge_tiki.sql -text
 installer/schema/20100104_tiki_p_tracker_revote_ratings_tiki.sql -text
 installer/schema/20100106_forum_att_list_nb_tiki.sql -text
+installer/schema/20100107_payment_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -1969,6 +1970,7 @@ lib/notifications/notificationlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
 lib/pagelist/pagelistlib.php -text
+lib/payment/paymentlib.php -text
 lib/pdflib.php -text
 lib/pear/Auth.php -text
 lib/pear/Auth/Anonymous.php -text
@@ -2306,6 +2308,7 @@ lib/prefs/page.php -text
 lib/prefs/pagination.php -text
 lib/prefs/pam.php -text
 lib/prefs/pass.php -text
+lib/prefs/payment.php -text
 lib/prefs/permission.php -text
 lib/prefs/poll.php -text
 lib/prefs/print.php -text
@@ -2486,6 +2489,7 @@ lib/smarty_tiki/block.display.php -text
 lib/smarty_tiki/block.itemfield.php -text
 lib/smarty_tiki/block.jq.php -text
 lib/smarty_tiki/block.pagination_links.php -text
+lib/smarty_tiki/block.permission.php -text
 lib/smarty_tiki/block.popup_link.php -text
 lib/smarty_tiki/block.remarksbox.php -text
 lib/smarty_tiki/block.repeat.php -text
@@ -4192,6 +4196,9 @@ templates/tiki-orphan_pages.tpl -text
 templates/tiki-page.tpl -text
 templates/tiki-page_bar.tpl -text
 templates/tiki-pagehistory.tpl -text
+templates/tiki-payment-list.tpl -text
+templates/tiki-payment-user.tpl -text
+templates/tiki-payment.tpl -text
 templates/tiki-pick_avatar.tpl -text
 templates/tiki-plugin_blocked.tpl -text
 templates/tiki-plugin_help.tpl -text
@@ -4617,6 +4624,7 @@ tests/testfile.txt -text
 /tiki-page.php -text
 /tiki-page_loader.php -text
 /tiki-pagehistory.php -text
+/tiki-payment.php -text
 /tiki-phpinfo.php -text
 /tiki-pick_avatar.php -text
 /tiki-plugins.php -text
