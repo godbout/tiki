@@ -4198,6 +4198,7 @@ templates/tiki-page.tpl -text
 templates/tiki-page_bar.tpl -text
 templates/tiki-pagehistory.tpl -text
 templates/tiki-payment-list.tpl -text
+templates/tiki-payment-paypal.tpl -text
 templates/tiki-payment-user.tpl -text
 templates/tiki-payment.tpl -text
 templates/tiki-pick_avatar.tpl -text
