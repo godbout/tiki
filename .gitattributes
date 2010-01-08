@@ -3973,6 +3973,7 @@ templates/tiki-admin-include-metatags.tpl -text
 templates/tiki-admin-include-metrics.tpl -text
 templates/tiki-admin-include-module.tpl -text
 templates/tiki-admin-include-multimedia.tpl -text
+templates/tiki-admin-include-payment.tpl -text
 templates/tiki-admin-include-performance.tpl -text
 templates/tiki-admin-include-polls.tpl -text
 templates/tiki-admin-include-profiles.tpl -text
@@ -4386,6 +4387,7 @@ tests/testfile.txt -text
 /tiki-admin_include_metrics.php -text
 /tiki-admin_include_module.php -text
 /tiki-admin_include_multimedia.php -text
+/tiki-admin_include_payment.php -text
 /tiki-admin_include_performance.php -text
 /tiki-admin_include_polls.php -text
 /tiki-admin_include_profiles.php -text
