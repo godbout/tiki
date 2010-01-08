@@ -2322,6 +2322,7 @@ lib/prefs/record.php -text
 lib/prefs/restrict.php -text
 lib/prefs/rnd.php -text
 lib/prefs/rss.php -text
+lib/prefs/rssfeed.php -text
 lib/prefs/search.php -text
 lib/prefs/section.php -text
 lib/prefs/sender.php -text
