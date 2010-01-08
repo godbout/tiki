@@ -2539,6 +2539,7 @@ lib/smarty_tiki/function.listfilter.php -text
 lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.metric.php -text
+lib/smarty_tiki/function.payment.php -text
 lib/smarty_tiki/function.phplayers.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup.php -text
@@ -2897,6 +2898,7 @@ lib/wiki-plugins/wikiplugin_mwtable.php -text
 lib/wiki-plugins/wikiplugin_myspace.php -text
 lib/wiki-plugins/wikiplugin_objecthits.php -text
 lib/wiki-plugins/wikiplugin_pagelist.php -text
+lib/wiki-plugins/wikiplugin_payment.php -text
 lib/wiki-plugins/wikiplugin_picture.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
@@ -4203,6 +4205,7 @@ templates/tiki-page_bar.tpl -text
 templates/tiki-pagehistory.tpl -text
 templates/tiki-payment-list.tpl -text
 templates/tiki-payment-paypal.tpl -text
+templates/tiki-payment-single.tpl -text
 templates/tiki-payment-user.tpl -text
 templates/tiki-payment.tpl -text
 templates/tiki-pick_avatar.tpl -text
