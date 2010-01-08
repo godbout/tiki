@@ -1970,6 +1970,9 @@ lib/notifications/notificationlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
 lib/pagelist/pagelistlib.php -text
+lib/payment/behavior/index.php -text
+lib/payment/behavior/sample.php -text
+lib/payment/index.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
 lib/pdflib.php -text
