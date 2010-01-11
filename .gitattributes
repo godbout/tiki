@@ -2654,6 +2654,7 @@ lib/test/TikiAcceptanceTestDBRestorer.php -text
 lib/test/TikiSeleniumTestCase.php -text
 lib/test/TikiTestCase.php -text
 lib/test/auth/AuthTokensTest.php -text
+lib/test/auth/MembershipTest.php -text
 lib/test/bootstrap.php -text
 lib/test/core/Category/ManipulatorTest.php -text
 lib/test/core/DeclFilter/BaseTest.php -text
