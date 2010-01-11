@@ -1970,6 +1970,7 @@ lib/notifications/notificationlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
 lib/pagelist/pagelistlib.php -text
+lib/payment/behavior/extend_membership.php -text
 lib/payment/behavior/index.php -text
 lib/payment/behavior/sample.php -text
 lib/payment/index.php -text
@@ -2892,6 +2893,7 @@ lib/wiki-plugins/wikiplugin_map.php -text
 lib/wiki-plugins/wikiplugin_mcalendar.php -text
 lib/wiki-plugins/wikiplugin_mediaplayer.php -text
 lib/wiki-plugins/wikiplugin_memberlist.php -text
+lib/wiki-plugins/wikiplugin_memberpayment.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
 lib/wiki-plugins/wikiplugin_mono.php -text
@@ -4331,6 +4333,7 @@ templates/wiki-plugins/wikiplugin_groupstat.tpl -text
 templates/wiki-plugins/wikiplugin_invite.tpl -text
 templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
 templates/wiki-plugins/wikiplugin_memberlist.tpl -text
+templates/wiki-plugins/wikiplugin_memberpayment.tpl -text
 templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
