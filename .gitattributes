@@ -2015,7 +2015,7 @@ lib/pear/Auth/OpenID/Discover.php -text
 lib/pear/Auth/OpenID/DumbStore.php -text
 lib/pear/Auth/OpenID/Extension.php -text
 lib/pear/Auth/OpenID/FileStore.php -text
-lib/pear/Auth/OpenID/HMACSHA1.php -text
+lib/pear/Auth/OpenID/HMAC.php -text
 lib/pear/Auth/OpenID/Interface.php -text
 lib/pear/Auth/OpenID/KVForm.php -text
 lib/pear/Auth/OpenID/MemcachedStore.php -text
