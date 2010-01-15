@@ -1267,6 +1267,7 @@ installer/schema/20100104_tiki_p_tracker_revote_ratings_tiki.sql -text
 installer/schema/20100106_forum_att_list_nb_tiki.sql -text
 installer/schema/20100107_payment_tiki.sql -text
 installer/schema/20100113_forum_display_tiki.sql -text
+installer/schema/20100115_admin_modules_menu_tiki.sql -text
 installer/schema/20100115_tiki_p_admin_modules_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
