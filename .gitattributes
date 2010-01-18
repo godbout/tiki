@@ -24,7 +24,6 @@ css/ie8.css -text
 css/index.php -text
 css/jscalendar.css -text
 db/.htaccess -text
-db/convertscripts/index.php -text
 db/index.php -text
 db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
@@ -1168,7 +1167,6 @@ installer/schema/20090727_user_votings_index_tiki.sql -text
 installer/schema/20090730_p_list_newsletters_tiki.sql -text
 installer/schema/20090803_perspective_permission_tiki.sql -text
 installer/schema/20090804_kaltura_permissions_tiki.sql -text
-installer/schema/20090804_menu_search_tiki.sql -text
 installer/schema/20090805_kill_newsreader_tiki.sql -text
 installer/schema/20090805_remove_drawings_prefs_etc_tiki.sql -text
 installer/schema/20090805_remove_games_tiki.sql -text
@@ -2381,10 +2379,7 @@ lib/score/scorelib.php -text
 lib/screencasts/screencast.swf -text
 lib/screencasts/screencastlib.php -text
 lib/search/index.php -text
-lib/search/refresh-functions.php -text
-lib/search/refresh.php -text
-lib/search/searchlib-mysql.php -text
-lib/search/searchlib-tiki.php -text
+lib/search/searchlib.php -text
 lib/search/searchstatslib.php -text
 lib/setup/absolute_urls.php -text
 lib/setup/babelfish.php -text
@@ -2546,7 +2541,6 @@ lib/smarty_tiki/function.query.php -text
 lib/smarty_tiki/function.quotabar.php -text
 lib/smarty_tiki/function.rcontent.php -text
 lib/smarty_tiki/function.redirect.php -text
-lib/smarty_tiki/function.reindex_file_pixel.php -text
 lib/smarty_tiki/function.rss.php -text
 lib/smarty_tiki/function.sameurl.php -text
 lib/smarty_tiki/function.sefurl.php -text
@@ -3513,7 +3507,6 @@ pics/trans.png -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /received_article_image.php -text
-/reindex_file.php -text
 /remote.php -text
 /robots.txt -text
 /select_banner.php -text
@@ -4243,7 +4236,6 @@ templates/tiki-removepage.tpl -text
 templates/tiki-rename_page.tpl -text
 templates/tiki-rollback.tpl -text
 templates/tiki-search_stats.tpl -text
-templates/tiki-searchindex.tpl -text
 templates/tiki-searchresults.tpl -text
 templates/tiki-send_newsletters.tpl -text
 templates/tiki-send_objects.tpl -text
