@@ -3462,8 +3462,6 @@ pics/large/messages48x48.png -text
 pics/large/metatags.png -text
 pics/large/metatags48x48.png -text
 pics/large/mplayer48x48.png -text
-pics/large/multimedia.png -text
-pics/large/multimedia48x48.png -text
 pics/large/plugins.png -text
 pics/large/plugins48x48.png -text
 pics/large/profiles.png -text
@@ -3910,7 +3908,6 @@ templates/modules/mod-wiki_last_comments.tpl -text
 templates/modules/mod-wiki_last_comments.tpl.nocache -text
 templates/modules/mod-youtube.tpl -text
 templates/modules/user_module.tpl -text
-templates/multiplayer.tpl -text
 templates/pagehistory.tpl -text
 templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
@@ -3979,7 +3976,6 @@ templates/tiki-admin-include-messages.tpl -text
 templates/tiki-admin-include-metatags.tpl -text
 templates/tiki-admin-include-metrics.tpl -text
 templates/tiki-admin-include-module.tpl -text
-templates/tiki-admin-include-multimedia.tpl -text
 templates/tiki-admin-include-payment.tpl -text
 templates/tiki-admin-include-performance.tpl -text
 templates/tiki-admin-include-polls.tpl -text
@@ -4397,7 +4393,6 @@ tests/testfile.txt -text
 /tiki-admin_include_metatags.php -text
 /tiki-admin_include_metrics.php -text
 /tiki-admin_include_module.php -text
-/tiki-admin_include_multimedia.php -text
 /tiki-admin_include_payment.php -text
 /tiki-admin_include_performance.php -text
 /tiki-admin_include_polls.php -text
@@ -4755,9 +4750,6 @@ tiki_tests/tiki-tests_record.php -text
 tiki_tests/tiki-tests_replay.php -text
 tiki_tests/tiki-tests_show_xpath.php -text
 tiki_tests/tikitestslib.php -text
-tikimovies/controller.swf -text svneol=unset#unset
-tikimovies/multiplayer.swf -text svneol=unset#unset
-tikimovies/multiplayer.xml -text
 whelp/index.php -text
 /x_maps.php -text
 /xmlrpc.php -text
