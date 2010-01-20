@@ -4301,6 +4301,7 @@ templates/tiki-view_tracker_more_info.tpl -text
 templates/tiki-webmail.tpl -text
 templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
+templates/tiki-wiki_structure_bar.tpl -text
 templates/tiki-wiki_topline.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker_error.tpl -text
