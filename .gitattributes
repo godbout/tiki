@@ -2482,9 +2482,6 @@ lib/sheet/panel.js -text
 lib/sheet/style.css -text
 lib/shoutbox/index.php -text
 lib/shoutbox/shoutboxlib.php -text
-lib/slideshow_tiki/slideshow.fullsize.js -text
-lib/slideshow_tiki/thumbnails-a.png -text
-lib/slideshow_tiki/thumbnails-b.png -text
 lib/smarty_tiki/block.add_help.php -text
 lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
