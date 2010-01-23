@@ -4070,6 +4070,7 @@ templates/tiki-change_password.tpl -text
 templates/tiki-choose_page_language.tpl -text
 templates/tiki-contact.tpl -text
 templates/tiki-contacts.tpl -text
+templates/tiki-create_multilang_pages.tpl -text
 templates/tiki-create_webhelp.tpl -text
 templates/tiki-custom_home.tpl -text
 templates/tiki-directory_add_site.tpl -text
@@ -4475,6 +4476,7 @@ tests/testfile.txt -text
 /tiki-contact.php -text
 /tiki-contacts.php -text
 /tiki-cookie-jar.php -text
+/tiki-create_multilang_pages.php -text
 /tiki-create_webhelp.php -text
 /tiki-custom_home.php -text
 /tiki-directories_rss.php -text svneol=unset#application/octet-stream
