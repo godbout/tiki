@@ -2072,6 +2072,10 @@ lib/pear/HTTP/WebDAV/Client/Stream.php -text
 lib/pear/HTTP/WebDAV/Tools/_parse_lock_response.php -text
 lib/pear/HTTP/WebDAV/Tools/_parse_propfind_response.php -text
 lib/pear/HTTP/index.php -text
+lib/pear/Minify/CSS.php -text
+lib/pear/Minify/CSS/Compressor.php -text
+lib/pear/Minify/CSS/UriRewriter.php -text
+lib/pear/Minify/CommentPreserver.php -text
 lib/pear/Net/DIME.php -text
 lib/pear/Net/DNS.php -text
 lib/pear/Net/DNS/Header.php -text
