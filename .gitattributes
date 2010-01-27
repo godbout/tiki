@@ -4323,6 +4323,7 @@ templates/tracker_item_field_googlemap_value.tpl -text
 templates/tracker_item_field_input.tpl -text
 templates/tracker_item_field_value.tpl -text
 templates/tracker_pretty_item.tpl -text
+templates/tracker_sort_input.tpl -text
 templates/translated-lang.tpl -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
