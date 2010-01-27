@@ -4110,7 +4110,6 @@ templates/tiki-edit_structure.tpl -text
 templates/tiki-edit_submission.tpl -text
 templates/tiki-edit_templates.tpl -text
 templates/tiki-edit_topic.tpl -text
-templates/tiki-edit_translation.tpl -text
 templates/tiki-edit_video.tpl -text
 templates/tiki-edit_wiki_section.tpl -text
 templates/tiki-editpage.tpl -text
