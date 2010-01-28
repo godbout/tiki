@@ -3661,7 +3661,7 @@ templates/comments.tpl -text
 templates/comments_button.tpl -text
 templates/confirm.tpl -text
 templates/contribution.tpl -text
-templates/copyrights.tpl -text svneol=unset#application/octet-stream
+templates/copyrights.tpl -text
 templates/database-connection-error.tpl -text
 templates/debug/function.debugger.tpl -text
 templates/debug/index.php -text
@@ -4128,7 +4128,7 @@ templates/tiki-file_info_box.tpl -text
 templates/tiki-forum_import.tpl -text
 templates/tiki-forum_queue.tpl -text
 templates/tiki-forums.tpl -text
-templates/tiki-forums_reported.tpl -text svneol=unset#application/octet-stream
+templates/tiki-forums_reported.tpl -text
 templates/tiki-freetag-translate.tpl -text
 templates/tiki-friends.tpl -text
 templates/tiki-galleries.tpl -text
