@@ -2651,10 +2651,10 @@ lib/test/AcceptanceTests/TikiLibrariesAccessTest.php -text
 lib/test/AcceptanceTests/utils/create_dump_db_file.php -text
 lib/test/AcceptanceTests/utils/restore_db_dump.php -text
 lib/test/AcceptanceTests/utils/upgrade_test_database_dump_file.php -text
-lib/test/AllTests.php -text
 lib/test/AllTestsAcceptance.php -text
 lib/test/README -text
 lib/test/TikiAcceptanceTestDBRestorer.php -text
+lib/test/TikiLib/WikiParserTest.php -text
 lib/test/TikiSeleniumTestCase.php -text
 lib/test/TikiTestCase.php -text
 lib/test/auth/AuthTokensTest.php -text
