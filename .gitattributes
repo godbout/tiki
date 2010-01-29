@@ -1969,7 +1969,6 @@ lib/notifications/notificationemaillib.php -text
 lib/notifications/notificationlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
-lib/pagelist/pagelistlib.php -text
 lib/payment/behavior/extend_membership.php -text
 lib/payment/behavior/index.php -text
 lib/payment/behavior/sample.php -text
@@ -2892,7 +2891,6 @@ lib/wiki-plugins/wikiplugin_kaltura.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
 lib/wiki-plugins/wikiplugin_listpages.php -text
-lib/wiki-plugins/wikiplugin_listprogress.php -text
 lib/wiki-plugins/wikiplugin_lsdir.php -text
 lib/wiki-plugins/wikiplugin_map.php -text
 lib/wiki-plugins/wikiplugin_mcalendar.php -text
@@ -2906,7 +2904,6 @@ lib/wiki-plugins/wikiplugin_mouseover.php -text
 lib/wiki-plugins/wikiplugin_mwtable.php -text
 lib/wiki-plugins/wikiplugin_myspace.php -text
 lib/wiki-plugins/wikiplugin_objecthits.php -text
-lib/wiki-plugins/wikiplugin_pagelist.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
@@ -4031,7 +4028,6 @@ templates/tiki-admin_modules.tpl -text
 templates/tiki-admin_newsletter_subscriptions.tpl -text
 templates/tiki-admin_newsletters.tpl -text
 templates/tiki-admin_notifications.tpl -text
-templates/tiki-admin_pagelist.tpl -text
 templates/tiki-admin_poll_options.tpl -text
 templates/tiki-admin_polls.tpl -text
 templates/tiki-admin_rssmodules.tpl -text
@@ -4435,7 +4431,6 @@ tests/testfile.txt -text
 /tiki-admin_newsletter_subscriptions.php -text
 /tiki-admin_newsletters.php -text
 /tiki-admin_notifications.php -text
-/tiki-admin_pagelist.php -text
 /tiki-admin_poll_options.php -text
 /tiki-admin_polls.php -text
 /tiki-admin_rssmodules.php -text
