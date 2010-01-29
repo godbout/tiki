@@ -1264,6 +1264,7 @@ installer/schema/20100118_forum_display_tiki.sql -text
 installer/schema/20100118_image_plugins_kill_tiki.php -text
 installer/schema/20100126_file_lastDownload_tiki.sql -text
 installer/schema/20100128_tiki_p_blog_view_ref_tiki.sql -text
+installer/schema/20100129_events_kil_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -1588,7 +1589,6 @@ lib/encoding/lib-encoding.php -text
 lib/equation/class.latexrender.php -text
 lib/equation/pictures/index.php -text
 lib/equation/tmp/index.php -text
-lib/events/evlib.php -text
 lib/events/index.php -text
 lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
