@@ -1267,6 +1267,7 @@ installer/schema/20100126_file_lastDownload_tiki.sql -text
 installer/schema/20100128_tiki_p_blog_view_ref_tiki.sql -text
 installer/schema/20100129_clean_up_tiki.sql -text
 installer/schema/20100129_events_kil_tiki.sql -text
+installer/schema/20100203_payment_detail_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -1974,6 +1975,7 @@ lib/ointegratelib.php -text
 lib/payment/behavior/extend_membership.php -text
 lib/payment/behavior/index.php -text
 lib/payment/behavior/sample.php -text
+lib/payment/cartlib.php -text
 lib/payment/index.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
@@ -2728,6 +2730,7 @@ lib/test/importer/tikiimporter_testcase.php -text
 lib/test/importer/tikiimporter_wiki_mediawiki_test.php -text
 lib/test/importer/tikiimporter_wiki_test.php -text
 lib/test/index.php -text
+lib/test/payment/CartTest.php -text
 lib/test/phpunit.xml -text
 lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
@@ -2832,6 +2835,7 @@ lib/webmail/tikimaillib.php -text
 lib/webmail/webmaillib.php -text
 lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
+lib/wiki-plugins/wikiplugin_addtocart.php -text
 lib/wiki-plugins/wikiplugin_agentinfo.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
 lib/wiki-plugins/wikiplugin_aname.php -text
@@ -3024,6 +3028,7 @@ modules/mod-func-assistant.php -text
 modules/mod-func-blog_last_comments.php -text
 modules/mod-func-breadcrumb.php -text
 modules/mod-func-calendar_new.php -text
+modules/mod-func-cart.php -text
 modules/mod-func-categories.php -text
 modules/mod-func-category_transition.php -text
 modules/mod-func-change_category.php -text
@@ -3807,6 +3812,7 @@ templates/modules/mod-breadcrumb.tpl -text
 templates/modules/mod-breadcrumb.tpl.nocache -text
 templates/modules/mod-calendar.tpl.nocache -text
 templates/modules/mod-calendar_new.tpl -text
+templates/modules/mod-cart.tpl -text
 templates/modules/mod-categories.tpl -text
 templates/modules/mod-category_transition.tpl -text
 templates/modules/mod-change_category.tpl -text
