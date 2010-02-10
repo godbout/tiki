@@ -1505,6 +1505,7 @@ lib/core/lib/JitFilter/Element.php -text
 lib/core/lib/Multilingual/Aligner/BilingualAligner.php -text
 lib/core/lib/Multilingual/Aligner/MockMTWrapper.php -text
 lib/core/lib/Multilingual/Aligner/SentenceAlignments.php -text
+lib/core/lib/Multilingual/Aligner/SentenceAlignments3.php -text
 lib/core/lib/Multilingual/Aligner/SentenceSegmentor.php -text
 lib/core/lib/Multilingual/Aligner/ShortestPathFinder.php -text
 lib/core/lib/Multilingual/Aligner/UpdatePages.php -text
