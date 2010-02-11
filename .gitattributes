@@ -2567,7 +2567,6 @@ lib/smarty_tiki/function.set.php -text
 lib/smarty_tiki/function.show_help.php -text
 lib/smarty_tiki/function.show_sort.php -text
 lib/smarty_tiki/function.thumb.php -text
-lib/smarty_tiki/function.tikicon.php -text
 lib/smarty_tiki/function.toolbars.php -text
 lib/smarty_tiki/function.tree.php -text
 lib/smarty_tiki/function.treetable.php -text
