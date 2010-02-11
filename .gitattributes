@@ -1273,6 +1273,7 @@ installer/schema/20100205_tiki_p_wiki_view_ref_tiki.sql -text
 installer/schema/20100207_repair_file_galleries_tiki.php -text
 installer/schema/20100211_rss_items_tiki.sql -text
 installer/schema/20100211_tiki_perms_menu_item_tiki.sql -text
+installer/schema/20100211_tiki_sheet_add_parseValues_tiki.sql -text
 installer/schema/20100212_rss_automation_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
