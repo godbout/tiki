@@ -1271,6 +1271,7 @@ installer/schema/20100129_events_kil_tiki.sql -text
 installer/schema/20100203_payment_detail_tiki.sql -text
 installer/schema/20100205_tiki_p_wiki_view_ref_tiki.sql -text
 installer/schema/20100207_repair_file_galleries_tiki.php -text
+installer/schema/20100211_rss_items_tiki.sql -text
 installer/schema/20100211_tiki_perms_menu_item_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1547,6 +1548,7 @@ lib/core/lib/TikiDb/MasterSlaveDispatch.php -text
 lib/core/lib/TikiDb/Pdo.php -text
 lib/core/lib/TikiFilter.php -text
 lib/core/lib/TikiFilter/Callback.php -text
+lib/core/lib/TikiFilter/HtmlPurifier.php -text
 lib/core/lib/TikiFilter/PreventXss.php -text
 lib/core/lib/TikiFilter/RawUnsafe.php -text
 lib/core/lib/TikiFilter/Word.php -text
