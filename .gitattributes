@@ -1434,11 +1434,6 @@ lang/vi/index.php -text
 lang/vi/language.php -text
 lib/.htaccess -text
 lib/Babelfish.php -text
-lib/Date/Calc.php -text
-lib/Date/Human.php -text
-lib/Date/TimeZone.php -text
-lib/Date/TimeZoneWindows.php -text
-lib/Date/index.php -text
 lib/Horde/Yaml.php -text
 lib/Horde/Yaml/Dumper.php -text
 lib/Horde/Yaml/Exception.php -text
