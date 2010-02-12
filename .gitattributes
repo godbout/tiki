@@ -1926,6 +1926,7 @@ lib/init/tra.php -text
 lib/integrator/index.php -text
 lib/integrator/integrator.php -text
 lib/jquery_tiki/index.php -text
+lib/jquery_tiki/jquery.sheet/menu.html -text
 lib/jquery_tiki/tablesorter/themes/tiki/asc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/bg.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
