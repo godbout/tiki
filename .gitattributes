@@ -1934,7 +1934,7 @@ lib/jquery_tiki/tablesorter/themes/tiki/desc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
 lib/live_support/index.php -text
-lib/live_support/live-support.js -text svneol=unset#application/octet-stream
+lib/live_support/live-support.js -text
 lib/live_support/lsadminlib.php -text
 lib/live_support/lslib.php -text
 lib/logs/logslib.php -text
@@ -2751,8 +2751,8 @@ lib/tikidate.php -text
 lib/tikifck.php -text
 lib/tikihelp/content.html -text
 lib/tikihelp/css/index.php -text
-lib/tikihelp/css/menu.css -text svneol=unset#application/octet-stream
-lib/tikihelp/css/toolbar.css -text svneol=unset#application/octet-stream
+lib/tikihelp/css/menu.css -text
+lib/tikihelp/css/toolbar.css -text
 lib/tikihelp/history.html -text
 lib/tikihelp/icons/book_open.png -text
 lib/tikihelp/icons/diffDoc.gif -text
@@ -2779,17 +2779,17 @@ lib/tikihelp/icons/toc.gif -text
 lib/tikihelp/icons/wht_go.gif -text
 lib/tikihelp/index.html -text
 lib/tikihelp/index.php -text
-lib/tikihelp/js/global.js -text svneol=unset#application/octet-stream
-lib/tikihelp/js/highlight.js -text svneol=unset#application/octet-stream
+lib/tikihelp/js/global.js -text
+lib/tikihelp/js/highlight.js -text
 lib/tikihelp/js/index.php -text
-lib/tikihelp/js/toolbar.js -text svneol=unset#application/octet-stream
+lib/tikihelp/js/toolbar.js -text
 lib/tikihelp/menu.html -text
 lib/tikihelp/menu/example.txt -text
-lib/tikihelp/menu/ftiens4.js -text svneol=unset#application/octet-stream
+lib/tikihelp/menu/ftiens4.js -text
 lib/tikihelp/menu/index.php -text
-lib/tikihelp/menu/menuNodes.js -text svneol=unset#application/octet-stream
-lib/tikihelp/menu/options.cfg -text svneol=unset#application/octet-stream
-lib/tikihelp/menu/ua.js -text svneol=unset#application/octet-stream
+lib/tikihelp/menu/menuNodes.js -text
+lib/tikihelp/menu/options.cfg -text
+lib/tikihelp/menu/ua.js -text
 lib/tikihelp/readme.txt -text
 lib/tikihelp/results.html -text
 lib/tikihelp/searchdata.html -text
@@ -4496,7 +4496,7 @@ tests/testfile.txt -text
 /tiki-create_multilang_pages.php -text
 /tiki-create_webhelp.php -text
 /tiki-custom_home.php -text
-/tiki-directories_rss.php -text svneol=unset#application/octet-stream
+/tiki-directories_rss.php -text
 /tiki-directory_add_site.php -text
 /tiki-directory_add_tiki_site.php -text
 /tiki-directory_admin.php -text
@@ -4506,7 +4506,7 @@ tests/testfile.txt -text
 /tiki-directory_browse.php -text
 /tiki-directory_ranking.php -text
 /tiki-directory_redirect.php -text
-/tiki-directory_rss.php -text svneol=unset#application/octet-stream
+/tiki-directory_rss.php -text
 /tiki-directory_search.php -text
 /tiki-directory_validate_sites.php -text
 /tiki-download_file.php -text
