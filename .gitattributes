@@ -18,8 +18,10 @@ backups/index.php -text
 /copyrights.php -text
 css/admin.css -text
 css/calendar.css -text
+css/cssmenus.css -text
 css/freetags.css -text
 css/ie6.css -text
+css/ie7.css -text
 css/ie8.css -text
 css/index.php -text
 css/jscalendar.css -text
@@ -46,11 +48,11 @@ doc/devtools/convert_templates_prefs-2.0.php -text
 doc/devtools/csscheck.sh -text
 doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
-doc/devtools/diffsql.sh -text svneol=unset#application/octet-stream
+doc/devtools/diffsql.sh -text
 doc/devtools/extract-img-db-to-fs.php -text
 doc/devtools/fckpackager.php -text
-doc/devtools/findstyledef.pl -text svneol=unset#application/octet-stream
-doc/devtools/findstyledef.sh -text svneol=unset#application/octet-stream
+doc/devtools/findstyledef.pl -text
+doc/devtools/findstyledef.sh -text
 doc/devtools/ggg-trace.php -text
 doc/devtools/index.php -text
 doc/devtools/mergelang.pl -text
@@ -3023,7 +3025,7 @@ maps/index.php -text
 /metrics-tab.php -text
 /modsadm.php -text
 modules/.htaccess -text
-modules/cache/.htaccess -text svneol=unset#application/octet-stream
+modules/cache/.htaccess -text
 modules/cache/README -text
 modules/cache/index.php -text
 modules/index.php -text
@@ -3543,30 +3545,53 @@ pics/trans.png -text
 /show_image.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
+styles/coelesce.css -text
 styles/coelesce/arrows-295c8e.png -text svneol=unset#image/png
 styles/coelesce/arrows-467aa7.png -text svneol=unset#image/png
 styles/coelesce/coelesce.png -text
+styles/coelesce/ie6.css -text
+styles/coelesce/ie7.css -text
+styles/coelesce/index.php -text
+styles/coelesce/options/fixed_width.css -text
+styles/coelesce/options/index.php -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/coelesce/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
+styles/darkroom.css -text
 styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/darkroom.png -text
+styles/darkroom/ie6.css -text
+styles/darkroom/ie7.css -text
+styles/darkroom/index.php -text
+styles/darkroom/options/fixed_width.css -text
 styles/darkroom/options/fixed_width/474747_5e5e5e_40.png -text svneol=unset#image/png
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/small-type.png -text
 styles/darkroom/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/darkroom/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/empty.css -text
+styles/feb12.css -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
 styles/feb12/feb12.png -text
+styles/feb12/ie6.css -text
+styles/feb12/ie7.css -text
+styles/feb12/index.php -text
+styles/feb12/options/fixed_width.css -text
+styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/index.php -text
 styles/integrator/README -text
 styles/integrator/default.css -text
 styles/integrator/doxygen.css -text
 styles/integrator/index.php -text
+styles/layout/design-reference.css -text
+styles/layout/design.css -text
+styles/layout/index.php -text
+styles/layout/layout-reference.css -text
+styles/layout/layout-tiki3_level.css -text
+styles/layout/layout.css -text
 styles/lite/lite.css -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
@@ -3574,6 +3599,7 @@ styles/slideshows/clear.css -text
 styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
+styles/strasa.css -text
 styles/strasa/arrows-467aa7.png -text svneol=unset#image/png
 styles/strasa/arrows-a2ecff.png -text svneol=unset#image/png
 styles/strasa/body-bgd.png -text
@@ -3586,6 +3612,7 @@ styles/strasa/headermenuitem-hover.png -text
 styles/strasa/ie6.css -text
 styles/strasa/ie7.css -text
 styles/strasa/ie8.css -text
+styles/strasa/index.php -text
 styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
 styles/strasa/list_icon.png -text
@@ -3606,6 +3633,8 @@ styles/strasa/options/fixed_width/body-bg.png -text svneol=unset#image/png
 styles/strasa/options/fixed_width/box_bottom.gif -text
 styles/strasa/options/fixed_width/box_top.gif -text
 styles/strasa/options/fixed_width/fixed_width.png -text svneol=unset#image/png
+styles/strasa/options/fixed_width/index.php -text
+styles/strasa/options/index.php -text
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
 styles/strasa/options/mono/box_bottom.gif -text
@@ -3628,18 +3657,31 @@ styles/strasa/options/mono/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/strasa/options/mono/pics/index.php -text
 styles/strasa/options/mono/register.jpg -text
 styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
+styles/strasa/pics/icons/index.php -text
 styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/strasa/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/strasa/pics/icons/orightcol.png -text svneol=unset#image/png
+styles/strasa/pics/index.php -text
 styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
+styles/thenews.css -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
+styles/thenews/ie6.css -text
+styles/thenews/ie7.css -text
+styles/thenews/index.php -text
+styles/thenews/options/fixed_width.css -text
+styles/thenews/options/index.php -text
+styles/thenews/options/narrow_left_column.css -text
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/thenews/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/thenews/thenews.png -text
 styles/tikinewt.css -text
 styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
+styles/tikinewt/ie6.css -text
+styles/tikinewt/ie7.css -text
+styles/tikinewt/options/fixed_width.css -text
+styles/tikinewt/options/index.php -text
 styles/tikinewt/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/tikinewt/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/tikinewt/tikinewt.png -text
@@ -3672,6 +3714,7 @@ templates/comments_button.tpl -text
 templates/confirm.tpl -text
 templates/contribution.tpl -text
 templates/copyrights.tpl -text
+templates/credits.tpl -text
 templates/database-connection-error.tpl -text
 templates/debug/function.debugger.tpl -text
 templates/debug/index.php -text
@@ -3698,6 +3741,7 @@ templates/find.tpl -text
 templates/footer.tpl -text
 templates/freetag.tpl -text
 templates/freetag_list.tpl -text
+templates/header.tpl -text
 templates/header_simple.tpl -text
 templates/index.php -text
 templates/information.tpl -text
@@ -3960,9 +4004,30 @@ templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
+templates/styles/coelesce/comment-body.tpl -text
+templates/styles/coelesce/comment-header.tpl -text
+templates/styles/coelesce/credits.tpl -text
+templates/styles/coelesce/index.php -text
 templates/styles/coelesce/tiki-site_header_login.tpl -text
+templates/styles/coelesce/tiki-site_header_top.tpl -text
+templates/styles/coelesce/tiki-top_bar.tpl -text
+templates/styles/darkroom/credits.tpl -text
+templates/styles/darkroom/index.php -text
+templates/styles/feb12/credits.tpl -text
+templates/styles/feb12/index.php -text
 templates/styles/index.php -text
+templates/styles/strasa/credits.tpl -text
+templates/styles/strasa/custom_site_footer.tpl -text
+templates/styles/strasa/index.php -text
 templates/styles/strasa/tiki-site_header.tpl -text
+templates/styles/strasa/tiki-site_header_login.tpl -text
+templates/styles/strasa/tiki-site_header_options.tpl -text
+templates/styles/strasa/tiki-site_header_top.tpl -text
+templates/styles/strasa/tiki-view_blog.tpl -text
+templates/styles/strasa/tiki-view_blog_post.tpl -text
+templates/styles/thenews/credits.tpl -text
+templates/styles/thenews/index.php -text
+templates/styles/tikinewt/credits.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
@@ -4066,6 +4131,7 @@ templates/tiki-backlinks.tpl -text
 templates/tiki-batch_upload.tpl -text
 templates/tiki-batch_upload_files.tpl -text
 templates/tiki-blog_post.tpl -text
+templates/tiki-bot_bar.tpl -text
 templates/tiki-browse_categories.tpl -text
 templates/tiki-browse_freetags.tpl -text
 templates/tiki-browse_gallery.tpl -text
@@ -4272,6 +4338,13 @@ templates/tiki-show_page_raw.tpl -text
 templates/tiki-simple_plugin.tpl -text
 templates/tiki-site_header.tpl -text
 templates/tiki-site_header_login.tpl -text
+templates/tiki-site_header_options.tpl -text
+templates/tiki-site_header_top.tpl -text
+templates/tiki-site_header_top_begin.tpl -text
+templates/tiki-site_header_top_end.tpl -text
+templates/tiki-sitelocbar.tpl -text
+templates/tiki-sitemenu.tpl -text
+templates/tiki-sitesearchbar.tpl -text
 templates/tiki-slideshow.tpl -text
 templates/tiki-sqllog.tpl -text
 templates/tiki-stats.tpl -text
@@ -4290,6 +4363,10 @@ templates/tiki-tests_topbar.tpl -text
 templates/tiki-theme_control.tpl -text
 templates/tiki-theme_control_objects.tpl -text
 templates/tiki-theme_control_sections.tpl -text
+templates/tiki-top_bar.tpl -text
+templates/tiki-top_bar_begin.tpl -text
+templates/tiki-top_bar_custom_code.tpl -text
+templates/tiki-top_bar_end.tpl -text
 templates/tiki-upload_file.tpl -text
 templates/tiki-upload_file_progress.tpl -text
 templates/tiki-upload_image.tpl -text
@@ -4326,6 +4403,7 @@ templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
 templates/tiki-wiki_structure_bar.tpl -text
 templates/tiki-wiki_topline.tpl -text
+templates/tiki.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker_error.tpl -text
 templates/tracker_filter.tpl -text
