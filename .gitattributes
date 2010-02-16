@@ -1279,6 +1279,7 @@ installer/schema/20100212_rss_automation_tiki.sql -text
 installer/schema/20100213_group_inclusion_key_tiki.sql -text
 installer/schema/20100214_workspaces_remove_menu_items_tiki.sql -text
 installer/schema/20100215_rating_permissions_tiki.sql -text
+installer/schema/20100216_attributes_tiki.sql -text
 installer/schema/20100216_kil_moz_screencast_tiki.sql -text
 installer/schema/20100216_rename_tikisheet_tiki.sql -text
 installer/schema/index.php -text
@@ -1459,6 +1460,7 @@ lib/ajax/lib/activex_off.js -text
 lib/ajax/tiki-ajax.js -text
 lib/articles/artlib.php -text
 lib/articles/index.php -text
+lib/attributes/attributelib.php -text
 lib/auth/PasswordHash.php -text
 lib/auth/index.php -text
 lib/auth/ldap.php -text
@@ -2673,6 +2675,7 @@ lib/test/TikiImporter/RememberToMigrateTest.php -text
 lib/test/TikiLib/WikiParserTest.php -text
 lib/test/TikiSeleniumTestCase.php -text
 lib/test/TikiTestCase.php -text
+lib/test/attributes/AttributeTest.php -text
 lib/test/auth/AuthTokensTest.php -text
 lib/test/auth/MembershipTest.php -text
 lib/test/bootstrap.php -text
