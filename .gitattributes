@@ -1280,6 +1280,7 @@ installer/schema/20100213_group_inclusion_key_tiki.sql -text
 installer/schema/20100214_workspaces_remove_menu_items_tiki.sql -text
 installer/schema/20100215_rating_permissions_tiki.sql -text
 installer/schema/20100216_kil_moz_screencast_tiki.sql -text
+installer/schema/20100216_rename_tikisheet_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
