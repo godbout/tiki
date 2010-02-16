@@ -2386,6 +2386,7 @@ lib/quizzes/index.php -text
 lib/quizzes/quizlib.php -text
 lib/rankings/index.php -text
 lib/rankings/ranklib.php -text
+lib/rating/ratinglib.php -text
 lib/refererstats/index.php -text
 lib/refererstats/refererlib.php -text
 lib/registration/index.php -text
@@ -2745,6 +2746,7 @@ lib/test/importer/tikiimporter_wiki_test.php -text
 lib/test/index.php -text
 lib/test/payment/CartTest.php -text
 lib/test/phpunit.xml -text
+lib/test/rating/RegisterVoteTest.php -text
 lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
