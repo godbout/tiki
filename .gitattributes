@@ -1215,7 +1215,6 @@ installer/schema/20091019_users_perms_types_tidying_tiki.sql -text
 installer/schema/20091020_bigger_user_prefs_tiki.sql -text
 installer/schema/20091020_faq_created_tiki.sql -text
 installer/schema/20091020_kaltura_tiki.sql -text
-installer/schema/20091020_moz_screencast_tiki.sql -text
 installer/schema/20091020_remove_charts_tiki.sql -text
 installer/schema/20091020_sefurl_trackeritem_tiki.sql -text
 installer/schema/20091021_moz_pagelist_tiki.sql -text
@@ -1280,6 +1279,7 @@ installer/schema/20100212_rss_automation_tiki.sql -text
 installer/schema/20100213_group_inclusion_key_tiki.sql -text
 installer/schema/20100214_workspaces_remove_menu_items_tiki.sql -text
 installer/schema/20100215_rating_permissions_tiki.sql -text
+installer/schema/20100216_kil_moz_screencast_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
