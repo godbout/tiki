@@ -1282,6 +1282,7 @@ installer/schema/20100215_rating_permissions_tiki.sql -text
 installer/schema/20100216_attributes_tiki.sql -text
 installer/schema/20100216_kil_moz_screencast_tiki.sql -text
 installer/schema/20100216_rename_tikisheet_tiki.sql -text
+installer/schema/20100217_rating_config_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -1509,6 +1510,16 @@ lib/core/lib/DeclFilter/StaticKeyUnsetRule.php -text
 lib/core/lib/DeclFilter/UnsetRule.php -text
 lib/core/lib/JitFilter.php -text
 lib/core/lib/JitFilter/Element.php -text
+lib/core/lib/Math/Formula/Element.php -text
+lib/core/lib/Math/Formula/Exception.php -text
+lib/core/lib/Math/Formula/Function.php -text
+lib/core/lib/Math/Formula/Function/Add.php -text
+lib/core/lib/Math/Formula/Function/Mul.php -text
+lib/core/lib/Math/Formula/Parser.php -text
+lib/core/lib/Math/Formula/Parser/Exception.php -text
+lib/core/lib/Math/Formula/Runner.php -text
+lib/core/lib/Math/Formula/Runner/Exception.php -text
+lib/core/lib/Math/Formula/Tokenizer.php -text
 lib/core/lib/Multilingual/Aligner/BilingualAligner.php -text
 lib/core/lib/Multilingual/Aligner/MockMTWrapper.php -text
 lib/core/lib/Multilingual/Aligner/SentenceAlignments.php -text
@@ -2341,6 +2352,7 @@ lib/prefs/poll.php -text
 lib/prefs/print.php -text
 lib/prefs/proxy.php -text
 lib/prefs/quantify.php -text
+lib/prefs/rating.php -text
 lib/prefs/record.php -text
 lib/prefs/restrict.php -text
 lib/prefs/rnd.php -text
@@ -2389,6 +2401,8 @@ lib/quizzes/index.php -text
 lib/quizzes/quizlib.php -text
 lib/rankings/index.php -text
 lib/rankings/ranklib.php -text
+lib/rating/configlib.php -text
+lib/rating/formula/RatingAverage.php -text
 lib/rating/ratinglib.php -text
 lib/refererstats/index.php -text
 lib/refererstats/refererlib.php -text
@@ -2691,6 +2705,12 @@ lib/test/core/DeclFilter/StaticKeyUnsetTest.php -text
 lib/test/core/JitFilter/AccessTest.php -text
 lib/test/core/JitFilter/FilterTest.php -text
 lib/test/core/JitFilter/IteratorTest.php -text
+lib/test/core/Math/Formula/DummyFunction/FortyTwo.php -text
+lib/test/core/Math/Formula/DummyFunction/Testop.php -text
+lib/test/core/Math/Formula/ElementTest.php -text
+lib/test/core/Math/Formula/ParserTest.php -text
+lib/test/core/Math/Formula/RunnerTest.php -text
+lib/test/core/Math/Formula/TokenizerTest.php -text
 lib/test/core/Multilingual/Aligner/BilingualAlignerTest.php -text
 lib/test/core/Multilingual/Aligner/SentenceAlignmentsTest.php -text
 lib/test/core/Multilingual/Aligner/SentenceSegmentorTest.php -text
@@ -4076,6 +4096,7 @@ templates/tiki-admin-include-payment.tpl -text
 templates/tiki-admin-include-performance.tpl -text
 templates/tiki-admin-include-polls.tpl -text
 templates/tiki-admin-include-profiles.tpl -text
+templates/tiki-admin-include-rating.tpl -text
 templates/tiki-admin-include-rss.tpl -text
 templates/tiki-admin-include-score.tpl -text
 templates/tiki-admin-include-search.tpl -text
@@ -4507,6 +4528,7 @@ tests/testfile.txt -text
 /tiki-admin_include_performance.php -text
 /tiki-admin_include_polls.php -text
 /tiki-admin_include_profiles.php -text
+/tiki-admin_include_rating.php -text
 /tiki-admin_include_rss.php -text
 /tiki-admin_include_score.php -text
 /tiki-admin_include_search.php -text
