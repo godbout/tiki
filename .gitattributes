@@ -1517,6 +1517,7 @@ lib/core/lib/Math/Formula/Exception.php -text
 lib/core/lib/Math/Formula/Function.php -text
 lib/core/lib/Math/Formula/Function/Add.php -text
 lib/core/lib/Math/Formula/Function/Mul.php -text
+lib/core/lib/Math/Formula/Function/Str.php -text
 lib/core/lib/Math/Formula/Parser.php -text
 lib/core/lib/Math/Formula/Parser/Exception.php -text
 lib/core/lib/Math/Formula/Runner.php -text
