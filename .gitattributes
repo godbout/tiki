@@ -4035,6 +4035,7 @@ templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
 templates/sent_newsletters.tpl -text
 templates/setup_fckeditor.tpl -text
+templates/show_copyright.tpl -text
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
@@ -4477,6 +4478,7 @@ templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
 templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_trackertimeline.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
+templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
