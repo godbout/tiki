@@ -3378,6 +3378,12 @@ pics/icons/resultset_up.png -text
 pics/icons/rss.png -text
 pics/icons/shading.png -text
 pics/icons/shape_square_edit.png -text
+pics/icons/sheet_col_add.png -text
+pics/icons/sheet_col_add_multi.png -text
+pics/icons/sheet_col_delete.png -text
+pics/icons/sheet_row_add.png -text
+pics/icons/sheet_row_add_multi.png -text
+pics/icons/sheet_row_delete.png -text
 pics/icons/star.png -text
 pics/icons/star_grey.png -text
 pics/icons/star_half.png -text
