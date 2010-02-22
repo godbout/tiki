@@ -1285,6 +1285,7 @@ installer/schema/20100216_kil_moz_screencast_tiki.sql -text
 installer/schema/20100216_rename_tikisheet_tiki.sql -text
 installer/schema/20100217_rating_config_tiki.sql -text
 installer/schema/20100218_auth_token_reuse_tiki.sql -text
+installer/schema/20100222_sheet_toolbar_default_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
