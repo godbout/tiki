@@ -2453,7 +2453,6 @@ lib/setup/last_update.php -text
 lib/setup/live_support.php -text
 lib/setup/load_threshold.php -text
 lib/setup/mailin.php -text
-lib/setup/menus.php -text
 lib/setup/openid.php -text
 lib/setup/output_compression.php -text
 lib/setup/patches.php -text
