@@ -1287,6 +1287,7 @@ installer/schema/20100217_rating_config_tiki.sql -text
 installer/schema/20100218_auth_token_reuse_tiki.sql -text
 installer/schema/20100222_add_webmail_fromEmail_field_tiki.sql -text
 installer/schema/20100222_sheet_toolbar_default_tiki.sql -text
+installer/schema/20100223_blog_always_owner.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
