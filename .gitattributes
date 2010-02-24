@@ -3090,6 +3090,7 @@ modules/mod-func-articles.php -text
 modules/mod-func-articles_most_commented.php -text
 modules/mod-func-assistant.php -text
 modules/mod-func-blog_last_comments.php -text
+modules/mod-func-blog_posts_most_commented.php -text
 modules/mod-func-breadcrumb.php -text
 modules/mod-func-calendar_new.php -text
 modules/mod-func-cart.php -text
@@ -3923,6 +3924,7 @@ templates/modules/mod-articles.tpl -text
 templates/modules/mod-articles_most_commented.tpl -text
 templates/modules/mod-assistant.tpl -text
 templates/modules/mod-blog_last_comments.tpl -text
+templates/modules/mod-blog_posts_most_commented.tpl -text
 templates/modules/mod-breadcrumb.tpl -text
 templates/modules/mod-breadcrumb.tpl.nocache -text
 templates/modules/mod-calendar.tpl.nocache -text
