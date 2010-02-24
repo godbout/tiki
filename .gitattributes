@@ -2591,6 +2591,7 @@ lib/smarty_tiki/function.listfilter.php -text
 lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.metric.php -text
+lib/smarty_tiki/function.object_link.php -text
 lib/smarty_tiki/function.payment.php -text
 lib/smarty_tiki/function.phplayers.php -text
 lib/smarty_tiki/function.poll.php -text
