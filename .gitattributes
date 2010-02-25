@@ -17,6 +17,7 @@ backups/index.php -text
 /copyright.txt -text
 /copyrights.php -text
 css/admin.css -text
+css/calendar-print.css -text
 css/calendar.css -text
 css/cssmenus.css -text
 css/freetags.css -text
