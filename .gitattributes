@@ -3088,7 +3088,6 @@ modules/mod-func-adsense.php -text
 modules/mod-func-article_archives.php -text
 modules/mod-func-article_topics.php -text
 modules/mod-func-articles.php -text
-modules/mod-func-articles_most_commented.php -text
 modules/mod-func-assistant.php -text
 modules/mod-func-blog_last_comments.php -text
 modules/mod-func-blog_posts_most_commented.php -text
