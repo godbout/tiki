@@ -3925,7 +3925,6 @@ templates/modules/mod-article_topics.tpl -text
 templates/modules/mod-articles.tpl -text
 templates/modules/mod-assistant.tpl -text
 templates/modules/mod-blog_last_comments.tpl -text
-templates/modules/mod-blog_posts_most_commented.tpl -text
 templates/modules/mod-breadcrumb.tpl -text
 templates/modules/mod-breadcrumb.tpl.nocache -text
 templates/modules/mod-calendar.tpl.nocache -text
