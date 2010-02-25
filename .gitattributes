@@ -3185,7 +3185,6 @@ modules/mod-func-webmail_inbox.php -text
 modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
-modules/mod-func-wiki_most_commented.php -text
 modules/mod-func-youtube.php -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
