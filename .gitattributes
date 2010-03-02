@@ -3651,6 +3651,13 @@ styles/integrator/README -text
 styles/integrator/default.css -text
 styles/integrator/doxygen.css -text
 styles/integrator/index.php -text
+styles/jqui/jqui.png -text svneol=unset#image/png
+styles/jqui/options/excitebike/excitebike.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/pics/icons/folder.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/pics/icons/ofolder.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/pics/icons/oleftcol.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/pics/icons/orightcol.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
 styles/layout/design-reference.css -text
 styles/layout/design.css -text
 styles/layout/index.php -text
