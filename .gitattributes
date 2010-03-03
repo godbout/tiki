@@ -3151,6 +3151,7 @@ modules/mod-func-random_images.php -text
 modules/mod-func-random_pages.php -text
 modules/mod-func-register.php -text
 modules/mod-func-rsslist.php -text
+modules/mod-func-search.php -text
 modules/mod-func-search_box.php -text
 modules/mod-func-search_wiki_page.php -text
 modules/mod-func-semantic_links.php -text
@@ -3998,6 +3999,7 @@ templates/modules/mod-random_images.tpl -text
 templates/modules/mod-random_pages.tpl -text
 templates/modules/mod-register.tpl -text
 templates/modules/mod-rsslist.tpl -text
+templates/modules/mod-search.tpl -text
 templates/modules/mod-search_box.tpl -text
 templates/modules/mod-search_wiki_page.tpl -text
 templates/modules/mod-semantic_links.tpl -text
