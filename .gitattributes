@@ -36,6 +36,7 @@ db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
 db/tiki_2.0to3.0.sql -text
+db/web.config -text
 /display_banner.php -text
 doc/devtools/.htaccess -text
 doc/devtools/README.txt -text
@@ -1453,6 +1454,7 @@ lang/uk/index.php -text
 lang/uk/language.php -text
 lang/vi/index.php -text
 lang/vi/language.php -text
+lang/web.config -text
 lib/.htaccess -text
 lib/Babelfish.php -text
 lib/Horde/Yaml.php -text
@@ -3082,6 +3084,7 @@ modules/.htaccess -text
 modules/cache/.htaccess -text
 modules/cache/README -text
 modules/cache/index.php -text
+modules/cache/web.config -text
 modules/index.php -text
 modules/mod-func-action_calendar.php -text
 modules/mod-func-action_similarcontent.php -text
@@ -3187,6 +3190,7 @@ modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
+modules/web.config -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
 pics/icons/add.png -text
@@ -3764,6 +3768,8 @@ temp/index.php -text
 temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
 temp/public/.htaccess -text
+temp/public/web.config -text
+temp/web.config -text
 templates/.htaccess -text
 templates/advanced_search_help.tpl -text
 templates/antibot.tpl -text
@@ -4493,6 +4499,7 @@ templates/tracker_pretty_item.tpl -text
 templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
 templates/translated-lang.tpl -text
+templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
@@ -4926,6 +4933,7 @@ tests/testfile.txt -text
 tiki_tests/index.php -text
 tiki_tests/tests/.htaccess -text
 tiki_tests/tests/index.php -text
+tiki_tests/tests/web.config -text
 tiki_tests/tiki-tests_edit.php -text
 tiki_tests/tiki-tests_list.php -text
 tiki_tests/tiki-tests_record.php -text
