@@ -195,6 +195,7 @@ images/star_orange.gif -text
 images/star_purple.gif -text
 images/star_red.gif -text
 images/star_yellow.gif -text
+images/web.config -text
 img/.htaccess -text
 img/adodb.png -text
 img/avatars/README -text
@@ -1052,6 +1053,7 @@ img/tiki/tikisitelogo.gif -text
 img/tiki/tikisitelogo.png -text
 img/trackers/index.php -text
 img/valid-xhtml10.png -text
+img/web.config -text
 img/webmail/attachment.gif -text
 img/webmail/clip.gif -text
 img/webmail/compose.gif -text
@@ -1297,6 +1299,7 @@ installer/schema/20100302_filegal_images_max_sizes_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
+installer/web.config -text
 lang/.htaccess -text
 lang/ar/index.php -text
 lang/ar/language.php -text
@@ -1728,6 +1731,7 @@ lib/fckeditor_tiki/plugins/tikiswitch/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikiswitch/index.php -text
 lib/fckeditor_tiki/tikistyles.xml -text
 lib/fckeditor_tiki/tikitemplates.xml -text
+lib/fckeditor_tiki/web.config -text
 lib/featured_links/flinkslib.php -text
 lib/featured_links/index.php -text
 lib/feedcreator/feedcreator.class.php -text
@@ -2883,6 +2887,7 @@ lib/videogals/KalturaClientBase_v3.php -text
 lib/videogals/KalturaClientReadme.txt -text
 lib/videogals/KalturaClient_v3.php -text
 lib/videogals/videogallib.php -text
+lib/web.config -text
 lib/webdav/webdavlib.php -text
 lib/webmail/API.txt -text
 lib/webmail/class.rc4crypt.php -text
