@@ -4932,6 +4932,7 @@ tiki_tests/tiki-tests_record.php -text
 tiki_tests/tiki-tests_replay.php -text
 tiki_tests/tiki-tests_show_xpath.php -text
 tiki_tests/tikitestslib.php -text
+/web_config -text
 whelp/index.php -text
 /x_maps.php -text
 /xmlrpc.php -text
