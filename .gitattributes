@@ -3619,6 +3619,12 @@ pics/trans.png -text
 /show_image.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
+styles/abse/abse.png -text svneol=unset#image/png
+styles/abse/crimeboy_design.png -text svneol=unset#image/png
+styles/abse/menubg.jpg -text svneol=unset#image/jpeg
+styles/abse/titlebgoff.png -text svneol=unset#image/png
+styles/abse/titlebgon.png -text svneol=unset#image/png
+styles/abse/wgreenwall.png -text svneol=unset#image/png
 styles/coelesce.css -text
 styles/coelesce/arrows-295c8e.png -text svneol=unset#image/png
 styles/coelesce/arrows-467aa7.png -text svneol=unset#image/png
