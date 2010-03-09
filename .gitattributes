@@ -3625,6 +3625,20 @@ styles/abse/menubg.jpg -text svneol=unset#image/jpeg
 styles/abse/titlebgoff.png -text svneol=unset#image/png
 styles/abse/titlebgon.png -text svneol=unset#image/png
 styles/abse/wgreenwall.png -text svneol=unset#image/png
+styles/business/arrows-467aa7.png -text svneol=unset#image/png
+styles/business/arrows-ffffff.png -text svneol=unset#image/png
+styles/business/boxtop.gif -text
+styles/business/business.png -text svneol=unset#image/png
+styles/business/footer.gif -text
+styles/business/header.png -text svneol=unset#image/png
+styles/business/image1.jpg -text svneol=unset#image/jpeg
+styles/business/info.jpg -text svneol=unset#image/jpeg
+styles/business/input.gif -text
+styles/business/magnify.gif -text
+styles/business/market.jpg -text svneol=unset#image/jpeg
+styles/business/nav.gif -text
+styles/business/nav_h.gif -text
+styles/business/title_bg.png -text svneol=unset#image/png
 styles/coelesce.css -text
 styles/coelesce/arrows-295c8e.png -text svneol=unset#image/png
 styles/coelesce/arrows-467aa7.png -text svneol=unset#image/png
