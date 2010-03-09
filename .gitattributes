@@ -3689,6 +3689,19 @@ styles/slideshows/clear.css -text
 styles/slideshows/index.php -text
 styles/slideshows/slidestyle.css -text
 styles/slideshows/tiki.css -text
+styles/snow/Flash/snowfall.swf -text
+styles/snow/boxbtm.jpg -text svneol=unset#image/jpeg
+styles/snow/boxmid.jpg -text svneol=unset#image/jpeg
+styles/snow/boxtop.jpg -text svneol=unset#image/jpeg
+styles/snow/flakesptn.jpg -text svneol=unset#image/jpeg
+styles/snow/flakesptn2.jpg -text svneol=unset#image/jpeg
+styles/snow/flakesptn3.jpg -text svneol=unset#image/jpeg
+styles/snow/header-bg.jpg -text svneol=unset#image/jpeg
+styles/snow/logo.jpg -text svneol=unset#image/jpeg
+styles/snow/pagetitle-bg.jpg -text svneol=unset#image/jpeg
+styles/snow/pagetitle-bullet-sm.gif -text
+styles/snow/pagetitle-bullet.gif -text
+styles/snow/snow.png -text svneol=unset#image/png
 styles/strasa.css -text
 styles/strasa/arrows-467aa7.png -text svneol=unset#image/png
 styles/strasa/arrows-a2ecff.png -text svneol=unset#image/png
