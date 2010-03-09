@@ -1296,6 +1296,7 @@ installer/schema/20100224_object_relations_tiki.sql -text
 installer/schema/20100226_menu_template_feature_check_tiki.sql -text
 installer/schema/20100226_tracker_dump_perm_tiki.sql -text
 installer/schema/20100302_filegal_images_max_sizes_tiki.sql -text
+installer/schema/20100308_file_delete_after_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
