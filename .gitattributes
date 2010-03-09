@@ -3665,6 +3665,16 @@ styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/small-type.png -text
 styles/darkroom/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/darkroom/pics/icons/orightcol.png -text svneol=unset#image/png
+styles/eatlon/arrows-6d819d.png -text svneol=unset#image/png
+styles/eatlon/banner.gif -text
+styles/eatlon/body_bg.gif -text
+styles/eatlon/bottom_bg.png -text svneol=unset#image/png
+styles/eatlon/eatlon.png -text svneol=unset#image/png
+styles/eatlon/feed.gif -text
+styles/eatlon/head_bg.gif -text
+styles/eatlon/image.gif -text
+styles/eatlon/layouts.gif -text
+styles/eatlon/menu_bg.png -text svneol=unset#image/png
 styles/empty.css -text
 styles/feb12.css -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
