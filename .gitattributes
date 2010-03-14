@@ -3765,6 +3765,7 @@ styles/tikinewt/ie6.css -text
 styles/tikinewt/ie7.css -text
 styles/tikinewt/options/fixed_width.css -text
 styles/tikinewt/options/index.php -text
+styles/tikinewt/options/shadows/box_shadow.png -text svneol=unset#image/png
 styles/tikinewt/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/tikinewt/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/tikinewt/tikinewt.png -text
