@@ -4105,17 +4105,13 @@ templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
 templates/styles/coelesce/comment-body.tpl -text
 templates/styles/coelesce/comment-header.tpl -text
-templates/styles/coelesce/credits.tpl -text
 templates/styles/coelesce/index.php -text
 templates/styles/coelesce/tiki-site_header_login.tpl -text
 templates/styles/coelesce/tiki-site_header_top.tpl -text
 templates/styles/coelesce/tiki-top_bar.tpl -text
-templates/styles/darkroom/credits.tpl -text
 templates/styles/darkroom/index.php -text
-templates/styles/feb12/credits.tpl -text
 templates/styles/feb12/index.php -text
 templates/styles/index.php -text
-templates/styles/strasa/credits.tpl -text
 templates/styles/strasa/custom_site_footer.tpl -text
 templates/styles/strasa/index.php -text
 templates/styles/strasa/tiki-site_header.tpl -text
@@ -4124,9 +4120,7 @@ templates/styles/strasa/tiki-site_header_options.tpl -text
 templates/styles/strasa/tiki-site_header_top.tpl -text
 templates/styles/strasa/tiki-view_blog.tpl -text
 templates/styles/strasa/tiki-view_blog_post.tpl -text
-templates/styles/thenews/credits.tpl -text
 templates/styles/thenews/index.php -text
-templates/styles/tikinewt/credits.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
