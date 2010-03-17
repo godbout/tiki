@@ -3642,6 +3642,32 @@ styles/feb12/index.php -text
 styles/feb12/options/fixed_width.css -text
 styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
+styles/fivealive/fivealive.png -text svneol=unset#image/png
+styles/fivealive/login.png -text svneol=unset#image/png
+styles/fivealive/menu_divider.png -text svneol=unset#image/png
+styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
+styles/fivealive/options/akebi/body.png -text svneol=unset#image/png
+styles/fivealive/options/akebi/header.png -text svneol=unset#image/png
+styles/fivealive/options/blueberry/body.png -text svneol=unset#image/png
+styles/fivealive/options/blueberry/header.png -text svneol=unset#image/png
+styles/fivealive/options/grape/body.png -text svneol=unset#image/png
+styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
+styles/fivealive/options/grape/header.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/body.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/header.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/body.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/header.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
+styles/fivealive/options/orange/body.png -text svneol=unset#image/png
+styles/fivealive/options/orange/header.png -text svneol=unset#image/png
+styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
+styles/fivealive/options/watermelon/body.png -text svneol=unset#image/png
+styles/fivealive/options/watermelon/header.png -text svneol=unset#image/png
+styles/fivealive/options/watermelon/watermelon.png -text svneol=unset#image/png
+styles/fivealive/register.png -text svneol=unset#image/png
+styles/fivealive/searchbar.png -text svneol=unset#image/png
+styles/fivealive/tiki-top.png -text svneol=unset#image/png
 styles/index.php -text
 styles/integrator/README -text
 styles/integrator/default.css -text
