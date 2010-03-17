@@ -3595,13 +3595,12 @@ styles/coelesce/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom.css -text
+styles/darkroom/474747_5e5e5e_40.png -text svneol=unset#image/png
 styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/darkroom.png -text
 styles/darkroom/ie6.css -text
 styles/darkroom/ie7.css -text
 styles/darkroom/index.php -text
-styles/darkroom/options/fixed_width.css -text
-styles/darkroom/options/fixed_width/474747_5e5e5e_40.png -text svneol=unset#image/png
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/small-type.png -text
 styles/darkroom/pics/icons/oleftcol.png -text svneol=unset#image/png
