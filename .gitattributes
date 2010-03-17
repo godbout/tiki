@@ -3596,13 +3596,12 @@ styles/coelesce/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom.css -text
+styles/darkroom/474747_5e5e5e_40.png -text svneol=unset#image/png
 styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/darkroom.png -text
 styles/darkroom/ie6.css -text
 styles/darkroom/ie7.css -text
 styles/darkroom/index.php -text
-styles/darkroom/options/fixed_width.css -text
-styles/darkroom/options/fixed_width/474747_5e5e5e_40.png -text svneol=unset#image/png
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/small-type.png -text
 styles/darkroom/pics/icons/oleftcol.png -text svneol=unset#image/png
@@ -3643,6 +3642,32 @@ styles/feb12/index.php -text
 styles/feb12/options/fixed_width.css -text
 styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
+styles/fivealive/fivealive.png -text svneol=unset#image/png
+styles/fivealive/login.png -text svneol=unset#image/png
+styles/fivealive/menu_divider.png -text svneol=unset#image/png
+styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
+styles/fivealive/options/akebi/body.png -text svneol=unset#image/png
+styles/fivealive/options/akebi/header.png -text svneol=unset#image/png
+styles/fivealive/options/blueberry/body.png -text svneol=unset#image/png
+styles/fivealive/options/blueberry/header.png -text svneol=unset#image/png
+styles/fivealive/options/grape/body.png -text svneol=unset#image/png
+styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
+styles/fivealive/options/grape/header.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/body.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/header.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/body.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/header.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
+styles/fivealive/options/orange/body.png -text svneol=unset#image/png
+styles/fivealive/options/orange/header.png -text svneol=unset#image/png
+styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
+styles/fivealive/options/watermelon/body.png -text svneol=unset#image/png
+styles/fivealive/options/watermelon/header.png -text svneol=unset#image/png
+styles/fivealive/options/watermelon/watermelon.png -text svneol=unset#image/png
+styles/fivealive/register.png -text svneol=unset#image/png
+styles/fivealive/searchbar.png -text svneol=unset#image/png
+styles/fivealive/tiki-top.png -text svneol=unset#image/png
 styles/index.php -text
 styles/integrator/README -text
 styles/integrator/default.css -text
