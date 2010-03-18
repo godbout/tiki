@@ -3646,22 +3646,29 @@ styles/fivealive/fivealive.png -text svneol=unset#image/png
 styles/fivealive/login.png -text svneol=unset#image/png
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
+styles/fivealive/options/akebi/arrows-0b8a98.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/body.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/header.png -text svneol=unset#image/png
+styles/fivealive/options/blueberry/arrows-1174a5.png -text svneol=unset#image/png
 styles/fivealive/options/blueberry/body.png -text svneol=unset#image/png
 styles/fivealive/options/blueberry/header.png -text svneol=unset#image/png
+styles/fivealive/options/grape/arrows-8e286a.png -text svneol=unset#image/png
 styles/fivealive/options/grape/body.png -text svneol=unset#image/png
 styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
 styles/fivealive/options/grape/header.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/arrows-638637.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/body.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/header.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/arrows-c75a28.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/body.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/header.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
+styles/fivealive/options/orange/arrows-c74b23.png -text svneol=unset#image/png
 styles/fivealive/options/orange/body.png -text svneol=unset#image/png
 styles/fivealive/options/orange/header.png -text svneol=unset#image/png
 styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
+styles/fivealive/options/watermelon/arrows-c21e3b.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/body.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/header.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/watermelon.png -text svneol=unset#image/png
@@ -3673,8 +3680,11 @@ styles/integrator/README -text
 styles/integrator/default.css -text
 styles/integrator/doxygen.css -text
 styles/integrator/index.php -text
+styles/jqui/arrows-1174a5.png -text svneol=unset#image/png
 styles/jqui/jqui.png -text svneol=unset#image/png
 styles/jqui/options/excitebike/excitebike.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/arrows-000000.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/arrows-b8ec79.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/icons/folder.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/icons/oleftcol.png -text svneol=unset#image/png
@@ -3872,6 +3882,7 @@ templates/mail/confirm_user_email.tpl -text
 templates/mail/confirm_user_email_after_approval.tpl -text
 templates/mail/confirm_user_email_after_approval_subject.tpl -text
 templates/mail/confirm_user_email_subject.tpl -text
+templates/mail/fgal_old_file_deleted.tpl -text
 templates/mail/fgal_quota_exceeded.tpl -text
 templates/mail/forum_outbound.tpl -text
 templates/mail/forum_post_notification.tpl -text
