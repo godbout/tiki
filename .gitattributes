@@ -2276,6 +2276,7 @@ lib/prefs/freetags.php -text
 lib/prefs/generate.php -text
 lib/prefs/global.php -text
 lib/prefs/header.php -text
+lib/prefs/highlight.php -text
 lib/prefs/home.php -text
 lib/prefs/http.php -text
 lib/prefs/https.php -text
