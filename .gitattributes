@@ -2493,6 +2493,7 @@ lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
 lib/smarty_tiki/block.itemfield.php -text
 lib/smarty_tiki/block.jq.php -text
+lib/smarty_tiki/block.modules_list.php -text
 lib/smarty_tiki/block.pagination_links.php -text
 lib/smarty_tiki/block.permission.php -text
 lib/smarty_tiki/block.popup_link.php -text
