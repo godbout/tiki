@@ -3589,7 +3589,6 @@ styles/coelesce/coelesce.png -text
 styles/coelesce/ie6.css -text
 styles/coelesce/ie7.css -text
 styles/coelesce/index.php -text
-styles/coelesce/options/fixed_width.css -text
 styles/coelesce/options/index.php -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/pics/icons/oleftcol.png -text svneol=unset#image/png
@@ -3640,7 +3639,6 @@ styles/feb12/header.jpg -text svneol=unset#image/jpeg
 styles/feb12/ie6.css -text
 styles/feb12/ie7.css -text
 styles/feb12/index.php -text
-styles/feb12/options/fixed_width.css -text
 styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/fivealive/fivealive.png -text svneol=unset#image/png
@@ -3789,7 +3787,6 @@ styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/ie6.css -text
 styles/thenews/ie7.css -text
 styles/thenews/index.php -text
-styles/thenews/options/fixed_width.css -text
 styles/thenews/options/index.php -text
 styles/thenews/options/narrow_left_column.css -text
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
@@ -3800,7 +3797,6 @@ styles/tikinewt.css -text
 styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
 styles/tikinewt/ie6.css -text
 styles/tikinewt/ie7.css -text
-styles/tikinewt/options/fixed_width.css -text
 styles/tikinewt/options/index.php -text
 styles/tikinewt/options/shadows/box_shadow.png -text svneol=unset#image/png
 styles/tikinewt/pics/icons/oleftcol.png -text svneol=unset#image/png
