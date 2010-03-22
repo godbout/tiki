@@ -76,6 +76,7 @@ doc/devtools/sharetiki.sh -text
 doc/devtools/sharetikidev.sh -text
 doc/devtools/sqlupgrade.sh -text
 doc/devtools/stripbraces.pl -text
+doc/devtools/stripcomments.php -text
 doc/devtools/stripcomments.pl -text
 doc/devtools/svnbranch.php -text
 doc/devtools/svnbranchreview.php -text
