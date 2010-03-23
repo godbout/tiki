@@ -76,6 +76,7 @@ doc/devtools/sharetiki.sh -text
 doc/devtools/sharetikidev.sh -text
 doc/devtools/sqlupgrade.sh -text
 doc/devtools/stripbraces.pl -text
+doc/devtools/stripcomments.php -text
 doc/devtools/stripcomments.pl -text
 doc/devtools/svnbranch.php -text
 doc/devtools/svnbranchreview.php -text
@@ -2276,7 +2277,9 @@ lib/prefs/forums.php -text
 lib/prefs/freetags.php -text
 lib/prefs/generate.php -text
 lib/prefs/global.php -text
+lib/prefs/gmap.php -text
 lib/prefs/header.php -text
+lib/prefs/highlight.php -text
 lib/prefs/home.php -text
 lib/prefs/http.php -text
 lib/prefs/https.php -text
@@ -2493,6 +2496,7 @@ lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
 lib/smarty_tiki/block.itemfield.php -text
 lib/smarty_tiki/block.jq.php -text
+lib/smarty_tiki/block.modules_list.php -text
 lib/smarty_tiki/block.pagination_links.php -text
 lib/smarty_tiki/block.permission.php -text
 lib/smarty_tiki/block.popup_link.php -text
@@ -3588,7 +3592,6 @@ styles/coelesce/coelesce.png -text
 styles/coelesce/ie6.css -text
 styles/coelesce/ie7.css -text
 styles/coelesce/index.php -text
-styles/coelesce/options/fixed_width.css -text
 styles/coelesce/options/index.php -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/pics/icons/oleftcol.png -text svneol=unset#image/png
@@ -3639,7 +3642,6 @@ styles/feb12/header.jpg -text svneol=unset#image/jpeg
 styles/feb12/ie6.css -text
 styles/feb12/ie7.css -text
 styles/feb12/index.php -text
-styles/feb12/options/fixed_width.css -text
 styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/fivealive/fivealive.png -text svneol=unset#image/png
@@ -3721,9 +3723,12 @@ styles/snow/snow.png -text svneol=unset#image/png
 styles/strasa.css -text
 styles/strasa/arrows-467aa7.png -text svneol=unset#image/png
 styles/strasa/arrows-a2ecff.png -text svneol=unset#image/png
+styles/strasa/body-bg_fw.png -text svneol=unset#image/png
 styles/strasa/body-bgd.png -text
 styles/strasa/box_bottom.gif -text
+styles/strasa/box_bottom_fw.gif -text
 styles/strasa/box_top.gif -text
+styles/strasa/box_top_fw.gif -text
 styles/strasa/cold.png -text
 styles/strasa/fold-topright.jpg -text
 styles/strasa/headerbg.jpg -text
@@ -3748,11 +3753,6 @@ styles/strasa/options/cool/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/register.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/fixed_width.css -text
-styles/strasa/options/fixed_width/body-bg.png -text svneol=unset#image/png
-styles/strasa/options/fixed_width/box_bottom.gif -text
-styles/strasa/options/fixed_width/box_top.gif -text
-styles/strasa/options/fixed_width/fixed_width.png -text svneol=unset#image/png
-styles/strasa/options/fixed_width/index.php -text
 styles/strasa/options/index.php -text
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
@@ -3783,12 +3783,12 @@ styles/strasa/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/strasa/pics/index.php -text
 styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
+styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
 styles/thenews.css -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/ie6.css -text
 styles/thenews/ie7.css -text
 styles/thenews/index.php -text
-styles/thenews/options/fixed_width.css -text
 styles/thenews/options/index.php -text
 styles/thenews/options/narrow_left_column.css -text
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
@@ -3799,7 +3799,6 @@ styles/tikinewt.css -text
 styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
 styles/tikinewt/ie6.css -text
 styles/tikinewt/ie7.css -text
-styles/tikinewt/options/fixed_width.css -text
 styles/tikinewt/options/index.php -text
 styles/tikinewt/options/shadows/box_shadow.png -text svneol=unset#image/png
 styles/tikinewt/pics/icons/oleftcol.png -text svneol=unset#image/png
