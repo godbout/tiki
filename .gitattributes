@@ -3722,9 +3722,12 @@ styles/snow/snow.png -text svneol=unset#image/png
 styles/strasa.css -text
 styles/strasa/arrows-467aa7.png -text svneol=unset#image/png
 styles/strasa/arrows-a2ecff.png -text svneol=unset#image/png
+styles/strasa/body-bg_fw.png -text svneol=unset#image/png
 styles/strasa/body-bgd.png -text
 styles/strasa/box_bottom.gif -text
+styles/strasa/box_bottom_fw.gif -text
 styles/strasa/box_top.gif -text
+styles/strasa/box_top_fw.gif -text
 styles/strasa/cold.png -text
 styles/strasa/fold-topright.jpg -text
 styles/strasa/headerbg.jpg -text
@@ -3749,11 +3752,6 @@ styles/strasa/options/cool/login.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/loginlong.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/cool/register.jpg -text svneol=unset#image/jpeg
 styles/strasa/options/fixed_width.css -text
-styles/strasa/options/fixed_width/body-bg.png -text svneol=unset#image/png
-styles/strasa/options/fixed_width/box_bottom.gif -text
-styles/strasa/options/fixed_width/box_top.gif -text
-styles/strasa/options/fixed_width/fixed_width.png -text svneol=unset#image/png
-styles/strasa/options/fixed_width/index.php -text
 styles/strasa/options/index.php -text
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
@@ -3784,6 +3782,7 @@ styles/strasa/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/strasa/pics/index.php -text
 styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
+styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
 styles/thenews.css -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/ie6.css -text
