@@ -4548,6 +4548,7 @@ templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
+templates/wiki-plugins/wikiplugin_catorphans.tpl -text
 templates/wiki-plugins/wikiplugin_colobox.tpl -text
 templates/wiki-plugins/wikiplugin_datachannel.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
