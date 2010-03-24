@@ -3564,6 +3564,7 @@ pics/trans.png -text
 /setup_fckeditor.php -text
 /setup_smarty.php -text
 /show_image.php -text
+/snarf_ajax.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
 styles/abse/abse.png -text svneol=unset#image/png
@@ -4566,6 +4567,7 @@ templates/wiki-plugins/wikiplugin_memberpayment.tpl -text
 templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
+templates/wiki-plugins/wikiplugin_snarf.tpl -text
 templates/wiki-plugins/wikiplugin_stat.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroups.tpl -text
