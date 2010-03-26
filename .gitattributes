@@ -3903,6 +3903,7 @@ templates/mail/new_friend_invitation.tpl -text
 templates/mail/new_friend_invitation_subject.tpl -text
 templates/mail/new_user_notification.tpl -text
 templates/mail/new_user_notification_subject.tpl -text
+templates/mail/newsletter_articleclip.tpl -text
 templates/mail/newsletter_byebye.tpl -text
 templates/mail/newsletter_byebye_subject.tpl -text
 templates/mail/newsletter_unsubscribe.tpl -text
