@@ -3596,7 +3596,7 @@ styles/arcturus/options/matrix/index.php -text
 styles/arcturus/options/matrix/ltgreen.png -text svneol=unset#image/png
 styles/arcturus/options/matrix/ltltgreen.png -text svneol=unset#image/png
 styles/arcturus/options/matrix/matrix.jpg -text svneol=unset#image/jpeg
-styles/arcturus/options/matrix/matrix_160x120.png -text svneol=unset#image/png
+styles/arcturus/options/matrix/matrix.png -text svneol=unset#image/png
 styles/arcturus/options/matrix/red.png -text svneol=unset#image/png
 styles/arcturus/options/simple/arrows-0b8a98.png -text svneol=unset#image/png
 styles/arcturus/options/simple/bg.png -text svneol=unset#image/png
