@@ -3570,6 +3570,43 @@ styles/abse/menubg.jpg -text svneol=unset#image/jpeg
 styles/abse/titlebgoff.png -text svneol=unset#image/png
 styles/abse/titlebgon.png -text svneol=unset#image/png
 styles/abse/wgreenwall.png -text svneol=unset#image/png
+styles/arcturus/arcturus.png -text svneol=unset#image/png
+styles/arcturus/arrows-222222.png -text svneol=unset#image/png
+styles/arcturus/options/amette/amette.png -text svneol=unset#image/png
+styles/arcturus/options/amette/gradient.png -text svneol=unset#image/png
+styles/arcturus/options/amette/index.php -text
+styles/arcturus/options/geo/backmap.png -text svneol=unset#image/png
+styles/arcturus/options/geo/fond2tete.png -text svneol=unset#image/png
+styles/arcturus/options/geo/fondtete.png -text svneol=unset#image/png
+styles/arcturus/options/geo/geo.png -text svneol=unset#image/png
+styles/arcturus/options/geo/index.php -text
+styles/arcturus/options/index.php -text
+styles/arcturus/options/jalist/fcap.png -text svneol=unset#image/png
+styles/arcturus/options/jalist/grad.gif -text
+styles/arcturus/options/jalist/grad.jpg -text svneol=unset#image/jpeg
+styles/arcturus/options/jalist/grad.png -text svneol=unset#image/png
+styles/arcturus/options/jalist/index.php -text
+styles/arcturus/options/jalist/jalist.png -text svneol=unset#image/png
+styles/arcturus/options/jalist/maincap.png -text svneol=unset#image/png
+styles/arcturus/options/jalist/menucap.png -text svneol=unset#image/png
+styles/arcturus/options/matrix/arrows-00e000.png -text svneol=unset#image/png
+styles/arcturus/options/matrix/dark.png -text svneol=unset#image/png
+styles/arcturus/options/matrix/grey.png -text svneol=unset#image/png
+styles/arcturus/options/matrix/index.php -text
+styles/arcturus/options/matrix/ltgreen.png -text svneol=unset#image/png
+styles/arcturus/options/matrix/ltltgreen.png -text svneol=unset#image/png
+styles/arcturus/options/matrix/matrix.jpg -text svneol=unset#image/jpeg
+styles/arcturus/options/matrix/matrix_160x120.png -text svneol=unset#image/png
+styles/arcturus/options/matrix/red.png -text svneol=unset#image/png
+styles/arcturus/options/simple/arrows-0b8a98.png -text svneol=unset#image/png
+styles/arcturus/options/simple/bg.png -text svneol=unset#image/png
+styles/arcturus/options/simple/button_bg.png -text svneol=unset#image/png
+styles/arcturus/options/simple/index.php -text
+styles/arcturus/options/simple/simple.png -text svneol=unset#image/png
+styles/arcturus/options/smartiki/index.php -text
+styles/arcturus/options/smartiki/smartiki.png -text svneol=unset#image/png
+styles/arcturus/options/trollparty/index.php -text
+styles/arcturus/options/trollparty/trollparty.png -text svneol=unset#image/png
 styles/business/arrows-467aa7.png -text svneol=unset#image/png
 styles/business/arrows-ffffff.png -text svneol=unset#image/png
 styles/business/boxtop.gif -text
