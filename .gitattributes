@@ -3793,8 +3793,11 @@ styles/strasa/options/fixed_width.css -text
 styles/strasa/options/index.php -text
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
+styles/strasa/options/mono/body-bg_fw.gif -text
 styles/strasa/options/mono/box_bottom.gif -text
+styles/strasa/options/mono/box_bottom_fw.gif -text
 styles/strasa/options/mono/box_top.gif -text
+styles/strasa/options/mono/box_top_fw.gif -text
 styles/strasa/options/mono/fold-topright.jpg -text
 styles/strasa/options/mono/headerbg.jpg -text
 styles/strasa/options/mono/headermenuitem-hover.png -text
