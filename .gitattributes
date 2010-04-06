@@ -200,6 +200,7 @@ images/star_yellow.gif -text
 images/web.config -text
 img/.htaccess -text
 img/adodb.png -text
+img/arrows-000000.png -text
 img/avatars/README -text
 img/avatars/index.php -text
 img/background.png -text
@@ -1353,6 +1354,8 @@ lang/hu/language.php -text
 lang/id/index.php -text
 lang/id/language.php -text
 lang/index.php -text
+lang/is/index.php -text
+lang/is/language.php -text
 lang/it/index.php -text
 lang/it/language.php -text
 lang/ja/index.php -text
@@ -3795,8 +3798,11 @@ styles/strasa/options/fixed_width.css -text
 styles/strasa/options/index.php -text
 styles/strasa/options/mono.css -text
 styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
+styles/strasa/options/mono/body-bg_fw.gif -text
 styles/strasa/options/mono/box_bottom.gif -text
+styles/strasa/options/mono/box_bottom_fw.gif -text
 styles/strasa/options/mono/box_top.gif -text
+styles/strasa/options/mono/box_top_fw.gif -text
 styles/strasa/options/mono/fold-topright.jpg -text
 styles/strasa/options/mono/headerbg.jpg -text
 styles/strasa/options/mono/headermenuitem-hover.png -text
