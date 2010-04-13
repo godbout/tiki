@@ -2895,6 +2895,7 @@ lib/wiki-plugins/wikiplugin_files.php -text
 lib/wiki-plugins/wikiplugin_flash.php -text
 lib/wiki-plugins/wikiplugin_footnote.php -text
 lib/wiki-plugins/wikiplugin_footnotearea.php -text
+lib/wiki-plugins/wikiplugin_freetagged.php -text
 lib/wiki-plugins/wikiplugin_ftp.php -text
 lib/wiki-plugins/wikiplugin_gauge.php -text
 lib/wiki-plugins/wikiplugin_googleanalytics.php -text
@@ -4598,6 +4599,7 @@ templates/wiki-plugins/wikiplugin_colobox.tpl -text
 templates/wiki-plugins/wikiplugin_datachannel.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
 templates/wiki-plugins/wikiplugin_files.tpl -text
+templates/wiki-plugins/wikiplugin_freetagged.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
 templates/wiki-plugins/wikiplugin_googlemap.tpl -text
 templates/wiki-plugins/wikiplugin_grouplist.tpl -text
