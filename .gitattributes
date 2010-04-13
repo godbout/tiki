@@ -58,6 +58,7 @@ doc/devtools/findstyledef.pl -text
 doc/devtools/findstyledef.sh -text
 doc/devtools/ggg-trace.php -text
 doc/devtools/index.php -text
+doc/devtools/lessermagicreport.php -text
 doc/devtools/mergelang.pl -text
 doc/devtools/mods.sh -text
 doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
@@ -1303,6 +1304,7 @@ installer/schema/20100308_file_delete_after_tiki.sql -text
 installer/schema/20100309_add_sheet_parent_tiki.sql -text
 installer/schema/20100312_emailPattern_tiki.sql -text
 installer/schema/20100324_newsletters_clippings_tiki.sql -text
+installer/schema/20100409_bigger_module_params_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
