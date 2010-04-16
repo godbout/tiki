@@ -1305,6 +1305,8 @@ installer/schema/20100309_add_sheet_parent_tiki.sql -text
 installer/schema/20100312_emailPattern_tiki.sql -text
 installer/schema/20100324_newsletters_clippings_tiki.sql -text
 installer/schema/20100409_bigger_module_params_tiki.sql -text
+installer/schema/20100414_actionlog_pref_tiki.sql -text
+installer/schema/20100414_actionlog_system_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -2337,6 +2339,7 @@ lib/prefs/rssfeed.php -text
 lib/prefs/search.php -text
 lib/prefs/section.php -text
 lib/prefs/sender.php -text
+lib/prefs/server.php -text
 lib/prefs/session.php -text
 lib/prefs/shib.php -text
 lib/prefs/short.php -text
