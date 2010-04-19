@@ -2251,6 +2251,7 @@ lib/prefs/article.php -text
 lib/prefs/articles.php -text
 lib/prefs/auth.php -text
 lib/prefs/available.php -text
+lib/prefs/bigbluebutton.php -text
 lib/prefs/blog.php -text
 lib/prefs/blogues.php -text
 lib/prefs/bot.php -text
