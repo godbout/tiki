@@ -1307,6 +1307,7 @@ installer/schema/20100324_newsletters_clippings_tiki.sql -text
 installer/schema/20100409_bigger_module_params_tiki.sql -text
 installer/schema/20100414_actionlog_pref_tiki.sql -text
 installer/schema/20100414_actionlog_system_tiki.sql -text
+installer/schema/20100419_bigbluebutton_tiki.sql -text
 installer/schema/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -1445,6 +1446,7 @@ lib/ban/banlib.php -text
 lib/ban/index.php -text
 lib/banners/bannerlib.php -text
 lib/banners/index.php -text
+lib/bigbluebuttonlib.php -text
 lib/blogs/bloglib.php -text
 lib/blogs/index.php -text
 lib/bookmarks/bookmarklib.php -text
