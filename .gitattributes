@@ -3730,6 +3730,7 @@ styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/arrows-c21e3b.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/body.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/header.png -text svneol=unset#image/png
+styles/fivealive/options/watermelon/index.php -text
 styles/fivealive/options/watermelon/watermelon.png -text svneol=unset#image/png
 styles/fivealive/register.png -text svneol=unset#image/png
 styles/fivealive/searchbar.png -text svneol=unset#image/png
