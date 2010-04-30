@@ -3638,6 +3638,7 @@ styles/business/image1.jpg -text svneol=unset#image/jpeg
 styles/business/info.jpg -text svneol=unset#image/jpeg
 styles/business/input.gif -text
 styles/business/magnify.gif -text
+styles/business/magnify.png -text svneol=unset#image/png
 styles/business/market.jpg -text svneol=unset#image/jpeg
 styles/business/nav.gif -text
 styles/business/nav_h.gif -text
