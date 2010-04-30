@@ -4558,6 +4558,7 @@ templates/tiki-top_bar.tpl -text
 templates/tiki-top_bar_begin.tpl -text
 templates/tiki-top_bar_custom_code.tpl -text
 templates/tiki-top_bar_end.tpl -text
+templates/tiki-tracker_view_history.tpl -text
 templates/tiki-upload_file.tpl -text
 templates/tiki-upload_file_progress.tpl -text
 templates/tiki-upload_image.tpl -text
@@ -4999,6 +5000,7 @@ tests/testfile.txt -text
 /tiki-theme_control_sections.php -text
 /tiki-tracker_http_request.php -text
 /tiki-tracker_rss.php -text
+/tiki-tracker_view_history.php -text
 /tiki-upload_file.php -text
 /tiki-upload_image.php -text
 /tiki-usage_chart.php -text
