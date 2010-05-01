@@ -1308,6 +1308,7 @@ installer/schema/20100414_actionlog_pref_tiki.sql -text
 installer/schema/20100414_actionlog_system_tiki.sql -text
 installer/schema/20100419_bigbluebutton_tiki.sql -text
 installer/schema/20100422_tracker_log_tiki.sql -text
+installer/schema/20100429_newsletter_pages_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
