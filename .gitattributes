@@ -1677,10 +1677,8 @@ lib/fckeditor_tiki/plugins/ajaxAutoSave/lang/fr.js -text
 lib/fckeditor_tiki/plugins/ajaxAutoSave/lang/nl.js -text
 lib/fckeditor_tiki/plugins/ajaxAutoSave/toggleFCKeditor.js -text
 lib/fckeditor_tiki/plugins/tikiimage/fckplugin.js -text
-lib/fckeditor_tiki/plugins/tikiimage/fcktikiimage.js -text
 lib/fckeditor_tiki/plugins/tikilink/fck_tikilink.php -text
 lib/fckeditor_tiki/plugins/tikilink/fckplugin.js -text
-lib/fckeditor_tiki/plugins/tikilink/fcktikilink.js -text
 lib/fckeditor_tiki/plugins/tikilink/templates/fck_tikilink.tpl -text
 lib/fckeditor_tiki/plugins/tikiswitch/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikiswitch/index.php -text
@@ -3160,6 +3158,7 @@ modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
+modules/mod-last_youtube_playlist_videos.php -text
 modules/web.config -text
 pics/help_icon.png -text
 pics/icons/accept.png -text
@@ -3670,16 +3669,16 @@ styles/darkroom/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/darkroom/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/darkshine/ad.gif -text
 styles/darkshine/arrows-000000.png -text svneol=unset#image/png
-styles/darkshine/blue.jpg -text svneol=unset#image/jpeg
+styles/darkshine/blue.png -text svneol=unset#image/png
 styles/darkshine/border.jpg -text svneol=unset#image/jpeg
 styles/darkshine/box.jpg -text svneol=unset#image/jpeg
 styles/darkshine/darkshine.png -text svneol=unset#image/png
-styles/darkshine/green.jpg -text svneol=unset#image/jpeg
+styles/darkshine/green.png -text svneol=unset#image/png
 styles/darkshine/hover_list.jpg -text svneol=unset#image/jpeg
 styles/darkshine/main.gif -text
 styles/darkshine/nav.gif -text
-styles/darkshine/orange.jpg -text svneol=unset#image/jpeg
-styles/darkshine/red.jpg -text svneol=unset#image/jpeg
+styles/darkshine/orange.png -text svneol=unset#image/png
+styles/darkshine/red.png -text svneol=unset#image/png
 styles/darkshine/stripes.gif -text
 styles/darkshine/stripes_small.gif -text
 styles/darkshine/title_background.jpg -text svneol=unset#image/jpeg
@@ -4097,6 +4096,7 @@ templates/modules/mod-last_tracker_comments.tpl -text
 templates/modules/mod-last_tracker_items.tpl -text
 templates/modules/mod-last_validated_faq_questions.tpl -text
 templates/modules/mod-last_visitors.tpl -text
+templates/modules/mod-last_youtube_playlist_videos.tpl -text
 templates/modules/mod-live_support.tpl -text
 templates/modules/mod-logged_users.tpl.nocache -text
 templates/modules/mod-login_box.tpl -text
@@ -4444,7 +4444,6 @@ templates/tiki-list_submissions.tpl -text
 templates/tiki-list_surveys.tpl -text
 templates/tiki-list_trackers.tpl -text
 templates/tiki-list_users.tpl -text
-templates/tiki-listmovies.tpl -text
 templates/tiki-listpages.tpl -text
 templates/tiki-listpages_content.tpl -text
 templates/tiki-live_support_admin.tpl -text
@@ -4887,7 +4886,6 @@ tests/testfile.txt -text
 /tiki-list_surveys.php -text
 /tiki-list_trackers.php -text
 /tiki-list_users.php -text
-/tiki-listmovies.php -text
 /tiki-listpages.php -text
 /tiki-live_support_admin.php -text
 /tiki-live_support_chat_frame.php -text
