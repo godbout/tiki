@@ -1309,6 +1309,7 @@ installer/schema/20100414_actionlog_system_tiki.sql -text
 installer/schema/20100419_bigbluebutton_tiki.sql -text
 installer/schema/20100422_tracker_log_tiki.sql -text
 installer/schema/20100429_newsletter_pages_tiki.sql -text
+installer/schema/20100507_flash_banner_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -3099,6 +3100,7 @@ modules/mod-func-last_images.php -text
 modules/mod-func-last_modif_events.php -text
 modules/mod-func-last_modif_pages.php -text
 modules/mod-func-last_modified_blogs.php -text
+modules/mod-func-last_podcasts.php -text
 modules/mod-func-last_submissions.php -text
 modules/mod-func-last_tracker_comments.php -text
 modules/mod-func-last_tracker_items.php -text
@@ -3795,6 +3797,7 @@ styles/strasa/headermenuitem-hover.png -text
 styles/strasa/ie6.css -text
 styles/strasa/ie7.css -text
 styles/strasa/ie8.css -text
+styles/strasa/img/icons/external_link.gif -text
 styles/strasa/index.php -text
 styles/strasa/info_icon.png -text svneol=unset#image/png
 styles/strasa/link_icon.png -text svneol=unset#image/png
@@ -4091,6 +4094,7 @@ templates/modules/mod-last_images.tpl -text
 templates/modules/mod-last_modif_events.tpl -text
 templates/modules/mod-last_modif_pages.tpl -text
 templates/modules/mod-last_modified_blogs.tpl -text
+templates/modules/mod-last_podcasts.tpl -text
 templates/modules/mod-last_submissions.tpl -text
 templates/modules/mod-last_tracker_comments.tpl -text
 templates/modules/mod-last_tracker_items.tpl -text
