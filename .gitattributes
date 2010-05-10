@@ -1002,6 +1002,7 @@ img/mytiki/mywatches.gif -text
 img/mytiki/news.gif -text
 img/mytiki/notes.gif -text
 img/mytiki/prefs.gif -text
+img/mytiki/socialnetworks_32.png -text
 img/mytiki/stock_contact.png -text
 img/mytiki/tasks.gif -text
 img/mytiki/webmail.gif -text
@@ -2355,6 +2356,7 @@ lib/prefs/sitelogo.php -text
 lib/prefs/sitemycode.php -text
 lib/prefs/slide.php -text
 lib/prefs/smarty.php -text
+lib/prefs/socialnetworks.php -text
 lib/prefs/style.php -text
 lib/prefs/tiki.php -text
 lib/prefs/title.php -text
@@ -2637,6 +2639,7 @@ lib/smarty_tiki/prefilter.log_tpl.php -text
 lib/smarty_tiki/prefilter.tr.php -text
 lib/smarty_tiki/resource.style.php -text
 lib/smarty_tiki/resource.wiki.php -text
+lib/socialnetworkslib.php -text
 lib/stats/index.php -text
 lib/stats/statslib.php -text
 lib/structures/index.php -text
@@ -4267,6 +4270,7 @@ templates/tiki-admin-include-search.tpl -text
 templates/tiki-admin-include-security.tpl -text
 templates/tiki-admin-include-sefurl.tpl -text
 templates/tiki-admin-include-semantic.tpl -text
+templates/tiki-admin-include-socialnetworks.tpl -text
 templates/tiki-admin-include-textarea.tpl -text
 templates/tiki-admin-include-trackers.tpl -text
 templates/tiki-admin-include-userfiles.tpl -text
@@ -4541,6 +4545,7 @@ templates/tiki-sitelocbar.tpl -text
 templates/tiki-sitemenu.tpl -text
 templates/tiki-sitesearchbar.tpl -text
 templates/tiki-slideshow.tpl -text
+templates/tiki-socialnetworks.tpl -text
 templates/tiki-sqllog.tpl -text
 templates/tiki-stats.tpl -text
 templates/tiki-survey_stats.tpl -text
@@ -4709,6 +4714,7 @@ tests/testfile.txt -text
 /tiki-admin_include_security.php -text
 /tiki-admin_include_sefurl.php -text
 /tiki-admin_include_semantic.php -text
+/tiki-admin_include_socialnetworks.php -text
 /tiki-admin_include_textarea.php -text
 /tiki-admin_include_trackers.php -text
 /tiki-admin_include_userfiles.php -text
@@ -4985,6 +4991,7 @@ tests/testfile.txt -text
 /tiki-show_user_avatar.php -text
 /tiki-slideshow.php -text
 /tiki-slideshow2.php -text
+/tiki-socialnetworks.php -text
 /tiki-sqllog.php -text
 /tiki-stats.php -text
 /tiki-survey_stats.php -text
