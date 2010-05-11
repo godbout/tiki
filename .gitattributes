@@ -3600,6 +3600,7 @@ styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
 styles/abse/abse.png -text svneol=unset#image/png
 styles/abse/crimeboy_design.png -text svneol=unset#image/png
+styles/abse/index.php -text
 styles/abse/menubg.jpg -text svneol=unset#image/jpeg
 styles/abse/titlebgoff.png -text svneol=unset#image/png
 styles/abse/titlebgon.png -text svneol=unset#image/png
@@ -3648,6 +3649,7 @@ styles/business/business.png -text svneol=unset#image/png
 styles/business/footer.gif -text
 styles/business/header.png -text svneol=unset#image/png
 styles/business/image1.jpg -text svneol=unset#image/jpeg
+styles/business/index.php -text
 styles/business/info.jpg -text svneol=unset#image/jpeg
 styles/business/input.gif -text
 styles/business/magnify.gif -text
@@ -3655,6 +3657,7 @@ styles/business/magnify.png -text svneol=unset#image/png
 styles/business/market.jpg -text svneol=unset#image/jpeg
 styles/business/nav.gif -text
 styles/business/nav_h.gif -text
+styles/business/options/index.php -text
 styles/business/title_bg.png -text svneol=unset#image/png
 styles/coelesce.css -text
 styles/coelesce/arrows-295c8e.png -text svneol=unset#image/png
@@ -3688,6 +3691,7 @@ styles/darkshine/box.jpg -text svneol=unset#image/jpeg
 styles/darkshine/darkshine.png -text svneol=unset#image/png
 styles/darkshine/green.png -text svneol=unset#image/png
 styles/darkshine/hover_list.jpg -text svneol=unset#image/jpeg
+styles/darkshine/index.php -text
 styles/darkshine/main.gif -text
 styles/darkshine/nav.gif -text
 styles/darkshine/orange.png -text svneol=unset#image/png
@@ -3703,6 +3707,7 @@ styles/eatlon/eatlon.png -text svneol=unset#image/png
 styles/eatlon/feed.gif -text
 styles/eatlon/head_bg.gif -text
 styles/eatlon/image.gif -text
+styles/eatlon/index.php -text
 styles/eatlon/layouts.gif -text
 styles/eatlon/menu_bg.png -text svneol=unset#image/png
 styles/empty.css -text
@@ -3716,30 +3721,38 @@ styles/feb12/index.php -text
 styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/fivealive/fivealive.png -text svneol=unset#image/png
+styles/fivealive/index.php -text
 styles/fivealive/login.png -text svneol=unset#image/png
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/arrows-0b8a98.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/body.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/header.png -text svneol=unset#image/png
+styles/fivealive/options/akebi/index.php -text
 styles/fivealive/options/blueberry/arrows-1174a5.png -text svneol=unset#image/png
 styles/fivealive/options/blueberry/body.png -text svneol=unset#image/png
 styles/fivealive/options/blueberry/header.png -text svneol=unset#image/png
+styles/fivealive/options/blueberry/index.php -text
 styles/fivealive/options/grape/arrows-8e286a.png -text svneol=unset#image/png
 styles/fivealive/options/grape/body.png -text svneol=unset#image/png
 styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
 styles/fivealive/options/grape/header.png -text svneol=unset#image/png
+styles/fivealive/options/grape/index.php -text
+styles/fivealive/options/index.php -text
 styles/fivealive/options/kiwi/arrows-638637.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/body.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/header.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/index.php -text
 styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/arrows-c75a28.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/body.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/header.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/index.php -text
 styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
 styles/fivealive/options/orange/arrows-c74b23.png -text svneol=unset#image/png
 styles/fivealive/options/orange/body.png -text svneol=unset#image/png
 styles/fivealive/options/orange/header.png -text svneol=unset#image/png
+styles/fivealive/options/orange/index.php -text
 styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/arrows-c21e3b.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/body.png -text svneol=unset#image/png
@@ -3755,14 +3768,20 @@ styles/integrator/default.css -text
 styles/integrator/doxygen.css -text
 styles/integrator/index.php -text
 styles/jqui/arrows-1174a5.png -text svneol=unset#image/png
+styles/jqui/index.php -text
 styles/jqui/jqui.png -text svneol=unset#image/png
 styles/jqui/options/excitebike/excitebike.png -text svneol=unset#image/png
+styles/jqui/options/excitebike/index.php -text
+styles/jqui/options/index.php -text
 styles/jqui/options/trontastic/arrows-000000.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/arrows-b8ec79.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/index.php -text
 styles/jqui/options/trontastic/pics/icons/folder.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/pics/icons/index.php -text
 styles/jqui/options/trontastic/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/icons/orightcol.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/pics/index.php -text
 styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
 styles/layout/design-reference.css -text
 styles/layout/design.css -text
@@ -3772,7 +3791,9 @@ styles/layout/layout-tiki3_level.css -text
 styles/layout/layout.css -text
 styles/lite/lite.css -text
 styles/ohia/header.png -text svneol=unset#image/png
+styles/ohia/index.php -text
 styles/ohia/ohia.png -text svneol=unset#image/png
+styles/ohia/options/index.php -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
 styles/slideshows/clear.css -text
@@ -3787,7 +3808,9 @@ styles/snow/flakesptn.jpg -text svneol=unset#image/jpeg
 styles/snow/flakesptn2.jpg -text svneol=unset#image/jpeg
 styles/snow/flakesptn3.jpg -text svneol=unset#image/jpeg
 styles/snow/header-bg.jpg -text svneol=unset#image/jpeg
+styles/snow/index.php -text
 styles/snow/logo.jpg -text svneol=unset#image/jpeg
+styles/snow/options/index.php -text
 styles/snow/pagetitle-bg.jpg -text svneol=unset#image/jpeg
 styles/snow/pagetitle-bullet-sm.gif -text
 styles/snow/pagetitle-bullet.gif -text
@@ -3876,6 +3899,7 @@ styles/tikinewt/ie6.css -text
 styles/tikinewt/ie7.css -text
 styles/tikinewt/options/index.php -text
 styles/tikinewt/options/shadows/box_shadow.png -text svneol=unset#image/png
+styles/tikinewt/options/shadows/index.php -text
 styles/tikinewt/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/tikinewt/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/tikinewt/tikinewt.png -text
@@ -3883,6 +3907,7 @@ styles/twist/arrows-000.png -text svneol=unset#image/png
 styles/twist/background.gif -text
 styles/twist/bullet.gif -text
 styles/twist/header.jpg -text svneol=unset#image/jpeg
+styles/twist/index.php -text
 styles/twist/pics/icons/folder.png -text svneol=unset#image/png
 styles/twist/pics/icons/ofolder.png -text svneol=unset#image/png
 styles/twist/twist.png -text svneol=unset#image/png
@@ -4216,6 +4241,8 @@ templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
+templates/styles/abse/index.php -text
+templates/styles/business/index.php -text
 templates/styles/coelesce/comment-body.tpl -text
 templates/styles/coelesce/comment-header.tpl -text
 templates/styles/coelesce/index.php -text
@@ -4223,9 +4250,16 @@ templates/styles/coelesce/tiki-site_header_login.tpl -text
 templates/styles/coelesce/tiki-site_header_top.tpl -text
 templates/styles/coelesce/tiki-top_bar.tpl -text
 templates/styles/darkroom/index.php -text
+templates/styles/darkshine/index.php -text
+templates/styles/eatlon/index.php -text
 templates/styles/feb12/index.php -text
+templates/styles/fivealive/index.php -text
 templates/styles/fivealive/tiki-bot_bar.tpl -text
 templates/styles/index.php -text
+templates/styles/jqui/index.php -text
+templates/styles/ohia/index.php -text
+templates/styles/skeleton/index.php -text
+templates/styles/snow/index.php -text
 templates/styles/strasa/custom_site_footer.tpl -text
 templates/styles/strasa/index.php -text
 templates/styles/strasa/tiki-site_header.tpl -text
@@ -4236,6 +4270,7 @@ templates/styles/strasa/tiki-view_blog.tpl -text
 templates/styles/strasa/tiki-view_blog_post.tpl -text
 templates/styles/thenews/index.php -text
 templates/styles/tikinewt/index.php -text
+templates/styles/twist/index.php -text
 templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
 templates/tiki-admin-include-ads.tpl -text
