@@ -1444,6 +1444,7 @@ lib/ajax/autosave.js -text
 lib/ajax/autosave.php -text
 lib/ajax/lib/activex_off.js -text
 lib/ajax/tiki-ajax.js -text
+lib/ajax/tikitohtml.php -text
 lib/articles/artlib.php -text
 lib/articles/index.php -text
 lib/attributes/attributelib.php -text
@@ -1692,6 +1693,9 @@ lib/fckeditor_tiki/plugins/tikilink/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikilink/templates/fck_tikilink.tpl -text
 lib/fckeditor_tiki/plugins/tikiswitch/fckplugin.js -text
 lib/fckeditor_tiki/plugins/tikiswitch/index.php -text
+lib/fckeditor_tiki/plugins/tikiwiki/fckplugin.js -text
+lib/fckeditor_tiki/plugins/tikiwiki/lang/en.js -text
+lib/fckeditor_tiki/plugins/tikiwiki/lang/pl.js -text
 lib/fckeditor_tiki/tikistyles.xml -text
 lib/fckeditor_tiki/tikitemplates.xml -text
 lib/fckeditor_tiki/web.config -text
