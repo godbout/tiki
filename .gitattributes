@@ -2247,6 +2247,7 @@ lib/pear/XML_Parser/tests/test2.xml -text
 lib/pear/XML_Parser/tests/test3.xml -text
 lib/pear/index.php -text
 lib/perspectivelib.php -text
+lib/phplayers_tiki/footer.js -text
 lib/phplayers_tiki/index.php -text
 lib/phplayers_tiki/lib/index.php -text
 lib/phplayers_tiki/lib/layersmenu-common.inc.php -text
