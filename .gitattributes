@@ -1993,6 +1993,7 @@ lib/payment/behavior/extend_membership.php -text
 lib/payment/behavior/index.php -text
 lib/payment/behavior/sample.php -text
 lib/payment/cartlib.php -text
+lib/payment/cclitelib.php -text
 lib/payment/index.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
