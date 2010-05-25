@@ -1320,6 +1320,7 @@ installer/schema/20100429_newsletter_pages_tiki.sql -text
 installer/schema/20100429_payment_user_fields_tiki.sql -text
 installer/schema/20100507_flash_banner_tiki.php -text
 installer/schema/20100519_actionlog_tiki.sql -text
+installer/schema/20100525_tracker_validation_message_tiki.sql -text
 installer/schema/20100525_tracker_validation_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
