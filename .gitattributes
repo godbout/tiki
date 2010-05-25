@@ -4537,6 +4537,7 @@ templates/tiki-orphan_pages.tpl -text
 templates/tiki-page.tpl -text
 templates/tiki-page_bar.tpl -text
 templates/tiki-pagehistory.tpl -text
+templates/tiki-payment-cclite.tpl -text
 templates/tiki-payment-list.tpl -text
 templates/tiki-payment-paypal.tpl -text
 templates/tiki-payment-single.tpl -text
