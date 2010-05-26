@@ -1605,6 +1605,9 @@ lib/diff/renderer_sidebyside.php -text
 lib/diff/renderer_unified.php -text
 lib/directory/dirlib.php -text
 lib/directory/index.php -text
+lib/dracula/graffle.js -text
+lib/dracula/graph.js -text
+lib/dracula/raphael-min.js -text
 lib/encoding/lib-encoding.php -text
 lib/equation/class.latexrender.php -text
 lib/equation/pictures/index.php -text
