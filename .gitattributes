@@ -4241,6 +4241,11 @@ templates/print/print-page_header.tpl -text
 templates/print/print-title_trackeritem.tpl -text
 templates/print/print-title_wiki.tpl -text
 templates/rating.tpl -text
+templates/register-email.tpl -text
+templates/register-form.tpl -text
+templates/register-groupchoice.tpl -text
+templates/register-login.tpl -text
+templates/register-pass.tpl -text
 templates/remarksbox.tpl -text
 templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
