@@ -2865,7 +2865,9 @@ lib/userprefs/index.php -text
 lib/userprefs/scrambleEmail.php -text
 lib/userprefs/userprefslib.php -text
 lib/userslib.php -text
+lib/validators/validator_password.php -text
 lib/validators/validator_regex.php -text
+lib/validators/validator_username.php -text
 lib/validatorslib.php -text
 lib/videogals/KalturaClientBase_v3.php -text
 lib/videogals/KalturaClientReadme.txt -text
