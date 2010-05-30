@@ -4246,6 +4246,8 @@ templates/register-form.tpl -text
 templates/register-groupchoice.tpl -text
 templates/register-login.tpl -text
 templates/register-pass.tpl -text
+templates/register-pass2.tpl -text
+templates/register-passcode.tpl -text
 templates/remarksbox.tpl -text
 templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
