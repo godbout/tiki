@@ -2366,6 +2366,7 @@ lib/prefs/sender.php -text
 lib/prefs/server.php -text
 lib/prefs/session.php -text
 lib/prefs/shib.php -text
+lib/prefs/shipping.php -text
 lib/prefs/short.php -text
 lib/prefs/show.php -text
 lib/prefs/showAuthor.php -text
@@ -2522,6 +2523,9 @@ lib/sheet/ole/pps/index.php -text
 lib/sheet/ole/pps/root.php -text
 lib/sheet/panel.js -text
 lib/sheet/style.css -text
+lib/shipping/FedEx_v8.wsdl -text
+lib/shipping/provider_fedex.php -text
+lib/shipping/shippinglib.php -text
 lib/shoutbox/index.php -text
 lib/shoutbox/shoutboxlib.php -text
 lib/smarty_tiki/block.add_help.php -text
@@ -2782,6 +2786,7 @@ lib/test/payment/CartTest.php -text
 lib/test/phpunit.xml -text
 lib/test/rating/AggregationTest.php -text
 lib/test/rating/RegisterVoteTest.php -text
+lib/test/shipping/ShippingTest.php -text
 lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
