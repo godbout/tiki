@@ -106,6 +106,7 @@ dump/index.php -text
 /favicon.ico -text
 /favicon.png -text
 /fgal_listing_conf.php -text
+files/ZeroClipboard.swf -text
 files/index.php -text
 files/templates/index.php -text
 files/templates/listpages/index.php -text
@@ -1437,6 +1438,7 @@ lib/TikiWebdav/Backend/File.php.sept -text
 lib/TikiWebdav/PathFactories/File.php -text
 lib/TikiWebdav/Server.php -text
 lib/TikiWebdav/autoload.php -text
+lib/ZeroClipboard.js -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
 lib/ajax/LICENSE.txt -text
