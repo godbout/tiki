@@ -2528,7 +2528,13 @@ lib/sheet/panel.js -text
 lib/sheet/style.css -text
 lib/shipping/FedEx_v8.wsdl -text
 lib/shipping/provider_fedex.php -text
+lib/shipping/provider_ups.php -text
 lib/shipping/shippinglib.php -text
+lib/shipping/ups-wsdl/Error1.1.xsd -text
+lib/shipping/ups-wsdl/RateWS.wsdl -text
+lib/shipping/ups-wsdl/RateWebServiceSchema.xsd -text
+lib/shipping/ups-wsdl/UPSSecurity.xsd -text
+lib/shipping/ups-wsdl/common.xsd -text
 lib/shoutbox/index.php -text
 lib/shoutbox/shoutboxlib.php -text
 lib/smarty_tiki/block.add_help.php -text
