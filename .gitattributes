@@ -5048,7 +5048,6 @@ tests/testfile.txt -text
 /tiki-quiz_result_stats.php -text
 /tiki-quiz_stats.php -text
 /tiki-quiz_stats_quiz.php -text
-/tiki-random_num_img.php -text
 /tiki-read_article.php -text
 /tiki-received_articles.php -text
 /tiki-received_pages.php -text
