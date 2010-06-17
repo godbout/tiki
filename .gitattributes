@@ -3,6 +3,7 @@
 /README -text
 /_htaccess -text
 /about.php -text
+/antibot.php -text
 /article_image.php -text
 backups/README -text
 backups/index.php -text
@@ -1478,6 +1479,9 @@ lib/calendar/calendarlib.php -text
 lib/calendar/calrecurrence.php -text
 lib/calendar/index.php -text
 lib/calendar/tikicalendarlib.php -text
+lib/captcha/arial.ttf -text
+lib/captcha/captchalib.js -text
+lib/captcha/captchalib.php -text
 lib/categories/categlib.php -text
 lib/categories/index.php -text
 lib/class_calendar.php -text

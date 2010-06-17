@@ -23,6 +23,7 @@ installer/.htaccess
 lang/.htaccess
 /last.log
 lib/.htaccess
+lib/captcha/captchas/*
 lib/smarty
 /maps
 maps/*
