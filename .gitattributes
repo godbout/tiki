@@ -3544,6 +3544,8 @@ pics/large/file-manager.png -text
 pics/large/file-manager48x48.png -text
 pics/large/gftp.png -text
 pics/large/gftp48x48.png -text
+pics/large/gnome-camera-video-32.png -text
+pics/large/gnome-camera-video-48.png -text
 pics/large/gnome-ccwindowmanager48x48.png -text
 pics/large/gnome-fs-server.png -text
 pics/large/gnome-fs-server48x48.png -text
@@ -4340,7 +4342,6 @@ templates/tiki-admin-include-general.tpl -text
 templates/tiki-admin-include-gmap.tpl -text
 templates/tiki-admin-include-i18n.tpl -text
 templates/tiki-admin-include-intertiki.tpl -text
-templates/tiki-admin-include-kaltura.tpl -text
 templates/tiki-admin-include-list-sections.tpl -text
 templates/tiki-admin-include-login.tpl -text
 templates/tiki-admin-include-look.tpl -text
@@ -4364,6 +4365,7 @@ templates/tiki-admin-include-socialnetworks.tpl -text
 templates/tiki-admin-include-textarea.tpl -text
 templates/tiki-admin-include-trackers.tpl -text
 templates/tiki-admin-include-userfiles.tpl -text
+templates/tiki-admin-include-video.tpl -text
 templates/tiki-admin-include-webmail.tpl -text
 templates/tiki-admin-include-webservices.tpl -text
 templates/tiki-admin-include-wiki.tpl -text
@@ -4788,7 +4790,6 @@ tests/testfile.txt -text
 /tiki-admin_include_gmap.php -text
 /tiki-admin_include_i18n.php -text
 /tiki-admin_include_intertiki.php -text
-/tiki-admin_include_kaltura.php -text
 /tiki-admin_include_login.php -text
 /tiki-admin_include_look.php -text
 /tiki-admin_include_maps.php -text
@@ -4811,6 +4812,7 @@ tests/testfile.txt -text
 /tiki-admin_include_textarea.php -text
 /tiki-admin_include_trackers.php -text
 /tiki-admin_include_userfiles.php -text
+/tiki-admin_include_video.php -text
 /tiki-admin_include_webmail.php -text
 /tiki-admin_include_webservices.php -text
 /tiki-admin_include_wiki.php -text
