@@ -1481,7 +1481,6 @@ lib/calendar/calrecurrence.php -text
 lib/calendar/index.php -text
 lib/calendar/tikicalendarlib.php -text
 lib/captcha/DejaVuSansMono.ttf -text
-lib/captcha/arial.ttf -text
 lib/captcha/captchalib.js -text
 lib/captcha/captchalib.php -text
 lib/categories/categlib.php -text
