@@ -23,7 +23,6 @@ installer/.htaccess
 lang/.htaccess
 /last.log
 lib/.htaccess
-lib/captcha/captchas/*
 lib/smarty
 /maps
 maps/*
@@ -40,6 +39,7 @@ temp/cache
 temp/cache/*
 temp/dbg-watch.*
 temp/public/*.js
+temp/public/*.png
 temp/public/minified_*
 temp/sf*
 temp/topic.*
