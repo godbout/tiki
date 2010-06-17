@@ -2362,6 +2362,7 @@ lib/prefs/print.php -text
 lib/prefs/proxy.php -text
 lib/prefs/quantify.php -text
 lib/prefs/rating.php -text
+lib/prefs/recaptcha.php -text
 lib/prefs/record.php -text
 lib/prefs/restrict.php -text
 lib/prefs/rnd.php -text
