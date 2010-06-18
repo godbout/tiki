@@ -1325,6 +1325,7 @@ installer/schema/20100525_tracker_validation_message_tiki.sql -text
 installer/schema/20100525_tracker_validation_tiki.sql -text
 installer/schema/20100611_rss_items_url_tiki.sql -text
 installer/schema/20100617_sefurl_user_info_tiki.sql -text
+installer/schema/20100618_calendar_participation_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
