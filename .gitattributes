@@ -4749,6 +4749,7 @@ templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
 templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_trackertimeline.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
+templates/wiki-plugins/wikiplugin_watershedarchive.tpl -text
 templates/wiki-plugins/wikiplugin_watershedbroadcaster.tpl -text
 templates/wiki-plugins/wikiplugin_watershedchat.tpl -text
 templates/wiki-plugins/wikiplugin_watershedviewer.tpl -text
