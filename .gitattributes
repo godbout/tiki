@@ -2371,7 +2371,6 @@ lib/prefs/rating.php -text
 lib/prefs/recaptcha.php -text
 lib/prefs/record.php -text
 lib/prefs/restrict.php -text
-lib/prefs/rnd.php -text
 lib/prefs/rss.php -text
 lib/prefs/rssfeed.php -text
 lib/prefs/search.php -text
