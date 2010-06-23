@@ -2927,6 +2927,7 @@ lib/wiki-plugins/wikiplugin_archivebuilder.php -text
 lib/wiki-plugins/wikiplugin_article.php -text
 lib/wiki-plugins/wikiplugin_articles.php -text
 lib/wiki-plugins/wikiplugin_attach.php -text
+lib/wiki-plugins/wikiplugin_attributes.php -text
 lib/wiki-plugins/wikiplugin_avatar.php -text
 lib/wiki-plugins/wikiplugin_back.php -text
 lib/wiki-plugins/wikiplugin_backlinks.php -text
