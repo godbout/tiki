@@ -1328,6 +1328,8 @@ installer/schema/20100617_sefurl_user_info_tiki.sql -text
 installer/schema/20100618_calendar_participation_tiki.sql -text
 installer/schema/20100621_pageprefixaliasdata_tiki.sql -text
 installer/schema/20100622_pageprefixtrackeritemid_tiki.sql -text
+installer/schema/20100623_semantic_to_relation_tiki.php -text
+installer/schema/20100623_semantic_to_relation_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
