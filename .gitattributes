@@ -1579,6 +1579,7 @@ lib/core/lib/TikiFilter/PreventXss.php -text
 lib/core/lib/TikiFilter/RawUnsafe.php -text
 lib/core/lib/TikiFilter/Word.php -text
 lib/core/lib/Transition.php -text
+lib/core/lib/WikiParser/OutputLink.php -text
 lib/core/lib/WikiParser/PluginArgumentParser.php -text
 lib/core/lib/WikiParser/PluginDefinition.php -text
 lib/core/lib/WikiParser/PluginMatcher.php -text
@@ -2778,6 +2779,7 @@ lib/test/core/TikiFilter/XssTest.php -text
 lib/test/core/Transition/AtLeastTest.php -text
 lib/test/core/Transition/AtMostTest.php -text
 lib/test/core/Transition/BasicTest.php -text
+lib/test/core/WikiParser/OutputLinkTest.php -text
 lib/test/core/WikiParser/PluginArgumentParserTest.php -text
 lib/test/core/WikiParser/PluginMatcherTest.php -text
 lib/test/core/WikiParser/PluginOutputTest.php -text
