@@ -1628,7 +1628,6 @@ lib/equation/tmp/index.php -text
 lib/events/index.php -text
 lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
-lib/fckeditor_tiki/.htaccess -text
 lib/fckeditor_tiki/fckeditor-icons/About.png -text
 lib/fckeditor_tiki/fckeditor-icons/Anchor.png -text
 lib/fckeditor_tiki/fckeditor-icons/Bgcolor.gif -text
@@ -3110,7 +3109,6 @@ maps/index.php -text
 /metrics-tab.php -text
 /modsadm.php -text
 modules/.htaccess -text
-modules/cache/.htaccess -text
 modules/cache/README -text
 modules/cache/index.php -text
 modules/cache/web.config -text
