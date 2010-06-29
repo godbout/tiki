@@ -2789,7 +2789,9 @@ lib/test/core/WikiParser/wikiplugin_foo.php -text
 lib/test/core/bootstrap.php -text
 lib/test/core/include_non_autoload_compatible_classes.php -text
 lib/test/core/phpunit.xml -text
-lib/test/importer/AllTests.php -text
+lib/test/importer/TikiImporterTest.php -text
+lib/test/importer/TikiImporterWikiMediawikiTest.php -text
+lib/test/importer/TikiImporterWikiTest.php -text
 lib/test/importer/fixtures/index.php -text
 lib/test/importer/fixtures/mediawiki_contributor.xml -text
 lib/test/importer/fixtures/mediawiki_invalid.xml -text
@@ -2800,10 +2802,7 @@ lib/test/importer/fixtures/mediawiki_revision.xml -text
 lib/test/importer/fixtures/mediawiki_revision_invalid_syntax.xml -text
 lib/test/importer/fixtures/mediawiki_sample.xml -text
 lib/test/importer/index.php -text
-lib/test/importer/tikiimporter_test.php -text
 lib/test/importer/tikiimporter_testcase.php -text
-lib/test/importer/tikiimporter_wiki_mediawiki_test.php -text
-lib/test/importer/tikiimporter_wiki_test.php -text
 lib/test/index.php -text
 lib/test/payment/CartTest.php -text
 lib/test/phpunit.xml -text
