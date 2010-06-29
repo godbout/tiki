@@ -1330,6 +1330,7 @@ installer/schema/20100621_pageprefixaliasdata_tiki.sql -text
 installer/schema/20100622_pageprefixtrackeritemid_tiki.sql -text
 installer/schema/20100623_semantic_to_relation_tiki.php -text
 installer/schema/20100623_semantic_to_relation_tiki.sql -text
+installer/schema/20100624_banning_index_tiki.sql -text
 installer/schema/20100628_payment_user_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -1717,7 +1718,6 @@ lib/fckeditor_tiki/plugins/tikiwiki/lang/en.js -text
 lib/fckeditor_tiki/plugins/tikiwiki/lang/pl.js -text
 lib/fckeditor_tiki/tikistyles.xml -text
 lib/fckeditor_tiki/tikitemplates.xml -text
-lib/fckeditor_tiki/web.config -text
 lib/featured_links/flinkslib.php -text
 lib/featured_links/index.php -text
 lib/feedcreator/feedcreator.class.php -text
@@ -3110,7 +3110,6 @@ maps/index.php -text
 modules/.htaccess -text
 modules/cache/README -text
 modules/cache/index.php -text
-modules/cache/web.config -text
 modules/index.php -text
 modules/mod-func-action_calendar.php -text
 modules/mod-func-action_similarcontent.php -text
@@ -3966,7 +3965,6 @@ temp/index.php -text
 temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
 temp/public/.htaccess -text
-temp/public/web.config -text
 temp/web.config -text
 templates/.htaccess -text
 templates/advanced_search_help.tpl -text
