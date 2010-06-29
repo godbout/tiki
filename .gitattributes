@@ -2720,7 +2720,6 @@ lib/test/AcceptanceTests/utils/upgrade_test_database_dump_file.php -text
 lib/test/AllTestsAcceptance.php -text
 lib/test/README -text
 lib/test/TikiAcceptanceTestDBRestorer.php -text
-lib/test/TikiImporter/RememberToMigrateTest.php -text
 lib/test/TikiLib/WikiParserTest.php -text
 lib/test/TikiSeleniumTestCase.php -text
 lib/test/TikiTestCase.php -text
