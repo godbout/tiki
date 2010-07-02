@@ -1333,6 +1333,7 @@ installer/schema/20100623_semantic_to_relation_tiki.sql -text
 installer/schema/20100624_banning_index_tiki.sql -text
 installer/schema/20100628_payment_user_tiki.sql -text
 installer/schema/20100629_remove_feature_blog_comments.sql -text
+installer/schema/20100702_discount_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2014,6 +2015,7 @@ lib/payment/behavior/index.php -text
 lib/payment/behavior/sample.php -text
 lib/payment/cartlib.php -text
 lib/payment/cclitelib.php -text
+lib/payment/discountlib.php -text
 lib/payment/index.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
@@ -4466,6 +4468,7 @@ templates/tiki-directory_footer.tpl -text
 templates/tiki-directory_ranking.tpl -text
 templates/tiki-directory_search.tpl -text
 templates/tiki-directory_validate_sites.tpl -text
+templates/tiki-discount.tpl -text
 templates/tiki-edit-page-include-prompt_for_edit_or_translate.tpl -text
 templates/tiki-edit_article.tpl -text
 templates/tiki-edit_banner.tpl -text
@@ -4906,6 +4909,7 @@ tests/testfile.txt -text
 /tiki-directory_rss.php -text
 /tiki-directory_search.php -text
 /tiki-directory_validate_sites.php -text
+/tiki-discount.php -text
 /tiki-download_file.php -text
 /tiki-download_forum_attachment.php -text
 /tiki-download_item_attachment.php -text
