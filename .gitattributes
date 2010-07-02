@@ -1954,6 +1954,7 @@ lib/index.php -text
 lib/init/index.php -text
 lib/init/initlib.php -text
 lib/init/setup_inc.php -text
+lib/init/smarty.php -text
 lib/init/tra.php -text
 lib/integrator/index.php -text
 lib/integrator/integrator.php -text
@@ -3645,7 +3646,6 @@ pics/trans.png -text
 /select_banner.php -text
 /setup.sh -text
 /setup_fckeditor.php -text
-/setup_smarty.php -text
 /show_image.php -text
 /snarf_ajax.php -text
 styles/BiDi/BiDi.css -text
