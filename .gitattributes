@@ -2483,7 +2483,6 @@ lib/setup/polls.php -text
 lib/setup/prefs.php -text
 lib/setup/sections.php -text
 lib/setup/site_closed.php -text
-lib/setup/smarty.php -text
 lib/setup/stats.php -text
 lib/setup/theme.php -text
 lib/setup/third_party.php -text
