@@ -5094,6 +5094,7 @@ tests/testfile.txt -text
 /tiki-setup_base.php -text
 /tiki-sheets.php -text
 /tiki-shoutbox.php -text
+/tiki-shoutbox_rss.php -text
 /tiki-show_all_images.php -text
 /tiki-show_user_avatar.php -text
 /tiki-slideshow.php -text
