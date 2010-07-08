@@ -2013,6 +2013,7 @@ lib/ointegratelib.php -text
 lib/payment/behavior/execute_datachannel.php -text
 lib/payment/behavior/extend_membership.php -text
 lib/payment/behavior/index.php -text
+lib/payment/behavior/perform_trade.php -text
 lib/payment/behavior/sample.php -text
 lib/payment/cartlib.php -text
 lib/payment/cclitelib.php -text
@@ -3045,6 +3046,7 @@ lib/wiki-plugins/wikiplugin_trackerlist.php -text
 lib/wiki-plugins/wikiplugin_trackerprefill.php -text
 lib/wiki-plugins/wikiplugin_trackerstat.php -text
 lib/wiki-plugins/wikiplugin_trackertimeline.php -text
+lib/wiki-plugins/wikiplugin_trade.php -text
 lib/wiki-plugins/wikiplugin_transclude.php -text
 lib/wiki-plugins/wikiplugin_translated.php -text
 lib/wiki-plugins/wikiplugin_usercount.php -text
@@ -4752,6 +4754,7 @@ templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
 templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_trackertimeline.tpl -text
+templates/wiki-plugins/wikiplugin_trade.tpl -text
 templates/wiki-plugins/wikiplugin_vote.tpl -text
 templates/wiki-plugins/wikiplugin_watershedarchive.tpl -text
 templates/wiki-plugins/wikiplugin_watershedbroadcaster.tpl -text
