@@ -1363,6 +1363,7 @@ lang/en/index.php -text
 lang/en/language.php -text
 lang/es/custom.php_example -text
 lang/es/index.php -text
+lang/es/language.js -text
 lang/es/language.php -text
 lang/fa/index.php -text
 lang/fa/language.php -text
