@@ -2944,6 +2944,7 @@ lib/wiki-plugins/wikiplugin_calendar.php -text
 lib/wiki-plugins/wikiplugin_category.php -text
 lib/wiki-plugins/wikiplugin_catorphans.php -text
 lib/wiki-plugins/wikiplugin_catpath.php -text
+lib/wiki-plugins/wikiplugin_cclite.php -text
 lib/wiki-plugins/wikiplugin_center.php -text
 lib/wiki-plugins/wikiplugin_chart.php -text
 lib/wiki-plugins/wikiplugin_code.php -text
@@ -4730,6 +4731,7 @@ templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton_create.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
 templates/wiki-plugins/wikiplugin_catorphans.tpl -text
+templates/wiki-plugins/wikiplugin_cclite.tpl -text
 templates/wiki-plugins/wikiplugin_colobox.tpl -text
 templates/wiki-plugins/wikiplugin_datachannel.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
