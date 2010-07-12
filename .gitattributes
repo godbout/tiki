@@ -1724,8 +1724,6 @@ lib/fckeditor_tiki/tikistyles.xml -text
 lib/fckeditor_tiki/tikitemplates.xml -text
 lib/featured_links/flinkslib.php -text
 lib/featured_links/index.php -text
-lib/feedcreator/feedcreator.class.php -text
-lib/feedcreator/lgpl.txt -text
 lib/filegals/filegallib.php -text
 lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
@@ -2440,12 +2438,7 @@ lib/registration/index.php -text
 lib/registration/register_ajax.js -text
 lib/registration/registrationlib.php -text
 lib/reportslib.php -text
-lib/rss/atom-style.css -text svneol=unset#application/octet-stream
 lib/rss/index.php -text
-lib/rss/opml.css -text
-lib/rss/opml.xsl -text
-lib/rss/rss-style.css -text svneol=unset#application/octet-stream
-lib/rss/rss20.xsl -text
 lib/rss/rsslib.php -text
 lib/score/events.php -text
 lib/score/index.php -text
