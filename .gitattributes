@@ -1496,9 +1496,6 @@ lib/captcha/captchalib.js -text
 lib/captcha/captchalib.php -text
 lib/categories/categlib.php -text
 lib/categories/index.php -text
-lib/class_calendar.php -text
-lib/class_rdf_parser.php -text
-lib/class_rss_parser.php -text
 lib/commcenter/commlib.php -text
 lib/commcenter/index.php -text
 lib/commentslib.php -text
