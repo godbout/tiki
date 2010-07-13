@@ -1334,6 +1334,7 @@ installer/schema/20100624_banning_index_tiki.sql -text
 installer/schema/20100628_payment_user_tiki.sql -text
 installer/schema/20100629_remove_feature_blog_comments.sql -text
 installer/schema/20100702_discount_tiki.sql -text
+installer/schema/20100712_remove_unsupported_feed_formats.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
