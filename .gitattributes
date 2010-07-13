@@ -4703,7 +4703,6 @@ templates/tiki.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker_error.tpl -text
 templates/tracker_filter.tpl -text
-templates/tracker_item_field_googlemap_value.tpl -text
 templates/tracker_item_field_input.tpl -text
 templates/tracker_item_field_value.tpl -text
 templates/tracker_pretty_item.tpl -text
