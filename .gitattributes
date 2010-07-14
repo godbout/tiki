@@ -57,6 +57,7 @@ doc/devtools/extract-img-db-to-fs.php -text
 doc/devtools/fckpackager.php -text
 doc/devtools/findstyledef.pl -text
 doc/devtools/findstyledef.sh -text
+doc/devtools/fix-encoding.php -text
 doc/devtools/ggg-trace.php -text
 doc/devtools/index.php -text
 doc/devtools/lessermagicreport.php -text
