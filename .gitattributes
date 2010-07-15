@@ -2627,6 +2627,7 @@ lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.toolbars.php -text
 lib/smarty_tiki/function.tree.php -text
 lib/smarty_tiki/function.treetable.php -text
+lib/smarty_tiki/function.user_selector.php -text
 lib/smarty_tiki/function.var_dump.php -text
 lib/smarty_tiki/function.wikistructure.php -text
 lib/smarty_tiki/function.xajax_response.php -text
