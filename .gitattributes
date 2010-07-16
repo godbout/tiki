@@ -1338,6 +1338,7 @@ installer/schema/20100702_discount_tiki.sql -text
 installer/schema/20100712_remove_unsupported_feed_formats_tiki.sql -text
 installer/schema/20100713_rename_feed_prefs_tiki.sql -text
 installer/schema/20100714_batch_transition_tiki.sql -text
+installer/schema/20100716_user_selector_pref_rename_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
