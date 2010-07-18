@@ -1477,7 +1477,6 @@ lib/auth/index.php -text
 lib/auth/ldap.php -text
 lib/auth/phpbb.php -text
 lib/auth/tokens.php -text
-lib/bablotron.php -text
 lib/ban/banlib.php -text
 lib/ban/index.php -text
 lib/banners/bannerlib.php -text
@@ -2307,7 +2306,6 @@ lib/prefs/category.php -text
 lib/prefs/categorypath.php -text
 lib/prefs/center.php -text
 lib/prefs/change.php -text
-lib/prefs/cms.php -text
 lib/prefs/contact.php -text
 lib/prefs/cookie.php -text
 lib/prefs/count.php -text
@@ -2344,7 +2342,6 @@ lib/prefs/lang.php -text
 lib/prefs/language.php -text
 lib/prefs/layout.php -text
 lib/prefs/ldap.php -text
-lib/prefs/lib.php -text
 lib/prefs/load.php -text
 lib/prefs/log.php -text
 lib/prefs/login.php -text
