@@ -1635,6 +1635,7 @@ lib/equation/class.latexrender.php -text
 lib/equation/pictures/index.php -text
 lib/equation/tmp/index.php -text
 lib/events/index.php -text
+lib/facebook-sdk/facebook.php -text
 lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
 lib/fckeditor_tiki/fckeditor-icons/About.png -text
