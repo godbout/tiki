@@ -1736,6 +1736,7 @@ lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
 lib/freetag/freetaglib.php -text
 lib/freetag/index.php -text
+lib/geo/geolib.php -text
 lib/graph-engine/abstract.gridbased.php -text
 lib/graph-engine/core.php -text
 lib/graph-engine/gd.php -text
