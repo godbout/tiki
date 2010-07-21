@@ -1340,6 +1340,7 @@ installer/schema/20100713_rename_feed_prefs_tiki.sql -text
 installer/schema/20100714_batch_transition_tiki.sql -text
 installer/schema/20100716_user_selector_pref_rename_tiki.sql -text
 installer/schema/20100720_tiki_p_view_page_contribution_tiki.sql -text
+installer/schema/20100721_batch_transition_rollback_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -4871,7 +4872,6 @@ tests/testfile.txt -text
 /tiki-atom.php -text
 /tiki-auto_save.php -text
 /tiki-backlinks.php -text
-/tiki-batch_transitions.php -text
 /tiki-batch_upload.php -text
 /tiki-batch_upload_files.php -text
 /tiki-blog_post.php -text
