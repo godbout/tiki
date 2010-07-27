@@ -794,6 +794,7 @@ img/icons/toright.gif -text
 img/icons/trash.gif -text
 img/icons/trdot.gif -text
 img/icons/tu.gif -text
+img/icons/twitter_t_logo_32.png -text
 img/icons/unlock_topic.gif -text
 img/icons/up.gif -text
 img/icons/url.gif -text
@@ -1069,6 +1070,7 @@ img/tiki/tikilogo.png -text
 img/tiki/tikisitelogo.gif -text
 img/tiki/tikisitelogo.png -text
 img/trackers/index.php -text
+img/twitter_logo.png -text
 img/valid-xhtml10.png -text
 img/web.config -text
 img/webmail/attachment.gif -text
@@ -1344,6 +1346,7 @@ installer/schema/20100720_tiki_p_view_page_contribution_tiki.sql -text
 installer/schema/20100721_batch_transition_rollback_tiki.sql -text
 installer/schema/20100721_todo_notif_tiki.sql -text
 installer/schema/20100721_todo_tiki.sql -text
+installer/schema/20100727_tiki_p_promote_page.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1640,7 +1643,6 @@ lib/equation/class.latexrender.php -text
 lib/equation/pictures/index.php -text
 lib/equation/tmp/index.php -text
 lib/events/index.php -text
-lib/facebook-sdk/facebook.php -text
 lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
 lib/fckeditor_tiki/fckeditor-icons/About.png -text
@@ -3426,6 +3428,7 @@ pics/icons/plugin_edit.png -text
 pics/icons/plus_small.png -text
 pics/icons/printer.png -text
 pics/icons/printer_add.png -text
+pics/icons/promote_link.png -text
 pics/icons/quotes.png -text
 pics/icons/readme.txt -text
 pics/icons/resultset.png -text
@@ -3598,6 +3601,7 @@ pics/large/profiles.png -text
 pics/large/profiles48x48.png -text
 pics/large/semantic.png -text
 pics/large/semantic48x48.png -text
+pics/large/socialnetworks.png -text
 pics/large/stock_about.png -text
 pics/large/stock_about48x48.png -text
 pics/large/stock_bold.png -text
@@ -4063,6 +4067,8 @@ templates/mail/newsletter_welcome_subject.tpl -text
 templates/mail/notification_subject.tpl -text
 templates/mail/password_reminder.tpl -text
 templates/mail/password_reminder_subject.tpl -text
+templates/mail/promote.tpl -text
+templates/mail/promote_subject.tpl -text
 templates/mail/report.tpl -text
 templates/mail/submission_notification.tpl -text
 templates/mail/submission_notification_subject.tpl -text
@@ -4618,6 +4624,7 @@ templates/tiki-print_blog_post.tpl -text
 templates/tiki-print_forum_thread.tpl -text
 templates/tiki-print_multi_pages.tpl -text
 templates/tiki-print_pages.tpl -text
+templates/tiki-promote.tpl -text
 templates/tiki-quiz_edit.tpl -text
 templates/tiki-quiz_result_stats.tpl -text
 templates/tiki-quiz_stats.tpl -text
@@ -5076,6 +5083,7 @@ tests/testfile.txt -text
 /tiki-print_indexed.php -text
 /tiki-print_multi_pages.php -text
 /tiki-print_pages.php -text
+/tiki-promote.php -text
 /tiki-pv_chart.php -text
 /tiki-quiz_download_answer.php -text
 /tiki-quiz_edit.php -text
