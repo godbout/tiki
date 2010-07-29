@@ -3980,6 +3980,7 @@ temp/web.config -text
 templates/.htaccess -text
 templates/advanced_search_help.tpl -text
 templates/antibot.tpl -text
+templates/article_trailer.tpl -text
 templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
 templates/babelfish.tpl -text
