@@ -1347,6 +1347,7 @@ installer/schema/20100721_batch_transition_rollback_tiki.sql -text
 installer/schema/20100721_todo_notif_tiki.sql -text
 installer/schema/20100721_todo_tiki.sql -text
 installer/schema/20100727_tiki_p_promote_page.sql -text
+installer/schema/20100730_list_image_article_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
