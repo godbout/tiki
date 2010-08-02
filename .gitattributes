@@ -1349,6 +1349,8 @@ installer/schema/20100721_todo_tiki.sql -text
 installer/schema/20100721_todonotif_tiki.sql -text
 installer/schema/20100727_tiki_p_promote_page.sql -text
 installer/schema/20100730_list_image_article_tiki.sql -text
+installer/schema/20100802_tiki_p_share_tiki.sql -text
+installer/schema/20100802_url_shortener_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -3435,7 +3437,6 @@ pics/icons/plugin_edit.png -text
 pics/icons/plus_small.png -text
 pics/icons/printer.png -text
 pics/icons/printer_add.png -text
-pics/icons/promote_link.png -text
 pics/icons/quotes.png -text
 pics/icons/readme.txt -text
 pics/icons/resultset.png -text
@@ -3450,6 +3451,7 @@ pics/icons/resultset_up.png -text
 pics/icons/rss.png -text
 pics/icons/shading.png -text
 pics/icons/shape_square_edit.png -text
+pics/icons/share_link.png -text
 pics/icons/sheet_col_add.png -text
 pics/icons/sheet_col_add_multi.png -text
 pics/icons/sheet_col_delete.png -text
@@ -4075,9 +4077,9 @@ templates/mail/newsletter_welcome_subject.tpl -text
 templates/mail/notification_subject.tpl -text
 templates/mail/password_reminder.tpl -text
 templates/mail/password_reminder_subject.tpl -text
-templates/mail/promote.tpl -text
-templates/mail/promote_subject.tpl -text
 templates/mail/report.tpl -text
+templates/mail/share.tpl -text
+templates/mail/share_subject.tpl -text
 templates/mail/submission_notification.tpl -text
 templates/mail/submission_notification_subject.tpl -text
 templates/mail/tellAFriend.tpl -text
@@ -4631,7 +4633,6 @@ templates/tiki-print_blog_post.tpl -text
 templates/tiki-print_forum_thread.tpl -text
 templates/tiki-print_multi_pages.tpl -text
 templates/tiki-print_pages.tpl -text
-templates/tiki-promote.tpl -text
 templates/tiki-quiz_edit.tpl -text
 templates/tiki-quiz_result_stats.tpl -text
 templates/tiki-quiz_stats.tpl -text
@@ -4652,6 +4653,7 @@ templates/tiki-searchindex.tpl -text
 templates/tiki-searchresults.tpl -text
 templates/tiki-send_newsletters.tpl -text
 templates/tiki-send_objects.tpl -text
+templates/tiki-share.tpl -text
 templates/tiki-sheets.tpl -text
 templates/tiki-shoutbox.tpl -text
 templates/tiki-show_help.tpl -text
@@ -5091,7 +5093,6 @@ tests/testfile.txt -text
 /tiki-print_indexed.php -text
 /tiki-print_multi_pages.php -text
 /tiki-print_pages.php -text
-/tiki-promote.php -text
 /tiki-pv_chart.php -text
 /tiki-quiz_download_answer.php -text
 /tiki-quiz_edit.php -text
@@ -5119,6 +5120,7 @@ tests/testfile.txt -text
 /tiki-send_objects.php -text
 /tiki-setup.php -text
 /tiki-setup_base.php -text
+/tiki-share.php -text
 /tiki-sheets.php -text
 /tiki-shoutbox.php -text
 /tiki-shoutbox_rss.php -text
