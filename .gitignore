@@ -2,6 +2,7 @@
 /.cache
 /.htaccess
 /.lastup
+/.metadata*
 /.project
 /.settings
 /ZendPlatform
@@ -10,6 +11,7 @@
 backups/*
 db/.htaccess
 db/local.php
+db/lock
 db/virtuals.inc
 /dummy.php
 dump/*
