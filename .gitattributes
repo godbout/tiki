@@ -4761,11 +4761,11 @@ templates/tracker_item_field_value.tpl -text
 templates/tracker_pretty_item.tpl -text
 templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
+templates/tracker_validator.tpl -text
 templates/translated-lang.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
-templates/wiki-plugins/tracker_validator.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton_create.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
