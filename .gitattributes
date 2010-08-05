@@ -1984,6 +1984,8 @@ lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
 lib/jquery_tiki/tablesorter/themes/tiki/desc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
+lib/language/Language.php -text
+lib/language/index.php -text
 lib/live_support/index.php -text
 lib/live_support/live-support.js -text
 lib/live_support/lsadminlib.php -text
@@ -2820,6 +2822,12 @@ lib/test/importer/fixtures/mediawiki_sample.xml -text
 lib/test/importer/index.php -text
 lib/test/importer/tikiimporter_testcase.php -text
 lib/test/index.php -text
+lib/test/language/LanguageTest.php -text
+lib/test/language/fixtures/custom.php -text
+lib/test/language/fixtures/index.php -text
+lib/test/language/fixtures/language_modif.php -text
+lib/test/language/fixtures/language_orig.php -text
+lib/test/language/index.php -text
 lib/test/payment/CartTest.php -text
 lib/test/phpunit.xml -text
 lib/test/rating/AggregationTest.php -text
