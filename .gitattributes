@@ -4519,6 +4519,7 @@ templates/tiki-edit_blog.tpl -text
 templates/tiki-edit_css.tpl -text
 templates/tiki-edit_help.tpl -text
 templates/tiki-edit_help_plugins.tpl -text
+templates/tiki-edit_help_sheet.tpl -text
 templates/tiki-edit_image.tpl -text
 templates/tiki-edit_languages.tpl -text
 templates/tiki-edit_perspective.tpl -text
