@@ -1354,6 +1354,7 @@ installer/schema/20100802_tiki_p_share_tiki.sql -text
 installer/schema/20100802_url_shortener_tiki.sql -text
 installer/schema/20100804_remove_tiki_languages_tiki.sql -text
 installer/schema/20100806_blog_posts_header_tiki.sql -text
+installer/schema/20100807_alter_tiki_translate_fields_to_text_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
