@@ -3037,6 +3037,7 @@ lib/wiki-plugins/wikiplugin_poll.php -text
 lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
+lib/wiki-plugins/wikiplugin_randominclude.php -text
 lib/wiki-plugins/wikiplugin_rcontent.php -text
 lib/wiki-plugins/wikiplugin_realnamelist.php -text
 lib/wiki-plugins/wikiplugin_redirect.php -text
