@@ -4374,7 +4374,6 @@ templates/styles/strasa/tiki-view_blog_post.tpl -text
 templates/styles/thenews/index.php -text
 templates/styles/tikinewt/index.php -text
 templates/styles/twist/index.php -text
-templates/textareasize.tpl -text
 templates/tiki-action_calendar.tpl -text
 templates/tiki-admin-include-ads.tpl -text
 templates/tiki-admin-include-anchors.tpl -text
@@ -4818,7 +4817,6 @@ templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
-/textareasize.php -text
 /tiki-action_calendar.php -text
 /tiki-admin.php -text
 /tiki-admin_actionlog.php -text
