@@ -1518,6 +1518,8 @@ lib/captcha/captchalib.php -text
 lib/captcha/index.php -text
 lib/categories/categlib.php -text
 lib/categories/index.php -text
+lib/ckeditor_tiki/plugins/_tikilink/dialogs/tikilink.js -text
+lib/ckeditor_tiki/plugins/_tikilink/plugin.js -text
 lib/commcenter/commlib.php -text
 lib/commcenter/index.php -text
 lib/commentslib.php -text
