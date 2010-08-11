@@ -2841,6 +2841,8 @@ lib/test/phpunit.xml -text
 lib/test/rating/AggregationTest.php -text
 lib/test/rating/RegisterVoteTest.php -text
 lib/test/shipping/ShippingTest.php -text
+lib/test/smarty_tiki/ModifierDurationTest.php -text
+lib/test/smarty_tiki/index.php -text
 lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
 lib/tiki-dynamic-js.php -text
