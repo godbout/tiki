@@ -1520,6 +1520,13 @@ lib/categories/categlib.php -text
 lib/categories/index.php -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/tikilink.js -text
 lib/ckeditor_tiki/plugins/_tikilink/plugin.js -text
+lib/ckeditor_tiki/plugins/ajaxAutoSave/images/ajaxAutoSaveClean.gif -text
+lib/ckeditor_tiki/plugins/ajaxAutoSave/images/ajaxAutoSaveDirty.gif -text
+lib/ckeditor_tiki/plugins/ajaxAutoSave/images/cross_animated.gif -text
+lib/ckeditor_tiki/plugins/ajaxAutoSave/images/loadingBig.gif -text
+lib/ckeditor_tiki/plugins/ajaxAutoSave/images/loadingSmall.gif -text
+lib/ckeditor_tiki/plugins/ajaxAutoSave/images/tick_animated.gif -text
+lib/ckeditor_tiki/plugins/ajaxAutoSave/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiwiki/plugin.js -text
 lib/commcenter/commlib.php -text
 lib/commcenter/index.php -text
