@@ -3869,7 +3869,6 @@ styles/jqui/options/trontastic/pics/icons/oleftcol.png -text svneol=unset#image/
 styles/jqui/options/trontastic/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/index.php -text
 styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
-styles/layout/design-reference.css -text
 styles/layout/design.css -text
 styles/layout/index.php -text
 styles/layout/layout-reference.css -text
