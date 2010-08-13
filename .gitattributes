@@ -3871,7 +3871,6 @@ styles/jqui/options/trontastic/pics/index.php -text
 styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
 styles/layout/design.css -text
 styles/layout/index.php -text
-styles/layout/layout-reference.css -text
 styles/layout/layout-tiki3_level.css -text
 styles/layout/layout.css -text
 styles/lite/lite.css -text
