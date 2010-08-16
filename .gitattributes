@@ -2963,6 +2963,7 @@ lib/webmail/webmaillib.php -text
 lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_addtocart.php -text
+lib/wiki-plugins/wikiplugin_addtogooglecal.php -text
 lib/wiki-plugins/wikiplugin_agentinfo.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
 lib/wiki-plugins/wikiplugin_aname.php -text
