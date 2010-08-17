@@ -4394,6 +4394,7 @@ templates/tiki-admin-include-blogs.tpl -text
 templates/tiki-admin-include-calendar.tpl -text
 templates/tiki-admin-include-category.tpl -text
 templates/tiki-admin-include-cms.tpl -text
+templates/tiki-admin-include-comments.tpl -text
 templates/tiki-admin-include-community.tpl -text
 templates/tiki-admin-include-connect.tpl -text
 templates/tiki-admin-include-copyright.tpl -text
@@ -4851,6 +4852,7 @@ tests/testfile.txt -text
 /tiki-admin_include_calendar.php -text
 /tiki-admin_include_category.php -text
 /tiki-admin_include_cms.php -text
+/tiki-admin_include_comments.php -text
 /tiki-admin_include_community.php -text
 /tiki-admin_include_connect.php -text
 /tiki-admin_include_copyright.php -text
