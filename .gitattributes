@@ -1534,7 +1534,7 @@ lib/ckeditor_tiki/plugins/tikiwiki/plugin.js -text
 lib/commcenter/commlib.php -text
 lib/commcenter/index.php -text
 lib/comments/commentslib.js -text
-lib/commentslib.php -text
+lib/comments/commentslib.php -text
 lib/contribution/contributionlib.php -text
 lib/contribution/index.php -text
 lib/copyrights/copyrightslib.php -text
