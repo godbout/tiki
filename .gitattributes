@@ -2065,6 +2065,7 @@ lib/payment/behavior/perform_trade.php -text
 lib/payment/behavior/sample.php -text
 lib/payment/cartlib.php -text
 lib/payment/cclitelib.php -text
+lib/payment/creditspaylib.php -text
 lib/payment/discountlib.php -text
 lib/payment/index.php -text
 lib/payment/paymentlib.php -text
@@ -4671,6 +4672,7 @@ templates/tiki-payment-list-past.tpl -text
 templates/tiki-payment-list.tpl -text
 templates/tiki-payment-paypal.tpl -text
 templates/tiki-payment-single.tpl -text
+templates/tiki-payment-tikicredits.tpl -text
 templates/tiki-payment-user.tpl -text
 templates/tiki-payment.tpl -text
 templates/tiki-pick_avatar.tpl -text
