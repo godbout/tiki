@@ -4958,6 +4958,7 @@ tests/testfile.txt -text
 /tiki-atom.php -text
 /tiki-auto_save.php -text
 /tiki-backlinks.php -text
+/tiki-batch_send_newsletter.php -text
 /tiki-batch_todo.php -text
 /tiki-batch_upload.php -text
 /tiki-batch_upload_files.php -text
