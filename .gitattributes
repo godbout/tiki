@@ -1367,6 +1367,7 @@ installer/schema/20100817_credits_tiki.sql -text
 installer/schema/20100817_rename_preference_wiki_comments_notitle_tiki.sql -text
 installer/schema/20100818_watch_tiki.sql -text
 installer/schema/20100820_blog_posts_wysiwyg.sql -text
+installer/schema/20100820_feed_fields_text_and_desc_are_not_empty_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
