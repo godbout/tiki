@@ -5255,6 +5255,7 @@ tests/testfile.txt -text
 /tiki-wiki3d_xmlrpc.php -text
 /tiki-wiki_rankings.php -text
 /tiki-wiki_rss.php -text
+/tiki-wiki_rss_no_diff.php -text
 /tiki-wikiplugin_edit.php -text
 /tiki-xmlrpc_services.php -text
 tiki_tests/index.php -text
