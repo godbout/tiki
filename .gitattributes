@@ -4683,7 +4683,6 @@ templates/tiki-plugin_blocked.tpl -text
 templates/tiki-plugin_help.tpl -text
 templates/tiki-plugin_poll.tpl -text
 templates/tiki-plugin_sql.tpl -text
-templates/tiki-plugin_trackerfilter.tpl -text
 templates/tiki-plugins.tpl -text
 templates/tiki-poll.tpl -text
 templates/tiki-poll_form.tpl -text
