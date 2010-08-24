@@ -4684,7 +4684,6 @@ templates/tiki-plugin_help.tpl -text
 templates/tiki-plugin_poll.tpl -text
 templates/tiki-plugin_sql.tpl -text
 templates/tiki-plugin_trackerfilter.tpl -text
-templates/tiki-plugin_trackerlist.tpl -text
 templates/tiki-plugins.tpl -text
 templates/tiki-poll.tpl -text
 templates/tiki-poll_form.tpl -text
@@ -4839,6 +4838,7 @@ templates/wiki-plugins/wikiplugin_subscribegroups.tpl -text
 templates/wiki-plugins/wikiplugin_subscribenewsletter.tpl -text
 templates/wiki-plugins/wikiplugin_tabs.tpl -text
 templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
+templates/wiki-plugins/wikiplugin_trackerlist.tpl -text
 templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
 templates/wiki-plugins/wikiplugin_trackerstat.tpl -text
 templates/wiki-plugins/wikiplugin_trackertimeline.tpl -text
