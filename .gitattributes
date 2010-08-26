@@ -4404,8 +4404,6 @@ templates/styles/strasa/tiki-site_header.tpl -text
 templates/styles/strasa/tiki-site_header_login.tpl -text
 templates/styles/strasa/tiki-site_header_options.tpl -text
 templates/styles/strasa/tiki-site_header_top.tpl -text
-templates/styles/strasa/tiki-view_blog.tpl -text
-templates/styles/strasa/tiki-view_blog_post.tpl -text
 templates/styles/thenews/index.php -text
 templates/styles/tikinewt/index.php -text
 templates/styles/twist/index.php -text
