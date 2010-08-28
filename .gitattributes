@@ -1548,6 +1548,8 @@ lib/ckeditor_tiki/plugins/autosave/images/tick_animated.gif -text
 lib/ckeditor_tiki/plugins/autosave/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiplugin/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiwiki/plugin.js -text
+lib/ckeditor_tiki/tikistyles.js -text
+lib/ckeditor_tiki/tikitemplates.js -text
 lib/commcenter/commlib.php -text
 lib/commcenter/index.php -text
 lib/comments/commentslib.js -text
