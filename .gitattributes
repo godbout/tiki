@@ -4715,6 +4715,7 @@ templates/tiki-remind_password.tpl -text
 templates/tiki-removepage.tpl -text
 templates/tiki-rename_page.tpl -text
 templates/tiki-rollback.tpl -text
+templates/tiki-search_replace.tpl -text
 templates/tiki-search_stats.tpl -text
 templates/tiki-searchindex.tpl -text
 templates/tiki-searchresults.tpl -text
@@ -5180,6 +5181,7 @@ tests/testfile.txt -text
 /tiki-rename_page.php -text
 /tiki-rollback.php -text
 /tiki-rss_error.php -text
+/tiki-search_replace.php -text
 /tiki-search_stats.php -text
 /tiki-searchindex.php -text
 /tiki-searchresults.php -text
