@@ -5079,6 +5079,8 @@ tests/testfile.txt -text
 /tiki-install.php -text
 /tiki-integrator.php -text
 /tiki-interactive_trans.php -text
+/tiki-invit.php -text
+/tiki-invited.php -text
 /tiki-jscalendar.php -text
 /tiki-jsplugin.php -text
 /tiki-kaltura_upload.php -text
