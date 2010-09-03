@@ -1376,6 +1376,7 @@ installer/schema/20100831_freetag_tiki.sql -text
 installer/schema/20100901_duplic_actionlog_tiki.sql -text
 installer/schema/20100901_expire_tiki.sql -text
 installer/schema/20100902_invit_tiki.sql -text
+installer/schema/20100903_article_ispublished_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
