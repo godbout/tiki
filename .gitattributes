@@ -4053,8 +4053,6 @@ templates/article_trailer.tpl -text
 templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
 templates/babelfish.tpl -text
-templates/blog_author_info.tpl -text
-templates/blog_footer.tpl -text
 templates/blog_heading.tpl -text
 templates/blog_post_author_info.tpl -text
 templates/blog_post_footer.tpl -text
@@ -4062,7 +4060,6 @@ templates/blog_post_heading.tpl -text
 templates/blog_post_postbody_content.tpl -text
 templates/blog_post_postbody_title.tpl -text
 templates/blog_post_related_content.tpl -text
-templates/blog_postbody_title.tpl -text
 templates/blog_wrapper.tpl -text
 templates/browse_file_gallery.tpl -text
 templates/browsedcategory.tpl -text
