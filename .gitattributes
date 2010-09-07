@@ -3285,6 +3285,7 @@ modules/mod-func-top_pages.php -text
 modules/mod-func-top_quizzes.php -text
 modules/mod-func-top_visited_blogs.php -text
 modules/mod-func-top_visited_faqs.php -text
+modules/mod-func-trackerhelp.php -text
 modules/mod-func-translation.php -text
 modules/mod-func-upcoming_events.php -text
 modules/mod-func-user_blogs.php -text
@@ -4321,6 +4322,7 @@ templates/modules/mod-top_pages.tpl -text
 templates/modules/mod-top_quizzes.tpl -text
 templates/modules/mod-top_visited_blogs.tpl -text
 templates/modules/mod-top_visited_faqs.tpl -text
+templates/modules/mod-trackerhelp.tpl -text
 templates/modules/mod-translation.tpl -text
 templates/modules/mod-upcoming_events.tpl -text
 templates/modules/mod-user_blogs.tpl -text
