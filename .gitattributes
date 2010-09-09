@@ -4620,7 +4620,6 @@ templates/tiki-index_p.tpl -text
 templates/tiki-information.tpl -text
 templates/tiki-install.tpl -text
 templates/tiki-integrator.tpl -text
-templates/tiki-interactive_trans.tpl -text
 templates/tiki-invit.tpl -text
 templates/tiki-invited.tpl -text
 templates/tiki-kaltura_upload.tpl -text
