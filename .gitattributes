@@ -1378,6 +1378,7 @@ installer/schema/20100901_expire_tiki.sql -text
 installer/schema/20100902_invit_tiki.sql -text
 installer/schema/20100903_article_ispublished_tiki.sql -text
 installer/schema/20100906_sheet_toolbar_default_tiki.sql -text
+installer/schema/20100909_lengthen_wiki_attachments_filename_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
