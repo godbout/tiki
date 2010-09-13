@@ -1382,6 +1382,7 @@ installer/schema/20100909_alter_tiki_language_fields_to_text_tiki.sql -text
 installer/schema/20100909_ckeditor_upgrade_tiki.sql -text
 installer/schema/20100909_lengthen_wiki_attachments_filename_tiki.sql -text
 installer/schema/20100910_new_fields_for_tiki_blogs_tiki.sql -text
+installer/schema/20100912_rename_autosave_pref_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2357,6 +2358,7 @@ lib/phplayers_tiki/tiki-phplayers.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
+lib/prefs/ajax.php -text
 lib/prefs/allowmsg.php -text
 lib/prefs/art.php -text
 lib/prefs/article.php -text
