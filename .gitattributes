@@ -4358,6 +4358,7 @@ templates/modules/mod-wiki_last_comments.tpl -text
 templates/modules/mod-wiki_last_comments.tpl.nocache -text
 templates/modules/mod-youtube.tpl -text
 templates/modules/user_module.tpl -text
+templates/object_perms_summary.tpl -text
 templates/pagehistory.tpl -text
 templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
