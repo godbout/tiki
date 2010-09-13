@@ -4065,12 +4065,15 @@ templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
 templates/babelfish.tpl -text
 templates/blog_heading.tpl -text
+templates/blog_post_actions.tpl -text
+templates/blog_post_author_actions.tpl -text
 templates/blog_post_author_info.tpl -text
-templates/blog_post_footer.tpl -text
 templates/blog_post_heading.tpl -text
+templates/blog_post_navigation.tpl -text
 templates/blog_post_postbody_content.tpl -text
 templates/blog_post_postbody_title.tpl -text
 templates/blog_post_related_content.tpl -text
+templates/blog_post_status.tpl -text
 templates/blog_wrapper.tpl -text
 templates/browse_file_gallery.tpl -text
 templates/browsedcategory.tpl -text
@@ -4399,6 +4402,9 @@ templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
 templates/styles/abse/index.php -text
 templates/styles/business/index.php -text
+templates/styles/coelesce/blog_post_postbody_title.tpl -text
+templates/styles/coelesce/blog_post_status.tpl -text
+templates/styles/coelesce/blog_wrapper.tpl -text
 templates/styles/coelesce/comment-body.tpl -text
 templates/styles/coelesce/comment-header.tpl -text
 templates/styles/coelesce/index.php -text
