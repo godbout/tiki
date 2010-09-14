@@ -2882,6 +2882,7 @@ lib/test/index.php -text
 lib/test/language/LanguageTest.php -text
 lib/test/language/fixtures/custom.php -text
 lib/test/language/fixtures/index.php -text
+lib/test/language/fixtures/language_invalid.php -text
 lib/test/language/fixtures/language_modif.php -text
 lib/test/language/fixtures/language_orig.php -text
 lib/test/language/index.php -text
