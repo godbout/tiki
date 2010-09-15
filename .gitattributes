@@ -3810,6 +3810,7 @@ styles/coelesce/coelesce.png -text
 styles/coelesce/ie6.css -text
 styles/coelesce/ie7.css -text
 styles/coelesce/index.php -text
+styles/coelesce/options/community.css -text
 styles/coelesce/options/index.php -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/pics/icons/oleftcol.png -text svneol=unset#image/png
