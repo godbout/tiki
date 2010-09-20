@@ -1384,6 +1384,7 @@ installer/schema/20100909_lengthen_wiki_attachments_filename_tiki.sql -text
 installer/schema/20100910_new_fields_for_tiki_blogs_tiki.sql -text
 installer/schema/20100912_rename_autosave_pref_tiki.sql -text
 installer/schema/20100915_add_edit_languages_menu_option_tiki.sql -text
+installer/schema/20100919_tiki_page_contribution_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -4693,10 +4694,10 @@ templates/tiki-objectpermissions.tpl -text
 templates/tiki-old_polls.tpl -text
 templates/tiki-openid_select.tpl -text
 templates/tiki-orphan_pages.tpl -text
-templates/tiki-page-contribution.tpl -text
-templates/tiki-page-contribution_form.tpl -text
 templates/tiki-page.tpl -text
 templates/tiki-page_bar.tpl -text
+templates/tiki-page_contribution.tpl -text
+templates/tiki-page_contribution_form.tpl -text
 templates/tiki-pagehistory.tpl -text
 templates/tiki-payment-cclite.tpl -text
 templates/tiki-payment-list-past.tpl -text
@@ -4879,7 +4880,6 @@ templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
-templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
@@ -5172,8 +5172,8 @@ tests/testfile.txt -text
 /tiki-objectpermissions.php -text
 /tiki-old_polls.php -text
 /tiki-orphan_pages.php -text
-/tiki-page-contribution.php -text
 /tiki-page.php -text
+/tiki-page_contribution.php -text
 /tiki-page_loader.php -text
 /tiki-pagehistory.php -text
 /tiki-payment.php -text
