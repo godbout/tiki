@@ -1384,6 +1384,7 @@ installer/schema/20100910_new_fields_for_tiki_blogs_tiki.sql -text
 installer/schema/20100912_rename_autosave_pref_tiki.sql -text
 installer/schema/20100915_add_edit_languages_menu_option_tiki.sql -text
 installer/schema/20100919_tiki_page_contribution_tiki.sql -text
+installer/schema/20100920_ckeditor_remove_pref_tiki.sql -text
 installer/schema/20100920_todo_event_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
