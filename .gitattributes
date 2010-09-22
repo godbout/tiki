@@ -1555,6 +1555,7 @@ lib/categories/index.php -text
 lib/ckeditor_tiki/ckeditor-icons/FontName.gif -text
 lib/ckeditor_tiki/ckeditor-icons/FontSize.gif -text
 lib/ckeditor_tiki/ckeditor-icons/Format.gif -text
+lib/ckeditor_tiki/ckeditor-icons/Specialchar.gif -text
 lib/ckeditor_tiki/ckeditor-icons/Style.gif -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/tikilink.js -text
 lib/ckeditor_tiki/plugins/_tikilink/plugin.js -text
