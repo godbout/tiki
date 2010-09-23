@@ -1552,11 +1552,11 @@ lib/captcha/captchalib.php -text
 lib/captcha/index.php -text
 lib/categories/categlib.php -text
 lib/categories/index.php -text
-lib/ckeditor_tiki/ckeditor-icons/FontName.gif -text
-lib/ckeditor_tiki/ckeditor-icons/FontSize.gif -text
-lib/ckeditor_tiki/ckeditor-icons/Format.gif -text
-lib/ckeditor_tiki/ckeditor-icons/Specialchar.gif -text
-lib/ckeditor_tiki/ckeditor-icons/Style.gif -text
+lib/ckeditor_tiki/ckeditor-icons/font.gif -text
+lib/ckeditor_tiki/ckeditor-icons/fontsize.gif -text svneol=unset#unset
+lib/ckeditor_tiki/ckeditor-icons/format.gif -text svneol=unset#unset
+lib/ckeditor_tiki/ckeditor-icons/specialchar.gif -text svneol=unset#unset
+lib/ckeditor_tiki/ckeditor-icons/styles.gif -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/tikilink.js -text
 lib/ckeditor_tiki/plugins/_tikilink/plugin.js -text
 lib/ckeditor_tiki/plugins/autosave/images/ajaxAutoSaveClean.gif -text
@@ -3393,6 +3393,7 @@ pics/icons/ovmodule.png -text
 pics/icons/package.png -text
 pics/icons/package_go.png -text
 pics/icons/page.png -text
+pics/icons/page_break.png -text
 pics/icons/page_copy.png -text
 pics/icons/page_edit.png -text
 pics/icons/page_edit_section.png -text
