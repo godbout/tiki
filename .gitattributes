@@ -1387,6 +1387,9 @@ installer/schema/20100919_tiki_page_contribution_tiki.sql -text
 installer/schema/20100920_ckeditor_remove_pref_tiki.sql -text
 installer/schema/20100920_jq_sheet_remove_pref_tiki.sql -text
 installer/schema/20100920_todo_event_tiki.sql -text
+installer/schema/20100923_fix_column_position_tiki.sql -text
+installer/schema/20100923_missing_tweetId_column_tiki.sql -text
+installer/schema/20100923_social_networking_permission_and_menuitem_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
