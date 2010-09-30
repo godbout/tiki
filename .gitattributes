@@ -1936,6 +1936,8 @@ lib/images/imagick_old.php -text
 lib/importer/index.php -text
 lib/importer/mediawiki_dump.xsd -text
 lib/importer/tikiimporter.php -text
+lib/importer/tikiimporter_blog.php -text
+lib/importer/tikiimporter_blog_wordpress.php -text
 lib/importer/tikiimporter_wiki.php -text
 lib/importer/tikiimporter_wiki_mediawiki.php -text
 lib/importer/xml.xsd -text
@@ -2782,6 +2784,8 @@ lib/test/core/include_non_autoload_compatible_classes.php -text
 lib/test/core/phpunit.xml -text
 lib/test/freetag/FreetagTest.php -text
 lib/test/freetag/index.php -text
+lib/test/importer/TikiImporterBlogTest.php -text
+lib/test/importer/TikiImporterBlogWordpressTest.php -text
 lib/test/importer/TikiImporterTest.php -text
 lib/test/importer/TikiImporterWikiMediawikiTest.php -text
 lib/test/importer/TikiImporterWikiTest.php -text
@@ -2794,6 +2798,9 @@ lib/test/importer/fixtures/mediawiki_page_as_array.php -text
 lib/test/importer/fixtures/mediawiki_revision.xml -text
 lib/test/importer/fixtures/mediawiki_revision_invalid_syntax.xml -text
 lib/test/importer/fixtures/mediawiki_sample.xml -text
+lib/test/importer/fixtures/wordpress_page.xml -text
+lib/test/importer/fixtures/wordpress_post.xml -text
+lib/test/importer/fixtures/wordpress_sample.xml -text
 lib/test/importer/index.php -text
 lib/test/importer/tikiimporter_testcase.php -text
 lib/test/index.php -text
