@@ -1391,6 +1391,7 @@ installer/schema/20100923_fix_column_position_tiki.sql -text
 installer/schema/20100923_social_networking_permission_and_menuitem_tiki.sql -text
 installer/schema/20100925_fix_some_default_value_tiki.sql -text
 installer/schema/20100927_better_column_fix_tiki.php -text
+installer/schema/20100928_sefurl_regex_reordering_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2297,6 +2298,7 @@ lib/prefs/blogues.php -text
 lib/prefs/bot.php -text
 lib/prefs/box.php -text
 lib/prefs/calendar.php -text
+lib/prefs/captcha.php -text
 lib/prefs/cas.php -text
 lib/prefs/categories.php -text
 lib/prefs/category.php -text
@@ -2906,9 +2908,9 @@ lib/validators/validator_password.php -text
 lib/validators/validator_regex.php -text
 lib/validators/validator_username.php -text
 lib/validatorslib.php -text
-lib/videogals/KalturaClientBase_v3.php -text
+lib/videogals/KalturaClient.php -text
+lib/videogals/KalturaClientBase.php -text
 lib/videogals/KalturaClientReadme.txt -text
-lib/videogals/KalturaClient_v3.php -text
 lib/videogals/videogallib.php -text
 lib/videogals/watershedlib.php -text
 lib/web.config -text
@@ -4466,7 +4468,6 @@ templates/tiki-browse_categories.tpl -text
 templates/tiki-browse_freetags.tpl -text
 templates/tiki-browse_gallery.tpl -text
 templates/tiki-browse_image.tpl -text
-templates/tiki-browse_video.tpl -text
 templates/tiki-calendar.tpl -text
 templates/tiki-calendar_box.tpl -text
 templates/tiki-calendar_box_multiple.tpl -text
@@ -4520,7 +4521,6 @@ templates/tiki-edit_submission.tpl -text
 templates/tiki-edit_templates.tpl -text
 templates/tiki-edit_topic.tpl -text
 templates/tiki-edit_translation.tpl -text
-templates/tiki-edit_video.tpl -text
 templates/tiki-editpage.tpl -text
 templates/tiki-export-sheets.tpl -text
 templates/tiki-export_comment_xml.tpl -text
