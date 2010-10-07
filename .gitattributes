@@ -46,7 +46,6 @@ doc/devtools/add1tiki2multi.py -text
 doc/devtools/backupdb.sh -text
 doc/devtools/buildincrement.php -text
 doc/devtools/capitalize_buttons.pl -text
-doc/devtools/cleanCatTrackers.php -text
 doc/devtools/cleanwatch.sh -text
 doc/devtools/convert_templates_prefs-2.0.php -text
 doc/devtools/convert_tpl_ajax.php -text
@@ -2971,7 +2970,6 @@ lib/wiki-plugins/wikiplugin_fade.php -text
 lib/wiki-plugins/wikiplugin_fancylist.php -text
 lib/wiki-plugins/wikiplugin_fancytable.php -text
 lib/wiki-plugins/wikiplugin_file.php -text
-lib/wiki-plugins/wikiplugin_filelink.php -text
 lib/wiki-plugins/wikiplugin_files.php -text
 lib/wiki-plugins/wikiplugin_flash.php -text
 lib/wiki-plugins/wikiplugin_footnote.php -text
