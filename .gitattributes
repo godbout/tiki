@@ -1963,6 +1963,7 @@ lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
 lib/language/Language.php -text
 lib/language/index.php -text
+lib/language/tiki-edit_languages.js -text
 lib/live_support/index.php -text
 lib/live_support/live-support.js -text
 lib/live_support/lsadminlib.php -text
