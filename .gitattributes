@@ -4332,8 +4332,6 @@ templates/styles/business/index.php -text
 templates/styles/coelesce/blog_post_postbody_title.tpl -text
 templates/styles/coelesce/blog_post_status.tpl -text
 templates/styles/coelesce/blog_wrapper.tpl -text
-templates/styles/coelesce/comment-body.tpl -text
-templates/styles/coelesce/comment-header.tpl -text
 templates/styles/coelesce/index.php -text
 templates/styles/coelesce/tiki-site_header_login.tpl -text
 templates/styles/coelesce/tiki-site_header_top.tpl -text
