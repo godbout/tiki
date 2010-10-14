@@ -33,7 +33,6 @@ db/index.php -text
 db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
-db/tiki-secdb_5.1_mysql.sql -text
 db/tiki-secdb_6.0_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
@@ -4542,7 +4541,7 @@ templates/tiki-galleries.tpl -text
 templates/tiki-gmap_locator.tpl -text
 templates/tiki-gmap_usermap.tpl -text
 templates/tiki-graph-sheets.tpl -text
-templates/tiki-history-sheets.tpl -text
+templates/tiki-history_sheets.tpl -text
 templates/tiki-ical.tpl -text
 templates/tiki-import-sheets.tpl -text
 templates/tiki-import_structuredtext.tpl -text
