@@ -4721,7 +4721,6 @@ templates/tiki-user_watches.tpl -text
 templates/tiki-userfiles.tpl -text
 templates/tiki-usermenu.tpl -text
 templates/tiki-userversions.tpl -text
-templates/tiki-view-sheets.tpl -text
 templates/tiki-view_articles-titleonly.tpl -text
 templates/tiki-view_articles.tpl -text
 templates/tiki-view_banner.tpl -text
@@ -4731,6 +4730,7 @@ templates/tiki-view_cache.tpl -text
 templates/tiki-view_faq.tpl -text
 templates/tiki-view_forum.tpl -text
 templates/tiki-view_forum_thread.tpl -text
+templates/tiki-view_sheets.tpl -text
 templates/tiki-view_tracker.tpl -text
 templates/tiki-view_tracker_item.tpl -text
 templates/tiki-view_tracker_more_info.tpl -text
