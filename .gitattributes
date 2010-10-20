@@ -103,6 +103,8 @@ doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
 doc/devtools/usergeo.php -text
 doc/index.php -text
 doc/readme.txt -text
+doc/stable.version -text
+doc/unstable.version -text
 dump/index.php -text
 /favicon.ico -text
 /favicon.png -text
