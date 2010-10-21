@@ -2730,6 +2730,8 @@ lib/test/attributes/RelationTest.php -text
 lib/test/auth/AuthTokensTest.php -text
 lib/test/auth/MembershipTest.php -text
 lib/test/bootstrap.php -text
+lib/test/comments/CommentsTest.php -text
+lib/test/comments/index.php -text
 lib/test/core/Category/ManipulatorTest.php -text
 lib/test/core/DeclFilter/BaseTest.php -text
 lib/test/core/DeclFilter/CatchAllFilterTest.php -text
