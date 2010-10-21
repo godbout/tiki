@@ -4507,6 +4507,7 @@ templates/tiki-edit-page-include-prompt_for_edit_or_translate.tpl -text
 templates/tiki-edit_article.tpl -text
 templates/tiki-edit_banner.tpl -text
 templates/tiki-edit_blog.tpl -text
+templates/tiki-edit_categories.tpl -text
 templates/tiki-edit_css.tpl -text
 templates/tiki-edit_help.tpl -text
 templates/tiki-edit_help_plugins.tpl -text
@@ -4960,6 +4961,7 @@ tests/testfile.txt -text
 /tiki-edit_article.php -text
 /tiki-edit_banner.php -text
 /tiki-edit_blog.php -text
+/tiki-edit_categories.php -text
 /tiki-edit_css.php -text
 /tiki-edit_image.php -text
 /tiki-edit_languages.php -text
