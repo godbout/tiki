@@ -2808,6 +2808,8 @@ lib/test/importer/fixtures/mediawiki_page_as_array.php -text
 lib/test/importer/fixtures/mediawiki_revision.xml -text
 lib/test/importer/fixtures/mediawiki_revision_invalid_syntax.xml -text
 lib/test/importer/fixtures/mediawiki_sample.xml -text
+lib/test/importer/fixtures/wordpress_comment.xml -text svneol=unset#text/plain
+lib/test/importer/fixtures/wordpress_comment_spam.xml -text svneol=unset#text/plain
 lib/test/importer/fixtures/wordpress_page.xml -text
 lib/test/importer/fixtures/wordpress_post.xml -text
 lib/test/importer/fixtures/wordpress_sample.xml -text
