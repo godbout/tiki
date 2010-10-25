@@ -1398,6 +1398,7 @@ installer/schema/20101008_user_id_for_tiki_language_tiki.sql -text
 installer/schema/20101014_tiki_language_add_lastModif_column_tiki.sql -text
 installer/schema/20101015_tiki_admin_perms_tiki.sql -text
 installer/schema/20101021_rename_blog_post_comment_object_type_tiki.sql -text
+installer/schema/20101025_rename_create_blog_menu_entry_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
