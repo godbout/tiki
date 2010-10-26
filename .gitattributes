@@ -1650,6 +1650,17 @@ lib/core/Perms/ResolverFactory/GlobalFactory.php -text
 lib/core/Perms/ResolverFactory/ObjectFactory.php -text
 lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
+lib/core/Search/ContentSource/Interface.php -text
+lib/core/Search/ContentSource/Static.php -text
+lib/core/Search/Index/Interface.php -text
+lib/core/Search/Index/Lucene.php -text
+lib/core/Search/Index/Memory.php -text
+lib/core/Search/Indexer.php -text
+lib/core/Search/Type/Factory/Interface.php -text
+lib/core/Search/Type/Factory/Lucene.php -text
+lib/core/Search/Type/Interface.php -text
+lib/core/Search/Type/Whole.php -text
+lib/core/Search/Type/WikiText.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
 lib/core/StandardAnalyzer/Readme.txt -text
@@ -2778,6 +2789,8 @@ lib/test/core/Perms/ResolverFactory/CategoryFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/GlobalFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
+lib/test/core/Search/Index/LuceneTest.php -text
+lib/test/core/Search/IndexerTest.php -text
 lib/test/core/TikiFilter/CallbackTest.php -text
 lib/test/core/TikiFilter/MapTest.php -text
 lib/test/core/TikiFilter/WordTest.php -text
