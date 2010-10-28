@@ -1663,6 +1663,7 @@ lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Lucene.php -text
 lib/core/Search/Index/Memory.php -text
 lib/core/Search/Indexer.php -text
+lib/core/Search/Query.php -text
 lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/Lucene.php -text
 lib/core/Search/Type/Interface.php -text
@@ -2800,6 +2801,7 @@ lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/Index/LuceneTest.php -text
 lib/test/core/Search/IndexerTest.php -text
+lib/test/core/Search/QueryTest.php -text
 lib/test/core/TikiFilter/CallbackTest.php -text
 lib/test/core/TikiFilter/MapTest.php -text
 lib/test/core/TikiFilter/WordTest.php -text
