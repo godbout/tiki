@@ -1652,6 +1652,13 @@ lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
 lib/core/Search/ContentSource/Interface.php -text
 lib/core/Search/ContentSource/Static.php -text
+lib/core/Search/Expr/And.php -text
+lib/core/Search/Expr/Interface.php -text
+lib/core/Search/Expr/Not.php -text
+lib/core/Search/Expr/Or.php -text
+lib/core/Search/Expr/Parser.php -text
+lib/core/Search/Expr/Token.php -text
+lib/core/Search/Expr/Tokenizer.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Lucene.php -text
 lib/core/Search/Index/Memory.php -text
@@ -2789,6 +2796,8 @@ lib/test/core/Perms/ResolverFactory/CategoryFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/GlobalFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
+lib/test/core/Search/Expr/ParserTest.php -text
+lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/Index/LuceneTest.php -text
 lib/test/core/Search/IndexerTest.php -text
 lib/test/core/TikiFilter/CallbackTest.php -text
