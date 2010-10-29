@@ -1353,7 +1353,7 @@ installer/schema/20100720_tiki_p_view_page_contribution_tiki.sql -text
 installer/schema/20100721_batch_transition_rollback_tiki.sql -text
 installer/schema/20100721_todo_tiki.sql -text
 installer/schema/20100721_todonotif_tiki.sql -text
-installer/schema/20100727_tiki_p_promote_page.sql -text
+installer/schema/20100727_tiki_p_promote_page_tiki.sql -text
 installer/schema/20100730_list_image_article_tiki.sql -text
 installer/schema/20100802_tiki_p_share_tiki.sql -text
 installer/schema/20100802_url_shortener_tiki.sql -text
@@ -1400,6 +1400,8 @@ installer/schema/20101015_tiki_admin_perms_tiki.sql -text
 installer/schema/20101021_rename_blog_post_comment_object_type_tiki.sql -text
 installer/schema/20101025_profile_sources_pref_tikiwiki_to_tiki.sql -text
 installer/schema/20101025_rename_create_blog_menu_entry_tiki.sql -text
+installer/schema/20101027_rename_invit_to_invite_tiki.sql -text
+installer/schema/20101028_p_invit_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1428,6 +1430,7 @@ lang/el/language.php -text
 lang/en-uk/index.php -text
 lang/en-uk/language.php -text
 lang/en/index.php -text
+lang/en/language.js -text
 lang/en/language.php -text
 lang/es/custom.php_example -text
 lang/es/index.php -text
@@ -3655,6 +3658,8 @@ pics/large/plugins.png -text
 pics/large/plugins48x48.png -text
 pics/large/profiles.png -text
 pics/large/profiles48x48.png -text
+pics/large/rating.png -text
+pics/large/rating48x48.png -text
 pics/large/semantic.png -text
 pics/large/semantic48x48.png -text
 pics/large/socialnetworks.png -text
@@ -4598,7 +4603,7 @@ templates/tiki-index_p.tpl -text
 templates/tiki-information.tpl -text
 templates/tiki-install.tpl -text
 templates/tiki-integrator.tpl -text
-templates/tiki-invit.tpl -text
+templates/tiki-invite.tpl -text
 templates/tiki-invited.tpl -text
 templates/tiki-kaltura_upload.tpl -text
 templates/tiki-kaltura_video.tpl -text
@@ -4614,6 +4619,7 @@ templates/tiki-list_faqs.tpl -text
 templates/tiki-list_file_gallery.tpl -text
 templates/tiki-list_gallery.tpl -text
 templates/tiki-list_integrator_repositories.tpl -text
+templates/tiki-list_invite.tpl -text
 templates/tiki-list_kaltura_browse_entries.tpl -text
 templates/tiki-list_kaltura_entries.tpl -text
 templates/tiki-list_kaltura_entries_actions.tpl -text
@@ -5063,7 +5069,7 @@ tests/testfile.txt -text
 /tiki-install.php -text
 /tiki-integrator.php -text
 /tiki-interactive_trans.php -text
-/tiki-invit.php -text
+/tiki-invite.php -text
 /tiki-invited.php -text
 /tiki-jscalendar.php -text
 /tiki-jsplugin.php -text
@@ -5082,6 +5088,7 @@ tests/testfile.txt -text
 /tiki-list_file_gallery.php -text
 /tiki-list_gallery.php -text
 /tiki-list_integrator_repositories.php -text
+/tiki-list_invite.php -text
 /tiki-list_kaltura_entries.php -text
 /tiki-list_object_permissions.php -text
 /tiki-list_posts.php -text
