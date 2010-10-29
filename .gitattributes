@@ -1659,6 +1659,8 @@ lib/core/Search/Expr/Or.php -text
 lib/core/Search/Expr/Parser.php -text
 lib/core/Search/Expr/Token.php -text
 lib/core/Search/Expr/Tokenizer.php -text
+lib/core/Search/GlobalSource/Interface.php -text
+lib/core/Search/GlobalSource/Static.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Lucene.php -text
 lib/core/Search/Index/Memory.php -text
@@ -1667,6 +1669,7 @@ lib/core/Search/Query.php -text
 lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/Lucene.php -text
 lib/core/Search/Type/Interface.php -text
+lib/core/Search/Type/MultivalueText.php -text
 lib/core/Search/Type/Whole.php -text
 lib/core/Search/Type/WikiText.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
