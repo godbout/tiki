@@ -3709,6 +3709,7 @@ pics/trans.png -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /received_article_image.php -text
+/register_ajax.php -text
 /reindex_file.php -text
 /remote.php -text
 /robots.txt -text
@@ -4733,6 +4734,8 @@ templates/tiki-sitemenu.tpl -text
 templates/tiki-sitesearchbar.tpl -text
 templates/tiki-slideshow.tpl -text
 templates/tiki-socialnetworks.tpl -text
+templates/tiki-socialnetworks_firstlogin.tpl -text
+templates/tiki-socialnetworks_firstlogin_launcher.tpl -text
 templates/tiki-sqllog.tpl -text
 templates/tiki-stats.tpl -text
 templates/tiki-survey_stats.tpl -text
@@ -5197,6 +5200,7 @@ tests/testfile.txt -text
 /tiki-slideshow.php -text
 /tiki-slideshow2.php -text
 /tiki-socialnetworks.php -text
+/tiki-socialnetworks_firstlogin.php -text
 /tiki-sqllog.php -text
 /tiki-stats.php -text
 /tiki-survey_stats.php -text
