@@ -1663,6 +1663,7 @@ lib/core/Search/Expr/Parser.php -text
 lib/core/Search/Expr/Token.php -text
 lib/core/Search/Expr/Tokenizer.php -text
 lib/core/Search/GlobalSource/Interface.php -text
+lib/core/Search/GlobalSource/PermissionSource.php -text
 lib/core/Search/GlobalSource/Static.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Lucene.php -text
@@ -2807,6 +2808,7 @@ lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
+lib/test/core/Search/GlobalSource/PermissionSourceTest.php -text
 lib/test/core/Search/Index/LuceneSortTest.php -text
 lib/test/core/Search/Index/LuceneTest.php -text
 lib/test/core/Search/IndexerTest.php -text
