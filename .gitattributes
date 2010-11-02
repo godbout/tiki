@@ -575,7 +575,6 @@ img/icons/admin_search_grey.png -text
 img/icons/admin_sections.png -text
 img/icons/admin_siteid.png -text
 img/icons/admin_siteid_grey.png -text
-img/icons/admin_textarea.png -text
 img/icons/admin_theme.png -text
 img/icons/admin_trackers.png -text
 img/icons/admin_trackers_grey.png -text
@@ -1014,7 +1013,6 @@ img/mytiki/mywatches.gif -text
 img/mytiki/news.gif -text
 img/mytiki/notes.gif -text
 img/mytiki/prefs.gif -text
-img/mytiki/socialnetworks_32.png -text
 img/mytiki/stock_contact.png -text
 img/mytiki/tasks.gif -text
 img/mytiki/webmail.gif -text
@@ -3619,6 +3617,7 @@ pics/large/date.png -text
 pics/large/date48x48.png -text
 pics/large/display-capplet.png -text
 pics/large/display-capplet48x48.png -text
+pics/large/editing48x48.png -text
 pics/large/evolution.png -text
 pics/large/evolution48x48.png -text
 pics/large/feed-icon-48x48.png -text
@@ -3662,6 +3661,8 @@ pics/large/metatags48x48.png -text
 pics/large/mplayer48x48.png -text
 pics/large/payment.png -text
 pics/large/payment48x48.png -text
+pics/large/performance.png -text
+pics/large/performance48x48.png -text
 pics/large/plugins.png -text
 pics/large/plugins48x48.png -text
 pics/large/profiles.png -text
@@ -3671,6 +3672,7 @@ pics/large/rating48x48.png -text
 pics/large/semantic.png -text
 pics/large/semantic48x48.png -text
 pics/large/socialnetworks.png -text
+pics/large/socialnetworks48x48.png -text
 pics/large/stock_about.png -text
 pics/large/stock_about48x48.png -text
 pics/large/stock_bold.png -text
