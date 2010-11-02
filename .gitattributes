@@ -2434,6 +2434,7 @@ lib/prefs/socialnetworks.php -text
 lib/prefs/style.php -text
 lib/prefs/tiki.php -text
 lib/prefs/tracker.php -text
+lib/prefs/unified.php -text
 lib/prefs/unsuccessful.php -text
 lib/prefs/url.php -text
 lib/prefs/use.php -text
@@ -2482,6 +2483,7 @@ lib/search/refresh-functions.php -text
 lib/search/refresh.php -text
 lib/search/searchlib-mysql.php -text
 lib/search/searchlib-tiki.php -text
+lib/search/searchlib-unified.php -text
 lib/search/searchstatslib.php -text
 lib/setup/absolute_urls.php -text
 lib/setup/babelfish.php -text
@@ -3056,6 +3058,7 @@ lib/wiki-plugins/wikiplugin_js.php -text
 lib/wiki-plugins/wikiplugin_kaltura.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
+lib/wiki-plugins/wikiplugin_list.php -text
 lib/wiki-plugins/wikiplugin_listpages.php -text
 lib/wiki-plugins/wikiplugin_lsdir.php -text
 lib/wiki-plugins/wikiplugin_mail.php -text
