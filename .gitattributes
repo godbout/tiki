@@ -1653,6 +1653,7 @@ lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
 lib/core/Search/ContentSource/Interface.php -text
 lib/core/Search/ContentSource/Static.php -text
+lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/Expr/And.php -text
 lib/core/Search/Expr/Interface.php -text
 lib/core/Search/Expr/Not.php -text
@@ -1660,6 +1661,7 @@ lib/core/Search/Expr/Or.php -text
 lib/core/Search/Expr/Parser.php -text
 lib/core/Search/Expr/Token.php -text
 lib/core/Search/Expr/Tokenizer.php -text
+lib/core/Search/GlobalSource/CategorySource.php -text
 lib/core/Search/GlobalSource/Interface.php -text
 lib/core/Search/GlobalSource/PermissionSource.php -text
 lib/core/Search/GlobalSource/Static.php -text
