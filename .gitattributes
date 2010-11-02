@@ -2808,6 +2808,7 @@ lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/GlobalSource/PermissionSourceTest.php -text
+lib/test/core/Search/Index/LuceneIncrementalUpdateTest.php -text
 lib/test/core/Search/Index/LucenePaginationTest.php -text
 lib/test/core/Search/Index/LuceneSortTest.php -text
 lib/test/core/Search/Index/LuceneTest.php -text
