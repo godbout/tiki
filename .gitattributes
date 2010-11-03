@@ -2868,6 +2868,7 @@ lib/test/importer/fixtures/wikipedia_train_article_parsed.txt -text
 lib/test/importer/fixtures/wordpress_attachments.xml -text svneol=unset#text/plain
 lib/test/importer/fixtures/wordpress_comment.xml -text svneol=unset#text/plain
 lib/test/importer/fixtures/wordpress_comment_spam.xml -text svneol=unset#text/plain
+lib/test/importer/fixtures/wordpress_invalid.xml -text
 lib/test/importer/fixtures/wordpress_page.xml -text
 lib/test/importer/fixtures/wordpress_post.xml -text
 lib/test/importer/fixtures/wordpress_post_content.txt -text svneol=unset#text/plain
