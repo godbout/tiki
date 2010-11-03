@@ -2873,6 +2873,8 @@ lib/test/importer/fixtures/wordpress_page.xml -text
 lib/test/importer/fixtures/wordpress_post.xml -text
 lib/test/importer/fixtures/wordpress_post_content.txt -text svneol=unset#text/plain
 lib/test/importer/fixtures/wordpress_post_content_parsed.txt -text svneol=unset#text/plain
+lib/test/importer/fixtures/wordpress_post_content_shortcodes.txt -text
+lib/test/importer/fixtures/wordpress_post_content_shortcodes_parsed.txt -text
 lib/test/importer/fixtures/wordpress_sample.xml -text
 lib/test/importer/index.php -text
 lib/test/importer/tikiimporter_testcase.php -text
