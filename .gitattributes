@@ -2825,6 +2825,7 @@ lib/test/core/Search/GlobalSource/PermissionSourceTest.php -text
 lib/test/core/Search/Index/LuceneIncrementalUpdateTest.php -text
 lib/test/core/Search/Index/LucenePaginationTest.php -text
 lib/test/core/Search/Index/LuceneSortTest.php -text
+lib/test/core/Search/Index/LuceneStemmingTest.php -text
 lib/test/core/Search/Index/LuceneTest.php -text
 lib/test/core/Search/IndexerTest.php -text
 lib/test/core/Search/Query/OrderTest.php -text
