@@ -1663,6 +1663,7 @@ lib/core/Search/Expr/Token.php -text
 lib/core/Search/Expr/Tokenizer.php -text
 lib/core/Search/Formatter.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
+lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
 lib/core/Search/Formatter/Plugin/WikiTemplate.php -text
 lib/core/Search/Formatter/ValueFormatter.php -text
 lib/core/Search/Formatter/ValueFormatter/Date.php -text
@@ -2828,6 +2829,8 @@ lib/test/core/Search/Index/LuceneTest.php -text
 lib/test/core/Search/IndexerTest.php -text
 lib/test/core/Search/Query/OrderTest.php -text
 lib/test/core/Search/QueryTest.php -text
+lib/test/core/Search/basic.tpl -text
+lib/test/core/Search/embedded.tpl -text
 lib/test/core/TikiFilter/CallbackTest.php -text
 lib/test/core/TikiFilter/MapTest.php -text
 lib/test/core/TikiFilter/WordTest.php -text
