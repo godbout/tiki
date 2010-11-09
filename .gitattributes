@@ -2832,6 +2832,7 @@ lib/test/core/Search/Query/OrderTest.php -text
 lib/test/core/Search/QueryTest.php -text
 lib/test/core/Search/basic.tpl -text
 lib/test/core/Search/embedded.tpl -text
+lib/test/core/Search/paginate.tpl -text
 lib/test/core/TikiFilter/CallbackTest.php -text
 lib/test/core/TikiFilter/MapTest.php -text
 lib/test/core/TikiFilter/WordTest.php -text
