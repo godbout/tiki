@@ -2772,6 +2772,7 @@ lib/test/attributes/AttributeTest.php -text
 lib/test/attributes/RelationTest.php -text
 lib/test/auth/AuthTokensTest.php -text
 lib/test/auth/MembershipTest.php -text
+lib/test/auth/PasswordTest.php -text
 lib/test/bootstrap.php -text
 lib/test/comments/CommentsTest.php -text
 lib/test/comments/index.php -text
@@ -4375,6 +4376,7 @@ templates/modules/mod-youtube.tpl -text
 templates/modules/user_module.tpl -text
 templates/object_perms_summary.tpl -text
 templates/pagehistory.tpl -text
+templates/password_help.tpl -text
 templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
 templates/prefs/flag.tpl -text
