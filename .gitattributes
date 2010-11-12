@@ -1477,6 +1477,7 @@ lang/no/language.php -text
 lang/pl/index.php -text
 lang/pl/language.php -text
 lang/pt-br/index.php -text
+lang/pt-br/language.js -text
 lang/pt-br/language.php -text
 lang/pt/index.php -text
 lang/pt/language.php -text
@@ -2668,6 +2669,7 @@ lib/smarty_tiki/function.set.php -text
 lib/smarty_tiki/function.show_help.php -text
 lib/smarty_tiki/function.show_sort.php -text
 lib/smarty_tiki/function.thumb.php -text
+lib/smarty_tiki/function.ticket.php -text
 lib/smarty_tiki/function.toolbars.php -text
 lib/smarty_tiki/function.tree.php -text
 lib/smarty_tiki/function.treetable.php -text
@@ -3028,6 +3030,7 @@ lib/wiki-plugins/wikiplugin_banner.php -text
 lib/wiki-plugins/wikiplugin_bigbluebutton.php -text
 lib/wiki-plugins/wikiplugin_bloglist.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
+lib/wiki-plugins/wikiplugin_button.php -text
 lib/wiki-plugins/wikiplugin_calendar.php -text
 lib/wiki-plugins/wikiplugin_category.php -text
 lib/wiki-plugins/wikiplugin_catorphans.php -text
