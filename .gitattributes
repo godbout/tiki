@@ -1666,6 +1666,8 @@ lib/core/Search/Expr/Parser.php -text
 lib/core/Search/Expr/Token.php -text
 lib/core/Search/Expr/Tokenizer.php -text
 lib/core/Search/Formatter.php -text
+lib/core/Search/Formatter/DataSource/Declarative.php -text
+lib/core/Search/Formatter/DataSource/Interface.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
 lib/core/Search/Formatter/Plugin/WikiTemplate.php -text
@@ -1684,6 +1686,7 @@ lib/core/Search/Indexer.php -text
 lib/core/Search/Query.php -text
 lib/core/Search/Query/Order.php -text
 lib/core/Search/ResultSet.php -text
+lib/core/Search/Type/Factory/Direct.php -text
 lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/Lucene.php -text
 lib/core/Search/Type/Interface.php -text
@@ -2826,6 +2829,7 @@ lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
+lib/test/core/Search/Formatter/DataSourceTest.php -text
 lib/test/core/Search/FormatterTest.php -text
 lib/test/core/Search/GlobalSource/PermissionSourceTest.php -text
 lib/test/core/Search/Index/LuceneIncrementalUpdateTest.php -text
