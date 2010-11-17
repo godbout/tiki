@@ -1402,6 +1402,7 @@ installer/schema/20101025_rename_create_blog_menu_entry_tiki.sql -text
 installer/schema/20101027_rename_invit_to_invite_tiki.sql -text
 installer/schema/20101028_p_invit_tiki.sql -text
 installer/schema/20101110_actionlog_tiki.sql -text
+installer/schema/20101117_actionlog_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
