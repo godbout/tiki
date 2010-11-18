@@ -1674,6 +1674,7 @@ lib/core/Search/Formatter/Plugin/WikiTemplate.php -text
 lib/core/Search/Formatter/ValueFormatter.php -text
 lib/core/Search/Formatter/ValueFormatter/Date.php -text
 lib/core/Search/Formatter/ValueFormatter/Interface.php -text
+lib/core/Search/Formatter/ValueFormatter/Objectlink.php -text
 lib/core/Search/Formatter/ValueFormatter/Plain.php -text
 lib/core/Search/GlobalSource/CategorySource.php -text
 lib/core/Search/GlobalSource/Interface.php -text
