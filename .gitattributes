@@ -4463,6 +4463,7 @@ templates/styles/strasa/tiki-site_header_top.tpl -text
 templates/styles/thenews/index.php -text
 templates/styles/tikinewt/index.php -text
 templates/styles/twist/index.php -text
+templates/table.tpl -text
 templates/tiki-action_calendar.tpl -text
 templates/tiki-admin.tpl -text
 templates/tiki-admin_actionlog.tpl -text
