@@ -3038,6 +3038,7 @@ lib/wiki-plugins/wikiplugin_back.php -text
 lib/wiki-plugins/wikiplugin_backlinks.php -text
 lib/wiki-plugins/wikiplugin_banner.php -text
 lib/wiki-plugins/wikiplugin_bigbluebutton.php -text
+lib/wiki-plugins/wikiplugin_bliptv.php -text
 lib/wiki-plugins/wikiplugin_bloglist.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
 lib/wiki-plugins/wikiplugin_button.php -text
@@ -3161,6 +3162,7 @@ lib/wiki-plugins/wikiplugin_userlink.php -text
 lib/wiki-plugins/wikiplugin_userlist.php -text
 lib/wiki-plugins/wikiplugin_userpref.php -text
 lib/wiki-plugins/wikiplugin_versions.php -text
+lib/wiki-plugins/wikiplugin_vimeo.php -text
 lib/wiki-plugins/wikiplugin_vote.php -text
 lib/wiki-plugins/wikiplugin_wantedpages.php -text
 lib/wiki-plugins/wikiplugin_watershed.php -text
@@ -3358,6 +3360,7 @@ pics/icons/arrow_undo.png -text
 pics/icons/assign.png -text
 pics/icons/attach.png -text
 pics/icons/bell.png -text
+pics/icons/bliptv.png -text svneol=unset#unset
 pics/icons/book.png -text
 pics/icons/book_open.png -text
 pics/icons/box.png -text
@@ -3635,6 +3638,7 @@ pics/icons/user_delete.png -text
 pics/icons/user_go.png -text
 pics/icons/user_gray.png -text
 pics/icons/user_red.png -text
+pics/icons/vimeo.png -text svneol=unset#unset
 pics/icons/vmodule.png -text
 pics/icons/wiki3d.png -text
 pics/icons/wiki_plugin_edit.png -text
