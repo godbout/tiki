@@ -4906,6 +4906,7 @@ templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
+/test.txt -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
