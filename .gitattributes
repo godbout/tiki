@@ -4208,6 +4208,8 @@ templates/mail/tracker_changed_notification.tpl -text
 templates/mail/tracker_changed_notification_subject.tpl -text
 templates/mail/unsuccessful_logins.tpl -text
 templates/mail/unsuccessful_logins_subject.tpl -text
+templates/mail/unsuccessful_logins_suspend.tpl -text
+templates/mail/unsuccessful_logins_suspend_subject.tpl -text
 templates/mail/user_creation_validation_mail.tpl -text
 templates/mail/user_creation_validation_mail_subject.tpl -text
 templates/mail/user_validation_mail.tpl -text
