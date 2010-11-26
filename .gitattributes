@@ -1371,6 +1371,7 @@ installer/schema/20100820_feed_fields_text_and_desc_are_not_empty_tiki.sql -text
 installer/schema/20100824_blog_post_excerpt_tiki.sql -text
 installer/schema/20100825_add_changed_column_to_tiki_language_table_tiki.sql -text
 installer/schema/20100825_remove_blog_option_use_title_tiki.sql -text
+installer/schema/20100830_add_calendar_reminder_tiki.sql -text
 installer/schema/20100830_sheet_add_styles_and_classes_tiki.sql -text
 installer/schema/20100831_freetag_tiki.sql -text
 installer/schema/20100901_duplic_actionlog_tiki.sql -text
@@ -5043,6 +5044,7 @@ tests/testfile.txt -text
 /tiki-calendar_export_ical.php -text
 /tiki-calendar_import.php -text
 /tiki-calendar_params_ical.php -text
+/tiki-calendar_send_reminders.php -text
 /tiki-calendar_setup.php -text
 /tiki-calendars_rss.php -text
 /tiki-change_password.php -text
