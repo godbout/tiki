@@ -3676,6 +3676,7 @@ pics/large/feed-icon-48x48.png -text
 pics/large/feed-icon.png -text
 pics/large/file-manager.png -text
 pics/large/file-manager48x48.png -text
+pics/large/fileopen48x48.png -text
 pics/large/gftp.png -text
 pics/large/gftp48x48.png -text
 pics/large/gnome-camera-video-32.png -text
@@ -4471,6 +4472,7 @@ templates/styles/strasa/tiki-site_header_login.tpl -text
 templates/styles/strasa/tiki-site_header_options.tpl -text
 templates/styles/strasa/tiki-site_header_top.tpl -text
 templates/styles/thenews/index.php -text
+templates/styles/tikinewt/blog_wrapper.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/styles/twist/index.php -text
 templates/table.tpl -text
