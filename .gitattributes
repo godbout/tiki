@@ -1666,6 +1666,7 @@ lib/core/Search/Expr/Interface.php -text
 lib/core/Search/Expr/Not.php -text
 lib/core/Search/Expr/Or.php -text
 lib/core/Search/Expr/Parser.php -text
+lib/core/Search/Expr/Range.php -text
 lib/core/Search/Expr/Token.php -text
 lib/core/Search/Expr/Tokenizer.php -text
 lib/core/Search/Formatter.php -text
