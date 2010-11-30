@@ -1658,6 +1658,7 @@ lib/core/Perms/ResolverFactory/GlobalFactory.php -text
 lib/core/Perms/ResolverFactory/ObjectFactory.php -text
 lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
+lib/core/Search/ContentSource/ArticleSource.php -text
 lib/core/Search/ContentSource/BlogPostSource.php -text
 lib/core/Search/ContentSource/ForumPostSource.php -text
 lib/core/Search/ContentSource/Interface.php -text
