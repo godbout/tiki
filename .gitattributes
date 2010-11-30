@@ -4471,6 +4471,8 @@ templates/styles/jqui/index.php -text
 templates/styles/ohia/index.php -text
 templates/styles/skeleton/index.php -text
 templates/styles/snow/index.php -text
+templates/styles/strasa/blog_post_author_info.tpl -text
+templates/styles/strasa/blog_wrapper.tpl -text
 templates/styles/strasa/custom_site_footer.tpl -text
 templates/styles/strasa/index.php -text
 templates/styles/strasa/tiki-site_header.tpl -text
