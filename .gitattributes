@@ -1404,6 +1404,7 @@ installer/schema/20101028_p_invit_tiki.sql -text
 installer/schema/20101110_actionlog_tiki.sql -text
 installer/schema/20101117_actionlog_tiki.sql -text
 installer/schema/20101119_categ_perm_tiki.sql -text
+installer/schema/20101130_tiki_accounting_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1530,6 +1531,7 @@ lib/TikiWebdav/PathFactories/File.php -text
 lib/TikiWebdav/Server.php -text
 lib/TikiWebdav/autoload.php -text
 lib/ZeroClipboard.js -text
+lib/accounting/accountinglib.php -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
 lib/ajax/LICENSE.txt -text
@@ -2693,6 +2695,7 @@ lib/smarty_tiki/modifier.adjust.php -text
 lib/smarty_tiki/modifier.avatarize.php -text
 lib/smarty_tiki/modifier.compactisodate.php -text
 lib/smarty_tiki/modifier.countryflag.php -text
+lib/smarty_tiki/modifier.currency.php -text
 lib/smarty_tiki/modifier.dbg.php -text
 lib/smarty_tiki/modifier.div.php -text
 lib/smarty_tiki/modifier.duration.php -text
@@ -4477,6 +4480,17 @@ templates/styles/tikinewt/blog_wrapper.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/styles/twist/index.php -text
 templates/table.tpl -text
+templates/tiki-accounting.tpl -text
+templates/tiki-accounting_account_deleted.tpl -text
+templates/tiki-accounting_account_form.tpl -text
+templates/tiki-accounting_account_list.tpl -text
+templates/tiki-accounting_account_view.tpl -text
+templates/tiki-accounting_accounts_csv.tpl -text
+templates/tiki-accounting_books.tpl -text
+templates/tiki-accounting_entry.tpl -text
+templates/tiki-accounting_export.tpl -text
+templates/tiki-accounting_journal.tpl -text
+templates/tiki-accounting_journal_csv.tpl -text
 templates/tiki-action_calendar.tpl -text
 templates/tiki-admin.tpl -text
 templates/tiki-admin_actionlog.tpl -text
@@ -4926,6 +4940,11 @@ templates/wiki_edit_actions.tpl -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
+/tiki-accounting.php -text
+/tiki-accounting_account.php -text
+/tiki-accounting_books.php -text
+/tiki-accounting_entry.php -text
+/tiki-accounting_export.php -text
 /tiki-action_calendar.php -text
 /tiki-admin.php -text
 /tiki-admin_actionlog.php -text
