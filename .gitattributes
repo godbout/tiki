@@ -1405,6 +1405,7 @@ installer/schema/20101110_actionlog_tiki.sql -text
 installer/schema/20101117_actionlog_tiki.sql -text
 installer/schema/20101119_categ_perm_tiki.sql -text
 installer/schema/20101130_tiki_accounting_tiki.sql -text
+installer/schema/20101201_tiki_accounting_fix_index_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
