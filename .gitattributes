@@ -1664,6 +1664,7 @@ lib/core/Search/ContentSource/FileSource.php -text
 lib/core/Search/ContentSource/ForumPostSource.php -text
 lib/core/Search/ContentSource/Interface.php -text
 lib/core/Search/ContentSource/Static.php -text
+lib/core/Search/ContentSource/TrackerItemSource.php -text
 lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/Expr/And.php -text
 lib/core/Search/Expr/Interface.php -text
