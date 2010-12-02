@@ -3374,6 +3374,7 @@ pics/icons/attach.png -text
 pics/icons/bell.png -text
 pics/icons/bliptv.png -text svneol=unset#unset
 pics/icons/book.png -text
+pics/icons/book_key.png -text
 pics/icons/book_open.png -text
 pics/icons/box.png -text
 pics/icons/bricks.png -text
@@ -3459,6 +3460,7 @@ pics/icons/lock_break.png -text
 pics/icons/lock_delete.png -text
 pics/icons/lock_gray.png -text
 pics/icons/lock_new.png -text
+pics/icons/lock_open.png -text
 pics/icons/lock_red.png -text
 pics/icons/magnifier.png -text
 pics/icons/map.png -text
