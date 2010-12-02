@@ -2615,6 +2615,7 @@ lib/smarty_tiki/block.add_help.php -text
 lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
+lib/smarty_tiki/block.filter.php -text
 lib/smarty_tiki/block.itemfield.php -text
 lib/smarty_tiki/block.jq.php -text
 lib/smarty_tiki/block.modules_list.php -text
@@ -4167,6 +4168,7 @@ templates/fgal_listing_conf.tpl -text
 templates/file_backlinks.tpl -text
 templates/file_galleries.tpl -text
 templates/file_gallery_slideshow.tpl -text
+templates/filter.tpl -text
 templates/find.tpl -text
 templates/footer.tpl -text
 templates/freetag.tpl -text
@@ -4448,6 +4450,7 @@ templates/register-pass.tpl -text
 templates/register-pass2.tpl -text
 templates/register-passcode.tpl -text
 templates/remarksbox.tpl -text
+templates/searchresults-plain.tpl -text
 templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
 templates/sent_newsletters.tpl -text
