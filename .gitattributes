@@ -34,6 +34,7 @@ db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
 db/tiki-secdb_6.0_mysql.sql -text
+db/tiki-secdb_6.1_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -1406,6 +1407,7 @@ installer/schema/20101117_actionlog_tiki.sql -text
 installer/schema/20101119_categ_perm_tiki.sql -text
 installer/schema/20101130_tiki_accounting_tiki.sql -text
 installer/schema/20101201_tiki_accounting_fix_index_tiki.sql -text
+installer/schema/20101203_fgal_archive_default_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1591,6 +1593,7 @@ lib/ckeditor_tiki/plugins/autosave/images/tick_animated.gif -text
 lib/ckeditor_tiki/plugins/autosave/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiplugin/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiwiki/plugin.js -text
+lib/ckeditor_tiki/tikilink_dialog.js -text
 lib/ckeditor_tiki/tikistyles.js -text
 lib/ckeditor_tiki/tikitemplates.js -text
 lib/commcenter/commlib.php -text
@@ -3921,6 +3924,7 @@ styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/fivealive/fivealive.png -text svneol=unset#image/png
 styles/fivealive/index.php -text
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
+styles/fivealive/newsletter.css -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/arrows-0b8a98.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/index.php -text
@@ -3933,6 +3937,7 @@ styles/fivealive/options/blueberry/siteheader.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/grape/arrows-8e286a.png -text svneol=unset#image/png
 styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
 styles/fivealive/options/grape/index.php -text
+styles/fivealive/options/grape/newsletter.css -text
 styles/fivealive/options/grape/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/grape/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/index.php -text
