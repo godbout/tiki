@@ -4500,6 +4500,7 @@ templates/tiki-accounting_account_list.tpl -text
 templates/tiki-accounting_account_view.tpl -text
 templates/tiki-accounting_accounts_csv.tpl -text
 templates/tiki-accounting_books.tpl -text
+templates/tiki-accounting_cancel.tpl -text
 templates/tiki-accounting_entry.tpl -text
 templates/tiki-accounting_export.tpl -text
 templates/tiki-accounting_journal.tpl -text
@@ -4956,6 +4957,7 @@ tests/testfile.txt -text
 /tiki-accounting.php -text
 /tiki-accounting_account.php -text
 /tiki-accounting_books.php -text
+/tiki-accounting_cancel.php -text
 /tiki-accounting_entry.php -text
 /tiki-accounting_export.php -text
 /tiki-action_calendar.php -text
