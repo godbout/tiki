@@ -1728,6 +1728,7 @@ lib/core/TikiFilter.php -text
 lib/core/TikiFilter/AttributeType.php -text
 lib/core/TikiFilter/Callback.php -text
 lib/core/TikiFilter/HtmlPurifier.php -text
+lib/core/TikiFilter/PrepareInput.php -text
 lib/core/TikiFilter/PreventXss.php -text
 lib/core/TikiFilter/RawUnsafe.php -text
 lib/core/TikiFilter/Word.php -text
@@ -2865,6 +2866,7 @@ lib/test/core/Search/embedded.tpl -text
 lib/test/core/Search/paginate.tpl -text
 lib/test/core/TikiFilter/CallbackTest.php -text
 lib/test/core/TikiFilter/MapTest.php -text
+lib/test/core/TikiFilter/PrepareInputTest.php -text
 lib/test/core/TikiFilter/WordTest.php -text
 lib/test/core/TikiFilter/XssTest.php -text
 lib/test/core/Transition/AtLeastTest.php -text
