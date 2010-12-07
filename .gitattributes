@@ -3175,6 +3175,7 @@ lib/wiki-plugins/wikiplugin_trade.php -text
 lib/wiki-plugins/wikiplugin_transclude.php -text
 lib/wiki-plugins/wikiplugin_translated.php -text
 lib/wiki-plugins/wikiplugin_twitter.php -text
+lib/wiki-plugins/wikiplugin_urlparam.php -text
 lib/wiki-plugins/wikiplugin_usercount.php -text
 lib/wiki-plugins/wikiplugin_userlink.php -text
 lib/wiki-plugins/wikiplugin_userlist.php -text
