@@ -2083,6 +2083,7 @@ lib/jquery_tiki/tiki-jquery.js -text
 lib/language/Language.php -text
 lib/language/index.php -text
 lib/language/tiki-edit_languages.js -text
+lib/ldap/filter.php -text
 lib/ldap/ldaplib.php -text
 lib/live_support/index.php -text
 lib/live_support/live-support.js -text
@@ -3214,6 +3215,7 @@ lib/wiki-plugins/wikiplugin_tr.php -text
 lib/wiki-plugins/wikiplugin_tracker.php -text
 lib/wiki-plugins/wikiplugin_trackercomments.php -text
 lib/wiki-plugins/wikiplugin_trackerfilter.php -text
+lib/wiki-plugins/wikiplugin_trackerif.php -text
 lib/wiki-plugins/wikiplugin_trackeritemfield.php -text
 lib/wiki-plugins/wikiplugin_trackerlist.php -text
 lib/wiki-plugins/wikiplugin_trackerprefill.php -text
