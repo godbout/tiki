@@ -4561,6 +4561,8 @@ templates/tiki-accounting_entry.tpl -text
 templates/tiki-accounting_export.tpl -text
 templates/tiki-accounting_journal.tpl -text
 templates/tiki-accounting_journal_csv.tpl -text
+templates/tiki-accounting_stack.tpl -text
+templates/tiki-accounting_stacklist.tpl -text
 templates/tiki-action_calendar.tpl -text
 templates/tiki-admin.tpl -text
 templates/tiki-admin_actionlog.tpl -text
@@ -5016,6 +5018,7 @@ tests/testfile.txt -text
 /tiki-accounting_cancel.php -text
 /tiki-accounting_entry.php -text
 /tiki-accounting_export.php -text
+/tiki-accounting_stack.php -text
 /tiki-action_calendar.php -text
 /tiki-admin.php -text
 /tiki-admin_actionlog.php -text
