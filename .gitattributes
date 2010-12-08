@@ -1576,9 +1576,12 @@ lib/Horde/Yaml/Exception.php -text
 lib/Horde/Yaml/Loader.php -text
 lib/Horde/Yaml/Node.php -text
 lib/TikiWebdav/Auth/Default.php -text
+lib/TikiWebdav/Auth/Wiki.php -text
 lib/TikiWebdav/Backend/File.php -text
 lib/TikiWebdav/Backend/File.php.sept -text
+lib/TikiWebdav/Backend/Wiki.php -text
 lib/TikiWebdav/PathFactories/File.php -text
+lib/TikiWebdav/PathFactories/Wiki.php -text
 lib/TikiWebdav/Server.php -text
 lib/TikiWebdav/autoload.php -text
 lib/ZeroClipboard.js -text
@@ -4953,6 +4956,7 @@ templates/tiki-view_sheets.tpl -text
 templates/tiki-view_tracker.tpl -text
 templates/tiki-view_tracker_item.tpl -text
 templates/tiki-view_tracker_more_info.tpl -text
+templates/tiki-webdav-wiki.tpl -text
 templates/tiki-webdav.tpl -text
 templates/tiki-webmail.tpl -text
 templates/tiki-webmail_contacts.tpl -text
@@ -5425,6 +5429,7 @@ tests/testfile.txt -text
 /tiki-view_tracker_more_info.php -text
 /tiki-wap.php -text
 /tiki-watershed_service.php -text
+/tiki-webdav-wiki.php -text
 /tiki-webdav.php -text
 /tiki-webmail.php -text
 /tiki-webmail_ajax.php -text
