@@ -1760,6 +1760,7 @@ lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/Lucene.php -text
 lib/core/Search/Type/Interface.php -text
 lib/core/Search/Type/MultivalueText.php -text
+lib/core/Search/Type/PlainText.php -text
 lib/core/Search/Type/ShortText.php -text
 lib/core/Search/Type/Whole.php -text
 lib/core/Search/Type/WikiText.php -text
