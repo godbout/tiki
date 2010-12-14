@@ -2778,6 +2778,7 @@ lib/smarty_tiki/modifier.max_user_inscriptions.php -text
 lib/smarty_tiki/modifier.money_format.php -text
 lib/smarty_tiki/modifier.nlbr.php -text
 lib/smarty_tiki/modifier.number_format.php -text
+lib/smarty_tiki/modifier.output.php -text
 lib/smarty_tiki/modifier.pagename.php -text
 lib/smarty_tiki/modifier.percent.php -text
 lib/smarty_tiki/modifier.quoted.php -text
