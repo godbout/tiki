@@ -1413,6 +1413,7 @@ installer/schema/20101207_unique_login_tiki.php -text
 installer/schema/20101208_webservice_soap_tiki.sql -text
 installer/schema/20101210_sync_users_ldap_tiki.sql -text
 installer/schema/20101215_remove_files_tiki.sql -text
+installer/schema/20101215_template_file_galleries_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1842,6 +1843,7 @@ lib/featured_links/index.php -text
 lib/filegals/filegallib.php -text
 lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
+lib/filegals/tiki-list_file_gallery.js -text
 lib/freetag/freetaglib.php -text
 lib/freetag/index.php -text
 lib/geo/geolib.php -text
