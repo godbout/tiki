@@ -1412,6 +1412,7 @@ installer/schema/20101207_feature_file_drafts_tiki.sql -text
 installer/schema/20101207_unique_login_tiki.php -text
 installer/schema/20101208_webservice_soap_tiki.sql -text
 installer/schema/20101210_sync_users_ldap_tiki.sql -text
+installer/schema/20101215_plugin_autoapprove_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
