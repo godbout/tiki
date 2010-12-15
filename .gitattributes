@@ -93,6 +93,7 @@ doc/devtools/sync.php -text
 doc/devtools/synctiki.sh -text
 doc/devtools/tiki-create_md5.php -text
 doc/devtools/tiki-show_raw_links.php -text
+doc/devtools/tiki-sync_ldap.php -text
 doc/devtools/tikilite.sh -text
 doc/devtools/tikimails.sh -text
 doc/devtools/tikimerge.sh -text
