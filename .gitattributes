@@ -102,6 +102,7 @@ doc/devtools/tikireleasediff.sh -text
 doc/devtools/tikiwiki.spec -text
 doc/devtools/upto_4.1_delete_all_cetgory_perms.sql -text
 doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
+doc/devtools/upto_7_drop_unused_6.x_tables.sql -text
 doc/devtools/usergeo.php -text
 doc/index.php -text
 doc/readme.txt -text
@@ -1592,13 +1593,9 @@ lib/ZeroClipboard.js -text
 lib/accounting/accountinglib.php -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
-lib/ajax/LICENSE.txt -text
-lib/ajax/README.txt -text
-lib/ajax/ajaxlib.php -text
 lib/ajax/autosave.js -text
 lib/ajax/autosave.php -text
 lib/ajax/lib/activex_off.js -text
-lib/ajax/tiki-ajax.js -text
 lib/articles/artlib.php -text
 lib/articles/index.php -text
 lib/attributes/attributelib.php -text
@@ -3258,8 +3255,6 @@ lib/wiki/pluginslib.php -text
 lib/wiki/quantifylib.php -text
 lib/wiki/renderlib.php -text
 lib/wiki/semanticlib.php -text
-lib/wiki/wiki-ajax.js -text
-lib/wiki/wiki-ajax.php -text
 lib/wiki/wikilib.php -text
 lib/wiki/xmllib.php -text
 lib/wiki3d/CHANGELOG -text
