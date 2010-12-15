@@ -1414,6 +1414,7 @@ installer/schema/20101207_feature_file_drafts_tiki.sql -text
 installer/schema/20101207_unique_login_tiki.php -text
 installer/schema/20101208_webservice_soap_tiki.sql -text
 installer/schema/20101210_sync_users_ldap_tiki.sql -text
+installer/schema/20101211_kil_feature_phplayers_tiki.php -text
 installer/schema/20101215_remove_files_tiki.sql -text
 installer/schema/20101215_template_file_galleries_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
@@ -2400,17 +2401,6 @@ lib/pear/XML_Parser/tests/test2.xml -text
 lib/pear/XML_Parser/tests/test3.xml -text
 lib/pear/index.php -text
 lib/perspectivelib.php -text
-lib/phplayers_tiki/index.php -text
-lib/phplayers_tiki/lib/index.php -text
-lib/phplayers_tiki/lib/layersmenu-common.inc.php -text
-lib/phplayers_tiki/templates/index.php -text
-lib/phplayers_tiki/templates/layersmenu-horizontal_menu.ihtml -text
-lib/phplayers_tiki/templates/layersmenu-plain_menu.ihtml -text
-lib/phplayers_tiki/templates/layersmenu-sub_menu-galaxy.ihtml -text
-lib/phplayers_tiki/templates/layersmenu-sub_menu.ihtml -text
-lib/phplayers_tiki/templates/layersmenu-vertical_menu-galaxy.ihtml -text
-lib/phplayers_tiki/templates/layersmenu-vertical_menu.ihtml -text
-lib/phplayers_tiki/tiki-phplayers.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
@@ -2600,7 +2590,6 @@ lib/setup/openid.php -text
 lib/setup/output_compression.php -text
 lib/setup/patches.php -text
 lib/setup/perms.php -text
-lib/setup/phplayers.php -text
 lib/setup/polls.php -text
 lib/setup/prefs.php -text
 lib/setup/sections.php -text
@@ -2731,7 +2720,6 @@ lib/smarty_tiki/function.metric.php -text
 lib/smarty_tiki/function.obj_in_cat.php -text
 lib/smarty_tiki/function.object_link.php -text
 lib/smarty_tiki/function.payment.php -text
-lib/smarty_tiki/function.phplayers.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup.php -text
 lib/smarty_tiki/function.preference.php -text
