@@ -3059,9 +3059,7 @@ lib/trackers/dynamic_list.js -text
 lib/trackers/index.php -text
 lib/trackers/trackerlib.php -text
 lib/transitionlib.php -text
-lib/tree/categ_admin_tree.php -text
 lib/tree/categ_browse_tree.php -text
-lib/tree/categ_picker_tree.php -text
 lib/tree/index.php -text
 lib/tree/tree.php -text
 lib/userfiles/index.php -text
