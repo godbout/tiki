@@ -3408,11 +3408,14 @@ pics/icons/anchor.png -text
 pics/icons/announce.png -text
 pics/icons/announce_new.png -text
 pics/icons/application_add.png -text
+pics/icons/application_form.png -text
 pics/icons/application_form_magnify.png -text
 pics/icons/application_get.png -text
 pics/icons/application_put.png -text
 pics/icons/application_side_contract.png -text
 pics/icons/application_side_tree.png -text
+pics/icons/application_view_detail.png -text
+pics/icons/application_view_list.png -text
 pics/icons/arrow_in.png -text
 pics/icons/arrow_left.png -text
 pics/icons/arrow_merge.png -text
@@ -3436,8 +3439,12 @@ pics/icons/bug.png -text
 pics/icons/bug_error.png -text
 pics/icons/bullet_toggle_plus.png -text
 pics/icons/bullet_white.png -text
+pics/icons/calculator.png -text
 pics/icons/calendar.png -text
 pics/icons/calendar_add.png -text
+pics/icons/calendar_view_day.png -text
+pics/icons/cart_add.png -text
+pics/icons/chart_bar.png -text
 pics/icons/chart_curve.png -text
 pics/icons/chart_line.png -text
 pics/icons/chart_organisation.png -text
@@ -3447,8 +3454,10 @@ pics/icons/comment_add.png -text
 pics/icons/comment_approve.png -text
 pics/icons/comment_reject.png -text
 pics/icons/comments.png -text
+pics/icons/computer.png -text
 pics/icons/control_pause.png -text
 pics/icons/control_play.png -text
+pics/icons/control_play_blue.png -text
 pics/icons/control_stop.png -text
 pics/icons/cross.png -text
 pics/icons/cross_admin.png -text
@@ -3459,6 +3468,7 @@ pics/icons/database_go.png -text
 pics/icons/database_lightning.png -text
 pics/icons/database_refresh.png -text
 pics/icons/database_table.png -text
+pics/icons/date_edit.png -text
 pics/icons/delete.png -text
 pics/icons/disk.png -text
 pics/icons/disk_lock.png -text
@@ -3480,13 +3490,19 @@ pics/icons/eye_group_arrow_down.png -text
 pics/icons/eye_magnifier.png -text
 pics/icons/feed.png -text
 pics/icons/file-manager.png -text
+pics/icons/film_edit.png -text
 pics/icons/find.png -text
 pics/icons/flag_blue.png -text
 pics/icons/folder.png -text
 pics/icons/folder_add.png -text
+pics/icons/folder_find.png -text
 pics/icons/folder_go.png -text
+pics/icons/font.png -text
+pics/icons/google.png -text
 pics/icons/green_question.png -text
 pics/icons/group.png -text
+pics/icons/group_add.png -text
+pics/icons/group_delete.png -text
 pics/icons/group_gear.png -text
 pics/icons/group_go.png -text
 pics/icons/group_key.png -text
@@ -3495,10 +3511,10 @@ pics/icons/hot.png -text
 pics/icons/hot_new.png -text
 pics/icons/house.png -text
 pics/icons/house_go.png -text
-pics/icons/html.png -text
 pics/icons/html_add.png -text
 pics/icons/image.png -text
 pics/icons/image_add.png -text
+pics/icons/image_edit.png -text
 pics/icons/information.png -text
 pics/icons/information_gray.png -text
 pics/icons/key.png -text
@@ -3506,6 +3522,8 @@ pics/icons/key_active.png -text
 pics/icons/key_private.png -text
 pics/icons/layers.png -text
 pics/icons/layout_add.png -text
+pics/icons/layout_content.png -text
+pics/icons/layout_header.png -text
 pics/icons/link.png -text
 pics/icons/link_delete.png -text
 pics/icons/lock.png -text
@@ -3521,6 +3539,7 @@ pics/icons/map.png -text
 pics/icons/mime/avi.png -text
 pics/icons/mime/c.png -text
 pics/icons/mime/cpp.png -text
+pics/icons/mime/css.png -text
 pics/icons/mime/default.png -text
 pics/icons/mime/doc.png -text
 pics/icons/mime/flv.png -text
@@ -3552,13 +3571,16 @@ pics/icons/mime/ppt.png -text
 pics/icons/mime/swf.png -text
 pics/icons/mime/txt.png -text
 pics/icons/mime/vsd.png -text
+pics/icons/mime/xhtml.png -text
 pics/icons/mime/xls.png -text
 pics/icons/mime/zip.png -text
 pics/icons/minus_small.png -text
 pics/icons/module.png -text
+pics/icons/money.png -text
 pics/icons/monitor.png -text
 pics/icons/more_info.gif -text
 pics/icons/multiple_cal.png -text
+pics/icons/myspace.png -text
 pics/icons/new.png -text
 pics/icons/newspaper_add.png -text
 pics/icons/newspaper_go.png -text
@@ -3579,7 +3601,9 @@ pics/icons/page_break.png -text
 pics/icons/page_copy.png -text
 pics/icons/page_edit.png -text
 pics/icons/page_edit_section.png -text
+pics/icons/page_find.png -text
 pics/icons/page_gear.png -text
+pics/icons/page_lightning.png -text
 pics/icons/page_link.png -text
 pics/icons/page_new.png -text
 pics/icons/page_paste.png -text
@@ -3588,7 +3612,8 @@ pics/icons/page_translate_to.png -text
 pics/icons/page_white_acrobat.png -text
 pics/icons/page_white_actionscript.png -text
 pics/icons/page_white_code.png -text
-pics/icons/page_white_flash.png -text
+pics/icons/page_white_find.png -text
+pics/icons/page_white_key.png -text
 pics/icons/page_white_link.png -text
 pics/icons/page_white_picture.png -text
 pics/icons/page_white_stack.png -text
@@ -3604,6 +3629,7 @@ pics/icons/plugin.png -text
 pics/icons/plugin_add.png -text
 pics/icons/plugin_disabled.png -text
 pics/icons/plugin_edit.png -text
+pics/icons/plugin_link.png -text
 pics/icons/plus_small.png -text
 pics/icons/printer.png -text
 pics/icons/printer_add.png -text
@@ -3619,9 +3645,12 @@ pics/icons/resultset_previous.png -text
 pics/icons/resultset_previous_fast.png -text
 pics/icons/resultset_up.png -text
 pics/icons/rss.png -text
+pics/icons/script.png -text
+pics/icons/script_code_red.png -text
 pics/icons/shading.png -text
 pics/icons/shape_square_edit.png -text
 pics/icons/share_link.png -text
+pics/icons/sharethis.png -text
 pics/icons/sheet_col_add.png -text
 pics/icons/sheet_col_add_multi.png -text
 pics/icons/sheet_col_delete.png -text
@@ -3629,13 +3658,19 @@ pics/icons/sheet_get_range.png -text
 pics/icons/sheet_row_add.png -text
 pics/icons/sheet_row_add_multi.png -text
 pics/icons/sheet_row_delete.png -text
+pics/icons/shield.png -text
+pics/icons/sitemap_color.png -text
+pics/icons/skype.png -text
 pics/icons/star.png -text
 pics/icons/star_grey.png -text
 pics/icons/star_half.png -text
 pics/icons/sticky.png -text
 pics/icons/sticky_new.png -text
 pics/icons/sum.png -text
+pics/icons/tab_edit.png -text
 pics/icons/table.png -text
+pics/icons/table_multiple.png -text
+pics/icons/table_sort.png -text
 pics/icons/tag_blue.png -text
 pics/icons/tag_blue_add.png -text
 pics/icons/task_received.png -text
@@ -3683,6 +3718,7 @@ pics/icons/textfield.png -text
 pics/icons/thumb_up.png -text
 pics/icons/tick.png -text
 pics/icons/timeline_marker.png -text
+pics/icons/transmit_blue.png -text
 pics/icons/tree_collapse.png -text
 pics/icons/tree_collapse_corner.png -text
 pics/icons/tree_collapse_corner_first.png -text
@@ -3699,6 +3735,7 @@ pics/icons/tree_space.png -text
 pics/icons/tree_split.png -text
 pics/icons/tree_split_first.png -text
 pics/icons/tree_vertline.png -text
+pics/icons/twitter.png -text
 pics/icons/up.png -text
 pics/icons/upload.png -text
 pics/icons/useagelist.txt -text
@@ -3709,6 +3746,8 @@ pics/icons/user_gray.png -text
 pics/icons/user_red.png -text
 pics/icons/vimeo.png -text svneol=unset#unset
 pics/icons/vmodule.png -text
+pics/icons/wand.png -text
+pics/icons/webcam.png -text
 pics/icons/wiki3d.png -text
 pics/icons/wiki_plugin_edit.png -text
 pics/icons/wiki_plugin_edit_hide.png -text
@@ -3716,6 +3755,7 @@ pics/icons/wiki_plugin_edit_view.png -text
 pics/icons/world.png -text
 pics/icons/world_add.png -text
 pics/icons/world_edit.png -text
+pics/icons/world_go.png -text
 pics/icons/world_link.png -text
 pics/icons/wrench.png -text
 pics/icons/youtube.png -text svneol=unset#unset
