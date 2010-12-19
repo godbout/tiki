@@ -5,6 +5,7 @@
 /.metadata*
 /.project
 /.settings
+/.svnrev
 /ZendPlatform
 /ZendStudioServer
 /_htaccess
