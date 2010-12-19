@@ -3062,6 +3062,7 @@ lib/userprefs/userprefslib.php -text
 lib/userslib.php -text
 lib/validators/validator_captcha.php -text
 lib/validators/validator_distinct.php -text
+lib/validators/validator_pagename.php -text
 lib/validators/validator_password.php -text
 lib/validators/validator_regex.php -text
 lib/validators/validator_username.php -text
