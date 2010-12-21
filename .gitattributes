@@ -4981,6 +4981,7 @@ templates/tiki-webdav.tpl -text
 templates/tiki-webmail.tpl -text
 templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
+templates/tiki-wiki_staging.tpl -text
 templates/tiki-wiki_structure_bar.tpl -text
 templates/tiki-wiki_topline.tpl -text
 templates/tiki.tpl -text
