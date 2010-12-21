@@ -1418,6 +1418,7 @@ installer/schema/20101210_sync_users_ldap_tiki.sql -text
 installer/schema/20101211_kil_feature_phplayers_tiki.php -text
 installer/schema/20101215_remove_files_tiki.sql -text
 installer/schema/20101215_template_file_galleries_tiki.sql -text
+installer/schema/20101219_kill_feature_mobile_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1856,16 +1857,6 @@ lib/graph-engine/pdflib.php -text
 lib/graph-engine/ps.php -text
 lib/groupalert/groupalertlib.php -text
 lib/groupalert/index.php -text
-lib/hawhaw/hawhaw.inc -text
-lib/hawhaw/hawiki.inc -text
-lib/hawhaw/hawiki_cfg.inc -text
-lib/hawhaw/hawiki_parser.inc -text
-lib/hawhaw/hawimconv.php -text
-lib/hawhaw/hawtikilib.php -text
-lib/hawhaw/index.php -text
-lib/hawhaw/link.wav -text svneol=unset#unset
-lib/hawhaw/skin/magnify/magnify.jpg -text
-lib/hawhaw/skin/magnify/skin.css -text
 lib/headerlib.php -text
 lib/hotwords/hotwordlib.php -text
 lib/hotwords/index.php -text
@@ -5335,7 +5326,6 @@ tests/testfile.txt -text
 /tiki-minical_prefs.php -text
 /tiki-minical_reminders.php -text
 /tiki-minichat_ajax.php -text
-/tiki-mobile.php -text
 /tiki-mods.php -text
 /tiki-mods_admin.php -text
 /tiki-module_controls.php -text
@@ -5456,7 +5446,6 @@ tests/testfile.txt -text
 /tiki-view_tracker.php -text
 /tiki-view_tracker_item.php -text
 /tiki-view_tracker_more_info.php -text
-/tiki-wap.php -text
 /tiki-watershed_service.php -text
 /tiki-webdav-wiki.php -text
 /tiki-webdav.php -text
