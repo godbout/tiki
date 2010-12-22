@@ -3339,6 +3339,7 @@ modules/mod-func-live_support.php -text
 modules/mod-func-login_box.php -text
 modules/mod-func-logo.php -text
 modules/mod-func-menupage.php -text
+modules/mod-func-menustructure.php -text
 modules/mod-func-messages_unread_messages.php -text
 modules/mod-func-minichat.php -text
 modules/mod-func-months_links.php -text
@@ -4439,6 +4440,7 @@ templates/modules/mod-login_box.tpl -text
 templates/modules/mod-login_box.tpl.nocache -text
 templates/modules/mod-logo.tpl -text
 templates/modules/mod-menupage.tpl -text
+templates/modules/mod-menustructure.tpl -text
 templates/modules/mod-messages_unread_messages.tpl -text
 templates/modules/mod-messages_unread_messages.tpl.nocache -text
 templates/modules/mod-minichat.tpl -text
