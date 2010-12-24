@@ -1428,6 +1428,9 @@ lang/.htaccess -text
 lang/ar/index.php -text
 lang/ar/language.js -text
 lang/ar/language.php -text
+lang/bg/index.php -text
+lang/bg/language.js -text
+lang/bg/language.php -text
 lang/ca/custom.php_example -text
 lang/ca/index.php -text
 lang/ca/language.js -text
