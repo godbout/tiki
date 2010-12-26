@@ -4230,6 +4230,7 @@ templates/blog_post_status.tpl -text
 templates/blog_wrapper.tpl -text
 templates/browse_file_gallery.tpl -text
 templates/browsedcategory.tpl -text
+templates/canonical.tpl -text
 templates/categobjects.tpl -text
 templates/categorize.tpl -text
 templates/category_tree_entry.tpl -text
