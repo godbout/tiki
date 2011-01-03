@@ -1771,6 +1771,7 @@ lib/core/Search/Type/Interface.php -text
 lib/core/Search/Type/MultivalueText.php -text
 lib/core/Search/Type/PlainText.php -text
 lib/core/Search/Type/ShortText.php -text
+lib/core/Search/Type/Timestamp.php -text
 lib/core/Search/Type/Whole.php -text
 lib/core/Search/Type/WikiText.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
