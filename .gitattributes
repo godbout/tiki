@@ -1418,6 +1418,7 @@ installer/schema/20101215_remove_files_tiki.sql -text
 installer/schema/20101215_template_file_galleries_tiki.sql -text
 installer/schema/20101219_kill_feature_mobile_tiki.sql -text
 installer/schema/20110103_include_in_history_tiki.sql -text
+installer/schema/20110104_flagged_revision_log_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2441,6 +2442,7 @@ lib/prefs/feature.php -text
 lib/prefs/feed.php -text
 lib/prefs/fgal.php -text
 lib/prefs/file.php -text
+lib/prefs/flaggedrev.php -text
 lib/prefs/footer.php -text
 lib/prefs/forum.php -text
 lib/prefs/forums.php -text
@@ -3240,6 +3242,7 @@ lib/wiki-plugins/wikiplugin_webservice.php -text
 lib/wiki-plugins/wikiplugin_youtube.php -text
 lib/wiki/editlib.php -text
 lib/wiki/exportlib.php -text
+lib/wiki/flaggedrevisionlib.php -text
 lib/wiki/histlib.php -text
 lib/wiki/index.php -text
 lib/wiki/pluginslib.php -text
@@ -4785,6 +4788,7 @@ templates/tiki-featured_link.tpl -text
 templates/tiki-file_archives.tpl -text
 templates/tiki-file_galleries.tpl -text
 templates/tiki-file_info_box.tpl -text
+templates/tiki-flaggedrev_approval_header.tpl -text
 templates/tiki-forum_import.tpl -text
 templates/tiki-forum_queue.tpl -text
 templates/tiki-forums.tpl -text
