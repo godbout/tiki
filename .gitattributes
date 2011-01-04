@@ -1419,6 +1419,7 @@ installer/schema/20101215_template_file_galleries_tiki.sql -text
 installer/schema/20101219_kill_feature_mobile_tiki.sql -text
 installer/schema/20110103_include_in_history_tiki.sql -text
 installer/schema/20110104_flagged_revision_log_tiki.sql -text
+installer/schema/20110104_sefurl_trackeritem_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
