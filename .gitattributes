@@ -4349,6 +4349,8 @@ templates/mail/user_watch_category_removed.tpl -text
 templates/mail/user_watch_category_removed_subject.tpl -text
 templates/mail/user_watch_category_updated.tpl -text
 templates/mail/user_watch_category_updated_subject.tpl -text
+templates/mail/user_watch_comment.tpl -text
+templates/mail/user_watch_comment_subject.tpl -text
 templates/mail/user_watch_file_gallery_changed_subject.tpl -text
 templates/mail/user_watch_file_gallery_remove_file.tpl -text
 templates/mail/user_watch_file_gallery_upload.tpl -text
@@ -4366,8 +4368,6 @@ templates/mail/user_watch_wiki_new_attach.tpl -text
 templates/mail/user_watch_wiki_new_attach_subject.tpl -text
 templates/mail/user_watch_wiki_page_changed.tpl -text
 templates/mail/user_watch_wiki_page_changed_subject.tpl -text
-templates/mail/user_watch_wiki_page_comment.tpl -text
-templates/mail/user_watch_wiki_page_comment_subject.tpl -text
 templates/mail/user_watch_wiki_page_renamed.tpl -text
 templates/mail/user_watch_wiki_page_renamed_subject.tpl -text
 templates/mail/user_welcome_msg.tpl -text
