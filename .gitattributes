@@ -3312,6 +3312,7 @@ modules/mod-func-categories.php -text
 modules/mod-func-category_transition.php -text
 modules/mod-func-change_category.php -text
 modules/mod-func-comm_received_objects.php -text
+modules/mod-func-contributors.php -text
 modules/mod-func-credits.php -text
 modules/mod-func-directory_last_sites.php -text
 modules/mod-func-directory_stats.php -text
@@ -4410,6 +4411,7 @@ templates/modules/mod-categories.tpl -text
 templates/modules/mod-category_transition.tpl -text
 templates/modules/mod-change_category.tpl -text
 templates/modules/mod-comm_received_objects.tpl -text
+templates/modules/mod-contributors.tpl -text
 templates/modules/mod-credits.tpl -text
 templates/modules/mod-directory_last_sites.tpl -text
 templates/modules/mod-directory_stats.tpl -text
