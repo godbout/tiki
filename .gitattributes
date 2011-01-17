@@ -4011,6 +4011,13 @@ styles/eatlon/image.gif -text
 styles/eatlon/index.php -text
 styles/eatlon/layouts.gif -text
 styles/eatlon/menu_bg.png -text svneol=unset#image/png
+styles/eatlon/options/teal.css -text
+styles/eatlon/options/teal/arrows-6d819d.png -text
+styles/eatlon/options/teal/body_bg.gif -text
+styles/eatlon/options/teal/bottom_bg.png -text
+styles/eatlon/options/teal/feed.gif -text
+styles/eatlon/options/teal/head_bg.gif -text
+styles/eatlon/options/teal/menu_bg.png -text
 styles/empty.css -text
 styles/feb12.css -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
