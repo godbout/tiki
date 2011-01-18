@@ -2938,6 +2938,7 @@ lib/test/core/WikiParser/PluginMatcherTest.php -text
 lib/test/core/WikiParser/PluginOutputTest.php -text
 lib/test/core/WikiParser/PluginParserTest.php -text
 lib/test/core/WikiParser/PluginRepositoryTest.php -text
+lib/test/core/WikiParser/StressTest.php -text
 lib/test/core/WikiParser/wikiplugin_foo.php -text
 lib/test/core/bootstrap.php -text
 lib/test/core/include_non_autoload_compatible_classes.php -text
