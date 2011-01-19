@@ -4266,6 +4266,7 @@ templates/browsedcategory.tpl -text
 templates/canonical.tpl -text
 templates/categobjects.tpl -text
 templates/categorize.tpl -text
+templates/category_related_objects.tpl -text
 templates/category_tree_entry.tpl -text
 templates/categpath.tpl -text
 templates/comment-body.tpl -text
