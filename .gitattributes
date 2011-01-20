@@ -4044,7 +4044,7 @@ styles/feb12/index.php -text
 styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/fivealive/fivealive.png -text svneol=unset#image/png
-styles/fivealive/header_left.png -text
+styles/fivealive/header_left.png -text svneol=unset#image/png
 styles/fivealive/index.php -text
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
 styles/fivealive/newsletter.css -text
