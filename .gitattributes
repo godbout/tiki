@@ -2631,6 +2631,7 @@ lib/sheet/excel/writer/parser.php -text
 lib/sheet/excel/writer/validator.php -text
 lib/sheet/excel/writer/workbook.php -text
 lib/sheet/excel/writer/worksheet.php -text
+lib/sheet/grid.js -text
 lib/sheet/grid.php -text
 lib/sheet/include/core/APIC.php -text
 lib/sheet/include/core/APIClass.php -text
