@@ -1794,6 +1794,7 @@ lib/core/TikiDb/ErrorHandler.php -text
 lib/core/TikiDb/Exception.php -text
 lib/core/TikiDb/MasterSlaveDispatch.php -text
 lib/core/TikiDb/Pdo.php -text
+lib/core/TikiDb/Table.php -text
 lib/core/TikiFilter.php -text
 lib/core/TikiFilter/AttributeType.php -text
 lib/core/TikiFilter/Callback.php -text
@@ -2927,6 +2928,7 @@ lib/test/core/Search/QueryTest.php -text
 lib/test/core/Search/basic.tpl -text
 lib/test/core/Search/embedded.tpl -text
 lib/test/core/Search/paginate.tpl -text
+lib/test/core/TikiDb/TableTest.php -text
 lib/test/core/TikiFilter/CallbackTest.php -text
 lib/test/core/TikiFilter/MapTest.php -text
 lib/test/core/TikiFilter/PrepareInputTest.php -text
