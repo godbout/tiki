@@ -2576,6 +2576,7 @@ lib/search/searchlib-mysql.php -text
 lib/search/searchlib-tiki.php -text
 lib/search/searchlib-unified.php -text
 lib/search/searchstatslib.php -text
+lib/serializedlist.php -text
 lib/setup/absolute_urls.php -text
 lib/setup/babelfish.php -text
 lib/setup/breadcrumb.php -text
