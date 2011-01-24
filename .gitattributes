@@ -1424,6 +1424,7 @@ installer/schema/20110104_sefurl_trackeritem_tiki.sql -text
 installer/schema/20110112_approval_permissions_tiki.sql -text
 installer/schema/20110115_create_bottom_modules_tiki.php -text
 installer/schema/20110118_p_remove_tracker_items_tiki.sql -text
+installer/schema/20110124_update_sheet_to_support_cloning_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
