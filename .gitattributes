@@ -2500,6 +2500,7 @@ lib/prefs/pam.php -text
 lib/prefs/pass.php -text
 lib/prefs/payment.php -text
 lib/prefs/permission.php -text
+lib/prefs/php.php -text
 lib/prefs/poll.php -text
 lib/prefs/print.php -text
 lib/prefs/proxy.php -text
