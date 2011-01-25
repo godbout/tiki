@@ -4644,6 +4644,7 @@ templates/styles/tikinewt/blog_wrapper.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/styles/twist/index.php -text
 templates/table.tpl -text
+templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
 templates/tiki-accounting_account_deleted.tpl -text
 templates/tiki-accounting_account_form.tpl -text
