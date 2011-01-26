@@ -4276,6 +4276,7 @@ templates/browse_file_gallery.tpl -text
 templates/browsedcategory.tpl -text
 templates/canonical.tpl -text
 templates/categobjects.tpl -text
+templates/categobjects_title.tpl -text
 templates/categorize.tpl -text
 templates/category_related_objects.tpl -text
 templates/category_tree_entry.tpl -text
