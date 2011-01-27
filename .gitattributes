@@ -3997,7 +3997,7 @@ styles/coelesce/options/index.php -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/coelesce/pics/icons/orightcol.png -text svneol=unset#image/png
-styles/coelesce/search_wide.jpg -text svneol=unset#image/jpeg
+styles/coelesce/search_wide.png -text svneol=unset#image/png
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom.css -text
 styles/darkroom/474747_5e5e5e_40.png -text svneol=unset#image/png
