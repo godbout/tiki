@@ -2503,6 +2503,7 @@ lib/prefs/permission.php -text
 lib/prefs/php.php -text
 lib/prefs/poll.php -text
 lib/prefs/print.php -text
+lib/prefs/profile.php -text
 lib/prefs/proxy.php -text
 lib/prefs/quantify.php -text
 lib/prefs/rating.php -text
