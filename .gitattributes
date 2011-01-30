@@ -1399,6 +1399,7 @@ installer/schema/20101008_user_id_for_tiki_language_tiki.sql -text
 installer/schema/20101014_tiki_language_add_lastModif_column_tiki.sql -text
 installer/schema/20101015_tiki_admin_perms_tiki.sql -text
 installer/schema/20101021_rename_blog_post_comment_object_type_tiki.sql -text
+installer/schema/20101025_fgal_show_deleteAfter_tiki.sql -text
 installer/schema/20101025_profile_sources_pref_tikiwiki_to_tiki.sql -text
 installer/schema/20101025_rename_create_blog_menu_entry_tiki.sql -text
 installer/schema/20101027_rename_invit_to_invite_tiki.sql -text
@@ -2804,6 +2805,7 @@ lib/smarty_tiki/modifier.tiki_date_format.php -text
 lib/smarty_tiki/modifier.tiki_long_date.php -text
 lib/smarty_tiki/modifier.tiki_long_datetime.php -text
 lib/smarty_tiki/modifier.tiki_long_time.php -text
+lib/smarty_tiki/modifier.tiki_remaining_days_from_now.php -text
 lib/smarty_tiki/modifier.tiki_short_date.php -text
 lib/smarty_tiki/modifier.tiki_short_datetime.php -text
 lib/smarty_tiki/modifier.tiki_short_time.php -text
