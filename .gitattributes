@@ -1403,6 +1403,7 @@ installer/schema/20101025_fgal_show_deleteAfter_tiki.sql -text
 installer/schema/20101025_profile_sources_pref_tikiwiki_to_tiki.sql -text
 installer/schema/20101025_rename_create_blog_menu_entry_tiki.sql -text
 installer/schema/20101026_auth_token_add_columns_tiki.sql -text
+installer/schema/20101027_add_file_gallery_columns_tiki.sql -text
 installer/schema/20101027_rename_invit_to_invite_tiki.sql -text
 installer/schema/20101028_p_invit_tiki.sql -text
 installer/schema/20101110_actionlog_tiki.sql -text
