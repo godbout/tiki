@@ -1402,6 +1402,7 @@ installer/schema/20101021_rename_blog_post_comment_object_type_tiki.sql -text
 installer/schema/20101025_fgal_show_deleteAfter_tiki.sql -text
 installer/schema/20101025_profile_sources_pref_tikiwiki_to_tiki.sql -text
 installer/schema/20101025_rename_create_blog_menu_entry_tiki.sql -text
+installer/schema/20101026_auth_token_add_columns_tiki.sql -text
 installer/schema/20101027_rename_invit_to_invite_tiki.sql -text
 installer/schema/20101028_p_invit_tiki.sql -text
 installer/schema/20101110_actionlog_tiki.sql -text
@@ -1414,6 +1415,7 @@ installer/schema/20101207_feature_file_drafts_tiki.sql -text
 installer/schema/20101207_unique_login_tiki.php -text
 installer/schema/20101208_webservice_soap_tiki.sql -text
 installer/schema/20101210_sync_users_ldap_tiki.sql -text
+installer/schema/20101211_filegal_maxhits_column_tiki.sql -text
 installer/schema/20101211_kil_feature_phplayers_tiki.php -text
 installer/schema/20101215_remove_files_tiki.sql -text
 installer/schema/20101215_template_file_galleries_tiki.sql -text
@@ -2516,6 +2518,7 @@ lib/prefs/section.php -text
 lib/prefs/sender.php -text
 lib/prefs/server.php -text
 lib/prefs/session.php -text
+lib/prefs/share.php -text
 lib/prefs/shib.php -text
 lib/prefs/shipping.php -text
 lib/prefs/short.php -text
@@ -3547,6 +3550,7 @@ pics/icons/group_delete.png -text
 pics/icons/group_gear.png -text
 pics/icons/group_go.png -text
 pics/icons/group_key.png -text
+pics/icons/group_link.png -text
 pics/icons/help.png -text
 pics/icons/hot.png -text
 pics/icons/hot_new.png -text
@@ -4409,6 +4413,7 @@ templates/mail/user_watch_object_leaved_category.tpl -text
 templates/mail/user_watch_object_leaved_category_subject.tpl -text
 templates/mail/user_watch_structure.tpl -text
 templates/mail/user_watch_structure_subject.tpl -text
+templates/mail/user_watch_token.tpl -text
 templates/mail/user_watch_wiki_new_attach.tpl -text
 templates/mail/user_watch_wiki_new_attach_subject.tpl -text
 templates/mail/user_watch_wiki_page_changed.tpl -text
@@ -4721,6 +4726,7 @@ templates/tiki-admin_include_search.tpl -text
 templates/tiki-admin_include_security.tpl -text
 templates/tiki-admin_include_sefurl.tpl -text
 templates/tiki-admin_include_semantic.tpl -text
+templates/tiki-admin_include_share.tpl -text
 templates/tiki-admin_include_socialnetworks.tpl -text
 templates/tiki-admin_include_textarea.tpl -text
 templates/tiki-admin_include_trackers.tpl -text
@@ -5180,6 +5186,7 @@ tests/testfile.txt -text
 /tiki-admin_include_security.php -text
 /tiki-admin_include_sefurl.php -text
 /tiki-admin_include_semantic.php -text
+/tiki-admin_include_share.php -text
 /tiki-admin_include_socialnetworks.php -text
 /tiki-admin_include_textarea.php -text
 /tiki-admin_include_trackers.php -text
