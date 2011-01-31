@@ -1416,6 +1416,7 @@ installer/schema/20101203_fgal_archive_default_tiki.sql -text
 installer/schema/20101207_feature_file_drafts_tiki.sql -text
 installer/schema/20101207_unique_login_tiki.php -text
 installer/schema/20101208_webservice_soap_tiki.sql -text
+installer/schema/20101210_fgal_add_wiki_attachments_tiki.php -text
 installer/schema/20101210_sync_users_ldap_tiki.sql -text
 installer/schema/20101211_filegal_maxhits_column_tiki.sql -text
 installer/schema/20101211_kil_feature_phplayers_tiki.php -text
@@ -2714,6 +2715,7 @@ lib/smarty_tiki/block.wikiplugin.php -text
 lib/smarty_tiki/compiler.assign.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.article.php -text
+lib/smarty_tiki/function.attachments.php -text
 lib/smarty_tiki/function.banner.php -text
 lib/smarty_tiki/function.breadcrumbs.php -text
 lib/smarty_tiki/function.button.php -text
@@ -4319,6 +4321,7 @@ templates/error.tpl -text
 templates/error_raw.tpl -text
 templates/error_simple.tpl -text
 templates/error_ticket.tpl -text
+templates/fgal_attachments.tpl -text
 templates/fgal_context_menu.tpl -text
 templates/fgal_listing_conf.tpl -text
 templates/file_backlinks.tpl -text
