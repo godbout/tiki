@@ -2615,6 +2615,7 @@ lib/setup/openid.php -text
 lib/setup/output_compression.php -text
 lib/setup/patches.php -text
 lib/setup/perms.php -text
+lib/setup/plugins_actions.php -text
 lib/setup/polls.php -text
 lib/setup/prefs.php -text
 lib/setup/sections.php -text
