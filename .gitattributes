@@ -4633,8 +4633,6 @@ templates/styles/coelesce/blog_post_postbody_title.tpl -text
 templates/styles/coelesce/blog_post_status.tpl -text
 templates/styles/coelesce/blog_wrapper.tpl -text
 templates/styles/coelesce/index.php -text
-templates/styles/coelesce/tiki-site_header_top.tpl -text
-templates/styles/coelesce/tiki-top_bar.tpl -text
 templates/styles/darkroom/index.php -text
 templates/styles/darkshine/index.php -text
 templates/styles/eatlon/index.php -text
@@ -4648,10 +4646,6 @@ templates/styles/strasa/blog_post_author_info.tpl -text
 templates/styles/strasa/blog_wrapper.tpl -text
 templates/styles/strasa/custom_site_footer.tpl -text
 templates/styles/strasa/index.php -text
-templates/styles/strasa/tiki-site_header.tpl -text
-templates/styles/strasa/tiki-site_header_login.tpl -text
-templates/styles/strasa/tiki-site_header_options.tpl -text
-templates/styles/strasa/tiki-site_header_top.tpl -text
 templates/styles/thenews/index.php -text
 templates/styles/tikinewt/blog_wrapper.tpl -text
 templates/styles/tikinewt/index.php -text
@@ -4991,15 +4985,7 @@ templates/tiki-show_help.tpl -text
 templates/tiki-show_page.tpl -text
 templates/tiki-show_page_raw.tpl -text
 templates/tiki-simple_plugin.tpl -text
-templates/tiki-site_header.tpl -text
-templates/tiki-site_header_login.tpl -text
-templates/tiki-site_header_options.tpl -text
-templates/tiki-site_header_top.tpl -text
-templates/tiki-site_header_top_begin.tpl -text
-templates/tiki-site_header_top_end.tpl -text
 templates/tiki-sitelocbar.tpl -text
-templates/tiki-sitemenu.tpl -text
-templates/tiki-sitesearchbar.tpl -text
 templates/tiki-slideshow.tpl -text
 templates/tiki-socialnetworks.tpl -text
 templates/tiki-socialnetworks_firstlogin.tpl -text
@@ -5021,10 +5007,6 @@ templates/tiki-tests_topbar.tpl -text
 templates/tiki-theme_control.tpl -text
 templates/tiki-theme_control_objects.tpl -text
 templates/tiki-theme_control_sections.tpl -text
-templates/tiki-top_bar.tpl -text
-templates/tiki-top_bar_begin.tpl -text
-templates/tiki-top_bar_custom_code.tpl -text
-templates/tiki-top_bar_end.tpl -text
 templates/tiki-tracker_view_history.tpl -text
 templates/tiki-upload_file.tpl -text
 templates/tiki-upload_file_progress.tpl -text
