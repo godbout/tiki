@@ -1409,6 +1409,7 @@ installer/schema/20101028_p_invit_tiki.sql -text
 installer/schema/20101110_actionlog_tiki.sql -text
 installer/schema/20101117_actionlog_tiki.sql -text
 installer/schema/20101119_categ_perm_tiki.sql -text
+installer/schema/20101126_fgal_add_gallerie_user_tiki.php -text
 installer/schema/20101130_tiki_accounting_tiki.sql -text
 installer/schema/20101201_tiki_accounting_fix_index_tiki.sql -text
 installer/schema/20101203_fgal_archive_default_tiki.sql -text
@@ -5514,6 +5515,7 @@ tests/testfile.txt -text
 /tiki-userfiles.php -text
 /tiki-usermenu.php -text
 /tiki-users3d_xmlrpc.php -text
+/tiki-userupload.php -text
 /tiki-userversions.php -text
 /tiki-view_articles.php -text
 /tiki-view_banner.php -text
