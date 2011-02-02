@@ -1868,7 +1868,6 @@ lib/featured_links/index.php -text
 lib/filegals/filegallib.php -text
 lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
-lib/filegals/tiki-list_file_gallery.js -text
 lib/freetag/freetaglib.php -text
 lib/freetag/index.php -text
 lib/geo/geolib.php -text
