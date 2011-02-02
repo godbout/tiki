@@ -34,6 +34,7 @@ maps/*
 modules/.htaccess
 modules/cache
 modules/cache/*
+/nbproject
 /phpmyadmin
 /project.index
 /svn-commit.tmp
