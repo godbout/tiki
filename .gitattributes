@@ -1602,7 +1602,6 @@ lib/Horde/Yaml/Node.php -text
 lib/TikiWebdav/Auth/Default.php -text
 lib/TikiWebdav/Auth/Wiki.php -text
 lib/TikiWebdav/Backend/File.php -text
-lib/TikiWebdav/Backend/File.php.sept -text
 lib/TikiWebdav/Backend/Wiki.php -text
 lib/TikiWebdav/PathFactories/File.php -text
 lib/TikiWebdav/PathFactories/Wiki.php -text
