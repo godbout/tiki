@@ -2433,7 +2433,6 @@ lib/prefs/available.php -text
 lib/prefs/bigbluebutton.php -text
 lib/prefs/blog.php -text
 lib/prefs/blogues.php -text
-lib/prefs/bot.php -text
 lib/prefs/box.php -text
 lib/prefs/calendar.php -text
 lib/prefs/captcha.php -text
@@ -2530,7 +2529,6 @@ lib/prefs/show.php -text
 lib/prefs/site.php -text
 lib/prefs/sitead.php -text
 lib/prefs/sitelogo.php -text
-lib/prefs/sitemycode.php -text
 lib/prefs/slide.php -text
 lib/prefs/smarty.php -text
 lib/prefs/socialnetworks.php -text
@@ -4778,7 +4776,6 @@ templates/tiki-backlinks.tpl -text
 templates/tiki-batch_upload.tpl -text
 templates/tiki-batch_upload_files.tpl -text
 templates/tiki-blog_post.tpl -text
-templates/tiki-bot_bar.tpl -text
 templates/tiki-browse_categories.tpl -text
 templates/tiki-browse_freetags.tpl -text
 templates/tiki-browse_gallery.tpl -text
