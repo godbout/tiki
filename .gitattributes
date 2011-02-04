@@ -4819,6 +4819,7 @@ templates/tiki-edit_css.tpl -text
 templates/tiki-edit_help.tpl -text
 templates/tiki-edit_help_plugins.tpl -text
 templates/tiki-edit_help_sheet.tpl -text
+templates/tiki-edit_help_sheet_interface.tlp -text
 templates/tiki-edit_help_wysiwyg.tpl -text
 templates/tiki-edit_image.tpl -text
 templates/tiki-edit_languages.tpl -text
