@@ -3257,6 +3257,7 @@ lib/wiki-plugins/wikiplugin_trackerlist.php -text
 lib/wiki-plugins/wikiplugin_trackerprefill.php -text
 lib/wiki-plugins/wikiplugin_trackerstat.php -text
 lib/wiki-plugins/wikiplugin_trackertimeline.php -text
+lib/wiki-plugins/wikiplugin_trackertoggle.php -text
 lib/wiki-plugins/wikiplugin_trade.php -text
 lib/wiki-plugins/wikiplugin_transclude.php -text
 lib/wiki-plugins/wikiplugin_translated.php -text
