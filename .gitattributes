@@ -2495,6 +2495,7 @@ lib/prefs/metatag.php -text
 lib/prefs/metrics.php -text
 lib/prefs/middle.php -text
 lib/prefs/min.php -text
+lib/prefs/mobile.php -text
 lib/prefs/module.php -text
 lib/prefs/morelikethis.php -text
 lib/prefs/multidomain.php -text
@@ -2610,6 +2611,7 @@ lib/setup/last_update.php -text
 lib/setup/live_support.php -text
 lib/setup/load_threshold.php -text
 lib/setup/mailin.php -text
+lib/setup/mobile.php -text
 lib/setup/openid.php -text
 lib/setup/output_compression.php -text
 lib/setup/patches.php -text
