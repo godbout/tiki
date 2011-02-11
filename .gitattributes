@@ -2104,6 +2104,7 @@ lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
 lib/jquery_tiki/tablesorter/themes/tiki/desc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
+lib/jquery_tiki/tiki-jquery.mobile.js.js -text
 lib/jquery_tiki/tiki-themegenerator.js -text
 lib/language/Language.php -text
 lib/language/index.php -text
@@ -4646,6 +4647,9 @@ templates/styles/eatlon/index.php -text
 templates/styles/feb12/index.php -text
 templates/styles/index.php -text
 templates/styles/jqui/index.php -text
+templates/styles/mobile/module.tpl -text
+templates/styles/mobile/tiki-page_bar.tpl -text
+templates/styles/mobile/tiki.tpl -text
 templates/styles/ohia/index.php -text
 templates/styles/skeleton/index.php -text
 templates/styles/snow/index.php -text
