@@ -3399,6 +3399,7 @@ modules/mod-func-menupage.php -text
 modules/mod-func-menustructure.php -text
 modules/mod-func-messages_unread_messages.php -text
 modules/mod-func-minichat.php -text
+modules/mod-func-mobile.php -text
 modules/mod-func-months_links.php -text
 modules/mod-func-most_commented.php -text
 modules/mod-func-num_submissions.php -text
@@ -4526,6 +4527,7 @@ templates/modules/mod-menustructure.tpl -text
 templates/modules/mod-messages_unread_messages.tpl -text
 templates/modules/mod-messages_unread_messages.tpl.nocache -text
 templates/modules/mod-minichat.tpl -text
+templates/modules/mod-mobile.tpl -text
 templates/modules/mod-months_links.tpl -text
 templates/modules/mod-most_commented.tpl -text
 templates/modules/mod-num_submissions.tpl -text
