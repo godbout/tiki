@@ -3394,6 +3394,7 @@ modules/mod-func-last_validated_faq_questions.php -text
 modules/mod-func-last_visitors.php -text
 modules/mod-func-live_support.php -text
 modules/mod-func-loadstats.php -text
+modules/mod-func-locator.php -text
 modules/mod-func-login_box.php -text
 modules/mod-func-logo.php -text
 modules/mod-func-menu.php -text
@@ -4519,6 +4520,7 @@ templates/modules/mod-last_visitors.tpl -text
 templates/modules/mod-last_youtube_playlist_videos.tpl -text
 templates/modules/mod-live_support.tpl -text
 templates/modules/mod-loadstats.tpl -text
+templates/modules/mod-locator.tpl -text
 templates/modules/mod-logged_users.tpl.nocache -text
 templates/modules/mod-login_box.tpl -text
 templates/modules/mod-login_box.tpl.nocache -text
