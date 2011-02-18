@@ -4659,6 +4659,7 @@ templates/styles/jqui/index.php -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
 templates/styles/mobile/tiki.tpl -text
+templates/styles/mobile/tiki_full.tpl -text
 templates/styles/ohia/index.php -text
 templates/styles/skeleton/index.php -text
 templates/styles/snow/index.php -text
