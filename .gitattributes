@@ -1613,6 +1613,7 @@ lib/ZeroClipboard.js -text
 lib/accounting/accountinglib.php -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
+lib/ajax/ajaxlib.php -text
 lib/ajax/autosave.js -text
 lib/ajax/autosave.php -text
 lib/articles/artlib.php -text
