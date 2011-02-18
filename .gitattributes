@@ -3012,6 +3012,7 @@ lib/test/language/fixtures/language_invalid.php -text
 lib/test/language/fixtures/language_modif.php -text
 lib/test/language/fixtures/language_orig.php -text
 lib/test/language/index.php -text
+lib/test/local.php.dist -text
 lib/test/payment/CartTest.php -text
 lib/test/phpunit.xml -text
 lib/test/rating/AggregationTest.php -text
