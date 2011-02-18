@@ -2157,6 +2157,7 @@ lib/notepad/notepadlib.php -text
 lib/notifications/index.php -text
 lib/notifications/notificationemaillib.php -text
 lib/notifications/notificationlib.php -text
+lib/oauthlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
 lib/payment/behavior/execute_datachannel.php -text
@@ -2559,6 +2560,7 @@ lib/prefs/wikiplugininline.php -text
 lib/prefs/wikipluginprefs.php -text
 lib/prefs/wysiwyg.php -text
 lib/prefs/zend.php -text
+lib/prefs/zotero.php -text
 lib/prefslib.php -text
 lib/profilelib/channellib.php -text
 lib/profilelib/installlib.php -text
@@ -3320,6 +3322,7 @@ lib/x/x_win.js -text
 lib/xmlrpc.inc -text
 lib/xmlrpcs.inc -text
 lib/ziplib.php -text
+lib/zoterolib.php -text
 /license.txt -text
 /list-file_backlinks_ajax.php -text
 /list-tracker_field_values_ajax.php -text
@@ -3459,6 +3462,7 @@ modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
+modules/mod-func-zotero.php -text
 modules/mod-last_youtube_playlist_videos.php -text
 modules/web.config -text
 pics/help_icon.png -text
@@ -4599,6 +4603,7 @@ templates/modules/mod-who_is_there.tpl.nocache -text
 templates/modules/mod-wiki_last_comments.tpl -text
 templates/modules/mod-wiki_last_comments.tpl.nocache -text
 templates/modules/mod-youtube.tpl -text
+templates/modules/mod-zotero.tpl -text
 templates/modules/user_module.tpl -text
 templates/object_perms_summary.tpl -text
 templates/pagehistory.tpl -text
