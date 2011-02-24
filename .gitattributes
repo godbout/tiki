@@ -2166,6 +2166,8 @@ lib/payment/behavior/execute_datachannel.php -text
 lib/payment/behavior/extend_membership.php -text
 lib/payment/behavior/index.php -text
 lib/payment/behavior/perform_trade.php -text
+lib/payment/behavior/record_cart_order.php -text
+lib/payment/behavior/replace_inventory.php -text
 lib/payment/behavior/sample.php -text
 lib/payment/cartlib.php -text
 lib/payment/cclitelib.php -text
@@ -3139,6 +3141,7 @@ lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_addtocart.php -text
 lib/wiki-plugins/wikiplugin_addtogooglecal.php -text
+lib/wiki-plugins/wikiplugin_adjustinventory.php -text
 lib/wiki-plugins/wikiplugin_agentinfo.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
 lib/wiki-plugins/wikiplugin_aname.php -text
@@ -3177,6 +3180,7 @@ lib/wiki-plugins/wikiplugin_div.php -text
 lib/wiki-plugins/wikiplugin_dl.php -text
 lib/wiki-plugins/wikiplugin_equation.php -text
 lib/wiki-plugins/wikiplugin_events.php -text
+lib/wiki-plugins/wikiplugin_extendcarthold.php -text
 lib/wiki-plugins/wikiplugin_fade.php -text
 lib/wiki-plugins/wikiplugin_fancylist.php -text
 lib/wiki-plugins/wikiplugin_fancytable.php -text
@@ -3243,6 +3247,7 @@ lib/wiki-plugins/wikiplugin_scroll.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
 lib/wiki-plugins/wikiplugin_sharethis.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
+lib/wiki-plugins/wikiplugin_shopperinfo.php -text
 lib/wiki-plugins/wikiplugin_showpages.php -text
 lib/wiki-plugins/wikiplugin_skype.php -text
 lib/wiki-plugins/wikiplugin_smarty.php -text
@@ -3307,6 +3312,7 @@ lib/wiki3d/LICENSE.txt -text
 lib/wiki3d/README.txt -text
 lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
+lib/wikiplugin_manual_purchase.php -text
 lib/x/index.php -text
 lib/x/x.js -text
 lib/x/x_anim.js -text
@@ -4358,6 +4364,8 @@ templates/index.php -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
+templates/mail/cart_order_received_anon.tpl -text
+templates/mail/cart_order_received_anon_subject.tpl -text
 templates/mail/confirm_newsletter_subscription.tpl -text
 templates/mail/confirm_user_email.tpl -text
 templates/mail/confirm_user_email_after_approval.tpl -text
@@ -5095,6 +5103,8 @@ templates/translated-lang.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
+templates/wiki-plugins/wikiplugin_addtocart.tpl -text
+templates/wiki-plugins/wikiplugin_adjustinventory.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton_create.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
@@ -5117,6 +5127,7 @@ templates/wiki-plugins/wikiplugin_memberpayment.tpl -text
 templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
+templates/wiki-plugins/wikiplugin_shopperinfo.tpl -text
 templates/wiki-plugins/wikiplugin_snarf.tpl -text
 templates/wiki-plugins/wikiplugin_stat.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
