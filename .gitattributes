@@ -1436,6 +1436,7 @@ installer/schema/20110201_c_code_to_user_modules_tiki.php -text
 installer/schema/20110209_p_list_users_tiki.sql -text
 installer/schema/20110220_p_tracker_view_attachments_tiki.sql -text
 installer/schema/20110223_queue_tiki.sql -text
+installer/schema/20110224_tiki_cart_inventory_hold.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
