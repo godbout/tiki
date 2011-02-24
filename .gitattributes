@@ -3007,6 +3007,8 @@ lib/test/importer/fixtures/wordpress_invalid.xml -text
 lib/test/importer/fixtures/wordpress_page.xml -text
 lib/test/importer/fixtures/wordpress_post.xml -text
 lib/test/importer/fixtures/wordpress_post_content.txt -text svneol=unset#text/plain
+lib/test/importer/fixtures/wordpress_post_content_internal_links.txt -text
+lib/test/importer/fixtures/wordpress_post_content_internal_links_replaced.txt -text
 lib/test/importer/fixtures/wordpress_post_content_parsed.txt -text svneol=unset#text/plain
 lib/test/importer/fixtures/wordpress_post_content_shortcodes.txt -text
 lib/test/importer/fixtures/wordpress_post_content_shortcodes_parsed.txt -text
