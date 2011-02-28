@@ -3503,9 +3503,14 @@ pics/icons/arrow_refresh.png -text
 pics/icons/arrow_right-left.png -text
 pics/icons/arrow_right.png -text
 pics/icons/arrow_small.png -text
+pics/icons/arrow_turn_down_left.png -text
+pics/icons/arrow_turn_down_right.png -text
 pics/icons/arrow_undo.png -text
 pics/icons/assign.png -text
 pics/icons/attach.png -text
+pics/icons/basket.png -text
+pics/icons/basket_put.png -text
+pics/icons/basket_remove.png -text
 pics/icons/bell.png -text
 pics/icons/bliptv.png -text svneol=unset#unset
 pics/icons/book.png -text
@@ -3553,6 +3558,8 @@ pics/icons/disk_lock.png -text
 pics/icons/disk_multiple.png -text
 pics/icons/disk_multiple_gray.png -text
 pics/icons/disk_refresh.png -text
+pics/icons/door_in.png -text
+pics/icons/door_out.png -text
 pics/icons/down.png -text
 pics/icons/email.png -text
 pics/icons/email_cross.png -text
@@ -3588,6 +3595,7 @@ pics/icons/group_link.png -text
 pics/icons/help.png -text
 pics/icons/hot.png -text
 pics/icons/hot_new.png -text
+pics/icons/hourglass.png -text
 pics/icons/house.png -text
 pics/icons/house_go.png -text
 pics/icons/html_add.png -text
@@ -3819,6 +3827,7 @@ pics/icons/up.png -text
 pics/icons/upload.png -text
 pics/icons/useagelist.txt -text
 pics/icons/user.png -text
+pics/icons/user_comment.png -text
 pics/icons/user_delete.png -text
 pics/icons/user_go.png -text
 pics/icons/user_gray.png -text
