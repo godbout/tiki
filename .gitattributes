@@ -2867,6 +2867,13 @@ lib/swfobject/src/expressInstall.fla -text
 lib/swfobject/src/swfobject.js -text
 lib/swfobject/swfobject.js -text
 lib/swfobject/test.swf -text
+lib/swfupload/js/fileprogress.js -text
+lib/swfupload/js/handlers.js -text
+lib/swfupload/js/swfupload.queue.js -text
+lib/swfupload/js/swfupload.swfobject.js -text
+lib/swfupload/src/swfupload.js -text
+lib/swfupload/src/swfupload.swf -text
+lib/swfupload/src/swfuploadbutton.swf -text
 lib/taglines/index.php -text
 lib/taglines/taglinelib.php -text
 lib/tail/index.php -text
