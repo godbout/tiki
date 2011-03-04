@@ -3325,7 +3325,6 @@ lib/wiki3d/LICENSE.txt -text
 lib/wiki3d/README.txt -text
 lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
-lib/wikiplugin_manual_purchase.php -text
 lib/x/index.php -text
 lib/x/x.js -text
 lib/x/x_anim.js -text
