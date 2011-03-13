@@ -2456,6 +2456,7 @@ lib/prefs/categorypath.php -text
 lib/prefs/center.php -text
 lib/prefs/change.php -text
 lib/prefs/comments.php -text
+lib/prefs/connect.php -text
 lib/prefs/contact.php -text
 lib/prefs/cookie.php -text
 lib/prefs/count.php -text
