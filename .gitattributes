@@ -5126,6 +5126,7 @@ templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
 templates/tracker_validator.tpl -text
 templates/trackerinput/category.tpl -text
+templates/trackerinput/file.tpl -text
 templates/trackerinput/text.tpl -text
 templates/translated-lang.tpl -text
 templates/web.config -text
