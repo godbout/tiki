@@ -5137,6 +5137,7 @@ templates/trackerinput/itemlink.tpl -text
 templates/trackerinput/itemslist.tpl -text
 templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
+templates/trackerinput/url.tpl -text
 templates/translated-lang.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
