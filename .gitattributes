@@ -5130,6 +5130,7 @@ templates/trackerinput/datetime.tpl -text
 templates/trackerinput/file.tpl -text
 templates/trackerinput/image.tpl -text
 templates/trackerinput/itemlink.tpl -text
+templates/trackerinput/itemslist.tpl -text
 templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
 templates/translated-lang.tpl -text
