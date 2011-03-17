@@ -1438,6 +1438,7 @@ installer/schema/20110223_queue_tiki.sql -text
 installer/schema/20110224_tiki_cart_inventory_hold.sql -text
 installer/schema/20110307_remove_calendar_reminder_tiki.sql -text
 installer/schema/20110308_rss_item_key_tiki.sql -text
+installer/schema/20110317_attributes_increase_length_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
