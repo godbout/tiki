@@ -5135,6 +5135,7 @@ templates/trackerinput/datetime.tpl -text
 templates/trackerinput/dropdown.tpl -text
 templates/trackerinput/email.tpl -text
 templates/trackerinput/file.tpl -text
+templates/trackerinput/groupselector.tpl -text
 templates/trackerinput/image.tpl -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
