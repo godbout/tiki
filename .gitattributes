@@ -5138,10 +5138,12 @@ templates/trackerinput/image.tpl -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
 templates/trackerinput/itemslist.tpl -text
+templates/trackerinput/location.tpl -text
 templates/trackerinput/statictext.tpl -text
 templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
 templates/trackerinput/url.tpl -text
+templates/trackeroutput/location.tpl -text
 templates/trackeroutput/popup.tpl -text
 templates/translated-lang.tpl -text
 templates/web.config -text
