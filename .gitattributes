@@ -5127,6 +5127,7 @@ templates/tracker_pretty_item.tpl -text
 templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
 templates/tracker_validator.tpl -text
+templates/trackerinput/autoincrement.tpl -text
 templates/trackerinput/category.tpl -text
 templates/trackerinput/checkbox.tpl -text
 templates/trackerinput/countryselector.tpl -text
