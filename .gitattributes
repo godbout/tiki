@@ -2787,8 +2787,8 @@ lib/smarty_tiki/function.show_sort.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.ticket.php -text
 lib/smarty_tiki/function.toolbars.php -text
-lib/smarty_tiki/function.trackerfield.php -text
 lib/smarty_tiki/function.trackerheader.php -text
+lib/smarty_tiki/function.trackerinput.php -text
 lib/smarty_tiki/function.trackervalue.php -text
 lib/smarty_tiki/function.tree.php -text
 lib/smarty_tiki/function.treetable.php -text
