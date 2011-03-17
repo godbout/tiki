@@ -5132,6 +5132,7 @@ templates/trackerinput/category.tpl -text
 templates/trackerinput/checkbox.tpl -text
 templates/trackerinput/countryselector.tpl -text
 templates/trackerinput/datetime.tpl -text
+templates/trackerinput/dropdown.tpl -text
 templates/trackerinput/email.tpl -text
 templates/trackerinput/file.tpl -text
 templates/trackerinput/image.tpl -text
