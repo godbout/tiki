@@ -2789,7 +2789,7 @@ lib/smarty_tiki/function.ticket.php -text
 lib/smarty_tiki/function.toolbars.php -text
 lib/smarty_tiki/function.trackerheader.php -text
 lib/smarty_tiki/function.trackerinput.php -text
-lib/smarty_tiki/function.trackervalue.php -text
+lib/smarty_tiki/function.trackeroutput.php -text
 lib/smarty_tiki/function.tree.php -text
 lib/smarty_tiki/function.treetable.php -text
 lib/smarty_tiki/function.user_selector.php -text
@@ -5139,7 +5139,7 @@ templates/trackerinput/statictext.tpl -text
 templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
 templates/trackerinput/url.tpl -text
-templates/trackervalue/popup.tpl -text
+templates/trackeroutput/popup.tpl -text
 templates/translated-lang.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
