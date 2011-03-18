@@ -5142,6 +5142,7 @@ templates/trackerinput/itemlink.tpl -text
 templates/trackerinput/itemslist.tpl -text
 templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
+templates/trackerinput/pageselector.tpl -text
 templates/trackerinput/statictext.tpl -text
 templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
