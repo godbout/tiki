@@ -1828,6 +1828,7 @@ lib/core/Tracker/Field/Action.php -text
 lib/core/Tracker/Field/AutoIncrement.php -text
 lib/core/Tracker/Field/Category.php -text
 lib/core/Tracker/Field/Checkbox.php -text
+lib/core/Tracker/Field/Computed.php -text
 lib/core/Tracker/Field/CountrySelector.php -text
 lib/core/Tracker/Field/DateTime.php -text
 lib/core/Tracker/Field/Dropdown.php -text
@@ -5182,6 +5183,7 @@ templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
 templates/trackerinput/url.tpl -text
 templates/trackerinput/userpreference.tpl -text
+templates/trackeroutput/computed.tpl -text
 templates/trackeroutput/freetags.tpl -text
 templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
