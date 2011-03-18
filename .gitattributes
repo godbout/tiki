@@ -1845,6 +1845,7 @@ lib/core/Tracker/Field/Ldap.php -text
 lib/core/Tracker/Field/Location.php -text
 lib/core/Tracker/Field/Numeric.php -text
 lib/core/Tracker/Field/PageSelector.php -text
+lib/core/Tracker/Field/Rating.php -text
 lib/core/Tracker/Field/Simple.php -text
 lib/core/Tracker/Field/StaticText.php -text
 lib/core/Tracker/Field/Text.php -text
@@ -5174,6 +5175,7 @@ templates/trackerinput/jscalendar.tpl -text
 templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
 templates/trackerinput/pageselector.tpl -text
+templates/trackerinput/rating.tpl -text
 templates/trackerinput/statictext.tpl -text
 templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
@@ -5183,6 +5185,7 @@ templates/trackeroutput/freetags.tpl -text
 templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
 templates/trackeroutput/popup.tpl -text
+templates/trackeroutput/rating.tpl -text
 templates/translated-lang.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
