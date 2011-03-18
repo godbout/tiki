@@ -1839,6 +1839,7 @@ lib/core/Tracker/Field/InGroup.php -text
 lib/core/Tracker/Field/Interface.php -text
 lib/core/Tracker/Field/ItemLink.php -text
 lib/core/Tracker/Field/ItemsList.php -text
+lib/core/Tracker/Field/JsCalendar.php -text
 lib/core/Tracker/Field/Ldap.php -text
 lib/core/Tracker/Field/Location.php -text
 lib/core/Tracker/Field/Numeric.php -text
@@ -5168,6 +5169,7 @@ templates/trackerinput/image.tpl -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
 templates/trackerinput/itemslist.tpl -text
+templates/trackerinput/jscalendar.tpl -text
 templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
 templates/trackerinput/pageselector.tpl -text
