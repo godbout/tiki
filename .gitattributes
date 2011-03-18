@@ -1824,6 +1824,7 @@ lib/core/TikiFilter/RawUnsafe.php -text
 lib/core/TikiFilter/Word.php -text
 lib/core/Tracker/Definition.php -text
 lib/core/Tracker/Field/Abstract.php -text
+lib/core/Tracker/Field/Action.php -text
 lib/core/Tracker/Field/AutoIncrement.php -text
 lib/core/Tracker/Field/Category.php -text
 lib/core/Tracker/Field/Checkbox.php -text
