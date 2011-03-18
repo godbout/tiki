@@ -1835,6 +1835,7 @@ lib/core/Tracker/Field/Factory.php -text
 lib/core/Tracker/Field/File.php -text
 lib/core/Tracker/Field/Freetags.php -text
 lib/core/Tracker/Field/GroupSelector.php -text
+lib/core/Tracker/Field/Header.php -text
 lib/core/Tracker/Field/Image.php -text
 lib/core/Tracker/Field/InGroup.php -text
 lib/core/Tracker/Field/Interface.php -text
