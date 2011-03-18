@@ -1832,6 +1832,7 @@ lib/core/Tracker/Field/DateTime.php -text
 lib/core/Tracker/Field/Dropdown.php -text
 lib/core/Tracker/Field/Factory.php -text
 lib/core/Tracker/Field/File.php -text
+lib/core/Tracker/Field/Freetags.php -text
 lib/core/Tracker/Field/GroupSelector.php -text
 lib/core/Tracker/Field/Image.php -text
 lib/core/Tracker/Field/InGroup.php -text
@@ -5161,6 +5162,7 @@ templates/trackerinput/datetime.tpl -text
 templates/trackerinput/dropdown.tpl -text
 templates/trackerinput/email.tpl -text
 templates/trackerinput/file.tpl -text
+templates/trackerinput/freetags.tpl -text
 templates/trackerinput/groupselector.tpl -text
 templates/trackerinput/image.tpl -text
 templates/trackerinput/ip.tpl -text
@@ -5174,6 +5176,7 @@ templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
 templates/trackerinput/url.tpl -text
 templates/trackerinput/userpreference.tpl -text
+templates/trackeroutput/freetags.tpl -text
 templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
 templates/trackeroutput/popup.tpl -text
