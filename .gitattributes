@@ -1852,6 +1852,7 @@ lib/core/Tracker/Field/Simple.php -text
 lib/core/Tracker/Field/StaticText.php -text
 lib/core/Tracker/Field/Text.php -text
 lib/core/Tracker/Field/TextArea.php -text
+lib/core/Tracker/Field/UserGroups.php -text
 lib/core/Tracker/Field/UserPreference.php -text
 lib/core/Tracker/Field/UserSelector.php -text
 lib/core/Tracker/Field/WebService.php -text
@@ -5190,6 +5191,7 @@ templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
 templates/trackeroutput/popup.tpl -text
 templates/trackeroutput/rating.tpl -text
+templates/trackeroutput/usergroups.tpl -text
 templates/translated-lang.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
