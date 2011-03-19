@@ -1832,6 +1832,7 @@ lib/core/Tracker/Field/Computed.php -text
 lib/core/Tracker/Field/CountrySelector.php -text
 lib/core/Tracker/Field/DateTime.php -text
 lib/core/Tracker/Field/Dropdown.php -text
+lib/core/Tracker/Field/DynamicList.php -text
 lib/core/Tracker/Field/Factory.php -text
 lib/core/Tracker/Field/File.php -text
 lib/core/Tracker/Field/Freetags.php -text
@@ -3147,7 +3148,6 @@ lib/todolib.php -text
 lib/toolbars/index.php -text
 lib/toolbars/tiki-admin_toolbars.js -text
 lib/toolbars/toolbarslib.php -text
-lib/trackers/dynamic_list.js -text
 lib/trackers/index.php -text
 lib/trackers/trackerlib.php -text
 lib/transitionlib.php -text
@@ -5156,7 +5156,6 @@ templates/tracker_actions.tpl -text
 templates/tracker_calendar_over.tpl -text
 templates/tracker_error.tpl -text
 templates/tracker_filter.tpl -text
-templates/tracker_item_field_input.tpl -text
 templates/tracker_item_field_value.tpl -text
 templates/tracker_pretty_item.tpl -text
 templates/tracker_sort_input.tpl -text
