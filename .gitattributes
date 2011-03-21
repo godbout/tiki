@@ -5156,7 +5156,6 @@ templates/tracker_actions.tpl -text
 templates/tracker_calendar_over.tpl -text
 templates/tracker_error.tpl -text
 templates/tracker_filter.tpl -text
-templates/tracker_item_field_value.tpl -text
 templates/tracker_pretty_item.tpl -text
 templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
