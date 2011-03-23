@@ -2153,6 +2153,7 @@ lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery.mobile.js -text
 lib/jquery_tiki/tiki-themegenerator.js -text
 lib/language/Language.php -text
+lib/language/LanguageTranslations.php -text
 lib/language/index.php -text
 lib/language/interactive_translation.js -text
 lib/language/tiki-edit_languages.js -text
@@ -3069,6 +3070,7 @@ lib/test/importer/index.php -text
 lib/test/importer/tikiimporter_testcase.php -text
 lib/test/index.php -text
 lib/test/language/LanguageTest.php -text
+lib/test/language/LanguageTranslationsTest.php -text
 lib/test/language/fixtures/custom.php -text
 lib/test/language/fixtures/index.php -text
 lib/test/language/fixtures/language_invalid.php -text
