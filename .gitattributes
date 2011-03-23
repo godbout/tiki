@@ -3480,6 +3480,7 @@ modules/mod-func-payment_outstanding.php -text
 modules/mod-func-perspective.php -text
 modules/mod-func-poweredby.php -text
 modules/mod-func-quick_edit.php -text
+modules/mod-func-quick_search.php -text
 modules/mod-func-quickadmin.php -text
 modules/mod-func-random_images.php -text
 modules/mod-func-random_pages.php -text
@@ -4622,6 +4623,7 @@ templates/modules/mod-payment_outstanding.tpl -text
 templates/modules/mod-perspective.tpl -text
 templates/modules/mod-poweredby.tpl -text
 templates/modules/mod-quick_edit.tpl -text
+templates/modules/mod-quick_search.tpl -text
 templates/modules/mod-quickadmin.tpl -text
 templates/modules/mod-random_images.tpl -text
 templates/modules/mod-random_pages.tpl -text
