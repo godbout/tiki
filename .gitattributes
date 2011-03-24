@@ -2583,7 +2583,6 @@ lib/prefs/show.php -text
 lib/prefs/site.php -text
 lib/prefs/sitead.php -text
 lib/prefs/sitelogo.php -text
-lib/prefs/slide.php -text
 lib/prefs/smarty.php -text
 lib/prefs/socialnetworks.php -text
 lib/prefs/style.php -text
