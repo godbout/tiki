@@ -1908,6 +1908,7 @@ lib/encoding/lib-encoding.php -text
 lib/equation/class.latexrender.php -text
 lib/equation/pictures/index.php -text
 lib/equation/tmp/index.php -text
+lib/errorreportlib.php -text
 lib/events/index.php -text
 lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
@@ -2784,6 +2785,7 @@ lib/smarty_tiki/function.count.php -text
 lib/smarty_tiki/function.debugger.php -text
 lib/smarty_tiki/function.ed.php -text
 lib/smarty_tiki/function.elapsed.php -text
+lib/smarty_tiki/function.error_report.php -text
 lib/smarty_tiki/function.fgal_browse.php -text
 lib/smarty_tiki/function.filegal_manager_url.php -text
 lib/smarty_tiki/function.fileinfo.php -text
