@@ -2448,7 +2448,6 @@ lib/pear/PEAR/Task/Windowseol/rw.php -text
 lib/pear/PEAR/Validate.php -text
 lib/pear/PEAR/Validator/PECL.php -text
 lib/pear/PEAR/XMLParser.php -text
-lib/pear/Services/JSON.php -text
 lib/pear/System.php -text
 lib/pear/XML/Dump.php -text
 lib/pear/XML/RPC.php -text
