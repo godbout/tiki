@@ -1855,6 +1855,7 @@ lib/core/Tracker/Field/Simple.php -text
 lib/core/Tracker/Field/StaticText.php -text
 lib/core/Tracker/Field/Text.php -text
 lib/core/Tracker/Field/TextArea.php -text
+lib/core/Tracker/Field/Url.php -text
 lib/core/Tracker/Field/UserGroups.php -text
 lib/core/Tracker/Field/UserPreference.php -text
 lib/core/Tracker/Field/UserSelector.php -text
