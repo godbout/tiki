@@ -1751,6 +1751,7 @@ lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
 lib/core/Search/ContentSource/ArticleSource.php -text
 lib/core/Search/ContentSource/BlogPostSource.php -text
+lib/core/Search/ContentSource/CommentSource.php -text
 lib/core/Search/ContentSource/FileSource.php -text
 lib/core/Search/ContentSource/ForumPostSource.php -text
 lib/core/Search/ContentSource/Interface.php -text
