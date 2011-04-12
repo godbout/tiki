@@ -4879,7 +4879,6 @@ templates/tiki-all_languages.tpl -text
 templates/tiki-approve_staging_page.tpl -text
 templates/tiki-article_types.tpl -text
 templates/tiki-articles-js.tpl -text
-templates/tiki-assignpermission.tpl -text
 templates/tiki-assignuser.tpl -text
 templates/tiki-backlinks.tpl -text
 templates/tiki-batch_upload.tpl -text
@@ -5364,7 +5363,6 @@ tests/testfile.txt -text
 /tiki-approve_staging_page.php -text
 /tiki-article_types.php -text
 /tiki-articles_rss.php -text
-/tiki-assignpermission.php -text
 /tiki-assignuser.php -text
 /tiki-atom.php -text
 /tiki-auto_save.php -text
