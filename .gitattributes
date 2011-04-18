@@ -4239,6 +4239,10 @@ styles/lite/lite.css -text
 styles/ohia/header.png -text svneol=unset#image/png
 styles/ohia/index.php -text
 styles/ohia/ohia.png -text svneol=unset#image/png
+styles/ohia/options/cornflower.css -text
+styles/ohia/options/cornflower/bluebg1.png -text
+styles/ohia/options/cornflower/header.png -text
+styles/ohia/options/cornflower/index.php -text
 styles/ohia/options/index.php -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
