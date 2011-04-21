@@ -1444,7 +1444,9 @@ installer/schema/20110317_attributes_increase_length_tiki.sql -text
 installer/schema/20110411_banner_tiki.sql -text
 installer/schema/20110412_permissions_out_of_db_tiki.sql -text
 installer/schema/20110413_blog_post_priv_default_value_tiki.sql -text
+installer/schema/20110419_kill_old_search_tiki.sql -text
 installer/schema/20110420_newsletter_optional_group_inclusion_tiki.sql -text
+installer/schema/20110421_compact_search_in_topbar_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2650,7 +2652,6 @@ lib/search/index.php -text
 lib/search/refresh-functions.php -text
 lib/search/refresh.php -text
 lib/search/searchlib-mysql.php -text
-lib/search/searchlib-tiki.php -text
 lib/search/searchlib-unified.php -text
 lib/search/searchstatslib.php -text
 lib/serializedlist.php -text
@@ -3061,8 +3062,6 @@ lib/test/importer/fixtures/mediawiki_revision_invalid_syntax.xml -text
 lib/test/importer/fixtures/mediawiki_sample.xml -text
 lib/test/importer/fixtures/mediawiki_sample_v0.2.xml -text
 lib/test/importer/fixtures/mediawiki_sample_v0.4.xml -text
-lib/test/importer/fixtures/wikipedia_train_article.txt -text
-lib/test/importer/fixtures/wikipedia_train_article_parsed.txt -text
 lib/test/importer/fixtures/wordpress_attachments.xml -text svneol=unset#text/plain
 lib/test/importer/fixtures/wordpress_comment.xml -text svneol=unset#text/plain
 lib/test/importer/fixtures/wordpress_comment_spam.xml -text svneol=unset#text/plain
