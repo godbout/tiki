@@ -2226,6 +2226,7 @@ lib/payment/behavior/perform_trade.php -text
 lib/payment/behavior/record_cart_order.php -text
 lib/payment/behavior/replace_inventory.php -text
 lib/payment/behavior/sample.php -text
+lib/payment/cartlib.js -text
 lib/payment/cartlib.php -text
 lib/payment/cclitelib.php -text
 lib/payment/creditspaylib.php -text
@@ -3226,6 +3227,7 @@ lib/wiki-plugins/wikiplugin_bloglist.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
 lib/wiki-plugins/wikiplugin_button.php -text
 lib/wiki-plugins/wikiplugin_calendar.php -text
+lib/wiki-plugins/wikiplugin_cartmissinguserinfo.php -text
 lib/wiki-plugins/wikiplugin_category.php -text
 lib/wiki-plugins/wikiplugin_catorphans.php -text
 lib/wiki-plugins/wikiplugin_catpath.php -text
@@ -3265,6 +3267,7 @@ lib/wiki-plugins/wikiplugin_groupexpiry.php -text
 lib/wiki-plugins/wikiplugin_grouplist.php -text
 lib/wiki-plugins/wikiplugin_groupmailcore.php -text
 lib/wiki-plugins/wikiplugin_groupstat.php -text
+lib/wiki-plugins/wikiplugin_hasbought.php -text
 lib/wiki-plugins/wikiplugin_html.php -text
 lib/wiki-plugins/wikiplugin_iframe.php -text
 lib/wiki-plugins/wikiplugin_img.php -text
@@ -3297,6 +3300,7 @@ lib/wiki-plugins/wikiplugin_payment.php -text
 lib/wiki-plugins/wikiplugin_perm.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
+lib/wiki-plugins/wikiplugin_prettytrackerviews.php -text
 lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
@@ -3337,8 +3341,10 @@ lib/wiki-plugins/wikiplugin_tracker.php -text
 lib/wiki-plugins/wikiplugin_trackercomments.php -text
 lib/wiki-plugins/wikiplugin_trackerfilter.php -text
 lib/wiki-plugins/wikiplugin_trackerif.php -text
+lib/wiki-plugins/wikiplugin_trackeritemcopy.php -text
 lib/wiki-plugins/wikiplugin_trackeritemfield.php -text
 lib/wiki-plugins/wikiplugin_trackerlist.php -text
+lib/wiki-plugins/wikiplugin_trackerpasscode.php -text
 lib/wiki-plugins/wikiplugin_trackerprefill.php -text
 lib/wiki-plugins/wikiplugin_trackerstat.php -text
 lib/wiki-plugins/wikiplugin_trackertimeline.php -text
@@ -3378,6 +3384,7 @@ lib/wiki3d/LICENSE.txt -text
 lib/wiki3d/README.txt -text
 lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
+lib/wikiplugin_manual_purchase.php -text
 lib/x/index.php -text
 lib/x/x.js -text
 lib/x/x_anim.js -text
