@@ -1710,6 +1710,9 @@ lib/core/DeclFilter/Rule.php -text
 lib/core/DeclFilter/StaticKeyFilterRule.php -text
 lib/core/DeclFilter/StaticKeyUnsetRule.php -text
 lib/core/DeclFilter/UnsetRule.php -text
+lib/core/Event/Chain.php -text
+lib/core/Event/Lib.php -text
+lib/core/Event/Manager.php -text
 lib/core/JitFilter.php -text
 lib/core/JitFilter/Element.php -text
 lib/core/Math/Formula/Element.php -text
@@ -2673,6 +2676,7 @@ lib/setup/default_homepage.php -text
 lib/setup/dynamic_variables.php -text
 lib/setup/editmode.php -text
 lib/setup/error_reporting.php -text
+lib/setup/events.php -text
 lib/setup/freetags.php -text
 lib/setup/fullscreen.php -text
 lib/setup/integrator.php -text
@@ -2978,6 +2982,7 @@ lib/test/core/DeclFilter/KeyPatternFilterTest.php -text
 lib/test/core/DeclFilter/KeyPatternUnsetTest.php -text
 lib/test/core/DeclFilter/StaticKeyFilterTest.php -text
 lib/test/core/DeclFilter/StaticKeyUnsetTest.php -text
+lib/test/core/Event/ManagerTest.php -text
 lib/test/core/JitFilter/AccessTest.php -text
 lib/test/core/JitFilter/FilterTest.php -text
 lib/test/core/JitFilter/IteratorTest.php -text
