@@ -1734,10 +1734,12 @@ lib/core/Multilingual/MachineTranslation/GoogleTranslateWrapper.php -text
 lib/core/Perms.php -text
 lib/core/Perms/Accessor.php -text
 lib/core/Perms/Applier.php -text
+lib/core/Perms/Builder.php -text
 lib/core/Perms/Check.php -text
 lib/core/Perms/Check/Alternate.php -text
 lib/core/Perms/Check/Creator.php -text
 lib/core/Perms/Check/Direct.php -text
+lib/core/Perms/Check/Fixed.php -text
 lib/core/Perms/Check/Indirect.php -text
 lib/core/Perms/Reflection/Category.php -text
 lib/core/Perms/Reflection/Container.php -text
@@ -2993,6 +2995,7 @@ lib/test/core/Multilingual/MachineTranslation/GoogleTranslateWrapperTest.php -te
 lib/test/core/Perms/AccessorTest.php -text
 lib/test/core/Perms/ApplierTest.php -text
 lib/test/core/Perms/BaseTest.php -text
+lib/test/core/Perms/BuilderTest.php -text
 lib/test/core/Perms/Check/AlternateTest.php -text
 lib/test/core/Perms/Check/CreatorTest.php -text
 lib/test/core/Perms/Check/DirectTest.php -text
