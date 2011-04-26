@@ -121,6 +121,7 @@ files/test.swf -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
+/group_tracker_ajax.php -text
 /help.php -text
 /htaccess.sh -text
 images/.htaccess -text
@@ -5168,6 +5169,7 @@ templates/tiki-view_faq.tpl -text
 templates/tiki-view_forum.tpl -text
 templates/tiki-view_forum_thread.tpl -text
 templates/tiki-view_sheets.tpl -text
+templates/tiki-view_sheets_menu.tpl -text
 templates/tiki-view_tracker.tpl -text
 templates/tiki-view_tracker_item.tpl -text
 templates/tiki-view_tracker_more_info.tpl -text
