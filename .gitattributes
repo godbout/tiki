@@ -3253,6 +3253,7 @@ lib/wiki-plugins/wikiplugin_datachannel.php -text
 lib/wiki-plugins/wikiplugin_dbreport.php -text
 lib/wiki-plugins/wikiplugin_div.php -text
 lib/wiki-plugins/wikiplugin_dl.php -text
+lib/wiki-plugins/wikiplugin_draw.php -text
 lib/wiki-plugins/wikiplugin_equation.php -text
 lib/wiki-plugins/wikiplugin_events.php -text
 lib/wiki-plugins/wikiplugin_extendcarthold.php -text
