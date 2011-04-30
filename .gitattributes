@@ -2199,6 +2199,7 @@ lib/menubuilder/menu.js -text
 lib/menubuilder/menulib.php -text
 lib/messu/index.php -text
 lib/messu/messulib.php -text
+lib/metadata.php -text
 lib/metrics.js -text
 lib/metrics/input-validation.php -text
 lib/metrics/metricslib.php -text
@@ -3411,6 +3412,7 @@ lib/x/x_misc.js -text
 lib/x/x_slide.js -text
 lib/x/x_table.js -text
 lib/x/x_win.js -text
+lib/xml.php -text
 lib/xmlrpc.inc -text
 lib/xmlrpcs.inc -text
 lib/ziplib.php -text
