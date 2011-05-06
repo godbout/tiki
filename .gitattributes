@@ -3205,7 +3205,6 @@ lib/web.config -text
 lib/webdav/webdavlib.php -text
 lib/webmail/API.txt -text
 lib/webmail/contactlib.php -text
-lib/webmail/example.1.php -text
 lib/webmail/htmlMimeMail.php -text
 lib/webmail/index.php -text
 lib/webmail/mail.php -text
