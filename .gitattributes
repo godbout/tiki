@@ -2154,7 +2154,6 @@ lib/importerlib.php -text
 lib/index.php -text
 lib/init/index.php -text
 lib/init/initlib.php -text
-lib/init/setup_inc.php -text
 lib/init/smarty.php -text
 lib/init/tra.php -text
 lib/integrator/index.php -text
