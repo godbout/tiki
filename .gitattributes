@@ -4378,10 +4378,11 @@ styles/tikinewt/tikinewt.png -text
 styles/twist/arrows-000.png -text svneol=unset#image/png
 styles/twist/background.gif -text
 styles/twist/bullet.gif -text
-styles/twist/header.jpg -text svneol=unset#image/jpeg
+styles/twist/header_bg.jpg -text svneol=unset#image/jpeg
 styles/twist/index.php -text
 styles/twist/pics/icons/folder.png -text svneol=unset#image/png
 styles/twist/pics/icons/ofolder.png -text svneol=unset#image/png
+styles/twist/topbar_bg.jpg -text svneol=unset#image/jpeg
 styles/twist/twist.png -text svneol=unset#image/png
 temp/.htaccess -text
 temp/README -text
