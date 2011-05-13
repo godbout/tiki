@@ -1809,6 +1809,7 @@ lib/core/Search/Query/Order.php -text
 lib/core/Search/Query/WeightCalculator/Field.php -text
 lib/core/Search/Query/WeightCalculator/Interface.php -text
 lib/core/Search/ResultSet.php -text
+lib/core/Search/ResultSet/SnippetHelper.php -text
 lib/core/Search/Type/Factory/Direct.php -text
 lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/Lucene.php -text
