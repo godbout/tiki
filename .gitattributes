@@ -3117,8 +3117,6 @@ lib/tiki-dynamic-js.php -text
 lib/tiki-js-sorttable.js -text
 lib/tiki-js.js -text
 lib/tikiaccesslib.php -text
-lib/tikidate-pear-date.php -text
-lib/tikidate-php5.php -text
 lib/tikidate.php -text
 lib/tikihelp/content.html -text
 lib/tikihelp/css/index.php -text
