@@ -2328,12 +2328,6 @@ lib/pear/DB/pgsql.php -text
 lib/pear/DB/sqlite.php -text
 lib/pear/DB/storage.php -text
 lib/pear/DB/sybase.php -text
-lib/pear/Date.php -text
-lib/pear/Date/Calc.php -text
-lib/pear/Date/Human.php -text
-lib/pear/Date/Span.php -text
-lib/pear/Date/TimeZone.php -text
-lib/pear/Date/index.php -text
 lib/pear/HTTP/Request.php -text
 lib/pear/HTTP/Request/Listener.php -text
 lib/pear/HTTP/WebDAV/Client.php -text
