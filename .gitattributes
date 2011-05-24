@@ -1766,6 +1766,7 @@ lib/core/Perms/ResolverFactory/GlobalFactory.php -text
 lib/core/Perms/ResolverFactory/ObjectFactory.php -text
 lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
+lib/core/Search/ContentFilter/VersionNumber.php -text
 lib/core/Search/ContentSource/ArticleSource.php -text
 lib/core/Search/ContentSource/BlogPostSource.php -text
 lib/core/Search/ContentSource/CommentSource.php -text
@@ -3025,6 +3026,7 @@ lib/test/core/Search/Formatter/DataSourceTest.php -text
 lib/test/core/Search/FormatterTest.php -text
 lib/test/core/Search/GlobalSource/PermissionSourceTest.php -text
 lib/test/core/Search/Index/LuceneIncrementalUpdateTest.php -text
+lib/test/core/Search/Index/LuceneNumericTest.php -text
 lib/test/core/Search/Index/LucenePaginationTest.php -text
 lib/test/core/Search/Index/LuceneSortTest.php -text
 lib/test/core/Search/Index/LuceneStemmingTest.php -text
