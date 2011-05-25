@@ -4665,6 +4665,7 @@ templates/modules/mod-random_pages.tpl -text
 templates/modules/mod-register.tpl -text
 templates/modules/mod-rsslist.tpl -text
 templates/modules/mod-search.tpl -text
+templates/modules/mod-search.tpl.nocache -text
 templates/modules/mod-search_box.tpl -text
 templates/modules/mod-search_wiki_page.tpl -text
 templates/modules/mod-semantic_links.tpl -text
