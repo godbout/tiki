@@ -2700,6 +2700,7 @@ lib/setup/site_closed.php -text
 lib/setup/stats.php -text
 lib/setup/theme.php -text
 lib/setup/third_party.php -text
+lib/setup/tikiIndex.php -text
 lib/setup/tikisetup.class.php -text
 lib/setup/timer.class.php -text
 lib/setup/twversion.class.php -text
