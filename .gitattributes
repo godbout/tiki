@@ -5122,6 +5122,7 @@ templates/tiki-searchindex.tpl -text
 templates/tiki-searchresults.tpl -text
 templates/tiki-send_newsletters.tpl -text
 templates/tiki-send_objects.tpl -text
+templates/tiki-services-comment-post.tpl -text
 templates/tiki-services-comments.tpl -text
 templates/tiki-share.tpl -text
 templates/tiki-sheets.tpl -text
