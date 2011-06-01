@@ -4426,6 +4426,8 @@ templates/comment-body.tpl -text
 templates/comment-footer.tpl -text
 templates/comment-header.tpl -text
 templates/comment.tpl -text
+templates/comment/list.tpl -text
+templates/comment/post.tpl -text
 templates/comments.tpl -text
 templates/comments_button.tpl -text
 templates/confirm.tpl -text
@@ -5122,8 +5124,6 @@ templates/tiki-searchindex.tpl -text
 templates/tiki-searchresults.tpl -text
 templates/tiki-send_newsletters.tpl -text
 templates/tiki-send_objects.tpl -text
-templates/tiki-services-comment-post.tpl -text
-templates/tiki-services-comments.tpl -text
 templates/tiki-share.tpl -text
 templates/tiki-sheets.tpl -text
 templates/tiki-shoutbox.tpl -text
