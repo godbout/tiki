@@ -4427,7 +4427,10 @@ templates/comment-footer.tpl -text
 templates/comment-header.tpl -text
 templates/comment.tpl -text
 templates/comment/list.tpl -text
+templates/comment/lock.tpl -text
 templates/comment/post.tpl -text
+templates/comment/remove.tpl -text
+templates/comment/unlock.tpl -text
 templates/comments.tpl -text
 templates/comments_button.tpl -text
 templates/confirm.tpl -text
