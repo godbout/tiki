@@ -1454,7 +1454,7 @@ installer/schema/20110507_remove_module_style_params_tiki.sql -text
 installer/schema/20110513_banner_tiki.sql -text
 installer/schema/20110519_quick_edit_categ_params_merge_tiki.php -text
 installer/schema/20110603_convert_tracker_comments_tiki.sql -text
-installer/schema/20110606_convert_ip_fileds_to_ipv6_tiki.sql -text
+installer/schema/20110606_convert_ip_fields_to_ipv6_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
