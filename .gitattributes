@@ -1828,6 +1828,7 @@ lib/core/Search/Type/WikiText.php -text
 lib/core/Services/Broker.php -text
 lib/core/Services/Comment/Controller.php -text
 lib/core/Services/Exception.php -text
+lib/core/Services/File/Controller.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
 lib/core/StandardAnalyzer/Readme.txt -text
@@ -1864,6 +1865,7 @@ lib/core/Tracker/Field/Dropdown.php -text
 lib/core/Tracker/Field/DynamicList.php -text
 lib/core/Tracker/Field/Factory.php -text
 lib/core/Tracker/Field/File.php -text
+lib/core/Tracker/Field/Files.php -text
 lib/core/Tracker/Field/Freetags.php -text
 lib/core/Tracker/Field/GroupSelector.php -text
 lib/core/Tracker/Field/Header.php -text
@@ -5220,6 +5222,7 @@ templates/trackerinput/datetime.tpl -text
 templates/trackerinput/dropdown.tpl -text
 templates/trackerinput/email.tpl -text
 templates/trackerinput/file.tpl -text
+templates/trackerinput/files.tpl -text
 templates/trackerinput/freetags.tpl -text
 templates/trackerinput/groupselector.tpl -text
 templates/trackerinput/image.tpl -text
@@ -5238,6 +5241,7 @@ templates/trackerinput/url.tpl -text
 templates/trackerinput/userpreference.tpl -text
 templates/trackerinput/usersubscription.tpl -text
 templates/trackeroutput/computed.tpl -text
+templates/trackeroutput/files.tpl -text
 templates/trackeroutput/freetags.tpl -text
 templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
