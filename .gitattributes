@@ -2339,13 +2339,6 @@ lib/pear/DB/pgsql.php -text
 lib/pear/DB/sqlite.php -text
 lib/pear/DB/storage.php -text
 lib/pear/DB/sybase.php -text
-lib/pear/HTTP/Request.php -text
-lib/pear/HTTP/Request/Listener.php -text
-lib/pear/HTTP/WebDAV/Client.php -text
-lib/pear/HTTP/WebDAV/Client/Stream.php -text
-lib/pear/HTTP/WebDAV/Tools/_parse_lock_response.php -text
-lib/pear/HTTP/WebDAV/Tools/_parse_propfind_response.php -text
-lib/pear/HTTP/index.php -text
 lib/pear/Minify/CSS.php -text
 lib/pear/Minify/CSS/Compressor.php -text
 lib/pear/Minify/CSS/UriRewriter.php -text
