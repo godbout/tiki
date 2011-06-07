@@ -3202,7 +3202,6 @@ lib/videogals/KalturaClientReadme.txt -text
 lib/videogals/videogallib.php -text
 lib/videogals/watershedlib.php -text
 lib/web.config -text
-lib/webdav/webdavlib.php -text
 lib/webmail/API.txt -text
 lib/webmail/contactlib.php -text
 lib/webmail/htmlMimeMail.php -text
