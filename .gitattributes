@@ -5222,7 +5222,6 @@ templates/trackerinput/groupselector.tpl -text
 templates/trackerinput/image.tpl -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
-templates/trackerinput/itemslist.tpl -text
 templates/trackerinput/jscalendar.tpl -text
 templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
@@ -5237,6 +5236,7 @@ templates/trackerinput/usersubscription.tpl -text
 templates/trackeroutput/computed.tpl -text
 templates/trackeroutput/files.tpl -text
 templates/trackeroutput/freetags.tpl -text
+templates/trackeroutput/itemslist.tpl -text
 templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
 templates/trackeroutput/popup.tpl -text
