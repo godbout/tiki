@@ -1454,7 +1454,6 @@ installer/schema/20110513_banner_tiki.sql -text
 installer/schema/20110519_quick_edit_categ_params_merge_tiki.php -text
 installer/schema/20110603_convert_tracker_comments_tiki.sql -text
 installer/schema/20110606_convert_ip_fields_to_ipv6_tiki.sql -text
-installer/schema/20110607_batch_update_tracker_item_links_tiki.sql -text
 installer/schema/20110609_batch_update_tracker_item_links_tiki.php -text
 installer/schema/20110609_missing_sql_tiki.sql -text
 installer/schema/20110609_unique_login_tiki.php -text
