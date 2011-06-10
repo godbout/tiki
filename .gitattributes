@@ -1454,6 +1454,7 @@ installer/schema/20110513_banner_tiki.sql -text
 installer/schema/20110519_quick_edit_categ_params_merge_tiki.php -text
 installer/schema/20110603_convert_tracker_comments_tiki.sql -text
 installer/schema/20110606_convert_ip_fields_to_ipv6_tiki.sql -text
+installer/schema/20110609_batch_update_tracker_item_links_tiki.php -text
 installer/schema/20110609_missing_sql_tiki.sql -text
 installer/schema/20110609_unique_login_tiki.php -text
 installer/schema/20110610_readd_sefurl_index_left_tiki.sql -text
@@ -5224,7 +5225,6 @@ templates/trackerinput/groupselector.tpl -text
 templates/trackerinput/image.tpl -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
-templates/trackerinput/itemslist.tpl -text
 templates/trackerinput/jscalendar.tpl -text
 templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
@@ -5239,6 +5239,7 @@ templates/trackerinput/usersubscription.tpl -text
 templates/trackeroutput/computed.tpl -text
 templates/trackeroutput/files.tpl -text
 templates/trackeroutput/freetags.tpl -text
+templates/trackeroutput/itemslist.tpl -text
 templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
 templates/trackeroutput/popup.tpl -text
