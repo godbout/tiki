@@ -1419,7 +1419,6 @@ installer/schema/20101130_tiki_accounting_tiki.sql -text
 installer/schema/20101201_tiki_accounting_fix_index_tiki.sql -text
 installer/schema/20101203_fgal_archive_default_tiki.sql -text
 installer/schema/20101207_feature_file_drafts_tiki.sql -text
-installer/schema/20101207_unique_login_tiki.php -text
 installer/schema/20101208_webservice_soap_tiki.sql -text
 installer/schema/20101210_fgal_add_wiki_attachments_tiki.php -text
 installer/schema/20101210_sync_users_ldap_tiki.sql -text
@@ -1455,6 +1454,10 @@ installer/schema/20110513_banner_tiki.sql -text
 installer/schema/20110519_quick_edit_categ_params_merge_tiki.php -text
 installer/schema/20110603_convert_tracker_comments_tiki.sql -text
 installer/schema/20110606_convert_ip_fields_to_ipv6_tiki.sql -text
+installer/schema/20110609_missing_sql_tiki.sql -text
+installer/schema/20110609_unique_login_tiki.php -text
+installer/schema/20110610_readd_sefurl_index_left_tiki.sql -text
+installer/schema/20110610_revert_poll_additions_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
