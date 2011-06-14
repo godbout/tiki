@@ -1460,6 +1460,7 @@ installer/schema/20110609_unique_login_tiki.php -text
 installer/schema/20110610_readd_sefurl_index_left_tiki.sql -text
 installer/schema/20110610_revert_poll_additions_tiki.php -text
 installer/schema/20110613_filegal_source_display_tiki.sql -text
+installer/schema/20110614_provider_authentication_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1831,6 +1832,7 @@ lib/core/Search/Type/ShortText.php -text
 lib/core/Search/Type/Timestamp.php -text
 lib/core/Search/Type/Whole.php -text
 lib/core/Search/Type/WikiText.php -text
+lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/Broker.php -text
 lib/core/Services/Comment/Controller.php -text
 lib/core/Services/Exception.php -text
@@ -4462,6 +4464,7 @@ templates/error_ticket.tpl -text
 templates/fgal_attachments.tpl -text
 templates/fgal_context_menu.tpl -text
 templates/fgal_listing_conf.tpl -text
+templates/file/remote.tpl -text
 templates/file_backlinks.tpl -text
 templates/file_galleries.tpl -text
 templates/file_gallery_slideshow.tpl -text
