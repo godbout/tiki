@@ -3180,6 +3180,7 @@ lib/toolbars/tiki-admin_toolbars.js -text
 lib/toolbars/toolbarslib.php -text
 lib/trackers/index.php -text
 lib/trackers/trackerlib.php -text
+lib/trackers/trackerquerylib.php -text
 lib/transitionlib.php -text
 lib/tree/categ_browse_tree.php -text
 lib/tree/index.php -text
