@@ -5671,6 +5671,7 @@ tests/testfile.txt -text
 /tiki-theme_control.php -text
 /tiki-theme_control_objects.php -text
 /tiki-theme_control_sections.php -text
+/tiki-tracker_export_join.php -text
 /tiki-tracker_http_request.php -text
 /tiki-tracker_rss.php -text
 /tiki-tracker_view_history.php -text
