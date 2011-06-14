@@ -5162,6 +5162,7 @@ templates/tiki-tests_topbar.tpl -text
 templates/tiki-theme_control.tpl -text
 templates/tiki-theme_control_objects.tpl -text
 templates/tiki-theme_control_sections.tpl -text
+templates/tiki-tracker_reports.tpl -text
 templates/tiki-tracker_view_history.tpl -text
 templates/tiki-upload_file.tpl -text
 templates/tiki-upload_file_progress.tpl -text
@@ -5673,6 +5674,7 @@ tests/testfile.txt -text
 /tiki-theme_control_sections.php -text
 /tiki-tracker_export_join.php -text
 /tiki-tracker_http_request.php -text
+/tiki-tracker_reports.php -text
 /tiki-tracker_rss.php -text
 /tiki-tracker_view_history.php -text
 /tiki-upload_file.php -text
