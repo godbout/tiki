@@ -2974,6 +2974,7 @@ lib/test/Calendar/DateTest.php -text
 lib/test/Calendar/index.php -text
 lib/test/README -text
 lib/test/TikiAcceptanceTestDBRestorer.php -text
+lib/test/TikiLib/UriMergeTest.php -text
 lib/test/TikiLib/WikiParserTest.php -text
 lib/test/TikiSeleniumTestCase.php -text
 lib/test/TikiTestCase.php -text
