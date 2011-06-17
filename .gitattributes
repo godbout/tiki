@@ -2194,6 +2194,7 @@ lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
 lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery.mobile.js -text
 lib/jquery_tiki/tiki-themegenerator.js -text
+lib/language/Exception.php -text
 lib/language/Language.php -text
 lib/language/LanguageTranslations.php -text
 lib/language/index.php -text
