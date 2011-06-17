@@ -2197,8 +2197,8 @@ lib/jquery_tiki/tiki-themegenerator.js -text
 lib/language/Language.php -text
 lib/language/LanguageTranslations.php -text
 lib/language/index.php -text
-lib/language/interactive_translation.js -text
-lib/language/tiki-edit_languages.js -text
+lib/language/js/interactive_translation.js -text
+lib/language/js/tiki-edit_languages.js -text
 lib/ldap/filter.php -text
 lib/ldap/ldaplib.php -text
 lib/live_support/index.php -text
