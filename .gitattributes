@@ -1890,6 +1890,7 @@ lib/core/Tracker/Field/Location.php -text
 lib/core/Tracker/Field/Numeric.php -text
 lib/core/Tracker/Field/PageSelector.php -text
 lib/core/Tracker/Field/Rating.php -text
+lib/core/Tracker/Field/Relation.php -text
 lib/core/Tracker/Field/Simple.php -text
 lib/core/Tracker/Field/StaticText.php -text
 lib/core/Tracker/Field/Text.php -text
@@ -2838,6 +2839,7 @@ lib/smarty_tiki/function.metric.php -text
 lib/smarty_tiki/function.norecords.php -text
 lib/smarty_tiki/function.obj_in_cat.php -text
 lib/smarty_tiki/function.object_link.php -text
+lib/smarty_tiki/function.object_selector.php -text
 lib/smarty_tiki/function.payment.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup.php -text
@@ -4741,6 +4743,7 @@ templates/modules/mod-youtube.tpl -text
 templates/modules/mod-zotero.tpl -text
 templates/modules/user_module.tpl -text
 templates/object_perms_summary.tpl -text
+templates/object_selector.tpl -text
 templates/pagehistory.tpl -text
 templates/password_help.tpl -text
 templates/plugins/plugin-topfriends.tpl -text
@@ -5240,6 +5243,7 @@ templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
 templates/trackerinput/pageselector.tpl -text
 templates/trackerinput/rating.tpl -text
+templates/trackerinput/relation.tpl -text
 templates/trackerinput/statictext.tpl -text
 templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
@@ -5254,6 +5258,7 @@ templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
 templates/trackeroutput/popup.tpl -text
 templates/trackeroutput/rating.tpl -text
+templates/trackeroutput/relation.tpl -text
 templates/trackeroutput/usergroups.tpl -text
 templates/trackeroutput/usersubscription.tpl -text
 templates/translated-lang.tpl -text
