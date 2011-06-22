@@ -3334,6 +3334,7 @@ lib/wiki-plugins/wikiplugin_rcontent.php -text
 lib/wiki-plugins/wikiplugin_realnamelist.php -text
 lib/wiki-plugins/wikiplugin_redirect.php -text
 lib/wiki-plugins/wikiplugin_regex.php -text
+lib/wiki-plugins/wikiplugin_relations.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_scroll.php -text
@@ -5290,6 +5291,7 @@ templates/wiki-plugins/wikiplugin_memberlist.tpl -text
 templates/wiki-plugins/wikiplugin_memberpayment.tpl -text
 templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
+templates/wiki-plugins/wikiplugin_relations.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
 templates/wiki-plugins/wikiplugin_shopperinfo.tpl -text
 templates/wiki-plugins/wikiplugin_snarf.tpl -text
