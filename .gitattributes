@@ -1463,6 +1463,7 @@ installer/schema/20110611_accounting_fix_primarykeys_tiki.sql -text
 installer/schema/20110613_filegal_source_display_tiki.sql -text
 installer/schema/20110614_provider_authentication_tiki.sql -text
 installer/schema/20110615_structure_alias_tiki.sql -text
+installer/schema/20110622_file_from_url_log_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
