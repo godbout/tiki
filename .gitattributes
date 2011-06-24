@@ -4283,6 +4283,10 @@ styles/ohia/options/cornflower/bluebg1.png -text
 styles/ohia/options/cornflower/header.png -text
 styles/ohia/options/cornflower/index.php -text
 styles/ohia/options/index.php -text
+styles/ohia/options/planet.css -text
+styles/ohia/options/planet/header.jpg -text
+styles/ohia/options/planet/header_repeat.jpg -text
+styles/ohia/options/planet/index.php -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
 styles/slideshows/clear.css -text
