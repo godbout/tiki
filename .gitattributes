@@ -3253,6 +3253,7 @@ lib/wiki-plugins/wikiplugin_bloglist.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
 lib/wiki-plugins/wikiplugin_button.php -text
 lib/wiki-plugins/wikiplugin_calendar.php -text
+lib/wiki-plugins/wikiplugin_carousel.php -text
 lib/wiki-plugins/wikiplugin_cartmissinguserinfo.php -text
 lib/wiki-plugins/wikiplugin_category.php -text
 lib/wiki-plugins/wikiplugin_catorphans.php -text
