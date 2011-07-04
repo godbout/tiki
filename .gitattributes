@@ -5243,6 +5243,7 @@ templates/tiki-wiki_topline.tpl -text
 templates/tiki.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker/add_field.tpl -text
+templates/tracker/edit_field.tpl -text
 templates/tracker_actions.tpl -text
 templates/tracker_calendar_over.tpl -text
 templates/tracker_error.tpl -text
