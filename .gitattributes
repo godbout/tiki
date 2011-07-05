@@ -17,6 +17,7 @@ backups/index.php -text
 /contribution.php -text
 /copyright.txt -text
 /copyrights.php -text
+css/960_16_col.css -text
 css/admin.css -text
 css/calendar-print.css -text
 css/calendar.css -text
