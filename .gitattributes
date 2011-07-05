@@ -3132,6 +3132,7 @@ lib/test/language/fixtures/language_orig.php -text
 lib/test/language/fixtures/language_simple.php -text
 lib/test/language/fixtures/language_untranslated.php -text
 lib/test/language/fixtures/language_with_translations.php -text
+lib/test/language/fixtures/language_with_translations_and_file_paths.php -text
 lib/test/language/fixtures/test_collecting_strings.php -text
 lib/test/language/fixtures/test_collecting_strings.tpl -text
 lib/test/language/index.php -text
