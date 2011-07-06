@@ -3120,12 +3120,15 @@ lib/test/importer/tikiimporter_testcase.php -text
 lib/test/index.php -text
 lib/test/language/CollectFilesTest.php -text
 lib/test/language/CollectFilesVfsStreamTest.php -text
+lib/test/language/GetStringsEndToEndTest.php -text
 lib/test/language/GetStringsTest.php -text
 lib/test/language/LanguageTest.php -text
 lib/test/language/LanguageTranslationsTest.php -text
 lib/test/language/WriteFileTest.php -text
 lib/test/language/fixtures/custom.php -text
 lib/test/language/fixtures/index.php -text
+lib/test/language/fixtures/language_end_to_end_test_modified.php -text
+lib/test/language/fixtures/language_end_to_end_test_original.php -text
 lib/test/language/fixtures/language_invalid.php -text
 lib/test/language/fixtures/language_modif.php -text
 lib/test/language/fixtures/language_orig.php -text
