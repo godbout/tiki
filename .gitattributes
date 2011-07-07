@@ -4085,6 +4085,8 @@ pics/next_anim.gif -text
 pics/noavatar.png -text
 pics/overlay-disabled_item.png -text
 pics/prev.gif -text
+pics/sprite/admin.fullpanel.png -text
+pics/sprite/admin.fullpanel.xcf -text
 pics/trans.png -text
 /plugins_help.php -text
 /poll_categorize.php -text
