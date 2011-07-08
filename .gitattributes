@@ -1842,6 +1842,7 @@ lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/Broker.php -text
 lib/core/Services/Comment/Controller.php -text
 lib/core/Services/Exception.php -text
+lib/core/Services/Favorite/Controller.php -text
 lib/core/Services/File/Controller.php -text
 lib/core/Services/Tracker/Controller.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
