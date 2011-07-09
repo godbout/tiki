@@ -1817,6 +1817,7 @@ lib/core/Search/GlobalSource/FileAttachment.php -text
 lib/core/Search/GlobalSource/FreeTagSource.php -text
 lib/core/Search/GlobalSource/Interface.php -text
 lib/core/Search/GlobalSource/PermissionSource.php -text
+lib/core/Search/GlobalSource/RelationSource.php -text
 lib/core/Search/GlobalSource/Static.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Lucene.php -text
@@ -1824,6 +1825,8 @@ lib/core/Search/Index/Memory.php -text
 lib/core/Search/Indexer.php -text
 lib/core/Search/Query.php -text
 lib/core/Search/Query/Order.php -text
+lib/core/Search/Query/Relation.php -text
+lib/core/Search/Query/RelationReplacer.php -text
 lib/core/Search/Query/WeightCalculator/Field.php -text
 lib/core/Search/Query/WeightCalculator/Interface.php -text
 lib/core/Search/ResultSet.php -text
