@@ -4102,6 +4102,9 @@ pics/trans.png -text
 /setup.sh -text
 /show_image.php -text
 /snarf_ajax.php -text
+styles/960_gs.css -text
+styles/960_gs/960_16_col.css -text
+styles/960_gs/index.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
 styles/abse/abse.png -text svneol=unset#image/png
@@ -4823,6 +4826,8 @@ templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
 templates/structures_toc.tpl -text
 templates/structures_toc_level.tpl -text
+templates/styles/960_gs/index.php -text
+templates/styles/960_gs/tiki.tpl -text
 templates/styles/abse/index.php -text
 templates/styles/business/index.php -text
 templates/styles/coelesce/blog_post_postbody_title.tpl -text
