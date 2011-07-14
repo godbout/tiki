@@ -1466,6 +1466,7 @@ installer/schema/20110614_provider_authentication_tiki.sql -text
 installer/schema/20110615_structure_alias_tiki.sql -text
 installer/schema/20110622_file_from_url_log_tiki.sql -text
 installer/schema/20110630_fix_blogs_copyright_frencho_tiki.sql -text
+installer/schema/20110713_add_tiki_p_edit_switch_mode_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2265,6 +2266,8 @@ lib/notifications/notificationlib.php -text
 lib/oauthlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
+lib/payment/behavior/cancel_cart_order.php -text
+lib/payment/behavior/cart_send_confirm_email.php -text
 lib/payment/behavior/execute_datachannel.php -text
 lib/payment/behavior/extend_membership.php -text
 lib/payment/behavior/index.php -text
@@ -4527,6 +4530,8 @@ templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
 templates/mail/cart_order_received_anon.tpl -text
 templates/mail/cart_order_received_anon_subject.tpl -text
+templates/mail/cart_order_received_reg.tpl -text
+templates/mail/cart_order_received_reg_subject.tpl -text
 templates/mail/confirm_newsletter_subscription.tpl -text
 templates/mail/confirm_user_email.tpl -text
 templates/mail/confirm_user_email_after_approval.tpl -text
