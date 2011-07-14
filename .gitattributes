@@ -2266,6 +2266,9 @@ lib/oauthlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
 lib/payment/behavior/cancel_cart_order.php -text
+lib/payment/behavior/cart_exchange_product.php -text
+lib/payment/behavior/cart_gift_certificate_purchase.php -text
+lib/payment/behavior/cart_gift_certificate_refund.php -text
 lib/payment/behavior/cart_send_confirm_email.php -text
 lib/payment/behavior/execute_datachannel.php -text
 lib/payment/behavior/extend_membership.php -text
@@ -4527,6 +4530,8 @@ templates/interactive_translation_box.tpl -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
+templates/mail/cart_gift_cert.tpl -text
+templates/mail/cart_gift_cert_subject.tpl -text
 templates/mail/cart_order_received_anon.tpl -text
 templates/mail/cart_order_received_anon_subject.tpl -text
 templates/mail/cart_order_received_reg.tpl -text
