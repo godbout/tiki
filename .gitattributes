@@ -3139,6 +3139,7 @@ lib/test/language/fixtures/language_end_to_end_test_original.php -text
 lib/test/language/fixtures/language_invalid.php -text
 lib/test/language/fixtures/language_modif.php -text
 lib/test/language/fixtures/language_orig.php -text
+lib/test/language/fixtures/language_punctuations.php -text
 lib/test/language/fixtures/language_simple.php -text
 lib/test/language/fixtures/language_untranslated.php -text
 lib/test/language/fixtures/language_with_translations.php -text
