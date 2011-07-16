@@ -5036,6 +5036,7 @@ templates/tiki-edit_help_sheet.tpl -text
 templates/tiki-edit_help_sheet_interface.tpl -text
 templates/tiki-edit_help_wysiwyg.tpl -text
 templates/tiki-edit_image.tpl -text
+templates/tiki-edit_invoice.tpl -text
 templates/tiki-edit_languages.tpl -text
 templates/tiki-edit_perspective.tpl -text
 templates/tiki-edit_programmed_content.tpl -text
@@ -5083,6 +5084,7 @@ templates/tiki-install.tpl -text
 templates/tiki-integrator.tpl -text
 templates/tiki-invite.tpl -text
 templates/tiki-invited.tpl -text
+templates/tiki-invoice_menu.tpl -text
 templates/tiki-kaltura_upload.tpl -text
 templates/tiki-kaltura_video.tpl -text
 templates/tiki-lastchanges.tpl -text
@@ -5098,6 +5100,7 @@ templates/tiki-list_file_gallery.tpl -text
 templates/tiki-list_gallery.tpl -text
 templates/tiki-list_integrator_repositories.tpl -text
 templates/tiki-list_invite.tpl -text
+templates/tiki-list_invoices.tpl -text
 templates/tiki-list_kaltura_browse_entries.tpl -text
 templates/tiki-list_kaltura_entries.tpl -text
 templates/tiki-list_kaltura_entries_actions.tpl -text
@@ -5251,6 +5254,7 @@ templates/tiki-view_cache.tpl -text
 templates/tiki-view_faq.tpl -text
 templates/tiki-view_forum.tpl -text
 templates/tiki-view_forum_thread.tpl -text
+templates/tiki-view_invoice.tpl -text
 templates/tiki-view_sheets.tpl -text
 templates/tiki-view_sheets_menu.tpl -text
 templates/tiki-view_tracker.tpl -text
@@ -5537,6 +5541,7 @@ tests/testfile.txt -text
 /tiki-edit_css.php -text
 /tiki-edit_draw.php -text
 /tiki-edit_image.php -text
+/tiki-edit_invoice.php -text
 /tiki-edit_languages.php -text
 /tiki-edit_perspective.php -text
 /tiki-edit_programmed_content.php -text
@@ -5616,6 +5621,7 @@ tests/testfile.txt -text
 /tiki-list_gallery.php -text
 /tiki-list_integrator_repositories.php -text
 /tiki-list_invite.php -text
+/tiki-list_invoices.php -text
 /tiki-list_kaltura_entries.php -text
 /tiki-list_object_permissions.php -text
 /tiki-list_posts.php -text
@@ -5771,6 +5777,7 @@ tests/testfile.txt -text
 /tiki-view_faq.php -text
 /tiki-view_forum.php -text
 /tiki-view_forum_thread.php -text
+/tiki-view_invoice.php -text
 /tiki-view_minical_topic.php -text
 /tiki-view_sheets.php -text
 /tiki-view_tracker.php -text
