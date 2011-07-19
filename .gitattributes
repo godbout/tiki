@@ -1847,6 +1847,7 @@ lib/core/Services/Comment/Controller.php -text
 lib/core/Services/Exception.php -text
 lib/core/Services/Favorite/Controller.php -text
 lib/core/Services/File/Controller.php -text
+lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Tracker/Controller.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
@@ -5326,6 +5327,7 @@ templates/trackeroutput/relation.tpl -text
 templates/trackeroutput/usergroups.tpl -text
 templates/trackeroutput/usersubscription.tpl -text
 templates/translated-lang.tpl -text
+templates/translation/manage.tpl -text
 templates/unified_search_help.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
