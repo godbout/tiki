@@ -5327,6 +5327,7 @@ templates/trackeroutput/relation.tpl -text
 templates/trackeroutput/usergroups.tpl -text
 templates/trackeroutput/usersubscription.tpl -text
 templates/translated-lang.tpl -text
+templates/translation/detach.tpl -text
 templates/translation/manage.tpl -text
 templates/unified_search_help.tpl -text
 templates/web.config -text
