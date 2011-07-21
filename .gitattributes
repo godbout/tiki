@@ -1709,6 +1709,9 @@ lib/codemirror_tiki/css/tikiwikisyntaxcolors.css -text
 lib/codemirror_tiki/docs.css -text
 lib/codemirror_tiki/js/parsersplus.js -text
 lib/codemirror_tiki/js/parsetikisyntax.js -text
+lib/codemirror_tiki/mode/tikiwiki/index.html -text
+lib/codemirror_tiki/mode/tikiwiki/tikiwiki.css -text
+lib/codemirror_tiki/mode/tikiwiki/tikiwiki.js -text
 lib/commcenter/commlib.php -text
 lib/commcenter/index.php -text
 lib/comments/commentslib.js -text
