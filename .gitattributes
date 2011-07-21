@@ -2951,6 +2951,7 @@ lib/smarty_tiki/prefilter.jq.php -text
 lib/smarty_tiki/prefilter.log_tpl.php -text
 lib/smarty_tiki/prefilter.tr.php -text
 lib/smarty_tiki/resource.style.php -text
+lib/smarty_tiki/resource.tplwiki.php -text
 lib/smarty_tiki/resource.wiki.php -text
 lib/soap/nusoap/nusoap.php -text
 lib/soap/soaplib.php -text
