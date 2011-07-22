@@ -3300,6 +3300,7 @@ lib/wiki-plugins/wikiplugin_center.php -text
 lib/wiki-plugins/wikiplugin_chart.php -text
 lib/wiki-plugins/wikiplugin_code.php -text
 lib/wiki-plugins/wikiplugin_colorbox.php -text
+lib/wiki-plugins/wikiplugin_comment.php -text
 lib/wiki-plugins/wikiplugin_content.php -text
 lib/wiki-plugins/wikiplugin_cookie.php -text
 lib/wiki-plugins/wikiplugin_copyright.php -text
@@ -3315,6 +3316,7 @@ lib/wiki-plugins/wikiplugin_extendcarthold.php -text
 lib/wiki-plugins/wikiplugin_fade.php -text
 lib/wiki-plugins/wikiplugin_fancylist.php -text
 lib/wiki-plugins/wikiplugin_fancytable.php -text
+lib/wiki-plugins/wikiplugin_favorite.php -text
 lib/wiki-plugins/wikiplugin_file.php -text
 lib/wiki-plugins/wikiplugin_files.php -text
 lib/wiki-plugins/wikiplugin_flash.php -text
@@ -5346,8 +5348,10 @@ templates/wiki-plugins/wikiplugin_bloglist.tpl -text
 templates/wiki-plugins/wikiplugin_catorphans.tpl -text
 templates/wiki-plugins/wikiplugin_cclite.tpl -text
 templates/wiki-plugins/wikiplugin_colobox.tpl -text
+templates/wiki-plugins/wikiplugin_comment.tpl -text
 templates/wiki-plugins/wikiplugin_datachannel.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
+templates/wiki-plugins/wikiplugin_favorite.tpl -text
 templates/wiki-plugins/wikiplugin_files.tpl -text
 templates/wiki-plugins/wikiplugin_freetagged.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
