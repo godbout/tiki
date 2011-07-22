@@ -2661,7 +2661,6 @@ lib/prefs/warn.php -text
 lib/prefs/watershed.php -text
 lib/prefs/webmail.php -text
 lib/prefs/wiki.php -text
-lib/prefs/wikiapproval.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
 lib/prefs/wikipluginprefs.php -text
@@ -4991,7 +4990,6 @@ templates/tiki-admingroups.tpl -text
 templates/tiki-adminusers.tpl -text
 templates/tiki-ajax_header.tpl -text
 templates/tiki-all_languages.tpl -text
-templates/tiki-approve_staging_page.tpl -text
 templates/tiki-article_types.tpl -text
 templates/tiki-articles-js.tpl -text
 templates/tiki-assignuser.tpl -text
@@ -5277,7 +5275,6 @@ templates/tiki-webdav.tpl -text
 templates/tiki-webmail.tpl -text
 templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
-templates/tiki-wiki_staging.tpl -text
 templates/tiki-wiki_structure_bar.tpl -text
 templates/tiki-wiki_topline.tpl -text
 templates/tiki.tpl -text
@@ -5496,7 +5493,6 @@ tests/testfile.txt -text
 /tiki-adminusers.php -text
 /tiki-ajax_services.php -text
 /tiki-all_languages.php -text
-/tiki-approve_staging_page.php -text
 /tiki-article_types.php -text
 /tiki-articles_rss.php -text
 /tiki-assignuser.php -text
