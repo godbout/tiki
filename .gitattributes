@@ -5160,6 +5160,7 @@ templates/tiki-list_file_gallery.tpl -text
 templates/tiki-list_gallery.tpl -text
 templates/tiki-list_integrator_repositories.tpl -text
 templates/tiki-list_invite.tpl -text
+templates/tiki-list_invoice_clients.tpl -text
 templates/tiki-list_invoices.tpl -text
 templates/tiki-list_kaltura_browse_entries.tpl -text
 templates/tiki-list_kaltura_entries.tpl -text
@@ -5636,6 +5637,7 @@ tests/testfile.txt -text
 /tiki-list_gallery.php -text
 /tiki-list_integrator_repositories.php -text
 /tiki-list_invite.php -text
+/tiki-list_invoice_clients.php -text
 /tiki-list_invoices.php -text
 /tiki-list_kaltura_entries.php -text
 /tiki-list_object_permissions.php -text
