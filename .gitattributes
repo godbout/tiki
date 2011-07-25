@@ -1898,6 +1898,7 @@ lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/Broker.php -text
 lib/core/Services/Comment/Controller.php -text
 lib/core/Services/Exception.php -text
+lib/core/Services/Exception/Disabled.php -text
 lib/core/Services/Exception/DuplicateValue.php -text
 lib/core/Services/Exception/MissingValue.php -text
 lib/core/Services/Favorite/Controller.php -text
@@ -5334,6 +5335,7 @@ templates/tiki-wiki_topline.tpl -text
 templates/tiki.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker/add_field.tpl -text
+templates/tracker/clone_remote.tpl -text
 templates/tracker/edit_field.tpl -text
 templates/tracker/export_fields.tpl -text
 templates/tracker/remove_fields.tpl -text
