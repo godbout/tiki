@@ -1904,6 +1904,8 @@ lib/core/Services/Exception/MissingValue.php -text
 lib/core/Services/Favorite/Controller.php -text
 lib/core/Services/File/Controller.php -text
 lib/core/Services/Language/TranslationController.php -text
+lib/core/Services/ResultLoader.php -text
+lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/Tracker/Controller.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
@@ -3132,6 +3134,7 @@ lib/test/core/Search/QueryTest.php -text
 lib/test/core/Search/basic.tpl -text
 lib/test/core/Search/embedded.tpl -text
 lib/test/core/Search/paginate.tpl -text
+lib/test/core/Services/ResultLoaderTest.php -text
 lib/test/core/TikiDb/TableTest.php -text
 lib/test/core/TikiFilter/CallbackTest.php -text
 lib/test/core/TikiFilter/MapTest.php -text
