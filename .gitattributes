@@ -2256,7 +2256,6 @@ lib/jquery_tiki/brosho/tiki.brosho.css -text
 lib/jquery_tiki/brosho/tiki_brosho.js -text
 lib/jquery_tiki/colorpicker/layout.css -text
 lib/jquery_tiki/index.php -text
-lib/jquery_tiki/json2.js -text
 lib/jquery_tiki/tablesorter/themes/tiki/asc.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/bg.gif -text
 lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
