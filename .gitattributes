@@ -1964,6 +1964,7 @@ lib/core/Tracker/Field/Rating.php -text
 lib/core/Tracker/Field/Relation.php -text
 lib/core/Tracker/Field/Simple.php -text
 lib/core/Tracker/Field/StaticText.php -text
+lib/core/Tracker/Field/Synchronizable.php -text
 lib/core/Tracker/Field/Text.php -text
 lib/core/Tracker/Field/TextArea.php -text
 lib/core/Tracker/Field/Url.php -text
