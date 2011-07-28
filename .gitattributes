@@ -1756,11 +1756,8 @@ lib/ckeditor_tiki/tikistyles.js -text
 lib/ckeditor_tiki/tikitemplates.js -text
 lib/codemirror_tiki/codemirror_tiki.js -text
 lib/codemirror_tiki/codemirror_tiki.php -text
-lib/codemirror_tiki/css/rspluscolors.css -text
-lib/codemirror_tiki/css/tikiwikisyntaxcolors.css -text
 lib/codemirror_tiki/docs.css -text
-lib/codemirror_tiki/js/parsersplus.js -text
-lib/codemirror_tiki/js/parsetikisyntax.js -text
+lib/codemirror_tiki/mode/r/r.js -text
 lib/codemirror_tiki/mode/tikiwiki/index.html -text
 lib/codemirror_tiki/mode/tikiwiki/tikiwiki.css -text
 lib/codemirror_tiki/mode/tikiwiki/tikiwiki.js -text
