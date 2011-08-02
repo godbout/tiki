@@ -1907,6 +1907,7 @@ lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/Tracker/Controller.php -text
 lib/core/Services/Tracker/Utilities.php -text
+lib/core/Services/User/Controller.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
 lib/core/StandardAnalyzer/Readme.txt -text
