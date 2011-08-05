@@ -669,7 +669,6 @@ img/icons/color4.gif -text
 img/icons/comment.gif -text
 img/icons/config.gif -text
 img/icons/config2.gif -text
-img/icons/cool.gif -text
 img/icons/del.gif -text
 img/icons/desc_length.gif -text
 img/icons/dispurl.gif -text
@@ -3751,6 +3750,7 @@ pics/icons/control_pause.png -text
 pics/icons/control_play.png -text
 pics/icons/control_play_blue.png -text
 pics/icons/control_stop.png -text
+pics/icons/cool.gif -text
 pics/icons/cross.png -text
 pics/icons/cross_admin.png -text
 pics/icons/cut.png -text
