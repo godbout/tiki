@@ -1977,6 +1977,7 @@ lib/core/Tracker/Field/WebService.php -text
 lib/core/Transition.php -text
 lib/core/WikiParser/Experimental/WikiParser.jison -text
 lib/core/WikiParser/Experimental/WikiParser.js -text
+lib/core/WikiParser/Experimental/WikiParser.php -text
 lib/core/WikiParser/Experimental/WikiParserTester.html -text
 lib/core/WikiParser/OutputLink.php -text
 lib/core/WikiParser/PluginArgumentParser.php -text
