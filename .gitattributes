@@ -1909,6 +1909,7 @@ lib/core/Services/RemoteController.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/Tracker/Controller.php -text
+lib/core/Services/Tracker/SyncController.php -text
 lib/core/Services/Tracker/Utilities.php -text
 lib/core/Services/User/Controller.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
@@ -5354,7 +5355,6 @@ templates/tiki-wiki_topline.tpl -text
 templates/tiki.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker/add_field.tpl -text
-templates/tracker/clone_remote.tpl -text
 templates/tracker/edit_field.tpl -text
 templates/tracker/export_fields.tpl -text
 templates/tracker/remove_fields.tpl -text
@@ -5365,6 +5365,7 @@ templates/tracker_filter.tpl -text
 templates/tracker_pretty_item.tpl -text
 templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
+templates/tracker_sync/clone_remote.tpl -text
 templates/tracker_validator.tpl -text
 templates/trackerinput/autoincrement.tpl -text
 templates/trackerinput/category.tpl -text
