@@ -1519,6 +1519,7 @@ installer/schema/20110725_tracker_field_permname_tiki.sql -text
 installer/schema/20110727_tracker_multilingual_convert_tiki.php -text
 installer/schema/20110727_tracker_multilingual_convert_tiki.sql -text
 installer/schema/20110803_objectpermissions_tiki.sql -text
+installer/schema/20110808_default_perm_name_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
