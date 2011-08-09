@@ -1684,11 +1684,6 @@ lang/vi/language.php -text
 lang/web.config -text
 lib/.htaccess -text
 lib/Babelfish.php -text
-lib/Horde/Yaml.php -text
-lib/Horde/Yaml/Dumper.php -text
-lib/Horde/Yaml/Exception.php -text
-lib/Horde/Yaml/Loader.php -text
-lib/Horde/Yaml/Node.php -text
 lib/TikiWebdav/Auth/Default.php -text
 lib/TikiWebdav/Auth/Wiki.php -text
 lib/TikiWebdav/Backend/File.php -text
@@ -1784,6 +1779,11 @@ lib/core/DeclFilter/UnsetRule.php -text
 lib/core/Event/Chain.php -text
 lib/core/Event/Lib.php -text
 lib/core/Event/Manager.php -text
+lib/core/Horde/Yaml.php -text
+lib/core/Horde/Yaml/Dumper.php -text
+lib/core/Horde/Yaml/Exception.php -text
+lib/core/Horde/Yaml/Loader.php -text
+lib/core/Horde/Yaml/Node.php -text
 lib/core/JitFilter.php -text
 lib/core/JitFilter/Element.php -text
 lib/core/Math/Formula/Element.php -text
