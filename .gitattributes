@@ -2336,6 +2336,11 @@ lib/notifications/notificationlib.php -text
 lib/oauthlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
+lib/parser/WikiParser.jison -text
+lib/parser/WikiParser.js -text
+lib/parser/WikiParser.php -text
+lib/parser/WikiParserTester.html -text
+lib/parser/parserlib.php -text
 lib/payment/behavior/cancel_cart_order.php -text
 lib/payment/behavior/cart_exchange_product.php -text
 lib/payment/behavior/cart_gift_certificate_purchase.php -text
