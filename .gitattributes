@@ -3395,6 +3395,7 @@ lib/wiki-plugins/wikiplugin_favorite.php -text
 lib/wiki-plugins/wikiplugin_file.php -text
 lib/wiki-plugins/wikiplugin_files.php -text
 lib/wiki-plugins/wikiplugin_flash.php -text
+lib/wiki-plugins/wikiplugin_font.php -text
 lib/wiki-plugins/wikiplugin_footnote.php -text
 lib/wiki-plugins/wikiplugin_footnotearea.php -text
 lib/wiki-plugins/wikiplugin_freetagged.php -text
