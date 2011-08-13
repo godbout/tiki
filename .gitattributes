@@ -5389,7 +5389,6 @@ templates/trackerinput/groupselector.tpl -text
 templates/trackerinput/image.tpl -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
-templates/trackerinput/jscalendar.tpl -text
 templates/trackerinput/language.tpl -text
 templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
