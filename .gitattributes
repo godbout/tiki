@@ -1115,6 +1115,7 @@ img/smiles/icon_wink.gif -text
 img/smiles/index.php -text
 img/spinner.gif -text
 img/tiki.jpg -text
+img/tiki/Tiki_Suite.png -text svneol=unset#image/png
 img/tiki/Tiki_WCG.png -text
 img/tiki/Tiki_WCG_Branding.png -text
 img/tiki/Tiki_WCG_Community.png -text
@@ -4373,6 +4374,10 @@ styles/fivealive/options/orange/index.php -text
 styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
 styles/fivealive/options/orange/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/orange/siteheadertile.png -text svneol=unset#image/png
+styles/fivealive/options/plum/arrows-8e01d4.png -text svneol=unset#image/png
+styles/fivealive/options/plum/index.php -text
+styles/fivealive/options/plum/siteheader.jpg -text svneol=unset#image/jpeg
+styles/fivealive/options/plum/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/arrows-c21e3b.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/index.php -text
 styles/fivealive/options/watermelon/siteheader.png -text svneol=unset#image/png
