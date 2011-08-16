@@ -5842,7 +5842,6 @@ tests/testfile.txt -text
 /tiki-view_tracker_item.php -text
 /tiki-view_tracker_more_info.php -text
 /tiki-watershed_service.php -text
-/tiki-webdav-wiki.php -text
 /tiki-webdav.php -text
 /tiki-webmail.php -text
 /tiki-webmail_ajax.php -text
