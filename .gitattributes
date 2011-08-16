@@ -5559,6 +5559,7 @@ tests/testfile.txt -text
 /tiki-calendar_edit_item.php -text
 /tiki-calendar_export_ical.php -text
 /tiki-calendar_import.php -text
+/tiki-calendar_json.php -text
 /tiki-calendar_params_ical.php -text
 /tiki-calendar_setup.php -text
 /tiki-calendars_rss.php -text
