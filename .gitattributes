@@ -3177,6 +3177,7 @@ lib/test/editlib/EditLibTest.php -text
 lib/test/editlib/ParseToWiki_CharacterTest.php -text
 lib/test/editlib/ParseToWiki_TextTest.php -text
 lib/test/editlib/ParseToWysiwyg_CharacterTest.php -text
+lib/test/editlib/ParseToWysiwyg_TextTest.php -text
 lib/test/editlib/index.php -text
 lib/test/freetag/FreetagTest.php -text
 lib/test/freetag/index.php -text
