@@ -1903,6 +1903,7 @@ lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/Broker.php -text
 lib/core/Services/Category/Controller.php -text
 lib/core/Services/Comment/Controller.php -text
+lib/core/Services/Connect/Controller.php -text
 lib/core/Services/Exception.php -text
 lib/core/Services/Exception/Disabled.php -text
 lib/core/Services/Exception/DuplicateValue.php -text
