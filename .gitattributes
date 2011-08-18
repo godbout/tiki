@@ -2794,7 +2794,7 @@ lib/setup/events.php -text
 lib/setup/freetags.php -text
 lib/setup/fullscreen.php -text
 lib/setup/integrator.php -text
-lib/setup/js_detect.php -text
+lib/setup/javascript.php -text
 lib/setup/language.php -text
 lib/setup/last_update.php -text
 lib/setup/live_support.php -text
