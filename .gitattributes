@@ -1836,6 +1836,7 @@ lib/core/Perms/ResolverFactory/GlobalFactory.php -text
 lib/core/Perms/ResolverFactory/ObjectFactory.php -text
 lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
+lib/core/Request.php -text
 lib/core/Search/ContentFilter/VersionNumber.php -text
 lib/core/Search/ContentSource/ArticleSource.php -text
 lib/core/Search/ContentSource/BlogPostSource.php -text
@@ -3138,6 +3139,7 @@ lib/test/core/Perms/ResolverFactory/CategoryFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/GlobalFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
+lib/test/core/Request/RequestTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/Formatter/ArrayBuilderTest.php -text
