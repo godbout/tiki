@@ -1872,6 +1872,7 @@ lib/core/Search/Formatter/ValueFormatter/Snippet.php -text
 lib/core/Search/Formatter/ValueFormatter/Trackerrender.php -text
 lib/core/Search/GlobalSource/AdvancedRatingSource.php -text
 lib/core/Search/GlobalSource/CategorySource.php -text
+lib/core/Search/GlobalSource/CommentSource.php -text
 lib/core/Search/GlobalSource/FileAttachmentSource.php -text
 lib/core/Search/GlobalSource/FreeTagSource.php -text
 lib/core/Search/GlobalSource/Interface.php -text
