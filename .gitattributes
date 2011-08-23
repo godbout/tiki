@@ -1928,6 +1928,7 @@ lib/core/StandardAnalyzer/Readme.txt -text
 lib/core/StandardAnalyzer/TokenFilter/EnglishStemmer.php -text
 lib/core/StandardAnalyzer/TokenFilter/EnglishStemmer/PorterStemmer.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
+lib/core/TikiConnect.php -text
 lib/core/TikiDb.php -text
 lib/core/TikiDb/Adodb.php -text
 lib/core/TikiDb/Bridge.php -text
@@ -3095,6 +3096,7 @@ lib/test/bootstrap.php -text
 lib/test/comments/CommentsTest.php -text
 lib/test/comments/index.php -text
 lib/test/core/Category/ManipulatorTest.php -text
+lib/test/core/Connect/TikiConnectTest.php -text
 lib/test/core/DeclFilter/BaseTest.php -text
 lib/test/core/DeclFilter/CatchAllFilterTest.php -text
 lib/test/core/DeclFilter/CatchAllUnsetTest.php -text
