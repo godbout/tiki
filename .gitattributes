@@ -3359,7 +3359,7 @@ lib/webmail/tikimaillib.php -text
 lib/webmail/webmaillib.php -text
 lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
-lib/wiki-plugins/wikiplugin_addfreetags.php -text
+lib/wiki-plugins/wikiplugin_addfreetag.php -text
 lib/wiki-plugins/wikiplugin_addtocart.php -text
 lib/wiki-plugins/wikiplugin_addtogooglecal.php -text
 lib/wiki-plugins/wikiplugin_adjustinventory.php -text
@@ -5443,7 +5443,7 @@ templates/unified_search_help.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
-templates/wiki-plugins/wikiplugin_addfreetags.tpl -text
+templates/wiki-plugins/wikiplugin_addfreetag.tpl -text
 templates/wiki-plugins/wikiplugin_addtocart.tpl -text
 templates/wiki-plugins/wikiplugin_adjustinventory.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
