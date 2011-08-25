@@ -3044,8 +3044,6 @@ lib/structures/index.php -text
 lib/structures/structlib.php -text
 lib/surveys/index.php -text
 lib/surveys/surveylib.php -text
-lib/svg-edit_tiki/draw.js -text
-lib/svg-edit_tiki/draw.php -text
 lib/swfobject/expressInstall.swf -text
 lib/swfobject/index.html -text
 lib/swfobject/index_dynamic.html -text
