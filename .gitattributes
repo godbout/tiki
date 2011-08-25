@@ -3355,6 +3355,8 @@ lib/webmail/mimeDecode.php -text
 lib/webmail/net_pop3.php -text
 lib/webmail/tikimaillib.php -text
 lib/webmail/webmaillib.php -text
+lib/webodf/webodf.css -text
+lib/webodf/webodf.js -text
 lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_addfreetag.php -text
@@ -5141,6 +5143,7 @@ templates/tiki-edit_banner.tpl -text
 templates/tiki-edit_blog.tpl -text
 templates/tiki-edit_categories.tpl -text
 templates/tiki-edit_css.tpl -text
+templates/tiki-edit_docs.tpl -text
 templates/tiki-edit_draw.tpl -text
 templates/tiki-edit_help.tpl -text
 templates/tiki-edit_help_plugins.tpl -text
@@ -5611,6 +5614,7 @@ tests/testfile.txt -text
 /tiki-edit_blog.php -text
 /tiki-edit_categories.php -text
 /tiki-edit_css.php -text
+/tiki-edit_docs.php -text
 /tiki-edit_draw.php -text
 /tiki-edit_image.php -text
 /tiki-edit_invoice.php -text
