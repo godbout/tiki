@@ -1525,6 +1525,7 @@ installer/schema/20110808_tracker_tiki.sql -text
 installer/schema/20110815_creator_lost_7_tiki.sql -text
 installer/schema/20110819_group_max_length_tiki.sql -text
 installer/schema/20110823_tiki_connect_create_tiki.sql -text
+installer/schema/20110825_rename_lastUpdatePrefs_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
