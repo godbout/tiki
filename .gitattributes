@@ -4,10 +4,10 @@
 /_htaccess -text
 /about.php -text
 admin/include_ads.php -text
+admin/include_articles.php -text
 admin/include_blogs.php -text
 admin/include_calendar.php -text
 admin/include_category.php -text
-admin/include_cms.php -text
 admin/include_comments.php -text
 admin/include_community.php -text
 admin/include_connect.php -text
@@ -4569,10 +4569,10 @@ temp/web.config -text
 templates/.htaccess -text
 templates/admin/include_ads.tpl -text
 templates/admin/include_anchors.tpl -text
+templates/admin/include_articles.tpl -text
 templates/admin/include_blogs.tpl -text
 templates/admin/include_calendar.tpl -text
 templates/admin/include_category.tpl -text
-templates/admin/include_cms.tpl -text
 templates/admin/include_comments.tpl -text
 templates/admin/include_community.tpl -text
 templates/admin/include_connect.tpl -text
