@@ -5758,6 +5758,7 @@ tests/testfile.txt -text
 /tiki-page_loader.php -text
 /tiki-pagehistory.php -text
 /tiki-payment.php -text
+/tiki-perspective_binder.php -text
 /tiki-phpinfo.php -text
 /tiki-pick_avatar.php -text
 /tiki-plugins.php -text
