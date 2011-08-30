@@ -1527,6 +1527,7 @@ installer/schema/20110819_group_max_length_tiki.sql -text
 installer/schema/20110823_tiki_connect_create_tiki.sql -text
 installer/schema/20110825_rename_lastUpdatePrefs_tiki.sql -text
 installer/schema/20110830_default_enable_in_use_tiki.php -text
+installer/schema/20110830_tiki_connect_longer_guid_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -1909,7 +1910,8 @@ lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/Broker.php -text
 lib/core/Services/Category/Controller.php -text
 lib/core/Services/Comment/Controller.php -text
-lib/core/Services/Connect/Controller.php -text
+lib/core/Services/Connect/Client.php -text
+lib/core/Services/Connect/Server.php -text
 lib/core/Services/Exception.php -text
 lib/core/Services/Exception/Disabled.php -text
 lib/core/Services/Exception/DuplicateValue.php -text
