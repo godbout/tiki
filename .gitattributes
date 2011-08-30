@@ -1526,6 +1526,7 @@ installer/schema/20110815_creator_lost_7_tiki.sql -text
 installer/schema/20110819_group_max_length_tiki.sql -text
 installer/schema/20110823_tiki_connect_create_tiki.sql -text
 installer/schema/20110825_rename_lastUpdatePrefs_tiki.sql -text
+installer/schema/20110830_default_enable_in_use_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -2732,6 +2733,7 @@ lib/prefs/style.php -text
 lib/prefs/themegenerator.php -text
 lib/prefs/tiki.php -text
 lib/prefs/tracker.php -text
+lib/prefs/trackerfield.php -text
 lib/prefs/unified.php -text
 lib/prefs/unsuccessful.php -text
 lib/prefs/url.php -text
