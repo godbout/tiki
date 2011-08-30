@@ -5395,6 +5395,7 @@ templates/tiki_full.tpl -text
 templates/tracker/add_field.tpl -text
 templates/tracker/edit_field.tpl -text
 templates/tracker/export_fields.tpl -text
+templates/tracker/remove.tpl -text
 templates/tracker/remove_fields.tpl -text
 templates/tracker_actions.tpl -text
 templates/tracker_calendar_over.tpl -text
