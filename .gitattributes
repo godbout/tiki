@@ -3534,6 +3534,7 @@ lib/wiki-plugins/wikiplugin_userpref.php -text
 lib/wiki-plugins/wikiplugin_versions.php -text
 lib/wiki-plugins/wikiplugin_vimeo.php -text
 lib/wiki-plugins/wikiplugin_vote.php -text
+lib/wiki-plugins/wikiplugin_votings.php -text
 lib/wiki-plugins/wikiplugin_wantedpages.php -text
 lib/wiki-plugins/wikiplugin_watershed.php -text
 lib/wiki-plugins/wikiplugin_webservice.php -text
