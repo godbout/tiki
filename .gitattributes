@@ -1282,7 +1282,6 @@ installer/schema/20090912_change_feature_name_for_lesser_magic_tiki.sql -text
 installer/schema/20090913_plugin_security_addedby_tiki.sql -text
 installer/schema/20090915_change_perms_for_browse_cats_tiki.sql -text
 installer/schema/20090921_logo_tiki.sql -text
-installer/schema/20090921_workspaces_tiki.sql -text
 installer/schema/20090923_mod_change_category_defaults_tiki.php -text
 installer/schema/20090925_online_logged_users_modules_merge_tiki.sql -text
 installer/schema/20090927_top_images_modules_merge_tiki.sql -text
@@ -1529,6 +1528,7 @@ installer/schema/20110823_tiki_connect_create_tiki.sql -text
 installer/schema/20110825_rename_lastUpdatePrefs_tiki.sql -text
 installer/schema/20110830_default_enable_in_use_tiki.php -text
 installer/schema/20110830_tiki_connect_longer_guid_tiki.sql -text
+installer/schema/20110902_revert_rootCategId_addition_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
