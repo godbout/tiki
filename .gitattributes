@@ -1708,7 +1708,6 @@ lib/ZeroClipboard.js -text
 lib/accounting/accountinglib.php -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
-lib/ajax/ajaxlib.php -text
 lib/ajax/autosave.js -text
 lib/ajax/autosave.php -text
 lib/articles/artlib.php -text
@@ -2989,7 +2988,6 @@ lib/smarty_tiki/function.treetable.php -text
 lib/smarty_tiki/function.user_selector.php -text
 lib/smarty_tiki/function.var_dump.php -text
 lib/smarty_tiki/function.wikistructure.php -text
-lib/smarty_tiki/function.xajax_response.php -text
 lib/smarty_tiki/index.php -text
 lib/smarty_tiki/modifier.a_or_an.php -text
 lib/smarty_tiki/modifier.adjust.php -text
@@ -4231,7 +4229,6 @@ pics/trans.png -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /received_article_image.php -text
-/register_ajax.php -text
 /reindex_file.php -text
 /remote.php -text
 /robots.txt -text
