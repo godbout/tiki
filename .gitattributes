@@ -5410,7 +5410,9 @@ templates/tiki_full.tpl -text
 templates/tracker/add_field.tpl -text
 templates/tracker/duplicate.tpl -text
 templates/tracker/edit_field.tpl -text
+templates/tracker/export.tpl -text
 templates/tracker/export_fields.tpl -text
+templates/tracker/import.tpl -text
 templates/tracker/remove.tpl -text
 templates/tracker/remove_fields.tpl -text
 templates/tracker/replace.tpl -text
