@@ -1466,6 +1466,7 @@ installer/schema/20101110_actionlog_tiki.sql -text
 installer/schema/20101117_actionlog_tiki.sql -text
 installer/schema/20101119_categ_perm_tiki.sql -text
 installer/schema/20101126_fgal_add_gallerie_user_tiki.php -text
+installer/schema/20101130_recreate_tiki_accounting_tables_tiki.sql -text
 installer/schema/20101130_tiki_accounting_tiki.sql -text
 installer/schema/20101201_tiki_accounting_fix_index_tiki.sql -text
 installer/schema/20101203_fgal_archive_default_tiki.sql -text
@@ -1533,7 +1534,6 @@ installer/schema/20110902_revert_rootCategId_addition_tiki.php -text
 installer/schema/20110904_shoutbox_def_tweetid_tiki.sql -text
 installer/schema/20110905_extend_actionlog_comment_tiki.sql -text
 installer/schema/20110905_multibyte_lc_fix_tiki.php -text
-installer/schema/20110906_recreate_tiki_accounting_tables_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
