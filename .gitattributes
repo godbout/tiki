@@ -5663,7 +5663,6 @@ tests/testfile.txt -text
 /tiki-error_simple.php -text
 /tiki-export_sheet.php -text
 /tiki-export_tracker.php -text
-/tiki-export_tracker_ajax.php -text
 /tiki-export_tracker_monitor.php -text
 /tiki-export_wiki_pages.php -text
 /tiki-faq_questions.php -text
