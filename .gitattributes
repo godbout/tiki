@@ -5335,6 +5335,7 @@ templates/tiki-send_newsletters.tpl -text
 templates/tiki-send_objects.tpl -text
 templates/tiki-share.tpl -text
 templates/tiki-sheets.tpl -text
+templates/tiki-sheets_listing.tpl -text
 templates/tiki-shoutbox.tpl -text
 templates/tiki-show_help.tpl -text
 templates/tiki-show_page.tpl -text
