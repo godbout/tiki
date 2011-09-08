@@ -5415,6 +5415,7 @@ templates/tracker/edit_field.tpl -text
 templates/tracker/export.tpl -text
 templates/tracker/export_fields.tpl -text
 templates/tracker/import.tpl -text
+templates/tracker/import_items.tpl -text
 templates/tracker/remove.tpl -text
 templates/tracker/remove_fields.tpl -text
 templates/tracker/replace.tpl -text
@@ -5697,7 +5698,6 @@ tests/testfile.txt -text
 /tiki-image_gallery_rss.php -text
 /tiki-import_sheet.php -text
 /tiki-import_structuredtext.php -text
-/tiki-import_tracker.php -text
 /tiki-import_xml_zip.php -text
 /tiki-importer.php -text
 /tiki-index.php -text
