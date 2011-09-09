@@ -171,7 +171,6 @@ files/test.swf -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
-/get_strings2.php -text
 /group_tracker_ajax.php -text
 /help.php -text
 /htaccess.sh -text
