@@ -1537,6 +1537,7 @@ installer/schema/20110904_shoutbox_def_tweetid_tiki.sql -text
 installer/schema/20110905_extend_actionlog_comment_tiki.sql -text
 installer/schema/20110905_multibyte_lc_fix_tiki.php -text
 installer/schema/20110908_author_submission_tiki.sql -text
+installer/schema/20110909_tiki_forums_add_language_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
