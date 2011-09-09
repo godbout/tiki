@@ -1879,6 +1879,7 @@ lib/core/Search/Formatter/Plugin/Interface.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
 lib/core/Search/Formatter/Plugin/WikiTemplate.php -text
 lib/core/Search/Formatter/ValueFormatter.php -text
+lib/core/Search/Formatter/ValueFormatter/Categorylist.php -text
 lib/core/Search/Formatter/ValueFormatter/Date.php -text
 lib/core/Search/Formatter/ValueFormatter/Datetime.php -text
 lib/core/Search/Formatter/ValueFormatter/Interface.php -text
