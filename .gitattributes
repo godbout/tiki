@@ -77,6 +77,7 @@ css/ie8.css -text
 css/index.php -text
 css/jscalendar.css -text
 css/metrics.css -text
+css/readme.txt -text
 /customsearch_ajax.php -text
 db/.htaccess -text
 db/index.php -text
@@ -4469,6 +4470,7 @@ styles/ohia/options/planet.css -text
 styles/ohia/options/planet/header.jpg -text
 styles/ohia/options/planet/header_repeat.jpg -text
 styles/ohia/options/planet/index.php -text
+styles/readme.txt -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
 styles/slideshows/clear.css -text
