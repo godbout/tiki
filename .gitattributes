@@ -3123,7 +3123,10 @@ lib/test/AllTestsAcceptance.php -text
 lib/test/Calendar/DateTest.php -text
 lib/test/Calendar/index.php -text
 lib/test/README -text
+lib/test/TestableTikiLib.php -text
 lib/test/TikiAcceptanceTestDBRestorer.php -text
+lib/test/TikiLib/LibTest.php -text
+lib/test/TikiLib/TestableTikiLibTest.php -text
 lib/test/TikiLib/UriMergeTest.php -text
 lib/test/TikiLib/UrlEncodeAccentTest.php -text
 lib/test/TikiLib/WikiParserTest.php -text
