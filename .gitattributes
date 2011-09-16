@@ -4692,6 +4692,7 @@ templates/blog_post_status.tpl -text
 templates/blog_wrapper.tpl -text
 templates/browse_file_gallery.tpl -text
 templates/browsedcategory.tpl -text
+templates/calendar.tpl -text
 templates/canonical.tpl -text
 templates/categobjects.tpl -text
 templates/categobjects_title.tpl -text
