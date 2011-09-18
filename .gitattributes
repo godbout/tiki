@@ -3230,8 +3230,10 @@ lib/test/core/include_non_autoload_compatible_classes.php -text
 lib/test/core/phpunit.xml -text
 lib/test/editlib/EditLibTest.php -text
 lib/test/editlib/ParseToWiki_CharacterTest.php -text
+lib/test/editlib/ParseToWiki_ListTest.php -text
 lib/test/editlib/ParseToWiki_TextTest.php -text
 lib/test/editlib/ParseToWysiwyg_CharacterTest.php -text
+lib/test/editlib/ParseToWysiwyg_ListTest.php -text
 lib/test/editlib/ParseToWysiwyg_TextTest.php -text
 lib/test/editlib/index.php -text
 lib/test/freetag/FreetagTest.php -text
