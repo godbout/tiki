@@ -4873,7 +4873,6 @@ templates/messu-read_archive.tpl -text
 templates/messu-read_sent.tpl -text
 templates/messu-sent.tpl -text
 templates/metrics-tab.tpl -text
-templates/module-error.tpl -text
 templates/module.tpl -text
 templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
