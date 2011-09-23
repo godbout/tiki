@@ -1561,6 +1561,7 @@ installer/schema/20110911_add_missing_engine_specs_tiki.sql -text
 installer/schema/20110912_groupsexpiryanniversary_tiki.sql -text
 installer/schema/20110912_remove_unused_fields_tiki.sql -text
 installer/schema/20110915_fix_user_bookmarks_folders_key_tiki.sql -text
+installer/schema/20110923_referer_stats.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
