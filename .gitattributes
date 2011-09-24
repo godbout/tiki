@@ -179,7 +179,6 @@ files/test.swf -text
 /group_tracker_ajax.php -text
 /help.php -text
 /htaccess.sh -text
-images/.htaccess -text
 images/a_pixel.gif -text
 images/barre.gif -text
 images/barre_empty.gif -text
@@ -268,8 +267,6 @@ images/star_orange.gif -text
 images/star_purple.gif -text
 images/star_red.gif -text
 images/star_yellow.gif -text
-images/web.config -text
-img/.htaccess -text
 img/adodb.png -text
 img/arrows-000000.png -text
 img/avatars/README -text
@@ -1159,7 +1156,6 @@ img/toggle-expand-dark.png -text
 img/trackers/index.php -text
 img/twitter_logo.png -text
 img/valid-xhtml10.png -text
-img/web.config -text
 img/webmail/attachment.gif -text
 img/webmail/clip.gif -text
 img/webmail/compose.gif -text
