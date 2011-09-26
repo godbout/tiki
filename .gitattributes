@@ -2347,6 +2347,7 @@ lib/live_support/live-support.js -text
 lib/live_support/lsadminlib.php -text
 lib/live_support/lslib.php -text
 lib/logs/logslib.php -text
+lib/logs/logsquerylib.php -text
 lib/mail/maillib.php -text
 lib/mail/mimelib.php -text
 lib/mailin/index.php -text
