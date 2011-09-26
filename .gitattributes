@@ -4812,6 +4812,8 @@ templates/mail/unsuccessful_logins_suspend.tpl -text
 templates/mail/unsuccessful_logins_suspend_subject.tpl -text
 templates/mail/user_creation_validation_mail.tpl -text
 templates/mail/user_creation_validation_mail_subject.tpl -text
+templates/mail/user_joins_group_notification.tpl -text
+templates/mail/user_joins_group_notification_subject.tpl -text
 templates/mail/user_validation_mail.tpl -text
 templates/mail/user_validation_mail_subject.tpl -text
 templates/mail/user_validation_msg.tpl -text
