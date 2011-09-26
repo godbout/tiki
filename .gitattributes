@@ -2334,6 +2334,8 @@ lib/language/FileType/Tpl.php -text
 lib/language/GetStrings.php -text
 lib/language/Language.php -text
 lib/language/LanguageTranslations.php -text
+lib/language/MergeFiles.php -text
+lib/language/ParseFile.php -text
 lib/language/WriteFile.php -text
 lib/language/index.php -text
 lib/language/js/interactive_translation.js -text
@@ -3280,6 +3282,8 @@ lib/test/language/GetStringsEndToEndTest.php -text
 lib/test/language/GetStringsTest.php -text
 lib/test/language/LanguageTest.php -text
 lib/test/language/LanguageTranslationsTest.php -text
+lib/test/language/MergeFilesTest.php -text
+lib/test/language/ParseFileTest.php -text
 lib/test/language/WriteFileTest.php -text
 lib/test/language/fixtures/custom.php -text
 lib/test/language/fixtures/index.php -text
@@ -3289,12 +3293,15 @@ lib/test/language/fixtures/language_escape_special_characters.php -text
 lib/test/language/fixtures/language_fa_modified.php -text
 lib/test/language/fixtures/language_fa_original.php -text
 lib/test/language/fixtures/language_invalid.php -text
+lib/test/language/fixtures/language_merge_files_original.php -text
+lib/test/language/fixtures/language_merge_files_result.php -text
 lib/test/language/fixtures/language_modif.php -text
 lib/test/language/fixtures/language_orig.php -text
 lib/test/language/fixtures/language_punctuations.php -text
 lib/test/language/fixtures/language_ru_modified.php -text
 lib/test/language/fixtures/language_ru_original.php -text
 lib/test/language/fixtures/language_simple.php -text
+lib/test/language/fixtures/language_to_parse_file.php -text
 lib/test/language/fixtures/language_untranslated.php -text
 lib/test/language/fixtures/language_with_translations.php -text
 lib/test/language/fixtures/language_with_translations_and_file_paths.php -text
