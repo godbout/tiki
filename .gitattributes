@@ -2662,6 +2662,7 @@ lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
 lib/prefs/ajax.php -text
 lib/prefs/allowmsg.php -text
+lib/prefs/areas.php -text
 lib/prefs/art.php -text
 lib/prefs/article.php -text
 lib/prefs/articles.php -text
