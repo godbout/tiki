@@ -2687,6 +2687,7 @@ lib/prefs/connect.php -text
 lib/prefs/contact.php -text
 lib/prefs/cookie.php -text
 lib/prefs/count.php -text
+lib/prefs/dailyreports.php -text
 lib/prefs/default.php -text
 lib/prefs/desactive.php -text
 lib/prefs/direct.php -text
