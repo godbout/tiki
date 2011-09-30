@@ -3324,6 +3324,7 @@ lib/test/reporstlib/ReportsLibTest.php -text
 lib/test/shipping/ShippingTest.php -text
 lib/test/smarty_tiki/ModifierDurationTest.php -text
 lib/test/smarty_tiki/index.php -text
+lib/test/wiki-plugins/CodeTest.php -text
 lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
 lib/themegenlib.php -text
