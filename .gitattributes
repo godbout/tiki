@@ -4,6 +4,7 @@
 /_htaccess -text
 /about.php -text
 admin/include_ads.php -text
+admin/include_areas.php -text
 admin/include_articles.php -text
 admin/include_blogs.php -text
 admin/include_calendar.php -text
@@ -1559,6 +1560,7 @@ installer/schema/20110912_remove_unused_fields_tiki.sql -text
 installer/schema/20110915_fix_user_bookmarks_folders_key_tiki.sql -text
 installer/schema/20110923_referer_stats_tiki.sql -text
 installer/schema/20110926_tracker_menu_feature_reports_tiki.sql -text
+installer/schema/20111001_add_tiki_areas_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
@@ -4651,6 +4653,7 @@ temp/web.config -text
 templates/.htaccess -text
 templates/admin/include_ads.tpl -text
 templates/admin/include_anchors.tpl -text
+templates/admin/include_areas.tpl -text
 templates/admin/include_articles.tpl -text
 templates/admin/include_blogs.tpl -text
 templates/admin/include_calendar.tpl -text
