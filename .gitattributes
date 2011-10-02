@@ -3395,7 +3395,7 @@ lib/trackers/index.php -text
 lib/trackers/trackerlib.php -text
 lib/trackers/trackerquerylib.php -text
 lib/transitionlib.php -text
-lib/tree/categ_browse_tree.php -text
+lib/tree/BrowseTreeMaker.php -text
 lib/tree/index.php -text
 lib/tree/tree.php -text
 lib/userfiles/index.php -text
