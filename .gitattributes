@@ -3245,6 +3245,7 @@ lib/test/editlib/ParseToWiki_CharacterTest.php -text
 lib/test/editlib/ParseToWiki_ListTest.php -text
 lib/test/editlib/ParseToWiki_TextTest.php -text
 lib/test/editlib/ParseToWysiwyg_CharacterTest.php -text
+lib/test/editlib/ParseToWysiwyg_LinkTest.php -text
 lib/test/editlib/ParseToWysiwyg_ListTest.php -text
 lib/test/editlib/ParseToWysiwyg_TextTest.php -text
 lib/test/editlib/index.php -text
