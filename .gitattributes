@@ -3028,7 +3028,6 @@ lib/smarty_tiki/function.toolbars.php -text
 lib/smarty_tiki/function.trackerheader.php -text
 lib/smarty_tiki/function.trackerinput.php -text
 lib/smarty_tiki/function.trackeroutput.php -text
-lib/smarty_tiki/function.tree.php -text
 lib/smarty_tiki/function.treetable.php -text
 lib/smarty_tiki/function.user_selector.php -text
 lib/smarty_tiki/function.var_dump.php -text
