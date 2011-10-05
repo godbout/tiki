@@ -2663,7 +2663,6 @@ lib/pear/XML_Parser/tests/test3.xml -text
 lib/pear/index.php -text
 lib/perspective/binderlib.php -text
 lib/perspective/index.php -text
-lib/perspective_binder.php -text
 lib/perspectivelib.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
