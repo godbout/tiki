@@ -5528,7 +5528,6 @@ templates/trackerinput/userpreference.tpl -text
 templates/trackerinput/usersubscription.tpl -text
 templates/trackeroutput/computed.tpl -text
 templates/trackeroutput/currency.tpl -text
-templates/trackeroutput/files.tpl -text
 templates/trackeroutput/freetags.tpl -text
 templates/trackeroutput/itemslist.tpl -text
 templates/trackeroutput/language.tpl -text
