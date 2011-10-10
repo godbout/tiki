@@ -5112,7 +5112,6 @@ templates/styles/mobile/tiki-page_bar.tpl -text
 templates/styles/mobile/tiki.tpl -text
 templates/styles/mobile/tiki_full.tpl -text
 templates/styles/ohia/index.php -text
-templates/styles/skeleton/index.php -text
 templates/styles/snow/index.php -text
 templates/styles/strasa/blog_post_author_info.tpl -text
 templates/styles/strasa/blog_wrapper.tpl -text
