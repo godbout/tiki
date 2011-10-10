@@ -5106,7 +5106,6 @@ templates/styles/coelesce/index.php -text
 templates/styles/darkshine/index.php -text
 templates/styles/eatlon/index.php -text
 templates/styles/index.php -text
-templates/styles/jqui/index.php -text
 templates/styles/mobile/category_tree_entry.tpl -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
