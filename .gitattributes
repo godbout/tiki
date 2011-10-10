@@ -5103,7 +5103,6 @@ templates/styles/coelesce/blog_post_postbody_title.tpl -text
 templates/styles/coelesce/blog_post_status.tpl -text
 templates/styles/coelesce/blog_wrapper.tpl -text
 templates/styles/coelesce/index.php -text
-templates/styles/darkroom/index.php -text
 templates/styles/darkshine/index.php -text
 templates/styles/eatlon/index.php -text
 templates/styles/feb12/index.php -text
