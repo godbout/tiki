@@ -5117,7 +5117,6 @@ templates/styles/strasa/blog_post_author_info.tpl -text
 templates/styles/strasa/blog_wrapper.tpl -text
 templates/styles/strasa/custom_site_footer.tpl -text
 templates/styles/strasa/index.php -text
-templates/styles/thenews/index.php -text
 templates/styles/tikinewt/blog_wrapper.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/styles/twist/index.php -text
