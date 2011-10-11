@@ -2037,6 +2037,10 @@ lib/core/Tracker/Field/UserSubscription.php -text
 lib/core/Tracker/Field/WebService.php -text
 lib/core/Tracker/Item.php -text
 lib/core/Transition.php -text
+lib/core/UniversalReports/Builder.js -text
+lib/core/UniversalReports/Builder.php -text
+lib/core/UniversalReports/Definition/Logs.php -text
+lib/core/UniversalReports/Definition/Tracker.php -text
 lib/core/WikiParser/OutputLink.php -text
 lib/core/WikiParser/PluginArgumentParser.php -text
 lib/core/WikiParser/PluginDefinition.php -text
@@ -5729,6 +5733,7 @@ tests/testfile.txt -text
 /tiki-edit_templates.php -text
 /tiki-edit_topic.php -text
 /tiki-edit_translation.php -text
+/tiki-edit_universal_reports.php -text
 /tiki-edit_wiki_section.php -text
 /tiki-editpage.php -text
 /tiki-emulate_groups_switch.php -text
