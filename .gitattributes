@@ -1563,6 +1563,7 @@ installer/schema/20110926_tracker_menu_feature_reports_tiki.sql -text
 installer/schema/20111001_add_tiki_areas_tiki.sql -text
 installer/schema/20111006_drop_useless_key_tiki.sql -text
 installer/schema/20111010_revert_fix_user_bookmarks_folders_key_tiki.php -text
+installer/schema/20111014_menu_feature_time_sheet_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
