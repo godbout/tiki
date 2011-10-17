@@ -2043,6 +2043,8 @@ lib/core/UniversalReports/Builder.js -text
 lib/core/UniversalReports/Builder.php -text
 lib/core/UniversalReports/Definition/Logs.php -text
 lib/core/UniversalReports/Definition/Tracker.php -text
+lib/core/UniversalReports/Parser.js -text
+lib/core/UniversalReports/Parser.php -text
 lib/core/WikiParser/OutputLink.php -text
 lib/core/WikiParser/PluginArgumentParser.php -text
 lib/core/WikiParser/PluginDefinition.php -text
