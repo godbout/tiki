@@ -3298,7 +3298,6 @@ lib/test/importer/index.php -text
 lib/test/importer/tikiimporter_testcase.php -text
 lib/test/index.php -text
 lib/test/language/CollectFilesTest.php -text
-lib/test/language/CollectFilesVfsStreamTest.php -text
 lib/test/language/FileType/PhpTest.php -text
 lib/test/language/GetStringsEndToEndTest.php -text
 lib/test/language/GetStringsTest.php -text
