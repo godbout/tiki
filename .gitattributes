@@ -2305,6 +2305,7 @@ lib/images/imagick_old.php -text
 lib/importer/index.php -text
 lib/importer/mediawiki_dump_v0.3.xsd -text
 lib/importer/mediawiki_dump_v0.4.xsd -text
+lib/importer/mediawiki_dump_v0.5.xsd -text
 lib/importer/tikiimporter.php -text
 lib/importer/tikiimporter_blog.php -text
 lib/importer/tikiimporter_blog_wordpress.php -text
