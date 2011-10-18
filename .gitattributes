@@ -5262,6 +5262,7 @@ templates/tiki-edit_submission.tpl -text
 templates/tiki-edit_templates.tpl -text
 templates/tiki-edit_topic.tpl -text
 templates/tiki-edit_translation.tpl -text
+templates/tiki-edit_universal_reports.tpl -text
 templates/tiki-editpage.tpl -text
 templates/tiki-export-sheets.tpl -text
 templates/tiki-export_comment_xml.tpl -text
