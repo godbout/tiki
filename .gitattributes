@@ -5261,12 +5261,12 @@ templates/tiki-edit_question_options.tpl -text
 templates/tiki-edit_quiz.tpl -text
 templates/tiki-edit_quiz_questions.tpl -text
 templates/tiki-edit_quiz_results.tpl -text
+templates/tiki-edit_report.tpl -text
 templates/tiki-edit_structure.tpl -text
 templates/tiki-edit_submission.tpl -text
 templates/tiki-edit_templates.tpl -text
 templates/tiki-edit_topic.tpl -text
 templates/tiki-edit_translation.tpl -text
-templates/tiki-edit_universal_reports.tpl -text
 templates/tiki-editpage.tpl -text
 templates/tiki-export-sheets.tpl -text
 templates/tiki-export_comment_xml.tpl -text
@@ -5738,12 +5738,12 @@ tests/testfile.txt -text
 /tiki-edit_quiz.php -text
 /tiki-edit_quiz_questions.php -text
 /tiki-edit_quiz_results.php -text
+/tiki-edit_report.php -text
 /tiki-edit_structure.php -text
 /tiki-edit_submission.php -text
 /tiki-edit_templates.php -text
 /tiki-edit_topic.php -text
 /tiki-edit_translation.php -text
-/tiki-edit_universal_reports.php -text
 /tiki-edit_wiki_section.php -text
 /tiki-editpage.php -text
 /tiki-emulate_groups_switch.php -text
