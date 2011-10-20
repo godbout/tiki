@@ -3593,6 +3593,7 @@ lib/wiki-plugins/wikiplugin_survey.php -text
 lib/wiki-plugins/wikiplugin_tabs.php -text
 lib/wiki-plugins/wikiplugin_tag.php -text
 lib/wiki-plugins/wikiplugin_timeline.php -text
+lib/wiki-plugins/wikiplugin_timesheet.php -text
 lib/wiki-plugins/wikiplugin_titlesearch.php -text
 lib/wiki-plugins/wikiplugin_toc.php -text
 lib/wiki-plugins/wikiplugin_topfriends.php -text
@@ -5591,6 +5592,7 @@ templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroups.tpl -text
 templates/wiki-plugins/wikiplugin_subscribenewsletter.tpl -text
 templates/wiki-plugins/wikiplugin_tabs.tpl -text
+templates/wiki-plugins/wikiplugin_timesheet.tpl -text
 templates/wiki-plugins/wikiplugin_trackerfilter.tpl -text
 templates/wiki-plugins/wikiplugin_trackerlist.tpl -text
 templates/wiki-plugins/wikiplugin_trackerprefill.tpl -text
