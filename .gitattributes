@@ -3847,6 +3847,9 @@ pics/icons/basket.png -text
 pics/icons/basket_put.png -text
 pics/icons/basket_remove.png -text
 pics/icons/bell.png -text
+pics/icons/bin.png -text
+pics/icons/bin_closed.png -text
+pics/icons/bin_empty.png -text
 pics/icons/bliptv.png -text svneol=unset#unset
 pics/icons/book.png -text
 pics/icons/book_key.png -text
