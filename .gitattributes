@@ -1830,6 +1830,9 @@ lib/core/Horde/Yaml/Dumper.php -text
 lib/core/Horde/Yaml/Exception.php -text
 lib/core/Horde/Yaml/Loader.php -text
 lib/core/Horde/Yaml/Node.php -text
+lib/core/HtmlFeed.php -text
+lib/core/HtmlFeed/Item.php -text
+lib/core/HtmlFeed/Remote.php -text
 lib/core/JitFilter.php -text
 lib/core/JitFilter/Element.php -text
 lib/core/Math/Formula/Element.php -text
@@ -3525,6 +3528,8 @@ lib/wiki-plugins/wikiplugin_groupmailcore.php -text
 lib/wiki-plugins/wikiplugin_groupstat.php -text
 lib/wiki-plugins/wikiplugin_hasbought.php -text
 lib/wiki-plugins/wikiplugin_html.php -text
+lib/wiki-plugins/wikiplugin_htmlfeed.php -text
+lib/wiki-plugins/wikiplugin_htmlfeedlink.php -text
 lib/wiki-plugins/wikiplugin_iframe.php -text
 lib/wiki-plugins/wikiplugin_img.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
@@ -5780,6 +5785,7 @@ tests/testfile.txt -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
 /tiki-history_sheets.php -text
+/tiki-html_feed.php -text
 /tiki-image_galleries_rss.php -text
 /tiki-image_gallery_rss.php -text
 /tiki-import_sheet.php -text
