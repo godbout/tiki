@@ -3573,6 +3573,7 @@ lib/wiki-plugins/wikiplugin_redirect.php -text
 lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_relations.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
+lib/wiki-plugins/wikiplugin_report.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_scroll.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
