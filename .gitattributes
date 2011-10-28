@@ -1928,6 +1928,7 @@ lib/core/Search/GlobalSource/CategorySource.php -text
 lib/core/Search/GlobalSource/CommentSource.php -text
 lib/core/Search/GlobalSource/FileAttachmentSource.php -text
 lib/core/Search/GlobalSource/FreeTagSource.php -text
+lib/core/Search/GlobalSource/Geolocation.php -text
 lib/core/Search/GlobalSource/Interface.php -text
 lib/core/Search/GlobalSource/PermissionSource.php -text
 lib/core/Search/GlobalSource/RelationSource.php -text
