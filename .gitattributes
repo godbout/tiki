@@ -1965,11 +1965,13 @@ lib/core/Services/Exception.php -text
 lib/core/Services/Exception/Disabled.php -text
 lib/core/Services/Exception/DuplicateValue.php -text
 lib/core/Services/Exception/MissingValue.php -text
+lib/core/Services/Exception/NotAvailable.php -text
 lib/core/Services/Exception/NotFound.php -text
 lib/core/Services/Favorite/Controller.php -text
 lib/core/Services/File/Controller.php -text
 lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
+lib/core/Services/Object/Controller.php -text
 lib/core/Services/RemoteController.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
@@ -5075,6 +5077,8 @@ templates/modules/mod-wiki_last_comments.tpl.nocache -text
 templates/modules/mod-youtube.tpl -text
 templates/modules/mod-zotero.tpl -text
 templates/modules/user_module.tpl -text
+templates/object/infobox.tpl -text
+templates/object/infobox/trackeritem.tpl -text
 templates/object_perms_summary.tpl -text
 templates/object_selector.tpl -text
 templates/pagehistory.tpl -text
