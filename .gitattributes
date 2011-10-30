@@ -2945,6 +2945,7 @@ lib/sheet/ole/pps/index.php -text
 lib/sheet/ole/pps/root.php -text
 lib/sheet/sheetlib.php -text
 lib/shipping/FedEx_v8.wsdl -text
+lib/shipping/custom/example.php -text
 lib/shipping/provider_fedex.php -text
 lib/shipping/provider_ups.php -text
 lib/shipping/shippinglib.php -text
