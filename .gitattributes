@@ -1825,6 +1825,7 @@ lib/core/DeclFilter/UnsetRule.php -text
 lib/core/Event/Chain.php -text
 lib/core/Event/Lib.php -text
 lib/core/Event/Manager.php -text
+lib/core/FileGallery/File.php -text
 lib/core/Horde/Yaml.php -text
 lib/core/Horde/Yaml/Dumper.php -text
 lib/core/Horde/Yaml/Exception.php -text
