@@ -3819,6 +3819,7 @@ modules/mod-func-user_pages.php -text
 modules/mod-func-user_tasks.php -text
 modules/mod-func-user_tasks_public.php -text
 modules/mod-func-usergroup_tracker.php -text
+modules/mod-func-users_own_rank.php -text
 modules/mod-func-users_rank.php -text
 modules/mod-func-webmail_inbox.php -text
 modules/mod-func-whats_related.php -text
@@ -5074,6 +5075,7 @@ templates/modules/mod-user_tasks.tpl -text
 templates/modules/mod-user_tasks.tpl.nocache -text
 templates/modules/mod-user_tasks_public.tpl -text
 templates/modules/mod-usergroup_tracker.tpl -text
+templates/modules/mod-users_own_rank.tpl -text
 templates/modules/mod-users_rank.tpl -text
 templates/modules/mod-webmail_inbox.tpl -text
 templates/modules/mod-whats_related.tpl -text
