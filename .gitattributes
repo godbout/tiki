@@ -2360,6 +2360,7 @@ lib/language/LanguageTranslations.php -text
 lib/language/MergeFiles.php -text
 lib/language/ParseFile.php -text
 lib/language/WriteFile.php -text
+lib/language/WriteFile/Factory.php -text
 lib/language/index.php -text
 lib/language/js/interactive_translation.js -text
 lib/language/js/tiki-edit_languages.js -text
@@ -3313,6 +3314,7 @@ lib/test/language/LanguageTest.php -text
 lib/test/language/LanguageTranslationsTest.php -text
 lib/test/language/MergeFilesTest.php -text
 lib/test/language/ParseFileTest.php -text
+lib/test/language/WriteFile/FactoryTest.php -text
 lib/test/language/WriteFileTest.php -text
 lib/test/language/fixtures/custom.php -text
 lib/test/language/fixtures/index.php -text
