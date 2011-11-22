@@ -2351,6 +2351,7 @@ lib/jquery_tiki/tiki-themegenerator.js -text
 lib/jquery_tiki/tiki-trackers.js -text
 lib/language/CollectFiles.php -text
 lib/language/Exception.php -text
+lib/language/File.php -text
 lib/language/FileType.php -text
 lib/language/FileType/Php.php -text
 lib/language/FileType/Tpl.php -text
@@ -2358,7 +2359,6 @@ lib/language/GetStrings.php -text
 lib/language/Language.php -text
 lib/language/LanguageTranslations.php -text
 lib/language/MergeFiles.php -text
-lib/language/ParseFile.php -text
 lib/language/WriteFile.php -text
 lib/language/WriteFile/Factory.php -text
 lib/language/index.php -text
