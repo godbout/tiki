@@ -5700,7 +5700,6 @@ tests/testfile.txt -text
 /tiki-article_types.php -text
 /tiki-articles_rss.php -text
 /tiki-assignuser.php -text
-/tiki-atom.php -text
 /tiki-auto_save.php -text
 /tiki-backlinks.php -text
 /tiki-batch_send_newsletter.php -text
