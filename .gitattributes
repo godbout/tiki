@@ -1828,7 +1828,6 @@ lib/core/Event/Manager.php -text
 lib/core/Feed/Abstract.php -text
 lib/core/Feed/Html.php -text
 lib/core/Feed/Html/Item.php -text
-lib/core/Feed/Html/Remote.php -text
 lib/core/Feed/Tbp.php -text
 lib/core/FileGallery/File.php -text
 lib/core/Horde/Yaml.php -text
