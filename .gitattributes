@@ -1825,9 +1825,9 @@ lib/core/DeclFilter/UnsetRule.php -text
 lib/core/Event/Chain.php -text
 lib/core/Event/Lib.php -text
 lib/core/Event/Manager.php -text
-lib/core/Feed/Item.php -text
-lib/core/Feed/Remote.php -text
-lib/core/Feed_Html.php -text
+lib/core/Feed/Feed_Html.php -text
+lib/core/Feed/Html/Item.php -text
+lib/core/Feed/Html/Remote.php -text
 lib/core/FileGallery/File.php -text
 lib/core/Horde/Yaml.php -text
 lib/core/Horde/Yaml/Dumper.php -text
