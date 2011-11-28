@@ -1828,6 +1828,9 @@ lib/core/Event/Manager.php -text
 lib/core/Feed/Abstract.php -text
 lib/core/Feed/Html.php -text
 lib/core/Feed/Html/Item.php -text
+lib/core/Feed/Remote/Abstract.php -text
+lib/core/Feed/Remote/Html.php -text
+lib/core/Feed/Remote/Tbp.php -text
 lib/core/Feed/Tbp.php -text
 lib/core/FileGallery/File.php -text
 lib/core/Horde/Yaml.php -text
@@ -5787,6 +5790,7 @@ tests/testfile.txt -text
 /tiki-export_wiki_pages.php -text
 /tiki-faq_questions.php -text
 /tiki-featured_link.php -text
+/tiki-feed.php -text
 /tiki-file_archives.php -text
 /tiki-file_galleries_rankings.php -text
 /tiki-file_galleries_rss.php -text
@@ -5809,7 +5813,6 @@ tests/testfile.txt -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
 /tiki-history_sheets.php -text
-/tiki-html_feed.php -text
 /tiki-image_galleries_rss.php -text
 /tiki-image_gallery_rss.php -text
 /tiki-import_sheet.php -text
