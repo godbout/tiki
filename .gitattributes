@@ -1830,8 +1830,8 @@ lib/core/Feed/Html.php -text
 lib/core/Feed/Html/Item.php -text
 lib/core/Feed/Remote/Abstract.php -text
 lib/core/Feed/Remote/Html.php -text
-lib/core/Feed/Remote/Tbp.php -text
-lib/core/Feed/Tbp.php -text
+lib/core/Feed/Remote/TextBacklink.php -text
+lib/core/Feed/TextBacklink.php -text
 lib/core/FileGallery/File.php -text
 lib/core/Horde/Yaml.php -text
 lib/core/Horde/Yaml/Dumper.php -text
