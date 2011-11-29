@@ -3770,6 +3770,7 @@ modules/mod-func-locator.php -text
 modules/mod-func-login_box.php -text
 modules/mod-func-logo.php -text
 modules/mod-func-map_layer_selector.php -text
+modules/mod-func-map_mode_selector.php -text
 modules/mod-func-menu.php -text
 modules/mod-func-menupage.php -text
 modules/mod-func-menustructure.php -text
@@ -5016,6 +5017,7 @@ templates/modules/mod-login_box.tpl -text
 templates/modules/mod-login_box.tpl.nocache -text
 templates/modules/mod-logo.tpl -text
 templates/modules/mod-map_layer_selector.tpl -text
+templates/modules/mod-map_mode_selector.tpl -text
 templates/modules/mod-menu.tpl -text
 templates/modules/mod-menupage.tpl -text
 templates/modules/mod-menustructure.tpl -text
