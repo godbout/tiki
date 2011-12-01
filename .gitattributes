@@ -1832,6 +1832,7 @@ lib/core/Feed/Html/Item.php -text
 lib/core/Feed/Remote/Abstract.php -text
 lib/core/Feed/Remote/Html.php -text
 lib/core/Feed/Remote/TextBacklink.php -text
+lib/core/Feed/Remote/TextBacklink/Contribution.php -text
 lib/core/Feed/TextBacklink.php -text
 lib/core/Feed/TextBacklink/Contribution.php -text
 lib/core/FileGallery/File.php -text
