@@ -85,7 +85,7 @@ db/index.php -text
 db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
-db/tiki-secdb_8.1_mysql.sql -text
+db/tiki-secdb_8.2_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -1565,6 +1565,7 @@ installer/schema/20111006_drop_useless_key_tiki.sql -text
 installer/schema/20111010_revert_fix_user_bookmarks_folders_key_tiki.php -text
 installer/schema/20111014_menu_feature_time_sheet_tiki.sql -text
 installer/schema/20111118_remove_versionOfPreferencesCache_tiki.sql -text
+installer/schema/20111210_add_blog_hits_tiki.sql -text
 installer/schema/20111210_blog_post_hit_tiki.sql -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
