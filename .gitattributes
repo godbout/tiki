@@ -1567,6 +1567,7 @@ installer/schema/20111014_menu_feature_time_sheet_tiki.sql -text
 installer/schema/20111118_remove_versionOfPreferencesCache_tiki.sql -text
 installer/schema/20111210_add_blog_hits_tiki.sql -text
 installer/schema/20111210_blog_post_hit_tiki.sql -text
+installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
 installer/shell.php -text
