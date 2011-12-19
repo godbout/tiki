@@ -2811,6 +2811,7 @@ lib/prefs/show.php -text
 lib/prefs/site.php -text
 lib/prefs/sitead.php -text
 lib/prefs/sitelogo.php -text
+lib/prefs/slide.php -text
 lib/prefs/smarty.php -text
 lib/prefs/socialnetworks.php -text
 lib/prefs/style.php -text
@@ -2831,6 +2832,7 @@ lib/prefs/warn.php -text
 lib/prefs/watershed.php -text
 lib/prefs/webmail.php -text
 lib/prefs/wiki.php -text
+lib/prefs/wikiapproval.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
 lib/prefs/wikipluginprefs.php -text
