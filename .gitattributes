@@ -4839,6 +4839,7 @@ templates/fgal_attachments.tpl -text
 templates/fgal_context_menu.tpl -text
 templates/fgal_listing_conf.tpl -text
 templates/file/remote.tpl -text
+templates/file/upload.tpl -text
 templates/file_backlinks.tpl -text
 templates/file_gallery_slideshow.tpl -text
 templates/filter.tpl -text
