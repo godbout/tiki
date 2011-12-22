@@ -2041,6 +2041,7 @@ lib/core/Tracker/Field/Image.php -text
 lib/core/Tracker/Field/InGroup.php -text
 lib/core/Tracker/Field/Indexable.php -text
 lib/core/Tracker/Field/Interface.php -text
+lib/core/Tracker/Field/Ip.php -text
 lib/core/Tracker/Field/ItemLink.php -text
 lib/core/Tracker/Field/ItemsList.php -text
 lib/core/Tracker/Field/JsCalendar.php -text
