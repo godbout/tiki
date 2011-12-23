@@ -4831,6 +4831,7 @@ templates/debug/tiki-debug_features.tpl -text
 templates/debug/tiki-debug_permissions.tpl -text
 templates/debug/tiki-debug_tikitables.tpl -text
 templates/debug/tiki-debug_watch_tab.tpl -text
+templates/draw/edit.tpl -text
 templates/duplicate_file_gallery.tpl -text
 templates/edit_file_gallery.tpl -text
 templates/error.tpl -text
