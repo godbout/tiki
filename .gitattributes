@@ -1987,6 +1987,7 @@ lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Object/Controller.php -text
 lib/core/Services/RemoteController.php -text
+lib/core/Services/Report/Controller.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/Tracker/Controller.php -text
