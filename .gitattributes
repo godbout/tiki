@@ -5162,6 +5162,11 @@ templates/register-pass.tpl -text
 templates/register-pass2.tpl -text
 templates/register-passcode.tpl -text
 templates/remarksbox.tpl -text
+templates/report/edit.tpl -text
+templates/report/exportcsv.tpl -text
+templates/report/load.tpl -text
+templates/report/preview.tpl -text
+templates/report/wikidata.tpl -text
 templates/searchresults-plain.tpl -text
 templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
