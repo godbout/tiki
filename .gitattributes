@@ -4493,6 +4493,11 @@ styles/fivealive/options/plum/arrows-8e01d4.png -text svneol=unset#image/png
 styles/fivealive/options/plum/index.php -text
 styles/fivealive/options/plum/siteheader.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/plum/siteheadertile.png -text svneol=unset#image/png
+styles/fivealive/options/raspberry/arrows-b51360.png -text svneol=unset#image/png
+styles/fivealive/options/raspberry/index.php -text
+styles/fivealive/options/raspberry/raspberry.png -text svneol=unset#image/png
+styles/fivealive/options/raspberry/siteheader.png -text svneol=unset#image/png
+styles/fivealive/options/raspberry/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/arrows-c21e3b.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/index.php -text
 styles/fivealive/options/watermelon/siteheader.png -text svneol=unset#image/png
