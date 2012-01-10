@@ -79,7 +79,6 @@ css/index.php -text
 css/jscalendar.css -text
 css/metrics.css -text
 css/readme.txt -text
-/customsearch_ajax.php -text
 db/.htaccess -text
 db/index.php -text
 db/tiki-db-adodb.php -text
@@ -1991,6 +1990,7 @@ lib/core/Services/Report/Controller.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/Tracker/Controller.php -text
+lib/core/Services/Tracker/SearchController.php -text
 lib/core/Services/Tracker/SyncController.php -text
 lib/core/Services/Tracker/TodoController.php -text
 lib/core/Services/Tracker/Utilities.php -text
@@ -5583,6 +5583,7 @@ templates/tracker_calendar_over.tpl -text
 templates/tracker_error.tpl -text
 templates/tracker_filter.tpl -text
 templates/tracker_pretty_item.tpl -text
+templates/tracker_search/customsearch.tpl -text
 templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
 templates/tracker_sync/clone_remote.tpl -text
