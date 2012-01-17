@@ -1844,6 +1844,16 @@ lib/core/Horde/Yaml/Dumper.php -text
 lib/core/Horde/Yaml/Exception.php -text
 lib/core/Horde/Yaml/Loader.php -text
 lib/core/Horde/Yaml/Node.php -text
+lib/core/JisonParser/Phraser/Handler.php -text
+lib/core/JisonParser/Phraser/Parser.jison -text
+lib/core/JisonParser/Phraser/Parser.js -text
+lib/core/JisonParser/Phraser/Parser.php -text
+lib/core/JisonParser/Wiki/Handler.js -text
+lib/core/JisonParser/Wiki/Handler.php -text
+lib/core/JisonParser/Wiki/Parser.jison -text
+lib/core/JisonParser/Wiki/Parser.js -text
+lib/core/JisonParser/Wiki/Parser.php -text
+lib/core/JisonParser/Wiki/WikiParserTester.html -text
 lib/core/JitFilter.php -text
 lib/core/JitFilter/Element.php -text
 lib/core/Math/Formula/Element.php -text
