@@ -2864,10 +2864,7 @@ lib/rangy/uncompressed/rangy-core.js -text
 lib/rangy/uncompressed/rangy-cssclassapplier.js -text
 lib/rangy/uncompressed/rangy-selectionsaverestore.js -text
 lib/rangy/uncompressed/rangy-serializer.js -text
-lib/rangy_tiki/phraser.jison -text
-lib/rangy_tiki/phraser.js -text
 lib/rangy_tiki/rangy-phraser.js -text
-lib/rangy_tiki/rangy-serializer.js -text
 lib/rankings/index.php -text
 lib/rankings/ranklib.php -text
 lib/rating/configlib.php -text
