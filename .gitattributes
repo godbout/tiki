@@ -2414,6 +2414,8 @@ lib/menubuilder/menu.js -text
 lib/menubuilder/menulib.php -text
 lib/messu/index.php -text
 lib/messu/messulib.php -text
+lib/metadata/imagefile.php -text
+lib/metadata/iptc.php -text
 lib/metadata/jpeg.php -text
 lib/metadata/metadata.php -text
 lib/metrics.js -text
