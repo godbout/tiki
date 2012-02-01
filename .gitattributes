@@ -3382,7 +3382,7 @@ lib/test/phpunit.php -text
 lib/test/phpunit.xml -text
 lib/test/rating/AggregationTest.php -text
 lib/test/rating/RegisterVoteTest.php -text
-lib/test/reporstlib/ReportsLibTest.php -text
+lib/test/reportslib/ReportsLibTest.php -text
 lib/test/shipping/ShippingTest.php -text
 lib/test/smarty_tiki/ModifierDurationTest.php -text
 lib/test/smarty_tiki/index.php -text
