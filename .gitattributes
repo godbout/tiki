@@ -3196,6 +3196,7 @@ lib/test/Calendar/index.php -text
 lib/test/README -text
 lib/test/TestableTikiLib.php -text
 lib/test/TikiAcceptanceTestDBRestorer.php -text
+lib/test/TikiDatabaseTestCase.php -text
 lib/test/TikiLib/LibTest.php -text
 lib/test/TikiLib/TestableTikiLibTest.php -text
 lib/test/TikiLib/UriMergeTest.php -text
