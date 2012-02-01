@@ -1908,6 +1908,10 @@ lib/core/Report/Builder.js -text
 lib/core/Report/Builder.php -text
 lib/core/Report/Definition/Logs.php -text
 lib/core/Report/Definition/Tracker.php -text
+lib/core/Reports/Cache.php -text
+lib/core/Reports/Factory.php -text
+lib/core/Reports/Send.php -text
+lib/core/Reports/Users.php -text
 lib/core/Request.php -text
 lib/core/Search/ContentFilter/VersionNumber.php -text
 lib/core/Search/ContentSource/ArticleSource.php -text
@@ -3258,6 +3262,16 @@ lib/test/core/Perms/ResolverFactory/CategoryFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/GlobalFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
+lib/test/core/Reports/CacheTest.php -text
+lib/test/core/Reports/SendTest.php -text
+lib/test/core/Reports/UsersTest.php -text
+lib/test/core/Reports/fixtures/reports_cache_dataset.xml -text
+lib/test/core/Reports/fixtures/reports_cache_dataset_delete.xml -text
+lib/test/core/Reports/fixtures/user_reports_dataset.xml -text
+lib/test/core/Reports/fixtures/user_reports_dataset_delete.xml -text
+lib/test/core/Reports/fixtures/user_reports_dataset_insert.xml -text
+lib/test/core/Reports/fixtures/user_reports_dataset_update.xml -text
+lib/test/core/Reports/fixtures/user_reports_dataset_update_last_report.xml -text
 lib/test/core/Request/RequestTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
