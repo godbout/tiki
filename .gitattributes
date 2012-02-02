@@ -5289,6 +5289,7 @@ templates/tiki-admin_structures.tpl -text
 templates/tiki-admin_survey_questions.tpl -text
 templates/tiki-admin_surveys.tpl -text
 templates/tiki-admin_system.tpl -text
+templates/tiki-admin_tokens.tpl -text
 templates/tiki-admin_toolbars.tpl -text
 templates/tiki-admin_topics.tpl -text
 templates/tiki-admin_tracker_fields.tpl -text
@@ -5764,6 +5765,7 @@ tests/testfile.txt -text
 /tiki-admin_survey_questions.php -text
 /tiki-admin_surveys.php -text
 /tiki-admin_system.php -text
+/tiki-admin_tokens.php -text
 /tiki-admin_toolbars.php -text
 /tiki-admin_topics.php -text
 /tiki-admin_tracker_fields.php -text
