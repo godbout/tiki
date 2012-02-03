@@ -1834,6 +1834,7 @@ lib/core/Event/Manager.php -text
 lib/core/Feed/Abstract.php -text
 lib/core/Feed/ForwardLink.php -text
 lib/core/Feed/ForwardLink/Contribution.php -text
+lib/core/Feed/ForwardLink/Search.php -text
 lib/core/Feed/Html.php -text
 lib/core/Feed/Html/Item.php -text
 lib/core/Feed/Remote/Abstract.php -text
