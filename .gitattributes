@@ -5224,10 +5224,13 @@ templates/styles/darkshine/index.php -text
 templates/styles/eatlon/index.php -text
 templates/styles/index.php -text
 templates/styles/mobile/category_tree_entry.tpl -text
+templates/styles/mobile/find.tpl -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
 templates/styles/mobile/tiki.tpl -text
 templates/styles/mobile/tiki_full.tpl -text
+templates/styles/mobile/tracker_actions.tpl -text
+templates/styles/mobile/wiki_edit_actions.tpl -text
 templates/styles/ohia/index.php -text
 templates/styles/snow/index.php -text
 templates/styles/strasa/blog_post_author_info.tpl -text
