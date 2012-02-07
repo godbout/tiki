@@ -3217,6 +3217,10 @@ lib/test/attributes/RelationTest.php -text
 lib/test/auth/AuthTokensTest.php -text
 lib/test/auth/MembershipTest.php -text
 lib/test/auth/PasswordTest.php -text
+lib/test/auth/fixtures/auth_tokens_dataset.xml -text
+lib/test/auth/fixtures/auth_tokens_dataset_create.xml -text
+lib/test/auth/fixtures/auth_tokens_dataset_delete_hits.xml -text
+lib/test/auth/fixtures/auth_tokens_dataset_delete_timeout.xml -text
 lib/test/bootstrap.php -text
 lib/test/comments/CommentsTest.php -text
 lib/test/comments/index.php -text
