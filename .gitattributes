@@ -5213,8 +5213,6 @@ templates/show_copyright.tpl -text
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
-templates/structures_toc.tpl -text
-templates/structures_toc_level.tpl -text
 templates/styles/960_gs/index.php -text
 templates/styles/960_gs/tiki.tpl -text
 templates/styles/abse/index.php -text
