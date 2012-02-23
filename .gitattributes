@@ -2015,6 +2015,7 @@ lib/core/Services/Tracker/SyncController.php -text
 lib/core/Services/Tracker/TodoController.php -text
 lib/core/Services/Tracker/Utilities.php -text
 lib/core/Services/User/Controller.php -text
+lib/core/Services/Wiki/Controller.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
 lib/core/StandardAnalyzer/Readme.txt -text
@@ -3161,6 +3162,7 @@ lib/stats/index.php -text
 lib/stats/statslib.php -text
 lib/structures/index.php -text
 lib/structures/structlib.php -text
+lib/structures/tiki-edit_structure.js -text
 lib/surveys/index.php -text
 lib/surveys/surveylib.php -text
 lib/svg-edit_tiki/draw.css -text
