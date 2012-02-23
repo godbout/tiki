@@ -2738,6 +2738,7 @@ lib/phpseclib/math.html -text
 lib/phpseclib/misc_crypt.html -text
 lib/phpseclib/net.html -text
 lib/phpseclib/sym_crypt.html -text
+lib/phpseclib_tiki/tikisecure.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
