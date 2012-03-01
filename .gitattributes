@@ -1915,6 +1915,7 @@ lib/core/Reports/Cache.php -text
 lib/core/Reports/Factory.php -text
 lib/core/Reports/Manager.php -text
 lib/core/Reports/Send.php -text
+lib/core/Reports/Send/BuildEmail.php -text
 lib/core/Reports/Users.php -text
 lib/core/Request.php -text
 lib/core/Search/ContentFilter/VersionNumber.php -text
@@ -2913,7 +2914,6 @@ lib/refererstats/refererlib.php -text
 lib/registration/index.php -text
 lib/registration/register_ajax.js -text
 lib/registration/registrationlib.php -text
-lib/reportslib.php -text
 lib/rss/index.php -text
 lib/rss/rsslib.php -text
 lib/score/events.php -text
@@ -3299,6 +3299,7 @@ lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
 lib/test/core/Reports/CacheTest.php -text
 lib/test/core/Reports/FactoryTest.php -text
 lib/test/core/Reports/ManagerTest.php -text
+lib/test/core/Reports/Send/BuildEmailTest.php -text
 lib/test/core/Reports/SendTest.php -text
 lib/test/core/Reports/UsersTest.php -text
 lib/test/core/Reports/fixtures/reports_cache_dataset.xml -text
@@ -3434,7 +3435,6 @@ lib/test/phpunit.php -text
 lib/test/phpunit.xml -text
 lib/test/rating/AggregationTest.php -text
 lib/test/rating/RegisterVoteTest.php -text
-lib/test/reportslib/ReportsLibTest.php -text
 lib/test/shipping/ShippingTest.php -text
 lib/test/smarty_tiki/ModifierDurationTest.php -text
 lib/test/smarty_tiki/index.php -text
