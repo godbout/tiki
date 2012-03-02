@@ -534,10 +534,10 @@ img/flags/index.php -text
 img/flags/readme.txt -text
 img/flags/the_former_Yugoslav_Republic_of_Macedonia.gif -text
 img/googleg.gif -text
-img/graph/graph.barstack.png -text
-img/graph/graph.multibar.png -text
-img/graph/graph.multiline.png -text
-img/graph/graph.pie.png -text
+img/graph.barstack.png -text
+img/graph.multibar.png -text
+img/graph.multiline.png -text
+img/graph.pie.png -text
 img/html.png -text
 img/icons/1stars.gif -text
 img/icons/2stars.gif -text
