@@ -935,6 +935,8 @@ img/icons/shim.gif -text
 img/icons/slide2first.gif -text
 img/icons/slide2last.gif -text
 img/icons/smartfolder.gif -text
+img/icons/sprite/admin.fullpanel.png -text
+img/icons/sprite/admin.fullpanel.xcf -text
 img/icons/star.gif -text
 img/icons/star_blue.gif -text
 img/icons/star_green.gif -text
@@ -4384,8 +4386,6 @@ pics/next_anim.gif -text
 pics/noavatar.png -text
 pics/overlay-disabled_item.png -text
 pics/prev.gif -text
-pics/sprite/admin.fullpanel.png -text
-pics/sprite/admin.fullpanel.xcf -text
 pics/trans.png -text
 /plugins_help.php -text
 /poll_categorize.php -text
