@@ -53,6 +53,7 @@ admin/include_webservices.php -text
 admin/include_wiki.php -text
 admin/include_wikiatt.php -text
 admin/include_wysiwyg.php -text
+admin/index.php -text
 /antibot.php -text
 /article_image.php -text
 backups/README -text
