@@ -56,8 +56,6 @@ admin/include_wysiwyg.php -text
 admin/index.php -text
 /antibot.php -text
 /article_image.php -text
-backups/README -text
-backups/index.php -text
 /banner_click.php -text
 /banner_image.php -text
 /categorize.php -text

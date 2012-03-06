@@ -10,7 +10,6 @@
 /ZendPlatform
 /ZendStudioServer
 /_htaccess
-backups/*
 db/.htaccess
 db/local.php
 db/lock
