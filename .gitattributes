@@ -2299,11 +2299,6 @@ lib/core/Feed/ForwardLink/index.php -text
 lib/core/Feed/Html.php -text
 lib/core/Feed/Html/Receive.php -text
 lib/core/Feed/Html/index.php -text
-lib/core/Feed/Remote/ForwardLink.php -text
-lib/core/Feed/Remote/ForwardLink/Contribution.php -text
-lib/core/Feed/Remote/ForwardLink/index.php -text
-lib/core/Feed/Remote/Html.php -text
-lib/core/Feed/Remote/index.php -text
 lib/core/Feed/index.php -text
 lib/core/FileGallery/File.php -text
 lib/core/FileGallery/index.php -text
