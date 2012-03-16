@@ -5006,6 +5006,7 @@ templates/admin/index.php -text
 templates/admin_modules_form.tpl -text
 templates/advanced_search_help.tpl -text
 templates/antibot.tpl -text
+templates/article.tpl -text
 templates/article_trailer.tpl -text
 templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
