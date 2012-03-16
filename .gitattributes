@@ -5693,7 +5693,6 @@ templates/tiki-poll_form.tpl -text
 templates/tiki-poll_results.tpl -text
 templates/tiki-poll_results_bar.tpl -text
 templates/tiki-preview.tpl -text
-templates/tiki-preview_article.tpl -text
 templates/tiki-print.tpl -text
 templates/tiki-print_article.tpl -text
 templates/tiki-print_blog_post.tpl -text
