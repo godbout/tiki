@@ -2611,6 +2611,7 @@ lib/core/Tracker/Field/UserSubscription.php -text
 lib/core/Tracker/Field/WebService.php -text
 lib/core/Tracker/Field/index.php -text
 lib/core/Tracker/Item.php -text
+lib/core/Tracker/Query.php -text
 lib/core/Tracker/index.php -text
 lib/core/Transition.php -text
 lib/core/WikiParser/OutputLink.php -text
@@ -4138,7 +4139,6 @@ lib/toolbars/tiki-admin_toolbars.js -text
 lib/toolbars/toolbarslib.php -text
 lib/trackers/index.php -text
 lib/trackers/trackerlib.php -text
-lib/trackers/trackerquerylib.php -text
 lib/transitionlib.php -text
 lib/tree/BrowseTreeMaker.php -text
 lib/tree/index.php -text
