@@ -6259,6 +6259,7 @@ tests/testfile.txt -text
 /tiki-theme_control_objects.php -text
 /tiki-theme_control_sections.php -text
 /tiki-timesheet.php -text
+/tiki-timestamp.php -text
 /tiki-tracker_export_join.php -text
 /tiki-tracker_http_request.php -text
 /tiki-tracker_reports.php -text
