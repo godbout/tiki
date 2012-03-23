@@ -2003,6 +2003,7 @@ installer/schema/20120123_remove_column_from_tiki_user_reports_tiki.sql -text
 installer/schema/20120315_list_image_article_y_tiki.sql -text
 installer/schema/20120319_remove_sheets_with_no_relation_tiki.sql -text
 installer/schema/20120320_remove_admin_trackers_application_menu_tiki.sql -text
+installer/schema/20120323_add_reports_to_application_menu_tiki.sql -text
 installer/schema/20120323_remove_tracker_reports_from_application_menu_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
