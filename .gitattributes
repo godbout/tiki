@@ -5478,6 +5478,7 @@ templates/tiki-admin_html_page_content.tpl -text
 templates/tiki-admin_html_pages.tpl -text
 templates/tiki-admin_integrator.tpl -text
 templates/tiki-admin_integrator_rules.tpl -text
+templates/tiki-admin_invoices.tpl -text
 templates/tiki-admin_keywords.tpl -text
 templates/tiki-admin_layout.tpl -text
 templates/tiki-admin_links.tpl -text
@@ -5613,6 +5614,7 @@ templates/tiki-integrator.tpl -text
 templates/tiki-invite.tpl -text
 templates/tiki-invited.tpl -text
 templates/tiki-invoice_menu.tpl -text
+templates/tiki-invoice_reports.tpl -text
 templates/tiki-kaltura_upload.tpl -text
 templates/tiki-kaltura_video.tpl -text
 templates/tiki-lastchanges.tpl -text
@@ -5961,6 +5963,7 @@ tests/testfile.txt -text
 /tiki-admin_html_pages.php -text
 /tiki-admin_integrator.php -text
 /tiki-admin_integrator_rules.php -text
+/tiki-admin_invoices.php -text
 /tiki-admin_keywords.php -text
 /tiki-admin_layout.php -text
 /tiki-admin_links.php -text
@@ -6116,6 +6119,7 @@ tests/testfile.txt -text
 /tiki-interactive_trans.php -text
 /tiki-invite.php -text
 /tiki-invited.php -text
+/tiki-invoice_reports.php -text
 /tiki-jscalendar.php -text
 /tiki-jsmodule.php -text
 /tiki-jsplugin.php -text
