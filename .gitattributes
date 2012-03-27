@@ -2401,7 +2401,7 @@ lib/core/Reports/Cache.php -text
 lib/core/Reports/Factory.php -text
 lib/core/Reports/Manager.php -text
 lib/core/Reports/Send.php -text
-lib/core/Reports/Send/BuildEmail.php -text
+lib/core/Reports/Send/EmailBuilder.php -text
 lib/core/Reports/Send/index.php -text
 lib/core/Reports/Users.php -text
 lib/core/Reports/index.php -text
@@ -3914,10 +3914,14 @@ lib/test/core/Perms/index.php -text
 lib/test/core/Reports/CacheTest.php -text
 lib/test/core/Reports/FactoryTest.php -text
 lib/test/core/Reports/ManagerTest.php -text
-lib/test/core/Reports/Send/BuildEmailTest.php -text
+lib/test/core/Reports/ReportsEndToEndTest.php -text
+lib/test/core/Reports/Send/EmailBuilderTest.php -text
 lib/test/core/Reports/Send/index.php -text
 lib/test/core/Reports/SendTest.php -text
 lib/test/core/Reports/UsersTest.php -text
+lib/test/core/Reports/fixtures/email_body.txt -text
+lib/test/core/Reports/fixtures/end_to_end_test_dataset.xml -text
+lib/test/core/Reports/fixtures/end_to_end_test_result_dataset.xml -text
 lib/test/core/Reports/fixtures/index.php -text
 lib/test/core/Reports/fixtures/reports_cache_dataset.xml -text
 lib/test/core/Reports/fixtures/reports_cache_dataset_add.xml -text
