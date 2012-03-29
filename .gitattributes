@@ -6005,6 +6005,7 @@ tests/testfile.txt -text
 /tiki-assignuser.php -text
 /tiki-auto_save.php -text
 /tiki-backlinks.php -text
+/tiki-backup.php -text
 /tiki-batch_send_newsletter.php -text
 /tiki-batch_todo.php -text
 /tiki-batch_upload.php -text
