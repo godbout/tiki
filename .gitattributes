@@ -2264,6 +2264,7 @@ lib/codemirror_tiki/mode/r/r.js -text
 lib/codemirror_tiki/mode/tiki/index.php -text
 lib/codemirror_tiki/mode/tiki/tiki.css -text
 lib/codemirror_tiki/mode/tiki/tiki.js -text
+lib/codemirror_tiki/tiki_codemirror.php -text
 lib/commcenter/commlib.php -text
 lib/commcenter/index.php -text
 lib/comments/commentslib.js -text
