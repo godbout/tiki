@@ -4193,6 +4193,8 @@ lib/validatorslib.php -text
 lib/videogals/KalturaClient.php -text
 lib/videogals/KalturaClientBase.php -text
 lib/videogals/KalturaClientReadme.txt -text
+lib/videogals/KalturaEnums.php -text
+lib/videogals/KalturaTypes.php -text
 lib/videogals/index.php -text
 lib/videogals/videogallib.php -text
 lib/videogals/watershedlib.php -text
