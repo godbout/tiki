@@ -4214,7 +4214,7 @@ lib/videogals/KalturaPlugins/KalturaShortLinkClientPlugin.php -text
 lib/videogals/KalturaPlugins/KalturaVirusScanClientPlugin.php -text
 lib/videogals/KalturaTypes.php -text
 lib/videogals/index.php -text
-lib/videogals/videogallib.php -text
+lib/videogals/kalturalib.php -text
 lib/videogals/watershedlib.php -text
 lib/web.config -text
 lib/webmail/API.txt -text
