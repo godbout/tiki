@@ -5683,7 +5683,6 @@ templates/tiki-list_kaltura_entries_actions.tpl -text
 templates/tiki-list_kaltura_entries_add_info.tpl -text
 templates/tiki-list_kaltura_media_entries.tpl -text
 templates/tiki-list_kaltura_mix_entries.tpl -text
-templates/tiki-list_kaltura_playlists.tpl -text
 templates/tiki-list_object_permissions.tpl -text
 templates/tiki-list_posts.tpl -text
 templates/tiki-list_quizzes.tpl -text
