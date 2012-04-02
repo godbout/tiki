@@ -95,6 +95,7 @@ db/web.config -text
 doc/devtools/.htaccess -text
 doc/devtools/README.txt -text
 doc/devtools/add1tiki2multi.py -text
+doc/devtools/backup.php -text
 doc/devtools/backupdb.sh -text
 doc/devtools/buildincrement.php -text
 doc/devtools/capitalize_buttons.pl -text
@@ -6044,7 +6045,6 @@ tests/testfile.txt -text
 /tiki-assignuser.php -text
 /tiki-auto_save.php -text
 /tiki-backlinks.php -text
-/tiki-backup.php -text
 /tiki-batch_send_newsletter.php -text
 /tiki-batch_todo.php -text
 /tiki-batch_upload.php -text
