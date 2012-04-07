@@ -6013,6 +6013,7 @@ tests/testfile.txt -text
 /tiki-admin_toolbars.php -text
 /tiki-admin_topics.php -text
 /tiki-admin_tracker_fields.php -text
+/tiki-admin_trackers.php -text
 /tiki-admin_transitions.php -text
 /tiki-admingroups.php -text
 /tiki-adminusers.php -text
