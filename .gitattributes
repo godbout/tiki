@@ -98,7 +98,6 @@ doc/devtools/add1tiki2multi.py -text
 doc/devtools/backup.php -text
 doc/devtools/backupdb.sh -text
 doc/devtools/buildincrement.php -text
-doc/devtools/capitalize_buttons.pl -text
 doc/devtools/cleanwatch.sh -text
 doc/devtools/convert_templates_prefs-2.0.php -text
 doc/devtools/convert_tpl_ajax.php -text
@@ -113,6 +112,7 @@ doc/devtools/fix-encoding.php -text
 doc/devtools/get_translation_percentage.php -text
 doc/devtools/ggg-trace.php -text
 doc/devtools/index.php -text
+doc/devtools/mass_wording_corrections.pl -text
 doc/devtools/mergelang.php -text
 doc/devtools/mods.sh -text
 doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
@@ -6033,6 +6033,7 @@ tests/testfile.txt -text
 /tiki-admin_toolbars.php -text
 /tiki-admin_topics.php -text
 /tiki-admin_tracker_fields.php -text
+/tiki-admin_trackers.php -text
 /tiki-admin_transitions.php -text
 /tiki-admingroups.php -text
 /tiki-adminusers.php -text
