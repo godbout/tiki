@@ -32,6 +32,7 @@ lib/test/clover.xml
 lib/test/core/Search/Index/test_index
 lib/test/core/Search/test_index
 lib/test/local.php
+lib/test/templates_c
 /maps
 maps/*
 /mods
