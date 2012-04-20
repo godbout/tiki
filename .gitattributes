@@ -2007,7 +2007,6 @@ installer/schema/20120323_add_reports_to_application_menu_tiki.sql -text
 installer/schema/20120323_remove_tracker_reports_from_application_menu_tiki.sql -text
 installer/schema/20120324_add_filegals_icon_tiki.sql -text
 installer/schema/20120408_add_forumthread_sefurl_tiki.sql -text
-installer/schema/20120419_add_tiki_pages_and_tiki_history_state_field_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
