@@ -2010,6 +2010,7 @@ installer/schema/20120401_kaltura_prefs_rename_tiki.sql -text
 installer/schema/20120408_add_forumthread_sefurl_tiki.sql -text
 installer/schema/20120421_autoincementtoautoincrement_tiki.sql -text
 installer/schema/20120422_mime_tiki.sql -text
+installer/schema/20120423_add_page_refs_tiki.sql -text
 installer/schema/20120423_add_status_attr_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
@@ -3500,6 +3501,8 @@ lib/rating/formula/RatingSum.php -text
 lib/rating/formula/index.php -text
 lib/rating/index.php -text
 lib/rating/ratinglib.php -text
+lib/references/index.php -text
+lib/references/referenceslib.php -text
 lib/refererstats/index.php -text
 lib/refererstats/refererlib.php -text
 lib/registration/index.php -text
@@ -4236,6 +4239,7 @@ lib/webodf/webodf.js -text
 lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_addfreetag.php -text
+lib/wiki-plugins/wikiplugin_addreference.php -text
 lib/wiki-plugins/wikiplugin_addrelation.php -text
 lib/wiki-plugins/wikiplugin_addtocart.php -text
 lib/wiki-plugins/wikiplugin_addtogooglecal.php -text
@@ -4371,6 +4375,7 @@ lib/wiki-plugins/wikiplugin_sharethis.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
 lib/wiki-plugins/wikiplugin_shopperinfo.php -text
 lib/wiki-plugins/wikiplugin_showpages.php -text
+lib/wiki-plugins/wikiplugin_showreference.php -text
 lib/wiki-plugins/wikiplugin_skype.php -text
 lib/wiki-plugins/wikiplugin_slider.php -text
 lib/wiki-plugins/wikiplugin_slideshow.php -text
@@ -4466,6 +4471,7 @@ lib/xmlrpc.inc -text
 lib/xmlrpcs.inc -text
 lib/ziplib.php -text
 lib/zoterolib.php -text
+/libReferences.php -text
 /license.txt -text
 /list-file_backlinks_ajax.php -text
 /list-tracker_field_values_ajax.php -text
@@ -4617,6 +4623,7 @@ modules/web.config -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /received_article_image.php -text
+/references.php -text
 /reindex_file.php -text
 /remote.php -text
 /robots.txt -text
@@ -5005,6 +5012,7 @@ temp/public/.htaccess -text
 temp/public/index.php -text
 temp/web.config -text
 templates/.htaccess -text
+templates/addreference.tpl -text
 templates/admin/include_ads.tpl -text
 templates/admin/include_anchors.tpl -text
 templates/admin/include_areas.tpl -text
@@ -5443,6 +5451,7 @@ templates/print/print-page_header.tpl -text
 templates/print/print-title_trackeritem.tpl -text
 templates/print/print-title_wiki.tpl -text
 templates/rating.tpl -text
+templates/references.tpl -text
 templates/register-email.tpl -text
 templates/register-form.tpl -text
 templates/register-groupchoice.tpl -text
@@ -5931,6 +5940,7 @@ templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/index.php -text
 templates/wiki-plugins/wikiplugin_addfreetag.tpl -text
+templates/wiki-plugins/wikiplugin_addreference.tpl -text
 templates/wiki-plugins/wikiplugin_addrelation.tpl -text
 templates/wiki-plugins/wikiplugin_addtocart.tpl -text
 templates/wiki-plugins/wikiplugin_adjustinventory.tpl -text
