@@ -5452,7 +5452,6 @@ templates/print/print-page_header.tpl -text
 templates/print/print-title_trackeritem.tpl -text
 templates/print/print-title_wiki.tpl -text
 templates/rating.tpl -text
-templates/references.tpl -text
 templates/register-email.tpl -text
 templates/register-form.tpl -text
 templates/register-groupchoice.tpl -text
@@ -5773,6 +5772,7 @@ templates/tiki-ranking.tpl -text
 templates/tiki-read_article.tpl -text
 templates/tiki-received_articles.tpl -text
 templates/tiki-received_pages.tpl -text
+templates/tiki-references.tpl -text
 templates/tiki-referer_stats.tpl -text
 templates/tiki-register.tpl -text
 templates/tiki-register_site.tpl -text
