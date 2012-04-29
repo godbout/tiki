@@ -4473,7 +4473,6 @@ lib/xmlrpc.inc -text
 lib/xmlrpcs.inc -text
 lib/ziplib.php -text
 lib/zoterolib.php -text
-/libReferences.php -text
 /license.txt -text
 /list-file_backlinks_ajax.php -text
 /list-tracker_field_values_ajax.php -text
@@ -6283,6 +6282,7 @@ tests/testfile.txt -text
 /tiki-read_article.php -text
 /tiki-received_articles.php -text
 /tiki-received_pages.php -text
+/tiki-references.php -text
 /tiki-referer_stats.php -text
 /tiki-register.php -text
 /tiki-register_site.php -text
