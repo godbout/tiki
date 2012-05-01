@@ -84,6 +84,7 @@ db/index.php -text
 db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
+db/tiki-secdb_9.0_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -2015,6 +2016,7 @@ installer/schema/20120423_add_page_refs_tiki.sql -text
 installer/schema/20120423_add_status_attr_tiki.sql -text
 installer/schema/20120426_perspectives_menu_entry_tiki.sql -text
 installer/schema/20120426_tiki_db_status_tiki.sql -text
+installer/schema/20120429_fix_collation_tiki.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
