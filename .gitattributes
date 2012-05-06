@@ -4541,6 +4541,7 @@ modules/mod-func-last_tracker_comments.php -text
 modules/mod-func-last_tracker_items.php -text
 modules/mod-func-last_validated_faq_questions.php -text
 modules/mod-func-last_visitors.php -text
+modules/mod-func-last_youtube_playlist_videos.php -text
 modules/mod-func-live_support.php -text
 modules/mod-func-loadstats.php -text
 modules/mod-func-locator.php -text
@@ -4613,7 +4614,6 @@ modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
 modules/mod-func-zotero.php -text
-modules/mod-last_youtube_playlist_videos.php -text
 modules/web.config -text
 /plugins_help.php -text
 /poll_categorize.php -text
