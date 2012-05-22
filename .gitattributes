@@ -6399,6 +6399,7 @@ tests/testfile.txt -text
 /tiki-user_cached_bookmark.php -text
 /tiki-user_contacts_prefs.php -text
 /tiki-user_information.php -text
+/tiki-user_notifications.php -text
 /tiki-user_preferences.php -text
 /tiki-user_reports.php -text
 /tiki-user_reports_send.php -text
