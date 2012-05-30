@@ -2312,6 +2312,7 @@ lib/core/Event/Manager.php -text
 lib/core/Event/index.php -text
 lib/core/Feed/Abstract.php -text
 lib/core/Feed/ForwardLink.php -text
+lib/core/Feed/ForwardLink/Metadata.php -text
 lib/core/Feed/ForwardLink/PageLookup.php -text
 lib/core/Feed/ForwardLink/Receive.php -text
 lib/core/Feed/ForwardLink/Search.php -text
