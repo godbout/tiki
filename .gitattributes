@@ -3507,6 +3507,7 @@ lib/profilelib/index.php -text
 lib/profilelib/installlib.php -text
 lib/profilelib/listlib.php -text
 lib/profilelib/profilelib.php -text
+lib/profilelib/shell.php -text
 lib/queuelib.php -text
 lib/quizzes/index.php -text
 lib/quizzes/quizlib.php -text
