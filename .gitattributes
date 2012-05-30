@@ -5941,6 +5941,7 @@ templates/wiki-plugins/wikiplugin_addrelation.tpl -text
 templates/wiki-plugins/wikiplugin_addtocart.tpl -text
 templates/wiki-plugins/wikiplugin_adjustinventory.tpl -text
 templates/wiki-plugins/wikiplugin_appframe_mapcontrol.tpl -text
+templates/wiki-plugins/wikiplugin_appframe_mapcontrol_colorpicker.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton_create.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
