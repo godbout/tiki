@@ -5869,6 +5869,7 @@ templates/tracker/index.php -text
 templates/tracker/insert_item.tpl -text
 templates/tracker/remove.tpl -text
 templates/tracker/remove_fields.tpl -text
+templates/tracker/remove_item.tpl -text
 templates/tracker/replace.tpl -text
 templates/tracker/update_item.tpl -text
 templates/tracker_actions.tpl -text
