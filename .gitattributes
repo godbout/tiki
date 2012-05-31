@@ -5364,6 +5364,7 @@ templates/modules/mod-search_box.tpl -text
 templates/modules/mod-search_wiki_page.tpl -text
 templates/modules/mod-semantic_links.tpl -text
 templates/modules/mod-share.tpl -text
+templates/modules/mod-share.tpl.nocache -text
 templates/modules/mod-shoutbox.tpl -text
 templates/modules/mod-shoutbox.tpl.nocache -text
 templates/modules/mod-since_last_visit.tpl -text
