@@ -626,6 +626,7 @@ img/icons/calendar.png -text
 img/icons/calendar_add.png -text
 img/icons/calendar_back.gif -text
 img/icons/calendar_view_day.png -text
+img/icons/camera.png -text
 img/icons/cart_add.png -text
 img/icons/change.gif -text
 img/icons/char_a.gif -text
@@ -2548,6 +2549,8 @@ lib/core/Services/Favorite/Controller.php -text
 lib/core/Services/Favorite/index.php -text
 lib/core/Services/File/Controller.php -text
 lib/core/Services/File/index.php -text
+lib/core/Services/JCapture/Controller.php -text
+lib/core/Services/JCapture/index.php -text
 lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
@@ -5231,6 +5234,8 @@ templates/freetag_list.tpl -text
 templates/header.tpl -text
 templates/index.php -text
 templates/interactive_translation_box.tpl -text
+templates/jcapture/capture.tpl -text
+templates/jcapture/index.php -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
