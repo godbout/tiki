@@ -2342,6 +2342,7 @@ lib/core/JisonParser/Wiki.js -text
 lib/core/JisonParser/Wiki.php -text
 lib/core/JisonParser/Wiki/Handler.js -text
 lib/core/JisonParser/Wiki/Handler.php -text
+lib/core/JisonParser/Wiki/PluginAjaxHandler.php -text
 lib/core/JisonParser/Wiki/Test.html -text
 lib/core/JisonParser/Wiki/index.php -text
 lib/core/JisonParser/index.php -text
@@ -2551,6 +2552,7 @@ lib/core/Services/File/Controller.php -text
 lib/core/Services/File/index.php -text
 lib/core/Services/JCapture/Controller.php -text
 lib/core/Services/JCapture/index.php -text
+lib/core/Services/JisonParser/WikiPlugin.php -text
 lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
