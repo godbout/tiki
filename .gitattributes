@@ -5945,6 +5945,7 @@ templates/wiki-plugins/wikiplugin_adjustinventory.tpl -text
 templates/wiki-plugins/wikiplugin_appframe_mapcontrol.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton_create.tpl -text
+templates/wiki-plugins/wikiplugin_bigbluebutton_view_recordings.tpl -text
 templates/wiki-plugins/wikiplugin_bloglist.tpl -text
 templates/wiki-plugins/wikiplugin_categorytransition.tpl -text
 templates/wiki-plugins/wikiplugin_catorphans.tpl -text
