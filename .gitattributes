@@ -2343,7 +2343,6 @@ lib/core/JisonParser/Wiki.js -text
 lib/core/JisonParser/Wiki.php -text
 lib/core/JisonParser/Wiki/Handler.js -text
 lib/core/JisonParser/Wiki/Handler.php -text
-lib/core/JisonParser/Wiki/PluginAjaxHandler.php -text
 lib/core/JisonParser/Wiki/Test.html -text
 lib/core/JisonParser/Wiki/index.php -text
 lib/core/JisonParser/index.php -text
