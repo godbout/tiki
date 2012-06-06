@@ -2432,6 +2432,7 @@ lib/core/Reports/Send/EmailBuilder/FileGalleryChanged.php -text
 lib/core/Reports/Send/EmailBuilder/ForumPostThread.php -text
 lib/core/Reports/Send/EmailBuilder/ForumPostTopic.php -text
 lib/core/Reports/Send/EmailBuilder/ImageGalleryChanged.php -text
+lib/core/Reports/Send/EmailBuilder/TrackerFileAttachment.php -text
 lib/core/Reports/Send/EmailBuilder/TrackerItemComment.php -text
 lib/core/Reports/Send/EmailBuilder/TrackerItemModified.php -text
 lib/core/Reports/Send/EmailBuilder/WikiFileAttached.php -text
