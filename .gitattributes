@@ -2667,8 +2667,8 @@ lib/core/WikiParser/PluginParser.php -text
 lib/core/WikiParser/PluginRepository.php -text
 lib/core/WikiParser/PluginRunner.php -text
 lib/core/WikiParser/index.php -text
+lib/core/WikiPlugin/ConditionBase.php -text
 lib/core/WikiPlugin/HtmlBase.php -text
-lib/core/WikiPlugin/OperatorBase.php -text
 lib/core/WikiPlugin/oohtml.php -text
 lib/core/index.php -text
 lib/credits/creditslib.php -text
