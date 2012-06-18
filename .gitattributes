@@ -2323,6 +2323,7 @@ lib/core/Feed/ForwardLink/index.php -text
 lib/core/Feed/Html.php -text
 lib/core/Feed/Html/Receive.php -text
 lib/core/Feed/Html/index.php -text
+lib/core/Feed/TextLink.php -text
 lib/core/Feed/index.php -text
 lib/core/FileGallery/File.php -text
 lib/core/FileGallery/index.php -text
