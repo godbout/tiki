@@ -3722,6 +3722,8 @@ lib/smarty_tiki/function.norecords.php -text
 lib/smarty_tiki/function.obj_in_cat.php -text
 lib/smarty_tiki/function.object_link.php -text
 lib/smarty_tiki/function.object_selector.php -text
+lib/smarty_tiki/function.page_alias.php -text
+lib/smarty_tiki/function.page_in_structure.php -text
 lib/smarty_tiki/function.payment.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup.php -text
