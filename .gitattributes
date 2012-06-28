@@ -2016,6 +2016,7 @@ installer/schema/20120422_mime_tiki.sql -text
 installer/schema/20120426_perspectives_menu_entry_tiki.sql -text
 installer/schema/20120426_tiki_db_status_tiki.sql -text
 installer/schema/20120429_fix_collation_tiki.php -text
+installer/schema/20120628_correct_admin_user_createdate_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
