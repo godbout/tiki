@@ -4910,6 +4910,13 @@ styles/jqui/arrows-1174a5.png -text svneol=unset#image/png
 styles/jqui/index.php -text
 styles/jqui/jqui.png -text svneol=unset#image/png
 styles/jqui/newsletter.css -text
+styles/jqui/options/didiem/arrows-6d9f26.png -text svneol=unset#image/png
+styles/jqui/options/didiem/didiem.png -text svneol=unset#image/png
+styles/jqui/options/didiem/h_bullet.jpg -text svneol=unset#image/jpeg
+styles/jqui/options/didiem/h_bullet_hover.jpg -text svneol=unset#image/jpeg
+styles/jqui/options/didiem/index.php -text
+styles/jqui/options/didiem/magnify.png -text svneol=unset#image/png
+styles/jqui/options/didiem/topbar.jpg -text svneol=unset#image/jpeg
 styles/jqui/options/element.css -text
 styles/jqui/options/excitebike/excitebike.png -text svneol=unset#image/png
 styles/jqui/options/excitebike/index.php -text
