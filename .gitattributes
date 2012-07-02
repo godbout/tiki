@@ -2025,6 +2025,7 @@ installer/schema/20120429_fix_collation_tiki.php -text
 installer/schema/20120510_mailqueue_tiki.sql -text
 installer/schema/20120604_add_holder_to_copyright_tiki.sql -text
 installer/schema/20120628_correct_admin_user_createdate_tiki.sql -text
+installer/schema/20120630_patch_users-users-hash-varchar60_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
