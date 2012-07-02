@@ -4838,6 +4838,9 @@ styles/jqui/newsletter.css -text
 styles/jqui/options/element.css -text
 styles/jqui/options/excitebike/excitebike.png -text svneol=unset#image/png
 styles/jqui/options/excitebike/index.php -text
+styles/jqui/options/good.css -text
+styles/jqui/options/good/arrows-005faa.png -text
+styles/jqui/options/good/arrows-ffffff.png -text
 styles/jqui/options/haus.css -text
 styles/jqui/options/index.php -text
 styles/jqui/options/rising.css -text
