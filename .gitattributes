@@ -3776,6 +3776,8 @@ lib/smarty_tiki/function.norecords.php -text
 lib/smarty_tiki/function.obj_in_cat.php -text
 lib/smarty_tiki/function.object_link.php -text
 lib/smarty_tiki/function.object_selector.php -text
+lib/smarty_tiki/function.page_alias.php -text
+lib/smarty_tiki/function.page_in_structure.php -text
 lib/smarty_tiki/function.payment.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup.php -text
@@ -4922,6 +4924,9 @@ styles/jqui/options/didiem/topbar.jpg -text svneol=unset#image/jpeg
 styles/jqui/options/element.css -text
 styles/jqui/options/excitebike/excitebike.png -text svneol=unset#image/png
 styles/jqui/options/excitebike/index.php -text
+styles/jqui/options/good.css -text
+styles/jqui/options/good/arrows-005faa.png -text
+styles/jqui/options/good/arrows-ffffff.png -text
 styles/jqui/options/haus.css -text
 styles/jqui/options/index.php -text
 styles/jqui/options/rising.css -text
