@@ -5200,6 +5200,7 @@ templates/comments.tpl -text
 templates/comments_button.tpl -text
 templates/confirm.tpl -text
 templates/contribution.tpl -text
+templates/cookie_consent.tpl -text
 templates/copyrights.tpl -text
 templates/credits.tpl -text
 templates/database-connection-error.tpl -text
