@@ -2676,6 +2676,7 @@ lib/core/WikiPlugin/CKEditorNegotiator.php -text
 lib/core/WikiPlugin/ConditionBase.php -text
 lib/core/WikiPlugin/HtmlBase.php -text
 lib/core/WikiPlugin/ParserNegotiator.php -text
+lib/core/WikiPlugin/expandingoutline.php -text
 lib/core/WikiPlugin/maketoc.php -text
 lib/core/WikiPlugin/oohtml.php -text
 lib/core/index.php -text
