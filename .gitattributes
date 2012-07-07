@@ -3545,7 +3545,6 @@ lib/search/shell.php -text
 lib/serializedlist.php -text
 lib/setup/absolute_urls.php -text
 lib/setup/babelfish.php -text
-lib/setup/breadcrumb.php -text
 lib/setup/categories.php -text
 lib/setup/challenge.php -text
 lib/setup/comments_zone.php -text
