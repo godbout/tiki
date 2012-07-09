@@ -2021,7 +2021,6 @@ installer/schema/20120630_patch_users-users-hash-varchar60_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
-installer/script/20120706_script_systemSalt_tiki.php -text
 installer/script/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
