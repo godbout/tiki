@@ -2029,6 +2029,7 @@ installer/schema/20120630_patch_users-users-hash-varchar60_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
+installer/script/20120706_script_systemSalt_tiki.php -text
 installer/script/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
@@ -3599,7 +3600,6 @@ lib/search/shell.php -text
 lib/serializedlist.php -text
 lib/setup/absolute_urls.php -text
 lib/setup/babelfish.php -text
-lib/setup/breadcrumb.php -text
 lib/setup/categories.php -text
 lib/setup/challenge.php -text
 lib/setup/comments_zone.php -text
@@ -5888,7 +5888,6 @@ templates/tiki-shoutbox.tpl -text
 templates/tiki-show_help.tpl -text
 templates/tiki-show_page.tpl -text
 templates/tiki-show_page_raw.tpl -text
-templates/tiki-sitelocbar.tpl -text
 templates/tiki-slideshow.tpl -text
 templates/tiki-socialnetworks.tpl -text
 templates/tiki-socialnetworks_firstlogin.tpl -text
