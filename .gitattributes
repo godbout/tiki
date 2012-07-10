@@ -3799,6 +3799,7 @@ lib/smarty_tiki/function.show_sort.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.ticket.php -text
 lib/smarty_tiki/function.toolbars.php -text
+lib/smarty_tiki/function.trackerfields.php -text
 lib/smarty_tiki/function.trackerheader.php -text
 lib/smarty_tiki/function.trackerinput.php -text
 lib/smarty_tiki/function.trackeroutput.php -text
@@ -5998,6 +5999,7 @@ templates/trackerinput/index.php -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
 templates/trackerinput/language.tpl -text
+templates/trackerinput/layout_flat.tpl -text
 templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
 templates/trackerinput/pageselector.tpl -text
