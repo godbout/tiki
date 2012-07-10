@@ -6000,6 +6000,7 @@ templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
 templates/trackerinput/language.tpl -text
 templates/trackerinput/layout_flat.tpl -text
+templates/trackerinput/layout_tab.tpl -text
 templates/trackerinput/location.tpl -text
 templates/trackerinput/numeric.tpl -text
 templates/trackerinput/pageselector.tpl -text
