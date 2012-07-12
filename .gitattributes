@@ -4358,6 +4358,7 @@ lib/wiki-plugins/wikiplugin_content.php -text
 lib/wiki-plugins/wikiplugin_contributionsdashboard.php -text
 lib/wiki-plugins/wikiplugin_convene.php -text
 lib/wiki-plugins/wikiplugin_cookie.php -text
+lib/wiki-plugins/wikiplugin_cookieconsent.php -text
 lib/wiki-plugins/wikiplugin_copyright.php -text
 lib/wiki-plugins/wikiplugin_countdown.php -text
 lib/wiki-plugins/wikiplugin_customsearch.php -text
