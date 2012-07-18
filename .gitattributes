@@ -5956,6 +5956,7 @@ templates/tiki-wiki_topline.tpl -text
 templates/tiki.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker/add_field.tpl -text
+templates/tracker/clone_item.tpl -text
 templates/tracker/duplicate.tpl -text
 templates/tracker/edit_field.tpl -text
 templates/tracker/export.tpl -text
