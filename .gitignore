@@ -10,6 +10,13 @@
 /ZendPlatform
 /ZendStudioServer
 /_htaccess
+db/*.ca
+db/*.com
+db/*.fr
+db/*.local
+db/*.net
+db/*.org
+db/*.uk
 db/.htaccess
 db/local.php
 db/lock
