@@ -4682,6 +4682,7 @@ modules/mod-func-top_visited_faqs.php -text
 modules/mod-func-tracker_input.php -text
 modules/mod-func-trackerhelp.php -text
 modules/mod-func-translation.php -text
+modules/mod-func-twitter.php -text
 modules/mod-func-upcoming_events.php -text
 modules/mod-func-user_blogs.php -text
 modules/mod-func-user_bookmarks.php -text
@@ -5488,6 +5489,7 @@ templates/modules/mod-top_visited_faqs.tpl -text
 templates/modules/mod-tracker_input.tpl -text
 templates/modules/mod-trackerhelp.tpl -text
 templates/modules/mod-translation.tpl -text
+templates/modules/mod-twitter.tpl -text
 templates/modules/mod-upcoming_events.tpl -text
 templates/modules/mod-user_blogs.tpl -text
 templates/modules/mod-user_blogs.tpl.nocache -text
