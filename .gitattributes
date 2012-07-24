@@ -3495,6 +3495,7 @@ lib/prefs/mobile.php -text
 lib/prefs/module.php -text
 lib/prefs/morelikethis.php -text
 lib/prefs/multidomain.php -text
+lib/prefs/namespace.php -text
 lib/prefs/newsletter.php -text
 lib/prefs/nextprev.php -text
 lib/prefs/page.php -text
