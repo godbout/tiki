@@ -4592,6 +4592,7 @@ modules/mod-func-credits.php -text
 modules/mod-func-directory_last_sites.php -text
 modules/mod-func-directory_stats.php -text
 modules/mod-func-directory_top_sites.php -text
+modules/mod-func-facebook.php -text
 modules/mod-func-featured_links.php -text
 modules/mod-func-file_galleries.php -text
 modules/mod-func-forums_best_voted_topics.php -text
@@ -5390,6 +5391,7 @@ templates/modules/mod-credits.tpl -text
 templates/modules/mod-directory_last_sites.tpl -text
 templates/modules/mod-directory_stats.tpl -text
 templates/modules/mod-directory_top_sites.tpl -text
+templates/modules/mod-facebook.tpl -text
 templates/modules/mod-featured_links.tpl -text
 templates/modules/mod-file_galleries.tpl -text
 templates/modules/mod-forums_best_voted_topics.tpl -text
