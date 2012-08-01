@@ -5835,6 +5835,7 @@ templates/tiki-user_assigned_modules.tpl -text
 templates/tiki-user_bookmarks.tpl -text
 templates/tiki-user_contacts_prefs.tpl -text
 templates/tiki-user_cssmenu.tpl -text
+templates/tiki-user_drilldownmenu.tpl -text
 templates/tiki-user_information.tpl -text
 templates/tiki-user_menu.tpl -text
 templates/tiki-user_preferences.tpl -text
