@@ -2591,6 +2591,9 @@ lib/core/StandardAnalyzer/TokenFilter/EnglishStemmer/index.php -text
 lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
+lib/core/Tiki/Version/Checker.php -text
+lib/core/Tiki/Version/Upgrade.php -text
+lib/core/Tiki/Version/Version.php -text
 lib/core/TikiDb.php -text
 lib/core/TikiDb/Adodb.php -text
 lib/core/TikiDb/Bridge.php -text
@@ -3938,6 +3941,7 @@ lib/test/TikiLib/WikiParserTest.php -text
 lib/test/TikiLib/index.php -text
 lib/test/TikiSeleniumTestCase.php -text
 lib/test/TikiTestCase.php -text
+lib/test/TikiVersionTest.php -text
 lib/test/attributes/AttributeTest.php -text
 lib/test/attributes/RelationTest.php -text
 lib/test/attributes/index.php -text
