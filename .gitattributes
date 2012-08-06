@@ -3811,6 +3811,7 @@ lib/smarty_tiki/function.trackerheader.php -text
 lib/smarty_tiki/function.trackerinput.php -text
 lib/smarty_tiki/function.trackeroutput.php -text
 lib/smarty_tiki/function.treetable.php -text
+lib/smarty_tiki/function.user_registration.php -text
 lib/smarty_tiki/function.user_selector.php -text
 lib/smarty_tiki/function.var_dump.php -text
 lib/smarty_tiki/function.wikistructure.php -text
@@ -4451,6 +4452,7 @@ lib/wiki-plugins/wikiplugin_rcontent.php -text
 lib/wiki-plugins/wikiplugin_realnamelist.php -text
 lib/wiki-plugins/wikiplugin_redirect.php -text
 lib/wiki-plugins/wikiplugin_regex.php -text
+lib/wiki-plugins/wikiplugin_registermemberpayment.php -text
 lib/wiki-plugins/wikiplugin_relations.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_report.php -text
@@ -5931,6 +5933,7 @@ templates/tiki-user_assigned_modules.tpl -text
 templates/tiki-user_bookmarks.tpl -text
 templates/tiki-user_contacts_prefs.tpl -text
 templates/tiki-user_cssmenu.tpl -text
+templates/tiki-user_drilldownmenu.tpl -text
 templates/tiki-user_information.tpl -text
 templates/tiki-user_menu.tpl -text
 templates/tiki-user_preferences.tpl -text
@@ -6046,6 +6049,8 @@ templates/translation/detach.tpl -text
 templates/translation/index.php -text
 templates/translation/manage.tpl -text
 templates/unified_search_help.tpl -text
+templates/user/register.tpl -text
+templates/user_registration.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
