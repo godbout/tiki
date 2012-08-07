@@ -2359,6 +2359,8 @@ lib/core/Math/Formula/Element.php -text
 lib/core/Math/Formula/Exception.php -text
 lib/core/Math/Formula/Function.php -text
 lib/core/Math/Formula/Function/Add.php -text
+lib/core/Math/Formula/Function/Max.php -text
+lib/core/Math/Formula/Function/Min.php -text
 lib/core/Math/Formula/Function/Mul.php -text
 lib/core/Math/Formula/Function/Str.php -text
 lib/core/Math/Formula/Function/index.php -text
