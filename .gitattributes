@@ -4441,6 +4441,7 @@ lib/wiki-plugins/wikiplugin_mwtable.php -text
 lib/wiki-plugins/wikiplugin_myspace.php -text
 lib/wiki-plugins/wikiplugin_now.php -text
 lib/wiki-plugins/wikiplugin_objecthits.php -text
+lib/wiki-plugins/wikiplugin_objectlink.php -text
 lib/wiki-plugins/wikiplugin_pagetabs.php -text
 lib/wiki-plugins/wikiplugin_param.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
