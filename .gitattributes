@@ -2567,6 +2567,8 @@ lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
 lib/core/Services/Object/Controller.php -text
 lib/core/Services/Object/index.php -text
+lib/core/Services/Rating/Controller.php -text
+lib/core/Services/Rating/index.php -text
 lib/core/Services/RemoteController.php -text
 lib/core/Services/Report/Controller.php -text
 lib/core/Services/Report/index.php -text
@@ -5563,6 +5565,7 @@ templates/print/print-page_header.tpl -text
 templates/print/print-title_trackeritem.tpl -text
 templates/print/print-title_wiki.tpl -text
 templates/rating.tpl -text
+templates/rating/vote.tpl -text
 templates/register-email.tpl -text
 templates/register-form.tpl -text
 templates/register-groupchoice.tpl -text
