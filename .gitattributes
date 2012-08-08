@@ -4414,6 +4414,7 @@ lib/wiki-plugins/wikiplugin_htmlfeedlink.php -text
 lib/wiki-plugins/wikiplugin_iframe.php -text
 lib/wiki-plugins/wikiplugin_img.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
+lib/wiki-plugins/wikiplugin_insert.php -text
 lib/wiki-plugins/wikiplugin_invite.php -text
 lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_jq.php -text
