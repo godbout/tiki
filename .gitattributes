@@ -4470,6 +4470,7 @@ lib/wiki-plugins/wikiplugin_sheet.php -text
 lib/wiki-plugins/wikiplugin_shopperinfo.php -text
 lib/wiki-plugins/wikiplugin_showpages.php -text
 lib/wiki-plugins/wikiplugin_showreference.php -text
+lib/wiki-plugins/wikiplugin_sign.php -text
 lib/wiki-plugins/wikiplugin_skype.php -text
 lib/wiki-plugins/wikiplugin_slider.php -text
 lib/wiki-plugins/wikiplugin_slideshow.php -text
@@ -6097,6 +6098,7 @@ templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_relations.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
 templates/wiki-plugins/wikiplugin_shopperinfo.tpl -text
+templates/wiki-plugins/wikiplugin_sign.tpl -text
 templates/wiki-plugins/wikiplugin_snarf.tpl -text
 templates/wiki-plugins/wikiplugin_stat.tpl -text
 templates/wiki-plugins/wikiplugin_subscribegroup.tpl -text
