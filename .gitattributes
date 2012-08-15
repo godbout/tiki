@@ -5209,6 +5209,7 @@ templates/comment-footer.tpl -text
 templates/comment-header.tpl -text
 templates/comment.tpl -text
 templates/comment/archive.tpl -text
+templates/comment/deliberation_opinion.tpl -text
 templates/comment/index.php -text
 templates/comment/list.tpl -text
 templates/comment/lock.tpl -text
