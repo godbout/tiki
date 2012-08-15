@@ -3487,6 +3487,7 @@ lib/prefs/unsuccessful.php -text
 lib/prefs/url.php -text
 lib/prefs/use.php -text
 lib/prefs/user.php -text
+lib/prefs/userfiles.php -text
 lib/prefs/username.php -text
 lib/prefs/users.php -text
 lib/prefs/validator.php -text
