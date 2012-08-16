@@ -2538,6 +2538,7 @@ lib/core/Search/Type/index.php -text
 lib/core/Search/index.php -text
 lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/AuthSource/index.php -text
+lib/core/Services/BigBlueButton/Controller.php -text
 lib/core/Services/Broker.php -text
 lib/core/Services/Category/Controller.php -text
 lib/core/Services/Category/index.php -text
@@ -2549,6 +2550,7 @@ lib/core/Services/Connect/index.php -text
 lib/core/Services/Draw/Controller.php -text
 lib/core/Services/Draw/index.php -text
 lib/core/Services/Exception.php -text
+lib/core/Services/Exception/Denied.php -text
 lib/core/Services/Exception/Disabled.php -text
 lib/core/Services/Exception/DuplicateValue.php -text
 lib/core/Services/Exception/MissingValue.php -text
@@ -2635,6 +2637,7 @@ lib/core/Tiki/Profile/Installer.php -text
 lib/core/Tiki/Profile/List.php -text
 lib/core/Tiki/Profile/Object.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
+lib/core/Tiki/Security.php -text
 lib/core/Tiki/Version/Checker.php -text
 lib/core/Tiki/Version/Upgrade.php -text
 lib/core/Tiki/Version/Version.php -text
@@ -4117,6 +4120,7 @@ lib/test/core/TikiFilter/PrepareInputTest.php -text
 lib/test/core/TikiFilter/WordTest.php -text
 lib/test/core/TikiFilter/XssTest.php -text
 lib/test/core/TikiFilter/index.php -text
+lib/test/core/TikiSecurityTest.php -text
 lib/test/core/Transition/AtLeastTest.php -text
 lib/test/core/Transition/AtMostTest.php -text
 lib/test/core/Transition/BasicTest.php -text
