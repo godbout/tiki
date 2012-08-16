@@ -2345,6 +2345,7 @@ lib/core/JisonParser/Phraser/index.php -text
 lib/core/JisonParser/Wiki.jison -text
 lib/core/JisonParser/Wiki.js -text
 lib/core/JisonParser/Wiki.php -text
+lib/core/JisonParser/Wiki/AutoLink.php -text
 lib/core/JisonParser/Wiki/Handler.js -text
 lib/core/JisonParser/Wiki/Handler.php -text
 lib/core/JisonParser/Wiki/Header.php -text
