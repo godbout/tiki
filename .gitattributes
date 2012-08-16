@@ -2598,6 +2598,7 @@ lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
 lib/core/Tiki/Profile.php -text
+lib/core/Tiki/Profile/ChannelList.php -text
 lib/core/Tiki/Profile/Converter.php -text
 lib/core/Tiki/Profile/DateConverter.php -text
 lib/core/Tiki/Profile/InstallHandler.php -text
@@ -2631,6 +2632,7 @@ lib/core/Tiki/Profile/InstallHandler/Webservice.php -text
 lib/core/Tiki/Profile/InstallHandler/WebserviceTemplate.php -text
 lib/core/Tiki/Profile/InstallHandler/WikiPage.php -text
 lib/core/Tiki/Profile/Installer.php -text
+lib/core/Tiki/Profile/List.php -text
 lib/core/Tiki/Profile/Object.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
 lib/core/Tiki/Version/Checker.php -text
@@ -3602,9 +3604,7 @@ lib/prefs/wysiwyg.php -text
 lib/prefs/zend.php -text
 lib/prefs/zotero.php -text
 lib/prefslib.php -text
-lib/profilelib/channellib.php -text
 lib/profilelib/index.php -text
-lib/profilelib/listlib.php -text
 lib/profilelib/shell.php -text
 lib/queuelib.php -text
 lib/quizzes/index.php -text
