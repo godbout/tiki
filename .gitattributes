@@ -1359,6 +1359,7 @@ img/icons/table_multiple.png -text
 img/icons/table_sort.png -text
 img/icons/tag_blue.png -text
 img/icons/tag_blue_add.png -text
+img/icons/tag_orange.png -text
 img/icons/task_received.png -text
 img/icons/task_shared.png -text
 img/icons/task_submitted.png -text
@@ -3084,6 +3085,7 @@ lib/menubuilder/menu.js -text
 lib/menubuilder/menulib.php -text
 lib/messu/index.php -text
 lib/messu/messulib.php -text
+lib/metadata/basicinfo.php -text
 lib/metadata/imagefile.php -text
 lib/metadata/index.php -text
 lib/metadata/iptc.php -text
@@ -5417,6 +5419,7 @@ templates/messu-read.tpl -text
 templates/messu-read_archive.tpl -text
 templates/messu-read_sent.tpl -text
 templates/messu-sent.tpl -text
+templates/metadata/meta_view_dialog.tpl -text
 templates/metrics-tab.tpl -text
 templates/module.tpl -text
 templates/modules/index.php -text
