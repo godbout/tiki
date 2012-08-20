@@ -3839,6 +3839,7 @@ lib/smarty_tiki/function.preference.php -text
 lib/smarty_tiki/function.query.php -text
 lib/smarty_tiki/function.quotabar.php -text
 lib/smarty_tiki/function.rating.php -text
+lib/smarty_tiki/function.rating_override_menu.php -text
 lib/smarty_tiki/function.rcontent.php -text
 lib/smarty_tiki/function.redirect.php -text
 lib/smarty_tiki/function.reindex_file_pixel.php -text
