@@ -2542,6 +2542,7 @@ lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/AuthSource/index.php -text
 lib/core/Services/BigBlueButton/Controller.php -text
 lib/core/Services/Broker.php -text
+lib/core/Services/Calendar/Controller.php -text
 lib/core/Services/Category/Controller.php -text
 lib/core/Services/Category/index.php -text
 lib/core/Services/Comment/Controller.php -text
@@ -6248,7 +6249,6 @@ tests/testfile.txt -text
 /tiki-browse_gallery.php -text
 /tiki-browse_image.php -text
 /tiki-calendar.php -text
-/tiki-calendar_action.php -text
 /tiki-calendar_edit_item.php -text
 /tiki-calendar_export_ical.php -text
 /tiki-calendar_import.php -text
