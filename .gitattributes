@@ -2580,6 +2580,7 @@ lib/core/Services/Report/index.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
+lib/core/Services/Tracker/CalendarController.php -text
 lib/core/Services/Tracker/Controller.php -text
 lib/core/Services/Tracker/SearchController.php -text
 lib/core/Services/Tracker/SyncController.php -text
@@ -4543,6 +4544,7 @@ lib/wiki-plugins/wikiplugin_toc.php -text
 lib/wiki-plugins/wikiplugin_topfriends.php -text
 lib/wiki-plugins/wikiplugin_tr.php -text
 lib/wiki-plugins/wikiplugin_tracker.php -text
+lib/wiki-plugins/wikiplugin_trackercalendar.php -text
 lib/wiki-plugins/wikiplugin_trackercomments.php -text
 lib/wiki-plugins/wikiplugin_trackerfilter.php -text
 lib/wiki-plugins/wikiplugin_trackerif.php -text
@@ -6113,6 +6115,7 @@ templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/index.php -text
+templates/wiki-plugins/trackercalendar.tpl -text
 templates/wiki-plugins/wikiplugin_addfreetag.tpl -text
 templates/wiki-plugins/wikiplugin_addreference.tpl -text
 templates/wiki-plugins/wikiplugin_addrelation.tpl -text
