@@ -52,6 +52,7 @@ admin/include_webmail.php -text
 admin/include_webservices.php -text
 admin/include_wiki.php -text
 admin/include_wikiatt.php -text
+admin/include_workspace.php -text
 admin/include_wysiwyg.php -text
 admin/index.php -text
 /antibot.php -text
@@ -5247,6 +5248,7 @@ templates/admin/include_webmail.tpl -text
 templates/admin/include_webservices.tpl -text
 templates/admin/include_wiki.tpl -text
 templates/admin/include_wikiatt.tpl -text
+templates/admin/include_workspace.tpl -text
 templates/admin/include_wysiwyg.tpl -text
 templates/admin/index.php -text
 templates/admin_modules_form.tpl -text
