@@ -2542,6 +2542,7 @@ lib/core/Search/Query/RelationReplacer.php -text
 lib/core/Search/Query/WeightCalculator/Field.php -text
 lib/core/Search/Query/WeightCalculator/Interface.php -text
 lib/core/Search/Query/WeightCalculator/index.php -text
+lib/core/Search/Query/WikiBuilder.php -text
 lib/core/Search/Query/index.php -text
 lib/core/Search/ResultSet.php -text
 lib/core/Search/ResultSet/SnippetHelper.php -text
