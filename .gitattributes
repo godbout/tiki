@@ -2613,6 +2613,7 @@ lib/core/Services/User/Controller.php -text
 lib/core/Services/User/index.php -text
 lib/core/Services/Wiki/Controller.php -text
 lib/core/Services/Wiki/index.php -text
+lib/core/Services/Workspace/Controller.php -text
 lib/core/Services/index.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
@@ -3634,6 +3635,7 @@ lib/prefs/wikiapproval.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
 lib/prefs/wikipluginprefs.php -text
+lib/prefs/workspace.php -text
 lib/prefs/wysiwyg.php -text
 lib/prefs/zend.php -text
 lib/prefs/zotero.php -text
@@ -6197,6 +6199,7 @@ templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
+templates/workspace/create.tpl -text
 templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
