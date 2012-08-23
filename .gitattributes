@@ -2632,10 +2632,13 @@ lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
 lib/core/Tiki/Profile.php -text
+lib/core/Tiki/Profile/Analyser.php -text
+lib/core/Tiki/Profile/Builder.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
 lib/core/Tiki/Profile/Converter.php -text
 lib/core/Tiki/Profile/DateConverter.php -text
 lib/core/Tiki/Profile/InstallHandler.php -text
+lib/core/Tiki/Profile/InstallHandler/AreaBinding.php -text
 lib/core/Tiki/Profile/InstallHandler/Article.php -text
 lib/core/Tiki/Profile/InstallHandler/ArticleTopic.php -text
 lib/core/Tiki/Profile/InstallHandler/ArticleType.php -text
@@ -6207,6 +6210,7 @@ templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 templates/workspace/add_template.tpl -text
 templates/workspace/create.tpl -text
+templates/workspace/edit_template.tpl -text
 templates/workspace/list_templates.tpl -text
 templates_c/index.php -text
 tests/.htaccess -text
