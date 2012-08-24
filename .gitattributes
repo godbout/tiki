@@ -4109,6 +4109,7 @@ lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/index.php -text
 lib/test/core/Perms/index.php -text
+lib/test/core/Profile/BuilderTest.php -text
 lib/test/core/Reports/CacheTest.php -text
 lib/test/core/Reports/FactoryTest.php -text
 lib/test/core/Reports/ManagerTest.php -text
