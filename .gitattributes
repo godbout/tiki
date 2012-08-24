@@ -2053,6 +2053,7 @@ installer/schema/20120604_add_holder_to_copyright_tiki.sql -text
 installer/schema/20120628_correct_admin_user_createdate_tiki.sql -text
 installer/schema/20120823_admin_user_credit_menu_entry_tiki.sql -text
 installer/schema/20120823_workspace_template_tiki.sql -text
+installer/schema/20120824_advanced_mode_flag_tiki.sql -text
 installer/schema/20120824_bc_center_preference_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
@@ -4022,6 +4023,7 @@ lib/test/TestableTikiLib.php -text
 lib/test/TikiAcceptanceTestDBRestorer.php -text
 lib/test/TikiDatabaseTestCase.php -text
 lib/test/TikiLib/LibTest.php -text
+lib/test/TikiLib/MultiExplodeTest.php -text
 lib/test/TikiLib/TestableTikiLibTest.php -text
 lib/test/TikiLib/UriMergeTest.php -text
 lib/test/TikiLib/UrlEncodeAccentTest.php -text
@@ -6210,6 +6212,7 @@ templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 templates/workspace/add_template.tpl -text
+templates/workspace/advanced_edit.tpl -text
 templates/workspace/create.tpl -text
 templates/workspace/edit_template.tpl -text
 templates/workspace/list_templates.tpl -text
