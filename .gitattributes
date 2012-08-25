@@ -2019,6 +2019,7 @@ installer/schema/20120426_tiki_db_status_tiki.sql -text
 installer/schema/20120429_fix_collation_tiki.php -text
 installer/schema/20120628_correct_admin_user_createdate_tiki.sql -text
 installer/schema/20120823_admin_user_credit_menu_entry_tiki.sql -text
+installer/schema/20120825_accounting_menu_entry_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
