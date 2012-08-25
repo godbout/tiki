@@ -3076,6 +3076,7 @@ lib/jquery_tiki/tiki-jquery.mobile.js -text
 lib/jquery_tiki/tiki-maps.js -text
 lib/jquery_tiki/tiki-themegenerator.js -text
 lib/jquery_tiki/tiki-trackers.js -text
+lib/jquery_tiki/tiki-workspace-ui.js -text
 lib/language/CollectFiles.php -text
 lib/language/Exception.php -text
 lib/language/File.php -text
@@ -4109,6 +4110,7 @@ lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/index.php -text
 lib/test/core/Perms/index.php -text
+lib/test/core/Profile/AnalyserTest.php -text
 lib/test/core/Profile/BuilderTest.php -text
 lib/test/core/Reports/CacheTest.php -text
 lib/test/core/Reports/FactoryTest.php -text
@@ -6217,6 +6219,7 @@ templates/workspace/advanced_edit.tpl -text
 templates/workspace/create.tpl -text
 templates/workspace/edit_template.tpl -text
 templates/workspace/list_templates.tpl -text
+templates/workspace/select_permissions.tpl -text
 templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
