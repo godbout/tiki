@@ -1538,10 +1538,10 @@ img/overlay-disabled_item.png -text
 img/overlay-light.png -text
 img/php.png -text
 img/poweredbyhawhaw.gif -text
-img/rating_smiles/0.png -text
 img/rating_smiles/1.png -text
 img/rating_smiles/10.png -text
 img/rating_smiles/11.png -text
+img/rating_smiles/12.png -text
 img/rating_smiles/2.png -text
 img/rating_smiles/3.png -text
 img/rating_smiles/4.png -text
@@ -5299,7 +5299,7 @@ templates/comment-footer.tpl -text
 templates/comment-header.tpl -text
 templates/comment.tpl -text
 templates/comment/archive.tpl -text
-templates/comment/deliberation_opinion.tpl -text
+templates/comment/deliberation_item.tpl -text
 templates/comment/index.php -text
 templates/comment/list.tpl -text
 templates/comment/lock.tpl -text
