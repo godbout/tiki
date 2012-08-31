@@ -4594,6 +4594,7 @@ lib/wiki-plugins/wikiplugin_trackeritemfield.php -text
 lib/wiki-plugins/wikiplugin_trackerlist.php -text
 lib/wiki-plugins/wikiplugin_trackerpasscode.php -text
 lib/wiki-plugins/wikiplugin_trackerprefill.php -text
+lib/wiki-plugins/wikiplugin_trackerquerytemplate.php -text
 lib/wiki-plugins/wikiplugin_trackerstat.php -text
 lib/wiki-plugins/wikiplugin_trackertimeline.php -text
 lib/wiki-plugins/wikiplugin_trackertoggle.php -text
