@@ -2057,6 +2057,8 @@ installer/schema/20120824_advanced_mode_flag_tiki.sql -text
 installer/schema/20120824_bc_center_preference_tiki.sql -text
 installer/schema/20120825_accounting_menu_entry_tiki.sql -text
 installer/schema/20120826_store_metadata_tiki.sql -text
+installer/schema/20120904_category_root_tiki.php -text
+installer/schema/20120904_category_root_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
