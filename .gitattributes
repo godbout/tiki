@@ -4483,7 +4483,6 @@ lib/wiki-plugins/wikiplugin_fade.php -text
 lib/wiki-plugins/wikiplugin_fancylist.php -text
 lib/wiki-plugins/wikiplugin_fancytable.php -text
 lib/wiki-plugins/wikiplugin_favorite.php -text
-lib/wiki-plugins/wikiplugin_figure.php -text
 lib/wiki-plugins/wikiplugin_file.php -text
 lib/wiki-plugins/wikiplugin_files.php -text
 lib/wiki-plugins/wikiplugin_flash.php -text
