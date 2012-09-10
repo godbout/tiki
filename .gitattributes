@@ -2383,6 +2383,7 @@ lib/core/JisonParser/Wiki/Handler.js -text
 lib/core/JisonParser/Wiki/Handler.php -text
 lib/core/JisonParser/Wiki/Header.php -text
 lib/core/JisonParser/Wiki/HotWords.php -text
+lib/core/JisonParser/Wiki/HtmlCharacter.php -text
 lib/core/JisonParser/Wiki/List.php -text
 lib/core/JisonParser/Wiki/Smileys.php -text
 lib/core/JisonParser/Wiki/Test.html -text
