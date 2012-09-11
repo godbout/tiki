@@ -121,6 +121,7 @@ doc/devtools/mods.sh -text
 doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
 doc/devtools/parse_changelog.pl -text
 doc/devtools/parse_tiki.php -text
+doc/devtools/parser_diff.php -text
 doc/devtools/phpstrip.sh -text
 doc/devtools/prefreport.php -text
 doc/devtools/premerge_report.sh -text
