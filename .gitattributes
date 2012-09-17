@@ -2657,6 +2657,7 @@ lib/core/Tiki/Profile/InstallHandler/ArticleType.php -text
 lib/core/Tiki/Profile/InstallHandler/Blog.php -text
 lib/core/Tiki/Profile/InstallHandler/BlogPost.php -text
 lib/core/Tiki/Profile/InstallHandler/Calendar.php -text
+lib/core/Tiki/Profile/InstallHandler/Categorize.php -text
 lib/core/Tiki/Profile/InstallHandler/Category.php -text
 lib/core/Tiki/Profile/InstallHandler/DataChannel.php -text
 lib/core/Tiki/Profile/InstallHandler/ExtWiki.php -text
