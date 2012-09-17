@@ -6230,6 +6230,7 @@ templates/wiki_edit_actions.tpl -text
 templates/workspace/add_template.tpl -text
 templates/workspace/advanced_edit.tpl -text
 templates/workspace/create.tpl -text
+templates/workspace/edit_content.tpl -text
 templates/workspace/edit_template.tpl -text
 templates/workspace/list_templates.tpl -text
 templates/workspace/select_permissions.tpl -text
