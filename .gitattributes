@@ -2675,6 +2675,7 @@ lib/core/Tiki/Profile/InstallHandler/Template.php -text
 lib/core/Tiki/Profile/InstallHandler/Tracker.php -text
 lib/core/Tiki/Profile/InstallHandler/TrackerField.php -text
 lib/core/Tiki/Profile/InstallHandler/TrackerItem.php -text
+lib/core/Tiki/Profile/InstallHandler/TrackerOption.php -text
 lib/core/Tiki/Profile/InstallHandler/Transition.php -text
 lib/core/Tiki/Profile/InstallHandler/User.php -text
 lib/core/Tiki/Profile/InstallHandler/WebmailAccount.php -text
