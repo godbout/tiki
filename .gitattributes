@@ -5340,6 +5340,7 @@ templates/draw/edit.tpl -text
 templates/draw/index.php -text
 templates/duplicate_file_gallery.tpl -text
 templates/edit_file_gallery.tpl -text
+templates/error-ajax.tpl -text
 templates/error.tpl -text
 templates/error_raw.tpl -text
 templates/error_simple.tpl -text
