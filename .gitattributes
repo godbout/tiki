@@ -3134,12 +3134,14 @@ lib/menubuilder/menulib.php -text
 lib/messu/index.php -text
 lib/messu/messulib.php -text
 lib/metadata/basicinfo.php -text
+lib/metadata/datatypes/index.php -text
 lib/metadata/exif.php -text
-lib/metadata/imagefile.php -text
+lib/metadata/filetypes/imagefile.php -text
+lib/metadata/filetypes/index.php -text
+lib/metadata/filetypes/jpeg.php -text
 lib/metadata/index.php -text
 lib/metadata/iptc.php -text
-lib/metadata/jpeg.php -text
-lib/metadata/metadata.php -text
+lib/metadata/metadatalib.php -text
 lib/metadata/reconcile.php -text
 lib/metadata/xmp.php -text
 lib/metrics.js -text
