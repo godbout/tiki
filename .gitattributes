@@ -4077,6 +4077,7 @@ lib/test/core/DeclFilter/StaticKeyUnsetTest.php -text
 lib/test/core/DeclFilter/index.php -text
 lib/test/core/Event/ManagerTest.php -text
 lib/test/core/Event/index.php -text
+lib/test/core/JisonParser/Abstract.php -text
 lib/test/core/JisonParser/OutputTest.php -text
 lib/test/core/JitFilter/AccessTest.php -text
 lib/test/core/JitFilter/FilterTest.php -text
