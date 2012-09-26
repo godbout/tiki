@@ -127,6 +127,7 @@ doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/release.php -text
 doc/devtools/removehtaccess.sh -text
 doc/devtools/restorehelp.php -text
+doc/devtools/rewritesecdb.php -text
 doc/devtools/search_smarty_prefs-2.0.php -text
 doc/devtools/securitycheck.php -text
 doc/devtools/set_perms.py -text
