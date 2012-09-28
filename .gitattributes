@@ -2548,6 +2548,7 @@ lib/core/Search/GlobalSource/Interface.php -text
 lib/core/Search/GlobalSource/PermissionSource.php -text
 lib/core/Search/GlobalSource/RelationSource.php -text
 lib/core/Search/GlobalSource/Static.php -text
+lib/core/Search/GlobalSource/VisitsSource.php -text
 lib/core/Search/GlobalSource/index.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Lucene.php -text
