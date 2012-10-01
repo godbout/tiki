@@ -5608,6 +5608,7 @@ templates/tiki-calendar_nav.tpl -text
 templates/tiki-calendar_params_ical.tpl -text
 templates/tiki-calendar_weekmode.tpl -text
 templates/tiki-change_password.tpl -text
+templates/tiki-check.tpl -text
 templates/tiki-choose_page_language.tpl -text
 templates/tiki-contact.tpl -text
 templates/tiki-contacts.tpl -text
@@ -6106,6 +6107,7 @@ tests/testfile.txt -text
 /tiki-calendars_rss.php -text
 /tiki-change_password.php -text
 /tiki-channel.php -text
+/tiki-check.php -text
 /tiki-cms_rankings.php -text
 /tiki-confirm_user_email.php -text
 /tiki-contact.php -text
