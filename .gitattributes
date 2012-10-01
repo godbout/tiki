@@ -2365,6 +2365,7 @@ lib/core/Feed/Html/index.php -text
 lib/core/Feed/TextLink.php -text
 lib/core/Feed/index.php -text
 lib/core/FileGallery/File.php -text
+lib/core/FileGallery/Wrapper.php -text
 lib/core/FileGallery/index.php -text
 lib/core/Horde/Yaml.php -text
 lib/core/Horde/Yaml/Dumper.php -text
