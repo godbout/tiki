@@ -4,7 +4,6 @@
 /_htaccess -text
 /about.php -text
 admin/include_ads.php -text
-admin/include_areas.php -text
 admin/include_articles.php -text
 admin/include_blogs.php -text
 admin/include_calendar.php -text
@@ -5234,7 +5233,6 @@ templates/.htaccess -text
 templates/addreference.tpl -text
 templates/admin/include_ads.tpl -text
 templates/admin/include_anchors.tpl -text
-templates/admin/include_areas.tpl -text
 templates/admin/include_articles.tpl -text
 templates/admin/include_blogs.tpl -text
 templates/admin/include_calendar.tpl -text
