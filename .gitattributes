@@ -565,6 +565,7 @@ img/icons/archives.gif -text
 img/icons/arrow-down.gif -text
 img/icons/arrow-right.gif -text
 img/icons/arrow.gif -text
+img/icons/arrow_down.png -text
 img/icons/arrow_fliped.gif -text
 img/icons/arrow_in.png -text
 img/icons/arrow_left.png -text
@@ -579,6 +580,7 @@ img/icons/arrow_turn_down_left.png -text
 img/icons/arrow_turn_down_right.png -text
 img/icons/arrow_turn_left.png -text
 img/icons/arrow_undo.png -text
+img/icons/arrow_up.png -text
 img/icons/assign.png -text
 img/icons/attach.png -text
 img/icons/attachment.gif -text
