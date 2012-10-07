@@ -115,6 +115,7 @@ doc/devtools/fix-encoding.php -text
 doc/devtools/get_translation_percentage.php -text
 doc/devtools/ggg-trace.php -text
 doc/devtools/index.php -text
+doc/devtools/ks_prefreport.php -text
 doc/devtools/mass_wording_corrections.pl -text
 doc/devtools/mergelang.php -text
 doc/devtools/mods.sh -text
