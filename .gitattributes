@@ -5094,6 +5094,7 @@ styles/ohia/options/planet/header.jpg -text
 styles/ohia/options/planet/header_repeat.jpg -text
 styles/ohia/options/planet/index.php -text
 styles/readme.txt -text
+styles/site_closed.html -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
 styles/slideshows/clear.css -text
