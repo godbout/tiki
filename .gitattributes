@@ -5094,7 +5094,6 @@ styles/ohia/options/planet/header.jpg -text
 styles/ohia/options/planet/header_repeat.jpg -text
 styles/ohia/options/planet/index.php -text
 styles/readme.txt -text
-styles/site_closed.html -text
 styles/slides/index.php -text
 styles/slides/wiredot.png -text svneol=unset#unset
 styles/slideshows/clear.css -text
@@ -5729,6 +5728,7 @@ templates/styles/mobile/tiki_full.tpl -text
 templates/styles/mobile/tracker_actions.tpl -text
 templates/styles/mobile/wiki_edit_actions.tpl -text
 templates/styles/ohia/index.php -text
+templates/styles/site_closed.html -text
 templates/styles/snow/index.php -text
 templates/styles/strasa/blog_post_author_info.tpl -text
 templates/styles/strasa/blog_wrapper.tpl -text
