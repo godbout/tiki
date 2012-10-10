@@ -2782,6 +2782,8 @@ lib/core/WikiParser/PluginRunner.php -text
 lib/core/WikiParser/index.php -text
 lib/core/WikiPlugin/ConditionBase.php -text
 lib/core/WikiPlugin/HtmlBase.php -text
+lib/core/WikiPlugin/Negotiator/CKEditor.php -text
+lib/core/WikiPlugin/Negotiator/Parser.php -text
 lib/core/WikiPlugin/expandingoutline.php -text
 lib/core/WikiPlugin/expandingoutline/list.php -text
 lib/core/WikiPlugin/maketoc.php -text
