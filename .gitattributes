@@ -5898,6 +5898,7 @@ templates/tiki-gmap_usermap.tpl -text
 templates/tiki-graph-sheets.tpl -text
 templates/tiki-history_sheets.tpl -text
 templates/tiki-ical.tpl -text
+templates/tiki-ids.tpl -text
 templates/tiki-import-sheets.tpl -text
 templates/tiki-import_structuredtext.tpl -text
 templates/tiki-import_xml_zip.tpl -text
@@ -6420,6 +6421,7 @@ tests/testfile.txt -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
 /tiki-history_sheets.php -text
+/tiki-ids.php -text
 /tiki-image_galleries_rss.php -text
 /tiki-image_gallery_rss.php -text
 /tiki-import_sheet.php -text
