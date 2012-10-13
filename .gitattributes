@@ -5717,6 +5717,7 @@ templates/styles/coelesce/blog_wrapper.tpl -text
 templates/styles/coelesce/index.php -text
 templates/styles/darkshine/index.php -text
 templates/styles/eatlon/index.php -text
+templates/styles/ids_blocked.html -text
 templates/styles/index.php -text
 templates/styles/mobile/category_tree_entry.tpl -text
 templates/styles/mobile/find.tpl -text
@@ -6422,6 +6423,7 @@ tests/testfile.txt -text
 /tiki-graph_sheet.php -text
 /tiki-history_sheets.php -text
 /tiki-ids.php -text
+/tiki-ids_blocked.php -text
 /tiki-image_galleries_rss.php -text
 /tiki-image_gallery_rss.php -text
 /tiki-import_sheet.php -text
