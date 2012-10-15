@@ -1648,6 +1648,7 @@ img/wiki/index.php -text
 img/wiki_up/README -text
 img/wiki_up/index.php -text
 /index.php -text
+/install_version.php -text
 installer/.htaccess -text
 installer/index.php -text
 installer/installlib.php -text
