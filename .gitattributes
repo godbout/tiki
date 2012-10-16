@@ -4834,6 +4834,7 @@ modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
 modules/mod-func-zotero.php -text
 modules/web.config -text
+permissioncheck/functions.inc -text
 permissioncheck/index.php -text
 /plugins_help.php -text
 /poll_categorize.php -text
