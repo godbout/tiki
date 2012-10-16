@@ -4836,6 +4836,7 @@ modules/mod-func-zotero.php -text
 modules/web.config -text
 permissioncheck/functions.inc -text
 permissioncheck/index.php -text
+permissioncheck/usecases.inc -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /received_article_image.php -text
