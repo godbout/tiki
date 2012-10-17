@@ -4843,7 +4843,6 @@ permissioncheck/mixed/check.php -text
 permissioncheck/paranoia-suphp/check.php -text
 permissioncheck/paranoia/check.php -text
 permissioncheck/risky/check.php -text
-permissioncheck/usecases.inc -text
 permissioncheck/usecases.php.inc -text
 /plugins_help.php -text
 /poll_categorize.php -text
