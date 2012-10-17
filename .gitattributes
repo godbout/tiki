@@ -4846,6 +4846,7 @@ permissioncheck/permission_granted.php.inc -text
 permissioncheck/permission_print.php.inc -text
 permissioncheck/risky/check.php -text
 permissioncheck/usecases.php.inc -text
+permissioncheck/usecases.txt -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /prepare_permissioncheck.sh -text
