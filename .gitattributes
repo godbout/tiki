@@ -2786,6 +2786,7 @@ lib/core/WikiPlugin/ConditionBase.php -text
 lib/core/WikiPlugin/HtmlBase.php -text
 lib/core/WikiPlugin/Negotiator/CKEditor.php -text
 lib/core/WikiPlugin/Negotiator/Wiki.php -text
+lib/core/WikiPlugin/Negotiator/Wiki/Alias.php -text
 lib/core/WikiPlugin/expandingoutline.php -text
 lib/core/WikiPlugin/expandingoutline/list.php -text
 lib/core/WikiPlugin/forwardlinkbutton.php -text
