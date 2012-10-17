@@ -4839,6 +4839,7 @@ permissioncheck/.htpasswd -text
 permissioncheck/_htaccess -text
 permissioncheck/functions.php.inc -text
 permissioncheck/index.php -text
+permissioncheck/insane/check.php -text
 permissioncheck/mixed/check.php -text
 permissioncheck/paranoia-suphp/check.php -text
 permissioncheck/paranoia/check.php -text
