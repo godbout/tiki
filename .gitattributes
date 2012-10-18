@@ -4837,10 +4837,12 @@ modules/mod-func-zotero.php -text
 modules/web.config -text
 permissioncheck/.htpasswd -text
 permissioncheck/_htaccess -text
+permissioncheck/check.php -text
 permissioncheck/functions.php.inc -text
 permissioncheck/index.php -text
 permissioncheck/insane/check.php -text
 permissioncheck/mixed/check.php -text
+permissioncheck/no.txt -text
 permissioncheck/paranoia-suphp/check.php -text
 permissioncheck/paranoia/check.php -text
 permissioncheck/permission_granted.php.inc -text
@@ -4849,6 +4851,7 @@ permissioncheck/permission_print.php.inc -text
 permissioncheck/risky/check.php -text
 permissioncheck/usecases.php.inc -text
 permissioncheck/usecases.txt -text
+permissioncheck/yes.txt -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /prepare_permissioncheck.sh -text
