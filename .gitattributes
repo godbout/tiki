@@ -2512,6 +2512,7 @@ lib/core/Search/ContentSource/Interface.php -text
 lib/core/Search/ContentSource/SheetSource.php -text
 lib/core/Search/ContentSource/Static.php -text
 lib/core/Search/ContentSource/TrackerItemSource.php -text
+lib/core/Search/ContentSource/UserSource.php -text
 lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/ContentSource/index.php -text
 lib/core/Search/Expr/And.php -text
