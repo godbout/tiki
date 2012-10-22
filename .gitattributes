@@ -3088,6 +3088,8 @@ lib/jquery_tiki/brosho/tiki.brosho.css -text
 lib/jquery_tiki/brosho/tiki_brosho.js -text
 lib/jquery_tiki/colorpicker/index.php -text
 lib/jquery_tiki/colorpicker/layout.css -text
+lib/jquery_tiki/elfinder/elFinderVolumeTikiFiles.class.php -text
+lib/jquery_tiki/elfinder/tiki-elfinder.js -text
 lib/jquery_tiki/index.php -text
 lib/jquery_tiki/tablesorter/index.php -text
 lib/jquery_tiki/tablesorter/themes/index.php -text
