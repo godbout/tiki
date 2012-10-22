@@ -4838,6 +4838,7 @@ modules/mod-func-wiki_last_comments.php -text
 modules/mod-func-youtube.php -text
 modules/mod-func-zotero.php -text
 modules/web.config -text
+permissioncheck/.htaccess -text
 permissioncheck/.htpasswd -text
 permissioncheck/_htaccess -text
 permissioncheck/check.php -text
