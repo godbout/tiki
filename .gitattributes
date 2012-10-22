@@ -4847,17 +4847,14 @@ permissioncheck/insane/check.php -text
 permissioncheck/mixed/check.php -text
 permissioncheck/new.bin -text
 permissioncheck/no.bin -text
-permissioncheck/no.txt -text
 permissioncheck/paranoia-suphp/check.php -text
 permissioncheck/paranoia/check.php -text
 permissioncheck/permission_granted.php.inc -text
-permissioncheck/permission_granted.txt -text
 permissioncheck/permission_print.php.inc -text
 permissioncheck/risky/check.php -text
 permissioncheck/usecases.php.inc -text
 permissioncheck/usecases.txt -text
 permissioncheck/yes.bin -text
-permissioncheck/yes.txt -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /prepare_permissioncheck.sh -text
