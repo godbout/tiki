@@ -2395,12 +2395,14 @@ lib/core/JisonParser/Wiki/Handler.php -text
 lib/core/JisonParser/Wiki/Header.php -text
 lib/core/JisonParser/Wiki/HotWords.php -text
 lib/core/JisonParser/Wiki/HtmlCharacter.php -text
+lib/core/JisonParser/Wiki/Link.php -text
 lib/core/JisonParser/Wiki/List.php -text
 lib/core/JisonParser/Wiki/Smileys.php -text
 lib/core/JisonParser/Wiki/Test.html -text
 lib/core/JisonParser/Wiki/index.php -text
 lib/core/JisonParser/WikiCKEditor/Handler.php -text
 lib/core/JisonParser/WikiCKEditor/HtmlCharacter.php -text
+lib/core/JisonParser/WikiCKEditor/Link.php -text
 lib/core/JisonParser/index.php -text
 lib/core/JitFilter.php -text
 lib/core/JitFilter/Element.php -text
