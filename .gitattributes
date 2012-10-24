@@ -2401,6 +2401,7 @@ lib/core/JisonParser/Wiki/Test.html -text
 lib/core/JisonParser/Wiki/index.php -text
 lib/core/JisonParser/WikiCKEditor/Handler.php -text
 lib/core/JisonParser/WikiCKEditor/HtmlCharacter.php -text
+lib/core/JisonParser/WikiCKEditor/Link.php -text
 lib/core/JisonParser/index.php -text
 lib/core/JitFilter.php -text
 lib/core/JitFilter/Element.php -text
@@ -4849,6 +4850,7 @@ permissioncheck/new.bin -text
 permissioncheck/no.bin -text
 permissioncheck/paranoia-suphp/check.php -text
 permissioncheck/paranoia/check.php -text
+permissioncheck/permission_granted.bin -text
 permissioncheck/permission_granted.php.inc -text
 permissioncheck/permission_print.php.inc -text
 permissioncheck/risky/check.php -text
