@@ -4844,7 +4844,9 @@ modules/web.config -text
 permissioncheck/.htaccess -text
 permissioncheck/.htpasswd -text
 permissioncheck/_htaccess -text
+permissioncheck/_htpasswd -text
 permissioncheck/check.php -text
+permissioncheck/create_new_htaccess.php -text
 permissioncheck/functions.inc.php -text
 permissioncheck/index.php -text
 permissioncheck/insane/check.php -text
