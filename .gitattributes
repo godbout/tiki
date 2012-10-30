@@ -2793,9 +2793,9 @@ lib/core/WikiPlugin/Negotiator/Wiki.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/Alias.php -text
 lib/core/WikiPlugin/expandingoutline.php -text
 lib/core/WikiPlugin/expandingoutline/list.php -text
-lib/core/WikiPlugin/forwardlinkbutton.php -text
 lib/core/WikiPlugin/maketoc.php -text
 lib/core/WikiPlugin/oohtml.php -text
+lib/core/WikiPlugin/textlinkbutton.php -text
 lib/core/index.php -text
 lib/credits/creditslib.php -text
 lib/credits/index.php -text
