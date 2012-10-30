@@ -4857,6 +4857,7 @@ permissioncheck/morepain/check.php -text
 permissioncheck/moreworry/check.php -text
 permissioncheck/new.bin -text
 permissioncheck/no.bin -text
+permissioncheck/pain/check.php -text
 permissioncheck/paranoia-suphp/check.php -text
 permissioncheck/paranoia/check.php -text
 permissioncheck/permission_granted.bin -text
