@@ -4853,6 +4853,8 @@ permissioncheck/insane/check.php -text
 permissioncheck/list-of-files.txt -text
 permissioncheck/list-of-subdirs.txt -text
 permissioncheck/mixed/check.php -text
+permissioncheck/morepain/check.php -text
+permissioncheck/moreworry/check.php -text
 permissioncheck/new.bin -text
 permissioncheck/no.bin -text
 permissioncheck/paranoia-suphp/check.php -text
@@ -4862,6 +4864,7 @@ permissioncheck/permission_granted.inc.php -text
 permissioncheck/risky/check.php -text
 permissioncheck/usecases.inc.php -text
 permissioncheck/usecases.txt -text
+permissioncheck/worry/check.php -text
 permissioncheck/yes.bin -text
 /plugins_help.php -text
 /poll_categorize.php -text
