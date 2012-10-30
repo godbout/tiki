@@ -4851,6 +4851,7 @@ permissioncheck/functions.inc.php -text
 permissioncheck/index.php -text
 permissioncheck/insane/check.php -text
 permissioncheck/list-of-files.txt -text
+permissioncheck/list-of-subdirs.txt -text
 permissioncheck/mixed/check.php -text
 permissioncheck/new.bin -text
 permissioncheck/no.bin -text
