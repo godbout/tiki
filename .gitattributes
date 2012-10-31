@@ -2380,6 +2380,10 @@ lib/core/Horde/Yaml/Loader.php -text
 lib/core/Horde/Yaml/Node.php -text
 lib/core/Horde/Yaml/index.php -text
 lib/core/Horde/index.php -text
+lib/core/JisonParser/Html.jison -text
+lib/core/JisonParser/Html.js -text
+lib/core/JisonParser/Html.php -text
+lib/core/JisonParser/Html/Handler.php -text
 lib/core/JisonParser/Phraser.jison -text
 lib/core/JisonParser/Phraser.js -text
 lib/core/JisonParser/Phraser.php -text
