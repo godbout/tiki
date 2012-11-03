@@ -2617,6 +2617,7 @@ lib/core/Services/Exception/index.php -text
 lib/core/Services/Favorite/Controller.php -text
 lib/core/Services/Favorite/index.php -text
 lib/core/Services/File/Controller.php -text
+lib/core/Services/File/FinderController.php -text
 lib/core/Services/File/index.php -text
 lib/core/Services/JCapture/Controller.php -text
 lib/core/Services/JCapture/index.php -text
