@@ -5089,6 +5089,7 @@ styles/fivealive/options/watermelon/siteheadertile.png -text svneol=unset#image/
 styles/fivealive/options/watermelon/watermelon.png -text svneol=unset#image/png
 styles/fivealive/searchform.png -text svneol=unset#image/png
 styles/fivealive/topbar.jpg -text svneol=unset#image/jpeg
+styles/gradiant.css -text
 styles/index.php -text
 styles/integrator/README -text
 styles/integrator/default.css -text
