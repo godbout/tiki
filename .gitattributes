@@ -2672,6 +2672,7 @@ lib/core/StandardAnalyzer/TokenFilter/EnglishStemmer/index.php -text
 lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
+lib/core/Tiki/MemoryLimit.php -text
 lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/Analyser.php -text
 lib/core/Tiki/Profile/Builder.php -text
@@ -2716,6 +2717,7 @@ lib/core/Tiki/Profile/List.php -text
 lib/core/Tiki/Profile/Object.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
 lib/core/Tiki/Security.php -text
+lib/core/Tiki/TimeLimit.php -text
 lib/core/Tiki/Version/Checker.php -text
 lib/core/Tiki/Version/Upgrade.php -text
 lib/core/Tiki/Version/Version.php -text
@@ -3550,6 +3552,7 @@ lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
 lib/prefs/ajax.php -text
+lib/prefs/allocate.php -text
 lib/prefs/allowmsg.php -text
 lib/prefs/areas.php -text
 lib/prefs/art.php -text
