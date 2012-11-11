@@ -4881,6 +4881,7 @@ permissioncheck/yes.bin -text
 /robots.txt -text
 /select_banner.php -text
 /sendmail.php -text
+/setup-legacy.sh -text
 /setup-revamp.sh -text
 /setup.sh -text
 /show_image.php -text
