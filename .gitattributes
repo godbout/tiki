@@ -2672,6 +2672,7 @@ lib/core/StandardAnalyzer/TokenFilter/EnglishStemmer/index.php -text
 lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
+lib/core/Tiki/Editable/Value.php -text
 lib/core/Tiki/MemoryLimit.php -text
 lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/Analyser.php -text
@@ -3109,6 +3110,7 @@ lib/jquery_tiki/colorpicker/layout.css -text
 lib/jquery_tiki/elfinder/elFinderVolumeTikiFiles.class.php -text
 lib/jquery_tiki/elfinder/tiki-elfinder.js -text
 lib/jquery_tiki/index.php -text
+lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/tablesorter/index.php -text
 lib/jquery_tiki/tablesorter/themes/index.php -text
 lib/jquery_tiki/tablesorter/themes/tiki/asc.gif -text
@@ -3738,6 +3740,7 @@ lib/search/searchlib-unified.php -text
 lib/search/searchstatslib.php -text
 lib/search/shell.php -text
 lib/serializedlist.php -text
+lib/servicelib.php -text
 lib/setup/absolute_urls.php -text
 lib/setup/babelfish.php -text
 lib/setup/categories.php -text
@@ -6164,6 +6167,7 @@ templates/tracker/add_field.tpl -text
 templates/tracker/clone_item.tpl -text
 templates/tracker/duplicate.tpl -text
 templates/tracker/edit_field.tpl -text
+templates/tracker/edit_item_field.tpl -text
 templates/tracker/export.tpl -text
 templates/tracker/export_fields.tpl -text
 templates/tracker/export_profile.tpl -text
