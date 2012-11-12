@@ -4866,6 +4866,7 @@ permissioncheck/paranoia/check.php -text
 permissioncheck/permission_granted.bin -text
 permissioncheck/permission_granted.inc.php -text
 permissioncheck/risky/check.php -text
+permissioncheck/sbox/check.php -text
 permissioncheck/usecases.bin -text
 permissioncheck/usecases.inc.php -text
 permissioncheck/usecases.txt -text
