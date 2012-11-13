@@ -4883,7 +4883,6 @@ permissioncheck/yes.bin -text
 /select_banner.php -text
 /sendmail.php -text
 /setup-legacy.sh -text
-/setup-revamp.sh -text
 /setup.sh -text
 /show_image.php -text
 /snarf_ajax.php -text
