@@ -3211,6 +3211,12 @@ lib/notifications/notificationlib.php -text
 lib/oauthlib.php -text
 lib/objectlib.php -text
 lib/ointegratelib.php -text
+lib/openpgp/OpenPGP_Zend_Mail.php -text
+lib/openpgp/OpenPGP_Zend_Mail_Transport_Abstract.php -text
+lib/openpgp/OpenPGP_Zend_Mail_Transport_Sendmail.php -text
+lib/openpgp/OpenPGP_Zend_Mail_Transport_Smtp.php -text
+lib/openpgp/index.php -text
+lib/openpgp/openpgplib.php -text
 lib/parser/index.php -text
 lib/parser/parserlib.php -text
 lib/payment/behavior/cancel_cart_order.php -text
