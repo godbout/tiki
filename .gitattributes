@@ -6175,10 +6175,10 @@ templates/tracker/add_field.tpl -text
 templates/tracker/clone_item.tpl -text
 templates/tracker/duplicate.tpl -text
 templates/tracker/edit_field.tpl -text
-templates/tracker/edit_item_field.tpl -text
 templates/tracker/export.tpl -text
 templates/tracker/export_fields.tpl -text
 templates/tracker/export_profile.tpl -text
+templates/tracker/fetch_item_field.tpl -text
 templates/tracker/import.tpl -text
 templates/tracker/import_items.tpl -text
 templates/tracker/index.php -text
