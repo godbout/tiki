@@ -2323,6 +2323,7 @@ lib/ckeditor_tiki/plugins/autosave/plugin.js -text
 lib/ckeditor_tiki/plugins/index.php -text
 lib/ckeditor_tiki/plugins/jisonline/plugin.js -text
 lib/ckeditor_tiki/plugins/jisonplugin/plugin.js -text
+lib/ckeditor_tiki/plugins/jisonsource/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiplugin/index.php -text
 lib/ckeditor_tiki/plugins/tikiplugin/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiwiki/index.php -text
