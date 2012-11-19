@@ -2307,6 +2307,7 @@ lib/ckeditor_tiki/ckeditor-icons/index.php -text
 lib/ckeditor_tiki/ckeditor-icons/specialchar.gif -text svneol=unset#unset
 lib/ckeditor_tiki/ckeditor-icons/styles.gif -text
 lib/ckeditor_tiki/index.php -text
+lib/ckeditor_tiki/jisonstyles.js -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/index.php -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/tikilink.js -text
 lib/ckeditor_tiki/plugins/_tikilink/index.php -text
