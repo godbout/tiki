@@ -3929,6 +3929,7 @@ lib/smarty_tiki/function.listfilter.php -text
 lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.metric.php -text
+lib/smarty_tiki/function.module.php -text
 lib/smarty_tiki/function.modulelist.php -text
 lib/smarty_tiki/function.norecords.php -text
 lib/smarty_tiki/function.obj_in_cat.php -text
