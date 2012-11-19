@@ -2721,6 +2721,8 @@ lib/core/Tiki/Profile/Installer.php -text
 lib/core/Tiki/Profile/List.php -text
 lib/core/Tiki/Profile/Object.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
+lib/core/Tiki/Render/Editable.php -text
+lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Security.php -text
 lib/core/Tiki/TimeLimit.php -text
 lib/core/Tiki/Version/Checker.php -text
