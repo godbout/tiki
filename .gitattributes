@@ -3890,6 +3890,7 @@ lib/smarty_tiki/block.textarea.php -text
 lib/smarty_tiki/block.tikimodule.php -text
 lib/smarty_tiki/block.title.php -text
 lib/smarty_tiki/block.tr.php -text
+lib/smarty_tiki/block.trackeritemcheck.php -text
 lib/smarty_tiki/block.translation.php -text
 lib/smarty_tiki/block.wiki.php -text
 lib/smarty_tiki/block.wikiplugin.php -text
