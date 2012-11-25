@@ -101,6 +101,7 @@ doc/devtools/add1tiki2multi.py -text
 doc/devtools/backup.php -text
 doc/devtools/backupdb.sh -text
 doc/devtools/buildincrement.php -text
+doc/devtools/check_filegal_dir.php -text
 doc/devtools/cleanwatch.sh -text
 doc/devtools/convert_templates_prefs-2.0.php -text
 doc/devtools/convert_tpl_ajax.php -text
