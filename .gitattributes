@@ -4848,6 +4848,7 @@ modules/mod-func-terminology.php -text
 modules/mod-func-tikitests.php -text
 modules/mod-func-top_active_blogs.php -text
 modules/mod-func-top_articles.php -text
+modules/mod-func-top_blog_posters.php -text
 modules/mod-func-top_file_galleries.php -text
 modules/mod-func-top_files.php -text
 modules/mod-func-top_forum_posters.php -text
@@ -5694,6 +5695,7 @@ templates/modules/mod-terminology.tpl -text
 templates/modules/mod-tikitests.tpl -text
 templates/modules/mod-top_active_blogs.tpl -text
 templates/modules/mod-top_articles.tpl -text
+templates/modules/mod-top_blog_posters.tpl -text
 templates/modules/mod-top_file_galleries.tpl -text
 templates/modules/mod-top_files.tpl -text
 templates/modules/mod-top_forum_posters.tpl -text
