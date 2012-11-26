@@ -1939,6 +1939,7 @@ installer/schema/20100920_todo_event_tiki.sql -text
 installer/schema/20100923_fix_column_position_tiki.sql -text
 installer/schema/20100923_social_networking_permission_and_menuitem_tiki.sql -text
 installer/schema/20100925_fix_some_default_value_tiki.sql -text
+installer/schema/20100927_better_column_fix2_tiki.php -text
 installer/schema/20100927_better_column_fix_tiki.php -text
 installer/schema/20100928_sefurl_regex_reordering_tiki.sql -text
 installer/schema/20101008_user_id_for_tiki_language_tiki.sql -text
