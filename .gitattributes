@@ -2324,6 +2324,7 @@ lib/ckeditor_tiki/plugins/autosave/images/tick_animated.gif -text
 lib/ckeditor_tiki/plugins/autosave/index.php -text
 lib/ckeditor_tiki/plugins/autosave/plugin.js -text
 lib/ckeditor_tiki/plugins/index.php -text
+lib/ckeditor_tiki/plugins/jisonformat/plugin.js -text
 lib/ckeditor_tiki/plugins/jisonline/plugin.js -text
 lib/ckeditor_tiki/plugins/jisonplugin/plugin.js -text
 lib/ckeditor_tiki/plugins/jisonsource/plugin.js -text
