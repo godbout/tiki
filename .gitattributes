@@ -5410,6 +5410,7 @@ templates/comment-header.tpl -text
 templates/comment.tpl -text
 templates/comment/archive.tpl -text
 templates/comment/deliberation_item.tpl -text
+templates/comment/edit.tpl -text
 templates/comment/index.php -text
 templates/comment/list.tpl -text
 templates/comment/lock.tpl -text
