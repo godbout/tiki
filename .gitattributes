@@ -2452,6 +2452,7 @@ lib/core/Multilingual/Aligner/UpdatePages.php -text
 lib/core/Multilingual/Aligner/UpdateSentences.php -text
 lib/core/Multilingual/Aligner/index.php -text
 lib/core/Multilingual/MachineTranslation.php -text
+lib/core/Multilingual/MachineTranslation/BingTranslateWrapper.php -text
 lib/core/Multilingual/MachineTranslation/GoogleTranslateWrapper.php -text
 lib/core/Multilingual/MachineTranslation/Interface.php -text
 lib/core/Multilingual/MachineTranslation/Null.php -text
