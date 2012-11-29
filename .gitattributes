@@ -2309,7 +2309,6 @@ lib/ckeditor_tiki/ckeditor-icons/index.php -text
 lib/ckeditor_tiki/ckeditor-icons/specialchar.gif -text svneol=unset#unset
 lib/ckeditor_tiki/ckeditor-icons/styles.gif -text
 lib/ckeditor_tiki/index.php -text
-lib/ckeditor_tiki/jisonstyles.js -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/index.php -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/tikilink.js -text
 lib/ckeditor_tiki/plugins/_tikilink/index.php -text
@@ -2324,10 +2323,6 @@ lib/ckeditor_tiki/plugins/autosave/images/tick_animated.gif -text
 lib/ckeditor_tiki/plugins/autosave/index.php -text
 lib/ckeditor_tiki/plugins/autosave/plugin.js -text
 lib/ckeditor_tiki/plugins/index.php -text
-lib/ckeditor_tiki/plugins/jisonformat/plugin.js -text
-lib/ckeditor_tiki/plugins/jisonline/plugin.js -text
-lib/ckeditor_tiki/plugins/jisonplugin/plugin.js -text
-lib/ckeditor_tiki/plugins/jisonsource/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiplugin/index.php -text
 lib/ckeditor_tiki/plugins/tikiplugin/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiwiki/index.php -text
