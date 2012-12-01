@@ -3658,6 +3658,7 @@ lib/prefs/multidomain.php -text
 lib/prefs/namespace.php -text
 lib/prefs/newsletter.php -text
 lib/prefs/nextprev.php -text
+lib/prefs/openpgp.php -text
 lib/prefs/page.php -text
 lib/prefs/pagination.php -text
 lib/prefs/pam.php -text
