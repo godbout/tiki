@@ -2062,7 +2062,6 @@ installer/schema/20120628_correct_admin_user_createdate_tiki.sql -text
 installer/schema/20120823_admin_user_credit_menu_entry_tiki.sql -text
 installer/schema/20120823_workspace_template_tiki.sql -text
 installer/schema/20120824_advanced_mode_flag_tiki.sql -text
-installer/schema/20120824_bc_center_preference_tiki.sql -text
 installer/schema/20120825_accounting_menu_entry_tiki.sql -text
 installer/schema/20120826_store_metadata_tiki.sql -text
 installer/schema/20120904_category_root_tiki.php -text
