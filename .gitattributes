@@ -5159,6 +5159,7 @@ styles/jqui/jqui.png -text svneol=unset#image/png
 styles/jqui/newsletter.css -text
 styles/jqui/options/dbldt/arrows-1174a5.png -text svneol=unset#image/png
 styles/jqui/options/dbldt/h_arrow.png -text svneol=unset#image/png
+styles/jqui/options/dbldt/index.php -text
 styles/jqui/options/dbldt/magnify.png -text svneol=unset#image/png
 styles/jqui/options/didiem/arrows-6d9f26.png -text svneol=unset#image/png
 styles/jqui/options/didiem/didiem.png -text svneol=unset#image/png
