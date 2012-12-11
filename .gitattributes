@@ -2074,6 +2074,8 @@ installer/schema/20120927_add_menu_parse_tiki.sql -text
 installer/schema/20120930_tiki_p_view_poll_choices_tiki.sql -text
 installer/schema/20121009_module_search_box_to_search_tiki.sql -text
 installer/schema/20121016_actionlog_comment_text_tiki.sql -text
+installer/schema/20121210_add_missing_index_user_assigned_modules_tiki.sql -text
+installer/schema/20121210_better_forum_reported_index_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
