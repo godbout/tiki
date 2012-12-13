@@ -4600,6 +4600,7 @@ lib/wiki-plugins/wikiplugin_memberlist.php -text
 lib/wiki-plugins/wikiplugin_memberpayment.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
+lib/wiki-plugins/wikiplugin_modulelist.php -text
 lib/wiki-plugins/wikiplugin_mono.php -text
 lib/wiki-plugins/wikiplugin_mouseover.php -text
 lib/wiki-plugins/wikiplugin_mwtable.php -text
