@@ -5629,6 +5629,7 @@ templates/modules/mod-messages_unread_messages.tpl -text
 templates/modules/mod-messages_unread_messages.tpl.nocache -text
 templates/modules/mod-minichat.tpl -text
 templates/modules/mod-mobile.tpl -text
+templates/modules/mod-mobile.tpl.nocache -text
 templates/modules/mod-months_links.tpl -text
 templates/modules/mod-most_commented.tpl -text
 templates/modules/mod-num_submissions.tpl -text
