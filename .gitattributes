@@ -3909,6 +3909,7 @@ lib/smarty_tiki/function.banner.php -text
 lib/smarty_tiki/function.breadcrumbs.php -text
 lib/smarty_tiki/function.button.php -text
 lib/smarty_tiki/function.categoryName.php -text
+lib/smarty_tiki/function.categoryselector.php -text
 lib/smarty_tiki/function.content.php -text
 lib/smarty_tiki/function.cookie.php -text
 lib/smarty_tiki/function.cookie_jar.php -text
@@ -5431,6 +5432,7 @@ templates/canonical.tpl -text
 templates/categobjects.tpl -text
 templates/categobjects_title.tpl -text
 templates/categorize.tpl -text
+templates/category/select.tpl -text
 templates/category_related_objects.tpl -text
 templates/category_tree_entry.tpl -text
 templates/categpath.tpl -text
