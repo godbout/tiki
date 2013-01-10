@@ -4198,6 +4198,7 @@ lib/test/core/Reports/fixtures/user_reports_dataset_update_last_report.xml -text
 lib/test/core/Reports/index.php -text
 lib/test/core/Request/RequestTest.php -text
 lib/test/core/Request/index.php -text
+lib/test/core/Search/ActionStepTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/Expr/index.php -text
