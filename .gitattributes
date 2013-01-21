@@ -4603,6 +4603,7 @@ lib/wiki-plugins/wikiplugin_perm.php -text
 lib/wiki-plugins/wikiplugin_perspective.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
+lib/wiki-plugins/wikiplugin_pref.php -text
 lib/wiki-plugins/wikiplugin_prettytrackerviews.php -text
 lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
