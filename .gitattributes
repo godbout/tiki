@@ -3983,6 +3983,7 @@ lib/smarty_tiki/modifier.langname.php -text
 lib/smarty_tiki/modifier.lcfirst.php -text
 lib/smarty_tiki/modifier.max_user_inscriptions.php -text
 lib/smarty_tiki/modifier.money_format.php -text
+lib/smarty_tiki/modifier.nonp.php -text
 lib/smarty_tiki/modifier.number_format.php -text
 lib/smarty_tiki/modifier.output.php -text
 lib/smarty_tiki/modifier.pagename.php -text
