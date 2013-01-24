@@ -6319,6 +6319,7 @@ templates/wiki-plugins/wikiplugin_googlemap.tpl -text
 templates/wiki-plugins/wikiplugin_grouplist.tpl -text
 templates/wiki-plugins/wikiplugin_groupstat.tpl -text
 templates/wiki-plugins/wikiplugin_invite.tpl -text
+templates/wiki-plugins/wikiplugin_kaltura.tpl -text
 templates/wiki-plugins/wikiplugin_listexecute.tpl -text
 templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
 templates/wiki-plugins/wikiplugin_mail.tpl -text
