@@ -6002,7 +6002,6 @@ templates/tiki-forums_reported.tpl -text
 templates/tiki-freetag-translate.tpl -text
 templates/tiki-friends.tpl -text
 templates/tiki-galleries.tpl -text
-templates/tiki-gmap_locator.tpl -text
 templates/tiki-gmap_usermap.tpl -text
 templates/tiki-graph-sheets.tpl -text
 templates/tiki-history_sheets.tpl -text
@@ -6527,7 +6526,6 @@ tests/testfile.txt -text
 /tiki-friends.php -text
 /tiki-galleries.php -text
 /tiki-galleries_rankings.php -text
-/tiki-gmap_locator.php -text
 /tiki-gmap_usermap.php -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
