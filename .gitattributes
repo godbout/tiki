@@ -4997,6 +4997,7 @@ permissioncheck/yes.bin -text
 /reindex_file.php -text
 /remote.php -text
 /robots.txt -text
+/route.php -text
 /select_banner.php -text
 /sendmail.php -text
 /setup-legacy.sh -text
