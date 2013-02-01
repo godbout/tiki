@@ -2777,6 +2777,7 @@ lib/core/Tracker/Field/Ip.php -text
 lib/core/Tracker/Field/ItemLink.php -text
 lib/core/Tracker/Field/ItemsList.php -text
 lib/core/Tracker/Field/JsCalendar.php -text
+lib/core/Tracker/Field/Kaltura.php -text
 lib/core/Tracker/Field/Language.php -text
 lib/core/Tracker/Field/Ldap.php -text
 lib/core/Tracker/Field/Location.php -text
@@ -6340,6 +6341,7 @@ templates/trackerinput/image.tpl -text
 templates/trackerinput/index.php -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
+templates/trackerinput/kaltura.tpl -text
 templates/trackerinput/language.tpl -text
 templates/trackerinput/layout_flat.tpl -text
 templates/trackerinput/layout_tab.tpl -text
@@ -6360,6 +6362,7 @@ templates/trackeroutput/freetags.tpl -text
 templates/trackeroutput/icon.tpl -text
 templates/trackeroutput/index.php -text
 templates/trackeroutput/itemslist.tpl -text
+templates/trackeroutput/kaltura.tpl -text
 templates/trackeroutput/language.tpl -text
 templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
