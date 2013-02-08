@@ -2337,10 +2337,6 @@ lib/copyrights/copyrightslib.php -text
 lib/copyrights/index.php -text
 lib/core/Category/Manipulator.php -text
 lib/core/Category/index.php -text
-lib/core/Connect/Abstract.php -text
-lib/core/Connect/Client.php -text
-lib/core/Connect/Server.php -text
-lib/core/Connect/index.php -text
 lib/core/DeclFilter.php -text
 lib/core/DeclFilter/CatchAllFilterRule.php -text
 lib/core/DeclFilter/CatchAllUnsetRule.php -text
@@ -2510,7 +2506,6 @@ lib/core/Reports/Send/EmailBuilder/index.php -text
 lib/core/Reports/Send/index.php -text
 lib/core/Reports/Users.php -text
 lib/core/Reports/index.php -text
-lib/core/Request.php -text
 lib/core/Search/Action/Action.php -text
 lib/core/Search/Action/ActionStep.php -text
 lib/core/Search/Action/ChangeStatusAction.php -text
@@ -2678,6 +2673,10 @@ lib/core/StandardAnalyzer/TokenFilter/EnglishStemmer/index.php -text
 lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
+lib/core/Tiki/Connect/Abstract.php -text
+lib/core/Tiki/Connect/Client.php -text
+lib/core/Tiki/Connect/Server.php -text
+lib/core/Tiki/Connect/index.php -text
 lib/core/Tiki/Editable/Value.php -text
 lib/core/Tiki/MemoryLimit.php -text
 lib/core/Tiki/Profile.php -text
@@ -2725,6 +2724,7 @@ lib/core/Tiki/Profile/Object.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
 lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
+lib/core/Tiki/Request.php -text
 lib/core/Tiki/Security.php -text
 lib/core/Tiki/TimeLimit.php -text
 lib/core/Tiki/Transition.php -text
