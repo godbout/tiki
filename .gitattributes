@@ -63,6 +63,8 @@ admin/index.php -text
 /changelog.txt -text
 /comments.php -text
 /commxmlrpc.php -text
+/composer.json -text
+/composer.lock -text
 /contribution.php -text
 /copyright.txt -text
 /copyrights.php -text
@@ -2725,6 +2727,7 @@ lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Security.php -text
 lib/core/Tiki/TimeLimit.php -text
+lib/core/Tiki/Transition.php -text
 lib/core/Tiki/Version/Checker.php -text
 lib/core/Tiki/Version/Upgrade.php -text
 lib/core/Tiki/Version/Version.php -text
@@ -2799,7 +2802,6 @@ lib/core/Tracker/Field/index.php -text
 lib/core/Tracker/Item.php -text
 lib/core/Tracker/Query.php -text
 lib/core/Tracker/index.php -text
-lib/core/Transition.php -text
 lib/core/WikiParser/OutputLink.php -text
 lib/core/WikiParser/PluginArgumentParser.php -text
 lib/core/WikiParser/PluginDefinition.php -text

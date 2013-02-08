@@ -54,3 +54,4 @@ tests/.htaccess
 /tiki-emptycache.php
 tiki_tests/tests
 /var
+/vendor
