@@ -2493,17 +2493,14 @@ lib/ckeditor4/samples/xhtmlstyle.html -text
 lib/ckeditor4/skins/kama/dialog.css -text
 lib/ckeditor4/skins/kama/editor.css -text
 lib/ckeditor4/skins/kama/icons.png -text
-lib/ckeditor4/skins/kama/icons_rtl.png -text
 lib/ckeditor4/skins/kama/images/dialog_sides.gif -text
 lib/ckeditor4/skins/kama/images/dialog_sides.png -text
 lib/ckeditor4/skins/kama/images/dialog_sides_rtl.png -text
 lib/ckeditor4/skins/kama/images/mini.gif -text
-lib/ckeditor4/skins/kama/images/noimage.png -text
 lib/ckeditor4/skins/kama/images/sprites.png -text
 lib/ckeditor4/skins/kama/images/sprites_ie6.png -text
 lib/ckeditor4/skins/kama/images/toolbar_start.gif -text
 lib/ckeditor4/skins/kama/skin.js -text
-lib/ckeditor4/skins/kama/templates.css -text
 lib/ckeditor4/skins/moono/dialog.css -text
 lib/ckeditor4/skins/moono/dialog_ie.css -text
 lib/ckeditor4/skins/moono/dialog_ie7.css -text
