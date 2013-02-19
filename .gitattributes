@@ -2292,6 +2292,7 @@ lib/categories/index.php -text
 lib/ckeditor4/CHANGES.md -text
 lib/ckeditor4/LICENSE.md -text
 lib/ckeditor4/README.md -text
+lib/ckeditor4/adapters/jquery.js -text
 lib/ckeditor4/build-config.js -text
 lib/ckeditor4/ckeditor.js -text
 lib/ckeditor4/config.js -text
