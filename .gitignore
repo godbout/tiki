@@ -27,7 +27,6 @@ installer/.htaccess
 lang/.htaccess
 /last.log
 lib/.htaccess
-lib/ckeditor4/skins
 lib/smarty
 lib/test/clover.xml
 lib/test/core/Search/Index/test_index
