@@ -2437,10 +2437,6 @@ lib/ckeditor4/plugins/magicline/images/icon.png -text
 lib/ckeditor4/plugins/pagebreak/images/pagebreak.gif -text
 lib/ckeditor4/plugins/pastefromword/filter/default.js -text
 lib/ckeditor4/plugins/preview/preview.html -text
-lib/ckeditor4/plugins/scayt/LICENSE.md -text
-lib/ckeditor4/plugins/scayt/README.md -text
-lib/ckeditor4/plugins/scayt/dialogs/options.js -text
-lib/ckeditor4/plugins/scayt/dialogs/toolbar.css -text
 lib/ckeditor4/plugins/showblocks/images/block_address.png -text
 lib/ckeditor4/plugins/showblocks/images/block_blockquote.png -text
 lib/ckeditor4/plugins/showblocks/images/block_div.png -text
@@ -2511,12 +2507,6 @@ lib/ckeditor4/plugins/templates/templates/default.js -text
 lib/ckeditor4/plugins/templates/templates/images/template1.gif -text
 lib/ckeditor4/plugins/templates/templates/images/template2.gif -text
 lib/ckeditor4/plugins/templates/templates/images/template3.gif -text
-lib/ckeditor4/plugins/wsc/LICENSE.md -text
-lib/ckeditor4/plugins/wsc/README.md -text
-lib/ckeditor4/plugins/wsc/dialogs/ciframe.html -text
-lib/ckeditor4/plugins/wsc/dialogs/tmpFrameset.html -text
-lib/ckeditor4/plugins/wsc/dialogs/wsc.css -text
-lib/ckeditor4/plugins/wsc/dialogs/wsc.js -text
 lib/ckeditor4/samples/ajax.html -text
 lib/ckeditor4/samples/api.html -text
 lib/ckeditor4/samples/appendto.html -text
