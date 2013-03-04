@@ -3094,6 +3094,7 @@ lib/images/icons/zip.svg -text
 lib/images/images.php -text
 lib/images/imagick_new.php -text
 lib/images/imagick_old.php -text
+lib/images/img_plugin_default_and_mandatory.php -text
 lib/images/index.php -text
 lib/importer/index.php -text
 lib/importer/mediawiki_dump_v0.3.xsd -text
