@@ -2071,6 +2071,7 @@ installer/script/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
 installer/web.config -text
+/ks-composer.json -text
 lang/.htaccess -text
 lang/ar/index.php -text
 lang/ar/language.js -text
