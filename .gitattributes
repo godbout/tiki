@@ -109,6 +109,7 @@ doc/devtools/csscheck.sh -text
 doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
 doc/devtools/diffsql.sh -text
+doc/devtools/export_translations_to_file.php -text
 doc/devtools/extract-img-db-to-fs.php -text
 doc/devtools/findstyledef.pl -text
 doc/devtools/findstyledef.sh -text
