@@ -674,9 +674,13 @@ img/icons/connect_unwtf.png -text
 img/icons/connect_wtf.png -text
 img/icons/contact.gif -text
 img/icons/contacts.gif -text
+img/icons/control_end.png -text
+img/icons/control_fastforward.png -text
 img/icons/control_pause.png -text
 img/icons/control_play.png -text
 img/icons/control_play_blue.png -text
+img/icons/control_rewind.png -text
+img/icons/control_start.png -text
 img/icons/control_stop.png -text
 img/icons/cool.gif -text
 img/icons/corner-dots.gif -text
