@@ -2547,6 +2547,7 @@ lib/core/Search/Expr/Token.php -text
 lib/core/Search/Expr/Tokenizer.php -text
 lib/core/Search/Expr/index.php -text
 lib/core/Search/Formatter.php -text
+lib/core/Search/Formatter/AppendPagination.php -text
 lib/core/Search/Formatter/ArrayBuilder.php -text
 lib/core/Search/Formatter/Builder.php -text
 lib/core/Search/Formatter/DataSource/Declarative.php -text
