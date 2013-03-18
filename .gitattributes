@@ -2657,9 +2657,9 @@ lib/core/Services/Report/index.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
+lib/core/Services/Search/CustomSearchController.php -text
 lib/core/Services/Tracker/CalendarController.php -text
 lib/core/Services/Tracker/Controller.php -text
-lib/core/Services/Tracker/SearchController.php -text
 lib/core/Services/Tracker/SyncController.php -text
 lib/core/Services/Tracker/TodoController.php -text
 lib/core/Services/Tracker/Utilities.php -text
@@ -5902,6 +5902,8 @@ templates/report/index.php -text
 templates/report/load.tpl -text
 templates/report/preview.tpl -text
 templates/report/wikidata.tpl -text
+templates/search_customsearch/customsearch.tpl -text
+templates/search_customsearch/index.php -text
 templates/searchresults-plain.tpl -text
 templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
@@ -6320,8 +6322,6 @@ templates/tracker_calendar_over.tpl -text
 templates/tracker_error.tpl -text
 templates/tracker_filter.tpl -text
 templates/tracker_pretty_item.tpl -text
-templates/tracker_search/customsearch.tpl -text
-templates/tracker_search/index.php -text
 templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
 templates/tracker_sync/clone_remote.tpl -text
