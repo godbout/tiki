@@ -3127,13 +3127,8 @@ lib/jquery_tiki/elfinder/tiki-elfinder.js -text
 lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/tablesorter/index.php -text
-lib/jquery_tiki/tablesorter/themes/index.php -text
-lib/jquery_tiki/tablesorter/themes/tiki/asc.gif -text
-lib/jquery_tiki/tablesorter/themes/tiki/bg.gif -text
-lib/jquery_tiki/tablesorter/themes/tiki/blue.zip -text
-lib/jquery_tiki/tablesorter/themes/tiki/desc.gif -text
-lib/jquery_tiki/tablesorter/themes/tiki/index.php -text
-lib/jquery_tiki/tablesorter/themes/tiki/style.css -text
+lib/jquery_tiki/tablesorter/style.css -text
+lib/jquery_tiki/tablesorter/tablesorter-helper.php -text
 lib/jquery_tiki/tiki-connect.js -text
 lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery.mobile.js -text
