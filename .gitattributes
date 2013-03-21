@@ -3815,8 +3815,10 @@ lib/rankings/ranklib.php -text
 lib/rating/configlib.php -text
 lib/rating/formula/ArticleInfo.php -text
 lib/rating/formula/Attribute.php -text
+lib/rating/formula/CategoryPresent.php -text
 lib/rating/formula/RatingAverage.php -text
 lib/rating/formula/RatingSum.php -text
+lib/rating/formula/TrackerField.php -text
 lib/rating/formula/index.php -text
 lib/rating/index.php -text
 lib/rating/ratinglib.php -text
