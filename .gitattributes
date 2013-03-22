@@ -4700,6 +4700,7 @@ lib/wiki-plugins/wikiplugin_objectlink.php -text
 lib/wiki-plugins/wikiplugin_pagetabs.php -text
 lib/wiki-plugins/wikiplugin_param.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
+lib/wiki-plugins/wikiplugin_paypal.php -text
 lib/wiki-plugins/wikiplugin_perm.php -text
 lib/wiki-plugins/wikiplugin_perspective.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
@@ -6427,6 +6428,7 @@ templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
 templates/wiki-plugins/wikiplugin_mail.tpl -text
 templates/wiki-plugins/wikiplugin_memberlist.tpl -text
 templates/wiki-plugins/wikiplugin_memberpayment.tpl -text
+templates/wiki-plugins/wikiplugin_paypal.tpl -text
 templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_relations.tpl -text
