@@ -5565,6 +5565,15 @@ templates/error.tpl -text
 templates/error_raw.tpl -text
 templates/error_simple.tpl -text
 templates/error_ticket.tpl -text
+templates/examples/index.php -text
+templates/examples/shop/add_to_cart.tpl -text
+templates/examples/shop/custom_search_form.tpl -text
+templates/examples/shop/index.php -text
+templates/examples/shop/product_ajax.tpl -text
+templates/examples/shop/product_item.tpl -text
+templates/examples/shop/product_list.tpl -text
+templates/examples/shop/product_list_inner.tpl -text
+templates/examples/shop/readme.txt -text
 templates/fgal_attachments.tpl -text
 templates/fgal_context_menu.tpl -text
 templates/fgal_listing_conf.tpl -text
