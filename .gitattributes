@@ -65,6 +65,7 @@ admin/index.php -text
 /commxmlrpc.php -text
 /composer.json -text
 /composer.lock -text
+/console.php -text
 /contribution.php -text
 /copyright.txt -text
 /copyrights.php -text
@@ -2687,6 +2688,10 @@ lib/core/StandardAnalyzer/TokenFilter/EnglishStemmer/index.php -text
 lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
+lib/core/Tiki/Command/Application.php -text
+lib/core/Tiki/Command/ConfigureCommand.php -text
+lib/core/Tiki/Command/InstallCommand.php -text
+lib/core/Tiki/Command/UpdateCommand.php -text
 lib/core/Tiki/Connect/Abstract.php -text
 lib/core/Tiki/Connect/Client.php -text
 lib/core/Tiki/Connect/Server.php -text
