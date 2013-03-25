@@ -2689,6 +2689,7 @@ lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
 lib/core/Tiki/Command/Application.php -text
+lib/core/Tiki/Command/CacheClearCommand.php -text
 lib/core/Tiki/Command/ConfigureCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
