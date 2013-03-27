@@ -2691,6 +2691,9 @@ lib/core/StandardAnalyzer/index.php -text
 lib/core/Tiki/Command/Application.php -text
 lib/core/Tiki/Command/CacheClearCommand.php -text
 lib/core/Tiki/Command/ConfigureCommand.php -text
+lib/core/Tiki/Command/IndexCatchUpCommand.php -text
+lib/core/Tiki/Command/IndexOptimizeCommand.php -text
+lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
 lib/core/Tiki/Connect/Abstract.php -text
