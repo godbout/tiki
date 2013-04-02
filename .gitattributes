@@ -2695,6 +2695,7 @@ lib/core/Tiki/Command/IndexCatchUpCommand.php -text
 lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
+lib/core/Tiki/Command/UnavailableCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
 lib/core/Tiki/Connect/Abstract.php -text
 lib/core/Tiki/Connect/Client.php -text
