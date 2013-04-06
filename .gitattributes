@@ -178,7 +178,6 @@ doc/regular.cycle -text
 doc/stable.version -text
 doc/unstable.version -text
 dump/index.php -text
-experimental/unzip/unzipper.php -text
 /favicon.ico -text
 /favicon.png -text
 /fgal_listing_conf.php -text
