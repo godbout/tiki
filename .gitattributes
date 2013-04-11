@@ -6678,7 +6678,6 @@ tests/testfile.txt -text
 /tiki-invite.php -text
 /tiki-invited.php -text
 /tiki-invoice_reports.php -text
-/tiki-jscalendar.php -text
 /tiki-jsmodule.php -text
 /tiki-jsplugin.php -text
 /tiki-kaltura_upload.php -text
