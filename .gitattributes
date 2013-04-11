@@ -2811,6 +2811,7 @@ lib/core/Tracker/Field/Kaltura.php -text
 lib/core/Tracker/Field/Language.php -text
 lib/core/Tracker/Field/Ldap.php -text
 lib/core/Tracker/Field/Location.php -text
+lib/core/Tracker/Field/Math.php -text
 lib/core/Tracker/Field/Numeric.php -text
 lib/core/Tracker/Field/PageSelector.php -text
 lib/core/Tracker/Field/Rating.php -text
