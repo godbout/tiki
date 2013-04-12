@@ -2425,6 +2425,7 @@ lib/core/Math/Formula/Element.php -text
 lib/core/Math/Formula/Exception.php -text
 lib/core/Math/Formula/Function.php -text
 lib/core/Math/Formula/Function/Add.php -text
+lib/core/Math/Formula/Function/Coalesce.php -text
 lib/core/Math/Formula/Function/Div.php -text
 lib/core/Math/Formula/Function/Max.php -text
 lib/core/Math/Formula/Function/Min.php -text
