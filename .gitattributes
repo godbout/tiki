@@ -2546,8 +2546,11 @@ lib/core/Search/ContentSource/UserSource.php -text
 lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/ContentSource/index.php -text
 lib/core/Search/Elastic/Connection.php -text
+lib/core/Search/Elastic/Exception.php -text
 lib/core/Search/Elastic/Index.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
+lib/core/Search/Elastic/TransportException.php -text
+lib/core/Search/Elastic/TypeFactory.php -text
 lib/core/Search/Expr/And.php -text
 lib/core/Search/Expr/Interface.php -text
 lib/core/Search/Expr/Not.php -text
