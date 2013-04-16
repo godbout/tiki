@@ -2554,6 +2554,7 @@ lib/core/Search/Elastic/QueryBuilder.php -text
 lib/core/Search/Elastic/TransportException.php -text
 lib/core/Search/Elastic/TypeFactory.php -text
 lib/core/Search/Expr/And.php -text
+lib/core/Search/Expr/Initial.php -text
 lib/core/Search/Expr/Interface.php -text
 lib/core/Search/Expr/Not.php -text
 lib/core/Search/Expr/Or.php -text
