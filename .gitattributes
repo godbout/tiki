@@ -4329,6 +4329,7 @@ lib/test/core/Search/ActionStepTest.php -text
 lib/test/core/Search/Elastic/IndexTest.php -text
 lib/test/core/Search/Elastic/ProtocolTest.php -text
 lib/test/core/Search/Elastic/QueryBuilderTest.php -text
+lib/test/core/Search/Elastic/StemmingTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/Expr/index.php -text
