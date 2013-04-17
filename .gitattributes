@@ -3385,6 +3385,7 @@ lib/payment/discountlib.php -text
 lib/payment/index.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
+lib/pclzip/pclzip.lib.php -text
 lib/pdflib.php -text
 lib/pear/Auth.php -text
 lib/pear/Auth/Anonymous.php -text
