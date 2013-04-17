@@ -3237,6 +3237,7 @@ lib/minical/index.php -text
 lib/minical/minicallib.php -text
 lib/minify/JSMin.php -text
 lib/minify/index.php -text
+lib/mobileesp/mdetect.php -text
 lib/mods/index.php -text
 lib/mods/modslib.php -text
 lib/modules/index.php -text
