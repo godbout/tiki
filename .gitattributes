@@ -3162,6 +3162,7 @@ lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/tablesorter/index.php -text
 lib/jquery_tiki/tablesorter/style.css -text
 lib/jquery_tiki/tablesorter/tablesorter-helper.php -text
+lib/jquery_tiki/tiki-admin.js -text
 lib/jquery_tiki/tiki-connect.js -text
 lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery.mobile.js -text
