@@ -2707,6 +2707,8 @@ lib/core/Tiki/Command/IndexCatchUpCommand.php -text
 lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
+lib/core/Tiki/Command/ProfileForgetCommand.php -text
+lib/core/Tiki/Command/ProfileInstallCommand.php -text
 lib/core/Tiki/Command/UnavailableCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
 lib/core/Tiki/Composer/CleanVendors.php -text
