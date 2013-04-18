@@ -3239,7 +3239,6 @@ lib/minical/index.php -text
 lib/minical/minicallib.php -text
 lib/minify/JSMin.php -text
 lib/minify/index.php -text
-lib/mobileesp/mdetect.php -text
 lib/mods/index.php -text
 lib/mods/modslib.php -text
 lib/modules/index.php -text
@@ -3388,7 +3387,6 @@ lib/payment/discountlib.php -text
 lib/payment/index.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
-lib/pclzip/pclzip.lib.php -text
 lib/pdflib.php -text
 lib/pear/Auth.php -text
 lib/pear/Auth/Anonymous.php -text
@@ -6905,6 +6903,8 @@ tiki_tests/tiki-tests_replay.php -text
 tiki_tests/tiki-tests_show_xpath.php -text
 tiki_tests/tikitestslib.php -text
 /validate-ajax.php -text
+vendor_extra/mobileesp/mdetect.php -text
+vendor_extra/pclzip/pclzip.lib.php -text
 /web_config -text
 whelp/index.php -text
 /x_maps.php -text
