@@ -2703,6 +2703,7 @@ lib/core/StandardAnalyzer/TokenFilter/EnglishStemmer/index.php -text
 lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
+lib/core/Tiki/BigBlueButton/Configuration.php -text
 lib/core/Tiki/Command/Application.php -text
 lib/core/Tiki/Command/CacheClearCommand.php -text
 lib/core/Tiki/Command/ConfigureCommand.php -text
@@ -3986,6 +3987,8 @@ lib/test/auth/fixtures/auth_tokens_dataset_delete_hits.xml -text
 lib/test/auth/fixtures/auth_tokens_dataset_delete_timeout.xml -text
 lib/test/auth/fixtures/index.php -text
 lib/test/auth/index.php -text
+lib/test/bigbluebutton/DynamicConfigurationTest.php -text
+lib/test/bigbluebutton/config.xml -text
 lib/test/bootstrap.php -text
 lib/test/comments/CommentsTest.php -text
 lib/test/comments/index.php -text
