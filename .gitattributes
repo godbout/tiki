@@ -6510,6 +6510,7 @@ tests/testfile.txt -text
 /tiki-live_support_message.php -text
 /tiki-live_support_server.php -text
 /tiki-live_support_transcripts.php -text
+/tiki-log_bigbluebutton_leave.php -text
 /tiki-login.php -text
 /tiki-login_openid.php -text
 /tiki-login_scr.php -text
