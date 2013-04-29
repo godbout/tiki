@@ -2079,6 +2079,7 @@ installer/schema/20130322_app_menu_timesheet_pos_tiki.sql -text
 installer/schema/20130322_restore_lost_filegals_tiki.sql -text
 installer/schema/20130415_repair_file_galleries_again_tiki.php -text
 installer/schema/20130417_score_alter_tiki.sql -text
+installer/schema/20130417_score_tiki.sql -text
 installer/schema/20130419_newsletters_clippings_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
