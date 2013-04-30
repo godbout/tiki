@@ -2877,6 +2877,7 @@ lib/db/index.php -text
 lib/db/tiki_registration_fields.php -text
 lib/dcs/dcslib.php -text
 lib/dcs/index.php -text
+lib/debug/Tracer.php -text
 lib/debug/debug-command_dmsg.php -text
 lib/debug/debug-command_features.php -text
 lib/debug/debug-command_perm.php -text
