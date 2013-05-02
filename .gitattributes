@@ -6747,6 +6747,14 @@ vendor_extra/elfinder/php/elFinderVolumeFTP.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeLocalFileSystem.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeMySQL.class.php -text
 vendor_extra/elfinder/php/mime.types -text
+vendor_extra/fullcalendar-resourceviews/GPL-LICENSE.txt -text
+vendor_extra/fullcalendar-resourceviews/MIT-LICENSE.txt -text
+vendor_extra/fullcalendar-resourceviews/changelog.txt -text
+vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.css -text
+vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.js -text
+vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.min.js -text
+vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.print.css -text
+vendor_extra/fullcalendar-resourceviews/fullcalendar/gcal.js -text
 vendor_extra/mobileesp/mdetect.php -text
 vendor_extra/pclzip/pclzip.lib.php -text
 vendor_extra/pear/Auth.php -text
