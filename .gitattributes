@@ -2556,6 +2556,7 @@ lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/ContentSource/index.php -text
 lib/core/Search/Elastic/Connection.php -text
 lib/core/Search/Elastic/Exception.php -text
+lib/core/Search/Elastic/IncrementalUpdateTest.php -text
 lib/core/Search/Elastic/Index.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
