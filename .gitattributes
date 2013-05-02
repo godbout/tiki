@@ -2558,6 +2558,7 @@ lib/core/Search/Elastic/Connection.php -text
 lib/core/Search/Elastic/Exception.php -text
 lib/core/Search/Elastic/Index.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
+lib/core/Search/Elastic/ResultSet.php -text
 lib/core/Search/Elastic/TransportException.php -text
 lib/core/Search/Elastic/TypeFactory.php -text
 lib/core/Search/Expr/And.php -text
