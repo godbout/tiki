@@ -2557,6 +2557,7 @@ lib/core/Search/ContentSource/index.php -text
 lib/core/Search/Elastic/Connection.php -text
 lib/core/Search/Elastic/Exception.php -text
 lib/core/Search/Elastic/Index.php -text
+lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
 lib/core/Search/Elastic/ResultSet.php -text
 lib/core/Search/Elastic/TransportException.php -text
@@ -4093,6 +4094,7 @@ lib/test/core/Search/ActionStepTest.php -text
 lib/test/core/Search/Elastic/IndexTest.php -text
 lib/test/core/Search/Elastic/ProtocolTest.php -text
 lib/test/core/Search/Elastic/QueryBuilderTest.php -text
+lib/test/core/Search/Elastic/SortTest.php -text
 lib/test/core/Search/Elastic/StemmingTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
