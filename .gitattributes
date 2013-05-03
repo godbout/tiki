@@ -2556,7 +2556,6 @@ lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/ContentSource/index.php -text
 lib/core/Search/Elastic/Connection.php -text
 lib/core/Search/Elastic/Exception.php -text
-lib/core/Search/Elastic/IncrementalUpdateTest.php -text
 lib/core/Search/Elastic/Index.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
@@ -4092,6 +4091,7 @@ lib/test/core/Reports/index.php -text
 lib/test/core/Request/RequestTest.php -text
 lib/test/core/Request/index.php -text
 lib/test/core/Search/ActionStepTest.php -text
+lib/test/core/Search/Elastic/IncrementalUpdateTest.php -text
 lib/test/core/Search/Elastic/IndexTest.php -text
 lib/test/core/Search/Elastic/NumericTest.php -text
 lib/test/core/Search/Elastic/PaginationTest.php -text
