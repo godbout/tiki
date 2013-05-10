@@ -2718,6 +2718,10 @@ lib/core/Tiki/Command/IndexCatchUpCommand.php -text
 lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
+lib/core/Tiki/Command/ProfileExport/Init.php -text
+lib/core/Tiki/Command/ProfileExport/ObjectWriter.php -text
+lib/core/Tiki/Command/ProfileExport/Tracker.php -text
+lib/core/Tiki/Command/ProfileExport/WikiPage.php -text
 lib/core/Tiki/Command/ProfileForgetCommand.php -text
 lib/core/Tiki/Command/ProfileInstallCommand.php -text
 lib/core/Tiki/Command/UnavailableCommand.php -text
@@ -2776,6 +2780,7 @@ lib/core/Tiki/Profile/Transport/Interface.php -text
 lib/core/Tiki/Profile/Transport/Local.php -text
 lib/core/Tiki/Profile/Transport/Repository.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
+lib/core/Tiki/Profile/Writer.php -text
 lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Request.php -text
