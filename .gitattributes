@@ -2771,6 +2771,10 @@ lib/core/Tiki/Profile/InstallHandler/WikiPage.php -text
 lib/core/Tiki/Profile/Installer.php -text
 lib/core/Tiki/Profile/List.php -text
 lib/core/Tiki/Profile/Object.php -text
+lib/core/Tiki/Profile/Transport/File.php -text
+lib/core/Tiki/Profile/Transport/Interface.php -text
+lib/core/Tiki/Profile/Transport/Local.php -text
+lib/core/Tiki/Profile/Transport/Repository.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
 lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
