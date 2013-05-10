@@ -48,6 +48,7 @@ temp/cache/*
 temp/mail_attachs/*
 temp/public/*
 templates/.htaccess
+templates/admin/Ignore
 /templates_c
 templates_c/*
 tests/.htaccess
