@@ -5257,7 +5257,6 @@ templates/admin/include_articles.tpl -text
 templates/admin/include_blogs.tpl -text
 templates/admin/include_calendar.tpl -text
 templates/admin/include_category.tpl -text
-templates/admin/include_comments.tpl -text
 templates/admin/include_community.tpl -text
 templates/admin/include_connect.tpl -text
 templates/admin/include_copyright.tpl -text
