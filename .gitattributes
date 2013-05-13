@@ -2082,6 +2082,7 @@ installer/schema/20130415_repair_file_galleries_again_tiki.php -text
 installer/schema/20130417_score_alter_tiki.sql -text
 installer/schema/20130417_score_tiki.sql -text
 installer/schema/20130419_newsletters_clippings_tiki.sql -text
+installer/schema/20130513_convert_tracker_field_parameters_tiki.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2860,6 +2861,7 @@ lib/core/Tracker/Field/UserSubscription.php -text
 lib/core/Tracker/Field/WebService.php -text
 lib/core/Tracker/Field/index.php -text
 lib/core/Tracker/Item.php -text
+lib/core/Tracker/Options.php -text
 lib/core/Tracker/Query.php -text
 lib/core/Tracker/index.php -text
 lib/core/WikiParser/OutputLink.php -text
