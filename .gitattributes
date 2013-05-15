@@ -4257,7 +4257,6 @@ lib/test/phpunit.xml -text
 lib/test/rating/AggregationTest.php -text
 lib/test/rating/RegisterVoteTest.php -text
 lib/test/rating/index.php -text
-lib/test/reporstlib/index.php -text
 lib/test/reportslib/index.php -text
 lib/test/shipping/ShippingTest.php -text
 lib/test/shipping/index.php -text
