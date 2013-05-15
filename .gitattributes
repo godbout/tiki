@@ -3236,6 +3236,7 @@ lib/live_support/index.php -text
 lib/live_support/live-support.js -text
 lib/live_support/lsadminlib.php -text
 lib/live_support/lslib.php -text
+lib/loginlib.php -text
 lib/logs/index.php -text
 lib/logs/logslib.php -text
 lib/logs/logsquerylib.php -text
