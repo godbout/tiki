@@ -2702,6 +2702,8 @@ lib/core/Services/User/index.php -text
 lib/core/Services/Wiki/Controller.php -text
 lib/core/Services/Wiki/index.php -text
 lib/core/Services/Workspace/Controller.php -text
+lib/core/Services/Workspace/ProfileAnalyser.php -text
+lib/core/Services/Workspace/ProfileBuilder.php -text
 lib/core/Services/Workspace/Utilities.php -text
 lib/core/Services/index.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
@@ -2739,8 +2741,6 @@ lib/core/Tiki/Connect/index.php -text
 lib/core/Tiki/Editable/Value.php -text
 lib/core/Tiki/MemoryLimit.php -text
 lib/core/Tiki/Profile.php -text
-lib/core/Tiki/Profile/Analyser.php -text
-lib/core/Tiki/Profile/Builder.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
 lib/core/Tiki/Profile/Converter.php -text
 lib/core/Tiki/Profile/DateConverter.php -text
@@ -4082,8 +4082,6 @@ lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/index.php -text
 lib/test/core/Perms/index.php -text
-lib/test/core/Profile/AnalyserTest.php -text
-lib/test/core/Profile/BuilderTest.php -text
 lib/test/core/Reports/CacheTest.php -text
 lib/test/core/Reports/FactoryTest.php -text
 lib/test/core/Reports/ManagerTest.php -text
@@ -4167,6 +4165,8 @@ lib/test/core/WikiParser/PluginRepositoryTest.php -text
 lib/test/core/WikiParser/StressTest.php -text
 lib/test/core/WikiParser/index.php -text
 lib/test/core/WikiParser/wikiplugin_foo.php -text
+lib/test/core/Workspace/AnalyserTest.php -text
+lib/test/core/Workspace/BuilderTest.php -text
 lib/test/core/bootstrap.php -text
 lib/test/core/include_non_autoload_compatible_classes.php -text
 lib/test/core/index.php -text
