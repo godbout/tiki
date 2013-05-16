@@ -4153,6 +4153,7 @@ lib/test/core/TikiFilter/WordTest.php -text
 lib/test/core/TikiFilter/XssTest.php -text
 lib/test/core/TikiFilter/index.php -text
 lib/test/core/TikiSecurityTest.php -text
+lib/test/core/Tracker/OptionsTest.php -text
 lib/test/core/Transition/AtLeastTest.php -text
 lib/test/core/Transition/AtMostTest.php -text
 lib/test/core/Transition/BasicTest.php -text
