@@ -2725,6 +2725,7 @@ lib/core/Tiki/Command/IndexCatchUpCommand.php -text
 lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
+lib/core/Tiki/Command/ProfileExport/Finalize.php -text
 lib/core/Tiki/Command/ProfileExport/Init.php -text
 lib/core/Tiki/Command/ProfileExport/ObjectWriter.php -text
 lib/core/Tiki/Command/ProfileExport/Tracker.php -text
