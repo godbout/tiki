@@ -2791,6 +2791,7 @@ lib/core/Tiki/Profile/Transport/Local.php -text
 lib/core/Tiki/Profile/Transport/Repository.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
 lib/core/Tiki/Profile/Writer.php -text
+lib/core/Tiki/Profile/WriterHelper.php -text
 lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Request.php -text
