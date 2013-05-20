@@ -2747,6 +2747,7 @@ lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
 lib/core/Tiki/Profile/Converter.php -text
 lib/core/Tiki/Profile/DateConverter.php -text
+lib/core/Tiki/Profile/ExternalWriter.php -text
 lib/core/Tiki/Profile/Finder.php -text
 lib/core/Tiki/Profile/InstallHandler.php -text
 lib/core/Tiki/Profile/InstallHandler/AreaBinding.php -text
