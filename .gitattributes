@@ -2831,6 +2831,7 @@ lib/core/Tracker/Field/Currency.php -text
 lib/core/Tracker/Field/DateTime.php -text
 lib/core/Tracker/Field/Dropdown.php -text
 lib/core/Tracker/Field/DynamicList.php -text
+lib/core/Tracker/Field/Email.php -text
 lib/core/Tracker/Field/Factory.php -text
 lib/core/Tracker/Field/File.php -text
 lib/core/Tracker/Field/Files.php -text
@@ -2856,7 +2857,6 @@ lib/core/Tracker/Field/Numeric.php -text
 lib/core/Tracker/Field/PageSelector.php -text
 lib/core/Tracker/Field/Rating.php -text
 lib/core/Tracker/Field/Relation.php -text
-lib/core/Tracker/Field/Simple.php -text
 lib/core/Tracker/Field/StaticText.php -text
 lib/core/Tracker/Field/Synchronizable.php -text
 lib/core/Tracker/Field/Text.php -text
