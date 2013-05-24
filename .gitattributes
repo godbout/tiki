@@ -2071,6 +2071,7 @@ installer/schema/20121016_actionlog_comment_text_tiki.sql -text
 installer/schema/20121027_tracker_samerow_fix_tiki.sql -text
 installer/schema/20121210_add_missing_index_user_assigned_modules_tiki.sql -text
 installer/schema/20121210_better_forum_reported_index_tiki.sql -text
+installer/schema/20121213_module_zone_enlarge_tiki.php -text
 installer/schema/20121213_module_zone_enlarge_tiki.sql -text
 installer/schema/20130220_wiki_attachments_tiki.sql -text
 installer/schema/20130228_bigger_token_groups_tiki.sql -text
