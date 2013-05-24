@@ -2729,6 +2729,7 @@ lib/core/Tiki/Command/ProfileExport/Finalize.php -text
 lib/core/Tiki/Command/ProfileExport/IncludeProfile.php -text
 lib/core/Tiki/Command/ProfileExport/Init.php -text
 lib/core/Tiki/Command/ProfileExport/ObjectWriter.php -text
+lib/core/Tiki/Command/ProfileExport/Preference.php -text
 lib/core/Tiki/Command/ProfileExport/Tracker.php -text
 lib/core/Tiki/Command/ProfileExport/TrackerField.php -text
 lib/core/Tiki/Command/ProfileExport/WikiPage.php -text
