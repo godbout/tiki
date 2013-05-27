@@ -2752,8 +2752,6 @@ lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
 lib/core/Tiki/Profile/Converter.php -text
 lib/core/Tiki/Profile/DateConverter.php -text
-lib/core/Tiki/Profile/ExternalWriter.php -text
-lib/core/Tiki/Profile/Finder.php -text
 lib/core/Tiki/Profile/InstallHandler.php -text
 lib/core/Tiki/Profile/InstallHandler/AreaBinding.php -text
 lib/core/Tiki/Profile/InstallHandler/Article.php -text
@@ -2796,9 +2794,11 @@ lib/core/Tiki/Profile/Transport/Local.php -text
 lib/core/Tiki/Profile/Transport/Repository.php -text
 lib/core/Tiki/Profile/ValueMapConverter.php -text
 lib/core/Tiki/Profile/Writer.php -text
+lib/core/Tiki/Profile/Writer/ExternalWriter.php -text
+lib/core/Tiki/Profile/Writer/Helper.php -text
+lib/core/Tiki/Profile/Writer/ProfileFinder.php -text
 lib/core/Tiki/Profile/Writer/ReferenceProvider.php -text
 lib/core/Tiki/Profile/Writer/SearchFieldHelper.php -text
-lib/core/Tiki/Profile/WriterHelper.php -text
 lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Request.php -text
