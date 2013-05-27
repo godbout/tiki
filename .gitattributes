@@ -2734,6 +2734,7 @@ lib/core/Tiki/Command/ProfileExport/IncludeProfile.php -text
 lib/core/Tiki/Command/ProfileExport/Init.php -text
 lib/core/Tiki/Command/ProfileExport/ObjectWriter.php -text
 lib/core/Tiki/Command/ProfileExport/Preference.php -text
+lib/core/Tiki/Command/ProfileExport/RecentChanges.php -text
 lib/core/Tiki/Command/ProfileExport/Tracker.php -text
 lib/core/Tiki/Command/ProfileExport/TrackerField.php -text
 lib/core/Tiki/Command/ProfileExport/WikiPage.php -text
@@ -2797,6 +2798,7 @@ lib/core/Tiki/Profile/Writer.php -text
 lib/core/Tiki/Profile/Writer/ExternalWriter.php -text
 lib/core/Tiki/Profile/Writer/Helper.php -text
 lib/core/Tiki/Profile/Writer/ProfileFinder.php -text
+lib/core/Tiki/Profile/Writer/Queue.php -text
 lib/core/Tiki/Profile/Writer/ReferenceProvider.php -text
 lib/core/Tiki/Profile/Writer/SearchFieldHelper.php -text
 lib/core/Tiki/Render/Editable.php -text
