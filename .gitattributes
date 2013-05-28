@@ -2648,6 +2648,8 @@ lib/core/Services/Comment/index.php -text
 lib/core/Services/Connect/Client.php -text
 lib/core/Services/Connect/Server.php -text
 lib/core/Services/Connect/index.php -text
+lib/core/Services/ContentTemplate/Controller.php -text
+lib/core/Services/ContentTemplate/index.php -text
 lib/core/Services/Draw/Controller.php -text
 lib/core/Services/Draw/index.php -text
 lib/core/Services/Exception.php -text
