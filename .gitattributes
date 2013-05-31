@@ -2535,6 +2535,7 @@ lib/core/Search/Action/EmailAction.php -text
 lib/core/Search/Action/Factory.php -text
 lib/core/Search/Action/Sequence.php -text
 lib/core/Search/Action/Step.php -text
+lib/core/Search/Action/TrackerItemModify.php -text
 lib/core/Search/Action/UnknownStep.php -text
 lib/core/Search/Action/WikiApprovalAction.php -text
 lib/core/Search/ContentFilter/VersionNumber.php -text
