@@ -2625,6 +2625,7 @@ lib/core/Search/GlobalSource/index.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Lucene.php -text
 lib/core/Search/Index/Memory.php -text
+lib/core/Search/Index/TypeAnalysisDecorator.php -text
 lib/core/Search/Index/index.php -text
 lib/core/Search/Indexer.php -text
 lib/core/Search/Query.php -text
@@ -2644,6 +2645,7 @@ lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/Lucene.php -text
 lib/core/Search/Type/Factory/index.php -text
 lib/core/Search/Type/Interface.php -text
+lib/core/Search/Type/MultivaluePlain.php -text
 lib/core/Search/Type/MultivalueText.php -text
 lib/core/Search/Type/PlainText.php -text
 lib/core/Search/Type/ShortText.php -text
