@@ -2592,6 +2592,7 @@ lib/core/Search/Formatter/ArrayBuilder.php -text
 lib/core/Search/Formatter/Builder.php -text
 lib/core/Search/Formatter/DataSource/Declarative.php -text
 lib/core/Search/Formatter/DataSource/Interface.php -text
+lib/core/Search/Formatter/DataSource/Trusted.php -text
 lib/core/Search/Formatter/DataSource/index.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
