@@ -2570,6 +2570,8 @@ lib/core/Search/ContentSource/index.php -text
 lib/core/Search/Elastic/BulkOperation.php -text
 lib/core/Search/Elastic/Connection.php -text
 lib/core/Search/Elastic/Exception.php -text
+lib/core/Search/Elastic/FacetBuilder.php -text
+lib/core/Search/Elastic/FacetReader.php -text
 lib/core/Search/Elastic/Index.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
@@ -2633,6 +2635,9 @@ lib/core/Search/Index/TypeAnalysisDecorator.php -text
 lib/core/Search/Index/index.php -text
 lib/core/Search/Indexer.php -text
 lib/core/Search/Query.php -text
+lib/core/Search/Query/Facet/Interface.php -text
+lib/core/Search/Query/Facet/Term.php -text
+lib/core/Search/Query/Interface.php -text
 lib/core/Search/Query/Order.php -text
 lib/core/Search/Query/Relation.php -text
 lib/core/Search/Query/RelationReplacer.php -text
@@ -2642,6 +2647,7 @@ lib/core/Search/Query/WeightCalculator/index.php -text
 lib/core/Search/Query/WikiBuilder.php -text
 lib/core/Search/Query/index.php -text
 lib/core/Search/ResultSet.php -text
+lib/core/Search/ResultSet/FacetFilter.php -text
 lib/core/Search/ResultSet/SnippetHelper.php -text
 lib/core/Search/ResultSet/index.php -text
 lib/core/Search/Type/Factory/Direct.php -text
@@ -4133,6 +4139,9 @@ lib/test/core/Request/index.php -text
 lib/test/core/Search/ActionStepTest.php -text
 lib/test/core/Search/Elastic/BulkIncrementalUpdateTest.php -text
 lib/test/core/Search/Elastic/BulkIndexingTest.php -text
+lib/test/core/Search/Elastic/FacetBuilderTest.php -text
+lib/test/core/Search/Elastic/FacetReaderTest.php -text
+lib/test/core/Search/Elastic/FacetTest.php -text
 lib/test/core/Search/Elastic/IncrementalUpdateTest.php -text
 lib/test/core/Search/Elastic/IndexTest.php -text
 lib/test/core/Search/Elastic/NumericTest.php -text
