@@ -4150,6 +4150,7 @@ lib/test/core/Search/Elastic/ProtocolTest.php -text
 lib/test/core/Search/Elastic/QueryBuilderTest.php -text
 lib/test/core/Search/Elastic/SortTest.php -text
 lib/test/core/Search/Elastic/StemmingTest.php -text
+lib/test/core/Search/Elastic/TypeAnalyzerTest.php -text
 lib/test/core/Search/Expr/ParserTest.php -text
 lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/Expr/index.php -text
@@ -4165,6 +4166,7 @@ lib/test/core/Search/Index/LucenePaginationTest.php -text
 lib/test/core/Search/Index/LuceneSortTest.php -text
 lib/test/core/Search/Index/LuceneStemmingTest.php -text
 lib/test/core/Search/Index/LuceneTest.php -text
+lib/test/core/Search/Index/LuceneTypeAnalyzerTest.php -text
 lib/test/core/Search/Index/index.php -text
 lib/test/core/Search/IndexerTest.php -text
 lib/test/core/Search/Query/OrderTest.php -text
