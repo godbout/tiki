@@ -6119,6 +6119,7 @@ templates/tiki-report_direct_object_perms.tpl -text
 templates/tiki-rollback.tpl -text
 templates/tiki-search_replace.tpl -text
 templates/tiki-search_stats.tpl -text
+templates/tiki-searchfacets.tpl -text
 templates/tiki-searchindex.tpl -text
 templates/tiki-searchresults.tpl -text
 templates/tiki-send_newsletters.tpl -text
