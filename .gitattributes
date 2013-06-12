@@ -2588,6 +2588,8 @@ lib/core/Search/Expr/Range.php -text
 lib/core/Search/Expr/Token.php -text
 lib/core/Search/Expr/Tokenizer.php -text
 lib/core/Search/Expr/index.php -text
+lib/core/Search/FacetProvider.php -text
+lib/core/Search/FacetProvider/Interface.php -text
 lib/core/Search/Formatter.php -text
 lib/core/Search/Formatter/AppendPagination.php -text
 lib/core/Search/Formatter/ArrayBuilder.php -text
