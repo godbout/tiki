@@ -84,8 +84,6 @@ css/metrics.css -text
 css/readme.txt -text
 db/.htaccess -text
 db/index.php -text
-db/tiki-db-adodb.php -text
-db/tiki-db-pdo.php -text
 db/tiki-db.php -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
@@ -2834,6 +2832,9 @@ lib/core/TikiDb/Bridge.php -text
 lib/core/TikiDb/ErrorHandler.php -text
 lib/core/TikiDb/Exception.php -text
 lib/core/TikiDb/Expr.php -text
+lib/core/TikiDb/Initializer.php -text
+lib/core/TikiDb/Initializer/Adodb.php -text
+lib/core/TikiDb/Initializer/Pdo.php -text
 lib/core/TikiDb/MasterSlaveDispatch.php -text
 lib/core/TikiDb/Pdo.php -text
 lib/core/TikiDb/Table.php -text
