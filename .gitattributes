@@ -2306,7 +2306,6 @@ lib/breadcrumblib.php -text
 lib/cache/cachelib.php -text
 lib/cache/index.php -text
 lib/cache/memcachelib.php -text
-lib/cache/pagecache.php -text
 lib/calendar/calendarlib.php -text
 lib/calendar/calrecurrence.php -text
 lib/calendar/index.php -text
@@ -2765,6 +2764,7 @@ lib/core/Tiki/Connect/Server.php -text
 lib/core/Tiki/Connect/index.php -text
 lib/core/Tiki/Editable/Value.php -text
 lib/core/Tiki/MemoryLimit.php -text
+lib/core/Tiki/PageCache.php -text
 lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
 lib/core/Tiki/Profile/Converter.php -text
