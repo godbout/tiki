@@ -129,6 +129,7 @@ doc/devtools/parser_diff.php -text
 doc/devtools/phpstrip.sh -text
 doc/devtools/prefreport.php -text
 doc/devtools/premerge_report.sh -text
+doc/devtools/provide_tarballs.sh -text
 doc/devtools/rebuild_search_index.php -text
 doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/release.php -text
