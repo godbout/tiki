@@ -2092,6 +2092,7 @@ installer/schema/20130608_convert_mailin_pwd_tiki.php -text
 installer/schema/20130608_mailin_response_tiki.sql -text
 installer/schema/20130611_mailin_add_html_tiki.sql -text
 installer/schema/20130614_mailin_add_admin_tiki.sql -text
+installer/schema/20130616_mailin_add_namespace_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
