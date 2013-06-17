@@ -2641,6 +2641,7 @@ lib/core/Search/Indexer.php -text
 lib/core/Search/Query.php -text
 lib/core/Search/Query/Facet/Interface.php -text
 lib/core/Search/Query/Facet/Term.php -text
+lib/core/Search/Query/FacetWikiBuilder.php -text
 lib/core/Search/Query/Interface.php -text
 lib/core/Search/Query/Order.php -text
 lib/core/Search/Query/Relation.php -text
