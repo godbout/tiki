@@ -6124,6 +6124,7 @@ templates/tiki-remind_password.tpl -text
 templates/tiki-removepage.tpl -text
 templates/tiki-rename_page.tpl -text
 templates/tiki-report_direct_object_perms.tpl -text
+templates/tiki-report_string_in_db.tpl -text
 templates/tiki-rollback.tpl -text
 templates/tiki-search_replace.tpl -text
 templates/tiki-search_stats.tpl -text
@@ -6656,6 +6657,7 @@ tests/testfile.txt -text
 /tiki-removepage.php -text
 /tiki-rename_page.php -text
 /tiki-report_direct_object_perms.php -text
+/tiki-report_string_in_db.php -text
 /tiki-rollback.php -text
 /tiki-rss_error.php -text
 /tiki-search_replace.php -text
