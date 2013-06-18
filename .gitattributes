@@ -2076,6 +2076,7 @@ installer/schema/20121213_module_zone_enlarge_tiki.sql -text
 installer/schema/20130220_wiki_attachments_tiki.sql -text
 installer/schema/20130228_bigger_token_groups_tiki.sql -text
 installer/schema/20130301_sefurl_tracker_type_tiki.sql -text
+installer/schema/20130314_keep_search_pref_settings_tiki.php -text
 installer/schema/20130322_app_menu_timesheet_pos_tiki.sql -text
 installer/schema/20130322_restore_lost_filegals_tiki.sql -text
 installer/schema/20130328_extend_actionlog_bbb_tiki.sql -text
