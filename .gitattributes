@@ -3292,6 +3292,7 @@ lib/mail/maillib.php -text
 lib/mail/mimelib.php -text
 lib/mailin/index.php -text
 lib/mailin/mailinlib.php -text
+lib/mailin/usermailinlib.php -text
 lib/map/index.php -text
 lib/map/map.js -text
 lib/map/map_query.php -text
@@ -6176,6 +6177,7 @@ templates/tiki-user_contacts_prefs.tpl -text
 templates/tiki-user_cssmenu.tpl -text
 templates/tiki-user_drilldownmenu.tpl -text
 templates/tiki-user_information.tpl -text
+templates/tiki-user_mailin.tpl -text
 templates/tiki-user_menu.tpl -text
 templates/tiki-user_preferences.tpl -text
 templates/tiki-user_tasks.tpl -text
@@ -6716,6 +6718,7 @@ tests/testfile.txt -text
 /tiki-user_cached_bookmark.php -text
 /tiki-user_contacts_prefs.php -text
 /tiki-user_information.php -text
+/tiki-user_mailin.php -text
 /tiki-user_notifications.php -text
 /tiki-user_preferences.php -text
 /tiki-user_reports.php -text
