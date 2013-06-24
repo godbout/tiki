@@ -5892,6 +5892,7 @@ templates/tiki-admin_keywords.tpl -text
 templates/tiki-admin_layout.tpl -text
 templates/tiki-admin_links.tpl -text
 templates/tiki-admin_mailin.tpl -text
+templates/tiki-admin_mailin_routes.tpl -text
 templates/tiki-admin_menu_options.tpl -text
 templates/tiki-admin_menus.tpl -text
 templates/tiki-admin_metrics.tpl -text
@@ -6404,6 +6405,7 @@ tests/testfile.txt -text
 /tiki-admin_layout.php -text
 /tiki-admin_links.php -text
 /tiki-admin_mailin.php -text
+/tiki-admin_mailin_routes.php -text
 /tiki-admin_menu_options.php -text
 /tiki-admin_menus.php -text
 /tiki-admin_metrics.php -text
