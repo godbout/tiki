@@ -84,6 +84,7 @@ css/metrics.css -text
 css/readme.txt -text
 db/.htaccess -text
 db/index.php -text
+db/install.ini.dist -text
 db/tiki-db.php -text
 db/tiki-secdb_11.0_mysql.sql -text
 db/tiki.sql -text
