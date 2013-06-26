@@ -4797,6 +4797,7 @@ modules/mod-func-random_pages.php -text
 modules/mod-func-register.php -text
 modules/mod-func-rsslist.php -text
 modules/mod-func-search.php -text
+modules/mod-func-search_morelikethis.php -text
 modules/mod-func-search_wiki_page.php -text
 modules/mod-func-semantic_links.php -text
 modules/mod-func-share.php -text
@@ -5711,6 +5712,7 @@ templates/modules/mod-register.tpl -text
 templates/modules/mod-rsslist.tpl -text
 templates/modules/mod-search.tpl -text
 templates/modules/mod-search.tpl.nocache -text
+templates/modules/mod-search_morelikethis.tpl -text
 templates/modules/mod-search_wiki_page.tpl -text
 templates/modules/mod-semantic_links.tpl -text
 templates/modules/mod-share.tpl -text
