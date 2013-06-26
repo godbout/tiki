@@ -2588,6 +2588,7 @@ lib/core/Search/Elastic/TypeFactory.php -text
 lib/core/Search/Expr/And.php -text
 lib/core/Search/Expr/Initial.php -text
 lib/core/Search/Expr/Interface.php -text
+lib/core/Search/Expr/MoreLikeThis.php -text
 lib/core/Search/Expr/Not.php -text
 lib/core/Search/Expr/Or.php -text
 lib/core/Search/Expr/Parser.php -text
@@ -4159,6 +4160,7 @@ lib/test/core/Search/Elastic/FacetReaderTest.php -text
 lib/test/core/Search/Elastic/FacetTest.php -text
 lib/test/core/Search/Elastic/IncrementalUpdateTest.php -text
 lib/test/core/Search/Elastic/IndexTest.php -text
+lib/test/core/Search/Elastic/MoreLikeThisTest.php -text
 lib/test/core/Search/Elastic/NumericTest.php -text
 lib/test/core/Search/Elastic/PaginationTest.php -text
 lib/test/core/Search/Elastic/ProtocolTest.php -text
