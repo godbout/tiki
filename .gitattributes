@@ -2580,6 +2580,7 @@ lib/core/Search/Elastic/Exception.php -text
 lib/core/Search/Elastic/FacetBuilder.php -text
 lib/core/Search/Elastic/FacetReader.php -text
 lib/core/Search/Elastic/Index.php -text
+lib/core/Search/Elastic/NotFoundException.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
 lib/core/Search/Elastic/ResultSet.php -text
