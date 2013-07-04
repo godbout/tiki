@@ -2386,10 +2386,6 @@ lib/core/DeclFilter/StaticKeyFilterRule.php -text
 lib/core/DeclFilter/StaticKeyUnsetRule.php -text
 lib/core/DeclFilter/UnsetRule.php -text
 lib/core/DeclFilter/index.php -text
-lib/core/Event/Chain.php -text
-lib/core/Event/Lib.php -text
-lib/core/Event/Manager.php -text
-lib/core/Event/index.php -text
 lib/core/Feed/Abstract.php -text
 lib/core/Feed/ForwardLink.php -text
 lib/core/Feed/ForwardLink/Metadata.php -text
@@ -2777,6 +2773,13 @@ lib/core/Tiki/Connect/Client.php -text
 lib/core/Tiki/Connect/Server.php -text
 lib/core/Tiki/Connect/index.php -text
 lib/core/Tiki/Editable/Value.php -text
+lib/core/Tiki/Event/Chain.php -text
+lib/core/Tiki/Event/Customizer.php -text
+lib/core/Tiki/Event/Customizer/RuleSet.php -text
+lib/core/Tiki/Event/Function/EventTrigger.php -text
+lib/core/Tiki/Event/Lib.php -text
+lib/core/Tiki/Event/Manager.php -text
+lib/core/Tiki/Event/index.php -text
 lib/core/Tiki/MemoryLimit.php -text
 lib/core/Tiki/PageCache.php -text
 lib/core/Tiki/Profile.php -text
@@ -4078,6 +4081,7 @@ lib/test/core/DeclFilter/KeyPatternUnsetTest.php -text
 lib/test/core/DeclFilter/StaticKeyFilterTest.php -text
 lib/test/core/DeclFilter/StaticKeyUnsetTest.php -text
 lib/test/core/DeclFilter/index.php -text
+lib/test/core/Event/CustomizerTest.php -text
 lib/test/core/Event/ManagerTest.php -text
 lib/test/core/Event/index.php -text
 lib/test/core/JisonParser/Abstract.php -text
