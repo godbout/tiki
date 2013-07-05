@@ -2449,6 +2449,8 @@ lib/core/Math/Formula/Function.php -text
 lib/core/Math/Formula/Function/Add.php -text
 lib/core/Math/Formula/Function/Coalesce.php -text
 lib/core/Math/Formula/Function/Div.php -text
+lib/core/Math/Formula/Function/Equals.php -text
+lib/core/Math/Formula/Function/If.php -text
 lib/core/Math/Formula/Function/Map.php -text
 lib/core/Math/Formula/Function/Max.php -text
 lib/core/Math/Formula/Function/Min.php -text
