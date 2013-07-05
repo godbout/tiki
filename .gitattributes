@@ -2099,6 +2099,7 @@ installer/schema/20130616_mailin_add_namespace_tiki.sql -text
 installer/schema/20130623_create_mailin_user_struct_tiki.sql -text
 installer/schema/20130624_mailin_add_attr_tiki.sql -text
 installer/schema/20130704_catname_tiki.sql -text
+installer/schema/20130705_activity_stream_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2289,6 +2290,7 @@ lib/TikiWebdav/index.php -text
 lib/ZeroClipboard.js -text
 lib/accounting/accountinglib.php -text
 lib/accounting/index.php -text
+lib/activity/activitylib.php -text
 lib/admin/adminlib.php -text
 lib/admin/index.php -text
 lib/ajax/autosave.js -text
@@ -2447,6 +2449,7 @@ lib/core/Math/Formula/Function.php -text
 lib/core/Math/Formula/Function/Add.php -text
 lib/core/Math/Formula/Function/Coalesce.php -text
 lib/core/Math/Formula/Function/Div.php -text
+lib/core/Math/Formula/Function/Map.php -text
 lib/core/Math/Formula/Function/Max.php -text
 lib/core/Math/Formula/Function/Min.php -text
 lib/core/Math/Formula/Function/Mul.php -text
@@ -2659,6 +2662,7 @@ lib/core/Search/ResultSet.php -text
 lib/core/Search/ResultSet/FacetFilter.php -text
 lib/core/Search/ResultSet/SnippetHelper.php -text
 lib/core/Search/ResultSet/index.php -text
+lib/core/Search/Type/Analyzer.php -text
 lib/core/Search/Type/Factory/Direct.php -text
 lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/Lucene.php -text
@@ -2776,6 +2780,7 @@ lib/core/Tiki/Editable/Value.php -text
 lib/core/Tiki/Event/Chain.php -text
 lib/core/Tiki/Event/Customizer.php -text
 lib/core/Tiki/Event/Customizer/RuleSet.php -text
+lib/core/Tiki/Event/Function/EventRecord.php -text
 lib/core/Tiki/Event/Function/EventTrigger.php -text
 lib/core/Tiki/Event/Lib.php -text
 lib/core/Tiki/Event/Manager.php -text
@@ -3510,6 +3515,7 @@ lib/phpseclib_tiki/tikisecure.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
+lib/prefs/activity.php -text
 lib/prefs/ajax.php -text
 lib/prefs/allocate.php -text
 lib/prefs/allowmsg.php -text
@@ -4195,6 +4201,7 @@ lib/test/core/Search/IndexerTest.php -text
 lib/test/core/Search/Query/OrderTest.php -text
 lib/test/core/Search/Query/index.php -text
 lib/test/core/Search/QueryTest.php -text
+lib/test/core/Search/TypeAnalyzerTest.php -text
 lib/test/core/Search/basic.tpl -text
 lib/test/core/Search/embedded.tpl -text
 lib/test/core/Search/index.php -text
