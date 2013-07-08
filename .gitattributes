@@ -1972,6 +1972,7 @@ installer/schema/20101219_kill_feature_mobile_tiki.sql -text
 installer/schema/20101230_create_top_modules_tiki.php -text
 installer/schema/20110103_include_in_history_tiki.sql -text
 installer/schema/20110104_flagged_revision_log_tiki.sql -text
+installer/schema/20110104_sefurl_trackeritem_again_tiki.sql -text
 installer/schema/20110104_sefurl_trackeritem_tiki.sql -text
 installer/schema/20110112_approval_permissions_tiki.sql -text
 installer/schema/20110115_create_bottom_modules_tiki.php -text
