@@ -2800,7 +2800,9 @@ lib/core/Tiki/Connect/index.php -text
 lib/core/Tiki/Editable/Value.php -text
 lib/core/Tiki/Event/Chain.php -text
 lib/core/Tiki/Event/Customizer.php -text
+lib/core/Tiki/Event/Customizer/Executor.php -text
 lib/core/Tiki/Event/Customizer/RuleSet.php -text
+lib/core/Tiki/Event/EdgeProvider.php -text
 lib/core/Tiki/Event/Function/EventRecord.php -text
 lib/core/Tiki/Event/Function/EventTrigger.php -text
 lib/core/Tiki/Event/Lib.php -text
