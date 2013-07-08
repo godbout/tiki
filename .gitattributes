@@ -5372,6 +5372,8 @@ temp/public/index.php -text
 temp/web.config -text
 templates/.htaccess -text
 templates/activity/activitystream.tpl -text
+templates/activity/tiki.trackeritem.create.tpl -text
+templates/activity/tiki.trackeritem.update.tpl -text
 templates/addreference.tpl -text
 templates/admin/include_ads.tpl -text
 templates/admin/include_anchors.tpl -text
