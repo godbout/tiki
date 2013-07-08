@@ -2646,6 +2646,8 @@ lib/core/Search/GlobalSource/Reporting.php -text
 lib/core/Search/GlobalSource/Static.php -text
 lib/core/Search/GlobalSource/VisitsSource.php -text
 lib/core/Search/GlobalSource/index.php -text
+lib/core/Search/Index/AbstractIndexDecorator.php -text
+lib/core/Search/Index/CategoryFilterDecorator.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Lucene.php -text
 lib/core/Search/Index/Memory.php -text
