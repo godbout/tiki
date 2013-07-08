@@ -4481,6 +4481,7 @@ lib/webmail/tikimaillib.php -text
 lib/webmail/webmaillib.php -text
 lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
+lib/wiki-plugins/wikiplugin_activitystream.php -text
 lib/wiki-plugins/wikiplugin_addfreetag.php -text
 lib/wiki-plugins/wikiplugin_addreference.php -text
 lib/wiki-plugins/wikiplugin_addrelation.php -text
