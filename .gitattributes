@@ -92,6 +92,7 @@ db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
 db/tiki_2.0to3.0.sql -text
 db/tiki_convert_myisam_to_innodb.sql -text
+db/tiki_fulltext_indexes.sql -text
 db/tiki_innodb.sql -text
 db/tiki_myisam.sql -text
 db/web.config -text
