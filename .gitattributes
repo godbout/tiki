@@ -2083,6 +2083,7 @@ installer/schema/20130314_keep_search_pref_settings_tiki.php -text
 installer/schema/20130322_app_menu_timesheet_pos_tiki.sql -text
 installer/schema/20130322_restore_lost_filegals_tiki.sql -text
 installer/schema/20130328_extend_actionlog_bbb_tiki.sql -text
+installer/schema/20130410_keep_wysiwyg_htmltowiki_setting_tiki.php -text
 installer/schema/20130415_repair_file_galleries_again_tiki.php -text
 installer/schema/20130417_score_alter_tiki.sql -text
 installer/schema/20130417_score_tiki.sql -text
