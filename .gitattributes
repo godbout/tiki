@@ -2770,7 +2770,9 @@ lib/core/Table/Code/WidgetOptions.php -text
 lib/core/Table/Code/index.php -text
 lib/core/Table/Factory.php -text
 lib/core/Table/Manager.php -text
+lib/core/Table/Plugin.php -text
 lib/core/Table/Settings/Abstract.php -text
+lib/core/Table/Settings/Plugin.php -text
 lib/core/Table/Settings/Users.php -text
 lib/core/Table/Settings/index.php -text
 lib/core/Table/index.php -text
@@ -3289,7 +3291,6 @@ lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/tablesorter/index.php -text
 lib/jquery_tiki/tablesorter/style.css -text
-lib/jquery_tiki/tablesorter/tablesorter-helper.php -text
 lib/jquery_tiki/tiki-admin.js -text
 lib/jquery_tiki/tiki-connect.js -text
 lib/jquery_tiki/tiki-jquery.js -text
