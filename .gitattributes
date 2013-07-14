@@ -2772,8 +2772,8 @@ lib/core/Table/Factory.php -text
 lib/core/Table/Manager.php -text
 lib/core/Table/Plugin.php -text
 lib/core/Table/Settings/Abstract.php -text
+lib/core/Table/Settings/Adminusers.php -text
 lib/core/Table/Settings/Plugin.php -text
-lib/core/Table/Settings/Users.php -text
 lib/core/Table/Settings/index.php -text
 lib/core/Table/index.php -text
 lib/core/Tiki/BigBlueButton/Configuration.php -text
