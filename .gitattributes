@@ -2102,6 +2102,7 @@ installer/schema/20130623_create_mailin_user_struct_tiki.sql -text
 installer/schema/20130624_mailin_add_attr_tiki.sql -text
 installer/schema/20130704_catname_tiki.sql -text
 installer/schema/20130705_activity_stream_tiki.sql -text
+installer/schema/20130715_activity_stream_rules_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2687,6 +2688,7 @@ lib/core/Search/Type/Whole.php -text
 lib/core/Search/Type/WikiText.php -text
 lib/core/Search/Type/index.php -text
 lib/core/Search/index.php -text
+lib/core/Services/ActivityStream/ManageController.php -text
 lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/AuthSource/index.php -text
 lib/core/Services/BigBlueButton/Controller.php -text
@@ -3263,6 +3265,7 @@ lib/init/tra.php -text
 lib/integrator/index.php -text
 lib/integrator/integrator.php -text
 lib/jcapture_tiki/tiki-jcapture.js -text
+lib/jquery_tiki/activity.js -text
 lib/jquery_tiki/brosho/index.php -text
 lib/jquery_tiki/brosho/tiki.brosho.css -text
 lib/jquery_tiki/brosho/tiki_brosho.js -text
@@ -5636,6 +5639,8 @@ templates/mail/user_watch_wiki_page_changed_subject.tpl -text
 templates/mail/user_watch_wiki_page_renamed.tpl -text
 templates/mail/user_watch_wiki_page_renamed_subject.tpl -text
 templates/mail/user_welcome_msg.tpl -text
+templates/managestream/list.tpl -text
+templates/managestream/record.tpl -text
 templates/map/index.php -text
 templates/map/tiki-map.tpl -text
 templates/map/tiki-map_download.tpl -text
