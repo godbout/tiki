@@ -5364,6 +5364,9 @@ styles/utopias/options/north/north.png -text
 styles/utopias/options/spaces.css -text
 styles/utopias/options/spaces/spaces.png -text
 styles/utopias/options/writer.css -text
+styles/utopias/options/writer/banner-repeat.jpg -text
+styles/utopias/options/writer/bullet-grey.gif -text
+styles/utopias/options/writer/bullet.gif -text
 styles/utopias/options/writer/writer.png -text
 styles/utopias/utopias.png -text
 temp/.htaccess -text
