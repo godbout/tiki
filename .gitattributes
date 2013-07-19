@@ -5643,6 +5643,7 @@ templates/mail/user_watch_wiki_page_renamed.tpl -text
 templates/mail/user_watch_wiki_page_renamed_subject.tpl -text
 templates/mail/user_welcome_msg.tpl -text
 templates/managestream/advanced.tpl -text
+templates/managestream/delete.tpl -text
 templates/managestream/list.tpl -text
 templates/managestream/record.tpl -text
 templates/managestream/tracker_filter.tpl -text
