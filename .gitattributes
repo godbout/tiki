@@ -2811,6 +2811,7 @@ lib/core/Tiki/Event/Customizer/Executor.php -text
 lib/core/Tiki/Event/Customizer/RuleSet.php -text
 lib/core/Tiki/Event/EdgeProvider.php -text
 lib/core/Tiki/Event/Function/EventRecord.php -text
+lib/core/Tiki/Event/Function/EventSample.php -text
 lib/core/Tiki/Event/Function/EventTrigger.php -text
 lib/core/Tiki/Event/Lib.php -text
 lib/core/Tiki/Event/Manager.php -text
@@ -5646,6 +5647,7 @@ templates/managestream/advanced.tpl -text
 templates/managestream/delete.tpl -text
 templates/managestream/list.tpl -text
 templates/managestream/record.tpl -text
+templates/managestream/sample.tpl -text
 templates/managestream/tracker_filter.tpl -text
 templates/map/index.php -text
 templates/map/tiki-map.tpl -text
