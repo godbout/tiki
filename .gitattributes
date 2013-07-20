@@ -5004,14 +5004,14 @@ styles/coelesce/arrows-467aa7.png -text svneol=unset#image/png
 styles/coelesce/coelesce.png -text
 styles/coelesce/ie6.css -text
 styles/coelesce/ie7.css -text
+styles/coelesce/img/icons/index.php -text
+styles/coelesce/img/icons/oleftcol.png -text svneol=unset#image/png
+styles/coelesce/img/icons/orightcol.png -text svneol=unset#image/png
+styles/coelesce/img/index.php -text
 styles/coelesce/index.php -text
 styles/coelesce/options/community.css -text
 styles/coelesce/options/index.php -text
 styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
-styles/coelesce/pics/icons/index.php -text
-styles/coelesce/pics/icons/oleftcol.png -text svneol=unset#image/png
-styles/coelesce/pics/icons/orightcol.png -text svneol=unset#image/png
-styles/coelesce/pics/index.php -text
 styles/coelesce/search_wide.png -text svneol=unset#image/png
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom.css -text
@@ -5020,15 +5020,15 @@ styles/darkroom/button.png -text svneol=unset#image/png
 styles/darkroom/darkroom.png -text
 styles/darkroom/ie6.css -text
 styles/darkroom/ie7.css -text
+styles/darkroom/img/icons/index.php -text
+styles/darkroom/img/icons/oleftcol.png -text svneol=unset#image/png
+styles/darkroom/img/icons/orightcol.png -text svneol=unset#image/png
+styles/darkroom/img/index.php -text
 styles/darkroom/index.php -text
 styles/darkroom/options/index.php -text
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/index.php -text
 styles/darkroom/options/small-type/small-type.png -text
-styles/darkroom/pics/icons/index.php -text
-styles/darkroom/pics/icons/oleftcol.png -text svneol=unset#image/png
-styles/darkroom/pics/icons/orightcol.png -text svneol=unset#image/png
-styles/darkroom/pics/index.php -text
 styles/darkshine/ad.gif -text
 styles/darkshine/arrows-000000.png -text svneol=unset#image/png
 styles/darkshine/blue.png -text svneol=unset#image/png
@@ -5249,7 +5249,11 @@ styles/strasa/ie6.css -text
 styles/strasa/ie7.css -text
 styles/strasa/ie8.css -text
 styles/strasa/img/icons/external_link.gif -text
+styles/strasa/img/icons/folder.png -text svneol=unset#image/png
 styles/strasa/img/icons/index.php -text
+styles/strasa/img/icons/ofolder.png -text svneol=unset#image/png
+styles/strasa/img/icons/oleftcol.png -text svneol=unset#image/png
+styles/strasa/img/icons/orightcol.png -text svneol=unset#image/png
 styles/strasa/img/index.php -text
 styles/strasa/index.php -text
 styles/strasa/info_icon.png -text svneol=unset#image/png
@@ -5294,12 +5298,6 @@ styles/strasa/options/mono/pics/icons/oleftcol.png -text svneol=unset#image/png
 styles/strasa/options/mono/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/strasa/options/mono/pics/index.php -text
 styles/strasa/options/mono/register.jpg -text
-styles/strasa/pics/icons/folder.png -text svneol=unset#image/png
-styles/strasa/pics/icons/index.php -text
-styles/strasa/pics/icons/ofolder.png -text svneol=unset#image/png
-styles/strasa/pics/icons/oleftcol.png -text svneol=unset#image/png
-styles/strasa/pics/icons/orightcol.png -text svneol=unset#image/png
-styles/strasa/pics/index.php -text
 styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
 styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
@@ -5307,38 +5305,38 @@ styles/thenews.css -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/ie6.css -text
 styles/thenews/ie7.css -text
+styles/thenews/img/icons/index.php -text
+styles/thenews/img/icons/oleftcol.png -text svneol=unset#image/png
+styles/thenews/img/icons/orightcol.png -text svneol=unset#image/png
+styles/thenews/img/index.php -text
 styles/thenews/index.php -text
 styles/thenews/options/index.php -text
 styles/thenews/options/narrow_left_column.css -text
 styles/thenews/options/narrow_left_column/index.php -text
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
-styles/thenews/pics/icons/index.php -text
-styles/thenews/pics/icons/oleftcol.png -text svneol=unset#image/png
-styles/thenews/pics/icons/orightcol.png -text svneol=unset#image/png
-styles/thenews/pics/index.php -text
 styles/thenews/thenews.png -text
 styles/tikinewt.css -text
 styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
 styles/tikinewt/ie6.css -text
 styles/tikinewt/ie7.css -text
+styles/tikinewt/img/icons/index.php -text
+styles/tikinewt/img/icons/oleftcol.png -text svneol=unset#image/png
+styles/tikinewt/img/icons/orightcol.png -text svneol=unset#image/png
+styles/tikinewt/img/index.php -text
 styles/tikinewt/index.php -text
 styles/tikinewt/options/index.php -text
 styles/tikinewt/options/shadows/box_shadow.png -text svneol=unset#image/png
 styles/tikinewt/options/shadows/index.php -text
-styles/tikinewt/pics/icons/index.php -text
-styles/tikinewt/pics/icons/oleftcol.png -text svneol=unset#image/png
-styles/tikinewt/pics/icons/orightcol.png -text svneol=unset#image/png
-styles/tikinewt/pics/index.php -text
 styles/tikinewt/tikinewt.png -text
 styles/twist/arrows-000.png -text svneol=unset#image/png
 styles/twist/background.gif -text
 styles/twist/bullet.gif -text
 styles/twist/header_bg.jpg -text svneol=unset#image/jpeg
+styles/twist/img/icons/folder.png -text svneol=unset#image/png
+styles/twist/img/icons/index.php -text
+styles/twist/img/icons/ofolder.png -text svneol=unset#image/png
+styles/twist/img/index.php -text
 styles/twist/index.php -text
-styles/twist/pics/icons/folder.png -text svneol=unset#image/png
-styles/twist/pics/icons/index.php -text
-styles/twist/pics/icons/ofolder.png -text svneol=unset#image/png
-styles/twist/pics/index.php -text
 styles/twist/topbar_bg.jpg -text svneol=unset#image/jpeg
 styles/twist/twist.png -text svneol=unset#image/png
 styles/utopias.css -text
