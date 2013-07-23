@@ -4237,8 +4237,11 @@ lib/test/core/Search/Index/LuceneTest.php -text
 lib/test/core/Search/Index/LuceneTypeAnalyzerTest.php -text
 lib/test/core/Search/Index/index.php -text
 lib/test/core/Search/IndexerTest.php -text
+lib/test/core/Search/MySql/IncrementalUpdateTest.php -text
 lib/test/core/Search/MySql/IndexTest.php -text
+lib/test/core/Search/MySql/PaginationTest.php -text
 lib/test/core/Search/MySql/QueryBuilderTest.php -text
+lib/test/core/Search/MySql/SortTest.php -text
 lib/test/core/Search/Query/OrderTest.php -text
 lib/test/core/Search/Query/index.php -text
 lib/test/core/Search/QueryTest.php -text
