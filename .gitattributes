@@ -2728,6 +2728,7 @@ lib/core/Services/Favorite/Controller.php -text
 lib/core/Services/Favorite/index.php -text
 lib/core/Services/File/Controller.php -text
 lib/core/Services/File/FinderController.php -text
+lib/core/Services/File/VimeoController.php -text
 lib/core/Services/File/index.php -text
 lib/core/Services/JCapture/Controller.php -text
 lib/core/Services/JCapture/index.php -text
@@ -3042,6 +3043,7 @@ lib/filegals/filegallib.php -text
 lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
 lib/filegals/scormlib.php -text
+lib/filegals/vimeolib.php -text
 lib/freetag/freetaglib.php -text
 lib/freetag/index.php -text
 lib/geo/geolib.php -text
@@ -3695,6 +3697,7 @@ lib/prefs/userfiles.php -text
 lib/prefs/username.php -text
 lib/prefs/users.php -text
 lib/prefs/validator.php -text
+lib/prefs/vimeo.php -text
 lib/prefs/w.php -text
 lib/prefs/warn.php -text
 lib/prefs/watershed.php -text
@@ -6374,6 +6377,7 @@ templates/translation/manage.tpl -text
 templates/unified_search_help.tpl -text
 templates/user/register.tpl -text
 templates/user_registration.tpl -text
+templates/vimeo/upload.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
