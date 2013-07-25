@@ -2595,6 +2595,7 @@ lib/core/Search/Elastic/QueryBuilder.php -text
 lib/core/Search/Elastic/ResultSet.php -text
 lib/core/Search/Elastic/TransportException.php -text
 lib/core/Search/Elastic/TypeFactory.php -text
+lib/core/Search/Exception.php -text
 lib/core/Search/Expr/And.php -text
 lib/core/Search/Expr/Initial.php -text
 lib/core/Search/Expr/Interface.php -text
@@ -2656,9 +2657,11 @@ lib/core/Search/Index/Memory.php -text
 lib/core/Search/Index/TypeAnalysisDecorator.php -text
 lib/core/Search/Index/index.php -text
 lib/core/Search/Indexer.php -text
+lib/core/Search/MySql/Exception.php -text
 lib/core/Search/MySql/FieldQueryBuilder.php -text
 lib/core/Search/MySql/HighlightHelper.php -text
 lib/core/Search/MySql/Index.php -text
+lib/core/Search/MySql/LimitReachedException.php -text
 lib/core/Search/MySql/QueryBuilder.php -text
 lib/core/Search/MySql/QueryException.php -text
 lib/core/Search/MySql/Table.php -text
@@ -4239,6 +4242,7 @@ lib/test/core/Search/Index/index.php -text
 lib/test/core/Search/IndexerTest.php -text
 lib/test/core/Search/MySql/IncrementalUpdateTest.php -text
 lib/test/core/Search/MySql/IndexTest.php -text
+lib/test/core/Search/MySql/LargeDatasetTest.php -text
 lib/test/core/Search/MySql/PaginationTest.php -text
 lib/test/core/Search/MySql/QueryBuilderTest.php -text
 lib/test/core/Search/MySql/SortTest.php -text
