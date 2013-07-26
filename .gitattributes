@@ -2353,6 +2353,18 @@ lib/ckeditor_tiki/plugins/autosave/images/tick_animated.gif -text
 lib/ckeditor_tiki/plugins/autosave/index.php -text
 lib/ckeditor_tiki/plugins/autosave/plugin.js -text
 lib/ckeditor_tiki/plugins/index.php -text
+lib/ckeditor_tiki/plugins/inlinecancel/images/cross.png -text
+lib/ckeditor_tiki/plugins/inlinecancel/index.php -text
+lib/ckeditor_tiki/plugins/inlinecancel/plugin.js -text
+lib/ckeditor_tiki/plugins/inlinesave/images/ajaxSaveClean.gif -text
+lib/ckeditor_tiki/plugins/inlinesave/images/ajaxSaveDirty.gif -text svneol=unset#unset
+lib/ckeditor_tiki/plugins/inlinesave/images/cross_animated.gif -text svneol=unset#unset
+lib/ckeditor_tiki/plugins/inlinesave/images/index.php -text
+lib/ckeditor_tiki/plugins/inlinesave/images/loadingBig.gif -text
+lib/ckeditor_tiki/plugins/inlinesave/images/loadingSmall.gif -text svneol=unset#unset
+lib/ckeditor_tiki/plugins/inlinesave/images/tick_animated.gif -text
+lib/ckeditor_tiki/plugins/inlinesave/index.php -text
+lib/ckeditor_tiki/plugins/inlinesave/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiplugin/index.php -text
 lib/ckeditor_tiki/plugins/tikiplugin/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiwiki/index.php -text
