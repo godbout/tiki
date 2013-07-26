@@ -2728,6 +2728,7 @@ lib/core/Services/Favorite/Controller.php -text
 lib/core/Services/Favorite/index.php -text
 lib/core/Services/File/Controller.php -text
 lib/core/Services/File/FinderController.php -text
+lib/core/Services/File/Utilities.php -text
 lib/core/Services/File/VimeoController.php -text
 lib/core/Services/File/index.php -text
 lib/core/Services/JCapture/Controller.php -text
