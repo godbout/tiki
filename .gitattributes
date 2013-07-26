@@ -2701,6 +2701,7 @@ lib/core/Search/Type/index.php -text
 lib/core/Search/index.php -text
 lib/core/Services/ActivityStream/ManageController.php -text
 lib/core/Services/AuthSource/Controller.php -text
+lib/core/Services/AuthSource/OAuthController.php -text
 lib/core/Services/AuthSource/index.php -text
 lib/core/Services/BigBlueButton/Controller.php -text
 lib/core/Services/Broker.php -text
