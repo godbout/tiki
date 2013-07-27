@@ -2788,7 +2788,6 @@ lib/core/StandardAnalyzer/TokenFilter/index.php -text
 lib/core/StandardAnalyzer/Zend_License.txt -text
 lib/core/StandardAnalyzer/index.php -text
 lib/core/Table/Code/Abstract.php -text
-lib/core/Table/Code/Headers.php -text
 lib/core/Table/Code/MainOptions.php -text
 lib/core/Table/Code/Manager.php -text
 lib/core/Table/Code/Other.php -text
