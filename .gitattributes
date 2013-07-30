@@ -2370,6 +2370,7 @@ lib/ckeditor_tiki/plugins/tikiplugin/index.php -text
 lib/ckeditor_tiki/plugins/tikiplugin/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiwiki/index.php -text
 lib/ckeditor_tiki/plugins/tikiwiki/plugin.js -text
+lib/ckeditor_tiki/tiki-ckeditor.js -text
 lib/ckeditor_tiki/tikilink_dialog.js -text
 lib/ckeditor_tiki/tikistyles.js -text
 lib/ckeditor_tiki/tikitemplates.js -text
