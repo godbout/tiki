@@ -2716,6 +2716,8 @@ lib/core/Services/ActivityStream/ManageController.php -text
 lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/AuthSource/OAuthController.php -text
 lib/core/Services/AuthSource/index.php -text
+lib/core/Services/AutoSave/Controller.php -text
+lib/core/Services/AutoSave/index.php -text
 lib/core/Services/BigBlueButton/Controller.php -text
 lib/core/Services/Broker.php -text
 lib/core/Services/Calendar/Controller.php -text
@@ -2730,6 +2732,8 @@ lib/core/Services/ContentTemplate/Controller.php -text
 lib/core/Services/ContentTemplate/index.php -text
 lib/core/Services/Draw/Controller.php -text
 lib/core/Services/Draw/index.php -text
+lib/core/Services/Edit/Controller.php -text
+lib/core/Services/Edit/index.php -text
 lib/core/Services/Exception.php -text
 lib/core/Services/Exception/Denied.php -text
 lib/core/Services/Exception/Disabled.php -text
@@ -5534,6 +5538,8 @@ templates/debug/tiki-debug_watch_tab.tpl -text
 templates/draw/edit.tpl -text
 templates/draw/index.php -text
 templates/duplicate_file_gallery.tpl -text
+templates/edit/index.php -text
+templates/edit/preview.tpl -text
 templates/edit_file_gallery.tpl -text
 templates/error-ajax.tpl -text
 templates/error.tpl -text
@@ -6531,7 +6537,6 @@ tests/testfile.txt -text
 /tiki-article_types.php -text
 /tiki-articles_rss.php -text
 /tiki-assignuser.php -text
-/tiki-auto_save.php -text
 /tiki-backlinks.php -text
 /tiki-batch_send_newsletter.php -text
 /tiki-batch_todo.php -text
