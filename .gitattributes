@@ -2774,6 +2774,7 @@ lib/core/Services/Tracker/TodoController.php -text
 lib/core/Services/Tracker/Utilities.php -text
 lib/core/Services/Tracker/index.php -text
 lib/core/Services/User/Controller.php -text
+lib/core/Services/User/SocialController.php -text
 lib/core/Services/User/index.php -text
 lib/core/Services/Wiki/Controller.php -text
 lib/core/Services/Wiki/index.php -text
@@ -3325,6 +3326,7 @@ lib/jquery_tiki/galleriffic/css/prevPageArrowWhite.gif -text
 lib/jquery_tiki/galleriffic/css/white.css -text
 lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
+lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tablesorter/index.php -text
 lib/jquery_tiki/tablesorter/style.css -text
 lib/jquery_tiki/tiki-admin.js -text
@@ -4475,6 +4477,7 @@ lib/transitionlib.php -text
 lib/tree/BrowseTreeMaker.php -text
 lib/tree/index.php -text
 lib/tree/tree.php -text
+lib/user/sociallib.php -text
 lib/userfiles/index.php -text
 lib/userfiles/userfileslib.php -text
 lib/usermenu/index.php -text
@@ -4830,6 +4833,7 @@ modules/mod-func-freetags_current.php -text
 modules/mod-func-freetags_morelikethis.php -text
 modules/mod-func-freetags_most_popular.php -text
 modules/mod-func-freetags_prefered.php -text
+modules/mod-func-friend_list.php -text
 modules/mod-func-google.php -text
 modules/mod-func-groups_emulation.php -text
 modules/mod-func-last_actions.php -text
@@ -5750,6 +5754,7 @@ templates/modules/mod-freetags_current.tpl -text
 templates/modules/mod-freetags_morelikethis.tpl -text
 templates/modules/mod-freetags_most_popular.tpl -text
 templates/modules/mod-freetags_prefered.tpl -text
+templates/modules/mod-friend_list.tpl -text
 templates/modules/mod-google.tpl -text
 templates/modules/mod-groups_emulation.tpl -text
 templates/modules/mod-last_actions.tpl -text
@@ -5922,6 +5927,8 @@ templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
 templates/sent_newsletters.tpl -text
 templates/show_copyright.tpl -text
+templates/social/add_friend.tpl -text
+templates/social/list_friends.tpl -text
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
