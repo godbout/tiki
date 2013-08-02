@@ -6472,6 +6472,7 @@ templates/wiki-plugins/wikiplugin_watershedarchive.tpl -text
 templates/wiki-plugins/wikiplugin_watershedbroadcaster.tpl -text
 templates/wiki-plugins/wikiplugin_watershedchat.tpl -text
 templates/wiki-plugins/wikiplugin_watershedviewer.tpl -text
+templates/wiki/get_page.tpl -text
 templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
