@@ -4737,6 +4737,7 @@ lib/wiki-plugins/wikiplugin_vote.php -text
 lib/wiki-plugins/wikiplugin_votings.php -text
 lib/wiki-plugins/wikiplugin_wantedpages.php -text
 lib/wiki-plugins/wikiplugin_watershed.php -text
+lib/wiki-plugins/wikiplugin_webdocviewer.php -text
 lib/wiki-plugins/wikiplugin_webservice.php -text
 lib/wiki-plugins/wikiplugin_wysiwyg.php -text
 lib/wiki-plugins/wikiplugin_youtube.php -text
