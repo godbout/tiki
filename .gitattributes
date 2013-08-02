@@ -2678,6 +2678,7 @@ lib/core/Search/MySql/FieldQueryBuilder.php -text
 lib/core/Search/MySql/HighlightHelper.php -text
 lib/core/Search/MySql/Index.php -text
 lib/core/Search/MySql/LimitReachedException.php -text
+lib/core/Search/MySql/QueryBuffer.php -text
 lib/core/Search/MySql/QueryBuilder.php -text
 lib/core/Search/MySql/QueryException.php -text
 lib/core/Search/MySql/Table.php -text
