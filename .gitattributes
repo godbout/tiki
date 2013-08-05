@@ -168,6 +168,13 @@ doc/devtools/tikimerge.sh -text
 doc/devtools/tikirelease.sh -text
 doc/devtools/tikireleasediff.sh -text
 doc/devtools/tikiwiki.spec -text
+doc/devtools/tim/tim -text
+doc/devtools/tim/tim-common -text
+doc/devtools/tim/tim-create -text
+doc/devtools/tim/tim-cron -text
+doc/devtools/tim/tim-snapshot -text
+doc/devtools/tim/tim-ssh -text
+doc/devtools/tim/tim-svn-cache -text
 doc/devtools/update.dogfoodserver.sh -text
 doc/devtools/update_english_strings.php -text
 doc/devtools/upto_4.1_delete_all_cetgory_perms.sql -text
