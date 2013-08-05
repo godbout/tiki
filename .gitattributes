@@ -2771,6 +2771,7 @@ lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
 lib/core/Services/Search/CustomSearchController.php -text
+lib/core/Services/ShowTikiOrg/Controller.php -text
 lib/core/Services/Tracker/CalendarController.php -text
 lib/core/Services/Tracker/Controller.php -text
 lib/core/Services/Tracker/SyncController.php -text
@@ -2977,6 +2978,7 @@ lib/core/Tracker/Field/Numeric.php -text
 lib/core/Tracker/Field/PageSelector.php -text
 lib/core/Tracker/Field/Rating.php -text
 lib/core/Tracker/Field/Relation.php -text
+lib/core/Tracker/Field/ShowTikiOrg.php -text
 lib/core/Tracker/Field/StaticText.php -text
 lib/core/Tracker/Field/Synchronizable.php -text
 lib/core/Tracker/Field/Text.php -text
@@ -6389,6 +6391,7 @@ templates/trackerinput/numeric.tpl -text
 templates/trackerinput/pageselector.tpl -text
 templates/trackerinput/rating.tpl -text
 templates/trackerinput/relation.tpl -text
+templates/trackerinput/showtikiorg.tpl -text
 templates/trackerinput/statictext.tpl -text
 templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
