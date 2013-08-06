@@ -3717,6 +3717,7 @@ lib/prefs/sitead.php -text
 lib/prefs/sitelogo.php -text
 lib/prefs/slide.php -text
 lib/prefs/smarty.php -text
+lib/prefs/social.php -text
 lib/prefs/socialnetworks.php -text
 lib/prefs/style.php -text
 lib/prefs/themegenerator.php -text
@@ -5949,6 +5950,7 @@ templates/send_newsletter_header.tpl -text
 templates/sent_newsletters.tpl -text
 templates/show_copyright.tpl -text
 templates/social/add_friend.tpl -text
+templates/social/approve_friend.tpl -text
 templates/social/list_friends.tpl -text
 templates/social/remove_friend.tpl -text
 templates/structures_toc-endul.tpl -text
