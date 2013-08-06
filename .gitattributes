@@ -5950,6 +5950,7 @@ templates/sent_newsletters.tpl -text
 templates/show_copyright.tpl -text
 templates/social/add_friend.tpl -text
 templates/social/list_friends.tpl -text
+templates/social/remove_friend.tpl -text
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
