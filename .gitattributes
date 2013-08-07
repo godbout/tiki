@@ -2710,6 +2710,7 @@ lib/core/Search/Query/index.php -text
 lib/core/Search/ResultSet.php -text
 lib/core/Search/ResultSet/FacetFilter.php -text
 lib/core/Search/ResultSet/SnippetHelper.php -text
+lib/core/Search/ResultSet/WikiBuilder.php -text
 lib/core/Search/ResultSet/index.php -text
 lib/core/Search/Type/Analyzer.php -text
 lib/core/Search/Type/Factory/Direct.php -text
