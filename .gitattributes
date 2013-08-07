@@ -2113,6 +2113,7 @@ installer/schema/20130705_activity_stream_tiki.sql -text
 installer/schema/20130715_activity_stream_rules_tiki.sql -text
 installer/schema/20130730_friendship_conversion_tiki.sql -text
 installer/schema/20130730_wiki_para_format_default_change_tiki.php -text
+installer/schema/20130807_tracker_files_display_param_change_tiki.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
