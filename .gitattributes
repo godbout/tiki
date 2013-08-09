@@ -4730,6 +4730,7 @@ lib/wiki-plugins/wikiplugin_timesheet.php -text
 lib/wiki-plugins/wikiplugin_titlesearch.php -text
 lib/wiki-plugins/wikiplugin_toc.php -text
 lib/wiki-plugins/wikiplugin_topfriends.php -text
+lib/wiki-plugins/wikiplugin_towtruck.php -text
 lib/wiki-plugins/wikiplugin_tr.php -text
 lib/wiki-plugins/wikiplugin_tracker.php -text
 lib/wiki-plugins/wikiplugin_trackercalendar.php -text
