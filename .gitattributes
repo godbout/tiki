@@ -3352,6 +3352,7 @@ lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery.mobile.js -text
 lib/jquery_tiki/tiki-maps.js -text
 lib/jquery_tiki/tiki-themegenerator.js -text
+lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
 lib/jquery_tiki/tiki-workspace-ui.js -text
 lib/language/CollectFiles.php -text
