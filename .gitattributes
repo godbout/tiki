@@ -2839,6 +2839,7 @@ lib/core/Tiki/Command/ProfileExport/Finalize.php -text
 lib/core/Tiki/Command/ProfileExport/Forum.php -text
 lib/core/Tiki/Command/ProfileExport/IncludeProfile.php -text
 lib/core/Tiki/Command/ProfileExport/Init.php -text
+lib/core/Tiki/Command/ProfileExport/Module.php -text
 lib/core/Tiki/Command/ProfileExport/ObjectWriter.php -text
 lib/core/Tiki/Command/ProfileExport/Preference.php -text
 lib/core/Tiki/Command/ProfileExport/RecentChanges.php -text
