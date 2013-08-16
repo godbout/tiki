@@ -2754,6 +2754,7 @@ lib/core/Services/Exception.php -text
 lib/core/Services/Exception/Denied.php -text
 lib/core/Services/Exception/Disabled.php -text
 lib/core/Services/Exception/DuplicateValue.php -text
+lib/core/Services/Exception/FieldError.php -text
 lib/core/Services/Exception/MissingValue.php -text
 lib/core/Services/Exception/NotAvailable.php -text
 lib/core/Services/Exception/NotFound.php -text
