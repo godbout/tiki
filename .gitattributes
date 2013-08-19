@@ -3912,6 +3912,7 @@ lib/shoutbox/index.php -text
 lib/shoutbox/shoutboxlib.php -text
 lib/simile_tiki/index.php -text
 lib/simile_tiki/tiki-timeline.js -text
+lib/smarty_tiki/block.activityframe.php -text
 lib/smarty_tiki/block.add_help.php -text
 lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
@@ -5455,6 +5456,7 @@ temp/public/.htaccess -text
 temp/public/index.php -text
 temp/web.config -text
 templates/.htaccess -text
+templates/activity/activityframe.tpl -text
 templates/activity/activitystream.tpl -text
 templates/activity/tiki.trackeritem.create.tpl -text
 templates/activity/tiki.trackeritem.update.tpl -text
