@@ -3941,6 +3941,7 @@ lib/smarty_tiki/block.wiki.php -text
 lib/smarty_tiki/block.wikiplugin.php -text
 lib/smarty_tiki/compiler.assign.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
+lib/smarty_tiki/function.activity.php -text
 lib/smarty_tiki/function.article.php -text
 lib/smarty_tiki/function.attachments.php -text
 lib/smarty_tiki/function.autocomplete.php -text
@@ -5912,6 +5913,7 @@ templates/modules/mod-zotero.tpl -text
 templates/modules/user_module.tpl -text
 templates/object/index.php -text
 templates/object/infobox.tpl -text
+templates/object/infobox/activity.tpl -text
 templates/object/infobox/index.php -text
 templates/object/infobox/trackeritem.tpl -text
 templates/object_perms_summary.tpl -text
