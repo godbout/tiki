@@ -84,6 +84,7 @@ css/metrics.css -text
 css/readme.txt -text
 db/.htaccess -text
 db/index.php -text
+db/preconfiguration.php -text
 db/tiki-db-adodb.php -text
 db/tiki-db-pdo.php -text
 db/tiki-db.php -text
