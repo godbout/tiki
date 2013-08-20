@@ -2673,6 +2673,7 @@ lib/core/Search/GlobalSource/Interface.php -text
 lib/core/Search/GlobalSource/PermissionSource.php -text
 lib/core/Search/GlobalSource/RelationSource.php -text
 lib/core/Search/GlobalSource/Reporting.php -text
+lib/core/Search/GlobalSource/SocialSource.php -text
 lib/core/Search/GlobalSource/Static.php -text
 lib/core/Search/GlobalSource/VisitsSource.php -text
 lib/core/Search/GlobalSource/index.php -text
