@@ -2761,8 +2761,6 @@ lib/core/Services/Exception/MissingValue.php -text
 lib/core/Services/Exception/NotAvailable.php -text
 lib/core/Services/Exception/NotFound.php -text
 lib/core/Services/Exception/index.php -text
-lib/core/Services/Favorite/Controller.php -text
-lib/core/Services/Favorite/index.php -text
 lib/core/Services/File/Controller.php -text
 lib/core/Services/File/FinderController.php -text
 lib/core/Services/File/Utilities.php -text
@@ -2793,6 +2791,7 @@ lib/core/Services/Tracker/TodoController.php -text
 lib/core/Services/Tracker/Utilities.php -text
 lib/core/Services/Tracker/index.php -text
 lib/core/Services/User/Controller.php -text
+lib/core/Services/User/FavoriteController.php -text
 lib/core/Services/User/SocialController.php -text
 lib/core/Services/User/index.php -text
 lib/core/Services/Wiki/Controller.php -text
