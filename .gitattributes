@@ -6296,6 +6296,7 @@ templates/tiki-share.tpl -text
 templates/tiki-sheets.tpl -text
 templates/tiki-sheets_listing.tpl -text
 templates/tiki-shoutbox.tpl -text
+templates/tiki-show_content.tpl -text
 templates/tiki-show_help.tpl -text
 templates/tiki-show_page.tpl -text
 templates/tiki-show_page_raw.tpl -text
