@@ -4442,6 +4442,7 @@ lib/test/shipping/index.php -text
 lib/test/smarty_tiki/ModifierDurationTest.php -text
 lib/test/smarty_tiki/index.php -text
 lib/test/wiki-plugins/CodeTest.php -text
+lib/test/wiki-plugins/YoutubeTest.php -text
 lib/test/wiki-plugins/index.php -text
 lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
