@@ -6969,9 +6969,13 @@ vendor_extra/elfinder/js/i18n/elfinder.no.js -text
 vendor_extra/elfinder/js/i18n/elfinder.pl.js -text
 vendor_extra/elfinder/js/i18n/elfinder.pt_BR.js -text
 vendor_extra/elfinder/js/i18n/elfinder.ru.js -text
+vendor_extra/elfinder/js/i18n/elfinder.sk.js -text
+vendor_extra/elfinder/js/i18n/elfinder.sl.js -text
+vendor_extra/elfinder/js/i18n/elfinder.sv.js -text
 vendor_extra/elfinder/js/i18n/elfinder.tr.js -text
 vendor_extra/elfinder/js/i18n/elfinder.vi.js -text
 vendor_extra/elfinder/js/i18n/elfinder.zh_CN.js -text
+vendor_extra/elfinder/js/i18n/elfinder.zh_TW.js -text
 vendor_extra/elfinder/js/proxy/elFinderSupportVer1.js -text
 vendor_extra/elfinder/php/MySQLStorage.sql -text
 vendor_extra/elfinder/php/connector.minimal.php -text
@@ -6982,6 +6986,7 @@ vendor_extra/elfinder/php/elFinderVolumeDriver.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeFTP.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeLocalFileSystem.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeMySQL.class.php -text
+vendor_extra/elfinder/php/elFinderVolumeS3.class.php -text
 vendor_extra/elfinder/php/mime.types -text
 vendor_extra/fullcalendar-resourceviews/GPL-LICENSE.txt -text
 vendor_extra/fullcalendar-resourceviews/MIT-LICENSE.txt -text
