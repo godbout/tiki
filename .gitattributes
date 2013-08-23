@@ -3331,6 +3331,7 @@ lib/jquery_tiki/colorpicker/index.php -text
 lib/jquery_tiki/colorpicker/layout.css -text
 lib/jquery_tiki/elfinder/elFinderVolumeTikiFiles.class.php -text
 lib/jquery_tiki/elfinder/tiki-elfinder.js -text
+lib/jquery_tiki/elfinder/tikiElFinder.php -text
 lib/jquery_tiki/galleriffic/css/basic.css -text
 lib/jquery_tiki/galleriffic/css/black.css -text
 lib/jquery_tiki/galleriffic/css/caption.png -text
