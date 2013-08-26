@@ -2730,6 +2730,7 @@ lib/core/Search/Type/Whole.php -text
 lib/core/Search/Type/WikiText.php -text
 lib/core/Search/Type/index.php -text
 lib/core/Search/index.php -text
+lib/core/Services/ActivityStream/Controller.php -text
 lib/core/Services/ActivityStream/ManageController.php -text
 lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/AuthSource/OAuthController.php -text
@@ -5468,6 +5469,7 @@ templates/activity/tiki.trackeritem.update.tpl -text
 templates/activity/tiki.user.follow.add.tpl -text
 templates/activity/tiki.user.follow.incoming.tpl -text
 templates/activity/tiki.user.friend.add.tpl -text
+templates/activitystream/render.tpl -text
 templates/addreference.tpl -text
 templates/admin/include_ads.tpl -text
 templates/admin/include_anchors.tpl -text
