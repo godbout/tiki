@@ -83,6 +83,7 @@ css/jscalendar.css -text
 css/metrics.css -text
 css/readme.txt -text
 db/.htaccess -text
+db/cert/.htaccess -text
 db/cert/web.config -text
 db/index.php -text
 db/install.ini.dist -text
