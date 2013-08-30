@@ -11,6 +11,7 @@
 /ZendStudioServer
 /_htaccess
 db/.htaccess
+db/cert/*.pem
 db/local.php
 db/lock
 db/virtuals.inc
