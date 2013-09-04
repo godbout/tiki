@@ -2491,6 +2491,7 @@ lib/core/Math/Formula/Function/Min.php -text
 lib/core/Math/Formula/Function/Mul.php -text
 lib/core/Math/Formula/Function/NotEquals.php -text
 lib/core/Math/Formula/Function/Or.php -text
+lib/core/Math/Formula/Function/Random.php -text
 lib/core/Math/Formula/Function/Str.php -text
 lib/core/Math/Formula/Function/Sub.php -text
 lib/core/Math/Formula/Function/index.php -text
