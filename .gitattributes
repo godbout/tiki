@@ -4698,6 +4698,7 @@ lib/wiki-plugins/wikiplugin_payment.php -text
 lib/wiki-plugins/wikiplugin_paypal.php -text
 lib/wiki-plugins/wikiplugin_perm.php -text
 lib/wiki-plugins/wikiplugin_perspective.php -text
+lib/wiki-plugins/wikiplugin_playscorm.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
 lib/wiki-plugins/wikiplugin_pref.php -text
