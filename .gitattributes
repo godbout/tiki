@@ -797,6 +797,7 @@ img/icons/eye_group_arrow_down.png -text
 img/icons/eye_magnifier.png -text
 img/icons/facebook-logo_32.png -text
 img/icons/feed.png -text
+img/icons/female.png -text
 img/icons/file-manager-add.png -text
 img/icons/file-manager.png -text
 img/icons/film_add.png -text
@@ -1111,6 +1112,7 @@ img/icons/login-OpenID-bg.gif -text
 img/icons/low.gif -text
 img/icons/magnifier.png -text
 img/icons/mail.gif -text
+img/icons/male.png -text
 img/icons/map.png -text
 img/icons/memo.gif -text
 img/icons/milestone.gif -text
@@ -1349,6 +1351,11 @@ img/icons/skype.png -text
 img/icons/slide2first.gif -text
 img/icons/slide2last.gif -text
 img/icons/smartfolder.gif -text
+img/icons/social_follower.png -text
+img/icons/social_following.png -text
+img/icons/social_friend.png -text
+img/icons/social_incoming.png -text
+img/icons/social_outgoing.png -text
 img/icons/sprite/admin.fullpanel.png -text
 img/icons/sprite/admin.fullpanel.xcf -text
 img/icons/sprite/index.php -text
@@ -6458,6 +6465,7 @@ templates/translation/detach.tpl -text
 templates/translation/index.php -text
 templates/translation/manage.tpl -text
 templates/unified_search_help.tpl -text
+templates/user/info.tpl -text
 templates/user/register.tpl -text
 templates/user_registration.tpl -text
 templates/vimeo/upload.tpl -text
