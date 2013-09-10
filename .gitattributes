@@ -3789,7 +3789,6 @@ lib/references/referenceslib.php -text
 lib/refererstats/index.php -text
 lib/refererstats/refererlib.php -text
 lib/registration/index.php -text
-lib/registration/register_ajax.js -text
 lib/registration/registrationlib.php -text
 lib/rss/index.php -text
 lib/rss/rsslib.php -text
