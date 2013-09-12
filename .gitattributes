@@ -2848,6 +2848,8 @@ lib/core/Tiki/Command/IndexCatchUpCommand.php -text
 lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
+lib/core/Tiki/Command/ProfileExport/ActivityRuleSet.php -text
+lib/core/Tiki/Command/ProfileExport/ActivityStreamRule.php -text
 lib/core/Tiki/Command/ProfileExport/AllModules.php -text
 lib/core/Tiki/Command/ProfileExport/Category.php -text
 lib/core/Tiki/Command/ProfileExport/Finalize.php -text
@@ -2889,6 +2891,8 @@ lib/core/Tiki/Profile/ChannelList.php -text
 lib/core/Tiki/Profile/Converter.php -text
 lib/core/Tiki/Profile/DateConverter.php -text
 lib/core/Tiki/Profile/InstallHandler.php -text
+lib/core/Tiki/Profile/InstallHandler/ActivityRuleSet.php -text
+lib/core/Tiki/Profile/InstallHandler/ActivityStreamRule.php -text
 lib/core/Tiki/Profile/InstallHandler/AreaBinding.php -text
 lib/core/Tiki/Profile/InstallHandler/Article.php -text
 lib/core/Tiki/Profile/InstallHandler/ArticleTopic.php -text
