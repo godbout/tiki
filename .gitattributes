@@ -4812,6 +4812,12 @@ lib/wiki3d/README.txt -text
 lib/wiki3d/index.php -text
 lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
+lib/wizard/index.php -text
+lib/wizard/pages/admin_wiki_env.php -text
+lib/wizard/pages/admin_wizard.php -text
+lib/wizard/readme.txt -text
+lib/wizard/wizard.php -text
+lib/wizard/wizardlib.php -text
 lib/x/index.php -text
 lib/x/x.js -text
 lib/x/x_anim.js -text
@@ -6384,6 +6390,7 @@ templates/tiki-webmail_contacts.tpl -text
 templates/tiki-wiki3d.tpl -text
 templates/tiki-wiki_structure_bar.tpl -text
 templates/tiki-wiki_topline.tpl -text
+templates/tiki-wizard_admin.tpl -text
 templates/tiki.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker/add_field.tpl -text
@@ -6540,6 +6547,8 @@ templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
+templates/wizard/admin_wiki_env.tpl -text
+templates/wizard/admin_wizard.tpl -text
 templates/workspace/add_template.tpl -text
 templates/workspace/advanced_edit.tpl -text
 templates/workspace/create.tpl -text
@@ -6937,6 +6946,7 @@ tests/testfile.txt -text
 /tiki-wiki_rss.php -text
 /tiki-wiki_rss_no_diff.php -text
 /tiki-wikiplugin_edit.php -text
+/tiki-wizard_admin.php -text
 /tiki-xmlrpc_services.php -text
 tiki_tests/index.php -text
 tiki_tests/tests/.htaccess -text
