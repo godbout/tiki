@@ -3771,6 +3771,7 @@ lib/prefs/wikiapproval.php -text
 lib/prefs/wikiplugin.php -text
 lib/prefs/wikiplugininline.php -text
 lib/prefs/wikipluginprefs.php -text
+lib/prefs/wizard.php -text
 lib/prefs/workspace.php -text
 lib/prefs/wysiwyg.php -text
 lib/prefs/zend.php -text
