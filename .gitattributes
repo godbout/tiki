@@ -4814,6 +4814,7 @@ lib/wiki3d/index.php -text
 lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
 lib/wizard/index.php -text
+lib/wizard/pages/admin_date_time.php -text
 lib/wizard/pages/admin_wiki_env.php -text
 lib/wizard/pages/admin_wizard.php -text
 lib/wizard/readme.txt -text
@@ -6548,6 +6549,7 @@ templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
+templates/wizard/admin_date_time.tpl -text
 templates/wizard/admin_wiki_env.tpl -text
 templates/wizard/admin_wizard.tpl -text
 templates/workspace/add_template.tpl -text
