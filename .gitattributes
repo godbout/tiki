@@ -6558,6 +6558,7 @@ templates/wizard/admin_files.tpl -text
 templates/wizard/admin_profiles.tpl -text
 templates/wizard/admin_wiki.tpl -text
 templates/wizard/admin_wizard.tpl -text
+templates/wizard/wizard_bar.tpl -text
 templates/workspace/add_template.tpl -text
 templates/workspace/advanced_edit.tpl -text
 templates/workspace/create.tpl -text
