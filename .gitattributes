@@ -4816,7 +4816,7 @@ lib/wiki3d/pom.xml -text
 lib/wizard/index.php -text
 lib/wizard/pages/admin_auto_toc.php -text
 lib/wizard/pages/admin_date_time.php -text
-lib/wizard/pages/admin_editor.php -text
+lib/wizard/pages/admin_editor_type.php -text
 lib/wizard/pages/admin_files.php -text
 lib/wizard/pages/admin_files_storage.php -text
 lib/wizard/pages/admin_jcapture.php -text
@@ -4825,6 +4825,7 @@ lib/wizard/pages/admin_namespace.php -text
 lib/wizard/pages/admin_profiles.php -text
 lib/wizard/pages/admin_wiki.php -text
 lib/wizard/pages/admin_wizard.php -text
+lib/wizard/pages/admin_wysiwyg.php -text
 lib/wizard/readme.txt -text
 lib/wizard/wizard.php -text
 lib/wizard/wizardlib.php -text
@@ -6559,7 +6560,7 @@ templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 templates/wizard/admin_auto_toc.tpl -text
 templates/wizard/admin_date_time.tpl -text
-templates/wizard/admin_editor.tpl -text
+templates/wizard/admin_editor_type.tpl -text
 templates/wizard/admin_files.tpl -text
 templates/wizard/admin_files_storage.tpl -text
 templates/wizard/admin_jcapture.tpl -text
@@ -6568,6 +6569,7 @@ templates/wizard/admin_namespace.tpl -text
 templates/wizard/admin_profiles.tpl -text
 templates/wizard/admin_wiki.tpl -text
 templates/wizard/admin_wizard.tpl -text
+templates/wizard/admin_wysiwyg.tpl -text
 templates/wizard/wizard_bar.tpl -text
 templates/workspace/add_template.tpl -text
 templates/workspace/advanced_edit.tpl -text
