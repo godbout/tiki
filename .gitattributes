@@ -4819,6 +4819,7 @@ lib/wizard/pages/admin_date_time.php -text
 lib/wizard/pages/admin_editor.php -text
 lib/wizard/pages/admin_files.php -text
 lib/wizard/pages/admin_language.php -text
+lib/wizard/pages/admin_namespace.php -text
 lib/wizard/pages/admin_profiles.php -text
 lib/wizard/pages/admin_wiki.php -text
 lib/wizard/pages/admin_wizard.php -text
@@ -6559,6 +6560,7 @@ templates/wizard/admin_date_time.tpl -text
 templates/wizard/admin_editor.tpl -text
 templates/wizard/admin_files.tpl -text
 templates/wizard/admin_language.tpl -text
+templates/wizard/admin_namespace.tpl -text
 templates/wizard/admin_profiles.tpl -text
 templates/wizard/admin_wiki.tpl -text
 templates/wizard/admin_wizard.tpl -text
