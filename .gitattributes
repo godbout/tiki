@@ -4818,6 +4818,7 @@ lib/wizard/pages/admin_auto_toc.php -text
 lib/wizard/pages/admin_date_time.php -text
 lib/wizard/pages/admin_editor.php -text
 lib/wizard/pages/admin_files.php -text
+lib/wizard/pages/admin_files_storage.php -text
 lib/wizard/pages/admin_jcapture.php -text
 lib/wizard/pages/admin_language.php -text
 lib/wizard/pages/admin_namespace.php -text
@@ -6560,6 +6561,7 @@ templates/wizard/admin_auto_toc.tpl -text
 templates/wizard/admin_date_time.tpl -text
 templates/wizard/admin_editor.tpl -text
 templates/wizard/admin_files.tpl -text
+templates/wizard/admin_files_storage.tpl -text
 templates/wizard/admin_jcapture.tpl -text
 templates/wizard/admin_language.tpl -text
 templates/wizard/admin_namespace.tpl -text
