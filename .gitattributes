@@ -2865,6 +2865,7 @@ lib/core/Tiki/Command/ProfileExport/TrackerField.php -text
 lib/core/Tiki/Command/ProfileExport/WikiPage.php -text
 lib/core/Tiki/Command/ProfileForgetCommand.php -text
 lib/core/Tiki/Command/ProfileInstallCommand.php -text
+lib/core/Tiki/Command/RedactDBCommand.php -text
 lib/core/Tiki/Command/UnavailableCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
 lib/core/Tiki/Composer/CleanVendors.php -text
