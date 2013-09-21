@@ -1080,6 +1080,8 @@ img/icons/large/webservices.png -text
 img/icons/large/webservices48x48.png -text
 img/icons/large/wikipages.png -text
 img/icons/large/wikipages48x48.png -text
+img/icons/large/wizard32x32.png -text
+img/icons/large/wizard48x48.png -text
 img/icons/large/wysiwyg.png -text
 img/icons/large/wysiwyg48x48.png -text
 img/icons/large/xfce4-appfinder.png -text
@@ -1523,6 +1525,8 @@ img/icons/wiki3d.png -text
 img/icons/wiki_plugin_edit.png -text
 img/icons/wiki_plugin_edit_hide.png -text
 img/icons/wiki_plugin_edit_view.png -text
+img/icons/wizard16x16.png -text
+img/icons/wizard22x22.png -text
 img/icons/world.gif -text
 img/icons/world.png -text
 img/icons/world_add.png -text
