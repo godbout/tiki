@@ -4824,6 +4824,7 @@ lib/wizard/pages/admin_jcapture.php -text
 lib/wizard/pages/admin_language.php -text
 lib/wizard/pages/admin_namespace.php -text
 lib/wizard/pages/admin_profiles.php -text
+lib/wizard/pages/admin_text_area.php -text
 lib/wizard/pages/admin_wiki.php -text
 lib/wizard/pages/admin_wizard.php -text
 lib/wizard/pages/admin_wysiwyg.php -text
@@ -6569,6 +6570,7 @@ templates/wizard/admin_jcapture.tpl -text
 templates/wizard/admin_language.tpl -text
 templates/wizard/admin_namespace.tpl -text
 templates/wizard/admin_profiles.tpl -text
+templates/wizard/admin_text_area.tpl -text
 templates/wizard/admin_wiki.tpl -text
 templates/wizard/admin_wizard.tpl -text
 templates/wizard/admin_wysiwyg.tpl -text
