@@ -4836,6 +4836,9 @@ lib/wizard/pages/admin_text_area.php -text
 lib/wizard/pages/admin_wiki.php -text
 lib/wizard/pages/admin_wizard.php -text
 lib/wizard/pages/admin_wysiwyg.php -text
+lib/wizard/pages/user_dummy1.php -text
+lib/wizard/pages/user_dummy2.php -text
+lib/wizard/pages/user_dummy3.php -text
 lib/wizard/readme.txt -text
 lib/wizard/wizard.php -text
 lib/wizard/wizardlib.php -text
@@ -6412,6 +6415,7 @@ templates/tiki-wiki3d.tpl -text
 templates/tiki-wiki_structure_bar.tpl -text
 templates/tiki-wiki_topline.tpl -text
 templates/tiki-wizard_admin.tpl -text
+templates/tiki-wizard_user.tpl -text
 templates/tiki.tpl -text
 templates/tiki_full.tpl -text
 templates/tracker/add_field.tpl -text
@@ -6586,7 +6590,11 @@ templates/wizard/admin_text_area.tpl -text
 templates/wizard/admin_wiki.tpl -text
 templates/wizard/admin_wizard.tpl -text
 templates/wizard/admin_wysiwyg.tpl -text
-templates/wizard/wizard_bar.tpl -text
+templates/wizard/user_dummy1.tpl -text
+templates/wizard/user_dummy2.tpl -text
+templates/wizard/user_dummy3.tpl -text
+templates/wizard/wizard_bar_admin.tpl -text
+templates/wizard/wizard_bar_user.tpl -text
 templates/workspace/add_template.tpl -text
 templates/workspace/advanced_edit.tpl -text
 templates/workspace/create.tpl -text
@@ -6985,6 +6993,7 @@ tests/testfile.txt -text
 /tiki-wiki_rss_no_diff.php -text
 /tiki-wikiplugin_edit.php -text
 /tiki-wizard_admin.php -text
+/tiki-wizard_user.php -text
 /tiki-xmlrpc_services.php -text
 tiki_tests/index.php -text
 tiki_tests/tests/.htaccess -text
