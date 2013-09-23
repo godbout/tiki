@@ -5270,11 +5270,15 @@ styles/greenvalley/button_bck_hover.jpg -text
 styles/greenvalley/footer_bck.jpg -text
 styles/greenvalley/greenvalley.png -text
 styles/greenvalley/header_background_ltr.jpg -text
+styles/greenvalley/header_background_rtl.jpg -text
 styles/greenvalley/ie7.css -text
 styles/greenvalley/index.php -text
 styles/greenvalley/left.png -text
+styles/greenvalley/logo_top.png -text
 styles/greenvalley/menubar-wood.jpg -text
 styles/greenvalley/page_background_ltr.jpg -text
+styles/greenvalley/page_background_rtl.jpg -text
+styles/greenvalley/phonebook_rtl.jpg -text
 styles/greenvalley/right.png -text
 styles/greenvalley/rtl/greenvalley_BiDi.css -text
 styles/greenvalley/rtl/header_background_rtl.jpg -text
