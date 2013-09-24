@@ -4841,6 +4841,11 @@ lib/wizard/pages/admin_wysiwyg.php -text
 lib/wizard/pages/user_dummy1.php -text
 lib/wizard/pages/user_dummy2.php -text
 lib/wizard/pages/user_dummy3.php -text
+lib/wizard/pages/user_preferences_info.php -text
+lib/wizard/pages/user_preferences_notifications.php -text
+lib/wizard/pages/user_preferences_params.php -text
+lib/wizard/pages/user_preferences_reports.php -text
+lib/wizard/pages/user_wizard.php -text
 lib/wizard/readme.txt -text
 lib/wizard/wizard.php -text
 lib/wizard/wizardlib.php -text
@@ -6597,6 +6602,11 @@ templates/wizard/admin_wysiwyg.tpl -text
 templates/wizard/user_dummy1.tpl -text
 templates/wizard/user_dummy2.tpl -text
 templates/wizard/user_dummy3.tpl -text
+templates/wizard/user_preferences_info.tpl -text
+templates/wizard/user_preferences_notifications.tpl -text
+templates/wizard/user_preferences_params.tpl -text
+templates/wizard/user_preferences_reports.tpl -text
+templates/wizard/user_wizard.tpl -text
 templates/wizard/wizard_bar_admin.tpl -text
 templates/wizard/wizard_bar_user.tpl -text
 templates/workspace/add_template.tpl -text
