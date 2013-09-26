@@ -2099,6 +2099,7 @@ lang/ar/language.php -text
 lang/bg/index.php -text
 lang/bg/language.js -text
 lang/bg/language.php -text
+lang/ca/custom.js_example -text
 lang/ca/custom.php_example -text
 lang/ca/index.php -text
 lang/ca/language.js -text
@@ -2129,6 +2130,7 @@ lang/en-uk/language.php -text
 lang/en/index.php -text
 lang/en/language.js -text
 lang/en/language.php -text
+lang/es/custom.js_example -text
 lang/es/custom.php_example -text
 lang/es/index.php -text
 lang/es/language.js -text
