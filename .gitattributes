@@ -2692,6 +2692,7 @@ lib/core/Search/GlobalSource/RelationSource.php -text
 lib/core/Search/GlobalSource/Reporting.php -text
 lib/core/Search/GlobalSource/SocialSource.php -text
 lib/core/Search/GlobalSource/Static.php -text
+lib/core/Search/GlobalSource/TitleInitialSource.php -text
 lib/core/Search/GlobalSource/VisitsSource.php -text
 lib/core/Search/GlobalSource/index.php -text
 lib/core/Search/Index/AbstractIndexDecorator.php -text
@@ -4308,6 +4309,7 @@ lib/test/core/Search/Formatter/DataSourceTest.php -text
 lib/test/core/Search/Formatter/index.php -text
 lib/test/core/Search/FormatterTest.php -text
 lib/test/core/Search/GlobalSource/PermissionSourceTest.php -text
+lib/test/core/Search/GlobalSource/TitleInitialTest.php -text
 lib/test/core/Search/GlobalSource/index.php -text
 lib/test/core/Search/Index/BaseTest.php -text
 lib/test/core/Search/Index/IncrementalUpdateTest.php -text
