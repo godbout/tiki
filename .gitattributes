@@ -1370,6 +1370,7 @@ img/icons/star_green_2.gif -text
 img/icons/star_grey.gif -text
 img/icons/star_grey.png -text
 img/icons/star_grey_2.gif -text
+img/icons/star_grey_selected.png -text
 img/icons/star_half.png -text
 img/icons/star_orange.gif -text
 img/icons/star_orange_2.gif -text
@@ -1377,6 +1378,7 @@ img/icons/star_purple.gif -text
 img/icons/star_purple_2.gif -text
 img/icons/star_red.gif -text
 img/icons/star_red_2.gif -text
+img/icons/star_selected.png -text
 img/icons/star_yellow.gif -text
 img/icons/star_yellow_2.gif -text
 img/icons/status_closed.gif -text
