@@ -4698,6 +4698,7 @@ lib/wiki-plugins/wikiplugin_lastmod.php -text
 lib/wiki-plugins/wikiplugin_list.php -text
 lib/wiki-plugins/wikiplugin_listexecute.php -text
 lib/wiki-plugins/wikiplugin_listpages.php -text
+lib/wiki-plugins/wikiplugin_localfiles.php -text
 lib/wiki-plugins/wikiplugin_lsdir.php -text
 lib/wiki-plugins/wikiplugin_mail.php -text
 lib/wiki-plugins/wikiplugin_map.php -text
@@ -6554,6 +6555,7 @@ templates/wiki-plugins/wikiplugin_invite.tpl -text
 templates/wiki-plugins/wikiplugin_kaltura.tpl -text
 templates/wiki-plugins/wikiplugin_listexecute.tpl -text
 templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
+templates/wiki-plugins/wikiplugin_localfiles.tpl -text
 templates/wiki-plugins/wikiplugin_mail.tpl -text
 templates/wiki-plugins/wikiplugin_memberlist.tpl -text
 templates/wiki-plugins/wikiplugin_memberpayment.tpl -text
