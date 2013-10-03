@@ -4170,6 +4170,7 @@ lib/test/Calendar/index.php -text
 lib/test/IntegrationTests/index.php -text
 lib/test/MultilingualLibTest.php -text
 lib/test/README -text
+lib/test/TestRunnerWithBaseline.php -text
 lib/test/TestRunnerWithBaselineTest.php -text
 lib/test/TestableTikiLib.php -text
 lib/test/TestsDBHelper.php -text
