@@ -955,6 +955,7 @@ img/icons/key.png -text
 img/icons/key_active.gif -text
 img/icons/key_active.png -text
 img/icons/key_private.png -text
+img/icons/large/accounting48x48.png -text
 img/icons/large/admin.gif -text
 img/icons/large/ads.png -text
 img/icons/large/ads48x48.png -text
@@ -973,6 +974,7 @@ img/icons/large/copyright.png -text
 img/icons/large/copyright48x48.png -text
 img/icons/large/date.png -text
 img/icons/large/date48x48.png -text
+img/icons/large/directory48x48.png -text
 img/icons/large/display-capplet.png -text
 img/icons/large/display-capplet48x48.png -text
 img/icons/large/editing48x48.png -text
@@ -1005,6 +1007,7 @@ img/icons/large/google_maps48x48.png -text
 img/icons/large/goto.png -text
 img/icons/large/goto48x48.png -text
 img/icons/large/green_question48x48.png -text
+img/icons/large/home48x48.png -text
 img/icons/large/i18n.png -text
 img/icons/large/i18n48x48.png -text
 img/icons/large/icon-configuration.png -text
@@ -1012,6 +1015,7 @@ img/icons/large/icon-configuration48x48.png -text
 img/icons/large/index.php -text
 img/icons/large/intertiki.png -text
 img/icons/large/intertiki48x48.png -text
+img/icons/large/invoice48x48.png -text
 img/icons/large/kaltura.png -text
 img/icons/large/kaltura48x48.png -text
 img/icons/large/maps.png -text
@@ -1038,12 +1042,16 @@ img/icons/large/plugins48x48.png -text
 img/icons/large/prefs.gif -text
 img/icons/large/profiles.png -text
 img/icons/large/profiles48x48.png -text
+img/icons/large/quizzes48x48.png -text
 img/icons/large/rating.png -text
 img/icons/large/rating48x48.png -text
+img/icons/large/reports48x48.png -text
 img/icons/large/semantic.png -text
 img/icons/large/semantic48x48.png -text
 img/icons/large/socialnetworks.png -text
 img/icons/large/socialnetworks48x48.png -text
+img/icons/large/spreadsheet48x48.png -text
+img/icons/large/stats48x48.png -text
 img/icons/large/stock_about.png -text
 img/icons/large/stock_about48x48.png -text
 img/icons/large/stock_bold.png -text
@@ -1066,7 +1074,9 @@ img/icons/large/stock_quit.png -text
 img/icons/large/stock_quit48x48.png -text
 img/icons/large/stock_select-color.png -text
 img/icons/large/stock_select-color48x48.png -text
+img/icons/large/surveys48x48.png -text
 img/icons/large/tasks.gif -text
+img/icons/large/timesheet48x48.png -text
 img/icons/large/usagelist.txt -text
 img/icons/large/user.png -text
 img/icons/large/userfiles.png -text
@@ -2132,6 +2142,7 @@ installer/schema/20130730_friendship_conversion_tiki.sql -text
 installer/schema/20130730_wiki_para_format_default_change_tiki.php -text
 installer/schema/20130807_tracker_files_display_param_change_tiki.php -text
 installer/schema/20130809_limit_name_lengths_in_objects_tiki.php -text
+installer/schema/20131007_menus_items_missing_icons_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
