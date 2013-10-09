@@ -970,10 +970,12 @@ img/icons/large/categories.png -text
 img/icons/large/categories48x48.png -text
 img/icons/large/comments.png -text
 img/icons/large/comments48x48.png -text
+img/icons/large/contactus48x48.png -text
 img/icons/large/copyright.png -text
 img/icons/large/copyright48x48.png -text
 img/icons/large/date.png -text
 img/icons/large/date48x48.png -text
+img/icons/large/debug48x48.png -text
 img/icons/large/directory48x48.png -text
 img/icons/large/display-capplet.png -text
 img/icons/large/display-capplet48x48.png -text
@@ -1076,6 +1078,7 @@ img/icons/large/stock_select-color.png -text
 img/icons/large/stock_select-color48x48.png -text
 img/icons/large/surveys48x48.png -text
 img/icons/large/tasks.gif -text
+img/icons/large/tikicalendar48x48.png -text
 img/icons/large/timesheet48x48.png -text
 img/icons/large/usagelist.txt -text
 img/icons/large/user.png -text
@@ -1083,6 +1086,7 @@ img/icons/large/userfiles.png -text
 img/icons/large/userfiles48x48.png -text
 img/icons/large/users.png -text
 img/icons/large/users48x48.png -text
+img/icons/large/usersmap48x48.png -text
 img/icons/large/vcard.png -text
 img/icons/large/vcard48x48.png -text
 img/icons/large/webmail.gif -text
