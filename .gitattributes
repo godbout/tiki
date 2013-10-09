@@ -4181,15 +4181,16 @@ lib/test/Calendar/index.php -text
 lib/test/IntegrationTests/index.php -text
 lib/test/MultilingualLibTest.php -text
 lib/test/README -text
+lib/test/TestHelpers.php -text
 lib/test/TestRunnerWithBaseline.php -text
 lib/test/TestRunnerWithBaselineTest.php -text
 lib/test/TestableTikiLib.php -text
-lib/test/TestsDBHelper.php -text
 lib/test/TikiAcceptanceTestDBRestorer.php -text
 lib/test/TikiDatabaseTestCase.php -text
 lib/test/TikiLib/LibTest.php -text
 lib/test/TikiLib/MultiExplodeTest.php -text
 lib/test/TikiLib/TestableTikiLibTest.php -text
+lib/test/TikiLib/TikiLibTest.php -text
 lib/test/TikiLib/UriMergeTest.php -text
 lib/test/TikiLib/UrlEncodeAccentTest.php -text
 lib/test/TikiLib/WikiParserTest.php -text
