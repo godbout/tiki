@@ -89,6 +89,7 @@ db/index.php -text
 db/install.ini.dist -text
 db/preconfiguration.php -text
 db/tiki-db.php -text
+db/tiki-secdb_12.0_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -4873,6 +4874,7 @@ lib/wizard/pages/admin_language.php -text
 lib/wizard/pages/admin_look_and_feel.php -text
 lib/wizard/pages/admin_namespace.php -text
 lib/wizard/pages/admin_profiles.php -text
+lib/wizard/pages/admin_search.php -text
 lib/wizard/pages/admin_structures.php -text
 lib/wizard/pages/admin_text_area.php -text
 lib/wizard/pages/admin_wiki.php -text
@@ -6635,6 +6637,7 @@ templates/wizard/admin_language.tpl -text
 templates/wizard/admin_look_and_feel.tpl -text
 templates/wizard/admin_namespace.tpl -text
 templates/wizard/admin_profiles.tpl -text
+templates/wizard/admin_search.tpl -text
 templates/wizard/admin_structures.tpl -text
 templates/wizard/admin_text_area.tpl -text
 templates/wizard/admin_wiki.tpl -text
