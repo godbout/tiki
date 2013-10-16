@@ -4189,6 +4189,7 @@ lib/test/AcceptanceTests/utils/upgrade_test_database_dump_file.php -text
 lib/test/AllTestsAcceptance.php -text
 lib/test/Calendar/DateTest.php -text
 lib/test/Calendar/index.php -text
+lib/test/ContinuousIntegationTesting.php -text
 lib/test/IntegrationTests/index.php -text
 lib/test/MultilingualLibTest.php -text
 lib/test/README -text
