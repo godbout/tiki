@@ -6066,6 +6066,7 @@ templates/styles/mobile/tiki-wiki_topline.tpl -text
 templates/styles/mobile/tiki.tpl -text
 templates/styles/mobile/tiki_full.tpl -text
 templates/styles/mobile/tracker_actions.tpl -text
+templates/styles/mobile/translated-lang.tpl -text
 templates/styles/mobile/wiki_edit_actions.tpl -text
 templates/styles/ohia/index.php -text
 templates/styles/site_closed.html -text
