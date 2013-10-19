@@ -6060,10 +6060,10 @@ templates/styles/index.php -text
 templates/styles/mobile/category_tree_entry.tpl -text
 templates/styles/mobile/find.tpl -text
 templates/styles/mobile/index.php -text
+templates/styles/mobile/layout_view.tpl -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
 templates/styles/mobile/tiki-wiki_topline.tpl -text
-templates/styles/mobile/tiki.tpl -text
 templates/styles/mobile/tiki_full.tpl -text
 templates/styles/mobile/tracker_actions.tpl -text
 templates/styles/mobile/translated-lang.tpl -text
