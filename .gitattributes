@@ -6062,6 +6062,7 @@ templates/styles/mobile/find.tpl -text
 templates/styles/mobile/index.php -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
+templates/styles/mobile/tiki-wiki_topline.tpl -text
 templates/styles/mobile/tiki.tpl -text
 templates/styles/mobile/tiki_full.tpl -text
 templates/styles/mobile/tracker_actions.tpl -text
