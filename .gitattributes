@@ -5692,6 +5692,8 @@ templates/jcapture/index.php -text
 templates/kaltura/upload.tpl -text
 templates/layouts/classic/layout_edit.tpl -text
 templates/layouts/classic/layout_view.tpl -text
+templates/layouts/mobile/layout_edit.tpl -text
+templates/layouts/mobile/layout_view.tpl -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
@@ -6060,7 +6062,6 @@ templates/styles/index.php -text
 templates/styles/mobile/category_tree_entry.tpl -text
 templates/styles/mobile/find.tpl -text
 templates/styles/mobile/index.php -text
-templates/styles/mobile/layout_view.tpl -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
 templates/styles/mobile/tiki-wiki_topline.tpl -text
