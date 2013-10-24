@@ -2879,6 +2879,7 @@ lib/core/Tiki/Command/ProfileExport/Module.php -text
 lib/core/Tiki/Command/ProfileExport/ObjectWriter.php -text
 lib/core/Tiki/Command/ProfileExport/Preference.php -text
 lib/core/Tiki/Command/ProfileExport/RecentChanges.php -text
+lib/core/Tiki/Command/ProfileExport/Rss.php -text
 lib/core/Tiki/Command/ProfileExport/Tracker.php -text
 lib/core/Tiki/Command/ProfileExport/TrackerField.php -text
 lib/core/Tiki/Command/ProfileExport/WikiPage.php -text
