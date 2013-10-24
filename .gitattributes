@@ -2865,6 +2865,8 @@ lib/core/Tiki/Command/InstallCommand.php -text
 lib/core/Tiki/Command/ProfileExport/ActivityRuleSet.php -text
 lib/core/Tiki/Command/ProfileExport/ActivityStreamRule.php -text
 lib/core/Tiki/Command/ProfileExport/AllModules.php -text
+lib/core/Tiki/Command/ProfileExport/ArticleTopic.php -text
+lib/core/Tiki/Command/ProfileExport/ArticleType.php -text
 lib/core/Tiki/Command/ProfileExport/Category.php -text
 lib/core/Tiki/Command/ProfileExport/FileGallery.php -text
 lib/core/Tiki/Command/ProfileExport/Finalize.php -text
