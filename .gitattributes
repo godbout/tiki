@@ -2898,7 +2898,10 @@ lib/core/Tiki/Command/ProfileExport/Menu.php -text
 lib/core/Tiki/Command/ProfileExport/Module.php -text
 lib/core/Tiki/Command/ProfileExport/ObjectWriter.php -text
 lib/core/Tiki/Command/ProfileExport/Preference.php -text
+lib/core/Tiki/Command/ProfileExport/RatingConfig.php -text
+lib/core/Tiki/Command/ProfileExport/RatingConfigSet.php -text
 lib/core/Tiki/Command/ProfileExport/RecentChanges.php -text
+lib/core/Tiki/Command/ProfileExport/Rss.php -text
 lib/core/Tiki/Command/ProfileExport/Tracker.php -text
 lib/core/Tiki/Command/ProfileExport/TrackerField.php -text
 lib/core/Tiki/Command/ProfileExport/WikiPage.php -text
@@ -2952,6 +2955,7 @@ lib/core/Tiki/Profile/InstallHandler/Module.php -text
 lib/core/Tiki/Profile/InstallHandler/Perspective.php -text
 lib/core/Tiki/Profile/InstallHandler/PluginAlias.php -text
 lib/core/Tiki/Profile/InstallHandler/RatingConfig.php -text
+lib/core/Tiki/Profile/InstallHandler/RatingConfigSet.php -text
 lib/core/Tiki/Profile/InstallHandler/Rss.php -text
 lib/core/Tiki/Profile/InstallHandler/Sheet.php -text
 lib/core/Tiki/Profile/InstallHandler/Template.php -text
