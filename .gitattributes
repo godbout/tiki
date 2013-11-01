@@ -3016,6 +3016,7 @@ lib/core/TikiFilter/HtmlPurifier.php -text
 lib/core/TikiFilter/PrepareInput.php -text
 lib/core/TikiFilter/PreventXss.php -text
 lib/core/TikiFilter/RawUnsafe.php -text
+lib/core/TikiFilter/WikiContent.php -text
 lib/core/TikiFilter/Word.php -text
 lib/core/TikiFilter/index.php -text
 lib/core/Tracker/Definition.php -text
