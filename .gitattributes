@@ -5651,6 +5651,7 @@ templates/blog_post_postbody_title.tpl -text
 templates/blog_post_related_content.tpl -text
 templates/blog_post_status.tpl -text
 templates/blog_wrapper.tpl -text
+templates/bootstrap_menu.tpl -text
 templates/browse_file_gallery.tpl -text
 templates/browsedcategory.tpl -text
 templates/calendar.tpl -text
