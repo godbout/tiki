@@ -4031,6 +4031,7 @@ lib/smarty_tiki/function.fgal_browse.php -text
 lib/smarty_tiki/function.filegal_manager_url.php -text
 lib/smarty_tiki/function.fileinfo.php -text
 lib/smarty_tiki/function.gallery.php -text
+lib/smarty_tiki/function.glyph.php -text
 lib/smarty_tiki/function.help.php -text
 lib/smarty_tiki/function.html_body_attributes.php -text
 lib/smarty_tiki/function.html_select_date.php -text
