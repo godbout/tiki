@@ -2148,6 +2148,7 @@ installer/schema/20130730_wiki_para_format_default_change_tiki.php -text
 installer/schema/20130807_tracker_files_display_param_change_tiki.php -text
 installer/schema/20130809_limit_name_lengths_in_objects_tiki.php -text
 installer/schema/20131007_menus_items_missing_icons_tiki.sql -text
+installer/schema/20131108_mytiki_add_mailin_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
