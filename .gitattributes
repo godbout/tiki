@@ -6091,8 +6091,6 @@ templates/social/remove_friend.tpl -text
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
-templates/styles/960_gs/index.php -text
-templates/styles/960_gs/tiki.tpl -text
 templates/styles/abse/index.php -text
 templates/styles/business/index.php -text
 templates/styles/coelesce/blog_post_postbody_title.tpl -text
