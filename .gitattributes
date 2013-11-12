@@ -172,6 +172,7 @@ doc/devtools/tikimerge.sh -text
 doc/devtools/tikirelease.sh -text
 doc/devtools/tikireleasediff.sh -text
 doc/devtools/tikiwiki.spec -text
+doc/devtools/tim/apache.conf -text
 doc/devtools/tim/tim -text
 doc/devtools/tim/tim-common -text
 doc/devtools/tim/tim-create -text
