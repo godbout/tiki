@@ -6245,7 +6245,6 @@ templates/tiki-edit_help.tpl -text
 templates/tiki-edit_help_plugins.tpl -text
 templates/tiki-edit_help_sheet.tpl -text
 templates/tiki-edit_help_sheet_interface.tpl -text
-templates/tiki-edit_help_wiki_wysiwyg.tpl -text
 templates/tiki-edit_help_wysiwyg.tpl -text
 templates/tiki-edit_image.tpl -text
 templates/tiki-edit_invoice.tpl -text
