@@ -4857,6 +4857,7 @@ lib/wizard/pages/admin_files.php -text
 lib/wizard/pages/admin_files_storage.php -text
 lib/wizard/pages/admin_jcapture.php -text
 lib/wizard/pages/admin_language.php -text
+lib/wizard/pages/admin_login.php -text
 lib/wizard/pages/admin_look_and_feel.php -text
 lib/wizard/pages/admin_namespace.php -text
 lib/wizard/pages/admin_profiles.php -text
@@ -6626,6 +6627,7 @@ templates/wizard/admin_files.tpl -text
 templates/wizard/admin_files_storage.tpl -text
 templates/wizard/admin_jcapture.tpl -text
 templates/wizard/admin_language.tpl -text
+templates/wizard/admin_login.tpl -text
 templates/wizard/admin_look_and_feel.tpl -text
 templates/wizard/admin_namespace.tpl -text
 templates/wizard/admin_profiles.tpl -text
