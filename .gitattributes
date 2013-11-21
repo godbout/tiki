@@ -20,7 +20,6 @@ admin/include_forums.php -text
 admin/include_freetags.php -text
 admin/include_gal.php -text
 admin/include_general.php -text
-admin/include_gmap.php -text
 admin/include_i18n.php -text
 admin/include_intertiki.php -text
 admin/include_login.php -text
@@ -4001,6 +4000,7 @@ lib/smarty_tiki/function.cookie.php -text
 lib/smarty_tiki/function.cookie_jar.php -text
 lib/smarty_tiki/function.count.php -text
 lib/smarty_tiki/function.debugger.php -text
+lib/smarty_tiki/function.defaultmapcenter.php -text
 lib/smarty_tiki/function.ed.php -text
 lib/smarty_tiki/function.elapsed.php -text
 lib/smarty_tiki/function.error_report.php -text
@@ -4691,7 +4691,6 @@ lib/wiki-plugins/wikiplugin_gauge.php -text
 lib/wiki-plugins/wikiplugin_getaccesstoken.php -text
 lib/wiki-plugins/wikiplugin_googleanalytics.php -text
 lib/wiki-plugins/wikiplugin_googledoc.php -text
-lib/wiki-plugins/wikiplugin_googlemap.php -text
 lib/wiki-plugins/wikiplugin_group.php -text
 lib/wiki-plugins/wikiplugin_groupexpiry.php -text
 lib/wiki-plugins/wikiplugin_grouplist.php -text
@@ -5569,7 +5568,6 @@ templates/admin/include_forums.tpl -text
 templates/admin/include_freetags.tpl -text
 templates/admin/include_gal.tpl -text
 templates/admin/include_general.tpl -text
-templates/admin/include_gmap.tpl -text
 templates/admin/include_i18n.tpl -text
 templates/admin/include_intertiki.tpl -text
 templates/admin/include_list_sections.tpl -text
@@ -6574,7 +6572,6 @@ templates/wiki-plugins/wikiplugin_files.tpl -text
 templates/wiki-plugins/wikiplugin_freetagged.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
 templates/wiki-plugins/wikiplugin_galleriffic.tpl -text
-templates/wiki-plugins/wikiplugin_googlemap.tpl -text
 templates/wiki-plugins/wikiplugin_grouplist.tpl -text
 templates/wiki-plugins/wikiplugin_groupstat.tpl -text
 templates/wiki-plugins/wikiplugin_invite.tpl -text
