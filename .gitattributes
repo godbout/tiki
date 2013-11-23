@@ -139,6 +139,7 @@ doc/devtools/provide_tarballs.sh -text
 doc/devtools/rebuild_search_index.php -text
 doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/release.php -text
+doc/devtools/remove_empty_wiki_attachment_filegals.php -text
 doc/devtools/removehtaccess.sh -text
 doc/devtools/restorehelp.php -text
 doc/devtools/rewritesecdb.php -text
