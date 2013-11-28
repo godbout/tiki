@@ -2858,10 +2858,10 @@ lib/core/Table/Settings/index.php -text
 lib/core/Table/index.php -text
 lib/core/Tiki/BigBlueButton/Configuration.php -text
 lib/core/Tiki/Command/Application.php -text
+lib/core/Tiki/Command/BackupDBCommand.php -text
 lib/core/Tiki/Command/BackupFilesCommand.php -text
 lib/core/Tiki/Command/CacheClearCommand.php -text
 lib/core/Tiki/Command/ConfigureCommand.php -text
-lib/core/Tiki/Command/DumpDBCommand.php -text
 lib/core/Tiki/Command/IndexCatchUpCommand.php -text
 lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
