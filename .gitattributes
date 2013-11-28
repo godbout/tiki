@@ -6065,12 +6065,14 @@ templates/styles/darkshine/index.php -text
 templates/styles/eatlon/index.php -text
 templates/styles/index.php -text
 templates/styles/mobile/category_tree_entry.tpl -text
+templates/styles/mobile/comment-header.tpl -text
 templates/styles/mobile/find.tpl -text
 templates/styles/mobile/index.php -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/modules/mod-quickadmin.tpl -text
 templates/styles/mobile/tiki-list_trackers.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
+templates/styles/mobile/tiki-view_forum.tpl -text
 templates/styles/mobile/tiki-view_tracker.tpl -text
 templates/styles/mobile/tiki-view_tracker_item.tpl -text
 templates/styles/mobile/tiki-wiki_structure_bar.tpl -text
