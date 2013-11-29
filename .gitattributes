@@ -6070,6 +6070,7 @@ templates/styles/mobile/find.tpl -text
 templates/styles/mobile/index.php -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/modules/mod-quickadmin.tpl -text
+templates/styles/mobile/tiki-browse_categories.tpl -text
 templates/styles/mobile/tiki-browse_freetags.tpl -text
 templates/styles/mobile/tiki-list_trackers.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
