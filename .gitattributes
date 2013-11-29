@@ -6067,6 +6067,8 @@ templates/styles/index.php -text
 templates/styles/mobile/category_tree_entry.tpl -text
 templates/styles/mobile/comment-header.tpl -text
 templates/styles/mobile/find.tpl -text
+templates/styles/mobile/freetag.tpl -text
+templates/styles/mobile/freetag_list.tpl -text
 templates/styles/mobile/index.php -text
 templates/styles/mobile/module.tpl -text
 templates/styles/mobile/modules/mod-quickadmin.tpl -text
