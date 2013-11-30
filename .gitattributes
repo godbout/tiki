@@ -6109,6 +6109,10 @@ templates/styles/eatlon/index.php -text
 templates/styles/index.php -text
 templates/styles/mobile/article.tpl -text
 templates/styles/mobile/article_trailer.tpl -text
+templates/styles/mobile/blog_post_actions.tpl -text
+templates/styles/mobile/blog_post_author_actions.tpl -text
+templates/styles/mobile/blog_post_postbody_content.tpl -text
+templates/styles/mobile/blog_post_status.tpl -text
 templates/styles/mobile/category_tree_entry.tpl -text
 templates/styles/mobile/comment-header.tpl -text
 templates/styles/mobile/find.tpl -text
@@ -6122,6 +6126,8 @@ templates/styles/mobile/tiki-browse_freetags.tpl -text
 templates/styles/mobile/tiki-list_trackers.tpl -text
 templates/styles/mobile/tiki-page_bar.tpl -text
 templates/styles/mobile/tiki-view_articles.tpl -text
+templates/styles/mobile/tiki-view_blog.tpl -text
+templates/styles/mobile/tiki-view_blog_post.tpl -text
 templates/styles/mobile/tiki-view_forum.tpl -text
 templates/styles/mobile/tiki-view_tracker.tpl -text
 templates/styles/mobile/tiki-view_tracker_item.tpl -text
