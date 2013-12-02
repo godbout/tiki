@@ -2981,6 +2981,7 @@ lib/core/Tiki/Transition.php -text
 lib/core/Tiki/Version/Checker.php -text
 lib/core/Tiki/Version/Upgrade.php -text
 lib/core/Tiki/Version/Version.php -text
+lib/core/Tiki/index.php -text
 lib/core/TikiDb.php -text
 lib/core/TikiDb/Adodb.php -text
 lib/core/TikiDb/Bridge.php -text
