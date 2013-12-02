@@ -2988,6 +2988,7 @@ lib/core/Tiki/Transition.php -text
 lib/core/Tiki/Version/Checker.php -text
 lib/core/Tiki/Version/Upgrade.php -text
 lib/core/Tiki/Version/Version.php -text
+lib/core/Tiki/index.php -text
 lib/core/TikiDb.php -text
 lib/core/TikiDb/Adodb.php -text
 lib/core/TikiDb/Bridge.php -text
@@ -7176,6 +7177,7 @@ vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.min.js -text
 vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.print.css -text
 vendor_extra/fullcalendar-resourceviews/fullcalendar/gcal.js -text
 vendor_extra/fullcalendar-resourceviews/license.txt -text
+vendor_extra/index.php -text
 vendor_extra/mobileesp/mdetect.php -text
 vendor_extra/pclzip/pclzip.lib.php -text
 vendor_extra/pear/Auth.php -text
