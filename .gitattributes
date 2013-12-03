@@ -5743,6 +5743,7 @@ templates/layouts/basic/layout_edit.tpl -text
 templates/layouts/basic/layout_view.tpl -text
 templates/layouts/classic/layout_edit.tpl -text
 templates/layouts/classic/layout_view.tpl -text
+templates/layouts/classic/module.tpl -text
 templates/layouts/mobile/layout_edit.tpl -text
 templates/layouts/mobile/layout_view.tpl -text
 templates/list_file_gallery.tpl -text
