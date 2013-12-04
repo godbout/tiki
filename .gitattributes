@@ -2719,6 +2719,7 @@ lib/core/Search/Index/AbstractIndexDecorator.php -text
 lib/core/Search/Index/CategoryFilterDecorator.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Memory.php -text
+lib/core/Search/Index/QueryRepository.php -text
 lib/core/Search/Index/TypeAnalysisDecorator.php -text
 lib/core/Search/Index/index.php -text
 lib/core/Search/Indexer.php -text
@@ -4340,6 +4341,7 @@ lib/test/core/Search/Elastic/NumericTest.php -text
 lib/test/core/Search/Elastic/PaginationTest.php -text
 lib/test/core/Search/Elastic/ProtocolTest.php -text
 lib/test/core/Search/Elastic/QueryBuilderTest.php -text
+lib/test/core/Search/Elastic/QueryRepositoryTest.php -text
 lib/test/core/Search/Elastic/SortTest.php -text
 lib/test/core/Search/Elastic/StemmingTest.php -text
 lib/test/core/Search/Elastic/TypeAnalyzerTest.php -text
