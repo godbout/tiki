@@ -2719,6 +2719,7 @@ lib/core/Search/Index/AbstractIndexDecorator.php -text
 lib/core/Search/Index/CategoryFilterDecorator.php -text
 lib/core/Search/Index/Interface.php -text
 lib/core/Search/Index/Memory.php -text
+lib/core/Search/Index/QueryAlertDecorator.php -text
 lib/core/Search/Index/QueryRepository.php -text
 lib/core/Search/Index/TypeAnalysisDecorator.php -text
 lib/core/Search/Index/index.php -text
@@ -3857,6 +3858,7 @@ lib/search/searchlib-mysql.php -text
 lib/search/searchlib-unified.php -text
 lib/search/searchstatslib.php -text
 lib/search/shell.php -text
+lib/search/storedsearchlib.php -text
 lib/serializedlist.php -text
 lib/servicelib.php -text
 lib/setup/absolute_urls.php -text
