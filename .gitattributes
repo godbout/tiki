@@ -5744,10 +5744,10 @@ templates/layouts/basic/layout_view.tpl -text
 templates/layouts/classic/layout_edit.tpl -text
 templates/layouts/classic/layout_view.tpl -text
 templates/layouts/classic/module.tpl -text
+templates/layouts/header_middle_footer_containers/layout_edit.tpl -text
+templates/layouts/header_middle_footer_containers/layout_view.tpl -text
 templates/layouts/mobile/layout_edit.tpl -text
 templates/layouts/mobile/layout_view.tpl -text
-templates/layouts/trim/layout_edit.tpl -text
-templates/layouts/trim/layout_view.tpl -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
