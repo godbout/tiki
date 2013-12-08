@@ -959,10 +959,13 @@ img/icons/key_active.png -text
 img/icons/key_private.png -text
 img/icons/large/accounting48x48.png -text
 img/icons/large/admin.gif -text
+img/icons/large/admin_panel48x48.png -text
 img/icons/large/ads.png -text
 img/icons/large/ads48x48.png -text
 img/icons/large/areas.png -text
 img/icons/large/areas48x48.png -text
+img/icons/large/bare_footprints48x48.png -text
+img/icons/large/barefeet48x48.png -text
 img/icons/large/blogs.png -text
 img/icons/large/blogs48x48.png -text
 img/icons/large/bookmarks.gif -text
@@ -973,6 +976,7 @@ img/icons/large/categories48x48.png -text
 img/icons/large/comments.png -text
 img/icons/large/comments48x48.png -text
 img/icons/large/contactus48x48.png -text
+img/icons/large/cookie_cuter.png -text
 img/icons/large/copyright.png -text
 img/icons/large/copyright48x48.png -text
 img/icons/large/date.png -text
