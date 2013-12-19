@@ -2514,10 +2514,12 @@ lib/core/Math/Formula/Exception.php -text
 lib/core/Math/Formula/Function.php -text
 lib/core/Math/Formula/Function/Add.php -text
 lib/core/Math/Formula/Function/And.php -text
+lib/core/Math/Formula/Function/Avg.php -text
 lib/core/Math/Formula/Function/Coalesce.php -text
 lib/core/Math/Formula/Function/Concat.php -text
 lib/core/Math/Formula/Function/Div.php -text
 lib/core/Math/Formula/Function/Equals.php -text
+lib/core/Math/Formula/Function/ForEach.php -text
 lib/core/Math/Formula/Function/Hash.php -text
 lib/core/Math/Formula/Function/If.php -text
 lib/core/Math/Formula/Function/Map.php -text
@@ -2528,6 +2530,7 @@ lib/core/Math/Formula/Function/NotEquals.php -text
 lib/core/Math/Formula/Function/Or.php -text
 lib/core/Math/Formula/Function/Random.php -text
 lib/core/Math/Formula/Function/Round.php -text
+lib/core/Math/Formula/Function/SplitList.php -text
 lib/core/Math/Formula/Function/Str.php -text
 lib/core/Math/Formula/Function/Sub.php -text
 lib/core/Math/Formula/Function/index.php -text
