@@ -5755,6 +5755,8 @@ templates/interactive_translation_box.tpl -text
 templates/jcapture/capture.tpl -text
 templates/jcapture/index.php -text
 templates/kaltura/upload.tpl -text
+templates/layouts/ajax/layout_edit.tpl -text
+templates/layouts/ajax/layout_view.tpl -text
 templates/layouts/basic/layout_edit.tpl -text
 templates/layouts/basic/layout_view.tpl -text
 templates/layouts/classic/layout_edit.tpl -text
@@ -5762,6 +5764,8 @@ templates/layouts/classic/layout_view.tpl -text
 templates/layouts/classic/module.tpl -text
 templates/layouts/header_middle_footer_containers/layout_edit.tpl -text
 templates/layouts/header_middle_footer_containers/layout_view.tpl -text
+templates/layouts/internal/layout_edit.tpl -text
+templates/layouts/internal/layout_view.tpl -text
 templates/layouts/mobile/layout_edit.tpl -text
 templates/layouts/mobile/layout_view.tpl -text
 templates/list_file_gallery.tpl -text
