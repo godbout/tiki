@@ -2833,6 +2833,7 @@ lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
 lib/core/Services/Search/CustomSearchController.php -text
+lib/core/Services/Search/StoredController.php -text
 lib/core/Services/ShowTikiOrg/Controller.php -text
 lib/core/Services/Tracker/CalendarController.php -text
 lib/core/Services/Tracker/Controller.php -text
