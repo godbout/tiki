@@ -6110,6 +6110,7 @@ templates/report/preview.tpl -text
 templates/report/wikidata.tpl -text
 templates/search_customsearch/customsearch.tpl -text
 templates/search_customsearch/index.php -text
+templates/search_stored/list.tpl -text
 templates/search_stored/select.tpl -text
 templates/searchresults-plain.tpl -text
 templates/send_newsletter_footer.tpl -text
