@@ -4082,6 +4082,7 @@ lib/smarty_tiki/function.sameurl.php -text
 lib/smarty_tiki/function.sefurl.php -text
 lib/smarty_tiki/function.select_all.php -text
 lib/smarty_tiki/function.service.php -text
+lib/smarty_tiki/function.service_inline.php -text
 lib/smarty_tiki/function.set.php -text
 lib/smarty_tiki/function.show_help.php -text
 lib/smarty_tiki/function.show_sort.php -text
@@ -6111,6 +6112,7 @@ templates/report/wikidata.tpl -text
 templates/search_customsearch/customsearch.tpl -text
 templates/search_customsearch/index.php -text
 templates/search_stored/delete.tpl -text
+templates/search_stored/edit.tpl -text
 templates/search_stored/list.tpl -text
 templates/search_stored/select.tpl -text
 templates/searchresults-plain.tpl -text
