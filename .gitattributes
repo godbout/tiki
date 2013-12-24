@@ -2306,6 +2306,9 @@ lang/sv/language.js -text
 lang/sv/language.php -text
 lang/sw/index.php -text
 lang/sw/language.js -text
+lang/th/index.php -text
+lang/th/language.js -text
+lang/th/language.php -text
 lang/tr/index.php -text
 lang/tr/language.js -text
 lang/tr/language.php -text
@@ -4722,6 +4725,7 @@ lib/wiki-plugins/wikiplugin_fancytable.php -text
 lib/wiki-plugins/wikiplugin_favorite.php -text
 lib/wiki-plugins/wikiplugin_file.php -text
 lib/wiki-plugins/wikiplugin_files.php -text
+lib/wiki-plugins/wikiplugin_fitnesse.php -text
 lib/wiki-plugins/wikiplugin_flash.php -text
 lib/wiki-plugins/wikiplugin_font.php -text
 lib/wiki-plugins/wikiplugin_footnote.php -text
