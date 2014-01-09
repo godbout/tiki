@@ -3010,6 +3010,7 @@ lib/core/TikiDb/Adodb.php -text
 lib/core/TikiDb/Bridge.php -text
 lib/core/TikiDb/ErrorHandler.php -text
 lib/core/TikiDb/Exception.php -text
+lib/core/TikiDb/Exception/DuplicateEntry.php -text
 lib/core/TikiDb/Expr.php -text
 lib/core/TikiDb/Initializer.php -text
 lib/core/TikiDb/Initializer/Adodb.php -text
