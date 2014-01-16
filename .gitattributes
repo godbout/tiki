@@ -2846,6 +2846,7 @@ lib/core/Services/Tracker/SyncController.php -text
 lib/core/Services/Tracker/TodoController.php -text
 lib/core/Services/Tracker/Utilities.php -text
 lib/core/Services/Tracker/index.php -text
+lib/core/Services/User/ConditionsController.php -text
 lib/core/Services/User/Controller.php -text
 lib/core/Services/User/FavoriteController.php -text
 lib/core/Services/User/SocialController.php -text
@@ -3705,6 +3706,7 @@ lib/prefs/categorypath.php -text
 lib/prefs/center.php -text
 lib/prefs/change.php -text
 lib/prefs/comments.php -text
+lib/prefs/conditions.php -text
 lib/prefs/connect.php -text
 lib/prefs/contact.php -text
 lib/prefs/cookie.php -text
@@ -6634,6 +6636,7 @@ templates/translation/manage.tpl -text
 templates/unified_search_help.tpl -text
 templates/user/info.tpl -text
 templates/user/register.tpl -text
+templates/user_conditions/approval.tpl -text
 templates/user_registration.tpl -text
 templates/vimeo/upload.tpl -text
 templates/web.config -text
