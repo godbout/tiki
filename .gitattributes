@@ -2148,6 +2148,7 @@ installer/schema/20131117_unified_engine_default_change_tiki.php -text
 installer/schema/20131218_stored_queries_tiki.sql -text
 installer/schema/20131231_add_sheet_metadata.sql -text
 installer/schema/20140109_query_unique_name_tiki.sql -text
+installer/schema/20140117_monitor_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2849,6 +2850,7 @@ lib/core/Services/Tracker/index.php -text
 lib/core/Services/User/ConditionsController.php -text
 lib/core/Services/User/Controller.php -text
 lib/core/Services/User/FavoriteController.php -text
+lib/core/Services/User/MonitorController.php -text
 lib/core/Services/User/SocialController.php -text
 lib/core/Services/User/index.php -text
 lib/core/Services/Wiki/Controller.php -text
@@ -3769,6 +3771,7 @@ lib/prefs/middle.php -text
 lib/prefs/min.php -text
 lib/prefs/mobile.php -text
 lib/prefs/module.php -text
+lib/prefs/monitor.php -text
 lib/prefs/morelikethis.php -text
 lib/prefs/multidomain.php -text
 lib/prefs/namespace.php -text
@@ -4067,6 +4070,7 @@ lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.metric.php -text
 lib/smarty_tiki/function.module.php -text
 lib/smarty_tiki/function.modulelist.php -text
+lib/smarty_tiki/function.monitor_link.php -text
 lib/smarty_tiki/function.norecords.php -text
 lib/smarty_tiki/function.obj_in_cat.php -text
 lib/smarty_tiki/function.object_link.php -text
@@ -4608,6 +4612,7 @@ lib/transitionlib.php -text
 lib/tree/BrowseTreeMaker.php -text
 lib/tree/index.php -text
 lib/tree/tree.php -text
+lib/user/monitorlib.php -text
 lib/user/sociallib.php -text
 lib/userfiles/index.php -text
 lib/userfiles/userfileslib.php -text
@@ -6069,6 +6074,8 @@ templates/modules/mod-wiki_last_comments.tpl.nocache -text
 templates/modules/mod-youtube.tpl -text
 templates/modules/mod-zotero.tpl -text
 templates/modules/user_module.tpl -text
+templates/monitor/link.tpl -text
+templates/monitor/object.tpl -text
 templates/object/index.php -text
 templates/object/infobox.tpl -text
 templates/object/infobox/activity.tpl -text
