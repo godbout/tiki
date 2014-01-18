@@ -5614,6 +5614,8 @@ templates/activity/tiki.trackeritem.update.tpl -text
 templates/activity/tiki.user.follow.add.tpl -text
 templates/activity/tiki.user.follow.incoming.tpl -text
 templates/activity/tiki.user.friend.add.tpl -text
+templates/activity/tiki.wiki.create.tpl -text
+templates/activity/tiki.wiki.update.tpl -text
 templates/activitystream/render.tpl -text
 templates/addreference.tpl -text
 templates/admin/include_ads.tpl -text
