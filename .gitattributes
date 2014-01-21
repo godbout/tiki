@@ -6645,6 +6645,7 @@ templates/translation/manage.tpl -text
 templates/unified_search_help.tpl -text
 templates/user/info.tpl -text
 templates/user/register.tpl -text
+templates/user_conditions/age_validation.tpl -text
 templates/user_conditions/approval.tpl -text
 templates/user_registration.tpl -text
 templates/vimeo/upload.tpl -text
