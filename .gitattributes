@@ -3111,6 +3111,8 @@ lib/core/WikiPlugin/pastlinkbutton.php -text
 lib/core/index.php -text
 lib/credits/creditslib.php -text
 lib/credits/index.php -text
+lib/crypt/cryptlib.php -text
+lib/crypt/index.php -text
 lib/csslib.php -text
 lib/db/index.php -text
 lib/db/tiki_registration_fields.php -text
