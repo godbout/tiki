@@ -5782,6 +5782,8 @@ templates/layouts/classic/layout_view.tpl -text
 templates/layouts/classic/module.tpl -text
 templates/layouts/header_middle_footer_containers/layout_edit.tpl -text
 templates/layouts/header_middle_footer_containers/layout_view.tpl -text
+templates/layouts/header_middle_footer_containers_3-6-3/layout_edit.tpl -text
+templates/layouts/header_middle_footer_containers_3-6-3/layout_view.tpl -text
 templates/layouts/internal/ajax.tpl -text
 templates/layouts/internal/layout_edit.tpl -text
 templates/layouts/internal/layout_view.tpl -text
