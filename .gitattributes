@@ -1048,6 +1048,17 @@ img/icons/large/performance48x48.png -text
 img/icons/large/plugins.png -text
 img/icons/large/plugins48x48.png -text
 img/icons/large/prefs.gif -text
+img/icons/large/profile_bug_tracker48x48.png -text
+img/icons/large/profile_collaborative_community48x48.png -text
+img/icons/large/profile_company_intranet48x48.png -text
+img/icons/large/profile_debug_mode48x48.png -text
+img/icons/large/profile_dynamic_items_list48x48.png -text
+img/icons/large/profile_mobile48x48.png -text
+img/icons/large/profile_personal_blog_and_profile48x48.png -text
+img/icons/large/profile_small_org_web_presence48x48.png -text
+img/icons/large/profile_timesheet48x48.png -text
+img/icons/large/profile_together48x48.png -text
+img/icons/large/profile_tracker_as_calendar48x48.png -text
 img/icons/large/profiles.png -text
 img/icons/large/profiles48x48.png -text
 img/icons/large/quizzes48x48.png -text
@@ -4919,6 +4930,9 @@ lib/wizard/pages/admin_login.php -text
 lib/wizard/pages/admin_look_and_feel.php -text
 lib/wizard/pages/admin_namespace.php -text
 lib/wizard/pages/admin_profiles.php -text
+lib/wizard/pages/admin_profiles_demo.php -text
+lib/wizard/pages/admin_profiles_featured.php -text
+lib/wizard/pages/admin_profiles_useful.php -text
 lib/wizard/pages/admin_search.php -text
 lib/wizard/pages/admin_structures.php -text
 lib/wizard/pages/admin_text_area.php -text
@@ -5103,6 +5117,7 @@ modules/mod-func-user_pages.php -text
 modules/mod-func-user_tasks.php -text
 modules/mod-func-user_tasks_public.php -text
 modules/mod-func-usergroup_tracker.php -text
+modules/mod-func-users_list.php -text
 modules/mod-func-users_own_rank.php -text
 modules/mod-func-users_rank.php -text
 modules/mod-func-webmail_inbox.php -text
@@ -6071,6 +6086,7 @@ templates/modules/mod-user_tasks.tpl -text
 templates/modules/mod-user_tasks.tpl.nocache -text
 templates/modules/mod-user_tasks_public.tpl -text
 templates/modules/mod-usergroup_tracker.tpl -text
+templates/modules/mod-users_list.tpl -text
 templates/modules/mod-users_own_rank.tpl -text
 templates/modules/mod-users_rank.tpl -text
 templates/modules/mod-webmail_inbox.tpl -text
@@ -6739,6 +6755,9 @@ templates/wizard/admin_login.tpl -text
 templates/wizard/admin_look_and_feel.tpl -text
 templates/wizard/admin_namespace.tpl -text
 templates/wizard/admin_profiles.tpl -text
+templates/wizard/admin_profiles_demo.tpl -text
+templates/wizard/admin_profiles_featured.tpl -text
+templates/wizard/admin_profiles_useful.tpl -text
 templates/wizard/admin_search.tpl -text
 templates/wizard/admin_structures.tpl -text
 templates/wizard/admin_text_area.tpl -text
