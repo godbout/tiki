@@ -965,6 +965,7 @@ img/icons/large/areas.png -text
 img/icons/large/areas48x48.png -text
 img/icons/large/blogs.png -text
 img/icons/large/blogs48x48.png -text
+img/icons/large/blogs_new.png -text
 img/icons/large/bookmarks.gif -text
 img/icons/large/boot.png -text
 img/icons/large/boot48x48.png -text
@@ -988,6 +989,7 @@ img/icons/large/feed-icon-48x48.png -text
 img/icons/large/feed-icon.png -text
 img/icons/large/file-manager.png -text
 img/icons/large/file-manager48x48.png -text
+img/icons/large/file-manager_new.png -text
 img/icons/large/fileopen48x48.png -text
 img/icons/large/files.gif -text
 img/icons/large/gftp.png -text
