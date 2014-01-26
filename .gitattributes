@@ -968,6 +968,7 @@ img/icons/large/bare_footprints48x48.png -text
 img/icons/large/barefeet48x48.png -text
 img/icons/large/blogs.png -text
 img/icons/large/blogs48x48.png -text
+img/icons/large/blogs_new.png -text
 img/icons/large/bookmarks.gif -text
 img/icons/large/boot.png -text
 img/icons/large/boot48x48.png -text
@@ -981,6 +982,7 @@ img/icons/large/copyright.png -text
 img/icons/large/copyright48x48.png -text
 img/icons/large/date.png -text
 img/icons/large/date48x48.png -text
+img/icons/large/date_new.png -text
 img/icons/large/debug48x48.png -text
 img/icons/large/directory48x48.png -text
 img/icons/large/display-capplet.png -text
@@ -992,6 +994,7 @@ img/icons/large/feed-icon-48x48.png -text
 img/icons/large/feed-icon.png -text
 img/icons/large/file-manager.png -text
 img/icons/large/file-manager48x48.png -text
+img/icons/large/file-manager_new.png -text
 img/icons/large/fileopen48x48.png -text
 img/icons/large/files.gif -text
 img/icons/large/gftp.png -text
@@ -1097,6 +1100,8 @@ img/icons/large/surveys48x48.png -text
 img/icons/large/tasks.gif -text
 img/icons/large/tikicalendar48x48.png -text
 img/icons/large/timesheet48x48.png -text
+img/icons/large/trackers_new.png -text
+img/icons/large/trackers_updated.png -text
 img/icons/large/usagelist.txt -text
 img/icons/large/user.png -text
 img/icons/large/userfiles.png -text
