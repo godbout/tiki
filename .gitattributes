@@ -2923,6 +2923,7 @@ lib/core/Tiki/Command/ProfileExport/Category.php -text
 lib/core/Tiki/Command/ProfileExport/FileGallery.php -text
 lib/core/Tiki/Command/ProfileExport/Finalize.php -text
 lib/core/Tiki/Command/ProfileExport/Forum.php -text
+lib/core/Tiki/Command/ProfileExport/Group.php -text
 lib/core/Tiki/Command/ProfileExport/IncludeProfile.php -text
 lib/core/Tiki/Command/ProfileExport/Init.php -text
 lib/core/Tiki/Command/ProfileExport/Menu.php -text
