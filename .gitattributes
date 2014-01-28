@@ -5222,6 +5222,7 @@ styles/arcturus/options/smartiki/index.php -text
 styles/arcturus/options/smartiki/smartiki.png -text svneol=unset#image/png
 styles/arcturus/options/trollparty/index.php -text
 styles/arcturus/options/trollparty/trollparty.png -text svneol=unset#image/png
+styles/bootstrap.css -text
 styles/bshost.css -text
 styles/bshost/options/amelia-bootstrap.min.css -text
 styles/bshost/options/cerulean-bootstrap.min.css -text
