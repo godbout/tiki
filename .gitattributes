@@ -2165,6 +2165,7 @@ installer/schema/20131218_stored_queries_tiki.sql -text
 installer/schema/20131231_add_sheet_metadata_tiki.sql -text
 installer/schema/20140109_query_unique_name_tiki.sql -text
 installer/schema/20140117_monitor_tiki.sql -text
+installer/schema/20140129_bigger_target_monitor_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
