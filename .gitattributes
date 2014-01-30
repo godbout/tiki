@@ -4633,6 +4633,7 @@ lib/tree/BrowseTreeMaker.php -text
 lib/tree/index.php -text
 lib/tree/tree.php -text
 lib/user/monitorlib.php -text
+lib/user/monitormaillib.php -text
 lib/user/sociallib.php -text
 lib/userfiles/index.php -text
 lib/userfiles/userfileslib.php -text
