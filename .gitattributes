@@ -81,6 +81,7 @@ css/index.php -text
 css/jscalendar.css -text
 css/metrics.css -text
 css/readme.txt -text
+css/wizards.css -text
 db/.htaccess -text
 db/cert/.htaccess -text
 db/cert/web.config -text
