@@ -1118,6 +1118,7 @@ img/icons/large/wizard32x32.png -text
 img/icons/large/wizard48x48.png -text
 img/icons/large/wizard_admin48x48.png -text
 img/icons/large/wizard_profiles48x48.png -text
+img/icons/large/wizard_user48x48.png -text
 img/icons/large/wysiwyg.png -text
 img/icons/large/wysiwyg48x48.png -text
 img/icons/large/xfce4-appfinder.png -text
@@ -4916,6 +4917,7 @@ lib/wizard/pages/user_preferences_notifications.php -text
 lib/wizard/pages/user_preferences_params.php -text
 lib/wizard/pages/user_preferences_reports.php -text
 lib/wizard/pages/user_wizard.php -text
+lib/wizard/pages/user_wizard_completed.php -text
 lib/wizard/readme.txt -text
 lib/wizard/wizard.php -text
 lib/wizard/wizardlib.php -text
@@ -6711,6 +6713,7 @@ templates/wizard/user_preferences_notifications.tpl -text
 templates/wizard/user_preferences_params.tpl -text
 templates/wizard/user_preferences_reports.tpl -text
 templates/wizard/user_wizard.tpl -text
+templates/wizard/user_wizard_completed.tpl -text
 templates/wizard/wizard_bar_admin.tpl -text
 templates/wizard/wizard_bar_user.tpl -text
 templates/workspace/add_template.tpl -text
