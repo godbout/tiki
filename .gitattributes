@@ -2606,6 +2606,7 @@ lib/core/Perms/Check/Direct.php -text
 lib/core/Perms/Check/Fixed.php -text
 lib/core/Perms/Check/Indirect.php -text
 lib/core/Perms/Check/index.php -text
+lib/core/Perms/Context.php -text
 lib/core/Perms/Reflection/Category.php -text
 lib/core/Perms/Reflection/Container.php -text
 lib/core/Perms/Reflection/Factory.php -text
