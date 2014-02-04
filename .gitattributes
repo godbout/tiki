@@ -2868,6 +2868,7 @@ lib/core/Services/ResultLoader/index.php -text
 lib/core/Services/Search/CustomSearchController.php -text
 lib/core/Services/Search/StoredController.php -text
 lib/core/Services/ShowTikiOrg/Controller.php -text
+lib/core/Services/Suite/Controller.php -text
 lib/core/Services/Tracker/CalendarController.php -text
 lib/core/Services/Tracker/Controller.php -text
 lib/core/Services/Tracker/SyncController.php -text
@@ -3844,6 +3845,7 @@ lib/prefs/social.php -text
 lib/prefs/socialnetworks.php -text
 lib/prefs/storedsearch.php -text
 lib/prefs/style.php -text
+lib/prefs/suite.php -text
 lib/prefs/themegenerator.php -text
 lib/prefs/tiki.php -text
 lib/prefs/tracker.php -text
@@ -6244,6 +6246,7 @@ templates/styles/strasa/index.php -text
 templates/styles/tikinewt/blog_wrapper.tpl -text
 templates/styles/tikinewt/index.php -text
 templates/styles/twist/index.php -text
+templates/suite/jitsi.tpl -text
 templates/table.tpl -text
 templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
