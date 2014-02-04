@@ -84,6 +84,7 @@ css/readme.txt -text
 css/wizards.css -text
 db/.htaccess -text
 db/cert/.htaccess -text
+db/cert/index.php -text
 db/cert/web.config -text
 db/index.php -text
 db/install.ini.dist -text
@@ -115,6 +116,7 @@ doc/devtools/csscheck.sh -text
 doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
 doc/devtools/diffsql.sh -text
+doc/devtools/experimental/index.php -text
 doc/devtools/experimental/unzip/unzipper.php -text
 doc/devtools/export_translations_to_file.php -text
 doc/devtools/extract-img-db-to-fs.php -text
@@ -173,6 +175,7 @@ doc/devtools/tikimerge.sh -text
 doc/devtools/tikirelease.sh -text
 doc/devtools/tikireleasediff.sh -text
 doc/devtools/tikiwiki.spec -text
+doc/devtools/tim/index.php -text
 doc/devtools/tim/tim -text
 doc/devtools/tim/tim-common -text
 doc/devtools/tim/tim-create -text
@@ -191,6 +194,7 @@ doc/index.php -text
 doc/longterm.cycle -text
 doc/readme.txt -text
 doc/regular.cycle -text
+doc/reports/index.php -text
 doc/stable.version -text
 doc/unstable.version -text
 dump/index.php -text
