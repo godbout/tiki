@@ -6131,6 +6131,7 @@ templates/modules/user_module.tpl -text
 templates/monitor/link.tpl -text
 templates/monitor/notification_email_body.tpl -text
 templates/monitor/object.tpl -text
+templates/monitor/stream.tpl -text
 templates/object/index.php -text
 templates/object/infobox.tpl -text
 templates/object/infobox/activity.tpl -text
