@@ -5834,6 +5834,8 @@ templates/layouts/internal/layout_view.tpl -text
 templates/layouts/internal/modal.tpl -text
 templates/layouts/mobile/layout_edit.tpl -text
 templates/layouts/mobile/layout_view.tpl -text
+templates/layouts/social/layout_edit.tpl -text
+templates/layouts/social/layout_view.tpl -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/mail/blogs_send_link.tpl -text
