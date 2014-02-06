@@ -6130,6 +6130,7 @@ templates/modules/mod-wiki_last_comments.tpl.nocache -text
 templates/modules/mod-youtube.tpl -text
 templates/modules/mod-zotero.tpl -text
 templates/modules/user_module.tpl -text
+templates/monitor/clearall.tpl -text
 templates/monitor/link.tpl -text
 templates/monitor/notification_email_body.tpl -text
 templates/monitor/notification_link.tpl -text
