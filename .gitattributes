@@ -2856,8 +2856,10 @@ lib/core/Services/Kaltura/Controller.php -text
 lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
+lib/core/Services/Module/Controller.php -text
 lib/core/Services/Object/Controller.php -text
 lib/core/Services/Object/index.php -text
+lib/core/Services/Payment/Controller.php -text
 lib/core/Services/Rating/Controller.php -text
 lib/core/Services/Rating/index.php -text
 lib/core/Services/RemoteController.php -text
@@ -5971,6 +5973,7 @@ templates/metadata/meta_view_dialog.tpl -text
 templates/metadata/meta_view_tabs.tpl -text
 templates/metrics-tab.tpl -text
 templates/module.tpl -text
+templates/module/execute.tpl -text
 templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
 templates/modules/mod-action_similarcontent.tpl -text
