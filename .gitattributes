@@ -2857,9 +2857,11 @@ lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
 lib/core/Services/Module/Controller.php -text
+lib/core/Services/Module/index.php -text
 lib/core/Services/Object/Controller.php -text
 lib/core/Services/Object/index.php -text
 lib/core/Services/Payment/Controller.php -text
+lib/core/Services/Payment/index.php -text
 lib/core/Services/Rating/Controller.php -text
 lib/core/Services/Rating/index.php -text
 lib/core/Services/RemoteController.php -text
