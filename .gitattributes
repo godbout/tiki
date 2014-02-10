@@ -60,6 +60,7 @@ admin/index.php -text
 /categorize.php -text
 /categorize_list.php -text
 /changelog.txt -text
+/check_composer_exists.php -text
 /comments.php -text
 /commxmlrpc.php -text
 /composer.json -text
