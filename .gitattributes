@@ -2852,6 +2852,7 @@ lib/core/Services/File/FinderController.php -text
 lib/core/Services/File/Utilities.php -text
 lib/core/Services/File/VimeoController.php -text
 lib/core/Services/File/index.php -text
+lib/core/Services/Goal/Controller.php -text
 lib/core/Services/JCapture/Controller.php -text
 lib/core/Services/JCapture/index.php -text
 lib/core/Services/Kaltura/Controller.php -text
@@ -3209,6 +3210,7 @@ lib/freetag/freetaglib.php -text
 lib/freetag/index.php -text
 lib/geo/geolib.php -text
 lib/geo/index.php -text
+lib/goal/goallib.php -text
 lib/graph-engine/abstract.gridbased.php -text
 lib/graph-engine/core.php -text
 lib/graph-engine/gd.php -text
@@ -3775,6 +3777,7 @@ lib/prefs/generate.php -text
 lib/prefs/geo.php -text
 lib/prefs/global.php -text
 lib/prefs/gmap.php -text
+lib/prefs/goal.php -text
 lib/prefs/header.php -text
 lib/prefs/highlight.php -text
 lib/prefs/home.php -text
@@ -3899,6 +3902,7 @@ lib/rating/formula/Attribute.php -text
 lib/rating/formula/CategoryPresent.php -text
 lib/rating/formula/RatingAverage.php -text
 lib/rating/formula/RatingSum.php -text
+lib/rating/formula/ResultCount.php -text
 lib/rating/formula/TrackerField.php -text
 lib/rating/formula/index.php -text
 lib/rating/index.php -text
@@ -5824,6 +5828,7 @@ templates/find.tpl -text
 templates/footer.tpl -text
 templates/freetag.tpl -text
 templates/freetag_list.tpl -text
+templates/goal/show.tpl -text
 templates/header.tpl -text
 templates/index.php -text
 templates/interactive_translation_box.tpl -text
