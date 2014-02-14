@@ -2571,6 +2571,7 @@ lib/core/Math/Formula/Function/SplitList.php -text
 lib/core/Math/Formula/Function/Str.php -text
 lib/core/Math/Formula/Function/Sub.php -text
 lib/core/Math/Formula/Function/index.php -text
+lib/core/Math/Formula/InternalString.php -text
 lib/core/Math/Formula/Parser.php -text
 lib/core/Math/Formula/Parser/Exception.php -text
 lib/core/Math/Formula/Parser/index.php -text
