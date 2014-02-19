@@ -2179,7 +2179,7 @@ installer/schema/20140129_bigger_target_monitor_tiki.sql -text
 installer/schema/20140203_menu_item_and_icon_user_wizard_tiki.sql -text
 installer/schema/20140210_user_wizard_add_section_name_tiki.sql -text
 installer/schema/20140214_goals_tiki.sql -text
-installer/schema/20140219_goal_events_tiki.sql -text
+installer/schema/20140219_full_goal_events_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
