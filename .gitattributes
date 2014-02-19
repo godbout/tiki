@@ -5840,7 +5840,9 @@ templates/goal/create.tpl -text
 templates/goal/delete.tpl -text
 templates/goal/edit.tpl -text
 templates/goal/edit_condition.tpl -text
+templates/goal/edit_reward.tpl -text
 templates/goal/render_conditions.tpl -text
+templates/goal/render_rewards.tpl -text
 templates/goal/show.tpl -text
 templates/goal/show_list.tpl -text
 templates/header.tpl -text
