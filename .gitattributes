@@ -5988,6 +5988,7 @@ templates/map/tiki-map_edit.tpl -text
 templates/map/tiki-map_frame.tpl -text
 templates/map/tiki-map_history.tpl -text
 templates/map/tiki-map_upload.tpl -text
+templates/medialist.tpl -text
 templates/messu-archive.tpl -text
 templates/messu-broadcast.tpl -text
 templates/messu-compose.tpl -text
