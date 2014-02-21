@@ -3909,6 +3909,7 @@ lib/rating/formula/Attribute.php -text
 lib/rating/formula/CategoryPresent.php -text
 lib/rating/formula/RatingAverage.php -text
 lib/rating/formula/RatingSum.php -text
+lib/rating/formula/RelationPresent.php -text
 lib/rating/formula/ResultCount.php -text
 lib/rating/formula/TrackerField.php -text
 lib/rating/formula/index.php -text
