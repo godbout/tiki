@@ -2951,6 +2951,8 @@ lib/core/Tiki/Command/ProfileExport/Category.php -text
 lib/core/Tiki/Command/ProfileExport/FileGallery.php -text
 lib/core/Tiki/Command/ProfileExport/Finalize.php -text
 lib/core/Tiki/Command/ProfileExport/Forum.php -text
+lib/core/Tiki/Command/ProfileExport/Goal.php -text
+lib/core/Tiki/Command/ProfileExport/GoalSet.php -text
 lib/core/Tiki/Command/ProfileExport/Group.php -text
 lib/core/Tiki/Command/ProfileExport/IncludeProfile.php -text
 lib/core/Tiki/Command/ProfileExport/Init.php -text
@@ -3009,6 +3011,8 @@ lib/core/Tiki/Profile/InstallHandler/DataChannel.php -text
 lib/core/Tiki/Profile/InstallHandler/ExtWiki.php -text
 lib/core/Tiki/Profile/InstallHandler/FileGallery.php -text
 lib/core/Tiki/Profile/InstallHandler/Forum.php -text
+lib/core/Tiki/Profile/InstallHandler/Goal.php -text
+lib/core/Tiki/Profile/InstallHandler/GoalSet.php -text
 lib/core/Tiki/Profile/InstallHandler/Menu.php -text
 lib/core/Tiki/Profile/InstallHandler/MenuOption.php -text
 lib/core/Tiki/Profile/InstallHandler/Module.php -text
