@@ -2935,6 +2935,7 @@ lib/core/Tiki/Command/BackupDBCommand.php -text
 lib/core/Tiki/Command/BackupFilesCommand.php -text
 lib/core/Tiki/Command/CacheClearCommand.php -text
 lib/core/Tiki/Command/ConfigureCommand.php -text
+lib/core/Tiki/Command/GoalCheckCommand.php -text
 lib/core/Tiki/Command/IndexCatchUpCommand.php -text
 lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
