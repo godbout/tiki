@@ -3220,6 +3220,7 @@ lib/geo/geolib.php -text
 lib/geo/index.php -text
 lib/goal/eventlib.php -text
 lib/goal/goallib.php -text
+lib/goal/rewardlib.php -text
 lib/graph-engine/abstract.gridbased.php -text
 lib/graph-engine/core.php -text
 lib/graph-engine/gd.php -text
