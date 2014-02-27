@@ -2941,6 +2941,7 @@ lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
 lib/core/Tiki/Command/NotificationDigestCommand.php -text
+lib/core/Tiki/Command/ProfileBaselineCommand.php -text
 lib/core/Tiki/Command/ProfileExport/ActivityRuleSet.php -text
 lib/core/Tiki/Command/ProfileExport/ActivityStreamRule.php -text
 lib/core/Tiki/Command/ProfileExport/AllModules.php -text
