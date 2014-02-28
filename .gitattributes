@@ -1112,6 +1112,8 @@ img/icons/large/trackers_new.png -text
 img/icons/large/trackers_updated.png -text
 img/icons/large/usagelist.txt -text
 img/icons/large/user.png -text
+img/icons/large/user_tracker.png -text
+img/icons/large/user_tracker48x48.png -text
 img/icons/large/userfiles.png -text
 img/icons/large/userfiles48x48.png -text
 img/icons/large/users.png -text
@@ -5000,6 +5002,7 @@ lib/wizard/pages/user_preferences_info.php -text
 lib/wizard/pages/user_preferences_notifications.php -text
 lib/wizard/pages/user_preferences_params.php -text
 lib/wizard/pages/user_preferences_reports.php -text
+lib/wizard/pages/user_tracker.php -text
 lib/wizard/pages/user_wizard.php -text
 lib/wizard/pages/user_wizard_completed.php -text
 lib/wizard/readme.txt -text
@@ -6853,6 +6856,7 @@ templates/wizard/user_preferences_info.tpl -text
 templates/wizard/user_preferences_notifications.tpl -text
 templates/wizard/user_preferences_params.tpl -text
 templates/wizard/user_preferences_reports.tpl -text
+templates/wizard/user_tracker.tpl -text
 templates/wizard/user_wizard.tpl -text
 templates/wizard/user_wizard_completed.tpl -text
 templates/wizard/wizard_bar_admin.tpl -text
