@@ -2183,6 +2183,7 @@ installer/schema/20140203_menu_item_and_icon_user_wizard_tiki.sql -text
 installer/schema/20140210_user_wizard_add_section_name_tiki.sql -text
 installer/schema/20140214_goals_tiki.sql -text
 installer/schema/20140219_full_goal_events_tiki.sql -text
+installer/schema/20140301_add_column_rating_choice_topic_on_forums_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -4148,6 +4149,7 @@ lib/smarty_tiki/function.preference.php -text
 lib/smarty_tiki/function.query.php -text
 lib/smarty_tiki/function.quotabar.php -text
 lib/smarty_tiki/function.rating.php -text
+lib/smarty_tiki/function.rating_choice.php -text
 lib/smarty_tiki/function.rating_override_menu.php -text
 lib/smarty_tiki/function.rating_result.php -text
 lib/smarty_tiki/function.rating_result_avg.php -text
@@ -6219,6 +6221,7 @@ templates/print/print-title_trackeritem.tpl -text
 templates/print/print-title_wiki.tpl -text
 templates/rating.tpl -text
 templates/rating/vote.tpl -text
+templates/rating_choice.tpl -text
 templates/register-email.tpl -text
 templates/register-form.tpl -text
 templates/register-groupchoice.tpl -text
