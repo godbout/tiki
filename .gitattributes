@@ -5431,8 +5431,6 @@ styles/ohia/options/planet/header.jpg -text
 styles/ohia/options/planet/header_repeat.jpg -text
 styles/ohia/options/planet/index.php -text
 styles/readme.txt -text
-styles/slides/index.php -text
-styles/slides/wiredot.png -text svneol=unset#unset
 styles/snow/Flash/index.php -text
 styles/snow/Flash/snowfall.swf -text
 styles/snow/boxbtm.jpg -text svneol=unset#image/jpeg
