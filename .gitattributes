@@ -4934,6 +4934,8 @@ lib/wiki3d/README.txt -text
 lib/wiki3d/index.php -text
 lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
+lib/wikiLingo_tiki/FLPLookup.php -text
+lib/wikiLingo_tiki/TikiWikiEvents.php -text
 lib/wikiLingo_tiki/TikiWikiPluginBridge.php -text
 lib/wikiLingo_tiki/TikiWikiPluginStub.php -text
 lib/wikiLingo_tiki/WikiLingoEvents.php -text
