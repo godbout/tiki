@@ -4143,6 +4143,7 @@ lib/smarty_tiki/function.object_selector.php -text
 lib/smarty_tiki/function.page_alias.php -text
 lib/smarty_tiki/function.page_in_structure.php -text
 lib/smarty_tiki/function.payment.php -text
+lib/smarty_tiki/function.permission_link.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup.php -text
 lib/smarty_tiki/function.preference.php -text
@@ -6188,6 +6189,7 @@ templates/object_perms_summary.tpl -text
 templates/object_selector.tpl -text
 templates/pagehistory.tpl -text
 templates/password_help.tpl -text
+templates/permission_link.tpl -text
 templates/plugins/index.php -text
 templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
