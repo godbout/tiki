@@ -5346,6 +5346,21 @@ styles/fivealive/jquery-ui/options/grape/images/ui-icons_cd0a0a_256x240.png -tex
 styles/fivealive/jquery-ui/options/grape/images/ui-icons_fff_256x240.png -text
 styles/fivealive/jquery-ui/options/grape/jquery-ui.css -text
 styles/fivealive/jquery-ui/options/grape/jquery-ui.min.css -text
+styles/fivealive/jquery-ui/options/kiwi/images/animated-overlay.gif -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_flat_0_648637_40x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_flat_0_BCB923_40x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_flat_0_ECE7A8_40x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_flat_0_F5F6C1_40x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_flat_0_FFFFCC_40x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_flat_50_000000_40x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_flat_50_ffffff_40x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_flat_75_fff_40x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-bg_highlight-soft_50_000_1x100.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-icons_BCB923_256x240.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-icons_cd0a0a_256x240.png -text
+styles/fivealive/jquery-ui/options/kiwi/images/ui-icons_fff_256x240.png -text
+styles/fivealive/jquery-ui/options/kiwi/jquery-ui.css -text
+styles/fivealive/jquery-ui/options/kiwi/jquery-ui.min.css -text
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
 styles/fivealive/newsletter.css -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
