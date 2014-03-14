@@ -5314,6 +5314,22 @@ styles/fivealive/jquery-ui/images/ui-icons_cd0a0a_256x240.png -text
 styles/fivealive/jquery-ui/images/ui-icons_fff_256x240.png -text
 styles/fivealive/jquery-ui/jquery-ui.css -text
 styles/fivealive/jquery-ui/jquery-ui.min.css -text
+styles/fivealive/jquery-ui/options/grape/images/animated-overlay.gif -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_flat_0_9B286F_40x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_flat_0_A82A76_40x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_flat_0_E9AAD0_40x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_flat_0_EFCDE5_40x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_flat_0_FFFFCC_40x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_flat_50_000000_40x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_flat_50_ffffff_40x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_flat_75_fff_40x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-bg_highlight-soft_50_000_1x100.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-icons_69285C_256x240.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-icons_A82A76_256x240.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-icons_cd0a0a_256x240.png -text
+styles/fivealive/jquery-ui/options/grape/images/ui-icons_fff_256x240.png -text
+styles/fivealive/jquery-ui/options/grape/jquery-ui.css -text
+styles/fivealive/jquery-ui/options/grape/jquery-ui.min.css -text
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
 styles/fivealive/newsletter.css -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
