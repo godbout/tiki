@@ -5377,6 +5377,22 @@ styles/fivealive/jquery-ui/options/lemon/images/ui-icons_cd0a0a_256x240.png -tex
 styles/fivealive/jquery-ui/options/lemon/images/ui-icons_fff_256x240.png -text
 styles/fivealive/jquery-ui/options/lemon/jquery-ui.css -text
 styles/fivealive/jquery-ui/options/lemon/jquery-ui.min.css -text
+styles/fivealive/jquery-ui/options/orange/images/animated-overlay.gif -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_flat_0_E77D4F_40x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_flat_0_ED6223_40x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_flat_0_EEBBA5_40x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_flat_0_F4D6CC_40x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_flat_0_FFFFCC_40x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_flat_50_000000_40x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_flat_50_ffffff_40x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_flat_75_fff_40x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-bg_highlight-soft_50_000_1x100.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-icons_E77D4F_256x240.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-icons_ED6223_256x240.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-icons_cd0a0a_256x240.png -text
+styles/fivealive/jquery-ui/options/orange/images/ui-icons_fff_256x240.png -text
+styles/fivealive/jquery-ui/options/orange/jquery-ui.css -text
+styles/fivealive/jquery-ui/options/orange/jquery-ui.min.css -text
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
 styles/fivealive/newsletter.css -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
