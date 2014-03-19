@@ -6759,7 +6759,6 @@ templates/tiki-shoutbox.tpl -text
 templates/tiki-show_help.tpl -text
 templates/tiki-show_page.tpl -text
 templates/tiki-show_page_raw.tpl -text
-templates/tiki-slideshow.tpl -text
 templates/tiki-socialnetworks.tpl -text
 templates/tiki-socialnetworks_firstlogin.tpl -text
 templates/tiki-socialnetworks_firstlogin_launcher.tpl -text
@@ -7353,7 +7352,6 @@ tests/testfile.txt -text
 /tiki-show_all_images.php -text
 /tiki-show_user_avatar.php -text
 /tiki-slideshow.php -text
-/tiki-slideshow2.php -text
 /tiki-socialnetworks.php -text
 /tiki-socialnetworks_firstlogin.php -text
 /tiki-sqllog.php -text
