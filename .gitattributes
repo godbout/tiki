@@ -4265,6 +4265,7 @@ lib/structures/structlib.php -text
 lib/structures/tiki-edit_structure.js -text
 lib/surveys/index.php -text
 lib/surveys/surveylib.php -text
+lib/surveys/tiki-admin_survey_questions.js -text
 lib/svg-edit_tiki/draw.css -text
 lib/svg-edit_tiki/draw.js -text
 lib/svg-edit_tiki/index.php -text
