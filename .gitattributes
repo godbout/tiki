@@ -3009,6 +3009,17 @@ lib/core/Tiki/Event/Function/EventTrigger.php -text
 lib/core/Tiki/Event/Lib.php -text
 lib/core/Tiki/Event/Manager.php -text
 lib/core/Tiki/Event/index.php -text
+lib/core/Tiki/MailIn/Account.php -text
+lib/core/Tiki/MailIn/Action/ActionInterface.php -text
+lib/core/Tiki/MailIn/Action/ArticlePut.php -text
+lib/core/Tiki/MailIn/Action/DirectFactory.php -text
+lib/core/Tiki/MailIn/Action/FactoryInterface.php -text
+lib/core/Tiki/MailIn/Action/SubjectPrefixFactory.php -text
+lib/core/Tiki/MailIn/Exception/MailInException.php -text
+lib/core/Tiki/MailIn/Exception/TransportException.php -text
+lib/core/Tiki/MailIn/Source/Message.php -text
+lib/core/Tiki/MailIn/Source/Pop3.php -text
+lib/core/Tiki/MailIn/Source/SourceInterface.php -text
 lib/core/Tiki/MemoryLimit.php -text
 lib/core/Tiki/PageCache.php -text
 lib/core/Tiki/Profile.php -text
