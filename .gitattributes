@@ -3015,6 +3015,10 @@ lib/core/Tiki/MailIn/Action/ArticlePut.php -text
 lib/core/Tiki/MailIn/Action/DirectFactory.php -text
 lib/core/Tiki/MailIn/Action/FactoryInterface.php -text
 lib/core/Tiki/MailIn/Action/SubjectPrefixFactory.php -text
+lib/core/Tiki/MailIn/Action/WikiAppend.php -text
+lib/core/Tiki/MailIn/Action/WikiGet.php -text
+lib/core/Tiki/MailIn/Action/WikiPrepend.php -text
+lib/core/Tiki/MailIn/Action/WikiPut.php -text
 lib/core/Tiki/MailIn/Exception/MailInException.php -text
 lib/core/Tiki/MailIn/Exception/TransportException.php -text
 lib/core/Tiki/MailIn/Source/Message.php -text
