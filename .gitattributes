@@ -3749,6 +3749,7 @@ lib/payment/cclitelib.php -text
 lib/payment/creditspaylib.php -text
 lib/payment/discountlib.php -text
 lib/payment/index.php -text
+lib/payment/israelpostlib.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
 lib/pdflib.php -text
