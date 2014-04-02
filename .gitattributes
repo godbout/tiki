@@ -2885,6 +2885,7 @@ lib/core/Services/Kaltura/Controller.php -text
 lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
+lib/core/Services/MailIn/Controller.php -text
 lib/core/Services/Module/Controller.php -text
 lib/core/Services/Module/index.php -text
 lib/core/Services/Object/Controller.php -text
@@ -6181,6 +6182,8 @@ templates/mail/user_watch_wiki_page_changed_subject.tpl -text
 templates/mail/user_watch_wiki_page_renamed.tpl -text
 templates/mail/user_watch_wiki_page_renamed_subject.tpl -text
 templates/mail/user_welcome_msg.tpl -text
+templates/mailin/remove_account.tpl -text
+templates/mailin/replace_account.tpl -text
 templates/managestream/advanced.tpl -text
 templates/managestream/delete.tpl -text
 templates/managestream/list.tpl -text
