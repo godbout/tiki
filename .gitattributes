@@ -2199,6 +2199,7 @@ installer/schema/20140214_goals_tiki.sql -text
 installer/schema/20140219_full_goal_events_tiki.sql -text
 installer/schema/20140301_add_column_rating_choice_topic_on_forums_tiki.sql -text
 installer/schema/20140318_user_wizard_add_groupname_tiki.sql -text
+installer/schema/20140402_mailin_protocol_option_tiki.sql -text
 installer/schema/20140402_payment_authorization_tiki.sql -text
 installer/schema/20140402_remove_mailin_smtp_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
@@ -3025,6 +3026,7 @@ lib/core/Tiki/MailIn/Action/WikiPrepend.php -text
 lib/core/Tiki/MailIn/Action/WikiPut.php -text
 lib/core/Tiki/MailIn/Exception/MailInException.php -text
 lib/core/Tiki/MailIn/Exception/TransportException.php -text
+lib/core/Tiki/MailIn/Source/Imap.php -text
 lib/core/Tiki/MailIn/Source/Message.php -text
 lib/core/Tiki/MailIn/Source/Pop3.php -text
 lib/core/Tiki/MailIn/Source/SourceInterface.php -text
