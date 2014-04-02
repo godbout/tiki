@@ -2199,6 +2199,7 @@ installer/schema/20140214_goals_tiki.sql -text
 installer/schema/20140219_full_goal_events_tiki.sql -text
 installer/schema/20140301_add_column_rating_choice_topic_on_forums_tiki.sql -text
 installer/schema/20140318_user_wizard_add_groupname_tiki.sql -text
+installer/schema/20140402_remove_mailin_smtp_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
