@@ -2994,8 +2994,10 @@ lib/core/Tiki/Event/index.php -text
 lib/core/Tiki/MailIn/Account.php -text
 lib/core/Tiki/MailIn/Action/ActionInterface.php -text
 lib/core/Tiki/MailIn/Action/ArticlePut.php -text
+lib/core/Tiki/MailIn/Action/Comment.php -text
 lib/core/Tiki/MailIn/Action/DirectFactory.php -text
 lib/core/Tiki/MailIn/Action/FactoryInterface.php -text
+lib/core/Tiki/MailIn/Action/RecipientPlaceholderFactory.php -text
 lib/core/Tiki/MailIn/Action/SubjectPrefixFactory.php -text
 lib/core/Tiki/MailIn/Action/WikiAppend.php -text
 lib/core/Tiki/MailIn/Action/WikiGet.php -text
