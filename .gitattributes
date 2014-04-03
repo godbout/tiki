@@ -4980,11 +4980,11 @@ lib/wiki3d/morcego-0.6.0.jar -text
 lib/wiki3d/pom.xml -text
 lib/wikiLingo_tiki/WikiEvents.php -text
 lib/wikiLingo_tiki/WikiLingoEvents.php -text
+lib/wikiLingo_tiki/WikiLingoTikiEvents.php -text
 lib/wikiLingo_tiki/WikiLingoWYSIWYGEvents.php -text
 lib/wikiLingo_tiki/WikiMetadataLookup.php -text
 lib/wikiLingo_tiki/WikiPluginBridge.php -text
 lib/wikiLingo_tiki/WikiPluginStub.php -text
-lib/wikiLingo_tiki/edit.js -text
 lib/wikiLingo_tiki/tiki_flp.Link.js -text
 lib/wikiLingo_tiki/tiki_wikiLingo_edit.js -text
 lib/wikiLingo_tiki/tiki_wikiLingo_flp_view.js -text
