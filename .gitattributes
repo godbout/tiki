@@ -5353,8 +5353,13 @@ styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
 styles/coelesce/search_wide.png -text svneol=unset#image/png
 styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom.css -text
+styles/darkroom.less -text
 styles/darkroom/474747_5e5e5e_40.png -text svneol=unset#image/png
 styles/darkroom/button.png -text svneol=unset#image/png
+styles/darkroom/custom-other.css -text
+styles/darkroom/custom-other.less -text
+styles/darkroom/custom-variables.css -text
+styles/darkroom/custom-variables.less -text
 styles/darkroom/darkroom.png -text
 styles/darkroom/ie6.css -text
 styles/darkroom/ie7.css -text
