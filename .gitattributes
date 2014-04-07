@@ -6083,8 +6083,6 @@ templates/mail/forum_post_notification.tpl -text
 templates/mail/index.php -text
 templates/mail/mail_invite.tpl -text
 templates/mail/mail_invite_subject.tpl -text
-templates/mail/mailin_help.tpl -text
-templates/mail/mailin_help_subject.tpl -text
 templates/mail/mailin_reply_subject.tpl -text
 templates/mail/messu_message_notification.tpl -text
 templates/mail/messu_message_notification_subject.tpl -text
