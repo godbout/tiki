@@ -3108,6 +3108,7 @@ lib/core/TikiFilter/index.php -text
 lib/core/Tracker/Definition.php -text
 lib/core/Tracker/Field/Abstract.php -text
 lib/core/Tracker/Field/Action.php -text
+lib/core/Tracker/Field/Articles.php -text
 lib/core/Tracker/Field/AutoIncrement.php -text
 lib/core/Tracker/Field/Category.php -text
 lib/core/Tracker/Field/Checkbox.php -text
@@ -6882,6 +6883,7 @@ templates/tracker_sync/index.php -text
 templates/tracker_todo/index.php -text
 templates/tracker_todo/view.tpl -text
 templates/tracker_validator.tpl -text
+templates/trackerinput/articles.tpl -text
 templates/trackerinput/autoincrement.tpl -text
 templates/trackerinput/category.tpl -text
 templates/trackerinput/checkbox.tpl -text
@@ -6914,6 +6916,7 @@ templates/trackerinput/textarea.tpl -text
 templates/trackerinput/url.tpl -text
 templates/trackerinput/userpreference.tpl -text
 templates/trackerinput/usersubscription.tpl -text
+templates/trackeroutput/articles.tpl -text
 templates/trackeroutput/computed.tpl -text
 templates/trackeroutput/currency.tpl -text
 templates/trackeroutput/files_googleviewer.tpl -text
