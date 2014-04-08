@@ -6108,6 +6108,8 @@ templates/mail/password_reminder.tpl -text
 templates/mail/password_reminder_subject.tpl -text
 templates/mail/plugin_pending_notification.tpl -text
 templates/mail/report.tpl -text
+templates/mail/rss_new_source_category.tpl -text
+templates/mail/rss_new_source_category_subject.tpl -text
 templates/mail/share.tpl -text
 templates/mail/share_subject.tpl -text
 templates/mail/submission_notification.tpl -text
