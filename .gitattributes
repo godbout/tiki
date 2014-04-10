@@ -2750,6 +2750,7 @@ lib/core/Search/Formatter/ValueFormatter/Wikiplugin.php -text
 lib/core/Search/Formatter/ValueFormatter/index.php -text
 lib/core/Search/Formatter/index.php -text
 lib/core/Search/GlobalSource/AdvancedRatingSource.php -text
+lib/core/Search/GlobalSource/ArticleAttachmentSource.php -text
 lib/core/Search/GlobalSource/CategorySource.php -text
 lib/core/Search/GlobalSource/CommentSource.php -text
 lib/core/Search/GlobalSource/FileAttachmentSource.php -text
