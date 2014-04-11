@@ -87,6 +87,8 @@ db/.htaccess -text
 db/cert/.htaccess -text
 db/cert/index.php -text
 db/cert/web.config -text
+db/config/controllers.xml -text
+db/config/tiki.xml -text
 db/index.php -text
 db/install.ini.dist -text
 db/preconfiguration.php -text
