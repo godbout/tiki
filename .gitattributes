@@ -88,6 +88,7 @@ db/cert/.htaccess -text
 db/cert/index.php -text
 db/cert/web.config -text
 db/config/controllers.xml -text
+db/config/mailin.xml -text
 db/config/tiki.xml -text
 db/index.php -text
 db/install.ini.dist -text
@@ -3009,6 +3010,13 @@ lib/core/Tiki/MailIn/Action/WikiPrepend.php -text
 lib/core/Tiki/MailIn/Action/WikiPut.php -text
 lib/core/Tiki/MailIn/Exception/MailInException.php -text
 lib/core/Tiki/MailIn/Exception/TransportException.php -text
+lib/core/Tiki/MailIn/Provider/ArticlePutProvider.php -text
+lib/core/Tiki/MailIn/Provider/BasicWikiProvider.php -text
+lib/core/Tiki/MailIn/Provider/CompilerPass.php -text
+lib/core/Tiki/MailIn/Provider/ProviderInterface.php -text
+lib/core/Tiki/MailIn/Provider/ProviderList.php -text
+lib/core/Tiki/MailIn/Provider/ReplyHandlerProvider.php -text
+lib/core/Tiki/MailIn/Provider/WikiMultipleProvider.php -text
 lib/core/Tiki/MailIn/Source/Imap.php -text
 lib/core/Tiki/MailIn/Source/Message.php -text
 lib/core/Tiki/MailIn/Source/Pop3.php -text
