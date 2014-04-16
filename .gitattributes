@@ -5812,12 +5812,6 @@ styles/thenews/options/narrow_left_column.css -text
 styles/thenews/options/narrow_left_column/index.php -text
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
-styles/thenewsbs.css -text
-styles/thenewsbs.less -text
-styles/thenewsbs/custom-other.css -text
-styles/thenewsbs/custom-other.less -text
-styles/thenewsbs/custom-variables.css -text
-styles/thenewsbs/custom-variables.less -text
 styles/tikinewt.css -text
 styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
 styles/tikinewt/ie6.css -text
