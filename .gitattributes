@@ -5370,9 +5370,7 @@ styles/darkroom.css -text
 styles/darkroom.less -text
 styles/darkroom/474747_5e5e5e_40.png -text svneol=unset#image/png
 styles/darkroom/button.png -text svneol=unset#image/png
-styles/darkroom/custom-other.css -text
 styles/darkroom/custom-other.less -text
-styles/darkroom/custom-variables.css -text
 styles/darkroom/custom-variables.less -text
 styles/darkroom/darkroom.png -text
 styles/darkroom/ie6.css -text
@@ -5796,9 +5794,7 @@ styles/strasa/strasa.png -text
 styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
 styles/thenews.css -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
-styles/thenews/custom-other.css -text
 styles/thenews/custom-other.less -text
-styles/thenews/custom-variables.css -text
 styles/thenews/custom-variables.less -text
 styles/thenews/ie6.css -text
 styles/thenews/ie7.css -text
