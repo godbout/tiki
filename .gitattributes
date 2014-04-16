@@ -5796,6 +5796,10 @@ styles/strasa/strasa.png -text
 styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
 styles/thenews.css -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
+styles/thenews/custom-other.css -text
+styles/thenews/custom-other.less -text
+styles/thenews/custom-variables.css -text
+styles/thenews/custom-variables.less -text
 styles/thenews/ie6.css -text
 styles/thenews/ie7.css -text
 styles/thenews/img/icons/index.php -text
