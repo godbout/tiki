@@ -5793,6 +5793,7 @@ styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
 styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
 styles/thenews.css -text
+styles/thenews.less -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
 styles/thenews/custom-other.less -text
 styles/thenews/custom-variables.less -text
