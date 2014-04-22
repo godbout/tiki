@@ -2883,6 +2883,7 @@ lib/core/Services/Report/index.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
+lib/core/Services/Search/Controller.php -text
 lib/core/Services/Search/CustomSearchController.php -text
 lib/core/Services/Search/StoredController.php -text
 lib/core/Services/ShowTikiOrg/Controller.php -text
@@ -4089,7 +4090,6 @@ lib/simile_tiki/tiki-timeline.js -text
 lib/smarty_tiki/block.accordion.php -text
 lib/smarty_tiki/block.accordion_group.php -text
 lib/smarty_tiki/block.activityframe.php -text
-lib/smarty_tiki/block.add_help.php -text
 lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
@@ -5950,7 +5950,6 @@ templates/admin/include_workspace.tpl -text
 templates/admin/include_wysiwyg.tpl -text
 templates/admin/index.php -text
 templates/admin_modules_form.tpl -text
-templates/advanced_search_help.tpl -text
 templates/antibot.tpl -text
 templates/article.tpl -text
 templates/article/create_from_url.tpl -text
@@ -6438,6 +6437,7 @@ templates/report/index.php -text
 templates/report/load.tpl -text
 templates/report/preview.tpl -text
 templates/report/wikidata.tpl -text
+templates/search/help.tpl -text
 templates/search_customsearch/customsearch.tpl -text
 templates/search_customsearch/index.php -text
 templates/search_stored/delete.tpl -text
@@ -6798,7 +6798,6 @@ templates/tiki-share.tpl -text
 templates/tiki-sheets.tpl -text
 templates/tiki-sheets_listing.tpl -text
 templates/tiki-shoutbox.tpl -text
-templates/tiki-show_help.tpl -text
 templates/tiki-show_page.tpl -text
 templates/tiki-show_page_raw.tpl -text
 templates/tiki-socialnetworks.tpl -text
@@ -6888,6 +6887,7 @@ templates/tracker/remove.tpl -text
 templates/tracker/remove_fields.tpl -text
 templates/tracker/remove_item.tpl -text
 templates/tracker/replace.tpl -text
+templates/tracker/search_help.tpl -text
 templates/tracker/select_tracker.tpl -text
 templates/tracker/update_item.tpl -text
 templates/tracker_actions.tpl -text
@@ -6957,7 +6957,6 @@ templates/translated-lang.tpl -text
 templates/translation/detach.tpl -text
 templates/translation/index.php -text
 templates/translation/manage.tpl -text
-templates/unified_search_help.tpl -text
 templates/user/info.tpl -text
 templates/user/register.tpl -text
 templates/user_conditions/age_validation.tpl -text
