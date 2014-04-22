@@ -4187,7 +4187,6 @@ lib/smarty_tiki/function.select_all.php -text
 lib/smarty_tiki/function.service.php -text
 lib/smarty_tiki/function.service_inline.php -text
 lib/smarty_tiki/function.set.php -text
-lib/smarty_tiki/function.show_help.php -text
 lib/smarty_tiki/function.show_sort.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.ticket.php -text
@@ -6014,6 +6013,7 @@ templates/debug/tiki-debug_watch_tab.tpl -text
 templates/draw/edit.tpl -text
 templates/draw/index.php -text
 templates/duplicate_file_gallery.tpl -text
+templates/edit/help.tpl -text
 templates/edit/index.php -text
 templates/edit/preview.tpl -text
 templates/edit_file_gallery.tpl -text
@@ -6625,7 +6625,6 @@ templates/tiki-edit_draw.tpl -text
 templates/tiki-edit_help.tpl -text
 templates/tiki-edit_help_plugins.tpl -text
 templates/tiki-edit_help_sheet.tpl -text
-templates/tiki-edit_help_sheet_interface.tpl -text
 templates/tiki-edit_help_wysiwyg.tpl -text
 templates/tiki-edit_image.tpl -text
 templates/tiki-edit_invoice.tpl -text
