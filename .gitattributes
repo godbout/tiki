@@ -7538,6 +7538,7 @@ vendor_extra/elfinder/js/i18n/elfinder.ar.js -text
 vendor_extra/elfinder/js/i18n/elfinder.bg.js -text
 vendor_extra/elfinder/js/i18n/elfinder.ca.js -text
 vendor_extra/elfinder/js/i18n/elfinder.cs.js -text
+vendor_extra/elfinder/js/i18n/elfinder.da.js -text
 vendor_extra/elfinder/js/i18n/elfinder.de.js -text
 vendor_extra/elfinder/js/i18n/elfinder.el.js -text
 vendor_extra/elfinder/js/i18n/elfinder.es.js -text
@@ -7567,6 +7568,7 @@ vendor_extra/elfinder/php/elFinder.class.php -text
 vendor_extra/elfinder/php/elFinderConnector.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeDriver.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeFTP.class.php -text
+vendor_extra/elfinder/php/elFinderVolumeFTPIIS.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeLocalFileSystem.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeMySQL.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeS3.class.php -text
