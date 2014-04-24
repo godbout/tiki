@@ -6076,6 +6076,7 @@ templates/layouts/internal/ajax.tpl -text
 templates/layouts/internal/layout_edit.tpl -text
 templates/layouts/internal/layout_view.tpl -text
 templates/layouts/internal/modal.tpl -text
+templates/layouts/layout_plain.tpl -text
 templates/layouts/mobile/layout_edit.tpl -text
 templates/layouts/mobile/layout_view.tpl -text
 templates/layouts/social/layout_edit.tpl -text
