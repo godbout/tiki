@@ -80,7 +80,6 @@ css/ie8.css -text
 css/ie9.css -text
 css/index.php -text
 css/jscalendar.css -text
-css/metrics.css -text
 css/readme.txt -text
 css/wizards.css -text
 db/.htaccess -text
@@ -3578,10 +3577,6 @@ lib/metadata/filetypes/jpeg.php -text
 lib/metadata/index.php -text
 lib/metadata/metadatalib.php -text
 lib/metadata/reconcile.php -text
-lib/metrics.js -text
-lib/metrics/index.php -text
-lib/metrics/input-validation.php -text
-lib/metrics/metricslib.php -text
 lib/mime/index.php -text
 lib/mime/mimeextensions.php -text
 lib/mime/mimelib.php -text
@@ -4152,7 +4147,6 @@ lib/smarty_tiki/function.jspopup.php -text
 lib/smarty_tiki/function.listfilter.php -text
 lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
-lib/smarty_tiki/function.metric.php -text
 lib/smarty_tiki/function.module.php -text
 lib/smarty_tiki/function.modulelist.php -text
 lib/smarty_tiki/function.monitor_link.php -text
@@ -5078,7 +5072,6 @@ maps/index.php -text
 /messu-read_archive.php -text
 /messu-read_sent.php -text
 /messu-sent.php -text
-/metrics-tab.php -text
 /modsadm.php -text
 modules/.htaccess -text
 modules/cache/README -text
@@ -5921,7 +5914,6 @@ templates/admin/include_look.tpl -text
 templates/admin/include_maps.tpl -text
 templates/admin/include_messages.tpl -text
 templates/admin/include_metatags.tpl -text
-templates/admin/include_metrics.tpl -text
 templates/admin/include_module.tpl -text
 templates/admin/include_payment.tpl -text
 templates/admin/include_performance.tpl -text
@@ -7118,7 +7110,6 @@ tests/testfile.txt -text
 /tiki-admin_mailin_routes.php -text
 /tiki-admin_menu_options.php -text
 /tiki-admin_menus.php -text
-/tiki-admin_metrics.php -text
 /tiki-admin_modules.php -text
 /tiki-admin_newsletter_subscriptions.php -text
 /tiki-admin_newsletters.php -text
@@ -7318,7 +7309,6 @@ tests/testfile.txt -text
 /tiki-map_history.php -text
 /tiki-map_rss.php -text
 /tiki-map_upload.php -text
-/tiki-metrics.php -text
 /tiki-mindmap.php -text
 /tiki-minical.php -text
 /tiki-minical_export.php -text
