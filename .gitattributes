@@ -2866,6 +2866,8 @@ lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
 lib/core/Services/MailIn/Controller.php -text
+lib/core/Services/Menu/Controller.php -text
+lib/core/Services/Menu/index.php -text
 lib/core/Services/Module/Controller.php -text
 lib/core/Services/Module/index.php -text
 lib/core/Services/Object/Controller.php -text
@@ -6195,6 +6197,8 @@ templates/map/tiki-map_frame.tpl -text
 templates/map/tiki-map_history.tpl -text
 templates/map/tiki-map_upload.tpl -text
 templates/medialist.tpl -text
+templates/menu/clone.tpl -text
+templates/menu/manage.tpl -text
 templates/messu-archive.tpl -text
 templates/messu-broadcast.tpl -text
 templates/messu-compose.tpl -text
