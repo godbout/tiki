@@ -6940,6 +6940,8 @@ templates/trackeroutput/index.php -text
 templates/trackeroutput/itemslist.tpl -text
 templates/trackeroutput/kaltura.tpl -text
 templates/trackeroutput/language.tpl -text
+templates/trackeroutput/layout_flat.tpl -text
+templates/trackeroutput/layout_tab.tpl -text
 templates/trackeroutput/location.tpl -text
 templates/trackeroutput/numeric.tpl -text
 templates/trackeroutput/popup.tpl -text
