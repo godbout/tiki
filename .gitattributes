@@ -4630,7 +4630,6 @@ lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
 lib/themegenlib.php -text
 lib/tiki-dynamic-js.php -text
-lib/tiki-js-sorttable.js -text
 lib/tiki-js.js -text
 lib/tikiaccesslib.php -text
 lib/tikidate.php -text
