@@ -2924,6 +2924,7 @@ lib/core/Table/Code/Manager.php -text
 lib/core/Table/Code/Other.php -text
 lib/core/Table/Code/Pager.php -text
 lib/core/Table/Code/WidgetOptions.php -text
+lib/core/Table/Code/WidgetOptionsFilter.php -text
 lib/core/Table/Code/index.php -text
 lib/core/Table/Factory.php -text
 lib/core/Table/Manager.php -text
