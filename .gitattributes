@@ -3514,8 +3514,6 @@ lib/jquery_tiki/galleriffic/css/white.css -text
 lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/social.js -text
-lib/jquery_tiki/tablesorter/index.php -text
-lib/jquery_tiki/tablesorter/style.css -text
 lib/jquery_tiki/tiki-admin.js -text
 lib/jquery_tiki/tiki-connect.js -text
 lib/jquery_tiki/tiki-jquery.js -text
@@ -5792,6 +5790,7 @@ styles/strasa/options/mono/register.jpg -text
 styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
 styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
+styles/tablesorter.less -text
 styles/thenews.css -text
 styles/thenews.less -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
