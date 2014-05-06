@@ -7073,9 +7073,6 @@ templates/wizard/admin_language.tpl -text
 templates/wizard/admin_login.tpl -text
 templates/wizard/admin_look_and_feel.tpl -text
 templates/wizard/admin_namespace.tpl -text
-templates/wizard/admin_profiles_demo.tpl -text
-templates/wizard/admin_profiles_featured.tpl -text
-templates/wizard/admin_profiles_useful.tpl -text
 templates/wizard/admin_search.tpl -text
 templates/wizard/admin_structures.tpl -text
 templates/wizard/admin_text_area.tpl -text
