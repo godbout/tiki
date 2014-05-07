@@ -983,6 +983,7 @@ img/icons/large/categories.png -text
 img/icons/large/categories48x48.png -text
 img/icons/large/comments.png -text
 img/icons/large/comments48x48.png -text
+img/icons/large/console.png -text
 img/icons/large/contactus48x48.png -text
 img/icons/large/cookie_cutter.png -text
 img/icons/large/copyright.png -text
@@ -1036,6 +1037,7 @@ img/icons/large/intertiki48x48.png -text
 img/icons/large/invoice48x48.png -text
 img/icons/large/kaltura.png -text
 img/icons/large/kaltura48x48.png -text
+img/icons/large/logs48x48.png -text
 img/icons/large/maps.png -text
 img/icons/large/maps48x48.png -text
 img/icons/large/messages.gif -text
@@ -1055,6 +1057,7 @@ img/icons/large/payment.png -text
 img/icons/large/payment48x48.png -text
 img/icons/large/performance.png -text
 img/icons/large/performance48x48.png -text
+img/icons/large/permissions48x48.png -text
 img/icons/large/plugins.png -text
 img/icons/large/plugins48x48.png -text
 img/icons/large/prefs.gif -text
@@ -1100,6 +1103,8 @@ img/icons/large/tikicalendar48x48.png -text
 img/icons/large/timesheet48x48.png -text
 img/icons/large/trackers_new.png -text
 img/icons/large/trackers_updated.png -text
+img/icons/large/ui48x48.png -text
+img/icons/large/usability48x48.png -text
 img/icons/large/usagelist.txt -text
 img/icons/large/user.png -text
 img/icons/large/user_tracker.png -text
@@ -1120,6 +1125,7 @@ img/icons/large/wizard32x32.png -text
 img/icons/large/wizard48x48.png -text
 img/icons/large/wizard_admin48x48.png -text
 img/icons/large/wizard_profiles48x48.png -text
+img/icons/large/wizard_upgrade48x48.png -text
 img/icons/large/wizard_user48x48.png -text
 img/icons/large/wysiwyg.png -text
 img/icons/large/wysiwyg48x48.png -text
@@ -5030,6 +5036,12 @@ lib/wizard/pages/profiles_useful_admin_confs.php -text
 lib/wizard/pages/profiles_useful_changes_in_display.php -text
 lib/wizard/pages/profiles_useful_micro_confs.php -text
 lib/wizard/pages/profiles_useful_new_tech_confs.php -text
+lib/wizard/pages/upgrade_others.php -text
+lib/wizard/pages/upgrade_permissions_and_logs.php -text
+lib/wizard/pages/upgrade_trackers.php -text
+lib/wizard/pages/upgrade_ui.php -text
+lib/wizard/pages/upgrade_usability.php -text
+lib/wizard/pages/upgrade_wizard_completed.php -text
 lib/wizard/pages/user_dummy1.php -text
 lib/wizard/pages/user_dummy2.php -text
 lib/wizard/pages/user_dummy3.php -text
@@ -7090,6 +7102,12 @@ templates/wizard/profiles_useful_admin_confs.tpl -text
 templates/wizard/profiles_useful_changes_in_display.tpl -text
 templates/wizard/profiles_useful_micro_confs.tpl -text
 templates/wizard/profiles_useful_new_tech_confs.tpl -text
+templates/wizard/upgrade_others.tpl -text
+templates/wizard/upgrade_permissions_and_logs.tpl -text
+templates/wizard/upgrade_trackers.tpl -text
+templates/wizard/upgrade_ui.tpl -text
+templates/wizard/upgrade_usability.tpl -text
+templates/wizard/upgrade_wizard_completed.tpl -text
 templates/wizard/user_dummy1.tpl -text
 templates/wizard/user_dummy2.tpl -text
 templates/wizard/user_dummy3.tpl -text
