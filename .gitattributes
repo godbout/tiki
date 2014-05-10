@@ -5040,6 +5040,7 @@ lib/wizard/pages/profiles_useful_changes_in_display.php -text
 lib/wizard/pages/profiles_useful_micro_confs.php -text
 lib/wizard/pages/profiles_useful_new_tech_confs.php -text
 lib/wizard/pages/upgrade_doc_page_iframe.php -text
+lib/wizard/pages/upgrade_new_in_13.php -text
 lib/wizard/pages/upgrade_others.php -text
 lib/wizard/pages/upgrade_permissions_and_logs.php -text
 lib/wizard/pages/upgrade_trackers.php -text
@@ -7107,6 +7108,7 @@ templates/wizard/profiles_useful_changes_in_display.tpl -text
 templates/wizard/profiles_useful_micro_confs.tpl -text
 templates/wizard/profiles_useful_new_tech_confs.tpl -text
 templates/wizard/upgrade_doc_page_iframe.tpl -text
+templates/wizard/upgrade_new_in_13.tpl -text
 templates/wizard/upgrade_others.tpl -text
 templates/wizard/upgrade_permissions_and_logs.tpl -text
 templates/wizard/upgrade_trackers.tpl -text
