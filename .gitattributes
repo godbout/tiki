@@ -5434,7 +5434,10 @@ styles/eatlon/options/teal/index.php -text
 styles/eatlon/options/teal/menu_bg.png -text
 styles/empty.css -text
 styles/feb12.css -text
+styles/feb12.less -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
+styles/feb12/custom-other.less -text
+styles/feb12/custom-variables.less -text
 styles/feb12/feb12.png -text
 styles/feb12/header.jpg -text svneol=unset#image/jpeg
 styles/feb12/ie6.css -text
