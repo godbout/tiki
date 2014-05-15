@@ -5709,6 +5709,7 @@ styles/jqui/options/trontastic/pics/icons/orightcol.png -text svneol=unset#image
 styles/jqui/options/trontastic/pics/index.php -text
 styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
 styles/layout/index.php -text
+styles/layout/less/tablesorter.less -text
 styles/layout/less/tiki-admin.less -text
 styles/layout/less/tiki-articles.less -text
 styles/layout/less/tiki-blogs.less -text
@@ -5842,7 +5843,6 @@ styles/strasa/options/mono/register.jpg -text
 styles/strasa/register.jpg -text
 styles/strasa/strasa.png -text
 styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
-styles/tablesorter.less -text
 styles/thenews.css -text
 styles/thenews.less -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
