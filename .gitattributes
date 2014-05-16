@@ -6112,8 +6112,6 @@ templates/interactive_translation_box.tpl -text
 templates/jcapture/capture.tpl -text
 templates/jcapture/index.php -text
 templates/kaltura/upload.tpl -text
-templates/layouts/application/layout_edit.tpl -text
-templates/layouts/application/layout_view.tpl -text
 templates/layouts/basic/layout_edit.tpl -text
 templates/layouts/basic/layout_view.tpl -text
 templates/layouts/classic/layout_edit.tpl -text
