@@ -966,6 +966,7 @@ img/icons/key_active.png -text
 img/icons/key_private.png -text
 img/icons/large/accounting48x48.png -text
 img/icons/large/admin.gif -text
+img/icons/large/admin_assistance48x48.png -text
 img/icons/large/admin_panel48x48.png -text
 img/icons/large/ads.png -text
 img/icons/large/ads48x48.png -text
@@ -1105,7 +1106,6 @@ img/icons/large/timesheet48x48.png -text
 img/icons/large/trackers_new.png -text
 img/icons/large/trackers_updated.png -text
 img/icons/large/ui48x48.png -text
-img/icons/large/usability48x48.png -text
 img/icons/large/usagelist.txt -text
 img/icons/large/user.png -text
 img/icons/large/user_tracker.png -text
@@ -5042,12 +5042,12 @@ lib/wizard/pages/profiles_useful_micro_confs.php -text
 lib/wizard/pages/profiles_useful_new_tech_confs.php -text
 lib/wizard/pages/upgrade_doc_page_iframe.php -text
 lib/wizard/pages/upgrade_new_in_13.php -text
+lib/wizard/pages/upgrade_novice_admin_assistance.php -text
 lib/wizard/pages/upgrade_others.php -text
 lib/wizard/pages/upgrade_permissions_and_logs.php -text
 lib/wizard/pages/upgrade_send_feedback.php -text
 lib/wizard/pages/upgrade_trackers.php -text
 lib/wizard/pages/upgrade_ui.php -text
-lib/wizard/pages/upgrade_usability.php -text
 lib/wizard/pages/upgrade_wizard_completed.php -text
 lib/wizard/pages/user_dummy1.php -text
 lib/wizard/pages/user_dummy2.php -text
@@ -7116,12 +7116,12 @@ templates/wizard/profiles_useful_micro_confs.tpl -text
 templates/wizard/profiles_useful_new_tech_confs.tpl -text
 templates/wizard/upgrade_doc_page_iframe.tpl -text
 templates/wizard/upgrade_new_in_13.tpl -text
+templates/wizard/upgrade_novice_admin_assistance.tpl -text
 templates/wizard/upgrade_others.tpl -text
 templates/wizard/upgrade_permissions_and_logs.tpl -text
 templates/wizard/upgrade_send_feedback.tpl -text
 templates/wizard/upgrade_trackers.tpl -text
 templates/wizard/upgrade_ui.tpl -text
-templates/wizard/upgrade_usability.tpl -text
 templates/wizard/upgrade_wizard_completed.tpl -text
 templates/wizard/user_dummy1.tpl -text
 templates/wizard/user_dummy2.tpl -text
