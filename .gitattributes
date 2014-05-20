@@ -4236,6 +4236,7 @@ lib/smarty_tiki/modifier.output.php -text
 lib/smarty_tiki/modifier.pagename.php -text
 lib/smarty_tiki/modifier.percent.php -text
 lib/smarty_tiki/modifier.quoted.php -text
+lib/smarty_tiki/modifier.reverse_array.php -text
 lib/smarty_tiki/modifier.sefurl.php -text
 lib/smarty_tiki/modifier.simplewiki.php -text
 lib/smarty_tiki/modifier.star.php -text
