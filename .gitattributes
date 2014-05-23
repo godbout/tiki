@@ -3014,8 +3014,10 @@ lib/core/Tiki/FileGallery/File.php -text
 lib/core/Tiki/FileGallery/FileWrapper/PhysicalFile.php -text
 lib/core/Tiki/FileGallery/FileWrapper/PreloadedContent.php -text
 lib/core/Tiki/FileGallery/FileWrapper/WrapperInterface.php -text
+lib/core/Tiki/FileGallery/Handler/FileSystem.php -text
 lib/core/Tiki/FileGallery/Handler/HandlerInterface.php -text
 lib/core/Tiki/FileGallery/Handler/Podcast.php -text
+lib/core/Tiki/FileGallery/Handler/Preloaded.php -text
 lib/core/Tiki/FileGallery/Handler/System.php -text
 lib/core/Tiki/FileGallery/index.php -text
 lib/core/Tiki/MailIn/Account.php -text
