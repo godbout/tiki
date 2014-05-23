@@ -2529,9 +2529,6 @@ lib/core/Feed/Html/Receive.php -text
 lib/core/Feed/Html/index.php -text
 lib/core/Feed/Item.php -text
 lib/core/Feed/index.php -text
-lib/core/FileGallery/File.php -text
-lib/core/FileGallery/Wrapper.php -text
-lib/core/FileGallery/index.php -text
 lib/core/FutureLink/FutureUI.php -text
 lib/core/FutureLink/Metadata.php -text
 lib/core/FutureLink/MetadataAssembler.php -text
@@ -3012,6 +3009,15 @@ lib/core/Tiki/Event/Function/EventTrigger.php -text
 lib/core/Tiki/Event/Lib.php -text
 lib/core/Tiki/Event/Manager.php -text
 lib/core/Tiki/Event/index.php -text
+lib/core/Tiki/FileGallery/Definition.php -text
+lib/core/Tiki/FileGallery/File.php -text
+lib/core/Tiki/FileGallery/FileWrapper/PhysicalFile.php -text
+lib/core/Tiki/FileGallery/FileWrapper/PreloadedContent.php -text
+lib/core/Tiki/FileGallery/FileWrapper/WrapperInterface.php -text
+lib/core/Tiki/FileGallery/Handler/HandlerInterface.php -text
+lib/core/Tiki/FileGallery/Handler/Podcast.php -text
+lib/core/Tiki/FileGallery/Handler/System.php -text
+lib/core/Tiki/FileGallery/index.php -text
 lib/core/Tiki/MailIn/Account.php -text
 lib/core/Tiki/MailIn/Action/ActionInterface.php -text
 lib/core/Tiki/MailIn/Action/ArticlePut.php -text
