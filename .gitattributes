@@ -6078,6 +6078,7 @@ templates/draw/index.php -text
 templates/duplicate_file_gallery.tpl -text
 templates/edit/help.tpl -text
 templates/edit/index.php -text
+templates/edit/inline_dialog.tpl -text
 templates/edit/preview.tpl -text
 templates/edit_file_gallery.tpl -text
 templates/error-ajax.tpl -text
