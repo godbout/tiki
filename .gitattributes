@@ -5448,6 +5448,9 @@ styles/feb12/ie7.css -text
 styles/feb12/index.php -text
 styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
+styles/fivealive-lite.less -text
+styles/fivealive-lite/custom-other.less -text
+styles/fivealive-lite/custom-variables.less -text
 styles/fivealive.css -text
 styles/fivealive.less -text
 styles/fivealive/custom-other.less -text
