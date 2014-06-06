@@ -2879,6 +2879,7 @@ lib/core/Services/Menu/Controller.php -text
 lib/core/Services/Menu/index.php -text
 lib/core/Services/Module/Controller.php -text
 lib/core/Services/Module/index.php -text
+lib/core/Services/MustRead/Controller.php -text
 lib/core/Services/Object/Controller.php -text
 lib/core/Services/Object/index.php -text
 lib/core/Services/Payment/Controller.php -text
@@ -3536,6 +3537,7 @@ lib/jquery_tiki/galleriffic/css/prevPageArrowWhite.gif -text
 lib/jquery_tiki/galleriffic/css/white.css -text
 lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
+lib/jquery_tiki/mustread.js -text
 lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tiki-admin.js -text
 lib/jquery_tiki/tiki-connect.js -text
@@ -3877,6 +3879,7 @@ lib/prefs/module.php -text
 lib/prefs/monitor.php -text
 lib/prefs/morelikethis.php -text
 lib/prefs/multidomain.php -text
+lib/prefs/mustread.php -text
 lib/prefs/namespace.php -text
 lib/prefs/newsletter.php -text
 lib/prefs/nextprev.php -text
@@ -6487,6 +6490,8 @@ templates/monitor/notification_link.tpl -text
 templates/monitor/object.tpl -text
 templates/monitor/stream.tpl -text
 templates/monitor/unread.tpl -text
+templates/mustread/detail.tpl -text
+templates/mustread/list.tpl -text
 templates/object/index.php -text
 templates/object/infobox.tpl -text
 templates/object/infobox/activity.tpl -text
