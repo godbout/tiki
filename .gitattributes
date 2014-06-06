@@ -5284,7 +5284,6 @@ permissioncheck/yes.bin -text
 /snarf_ajax.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
-styles/bootstrap_default.css -text
 styles/bootswatch_themes.css -text
 styles/bootswatch_themes/options/amelia-bootstrap.min.css -text
 styles/bootswatch_themes/options/amelia-bootstrap.min/amelia-bootstrap.min.png -text
@@ -5355,7 +5354,6 @@ styles/darkroom/options/index.php -text
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/index.php -text
 styles/darkroom/options/small-type/small-type.png -text
-styles/empty.css -text
 styles/feb12.css -text
 styles/feb12.less -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
