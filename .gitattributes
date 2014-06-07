@@ -6490,6 +6490,7 @@ templates/monitor/notification_link.tpl -text
 templates/monitor/object.tpl -text
 templates/monitor/stream.tpl -text
 templates/monitor/unread.tpl -text
+templates/mustread/circulate.tpl -text
 templates/mustread/detail.tpl -text
 templates/mustread/list.tpl -text
 templates/object/index.php -text
