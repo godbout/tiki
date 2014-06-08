@@ -5626,7 +5626,8 @@ styles/jqui/options/trontastic/pics/icons/orightcol.png -text svneol=unset#image
 styles/jqui/options/trontastic/pics/index.php -text
 styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
 styles/layout/index.php -text
-styles/layout/less/tablesorter.less -text
+styles/layout/less/tablesorter-custom.less -text
+styles/layout/less/tablesorter-tiki.less -text
 styles/layout/less/tiki-admin.less -text
 styles/layout/less/tiki-articles.less -text
 styles/layout/less/tiki-blogs.less -text
