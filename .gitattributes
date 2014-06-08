@@ -5297,52 +5297,6 @@ permissioncheck/yes.bin -text
 /snarf_ajax.php -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
-styles/abse/abse.png -text svneol=unset#image/png
-styles/abse/crimeboy_design.png -text svneol=unset#image/png
-styles/abse/index.php -text
-styles/abse/menubg.jpg -text svneol=unset#image/jpeg
-styles/abse/titlebgoff.png -text svneol=unset#image/png
-styles/abse/titlebgon.png -text svneol=unset#image/png
-styles/abse/wgreenwall.png -text svneol=unset#image/png
-styles/arcturus/arcturus.png -text svneol=unset#image/png
-styles/arcturus/arrows-222222.png -text svneol=unset#image/png
-styles/arcturus/index.php -text
-styles/arcturus/options/amette/amette.png -text svneol=unset#image/png
-styles/arcturus/options/amette/gradient.png -text svneol=unset#image/png
-styles/arcturus/options/amette/index.php -text
-styles/arcturus/options/geo/backmap.png -text svneol=unset#image/png
-styles/arcturus/options/geo/fond2tete.png -text svneol=unset#image/png
-styles/arcturus/options/geo/fondtete.png -text svneol=unset#image/png
-styles/arcturus/options/geo/geo.png -text svneol=unset#image/png
-styles/arcturus/options/geo/index.php -text
-styles/arcturus/options/index.php -text
-styles/arcturus/options/jalist/fcap.png -text svneol=unset#image/png
-styles/arcturus/options/jalist/grad.gif -text
-styles/arcturus/options/jalist/grad.jpg -text svneol=unset#image/jpeg
-styles/arcturus/options/jalist/grad.png -text svneol=unset#image/png
-styles/arcturus/options/jalist/index.php -text
-styles/arcturus/options/jalist/jalist.png -text svneol=unset#image/png
-styles/arcturus/options/jalist/maincap.png -text svneol=unset#image/png
-styles/arcturus/options/jalist/menucap.png -text svneol=unset#image/png
-styles/arcturus/options/matrix/arrows-00e000.png -text svneol=unset#image/png
-styles/arcturus/options/matrix/dark.png -text svneol=unset#image/png
-styles/arcturus/options/matrix/grey.png -text svneol=unset#image/png
-styles/arcturus/options/matrix/index.php -text
-styles/arcturus/options/matrix/ltgreen.png -text svneol=unset#image/png
-styles/arcturus/options/matrix/ltltgreen.png -text svneol=unset#image/png
-styles/arcturus/options/matrix/matrix.jpg -text svneol=unset#image/jpeg
-styles/arcturus/options/matrix/matrix.png -text svneol=unset#image/png
-styles/arcturus/options/matrix/red.png -text svneol=unset#image/png
-styles/arcturus/options/simple/arrows-0b8a98.png -text svneol=unset#image/png
-styles/arcturus/options/simple/bg.png -text svneol=unset#image/png
-styles/arcturus/options/simple/button_bg.png -text svneol=unset#image/png
-styles/arcturus/options/simple/index.php -text
-styles/arcturus/options/simple/simple.png -text svneol=unset#image/png
-styles/arcturus/options/smartiki/index.php -text
-styles/arcturus/options/smartiki/smartiki.png -text svneol=unset#image/png
-styles/arcturus/options/trollparty/index.php -text
-styles/arcturus/options/trollparty/trollparty.png -text svneol=unset#image/png
-styles/bootstrap_default.css -text
 styles/bootswatch_themes.css -text
 styles/bootswatch_themes/options/amelia-bootstrap.min.css -text
 styles/bootswatch_themes/options/amelia-bootstrap.min/amelia-bootstrap.min.png -text
@@ -5395,39 +5349,6 @@ styles/bootswatch_themes/options/united-bootstrap.min/united-bootstrap.min.png -
 styles/bootswatch_themes/options/yeti-bootstrap.min.css -text
 styles/bootswatch_themes/options/yeti-bootstrap.min/index.php -text
 styles/bootswatch_themes/options/yeti-bootstrap.min/yeti-bootstrap.min.png -text
-styles/business/arrows-467aa7.png -text svneol=unset#image/png
-styles/business/arrows-ffffff.png -text svneol=unset#image/png
-styles/business/boxtop.gif -text
-styles/business/business.png -text svneol=unset#image/png
-styles/business/footer.gif -text
-styles/business/header.png -text svneol=unset#image/png
-styles/business/image1.jpg -text svneol=unset#image/jpeg
-styles/business/index.php -text
-styles/business/info.jpg -text svneol=unset#image/jpeg
-styles/business/input.gif -text
-styles/business/magnify.gif -text
-styles/business/magnify.png -text svneol=unset#image/png
-styles/business/market.jpg -text svneol=unset#image/jpeg
-styles/business/nav.gif -text
-styles/business/nav_h.gif -text
-styles/business/options/index.php -text
-styles/business/title_bg.png -text svneol=unset#image/png
-styles/coelesce.css -text
-styles/coelesce/arrows-295c8e.png -text svneol=unset#image/png
-styles/coelesce/arrows-467aa7.png -text svneol=unset#image/png
-styles/coelesce/coelesce.png -text
-styles/coelesce/ie6.css -text
-styles/coelesce/ie7.css -text
-styles/coelesce/img/icons/index.php -text
-styles/coelesce/img/icons/oleftcol.png -text svneol=unset#image/png
-styles/coelesce/img/icons/orightcol.png -text svneol=unset#image/png
-styles/coelesce/img/index.php -text
-styles/coelesce/index.php -text
-styles/coelesce/options/community.css -text
-styles/coelesce/options/index.php -text
-styles/coelesce/pagebg.jpg -text svneol=unset#image/jpeg
-styles/coelesce/search_wide.png -text svneol=unset#image/png
-styles/coelesce/tiki-centerbg.jpg -text svneol=unset#image/jpeg
 styles/darkroom.css -text
 styles/darkroom.less -text
 styles/darkroom/474747_5e5e5e_40.png -text svneol=unset#image/png
@@ -5446,43 +5367,6 @@ styles/darkroom/options/index.php -text
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/index.php -text
 styles/darkroom/options/small-type/small-type.png -text
-styles/darkshine/ad.gif -text
-styles/darkshine/arrows-000000.png -text svneol=unset#image/png
-styles/darkshine/blue.png -text svneol=unset#image/png
-styles/darkshine/border.jpg -text svneol=unset#image/jpeg
-styles/darkshine/box.jpg -text svneol=unset#image/jpeg
-styles/darkshine/darkshine.png -text svneol=unset#image/png
-styles/darkshine/green.png -text svneol=unset#image/png
-styles/darkshine/hover_list.jpg -text svneol=unset#image/jpeg
-styles/darkshine/index.php -text
-styles/darkshine/main.gif -text
-styles/darkshine/nav.gif -text
-styles/darkshine/orange.png -text svneol=unset#image/png
-styles/darkshine/red.png -text svneol=unset#image/png
-styles/darkshine/stripes.png -text svneol=unset#image/png
-styles/darkshine/stripes_small.gif -text
-styles/darkshine/title_background.jpg -text svneol=unset#image/jpeg
-styles/eatlon/arrows-6d819d.png -text svneol=unset#image/png
-styles/eatlon/banner.gif -text
-styles/eatlon/body_bg.gif -text
-styles/eatlon/bottom_bg.png -text svneol=unset#image/png
-styles/eatlon/eatlon.png -text svneol=unset#image/png
-styles/eatlon/feed.gif -text
-styles/eatlon/head_bg.gif -text
-styles/eatlon/image.gif -text
-styles/eatlon/index.php -text
-styles/eatlon/layouts.gif -text
-styles/eatlon/menu_bg.png -text svneol=unset#image/png
-styles/eatlon/options/index.php -text
-styles/eatlon/options/teal.css -text
-styles/eatlon/options/teal/arrows-6d819d.png -text
-styles/eatlon/options/teal/body_bg.gif -text
-styles/eatlon/options/teal/bottom_bg.png -text
-styles/eatlon/options/teal/feed.gif -text
-styles/eatlon/options/teal/head_bg.gif -text
-styles/eatlon/options/teal/index.php -text
-styles/eatlon/options/teal/menu_bg.png -text
-styles/empty.css -text
 styles/feb12.css -text
 styles/feb12.less -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
@@ -5697,29 +5581,6 @@ styles/fivealive/options/watermelon/siteheadertile.png -text svneol=unset#image/
 styles/fivealive/options/watermelon/watermelon.png -text svneol=unset#image/png
 styles/fivealive/searchform.png -text svneol=unset#image/png
 styles/fivealive/topbar.jpg -text svneol=unset#image/jpeg
-styles/gradiant.css -text
-styles/gradiant/gradiant.png -text
-styles/greenvalley-rtl.css -text
-styles/greenvalley.css -text
-styles/greenvalley/any_arrow.png -text
-styles/greenvalley/background.jpg -text
-styles/greenvalley/box_header3.png -text
-styles/greenvalley/button_bck.jpg -text
-styles/greenvalley/button_bck_hover.jpg -text
-styles/greenvalley/footer_bck.jpg -text
-styles/greenvalley/greenvalley.png -text
-styles/greenvalley/header_background_ltr.jpg -text
-styles/greenvalley/header_background_rtl.jpg -text
-styles/greenvalley/ie7.css -text
-styles/greenvalley/index.php -text
-styles/greenvalley/left.png -text
-styles/greenvalley/menubar-wood.jpg -text
-styles/greenvalley/page_background_ltr.jpg -text
-styles/greenvalley/page_background_rtl.jpg -text
-styles/greenvalley/phonebook_rtl.jpg -text
-styles/greenvalley/right.png -text
-styles/greenvalley/searchform.png -text
-styles/greenvalley/submenu_arrow.png -text
 styles/index.php -text
 styles/integrator/README -text
 styles/integrator/default.css -text
@@ -5830,75 +5691,6 @@ styles/snow/pagetitle-bg.jpg -text svneol=unset#image/jpeg
 styles/snow/pagetitle-bullet-sm.gif -text
 styles/snow/pagetitle-bullet.gif -text
 styles/snow/snow.png -text svneol=unset#image/png
-styles/strasa.css -text
-styles/strasa/arrows-467aa7.png -text svneol=unset#image/png
-styles/strasa/arrows-a2ecff.png -text svneol=unset#image/png
-styles/strasa/body-bg_fw.png -text svneol=unset#image/png
-styles/strasa/body-bgd.png -text
-styles/strasa/box_bottom.gif -text
-styles/strasa/box_bottom_fw.gif -text
-styles/strasa/box_top.gif -text
-styles/strasa/box_top_fw.gif -text
-styles/strasa/cold.png -text
-styles/strasa/fold-topright.jpg -text
-styles/strasa/headerbg.jpg -text
-styles/strasa/headermenuitem-hover.png -text
-styles/strasa/ie6.css -text
-styles/strasa/ie7.css -text
-styles/strasa/ie8.css -text
-styles/strasa/img/icons/external_link.gif -text
-styles/strasa/img/icons/folder.png -text svneol=unset#image/png
-styles/strasa/img/icons/index.php -text
-styles/strasa/img/icons/ofolder.png -text svneol=unset#image/png
-styles/strasa/img/icons/oleftcol.png -text svneol=unset#image/png
-styles/strasa/img/icons/orightcol.png -text svneol=unset#image/png
-styles/strasa/img/index.php -text
-styles/strasa/index.php -text
-styles/strasa/info_icon.png -text svneol=unset#image/png
-styles/strasa/link_icon.png -text svneol=unset#image/png
-styles/strasa/list_icon.png -text
-styles/strasa/login.jpg -text
-styles/strasa/loginlong.jpg -text svneol=unset#image/jpeg
-styles/strasa/options/cool.css -text
-styles/strasa/options/cool/box_bottom.gif -text
-styles/strasa/options/cool/box_top.gif -text
-styles/strasa/options/cool/cool.png -text
-styles/strasa/options/cool/fold-topright.jpg -text
-styles/strasa/options/cool/headerbg.jpg -text svneol=unset#image/jpeg
-styles/strasa/options/cool/headermenuitem-hover.png -text
-styles/strasa/options/cool/index.php -text
-styles/strasa/options/cool/login.jpg -text svneol=unset#image/jpeg
-styles/strasa/options/cool/loginlong.jpg -text svneol=unset#image/jpeg
-styles/strasa/options/cool/register.jpg -text svneol=unset#image/jpeg
-styles/strasa/options/index.php -text
-styles/strasa/options/mono.css -text
-styles/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
-styles/strasa/options/mono/body-bg_fw.gif -text
-styles/strasa/options/mono/box_bottom.gif -text
-styles/strasa/options/mono/box_bottom_fw.gif -text
-styles/strasa/options/mono/box_top.gif -text
-styles/strasa/options/mono/box_top_fw.gif -text
-styles/strasa/options/mono/fold-topright.jpg -text
-styles/strasa/options/mono/headerbg.jpg -text
-styles/strasa/options/mono/headermenuitem-hover.png -text
-styles/strasa/options/mono/index.php -text
-styles/strasa/options/mono/info_icon.png -text
-styles/strasa/options/mono/lightbg.jpg -text
-styles/strasa/options/mono/link_icon.png -text
-styles/strasa/options/mono/list_icon.png -text
-styles/strasa/options/mono/login.jpg -text
-styles/strasa/options/mono/loginlong.jpg -text svneol=unset#image/jpeg
-styles/strasa/options/mono/mono.png -text
-styles/strasa/options/mono/pics/icons/folder.png -text
-styles/strasa/options/mono/pics/icons/index.php -text
-styles/strasa/options/mono/pics/icons/ofolder.png -text
-styles/strasa/options/mono/pics/icons/oleftcol.png -text svneol=unset#image/png
-styles/strasa/options/mono/pics/icons/orightcol.png -text svneol=unset#image/png
-styles/strasa/options/mono/pics/index.php -text
-styles/strasa/options/mono/register.jpg -text
-styles/strasa/register.jpg -text
-styles/strasa/strasa.png -text
-styles/strasa/strasa_fixed_width.png -text svneol=unset#image/png
 styles/thenews.css -text
 styles/thenews.less -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
@@ -5916,59 +5708,6 @@ styles/thenews/options/narrow_left_column.css -text
 styles/thenews/options/narrow_left_column/index.php -text
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
-styles/tikinewt.css -text
-styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
-styles/tikinewt/ie6.css -text
-styles/tikinewt/ie7.css -text
-styles/tikinewt/img/icons/index.php -text
-styles/tikinewt/img/icons/oleftcol.png -text svneol=unset#image/png
-styles/tikinewt/img/icons/orightcol.png -text svneol=unset#image/png
-styles/tikinewt/img/index.php -text
-styles/tikinewt/index.php -text
-styles/tikinewt/options/index.php -text
-styles/tikinewt/options/shadows/box_shadow.png -text svneol=unset#image/png
-styles/tikinewt/options/shadows/index.php -text
-styles/tikinewt/tikinewt.png -text
-styles/twist/arrows-000.png -text svneol=unset#image/png
-styles/twist/background.gif -text
-styles/twist/bullet.gif -text
-styles/twist/header_bg.jpg -text svneol=unset#image/jpeg
-styles/twist/img/icons/folder.png -text svneol=unset#image/png
-styles/twist/img/icons/index.php -text
-styles/twist/img/icons/ofolder.png -text svneol=unset#image/png
-styles/twist/img/index.php -text
-styles/twist/index.php -text
-styles/twist/topbar_bg.jpg -text svneol=unset#image/jpeg
-styles/twist/twist.png -text svneol=unset#image/png
-styles/utopias.css -text
-styles/utopias/options/another.css -text
-styles/utopias/options/another/another.png -text
-styles/utopias/options/another/bullet-grey.gif -text
-styles/utopias/options/another/bullet.gif -text
-styles/utopias/options/attainable.css -text
-styles/utopias/options/attainable/attainable.png -text
-styles/utopias/options/attainable/bullet-grey.gif -text
-styles/utopias/options/attainable/bullet.gif -text
-styles/utopias/options/attainable/logged-in-cloud.png -text
-styles/utopias/options/attainable/logged-out-cloud.png -text
-styles/utopias/options/foundation.css -text
-styles/utopias/options/foundation/bullet-brown.gif -text
-styles/utopias/options/foundation/bullet-green.gif -text
-styles/utopias/options/foundation/bullet.gif -text
-styles/utopias/options/foundation/foundation.png -text
-styles/utopias/options/greycard.css -text
-styles/utopias/options/greycard/greycard.png -text
-styles/utopias/options/meta.css -text
-styles/utopias/options/north.css -text
-styles/utopias/options/north/north.png -text
-styles/utopias/options/spaces.css -text
-styles/utopias/options/spaces/spaces.png -text
-styles/utopias/options/writer.css -text
-styles/utopias/options/writer/banner-repeat.jpg -text
-styles/utopias/options/writer/bullet-grey.gif -text
-styles/utopias/options/writer/bullet.gif -text
-styles/utopias/options/writer/writer.png -text
-styles/utopias/utopias.png -text
 temp/.htaccess -text
 temp/README -text
 temp/cache/index.php -text
@@ -6564,14 +6303,6 @@ templates/social/remove_friend.tpl -text
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
-templates/styles/abse/index.php -text
-templates/styles/business/index.php -text
-templates/styles/coelesce/blog_post_postbody_title.tpl -text
-templates/styles/coelesce/blog_post_status.tpl -text
-templates/styles/coelesce/blog_wrapper.tpl -text
-templates/styles/coelesce/index.php -text
-templates/styles/darkshine/index.php -text
-templates/styles/eatlon/index.php -text
 templates/styles/index.php -text
 templates/styles/mobile/article.tpl -text
 templates/styles/mobile/article_trailer.tpl -text
@@ -6608,13 +6339,6 @@ templates/styles/mobile/wizard/wizard_bar_admin.tpl -text
 templates/styles/ohia/index.php -text
 templates/styles/site_closed.html -text
 templates/styles/snow/index.php -text
-templates/styles/strasa/blog_post_author_info.tpl -text
-templates/styles/strasa/blog_wrapper.tpl -text
-templates/styles/strasa/custom_site_footer.tpl -text
-templates/styles/strasa/index.php -text
-templates/styles/tikinewt/blog_wrapper.tpl -text
-templates/styles/tikinewt/index.php -text
-templates/styles/twist/index.php -text
 templates/suite/jitsi.tpl -text
 templates/table.tpl -text
 templates/themegen.tpl -text
