@@ -5601,7 +5601,9 @@ styles/fivealive/options/grape/newsletter.css -text
 styles/fivealive/options/grape/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/grape/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/index.php -text
+styles/fivealive/options/kiwi.less -text
 styles/fivealive/options/kiwi/arrows-638637.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/custom-variables.less -text
 styles/fivealive/options/kiwi/index.php -text
 styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/siteheader.png -text svneol=unset#image/png
@@ -5611,6 +5613,7 @@ styles/fivealive/options/lemon/index.php -text
 styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/siteheadertile.png -text svneol=unset#image/png
+styles/fivealive/options/less/fivealive-option-custom-other.less -text
 styles/fivealive/options/orange/arrows-c74b23.png -text svneol=unset#image/png
 styles/fivealive/options/orange/index.php -text
 styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
@@ -5883,6 +5886,7 @@ templates/comment/deliberation_item.tpl -text
 templates/comment/edit.tpl -text
 templates/comment/index.php -text
 templates/comment/list.tpl -text
+templates/comment/list_inner.tpl -text
 templates/comment/lock.tpl -text
 templates/comment/moderate.tpl -text
 templates/comment/post.tpl -text
