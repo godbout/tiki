@@ -5873,6 +5873,7 @@ templates/comment/deliberation_item.tpl -text
 templates/comment/edit.tpl -text
 templates/comment/index.php -text
 templates/comment/list.tpl -text
+templates/comment/list_inner.tpl -text
 templates/comment/lock.tpl -text
 templates/comment/moderate.tpl -text
 templates/comment/post.tpl -text
