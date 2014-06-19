@@ -5596,6 +5596,8 @@ styles/fivealive/options/kiwi/arrows-638637.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/custom-variables.less -text
 styles/fivealive/options/kiwi/index.php -text
 styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/less/custom-variables.less -text
+styles/fivealive/options/kiwi/less/tiki-custom-variables.less -text
 styles/fivealive/options/kiwi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/arrows-c75a28.png -text svneol=unset#image/png
