@@ -5584,9 +5584,12 @@ styles/fivealive/jquery-ui/options/watermelon/jquery-ui.css -text
 styles/fivealive/jquery-ui/options/watermelon/jquery-ui.min.css -text
 styles/fivealive/menu_divider.png -text svneol=unset#image/png
 styles/fivealive/newsletter.css -text
+styles/fivealive/options/akebi.less -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/arrows-0b8a98.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/index.php -text
+styles/fivealive/options/akebi/less/custom-variables.less -text
+styles/fivealive/options/akebi/less/tiki-custom-variables.less -text
 styles/fivealive/options/akebi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/siteheadertile.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/blueberry/arrows-1174a5.png -text svneol=unset#image/png
@@ -5606,6 +5609,8 @@ styles/fivealive/options/kiwi/arrows-638637.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/custom-variables.less -text
 styles/fivealive/options/kiwi/index.php -text
 styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
+styles/fivealive/options/kiwi/less/custom-variables.less -text
+styles/fivealive/options/kiwi/less/tiki-custom-variables.less -text
 styles/fivealive/options/kiwi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/arrows-c75a28.png -text svneol=unset#image/png
@@ -5614,6 +5619,7 @@ styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/less/fivealive-option-custom-other.less -text
+styles/fivealive/options/less/tiki-custom-other.less -text
 styles/fivealive/options/orange/arrows-c74b23.png -text svneol=unset#image/png
 styles/fivealive/options/orange/index.php -text
 styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
