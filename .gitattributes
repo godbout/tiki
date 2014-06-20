@@ -5612,6 +5612,7 @@ styles/fivealive/options/lemon/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/less/fivealive-option-custom-other.less -text
 styles/fivealive/options/less/tiki-custom-other.less -text
+styles/fivealive/options/orange.less -text
 styles/fivealive/options/orange/arrows-c74b23.png -text svneol=unset#image/png
 styles/fivealive/options/orange/index.php -text
 styles/fivealive/options/orange/less/custom-variables.less -text
