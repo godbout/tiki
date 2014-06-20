@@ -5620,8 +5620,11 @@ styles/fivealive/options/orange/less/tiki-custom-variables.less -text
 styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
 styles/fivealive/options/orange/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/orange/siteheadertile.png -text svneol=unset#image/png
+styles/fivealive/options/plum.less -text
 styles/fivealive/options/plum/arrows-8e01d4.png -text svneol=unset#image/png
 styles/fivealive/options/plum/index.php -text
+styles/fivealive/options/plum/less/custom-variables.less -text
+styles/fivealive/options/plum/less/tiki-custom-variables.less -text
 styles/fivealive/options/plum/siteheader.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/plum/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry/arrows-b51360.png -text svneol=unset#image/png
