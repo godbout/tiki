@@ -5584,9 +5584,12 @@ styles/fivealive/options/blueberry/headertile.png -text svneol=unset#image/png
 styles/fivealive/options/blueberry/index.php -text
 styles/fivealive/options/blueberry/rtl/siteheader_rtl.jpg -text
 styles/fivealive/options/blueberry/siteheader.jpg -text svneol=unset#image/jpeg
+styles/fivealive/options/grape.less -text
 styles/fivealive/options/grape/arrows-8e286a.png -text svneol=unset#image/png
 styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
 styles/fivealive/options/grape/index.php -text
+styles/fivealive/options/grape/less/custom-variables.less -text
+styles/fivealive/options/grape/less/tiki-custom-variables.less -text
 styles/fivealive/options/grape/newsletter.css -text
 styles/fivealive/options/grape/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/grape/siteheadertile.png -text svneol=unset#image/png
