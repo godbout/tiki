@@ -5602,9 +5602,12 @@ styles/fivealive/options/kiwi/less/custom-variables.less -text
 styles/fivealive/options/kiwi/less/tiki-custom-variables.less -text
 styles/fivealive/options/kiwi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/siteheadertile.png -text svneol=unset#image/png
+styles/fivealive/options/lemon.less -text
 styles/fivealive/options/lemon/arrows-c75a28.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/index.php -text
 styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
+styles/fivealive/options/lemon/less/custom-variables.less -text
+styles/fivealive/options/lemon/less/tiki-custom-variables.less -text
 styles/fivealive/options/lemon/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/less/fivealive-option-custom-other.less -text
