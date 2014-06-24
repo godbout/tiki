@@ -5575,7 +5575,9 @@ styles/fivealive/options/akebi.less -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/arrows-0b8a98.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/index.php -text
+styles/fivealive/options/akebi/less/custom-variables.css -text
 styles/fivealive/options/akebi/less/custom-variables.less -text
+styles/fivealive/options/akebi/less/tiki-custom-variables.css -text
 styles/fivealive/options/akebi/less/tiki-custom-variables.less -text
 styles/fivealive/options/akebi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/siteheadertile.jpg -text svneol=unset#image/jpeg
