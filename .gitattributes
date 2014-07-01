@@ -5577,8 +5577,8 @@ styles/fivealive/options/akebi.less -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/arrows-0b8a98.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/index.php -text
-styles/fivealive/options/akebi/less/custom-variables.less -text
-styles/fivealive/options/akebi/less/tiki-custom-variables.less -text
+styles/fivealive/options/akebi/less/bootstrap-variables.less -text
+styles/fivealive/options/akebi/less/tiki-selector-variables.less -text
 styles/fivealive/options/akebi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/siteheadertile.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/blueberry/arrows-1174a5.png -text svneol=unset#image/png
@@ -5590,8 +5590,8 @@ styles/fivealive/options/grape.less -text
 styles/fivealive/options/grape/arrows-8e286a.png -text svneol=unset#image/png
 styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
 styles/fivealive/options/grape/index.php -text
-styles/fivealive/options/grape/less/custom-variables.less -text
-styles/fivealive/options/grape/less/tiki-custom-variables.less -text
+styles/fivealive/options/grape/less/bootstrap-variables.less -text
+styles/fivealive/options/grape/less/tiki-selector-variables.less -text
 styles/fivealive/options/grape/newsletter.css -text
 styles/fivealive/options/grape/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/grape/siteheadertile.png -text svneol=unset#image/png
@@ -5600,48 +5600,48 @@ styles/fivealive/options/kiwi.less -text
 styles/fivealive/options/kiwi/arrows-638637.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/index.php -text
 styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
-styles/fivealive/options/kiwi/less/custom-variables.less -text
-styles/fivealive/options/kiwi/less/tiki-custom-variables.less -text
+styles/fivealive/options/kiwi/less/bootstrap-variables.less -text
+styles/fivealive/options/kiwi/less/tiki-selector-variables.less -text
 styles/fivealive/options/kiwi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/lemon.less -text
 styles/fivealive/options/lemon/arrows-c75a28.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/index.php -text
 styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
-styles/fivealive/options/lemon/less/custom-variables.less -text
-styles/fivealive/options/lemon/less/tiki-custom-variables.less -text
+styles/fivealive/options/lemon/less/bootstrap-variables.less -text
+styles/fivealive/options/lemon/less/tiki-selector-variables.less -text
 styles/fivealive/options/lemon/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/siteheadertile.png -text svneol=unset#image/png
-styles/fivealive/options/less/fivealive-option-custom-other.less -text
-styles/fivealive/options/less/tiki-custom-other.less -text
+styles/fivealive/options/less/bootstrap-for-fivealive-options.less -text
+styles/fivealive/options/less/tiki-selectors.less -text
 styles/fivealive/options/orange.less -text
 styles/fivealive/options/orange/arrows-c74b23.png -text svneol=unset#image/png
 styles/fivealive/options/orange/index.php -text
-styles/fivealive/options/orange/less/custom-variables.less -text
-styles/fivealive/options/orange/less/tiki-custom-variables.less -text
+styles/fivealive/options/orange/less/bootstrap-variables.less -text
+styles/fivealive/options/orange/less/tiki-selector-variables.less -text
 styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
 styles/fivealive/options/orange/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/orange/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/plum.less -text
 styles/fivealive/options/plum/arrows-8e01d4.png -text svneol=unset#image/png
 styles/fivealive/options/plum/index.php -text
-styles/fivealive/options/plum/less/custom-variables.less -text
-styles/fivealive/options/plum/less/tiki-custom-variables.less -text
+styles/fivealive/options/plum/less/bootstrap-variables.less -text
+styles/fivealive/options/plum/less/tiki-selector-variables.less -text
 styles/fivealive/options/plum/siteheader.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/plum/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry.less -text
 styles/fivealive/options/raspberry/arrows-b51360.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry/index.php -text
-styles/fivealive/options/raspberry/less/custom-variables.less -text
-styles/fivealive/options/raspberry/less/tiki-custom-variables.less -text
+styles/fivealive/options/raspberry/less/bootstrap-variables.less -text
+styles/fivealive/options/raspberry/less/tiki-selector-variables.less -text
 styles/fivealive/options/raspberry/raspberry.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon.less -text
 styles/fivealive/options/watermelon/arrows-c21e3b.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/index.php -text
-styles/fivealive/options/watermelon/less/custom-variables.less -text
-styles/fivealive/options/watermelon/less/tiki-custom-variables.less -text
+styles/fivealive/options/watermelon/less/bootstrap-variables.less -text
+styles/fivealive/options/watermelon/less/tiki-selector-variables.less -text
 styles/fivealive/options/watermelon/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/watermelon.png -text svneol=unset#image/png
