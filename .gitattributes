@@ -2572,6 +2572,7 @@ lib/core/Math/Formula/Function/Floor.php -text
 lib/core/Math/Formula/Function/ForEach.php -text
 lib/core/Math/Formula/Function/Hash.php -text
 lib/core/Math/Formula/Function/If.php -text
+lib/core/Math/Formula/Function/Lower.php -text
 lib/core/Math/Formula/Function/Map.php -text
 lib/core/Math/Formula/Function/Max.php -text
 lib/core/Math/Formula/Function/Min.php -text
@@ -2583,6 +2584,8 @@ lib/core/Math/Formula/Function/Round.php -text
 lib/core/Math/Formula/Function/SplitList.php -text
 lib/core/Math/Formula/Function/Str.php -text
 lib/core/Math/Formula/Function/Sub.php -text
+lib/core/Math/Formula/Function/Substring.php -text
+lib/core/Math/Formula/Function/Upper.php -text
 lib/core/Math/Formula/Function/index.php -text
 lib/core/Math/Formula/InternalString.php -text
 lib/core/Math/Formula/Parser.php -text
@@ -5409,9 +5412,8 @@ styles/bootswatch_themes/options/yeti/yeti.png -text
 styles/darkroom.css -text
 styles/darkroom.less -text
 styles/darkroom/474747_5e5e5e_40.png -text svneol=unset#image/png
+styles/darkroom/bootstrap-variables.less -text
 styles/darkroom/button.png -text svneol=unset#image/png
-styles/darkroom/custom-other.less -text
-styles/darkroom/custom-variables.less -text
 styles/darkroom/darkroom.png -text
 styles/darkroom/ie6.css -text
 styles/darkroom/ie7.css -text
@@ -5424,11 +5426,11 @@ styles/darkroom/options/index.php -text
 styles/darkroom/options/small-type.css -text
 styles/darkroom/options/small-type/index.php -text
 styles/darkroom/options/small-type/small-type.png -text
+styles/darkroom/tiki-selectors.less -text
 styles/feb12.css -text
 styles/feb12.less -text
+styles/feb12/bootstrap-variables.less -text
 styles/feb12/columnbg.jpg -text svneol=unset#image/jpeg
-styles/feb12/custom-other.less -text
-styles/feb12/custom-variables.less -text
 styles/feb12/feb12.png -text
 styles/feb12/header.jpg -text svneol=unset#image/jpeg
 styles/feb12/ie6.css -text
@@ -5436,13 +5438,13 @@ styles/feb12/ie7.css -text
 styles/feb12/index.php -text
 styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
+styles/feb12/tiki-selectors.less -text
 styles/fivealive-lite.less -text
-styles/fivealive-lite/custom-other.less -text
-styles/fivealive-lite/custom-variables.less -text
+styles/fivealive-lite/bootstrap-variables.less -text
+styles/fivealive-lite/tiki-selectors.less -text
 styles/fivealive.css -text
 styles/fivealive.less -text
-styles/fivealive/custom-other.less -text
-styles/fivealive/custom-variables.less -text
+styles/fivealive/bootstrap-variables.less -text
 styles/fivealive/fivealive.png -text svneol=unset#image/png
 styles/fivealive/header_left.png -text svneol=unset#image/png
 styles/fivealive/index.php -text
@@ -5594,8 +5596,8 @@ styles/fivealive/options/akebi.less -text
 styles/fivealive/options/akebi/akebi.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/arrows-0b8a98.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/index.php -text
-styles/fivealive/options/akebi/less/custom-variables.less -text
-styles/fivealive/options/akebi/less/tiki-custom-variables.less -text
+styles/fivealive/options/akebi/less/bootstrap-variables.less -text
+styles/fivealive/options/akebi/less/tiki-selector-variables.less -text
 styles/fivealive/options/akebi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/akebi/siteheadertile.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/blueberry/arrows-1174a5.png -text svneol=unset#image/png
@@ -5607,8 +5609,8 @@ styles/fivealive/options/grape.less -text
 styles/fivealive/options/grape/arrows-8e286a.png -text svneol=unset#image/png
 styles/fivealive/options/grape/grape.png -text svneol=unset#image/png
 styles/fivealive/options/grape/index.php -text
-styles/fivealive/options/grape/less/custom-variables.less -text
-styles/fivealive/options/grape/less/tiki-custom-variables.less -text
+styles/fivealive/options/grape/less/bootstrap-variables.less -text
+styles/fivealive/options/grape/less/tiki-selector-variables.less -text
 styles/fivealive/options/grape/newsletter.css -text
 styles/fivealive/options/grape/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/grape/siteheadertile.png -text svneol=unset#image/png
@@ -5617,52 +5619,53 @@ styles/fivealive/options/kiwi.less -text
 styles/fivealive/options/kiwi/arrows-638637.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/index.php -text
 styles/fivealive/options/kiwi/kiwi.png -text svneol=unset#image/png
-styles/fivealive/options/kiwi/less/custom-variables.less -text
-styles/fivealive/options/kiwi/less/tiki-custom-variables.less -text
+styles/fivealive/options/kiwi/less/bootstrap-variables.less -text
+styles/fivealive/options/kiwi/less/tiki-selector-variables.less -text
 styles/fivealive/options/kiwi/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/kiwi/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/lemon.less -text
 styles/fivealive/options/lemon/arrows-c75a28.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/index.php -text
 styles/fivealive/options/lemon/lemon.png -text svneol=unset#image/png
-styles/fivealive/options/lemon/less/custom-variables.less -text
-styles/fivealive/options/lemon/less/tiki-custom-variables.less -text
+styles/fivealive/options/lemon/less/bootstrap-variables.less -text
+styles/fivealive/options/lemon/less/tiki-selector-variables.less -text
 styles/fivealive/options/lemon/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/lemon/siteheadertile.png -text svneol=unset#image/png
-styles/fivealive/options/less/fivealive-option-custom-other.less -text
-styles/fivealive/options/less/tiki-custom-other.less -text
+styles/fivealive/options/less/bootstrap-for-fivealive-options.less -text
+styles/fivealive/options/less/tiki-selectors.less -text
 styles/fivealive/options/orange.less -text
 styles/fivealive/options/orange/arrows-c74b23.png -text svneol=unset#image/png
 styles/fivealive/options/orange/index.php -text
-styles/fivealive/options/orange/less/custom-variables.less -text
-styles/fivealive/options/orange/less/tiki-custom-variables.less -text
+styles/fivealive/options/orange/less/bootstrap-variables.less -text
+styles/fivealive/options/orange/less/tiki-selector-variables.less -text
 styles/fivealive/options/orange/orange.png -text svneol=unset#image/png
 styles/fivealive/options/orange/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/orange/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/plum.less -text
 styles/fivealive/options/plum/arrows-8e01d4.png -text svneol=unset#image/png
 styles/fivealive/options/plum/index.php -text
-styles/fivealive/options/plum/less/custom-variables.less -text
-styles/fivealive/options/plum/less/tiki-custom-variables.less -text
+styles/fivealive/options/plum/less/bootstrap-variables.less -text
+styles/fivealive/options/plum/less/tiki-selector-variables.less -text
 styles/fivealive/options/plum/siteheader.jpg -text svneol=unset#image/jpeg
 styles/fivealive/options/plum/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry.less -text
 styles/fivealive/options/raspberry/arrows-b51360.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry/index.php -text
-styles/fivealive/options/raspberry/less/custom-variables.less -text
-styles/fivealive/options/raspberry/less/tiki-custom-variables.less -text
+styles/fivealive/options/raspberry/less/bootstrap-variables.less -text
+styles/fivealive/options/raspberry/less/tiki-selector-variables.less -text
 styles/fivealive/options/raspberry/raspberry.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/raspberry/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon.less -text
 styles/fivealive/options/watermelon/arrows-c21e3b.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/index.php -text
-styles/fivealive/options/watermelon/less/custom-variables.less -text
-styles/fivealive/options/watermelon/less/tiki-custom-variables.less -text
+styles/fivealive/options/watermelon/less/bootstrap-variables.less -text
+styles/fivealive/options/watermelon/less/tiki-selector-variables.less -text
 styles/fivealive/options/watermelon/siteheader.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/siteheadertile.png -text svneol=unset#image/png
 styles/fivealive/options/watermelon/watermelon.png -text svneol=unset#image/png
 styles/fivealive/searchform.png -text svneol=unset#image/png
+styles/fivealive/tiki-selectors.less -text
 styles/fivealive/topbar.jpg -text svneol=unset#image/jpeg
 styles/index.php -text
 styles/integrator/README -text
@@ -5671,8 +5674,7 @@ styles/integrator/doxygen.css -text
 styles/integrator/index.php -text
 styles/jqui.less -text
 styles/jqui/arrows-1174a5.png -text svneol=unset#image/png
-styles/jqui/custom-other.less -text
-styles/jqui/custom-variables.less -text
+styles/jqui/bootstrap-variables.less -text
 styles/jqui/index.php -text
 styles/jqui/jqui.png -text svneol=unset#image/png
 styles/jqui/newsletter.css -text
@@ -5708,6 +5710,7 @@ styles/jqui/options/trontastic/pics/icons/oleftcol.png -text svneol=unset#image/
 styles/jqui/options/trontastic/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/index.php -text
 styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
+styles/jqui/tiki-selectors.less -text
 styles/layout/index.php -text
 styles/layout/less/tablesorter-custom.less -text
 styles/layout/less/tablesorter-tiki.less -text
@@ -5741,8 +5744,7 @@ styles/layout/less/tiki-wikipages_and_plugins.less -text
 styles/layout/tiki.css -text
 styles/layout/tiki.less -text
 styles/ohia.less -text
-styles/ohia/custom-other.less -text
-styles/ohia/custom-variables.less -text
+styles/ohia/bootstrap-variables.less -text
 styles/ohia/header.png -text svneol=unset#image/png
 styles/ohia/index.php -text
 styles/ohia/ohia.png -text svneol=unset#image/png
@@ -5755,6 +5757,7 @@ styles/ohia/options/planet.css -text
 styles/ohia/options/planet/header.jpg -text
 styles/ohia/options/planet/header_repeat.jpg -text
 styles/ohia/options/planet/index.php -text
+styles/ohia/tiki-selectors.less -text
 styles/readme.txt -text
 styles/snow.less -text
 styles/snow/Flash/index.php -text
@@ -5778,8 +5781,7 @@ styles/snow/snow.png -text svneol=unset#image/png
 styles/thenews.css -text
 styles/thenews.less -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
-styles/thenews/custom-other.less -text
-styles/thenews/custom-variables.less -text
+styles/thenews/bootstrap-variables.less -text
 styles/thenews/ie6.css -text
 styles/thenews/ie7.css -text
 styles/thenews/img/icons/index.php -text
@@ -5792,6 +5794,7 @@ styles/thenews/options/narrow_left_column.css -text
 styles/thenews/options/narrow_left_column/index.php -text
 styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
+styles/thenews/tiki-selectors.less -text
 temp/.htaccess -text
 temp/README -text
 temp/cache/index.php -text
