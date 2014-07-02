@@ -2707,6 +2707,7 @@ lib/core/Search/ContentSource/Interface.php -text
 lib/core/Search/ContentSource/SheetSource.php -text
 lib/core/Search/ContentSource/Static.php -text
 lib/core/Search/ContentSource/TrackerItemSource.php -text
+lib/core/Search/ContentSource/TrackerSource.php -text
 lib/core/Search/ContentSource/UserSource.php -text
 lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/ContentSource/index.php -text
@@ -6347,6 +6348,7 @@ templates/prefs/multicheckbox.tpl -text
 templates/prefs/multilist.tpl -text
 templates/prefs/password.tpl -text
 templates/prefs/radio.tpl -text
+templates/prefs/selector.tpl -text
 templates/prefs/shared-dependencies.tpl -text
 templates/prefs/shared-flags.tpl -text
 templates/prefs/text.tpl -text
