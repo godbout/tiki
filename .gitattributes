@@ -5682,11 +5682,14 @@ styles/jqui/options/dbldt/arrows-1174a5.png -text svneol=unset#image/png
 styles/jqui/options/dbldt/h_arrow.png -text svneol=unset#image/png
 styles/jqui/options/dbldt/index.php -text
 styles/jqui/options/dbldt/magnify.png -text svneol=unset#image/png
+styles/jqui/options/didiem.less -text
 styles/jqui/options/didiem/arrows-6d9f26.png -text svneol=unset#image/png
 styles/jqui/options/didiem/didiem.png -text svneol=unset#image/png
 styles/jqui/options/didiem/h_bullet.jpg -text svneol=unset#image/jpeg
 styles/jqui/options/didiem/h_bullet_hover.jpg -text svneol=unset#image/jpeg
 styles/jqui/options/didiem/index.php -text
+styles/jqui/options/didiem/less/bootstrap-variables.less -text
+styles/jqui/options/didiem/less/tiki-selector-variables.less -text
 styles/jqui/options/didiem/magnify.png -text svneol=unset#image/png
 styles/jqui/options/didiem/topbar.jpg -text svneol=unset#image/jpeg
 styles/jqui/options/element.css -text
@@ -5698,6 +5701,8 @@ styles/jqui/options/good/arrows-ffffff.png -text
 styles/jqui/options/haus.css -text
 styles/jqui/options/horizons.css -text
 styles/jqui/options/index.php -text
+styles/jqui/options/less/bootstrap-for-jqui-options.less -text
+styles/jqui/options/less/tiki-selectors.less -text
 styles/jqui/options/rising.css -text
 styles/jqui/options/rising/arrows-ea2e11.png -text
 styles/jqui/options/trontastic/arrows-000000.png -text svneol=unset#image/png
