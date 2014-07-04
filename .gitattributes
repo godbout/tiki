@@ -6854,6 +6854,7 @@ templates/trackerinput/image.tpl -text
 templates/trackerinput/index.php -text
 templates/trackerinput/ip.tpl -text
 templates/trackerinput/itemlink.tpl -text
+templates/trackerinput/itemlink_selector.tpl -text
 templates/trackerinput/kaltura.tpl -text
 templates/trackerinput/language.tpl -text
 templates/trackerinput/layout_flat.tpl -text
