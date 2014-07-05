@@ -2217,6 +2217,8 @@ installer/schema/20140402_payment_authorization_tiki.sql -text
 installer/schema/20140402_remove_mailin_smtp_tiki.sql -text
 installer/schema/20140509_rss_add_categories_tiki.sql -text
 installer/schema/20140625_survey_tiki.sql -text
+installer/schema/20140705_page_slug_tiki.php -text
+installer/schema/20140705_page_slug_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3129,6 +3131,12 @@ lib/core/Tiki/Transition.php -text
 lib/core/Tiki/Version/Checker.php -text
 lib/core/Tiki/Version/Upgrade.php -text
 lib/core/Tiki/Version/Version.php -text
+lib/core/Tiki/Wiki/SlugManager.php -text
+lib/core/Tiki/Wiki/SlugManager/CompilerPass.php -text
+lib/core/Tiki/Wiki/SlugManager/Generator.php -text
+lib/core/Tiki/Wiki/SlugManager/InMemoryTracker.php -text
+lib/core/Tiki/Wiki/SlugManager/UnderscoreGenerator.php -text
+lib/core/Tiki/Wiki/SlugManager/UrlencodeGenerator.php -text
 lib/core/Tiki/index.php -text
 lib/core/TikiDb.php -text
 lib/core/TikiDb/Adodb.php -text
@@ -4554,6 +4562,7 @@ lib/test/core/Transition/AtLeastTest.php -text
 lib/test/core/Transition/AtMostTest.php -text
 lib/test/core/Transition/BasicTest.php -text
 lib/test/core/Transition/index.php -text
+lib/test/core/Wiki/SlugManagerTest.php -text
 lib/test/core/WikiParser/OutputLinkTest.php -text
 lib/test/core/WikiParser/PluginArgumentParserTest.php -text
 lib/test/core/WikiParser/PluginMatcherTest.php -text
@@ -6967,6 +6976,7 @@ templates/wiki-plugins/wikiplugin_watershedbroadcaster.tpl -text
 templates/wiki-plugins/wikiplugin_watershedchat.tpl -text
 templates/wiki-plugins/wikiplugin_watershedviewer.tpl -text
 templates/wiki/get_page.tpl -text
+templates/wiki/regenerate_slugs.tpl -text
 templates/wiki_authors.tpl -text
 templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
