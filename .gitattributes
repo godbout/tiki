@@ -3063,6 +3063,8 @@ lib/core/Tiki/MailIn/Source/Message.php -text
 lib/core/Tiki/MailIn/Source/Pop3.php -text
 lib/core/Tiki/MailIn/Source/SourceInterface.php -text
 lib/core/Tiki/MemoryLimit.php -text
+lib/core/Tiki/Object/Selector.php -text
+lib/core/Tiki/Object/SelectorItem.php -text
 lib/core/Tiki/PageCache.php -text
 lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
@@ -4206,6 +4208,7 @@ lib/smarty_tiki/function.notification_link.php -text
 lib/smarty_tiki/function.obj_in_cat.php -text
 lib/smarty_tiki/function.object_link.php -text
 lib/smarty_tiki/function.object_selector.php -text
+lib/smarty_tiki/function.object_selector_multi.php -text
 lib/smarty_tiki/function.object_title.php -text
 lib/smarty_tiki/function.page_alias.php -text
 lib/smarty_tiki/function.page_in_structure.php -text
@@ -4441,6 +4444,7 @@ lib/test/core/Multilingual/Aligner/index.php -text
 lib/test/core/Multilingual/MachineTranslation/GoogleTranslateWrapperTest.php -text
 lib/test/core/Multilingual/MachineTranslation/index.php -text
 lib/test/core/Multilingual/index.php -text
+lib/test/core/ObjectSelector/ObjectSelectorTest.php -text
 lib/test/core/Perms/AccessorTest.php -text
 lib/test/core/Perms/ApplierTest.php -text
 lib/test/core/Perms/BaseTest.php -text
@@ -6347,6 +6351,7 @@ templates/object/infobox/index.php -text
 templates/object/infobox/trackeritem.tpl -text
 templates/object_perms_summary.tpl -text
 templates/object_selector.tpl -text
+templates/object_selector_multi.tpl -text
 templates/pagehistory.tpl -text
 templates/password_help.tpl -text
 templates/permission_link.tpl -text
