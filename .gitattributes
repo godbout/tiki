@@ -5699,6 +5699,8 @@ styles/jqui/options/trontastic/pics/icons/oleftcol.png -text svneol=unset#image/
 styles/jqui/options/trontastic/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/index.php -text
 styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/ui-bg_diagonals-small_50_262626_40x40.png -text
+styles/jqui/options/trontastic/ui-bg_gloss-wave_55_000000_500x100.png -text
 styles/jqui/tiki-selectors.less -text
 styles/layout/index.php -text
 styles/layout/less/tablesorter-custom.less -text
