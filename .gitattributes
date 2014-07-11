@@ -5454,7 +5454,6 @@ styles/feb12/header.jpg -text svneol=unset#image/jpeg
 styles/feb12/ie6.css -text
 styles/feb12/ie7.css -text
 styles/feb12/index.php -text
-styles/feb12/options/index.php -text
 styles/feb12/page.jpg -text svneol=unset#image/jpeg
 styles/feb12/tiki-selectors.less -text
 styles/fivealive-lite.less -text
@@ -5733,6 +5732,8 @@ styles/jqui/options/trontastic/pics/icons/oleftcol.png -text svneol=unset#image/
 styles/jqui/options/trontastic/pics/icons/orightcol.png -text svneol=unset#image/png
 styles/jqui/options/trontastic/pics/index.php -text
 styles/jqui/options/trontastic/trontastic.png -text svneol=unset#image/png
+styles/jqui/options/trontastic/ui-bg_diagonals-small_50_262626_40x40.png -text
+styles/jqui/options/trontastic/ui-bg_gloss-wave_55_000000_500x100.png -text
 styles/jqui/tiki-selectors.less -text
 styles/layout/index.php -text
 styles/layout/less/tablesorter-custom.less -text
