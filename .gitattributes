@@ -5752,11 +5752,10 @@ styles/readme.txt -text
 styles/snow.less -text
 styles/snow/Flash/index.php -text
 styles/snow/Flash/snowfall.swf -text
+styles/snow/bootstrap-variables.less -text
 styles/snow/boxbtm.jpg -text svneol=unset#image/jpeg
 styles/snow/boxmid.jpg -text svneol=unset#image/jpeg
 styles/snow/boxtop.jpg -text svneol=unset#image/jpeg
-styles/snow/custom-other.less -text
-styles/snow/custom-variables.less -text
 styles/snow/flakesptn.jpg -text svneol=unset#image/jpeg
 styles/snow/flakesptn2.jpg -text svneol=unset#image/jpeg
 styles/snow/flakesptn3.jpg -text svneol=unset#image/jpeg
@@ -5768,6 +5767,7 @@ styles/snow/pagetitle-bg.jpg -text svneol=unset#image/jpeg
 styles/snow/pagetitle-bullet-sm.gif -text
 styles/snow/pagetitle-bullet.gif -text
 styles/snow/snow.png -text svneol=unset#image/png
+styles/snow/tiki-selectors.less -text
 styles/thenews.css -text
 styles/thenews.less -text
 styles/thenews/arrows-005faa.png -text svneol=unset#image/png
