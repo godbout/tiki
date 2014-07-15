@@ -5406,10 +5406,6 @@ styles/darkroom/img/icons/oleftcol.png -text svneol=unset#image/png
 styles/darkroom/img/icons/orightcol.png -text svneol=unset#image/png
 styles/darkroom/img/index.php -text
 styles/darkroom/index.php -text
-styles/darkroom/options/index.php -text
-styles/darkroom/options/small-type.css -text
-styles/darkroom/options/small-type/index.php -text
-styles/darkroom/options/small-type/small-type.png -text
 styles/darkroom/tiki-selectors.less -text
 styles/feb12.css -text
 styles/feb12.less -text
@@ -5661,10 +5657,6 @@ styles/jqui/bootstrap-variables.less -text
 styles/jqui/index.php -text
 styles/jqui/jqui.png -text svneol=unset#image/png
 styles/jqui/newsletter.css -text
-styles/jqui/options/dbldt/arrows-1174a5.png -text svneol=unset#image/png
-styles/jqui/options/dbldt/h_arrow.png -text svneol=unset#image/png
-styles/jqui/options/dbldt/index.php -text
-styles/jqui/options/dbldt/magnify.png -text svneol=unset#image/png
 styles/jqui/options/didiem.less -text
 styles/jqui/options/didiem/arrows-6d9f26.png -text svneol=unset#image/png
 styles/jqui/options/didiem/didiem.png -text svneol=unset#image/png
@@ -5738,15 +5730,6 @@ styles/ohia/bootstrap-variables.less -text
 styles/ohia/header.png -text svneol=unset#image/png
 styles/ohia/index.php -text
 styles/ohia/ohia.png -text svneol=unset#image/png
-styles/ohia/options/cornflower.css -text
-styles/ohia/options/cornflower/bluebg1.png -text
-styles/ohia/options/cornflower/header.png -text
-styles/ohia/options/cornflower/index.php -text
-styles/ohia/options/index.php -text
-styles/ohia/options/planet.css -text
-styles/ohia/options/planet/header.jpg -text
-styles/ohia/options/planet/header_repeat.jpg -text
-styles/ohia/options/planet/index.php -text
 styles/ohia/tiki-selectors.less -text
 styles/readme.txt -text
 styles/snow.less -text
@@ -5762,7 +5745,6 @@ styles/snow/flakesptn3.jpg -text svneol=unset#image/jpeg
 styles/snow/header-bg.jpg -text svneol=unset#image/jpeg
 styles/snow/index.php -text
 styles/snow/logo.jpg -text svneol=unset#image/jpeg
-styles/snow/options/index.php -text
 styles/snow/pagetitle-bg.jpg -text svneol=unset#image/jpeg
 styles/snow/pagetitle-bullet-sm.gif -text
 styles/snow/pagetitle-bullet.gif -text
@@ -5779,10 +5761,6 @@ styles/thenews/img/icons/oleftcol.png -text svneol=unset#image/png
 styles/thenews/img/icons/orightcol.png -text svneol=unset#image/png
 styles/thenews/img/index.php -text
 styles/thenews/index.php -text
-styles/thenews/options/index.php -text
-styles/thenews/options/narrow_left_column.css -text
-styles/thenews/options/narrow_left_column/index.php -text
-styles/thenews/options/narrow_left_column/narrow_left_column.png -text
 styles/thenews/thenews.png -text
 styles/thenews/tiki-selectors.less -text
 temp/.htaccess -text
