@@ -6343,6 +6343,7 @@ templates/prefs/index.php -text
 templates/prefs/list.tpl -text
 templates/prefs/multicheckbox.tpl -text
 templates/prefs/multilist.tpl -text
+templates/prefs/multiselector.tpl -text
 templates/prefs/password.tpl -text
 templates/prefs/radio.tpl -text
 templates/prefs/selector.tpl -text
