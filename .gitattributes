@@ -2711,6 +2711,7 @@ lib/core/Search/ContentSource/GroupSource.php -text
 lib/core/Search/ContentSource/Interface.php -text
 lib/core/Search/ContentSource/SheetSource.php -text
 lib/core/Search/ContentSource/Static.php -text
+lib/core/Search/ContentSource/TrackerFieldSource.php -text
 lib/core/Search/ContentSource/TrackerItemSource.php -text
 lib/core/Search/ContentSource/TrackerSource.php -text
 lib/core/Search/ContentSource/UserSource.php -text
