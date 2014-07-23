@@ -5223,6 +5223,7 @@ modules/mod-func-minichat.php -text
 modules/mod-func-mobile.php -text
 modules/mod-func-months_links.php -text
 modules/mod-func-most_commented.php -text
+modules/mod-func-mustread.php -text
 modules/mod-func-notificationlink.php -text
 modules/mod-func-num_submissions.php -text
 modules/mod-func-old_articles.php -text
@@ -6242,6 +6243,7 @@ templates/modules/mod-mobile.tpl -text
 templates/modules/mod-mobile.tpl.nocache -text
 templates/modules/mod-months_links.tpl -text
 templates/modules/mod-most_commented.tpl -text
+templates/modules/mod-mustread.tpl -text
 templates/modules/mod-notificationlink.tpl -text
 templates/modules/mod-num_submissions.tpl -text
 templates/modules/mod-old_articles.tpl -text
@@ -6326,6 +6328,7 @@ templates/monitor/unread.tpl -text
 templates/mustread/circulate.tpl -text
 templates/mustread/detail.tpl -text
 templates/mustread/list.tpl -text
+templates/mustread/object.tpl -text
 templates/object/index.php -text
 templates/object/infobox.tpl -text
 templates/object/infobox/activity.tpl -text
