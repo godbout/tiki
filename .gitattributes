@@ -5330,6 +5330,8 @@ permissioncheck/yes.bin -text
 styles/BiDi/BiDi.css -text
 styles/BiDi/index.php -text
 styles/bootswatch_themes.css -text
+styles/bootswatch_themes/less/bootswatch_overrides.css -text
+styles/bootswatch_themes/less/bootswatch_overrides.less -text
 styles/bootswatch_themes/options/amelia.css -text
 styles/bootswatch_themes/options/amelia.less -text
 styles/bootswatch_themes/options/amelia/amelia.png -text
