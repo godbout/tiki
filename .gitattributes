@@ -5813,7 +5813,6 @@ templates/admin/include_forums.tpl -text
 templates/admin/include_freetags.tpl -text
 templates/admin/include_gal.tpl -text
 templates/admin/include_general.tpl -text
-templates/admin/include_gmap.tpl -text
 templates/admin/include_i18n.tpl -text
 templates/admin/include_intertiki.tpl -text
 templates/admin/include_list_sections.tpl -text
@@ -6549,7 +6548,6 @@ templates/tiki-forums_reported.tpl -text
 templates/tiki-freetag-translate.tpl -text
 templates/tiki-friends.tpl -text
 templates/tiki-galleries.tpl -text
-templates/tiki-gmap_usermap.tpl -text
 templates/tiki-graph-sheets.tpl -text
 templates/tiki-history_sheets.tpl -text
 templates/tiki-import-sheets.tpl -text
@@ -7145,7 +7143,6 @@ tests/testfile.txt -text
 /tiki-friends.php -text
 /tiki-galleries.php -text
 /tiki-galleries_rankings.php -text
-/tiki-gmap_usermap.php -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
 /tiki-history_sheets.php -text
