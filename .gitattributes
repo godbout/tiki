@@ -2727,6 +2727,7 @@ lib/core/Search/Elastic/NotFoundException.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
 lib/core/Search/Elastic/ResultSet.php -text
+lib/core/Search/Elastic/Transform/UrlPrefix.php -text
 lib/core/Search/Elastic/TransportException.php -text
 lib/core/Search/Elastic/TypeFactory.php -text
 lib/core/Search/Exception.php -text
@@ -4549,6 +4550,7 @@ lib/test/core/Search/MySql/SortTest.php -text
 lib/test/core/Search/Query/OrderTest.php -text
 lib/test/core/Search/Query/index.php -text
 lib/test/core/Search/QueryTest.php -text
+lib/test/core/Search/ResultSetTest.php -text
 lib/test/core/Search/TypeAnalyzerTest.php -text
 lib/test/core/Search/basic.tpl -text
 lib/test/core/Search/embedded.tpl -text
