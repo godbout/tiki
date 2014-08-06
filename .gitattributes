@@ -2787,6 +2787,7 @@ lib/core/Search/GlobalSource/SearchableSource.php -text
 lib/core/Search/GlobalSource/SocialSource.php -text
 lib/core/Search/GlobalSource/Static.php -text
 lib/core/Search/GlobalSource/TitleInitialSource.php -text
+lib/core/Search/GlobalSource/UrlSource.php -text
 lib/core/Search/GlobalSource/VisitsSource.php -text
 lib/core/Search/GlobalSource/index.php -text
 lib/core/Search/Index/AbstractIndexDecorator.php -text
