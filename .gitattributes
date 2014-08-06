@@ -4503,6 +4503,7 @@ lib/test/core/Search/Elastic/BulkIndexingTest.php -text
 lib/test/core/Search/Elastic/FacetBuilderTest.php -text
 lib/test/core/Search/Elastic/FacetReaderTest.php -text
 lib/test/core/Search/Elastic/FacetTest.php -text
+lib/test/core/Search/Elastic/FederatedQueryTest.php -text
 lib/test/core/Search/Elastic/IncrementalUpdateTest.php -text
 lib/test/core/Search/Elastic/MoreLikeThisTest.php -text
 lib/test/core/Search/Elastic/NumericTest.php -text
