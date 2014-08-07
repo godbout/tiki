@@ -2219,6 +2219,7 @@ installer/schema/20140509_rss_add_categories_tiki.sql -text
 installer/schema/20140625_survey_tiki.sql -text
 installer/schema/20140705_page_slug_tiki.php -text
 installer/schema/20140705_page_slug_tiki.sql -text
+installer/schema/20140807_federated_search_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3854,6 +3855,7 @@ lib/prefs/error.php -text
 lib/prefs/faq.php -text
 lib/prefs/faqs.php -text
 lib/prefs/feature.php -text
+lib/prefs/federated.php -text
 lib/prefs/feed.php -text
 lib/prefs/fgal.php -text
 lib/prefs/file.php -text
@@ -4010,6 +4012,7 @@ lib/rss/rsslib.php -text
 lib/score/events.php -text
 lib/score/index.php -text
 lib/score/scorelib.php -text
+lib/search/federatedsearchlib.php -text
 lib/search/index.php -text
 lib/search/refresh-functions.php -text
 lib/search/refresh.php -text
