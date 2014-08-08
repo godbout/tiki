@@ -2729,7 +2729,6 @@ lib/core/Search/Elastic/NotFoundException.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
 lib/core/Search/Elastic/ResultSet.php -text
-lib/core/Search/Elastic/Transform/UrlPrefix.php -text
 lib/core/Search/Elastic/TransportException.php -text
 lib/core/Search/Elastic/TypeFactory.php -text
 lib/core/Search/Exception.php -text
@@ -2746,6 +2745,11 @@ lib/core/Search/Expr/Tokenizer.php -text
 lib/core/Search/Expr/index.php -text
 lib/core/Search/FacetProvider.php -text
 lib/core/Search/FacetProvider/Interface.php -text
+lib/core/Search/Federated/CompilerPass.php -text
+lib/core/Search/Federated/IndexInterface.php -text
+lib/core/Search/Federated/ManifoldCfIndex.php -text
+lib/core/Search/Federated/TikiIndex.php -text
+lib/core/Search/Federated/UrlPrefixTransform.php -text
 lib/core/Search/Formatter.php -text
 lib/core/Search/Formatter/AppendPagination.php -text
 lib/core/Search/Formatter/ArrayBuilder.php -text
