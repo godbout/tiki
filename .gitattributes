@@ -5765,6 +5765,22 @@ styles/thenews/img/index.php -text
 styles/thenews/index.php -text
 styles/thenews/thenews.png -text
 styles/thenews/tiki-selectors.less -text
+styles/tikinewt.css -text
+styles/tikinewt.less -text
+styles/tikinewt/arrows-6d819d.png -text svneol=unset#image/png
+styles/tikinewt/bootstrap-variables.less -text
+styles/tikinewt/ie6.css -text
+styles/tikinewt/ie7.css -text
+styles/tikinewt/img/icons/index.php -text
+styles/tikinewt/img/icons/oleftcol.png -text svneol=unset#image/png
+styles/tikinewt/img/icons/orightcol.png -text svneol=unset#image/png
+styles/tikinewt/img/index.php -text
+styles/tikinewt/index.php -text
+styles/tikinewt/options/index.php -text
+styles/tikinewt/options/shadows/box_shadow.png -text svneol=unset#image/png
+styles/tikinewt/options/shadows/index.php -text
+styles/tikinewt/tiki-selectors.less -text
+styles/tikinewt/tikinewt.png -text
 temp/.htaccess -text
 temp/README -text
 temp/cache/index.php -text
