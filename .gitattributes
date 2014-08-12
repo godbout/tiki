@@ -2217,6 +2217,7 @@ installer/schema/20140402_payment_authorization_tiki.sql -text
 installer/schema/20140402_remove_mailin_smtp_tiki.sql -text
 installer/schema/20140509_rss_add_categories_tiki.sql -text
 installer/schema/20140625_survey_tiki.sql -text
+installer/schema/20140812_convert_tiki_connect_data_to_json.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
