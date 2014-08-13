@@ -2726,6 +2726,7 @@ lib/core/Search/Elastic/Exception.php -text
 lib/core/Search/Elastic/FacetBuilder.php -text
 lib/core/Search/Elastic/FacetReader.php -text
 lib/core/Search/Elastic/Index.php -text
+lib/core/Search/Elastic/MappingException.php -text
 lib/core/Search/Elastic/NotFoundException.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
@@ -2918,6 +2919,7 @@ lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
 lib/core/Services/Search/Controller.php -text
 lib/core/Services/Search/CustomSearchController.php -text
+lib/core/Services/Search/ManifoldController.php -text
 lib/core/Services/Search/StoredController.php -text
 lib/core/Services/ShowTikiOrg/Controller.php -text
 lib/core/Services/Suite/Controller.php -text
@@ -6417,6 +6419,8 @@ templates/search/process_queue.tpl -text
 templates/search/rebuild.tpl -text
 templates/search_customsearch/customsearch.tpl -text
 templates/search_customsearch/index.php -text
+templates/search_manifold/check.tpl -text
+templates/search_manifold/create_index.tpl -text
 templates/search_stored/delete.tpl -text
 templates/search_stored/edit.tpl -text
 templates/search_stored/list.tpl -text
