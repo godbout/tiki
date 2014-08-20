@@ -7934,6 +7934,8 @@ vendor_extra/pear/XML_Parser/tests/index.php -text
 vendor_extra/pear/XML_Parser/tests/test2.xml -text
 vendor_extra/pear/XML_Parser/tests/test3.xml -text
 vendor_extra/pear/index.php -text
+vendor_extra/vimeo/froogaloop.min.js -text
+vendor_extra/vimeo/vimeo.js -text
 vendor_extra/webodf/webodf.js -text
 /web_config -text
 whelp/index.php -text
