@@ -1616,10 +1616,12 @@ img/overlay-disabled_item.png -text
 img/overlay-light.png -text
 img/php.png -text
 img/profiles/index.php -text
+img/profiles/profile_thumb_barter_market.png -text
 img/profiles/profile_thumb_bug_tracker.png -text
 img/profiles/profile_thumb_cartograf.png -text
 img/profiles/profile_thumb_collaborative_community.png -text
 img/profiles/profile_thumb_company_intranet.png -text
+img/profiles/profile_thumb_consensus_forums.png -text
 img/profiles/profile_thumb_countries_by_region.png -text
 img/profiles/profile_thumb_custom_contact_form.png -text
 img/profiles/profile_thumb_dynamic_items_list.png -text
@@ -1636,6 +1638,7 @@ img/profiles/profile_thumb_shopping_cart.png -text
 img/profiles/profile_thumb_slideshow_demo.png -text
 img/profiles/profile_thumb_small_org_web_presence.png -text
 img/profiles/profile_thumb_sortable_tables.png -text
+img/profiles/profile_thumb_structured_master_documents.png -text
 img/profiles/profile_thumb_timesheet.png -text
 img/profiles/profile_thumb_tracker_as_calendar.png -text
 img/profiles/profile_thumb_user_and_registration_tracker.png -text
@@ -5046,6 +5049,7 @@ lib/wizard/pages/profiles_demo_common_confs.php -text
 lib/wizard/pages/profiles_demo_highly_specialized_confs.php -text
 lib/wizard/pages/profiles_demo_interesting_use_cases.php -text
 lib/wizard/pages/profiles_demo_more_advanced_confs.php -text
+lib/wizard/pages/profiles_demo_other_interesting_use_cases.php -text
 lib/wizard/pages/profiles_featured_site_confs.php -text
 lib/wizard/pages/profiles_useful_admin_confs.php -text
 lib/wizard/pages/profiles_useful_changes_in_display.php -text
@@ -6961,6 +6965,7 @@ templates/wizard/profiles_demo_common_confs.tpl -text
 templates/wizard/profiles_demo_highly_specialized_confs.tpl -text
 templates/wizard/profiles_demo_interesting_use_cases.tpl -text
 templates/wizard/profiles_demo_more_advanced_confs.tpl -text
+templates/wizard/profiles_demo_other_interesting_use_cases.tpl -text
 templates/wizard/profiles_featured_site_confs.tpl -text
 templates/wizard/profiles_useful_admin_confs.tpl -text
 templates/wizard/profiles_useful_changes_in_display.tpl -text
