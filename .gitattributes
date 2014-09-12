@@ -2915,6 +2915,7 @@ lib/core/Services/Payment/Controller.php -text
 lib/core/Services/Payment/index.php -text
 lib/core/Services/Rating/Controller.php -text
 lib/core/Services/Rating/index.php -text
+lib/core/Services/Recommendation/DevelopmentController.php -text
 lib/core/Services/RemoteController.php -text
 lib/core/Services/Report/Controller.php -text
 lib/core/Services/Report/index.php -text
@@ -3142,8 +3143,10 @@ lib/core/Tiki/Profile/Writer/ReferenceProvider.php -text
 lib/core/Tiki/Profile/Writer/SearchFieldHelper.php -text
 lib/core/Tiki/Recommendation/BatchProcessor.php -text
 lib/core/Tiki/Recommendation/Comparator.php -text
+lib/core/Tiki/Recommendation/Engine/CompilerPass.php -text
 lib/core/Tiki/Recommendation/Engine/EngineInterface.php -text
 lib/core/Tiki/Recommendation/Engine/FakeEngine.php -text
+lib/core/Tiki/Recommendation/Engine/UserFavorite.php -text
 lib/core/Tiki/Recommendation/EngineSet.php -text
 lib/core/Tiki/Recommendation/Input/UserInput.php -text
 lib/core/Tiki/Recommendation/Recommendation.php -text
@@ -6420,6 +6423,7 @@ templates/print/print-title_wiki.tpl -text
 templates/rating.tpl -text
 templates/rating/vote.tpl -text
 templates/rating_choice.tpl -text
+templates/recommendation_dev/compare.tpl -text
 templates/register-email.tpl -text
 templates/register-form.tpl -text
 templates/register-groupchoice.tpl -text
