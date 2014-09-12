@@ -3140,6 +3140,15 @@ lib/core/Tiki/Profile/Writer/ProfileFinder.php -text
 lib/core/Tiki/Profile/Writer/Queue.php -text
 lib/core/Tiki/Profile/Writer/ReferenceProvider.php -text
 lib/core/Tiki/Profile/Writer/SearchFieldHelper.php -text
+lib/core/Tiki/Recommendation/BatchProcessor.php -text
+lib/core/Tiki/Recommendation/Comparator.php -text
+lib/core/Tiki/Recommendation/Engine/EngineInterface.php -text
+lib/core/Tiki/Recommendation/Engine/FakeEngine.php -text
+lib/core/Tiki/Recommendation/EngineSet.php -text
+lib/core/Tiki/Recommendation/Input/UserInput.php -text
+lib/core/Tiki/Recommendation/Recommendation.php -text
+lib/core/Tiki/Recommendation/RecommendationSet.php -text
+lib/core/Tiki/Recommendation/Store/StoreInterface.php -text
 lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Request.php -text
@@ -4489,6 +4498,9 @@ lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/index.php -text
 lib/test/core/Perms/index.php -text
+lib/test/core/Recommendation/BatchTest.php -text
+lib/test/core/Recommendation/ComparatorTest.php -text
+lib/test/core/Recommendation/EngineSetTest.php -text
 lib/test/core/Reports/CacheTest.php -text
 lib/test/core/Reports/FactoryTest.php -text
 lib/test/core/Reports/ManagerTest.php -text
