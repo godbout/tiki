@@ -4,6 +4,7 @@
 /_htaccess -text
 /about.php -text
 addons/index.php -text
+addons/tikisample_helloworld/lang/en/addon.php -text
 addons/tikisample_helloworld/lib/HelloWorld.php -text
 addons/tikisample_helloworld/lib/libs.xml -text
 addons/tikisample_helloworld/prefs/ta_tikisample_helloworld.php -text
