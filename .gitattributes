@@ -3,6 +3,14 @@
 /README -text
 /_htaccess -text
 /about.php -text
+addons/index.php -text
+addons/tikisample_helloworld/lib/HelloWorld.php -text
+addons/tikisample_helloworld/lib/libs.xml -text
+addons/tikisample_helloworld/prefs/ta_tikisample_helloworld.php -text
+addons/tikisample_helloworld/templates/admin/include_ta_tikisample_helloworld.tpl -text
+addons/tikisample_helloworld/templates/tikisample-helloworld.tpl -text
+addons/tikisample_helloworld/tikiaddon.json -text
+addons/tikisample_helloworld/views/helloworld.php -text
 admin/include_ads.php -text
 admin/include_articles.php -text
 admin/include_blogs.php -text
@@ -3170,6 +3178,9 @@ lib/core/Tiki/Wiki/SlugManager/InMemoryTracker.php -text
 lib/core/Tiki/Wiki/SlugManager/UnderscoreGenerator.php -text
 lib/core/Tiki/Wiki/SlugManager/UrlencodeGenerator.php -text
 lib/core/Tiki/index.php -text
+lib/core/TikiAddons.php -text
+lib/core/TikiAddons/Addon.php -text
+lib/core/TikiAddons/Utilities.php -text
 lib/core/TikiDb.php -text
 lib/core/TikiDb/Adodb.php -text
 lib/core/TikiDb/Bridge.php -text
@@ -4848,6 +4859,7 @@ lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_activitystream.php -text
 lib/wiki-plugins/wikiplugin_addfreetag.php -text
+lib/wiki-plugins/wikiplugin_addon.php -text
 lib/wiki-plugins/wikiplugin_addreference.php -text
 lib/wiki-plugins/wikiplugin_addrelation.php -text
 lib/wiki-plugins/wikiplugin_addtocart.php -text
