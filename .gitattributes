@@ -221,6 +221,7 @@ dump/index.php -text
 /favicon.png -text
 /fgal_listing_conf.php -text
 files/ZeroClipboard.swf -text
+files/forums/index.php -text
 files/index.php -text
 files/templates/index.php -text
 files/templates/listpages/index.php -text
