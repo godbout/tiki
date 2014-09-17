@@ -4321,6 +4321,7 @@ lib/smarty_tiki/modifier.forumtopiccount.php -text
 lib/smarty_tiki/modifier.how_many_user_inscriptions.php -text
 lib/smarty_tiki/modifier.htmldecode.php -text
 lib/smarty_tiki/modifier.iconify.php -text
+lib/smarty_tiki/modifier.in_group.php -text
 lib/smarty_tiki/modifier.isodate.php -text
 lib/smarty_tiki/modifier.kbsize.php -text
 lib/smarty_tiki/modifier.langname.php -text
