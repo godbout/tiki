@@ -4218,6 +4218,7 @@ lib/smarty_tiki/block.wikiplugin.php -text
 lib/smarty_tiki/compiler.assign.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.activity.php -text
+lib/smarty_tiki/function.addonobjectid.php -text
 lib/smarty_tiki/function.article.php -text
 lib/smarty_tiki/function.attachments.php -text
 lib/smarty_tiki/function.autocomplete.php -text
