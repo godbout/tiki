@@ -3165,10 +3165,12 @@ lib/core/Tiki/Profile/Writer/ReferenceProvider.php -text
 lib/core/Tiki/Profile/Writer/SearchFieldHelper.php -text
 lib/core/Tiki/Recommendation/BatchProcessor.php -text
 lib/core/Tiki/Recommendation/Comparator.php -text
+lib/core/Tiki/Recommendation/Debug/SourceDocument.php -text
 lib/core/Tiki/Recommendation/Engine/CompilerPass.php -text
 lib/core/Tiki/Recommendation/Engine/EngineInterface.php -text
 lib/core/Tiki/Recommendation/Engine/FakeEngine.php -text
 lib/core/Tiki/Recommendation/Engine/UserFavorite.php -text
+lib/core/Tiki/Recommendation/EngineOutput.php -text
 lib/core/Tiki/Recommendation/EngineSet.php -text
 lib/core/Tiki/Recommendation/Input/UserInput.php -text
 lib/core/Tiki/Recommendation/Recommendation.php -text
@@ -4534,6 +4536,7 @@ lib/test/core/Perms/index.php -text
 lib/test/core/Recommendation/BatchTest.php -text
 lib/test/core/Recommendation/ComparatorTest.php -text
 lib/test/core/Recommendation/EngineSetTest.php -text
+lib/test/core/Recommendation/RecommendationSetTest.php -text
 lib/test/core/Reports/CacheTest.php -text
 lib/test/core/Reports/FactoryTest.php -text
 lib/test/core/Reports/ManagerTest.php -text
