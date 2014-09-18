@@ -2730,6 +2730,7 @@ lib/core/Search/ContentSource/CategorySource.php -text
 lib/core/Search/ContentSource/CommentSource.php -text
 lib/core/Search/ContentSource/FileSource.php -text
 lib/core/Search/ContentSource/ForumPostSource.php -text
+lib/core/Search/ContentSource/ForumSource.php -text
 lib/core/Search/ContentSource/GoalEventSource.php -text
 lib/core/Search/ContentSource/GroupSource.php -text
 lib/core/Search/ContentSource/Interface.php -text
