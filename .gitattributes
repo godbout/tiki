@@ -7559,6 +7559,7 @@ themes/jqui/images/jqui.png -text
 themes/jqui/index.php -text
 themes/jqui/less/bootstrap-variables.less -text
 themes/jqui/less/index.php -text
+themes/jqui/less/tiki-selectors.less -text
 themes/jqui/less/tiki.less -text
 themes/jqui/options/didiem.css -text
 themes/jqui/options/didiem.less -text
