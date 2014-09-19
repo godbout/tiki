@@ -7140,6 +7140,7 @@ themes/amelia/less/index.php -text
 themes/amelia/less/tiki.less -text
 themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
+themes/base_files/css/tiki.css -text
 themes/base_files/index.php -text
 themes/base_files/less/bootswatch_overrides.less -text
 themes/base_files/less/tablesorter-custom.less -text
@@ -7171,8 +7172,8 @@ themes/base_files/less/tiki-trackers.less -text
 themes/base_files/less/tiki-translation.less -text
 themes/base_files/less/tiki-variables.less -text
 themes/base_files/less/tiki-wikipages_and_plugins.less -text
+themes/base_files/less/tiki_base.less -text
 themes/base_files/tiki.css -text
-themes/base_files/tiki_base.less -text
 themes/cerulean/css/index.php -text
 themes/cerulean/css/tiki.css -text
 themes/cerulean/fonts/index.php -text
