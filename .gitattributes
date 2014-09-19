@@ -7246,9 +7246,9 @@ themes/darkroom/images/darkroom.png -text
 themes/darkroom/images/index.php -text
 themes/darkroom/index.php -text
 themes/darkroom/less/bootstrap-variables.less -text
-themes/darkroom/less/darkroom.less -text
 themes/darkroom/less/index.php -text
 themes/darkroom/less/tiki-selectors.less -text
+themes/darkroom/less/tiki.less -text
 themes/darkroom/templates/index.php -text
 themes/feb12/css/feb12.css -text
 themes/feb12/css/ie6.css -text
@@ -7263,9 +7263,9 @@ themes/feb12/images/index.php -text
 themes/feb12/images/page.jpg -text
 themes/feb12/index.php -text
 themes/feb12/less/bootstrap-variables.less -text
-themes/feb12/less/feb12.less -text
 themes/feb12/less/index.php -text
 themes/feb12/less/tiki-selectors.less -text
+themes/feb12/less/tiki.less -text
 themes/feb12/templates/index.php -text
 themes/fivealive-lite/css/index.php -text
 themes/fivealive-lite/css/tiki.css -text
@@ -7756,7 +7756,7 @@ themes/tikinewt/index.php -text
 themes/tikinewt/less/bootstrap-variables.less -text
 themes/tikinewt/less/index.php -text
 themes/tikinewt/less/tiki-selectors.less -text
-themes/tikinewt/less/tikinewt.less -text
+themes/tikinewt/less/tiki.less -text
 themes/tikinewt/less/tikinewt.png -text
 themes/tikinewt/options/index.php -text
 themes/tikinewt/options/shadows.css -text
