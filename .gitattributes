@@ -7609,6 +7609,7 @@ themes/lumen/images/lumen.png -text
 themes/lumen/index.php -text
 themes/lumen/less/bootswatch.less -text
 themes/lumen/less/index.php -text
+themes/lumen/less/lumen.less -text
 themes/lumen/less/tiki.less -text
 themes/lumen/less/variables.less -text
 themes/lumen/templates/index.php -text
