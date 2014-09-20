@@ -7453,6 +7453,7 @@ themes/fivealive/options/blueberry/rtl/siteheader_rtl.jpg -text
 themes/fivealive/options/grape.css -text
 themes/fivealive/options/grape.less -text
 themes/fivealive/options/grape/css/newsletter.css -text
+themes/fivealive/options/grape/css/tiki.css -text
 themes/fivealive/options/grape/images/arrows-8e286a.png -text
 themes/fivealive/options/grape/images/grape.png -text
 themes/fivealive/options/grape/images/index.php -text
@@ -7464,6 +7465,7 @@ themes/fivealive/options/grape/less/tiki-selector-variables.less -text
 themes/fivealive/options/index.php -text
 themes/fivealive/options/kiwi.css -text
 themes/fivealive/options/kiwi.less -text
+themes/fivealive/options/kiwi/css/tiki.css -text
 themes/fivealive/options/kiwi/images/arrows-638637.png -text
 themes/fivealive/options/kiwi/images/index.php -text
 themes/fivealive/options/kiwi/images/kiwi.png -text
@@ -7475,6 +7477,7 @@ themes/fivealive/options/kiwi/less/kiwi.less -text
 themes/fivealive/options/kiwi/less/tiki-selector-variables.less -text
 themes/fivealive/options/lemon.css -text
 themes/fivealive/options/lemon.less -text
+themes/fivealive/options/lemon/css/tiki.css -text
 themes/fivealive/options/lemon/images/arrows-c75a28.png -text
 themes/fivealive/options/lemon/images/index.php -text
 themes/fivealive/options/lemon/images/lemon.png -text
@@ -7487,6 +7490,7 @@ themes/fivealive/options/less/bootstrap-for-fivealive-options.less -text
 themes/fivealive/options/less/tiki-selectors.less -text
 themes/fivealive/options/orange.css -text
 themes/fivealive/options/orange.less -text
+themes/fivealive/options/orange/css/tiki.css -text
 themes/fivealive/options/orange/images/arrows-c74b23.png -text
 themes/fivealive/options/orange/images/index.php -text
 themes/fivealive/options/orange/images/orange.png -text
@@ -7506,6 +7510,7 @@ themes/fivealive/options/plum/less/plum.less -text
 themes/fivealive/options/plum/less/tiki-selector-variables.less -text
 themes/fivealive/options/raspberry.css -text
 themes/fivealive/options/raspberry.less -text
+themes/fivealive/options/raspberry/css/tiki.css -text
 themes/fivealive/options/raspberry/images/arrows-b51360.png -text
 themes/fivealive/options/raspberry/images/index.php -text
 themes/fivealive/options/raspberry/images/raspberry.png -text
@@ -7516,6 +7521,7 @@ themes/fivealive/options/raspberry/less/raspberry.less -text
 themes/fivealive/options/raspberry/less/tiki-selector-variables.less -text
 themes/fivealive/options/watermelon.css -text
 themes/fivealive/options/watermelon.less -text
+themes/fivealive/options/watermelon/css/tiki.css -text
 themes/fivealive/options/watermelon/images/arrows-c21e3b.png -text
 themes/fivealive/options/watermelon/images/index.php -text
 themes/fivealive/options/watermelon/images/siteheader.png -text
