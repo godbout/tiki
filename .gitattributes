@@ -7573,6 +7573,7 @@ themes/jqui/less/less_for_options/tiki-selectors.less -text
 themes/jqui/less/tiki-selectors.less -text
 themes/jqui/less/tiki.less -text
 themes/jqui/options/didiem.css -text
+themes/jqui/options/didiem/css/tiki.css -text
 themes/jqui/options/didiem/images/arrows-6d9f26.png -text
 themes/jqui/options/didiem/images/didiem.png -text
 themes/jqui/options/didiem/images/h_bullet.jpg -text
