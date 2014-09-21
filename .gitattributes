@@ -7281,9 +7281,11 @@ themes/fivealive/fonts/index.php -text
 themes/fivealive/icons/index.php -text
 themes/fivealive/images/fivealive.png -text
 themes/fivealive/images/header_left.png -text
+themes/fivealive/images/headertile.png -text
 themes/fivealive/images/index.php -text
 themes/fivealive/images/menu_divider.png -text
 themes/fivealive/images/searchform.png -text
+themes/fivealive/images/siteheader.jpg -text
 themes/fivealive/images/topbar.jpg -text
 themes/fivealive/index.php -text
 themes/fivealive/jquery-ui/images/animated-overlay.gif -text
