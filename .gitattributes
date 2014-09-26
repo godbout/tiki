@@ -3357,6 +3357,8 @@ lib/core/Tracker/Tabular/Schema.php -text
 lib/core/Tracker/Tabular/Schema/Column.php -text
 lib/core/Tracker/Tabular/Source/CsvSource.php -text
 lib/core/Tracker/Tabular/Source/CsvSourceEntry.php -text
+lib/core/Tracker/Tabular/Source/QuerySource.php -text
+lib/core/Tracker/Tabular/Source/QuerySourceEntry.php -text
 lib/core/Tracker/Tabular/Source/SourceInterface.php -text
 lib/core/Tracker/Tabular/Source/TrackerSource.php -text
 lib/core/Tracker/Tabular/Source/TrackerSourceEntry.php -text
