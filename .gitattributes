@@ -6319,7 +6319,6 @@ templates/map/tiki-map_edit.tpl -text
 templates/map/tiki-map_frame.tpl -text
 templates/map/tiki-map_history.tpl -text
 templates/map/tiki-map_upload.tpl -text
-templates/medialist.tpl -text
 templates/menu/clone.tpl -text
 templates/menu/manage.tpl -text
 templates/messu-archive.tpl -text
@@ -6568,6 +6567,8 @@ templates/report/load.tpl -text
 templates/report/preview.tpl -text
 templates/report/wikidata.tpl -text
 templates/search/help.tpl -text
+templates/search/list/medialist.tpl -text
+templates/search/list/table.tpl -text
 templates/search/process_queue.tpl -text
 templates/search/rebuild.tpl -text
 templates/search_customsearch/customsearch.tpl -text
@@ -6627,7 +6628,6 @@ templates/styles/ohia/index.php -text
 templates/styles/site_closed.html -text
 templates/styles/snow/index.php -text
 templates/suite/jitsi.tpl -text
-templates/table.tpl -text
 templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
 templates/tiki-accounting_account_deleted.tpl -text
