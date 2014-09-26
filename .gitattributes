@@ -6567,6 +6567,7 @@ templates/report/load.tpl -text
 templates/report/preview.tpl -text
 templates/report/wikidata.tpl -text
 templates/search/help.tpl -text
+templates/search/list/carousel.tpl -text
 templates/search/list/medialist.tpl -text
 templates/search/list/table.tpl -text
 templates/search/process_queue.tpl -text
