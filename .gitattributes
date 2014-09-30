@@ -7269,7 +7269,6 @@ themes/base_files/less/tiki-translation.less -text
 themes/base_files/less/tiki-variables.less -text
 themes/base_files/less/tiki-wikipages_and_plugins.less -text
 themes/base_files/less/tiki_base.less -text
-themes/base_files/tiki.css -text
 themes/cerulean/css/index.php -text
 themes/cerulean/css/tiki.css -text
 themes/cerulean/fonts/index.php -text
