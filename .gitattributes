@@ -7235,6 +7235,11 @@ themes/flatly/less/index.php -text
 themes/flatly/less/tiki.less -text
 themes/flatly/less/variables.less -text
 themes/flatly/templates/index.php -text
+themes/iconsets/default.php -text
+themes/iconsets/font-awesome.php -text
+themes/iconsets/glyphicons.php -text
+themes/iconsets/index.php -text
+themes/iconsets/legacy.php -text
 themes/index.php -text
 themes/journal/css/index.php -text
 themes/journal/css/tiki.css -text
