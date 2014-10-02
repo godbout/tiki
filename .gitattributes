@@ -5711,6 +5711,7 @@ styles/layout/less/tiki-boxes_and_panels.less -text
 styles/layout/less/tiki-calendar.less -text
 styles/layout/less/tiki-categories.less -text
 styles/layout/less/tiki-comments.less -text
+styles/layout/less/tiki-cssmenus.less -text
 styles/layout/less/tiki-external_scripts_overrides.less -text
 styles/layout/less/tiki-file_galleries.less -text
 styles/layout/less/tiki-forums.less -text
