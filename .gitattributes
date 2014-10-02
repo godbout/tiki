@@ -6766,6 +6766,7 @@ themes/base_files/less/tiki-boxes_and_panels.less -text
 themes/base_files/less/tiki-calendar.less -text
 themes/base_files/less/tiki-categories.less -text
 themes/base_files/less/tiki-comments.less -text
+themes/base_files/less/tiki-cssmenus.less -text
 themes/base_files/less/tiki-external_scripts_overrides.less -text
 themes/base_files/less/tiki-file_galleries.less -text
 themes/base_files/less/tiki-forums.less -text
