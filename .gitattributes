@@ -2309,6 +2309,7 @@ installer/schema/20140705_page_slug_tiki.sql -text
 installer/schema/20140807_federated_search_tiki.sql -text
 installer/schema/20140812_convert_tiki_connect_data_to_json_tiki.php -text
 installer/schema/20140914_addon_profiles_tiki.sql -text
+installer/schema/20141003_change_style_pref_to_theme_tiki.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
