@@ -6754,6 +6754,11 @@ themes/amelia/less/tiki.less -text
 themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
 themes/base_files/css/tiki.css -text
+themes/base_files/iconsets/default.php -text
+themes/base_files/iconsets/font-awesome.php -text
+themes/base_files/iconsets/glyphicons.php -text
+themes/base_files/iconsets/index.php -text
+themes/base_files/iconsets/legacy.php -text
 themes/base_files/index.php -text
 themes/base_files/less/bootswatch_overrides.less -text
 themes/base_files/less/tablesorter-custom.less -text
@@ -7236,11 +7241,6 @@ themes/flatly/less/index.php -text
 themes/flatly/less/tiki.less -text
 themes/flatly/less/variables.less -text
 themes/flatly/templates/index.php -text
-themes/iconsets/default.php -text
-themes/iconsets/font-awesome.php -text
-themes/iconsets/glyphicons.php -text
-themes/iconsets/index.php -text
-themes/iconsets/legacy.php -text
 themes/index.php -text
 themes/journal/css/index.php -text
 themes/journal/css/tiki.css -text
