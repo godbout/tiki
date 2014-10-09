@@ -6753,7 +6753,7 @@ themes/amelia/less/index.php -text
 themes/amelia/less/tiki.less -text
 themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
-themes/base_files/css/tiki.css -text
+themes/base_files/css/tiki_base.css -text
 themes/base_files/iconsets/default.php -text
 themes/base_files/iconsets/font-awesome.php -text
 themes/base_files/iconsets/glyphicons.php -text
