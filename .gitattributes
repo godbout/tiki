@@ -3342,6 +3342,7 @@ lib/core/Tracker/Tabular/Exception/Exception.php -text
 lib/core/Tracker/Tabular/Exception/FieldNotFound.php -text
 lib/core/Tracker/Tabular/Exception/ModeNotSupported.php -text
 lib/core/Tracker/Tabular/Schema.php -text
+lib/core/Tracker/Tabular/Schema/CachedLookupHelper.php -text
 lib/core/Tracker/Tabular/Schema/Column.php -text
 lib/core/Tracker/Tabular/Schema/DateHelper.php -text
 lib/core/Tracker/Tabular/Source/AutoDetectCsvSource.php -text
