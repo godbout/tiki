@@ -6747,8 +6747,6 @@ themes/base_files/feature_css/admin.css -text
 themes/base_files/feature_css/calendar-print.css -text
 themes/base_files/feature_css/calendar.css -text
 themes/base_files/feature_css/freetags.css -text
-themes/base_files/feature_css/ie6.css -text
-themes/base_files/feature_css/ie7.css -text
 themes/base_files/feature_css/ie8.css -text
 themes/base_files/feature_css/ie9.css -text
 themes/base_files/feature_css/index.php -text
@@ -6860,8 +6858,6 @@ themes/darkly/less/index.php -text
 themes/darkly/less/tiki.less -text
 themes/darkly/less/variables.less -text
 themes/darkly/templates/index.php -text
-themes/darkroom/css/ie6.css -text
-themes/darkroom/css/ie7.css -text
 themes/darkroom/css/index.php -text
 themes/darkroom/css/tiki.css -text
 themes/darkroom/fonts/index.php -text
@@ -6879,8 +6875,6 @@ themes/darkroom/less/tiki-selectors.less -text
 themes/darkroom/less/tiki.less -text
 themes/darkroom/templates/index.php -text
 themes/feb12/css/feb12.css -text
-themes/feb12/css/ie6.css -text
-themes/feb12/css/ie7.css -text
 themes/feb12/css/index.php -text
 themes/feb12/css/tiki.css -text
 themes/feb12/fonts/index.php -text
@@ -6985,8 +6979,6 @@ themes/fivealive-lite/options/watermelon/less/bootstrap-variables.less -text
 themes/fivealive-lite/options/watermelon/less/tiki-selector-variables.less -text
 themes/fivealive-lite/options/watermelon/less/watermelon.less -text
 themes/fivealive-lite/templates/index.php -text
-themes/fivealive/css/ie6.css -text
-themes/fivealive/css/ie7.css -text
 themes/fivealive/css/index.php -text
 themes/fivealive/css/newsletter.css -text
 themes/fivealive/css/tiki.css -text
@@ -7326,7 +7318,6 @@ themes/lumen/less/lumen.less -text
 themes/lumen/less/tiki.less -text
 themes/lumen/less/variables.less -text
 themes/lumen/templates/index.php -text
-themes/ohia/css/ie6.css -text
 themes/ohia/css/index.php -text
 themes/ohia/css/tiki.css -text
 themes/ohia/fonts/index.php -text
@@ -7440,8 +7431,6 @@ themes/superhero/less/index.php -text
 themes/superhero/less/tiki.less -text
 themes/superhero/less/variables.less -text
 themes/superhero/templates/index.php -text
-themes/thenews/css/ie6.css -text
-themes/thenews/css/ie7.css -text
 themes/thenews/css/index.php -text
 themes/thenews/css/tiki.css -text
 themes/thenews/fonts/index.php -text
@@ -7457,8 +7446,6 @@ themes/thenews/less/index.php -text
 themes/thenews/less/tiki-selectors.less -text
 themes/thenews/less/tiki.less -text
 themes/thenews/templates/index.php -text
-themes/tikinewt/css/ie6.css -text
-themes/tikinewt/css/ie7.css -text
 themes/tikinewt/css/index.php -text
 themes/tikinewt/css/tiki.css -text
 themes/tikinewt/fonts/index.php -text
