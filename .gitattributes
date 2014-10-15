@@ -7344,12 +7344,12 @@ themes/jqui/options/flat/fonts/index.php -text
 themes/jqui/options/flat/icons/index.php -text
 themes/jqui/options/flat/images/index.php -text
 themes/jqui/options/flat/less/index.php -text
-themes/jqui/options/good/arrows-005faa.png -text
-themes/jqui/options/good/arrows-ffffff.png -text
 themes/jqui/options/good/css/index.php -text
 themes/jqui/options/good/css/tiki.css -text
 themes/jqui/options/good/fonts/index.php -text
 themes/jqui/options/good/icons/index.php -text
+themes/jqui/options/good/images/arrows-005faa.png -text
+themes/jqui/options/good/images/arrows-ffffff.png -text
 themes/jqui/options/good/images/index.php -text
 themes/jqui/options/good/less/index.php -text
 themes/jqui/options/haus/css/index.php -text
@@ -7367,11 +7367,11 @@ themes/jqui/options/horizons/less/index.php -text
 themes/jqui/options/index.php -text
 themes/jqui/options/less/bootstrap-for-jqui-options.less -text
 themes/jqui/options/less/tiki-selectors.less -text
-themes/jqui/options/rising/arrows-ea2e11.png -text
 themes/jqui/options/rising/css/index.php -text
 themes/jqui/options/rising/css/tiki.css -text
 themes/jqui/options/rising/fonts/index.php -text
 themes/jqui/options/rising/icons/index.php -text
+themes/jqui/options/rising/images/arrows-ea2e11.png -text
 themes/jqui/options/rising/images/index.php -text
 themes/jqui/options/rising/less/index.php -text
 themes/jqui/options/trontastic/arrows-000000.png -text
