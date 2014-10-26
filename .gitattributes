@@ -1069,6 +1069,7 @@ img/icons/large/directory48x48.png -text
 img/icons/large/display-capplet.png -text
 img/icons/large/display-capplet48x48.png -text
 img/icons/large/doc_site_logo.png -text
+img/icons/large/editing.png -text
 img/icons/large/editing48x48.png -text
 img/icons/large/evolution.png -text
 img/icons/large/evolution48x48.png -text
@@ -1088,6 +1089,7 @@ img/icons/large/gnome-fs-server.png -text
 img/icons/large/gnome-fs-server48x48.png -text
 img/icons/large/gnome-globe.png -text
 img/icons/large/gnome-globe48x48.png -text
+img/icons/large/gnome-lockscreen.png -text
 img/icons/large/gnome-lockscreen48x48.png -text
 img/icons/large/gnome-settings-background.png -text
 img/icons/large/gnome-settings-background48x48.png -text
@@ -6753,7 +6755,6 @@ themes/base_files/feature_css/jscalendar.css -text
 themes/base_files/feature_css/readme.txt -text
 themes/base_files/feature_css/wizards.css -text
 themes/base_files/iconsets/default.php -text
-themes/base_files/iconsets/font-awesome.php -text
 themes/base_files/iconsets/glyphicons.php -text
 themes/base_files/iconsets/index.php -text
 themes/base_files/iconsets/legacy.php -text
