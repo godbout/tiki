@@ -6830,6 +6830,7 @@ themes/cupid/icons/index.php -text
 themes/cupid/images/cupid.png -text
 themes/cupid/images/index.php -text
 themes/cupid/index.php -text
+themes/cupid/less/cupidcss.less -text
 themes/cupid/less/index.php -text
 themes/cupid/less/tiki.less -text
 themes/cupid/templates/index.php -text
