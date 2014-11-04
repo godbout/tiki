@@ -7444,6 +7444,16 @@ themes/readable/less/tiki.less -text
 themes/readable/less/variables.less -text
 themes/readable/templates/index.php -text
 themes/readme.txt -text
+themes/sandstone/css/index.php -text
+themes/sandstone/css/tiki.css -text
+themes/sandstone/fonts/index.php -text
+themes/sandstone/icons/index.php -text
+themes/sandstone/images/index.php -text
+themes/sandstone/less/bootswatch.less -text
+themes/sandstone/less/index.php -text
+themes/sandstone/less/tiki-selectors.less -text
+themes/sandstone/less/tiki.less -text
+themes/sandstone/less/variables.less -text
 themes/shamrock/css/index.php -text
 themes/shamrock/css/tiki.css -text
 themes/shamrock/fonts/index.php -text
