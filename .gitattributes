@@ -7421,6 +7421,16 @@ themes/ohia/less/tiki.less -text
 themes/ohia/need-fix-global-design-and-layout-properties.less -text
 themes/ohia/need-fix-or-merge-tiki.css -text
 themes/ohia/templates/index.php -text
+themes/paper/css/index.php -text
+themes/paper/css/tiki.css -text
+themes/paper/fonts/index.php -text
+themes/paper/icons/index.php -text
+themes/paper/images/index.php -text
+themes/paper/less/bootswatch.less -text
+themes/paper/less/index.php -text
+themes/paper/less/tiki-selectors.less -text
+themes/paper/less/tiki.less -text
+themes/paper/less/variables.less -text
 themes/readable/css/index.php -text
 themes/readable/css/tiki.css -text
 themes/readable/fonts/index.php -text
