@@ -3680,6 +3680,7 @@ lib/jquery_tiki/colorpicker/layout.css -text
 lib/jquery_tiki/elfinder/elFinderVolumeTikiFiles.class.php -text
 lib/jquery_tiki/elfinder/tiki-elfinder.js -text
 lib/jquery_tiki/elfinder/tikiElFinder.php -text
+lib/jquery_tiki/files.js -text
 lib/jquery_tiki/galleriffic/css/basic.css -text
 lib/jquery_tiki/galleriffic/css/black.css -text
 lib/jquery_tiki/galleriffic/css/caption.png -text
@@ -5661,6 +5662,7 @@ templates/fgal_listing_conf.tpl -text
 templates/file/index.php -text
 templates/file/remote.tpl -text
 templates/file/upload.tpl -text
+templates/file/uploader.tpl -text
 templates/file_backlinks.tpl -text
 templates/file_gallery_slideshow.tpl -text
 templates/filter.tpl -text
