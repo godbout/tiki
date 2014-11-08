@@ -5659,7 +5659,9 @@ templates/examples/shop/readme.txt -text
 templates/fgal_attachments.tpl -text
 templates/fgal_context_menu.tpl -text
 templates/fgal_listing_conf.tpl -text
+templates/file/browse.tpl -text
 templates/file/index.php -text
+templates/file/list_gallery.tpl -text
 templates/file/remote.tpl -text
 templates/file/upload.tpl -text
 templates/file/uploader.tpl -text
