@@ -6905,6 +6905,7 @@ themes/fivealive-lite/images/index.php -text
 themes/fivealive-lite/index.php -text
 themes/fivealive-lite/less/bootstrap-variables.less -text
 themes/fivealive-lite/less/index.php -text
+themes/fivealive-lite/less/tiki-selector-variables.less -text
 themes/fivealive-lite/less/tiki-selectors.less -text
 themes/fivealive-lite/less/tiki.less -text
 themes/fivealive-lite/options/akebi/images/akebi.png -text
