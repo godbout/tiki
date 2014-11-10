@@ -6910,6 +6910,7 @@ themes/fivealive-lite/less/tiki-selectors.less -text
 themes/fivealive-lite/less/tiki.less -text
 themes/fivealive-lite/options/akebi/images/akebi.png -text
 themes/fivealive-lite/options/akebi/images/arrows-0b8a98.png -text
+themes/fivealive-lite/options/akebi/images/middletopbg.png -text
 themes/fivealive-lite/options/akebi/images/siteheader.png -text
 themes/fivealive-lite/options/akebi/images/siteheadertile.jpg -text
 themes/fivealive-lite/options/akebi/index.php -text
@@ -6919,6 +6920,7 @@ themes/fivealive-lite/options/akebi/less/tiki.less -text
 themes/fivealive-lite/options/blueberry/images/arrows-1174a5.png -text
 themes/fivealive-lite/options/blueberry/images/headertile.png -text
 themes/fivealive-lite/options/blueberry/images/index.php -text
+themes/fivealive-lite/options/blueberry/images/middletopbg.png -text
 themes/fivealive-lite/options/blueberry/images/siteheader.jpg -text
 themes/fivealive-lite/options/blueberry/rtl/siteheader_rtl.jpg -text
 themes/fivealive-lite/options/grape/css/newsletter.css -text
@@ -6926,6 +6928,7 @@ themes/fivealive-lite/options/grape/css/tiki.css -text
 themes/fivealive-lite/options/grape/images/arrows-8e286a.png -text
 themes/fivealive-lite/options/grape/images/grape.png -text
 themes/fivealive-lite/options/grape/images/index.php -text
+themes/fivealive-lite/options/grape/images/middletopbg.png -text
 themes/fivealive-lite/options/grape/images/siteheader.png -text
 themes/fivealive-lite/options/grape/images/siteheadertile.png -text
 themes/fivealive-lite/options/grape/less/bootstrap-variables.less -text
@@ -6935,6 +6938,7 @@ themes/fivealive-lite/options/kiwi/css/tiki.css -text
 themes/fivealive-lite/options/kiwi/images/arrows-638637.png -text
 themes/fivealive-lite/options/kiwi/images/index.php -text
 themes/fivealive-lite/options/kiwi/images/kiwi.png -text
+themes/fivealive-lite/options/kiwi/images/middletopbg.png -text
 themes/fivealive-lite/options/kiwi/images/siteheader.png -text
 themes/fivealive-lite/options/kiwi/images/siteheadertile.png -text
 themes/fivealive-lite/options/kiwi/less/bootstrap-variables.css -text
@@ -6945,6 +6949,7 @@ themes/fivealive-lite/options/lemon/css/tiki.css -text
 themes/fivealive-lite/options/lemon/images/arrows-c75a28.png -text
 themes/fivealive-lite/options/lemon/images/index.php -text
 themes/fivealive-lite/options/lemon/images/lemon.png -text
+themes/fivealive-lite/options/lemon/images/middletopbg.png -text
 themes/fivealive-lite/options/lemon/images/siteheader.png -text
 themes/fivealive-lite/options/lemon/images/siteheadertile.png -text
 themes/fivealive-lite/options/lemon/less/bootstrap-variables.less -text
@@ -6955,6 +6960,7 @@ themes/fivealive-lite/options/less/tiki-selectors.less -text
 themes/fivealive-lite/options/orange/css/tiki.css -text
 themes/fivealive-lite/options/orange/images/arrows-c74b23.png -text
 themes/fivealive-lite/options/orange/images/index.php -text
+themes/fivealive-lite/options/orange/images/middletopbg.png -text
 themes/fivealive-lite/options/orange/images/orange.png -text
 themes/fivealive-lite/options/orange/images/siteheader.png -text
 themes/fivealive-lite/options/orange/images/siteheadertile.png -text
@@ -6963,6 +6969,7 @@ themes/fivealive-lite/options/orange/less/tiki-selector-variables.less -text
 themes/fivealive-lite/options/orange/less/tiki.less -text
 themes/fivealive-lite/options/plum/images/arrows-8e01d4.png -text
 themes/fivealive-lite/options/plum/images/index.php -text
+themes/fivealive-lite/options/plum/images/middletopbg.png -text
 themes/fivealive-lite/options/plum/images/siteheader.jpg -text
 themes/fivealive-lite/options/plum/images/siteheadertile.png -text
 themes/fivealive-lite/options/plum/less/bootstrap-variables.less -text
@@ -6971,6 +6978,7 @@ themes/fivealive-lite/options/plum/less/tiki.less -text
 themes/fivealive-lite/options/raspberry/css/tiki.css -text
 themes/fivealive-lite/options/raspberry/images/arrows-b51360.png -text
 themes/fivealive-lite/options/raspberry/images/index.php -text
+themes/fivealive-lite/options/raspberry/images/middletopbg.png -text
 themes/fivealive-lite/options/raspberry/images/raspberry.png -text
 themes/fivealive-lite/options/raspberry/images/siteheader.png -text
 themes/fivealive-lite/options/raspberry/images/siteheadertile.png -text
@@ -6980,6 +6988,7 @@ themes/fivealive-lite/options/raspberry/less/tiki.less -text
 themes/fivealive-lite/options/watermelon/css/tiki.css -text
 themes/fivealive-lite/options/watermelon/images/arrows-c21e3b.png -text
 themes/fivealive-lite/options/watermelon/images/index.php -text
+themes/fivealive-lite/options/watermelon/images/middletopbg.png -text
 themes/fivealive-lite/options/watermelon/images/siteheader.png -text
 themes/fivealive-lite/options/watermelon/images/siteheadertile.png -text
 themes/fivealive-lite/options/watermelon/images/watermelon.png -text
