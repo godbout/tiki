@@ -5663,6 +5663,7 @@ templates/file/browse.tpl -text
 templates/file/index.php -text
 templates/file/list_gallery.tpl -text
 templates/file/remote.tpl -text
+templates/file/thumbnail_gallery.tpl -text
 templates/file/upload.tpl -text
 templates/file/uploader.tpl -text
 templates/file_backlinks.tpl -text
