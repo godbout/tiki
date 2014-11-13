@@ -2786,6 +2786,7 @@ lib/core/Search/ContentSource/ArticleSource.php -text
 lib/core/Search/ContentSource/BlogPostSource.php -text
 lib/core/Search/ContentSource/CategorySource.php -text
 lib/core/Search/ContentSource/CommentSource.php -text
+lib/core/Search/ContentSource/FileGallerySource.php -text
 lib/core/Search/ContentSource/FileSource.php -text
 lib/core/Search/ContentSource/ForumPostSource.php -text
 lib/core/Search/ContentSource/ForumSource.php -text
@@ -4327,6 +4328,7 @@ lib/smarty_tiki/function.elapsed.php -text
 lib/smarty_tiki/function.error_report.php -text
 lib/smarty_tiki/function.favorite.php -text
 lib/smarty_tiki/function.fgal_browse.php -text
+lib/smarty_tiki/function.file_selector.php -text
 lib/smarty_tiki/function.filegal_manager_url.php -text
 lib/smarty_tiki/function.fileinfo.php -text
 lib/smarty_tiki/function.gallery.php -text
@@ -5668,6 +5670,7 @@ templates/file/upload.tpl -text
 templates/file/uploader.tpl -text
 templates/file_backlinks.tpl -text
 templates/file_gallery_slideshow.tpl -text
+templates/file_selector.tpl -text
 templates/filter.tpl -text
 templates/find.tpl -text
 templates/footer.tpl -text
