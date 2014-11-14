@@ -6242,7 +6242,6 @@ templates/tiki-contacts.tpl -text
 templates/tiki-copypage.tpl -text
 templates/tiki-create_multilang_pages.tpl -text
 templates/tiki-create_webhelp.tpl -text
-templates/tiki-custom_home.tpl -text
 templates/tiki-directory_add_site.tpl -text
 templates/tiki-directory_admin.tpl -text
 templates/tiki-directory_admin_bar.tpl -text
@@ -7744,7 +7743,6 @@ themes/yeti/templates/index.php -text
 /tiki-copypage.php -text
 /tiki-create_multilang_pages.php -text
 /tiki-create_webhelp.php -text
-/tiki-custom_home.php -text
 /tiki-directories_rss.php -text
 /tiki-directory_add_site.php -text
 /tiki-directory_add_tiki_site.php -text
