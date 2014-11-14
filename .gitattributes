@@ -6886,6 +6886,30 @@ themes/darkroom/less/index.php -text
 themes/darkroom/less/tiki-selectors.less -text
 themes/darkroom/less/tiki.less -text
 themes/darkroom/templates/index.php -text
+themes/darkshine/css/index.php -text
+themes/darkshine/css/tiki.css -text
+themes/darkshine/fonts/index.php -text
+themes/darkshine/icons/index.php -text
+themes/darkshine/images/ad.gif -text
+themes/darkshine/images/arrows-000000.png -text svneol=unset#image/png
+themes/darkshine/images/blue.png -text svneol=unset#image/png
+themes/darkshine/images/border.jpg -text svneol=unset#image/jpeg
+themes/darkshine/images/box.jpg -text svneol=unset#image/jpeg
+themes/darkshine/images/darkshine.png -text svneol=unset#image/png
+themes/darkshine/images/green.png -text svneol=unset#image/png
+themes/darkshine/images/hover_list.jpg -text svneol=unset#image/jpeg
+themes/darkshine/images/index.php -text
+themes/darkshine/images/main.gif -text
+themes/darkshine/images/nav.gif -text
+themes/darkshine/images/orange.png -text svneol=unset#image/png
+themes/darkshine/images/red.png -text svneol=unset#image/png
+themes/darkshine/images/stripes.png -text svneol=unset#image/png
+themes/darkshine/images/stripes_small.gif -text
+themes/darkshine/images/title_background.jpg -text svneol=unset#image/jpeg
+themes/darkshine/less/bootstrap-variables.less -text
+themes/darkshine/less/index.php -text
+themes/darkshine/less/tiki-selectors.less -text
+themes/darkshine/less/tiki.less -text
 themes/feb12/css/index.php -text
 themes/feb12/css/tiki.css -text
 themes/feb12/fonts/index.php -text
