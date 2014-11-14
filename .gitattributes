@@ -7608,6 +7608,16 @@ themes/united/less/index.php -text
 themes/united/less/tiki.less -text
 themes/united/less/variables.less -text
 themes/united/templates/index.php -text
+themes/utopias/css/index.php -text
+themes/utopias/css/tiki.css -text
+themes/utopias/fonts/index.php -text
+themes/utopias/icons/index.php -text
+themes/utopias/images/index.php -text
+themes/utopias/images/utopias.png -text
+themes/utopias/less/bootstrap-variables.less -text
+themes/utopias/less/index.php -text
+themes/utopias/less/tiki-selectors.less -text
+themes/utopias/less/tiki.less -text
 themes/yeti/css/index.php -text
 themes/yeti/css/tiki.css -text
 themes/yeti/fonts/index.php -text
