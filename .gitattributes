@@ -2298,6 +2298,7 @@ installer/schema/20140812_convert_tiki_connect_data_to_json_tiki.php -text
 installer/schema/20140914_addon_profiles_tiki.sql -text
 installer/schema/20141003_change_style_pref_to_theme_tiki.php -text
 installer/schema/20141106_menu_configuration_panel_tiki.sql -text
+installer/schema/20141114_remove_babelfish_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2477,7 +2478,6 @@ lang/vi/language.js -text
 lang/vi/language.php -text
 lang/web.config -text
 lib/.htaccess -text
-lib/Babelfish.php -text
 lib/TikiWebdav/Auth/Default.php -text
 lib/TikiWebdav/Auth/Wiki.php -text
 lib/TikiWebdav/Auth/index.php -text
@@ -4159,7 +4159,6 @@ lib/search/storedsearchlib.php -text
 lib/serializedlist.php -text
 lib/servicelib.php -text
 lib/setup/absolute_urls.php -text
-lib/setup/babelfish.php -text
 lib/setup/categories.php -text
 lib/setup/challenge.php -text
 lib/setup/comments_zone.php -text
@@ -5310,8 +5309,6 @@ modules/mod-func-article_archives.php -text
 modules/mod-func-article_topics.php -text
 modules/mod-func-articles.php -text
 modules/mod-func-assistant.php -text
-modules/mod-func-babelfish_links.php -text
-modules/mod-func-babelfish_logo.php -text
 modules/mod-func-blog_last_comments.php -text
 modules/mod-func-breadcrumb.php -text
 modules/mod-func-breadcrumbs.php -text
@@ -5576,7 +5573,6 @@ templates/article/create_from_url.tpl -text
 templates/article_trailer.tpl -text
 templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
-templates/babelfish.tpl -text
 templates/blog_heading.tpl -text
 templates/blog_post_actions.tpl -text
 templates/blog_post_author_actions.tpl -text
@@ -5864,8 +5860,6 @@ templates/modules/mod-article_archives.tpl -text
 templates/modules/mod-article_topics.tpl -text
 templates/modules/mod-articles.tpl -text
 templates/modules/mod-assistant.tpl -text
-templates/modules/mod-babelfish_links.tpl -text
-templates/modules/mod-babelfish_logo.tpl -text
 templates/modules/mod-blog_last_comments.tpl -text
 templates/modules/mod-breadcrumb.tpl -text
 templates/modules/mod-breadcrumb.tpl.nocache -text
