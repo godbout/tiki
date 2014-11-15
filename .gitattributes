@@ -5039,6 +5039,7 @@ lib/wiki-plugins/wikiplugin_freetagged.php -text
 lib/wiki-plugins/wikiplugin_ftp.php -text
 lib/wiki-plugins/wikiplugin_galleriffic.php -text
 lib/wiki-plugins/wikiplugin_gauge.php -text
+lib/wiki-plugins/wikiplugin_gdgraph.php -text
 lib/wiki-plugins/wikiplugin_getaccesstoken.php -text
 lib/wiki-plugins/wikiplugin_googleanalytics.php -text
 lib/wiki-plugins/wikiplugin_googledoc.php -text
@@ -7806,6 +7807,7 @@ themes/yeti/templates/index.php -text
 /tiki-friends.php -text
 /tiki-galleries.php -text
 /tiki-galleries_rankings.php -text
+/tiki-gdgraph.php -text
 /tiki-graph_formula.php -text
 /tiki-graph_sheet.php -text
 /tiki-history_sheets.php -text
