@@ -6920,6 +6920,8 @@ themes/feb12/templates/index.php -text
 themes/fivealive-lite/css/index.php -text
 themes/fivealive-lite/css/tiki.css -text
 themes/fivealive-lite/fonts/index.php -text
+themes/fivealive-lite/icons/custom.php -text
+themes/fivealive-lite/icons/iconset.php -text
 themes/fivealive-lite/icons/index.php -text
 themes/fivealive-lite/images/index.php -text
 themes/fivealive-lite/images/middletopbg.png -text
