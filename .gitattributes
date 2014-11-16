@@ -268,6 +268,8 @@ doc/longterm.cycle -text
 doc/readme.txt -text
 doc/regular.cycle -text
 doc/reports/index.php -text
+doc/stable.version -text
+doc/unstable.version -text
 dump/index.php -text
 /favicon.ico -text
 /favicon.png -text
