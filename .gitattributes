@@ -6106,7 +6106,6 @@ templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
 templates/styles/index.php -text
-templates/styles/site_closed.html -text
 templates/suite/jitsi.tpl -text
 templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
@@ -6766,6 +6765,7 @@ themes/base_files/other/integrator/README -text
 themes/base_files/other/integrator/default.css -text
 themes/base_files/other/integrator/doxygen.css -text
 themes/base_files/other/integrator/index.php -text
+themes/base_files/other/site_closed.html -text
 themes/cerulean/css/index.php -text
 themes/cerulean/css/tiki.css -text
 themes/cerulean/fonts/index.php -text
