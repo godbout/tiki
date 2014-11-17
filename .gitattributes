@@ -6766,7 +6766,6 @@ themes/base_files/other/integrator/README -text
 themes/base_files/other/integrator/default.css -text
 themes/base_files/other/integrator/doxygen.css -text
 themes/base_files/other/integrator/index.php -text
-themes/base_files/other/readme.txt -text
 themes/cerulean/css/index.php -text
 themes/cerulean/css/tiki.css -text
 themes/cerulean/fonts/index.php -text
