@@ -6105,7 +6105,6 @@ templates/social/remove_friend.tpl -text
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
-templates/styles/index.php -text
 templates/suite/jitsi.tpl -text
 templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
