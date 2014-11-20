@@ -2301,6 +2301,7 @@ installer/schema/20140914_addon_profiles_tiki.sql -text
 installer/schema/20141003_change_style_pref_to_theme_tiki.php -text
 installer/schema/20141106_menu_configuration_panel_tiki.sql -text
 installer/schema/20141114_remove_babelfish_tiki.sql -text
+installer/schema/20141120_tracker_tabular_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3009,6 +3010,7 @@ lib/core/Services/Suite/Controller.php -text
 lib/core/Services/Tracker/CalendarController.php -text
 lib/core/Services/Tracker/Controller.php -text
 lib/core/Services/Tracker/SyncController.php -text
+lib/core/Services/Tracker/TabularController.php -text
 lib/core/Services/Tracker/TodoController.php -text
 lib/core/Services/Tracker/Utilities.php -text
 lib/core/Services/Tracker/index.php -text
@@ -3346,6 +3348,7 @@ lib/core/Tracker/Query.php -text
 lib/core/Tracker/Tabular/Exception/Exception.php -text
 lib/core/Tracker/Tabular/Exception/FieldNotFound.php -text
 lib/core/Tracker/Tabular/Exception/ModeNotSupported.php -text
+lib/core/Tracker/Tabular/Manager.php -text
 lib/core/Tracker/Tabular/Schema.php -text
 lib/core/Tracker/Tabular/Schema/CachedLookupHelper.php -text
 lib/core/Tracker/Tabular/Schema/Column.php -text
@@ -6106,6 +6109,9 @@ templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
 templates/suite/jitsi.tpl -text
+templates/tabular/create.tpl -text
+templates/tabular/edit.tpl -text
+templates/tabular/manage.tpl -text
 templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
 templates/tiki-accounting_account_deleted.tpl -text
