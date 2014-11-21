@@ -6111,6 +6111,7 @@ templates/structures_toc-startul.tpl -text
 templates/suite/jitsi.tpl -text
 templates/tabular/create.tpl -text
 templates/tabular/edit.tpl -text
+templates/tabular/import_csv.tpl -text
 templates/tabular/manage.tpl -text
 templates/tabular/select.tpl -text
 templates/themegen.tpl -text
