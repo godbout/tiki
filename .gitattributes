@@ -6112,6 +6112,7 @@ templates/suite/jitsi.tpl -text
 templates/tabular/create.tpl -text
 templates/tabular/edit.tpl -text
 templates/tabular/manage.tpl -text
+templates/tabular/select.tpl -text
 templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
 templates/tiki-accounting_account_deleted.tpl -text
