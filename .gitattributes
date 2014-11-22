@@ -4841,6 +4841,8 @@ lib/test/wiki-plugins/CodeTest.php -text
 lib/test/wiki-plugins/TranslationOfTest.php -text
 lib/test/wiki-plugins/YoutubeTest.php -text
 lib/test/wiki-plugins/index.php -text
+lib/theme/index.php -text
+lib/theme/themelib.php -text
 lib/themecontrol/index.php -text
 lib/themecontrol/tcontrol.php -text
 lib/themegenlib.php -text
