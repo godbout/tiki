@@ -2302,6 +2302,7 @@ installer/schema/20141003_change_style_pref_to_theme_tiki.php -text
 installer/schema/20141106_menu_configuration_panel_tiki.sql -text
 installer/schema/20141114_remove_babelfish_tiki.sql -text
 installer/schema/20141120_tracker_tabular_tiki.sql -text
+installer/schema/20141122_change_prefname_availblestyles_to_availablethemes_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
