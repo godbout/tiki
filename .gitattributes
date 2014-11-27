@@ -3057,6 +3057,7 @@ lib/core/Table/Settings/Abstract.php -text
 lib/core/Table/Settings/Plugin.php -text
 lib/core/Table/Settings/PluginTrackerlist.php -text
 lib/core/Table/Settings/TikiAdminusers.php -text
+lib/core/Table/Settings/TikiListpages.php -text
 lib/core/Table/Settings/index.php -text
 lib/core/Table/index.php -text
 lib/core/Tiki/BigBlueButton/Configuration.php -text
