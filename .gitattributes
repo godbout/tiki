@@ -6840,6 +6840,7 @@ themes/darkly/images/index.php -text
 themes/darkly/index.php -text
 themes/darkly/less/bootswatch.less -text
 themes/darkly/less/index.php -text
+themes/darkly/less/tiki-selectors.less -text
 themes/darkly/less/tiki.less -text
 themes/darkly/less/variables.less -text
 themes/darkly/templates/index.php -text
