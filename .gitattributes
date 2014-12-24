@@ -2814,11 +2814,14 @@ lib/core/Search/Elastic/MappingException.php -text
 lib/core/Search/Elastic/NotFoundException.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
+lib/core/Search/Elastic/RescoreQueryBuilder.php -text
 lib/core/Search/Elastic/ResultSet.php -text
 lib/core/Search/Elastic/TransportException.php -text
 lib/core/Search/Elastic/TypeFactory.php -text
 lib/core/Search/Exception.php -text
 lib/core/Search/Expr/And.php -text
+lib/core/Search/Expr/ExplicitPhrase.php -text
+lib/core/Search/Expr/ImplicitPhrase.php -text
 lib/core/Search/Expr/Initial.php -text
 lib/core/Search/Expr/Interface.php -text
 lib/core/Search/Expr/MoreLikeThis.php -text
@@ -4673,6 +4676,7 @@ lib/test/core/Search/Elastic/PaginationTest.php -text
 lib/test/core/Search/Elastic/ProtocolTest.php -text
 lib/test/core/Search/Elastic/QueryBuilderTest.php -text
 lib/test/core/Search/Elastic/QueryRepositoryTest.php -text
+lib/test/core/Search/Elastic/RescoreQueryBuilderTest.php -text
 lib/test/core/Search/Elastic/SortTest.php -text
 lib/test/core/Search/Elastic/StemmingTest.php -text
 lib/test/core/Search/Elastic/TypeAnalyzerTest.php -text
