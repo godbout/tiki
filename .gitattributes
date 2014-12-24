@@ -4661,6 +4661,7 @@ lib/test/core/Search/ActionStepTest.php -text
 lib/test/core/Search/Elastic/BaseTest.php -text
 lib/test/core/Search/Elastic/BulkIncrementalUpdateTest.php -text
 lib/test/core/Search/Elastic/BulkIndexingTest.php -text
+lib/test/core/Search/Elastic/CamelCaseTest.php -text
 lib/test/core/Search/Elastic/FacetBuilderTest.php -text
 lib/test/core/Search/Elastic/FacetReaderTest.php -text
 lib/test/core/Search/Elastic/FacetTest.php -text
