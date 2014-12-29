@@ -2980,6 +2980,8 @@ lib/core/Services/File/FinderController.php -text
 lib/core/Services/File/Utilities.php -text
 lib/core/Services/File/VimeoController.php -text
 lib/core/Services/File/index.php -text
+lib/core/Services/Forum/Controller.php -text
+lib/core/Services/Forum/index.php -text
 lib/core/Services/Goal/Controller.php -text
 lib/core/Services/JCapture/Controller.php -text
 lib/core/Services/JCapture/index.php -text
@@ -5686,6 +5688,9 @@ templates/file_selector.tpl -text
 templates/filter.tpl -text
 templates/find.tpl -text
 templates/footer.tpl -text
+templates/forum/merge_topic.tpl -text
+templates/forum/move_topic.tpl -text
+templates/forum/success.tpl -text
 templates/freetag.tpl -text
 templates/freetag_list.tpl -text
 templates/goal/admin.tpl -text
