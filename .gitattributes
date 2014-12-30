@@ -6133,6 +6133,7 @@ templates/suite/jitsi.tpl -text
 templates/tabular/create.tpl -text
 templates/tabular/delete.tpl -text
 templates/tabular/edit.tpl -text
+templates/tabular/export_search_csv.tpl -text
 templates/tabular/import_csv.tpl -text
 templates/tabular/manage.tpl -text
 templates/tabular/select.tpl -text
