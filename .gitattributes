@@ -2943,6 +2943,8 @@ lib/core/Search/Type/Whole.php -text
 lib/core/Search/Type/WikiText.php -text
 lib/core/Search/Type/index.php -text
 lib/core/Search/index.php -text
+lib/core/Services/Access/Controller.php -text
+lib/core/Services/Access/index.php -text
 lib/core/Services/ActivityStream/Controller.php -text
 lib/core/Services/ActivityStream/ManageController.php -text
 lib/core/Services/Article/Controller.php -text
@@ -3028,6 +3030,8 @@ lib/core/Services/User/FavoriteController.php -text
 lib/core/Services/User/MonitorController.php -text
 lib/core/Services/User/SocialController.php -text
 lib/core/Services/User/index.php -text
+lib/core/Services/Utilities/Controller.php -text
+lib/core/Services/Utilities/index.php -text
 lib/core/Services/Wiki/Controller.php -text
 lib/core/Services/Wiki/index.php -text
 lib/core/Services/Workspace/Controller.php -text
@@ -5514,6 +5518,7 @@ temp/public/.htaccess -text
 temp/public/index.php -text
 temp/web.config -text
 templates/.htaccess -text
+templates/access/confirm.tpl -text
 templates/activity/activityframe.tpl -text
 templates/activity/activitystream.tpl -text
 templates/activity/tiki.comment.post.tpl -text
@@ -6593,6 +6598,7 @@ templates/user/register.tpl -text
 templates/user_conditions/age_validation.tpl -text
 templates/user_conditions/approval.tpl -text
 templates/user_registration.tpl -text
+templates/utilities/alert.tpl -text
 templates/vimeo/upload.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
