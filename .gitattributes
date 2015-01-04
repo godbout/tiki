@@ -5696,7 +5696,6 @@ templates/find.tpl -text
 templates/footer.tpl -text
 templates/forum/merge_topic.tpl -text
 templates/forum/move_topic.tpl -text
-templates/forum/success.tpl -text
 templates/freetag.tpl -text
 templates/freetag_list.tpl -text
 templates/goal/admin.tpl -text
