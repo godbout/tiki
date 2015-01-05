@@ -5850,6 +5850,7 @@ templates/mailin/remove_account.tpl -text
 templates/mailin/replace_account.tpl -text
 templates/managestream/advanced.tpl -text
 templates/managestream/delete.tpl -text
+templates/managestream/deleteactivity.tpl -text
 templates/managestream/list.tpl -text
 templates/managestream/record.tpl -text
 templates/managestream/sample.tpl -text
