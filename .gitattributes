@@ -3722,6 +3722,7 @@ lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/mustread.js -text
 lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tiki-admin.js -text
+lib/jquery_tiki/tiki-ajax_services.js -text
 lib/jquery_tiki/tiki-bootstrapmodalfix.js -text
 lib/jquery_tiki/tiki-connect.js -text
 lib/jquery_tiki/tiki-jquery.js -text
