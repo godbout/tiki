@@ -2305,6 +2305,7 @@ installer/schema/20141114_remove_babelfish_tiki.sql -text
 installer/schema/20141120_tracker_tabular_tiki.sql -text
 installer/schema/20141122_change_prefname_availblestyles_to_availablethemes_tiki.sql -text
 installer/schema/20141125_menu_control_panels_tiki.sql -text
+installer/schema/20150109_tabular_filters_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -6153,6 +6154,7 @@ templates/tabular/export_search_csv.tpl -text
 templates/tabular/import_csv.tpl -text
 templates/tabular/manage.tpl -text
 templates/tabular/select.tpl -text
+templates/tabular/select_filter.tpl -text
 templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
 templates/tiki-accounting_account_deleted.tpl -text
