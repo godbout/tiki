@@ -3364,6 +3364,7 @@ lib/core/Tracker/Filter/Collection.php -text
 lib/core/Tracker/Filter/Control/Control.php -text
 lib/core/Tracker/Filter/Control/DropDown.php -text
 lib/core/Tracker/Filter/Control/MultiSelect.php -text
+lib/core/Tracker/Filter/Control/ObjectSelector.php -text
 lib/core/Tracker/Filter/Control/TextField.php -text
 lib/core/Tracker/Filter/Exception/Exception.php -text
 lib/core/Tracker/Filter/Exception/FieldNotFound.php -text
