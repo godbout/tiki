@@ -3384,12 +3384,14 @@ lib/core/Tracker/Tabular/Schema/DateHelper.php -text
 lib/core/Tracker/Tabular/Source/AutoDetectCsvSource.php -text
 lib/core/Tracker/Tabular/Source/CsvSource.php -text
 lib/core/Tracker/Tabular/Source/CsvSourceEntry.php -text
+lib/core/Tracker/Tabular/Source/PaginatedQuerySource.php -text
 lib/core/Tracker/Tabular/Source/QuerySource.php -text
 lib/core/Tracker/Tabular/Source/QuerySourceEntry.php -text
 lib/core/Tracker/Tabular/Source/SourceInterface.php -text
 lib/core/Tracker/Tabular/Source/TrackerSource.php -text
 lib/core/Tracker/Tabular/Source/TrackerSourceEntry.php -text
 lib/core/Tracker/Tabular/Writer/CsvWriter.php -text
+lib/core/Tracker/Tabular/Writer/HtmlWriter.php -text
 lib/core/Tracker/Tabular/Writer/TrackerWriter.php -text
 lib/core/Tracker/index.php -text
 lib/core/Type.php -text
@@ -6157,6 +6159,7 @@ templates/tabular/edit.tpl -text
 templates/tabular/export_partial_csv.tpl -text
 templates/tabular/export_search_csv.tpl -text
 templates/tabular/import_csv.tpl -text
+templates/tabular/list.tpl -text
 templates/tabular/manage.tpl -text
 templates/tabular/select.tpl -text
 templates/tabular/select_filter.tpl -text
