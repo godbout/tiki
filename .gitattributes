@@ -6159,6 +6159,7 @@ templates/tabular/edit.tpl -text
 templates/tabular/export_search_csv.tpl -text
 templates/tabular/filter.tpl -text
 templates/tabular/import_csv.tpl -text
+templates/tabular/item_actions.tpl -text
 templates/tabular/list.tpl -text
 templates/tabular/manage.tpl -text
 templates/tabular/select.tpl -text
