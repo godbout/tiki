@@ -7228,9 +7228,11 @@ themes/fivealive/jquery-ui/options/watermelon/images/ui-icons_cd0a0a_256x240.png
 themes/fivealive/jquery-ui/options/watermelon/images/ui-icons_fff_256x240.png -text
 themes/fivealive/jquery-ui/options/watermelon/jquery-ui.css -text
 themes/fivealive/jquery-ui/options/watermelon/jquery-ui.min.css -text
+themes/fivealive/less/bootstrap-less-for-options.less -text
 themes/fivealive/less/bootstrap-variables.less -text
 themes/fivealive/less/fivealive.less -text
 themes/fivealive/less/index.php -text
+themes/fivealive/less/tiki-selectors-for-options.less -text
 themes/fivealive/less/tiki-selectors.less -text
 themes/fivealive/options/akebi/fonts/index.php -text
 themes/fivealive/options/akebi/icons/index.php -text
@@ -7253,7 +7255,7 @@ themes/fivealive/options/blueberry/images/headertile.png -text
 themes/fivealive/options/blueberry/images/index.php -text
 themes/fivealive/options/blueberry/images/siteheader.jpg -text
 themes/fivealive/options/blueberry/rtl/siteheader_rtl.jpg -text
-themes/fivealive/options/grape/css/blueberry.css -text
+themes/fivealive/options/grape/css/grape.css -text
 themes/fivealive/options/grape/css/newsletter.css -text
 themes/fivealive/options/grape/fonts/index.php -text
 themes/fivealive/options/grape/icons/index.php -text
@@ -7264,8 +7266,8 @@ themes/fivealive/options/grape/images/grape.png -text
 themes/fivealive/options/grape/images/index.php -text
 themes/fivealive/options/grape/images/siteheader.png -text
 themes/fivealive/options/grape/images/siteheadertile.png -text
-themes/fivealive/options/grape/less/blueberry.less -text
 themes/fivealive/options/grape/less/bootstrap-variables.less -text
+themes/fivealive/options/grape/less/grape.less -text
 themes/fivealive/options/grape/less/tiki-selector-variables.less -text
 themes/fivealive/options/kiwi/css/index.php -text
 themes/fivealive/options/kiwi/css/kiwi.css -text
@@ -7298,8 +7300,6 @@ themes/fivealive/options/lemon/less/bootstrap-variables.less -text
 themes/fivealive/options/lemon/less/index.php -text
 themes/fivealive/options/lemon/less/lemon.less -text
 themes/fivealive/options/lemon/less/tiki-selector-variables.less -text
-themes/fivealive/options/less/bootstrap-for-fivealive-options.less -text
-themes/fivealive/options/less/tiki-selectors.less -text
 themes/fivealive/options/orange/css/orange.css -text
 themes/fivealive/options/orange/fonts/index.php -text
 themes/fivealive/options/orange/icons/index.php -text
