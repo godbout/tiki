@@ -2662,6 +2662,7 @@ lib/core/Math/Formula/Function/Floor.php -text
 lib/core/Math/Formula/Function/ForEach.php -text
 lib/core/Math/Formula/Function/Hash.php -text
 lib/core/Math/Formula/Function/If.php -text
+lib/core/Math/Formula/Function/IsEmpty.php -text
 lib/core/Math/Formula/Function/Lower.php -text
 lib/core/Math/Formula/Function/Map.php -text
 lib/core/Math/Formula/Function/Max.php -text
