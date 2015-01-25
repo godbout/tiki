@@ -4881,8 +4881,8 @@ lib/test/wiki-plugins/index.php -text
 lib/theme/iconsetlib.php -text
 lib/theme/index.php -text
 lib/theme/themecontrollib.php -text
+lib/theme/themegenlib.php -text
 lib/theme/themelib.php -text
-lib/themegenlib.php -text
 lib/tiki-dynamic-js.php -text
 lib/tiki-js.js -text
 lib/tikiaccesslib.php -text
@@ -6207,7 +6207,6 @@ templates/tiki-admin_integrator.tpl -text
 templates/tiki-admin_integrator_rules.tpl -text
 templates/tiki-admin_invoices.tpl -text
 templates/tiki-admin_keywords.tpl -text
-templates/tiki-admin_layout.tpl -text
 templates/tiki-admin_links.tpl -text
 templates/tiki-admin_mailin.tpl -text
 templates/tiki-admin_mailin_routes.tpl -text
@@ -6977,8 +6976,9 @@ themes/fivealive-lite/css/fivealive-lite.css -text
 themes/fivealive-lite/css/index.php -text
 themes/fivealive-lite/fonts/index.php -text
 themes/fivealive-lite/icons/custom.php -text
-themes/fivealive-lite/icons/iconset.php -text
+themes/fivealive-lite/icons/fivealive_lite.php -text
 themes/fivealive-lite/icons/index.php -text
+themes/fivealive-lite/icons/information.png -text
 themes/fivealive-lite/images/index.php -text
 themes/fivealive-lite/images/middletopbg.png -text
 themes/fivealive-lite/index.php -text
@@ -7037,6 +7037,8 @@ themes/fivealive-lite/options/lemon/less/bootstrap-variables.less -text
 themes/fivealive-lite/options/lemon/less/lemon.less -text
 themes/fivealive-lite/options/lemon/less/tiki-selector-variables.less -text
 themes/fivealive-lite/options/orange/css/orange.css -text
+themes/fivealive-lite/options/orange/icons/information.png -text svneol=unset#image/png
+themes/fivealive-lite/options/orange/icons/orange.php -text
 themes/fivealive-lite/options/orange/images/arrows-c74b23.png -text
 themes/fivealive-lite/options/orange/images/index.php -text
 themes/fivealive-lite/options/orange/images/middletopbg.png -text
@@ -7715,7 +7717,6 @@ themes/yeti/templates/index.php -text
 /tiki-admin_integrator_rules.php -text
 /tiki-admin_invoices.php -text
 /tiki-admin_keywords.php -text
-/tiki-admin_layout.php -text
 /tiki-admin_links.php -text
 /tiki-admin_mailin.php -text
 /tiki-admin_mailin_routes.php -text
