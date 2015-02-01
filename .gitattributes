@@ -7652,6 +7652,7 @@ themes/spacelab/less/spacelab.less -text
 themes/spacelab/less/variables.less -text
 themes/spacelab/templates/index.php -text
 themes/strasa/css/index.php -text
+themes/strasa/css/strasa.css -text
 themes/strasa/fonts/index.php -text
 themes/strasa/icons/index.php -text
 themes/strasa/images/arrows-467aa7.png -text
@@ -7665,6 +7666,7 @@ themes/strasa/images/login_section.jpg -text
 themes/strasa/images/strasa.png -text
 themes/strasa/less/bootstrap-variables.less -text
 themes/strasa/less/index.php -text
+themes/strasa/less/strasa.less -text
 themes/strasa/less/tiki-selectors.less -text
 themes/superhero/css/index.php -text
 themes/superhero/css/superhero.css -text
