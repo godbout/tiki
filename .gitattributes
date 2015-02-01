@@ -6791,6 +6791,7 @@ themes/base_files/less/tiki-bootstrap_overrides.less -text
 themes/base_files/less/tiki-boxes_and_panels.less -text
 themes/base_files/less/tiki-calendar.less -text
 themes/base_files/less/tiki-categories.less -text
+themes/base_files/less/tiki-color_selectors.less -text
 themes/base_files/less/tiki-comments.less -text
 themes/base_files/less/tiki-cssmenus.less -text
 themes/base_files/less/tiki-external_scripts_overrides.less -text
@@ -6947,6 +6948,7 @@ themes/didiem/less/bootstrap-variables.less -text
 themes/didiem/less/didiem.less -text
 themes/didiem/less/index.php -text
 themes/didiem/less/tiki-selector-variables.less -text
+themes/didiem/less/tiki-selectors.less -text
 themes/feb12/css/feb12.css -text
 themes/feb12/css/index.php -text
 themes/feb12/fonts/index.php -text
