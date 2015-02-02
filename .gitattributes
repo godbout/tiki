@@ -7437,7 +7437,6 @@ themes/journal/templates/index.php -text
 themes/jqui/css/index.php -text
 themes/jqui/css/jqui.css -text
 themes/jqui/css/newsletter.css -text
-themes/jqui/css/tiki-selectors.less -text
 themes/jqui/fonts/index.php -text
 themes/jqui/icons/index.php -text
 themes/jqui/images/arrows-1174a5.png -text
