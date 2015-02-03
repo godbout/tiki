@@ -5036,6 +5036,7 @@ lib/wiki-plugins/wikiplugin_catpath.php -text
 lib/wiki-plugins/wikiplugin_cclite.php -text
 lib/wiki-plugins/wikiplugin_center.php -text
 lib/wiki-plugins/wikiplugin_chart.php -text
+lib/wiki-plugins/wikiplugin_checkreferer.php -text
 lib/wiki-plugins/wikiplugin_code.php -text
 lib/wiki-plugins/wikiplugin_colorbox.php -text
 lib/wiki-plugins/wikiplugin_comment.php -text
