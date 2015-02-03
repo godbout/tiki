@@ -7880,7 +7880,6 @@ themes/yeti/templates/index.php -text
 /tiki-edit_templates.php -text
 /tiki-edit_topic.php -text
 /tiki-edit_translation.php -text
-/tiki-edit_wiki_section.php -text
 /tiki-editpage.php -text
 /tiki-emulate_groups_switch.php -text
 /tiki-error_simple.php -text
