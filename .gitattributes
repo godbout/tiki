@@ -5144,7 +5144,6 @@ lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_report.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_scroll.php -text
-lib/wiki-plugins/wikiplugin_sendmail.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
 lib/wiki-plugins/wikiplugin_sharethis.php -text
 lib/wiki-plugins/wikiplugin_sheet.php -text
@@ -6662,7 +6661,6 @@ templates/wiki-plugins/wikiplugin_profile.tpl -text
 templates/wiki-plugins/wikiplugin_proposal.tpl -text
 templates/wiki-plugins/wikiplugin_relations.tpl -text
 templates/wiki-plugins/wikiplugin_rss.tpl -text
-templates/wiki-plugins/wikiplugin_sendmail.tpl -text
 templates/wiki-plugins/wikiplugin_shopperinfo.tpl -text
 templates/wiki-plugins/wikiplugin_sign.tpl -text
 templates/wiki-plugins/wikiplugin_snarf.tpl -text
