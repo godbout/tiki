@@ -5433,7 +5433,6 @@ permissioncheck/yes.bin -text
 /robots.txt -text
 /route.php -text
 /select_banner.php -text
-/setup-legacy.sh -text
 /setup.sh -text
 /show_image.php -text
 /snarf_ajax.php -text
