@@ -8134,6 +8134,7 @@ vendor_extra/elfinder/js/i18n/elfinder.pt_BR.js -text
 vendor_extra/elfinder/js/i18n/elfinder.ru.js -text
 vendor_extra/elfinder/js/i18n/elfinder.sk.js -text
 vendor_extra/elfinder/js/i18n/elfinder.sl.js -text
+vendor_extra/elfinder/js/i18n/elfinder.sr.js -text
 vendor_extra/elfinder/js/i18n/elfinder.sv.js -text
 vendor_extra/elfinder/js/i18n/elfinder.tr.js -text
 vendor_extra/elfinder/js/i18n/elfinder.vi.js -text
@@ -8152,6 +8153,7 @@ vendor_extra/elfinder/php/elFinderVolumeLocalFileSystem.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeMySQL.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeS3.class.php -text
 vendor_extra/elfinder/php/mime.types -text
+vendor_extra/elfinder/sounds/rm.wav -text svneol=unset#audio/x-wav
 vendor_extra/fullcalendar-resourceviews/changelog.txt -text
 vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.css -text
 vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.js -text
