@@ -4926,6 +4926,7 @@ lib/wiki-plugins/wikiplugin_addtocart.php -text
 lib/wiki-plugins/wikiplugin_addtogooglecal.php -text
 lib/wiki-plugins/wikiplugin_adjustinventory.php -text
 lib/wiki-plugins/wikiplugin_agentinfo.php -text
+lib/wiki-plugins/wikiplugin_alert.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
 lib/wiki-plugins/wikiplugin_aname.php -text
 lib/wiki-plugins/wikiplugin_annotation.php -text
@@ -6548,6 +6549,7 @@ templates/wiki-plugins/wikiplugin_addreference.tpl -text
 templates/wiki-plugins/wikiplugin_addrelation.tpl -text
 templates/wiki-plugins/wikiplugin_addtocart.tpl -text
 templates/wiki-plugins/wikiplugin_adjustinventory.tpl -text
+templates/wiki-plugins/wikiplugin_alert.tpl -text
 templates/wiki-plugins/wikiplugin_appframe_mapcontrol.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton_create.tpl -text
