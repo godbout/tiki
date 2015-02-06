@@ -5259,6 +5259,7 @@ modules/cache/index.php -text
 modules/index.php -text
 modules/mod-func-action_calendar.php -text
 modules/mod-func-action_similarcontent.php -text
+modules/mod-func-addon.php -text
 modules/mod-func-adsense.php -text
 modules/mod-func-article_archives.php -text
 modules/mod-func-article_topics.php -text
@@ -5819,6 +5820,7 @@ templates/module/execute.tpl -text
 templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
 templates/modules/mod-action_similarcontent.tpl -text
+templates/modules/mod-addon.tpl -text
 templates/modules/mod-adsense.tpl -text
 templates/modules/mod-application_menu.tpl.nocache -text
 templates/modules/mod-article_archives.tpl -text
