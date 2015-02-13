@@ -6420,6 +6420,7 @@ themes/fivealive-lite/css/index.php -text
 themes/fivealive-lite/fonts/index.php -text
 themes/fivealive-lite/icons/custom.php -text
 themes/fivealive-lite/icons/fivealive_lite.php -text
+themes/fivealive-lite/icons/fivealive_lite_custom.php -text
 themes/fivealive-lite/icons/index.php -text
 themes/fivealive-lite/icons/information.png -text
 themes/fivealive-lite/images/index.php -text
@@ -6432,6 +6433,8 @@ themes/fivealive-lite/less/index.php -text
 themes/fivealive-lite/less/tiki-selector-variables.less -text
 themes/fivealive-lite/less/tiki-selectors-for-options.less -text
 themes/fivealive-lite/less/tiki-selectors.less -text
+themes/fivealive-lite/options/akebi/icons/akebi_custom.php -text
+themes/fivealive-lite/options/akebi/icons/index.php -text
 themes/fivealive-lite/options/akebi/images/akebi.png -text
 themes/fivealive-lite/options/akebi/images/arrows-0b8a98.png -text
 themes/fivealive-lite/options/akebi/images/middletopbg.png -text
