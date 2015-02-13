@@ -6213,6 +6213,7 @@ themes/base_files/less/tablesorter-tiki.less -text
 themes/base_files/less/tiki-admin.less -text
 themes/base_files/less/tiki-articles.less -text
 themes/base_files/less/tiki-blogs.less -text
+themes/base_files/less/tiki-bootstrap-chosen.less -text
 themes/base_files/less/tiki-bootstrap_overrides.less -text
 themes/base_files/less/tiki-boxes_and_panels.less -text
 themes/base_files/less/tiki-calendar.less -text
