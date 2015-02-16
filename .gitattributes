@@ -6050,6 +6050,7 @@ templates/user_conditions/age_validation.tpl -text
 templates/user_conditions/approval.tpl -text
 templates/user_registration.tpl -text
 templates/utilities/alert.tpl -text
+templates/utilities/modal_alert.tpl -text
 templates/vimeo/upload.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
