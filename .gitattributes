@@ -6044,7 +6044,10 @@ templates/translated-lang.tpl -text
 templates/translation/detach.tpl -text
 templates/translation/index.php -text
 templates/translation/manage.tpl -text
+templates/user/default_groups.tpl -text
+templates/user/email_wikipage.tpl -text
 templates/user/info.tpl -text
+templates/user/manage_groups.tpl -text
 templates/user/register.tpl -text
 templates/user_conditions/age_validation.tpl -text
 templates/user_conditions/approval.tpl -text
