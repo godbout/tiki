@@ -6230,6 +6230,7 @@ themes/base_files/less/tiki-file_galleries.less -text
 themes/base_files/less/tiki-forums.less -text
 themes/base_files/less/tiki-image_galleries.less -text
 themes/base_files/less/tiki-maps.less -text
+themes/base_files/less/tiki-media-print.less -text
 themes/base_files/less/tiki-minor_features.less -text
 themes/base_files/less/tiki-miscellaneous_global.less -text
 themes/base_files/less/tiki-modal_and_managestream.less -text
