@@ -3420,6 +3420,7 @@ lib/phpseclib_tiki/tikisecure.php -text
 lib/polls/index.php -text
 lib/polls/polllib.php -text
 lib/polls/polllib_shared.php -text
+lib/prefs/access.php -text
 lib/prefs/activity.php -text
 lib/prefs/ajax.php -text
 lib/prefs/allocate.php -text
