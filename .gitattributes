@@ -4388,7 +4388,7 @@ lib/validators/validator_pagename.php -text
 lib/validators/validator_passcode.php -text
 lib/validators/validator_password.php -text
 lib/validators/validator_regex.php -text
-lib/validators/validator_required_in_group.js -text
+lib/validators/validator_tiki.js -text
 lib/validators/validator_username.php -text
 lib/validatorslib.php -text
 lib/videogals/KalturaClient.php -text
