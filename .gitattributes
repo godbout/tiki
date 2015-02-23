@@ -2056,6 +2056,13 @@ lib/core/FutureLink/PastUI.php -text
 lib/core/FutureLink/ReceiveFromPast.php -text
 lib/core/FutureLink/Search.php -text
 lib/core/FutureLink/SendToFuture.php -text
+lib/core/Horde/Exception.php -text
+lib/core/Horde/Exception/LastError.php -text
+lib/core/Horde/Exception/NotFound.php -text
+lib/core/Horde/Exception/Pear.php -text
+lib/core/Horde/Exception/PermissionDenied.php -text
+lib/core/Horde/Exception/Translation.php -text
+lib/core/Horde/Exception/Wrapped.php -text
 lib/core/Horde/Yaml.php -text
 lib/core/Horde/Yaml/Dumper.php -text
 lib/core/Horde/Yaml/Exception.php -text
