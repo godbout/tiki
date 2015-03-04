@@ -6393,6 +6393,7 @@ themes/default/fonts/index.php -text
 themes/default/icons/index.php -text
 themes/default/images/index.php -text
 themes/default/index.php -text
+themes/default/less/default.less -text
 themes/default/less/index.php -text
 themes/default/options/index.php -text
 themes/default/templates/index.php -text
