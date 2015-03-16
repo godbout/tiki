@@ -5172,8 +5172,6 @@ templates/layouts/basic/layout_view.tpl -text
 templates/layouts/classic/layout_edit.tpl -text
 templates/layouts/classic/layout_view.tpl -text
 templates/layouts/classic/module.tpl -text
-templates/layouts/h_tb_m_f_containers_3-6-3/layout_edit.tpl -text
-templates/layouts/h_tb_m_f_containers_3-6-3/layout_view.tpl -text
 templates/layouts/header_middle_footer_containers/layout_edit.tpl -text
 templates/layouts/header_middle_footer_containers/layout_view.tpl -text
 templates/layouts/header_middle_footer_containers_3-6-3/layout_edit.tpl -text
