@@ -5172,6 +5172,8 @@ templates/layouts/basic/layout_view.tpl -text
 templates/layouts/classic/layout_edit.tpl -text
 templates/layouts/classic/layout_view.tpl -text
 templates/layouts/classic/module.tpl -text
+templates/layouts/fixed_top_modules/layout_edit.tpl -text
+templates/layouts/fixed_top_modules/layout_view.tpl -text
 templates/layouts/header_middle_footer_containers/layout_edit.tpl -text
 templates/layouts/header_middle_footer_containers/layout_view.tpl -text
 templates/layouts/header_middle_footer_containers_3-6-3/layout_edit.tpl -text
@@ -5181,8 +5183,6 @@ templates/layouts/internal/layout_edit.tpl -text
 templates/layouts/internal/layout_view.tpl -text
 templates/layouts/internal/modal.tpl -text
 templates/layouts/layout_plain.tpl -text
-templates/layouts/moving_headers/layout_edit.tpl -text
-templates/layouts/moving_headers/layout_view.tpl -text
 templates/layouts/social/layout_edit.tpl -text
 templates/layouts/social/layout_view.tpl -text
 templates/list_file_gallery.tpl -text
