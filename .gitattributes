@@ -5048,7 +5048,6 @@ templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
 templates/blog_heading.tpl -text
 templates/blog_post_actions.tpl -text
-templates/blog_post_author_actions.tpl -text
 templates/blog_post_author_info.tpl -text
 templates/blog_post_heading.tpl -text
 templates/blog_post_navigation.tpl -text
