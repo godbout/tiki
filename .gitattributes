@@ -1737,6 +1737,7 @@ installer/schema/20150112_theme_option_etc_tiki.sql -text
 installer/schema/20150203_add_menu_option_class_tiki.sql -text
 installer/schema/20150310_rename_freetags_in_menu_42_tiki.sql -text
 installer/schema/20150310_rename_mytiki_in_menu_42_tiki.sql -text
+installer/schema/20150327_tracker_showPopup_option_fix_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
