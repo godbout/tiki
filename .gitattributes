@@ -4970,6 +4970,7 @@ templates/access/confirm.tpl -text
 templates/activity/activityframe.tpl -text
 templates/activity/activitystream.tpl -text
 templates/activity/tiki.comment.post.tpl -text
+templates/activity/tiki.comment.reply.tpl -text
 templates/activity/tiki.forumpost.create.tpl -text
 templates/activity/tiki.forumpost.reply.tpl -text
 templates/activity/tiki.forumpost.update.tpl -text
