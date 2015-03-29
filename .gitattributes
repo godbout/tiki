@@ -28,7 +28,6 @@ admin/include_look.php -text
 admin/include_maps.php -text
 admin/include_messages.php -text
 admin/include_metatags.php -text
-admin/include_metrics.php -text
 admin/include_module.php -text
 admin/include_payment.php -text
 admin/include_performance.php -text
@@ -3516,7 +3515,6 @@ lib/prefs/memcache.php -text
 lib/prefs/menus.php -text
 lib/prefs/messu.php -text
 lib/prefs/metatag.php -text
-lib/prefs/metrics.php -text
 lib/prefs/middle.php -text
 lib/prefs/min.php -text
 lib/prefs/mobile.php -text
@@ -5332,7 +5330,6 @@ templates/messu-read_sent.tpl -text
 templates/messu-sent.tpl -text
 templates/metadata/meta_view_dialog.tpl -text
 templates/metadata/meta_view_tabs.tpl -text
-templates/metrics-tab.tpl -text
 templates/module.tpl -text
 templates/module/execute.tpl -text
 templates/modules/index.php -text
@@ -5642,7 +5639,6 @@ templates/tiki-admin_mailin.tpl -text
 templates/tiki-admin_mailin_routes.tpl -text
 templates/tiki-admin_menu_options.tpl -text
 templates/tiki-admin_menus.tpl -text
-templates/tiki-admin_metrics.tpl -text
 templates/tiki-admin_modules.tpl -text
 templates/tiki-admin_newsletter_subscriptions.tpl -text
 templates/tiki-admin_newsletters.tpl -text
@@ -5808,7 +5804,6 @@ templates/tiki-live_support_transcripts.tpl -text
 templates/tiki-login.tpl -text
 templates/tiki-login_confirm_email.tpl -text
 templates/tiki-mailin.tpl -text
-templates/tiki-metrics.tpl -text
 templates/tiki-mindmap.tpl -text
 templates/tiki-minical.tpl -text
 templates/tiki-minical_prefs.tpl -text
