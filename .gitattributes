@@ -2582,6 +2582,7 @@ lib/core/Tiki/Event/Customizer.php -text
 lib/core/Tiki/Event/Customizer/Executor.php -text
 lib/core/Tiki/Event/Customizer/RuleSet.php -text
 lib/core/Tiki/Event/EdgeProvider.php -text
+lib/core/Tiki/Event/Function/EventNotify.php -text
 lib/core/Tiki/Event/Function/EventRecord.php -text
 lib/core/Tiki/Event/Function/EventSample.php -text
 lib/core/Tiki/Event/Function/EventTrigger.php -text
@@ -4977,6 +4978,7 @@ templates/activity/tiki.query.critical.tpl -text
 templates/activity/tiki.query.high.tpl -text
 templates/activity/tiki.query.low.tpl -text
 templates/activity/tiki.recommendation.incoming.tpl -text
+templates/activity/tiki.tracker.create.tpl -text
 templates/activity/tiki.trackeritem.create.tpl -text
 templates/activity/tiki.trackeritem.update.tpl -text
 templates/activity/tiki.user.follow.add.tpl -text
