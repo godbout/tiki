@@ -6227,7 +6227,6 @@ themes/base_files/less/tiki-bootstrap_overrides.less -text
 themes/base_files/less/tiki-boxes_and_panels.less -text
 themes/base_files/less/tiki-calendar.less -text
 themes/base_files/less/tiki-categories.less -text
-themes/base_files/less/tiki-color_selectors.less -text
 themes/base_files/less/tiki-comments.less -text
 themes/base_files/less/tiki-cssmenus.less -text
 themes/base_files/less/tiki-external_scripts_overrides.less -text
@@ -6242,6 +6241,7 @@ themes/base_files/less/tiki-modal_and_managestream.less -text
 themes/base_files/less/tiki-modules.less -text
 themes/base_files/less/tiki-mytiki.less -text
 themes/base_files/less/tiki-search.less -text
+themes/base_files/less/tiki-selectors.less -text
 themes/base_files/less/tiki-sheets.less -text
 themes/base_files/less/tiki-tabs_and_tables.less -text
 themes/base_files/less/tiki-tags.less -text
