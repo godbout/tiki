@@ -7094,6 +7094,11 @@ themes/snow/less/bootstrap-variables.less -text
 themes/snow/less/index.php -text
 themes/snow/less/snow.less -text
 themes/snow/less/tiki-selectors.less -text
+themes/snow/options/nineties/css/nineties.css -text
+themes/snow/options/nineties/css/tiki-selectors.css -text
+themes/snow/options/nineties/images/nineties.png -text
+themes/snow/options/nineties/less/nineties.less -text
+themes/snow/options/nineties/less/tiki-selectors.less -text
 themes/snow/templates/index.php -text
 themes/snow/templates/module.tpl -text
 themes/spacelab/css/index.php -text
