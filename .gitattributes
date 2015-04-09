@@ -7268,6 +7268,7 @@ themes/yeti/templates/index.php -text
 /tiki-article_types.php -text
 /tiki-articles_rss.php -text
 /tiki-assignuser.php -text
+/tiki-autologin.php -text
 /tiki-backlinks.php -text
 /tiki-batch_send_newsletter.php -text
 /tiki-batch_todo.php -text
