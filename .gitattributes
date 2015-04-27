@@ -1738,6 +1738,7 @@ installer/schema/20150310_rename_freetags_in_menu_42_tiki.sql -text
 installer/schema/20150310_rename_mytiki_in_menu_42_tiki.sql -text
 installer/schema/20150327_tracker_showPopup_option_fix_tiki.sql -text
 installer/schema/20150414_profile_symbol_tooshort_fix_tiki.sql -text
+installer/schema/20150426_menu_item_external_wikis_restored.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
