@@ -6904,11 +6904,11 @@ themes/jqui/images/arrows-1174a5.png -text
 themes/jqui/images/index.php -text
 themes/jqui/images/jqui.png -text
 themes/jqui/index.php -text
+themes/jqui/less/bootstrap-less-for-options.less -text
 themes/jqui/less/bootstrap-variables.less -text
 themes/jqui/less/index.php -text
 themes/jqui/less/jqui.less -text
-themes/jqui/less/less_for_options/bootstrap-for-jqui-options.less -text
-themes/jqui/less/less_for_options/tiki-selectors.less -text
+themes/jqui/less/tiki-selectors-for-options.less -text
 themes/jqui/less/tiki-selectors.less -text
 themes/jqui/options/element/css/element.css -text
 themes/jqui/options/element/css/index.php -text
