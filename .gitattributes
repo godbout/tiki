@@ -6915,8 +6915,10 @@ themes/jqui/options/element/css/index.php -text
 themes/jqui/options/element/fonts/index.php -text
 themes/jqui/options/element/icons/index.php -text
 themes/jqui/options/element/images/index.php -text
+themes/jqui/options/element/less/bootstrap-variables.less -text
 themes/jqui/options/element/less/element.less -text
 themes/jqui/options/element/less/index.php -text
+themes/jqui/options/element/less/tiki-selector-variables.less -text
 themes/jqui/options/excitebike/css/excitebike.css -text
 themes/jqui/options/excitebike/css/index.php -text
 themes/jqui/options/excitebike/fonts/index.php -text
@@ -6929,7 +6931,10 @@ themes/jqui/options/flat/css/index.php -text
 themes/jqui/options/flat/fonts/index.php -text
 themes/jqui/options/flat/icons/index.php -text
 themes/jqui/options/flat/images/index.php -text
+themes/jqui/options/flat/less/bootstrap-variables.less -text
+themes/jqui/options/flat/less/flat.less -text
 themes/jqui/options/flat/less/index.php -text
+themes/jqui/options/flat/less/tiki-selector-variables.less -text
 themes/jqui/options/good/css/good.css -text
 themes/jqui/options/good/css/index.php -text
 themes/jqui/options/good/fonts/index.php -text
@@ -6937,7 +6942,10 @@ themes/jqui/options/good/icons/index.php -text
 themes/jqui/options/good/images/arrows-005faa.png -text
 themes/jqui/options/good/images/arrows-ffffff.png -text
 themes/jqui/options/good/images/index.php -text
+themes/jqui/options/good/less/bootstrap-variables.less -text
+themes/jqui/options/good/less/good.less -text
 themes/jqui/options/good/less/index.php -text
+themes/jqui/options/good/less/tiki-selector-variables.less -text
 themes/jqui/options/haus/css/haus.css -text
 themes/jqui/options/haus/css/index.php -text
 themes/jqui/options/haus/fonts/index.php -text
