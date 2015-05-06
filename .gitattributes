@@ -6915,6 +6915,7 @@ themes/jqui/options/element/css/index.php -text
 themes/jqui/options/element/fonts/index.php -text
 themes/jqui/options/element/icons/index.php -text
 themes/jqui/options/element/images/index.php -text
+themes/jqui/options/element/less/element.less -text
 themes/jqui/options/element/less/index.php -text
 themes/jqui/options/excitebike/css/excitebike.css -text
 themes/jqui/options/excitebike/css/index.php -text
