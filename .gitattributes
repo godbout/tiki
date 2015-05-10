@@ -6925,7 +6925,10 @@ themes/jqui/options/excitebike/fonts/index.php -text
 themes/jqui/options/excitebike/icons/index.php -text
 themes/jqui/options/excitebike/images/excitebike.png -text
 themes/jqui/options/excitebike/index.php -text
+themes/jqui/options/excitebike/less/bootstrap-variables.less -text
+themes/jqui/options/excitebike/less/excitebike.less -text
 themes/jqui/options/excitebike/less/index.php -text
+themes/jqui/options/excitebike/less/tiki-selector-variables.less -text
 themes/jqui/options/flat/css/flat.css -text
 themes/jqui/options/flat/css/index.php -text
 themes/jqui/options/flat/fonts/index.php -text
@@ -7019,6 +7022,7 @@ themes/paper/css/paper.css -text
 themes/paper/fonts/index.php -text
 themes/paper/icons/index.php -text
 themes/paper/images/index.php -text
+themes/paper/images/paper.png -text
 themes/paper/less/bootswatch.less -text
 themes/paper/less/index.php -text
 themes/paper/less/paper.less -text
@@ -7042,6 +7046,7 @@ themes/sandstone/css/sandstone.css -text
 themes/sandstone/fonts/index.php -text
 themes/sandstone/icons/index.php -text
 themes/sandstone/images/index.php -text
+themes/sandstone/images/sandstone.png -text
 themes/sandstone/less/bootswatch.less -text
 themes/sandstone/less/index.php -text
 themes/sandstone/less/sandstone.less -text
