@@ -6927,7 +6927,10 @@ themes/jqui/options/excitebike/fonts/index.php -text
 themes/jqui/options/excitebike/icons/index.php -text
 themes/jqui/options/excitebike/images/excitebike.png -text
 themes/jqui/options/excitebike/index.php -text
+themes/jqui/options/excitebike/less/bootstrap-variables.less -text
+themes/jqui/options/excitebike/less/excitebike.less -text
 themes/jqui/options/excitebike/less/index.php -text
+themes/jqui/options/excitebike/less/tiki-selector-variables.less -text
 themes/jqui/options/flat/css/flat.css -text
 themes/jqui/options/flat/css/index.php -text
 themes/jqui/options/flat/fonts/index.php -text
