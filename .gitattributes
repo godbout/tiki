@@ -6981,10 +6981,7 @@ themes/jqui/options/trontastic/fonts/index.php -text
 themes/jqui/options/trontastic/icons/index.php -text
 themes/jqui/options/trontastic/images/index.php -text
 themes/jqui/options/trontastic/index.php -text
-themes/jqui/options/trontastic/less/bootstrap-variables.less -text
 themes/jqui/options/trontastic/less/index.php -text
-themes/jqui/options/trontastic/less/tiki-selector-variables.less -text
-themes/jqui/options/trontastic/less/trontastic.less -text
 themes/jqui/options/trontastic/pics/icons/folder.png -text
 themes/jqui/options/trontastic/pics/icons/index.php -text
 themes/jqui/options/trontastic/pics/icons/ofolder.png -text
