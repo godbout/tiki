@@ -7198,7 +7198,6 @@ themes/tikinewt/less/tiki-selectors.less -text
 themes/tikinewt/less/tikinewt.less -text
 themes/tikinewt/options/index.php -text
 themes/tikinewt/options/shadows/css/shadows.css -text
-themes/tikinewt/options/shadows/images/box_shadow.png -text
 themes/tikinewt/options/shadows/images/index.php -text
 themes/tikinewt/templates/index.php -text
 themes/united/css/index.php -text
