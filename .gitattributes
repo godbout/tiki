@@ -6978,8 +6978,12 @@ themes/jqui/options/trontastic/css/trontastic.css -text
 themes/jqui/options/trontastic/fonts/index.php -text
 themes/jqui/options/trontastic/icons/index.php -text
 themes/jqui/options/trontastic/images/index.php -text
+themes/jqui/options/trontastic/images/trontastic.png -text svneol=unset#image/png
 themes/jqui/options/trontastic/index.php -text
+themes/jqui/options/trontastic/less/bootstrap-variables.less -text
 themes/jqui/options/trontastic/less/index.php -text
+themes/jqui/options/trontastic/less/tiki-selector-variables.less -text
+themes/jqui/options/trontastic/less/trontastic.less -text
 themes/jqui/options/trontastic/pics/icons/folder.png -text
 themes/jqui/options/trontastic/pics/icons/index.php -text
 themes/jqui/options/trontastic/pics/icons/ofolder.png -text
@@ -7192,7 +7196,6 @@ themes/tikinewt/less/tiki-selectors.less -text
 themes/tikinewt/less/tikinewt.less -text
 themes/tikinewt/options/index.php -text
 themes/tikinewt/options/shadows/css/shadows.css -text
-themes/tikinewt/options/shadows/images/box_shadow.png -text
 themes/tikinewt/options/shadows/images/index.php -text
 themes/tikinewt/templates/index.php -text
 themes/united/css/index.php -text
