@@ -4972,6 +4972,10 @@ temp/public/index.php -text
 temp/web.config -text
 templates/.htaccess -text
 templates/access/confirm.tpl -text
+templates/access/confirm_select.tpl -text
+templates/access/include_footer.tpl -text
+templates/access/include_hidden.tpl -text
+templates/access/include_items.tpl -text
 templates/activity/activityframe.tpl -text
 templates/activity/activitystream.tpl -text
 templates/activity/tiki.comment.post.tpl -text
@@ -5153,8 +5157,6 @@ templates/filter_control/multi_select.tpl -text
 templates/filter_control/text_field.tpl -text
 templates/find.tpl -text
 templates/footer.tpl -text
-templates/forum/merge_topic.tpl -text
-templates/forum/move_topic.tpl -text
 templates/freetag.tpl -text
 templates/freetag_list.tpl -text
 templates/goal/admin.tpl -text
@@ -6054,7 +6056,6 @@ templates/translated-lang.tpl -text
 templates/translation/detach.tpl -text
 templates/translation/index.php -text
 templates/translation/manage.tpl -text
-templates/user/default_groups.tpl -text
 templates/user/email_wikipage.tpl -text
 templates/user/info.tpl -text
 templates/user/manage_groups.tpl -text
