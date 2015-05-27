@@ -4451,6 +4451,7 @@ lib/wiki-plugins/wikiplugin_addtocart.php -text
 lib/wiki-plugins/wikiplugin_addtogooglecal.php -text
 lib/wiki-plugins/wikiplugin_adjustinventory.php -text
 lib/wiki-plugins/wikiplugin_agentinfo.php -text
+lib/wiki-plugins/wikiplugin_ajaxload.php -text
 lib/wiki-plugins/wikiplugin_alink.php -text
 lib/wiki-plugins/wikiplugin_aname.php -text
 lib/wiki-plugins/wikiplugin_annotation.php -text
