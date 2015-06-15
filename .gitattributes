@@ -2511,7 +2511,7 @@ lib/core/Table/Manager.php -text
 lib/core/Table/Plugin.php -text
 lib/core/Table/Settings/Abstract.php -text
 lib/core/Table/Settings/Plugin.php -text
-lib/core/Table/Settings/PluginTrackerlist.php -text
+lib/core/Table/Settings/PluginWithAjax.php -text
 lib/core/Table/Settings/Standard.php -text
 lib/core/Table/Settings/TikiAdminForums.php -text
 lib/core/Table/Settings/TikiAdminusers.php -text
