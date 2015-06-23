@@ -4517,7 +4517,6 @@ lib/videogals/KalturaPlugins/KalturaFileSyncClientPlugin.php -text
 lib/videogals/KalturaPlugins/KalturaMetadataClientPlugin.php -text
 lib/videogals/KalturaPlugins/KalturaShortLinkClientPlugin.php -text
 lib/videogals/KalturaPlugins/KalturaVirusScanClientPlugin.php -text
-lib/videogals/KalturaPlugins/index.php -text
 lib/videogals/KalturaTypes.php -text
 lib/videogals/index.php -text
 lib/videogals/kalturalib.php -text
