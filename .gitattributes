@@ -4862,6 +4862,7 @@ lib/zoterolib.php -text
 /license.txt -text
 /list-file_backlinks_ajax.php -text
 /list-tracker_field_values_ajax.php -text
+lists/articles.php -text
 maps/index.php -text
 /messu-archive.php -text
 /messu-broadcast.php -text
@@ -5161,6 +5162,7 @@ templates/admin/include_wysiwyg.tpl -text
 templates/admin/index.php -text
 templates/admin_modules_form.tpl -text
 templates/antibot.tpl -text
+templates/article-teaser.tpl -text
 templates/article.tpl -text
 templates/article/create_from_url.tpl -text
 templates/article/index.php -text
@@ -5317,6 +5319,8 @@ templates/layouts/social/layout_edit.tpl -text
 templates/layouts/social/layout_view.tpl -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
+templates/lists/article-search.tpl -text
+templates/lists/articles.tpl -text
 templates/mail/admin_add_user_joins_group_notification.tpl -text
 templates/mail/admin_add_user_joins_group_notification_subject.tpl -text
 templates/mail/admin_approval_user_joins_group_notification.tpl -text
