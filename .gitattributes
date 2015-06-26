@@ -3999,6 +3999,7 @@ lib/smarty_tiki/modifier.star.php -text
 lib/smarty_tiki/modifier.stringfix.php -text
 lib/smarty_tiki/modifier.substring.php -text
 lib/smarty_tiki/modifier.tasklink.php -text
+lib/smarty_tiki/modifier.template.php -text
 lib/smarty_tiki/modifier.tiki_date_format.php -text
 lib/smarty_tiki/modifier.tiki_long_date.php -text
 lib/smarty_tiki/modifier.tiki_long_datetime.php -text
@@ -6132,6 +6133,7 @@ templates/tracker_actions.tpl -text
 templates/tracker_calendar_over.tpl -text
 templates/tracker_error.tpl -text
 templates/tracker_filter.tpl -text
+templates/tracker_input_field.tpl -text
 templates/tracker_pretty_item.tpl -text
 templates/tracker_sort_input.tpl -text
 templates/tracker_status_input.tpl -text
