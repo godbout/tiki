@@ -3883,6 +3883,7 @@ lib/smarty_tiki/function.content.php -text
 lib/smarty_tiki/function.cookie.php -text
 lib/smarty_tiki/function.cookie_jar.php -text
 lib/smarty_tiki/function.count.php -text
+lib/smarty_tiki/function.custom_template.php -text
 lib/smarty_tiki/function.debugger.php -text
 lib/smarty_tiki/function.defaultmapcenter.php -text
 lib/smarty_tiki/function.ed.php -text
