@@ -2770,6 +2770,7 @@ lib/core/Tiki/Version/Version.php -text
 lib/core/Tiki/Version/index.php -text
 lib/core/Tiki/Wiki/SlugManager.php -text
 lib/core/Tiki/Wiki/SlugManager/CompilerPass.php -text
+lib/core/Tiki/Wiki/SlugManager/DashGenerator.php -text
 lib/core/Tiki/Wiki/SlugManager/Generator.php -text
 lib/core/Tiki/Wiki/SlugManager/InMemoryTracker.php -text
 lib/core/Tiki/Wiki/SlugManager/UnderscoreGenerator.php -text
