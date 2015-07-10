@@ -2770,6 +2770,7 @@ lib/core/Tiki/Version/Version.php -text
 lib/core/Tiki/Version/index.php -text
 lib/core/Tiki/Wiki/SlugManager.php -text
 lib/core/Tiki/Wiki/SlugManager/CompilerPass.php -text
+lib/core/Tiki/Wiki/SlugManager/DashGenerator.php -text
 lib/core/Tiki/Wiki/SlugManager/Generator.php -text
 lib/core/Tiki/Wiki/SlugManager/InMemoryTracker.php -text
 lib/core/Tiki/Wiki/SlugManager/UnderscoreGenerator.php -text
@@ -4627,6 +4628,7 @@ lib/wiki-plugins/wikiplugin_hasbought.php -text
 lib/wiki-plugins/wikiplugin_html.php -text
 lib/wiki-plugins/wikiplugin_htmlfeed.php -text
 lib/wiki-plugins/wikiplugin_htmlfeedlink.php -text
+lib/wiki-plugins/wikiplugin_icon.php -text
 lib/wiki-plugins/wikiplugin_iframe.php -text
 lib/wiki-plugins/wikiplugin_img.php -text
 lib/wiki-plugins/wikiplugin_include.php -text
