@@ -6132,6 +6132,7 @@ templates/tracker/replace.tpl -text
 templates/tracker/search_help.tpl -text
 templates/tracker/select_tracker.tpl -text
 templates/tracker/update_item.tpl -text
+templates/tracker/update_item_status.tpl -text
 templates/tracker/view.tpl -text
 templates/tracker_actions.tpl -text
 templates/tracker_calendar_over.tpl -text
