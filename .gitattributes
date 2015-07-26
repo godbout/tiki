@@ -2267,8 +2267,10 @@ lib/core/Search/Elastic/FacetReader.php -text
 lib/core/Search/Elastic/Index.php -text
 lib/core/Search/Elastic/MappingException.php -text
 lib/core/Search/Elastic/NotFoundException.php -text
+lib/core/Search/Elastic/NumberFormatException.php -text
 lib/core/Search/Elastic/OrderBuilder.php -text
 lib/core/Search/Elastic/QueryBuilder.php -text
+lib/core/Search/Elastic/QueryParsingException.php -text
 lib/core/Search/Elastic/RescoreQueryBuilder.php -text
 lib/core/Search/Elastic/ResultSet.php -text
 lib/core/Search/Elastic/SortException.php -text
