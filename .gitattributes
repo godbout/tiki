@@ -2478,6 +2478,7 @@ lib/core/Services/Rating/Controller.php -text
 lib/core/Services/Rating/index.php -text
 lib/core/Services/Recommendation/DevelopmentController.php -text
 lib/core/Services/Recommendation/index.php -text
+lib/core/Services/Relation/Controller.php -text
 lib/core/Services/RemoteController.php -text
 lib/core/Services/Report/Controller.php -text
 lib/core/Services/Report/index.php -text
@@ -3912,6 +3913,7 @@ lib/smarty_tiki/function.interactivetranslation.php -text
 lib/smarty_tiki/function.js_maxlength.php -text
 lib/smarty_tiki/function.jscalendar.php -text
 lib/smarty_tiki/function.jspopup.php -text
+lib/smarty_tiki/function.like.php -text
 lib/smarty_tiki/function.listfilter.php -text
 lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
@@ -4648,6 +4650,7 @@ lib/wiki-plugins/wikiplugin_js.php -text
 lib/wiki-plugins/wikiplugin_kaltura.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
+lib/wiki-plugins/wikiplugin_like.php -text
 lib/wiki-plugins/wikiplugin_list.php -text
 lib/wiki-plugins/wikiplugin_listexecute.php -text
 lib/wiki-plugins/wikiplugin_listpages.php -text
@@ -5329,6 +5332,7 @@ templates/layouts/layout_plain.tpl -text
 templates/layouts/social/index.php -text
 templates/layouts/social/layout_edit.tpl -text
 templates/layouts/social/layout_view.tpl -text
+templates/like.tpl -text
 templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/lists/article-search.tpl -text
@@ -6261,6 +6265,7 @@ templates/wiki-plugins/wikiplugin_grouplist.tpl -text
 templates/wiki-plugins/wikiplugin_groupstat.tpl -text
 templates/wiki-plugins/wikiplugin_invite.tpl -text
 templates/wiki-plugins/wikiplugin_kaltura.tpl -text
+templates/wiki-plugins/wikiplugin_like.tpl -text
 templates/wiki-plugins/wikiplugin_listexecute.tpl -text
 templates/wiki-plugins/wikiplugin_listpagenames.tpl -text
 templates/wiki-plugins/wikiplugin_localfiles.tpl -text
