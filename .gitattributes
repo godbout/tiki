@@ -6087,11 +6087,11 @@ templates/tiki-user_information.tpl -text
 templates/tiki-user_mailin.tpl -text
 templates/tiki-user_menu.tpl -text
 templates/tiki-user_preferences.tpl -text
-templates/tiki-user_profile.tpl -text
 templates/tiki-user_tasks.tpl -text
 templates/tiki-user_tasks_edit.tpl -text
 templates/tiki-user_tasks_list.tpl -text
 templates/tiki-user_tasks_view.tpl -text
+templates/tiki-user_unified_details.tpl -text
 templates/tiki-user_watches.tpl -text
 templates/tiki-userfiles.tpl -text
 templates/tiki-usermenu.tpl -text
@@ -7751,10 +7751,10 @@ themes/yeti/templates/index.php -text
 /tiki-user_mailin.php -text
 /tiki-user_notifications.php -text
 /tiki-user_preferences.php -text
-/tiki-user_profile.php -text
 /tiki-user_reports.php -text
 /tiki-user_reports_send.php -text
 /tiki-user_tasks.php -text
+/tiki-user_unified_details.php -text
 /tiki-user_watches.php -text
 /tiki-userfiles.php -text
 /tiki-usermenu.php -text
