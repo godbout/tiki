@@ -2605,6 +2605,7 @@ lib/core/Tiki/Command/ProfileInstallCommand.php -text
 lib/core/Tiki/Command/RecommendationBatchCommand.php -text
 lib/core/Tiki/Command/RedactDBCommand.php -text
 lib/core/Tiki/Command/RefreshRssCommand.php -text
+lib/core/Tiki/Command/TrackerImportCommand.php -text
 lib/core/Tiki/Command/UnavailableCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
 lib/core/Tiki/Command/index.php -text
