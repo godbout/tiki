@@ -3234,7 +3234,6 @@ lib/integrator/index.php -text
 lib/integrator/integrator.php -text
 lib/jcapture_tiki/index.php -text
 lib/jcapture_tiki/tiki-jcapture.js -text
-lib/jquery_tiki/activity.js -text
 lib/jquery_tiki/autoToc.js -text
 lib/jquery_tiki/brosho/index.php -text
 lib/jquery_tiki/brosho/tiki.brosho.css -text
