@@ -5458,6 +5458,8 @@ templates/mailin/index.php -text
 templates/mailin/remove_account.tpl -text
 templates/mailin/replace_account.tpl -text
 templates/managestream/advanced.tpl -text
+templates/managestream/change_rule_status.tpl -text
+templates/managestream/change_rule_type.tpl -text
 templates/managestream/delete.tpl -text
 templates/managestream/deleteactivity.tpl -text
 templates/managestream/index.php -text
