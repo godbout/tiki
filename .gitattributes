@@ -6045,6 +6045,7 @@ templates/tiki-rename_page.tpl -text
 templates/tiki-report_direct_object_perms.tpl -text
 templates/tiki-report_string_in_db.tpl -text
 templates/tiki-rollback.tpl -text
+templates/tiki-search_count.tpl -text
 templates/tiki-search_replace.tpl -text
 templates/tiki-search_stats.tpl -text
 templates/tiki-searchfacets.tpl -text
