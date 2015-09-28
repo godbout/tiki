@@ -5087,6 +5087,7 @@ templates/access/confirm.tpl -text
 templates/access/index.php -text
 templates/activity/activityframe.tpl -text
 templates/activity/activitystream.tpl -text
+templates/activity/default_event.tpl -text
 templates/activity/index.php -text
 templates/activity/tiki.comment.post.tpl -text
 templates/activity/tiki.comment.reply.tpl -text
