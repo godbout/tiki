@@ -1747,6 +1747,7 @@ installer/schema/20150426_menu_item_external_wikis_restored_tiki.sql -text
 installer/schema/20150508_perspectives_style_to_theme_tiki.php -text
 installer/schema/20150730_menu_item_tabular_trackers_tiki.sql -text
 installer/schema/20150901_prefname_char_length_tiki.sql -text
+installer/schema/20150929_make_hotwords_longer_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
