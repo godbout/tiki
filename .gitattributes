@@ -2791,6 +2791,7 @@ lib/core/Tiki/index.php -text
 lib/core/TikiAddons.php -text
 lib/core/TikiAddons/Addon.php -text
 lib/core/TikiAddons/Api.php -text
+lib/core/TikiAddons/Api/Events.php -text
 lib/core/TikiAddons/Api/FileGallery.php -text
 lib/core/TikiAddons/Api/Group.php -text
 lib/core/TikiAddons/Api/NavBar.php -text
