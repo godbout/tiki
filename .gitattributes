@@ -3275,6 +3275,7 @@ lib/jquery_tiki/tiki-ajax_services.js -text
 lib/jquery_tiki/tiki-bootstrapmodalfix.js -text
 lib/jquery_tiki/tiki-connect.js -text
 lib/jquery_tiki/tiki-jquery.js -text
+lib/jquery_tiki/tiki-jquery_upload.js -text
 lib/jquery_tiki/tiki-maps-ol3.js -text
 lib/jquery_tiki/tiki-maps.js -text
 lib/jquery_tiki/tiki-themegenerator.js -text
@@ -3906,6 +3907,7 @@ lib/smarty_tiki/function.favorite.php -text
 lib/smarty_tiki/function.fgal_browse.php -text
 lib/smarty_tiki/function.file_selector.php -text
 lib/smarty_tiki/function.filegal_manager_url.php -text
+lib/smarty_tiki/function.filegal_uploader.php -text
 lib/smarty_tiki/function.fileinfo.php -text
 lib/smarty_tiki/function.formitem.php -text
 lib/smarty_tiki/function.gallery.php -text
@@ -5277,6 +5279,7 @@ templates/fgal_context_menu.tpl -text
 templates/fgal_listing_conf.tpl -text
 templates/file/browse.tpl -text
 templates/file/index.php -text
+templates/file/jquery_upload.tpl -text
 templates/file/list_gallery.tpl -text
 templates/file/remote.tpl -text
 templates/file/thumbnail_gallery.tpl -text
