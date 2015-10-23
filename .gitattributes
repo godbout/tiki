@@ -5739,6 +5739,7 @@ templates/report/wikidata.tpl -text
 templates/search/help.tpl -text
 templates/search/index.php -text
 templates/search/list/carousel.tpl -text
+templates/search/list/count.tpl -text
 templates/search/list/index.php -text
 templates/search/list/medialist.tpl -text
 templates/search/list/table.tpl -text
