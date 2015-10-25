@@ -6248,6 +6248,7 @@ templates/user_registration.tpl -text
 templates/utilities/alert.tpl -text
 templates/utilities/index.php -text
 templates/utilities/modal_alert.tpl -text
+templates/utilities/security.tpl -text
 templates/vimeo/index.php -text
 templates/vimeo/upload.tpl -text
 templates/web.config -text
