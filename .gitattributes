@@ -3001,6 +3001,7 @@ lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
 lib/featured_links/flinkslib.php -text
 lib/featured_links/index.php -text
+lib/filegals/filegalbatchlib.php -text
 lib/filegals/filegallib.php -text
 lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
