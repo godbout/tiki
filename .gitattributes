@@ -5705,6 +5705,7 @@ templates/object_selector.tpl -text
 templates/object_selector_multi.tpl -text
 templates/pagehistory.tpl -text
 templates/password_help.tpl -text
+templates/password_jq.tpl -text
 templates/permission_link.tpl -text
 templates/plugins/index.php -text
 templates/plugins/plugin-topfriends.tpl -text
