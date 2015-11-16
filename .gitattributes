@@ -2542,6 +2542,7 @@ lib/core/Table/Code/Manager.php -text
 lib/core/Table/Code/Other.php -text
 lib/core/Table/Code/WidgetOptions.php -text
 lib/core/Table/Code/WidgetOptionsFilter.php -text
+lib/core/Table/Code/WidgetOptionsMath.php -text
 lib/core/Table/Code/WidgetOptionsPager.php -text
 lib/core/Table/Code/index.php -text
 lib/core/Table/Factory.php -text
@@ -2557,6 +2558,7 @@ lib/core/Table/Settings/TikiForums.php -text
 lib/core/Table/Settings/TikiListpages.php -text
 lib/core/Table/Settings/TikiViewforum.php -text
 lib/core/Table/Settings/index.php -text
+lib/core/Table/Totals.php -text
 lib/core/Table/index.php -text
 lib/core/Tiki/BigBlueButton/Configuration.php -text
 lib/core/Tiki/BigBlueButton/index.php -text
@@ -5791,6 +5793,8 @@ templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
 templates/suite/index.php -text
 templates/suite/jitsi.tpl -text
+templates/tablesorter/index.php -text
+templates/tablesorter/totals.tpl -text
 templates/tabular/create.tpl -text
 templates/tabular/delete.tpl -text
 templates/tabular/edit.tpl -text
