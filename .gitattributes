@@ -3484,8 +3484,6 @@ lib/openlayers/theme/default/style.mobile.tidy.css -text
 lib/openlayers/theme/default/style.tidy.css -text
 lib/openlayers/theme/index.php -text
 lib/openlayers/tiki-notes.txt -text
-lib/openpgp/OpenPGP_Zend_Mail.php -text
-lib/openpgp/OpenPGP_Zend_Mail_Transport_Abstract.php -text
 lib/openpgp/OpenPGP_Zend_Mail_Transport_Sendmail.php -text
 lib/openpgp/OpenPGP_Zend_Mail_Transport_Smtp.php -text
 lib/openpgp/index.php -text
