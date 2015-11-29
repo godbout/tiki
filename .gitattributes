@@ -2465,6 +2465,7 @@ lib/core/Services/JCapture/Controller.php -text
 lib/core/Services/JCapture/index.php -text
 lib/core/Services/Kaltura/Controller.php -text
 lib/core/Services/Kaltura/index.php -text
+lib/core/Services/Language/Controller.php -text
 lib/core/Services/Language/TranslationController.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
