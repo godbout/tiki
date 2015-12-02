@@ -3942,6 +3942,7 @@ lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.module.php -text
 lib/smarty_tiki/function.modulelist.php -text
 lib/smarty_tiki/function.monitor_link.php -text
+lib/smarty_tiki/function.multilike.php -text
 lib/smarty_tiki/function.norecords.php -text
 lib/smarty_tiki/function.notification_link.php -text
 lib/smarty_tiki/function.obj_in_cat.php -text
@@ -5697,6 +5698,7 @@ templates/monitor/notification_link.tpl -text
 templates/monitor/object.tpl -text
 templates/monitor/stream.tpl -text
 templates/monitor/unread.tpl -text
+templates/multilike.tpl -text
 templates/mustread/circulate.tpl -text
 templates/mustread/detail.tpl -text
 templates/mustread/index.php -text
