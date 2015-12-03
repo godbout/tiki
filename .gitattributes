@@ -1748,6 +1748,7 @@ installer/schema/20150508_perspectives_style_to_theme_tiki.php -text
 installer/schema/20150730_menu_item_tabular_trackers_tiki.sql -text
 installer/schema/20150901_prefname_char_length_tiki.sql -text
 installer/schema/20150929_make_hotwords_longer_tiki.sql -text
+installer/schema/20151203_tiki_score_revamp_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2493,6 +2494,7 @@ lib/core/Services/Report/index.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
+lib/core/Services/Score/Controller.php -text
 lib/core/Services/Search/Controller.php -text
 lib/core/Services/Search/CustomSearchController.php -text
 lib/core/Services/Search/ManifoldController.php -text
@@ -5764,6 +5766,7 @@ templates/report/index.php -text
 templates/report/load.tpl -text
 templates/report/preview.tpl -text
 templates/report/wikidata.tpl -text
+templates/score/create_score_event.tpl -text
 templates/search/help.tpl -text
 templates/search/index.php -text
 templates/search/list/carousel.tpl -text
