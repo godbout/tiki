@@ -1749,6 +1749,7 @@ installer/schema/20150730_menu_item_tabular_trackers_tiki.sql -text
 installer/schema/20150901_prefname_char_length_tiki.sql -text
 installer/schema/20150929_make_hotwords_longer_tiki.sql -text
 installer/schema/20151203_tiki_score_revamp_tiki.sql -text
+installer/schema/20151203_tokens_create_user_tiki.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -5403,6 +5404,8 @@ templates/mail/fgal_quota_exceeded.tpl -text
 templates/mail/forum_outbound.tpl -text
 templates/mail/forum_post_notification.tpl -text
 templates/mail/index.php -text
+templates/mail/invite_tempuser.tpl -text
+templates/mail/invite_tempuser_subject.tpl -text
 templates/mail/mail_invite.tpl -text
 templates/mail/mail_invite_subject.tpl -text
 templates/mail/mailin_reply_subject.tpl -text
