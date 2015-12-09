@@ -6289,6 +6289,7 @@ templates/utilities/index.php -text
 templates/utilities/modal_alert.tpl -text
 templates/vimeo/index.php -text
 templates/vimeo/upload.tpl -text
+templates/vimeo/view.tpl -text
 templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
