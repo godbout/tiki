@@ -6288,6 +6288,7 @@ templates/user_conditions/index.php -text
 templates/user_registration.tpl -text
 templates/utilities/alert.tpl -text
 templates/utilities/alert_button.tpl -text
+templates/utilities/feedback.tpl -text
 templates/utilities/index.php -text
 templates/utilities/modal_alert.tpl -text
 templates/vimeo/index.php -text
