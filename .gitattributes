@@ -1963,6 +1963,7 @@ lib/auth/index.php -text
 lib/auth/ldap.php -text
 lib/auth/phpbb.php -text
 lib/auth/tokens.php -text
+lib/avatarlib.php -text
 lib/ban/banlib.php -text
 lib/ban/index.php -text
 lib/banners/bannerlib.php -text
