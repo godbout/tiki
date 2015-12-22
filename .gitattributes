@@ -3290,6 +3290,7 @@ lib/jquery_tiki/galleriffic/css/prevPageArrowWhite.gif -text
 lib/jquery_tiki/galleriffic/css/white.css -text
 lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
+lib/jquery_tiki/multilike.js -text
 lib/jquery_tiki/mustread.js -text
 lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tiki-admin.js -text
@@ -6482,6 +6483,7 @@ themes/base_files/less/tiki-minor_features.less -text
 themes/base_files/less/tiki-miscellaneous_global.less -text
 themes/base_files/less/tiki-modal_and_managestream.less -text
 themes/base_files/less/tiki-modules.less -text
+themes/base_files/less/tiki-multilike.less -text
 themes/base_files/less/tiki-mytiki.less -text
 themes/base_files/less/tiki-search.less -text
 themes/base_files/less/tiki-selectors.less -text
