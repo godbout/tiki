@@ -7779,6 +7779,7 @@ themes/yeti/templates/index.php -text
 /tiki-slideshow.php -text
 /tiki-socialnetworks.php -text
 /tiki-socialnetworks_firstlogin.php -text
+/tiki-socialnetworks_linkedin.php -text
 /tiki-sqllog.php -text
 /tiki-stats.php -text
 /tiki-survey_stats.php -text
