@@ -5352,7 +5352,6 @@ templates/jcapture/capture.tpl -text
 templates/jcapture/index.php -text
 templates/kaltura/index.php -text
 templates/kaltura/upload.tpl -text
-templates/language/download_db_translations.tpl -text
 templates/language/index.php -text
 templates/language/manage_custom_php_translations.tpl -text
 templates/language/select_language.tpl -text
