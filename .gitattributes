@@ -5354,6 +5354,8 @@ templates/kaltura/index.php -text
 templates/kaltura/upload.tpl -text
 templates/language/download_db_translations.tpl -text
 templates/language/index.php -text
+templates/language/manage_custom_php_translations.tpl -text
+templates/language/select_language.tpl -text
 templates/language/write_to_language_php.tpl -text
 templates/layouts/basic/index.php -text
 templates/layouts/basic/layout_edit.tpl -text
