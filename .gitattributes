@@ -2133,6 +2133,7 @@ lib/core/Math/Formula/Function/Mul.php -text
 lib/core/Math/Formula/Function/Not.php -text
 lib/core/Math/Formula/Function/NotEquals.php -text
 lib/core/Math/Formula/Function/Or.php -text
+lib/core/Math/Formula/Function/Pad.php -text
 lib/core/Math/Formula/Function/Random.php -text
 lib/core/Math/Formula/Function/Round.php -text
 lib/core/Math/Formula/Function/SplitList.php -text
