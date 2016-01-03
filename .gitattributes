@@ -3364,7 +3364,6 @@ lib/metadata/index.php -text
 lib/metadata/metadatalib.php -text
 lib/metadata/reconcile.php -text
 lib/mime/index.php -text
-lib/mime/mimeextensions.php -text
 lib/mime/mimelib.php -text
 lib/mime/mimetypes.php -text
 lib/minical/index.php -text
