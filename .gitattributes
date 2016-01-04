@@ -2590,6 +2590,8 @@ lib/core/Tiki/Command/InstallCommand.php -text
 lib/core/Tiki/Command/LessCompileCommand.php -text
 lib/core/Tiki/Command/MailInPollCommand.php -text
 lib/core/Tiki/Command/MailQueueSendCommand.php -text
+lib/core/Tiki/Command/MultiTikiListCommand.php -text
+lib/core/Tiki/Command/MultiTikiMoveCommand.php -text
 lib/core/Tiki/Command/NotificationDigestCommand.php -text
 lib/core/Tiki/Command/ProfileBaselineCommand.php -text
 lib/core/Tiki/Command/ProfileExport/ActivityRuleSet.php -text
