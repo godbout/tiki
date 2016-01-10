@@ -2636,6 +2636,8 @@ lib/core/Tiki/Composer/BootstrapCompiler.php -text
 lib/core/Tiki/Composer/CleanVendors.php -text
 lib/core/Tiki/Composer/ThemeInstaller.php -text
 lib/core/Tiki/Composer/index.php -text
+lib/core/Tiki/Config/Ini.php -text
+lib/core/Tiki/Config/index.php -text
 lib/core/Tiki/Connect/Abstract.php -text
 lib/core/Tiki/Connect/Client.php -text
 lib/core/Tiki/Connect/Server.php -text
