@@ -4800,6 +4800,7 @@ lib/wiki-plugins/wikiplugin_translated.php -text
 lib/wiki-plugins/wikiplugin_translationof.php -text
 lib/wiki-plugins/wikiplugin_twitter.php -text
 lib/wiki-plugins/wikiplugin_usercount.php -text
+lib/wiki-plugins/wikiplugin_useringroup.php -text
 lib/wiki-plugins/wikiplugin_userlastlogged.php -text
 lib/wiki-plugins/wikiplugin_userlink.php -text
 lib/wiki-plugins/wikiplugin_userlist.php -text
