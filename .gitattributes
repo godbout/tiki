@@ -3953,6 +3953,7 @@ lib/smarty_tiki/function.jscalendar.php -text
 lib/smarty_tiki/function.jspopup.php -text
 lib/smarty_tiki/function.like.php -text
 lib/smarty_tiki/function.listfilter.php -text
+lib/smarty_tiki/function.lock.php -text
 lib/smarty_tiki/function.memusage.php -text
 lib/smarty_tiki/function.menu.php -text
 lib/smarty_tiki/function.module.php -text
@@ -5400,6 +5401,7 @@ templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/lists/article-search.tpl -text
 templates/lists/articles.tpl -text
+templates/lock.tpl -text
 templates/mail/admin_add_user_joins_group_notification.tpl -text
 templates/mail/admin_add_user_joins_group_notification_subject.tpl -text
 templates/mail/admin_approval_user_joins_group_notification.tpl -text
