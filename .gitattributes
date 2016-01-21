@@ -3631,6 +3631,7 @@ lib/prefs/language.php -text
 lib/prefs/layout.php -text
 lib/prefs/ldap.php -text
 lib/prefs/load.php -text
+lib/prefs/lock.php -text
 lib/prefs/log.php -text
 lib/prefs/login.php -text
 lib/prefs/long.php -text
