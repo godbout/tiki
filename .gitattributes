@@ -3296,6 +3296,7 @@ lib/jquery_tiki/galleriffic/css/nextPageArrowWhite.gif -text
 lib/jquery_tiki/galleriffic/css/prevPageArrow.gif -text
 lib/jquery_tiki/galleriffic/css/prevPageArrowWhite.gif -text
 lib/jquery_tiki/galleriffic/css/white.css -text
+lib/jquery_tiki/iconsets.js -text
 lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/multilike.js -text
