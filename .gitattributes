@@ -3355,7 +3355,6 @@ lib/map/map.js -text
 lib/map/map_query.php -text
 lib/map/maplib.php -text
 lib/map/usermap.php -text
-lib/md5.js -text
 lib/menubuilder/index.php -text
 lib/menubuilder/menu.js -text
 lib/menubuilder/menulib.php -text
