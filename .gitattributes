@@ -5403,7 +5403,6 @@ templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/lists/article-search.tpl -text
 templates/lists/articles.tpl -text
-templates/lock.tpl -text
 templates/mail/admin_add_user_joins_group_notification.tpl -text
 templates/mail/admin_add_user_joins_group_notification_subject.tpl -text
 templates/mail/admin_approval_user_joins_group_notification.tpl -text
@@ -5740,6 +5739,7 @@ templates/object/infobox.tpl -text
 templates/object/infobox/activity.tpl -text
 templates/object/infobox/index.php -text
 templates/object/infobox/trackeritem.tpl -text
+templates/object/lock.tpl -text
 templates/object_perms_summary.tpl -text
 templates/object_selector.tpl -text
 templates/object_selector_multi.tpl -text
