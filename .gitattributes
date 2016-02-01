@@ -4823,14 +4823,6 @@ lib/wiki/renderlib.php -text
 lib/wiki/semanticlib.php -text
 lib/wiki/wikilib.php -text
 lib/wiki/xmllib.php -text
-lib/wiki3d/CHANGELOG -text
-lib/wiki3d/CREDITS.txt -text
-lib/wiki3d/LGPL.txt -text
-lib/wiki3d/LICENSE.txt -text
-lib/wiki3d/README.txt -text
-lib/wiki3d/index.php -text
-lib/wiki3d/morcego-0.6.0.jar -text
-lib/wiki3d/pom.xml -text
 lib/wikiLingo_tiki/WikiEvents.php -text
 lib/wikiLingo_tiki/WikiLingoEvents.php -text
 lib/wikiLingo_tiki/WikiLingoTikiEvents.php -text
@@ -6155,7 +6147,6 @@ templates/tiki-webdav-wiki.tpl -text
 templates/tiki-webdav.tpl -text
 templates/tiki-webmail.tpl -text
 templates/tiki-webmail_contacts.tpl -text
-templates/tiki-wiki3d.tpl -text
 templates/tiki-wiki_structure_bar.tpl -text
 templates/tiki-wiki_topline.tpl -text
 templates/tiki-wizard_admin.tpl -text
@@ -7610,7 +7601,6 @@ themes/yeti/templates/index.php -text
 /tiki-forums.php -text
 /tiki-forums_reported.php -text
 /tiki-forums_rss.php -text
-/tiki-freetag3d_xmlrpc.php -text
 /tiki-freetag_translate.php -text
 /tiki-friends.php -text
 /tiki-galleries.php -text
@@ -7802,7 +7792,6 @@ themes/yeti/templates/index.php -text
 /tiki-user_watches.php -text
 /tiki-userfiles.php -text
 /tiki-usermenu.php -text
-/tiki-users3d_xmlrpc.php -text
 /tiki-userupload.php -text
 /tiki-userversions.php -text
 /tiki-view_articles.php -text
@@ -7826,8 +7815,6 @@ themes/yeti/templates/index.php -text
 /tiki-webmail_contacts.php -text
 /tiki-webmail_download_attachment.php -text
 /tiki-webservices.php -text
-/tiki-wiki3d.php -text
-/tiki-wiki3d_xmlrpc.php -text
 /tiki-wiki_rankings.php -text
 /tiki-wiki_rss.php -text
 /tiki-wiki_rss_no_diff.php -text
