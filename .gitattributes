@@ -3311,7 +3311,6 @@ lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery_upload.js -text
 lib/jquery_tiki/tiki-maps-ol3.js -text
 lib/jquery_tiki/tiki-maps.js -text
-lib/jquery_tiki/tiki-themegenerator.js -text
 lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
 lib/jquery_tiki/tiki-workspace-ui.js -text
@@ -3694,7 +3693,6 @@ lib/prefs/socialnetworks.php -text
 lib/prefs/storedsearch.php -text
 lib/prefs/suite.php -text
 lib/prefs/theme.php -text
-lib/prefs/themegenerator.php -text
 lib/prefs/tiki.php -text
 lib/prefs/tracker.php -text
 lib/prefs/trackerfield.php -text
@@ -4470,7 +4468,6 @@ lib/test/wiki-plugins/index.php -text
 lib/theme/iconsetlib.php -text
 lib/theme/index.php -text
 lib/theme/themecontrollib.php -text
-lib/theme/themegenlib.php -text
 lib/theme/themelib.php -text
 lib/tiki-dynamic-js.php -text
 lib/tiki-js.js -text
@@ -5843,7 +5840,6 @@ templates/tabular/list.tpl -text
 templates/tabular/manage.tpl -text
 templates/tabular/select.tpl -text
 templates/tabular/select_filter.tpl -text
-templates/themegen.tpl -text
 templates/tiki-accounting.tpl -text
 templates/tiki-accounting_account_deleted.tpl -text
 templates/tiki-accounting_account_form.tpl -text
