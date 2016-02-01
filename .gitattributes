@@ -42,6 +42,7 @@ admin/include_sefurl.php -text
 admin/include_semantic.php -text
 admin/include_share.php -text
 admin/include_socialnetworks.php -text
+admin/include_stats.php -text
 admin/include_textarea.php -text
 admin/include_trackers.php -text
 admin/include_userfiles.php -text
@@ -5187,6 +5188,7 @@ templates/admin/include_sefurl.tpl -text
 templates/admin/include_semantic.tpl -text
 templates/admin/include_share.tpl -text
 templates/admin/include_socialnetworks.tpl -text
+templates/admin/include_stats.tpl -text
 templates/admin/include_textarea.tpl -text
 templates/admin/include_trackers.tpl -text
 templates/admin/include_userfiles.tpl -text
