@@ -6793,6 +6793,7 @@ themes/fivealive-lite/options/watermelon/less/bootstrap-variables.less -text
 themes/fivealive-lite/options/watermelon/less/tiki-selector-variables.less -text
 themes/fivealive-lite/options/watermelon/less/watermelon.less -text
 themes/fivealive-lite/templates/index.php -text
+themes/fivealive/css/custom.css_example -text
 themes/fivealive/css/fivealive.css -text
 themes/fivealive/css/index.php -text
 themes/fivealive/css/newsletter.css -text
