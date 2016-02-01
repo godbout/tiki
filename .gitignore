@@ -10,6 +10,7 @@
 /ZendPlatform
 /ZendStudioServer
 /_htaccess
+/bin
 db/.htaccess
 db/cert/*.pem
 db/local.php
