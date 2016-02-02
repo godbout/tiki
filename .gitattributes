@@ -3964,6 +3964,7 @@ lib/smarty_tiki/function.page_alias.php -text
 lib/smarty_tiki/function.page_in_structure.php -text
 lib/smarty_tiki/function.payment.php -text
 lib/smarty_tiki/function.permission_link.php -text
+lib/smarty_tiki/function.pluralize.php -text
 lib/smarty_tiki/function.poll.php -text
 lib/smarty_tiki/function.popup.php -text
 lib/smarty_tiki/function.preference.php -text
