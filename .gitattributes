@@ -3615,6 +3615,7 @@ lib/prefs/http.php -text
 lib/prefs/https.php -text
 lib/prefs/ids.php -text
 lib/prefs/iepngfix.php -text
+lib/prefs/image.php -text
 lib/prefs/index.php -text
 lib/prefs/ip.php -text
 lib/prefs/javascript.php -text
