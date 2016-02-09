@@ -3876,6 +3876,7 @@ lib/simile_tiki/tiki-timeline.js -text
 lib/smarty_tiki/block.accordion.php -text
 lib/smarty_tiki/block.accordion_group.php -text
 lib/smarty_tiki/block.activityframe.php -text
+lib/smarty_tiki/block.addonview.php -text
 lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
