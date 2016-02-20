@@ -36,7 +36,6 @@ lib/test/core/Search/test_index
 lib/test/local.php
 lib/test/templates_c
 /maps
-maps/*
 /mods
 modules/.htaccess
 modules/cache

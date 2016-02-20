@@ -183,7 +183,6 @@ doc/devtools/update_english_strings.php -text
 doc/devtools/upto_4.1_delete_all_cetgory_perms.sql -text
 doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
 doc/devtools/upto_7_drop_unused_6.x_tables.sql -text
-doc/devtools/usergeo.php -text
 doc/index.php -text
 doc/longterm.cycle -text
 doc/readme.txt -text
@@ -4905,7 +4904,6 @@ lib/zoterolib.php -text
 /list-file_backlinks_ajax.php -text
 /list-tracker_field_values_ajax.php -text
 lists/articles.php -text
-maps/index.php -text
 /messu-archive.php -text
 /messu-broadcast.php -text
 /messu-compose.php -text
