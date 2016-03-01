@@ -3796,6 +3796,7 @@ lib/setup/third_party.php -text
 lib/setup/tikiIndex.php -text
 lib/setup/tikisetup.class.php -text
 lib/setup/timer.class.php -text
+lib/setup/tracker_force_fill.php -text
 lib/setup/twversion.class.php -text
 lib/setup/user_prefs.php -text
 lib/setup/userlevels.php -text
@@ -6113,6 +6114,7 @@ templates/tiki-theme_control.tpl -text
 templates/tiki-theme_control_objects.tpl -text
 templates/tiki-theme_control_sections.tpl -text
 templates/tiki-timesheet.tpl -text
+templates/tiki-tracker_force_fill.tpl -text
 templates/tiki-tracker_reports.tpl -text
 templates/tiki-tracker_view_history.tpl -text
 templates/tiki-upload_file.tpl -text
