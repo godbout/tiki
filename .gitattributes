@@ -6346,7 +6346,6 @@ templates/wiki/get_page.tpl -text
 templates/wiki/index.php -text
 templates/wiki/regenerate_slugs.tpl -text
 templates/wiki_authors.tpl -text
-templates/wiki_authors_style.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
 templates/wizard/admin_advanced.tpl -text
