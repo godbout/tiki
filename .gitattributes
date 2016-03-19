@@ -5217,6 +5217,7 @@ templates/article/index.php -text
 templates/article_trailer.tpl -text
 templates/attachments.tpl -text
 templates/attachments_tracker.tpl -text
+templates/blog_actions.tpl -text
 templates/blog_heading.tpl -text
 templates/blog_post_actions.tpl -text
 templates/blog_post_author_info.tpl -text
