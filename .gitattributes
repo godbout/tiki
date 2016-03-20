@@ -3564,12 +3564,10 @@ lib/prefs/allowmsg.php -text
 lib/prefs/areas.php -text
 lib/prefs/art.php -text
 lib/prefs/article.php -text
-lib/prefs/articles.php -text
 lib/prefs/auth.php -text
 lib/prefs/available.php -text
 lib/prefs/bigbluebutton.php -text
 lib/prefs/blog.php -text
-lib/prefs/blogs.php -text
 lib/prefs/box.php -text
 lib/prefs/calendar.php -text
 lib/prefs/captcha.php -text
@@ -3594,7 +3592,6 @@ lib/prefs/display.php -text
 lib/prefs/email.php -text
 lib/prefs/error.php -text
 lib/prefs/faq.php -text
-lib/prefs/faqs.php -text
 lib/prefs/feature.php -text
 lib/prefs/federated.php -text
 lib/prefs/feed.php -text
