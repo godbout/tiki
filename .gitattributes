@@ -1757,6 +1757,7 @@ installer/schema/20160120_remove_gmap_menu_item_tiki.sql -text
 installer/schema/20160201_remove_maps_menus_tiki.sql -text
 installer/schema/20160206_theme_option_modules_tiki.sql -text
 installer/schema/20160315_correct_blogpost_encoding_tiki.sql -text
+installer/schema/20160325_menu_42_list_pages_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
