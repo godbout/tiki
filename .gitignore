@@ -13,6 +13,7 @@
 /bin
 db/.htaccess
 db/cert/*.pem
+db/config/custom.xml
 db/local.php
 db/lock
 db/virtuals.inc
