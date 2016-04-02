@@ -7551,6 +7551,7 @@ themes/yeti/templates/index.php -text
 /tiki-copypage.php -text
 /tiki-create_multilang_pages.php -text
 /tiki-create_webhelp.php -text
+/tiki-db_connection_error.html -text
 /tiki-directories_rss.php -text
 /tiki-directory_add_site.php -text
 /tiki-directory_add_tiki_site.php -text
