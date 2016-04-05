@@ -6268,6 +6268,7 @@ templates/user/manage_groups.tpl -text
 templates/user/register.tpl -text
 templates/user/remove_users.tpl -text
 templates/user/send_message.tpl -text
+templates/user/upload_avatar.tpl -text
 templates/user_conditions/age_validation.tpl -text
 templates/user_conditions/approval.tpl -text
 templates/user_conditions/index.php -text
