@@ -6516,6 +6516,7 @@ themes/business/less/bootstrap-variables.less -text
 themes/business/less/business.less -text
 themes/business/less/index.php -text
 themes/business/less/tiki-selectors.less -text
+themes/business/templates/index.php -text
 themes/cerulean/css/cerulean.css -text
 themes/cerulean/css/index.php -text
 themes/cerulean/fonts/index.php -text
