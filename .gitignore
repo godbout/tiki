@@ -60,3 +60,4 @@ tests/.htaccess
 tiki_tests/tests
 /var
 /vendor
+/vendor_custom
