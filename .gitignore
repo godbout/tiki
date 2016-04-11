@@ -54,9 +54,9 @@ templates/.htaccess
 /templates_c
 templates_c/*
 tests/.htaccess
-/themes
 /tiki-*.log
 /tiki-emptycache.php
 tiki_tests/tests
 /var
 /vendor
+vendor_custom/*
