@@ -6622,6 +6622,7 @@ themes/default/css/default.css -text
 themes/default/css/index.php -text
 themes/default/fonts/index.php -text
 themes/default/icons/index.php -text
+themes/default/images/default.png -text
 themes/default/images/index.php -text
 themes/default/index.php -text
 themes/default/less/default.less -text
