@@ -6550,9 +6550,10 @@ themes/cupid/icons/index.php -text
 themes/cupid/images/cupid.png -text
 themes/cupid/images/index.php -text
 themes/cupid/index.php -text
+themes/cupid/less/bootstrap-variables.less -text
 themes/cupid/less/cupid.less -text
-themes/cupid/less/cupidcss.less -text
 themes/cupid/less/index.php -text
+themes/cupid/less/tiki-selectors.less -text
 themes/cupid/templates/index.php -text
 themes/cupid/unclear-to-be-checked-tiki.less -text
 themes/cyborg/css/cyborg.css -text
