@@ -2848,6 +2848,8 @@ lib/core/TikiDb/Table.php -text
 lib/core/TikiDb/Transaction.php -text
 lib/core/TikiDb/index.php -text
 lib/core/TikiFilter.php -text
+lib/core/TikiFilter/Alnum.php -text
+lib/core/TikiFilter/Alpha.php -text
 lib/core/TikiFilter/AttributeType.php -text
 lib/core/TikiFilter/Callback.php -text
 lib/core/TikiFilter/HtmlPurifier.php -text
