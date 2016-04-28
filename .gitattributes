@@ -2241,6 +2241,8 @@ lib/core/Reports/Send/EmailBuilder/TrackerItemComment.php -text
 lib/core/Reports/Send/EmailBuilder/TrackerItemModified.php -text
 lib/core/Reports/Send/EmailBuilder/WikiFileAttached.php -text
 lib/core/Reports/Send/EmailBuilder/WikiPageChanged.php -text
+lib/core/Reports/Send/EmailBuilder/WikiPageCreated.php -text
+lib/core/Reports/Send/EmailBuilder/WikiPageDeleted.php -text
 lib/core/Reports/Send/EmailBuilder/index.php -text
 lib/core/Reports/Send/index.php -text
 lib/core/Reports/Users.php -text
