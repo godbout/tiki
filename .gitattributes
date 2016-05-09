@@ -2663,6 +2663,7 @@ lib/core/Tiki/Event/Customizer/Executor.php -text
 lib/core/Tiki/Event/Customizer/RuleSet.php -text
 lib/core/Tiki/Event/Customizer/index.php -text
 lib/core/Tiki/Event/EdgeProvider.php -text
+lib/core/Tiki/Event/Function/EventLog.php -text
 lib/core/Tiki/Event/Function/EventNotify.php -text
 lib/core/Tiki/Event/Function/EventRecord.php -text
 lib/core/Tiki/Event/Function/EventSample.php -text
