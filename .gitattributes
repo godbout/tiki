@@ -2081,6 +2081,7 @@ lib/core/Feed/Html/Receive.php -text
 lib/core/Feed/Html/index.php -text
 lib/core/Feed/Item.php -text
 lib/core/Feed/index.php -text
+lib/core/Feedback.php -text
 lib/core/FutureLink/FutureUI.php -text
 lib/core/FutureLink/Metadata.php -text
 lib/core/FutureLink/MetadataAssembler.php -text
@@ -3034,7 +3035,6 @@ lib/equation/class.latexrender.php -text
 lib/equation/index.php -text
 lib/equation/pictures/index.php -text
 lib/equation/tmp/index.php -text
-lib/errorreportlib.php -text
 lib/events/index.php -text
 lib/faqs/faqlib.php -text
 lib/faqs/index.php -text
@@ -3940,8 +3940,8 @@ lib/smarty_tiki/function.debugger.php -text
 lib/smarty_tiki/function.defaultmapcenter.php -text
 lib/smarty_tiki/function.ed.php -text
 lib/smarty_tiki/function.elapsed.php -text
-lib/smarty_tiki/function.error_report.php -text
 lib/smarty_tiki/function.favorite.php -text
+lib/smarty_tiki/function.feedback.php -text
 lib/smarty_tiki/function.fgal_browse.php -text
 lib/smarty_tiki/function.file_selector.php -text
 lib/smarty_tiki/function.filegal_manager_url.php -text
@@ -5289,6 +5289,8 @@ templates/examples/shop/product_item.tpl -text
 templates/examples/shop/product_list.tpl -text
 templates/examples/shop/product_list_inner.tpl -text
 templates/examples/shop/readme.txt -text
+templates/feedback/default.tpl -text
+templates/feedback/pref.tpl -text
 templates/fgal_attachments.tpl -text
 templates/fgal_context_menu.tpl -text
 templates/fgal_listing_conf.tpl -text
@@ -6266,7 +6268,6 @@ templates/user_conditions/index.php -text
 templates/user_registration.tpl -text
 templates/utilities/alert.tpl -text
 templates/utilities/alert_button.tpl -text
-templates/utilities/feedback.tpl -text
 templates/utilities/index.php -text
 templates/utilities/modal_alert.tpl -text
 templates/vimeo/index.php -text
