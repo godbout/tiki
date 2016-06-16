@@ -5688,6 +5688,8 @@ templates/monitor/clearall.tpl -text
 templates/monitor/index.php -text
 templates/monitor/link.tpl -text
 templates/monitor/notification_email_body.tpl -text
+templates/monitor/notification_email_digest_subject.tpl -text
+templates/monitor/notification_email_subject.tpl -text
 templates/monitor/notification_link.tpl -text
 templates/monitor/object.tpl -text
 templates/monitor/stream.tpl -text
