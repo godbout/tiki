@@ -2546,6 +2546,7 @@ lib/core/Services/User/FavoriteController.php -text
 lib/core/Services/User/MonitorController.php -text
 lib/core/Services/User/SocialController.php -text
 lib/core/Services/User/index.php -text
+lib/core/Services/Utilities.php -text
 lib/core/Services/Utilities/Controller.php -text
 lib/core/Services/Utilities/index.php -text
 lib/core/Services/Wiki/Controller.php -text
