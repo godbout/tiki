@@ -2548,8 +2548,6 @@ lib/core/Services/User/MonitorController.php -text
 lib/core/Services/User/SocialController.php -text
 lib/core/Services/User/index.php -text
 lib/core/Services/Utilities.php -text
-lib/core/Services/Utilities/Controller.php -text
-lib/core/Services/Utilities/index.php -text
 lib/core/Services/Wiki/Controller.php -text
 lib/core/Services/Wiki/StructureController.php -text
 lib/core/Services/Wiki/index.php -text
@@ -6275,10 +6273,6 @@ templates/user_conditions/age_validation.tpl -text
 templates/user_conditions/approval.tpl -text
 templates/user_conditions/index.php -text
 templates/user_registration.tpl -text
-templates/utilities/alert.tpl -text
-templates/utilities/alert_button.tpl -text
-templates/utilities/index.php -text
-templates/utilities/modal_alert.tpl -text
 templates/vimeo/index.php -text
 templates/vimeo/upload.tpl -text
 templates/vimeo/view.tpl -text
