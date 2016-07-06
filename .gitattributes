@@ -7380,6 +7380,37 @@ themes/strasa/less/bootstrap-variables.less -text
 themes/strasa/less/index.php -text
 themes/strasa/less/strasa.less -text
 themes/strasa/less/tiki-selectors.less -text
+themes/strasa/options/cool.css -text
+themes/strasa/options/cool/box_bottom.gif -text
+themes/strasa/options/cool/box_top.gif -text
+themes/strasa/options/cool/cool.png -text
+themes/strasa/options/cool/fold-topright.jpg -text
+themes/strasa/options/cool/headerbg.jpg -text svneol=unset#image/jpeg
+themes/strasa/options/cool/headermenuitem-hover.png -text
+themes/strasa/options/cool/index.php -text
+themes/strasa/options/cool/login.jpg -text svneol=unset#image/jpeg
+themes/strasa/options/cool/loginlong.jpg -text svneol=unset#image/jpeg
+themes/strasa/options/cool/register.jpg -text svneol=unset#image/jpeg
+themes/strasa/options/index.php -text
+themes/strasa/options/mono.css -text
+themes/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
+themes/strasa/options/mono/body-bg_fw.gif -text
+themes/strasa/options/mono/box_bottom.gif -text
+themes/strasa/options/mono/box_bottom_fw.gif -text
+themes/strasa/options/mono/box_top.gif -text
+themes/strasa/options/mono/box_top_fw.gif -text
+themes/strasa/options/mono/fold-topright.jpg -text
+themes/strasa/options/mono/headerbg.jpg -text
+themes/strasa/options/mono/headermenuitem-hover.png -text
+themes/strasa/options/mono/index.php -text
+themes/strasa/options/mono/info_icon.png -text
+themes/strasa/options/mono/lightbg.jpg -text
+themes/strasa/options/mono/link_icon.png -text
+themes/strasa/options/mono/list_icon.png -text
+themes/strasa/options/mono/login.jpg -text
+themes/strasa/options/mono/loginlong.jpg -text svneol=unset#image/jpeg
+themes/strasa/options/mono/mono.png -text
+themes/strasa/options/mono/register.jpg -text
 themes/superhero/css/index.php -text
 themes/superhero/css/superhero.css -text
 themes/superhero/fonts/index.php -text
