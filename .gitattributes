@@ -3778,6 +3778,7 @@ lib/search/storedsearchlib.php -text
 lib/serializedlist.php -text
 lib/servicelib.php -text
 lib/setup/absolute_urls.php -text
+lib/setup/avatar_force_upload.php -text
 lib/setup/categories.php -text
 lib/setup/comments_zone.php -text
 lib/setup/cookies.php -text
