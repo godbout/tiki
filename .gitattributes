@@ -2591,6 +2591,8 @@ lib/core/Table/Settings/TikiAdminForums.php -text
 lib/core/Table/Settings/TikiAdminusers.php -text
 lib/core/Table/Settings/TikiForums.php -text
 lib/core/Table/Settings/TikiListpages.php -text
+lib/core/Table/Settings/TikiPayment.php -text
+lib/core/Table/Settings/TikiPaymentPast.php -text
 lib/core/Table/Settings/TikiViewforum.php -text
 lib/core/Table/Settings/index.php -text
 lib/core/Table/Totals.php -text
