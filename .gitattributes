@@ -2361,6 +2361,7 @@ lib/core/Search/Formatter/ValueFormatter/Plain.php -text
 lib/core/Search/Formatter/ValueFormatter/Reference.php -text
 lib/core/Search/Formatter/ValueFormatter/Snippet.php -text
 lib/core/Search/Formatter/ValueFormatter/Sorthandle.php -text
+lib/core/Search/Formatter/ValueFormatter/Timeago.php -text
 lib/core/Search/Formatter/ValueFormatter/Trackerrender.php -text
 lib/core/Search/Formatter/ValueFormatter/Urlencode.php -text
 lib/core/Search/Formatter/ValueFormatter/Wikiplugin.php -text
