@@ -1768,6 +1768,7 @@ installer/schema/20160612_new_password_implementation_tiki.sql -text
 installer/schema/20160612_remove_feature_challenge_pref_tiki.sql -text
 installer/schema/20160614_clear_password_removal_tiki.sql -text
 installer/schema/20160627_remove_more_unwanted_files_tiki.php -text
+installer/schema/20160817_fix_dymanic_list_field_values_tiki.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
