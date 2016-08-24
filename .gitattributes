@@ -7960,6 +7960,7 @@ vendor_extra/elfinder/img/spinner-mini.gif -text
 vendor_extra/elfinder/img/toolbar.png -text
 vendor_extra/elfinder/img/volume_icon_dropbox.png -text svneol=unset#image/png
 vendor_extra/elfinder/img/volume_icon_ftp.png -text svneol=unset#image/png
+vendor_extra/elfinder/img/volume_icon_googledrive.png -text svneol=unset#image/png
 vendor_extra/elfinder/img/volume_icon_local.png -text svneol=unset#image/png
 vendor_extra/elfinder/img/volume_icon_sql.png -text svneol=unset#image/png
 vendor_extra/elfinder/js/elfinder.full.js -text
@@ -7977,6 +7978,7 @@ vendor_extra/elfinder/js/i18n/elfinder.fa.js -text
 vendor_extra/elfinder/js/i18n/elfinder.fo.js -text
 vendor_extra/elfinder/js/i18n/elfinder.fr.js -text
 vendor_extra/elfinder/js/i18n/elfinder.he.js -text
+vendor_extra/elfinder/js/i18n/elfinder.hr.js -text
 vendor_extra/elfinder/js/i18n/elfinder.hu.js -text
 vendor_extra/elfinder/js/i18n/elfinder.id.js -text
 vendor_extra/elfinder/js/i18n/elfinder.it.js -text
@@ -7993,6 +7995,7 @@ vendor_extra/elfinder/js/i18n/elfinder.sl.js -text
 vendor_extra/elfinder/js/i18n/elfinder.sr.js -text
 vendor_extra/elfinder/js/i18n/elfinder.sv.js -text
 vendor_extra/elfinder/js/i18n/elfinder.tr.js -text
+vendor_extra/elfinder/js/i18n/elfinder.ug_CN.js -text
 vendor_extra/elfinder/js/i18n/elfinder.uk.js -text
 vendor_extra/elfinder/js/i18n/elfinder.vi.js -text
 vendor_extra/elfinder/js/i18n/elfinder.zh_CN.js -text
@@ -8015,6 +8018,7 @@ vendor_extra/elfinder/php/elFinderVolumeMySQL.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeS3.class.php -text
 vendor_extra/elfinder/php/mime.types -text
 vendor_extra/elfinder/php/plugins/AutoResize/plugin.php -text
+vendor_extra/elfinder/php/plugins/AutoRotate/plugin.php -text
 vendor_extra/elfinder/php/plugins/Normalizer/plugin.php -text
 vendor_extra/elfinder/php/plugins/Sanitizer/plugin.php -text
 vendor_extra/elfinder/php/plugins/Watermark/logo.png -text svneol=unset#image/png
