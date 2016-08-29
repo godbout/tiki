@@ -7965,6 +7965,7 @@ vendor_extra/elfinder/img/volume_icon_local.png -text svneol=unset#image/png
 vendor_extra/elfinder/img/volume_icon_sql.png -text svneol=unset#image/png
 vendor_extra/elfinder/js/elfinder.full.js -text
 vendor_extra/elfinder/js/elfinder.min.js -text
+vendor_extra/elfinder/js/extras/quicklook.googledocs.js -text
 vendor_extra/elfinder/js/i18n/elfinder.LANG.js -text
 vendor_extra/elfinder/js/i18n/elfinder.ar.js -text
 vendor_extra/elfinder/js/i18n/elfinder.bg.js -text
@@ -8002,20 +8003,26 @@ vendor_extra/elfinder/js/i18n/elfinder.zh_CN.js -text
 vendor_extra/elfinder/js/i18n/elfinder.zh_TW.js -text
 vendor_extra/elfinder/js/proxy/elFinderSupportVer1.js -text
 vendor_extra/elfinder/php/MySQLStorage.sql -text
+vendor_extra/elfinder/php/autoload.php -text
 vendor_extra/elfinder/php/connector.minimal.php -text
 vendor_extra/elfinder/php/connector.minimal.php-dist -text
 vendor_extra/elfinder/php/connector.php -text
 vendor_extra/elfinder/php/connector.php-dist -text
 vendor_extra/elfinder/php/elFinder.class.php -text
 vendor_extra/elfinder/php/elFinderConnector.class.php -text
+vendor_extra/elfinder/php/elFinderFlysystemGoogleDriveNetmount.php -text
+vendor_extra/elfinder/php/elFinderSession.php -text
+vendor_extra/elfinder/php/elFinderSessionInterface.php -text
 vendor_extra/elfinder/php/elFinderVolumeDriver.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeDropbox.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeFTP.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeFTPIIS.class.php -text
+vendor_extra/elfinder/php/elFinderVolumeGroup.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeLocalFileSystem.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeMsSQL.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeMySQL.class.php -text
 vendor_extra/elfinder/php/elFinderVolumeS3.class.php -text
+vendor_extra/elfinder/php/libs/GdBmp.php -text
 vendor_extra/elfinder/php/mime.types -text
 vendor_extra/elfinder/php/plugins/AutoResize/plugin.php -text
 vendor_extra/elfinder/php/plugins/AutoRotate/plugin.php -text
@@ -8023,6 +8030,7 @@ vendor_extra/elfinder/php/plugins/Normalizer/plugin.php -text
 vendor_extra/elfinder/php/plugins/Sanitizer/plugin.php -text
 vendor_extra/elfinder/php/plugins/Watermark/logo.png -text svneol=unset#image/png
 vendor_extra/elfinder/php/plugins/Watermark/plugin.php -text
+vendor_extra/elfinder/php/resources/video.png -text svneol=unset#image/png
 vendor_extra/elfinder/sounds/rm.wav -text svneol=unset#audio/x-wav
 vendor_extra/fullcalendar-resourceviews/changelog.txt -text
 vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.css -text
