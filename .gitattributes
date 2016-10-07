@@ -6298,7 +6298,6 @@ templates/web.config -text
 templates/wiki-discussion.tpl -text
 templates/wiki-plugins/error_tracker.tpl -text
 templates/wiki-plugins/index.php -text
-templates/wiki-plugins/pivottable.tpl -text
 templates/wiki-plugins/trackercalendar.tpl -text
 templates/wiki-plugins/wikiplugin_addfreetag.tpl -text
 templates/wiki-plugins/wikiplugin_addreference.tpl -text
