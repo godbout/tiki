@@ -4172,6 +4172,7 @@ lib/test/TikiLib/TestableTikiLibTest.php -text
 lib/test/TikiLib/TikiLibTest.php -text
 lib/test/TikiLib/UriMergeTest.php -text
 lib/test/TikiLib/UrlEncodeAccentTest.php -text
+lib/test/TikiLib/UserWatchesTest.php -text
 lib/test/TikiLib/WikiParserTest.php -text
 lib/test/TikiLib/index.php -text
 lib/test/TikiSeleniumTestCase.php -text
@@ -4351,6 +4352,7 @@ lib/test/core/Search/basic.tpl -text
 lib/test/core/Search/embedded.tpl -text
 lib/test/core/Search/index.php -text
 lib/test/core/Search/paginate.tpl -text
+lib/test/core/Services/Comment/ControllerTest.php -text
 lib/test/core/Services/ResultLoaderTest.php -text
 lib/test/core/Services/index.php -text
 lib/test/core/TikiDb/TableTest.php -text
@@ -4481,6 +4483,7 @@ lib/test/language/fixtures/test_collecting_strings.php -text
 lib/test/language/fixtures/test_collecting_strings.tpl -text
 lib/test/language/index.php -text
 lib/test/local.php.dist -text
+lib/test/notifications/NotificationEmailLibTest.php -text
 lib/test/payment/CartTest.php -text
 lib/test/payment/index.php -text
 lib/test/phpunit.php -text
