@@ -3349,6 +3349,7 @@ lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
 lib/jquery_tiki/tiki-workspace-ui.js -text
 lib/jquery_tiki/wikiplugin-annotation.js -text
+lib/jquery_tiki/wikiplugin-pivottable.js -text
 lib/language/CollectFiles.php -text
 lib/language/Exception.php -text
 lib/language/File.php -text
