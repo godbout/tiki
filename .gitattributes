@@ -2347,6 +2347,7 @@ lib/core/Search/Formatter/DataSource/Declarative.php -text
 lib/core/Search/Formatter/DataSource/Interface.php -text
 lib/core/Search/Formatter/DataSource/index.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
+lib/core/Search/Formatter/Plugin/JsonTemplate.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
 lib/core/Search/Formatter/Plugin/WikiTemplate.php -text
 lib/core/Search/Formatter/Plugin/index.php -text
@@ -2518,8 +2519,6 @@ lib/core/Services/Object/Controller.php -text
 lib/core/Services/Object/index.php -text
 lib/core/Services/Payment/Controller.php -text
 lib/core/Services/Payment/index.php -text
-lib/core/Services/Pivot/Controller.php -text
-lib/core/Services/Pivot/index.php -text
 lib/core/Services/Rating/Controller.php -text
 lib/core/Services/Rating/index.php -text
 lib/core/Services/Recommendation/DevelopmentController.php -text
