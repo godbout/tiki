@@ -2607,6 +2607,7 @@ lib/core/Tiki/BigBlueButton/index.php -text
 lib/core/Tiki/Command/AddonInstallCommand.php -text
 lib/core/Tiki/Command/AddonRemoveCommand.php -text
 lib/core/Tiki/Command/AddonUpgradeCommand.php -text
+lib/core/Tiki/Command/AdminIndexRebuildCommand.php -text
 lib/core/Tiki/Command/Application.php -text
 lib/core/Tiki/Command/BackupDBCommand.php -text
 lib/core/Tiki/Command/BackupFilesCommand.php -text
