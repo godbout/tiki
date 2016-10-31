@@ -2668,6 +2668,8 @@ lib/core/Tiki/Command/TrackerClearCommand.php -text
 lib/core/Tiki/Command/TrackerImportCommand.php -text
 lib/core/Tiki/Command/UnavailableCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
+lib/core/Tiki/Command/UsersListCommand.php -text
+lib/core/Tiki/Command/UsersPasswordCommand.php -text
 lib/core/Tiki/Command/index.php -text
 lib/core/Tiki/Composer/BootstrapCompiler.php -text
 lib/core/Tiki/Composer/CleanVendors.php -text
