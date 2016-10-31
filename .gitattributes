@@ -5224,6 +5224,7 @@ templates/admin/include_module.tpl -text
 templates/admin/include_payment.tpl -text
 templates/admin/include_performance.tpl -text
 templates/admin/include_polls.tpl -text
+templates/admin/include_print.tpl -text
 templates/admin/include_profiles.tpl -text
 templates/admin/include_rating.tpl -text
 templates/admin/include_rss.tpl -text
