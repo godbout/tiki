@@ -2346,8 +2346,8 @@ lib/core/Search/Formatter/Builder.php -text
 lib/core/Search/Formatter/DataSource/Declarative.php -text
 lib/core/Search/Formatter/DataSource/Interface.php -text
 lib/core/Search/Formatter/DataSource/index.php -text
+lib/core/Search/Formatter/Plugin/ArrayTemplate.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
-lib/core/Search/Formatter/Plugin/JsonTemplate.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
 lib/core/Search/Formatter/Plugin/WikiTemplate.php -text
 lib/core/Search/Formatter/Plugin/index.php -text
