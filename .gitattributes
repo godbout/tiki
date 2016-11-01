@@ -4064,6 +4064,7 @@ lib/smarty_tiki/modifier.addonnavbar.php -text
 lib/smarty_tiki/modifier.adjust.php -text
 lib/smarty_tiki/modifier.avatarize.php -text
 lib/smarty_tiki/modifier.breakline.php -text
+lib/smarty_tiki/modifier.categid.php -text
 lib/smarty_tiki/modifier.compactisodate.php -text
 lib/smarty_tiki/modifier.countryflag.php -text
 lib/smarty_tiki/modifier.dbg.php -text
