@@ -5210,6 +5210,7 @@ templates/admin/include_socialnetworks.tpl -text
 templates/admin/include_stats.tpl -text
 templates/admin/include_textarea.tpl -text
 templates/admin/include_trackers.tpl -text
+templates/admin/include_user_setting.tpl -text
 templates/admin/include_userfiles.tpl -text
 templates/admin/include_video.tpl -text
 templates/admin/include_webmail.tpl -text
