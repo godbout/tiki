@@ -2269,6 +2269,8 @@ lib/core/Search/Action/ChangeStatusAction.php -text
 lib/core/Search/Action/Delete.php -text
 lib/core/Search/Action/EmailAction.php -text
 lib/core/Search/Action/Factory.php -text
+lib/core/Search/Action/FileGalleryImageOverlay.php -text
+lib/core/Search/Action/FileGalleryRename.php -text
 lib/core/Search/Action/ReportingTransform.php -text
 lib/core/Search/Action/Sequence.php -text
 lib/core/Search/Action/Step.php -text
