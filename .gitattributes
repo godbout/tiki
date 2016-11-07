@@ -1791,6 +1791,7 @@ lang/ca/custom.php_vos -text
 lang/ca/index.php -text
 lang/ca/language.js -text
 lang/ca/language.php -text
+lang/ca/typography.php_example -text
 lang/cn/index.php -text
 lang/cn/language.js -text
 lang/cn/language.php -text
@@ -1814,14 +1815,17 @@ lang/el/language.php -text
 lang/en-uk/index.php -text
 lang/en-uk/language.js -text
 lang/en-uk/language.php -text
+lang/en-uk/typography.php_example -text
 lang/en/index.php -text
 lang/en/language.js -text
 lang/en/language.php -text
+lang/en/typography.php_example -text
 lang/es/custom.js_example -text
 lang/es/custom.php_example -text
 lang/es/index.php -text
 lang/es/language.js -text
 lang/es/language.php -text
+lang/es/typography.php_example -text
 lang/fa/index.php -text
 lang/fa/language.js -text
 lang/fa/language.php -text
@@ -1837,6 +1841,7 @@ lang/fr/custom.php_example -text
 lang/fr/index.php -text
 lang/fr/language.js -text
 lang/fr/language.php -text
+lang/fr/typography.php_example -text
 lang/fy-NL/index.php -text
 lang/fy-NL/language.js -text
 lang/fy-NL/language.php -text
@@ -3304,6 +3309,7 @@ lib/init/index.php -text
 lib/init/initlib.php -text
 lib/init/smarty.php -text
 lib/init/tra.php -text
+lib/init/typography.php -text
 lib/integrator/index.php -text
 lib/integrator/integrator.php -text
 lib/jcapture_tiki/index.php -text
