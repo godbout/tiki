@@ -2228,6 +2228,7 @@ lib/core/Perms/ResolverFactory/GlobalFactory.php -text
 lib/core/Perms/ResolverFactory/ObjectFactory.php -text
 lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
+lib/core/Perms/ResolverFactory/TrackerParentFactory.php -text
 lib/core/Perms/ResolverFactory/index.php -text
 lib/core/Perms/index.php -text
 lib/core/Report/Builder.js -text
@@ -4289,6 +4290,7 @@ lib/test/core/Perms/ResolverFactory/CategoryFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/GlobalFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/ObjectFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/TestFactoryTest.php -text
+lib/test/core/Perms/ResolverFactory/TrackerParentFactoryTest.php -text
 lib/test/core/Perms/ResolverFactory/index.php -text
 lib/test/core/Perms/index.php -text
 lib/test/core/Recommendation/BatchTest.php -text
