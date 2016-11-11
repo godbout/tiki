@@ -2631,6 +2631,7 @@ lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
 lib/core/Tiki/Command/LessCompileCommand.php -text
+lib/core/Tiki/Command/ListExecuteCommand.php -text
 lib/core/Tiki/Command/MailInPollCommand.php -text
 lib/core/Tiki/Command/MailQueueSendCommand.php -text
 lib/core/Tiki/Command/MultiTikiListCommand.php -text
