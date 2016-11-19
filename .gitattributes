@@ -210,11 +210,16 @@ files/test.swf -text
 img/arrows-000000.png -text
 img/avatars/README -text
 img/avatars/index.php -text
+img/ckeditor/ajaxSaveClean.gif -text
+img/ckeditor/ajaxSaveDirty.gif -text
+img/ckeditor/cross_animated.gif -text
 img/ckeditor/font.png -text
 img/ckeditor/fontsize.png -text
 img/ckeditor/format.png -text
+img/ckeditor/loadingSmall.gif -text
 img/ckeditor/specialchar.png -text
 img/ckeditor/styles.png -text
+img/ckeditor/tick_animated.gif -text
 img/favicons/android-chrome-192x192.png -text
 img/favicons/android-chrome-512x512.png -text
 img/favicons/apple-touch-icon.png -text
@@ -2190,26 +2195,11 @@ lib/ckeditor_tiki/plugins/_tikilink/dialogs/index.php -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/tikilink.js -text
 lib/ckeditor_tiki/plugins/_tikilink/index.php -text
 lib/ckeditor_tiki/plugins/_tikilink/plugin.js -text
-lib/ckeditor_tiki/plugins/autosave/images/ajaxAutoSaveClean.gif -text
-lib/ckeditor_tiki/plugins/autosave/images/ajaxAutoSaveDirty.gif -text
-lib/ckeditor_tiki/plugins/autosave/images/cross_animated.gif -text
-lib/ckeditor_tiki/plugins/autosave/images/index.php -text
-lib/ckeditor_tiki/plugins/autosave/images/loadingBig.gif -text
-lib/ckeditor_tiki/plugins/autosave/images/loadingSmall.gif -text
-lib/ckeditor_tiki/plugins/autosave/images/tick_animated.gif -text
 lib/ckeditor_tiki/plugins/autosave/index.php -text
 lib/ckeditor_tiki/plugins/autosave/plugin.js -text
 lib/ckeditor_tiki/plugins/index.php -text
-lib/ckeditor_tiki/plugins/inlinecancel/images/cross.png -text
 lib/ckeditor_tiki/plugins/inlinecancel/index.php -text
 lib/ckeditor_tiki/plugins/inlinecancel/plugin.js -text
-lib/ckeditor_tiki/plugins/inlinesave/images/ajaxSaveClean.gif -text
-lib/ckeditor_tiki/plugins/inlinesave/images/ajaxSaveDirty.gif -text svneol=unset#unset
-lib/ckeditor_tiki/plugins/inlinesave/images/cross_animated.gif -text svneol=unset#unset
-lib/ckeditor_tiki/plugins/inlinesave/images/index.php -text
-lib/ckeditor_tiki/plugins/inlinesave/images/loadingBig.gif -text
-lib/ckeditor_tiki/plugins/inlinesave/images/loadingSmall.gif -text svneol=unset#unset
-lib/ckeditor_tiki/plugins/inlinesave/images/tick_animated.gif -text
 lib/ckeditor_tiki/plugins/inlinesave/index.php -text
 lib/ckeditor_tiki/plugins/inlinesave/plugin.js -text
 lib/ckeditor_tiki/plugins/tikiplugin/index.php -text
