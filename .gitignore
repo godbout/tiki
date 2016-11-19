@@ -63,3 +63,5 @@ tiki_tests/tests
 /vendor
 /vendor_custom
 vendor_custom/*
+whelp/test
+whelp/tests
