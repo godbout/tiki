@@ -210,6 +210,11 @@ files/test.swf -text
 img/arrows-000000.png -text
 img/avatars/README -text
 img/avatars/index.php -text
+img/ckeditor/font.png -text
+img/ckeditor/fontsize.png -text
+img/ckeditor/format.png -text
+img/ckeditor/specialchar.png -text
+img/ckeditor/styles.png -text
 img/favicons/android-chrome-192x192.png -text
 img/favicons/android-chrome-512x512.png -text
 img/favicons/apple-touch-icon.png -text
@@ -2180,12 +2185,6 @@ lib/captcha/captchalib.php -text
 lib/captcha/index.php -text
 lib/categories/categlib.php -text
 lib/categories/index.php -text
-lib/ckeditor_tiki/ckeditor-icons/font.gif -text
-lib/ckeditor_tiki/ckeditor-icons/fontsize.gif -text svneol=unset#unset
-lib/ckeditor_tiki/ckeditor-icons/format.gif -text svneol=unset#unset
-lib/ckeditor_tiki/ckeditor-icons/index.php -text
-lib/ckeditor_tiki/ckeditor-icons/specialchar.gif -text svneol=unset#unset
-lib/ckeditor_tiki/ckeditor-icons/styles.gif -text
 lib/ckeditor_tiki/index.php -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/index.php -text
 lib/ckeditor_tiki/plugins/_tikilink/dialogs/tikilink.js -text
