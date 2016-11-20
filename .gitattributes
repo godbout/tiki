@@ -2252,6 +2252,7 @@ lib/contribution/contributionlib.php -text
 lib/contribution/index.php -text
 lib/copyrights/copyrightslib.php -text
 lib/copyrights/index.php -text
+lib/core/BOMChecker/Scanner.php -text
 lib/core/Category/Manipulator.php -text
 lib/core/Category/index.php -text
 lib/core/DeclFilter.php -text
