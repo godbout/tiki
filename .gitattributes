@@ -2503,6 +2503,7 @@ lib/core/Search/Elastic/TransportException.php -text
 lib/core/Search/Elastic/TypeFactory.php -text
 lib/core/Search/Exception.php -text
 lib/core/Search/Expr/And.php -text
+lib/core/Search/Expr/Distance.php -text
 lib/core/Search/Expr/ExplicitPhrase.php -text
 lib/core/Search/Expr/ImplicitPhrase.php -text
 lib/core/Search/Expr/Initial.php -text
@@ -2620,6 +2621,7 @@ lib/core/Search/Type/DateTime.php -text
 lib/core/Search/Type/Factory/Direct.php -text
 lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/index.php -text
+lib/core/Search/Type/GeoPoint.php -text
 lib/core/Search/Type/Interface.php -text
 lib/core/Search/Type/MultivaluePlain.php -text
 lib/core/Search/Type/MultivalueText.php -text
