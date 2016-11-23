@@ -6096,6 +6096,7 @@ templates/tiki-plugin_blocked.tpl -text
 templates/tiki-plugin_help.tpl -text
 templates/tiki-plugin_poll.tpl -text
 templates/tiki-plugin_sql.tpl -text
+templates/tiki-pluginlist_experiment.tpl -text
 templates/tiki-plugins.tpl -text
 templates/tiki-poll.tpl -text
 templates/tiki-poll_form.tpl -text
@@ -7820,6 +7821,7 @@ themes/yeti/templates/index.php -text
 /tiki-payment.php -text
 /tiki-phpinfo.php -text
 /tiki-pick_avatar.php -text
+/tiki-pluginlist_experiment.php -text
 /tiki-plugins.php -text
 /tiki-poll_form.php -text
 /tiki-poll_results.php -text
