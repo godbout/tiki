@@ -7892,7 +7892,6 @@ themes/yeti/templates/index.php -text
 /tiki-timestamp.php -text
 /tiki-tracker_export_join.php -text
 /tiki-tracker_http_request.php -text
-/tiki-tracker_http_request_itemslist.php -text
 /tiki-tracker_reports.php -text
 /tiki-tracker_rss.php -text
 /tiki-tracker_view_history.php -text
