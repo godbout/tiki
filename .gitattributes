@@ -6281,6 +6281,7 @@ templates/trackerinput/text.tpl -text
 templates/trackerinput/textarea.tpl -text
 templates/trackerinput/url.tpl -text
 templates/trackerinput/userpreference.tpl -text
+templates/trackerinput/userselector_grouped.tpl -text
 templates/trackerinput/usersubscription.tpl -text
 templates/trackerinput/wiki.tpl -text
 templates/trackeroutput/articles.tpl -text
