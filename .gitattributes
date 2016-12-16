@@ -6476,6 +6476,7 @@ themes/amelia/less/bootswatch.less -text
 themes/amelia/less/index.php -text
 themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
+themes/base_files/css/printpdf.css -text
 themes/base_files/css/tiki_base.css -text
 themes/base_files/feature_css/admin.css -text
 themes/base_files/feature_css/calendar-print.css -text
