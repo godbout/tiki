@@ -1955,6 +1955,7 @@ installer/schema/20160201_remove_maps_menus_tiki.sql -text
 installer/schema/20160206_theme_option_modules_tiki.sql -text
 installer/schema/20160315_correct_blogpost_encoding_tiki.sql -text
 installer/schema/20160325_menu_42_list_pages_tiki.sql -text
+installer/schema/20160412_add_h5p_tables_tiki.sql -text
 installer/schema/20160420_correct_blogpost_encoding_tiki.sql -text
 installer/schema/20160519_calendar_events_action_log_tiki.sql -text
 installer/schema/20160527_menu_item_payment_tiki.sql -text
@@ -2287,6 +2288,8 @@ lib/core/FutureLink/ReceiveFromPast.php -text
 lib/core/FutureLink/Search.php -text
 lib/core/FutureLink/SendToFuture.php -text
 lib/core/FutureLink/index.php -text
+lib/core/H5P/H5PTiki.php -text
+lib/core/H5P/index.php -text
 lib/core/Horde/Exception.php -text
 lib/core/Horde/Exception/LastError.php -text
 lib/core/Horde/Exception/NotFound.php -text
@@ -4714,6 +4717,7 @@ lib/wiki-plugins/wikiplugin_groupexpiry.php -text
 lib/wiki-plugins/wikiplugin_grouplist.php -text
 lib/wiki-plugins/wikiplugin_groupmailcore.php -text
 lib/wiki-plugins/wikiplugin_groupstat.php -text
+lib/wiki-plugins/wikiplugin_h5p.php -text
 lib/wiki-plugins/wikiplugin_hasbought.php -text
 lib/wiki-plugins/wikiplugin_html.php -text
 lib/wiki-plugins/wikiplugin_htmlfeed.php -text
