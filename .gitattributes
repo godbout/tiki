@@ -3598,6 +3598,8 @@ lib/payment/index.php -text
 lib/payment/israelpostlib.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
+lib/pdf/fontdata/fa-codes.json -text
+lib/pdf/fontdata/fontttf/fontawesome.ttf -text
 lib/pdflib.php -text
 lib/perspective/binderlib.php -text
 lib/perspective/index.php -text
