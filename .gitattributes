@@ -6124,7 +6124,6 @@ templates/tiki-referer_stats.tpl -text
 templates/tiki-register.tpl -text
 templates/tiki-register_site.tpl -text
 templates/tiki-remind_password.tpl -text
-templates/tiki-removepage.tpl -text
 templates/tiki-rename_page.tpl -text
 templates/tiki-report_direct_object_perms.tpl -text
 templates/tiki-report_string_in_db.tpl -text
@@ -6395,6 +6394,7 @@ templates/wiki-plugins/wikiplugin_xmlupdate.tpl -text
 templates/wiki/get_page.tpl -text
 templates/wiki/index.php -text
 templates/wiki/regenerate_slugs.tpl -text
+templates/wiki/remove_pages.tpl -text
 templates/wiki_authors.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
@@ -7849,7 +7849,6 @@ themes/yeti/templates/index.php -text
 /tiki-register.php -text
 /tiki-register_site.php -text
 /tiki-remind_password.php -text
-/tiki-removepage.php -text
 /tiki-rename_page.php -text
 /tiki-report_direct_object_perms.php -text
 /tiki-report_string_in_db.php -text
