@@ -3357,6 +3357,7 @@ lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/multilike.js -text
 lib/jquery_tiki/mustread.js -text
+lib/jquery_tiki/pdf.js -text
 lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tablesorter.js -text
 lib/jquery_tiki/tiki-admin.js -text
