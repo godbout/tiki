@@ -2290,21 +2290,6 @@ lib/core/FutureLink/SendToFuture.php -text
 lib/core/FutureLink/index.php -text
 lib/core/H5P/H5PTiki.php -text
 lib/core/H5P/index.php -text
-lib/core/Horde/Exception.php -text
-lib/core/Horde/Exception/LastError.php -text
-lib/core/Horde/Exception/NotFound.php -text
-lib/core/Horde/Exception/Pear.php -text
-lib/core/Horde/Exception/PermissionDenied.php -text
-lib/core/Horde/Exception/Translation.php -text
-lib/core/Horde/Exception/Wrapped.php -text
-lib/core/Horde/Exception/index.php -text
-lib/core/Horde/Yaml.php -text
-lib/core/Horde/Yaml/Dumper.php -text
-lib/core/Horde/Yaml/Exception.php -text
-lib/core/Horde/Yaml/Loader.php -text
-lib/core/Horde/Yaml/Node.php -text
-lib/core/Horde/Yaml/index.php -text
-lib/core/Horde/index.php -text
 lib/core/JisonParser/Phraser.jison -text
 lib/core/JisonParser/Phraser.js -text
 lib/core/JisonParser/Phraser.php -text
@@ -3360,6 +3345,7 @@ lib/jquery_tiki/index.php -text
 lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/multilike.js -text
 lib/jquery_tiki/mustread.js -text
+lib/jquery_tiki/pdf.js -text
 lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tablesorter.js -text
 lib/jquery_tiki/tiki-admin.js -text
@@ -3601,6 +3587,8 @@ lib/payment/index.php -text
 lib/payment/israelpostlib.php -text
 lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
+lib/pdf/fontdata/fa-codes.json -text
+lib/pdf/fontdata/fontttf/fontawesome.ttf -text
 lib/pdflib.php -text
 lib/perspective/binderlib.php -text
 lib/perspective/index.php -text
@@ -6125,7 +6113,6 @@ templates/tiki-referer_stats.tpl -text
 templates/tiki-register.tpl -text
 templates/tiki-register_site.tpl -text
 templates/tiki-remind_password.tpl -text
-templates/tiki-removepage.tpl -text
 templates/tiki-rename_page.tpl -text
 templates/tiki-report_direct_object_perms.tpl -text
 templates/tiki-report_string_in_db.tpl -text
@@ -6396,6 +6383,7 @@ templates/wiki-plugins/wikiplugin_xmlupdate.tpl -text
 templates/wiki/get_page.tpl -text
 templates/wiki/index.php -text
 templates/wiki/regenerate_slugs.tpl -text
+templates/wiki/remove_pages.tpl -text
 templates/wiki_authors.tpl -text
 templates/wiki_edit.tpl -text
 templates/wiki_edit_actions.tpl -text
@@ -7850,7 +7838,6 @@ themes/yeti/templates/index.php -text
 /tiki-register.php -text
 /tiki-register_site.php -text
 /tiki-remind_password.php -text
-/tiki-removepage.php -text
 /tiki-rename_page.php -text
 /tiki-report_direct_object_perms.php -text
 /tiki-report_string_in_db.php -text
