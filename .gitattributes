@@ -221,16 +221,6 @@ img/ckeditor/loadingSmall.gif -text
 img/ckeditor/specialchar.png -text
 img/ckeditor/styles.png -text
 img/ckeditor/tick_animated.gif -text
-img/favicons/android-chrome-192x192.png -text
-img/favicons/android-chrome-512x512.png -text
-img/favicons/apple-touch-icon.png -text
-img/favicons/browserconfig.xml -text
-img/favicons/favicon-16x16.png -text
-img/favicons/favicon-32x32.png -text
-img/favicons/manifest.json -text
-img/favicons/mstile-150x150.png -text
-img/favicons/readme.txt -text
-img/favicons/safari-pinned-tab.svg -text
 img/flags/Afghanistan.png -text
 img/flags/Aland_Islands.png -text
 img/flags/Albania.png -text
@@ -600,7 +590,6 @@ img/icons/email_link.png -text
 img/icons/error.png -text
 img/icons/exclamation.png -text
 img/icons/external_link.gif -text
-img/icons/external_link.wbmp -text
 img/icons/eye.png -text
 img/icons/eye_arrow_down.png -text
 img/icons/eye_group.png -text
@@ -2440,6 +2429,7 @@ lib/core/Search/Action/ActionStep.php -text
 lib/core/Search/Action/ChangeStatusAction.php -text
 lib/core/Search/Action/Delete.php -text
 lib/core/Search/Action/EmailAction.php -text
+lib/core/Search/Action/Exception.php -text
 lib/core/Search/Action/Factory.php -text
 lib/core/Search/Action/FileGalleryChangeFilename.php -text
 lib/core/Search/Action/FileGalleryImageOverlay.php -text
@@ -4736,6 +4726,7 @@ lib/wiki-plugins/wikiplugin_mcalendar.php -text
 lib/wiki-plugins/wikiplugin_mediaplayer.php -text
 lib/wiki-plugins/wikiplugin_memberlist.php -text
 lib/wiki-plugins/wikiplugin_memberpayment.php -text
+lib/wiki-plugins/wikiplugin_meta.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
 lib/wiki-plugins/wikiplugin_modulelist.php -text
@@ -5329,6 +5320,7 @@ templates/examples/shop/product_list_inner.tpl -text
 templates/examples/shop/readme.txt -text
 templates/feedback/action.tpl -text
 templates/feedback/default.tpl -text
+templates/feedback/perm.tpl -text
 templates/feedback/pref.tpl -text
 templates/fgal_attachments.tpl -text
 templates/fgal_context_menu.tpl -text
@@ -6470,6 +6462,16 @@ themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
 themes/base_files/css/printpdf.css -text
 themes/base_files/css/tiki_base.css -text
+themes/base_files/favicons/android-chrome-192x192.png -text
+themes/base_files/favicons/android-chrome-512x512.png -text
+themes/base_files/favicons/apple-touch-icon.png -text
+themes/base_files/favicons/browserconfig.xml -text
+themes/base_files/favicons/favicon-16x16.png -text
+themes/base_files/favicons/favicon-32x32.png -text
+themes/base_files/favicons/manifest.json -text
+themes/base_files/favicons/mstile-150x150.png -text
+themes/base_files/favicons/readme.txt -text
+themes/base_files/favicons/safari-pinned-tab.svg -text
 themes/base_files/feature_css/admin.css -text
 themes/base_files/feature_css/calendar-print.css -text
 themes/base_files/feature_css/calendar.css -text
