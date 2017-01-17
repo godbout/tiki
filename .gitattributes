@@ -3229,6 +3229,7 @@ lib/featured_links/flinkslib.php -text
 lib/featured_links/index.php -text
 lib/filegals/filegalbatchlib.php -text
 lib/filegals/filegallib.php -text
+lib/filegals/h5plib.php -text
 lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
 lib/filegals/scormlib.php -text
@@ -3659,6 +3660,7 @@ lib/prefs/geo.php -text
 lib/prefs/global.php -text
 lib/prefs/gmap.php -text
 lib/prefs/goal.php -text
+lib/prefs/h5p.php -text
 lib/prefs/header.php -text
 lib/prefs/highlight.php -text
 lib/prefs/home.php -text
