@@ -196,13 +196,11 @@ doc/unstable.version -text
 dump/index.php -text
 /favicon.ico -text
 /fgal_listing_conf.php -text
-files/ZeroClipboard.swf -text
 files/forums/index.php -text
 files/index.php -text
 files/templates/index.php -text
 files/templates/listpages/index.php -text
 files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
-files/test.swf -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
@@ -2162,6 +2160,7 @@ lib/TikiWebdav/Server.php -text
 lib/TikiWebdav/autoload.php -text
 lib/TikiWebdav/index.php -text
 lib/ZeroClipboard.js -text
+lib/ZeroClipboard.swf -text
 lib/accounting/accountinglib.php -text
 lib/accounting/index.php -text
 lib/activity/activitylib.php -text
@@ -4162,6 +4161,7 @@ lib/tasks/index.php -text
 lib/tasks/tasklib.php -text
 lib/templates/index.php -text
 lib/templates/templateslib.php -text
+lib/test.swf -text
 lib/test/AcceptanceTests/AllTests.php -text
 lib/test/AcceptanceTests/CollaborativeMultilingualTerminologyTest.php -text
 lib/test/AcceptanceTests/ListPagesTest.php -text
