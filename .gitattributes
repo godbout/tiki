@@ -4,6 +4,7 @@
 /_htaccess -text
 /about.php -text
 addons/index.php -text
+admin/.htaccess -text
 admin/include_ads.php -text
 admin/include_articles.php -text
 admin/include_blogs.php -text
@@ -72,7 +73,6 @@ admin/index.php -text
 /copyright.txt -text
 /copyrights.php -text
 db/.htaccess -text
-db/cert/.htaccess -text
 db/cert/index.php -text
 db/cert/web.config -text
 db/config/controllers.xml -text
@@ -94,6 +94,7 @@ db/tiki_innodb.sql -text
 db/tiki_myisam.sql -text
 db/web.config -text
 /display_banner.php -text
+doc/.htaccess -text
 doc/devtools/.htaccess -text
 doc/devtools/20160715_trim50_tracker_permanent_names_for_mysqlfts_tiki.sql -text
 doc/devtools/README.txt -text
@@ -4924,6 +4925,7 @@ lib/zoterolib.php -text
 /license.txt -text
 /list-file_backlinks_ajax.php -text
 /list-tracker_field_values_ajax.php -text
+lists/.htaccess -text
 lists/articles.php -text
 /messu-archive.php -text
 /messu-broadcast.php -text
@@ -6446,6 +6448,7 @@ templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
+themes/.htaccess -text
 themes/amelia/css/amelia.css -text
 themes/amelia/css/index.php -text
 themes/amelia/fonts/index.php -text
