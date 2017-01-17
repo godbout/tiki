@@ -4,6 +4,7 @@
 /_htaccess -text
 /about.php -text
 addons/index.php -text
+admin/.htaccess -text
 admin/include_ads.php -text
 admin/include_articles.php -text
 admin/include_blogs.php -text
@@ -72,7 +73,6 @@ admin/index.php -text
 /copyright.txt -text
 /copyrights.php -text
 db/.htaccess -text
-db/cert/.htaccess -text
 db/cert/index.php -text
 db/cert/web.config -text
 db/config/controllers.xml -text
@@ -94,6 +94,7 @@ db/tiki_innodb.sql -text
 db/tiki_myisam.sql -text
 db/web.config -text
 /display_banner.php -text
+doc/.htaccess -text
 doc/devtools/.htaccess -text
 doc/devtools/20160715_trim50_tracker_permanent_names_for_mysqlfts_tiki.sql -text
 doc/devtools/README.txt -text
@@ -195,13 +196,11 @@ doc/unstable.version -text
 dump/index.php -text
 /favicon.ico -text
 /fgal_listing_conf.php -text
-files/ZeroClipboard.swf -text
 files/forums/index.php -text
 files/index.php -text
 files/templates/index.php -text
 files/templates/listpages/index.php -text
 files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
-files/test.swf -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
@@ -221,6 +220,7 @@ img/ckeditor/loadingSmall.gif -text
 img/ckeditor/specialchar.png -text
 img/ckeditor/styles.png -text
 img/ckeditor/tick_animated.gif -text
+img/edge.gif -text
 img/flags/Afghanistan.png -text
 img/flags/Aland_Islands.png -text
 img/flags/Albania.png -text
@@ -481,6 +481,7 @@ img/graph.barstack.png -text
 img/graph.multibar.png -text
 img/graph.multiline.png -text
 img/graph.pie.png -text
+img/h_trenner.gif -text
 img/icons/PastLink.svg -text
 img/icons/accept.png -text
 img/icons/add.png -text
@@ -2160,6 +2161,7 @@ lib/TikiWebdav/Server.php -text
 lib/TikiWebdav/autoload.php -text
 lib/TikiWebdav/index.php -text
 lib/ZeroClipboard.js -text
+lib/ZeroClipboard.swf -text
 lib/accounting/accountinglib.php -text
 lib/accounting/index.php -text
 lib/activity/activitylib.php -text
@@ -4164,6 +4166,7 @@ lib/tasks/index.php -text
 lib/tasks/tasklib.php -text
 lib/templates/index.php -text
 lib/templates/templateslib.php -text
+lib/test.swf -text
 lib/test/AcceptanceTests/AllTests.php -text
 lib/test/AcceptanceTests/CollaborativeMultilingualTerminologyTest.php -text
 lib/test/AcceptanceTests/ListPagesTest.php -text
@@ -4928,6 +4931,7 @@ lib/zoterolib.php -text
 /license.txt -text
 /list-file_backlinks_ajax.php -text
 /list-tracker_field_values_ajax.php -text
+lists/.htaccess -text
 lists/articles.php -text
 /messu-archive.php -text
 /messu-broadcast.php -text
@@ -6450,6 +6454,7 @@ templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
+themes/.htaccess -text
 themes/amelia/css/amelia.css -text
 themes/amelia/css/index.php -text
 themes/amelia/fonts/index.php -text
