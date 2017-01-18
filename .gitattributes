@@ -4741,6 +4741,7 @@ lib/wiki-plugins/wikiplugin_pagetabs.php -text
 lib/wiki-plugins/wikiplugin_param.php -text
 lib/wiki-plugins/wikiplugin_pastlink.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
+lib/wiki-plugins/wikiplugin_paymentlist.php -text
 lib/wiki-plugins/wikiplugin_paypal.php -text
 lib/wiki-plugins/wikiplugin_perm.php -text
 lib/wiki-plugins/wikiplugin_perspective.php -text
