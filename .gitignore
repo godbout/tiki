@@ -9,6 +9,7 @@
 /ZendPlatform
 /ZendStudioServer
 /_htaccess
+/bin
 db/.htaccess
 db/cert/*.pem
 db/config/custom.xml
@@ -17,6 +18,7 @@ db/lock
 db/tiki-secdb_*svn_mysql.sql
 db/virtuals.inc
 /dummy.php
+/dump
 files/[a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]
 files/visorFreemind.swf
 img/trackers/*
@@ -58,5 +60,6 @@ tiki_tests/tests
 /vendor
 /vendor_custom
 vendor_custom/*
+/whelp
 whelp/test
 whelp/tests
