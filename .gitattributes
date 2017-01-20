@@ -193,6 +193,7 @@ doc/regular.cycle -text
 doc/reports/index.php -text
 doc/stable.version -text
 doc/unstable.version -text
+dump/.htaccess -text
 dump/index.php -text
 /favicon.ico -text
 /fgal_listing_conf.php -text
@@ -207,6 +208,7 @@ files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /group_tracker_ajax.php -text
 /help.php -text
 /htaccess.sh -text
+img/.htaccess -text
 img/arrows-000000.png -text
 img/avatars/README -text
 img/avatars/index.php -text
@@ -6446,6 +6448,7 @@ templates/workspace/edit_template.tpl -text
 templates/workspace/index.php -text
 templates/workspace/list_templates.tpl -text
 templates/workspace/select_permissions.tpl -text
+templates_c/.htaccess -text
 templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
@@ -7940,16 +7943,16 @@ themes/yeti/templates/index.php -text
 /tiki-wizard_admin.php -text
 /tiki-wizard_user.php -text
 /tiki-xmlrpc_services.php -text
+tiki_tests/.htaccess -text
 tiki_tests/index.php -text
-tiki_tests/tests/.htaccess -text
 tiki_tests/tests/index.php -text
-tiki_tests/tests/web.config -text
 tiki_tests/tiki-tests_edit.php -text
 tiki_tests/tiki-tests_list.php -text
 tiki_tests/tiki-tests_record.php -text
 tiki_tests/tiki-tests_replay.php -text
 tiki_tests/tiki-tests_show_xpath.php -text
 tiki_tests/tikitestslib.php -text
+tiki_tests/web.config -text
 /validate-ajax.php -text
 vendor_extra/anythingslider-themes/css/theme-default1.css -text
 vendor_extra/anythingslider-themes/css/theme-default2.css -text
@@ -8395,5 +8398,6 @@ vendor_extra/vimeo/froogaloop.min.js -text
 vendor_extra/vimeo/vimeo.js -text
 vendor_extra/webodf/webodf.js -text
 /web_config -text
+whelp/.htaccess -text
 whelp/index.php -text
 /xmlrpc.php -text

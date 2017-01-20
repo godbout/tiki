@@ -1,6 +1,5 @@
 /.buildpath
 /.cache
-/.htaccess
 /.idea
 /.lastup
 /.metadata*
@@ -10,7 +9,6 @@
 /ZendPlatform
 /ZendStudioServer
 /_htaccess
-/bin
 db/.htaccess
 db/cert/*.pem
 db/config/custom.xml
@@ -19,10 +17,8 @@ db/lock
 db/tiki-secdb_*svn_mysql.sql
 db/virtuals.inc
 /dummy.php
-dump/*
 files/[a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]
 files/visorFreemind.swf
-img/.htaccess
 img/trackers/*
 img/wiki/*.gif
 img/wiki/*.pad_xml
@@ -54,7 +50,6 @@ temp/mail_attachs/*
 temp/public/*
 templates/.htaccess
 /templates_c
-templates_c/*
 tests/.htaccess
 /tiki-*.log
 /tiki-emptycache.php
