@@ -4163,7 +4163,6 @@ lib/tasks/index.php -text
 lib/tasks/tasklib.php -text
 lib/templates/index.php -text
 lib/templates/templateslib.php -text
-lib/test.swf -text
 lib/test/AcceptanceTests/AllTests.php -text
 lib/test/AcceptanceTests/CollaborativeMultilingualTerminologyTest.php -text
 lib/test/AcceptanceTests/ListPagesTest.php -text
