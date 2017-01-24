@@ -2161,8 +2161,6 @@ lib/TikiWebdav/PathFactories/index.php -text
 lib/TikiWebdav/Server.php -text
 lib/TikiWebdav/autoload.php -text
 lib/TikiWebdav/index.php -text
-lib/ZeroClipboard.js -text
-lib/ZeroClipboard.swf -text
 lib/accounting/accountinglib.php -text
 lib/accounting/index.php -text
 lib/activity/activitylib.php -text
