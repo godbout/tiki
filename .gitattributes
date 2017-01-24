@@ -197,10 +197,6 @@ dump/.htaccess -text
 dump/index.php -text
 /favicon.ico -text
 /fgal_listing_conf.php -text
-files/forums/index.php -text
-files/index.php -text
-files/templates/index.php -text
-files/templates/listpages/index.php -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
