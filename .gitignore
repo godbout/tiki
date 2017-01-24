@@ -19,6 +19,7 @@ db/tiki-secdb_*svn_mysql.sql
 db/virtuals.inc
 /dummy.php
 /dump
+/files
 img/trackers/*
 img/wiki/*.gif
 img/wiki/*.pad_xml
