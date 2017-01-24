@@ -4136,7 +4136,6 @@ lib/structures/tiki-edit_structure.js -text
 lib/surveys/index.php -text
 lib/surveys/surveylib.php -text
 lib/surveys/tiki-admin_survey_questions.js -text
-lib/svg-edit_tiki/draw.css -text
 lib/svg-edit_tiki/draw.js -text
 lib/svg-edit_tiki/index.php -text
 lib/swfobject/expressInstall.swf -text
@@ -6481,6 +6480,7 @@ themes/base_files/feature_css/ie9.css -text
 themes/base_files/feature_css/index.php -text
 themes/base_files/feature_css/jscalendar.css -text
 themes/base_files/feature_css/readme.txt -text
+themes/base_files/feature_css/svg-edit-draw.css -text
 themes/base_files/feature_css/wizards.css -text
 themes/base_files/iconsets/default.php -text
 themes/base_files/iconsets/glyphicons.php -text
