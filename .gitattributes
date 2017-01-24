@@ -201,7 +201,6 @@ files/forums/index.php -text
 files/index.php -text
 files/templates/index.php -text
 files/templates/listpages/index.php -text
-files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
@@ -5817,6 +5816,7 @@ templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
 templates/sent_newsletters.tpl -text
 templates/show_copyright.tpl -text
+templates/smarty-tikiwiki-1.0-shortlist.txt -text
 templates/social/add_friend.tpl -text
 templates/social/approve_friend.tpl -text
 templates/social/index.php -text
