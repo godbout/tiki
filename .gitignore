@@ -60,5 +60,3 @@ vendor/autoload.php
 /vendor_custom
 vendor_custom/*
 /whelp
-whelp/test
-whelp/tests

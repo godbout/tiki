@@ -8376,6 +8376,4 @@ vendor_extra/vimeo/froogaloop.min.js -text
 vendor_extra/vimeo/vimeo.js -text
 vendor_extra/webodf/webodf.js -text
 /web_config -text
-whelp/.htaccess -text
-whelp/index.php -text
 /xmlrpc.php -text
