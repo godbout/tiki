@@ -30,14 +30,56 @@ class H5PTiki implements H5PFrameworkInterface
 		// possibly others needed?
 
 		// example select via table
-		$contents = $this->tiki_h5p_libraries->fetchAll(
-			['id'],					// columns
-			['disable' => 0]		// conditions
-		);
+		//$contents = $this->tiki_h5p_libraries->fetchAll(
+		//	['id'],					// columns
+		//	['disable' => 0]		// conditions
+		//);
 
 		// example of "plain" sql statement
-		$result = $tikiDb->query('SELECT `id` FROM `tiki_h5p_libraries` WHERE `disabled` = ?', [0]);
+		//$result = $tikiDb->query('SELECT `id` FROM `tiki_h5p_libraries` WHERE `disabled` = ?', [0]);
 
+	}
+
+	/**
+   * Get the different instances of the core components.
+	 *
+	 * @param string $component
+	 * @return \H5PWordPress|\H5PCore|\H5PContentValidator|\H5PExport|\H5PStorage|\H5PValidator
+	 */
+	public static function get_h5p_instance($component)
+	{
+		static $interface, $core;
+
+		if (is_null($interface)) {
+			// Setup Core and Interface components that are always needed
+			$interface = new \H5PTiki();
+
+			$core = new \H5PCore($interface,
+			                    'h5p/', // TODO: Where should the extracted content files be stored? E.g. this is where unpacked JavaScript files will be put so that they may be read by the browser.
+													'/h5p', // TODO: What is the URL of the previous option?
+													'en', // TODO: Get proper language code from Tiki
+												  false // TODO: Later: Add option for enabling generation of exports? Not sure if this will be needed in Tiki since we alreay have the .h5p file.
+      );
+
+			// This is more of a development option to prevent JS and CSS from being combined. TODO: Remove later
+			$core->aggregateAssets = false;
+		}
+
+		// Determine which component to return
+		switch ($component) {
+			case 'validator':
+				return new \H5PValidator($interface, $core);
+			case 'storage':
+				return new \H5PStorage($interface, $core);
+			case 'contentvalidator':
+				return new \H5PContentValidator($interface, $core);
+			case 'export':
+				return new \H5PExport($interface, $core);
+			case 'interface':
+				return $interface;
+			case 'core':
+				return $core;
+		}
 	}
 
 	/**
@@ -128,30 +170,54 @@ class H5PTiki implements H5PFrameworkInterface
 	 */
 	public function t($message, $replacements = array())
 	{
-		tr($message, $replacements);	// TODO convert messages to use %0 etc placeholders?
+		return tr($message, $replacements);	// TODO convert messages to use %0 etc placeholders?
 	}
 
 	/**
 	 * Get the Path to the last uploaded h5p
 	 *
+	 * @param string $setDir
+	 *   Set the dir insted of using an auto generated one.
 	 * @return string
 	 *   Path to the folder where the last uploaded h5p for this session is located.
 	 */
-	public function getUploadedH5pFolderPath()
+	public function getUploadedH5pFolderPath($setDir = null)
 	{
-		// TODO: Implement getUploadedH5pFolderPath() method.
+		static $dir;
+
+		if ($setDir !== null) {
+			$dir = $setDir;
+		}
+		if (is_null($dir)) {
+			$core = self::get_h5p_instance('core');
+			$dir = $core->fs->getTmpPath();
+		}
+
+		return $dir;
 	}
 
 	/**
 	 * Get the path to the last uploaded h5p file
 	 *
+	 * @param string $setPath
+	 *   Set the path insted of using an auto generated one.
 	 * @return string
 	 *   Path to the last uploaded h5p
 	 */
-	public function getUploadedH5pPath()
-	{
-		// TODO: Implement getUploadedH5pPath() method.
-	}
+   public function getUploadedH5pPath($setPath = null)
+	 {
+     static $path;
+
+		 if ($setPath !== null) {
+			 $path = $setPath;
+		 }
+     if (is_null($path)) {
+			 $core = self::get_h5p_instance('core');
+       $path = $core->fs->getTmpPath() . '.h5p';
+     }
+
+     return $path;
+   }
 
 	/**
 	 * Get a list of the current installed libraries
