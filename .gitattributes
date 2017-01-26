@@ -2501,6 +2501,7 @@ lib/core/Search/Formatter/Builder.php -text
 lib/core/Search/Formatter/DataSource/Declarative.php -text
 lib/core/Search/Formatter/DataSource/Interface.php -text
 lib/core/Search/Formatter/DataSource/index.php -text
+lib/core/Search/Formatter/Factory.php -text
 lib/core/Search/Formatter/Plugin/ArrayTemplate.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
@@ -4325,6 +4326,7 @@ lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/Expr/index.php -text
 lib/test/core/Search/Formatter/ArrayBuilderTest.php -text
 lib/test/core/Search/Formatter/DataSourceTest.php -text
+lib/test/core/Search/Formatter/FactoryTest.php -text
 lib/test/core/Search/Formatter/index.php -text
 lib/test/core/Search/FormatterTest.php -text
 lib/test/core/Search/GlobalSource/PermissionSourceTest.php -text
