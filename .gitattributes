@@ -1343,30 +1343,30 @@ img/screencast-no-video.png -text
 img/screencast-player-close.png -text
 img/screencast-player-frame.png -text
 img/separator.gif -text
-img/smiles/icon_arrow.png -text
-img/smiles/icon_biggrin.png -text
-img/smiles/icon_confused.png -text
-img/smiles/icon_cool.png -text
-img/smiles/icon_cry.png -text
-img/smiles/icon_eek.png -text
-img/smiles/icon_evil.png -text
-img/smiles/icon_exclaim.png -text
-img/smiles/icon_frown.png -text
-img/smiles/icon_idea.png -text
-img/smiles/icon_lol.png -text
-img/smiles/icon_mad.png -text
-img/smiles/icon_mrgreen.png -text
-img/smiles/icon_neutral.png -text
-img/smiles/icon_question.png -text
-img/smiles/icon_razz.png -text
-img/smiles/icon_redface.png -text
-img/smiles/icon_rolleyes.png -text
-img/smiles/icon_sad.png -text
-img/smiles/icon_santa.png -text
-img/smiles/icon_smile.png -text
-img/smiles/icon_surprised.png -text
-img/smiles/icon_twisted.png -text
-img/smiles/icon_wink.png -text
+img/smiles/icon_arrow.gif -text svneol=unset#image/gif
+img/smiles/icon_biggrin.gif -text svneol=unset#image/gif
+img/smiles/icon_confused.gif -text svneol=unset#image/gif
+img/smiles/icon_cool.gif -text svneol=unset#image/gif
+img/smiles/icon_cry.gif -text svneol=unset#image/gif
+img/smiles/icon_eek.gif -text svneol=unset#image/gif
+img/smiles/icon_evil.gif -text svneol=unset#image/gif
+img/smiles/icon_exclaim.gif -text svneol=unset#image/gif
+img/smiles/icon_frown.gif -text svneol=unset#image/gif
+img/smiles/icon_idea.gif -text svneol=unset#image/gif
+img/smiles/icon_lol.gif -text svneol=unset#image/gif
+img/smiles/icon_mad.gif -text svneol=unset#image/gif
+img/smiles/icon_mrgreen.gif -text svneol=unset#image/gif
+img/smiles/icon_neutral.gif -text svneol=unset#image/gif
+img/smiles/icon_question.gif -text svneol=unset#image/gif
+img/smiles/icon_razz.gif -text svneol=unset#image/gif
+img/smiles/icon_redface.gif -text svneol=unset#image/gif
+img/smiles/icon_rolleyes.gif -text svneol=unset#image/gif
+img/smiles/icon_sad.gif -text svneol=unset#image/gif
+img/smiles/icon_santa.gif -text svneol=unset#image/gif
+img/smiles/icon_smile.gif -text svneol=unset#image/gif
+img/smiles/icon_surprised.gif -text svneol=unset#image/gif
+img/smiles/icon_twisted.gif -text svneol=unset#image/gif
+img/smiles/icon_wink.gif -text svneol=unset#image/gif
 img/smiles/index.php -text
 img/spinner.gif -text
 img/superfish/arrows-ffffff.png -text
