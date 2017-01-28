@@ -5130,6 +5130,7 @@ temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
 temp/public/.htaccess -text
 temp/public/index.php -text
+temp/templates_c/index.php -text
 temp/web.config -text
 templates/.htaccess -text
 templates/access/confirm.tpl -text
@@ -6438,8 +6439,6 @@ templates/workspace/edit_template.tpl -text
 templates/workspace/index.php -text
 templates/workspace/list_templates.tpl -text
 templates/workspace/select_permissions.tpl -text
-templates_c/.htaccess -text
-templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
