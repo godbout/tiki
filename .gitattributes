@@ -194,7 +194,6 @@ doc/stable.version -text
 doc/unstable.version -text
 dump/.htaccess -text
 dump/index.php -text
-/favicon.ico -text
 /fgal_listing_conf.php -text
 /freetag_apply.php -text
 /freetag_list.php -text
