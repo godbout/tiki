@@ -41,7 +41,7 @@ class H5PTiki implements H5PFrameworkInterface
 	}
 
 	/**
-   * Get the different instances of the core components.
+	 * Get the different instances of the core components.
 	 *
 	 * @param string $component
 	 * @return \H5PWordPress|\H5PCore|\H5PContentValidator|\H5PExport|\H5PStorage|\H5PValidator
@@ -55,11 +55,11 @@ class H5PTiki implements H5PFrameworkInterface
 			$interface = new \H5PTiki();
 
 			$core = new \H5PCore($interface,
-			                    'h5p/', // TODO: Where should the extracted content files be stored? E.g. this is where unpacked JavaScript files will be put so that they may be read by the browser.
-													'/h5p', // TODO: What is the URL of the previous option?
-													'en', // TODO: Get proper language code from Tiki
-												  false // TODO: Later: Add option for enabling generation of exports? Not sure if this will be needed in Tiki since we alreay have the .h5p file.
-      );
+				'h5p/', // TODO: Where should the extracted content files be stored? E.g. this is where unpacked JavaScript files will be put so that they may be read by the browser.
+				'/h5p', // TODO: What is the URL of the previous option?
+				'en', // TODO: Get proper language code from Tiki
+				false // TODO: Later: Add option for enabling generation of exports? Not sure if this will be needed in Tiki since we alreay have the .h5p file.
+			);
 
 			// This is more of a development option to prevent JS and CSS from being combined. TODO: Remove later
 			$core->aggregateAssets = false;
@@ -170,7 +170,7 @@ class H5PTiki implements H5PFrameworkInterface
 	 */
 	public function t($message, $replacements = array())
 	{
-		return tr($message, $replacements);	// TODO convert messages to use %0 etc placeholders?
+		return tr($message, $replacements);    // TODO convert messages to use %0 etc placeholders?
 	}
 
 	/**
@@ -204,20 +204,20 @@ class H5PTiki implements H5PFrameworkInterface
 	 * @return string
 	 *   Path to the last uploaded h5p
 	 */
-   public function getUploadedH5pPath($setPath = null)
-	 {
-     static $path;
+	public function getUploadedH5pPath($setPath = null)
+	{
+		static $path;
 
-		 if ($setPath !== null) {
-			 $path = $setPath;
-		 }
-     if (is_null($path)) {
-			 $core = self::get_h5p_instance('core');
-       $path = $core->fs->getTmpPath() . '.h5p';
-     }
+		if ($setPath !== null) {
+			$path = $setPath;
+		}
+		if (is_null($path)) {
+			$core = self::get_h5p_instance('core');
+			$path = $core->fs->getTmpPath() . '.h5p';
+		}
 
-     return $path;
-   }
+		return $path;
+	}
 
 	/**
 	 * Get a list of the current installed libraries
