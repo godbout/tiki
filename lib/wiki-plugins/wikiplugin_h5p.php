@@ -33,7 +33,7 @@ function wikiplugin_h5p($data, $params)
 
 	$ret = '';
 
-	$h5p = new H5PTiki();
+	$h5p = new H5P_H5PTiki();
 
 
 	return $ret;

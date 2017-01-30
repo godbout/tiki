@@ -3,9 +3,11 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: $
+// $Id$
 
-class H5PTiki implements H5PFrameworkInterface
+require_once 'vendor/h5p/h5p-core/h5p.classes.php';
+
+class H5P_H5PTiki implements H5PFrameworkInterface
 {
 
 	// properties for table objects
@@ -48,16 +50,16 @@ class H5PTiki implements H5PFrameworkInterface
 	 */
 	public static function get_h5p_instance($component)
 	{
-		static $interface, $core;
+		static $interface, $core, $prefs;
 
 		if (is_null($interface)) {
 			// Setup Core and Interface components that are always needed
-			$interface = new \H5PTiki();
+			$interface = new \H5P_H5PTiki();
 
 			$core = new \H5PCore($interface,
-				'h5p/', // TODO: Where should the extracted content files be stored? E.g. this is where unpacked JavaScript files will be put so that they may be read by the browser.
-				'/h5p', // TODO: What is the URL of the previous option?
-				'en', // TODO: Get proper language code from Tiki
+				'storage/public/', // TODO: Where should the extracted content files be stored? E.g. this is where unpacked JavaScript files will be put so that they may be read by the browser.
+				'/storage/public', // TODO: What is the URL of the previous option?
+				$prefs['language'], // TODO: Get proper language code from Tiki
 				false // TODO: Later: Add option for enabling generation of exports? Not sure if this will be needed in Tiki since we alreay have the .h5p file.
 			);
 

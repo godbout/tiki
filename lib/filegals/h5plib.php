@@ -25,7 +25,7 @@ class H5PLib
 
 	function __construct()
 	{
-		require_once('lib/core/H5P/H5PTiki.php');
+		$this->H5PTiki = new \H5P_H5PTiki();
 	}
 
 	function __destruct()
@@ -36,18 +36,20 @@ class H5PLib
 	{
 		if ($metadata = $this->getRequestMetadata($args)) {
 
-			$validator = H5PTiki::get_h5p_instance('validator');
+			$validator = H5P_H5PTiki::get_h5p_instance('validator');
 
-	    if ($validator->isValidPackage()) {
+			if ($validator->isValidPackage()) {
 
-	      $storage = H5PTiki::get_h5p_instance('storage');
-	      $storage->savePackage($content);
+				$content = [];	// TODO
+
+				$storage = H5P_H5PTiki::get_h5p_instance('storage');
+				$storage->savePackage($content);
 
 				// TODO: Somehow connect the filename/fileId and $storage->contentId ? Needed when .h5p file is updated, deleted(or worse?)
-	    }
+			}
 
 			// TODO: What to do if the file isn't a valid H5P? Seems a bit drastic to delete the file – but then again, why would we host broken files?
-	    // @unlink($interface->getUploadedH5pPath());
+			// @unlink($interface->getUploadedH5pPath());
 		}
 	}
 
@@ -105,7 +107,7 @@ class H5PLib
 
 		/** @var ZipArchive $zip */
 		$zip = new ZipArchive;
-		$interface = H5PTiki::get_h5p_instance('interface');
+		$interface = H5P_H5PTiki::get_h5p_instance('interface');
 
 		if ($info['path'] && $prefs['fgal_use_db'] == 'n') {
 			$filepath = $interface->getUploadedH5pPath($prefs['fgal_use_dir'] . $info['path']);

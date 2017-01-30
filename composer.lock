@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "88eee291cd89bf1b1deb8d94559d96e7",
+    "content-hash": "7963e6b8312ffdb67c4f0e07dafce4d5",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -696,12 +696,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
-                "reference": "738dced2861dc8467e86ffa53843296659818716"
+                "reference": "3b9dd956838713ebbfe8d29c7b3330d1ca774ed9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/738dced2861dc8467e86ffa53843296659818716",
-                "reference": "738dced2861dc8467e86ffa53843296659818716",
+                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/3b9dd956838713ebbfe8d29c7b3330d1ca774ed9",
+                "reference": "3b9dd956838713ebbfe8d29c7b3330d1ca774ed9",
                 "shasum": ""
             },
             "require": {
@@ -744,7 +744,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-01-04T15:16:28+00:00"
+            "time": "2017-01-30T13:49:09+00:00"
         },
         {
             "name": "h5p/h5p-editor",
@@ -752,12 +752,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-editor-php-library.git",
-                "reference": "edee07e4ddc01d093d77cfaf4e5867030057b04b"
+                "reference": "21fccc70533ddbd097df4f95473ef5041e257422"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/edee07e4ddc01d093d77cfaf4e5867030057b04b",
-                "reference": "edee07e4ddc01d093d77cfaf4e5867030057b04b",
+                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/21fccc70533ddbd097df4f95473ef5041e257422",
+                "reference": "21fccc70533ddbd097df4f95473ef5041e257422",
                 "shasum": ""
             },
             "require": {
@@ -799,7 +799,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-01-16T06:28:40+00:00"
+            "time": "2017-01-30T10:06:43+00:00"
         },
         {
             "name": "jcapture-applet/jcapture-applet",
@@ -1153,21 +1153,21 @@
         },
         {
             "name": "matthiasmullie/minify",
-            "version": "1.3.42",
+            "version": "1.3.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/minify.git",
-                "reference": "b473affbb76ae6ec4e46d368b5081b5bfcdd3ed2"
+                "reference": "aa50b2dab6fa7bfd402d334fe51005d6f2526ad7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/matthiasmullie-minify-b473affbb76ae6ec4e46d368b5081b5bfcdd3ed2-zip-40799a.zip",
-                "reference": "b473affbb76ae6ec4e46d368b5081b5bfcdd3ed2",
-                "shasum": "de92ffa853ee99c98b098f3730cf3daff43b6eff"
+                "url": "https://composer.tiki.org/dist/matthiasmullie-minify-aa50b2dab6fa7bfd402d334fe51005d6f2526ad7-zip-d0f3cd.zip",
+                "reference": "aa50b2dab6fa7bfd402d334fe51005d6f2526ad7",
+                "shasum": "12f26d7b58dc185e5cd17ac789bb86328fb0c73f"
             },
             "require": {
                 "ext-pcre": "*",
-                "matthiasmullie/path-converter": "~1.0",
+                "matthiasmullie/path-converter": "~1.1",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -1206,20 +1206,20 @@
                 "minifier",
                 "minify"
             ],
-            "time": "2016-11-23T10:16:14+00:00"
+            "time": "2017-01-26T15:48:07+00:00"
         },
         {
             "name": "matthiasmullie/path-converter",
-            "version": "1.0.8",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/path-converter.git",
-                "reference": "7c36e5cafa95dd20008d19b153b506cffa8c2848"
+                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/7c36e5cafa95dd20008d19b153b506cffa8c2848",
-                "reference": "7c36e5cafa95dd20008d19b153b506cffa8c2848",
+                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/08551ec1b156e923c242a10ab484bd4d6ead6631",
+                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631",
                 "shasum": ""
             },
             "require": {
@@ -1255,7 +1255,7 @@
                 "paths",
                 "relative"
             ],
-            "time": "2016-04-27T10:38:05+00:00"
+            "time": "2017-01-26T08:54:49+00:00"
         },
         {
             "name": "mediumjs/mediumjs",
@@ -1406,13 +1406,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/chartjs/Chart.js.git",
-                "reference": "27b2e332c686e76cfe373a2d5377d53d01a7a84a"
+                "reference": "9a3af51618b2627a328bdb66f0e3030522cd756e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nnnick-chartjs-27b2e332c686e76cfe373a2d5377d53d01a7a84a-zip-41d79c.zip",
-                "reference": "27b2e332c686e76cfe373a2d5377d53d01a7a84a",
-                "shasum": "48cedb175aaee0b0830cc0fd82b2abdf4c38e070"
+                "url": "https://composer.tiki.org/dist/nnnick-chartjs-9a3af51618b2627a328bdb66f0e3030522cd756e-zip-a9a8fb.zip",
+                "reference": "9a3af51618b2627a328bdb66f0e3030522cd756e",
+                "shasum": "9107493864a4434a3b3edae64808a90b1b6963ff"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -1439,7 +1439,7 @@
                 "JS",
                 "chart"
             ],
-            "time": "2017-01-08T13:54:03+00:00"
+            "time": "2017-01-28T16:33:14+00:00"
         },
         {
             "name": "onelogin/php-saml",
@@ -3204,25 +3204,25 @@
         },
         {
             "name": "zendframework/zend-mime",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-mime.git",
-                "reference": "340769c3d962ac4d9d3cf9da7e75419368e56fcc"
+                "reference": "9e53a97a3c190d45cc5d584daaaf487d509a9285"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework-zend-mime-340769c3d962ac4d9d3cf9da7e75419368e56fcc-zip-20700b.zip",
-                "reference": "340769c3d962ac4d9d3cf9da7e75419368e56fcc",
-                "shasum": "dc370fd9791a1983e6754da48c580d6e41ef0fbc"
+                "url": "https://composer.tiki.org/dist/zendframework-zend-mime-9e53a97a3c190d45cc5d584daaaf487d509a9285-zip-72e659.zip",
+                "reference": "9e53a97a3c190d45cc5d584daaaf487d509a9285",
+                "shasum": "9dda54ebe0c7ed89427582a9290622a007f4ca3f"
             },
             "require": {
                 "php": "^5.5 || ^7.0",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit": "^4.7 || ^5.7",
+                "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-mail": "^2.6"
             },
             "suggest": {
@@ -3249,7 +3249,7 @@
                 "mime",
                 "zf2"
             ],
-            "time": "2016-04-20T21:02:01+00:00"
+            "time": "2017-01-16T16:43:38+00:00"
         },
         {
             "name": "zendframework/zend-server",
@@ -3629,17 +3629,17 @@
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.8.1",
+            "version": "2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-validator.git",
-                "reference": "8ec9f57a717dd37340308aa632f148a2c2be1cfc"
+                "reference": "99b528e01276054458da9553b587cfb959dfa436"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework-zend-validator-8ec9f57a717dd37340308aa632f148a2c2be1cfc-zip-0ead33.zip",
-                "reference": "8ec9f57a717dd37340308aa632f148a2c2be1cfc",
-                "shasum": "29cd34ae03ed46161f337c940ffac460ce12c7a9"
+                "url": "https://composer.tiki.org/dist/zendframework-zend-validator-99b528e01276054458da9553b587cfb959dfa436-zip-54870e.zip",
+                "reference": "99b528e01276054458da9553b587cfb959dfa436",
+                "shasum": "19e1b99d4d798e6da050b02e26e11d82abcb7089"
             },
             "require": {
                 "container-interop/container-interop": "^1.1",
@@ -3696,7 +3696,7 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2016-06-23T13:44:31+00:00"
+            "time": "2017-01-29T17:24:24+00:00"
         },
         {
             "name": "zendframework/zend-version",
@@ -4311,17 +4311,17 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.5.5",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "399c1f9781e222f6eb6cc238796f5200d1b7f108"
+                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/myclabs-deep-copy-399c1f9781e222f6eb6cc238796f5200d1b7f108-zip-7c48b9.zip",
-                "reference": "399c1f9781e222f6eb6cc238796f5200d1b7f108",
-                "shasum": "44036cf0e8be9694a5181dd8bd3130c4adf25038"
+                "url": "https://composer.tiki.org/dist/myclabs-deep-copy-5a5a9fc8025a08d8919be87d6884d5a92520cefe-zip-c650ed.zip",
+                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe",
+                "shasum": "088c35fb2466af8aae5927d69b31b7836029a9af"
             },
             "require": {
                 "php": ">=5.4.0"
@@ -4349,7 +4349,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2016-10-31T17:19:45+00:00"
+            "time": "2017-01-26T22:05:40+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -4617,17 +4617,17 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.4",
+            "version": "4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "c14196e64a78570034afd0b7a9f3757ba71c2a0a"
+                "reference": "c19cfc7cbb0e9338d8c469c7eedecc2a428b0971"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-php-code-coverage-c14196e64a78570034afd0b7a9f3757ba71c2a0a-zip-36cc45.zip",
-                "reference": "c14196e64a78570034afd0b7a9f3757ba71c2a0a",
-                "shasum": "9e27bdc28949a39d5b56aea1c064eeba209a7239"
+                "url": "https://composer.tiki.org/dist/phpunit-php-code-coverage-c19cfc7cbb0e9338d8c469c7eedecc2a428b0971-zip-7197b1.zip",
+                "reference": "c19cfc7cbb0e9338d8c469c7eedecc2a428b0971",
+                "shasum": "f0c17531a405bf331a80aaceafcc7038f1f617d2"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -4676,7 +4676,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-12-20T15:22:42+00:00"
+            "time": "2017-01-20T15:06:43+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4861,17 +4861,17 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.5",
+            "version": "5.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "50fd2be8f3e23e91da825f36f08e5f9633076ffe"
+                "reference": "69f832b87c731d5cacad7f91948778fe98335fdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-phpunit-50fd2be8f3e23e91da825f36f08e5f9633076ffe-zip-7a9a78.zip",
-                "reference": "50fd2be8f3e23e91da825f36f08e5f9633076ffe",
-                "shasum": "c894b54eb86f618ed088f8bf895bffc12066ddc7"
+                "url": "https://composer.tiki.org/dist/phpunit-phpunit-69f832b87c731d5cacad7f91948778fe98335fdd-zip-9af143.zip",
+                "reference": "69f832b87c731d5cacad7f91948778fe98335fdd",
+                "shasum": "ed685f462b8c59659edcdd6b53e7b1ebc2ca9e99"
             },
             "require": {
                 "ext-dom": "*",
@@ -4882,7 +4882,7 @@
                 "myclabs/deep-copy": "~1.3",
                 "php": "^5.6 || ^7.0",
                 "phpspec/prophecy": "^1.6.2",
-                "phpunit/php-code-coverage": "^4.0.3",
+                "phpunit/php-code-coverage": "^4.0.4",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "^1.0.6",
@@ -4939,7 +4939,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-12-28T07:18:51+00:00"
+            "time": "2017-01-28T06:14:33+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -5002,17 +5002,17 @@
         },
         {
             "name": "phpunit/phpunit-selenium",
-            "version": "3.0.2",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giorgiosironi/phpunit-selenium.git",
-                "reference": "d3aa8984c31efcff7c8829b9bd9ad7ab4c94709c"
+                "reference": "343ba4e389ad97046c78fb2c7111e199795e7a80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-phpunit-selenium-d3aa8984c31efcff7c8829b9bd9ad7ab4c94709c-zip-454288.zip",
-                "reference": "d3aa8984c31efcff7c8829b9bd9ad7ab4c94709c",
-                "shasum": "c921136c392b832696d48997e139865a1d3d4bdc"
+                "url": "https://composer.tiki.org/dist/phpunit-phpunit-selenium-343ba4e389ad97046c78fb2c7111e199795e7a80-zip-b7c8ca.zip",
+                "reference": "343ba4e389ad97046c78fb2c7111e199795e7a80",
+                "shasum": "0c36941dfa4589ea2adae94ed6226969ae2a0cc6"
             },
             "require": {
                 "ext-curl": "*",
@@ -5052,6 +5052,10 @@
                     "name": "Sebastian Bergmann",
                     "email": "sb@sebastian-bergmann.de",
                     "role": "original developer"
+                },
+                {
+                    "name": "Paul Briton",
+                    "role": "developer"
                 }
             ],
             "description": "Selenium Server integration for PHPUnit",
@@ -5062,7 +5066,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-04-22T10:41:33+00:00"
+            "time": "2017-01-23T22:12:35+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -5111,17 +5115,17 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "1.2.2",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "6a1ed12e8b2409076ab22e3897126211ff8b1f7f"
+                "reference": "2b7424b55f5047b47ac6e5ccb20b2aea4011d9be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-comparator-6a1ed12e8b2409076ab22e3897126211ff8b1f7f-zip-60a9ca.zip",
-                "reference": "6a1ed12e8b2409076ab22e3897126211ff8b1f7f",
-                "shasum": "82a21a717edc081380b6196f6958fdd7798f7132"
+                "url": "https://composer.tiki.org/dist/sebastian-comparator-2b7424b55f5047b47ac6e5ccb20b2aea4011d9be-zip-5c4a53.zip",
+                "reference": "2b7424b55f5047b47ac6e5ccb20b2aea4011d9be",
+                "shasum": "e2a1e525baf80cf186d1b12ddb8b5a5093a241f7"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -5171,7 +5175,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2016-11-19T09:18:40+00:00"
+            "time": "2017-01-29T09:50:25+00:00"
         },
         {
             "name": "sebastian/diff",
