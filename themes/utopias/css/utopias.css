@@ -6768,6 +6768,8 @@ a.fc-event:hover {
 .cssmenu_vert > li:hover,
 .cssmenu_vert > li.sfHover {
   -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
   transition: none;
 }
 .topbar .nav > li > a:hover,
@@ -6891,6 +6893,7 @@ table.treetable.objectperms td.removed {
 .ui-selectmenu-icon {
   background-color: inherit;
   border: solid 5px transparent !important;
+  -webkit-box-shadow: -5px 0 5px 2px rgba(0, 0, 0, 0.1), -1px 0 0 rgba(0, 0, 0, 0.1), -2px 0 0 rgba(255, 255, 255, 0.25);
   box-shadow: -5px 0 5px 2px rgba(0, 0, 0, 0.1), -1px 0 0 rgba(0, 0, 0, 0.1), -2px 0 0 rgba(255, 255, 255, 0.25);
 }
 .dirsitetrail {
@@ -7630,9 +7633,7 @@ table.tablesorter thead tr.tablesorter-filter-row {
   padding: 5px;
 }
 .tiki .pvtAxisContainer li.pvtPlaceholder {
-  -webkit-border-radius: 5px;
   padding: 3px 15px;
-  -moz-border-radius: 5px;
   border-radius: 5px;
   border: 1px dashed #dddddd;
 }
@@ -7737,6 +7738,9 @@ table.tablesorter thead tr.tablesorter-filter-row {
   background: #eeeeee;
   font-weight: normal;
   color: #555555;
+}
+.tiki .ui-widget-header a {
+  color: #aaaaaa;
 }
 .container {
   background-color: #ffffff;

@@ -16,6 +16,10 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
  */
 class Services_Utilities
 {
+	private $check;
+	public $items;
+	private $action;
+
 	/**
 	 * Provide referer url if javascript not enabled.
 	 * 
@@ -92,7 +96,8 @@ class Services_Utilities
 	{
 		//no javascript
 		if (!empty($referer)) {
-			TikiLib::lib('access')->redirect($referer);
+			$referer = new JitFilter(['referer' => $referer]);
+			TikiLib::lib('access')->redirect($referer->referer->striptags());
 		//javascript
 		} else {
 			//the js confirmAction function in tiki-ajax_services.js uses this to close the modal and refresh the page
@@ -141,5 +146,85 @@ class Services_Utilities
 			//this will show as a modal if exception occurs when first clicking the action
 			throw new Services_Exception($mes);
 		}
+	}
+
+	/**
+	 * The following functions are used in the services actions that first present a popup for confirmation before the
+	 * action is completed by the user confirm the action
+	 */
+
+
+	/**
+	 * CSFR ticket - Check the ticket to either set it or match to the ticket previously set
+	 */
+	function checkTicket()
+	{
+		$this->check = Services_Exception_BadRequest::checkAccess();
+	}
+
+	/**
+	 * CSFR ticket - Check that the ticket has been created
+	 *
+	 * @return bool
+	 */
+	function ticketSet()
+	{
+		return !empty($this->check['ticket']);
+	}
+
+	/**
+	 * CSFR ticket - Check that the ticket has been matched to the previous ticket set
+	 *
+	 * @return bool
+	 */
+	function ticketMatch()
+	{
+		return $this->check === true;
+	}
+
+	/**
+	 * Set the items variable
+	 *
+	 * @param JitFilter $input
+	 * @param $offset
+	 */
+	function setItemsAction(JitFilter $input, $offset = false)
+	{
+		if ($offset) {
+			$this->items = $input->asArray($offset);
+		}
+		$this->action = $input->action->word();
+	}
+
+	/**
+	 * Create array for standard confirmation popup
+	 *
+	 * @param $msg
+	 * @param $confirmController
+	 * @param $button
+	 * @param array $moreExtra
+	 * @return array
+	 */
+	function confirm($msg, $confirmController, $button, array $moreExtra = [])
+	{
+		//provide redirect if js is not enabled
+		$extra['referer'] = Services_Utilities::noJsPath();
+		$extra = array_merge($extra, $moreExtra);
+		$ret = [
+			'FORWARD' => [
+				'modal' => '1',
+				'controller' => 'access',
+				'action' => 'confirm',
+				'confirmAction' => $this->action,
+				'confirmController' => $confirmController,
+				'customMsg' => $msg,
+				'confirmButton' => $button,
+				'items' => $this->items,
+				'extra' => $extra,
+				'ticket' => $this->check['ticket'],
+				'confirm' => 'y',
+			]
+		];
+		return $ret;
 	}
 }

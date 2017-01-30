@@ -150,7 +150,7 @@ class PdfGenerator
 		// There seemed to be encoding issues when using stdout (on Windows 7 64 bit).
 
 		// Use temp/public. It is cleaned up during a cache clean, in case some files are left
-		$filename = 'temp/public/out'.rand().'.pdf';
+		$filename = 'temp/public/out'.mt_rand().'.pdf';
 
 		// Run shell_exec command to generate out file
 		// NOTE: this requires write permissions
@@ -188,7 +188,7 @@ class PdfGenerator
 		// There seemed to be encoding issues when using stdout (on Windows 7 64 bit).
 
 		// Use temp/public. It is cleaned up during a cache clean, in case some files are left
-		$filename = 'temp/public/out'.rand().'.pdf';
+		$filename = 'temp/public/out'.mt_rand().'.pdf';
 
 		// Run shell_exec command to generate out file
 		// NOTE: this requires write permissions
@@ -332,6 +332,11 @@ class PdfGenerator
 			 $printcss = file_get_contents('themes/base_files/css/printpdf.css'); // external css
 
 		}
+		else
+		{//preserving theme styles by removing media print styles to print what is shown on screen
+		  $themecss=str_replace(array("media print","color : fff"),array("media p","color : #fff"),$themecss);
+		  $basecss=str_replace(array("media print","color : fff"),array("media p","color : #fff"),$basecss);
+		}
 		$mpdf->WriteHTML('<style>'.$basecss.$themecss.$printcss.$this->bootstrapReplace().'</style>'.$html);
 	    $this->clearTempImg($tempImgArr);
 		return $mpdf->Output('', 'S');					// Return as a string
@@ -385,7 +390,7 @@ class PdfGenerator
 	   $context = stream_context_create($opts);
 	   session_write_close();
 	   $data=file_get_contents($url, false, $context);
-	   $newFile='temp/pdfimg/pdfimg'.rand(9999,999999).'.png';
+	   $newFile='temp/pdfimg/pdfimg'.mt_rand(9999,999999).'.png';
 	   file_put_contents($newFile, $data);
 	   chmod($newFile,0755);
        return $newFile;
@@ -473,7 +478,7 @@ class PdfGenerator
      }
 
 	 function bootstrapReplace(){
-	    return ".col-xs-12 {width: 90%;}.col-xs-11 {width: 81.66666667%;}.col-xs-10 {width: 72%;}.col-xs-9 {width: 64%;}.col-xs-8 {width: 57%;}.col-xs-7 {width: 49%;}.col-xs-6 {width: 42%;}.col-xs-5 {width: 35%;}.col-xs-4 {width: 28%;}.col-xs-3{width: 20%;}.col-xs-2 {width: 12.2%;}.col-xs-1 {width: 3.92%;}    .table-striped {border:1px solid #ccc;} .table-striped td { padding: 8px; line-height: 1.42857143;vertical-align: center;border-top: 1px solid #ccc; color:#000; } .table-striped th { padding: 10px; line-height: 1.42857143;vertical-align: center; background-color:#ccc; color:#000  } .table-striped .odd { color:#000;padding:10px;} .table-striped .even { padding:10px; background-color:#eee; }.odd { padding:10px; background-color:#fff; } .table-striped a{color:#000} .trackerfilter form{display:none;}";
+	    return ".col-xs-12 {width: 90%;}.col-xs-11 {width: 81.66666667%;}.col-xs-10 {width: 72%;}.col-xs-9 {width: 64%;}.col-xs-8 {width: 57%;}.col-xs-7 {width: 49%;}.col-xs-6 {width: 42%;}.col-xs-5 {width: 35%;}.col-xs-4 {width: 28%;}.col-xs-3{width: 20%;}.col-xs-2 {width: 12.2%;}.col-xs-1 {width: 3.92%;}    .table-striped {border:1px solid #ccc;} .table-striped td { padding: 8px; line-height: 1.42857143;vertical-align: center;border-top: 1px solid #ccc;} .table-striped th { padding: 10px; line-height: 1.42857143;vertical-align: center;   } .table-striped .odd {padding:10px;} .trackerfilter form{display:none;}";
 	}
 	
 	function sortContent(&$table,&$tempValue,&$sortedContent,$tag)

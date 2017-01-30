@@ -6738,6 +6738,7 @@ header.page-header::before,
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
 .cssmenu_horiz li ul > li > a,
@@ -7120,6 +7121,8 @@ a.fc-event:hover {
 .cssmenu_vert > li:hover,
 .cssmenu_vert > li.sfHover {
   -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
   transition: none;
 }
 .topbar .nav > li > a:hover,
@@ -7243,6 +7246,7 @@ table.treetable.objectperms td.removed {
 .ui-selectmenu-icon {
   background-color: inherit;
   border: solid 5px transparent !important;
+  -webkit-box-shadow: -5px 0 5px 2px rgba(0, 0, 0, 0.1), -1px 0 0 rgba(0, 0, 0, 0.1), -2px 0 0 rgba(255, 255, 255, 0.25);
   box-shadow: -5px 0 5px 2px rgba(0, 0, 0, 0.1), -1px 0 0 rgba(0, 0, 0, 0.1), -2px 0 0 rgba(255, 255, 255, 0.25);
 }
 .dirsitetrail {
@@ -7970,9 +7974,7 @@ table.tablesorter thead tr.tablesorter-filter-row {
   padding: 5px;
 }
 .tiki .pvtAxisContainer li.pvtPlaceholder {
-  -webkit-border-radius: 5px;
   padding: 3px 15px;
-  -moz-border-radius: 5px;
   border-radius: 5px;
   border: 1px dashed #ecf0f1;
 }
@@ -8077,4 +8079,7 @@ table.tablesorter thead tr.tablesorter-filter-row {
   background: #95a5a6;
   font-weight: normal;
   color: #ffffff;
+}
+.tiki .ui-widget-header a {
+  color: #18bc9c;
 }

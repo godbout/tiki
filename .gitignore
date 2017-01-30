@@ -1,6 +1,5 @@
 /.buildpath
 /.cache
-/.htaccess
 /.idea
 /.lastup
 /.metadata*
@@ -19,10 +18,8 @@ db/lock
 db/tiki-secdb_*svn_mysql.sql
 db/virtuals.inc
 /dummy.php
-dump/*
-files/[a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9][a-z0-9]
-files/visorFreemind.swf
-img/.htaccess
+/dump
+/files
 img/trackers/*
 img/wiki/*.gif
 img/wiki/*.pad_xml
@@ -53,15 +50,12 @@ temp/cache/*
 temp/mail_attachs/*
 temp/public/*
 templates/.htaccess
-/templates_c
-templates_c/*
 tests/.htaccess
 /tiki-*.log
 /tiki-emptycache.php
 tiki_tests/tests
 /var
-/vendor
+vendor/autoload.php
 /vendor_custom
 vendor_custom/*
-whelp/test
-whelp/tests
+/whelp

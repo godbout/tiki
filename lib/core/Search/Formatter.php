@@ -8,12 +8,15 @@
 class Search_Formatter
 {
 	private $plugin;
+	private $counter;
 	private $subFormatters = array();
+	private $customFilters = array();
 	private $alternateOutput;
 
-	function __construct(Search_Formatter_Plugin_Interface $plugin)
+	function __construct(Search_Formatter_Plugin_Interface $plugin, $counter = 0)
 	{
 		$this->plugin = $plugin;
+		$this->counter = $counter;
 	}
 
 	function setAlternateOutput($output)
@@ -26,14 +29,19 @@ class Search_Formatter
 		$this->subFormatters[$name] = $formatter;
 	}
 
+	function addCustomFilter($field) {
+		$this->customFilters[] = $field;
+	}
+
 	function format($list)
 	{
 		if (0 == count($list) && $this->alternateOutput) {
-			return $this->alternateOutput;
+			return $this->renderFilters() . $this->alternateOutput;
 		}
 
 		$list = $this->getPopulatedList($list);
-		return $this->render($this->plugin, $list, Search_Formatter_Plugin_Interface::FORMAT_WIKI);
+		return $this->renderFilters()
+			. $this->render($this->plugin, $list, Search_Formatter_Plugin_Interface::FORMAT_WIKI);
 	}
 
 	function getPopulatedList($list, $preload = true)
@@ -83,6 +91,50 @@ class Search_Formatter
 		}
 
 		return $list->replaceEntries($data);
+	}
+
+	public function renderFilters() {
+		$trklib = TikiLib::lib('trk');
+		$fields = array();
+		foreach ($this->customFilters as $fieldName) {
+			$field = $trklib->get_field_by_perm_name(str_replace('tracker_field_', '', $fieldName));
+			if ($field) {
+				$field['ins_id'] = "ins_".$field['fieldId'];
+				$handler = $trklib->get_field_handler($field);
+				$field = array_merge($field, $handler->getFieldData($_REQUEST));
+				// TODO: refactor field handler to not require calling this twice to fit in the request data
+				$handler = $trklib->get_field_handler($field);
+				$field['renderedInput'] = $handler->renderInput(array('filter' => true));
+				$value = isset($_REQUEST[$field['ins_id']]) ? $_REQUEST[$field['ins_id']] : null;
+				$blank = '<option value="-Blank (no data)-" '
+					. ( ( $value === '-Blank (no data)-' || is_array($value) && in_array( '-Blank (no data)-', $value ) ) ? 'selected' : '' )
+					. '>-Blank (no data)-</option>';
+				$field['renderedInput'] = str_replace('</select>', $blank . '</select>', $field['renderedInput']);
+				$field['textInput'] = preg_match("/<input.*type=['\"]text['\"]/", $field['renderedInput']);
+				$fields[] = $field;
+			} else {
+				// non-tracker field in the index
+				$fields[] = array(
+					'fieldId' => 0,
+					'name' => $fieldName,
+					'value' => isset($_REQUEST['ins_'.$fieldName]) ? $_REQUEST['ins_'.$fieldName] : null,
+					'textInput' => true,
+				);
+			}
+		}
+
+		if ($fields) {
+			$smarty = TikiLib::lib('smarty');
+			$smarty->assign('filterFields', $fields);
+			$smarty->assign('filterCounter', $this->counter);
+			return '~np~' . $smarty->fetch('templates/search/list/filter.tpl') . '~/np~';
+		}
+
+		return '';
+	}
+
+	public function getCounter() {
+		return $this->counter;
 	}
 
 	private function render($plugin, $resultSet, $target)

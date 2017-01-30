@@ -48,6 +48,8 @@ function wikiplugin_pivottable_info()
 				'since' => '',
 				'filter' => 'text',
 				'default' => '',
+				'profile_reference' => 'tracker_field',
+				'separator' => ':',
 			),
 			'cols' => array(
 				'required' => false,
@@ -56,6 +58,8 @@ function wikiplugin_pivottable_info()
 				'since' => '',
 				'filter' => 'text',
 				'default' => '',
+				'profile_reference' => 'tracker_field',
+				'separator' => ':',
 			),
 			'rendererName' => array(
 				'name' => tr('Renderer Name'),
@@ -111,6 +115,8 @@ function wikiplugin_pivottable_info()
 				'since' => '',
 				'required' => false,
 				'filter' => 'text',
+				'profile_reference' => 'tracker_field',
+				'separator' => ':',
 			),
 			'inclusions' => array(
 				'name' => tr('Inclusions'),
@@ -125,6 +131,15 @@ function wikiplugin_pivottable_info()
 				'since' => '16.2',
 				'required' => false,
 				'filter' => 'digits',
+			),
+			'aggregateDetails' => array(
+				'name' => tr('Aggregate details'),
+				'description' => tr('When enabled, clicking a table cell will popup all items that were aggregated into that cell. Specify the name of the field or fields to use to display the details separated by colon. Enabled by default. To disable, set contents to an empty string.'),
+				'since' => '16.2',
+				'required' => false,
+				'filter' => 'text',
+				'profile_reference' => 'tracker_field',
+				'separator' => ':',
 			),
 		),
 	);
@@ -198,6 +213,18 @@ function wikiplugin_pivottable($data, $params)
 	}
 
 	$fields[] = array(
+		'name' => 'object_id',
+		'permName' => 'object_id',
+		'type' => 't'
+	);
+
+	$fields[] = array(
+		'name' => 'object_type',
+		'permName' => 'object_type',
+		'type' => 't'
+	);
+
+	$fields[] = array(
 		'name' => 'creation_date',
 		'permName' => 'creation_date',
 		'type' => 'f'
@@ -268,6 +295,7 @@ function wikiplugin_pivottable($data, $params)
 		}
 	}
 	if( $columnsListed ) {
+		$data .= '{display name="object_id"}{display name="object_type"}';
 		$plugin = new Search_Formatter_Plugin_ArrayTemplate($data);
 		$usedFields = array_keys($plugin->getFields());
 		foreach( $fields as $key => $field ) {
@@ -281,7 +309,7 @@ function wikiplugin_pivottable($data, $params)
 	} else {
 		$plugin = new Search_Formatter_Plugin_ArrayTemplate(implode("", array_map(
 			function($f){
-				if( in_array($f['permName'], array('creation_date', 'modification_date', 'tracker_status')) ) {
+				if( in_array($f['permName'], array('object_id', 'object_type', 'creation_date', 'modification_date', 'tracker_status')) ) {
 					return '{display name="'.$f['permName'].'" default=" "}';
 				} else {
 					return '{display name="tracker_field_'.$f['permName'].'" default=" "}';
@@ -293,6 +321,7 @@ function wikiplugin_pivottable($data, $params)
 	$builder = new Search_Formatter_Builder;
 	$builder->setId('wppivottable-' . $id);
 	$builder->setCount($result->count());
+	$builder->apply($matches);
 	$builder->setFormatterPlugin($plugin);
 
 	$formatter = $builder->getFormatter();
@@ -315,8 +344,7 @@ function wikiplugin_pivottable($data, $params)
 	//translating permName to field name for columns and rows
 	$cols = array();
 	if (!empty($params['cols'])) {
-		$colNames = explode(":", $params['cols']);
-		foreach($colNames as $colName)
+		foreach($params['cols'] as $colName)
 		{
 			if( $field = $definition->getFieldFromPermName(trim($colName)) ) {
 				$cols[] = $field['name'];
@@ -330,8 +358,7 @@ function wikiplugin_pivottable($data, $params)
 	
 	$rows = array();
 	if (!empty($params['rows'])) {
-		$rowNames = explode(":", $params['rows']);
-		foreach($rowNames as $rowName)
+		foreach($params['rows'] as $rowName)
 		{
 			if( $field = $definition->getFieldFromPermName(trim($rowName)) ) {
 				$rows[] = $field['name'];
@@ -345,8 +372,7 @@ function wikiplugin_pivottable($data, $params)
 
 	$vals = array();
 	if (!empty($params['vals'])) {
-		$valNames = explode(":", $params['vals']);
-		foreach($valNames as $valName)
+		foreach($params['vals'] as $valName)
 		{
 			if( $field = $definition->getFieldFromPermName(trim($valName)) ) {
 				$vals[] = $field['name'];
@@ -369,6 +395,43 @@ function wikiplugin_pivottable($data, $params)
 			$dateFields[] = $field['name'];
 		}
 	}
+
+	$smarty = TikiLib::lib('smarty');
+	$smarty->loadPlugin('smarty_function_object_link');
+
+	if (!isset($params['aggregateDetails'])) {
+		if (isset($fields[2])) {
+			$params['aggregateDetails'][] = $fields[2]['permName'];
+		} elseif (isset($fields[0])) {
+			$params['aggregateDetails'][] = $fields[0]['permName'];
+		}
+	}
+
+	if (!empty($params['aggregateDetails']) && !empty($params['aggregateDetails'][0])) {
+		$aggregateDetails = array();
+		foreach ($params['aggregateDetails'] as $fieldName) {
+			if ($field = $definition->getFieldFromPermName(trim($fieldName))) {
+				$aggregateDetails[] = $field['name'];
+			} else {
+				$aggregateDetails[] = trim($fieldName);
+			}
+		}
+		foreach ($pivotData as &$row) {
+			$title = implode(' ', array_map(function($field) use ($row) {
+				return $row[$field];
+			}, $aggregateDetails));
+			$row['pivotLink'] = smarty_function_object_link(
+				array(
+					'type' => $row['object_type'],
+					'id' => $row['object_id'],
+					'title' => $title,
+				),
+				$smarty
+			);
+		}
+	} else {
+		$params['aggregateDetails'] = array();
+	}
 	
 	//checking if user can see edit button
 	if (!empty($wikiplugin_included_page)) {
@@ -384,7 +447,8 @@ function wikiplugin_pivottable($data, $params)
 		$showControls = FALSE;
 	}
 
-	$smarty = TikiLib::lib('smarty');
+	$out = str_replace( array('~np~', '~/np~'), '', $formatter->renderFilters() );
+
 	$smarty->assign('pivottable', array(
 		'id' => 'pivottable' . $id,
 		'trows'=>$rows,
@@ -402,9 +466,12 @@ function wikiplugin_pivottable($data, $params)
 		'dateFields' => $dateFields,
 		'inclusions' => $inclusions,
 		'menuLimit' => empty($params['menuLimit']) ? null : $params['menuLimit'],
+		'aggregateDetails' => implode(':', $params['aggregateDetails']),
 		'index'=>$id
 	));
 	
-	return $smarty->fetch('wiki-plugins/wikiplugin_pivottable.tpl');
+	$out .= $smarty->fetch('wiki-plugins/wikiplugin_pivottable.tpl');
+
+	return $out;
 }
 

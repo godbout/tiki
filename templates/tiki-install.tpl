@@ -172,7 +172,7 @@
 						<form action="tiki-install.php#mail" method="post" role="form">
 							<div class="form-group">
 								<label for="email_test_to">{tr}Test email:{/tr}</label>
-								<input type="text" size="40" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to}{/if}">
+								<input type="text" size="40" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to}{/if}" placeholder="{tr}tiki@example.com{/tr}">
 								{if isset($email_test_err)}<span class="attention"><em>{$email_test_err}</em></span>
 								{else}<em>{tr}Email address to send test to.{/tr}</em>{/if}
 								<br><br>
@@ -305,7 +305,7 @@
 								<div class="form-group">
 									<label for="name">{tr}Schema name:{/tr}</label>
 									<div style="margin-left:1em;">
-										<input type="text" class=form-control id="name" name="name" size="40" value="{if isset($smarty.request.name)}{$smarty.request.name|escape:"html"}{elseif isset($preconfigname)}{$preconfigname|escape:"html"}{/if}" />
+										<input type="text" class=form-control id="name" name="name" size="40" value="{if isset($smarty.request.name)}{$smarty.request.name|escape:"html"}{elseif isset($preconfigname)}{$preconfigname|escape:"html"}{/if}" placeholder="{tr}databaseName{/tr}"/>
 										<a href="javascript:void(0)" onclick="flip('name_help');" title="{tr}Help{/tr}">
 											{icon name="help"}
 										</a>
@@ -317,13 +317,20 @@
 									</div>
 								</div>
 							</fieldset>
+
 							<br>
 							<fieldset>
 								<legend>{tr}Database user{/tr}</legend>
 								<p>{tr}Enter a database user with administrator permission for the Database.{/tr}</p>
 								<div style="padding:5px;">
-									<label for="user">{tr}User name:{/tr}</label> <input type="text" class=form-control id="user" name="user" value="{if (isset($smarty.request.user))}{$smarty.request.user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}">
+									<label for="user">{tr}User name:{/tr}</label> <input type="text" class=form-control id="user" name="user" value="{if (isset($smarty.request.user))}{$smarty.request.user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" placeholder="{tr}databaseUsername{/tr}">
 								</div>
+
+								<div style="display:none; padding:5px;">
+									<input type="checkbox" id="create-new-user" name="create_new_user" checked="checked"/>
+									<label for="create-new-user">{tr}Create a new user just for this TikiWiki instance.{/tr}</label>&nbsp;
+								</div>
+
 								<div style="padding:5px;">
 									{if isset($preconfigpass)}
 										<label for="pass">{tr}Password:{/tr}</label> <input type="text" class=form-control id="pass" name="pass" value="{$preconfigpass|escape:"html"}" >
@@ -332,6 +339,54 @@
 									{/if}
 								</div>
 							</fieldset>
+
+							<br/>
+							<fieldset id="new-user-fieldset" style="display: none;">
+								<legend>{tr}New database user{/tr}</legend>
+								<p>{tr}Enter name and password for new user.{/tr}</p>
+								<div style="padding:5px;">
+									<label for="user">{tr}User name:{/tr}</label> <input type="text" class=form-control id="new-user" name="new_user" value="{if (isset($smarty.request.new_user))}{$smarty.request.new_user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" placeholder="{tr}databaseUsername{/tr}">
+								</div>
+								<div style="padding:5px;">
+									<label for="pass">{tr}Password:{/tr}</label> <input type="password" class=form-control id="new-pass" name="new_pass" value="{if (isset($smarty.request.new_pass))}{$smarty.request.new_pass|escape:"html"}{/if}">
+								</div>
+							</fieldset>
+							<script type='text/javascript'><!--//--><![CDATA[//><!--
+							;(function(){
+								var user = document.getElementById('user');
+								var create_new_user = document.getElementById('create-new-user');
+								var new_user_fs = document.getElementById('new-user-fieldset');
+
+								if(user.value === 'root') {
+									create_new_user.parentElement.style.display = 'block';
+
+									if(create_new_user.checked) {
+										new_user_fs.style.display = 'block';
+									}
+								}
+
+								user.addEventListener('keyup', function(evt){
+									if (user.value === 'root') {
+										create_new_user.parentElement.style.display = 'block';
+										if(create_new_user.checked) {
+											new_user_fs.style.display = 'block';
+										}
+									} else {
+										create_new_user.parentElement.style.display = 'none';
+										new_user_fs.style.display = 'none';
+									}
+								});
+
+								create_new_user.addEventListener('click', function(){
+									if(create_new_user.checked && user.value === 'root') {
+										new_user_fs.style.display = 'block';
+									} else {
+										new_user_fs.style.display = 'none';
+									}
+								});
+							})();//--><!]]></script>
+
+							<br/>
 							<input type="hidden" name="resetdb" value="y">
 							<fieldset>
 								<legend>{tr}Character set{/tr}</legend>
@@ -551,7 +606,7 @@
 									<label for="browsertitle">
 										{tr}Browser title:{/tr}
 									</label>
-									<input class="form-control" type="text" size="40" name="browsertitle" id="browsertitle" value="" placeholder="{tr}My Tiki{/tr}">
+									<input class="form-control" type="text" size="40" name="browsertitle" id="browsertitle" value="{if $prefs.browsertitle eq ''}{tr}My Tiki{/tr}{else}{$prefs.browsertitle|escape}{/if}">
 									<span class="help-block">
 										{tr}This will appear in the browser title bar.{/tr}
 									</span>
@@ -566,16 +621,14 @@
 									</span>
 								</div>
 								<div style="padding:5px; clear:both">
-									<div style="padding:5px; clear:both">
-										<label for="network_proxy">{tr}Network Proxy?{/tr}</label> <a href="#" onclick="$('#use_proxy_childcontainer').toggle();return false;">{tr}Toggle section display{/tr}</a>
-										<div id="use_proxy_childcontainer"{if $prefs.use_proxy neq 'y'} style="display:none;"{/if}>
+									<details>
+											<summary><label>{tr}Network Proxy?{/tr}</label> {tr}Toggle section display{/tr}</summary>
 											<div style="margin-left:1em"><label for="use_proxy">{tr}Use proxy{/tr}</label> <input type="checkbox" name="use_proxy" id="use_proxy"{if $prefs.use_proxy eq 'y'} checked="checked"{/if}><a href="https://doc.tiki.org/General+Settings" target="_blank" title="{tr}Help{/tr}">{icon name="help"}</a></div>
 											<div style="margin-left:1em"><label for="proxy_host">{tr}Proxy host name{/tr}</label><input type="text" class="form-control" size="40" name="proxy_host" id="proxy_host" value="{$prefs.proxy_host|escape}"></div>
 											<div style="margin-left:1em"><label for="proxy_port">{tr}Port{/tr}</label><input type="text" class="form-control" size="40" name="proxy_port" id="proxy_port" value="{$prefs.proxy_port|escape}"></div>
 											<div style="margin-left:1em"><label for="proxy_user">{tr}Proxy username{/tr}</label><input type="text" class="form-control" size="40" name="proxy_user" id="proxy_user" value="{$prefs.proxy_user|escape}"></div>
 											<div style="margin-left:1em"><label for="proxy_pass">{tr}Proxy password{/tr}</label><input type="text" class="form-control" size="40" name="proxy_pass" id="proxy_pass" value="{$prefs.proxy_pass|escape}"></div>
-										</div>
-									</div>
+									</details>
 								</div>
 							</fieldset>
 							<br>
@@ -651,7 +704,7 @@
 									<label for="admin_email">
 										{tr}Admin email:{/tr}
 									</label>
-									<input type="text" class="form-control" size="40" name="admin_email" id="admin_email" value="{if isset($admin_email)}{$admin_email}{/if}">
+									<input type="text" class="form-control" size="40" name="admin_email" id="admin_email" value="{if isset($admin_email)}{$admin_email}{/if}" placeholder="{tr}admin@example.com{/tr}">
 									<span class="help-block">
 										{tr}This is the email address for your administrator account.{/tr}
 									</span>
@@ -805,7 +858,7 @@
 					{/if}
 					{if isset($smarty.post.update)}
 						<h3>{icon name='information'} {tr}Upgrade{/tr}</h3>
-						<p>{tr}If this is an upgrade, clean the Tiki caches manually (the <strong>templates_c</strong> directory) or by using the <strong>Admin &gt; System</strong> option from the Admin menu.{/tr}</p>
+						<p>{tr}If this is an upgrade, clean the Tiki caches manually (the <strong>temp/templates_c</strong> directory) or by using the <strong>Admin &gt; System</strong> option from the Admin menu.{/tr}</p>
 					{/if}
 					{if $tikidb_is20}
 						<form method="post" action="tiki-install.php" style="float: left">

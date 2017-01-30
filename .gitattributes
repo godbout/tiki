@@ -83,7 +83,7 @@ db/index.php -text
 db/install.ini.dist -text
 db/preconfiguration.php -text
 db/tiki-db.php -text
-db/tiki-secdb_16.1_mysql.sql -text
+db/tiki-secdb_16.2_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -95,7 +95,6 @@ db/tiki_myisam.sql -text
 db/web.config -text
 /display_banner.php -text
 doc/.htaccess -text
-doc/devtools/.htaccess -text
 doc/devtools/20160715_trim50_tracker_permanent_names_for_mysqlfts_tiki.sql -text
 doc/devtools/README.txt -text
 doc/devtools/add1tiki2multi.py -text
@@ -193,20 +192,16 @@ doc/regular.cycle -text
 doc/reports/index.php -text
 doc/stable.version -text
 doc/unstable.version -text
+dump/.htaccess -text
 dump/index.php -text
-/favicon.ico -text
 /fgal_listing_conf.php -text
-files/forums/index.php -text
-files/index.php -text
-files/templates/index.php -text
-files/templates/listpages/index.php -text
-files/templates/listpages/smarty-tikiwiki-1.0-shortlist.txt -text
 /freetag_apply.php -text
 /freetag_list.php -text
 /get_strings.php -text
 /group_tracker_ajax.php -text
 /help.php -text
 /htaccess.sh -text
+img/.htaccess -text
 img/arrows-000000.png -text
 img/avatars/README -text
 img/avatars/index.php -text
@@ -1278,7 +1273,6 @@ img/loading.gif -text
 img/mainbar.gif -text
 img/mainbarlight.gif -text
 img/noavatar.png -text
-img/openlayers/index.php -text
 img/overlay-25.png -text
 img/overlay-40.png -text
 img/overlay-50.png -text
@@ -1348,30 +1342,30 @@ img/screencast-no-video.png -text
 img/screencast-player-close.png -text
 img/screencast-player-frame.png -text
 img/separator.gif -text
-img/smiles/icon_arrow.png -text
-img/smiles/icon_biggrin.png -text
-img/smiles/icon_confused.png -text
-img/smiles/icon_cool.png -text
-img/smiles/icon_cry.png -text
-img/smiles/icon_eek.png -text
-img/smiles/icon_evil.png -text
-img/smiles/icon_exclaim.png -text
-img/smiles/icon_frown.png -text
-img/smiles/icon_idea.png -text
-img/smiles/icon_lol.png -text
-img/smiles/icon_mad.png -text
-img/smiles/icon_mrgreen.png -text
-img/smiles/icon_neutral.png -text
-img/smiles/icon_question.png -text
-img/smiles/icon_razz.png -text
-img/smiles/icon_redface.png -text
-img/smiles/icon_rolleyes.png -text
-img/smiles/icon_sad.png -text
-img/smiles/icon_santa.png -text
-img/smiles/icon_smile.png -text
-img/smiles/icon_surprised.png -text
-img/smiles/icon_twisted.png -text
-img/smiles/icon_wink.png -text
+img/smiles/icon_arrow.gif -text svneol=unset#image/gif
+img/smiles/icon_biggrin.gif -text svneol=unset#image/gif
+img/smiles/icon_confused.gif -text svneol=unset#image/gif
+img/smiles/icon_cool.gif -text svneol=unset#image/gif
+img/smiles/icon_cry.gif -text svneol=unset#image/gif
+img/smiles/icon_eek.gif -text svneol=unset#image/gif
+img/smiles/icon_evil.gif -text svneol=unset#image/gif
+img/smiles/icon_exclaim.gif -text svneol=unset#image/gif
+img/smiles/icon_frown.gif -text svneol=unset#image/gif
+img/smiles/icon_idea.gif -text svneol=unset#image/gif
+img/smiles/icon_lol.gif -text svneol=unset#image/gif
+img/smiles/icon_mad.gif -text svneol=unset#image/gif
+img/smiles/icon_mrgreen.gif -text svneol=unset#image/gif
+img/smiles/icon_neutral.gif -text svneol=unset#image/gif
+img/smiles/icon_question.gif -text svneol=unset#image/gif
+img/smiles/icon_razz.gif -text svneol=unset#image/gif
+img/smiles/icon_redface.gif -text svneol=unset#image/gif
+img/smiles/icon_rolleyes.gif -text svneol=unset#image/gif
+img/smiles/icon_sad.gif -text svneol=unset#image/gif
+img/smiles/icon_santa.gif -text svneol=unset#image/gif
+img/smiles/icon_smile.gif -text svneol=unset#image/gif
+img/smiles/icon_surprised.gif -text svneol=unset#image/gif
+img/smiles/icon_twisted.gif -text svneol=unset#image/gif
+img/smiles/icon_wink.gif -text svneol=unset#image/gif
 img/smiles/index.php -text
 img/spinner.gif -text
 img/superfish/arrows-ffffff.png -text
@@ -1961,6 +1955,7 @@ installer/schema/20161109_remove_old_password_tiki.php -text
 installer/schema/20161117_favicon_tiki.sql -text
 installer/schema/20161206_larger_comment_field_tiki.sql -text
 installer/schema/20161220_add_h5p_tables_tiki.sql -text
+installer/schema/20170129_feature_dump_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2160,8 +2155,6 @@ lib/TikiWebdav/PathFactories/index.php -text
 lib/TikiWebdav/Server.php -text
 lib/TikiWebdav/autoload.php -text
 lib/TikiWebdav/index.php -text
-lib/ZeroClipboard.js -text
-lib/ZeroClipboard.swf -text
 lib/accounting/accountinglib.php -text
 lib/accounting/index.php -text
 lib/activity/activitylib.php -text
@@ -2228,12 +2221,10 @@ lib/ckeditor_tiki/tikilink_dialog.js -text
 lib/ckeditor_tiki/tikistyles.js -text
 lib/ckeditor_tiki/tikitemplates.js -text
 lib/ckeditor_tiki/wysiwyglib.php -text
-lib/codemirror_tiki/codemirror_tiki.css -text
 lib/codemirror_tiki/codemirror_tiki.js -text
 lib/codemirror_tiki/index.php -text
 lib/codemirror_tiki/mode/index.php -text
 lib/codemirror_tiki/mode/tiki/index.php -text
-lib/codemirror_tiki/mode/tiki/tiki.css -text
 lib/codemirror_tiki/mode/tiki/tiki.js -text
 lib/codemirror_tiki/tiki_codemirror.php -text
 lib/commcenter/commlib.php -text
@@ -2513,6 +2504,7 @@ lib/core/Search/Formatter/Builder.php -text
 lib/core/Search/Formatter/DataSource/Declarative.php -text
 lib/core/Search/Formatter/DataSource/Interface.php -text
 lib/core/Search/Formatter/DataSource/index.php -text
+lib/core/Search/Formatter/Factory.php -text
 lib/core/Search/Formatter/Plugin/ArrayTemplate.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
@@ -2667,6 +2659,8 @@ lib/core/Services/Forum/Controller.php -text
 lib/core/Services/Forum/index.php -text
 lib/core/Services/Goal/Controller.php -text
 lib/core/Services/Goal/index.php -text
+lib/core/Services/Group/Controller.php -text
+lib/core/Services/Group/index.php -text
 lib/core/Services/JCapture/Controller.php -text
 lib/core/Services/JCapture/index.php -text
 lib/core/Services/Kaltura/Controller.php -text
@@ -3056,7 +3050,6 @@ lib/core/TikiFilter/PrepareInput.php -text
 lib/core/TikiFilter/PreventXss.php -text
 lib/core/TikiFilter/RawUnsafe.php -text
 lib/core/TikiFilter/WikiContent.php -text
-lib/core/TikiFilter/Word.php -text
 lib/core/TikiFilter/index.php -text
 lib/core/Tracker/CompilerPass.php -text
 lib/core/Tracker/Definition.php -text
@@ -3325,8 +3318,6 @@ lib/integrator/integrator.php -text
 lib/jcapture_tiki/index.php -text
 lib/jcapture_tiki/tiki-jcapture.js -text
 lib/jquery_tiki/autoToc.js -text
-lib/jquery_tiki/colorpicker/index.php -text
-lib/jquery_tiki/colorpicker/layout.css -text
 lib/jquery_tiki/customsearch.js -text
 lib/jquery_tiki/elfinder/elFinderVolumeTikiFiles.class.php -text
 lib/jquery_tiki/elfinder/index.php -text
@@ -4145,7 +4136,6 @@ lib/structures/tiki-edit_structure.js -text
 lib/surveys/index.php -text
 lib/surveys/surveylib.php -text
 lib/surveys/tiki-admin_survey_questions.js -text
-lib/svg-edit_tiki/draw.css -text
 lib/svg-edit_tiki/draw.js -text
 lib/svg-edit_tiki/index.php -text
 lib/swfobject/expressInstall.swf -text
@@ -4166,7 +4156,6 @@ lib/tasks/index.php -text
 lib/tasks/tasklib.php -text
 lib/templates/index.php -text
 lib/templates/templateslib.php -text
-lib/test.swf -text
 lib/test/AcceptanceTests/AllTests.php -text
 lib/test/AcceptanceTests/CollaborativeMultilingualTerminologyTest.php -text
 lib/test/AcceptanceTests/ListPagesTest.php -text
@@ -4341,6 +4330,7 @@ lib/test/core/Search/Expr/TokenizerTest.php -text
 lib/test/core/Search/Expr/index.php -text
 lib/test/core/Search/Formatter/ArrayBuilderTest.php -text
 lib/test/core/Search/Formatter/DataSourceTest.php -text
+lib/test/core/Search/Formatter/FactoryTest.php -text
 lib/test/core/Search/Formatter/index.php -text
 lib/test/core/Search/FormatterTest.php -text
 lib/test/core/Search/GlobalSource/PermissionSourceTest.php -text
@@ -4747,6 +4737,7 @@ lib/wiki-plugins/wikiplugin_pagetabs.php -text
 lib/wiki-plugins/wikiplugin_param.php -text
 lib/wiki-plugins/wikiplugin_pastlink.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
+lib/wiki-plugins/wikiplugin_paymentlist.php -text
 lib/wiki-plugins/wikiplugin_paypal.php -text
 lib/wiki-plugins/wikiplugin_perm.php -text
 lib/wiki-plugins/wikiplugin_perspective.php -text
@@ -5136,6 +5127,10 @@ permissioncheck/yes.bin -text
 /setup.sh -text
 /show_image.php -text
 /snarf_ajax.php -text
+storage/.htaccess -text
+storage/index.php -text
+storage/public/.htaccess -text
+storage/public/index.php -text
 temp/.htaccess -text
 temp/README -text
 temp/cache/index.php -text
@@ -5144,6 +5139,7 @@ temp/mail_attachs/README -text
 temp/mail_attachs/index.php -text
 temp/public/.htaccess -text
 temp/public/index.php -text
+temp/templates_c/index.php -text
 temp/web.config -text
 templates/.htaccess -text
 templates/access/confirm.tpl -text
@@ -5800,6 +5796,7 @@ templates/search/help.tpl -text
 templates/search/index.php -text
 templates/search/list/carousel.tpl -text
 templates/search/list/count.tpl -text
+templates/search/list/filter.tpl -text
 templates/search/list/index.php -text
 templates/search/list/medialist.tpl -text
 templates/search/list/table.tpl -text
@@ -5820,6 +5817,7 @@ templates/send_newsletter_footer.tpl -text
 templates/send_newsletter_header.tpl -text
 templates/sent_newsletters.tpl -text
 templates/show_copyright.tpl -text
+templates/smarty-tikiwiki-1.0-shortlist.txt -text
 templates/social/add_friend.tpl -text
 templates/social/approve_friend.tpl -text
 templates/social/index.php -text
@@ -6450,7 +6448,6 @@ templates/workspace/edit_template.tpl -text
 templates/workspace/index.php -text
 templates/workspace/list_templates.tpl -text
 templates/workspace/select_permissions.tpl -text
-templates_c/index.php -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
@@ -6482,12 +6479,14 @@ themes/base_files/favicons/safari-pinned-tab.svg -text
 themes/base_files/feature_css/admin.css -text
 themes/base_files/feature_css/calendar-print.css -text
 themes/base_files/feature_css/calendar.css -text
+themes/base_files/feature_css/codemirror_mode_tiki.css -text
+themes/base_files/feature_css/codemirror_tiki.css -text
 themes/base_files/feature_css/galleriffic.css -text
 themes/base_files/feature_css/ie8.css -text
 themes/base_files/feature_css/ie9.css -text
 themes/base_files/feature_css/index.php -text
 themes/base_files/feature_css/jscalendar.css -text
-themes/base_files/feature_css/readme.txt -text
+themes/base_files/feature_css/svg-edit-draw.css -text
 themes/base_files/feature_css/wizards.css -text
 themes/base_files/iconsets/default.php -text
 themes/base_files/iconsets/glyphicons.php -text
@@ -7944,17 +7943,18 @@ themes/yeti/templates/index.php -text
 /tiki-wizard_admin.php -text
 /tiki-wizard_user.php -text
 /tiki-xmlrpc_services.php -text
+tiki_tests/.htaccess -text
 tiki_tests/index.php -text
-tiki_tests/tests/.htaccess -text
 tiki_tests/tests/index.php -text
-tiki_tests/tests/web.config -text
 tiki_tests/tiki-tests_edit.php -text
 tiki_tests/tiki-tests_list.php -text
 tiki_tests/tiki-tests_record.php -text
 tiki_tests/tiki-tests_replay.php -text
 tiki_tests/tiki-tests_show_xpath.php -text
 tiki_tests/tikitestslib.php -text
+tiki_tests/web.config -text
 /validate-ajax.php -text
+vendor/.htaccess -text
 vendor_extra/anythingslider-themes/css/theme-default1.css -text
 vendor_extra/anythingslider-themes/css/theme-default2.css -text
 vendor_extra/anythingslider-themes/css/theme-mini-dark.css -text
@@ -8399,5 +8399,4 @@ vendor_extra/vimeo/froogaloop.min.js -text
 vendor_extra/vimeo/vimeo.js -text
 vendor_extra/webodf/webodf.js -text
 /web_config -text
-whelp/index.php -text
 /xmlrpc.php -text
