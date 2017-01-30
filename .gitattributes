@@ -5122,7 +5122,9 @@ permissioncheck/yes.bin -text
 /show_image.php -text
 /snarf_ajax.php -text
 storage/.htaccess -text
+storage/index.php -text
 storage/public/.htaccess -text
+storage/public/index.php -text
 temp/.htaccess -text
 temp/README -text
 temp/cache/index.php -text
