@@ -6710,6 +6710,7 @@ themes/feb12/less/tiki-selectors.less -text
 themes/feb12/templates/index.php -text
 themes/fivealive-lite/css/fivealive-lite.css -text
 themes/fivealive-lite/css/index.php -text
+themes/fivealive-lite/css/newsletter.css -text
 themes/fivealive-lite/fonts/index.php -text
 themes/fivealive-lite/icons/custom.php -text
 themes/fivealive-lite/icons/fivealive_lite.php -text
