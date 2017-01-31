@@ -5,7 +5,12 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once 'vendor/h5p/h5p-core/h5p.classes.php';
+/**
+ * Class H5P_H5PTiki
+ *
+ * Main wrapper class around the H5P library
+ *
+ */
 
 class H5P_H5PTiki implements H5PFrameworkInterface
 {
@@ -46,21 +51,25 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * Get the different instances of the core components.
 	 *
 	 * @param string $component
-	 * @return \H5PWordPress|\H5PCore|\H5PContentValidator|\H5PExport|\H5PStorage|\H5PValidator
+	 * @return \H5PCore|\H5PContentValidator|\H5PExport|\H5PStorage|\H5PValidator|\H5P_H5PTiki
 	 */
 	public static function get_h5p_instance($component)
 	{
-		static $interface, $core, $prefs;
+		static $interface, $core;
+
+		global $prefs, $tikiroot, $tikipath;	// we still have lots of hairy globals
 
 		if (is_null($interface)) {
 			// Setup Core and Interface components that are always needed
 			$interface = new \H5P_H5PTiki();
 
+			$path = 'storage/public/';
+
 			$core = new \H5PCore($interface,
-				'storage/public/', // TODO: Where should the extracted content files be stored? E.g. this is where unpacked JavaScript files will be put so that they may be read by the browser.
-				'/storage/public', // TODO: What is the URL of the previous option?
-				$prefs['language'], // TODO: Get proper language code from Tiki
-				false // TODO: Later: Add option for enabling generation of exports? Not sure if this will be needed in Tiki since we alreay have the .h5p file.
+				$tikipath . $path,	// Where the extracted content files will be stored
+				$tikiroot . $path,	// URL of the previous option
+				$prefs['language'],		// TODO: Map proper language code from Tiki to H5P langs
+				false			// TODO: Later: Add option for enabling generation of exports? Not sure if this will be needed in Tiki since we already have the .h5p file.
 			);
 
 			// This is more of a development option to prevent JS and CSS from being combined. TODO: Remove later
