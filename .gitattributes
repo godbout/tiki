@@ -7949,7 +7949,6 @@ tiki_tests/tiki-tests_show_xpath.php -text
 tiki_tests/tikitestslib.php -text
 tiki_tests/web.config -text
 /validate-ajax.php -text
-vendor/.htaccess -text
 vendor_extra/anythingslider-themes/css/theme-default1.css -text
 vendor_extra/anythingslider-themes/css/theme-default2.css -text
 vendor_extra/anythingslider-themes/css/theme-mini-dark.css -text
