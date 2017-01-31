@@ -113,6 +113,7 @@ doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
 doc/devtools/diffsql.sh -text
 doc/devtools/experimental/index.php -text
+doc/devtools/experimental/prefsdoc.php -text
 doc/devtools/experimental/unzip/index.php -text
 doc/devtools/experimental/unzip/unzipper.php -text
 doc/devtools/export_translations_to_file.php -text
