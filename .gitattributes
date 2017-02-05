@@ -4910,8 +4910,6 @@ lib/wizard/pages/user_wizard_completed.php -text
 lib/wizard/readme.txt -text
 lib/wizard/wizard.php -text
 lib/wizard/wizardlib.php -text
-lib/xmlrpc.inc -text
-lib/xmlrpcs.inc -text
 lib/ziplib.php -text
 lib/zoterolib.php -text
 /license.txt -text
