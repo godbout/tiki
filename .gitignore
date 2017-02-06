@@ -55,7 +55,7 @@ tests/.htaccess
 /tiki-emptycache.php
 tiki_tests/tests
 /var
-vendor/autoload.php
+vendor/*
 /vendor_custom
 vendor_custom/*
 /whelp
