@@ -113,7 +113,6 @@ doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
 doc/devtools/diffsql.sh -text
 doc/devtools/experimental/index.php -text
-doc/devtools/experimental/prefsdoc.php -text
 doc/devtools/experimental/unzip/index.php -text
 doc/devtools/experimental/unzip/unzipper.php -text
 doc/devtools/export_translations_to_file.php -text
@@ -4742,6 +4741,7 @@ lib/wiki-plugins/wikiplugin_playscorm.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
 lib/wiki-plugins/wikiplugin_pref.php -text
+lib/wiki-plugins/wikiplugin_prefdoc.php -text
 lib/wiki-plugins/wikiplugin_prettytrackerviews.php -text
 lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
