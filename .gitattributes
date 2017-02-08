@@ -1954,6 +1954,7 @@ installer/schema/20160915_extwiki_indexname_length_tiki.sql -text
 installer/schema/20161109_remove_old_password_tiki.php -text
 installer/schema/20161117_favicon_tiki.sql -text
 installer/schema/20161206_larger_comment_field_tiki.sql -text
+installer/schema/20170127_remove_templates_c_tiki.php -text
 installer/schema/20170129_feature_dump_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
