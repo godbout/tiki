@@ -1,5 +1,6 @@
 /.buildpath
 /.cache
+/.htaccess
 /.idea
 /.lastup
 /.metadata*
@@ -8,7 +9,6 @@
 /.svnrev
 /ZendPlatform
 /ZendStudioServer
-/_htaccess
 /bin
 db/.htaccess
 db/cert/*.pem
