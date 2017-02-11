@@ -1,5 +1,5 @@
 <?php
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright 2002-2017 by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -14,7 +14,7 @@ function wikiplugin_pivottable_info()
 		'body' => tra('Leave one space in the box below to allow easier editing of current values with the plugin popup helper later on'),
 		'format' => 'html',
 		'iconname' => 'table',
-		'introduced' => 10,
+		'introduced' => '16.1',
 		'params' => array(
 			'data' => array(
 				'name' => tr('Data source'),
@@ -44,7 +44,7 @@ function wikiplugin_pivottable_info()
 			'rows' => array(
 				'required' => false,
 				'name' => tra('Pivot table Rows'),
-				'description' => tr('Will be derived from data, if left blank, first parameter found in data will be used. ') . ' ' . tr('Use permanentNames in case of tracker fields.') . ' ' . tr('Separated by colon (:) if more than one.'),
+				'description' => tr('Which field or fields to use as table rows. Leaving blank will remove grouping by table rows. ') . ' ' . tr('Use permanentNames in case of tracker fields.') . ' ' . tr('Separated by colon (:) if more than one.'),
 				'since' => '',
 				'filter' => 'text',
 				'default' => '',
@@ -54,7 +54,7 @@ function wikiplugin_pivottable_info()
 			'cols' => array(
 				'required' => false,
 				'name' => tra('Pivot table Columns'),
-				'description' => tr('Will be derived from data, if left blank, second parameter found in data will be used.') . ' ' . tr('Use permanentNames in case of tracker fields.') . ' ' . tr('Separated by colon (:) if more than one.'),
+				'description' => tr('Which field or fields to use as table columns. Leaving blank will use the first available field.') . ' ' . tr('Use permanentNames in case of tracker fields.') . ' ' . tr('Separated by colon (:) if more than one.'),
 				'since' => '',
 				'filter' => 'text',
 				'default' => '',
@@ -141,6 +141,32 @@ function wikiplugin_pivottable_info()
 				'profile_reference' => 'tracker_field',
 				'separator' => ':',
 			),
+			'highlightMine' => array(
+				'name' => tra('Highlight my items'),
+				'description' => tra('Highlight owned items\' values in Charts.'),
+				'since' => '16.3',
+				'required' => false,
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => array(
+					array('text' => '', 'value' => ''),
+					array('text' => tra('Yes'), 'value' => 'y'),
+					array('text' => tra('No'), 'value' => 'n')
+				)
+			),
+			'highlightGroup' => array(
+				'name' => tra('Highlight my group items'),
+				'description' => tra('Highlight items\' values belonging to one of my groups in Charts.'),
+				'since' => '16.3',
+				'required' => false,
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => array(
+					array('text' => '', 'value' => ''),
+					array('text' => tra('Yes'), 'value' => 'y'),
+					array('text' => tra('No'), 'value' => 'n')
+				)
+			)
 		),
 	);
 }
@@ -149,7 +175,7 @@ function wikiplugin_pivottable($data, $params)
 {
 	
 	//included globals for permission check
-	global $prefs, $page, $wikiplugin_included_page;
+	global $prefs, $page, $wikiplugin_included_page, $user;
 
 	//checking if vendor files are present 
 	if (!file_exists('vendor/nicolaskruchten/pivottable/')) {
@@ -162,7 +188,6 @@ function wikiplugin_pivottable($data, $params)
 	$headerlib = TikiLib::lib('header');
 	$headerlib->add_cssfile('vendor/nicolaskruchten/pivottable/dist/pivot.css');
 	$headerlib->add_jsfile('vendor/nicolaskruchten/pivottable/dist/pivot.js', true);
-	$headerlib->add_jsfile('vendor/nicolaskruchten/pivottable/dist/c3_renderers.js', true);
 	$headerlib->add_jsfile('lib/jquery_tiki/wikiplugin-pivottable.js', true);
 	
 	//checking data type
@@ -340,6 +365,36 @@ function wikiplugin_pivottable($data, $params)
 		}
 		$pivotData[] = $row;
 	}
+
+	$highlight = array();
+	if( !empty($params['highlightMine']) && $params['highlightMine'] === 'y' ) {
+		$ownerField = $definition->getField($definition->getUserField());
+		if( $ownerField ) {
+			foreach( $pivotData as $item ) {
+				$itemUsers = TikiLib::lib('trk')->parse_user_field(@$item[$ownerField['name']]);
+				if( in_array($user, $itemUsers) ) {
+					$highlight[] = $item;
+				}
+			}
+		}
+	}
+	if( !empty($params['highlightGroup']) && $params['highlightGroup'] === 'y' ) {
+		$groupField = null;
+		foreach( $fields as $field ) {
+			if( $field['type'] == 'g' ) {
+				$groupField = $field;
+				break;
+			}
+		}
+		if( $groupField ) {
+			$myGroups = TikiLib::lib('tiki')->get_user_groups($user);
+			foreach( $pivotData as $item ) {
+				if( in_array(@$item[$groupField['name']], $myGroups) ) {
+					$highlight[] = $item;
+				}
+			}
+		}
+	}
 	
 	//translating permName to field name for columns and rows
 	$cols = array();
@@ -366,8 +421,6 @@ function wikiplugin_pivottable($data, $params)
 				$rows[] = $rowName;
 			}
 		}
-	} elseif( isset($fields[1]) ) {
-		$rows[] = $fields[1]['name'];
 	}
 
 	$vals = array();
@@ -467,6 +520,9 @@ function wikiplugin_pivottable($data, $params)
 		'inclusions' => $inclusions,
 		'menuLimit' => empty($params['menuLimit']) ? null : $params['menuLimit'],
 		'aggregateDetails' => implode(':', $params['aggregateDetails']),
+		'highlight' => $highlight,
+		'highlightMine' => empty($params['highlightMine']) ? null : $params['highlightMine'],
+		'highlightGroup' => empty($params['highlightGroup']) ? null : $params['highlightGroup'],
 		'index'=>$id
 	));
 	

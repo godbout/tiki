@@ -49,7 +49,7 @@ function wikiplugin_footnote_info()
 				'description' => tra('Add class to footnotearea'),
 				'since' => '14.0',
 				'default' => '',
-				'filter' => 'alnum',
+				'filter' => 'alnumspace',
 				'accepted' => tra('Valid CSS class'),
 			),
 		)
@@ -97,6 +97,12 @@ function wikiplugin_footnote($data, $params)
 	}
 
 	$class= ' class="'.$params["class"].'"';
+
+	// Recursive code to handle nested footnotes
+	if (preg_match('/{FOOTNOTE\([\w\W]*?}[\w\W]*{FOOTNOTE}/i',$data,$match)) {
+		global $tikilib;
+		$tikilib->parse_data($match[0]);
+	}
 
 	$html = '~np~' . "<sup class=\"footnote$number\"><a id=\"ref_footnote$number\" href=\"#footnote$number\"$class>[$number]</a></sup>" . '~/np~';
 

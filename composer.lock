@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7963e6b8312ffdb67c4f0e07dafce4d5",
+    "content-hash": "ece22ae41e257bf8cbe113cd353d62a8",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -137,17 +137,17 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.14.2",
+            "version": "v9.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "f5b2f44dcd92e33b7fb6c3e630fddf2b990fbfce"
+                "reference": "d2471e9ad07d587ae1437ed057a145c1dbfe98f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp-jquery-file-upload-f5b2f44dcd92e33b7fb6c3e630fddf2b990fbfce-zip-b33932.zip",
-                "reference": "f5b2f44dcd92e33b7fb6c3e630fddf2b990fbfce",
-                "shasum": "d4e4912a539c3d4ee9364a4a4658479cfb44320b"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-d2471e9ad07d587ae1437ed057a145c1dbfe98f9-zip-849c7c.zip",
+                "reference": "d2471e9ad07d587ae1437ed057a145c1dbfe98f9",
+                "shasum": "7de5f6dbc24c5e11b9939114155499282ba567f3"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -183,7 +183,7 @@
                 "upload",
                 "widget"
             ],
-            "time": "2016-12-21T05:40:37+00:00"
+            "time": "2017-02-10T05:26:10+00:00"
         },
         {
             "name": "ckeditor/ckeditor",
@@ -302,9 +302,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/components-bootstrap-fe6e7683be66ba45a725816efdb51d4566733043-zip-b28361.zip",
+                "url": "https://composer.tiki.org/dist/components/bootstrap/components-bootstrap-fe6e7683be66ba45a725816efdb51d4566733043-zip-b28361.zip",
                 "reference": "fe6e7683be66ba45a725816efdb51d4566733043",
-                "shasum": "eb249ae82a07010ca2cb7cf7f9077bd5fa1e17f2"
+                "shasum": "5ecb27d58dec4d3655ab0d0cae1b6abf84ee8061"
             },
             "require": {
                 "components/jquery": "1.9.1 - 3"
@@ -696,12 +696,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
-                "reference": "3b9dd956838713ebbfe8d29c7b3330d1ca774ed9"
+                "reference": "c41d001754128a8901a6452ef2601be426b44708"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/3b9dd956838713ebbfe8d29c7b3330d1ca774ed9",
-                "reference": "3b9dd956838713ebbfe8d29c7b3330d1ca774ed9",
+                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/c41d001754128a8901a6452ef2601be426b44708",
+                "reference": "c41d001754128a8901a6452ef2601be426b44708",
                 "shasum": ""
             },
             "require": {
@@ -744,7 +744,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-01-30T13:49:09+00:00"
+            "time": "2017-02-09T13:09:25+00:00"
         },
         {
             "name": "h5p/h5p-editor",
@@ -752,12 +752,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-editor-php-library.git",
-                "reference": "21fccc70533ddbd097df4f95473ef5041e257422"
+                "reference": "9e0550bcacb5d0a1dc3de4f9f1331297a337576b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/21fccc70533ddbd097df4f95473ef5041e257422",
-                "reference": "21fccc70533ddbd097df4f95473ef5041e257422",
+                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/9e0550bcacb5d0a1dc3de4f9f1331297a337576b",
+                "reference": "9e0550bcacb5d0a1dc3de4f9f1331297a337576b",
                 "shasum": ""
             },
             "require": {
@@ -799,7 +799,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-01-30T10:06:43+00:00"
+            "time": "2017-02-08T14:10:28+00:00"
         },
         {
             "name": "jcapture-applet/jcapture-applet",
@@ -1406,13 +1406,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/chartjs/Chart.js.git",
-                "reference": "9a3af51618b2627a328bdb66f0e3030522cd756e"
+                "reference": "6ff34a5d4a29afea087f08568e01e2514e9d8b11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nnnick-chartjs-9a3af51618b2627a328bdb66f0e3030522cd756e-zip-a9a8fb.zip",
-                "reference": "9a3af51618b2627a328bdb66f0e3030522cd756e",
-                "shasum": "9107493864a4434a3b3edae64808a90b1b6963ff"
+                "url": "https://composer.tiki.org/dist/nnnick/chartjs/nnnick-chartjs-6ff34a5d4a29afea087f08568e01e2514e9d8b11-zip-355da3.zip",
+                "reference": "6ff34a5d4a29afea087f08568e01e2514e9d8b11",
+                "shasum": "260086961f3fea952a1e384cc55df977d34122a4"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -1439,7 +1439,7 @@
                 "JS",
                 "chart"
             ],
-            "time": "2017-01-28T16:33:14+00:00"
+            "time": "2017-02-03T23:17:33+00:00"
         },
         {
             "name": "onelogin/php-saml",
@@ -1494,6 +1494,17 @@
                 "saml"
             ],
             "time": "2017-01-11T17:18:41+00:00"
+        },
+        {
+            "name": "openannotation/annotator",
+            "version": "1.2.10",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/openannotation/annotator/openannotation-annotator-1.2.10.zip",
+                "reference": null,
+                "shasum": "0e982ad018a75edd758111f9534c03513c7be9bc"
+            },
+            "type": "library"
         },
         {
             "name": "openlayers/ol3",
@@ -1883,17 +1894,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.20",
+            "version": "2.1.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "7ccdfb3e4f2c7cb015a6c2efd7779d4bbca8b7cd"
+                "reference": "a6a534ffe558b203f46511dc927054ccc9d006e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42-elfinder-7ccdfb3e4f2c7cb015a6c2efd7779d4bbca8b7cd-zip-5d6d64.zip",
-                "reference": "7ccdfb3e4f2c7cb015a6c2efd7779d4bbca8b7cd",
-                "shasum": "0ade45bed6f29eb32a9cb3f150959e3953ef5462"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-a6a534ffe558b203f46511dc927054ccc9d006e0-zip-2569a3.zip",
+                "reference": "a6a534ffe558b203f46511dc927054ccc9d006e0",
+                "shasum": "869a315bd4a2d10a33f0396cba9c5be71b810e96"
             },
             "require": {
                 "php": ">=5.2"
@@ -1937,7 +1948,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2017-01-11T14:33:46+00:00"
+            "time": "2017-02-08T13:49:35+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -2117,7 +2128,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.16",
+            "version": "v2.8.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -2125,9 +2136,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony-filesystem-5b77d49ab76e5b12743b359ef4b4a712e6f5360d-zip-793973.zip",
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-5b77d49ab76e5b12743b359ef4b4a712e6f5360d-zip-793973.zip",
                 "reference": "5b77d49ab76e5b12743b359ef4b4a712e6f5360d",
-                "shasum": "48c572a3b7bd22a75031320689297d089d3ee487"
+                "shasum": "4005c5bafc9a70b4ddbdc1f1da6f51fc21c1987d"
             },
             "require": {
                 "php": ">=5.3.9"
@@ -2166,17 +2177,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "50eadbd7926e31842893c957eca362b21592a97d"
+                "reference": "e1718c6bf57e1efbb8793ada951584b2ab27775b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony-yaml-50eadbd7926e31842893c957eca362b21592a97d-zip-6c80f3.zip",
-                "reference": "50eadbd7926e31842893c957eca362b21592a97d",
-                "shasum": "3931bb68d3b80f5a9d4790b8075f33458194a365"
+                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-e1718c6bf57e1efbb8793ada951584b2ab27775b-zip-a2be46.zip",
+                "reference": "e1718c6bf57e1efbb8793ada951584b2ab27775b",
+                "shasum": "332ca342baa474ac9ad30120a7317229815db9a8"
             },
             "require": {
                 "php": ">=5.5.9"
@@ -2217,7 +2228,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-03T13:51:32+00:00"
+            "time": "2017-01-21T17:06:35+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -2749,17 +2760,17 @@
         },
         {
             "name": "zendframework/zend-http",
-            "version": "2.5.5",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
-                "reference": "98b1cac0bc7a91497c5898184281abcd0e24c8d6"
+                "reference": "09f4d279f46d86be63171ff62ee0f79eca878678"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework-zend-http-98b1cac0bc7a91497c5898184281abcd0e24c8d6-zip-8a2699.zip",
-                "reference": "98b1cac0bc7a91497c5898184281abcd0e24c8d6",
-                "shasum": "b17a029f78853cb57d4d7260d3f1d842bddb8b90"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-http/zendframework-zend-http-09f4d279f46d86be63171ff62ee0f79eca878678-zip-84815e.zip",
+                "reference": "09f4d279f46d86be63171ff62ee0f79eca878678",
+                "shasum": "31128e419cb4f82feaa1aee7038e17dd12df8559"
             },
             "require": {
                 "php": "^5.5 || ^7.0",
@@ -2769,15 +2780,15 @@
                 "zendframework/zend-validator": "^2.5"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
                 "phpunit/phpunit": "^4.0",
+                "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^2.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev",
-                    "dev-develop": "2.6-dev"
+                    "dev-master": "2.6-dev",
+                    "dev-develop": "2.7-dev"
                 }
             },
             "autoload": {
@@ -2795,7 +2806,7 @@
                 "http",
                 "zf2"
             ],
-            "time": "2016-08-08T15:01:54+00:00"
+            "time": "2017-01-31T14:41:02+00:00"
         },
         {
             "name": "zendframework/zend-hydrator",
@@ -4861,17 +4872,17 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.9",
+            "version": "5.7.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "69f832b87c731d5cacad7f91948778fe98335fdd"
+                "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-phpunit-69f832b87c731d5cacad7f91948778fe98335fdd-zip-9af143.zip",
-                "reference": "69f832b87c731d5cacad7f91948778fe98335fdd",
-                "shasum": "ed685f462b8c59659edcdd6b53e7b1ebc2ca9e99"
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-60ebeed87a35ea46fd7f7d8029df2d6f013ebb34-zip-75cd58.zip",
+                "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
+                "shasum": "920465714eb9dc1aec12a9263a5fce5198114e3d"
             },
             "require": {
                 "ext-dom": "*",
@@ -4887,11 +4898,11 @@
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "^1.0.6",
                 "phpunit/phpunit-mock-objects": "^3.2",
-                "sebastian/comparator": "~1.2.2",
+                "sebastian/comparator": "^1.2.4",
                 "sebastian/diff": "~1.2",
                 "sebastian/environment": "^1.3.4 || ^2.0",
                 "sebastian/exporter": "~2.0",
-                "sebastian/global-state": "^1.0 || ^2.0",
+                "sebastian/global-state": "^1.1",
                 "sebastian/object-enumerator": "~2.0",
                 "sebastian/resource-operations": "~1.0",
                 "sebastian/version": "~1.0|~2.0",
@@ -4939,7 +4950,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-28T06:14:33+00:00"
+            "time": "2017-02-10T09:05:10+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

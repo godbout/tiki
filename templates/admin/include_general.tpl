@@ -37,8 +37,8 @@
 			</fieldset>
 			<fieldset>
 				<legend>{tr}Site Identity{/tr}</legend>
-				{preference name=sender_email}
 				{preference name=browsertitle}
+				{preference name=sender_email}
 				{preference name=site_title_location}
 				{preference name=site_title_breadcrumb}
 				{remarksbox type="info" title="{tr}Themes{/tr}"}
@@ -192,6 +192,7 @@
 					<div id="menus_items_icons_childcontainer">
 						{preference name='menus_items_icons_path'}
 					</div>
+					{preference name=menus_edit_icon}
 				</div>
 			</fieldset>
 			<fieldset>

@@ -1,13 +1,16 @@
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+{* TODO: switch to packagist bundled version of plotly in composer once it is there! *}
+<script type="text/javascript" src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {jq}
 	var pivotData{{$pivottable.index}} = {{$pivottable.data|json_encode}};
 	$('#output_{{$pivottable.id}}').each(function () {
 		var derivers = $.pivotUtilities.derivers;
-		var renderers = $.extend($.pivotUtilities.renderers, $.pivotUtilities.c3_renderers);
+		var renderers = $.extend($.pivotUtilities.renderers, $.pivotUtilities.plotly_renderers);
 		var opts = {
 			renderers: renderers,
+			rendererOptions: {
+				pivotId: {{$pivottable.id|json_encode}},
+				highlight: {{$pivottable.highlight|json_encode}}
+			},
 			cols: {{$pivottable.tcolumns|json_encode}}, rows: {{$pivottable.trows|json_encode}},
 			rendererName: {{$pivottable.rendererName|json_encode}},
 			width: {{$pivottable.width|json_encode}},
@@ -21,22 +24,22 @@
 						return ( Date.parse(a) || 0 ) - ( Date.parse(b) || 0 );
 					}
 				}
-			}
+			},
+			highlightMine: {{$pivottable.highlightMine|json_encode}},
+			highlightGroup: {{$pivottable.highlightGroup|json_encode}}
 		};
 		if( {{$pivottable.menuLimit|json_encode}} ) {
 			opts.menuLimit = {{$pivottable.menuLimit|json_encode}};
 		}
 		if( {{$pivottable.aggregateDetails|json_encode}} ) {
 			opts.aggregateDetails = {{$pivottable.aggregateDetails|json_encode}};
-			opts.rendererOptions = {
-				table: {
-					clickCallback: function(e, value, filters, pivotData){
-						var details = [];
-						pivotData.forEachMatchingRecord(filters, function(record){
-							details.push(record.pivotLink);
-						});
-						feedback(details.join("<br>\n"), 'info', true);
-					}
+			opts.rendererOptions.table = {
+				clickCallback: function(e, value, filters, pivotData){
+					var details = [];
+					pivotData.forEachMatchingRecord(filters, function(record){
+						details.push(record.pivotLink);
+					});
+					feedback(details.join("<br>\n"), 'info', true);
 				}
 			};
 		}
@@ -58,6 +61,8 @@
 
 		createEditBtn({{$pivottable.id|json_encode}});
 	});
+    //adding bind call for pdf creation
+    $('.icon-pdf').parent().click(function(){storeSortTable('#container_{{$pivottable.id}}',$('#container_{{$pivottable.id}}').html())});
 {/jq}
 	
 <style type="text/css">
@@ -74,6 +79,7 @@
 	<div id="output_{$pivottable.id}_opControls" style="display:none">
 	<input id="save_{$pivottable.id}" type="button" value="Save Changes" class="btn btn-primary ui-button ui-corner-all ui-widget" /><input class="btn btn-primary ui-button ui-corner-all ui-widget" id="restore_{$pivottable.id}" type="button" value="Cancel Edit" /></div>
 	{if $pivottable.showControls}<div id="pivotControls_{$pivottable.id}"  style="display:none;position:relative;"><input type="button" id="pivotEditBtn_{$pivottable.id}" value="Edit Pivot Table"  class="btn btn-primary ui-button ui-corner-all ui-widget" /></div>{/if}
+    <img id="png_container_{$pivottable.id}" style="display:none"></img>
 </div>
 
 <div id="pivotdetails_modal"></div>

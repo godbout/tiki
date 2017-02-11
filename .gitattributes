@@ -113,7 +113,6 @@ doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
 doc/devtools/diffsql.sh -text
 doc/devtools/experimental/index.php -text
-doc/devtools/experimental/prefsdoc.php -text
 doc/devtools/experimental/unzip/index.php -text
 doc/devtools/experimental/unzip/unzipper.php -text
 doc/devtools/export_translations_to_file.php -text
@@ -1956,7 +1955,9 @@ installer/schema/20161109_remove_old_password_tiki.php -text
 installer/schema/20161117_favicon_tiki.sql -text
 installer/schema/20161206_larger_comment_field_tiki.sql -text
 installer/schema/20161220_add_h5p_tables_tiki.sql -text
+installer/schema/20170127_remove_templates_c_tiki.php -text
 installer/schema/20170129_feature_dump_tiki.sql -text
+installer/schema/20170207_iefix_rem_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3284,9 +3285,6 @@ lib/ical/iCal/ValueDataType.php -text
 lib/ical/iCal/iCalendar.php -text
 lib/ical/iCal/index.php -text
 lib/ical/index.php -text
-lib/iepngfix/DD_belatedPNG-min.js -text
-lib/iepngfix/DD_belatedPNG.js -text
-lib/iepngfix/index.php -text
 lib/imagegals/imagegallib.js -text
 lib/imagegals/imagegallib.php -text
 lib/imagegals/index.php -text
@@ -3661,7 +3659,6 @@ lib/prefs/home.php -text
 lib/prefs/http.php -text
 lib/prefs/https.php -text
 lib/prefs/ids.php -text
-lib/prefs/iepngfix.php -text
 lib/prefs/image.php -text
 lib/prefs/index.php -text
 lib/prefs/ip.php -text
@@ -4722,7 +4719,7 @@ lib/wiki-plugins/wikiplugin_mcalendar.php -text
 lib/wiki-plugins/wikiplugin_mediaplayer.php -text
 lib/wiki-plugins/wikiplugin_memberlist.php -text
 lib/wiki-plugins/wikiplugin_memberpayment.php -text
-lib/wiki-plugins/wikiplugin_meta.php -text
+lib/wiki-plugins/wikiplugin_metatag.php -text
 lib/wiki-plugins/wikiplugin_miniquiz.php -text
 lib/wiki-plugins/wikiplugin_module.php -text
 lib/wiki-plugins/wikiplugin_modulelist.php -text
@@ -4748,6 +4745,7 @@ lib/wiki-plugins/wikiplugin_playscorm.php -text
 lib/wiki-plugins/wikiplugin_pluginmanager.php -text
 lib/wiki-plugins/wikiplugin_poll.php -text
 lib/wiki-plugins/wikiplugin_pref.php -text
+lib/wiki-plugins/wikiplugin_prefdoc.php -text
 lib/wiki-plugins/wikiplugin_prettytrackerviews.php -text
 lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
@@ -4916,8 +4914,6 @@ lib/wizard/pages/user_wizard_completed.php -text
 lib/wizard/readme.txt -text
 lib/wizard/wizard.php -text
 lib/wizard/wizardlib.php -text
-lib/xmlrpc.inc -text
-lib/xmlrpcs.inc -text
 lib/ziplib.php -text
 lib/zoterolib.php -text
 /license.txt -text
@@ -6716,6 +6712,7 @@ themes/feb12/less/tiki-selectors.less -text
 themes/feb12/templates/index.php -text
 themes/fivealive-lite/css/fivealive-lite.css -text
 themes/fivealive-lite/css/index.php -text
+themes/fivealive-lite/css/newsletter.css -text
 themes/fivealive-lite/fonts/index.php -text
 themes/fivealive-lite/icons/custom.php -text
 themes/fivealive-lite/icons/fivealive_lite.php -text

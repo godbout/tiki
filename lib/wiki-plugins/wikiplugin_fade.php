@@ -1,5 +1,5 @@
 <?php
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright 2002-2017 by authors of the Tiki Wiki CMS Groupware Project
 // 
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -49,7 +49,7 @@ function wikiplugin_fade_info()
 				'default' => 400,
 				'since' => '7.0',
 				'accepted' => tr('Integer greater than 0 and less than or equal to 1000, or %0 or %1',
-					'<code>fast</code>', '<code>alow</code>'),
+					'<code>fast</code>', '<code>slow</code>'),
 				'advanced' => true,
 			),
 			'hide_speed' => array(
@@ -61,27 +61,27 @@ function wikiplugin_fade_info()
 				'default' => 400,
 				'since' => '7.0',
 				'accepted' => tr('Integer greater than 0 and less than or equal to 1000, or %0 or %1',
-					'<code>fast</code>', '<code>alow</code>'),
+					'<code>fast</code>', '<code>slow</code>'),
 				'advanced' => true,
 			),
-            'bootstrap' => array(
-                'required' => false,
-                'name' => tra('Use Boostrap'),
-                'description' => tra('Use Boostrap collapsible box'),
-                'since' => '17',
-                'filter' => 'alpha',
-                'default' => 'n',
-                'options' => array(
-                    array('text' => '', 'value' => ''),
-                    array('text' => tra('Yes'), 'value' => 'y'),
-                    array('text' => tra('No'), 'value' => 'n')
-                )
-            ),
+ 			'bootstrap' => array(
+				'required' => false,
+				'name' => tra('Use Boostrap'),
+				'description' => tra('Use Boostrap collapsible box'),
+				'since' => '16.0',
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => array(
+					array('text' => '', 'value' => ''), 
+					array('text' => tra('Yes'), 'value' => 'y'), 
+					array('text' => tra('No'), 'value' => 'n')
+				)
+			),
 			'class' => array(
 				'required' => false,
 				'name' => tra('CSS Class'),
 				'description' => tra('Apply custom CSS class.'),
-				'since' => '17',
+				'since' => '16.0',
 				'filter' => 'text',
 				'default' => '',
 			),
@@ -165,15 +165,16 @@ function wikiplugin_fade( $body, $params )
     else
     {
 	$jq = '
-				$(document).ready(function(){
-					$(\'#' . $unique_link . '\').toggle(
+				$(document).ready( function() {
+					$(\'#' . $unique_link . '\').click(
 						function() {
-							$(\'#' . $unique . '\').show(\'blind\', {}, \'' . $params['show_speed'] . '\');
-							$(\'#' . $unique_link . '\').addClass(' . $a_class_shown . ').removeClass(' . $a_class_hidden . ');
-						},
-						function() {
-							$(\'#' . $unique . '\').hide(\'blind\', {}, \'' . $params['hide_speed'] . '\');
-							$(\'#' . $unique_link . '\').addClass(' . $a_class_hidden . ').removeClass(' . $a_class_shown . ');
+							if ( $(\'#' . $unique . '\').is(":hidden") ) {
+								$(\'#' . $unique . '\').show(\'blind\', {}, \'' . $params['show_speed'] . '\');
+								$(\'#' . $unique_link . '\').addClass(' . $a_class_shown . ').removeClass(' . $a_class_hidden . ');
+							} else {
+								$(\'#' . $unique . '\').hide(\'blind\', {}, \'' . $params['hide_speed'] . '\');
+								$(\'#' . $unique_link . '\').addClass(' . $a_class_hidden . ').removeClass(' . $a_class_shown . ');
+							}
 						}
 					);
 					return false;
@@ -184,8 +185,8 @@ function wikiplugin_fade( $body, $params )
             . "\r\t" . '<span class="' . $span_class . '">' . "\r\t\t"
 		. '<a id="' . $unique_link . '" class=' . $a_class_hidden . '>' . "\r\t\t\t" . htmlspecialchars($params['label']) . "\r\t\t" 
 		. '</a>' . "\r\t" . '</span>' . "\r\t" . '<div id="' . $unique . '" class="' . $div_class . '">' . "\r\t\t\t" 
-    		. $body . "\r\t" . '</div>' . "\r" . '</div>' . "\r";
-    }
+		. $body . "\r\t" . '</div>' . "\r" . '</div>' . "\r";
+	}
 }
 
 function validate_speed($speed_param)

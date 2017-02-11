@@ -11,7 +11,7 @@ function wikiplugin_shorten_info()
 		'name' => tra('Shorten'),
 		'documentation' => 'Shorten',
 		'description' => tra('Show/hide a portion of text'),
-		'prefs' => array('wikiplugin_shorten'),
+		'prefs' => array('wikiplugin_shorten', 'wikiplugin_button'),
 		'body' => tra('Code to be displayed'),
 		'iconname' => 'shorten',
 		'introduced' => 17,
@@ -113,10 +113,11 @@ function wikiplugin_shorten($data, $params)
 				.	'var $this = $(this);'
 				.	'var $sample = $this.find("> .sample");'
 				.	'var $content = $this.find("> .content");'
-				.	'var $btn_more = $this.find("> .btn_more");'
-				.	'var $btn_less = $this.find("> .btn_less");'
 				.	'var show_speed = $this.data("show-speed") || 0;'
 				.	'var hide_speed = $this.data("hide-speed") || 0;'
+
+				.	'var $btn_more = $sample.find(".btn_more:first");'
+				.	'var $btn_less = $content.find(".btn_less:last");'
 
 				.	'$btn_more.click(function(){'
 				.		'$sample.hide();'
@@ -146,17 +147,18 @@ function wikiplugin_shorten($data, $params)
 		}
 
 		$html = '<span class="wikiplugin-shorten"' . $show_speed . $hide_speed . '>';
-		$html .= '<span class="sample">%s</span>';
-		$html .= '<span class="content">%s</span>';
-		$html .= '<label class="btn_more">'.$moreText.'</label>';
-		$html .= '<label class="btn_less">'.$lessText.'</label>';
+		$html .= '<span class="sample"  data-btn-more="'.$moreText.'">%s</span>';
+		$html .= '<span class="content" data-btn-less="'.$lessText.'">%s</span>';
 		$html .= '</span>';
 
 		$index = strlen($match[0]);
 
 		$sample = substr($data, 0, $index);
+		$sample .= '{button _text="'.$moreText.'" _class="btn_more" href="#"}';
 		$sample = $tikilib->parse_data($sample, array());
-		$content = $tikilib->parse_data($data, array());
+
+		$content = $data . '{button _text="'.$lessText.'" _class="btn_less" href="#"}';
+		$content = $tikilib->parse_data($content, array());
 
 		$out = sprintf($html, $sample, $content);
 		return $out;
