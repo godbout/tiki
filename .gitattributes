@@ -2628,6 +2628,7 @@ lib/core/Services/Calendar/Controller.php -text
 lib/core/Services/Calendar/index.php -text
 lib/core/Services/Category/Controller.php -text
 lib/core/Services/Category/index.php -text
+lib/core/Services/Comment/AnnotationController.php -text
 lib/core/Services/Comment/Controller.php -text
 lib/core/Services/Comment/index.php -text
 lib/core/Services/Connect/Client.php -text
