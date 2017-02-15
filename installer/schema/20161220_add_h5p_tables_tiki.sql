@@ -68,6 +68,14 @@ CREATE TABLE tiki_h5p_libraries_libraries (
 	PRIMARY KEY (library_id, required_library_id)
 )	ENGINE = MyISAM;
 
+# Keep track of h5p library translations
+CREATE TABLE tiki_h5p_libraries_languages (
+	library_id    INT UNSIGNED NOT NULL,
+	language_code VARCHAR(31)  NOT NULL,
+	translation   TEXT         NOT NULL,
+	PRIMARY KEY (library_id, language_code)
+)	ENGINE = MyISAM;
+
 ############## Potentially optional libraries from here downwards- to be re-assessed
 ############## whether they can be integrated/reusing tiki tables or if they need added to Tiki
 
@@ -112,14 +120,6 @@ CREATE TABLE tiki_h5p_results (
 	time       INT UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
 	KEY content_user (content_id, user_id)
-)	ENGINE = MyISAM;
-
-# Keep track of h5p library translations  -> Reusing Custom translations in Tiki?
-CREATE TABLE tiki_h5p_libraries_languages (
-	library_id    INT UNSIGNED NOT NULL,
-	language_code VARCHAR(31)  NOT NULL,
-	translation   TEXT         NOT NULL,
-	PRIMARY KEY (library_id, language_code)
 )	ENGINE = MyISAM;
 
 # Keep track of logged h5p EVENTS -> Action log

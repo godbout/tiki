@@ -46,10 +46,12 @@ class H5PLib
 				$storage->savePackage($content);
 
 				// TODO: Somehow connect the filename/fileId and $storage->contentId ? Needed when .h5p file is updated, deleted(or worse?)
+			} else {
+
+				// TODO: What to do if the file isn't a valid H5P? Seems a bit drastic to delete the file – but then again, why would we host broken files?
+				// @unlink($interface->getUploadedH5pPath());
 			}
 
-			// TODO: What to do if the file isn't a valid H5P? Seems a bit drastic to delete the file – but then again, why would we host broken files?
-			// @unlink($interface->getUploadedH5pPath());
 		}
 	}
 

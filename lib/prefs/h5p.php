@@ -7,23 +7,35 @@
 
 function prefs_h5p_list()
 {
-	return array(
-		'h5p_enabled' => array(
+	return [
+		'h5p_enabled' => [
 			'name' => tra('H5P support'),
 			'description' => tra('Handle H5P package files on upload.'),
-			'dependencies' => array(
+			'dependencies' => [
 				'feature_file_galleries',
-			),
+			],
 			'type' => 'flag',
 			'default' => 'n',
-		),
-		'h5p_whitelist' => array(
+			'hint' => tr('Enable H5P content'),
+		],
+		'h5p_whitelist' => [
 			'name' => tr('Whitelist'),
-			'description' => tr('.'),
+			'description' => tr('Allowed filetypes'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
 			'type' => 'text',
 			'default' => H5PCore::$defaultContentWhitelist,
-			'hint' => tr(''),
-		),
-	);
+		],
+		'h5p_dev_mode' => [
+			'name' => tra('H5P Developer Mode'),
+			'description' => tra('Use "patched" libraries?'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'flag',
+			'default' => 'n',
+		],
+	];
 }
 
