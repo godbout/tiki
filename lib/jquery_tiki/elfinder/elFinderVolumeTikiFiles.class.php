@@ -945,6 +945,17 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 		// elFinder assigns standard mime types like application/vnd.ms-word to ms doc, we use application/msword etc in tiki for some obscure reason :(
 		if (strpos($stat['mime'], 'application/vnd.ms-') !== false) {
 			$stat['mime'] = str_replace('application/vnd.ms-', 'application/ms', $stat['mime']);
+
+		} else if ($stat['mime'] === 'unknown') {
+
+			include_once ('lib/mime/mimetypes.php');
+			global $mimetypes;
+
+			$pathinfo = pathinfo($name);
+
+			if (isset($mimetypes[$pathinfo['extension']])) {
+				$stat['mime'] = $mimetypes[$pathinfo['extension']];
+			}
 		}
         $gal_info=TikiLib::lib('filegal')->get_file_gallery_info($galleryId);
 		
