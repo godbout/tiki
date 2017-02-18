@@ -22,6 +22,8 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	private $tiki_h5p_libraries_libraries = null;
 	private $tiki_h5p_libraries_languages = null;
 
+	private static $h5p_path;
+
 	function __construct()
 	{
 		// just as an example of how to get a table objects
@@ -36,6 +38,8 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		$this->tiki_h5p_libraries_libraries = $tikiDb->table('tiki_h5p_libraries_libraries');
 		$this->tiki_h5p_libraries_languages = $tikiDb->table('tiki_h5p_libraries_languages');
 		// possibly others needed?
+
+		self::$h5p_path = 'storage/public/';
 	}
 
 	/**
@@ -54,11 +58,9 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			// Setup Core and Interface components that are always needed
 			$interface = new \H5P_H5PTiki();
 
-			$path = 'storage/public/';
-
 			$core = new \H5PCore($interface,
-				$tikipath . $path,   // Where the extracted content files will be stored
-				$tikiroot . $path,     // URL of the previous option
+				$tikipath . self::$h5p_path,   // Where the extracted content files will be stored
+				$tikiroot . self::$h5p_path,     // URL of the previous option
 				$prefs['language'],        // TODO: Map proper language code from Tiki to H5P langs
 				false               // TODO: Later: Add option for enabling generation of exports? Not sure if this will be needed in Tiki since we already have the .h5p file.
 			);
@@ -480,7 +482,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 				$id = $this->tiki_h5p_libraries_languages->insert([
 					'library_id' => $libraryData['libraryId'],
 					'language_code' => $languageCode,
-					'language_json' => $languageJson,
+					//'language_json' => $languageJson, (missing field?)
 				]);
 				// TODO error checking?
 			}
@@ -539,13 +541,14 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *     - libraryId: The id of the main library for this content
 	 * @param int $contentMainId
 	 *   Main id for the content if this is a system that supports versions
+	 * @return mixed
 	 */
 	public function updateContent($content, $contentMainId = null)
 	{
 		global $user;
 
 		$data = array(
-			'updated_at' => current_time('mysql', 1),
+			'updated_at' => TikiLib::lib('tiki')->now,
 			'title' => $content['title'],
 			'parameters' => $content['params'],
 			'embed_type' => 'div', // TODO: Determine from library?
@@ -603,15 +606,33 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *   - machineName: The library machineName
 	 *   - majorVersion: The library's majorVersion
 	 *   - minorVersion: The library's minorVersion
-	 * @param string $dependency_type
+	 * @param string $dependencyType
 	 *   What type of dependency this is, the following values are allowed:
 	 *   - editor
 	 *   - preloaded
 	 *   - dynamic
 	 */
-	public function saveLibraryDependencies($libraryId, $dependencies, $dependency_type)
+	public function saveLibraryDependencies($libraryId, $dependencies, $dependencyType)
 	{
-		// TODO: Implement saveLibraryDependencies() method.
+		foreach ($dependencies as $dependency) {
+
+			$lh = $this->tiki_h5p_libraries->fetchOne(
+				'id',
+				[
+					'name' => $dependency['machineName'],
+					'major_version' => $dependency['majorVersion'],
+					'minor_version' => $dependency['minorVersion'],
+				]
+			);
+
+			$this->tiki_h5p_libraries_libraries->insert(
+				[
+					'library_id' => $libraryId,
+					'required_library_id' => $lh,
+					'dependency_type' => $dependencyType,
+				]
+			);
+		}
 	}
 
 	/**
@@ -628,7 +649,25 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function copyLibraryUsage($contentId, $copyFromId, $contentMainId = null)
 	{
-		// TODO: Implement copyLibraryUsage() method.
+		$hcl = $this->tiki_h5p_contents_libraries->fetchRow(
+			[
+				'library_id',
+				'dependency_type',
+				'weight',
+				'drop_css',
+			],
+			[
+				'content_id' => $copyFromId,
+			]
+		);
+
+		$this->tiki_h5p_contents_libraries->insert([
+			'content_id' => $contentId,
+			'library_id' => $hcl['library_id'],
+			'dependency_type' => $hcl['dependency_type'],
+			'weight' => $hcl['weight'],
+			'drop_css' => $hcl['drop_css'],
+		]);
 	}
 
 	/**
@@ -639,7 +678,15 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function deleteContentData($contentId)
 	{
-		// TODO: Implement deleteContentData() method.
+		// Remove content data and library usage
+		$this->tiki_h5p_contents->delete(['id' => $contentId]);
+		$this->deleteLibraryUsage($contentId);
+
+		// TODO: Remove user scores/results
+		//$this->tiki_h5p_results->delete(['content_id' => $contentId]);
+
+		// TODO: Remove contents user/usage data
+		//$this->tiki_h5p_contents_user_data->delete(['content_id' => $contentId]);
 	}
 
 	/**
@@ -650,7 +697,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function deleteLibraryUsage($contentId)
 	{
-		// TODO: Implement deleteLibraryUsage() method.
+		$this->tiki_h5p_contents_libraries->deleteMultiple(['content_id' => $contentId]);
 	}
 
 	/**
@@ -671,7 +718,25 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function saveLibraryUsage($contentId, $librariesInUse)
 	{
-		// TODO: Implement saveLibraryUsage() method.
+		$dropLibraryCssList = [];
+		foreach ($librariesInUse as $dependency) {
+			if (!empty($dependency['library']['dropLibraryCss'])) {
+				$dropLibraryCssList = array_merge($dropLibraryCssList, explode(', ', $dependency['library']['dropLibraryCss']));
+			}
+		}
+
+		foreach ($librariesInUse as $dependency) {
+			$dropCss = in_array($dependency['library']['machineName'], $dropLibraryCssList) ? 1 : 0;
+			$this->tiki_h5p_contents_libraries->insert(
+				[
+					'content_id' => $contentId,
+					'library_id' => $dependency['library']['libraryId'],
+					'dependency_type' => $dependency['type'],
+					'drop_css' => $dropCss,
+					'weight' => $dependency['weight'],
+				]
+			);
+		}
 	}
 
 	/**
@@ -685,9 +750,26 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *   - content: Number of content using the library
 	 *   - libraries: Number of libraries depending on the library
 	 */
-	public function getLibraryUsage($libraryId)
+	public function getLibraryUsage($libraryId, $skipContent = false)
 	{
-		// TODO: Implement getLibraryUsage() method.
+		$usage = [
+			'libraries' => $this->tiki_h5p_libraries_libraries->fetchCount(['required_library_id' => $libraryId]),
+		];
+
+		if ($skipContent) {
+			$usage['content'] = -1;
+		} else {
+			$usage['content'] = intval(TikiDb::get()->query(
+				'SELECT COUNT(DISTINCT c.`id`)
+FROM `tiki_h5p_libraries` l
+JOIN `tiki_h5p_contents_libraries` cl ON l.`id` = cl.`library_id`
+JOIN `tiki_h5p_contents` c ON cl.content_id = c.id
+WHERE l.id = ?',
+				$libraryId)
+			);
+		}
+
+		return $usage;
 	}
 
 	/**
@@ -731,7 +813,71 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function loadLibrary($machineName, $majorVersion, $minorVersion)
 	{
-		// TODO: Implement loadLibrary() method.
+		$library = $this->tiki_h5p_libraries->fetchRow(
+			[
+				'id',
+				'name',
+				'title',
+				'major_version',
+				'minor_version',
+				'patch_version',
+				'embed_types',
+				'preloaded_js',
+				'preloaded_css',
+				'drop_library_css',
+				'fullscreen',
+				'runnable',
+				'semantics',
+				'tutorial_url',
+			],
+			[
+				'machine_name' => $machineName,
+				'major_version' => $majorVersion,
+				'minor_version' => $minorVersion,
+			]
+		);
+
+		if ($library === false) {
+			return false;
+		}
+		$library = H5PCore::snakeToCamel($library);
+
+		$result = TikiDb::get()->query(
+			'SELECT hl.`machine_name` AS name, hl.`major_version` AS major, hl.`minor_version` AS minor, hll.`dependency_type` AS type
+FROM `tiki_h5p_libraries_libraries` hll
+JOIN `tiki_h5p_libraries` hl ON hll.`required_library_id` = hl.`library_id`
+WHERE hll.`library_id` = ?',
+			$library['libraryId']
+		);
+
+		foreach ($result as $dependency) {
+			$library[$dependency->type . 'Dependencies'][] = [
+				'machineName' => $dependency['name'],
+				'majorVersion' => $dependency['major'],
+				'minorVersion' => $dependency['minor'],
+			];
+		}
+		if ($this->isInDevMode()) {
+			$semantics = $this->getSemanticsFromFile($library['machineName'], $library['majorVersion'], $library['minorVersion']);
+			if ($semantics) {
+				$library['semantics'] = $semantics;
+			}
+		}
+		return $library;
+	}
+
+	private function getSemanticsFromFile($name, $majorVersion, $minorVersion)
+	{
+		$semanticsPath = self::$h5p_path . '/libraries/' . $name . '-' . $majorVersion . '.' . $minorVersion . '/semantics.json';
+
+		if (file_exists($semanticsPath)) {
+			$semantics = file_get_contents($semanticsPath);
+			if (!json_decode($semantics, true)) {
+				$this->setErrorMessage($this->t('Invalid json in semantics for %library', array('%library' => $name)));
+			}
+			return $semantics;
+		}
+		return false;
 	}
 
 	/**
@@ -748,7 +894,19 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function loadLibrarySemantics($machineName, $majorVersion, $minorVersion)
 	{
-		// TODO: Implement loadLibrarySemantics() method.
+		if ($this->isInDevMode()) {
+			$semantics = $this->getSemanticsFromFile($machineName, $majorVersion, $minorVersion);
+		} else {
+			$semantics = $this->tiki_h5p_libraries->fetchOne(
+				['semantics'],
+				[
+					'name' => $machineName,
+					'major_version' => $majorVersion,
+					'minor_version' => $minorVersion,
+				]
+			);
+		}
+		return (empty($semantics) ? null : $semantics);
 	}
 
 	/**
@@ -766,6 +924,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	public function alterLibrarySemantics(&$semantics, $machineName, $majorVersion, $minorVersion)
 	{
 		// TODO: Implement alterLibrarySemantics() method.
+		// find an equivalent of do_action_ref_array or drupal_alter('h5p_semantics', $semantics, $name, $majorVersion, $minorVersion);
 	}
 
 	/**
@@ -784,7 +943,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function lockDependencyStorage()
 	{
-		// TODO: Implement lockDependencyStorage() method.
+		TikiDb::get()->query('LOCK TABLES `tiki_h5p_libraries_libraries` write, `tiki_h5p_libraries` as hl read');
 	}
 
 	/**
@@ -792,7 +951,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function unlockDependencyStorage()
 	{
-		// TODO: Implement unlockDependencyStorage() method.
+		TikiDb::get()->query('UNLOCK TABLES');
 	}
 
 	/**
@@ -803,7 +962,19 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function deleteLibrary($library)
 	{
-		// TODO: Implement deleteLibrary() method.
+		/*		might be an int according to drupal
+				 $library = $this->tiki_h5p_libraries->fetchRow(
+					$this->tiki_h5p_libraries->all(),
+					['library_id' => $libraryId]
+				);*/
+
+		// Delete files
+		H5PCore::deleteFileTree(self::$h5p_path . '/libraries/' . $library->machine_name . '-' . $library->major_version . '.' . $library->minor_version);
+
+		// Delete data in database (won't delete content)
+		$this->tiki_h5p_libraries_libraries->deleteMultiple(['library_id', $library->id]);
+		$this->tiki_h5p_libraries_languages->deleteMultiple(['library_id', $library->id]);
+		$this->tiki_h5p_libraries->deleteMultiple(['id', $library->id]);
 	}
 
 	/**
@@ -827,7 +998,16 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function loadContent($id)
 	{
-		// TODO: Implement loadContent() method.
+		$content = TikiDb::get()->query(
+			'SELECT hc.`id`, hc.`title`, hc.`parameters` AS params, hc.`filtered` , hc.`slug` AS slug, hc.`user_id`, hc.`embed_type` AS embedType,
+	hc.disable, hl.id AS libraryId , hl.name AS libraryName, hl.major_version AS libraryMajorVersion,
+	hl.minor_version AS libraryMinorVersion, hl.embed_types AS libraryEmbedTypes, hl.fullscreen AS libraryFullscreen
+FROM `tiki_h5p_contents` hc
+JOIN `tiki_h5p_libraries` hl ON hl.id = hc.library_id
+WHERE hc.id =?',
+			$id);
+
+		return $content;
 	}
 
 	/**
