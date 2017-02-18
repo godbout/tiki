@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ece22ae41e257bf8cbe113cd353d62a8",
+    "content-hash": "a3b4543492d22e39ba2fb72e48f7d6c2",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -700,12 +700,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
-                "reference": "c41d001754128a8901a6452ef2601be426b44708"
+                "reference": "8f132cfffb355365be5dbebc705a957d4ddf1828"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/c41d001754128a8901a6452ef2601be426b44708",
-                "reference": "c41d001754128a8901a6452ef2601be426b44708",
+                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/8f132cfffb355365be5dbebc705a957d4ddf1828",
+                "reference": "8f132cfffb355365be5dbebc705a957d4ddf1828",
                 "shasum": ""
             },
             "require": {
@@ -748,7 +748,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-02-09T13:09:25+00:00"
+            "time": "2017-02-09T16:23:18+00:00"
         },
         {
             "name": "h5p/h5p-editor",
@@ -756,12 +756,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-editor-php-library.git",
-                "reference": "85b316882cf5fe39baa8189781069100390ab991"
+                "reference": "606aeb70c83b9293cc4394c3031dd7c6f64bff21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/85b316882cf5fe39baa8189781069100390ab991",
-                "reference": "85b316882cf5fe39baa8189781069100390ab991",
+                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/606aeb70c83b9293cc4394c3031dd7c6f64bff21",
+                "reference": "606aeb70c83b9293cc4394c3031dd7c6f64bff21",
                 "shasum": ""
             },
             "require": {
@@ -803,7 +803,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-02-14T09:45:30+00:00"
+            "time": "2017-02-15T10:26:51+00:00"
         },
         {
             "name": "jcapture-applet/jcapture-applet",
@@ -1746,6 +1746,23 @@
             "type": "library"
         },
         {
+            "name": "plotly/plotly.js",
+            "version": "v1.23.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/plotly/plotly.js.git",
+                "reference": "233e0436fc99bfad5ed461832c336e83014b52d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-233e0436fc99bfad5ed461832c336e83014b52d9-zip-0d9fe7.zip",
+                "reference": "233e0436fc99bfad5ed461832c336e83014b52d9",
+                "shasum": "b77ee07f0456f33c08b5f0307ebcb747a964960a"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/"
+        },
+        {
             "name": "psr/container",
             "version": "1.0.0",
             "source": {
@@ -2230,17 +2247,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e1718c6bf57e1efbb8793ada951584b2ab27775b"
+                "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-e1718c6bf57e1efbb8793ada951584b2ab27775b-zip-a2be46.zip",
-                "reference": "e1718c6bf57e1efbb8793ada951584b2ab27775b",
-                "shasum": "332ca342baa474ac9ad30120a7317229815db9a8"
+                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-9724c684646fcb5387d579b4bfaa63ee0b0c64c8-zip-142eda.zip",
+                "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
+                "shasum": "50da8ddd9ff5ab76c4e59973affc16db9ecac01b"
             },
             "require": {
                 "php": ">=5.5.9"
@@ -2281,7 +2298,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-21T17:06:35+00:00"
+            "time": "2017-02-16T22:46:52+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5463,17 +5480,17 @@
         },
         {
             "name": "sebastian/object-enumerator",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/object-enumerator.git",
-                "reference": "96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35"
+                "reference": "1311872ac850040a79c3c058bea3e22d0f09cbb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-object-enumerator-96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35-zip-43f40f.zip",
-                "reference": "96f8a3f257b69e8128ad74d3a7fd464bcbaa3b35",
-                "shasum": "973c8a73695b91a0b91aed9e3e538b60c165aa98"
+                "url": "https://composer.tiki.org/dist/sebastian/object-enumerator/sebastian-object-enumerator-1311872ac850040a79c3c058bea3e22d0f09cbb7-zip-371ea9.zip",
+                "reference": "1311872ac850040a79c3c058bea3e22d0f09cbb7",
+                "shasum": "41f906dda4866d573b8cdf21dd3aeedfdea41afd"
             },
             "require": {
                 "php": ">=5.6",
@@ -5505,7 +5522,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2016-11-19T07:35:10+00:00"
+            "time": "2017-02-18T15:18:39+00:00"
         },
         {
             "name": "sebastian/recursion-context",
