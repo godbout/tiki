@@ -40,7 +40,7 @@ class H5PLib
 
 			if ($validator->isValidPackage()) {
 
-				$content = [];	// TODO
+				$content = [];    // TODO
 
 				$storage = H5P_H5PTiki::get_h5p_instance('storage');
 				$storage->savePackage($content);
@@ -94,7 +94,7 @@ class H5PLib
 
 	private function getZipFile($fileId)
 	{
-		global $prefs;
+		global $prefs, $tikipath;
 
 		if (!class_exists('ZipArchive')) {
 			Feedback::error(tra('PHP Class "ZipArchive" not found'));
@@ -106,18 +106,21 @@ class H5PLib
 			return null;
 		}
 
+		// make a copy of the h5p file for the validator to unpack (and eventually delete)
+		$dir = $filegallib->get_gallery_save_dir($info['galleryId']);
+
+		$dest = $tikipath . 'temp/' . $info['filename'];
+		if ($dir) {
+			copy($dir . $info['path'], $dest);
+		} else {
+			file_put_contents($dest, $info['data']);
+		}
 
 		/** @var ZipArchive $zip */
 		$zip = new ZipArchive;
 		$interface = H5P_H5PTiki::get_h5p_instance('interface');
 
-		if ($info['path'] && $prefs['fgal_use_db'] == 'n') {
-			$filepath = $interface->getUploadedH5pPath($prefs['fgal_use_dir'] . $info['path']);
-		} else {
-			$filepath = $interface->getUploadedH5pPath();
-			file_put_contents($filepath, $info['data']);
-			$this->unlinkList[] = $filepath;
-		}
+		$filepath = $interface->getUploadedH5pPath($dest);
 
 		if ($zip->open($filepath) === true) {
 			return $zip;

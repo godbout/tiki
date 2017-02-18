@@ -338,9 +338,9 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 		$result = $this->tiki_h5p_libraries->fetchCount([
 			'name' => $library['machineName'],
-			'majorVersion' => $library['majorVersion'],
-			'minorVersion' => $library['minorVersion'],
-			'patchVersion' => $this->tiki_h5p_libraries->expr("$$ $operator ?", [$library['patchVersion']]),
+			'major_version' => $library['majorVersion'],
+			'minor_version' => $library['minorVersion'],
+			'patch_version' => $this->tiki_h5p_libraries->expr("$$ $operator ?", [$library['patchVersion']]),
 		]);
 
 		return !empty($result);
@@ -473,7 +473,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			NULL, NULL,
 			$libraryData['machineName'], $libraryData['majorVersion'] . '.' . $libraryData['minorVersion']);
 
-		$this->tiki_h5p_libraries_languages->deleteMultiple(['library_id', $libraryData['libraryId']]);
+		$this->tiki_h5p_libraries_languages->deleteMultiple(['library_id' => $libraryData['libraryId']]);
 
 		if (isset($libraryData['language'])) {
 			foreach ($libraryData['language'] as $languageCode => $languageJson) {
@@ -776,7 +776,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function deleteLibraryDependencies($libraryId)
 	{
-		// TODO: Implement deleteLibraryDependencies() method.
+		$this->tiki_h5p_libraries_libraries->deleteMultiple(['library_id' => $libraryId]);
 	}
 
 	/**

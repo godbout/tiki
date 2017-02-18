@@ -10,8 +10,6 @@
  * Makes it easy to track events throughout the H5P system.
  *
  * @package    H5P
- * @copyright  2016 Joubel AS
- * @license    MIT
  */
 class H5P_Event extends H5PEventBase
 {
