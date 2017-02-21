@@ -22,6 +22,7 @@ class H5PLib
 	const VERSION = '1.0.0';
 
 	private $H5PTiki = null;
+	private static $settings = null;
 
 	function __construct()
 	{
@@ -40,10 +41,8 @@ class H5PLib
 
 			if ($validator->isValidPackage()) {
 
-				$content = [];    // TODO
-
 				$storage = H5P_H5PTiki::get_h5p_instance('storage');
-				$storage->savePackage($content);
+				$storage->savePackage(null, $args['object']);
 
 				// TODO: Somehow connect the filename/fileId and $storage->contentId ? Needed when .h5p file is updated, deleted(or worse?)
 			} else {
@@ -85,7 +84,7 @@ class H5PLib
 
 	private function isZipFile($args)
 	{
-		if (!isset($args['filetype'])) {
+		if (! isset($args['filetype'])) {
 			return false;
 		}
 
@@ -96,13 +95,13 @@ class H5PLib
 	{
 		global $prefs, $tikipath;
 
-		if (!class_exists('ZipArchive')) {
+		if (! class_exists('ZipArchive')) {
 			Feedback::error(tra('PHP Class "ZipArchive" not found'));
 		}
 
 		$filegallib = TikiLib::lib('filegal');
 
-		if (!$info = $filegallib->get_file_info($fileId, false, true, false)) {
+		if (! $info = $filegallib->get_file_info($fileId, false, true, false)) {
 			return null;
 		}
 
@@ -141,5 +140,305 @@ class H5PLib
 
 		return json_decode($manifest, false);
 	}
+
+
+	/**
+	 * Include settings and assets for the given content.
+	 *
+	 * @param array $content
+	 * @param boolean $no_cache
+	 * @return string Embed code
+	 */
+	public function addAssets($content, $no_cache = false)
+	{
+		// Add core assets
+		$this->addCoreAssets();
+
+		// Detemine embed type
+		$embed = H5PCore::determineEmbedType($content['embedType'], $content['library']['embedTypes']);
+
+		// Make sure content isn't added twice
+		$cid = 'cid-' . $content['id'];
+		if (! isset(self::$settings['contents'][$cid])) {
+			self::$settings['contents'][$cid] = $this->get_content_settings($content);
+			$core = \H5P_H5PTiki::get_h5p_instance('core');
+
+			// Get assets for this content
+			$preloaded_dependencies = $core->loadContentDependencies($content['id'], 'preloaded');
+			$files = $core->getDependenciesFiles($preloaded_dependencies);
+
+			// TODO maybe?
+			//$this->alter_assets($files, $preloaded_dependencies, $embed);
+
+			if ($embed === 'div') {
+				$this->enqueue_assets($files);
+			} elseif ($embed === 'iframe') {
+				self::$settings['contents'][$cid]['scripts'] = $core->getAssetsUrls($files['scripts']);
+				self::$settings['contents'][$cid]['styles'] = $core->getAssetsUrls($files['styles']);
+			}
+		}
+
+		$this->print_settings(self::$settings);
+
+		if ($embed === 'div') {
+			return '<div class="h5p-content" data-content-id="' . $content['id'] . '"></div>';
+		} else {
+			return '<div class="h5p-iframe-wrapper"><iframe id="h5p-iframe-' . $content['id'] . '" class="h5p-iframe" data-content-id="' . $content['id'] . '" style="height:1px" src="about:blank" frameBorder="0" scrolling="no"></iframe></div>';
+		}
+	}
+
+	/**
+	 * Set core JavaScript settings and add core assets.
+	 */
+	public function addCoreAssets()
+	{
+
+		if (! empty(self::$settings)) {
+			return; // Already added
+		}
+
+		self::$settings = $this->get_core_settings();
+		self::$settings['core'] = [
+			'styles' => [],
+			'scripts' => [],
+		];
+		self::$settings['loadedJs'] = [];
+		self::$settings['loadedCss'] = [];
+		$TWV = new TWVersion;
+		$cache_buster = '?ver=' . $TWV->version;
+
+		$lib_url = 'vendor/h5p/h5p-core/';
+
+		// Add core stylesheets
+		foreach (H5PCore::$styles as $style) {
+			self::$settings['core']['styles'][] = $lib_url . $style . $cache_buster;
+			TikiLib::lib('header')->add_cssfile($lib_url . $style . $cache_buster);
+		}
+
+		// Add core JavaScript
+		foreach (H5PCore::$scripts as $script) {
+			self::$settings['core']['scripts'][] = $lib_url . $script . $cache_buster;
+			TikiLib::lib('header')->add_jsfile($lib_url . $script . $cache_buster);
+		}
+	}
+
+	/**
+	 * Get generic h5p settings
+	 */
+	public function get_core_settings()
+	{
+		global $user, $base_url, $prefs;
+
+		$userId = TikiLib::lib('tiki')->get_user_id($user);
+
+		$settings = array(
+			'baseUrl' => $base_url,
+			'url' => $base_url . 'vendor/h5p/h5p-core/',
+			/* TODO tracking and saving
+						 'postUserStatistics' => ($prefs['h5p_track_user'] === 'y') && $userId,
+						'ajaxPath' => 'tiki-ajax_services.php?controller=h5p',
+						'ajax' => array(
+							'setFinished' => 'tiki-ajax_services.php?controller=h5p&action=setFinished',
+							'contentUserData' => 'tiki-ajax_services.php?controller=h5p&action=contents_user_data&content_id=:contentId&data_type=:dataType&sub_content_id=:subContentId',
+						),
+						'tokens' => array(
+							'result' => wp_create_nonce('h5p_result'),
+							'contentUserData' => wp_create_nonce('h5p_contentuserdata'),
+						),
+						'saveFreq' => $prefs['h5p_save_content_state'] === 'y' ? $prefs['h5p_save_content_frequency'] : false,
+			*/
+			'siteUrl' => $base_url,
+			'l10n' => array(
+				'H5P' => array(
+					'fullscreen' => tra('Fullscreen'),
+					'disableFullscreen' => tra('Disable fullscreen'),
+					'download' => tra('Download'),
+					'copyrights' => tra('Rights of use'),
+					'embed' => tra('Embed'),
+					'size' => tra('Size'),
+					'showAdvanced' => tra('Show advanced'),
+					'hideAdvanced' => tra('Hide advanced'),
+					'advancedHelp' => tra('Include this script on your website if you want dynamic sizing of the embedded content:'),
+					'copyrightInformation' => tra('Rights of use'),
+					'close' => tra('Close'),
+					'title' => tra('Title'),
+					'author' => tra('Author'),
+					'year' => tra('Year'),
+					'source' => tra('Source'),
+					'license' => tra('License'),
+					'thumbnail' => tra('Thumbnail'),
+					'noCopyrights' => tra('No copyright information available for this content.'),
+					'downloadDescription' => tra('Download this content as a H5P file.'),
+					'copyrightsDescription' => tra('View copyright information for this content.'),
+					'embedDescription' => tra('View the embed code for this content.'),
+					'h5pDescription' => tra('Visit H5P.org to check out more cool content.'),
+					'contentChanged' => tra('This content has changed since you last used it.'),
+					'startingOver' => tra("You'll be starting over."),
+				),
+			),
+		);
+
+		if ($userId) {
+			$settings['user'] = array(
+				'name' => $user,
+				//'mail' => $userId->user_email,
+			);
+		}
+
+		return $settings;
+	}
+
+	/**
+	 * Enqueue assets for content embedded by div.
+	 *
+	 * @param array $assets
+	 */
+	public function enqueue_assets(&$assets)
+	{
+		$rel_url = \H5P_H5PTiki::$h5p_path;
+
+		foreach ($assets['scripts'] as $script) {
+			$url = $rel_url . $script->path . $script->version;
+			if (! in_array($url, self::$settings['loadedJs'])) {
+				self::$settings['loadedJs'][] = $url;
+				TikiLib::lib('header')->add_jsfile( $rel_url . $script->path);
+			}
+		}
+		foreach ($assets['styles'] as $style) {
+			$url = $rel_url . $style->path . $style->version;
+			if (! in_array($url, self::$settings['loadedCss'])) {
+				self::$settings['loadedCss'][] = $url;
+				TikiLib::lib('header')->add_cssfile( $rel_url . $style->path);
+			}
+		}
+	}
+
+
+	/**
+	 * Add H5P JavaScript settings to the bottom of the page.
+	 */
+	public function add_settings()
+	{
+		if (self::$settings !== null) {
+			$this->print_settings(self::$settings);
+		}
+	}
+
+	/**
+	 * JSON encode and print the given H5P JavaScript settings.
+	 *
+	 * @param array $settings
+	 */
+	public function print_settings(&$settings, $obj_name = 'H5PIntegration')
+	{
+		static $printed;
+		if (! empty($printed[$obj_name])) {
+			return; // Avoid re-printing settings
+		}
+
+		$json_settings = json_encode($settings);
+		if ($json_settings !== false) {
+			$printed[$obj_name] = true;
+			TikiLib::lib('header')->add_js('var ' . $obj_name . ' = ' . $json_settings . ";\n");
+		}
+	}
+
+	/**
+	 * Get added JavaScript settings.
+	 *
+	 * @return array
+	 */
+	public function get_settings()
+	{
+		return self::$settings;
+	}
+
+	/**
+	 * Get settings for given content
+	 *
+	 * @since 1.5.0
+	 * @param array $content
+	 * @return array
+	 */
+	public function get_content_settings($content)
+	{
+		global $prefs;
+
+		$core = \H5P_H5PTiki::get_h5p_instance('core');
+
+		// Add global disable settings - odd, not found?
+		//$content['disable'] |= $core->getGlobalDisable();
+
+		$safe_parameters = $core->filterParameters($content);
+		/*		if (has_action('h5p_alter_filtered_parameters')) {
+					// Parse the JSON parameters
+					$decoded_parameters = json_decode($safe_parameters);
+
+					/**
+					 * Allows you to alter the H5P content parameters after they have been
+					 * filtered. This hook only fires before view.
+					 *
+					 * @since 1.5.3
+					 *
+					 * @param object &$parameters
+					 * @param string $libraryName
+					 * @param int $libraryMajorVersion
+					 * @param int $libraryMinorVersion
+					 * /
+					do_action_ref_array('h5p_alter_filtered_parameters', array(&$decoded_parameters, $content['library']['name'], $content['library']['majorVersion'], $content['library']['minorVersion']));
+
+					// Stringify the JSON parameters
+					$safe_parameters = json_encode($decoded_parameters);
+				}
+		*/
+
+		// Add JavaScript settings for this content
+		$settings = [
+			'library' => H5PCore::libraryToString($content['library']),
+			'jsonContent' => $safe_parameters,
+			'fullScreen' => $content['library']['fullscreen'],
+			'exportUrl' => ($prefs['h5p_export'] === 'y' ? 'storage/public/exports/' . ($content['fileId'] ? $content['fileId'] . '-' : '') . $content['id'] . '.h5p' : ''),
+			'embedCode' => '<iframe src="tiki-ajax_services.php?controller=h5p&action=embed&id=' . $content['id'] . '" width=":w" height=":h" frameborder="0" allowfullscreen="allowfullscreen"></iframe>',
+			'resizeCode' => '<script src="vendor/h5p/h5p-core/js/h5p-resizer.js" charset="UTF-8"></script>',
+			'url' => 'tiki-ajax_services.php?controller=h5p&action=embed&id=' . $content['id'],
+			'title' => $content['title'],
+			'disable' => $content['disable'],
+			'contentUserData' => [
+				0 => [
+					'state' => '{}',
+				],
+			],
+			'displayOptions' => [],
+		];
+
+		// Get preloaded user data for the current user
+		global $user;
+
+		$userId = TikiLib::lib('tiki')->get_user_id($user);
+
+		if ($prefs['h5p_save_content_state'] === 'y' && $userId) {
+
+			$results = TikiDb::get()->table('tiki_h5p_contents_user_data')->fetchAll(
+				[
+					'sub_content_id',
+					'data_id',
+					'data',
+				], [
+					'user_id' => $userId,
+					'content_id' => $content['id'],
+					'preload' => 1,
+				]
+			);
+
+			if ($results) {
+				foreach ($results as $result) {
+					$settings['contentUserData'][$result['sub_content_id']][$result['data_id']] = $result['data'];
+				}
+			}
+		}
+
+		return $settings;
+	}
+
 
 }

@@ -22,7 +22,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	private $tiki_h5p_libraries_libraries = null;
 	private $tiki_h5p_libraries_languages = null;
 
-	private static $h5p_path;
+	public static $h5p_path;
 
 	function __construct()
 	{
@@ -174,7 +174,15 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function t($message, $replacements = array())
 	{
-		return tr($message, $replacements);    // TODO convert messages to use %0 etc placeholders?
+		$args = [];
+		$counter = 0;
+
+		foreach($replacements as $key => $val) {
+			$args[] = $val;
+			$message = str_replace($key, "%$counter", $message);
+		}
+
+		return tra($message, '', false, $args);
 	}
 
 	/**
@@ -345,7 +353,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			'patch_version' => $this->tiki_h5p_libraries->expr("$$ $operator ?", [$library['patchVersion']]),
 		]);
 
-		return !empty($result);
+		return ! empty($result);
 	}
 
 	/**
@@ -400,11 +408,9 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *   - language(optional): associative array containing:
 	 *     - languageCode: Translation in json format
 	 * @param bool $new
-	 * @return
 	 */
 	public function saveLibraryData(&$libraryData, $new = true)
 	{
-		global $prefs, $user;
 
 		$preloadedJs = $this->pathsToCsv($libraryData, 'preloadedJs');
 		$preloadedCss = $this->pathsToCsv($libraryData, 'preloadedCss');
@@ -422,10 +428,10 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		if (isset($libraryData['embedTypes'])) {
 			$embedTypes = implode(', ', $libraryData['embedTypes']);
 		}
-		if (!isset($libraryData['semantics'])) {
+		if (! isset($libraryData['semantics'])) {
 			$libraryData['semantics'] = '';
 		}
-		if (!isset($libraryData['fullscreen'])) {
+		if (! isset($libraryData['fullscreen'])) {
 			$libraryData['fullscreen'] = 0;
 		}
 		if ($new) {
@@ -541,26 +547,28 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *     - libraryId: The id of the main library for this content
 	 * @param int $contentMainId
 	 *   Main id for the content if this is a system that supports versions
-	 * @return mixed
+	 *   ** In Tiki this is the fileId **
+	 * @return int the content id
 	 */
 	public function updateContent($content, $contentMainId = null)
 	{
 		global $user;
 
 		$data = array(
-			'updated_at' => TikiLib::lib('tiki')->now,
-			'title' => $content['title'],
-			'parameters' => $content['params'],
+			'updated_at' => date("Y-m-d H:i:s", TikiLib::lib('tiki')->now),
+			'title' => isset($content['title']) ? $content['title'] : '',
+			'parameters' => isset($content['params']) ? $content['params'] : '',
 			'embed_type' => 'div', // TODO: Determine from library?
 			'library_id' => $content['library']['libraryId'],
 			'filtered' => '',
-			'disable' => $content['disable'],
+			'disable' => isset($content['disable']) ? $content['disable'] : 0,
+			'file_id' => $contentMainId,
 		);
 
-		if (!isset($content['id'])) {
+		if (! isset($content['id'])) {
 			// Insert new content
 			$data['created_at'] = $data['updated_at'];
-			$data['user_id'] = $user;
+			$data['user_id'] = TikiLib::lib('tiki')->get_user_id($user);
 
 			$content['id'] = $this->tiki_h5p_contents->insert($data);
 			$event_type = 'create';
@@ -574,7 +582,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		}
 
 		// Log content create/update/upload
-		if (!empty($content['uploaded'])) {
+		if (! empty($content['uploaded'])) {
 			$event_type .= ' upload';
 		}
 		new H5P_Event('content', $event_type,
@@ -720,7 +728,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	{
 		$dropLibraryCssList = [];
 		foreach ($librariesInUse as $dependency) {
-			if (!empty($dependency['library']['dropLibraryCss'])) {
+			if (! empty($dependency['library']['dropLibraryCss'])) {
 				$dropLibraryCssList = array_merge($dropLibraryCssList, explode(', ', $dependency['library']['dropLibraryCss']));
 			}
 		}
@@ -730,7 +738,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			$this->tiki_h5p_contents_libraries->insert(
 				[
 					'content_id' => $contentId,
-					'library_id' => $dependency['library']['libraryId'],
+					'library_id' => $dependency['library']['id'],
 					'dependency_type' => $dependency['type'],
 					'drop_css' => $dropCss,
 					'weight' => $dependency['weight'],
@@ -831,7 +839,7 @@ WHERE l.id = ?',
 				'tutorial_url',
 			],
 			[
-				'machine_name' => $machineName,
+				'name' => $machineName,
 				'major_version' => $majorVersion,
 				'minor_version' => $minorVersion,
 			]
@@ -843,15 +851,15 @@ WHERE l.id = ?',
 		$library = H5PCore::snakeToCamel($library);
 
 		$result = TikiDb::get()->query(
-			'SELECT hl.`machine_name` AS name, hl.`major_version` AS major, hl.`minor_version` AS minor, hll.`dependency_type` AS type
+			'SELECT hl.`name`, hl.`major_version` AS major, hl.`minor_version` AS minor, hll.`dependency_type` AS type
 FROM `tiki_h5p_libraries_libraries` hll
-JOIN `tiki_h5p_libraries` hl ON hll.`required_library_id` = hl.`library_id`
+JOIN `tiki_h5p_libraries` hl ON hll.`required_library_id` = hl.`id`
 WHERE hll.`library_id` = ?',
-			$library['libraryId']
+			$library['id']
 		);
 
-		foreach ($result as $dependency) {
-			$library[$dependency->type . 'Dependencies'][] = [
+		foreach ($result->result as $dependency) {
+			$library[$dependency['type'] . 'Dependencies'][] = [
 				'machineName' => $dependency['name'],
 				'majorVersion' => $dependency['major'],
 				'minorVersion' => $dependency['minor'],
@@ -872,7 +880,7 @@ WHERE hll.`library_id` = ?',
 
 		if (file_exists($semanticsPath)) {
 			$semantics = file_get_contents($semanticsPath);
-			if (!json_decode($semantics, true)) {
+			if (! json_decode($semantics, true)) {
 				$this->setErrorMessage($this->t('Invalid json in semantics for %library', array('%library' => $name)));
 			}
 			return $semantics;
@@ -1007,7 +1015,8 @@ JOIN `tiki_h5p_libraries` hl ON hl.id = hc.library_id
 WHERE hc.id =?',
 			$id);
 
-		return $content;
+		$row = $content->fetchRow();
+		return $row;
 	}
 
 	/**
@@ -1033,7 +1042,24 @@ WHERE hc.id =?',
 	 */
 	public function loadContentDependencies($id, $type = null)
 	{
-		// TODO: Implement loadContentDependencies() method.
+		$query = 'SELECT hl.`id`, hl.`name` AS machineName, hl.`major_version` AS majorVersion, hl.`minor_version` AS minorVersion,
+hl.`patch_version` AS patchVersion, hl.`preloaded_css` AS preloadedCss, hl.`preloaded_js` AS preloadedJs,
+hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
+      FROM `tiki_h5p_contents_libraries` hcl
+      JOIN `tiki_h5p_libraries` hl ON hcl.`library_id` = hl.`id`
+      WHERE hcl.content_id = ?';
+
+		$queryArgs = [$id];
+
+		if ($type !== NULL) {
+			$query .= " AND hcl.`dependency_type` = ?";
+			$queryArgs[] = $type;
+		}
+
+		$query .= ' ORDER BY hcl.`weight`';
+
+		$result = TikiDb::get()->query($query, $queryArgs);
+		return $result->result;
 	}
 
 	/**
@@ -1048,7 +1074,11 @@ WHERE hc.id =?',
 	 */
 	public function getOption($name, $default = null)
 	{
-		// TODO: Implement getOption() method.
+		global $prefs;
+
+		$prefName = 'h5p_' . $name;
+
+		return isset($prefs[$prefName]) ? $prefs[$prefName] : $default;
 	}
 
 	/**
@@ -1062,7 +1092,7 @@ WHERE hc.id =?',
 	 */
 	public function setOption($name, $value)
 	{
-		// TODO: Implement setOption() method.
+		TikiLib::lib('tiki')->set_preference('h5p_' . $name, $value);
 	}
 
 	/**
@@ -1073,7 +1103,25 @@ WHERE hc.id =?',
 	 */
 	public function updateContentFields($id, $fields)
 	{
-		// TODO: Implement updateContentFields() method.
+		$processedFields = [];
+
+		foreach ($fields as $name => $value) {
+			$processedFields[self::camelToString($name)] = $value;
+		}
+
+		$this->tiki_h5p_contents->update(
+			$processedFields,
+			['id' => $id]
+		);
+	}
+
+	/**
+	 * Convert variables to fit our DB.
+	 */
+	private static function camelToString($input)
+	{
+		$input = preg_replace('/[a-z0-9]([A-Z])[a-z0-9]/', '_$1', $input);
+		return strtolower($input);
 	}
 
 	/**
@@ -1085,7 +1133,10 @@ WHERE hc.id =?',
 	 */
 	public function clearFilteredParameters($library_id)
 	{
-		// TODO: Implement clearFilteredParameters() method.
+		$this->tiki_h5p_contents->update(
+			['filtered' => null],
+			['library_id' => $library_id]
+		);
 	}
 
 	/**
@@ -1096,7 +1147,7 @@ WHERE hc.id =?',
 	 */
 	public function getNumNotFiltered()
 	{
-		// TODO: Implement getNumNotFiltered() method.
+		return $this->tiki_h5p_contents->fetchCount(['filtered' => '']);
 	}
 
 	/**
@@ -1107,7 +1158,7 @@ WHERE hc.id =?',
 	 */
 	public function getNumContent($libraryId)
 	{
-		// TODO: Implement getNumContent() method.
+		return $this->tiki_h5p_contents->fetchCount(['library_id' => $libraryId]);
 	}
 
 	/**
@@ -1118,7 +1169,7 @@ WHERE hc.id =?',
 	 */
 	public function isContentSlugAvailable($slug)
 	{
-		// TODO: Implement isContentSlugAvailable() method.
+		return empty($this->tiki_h5p_contents->fetchOne('slug', ['slug' => $slug]));
 	}
 
 	/**
@@ -1129,7 +1180,21 @@ WHERE hc.id =?',
 	 */
 	public function getLibraryStats($type)
 	{
-		// TODO: Implement getLibraryStats() method.
+		$count = [];
+
+		$tiki_h5p_counters = TikiDb::get()->table('tiki_h5p_counters');
+
+		$results = $tiki_h5p_counters->fetchAll(
+			['library_name', 'library_version', 'num'],
+			['type' => $type]
+		);
+
+		// Extract results
+		foreach ($results as $library) {
+			$count[$library['library_name'] . ' ' . $library['library_version']] = $library['num'];
+		}
+
+		return $count;
 	}
 
 	/**
@@ -1138,7 +1203,10 @@ WHERE hc.id =?',
 	 */
 	public function getNumAuthors()
 	{
-		// TODO: Implement getNumAuthors() method.
+		return $this->tiki_h5p_contents->fetchOne(
+			$this->tiki_h5p_contents->expr('COUNT(DISTINCT `user_id`)'),
+			[]
+		);
 	}
 
 	/**
@@ -1153,7 +1221,25 @@ WHERE hc.id =?',
 	 */
 	public function saveCachedAssets($key, $libraries)
 	{
-		// TODO: Implement saveCachedAssets() method.
+		foreach ($libraries as $library) {
+
+			$libraryId = isset($library['id']) ? $library['id'] : $library['libraryId'];
+
+			if (! $this->tiki_h5p_libraries_cachedassets->fetchCount(['library_id' => $libraryId])) {
+
+				$this->tiki_h5p_libraries_cachedassets->insert(
+					[
+						'library_id' => $libraryId,
+						'hash' => $key,
+					]
+				);
+			} else {
+				$this->tiki_h5p_libraries_cachedassets->update(
+					['hash' => $key],
+					['library_id' => $libraryId]
+				);
+			}
+		}
 	}
 
 	/**
@@ -1167,7 +1253,23 @@ WHERE hc.id =?',
 	 */
 	public function deleteCachedAssets($library_id)
 	{
-		// TODO: Implement deleteCachedAssets() method.
+		// Get all the keys so we can remove the files
+		$results = $this->tiki_h5p_libraries_cachedassets->fetchAll(
+			['hash'],
+			['library_id' => $library_id]
+		);
+
+		// Remove all invalid keys
+		$hashes = [];
+		foreach ($results as $row) {
+			$hashes[] = $row['hash'];
+
+			$this->tiki_h5p_libraries_cachedassets->deleteMultiple(
+				['hash' => $row['hash']]
+			);
+		}
+
+		return $hashes;
 	}
 
 	/**
@@ -1176,7 +1278,20 @@ WHERE hc.id =?',
 	 */
 	public function getLibraryContentCount()
 	{
-		// TODO: Implement getLibraryContentCount() method.
+		$count = array();
+
+		// Find number of content per library
+		$results = TikiDb::get()->query('
+SELECT l.`name`, l.`major_version`, l.`minor_version`, COUNT(*) AS count
+FROM `tiki_h5p_contents` c, `tiki_h5p_libraries` l
+WHERE c.`library_id` = l.`id`
+GROUP BY l.`name`, l.`major_version`, l.`minor_version`');
+
+		// Extract results
+		foreach ($results as $library) {
+			$count[$library->name . ' ' . $library->major_version . '.' . $library->minor_version] = $library->count;
+		}
+		return $count;
 	}
 
 	/**

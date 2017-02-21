@@ -27,6 +27,15 @@ function prefs_h5p_list()
 			'type' => 'text',
 			'default' => H5PCore::$defaultContentWhitelist,
 		],
+		'h5p_track_user' => [
+			'name' => tra('H5P Tracker User'),
+			'description' => tra('TODO'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'flag',
+			'default' => 'n',
+		],
 		'h5p_dev_mode' => [
 			'name' => tra('H5P Developer Mode'),
 			'description' => tra('Use "patched" libraries?'),

@@ -11,7 +11,7 @@ function wikiplugin_h5p_info()
 		'name' => tra('H5P'),
 		'documentation' => 'PluginH5P',
 		'description' => tra(''),
-		'prefs' => array( 'wikiplugin_h5p' ),
+		'prefs' => array('wikiplugin_h5p'),
 		'iconname' => 'html',
 		'format' => 'html',
 		'introduced' => 16,
@@ -21,8 +21,8 @@ function wikiplugin_h5p_info()
 				'name' => tra('File ID'),
 				'description' => tr('The H5P file in a file gallery'),
 				'since' => '17.0',
-				'filter' => 'text',
-				'default' => ''
+				'filter' => 'digits',
+				'default' => '',
 			),
 		),
 	);
@@ -30,12 +30,49 @@ function wikiplugin_h5p_info()
 
 function wikiplugin_h5p($data, $params)
 {
+	global $prefs;
 
-	$ret = '';
+	if (empty($params['fileId'])) {
+		Feedback::error(tr('H5P Plugin:') . ' ' . tr('No fileID provided.'));
+		return '';
+	} else {
+		$fileId = $params['fileId'];
+	}
 
-	$h5p = new H5P_H5PTiki();
+	$tiki_h5p_contents = TikiDb::get()->table('tiki_h5p_contents');
 
+	$row = $tiki_h5p_contents->fetchFullRow(
+		['file_id' => $fileId]
+	);
 
-	return $ret;
+	if (! isset($row['id'])) {
+		Feedback::error(tr('H5P Plugin:') . ' ' . tr('Cannot find H5P content with fileId: %0.', $fileId));
+		return '';
+	}
+
+	// Try to find content with $id.
+	$core = \H5P_H5PTiki::get_h5p_instance('core');
+	$content = $core->loadContent($row['id']);
+
+	if (! $content) {
+		Feedback::error(tr('H5P Plugin:') . ' ' . tr('Cannot find H5P content with id: %0.', $row['id']));
+		return '';
+	}
+
+	if (is_string($content)) {
+		// Return error message if the user has the correct cap
+		return Perms::get()->h5p_edit ? $content : NULL;
+	}
+
+	$content['language'] = $prefs['language'];
+
+	// Log view
+	new H5P_Event('content', 'plugin',
+		$content['id'],
+		$content['title'],
+		$content['library']['name'],
+		$content['library']['majorVersion'] . '.' . $content['library']['minorVersion']);
+
+	return TikiLib::lib('h5p')->addAssets($content);
 }
 

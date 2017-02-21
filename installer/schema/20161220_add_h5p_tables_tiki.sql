@@ -21,7 +21,9 @@ CREATE TABLE tiki_h5p_contents (
 	license      VARCHAR(7)   NULL,
 	keywords     TEXT         NULL,
 	description  TEXT         NULL,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE KEY `fileId` (`file_id`)
+
 )	ENGINE = MyISAM;
 
 # Keep track of content dependencies
