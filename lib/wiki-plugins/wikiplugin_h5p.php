@@ -39,23 +39,10 @@ function wikiplugin_h5p($data, $params)
 		$fileId = $params['fileId'];
 	}
 
-	$tiki_h5p_contents = TikiDb::get()->table('tiki_h5p_contents');
-
-	$row = $tiki_h5p_contents->fetchFullRow(
-		['file_id' => $fileId]
-	);
-
-	if (! isset($row['id'])) {
-		Feedback::error(tr('H5P Plugin:') . ' ' . tr('Cannot find H5P content with fileId: %0.', $fileId));
-		return '';
-	}
-
-	// Try to find content with $id.
-	$core = \H5P_H5PTiki::get_h5p_instance('core');
-	$content = $core->loadContent($row['id']);
+	$content = TikiLib::lib('h5p')->loadContentFromFileId($fileId);
 
 	if (! $content) {
-		Feedback::error(tr('H5P Plugin:') . ' ' . tr('Cannot find H5P content with id: %0.', $row['id']));
+		Feedback::error(tr('H5P Plugin:') . ' ' . tr('Cannot find H5P content with fileId: %0.', $fileId));
 		return '';
 	}
 
@@ -63,8 +50,6 @@ function wikiplugin_h5p($data, $params)
 		// Return error message if the user has the correct cap
 		return Perms::get()->h5p_edit ? $content : NULL;
 	}
-
-	$content['language'] = $prefs['language'];
 
 	// Log view
 	new H5P_Event('content', 'plugin',

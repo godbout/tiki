@@ -22,18 +22,32 @@ class H5PLib
 	const VERSION = '1.0.0';
 
 	private $H5PTiki = null;
+	private $h5p_core = null;
+
 	private static $settings = null;
 
 	function __construct()
 	{
 		$this->H5PTiki = new \H5P_H5PTiki();
+		$this->h5p_core = \H5P_H5PTiki::get_h5p_instance('core');
 	}
 
 	function __destruct()
 	{
 	}
 
-	function handle_file_creation($args)
+	/**
+	 * Triggered by the tiki.file.create event from filegallib
+	 *
+	 * @param array $args containing:
+	 *  - 'type' => 'file'
+	 *  - 'object' => $fileId
+	 *  - 'user' => $GLOBALS['user']
+	 *  - 'galleryId' => $galleryId
+	 *  - 'filetype' => $type
+	 *
+	 */
+	function handle_fileCreation($args)
 	{
 		if ($metadata = $this->getRequestMetadata($args)) {
 
@@ -54,16 +68,90 @@ class H5PLib
 		}
 	}
 
-	function handle_file_update($args)
+	/**
+	 * Triggered by the tiki.file.update event from filegallib
+	 *
+	 * @param array $args containing:
+	 *  - 'type' => 'file'
+	 *  - 'object' => $fileId
+	 *  - 'user' => $GLOBALS['user']
+	 *  - 'galleryId' => $galleryId
+	 *  - 'filetype' => $type
+	 *
+	 */
+	function handle_fileUpdate($args)
 	{
-		if (isset($args['initialFileId']) && $metadata = $this->getRequestMetadata($args)) {
+		if (isset($args['object']) && $metadata = $this->getRequestMetadata($args)) {
 
-			// TODO: Similar to creation, only we need to find the related contentId before saving the package.
+			$content = $this->loadContentFromFileId($args['object']);
 
 			// Clear content dependency cache
-			//$interface->deleteLibraryUsage($content['id']);
-			//$storage->savePackage($content);
+			$this->H5PTiki->deleteLibraryUsage($content['id']);
+			$this->h5p_core->savePackage($content);
 		}
+	}
+
+	/**
+	 * Triggered by the tiki.file.delete event from filegallib
+	 *
+	 * @param array $args containing:
+	 *  - 'type' => 'file'
+	 *  - 'object' => $fileId
+	 *  - 'user' => $GLOBALS['user']
+	 *  - 'galleryId' => $galleryId
+	 *  - 'filetype' => $type
+	 *
+	 */
+	function handle_fileDelete($args)
+	{
+		if (isset($args['object']) && $args['type'] === 'file') {
+
+			$id = $this->getContentIdFromFileId($args['object']);
+
+			if ($id) {
+				// Remove the h5p contents
+				$this->H5PTiki->deleteContentData($id);
+			}
+		}
+	}
+
+	/**
+	 * Get H5P content row from the Tiki fileId
+	 *
+	 * @param int $fileId
+	 *
+	 * @return array|bool
+	 */
+	public function loadContentFromFileId($fileId)
+	{
+		global $prefs;
+
+		$id = $this->getContentIdFromFileId($fileId);
+
+		if ($id) {// Try to find content with $id.
+			$core = \H5P_H5PTiki::get_h5p_instance('core');
+			$content = $core->loadContent($id);
+
+			if (is_array($content) && ! empty($content)) {
+				// no error
+				$content['language'] = substr($prefs['language'], 0, 2);    // TODO better
+			}
+
+			return $content;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @param int $fileId
+	 * @return bool|mixed
+	 */
+	public function getContentIdFromFileId($fileId)
+	{
+		$tiki_h5p_contents = TikiDb::get()->table('tiki_h5p_contents');
+
+		return $tiki_h5p_contents->fetchOne('id', ['file_id' => $fileId]);
 	}
 
 	private function getRequestMetadata($args)
@@ -160,7 +248,7 @@ class H5PLib
 		// Make sure content isn't added twice
 		$cid = 'cid-' . $content['id'];
 		if (! isset(self::$settings['contents'][$cid])) {
-			self::$settings['contents'][$cid] = $this->get_content_settings($content);
+			self::$settings['contents'][$cid] = $this->getContentSettings($content);
 			$core = \H5P_H5PTiki::get_h5p_instance('core');
 
 			// Get assets for this content
@@ -178,7 +266,7 @@ class H5PLib
 			}
 		}
 
-		$this->print_settings(self::$settings);
+		$this->printSettings(self::$settings);
 
 		if ($embed === 'div') {
 			return '<div class="h5p-content" data-content-id="' . $content['id'] . '"></div>';
@@ -197,7 +285,7 @@ class H5PLib
 			return; // Already added
 		}
 
-		self::$settings = $this->get_core_settings();
+		self::$settings = $this->getCoreSettings();
 		self::$settings['core'] = [
 			'styles' => [],
 			'scripts' => [],
@@ -225,7 +313,7 @@ class H5PLib
 	/**
 	 * Get generic h5p settings
 	 */
-	public function get_core_settings()
+	public function getCoreSettings()
 	{
 		global $user, $base_url, $prefs;
 
@@ -233,7 +321,7 @@ class H5PLib
 
 		$settings = array(
 			'baseUrl' => $base_url,
-			'url' => $base_url . 'vendor/h5p/h5p-core/',
+			'url' => $base_url . \H5P_H5PTiki::$h5p_path,
 			/* TODO tracking and saving
 						 'postUserStatistics' => ($prefs['h5p_track_user'] === 'y') && $userId,
 						'ajaxPath' => 'tiki-ajax_services.php?controller=h5p',
@@ -317,10 +405,10 @@ class H5PLib
 	/**
 	 * Add H5P JavaScript settings to the bottom of the page.
 	 */
-	public function add_settings()
+	public function addSettings()
 	{
 		if (self::$settings !== null) {
-			$this->print_settings(self::$settings);
+			$this->printSettings(self::$settings);
 		}
 	}
 
@@ -329,7 +417,7 @@ class H5PLib
 	 *
 	 * @param array $settings
 	 */
-	public function print_settings(&$settings, $obj_name = 'H5PIntegration')
+	public function printSettings(&$settings, $obj_name = 'H5PIntegration')
 	{
 		static $printed;
 		if (! empty($printed[$obj_name])) {
@@ -348,7 +436,7 @@ class H5PLib
 	 *
 	 * @return array
 	 */
-	public function get_settings()
+	public function getSettings()
 	{
 		return self::$settings;
 	}
@@ -360,7 +448,7 @@ class H5PLib
 	 * @param array $content
 	 * @return array
 	 */
-	public function get_content_settings($content)
+	public function getContentSettings($content)
 	{
 		global $prefs;
 
@@ -397,7 +485,7 @@ class H5PLib
 			'library' => H5PCore::libraryToString($content['library']),
 			'jsonContent' => $safe_parameters,
 			'fullScreen' => $content['library']['fullscreen'],
-			'exportUrl' => ($prefs['h5p_export'] === 'y' ? 'storage/public/exports/' . ($content['fileId'] ? $content['fileId'] . '-' : '') . $content['id'] . '.h5p' : ''),
+			'exportUrl' => ($prefs['h5p_export'] === 'y' ? \H5P_H5PTiki::$h5p_path . '/exports/' . ($content['fileId'] ? $content['fileId'] . '-' : '') . $content['id'] . '.h5p' : ''),
 			'embedCode' => '<iframe src="tiki-ajax_services.php?controller=h5p&action=embed&id=' . $content['id'] . '" width=":w" height=":h" frameborder="0" allowfullscreen="allowfullscreen"></iframe>',
 			'resizeCode' => '<script src="vendor/h5p/h5p-core/js/h5p-resizer.js" charset="UTF-8"></script>',
 			'url' => 'tiki-ajax_services.php?controller=h5p&action=embed&id=' . $content['id'],

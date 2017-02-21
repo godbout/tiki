@@ -149,13 +149,14 @@ function tiki_setup_events()
 	}
 
 	if ($prefs['scorm_enabled'] == 'y') {
-		$events->bind('tiki.file.create', $defer('scorm', 'handle_file_creation'));
-		$events->bind('tiki.file.update', $defer('scorm', 'handle_file_update'));
+		$events->bind('tiki.file.create', $defer('scorm', 'handle_fileCreation'));
+		$events->bind('tiki.file.update', $defer('scorm', 'handle_fileUpdate'));
 	}
 
 	if ($prefs['h5p_enabled'] == 'y') {
-		$events->bind('tiki.file.create', $defer('h5p', 'handle_file_creation'));
-		$events->bind('tiki.file.update', $defer('h5p', 'handle_file_update'));
+		$events->bind('tiki.file.create', $defer('h5p', 'handle_fileCreation'));
+		$events->bind('tiki.file.update', $defer('h5p', 'handle_fileUpdate'));
+		$events->bind('tiki.file.delete', $defer('h5p', 'handle_fileDelete'));
 	}
 
 	if ($prefs['feature_futurelinkprotocol'] == 'y') {

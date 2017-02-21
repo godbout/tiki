@@ -39,7 +39,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		$this->tiki_h5p_libraries_languages = $tikiDb->table('tiki_h5p_libraries_languages');
 		// possibly others needed?
 
-		self::$h5p_path = 'storage/public/';
+		self::$h5p_path = 'storage/public';
 	}
 
 	/**
