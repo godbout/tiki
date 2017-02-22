@@ -4077,6 +4077,7 @@ lib/smarty_tiki/modifier.money_format.php -text
 lib/smarty_tiki/modifier.namespace.php -text
 lib/smarty_tiki/modifier.nonamespace.php -text
 lib/smarty_tiki/modifier.nonp.php -text
+lib/smarty_tiki/modifier.numStyle.php -text
 lib/smarty_tiki/modifier.number_format.php -text
 lib/smarty_tiki/modifier.output.php -text
 lib/smarty_tiki/modifier.pagename.php -text
