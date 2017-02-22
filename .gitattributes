@@ -4557,6 +4557,7 @@ lib/transitionlib.php -text
 lib/tree/BrowseTreeMaker.php -text
 lib/tree/index.php -text
 lib/tree/tree.php -text
+lib/user/blacklistlib.php -text
 lib/user/index.php -text
 lib/user/monitorlib.php -text
 lib/user/monitormaillib.php -text
