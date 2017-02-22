@@ -22,14 +22,12 @@ class H5PLib
 	const VERSION = '1.0.0';
 
 	private $H5PTiki = null;
-	private $h5p_core = null;
 
 	private static $settings = null;
 
 	function __construct()
 	{
 		$this->H5PTiki = new \H5P_H5PTiki();
-		$this->h5p_core = \H5P_H5PTiki::get_h5p_instance('core');
 	}
 
 	function __destruct()
@@ -87,7 +85,9 @@ class H5PLib
 
 			// Clear content dependency cache
 			$this->H5PTiki->deleteLibraryUsage($content['id']);
-			$this->h5p_core->savePackage($content);
+
+			$core = \H5P_H5PTiki::get_h5p_instance('core');
+			$core->savePackage($content);
 		}
 	}
 
@@ -266,6 +266,8 @@ class H5PLib
 			}
 		}
 
+		// Tiki JB note: I had to add this here to get the js files to be included,
+		// the WP plugin doesn't use this here so i must be missing something else...
 		$this->printSettings(self::$settings);
 
 		if ($embed === 'div') {

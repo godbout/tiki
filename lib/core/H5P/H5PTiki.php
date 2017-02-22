@@ -51,8 +51,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	public static function get_h5p_instance($component)
 	{
 		static $interface, $core;
-
-		global $prefs, $tikiroot, $tikipath;    // we still have lots of hairy globals
+		global $prefs, $tikiroot, $tikipath;
 
 		if (is_null($interface)) {
 			// Setup Core and Interface components that are always needed
