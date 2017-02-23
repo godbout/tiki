@@ -130,11 +130,14 @@ class H5PLib
 
 		if ($id) {// Try to find content with $id.
 			$core = \H5P_H5PTiki::get_h5p_instance('core');
-			$content = $core->loadContent($id);
+			$content = $core->loadContent($id); // TODO: Is it possible to pass $fileId directly here to reduce the number of queries?
 
 			if (is_array($content) && ! empty($content)) {
 				// no error
 				$content['language'] = substr($prefs['language'], 0, 2);    // TODO better
+
+
+
 			}
 
 			return $content;

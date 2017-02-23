@@ -447,6 +447,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 				'preloaded_css' => $preloadedCss,
 				'drop_library_css' => $dropLibraryCss,
 				'semantics' => $libraryData['semantics'],
+				'tutorial_url' => ''
 			]);
 
 			$libraryData['libraryId'] = $libraryId;
@@ -487,7 +488,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 				$id = $this->tiki_h5p_libraries_languages->insert([
 					'library_id' => $libraryData['libraryId'],
 					'language_code' => $languageCode,
-					//'language_json' => $languageJson, (missing field?)
+					'translation' => $languageJson
 				]);
 				// TODO error checking?
 			}
@@ -560,6 +561,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			'embed_type' => 'div', // TODO: Determine from library?
 			'library_id' => $content['library']['libraryId'],
 			'filtered' => '',
+			'slug' => '',
 			'disable' => isset($content['disable']) ? $content['disable'] : 0,
 			'file_id' => $contentMainId,
 		);
@@ -848,6 +850,7 @@ WHERE l.id = ?',
 			return false;
 		}
 		$library = H5PCore::snakeToCamel($library);
+		$library['machineName'] = $library['name'];
 
 		$result = TikiDb::get()->query(
 			'SELECT hl.`name`, hl.`major_version` AS major, hl.`minor_version` AS minor, hll.`dependency_type` AS type
@@ -905,7 +908,7 @@ WHERE hll.`library_id` = ?',
 			$semantics = $this->getSemanticsFromFile($machineName, $majorVersion, $minorVersion);
 		} else {
 			$semantics = $this->tiki_h5p_libraries->fetchOne(
-				['semantics'],
+				'semantics',
 				[
 					'name' => $machineName,
 					'major_version' => $majorVersion,
