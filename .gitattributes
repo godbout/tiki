@@ -2453,6 +2453,7 @@ lib/core/Search/ContentSource/TrackerFieldSource.php -text
 lib/core/Search/ContentSource/TrackerItemSource.php -text
 lib/core/Search/ContentSource/TrackerSource.php -text
 lib/core/Search/ContentSource/UserSource.php -text
+lib/core/Search/ContentSource/WebserviceSource.php -text
 lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/ContentSource/index.php -text
 lib/core/Search/Elastic/BulkOperation.php -text
