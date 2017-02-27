@@ -4622,6 +4622,8 @@ lib/wiki-plugins/wikiplugin_avatar.php -text
 lib/wiki-plugins/wikiplugin_back.php -text
 lib/wiki-plugins/wikiplugin_backlinks.php -text
 lib/wiki-plugins/wikiplugin_banner.php -text
+lib/wiki-plugins/wikiplugin_benchmark.php -text
+lib/wiki-plugins/wikiplugin_benchmark.tpl -text
 lib/wiki-plugins/wikiplugin_bigbluebutton.php -text
 lib/wiki-plugins/wikiplugin_bloglist.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
