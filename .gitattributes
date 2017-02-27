@@ -6327,7 +6327,6 @@ templates/wiki-plugins/wikiplugin_bloglist.tpl -text
 templates/wiki-plugins/wikiplugin_categorytransition.tpl -text
 templates/wiki-plugins/wikiplugin_catorphans.tpl -text
 templates/wiki-plugins/wikiplugin_cclite.tpl -text
-templates/wiki-plugins/wikiplugin_chartjs.tpl -text
 templates/wiki-plugins/wikiplugin_colobox.tpl -text
 templates/wiki-plugins/wikiplugin_comment.tpl -text
 templates/wiki-plugins/wikiplugin_datachannel.tpl -text
