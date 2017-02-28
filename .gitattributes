@@ -2665,6 +2665,7 @@ lib/core/Services/Goal/Controller.php -text
 lib/core/Services/Goal/index.php -text
 lib/core/Services/Group/Controller.php -text
 lib/core/Services/Group/index.php -text
+lib/core/Services/H5P/Controller.php -text
 lib/core/Services/JCapture/Controller.php -text
 lib/core/Services/JCapture/index.php -text
 lib/core/Services/Kaltura/Controller.php -text
@@ -5362,6 +5363,8 @@ templates/goal/render_conditions.tpl -text
 templates/goal/render_rewards.tpl -text
 templates/goal/show.tpl -text
 templates/goal/show_list.tpl -text
+templates/h5p/edit.tpl -text
+templates/h5p/embed.tpl -text
 templates/header.tpl -text
 templates/index.php -text
 templates/interactive_translation_box.tpl -text

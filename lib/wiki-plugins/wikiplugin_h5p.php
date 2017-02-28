@@ -7,57 +7,36 @@
 
 function wikiplugin_h5p_info()
 {
-	return array(
+	return [
 		'name' => tra('H5P'),
 		'documentation' => 'PluginH5P',
 		'description' => tra(''),
-		'prefs' => array('wikiplugin_h5p'),
+		'prefs' => ['wikiplugin_h5p', 'h5p_enabled'],
 		'iconname' => 'html',
 		'format' => 'html',
 		'introduced' => 16,
-		'params' => array(
-			'fileId' => array(
-				'required' => true,
+		'params' => [
+			'fileId' => [
+				'required' => false,
 				'name' => tra('File ID'),
 				'description' => tr('The H5P file in a file gallery'),
 				'since' => '17.0',
 				'filter' => 'digits',
 				'default' => '',
-			),
-		),
-	);
+			],
+		],
+	];
 }
 
 function wikiplugin_h5p($data, $params)
 {
-	global $prefs;
+	$smarty = TikiLib::lib('smarty');
 
-	if (empty($params['fileId'])) {
-		Feedback::error(tr('H5P Plugin:') . ' ' . tr('No fileID provided.'));
-		return '';
-	} else {
-		$fileId = $params['fileId'];
-	}
+	$smarty->loadPlugin('smarty_function_service_inline');
 
-	$content = TikiLib::lib('h5p')->loadContentFromFileId($fileId);
+	$params['controller'] = 'h5p';
+	$params['action'] = 'embed';
 
-	if (! $content) {
-		Feedback::error(tr('H5P Plugin:') . ' ' . tr('Cannot find H5P content with fileId: %0.', $fileId));
-		return '';
-	}
-
-	if (is_string($content)) {
-		// Return error message if the user has the correct cap
-		return Perms::get()->h5p_edit ? $content : NULL;
-	}
-
-	// Log view
-	new H5P_Event('content', 'plugin',
-		$content['id'],
-		$content['title'],
-		$content['library']['name'],
-		$content['library']['majorVersion'] . '.' . $content['library']['minorVersion']);
-
-	return TikiLib::lib('h5p')->addAssets($content);
+	return smarty_function_service_inline($params, $smarty);
 }
 

@@ -485,15 +485,24 @@ class H5PLib
 				}
 		*/
 
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_function_service');
+		$embedUrl = smarty_function_service([
+			'controller' => 'h5p',
+			'action' => 'embed',
+			'fileId' => $content['fileId'],
+		], $smarty);
+
+
 		// Add JavaScript settings for this content
 		$settings = [
 			'library' => H5PCore::libraryToString($content['library']),
 			'jsonContent' => $safe_parameters,
 			'fullScreen' => $content['library']['fullscreen'],
-			'exportUrl' => ($prefs['h5p_export'] === 'y' ? \H5P_H5PTiki::$h5p_path . '/exports/' . ($content['fileId'] ? $content['fileId'] . '-' : '') . $content['id'] . '.h5p' : ''),
-			'embedCode' => '<iframe src="tiki-ajax_services.php?controller=h5p&action=embed&id=' . $content['id'] . '" width=":w" height=":h" frameborder="0" allowfullscreen="allowfullscreen"></iframe>',
+			'exportUrl' => ($prefs['h5p_export'] === 'y' ? 'tiki-download_file.php?fileId=' . $content['fileId'] : ''),
+			'embedCode' => '<iframe src="' . $embedUrl . '" width=":w" height=":h" frameborder="0" allowfullscreen="allowfullscreen"></iframe>',
 			'resizeCode' => '<script src="vendor/h5p/h5p-core/js/h5p-resizer.js" charset="UTF-8"></script>',
-			'url' => 'tiki-ajax_services.php?controller=h5p&action=embed&id=' . $content['id'],
+			'url' => $embedUrl,
 			'title' => $content['title'],
 			'disable' => $content['disable'],
 			'contentUserData' => [
