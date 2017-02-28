@@ -995,7 +995,7 @@ WHERE hll.`library_id` = ?',
 	 * @return array
 	 *   Associative array containing:
 	 *   - id: Identifier for the content
-	 *   - fileId: Tiki specific fileId (of the original h5p file in the galleries)
+	 *   - file_id: Tiki specific fileId (of the original h5p file in the galleries)
 	 *   - params: json content as string
 	 *   - embedType: csv of embed types
 	 *   - title: The contents title
@@ -1010,7 +1010,7 @@ WHERE hll.`library_id` = ?',
 	public function loadContent($id)
 	{
 		$content = TikiDb::get()->query(
-			'SELECT hc.`id`, hc.`fileId`, hc.`title`, hc.`parameters` AS params, hc.`filtered` , hc.`slug` AS slug, hc.`user_id`, hc.`embed_type` AS embedType,
+			'SELECT hc.`id`, hc.`file_id`, hc.`title`, hc.`parameters` AS params, hc.`filtered` , hc.`slug` AS slug, hc.`user_id`, hc.`embed_type` AS embedType,
 	hc.disable, hl.id AS libraryId , hl.name AS libraryName, hl.major_version AS libraryMajorVersion,
 	hl.minor_version AS libraryMinorVersion, hl.embed_types AS libraryEmbedTypes, hl.fullscreen AS libraryFullscreen
 FROM `tiki_h5p_contents` hc
