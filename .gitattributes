@@ -1954,10 +1954,12 @@ installer/schema/20160915_extwiki_indexname_length_tiki.sql -text
 installer/schema/20161109_remove_old_password_tiki.php -text
 installer/schema/20161117_favicon_tiki.sql -text
 installer/schema/20161206_larger_comment_field_tiki.sql -text
+installer/schema/20170122_schedulers_tiki.sql -text
 installer/schema/20170127_remove_templates_c_tiki.php -text
 installer/schema/20170129_feature_dump_tiki.sql -text
 installer/schema/20170207_iefix_rem_tiki.sql -text
 installer/schema/20170213_footnotearea_tiki.sql -text
+installer/schema/20170218_schedulers_menu_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2417,6 +2419,8 @@ lib/core/Reports/Send/EmailBuilder/index.php -text
 lib/core/Reports/Send/index.php -text
 lib/core/Reports/Users.php -text
 lib/core/Reports/index.php -text
+lib/core/Scheduler/Item.php -text
+lib/core/Scheduler/Task/ConsoleCommandTask.php -text
 lib/core/Search/Action/Action.php -text
 lib/core/Search/Action/ActionStep.php -text
 lib/core/Search/Action/ChangeStatusAction.php -text
@@ -2694,6 +2698,8 @@ lib/core/Services/Report/index.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
+lib/core/Services/Scheduler/Controller.php -text
+lib/core/Services/Scheduler/index.php -text
 lib/core/Services/Score/Controller.php -text
 lib/core/Services/Search/Controller.php -text
 lib/core/Services/Search/CustomSearchController.php -text
@@ -2829,6 +2835,7 @@ lib/core/Tiki/Command/RecommendationBatchCommand.php -text
 lib/core/Tiki/Command/RedactDBCommand.php -text
 lib/core/Tiki/Command/RefreshRssCommand.php -text
 lib/core/Tiki/Command/RssClearCacheCommand.php -text
+lib/core/Tiki/Command/SchedulerRunCommand.php -text
 lib/core/Tiki/Command/TrackerClearCommand.php -text
 lib/core/Tiki/Command/TrackerImportCommand.php -text
 lib/core/Tiki/Command/UnavailableCommand.php -text
@@ -3788,6 +3795,7 @@ lib/registration/registrationlib.php -text
 lib/rss/index.php -text
 lib/rss/pagecontentlib.php -text
 lib/rss/rsslib.php -text
+lib/schedulerslib.php -text
 lib/score/events.php -text
 lib/score/index.php -text
 lib/score/scorelib.php -text
@@ -5791,6 +5799,7 @@ templates/report/index.php -text
 templates/report/load.tpl -text
 templates/report/preview.tpl -text
 templates/report/wikidata.tpl -text
+templates/scheduler/remove.tpl -text
 templates/score/create_score_event.tpl -text
 templates/search/help.tpl -text
 templates/search/index.php -text
@@ -5888,6 +5897,7 @@ templates/tiki-admin_notifications.tpl -text
 templates/tiki-admin_poll_options.tpl -text
 templates/tiki-admin_polls.tpl -text
 templates/tiki-admin_rssmodules.tpl -text
+templates/tiki-admin_schedulers.tpl -text
 templates/tiki-admin_security.tpl -text
 templates/tiki-admin_shoutbox_words.tpl -text
 templates/tiki-admin_structures.tpl -text
@@ -7608,6 +7618,7 @@ themes/yeti/templates/index.php -text
 /tiki-admin_poll_options.php -text
 /tiki-admin_polls.php -text
 /tiki-admin_rssmodules.php -text
+/tiki-admin_schedulers.php -text
 /tiki-admin_security.php -text
 /tiki-admin_shoutbox_words.php -text
 /tiki-admin_structures.php -text
