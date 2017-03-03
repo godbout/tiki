@@ -5910,6 +5910,7 @@ templates/tiki-admin_toolbars.tpl -text
 templates/tiki-admin_topics.tpl -text
 templates/tiki-admin_tracker_fields.tpl -text
 templates/tiki-admin_transitions.tpl -text
+templates/tiki-admin_webservices.tpl -text
 templates/tiki-admingroups.tpl -text
 templates/tiki-adminusers.tpl -text
 templates/tiki-ajax_header.tpl -text
@@ -7633,6 +7634,7 @@ themes/yeti/templates/index.php -text
 /tiki-admin_tracker_fields.php -text
 /tiki-admin_trackers.php -text
 /tiki-admin_transitions.php -text
+/tiki-admin_webservices.php -text
 /tiki-admingroups.php -text
 /tiki-adminusers.php -text
 /tiki-ajax_services.php -text
