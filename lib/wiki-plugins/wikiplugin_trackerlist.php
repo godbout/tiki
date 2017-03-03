@@ -1045,9 +1045,9 @@ function wikiplugin_trackerlist($data, $params)
 		if ($perms['tiki_p_view_trackers'] != 'y' && !$user) {
 			return;
 		}
-		$userCreatorFieldId = $definition->getAuthorField();
+		$userCreatorFieldIds = $definition->getItemOwnerFields();
 		$groupCreatorFieldId = $definition->getWriterGroupField();
-		if ($perms['tiki_p_view_trackers'] != 'y' && ! $definition->isEnabled('writerCanModify') && ! $definition->isEnabled('userCanSeeOwn') && empty($userCreatorFieldId) && empty($groupCreatorFieldId)) {
+		if ($perms['tiki_p_view_trackers'] != 'y' && ! $definition->isEnabled('writerCanModify') && ! $definition->isEnabled('userCanSeeOwn') && empty($userCreatorFieldIds) && empty($groupCreatorFieldId)) {
 			return;
 		}
 		$smarty->assign_by_ref('perms', $perms);
@@ -1564,8 +1564,8 @@ function wikiplugin_trackerlist($data, $params)
 		$smarty->assign_by_ref('tr_initial', $tr_initial);
 
 		if ((isset($view) && $view == 'user') || isset($view_user) || isset($_REQUEST['tr_user'])) {
-			if ($f = $definition->getAuthorField()) {
-				$filterfield[] = $f;
+			if ($f = $definition->getItemOwnerFields()) {
+				$filterfield[] = array('usersearch' => $f);
 				$filtervalue[] = '';
 				if (!isset($_REQUEST['tr_user'])) {
 					$exactvalue[] = isset($view)? (empty($user)?'Anonymous':$user): $view_user;
@@ -1723,21 +1723,19 @@ function wikiplugin_trackerlist($data, $params)
 				}
 			}
 		}
-		if ($tiki_p_admin_trackers != 'y' && $perms['tiki_p_view_trackers'] != 'y' && ($definition->isEnabled('writerCanModify') or $definition->isEnabled('userCanSeeOwn')) && $user && $userCreatorFieldId) { //patch this should be in list_items
-			if ($filterfield != $userCreatorFieldId || (is_array($filterfield) && !in_array($$userCreatorFieldId, $filterfield))) {
-				if (is_array($filterfield))
-					$filterfield[] = $userCreatorFieldId;
-				elseif (empty($filterfield))
-					$filterfield = $userCreatorFieldId;
-				else
-					$filterfield = array($filterfield, $fieldId);
-				if (is_array($exactvalue))
-					$exactvalue[] = $user;
-				elseif (empty($exactvalue))
-					$exactvalue = $user;
-				else
-					$exactvalue = array($exactvalue, $user);
-			}
+		if ($tiki_p_admin_trackers != 'y' && $perms['tiki_p_view_trackers'] != 'y' && ($definition->isEnabled('writerCanModify') or $definition->isEnabled('userCanSeeOwn')) && $user && $userCreatorFieldIds) { //patch this should be in list_items
+			if (is_array($filterfield))
+				$filterfield[] = array('usersearch' => $userCreatorFieldIds);
+			elseif (empty($filterfield))
+				$filterfield = array('usersearch' => $userCreatorFieldIds);
+			else
+				$filterfield = array($filterfield, array('usersearch' => $userCreatorFieldIds));
+			if (is_array($exactvalue))
+				$exactvalue[] = $user;
+			elseif (empty($exactvalue))
+				$exactvalue = $user;
+			else
+				$exactvalue = array($exactvalue, $user);
 		}
 		if ($tiki_p_admin_trackers != 'y' && $perms['tiki_p_view_trackers'] != 'y' && $user && $groupCreatorFieldId) {
 			if ($filterfield != $groupCreatorFieldId || (is_array($filterfield) && !in_array($groupCreatorFieldId, $filterfield))) {

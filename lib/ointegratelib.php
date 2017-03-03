@@ -10,6 +10,31 @@ use Symfony\Component\Yaml\Yaml;
 /**
  *
  */
+interface OIntegrate_Converter
+{
+    /**
+     * @param $content
+     * @return mixed
+     */
+    function convert( $content );
+}
+
+/**
+ *
+ */
+interface OIntegrate_Engine
+{
+    /**
+     * @param $data
+     * @param $templateFile
+     * @return mixed
+     */
+    function process( $data, $templateFile );
+}
+
+/**
+ *
+ */
 class OIntegrate
 {
 	private $schemaVersion = array();
@@ -53,24 +78,37 @@ class OIntegrate
 			} elseif ( $to == 'tikiwiki' ) {
 				return new OIntegrate_Converter_EncodeHtml;
 			}
+			break;
+		case 'index':
+		case 'mindex':
+			if ($to == 'index') {
+				return new OIntegrate_Converter_Indexer;
+			} elseif ( $to == 'html' ) {
+				return new OIntegrate_Converter_Indexer('html');
+			}
+			break;
 		}
 	} // }}}
 
-    /**
-     * @param $url
-     * @param null $postBody
-     * @return OIntegrate_Response
-     */
-    function performRequest( $url, $postBody = null ) // {{{
+	/**
+	 * @param string $url
+	 * @param string $postBody url or json encoded post parameters
+	 * @param bool $clearCache
+	 * @return OIntegrate_Response
+	 */
+    function performRequest( $url, $postBody = null, $clearCache = false ) // {{{
 	{
 		$cachelib = TikiLib::lib('cache');
 		$tikilib = TikiLib::lib('tiki');
 
-		if ( $cache = $cachelib->getSerialized($url.$postBody)) {
-			if ( time() < $cache['expires'] )
-				return $cache['data'];
+		$cacheKey = $url . $postBody;
 
-			$cachelib->invalidate($url.$postBody);
+		if ( $cache = $cachelib->getSerialized($cacheKey)) {
+			if (time() < $cache['expires'] && ! $clearCache) {
+				return $cache['data'];
+			}
+
+			$cachelib->invalidate($cacheKey);
 		}
 
 		$client = $tikilib->get_http_client($url);
@@ -145,14 +183,14 @@ class OIntegrate
 			$expiry = time() + $maxage;
 
 			$cachelib->cacheItem(
-				$url,
+				$cacheKey,
 				serialize(array('expires' => $expiry, 'data' => $response))
 			);
 		// Unless service specifies not to cache result, apply a default cache
-		} elseif ( $nocache !== null && $prefs['webservice_consume_defaultcache'] > 0 ) {
+		} elseif (empty($nocache) && $prefs['webservice_consume_defaultcache'] > 0 ) {
 			$expiry = time() + $prefs['webservice_consume_defaultcache'];
 
-			$cachelib->cacheItem($url, serialize(array('expires' => $expiry, 'data' => $response)));
+			$cachelib->cacheItem($cacheKey, serialize(array('expires' => $expiry, 'data' => $response)));
 		}
 
 		return $response;
@@ -350,31 +388,6 @@ class OIntegrate_Response
 /**
  *
  */
-interface OIntegrate_Converter
-{
-    /**
-     * @param $content
-     * @return mixed
-     */
-    function convert( $content );
-}
-
-/**
- *
- */
-interface OIntegrate_Engine
-{
-    /**
-     * @param $data
-     * @param $templateFile
-     * @return mixed
-     */
-    function process( $data, $templateFile );
-}
-
-/**
- *
- */
 class OIntegrate_Engine_JavaScript implements OIntegrate_Engine // {{{
 {
     /**
@@ -490,7 +503,82 @@ class OIntegrate_Converter_TikiToHtml implements OIntegrate_Converter // {{{
      */
     function convert( $content )
 	{
-		global $tikilib;
-		return $tikilib->parse_data(htmlentities($content, ENT_QUOTES, 'UTF-8'));
+		return TikiLib::lib('parser')->parse_data(htmlentities($content, ENT_QUOTES, 'UTF-8'));
 	}
 } // }}}
+
+/**
+ * Attempt to index the result from the request
+ */
+class OIntegrate_Converter_Indexer implements OIntegrate_Converter
+{
+	private $format;
+
+	function __construct($format = 'none')
+	{
+		$this->format = $format;
+	}
+
+	/**
+     * @param $content
+     * @return mixed|string
+     */
+    function convert( $content )
+	{
+		if ($this->format === 'html') {
+
+			if (! empty($_REQUEST['nt_name'])) {	// preview from admin/webservice page
+
+				$source = new Search_ContentSource_WebserviceSource();
+				$factory = new Search_Type_Factory_Direct();
+
+				if ($_REQUEST['nt_output'] === 'mindex') {
+					$documents = $source->getDocuments();
+					$data = [];
+					foreach ($documents as $document) {
+						if (strpos($document, $_REQUEST['nt_name']) === 0) {
+							$data[$document] = $source->getDocument($document, $factory);
+						}
+					}
+				} else {
+					$data = $source->getDocument($_REQUEST['nt_name'], $factory);
+				}
+
+				$output = '<h3>' . tr('Parsed Data') . '</h3>';
+				$output .= '<pre style="max-height: 40em; overflow: auto; white-space: pre-wrap">';
+				$output .= htmlentities(
+					print_r($data, true),
+						ENT_QUOTES,
+						'UTF-8'
+				);
+
+			} else {
+
+				$output = '<h3>' . tr('Data') . '</h3>';
+				$output .= '<pre style="max-height: 20em; overflow: auto; white-space: pre-wrap">';
+				$output .= htmlentities(
+					json_encode($content['data'], JSON_PRETTY_PRINT),
+						ENT_QUOTES,
+						'UTF-8'
+				);
+				$output .= '</pre>';
+
+				$output .= '<h3>' . tr('Mapping') . '</h3>';
+				$output .= '<pre style="max-height: 20em; overflow: auto; white-space: pre-wrap">';
+				$output .= htmlentities(
+					json_encode($content['mapping'], JSON_PRETTY_PRINT),
+						ENT_QUOTES,
+						'UTF-8'
+				);
+				$output .= '</pre>';
+
+			}
+
+			return $output;
+		} else {
+
+			return $content;
+		}
+
+	}
+}

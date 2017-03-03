@@ -15,6 +15,11 @@
 		{preference name=feature_webservices visible="always"}
 	</fieldset>
 
+	<fieldset>
+		<legend>{tr}Options{/tr}</legend>
+		{preference name=webservice_consume_defaultcache}
+	</fieldset>
+
 	<div class="t_navbar margin-bottom-md">
 		{foreach from=$webservices item=name}
 			{button href="tiki-admin.php?page=webservices&amp;name=$name" class="btn btn-default" _text=$name}
@@ -25,7 +30,25 @@
 	</div>
 
 	{if $storedName}
-		<p><strong>{$storedName|escape}</strong>: {$url|escape}<input type="hidden" name="name" value="{$storedName|escape}"/> <a href="tiki-admin.php?page=webservices&amp;name={$storedName|escape}&amp;delete">{icon name='delete' iclass='tips' title=":{tr}Delete{/tr}"}</a></p>
+		<h2>{$storedName|escape}:</h2>
+		<div class="form-group">
+			<label class="col-sm-4"> {tr}URL:{/tr}</label>
+			<div class="col-sm-8">
+				<code>{$url|escape}</code>
+			</div>
+		</div>
+		{if $postbody}
+			<div class="form-group">
+				<label class="col-sm-4"> {tr}Body of POST request:{/tr}</label>
+				<div class="col-sm-8">
+					<pre style="max-height: 40em; overflow: auto; white-space: pre-wrap">{$postbody|escape}</pre>
+				</div>
+			</div>
+		{/if}
+		<div class="col-sm-8 col-sm-offset-4">
+			<input type="hidden" name="name" value="{$storedName|escape}">
+			{button _icon_name='delete' _text="{tr}Delete{/tr}" _script="tiki-admin.php?page=webservices&name={$storedName|escape}&delete" _class='btn btn-danger btn-sm'}
+		</div>
 	{else}
 		{remarksbox type="tip" title="{tr}Tip{/tr}"}
 			{tr}Enter the URL of a web services returning either JSON or YAML. Parameters can be specified by enclosing a name between percentage signs. For example: %name%. %service% and %template% are reserved keywords and cannot be used.{/tr}
@@ -51,20 +74,25 @@
 	{/if}
 	{if $url}
 		<h3>{tr}Parameters{/tr}</h3>
-			{if $params|@count}
-				{foreach from=$params key=name item=value}
-					<div class="form-group">
-						<label>{$name|escape}
-							<input type="text" name="params[{$name|escape}]" value="{$value|escape}" class="form-control"/>
-						</label>
+		{if $params|@count}
+			{foreach from=$params key=name item=value}
+				<div class="form-group">
+					<label class="col-sm-4 control-label" for="params[{$name|escape}]">{$name|escape}</label>
+					<div class="col-sm-8">
+						<input type="text" name="params[{$name|escape}]" id="params[{$name|escape}]" value="{$value|escape}" class="form-control">
 					</div>
-				{/foreach}
-			{else}
-				<div>{tr}{$url} requires no parameter.{/tr}</div>
-			{/if}
-			<div class="form-group">
-				<input type="submit" class="btn btn-default btn-sm" name="test" value="{tr}Test Input{/tr}" />
-			</div>
+				</div>
+			{/foreach}
+		{else}
+			<div>{tr _0=$storedName|escape}%0 requires no parameter.{/tr}</div>
+		{/if}
+		<div class="form-group">
+			<input type="submit" class="btn btn-default btn-sm col-sm-2" name="test" value="{tr}Test Input{/tr}">
+			<label class="col-sm-10">
+				<input type="checkbox" checked="checked" name="nocache">
+				{tr}Bypass cache{/tr}
+			</label>
+		</div>
 	{/if}
 	{if $data}
 		<h3>{tr}Response Information{/tr}</h3>
@@ -133,8 +161,8 @@
 					{foreach from=$storedTemplates item=template}
 						<tr>
 							<td>
-								<input type="submit" class="btn btn-default btn-sm" name="loadtemplate" value="{$template->name|escape}"/>
-								<a href="tiki-admin.php?page=webservices&amp;name={$storedName|escape}&amp;delete={$template->name|escape}">{icon name='delete' iclass='tips' title=":{tr}Delete{/tr}"}</a>
+								<input type="submit" class="btn btn-default btn-sm" name="loadtemplate" value="{$template->name|escape}" title="{tr}Edit{/tr}">
+								{icon name='delete' title='{tr}Delete{/tr}' href='tiki-admin.php?page=webservices&name='|cat:($storedName|escape)|cat:'&deletetemplate='|cat:($template->name|escape)}
 							</td>
 							<td>{$template->engine|escape}</td>
 							<td>{$template->output|escape}</td>
@@ -152,6 +180,7 @@
 								<option value=""></option>
 								<option value="javascript" {if $nt_engine eq 'javascript'} selected="selected"{/if}>JavaScript</option>
 								<option value="smarty"{if $nt_engine eq 'smarty'} selected="selected"{/if}>Smarty</option>
+								<option value="index"{if $nt_engine eq 'index'} selected="selected"{/if}>Index</option>
 							</select>
 						</td>
 						<td style="padding: 0 .5em" colspan="2">
@@ -159,6 +188,8 @@
 								<option value=""></option>
 								<option value="html" {if $nt_output eq 'html'} selected="selected"{/if}>HTML</option>
 								<option value="tikiwiki"{if $nt_output eq 'tikiwiki'} selected="selected"{/if}>Wiki</option>
+								<option value="index"{if $nt_output eq 'index'} selected="selected"{/if}>Index</option>
+								<option value="mindex"{if $nt_output eq 'mindex'} selected="selected"{/if}>Multi-Index</option>
 							</select>
 						</td>
 					</tr>

@@ -1734,6 +1734,39 @@ if ( \$('#$id') ) {
 		return $data;
 	}
 
+
+
+	/**
+	 *
+	 * intended for use within wiki plugins. This option preserves opening and closing whitespace that renders into
+	 * annoying <p> tags when parsed, and also respects HTML rendering preferences.
+	 *
+	 * @param $data string wiki/html to be parsed
+	 * @param $optionsOverride array options to override the current defaults
+	 *
+	 * @return string parsed data
+	 */
+	function parse_data_plugin($data,$optionsOverride= array())
+	{
+		$options['is_html'] = ($GLOBALS['prefs']['feature_wiki_allowhtml'] === 'y' && $GLOBALS['info']['is_html'] == true)?true:false;
+
+		foreach ($optionsOverride as $name => $value)
+			$options[$name] = $value;
+
+		// record initial whitespace
+		preg_match('(^\s*)',$data,$bwhite);
+		preg_match('(\s*$)',$data,$ewhite);
+
+		// remove all the whitespace
+		$data = trim($data);
+		$data = $this->parse_data($data,$options);
+		// remove whitespace that was added while parsing (yes it does happen)
+		$data = trim($data);
+
+		// add original whitespace back to preserve spacing
+		return ($bwhite[0].$data.$ewhite[0]);
+	}
+
 	//*
 	function parse_data_simple( $data )
 	{
@@ -2081,23 +2114,23 @@ if ( \$('#$id') ) {
 							break;
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'domain':
 						if ($smarty->getTemplateVars('url_host') != null) {
 							$value = $smarty->getTemplateVars('url_host');
-							break;	
+							break;
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'domainslash':
 						if ($smarty->getTemplateVars('url_host') != null) {
 							$value = $smarty->getTemplateVars('url_host') . '/';
-							break;	
+							break;
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'domainslash_if_multitiki':
 						if (is_file('db/virtuals.inc')) {
@@ -2105,10 +2138,10 @@ if ( \$('#$id') ) {
 						}
 						if ($virtuals && $smarty->getTemplateVars('url_host') != null) {
 							$value = $smarty->getTemplateVars('url_host') . '/';
-							break;	
+							break;
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'lastVersion':
 						$histlib = TikiLib::lib('hist');
@@ -2116,14 +2149,14 @@ if ( \$('#$id') ) {
 						$history = $histlib->get_page_history($this->option['page'], false, 0, 1);
 						if ($history[0]['version'] != null) {
 							$value = $history[0]['version'];
-							break;	
+							break;
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'lastAuthor':
 				        $histlib = TikiLib::lib('hist');
-   				        
+
 				        // get_page_history arguments: page name, page contents (set to "false" to save memory), history_offset (none, therefore "0"), max. records (just one for this case);
 				        $history = $histlib->get_page_history($this->option['page'], false, 0, 1);
 				        if ($history[0]['user'] != null ) {
@@ -2133,10 +2166,10 @@ if ( \$('#$id') ) {
 							} else {
 			                    $value = $history[0]['user'];
        							break;
-			                }  
+			                }
 				        } else {
 				            $value='';
-				            break;  
+				            break;
 				        }
 					case 'lastModif':
 						$histlib = TikiLib::lib('hist');
@@ -2144,10 +2177,10 @@ if ( \$('#$id') ) {
 						$history = $histlib->get_page_history($this->option['page'], false, 0, 1);
 						if ($history[0]['lastModif'] != null) {
 							$value = $tikilib->get_short_datetime($history[0]['lastModif']);
-							break;	
+							break;
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'lastItemVersion':
 						$trklib = TikiLib::lib('trk');
@@ -2170,11 +2203,11 @@ if ( \$('#$id') ) {
 							$history = $trklib->get_item_history($item_info, $fieldId, $filter, $offset, $prefs['maxRecords']);
 
 							$value = $history['data'][0]['version'];
-							break;	
+							break;
 
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'lastItemAuthor':
 						$trklib = TikiLib::lib('trk');
@@ -2195,13 +2228,13 @@ if ( \$('#$id') ) {
 								} else {
 				                    $value = $item_info['lastModifBy'];
 	       							break;
-				                } 
+				                }
 				            }
-							break;	
-							
+							break;
+
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'lastItemModif':
 						$trklib = TikiLib::lib('trk');
@@ -2216,11 +2249,11 @@ if ( \$('#$id') ) {
 								die;
 							}
 							$value = $tikilib->get_short_datetime($item_info['lastModif']);
-							break;	
-							
+							break;
+
 						} else {
 							$value='';
-							break;	
+							break;
 						}
 					case 'lastApprover':
 						global $prefs, $user;
@@ -2336,19 +2369,19 @@ if ( \$('#$id') ) {
 									} elseif (isset($_REQUEST['version'])) {
 										$revision_displayed = (int)$_REQUEST["version"];
 									} elseif (isset($_REQUEST['latest'])) {
-										$revision_displayed = NULL;								
+										$revision_displayed = NULL;
 									} else {
 										$versions_info = $flaggedrevisionlib->get_versions_with($this->option['page'], 'moderation', 'OK');
 										$revision_displayed = $versions_info[0];
 									}
-									
+
 									if ($this->content_to_render === null) {
 										$approval = $flaggedrevisionlib->find_approval_information($this->option['page'], $revision_displayed);
 									}
 								}
 							}
 						}
-						
+
 						if ($approval['user'] != null ) {
 							if ($prefs['user_show_realnames']== 'y') {
 								$value = TikiLib::lib('user')->clean_user($approval['user']);
@@ -2375,7 +2408,7 @@ if ( \$('#$id') ) {
 									} elseif (isset($_REQUEST['version'])) {
 										$revision_displayed = (int)$_REQUEST["version"];
 									} elseif (isset($_REQUEST['latest'])) {
-										$revision_displayed = NULL;								
+										$revision_displayed = NULL;
 									} else {
 										$versions_info = $flaggedrevisionlib->get_versions_with($this->option['page'], 'moderation', 'OK');
 										$revision_displayed = $versions_info[0];
@@ -2445,7 +2478,7 @@ if ( \$('#$id') ) {
 							$value = $_GET[$name];
 						} else {
 							$value = '';
-							include_once('lib/wiki-plugins/wikiplugin_showpref.php');	
+							include_once('lib/wiki-plugins/wikiplugin_showpref.php');
 							if ($prefs['wikiplugin_showpref'] == 'y' && $showpref = wikiplugin_showpref('', array('pref' => $name))) {
 								$value = $showpref;
 							}
@@ -3210,23 +3243,23 @@ if ( \$('#$id') ) {
 
 					//patch-ini - Patch taken from http://dev.tiki.org/item5405
 					global $TOC_newstring, $TOC_oldstring ;
-				
+
 					$TOC_newstring = $maketoc ; //===== get a copy of the newest TOC before we do anything to it
         			if ( strpos($maketoc, $TOC_oldstring) ) // larryg - if this MAKETOC contains previous chapter's TOC entries, remove that portion of the string
 					{
-						$maketoc = substr($maketoc, 0 , strpos($maketoc, $TOC_oldstring)).substr($maketoc, strpos($maketoc, $TOC_oldstring)+ strlen($TOC_oldstring)) ; 
+						$maketoc = substr($maketoc, 0 , strpos($maketoc, $TOC_oldstring)).substr($maketoc, strpos($maketoc, $TOC_oldstring)+ strlen($TOC_oldstring)) ;
 					}
-  			  		
+
 					//prepare this chapter's TOC entry to be compared with the next chapter's string]
 					$head_string = '<li><a href='   ;
-					$tail_string = '<!--toc-->' ; 
-					if ( strpos($TOC_newstring, $head_string ) && strpos($TOC_newstring, $tail_string) ) { 
+					$tail_string = '<!--toc-->' ;
+					if ( strpos($TOC_newstring, $head_string ) && strpos($TOC_newstring, $tail_string) ) {
 						$TOC_newstring = substr($TOC_newstring, strpos($TOC_newstring, $head_string) ) ; // trim unwanted stuff from the beginning of the string
 						$TOC_newstring = substr($TOC_newstring, 0, (strpos($TOC_newstring, $tail_string) -5)) ; // trim the stuff from the tail of the string    </ul></li></ul>
 						$TOC_oldstring = $TOC_newstring ;
 					}
 					//patch-end - Patch taken from http://dev.tiki.org/item5405
-					
+
 					if (!empty($maketoc)) {
 						$maketoc = $maketoc_header.$maketoc.$maketoc_footer;
 					}

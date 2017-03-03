@@ -1189,6 +1189,9 @@ class TrackerLib extends TikiLib
 				if (isset($ff_array['sqlsearch']) && is_array($ff_array['sqlsearch'])) {
 					$mid .= " AND ttif$i.`fieldId` in (".implode(',', array_fill(0, count($ff_array['sqlsearch']), '?')).')';
 					$bindvars = array_merge($bindvars, $ff_array['sqlsearch']);
+				} elseif (isset($ff_array['usersearch']) && is_array($ff_array['usersearch'])) {
+					$mid .= " AND ttif$i.`fieldId` in (".implode(',', array_fill(0, count($ff_array['usersearch']), '?')).')';
+					$bindvars = array_merge($bindvars, $ff_array['usersearch']);
 				} elseif ( $ff ) {
 					if( $search_for_blank ) {
 						$cat_table .= " AND ttif$i.`fieldId` = ".intval($ff);
@@ -1280,8 +1283,22 @@ class TrackerLib extends TikiLib
 					$bindvars[] = $userFieldId;
 					$bindvars[] = empty($ev)?$fv: $ev;
 				} elseif ( $filter['type'] == 'u' && $ev > '') { // user selector and exact value
-					$mid.= " AND ttif$i.`value` REGEXP ? ";
-					$bindvars[] = "[[:<:]]{$ev}[[:>:]]";
+					if (is_array($ev)) {
+						$keys = array_keys($ev);
+						if ($keys[0] === 'not') {
+							$mid .= " AND ( ttif$i.`value` NOT REGEXP ".implode(' OR ttif$i.`value` NOT REGEXP ', array_fill(0, count($ev), '?'))." OR ttif$i.`value` IS NULL )";
+						} else {
+							$mid .= " AND ( ttif$i.`value` REGEXP ".implode(' OR ttif$i.`value` REGEXP ', array_fill(0, count($ev), '?'))." )";
+						}
+						$bindvars = array_merge($bindvars,
+							array_values(array_map(function($ev){
+								return "[[:<:]]{$ev}[[:>:]]";
+							}, $ev))
+						);
+					} else {
+						$mid.= " AND ttif$i.`value` REGEXP ? ";
+						$bindvars[] = "[[:<:]]{$ev}[[:>:]]";
+					}
 				} elseif ( $filter['type'] == '*') { // star
 					$mid .= " AND ttif$i.`value`*1>=? ";
 					$bindvars[] = $ev;
@@ -1311,7 +1328,7 @@ class TrackerLib extends TikiLib
 							$bindvars[] = $ev[$keys[0]];
 							$bindvars[] = $ev[$keys[0]];
 						} elseif ($keys[0] === 'not') {
-							$mid .= " AND ttif$i.`value` not in (".implode(',', array_fill(0, count($ev), '?')).")";
+							$mid .= " AND ( ttif$i.`value` not in (".implode(',', array_fill(0, count($ev), '?')).") OR ttif$i.`value` IS NULL )";
 							$bindvars = array_merge($bindvars, array_values($ev));
 						} else {
 							$mid .= " AND ttif$i.`value` in (".implode(',', array_fill(0, count($ev), '?')).")";
@@ -1320,6 +1337,9 @@ class TrackerLib extends TikiLib
 					} elseif (isset($ff_array['sqlsearch']) && is_array($ff_array['sqlsearch'])) {
 						$mid .= " AND MATCH(ttif$i.`value`) AGAINST(? IN BOOLEAN MODE)";
 						$bindvars[] = $ev;
+					} elseif (isset($ff_array['usersearch']) && is_array($ff_array['usersearch'])) {
+						$mid.= " AND ttif$i.`value` REGEXP ? ";
+						$bindvars[] = "[[:<:]]{$ev}[[:>:]]";
 					} else {
 						$mid.= " AND ttif$i.`value`=? ";
 						$bindvars[] = $ev == ''? $fv: $ev;
@@ -1393,8 +1413,22 @@ class TrackerLib extends TikiLib
 				$filterfield = array($filterfield);
 			}
 			foreach ($filterfield as $f) {
-				if (!in_array($f, $fieldIds)) {
-					$fieldIds[] = $f;
+				if( !empty($f['sqlsearch']) ) {
+					foreach( $f['sqlsearch'] as $subf ) {
+						if (!in_array($subf, $fieldIds)) {
+							$fieldIds[] = $subf;
+						}
+					}
+				} elseif( !empty($f['usersearch']) ) {
+					foreach( $f['usersearch'] as $subf ) {
+						if (!in_array($subf, $fieldIds)) {
+							$fieldIds[] = $subf;
+						}
+					}
+				} else {
+					if (!in_array($f, $fieldIds)) {
+						$fieldIds[] = $f;
+					}
 				}
 			}
 		}
@@ -1585,10 +1619,12 @@ class TrackerLib extends TikiLib
 		$info = $this->get_tracker_item((int) $itemId);
 		$factory = $definition->getFieldFactory();
 
-		$userField = $definition->getUserField();
-		$itemUsers = array();
-		if ($userField && isset($info[$userField])) {
-			$itemUsers = $this->parse_user_field($info[$userField]);
+		$itemUsers = array_map(function($userField) use ($info) {
+			return isset($info[$userField]) ? $this->parse_user_field($info[$userField]) : array();
+		}, $definition->getItemOwnerFields());
+
+		if( $itemUsers ) {
+			$itemUsers = call_user_func_array('array_merge', $itemUsers);
 		}
 
 		$fields = array();
@@ -3663,10 +3699,16 @@ class TrackerLib extends TikiLib
 	public function get_item_creators($trackerId, $itemId)
 	{
 		$definition = Tracker_Definition::get($trackerId);
-		if ($fieldId = $definition->getUserField()) {
-			// user creator field
-			$creators = $this->get_item_value($trackerId, $itemId, $fieldId);
-			return $this->parse_user_field($creators);
+
+		$owners = array_map(function($fieldId) use ($trackerId, $itemId) {
+
+			$owners = $this->get_item_value($trackerId, $itemId, $fieldId);
+			return $this->parse_user_field($owners);
+			
+		}, $definition->getItemOwnerFields());
+
+		if( $owners ) {
+			return call_user_func_array('array_merge', $owners);
 		} else {
 			return array();
 		}
