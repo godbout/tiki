@@ -2764,6 +2764,8 @@ lib/core/Table/Settings/PluginWithAjax.php -text
 lib/core/Table/Settings/Standard.php -text
 lib/core/Table/Settings/TikiAdminForums.php -text
 lib/core/Table/Settings/TikiAdminGroups.php -text
+lib/core/Table/Settings/TikiAdminGroupsBanned.php -text
+lib/core/Table/Settings/TikiAdminGroupsMembers.php -text
 lib/core/Table/Settings/TikiAdminusers.php -text
 lib/core/Table/Settings/TikiForums.php -text
 lib/core/Table/Settings/TikiListpages.php -text
