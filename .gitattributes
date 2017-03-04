@@ -1432,6 +1432,8 @@ img/wiki_up/README -text
 img/wiki_up/index.php -text
 /index.php -text
 installer/.htaccess -text
+installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch -text
+installer/composer-patches/composer-patches.json -text
 installer/index.php -text
 installer/installlib.php -text
 installer/schema/00000000_schema_change_tiki.sql -text
