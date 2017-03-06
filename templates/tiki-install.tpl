@@ -778,7 +778,8 @@
 							<legend>
 								{icon name="magic"}{icon name="filter"} {tr}First Wizards, then Control Panels with Preference Filter{/tr}
 							</legend>
-							{tr}Tiki contains thousands of options and parameters (what we call "preferences"), which can be overwhelming for a new site administrator.{/tr} {tr}That's why we suggest you to get started using the <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Wizards'>Wizards</a> first ({icon name='magic'}), and when you need full control of the other options, you will only have the basic preferences displayed by default in a new installation.{/tr}<br /><br />
+							{tr}Tiki contains thousands of options and parameters (what we call "preferences"), which can be overwhelming for a new site administrator.{/tr}
+							{tr}That's why we suggest you to get started using the <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Wizards'>Wizards</a> first({icon name='magic'}), and when you need full control of the otheroptions , you will only have the  basic preferences  displayed by default in a new installation.{/tr}<br /><br />
 							{tr}You can modify the default filter choice at your own convenience to also display Advanced, Experimental or Unavailable preferences in Control Panels.{/tr}
 							{tr}You'll find the <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Preference+Filters'>Preference Filter</a> at the top of the Navigation Bar in the <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Control+Panels'>Control Panels</a> by clicking on the funnel icon ({icon name='filter'}) or use the search box provided.{/tr}<br />
 						</fieldset>

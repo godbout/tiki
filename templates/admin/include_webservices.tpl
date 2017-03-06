@@ -1,9 +1,12 @@
 {* $ID:$ *}
 <form method="post" action="tiki-admin.php?page=webservices" class="form-horizontal">
-	<input type="hidden" name="ticket" value="{$ticket|escape}">
+	{include file='access/include_ticket.tpl'}
 
 	<div class="row">
 		<div class="form-group col-lg-12 clearfix">
+			<a role="link" class="btn btn-link" href="tiki-admin_webservices.php" title="{tr}List{/tr}">
+				{icon name="admin"} {tr}Webservices{/tr}
+			</a>
 			<div class="pull-right">
 				<input type="submit" class="btn btn-primary btn-sm" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</div>

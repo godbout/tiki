@@ -5,10 +5,6 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once 'tiki-setup.php';
-require_once 'lib/ointegratelib.php';
-require_once 'lib/webservicelib.php';
-
 //this script may only be included - so its better to die if called directly.
 if (basename($_SERVER['SCRIPT_NAME']) == basename(__FILE__)) {
 	header('Location: index.php');

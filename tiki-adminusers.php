@@ -12,12 +12,12 @@ $errors = [];
 
 $inputConfiguration = array(
 	array( 'staticKeyFilters' => array(
-				'offset' => 'digits',
-				'numrows' => 'digits',
+				'offset' => 'int',
+				'numrows' => 'int',
 				'find' => 'text',
 				'filterEmail' => 'xss',
-				'sort_mode' => 'text',
-				'initial' => 'text',
+				'sort_mode' => 'alnumdash',
+				'initial' => 'alpha',
 				'filterGroup' => 'text',
 			)
 		)
@@ -600,8 +600,7 @@ $smarty->assign('userinfo', $userinfo);
 $smarty->assign('userId', $_REQUEST['user']);
 $smarty->assign('username', $username);
 $smarty->assign('usermail', $usermail);
-$smarty->assign('cookietab', $cookietab);
-$smarty->assign('uses_tabs', 'y');
+
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 $smarty->assign('mid', 'tiki-adminusers.tpl');

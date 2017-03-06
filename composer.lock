@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9febb97cd87d8f29b31fe027c5c897ec",
+    "content-hash": "c76e00885ac54fbcfa24b9409bad2980",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -27,14 +27,20 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/adodb-adodb-php-f601748cca1ccb86dfd427620a1692a70e681075-zip-9ec0b4.zip",
+                "url": "https://composer.tiki.org/dist/adodb/adodb-php/adodb-adodb-php-f601748cca1ccb86dfd427620a1692a70e681075-zip-9ec0b4.zip",
                 "reference": "f601748cca1ccb86dfd427620a1692a70e681075",
-                "shasum": "d623a07bed282cc6aa47b031542582c62cc15d11"
+                "shasum": "16b94cb222c16066070f53831ccfff3337b9c67c"
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "type": "library",
+            "extra": {
+                "patches_applied": {
+                    "Remove references to ADOdb Extension": "installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch",
+                    "Remove the check for ADOdb Extension": "installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-enabled.patch"
+                }
+            },
             "autoload": {
                 "files": [
                     "adodb.inc.php"
@@ -482,6 +488,50 @@
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
+            "name": "cweagans/composer-patches",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cweagans/composer-patches.git",
+                "reference": "7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cweagans/composer-patches/zipball/7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6",
+                "reference": "7cd5c6eb7e68b8f7436ce1a7b9fffa4418bf59c6",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0",
+                "phpunit/phpunit": "~4.6"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "cweagans\\Composer\\Patches"
+            },
+            "autoload": {
+                "psr-4": {
+                    "cweagans\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cameron Eagans",
+                    "email": "me@cweagans.net"
+                }
+            ],
+            "description": "Provides a way to patch Composer packages.",
+            "time": "2016-12-01T01:19:32+00:00"
+        },
+        {
             "name": "cwspear/bootstrap-hover-dropdown",
             "version": "2.2.1",
             "source": {
@@ -711,12 +761,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
-                "reference": "318b9f48195af78cfb9e5133c3b7176a289c7d8e"
+                "reference": "ae56eef91da34b57eb77dc01e360ae86ebf9fcc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/318b9f48195af78cfb9e5133c3b7176a289c7d8e",
-                "reference": "318b9f48195af78cfb9e5133c3b7176a289c7d8e",
+                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/ae56eef91da34b57eb77dc01e360ae86ebf9fcc2",
+                "reference": "ae56eef91da34b57eb77dc01e360ae86ebf9fcc2",
                 "shasum": ""
             },
             "require": {
@@ -759,7 +809,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-03-03T09:43:39+00:00"
+            "time": "2017-03-03T14:45:19+00:00"
         },
         {
             "name": "h5p/h5p-editor",
@@ -1113,12 +1163,12 @@
         },
         {
             "name": "jquery/plugins/tablesorter",
-            "version": "2.27.7",
+            "version": "2.28.5",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Mottie/tablesorter/archive/v2.27.7.zip",
+                "url": "https://composer.tiki.org/dist/jquery/plugins/tablesorter/jquery-plugins-tablesorter-2.28.5.zip",
                 "reference": null,
-                "shasum": null
+                "shasum": "75294f1492548a8f23724f2f5dd5d86f5d35b337"
             },
             "type": "library"
         },
@@ -2168,17 +2218,17 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.17",
+            "version": "v2.8.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "5b77d49ab76e5b12743b359ef4b4a712e6f5360d"
+                "reference": "e542d4765092d22552b1bf01ddccfb01d98ee325"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-5b77d49ab76e5b12743b359ef4b4a712e6f5360d-zip-793973.zip",
-                "reference": "5b77d49ab76e5b12743b359ef4b4a712e6f5360d",
-                "shasum": "4005c5bafc9a70b4ddbdc1f1da6f51fc21c1987d"
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-e542d4765092d22552b1bf01ddccfb01d98ee325-zip-ebcdf5.zip",
+                "reference": "e542d4765092d22552b1bf01ddccfb01d98ee325",
+                "shasum": "0a5bde94b15f214dedaf71bfa0f71d4183f1ee4a"
             },
             "require": {
                 "php": ">=5.3.9"
@@ -2213,7 +2263,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-08T20:43:03+00:00"
+            "time": "2017-02-18T17:06:33+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -5135,23 +5185,23 @@
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git",
-                "reference": "c36f5e7cfce482fde5bf8d10d41a53591e0198fe"
+                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-code-unit-reverse-lookup-c36f5e7cfce482fde5bf8d10d41a53591e0198fe-zip-91f3fd.zip",
-                "reference": "c36f5e7cfce482fde5bf8d10d41a53591e0198fe",
-                "shasum": "f39ec823cee03e060b1e18a32d0f9dbea04b48d9"
+                "url": "https://composer.tiki.org/dist/sebastian/code-unit-reverse-lookup/sebastian-code-unit-reverse-lookup-4419fcdb5eabb9caa61a27c7a1db532a6b55dd18-zip-2b8d33.zip",
+                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18",
+                "shasum": "c2eda4ddb76dc7e748bfd7ad7dc116f88fa5a72d"
             },
             "require": {
-                "php": ">=5.6"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5"
+                "phpunit/phpunit": "^5.7 || ^6.0"
             },
             "type": "library",
             "extra": {
@@ -5176,7 +5226,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2016-02-13T06:45:14+00:00"
+            "time": "2017-03-04T06:30:41+00:00"
         },
         {
             "name": "sebastian/comparator",

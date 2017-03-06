@@ -8,6 +8,35 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration = [
+	[
+		'staticKeyFilters' => [
+			'groupstracker'             => 'int',
+			'groupfield'                => 'int',
+			'userstracker'              => 'int',
+			'usersfield'                => 'int',
+			'registrationUsersFieldIds' => 'digitscolons',
+			'watch'                     => 'striptags',
+			'unwatch'                   => 'striptags',
+			'home'                      => 'pagename',
+			'defcat'                    => 'int',
+			'theme'                     => 'themename',
+			'maxRecords'                => 'int',
+			'membersMax'                => 'int',
+			'bannedMax'                 => 'int',
+			'sort_mode'                 => 'alnumdash',
+			'sort_mode_member'          => 'alnumdash',
+			'bannedSort'                => 'alnumdash',
+			'offset'                    => 'int',
+			'membersOffset'             => 'int',
+			'bannedOffset'              => 'int',
+			'initial'                   => 'alpha',
+			'find'                      => 'groupname',
+			'group'                     => 'groupname',
+		]
+	]
+];
+
 require_once ('tiki-setup.php');
 
 $access->check_permission('tiki_p_admin');
@@ -100,6 +129,14 @@ if (isset($_REQUEST["find"])) {
 }
 $smarty->assign('find', $find);
 $users = $userlib->get_groups($offset, $numrows, $sort_mode, $find, $initial);
+
+//add tablesorter sorting and filtering for main group list
+$ts = Table_Check::setVars('admingroups', true);
+if ($ts['enabled'] && !$ts['ajax']) {
+	//set tablesorter code
+	Table_Factory::build('TikiAdminGroups', ['id' => $ts['tableid'], 'total' => $users['cant']]);
+}
+
 $inc = array();
 list(	$groupname, $groupdesc, $grouphome, $userstrackerid, $usersfieldid, $grouptrackerid,
 		$groupfieldid, $defcatfieldid, $themefieldid, $groupperms, $trackerinfo, $memberslist,
@@ -129,7 +166,9 @@ if (!empty($_REQUEST["group"])) {
 				$smarty->assign('usersfieldid', $usersfieldid);
 			}
 		}
-		if (isset($re['registrationUsersFieldIds'])) $smarty->assign('registrationUsersFieldIds', $re['registrationUsersFieldIds']);
+		!empty($re['registrationUsersFieldIds'])
+			?  $smarty->assign('registrationUsersFieldIds', $re['registrationUsersFieldIds'])
+			: $smarty->assign('registrationUsersFieldIds', '');
 	}
 	if ($prefs['groupTracker'] == 'y') {
 		$groupFields = array();
@@ -158,9 +197,14 @@ if (!empty($_REQUEST["group"])) {
 			$smarty->assign('hasOneIncludedGroup', "y");
 		}
 	}
+
+	//group members
 	if (!isset($_REQUEST['membersOffset'])) $_REQUEST['membersOffset'] = 0;
 	if (empty($_REQUEST['sort_mode_member'])) $_REQUEST['sort_mode_member'] = 'login_asc';
-	$memberslist = $userlib->get_group_users($_REQUEST['group'], $_REQUEST['membersOffset'], $prefs['maxRecords'], '*', $_REQUEST['sort_mode_member']);
+	$membersMax = isset($_REQUEST['membersMax']) && is_numeric($_REQUEST['membersMax'])
+		? $_REQUEST['membersMax'] : $prefs['maxRecords'];
+	$memberslist = $userlib->get_group_users($_REQUEST['group'], $_REQUEST['membersOffset'], $membersMax, '*',
+		$_REQUEST['sort_mode_member']);
 	if ($re['expireAfter'] > 0) {
 		foreach ($memberslist as $i=>$member) {
 			if (empty($member['expire'])) {
@@ -168,21 +212,77 @@ if (!empty($_REQUEST["group"])) {
 			}
 		}
 	}
-	$smarty->assign('membersCount', $userlib->count_users($_REQUEST['group']));
+	$membersCount = $userlib->count_users($_REQUEST['group']);
+	$smarty->assign('membersCount', $membersCount);
 	$smarty->assign('membersOffset', $_REQUEST['membersOffset']);
+	$smarty->assign('memberslist', $memberslist);
+
+	//banned members of a group
+	$bannedOffset = isset($_REQUEST['bannedOffset']) ? $_REQUEST['bannedOffset'] : 0;
+	$bannedMax = isset($_REQUEST['bannedMax']) ? $_REQUEST['bannedMax'] : $prefs['maxRecords'];
+	if (empty($_REQUEST['bannedSort'])) {
+		$bannedSort = ['source_itemId' => 'asc'];
+	} elseif (!empty($_REQUEST['bannedSort']) && substr($_REQUEST['bannedSort'], -4) === 'desc') {
+		$bannedSort = ['source_itemId' => 'desc'];
+	} else {
+		$bannedSort = ['source_itemId' => 'asc'];
+	}
+	$bannedlist = $userlib->get_group_banned_users($_REQUEST['group'], $bannedOffset, $bannedMax, null, $bannedSort);
+	$smarty->assign('bannedlist', $bannedlist['data']);
+	$smarty->assign('bannedCount', $bannedlist['cant']);
+
+	$userslist=$userlib->list_all_users();
+	if (!empty($memberslist)) {
+		foreach ($memberslist as $key => $values) {
+			if ( in_array($values["login"], $userslist) ) {
+				unset($userslist[array_search($values["login"], $userslist, true)]);
+			}
+		}
+		foreach ($bannedlist as $key => $value) {
+			if ( in_array($value, $userslist) ) {
+				unset($userslist[array_search($value, $userslist, true)]);
+			}
+		}
+	}
+	$smarty->assign('userslist', $userslist);
+
+	if ($ts['enabled'] && !$ts['ajax']) {
+		Table_Factory::build(
+			'TikiAdminGroupsMembers',
+			[
+				'id' => 'groupsMembers',
+				'total' => $membersCount,
+				'ajax' => [
+					'requiredparams' => [
+						'group' => $_REQUEST['group']
+					]
+				]
+			]
+		);
+		Table_Factory::build(
+			'TikiAdminGroupsBanned',
+			[
+				'id' => 'bannedMembers',
+				'total' => $bannedlist['cant'],
+				'ajax' => [
+					'requiredparams' => [
+						'group' => $_REQUEST['group']
+					]
+				]
+			]
+		);
+	}
+
 	if (!empty($user)) {
 		 $re['isWatching'] = TikiLib::lib('tiki')->user_watches($user, 'user_joins_group', $groupname, 'group') > 0;
 	} else {
 		 $re['isWatching'] = false;
 	}
-	if ($cookietab == '1' && !isset($_REQUEST["save"])) $cookietab = "2";
+	$cookietab = "2";
 } else {
 	$allgroups = $userlib->list_all_groups();
 	foreach ($allgroups as $rr) {
 		$inc["$rr"] = "n";
-	}
-	if (!isset($cookietab)) {
-		$cookietab = '1';
 	}
 	$_REQUEST["group"] = 0;
 }
@@ -247,7 +347,7 @@ if (!empty($_REQUEST['group']) && isset($_REQUEST['import'])) {
 	if (!empty($errors)) {
 		Feedback::error($errors);
 	}
-	$cookietab = 4;
+	$cookietab = 3; // members list tab
 }
 if ($prefs['feature_categories'] == 'y') {
 	$categlib = TikiLib::lib('categ');
@@ -263,26 +363,6 @@ $themelib = TikiLib::lib('theme');
 $group_themes = $themelib->list_themes_and_options();
 $smarty->assign_by_ref('group_themes', $group_themes);
 
-$smarty->assign('memberslist', $memberslist);
-
-$bannedlist = $userlib->get_group_banned_users($_REQUEST['group']);
-$smarty->assign('bannedlist', $bannedlist);
-
-$userslist=$userlib->list_all_users();
-if (!empty($memberslist)) {
-	if ($cookietab == 1 && !isset($_REQUEST["save"])) $cookietab = 3;
-	foreach ($memberslist as $key => $values) {
-		if ( in_array($values["login"], $userslist) ) {
-			unset($userslist[array_search($values["login"], $userslist, true)]);
-		}
-	}
-	foreach ($bannedlist as $key => $value) {
-		if ( in_array($value, $userslist) ) {
-			unset($userslist[array_search($value, $userslist, true)]);
-		}
-	}
-}
-$smarty->assign('userslist', $userslist);
 $smarty->assign('inc', $inc);
 $smarty->assign('group', $_REQUEST["group"]);
 $smarty->assign('groupname', $groupname);
@@ -294,10 +374,9 @@ $smarty->assign('groupperms', $groupperms);
 $smarty->assign_by_ref('userChoice', $userChoice);
 $smarty->assign_by_ref('cant_pages', $users["cant"]);
 $smarty->assign('group_info', $re);
-setcookie('tab', $cookietab);
-$smarty->assign('cookietab', $cookietab);
+
 ask_ticket('admin-groups');
-$smarty->assign('uses_tabs', 'y');
+
 // Assign the list of groups
 $smarty->assign_by_ref('users', $users["data"]);
 // disallow robots to index page:

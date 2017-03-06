@@ -32,7 +32,7 @@ class Services_Group_Controller
 		$util->checkTicket();
 		//first pass - show confirm modal popup
 		if ($util->ticketSet()) {
-			$util->setItems($input, 'checked');
+			$util->setItemsAction($input, 'checked');
 			if (count($util->items) > 0) {
 				if (count($util->items) === 1) {
 					$msg = tra('Delete the following group?');
@@ -378,7 +378,7 @@ class Services_Group_Controller
 	}
 
 	/**
-	 * Process ban user from group action
+	 * Process unban user from group action
 	 *
 	 * @param $input
 	 * @return array
@@ -508,16 +508,16 @@ class Services_Group_Controller
 				'name'                      => 'groupname',
 				'desc'                      => 'striptags',
 				'home'                      => 'pagename',
-				'groupstracker'             => 'digits',
-				'userstracker'              => 'digits',
+				'groupstracker'             => 'int',
+				'userstracker'              => 'int',
 				'registrationUsersFieldIds' => 'digitscolons',
 				'userChoice'                => 'word',
-				'defcat'                    => 'digits',
+				'defcat'                    => 'int',
 				'theme'                     => 'themename',
-				'usersfield'                => 'digits',
-				'groupfield'                => 'digits',
-				'expireAfter'               => 'digits',
-				'anniversary'               => 'digits',
+				'usersfield'                => 'int',
+				'groupfield'                => 'int',
+				'expireAfter'               => 'int',
+				'anniversary'               => 'int',
 				'prorateInterval'           => 'word',
 				'referer'                   => 'striptags'
 			]);
