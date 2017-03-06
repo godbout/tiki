@@ -5163,6 +5163,7 @@ templates/access/confirm_select.tpl -text
 templates/access/include_footer.tpl -text
 templates/access/include_hidden.tpl -text
 templates/access/include_items.tpl -text
+templates/access/include_ticket.tpl -text
 templates/access/index.php -text
 templates/activity/activityframe.tpl -text
 templates/activity/activitystream.tpl -text
