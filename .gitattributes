@@ -6473,6 +6473,7 @@ tests/testfile.txt -text
 themes/.htaccess -text
 themes/amelia/css/amelia.css -text
 themes/amelia/css/index.php -text
+themes/amelia/css/newsletter.css -text
 themes/amelia/fonts/index.php -text
 themes/amelia/icons/index.php -text
 themes/amelia/images/amelia.png -text
