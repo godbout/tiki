@@ -6481,6 +6481,7 @@ themes/amelia/index.php -text
 themes/amelia/less/amelia.less -text
 themes/amelia/less/bootswatch.less -text
 themes/amelia/less/index.php -text
+themes/amelia/less/newsletter.less -text
 themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
 themes/base_files/css/newsletter.css -text
@@ -6516,6 +6517,7 @@ themes/base_files/index.php -text
 themes/base_files/less/bootswatch_overrides.less -text
 themes/base_files/less/external-scripts.less -text
 themes/base_files/less/jquery-ui-tiki.less -text
+themes/base_files/less/newsletter.less -text
 themes/base_files/less/pivot-tiki.less -text
 themes/base_files/less/tablesorter-custom.less -text
 themes/base_files/less/tablesorter-tiki.less -text
