@@ -1965,6 +1965,7 @@ installer/schema/20170207_iefix_rem_tiki.sql -text
 installer/schema/20170213_footnotearea_tiki.sql -text
 installer/schema/20170218_schedulers_menu_tiki.sql -text
 installer/schema/20170305_webservices_menu_tiki.sql -text
+installer/schema/20170307_kill_wikilingo_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -4870,17 +4871,6 @@ lib/wiki/renderlib.php -text
 lib/wiki/semanticlib.php -text
 lib/wiki/wikilib.php -text
 lib/wiki/xmllib.php -text
-lib/wikiLingo_tiki/WikiEvents.php -text
-lib/wikiLingo_tiki/WikiLingoEvents.php -text
-lib/wikiLingo_tiki/WikiLingoTikiEvents.php -text
-lib/wikiLingo_tiki/WikiLingoWYSIWYGEvents.php -text
-lib/wikiLingo_tiki/WikiMetadataLookup.php -text
-lib/wikiLingo_tiki/WikiPluginBridge.php -text
-lib/wikiLingo_tiki/WikiPluginStub.php -text
-lib/wikiLingo_tiki/index.php -text
-lib/wikiLingo_tiki/tiki_flp.Link.js -text
-lib/wikiLingo_tiki/tiki_wikiLingo_edit.js -text
-lib/wikiLingo_tiki/tiki_wikiLingo_flp_view.js -text
 lib/wizard/index.php -text
 lib/wizard/pages/admin_advanced.php -text
 lib/wizard/pages/admin_auto_toc.php -text
@@ -6482,6 +6472,7 @@ tests/testfile.txt -text
 themes/.htaccess -text
 themes/amelia/css/amelia.css -text
 themes/amelia/css/index.php -text
+themes/amelia/css/newsletter.css -text
 themes/amelia/fonts/index.php -text
 themes/amelia/icons/index.php -text
 themes/amelia/images/amelia.png -text
@@ -6490,6 +6481,7 @@ themes/amelia/index.php -text
 themes/amelia/less/amelia.less -text
 themes/amelia/less/bootswatch.less -text
 themes/amelia/less/index.php -text
+themes/amelia/less/newsletter.less -text
 themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
 themes/base_files/css/newsletter.css -text
@@ -6525,6 +6517,7 @@ themes/base_files/index.php -text
 themes/base_files/less/bootswatch_overrides.less -text
 themes/base_files/less/external-scripts.less -text
 themes/base_files/less/jquery-ui-tiki.less -text
+themes/base_files/less/newsletter.less -text
 themes/base_files/less/pivot-tiki.less -text
 themes/base_files/less/tablesorter-custom.less -text
 themes/base_files/less/tablesorter-tiki.less -text

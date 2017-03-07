@@ -61,6 +61,24 @@ function wikiplugin_pivottable_info()
 				'profile_reference' => 'tracker_field',
 				'separator' => ':',
 			),
+			'heatmapDomain' => array(
+				'required' => false,
+				'name' => tra('Values used to decide what heatmapColors to use.'),
+				'description' => tr(''),
+				'since' => '17',
+				'filter' => 'text',
+				'default' => '',
+				'separator' => ':',
+			),
+			'heatmapColors' => array(
+				'required' => false,
+				'name' => tra('Color for each heatmapDomain value.'),
+				'description' => tr(''),
+				'since' => '17',
+				'filter' => 'text',
+				'default' => '',
+				'separator' => ':',
+			),
 			'rendererName' => array(
 				'name' => tr('Renderer Name'),
 				'description' => tr('Display format of data'),
@@ -289,6 +307,23 @@ function wikiplugin_pivottable($data, $params)
 	} else {
 		$height="1000px";	
 	}
+	
+	$heatmapParams = array();
+	if ($rendererName === 'Heatmap') {
+		$validConfig =  is_array($params['heatmapDomain'])
+			&& is_array($params['heatmapColors'])
+			&& !(empty($params['heatmapDomain']) && empty($params['heatmapColors']))
+			&& count($params['heatmapDomain']) === count($params['heatmapColors']);
+
+		if($validConfig) {
+			$heatmapParams = array(
+				'domain' => array_map(floatval, $params['heatmapDomain']),
+				'colors' => $params['heatmapColors']
+			);
+		}
+
+		unset($validConfig);
+	}
 
 	$query = new Search_Query;
 	$query->filterType('trackeritem');
@@ -315,11 +350,31 @@ function wikiplugin_pivottable($data, $params)
 	$resultBuilder->apply($matches);
 
 	$columnsListed = false;
+	$derivedAttributes = array();
+
 	foreach( $matches as $match ) {
 		if( $match->getName() == 'display' || $match->getName() == 'column' ) {
 			$columnsListed = true;
+		} else if( $match->getName() == 'derivedattribute') {
+			if (   preg_match('/name="([^"]+)"/', $match->getArguments(), $match_name)
+				&& preg_match('/function="([^"]+)"/', $match->getArguments(), $match_function)
+				&& preg_match('/parameters="([^"]*)"/', $match->getArguments(), $match_parameters)) {
+
+				$derivedattr_name = $match_name[1];
+				$function_name = $match_function[1];
+				$function_params = explode(':', $match_parameters[1]);
+
+				if ( empty($function_params) ) {
+					$function_params = '';
+				} else {
+					$function_params = '"'. implode('","', $function_params) . '"';
+				}
+
+				$derivedAttributes[] = sprintf('"%s": %s(%s)', $derivedattr_name, $function_name, $function_params);
+			}
 		}
 	}
+
 	if( $columnsListed ) {
 		$data .= '{display name="object_id"}{display name="object_type"}';
 		$plugin = new Search_Formatter_Plugin_ArrayTemplate($data);
@@ -512,11 +567,13 @@ function wikiplugin_pivottable($data, $params)
 		'tcolumns'=>$cols,
 		'trackerId' => $trackerId,
 		'data' => $pivotData,
+		'derivedAttributes' => $derivedAttributes,
 		'rendererName'=>$rendererName,
 		'aggregatorName'=>$aggregatorName,
 		'vals'=>$vals,
 		'width'=>$width,
 		'height'=>$height,
+		'heatmapParams' => $heatmapParams,
 		'showControls'=>$showControls,
 		'page'=>$sourcepage,
 		'fieldsArr'=>$fieldsArr,

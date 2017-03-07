@@ -9,6 +9,7 @@
 				pivotId: {{$pivottable.id|json_encode}},
 				highlight: {{$pivottable.highlight|json_encode}}
 			},
+			derivedAttributes: { {{','|implode:$pivottable.derivedAttributes}} },
 			cols: {{$pivottable.tcolumns|json_encode}}, rows: {{$pivottable.trows|json_encode}},
 			rendererName: {{$pivottable.rendererName|json_encode}},
 			width: {{$pivottable.width|json_encode}},
@@ -16,6 +17,7 @@
 			aggregatorName: {{$pivottable.aggregatorName|json_encode}},
 			vals: {{$pivottable.vals|json_encode}},
 			inclusions: {{$pivottable.inclusions}},
+
 			sorters: function(attr) {
 				if($.inArray(attr, {{$pivottable.dateFields|json_encode}}) > -1) {
 					return function(a, b) {
@@ -23,6 +25,19 @@
 					}
 				}
 			},
+
+			{{if $pivottable.heatmapParams}}
+			rendererOptions: {
+				heatmap: {
+					colorScaleGenerator: function(values) {
+						return Plotly.d3.scale.linear()
+							.domain({{$pivottable.heatmapParams.domain|json_encode}})
+							.range({{$pivottable.heatmapParams.colors|json_encode}});
+					}
+				}
+			},
+			{{/if}}
+
 			highlightMine: {{$pivottable.highlightMine|json_encode}},
 			highlightGroup: {{$pivottable.highlightGroup|json_encode}}
 		};

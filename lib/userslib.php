@@ -2141,6 +2141,8 @@ class UsersLib extends TikiLib
 	{
 		if( !is_array($group) ) {
 			$group = array($group);
+		} elseif( count($group) == 0 ) {
+			return array();
 		}
 		$users = $this->fetchAll('SELECT ug.groupName, u.login FROM `users_usergroups` ug INNER JOIN `users_users` u ON u.userId = ug.userId WHERE ug.groupName IN ('
 			.implode(',', array_fill(0, count($group), '?')).')', $group);
@@ -6048,6 +6050,15 @@ class UsersLib extends TikiLib
 				'type' => 'tiki',
 				'admin' => false,
 				'prefs' => array('feature_edit_templates'),
+				'scope' => 'global',
+			),
+			array(
+				'name' => 'tiki_p_view_webservices',
+				'description' => tra('Can view results from webservice requests'),
+				'level' => 'basic',
+				'type' => 'tiki',
+				'admin' => false,
+				'prefs' => array('feature_webservices'),
 				'scope' => 'global',
 			),
 			array(
