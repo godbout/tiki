@@ -6584,6 +6584,7 @@ themes/business/less/tiki-selectors.less -text
 themes/business/templates/index.php -text
 themes/cerulean/css/cerulean.css -text
 themes/cerulean/css/index.php -text
+themes/cerulean/css/newsletter.css -text
 themes/cerulean/fonts/index.php -text
 themes/cerulean/icons/index.php -text
 themes/cerulean/images/cerulean.png -text
@@ -6592,6 +6593,7 @@ themes/cerulean/index.php -text
 themes/cerulean/less/bootswatch.less -text
 themes/cerulean/less/cerulean.less -text
 themes/cerulean/less/index.php -text
+themes/cerulean/less/newsletter.less -text
 themes/cerulean/less/variables.less -text
 themes/cerulean/templates/index.php -text
 themes/cosmo/css/cosmo.css -text
