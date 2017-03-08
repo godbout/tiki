@@ -6555,6 +6555,7 @@ themes/base_files/other/integrator/index.php -text
 themes/base_files/other/site_closed.html -text
 themes/business/css/business.css -text
 themes/business/css/index.php -text
+themes/business/css/newsletter.css -text
 themes/business/fonts/index.php -text
 themes/business/icons/index.php -text
 themes/business/images/arrows-467aa7.png -text
@@ -6578,6 +6579,7 @@ themes/business/images/title_bg.png -text
 themes/business/less/bootstrap-variables.less -text
 themes/business/less/business.less -text
 themes/business/less/index.php -text
+themes/business/less/newsletter.less -text
 themes/business/less/tiki-selectors.less -text
 themes/business/templates/index.php -text
 themes/cerulean/css/cerulean.css -text
