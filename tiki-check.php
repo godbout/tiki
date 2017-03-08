@@ -917,7 +917,7 @@ if ($s) {
 		$php_properties['mbstring'] = array(
 			'fitness' => tra('ugly'),
 			'setting' => 'Badly configured',
-			'message' => tra('mbstring extension is loaded, but mbstring.func_overload = '.' '.$func_overload.'.'.' '.'Tiki only works with mbsring.func_overload = 0. Please check the php.ini file.')
+			'message' => tra('mbstring extension is loaded, but mbstring.func_overload = '.' '.$func_overload.'.'.' '.'Tiki only works with mbstring.func_overload = 0. Please check the php.ini file.')
 		);
 	} else {
 		$php_properties['mbstring'] = array(
@@ -1491,11 +1491,20 @@ if ( function_exists('apache_get_version')) {
 						'message' => tra('An automated test was done, and the server appears to be configured correctly to handle Search Engine Friendly URLs.')
 					);
 				} else {
-					$apache_properties['SefURL Test'] = array(
-						'setting' => tra('Not Working'),
-						'fitness' => tra('info') ,
-						'message' => tra('An automated test was done and, based on the results, the server appears to be not configured correctly to handle Search Engine Friendly URLs. This automated test may fail due to the infrastructure setup, but the Apache configuration should be checked. For further information go to Admin->SefURL in your Tiki.')
-					);
+					if (strncmp('fail-http-', $pong_value, 10) == 0){
+						$apache_return_code = substr($pong_value, 10);
+						$apache_properties['SefURL Test'] = array(
+							'setting' => tra('Not Working'),
+							'fitness' => tra('info') ,
+							'message' => tra('An automated test was done and, based on the results, the server appears to be not configured correctly to handle Search Engine Friendly URLs. The server returned a unexpected http code: "'.$apache_return_code.'". This automated test may fail due to the infrastructure setup, but the Apache configuration should be checked. For further information go to Admin->SefURL in your Tiki.')
+						);
+					} else {
+						$apache_properties['SefURL Test'] = array(
+							'setting' => tra('Not Working'),
+							'fitness' => tra('info') ,
+							'message' => tra('An automated test was done and, based on the results, the server appears to be not configured correctly to handle Search Engine Friendly URLs. This automated test may fail due to the infrastructure setup, but the Apache configuration should be checked. For further information go to Admin->SefURL in your Tiki.')
+						);
+					}
 				}
 			}
 		}
@@ -1891,6 +1900,22 @@ if (!$standalone) {
 	deack_on_state_change($security, 'PHP Security');
 }
 
+$sensitiveDataDetectedFiles = [];
+check_for_remote_readable_files($sensitiveDataDetectedFiles);
+
+if (!empty($sensitiveDataDetectedFiles)) {
+	$files = ' (Files: '. trim(implode(', ', $sensitiveDataDetectedFiles)) .')';
+	$tiki_security['Sensitive Data Exposure'] = array(
+		'fitness' => tra('risky'),
+		'message' => tra('Tiki detected that there are temporary files in the db folder that may expose credentials or other sensitive information.') . $files
+	);
+} else {
+	$tiki_security['Sensitive Data Exposure'] = array(
+		'fitness' => tra('safe'),
+		'message' => tra('Tiki did not detected temporary files in the db folder that may expose credentials or other sensitive information.')
+	);
+}
+
 if ($standalone && !$nagios) {
 	$render .= '<style type="text/css">td, th { border: 1px solid #000000; vertical-align: baseline; padding: .5em; }</style>';
 //	$render .= '<h1>Tiki Server Compatibility</h1>';
@@ -1977,6 +2002,8 @@ if ($standalone && !$nagios) {
 	renderTable($php_properties);
 	$render .= '<h2>PHP security properties</h2>';
 	renderTable($security);
+	$render .= '<h2>Tiki Security</h2>';
+	renderTable($tiki_security);
 	$render .= '<h2>MySQL Variables</h2>';
 	renderTable($mysql_variables);
 
@@ -2054,6 +2081,7 @@ if ($standalone && !$nagios) {
 	}
 	update_overall_status($php_properties, "PHP");
 	update_overall_status($security, "PHP Security");
+	update_overall_status($tiki_security, "Tiki Security");
 	$return = json_encode($monitoring_info);
 	echo $return;
 } else {	// not stand-alone
@@ -2130,9 +2158,65 @@ if ($standalone && !$nagios) {
 		$smarty->assign('bom_detected_files', $BOMFiles);
 	}
 
+	$smarty->assign('sensitive_data_detected_files', $sensitiveDataDetectedFiles);
+
 	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	$smarty->assign('mid', 'tiki-check.tpl');
 	$smarty->display('tiki.tpl');
+}
+
+/**
+ * Check for files, like backup copies made by editors, or manual copies of the local.php files
+ * that may available to be read remotely and because are not interpretable as PHP, may expose the source,
+ * that might contain credentials or other sensitive information.
+ * Ref: http://feross.org/cmsploit/
+ *
+ * @param array $files
+ * @param string $sourceDir
+ */
+function check_for_remote_readable_files(array &$files, $sourceDir = 'db')
+{
+	//fix dir slash
+	$sourceDir = str_replace('\\', '/', $sourceDir);
+	if (substr($sourceDir, -1, 1) != '/') {
+		$sourceDir .= '/';
+	}
+
+	$sourceDirHandler = opendir($sourceDir);
+
+	while ($file = readdir($sourceDirHandler)) {
+
+		// Skip ".", ".."
+		if ($file == '.' || $file == '..') {
+			continue;
+		}
+
+		$sourceFilePath = $sourceDir . $file;
+
+		if (is_dir($sourceFilePath)) {
+			check_for_remote_readable_files($files, $sourceFilePath);
+		}
+
+		if (!is_file($sourceFilePath)) {
+			continue;
+		}
+
+		$pattern = '/(^#.*#|~|.sw[op])$/';
+		preg_match($pattern, $file, $matches);
+
+		if (!empty($matches[1])) {
+			$files[] = $file;
+			continue;
+		}
+
+		$pattern = '/local(?!.*[.]php$).*$/';
+		preg_match($pattern, $file, $matches);
+
+		if (!empty($matches[0])) {
+			$files[] = $file;
+			continue;
+		}
+	}
 }
 
 function check_isIIS()
@@ -2157,9 +2241,13 @@ function get_content_from_url($url)
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
+		if (isset($_SERVER) && isset($_SERVER['PHP_AUTH_USER']) && isset($_SERVER['PHP_AUTH_PW'])){
+			curl_setopt($curl, CURLOPT_USERPWD, $_SERVER['PHP_AUTH_USER'] . ":" . $_SERVER['PHP_AUTH_PW']);
+		}
 		$content = curl_exec($curl);
-		if (curl_getinfo($curl, CURLINFO_HTTP_CODE) != 200) {
-			$content = false;
+		$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		if ($http_code != 200) {
+			$content = "fail-http-".$http_code;
 		}
 		curl_close($curl);
 	} else {

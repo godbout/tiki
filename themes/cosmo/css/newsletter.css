@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
+/* Cosmo theme newsletter stylesheet  */
+.margin-bottom-xs {
+  margin-bottom: 6px;
+}
+.margin-bottom-sm {
+  margin-bottom: 11px;
+}
+.margin-bottom-md {
+  margin-bottom: 21px;
+}
+.margin-bottom-lg {
+  margin-bottom: 42px;
+}
+body {
+  background: #ffffff;
+  color: #333333;
+  font-family: "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+  padding: 15px;
+}
+a,
+a:visited {
+  color: #2780e3;
+  text-decoration: underline;
+}
+a:hover {
+  color: #165ba8;
+  text-decoration: underline;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+  font-weight: 300;
+  color: inherit;
+}
+.panel {
+  margin-bottom: 21px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.panel-body {
+  padding: 15px;
+}
+.panel-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 17px;
+  color: inherit;
+}
+.panel-title > a,
+.panel-title > small,
+.panel-title > .small,
+.panel-title > small > a,
+.panel-title > .small > a {
+  color: inherit;
+}
+.panel-footer {
+  padding: 10px 15px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #dddddd;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.panel-default {
+  border-color: #dddddd;
+}
+.panel-default > .panel-heading {
+  color: #333333;
+  background-color: #f5f5f5;
+  border-color: #dddddd;
+}
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #dddddd;
+}
+.panel-default > .panel-heading .badge {
+  color: #f5f5f5;
+  background-color: #333333;
+}
+.panel-default > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #dddddd;
+}
+.panel-primary {
+  border-color: #2780e3;
+}
+.panel-primary > .panel-heading {
+  color: #ffffff;
+  background-color: #2780e3;
+  border-color: #2780e3;
+}
+.panel-primary > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #2780e3;
+}
+.panel-primary > .panel-heading .badge {
+  color: #2780e3;
+  background-color: #ffffff;
+}
+.panel-primary > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #2780e3;
+}
+.panel-success {
+  border-color: #4e9f15;
+}
+.panel-success > .panel-heading {
+  color: #ffffff;
+  background-color: #3fb618;
+  border-color: #4e9f15;
+}
+.panel-success > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #4e9f15;
+}
+.panel-success > .panel-heading .badge {
+  color: #3fb618;
+  background-color: #ffffff;
+}
+.panel-success > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #4e9f15;
+}
+.panel-info {
+  border-color: #7643a8;
+}
+.panel-info > .panel-heading {
+  color: #ffffff;
+  background-color: #9954bb;
+  border-color: #7643a8;
+}
+.panel-info > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #7643a8;
+}
+.panel-info > .panel-heading .badge {
+  color: #9954bb;
+  background-color: #ffffff;
+}
+.panel-info > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #7643a8;
+}
+.panel-warning {
+  border-color: #ff4309;
+}
+.panel-warning > .panel-heading {
+  color: #ffffff;
+  background-color: #ff7518;
+  border-color: #ff4309;
+}
+.panel-warning > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #ff4309;
+}
+.panel-warning > .panel-heading .badge {
+  color: #ff7518;
+  background-color: #ffffff;
+}
+.panel-warning > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #ff4309;
+}
+.panel-danger {
+  border-color: #f0005e;
+}
+.panel-danger > .panel-heading {
+  color: #ffffff;
+  background-color: #ff0039;
+  border-color: #f0005e;
+}
+.panel-danger > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #f0005e;
+}
+.panel-danger > .panel-heading .badge {
+  color: #ff0039;
+  background-color: #ffffff;
+}
+.panel-danger > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #f0005e;
+}

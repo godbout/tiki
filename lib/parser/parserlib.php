@@ -525,7 +525,7 @@ class ParserLib extends TikiDb_Bridge
 					"\$(document).ready( function() {
 if ( \$('#$id') ) {
 \$('#$id').click( function(event) {
-	popup_plugin_form("
+	popupPluginForm("
 					. json_encode('editwiki')
 					. ', '
 					. json_encode($plugin_name)
@@ -1349,18 +1349,16 @@ if ( \$('#$id') ) {
 	function replace_hotwords($line, $words)
 	{
 		global $prefs;
-		$hotw_nw = ($prefs['feature_hotwords_nw'] == 'y') ? "target='_blank'" : '';
 
-		// Replace Hotwords
 		if ($prefs['feature_hotwords'] == 'y') {
-			$sep =  $prefs['feature_hotwords_sep'];
-			$sep = empty($sep)? " \n\t\r\,\;\(\)\.\:\[\]\{\}\!\?\"":"$sep";
+			$hotw_nw = ($prefs['feature_hotwords_nw'] == 'y') ? "target='_blank'" : '';
+			$sep = empty($prefs['feature_hotwords_sep']) ? " \n\t\r\,\;\(\)\.\:\[\]\{\}\!\?\"" : $prefs['feature_hotwords_sep'];
 			foreach ($words as $word => $url) {
 				// \b is a word boundary, \s is a space char
-				$pregword = preg_replace("/\//", "\/", $word);
-				$line = preg_replace("/(=(\"|')[^\"']*[$sep'])$pregword([$sep][^\"']*(\"|'))/i", "$1:::::$word,:::::$3", $line);
-				$line = preg_replace("/([$sep']|^)$pregword($|[$sep])/i", "$1<a class=\"wiki\" href=\"$url\" $hotw_nw>$word</a>$2", $line);
-				$line = preg_replace("/:::::$pregword,:::::/i", "$word", $line);
+				$escapedWord = preg_quote($word, '/');
+				$line = preg_replace("/(=(\"|')[^\"']*[$sep'])$escapedWord([$sep][^\"']*(\"|'))/i", "$1:::::$word,:::::$3", $line);
+				$line = preg_replace("/([$sep']|^)$escapedWord($|[$sep])/i", "$1<a class=\"wiki\" href=\"$url\" $hotw_nw>$word</a>$2", $line);
+				$line = preg_replace("/:::::$escapedWord,:::::/i", "$word", $line);
 			}
 		}
 		return $line;
