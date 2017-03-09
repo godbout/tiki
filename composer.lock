@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c76e00885ac54fbcfa24b9409bad2980",
+    "content-hash": "14873c5e077c0f3362cd3585fda25c18",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -622,20 +622,23 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.8.0",
+            "version": "v4.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
+                "reference": "de82f9845f2a0f9f27abec67d6a4958427e6f5d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ezyang-htmlpurifier-d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2-zip-1e6c87.zip",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
-                "shasum": "bff61b688405b3e0db659dfcddb228ba6490db35"
+                "url": "https://composer.tiki.org/dist/ezyang/htmlpurifier/ezyang-htmlpurifier-de82f9845f2a0f9f27abec67d6a4958427e6f5d6-zip-f74a64.zip",
+                "reference": "de82f9845f2a0f9f27abec67d6a4958427e6f5d6",
+                "shasum": "39e062d61a9aa67b6d6c52e93ae8f20f5c276dbc"
             },
             "require": {
                 "php": ">=5.2"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "^1.1"
             },
             "type": "library",
             "autoload": {
@@ -662,7 +665,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2016-07-16T12:58:58+00:00"
+            "time": "2017-03-08T08:22:36+00:00"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -757,16 +760,16 @@
         },
         {
             "name": "h5p/h5p-core",
-            "version": "dev-master",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
-                "reference": "ae56eef91da34b57eb77dc01e360ae86ebf9fcc2"
+                "reference": "e02df35bb1752f87bd6fe742c4fcc167299c6155"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/ae56eef91da34b57eb77dc01e360ae86ebf9fcc2",
-                "reference": "ae56eef91da34b57eb77dc01e360ae86ebf9fcc2",
+                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/e02df35bb1752f87bd6fe742c4fcc167299c6155",
+                "reference": "e02df35bb1752f87bd6fe742c4fcc167299c6155",
                 "shasum": ""
             },
             "require": {
@@ -809,20 +812,20 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-03-03T14:45:19+00:00"
+            "time": "2017-01-26T09:37:26+00:00"
         },
         {
             "name": "h5p/h5p-editor",
-            "version": "dev-master",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-editor-php-library.git",
-                "reference": "86e9a7bff9958df179b72a74c98c9da7b0f1f34d"
+                "reference": "f5818eb383b4fc5fd511c9a914fcbb8777d78945"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/86e9a7bff9958df179b72a74c98c9da7b0f1f34d",
-                "reference": "86e9a7bff9958df179b72a74c98c9da7b0f1f34d",
+                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/f5818eb383b4fc5fd511c9a914fcbb8777d78945",
+                "reference": "f5818eb383b4fc5fd511c9a914fcbb8777d78945",
                 "shasum": ""
             },
             "require": {
@@ -864,7 +867,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-03-02T14:07:25+00:00"
+            "time": "2017-01-16T06:36:32+00:00"
         },
         {
             "name": "jcapture-applet/jcapture-applet",
@@ -2267,17 +2270,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.4",
+            "version": "v3.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8"
+                "reference": "093e416ad096355149e265ea2e4cc1f9ee40ab1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-9724c684646fcb5387d579b4bfaa63ee0b0c64c8-zip-142eda.zip",
-                "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
-                "shasum": "50da8ddd9ff5ab76c4e59973affc16db9ecac01b"
+                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-093e416ad096355149e265ea2e4cc1f9ee40ab1a-zip-9fb7c5.zip",
+                "reference": "093e416ad096355149e265ea2e4cc1f9ee40ab1a",
+                "shasum": "efda49b15060912931851c7ade1f3d90ff1649c8"
             },
             "require": {
                 "php": ">=5.5.9"
@@ -2318,7 +2321,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16T22:46:52+00:00"
+            "time": "2017-03-07T16:47:02+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5750,8 +5753,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "h5p/h5p-core": 20,
-        "h5p/h5p-editor": 20,
         "jcapture-applet/jcapture-applet": 20,
         "zendframework/zendsearch": 5,
         "bafs/testify": 20
