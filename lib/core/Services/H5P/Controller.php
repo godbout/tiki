@@ -91,11 +91,22 @@ class Services_H5P_Controller
 		if (! empty($fileId)) {
 			// retrieve existing, asomething like
 
-			$content = TikiLib::lib('h5p')->getContentIdFromFileId($fileId);
+			$content = TikiLib::lib('h5p')->loadContentFromFileId($fileId);
+			$title = TikiLib::lib('filegal')->get_file_label($fileId);
+
+			// Log editor opened
+			new H5P_Event('content', 'edit',
+					$content['id'],
+					$title,
+					$content['library']['name'],
+					$content['library']['majorVersion'] . '.' . $this->content['library']['minorVersion']);
 
 		} else {
-
 			$content = [];
+			$title = '';
+
+			// Log editor opened
+			new H5P_Event('content', 'new');
 		}
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -103,18 +114,60 @@ class Services_H5P_Controller
 			// process the form
 			// see \Services_Tracker_Controller::action_update_item for example of redirecting if necessary
 
-			return [
-				'content' => $content,
-				'fileId' => $fileId,
-				// etc if different from loading the form
-			];
 		}
 
+		TikiLib::lib('h5p')->addEditorAssets(empty($content['id']) ? NULL : $content['id']);
+
+		$core = \H5P_H5PTiki::get_h5p_instance('core');
 		return [
 			'content' => $content,
 			'fileId' => $fileId,
-			'title' => TikiLib::lib('filegal')->get_file_label($fileId),
+			'title' => $title,
+			'library' => empty($content['library']) ? 0 : H5PCore::libraryToString($content['library']),
+			'parameters' => empty($content['params']) ? '{}' : $core->filterParameters($content),
+			'loading' => tra('Waiting for javascript...')
 			// etc
 		];
+	}
+
+	function action_libraries($input)
+	{
+		global $prefs;
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$_POST['libraries'] = array();
+			foreach ($input->libraries as $library) {
+				$_POST['libraries'][] = $library;
+			}
+		}
+
+		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
+
+		$name = filter_input(INPUT_GET, 'machineName', FILTER_SANITIZE_STRING);
+		$major_version = filter_input(INPUT_GET, 'majorVersion', FILTER_SANITIZE_NUMBER_INT);
+		$minor_version = filter_input(INPUT_GET, 'minorVersion', FILTER_SANITIZE_NUMBER_INT);
+
+		header('Cache-Control: no-cache');
+		header('Content-type: application/json');
+
+		if ($name) {
+			print $editor->getLibraryData($name, $major_version, $minor_version, substr($prefs['language'], 0, 2), '', \H5P_H5PTiki::$h5p_path);
+
+			// Log library load
+			new H5P_Event('library', NULL,
+					NULL, NULL,
+					$name, $major_version . '.' . $minor_version);
+		}
+		else {
+			print $editor->getLibraries();
+		}
+
+		exit;
+	}
+
+	function action_files($input)
+	{
+		print 'TODO';
+		exit;
 	}
 }

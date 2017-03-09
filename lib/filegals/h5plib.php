@@ -543,4 +543,85 @@ class H5PLib
 	}
 
 
+	/**
+	 * Add assets and JavaScript settings for the editor.
+	 *
+	 * @since 1.1.0
+	 * @param int $id optional content identifier
+	 */
+	public function addEditorAssets($id = NULL)
+	{
+		global $tikiroot, $tikipath, $prefs;
+
+		// Add core assets
+		$this->addCoreAssets();
+
+		// Use jQuery and styles from core.
+		$assets = array(
+			'css' => self::$settings['core']['styles'],
+			'js' => self::$settings['core']['scripts']
+		);
+
+		// Use relative URL to support both http and https.
+		$editorpath = 'vendor/h5p/h5p-editor/';
+		$url = $tikiroot . $editorpath;
+
+		// Make sure files are reloaded for new versions
+		$TWV = new TWVersion;
+		$cachebuster = '?ver=' . $TWV->version;
+
+		// Add editor styles
+		foreach (H5peditor::$styles as $style) {
+			$assets['css'][] = $url . $style . $cachebuster;
+		}
+
+		// Add editor JavaScript
+		foreach (H5peditor::$scripts as $script) {
+			// We do not want the creator of the iframe inside the iframe
+			if ($script !== 'scripts/h5peditor-editor.js') {
+				$assets['js'][] = $url . $script . $cachebuster;
+			}
+		}
+
+		// Add JavaScript with library framework integration (editor part)
+		TikiLib::lib('header')->add_jsfile($url . 'scripts/h5peditor-editor.js');
+		TikiLib::lib('header')->add_jsfile($tikiroot . 'lib/core/H5P/editor.js');
+
+		// Add translation
+		$languagescript = $editorpath . 'language/' . substr($prefs['language'], 0, 2) . '.js';
+		if (!file_exists($tikipath . $languagescript)) {
+			$languagescript = $editorpath . 'language/en.js';
+		}
+		TikiLib::lib('header')->add_jsfile($tikiroot . $languagescript);
+
+		$servicelib = TikiLib::lib('service');
+		$ajaxPath = $servicelib->getUrl([
+			'controller' => 'h5p',
+			'token' => 'TODO',
+			'action' => ''
+		]);
+
+		// Add JavaScript settings
+		$contentvalidator = \H5P_H5PTiki::get_h5p_instance('contentvalidator');
+		self::$settings['editor'] = array(
+			'filesPath' => \H5P_H5PTiki::$h5p_path . '/editor',
+			'fileIcon' => array(
+				'path' => $url . 'images/binary-file.png',
+				'width' => 50,
+				'height' => 50,
+			),
+			'ajaxPath' => $ajaxPath,
+			'libraryUrl' => $url,
+			'copyrightSemantics' => $contentvalidator->getCopyrightSemantics(),
+			'assets' => $assets,
+		);
+
+		if ($id !== NULL) {
+			self::$settings['editor']['nodeVersionId'] = $id;
+		}
+
+		$this->printSettings(self::$settings);
+	}
+
+
 }
