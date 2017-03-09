@@ -594,12 +594,8 @@ class H5PLib
 		}
 		TikiLib::lib('header')->add_jsfile($tikiroot . $languagescript);
 
-		$servicelib = TikiLib::lib('service');
-		$ajaxPath = $servicelib->getUrl([
-			'controller' => 'h5p',
-			'token' => 'TODO',
-			'action' => ''
-		]);
+		// needs to be non-sefurl version so h5p can append the action and params
+		$ajaxPath = 'tiki-ajax_services.php?controller=h5p&action=';
 
 		// Add JavaScript settings
 		$contentvalidator = \H5P_H5PTiki::get_h5p_instance('contentvalidator');
