@@ -70,7 +70,6 @@ class Services_H5P_Controller
 			$html .= smarty_function_button([
 				'href' => TikiLib::lib('service')->getUrl(['controller' => 'h5p', 'action' => 'edit', 'fileId' => $fileId]),
 				'_text' => tra('Edit'),
-				'_onclick' => 'clickModal',
 			], $smarty);
 
 		}
