@@ -329,14 +329,9 @@ class H5PLib
 			'url' => $base_url . \H5P_H5PTiki::$h5p_path,
 			/* TODO tracking and saving
 						 'postUserStatistics' => ($prefs['h5p_track_user'] === 'y') && $userId,
-						'ajaxPath' => 'tiki-ajax_services.php?controller=h5p',
 						'ajax' => array(
 							'setFinished' => 'tiki-ajax_services.php?controller=h5p&action=setFinished',
 							'contentUserData' => 'tiki-ajax_services.php?controller=h5p&action=contents_user_data&content_id=:contentId&data_type=:dataType&sub_content_id=:subContentId',
-						),
-						'tokens' => array(
-							'result' => wp_create_nonce('h5p_result'),
-							'contentUserData' => wp_create_nonce('h5p_contentuserdata'),
 						),
 						'saveFreq' => $prefs['h5p_save_content_state'] === 'y' ? $prefs['h5p_save_content_frequency'] : false,
 			*/
@@ -367,6 +362,10 @@ class H5PLib
 					'h5pDescription' => tra('Visit H5P.org to check out more cool content.'),
 					'contentChanged' => tra('This content has changed since you last used it.'),
 					'startingOver' => tra("You'll be starting over."),
+					'confirmDialogHeader' => tra('Confirm action'),
+					'confirmDialogBody' => tra('Please confirm that you wish to proceed. This action is not reversible.'),
+					'cancelLabel' => tra('Cancel'),
+					'confirmLabel' => tra('Confirm')
 				),
 			),
 		);
@@ -374,7 +373,7 @@ class H5PLib
 		if ($userId) {
 			$settings['user'] = array(
 				'name' => $user,
-				//'mail' => $userId->user_email,
+				//'mail' => $userId->user_email, // TODO: Used in xAPI statements to uniquely identify the user across systems, i.e. if an LRS is used.
 			);
 		}
 
@@ -542,11 +541,9 @@ class H5PLib
 		return $settings;
 	}
 
-
 	/**
 	 * Add assets and JavaScript settings for the editor.
 	 *
-	 * @since 1.1.0
 	 * @param int $id optional content identifier
 	 */
 	public function addEditorAssets($id = NULL)
@@ -619,5 +616,62 @@ class H5PLib
 		$this->printSettings(self::$settings);
 	}
 
+	/**
+	 * Add assets and JavaScript settings for the editor.
+	 *
+	 */
+	public function saveContent(&$content, $input)
+	{
+		$core = \H5P_H5PTiki::get_h5p_instance('core');
 
+		$oldLibrary = empty($content['library']) ? NULL : $content['library'];
+		$oldParams = empty($content['params']) ? NULL : $content['params'];
+
+		// Check title input
+		$content['title'] = $input->title->none();
+		if (empty($content['title'])) {
+			$core->h5pF->setErrorMessage(tr('Missing title.'));
+			return FALSE;
+		}
+		// TODO: Figure out how / where title should be saved
+
+		// Get content type chosen in editor
+		$content['library'] = $core->libraryFromString($input->library->none());
+		if (!$content['library']) {
+			$core->h5pF->setErrorMessage(tr('Invalid content type.'));
+			return FALSE;
+		}
+
+		// Check if content type exists
+		$content['library']['libraryId'] = $core->h5pF->getLibraryId($content['library']['machineName'], $content['library']['majorVersion'], $content['library']['minorVersion']);
+		if (!$content['library']['libraryId']) {
+			$core->h5pF->setErrorMessage(tr("The chosen content type isn't installed."));
+			return FALSE;
+		}
+
+		// Check parameters input
+		$content['params'] = $input->parameters->none();
+		if (empty($content['params'])) {
+			$core->h5pF->setErrorMessage(tr('Missing content parameters.'));
+			return FALSE;
+		}
+
+		// Decode parameters input
+		$params = json_decode($content['params']);
+		if ($params === NULL) {
+			$core->h5pF->setErrorMessage(tr('Invalid content parameters.'));
+			return FALSE;
+		}
+
+		// Set disabled features
+		// TODO: Implement
+
+		// Save new content
+		$content['id'] = $core->saveContent($content, $input->fileId->int());
+
+		// Move images to parmanent storage and find all required content dependencies
+		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
+		$editor->processParameters($content['id'], $content['library'], $params, $oldLibrary, $oldParams);
+		return $content['id'];
+	}
 }

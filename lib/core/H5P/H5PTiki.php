@@ -851,7 +851,7 @@ WHERE l.id = ?',
 		}
 		$library = H5PCore::snakeToCamel($library);
 		$library['machineName'] = $library['name'];
-		$library['libraryId'] = $library['id']; 
+		$library['libraryId'] = $library['id'];
 
 		$result = TikiDb::get()->query(
 			'SELECT hl.`name`, hl.`major_version` AS major, hl.`minor_version` AS minor, hll.`dependency_type` AS type

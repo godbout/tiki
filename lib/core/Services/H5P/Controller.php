@@ -81,51 +81,75 @@ class Services_H5P_Controller
 
 	function action_edit($input)
 	{
+		// Check permission
 		if (! Perms::get()->h5p_edit) {
 			throw new Services_Exception_Denied(tr('H5P Edit:') . ' ' . tr('Permission denied.'));
 		}
 
+		// Load content
 		$fileId = $input->fileId->int();
-
 		if (! empty($fileId)) {
-			// retrieve existing, asomething like
+			// Retrieve existing content data
 
 			$content = TikiLib::lib('h5p')->loadContentFromFileId($fileId);
-			$title = TikiLib::lib('filegal')->get_file_label($fileId);
+			$content['title'] = TikiLib::lib('filegal')->get_file_label($fileId);
 
-			// Log editor opened
+		} else {
+			$content = array(
+				'disable' => H5PCore::DISABLE_NONE
+			);
+		}
+
+		// Handle for submit
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+			switch ($input->op->none()) {
+				case 'Save':
+					// Create new content or update existing
+					if (TikiLib::lib('h5p')->saveContent($content, $input)) {
+						// Content updated, redirect to view
+
+						return TikiLib::lib('access')->redirect(TikiLib::lib('service')->getUrl([
+							'controller' => 'h5p',
+							'action' => 'embed',
+							'fileId' => $fileId // TODO: Get file ID from $content when creating new content? (can be done in H5P_Tiki::insertContent for first time creation)
+						]));
+						// TODO: The updated export is usually only generated on view, we can force it by calling $core->filterParameters($content);
+						// Maybe we should call filt. before the redirect and then 'insert' the newly generated file into the filegals to get a fileId?
+					}
+					break;
+
+				case 'Delete':
+					// TODO: Must be implemented
+					// Is there a way we could invoke handle_fileDelete() ?
+					break;
+			}
+		}
+
+		if (! empty($content['id'])) {
+			// Log editing of content
 			new H5P_Event('content', 'edit',
 					$content['id'],
 					$title,
 					$content['library']['name'],
 					$content['library']['majorVersion'] . '.' . $this->content['library']['minorVersion']);
-
-		} else {
-			$content = [];
-			$title = '';
-
-			// Log editor opened
+		}
+		else {
+			// Log creation of new content (form opened)
 			new H5P_Event('content', 'new');
 		}
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-			// process the form
-			// see \Services_Tracker_Controller::action_update_item for example of redirecting if necessary
-
-		}
-
+		// Load assets required for Editor
 		TikiLib::lib('h5p')->addEditorAssets(empty($content['id']) ? NULL : $content['id']);
 
+		// Prepare for template
 		$core = \H5P_H5PTiki::get_h5p_instance('core');
 		return [
-			'content' => $content,
+			'loading' => tr('Waiting for javascript...'),
 			'fileId' => $fileId,
-			'title' => $title,
+			'title' => empty($content['title']) ? '' : $content['title'],
 			'library' => empty($content['library']) ? 0 : H5PCore::libraryToString($content['library']),
-			'parameters' => empty($content['params']) ? '{}' : $core->filterParameters($content),
-			'loading' => tra('Waiting for javascript...')
-			// etc
+			'parameters' => empty($content['params']) ? '{}' : $core->filterParameters($content)
 		];
 	}
 
