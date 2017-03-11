@@ -18,6 +18,9 @@ $auto_query_args = array('page');
 
 $access->check_permission('tiki_p_admin');
 $check = $access->check_authenticity(null, false);
+if ($check === false) {
+	Feedback::error(tr('Bad request - potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - try reloading the page in this case.'));
+}
 $logslib = TikiLib::lib('logs');
 
 /**
@@ -203,8 +206,6 @@ if ( isset( $_REQUEST['lm_preference'] ) ) {
 				}
 			}
 		}
-	} else {
-		Feedback::error(tr('Bad request - potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - try reloading the page in this case.'));
 	}
 }
 
@@ -523,8 +524,7 @@ $admin_icons = array(
 
 if (isset($_REQUEST['page'])) {
 	$adminPage = $_REQUEST['page'];
-	$check = $access->check_authenticity(null, false);
-	$smarty->assign('ticket', $check['ticket']);
+	$smarty->assign('ticket', !empty($check['ticket']) ? $check['ticket'] : '');
 	// Check if the associated incude_*.php file exists. If not, check to see if it might exist in the Addons.
 	// If it exists, include the associated file and generate the ticket.
 	$utilities = new TikiAddons_Utilities();

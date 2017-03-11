@@ -5,9 +5,7 @@
 /about.php -text
 addons/index.php -text
 admin/.htaccess -text
-admin/include_ads.php -text
 admin/include_articles.php -text
-admin/include_blogs.php -text
 admin/include_calendar.php -text
 admin/include_category.php -text
 admin/include_comments.php -text
@@ -2655,6 +2653,7 @@ lib/core/Services/ContentTemplate/index.php -text
 lib/core/Services/Draw/Controller.php -text
 lib/core/Services/Draw/index.php -text
 lib/core/Services/Edit/Controller.php -text
+lib/core/Services/Edit/PluginController.php -text
 lib/core/Services/Edit/index.php -text
 lib/core/Services/Exception.php -text
 lib/core/Services/Exception/BadRequest.php -text
@@ -4105,8 +4104,8 @@ lib/smarty_tiki/modifier.money_format.php -text
 lib/smarty_tiki/modifier.namespace.php -text
 lib/smarty_tiki/modifier.nonamespace.php -text
 lib/smarty_tiki/modifier.nonp.php -text
-lib/smarty_tiki/modifier.numStyle.php -text
 lib/smarty_tiki/modifier.number_format.php -text
+lib/smarty_tiki/modifier.numstyle.php -text
 lib/smarty_tiki/modifier.output.php -text
 lib/smarty_tiki/modifier.pagename.php -text
 lib/smarty_tiki/modifier.percent.php -text
@@ -5763,6 +5762,7 @@ templates/pagehistory.tpl -text
 templates/password_help.tpl -text
 templates/password_jq.tpl -text
 templates/permission_link.tpl -text
+templates/plugin/list.tpl -text
 templates/plugins/index.php -text
 templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
