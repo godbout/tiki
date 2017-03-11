@@ -8,8 +8,6 @@ admin/.htaccess -text
 admin/include_articles.php -text
 admin/include_calendar.php -text
 admin/include_category.php -text
-admin/include_comments.php -text
-admin/include_community.php -text
 admin/include_connect.php -text
 admin/include_copyright.php -text
 admin/include_directory.php -text
