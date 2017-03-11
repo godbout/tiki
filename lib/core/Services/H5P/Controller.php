@@ -106,14 +106,15 @@ class Services_H5P_Controller
 			switch ($input->op->none()) {
 				case 'Save':
 					// Create new content or update existing
-					if (TikiLib::lib('h5p')->saveContent($content, $input)) {
+					if ($fileId = TikiLib::lib('h5p')->saveContent($content, $input)) {
 						// Content updated, redirect to view
 
-						return TikiLib::lib('access')->redirect(TikiLib::lib('service')->getUrl([
-							'controller' => 'h5p',
-							'action' => 'embed',
-							'fileId' => $fileId // TODO: Get file ID from $content when creating new content? (can be done in H5P_Tiki::insertContent for first time creation)
-						]));
+						return [
+							'FORWARD' => [
+								'controller' => 'h5p',
+								'action' => 'embed',
+								'fileId' => $fileId,
+							]];
 						// TODO: The updated export is usually only generated on view, we can force it by calling $core->filterParameters($content);
 						// Maybe we should call filt. before the redirect and then 'insert' the newly generated file into the filegals to get a fileId?
 					}
@@ -130,9 +131,9 @@ class Services_H5P_Controller
 			// Log editing of content
 			new H5P_Event('content', 'edit',
 					$content['id'],
-					$title,
+					$input->title->text(),
 					$content['library']['name'],
-					$content['library']['majorVersion'] . '.' . $this->content['library']['minorVersion']);
+					$content['library']['majorVersion'] . '.' . $content['library']['minorVersion']);
 		}
 		else {
 			// Log creation of new content (form opened)
