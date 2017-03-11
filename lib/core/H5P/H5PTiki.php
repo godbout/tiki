@@ -60,8 +60,8 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			$core = new \H5PCore($interface,
 				$tikipath . self::$h5p_path,   // Where the extracted content files will be stored
 				$tikiroot . self::$h5p_path,     // URL of the previous option
-				$prefs['language'],        // TODO: Map proper language code from Tiki to H5P langs
-				false               // TODO: Later: Add option for enabling generation of exports? Not sure if this will be needed in Tiki since we already have the .h5p file.
+				$prefs['language'],                  // TODO: Map proper language code from Tiki to H5P langs
+				true                          // each time an h5p is saved it exports the reult into the file gallery to keep it up to date
 			);
 
 			// This is more of a development option to prevent JS and CSS from being combined. TODO: Remove later
@@ -137,8 +137,8 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	public function setErrorMessage($message)
 	{
 		if (Perms::get()->h5p_edit) {
-			// possibly needs 'session' as the method param if the error happens asychronously
-			Feedback::error(tra($message));
+			// needs 'session' as the method param if the error happens asychronously
+			Feedback::error(tra($message), 'session');
 		}
 	}
 
@@ -151,7 +151,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	public function setInfoMessage($message)
 	{
 		if (Perms::get()->h5p_edit) {
-			Feedback::success(tra($message));
+			Feedback::success(tra($message), 'session');
 		}
 	}
 
