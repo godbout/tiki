@@ -618,7 +618,9 @@ class H5PLib
 
 	/**
 	 * Add assets and JavaScript settings for the editor.
-	 *
+	 * @param array $content    H5P content
+	 * @param JitFilter $input
+	 * @return bool|int
 	 */
 	public function saveContent(&$content, $input)
 	{
@@ -628,7 +630,7 @@ class H5PLib
 		$oldParams = empty($content['params']) ? NULL : $content['params'];
 
 		// Check title input
-		$content['title'] = $input->title->none();
+		$content['title'] = $input->title->text();
 		if (empty($content['title'])) {
 			$core->h5pF->setErrorMessage(tr('Missing title.'));
 			return FALSE;
@@ -636,7 +638,7 @@ class H5PLib
 		// TODO: Figure out how / where title should be saved
 
 		// Get content type chosen in editor
-		$content['library'] = $core->libraryFromString($input->library->none());
+		$content['library'] = $core->libraryFromString($input->library->text());
 		if (!$content['library']) {
 			$core->h5pF->setErrorMessage(tr('Invalid content type.'));
 			return FALSE;
@@ -650,7 +652,7 @@ class H5PLib
 		}
 
 		// Check parameters input
-		$content['params'] = $input->parameters->none();
+		$content['params'] = $input->parameters->xss();
 		if (empty($content['params'])) {
 			$core->h5pF->setErrorMessage(tr('Missing content parameters.'));
 			return FALSE;
@@ -666,12 +668,70 @@ class H5PLib
 		// Set disabled features
 		// TODO: Implement
 
+		// create the file gallery file to attach this to
+		global $prefs, $user;
+		$filegallib = TikiLib::lib('filegal');
+		$fileId = $input->fileId->int();
+		$newFile = false;
+
+		if (! $fileId) {
+
+			$fileId = $filegallib->insert_file(
+				$prefs['h5p_filegal_id'],
+				$content['title'],
+				tr('Created by H5P'),
+				TikiLib::remove_non_word_characters_and_accents($content['title']) . '.h5p',
+				'',
+				0,
+				'application/zip',
+				$user,
+				''
+			);
+
+			if ($fileId) {
+				$newFile = true;
+			}
+		}
+		$info = $filegallib->get_file($fileId);
+		$created = $info['created'];
+
 		// Save new content
-		$content['id'] = $core->saveContent($content, $input->fileId->int());
+		$content['id'] = $core->saveContent($content, $fileId);
 
 		// Move images to parmanent storage and find all required content dependencies
 		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
 		$editor->processParameters($content['id'], $content['library'], $params, $oldLibrary, $oldParams);
-		return $content['id'];
+
+		// export the project into the new file gallery file
+		$core->filterParameters($content);	// rebuild content
+		$exportedFile = H5P_H5PTiki::$h5p_path . '/exports/' . $content['slug'] . '-' . $content['id'] . '.h5p';
+
+		if (! file_exists($exportedFile)) {
+			Feedback::error(tr('Exporting H5P content %0 failed', $content['id']), 'session');
+			return false;
+		}
+		$result = $filegallib->insert_file(
+			$prefs['h5p_filegal_id'],
+			$content['title'],
+			tr('Created by H5P'),
+			TikiLib::remove_non_word_characters_and_accents($content['title']) . '.h5p',
+			file_get_contents($exportedFile),
+			filesize($exportedFile),
+			'application/zip',
+			$user,
+			'',        // should it be $exportedFile?
+			'',
+			$user,
+			$created,
+			null,
+			null,
+			$fileId
+		);
+
+		if (! $result) {
+			Feedback::error(tr('Saving H5P content %0 (fileId %1) failed', $content['id'], $fileId), 'session');
+		}
+
+		return $fileId;
 	}
 }

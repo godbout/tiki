@@ -16,6 +16,7 @@ function prefs_h5p_list()
 			],
 			'type' => 'flag',
 			'default' => 'n',
+			'filter' => 'alpha',
 			'hint' => tr('Enable H5P content'),
 		],
 		'h5p_whitelist' => [
@@ -25,6 +26,7 @@ function prefs_h5p_list()
 				'h5p_enabled',
 			],
 			'type' => 'text',
+			'filter' => 'text',
 			'default' => H5PCore::$defaultContentWhitelist,
 		],
 		'h5p_track_user' => [
@@ -34,6 +36,7 @@ function prefs_h5p_list()
 				'h5p_enabled',
 			],
 			'type' => 'flag',
+			'filter' => 'alpha',
 			'default' => 'n',
 		],
 		'h5p_dev_mode' => [
@@ -43,7 +46,19 @@ function prefs_h5p_list()
 				'h5p_enabled',
 			],
 			'type' => 'flag',
+			'filter' => 'alpha',
 			'default' => 'n',
+		],
+		'h5p_filegal_id' => [
+			'name' => tr('Default Gallery'),
+			'description' => tr('File gallery to create new H5P content in by default.'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'text',
+			'filter' => 'int',
+			'profile_reference' => 'file_gallery',
+			'default' => 1,
 		],
 	];
 }
