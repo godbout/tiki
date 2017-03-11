@@ -9,7 +9,6 @@ admin/include_articles.php -text
 admin/include_calendar.php -text
 admin/include_category.php -text
 admin/include_connect.php -text
-admin/include_faqs.php -text
 admin/include_features.php -text
 admin/include_fgal.php -text
 admin/include_forums.php -text
