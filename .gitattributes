@@ -5,9 +5,7 @@
 /about.php -text
 addons/index.php -text
 admin/.htaccess -text
-admin/include_ads.php -text
 admin/include_articles.php -text
-admin/include_blogs.php -text
 admin/include_calendar.php -text
 admin/include_category.php -text
 admin/include_comments.php -text
