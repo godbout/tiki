@@ -11,7 +11,6 @@ admin/include_category.php -text
 admin/include_connect.php -text
 admin/include_features.php -text
 admin/include_fgal.php -text
-admin/include_forums.php -text
 admin/include_freetags.php -text
 admin/include_gal.php -text
 admin/include_general.php -text
