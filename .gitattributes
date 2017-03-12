@@ -19,7 +19,6 @@ admin/include_intertiki.php -text
 admin/include_login.php -text
 admin/include_look.php -text
 admin/include_maps.php -text
-admin/include_messages.php -text
 admin/include_metatags.php -text
 admin/include_module.php -text
 admin/include_payment.php -text
