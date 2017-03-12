@@ -3654,6 +3654,7 @@ lib/prefs/footer.php -text
 lib/prefs/forum.php -text
 lib/prefs/forums.php -text
 lib/prefs/freetags.php -text
+lib/prefs/gal.php -text
 lib/prefs/generate.php -text
 lib/prefs/geo.php -text
 lib/prefs/global.php -text
@@ -3709,6 +3710,7 @@ lib/prefs/payment.php -text
 lib/prefs/permission.php -text
 lib/prefs/php.php -text
 lib/prefs/poll.php -text
+lib/prefs/preset.php -text
 lib/prefs/print.php -text
 lib/prefs/profile.php -text
 lib/prefs/proxy.php -text
