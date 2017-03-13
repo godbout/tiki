@@ -5736,6 +5736,7 @@ templates/pagehistory.tpl -text
 templates/password_help.tpl -text
 templates/password_jq.tpl -text
 templates/permission_link.tpl -text
+templates/plugin/edit.tpl -text
 templates/plugin/list.tpl -text
 templates/plugins/index.php -text
 templates/plugins/plugin-topfriends.tpl -text
