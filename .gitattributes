@@ -7813,8 +7813,6 @@ themes/yeti/templates/index.php -text
 /tiki-invite.php -text
 /tiki-invited.php -text
 /tiki-invoice_reports.php -text
-/tiki-jsmodule.php -text
-/tiki-jsplugin.php -text
 /tiki-kaltura_upload.php -text
 /tiki-kaltura_video.php -text
 /tiki-lastchanges.php -text
