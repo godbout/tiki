@@ -8,15 +8,9 @@ admin/.htaccess -text
 admin/include_articles.php -text
 admin/include_calendar.php -text
 admin/include_category.php -text
-admin/include_comments.php -text
-admin/include_community.php -text
 admin/include_connect.php -text
-admin/include_copyright.php -text
-admin/include_directory.php -text
-admin/include_faqs.php -text
 admin/include_features.php -text
 admin/include_fgal.php -text
-admin/include_forums.php -text
 admin/include_freetags.php -text
 admin/include_gal.php -text
 admin/include_general.php -text
@@ -25,7 +19,6 @@ admin/include_intertiki.php -text
 admin/include_login.php -text
 admin/include_look.php -text
 admin/include_maps.php -text
-admin/include_messages.php -text
 admin/include_performance.php -text
 admin/include_profiles.php -text
 admin/include_rating.php -text
@@ -40,7 +33,6 @@ admin/include_trackers.php -text
 admin/include_user.php -text
 admin/include_userfiles.php -text
 admin/include_video.php -text
-admin/include_webservices.php -text
 admin/include_wiki.php -text
 admin/include_wikiatt.php -text
 admin/include_workspace.php -text
@@ -2458,6 +2450,7 @@ lib/core/Search/ContentSource/TrackerFieldSource.php -text
 lib/core/Search/ContentSource/TrackerItemSource.php -text
 lib/core/Search/ContentSource/TrackerSource.php -text
 lib/core/Search/ContentSource/UserSource.php -text
+lib/core/Search/ContentSource/WebserviceSource.php -text
 lib/core/Search/ContentSource/WikiSource.php -text
 lib/core/Search/ContentSource/index.php -text
 lib/core/Search/Elastic/BulkOperation.php -text
@@ -3659,6 +3652,7 @@ lib/prefs/footer.php -text
 lib/prefs/forum.php -text
 lib/prefs/forums.php -text
 lib/prefs/freetags.php -text
+lib/prefs/gal.php -text
 lib/prefs/generate.php -text
 lib/prefs/geo.php -text
 lib/prefs/global.php -text
@@ -3715,6 +3709,7 @@ lib/prefs/payment.php -text
 lib/prefs/permission.php -text
 lib/prefs/php.php -text
 lib/prefs/poll.php -text
+lib/prefs/preset.php -text
 lib/prefs/print.php -text
 lib/prefs/profile.php -text
 lib/prefs/proxy.php -text

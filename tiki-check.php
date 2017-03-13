@@ -1154,13 +1154,13 @@ if ( $s ) {
 	$php_properties['ZipArchive class'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Available',
-		'message' => tra('The ZipArchive class is needed for features such as XML Wiki Import/Export, PluginArchiveBuilder and H5P.')
+		'message' => tra('The ZipArchive class is needed for features such as XML Wiki Import/Export and PluginArchiveBuilder.')
 		);
 } else {
 	$php_properties['ZipArchive class'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'Not Available',
-		'message' => tra('The ZipArchive class is needed for features such as XML Wiki Import/Export, PluginArchiveBuilder and H5P.')
+		'message' => tra('The ZipArchive class is needed for features such as XML Wiki Import/Export and PluginArchiveBuilder.')
 		);
 }
 
