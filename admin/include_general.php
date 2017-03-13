@@ -59,7 +59,7 @@ if (!empty($_REQUEST['testMail']) && $access->check_authenticity(null, false)) {
 			$mailerrors = print_r($mail->errors, true);
 			$msg .= '<br>' . $mailerrors;
 		}
-		Feedback::warning($msg);
+		Feedback::warning($msg, 'session');
 	} else {
 		 add_feedback('testMail', tra('Test mail sent to') . ' ' . $_REQUEST['testMail'], 3);
 	}
