@@ -29,7 +29,6 @@ lang/.htaccess
 /last.log
 lib/.htaccess
 lib/core/Tracker/Filter/Control/DateRange[!!-~](1).php
-lib/smarty
 lib/test/clover.xml
 lib/test/core/Search/Index/test_index
 lib/test/core/Search/test_index

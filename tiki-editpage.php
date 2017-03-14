@@ -179,9 +179,6 @@ $smarty->assign('page', $page);
 $info = $tikilib->get_page_info($page);
 $smarty->assign('quickedit', isset($_GET['quickedit']));
 
-// String use to lock the page currently edit.
-$editLockPageId = 'edit_lock_' . (isset($info['page_id']) ? (int) $info['page_id'] : 0);
-
 // 2010-01-26: Keep in active until translation refactoring is done.
  if ($editlib->isNewTranslationMode() || $editlib->isUpdateTranslationMode()) {
  	$editlib->prepareTranslationData();
@@ -271,8 +268,9 @@ function compare_import_versions($a1, $a2)
 	return $a1["version"] - $a2["version"];
 }
 
+$serviceLib = TikiLib::lib('service');
 if (isset($_REQUEST['cancel_edit'])) {
-	$tikilib->semaphore_unset($page, $_SESSION[$editLockPageId]);
+	$serviceLib->internal('semaphore', 'unset', ['object_id' => $page]);
 	if (!empty($_REQUEST['returnto'])) {
 		if (isURL($_REQUEST['returnto'])) {
 			$url = $_REQUEST['returnto'];
@@ -343,17 +341,18 @@ if ($prefs['feature_warn_on_edit'] === 'y') {
 	$u = $user? $user: 'anonymous';
 	if (!empty($page) && ($page !== 'sandbox' || $page === 'sandbox' && $tiki_p_admin === 'y')) {
 		if (!isset($_REQUEST['save'])) {
-			if ($tikilib->semaphore_is_set($page, $prefs['warn_on_edit_time'] * 60) && $tikilib->get_semaphore_user($page) !== $u) {
+			if ($serviceLib->internal('semaphore', 'is_set', ['object_id' => $page]) &&
+				$serviceLib->internal('semaphore', 'get_user', ['object_id' => $page]) !== $u
+			) {
+
 				$editpageconflict = 'y';
 			} elseif ($tiki_p_edit === 'y') {
-				$_SESSION[$editLockPageId] = $tikilib->semaphore_set($page);
+				$serviceLib->internal('semaphore', 'set', ['object_id' => $page]);
 			}
-			$semUser = $tikilib->get_semaphore_user($page);
+			$semUser = $serviceLib->internal('semaphore', 'get_user', ['object_id' => $page]);
 			$beingedited = 'y';
 		} else {
-			if (!empty($_SESSION[$editLockPageId])) {
-				$tikilib->semaphore_unset($page, $_SESSION[$editLockPageId]);
-			}
+			$serviceLib->internal('semaphore', 'unset', ['object_id' => $page]);
 		}
 	}
 	if ($editpageconflict === 'y' && !isset($_REQUEST["conflictoverride"]) ) {
