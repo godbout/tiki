@@ -155,8 +155,8 @@ class Services_H5P_Controller
 			'loading' => tr('Waiting for javascript...'),
 			'fileId' => $fileId,
 			'title' => empty($content['title']) ? '' : $content['title'],
-			'library' => empty($content['library']) ? 0 : H5PCore::libraryToString($content['library']),
-			'parameters' => empty($content['params']) ? '{}' : $core->filterParameters($content)
+			'library' => empty($content['library']) ? (empty($input->library->text()) ? 0 : $input->library->text()) : H5PCore::libraryToString($content['library']),
+			'parameters' => empty($content['params']) ? (empty($input->parameters->xss()) ? '{}' : $input->parameters->xss()) : $core->filterParameters($content)
 		];
 	}
 
