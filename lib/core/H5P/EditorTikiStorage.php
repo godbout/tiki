@@ -102,14 +102,13 @@ AND `major_version` = ?
 AND `minor_version` = ?
 AND `semantics` IS NOT NULL',
 					[$library->name, $library->majorVersion, $library->minorVersion]
-				);
-				//var_dump($details); exit;
+				)->fetchRow();
 				if ($details) {
 					// Library found, add details to list
-					$library->tutorialUrl = $details->tutorial_url;
-					$library->title = $details->title;
-					$library->runnable = $details->runnable;
-					$library->restricted = $can_use_all ? FALSE : ($details->restricted ? TRUE : FALSE);
+					$library->tutorialUrl = $details['tutorial_url'];
+					$library->title = $details['title'];
+					$library->runnable = $details['runnable'];
+					$library->restricted = $can_use_all ? FALSE : ($details['restricted'] ? TRUE : FALSE);
 					$librariesWithDetails[] = $library;
 				}
 			}
