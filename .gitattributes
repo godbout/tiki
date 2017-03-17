@@ -4743,6 +4743,8 @@ lib/wiki-plugins/wikiplugin_pastlink.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
 lib/wiki-plugins/wikiplugin_paymentlist.php -text
 lib/wiki-plugins/wikiplugin_paypal.php -text
+lib/wiki-plugins/wikiplugin_pdf.php -text
+lib/wiki-plugins/wikiplugin_pdfpagebreak.php -text
 lib/wiki-plugins/wikiplugin_perm.php -text
 lib/wiki-plugins/wikiplugin_perspective.php -text
 lib/wiki-plugins/wikiplugin_pivottable.php -text
