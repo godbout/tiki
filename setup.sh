@@ -283,7 +283,7 @@ check_distribution
 # part 3 - default and writable subdirs
 # -------------------------------------
 
-DIR_LIST_DEFAULT="addons admin db doc dump files img installer lang lib modules permissioncheck temp templates tests themes tiki_tests vendor_bundled vendor_extra whelp"
+DIR_LIST_DEFAULT="addons admin db doc dump files img installer lang lib modules permissioncheck temp templates tests themes tiki_tests vendor vendor_extra whelp"
 DIR_LIST_WRITABLE="db dump img/wiki img/wiki_up img/trackers modules/cache temp temp/cache temp/public temp/templates_c templates themes whelp mods files tiki_tests/tests temp/unified-index"
 DIRS=${DIR_LIST_WRITABLE}
 
@@ -511,9 +511,7 @@ exists()
 
 composer_core()
 {
-(
-	cd vendor_bundled
-	if [ ! -f ../temp/composer.phar ];
+	if [ ! -f temp/composer.phar ];
 	then
 		if exists curl;
 		then
@@ -522,24 +520,24 @@ composer_core()
 			# todo : if exists php;
 			php -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));" -- --install-dir=temp
 		fi
-		# if PATCHCOMPOSERFLAG then modify ../temp/composer.phar to avoid the warnings
-		# this hack is not yet possible because of a self signature check in ../temp/composer.phar
+		# if PATCHCOMPOSERFLAG then modify temp/composer.phar to avoid the warnings
+		# this hack is not yet possible because of a self signature check in temp/composer.phar
 	else
 		# todo : if exists php;
 		if [ ${LOGCOMPOSERFLAG} = "0" ] ; then
-			"${PHPCLI}" ../temp/composer.phar self-update "$OPT_QUIET"
+			"${PHPCLI}" temp/composer.phar self-update "$OPT_QUIET"
 		fi
 		if [ ${LOGCOMPOSERFLAG} = "1" ] ; then
-			"${PHPCLI}" ../temp/composer.phar self-update "$OPT_QUIET" > ${TIKI_COMPOSER_SELF_UPDATE_LOG}
+			"${PHPCLI}" temp/composer.phar self-update "$OPT_QUIET" > ${TIKI_COMPOSER_SELF_UPDATE_LOG}
 		fi
 	fi
 
-	if [ ! -f ../temp/composer.phar ];
+	if [ ! -f temp/composer.phar ];
 	then
 		echo "We have failed to obtain the composer executable."
 		echo "NB: Maybe you are behing a proxy, just export https_proxy variable and relaunch setup.sh"
 		echo "1) Download it from http://getcomposer.org"
-		echo "2) Store it in ../temp/"
+		echo "2) Store it in temp/"
 		#exit
 		return
 	fi
@@ -549,8 +547,8 @@ composer_core()
 	if exists php;
 	then
 		if [ ${LOGCOMPOSERFLAG} = "0" ] ; then
-			#until php -dmemory_limit=-1 ../temp/composer.phar install --prefer-dist --no-dev
-			until "${PHPCLI}" -dmemory_limit=-1 ../temp/composer.phar install --prefer-dist --no-dev 2>&1 | sed '/Warning: Ambiguous class resolution/d'
+			#until php -dmemory_limit=-1 temp/composer.phar install --working-dir vendor_bundled --prefer-dist --no-dev
+			until "${PHPCLI}" -dmemory_limit=-1 temp/composer.phar install --working-dir vendor_bundled --prefer-dist --no-dev 2>&1 | sed '/Warning: Ambiguous class resolution/d'
 			# setting memory_limit here prevents suhosin ALERT - script tried to increase memory_limit to 536870912 bytes
 			do
 				if [ $N -eq 7 ];
@@ -565,7 +563,7 @@ composer_core()
 			done
 		fi
 		if [ ${LOGCOMPOSERFLAG} = "1" ] ; then
-			until "${PHPCLI}" -dmemory_limit=-1 ../temp/composer.phar install --prefer-dist --no-dev > ${TIKI_COMPOSER_INSTALL_LOG}
+			until "${PHPCLI}" -dmemory_limit=-1 temp/composer.phar install --working-dir vendor_bundled --prefer-dist --no-dev > ${TIKI_COMPOSER_INSTALL_LOG}
 			# setting memory_limit here prevents suhosin ALERT - script tried to increase memory_limit to 536870912 bytes
 			do
 				if [ $N -eq 7 ];
@@ -581,8 +579,8 @@ composer_core()
 		fi
 		if [ ${LOGCOMPOSERFLAG} = "2" ] ; then
 			echo "Suppress output lines with 'Warning: Ambiguous class resolution'\n..."
-			#until php -dmemory_limit=-1 ../temp/composer.phar install --prefer-dist --no-dev | sed '/Warning: Ambiguous class resolution/d'
-			until "${PHPCLI}" -dmemory_limit=-1 ../temp/composer.phar install --prefer-dist --no-dev
+			#until php -dmemory_limit=-1 temp/composer.phar install --working-dir vendor_bundled --prefer-dist --no-dev | sed '/Warning: Ambiguous class resolution/d'
+			until "${PHPCLI}" -dmemory_limit=-1 temp/composer.phar install --working-dir vendor_bundled --prefer-dist --no-dev
 			# setting memory_limit here prevents suhosin ALERT - script tried to increase memory_limit to 536870912 bytes
 			do
 				if [ $N -eq 7 ];
@@ -599,7 +597,6 @@ composer_core()
 	fi
 	#exit
 	return
-)
 }
 
 composer()
