@@ -78,6 +78,16 @@ CREATE TABLE tiki_h5p_libraries_languages (
 	PRIMARY KEY (library_id, language_code)
 )	ENGINE = MyISAM;
 
+# Keep track of temporary files uploaded in editor before saving content
+CREATE TABLE tiki_h5p_tmpfiles (
+	id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	path       VARCHAR(255) NOT NULL,
+	created_at INT UNSIGNED NOT NULL,
+	PRIMARY KEY (id),
+	KEY created_at (created_at),
+	KEY path (path)
+) ENGINE = MyISAM;
+
 ############## Potentially optional libraries from here downwards- to be re-assessed
 ############## whether they can be integrated/reusing tiki tables or if they need added to Tiki
 

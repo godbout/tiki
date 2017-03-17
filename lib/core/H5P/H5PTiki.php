@@ -263,7 +263,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 */
 	public function getAdminUrl()
 	{
-		// TODO: What is this for?
+		// TODO: What is this for? This will be needed when the Library Managment page is implemented
 		return TikiLib::tikiUrl('tiki-admin.php?page=h5p');
 	}
 
@@ -451,13 +451,6 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			]);
 
 			$libraryData['libraryId'] = $libraryId;
-
-			/*			if ($libraryData['runnable']) {
-							if (!$prefs['h5p_first_runnable_saved'] == 0) {    // what does this do? Drupal only?
-								TikiLib::lib('tiki')->set_preference('h5p_first_runnable_saved', 1);
-							}
-						}
-			*/
 		} else {
 			$this->tiki_h5p_libraries->update([
 				'title' => $libraryData['title'],
@@ -490,7 +483,6 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 					'language_code' => $languageCode,
 					'translation' => $languageJson
 				]);
-				// TODO error checking?
 			}
 		}
 	}
@@ -936,6 +928,9 @@ WHERE hll.`library_id` = ?',
 	{
 		// TODO: Implement alterLibrarySemantics() method.
 		// find an equivalent of do_action_ref_array or drupal_alter('h5p_semantics', $semantics, $name, $majorVersion, $minorVersion);
+
+		// Not sure if this will be needed in Tiki.
+		// I guess it would be implemented as firing a new event that functions may bind to in events.php.
 	}
 
 	/**

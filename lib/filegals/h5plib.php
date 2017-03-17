@@ -22,6 +22,7 @@ class H5PLib
 	const VERSION = '1.0.0';
 
 	private $H5PTiki = null;
+	private $isSaving = false;
 
 	private static $settings = null;
 
@@ -47,7 +48,7 @@ class H5PLib
 	 */
 	function handle_fileCreation($args)
 	{
-		if ($metadata = $this->getRequestMetadata($args)) {
+		if (!$this->isSaving && $metadata = $this->getRequestMetadata($args)) {
 
 			$validator = H5P_H5PTiki::get_h5p_instance('validator');
 
@@ -56,7 +57,6 @@ class H5PLib
 				$storage = H5P_H5PTiki::get_h5p_instance('storage');
 				$storage->savePackage(null, $args['object']);
 
-				// TODO: Somehow connect the filename/fileId and $storage->contentId ? Needed when .h5p file is updated, deleted(or worse?)
 			} else {
 
 				// TODO: What to do if the file isn't a valid H5P? Seems a bit drastic to delete the file – but then again, why would we host broken files?
@@ -79,7 +79,7 @@ class H5PLib
 	 */
 	function handle_fileUpdate($args)
 	{
-		if (isset($args['object']) && $metadata = $this->getRequestMetadata($args)) {
+		if (!$this->isSaving && isset($args['object']) && $metadata = $this->getRequestMetadata($args)) {
 
 			$content = $this->loadContentFromFileId($args['object']);
 
@@ -597,7 +597,7 @@ class H5PLib
 		// Add JavaScript settings
 		$contentvalidator = \H5P_H5PTiki::get_h5p_instance('contentvalidator');
 		self::$settings['editor'] = array(
-			'filesPath' => \H5P_H5PTiki::$h5p_path . '/editor',
+			'filesPath' => $tikiroot . \H5P_H5PTiki::$h5p_path . '/editor',
 			'fileIcon' => array(
 				'path' => $url . 'images/binary-file.png',
 				'width' => 50,
@@ -635,7 +635,6 @@ class H5PLib
 			$core->h5pF->setErrorMessage(tr('Missing title.'));
 			return FALSE;
 		}
-		// TODO: Figure out how / where title should be saved
 
 		// Get content type chosen in editor
 		$content['library'] = $core->libraryFromString($input->library->text());
@@ -667,6 +666,9 @@ class H5PLib
 
 		// Set disabled features
 		// TODO: Implement
+
+		// Prevent extracting and inserting the file we're creating
+		$this->isSaving = true;
 
 		// create the file gallery file to attach this to
 		global $prefs, $user;
@@ -708,7 +710,6 @@ class H5PLib
 
 		if (! file_exists($exportedFile)) {
 			Feedback::error(tr('Exporting H5P content %0 failed', $content['id']), 'session');
-			return false;
 		}
 		$result = $filegallib->insert_file(
 			$prefs['h5p_filegal_id'],
@@ -719,7 +720,7 @@ class H5PLib
 			filesize($exportedFile),
 			'application/zip',
 			$user,
-			'',        // should it be $exportedFile?
+			$exportedFile,
 			'',
 			$user,
 			$created,
@@ -732,6 +733,7 @@ class H5PLib
 			Feedback::error(tr('Saving H5P content %0 (fileId %1) failed', $content['id'], $fileId), 'session');
 		}
 
+		$this->isSaving = false;
 		return $fileId;
 	}
 }

@@ -115,14 +115,20 @@ class Services_H5P_Controller
 								'action' => 'embed',
 								'fileId' => $fileId,
 							]];
-						// TODO: The updated export is usually only generated on view, we can force it by calling $core->filterParameters($content);
-						// Maybe we should call filt. before the redirect and then 'insert' the newly generated file into the filegals to get a fileId?
 					}
 					break;
 
 				case 'Delete':
-					// TODO: Must be implemented
-					// Is there a way we could invoke handle_fileDelete() ?
+
+					$filegallib = TikiLib::lib('filegal');
+					$fileInfo = $filegallib->get_file_info($fileId);
+					$filegallib->remove_file($fileInfo);
+
+					return [
+						'FORWARD' => [
+							'controller' => 'h5p',
+							'action' => 'edit'
+						]];
 					break;
 			}
 		}
@@ -191,7 +197,33 @@ class Services_H5P_Controller
 
 	function action_files($input)
 	{
-		print 'TODO';
+		$files_directory = \H5P_H5PTiki::$h5p_path;
+
+		// Get Content ID for upload
+		$contentId = $input->contentId->int();
+
+		$file = new \H5peditorFile(\H5P_H5PTiki::get_h5p_instance('interface'));
+		if (!$file->isLoaded()) {
+			H5PCore::ajaxError(tr('File not found on server. Check file upload settings.'));
+			exit;
+		}
+
+		// Make sure file is valid
+		if ($file->validate()) {
+			$core = \H5P_H5PTiki::get_h5p_instance('core');
+
+			// Save the valid file
+			$file_id = $core->fs->saveFile($file, $contentId);
+
+			// Keep track of temporary files so they can be cleaned up later.
+			TikiDb::get()->table('tiki_h5p_tmpfiles')->insert(array(
+				'path' => $file_id,
+				'created_at' => time()
+			));
+		}
+
+		header('Cache-Control: no-cache');
+		$file->printResult();
 		exit;
 	}
 }

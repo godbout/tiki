@@ -63,30 +63,14 @@ AND hlt.`language_code` = ?',
 		return empty($translation->result) ? FALSE : $translation->result[0]->translation;
 	}
 
-
-	/**
-	 * TODO
-	 */
-	public function addTmpFile($file) {
-	
-	}
-
 	/**
 	 * "Callback" for mark the given file as a permanent file.
 	 * Used when saving content that has new uploaded files.
 	 *
 	 * @param int $fileid
 	 */
-	public function keepFile($oldPath, $newPath) {
-		// TODO: We must find a way to track temporary files (images etc. that are uploaded while editing)
-		//TikiDb::get()->query('DELETE FROM `tiki_h5p_tmpfiles` WHERE `path` = ?', $fileId);
-	}
-
-	/**
-	 * TODO
-	 */
-	public function removeFile($path) {
-
+	public function keepFile($fileId) {
+		TikiDb::get()->query('DELETE FROM `tiki_h5p_tmpfiles` WHERE `path` = ?', $fileId);
 	}
 
 	/**

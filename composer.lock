@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "14873c5e077c0f3362cd3585fda25c18",
+    "content-hash": "65dd0bf2cc66e870f8a46d94094017ec",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -622,17 +622,17 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.9.1",
+            "version": "v4.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "de82f9845f2a0f9f27abec67d6a4958427e6f5d6"
+                "reference": "6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ezyang/htmlpurifier/ezyang-htmlpurifier-de82f9845f2a0f9f27abec67d6a4958427e6f5d6-zip-f74a64.zip",
-                "reference": "de82f9845f2a0f9f27abec67d6a4958427e6f5d6",
-                "shasum": "39e062d61a9aa67b6d6c52e93ae8f20f5c276dbc"
+                "url": "https://composer.tiki.org/dist/ezyang/htmlpurifier/ezyang-htmlpurifier-6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4-zip-8546c8.zip",
+                "reference": "6d50e5282afdfdfc3e0ff6d192aff56c5629b3d4",
+                "shasum": "b54dcda6ca6e53ff923746fef699d605613180c2"
             },
             "require": {
                 "php": ">=5.2"
@@ -665,7 +665,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2017-03-08T08:22:36+00:00"
+            "time": "2017-03-13T06:30:53+00:00"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -760,16 +760,16 @@
         },
         {
             "name": "h5p/h5p-core",
-            "version": "1.13.0",
+            "version": "dev-stable",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
-                "reference": "e02df35bb1752f87bd6fe742c4fcc167299c6155"
+                "reference": "bdf60a943d61e08ed6382ecc298d3ba5998e22a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/e02df35bb1752f87bd6fe742c4fcc167299c6155",
-                "reference": "e02df35bb1752f87bd6fe742c4fcc167299c6155",
+                "url": "https://api.github.com/repos/h5p/h5p-php-library/zipball/bdf60a943d61e08ed6382ecc298d3ba5998e22a9",
+                "reference": "bdf60a943d61e08ed6382ecc298d3ba5998e22a9",
                 "shasum": ""
             },
             "require": {
@@ -812,20 +812,20 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-01-26T09:37:26+00:00"
+            "time": "2017-02-23T10:18:59+00:00"
         },
         {
             "name": "h5p/h5p-editor",
-            "version": "1.12.0",
+            "version": "dev-stable",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-editor-php-library.git",
-                "reference": "f5818eb383b4fc5fd511c9a914fcbb8777d78945"
+                "reference": "1880ae7eb5b088c607ca1fc298b55be6e230a0c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/f5818eb383b4fc5fd511c9a914fcbb8777d78945",
-                "reference": "f5818eb383b4fc5fd511c9a914fcbb8777d78945",
+                "url": "https://api.github.com/repos/h5p/h5p-editor-php-library/zipball/1880ae7eb5b088c607ca1fc298b55be6e230a0c7",
+                "reference": "1880ae7eb5b088c607ca1fc298b55be6e230a0c7",
                 "shasum": ""
             },
             "require": {
@@ -867,7 +867,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-01-16T06:36:32+00:00"
+            "time": "2017-03-06T09:07:11+00:00"
         },
         {
             "name": "jcapture-applet/jcapture-applet",
@@ -1470,17 +1470,17 @@
         },
         {
             "name": "onelogin/php-saml",
-            "version": "2.10.4",
+            "version": "2.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onelogin/php-saml.git",
-                "reference": "e1d6b8dc2e6abea3185b59da8b52002eb7dc9a87"
+                "reference": "3319d7707f342e38291eee6b01a4a5f8df1b333b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/onelogin/php-saml/onelogin-php-saml-e1d6b8dc2e6abea3185b59da8b52002eb7dc9a87-zip-1d854a.zip",
-                "reference": "e1d6b8dc2e6abea3185b59da8b52002eb7dc9a87",
-                "shasum": "0a9ab7638a498117fb0945f019bf3063c44381e5"
+                "url": "https://composer.tiki.org/dist/onelogin/php-saml/onelogin-php-saml-3319d7707f342e38291eee6b01a4a5f8df1b333b-zip-4e6fca.zip",
+                "reference": "3319d7707f342e38291eee6b01a4a5f8df1b333b",
+                "shasum": "da4d7bb7a9ed33f75be91ef719486378fdaf689d"
             },
             "require": {
                 "ext-dom": "*",
@@ -1520,7 +1520,7 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2017-02-28T18:37:39+00:00"
+            "time": "2017-03-13T09:56:49+00:00"
         },
         {
             "name": "openannotation/annotator",
@@ -2270,7 +2270,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4313,9 +4313,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bafs-testify-52dda3459096976689d255d44250c6f8f30e62a0-zip-faf2a3.zip",
+                "url": "https://composer.tiki.org/dist/bafs/testify/bafs-testify-52dda3459096976689d255d44250c6f8f30e62a0-zip-faf2a3.zip",
                 "reference": "52dda3459096976689d255d44250c6f8f30e62a0",
-                "shasum": "3b1d858982e72740deebab7a8aee0a120f150c11"
+                "shasum": "6cb07bb5364d4e53f5d77a177bed9fc31e8ecbce"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -4348,9 +4348,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/doctrine-instantiator-8e884e78f9f0eb1329e445619e04456e64d8051d-zip-681b88.zip",
+                "url": "https://composer.tiki.org/dist/doctrine/instantiator/doctrine-instantiator-8e884e78f9f0eb1329e445619e04456e64d8051d-zip-681b88.zip",
                 "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
-                "shasum": "9600c30f4e1c01c19fef7b9b5e7d0020bb76ff10"
+                "shasum": "931e30a43d6d45df20fbb50e5ee469986e4c8f98"
             },
             "require": {
                 "php": ">=5.3,<8.0-DEV"
@@ -4402,9 +4402,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mikey179-vfsstream-fc0fe8f4d0b527254a2dc45f0c265567c881d07e-zip-a90953.zip",
+                "url": "https://composer.tiki.org/dist/mikey179/vfsstream/mikey179-vfsstream-fc0fe8f4d0b527254a2dc45f0c265567c881d07e-zip-a90953.zip",
                 "reference": "fc0fe8f4d0b527254a2dc45f0c265567c881d07e",
-                "shasum": "8eda639de7fa5ca5067a49bbc518ecd4b94ca934"
+                "shasum": "e4bdf8a59a3586882e2a299c6356ea734572da4b"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -4432,9 +4432,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/myclabs-deep-copy-5a5a9fc8025a08d8919be87d6884d5a92520cefe-zip-c650ed.zip",
+                "url": "https://composer.tiki.org/dist/myclabs/deep-copy/myclabs-deep-copy-5a5a9fc8025a08d8919be87d6884d5a92520cefe-zip-c650ed.zip",
                 "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe",
-                "shasum": "088c35fb2466af8aae5927d69b31b7836029a9af"
+                "shasum": "3575e2d801c597b21a290ba6863bdfe1b4ed5761"
             },
             "require": {
                 "php": ">=5.4.0"
@@ -4474,9 +4474,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpdocumentor-reflection-common-144c307535e82c8fdcaacbcfc1d6d8eeb896687c-zip-c3be2d.zip",
+                "url": "https://composer.tiki.org/dist/phpdocumentor/reflection-common/phpdocumentor-reflection-common-144c307535e82c8fdcaacbcfc1d6d8eeb896687c-zip-c3be2d.zip",
                 "reference": "144c307535e82c8fdcaacbcfc1d6d8eeb896687c",
-                "shasum": "e131543cafdf0e40339344ae64e877ebd55dcc8d"
+                "shasum": "39830abf3670fadfa5d2f3b8f08bb491f5a87475"
             },
             "require": {
                 "php": ">=5.5"
@@ -4528,9 +4528,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpdocumentor-reflection-docblock-8331b5efe816ae05461b7ca1e721c01b46bafb3e-zip-319752.zip",
+                "url": "https://composer.tiki.org/dist/phpdocumentor/reflection-docblock/phpdocumentor-reflection-docblock-8331b5efe816ae05461b7ca1e721c01b46bafb3e-zip-319752.zip",
                 "reference": "8331b5efe816ae05461b7ca1e721c01b46bafb3e",
-                "shasum": "718439e06ae4b3eb70bfc47ceacd61c09f9e1770"
+                "shasum": "c9a7dd5821996114e1106e93d8fcc50f31440a8d"
             },
             "require": {
                 "php": ">=5.5",
@@ -4573,9 +4573,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpdocumentor-type-resolver-e224fb2ea2fba6d3ad6fdaef91cd09a172155ccb-zip-e5468a.zip",
+                "url": "https://composer.tiki.org/dist/phpdocumentor/type-resolver/phpdocumentor-type-resolver-e224fb2ea2fba6d3ad6fdaef91cd09a172155ccb-zip-e5468a.zip",
                 "reference": "e224fb2ea2fba6d3ad6fdaef91cd09a172155ccb",
-                "shasum": "240b775c5c367841197785afbfa80e747a42cb8b"
+                "shasum": "37e7328fcbcc6cfed421c50b6fa8eb300fedba82"
             },
             "require": {
                 "php": ">=5.5",
@@ -4683,9 +4683,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-dbunit-5c35d74549c21ba55d0ea74ba89d191a51f8cf25-zip-00f3ea.zip",
+                "url": "https://composer.tiki.org/dist/phpunit/dbunit/phpunit-dbunit-5c35d74549c21ba55d0ea74ba89d191a51f8cf25-zip-00f3ea.zip",
                 "reference": "5c35d74549c21ba55d0ea74ba89d191a51f8cf25",
-                "shasum": "7d64dd296d8e266e095fbe8376d6851a93fd86f9"
+                "shasum": "c59b57011cf3de715fdf7c3c762a8e7b4cf63df7"
             },
             "require": {
                 "ext-pdo": "*",
@@ -4801,9 +4801,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-php-file-iterator-3cc8f69b3028d0f96a9078e6295d86e9bf019be5-zip-184bc9.zip",
+                "url": "https://composer.tiki.org/dist/phpunit/php-file-iterator/phpunit-php-file-iterator-3cc8f69b3028d0f96a9078e6295d86e9bf019be5-zip-184bc9.zip",
                 "reference": "3cc8f69b3028d0f96a9078e6295d86e9bf019be5",
-                "shasum": "c37edfa89c213814606b2c8974df746b71cb9c98"
+                "shasum": "9ad4912e64e8563d75bff3ae77bc5df15abcd8ef"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -4848,9 +4848,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-php-text-template-31f8b717e51d9a2afca6c9f046f5d69fc27c8686-zip-c6bcbd.zip",
+                "url": "https://composer.tiki.org/dist/phpunit/php-text-template/phpunit-php-text-template-31f8b717e51d9a2afca6c9f046f5d69fc27c8686-zip-c6bcbd.zip",
                 "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
-                "shasum": "e0435bbd6bafe704614357d644a37353ff4b7e61"
+                "shasum": "d28d6290e6a416a17c003a2193af4339ae7dc199"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -4979,17 +4979,17 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.15",
+            "version": "5.7.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5"
+                "reference": "dafc78e2a7d12139b0e97078d1082326bd09363d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-b99112aecc01f62acf3d81a3f59646700a1849e5-zip-241c4c.zip",
-                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5",
-                "shasum": "e1347d123113804330c90d7de39d7c0035c6348f"
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-dafc78e2a7d12139b0e97078d1082326bd09363d-zip-be315f.zip",
+                "reference": "dafc78e2a7d12139b0e97078d1082326bd09363d",
+                "shasum": "a87f916a708ee5a6ac4f5c544e6ce5abdd07c0fc"
             },
             "require": {
                 "ext-dom": "*",
@@ -5057,7 +5057,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-02T15:22:43+00:00"
+            "time": "2017-03-15T13:02:34+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -5069,9 +5069,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-phpunit-mock-objects-3ab72b65b39b491e0c011e2e09bb2206c2aa8e24-zip-3b7026.zip",
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit-mock-objects/phpunit-phpunit-mock-objects-3ab72b65b39b491e0c011e2e09bb2206c2aa8e24-zip-3b7026.zip",
                 "reference": "3ab72b65b39b491e0c011e2e09bb2206c2aa8e24",
-                "shasum": "0f8e8c6ca6d72bed098016b8cd6c11ee4a993bb1"
+                "shasum": "2b2def7a5a9af09f3c2c1fe38ccf419561ce3716"
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
@@ -5128,9 +5128,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit-phpunit-selenium-343ba4e389ad97046c78fb2c7111e199795e7a80-zip-b7c8ca.zip",
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit-selenium/phpunit-phpunit-selenium-343ba4e389ad97046c78fb2c7111e199795e7a80-zip-b7c8ca.zip",
                 "reference": "343ba4e389ad97046c78fb2c7111e199795e7a80",
-                "shasum": "0c36941dfa4589ea2adae94ed6226969ae2a0cc6"
+                "shasum": "10ac98a7e9afa8fe1bb26f6d5e2825e0fad16ece"
             },
             "require": {
                 "ext-curl": "*",
@@ -5241,9 +5241,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-comparator-2b7424b55f5047b47ac6e5ccb20b2aea4011d9be-zip-5c4a53.zip",
+                "url": "https://composer.tiki.org/dist/sebastian/comparator/sebastian-comparator-2b7424b55f5047b47ac6e5ccb20b2aea4011d9be-zip-5c4a53.zip",
                 "reference": "2b7424b55f5047b47ac6e5ccb20b2aea4011d9be",
-                "shasum": "e2a1e525baf80cf186d1b12ddb8b5a5093a241f7"
+                "shasum": "ebde29dc315dacf2c7b73caf8613e655f63a979e"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -5305,9 +5305,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-diff-13edfd8706462032c2f52b4b862974dd46b71c9e-zip-13c115.zip",
+                "url": "https://composer.tiki.org/dist/sebastian/diff/sebastian-diff-13edfd8706462032c2f52b4b862974dd46b71c9e-zip-13c115.zip",
                 "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e",
-                "shasum": "0f7a90213dfc84562da0826e01a8a87941a92484"
+                "shasum": "727d57aadde2f1a352d37d62871b3f9e33349170"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5357,9 +5357,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-environment-5795ffe5dc5b02460c3e34222fee8cbe245d8fac-zip-f320b8.zip",
+                "url": "https://composer.tiki.org/dist/sebastian/environment/sebastian-environment-5795ffe5dc5b02460c3e34222fee8cbe245d8fac-zip-f320b8.zip",
                 "reference": "5795ffe5dc5b02460c3e34222fee8cbe245d8fac",
-                "shasum": "fec60744f18ac55af6394695f6620ecbe8a3478d"
+                "shasum": "49f52a7be18894f3a78d66c52ce03bb94a8d9876"
             },
             "require": {
                 "php": "^5.6 || ^7.0"
@@ -5407,9 +5407,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-exporter-ce474bdd1a34744d7ac5d6aad3a46d48d9bac4c4-zip-72608d.zip",
+                "url": "https://composer.tiki.org/dist/sebastian/exporter/sebastian-exporter-ce474bdd1a34744d7ac5d6aad3a46d48d9bac4c4-zip-72608d.zip",
                 "reference": "ce474bdd1a34744d7ac5d6aad3a46d48d9bac4c4",
-                "shasum": "aa1c8bfcb0f01ff8e1f4dcaf8c87ec6e13fde76b"
+                "shasum": "3056f54be3e2e8a4ef9c415851d8027722923d0b"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -5474,9 +5474,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-global-state-bc37d50fea7d017d3d340f230811c9f1d7280af4-zip-c4abec.zip",
+                "url": "https://composer.tiki.org/dist/sebastian/global-state/sebastian-global-state-bc37d50fea7d017d3d340f230811c9f1d7280af4-zip-c4abec.zip",
                 "reference": "bc37d50fea7d017d3d340f230811c9f1d7280af4",
-                "shasum": "1e1c757ffecfe527293c974c4f4d56cb20a00321"
+                "shasum": "83f4bd6f3da0a9090227043ab7b5bf8822c7d08e"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5571,9 +5571,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-recursion-context-2c3ba150cbec723aa057506e73a8d33bdb286c9a-zip-567089.zip",
+                "url": "https://composer.tiki.org/dist/sebastian/recursion-context/sebastian-recursion-context-2c3ba150cbec723aa057506e73a8d33bdb286c9a-zip-567089.zip",
                 "reference": "2c3ba150cbec723aa057506e73a8d33bdb286c9a",
-                "shasum": "eb112f683ad43a72017e723d7746b84a67680402"
+                "shasum": "3de6636b688380fd953275d1981cf91f1b90bae2"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5624,9 +5624,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-resource-operations-ce990bb21759f94aeafd30209e8cfcdfa8bc3f52-zip-4a3a08.zip",
+                "url": "https://composer.tiki.org/dist/sebastian/resource-operations/sebastian-resource-operations-ce990bb21759f94aeafd30209e8cfcdfa8bc3f52-zip-4a3a08.zip",
                 "reference": "ce990bb21759f94aeafd30209e8cfcdfa8bc3f52",
-                "shasum": "1e12541717ac3462ad03addc33022dcb12f2ec2b"
+                "shasum": "831cfdb145982db883686da55acd8a97456f2616"
             },
             "require": {
                 "php": ">=5.6.0"
@@ -5666,9 +5666,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sebastian-version-99732be0ddb3361e16ad77b68ba41efc8e979019-zip-0eee83.zip",
+                "url": "https://composer.tiki.org/dist/sebastian/version/sebastian-version-99732be0ddb3361e16ad77b68ba41efc8e979019-zip-0eee83.zip",
                 "reference": "99732be0ddb3361e16ad77b68ba41efc8e979019",
-                "shasum": "3723bb4bdcb09d024f9f9f53781107f21c1fdd76"
+                "shasum": "4870c9f83561a460849a0bbf8180f9ec78999c94"
             },
             "require": {
                 "php": ">=5.6"
@@ -5709,9 +5709,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/webmozart-assert-2db61e59ff05fe5126d152bd0655c9ea113e550f-zip-36e9ad.zip",
+                "url": "https://composer.tiki.org/dist/webmozart/assert/webmozart-assert-2db61e59ff05fe5126d152bd0655c9ea113e550f-zip-36e9ad.zip",
                 "reference": "2db61e59ff05fe5126d152bd0655c9ea113e550f",
-                "shasum": "e5ea846fb4e32388f7975fbbe20a31289e9993ff"
+                "shasum": "af9e5cca5aa2afa46164ce026aaeb80f154707a8"
             },
             "require": {
                 "php": "^5.3.3 || ^7.0"
@@ -5753,6 +5753,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "h5p/h5p-core": 20,
+        "h5p/h5p-editor": 20,
         "jcapture-applet/jcapture-applet": 20,
         "zendframework/zendsearch": 5,
         "bafs/testify": 20
