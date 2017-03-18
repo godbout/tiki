@@ -36,6 +36,7 @@ class CleanVendorAfterVendorBundledMigration
 		 */
 
 		$io = $event->getIO();
+		$fs = new FileSystem();
 
 		$rootFolder = realpath(__DIR__.'/../../../../');
 		$oldVendorFolder = realpath($rootFolder.'/vendor');
@@ -52,7 +53,7 @@ class CleanVendorAfterVendorBundledMigration
 					|| $filePath === false // target don't exists, so link is broken
 					|| strncmp($fileRealPath, $oldVendorFolder, strlen($oldVendorFolder)) === 0 // still pointing to old vendor folder
 				) {
-					unlink($filePath);
+					$fs->unlink($filePath);
 				}
 			}
 		}
@@ -84,14 +85,26 @@ class CleanVendorAfterVendorBundledMigration
 		}
 
 		// 3) If there is no composer.json in the root, clean all folders and autoload.php in the vendor folder
-		$fs = new FileSystem();
 
 		$fs->remove($oldVendorFolder.'/autoload.php');
 
+		$vendorDirsCleaned = false;
 		$vendorDirs = glob($oldVendorFolder.'/*', GLOB_ONLYDIR);
 		foreach ($vendorDirs as $dir) {
 			if (is_dir($dir)) {
 				$fs->remove($dir);
+				$vendorDirsCleaned = true;
+			}
+		}
+
+		if ($vendorDirsCleaned){
+			// there are some cached templates that will stop tiki to work after the migration
+			$loopDirs = array_merge([$rootFolder . '/temp/templates_c'], glob($rootFolder . '/temp/templates_c/*',GLOB_ONLYDIR));
+			foreach($loopDirs as $dir){
+				$cachedTemplates = glob($dir . '/*.tpl.php');
+				foreach($cachedTemplates as $template){
+					$fs->remove($template);
+				}
 			}
 		}
 	}
