@@ -170,14 +170,16 @@
 		"post-install-cmd": [
 			"Tiki\\Composer\\ThemeInstaller::setup",
 			"Tiki\\Composer\\BootstrapCompiler::build",
-			"Tiki\\Composer\\CleanVendors::clean"
+			"Tiki\\Composer\\CleanVendors::clean",
+			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean"
 		],
 		"pre-update-cmd": [
 			"Tiki\\Composer\\ThemeInstaller::setup"
 		],
 		"post-update-cmd": [
 			"Tiki\\Composer\\BootstrapCompiler::build",
-			"Tiki\\Composer\\CleanVendors::clean"
+			"Tiki\\Composer\\CleanVendors::clean",
+			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean"
 		]
 	},
 	"repositories": [

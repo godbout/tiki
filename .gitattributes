@@ -2835,6 +2835,7 @@ lib/core/Tiki/Command/UsersListCommand.php -text
 lib/core/Tiki/Command/UsersPasswordCommand.php -text
 lib/core/Tiki/Command/index.php -text
 lib/core/Tiki/Composer/BootstrapCompiler.php -text
+lib/core/Tiki/Composer/CleanVendorAfterVendorBundledMigration.php -text
 lib/core/Tiki/Composer/CleanVendors.php -text
 lib/core/Tiki/Composer/ThemeInstaller.php -text
 lib/core/Tiki/Composer/index.php -text
