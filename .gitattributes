@@ -6,7 +6,6 @@
 addons/index.php -text
 admin/.htaccess -text
 admin/include_articles.php -text
-admin/include_calendar.php -text
 admin/include_category.php -text
 admin/include_connect.php -text
 admin/include_features.php -text
