@@ -2404,7 +2404,10 @@ lib/core/Reports/Send/index.php -text
 lib/core/Reports/Users.php -text
 lib/core/Reports/index.php -text
 lib/core/Scheduler/Item.php -text
+lib/core/Scheduler/Task/CommandTask.php -text
 lib/core/Scheduler/Task/ConsoleCommandTask.php -text
+lib/core/Scheduler/Task/HTTPGetCommandTask.php -text
+lib/core/Scheduler/Task/ShellCommandTask.php -text
 lib/core/Search/Action/Action.php -text
 lib/core/Search/Action/ActionStep.php -text
 lib/core/Search/Action/ChangeStatusAction.php -text
@@ -4031,6 +4034,7 @@ lib/smarty_tiki/function.redirect.php -text
 lib/smarty_tiki/function.reindex_file_pixel.php -text
 lib/smarty_tiki/function.rss.php -text
 lib/smarty_tiki/function.sameurl.php -text
+lib/smarty_tiki/function.scheduler_params.php -text
 lib/smarty_tiki/function.sefurl.php -text
 lib/smarty_tiki/function.select_all.php -text
 lib/smarty_tiki/function.service.php -text
