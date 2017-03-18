@@ -27,7 +27,9 @@ class CleanVendorAfterVendorBundledMigration
 	 */
 	public static function clean(Event $event)
 	{
+
 		/*
+		 * 0) Make sure old bin links are removed so they can be created by composer
 		 * 1) If a file called do_not_clean.txt exists in the vendor folder stop
 		 * 2) If there is a composer.json file, warn the user that they might need to clean the folder by themselves
 		 * 3) If there is no composer.json in the root, clean all folders and autoload.php in the vendor folder
@@ -38,7 +40,25 @@ class CleanVendorAfterVendorBundledMigration
 		$rootFolder = realpath(__DIR__.'/../../../../');
 		$oldVendorFolder = realpath($rootFolder.'/vendor');
 
-		if ($rootFolder === false || $oldVendorFolder === false || !is_dir($oldVendorFolder)) {
+		// 0) Make sure we can install known bin files (they might be still linked to the old vendor folder
+		$binFiles = ['lessc', 'minifycss', 'minifyjs', 'dbunit', 'phpunit'];
+
+		foreach ($binFiles as $file) {
+			$filePath = $rootFolder.'/bin/'.$file;
+			if (is_link($filePath)) {
+				$linkDestination = readlink($filePath);
+				$fileRealPath = realpath($filePath);
+				if ( strncmp($linkDestination, '../vendor/', strlen('../vendor/')) === 0 // relative link to vendor folder
+					|| $filePath === false // target don't exists, so link is broken
+					|| strncmp($fileRealPath, $oldVendorFolder, strlen($oldVendorFolder)) === 0 // still pointing to old vendor folder
+				) {
+					unlink($filePath);
+				}
+			}
+		}
+
+		// if we cant find the vendor dir no sense in progressing
+		if ($oldVendorFolder === false || !is_dir($oldVendorFolder)) {
 			return;
 		}
 
