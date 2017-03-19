@@ -4864,7 +4864,6 @@ lib/wizard/pages/admin_editor_type.php -text
 lib/wizard/pages/admin_features.php -text
 lib/wizard/pages/admin_files.php -text
 lib/wizard/pages/admin_files_storage.php -text
-lib/wizard/pages/admin_jcapture.php -text
 lib/wizard/pages/admin_language.php -text
 lib/wizard/pages/admin_login.php -text
 lib/wizard/pages/admin_look_and_feel.php -text
@@ -5361,8 +5360,6 @@ templates/goal/show_list.tpl -text
 templates/header.tpl -text
 templates/index.php -text
 templates/interactive_translation_box.tpl -text
-templates/jcapture/capture.tpl -text
-templates/jcapture/index.php -text
 templates/kaltura/index.php -text
 templates/kaltura/list.tpl -text
 templates/kaltura/upload.tpl -text
@@ -6393,7 +6390,6 @@ templates/wizard/admin_editor_type.tpl -text
 templates/wizard/admin_features.tpl -text
 templates/wizard/admin_files.tpl -text
 templates/wizard/admin_files_storage.tpl -text
-templates/wizard/admin_jcapture.tpl -text
 templates/wizard/admin_language.tpl -text
 templates/wizard/admin_login.tpl -text
 templates/wizard/admin_look_and_feel.tpl -text
