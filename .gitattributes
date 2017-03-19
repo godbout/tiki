@@ -2633,6 +2633,7 @@ lib/core/Services/ContentTemplate/index.php -text
 lib/core/Services/Draw/Controller.php -text
 lib/core/Services/Draw/index.php -text
 lib/core/Services/Edit/Controller.php -text
+lib/core/Services/Edit/ListPluginHelper.php -text
 lib/core/Services/Edit/PluginController.php -text
 lib/core/Services/Edit/SemaphoreController.php -text
 lib/core/Services/Edit/index.php -text
@@ -3326,6 +3327,8 @@ lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/multilike.js -text
 lib/jquery_tiki/mustread.js -text
 lib/jquery_tiki/pdf.js -text
+lib/jquery_tiki/pluginedit.js -text
+lib/jquery_tiki/pluginedit_list.js -text
 lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tablesorter.js -text
 lib/jquery_tiki/tiki-admin.js -text
@@ -3336,7 +3339,6 @@ lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery_upload.js -text
 lib/jquery_tiki/tiki-maps-ol3.js -text
 lib/jquery_tiki/tiki-maps.js -text
-lib/jquery_tiki/tiki-pluginedit.js -text
 lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
 lib/jquery_tiki/tiki-workspace-ui.js -text
