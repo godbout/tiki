@@ -17,7 +17,6 @@ admin/include_i18n.php -text
 admin/include_intertiki.php -text
 admin/include_login.php -text
 admin/include_look.php -text
-admin/include_maps.php -text
 admin/include_performance.php -text
 admin/include_profiles.php -text
 admin/include_rating.php -text
