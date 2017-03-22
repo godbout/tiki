@@ -1944,6 +1944,7 @@ installer/schema/20170218_schedulers_menu_tiki.sql -text
 installer/schema/20170305_webservices_menu_tiki.sql -text
 installer/schema/20170307_kill_wikilingo_tiki.sql -text
 installer/schema/20170319_kill_jcapture_tiki.sql -text
+installer/schema/20170322_fix_allocate_memory_prefs_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
