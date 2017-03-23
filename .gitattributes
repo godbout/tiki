@@ -2801,6 +2801,7 @@ lib/core/Tiki/Command/ProfileExport/AllModules.php -text
 lib/core/Tiki/Command/ProfileExport/Article.php -text
 lib/core/Tiki/Command/ProfileExport/ArticleTopic.php -text
 lib/core/Tiki/Command/ProfileExport/ArticleType.php -text
+lib/core/Tiki/Command/ProfileExport/Calendar.php -text
 lib/core/Tiki/Command/ProfileExport/Category.php -text
 lib/core/Tiki/Command/ProfileExport/FileGallery.php -text
 lib/core/Tiki/Command/ProfileExport/Finalize.php -text
