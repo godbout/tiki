@@ -31,7 +31,7 @@ function prefs_h5p_list()
 		],
 		'h5p_track_user' => [
 			'name' => tra('H5P Tracker User'),
-			'description' => tra('TODO'),
+			'description' => tra('Store H5P results'),
 			'dependencies' => [
 				'h5p_enabled',
 			],
@@ -59,6 +59,26 @@ function prefs_h5p_list()
 			'filter' => 'int',
 			'profile_reference' => 'file_gallery',
 			'default' => 1,
+		],
+		'h5p_save_content_state' => [
+			'name' => tra('Store user state'),
+			'description' => tra('Allows users to resume at the point they last got to'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'n',
+		],
+		'h5p_save_content_frequency' => [
+			'name' => tr('Save Frequency'),
+			'description' => tr('How often to update user data.'),
+			'dependencies' => [
+				'h5p_save_content_state',
+			],
+			'type' => 'text',
+			'filter' => 'int',
+			'default' => 60,
 		],
 	];
 }

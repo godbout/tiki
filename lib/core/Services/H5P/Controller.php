@@ -70,6 +70,7 @@ class Services_H5P_Controller
 			$html .= smarty_function_button([
 				'href' => TikiLib::lib('service')->getUrl(['controller' => 'h5p', 'action' => 'edit', 'fileId' => $fileId]),
 				'_text' => tra('Edit'),
+//				'_onclick' => '$(this).clickModal({title: \'Edit ' . $content['title'] . '\',success: function () {location = location.href}}); return false;',
 			], $smarty);
 
 		}
@@ -96,7 +97,7 @@ class Services_H5P_Controller
 
 		} else {
 			$content = array(
-				'disable' => H5PCore::DISABLE_NONE
+				'disable' => H5PCore::DISABLE_NONE,
 			);
 		}
 
@@ -127,7 +128,7 @@ class Services_H5P_Controller
 					return [
 						'FORWARD' => [
 							'controller' => 'h5p',
-							'action' => 'edit'
+							'action' => 'edit',
 						]];
 					break;
 			}
@@ -136,12 +137,11 @@ class Services_H5P_Controller
 		if (! empty($content['id'])) {
 			// Log editing of content
 			new H5P_Event('content', 'edit',
-					$content['id'],
-					$input->title->text(),
-					$content['library']['name'],
-					$content['library']['majorVersion'] . '.' . $content['library']['minorVersion']);
-		}
-		else {
+				$content['id'],
+				$input->title->text(),
+				$content['library']['name'],
+				$content['library']['majorVersion'] . '.' . $content['library']['minorVersion']);
+		} else {
 			// Log creation of new content (form opened)
 			new H5P_Event('content', 'new');
 		}
@@ -151,12 +151,22 @@ class Services_H5P_Controller
 
 		// Prepare for template
 		$core = \H5P_H5PTiki::get_h5p_instance('core');
+		if (empty($content['library'])) {
+			$library = empty($input->library->text()) ? 0 : $input->library->text();
+		} else {
+			$library = H5PCore::libraryToString($content['library']);
+		}
+		if (empty($content['params'])) {
+			$parameters = empty($input->parameters->xss()) ? '{}' : $input->parameters->xss();
+		} else {
+			$parameters = $core->filterParameters($content);
+		}
 		return [
 			'loading' => tr('Waiting for javascript...'),
 			'fileId' => $fileId,
 			'title' => empty($content['title']) ? '' : $content['title'],
-			'library' => empty($content['library']) ? (empty($input->library->text()) ? 0 : $input->library->text()) : H5PCore::libraryToString($content['library']),
-			'parameters' => empty($content['params']) ? (empty($input->parameters->xss()) ? '{}' : $input->parameters->xss()) : $core->filterParameters($content)
+			'library' => $library,
+			'parameters' => $parameters,
 		];
 	}
 
@@ -185,10 +195,9 @@ class Services_H5P_Controller
 
 			// Log library load
 			new H5P_Event('library', NULL,
-					NULL, NULL,
-					$name, $major_version . '.' . $minor_version);
-		}
-		else {
+				NULL, NULL,
+				$name, $major_version . '.' . $minor_version);
+		} else {
 			print $editor->getLibraries();
 		}
 
@@ -203,7 +212,7 @@ class Services_H5P_Controller
 		$contentId = $input->contentId->int();
 
 		$file = new \H5peditorFile(\H5P_H5PTiki::get_h5p_instance('interface'));
-		if (!$file->isLoaded()) {
+		if (! $file->isLoaded()) {
 			H5PCore::ajaxError(tr('File not found on server. Check file upload settings.'));
 			exit;
 		}
@@ -218,7 +227,7 @@ class Services_H5P_Controller
 			// Keep track of temporary files so they can be cleaned up later.
 			TikiDb::get()->table('tiki_h5p_tmpfiles')->insert(array(
 				'path' => $file_id,
-				'created_at' => time()
+				'created_at' => time(),
 			));
 		}
 
@@ -226,4 +235,89 @@ class Services_H5P_Controller
 		$file->printResult();
 		exit;
 	}
+
+	/**
+	 * Handle user results reported by the H5P content.
+	 * @param JitFilter $input
+	 * @return array
+	 * @throws Services_Exception_NotAvailable
+	 */
+	function action_results($input)
+	{
+		global $user;
+
+		$contentId = $input->contentId->int();
+
+		if (! $contentId) {
+			throw new Services_Exception_NotAvailable(tr('H5P Results:') . ' ' . tr('No contentId provided.'));
+		}
+
+		$user_id = TikiLib::lib('user')->get_user_id($user);
+
+		$tiki_h5p_results = TikiDb::get()->table('tiki_h5p_results');
+		$result_id = $tiki_h5p_results->fetchOne(
+			'id',
+			[
+				'user_id' => $user_id,
+				'content_id' => $contentId,
+			]
+		);
+
+		$data = array(
+			'score' => $input->score->int(),
+			'max_score' => $input->maxScore->int(),
+			'opened' => $input->opened->int(),
+			'finished' => $input->finished->int(),
+			'time' => $input->finished->int() - $input->opened->int(),    // is this right?
+		);
+
+		if (! $result_id) {
+			// Insert new results
+			$data['user_id'] = $user_id;
+			$data['content_id'] = $contentId;
+			$tiki_h5p_results->insert($data);
+		} else {
+			// Update existing results
+			$tiki_h5p_results->update($data, ['id' => $result_id]);
+		}
+
+		// Get content info for log
+		$H5PTiki = new H5P_H5PTiki();
+		$content = $H5PTiki->loadContent($contentId);
+
+		// Log view
+		new H5P_Event('results', 'set',
+			$contentId, $content->title,
+			$content->name, $content->major_version . '.' . $content->minor_version);
+
+		return [];
+	}
+
+	/**
+	 * @param JitFilter $input
+	 * @return array
+	 * @throws Services_Exception_NotAvailable
+	 */
+	function action_userdata($input)
+	{
+		global $user;
+
+		$contentId = $input->contentId->int();
+
+		if (! $contentId) {
+			throw new Services_Exception_NotAvailable(tr('H5P User Data:') . ' ' . tr('No contentId provided.'));
+		}
+
+		$data = [
+			'dataType' => $input->dataType->word(),
+			'data' => json_decode($input->data->text(), true),
+			'subContentId' => $input->subContentId->int(),
+			'preload' => $input->preload->int(),
+			'invalidate' => $input->invalidate->int(),
+		]
+		;
+		TikiLib::lib('user')->set_user_preference($user, "h5p_content_$contentId", json_encode($data));
+		return ['data' => $data];
+	}
+
 }

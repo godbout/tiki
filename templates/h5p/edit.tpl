@@ -19,7 +19,7 @@
 				<div class="h5p-create"><div class="h5p-editor">{$loading}</div></div>
 			</div>
 			<br>
-			<div class="form-actions form-wrapper" id="edit-actions">
+			<div class="form-actions form-wrapper submit" id="edit-actions">
 				<input type="submit" id="edit-submit" name="op" value="Save" class="btn btn-primary">
 				<input type="submit" id="edit-delete" name="op" value="Delete" class="btn btn-default confrim">
 			</div>

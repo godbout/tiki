@@ -88,6 +88,20 @@ CREATE TABLE tiki_h5p_tmpfiles (
 	KEY path (path)
 ) ENGINE = MyISAM;
 
+# Keep track of results (contents >-< users)  -> Reusing Action log in Tiki?
+CREATE TABLE tiki_h5p_results (
+	id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	content_id INT UNSIGNED NOT NULL,
+	user_id    INT UNSIGNED NOT NULL,
+	score      INT UNSIGNED NOT NULL,
+	max_score  INT UNSIGNED NOT NULL,
+	opened     INT UNSIGNED NOT NULL,
+	finished   INT UNSIGNED NOT NULL,
+	time       INT UNSIGNED NOT NULL,
+	PRIMARY KEY (id),
+	KEY content_user (content_id, user_id)
+)	ENGINE = MyISAM;
+
 ############## Potentially optional libraries from here downwards- to be re-assessed
 ############## whether they can be integrated/reusing tiki tables or if they need added to Tiki
 

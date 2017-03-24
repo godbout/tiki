@@ -21,6 +21,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	private $tiki_h5p_libraries_cachedassets = null;
 	private $tiki_h5p_libraries_libraries = null;
 	private $tiki_h5p_libraries_languages = null;
+	private $tiki_h5p_results = null;
 
 	public static $h5p_path;
 
@@ -37,6 +38,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		$this->tiki_h5p_libraries_cachedassets = $tikiDb->table('tiki_h5p_libraries_cachedassets');
 		$this->tiki_h5p_libraries_libraries = $tikiDb->table('tiki_h5p_libraries_libraries');
 		$this->tiki_h5p_libraries_languages = $tikiDb->table('tiki_h5p_libraries_languages');
+		$this->tiki_h5p_results = $tikiDb->table('tiki_h5p_results');
 		// possibly others needed?
 
 		self::$h5p_path = 'storage/public';
@@ -683,8 +685,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		$this->tiki_h5p_contents->delete(['id' => $contentId]);
 		$this->deleteLibraryUsage($contentId);
 
-		// TODO: Remove user scores/results
-		//$this->tiki_h5p_results->delete(['content_id' => $contentId]);
+		$this->tiki_h5p_results->delete(['content_id' => $contentId]);
 
 		// TODO: Remove contents user/usage data
 		//$this->tiki_h5p_contents_user_data->delete(['content_id' => $contentId]);

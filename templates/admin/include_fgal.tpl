@@ -324,6 +324,11 @@
 					{preference name='h5p_filegal_id'}
 					{preference name='h5p_whitelist'}
 					{preference name='h5p_dev_mode'}
+					{preference name='h5p_track_user'}
+					{preference name='h5p_save_content_state'}
+					<div class="adminoptionboxchild" id="h5p_save_content_state_childcontainer">
+						{preference name='h5p_save_content_frequency'}
+					</div>
 				</div>
 			</fieldset>
 

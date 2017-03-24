@@ -327,14 +327,12 @@ class H5PLib
 		$settings = array(
 			'baseUrl' => $base_url,
 			'url' => $base_url . \H5P_H5PTiki::$h5p_path,
-			/* TODO tracking and saving
-						 'postUserStatistics' => ($prefs['h5p_track_user'] === 'y') && $userId,
-						'ajax' => array(
-							'setFinished' => 'tiki-ajax_services.php?controller=h5p&action=setFinished',
-							'contentUserData' => 'tiki-ajax_services.php?controller=h5p&action=contents_user_data&content_id=:contentId&data_type=:dataType&sub_content_id=:subContentId',
-						),
-						'saveFreq' => $prefs['h5p_save_content_state'] === 'y' ? $prefs['h5p_save_content_frequency'] : false,
-			*/
+			'postUserStatistics' => ($prefs['h5p_track_user'] === 'y') && $userId,
+			'ajax' => array(
+				'setFinished' => 'tiki-ajax_services.php?controller=h5p&action=results',
+				'contentUserData' => 'tiki-ajax_services.php?controller=h5p&action=userdata&contentId=:contentId&dataType=:dataType&subContentId=:subContentId',
+			),
+			'saveFreq' => $prefs['h5p_save_content_state'] === 'y' ? $prefs['h5p_save_content_frequency'] : false,
 			'siteUrl' => $base_url,
 			'l10n' => array(
 				'H5P' => array(
@@ -519,22 +517,10 @@ class H5PLib
 
 		if ($prefs['h5p_save_content_state'] === 'y' && $userId) {
 
-			$results = TikiDb::get()->table('tiki_h5p_contents_user_data')->fetchAll(
-				[
-					'sub_content_id',
-					'data_id',
-					'data',
-				], [
-					'user_id' => $userId,
-					'content_id' => $content['id'],
-					'preload' => 1,
-				]
-			);
+			$results = json_decode(TikiLib::lib('user')->get_user_preference($user, "h5p_content_{$content['id']}"), true);
 
-			if ($results) {
-				foreach ($results as $result) {
-					$settings['contentUserData'][$result['sub_content_id']][$result['data_id']] = $result['data'];
-				}
+			if (! empty($results['preload'])) {
+					$settings['contentUserData'][$results['subContentId']][$results['dataType']] = json_encode($results['data']);
 			}
 		}
 
