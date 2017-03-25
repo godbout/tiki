@@ -320,4 +320,20 @@ class Services_H5P_Controller
 		return ['data' => $data];
 	}
 
+	function action_list_results ($input) {
+		// tiki_p_admin required for now
+		\Services_Exception_Denied::checkGlobal('admin');
+
+		$results = TikiDb::get()->query('SELECT r.*, c.`title`, c.`file_id`, u.`login`
+FROM `tiki_h5p_results` AS r
+LEFT JOIN `tiki_h5p_contents` AS c ON r.`content_id` = c.`id`
+LEFT JOIN `users_users` AS u ON u.`userId` = r.`user_id`');
+
+		return [
+			'title' => tr('H5P User Results'),
+			'results' => $results->result,
+		];
+
+	}
+
 }
