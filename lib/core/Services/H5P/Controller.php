@@ -316,7 +316,7 @@ class Services_H5P_Controller
 			'invalidate' => $input->invalidate->int(),
 		]
 		;
-		TikiLib::lib('user')->set_user_preference($user, "h5p_content_$contentId", json_encode($data));
+		TikiLib::lib('tiki')->set_user_preference($user, "h5p_content_$contentId", json_encode($data));
 		return ['data' => $data];
 	}
 
