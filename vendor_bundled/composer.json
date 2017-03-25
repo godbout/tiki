@@ -149,7 +149,7 @@
 			"Feed": "../lib/core/",
 			"FutureLink": "../lib/core/",
 			"Yaml": "../lib/core/",
-			"H5P" : "lib/core/"
+			"H5P" : "../lib/core/"
 		},
 		"classmap": [
 			"../vendor_extra/pear/",
@@ -166,7 +166,9 @@
 			"../installer/",
 			"../lib/test",
 			"../lib/webmail",
-			"../lib/stats"
+			"../lib/stats",
+			"vendor/h5p/h5p-core",
+			"vendor/h5p/h5p-editor"
 		]
 	},
 	"scripts": {
