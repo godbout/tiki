@@ -148,7 +148,8 @@
 			"Report": "../lib/core/",
 			"Feed": "../lib/core/",
 			"FutureLink": "../lib/core/",
-			"Yaml": "../lib/core/"
+			"Yaml": "../lib/core/",
+			"H5P" : "lib/core/"
 		},
 		"classmap": [
 			"../vendor_extra/pear/",
