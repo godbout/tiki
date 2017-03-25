@@ -18,7 +18,6 @@ admin/include_i18n.php -text
 admin/include_intertiki.php -text
 admin/include_login.php -text
 admin/include_look.php -text
-admin/include_maps.php -text
 admin/include_performance.php -text
 admin/include_profiles.php -text
 admin/include_rating.php -text
@@ -48,6 +47,7 @@ admin/index.php -text
 /comments.php -text
 /commxmlrpc.php -text
 /composer.json -text
+/composer.json.dist -text
 /composer.lock -text
 /console.php -text
 /contribution.php -text
@@ -1947,6 +1947,8 @@ installer/schema/20170213_footnotearea_tiki.sql -text
 installer/schema/20170218_schedulers_menu_tiki.sql -text
 installer/schema/20170305_webservices_menu_tiki.sql -text
 installer/schema/20170307_kill_wikilingo_tiki.sql -text
+installer/schema/20170319_kill_jcapture_tiki.sql -text
+installer/schema/20170322_fix_allocate_memory_prefs_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2412,7 +2414,10 @@ lib/core/Reports/Send/index.php -text
 lib/core/Reports/Users.php -text
 lib/core/Reports/index.php -text
 lib/core/Scheduler/Item.php -text
+lib/core/Scheduler/Task/CommandTask.php -text
 lib/core/Scheduler/Task/ConsoleCommandTask.php -text
+lib/core/Scheduler/Task/HTTPGetCommandTask.php -text
+lib/core/Scheduler/Task/ShellCommandTask.php -text
 lib/core/Search/Action/Action.php -text
 lib/core/Search/Action/ActionStep.php -text
 lib/core/Search/Action/ChangeStatusAction.php -text
@@ -2637,6 +2642,7 @@ lib/core/Services/ContentTemplate/index.php -text
 lib/core/Services/Draw/Controller.php -text
 lib/core/Services/Draw/index.php -text
 lib/core/Services/Edit/Controller.php -text
+lib/core/Services/Edit/ListPluginHelper.php -text
 lib/core/Services/Edit/PluginController.php -text
 lib/core/Services/Edit/SemaphoreController.php -text
 lib/core/Services/Edit/index.php -text
@@ -2663,8 +2669,6 @@ lib/core/Services/Goal/index.php -text
 lib/core/Services/Group/Controller.php -text
 lib/core/Services/Group/index.php -text
 lib/core/Services/H5P/Controller.php -text
-lib/core/Services/JCapture/Controller.php -text
-lib/core/Services/JCapture/index.php -text
 lib/core/Services/Kaltura/Controller.php -text
 lib/core/Services/Kaltura/index.php -text
 lib/core/Services/Language/Controller.php -text
@@ -2807,6 +2811,7 @@ lib/core/Tiki/Command/ProfileExport/AllModules.php -text
 lib/core/Tiki/Command/ProfileExport/Article.php -text
 lib/core/Tiki/Command/ProfileExport/ArticleTopic.php -text
 lib/core/Tiki/Command/ProfileExport/ArticleType.php -text
+lib/core/Tiki/Command/ProfileExport/Calendar.php -text
 lib/core/Tiki/Command/ProfileExport/Category.php -text
 lib/core/Tiki/Command/ProfileExport/FileGallery.php -text
 lib/core/Tiki/Command/ProfileExport/Finalize.php -text
@@ -2843,6 +2848,7 @@ lib/core/Tiki/Command/UsersListCommand.php -text
 lib/core/Tiki/Command/UsersPasswordCommand.php -text
 lib/core/Tiki/Command/index.php -text
 lib/core/Tiki/Composer/BootstrapCompiler.php -text
+lib/core/Tiki/Composer/CleanVendorAfterVendorBundledMigration.php -text
 lib/core/Tiki/Composer/CleanVendors.php -text
 lib/core/Tiki/Composer/ThemeInstaller.php -text
 lib/core/Tiki/Composer/index.php -text
@@ -3320,8 +3326,6 @@ lib/init/tra.php -text
 lib/init/typography.php -text
 lib/integrator/index.php -text
 lib/integrator/integrator.php -text
-lib/jcapture_tiki/index.php -text
-lib/jcapture_tiki/tiki-jcapture.js -text
 lib/jquery_tiki/autoToc.js -text
 lib/jquery_tiki/customsearch.js -text
 lib/jquery_tiki/elfinder/elFinderVolumeTikiFiles.class.php -text
@@ -3335,6 +3339,8 @@ lib/jquery_tiki/inline_edit.js -text
 lib/jquery_tiki/multilike.js -text
 lib/jquery_tiki/mustread.js -text
 lib/jquery_tiki/pdf.js -text
+lib/jquery_tiki/pluginedit.js -text
+lib/jquery_tiki/pluginedit_list.js -text
 lib/jquery_tiki/social.js -text
 lib/jquery_tiki/tablesorter.js -text
 lib/jquery_tiki/tiki-admin.js -text
@@ -3345,7 +3351,6 @@ lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery_upload.js -text
 lib/jquery_tiki/tiki-maps-ol3.js -text
 lib/jquery_tiki/tiki-maps.js -text
-lib/jquery_tiki/tiki-pluginedit.js -text
 lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
 lib/jquery_tiki/tiki-workspace-ui.js -text
@@ -3583,26 +3588,6 @@ lib/pdflib.php -text
 lib/perspective/binderlib.php -text
 lib/perspective/index.php -text
 lib/perspectivelib.php -text
-lib/phpsec/CHANGELOG.md -text
-lib/phpsec/LICENSE -text
-lib/phpsec/README.md -text
-lib/phpsec/index.php -text
-lib/phpsec/phpsec.class.php -text
-lib/phpsec/phpsec/index.php -text
-lib/phpsec/phpsec/phpsec.cache.php -text
-lib/phpsec/phpsec/phpsec.crypt.php -text
-lib/phpsec/phpsec/phpsec.filter.php -text
-lib/phpsec/phpsec/phpsec.hash.php -text
-lib/phpsec/phpsec/phpsec.otp.php -text
-lib/phpsec/phpsec/phpsec.otpcard.php -text
-lib/phpsec/phpsec/phpsec.pw.php -text
-lib/phpsec/phpsec/phpsec.rand.php -text
-lib/phpsec/phpsec/phpsec.session.php -text
-lib/phpsec/phpsec/phpsec.store.filesystem.php -text
-lib/phpsec/phpsec/phpsec.store.pdo.php -text
-lib/phpsec/phpsec/phpsec.store.php -text
-lib/phpsec/phpsec/phpsec.token.php -text
-lib/phpsec/phpsec/phpsec.yubikey.php -text
 lib/phpseclib_tiki/index.php -text
 lib/phpseclib_tiki/tikisecure.php -text
 lib/polls/index.php -text
@@ -3669,6 +3654,7 @@ lib/prefs/https.php -text
 lib/prefs/ids.php -text
 lib/prefs/image.php -text
 lib/prefs/index.php -text
+lib/prefs/intertiki.php -text
 lib/prefs/ip.php -text
 lib/prefs/javascript.php -text
 lib/prefs/jquery.php -text
@@ -4041,6 +4027,7 @@ lib/smarty_tiki/function.redirect.php -text
 lib/smarty_tiki/function.reindex_file_pixel.php -text
 lib/smarty_tiki/function.rss.php -text
 lib/smarty_tiki/function.sameurl.php -text
+lib/smarty_tiki/function.scheduler_params.php -text
 lib/smarty_tiki/function.sefurl.php -text
 lib/smarty_tiki/function.select_all.php -text
 lib/smarty_tiki/function.service.php -text
@@ -4871,7 +4858,6 @@ lib/wizard/pages/admin_editor_type.php -text
 lib/wizard/pages/admin_features.php -text
 lib/wizard/pages/admin_files.php -text
 lib/wizard/pages/admin_files_storage.php -text
-lib/wizard/pages/admin_jcapture.php -text
 lib/wizard/pages/admin_language.php -text
 lib/wizard/pages/admin_login.php -text
 lib/wizard/pages/admin_look_and_feel.php -text
@@ -5370,8 +5356,6 @@ templates/h5p/embed.tpl -text
 templates/header.tpl -text
 templates/index.php -text
 templates/interactive_translation_box.tpl -text
-templates/jcapture/capture.tpl -text
-templates/jcapture/index.php -text
 templates/kaltura/index.php -text
 templates/kaltura/list.tpl -text
 templates/kaltura/upload.tpl -text
@@ -6402,7 +6386,6 @@ templates/wizard/admin_editor_type.tpl -text
 templates/wizard/admin_features.tpl -text
 templates/wizard/admin_files.tpl -text
 templates/wizard/admin_files_storage.tpl -text
-templates/wizard/admin_jcapture.tpl -text
 templates/wizard/admin_language.tpl -text
 templates/wizard/admin_login.tpl -text
 templates/wizard/admin_look_and_feel.tpl -text
@@ -8033,6 +8016,9 @@ tiki_tests/tikitestslib.php -text
 tiki_tests/web.config -text
 /validate-ajax.php -text
 vendor/.htaccess -text
+vendor_bundled/.htaccess -text
+vendor_bundled/composer.json -text
+vendor_bundled/composer.lock -text
 vendor_extra/anythingslider-themes/css/theme-default1.css -text
 vendor_extra/anythingslider-themes/css/theme-default2.css -text
 vendor_extra/anythingslider-themes/css/theme-mini-dark.css -text

@@ -5,10 +5,10 @@
 		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
 	</span>
 	<div class="media-content">
-        {tr}Set up the Wiki environment{/tr}</br></br></br>
-        {icon name="file-text-o" size=3 iclass="adminWizardIconright"}
+		{tr}Set up the Wiki environment{/tr}</br></br></br>
+		{icon name="file-text-o" size=3 iclass="adminWizardIconright"}
 		<fieldset>
-            <legend>{tr}Wiki environment{/tr}</legend>
+			<legend>{tr}Wiki environment{/tr}</legend>
 
 			<div class="admin clearfix featurelist">
 				{preference name=feature_categories}
@@ -16,7 +16,6 @@
 				<div class="adminoptionboxchild">
 					{tr}See also{/tr} <a href="https://doc.tiki.org/Category" target="_blank">{tr}Category{/tr} @ doc.tiki.org</a>
 				</div>
-				{preference name=feature_jcapture}
 				{preference name=feature_wiki_structure}
 				<div class="adminoptionboxchild">
 					{tr}Look for the <img src="img/icons/camera.png" /> icon in the editor toolbar{/tr}. {tr}Requires Java{/tr}.<br/><a href="https://www.java.com/verify/" target="_blank">{tr}Verify your Java installation{/tr}</a>.<br>

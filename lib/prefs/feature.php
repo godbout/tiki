@@ -24,6 +24,12 @@ function prefs_feature_list($partial = false)
 		}
 	}
 
+	if (isset($prefs['interlist']) && is_array($prefs['interlist'])) {
+		$interlist = array_column($prefs['interlist'], 'name', 'name');
+	}
+	$interlist = !empty($interlist) && is_array($interlist) ? ['' => tr('None')] + $interlist : ['' => tr('None')];
+
+
 	return array(
 		'feature_blog_mandatory_category' => array(
 			'name' =>  tra('Blog:').' '.tra('Limit categorization to within the subtree of'),
@@ -1591,8 +1597,7 @@ function prefs_feature_list($partial = false)
 		),
 		'feature_file_galleries_batch' => array(
 			'name' => tra('Batch uploading'),
-			'description' => tra('Direct import of local files into a file gallery. This method can handle large files. The user can upload files via FTP to the target folder'),
-			'hint' => tra('Use batch uploading to transfer large files to file galleries'),
+			'description' => tra('Direct import of local files into a file gallery. This method can handle large files. The user can upload files via FTP to the target folder. It is highly recommended to use a file directory as the file gallery storage when using this feature.'),
 			'type' => 'flag',
 			'help' => 'Batch+Upload',
 			'default' => 'n',
@@ -2763,17 +2768,6 @@ function prefs_feature_list($partial = false)
 			'warning' => tra('Experimental'),
 			'tags' => array('experimental'),
 		),
-		'feature_jcapture' => array(
-			'name' => tra('jCapture Screencast'),
-			'description' => tra('Use jCapture applet to create screencasts and capture screenshots, store them in a file gallery, and show them directly in a wiki page'),
-			'type' => 'flag',
-			'help' => 'jCapture',
-			'default' => 'n',				// include UI lib for more effects
-			'dependencies' => array(
-				'auth_token_access',
-				'feature_file_galleries',
-			),
-		),
 		'feature_community_send_mail_join' => array(
 			'name' => tra('Send an email notification to group leaders when a user joins'),
 			'type' => 'flag',
@@ -2901,5 +2895,41 @@ function prefs_feature_list($partial = false)
 			'tags' => array('basic'),
 			'default' => 'y',
 		),
+		'feature_intertiki_mymaster' => [
+			'name' => tra('Master Tiki server'),
+			'description' => tra('Master Tiki server that this client will obtain user authorizations from.'),
+			'type' => 'list',
+			'options' => $interlist,
+			'warning' => tra('Overrides manually registered local users'),
+			'default' => '',
+		],
+		'feature_intertiki_import_preferences' => [
+			'name' => tra('Import user preferences'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
+		'feature_intertiki_import_groups' => [
+			'name' => tra('Import user groups'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
+		'feature_intertiki_imported_groups' => [
+			'name' => tra('Limit group import'),
+			'hint' => tra('Comma-separated list of imported groups. Leave empty to avoid limitation.'),
+			'type' => 'text',
+			'filter' => 'text',
+			'default' => '',
+		],
+		'feature_intertiki_sharedcookie' => [
+			'name' => tra('Intertiki shared cookie'),
+			'description' => tra('When enabled a user who logs into or out of either the client or master is automatically logged into or out of all other sites. The remember me login feature must be on.'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
+		'feature_intertiki_server' => [
+			'name' => tra('This site is a master server'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
 	);
 }

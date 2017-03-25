@@ -12,18 +12,18 @@
 
 	<div class="row">
 		<div class="form-group col-lg-12 clearfix">
-			<a role="link" class="btn btn-link" href="tiki-list_file_gallery.php" title="{tr}List{/tr}">
+			<a role="link" class="btn btn-link tips" href="tiki-list_file_gallery.php" title="{tr}File galleries listing{/tr}">
 				{icon name="list"} {tr}File Galleries{/tr}
 			</a>
 			<div class="pull-right">
-				<input type="submit" class="btn btn-primary btn-sm" name="filegalhandlers" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm tips" title="{tr}Apply changes{/tr}" value="{tr}Apply{/tr}">
 			</div>
 		</div>
 	</div>
 	{tabset name="fgal_admin"}
 
 		{tab name="{tr}General Settings{/tr}"}
-			<h2>{tr}General Settings{/tr}</h2>
+			<br>
 
 			<fieldset>
 				<legend>{tr}Activate the feature{/tr}</legend>
@@ -46,8 +46,6 @@
 
 			{preference name='fgal_podcast_dir'}
 
-			<input type="hidden" name="filegalfeatures">
-
 			<fieldset>
 				<legend>{tr}Features{/tr}{help url="File+Gallery+Config"}</legend>
 
@@ -65,19 +63,12 @@
 
 				{preference name='feature_file_galleries_batch'}
 				<div class="adminoptionboxchild" id="feature_file_galleries_batch_childcontainer">
-					{remarksbox title="Note"}
-						{tr}You are highly recommended to use a file directory as the File Gallery storage, when using this feature{/tr}
-					{/remarksbox}
-					<br/>
 					{preference name='fgal_batch_dir'}
 				</div>
 
 				{preference name='feature_file_galleries_author'}
 				{preference name='fgal_delete_after'}
 				<div class="adminoptionboxchild" id="fgal_delete_after_childcontainer">
-					{remarksbox type="warning" title="Cron"}
-						{tr}A cron job must be set up in order to delete the files.{/tr}
-					{/remarksbox}
 					{preference name='fgal_delete_after_email'}
 				</div>
 				{preference name='fgal_keep_fileId'}
@@ -123,7 +114,7 @@
 		{/tab}
 
 		{tab name="{tr}Plugins{/tr}"}
-			<h2>{tr}Plugins{/tr}</h2>
+			<br>
 			<fieldset class="table">
 				<legend>{tr}Plugins{/tr}</legend>
 				{preference name=wikiplugin_files}
@@ -139,55 +130,16 @@
 		{/tab}
 
 		{tab name="{tr}Listings{/tr}"}
-			<h2>{tr}Listings{/tr}</h2>
+			<br>
 			<span class="help-block">{tr}Configuration for gallery listings{/tr}</span>
 			{remarksbox title="Note"}
 				{tr}Changing these settings will <em>not</em> affect existing file galleries. These changes will apply <em>only</em> to new file galleries{/tr}.
 			{/remarksbox}
 
-			<input type="hidden" name="filegallistprefs" />
-			<div class="adminoptionbox clearfix margin-bottom-md">
-				<label class="col-sm-4 control-label" for="fgal_default_view">
-					{tr}Default View{/tr}
-				</label>
-				<div class="col-sm-8">
-					<select id="fgal_default_view" name="fgal_default_view" class="form-control">
-						<option value="list"{if $prefs.fgal_default_view eq 'list'} selected="selected"{/if}>
-							{tr}List{/tr}
-						</option>
-						<option value="browse"{if $prefs.fgal_default_view eq 'browse'} selected="selected"{/if}>
-							{tr}Browse{/tr}
-						</option>
-						<option value="page"{if $prefs.fgal_default_view eq 'page'} selected="selected"{/if}>
-							{tr}Page{/tr}
-						</option>
-						{if $prefs.fgal_elfinder_feature eq 'y'}
-							<option value="finder"{if $prefs.fgal_default_view eq 'finder'} selected="selected"{/if}>
-								{tr}Finder View{/tr}
-							</option>
-						{/if}
-					</select>
-				</div>
-			</div>
-			<div class="adminoptionbox clearfix">
-				<label for="fgal_sortorder" class="col-sm-4 control-label">{tr}Default sort order{/tr}:</label>
-				<div class="col-sm-8">
-					<select name="fgal_sortorder" id="fgal_sortorder" class="form-control">
-						{foreach from=$options_sortorder key=key item=item}
-							<option value="{$item|escape}" {if $fgal_sortorder == $item} selected="selected"{/if}>{$key}</option>
-						{/foreach}
-					</select>
-					<span class="help-block">
-						<label class="radio-inline" for="fgal_sortdirection1">
-							<input type="radio" id="fgal_sortdirection1" name="fgal_sortdirection" value="desc" {if $fgal_sortdirection == 'desc'}checked="checked"{/if} />
-							{tr}Descending{/tr}
-						</label>
-						<label class="radio-inline" for="fgal_sortdirection2">
-							<input type="radio" id="fgal_sortdirection2" name="fgal_sortdirection" value="asc" {if $fgal_sortdirection == 'asc'}checked="checked"{/if} />
-							{tr}Ascending{/tr}
-						</label>
-					</span>
-				</div>
+			{preference name=fgal_default_view}
+			{preference name=fgal_sortField}
+			<div class="adminoptionboxchild" id="fgal_sortField_childcontainer">
+				{preference name=fgal_sortDirection}
 			</div>
 			{preference name='fgal_quota_show'}
 			{preference name='fgal_search'}
@@ -201,26 +153,62 @@
 			{preference name='fgal_display_properties'}
 			{preference name='fgal_display_replace'}
 			{preference name='fgal_checked'}
-			<fieldset>
-				{include file='fgal_listing_conf.tpl'}
-			</fieldset>
+			{preference name='fgal_icon_fileId'}
+			{preference name='fgal_show_explorer'}
+			{preference name='fgal_show_path'}
+			{preference name='fgal_show_slideshow'}
+			{preference name='fgal_list_id'}
+			{preference name='fgal_list_type'}
+			{preference name='fgal_list_name'}
+			{preference name='fgal_list_size'}
+			{preference name='fgal_list_created'}
+			{preference name='fgal_list_lastModif'}
+			{preference name='fgal_list_creator'}
+			{preference name='fgal_list_author'}
+			{preference name='fgal_list_last_user'}
+			{preference name='fgal_list_comment'}
+			{preference name='fgal_list_files'}
+			{preference name='fgal_list_hits'}
+			{preference name='fgal_list_lastDownload'}
+			{preference name='fgal_list_lockedby'}
+			{preference name='fgal_list_backlinks'}
+			{preference name='fgal_list_deleteAfter'}
+			{preference name='fgal_list_share'}
+			{preference name='fgal_list_source'}
 		{/tab}
 
 		{if $section eq 'admin'}
 			{tab name="{tr}Admin Listings{/tr}"}
-				<h2>{tr}Admin Listings{/tr}</h2>
+				<br>
 				<span class="help-block">{tr}Configuration for gallery administration listings{/tr}</span>
 				<fieldset>
-					{include file='fgal_listing_conf.tpl' fgal_options='' fgal_listing_conf=$fgal_listing_conf_admin}
+					{preference name='fgal_list_id_admin'}
+					{preference name='fgal_list_type_admin'}
+					{preference name='fgal_list_name_admin'}
+					{preference name='fgal_list_size_admin'}
+					{preference name='fgal_list_created_admin'}
+					{preference name='fgal_list_lastModif_admin'}
+					{preference name='fgal_list_creator_admin'}
+					{preference name='fgal_list_author_admin'}
+					{preference name='fgal_list_last_user_admin'}
+					{preference name='fgal_list_comment_admin'}
+					{preference name='fgal_list_files_admin'}
+					{preference name='fgal_list_hits_admin'}
+					{preference name='fgal_list_lastDownload_admin'}
+					{preference name='fgal_list_lockedby_admin'}
+					{preference name='fgal_list_backlinks_admin'}
+					{preference name='fgal_list_deleteAfter_admin'}
+					{preference name='fgal_list_share_admin'}
+					{preference name='fgal_list_source_admin'}
 				</fieldset>
 			{/tab}
 		{/if}
 
 
 		{tab name="{tr}Search Indexing{/tr}"}
+			<br>
 			{preference name=fgal_enable_auto_indexing}
-
-			<input name="filegalhandlers" type="hidden" />
+			{preference name=fgal_asynchronous_indexing}
 			<div class="adminoptionbox">
 				<fieldset>
 					<legend>{tr}Handlers{/tr}{help url="File+Gallery+Config#File_galleries_search_indexing"}</legend>
@@ -300,7 +288,7 @@
 		{/tab}
 
 		{tab name="{tr}Enhancements{/tr}"}
-			<h2>{tr}Enhancements{/tr}</h2>
+			<br>
 
 			<fieldset>
 				<legend>{tr}Access{/tr}</legend>
@@ -345,14 +333,6 @@
 			</fieldset>
 
 			<fieldset>
-				<legend>{tr}Capture{/tr}</legend>
-				{preference name=feature_jcapture}
-				<div class="adminoptionboxchild" id="feature_jcapture_childcontainer">
-					{preference name=fgal_for_jcapture}
-				</div>
-			</fieldset>
-
-			<fieldset>
 				<legend>{tr}SCORM{/tr}</legend>
 				{preference name=scorm_enabled}
 				<div class="adminoptionboxchild" id="scorm_enabled_childcontainer">
@@ -380,7 +360,7 @@
 	 <div class="row">
 		<div class="form-group col-lg-12 clearfix">
 			<div class="text-center">
-				<input type="submit" class="btn btn-primary btn-sm" name="filegalhandlers" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm tips" title="{tr}Apply changes{/tr}" value="{tr}Apply{/tr}">
 			</div>
 		</div>
 	</div>

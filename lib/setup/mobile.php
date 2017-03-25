@@ -50,7 +50,6 @@ if ( !isset($_REQUEST['mobile_mode']) || $_REQUEST['mobile_mode'] === 'y' ) {
 				$prefs['fgal_elfinder_feature'] = 'n';
 				$prefs['wiki_auto_toc'] = 'n';
 				$prefs['feature_smileys'] = 'n';
-				$prefs['feature_jcapture'] = 'n';
 				$prefs['calendar_fullcalendar'] = 'n';
 				$prefs['feature_inline_comments'] = 'n';
 				$prefs['feature_jquery_tablesorter'] = 'n';*/
@@ -59,11 +58,11 @@ if ( !isset($_REQUEST['mobile_mode']) || $_REQUEST['mobile_mode'] === 'y' ) {
 
 				if ($prefs['feature_shadowbox'] === 'y') {
 					$headerlib
-						->add_jsfile_external('vendor/jquery/photoswipe/lib/klass.min.js', true)
-						->add_jsfile_external('vendor/jquery/photoswipe/code.photoswipe.jquery-3.0.5.min.js', true)
+						->add_jsfile_external('vendor_bundled/vendor/jquery/photoswipe/lib/klass.min.js', true)
+						->add_jsfile_external('vendor_bundled/vendor/jquery/photoswipe/code.photoswipe.jquery-3.0.5.min.js', true)
 						->add_jq_onready('var $photosToSwipe = $("a[data-box*=\'box\'][data-box*=\'type=img\'], a[data-box*=\'box\'][data-box!=\'type=\']");
 if ($photosToSwipe.length) {$photosToSwipe.photoSwipe();}', 5)
-						->add_cssfile('vendor/jquery/photoswipe/photoswipe.css');
+						->add_cssfile('vendor_bundled/vendor/jquery/photoswipe/photoswipe.css');
 				}
 
 				global $base_url;

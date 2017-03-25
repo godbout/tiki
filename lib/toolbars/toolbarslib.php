@@ -59,8 +59,6 @@ abstract class Toolbar
 			return new ToolbarSwitchEditor;
 		elseif ( $tagName == 'admintoolbar' )
 			return new ToolbarAdmin;
-		elseif ( $tagName == 'screencapture' )
-			return new ToolbarCapture();
 		elseif ( $tagName == '-' )
 			return new ToolbarSeparator;
 
@@ -674,7 +672,7 @@ class ToolbarCkOnly extends Toolbar
 		global $prefs;
 		$skin = $prefs['wysiwyg_toolbar_skin'];
 		$headerlib = TikiLib::lib('header');
-		$headerlib->add_cssfile('vendor/ckeditor/ckeditor/skins/' . $skin . '/editor.css');
+		$headerlib->add_cssfile('vendor_bundled/vendor/ckeditor/ckeditor/skins/' . $skin . '/editor.css');
 		$cls = strtolower($this->wysiwyg);
 		$headerlib->add_css(
 			'span.cke_skin_' . $skin . ' {border: none;background: none;padding:0;margin:0;}'.
@@ -1696,53 +1694,6 @@ class ToolbarAdmin extends Toolbar
 	{
 		return $this->getWysiwygToken($areaId);
 	} // }}}
-
-}
-
-class ToolbarCapture extends Toolbar
-{
-	function __construct() // {{{
-	{
-		$this->setLabel(tra('Screen capture'))
-			->setIconName('screencapture')
-			->setWysiwygToken('screencapture')
-			->setType('Capture')
-			->addRequiredPreference('feature_jcapture');
-
-	} // }}}
-
-	function getWikiHtml( $areaId ) // {{{
-	{
-		return $this->getSelfLink(
-			$this->getSyntax($areaId),
-			htmlentities($this->label, ENT_QUOTES, 'UTF-8'),
-			'qt-capture'
-		);
-
-	} // }}}
-
-	function getWysiwygToken( $areaId ) // {{{
-	{
-		if (!empty($this->wysiwyg)) {
-			$this->name = $this->wysiwyg;	// temp
-			$exec_js = str_replace('&amp;', '&', $this->getSyntax($areaId));	// odd?
-			$exec_js = 'var event = {target: "#" + this.uiItems[0]._.id}; ' . $exec_js;
-
-			$this->setupCKEditorTool($exec_js, $this->name, $this->label, $this->icon);
-		}
-		return $this->wysiwyg;
-	} // }}}
-
-	function getWysiwygWikiToken( $areaId ) // {{{ // wysiwyg_htmltowiki
-	{
-		return $this->getWysiwygToken($areaId);
-	} // }}}
-
-	function getSyntax( $areaId )
-	{
-		global $page;
-		return 'openJCaptureDialog(\''.$areaId.'\', \'' . urlencode($page) . '\', event);return false;';
-	}
 
 }
 

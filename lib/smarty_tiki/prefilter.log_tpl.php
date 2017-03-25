@@ -14,13 +14,25 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 function smarty_prefilter_log_tpl($source, $smarty)
 {
 	global $prefs;
-
-	$current_file = $smarty->_current_file;
-
-	if ($prefs['log_tpl'] != 'y' || strpos($smarty->template_resource, 'eval:') === 0 || strpos($source, '<!DOCTYPE ') === 0 || strpos($current_file, '/mail/') !== false) {
-
-		// suppress log comment for templates that generate a DOCTYPE which must be output first, or evaluated templates, or email tpls
+	if ($prefs['log_tpl'] != 'y') {
 		return $source;
 	}
-	return '<!-- TPL: ' . $current_file . ' -->' . $source . '<!-- /TPL: ' . $current_file . ' -->';
+
+	$resource = $smarty->template_resource;
+
+	// Refrain from logging for some templates
+	if (
+			strpos($resource, 'eval:') === 0 || // Evaluated templates 
+			strpos($resource, 'mail/') !== false // email tpls
+			) {
+		return $source;
+	}
+	
+	// The opening comment cannot be inserted before the DOCTYPE in HTML documents; put it right after.
+	$commentedSource = preg_replace('/^<!DOCTYPE .*>/i', '$0' . '<!-- TPL: ' . $resource . ' -->', $source, 1, $replacements);
+	if ($replacements) {
+		return $commentedSource . '<!-- /TPL: ' . $resource . ' -->';
+	}
+	
+	return '<!-- TPL: ' . $resource . ' -->' . $source . '<!-- /TPL: ' . $resource . ' -->';
 }

@@ -24,7 +24,7 @@ function smarty_modifier_avatarize($user, $float = '', $default = '', $show_tag=
 	if (! $user) {
 		return '';
 	}
-
+	
 	$avatar = TikiLib::lib('tiki')->get_user_avatar($user, $float);
 
 	if (! $avatar && $default) {

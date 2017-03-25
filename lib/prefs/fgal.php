@@ -7,10 +7,28 @@
 
 function prefs_fgal_list()
 {
+	//set fgal_default_view options
+	$defaultViews = [
+		'list' => tra('List'),
+		'browse' => tra('Browse'),
+		'page' => tra('Page')
+	];
+	global $prefs;
+	if (!empty($prefs['fgal_elfinder_feature']) && $prefs['fgal_elfinder_feature'] === 'y') {
+		$defaultViews = $defaultViews + ['finder' => tra('Finder view')];
+	}
+	//set show options for list prefs
+	$showOptions = [
+		'n' => tra('Hide'),
+		'y' => tra('Show as a column'),
+		'o' => tra('Show in popup box'),
+		'a' => tra('Both'),
+	];
+
 	return array(
 		'fgal_podcast_dir' => array(
 			'name' => tra('Podcast directory'),
-            'description' => tra(''),
+			'description' => tra('File system directory for storing podcast files'),
 			'type' => 'text',
 			'help' => 'File+Gallery+Config',
 			'size' => 50,
@@ -20,7 +38,6 @@ function prefs_fgal_list()
 		),
 		'fgal_batch_dir' => array(
 			'name' => tra('Path'),
-            'description' => tra(''),
 			'type' => 'text',
 			'help' => 'File+Gallery+config',
 			'size' => 50,
@@ -30,22 +47,20 @@ function prefs_fgal_list()
 		),
 		'fgal_prevent_negative_score' => array(
 			'name' => tra('Prevent download if score becomes negative'),
-            'description' => tra(''),
 			'type' => 'flag',
 			'help' => 'File+Gallery+config',
 			'default' => 'n',
-			'dependencies' => array('feature_score'),			
+			'dependencies' => array('feature_score'),
 		),
 		'fgal_limit_hits_per_file' => array(
 			'name' => tra('Allow download limit per file'),
-            'description' => tra(''),
 			'type' => 'flag',
 			'help' => 'File+Gallery+config',
 			'default' => 'n',
 		),
 		'fgal_allow_duplicates' => array(
 			'name' => tra('Allow the same file to be uploaded more than once'),
-            'description' => tra(''),
+			'description' => tra(''),
 			'type' => 'list',
 			'help' => 'File+Gallery+config',
 			'perspective' => false,
@@ -58,28 +73,25 @@ function prefs_fgal_list()
 		),
 		'fgal_display_zip_option' => array(
 			'name' => tra('Display the .zip option in gallery'),
-            'description' => tra('Display in the gallery the zip option (in upload and gallery file)'),
+			'description' => tra('Display in the gallery the zip option (in upload and gallery file)'),
 			'type' => 'flag',
 			'help' => 'File+Gallery+config',
 			'default' => 'n',
 		),
 		'fgal_match_regex' => array(
 			'name' => tra('Must match'),
-            'description' => tra(''),
 			'type' => 'text',
 			'size' => 50,
 			'default' => '',
 		),
 		'fgal_nmatch_regex' => array(
 			'name' => tra('Cannot match'),
-            'description' => tra(''),
 			'type' => 'text',
 			'size' => 50,
 			'default' => '',
 		),
 		'fgal_quota' => array (
 			'name' => tra('Quota for all the files and archives'),
-            'description' => tra(''),
 			'shorthint' => tra('Mb').' '.tra('(0 for unlimited)'),
 			'type' => 'text',
 			'size' => 7,
@@ -87,13 +99,11 @@ function prefs_fgal_list()
 		),
 		'fgal_quota_per_fgal' => array (
 			'name' => tra('Quota can be defined for each file gallery'),
-            'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		),
 		'fgal_quota_default' => array (
 			'name' => tra('Default quota for each new gallery'),
-            'description' => tra(''),
 			'shorthint' => tra('Mb').' '.tra('(0 for unlimited)'),
 			'type' => 'text',
 			'size' => 7,
@@ -101,19 +111,17 @@ function prefs_fgal_list()
 		),
 		'fgal_quota_show' => array (
 			'name' => tra('Show quota bar in the list page'),
-            'description' => tra(''),
 			'type' => 'list',
 			'options' => array(
-							  'n' 				=> tra('Never'),
-							  'bar_and_text' 	=> tra('Yes, display bar and detail text'),
-							  'y' 				=> tra('Yes, display only bar'),
-							  'text_only'		=> tra('Yes, display only text')
+				'n' 			=> tra('Never'),
+				'bar_and_text' 	=> tra('Yes, display bar and detail text'),
+				'y' 			=> tra('Yes, display only bar'),
+				'text_only'		=> tra('Yes, display only text')
 			),
 			'default' => 'y',
 		),
 		'fgal_use_db' => array(
 			'name' => tra('Storage'),
-            'description' => tra(''),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => array(
@@ -126,39 +134,37 @@ function prefs_fgal_list()
 		'fgal_use_dir' => array(
 			'name' => tra('Path to the directory to store file gallery files'),
 			'description' => tra("Specify a directory on your server, for example: /var/www/  It's recommended that this directory not be web accessible. PHP must be able to read/write to the directory."),
-            'type' => 'text',
-            'size' => 50,
-            'perspective' => false,
-            'default' => '',
-            'tags' => array('basic'),
+			'type' => 'text',
+			'size' => 50,
+			'perspective' => false,
+			'default' => '',
+			'tags' => array('basic'),
 		),
 		'fgal_search_in_content' => array(
 			'name' => tra('File Gallery - Searchable content'),
-            'description' => tra('Include the search form on the current gallery page just after "Find"'),
+			'description' => tra('Include the search form on the current gallery page just after "Find"'),
 			'type' => 'flag',
 			'default' => 'n',
 		),
 		'fgal_search' => array(
 			'name' => tra('Include a search form in file galleries'),
-            'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		),
 		'fgal_list_ratio_hits' => array(
-			'name' => tra('Display hits with a ratio of hits to maximum hits'),
-            'description' => tra(''),
+			'name' => tra('Display hits ratio to maximum'),
+			'description' => tra('Display hits with a ratio of hits to maximum hits'),
 			'type' => 'flag',
 			'default' => 'n',
 		),
 		'fgal_display_properties' => array(
 			'name' => tra('Display properties in the context menu'),
-            'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		),
 		'fgal_display_replace' => array(
 			'name' => tra('Display "Replace" in the context menu'),
-            'description' => tra(''),
+			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		),
@@ -166,6 +172,7 @@ function prefs_fgal_list()
 			'name' => tra('Automatic deletion of old files'),
 			'description' => tra('The user will have an option when uploading a file to specify the time after which the file is deleted'),
 			'type' => 'flag',
+			'warning' => tra('A cron job must be set up in order to delete the files.'),
 			'help' => 'File+Gallery+Config',
 			'default' => 'n',
 		),
@@ -208,6 +215,11 @@ function prefs_fgal_list()
 			'default' => 'n',
 			'type' => 'flag',
 		),
+		'fgal_asynchronous_indexing' => [
+			'name' => tra('Asynchronous indexing'),
+			'type' => 'flag',
+			'default' => 'y',
+		],
 		'fgal_upload_from_source' => array(
 			'name' =>  tra('Upload files from remote source'),
 			'description' => tra('Enable copying files to file galleries from a URL that will be polled for new revisions.'),
@@ -270,16 +282,6 @@ function prefs_fgal_list()
 			'size' => 5,
 			'default' => 0,
 		),
-		'fgal_for_jcapture' => array(
-			'name' => tra('File Gallery for jCapture'),
-			'description' => tra('Id of gallery to store files captured by jCapture. Default:0 uses the default "root" gallery.'),
-			'type' => 'text',
-			'filter' => 'int',
-			'size' => 5,
-			'default' => 0,
-			'dependencies' => 'feature_jcapture',
-			'tags' => array('experimental'),
-		),
 		'fgal_elfinder_feature' => array(
 			'name' => tra('Use elFinder UI'),
 			'description' => tra('Alternative file manager with drag and drop capability'),
@@ -309,5 +311,295 @@ function prefs_fgal_list()
 			'tags' => array('experimental'),
 			'dependencies' => array('fgal_viewerjs_feature'),
 		),
+		'fgal_default_view' => [
+			'name' => tra('Default view'),
+			'type' => 'list',
+			'options' => $defaultViews,
+			'default' => 'list',
+		],
+		'fgal_sortField' => [
+			'name' => tra('Default sort field'),
+			'type' => 'list',
+			'options' => [
+				'created' => tra('Creation Date'),
+				'name' => tra('Name'),
+				'lastModif' => tra('Last modification date'),
+				'hits' => tra('Hits'),
+				'user' => tra('Owner'),
+				'description' => tra('Description'),
+				'id' => tra('ID'),
+			],
+			'default' => 'created',
+		],
+		'fgal_sortDirection' => [
+			'name' => tra('Default sort direction'),
+			'type' => 'radio',
+			'options' => [
+				'desc' => tra('Descending'),
+				'asc' => tra('Ascending'),
+			],
+			'default' => 'desc',
+		],
+		'fgal_icon_fileId' => [
+			'name' => tra('Gallery icon'),
+			'description' => tra('Enter the ID of any file in any gallery to be used as the icon for this gallery in browse view'),
+			'type' => 'text',
+			'filter' => 'digits',
+			'default' => '',
+		],
+		'fgal_show_explorer' => [
+			'name' => tra('Show explorer'),
+			'type' => 'flag',
+			'default' => 'y',
+		],
+		'fgal_show_path' => [
+			'name' => tra('Show path'),
+			'type' => 'flag',
+			'default' => 'y',
+		],
+		'fgal_show_slideshow' => [
+			'name' => tra('Show slideshow'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
+		'fgal_list_id' => [
+			'name' => tra('ID'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_type' => [
+			'name' => tra('Type'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'y',
+		],
+		'fgal_list_name' => [
+			'name' => tra('Name'),
+			'type' => 'list',
+			'options' => [
+				'a' => tra('Name-filename'),
+				'n' => tra('Name only'),
+				'f' => tra('Filename only'),
+			],
+			'default' => 'n',
+		],
+		'fgal_list_description' => [
+			'name' => tra('Description'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_size' => [
+			'name' => tra('Size'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'y',
+		],
+		'fgal_list_created' => [
+			'name' => tra('Created / Uploaded'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_lastModif' => [
+			'name' => tra('Last modified'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'y',
+		],
+		'fgal_list_creator' => [
+			'name' => tra('Uploaded by'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_author' => [
+			'name' => tra('Creator'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_last_user' => [
+			'name' => tra('Last modified by'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_comment' => [
+			'name' => tra('Comment'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_files' => [
+			'name' => tra('Files'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_hits' => [
+			'name' => tra('Hits'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_lastDownload' => [
+			'name' => tra('Last download'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'n',
+		],
+		'fgal_list_lockedby' => [
+			'name' => tra('Locked by'),
+			'type' => 'list',
+			'options' => $showOptions + ['i' => tra('Show icon in column')],
+			'default' => 'a',
+		],
+		'fgal_list_backlinks' => [
+			'name' => tra('Backlinks'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'n',
+		],
+		'fgal_list_deleteAfter' => [
+			'name' => tra('Delete after'),
+			'type' => 'list',
+			'options' => [
+				'n' => tra('Hide'),
+				'y' => tra('Show as a column'),
+			],
+			'default' => 'n',
+		],
+		'fgal_list_share' => [
+			'name' => tra('Share'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'n',
+		],
+		'fgal_list_source' => [
+			'name' => tra('Source'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => '',
+		],
+		'fgal_list_id_admin' => [
+			'name' => tra('ID'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'y',
+		],
+		'fgal_list_type_admin' => [
+			'name' => tra('Type'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'y',
+		],
+		'fgal_list_name_admin' => [
+			'name' => tra('Name'),
+			'type' => 'list',
+			'options' => [
+				'a' => tra('Name-filename'),
+				'n' => tra('Name only'),
+				'f' => tra('Filename only'),
+			],
+			'default' => 'n',
+		],
+		'fgal_list_description_admin' => [
+			'name' => tra('Description'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_size_admin' => [
+			'name' => tra('Size'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'y',
+		],
+		'fgal_list_created_admin' => [
+			'name' => tra('Created / Uploaded'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_lastModif_admin' => [
+			'name' => tra('Last modified'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'y',
+		],
+		'fgal_list_creator_admin' => [
+			'name' => tra('Uploaded by'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_author_admin' => [
+			'name' => tra('Creator'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_last_user_admin' => [
+			'name' => tra('Last modified by'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_comment_admin' => [
+			'name' => tra('Comment'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_files_admin' => [
+			'name' => tra('Files'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_hits_admin' => [
+			'name' => tra('Hits'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
+		'fgal_list_lastDownload_admin' => [
+			'name' => tra('Last download'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'n',
+		],
+		'fgal_list_lockedby_admin' => [
+			'name' => tra('Locked by'),
+			'type' => 'list',
+			'options' => $showOptions + ['i' => tra('Show icon in column')],
+			'default' => 'n',
+		],
+		'fgal_list_backlinks_admin' => [
+			'name' => tra('Backlinks'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'y',
+		],
+		'fgal_list_deleteAfter_admin' => [
+			'name' => tra('Delete after'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => '',
+		],
+		'fgal_list_share_admin' => [
+			'name' => tra('Share'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => '',
+		],
+		'fgal_list_source_admin' => [
+			'name' => tra('Source'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => '',
+		],
 	);
 }

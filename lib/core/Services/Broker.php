@@ -156,12 +156,10 @@ class Services_Broker
 		}
 
 		if ($layout) {
-			$out = $smarty->fetch("extends:$layout|$template");
+			return $smarty->fetch("extends:$layout|$template");
 		} else {
-			$out = $smarty->fetch($template);
+			return $smarty->fetch($template);
 		}
-
-		return $out;
 	}
 }
 
