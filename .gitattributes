@@ -29,7 +29,6 @@ admin/include_socialnetworks.php -text
 admin/include_textarea.php -text
 admin/include_trackers.php -text
 admin/include_user.php -text
-admin/include_userfiles.php -text
 admin/include_video.php -text
 admin/include_wiki.php -text
 admin/include_wikiatt.php -text
