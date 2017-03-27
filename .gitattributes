@@ -30,7 +30,6 @@ admin/include_socialnetworks.php -text
 admin/include_textarea.php -text
 admin/include_trackers.php -text
 admin/include_user.php -text
-admin/include_userfiles.php -text
 admin/include_video.php -text
 admin/include_wiki.php -text
 admin/include_wikiatt.php -text
@@ -3727,10 +3726,12 @@ lib/prefs/social.php -text
 lib/prefs/socialnetworks.php -text
 lib/prefs/storedsearch.php -text
 lib/prefs/suite.php -text
+lib/prefs/t.php -text
 lib/prefs/theme.php -text
 lib/prefs/tiki.php -text
 lib/prefs/tracker.php -text
 lib/prefs/trackerfield.php -text
+lib/prefs/uf.php -text
 lib/prefs/unified.php -text
 lib/prefs/unsuccessful.php -text
 lib/prefs/url.php -text

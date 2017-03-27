@@ -17,7 +17,7 @@ class Services_Exception_BadRequest extends Services_Exception
 	function __construct($message = null)
 	{
 		if (is_null($message)) {
-			$message = tra('Bad request - possible cross-site request forgery (CSRF) detected. The action was blocked');
+			$message = tra('Potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - reloading the page may help.');
 		}
 		parent::__construct($message, 400);
 	}
@@ -25,11 +25,13 @@ class Services_Exception_BadRequest extends Services_Exception
 	public static function checkAccess($message = null)
 	{
 		$access = TikiLib::lib('access');
-		$check = $access->check_authenticity(null, false);
-		if ($check === false) {
+		$access->check_authenticity(null, false);
+		if ($access->ticketNoMatch()) {
 			throw new self($message);
-		} else {
-			return $check;
+		} elseif ($access->ticketMatch()) {
+			return true;
+		} elseif ($access->ticketSet()) {
+			return ['ticket' => $access->getTicket()];
 		}
 	}
 }

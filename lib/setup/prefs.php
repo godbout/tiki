@@ -77,7 +77,6 @@ function get_default_prefs()
 			'wiki_pagealias_tokens' => 'alias',
 
 			// File galleries
-
 			// Root galleries fake preferences. These are automatically overridden by schema upgrade scripts
 			//  for installations that pre-date the existence of these root galleries.
 			'fgal_root_id' => 1, // Ancestor of "default" type galleries. For old installs, overriden by 20090811_filegals_container_tiki.sql
@@ -97,15 +96,11 @@ function get_default_prefs()
 
 
 			// trackers
-			't_use_db' => 'y',
-			't_use_dir' => '',
 			'trackerCreatorGroupName' => ' ',
 
 			// user
 			'userlevels' => function_exists('tra') ? array('1'=>tra('Simple'),'2'=>tra('Advanced')) : array('1'=>'Simple','2'=>'Advanced'),
 			'userbreadCrumb' => 4,
-			'uf_use_db' => 'y',
-			'uf_use_dir' => '',
 			'feature_community_friends_permission' => 'n',
 			'feature_community_friends_permission_dep' => '2',
 			'lowercase_username' => 'n',
