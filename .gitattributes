@@ -103,6 +103,7 @@ doc/devtools/index.php -text
 doc/devtools/ks_prefreport.php -text
 doc/devtools/mass_wording_corrections.pl -text
 doc/devtools/mergelang.php -text
+doc/devtools/migrate_image_galleries.php -text
 doc/devtools/mods.sh -text
 doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
 doc/devtools/parse_changelog.pl -text
