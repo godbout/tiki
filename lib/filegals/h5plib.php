@@ -300,7 +300,7 @@ class H5PLib
 		$TWV = new TWVersion;
 		$cache_buster = '?ver=' . $TWV->version;
 
-		$lib_url = 'vendor/h5p/h5p-core/';
+		$lib_url = 'vendor_bundled/vendor/h5p/h5p-core/';
 
 		// Add core stylesheets
 		foreach (H5PCore::$styles as $style) {
@@ -498,7 +498,7 @@ class H5PLib
 			'fullScreen' => $content['library']['fullscreen'],
 			'exportUrl' => ($prefs['h5p_export'] === 'y' ? 'tiki-download_file.php?fileId=' . $content['fileId'] : ''),
 			'embedCode' => '<iframe src="' . $embedUrl . '" width=":w" height=":h" frameborder="0" allowfullscreen="allowfullscreen"></iframe>',
-			'resizeCode' => '<script src="vendor/h5p/h5p-core/js/h5p-resizer.js" charset="UTF-8"></script>',
+			'resizeCode' => '<script src="vendor_bundled/vendor/h5p/h5p-core/js/h5p-resizer.js" charset="UTF-8"></script>',
 			'url' => $embedUrl,
 			'title' => $content['title'],
 			'disable' => $content['disable'],
@@ -546,7 +546,7 @@ class H5PLib
 		);
 
 		// Use relative URL to support both http and https.
-		$editorpath = 'vendor/h5p/h5p-editor/';
+		$editorpath = 'vendor_bundled/vendor/h5p/h5p-editor/';
 		$url = $tikiroot . $editorpath;
 
 		// Make sure files are reloaded for new versions

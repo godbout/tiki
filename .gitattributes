@@ -45,9 +45,7 @@ admin/index.php -text
 /check_composer_exists.php -text
 /comments.php -text
 /commxmlrpc.php -text
-/composer.json -text
 /composer.json.dist -text
-/composer.lock -text
 /console.php -text
 /contribution.php -text
 /copyright.txt -text
