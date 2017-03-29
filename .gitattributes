@@ -4788,7 +4788,6 @@ lib/wiki-plugins/wikiplugin_timesheet.php -text
 lib/wiki-plugins/wikiplugin_titlesearch.php -text
 lib/wiki-plugins/wikiplugin_toc.php -text
 lib/wiki-plugins/wikiplugin_together.php -text
-lib/wiki-plugins/wikiplugin_topfriends.php -text
 lib/wiki-plugins/wikiplugin_tour.php -text
 lib/wiki-plugins/wikiplugin_tr.php -text
 lib/wiki-plugins/wikiplugin_tracker.php -text
@@ -5727,7 +5726,6 @@ templates/permission_link.tpl -text
 templates/plugin/edit.tpl -text
 templates/plugin/list.tpl -text
 templates/plugins/index.php -text
-templates/plugins/plugin-topfriends.tpl -text
 templates/poll.tpl -text
 templates/prefs/flag.tpl -text
 templates/prefs/index.php -text
