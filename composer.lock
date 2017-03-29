@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "65dd0bf2cc66e870f8a46d94094017ec",
+    "hash": "20f5c267c273144e55c1736120f6608d",
+    "content-hash": "e7b63e631fce3009923849e1b75f454d",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -36,10 +37,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Remove references to ADOdb Extension": "installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch",
-                    "Remove the check for ADOdb Extension": "installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-enabled.patch"
-                }
+                "patches_applied": []
             },
             "autoload": {
                 "files": [
@@ -75,7 +73,7 @@
                 "library",
                 "php"
             ],
-            "time": "2016-12-21T17:19:42+00:00"
+            "time": "2016-12-21 17:19:42"
         },
         {
             "name": "afarkas/html5shiv",
@@ -106,7 +104,7 @@
             ],
             "description": "Defacto way to enable use of HTML5 sectioning elements in legacy Internet Explorer.",
             "homepage": "http://paulirish.com/2011/the-history-of-the-html5-shiv/",
-            "time": "2015-07-20T20:04:00+00:00"
+            "time": "2015-07-20 20:04:00"
         },
         {
             "name": "alxlit/bootstrap-chosen",
@@ -189,7 +187,7 @@
                 "upload",
                 "widget"
             ],
-            "time": "2017-02-20T06:05:50+00:00"
+            "time": "2017-02-20 06:05:50"
         },
         {
             "name": "chartjs/Chart.js",
@@ -241,7 +239,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2016-09-07T13:32:39+00:00"
+            "time": "2016-09-07 13:32:39"
         },
         {
             "name": "ckeditor/ckeditor/plugins/divarea",
@@ -375,21 +373,21 @@
                 "responsive",
                 "web"
             ],
-            "time": "2016-07-26T05:59:20+00:00"
+            "time": "2016-07-26 05:59:20"
         },
         {
             "name": "components/jquery",
-            "version": "3.1.1",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/jquery.git",
-                "reference": "09a1658378bc1f818856086396ebeab7d0ec2276"
+                "reference": "e5534d4ab8e80c159553d507e358ed20a806d3bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/components-jquery-09a1658378bc1f818856086396ebeab7d0ec2276-zip-4b88ad.zip",
-                "reference": "09a1658378bc1f818856086396ebeab7d0ec2276",
-                "shasum": "8917d60095ffc90324f58c9c7d18c0ba23dd1bfe"
+                "url": "https://composer.tiki.org/dist/components/jquery/components-jquery-e5534d4ab8e80c159553d507e358ed20a806d3bf-zip-5cacfe.zip",
+                "reference": "e5534d4ab8e80c159553d507e358ed20a806d3bf",
+                "shasum": "9039b208def53cc9620dcc2f29825d5d3ddc11cd"
             },
             "type": "component",
             "extra": {
@@ -399,7 +397,10 @@
                     ],
                     "files": [
                         "jquery.min.js",
-                        "jquery.min.map"
+                        "jquery.min.map",
+                        "jquery.slim.js",
+                        "jquery.slim.min.js",
+                        "jquery.slim.min.map"
                     ]
                 }
             },
@@ -409,13 +410,12 @@
             ],
             "authors": [
                 {
-                    "name": "John Resig",
-                    "email": "jeresig@gmail.com"
+                    "name": "JS Foundation and other contributors"
                 }
             ],
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
-            "time": "2016-09-23T06:06:29+00:00"
+            "time": "2017-03-21 07:01:49"
         },
         {
             "name": "components/jquery-migrate",
@@ -454,7 +454,7 @@
             ],
             "description": "APIs and features removed from jQuery core",
             "homepage": "https://github.com/jquery/jquery-migrate",
-            "time": "2016-06-14T06:48:05+00:00"
+            "time": "2016-06-14 06:48:05"
         },
         {
             "name": "container-interop/container-interop",
@@ -485,7 +485,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
-            "time": "2017-02-14T19:40:03+00:00"
+            "time": "2017-02-14 19:40:03"
         },
         {
             "name": "cweagans/composer-patches",
@@ -529,7 +529,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2016-12-01T01:19:32+00:00"
+            "time": "2016-12-01 01:19:32"
         },
         {
             "name": "cwspear/bootstrap-hover-dropdown",
@@ -577,7 +577,7 @@
                 "hover",
                 "twitter"
             ],
-            "time": "2015-12-01T23:35:57+00:00"
+            "time": "2015-12-01 23:35:57"
         },
         {
             "name": "dompdf/dompdf",
@@ -618,7 +618,7 @@
             ],
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
-            "time": "2015-12-07T04:07:13+00:00"
+            "time": "2015-12-07 04:07:13"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -665,7 +665,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2017-03-13T06:30:53+00:00"
+            "time": "2017-03-13 06:30:53"
         },
         {
             "name": "fortawesome/font-awesome",
@@ -713,7 +713,7 @@
                 "font",
                 "icon"
             ],
-            "time": "2016-10-24T15:52:54+00:00"
+            "time": "2016-10-24 15:52:54"
         },
         {
             "name": "google/apiclient",
@@ -756,11 +756,11 @@
             "keywords": [
                 "google"
             ],
-            "time": "2015-10-16T22:11:08+00:00"
+            "time": "2015-10-16 22:11:08"
         },
         {
             "name": "h5p/h5p-core",
-            "version": "dev-stable",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
@@ -812,11 +812,11 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-02-23T10:18:59+00:00"
+            "time": "2017-02-23 10:18:59"
         },
         {
             "name": "h5p/h5p-editor",
-            "version": "dev-stable",
+            "version": "1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-editor-php-library.git",
@@ -867,7 +867,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-03-06T09:07:11+00:00"
+            "time": "2017-03-06 09:07:11"
         },
         {
             "name": "jcapture-applet/jcapture-applet",
@@ -909,7 +909,7 @@
                 "screencapture",
                 "screenshot"
             ],
-            "time": "2014-01-27T14:02:15+00:00"
+            "time": "2014-01-27 14:02:15"
         },
         {
             "name": "jquery/jquery-s5",
@@ -1221,17 +1221,17 @@
         },
         {
             "name": "matthiasmullie/minify",
-            "version": "1.3.43",
+            "version": "1.3.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/minify.git",
-                "reference": "aa50b2dab6fa7bfd402d334fe51005d6f2526ad7"
+                "reference": "a7fc4a98ef8f2cf38bba701b51f1a84a1d67bc5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/matthiasmullie-minify-aa50b2dab6fa7bfd402d334fe51005d6f2526ad7-zip-d0f3cd.zip",
-                "reference": "aa50b2dab6fa7bfd402d334fe51005d6f2526ad7",
-                "shasum": "12f26d7b58dc185e5cd17ac789bb86328fb0c73f"
+                "url": "https://composer.tiki.org/dist/matthiasmullie/minify/matthiasmullie-minify-a7fc4a98ef8f2cf38bba701b51f1a84a1d67bc5c-zip-5a628d.zip",
+                "reference": "a7fc4a98ef8f2cf38bba701b51f1a84a1d67bc5c",
+                "shasum": "0f0432148ee5ff1b3a2ddfaa4f06146b06dfffe2"
             },
             "require": {
                 "ext-pcre": "*",
@@ -1274,7 +1274,7 @@
                 "minifier",
                 "minify"
             ],
-            "time": "2017-01-26T15:48:07+00:00"
+            "time": "2017-03-16 16:42:50"
         },
         {
             "name": "matthiasmullie/path-converter",
@@ -1323,7 +1323,7 @@
                 "paths",
                 "relative"
             ],
-            "time": "2017-01-26T08:54:49+00:00"
+            "time": "2017-01-26 08:54:49"
         },
         {
             "name": "mediumjs/mediumjs",
@@ -1362,7 +1362,7 @@
                     "role": "Lead Developer"
                 }
             ],
-            "time": "2014-12-15T16:35:34+00:00"
+            "time": "2014-12-15 16:35:34"
         },
         {
             "name": "michelf/php-smartypants",
@@ -1412,7 +1412,7 @@
                 "typographer",
                 "typography"
             ],
-            "time": "2016-11-13T21:14:11+00:00"
+            "time": "2016-11-13 21:14:11"
         },
         {
             "name": "morteza/bootstrap-rtl",
@@ -1466,7 +1466,7 @@
                 "pivottable",
                 "table"
             ],
-            "time": "2016-12-31T05:15:14+00:00"
+            "time": "2016-12-31 05:15:14"
         },
         {
             "name": "onelogin/php-saml",
@@ -1520,7 +1520,7 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2017-03-13T09:56:49+00:00"
+            "time": "2017-03-13 09:56:49"
         },
         {
             "name": "openannotation/annotator",
@@ -1604,7 +1604,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2015-12-30T05:47:36+00:00"
+            "time": "2015-12-30 05:47:36"
         },
         {
             "name": "phenx/php-font-lib",
@@ -1638,7 +1638,7 @@
             ],
             "description": "A library to read, parse, export and make subsets of different types of font files.",
             "homepage": "https://github.com/PhenX/php-font-lib",
-            "time": "2014-02-01T15:22:28+00:00"
+            "time": "2014-02-01 15:22:28"
         },
         {
             "name": "phpcas/phpcas",
@@ -1744,7 +1744,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2014-02-28T16:05:05+00:00"
+            "time": "2014-02-28 16:05:05"
         },
         {
             "name": "player/flv",
@@ -1832,7 +1832,7 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14T16:28:37+00:00"
+            "time": "2017-02-14 16:28:37"
         },
         {
             "name": "psr/log",
@@ -1879,7 +1879,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "rangy/rangy",
@@ -1956,7 +1956,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-31T04:22:20+00:00"
+            "time": "2014-10-31 04:22:20"
         },
         {
             "name": "sorich87/bootstrap-tour",
@@ -1983,7 +1983,7 @@
                 "bootstrap",
                 "tour"
             ],
-            "time": "2016-08-06T06:05:19+00:00"
+            "time": "2016-08-06 06:05:19"
         },
         {
             "name": "studio-42/elfinder",
@@ -2041,7 +2041,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2017-02-24T15:28:23+00:00"
+            "time": "2017-02-24 15:28:23"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -2100,7 +2100,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-21T20:57:55+00:00"
+            "time": "2015-01-21 20:57:55"
         },
         {
             "name": "symfony/console",
@@ -2157,7 +2157,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-25T04:39:26+00:00"
+            "time": "2015-01-25 04:39:26"
         },
         {
             "name": "symfony/dependency-injection",
@@ -2217,7 +2217,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-25T04:39:26+00:00"
+            "time": "2015-01-25 04:39:26"
         },
         {
             "name": "symfony/filesystem",
@@ -2266,7 +2266,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-18T17:06:33+00:00"
+            "time": "2017-02-18 17:06:33"
         },
         {
             "name": "symfony/yaml",
@@ -2321,7 +2321,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-07T16:47:02+00:00"
+            "time": "2017-03-07 16:47:02"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -2360,7 +2360,7 @@
             ],
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
-            "time": "2013-02-09T17:48:44+00:00"
+            "time": "2013-02-09 17:48:44"
         },
         {
             "name": "twitter/bootstrap",
@@ -2411,7 +2411,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2016-07-25T15:51:55+00:00"
+            "time": "2016-07-25 15:51:55"
         },
         {
             "name": "undojs/undojs",
@@ -2479,7 +2479,7 @@
                 "captcha",
                 "zf2"
             ],
-            "time": "2017-02-23T08:09:44+00:00"
+            "time": "2017-02-23 08:09:44"
         },
         {
             "name": "zendframework/zend-code",
@@ -2531,7 +2531,7 @@
                 "code",
                 "zf2"
             ],
-            "time": "2016-04-20T17:26:42+00:00"
+            "time": "2016-04-20 17:26:42"
         },
         {
             "name": "zendframework/zend-config",
@@ -2587,7 +2587,7 @@
                 "config",
                 "zf2"
             ],
-            "time": "2016-02-04T23:01:10+00:00"
+            "time": "2016-02-04 23:01:10"
         },
         {
             "name": "zendframework/zend-crypt",
@@ -2637,7 +2637,7 @@
                 "crypt",
                 "zf2"
             ],
-            "time": "2016-02-03T23:46:30+00:00"
+            "time": "2016-02-03 23:46:30"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -2681,7 +2681,7 @@
                 "escaper",
                 "zf2"
             ],
-            "time": "2016-06-30T19:48:38+00:00"
+            "time": "2016-06-30 19:48:38"
         },
         {
             "name": "zendframework/zend-eventmanager",
@@ -2728,7 +2728,7 @@
                 "eventmanager",
                 "zf2"
             ],
-            "time": "2016-02-18T20:49:05+00:00"
+            "time": "2016-02-18 20:49:05"
         },
         {
             "name": "zendframework/zend-feed",
@@ -2789,7 +2789,7 @@
                 "feed",
                 "zf2"
             ],
-            "time": "2016-02-11T18:54:29+00:00"
+            "time": "2016-02-11 18:54:29"
         },
         {
             "name": "zendframework/zend-filter",
@@ -2849,7 +2849,7 @@
                 "filter",
                 "zf2"
             ],
-            "time": "2016-04-18T18:32:43+00:00"
+            "time": "2016-04-18 18:32:43"
         },
         {
             "name": "zendframework/zend-http",
@@ -2899,7 +2899,7 @@
                 "http",
                 "zf2"
             ],
-            "time": "2017-01-31T14:41:02+00:00"
+            "time": "2017-01-31 14:41:02"
         },
         {
             "name": "zendframework/zend-hydrator",
@@ -2957,7 +2957,7 @@
                 "hydrator",
                 "zf2"
             ],
-            "time": "2016-02-18T22:38:26+00:00"
+            "time": "2016-02-18 22:38:26"
         },
         {
             "name": "zendframework/zend-i18n",
@@ -3024,7 +3024,7 @@
                 "i18n",
                 "zf2"
             ],
-            "time": "2016-06-07T21:08:30+00:00"
+            "time": "2016-06-07 21:08:30"
         },
         {
             "name": "zendframework/zend-json",
@@ -3079,7 +3079,7 @@
                 "json",
                 "zf2"
             ],
-            "time": "2016-02-04T21:20:26+00:00"
+            "time": "2016-02-04 21:20:26"
         },
         {
             "name": "zendframework/zend-loader",
@@ -3123,7 +3123,7 @@
                 "loader",
                 "zf2"
             ],
-            "time": "2015-06-03T14:05:47+00:00"
+            "time": "2015-06-03 14:05:47"
         },
         {
             "name": "zendframework/zend-log",
@@ -3194,7 +3194,7 @@
                 "logging",
                 "zf2"
             ],
-            "time": "2016-08-11T13:44:10+00:00"
+            "time": "2016-08-11 13:44:10"
         },
         {
             "name": "zendframework/zend-mail",
@@ -3254,7 +3254,7 @@
                 "mail",
                 "zf2"
             ],
-            "time": "2017-02-14T18:03:34+00:00"
+            "time": "2017-02-14 18:03:34"
         },
         {
             "name": "zendframework/zend-math",
@@ -3304,7 +3304,7 @@
                 "math",
                 "zf2"
             ],
-            "time": "2016-04-07T16:29:53+00:00"
+            "time": "2016-04-07 16:29:53"
         },
         {
             "name": "zendframework/zend-mime",
@@ -3353,7 +3353,7 @@
                 "mime",
                 "zf2"
             ],
-            "time": "2017-01-16T16:43:38+00:00"
+            "time": "2017-01-16 16:43:38"
         },
         {
             "name": "zendframework/zend-server",
@@ -3399,7 +3399,7 @@
                 "server",
                 "zf2"
             ],
-            "time": "2016-06-20T22:27:55+00:00"
+            "time": "2016-06-20 22:27:55"
         },
         {
             "name": "zendframework/zend-servicemanager",
@@ -3454,7 +3454,7 @@
                 "servicemanager",
                 "zf"
             ],
-            "time": "2016-12-19T19:51:37+00:00"
+            "time": "2016-12-19 19:51:37"
         },
         {
             "name": "zendframework/zend-session",
@@ -3520,7 +3520,7 @@
                 "session",
                 "zf2"
             ],
-            "time": "2016-07-05T18:32:50+00:00"
+            "time": "2016-07-05 18:32:50"
         },
         {
             "name": "zendframework/zend-soap",
@@ -3572,7 +3572,7 @@
                 "soap",
                 "zf2"
             ],
-            "time": "2016-04-21T16:06:27+00:00"
+            "time": "2016-04-21 16:06:27"
         },
         {
             "name": "zendframework/zend-stdlib",
@@ -3631,7 +3631,7 @@
                 "stdlib",
                 "zf2"
             ],
-            "time": "2016-04-12T21:17:31+00:00"
+            "time": "2016-04-12 21:17:31"
         },
         {
             "name": "zendframework/zend-tag",
@@ -3682,7 +3682,7 @@
                 "tag",
                 "zf2"
             ],
-            "time": "2016-02-04T14:32:00+00:00"
+            "time": "2016-02-04 14:32:00"
         },
         {
             "name": "zendframework/zend-uri",
@@ -3729,31 +3729,31 @@
                 "uri",
                 "zf2"
             ],
-            "time": "2016-02-17T22:38:51+00:00"
+            "time": "2016-02-17 22:38:51"
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.8.2",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-validator.git",
-                "reference": "99b528e01276054458da9553b587cfb959dfa436"
+                "reference": "b71641582297eab52753b72cd4eb45a5ded4485c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework-zend-validator-99b528e01276054458da9553b587cfb959dfa436-zip-54870e.zip",
-                "reference": "99b528e01276054458da9553b587cfb959dfa436",
-                "shasum": "19e1b99d4d798e6da050b02e26e11d82abcb7089"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-validator/zendframework-zend-validator-b71641582297eab52753b72cd4eb45a5ded4485c-zip-6763f6.zip",
+                "reference": "b71641582297eab52753b72cd4eb45a5ded4485c",
+                "shasum": "e21c25b78d57672060fe866f6461887702d89961"
             },
             "require": {
                 "container-interop/container-interop": "^1.1",
-                "php": "^5.5 || ^7.0",
-                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+                "php": "^5.6 || ^7.0",
+                "zendframework/zend-stdlib": "^2.7.6 || ^3.1"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "^4.0",
+                "phpunit/phpunit": "^6.0.8 || ^5.7.15",
                 "zendframework/zend-cache": "^2.6.1",
+                "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^2.6",
                 "zendframework/zend-db": "^2.7",
                 "zendframework/zend-filter": "^2.6",
@@ -3765,20 +3765,20 @@
                 "zendframework/zend-uri": "^2.5"
             },
             "suggest": {
-                "zendframework/zend-db": "Zend\\Db component",
+                "zendframework/zend-db": "Zend\\Db component, required by the (No)RecordExists validator",
                 "zendframework/zend-filter": "Zend\\Filter component, required by the Digits validator",
-                "zendframework/zend-i18n": "Zend\\I18n component to allow translation of validation error messages as well as to use the various Date validators",
+                "zendframework/zend-i18n": "Zend\\I18n component to allow translation of validation error messages",
                 "zendframework/zend-i18n-resources": "Translations of validator messages",
-                "zendframework/zend-math": "Zend\\Math component",
+                "zendframework/zend-math": "Zend\\Math component, required by the Csrf validator",
                 "zendframework/zend-servicemanager": "Zend\\ServiceManager component to allow using the ValidatorPluginManager and validator chains",
-                "zendframework/zend-session": "Zend\\Session component",
+                "zendframework/zend-session": "Zend\\Session component, required by the Csrf validator",
                 "zendframework/zend-uri": "Zend\\Uri component, required by the Uri and Sitemap\\Loc validators"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev",
-                    "dev-develop": "2.9-dev"
+                    "dev-master": "2.9-dev",
+                    "dev-develop": "2.10-dev"
                 },
                 "zf": {
                     "component": "Zend\\Validator",
@@ -3800,7 +3800,7 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2017-01-29T17:24:24+00:00"
+            "time": "2017-03-17 10:15:50"
         },
         {
             "name": "zendframework/zend-version",
@@ -3850,7 +3850,7 @@
                 "version",
                 "zf2"
             ],
-            "time": "2015-06-04T15:41:05+00:00"
+            "time": "2015-06-04 15:41:05"
         },
         {
             "name": "zendframework/zendgdata",
@@ -3896,7 +3896,7 @@
                 "gdata",
                 "zf2"
             ],
-            "time": "2012-09-24T15:17:40+00:00"
+            "time": "2012-09-24 15:17:40"
         },
         {
             "name": "zendframework/zendoauth",
@@ -3943,7 +3943,7 @@
                 "oauth",
                 "zf2"
             ],
-            "time": "2014-04-09T01:02:18+00:00"
+            "time": "2014-04-09 01:02:18"
         },
         {
             "name": "zendframework/zendopenid",
@@ -3989,7 +3989,7 @@
                 "OpenId",
                 "zf2"
             ],
-            "time": "2014-03-05T23:58:08+00:00"
+            "time": "2014-03-05 23:58:08"
         },
         {
             "name": "zendframework/zendsearch",
@@ -4025,7 +4025,7 @@
                 "lucene",
                 "zf2"
             ],
-            "time": "2015-01-21T16:24:14+00:00"
+            "time": "2015-01-21 16:24:14"
         },
         {
             "name": "zendframework/zendservice-akismet",
@@ -4068,7 +4068,7 @@
                 "Akismet",
                 "zf2"
             ],
-            "time": "2013-02-09T07:13:34+00:00"
+            "time": "2013-02-09 07:13:34"
         },
         {
             "name": "zendframework/zendservice-recaptcha",
@@ -4120,7 +4120,7 @@
                 "recaptcha",
                 "zf2"
             ],
-            "time": "2017-02-09T21:38:25+00:00"
+            "time": "2017-02-09 21:38:25"
         },
         {
             "name": "zendframework/zendservice-twitter",
@@ -4170,7 +4170,7 @@
                 "twitter",
                 "zf2"
             ],
-            "time": "2013-03-13T20:49:31+00:00"
+            "time": "2013-03-13 20:49:31"
         },
         {
             "name": "zetacomponents/base",
@@ -4233,7 +4233,7 @@
             ],
             "description": "The Base package provides the basic infrastructure that all packages rely on. Therefore every component relies on this package.",
             "homepage": "https://github.com/zetacomponents",
-            "time": "2014-09-19T03:28:34+00:00"
+            "time": "2014-09-19 03:28:34"
         },
         {
             "name": "zetacomponents/webdav",
@@ -4299,7 +4299,7 @@
             ],
             "description": "This component allows you to set up and run your own WebDAV (RFC 2518) server, to enable online content editing for the users of your system through the WebDAV HTTP extension.",
             "homepage": "https://github.com/zetacomponents",
-            "time": "2014-09-27T19:26:10+00:00"
+            "time": "2014-09-27 19:26:10"
         }
     ],
     "packages-dev": [
@@ -4336,7 +4336,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2016-03-14T11:52:02+00:00"
+            "time": "2016-03-14 11:52:02"
         },
         {
             "name": "doctrine/instantiator",
@@ -4390,7 +4390,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14T21:17:01+00:00"
+            "time": "2015-06-14 21:17:01"
         },
         {
             "name": "mikey179/vfsStream",
@@ -4420,7 +4420,7 @@
                 "BSD"
             ],
             "homepage": "http://vfs.bovigo.org/",
-            "time": "2012-08-25T12:49:29+00:00"
+            "time": "2012-08-25 12:49:29"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4462,7 +4462,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-01-26T22:05:40+00:00"
+            "time": "2017-01-26 22:05:40"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -4516,7 +4516,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2015-12-27T11:43:31+00:00"
+            "time": "2015-12-27 11:43:31"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -4561,7 +4561,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-09-30T07:12:33+00:00"
+            "time": "2016-09-30 07:12:33"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -4608,7 +4608,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2016-11-25T06:54:22+00:00"
+            "time": "2016-11-25 06:54:22"
         },
         {
             "name": "phpspec/prophecy",
@@ -4671,7 +4671,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2017-03-02T20:05:34+00:00"
+            "time": "2017-03-02 20:05:34"
         },
         {
             "name": "phpunit/dbunit",
@@ -4726,7 +4726,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-12-02T14:39:14+00:00"
+            "time": "2016-12-02 14:39:14"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -4789,7 +4789,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-01T09:12:17+00:00"
+            "time": "2017-03-01 09:12:17"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4836,7 +4836,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2016-10-03T07:40:28+00:00"
+            "time": "2016-10-03 07:40:28"
         },
         {
             "name": "phpunit/php-text-template",
@@ -4877,7 +4877,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2015-06-21T13:50:34+00:00"
+            "time": "2015-06-21 13:50:34"
         },
         {
             "name": "phpunit/php-timer",
@@ -4926,7 +4926,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-02-26T11:10:40+00:00"
+            "time": "2017-02-26 11:10:40"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -4975,21 +4975,21 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-02-27T10:12:30+00:00"
+            "time": "2017-02-27 10:12:30"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.16",
+            "version": "5.7.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "dafc78e2a7d12139b0e97078d1082326bd09363d"
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-dafc78e2a7d12139b0e97078d1082326bd09363d-zip-be315f.zip",
-                "reference": "dafc78e2a7d12139b0e97078d1082326bd09363d",
-                "shasum": "a87f916a708ee5a6ac4f5c544e6ce5abdd07c0fc"
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-68752b665d3875f9a38a357e3ecb35c79f8673bf-zip-e816fb.zip",
+                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
+                "shasum": "378bc64f3a62256cf7d99be241714abb3cae14b9"
             },
             "require": {
                 "ext-dom": "*",
@@ -5057,7 +5057,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-15T13:02:34+00:00"
+            "time": "2017-03-19 16:52:12"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -5116,7 +5116,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-12-08T20:27:08+00:00"
+            "time": "2016-12-08 20:27:08"
         },
         {
             "name": "phpunit/phpunit-selenium",
@@ -5184,7 +5184,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-01-23T22:12:35+00:00"
+            "time": "2017-01-23 22:12:35"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -5229,7 +5229,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2017-03-04T06:30:41+00:00"
+            "time": "2017-03-04 06:30:41"
         },
         {
             "name": "sebastian/comparator",
@@ -5293,7 +5293,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-01-29T09:50:25+00:00"
+            "time": "2017-01-29 09:50:25"
         },
         {
             "name": "sebastian/diff",
@@ -5345,7 +5345,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2015-12-08T07:14:41+00:00"
+            "time": "2015-12-08 07:14:41"
         },
         {
             "name": "sebastian/environment",
@@ -5395,7 +5395,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-11-26T07:53:53+00:00"
+            "time": "2016-11-26 07:53:53"
         },
         {
             "name": "sebastian/exporter",
@@ -5462,7 +5462,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2016-11-19T08:54:04+00:00"
+            "time": "2016-11-19 08:54:04"
         },
         {
             "name": "sebastian/global-state",
@@ -5513,7 +5513,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2015-10-12T03:26:01+00:00"
+            "time": "2015-10-12 03:26:01"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -5559,7 +5559,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2017-02-18T15:18:39+00:00"
+            "time": "2017-02-18 15:18:39"
         },
         {
             "name": "sebastian/recursion-context",
@@ -5612,7 +5612,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2016-11-19T07:33:16+00:00"
+            "time": "2016-11-19 07:33:16"
         },
         {
             "name": "sebastian/resource-operations",
@@ -5654,7 +5654,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "time": "2015-07-28T20:34:47+00:00"
+            "time": "2015-07-28 20:34:47"
         },
         {
             "name": "sebastian/version",
@@ -5697,7 +5697,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2016-10-03T07:35:21+00:00"
+            "time": "2016-10-03 07:35:21"
         },
         {
             "name": "webmozart/assert",
@@ -5747,14 +5747,12 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-11-23T20:04:58+00:00"
+            "time": "2016-11-23 20:04:58"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "h5p/h5p-core": 20,
-        "h5p/h5p-editor": 20,
         "jcapture-applet/jcapture-applet": 20,
         "zendframework/zendsearch": 5,
         "bafs/testify": 20
