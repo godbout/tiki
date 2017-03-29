@@ -691,7 +691,7 @@ class H5PLib
 		$editor->processParameters($content['id'], $content['library'], $params, $oldLibrary, $oldParams);
 
 		// export the project into the new file gallery file
-		$core->filterParameters($content);	// rebuild content
+		$core->filterParameters($content); // rebuild content
 		$exportedFile = H5P_H5PTiki::$h5p_path . '/exports/' . $content['slug'] . '-' . $content['id'] . '.h5p';
 
 		if (! file_exists($exportedFile)) {
@@ -721,5 +721,30 @@ class H5PLib
 
 		$this->isSaving = false;
 		return $fileId;
+	}
+
+	public function removeOldTmpFiles()
+	{
+		$older_than = time() - 86400;
+
+	  // Locate files
+		$result = TikiDb::get()->query(
+				'SELECT tf.`path`
+FROM `tiki_h5p_tmpfiles` tf
+WHERE tf.`created_at` < ?',
+				$older_than
+		);
+
+		// Delete files from file system
+		foreach ($result->result as $file) {
+			@unlink($file['path']);
+		}
+
+		// Remove from tmpfiles table
+		TikiDb::get()->query(
+				'DELETE FROM `tiki_h5p_tmpfiles`
+WHERE `created_at` < ?',
+				$older_than
+		);
 	}
 }

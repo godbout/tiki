@@ -336,4 +336,20 @@ LEFT JOIN `users_users` AS u ON u.`userId` = r.`user_id`');
 
 	}
 
+	function action_cron($input) {
+		global $prefs;
+
+		ignore_user_abort(true);
+
+		// Verify token to prevent unauthorized use
+		if (!isset($prefs['h5p_cron_token']) || $prefs['h5p_cron_token'] !== $input->token->word()) {
+			return; // Invalid token
+		}
+
+		// Register run time
+		TikiLib::lib('tiki')->set_preference('h5p_cron_last_run', time());
+
+		// Clean up old temporary files
+		TikiLib::lib('h5p')->removeOldTmpFiles();
+	}
 }

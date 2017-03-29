@@ -42,6 +42,24 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		// possibly others needed?
 
 		self::$h5p_path = 'storage/public';
+
+		if ($this->getOption('cron_last_run') < time() - 86400) {
+			// Cron not run in >24h, trigger it
+
+			// Determine full URL
+			$cronUrl = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . "://{$_SERVER[HTTP_HOST]}/" .
+					TikiLib::lib('service')->getUrl(['controller' => 'h5p', 'action' => 'cron']);
+
+			// Use token to prevent unauthorized use
+			$token = $this->getOption('cron_token');
+			if ($token === null) {
+				// Create new token
+				$token = uniqid();
+				$this->setOption('cron_token', $token);
+			}
+
+			$this->fetchExternalData($cronUrl, array('token' => $token), false);
+		}
 	}
 
 	/**
@@ -114,9 +132,28 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * @param $data
 	 * @return string The content (response body). null if something went wrong
 	 */
-	public function fetchExternalData($url, $data)
+	public function fetchExternalData($url, $data, $blocking = true)
 	{
-		// TODO: Implement fetchExternalData() method.
+		$handle = curl_init($url);
+		curl_setopt($handle, CURLOPT_POST, true);
+		curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
+	 	curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+
+		if (! $blocking) {
+			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 0.01);
+		}
+
+		$response = curl_exec($handle);
+		curl_close($handle);
+
+		if (!$response) {
+			$error = curl_error($handle);
+			// Print error?
+		}
+
+		if ($blocking) {
+			return $response;
+		}
 	}
 
 	/**
