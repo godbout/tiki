@@ -1140,7 +1140,7 @@ if ( \$('#$id') ) {
 		} else {
 			$elem = 'span';
 		}
-		$elem_style = 'position:relative;';
+		$elem_style = 'position:relative;display:inline-block';
 		if (!$enabled) {
 			$elem_style .= 'opacity:0.3;';
 		}
@@ -2882,7 +2882,7 @@ if ( \$('#$id') ) {
 						$hideall = false;
 						for ( $j = $hdrlevel ; $j > 0 ; $j-- ) {
 							if ( $hideall || empty($show_title_level[$j]) ) {
-								unset($hdr_structure[$nb_hdrs][$j - 1]);
+								unset($hdr_structure[$j - 1]);
 								$hideall = true;
 							}
 						}

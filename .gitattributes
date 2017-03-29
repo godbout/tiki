@@ -106,6 +106,7 @@ doc/devtools/index.php -text
 doc/devtools/ks_prefreport.php -text
 doc/devtools/mass_wording_corrections.pl -text
 doc/devtools/mergelang.php -text
+doc/devtools/migrate_image_galleries.php -text
 doc/devtools/mods.sh -text
 doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
 doc/devtools/parse_changelog.pl -text
@@ -1415,6 +1416,7 @@ installer/.htaccess -text
 installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-enabled.patch -text
 installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch -text
 installer/composer-patches/composer-patches.json -text
+installer/composer-patches/jquery-sheet_fix-visibility-issues.patch -text
 installer/index.php -text
 installer/installlib.php -text
 installer/schema/00000000_schema_change_tiki.sql -text
@@ -8021,6 +8023,7 @@ vendor/.htaccess -text
 vendor_bundled/.htaccess -text
 vendor_bundled/composer.json -text
 vendor_bundled/composer.lock -text
+vendor_extra/.htaccess -text
 vendor_extra/anythingslider-themes/css/theme-default1.css -text
 vendor_extra/anythingslider-themes/css/theme-default2.css -text
 vendor_extra/anythingslider-themes/css/theme-mini-dark.css -text

@@ -184,6 +184,27 @@ function wikiplugin_pivottable_info()
 					array('text' => tra('Yes'), 'value' => 'y'),
 					array('text' => tra('No'), 'value' => 'n')
 				)
+			),
+			'xAxisLabel' => array(
+				'name' => tr('xAxis label'),
+				'description' => tr('Override label of horizontal axis when using Chart renderers.'),
+				'since' => '16.3',
+				'required' => false,
+				'filter' => 'text',
+			),
+			'yAxisLabel' => array(
+				'name' => tr('yAxis label'),
+				'description' => tr('Override label of vertical axis when using Chart renderers.'),
+				'since' => '16.3',
+				'required' => false,
+				'filter' => 'text',
+			),
+			'chartTitle' => array(
+				'name' => tr('Chart title'),
+				'description' => tr('Override title when using Chart renderers.'),
+				'since' => '16.3',
+				'required' => false,
+				'filter' => 'text',
 			)
 		),
 	);
@@ -528,7 +549,7 @@ function wikiplugin_pivottable($data, $params)
 			foreach( $ownerFields as $ownerField ) {
 				$itemUsers = TikiLib::lib('trk')->parse_user_field(@$item[$ownerField['name']]);
 				if( in_array($user, $itemUsers) ) {
-					$highlight[] = $item;
+					$highlight[] = ['item' => $item];
 					break;
 				}
 			}
@@ -545,8 +566,22 @@ function wikiplugin_pivottable($data, $params)
 		if( $groupField ) {
 			$myGroups = TikiLib::lib('tiki')->get_user_groups($user);
 			foreach( $pivotData as $item ) {
-				if( in_array(@$item[$groupField['name']], $myGroups) ) {
-					$highlight[] = $item;
+				$group = @$item[$groupField['name']];
+				if( in_array($group, $myGroups) ) {
+					$highlight[] = ['item' => $item, 'group' => $group];
+				}
+			}
+			if( $prefs['feature_conditional_formatting'] === 'y' ) {
+				$groupsInfo = TikiLib::lib('user')->get_group_info($myGroups);
+				$groupColors = [];
+				foreach( $groupsInfo as $groupInfo ) {
+					$groupColors[$groupInfo['groupName']] = $groupInfo['groupColor'];
+				}
+				foreach( $highlight as &$row ) {
+					$group = $row['group'];
+					if( $group && !empty($groupColors[$group]) ) {
+						$row['color'] = $groupColors[$group];
+					}
 				}
 			}
 		}
@@ -591,6 +626,9 @@ function wikiplugin_pivottable($data, $params)
 		'highlight' => $highlight,
 		'highlightMine' => empty($params['highlightMine']) ? null : $params['highlightMine'],
 		'highlightGroup' => empty($params['highlightGroup']) ? null : $params['highlightGroup'],
+		'xAxisLabel' => empty($params['xAxisLabel']) ? null : $params['xAxisLabel'],
+		'yAxisLabel' => empty($params['yAxisLabel']) ? null : $params['yAxisLabel'],
+		'chartTitle' => empty($params['chartTitle']) ? null : $params['chartTitle'],
 		'index'=>$id
 	));
 	
