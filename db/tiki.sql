@@ -1141,6 +1141,13 @@ CREATE TABLE tiki_h5p_results (
 	KEY content_user (content_id, user_id)
 )	ENGINE = MyISAM;
 
+# Cache table for h5p libraries so we can reuse the existing h5p code for caching
+CREATE TABLE tiki_h5p_libraries_cachedassets (
+	library_id INT UNSIGNED NOT NULL,
+	hash       VARCHAR(64)  NOT NULL,
+	PRIMARY KEY (library_id, hash)
+) ENGINE = MyISAM;
+
 DROP TABLE IF EXISTS `tiki_history`;
 CREATE TABLE `tiki_history` (
   `historyId` int(12) NOT NULL auto_increment,

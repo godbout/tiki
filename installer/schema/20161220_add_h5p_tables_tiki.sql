@@ -102,6 +102,14 @@ CREATE TABLE tiki_h5p_results (
 	KEY content_user (content_id, user_id)
 )	ENGINE = MyISAM;
 
+# Cache table for h5p libraries so we can reuse the existing h5p code for caching
+CREATE TABLE tiki_h5p_libraries_cachedassets (
+	library_id INT UNSIGNED NOT NULL,
+	hash       VARCHAR(64)  NOT NULL,
+	PRIMARY KEY (library_id, hash)
+) ENGINE = MyISAM;
+
+
 ############## Potentially optional libraries from here downwards- to be re-assessed
 ############## whether they can be integrated/reusing tiki tables or if they need added to Tiki
 
@@ -170,12 +178,5 @@ CREATE TABLE tiki_h5p_counters (
 	num             INT UNSIGNED NOT NULL,
 	PRIMARY KEY (type, library_name, library_version)
 )	ENGINE = MyISAM;
-
-# Tiki has a cache library
-CREATE TABLE tiki_h5p_libraries_cachedassets (
-	library_id INT UNSIGNED NOT NULL,
-	hash       VARCHAR(64)  NOT NULL,
-	PRIMARY KEY (library_id, hash)
-) ENGINE = MyISAM;
 
 */
