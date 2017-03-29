@@ -1936,6 +1936,7 @@ installer/schema/20160915_extwiki_indexname_length_tiki.sql -text
 installer/schema/20161109_remove_old_password_tiki.php -text
 installer/schema/20161117_favicon_tiki.sql -text
 installer/schema/20161206_larger_comment_field_tiki.sql -text
+installer/schema/20161220_add_h5p_tables_tiki.sql -text
 installer/schema/20170122_schedulers_tiki.sql -text
 installer/schema/20170127_remove_templates_c_tiki.php -text
 installer/schema/20170129_feature_dump_tiki.sql -text
@@ -2261,6 +2262,11 @@ lib/core/FutureLink/ReceiveFromPast.php -text
 lib/core/FutureLink/Search.php -text
 lib/core/FutureLink/SendToFuture.php -text
 lib/core/FutureLink/index.php -text
+lib/core/H5P/EditorTikiStorage.php -text
+lib/core/H5P/Event.php -text
+lib/core/H5P/H5PTiki.php -text
+lib/core/H5P/editor.js -text
+lib/core/H5P/index.php -text
 lib/core/JisonParser/Phraser.jison -text
 lib/core/JisonParser/Phraser.js -text
 lib/core/JisonParser/Phraser.php -text
@@ -2661,6 +2667,7 @@ lib/core/Services/Goal/Controller.php -text
 lib/core/Services/Goal/index.php -text
 lib/core/Services/Group/Controller.php -text
 lib/core/Services/Group/index.php -text
+lib/core/Services/H5P/Controller.php -text
 lib/core/Services/Kaltura/Controller.php -text
 lib/core/Services/Kaltura/index.php -text
 lib/core/Services/Language/Controller.php -text
@@ -3231,6 +3238,7 @@ lib/featured_links/flinkslib.php -text
 lib/featured_links/index.php -text
 lib/filegals/filegalbatchlib.php -text
 lib/filegals/filegallib.php -text
+lib/filegals/h5plib.php -text
 lib/filegals/index.php -text
 lib/filegals/max_upload_size.php -text
 lib/filegals/scormlib.php -text
@@ -3637,6 +3645,7 @@ lib/prefs/geo.php -text
 lib/prefs/global.php -text
 lib/prefs/gmap.php -text
 lib/prefs/goal.php -text
+lib/prefs/h5p.php -text
 lib/prefs/header.php -text
 lib/prefs/highlight.php -text
 lib/prefs/home.php -text
@@ -4685,6 +4694,7 @@ lib/wiki-plugins/wikiplugin_groupexpiry.php -text
 lib/wiki-plugins/wikiplugin_grouplist.php -text
 lib/wiki-plugins/wikiplugin_groupmailcore.php -text
 lib/wiki-plugins/wikiplugin_groupstat.php -text
+lib/wiki-plugins/wikiplugin_h5p.php -text
 lib/wiki-plugins/wikiplugin_hasbought.php -text
 lib/wiki-plugins/wikiplugin_html.php -text
 lib/wiki-plugins/wikiplugin_htmlfeed.php -text
@@ -5344,6 +5354,9 @@ templates/goal/render_conditions.tpl -text
 templates/goal/render_rewards.tpl -text
 templates/goal/show.tpl -text
 templates/goal/show_list.tpl -text
+templates/h5p/edit.tpl -text
+templates/h5p/embed.tpl -text
+templates/h5p/list_results.tpl -text
 templates/header.tpl -text
 templates/index.php -text
 templates/interactive_translation_box.tpl -text
