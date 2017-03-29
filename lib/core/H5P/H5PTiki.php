@@ -84,8 +84,8 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 				true                          // each time an h5p is saved it exports the reult into the file gallery to keep it up to date
 			);
 
-			// This is more of a development option to prevent JS and CSS from being combined. TODO: Remove later
-			$core->aggregateAssets = false;
+			// Will combine all JavaScript and all CSS files to reduce the total number of requests
+			$core->aggregateAssets = true;
 		}
 
 		// Determine which component to return
