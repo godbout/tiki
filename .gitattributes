@@ -2269,6 +2269,8 @@ lib/core/H5P/Event.php -text
 lib/core/H5P/H5PTiki.php -text
 lib/core/H5P/editor.js -text
 lib/core/H5P/index.php -text
+lib/core/IDS/index.php -text
+lib/core/IDS/log.php -text
 lib/core/JisonParser/Phraser.jison -text
 lib/core/JisonParser/Phraser.js -text
 lib/core/JisonParser/Phraser.php -text
@@ -3823,6 +3825,7 @@ lib/setup/error_reporting.php -text
 lib/setup/events.php -text
 lib/setup/freetags.php -text
 lib/setup/fullscreen.php -text
+lib/setup/ids.php -text
 lib/setup/index.php -text
 lib/setup/integrator.php -text
 lib/setup/javascript.php -text
