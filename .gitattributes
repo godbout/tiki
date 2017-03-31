@@ -3176,10 +3176,15 @@ lib/core/WikiParser/PluginParser.php -text
 lib/core/WikiParser/PluginRepository.php -text
 lib/core/WikiParser/PluginRunner.php -text
 lib/core/WikiParser/index.php -text
+lib/core/WikiPlugin/Casperjs/Render.php -text
+lib/core/WikiPlugin/Casperjs/Result.php -text
+lib/core/WikiPlugin/Casperjs/Runner.php -text
+lib/core/WikiPlugin/Casperjs/index.php -text
 lib/core/WikiPlugin/Negotiator/Wiki.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/Alias.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/index.php -text
 lib/core/WikiPlugin/Negotiator/index.php -text
+lib/core/WikiPlugin/index.php -text
 lib/core/Yaml/Directive/Include.php -text
 lib/core/Yaml/Directives.php -text
 lib/core/Yaml/Filter/FilterInterface.php -text
@@ -4635,6 +4640,7 @@ lib/wiki-plugins/wikiplugin_button.php -text
 lib/wiki-plugins/wikiplugin_calendar.php -text
 lib/wiki-plugins/wikiplugin_carousel.php -text
 lib/wiki-plugins/wikiplugin_cartmissinguserinfo.php -text
+lib/wiki-plugins/wikiplugin_casperjs.php -text
 lib/wiki-plugins/wikiplugin_category.php -text
 lib/wiki-plugins/wikiplugin_categorytransition.php -text
 lib/wiki-plugins/wikiplugin_catorphans.php -text
