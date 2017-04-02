@@ -6487,9 +6487,9 @@ themes/base_files/favicons/apple-touch-icon.png -text
 themes/base_files/favicons/browserconfig.xml -text
 themes/base_files/favicons/favicon-16x16.png -text
 themes/base_files/favicons/favicon-32x32.png -text
+themes/base_files/favicons/favicon.ico -text
 themes/base_files/favicons/manifest.json -text
 themes/base_files/favicons/mstile-150x150.png -text
-themes/base_files/favicons/readme.txt -text
 themes/base_files/favicons/safari-pinned-tab.svg -text
 themes/base_files/feature_css/admin.css -text
 themes/base_files/feature_css/calendar-print.css -text
