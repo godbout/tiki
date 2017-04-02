@@ -49,6 +49,7 @@ admin/index.php -text
 /contribution.php -text
 /copyright.txt -text
 /copyrights.php -text
+/cron.php -text
 db/.htaccess -text
 db/cert/index.php -text
 db/cert/web.config -text
@@ -2421,6 +2422,7 @@ lib/core/Scheduler/Task/CommandTask.php -text
 lib/core/Scheduler/Task/ConsoleCommandTask.php -text
 lib/core/Scheduler/Task/HTTPGetCommandTask.php -text
 lib/core/Scheduler/Task/ShellCommandTask.php -text
+lib/core/Scheduler/Utils.php -text
 lib/core/Search/Action/Action.php -text
 lib/core/Search/Action/ActionStep.php -text
 lib/core/Search/Action/ChangeStatusAction.php -text
@@ -2790,6 +2792,7 @@ lib/core/Tiki/Command/BackupDBCommand.php -text
 lib/core/Tiki/Command/BackupFilesCommand.php -text
 lib/core/Tiki/Command/CacheClearCommand.php -text
 lib/core/Tiki/Command/ConfigureCommand.php -text
+lib/core/Tiki/Command/ConsoleApplicationBuilder.php -text
 lib/core/Tiki/Command/DailyReportSendCommand.php -text
 lib/core/Tiki/Command/FilesBatchuploadCommand.php -text
 lib/core/Tiki/Command/FilesDeleteoldCommand.php -text
@@ -3754,6 +3757,7 @@ lib/prefs/validator.php -text
 lib/prefs/vimeo.php -text
 lib/prefs/w.php -text
 lib/prefs/warn.php -text
+lib/prefs/webcron.php -text
 lib/prefs/webmail.php -text
 lib/prefs/webservice.php -text
 lib/prefs/wiki.php -text
