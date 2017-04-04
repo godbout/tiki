@@ -2738,6 +2738,8 @@ lib/core/Services/Workspace/ProfileAnalyser.php -text
 lib/core/Services/Workspace/ProfileBuilder.php -text
 lib/core/Services/Workspace/Utilities.php -text
 lib/core/Services/Workspace/index.php -text
+lib/core/Services/Xmpp/Controller.php -text
+lib/core/Services/Xmpp/index.php -text
 lib/core/Services/index.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
@@ -3768,6 +3770,7 @@ lib/prefs/wikipluginprefs.php -text
 lib/prefs/wizard.php -text
 lib/prefs/workspace.php -text
 lib/prefs/wysiwyg.php -text
+lib/prefs/xmpp.php -text
 lib/prefs/zend.php -text
 lib/prefs/zotero.php -text
 lib/prefslib.php -text
@@ -4852,6 +4855,7 @@ lib/wiki-plugins/wikiplugin_webservice.php -text
 lib/wiki-plugins/wikiplugin_wikidiff.php -text
 lib/wiki-plugins/wikiplugin_wysiwyg.php -text
 lib/wiki-plugins/wikiplugin_xmlupdate.php -text
+lib/wiki-plugins/wikiplugin_xmpp.php -text
 lib/wiki-plugins/wikiplugin_youtube.php -text
 lib/wiki-plugins/wikiplugin_zotero.php -text
 lib/wiki-plugins/wikiplugin_zoterolist.php -text
@@ -4924,6 +4928,8 @@ lib/wizard/pages/user_wizard_completed.php -text
 lib/wizard/readme.txt -text
 lib/wizard/wizard.php -text
 lib/wizard/wizardlib.php -text
+lib/xmpp/TikiXmppPrebind.php -text
+lib/xmpp/xmpplib.php -text
 lib/ziplib.php -text
 lib/zoterolib.php -text
 /license.txt -text
