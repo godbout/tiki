@@ -6619,6 +6619,7 @@ themes/cosmo/less/index.php -text
 themes/cosmo/less/newsletter.less -text
 themes/cosmo/less/variables.less -text
 themes/cosmo/templates/index.php -text
+themes/css/index.php -text
 themes/cupid/css/cupid.css -text
 themes/cupid/css/index.php -text
 themes/cupid/css/newsletter.css -text
@@ -7327,6 +7328,7 @@ themes/jqui/options/trontastic/trontastic.png -text
 themes/jqui/options/trontastic/ui-bg_diagonals-small_50_262626_40x40.png -text
 themes/jqui/options/trontastic/ui-bg_gloss-wave_55_000000_500x100.png -text
 themes/jqui/templates/index.php -text
+themes/js/index.php -text
 themes/lumen/css/index.php -text
 themes/lumen/css/lumen.css -text
 themes/lumen/css/newsletter.css -text
