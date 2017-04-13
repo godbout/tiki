@@ -5090,7 +5090,6 @@ modules/mod-func-xmpp.php -text
 modules/mod-func-youtube.php -text
 modules/mod-func-zone.php -text
 modules/mod-func-zotero.php -text
-modules/mod-xmpp.php -text
 modules/web.config -text
 permissioncheck/.htaccess -text
 permissioncheck/.htpasswd -text
