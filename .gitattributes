@@ -4856,7 +4856,6 @@ lib/wiki-plugins/wikiplugin_webservice.php -text
 lib/wiki-plugins/wikiplugin_wikidiff.php -text
 lib/wiki-plugins/wikiplugin_wysiwyg.php -text
 lib/wiki-plugins/wikiplugin_xmlupdate.php -text
-lib/wiki-plugins/wikiplugin_xmpp.php -text
 lib/wiki-plugins/wikiplugin_youtube.php -text
 lib/wiki-plugins/wikiplugin_zotero.php -text
 lib/wiki-plugins/wikiplugin_zoterolist.php -text
@@ -5087,9 +5086,11 @@ modules/mod-func-webmail_inbox.php -text
 modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
+modules/mod-func-xmpp.php -text
 modules/mod-func-youtube.php -text
 modules/mod-func-zone.php -text
 modules/mod-func-zotero.php -text
+modules/mod-xmpp.php -text
 modules/web.config -text
 permissioncheck/.htaccess -text
 permissioncheck/.htpasswd -text
@@ -5728,6 +5729,7 @@ templates/modules/mod-who_is_there.tpl -text
 templates/modules/mod-who_is_there.tpl.nocache -text
 templates/modules/mod-wiki_last_comments.tpl -text
 templates/modules/mod-wiki_last_comments.tpl.nocache -text
+templates/modules/mod-xmpp.tpl -text
 templates/modules/mod-youtube.tpl -text
 templates/modules/mod-zone.tpl -text
 templates/modules/mod-zotero.tpl -text
@@ -6467,6 +6469,7 @@ templates/workspace/edit_template.tpl -text
 templates/workspace/index.php -text
 templates/workspace/list_templates.tpl -text
 templates/workspace/select_permissions.tpl -text
+templates/xmpp-client.tpl -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
