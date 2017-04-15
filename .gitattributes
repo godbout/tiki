@@ -2738,6 +2738,8 @@ lib/core/Services/Workspace/ProfileAnalyser.php -text
 lib/core/Services/Workspace/ProfileBuilder.php -text
 lib/core/Services/Workspace/Utilities.php -text
 lib/core/Services/Workspace/index.php -text
+lib/core/Services/Xmpp/Controller.php -text
+lib/core/Services/Xmpp/index.php -text
 lib/core/Services/index.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard.php -text
 lib/core/StandardAnalyzer/Analyzer/Standard/English.php -text
@@ -3768,6 +3770,7 @@ lib/prefs/wikipluginprefs.php -text
 lib/prefs/wizard.php -text
 lib/prefs/workspace.php -text
 lib/prefs/wysiwyg.php -text
+lib/prefs/xmpp.php -text
 lib/prefs/zend.php -text
 lib/prefs/zotero.php -text
 lib/prefslib.php -text
@@ -4924,6 +4927,8 @@ lib/wizard/pages/user_wizard_completed.php -text
 lib/wizard/readme.txt -text
 lib/wizard/wizard.php -text
 lib/wizard/wizardlib.php -text
+lib/xmpp/TikiXmppPrebind.php -text
+lib/xmpp/xmpplib.php -text
 lib/ziplib.php -text
 lib/zoterolib.php -text
 /license.txt -text
@@ -5080,6 +5085,7 @@ modules/mod-func-webmail_inbox.php -text
 modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
+modules/mod-func-xmpp.php -text
 modules/mod-func-youtube.php -text
 modules/mod-func-zone.php -text
 modules/mod-func-zotero.php -text
@@ -5721,6 +5727,7 @@ templates/modules/mod-who_is_there.tpl -text
 templates/modules/mod-who_is_there.tpl.nocache -text
 templates/modules/mod-wiki_last_comments.tpl -text
 templates/modules/mod-wiki_last_comments.tpl.nocache -text
+templates/modules/mod-xmpp.tpl -text
 templates/modules/mod-youtube.tpl -text
 templates/modules/mod-zone.tpl -text
 templates/modules/mod-zotero.tpl -text
@@ -6460,6 +6467,7 @@ templates/workspace/edit_template.tpl -text
 templates/workspace/index.php -text
 templates/workspace/list_templates.tpl -text
 templates/workspace/select_permissions.tpl -text
+templates/xmpp-client.tpl -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
