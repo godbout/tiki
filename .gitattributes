@@ -119,6 +119,7 @@ doc/devtools/recover_wiki_from_google.pl -text
 doc/devtools/release.php -text
 doc/devtools/remove_empty_wiki_attachment_filegals.php -text
 doc/devtools/removehtaccess.sh -text
+doc/devtools/rescue_wiki_changes_from_elastic.php -text
 doc/devtools/restorehelp.php -text
 doc/devtools/rewritesecdb.php -text
 doc/devtools/satis.json -text
