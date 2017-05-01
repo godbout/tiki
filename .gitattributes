@@ -17,6 +17,7 @@ admin/include_i18n.php -text
 admin/include_intertiki.php -text
 admin/include_login.php -text
 admin/include_look.php -text
+admin/include_packages.php -text
 admin/include_performance.php -text
 admin/include_profiles.php -text
 admin/include_rating.php -text
@@ -2938,6 +2939,14 @@ lib/core/Tiki/MemoryLimit.php -text
 lib/core/Tiki/Object/Selector.php -text
 lib/core/Tiki/Object/SelectorItem.php -text
 lib/core/Tiki/Object/index.php -text
+lib/core/Tiki/Package/ComposerCli.php -text
+lib/core/Tiki/Package/ComposerManager.php -text
+lib/core/Tiki/Package/ComposerPackage.php -text
+lib/core/Tiki/Package/External/CasperJS.php -text
+lib/core/Tiki/Package/External/Expose.php -text
+lib/core/Tiki/Package/External/Mpdf.php -text
+lib/core/Tiki/Package/PackageInterface.php -text
+lib/core/Tiki/Package/Type.php -text
 lib/core/Tiki/PageCache.php -text
 lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
@@ -5228,6 +5237,7 @@ templates/admin/include_messages.tpl -text
 templates/admin/include_metatags.tpl -text
 templates/admin/include_missing_addon_page.tpl -text
 templates/admin/include_module.tpl -text
+templates/admin/include_packages.tpl -text
 templates/admin/include_payment.tpl -text
 templates/admin/include_performance.tpl -text
 templates/admin/include_polls.tpl -text
