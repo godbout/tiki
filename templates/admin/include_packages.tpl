@@ -65,7 +65,7 @@
     {/tab}
     {tab name="{tr}Install Other Packages{/tr}"}
         <br />
-        <h4>{tr}Composer Packages{/tr} <small>{tr}this packages have been identified as a dependency of one or more features{/tr}</small></h4>
+        <h4>{tr}Composer Packages{/tr} <small>{tr}these packages have been identified as a dependency of one or more features{/tr}</small></h4>
         <table class="table">
             <tr>
                 <th>{tr}Package Name{/tr}</th>
