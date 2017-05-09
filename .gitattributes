@@ -139,6 +139,7 @@ doc/devtools/svnmerge.php -text
 doc/devtools/svnrevert.sh -text
 doc/devtools/svnswitch.php -text
 doc/devtools/svntools.php -text
+doc/devtools/svnup.php -text
 doc/devtools/svnup.sh -text
 doc/devtools/sync.php -text
 doc/devtools/synctiki.sh -text
