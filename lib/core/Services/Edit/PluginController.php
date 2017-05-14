@@ -174,7 +174,7 @@ class Services_Edit_PluginController
 				}
 			}
 
-			$extraParams = array_diff_key($pluginArgs, $info['params']);
+			$extraParams = array_filter(array_diff_key($pluginArgs, $info['params']));
 
 			foreach ($extraParams as $extraParam => $val) {
 				$info['params'][$extraParam] = [
@@ -261,8 +261,10 @@ class Services_Edit_PluginController
 		$params = $input->asArray('params');
 
 		$referer = $_SERVER['HTTP_REFERER'];
+		$util = new Services_Utilities();
+		$util->checkTicket();
 
-		if (! $page || ! $type || ! $referer || $_SERVER['REQUEST_METHOD'] !== 'POST') {
+		if (! $page || ! $type || ! $referer || $_SERVER['REQUEST_METHOD'] !== 'POST' || ! $util->access->ticketMatch()) {
 			throw new Services_Exception(tr('Missing parameters'));
 		}
 
@@ -333,6 +335,7 @@ class Services_Edit_PluginController
 	 */
 	function action_list_edit($input)
 	{
+		global $prefs;
 
 		$body = $input->body->wikicontent();
 		$current = [];
@@ -343,6 +346,23 @@ class Services_Edit_PluginController
 
 
 		$fields = TikiLib::lib('unifiedsearch')->getAvailableFields();
+
+		$trackers = [];
+		if ($prefs['feature_trackers'] === 'y') {
+			$trklib = TikiLib::lib('trk');
+
+			$trackersData = $trklib->list_trackers();
+
+			foreach ($trackersData['data'] as $trackerInfo) {
+				$trackerId = $trackerInfo['trackerId'];
+				$trackers[$trackerId] = [];
+				$definition = Tracker_Definition::get($trackerId);
+
+				foreach ($definition->getFields() as $fieldObject) {
+					$trackers[$trackerId][] = 'tracker_field_' . $fieldObject['permName'];
+				}
+			}
+		}
 
 		// generic fields missing from the content sources?
 		$fields['global'] = array_merge([
@@ -363,6 +383,7 @@ class Services_Edit_PluginController
 			'plugins' => $plugins,
 			'fields' => $fields,
 			'current' => $current,
+			'trackers' => $trackers,
 		];
 	}
 

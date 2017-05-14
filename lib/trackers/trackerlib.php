@@ -1890,7 +1890,9 @@ class TrackerLib extends TikiLib
 						} else {
 							$new_value = $value;
 						}
-						if ($old_value != $new_value && !empty($itemId) && $array['type'] !== 'W') {	// not for webservices
+						if ($old_value != $new_value && !empty($itemId) &&
+								$array['type'] !== 'W' // not for webservices
+								) {
 							$this->log($version, $itemId, $array['fieldId'], $old_value);
 						}
 					}
@@ -4551,7 +4553,7 @@ class TrackerLib extends TikiLib
 			$join = '?';
 			$bindvars = array_merge(array('trackeritem', $item_info['itemId']), $bindvars);
 		}
-		$query = 'select * from `tiki_tracker_item_field_logs` ttifl left join `tiki_actionlog` ta on (ta.`comment`=ttifl.`version` and ta.`objectType`=? and ta.`object`='.$join.') where '.implode(' and ', $mid).' order by ttifl.`itemId` asc, ttifl.`version` desc, ttifl.`fieldId` asc';
+		$query = 'select ttifl.`version`, ttifl.`fieldId`, ttifl.`value`, ta.`user`, ta.`lastModif` from `tiki_tracker_item_field_logs` ttifl left join `tiki_actionlog` ta on (ta.`comment`=ttifl.`version` and ta.`objectType`=? and ta.`object`='.$join.') where '.implode(' and ', $mid).' order by ttifl.`itemId` asc, ttifl.`version` desc, ttifl.`fieldId` asc';
 		$all = $this->fetchAll($query, $bindvars, -1, 0);
 		$history['data'] = array();
 		$i = 0;
@@ -4566,6 +4568,10 @@ class TrackerLib extends TikiLib
 		}
 		$history['cant'] = $i;
 		return $history;
+	}
+
+	public function item_has_history($itemId) {
+		return $this->table('tiki_tracker_item_fields')->fetchCount([ 'itemId' => $itemId ]);
 	}
 
 	public function move_item($trackerId, $itemId, $newTrackerId)

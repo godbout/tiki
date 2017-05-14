@@ -33,6 +33,9 @@ a.fc-event:hover {
 }
 .filter .fancyfilter .token {
   background: #ffffff;
+  border: 1px solid #777777;
+  font-size: 11px;
+  padding: 3px;
 }
 .note-list .postbody-title {
   background: #ffffff;
@@ -611,7 +614,8 @@ h6 a.tiki_anchor:hover {
   border-left: 2px solid #777777;
 }
 .mandatory_star {
-  color: #ebccd1;
+  color: #d9534f;
+  font-size: 120%;
 }
 .trackerplugindesc {
   color: #333333;
@@ -1318,11 +1322,18 @@ li.archivedate {
 #col3 .box-search .input-group-btn {
   display: inline-block;
 }
-.box-search .search_mod_magnifier {
-  padding: 6px;
-}
 .tiki .box-search .panel-body * {
   margin-bottom: .3em;
+}
+#col2 .box-search .input-group-btn:last-child > .btn[name="search"],
+#col3 .box-search .input-group-btn:last-child > .btn[name="search"] {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+#col2 .box-search .input-group .form-control:first-child,
+#col3 .box-search .input-group .form-control:first-child {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
 }
 .box-forums_most_read_topics .hits {
   font-style: italic;
@@ -1466,7 +1477,9 @@ div.cvsup {
   margin-bottom: 0;
 }
 .topbar .form-control,
-.topbar .btn {
+.topbar .btn,
+.page-header .box-search .search_mod_magnifier,
+.page-header .box-search input.form-control {
   max-height: 26.5px;
   margin-top: 6px;
   margin-bottom: 5px;
@@ -2431,6 +2444,9 @@ ul.tree {
 .plugin-sample .plugin-param {
   padding-left: 15px;
 }
+td.journalDeleted {
+  color: #ddd;
+}
 .viewmode {
   line-height: 1em;
   padding: 1px;
@@ -2997,6 +3013,47 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:after {
   padding-left: 5px;
   padding-right: 5px;
 }
+table.treetable.objectperms .checkBoxHeader,
+table.objectperms > tbody > tr.subHeader {
+  height: 140px;
+  white-space: nowrap !important;
+}
+table.treetable.objectperms .checkBoxHeader {
+  position: relative;
+  vertical-align: bottom;
+  width: 30px;
+}
+table.objectperms th:not(.checkBoxHeader),
+table.objectperms .subHeader td:not(.checkBoxHeader) {
+  text-align: center;
+}
+tr.odd.leaf.collapsed > td:last-of-type,
+tr.even.leaf.collapsed > td:last-of-type {
+  text-indent: 15px;
+}
+table.treetable .checkBoxHeader > td,
+.table > tbody > tr.subHeader > td {
+  vertical-align: bottom;
+}
+table.objectperms .checkBoxHeader > div,
+table.objectperms > tbody .checkBoxLabel {
+  -webkit-transform: /*translate(0px, -10px)*/ rotate(305deg);
+  transform: /*translate(-20px, -70px)*/ rotate(305deg);
+  width: 140px;
+  display: block;
+  position: absolute;
+  left: -15px;
+  bottom: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+table.treetable.objectperms span.indenter,
+.subHeader .checkBoxHeader .indenter {
+  padding-left: 0 !important;
+}
+table.objectperms > tbody .checkBoxCell {
+  width: 30px !important;
+}
 form.simple label.error {
   padding: 4px 0 0 20px;
   margin-left: 0.5em;
@@ -3289,6 +3346,9 @@ div.form-group label.error {
 }
 .chosen-container-single {
   max-width: 100%;
+}
+.chosen-container-multi .chosen-choices .search-field .default {
+  min-width: 20em;
 }
 .chosen-container + .alert {
   margin-top: 20px;
@@ -3675,7 +3735,7 @@ table.tablesorter thead tr.tablesorter-filter-row td .value-popup:after {
   min-width: 14px;
   height: 12px;
   background-color: #444444;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444 444), to(#999999 999));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999));
   background-image: -webkit-linear-gradient(top, #444444, #999999);
   background-image: -o-linear-gradient(top, #444444, #999999);
   background-image: linear-gradient(to bottom, #444444, #999999);

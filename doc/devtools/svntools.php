@@ -27,9 +27,9 @@ function short($full)
 };
 
 /**
- * @param $string
- * @param $color
- * @return string
+ * @param $string string			String to output
+ * @param $color string				The colour of the string
+ * @return string					The formatted string to output to the console
  */
 function color($string, $color)
 {
@@ -164,8 +164,12 @@ function update_working_copy($localPath, $ignore_externals = false)
 }
 
 /**
- * @param $localPath
- * @return bool
+ * Indicates whether versioned files have been modified in the specified checkout
+ *
+ * @param $localPath string Path of the checkout
+ * @return bool true if at least 1 versioned file has been modified, added or removed, false otherwise
+ * 
+ * @see Similar function svn_files_identical()
  */
 function has_uncommited_changes($localPath)
 {
@@ -179,6 +183,25 @@ function has_uncommited_changes($localPath)
 
 	return $count->length > 0;
 }
+
+/**
+ * Get the number of changes in the specified checkout
+ *
+ * @param $localPath string Path of the checkout
+ * @return int The number of files that differ (additions, removals and modifications) from the repository
+ * 
+ * @see Similar function has_uncommited_changes()
+ */
+function svn_files_identical($localPath)
+{
+	$localPath = escapeshellarg($localPath);
+
+	$dom = new DOMDocument;
+	$dom->loadXML(`svn status --xml $localPath`);
+
+	return $dom->getElementsByTagName('entry')->length;
+}
+
 
 /**
  * @param $localPath

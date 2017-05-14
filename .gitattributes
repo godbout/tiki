@@ -62,7 +62,7 @@ db/index.php -text
 db/install.ini.dist -text
 db/preconfiguration.php -text
 db/tiki-db.php -text
-db/tiki-secdb_16.2_mysql.sql -text
+db/tiki-secdb_17.0_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -140,6 +140,7 @@ doc/devtools/svnmerge.php -text
 doc/devtools/svnrevert.sh -text
 doc/devtools/svnswitch.php -text
 doc/devtools/svntools.php -text
+doc/devtools/svnup.php -text
 doc/devtools/svnup.sh -text
 doc/devtools/sync.php -text
 doc/devtools/synctiki.sh -text
@@ -2532,6 +2533,7 @@ lib/core/Search/Formatter/ValueFormatter/Date.php -text
 lib/core/Search/Formatter/ValueFormatter/Datetime.php -text
 lib/core/Search/Formatter/ValueFormatter/Imagegrabber.php -text
 lib/core/Search/Formatter/ValueFormatter/Interface.php -text
+lib/core/Search/Formatter/ValueFormatter/Number.php -text
 lib/core/Search/Formatter/ValueFormatter/Objectlink.php -text
 lib/core/Search/Formatter/ValueFormatter/Plain.php -text
 lib/core/Search/Formatter/ValueFormatter/Reference.php -text

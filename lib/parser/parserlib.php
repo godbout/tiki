@@ -90,6 +90,7 @@ class ParserLib extends TikiDb_Bridge
 				'exclude_plugins' => array(),
 				'exclude_all_plugins' => false,
 				'include_plugins' => array(),
+				'typography' => true,
 			), empty($option) ? array() : (array) $this->option, (array)$option
 		);
 		$this->option['include_plugins'] = array_map('strtolower', $this->option['include_plugins']);
@@ -1727,7 +1728,9 @@ if ( \$('#$id') ) {
 		//   but hide '<x>' text inside some words like 'style' that are considered as dangerous by the sanitizer.
 		$data = str_replace(array( '&lt;x&gt;', '~np~', '~/np~' ), array( '<x>', '~np~', '~/np~' ), $data);
 
-		$data = typography($data, $this->option['language']);
+		if ($this->option['typography']) {
+			$data = typography($data, $this->option['language']);
+		}
 
 		// Process pos_handlers here
 		foreach ($this->pos_handlers as $handler) {
@@ -1792,7 +1795,9 @@ if ( \$('#$id') ) {
 		$data = $this->parse_data_wikilinks($data, true);
 		$data = $this->parse_data_externallinks($data, true);
 		$data = $this->parse_data_inline_syntax($data, $words);
-		$data = typography($data, $this->option['language']);
+		if ($this->option['typography']) {
+			$data = typography($data, $this->option['language']);
+		}
 
 		return $data;
 	}
@@ -2877,7 +2882,11 @@ if ( \$('#$id') ) {
 						$last_hdr = $hdr_structure[$nb_hdrs];
 						$nb_last_hdr = count($last_hdr);
 
-						$current_title_real_num = implode('.', $hdr_structure[$nb_hdrs]).'. ';
+						if (is_array($last_hdr)) {
+							$current_title_real_num = implode('.', $last_hdr) . '. ';
+						} else {
+							$current_title_real_num = $last_hdr . '. ';
+						}
 
 						// Update the current title number to hide all parents levels numbers if the parent has no autonumbering
 						$hideall = false;

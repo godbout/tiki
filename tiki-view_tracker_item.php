@@ -286,7 +286,7 @@ if (!isset($item_info)) {
 		die;
 	}
 }
-$item_info['logs'] = $trklib->get_item_history($item_info, 0, '', 0, 1);
+$item_info['logs'] = ['cant' => $trklib->item_has_history($item_info['itemId'])];	// only used to show history links, no need to load everything
 $smarty->assign_by_ref('item_info', $item_info);
 $smarty->assign('item', array('itemId' => $_REQUEST['itemId'], 'trackerId' => $_REQUEST['trackerId']));
 $cat_objid = $_REQUEST['itemId'];
@@ -407,7 +407,7 @@ if (! $itemObject->canView()) {
 if ($itemObject->canRemove()) {
 	if (isset($_REQUEST["remove"])) {
 		check_ticket('view-trackers-items');
-		$access->check_authenticity(tr('Are you sure you want to permantently delete this item?'));
+		$access->check_authenticity(tr('Are you sure you want to permanently delete this item?'));
 		$trklib->remove_tracker_item($_REQUEST["remove"]);
 		$access->redirect(filter_out_sefurl('tiki-view_tracker.php?trackerId=' . $_REQUEST['trackerId']));
 	}
