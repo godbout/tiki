@@ -9,41 +9,78 @@ namespace Tiki\Package;
 
 use Symfony\Component\Config\Definition\Exception\Exception;
 
+/**
+ * Allows the management of Composer Packages
+ */
 class ComposerManager
 {
 
 	const STATUS_INSTALLED = 'installed';
 	const STATUS_MISSING = 'missing';
 
-
+	/**
+	 * @var string the path where the composer file is located
+	 */
 	protected $basePath = '';
+	/**
+	 * @var string the base namespace for the package definition files
+	 */
 	protected $packagesNamespace;
 
-	/** @var ComposerCli */
+	/**
+	 * @var ComposerCli wrapper for composer phar
+	 */
 	protected $composerWrapper;
 
-	function __construct($basePath)
+	/**
+	 * Setups the composer.json location
+	 *
+	 * @param string $basePath
+	 * @param ComposerCli $composerWrapper composer.phar wrapper, optional in the constructor to allow injection for test
+	 */
+	function __construct($basePath, $composerWrapper = null)
 	{
 		$this->packagesNamespace = __NAMESPACE__ . '\\External\\';
 		$this->basePath = $basePath;
-		$this->composerWrapper = new ComposerCli($basePath);
+		if (is_null($composerWrapper)){
+			$composerWrapper = new ComposerCli($basePath);
+		}
+		$this->composerWrapper = $composerWrapper;
 	}
 
+	/**
+	 * Check if composer is available
+	 * @return bool
+	 */
 	public function composerIsAvailable()
 	{
 		return $this->composerWrapper->canExecuteComposer();
 	}
 
+	/**
+	 * Get list of packages installed
+	 * @return array
+	 */
 	public function getInstalled()
 	{
 		return $this->composerWrapper->getListOfPackagesFromConfig();
 	}
 
+	/**
+	 * Install missing packages (according to composer.json)
+	 * @return bool
+	 */
 	public function fixMissing()
 	{
 		return $this->composerWrapper->installMissingPackages();
 	}
 
+	/**
+	 * Get List of available (defined) packages
+	 *
+	 * @param bool $filterInstalled don't return if the package is already installed
+	 * @return array
+	 */
 	public function getAvailable($filterInstalled = true)
 	{
 		$packagesDir = __DIR__ . DIRECTORY_SEPARATOR . 'External';
@@ -78,6 +115,8 @@ class ComposerManager
 	}
 
 	/**
+	 * return the list of packages installed
+	 *
 	 * @param $filterInstalled
 	 * @return array
 	 */
@@ -85,9 +124,12 @@ class ComposerManager
 	{
 		$installedPackages = [];
 		if ($filterInstalled) {
-			foreach ($this->getInstalled() as $pkg) {
-				if ($pkg['status'] == self::STATUS_INSTALLED) {
-					$installedPackages[$pkg['name']] = $pkg['name'];
+			$installed = $this->getInstalled();
+			if ($installed !== false){
+				foreach ( $installed as $pkg) {
+					if ($pkg['status'] == self::STATUS_INSTALLED) {
+						$installedPackages[$pkg['name']] = $pkg['name'];
+					}
 				}
 			}
 		}
@@ -95,6 +137,12 @@ class ComposerManager
 		return $installedPackages;
 	}
 
+	/**
+	 * Try to install a packages by the package key (corresponding to the class name)
+	 *
+	 * @param $packageKey
+	 * @return bool|string
+	 */
 	public function installPackage($packageKey)
 	{
 		$packageKey = preg_replace("/[^a-zA-Z0-9]+/", "", $packageKey);

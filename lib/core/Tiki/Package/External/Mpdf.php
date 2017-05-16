@@ -9,8 +9,18 @@ namespace Tiki\Package\External;
 
 use Tiki\Package\ComposerPackage;
 
+/**
+ * Composer Package Information for Mpdf
+ *
+ * @url https://packagist.org/packages/mpdf/mpdf
+ * @url https://github.com/mpdf/mpdf
+ *
+ */
 class Mpdf extends ComposerPackage
 {
+	/**
+	 * Set package info
+	 */
 	public function __construct()
 	{
 		$this->setPackageInfo(

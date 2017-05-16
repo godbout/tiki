@@ -9,8 +9,18 @@ namespace Tiki\Package\External;
 
 use Tiki\Package\ComposerPackage;
 
+/**
+ * Composer Package Information for CasperJS
+ *
+ * @url https://packagist.org/packages/jerome-breton/casperjs-installer
+ * @url https://github.com/jerome-breton/casperjs-installer
+ *
+ */
 class CasperJS extends ComposerPackage
 {
+	/**
+	 * Set package info
+	 */
 	public function __construct()
 	{
 		$this->setPackageInfo(

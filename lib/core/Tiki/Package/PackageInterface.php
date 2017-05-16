@@ -7,6 +7,9 @@
 
 namespace Tiki\Package;
 
+/**
+ * Interface of the package definition
+ */
 interface PackageInterface
 {
 	public function getType();

@@ -7,6 +7,9 @@
 
 namespace Tiki\Package;
 
+/**
+ * Constants representing package types available
+ */
 class Type
 {
 	const COMPOSER = 'composer';

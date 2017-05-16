@@ -28,17 +28,18 @@ if ($access->ticketMatch()) {
 	}
 }
 
-
-
 $installableList = $composerManager->getInstalled();
-$packagesMissing = array_reduce(
-	$installableList,
-	function ($carry, $item) {
-		return $carry || $item['status'] === ComposerManager::STATUS_MISSING;
-	},
-	false
-);
-
+if ($installableList === false){
+	$packagesMissing = false;
+} else {
+	$packagesMissing = array_reduce(
+		$installableList,
+		function ($carry, $item) {
+			return $carry || $item['status'] === ComposerManager::STATUS_MISSING;
+		},
+		false
+	);
+}
 
 $smarty->assign('composer_available', $composerManager->composerIsAvailable());
 $smarty->assign('composer_packages_installed', $installableList);

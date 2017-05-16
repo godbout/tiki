@@ -7,6 +7,12 @@
 
 namespace Tiki\Package;
 
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessBuilder;
+
+/**
+ * Wrapper to composer.phar to allow installation of packages from the admin interface
+ */
 class ComposerCli
 {
 
@@ -21,9 +27,20 @@ class ComposerCli
 	//const PHP_MIN_VERSION = '5.6.0';
 	const PHP_MIN_VERSION = '5.5.0';
 
+	/**
+	 * @var string path to the folder that will be used
+	 */
 	protected $basePath = '';
+
+	/**
+	 * @var string|null Will hold the php bin detected
+	 */
 	protected $phpCli = null;
 
+	/**
+	 * ComposerCli constructor.
+	 * @param string $basePath
+	 */
 	public function __construct($basePath)
 	{
 		$basePath = realpath($basePath);
@@ -32,11 +49,19 @@ class ComposerCli
 		}
 	}
 
+	/**
+	 * Returns the location of the composer.json file
+	 * @return string
+	 */
 	protected function getComposerConfigFilePath()
 	{
 		return $this->basePath . self::COMPOSER_CONFIG;
 	}
 
+	/**
+	 * Return the composer.json parsed as array, false if the file can not be processed
+	 * @return bool|array
+	 */
 	protected function getComposerConfig()
 	{
 		if (!$this->checkConfigExists()) {
@@ -47,6 +72,11 @@ class ComposerCli
 		return $content;
 	}
 
+	/**
+	 * Return the composer.json parsed as array, or a default version for the composer.json if do not exists
+	 * First try to load the dist version, if not use a hardcoded version with the minimal setup
+	 * @return array|bool
+	 */
 	protected function getComposerConfigOrDefault()
 	{
 		$content = $this->getComposerConfig();
@@ -65,11 +95,21 @@ class ComposerCli
 		return json_decode('{"minimum-stability": "stable","config": {"process-timeout": 5000,"bin-dir": "bin"}}', true);
 	}
 
+	/**
+	 * Return the location of the composer.phar file (in the temp folder, as downloaded by setup.sh)
+	 * @return string
+	 */
 	protected function getComposerPharPath()
 	{
 		return $this->basePath . self::COMPOSER_PHAR;
 	}
 
+	/**
+	 * Check the version of the command line version of PHP
+	 *
+	 * @param $php
+	 * @return string
+	 */
 	protected function getPhpVersion($php)
 	{
 		exec($php . ' --version', $output);
@@ -83,6 +123,11 @@ class ComposerCli
 		return '';
 	}
 
+	/**
+	 * Atempts to resolve the location of the PHP binary
+	 *
+	 * @return null|bool|string
+	 */
 	protected function getPhpPath()
 	{
 		if (!is_null($this->phpCli)) {
@@ -108,6 +153,11 @@ class ComposerCli
 		return $this->phpCli;
 	}
 
+	/**
+	 * Evaluates if composer can be executed
+	 *
+	 * @return bool
+	 */
 	public function canExecuteComposer()
 	{
 		static $canExecute = null;
@@ -118,8 +168,8 @@ class ComposerCli
 		$canExecute = false;
 
 		if (file_exists($this->getComposerPharPath())) {
-			exec($this->getPhpPath() . ' ' . $this->getComposerPharPath() . ' --no-ansi --version', $output);
-			if (is_array($output) && strncmp($output[0], 'Composer', 8) == 0) {
+			list($output) = $this->execComposer(['-no-ansi', '--version']);
+			if (strncmp($output, 'Composer', 8) == 0){
 				$canExecute = true;
 			}
 		}
@@ -127,35 +177,38 @@ class ComposerCli
 		return $canExecute;
 	}
 
-	protected function execComposer($args, $asString = false)
+	protected function execComposer($args)
 	{
-		$output = [];
-		$code = 1;
-
 		if (!is_array($args)) {
 			$args = array($args);
 		}
 
+		$builder = new ProcessBuilder();
+
 		$cmd = $this->getPhpPath();
 		if ($cmd) {
+			$builder->setPrefix($cmd);
 			array_unshift($args, $this->getComposerPharPath());
 		} else {
-			$cmd = $this->getComposerPharPath();
+			$builder->setPrefix($this->getComposerPharPath());
 		}
 
-		$args = array_map(
-			function ($item) {
-				return escapeshellarg($item);
-			},
-			$args
-		);
+		$builder->setArguments($args);
 
-		//TODO: Move to Symfony\Process ?
-		$cmdString = escapeshellcmd($cmd) . ' ' . implode(' ', $args) . ' 2>&1';
-		exec($cmdString, $output, $code);
+		$process = $builder->getProcess();
 
-		if ($asString) {
-			$output = implode("\n", $output);
+		$process->run();
+
+		$code = $process->getExitCode();
+
+		$output = $process->getOutput();
+		$errors = $process->getErrorOutput();
+
+		if ($errors){
+			if (!empty($output)){
+				$output .= "\n";
+			}
+			$output .= $errors;
 		}
 
 		return [$output, $code];
@@ -166,7 +219,7 @@ class ComposerCli
 		if (!$this->canExecuteComposer()) {
 			return [];
 		}
-		list($result) = $this->execComposer(['--format=json', 'show'], true);
+		list($result) = $this->execComposer(['--format=json', 'show']);
 		$json = json_decode($result, true);
 
 		return $json;
@@ -221,7 +274,7 @@ class ComposerCli
 			return false;
 		}
 
-		list($output) = $this->execComposer(['--no-ansi', '--no-dev', '--prefer-dist', 'update', 'nothing'], true);
+		list($output) = $this->execComposer(['--no-ansi', '--no-dev', '--prefer-dist', 'update', 'nothing']);
 
 		return $output;
 	}

@@ -9,8 +9,18 @@ namespace Tiki\Package\External;
 
 use Tiki\Package\ComposerPackage;
 
+/**
+ * Composer Package Information for Expose
+ *
+ * @url https://packagist.org/packages/enygma/expose
+ * @url https://github.com/enygma/expose
+ *
+ */
 class Expose extends ComposerPackage
 {
+	/**
+	 * Set package info
+	 */
 	public function __construct()
 	{
 		$this->setPackageInfo(
