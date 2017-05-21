@@ -5237,6 +5237,7 @@ templates/admin/include_print.tpl -text
 templates/admin/include_profiles.tpl -text
 templates/admin/include_rating.tpl -text
 templates/admin/include_rss.tpl -text
+templates/admin/include_rtc.tpl -text
 templates/admin/include_score.tpl -text
 templates/admin/include_search.tpl -text
 templates/admin/include_security.tpl -text
