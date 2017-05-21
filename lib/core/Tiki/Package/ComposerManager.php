@@ -36,16 +36,26 @@ class ComposerManager
 	 * Setups the composer.json location
 	 *
 	 * @param string $basePath
+	 * @param string $workingPath
 	 * @param ComposerCli $composerWrapper composer.phar wrapper, optional in the constructor to allow injection for test
 	 */
-	function __construct($basePath, $composerWrapper = null)
+	function __construct($basePath, $workingPath = null, $composerWrapper = null)
 	{
 		$this->packagesNamespace = __NAMESPACE__ . '\\External\\';
 		$this->basePath = $basePath;
 		if (is_null($composerWrapper)){
-			$composerWrapper = new ComposerCli($basePath);
+			$composerWrapper = new ComposerCli($basePath, $workingPath);
 		}
 		$this->composerWrapper = $composerWrapper;
+	}
+
+	/**
+	 * Return the Composer Wrapper
+	 * @return ComposerCli
+	 */
+	public function getComposer()
+	{
+		return $this->composerWrapper;
 	}
 
 	/**
@@ -58,12 +68,36 @@ class ComposerManager
 	}
 
 	/**
+	 * Check if composer is available
+	 * @return bool
+	 */
+	public function composerPath()
+	{
+		return $this->composerWrapper->getComposerPharPath();
+	}
+
+	/**
 	 * Get list of packages installed
 	 * @return array
 	 */
 	public function getInstalled()
 	{
-		return $this->composerWrapper->getListOfPackagesFromConfig();
+		$installedPackages = $this->composerWrapper->getListOfPackagesFromConfig();
+
+		$packageDefinitions = $this->getAvailable(false);
+		$keyLookup = [];
+		foreach($packageDefinitions as $package){
+			$keyLookup[$package['name']] = $package['key'];
+		}
+		foreach($installedPackages as &$package){
+			if (isset($keyLookup[$package['name']])){
+				$package['key'] = $keyLookup[$package['name']];
+			} else {
+				$package['key'] = '';
+			}
+		}
+
+		return $installedPackages;
 	}
 
 	/**
@@ -88,7 +122,10 @@ class ComposerManager
 			return [];
 		}
 
-		$installedPackages = $this->getListOfInstalledPackages($filterInstalled);
+		$installedPackages = [];
+		if ($filterInstalled){
+			$installedPackages = $this->getListOfInstalledPackages($filterInstalled);
+		}
 
 		$availablePackages = [];
 		foreach (new \GlobIterator($packagesDir . DIRECTORY_SEPARATOR . '*.php') as $fileInfo) {
@@ -138,6 +175,15 @@ class ComposerManager
 	}
 
 	/**
+	 * Assure that only allowed chars are present in the package key name
+	 * @param $packageKey
+	 * @return mixed
+	 */
+	protected function sanitizePackageKey($packageKey)
+	{
+		return preg_replace("/[^a-zA-Z0-9]+/", "", $packageKey);
+	}
+	/**
 	 * Try to install a packages by the package key (corresponding to the class name)
 	 *
 	 * @param $packageKey
@@ -145,7 +191,7 @@ class ComposerManager
 	 */
 	public function installPackage($packageKey)
 	{
-		$packageKey = preg_replace("/[^a-zA-Z0-9]+/", "", $packageKey);
+		$packageKey = $this->sanitizePackageKey($packageKey);
 		$packageClass = $this->packagesNamespace . $packageKey;
 		try {
 			if (class_exists($packageClass)) {
@@ -153,6 +199,28 @@ class ComposerManager
 				$externalPackage = new $packageClass;
 
 				return $this->composerWrapper->installPackage($externalPackage);
+			}
+		} catch (Exception $e) {
+			//ignore
+		}
+	}
+
+	/**
+	 * Try to remove a packages by the package key (corresponding to the class name)
+	 *
+	 * @param $packageKey
+	 * @return bool|string
+	 */
+	public function removePackage($packageKey)
+	{
+		$packageKey = $this->sanitizePackageKey($packageKey);
+		$packageClass = $this->packagesNamespace . $packageKey;
+		try {
+			if (class_exists($packageClass)) {
+				/** @var ComposerPackage $externalPackage */
+				$externalPackage = new $packageClass;
+
+				return $this->composerWrapper->removePackage($externalPackage);
 			}
 		} catch (Exception $e) {
 			//ignore

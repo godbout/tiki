@@ -24,13 +24,17 @@ class ComposerCli
 		'php5.6',
 		'php5.6-cli',
 	];
-	//const PHP_MIN_VERSION = '5.6.0';
-	const PHP_MIN_VERSION = '5.5.0';
+	const PHP_MIN_VERSION = '5.6.0';
+
+	/**
+	 * @var string path to the base folder from tiki
+	 */
+	protected $basePath = '';
 
 	/**
 	 * @var string path to the folder that will be used
 	 */
-	protected $basePath = '';
+	protected $workingPath = '';
 
 	/**
 	 * @var string|null Will hold the php bin detected
@@ -40,12 +44,22 @@ class ComposerCli
 	/**
 	 * ComposerCli constructor.
 	 * @param string $basePath
+	 * @param string $workingPath
 	 */
-	public function __construct($basePath)
+	public function __construct($basePath, $workingPath = null)
 	{
 		$basePath = realpath($basePath);
 		if ($basePath) {
 			$this->basePath = $basePath . '/';
+		}
+
+		if (is_null($workingPath)) {
+			$this->workingPath = $this->basePath;
+		} else {
+			$workingPath = realpath($workingPath);
+			if ($workingPath) {
+				$this->workingPath = $workingPath . '/';
+			}
 		}
 	}
 
@@ -55,7 +69,7 @@ class ComposerCli
 	 */
 	protected function getComposerConfigFilePath()
 	{
-		return $this->basePath . self::COMPOSER_CONFIG;
+		return $this->workingPath . self::COMPOSER_CONFIG;
 	}
 
 	/**
@@ -84,7 +98,7 @@ class ComposerCli
 			return $content;
 		}
 
-		$distFile = $this->basePath . self::COMPOSER_CONFIG . '.dist';
+		$distFile = $this->workingPath . self::COMPOSER_CONFIG . '.dist';
 		if (!file_exists($distFile)) {
 			$content = json_decode(file_get_contents($distFile), true);
 			if ($content !== false) {
@@ -99,7 +113,7 @@ class ComposerCli
 	 * Return the location of the composer.phar file (in the temp folder, as downloaded by setup.sh)
 	 * @return string
 	 */
-	protected function getComposerPharPath()
+	public function getComposerPharPath()
 	{
 		return $this->basePath . self::COMPOSER_PHAR;
 	}
@@ -112,8 +126,12 @@ class ComposerCli
 	 */
 	protected function getPhpVersion($php)
 	{
-		exec($php . ' --version', $output);
-		foreach ($output as $line) {
+		$builder = new ProcessBuilder();
+		$builder->setPrefix($php);
+		$builder->setArguments(['--version']);
+		$process = $builder->getProcess();
+		$process->run();
+		foreach (explode("\n", $process->getOutput()) as $line) {
 			$parts = explode(' ', $line);
 			if ($parts[0] === 'PHP') {
 				return $parts[1];
@@ -169,7 +187,7 @@ class ComposerCli
 
 		if (file_exists($this->getComposerPharPath())) {
 			list($output) = $this->execComposer(['-no-ansi', '--version']);
-			if (strncmp($output, 'Composer', 8) == 0){
+			if (strncmp($output, 'Composer', 8) == 0) {
 				$canExecute = true;
 			}
 		}
@@ -177,6 +195,12 @@ class ComposerCli
 		return $canExecute;
 	}
 
+	/**
+	 * Execute Composer
+	 *
+	 * @param $args
+	 * @return array
+	 */
 	protected function execComposer($args)
 	{
 		if (!is_array($args)) {
@@ -204,8 +228,8 @@ class ComposerCli
 		$output = $process->getOutput();
 		$errors = $process->getErrorOutput();
 
-		if ($errors){
-			if (!empty($output)){
+		if ($errors) {
+			if (!empty($output)) {
 				$output .= "\n";
 			}
 			$output .= $errors;
@@ -214,23 +238,38 @@ class ComposerCli
 		return [$output, $code];
 	}
 
+	/**
+	 * Execute show command
+	 *
+	 * @return array
+	 */
 	protected function execShow()
 	{
 		if (!$this->canExecuteComposer()) {
 			return [];
 		}
-		list($result) = $this->execComposer(['--format=json', 'show']);
+		list($result) = $this->execComposer(['--format=json', 'show', '-d', $this->workingPath]);
 		$json = json_decode($result, true);
 
 		return $json;
 	}
 
 
+	/**
+	 * Check if the composer.json file exists
+	 *
+	 * @return bool
+	 */
 	public function checkConfigExists()
 	{
 		return file_exists($this->getComposerConfigFilePath());
 	}
 
+	/**
+	 * Retrieve list of packages in composer.json
+	 *
+	 * @return array|bool
+	 */
 	public function getListOfPackagesFromConfig()
 	{
 		if (!$this->checkConfigExists() || !$this->canExecuteComposer()) {
@@ -241,44 +280,76 @@ class ComposerCli
 		$composerShow = $this->execShow();
 
 		$installedPackages = [];
-		foreach ($composerShow['installed'] as $package) {
-			$installedPackages[$package['name']] = $package;
+		if (isset($composerShow['installed']) && is_array($composerShow['installed'])){
+			foreach ($composerShow['installed'] as $package) {
+				$installedPackages[$package['name']] = $package;
+			}
 		}
 
 		$result = [];
-
-		foreach ($content['require'] as $name => $version) {
-			if (isset($installedPackages[$name])) {
-				$result[] = [
-					'name' => $name,
-					'status' => ComposerManager::STATUS_INSTALLED,
-					'required' => $version,
-					'installed' => $installedPackages[$name]['version'],
-				];
-			} else {
-				$result[] = [
-					'name' => $name,
-					'status' => ComposerManager::STATUS_MISSING,
-					'required' => $version,
-					'installed' => '',
-				];
+		if (isset($content['require']) && is_array($content['require'])) {
+			foreach ($content['require'] as $name => $version) {
+				if (isset($installedPackages[$name])) {
+					$result[] = [
+						'name' => $name,
+						'status' => ComposerManager::STATUS_INSTALLED,
+						'required' => $version,
+						'installed' => $installedPackages[$name]['version'],
+					];
+				} else {
+					$result[] = [
+						'name' => $name,
+						'status' => ComposerManager::STATUS_MISSING,
+						'required' => $version,
+						'installed' => '',
+					];
+				}
 			}
 		}
 
 		return $result;
 	}
 
+	/**
+	 * Ensure packages configured in composer.json are installed
+	 *
+	 * @return bool
+	 */
 	public function installMissingPackages()
 	{
 		if (!$this->checkConfigExists() || !$this->canExecuteComposer()) {
 			return false;
 		}
 
-		list($output) = $this->execComposer(['--no-ansi', '--no-dev', '--prefer-dist', 'update', 'nothing']);
+		list($output) = $this->execComposer(
+			['--no-ansi', '--no-dev', '--prefer-dist', 'update', '-d', $this->workingPath, 'nothing']
+		);
 
 		return $output;
 	}
 
+	/**
+	 * Execute the diagnostic command
+	 *
+	 * @return array
+	 */
+	public function execDiagnose()
+	{
+		if (!$this->canExecuteComposer()) {
+			return false;
+		}
+
+		list($output) = $this->execComposer(['--no-ansi', 'diagnose', '-d', $this->workingPath]);
+
+		return $output;
+	}
+
+	/**
+	 * Install a package (from the package definition)
+	 *
+	 * @param ComposerPackage $package
+	 * @return bool|string
+	 */
 	public function installPackage(ComposerPackage $package)
 	{
 		if (!$this->canExecuteComposer()) {
@@ -303,6 +374,40 @@ class ComposerCli
 		. $commandOutput;
 	}
 
+	/**
+	 * Remove a package (from the package definition)
+	 *
+	 * @param ComposerPackage $package
+	 * @return bool|string
+	 */
+	public function removePackage(ComposerPackage $package)
+	{
+		if (!$this->canExecuteComposer() || !$this->checkConfigExists()) {
+			return false;
+		}
+
+		list($commandOutput) = $this->execComposer(
+			['remove', $package->getName(), '--update-no-dev', '-d', $this->workingPath, '--no-ansi', '--no-interaction']
+		);
+
+		$fileContent = file_get_contents($this->getComposerConfigFilePath());
+
+		return tr('= New composer.json file content') . ":\n\n"
+		. $fileContent . "\n\n"
+		. tr('= Composer execution output') . ":\n\n"
+		. $commandOutput;
+	}
+
+
+	/**
+	 * Append a package to composer.json
+	 *
+	 * @param $composerJson
+	 * @param $package
+	 * @param $version
+	 * @param array $scripts
+	 * @return array
+	 */
 	public function addComposerPackageToJson($composerJson, $package, $version, $scripts = [])
 	{
 
