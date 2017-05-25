@@ -2631,6 +2631,7 @@ lib/core/Services/ActivityStream/index.php -text
 lib/core/Services/Article/Controller.php -text
 lib/core/Services/Article/index.php -text
 lib/core/Services/Attribute/Controller.php -text
+lib/core/Services/Attribute/index.php -text
 lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/AuthSource/OAuthController.php -text
 lib/core/Services/AuthSource/index.php -text
@@ -2707,6 +2708,7 @@ lib/core/Services/Rating/index.php -text
 lib/core/Services/Recommendation/DevelopmentController.php -text
 lib/core/Services/Recommendation/index.php -text
 lib/core/Services/Relation/Controller.php -text
+lib/core/Services/Relation/index.php -text
 lib/core/Services/RemoteController.php -text
 lib/core/Services/Report/Controller.php -text
 lib/core/Services/Report/index.php -text
