@@ -598,6 +598,8 @@ array_unshift(
 			'local_tz' => 'text',
 			'preview' => 'text',
 			'rbox' => 'text',
+			'ticket' => 'alnumdash',
+			'daconfirm' => 'alpha'
 		),
 		'staticKeyFiltersForArrays' => array(
 			'cat_managed' => 'digits',

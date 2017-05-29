@@ -278,7 +278,11 @@ class PdfGenerator
 		   if($pdfSettings['toclinks']=='y'){
 		    $links="links=\"1\"";
 		   }
-			$html="<html><tocpagebreak ".$links." />".$html."</html>";
+		   //checking toc heading
+		   if($pdfSettings['tocheading']){
+		    $tocpreHTML=htmlspecialchars("<h1>".$pdfSettings['tocheading']."</h1>", ENT_QUOTES);
+		   }
+		    $html="<html><tocpagebreak ".$links." toc-preHTML=\"".$tocpreHTML."\"  toc-margin-top=50/>".$html."</html>";
 		}	
        $this->_getImages($html,$tempImgArr);
        
@@ -385,7 +389,9 @@ class PdfGenerator
 		$pdfSettings['footer']=str_ireplace("{PAGETITLE}",$params['page'],$prefs['print_pdf_mpdf_footer']);
 		$pdfSettings['print_pdf_mpdf_password']=$prefs['print_pdf_mpdf_password'];
 		$pdfSettings['toc']=$prefs['print_pdf_mpdf_toc']!=''?$prefs['print_pdf_mpdf_toc']:'n';
-		$pdfSettings['toclinks']=$prefs['print_pdf_mpdf_toclinks']!=''?$prefs['print_pdf_mpdf_toclinks']:'n';		
+		$pdfSettings['toclinks']=$prefs['print_pdf_mpdf_toclinks']!=''?$prefs['print_pdf_mpdf_toclinks']:'n';
+		$pdfSettings['tocheading']=$prefs['print_pdf_mpdf_tocheading'];
+				
 		if($pdfSettings['toc']=='y'){
 			//toc levels
 			array('H1'=>0, 'H2'=>1, 'H3'=>2);
@@ -476,7 +482,7 @@ class PdfGenerator
 		
 		//defining array of plugins to be sorted
 		$pluginArr=array(array("class","customsearch_results","div"),array("id","container_pivottable","div"),array("class","dynavar","a"));
-		$tagsArr=array(array("input","tablesorter-filter","class"),array("select","tablesorter-filter","class"),array("select","pvtRenderer","class"),array("select","pvtAggregator","class"),array("td","pvtCols","class"),array("td","pvtUnused","class"),array("td","pvtRows","class"),array("div","plot-container","class"),array("a","heading-link","class"));
+		$tagsArr=array(array("input","tablesorter-filter","class"),array("select","tablesorter-filter","class"),array("select","pvtRenderer","class"),array("select","pvtAggregator","class"),array("td","pvtCols","class"),array("td","pvtUnused","class"),array("td","pvtRows","class"),array("div","plot-container","class"),array("a","heading-link","class"),array("a","tablename","class","1"));
 
 		foreach($pluginArr as $pluginInfo)
 		{
@@ -609,7 +615,22 @@ function cleanContent($content,$tagArr){
 	  $list = $xpath->query('//'.$tag[0].'[contains(concat(\' \', normalize-space(@'.$tag[2].'), \' \'), "' .$tag[1]. '")]');
       for ($i = 0; $i < $list->length; $i++) {
           $p = $list->item($i);
-	      $p->parentNode->removeChild($p);
+		  if($tag[3]==1){ //the parameter checks if content of tag has to be preserved
+				$attributes = $p->attributes;
+				while ($attributes->length) {
+				//preserving href
+				
+				if($attributes->item(0)->name=="href") {
+					$hrefValue= $attributes->item(0)->value;
+				}
+					$p->removeAttribute($attributes->item(0)->name);
+				}
+				if($hrefValue) {					 
+					$p->setAttribute("href",$hrefValue);
+				}
+			}
+		  else
+	      	$p->parentNode->removeChild($p);
        }
 	}
     return $doc->saveHTML();

@@ -62,7 +62,7 @@ db/index.php -text
 db/install.ini.dist -text
 db/preconfiguration.php -text
 db/tiki-db.php -text
-db/tiki-secdb_17.0_mysql.sql -text
+db/tiki-secdb_17.0beta_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -2632,6 +2632,7 @@ lib/core/Services/ActivityStream/index.php -text
 lib/core/Services/Article/Controller.php -text
 lib/core/Services/Article/index.php -text
 lib/core/Services/Attribute/Controller.php -text
+lib/core/Services/Attribute/index.php -text
 lib/core/Services/AuthSource/Controller.php -text
 lib/core/Services/AuthSource/OAuthController.php -text
 lib/core/Services/AuthSource/index.php -text
@@ -2708,6 +2709,7 @@ lib/core/Services/Rating/index.php -text
 lib/core/Services/Recommendation/DevelopmentController.php -text
 lib/core/Services/Recommendation/index.php -text
 lib/core/Services/Relation/Controller.php -text
+lib/core/Services/Relation/index.php -text
 lib/core/Services/RemoteController.php -text
 lib/core/Services/Report/Controller.php -text
 lib/core/Services/Report/index.php -text
@@ -3092,6 +3094,7 @@ lib/core/TikiFilter/PregFilter.php -text
 lib/core/TikiFilter/PrepareInput.php -text
 lib/core/TikiFilter/PreventXss.php -text
 lib/core/TikiFilter/RawUnsafe.php -text
+lib/core/TikiFilter/RelativeURL.php -text
 lib/core/TikiFilter/WikiContent.php -text
 lib/core/TikiFilter/index.php -text
 lib/core/Tracker/CompilerPass.php -text
@@ -5247,6 +5250,7 @@ templates/admin/include_print.tpl -text
 templates/admin/include_profiles.tpl -text
 templates/admin/include_rating.tpl -text
 templates/admin/include_rss.tpl -text
+templates/admin/include_rtc.tpl -text
 templates/admin/include_score.tpl -text
 templates/admin/include_search.tpl -text
 templates/admin/include_security.tpl -text

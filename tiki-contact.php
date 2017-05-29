@@ -7,6 +7,17 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
+$inputConfiguration =	[[
+	'staticKeyFilters'	=> [
+		'send'			=> 'bool', 		// post
+		'priority'		=> 'int', 		// post
+		'from'			=> 'striptags',	// post
+		'subject'		=> 'striptags',	// post
+		'body'			=> 'xss',		// post
+		'to'			=> 'email',		// post
+	],
+	'catchAllUnset'		=> null
+]];
 
 require_once ('tiki-setup.php');
 
@@ -35,20 +46,20 @@ if (isset($_REQUEST['send']) && $access->ticketMatch()) {
 	if (isset($_REQUEST['priority'])) {
 		$priority = $_REQUEST['priority'];
 	}
-	if (!$user && validate_email($_REQUEST['from'])) {
+	if (!$user && validate_email($_POST['from'])) {
 		$from =  'tiki-contact.php';
-		$body .= tra('From') . " " . $_REQUEST['from'] . ":\n";
+		$body .= tra('From') . " " . $_POST['from'] . ":\n";
 	}
-	if (isset($_REQUEST['subject'])) {
-		$subject =  $_REQUEST['subject'];
+	if (isset($_POST['subject'])) {
+		$subject =  $_POST['subject'];
 	}
-	if (isset($_REQUEST['body'])) {
-		$body .=  $_REQUEST['body'];
+	if (isset($_POST['body'])) {
+		$body .=  $_POST['body'];
 	}
 	
 	// Validation:
 	// must have a subject or body non-empty (or both)
-	$hasContent = !empty($_REQUEST['subject']) || !empty($_REQUEST['body']);
+	$hasContent = !empty($_POST['subject']) || !empty($_POST['body']);
 
 	$failsCaptcha = !$user && $prefs['feature_antibot'] == 'y' && !$captchalib->validate();
 	if (!$hasContent || empty($from) || $failsCaptcha) {
@@ -65,9 +76,9 @@ if (isset($_REQUEST['send']) && $access->ticketMatch()) {
 		$messulib->post_message(
 			$prefs['contact_user'],
 			$from,
-			$_REQUEST['to'],
+			$_POST['to'],
 			'',
-			$_REQUEST['subject'],
+			$_POST['subject'],
 			$body,
 			$priority
 		);

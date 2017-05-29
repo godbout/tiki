@@ -11,6 +11,7 @@
 /ZendPlatform
 /ZendStudioServer
 /bin
+db/*.ini
 db/.htaccess
 db/cert/*.pem
 db/config/custom.xml

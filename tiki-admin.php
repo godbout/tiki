@@ -533,6 +533,11 @@ $admin_icons = array(
 		'description' => tr('External packages installation and management'),
 		'help' => 'Packages',
 	),
+	"rtc" => array(
+		'title' => tr('RTC'),
+		'description' => tr('Real-time collaboration tools'),
+		'help' => 'RTC',
+	),
 );
 
 if (isset($_REQUEST['page'])) {

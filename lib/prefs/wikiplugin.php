@@ -7,8 +7,6 @@
 
 function prefs_wikiplugin_list($partial = false)
 {
-	global $tikilib;
-	
 	$parserlib = TikiLib::lib('parser');
 	
 	// Note that most of the plugins controlled by the following preferences will be disabled by another feature check. For example, PluginCalendar depends not only on wikiplugin_calendar, but also on feature_calendar.
@@ -118,6 +116,7 @@ function prefs_wikiplugin_list($partial = false)
 		}
 		$out['wikiplugin_snarf_cache'] = array('default' => 0);
 		$out['wikiplugin_list_gui'] = array('default' => 'n');
+		$out['wikiplugin_maximum_passes'] = array('default' => 500);
 
 		return $out;
 	}
@@ -166,7 +165,17 @@ function prefs_wikiplugin_list($partial = false)
 		'type' => 'flag'
 	];
 
-
+	$prefs['wikiplugin_maximum_passes'] = [
+		'name' => tr('Maximum plugin parsing passes'),
+		'description' => tr('Affects the number of wiki plugins that can be used. The default of 500 allows for 1 plugin nested seven times, or 44 plugins nested once. A value of 1200 is required for 1 eighth level plugin.'),
+		'default' => 500,
+		'dependencies' => ['feature_wiki'],
+		'filter' => 'digits',
+		'type' => 'text',
+		'units' => tr('passes'),
+		'tags' => ['experimental'],
+		'warning' => tr('Setting this to a higher value than the default of 500 may have performance implications.'),
+	];
 
 	return $prefs;
 }
