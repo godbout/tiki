@@ -2424,7 +2424,10 @@ lib/core/Reports/Send/EmailBuilder/index.php -text
 lib/core/Reports/Send/index.php -text
 lib/core/Reports/Users.php -text
 lib/core/Reports/index.php -text
+lib/core/Scheduler/Exception/CrontimeFormatException.php -text
+lib/core/Scheduler/Exception/Exception.php -text
 lib/core/Scheduler/Item.php -text
+lib/core/Scheduler/Manager.php -text
 lib/core/Scheduler/Task/CommandTask.php -text
 lib/core/Scheduler/Task/ConsoleCommandTask.php -text
 lib/core/Scheduler/Task/HTTPGetCommandTask.php -text
@@ -2909,6 +2912,7 @@ lib/core/Tiki/FileGallery/Handler/Preloaded.php -text
 lib/core/Tiki/FileGallery/Handler/System.php -text
 lib/core/Tiki/FileGallery/Handler/index.php -text
 lib/core/Tiki/FileGallery/index.php -text
+lib/core/Tiki/Log.php -text
 lib/core/Tiki/MailIn/Account.php -text
 lib/core/Tiki/MailIn/Action/ActionInterface.php -text
 lib/core/Tiki/MailIn/Action/ArticlePut.php -text
