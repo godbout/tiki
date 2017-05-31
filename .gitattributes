@@ -1956,6 +1956,7 @@ installer/schema/20170329_add_color_to_groups_tiki.sql -text
 installer/schema/20170329_larger_category_descriptions_tiki.sql -text
 installer/schema/20170330_merge_hiddenlinks_into_headinglinks_tiki.sql -text
 installer/schema/20170427_update_accounting_journal_cols_tiki.sql -text
+installer/schema/20170531_feature_usability_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
