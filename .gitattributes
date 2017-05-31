@@ -2322,6 +2322,7 @@ lib/core/Math/Formula/Function/Random.php -text
 lib/core/Math/Formula/Function/Round.php -text
 lib/core/Math/Formula/Function/SplitList.php -text
 lib/core/Math/Formula/Function/Str.php -text
+lib/core/Math/Formula/Function/StrReplace.php -text
 lib/core/Math/Formula/Function/StrToTime.php -text
 lib/core/Math/Formula/Function/Sub.php -text
 lib/core/Math/Formula/Function/Substring.php -text
