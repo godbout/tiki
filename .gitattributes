@@ -2316,6 +2316,7 @@ lib/core/Math/Formula/Function/MoreThan.php -text
 lib/core/Math/Formula/Function/Mul.php -text
 lib/core/Math/Formula/Function/Not.php -text
 lib/core/Math/Formula/Function/NotEquals.php -text
+lib/core/Math/Formula/Function/NumberFormat.php -text
 lib/core/Math/Formula/Function/Or.php -text
 lib/core/Math/Formula/Function/Pad.php -text
 lib/core/Math/Formula/Function/Random.php -text
