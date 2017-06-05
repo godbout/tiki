@@ -3436,7 +3436,6 @@ lib/mailin/index.php -text
 lib/mailin/mailinlib.php -text
 lib/mailin/usermailinlib.php -text
 lib/menubuilder/index.php -text
-lib/menubuilder/menu.js -text
 lib/menubuilder/menulib.php -text
 lib/messu/index.php -text
 lib/messu/messulib.php -text
