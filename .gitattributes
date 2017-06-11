@@ -4232,6 +4232,7 @@ lib/test/TikiLib/TestableTikiLibTest.php -text
 lib/test/TikiLib/TikiLibTest.php -text
 lib/test/TikiLib/UriMergeTest.php -text
 lib/test/TikiLib/UrlEncodeAccentTest.php -text
+lib/test/TikiLib/UserLibTest.php -text
 lib/test/TikiLib/UserWatchesTest.php -text
 lib/test/TikiLib/WikiParserTest.php -text
 lib/test/TikiLib/index.php -text
