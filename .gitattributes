@@ -2953,10 +2953,7 @@ lib/core/Tiki/Object/index.php -text
 lib/core/Tiki/Package/ComposerCli.php -text
 lib/core/Tiki/Package/ComposerManager.php -text
 lib/core/Tiki/Package/ComposerPackage.php -text
-lib/core/Tiki/Package/External/CasperJS.php -text
-lib/core/Tiki/Package/External/Expose.php -text
-lib/core/Tiki/Package/External/Mpdf.php -text
-lib/core/Tiki/Package/External/PHPSaml.php -text
+lib/core/Tiki/Package/ComposerPackages.yml -text
 lib/core/Tiki/Package/PackageInterface.php -text
 lib/core/Tiki/Package/Type.php -text
 lib/core/Tiki/PageCache.php -text
