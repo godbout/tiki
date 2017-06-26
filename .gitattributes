@@ -4936,6 +4936,7 @@ lib/wizard/pages/upgrade_new_in_13.php -text
 lib/wizard/pages/upgrade_new_in_14.php -text
 lib/wizard/pages/upgrade_new_in_15.php -text
 lib/wizard/pages/upgrade_new_in_16.php -text
+lib/wizard/pages/upgrade_new_in_17.php -text
 lib/wizard/pages/upgrade_novice_admin_assistance.php -text
 lib/wizard/pages/upgrade_others.php -text
 lib/wizard/pages/upgrade_permissions_and_logs.php -text
@@ -6472,6 +6473,7 @@ templates/wizard/upgrade_new_in_13.tpl -text
 templates/wizard/upgrade_new_in_14.tpl -text
 templates/wizard/upgrade_new_in_15.tpl -text
 templates/wizard/upgrade_new_in_16.tpl -text
+templates/wizard/upgrade_new_in_17.tpl -text
 templates/wizard/upgrade_novice_admin_assistance.tpl -text
 templates/wizard/upgrade_others.tpl -text
 templates/wizard/upgrade_permissions_and_logs.tpl -text
