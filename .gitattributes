@@ -2954,8 +2954,6 @@ lib/core/Tiki/Package/ComposerCli.php -text
 lib/core/Tiki/Package/ComposerManager.php -text
 lib/core/Tiki/Package/ComposerPackage.php -text
 lib/core/Tiki/Package/ComposerPackages.yml -text
-lib/core/Tiki/Package/PackageInterface.php -text
-lib/core/Tiki/Package/Type.php -text
 lib/core/Tiki/PageCache.php -text
 lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
@@ -4415,6 +4413,12 @@ lib/test/core/Search/paginate.tpl -text
 lib/test/core/Services/Comment/ControllerTest.php -text
 lib/test/core/Services/ResultLoaderTest.php -text
 lib/test/core/Services/index.php -text
+lib/test/core/Tiki/Package/ComposerCliTest.php -text
+lib/test/core/Tiki/Package/ComposerManagerTest.php -text
+lib/test/core/Tiki/Package/Fixtures/CasperJsComposer.json -text
+lib/test/core/Tiki/Package/Fixtures/ComposerPackages.yml -text
+lib/test/core/Tiki/Package/Fixtures/ComposerPackagesBroken.yml -text
+lib/test/core/Tiki/Package/index.php -text
 lib/test/core/TikiDb/TableTest.php -text
 lib/test/core/TikiDb/index.php -text
 lib/test/core/TikiFilter/CallbackTest.php -text
