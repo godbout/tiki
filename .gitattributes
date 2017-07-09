@@ -4676,7 +4676,6 @@ lib/wiki-plugins/wikiplugin_back.php -text
 lib/wiki-plugins/wikiplugin_backlinks.php -text
 lib/wiki-plugins/wikiplugin_banner.php -text
 lib/wiki-plugins/wikiplugin_benchmark.php -text
-lib/wiki-plugins/wikiplugin_benchmark.tpl -text
 lib/wiki-plugins/wikiplugin_bigbluebutton.php -text
 lib/wiki-plugins/wikiplugin_bloglist.php -text
 lib/wiki-plugins/wikiplugin_box.php -text
@@ -4727,9 +4726,7 @@ lib/wiki-plugins/wikiplugin_flash.php -text
 lib/wiki-plugins/wikiplugin_fluidgrid.php -text
 lib/wiki-plugins/wikiplugin_font.php -text
 lib/wiki-plugins/wikiplugin_footnote.php -text
-lib/wiki-plugins/wikiplugin_footnote.tpl -text
 lib/wiki-plugins/wikiplugin_footnotearea.php -text
-lib/wiki-plugins/wikiplugin_footnotearea.tpl -text
 lib/wiki-plugins/wikiplugin_freetagged.php -text
 lib/wiki-plugins/wikiplugin_friend.php -text
 lib/wiki-plugins/wikiplugin_ftp.php -text
@@ -6381,6 +6378,7 @@ templates/wiki-plugins/wikiplugin_addrelation.tpl -text
 templates/wiki-plugins/wikiplugin_addtocart.tpl -text
 templates/wiki-plugins/wikiplugin_adjustinventory.tpl -text
 templates/wiki-plugins/wikiplugin_appframe_mapcontrol.tpl -text
+templates/wiki-plugins/wikiplugin_benchmark.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton_create.tpl -text
 templates/wiki-plugins/wikiplugin_bigbluebutton_view_recordings.tpl -text
@@ -6394,6 +6392,8 @@ templates/wiki-plugins/wikiplugin_datachannel.tpl -text
 templates/wiki-plugins/wikiplugin_events.tpl -text
 templates/wiki-plugins/wikiplugin_favorite.tpl -text
 templates/wiki-plugins/wikiplugin_files.tpl -text
+templates/wiki-plugins/wikiplugin_footnote.tpl -text
+templates/wiki-plugins/wikiplugin_footnotearea.tpl -text
 templates/wiki-plugins/wikiplugin_freetagged.tpl -text
 templates/wiki-plugins/wikiplugin_friend.tpl -text
 templates/wiki-plugins/wikiplugin_ftp.tpl -text
