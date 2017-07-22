@@ -5417,6 +5417,7 @@ templates/goal/show.tpl -text
 templates/goal/show_list.tpl -text
 templates/h5p/edit.tpl -text
 templates/h5p/embed.tpl -text
+templates/h5p/list_libraries.tpl -text
 templates/h5p/list_results.tpl -text
 templates/header.tpl -text
 templates/ids/remove.tpl -text
