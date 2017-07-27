@@ -1961,6 +1961,7 @@ installer/schema/20170628_schedulers_menu_tiki_update.sql -text
 installer/schema/20170702_wiki_url_scheme_pref_default_tiki.php -text
 installer/schema/20170717_add_missing_trackeritem_attachment_backlinks_tiki.php -text
 installer/schema/20170726_remove_article_hashes_tiki.sql -text
+installer/schema/20170726_tabular_config_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
