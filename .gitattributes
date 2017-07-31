@@ -2703,6 +2703,7 @@ lib/core/Services/Kaltura/index.php -text
 lib/core/Services/Language/Controller.php -text
 lib/core/Services/Language/TransifexController.php -text
 lib/core/Services/Language/TranslationController.php -text
+lib/core/Services/Language/TranslationReader.php -text
 lib/core/Services/Language/Utilities.php -text
 lib/core/Services/Language/index.php -text
 lib/core/Services/MailIn/Controller.php -text
