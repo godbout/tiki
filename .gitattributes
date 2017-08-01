@@ -8276,12 +8276,6 @@ vendor_extra/pear/DB/pgsql.php -text
 vendor_extra/pear/DB/sqlite.php -text
 vendor_extra/pear/DB/storage.php -text
 vendor_extra/pear/DB/sybase.php -text
-vendor_extra/pear/Minify/CSS.php -text
-vendor_extra/pear/Minify/CSS/Compressor.php -text
-vendor_extra/pear/Minify/CSS/UriRewriter.php -text
-vendor_extra/pear/Minify/CSS/index.php -text
-vendor_extra/pear/Minify/CommentPreserver.php -text
-vendor_extra/pear/Minify/index.php -text
 vendor_extra/pear/Net/DIME.php -text
 vendor_extra/pear/Net/DNS.php -text
 vendor_extra/pear/Net/DNS/Header.php -text
