@@ -1415,6 +1415,7 @@ img/wiki_up/README -text
 img/wiki_up/index.php -text
 /index.php -text
 installer/.htaccess -text
+installer/Patch.php -text
 installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-enabled.patch -text
 installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch -text
 installer/composer-patches/composer-patches.json -text
