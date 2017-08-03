@@ -1966,6 +1966,7 @@ installer/schema/20170726_tabular_config_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
+installer/schema/optional_20170801_initialize_article_nbreads_tiki.php -text
 installer/script/index.php -text
 installer/shell.php -text
 installer/tiki-installer.php -text
