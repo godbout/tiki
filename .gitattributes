@@ -6570,6 +6570,7 @@ themes/base_files/iconsets/index.php -text
 themes/base_files/iconsets/legacy.php -text
 themes/base_files/index.php -text
 themes/base_files/less/bootswatch_overrides.less -text
+themes/base_files/less/conversejs-tiki.less -text
 themes/base_files/less/external-scripts.less -text
 themes/base_files/less/jquery-ui-tiki.less -text
 themes/base_files/less/newsletter.less -text
