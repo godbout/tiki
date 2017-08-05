@@ -1265,7 +1265,6 @@ img/overlay-light.png -text
 img/poweredby/php.png -text svneol=unset#image/png
 img/poweredby/smarty.png -text svneol=unset#image/png
 img/profiles/index.php -text
-img/profiles/profile_hidable_top_navbar.png -text
 img/profiles/profile_thumb_barter_market.png -text
 img/profiles/profile_thumb_bug_tracker.png -text
 img/profiles/profile_thumb_cartograf.png -text
@@ -1277,6 +1276,7 @@ img/profiles/profile_thumb_countries_by_region.png -text
 img/profiles/profile_thumb_custom_contact_form.png -text
 img/profiles/profile_thumb_dynamic_items_list.png -text
 img/profiles/profile_thumb_easy_geoblog.png -text
+img/profiles/profile_thumb_hidable_top_navbar.png -text
 img/profiles/profile_thumb_menu_on_wiki_page.png -text
 img/profiles/profile_thumb_mobile.png -text
 img/profiles/profile_thumb_multilingual_wiki.png -text
