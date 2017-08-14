@@ -4004,7 +4004,6 @@ lib/smarty_tiki/block.trackeritemcheck.php -text
 lib/smarty_tiki/block.translation.php -text
 lib/smarty_tiki/block.wiki.php -text
 lib/smarty_tiki/block.wikiplugin.php -text
-lib/smarty_tiki/compiler.assign.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.activity.php -text
 lib/smarty_tiki/function.addonobjectid.php -text
