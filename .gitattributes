@@ -4427,6 +4427,9 @@ lib/test/core/Search/paginate.tpl -text
 lib/test/core/Services/Comment/ControllerTest.php -text
 lib/test/core/Services/ResultLoaderTest.php -text
 lib/test/core/Services/index.php -text
+lib/test/core/Tiki/Command/ProfileExport/Fixtures/test.yml -text
+lib/test/core/Tiki/Command/ProfileExport/Fixtures/testTrackerItemExportResult.yml -text
+lib/test/core/Tiki/Command/ProfileExport/Fixtures/testTrackerItemExportWithoutFieldsResult.yml -text
 lib/test/core/Tiki/Package/ComposerCliTest.php -text
 lib/test/core/Tiki/Package/ComposerManagerTest.php -text
 lib/test/core/Tiki/Package/Fixtures/CasperJsComposer.json -text
