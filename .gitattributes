@@ -3408,6 +3408,7 @@ lib/jquery_tiki/tiki-maps-ol3.js -text
 lib/jquery_tiki/tiki-maps.js -text
 lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
+lib/jquery_tiki/tiki-vimeo_upload.js -text
 lib/jquery_tiki/tiki-workspace-ui.js -text
 lib/jquery_tiki/wikiplugin-annotation.js -text
 lib/jquery_tiki/wikiplugin-pivottable.js -text
@@ -4103,6 +4104,7 @@ lib/smarty_tiki/function.treetable.php -text
 lib/smarty_tiki/function.user_registration.php -text
 lib/smarty_tiki/function.user_selector.php -text
 lib/smarty_tiki/function.var_dump.php -text
+lib/smarty_tiki/function.vimeo_uploader.php -text
 lib/smarty_tiki/function.wikidiff.php -text
 lib/smarty_tiki/function.wikistructure.php -text
 lib/smarty_tiki/index.php -text
@@ -6381,6 +6383,7 @@ templates/user_conditions/approval.tpl -text
 templates/user_conditions/index.php -text
 templates/user_registration.tpl -text
 templates/vimeo/index.php -text
+templates/vimeo/jquery_upload.tpl -text
 templates/vimeo/upload.tpl -text
 templates/vimeo/view.tpl -text
 templates/web.config -text
