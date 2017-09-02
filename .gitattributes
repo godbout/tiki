@@ -2828,6 +2828,7 @@ lib/core/Tiki/Command/ConfigureCommand.php -text
 lib/core/Tiki/Command/ConsoleApplicationBuilder.php -text
 lib/core/Tiki/Command/DailyReportSendCommand.php -text
 lib/core/Tiki/Command/FilesBatchuploadCommand.php -text
+lib/core/Tiki/Command/FilesCopyCommand.php -text
 lib/core/Tiki/Command/FilesDeleteoldCommand.php -text
 lib/core/Tiki/Command/GoalCheckCommand.php -text
 lib/core/Tiki/Command/IndexCatchUpCommand.php -text
