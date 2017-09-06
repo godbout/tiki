@@ -6062,7 +6062,6 @@ templates/tiki-export_users.tpl -text
 templates/tiki-faq_questions.tpl -text
 templates/tiki-featured_link.tpl -text
 templates/tiki-file_archives.tpl -text
-templates/tiki-file_galleries.tpl -text
 templates/tiki-file_info_box.tpl -text
 templates/tiki-flaggedrev_approval_header.tpl -text
 templates/tiki-forum_import.tpl -text
