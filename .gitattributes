@@ -5409,6 +5409,7 @@ templates/file/upload.tpl -text
 templates/file/uploader.tpl -text
 templates/file_backlinks.tpl -text
 templates/file_gallery_slideshow.tpl -text
+templates/file_properties_table.tpl -text
 templates/file_selector.tpl -text
 templates/filter.tpl -text
 templates/filter_control/date_range.tpl -text
