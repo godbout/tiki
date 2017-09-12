@@ -5401,6 +5401,7 @@ templates/fgal_context_menu.tpl -text
 templates/fgal_file_link_attributes.tpl -text
 templates/fgal_listing_conf.tpl -text
 templates/fgal_thumbnailframe.tpl -text
+templates/fgal_view_page.tpl -text
 templates/file/browse.tpl -text
 templates/file/index.php -text
 templates/file/jquery_upload.tpl -text
