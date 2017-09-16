@@ -3127,6 +3127,7 @@ lib/core/Tracker/Field/Abstract.php -text
 lib/core/Tracker/Field/Action.php -text
 lib/core/Tracker/Field/Articles.php -text
 lib/core/Tracker/Field/AutoIncrement.php -text
+lib/core/Tracker/Field/CalendarItem.php -text
 lib/core/Tracker/Field/Category.php -text
 lib/core/Tracker/Field/Checkbox.php -text
 lib/core/Tracker/Field/Computed.php -text
