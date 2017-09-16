@@ -2468,6 +2468,8 @@ lib/core/Search/ContentFilter/index.php -text
 lib/core/Search/ContentSource/ActivityStreamSource.php -text
 lib/core/Search/ContentSource/ArticleSource.php -text
 lib/core/Search/ContentSource/BlogPostSource.php -text
+lib/core/Search/ContentSource/CalendarItemSource.php -text
+lib/core/Search/ContentSource/CalendarSource.php -text
 lib/core/Search/ContentSource/CategorySource.php -text
 lib/core/Search/ContentSource/CommentSource.php -text
 lib/core/Search/ContentSource/FileGallerySource.php -text
