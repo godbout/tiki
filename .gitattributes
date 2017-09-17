@@ -2749,6 +2749,7 @@ lib/core/Services/Search/StoredController.php -text
 lib/core/Services/Search/index.php -text
 lib/core/Services/ShowTikiOrg/Controller.php -text
 lib/core/Services/ShowTikiOrg/index.php -text
+lib/core/Services/StyleGuide/Controller.php -text
 lib/core/Services/Suite/Controller.php -text
 lib/core/Services/Suite/index.php -text
 lib/core/Services/Tracker/CalendarController.php -text
@@ -3405,6 +3406,7 @@ lib/jquery_tiki/pdf.js -text
 lib/jquery_tiki/pluginedit.js -text
 lib/jquery_tiki/pluginedit_list.js -text
 lib/jquery_tiki/social.js -text
+lib/jquery_tiki/style-guide.js -text
 lib/jquery_tiki/tablesorter.js -text
 lib/jquery_tiki/tiki-admin.js -text
 lib/jquery_tiki/tiki-ajax_services.js -text
@@ -5911,6 +5913,20 @@ templates/social/remove_friend.tpl -text
 templates/structures_toc-endul.tpl -text
 templates/structures_toc-leaf.tpl -text
 templates/structures_toc-startul.tpl -text
+templates/styleguide/index.php -text
+templates/styleguide/sections/alerts.tpl -text
+templates/styleguide/sections/buttons.tpl -text
+templates/styleguide/sections/colors.tpl -text
+templates/styleguide/sections/dropdowns.tpl -text
+templates/styleguide/sections/fonts.tpl -text
+templates/styleguide/sections/forms.tpl -text
+templates/styleguide/sections/headings.tpl -text
+templates/styleguide/sections/icons.tpl -text
+templates/styleguide/sections/lists.tpl -text
+templates/styleguide/sections/navbars.tpl -text
+templates/styleguide/sections/tables.tpl -text
+templates/styleguide/sections/tabs.tpl -text
+templates/styleguide/show.tpl -text
 templates/suite/index.php -text
 templates/suite/jitsi.tpl -text
 templates/tablesorter/index.php -text
@@ -6560,6 +6576,7 @@ themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
 themes/base_files/css/newsletter.css -text
 themes/base_files/css/printpdf.css -text
+themes/base_files/css/style-guide.css -text
 themes/base_files/css/tiki_base.css -text
 themes/base_files/favicons/android-chrome-192x192.png -text
 themes/base_files/favicons/android-chrome-512x512.png -text
