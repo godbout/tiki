@@ -3115,6 +3115,7 @@ lib/core/TikiFilter/Callback.php -text
 lib/core/TikiFilter/HtmlPurifier.php -text
 lib/core/TikiFilter/IsoDate.php -text
 lib/core/TikiFilter/Lang.php -text
+lib/core/TikiFilter/None.php -text
 lib/core/TikiFilter/PregFilter.php -text
 lib/core/TikiFilter/PrepareInput.php -text
 lib/core/TikiFilter/PreventXss.php -text
