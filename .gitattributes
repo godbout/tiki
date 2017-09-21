@@ -6380,6 +6380,7 @@ templates/trackeroutput/articles.tpl -text
 templates/trackeroutput/computed.tpl -text
 templates/trackeroutput/currency.tpl -text
 templates/trackeroutput/files_googleviewer.tpl -text
+templates/trackeroutput/files_table.tpl -text
 templates/trackeroutput/freetags.tpl -text
 templates/trackeroutput/icon.tpl -text
 templates/trackeroutput/index.php -text
