@@ -5645,7 +5645,6 @@ templates/modules/mod-action_calendar.tpl -text
 templates/modules/mod-action_similarcontent.tpl -text
 templates/modules/mod-addon.tpl -text
 templates/modules/mod-adsense.tpl -text
-templates/modules/mod-application_menu.tpl.nocache -text
 templates/modules/mod-article_archives.tpl -text
 templates/modules/mod-article_topics.tpl -text
 templates/modules/mod-articles.tpl -text
