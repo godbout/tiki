@@ -1968,6 +1968,7 @@ installer/schema/20170726_remove_article_hashes_tiki.sql -text
 installer/schema/20170726_tabular_config_tiki.sql -text
 installer/schema/20170920_admin_webservices_menu_option_tiki.sql -text
 installer/schema/20170925_add_general_to_language_tiki.sql -text
+installer/schema/20171002_queue_handler_size_increase_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
