@@ -54,6 +54,8 @@ temp/public/*
 temp/templates_c/*
 templates/.htaccess
 tests/.htaccess
+themes/css/custom.css
+themes/js/custom.js
 /tiki-*.log
 /tiki-emptycache.php
 tiki_tests/tests
