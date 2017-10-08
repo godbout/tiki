@@ -45,6 +45,7 @@ modules/cache/*
 /node_modules
 /phpmyadmin
 /project.index
+storage/lib/setup/custom.php
 storage/public/*
 /svn-commit.tmp
 temp/*
