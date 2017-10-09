@@ -115,9 +115,11 @@ class ScssCompileCommand extends Command
 				}
 			} catch (ParserException $e) {
 				$output->writeln('<error>' . tr('SCSS Parse Error') . '</error>');
+				$output->writeln('<info>' . $e->getMessage() . '</info>');
 				return false;
 			} catch (\Exception $e) {
 				$output->writeln('<error>' . tr('SCSS Error'));
+				$output->writeln('<info>' . $e->getMessage() . '</info>');
 				return false;
 			}
 		}
