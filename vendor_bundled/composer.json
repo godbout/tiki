@@ -97,7 +97,7 @@
 		"symfony/process": "^3.2.6",
 		"symfony/yaml": "^3.2.6",
 		"tijsverkoyen/css-to-inline-styles": "^2.2.0",
-		"twitter/bootstrap": "^4.0.0",
+		"twitter/bootstrap": "4.0.0-beta",
 		"undojs/undojs": "1",
 		"zendframework/zend-captcha": "^2.6",
 		"zendframework/zend-config": "^2.6",
