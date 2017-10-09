@@ -6573,11 +6573,11 @@ themes/amelia/icons/index.php -text
 themes/amelia/images/amelia.png -text
 themes/amelia/images/index.php -text
 themes/amelia/index.php -text
-themes/amelia/less/amelia.less -text
-themes/amelia/less/bootswatch.less -text
+themes/amelia/less/amelia.scss -text
+themes/amelia/less/bootswatch.scss -text
 themes/amelia/less/index.php -text
-themes/amelia/less/newsletter.less -text
-themes/amelia/less/variables.less -text
+themes/amelia/less/newsletter.scss -text
+themes/amelia/less/variables.scss -text
 themes/amelia/templates/index.php -text
 themes/base_files/css/newsletter.css -text
 themes/base_files/css/printpdf.css -text
@@ -6620,7 +6620,7 @@ themes/base_files/other/integrator/index.php -text
 themes/base_files/other/site_closed.html -text
 themes/base_files/scss/bootswatch_overrides.scss -text
 themes/base_files/scss/conversejs-tiki.less -text
-themes/base_files/scss/external-scripts.less -text
+themes/base_files/scss/external-scripts.scss -text
 themes/base_files/scss/jquery-ui-tiki.less -text
 themes/base_files/scss/newsletter.less -text
 themes/base_files/scss/pivot-tiki.less -text
@@ -6649,7 +6649,7 @@ themes/base_files/scss/tiki-modules.less -text
 themes/base_files/scss/tiki-multilike.less -text
 themes/base_files/scss/tiki-mytiki.less -text
 themes/base_files/scss/tiki-search.less -text
-themes/base_files/scss/tiki-selectors.less -text
+themes/base_files/scss/tiki-selectors.scss -text
 themes/base_files/scss/tiki-sheets.less -text
 themes/base_files/scss/tiki-tabs_and_tables.less -text
 themes/base_files/scss/tiki-tags.less -text
@@ -6658,7 +6658,7 @@ themes/base_files/scss/tiki-trackers.less -text
 themes/base_files/scss/tiki-translation.less -text
 themes/base_files/scss/tiki-variables.scss -text
 themes/base_files/scss/tiki-wikipages_and_plugins.less -text
-themes/base_files/scss/tiki_base.less -text
+themes/base_files/scss/tiki_base.scss -text
 themes/business/css/business.css -text
 themes/business/css/index.php -text
 themes/business/css/newsletter.css -text

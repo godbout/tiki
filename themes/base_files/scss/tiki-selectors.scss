@@ -91,7 +91,7 @@ a.fc-event:hover {
 
 .cssmenu_horiz ul,
 .cssmenu_vert ul {
-	border: @cssmenu_ul_border; //  @dropdown-border;
+	border: @cssmenu_ul_border; //  $dropdown-border-color;
 }
 
 .cssmenu_horiz ul li a,
