@@ -1,8 +1,8 @@
 /* $Id$
 	This Tiki Wiki CMS Groupware file contains global design
 	and layout properties. */
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/variables.less";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/mixins.less";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_variables.scss";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
 @import "tiki-variables.scss";
 @import "tiki-selectors.scss";
 @import "tiki-miscellaneous_global.less";
