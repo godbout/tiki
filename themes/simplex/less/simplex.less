@@ -15,17 +15,17 @@
  * Adapted by the Tiki Community for Tiki Wiki CMS Groupware
 */
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/less/bootstrap.less";
-@import "../../base_files/less/bootswatch_overrides.less";
+@import "../../base_files/scss/bootswatch_overrides.less";
 // So far, just removes the CSS content theme-option-required warning.
 @import "bootswatch.less";
 // defines the theme's CSS values that are outside of variables.less
 @import "variables.less";
 // the Bootstrap variables.less file with theme-specific values replacing the defaults
-@import "../../base_files/less/tiki-variables.less";
+@import "../../base_files/scss/tiki-variables.scss";
 // Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.less.
-@import "../../base_files/less/tiki-selectors.less";
+@import "../../base_files/scss/tiki-selectors.less";
 // Tiki non-Bootstrap CSS selectors related to color
-@import "../../base_files/less/external-scripts.less";
+@import "../../base_files/scss/external-scripts.less";
 
 .topbar { border: 1px solid @navbar-default-border; }
 .topbar .navbar-default { border: none; }
