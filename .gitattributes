@@ -2846,7 +2846,6 @@ lib/core/Tiki/Command/IndexOptimizeCommand.php -text
 lib/core/Tiki/Command/IndexRebuildCommand.php -text
 lib/core/Tiki/Command/InstallCommand.php -text
 lib/core/Tiki/Command/InstallerLockCommand.php -text
-lib/core/Tiki/Command/LessCompileCommand.php -text
 lib/core/Tiki/Command/ListExecuteCommand.php -text
 lib/core/Tiki/Command/MailInPollCommand.php -text
 lib/core/Tiki/Command/MailQueueSendCommand.php -text
@@ -2893,6 +2892,7 @@ lib/core/Tiki/Command/RedactDBCommand.php -text
 lib/core/Tiki/Command/RefreshRssCommand.php -text
 lib/core/Tiki/Command/RssClearCacheCommand.php -text
 lib/core/Tiki/Command/SchedulerRunCommand.php -text
+lib/core/Tiki/Command/ScssCompileCommand.php -text
 lib/core/Tiki/Command/TrackerClearCommand.php -text
 lib/core/Tiki/Command/TrackerImportCommand.php -text
 lib/core/Tiki/Command/UnavailableCommand.php -text
