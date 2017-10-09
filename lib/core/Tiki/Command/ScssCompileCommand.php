@@ -14,6 +14,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Leafo\ScssPhp\Compiler;
 use Leafo\ScssPhp\Exception\ParserException;
+use Leafo\ScssPhp\Exception\CompilerException;
+use Leafo\ScssPhp\Exception\RangeException;
+use Leafo\ScssPhp\Exception\ServerException;
 
 class ScssCompileCommand extends Command
 {
@@ -115,6 +118,18 @@ class ScssCompileCommand extends Command
 				}
 			} catch (ParserException $e) {
 				$output->writeln('<error>' . tr('SCSS Parse Error') . '</error>');
+				$output->writeln('<info>' . $e->getMessage() . '</info>');
+				return false;
+			} catch (CompilerException $e) {
+				$output->writeln('<error>' . tr('SCSS Compiler Error') . '</error>');
+				$output->writeln('<info>' . $e->getMessage() . '</info>');
+				return false;
+			} catch (RangeException $e) {
+				$output->writeln('<error>' . tr('SCSS Range Error') . '</error>');
+				$output->writeln('<info>' . $e->getMessage() . '</info>');
+				return false;
+			} catch (ServerException $e) {
+				$output->writeln('<error>' . tr('SCSS Server Error') . '</error>');
 				$output->writeln('<info>' . $e->getMessage() . '</info>');
 				return false;
 			} catch (\Exception $e) {
