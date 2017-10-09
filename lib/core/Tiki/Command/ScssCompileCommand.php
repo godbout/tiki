@@ -12,6 +12,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Leafo\ScssPhp\Compiler;
+use Leafo\ScssPhp\Exception\ParserException;
 
 class ScssCompileCommand extends Command
 {
@@ -46,6 +48,10 @@ class ScssCompileCommand extends Command
 			);
 	}
 
+	/**
+	 * @param InputInterface $input
+	 * @param OutputInterface $output
+	 */
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$only = array_filter(explode(',', $input->getArgument('themes')));
@@ -103,16 +109,55 @@ class ScssCompileCommand extends Command
 				}
 			}
 
-			foreach ($files as $file) {
-				$command = "php vendor_bundled/vendor/leafo/scssphp/bin/pscss {$file['scss']} {$file['css']}";
-				$output->writeln($command);
-				$result = shell_exec($command);
-				$result = str_replace(array("\r", "\n"), '', $result);
-				$output->writeln($result);
+			try {
+				foreach ($files as $file) {
+					$this->compile($file['scss'], $file['css'], $output);
+				}
+			} catch (ParserException $e) {
+				$output->writeln('<error>' . tr('SCSS Parse Error') . '</error>');
+				return false;
+			} catch (\Exception $e) {
+				$output->writeln('<error>' . tr('SCSS Error'));
+				return false;
 			}
 		}
 
 		$output->writeln('Clearing all caches');
 		$cachelib->empty_cache();
+	}
+
+	/**
+	 * @param $inputFile
+	 * @param string $outputFile
+	 * @param OutputInterface $output
+	 */
+	private
+	function compile($inputFile, $outputFile = '', $output = null)
+	{
+		include __DIR__ . '../../../../../vendor_bundled/vendor/leafo/scssphp/scss.inc.php';
+
+		$data = file_get_contents($inputFile);
+
+		$newWorkingDir = dirname(realpath($inputFile));
+		$oldWorkingDir = getcwd();
+
+		if ($oldWorkingDir !== $newWorkingDir) {
+			$changeDir = chdir($newWorkingDir);
+			$inputFile = basename($inputFile);
+		} else {
+			$changeDir = '';
+		}
+
+		$scss = new Compiler();
+
+		$result = $scss->compile($data, $inputFile);
+
+		if ($changeDir) {
+			chdir($oldWorkingDir);
+		}
+
+		if ($outputFile) {
+			file_put_contents($outputFile, $result);
+		}
 	}
 }
