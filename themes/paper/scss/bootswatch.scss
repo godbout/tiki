@@ -69,7 +69,7 @@
 	.transition(all 0.4s);
 
 	&-link {
-		border-radius: @btn-border-radius-base;
+		border-radius: $btn-border-radius;
 		.box-shadow(none);
 		color: @btn-default-color;
 
