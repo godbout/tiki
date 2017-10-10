@@ -7743,11 +7743,11 @@ themes/tikinewt/index.php -text
 themes/tikinewt/options/index.php -text
 themes/tikinewt/options/shadows/css/shadows.css -text
 themes/tikinewt/options/shadows/images/index.php -text
-themes/tikinewt/scss/bootstrap-variables.less -text
+themes/tikinewt/scss/bootstrap-variables.scss -text
 themes/tikinewt/scss/index.php -text
-themes/tikinewt/scss/newsletter.less -text
-themes/tikinewt/scss/tiki-selectors.less -text
-themes/tikinewt/scss/tikinewt.less -text
+themes/tikinewt/scss/newsletter.scss -text
+themes/tikinewt/scss/tiki-selectors.scss -text
+themes/tikinewt/scss/tikinewt.scss -text
 themes/tikinewt/templates/index.php -text
 themes/united/css/index.php -text
 themes/united/css/newsletter.css -text
