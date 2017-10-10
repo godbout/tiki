@@ -7349,11 +7349,11 @@ themes/journal/icons/index.php -text
 themes/journal/images/index.php -text
 themes/journal/images/journal.png -text
 themes/journal/index.php -text
-themes/journal/less/bootswatch.less -text
-themes/journal/less/index.php -text
-themes/journal/less/journal.less -text
-themes/journal/less/newsletter.less -text
-themes/journal/less/variables.less -text
+themes/journal/scss/bootswatch.scss -text
+themes/journal/scss/index.php -text
+themes/journal/scss/journal.scss -text
+themes/journal/scss/newsletter.scss -text
+themes/journal/scss/variables.scss -text
 themes/journal/templates/index.php -text
 themes/jqui/css/index.php -text
 themes/jqui/css/jqui.css -text
