@@ -7639,11 +7639,6 @@ themes/strasa/images/index.php -text
 themes/strasa/images/login.jpg -text
 themes/strasa/images/login_section.jpg -text
 themes/strasa/images/strasa.png -text
-themes/strasa/less/bootstrap-variables.less -text
-themes/strasa/less/index.php -text
-themes/strasa/less/newsletter.less -text
-themes/strasa/less/strasa.less -text
-themes/strasa/less/tiki-selectors.less -text
 themes/strasa/options/cool.css -text
 themes/strasa/options/cool/box_bottom.gif -text
 themes/strasa/options/cool/box_top.gif -text
@@ -7697,6 +7692,11 @@ themes/strasa/options/mono/login.jpg -text
 themes/strasa/options/mono/loginlong.jpg -text svneol=unset#image/jpeg
 themes/strasa/options/mono/mono.png -text
 themes/strasa/options/mono/register.jpg -text
+themes/strasa/scss/bootstrap-variables.scss -text
+themes/strasa/scss/index.php -text
+themes/strasa/scss/newsletter.scss -text
+themes/strasa/scss/strasa.scss -text
+themes/strasa/scss/tiki-selectors.scss -text
 themes/superhero/css/index.php -text
 themes/superhero/css/newsletter.css -text
 themes/superhero/css/superhero.css -text
