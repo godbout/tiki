@@ -76,7 +76,7 @@
 //		border-radius: 5px;
 		background: $btn-default-bg;
 		border: 1px solid $btn-default-border;
-		border-radius: $btn-border-radius-base;
+		border-radius: $btn-border-radius;
 		color: $pvtAttr-color;
 	}
 
@@ -135,7 +135,7 @@
 	.pvtFilterBox button {
 		background: $pvtFilterBox-button-bg;
 		border: 1px solid $btn-default-border;
-		border-radius: $btn-border-radius-base;
+		border-radius: $btn-border-radius;
 		color: $pvtFilterBox-button-color;
 		&:hover {
 			background: $pvtFilterBox-button-hover-bg;

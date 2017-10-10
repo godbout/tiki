@@ -1,6 +1,6 @@
 // $Id$
 
-$imagePath: ~"../../img/";
+$imagePath: "../../img/";
 
 //***** Forums *****/
 body.tiki_forums .normal {
@@ -103,7 +103,7 @@ body.tiki_forums .normal {
 
 .sub_comment_area {
 	clear: both;
-	background: url('${imagePath}edge.gif') no-repeat top left;
+	background: url('#{$imagePath}edge.gif') no-repeat top left;
 }
 
 .forum_actions .actions {
@@ -142,7 +142,7 @@ body.tiki_forums .normal {
 
 //* Forum filter collapsible panel. Adds +/-*/
 .filter-panel-heading a:after {
-	font-family: 'Font-Awesome'; // Is this change ok?
+//	font-family: 'Font-Awesome'; // Is this change ok? Todo
 	content: "\2212";
 	float: left;
 	margin-right: 15px;

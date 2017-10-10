@@ -65,11 +65,11 @@
 					border:1px solid transparent; box-shadow:none;
 					background-color:transparent;
 					&:hover { color:$link-color; }
-					&.current, &.current:hover, &.current:focus {
-						color:$nav-tabs-active-link-hover-color;
-						background-color:$nav-tabs-active-link-hover-bg;
-						border:1px solid $nav-tabs-active-link-hover-border-color;
-						border-bottom-color:transparent; height:48px;
+	//				&.current, &.current:hover, &.current:focus { //TemporaryBS4
+	//					color:$nav-tabs-active-link-hover-color;
+	//					background-color:$nav-tabs-active-link-hover-bg;
+	//					border:1px solid $nav-tabs-active-link-hover-border-color;
+	//					border-bottom-color:transparent; height:48px;
 					}
 				}
 			}
