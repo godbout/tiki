@@ -1,0 +1,38 @@
+// $Id: cerulean.less 64181 2017-10-09 05:47:00Z chibaguy $
+/*! Original theme information:
+ * bootswatch v3.3.6
+ * Homepage: http://bootswatch.com
+ * Copyright 2012-2015 Thomas Park
+ * Licensed under MIT
+ * Based on Bootstrap
+ *
+ * Adapted by the Tiki Community for Tiki Wiki CMS Groupware
+*/
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
+@import "../../base_files/scss/bootswatch_overrides.scss";
+// So far, just removes the CSS content theme-option-required warning.
+@import "../../base_files/scss/tiki-variables.scss";
+// Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.scss.
+@import "bootswatch.scss";
+// defines the theme's CSS values that are outside of variables.less
+@import "variables.scss";
+// the Bootstrap variables.less file with theme-specific values replacing the defaults
+@import "../../base_files/scss/tiki-selectors.scss";
+// Tiki non-Bootstrap CSS selectors related to color
+@import "../../base_files/scss/external-scripts.scss";
+
+.topbar {
+//	@include btn-shadow($navbar-dark-bg);
+	filter: none;
+	@include box-shadow(0 1px 10px rgba(0, 0, 0, 0.1));
+}
+
+.topbar .navbar { box-shadow: none; }
+
+.topbar .navbar-default .navbar-nav > li > a,
+.topbar .navbar-default .navbar-nav > li,
+.topbar .nav > li { background: transparent;}
+
+.topbar .navbar-default .navbar-nav > li > a:hover,
+.topbar .nav > li:hover { background: $navbar-default-link-hover-bg;}
+

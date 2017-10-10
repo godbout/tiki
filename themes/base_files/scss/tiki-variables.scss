@@ -1,5 +1,6 @@
 // $Id$
 // Values are specified here to be used in the files imported by tiki_base.scss and theme style sheets.
+@import "bs3-bs4-transition.scss";
 
 $topmodules-row-sidemargins: 0;
 $topbar-row-sidemargins: 0;
@@ -114,7 +115,7 @@ $modal-link-hover-color: $link-hover-color;
 $secondary-legend-font-size: ceil(($font-size-base * 1.35));
 
 // Plugin Pivot Table variables
-$pvt-color: $text-color;
+$pvt-color: $body-color;
 $pvt-bg: $body-bg;
 $pvt-font-size: $font-size-base;
 $pvt-table-bg: $table-bg;
@@ -125,13 +126,13 @@ $pvt-modal-content-bg: $modal-content-bg;
 $pvtAttr-color: $btn-default-color;
 $pvtFilterBox-button-color: $btn-default-color;
 $pvtFilterBox-button-bg: $btn-default-bg;
-$pvtFilterBox-button-hover-bg: spin($btn-default-bg, 10%);
+$pvtFilterBox-button-hover-bg: adjust-hue($btn-default-bg, 10%);
 $pvtAggregator-color: $input-color;
 $pvtAggregator-bg: $input-bg;
 $pvtAggregator-border: $input-border-color;
 $pvtAggregator-border-radius: $input-border-radius;
 $pvtSelect-font-size: $font-size-base;
-$c3-color: $text-color;
+$c3-color: $body-color;
 
 // Theme overrides of jQuery-UI styles
 $jq-ui-btn-font-weight: normal;
@@ -140,4 +141,4 @@ $tiki-sheet-border-color: $table-border-color;
 
 // CKEditor colors
 $editor-bg: $body-bg;
-$editor-text-color: $text-color;
+$editor-text-color: $body-color;

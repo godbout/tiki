@@ -19,7 +19,7 @@ a.toolbar:hover {
 	display: inline-block;
 	border: none;
 	background: transparent;
-	color: $text-color;
+	color: $body-color;
 }
 
 .toolbar-list {
@@ -35,8 +35,8 @@ a.toolbar:hover {
 	z-index: 1050;
 	line-height: 12px;
 	//  background: $body-bg;
-	//  border: thin solid $text-color;
-	//  color: $text-color;
+	//  border: thin solid $body-color;
+	//  color: $body-color;
 	padding: 4px;
 }
 
@@ -51,7 +51,7 @@ a.toolbar:hover {
 	display: inline-block;
 	//  border: 1px solid $body-bg;
 	overflow: hidden;
-	//  color: $text-color;
+	//  color: $body-color;
 }
 
 .toolbars-picker.color a, .toolbars-picker.bgcolor a {
@@ -63,7 +63,7 @@ a.toolbar:hover {
 // .toolbars-picker a:hover {
 //  border: 1px solid $state-danger-text;
 //  background: $gray-light;
-//  color: $text-color;
+//  color: $body-color;
 // }
 
 .toolbars-picker-reset {

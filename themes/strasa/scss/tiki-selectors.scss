@@ -1,7 +1,7 @@
 // $Id$
 // This file is for additional LESS rules beyond what are in variables.less.
 // Image path example:
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 // body {
 //	background-image: url('@{imagePath}bg.jpg');
 // }
@@ -13,7 +13,7 @@
 //@topbar-row-sidemargins: -15px;
 
 body {
-	background: #214d68 url('@{imagePath}body-bg_fw.png') repeat-x;
+	background: #214d68 url('#{$imagePath}body-bg_fw.png') repeat-x;
 }
 
 body.tiki.navbar-padding {
@@ -34,7 +34,7 @@ body.fullscreen.tiki.navbar-padding {
 
 .top_modules {
 	color: #ffffff;
-	background: #214d68 url('@{imagePath}headerbg.jpg') repeat-x 0 100%;
+	background: #214d68 url('#{$imagePath}headerbg.jpg') repeat-x 0 100%;
 	a,
 	.btn-link {
 		color: #ffffff;
@@ -65,7 +65,7 @@ body.fullscreen.tiki.navbar-padding {
 }
 
 .navbar-inverse {
-	background: @btn-primary-bg;
+	background: $btn-primary-bg;
 }
 
 .navbar-default .navbar-nav > .active,

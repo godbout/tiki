@@ -51,7 +51,7 @@ $media (min-width: 768px) {
 }
 
 #calprio {
-	color: $text-color;
+	color: $body-color;
 }
 .calprio1 {
 	background: $calprio1;
@@ -98,15 +98,15 @@ $media (min-width: 768px) {
 .calprio7 a,
 .calprio8 a,
 .calprio9 a {
-	color: $text-color;
+	color: $body-color;
 	font-weight: normal;
 }
 
 .status0,
 .status1,
 .status2 {
-	border: 1px solid $text-color;
-	color: $text-color;
+	border: 1px solid $body-color;
+	color: $body-color;
 }
 
 .status0 {

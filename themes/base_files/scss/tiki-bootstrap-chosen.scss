@@ -76,14 +76,14 @@
 				color: $chosen-active-result;
 				&.result-selected {
 					display: list-item;
-					color: inherit; // $text-color;
+					color: inherit; // $body-color;
 					&.highlighted {
-						color: spin($chosen-background,180);
+						color: adjust-hue($chosen-background,180);
 					}
 				}
 				&:hover {
 					display: inherit;
-					color: spin($chosen-background,180);
+					color: adjust-hue($chosen-background,180);
 				}
 			}
 
@@ -135,7 +135,7 @@
 
 	.chosen-results-scroll-up {
 		span {
-			background: url("${chosen-sprite-path}") no-repeat -22px -3px;
+			background: url("#{$chosen-sprite-path}") no-repeat -22px -3px;
 		}
 	}
 }
@@ -172,7 +172,7 @@
 		}
 
 		abbr {
-			background: url("${chosen-sprite-path}") right top no-repeat;
+			background: url("#{$chosen-sprite-path}") right top no-repeat;
 			display: block;
 			font-size: 1px;
 			height: 10px;
@@ -199,7 +199,7 @@
 			width: 18px;
 
 			b {
-				background: url("${chosen-sprite-path}") no-repeat 0 7px;
+				background: url("#{$chosen-sprite-path}") no-repeat 0 7px;
 				display: block;
 				height: 100%;
 				width: 100%;
@@ -219,7 +219,7 @@
 		z-index: $zindex-dropdown;
 
 		input[type="text"] {
-			background: url("${chosen-sprite-path}") no-repeat 100% -20px, $chosen-background;
+			background: url("#{$chosen-sprite-path}") no-repeat 100% -20px, $chosen-background;
 			border: $chosen-border;
 			.border-top-radius($chosen-border-radius);
 			.border-bottom-radius($chosen-border-radius);
@@ -304,7 +304,7 @@
 			position: relative;
 
 			.search-choice-close {
-				background: url("${chosen-sprite-path}") right top no-repeat;
+				background: url("#{$chosen-sprite-path}") right top no-repeat;
 				display: block;
 				font-size: 1px;
 				height: 10px;
@@ -454,7 +454,7 @@
 	}
 
 	.chosen-search input[type="text"] {
-		background: url("${chosen-sprite-path}") no-repeat -28px -20px, $chosen-background;
+		background: url("#{$chosen-sprite-path}") no-repeat -28px -20px, $chosen-background;
 		direction: rtl;
 		padding: 4px 5px 4px 20px;
 	}
@@ -463,14 +463,14 @@
 .input-group {
   .chosen-container:last-child {
     .chosen-single, .chosen-default, .chosen-choices {
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
   .chosen-container:not(:last-child) {
     .chosen-single, .chosen-default, .chosen-choices {
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
 }
@@ -483,7 +483,7 @@ $media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min
 	.chosen-container-multi .chosen-choices .search-choice .search-choice-close,
 	.chosen-container .chosen-results-scroll-down span,
 	.chosen-container .chosen-results-scroll-up span {
-		background-image: url("${chosen-sprite-retina-path}") !important;
+		background-image: url("#{$chosen-sprite-retina-path}") !important;
 		background-size: 52px 37px !important;
 		background-repeat: no-repeat !important;
 	}

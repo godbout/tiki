@@ -1,10 +1,11 @@
 /* $Id$
 	This Tiki Wiki CMS Groupware file contains global design
 	and layout properties. */
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_variables.scss";
-@import "tiki-variables.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
 @import "bs3-bs4-transition.scss";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_variables.scss";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
+
+@import "tiki-variables.scss";
 @import "tiki-selectors.scss";
 @import "tiki-miscellaneous_global.scss";
 @import "tiki-modules.scss";
@@ -33,8 +34,8 @@
 @import "tiki-cssmenus.scss";
 @import "tiki-external_scripts_overrides.scss";
 @import "tiki-bootstrap_overrides.scss";
-//@import "tablesorter-tiki.scss";
-//@import "tablesorter-custom.scss";
+@import "tablesorter-tiki.scss";
+@import "tablesorter-custom.scss";
 @import "tiki-bootstrap-chosen.scss";
 @import "tiki-media-print.scss";
 @import "tiki-wikipages_and_plugins.scss";

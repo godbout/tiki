@@ -1,7 +1,9 @@
+@import "variables.scss";
+//
 @import "../../base_files/scss/tiki-variables.scss";
 // Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.scss.
 // Core variables and mixins
-@import "variables.scss";
+
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/functions.scss";
 // Reset and dependencies
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/variables.scss";

@@ -12,5 +12,5 @@
 @import "bootstrap-variables.less";
 
 // CKEditor colors
-@editor-bg: #fff;
-@editor-text-color: @text-color;
+$editor-bg: #fff;
+$editor-text-color: $body-color;

@@ -1,0 +1,21 @@
+// $Id: darkly.less 64181 2017-10-09 05:47:00Z chibaguy $
+@web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic";
+
+.web-font(@path) {
+	@import url("@{path}");
+}
+.web-font(@web-font-path);
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/bootstrap.less";
+@import "../../base_files/scss/bootswatch_overrides.scss";
+// So far, just removes the CSS content theme-option-required warning.
+@import "../../base_files/scss/tiki-variables.scss";
+// Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.scss.
+@import "bootswatch.less";
+// defines the theme's CSS values that are outside of variables.less
+@import "../../base_files/scss/tiki-selectors.scss";
+// Tiki non-Bootstrap CSS selectors related to color
+@import "tiki-selectors.less";
+@import "../../base_files/scss/external-scripts.scss";
+@import "variables.less";
+
+// the Bootstrap variables.less file with theme-specific values replacing the defaults

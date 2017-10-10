@@ -1,7 +1,7 @@
 // $Id$
 // /***** Wiki *****/
-@imagePath: ~"../../../img/";
-@imagePathToIcons: ~"../../../img/icons/";
+$imagePath: "../../../img/";
+$imagePathToIcons: "../../../img/icons/";
 
 // form.simple label.error {
 //  background: url('@{imagePath}error.png') no-repeat 0 4px;
@@ -220,51 +220,51 @@ ol.bbb-recordings {
 // }
 //
 // .author4 {
-//   color: spin(@panel-success-text, 50);
+//   color: adjust-hue(@panel-success-text, 50);
 // }
 //
 // .author5 {
-//   color: spin(@panel-info-text, 70);
+//   color: adjust-hue(@panel-info-text, 70);
 // }
 //
 // .author6 {
-//   color: spin(@panel-warning-text, 50);
+//   color: adjust-hue(@panel-warning-text, 50);
 // }
 //
 // .author7 {
-//   color: spin(@panel-danger-text, 50);
+//   color: adjust-hue(@panel-danger-text, 50);
 // }
 //
 // .author8 {
-//   color: spin(@panel-success-text, 100);
+//   color: adjust-hue(@panel-success-text, 100);
 // }
 //
 // .author9 {
-//   color: spin(@panel-info-text, 100);
+//   color: adjust-hue(@panel-info-text, 100);
 // }
 //
 // .author10 {
-//   color: spin(@panel-warning-text, 100);
+//   color: adjust-hue(@panel-warning-text, 100);
 // }
 //
 // .author11 {
-//   color: spin(@panel-danger-text, 100);
+//   color: adjust-hue(@panel-danger-text, 100);
 // }
 //
 // .author12 {
-//   color: spin(@panel-success-text, 170);
+//   color: adjust-hue(@panel-success-text, 170);
 // }
 //
 // .author13 {
-//   color: spin(@panel-info-text, 140);
+//   color: adjust-hue(@panel-info-text, 140);
 // }
 //
 // .author14 {
-//   color: spin(@panel-warning-text, 160);
+//   color: adjust-hue(@panel-warning-text, 160);
 // }
 //
 // .author15 {
-//   color: spin(@panel-danger-text, 160);
+//   color: adjust-hue(@panel-danger-text, 160);
 // }
 
 .structuremenu .menuSection {
@@ -274,7 +274,7 @@ ol.bbb-recordings {
 
 .structuremenu .menuSection .option,
 .structuremenu .menuSection .optionline {
-	background: transparent url('@{imagePath}h_trenner.gif') center left no-repeat;
+	background: transparent url('#{$imagePath}h_trenner.gif') center left no-repeat;
 	padding-left: 21px;
 }
 
@@ -328,7 +328,7 @@ div.tiki_plugin {
 .autotoc .nav > li > a:focus,
 .autotoc .nav > li > a:hover {
   padding-left: 19px;
-  border-left: 1px solid @btn-default-border;
+  border-left: 1px solid $btn-default-border;
 }
 
 .autotoc > .nav > li > .nav > li {
@@ -341,7 +341,7 @@ div.tiki_plugin {
   padding-left: 18px;
   font-weight: 700;
   border: none;
-  border-left: 2px solid @btn-default-border;
+  border-left: 2px solid $btn-default-border;
   background-color: transparent;
 }
 
@@ -403,7 +403,7 @@ div.tiki_plugin {
 //  border: inherit;
   border-bottom-color: transparent;
   cursor: default;
-  border-radius:0px;
+  border-radius: 0;
 }
 
 .back-to-top {
@@ -420,7 +420,7 @@ div.tiki_plugin {
   text-decoration: none
 }
 
-@media (max-width:@screen-xs-max) {
+@media (max-width:$screen-xs-max) {
 	.autotoc > .nav { display:none !important; }
 }
 
@@ -561,7 +561,7 @@ div.tiki_plugin {
 }
 
 .TextArea-fullscreen .edit-zone-footer {
-	background: @body-bg;
+	background: $body-bg;
 }
 
 .TextArea-fullscreen .actions,
@@ -606,7 +606,7 @@ div.tiki_plugin {
 	top: 0;
 	right: 0;
 	opacity: 1;
-	background: @state-info-bg;
+	background: $state-info-bg;
 	height: 100% !important;
 }
 
@@ -719,13 +719,13 @@ body.tiki_wiki #comments {
 
 // /* wikiplugin_fade */
 .wpfade-hidden {
-	background: url('@{imagePath}toggle-expand-dark.png') no-repeat;
+	background: url('#{$imagePath}toggle-expand-dark.png') no-repeat;
 	margin-left: -19px;
 	padding-left: 19px;
 }
 
 .wpfade-shown {
-	background: url('@{imagePath}toggle-collapse-dark.png') no-repeat;
+	background: url('#{$imagePath}toggle-collapse-dark.png') no-repeat;
 	margin-left: -19px;
 	padding-left: 19px;
 }
@@ -932,8 +932,8 @@ body.tiki_wiki #comments {
 // }
 
 // .highlight_word_4 {
-//  color: spin(@panel-danger-text, 20);
-//  background: spin(@panel-danger-heading-bg, 20);
+//  color: adjust-hue(@panel-danger-text, 20);
+//  background: adjust-hue(@panel-danger-heading-bg, 20);
 // }
 
 .ui-tabs .ui-tabs-nav li a {
@@ -976,8 +976,8 @@ div.drillshow {
 	display: inline-table;
 	margin-right: 50px;
 	padding: 20px 10px 15px;
-	border: 1px solid @table-border-color;
-	background-color: @body-bg;
+	border: 1px solid $table-border-color;
+	background-color: $body-bg;
 	overflow: visible;
 }
 
@@ -989,8 +989,8 @@ div.drillshow {
 
 .plugin-list-editor li.plugin {
 	list-style: none;
-	border: 1px solid @panel-default-border;
-	border-radius: @panel-border-radius;
+	border: 1px solid $panel-default-border;
+	border-radius: $panel-border-radius;
 	padding: 4px 8px;
 }
 

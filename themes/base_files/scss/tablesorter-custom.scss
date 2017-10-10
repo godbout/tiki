@@ -59,11 +59,11 @@ $sortDescWhite         : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5B
 }
 
 .filter-bg ($a) when (lightness($a) >= 50%) {
-	background-color: darken(spin($a, -5), 3%);;
+	background-color: darken(adjust-hue($a, -5), 3%);;
 }
 
 .filter-bg ($a) when (lightness($a) < 50%) {
-	background-color: lighten(spin($a, -5), 5%);;
+	background-color: lighten(adjust-hue($a, -5), 5%);;
 }
 
 .tsFilterInput {

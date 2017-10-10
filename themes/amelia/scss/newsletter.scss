@@ -1,0 +1,11 @@
+// $Id: newsletter.scss 64181 2017-10-09 05:47:00Z chibaguy $
+/* Amelia theme newsletter stylesheet  */
+
+@import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
+@import "../../base_files/scss/newsletter.less";
+@import "variables.less";
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'Lobster', sans-serif;
+	font-weight: 500;
+}

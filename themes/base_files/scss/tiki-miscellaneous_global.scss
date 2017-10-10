@@ -9,12 +9,12 @@
 // .highlight,
 // .button.highlight a,
 // .button a.highlight {
-//   background: @state-danger-bg;
-//   color: @state-danger-text;
+//   background: $state-danger-bg;
+//   color: $state-danger-text;
 // }
 //
 // .button a.highlight:hover {
-//   background: darken(@state-danger-bg, 15%);
+//   background: darken($state-danger-bg, 15%);
 // }
 
 // Since button background is actually applied to the link within the button, apply button highlight to same bg area as normal button state .
@@ -69,9 +69,9 @@ input[type="file"] {
 // Input fields auto-fill/
 // Webkit-based browser specific (Google Chrome, Chromium, etc.)
 // input:-webkit-autofill {
-//  background-color: @input-bg !important; /* needs important because Chrome has it already important */
+//  background-color: $input-bg !important; /* needs important because Chrome has it already important */
 //  background-image: none !important;
-//  color: @input-color !important; /* the Google guys forgot the number-one rule... when they specify background they should specify forgeround color too ;) */
+//  color: $input-color !important; /* the Google guys forgot the number-one rule... when they specify background they should specify forgeround color too ;) */
 // }
 
 // Support for orphans & widows on block level elements (useful when printing or when using columns of text)
@@ -127,7 +127,7 @@ form[name=editpageform] .form-group .tab-content .alert-warning {
 	display: none;
 	z-index: 9999;
 	position: absolute;
-	//  background: transparent url('@{imagePathToImgDir}overlay-light.png');
+	//  background: transparent url('#{$imagePathToImgDir}overlay-light.png');
 }
 
 #ajaxLoading {
@@ -140,24 +140,24 @@ form[name=editpageform] .form-group .tab-content .alert-warning {
 	width: 220px;
 	font-size: 2em;
 	font-weight: bold;
-	//  color: @gray-lighter;
-	//  background: transparent url('@{imagePathToImgDir}loading-light.gif') no-repeat 50% 50%;
+	//  color: $gray-lighter;
+	//  background: transparent url('#{$imagePathToImgDir}loading-light.gif') no-repeat 50% 50%;
 }
 
 // cookie consent style
 #cookie_consent_div {
-	//  padding: @alert-padding;
+	//  padding: $alert-padding;
 	margin: 1em;
-	//  border: 1px solid @alert-info-border;
-	//  color: @alert-info-text;
-	//  background-color: @alert-info-bg;
+	//  border: 1px solid $alert-info-border;
+	//  color: $alert-info-text;
+	//  background-color: $alert-info-bg;
 }
 
 #cookie_consent_div.banner {
 	position: fixed;
-	//  padding: @alert-padding;
+	//  padding: $alert-padding;
 	margin: 0;
-	//  border: 1px solid @alert-info-border;
+	//  border: 1px solid $alert-info-border;
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -213,11 +213,11 @@ body.fullscreen {
 }
 
 // .attention {
-//  color: @alert-danger-text;
+//  color: $alert-danger-text;
 // }
 
 // .openid_url {
-//  background: #ffffff url('@{imagePath}icons/login-OpenID-bg.gif') 1px 1px no-repeat;
+//  background: #ffffff url('#{$imagePath}icons/login-OpenID-bg.gif') 1px 1px no-repeat;
 // }
 
 .bannertext {
@@ -226,10 +226,10 @@ body.fullscreen {
 }
 
 #debugconsole {
-	//  background: @navbar-inverse-bg;
-	//  color: @navbar-inverse-link-color;
+	//  background: $navbar-inverse-bg;
+	//  color: $navbar-inverse-link-color;
 	padding: 5px;
-	//  border: 2px solid @navbar-inverse-border;
+	//  border: 2px solid $navbar-inverse-border;
 	font-size: 1em;
 	position: absolute;
 	top: 0;
@@ -240,11 +240,11 @@ body.fullscreen {
 }
 
 // #debugconsole form {
-//  color: @navbar-inverse-link-active-bg;
+//  color: $navbar-inverse-link-active-bg;
 // }
 //
 // #debugconsole a {
-//  color: @navbar-inverse-link-active-color;
+//  color: $navbar-inverse-link-active-color;
 // }
 
 .cachedStatus,
@@ -288,11 +288,11 @@ span.btn-link {
 
 // ColorBox
 // #cboxTitle {
-//   background-color: @body-bg;
+//   background-color: $body-bg;
 // }
 //
 // #captchaImg {
-//   border: 1px solid @panel-default-border;
+//   border: 1px solid $panel-default-border;
 // }
 
 /* fix for lists with empty dl items, e.g. tracker items
@@ -381,7 +381,7 @@ div[style*="text-align: center"] .img-responsive {margin: auto}
   width: 250px;
 }
 .btn.btn-social {
-  margin-bottom: @padding-base-vertical;
+  margin-bottom: $padding-base-vertical;
   display: block;
 }
 .btn-social.btn-facebook {
@@ -405,7 +405,7 @@ textarea.wikiedit {
 	margin-bottom: 0;
 }
 
-// Workaround for Firefox bug (https://bugzilla.mozilla.org/show_bug.cgi?id=504622) @todo remove when Firefox 53 is released
+// Workaround for Firefox bug (https://bugzilla.mozilla.org/show_bug.cgi?id=504622) Todo remove when Firefox 53 is released
 @-moz-document url-prefix() {
 	fieldset {
 		display: table-cell;
@@ -420,8 +420,8 @@ textarea.wikiedit {
 
 .side-col-toggle { z-index: 2; }
 .tiki .side-col-toggle + #col1 {
-	margin-top: @top-margin-compensation-for-side-col-toggle;
-	padding-top: @line-height-computed;
+	margin-top: $top-margin-compensation-for-side-col-toggle;
+	padding-top: $line-height-computed;
 }
 
 div.categbar {
