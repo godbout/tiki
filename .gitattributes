@@ -7557,11 +7557,11 @@ themes/simplex/icons/index.php -text
 themes/simplex/images/index.php -text
 themes/simplex/images/simplex.png -text
 themes/simplex/index.php -text
-themes/simplex/less/bootswatch.less -text
-themes/simplex/less/index.php -text
-themes/simplex/less/newsletter.less -text
-themes/simplex/less/simplex.less -text
-themes/simplex/less/variables.less -text
+themes/simplex/scss/bootswatch.scss -text
+themes/simplex/scss/index.php -text
+themes/simplex/scss/newsletter.scss -text
+themes/simplex/scss/simplex.scss -text
+themes/simplex/scss/variables.scss -text
 themes/simplex/templates/index.php -text
 themes/slate/css/index.php -text
 themes/slate/css/newsletter.css -text
