@@ -7305,12 +7305,12 @@ themes/flatly/icons/index.php -text
 themes/flatly/images/flatly.png -text
 themes/flatly/images/index.php -text
 themes/flatly/index.php -text
-themes/flatly/less/bootswatch.less -text
-themes/flatly/less/flatly.less -text
-themes/flatly/less/index.php -text
-themes/flatly/less/newsletter.less -text
-themes/flatly/less/variables.less -text
 themes/flatly/options/blue/css/blue.css -text
+themes/flatly/scss/bootswatch.scss -text
+themes/flatly/scss/flatly.scss -text
+themes/flatly/scss/index.php -text
+themes/flatly/scss/newsletter.scss -text
+themes/flatly/scss/variables.scss -text
 themes/flatly/templates/index.php -text
 themes/greenvalley/css/greenvalley.css -text
 themes/greenvalley/css/index.php -text
