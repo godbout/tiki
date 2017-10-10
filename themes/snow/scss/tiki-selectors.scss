@@ -7,10 +7,10 @@ $imagePath: "../images/";
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 
-@topmodules-row-sidemargins: 0;
-@topbar-row-sidemargins: -15px;
+$topmodules-row-sidemargins: 0;
+$topbar-row-sidemargins: -15px;
 
 body,
 body.fullscreen {
@@ -62,7 +62,7 @@ header.container {
 }
 
 .layout_social > .container {
-	margin-top: @navbar-fixed-height;
+	margin-top: $navbar-fixed-height;
 }
 
 .well,
@@ -157,24 +157,24 @@ header.container {
 .table-striped > tbody > tr:nth-child(2n+1) > th {background: transparent url('#{$imagePath}flakesptn3.jpg') }
 
 .table-striped > tbody > tr.success:nth-child(2n+1) > td,
-.table-striped > tbody > tr.success:nth-child(2n+1) > th {background: @state-success-bg; }
+.table-striped > tbody > tr.success:nth-child(2n+1) > th {background: $state-success-bg; }
 
 .table-striped > tbody > tr.info:nth-child(2n+1) > td,
-.table-striped > tbody > tr.info:nth-child(2n+1) > th {background: @state-info-bg; }
+.table-striped > tbody > tr.info:nth-child(2n+1) > th {background: $state-info-bg; }
 
 .table-striped > tbody > tr.warning:nth-child(2n+1) > td,
-.table-striped > tbody > tr.warning:nth-child(2n+1) > th {background: @state-warning-bg; }
+.table-striped > tbody > tr.warning:nth-child(2n+1) > th {background: $state-warning-bg; }
 
 .table-striped > tbody > tr.danger:nth-child(2n+1) > td,
-.table-striped > tbody > tr.danger:nth-child(2n+1) > th {background: @state-danger-bg; }*/
+.table-striped > tbody > tr.danger:nth-child(2n+1) > th {background: $state-danger-bg; }*/
 
 .cssmenu_horiz li ul,
 .cssmenu_vert li ul {
 	padding: 5px 0;
 	margin: 2px 0 0; // override default ul
-	//  font-size: @font-size-base;
+	//  font-size: $font-size-base;
 	background: url('#{$imagePath}flakesptn2.jpg');
-	border: 1px solid @dropdown-fallback-border; // IE8 fallback
+	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
 	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
@@ -185,8 +185,8 @@ header.container {
 	> li > a {
 		padding: 3px 20px;
 		font-weight: normal;
-		line-height: @line-height-base;
-		color: @dropdown-link-color;
+		line-height: $line-height-base;
+		color: $dropdown-link-color;
 		//    background: url('#{$imagePath}flakesptn2.jpg');
 	}
 }
@@ -199,7 +199,7 @@ header.container {
 	&:hover,
 	&:focus {
 		text-decoration: none;
-		color: @dropdown-link-hover-color;
+		color: $dropdown-link-hover-color;
 		//    background: url('#{$imagePath}flakesptn3.jpg');;
 	}
 }

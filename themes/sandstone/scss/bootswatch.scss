@@ -38,7 +38,7 @@
 
 	&-default {
 		&:hover {
-			background-color: //$navbar-default-link-active-bg  //Deprecated?;
+//			background-color: //$navbar-default-link-active-bg  //Deprecated?;
 		}
 	}
 }
@@ -54,7 +54,7 @@ input,
 	.box-shadow(none);
 
 	&:focus {
-		border-color: @input-border;
+		border-color: $input-border;
 		.box-shadow(none);
 	}
 }
@@ -67,26 +67,26 @@ input,
 	.open > a,
 	.open > a:hover,
 	.open > a:focus {
-		border-color: @gray-light;
+		border-color: $gray-light;
 	}
 }
 
 .nav-tabs {
 
 	& > li > a {
-		background-color: @gray-lighter;
-		border-color: @nav-tabs-border-color;
-		color: @gray;
+		background-color: $gray-lighter;
+		border-color: $nav-tabs-border-color;
+		color: $gray;
 	}
 
 	> li.disabled > a:hover {
-		background-color: @gray-lighter;
+		background-color: $gray-lighter;
 	}
 }
 
 .nav-pills {
 	a {
-		color: @gray;
+		color: $gray;
 	}
 
 	li > a {
@@ -95,7 +95,7 @@ input,
 
 	li.active > a,
 	li > a:hover {
-		border-color: @gray-light;
+		border-color: $gray-light;
 	}
 
 	li.disabled > a {
@@ -106,10 +106,10 @@ input,
 .breadcrumb {
 	.sandstone;
 
-	border: 1px solid @gray-light;
+	border: 1px solid $gray-light;
 
 	a {
-		color: @gray;
+		color: $gray;
 	}
 }
 
@@ -121,7 +121,7 @@ input,
 	.sandstone;
 
 	li > a {
-		color: @gray;
+		color: $gray;
 	}
 }
 
@@ -149,7 +149,7 @@ input,
 
 .progress {
 	border-radius: 10px;
-	background-color: @gray-light;
+	background-color: $gray-light;
 	.box-shadow(none);
 
 	&-bar {
@@ -186,7 +186,7 @@ input,
 		.panel-heading,
 		.panel-title,
 		.panel-footer {
-			color: @gray;
+			color: $gray;
 		}
 	}
 }

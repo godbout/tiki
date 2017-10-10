@@ -7,7 +7,7 @@
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 
 .topbar,
 .topbar .navbar-default .navbar-nav > li,
@@ -21,10 +21,10 @@ h1::before {
 	margin-right: 10px;
 }
 
-body.fullscreen { background: @body-bg; }
+body.fullscreen { background: $body-bg; }
 
 .tiki .ui-widget-content {
-	background: @body-bg;
-	color: @text-color;
-	border: 1px solid @table-border-color;
+	background: $body-bg;
+	color: $text-color;
+	border: 1px solid $table-border-color;
 }

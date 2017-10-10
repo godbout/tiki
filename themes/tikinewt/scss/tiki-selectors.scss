@@ -7,9 +7,9 @@
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 
-@navbar-default-bg: #c7d0d9;
+$navbar-default-bg: #c7d0d9;
 
 body > .container {
 	border: solid #aaaaaa;
@@ -60,16 +60,16 @@ header.container {
 	&:hover,
 	&:focus {
 		text-decoration: none;
-		color: @navbar-default-link-hover-color;
-		background-color: @navbar-default-link-hover-bg;
+		color: $navbar-default-link-hover-color;
+		background-color: $navbar-default-link-hover-bg;
 	}
 }
 
 .cssmenu_horiz li.selected a,
 .cssmenu_vert li.selected a {
 	text-decoration: none;
-	color: @navbar-default-link-hover-color;
-	background-color: //$navbar-default-link-active-bg  //Deprecated?;
+	color: $navbar-default-link-hover-color;
+//	background-color: //$navbar-default-link-active-bg  //Deprecated?;
 }
 
 .middle {
@@ -98,7 +98,7 @@ header.container {
 	.box-search .form-group {
 		margin-bottom: 0;
 	}
-//	background: @navbar-default-bg;
+//	background: $navbar-default-bg;
 }
 
 #topbar_modules .navbar {

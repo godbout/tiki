@@ -7,8 +7,8 @@ $imagePath: "../images/";
 //	background-image: url('#{$imagePath}bg.jpg');
 //  }
 
-@topmodules-row-sidemargins: 0;
-@topbar-row-sidemargins: -15px;
+$topmodules-row-sidemargins: 0;
+$topbar-row-sidemargins: -15px;
 
 body > .container {
 	border: 1px solid #aaaaaa;
@@ -31,8 +31,8 @@ body > .container {
 .cssmenu_horiz li.selected a:hover,
 .cssmenu_vert li.selected a {
 	text-decoration: none;
-	color: @navbar-default-link-hover-color;
-	background-color: //$navbar-default-link-active-bg  //Deprecated?;
+	color: $navbar-default-link-hover-color;
+//	background-color: //$navbar-default-link-active-bg  //Deprecated?;
 }
 
 

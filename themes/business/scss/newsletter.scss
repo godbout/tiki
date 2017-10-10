@@ -1,25 +1,25 @@
 // $Id: newsletter.less 64179 2017-10-09 05:28:34Z chibaguy $
 /* Business theme newsletter stylesheet  */
-@import "../../base_files/scss/newsletter.less";
-@import "bootstrap-variables.less";
+@import "../../base_files/scss/newsletter.scss";
+@import "bootstrap-variables.scss";
 
 $imagePath: "../images/";
 
 body {
 	background: #fbfbfb url('#{$imagePath}image2.jpg') 100% 0 no-repeat;
-	color : @text-color;
-	font-family: @font-family-base;
+	color : $text-color;
+	font-family: $font-family-base;
 }
 
 a,
 a:visited {
-	color: @link-color;
+	color: $link-color;
 	text-decoration: none;
 }
 
 a:hover {
-	color: @link-hover-color;
-	text-decoration: @link-hover-decoration;
+	color: $link-hover-color;
+	text-decoration: $link-hover-decoration;
 }
 
 h3.panel-title {
@@ -30,5 +30,5 @@ h3.panel-title {
 .well {
 	background: url('#{$imagePath}market.jpg') 0 100% no-repeat;
 	background-size: 100% 100%;
-	color: @gray-base;
+	color: $gray-base;
 }
