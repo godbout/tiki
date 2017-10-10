@@ -7528,6 +7528,12 @@ themes/sandstone/less/newsletter.less -text
 themes/sandstone/less/sandstone.less -text
 themes/sandstone/less/tiki-selectors.less -text
 themes/sandstone/less/variables.less -text
+themes/sandstone/scss/bootswatch.scss -text
+themes/sandstone/scss/index.php -text
+themes/sandstone/scss/newsletter.scss -text
+themes/sandstone/scss/sandstone.scss -text
+themes/sandstone/scss/tiki-selectors.scss -text
+themes/sandstone/scss/variables.scss -text
 themes/shamrock/css/index.php -text
 themes/shamrock/css/newsletter.css -text
 themes/shamrock/css/shamrock.css -text
