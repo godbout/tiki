@@ -14,7 +14,7 @@ header.page-header::before,
 	//  font-size: $font-size-base;
 	background-color: $dropdown-bg;
 	border: 1px solid $dropdown-border-color;
-	border-radius: $border-radius-base;
+	border-radius: $border-radius;
 	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
@@ -47,8 +47,8 @@ header.page-header::before,
 	}
 }
 
-.topbar .nav > li.selected > a,
-.topbar .nav > li.selected > a:hover { background: $navbar-default-link-active-bg; }
+//.topbar .nav > li.selected > a,
+//.topbar .nav > li.selected > a:hover { background: $navbar-default-link-active-bg; } // Class deprecated in BS4.
 
 // styling for both css and generated arrows
 .sf-arrows .sf-with-ul:after {

@@ -102,7 +102,7 @@
 @line-height-large:         1.3333333; // extra decimals for Win 8.1 Chrome
 @line-height-small:         1.5;
 
-@border-radius-base:        4px;
+$border-radius:        4px;
 @border-radius-large:       6px;
 @border-radius-small:       3px;
 
@@ -171,7 +171,7 @@
 @btn-link-disabled-color:        @gray-light;
 
 // Allows for customizing button radius independently from global border radius
-@btn-border-radius-base:         @border-radius-base;
+@btn-border-radius-base:         $border-radius;
 @btn-border-radius-large:        @border-radius-large;
 @btn-border-radius-small:        @border-radius-small;
 
@@ -188,12 +188,12 @@
 //** Text color for `<input>`s
 @input-color:                    @text-color;
 //** `<input>` border color
-@input-border:                   @gray-dark;
+$input-border-color:                   @gray-dark;
 
 // TODO: Rename `@input-border-radius` to `@input-border-radius-base` in v4
 //** Default `.form-control` border radius
 // This has no effect on `<select>`s in some browsers, due to the limited stylability of `<select>`s in CSS.
-@input-border-radius:            @border-radius-base;
+@input-border-radius:            $border-radius;
 //** Large `.form-control` border radius
 @input-border-radius-large:      @border-radius-large;
 //** Small `.form-control` border radius
@@ -359,7 +359,7 @@ $dropdown-border-color:                rgba(255,255,255,0.1);
 // Basics of a navbar
 @navbar-height:                    50px;
 @navbar-margin-bottom:             @line-height-computed;
-@navbar-border-radius:             @border-radius-base;
+@navbar-border-radius:             $border-radius;
 @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height:       340px;
@@ -373,7 +373,7 @@ $dropdown-border-color:                rgba(255,255,255,0.1);
 @navbar-default-link-hover-color:          #ffffff;
 @navbar-default-link-hover-bg:             transparent;
 @navbar-default-link-active-color:         #ffffff;
-@navbar-default-link-active-bg:            transparent;
+//$navbar-default-link-active-bg  //Deprecated?:            transparent;
 @navbar-default-link-disabled-color:       @gray-light;
 @navbar-default-link-disabled-bg:          transparent;
 
@@ -438,7 +438,7 @@ $dropdown-border-color:                rgba(255,255,255,0.1);
 @nav-tabs-justified-active-link-border-color:     @body-bg;
 
 //== Pills
-@nav-pills-border-radius:                   @border-radius-base;
+@nav-pills-border-radius:                   $border-radius;
 @nav-pills-active-link-hover-bg:            @component-active-bg;
 @nav-pills-active-link-hover-color:         @component-active-color;
 
@@ -621,7 +621,7 @@ $dropdown-border-color:                rgba(255,255,255,0.1);
 //## Define alert colors, border radius, and padding.
 
 @alert-padding:               15px;
-@alert-border-radius:         @border-radius-base;
+@alert-border-radius:         $border-radius;
 @alert-link-font-weight:      bold;
 
 @alert-success-bg:            @state-success-bg;
@@ -650,7 +650,7 @@ $dropdown-border-color:                rgba(255,255,255,0.1);
 //** Progress bar text color
 @progress-bar-color:          #ffffff;
 //** Variable for setting rounded corners on progress bar.
-@progress-border-radius:      @border-radius-base;
+@progress-border-radius:      $border-radius;
 
 //** Default progress bar color
 @progress-bar-bg:             @brand-primary;
@@ -673,7 +673,7 @@ $dropdown-border-color:                rgba(255,255,255,0.1);
 //** `.list-group-item` border color
 @list-group-border:             @gray-dark;
 //** List group border radius
-@list-group-border-radius:      @border-radius-base;
+@list-group-border-radius:      $border-radius;
 
 //** Background color of single list items on hover
 @list-group-hover-bg:           lighten(@list-group-bg, 15%);
@@ -706,7 +706,7 @@ $dropdown-border-color:                rgba(255,255,255,0.1);
 @panel-body-padding:          15px;
 @panel-heading-padding:       10px 15px;
 @panel-footer-padding:        @panel-heading-padding;
-@panel-border-radius:         @border-radius-base;
+@panel-border-radius:         $border-radius;
 
 //** Border color for elements within panels
 @panel-inner-border:          @gray-dark;
@@ -748,7 +748,7 @@ $dropdown-border-color:                rgba(255,255,255,0.1);
 //** Thumbnail border color
 @thumbnail-border:            @gray-dark;
 //** Thumbnail border radius
-@thumbnail-border-radius:     @border-radius-base;
+@thumbnail-border-radius:     $border-radius;
 
 //** Custom text color for thumbnail captions
 @thumbnail-caption-color:     @text-color;

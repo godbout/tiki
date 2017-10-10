@@ -67,27 +67,27 @@
 			<div class="input">
 				<p class="picker" data-selector=".style-guide .navbar-default" data-element="background-color">
 					<label for="sg-navbar-bg-color">Background:</label>
-					<input id="sg-navbar-bg-color" data-selector=".style-guide .navbar-default" data-element="background-color" data-var="@navbar-default-bg" type="text">
+					<input id="sg-navbar-bg-color" data-selector=".style-guide .navbar-default" data-element="background-color" data-var="$navbar-default-bg" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p class="picker" data-selector=".style-guide .navbar-default" data-element="border-color">
 					<label for="sg-navbar-border-color">Border:</label>
-					<input id="sg-navbar-border-color" data-selector=".style-guide .navbar-default" data-element="border-color" data-var="@navbar-default-border" type="text">
+					<input id="sg-navbar-border-color" data-selector=".style-guide .navbar-default" data-element="border-color" data-var="$navbar-default-border" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p class="picker" data-selector=".style-guide .navbar-default .navbar-nav > li > a" data-element="color">
 					<label for="sg-navbar-link-color">Text color:</label>
-					<input id="sg-navbar-link-color" data-selector=".style-guide .navbar-default .navbar-nav > li > a" data-element="color" data-var="@navbar-default-link-color" type="text">
+					<input id="sg-navbar-link-color" data-selector=".style-guide .navbar-default .navbar-nav > li > a" data-element="color" data-var="$navbar-default-link-color" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p class="picker" data-selector=".style-guide .navbar-default .navbar-nav > .active > a" data-element="background-color">
 					<label for="sg-navbar-active-link-color">Active menu:</label>
-					<input id="sg-navbar-active-link-color" data-selector=".style-guide .navbar-default .navbar-nav > .active > a" data-element="background-color" data-var="@navbar-default-link-active-bg" type="text">
+					<input id="sg-navbar-active-link-color" data-selector=".style-guide .navbar-default .navbar-nav > .active > a" data-element="background-color" data-var="$navbar-default-link-active-bg" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p>
 					<label for="sg-navbar-border-radius">Border radius:</label>
-					<input id="sg-navbar-border-radius" class="nocolor" data-selector=".navbar" data-element="border-radius" data-var="@navbar-border-radius" type="text">
+					<input id="sg-navbar-border-radius" class="nocolor" data-selector=".navbar" data-element="border-radius" data-var="$border-radius" type="text">
 				</p>
 			</div>
 		</div>

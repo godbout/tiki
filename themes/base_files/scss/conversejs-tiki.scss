@@ -4,13 +4,13 @@
 		a, a:visited { color:$link-color; }
 		input[type=text], textarea, select {
 			background-color:$input-bg; color:$input-color;
-			border-color:$input-border;
+			border-color:$input-border-color;
 		}
 
 		form.pure-form {
 			input[type=text], textarea, select {
 				background-color:$input-bg; color:$input-color;
-				border-color:$input-border;
+				border-color:$input-border-color;
 			}
 			&.converse-form {
 				background-color:inherit;
@@ -97,10 +97,10 @@
 
 			#converse-roster {
 				.roster-filter-form {
-					.filter-type { border-color:$input-border; }
+					.filter-type { border-color:$input-border-color; }
 					.roster-filter {
 						background-color:$input-bg; color:$input-color;
-						border-color:$input-border;
+						border-color:$input-border-color;
 					}
 				}
 				.roster-contacts {
@@ -175,7 +175,7 @@
 						ul li.occupant .occupant-status { margin-left:1px; box-shadow:0 0 1px 1px #444; }
 					}
 					.chatroom-form-container { background-color:inherit; color:$text-color; }
-					.room-invite .invited-contact { border-color:$input-border; }
+					.room-invite .invited-contact { border-color:$input-border-color; }
 				}
 			}
 		}

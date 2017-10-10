@@ -110,7 +110,7 @@
 @line-height-large: 1.33;
 @line-height-small: 1.5;
 
-@border-radius-base: 4px;
+$border-radius: 4px;
 @border-radius-large: 6px;
 @border-radius-small: 3px;
 
@@ -188,11 +188,11 @@
 //** Text color for `<input>`s
 @input-color: @gray-dark;
 //** `<input>` border color
-@input-border: #cccccc;
+$input-border-color: #cccccc;
 
 // TODO: Rename `@input-border-radius` to `@input-border-radius-base` in v4
 //** Default `.form-control` border radius
-@input-border-radius: @border-radius-base;
+@input-border-radius: $border-radius;
 //** Large `.form-control` border radius
 @input-border-radius-large: @border-radius-large;
 //** Small `.form-control` border radius
@@ -349,7 +349,7 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 // Basics of a navbar
 @navbar-height: 50px;
 @navbar-margin-bottom: @line-height-computed;
-@navbar-border-radius: @border-radius-base;
+@navbar-border-radius: $border-radius;
 @navbar-padding-horizontal: floor((@grid-gutter-width / 2));
 @navbar-padding-vertical: ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height: 340px;
@@ -363,7 +363,7 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 @navbar-default-link-hover-color: #ffffff;
 @navbar-default-link-hover-bg: lighten(@navbar-default-bg, 10%);
 @navbar-default-link-active-color: #ffffff;
-@navbar-default-link-active-bg: @navbar-default-link-hover-bg;
+//$navbar-default-link-active-bg  //Deprecated?: @navbar-default-link-hover-bg;
 @navbar-default-link-disabled-color: #cccccc;
 @navbar-default-link-disabled-bg: transparent;
 
@@ -426,7 +426,7 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 @nav-tabs-justified-active-link-border-color: transparent;
 
 //== Pills
-@nav-pills-border-radius: @border-radius-base;
+@nav-pills-border-radius: $border-radius;
 @nav-pills-active-link-hover-bg: @component-active-bg;
 @nav-pills-active-link-hover-color: #ffffff;
 
@@ -599,7 +599,7 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 //## Define alert colors, border radius, and padding.
 
 @alert-padding: 15px;
-@alert-border-radius: @border-radius-base;
+@alert-border-radius: $border-radius;
 @alert-link-font-weight: bold;
 
 @alert-success-bg: @state-success-bg;
@@ -627,7 +627,7 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 //** Progress bar text color
 @progress-bar-color: #ffffff;
 //** Variable for setting rounded corners on progress bar.
-@progress-border-radius: @border-radius-base;
+@progress-border-radius: $border-radius;
 
 //** Default progress bar color
 @progress-bar-bg: @brand-primary;
@@ -649,7 +649,7 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 //** `.list-group-item` border color
 @list-group-border: darken(@body-bg, 5%);
 //** List group border radius
-@list-group-border-radius: @border-radius-base;
+@list-group-border-radius: $border-radius;
 
 //** Background color of single list elements on hover
 @list-group-hover-bg: lighten(@body-bg, 10%);
@@ -680,7 +680,7 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 @panel-body-padding: 15px;
 @panel-heading-padding: 10px 15px;
 @panel-footer-padding: @panel-heading-padding;
-@panel-border-radius: @border-radius-base;
+@panel-border-radius: $border-radius;
 
 //** Border color for elements within panels
 @panel-inner-border: darken(@body-bg, 5%);
@@ -721,7 +721,7 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 //** Thumbnail border color
 @thumbnail-border: @hr-border;
 //** Thumbnail border radius
-@thumbnail-border-radius: @border-radius-base;
+@thumbnail-border-radius: $border-radius;
 
 //** Custom text color for thumbnail captions
 @thumbnail-caption-color: @text-color;
