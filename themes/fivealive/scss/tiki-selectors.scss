@@ -1,9 +1,9 @@
 // $Id$
 // This file is for additional LESS rules beyond what are in variables.less.
 // Image path example:
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 // body {
-//	background-image: url('@{imagePath}bg.jpg');
+//	background-image: url('#{$imagePath}bg.jpg');
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
@@ -42,17 +42,17 @@
 // Header graphics
 .header_outer {
 	/* whole width div containing the header strip */
-	background: url('@{imagePath}headertile.png') 0 0 no-repeat;
+	background: url('#{$imagePath}headertile.png') 0 0 no-repeat;
 }
 
 .header_container {
 	/* 2nd whole width div for background image tricks */
-	background: url('@{imagePath}header_left.png') 0 100% no-repeat;
+	background: url('#{$imagePath}header_left.png') 0 100% no-repeat;
 }
 
 .header_container .container {
 	/* inner <header> element that gets .fixedwidth class applied */
-	background: url('@{imagePath}siteheader.jpg') 0 0 no-repeat;
+	background: url('#{$imagePath}siteheader.jpg') 0 0 no-repeat;
 }
 
 .page-header {
@@ -98,7 +98,7 @@ textarea,
 }
 
 .middle_outer {
-	background: url('@{imagePath}topbar.jpg') repeat-x;
+	background: url('#{$imagePath}topbar.jpg') repeat-x;
 }
 
 .navbar-collapse {
@@ -161,7 +161,7 @@ header.header {
 }
 
 .navbar-default .navbar-nav > li > a {
-	//  background: url('@{imagePath}options/blueberry/siteheader.jpg') -260px -200px no-repeat transparent;
+	//  background: url('#{$imagePath}options/blueberry/siteheader.jpg') -260px -200px no-repeat transparent;
 	//  border-radius: $border-radius;
 	margin-right: inherit;
 }

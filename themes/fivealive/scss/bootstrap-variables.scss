@@ -231,7 +231,7 @@ $input-border-color: #cccccc;
 
 //** Background for the dropdown menu.
 @dropdown-bg: #1376a8;
-// #143b62; //url('@{imagePath}options/blueberry/siteheader.jpg') -260px -200px no-repeat transparent;
+// #143b62; //url('#{$imagePath}options/blueberry/siteheader.jpg') -260px -200px no-repeat transparent;
 //** Dropdown menu `border-color`.
 $dropdown-border-color: rgba(0, 0, 0, .15);
 //** Dropdown menu `border-color` **for IE8**.

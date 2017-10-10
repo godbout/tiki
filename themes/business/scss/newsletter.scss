@@ -3,10 +3,10 @@
 @import "../../base_files/scss/newsletter.less";
 @import "bootstrap-variables.less";
 
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 
 body {
-	background: #fbfbfb url('@{imagePath}image2.jpg') 100% 0 no-repeat;
+	background: #fbfbfb url('#{$imagePath}image2.jpg') 100% 0 no-repeat;
 	color : @text-color;
 	font-family: @font-family-base;
 }
@@ -28,7 +28,7 @@ h3.panel-title {
 }
 
 .well {
-	background: url('@{imagePath}market.jpg') 0 100% no-repeat;
+	background: url('#{$imagePath}market.jpg') 0 100% no-repeat;
 	background-size: 100% 100%;
 	color: @gray-base;
 }

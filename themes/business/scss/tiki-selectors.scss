@@ -1,9 +1,9 @@
 // $Id: tiki-selectors.less 61747 2017-03-18 18:28:58Z rjsmelo $
 // This file is for additional LESS rules beyond what are in variables.less.
 // Image path example:
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 // body {
-//	background-image: url('@{imagePath}bg.jpg');
+//	background-image: url('#{$imagePath}bg.jpg');
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
@@ -99,18 +99,18 @@ h2.sitesubtitle {
 }
 
 #col1 {
-	background: #fbfbfb url('@{imagePath}image2.jpg') 100% 0 no-repeat;
+	background: #fbfbfb url('#{$imagePath}image2.jpg') 100% 0 no-repeat;
 }
 
 #footer .container,
 footer.main-footer .container {
 	min-height: 60px;
-	background: url('@{imagePath}footer.gif') repeat-x;
+	background: url('#{$imagePath}footer.gif') repeat-x;
 }
 
 .module .panel-heading,
 .modal-header {
-	//  background: #3475c6 url('@{imagePath}title_bg.png') no-repeat 0 0;
+	//  background: #3475c6 url('#{$imagePath}title_bg.png') no-repeat 0 0;
 	background: #386dbb; /* Old browsers */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #386dbb), color-stop(7%, #3a6fbb), color-stop(25%, #457bc3), color-stop(54%, #4c82ca), color-stop(57%, #2f6dc0), color-stop(82%, #3371c4), color-stop(86%, #3574c4), color-stop(100%, #3574c4)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top, #386dbb 0%, #3a6fbb 7%, #457bc3 25%, #4c82ca 54%, #2f6dc0 57%, #3371c4 82%, #3574c4 86%, #3574c4 100%); /* Chrome10+,Safari5.1+ */
@@ -131,13 +131,13 @@ h3.panel-title {
 }
 
 .well {
-	background: url('@{imagePath}market.jpg') 0 100% no-repeat;
+	background: url('#{$imagePath}market.jpg') 0 100% no-repeat;
 	background-size: 100% 100%;
 	color: @gray-base;
 }
 
 .magnifying_glass {
-	background: url('@{imagePath}magnifyT.png') no-repeat;
+	background: url('#{$imagePath}magnifyT.png') no-repeat;
 	height: 59px;
 	width: 59px;
 	position: absolute;

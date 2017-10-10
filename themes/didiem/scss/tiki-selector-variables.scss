@@ -1,9 +1,9 @@
 // $Id: tiki-selector-variables.less 64181 2017-10-09 05:47:00Z chibaguy $ tiki-custom-variables.less file, to provide values for "legacy" Tiki CSS selectors (not covered by Bootstrap).
 // These Didiem values are used by styles/didiem/less/tiki-selectors.scss
 
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 // Main columns
-@middle_outer_background: url('@{imagePath}topbar.jpg') repeat-x;
+@middle_outer_background: url('#{$imagePath}topbar.jpg') repeat-x;
 @side-column-border-size: none;
 @side-column-panel-heading-background: #f2f2f2;
 // Site header
@@ -31,13 +31,13 @@
 @navbar-default-navbar-nav-li-a-hover-background: linear-gradient(to bottom, #93c44f 0%, #6d9f26 100%);
 // Comments, posts
 @postbody-title-background: #f0f0f0;
-//url('@{imagePath}siteheader.png') no-repeat -480px -200px;
+//url('#{$imagePath}siteheader.png') no-repeat -480px -200px;
 @postbody-background: #f7f7f7;
 @brand-primary-of-option: @brand-primary;
 // Headings
-@h1-background: url('@{imagePath}h_bullet.jpg') no-repeat 0 50%;
+@h1-background: url('#{$imagePath}h_bullet.jpg') no-repeat 0 50%;
 @h1-padding-left: 19px;
-@h2-background: url('@{imagePath}h_bullet.jpg') no-repeat 0 50%;
+@h2-background: url('#{$imagePath}h_bullet.jpg') no-repeat 0 50%;
 @h2-padding-left: 19px;
 
 .navbar-fixed-top, .navbar-fixed-bottom {

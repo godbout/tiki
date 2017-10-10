@@ -8504,22 +8504,22 @@ header.container {
 .topbar .cssmenu_horiz li.sfHover:hover,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  background: #D7E5F3 url('@{imagePath}pagetitle-bg.jpg') repeat-x;
+  background: #D7E5F3 url('#{$imagePath}pagetitle-bg.jpg') repeat-x;
   color: #555555;
 }
 
 .dropdown-menu > li > form {
-  background: url('@{imagePath}flakesptn2.jpg');
+  background: url('#{$imagePath}flakesptn2.jpg');
 }
 
 .dropdown-menu > li > a {
-  background: url('@{imagePath}flakesptn2.jpg');
+  background: url('#{$imagePath}flakesptn2.jpg');
   &:hover {
-    background: url('@{imagePath}flakesptn3.jpg');
+    background: url('#{$imagePath}flakesptn3.jpg');
   }
 }
 
-.nav > li > a:hover {background: url('@{imagePath}flakesptn3.jpg');}
+.nav > li > a:hover {background: url('#{$imagePath}flakesptn3.jpg');}
 */
 .btn,
 .btn-default,
@@ -8544,7 +8544,7 @@ header.container {
 }
 /*
 .table-striped > tbody > tr:nth-child(2n+1) > td,
-.table-striped > tbody > tr:nth-child(2n+1) > th {background: transparent url('@{imagePath}flakesptn3.jpg') }
+.table-striped > tbody > tr:nth-child(2n+1) > th {background: transparent url('#{$imagePath}flakesptn3.jpg') }
 
 .table-striped > tbody > tr.success:nth-child(2n+1) > td,
 .table-striped > tbody > tr.success:nth-child(2n+1) > th {background: @state-success-bg; }

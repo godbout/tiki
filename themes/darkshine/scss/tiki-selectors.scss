@@ -1,18 +1,18 @@
 // $Id: tiki-selectors.less 64190 2017-10-10 04:10:27Z chibaguy $
 // This file is for additional LESS rules beyond what are in variables.less.
 // Image path example:
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
 // .glyphicon {color: @gray-lighter;}
 
 body,
 body.fullscreen {
-	background: #90140c url('@{imagePath}stripes.png') repeat-x 50% 0;
+	background: #90140c url('#{$imagePath}stripes.png') repeat-x 50% 0;
 }
 
 .sitetitle {
-	background: url('@{imagePath}title_background.jpg') no-repeat transparent;
+	background: url('#{$imagePath}title_background.jpg') no-repeat transparent;
 	color: #FE9B27;
 	cursor: default;
 	text-transform: uppercase;
@@ -98,7 +98,7 @@ h2.sitesubtitle {
 }
 
 .tiki .row.topbar {
-	background: #fe6322 url('@{imagePath}stripes_small.gif') repeat-x 0 -8px;
+	background: #fe6322 url('#{$imagePath}stripes_small.gif') repeat-x 0 -8px;
 	border-bottom: 1px solid #916047;
 	margin-left: -15px;
 	margin-right: -15px;

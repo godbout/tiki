@@ -3,7 +3,7 @@
 // Image path example:
 
 // body {
-//	background-image: url('@{imagePath}bg.jpg');
+//	background-image: url('#{$imagePath}bg.jpg');
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
@@ -12,14 +12,14 @@
 #col2 .panel,
 #col3 .panel,
 #bottom_modules .panel {
-	//  background: url('@{imagePath}options/plum/siteheader.jpg') -1000px -200px no-repeat #1C0029;
+	//  background: url('#{$imagePath}options/plum/siteheader.jpg') -1000px -200px no-repeat #1C0029;
 	border: @side-column-border-size; // none;
 }
 
 #col2 .panel-heading,
 #col3 .panel-heading,
 #bottom_modules .panel-heading {
-	background: @side-column-panel-heading-background; // #e1d518 url('@{imagePath}siteheader.png') no-repeat -1000px -200px;
+	background: @side-column-panel-heading-background; // #e1d518 url('#{$imagePath}siteheader.png') no-repeat -1000px -200px;
 	border-bottom: none;
 }
 
@@ -125,7 +125,7 @@ li.selected > a {
 
 
 .postbody-title {
-	background: @postbody-title-background; //url('@{imagePath}siteheader.png') no-repeat -480px -200px;
+	background: @postbody-title-background; //url('#{$imagePath}siteheader.png') no-repeat -480px -200px;
 }
 
 .siteloginbar_popup .dropdown-menu > li > a {

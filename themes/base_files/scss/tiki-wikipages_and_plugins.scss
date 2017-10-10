@@ -4,7 +4,7 @@ $imagePath: "../../../img/";
 $imagePathToIcons: "../../../img/icons/";
 
 // form.simple label.error {
-//  background: url('@{imagePath}error.png') no-repeat 0 4px;
+//  background: url('#{$imagePath}error.png') no-repeat 0 4px;
 //  color: @state-danger-text;
 //  padding: 4px 0 0 20px;
 //  margin-left: 0.5em;
@@ -627,7 +627,7 @@ div.tiki_plugin {
 
 #autosave_preview_grippy {
 	//  background-color: @gray-lighter;
-	//  background-image: url('@{imagePathToIcons}shading.png');
+	//  background-image: url('#{$imagePathToIcons}shading.png');
 	z-index: 3;
 }
 

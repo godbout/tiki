@@ -3,7 +3,7 @@
 // Image path example:
 
 // body {
-//	background-image: url('@{imagePath}bg.jpg');
+//	background-image: url('#{$imagePath}bg.jpg');
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
@@ -42,7 +42,7 @@ a,
 #col2 .panel-heading,
 #col3 .panel-heading,
 #bottom_modules .panel-heading {
-//	background: @side-column-panel-heading-background; // #e1d518 url('@{imagePath}siteheader.png') no-repeat -1000px -200px;
+//	background: @side-column-panel-heading-background; // #e1d518 url('#{$imagePath}siteheader.png') no-repeat -1000px -200px;
 //	border-bottom: none;
 }
 
@@ -80,7 +80,7 @@ textarea,
 }
 
 .postbody-title {
-//	background: @postbody-title-background; //url('@{imagePath}siteheader.png') no-repeat -480px -200px;
+//	background: @postbody-title-background; //url('#{$imagePath}siteheader.png') no-repeat -480px -200px;
 }
 
 .btn,

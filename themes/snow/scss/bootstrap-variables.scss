@@ -4,7 +4,7 @@
 // Variables
 // --------------------------------------------------
 
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
@@ -33,7 +33,7 @@
 
 //** Background color for `<body>`.
 @body-bg: lighten(#d7e5f3, 10%);
-//url('@{imagePath}flakesptn2.jpg');
+//url('#{$imagePath}flakesptn2.jpg');
 //** Global text color on `<body>`.
 @text-color: @gray-dark;
 
@@ -238,7 +238,7 @@ $input-border-color: #d7e5f3;
 
 //** Background for the dropdown menu.
 @dropdown-bg: lighten(#d7e5f3, 5%);
-//url('@{imagePath}flakesptn2.jpg');
+//url('#{$imagePath}flakesptn2.jpg');
 
 //** Dropdown menu `border-color`.
 $dropdown-border-color: #6a6a6a;
@@ -252,7 +252,7 @@ $dropdown-border-color: #6a6a6a;
 //** Hover color for dropdown links.
 @dropdown-link-hover-color: darken(@gray-dark, 5%);
 //** Hover background for dropdown links.
-@dropdown-link-hover-bg: url('@{imagePath}flakesptn3.jpg') transparent;
+@dropdown-link-hover-bg: url('#{$imagePath}flakesptn3.jpg') transparent;
 
 //** Active dropdown menu item text color.
 @dropdown-link-active-color: @component-active-color;
@@ -373,7 +373,7 @@ $dropdown-border-color: #6a6a6a;
 // Navbar links
 @navbar-default-link-color: #393e51;
 @navbar-default-link-hover-color: #6c7b8c;
-@navbar-default-link-hover-bg: url('@{imagePath}flakesptn3.jpg');
+@navbar-default-link-hover-bg: url('#{$imagePath}flakesptn3.jpg');
 // transparent;
 @navbar-default-link-active-color: #555555;
 //$navbar-default-link-active-bg  //Deprecated?: transparent;
@@ -423,7 +423,7 @@ $dropdown-border-color: #6a6a6a;
 
 //=== Shared nav styles
 @nav-link-padding: 10px 15px;
-@nav-link-hover-bg: url('@{imagePath}flakesptn3.jpg');
+@nav-link-hover-bg: url('#{$imagePath}flakesptn3.jpg');
 // @gray-lighter;
 
 @nav-disabled-link-color: @gray-light;

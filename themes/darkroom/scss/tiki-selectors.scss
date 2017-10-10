@@ -1,14 +1,14 @@
 // $Id: tiki-selectors.less 64190 2017-10-10 04:10:27Z chibaguy $ Darkroom theme custom-other.less file.
 
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 //body {
-//	background-image: url('@{imagePath}bg.jpg');
+//	background-image: url('#{$imagePath}bg.jpg');
 //}
 @topmodules-row-margin-bottom: 15px;
 
 body,
 body.fullscreen {
-	background-image: url('@{imagePath}474747_5e5e5e_40.png');
+	background-image: url('#{$imagePath}474747_5e5e5e_40.png');
 }
 
 .container {

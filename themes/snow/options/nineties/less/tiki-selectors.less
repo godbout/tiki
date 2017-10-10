@@ -1,14 +1,14 @@
-@imagePath: ~"../../../images/";
+$imagePath: "../../../images/";
 
 .container {
-	background: #b1c1db url('@{imagePath}flakesptn.jpg') !important; // important to override parent theme's specificity
+	background: #b1c1db url('#{$imagePath}flakesptn.jpg') !important; // important to override parent theme's specificity
 	border: 1px solid #6c7b8c;
 	webkit-box-shadow: none !important;
 	box-shadow: none !important;
 }
 
 body.fullscreen {
-	background: #b1c1db url('@{imagePath}flakesptn.jpg') !important;
+	background: #b1c1db url('#{$imagePath}flakesptn.jpg') !important;
 	.container {
 		background: none !important;
 		border: none;
@@ -16,12 +16,12 @@ body.fullscreen {
 }
 
 .panel {
-	background: url('@{imagePath}flakesptn2.jpg');
+	background: url('#{$imagePath}flakesptn2.jpg');
 }
 
 #col2 .panel-heading,
 #col3 .panel-heading {
-	background: url('@{imagePath}boxtop.jpg') no-repeat transparent;
+	background: url('#{$imagePath}boxtop.jpg') no-repeat transparent;
 	background-size: 100%;
 	border-bottom: medium none currentColor;
 	//  height: 35px;
@@ -30,7 +30,7 @@ body.fullscreen {
 
 #col2 .panel-footer,
 #col3 .panel-footer {
-	background: url('@{imagePath}boxbtm.jpg') no-repeat transparent 0 100%;
+	background: url('#{$imagePath}boxbtm.jpg') no-repeat transparent 0 100%;
 	background-size: 100%;
 	//  height: 54px;
 	border-top: none;
@@ -39,7 +39,7 @@ body.fullscreen {
 #col2,
 #col3 {
 	.panel {
-		background: url('@{imagePath}boxmid.jpg') repeat-y transparent;
+		background: url('#{$imagePath}boxmid.jpg') repeat-y transparent;
 		background-size: 100%;
 		//  margin: 5px 10px;
 	}
@@ -63,7 +63,7 @@ body.fullscreen {
 .topbar .cssmenu_horiz > ul,
 .topbar .navbar-default .navbar-nav > li,
 .topbar .nav > li {
-	background: #d7e5f3 url('@{imagePath}pagetitle-bg.jpg') repeat-x !important;
+	background: #d7e5f3 url('#{$imagePath}pagetitle-bg.jpg') repeat-x !important;
 	background-size: 400px 100% !important;
 	margin-bottom: 0;
 	border: none;
@@ -76,22 +76,22 @@ body.fullscreen {
 .topbar .cssmenu_horiz li.sfHover:hover,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-	background: #d7e5f3 url('@{imagePath}pagetitle-bg.jpg') repeat-x;
+	background: #d7e5f3 url('#{$imagePath}pagetitle-bg.jpg') repeat-x;
 	color: #555555;
 }
 
 .dropdown-menu > li > form {
-	background: url('@{imagePath}flakesptn2.jpg');
+	background: url('#{$imagePath}flakesptn2.jpg');
 }
 
 .dropdown-menu > li > a {
-	background: url('@{imagePath}flakesptn2.jpg');
+	background: url('#{$imagePath}flakesptn2.jpg');
 	&:hover {
-		background: url('@{imagePath}flakesptn3.jpg');
+		background: url('#{$imagePath}flakesptn3.jpg');
 	}
 }
 
 .nav > li > a:hover {
-	background: url('@{imagePath}flakesptn3.jpg');
+	background: url('#{$imagePath}flakesptn3.jpg');
 }
 

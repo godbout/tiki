@@ -1,10 +1,10 @@
 // $Id$
 // This file contains CSS rules for this theme that aren't covered by Bootstrap, such as additional Tiki theme properties.
 // To do: Use variables for global Tiki properties and customize a Tiki variables file per-theme.
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 // image path use example:
 //  body {
-//	background-image: url('@{imagePath}bg.jpg');
+//	background-image: url('#{$imagePath}bg.jpg');
 //  }
 
 @topmodules-row-sidemargins: 0;

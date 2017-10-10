@@ -1,7 +1,7 @@
 // $Id$  Ohia theme custom-other.less
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 // body {
-// 	background-image: url('@{imagePath}bg.jpg');
+// 	background-image: url('#{$imagePath}bg.jpg');
 // }
 
 .topbar {
@@ -56,7 +56,7 @@ header.container,
 
 .top_modules,
 .navbar-default.navbar-fixed-top {
-	background: url('@{imagePath}header.png');
+	background: url('#{$imagePath}header.png');
 //	background-size: cover;
 	a,
 	a:visited,
@@ -104,7 +104,7 @@ header.container,
 }
 
 footer.footer .modules {
-	background-image: url('@{imagePath}header.png');
+	background-image: url('#{$imagePath}header.png');
 	color: #f4f4f4;
 	font-size: 0.9em;
 	min-height: 90px;

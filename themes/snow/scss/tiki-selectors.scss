@@ -1,9 +1,9 @@
 // $Id$
 // This file is for additional LESS rules beyond what are in variables.less.
 // Image path example:
-@imagePath: ~"../images/";
+$imagePath: "../images/";
 // body {
-//	background-image: url('@{imagePath}bg.jpg');
+//	background-image: url('#{$imagePath}bg.jpg');
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
@@ -14,7 +14,7 @@
 
 body,
 body.fullscreen {
-	background: url('@{imagePath}flakesptn2.jpg');
+	background: url('#{$imagePath}flakesptn2.jpg');
 	background-attachment: fixed;
 }
 
@@ -35,7 +35,7 @@ header.container {
 .topbar .nav > li,
 .layout_social .navbar-inverse .navbar-form,
 .layout_social .navbar-inverse .container {
-	background: url('@{imagePath}flakesptn3.jpg');
+	background: url('#{$imagePath}flakesptn3.jpg');
 	border: none;
 }
 
@@ -68,16 +68,16 @@ header.container {
 .well,
 .jumbotron,
 .adminanchors {
-	background: url('@{imagePath}flakesptn4.jpg')
+	background: url('#{$imagePath}flakesptn4.jpg')
 }
 
 .panel {
-	background: #d7e5f3; // url('@{imagePath}flakesptn2.jpg');
+	background: #d7e5f3; // url('#{$imagePath}flakesptn2.jpg');
 }
 
 .panel-heading,
 .panel-footer {
-	background: url('@{imagePath}flakesptn3.jpg')
+	background: url('#{$imagePath}flakesptn3.jpg')
 }
 
 .blog-postbody-title h2.panel-title { font-size: 20px; }
@@ -113,32 +113,32 @@ header.container {
 .topbar .cssmenu_horiz li.sfHover:hover,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  background: #D7E5F3 url('@{imagePath}pagetitle-bg.jpg') repeat-x;
+  background: #D7E5F3 url('#{$imagePath}pagetitle-bg.jpg') repeat-x;
   color: #555555;
 }
 
 .dropdown-menu > li > form {
-  background: url('@{imagePath}flakesptn2.jpg');
+  background: url('#{$imagePath}flakesptn2.jpg');
 }
 
 .dropdown-menu > li > a {
-  background: url('@{imagePath}flakesptn2.jpg');
+  background: url('#{$imagePath}flakesptn2.jpg');
   &:hover {
-    background: url('@{imagePath}flakesptn3.jpg');
+    background: url('#{$imagePath}flakesptn3.jpg');
   }
 }
 
-.nav > li > a:hover {background: url('@{imagePath}flakesptn3.jpg');}
+.nav > li > a:hover {background: url('#{$imagePath}flakesptn3.jpg');}
 */
 
 .btn,
 .btn-default,
 .nav-tabs > li > a,
 .input-group-addon {
-	background: url('@{imagePath}pagetitle-bg.jpg');
+	background: url('#{$imagePath}pagetitle-bg.jpg');
 	background-size: cover;
 	&:hover {
-		background: url('@{imagePath}pagetitle-bg.jpg') 0 100% cover;
+		background: url('#{$imagePath}pagetitle-bg.jpg') 0 100% cover;
 	}
 }
 
@@ -154,7 +154,7 @@ header.container {
 
 /*
 .table-striped > tbody > tr:nth-child(2n+1) > td,
-.table-striped > tbody > tr:nth-child(2n+1) > th {background: transparent url('@{imagePath}flakesptn3.jpg') }
+.table-striped > tbody > tr:nth-child(2n+1) > th {background: transparent url('#{$imagePath}flakesptn3.jpg') }
 
 .table-striped > tbody > tr.success:nth-child(2n+1) > td,
 .table-striped > tbody > tr.success:nth-child(2n+1) > th {background: @state-success-bg; }
@@ -173,7 +173,7 @@ header.container {
 	padding: 5px 0;
 	margin: 2px 0 0; // override default ul
 	//  font-size: @font-size-base;
-	background: url('@{imagePath}flakesptn2.jpg');
+	background: url('#{$imagePath}flakesptn2.jpg');
 	border: 1px solid @dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
@@ -187,7 +187,7 @@ header.container {
 		font-weight: normal;
 		line-height: @line-height-base;
 		color: @dropdown-link-color;
-		//    background: url('@{imagePath}flakesptn2.jpg');
+		//    background: url('#{$imagePath}flakesptn2.jpg');
 	}
 }
 
@@ -200,6 +200,6 @@ header.container {
 	&:focus {
 		text-decoration: none;
 		color: @dropdown-link-hover-color;
-		//    background: url('@{imagePath}flakesptn3.jpg');;
+		//    background: url('#{$imagePath}flakesptn3.jpg');;
 	}
 }
