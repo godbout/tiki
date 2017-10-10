@@ -84,7 +84,7 @@
 
 // .cssmenu_horiz a,
 // .cssmenu_vert a {
-//  color: @navbar-default-link-color;
+//  color: $navbar-default-link-color;
 // }
 
 .cssmenu_horiz li,
@@ -103,14 +103,14 @@
 // .cssmenu_vert ul li,
 // .cssmenu_horiz ul ul li,
 // .cssmenu_vert ul ul li {
-//   background: @dropdown-bg;
+//   background: $dropdown-bg;
 // }
 //
 // .cssmenu_horiz li:hover,
 // .cssmenu_horiz li.sfHover,
 // .cssmenu_vert li:hover,
 // .cssmenu_vert li.sfHover {
-//   background: @dropdown-link-hover-bg;
+//   background: $dropdown-link-hover-bg;
 //   /* only transition out, not in */
 //   -webkit-transition: none;
 //   transition: none;
@@ -131,7 +131,7 @@
 	width: 0;
 	/* order of following 3 rules important for fallbacks to work */
 	//  border: 5px solid transparent;
-	//  border-top-color: @dropdown-link-color; /* edit this to suit design (no rgba in IE8) */
+	//  border-top-color: $dropdown-link-color; /* edit this to suit design (no rgba in IE8) */
 	//  border-top-color: rgba(255,255,255,.5);
 }
 
@@ -140,14 +140,14 @@
 	margin-top: -5px;
 	margin-right: -3px;
 	//  border-color: transparent; (moved to tiki-selectors.scss)
-	//  border-left-color: @dropdown-link-color; // @link-color; /* edit this to suit design (no rgba in IE8) */
+	//  border-left-color: $dropdown-link-color; // $link-color; /* edit this to suit design (no rgba in IE8) */
 	//  border-left-color: rgba(255,255,255,.5);
 }
 
 // .sf-arrows ul li > .sf-with-ul:focus:after,
 // .sf-arrows ul li:hover > .sf-with-ul:after,
 // .sf-arrows ul .sfHover > .sf-with-ul:after {
-//  border-left-color: @dropdown-link-hover-color;
+//  border-left-color: $dropdown-link-hover-color;
 // }
 
 .panel-body ul.cssmenu_vert,
@@ -182,13 +182,13 @@
 	margin-top: -5px;
 	margin-right: -3px;
 	//  border-color: transparent;
-	//  border-left-color: @dropdown-link-color;
+	//  border-left-color: $dropdown-link-color;
 }
 
 // .cssmenu_vert.sf-arrows li > .sf-with-ul:focus:after,
 // .cssmenu_vert.sf-arrows li:hover > .sf-with-ul:after,
 // .cssmenu_vert.sf-arrows .sfHover > .sf-with-ul:after {
-//   border-left-color: @dropdown-link-hover-color; // white;
+//   border-left-color: $dropdown-link-hover-color; // white;
 // }
 
 a.structure-home {

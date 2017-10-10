@@ -49,9 +49,9 @@ span.posthead {
 //}
 
 .breadcrumb {
-	font-size: @breadcrumb-font-size;
-	font-style: @breadcrumb-font-style;
-	display: @breadcrumb-display;
+	font-size: $breadcrumb-font-size;
+	font-style: $breadcrumb-font-style;
+	display: $breadcrumb-display;
 }
 
 small.description {

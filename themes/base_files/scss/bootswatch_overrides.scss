@@ -13,7 +13,7 @@ header.page-header::before,
 	margin: 2px 0 0; // override default ul
 	//  font-size: $font-size-base;
 	background-color: $dropdown-bg;
-	border: 1px solid $dropdown-border;
+	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius-base;
 	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
 	-webkit-background-clip: padding-box;

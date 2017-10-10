@@ -2,41 +2,41 @@
 //Less file for the jQuery tablesorter plugin
 //base formatting that apply to all Tiki themes and included in tiki.less
 
-@ts                 : tablesorter;
+$ts                 : tablesorter;
 
-@filterTransitionTime  : 0.1s;
-@filterRowHiddenHeight : 4px;
+$filterTransitionTime  : 0.1s;
+$filterRowHiddenHeight : 4px;
 /* becomes height using padding (so it's divided by 2) */
 
 /* url(icons/loading.gif); */
-@processingIcon        : url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=');
+$processingIcon        : url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=');
 
 /* Filter widget transition */
 .filterWidgetTransition {
-	-webkit-transition: line-height @filterTransitionTime ease;
-	-moz-transition: line-height @filterTransitionTime ease;
-	-o-transition: line-height @filterTransitionTime ease;
-	transition: line-height @filterTransitionTime ease;
+	-webkit-transition: line-height $filterTransitionTime ease;
+	-moz-transition: line-height $filterTransitionTime ease;
+	-o-transition: line-height $filterTransitionTime ease;
+	transition: line-height $filterTransitionTime ease;
 }
 
 /*** Arrows ***/
-@arrowPosition         : center right;
+$arrowPosition         : center right;
 
 /* div around table */
-div.@{ts}-resizable-container {
+div.${ts}-resizable-container {
 	clear: both;
 	width: 100%;
 }
 
-table.@{ts} {
+table.${ts} {
 	width: 100%;
 	margin-bottom: 2px;
 	/* style header */
 	thead {
-		tr.@{ts}-headerRow {
-			th.@{ts}-header {
+		tr.${ts}-headerRow {
+			th.${ts}-header {
 				background-repeat: no-repeat;
-				background-position: @arrowPosition;
+				background-position: $arrowPosition;
 				cursor: pointer;
 				i {
 					font-weight: 400;
@@ -51,14 +51,14 @@ table.@{ts} {
 					display: inline-block;
 				}
 			}
-			th div.@{ts}-header-inner span {
+			th div.${ts}-header-inner span {
 				padding-right: 10px;
 			}
 			th.sorter-false {
 				cursor: default;
 			}
 		}
-		tr.@{ts}-filter-row {
+		tr.${ts}-filter-row {
 			td {
 				text-align: center;
 				line-height: normal;
@@ -139,13 +139,13 @@ table.@{ts} {
 				}
 			}
 		}
-		tr.@{ts}-filter-row.hideme td {
-			padding: @filterRowHiddenHeight / 2;
+		tr.${ts}-filter-row.hideme td {
+			padding: $filterRowHiddenHeight / 2;
 			margin: 0;
 			line-height: 0;
 			cursor: pointer;
 		}
-		tr.@{ts}-filter-row.hideme .@{ts}-filter {
+		tr.${ts}-filter-row.hideme .${ts}-filter {
 			height: 1px;
 			min-height: 0;
 			border: 0;
@@ -172,13 +172,13 @@ table.@{ts} {
 	}
 }
 
-table.@{ts}-processing tbody tr td {
+table.${ts}-processing tbody tr td {
 	opacity: .25;
 }
 
 /* pager and other controls above the table */
 div.ts-wrapperdiv {
-	span.@{ts}-column-selector {
+	span.${ts}-column-selector {
 		label {
 			margin: 0 5px;
 		}

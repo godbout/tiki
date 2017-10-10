@@ -9,7 +9,7 @@
 	// /* right justified section of toolbars */
 	padding-left: 8px;
 	margin-left: 8px;
-	//  border-left: medium double @gray-light; (This and other color-related rules are moved to tiki-selectors.scss.)
+	//  border-left: medium double $gray-light; (This and other color-related rules are moved to tiki-selectors.scss.)
 }
 
 a.toolbar,
@@ -19,13 +19,13 @@ a.toolbar:hover {
 	display: inline-block;
 	border: none;
 	background: transparent;
-	color: @text-color;
+	color: $text-color;
 }
 
 .toolbar-list {
 	padding: 0 0 0 .5em;
 	line-height: 20px;
-	//  border-left: medium double @gray-light;
+	//  border-left: medium double $gray-light;
 }
 
 .toolbars-picker {
@@ -34,9 +34,9 @@ a.toolbar:hover {
 	width: 128px;
 	z-index: 1050;
 	line-height: 12px;
-	//  background: @body-bg;
-	//  border: thin solid @text-color;
-	//  color: @text-color;
+	//  background: $body-bg;
+	//  border: thin solid $text-color;
+	//  color: $text-color;
 	padding: 4px;
 }
 
@@ -49,9 +49,9 @@ a.toolbar:hover {
 	padding: 4px 0 4px 4px;
 	margin: 0;
 	display: inline-block;
-	//  border: 1px solid @body-bg;
+	//  border: 1px solid $body-bg;
 	overflow: hidden;
-	//  color: @text-color;
+	//  color: $text-color;
 }
 
 .toolbars-picker.color a, .toolbars-picker.bgcolor a {
@@ -61,9 +61,9 @@ a.toolbar:hover {
 }
 
 // .toolbars-picker a:hover {
-//  border: 1px solid @state-danger-text;
-//  background: @gray-light;
-//  color: @text-color;
+//  border: 1px solid $state-danger-text;
+//  background: $gray-light;
+//  color: $text-color;
 // }
 
 .toolbars-picker-reset {
@@ -80,8 +80,8 @@ a.toolbar:hover {
 
 // /* New Toolbars */
 // .textarea-toolbar > div {
-//  background-color: @gray-lighter;
-//  border: outset 1px @gray-lighter;
+//  background-color: $gray-lighter;
+//  border: outset 1px $gray-lighter;
 //}
 
 /* tiki-admin_toolbars.php toolbar icon alignment */

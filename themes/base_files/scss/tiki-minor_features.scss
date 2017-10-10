@@ -68,13 +68,13 @@
 
 .dirsitetrail {
 	font-size: 95%;
-	//  color: @breadcrumb-bg; // lightgray (this and the following moved to tiki-selectors.scss)
+	//  color: $breadcrumb-bg; // lightgray (this and the following moved to tiki-selectors.scss)
 
 }
 
 .dirsitecats {
 	font-size: 95%;
-	//  color: @breadcrumb-bg;// lightgray
+	//  color: $breadcrumb-bg;// lightgray
 }
 
 // Kaltura
@@ -98,24 +98,24 @@ fieldset.dropzone {
 }
 
 // #resultzone > div:hover {
-//  background: @panel-success-heading-bg;
+//  background: $panel-success-heading-bg;
 // }
 
 // Tiki new profiles
 .profile-left-bar .profile-avatar img {
-  margin-bottom: @padding-base-vertical;
+  margin-bottom: $padding-base-vertical;
   max-width: 100%;
 }
 .profile-left-bar .profile-username {
-  font-size: @font-size-large;
+  font-size: $font-size-large;
 }
 .profile-right-bar .profile-buttons .btn {
   width: 100%;
-  margin-bottom: @padding-large-vertical;
+  margin-bottom: $padding-large-vertical;
 }
 .profile-right-bar button.add-friend {
   width: 100%;
-  margin-top: @padding-large-vertical;
+  margin-top: $padding-large-vertical;
 }
 .profile-tab-content h2{
   margin-top:0;

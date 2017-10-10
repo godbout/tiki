@@ -52,11 +52,11 @@ legend + * {
 }
 
 body.tiki.navbar-padding {
-	padding-top: @navbar-fixed-height;
+	padding-top: $navbar-fixed-height;
 }
 
 body.layout_social.tiki.navbar-padding {
-	padding-top: @navbar-fixed-height + 20px;
+	padding-top: $navbar-fixed-height + 20px;
 }
 
 body.fullscreen.tiki.navbar-padding {
@@ -141,16 +141,16 @@ body.fullscreen.tiki.navbar-padding {
 		display: inline;
 	}
 	.navbar-inverse a {
-		color: @navbar-inverse-link-color;
+		color: $navbar-inverse-link-color;
 		&:hover {
-			color: @navbar-inverse-link-hover-color;
+			color: $navbar-inverse-link-hover-color;
 			text-decoration: none;
 		}
 	}
 	.navbar-inverse .sitetitle a {
-		color: @navbar-inverse-brand-color;
+		color: $navbar-inverse-brand-color;
 		&:hover {
-			color: @navbar-inverse-brand-hover-color;
+			color: $navbar-inverse-brand-hover-color;
 			text-decoration: none;
 		}
 	}
@@ -227,7 +227,7 @@ body.fullscreen.tiki.navbar-padding {
 	display: none;
 }
 
-// percentage(( (100 * 10) / @grid-columns )); // why 83.3334% values below? when one col of md-2 of 12 grid is hidden it shows 10 grid-columns which is 83.33333333% - it will be different number if @grid-columns variable changes or #col2 and #col3 will span to more than 2 grid columns
+// percentage(( (100 * 10) / $grid-columns )); // why 83.3334% values below? when one col of md-2 of 12 grid is hidden it shows 10 grid-columns which is 83.33333333% - it will be different number if $grid-columns variable changes or #col2 and #col3 will span to more than 2 grid columns
 
 // Overrides in case of 3-col layout
 .hide_zone_left .col-md-8.col-md-push-2.col1 { // when left col is hidden
@@ -286,7 +286,7 @@ body.fullscreen.tiki.navbar-padding {
 // End overrides for wide side column layout
 
 
-@media (max-width: @screen-sm-max) {
+$media (max-width: $screen-sm-max) {
 	#col1 {
 		width: 100%;
 	}
@@ -305,7 +305,7 @@ body.fullscreen.tiki.navbar-padding {
 ///// END of User layout columns
 
 // Prevent scrollbar from overlapping fullscreen button in IE
-@-ms-viewport {	width: auto !important; }
+$-ms-viewport {	width: auto !important; }
 
 // fade mode for the carousel list plugin formatter
 

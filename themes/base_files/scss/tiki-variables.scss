@@ -15,12 +15,12 @@ $breadcrumb-display: block;
 
 // These rules are to map Bootstrap variables to superfish menus and topbar div styling.
 $cssmenu_horiz_li_hover_bg: transparent;
-$cssmenu_ul_border: $dropdown-border;
+$cssmenu_ul_border: $dropdown-border-color;
 $cssmenu_ul_li_a_bg: $dropdown-bg;
 $cssmenu_ul_li_a_color: $dropdown-link-color;
 $cssmenu_ul_li_hover_a_color: $dropdown-link-hover-color;
 $cssmenu_ul_li_hover_a_bg: $dropdown-link-hover-bg;
-$topbar_bg: $navbar-default-bg;
+$topbar_bg: $bg-inverse;
 $topbar_color: $navbar-default-color;
 $topbar_link_color: $navbar-default-link-color;
 $topbar_link_padding_top: $navbar-padding-vertical;

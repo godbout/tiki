@@ -5,9 +5,9 @@
 	height: 0 !important;
 }
 
-.tiki .jSParent .jS td { font-size: @tiki-sheet-font-size; }
+.tiki .jSParent .jS td { font-size: $tiki-sheet-font-size; }
 .tiki .jSMenu a { padding: 4px 2px; } // Matches Tiki's a.toolbar, so avoids problem of anchor movement on hover.
-.tiki .jSParent .jS td { border-color: @tiki-sheet-border-color; }
+.tiki .jSParent .jS td { border-color: $tiki-sheet-border-color; }
 
 .plugin-sample {
 	padding: 5px;
