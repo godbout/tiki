@@ -7508,11 +7508,11 @@ themes/readable/icons/index.php -text
 themes/readable/images/index.php -text
 themes/readable/images/readable.png -text
 themes/readable/index.php -text
-themes/readable/less/bootswatch.less -text
-themes/readable/less/index.php -text
-themes/readable/less/newsletter.less -text
-themes/readable/less/readable.less -text
-themes/readable/less/variables.less -text
+themes/readable/scss/bootswatch.scss -text
+themes/readable/scss/index.php -text
+themes/readable/scss/newsletter.scss -text
+themes/readable/scss/readable.scss -text
+themes/readable/scss/variables.scss -text
 themes/readable/templates/index.php -text
 themes/readme.txt -text
 themes/sandstone/css/index.php -text
