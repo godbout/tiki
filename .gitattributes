@@ -7306,11 +7306,11 @@ themes/greenvalley/images/phonebook_rtl.jpg -text
 themes/greenvalley/images/right.png -text
 themes/greenvalley/images/searchform.png -text
 themes/greenvalley/images/submenu_arrow.png -text
-themes/greenvalley/less/bootstrap-variables.less -text
-themes/greenvalley/less/greenvalley.less -text
-themes/greenvalley/less/index.php -text
-themes/greenvalley/less/newsletter.less -text
-themes/greenvalley/less/tiki-selectors.less -text
+themes/greenvalley/scss/bootstrap-variables.scss -text
+themes/greenvalley/scss/greenvalley.scss -text
+themes/greenvalley/scss/index.php -text
+themes/greenvalley/scss/newsletter.scss -text
+themes/greenvalley/scss/tiki-selectors.scss -text
 themes/index.php -text
 themes/journal/css/index.php -text
 themes/journal/css/journal.css -text
