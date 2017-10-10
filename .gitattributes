@@ -6619,6 +6619,7 @@ themes/base_files/other/integrator/doxygen.css -text
 themes/base_files/other/integrator/index.php -text
 themes/base_files/other/site_closed.html -text
 themes/base_files/scss/bootswatch_overrides.scss -text
+themes/base_files/scss/bs3-bs4-transition.scss -text
 themes/base_files/scss/conversejs-tiki.scss -text
 themes/base_files/scss/external-scripts.scss -text
 themes/base_files/scss/jquery-ui-tiki.scss -text
