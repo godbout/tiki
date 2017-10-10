@@ -6848,11 +6848,11 @@ themes/feb12/images/header.jpg -text
 themes/feb12/images/index.php -text
 themes/feb12/images/page.jpg -text
 themes/feb12/index.php -text
-themes/feb12/less/bootstrap-variables.less -text
-themes/feb12/less/feb12.less -text
-themes/feb12/less/index.php -text
-themes/feb12/less/newsletter.less -text
-themes/feb12/less/tiki-selectors.less -text
+themes/feb12/scss/bootstrap-variables.scss -text
+themes/feb12/scss/feb12.scss -text
+themes/feb12/scss/index.php -text
+themes/feb12/scss/newsletter.scss -text
+themes/feb12/scss/tiki-selectors.scss -text
 themes/feb12/templates/index.php -text
 themes/fivealive-lite/css/fivealive-lite.css -text
 themes/fivealive-lite/css/index.php -text
