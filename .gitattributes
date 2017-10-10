@@ -1,6 +1,7 @@
 * text=auto !eol
 /INSTALL -text
 /README -text
+_custom/readme.txt -text
 /_htaccess -text
 /about.php -text
 addons/index.php -text
