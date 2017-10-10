@@ -7735,11 +7735,11 @@ themes/utopias/fonts/index.php -text
 themes/utopias/icons/index.php -text
 themes/utopias/images/index.php -text
 themes/utopias/images/utopias.png -text
-themes/utopias/less/bootstrap-variables.less -text
-themes/utopias/less/index.php -text
-themes/utopias/less/newsletter.less -text
-themes/utopias/less/tiki-selectors.less -text
-themes/utopias/less/utopias.less -text
+themes/utopias/scss/bootstrap-variables.scss -text
+themes/utopias/scss/index.php -text
+themes/utopias/scss/newsletter.scss -text
+themes/utopias/scss/tiki-selectors.scss -text
+themes/utopias/scss/utopias.scss -text
 themes/yeti/css/index.php -text
 themes/yeti/css/newsletter.css -text
 themes/yeti/css/yeti.css -text
