@@ -7748,11 +7748,11 @@ themes/yeti/icons/index.php -text
 themes/yeti/images/index.php -text
 themes/yeti/images/yeti.png -text
 themes/yeti/index.php -text
-themes/yeti/less/bootswatch.less -text
-themes/yeti/less/index.php -text
-themes/yeti/less/newsletter.less -text
-themes/yeti/less/variables.less -text
-themes/yeti/less/yeti.less -text
+themes/yeti/scss/bootswatch.scss -text
+themes/yeti/scss/index.php -text
+themes/yeti/scss/newsletter.scss -text
+themes/yeti/scss/variables.scss -text
+themes/yeti/scss/yeti.scss -text
 themes/yeti/templates/index.php -text
 /tiki-accounting.php -text
 /tiki-accounting_account.php -text
