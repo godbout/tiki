@@ -7723,11 +7723,11 @@ themes/thenews/images/arrows-005faa.png -text
 themes/thenews/images/index.php -text
 themes/thenews/images/thenews.png -text
 themes/thenews/index.php -text
-themes/thenews/less/bootstrap-variables.less -text
-themes/thenews/less/index.php -text
-themes/thenews/less/newsletter.less -text
-themes/thenews/less/thenews.less -text
-themes/thenews/less/tiki-selectors.less -text
+themes/thenews/scss/bootstrap-variables.scss -text
+themes/thenews/scss/index.php -text
+themes/thenews/scss/newsletter.scss -text
+themes/thenews/scss/thenews.scss -text
+themes/thenews/scss/tiki-selectors.scss -text
 themes/thenews/templates/index.php -text
 themes/tikinewt/css/index.php -text
 themes/tikinewt/css/newsletter.css -text
