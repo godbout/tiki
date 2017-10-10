@@ -7619,11 +7619,11 @@ themes/spacelab/icons/index.php -text
 themes/spacelab/images/index.php -text
 themes/spacelab/images/spacelab.png -text
 themes/spacelab/index.php -text
-themes/spacelab/less/bootswatch.less -text
-themes/spacelab/less/index.php -text
-themes/spacelab/less/newsletter.less -text
-themes/spacelab/less/spacelab.less -text
-themes/spacelab/less/variables.less -text
+themes/spacelab/scss/bootswatch.scss -text
+themes/spacelab/scss/index.php -text
+themes/spacelab/scss/newsletter.scss -text
+themes/spacelab/scss/spacelab.scss -text
+themes/spacelab/scss/variables.scss -text
 themes/spacelab/templates/index.php -text
 themes/strasa/css/index.php -text
 themes/strasa/css/newsletter.css -text
