@@ -7571,11 +7571,11 @@ themes/slate/icons/index.php -text
 themes/slate/images/index.php -text
 themes/slate/images/slate.png -text
 themes/slate/index.php -text
-themes/slate/less/bootswatch.less -text
-themes/slate/less/index.php -text
-themes/slate/less/newsletter.less -text
-themes/slate/less/slate.less -text
-themes/slate/less/variables.less -text
+themes/slate/scss/bootswatch.scss -text
+themes/slate/scss/index.php -text
+themes/slate/scss/newsletter.scss -text
+themes/slate/scss/slate.scss -text
+themes/slate/scss/variables.scss -text
 themes/slate/templates/index.php -text
 themes/snow/css/index.php -text
 themes/snow/css/newsletter.css -text
