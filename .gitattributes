@@ -7722,11 +7722,11 @@ themes/united/icons/index.php -text
 themes/united/images/index.php -text
 themes/united/images/united.png -text
 themes/united/index.php -text
-themes/united/less/bootswatch.less -text
-themes/united/less/index.php -text
-themes/united/less/newsletter.less -text
-themes/united/less/united.less -text
-themes/united/less/variables.less -text
+themes/united/scss/bootswatch.scss -text
+themes/united/scss/index.php -text
+themes/united/scss/newsletter.scss -text
+themes/united/scss/united.scss -text
+themes/united/scss/variables.scss -text
 themes/united/templates/index.php -text
 themes/utopias/css/index.php -text
 themes/utopias/css/newsletter.css -text
