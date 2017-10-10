@@ -7464,11 +7464,11 @@ themes/lumen/icons/index.php -text
 themes/lumen/images/index.php -text
 themes/lumen/images/lumen.png -text
 themes/lumen/index.php -text
-themes/lumen/less/bootswatch.less -text
-themes/lumen/less/index.php -text
-themes/lumen/less/lumen.less -text
-themes/lumen/less/newsletter.less -text
-themes/lumen/less/variables.less -text
+themes/lumen/scss/bootswatch.scss -text
+themes/lumen/scss/index.php -text
+themes/lumen/scss/lumen.scss -text
+themes/lumen/scss/newsletter.scss -text
+themes/lumen/scss/variables.scss -text
 themes/lumen/templates/index.php -text
 themes/ohia/css/index.php -text
 themes/ohia/css/newsletter.css -text
