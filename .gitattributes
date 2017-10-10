@@ -7705,11 +7705,11 @@ themes/superhero/icons/index.php -text
 themes/superhero/images/index.php -text
 themes/superhero/images/superhero.png -text
 themes/superhero/index.php -text
-themes/superhero/less/bootswatch.less -text
-themes/superhero/less/index.php -text
-themes/superhero/less/newsletter.less -text
-themes/superhero/less/superhero.less -text
-themes/superhero/less/variables.less -text
+themes/superhero/scss/bootswatch.scss -text
+themes/superhero/scss/index.php -text
+themes/superhero/scss/newsletter.scss -text
+themes/superhero/scss/superhero.scss -text
+themes/superhero/scss/variables.scss -text
 themes/superhero/templates/index.php -text
 themes/templates/index.php -text
 themes/thenews/css/index.php -text
