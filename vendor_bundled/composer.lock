@@ -5398,7 +5398,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2016-03-14T11:52:02+00:00"
+            "time": "2016-03-14 11:52:02"
         },
         {
             "name": "doctrine/instantiator",

@@ -10,6 +10,7 @@
 /.well-known
 /ZendPlatform
 /ZendStudioServer
+_custom/lib/setup/custom.php
 /bin
 db/*.ini
 db/.htaccess
@@ -45,7 +46,6 @@ modules/cache/*
 /node_modules
 /phpmyadmin
 /project.index
-storage/lib/setup/custom.php
 storage/public/*
 /svn-commit.tmp
 temp/*
