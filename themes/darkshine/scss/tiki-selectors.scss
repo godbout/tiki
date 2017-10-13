@@ -1,10 +1,10 @@
-// $Id: tiki-selectors.less 64190 2017-10-10 04:10:27Z chibaguy $
-// This file is for additional LESS rules beyond what are in variables.less.
+// $Id: tiki-selectors.scss 64190 2017-10-10 04:10:27Z chibaguy $
+// This file is for additional LESS rules beyond what are in variables.scss.
 // Image path example:
 $imagePath: "../images/";
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 
 body,
 body.fullscreen {
@@ -51,7 +51,7 @@ h2.sitesubtitle {
 }
 
 .topbar a {
-	color: @navbar-default-link-color;
+	color: $navbar-default-link-color;
 }
 
 #middle,
@@ -157,24 +157,24 @@ h2.sitesubtitle {
 
 .cssmenu_horiz a,
 .cssmenu_vert a {
-	color: @link-color;
+	color: $link-color;
 }
 
 .topbar .cssmenu_horiz > li > a {
-	color: @navbar-default-link-color;
+	color: $navbar-default-link-color;
 }
 
 .topbar .cssmenu_horiz > li:hover > a {
-	color: @navbar-default-link-hover-color;
+	color: $navbar-default-link-hover-color;
 }
 
 .cssmenu_horiz li ul,
 .cssmenu_vert li ul {
 	padding: 5px 0;
 	margin: 2px 0 0; // override default ul
-	//  font-size: @font-size-base;
-	background-color: @dropdown-bg;
-	border: 1px solid @dropdown-fallback-border; // IE8 fallback
+	//  font-size: $font-size-base;
+	background-color: $dropdown-bg;
+	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
 	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
@@ -185,9 +185,9 @@ h2.sitesubtitle {
 	> li > a {
 		padding: 3px 20px;
 		font-weight: normal;
-		line-height: @line-height-base;
-		color: @dropdown-link-color;
-		background: @dropdown-bg;
+		line-height: $line-height-base;
+		color: $dropdown-link-color;
+		background: $dropdown-bg;
 	}
 }
 
@@ -199,8 +199,8 @@ h2.sitesubtitle {
 	&:hover,
 	&:focus {
 		text-decoration: none;
-		color: @dropdown-link-hover-color;
-		background-color: @dropdown-link-hover-bg;
+		color: $dropdown-link-hover-color;
+		background-color: $dropdown-link-hover-bg;
 	}
 }
 
@@ -238,14 +238,14 @@ footer.footer {
 		}
 	}
 	h1, h2, h3, h4, h5 {
-		color: @brand-warning;
+		color: $brand-warning;
 	}
 }
 
 // /* Autosave Preview handle */
 #autosave_preview {
 	background: #f3f3f3;
-	color: @text-color;
+	color: $text-color;
 }
 
 .tablesorter-header {

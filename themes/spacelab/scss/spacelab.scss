@@ -1,10 +1,10 @@
 // $Id$
-@web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700";
+$web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700";
 
-.web-font(@path) {
-	@import url("@{path}");
+.web-font($path) {
+	@import url("#{$path}");
 }
-.web-font(@web-font-path);
+.web-font($web-font-path);
 /*! Original theme information:
  * bootswatch v3.3.6
  * Homepage: http://bootswatch.com
@@ -14,13 +14,13 @@
  *
  * Adapted by the Tiki Community for Tiki Wiki CMS Groupware
 */
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/bootstrap.less";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/bootswatch_overrides.scss";
 // So far, just removes the CSS content theme-option-required warning.
-@import "bootswatch.less";
-// defines the theme's CSS values that are outside of variables.less
-@import "variables.less";
-// the Bootstrap variables.less file with theme-specific values replacing the defaults
+@import "bootswatch.scss";
+// defines the theme's CSS values that are outside of variables.scss
+@import "variables.scss";
+// the Bootstrap variables.scss file with theme-specific values replacing the defaults
 @import "../../base_files/scss/tiki-variables.scss";
 // Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.scss.
 @import "../../base_files/scss/tiki-selectors.scss";

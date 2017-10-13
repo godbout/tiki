@@ -1,5 +1,5 @@
 // $Id$
-// This file is for additional LESS rules beyond what are in variables.less.
+// This file is for additional LESS rules beyond what are in variables.scss.
 // Image path example:
 $imagePath: "../images/";
 // body {
@@ -7,11 +7,11 @@ $imagePath: "../images/";
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 
-//@topmodules-row-sidemargins: -15px;
-//@topbar-row-sidemargins: -15px;
-@topbar-row-margin-bottom: 0;
+//$topmodules-row-sidemargins: -15px;
+//$topbar-row-sidemargins: -15px;
+$topbar-row-margin-bottom: 0;
 
 .container {
 	border: 1px solid #006669;
@@ -174,9 +174,9 @@ body.fullscreen {
 .cssmenu_vert li ul {
 	padding: 5px 0;
 	margin: 2px 0 0; // override default ul
-	//  font-size: @font-size-base;
-	background-color: @dropdown-bg;
-	border: 1px solid @dropdown-fallback-border; // IE8 fallback
+	//  font-size: $font-size-base;
+	background-color: $dropdown-bg;
+	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
 	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
@@ -187,7 +187,7 @@ body.fullscreen {
 	> li > a {
 		padding: 3px 20px;
 		font-weight: normal;
-		line-height: @line-height-base;
-		color: @dropdown-link-color;
+		line-height: $line-height-base;
+		color: $dropdown-link-color;
 	}
 }

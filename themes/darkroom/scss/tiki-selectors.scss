@@ -1,10 +1,10 @@
-// $Id: tiki-selectors.less 64190 2017-10-10 04:10:27Z chibaguy $ Darkroom theme custom-other.less file.
+// $Id: tiki-selectors.scss 64190 2017-10-10 04:10:27Z chibaguy $ Darkroom theme custom-other.less file.
 
 $imagePath: "../images/";
 //body {
 //	background-image: url('#{$imagePath}bg.jpg');
 //}
-@topmodules-row-margin-bottom: 15px;
+$topmodules-row-margin-bottom: 15px;
 
 body,
 body.fullscreen {
@@ -29,7 +29,7 @@ body.layout_social > .container {
 // /* Background for CkEditor */
 .cke_contents > .cke_wysiwyg_frame, .cke_contents > .cke_wysiwyg_div {
 	background: #3F3F3F !important;
-	color: @text-color !important;
+	color: $text-color !important;
 }
 
 
@@ -103,18 +103,18 @@ select {
 }
 
 .even {
-	background: @table-bg-accent;
+	background: $table-bg-accent;
 }
 
 .odd,
 #trig_dptxt {
-	background: @table-bg;
-	color: @brand-primary;
+	background: $table-bg;
+	color: $brand-primary;
 }
 
 input[type="checkbox"] {
 	color: #ffffff !important;
-	background: @table-bg;
+	background: $table-bg;
 }
 
 input.reportBuilderInput,
@@ -124,8 +124,8 @@ input.reportBuilderInput,
 
 textarea,
 input {
-	background: @input-bg;
-	color: @input-color;
+	background: $input-bg;
+	color: $input-color;
 }
 
 .jtrack-form {
@@ -133,7 +133,7 @@ input {
 }
 
 .box-quickadmin .cssmenu_horiz ul li {
-	background-color: @body-bg;
+	background-color: $body-bg;
 }
 
 #admin-navbar-collapse-1 {
@@ -143,16 +143,16 @@ input {
 
 .cssmenu_horiz a,
 .cssmenu_vert a {
-	color: @link-color;
+	color: $link-color;
 }
 
 .cssmenu_horiz li ul,
 .cssmenu_vert li ul {
 	padding: 0;
 	margin: 2px 0 0; // override default ul
-	//  font-size: @font-size-base;
-	background-color: @dropdown-bg;
-	border: 1px solid @dropdown-fallback-border; // IE8 fallback
+	//  font-size: $font-size-base;
+	background-color: $dropdown-bg;
+	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
 	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
@@ -163,9 +163,9 @@ input {
 	> li > a {
 		padding: 3px 20px;
 		font-weight: normal;
-		line-height: @line-height-base;
-		color: @dropdown-link-color;
-		background: @dropdown-bg;
+		line-height: $line-height-base;
+		color: $dropdown-link-color;
+		background: $dropdown-bg;
 	}
 }
 
@@ -177,7 +177,7 @@ input {
 	&:hover,
 	&:focus {
 		text-decoration: none;
-		color: @dropdown-link-hover-color;
-		background-color: @dropdown-link-hover-bg;
+		color: $dropdown-link-hover-color;
+		background-color: $dropdown-link-hover-bg;
 	}
 }

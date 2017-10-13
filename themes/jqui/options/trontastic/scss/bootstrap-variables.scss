@@ -1,8 +1,8 @@
 
 
-@body-bg: #9fda58;
+$body-bg: #9fda58;
 @text-color: #454545;
-@font-family-sans-serif: Segoe UI, Helvetica, Arial, sans-serif;
+$font-family-sans-serif: Segoe UI, Helvetica, Arial, sans-serif;
 @brand-primary: #b8ec79; // #4a4a4a;
 @brand-success: lighten(#5cb85c, 25%);
 @brand-info: lighten(#5bc0de, 25%);

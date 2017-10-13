@@ -1,4 +1,4 @@
-// $Id: tiki-selectors.less 64190 2017-10-10 04:10:27Z chibaguy $ Darkly tiki-selectors less file
+// $Id: tiki-selectors.scss 64190 2017-10-10 04:10:27Z chibaguy $ Darkly tiki-selectors less file
 
 .cssmenu_horiz a,
 .cssmenu_vert a {
@@ -39,5 +39,5 @@
 	}
 }
 
-body.fullscreen { background: @body-bg; }
+body.fullscreen { background: $body-bg; }
 

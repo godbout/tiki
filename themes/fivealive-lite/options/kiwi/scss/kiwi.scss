@@ -1,14 +1,14 @@
 // $Id$ - kiwi.less; compile to make
 /*  The Kiwi theme option file for the FiveAlive-lite themes of Tiki Wiki CMS Groupware. */
-@import "../../../../../vendor_bundled/vendor/twitter/bootstrap/less/mixins.less";
-// To apply variables defined in bootstrap-variables.less.
-@import "../../../less/bootstrap-less-for-options.less";
+@import "../../../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
+// To apply variables defined in bootstrap-variables.scss.
+@import "../../../scss/bootstrap-scss-for-options.scss";
 // Contains relevant Bootstrap .less file sections to expose variables for the theme options to provide values for.]
-@import "../../../less/tiki-selectors-for-options.less";
+@import "../../../scss/tiki-selectors-for-options.scss";
 // Contains CSS for styling Tiki elements not covered by Bootstrap.
-@import "bootstrap-variables.less";
-// A copy of the Bootstrap variables.less file but using only color settings.
-@import "tiki-selector-variables.less";
+@import "bootstrap-variables.scss";
+// A copy of the Bootstrap variables.scss file but using only color settings.
+@import "tiki-selector-variables.scss";
 
 // Provides values for "legacy" Tiki CSS selectors (not covered by Bootstrap).
 

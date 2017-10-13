@@ -1,13 +1,13 @@
 // $Id$
 @import url('//fonts.googleapis.com/css?family=Marcellus');
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/bootstrap.less";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/bootswatch_overrides.scss";
 // So far, just removes the CSS content theme-option-required warning.
-//@import "bootswatch.less";
-// the Bootstrap variables.less file with theme-specific values replacing the defaults
+//@import "bootswatch.scss";
+// the Bootstrap variables.scss file with theme-specific values replacing the defaults
 @import "../../base_files/scss/tiki-variables.scss";
 // Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.scss.
 @import "../../base_files/scss/tiki-selectors.scss";
 @import "../../base_files/scss/external-scripts.scss";
-@import "tiki-selectors.less";
-@import "bootstrap-variables.less";
+@import "tiki-selectors.scss";
+@import "bootstrap-variables.scss";

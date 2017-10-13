@@ -1,8 +1,8 @@
 // $Id$
 /* FiveAlive-lite theme newsletter stylesheet */
 @import url("//fonts.googleapis.com/css?family=Lato");
-@import "../../base_files/scss/newsletter.less";
-@import "bootstrap-variables.less";
+@import "../../base_files/scss/newsletter.scss";
+@import "bootstrap-variables.scss";
 
-@font-family-sans-serif: Lato, sans-serif;
-@font-family-base: @font-family-sans-serif;
+$font-family-sans-serif: Lato, sans-serif;
+$font-family-base: $font-family-sans-serif;

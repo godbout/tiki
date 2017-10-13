@@ -5,19 +5,15 @@
 // Core variables and mixins
 
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/functions.scss";
-// Reset and dependencies
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/variables.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/mixins.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/print.scss";
-// Core CSS
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/reboot.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/type.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/images.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/code.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/grid.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/tables.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/buttons.scss";
-// Components
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/forms.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/buttons.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/transitions.scss";
@@ -43,7 +39,6 @@
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/tooltip.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/popover.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/carousel.scss";
-// Utility classes
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/utilities.scss";
 // Tiki-site-specific adjustments
 @import "../../base_files/scss/bootswatch_overrides.scss";

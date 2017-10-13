@@ -1,5 +1,5 @@
 // $Id$
-// This file is for additional LESS rules beyond what are in variables.less.
+// This file is for additional LESS rules beyond what are in variables.scss.
 // Image path example:
 $imagePath: "../images/";
 // body {
@@ -54,7 +54,7 @@ header.container {
 	border-bottom: 1px solid #6c7b8c;
 }
 
-// Some of this at least should be set in bootstrap-variables.less.
+// Some of this at least should be set in bootstrap-variables.scss.
 .navbar-inverse .navbar-brand,
 .navbar-inverse a,
 .navbar-inverse .navbar-nav > li > a {

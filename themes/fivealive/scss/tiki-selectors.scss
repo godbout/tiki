@@ -1,5 +1,5 @@
 // $Id$
-// This file is for additional LESS rules beyond what are in variables.less.
+// This file is for additional LESS rules beyond what are in variables.scss.
 // Image path example:
 $imagePath: "../images/";
 // body {
@@ -7,7 +7,7 @@ $imagePath: "../images/";
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 
 
 .topbar {
@@ -68,7 +68,7 @@ $imagePath: "../images/";
 
 .siteloginbar_poppedup li > a,
 .siteloginbar_poppedup label {
-	color: @navbar-default-link-color;
+	color: $navbar-default-link-color;
 }
 
 .box-quickadmin .cssmenu_horiz ul li {
@@ -172,7 +172,7 @@ header.header {
 	}
 }
 
-@media (min-width: @screen-md-min) {
+$media (min-width: $screen-md-min) {
 	.navbar-default .navbar-nav > li > a {
 		border-radius: 0;
 		background: transparent !important;
@@ -188,7 +188,7 @@ header.header {
 }
 
 .popover {
-	color: @text-color;
+	color: $text-color;
 }
 
 .module legend { font-size: 15px; }

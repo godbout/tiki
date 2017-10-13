@@ -1,6 +1,8 @@
 /* $Id$
 	This Tiki Wiki CMS Groupware file contains global design
 	and layout properties. */
+$body-bg: #fff;
+
 @import "bs3-bs4-transition.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_variables.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";

@@ -1,10 +1,10 @@
 // $Id: cyborg.less 64181 2017-10-09 05:47:00Z chibaguy $
-@web-font-path: "https://fonts.googleapis.com/css?family=Roboto:400,700";
+$web-font-path: "https://fonts.googleapis.com/css?family=Roboto:400,700";
 
-.web-font(@path) {
-	@import url("@{path}");
+.web-font($path) {
+	@import url("#{$path}");
 }
-.web-font(@web-font-path);
+.web-font($web-font-path);
 /*! Original theme information:
  * bootswatch v3.3.6
  * Homepage: http://bootswatch.com
@@ -14,7 +14,7 @@
  *
  * Adapted by the Tiki Community for Tiki Wiki CMS Groupware
 */
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/bootstrap.less";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/bootswatch_overrides.scss";
 // So far, just removes the CSS content theme-option-required warning.
 @import "../../base_files/scss/external-scripts.scss";
@@ -22,13 +22,13 @@
 // Tiki non-Bootstrap CSS selectors related to color
 @import "../../base_files/scss/tiki-variables.scss";
 // Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.scss.
-@import "bootswatch.less";
-// defines the theme's CSS values that are outside of variables.less
-@import "variables.less";
+@import "bootswatch.scss";
+// defines the theme's CSS values that are outside of variables.scss
+@import "variables.scss";
 
-// the Bootstrap variables.less file with theme-specific values replacing the defaults
+// the Bootstrap variables.scss file with theme-specific values replacing the defaults
 
-.topbar { border: 1px solid @navbar-default-border; }
+.topbar { border: 1px solid $navbar-default-border; }
 .topbar .navbar-default { border: none; }
-body.fullscreen { background: @body-bg; }
+body.fullscreen { background: $body-bg; }
 

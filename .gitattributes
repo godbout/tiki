@@ -6956,7 +6956,7 @@ themes/fivealive-lite/options/watermelon/images/watermelon.png -text
 themes/fivealive-lite/options/watermelon/scss/bootstrap-variables.scss -text
 themes/fivealive-lite/options/watermelon/scss/tiki-selector-variables.scss -text
 themes/fivealive-lite/options/watermelon/scss/watermelon.scss -text
-themes/fivealive-lite/scss/bootstrap-less-for-options.scss -text
+themes/fivealive-lite/scss/bootstrap-scss-for-options.scss -text
 themes/fivealive-lite/scss/bootstrap-variables.scss -text
 themes/fivealive-lite/scss/fivealive-lite.scss -text
 themes/fivealive-lite/scss/index.php -text
@@ -7290,7 +7290,7 @@ themes/fivealive/options/watermelon/scss/bootstrap-variables.scss -text
 themes/fivealive/options/watermelon/scss/index.php -text
 themes/fivealive/options/watermelon/scss/tiki-selector-variables.scss -text
 themes/fivealive/options/watermelon/scss/watermelon.scss -text
-themes/fivealive/scss/bootstrap-less-for-options.scss -text
+themes/fivealive/scss/bootstrap-scss-for-options.scss -text
 themes/fivealive/scss/bootstrap-variables.scss -text
 themes/fivealive/scss/fivealive.scss -text
 themes/fivealive/scss/index.php -text
@@ -7448,7 +7448,7 @@ themes/jqui/options/trontastic/scss/trontastic.scss -text
 themes/jqui/options/trontastic/trontastic.png -text
 themes/jqui/options/trontastic/ui-bg_diagonals-small_50_262626_40x40.png -text
 themes/jqui/options/trontastic/ui-bg_gloss-wave_55_000000_500x100.png -text
-themes/jqui/scss/bootstrap-less-for-options.scss -text
+themes/jqui/scss/bootstrap-scss-for-options.scss -text
 themes/jqui/scss/bootstrap-variables.scss -text
 themes/jqui/scss/index.php -text
 themes/jqui/scss/jqui.scss -text
@@ -7603,8 +7603,8 @@ themes/snow/index.php -text
 themes/snow/options/nineties/css/nineties.css -text
 themes/snow/options/nineties/css/tiki-selectors.css -text
 themes/snow/options/nineties/images/nineties.png -text
-themes/snow/options/nineties/less/nineties.less -text
-themes/snow/options/nineties/less/tiki-selectors.less -text
+themes/snow/options/nineties/scss/nineties.scss -text
+themes/snow/options/nineties/scss/tiki-selectors.scss -text
 themes/snow/scss/bootstrap-variables.scss -text
 themes/snow/scss/index.php -text
 themes/snow/scss/newsletter.scss -text

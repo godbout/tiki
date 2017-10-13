@@ -1,5 +1,5 @@
-// $Id: tiki-selectors.less 62883 2017-06-04 17:03:17Z drsassafras $
-// This file is for additional Less rules beyond what are in bootstrap-variables.less.
+// $Id: tiki-selectors.scss 62883 2017-06-04 17:03:17Z drsassafras $
+// This file is for additional Less rules beyond what are in bootstrap-variables.scss.
 
 $imagePath: "../images/";
 //body {
@@ -90,4 +90,4 @@ h1:after, h2:after {
 	color: #ffffff;
 }
 
-body.fullscreen { background: @body-bg; }
+body.fullscreen { background: $body-bg; }

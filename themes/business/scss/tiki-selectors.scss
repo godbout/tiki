@@ -1,5 +1,5 @@
-// $Id: tiki-selectors.less 61747 2017-03-18 18:28:58Z rjsmelo $
-// This file is for additional LESS rules beyond what are in variables.less.
+// $Id: tiki-selectors.scss 61747 2017-03-18 18:28:58Z rjsmelo $
+// This file is for additional LESS rules beyond what are in variables.scss.
 // Image path example:
 $imagePath: "../images/";
 // body {
@@ -7,10 +7,10 @@ $imagePath: "../images/";
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 
-@topmodules-row-sidemargins: 0;
-@topbar-row-sidemargins: -15px;
+$topmodules-row-sidemargins: 0;
+$topbar-row-sidemargins: -15px;
 
 .page-header .top_modules {
 	background: #8ba8c8; /* Old browsers */
@@ -127,13 +127,13 @@ h3.panel-title {
 }
 
 .modal-header {
-	color: @gray-lighter;
+	color: $gray-lighter;
 }
 
 .well {
 	background: url('#{$imagePath}market.jpg') 0 100% no-repeat;
 	background-size: 100% 100%;
-	color: @gray-base;
+	color: $gray-base;
 }
 
 .magnifying_glass {
@@ -180,15 +180,15 @@ h3.panel-title {
 //.cssmenu_horiz li.sfHover,
 //.cssmenu_vert li:hover,
 //.cssmenu_vert li.sfHover {
-//  color: @dropdown-link-hover-color;
-//  background: @dropdown-link-hover-bg;
+//  color: $dropdown-link-hover-color;
+//  background: $dropdown-link-hover-bg;
 //}
 
 .postbody-title .title > .panel-title a.link,
 .panel-default > .panel-heading a {
-	color: @panel-default-text;
+	color: $panel-default-text;
 }
 
 .popover {
-	color: @text-color;
+	color: $body-color;
 }

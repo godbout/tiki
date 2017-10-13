@@ -1,7 +1,8 @@
 // $Id$
 // This temporary file is to provide definitions for Bootstrap 3 variables so the SCSS compile process goes smoothly,
 // especially for variables that have many instances.
-
+$body-bg: #ffffff;
+$body-color: #000;
 $btn-default-bg: $body-bg;
 $btn-default-border: $body-color;
 $btn-default-color: $body-color;
@@ -11,3 +12,4 @@ $btn-primary-color: $body-color;
 
 $btn-info-bg: $body-bg;
 $btn-info-color: $body-color;
+

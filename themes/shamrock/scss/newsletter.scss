@@ -1,12 +1,12 @@
 // $Id$
 /* Shamrock theme newsletter stylesheet */
 @import url('//fonts.googleapis.com/css?family=Marcellus');
-@import "../../base_files/scss/newsletter.less";
-@import "bootstrap-variables.less";
+@import "../../base_files/scss/newsletter.scss";
+@import "bootstrap-variables.scss";
 
-@font-family-sans-serif:  "Marcellus", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-base:        @font-family-sans-serif;
-@font-size-base:          15px;
+$font-family-sans-serif:  "Marcellus", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-base:        $font-family-sans-serif;
+$font-size-base:          15px;
 
 h1::before {
 	content: "\2663";

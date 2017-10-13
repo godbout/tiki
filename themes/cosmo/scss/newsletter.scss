@@ -1,14 +1,14 @@
-// $Id: newsletter.less 64179 2017-10-09 05:28:34Z chibaguy $
+// $Id: newsletter.scss 64179 2017-10-09 05:28:34Z chibaguy $
 /* Cosmo theme newsletter stylesheet  */
-@web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700";
-.web-font(@path) {	@import url("@{path}"); }
-.web-font(@web-font-path);
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/variables.less";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/mixins.less";
+$web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700";
+.web-font($path) {	@import url("#{$path}"); }
+.web-font($web-font-path);
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/variables.scss";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
 // @import "../../../vendor_bundled/vendor/twitter/bootstrap/less/panels.less";
-@import "../../base_files/scss/newsletter.less";
-@import "variables.less";
+@import "../../base_files/scss/newsletter.scss";
+@import "variables.scss";
 
-@font-family-sans-serif:  "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
-@font-family-base:        @font-family-sans-serif;
+$font-family-sans-serif:  "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+$font-family-base:        $font-family-sans-serif;
 

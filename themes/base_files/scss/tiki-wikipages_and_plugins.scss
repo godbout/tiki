@@ -434,7 +434,7 @@ div.tiki_plugin {
 	max-height: 90%;
 	overflow: auto;
 	z-index: 1000;
-	//  background: @body-bg;
+	//  background: $body-bg;
 	//  color: @text-color;
 	padding: 10px;
 	//  border: solid 2px @text-color;
@@ -450,7 +450,7 @@ div.tiki_plugin {
 
 // /* CKeditor contrast */
 // body.wikitext {
-//  background: @body-bg;
+//  background: $body-bg;
 //  color: @text-color;
 // }
 
@@ -573,7 +573,7 @@ div.tiki_plugin {
 	text-align: center;
 	width: 100%;
 	z-index: 101 !important;
-	//  background-color: @body-bg;
+	//  background-color: $body-bg;
 	padding: .4em 0 .2em;
 	//  border-top: @gray-lighter 1px solid;
 }
@@ -620,7 +620,7 @@ div.tiki_plugin {
 
 // /* Autosave Preview handle */
 #autosave_preview {
-	//  background-color: @body-bg;
+	//  background-color: $body-bg;
 	//  color: @text-color;
 	z-index: 110; // /* ensure the preview is not partly covered even by #diff_outer in fullscreen side-by-side translation mode */
 }

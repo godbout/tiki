@@ -1,7 +1,7 @@
 // $Id$
 /* Snow theme newsletter stylesheet */
 @import url("//fonts.googleapis.com/css?family=Simonetta");
-@import "../../base_files/scss/newsletter.less";
-@import "bootstrap-variables.less";
+@import "../../base_files/scss/newsletter.scss";
+@import "bootstrap-variables.scss";
 
-@headings-font-family: Simonetta, serif;
+$headings-font-family: Simonetta, serif;

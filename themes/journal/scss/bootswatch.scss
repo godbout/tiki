@@ -6,8 +6,8 @@
 
 .navbar {
 	font-size: 18px;
-	font-family: @font-family-sans-serif;
-	font-weight: @headings-font-weight;
+	font-family: $font-family-sans-serif;
+	font-weight: $headings-font-weight;
 
 	&-default {
 
@@ -21,14 +21,14 @@
 
 		.badge {
 			background-color: #ffffff;
-			color: @navbar-inverse-bg;
+			color: $navbar-inverse-bg;
 		}
 	}
 }
 
 .navbar-brand {
 	font-size: inherit;
-	font-weight: @headings-font-weight;
+	font-weight: $headings-font-weight;
 	text-transform: uppercase;
 }
 
@@ -52,12 +52,12 @@
 	&.radio-inline label,
 	&.checkbox-inline label,
 	.form-control-feedback {
-		color: @brand-danger;
+		color: $brand-danger;
 	}
 
 	.form-control,
 	.form-control:focus {
-		border-color: @brand-danger;
+		border-color: $brand-danger;
 	}
 }
 
@@ -73,12 +73,12 @@
 	&.radio-inline label,
 	&.checkbox-inline label,
 	.form-control-feedback {
-		color: @brand-primary;
+		color: $brand-primary;
 	}
 
 	.form-control,
 	.form-control:focus {
-		border-color: @brand-primary;
+		border-color: $brand-primary;
 	}
 }
 
@@ -94,12 +94,12 @@
 	&.radio-inline label,
 	&.checkbox-inline label,
 	.form-control-feedback {
-		color: @brand-success;
+		color: $brand-success;
 	}
 
 	.form-control,
 	.form-control:focus {
-		border-color: @brand-success;
+		border-color: $brand-success;
 	}
 }
 
@@ -120,8 +120,8 @@
 .jumbotron {
 
 	h1, h2, h3, h4, h5, h6 {
-		font-family: @font-family-sans-serif;
-		font-weight: @headings-font-weight;
+		font-family: $font-family-sans-serif;
+		font-weight: $headings-font-weight;
 		color: #000000;
 	}
 }

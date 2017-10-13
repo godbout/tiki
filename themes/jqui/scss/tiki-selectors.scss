@@ -1,5 +1,5 @@
 // $Id$
-// This file is for additional LESS rules beyond what are in variables.less.
+// This file is for additional LESS rules beyond what are in variables.scss.
 // Image path example:
 // $imagePath: "newtheme/images/";
 // body {
@@ -8,7 +8,7 @@
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
 // .glyphicon {color: @gray-lighter;}
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/mixins.less";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
 
 .topbar {
 	border-radius: $border-radius;
@@ -39,7 +39,7 @@
 .panel-heading,
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-	#gradient > .vertical(@start-color: #e3e3e3; @end-color: #cccccc);
+	#gradient > .vertical($start-color: #e3e3e3; $end-color: #cccccc);
 }
 
 .panel-heading {

@@ -1,5 +1,5 @@
-// $Id: tiki-selectors.less 61972 2017-03-31 09:47:19Z chibaguy $
-// This file is for additional LESS rules beyond what are in variables.less.
+// $Id: tiki-selectors.scss 61972 2017-03-31 09:47:19Z chibaguy $
+// This file is for additional LESS rules beyond what are in variables.scss.
 // Image path example:
 $imagePath: "../images/";
 // body {
@@ -7,10 +7,10 @@ $imagePath: "../images/";
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 
-@topmodules-row-sidemargins: 0;
-@topbar-row-sidemargins: -15px;
+$topmodules-row-sidemargins: 0;
+$topbar-row-sidemargins: -15px;
 
 //body {
 //	background: url('#{$imagePath}background.jpg');
@@ -168,7 +168,7 @@ footer.footer {
 // /* Autosave Preview handle */
 #autosave_preview {
 	background: url('#{$imagePath}page_background_ltr.jpg') repeat;
-	color: @text-color;
+	color: $text-color;
 }
 
 .postbody-title .title > .panel-title a.link,

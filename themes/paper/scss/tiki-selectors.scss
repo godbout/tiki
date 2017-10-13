@@ -1,5 +1,5 @@
 // $Id$
-// This file is for additional LESS rules beyond what are in variables.less.
+// This file is for additional LESS rules beyond what are in variables.scss.
 // Image path example:
 // $imagePath: "../images/";
 // body {
@@ -13,7 +13,7 @@
 .tiki .chosen-container-active.chosen-with-drop .chosen-single,
 .tiki .chosen-container .chosen-drop,
 .tiki .chosen-container-multi .chosen-choices .search-choice {
-	background-color: @body-bg;
+	background-color: $body-bg;
 	border: 1px solid transparent;
 	color: #666666;
 }
