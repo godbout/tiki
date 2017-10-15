@@ -5195,6 +5195,7 @@ permissioncheck/usecases.txt -text
 permissioncheck/worry/check.php -text
 permissioncheck/worry/index.php -text
 permissioncheck/yes.bin -text
+/phpcs.xml.dist -text
 /plugins_help.php -text
 /poll_categorize.php -text
 /prepare_permissioncheck.sh -text
