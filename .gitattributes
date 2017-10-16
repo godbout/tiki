@@ -3249,7 +3249,7 @@ lib/core/WikiPlugin/Negotiator/Wiki/Alias.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/index.php -text
 lib/core/WikiPlugin/Negotiator/index.php -text
 lib/core/WikiPlugin/index.php -text
-lib/core/Yaml/Directive/Include.php -text
+lib/core/Yaml/Directive/DirectiveInclude.php -text
 lib/core/Yaml/Directives.php -text
 lib/core/Yaml/Filter/FilterInterface.php -text
 lib/core/Yaml/Filter/ReplaceUserData.php -text
