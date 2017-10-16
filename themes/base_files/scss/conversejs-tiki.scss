@@ -152,7 +152,7 @@
 
 			.chat-body {
 				background-color:inherit;
-				.chat-content { height:calc(~"100% - 95px"); color:$body-color; background-color:inherit; }
+				.chat-content { height:calc(100% - 95px); color:$body-color; background-color:inherit; }
 				.chat-info { color:$link-color; }
 				.chat-message span.chat-msg-me { color:$btn-info-bg; }
 				.chat-message span.chat-msg-them { color:$btn-primary-bg; }

@@ -4,7 +4,7 @@ $imagePathToImgDir: "../../../img/";
 
 // Background color for navbar collapse dropdowns (Tiki's aren't .dropdown li).
 .navbar-collapse.collapse.in {
-	background: $navbar-default-bg;
+	background: $navbar-dark-bg;
 }
 
 // tiki-boxes_and_panels.less
@@ -145,17 +145,17 @@ a.fc-event:hover {
 	//.topbar .cssmenu_horiz ul,
 .topbar .navbar-default .navbar-nav > li,
 .topbar .nav > li {
-	background: $topbar_bg; //  $navbar-default-bg;
-	color: $topbar_color; //  $navbar-default-color;
+	background: $topbar_bg; //  $navbar-dark-bg;
+	color: $topbar_color; //  $navbar-dark-color;
 	> a {
-		color: $topbar_link_color; // $navbar-default-link-color;
-		//    background: $navbar-default-link-bg;
-		padding-top: $topbar_link_padding_top; //  $navbar-padding-vertical;
-		padding-bottom: $topbar_link_padding_bottom; // $navbar-padding-vertical;
+		color: $topbar_link_color; // $navbar-dark-link-color;
+		//    background: $navbar-dark-link-bg;
+		padding-top: $topbar_link_padding_top; //  $navbar-padding-y;
+		padding-bottom: $topbar_link_padding_bottom; // $navbar-padding-y;
 	}
 	> a:hover,
 	> a:focus {
-		color: $topbar_link_hover_color; //  $navbar-default-link-hover-color;
+		color: $topbar_link_hover_color; //  $navbar-dark-link-hover-color;
 	}
 }
 
@@ -165,12 +165,12 @@ a.fc-event:hover {
 
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0 > .sf-with-ul:after {
 	border: 5px solid transparent;
-	border-top-color: $navbar-default-link-color; // $dropdown-link-color; // /* edit this to suit design (no rgba in IE8) */
+	border-top-color: $navbar-dark-link-color; // $dropdown-link-color; // /* edit this to suit design (no rgba in IE8) */
 }
 
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0:hover > .sf-with-ul:after,
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0.sfhover > .sf-with-ul:after {
-	border-top-color: $navbar-default-link-hover-color;
+	border-top-color: $navbar-dark-link-hover-color;
 }
 
 //.topbar .sf-arrows .sf-with-ul:after {
@@ -347,7 +347,7 @@ body.fullscreen {
 }
 
 #debugconsole a.btn {
-	color: $navbar-default-link-color;
+	color: $navbar-dark-link-color;
 }
 
 // /* Icons */
@@ -432,7 +432,7 @@ div.cvsup {
 .layout_social_modules .topbar_modules,
 .layout_fixed_top_modules #top_modules {
 	h1.sitetitle {
-		color: $navbar-default-brand-color;
+		color: $navbar-dark-brand-color;
 	}
 	.navbar-inverse .navbar-collapse,
 	.navbar-inverse .navbar-form,
@@ -750,7 +750,7 @@ ul.all_languages > li {
 .autotoc .nav > li > a:hover,
 .autotoc .nav .nav > li > a:hover {
 	color: $link-hover-color;
-//	background: $navbar-default-link-hover-bg;
+//	background: $navbar-dark-link-hover-bg;
 }
 
 .plugin-form-float {

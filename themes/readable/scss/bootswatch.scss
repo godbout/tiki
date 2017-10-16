@@ -14,9 +14,9 @@
 	}
 
 	&-nav > li > a {
-		$margin-vertical: (($navbar-height - 2*$padding-base-vertical - $line-height-computed - 2px) / 2);
+		$margin-vertical: (($navbar-height - 2*$padding-y - $line-height-base - 2px) / 2);
 		margin: $margin-vertical 6px;
-		padding: $padding-base-vertical $padding-base-horizontal;
+		padding: $padding-y $padding-x;
 		border: 1px solid transparent;
 		border-radius: $border-radius;
 
@@ -48,7 +48,7 @@
 $media (min-width: $grid-float-breakpoint) {
 	.navbar {
 		.navbar-nav > li > a {
-			padding: $padding-base-vertical $padding-base-horizontal;
+			padding: $padding-y $padding-x;
 		}
 	}
 }
@@ -106,7 +106,7 @@ legend {
 	font-family: $headings-font-family;
 
 	a {
-		color: $text-color;
+		color: $body-color;
 	}
 
 	a:hover {
@@ -147,7 +147,7 @@ legend {
 
 	&-default {
 		border: 1px solid #dddddd;
-		color: $text-color;
+		color: $body-color;
 	}
 
 }
@@ -168,13 +168,13 @@ legend {
 
 	&-default {
 		.close {
-			color: $text-color;
+			color: $body-color;
 		}
 	}
 }
 
 .modal {
 	.close {
-		color: $text-color;
+		color: $body-color;
 	}
 }

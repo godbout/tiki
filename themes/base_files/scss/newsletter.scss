@@ -1,5 +1,6 @@
 // $Id$
 // For newsletter styling. Variables defined in tiki-variables.scss. A theme-specific newsletter.css file can be loaded with priority.
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_functions.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/variables.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/mixins.scss";
 // $import "../../../vendor_bundled/vendor/twitter/bootstrap/less/panels.less";
@@ -37,7 +38,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 // Base class
 .panel {
-	margin-bottom: $line-height-computed;
+	margin-bottom: $line-height-base;
 	background-color: $panel-bg;
 	border: 1px solid transparent;
 	border-radius: $panel-border-radius;

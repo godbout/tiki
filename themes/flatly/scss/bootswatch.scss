@@ -311,19 +311,19 @@ a.list-group-item {
 .panel {
 	&-default {
 		.close {
-			color: $text-color;
+			color: $body-color;
 		}
 	}
 }
 
 .modal {
 	.close {
-		color: $text-color;
+		color: $body-color;
 	}
 }
 
 .popover {
-	color: $text-color;
+	color: $body-color;
 }
 
 .navbar-default .navbar-collapse.collapse.in .dropdown-menu li {background: transparent;}

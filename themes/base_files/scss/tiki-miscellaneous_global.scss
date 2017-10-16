@@ -381,7 +381,7 @@ div[style*="text-align: center"] .img-responsive {margin: auto}
   width: 250px;
 }
 .btn.btn-social {
-  margin-bottom: $padding-base-vertical;
+  margin-bottom: $padding-y;
   display: block;
 }
 .btn-social.btn-facebook {
@@ -421,7 +421,7 @@ textarea.wikiedit {
 .side-col-toggle { z-index: 2; }
 .tiki .side-col-toggle + #col1 {
 	margin-top: $top-margin-compensation-for-side-col-toggle;
-	padding-top: $line-height-computed;
+	padding-top: $line-height-base;
 }
 
 div.categbar {

@@ -28,7 +28,7 @@ $brand-danger:          #df382c;
 //** Background color for `<body>`.
 $body-bg:               #ffffff;
 //** Global text color on `<body>`.
-$text-color:            $gray-dark;
+$body-color:            $gray-dark;
 
 //** Global textual link color.
 $link-color:            $brand-primary;
@@ -62,7 +62,7 @@ $font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 //** Unit-less `line-height` for use in components like buttons.
 $line-height-base:        1.428571429; // 20/14
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
-$line-height-computed:    floor(($font-size-base * $line-height-base)); // ~20px
+$line-height-base:    floor(($font-size-base * $line-height-base)); // ~20px
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    $font-family-base;
@@ -87,8 +87,8 @@ $icon-font-svg-id:        "glyphicons_halflingsregular";
 //
 //## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
 
-$padding-base-vertical:     8px;
-$padding-base-horizontal:   12px;
+$padding-y:     8px;
+$padding-x:   12px;
 
 $padding-large-vertical:    14px;
 $padding-large-horizontal:  16px;
@@ -186,7 +186,7 @@ $input-bg:                       #ffffff;
 $input-bg-disabled:              $gray-lighter;
 
 //** Text color for `<input>`s
-$input-color:                    $text-color;
+$input-color:                    $body-color;
 //** `<input>` border color
 $input-border-color:                   #cccccc;
 
@@ -200,13 +200,13 @@ $input-border-radius-large:      $border-radius-large;
 $input-border-radius-small:      $border-radius-small;
 
 //** Border color for inputs on focus
-$input-border-focus:             #66afe9;
+$input-focus-border-color:             #66afe9;
 
 //** Placeholder text color
 $input-color-placeholder:        $gray-light;
 
 //** Default `.form-control` height
-$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2);
+$input-height:              ($line-height-base + ($padding-y * 2) + 2);
 //** Large `.form-control` height
 $input-height-large:             (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2);
 //** Small `.form-control` height
@@ -215,7 +215,7 @@ $input-height-small:             (floor($font-size-small * $line-height-small) +
 //** `.form-group` margin
 $form-group-margin-bottom:       15px;
 
-$legend-color:                   $text-color;
+$legend-color:                   $body-color;
 $legend-border-color:            #e5e5e5;
 
 //** Background color for textual input addons
@@ -358,10 +358,10 @@ $container-lg:                 $container-large-desktop;
 
 // Basics of a navbar
 $navbar-height:                    50px;
-$navbar-margin-bottom:             $line-height-computed;
+$navbar-margin-bottom:             $line-height-base;
 $navbar-border-radius:             $border-radius;
-$navbar-padding-horizontal:        floor(($grid-gutter-width / 2));
-$navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2);
+$navbar-padding-x:        floor(($grid-gutter-width / 2));
+$navbar-padding-y:          (($navbar-height - $line-height-base) / 2);
 $navbar-collapse-max-height:       340px;
 
 $navbar-default-color:             #ffffff;
@@ -751,7 +751,7 @@ $thumbnail-border:            #dddddd;
 $thumbnail-border-radius:     $border-radius;
 
 //** Custom text color for thumbnail captions
-$thumbnail-caption-color:     $text-color;
+$thumbnail-caption-color:     $body-color;
 //** Padding around the thumbnail caption
 $thumbnail-caption-padding:   9px;
 

@@ -137,7 +137,7 @@ label,
 
 .input-addon,
 .input-group-addon {
-	color: $text-color;
+	color: $body-color;
 }
 
 .has-warning {
@@ -224,19 +224,19 @@ label,
 
 .nav-tabs {
 	> li > a {
-		color: $text-color;
+		color: $body-color;
 	}
 }
 
 .nav-pills {
 	> li > a {
-		color: $text-color;
+		color: $body-color;
 	}
 }
 
 .pager {
 	a {
-		color: $text-color;
+		color: $body-color;
 	}
 }
 
@@ -315,7 +315,7 @@ a.list-group-item {
 
 	&-default > .panel-heading {
 		background-color: $table-bg-hover;
-		color: $text-color;
+		color: $body-color;
 	}
 }
 

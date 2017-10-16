@@ -92,7 +92,7 @@
 // Buttons ====================================================================
 
 .btn {
-	padding: $padding-base-vertical $padding-base-horizontal;
+	padding: $padding-y $padding-x;
 
 	&-lg {
 		padding: $padding-large-vertical $padding-large-horizontal;
@@ -265,12 +265,12 @@ input[type="checkbox"] {
 .nav-tabs {
 	> li > a {
 		background-color: $btn-default-bg;
-		color: $text-color;
+		color: $body-color;
 	}
 
 	.caret {
-		border-top-color: $text-color;
-		border-bottom-color: $text-color;
+		border-top-color: $body-color;
+		border-bottom-color: $body-color;
 	}
 }
 
@@ -425,14 +425,14 @@ input[type="checkbox"] {
 
 	&-default {
 		.close {
-			color: $text-color;
+			color: $body-color;
 		}
 	}
 }
 
 .modal {
 	.close {
-		color: $text-color;
+		color: $body-color;
 	}
 }
 
@@ -442,4 +442,4 @@ input[type="checkbox"] {
 .navbar-default .dropdown-menu > li > a:hover { color: #ffffff; }
 .navbar-default .dropdown-menu > .active > a { color: #bdbdbd; }
 
-.popover-content .table { color: $text-color; }
+.popover-content .table { color: $body-color; }

@@ -7,7 +7,7 @@ $imagePath: "../images/";
 
 body {
 	background: #fbfbfb url('#{$imagePath}image2.jpg') 100% 0 no-repeat;
-	color : $text-color;
+	color : $body-color;
 	font-family: $font-family-base;
 }
 

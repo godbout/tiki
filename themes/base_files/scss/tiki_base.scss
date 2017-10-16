@@ -1,13 +1,15 @@
 /* $Id$
 	This Tiki Wiki CMS Groupware file contains global design
 	and layout properties. */
-$body-bg: #fff;
-
 @import "bs3-bs4-transition.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_variables.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
-
+@import "../../default/scss/variables.scss";
 @import "tiki-variables.scss";
+
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap-reboot.scss";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap-grid.scss";
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
+
+
 @import "tiki-selectors.scss";
 @import "tiki-miscellaneous_global.scss";
 @import "tiki-modules.scss";
@@ -34,16 +36,16 @@ $body-bg: #fff;
 @import "tiki-modal_and_managestream.scss";
 @import "tiki-maps.scss";
 @import "tiki-cssmenus.scss";
-@import "tiki-external_scripts_overrides.scss";
-@import "tiki-bootstrap_overrides.scss";
-@import "tablesorter-tiki.scss";
-@import "tablesorter-custom.scss";
-@import "tiki-bootstrap-chosen.scss";
+// @import "tiki-external_scripts_overrides.scss";
+// @import "tiki-bootstrap_overrides.scss";
+// @import "tablesorter-tiki.scss"; Syntax needs updating
+// @import "tablesorter-custom.scss";
+// @import "tiki-bootstrap-chosen.scss";
 @import "tiki-media-print.scss";
 @import "tiki-wikipages_and_plugins.scss";
 @import "tiki-multilike.scss";
-@import "pivot-tiki.scss";
-@import "conversejs-tiki.scss";
+// @import "pivot-tiki.scss";
+// @import "conversejs-tiki.scss"; commmented out to find undefined $btn-primary-border
 
 
 /* End of file */

@@ -15,7 +15,7 @@
 // Buttons ====================================================================
 
 .btn {
-	padding: ($padding-base-vertical + 2) $padding-base-horizontal $padding-base-vertical;
+	padding: ($padding-y + 2) $padding-x $padding-y;
 	.shadow();
 	font-size: 12px;
 	font-weight: bold;
@@ -504,17 +504,17 @@ a.list-group-item {
 
 	&-default {
 		.close {
-			color: $text-color;
+			color: $body-color;
 		}
 	}
 }
 
 .modal {
 	.close {
-		color: $text-color;
+		color: $body-color;
 	}
 }
 
 .popover {
-	color: $text-color;
+	color: $body-color;
 }

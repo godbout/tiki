@@ -1,9 +1,11 @@
-// $Id$ 
+// $Id$
 // Copy of default Bootstrap Variables file
 // --------------------------------------------------
-
+@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap-reboot.scss";
 // Variables
 // Original comment start.
+// Variables
+//
 // Copy settings from this file into the provided `_custom.scss` to override
 // the Bootstrap defaults without modifying key, versioned files.
 //
@@ -65,15 +67,15 @@ $gray-900: #212529 !default;
 $black:  #000 !default;
 
 $grays: (
-100: $gray-100,
-200: $gray-200,
-300: $gray-300,
-400: $gray-400,
-500: $gray-500,
-600: $gray-600,
-700: $gray-700,
-800: $gray-800,
-900: $gray-900
+		100: $gray-100,
+		200: $gray-200,
+		300: $gray-300,
+		400: $gray-400,
+		500: $gray-500,
+		600: $gray-600,
+		700: $gray-700,
+		800: $gray-800,
+		900: $gray-900
 ) !default;
 
 $blue:    #007bff !default;
@@ -88,30 +90,30 @@ $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
 $colors: (
-blue: $blue,
-	   indigo: $indigo,
-				purple: $purple,
-						 pink: $pink,
-								red: $red,
-									  orange: $orange,
-											   yellow: $yellow,
-														green: $green,
-																teal: $teal,
-																	   cyan: $cyan,
-																			  white: $white,
-																					  gray: $gray-600,
-																							 gray-dark: $gray-800
+		blue: $blue,
+		indigo: $indigo,
+		purple: $purple,
+		pink: $pink,
+		red: $red,
+		orange: $orange,
+		yellow: $yellow,
+		green: $green,
+		teal: $teal,
+		cyan: $cyan,
+		white: $white,
+		gray: $gray-600,
+		gray-dark: $gray-800
 ) !default;
 
 $theme-colors: (
-primary: $blue,
-		  secondary: $gray-600,
-					  success: $green,
-								info: $cyan,
-									   warning: $yellow,
-												 danger: $red,
-														  light: $gray-100,
-																  dark: $gray-800
+		primary: $blue,
+		secondary: $gray-600,
+		success: $green,
+		info: $cyan,
+		warning: $yellow,
+		danger: $red,
+		light: $gray-100,
+		dark: $gray-800
 ) !default;
 
 // Set a specific jump point for requesting color jumps
@@ -139,20 +141,20 @@ $enable-print-styles:       true !default;
 
 $spacer: 1rem !default;
 $spacers: (
-0: 0,
-1: ($spacer * .25),
-2: ($spacer * .5),
-3: $spacer,
-4: ($spacer * 1.5),
-5: ($spacer * 3)
+		0: 0,
+		1: ($spacer * .25),
+		2: ($spacer * .5),
+		3: $spacer,
+		4: ($spacer * 1.5),
+		5: ($spacer * 3)
 ) !default;
 
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: (
-25: 25%,
-50: 50%,
-75: 75%,
-100: 100%
+		25: 25%,
+		50: 50%,
+		75: 75%,
+		100: 100%
 ) !default;
 
 // Body
@@ -178,11 +180,11 @@ $link-hover-decoration: underline !default;
 // adapting to different screen sizes, for use in media queries.
 
 $grid-breakpoints: (
-xs: 0,
-sm: 576px,
-	   md: 768px,
-			  lg: 992px,
-					 xl: 1200px
+		xs: 0,
+		sm: 576px,
+		md: 768px,
+		lg: 992px,
+		xl: 1200px
 ) !default;
 @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
 @include _assert-starts-at-zero($grid-breakpoints);
@@ -193,10 +195,10 @@ sm: 576px,
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-sm: 540px,
-	   md: 720px,
-			  lg: 960px,
-					 xl: 1140px
+		sm: 540px,
+		md: 720px,
+		lg: 960px,
+		xl: 1140px
 ) !default;
 @include _assert-ascending($container-max-widths, "$container-max-widths");
 
@@ -475,12 +477,12 @@ $custom-file-box-shadow:    inset 0 .2rem .4rem rgba($black,.05) !default;
 $custom-file-button-color:  $custom-file-color !default;
 $custom-file-button-bg:     $gray-200 !default;
 $custom-file-text: (
-placeholder: (
-en: "Choose file..."
-),
-button-label: (
-en: "Browse"
-)
+		placeholder: (
+				en: "Choose file..."
+		),
+		button-label: (
+				en: "Browse"
+		)
 ) !default;
 
 

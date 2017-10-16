@@ -207,7 +207,7 @@ table,
 
 	&-default {
 		.close {
-			color: $text-color;
+			color: $body-color;
 		}
 	}
 }
@@ -250,12 +250,12 @@ a.list-group-item {
 
 .modal {
 	.close {
-		color: $text-color;
+		color: $body-color;
 	}
 }
 
 .popover {
-	color: $text-color;
+	color: $body-color;
 }
 
 .navbar-default .navbar-collapse.collapse.in .dropdown-menu li {background: transparent;}

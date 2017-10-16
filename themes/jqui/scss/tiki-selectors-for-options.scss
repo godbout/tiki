@@ -10,7 +10,7 @@
 // .glyphicon {color: $gray-lighter;}
 
 body {
-	color: $text-color;
+	color: $body-color;
 }
 
 // Links
@@ -116,8 +116,8 @@ input[type="submit"]:hover,
 	> a {
 		color: $topbar_link_color; // $navbar-default-link-color;
 		//    background: $navbar-default-link-bg;
-//		padding-top: $topbar_link_padding_top; //  $navbar-padding-vertical;
-//		padding-bottom: $topbar_link_padding_bottom; // $navbar-padding-vertical;
+//		padding-top: $topbar_link_padding_top; //  $navbar-padding-y;
+//		padding-bottom: $topbar_link_padding_bottom; // $navbar-padding-y;
 	}
 	> a:hover,
 	> a:focus {
