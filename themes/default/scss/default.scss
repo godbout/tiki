@@ -1,6 +1,6 @@
-@import "variables.scss";
-// Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.scss.
-@import "../../base_files/scss/tiki-variables.scss";
+@import "_variables.scss";
+// Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
+@import "../../base_files/scss/_tiki-variables.scss";
 // Core variables and mixins
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap-reboot.scss";
 //@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/functions.scss";
@@ -40,5 +40,5 @@
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/carousel.scss";
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/utilities.scss";
 // Tiki-site-specific adjustments
-//@import "../../base_files/scss/bootswatch_overrides.scss";
+//@import "../../base_files/scss/_bootswatch_overrides.scss";
 //@icon-font-path:          "../../../vendor_bundled/vendor/twitter/bootstrap/fonts/";

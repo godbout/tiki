@@ -1,0 +1,32 @@
+// $Id$
+// This temporary file is to provide definitions for Bootstrap 3 variables so the SCSS compile process goes smoothly,
+// especially for variables that have many instances.
+$body-bg: #fff;
+$body-color: #000000;
+$btn-default-bg: $body-bg;
+$btn-default-border: $body-color;
+$btn-default-color: $body-color;
+
+$btn-primary-bg: $body-bg;
+$btn-primary-color: $body-color;
+$btn-primary-border: $body-color;
+
+$btn-info-bg: $body-bg;
+$btn-info-color: $body-color;
+$bg-inverse: #000;
+$padding-y: .5rem !default; // Not sure where this is used besides buttons and pagination; not sure where it's defined in BS4
+$padding-x: .75rem !default;
+
+$table-bg-accent: darken($body-bg, 2.5%);
+$panel-info-heading-bg: $body-bg; // tiki-variables.scss:123
+$panel-info-text: $body-color;
+$panel-bg: $body-bg;
+$panel-default-text: $body-color;
+$panel-success-heading-bg: $alert-success-bg;
+$alert-padding: $alert-padding-x; // Didn't see "-y"
+$navbar-dark-bg: #000; // cerulean complained
+$topbar_bg: $navbar-dark-bg;
+$navbar-dark-link-color: $navbar-dark-color;
+$navbar-inverse-bg: #fff; // Should be theme specific; Cerulean didn't have one.
+$navbar-inverse-link-color: blue // "
+$navbar-inverse-bo

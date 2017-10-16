@@ -1,10 +1,10 @@
-//  $Id$ feb12/less/feb12.less; compile to make
+//  $Id$ feb12/scss/feb12.scss; compile to make
 /*  The Feb12 style sheet for Tiki Wiki CMS Groupware. */
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
-@import "../../base_files/scss/tiki-selectors.scss";
-@import "../../base_files/scss/tiki-variables.scss";
-@import "../../base_files/scss/external-scripts.scss";
-@import "tiki-selectors.scss";
-@import "bootstrap-variables.scss";
+@import "../../base_files/scss/_tiki-selectors.scss";
+@import "../../base_files/scss/_tiki-variables.scss";
+@import "../../base_files/scss/_external-scripts.scss";
+@import "_tiki-selectors.scss";
+@import "_bootstrap-variables.scss";
 
 // CSS rules for the theme, beyond what's covered in tiki_base and bootstrap (may use the theme's values for Bootstrap variables).

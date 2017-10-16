@@ -7,7 +7,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400
 @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
 // @import "../../../vendor_bundled/vendor/twitter/bootstrap/less/panels.less";
 @import "../../base_files/scss/newsletter.scss";
-@import "variables.scss";
+@import "_variables.scss";
 
 $font-family-sans-serif:  "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
 $font-family-base:        $font-family-sans-serif;

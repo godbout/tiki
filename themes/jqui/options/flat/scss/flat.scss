@@ -10,6 +10,6 @@
 // Contains relevant Bootstrap .less file sections to expose variables for the theme options to provide values for.]
 //@import "../../../scss/tiki-selectors-for-options.scss";
 // Contains CSS for styling Tiki elements not covered by Bootstrap.
-@import "tiki-selector-variables.scss";
+@import "_tiki-selector-variables.scss";
 // Provides values for "legacy" Tiki CSS selectors (not covered by Bootstrap).
-@import "bootstrap-variables.scss";
+@import "_bootstrap-variables.scss";
