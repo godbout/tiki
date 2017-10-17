@@ -107,15 +107,15 @@ fieldset.dropzone {
   max-width: 100%;
 }
 .profile-left-bar .profile-username {
-  font-size: $font-size-large;
+  font-size: $font-size-lg;
 }
 .profile-right-bar .profile-buttons .btn {
   width: 100%;
-  margin-bottom: $padding-large-vertical;
+  margin-bottom: ceil($line-height-base * 2);
 }
 .profile-right-bar button.add-friend {
   width: 100%;
-  margin-top: $padding-large-vertical;
+  margin-top: ceil($line-height-base * 2);
 }
 .profile-tab-content h2{
   margin-top:0;

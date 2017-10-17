@@ -45,7 +45,7 @@
 	}
 }
 
-$media (min-width: $grid-float-breakpoint) {
+@media (min-width: $grid-float-breakpoint) {
 	.navbar {
 		.navbar-nav > li > a {
 			padding: $padding-y $padding-x;
@@ -53,7 +53,7 @@ $media (min-width: $grid-float-breakpoint) {
 	}
 }
 
-$media (max-width: ($grid-float-breakpoint - 1)) {
+@media (max-width: ($grid-float-breakpoint - 1)) {
 	.navbar {
 		.navbar-nav > li > a {
 			margin: 0;

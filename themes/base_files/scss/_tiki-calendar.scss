@@ -19,15 +19,15 @@
 }
 
 .calhighlight {
-	color: $state-info-text;
-	background: $state-info-bg;
+	color: theme-color("info");
+	background: lighten(theme-color("info"), 70%);
 }
 
 a.fc-event:hover {
 	color: $tooltip-color;
 }
 
-$media (min-width: 768px) {
+@media (min-width: 768px) {
 	#calendar_dialog .modal-dialog {
 		min-width: 750px;
 		width: 80%;
@@ -110,13 +110,13 @@ $media (min-width: 768px) {
 }
 
 .status0 {
-	background: $alert-info-bg;
+	background: theme-color("info");
 }
 
 .status1 {
-	background: $alert-success-bg;
+	background: theme-color("success");
 }
 
 .status2 {
-	background: $alert-danger-bg;
+	background: theme-color("danger");
 }

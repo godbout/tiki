@@ -385,10 +385,10 @@ div[style*="text-align: center"] .img-responsive {margin: auto}
   display: block;
 }
 .btn-social.btn-facebook {
-  .button-variant(#ffffff; #3b5998; darken(#3b5998,5%)); //facebook blue is: #3b5998
+  @include button-variant(#ffffff, #3b5998, darken(#3b5998,5%)); //facebook blue is: #3b5998
 }
 .btn-social.btn-linkedin {
-  .button-variant(#ffffff; #4875B4; darken(#4875B4,5%)); //linkeidn blue is: #4875B4
+  @include button-variant(#ffffff, #4875B4, darken(#4875B4,5%)); //linkeidn blue is: #4875B4
 }
 
 #col1 {

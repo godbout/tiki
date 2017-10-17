@@ -420,7 +420,7 @@ div.tiki_plugin {
   text-decoration: none
 }
 
-@media (max-width:$screen-xs-max) {
+@include media-breakpoint-down(xs) {
 	.autotoc > .nav { display:none !important; }
 }
 
@@ -606,7 +606,7 @@ div.tiki_plugin {
 	top: 0;
 	right: 0;
 	opacity: 1;
-	background: $state-info-bg;
+	background: theme-color("info");
 	height: 100% !important;
 }
 
@@ -989,8 +989,8 @@ div.drillshow {
 
 .plugin-list-editor li.plugin {
 	list-style: none;
-	border: 1px solid $panel-default-border;
-	border-radius: $panel-border-radius;
+	border: 1px solid $card-border-color;
+	border-radius: $card-border-radius;
 	padding: 4px 8px;
 }
 

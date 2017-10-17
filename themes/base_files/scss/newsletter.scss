@@ -39,21 +39,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 // Base class
 .panel {
 	margin-bottom: $line-height-base;
-	background-color: $panel-bg;
+	background-color: $card-bg;
 	border: 1px solid transparent;
-	border-radius: $panel-border-radius;
+	border-radius: $card-border-radius;
 	@include box-shadow(0 1px 1px rgba(0,0,0,.05));
 }
 
 // Panel contents
 .panel-body {
-	padding: $panel-body-padding;
+//	padding: $card-body-padding; Todo = find variable or method
 //	&:extend(.clearfix all); Todo
 }
 
 // Optional heading
 .panel-heading {
-	padding: $panel-heading-padding;
+//	padding: $card-heading-padding; Todo = find variable or method
 	border-bottom: 1px solid transparent;
 //	.border-top-radius(($panel-border-radius - 1)); Todo
 }
@@ -75,12 +75,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 // Optional footer (stays gray in every modifier class)
-.panel-footer {
-	padding: $panel-footer-padding;
-	background-color: $panel-footer-bg;
-	border-top: 1px solid $panel-inner-border;
+//.panel-footer {
+//	padding: $card-footer-padding; Todo - find variable or method
+//	background-color: $panel-footer-bg; Todo - find variable or method
+//	border-top: 1px solid $card-border-color; Todo - find variable or method
 //	.border-bottom-radius(($panel-border-radius - 1)); Todo
-}
+//}
 
 // Contextual variations
 /*.panel-default {

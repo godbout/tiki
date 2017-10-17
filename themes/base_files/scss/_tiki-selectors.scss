@@ -11,13 +11,13 @@ $imagePathToImgDir: "../../../img/";
 .warning a,
 .warning a:link,
 .warning a:visited {
-	color: $alert-warning-text; // #b93c2e
+	color: $yellow; // $alert-warning-text; // #b93c2e
 }
 
 // tiki-calendar.less - tiki-calendar_calmode.tpl, mod-calendar_new.tpl
 .calhighlight {
-	color: $state-info-text;
-	background: $state-info-bg;
+	color: $white; // Todo $state-info-text;
+	background: $cyan; // Todo $state-info-bg;
 }
 
 //fullcalendar.js
@@ -32,7 +32,7 @@ a.fc-event:hover {
 		border: thin solid $btn-default-border /*black*/;
 		.token {
 			background: $body-bg;
-			border: 1px solid $gray-light;
+			border: 1px solid $gray-200;
 			font-size: 11px;
 			padding: 3px;
 		}
@@ -198,15 +198,15 @@ a.fc-event:hover {
 
 // tiki-file_galleries.less
 .thumbinfosothers {
-	color: $gray-lighter; // #888
+	color: $gray-200; // #888
 }
 
 table.treetable.objectperms td.added {
-	background-color: $state-success-bg; // #dfd
+	background-color: theme-color("success"); // #dfd
 }
 
 table.treetable.objectperms td.removed {
-	background-color: $state-warning-bg; // #fdd
+	background-color: theme-color("warning"); // #fdd
 }
 
 // tiki-js.js, browse_file_gallery.tpl
@@ -216,18 +216,18 @@ table.treetable.objectperms td.removed {
 
 // jquery-tiki/files.js
 .progressBarInProgress {
-	background-color: $state-info-text;
-	color: $state-info-bg;
+	background-color: theme-color("info");
+	color: $white;
 }
 
 .progressBarComplete {
-	background-color: $state-success-text;
-	color: $state-success-bg;
+	background-color: theme-color("success");
+	color: $white;
 }
 
 .progressBarError {
-	background-color: $state-warning-text;
-	color: $state-warning-bg;
+	background-color: theme-color("warning");
+	color: $white;
 }
 
 .progressContainer {
@@ -238,7 +238,7 @@ table.treetable.objectperms td.removed {
 // tiki-forums.less
 //* Forum filter collapsible panel. Adds +/-*/
 .filter-panel-heading a:after {
-	color: $gray;
+	color: $gray-500;
 }
 
 // tiki-maps.less
@@ -277,13 +277,13 @@ table.treetable.objectperms td.removed {
 .highlight,
 .btn-default.highlight a,
 .btn-default a.highlight {
-	background: $state-danger-bg;
-	color: $state-danger-text;
-	border-color: $state-danger-border;
+	background: theme-color("danger");
+	color: $white;
+	border-color: darken(theme-color("danger"), 10%);
 }
 
 .btn-default.highlight:hover {
-	background: darken($state-danger-bg, 15%);
+	background: darken(theme-color("danger"), 15%);
 }
 
 // Smarty {button} maeks .btn-default but sometimes .btn-link is added by hand. Actually Smarty {button} probably should make just .btn.
@@ -300,21 +300,21 @@ table.treetable.objectperms td.removed {
 }
 
 #ajaxLoading {
-	color: $gray-lighter;
+	color: $gray-300;
 	background: transparent url('#{$imagePathToImgDir}loading-light.gif') no-repeat 50% 50%;
 }
 
 // cookie consent style
 #cookie_consent_div {
-	padding: $alert-padding;
-	border: 1px solid $alert-info-border;
-	color: $alert-info-text;
-	background-color: $alert-info-bg;
+	padding: $alert-padding-x $alert-padding-y;
+	border: 1px solid darken(theme-color("info"), 10%);
+	color: $white;
+	background-color: theme-color("info");
 }
 
 #cookie_consent_div.banner {
-	padding: $alert-padding;
-	border: 1px solid $alert-info-border;
+	padding: $alert-padding-x $alert-padding-y;
+	border: 1px solid theme-color("info");
 }
 
 // print mode only - to make sure print templates will use and print on seamless white bg color
@@ -329,25 +329,25 @@ body.fullscreen {
 }
 
 .attention {
-	color: $alert-danger-text;
+	color: theme-color("danger");
 }
 
 #debugconsole {
-	background: $navbar-inverse-bg;
-	color: $navbar-inverse-link-color;
-	border: 2px solid $navbar-inverse-border;
+	background: lighten($navbar-light-color, 80%); // Todo - what's the way to specify backgrounds?
+	color: $navbar-light-color;
+	border: 2px solid $navbar-light-color;
 }
 
 #debugconsole form {
-	color: $navbar-inverse-color;
+	color: $navbar-light-color;
 }
 
 #debugconsole a {
-	color: $navbar-inverse-link-active-color;
+	color: $navbar-light-color;
 }
 
 #debugconsole a.btn {
-	color: $navbar-dark-link-color;
+	color: $navbar-light-color;
 }
 
 // /* Icons */
@@ -384,11 +384,11 @@ input:-webkit-autofill {
 // tiki-modal_and_managestream.less
 form.simple label.error {
 	background: url('#{$imagePathToImgDir}icons/error.png') no-repeat 0 4px;
-	color: $state-danger-text;
+	color: theme-color("danger");
 }
 
 form.simple label .warning {
-	color: $state-danger-text;
+	color: theme-color("danger");
 }
 
 .tiki-modal .mask {
@@ -417,22 +417,22 @@ form.simple label .warning {
 }
 
 .box-switch_lang .box-data img.highlight {
-	border: .1em solid $alert-danger-border;
+	border: .1em solid theme-color("danger");
 }
 
 .box-switch_lang .box-data .highlight {
-	border: .1em solid $alert-danger-border;
+	border: .1em solid theme-color("danger");
 }
 
 div.cvsup {
-	color: $gray-light;
+	color: $gray-300;
 }
 
 .layout_social .topbar_modules,
 .layout_social_modules .topbar_modules,
 .layout_fixed_top_modules #top_modules {
 	h1.sitetitle {
-		color: $navbar-dark-brand-color;
+		color: $navbar-light-color;
 	}
 	.navbar-inverse .navbar-collapse,
 	.navbar-inverse .navbar-form,
@@ -456,52 +456,52 @@ div.cvsup {
 }
 
 .prio2 {
-	background: $alert-success-bg;
-	color: $alert-success-text;
-	border: $alert-success-border;
+	background: theme-color("success");
+	color: theme-color("success");
+	border: theme-color("success");
 	a {
-		color: $alert-success-text;
+		color: theme-color("success");
 	}
 }
 
 .prio3 {
-	background: $alert-info-bg;
-	color: $alert-info-text;
-	border: $alert-info-border;
+	background: theme-color("info");
+	color: theme-color("info");
+	border: theme-color("info");
 	a {
-		color: $alert-info-text;
+		color: theme-color("info");
 	}
 }
 
 .prio4 {
-	background: $alert-warning-bg;
-	color: $alert-warning-text;
-	border: $alert-warning-border;
+	background: theme-color("warning");
+	color: theme-color("warning");
+	border: theme-color("warning");
 	a {
-		color: $alert-warning-text;
+		color: theme-color("warning");
 	}
 
 }
 
 .prio5 {
-	background: $alert-danger-bg;
-	color: $alert-danger-text;
-	border: $alert-danger-border;
+	background: theme-color("danger");
+	color: theme-color("danger");
+	border: theme-color("danger");
 	a {
-		color: $alert-danger-text;
+		color: theme-color("danger");
 	}
 }
 
 .messureadflag {
-	background: $gray;
+	background: $gray-500;
 }
 
 .messureadhead {
-	background: $gray-light;
+	background: $gray-500;
 }
 
 .messureadbody {
-	background: $gray-lighter;
+	background: $gray-300;
 }
 
 .readlink {
@@ -523,16 +523,16 @@ div.cvsup {
 }
 
 .webmail_list .webmail_read {
-	background: $state-info-bg;
+	background: theme-color("info");
 }
 
 .webmail_list .webmail_replied {
-	background: $state-success-bg;
+	background: theme-color("success")
 }
 
 .webmail_list .webmail_taken {
-	border: $state-warning-border;
-	color: $state-warning-text;
+	border: theme-color("warning");
+	color: theme-color("warning");
 }
 
 .webmail_message {
@@ -572,11 +572,11 @@ div.cvsup {
 // tiki-toolbars.less
 .helptool-admin {
 	// /* right justified section of toolbars */
-	border-left: medium double $gray-light;
+	border-left: medium double $gray-200;
 }
 
 .toolbar-list {
-	border-left: medium double $gray-light;
+	border-left: medium double $gray-200;
 }
 
 .toolbars-picker {
@@ -592,21 +592,21 @@ div.cvsup {
 }
 
 .toolbars-picker a:hover {
-	border: 1px solid $state-danger-text;
-	background: $gray-light;
+	border: 1px solid theme-color("danger");
+	background: $gray-300;
 	color: $body-color;
 }
 
 // /* New Toolbars */
 .textarea-toolbar > div {
-	background-color: $gray-lighter;
-	border: outset 1px $gray-lighter;
+	background-color: $gray-200;
+	border: outset 1px $gray-200;
 }
 
 // tiki-translation.less
 #intertrans-indicator {
-	background-color: $alert-success-bg;
-	color: $alert-success-text;
+	background-color: theme-color("success");
+	color: theme-color("success");
 }
 
 #intertrans-form {
@@ -616,11 +616,11 @@ div.cvsup {
 }
 
 #edit_translations tr.last {
-	border-bottom: 2px solid $alert-success-border;
+	border-bottom: 2px solid theme-color("success");
 }
 
 ul.all_languages > li {
-	border: 1px solid $alert-success-border;
+	border: 1px solid theme-color("success");
 }
 
 // tiki-wikipages_and_plugins.less
@@ -642,12 +642,12 @@ ul.all_languages > li {
 
 // /* wikiplugin_tracker */
 .mandatory_note {
-	color: $state-danger-text;
+	color: theme-color("danger");
 }
 
 // /* page contribution by author / wikiplugin_author */
 .author0 {
-	color: $panel-success-text;
+	color: theme-color("success");
 }
 
 .author1 {
@@ -655,43 +655,43 @@ ul.all_languages > li {
 }
 
 .author2 {
-	color: $panel-warning-text;
+	color: theme-color("info");
 }
 
 .author3 {
-	color: $panel-danger-text;
+	color: theme-color("danger");
 }
 
 .author4 {
-	color: adjust-hue($panel-success-text, 50);
+	color: adjust-hue(theme-color("success"), 50);
 }
 
 .author5 {
-	color: adjust-hue($panel-info-text, 70);
+	color: adjust-hue(theme-color("info"), 70);
 }
 
 .author6 {
-	color: adjust-hue($panel-warning-text, 50);
+	color: adjust-hue(theme-color("warning"), 50);
 }
 
 .author7 {
-	color: adjust-hue($panel-danger-text, 50);
+	color: adjust-hue(theme-color("danger"), 50);
 }
 
 .author8 {
-	color: adjust-hue($panel-success-text, 100);
+	color: adjust-hue(theme-color("success"), 100);
 }
 
 .author9 {
-	color: adjust-hue($panel-info-text, 100);
+	color: adjust-hue(theme-color("info"), 100);
 }
 
 .author10 {
-	color: adjust-hue($panel-warning-text, 100);
+	color: adjust-hue(theme-color("warning"), 100);
 }
 
 .author11 {
-	color: adjust-hue($panel-danger-text, 100);
+	color: adjust-hue(theme-color("danger"), 100);
 }
 
 .author12 {
@@ -699,24 +699,24 @@ ul.all_languages > li {
 }
 
 .author13 {
-	color: adjust-hue($panel-info-text, 140);
+	color: adjust-hue(theme-color("info"), 140);
 }
 
 .author14 {
-	color: adjust-hue($panel-warning-text, 160);
+	color: adjust-hue(theme-color("warning"), 160);
 }
 
 .author15 {
-	color: adjust-hue($panel-danger-text, 160);
+	color: adjust-hue(theme-color("danger"), 160);
 }
 
 .structuremenu .menuSection {
-	border-left: 1px dotted $gray;
+	border-left: 1px dotted $gray-500;
 }
 
 // /* Inline CkEditor */
 .cke_editable:hover {
-	outline: $gray dotted 1px;
+	outline: $gray-500 dotted 1px;
 }
 
 // /* Background for CKEditor */
@@ -728,19 +728,19 @@ ul.all_languages > li {
 
 .tiki_plugin {
 	background-color: transparent; // /* was #f8f8f8; */
-	border: 1px solid $gray-light;
+	border: 1px solid $gray-300;
 }
 
 .unsavedChangesInEditor {
 	border: 1px solid;
-	border-color: $alert-warning-border;
+	border-color: theme-color("warning");
 }
 
 // /* Auto TOC */
 .autotoc > .nav {
-	background: $panel-bg;
-	border: 1px solid $panel-default-border;
-	border-radius: $panel-border-radius;
+	background: $card-bg;
+	border: 1px solid $card-border-color;
+	border-radius: $border-radius;
 }
 
 .autotoc * {
@@ -784,31 +784,31 @@ body.wikitext {
 }
 
 .editable-inline.modified {
-	border: solid 2px $btn-danger-border;
+	border: solid 2px theme-color("danger");
 	padding: 2px;
 }
 
 .editable-inline.unsaved {
-	border: solid 2px $btn-danger-border;
+	border: solid 2px theme-color("danger");
 }
 
 .structure_select .cssmenu_horiz ul li {
-	border: 1px solid $gray;
+	border: 1px solid $gray-500;
 }
 
 .admintoclevel .actions input {
-	border: solid 1px $gray;
+	border: solid 1px $gray-500;
 }
 
 // /* Fullscreen textareas */
 .TextArea-fullscreen {
-	background-color: $gray;
+	background-color: $gray-500;
 }
 
 .TextArea-fullscreen .actions,
 .CodeMirror-fullscreen .actions {
 	background-color: $body-bg;
-	border-top: $gray-lighter 1px solid;
+	border-top: $gray-300 1px solid;
 }
 
 // /* Autosave Preview handle */
@@ -818,7 +818,7 @@ body.wikitext {
 }
 
 #autosave_preview_grippy {
-	background-color: $gray-lighter;
+	background-color: $gray-300;
 	background-image: url('#{$imagePathToImgDir}icons/shading.png');
 }
 
@@ -828,7 +828,7 @@ h3:hover a.tiki_anchor,
 h4:hover a.tiki_anchor,
 h5:hover a.tiki_anchor,
 h6:hover a.tiki_anchor {
-	color: $gray-lighter;
+	color: $gray-300;
 	//  display: inline;
 }
 
@@ -838,35 +838,35 @@ h3 a.tiki_anchor:hover,
 h4 a.tiki_anchor:hover,
 h5 a.tiki_anchor:hover,
 h6 a.tiki_anchor:hover {
-	color: $gray;
+	color: $gray-500;
 }
 
 // /* Namespace styling */
 .wiki .namespace {
-	background: $gray-lighter;
+	background: $gray-300;
 }
 
 .site_report a {
-	border-left: 1px solid $gray;
-	border-right: 1px solid $gray;
+	border-left: 1px solid $gray-500;
+	border-right: 1px solid $gray-500;
 }
 
 .quotebody {
-	border-left: 2px solid $gray-light;
+	border-left: 2px solid $gray-300;
 }
 
 // /* wikiplugin tracker */
 .mandatory_star {
-	color: $brand-danger;
+	color: theme-color("danger");
 	font-size: 120%;
 }
 
 .trackerplugindesc {
-	color: $gray-dark;
+	color: $gray-800;
 }
 
 .charCount {
-	color: $gray-dark;
+	color: $gray-800;
 }
 
 // /* img plugin */ wikiplugin_img.php, article.tpl
@@ -877,20 +877,20 @@ h6 a.tiki_anchor:hover {
 
 // /* wikiplugin_carousel v3 */
 .ic_button {
-	border: 2px solid $pagination-border;
+	border: 2px solid $pagination-border-color;
 }
 
 .ic_active {
-	border: 2px solid $pagination-active-border;
+	border: 2px solid $pagination-active-border-color;
 }
 
 .ic_caption {
-	background: $navbar-inverse-bg;
-	color: $navbar-inverse-color;
+	background: $navbar-dark-bg;
+	color: $navbar-dark-color;
 }
 
 .wp-cookie-consent-required {
-	color: $alert-danger-text;
+	color: theme-color("danger");
 }
 
 .wp-sign {
@@ -908,51 +908,51 @@ h6 a.tiki_anchor:hover {
 
 // /* TOC */
 .toc {
-	border-top: 1px dotted $gray-light;
-	border-bottom: 1px dotted $gray-light;
+	border-top: 1px dotted $gray-300;
+	border-bottom: 1px dotted $gray-300;
 }
 
 // /* Wiki diff styles */
 .diff td {
-	border: 1px solid $gray-dark;
+	border: 1px solid $gray-700;
 }
 
 .diff div {
-	border-top: 1px solid $gray-light;
+	border-top: 1px solid $gray-300;
 }
 
 .diffadded {
-	background: $state-success-bg;
-	color: $state-success-text;
+	background: theme-color("success");
+//	color: $state-success-text;
 }
 
 .diffdeleted {
-	background: $state-danger-bg;
-	color: $state-danger-text;
+	background: theme-color("danger");
+//	color: $state-danger-text;
 }
 
 .diffinldel {
-	background: $state-warning-bg;
+	background: theme-color("warning");
 }
 
 .diffbody {
-	background: $gray-lighter;
-	color: $gray-darker;
+	background: $gray-200;
+	color: $gray-700;
 }
 
 .diffchar {
-	color: lighten($state-danger-text, 10%);
+	color: lighten(theme-color("danger"), 10%);
 }
 
 .diffadded .diffchar {
-	color: lighten($state-success-text, 10%);
+	color: lighten(theme-color("success"), 10%);
 }
 
 .searchresults blockquote em.hlt1,
 .searchresults blockquote em.hlt6,
 .highlight_word_0 {
-	color: $panel-success-text;
-	background: $panel-success-heading-bg;
+//	color: theme-color("success");
+	background: theme-color("success");
 }
 
 .searchresults blockquote em.hlt2,
@@ -965,27 +965,27 @@ h6 a.tiki_anchor:hover {
 .searchresults blockquote em.hlt3,
 .searchresults blockquote em.hlt8,
 .highlight_word_2 {
-	color: $panel-warning-text;
-	background: $panel-warning-heading-bg;
+//	color: $panel-warning-text;
+	background: theme-color("warning");
 }
 
 .searchresults blockquote em.hlt4,
 .searchresults blockquote em.hlt9,
 .highlight_word_3 {
-	color: $panel-danger-text;
-	background: $panel-danger-heading-bg;
+//	color: $panel-danger-text;
+	background: theme-color("danger");
 }
 
 .searchresults blockquote em.hlt5,
 .searchresults blockquote em.hlt10,
 .highlight_word_4 {
-	color: adjust-hue($panel-danger-text, 20);
-	background: adjust-hue($panel-danger-heading-bg, 20);
+//	color: adjust-hue($panel-danger-text, 20);
+	background: adjust-hue(theme-color("danger"), 20);
 }
 
 /* Structures drill-down menu */
 div.drillshow {
-	border: 1px solid $gray-light;
+	border: 1px solid $gray-300;
 }
 
 .tiki .chosen-container-single .chosen-single {
@@ -1041,7 +1041,7 @@ div.drillshow {
 	font-size: $breadcrumb-font-size; // 90%;
 	display: $breadcrumb-display; // block;
 }
-
+/* Todo - button styles are simpler in BS4 - got to figure it out
 // Admin
 a.admbox {
 	&,
@@ -1067,7 +1067,7 @@ a.admbox {
 			color: $admbox-off-hover-color; // #666666;
 		}
 	}
-}
+}*/
 
 .tiki .ui-widget-content,
 span.plugin-mouseover  {
@@ -1143,18 +1143,18 @@ pre.codelisting {
 	right: 2px;
 }
 
-@media (min-width: $screen-md-min) {
+@include media-breakpoint-up(md) {
 	.edit-menu { display: none; }
 	.navbar-default:hover .edit-menu { display: block; }
 }
 
-@media (max-width: $screen-xs-max) {
+@include media-breakpoint-down(xs) {
 	.navbar-default .edit-menu { top: 48px; }
 }
 
 // Make hierarchical arrangement of admin options more clear
 .adminoptionboxchild {
-	border-bottom: 1px solid $hr-border;
+	border-bottom: 1px solid $hr-border-color;
 	legend {
 		font-size: $secondary-legend-font-size;
 	}
@@ -1163,7 +1163,7 @@ pre.codelisting {
 // Admin navbar switch
 
 input[type="checkbox"].preffilter-toggle-round + label {
-	background-color: $gray-light;
+	background-color: $gray-300;
 }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {

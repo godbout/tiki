@@ -286,7 +286,7 @@ body.fullscreen.tiki.navbar-padding {
 // End overrides for wide side column layout
 
 
-$media (max-width: $screen-sm-max) {
+@media (max-width: $screen-sm-max) {
 	#col1 {
 		width: 100%;
 	}

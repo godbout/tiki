@@ -22,11 +22,20 @@ $panel-info-heading-bg: $body-bg; // tiki-variables.scss:123
 $panel-info-text: $body-color;
 $panel-bg: $body-bg;
 $panel-default-text: $body-color;
-$panel-success-heading-bg: $alert-success-bg;
-$alert-padding: $alert-padding-x; // Didn't see "-y"
+$panel-success-heading-bg: turquoise; // $alert-success-bg;
+$alert-padding: 1.5rem; // $alert-padding-x; // Didn't see "-y"
 $navbar-dark-bg: #000; // cerulean complained
 $topbar_bg: $navbar-dark-bg;
 $navbar-dark-link-color: $navbar-dark-color;
 $navbar-inverse-bg: #fff; // Should be theme specific; Cerulean didn't have one.
-$navbar-inverse-link-color: blue // "
-$navbar-inverse-bo
+$navbar-inverse-link-color: blue; // "
+$navbar-inverse-border: $body-color;
+$navbar-inverse-link-active-color: red;
+$panel-default-border: $body-color;
+$navbar-dark-brand-color: #ccc;
+$panel-primary-border: $card-border-color;
+$panel-success-text: #000;
+$panel-warning-text: red;
+
+$alert-success-text: #fff;
+$alert-warning-text: #fff;

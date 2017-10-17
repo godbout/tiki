@@ -298,19 +298,19 @@ div.cvsup {
 	margin-bottom: 0;
 }
 
-.topbar .form-control,
-.topbar .btn,
-.page-header .box-search .search_mod_magnifier,
-.page-header .box-search input.form-control {
-
-	max-height: $navbar-height * .53;
-	margin-top: $navbar-height * .12;
-	margin-bottom: $navbar-height * .10;
-	padding-top: $navbar-height * .06;
-	padding-bottom: $navbar-height * .06;
-	font-size: $navbar-height * .28;
-
-}
+//.topbar .form-control, Todo (after navbar update)
+//.topbar .btn,
+//.page-header .box-search .search_mod_magnifier,
+//.page-header .box-search input.form-control {
+//
+//	max-height: $navbar-height * .53;
+//	margin-top: $navbar-height * .12;
+//	margin-bottom: $navbar-height * .10;
+//	padding-top: $navbar-height * .06;
+//	padding-bottom: $navbar-height * .06;
+//	font-size: $navbar-height * .28;
+//
+//}
 
 .navbar-fixed-top,
 .layout_social .topbar_modules,
@@ -370,13 +370,13 @@ div.cvsup {
 	}
 }
 
-$media (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
 	.layout_social_modules .navbar-header {
 		margin-top: -34px;
 	}
 }
 
-$media (max-width: $screen-xs-max) {
+@include media-breakpoint-down(xs) {
 	.box-search {
 		.form-inline .input-group {
 			margin-left: 0 !important;
