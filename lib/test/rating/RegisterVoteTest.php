@@ -5,22 +5,35 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-$ratinglib = TikiLib::lib('rating');
+
 
 class Rating_RegisterVoteTest extends TikiTestCase
 {
+	protected $ratingDefaultOptions;
+	protected $ratingAllowMultipleVotes;
+
 	function setUp()
 	{
-		global $user; $user = null;
+		global $user, $prefs; $user = null;
 		parent::setUp();
 		TikiDb::get()->query('DELETE FROM `tiki_user_votings` WHERE `id` LIKE ?', array('test.%'));
+
+		$ratinglib = TikiLib::lib('rating');
+
+		$this->ratingDefaultOptions = $prefs['rating_default_options'];
+		$prefs['rating_default_options'] = '0,1,2,3,4,5';
+		$this->ratingAllowMultipleVotes = $prefs['rating_allow_multi_votes'];
+		$prefs['rating_allow_multi_votes'] = 'y';
 	}
 
 	function tearDown()
 	{
-		global $user; $user = null;
+		global $user, $prefs; $user = null;
 		parent::tearDown();
 		TikiDb::get()->query('DELETE FROM `tiki_user_votings` WHERE `id` LIKE ?', array('test.%'));
+
+		$prefs['rating_default_options'] = $this->ratingDefaultOptions;
+		$prefs['rating_allow_multi_votes'] = $this->ratingAllowMultipleVotes;
 	}
 
 	function tokenFormats()
@@ -59,6 +72,32 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$this->assertEquals(
 			array(
 				array('user' => 'abc', 'id' => 'test.111', 'optionId' => 2),
+				array('user' => 'abc', 'id' => 'test.111', 'optionId' => 3),
+				array('user' => 'abc', 'id' => 'test.112', 'optionId' => 4),
+				array('user' => 'def', 'id' => 'test.111', 'optionId' => 1),
+				array('user' => 'def', 'id' => 'test.112', 'optionId' => 5),
+				array('user' => 'def', 'id' => 'test.113', 'optionId' => 1),
+			),
+			$this->getTestData()
+		);
+	}
+
+	function testRecordUserVotesSingleVote()
+	{
+		global $prefs;
+		$prefs['rating_allow_multi_votes'] = '';
+
+		$lib = new RatingLib;
+		$this->assertTrue($lib->record_user_vote('abc', 'test', 111, 3));
+		$this->assertTrue($lib->record_user_vote('abc', 'test', 111, 2));
+		$this->assertTrue($lib->record_user_vote('abc', 'test', 112, 4));
+		$this->assertTrue($lib->record_user_vote('def', 'test', 111, 1));
+		$this->assertTrue($lib->record_user_vote('def', 'test', 113, 1));
+		$this->assertTrue($lib->record_user_vote('def', 'test', 112, 5));
+
+		$this->assertEquals(
+			array(
+				array('user' => 'abc', 'id' => 'test.111', 'optionId' => 2),
 				array('user' => 'abc', 'id' => 'test.112', 'optionId' => 4),
 				array('user' => 'def', 'id' => 'test.111', 'optionId' => 1),
 				array('user' => 'def', 'id' => 'test.112', 'optionId' => 5),
@@ -70,6 +109,35 @@ class Rating_RegisterVoteTest extends TikiTestCase
 
 	function testAnonymousVotes()
 	{
+		$lib = new RatingLib;
+
+		$key1 = 'deadbeef01234567';
+		$key2 = 'deadbeef23456789';
+		$this->assertTrue($lib->record_anonymous_vote($key1, 'test', 111, 3));
+		$this->assertTrue($lib->record_anonymous_vote($key1, 'test', 111, 2));
+		$this->assertTrue($lib->record_anonymous_vote($key1, 'test', 112, 4));
+		$this->assertTrue($lib->record_anonymous_vote($key2, 'test', 111, 1));
+		$this->assertTrue($lib->record_anonymous_vote($key2, 'test', 113, 1));
+		$this->assertTrue($lib->record_anonymous_vote($key2, 'test', 112, 5));
+
+		$this->assertEquals(
+			array(
+				array('user' => "anonymous\0$key1", 'id' => 'test.111', 'optionId' => 2),
+				array('user' => "anonymous\0$key1", 'id' => 'test.111', 'optionId' => 3),
+				array('user' => "anonymous\0$key1", 'id' => 'test.112', 'optionId' => 4),
+				array('user' => "anonymous\0$key2", 'id' => 'test.111', 'optionId' => 1),
+				array('user' => "anonymous\0$key2", 'id' => 'test.112', 'optionId' => 5),
+				array('user' => "anonymous\0$key2", 'id' => 'test.113', 'optionId' => 1),
+			),
+			$this->getTestData()
+		);
+	}
+
+	function testAnonymousVotesSingleVote()
+	{
+		global $prefs;
+		$prefs['rating_allow_multi_votes'] = '';
+
 		$lib = new RatingLib;
 
 		$key1 = 'deadbeef01234567';
