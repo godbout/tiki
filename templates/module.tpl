@@ -11,7 +11,7 @@
 <div id="module_{$moduleId}"
 	class="card card-default box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
 	{if $module_decorations ne 'n'}
-		<div class="card-heading">
+		<div class="card-header">
 			{if ($module_notitle ne 'y' && !empty($module_title)) || ($module_flip eq 'y' and $prefs.javascript_enabled ne 'n') || $prefs.menus_items_icons eq 'y'}
 				<h3 class="card-title clearfix" {if !empty($module_params.bgcolor)} style="background-color:{$module_params.bgcolor};"{/if}>
 					{if $module_notitle ne 'y' && !empty($module_title)}
@@ -28,7 +28,7 @@
 				</h3>
 			{/if}
 		</div>
-	{elseif $module_notitle ne 'y'}{* means when module decorations are set to 'n' don't render the card-heading wrapper as above *}
+	{elseif $module_notitle ne 'y'}{* means when module decorations are set to 'n' don't render the card-header wrapper as above *}
 	{if $module_flip eq 'y' and $prefs.javascript_enabled ne 'n'}
 	<h3 class="card-title"
 		 ondblclick="javascript:icntoggle('mod-{$smarty.capture.name}','module.png');"{if !empty($module_params.color)} style="color:{$module_params.color};"{/if}>
