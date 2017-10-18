@@ -1,5 +1,5 @@
-<div class="panel panel-danger" id="{$plugin_fingerprint|escape}">
-	<div class="panel-heading">
+<div class="card border-danger" id="{$plugin_fingerprint|escape}">
+	<div class="card-header bg-danger">
 		{icon name='error' style="vertical-align:middle"}
 		{if $plugin_status eq 'rejected'}
 			{tr}Plugin execution was denied{/tr}
@@ -7,7 +7,7 @@
 			{tr}Plugin execution pending approval{/tr}
 		{/if}
 	</div>
-	<div class="panel-body">
+	<div class="card-body">
 		{if $plugin_status eq 'rejected'}
 			<p>{tr}After argument validation by an editor, the execution of this plugin was denied. This plugin will eventually be removed or corrected.{/tr}</p>
 		{else}
