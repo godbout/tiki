@@ -29,7 +29,7 @@ a.fc-event:hover {
 // /* Fancy filter */
 .filter {
 	.fancyfilter {
-		border: thin solid $btn-default-border /*black*/;
+		border: thin solid theme-color("primary"); /*black*/;
 		.token {
 			background: $body-bg;
 			border: 1px solid $gray-200;
@@ -41,17 +41,17 @@ a.fc-event:hover {
 
 // tiki-comments.less - tiki-jquery.js
 .note-list .postbody-title {
-	background: $panel-bg; // /*#ccc*/
-	color: $panel-default-text; // /*#000*/
+	background: $card-bg; // /*#ccc*/
+	color: $card-text; // /*#000*/
 }
 
 // Comments moderation - comment.tpl, tiki-list_comments.tpl
 .post-approved-n {
-	border-left: 3px dotted $alert-success-text; // blue
+	border-left: 3px dotted theme-color("success"); // blue
 }
 
 .post-approved-r {
-	border-left: 3px double $alert-warning-text; // red
+	border-left: 3px double theme-color("warning"); // red
 }
 
 .post-approved-r .content * {

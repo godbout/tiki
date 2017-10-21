@@ -6578,8 +6578,8 @@ themes/amelia/icons/index.php -text
 themes/amelia/images/amelia.png -text
 themes/amelia/images/index.php -text
 themes/amelia/index.php -text
+themes/amelia/scss/_bootstrap-variables.scss -text
 themes/amelia/scss/_bootswatch.scss -text
-themes/amelia/scss/_variables.scss -text
 themes/amelia/scss/amelia.scss -text
 themes/amelia/scss/index.php -text
 themes/amelia/scss/newsletter.scss -text
@@ -6688,7 +6688,7 @@ themes/business/images/market.jpg -text
 themes/business/images/nav.gif -text
 themes/business/images/nav_h.gif -text
 themes/business/images/title_bg.png -text
-themes/business/scss/_custom.scss -text
+themes/business/scss/_bootstrap-variabales.scss -text
 themes/business/scss/_tiki-selectors.scss -text
 themes/business/scss/bootstrap-variables.scss-old.txt -text
 themes/business/scss/business.scss -text
