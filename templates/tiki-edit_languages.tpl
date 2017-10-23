@@ -6,7 +6,7 @@
 	{else}
 		{button href="tiki-interactive_trans.php?interactive_translation_mode=on" _text="{tr}Turn on interactive translation{/tr}" _ajax="n"}
 	{/if}
-	<a class="btn btn-link tips" href="{service controller=language action=manage_custom_php_translations}" title="{tr}Customized String Translation{/tr}:{tr}Manage local translations in a custom.php file{/tr}">
+	<a class="btn btn-link tips" href="{service controller=language action=manage_custom_translations}" title="{tr}Customized String Translation{/tr}:{tr}Manage local translations in a custom.php file{/tr}">
 		{icon name="file-code-o"} {tr}Custom Translations{/tr}
 	</a>
 	<a class="btn btn-link tips" href="{service controller=language action=upload language={$edit_language}}" title="{tr}Upload Translations{/tr}:{tr}Upload a file with translations for the selected language.{/tr}">
@@ -39,7 +39,7 @@
 				</a>
 				<a class="btn btn-link tips" href="{bootstrap_modal controller=language action=write_to_language_php language={$edit_language}}" title="{tr}Write to language.php{/tr}:{tr}Translations in the database will be merged with the other translations in language.php for the selected language.{/tr}">
 					{icon name="flash"}
-				</a>				
+				</a>
 			</div>
 		</div>
 	</div>
@@ -118,12 +118,14 @@
 					{tr}Untranslated strings{/tr}
 				{/if}
 			</div>
-			{* Forms cannot embed forms. <div class="col-md-8">
-				{include file='find.tpl' find_show_num_rows='y'}
-			</div>*}
 			<div class="panel-body">
 				<table class="table table-condensed table-hover" id="edit_translations">
 					<thead>
+						<tr>
+							<div class="col-md-8">
+								{include file='find.tpl' find_show_num_rows='y'}
+							</div>
+						</tr>					
 						<tr>
 							<th>
 								{tr}Original string{/tr}
