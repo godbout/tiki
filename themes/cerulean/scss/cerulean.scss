@@ -10,7 +10,7 @@
 */
 // defines the theme's CSS values that are outside of variables.scss
 @import "_variables.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/_bootswatch_overrides.scss";
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
 // So far, just removes the CSS content theme-option-required warning.

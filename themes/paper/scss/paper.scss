@@ -5,7 +5,7 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	@import url("#{$path}");
 }
 .web-font($web-font-path);
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/_bootswatch_overrides.scss";
 // So far, just removes the CSS content theme-option-required warning.
 @import "_bootswatch.scss";

@@ -3,9 +3,9 @@
 $web-font-path: "https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700";
 .web-font($path) {	@import url("#{$path}"); }
 .web-font($web-font-path);
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/variables.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
-// @import "../../../vendor_bundled/vendor/twitter/bootstrap/less/panels.less";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/variables.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
+// @import "../../../vendor_bundled/vendor/twbs/bootstrap/less/panels.less";
 @import "../../base_files/scss/newsletter.scss";
 @import "_variables.scss";
 

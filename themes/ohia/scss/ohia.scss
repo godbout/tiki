@@ -1,6 +1,6 @@
 //  $Id$ ohia/less/ohia.less: compile to make
 /*  The Ohia theme style sheet for Tiki Wiki CMS Groupware. */
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "_bootstrap-variables.scss";
 //@import "_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables).
 @import "../../base_files/scss/_tiki-selectors.scss";

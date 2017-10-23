@@ -1,7 +1,7 @@
 //  $Id$ snow/less/snow.less: compile to make
 @import url("//fonts.googleapis.com/css?family=Simonetta");
 /*  The Snow theme style sheet for Tiki Wiki CMS Groupware. */
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "_bootstrap-variables.scss";
 @import "../../base_files/scss/_tiki-selectors.scss";
 // Tiki non-Bootstrap CSS selectors related to color

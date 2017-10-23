@@ -1,9 +1,9 @@
 // $Id$
 // For newsletter styling. Variables defined in tiki-variables.scss. A theme-specific newsletter.css file can be loaded with priority.
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_functions.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/variables.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/mixins.scss";
-// $import "../../../vendor_bundled/vendor/twitter/bootstrap/less/panels.less";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_functions.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/variables.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins.scss";
+// $import "../../../vendor_bundled/vendor/twbs/bootstrap/less/panels.less";
 @import "_tiki-variables.scss";
 
 
@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 //
-// Panels (this section is a subset of vendor/twitter/bootstrap/less/panels.less)
+// Panels (this section is a subset of vendor/twbs/bootstrap/less/panels.less)
 // --------------------------------------------------
 
 

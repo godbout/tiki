@@ -2,9 +2,9 @@
 /* The Business theme for Tiki Wiki CMS Groupware */
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
 @import "_bootstrap-variables.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
 @import "../../base_files/scss/_tiki-selectors.scss";
 @import "_tiki-selectors.scss";
 @import "../../base_files/scss/_external-scripts.scss";
-//@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_utilities.scss";
+//@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_utilities.scss";

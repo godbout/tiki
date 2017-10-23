@@ -1,8 +1,8 @@
 //  This is the SCSS template for
 /* $Id: greenvalley.less 64181 2017-10-09 05:47:00Z chibaguy $
 	Greenvalley theme (greenvalley.css) for Tiki Wiki CMS Groupware. */
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap.scss";
-//@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/_mixins.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
+//@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
 @import "_bootstrap-variables.scss";
 @import "../../base_files/scss/_tiki-selectors.scss";
 // Tiki non-Bootstrap CSS selectors related to color

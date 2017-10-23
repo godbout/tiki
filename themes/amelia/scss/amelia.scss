@@ -4,8 +4,8 @@
 @import "../../base_files/scss/_tiki-variables.scss";
 // the Bootstrap variables.scss file with theme-specific values replacing the default
 @import "_bootstrap-variables.scss";
-// @import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap-reboot.scss";
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/scss/bootstrap-reboot.scss";
+// @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap-reboot.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap-reboot.scss";
 @import "../../base_files/scss/_bootswatch_overrides.scss";
 // So far, just removes the CSS content theme-option-required warning.
 @import "_bootswatch.scss";
