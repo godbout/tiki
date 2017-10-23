@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "836104c4451cb628cdc35cb838b5889d",
+    "content-hash": "df64d1b5c81ebe4f2f335773527c2cf2",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -3648,18 +3648,18 @@
             "time": "2016-09-20T12:50:39+00:00"
         },
         {
-            "name": "twitter/bootstrap",
-            "version": "v4.0.0-beta",
+            "name": "twbs/bootstrap",
+            "version": "v4.0.0-beta.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "35f80bb12e4e71fd777ee60ffa43711d8f84b1a6"
+                "reference": "fc94de5b8b5b329a298eeeb76174b146ff17af2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/twitter/bootstrap/twitter-bootstrap-35f80bb12e4e71fd777ee60ffa43711d8f84b1a6-zip-3cbad5.zip",
-                "reference": "35f80bb12e4e71fd777ee60ffa43711d8f84b1a6",
-                "shasum": "342c909f58474d96ffe9e01ef6156ebe8513ab24"
+                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-fc94de5b8b5b329a298eeeb76174b146ff17af2d-zip-392721.zip",
+                "reference": "fc94de5b8b5b329a298eeeb76174b146ff17af2d",
+                "shasum": "1293668b2d3d213fb7b48666893877962325e31b"
             },
             "replace": {
                 "twitter/bootstrap": "self.version"
@@ -3696,7 +3696,7 @@
                 "sass",
                 "web"
             ],
-            "time": "2017-08-11T03:56:35+00:00"
+            "time": "2017-10-19T19:23:29+00:00"
         },
         {
             "name": "undojs/undojs",
@@ -7018,7 +7018,7 @@
     "stability-flags": {
         "ahand/mobileesp": 20,
         "candy-chat/xmpp-prebind-php": 20,
-        "twitter/bootstrap": 10,
+        "twbs/bootstrap": 10,
         "zendframework/zendsearch": 5,
         "bafs/testify": 20
     },
