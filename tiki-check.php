@@ -2405,7 +2405,7 @@ function createPage($title, $content)
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link type="text/css" rel="stylesheet" href="//dev.tiki.org/vendor/twitter/bootstrap/dist/css/bootstrap.css" />
+		<link type="text/css" rel="stylesheet" href="//dev.tiki.org/vendor/twbs/bootstrap/dist/css/bootstrap.css" />
 		<title>$title</title>
 		<style type="text/css">
 			table { border-collapse: collapse;}
