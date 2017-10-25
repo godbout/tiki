@@ -104,7 +104,7 @@
 		}
 
 		.no-results {
-			background: $gray-lighter;
+			background: $gray-300;
 			display: list-item;
 		}
 	}
@@ -291,12 +291,12 @@
 		.search-choice {
 			-webkit-background-clip: padding-box;
 			background-clip: padding-box;
-			background-color: $gray-lighter;
+			background-color: $gray-300;
 			border: $chosen-border;
 			.border-top-radius($chosen-border-radius);
 			.border-bottom-radius($chosen-border-radius);
 			.box-shadow($chosen-box-shadow);
-			color: $gray-dark;
+			color: $gray-800;
 			cursor: default;
 			line-height: 13px;
 			margin: 6px 0 3px 5px;

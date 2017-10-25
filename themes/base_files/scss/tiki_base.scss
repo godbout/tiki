@@ -1,13 +1,16 @@
 /* $Id$
 	This Tiki Wiki CMS Groupware file contains global design
 	and layout properties. */
+
+//@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions";
 @import "../../default/scss/_variables.scss";
-@import "_bs3-bs4-transition";
+@import "_bs3-bs4-transition.scss";
 @import "_tiki-variables.scss";
 
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap-reboot.scss";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap-grid.scss";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
+//@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap-reboot.scss";
+//@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap-grid.scss";
+
 
 
 @import "_tiki-selectors.scss";
@@ -44,7 +47,7 @@
 @import "_tiki-media-print";
 @import "_tiki-wikipages_and_plugins";
 @import "_tiki-multilike";
-// @import "_pivot-tiki.scss";
+@import "_pivot-tiki.scss";
 // @import "_conversejs-tiki.scss"; commmented out to find undefined $btn-primary-border
 
 

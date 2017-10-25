@@ -1,7 +1,7 @@
 // $Id$
 // Values are specified here to be used in the files imported by tiki_base.scss and theme style sheets.
-// @import "bs3-bs4-transition.scss";
-@import "../../default/scss/variables";
+@import "bs3-bs4-transition.scss";
+//@import "../../default/scss/variables";
 $padding-y: .5rem; // Not sure where this is used besides buttons and pagination; not sure where it's defined in BS4
 $padding-x: .75rem;
 // Older
@@ -24,7 +24,8 @@ $cssmenu_ul_li_a_bg: $dropdown-bg;
 $cssmenu_ul_li_a_color: $dropdown-link-color;
 $cssmenu_ul_li_hover_a_color: $dropdown-link-hover-color;
 $cssmenu_ul_li_hover_a_bg: $dropdown-link-hover-bg;
-$topbar_bg: $bg-dark;
+$topbar_bg: $dark;
+$navbar-dark-bg: $dark; // Not sure how BS4 specifies this.
 $topbar_color: $navbar-dark-color;
 $topbar_link_color: $navbar-dark-color;
 $topbar_link_padding_top: $navbar-padding-y;
@@ -116,7 +117,7 @@ $modal-link-hover-color: $link-hover-color;
 
 // Make hierarchical arrangement of admin options more clear
 $secondary-legend-font-size: ceil(($font-size-base * 1.35));
-/*
+
 // Plugin Pivot Table variables
 $pvt-color: $body-color;
 $pvt-bg: $body-bg;
@@ -136,7 +137,7 @@ $pvtAggregator-border: $input-border-color;
 $pvtAggregator-border-radius: $input-border-radius;
 $pvtSelect-font-size: $font-size-base;
 $c3-color: $body-color;
-*/
+
 // Theme overrides of jQuery-UI styles
 $jq-ui-btn-font-weight: normal;
 $tiki-sheet-font-size: $font-size-base;

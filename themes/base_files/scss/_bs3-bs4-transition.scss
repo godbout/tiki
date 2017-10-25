@@ -1,6 +1,8 @@
 // $Id$
 // This temporary file is to provide definitions for Bootstrap 3 variables so the SCSS compile process goes smoothly,
 // especially for variables that have many instances.
+
+
 $body-bg: #fff;
 $body-color: #000000;
 $btn-default-bg: $body-bg;
@@ -22,11 +24,12 @@ $panel-info-heading-bg: $body-bg; // tiki-variables.scss:123
 $panel-info-text: $body-color;
 $panel-bg: $body-bg;
 $panel-default-text: $body-color;
+$card-text: $body-color; // How does bs4 specify text color specific to a panel?
 $panel-success-heading-bg: turquoise; // $alert-success-bg;
 $alert-padding: 1.5rem; // $alert-padding-x; // Didn't see "-y"
 $navbar-dark-bg: #000; // cerulean complained
 $topbar_bg: $navbar-dark-bg;
-$navbar-dark-link-color: $navbar-dark-color;
+//$navbar-dark-link-color: $navbar-dark-color;
 $navbar-inverse-bg: #fff; // Should be theme specific; Cerulean didn't have one.
 $navbar-inverse-link-color: blue; // "
 $navbar-inverse-border: $body-color;

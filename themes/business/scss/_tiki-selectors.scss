@@ -7,7 +7,7 @@ $imagePath: "../images/";
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: $gray-lighter;}
+// .glyphicon {color: $gray-300;}
 
 $topmodules-row-sidemargins: 0;
 $topbar-row-sidemargins: -15px;
@@ -18,7 +18,10 @@ $topbar-row-sidemargins: -15px;
 	background: -webkit-linear-gradient(top, #8ba8c8 0%, #0b346c 0%, #003376 1%, #00366f 1%, #01366c 2%, #023175 3%, #00356e 3%, #003470 60%, #023574 64%, #03357a 64%, #00387b 67%, #00387f 68%, #023b82 71%, #003e85 71%, #003e89 74%, #013e8e 75%, #004394 77%, #024699 81%, #00489d 82%, #01499e 85%, #0049a5 85%, #014aa6 88%, #014ca9 89%, #034eab 92%, #004daa 97%, #004ba6 98%, #003e8d 99%, #003a80 100%, #1e599f 100%); /* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(top, #8ba8c8 0%, #0b346c 0%, #003376 1%, #00366f 1%, #01366c 2%, #023175 3%, #00356e 3%, #003470 60%, #023574 64%, #03357a 64%, #00387b 67%, #00387f 68%, #023b82 71%, #003e85 71%, #003e89 74%, #013e8e 75%, #004394 77%, #024699 81%, #00489d 82%, #01499e 85%, #0049a5 85%, #014aa6 88%, #014ca9 89%, #034eab 92%, #004daa 97%, #004ba6 98%, #003e8d 99%, #003a80 100%, #1e599f 100%); /* Opera 11.10+ */
 	background: linear-gradient(to bottom, #8ba8c8 0%, #0b346c 0%, #003376 1%, #00366f 1%, #01366c 2%, #023175 3%, #00356e 3%, #003470 60%, #023574 64%, #03357a 64%, #00387b 67%, #00387f 68%, #023b82 71%, #003e85 71%, #003e89 74%, #013e8e 75%, #004394 77%, #024699 81%, #00489d 82%, #01499e 85%, #0049a5 85%, #014aa6 88%, #014ca9 89%, #034eab 92%, #004daa 97%, #004ba6 98%, #003e8d 99%, #003a80 100%, #1e599f 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8ba8c8', endColorstr='#1e599f', GradientType=0); /* IE6-9 */
+  	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8ba8c8', endColorstr='#1e599f', GradientType=0); /* IE6-9 */
+  color: #fff;
+  & button { color: #fff; }
+  & a { color: #fff; }
 }
 
 .sitetitles a {
@@ -108,7 +111,7 @@ footer.main-footer .container {
 	background: url('#{$imagePath}footer.gif') repeat-x;
 }
 
-.module .panel-heading,
+/*.module */.card-header,
 .modal-header {
 	//  background: #3475c6 url('#{$imagePath}title_bg.png') no-repeat 0 0;
 	background: #386dbb; /* Old browsers */
@@ -119,15 +122,17 @@ footer.main-footer .container {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#386dbb', endColorstr='#3574c4', GradientType=0); /* IE6-9 */
 
 	text-transform: uppercase;
+  	color: #fff;
 }
 
-h3.card-title {
+h3.card-title,
+h3.card-header {
 	font-size: 90%;
 	font-weight: 700;
 }
 
 .modal-header {
-	color: $gray-lighter;
+	color: $gray-300;
 }
 
 .well {

@@ -1,7 +1,9 @@
 // $Id$
 // This file contains rules for colors, consolidated from the tiki_base less files. They're moved here so that theme variables can provide values for them.
+//@import "_bs3-bs4-transition.scss";
+//@import "_tiki-variables.scss";
 $imagePathToImgDir: "../../../img/";
-
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
 // Background color for navbar collapse dropdowns (Tiki's aren't .dropdown li).
 .navbar-collapse.collapse.in {
 	background: $navbar-dark-bg;
@@ -165,7 +167,7 @@ a.fc-event:hover {
 
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0 > .sf-with-ul:after {
 	border: 5px solid transparent;
-	border-top-color: $navbar-dark-link-color; // $dropdown-link-color; // /* edit this to suit design (no rgba in IE8) */
+	border-top-color: $navbar-dark-color; // $dropdown-link-color; // /* edit this to suit design (no rgba in IE8) */
 }
 
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0:hover > .sf-with-ul:after,
