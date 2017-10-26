@@ -259,16 +259,18 @@ if ($_REQUEST['locSection'] == 'read') {
 				$aux['replyto'] = $to_addresses;
 			}
 			if (!isset($aux['Delivery-Date'])) {
-				$aux['delivery-date'] = $aux['Date'];
+				$aux['Delivery-Date'] = $aux['Date'];
 			}
 			$aux['timestamp'] = strtotime($aux['Delivery-Date']);
 
 			// the subject needs to be decoded
-			$aux['subject'] = isset($aux['Subject']) ? mb_decode_mimeheader($aux['Subject']) : '';
+			$aux['subject'] = isset($aux['Subject']) ? $aux['Subject'] : '';
 			$aux['from'] = isset($aux['From']) ? utf8_encode($aux['From']) : '';
 			$aux['to'] = isset($aux['To']) ? utf8_encode($aux['To']) : '';
 			$aux['cc'] = isset($aux['Cc']) ? utf8_encode($aux['Cc']) : '';
 			$aux['date'] = isset($aux['Date']) ? utf8_encode($aux['Date']) : '';
+
+			unset($aux['Subject'], $aux['From'], $aux['To'], $aux['Cc'], $aux['Date'], $aux['Delivery-Date']);
 
 			$smarty->assign('headers', $aux);
 
@@ -461,7 +463,6 @@ END;
 			$aux = $webmail_list[$i];
 
 			// Lets decode the Subject before going to list it... otherwise it returns garbage for non-ascii subjects
-			$aux['subject'] = mb_decode_mimeheader($aux['subject']);
 			$webmaillib->replace_webmail_message($current['accountId'], $user, $aux['realmsgid']);
 			list($aux['isRead'], $aux['isFlagged'], $aux['isReplied'])
 				= $webmaillib->get_mail_flags($current['accountId'], $user, $aux['realmsgid']);
@@ -490,8 +491,6 @@ END;
 			$aux = $filtered[$i];
 		} else {
 			$aux = $webmail_list[$i-1];
-			// Lets decode the Subject before going to list it... otherwise it returns garbage for non-ascii subjects
-			$aux['subject'] = mb_decode_mimeheader($aux['subject']);
 			$webmaillib->replace_webmail_message($current['accountId'], $user, $aux['realmsgid']);
 			list($aux['isRead'], $aux['isFlagged'], $aux['isReplied']) = $webmaillib->get_mail_flags($current['accountId'], $user, $aux['realmsgid']);
 		}

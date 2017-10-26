@@ -7465,6 +7465,7 @@ themes/lighty/Homepage.html -text
 themes/lighty/css/index.php -text
 themes/lighty/css/lighty.css -text
 themes/lighty/images/index.php -text
+themes/lighty/images/lighty.png -text
 themes/lighty/images/map.jpg -text
 themes/lighty/less/index.php -text
 themes/lighty/less/lighty.less -text
@@ -7650,6 +7651,7 @@ themes/solar/css/solar.css -text
 themes/solar/fonts/index.php -text
 themes/solar/icons/index.php -text
 themes/solar/images/index.php -text
+themes/solar/images/solar.png -text
 themes/solar/index.php -text
 themes/solar/less/bootswatch.less -text
 themes/solar/less/index.php -text
