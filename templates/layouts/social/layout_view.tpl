@@ -121,21 +121,21 @@
 			</div>
 		</footer>
 
-		<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse" role="navigation" id="navbar-fixed-top">
+		<nav class="navbar navbar-toggleable-md navbar-dark fixed-top bg-dark" role="navigation" id="navbar-fixed-top">
 			<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
-				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<a class="navbar-brand" href="./">{if $prefs.sitelogo_icon}<img src="{$prefs.sitelogo_icon}">{/if} {$prefs.sitetitle|escape}</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<a class="navbar-brand" href="./">{if $prefs.sitelogo_icon}<img src="{$prefs.sitelogo_icon}">{/if} {$prefs.sitetitle|escape}</a>
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="navbar-nav mr-auto">
 						{if $user}
 							<li class="nav-item">
-								<a href="{if $prefs.feature_sefurl eq 'y'}logout{else}tiki-logout.php{/if}">{tr}Log out{/tr}</a>
+								<a class="nav-link" href="{if $prefs.feature_sefurl eq 'y'}logout{else}tiki-logout.php{/if}">{tr}Log out{/tr}</a>
 							</li>
 						{else}
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Log in{/tr} <span
+								<a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Log in{/tr} <span
 								class="caret"></span></a>
 								<ul class="dropdown-menu dropdown-login">
 									<li>
