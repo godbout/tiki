@@ -1,25 +1,30 @@
 // $Id: amelia.scss 64189 2017-10-10 02:52:41Z chibaguy $
 @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
-@import "../../base_files/scss/_bs3-bs4-transition.scss";
-@import "../../base_files/scss/_tiki-variables.scss";
-// the Bootstrap variables.scss file with theme-specific values replacing the default
-@import "_bootstrap-variables.scss";
-// @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap-reboot.scss";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap-reboot.scss";
-@import "../../base_files/scss/_bootswatch_overrides.scss";
-// So far, just removes the CSS content theme-option-required warning.
-@import "_bootswatch.scss";
-// defines the theme's CSS values that are outside of variables.scss.
-@import "../../base_files/scss/_tiki-selectors.scss";
-// Tiki non-Bootstrap CSS selectors related to color
-//@import "../../base_files/less/tablesorter-custom.scss";
-@import "../../base_files/scss/_external-scripts.scss";
-// Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
-s
+//$primary: #ad1d28 ; // These variables work in this position to override the bs defaults.
+//$success: #48ca3b;
+//$info: #4d3a7d;
+//$warning: #debb27;
+//$danger: #df6e1e;
 
+//$bg-dark: #ad1d28;
+@import "_bootstrap-variables.scss"; // Needs to follow _functions.scss because of containing "lighten".
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two are needed to prevent...
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // ...compiling errors.
+@import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
+@import "_bootswatch.scss";
+
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss"; // Needed for darken function.
+@import "../../base_files/scss/_tiki-selectors.scss";
+@import "../../base_files/scss/_bs3-bs4-transition.scss";
+@import "../../base_files/scss/_external-scripts.scss";
 
 .dropdown-menu {
 	color: $dropdown-link-color;
 }
 
 body.fullscreen { background: $body-bg; }
+
+.bg-dark { background: #ad1d28 !important; }
+
+//This arrangement works, to implement colors so far, but it shouldn't be necessary to put CSS here for it to override.
+

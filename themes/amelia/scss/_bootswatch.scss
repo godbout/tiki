@@ -1,3 +1,12 @@
+//
+// Variables defined by functions, etc. or by Bootstrap defaults.
+$link-color: lighten(theme-color("warning"), 15%);
+$gray-500: lighten(#000000, 33.5%); //
+$link-hover-color: $link-color; // This has to be here because #link-color is defined by bs default, not be amelia.
+$body-bg: #108a93; // These work here, but not in amelia/bootstrap-variables, for some reason.
+$body-color: #ffffff; // "
+body.fullscreen { background: $body-bg; } // Moved here because it needs $body-bg
+
 // Amelia 3.1.1
 // Bootswatch
 // -----------------------------------------------------
@@ -10,7 +19,7 @@
 		font-family: 'Lobster', cursive;
 	}
 
-	&-default {
+	&-dark {
 		.badge {
 			background-color: #ffffff;
 			color: $navbar-dark-color;
@@ -27,14 +36,14 @@
 	}
 }
 
-.btn-default {
+.btn-primary {
 
 	&:hover {
-		color: $btn-default-color;
+		color: $btn-primary-color;
 	}
 
 	.caret {
-		border-top-color: $btn-default-color;
+		border-top-color: $btn-primary-color;
 	}
 }
 
@@ -42,27 +51,27 @@
 
 .text-primary,
 .text-primary:hover {
-	color: lighten( $brand-primary, 40% );
+	color: lighten( theme-color("primary"), 40% );
 }
 
 .text-success,
 .text-success:hover {
-	color: lighten( $brand-success, 20% );
+	color: lighten( theme-color("success"), 20% );
 }
 
 .text-danger,
 .text-danger:hover {
-	color: lighten($brand-danger, 20%);
+	color: lighten( theme-color("danger"), 20%);
 }
 
 .text-warning,
 .text-warning:hover {
-	color: lighten($brand-warning, 20%);
+	color: lighten( theme-color("warning"), 20%);
 }
 
 .text-info,
 .text-info:hover {
-	color: lighten($brand-info, 40%);
+	color: lighten( theme-color("info"), 40%);
 }
 
 // Tables =====================================================================
@@ -100,12 +109,12 @@ legend {
 	.help-block,
 	.control-label,
 	.form-control-feedback {
-		color: lighten($brand-warning, 20%);
+		color: lighten( theme-color("warning"), 20%);
 	}
 
 	.form-control,
 	.form-control:focus {
-		border-color: lighten($brand-warning, 20%);
+		border-color: lighten( theme-color("warning"), 20%);
 	}
 }
 
@@ -113,12 +122,12 @@ legend {
 	.help-block,
 	.control-label,
 	.form-control-feedback {
-		color: lighten($brand-primary, 40%);
+		color: lighten( theme-color("primary"), 40%);
 	}
 
 	.form-control,
 	.form-control:focus {
-		border-color: lighten($brand-primary, 40%);
+		border-color: lighten( theme-color("primary"), 40%);
 	}
 }
 
@@ -126,17 +135,17 @@ legend {
 	.help-block,
 	.control-label,
 	.form-control-feedback {
-		color: lighten($brand-success, 20%);
+		color: lighten( theme-color("success"), 20%);
 	}
 
 	.form-control,
 	.form-control:focus {
-		border-color: lighten($brand-success, 20%);
+		border-color: lighten(theme-color("success"), 20%);
 	}
 }
 
 .input-group-addon {
-	color: $btn-default-color;
+	color: $btn-primary-color;
 }
 
 // Navs =======================================================================
@@ -173,11 +182,29 @@ legend {
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-	border-color: $thumbnail-border;
+	border-color: $thumbnail-border-color;
 }
 
 .popover {
-	color: $gray-dark;
+	color: $gray-900;
 }
 
 .navbar-default .navbar-collapse.collapse.in .dropdown-menu li {background: transparent;}
+
+.card {
+  background-color: #13a0aa !important;
+  border-color: #0d747c !important;
+
+}
+
+.card-header,
+.modal-header {
+  color: #ffffff;
+  background-color: #18cbd8 !important;
+  border-color: #0d747c !important;
+}
+
+h3.card-title,
+h3.card-header {
+
+}

@@ -6,8 +6,8 @@
 //  width: auto !important;
 //}
 body:not(.fixed_width) .container {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: ($grid-gutter-width / 2);
+	padding-right: ($grid-gutter-width / 2);
 	width: auto;
 }
 
@@ -56,7 +56,7 @@ body.tiki.navbar-padding {
 }
 
 body.layout_social.tiki.navbar-padding {
-	padding-top: $navbar-fixed-height + 20px;
+	padding-top: $navbar-fixed-height + 2rem;
 }
 
 body.fullscreen.tiki.navbar-padding {
@@ -141,16 +141,16 @@ body.fullscreen.tiki.navbar-padding {
 		display: inline;
 	}
 	.navbar-inverse a {
-		color: $navbar-inverse-link-color;
+		color: $navbar-dark-color;
 		&:hover {
-			color: $navbar-inverse-link-hover-color;
+			color: $navbar-dark-hover-color;
 			text-decoration: none;
 		}
 	}
 	.navbar-inverse .sitetitle a {
-		color: $navbar-inverse-brand-color;
+		color: $navbar-dark-brand-color;
 		&:hover {
-			color: $navbar-inverse-brand-hover-color;
+			color: $navbar-dark-hover-color;
 			text-decoration: none;
 		}
 	}
@@ -286,7 +286,7 @@ body.fullscreen.tiki.navbar-padding {
 // End overrides for wide side column layout
 
 
-@media (max-width: $screen-sm-max) {
+@media (max-width: breakpoint-max(sm)) {
 	#col1 {
 		width: 100%;
 	}
@@ -305,7 +305,7 @@ body.fullscreen.tiki.navbar-padding {
 ///// END of User layout columns
 
 // Prevent scrollbar from overlapping fullscreen button in IE
-$-ms-viewport {	width: auto !important; }
+// $-ms-viewport {	width: auto !important; } Todo - causes compile error
 
 // fade mode for the carousel list plugin formatter
 
