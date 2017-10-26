@@ -50,7 +50,7 @@ if (!empty($_SESSION['try_theme'])) {
 // use cdn for popper as a quick fix while in expermental branch - TODO replace with package from composer.tiki.org
 $headerlib->add_jsfile_cdn('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js');
 
-$headerlib->add_jsfile('vendor_bundled/vendor/twitter/bootstrap/dist/js/bootstrap.js');
+$headerlib->add_jsfile('vendor_bundled/vendor/twbs/bootstrap/dist/js/bootstrap.js');
 $headerlib->add_jsfile('lib/jquery_tiki/tiki-bootstrapmodalfix.js');
 
 if ($prefs['feature_fixed_width'] === 'y') {
