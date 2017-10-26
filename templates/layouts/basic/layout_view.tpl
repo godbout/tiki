@@ -69,7 +69,7 @@
 					{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 				</div>
 			{/if}
-			<div class="col col1 col-md-9" id="col1">
+			<div class="col col1 col-md-9 order-sm-1 order-md-2" id="col1">
 				{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 					{modulelist zone=pagetop}
 				{/if}
@@ -98,7 +98,7 @@
 					{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 				</div>
 			{/if}
-			<div class="col col1 col-lg-8 order-sm-1 order-md-2" id="col1">
+			<div class="col col1 col-md-8 order-sm-1 order-md-2" id="col1">
 				{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 					{modulelist zone=pagetop}
 				{/if}
