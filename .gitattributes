@@ -3871,6 +3871,7 @@ lib/search/federatedsearchlib.php -text
 lib/search/index.php -text
 lib/search/refresh-functions.php -text
 lib/search/refresh.php -text
+lib/search/report_string_in_db.php -text
 lib/search/searchlib-mysql.php -text
 lib/search/searchlib-unified.php -text
 lib/search/searchstatslib.php -text
