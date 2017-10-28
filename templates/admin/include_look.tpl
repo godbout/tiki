@@ -14,19 +14,21 @@
 		{tab name="{tr}Theme{/tr}"}
 			<br>
 			<div class="row">
-				<div class="col-md-2 col-md-push-10">
-					<div class="thumbnail">
-						{if $thumbfile}
-							<img src="{$thumbfile}" alt="{tr}Theme Screenshot{/tr}" id="theme_thumb">
-						{else}
-							<span>{icon name="image"}</span>
-						{/if}
-					</div>
-				</div>
-				<div class="col-md-9 col-md-pull-1 adminoptionbox">
+				<div class="col-md-9 adminoptionbox">
 					{preference name=theme}
 					{preference name=theme_option}
 					{preference name=theme_option_includes_main}
+				</div>
+				<div class="col-md-3">
+					<div class="card">
+						<div class="card-body">
+						{if $thumbfile}
+							<img src="{$thumbfile}" class="img-fluid" alt="{tr}Theme Screenshot{/tr}" id="theme_thumb">
+						{else}
+							<span>{icon name="image"}</span>
+						{/if}
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="adminoptionbox theme_childcontainer custom_url">
