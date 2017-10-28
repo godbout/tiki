@@ -39,24 +39,24 @@ header.container {
 	border: none;
 }
 
-.layout_social .navbar-inverse a,
-.layout_social_modules .navbar-inverse a,
-.layout_fixed_top_modules .navbar-inverse a {
+.layout_social .navbar-light a,
+.layout_social_modules .navbar-light a,
+.layout_fixed_top_modules .navbar-light a {
 	color: #f5f5f5;
 }
 
 
-.navbar-default,
+.navbar-dark,
 .topbar,
 	// .topbar .cssmenu_horiz ul,
-.topbar .navbar-default .navbar-nav > li,
+.topbar .navbar-dark .navbar-nav > li,
 .topbar .nav > li,
-.navbar-inverse.navbar-fixed-top,
-.navbar-inverse.navbar-fixed-top .navbar-collapse,
-.navbar-inverse.navbar-fixed-top .navbar-form,
-.navbar-inverse.navbar-fixed-top .container,
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form,
+.navbar-light.navbar-fixed-top,
+.navbar-light.navbar-fixed-top .navbar-collapse,
+.navbar-light.navbar-fixed-top .navbar-form,
+.navbar-light.navbar-fixed-top .container,
+.navbar-dark .navbar-collapse,
+.navbar-dark .navbar-form,
 #topbar_modules {
 //	background: #426d95 url('#{$imagePath}header.jpg') repeat-x;
 //	background-size:
@@ -84,23 +84,23 @@ header.container {
 	margin-top: 4px;
 }
 
-//.layout_social_modules .navbar-inverse a:hover,
-//.layout_fixed_top_modules .navbar-inverse a:hover
+//.layout_social_modules .navbar-light a:hover,
+//.layout_fixed_top_modules .navbar-light a:hover
 
-.layout_social .navbar-inverse .cssmenu_horiz > li > a:hover,
-.layout_social_modules .navbar-inverse > a:hover,
-.layout_fixed_top_modules .navbar-inverse > a:hover,
+.layout_social .navbar-light .cssmenu_horiz > li > a:hover,
+.layout_social_modules .navbar-light > a:hover,
+.layout_fixed_top_modules .navbar-light > a:hover,
 .topbar .nav > li > a:hover,
 .topbar .nav > li > a:focus,
 .topbar .cssmenu_horiz > li > a:hover,
 .topbar .cssmenu_horiz > li:hover,
 .topbar .cssmenu_horiz li.sfHover:hover,
 .topbar .cssmenu_horiz li.selected > a,
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus,
-#topbar_modules .navbar-default .navbar-nav > .active > a,
-#topbar_modules .navbar-default .navbar-nav > .active > a:hover,
-#topbar_modules .navbar-default .navbar-nav > .active > a:focus {
+.navbar-dark .navbar-nav > li > a:hover,
+.navbar-dark .navbar-nav > li > a:focus,
+#topbar_modules .navbar-dark .navbar-nav > .active > a,
+#topbar_modules .navbar-dark .navbar-nav > .active > a:hover,
+#topbar_modules .navbar-dark .navbar-nav > .active > a:focus {
 	color: #3e7ca1 !important;
 //	background: url('#{$imagePath}page.jpg') repeat-x;
 	background: #dbdbdb; /* Old browsers */
@@ -122,8 +122,8 @@ header.container {
 	padding-bottom: 20px;
 }
 
-#col1,
-#col3 {
+.col1,
+.col3 {
 	padding-top: 30px;
 	background: #ffffff url('#{$imagePath}page.jpg') repeat-x;
 }
@@ -133,22 +133,22 @@ body.fullscreen {
 	.container { border: none; }
 }
 
-#col2 {
+.col2 {
 	background: #a8cce2 url('#{$imagePath}columnbg.jpg') repeat-x;
 }
 
-.panel.module {
+.card.module {
 	border: none;
 	background: none;
 }
 
-.panel.module .panel-heading {
+.card.module .card-heading {
 	border: none;
 	border-bottom: 1px solid #57a5d0;
 	background: none;
 }
 
-.panel.module .panel-title {
+.card.module .card-title {
 	color: #93554a;
 	font-weight: 700;
 	font-size: 1.2em;
@@ -176,10 +176,9 @@ body.fullscreen {
 	margin: 2px 0 0; // override default ul
 	//  font-size: $font-size-base;
 	background-color: $dropdown-bg;
-	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
-	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+	@include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 

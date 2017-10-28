@@ -45,9 +45,9 @@ h3.panel-title {
 }
 
 .navbar-fixed-top .container,
-.navbar-default,
+.navbar-dark,
 .topbar,
-.topbar .navbar-default .navbar-nav > li,
+.topbar .navbar-dark .navbar-nav > li,
 .topbar .nav > li,
 .btn,
 .nav-tabs > li > a,
@@ -60,7 +60,7 @@ h3.panel-title {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#818181', endColorstr='#393939', GradientType=0);
 }
 
-.top_modules .navbar-default {
+.top_modules .navbar-dark {
 	background: transparent !important;
 	border: none;
 }
@@ -71,7 +71,7 @@ h3.panel-title {
 	margin-bottom: 20px;
 }
 
-#topbar_modules .navbar-default {
+#topbar_modules .navbar-dark {
 	background: transparent;
 	border: none;
 	margin-bottom: 0;
@@ -109,7 +109,7 @@ select {
 .odd,
 #trig_dptxt {
 	background: $table-bg;
-	color: $brand-primary;
+	color: $primary;
 }
 
 input[type="checkbox"] {
@@ -155,7 +155,7 @@ input {
 	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
-	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+	@include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 
