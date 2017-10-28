@@ -98,7 +98,7 @@
 					{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 				</div>
 			{/if}
-			<div class="col col1 col-md-8 order-sm-1 order-md-2" id="col1">
+			<div class="col col1 col-md-12 col-lg-8 order-xs-1 order-lg-2" id="col1">
 				{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 					{modulelist zone=pagetop}
 				{/if}
@@ -111,10 +111,10 @@
 					{modulelist zone=pagebottom}
 				{/if}
 			</div>
-			<div class="col col2 col-lg-2 col-md-6 order-lg-1 order-md-2" id="col2">
+			<div class="col col2 col-md-6 col-lg-2 order-md-2 order-lg-1" id="col2">
 				{modulelist zone=left}
 			</div>
-			<div class="col col3 col-lg-2 col-md-6 order-md-3" id="col3">
+			<div class="col col3 col-md-6 col-lg-2 order-md-3" id="col3">
 				{modulelist zone=right}
 			</div>
 		{/if}
