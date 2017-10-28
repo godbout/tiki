@@ -14,14 +14,14 @@
 		{tab name="{tr}Theme{/tr}"}
 			<br>
 			<div class="row">
-				<div class="col-md-9 adminoptionbox">
+				<div class="col-md-8 adminoptionbox">
 					{preference name=theme}
 					{preference name=theme_option}
 					{preference name=theme_option_includes_main}
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body text-center">
 						{if $thumbfile}
 							<img src="{$thumbfile}" class="img-fluid" alt="{tr}Theme Screenshot{/tr}" id="theme_thumb">
 						{else}
