@@ -2563,6 +2563,8 @@ img.pref_dependency {
 
 .adminanchors {
   font-size: 2rem; }
+  .adminanchors .navbar-nav {
+    flex-direction: row; }
   .adminanchors .nav li {
     display: inline-block; }
 

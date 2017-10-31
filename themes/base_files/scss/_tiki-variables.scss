@@ -67,7 +67,7 @@ $chosen-focus-border: 1px solid $input-focus-border-color;
 $chosen-focus-box-shadow: "0 1px 1px rgba(0, 0, 0, .075) inset, 0 0 8px rgba(82, 168, 236, .6)";
 $chosen-focus-transition: "border linear .2s, box-shadow linear .2s";
 $chosen-height: $input-height;
-$chosen-multi-height: $input-height + 6px;
+$chosen-multi-height: $input-height + .4rem;
 $chosen-active-result: $input-color;
 $chosen-single-height: $input-height; // "Make inputs at least the height of their button counterpart (base line-height + padding + border)"
 $chosen-padding-base-vertical: $padding-y;

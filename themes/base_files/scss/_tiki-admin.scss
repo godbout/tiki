@@ -2,6 +2,9 @@
 
 .adminanchors {
 	font-size: 2rem;
+  	.navbar-nav {
+	  flex-direction: row;
+	}
 	.nav li {
 		display: inline-block;
 	}
