@@ -4111,6 +4111,8 @@ lib/smarty_tiki/function.service.php -text
 lib/smarty_tiki/function.service_inline.php -text
 lib/smarty_tiki/function.set.php -text
 lib/smarty_tiki/function.show_sort.php -text
+lib/smarty_tiki/function.svn_lastup.php -text
+lib/smarty_tiki/function.svn_rev.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.ticket.php -text
 lib/smarty_tiki/function.toolbars.php -text
