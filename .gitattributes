@@ -7713,6 +7713,7 @@ themes/superhero/less/newsletter.less -text
 themes/superhero/less/superhero.less -text
 themes/superhero/less/variables.less -text
 themes/superhero/templates/index.php -text
+themes/templates/README -text
 themes/templates/index.php -text
 themes/thenews/css/index.php -text
 themes/thenews/css/newsletter.css -text
