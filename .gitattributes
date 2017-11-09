@@ -1994,6 +1994,7 @@ lang/ca/custom.php_vos -text
 lang/ca/index.php -text
 lang/ca/language.js -text
 lang/ca/language.php -text
+lang/ca/language_r.php -text
 lang/ca/typography.php_example -text
 lang/cn/index.php -text
 lang/cn/language.js -text
@@ -2020,12 +2021,14 @@ lang/en-uk/typography.php_example -text
 lang/en/index.php -text
 lang/en/language.js -text
 lang/en/language.php -text
+lang/en/language_r.php -text
 lang/en/typography.php_example -text
 lang/es/custom.js_example -text
 lang/es/custom.php_example -text
 lang/es/index.php -text
 lang/es/language.js -text
 lang/es/language.php -text
+lang/es/language_r.php -text
 lang/es/typography.php_example -text
 lang/fa/index.php -text
 lang/fa/language.js -text
@@ -4846,6 +4849,7 @@ lib/wiki-plugins/wikiplugin_prettytrackerviews.php -text
 lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
+lib/wiki-plugins/wikiplugin_r.php -text
 lib/wiki-plugins/wikiplugin_randominclude.php -text
 lib/wiki-plugins/wikiplugin_rcontent.php -text
 lib/wiki-plugins/wikiplugin_realnamelist.php -text
@@ -4855,6 +4859,7 @@ lib/wiki-plugins/wikiplugin_registermemberpayment.php -text
 lib/wiki-plugins/wikiplugin_relations.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_report.php -text
+lib/wiki-plugins/wikiplugin_rr.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_scroll.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
