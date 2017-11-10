@@ -2639,6 +2639,7 @@ lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/index.php -text
 lib/core/Search/Type/GeoPoint.php -text
 lib/core/Search/Type/Interface.php -text
+lib/core/Search/Type/Json.php -text
 lib/core/Search/Type/MultivaluePlain.php -text
 lib/core/Search/Type/MultivalueText.php -text
 lib/core/Search/Type/Nested.php -text
