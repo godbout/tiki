@@ -58,6 +58,7 @@ db/cert/web.config -text
 db/config/controllers.xml -text
 db/config/index.php -text
 db/config/mailin.xml -text
+db/config/tiki-objectpermissions_order.yml -text
 db/config/tiki.xml -text
 db/index.php -text
 db/install.ini.dist -text
