@@ -5640,7 +5640,7 @@ templates/menu/clone_menu.tpl -text
 templates/menu/export_menu_options.tpl -text
 templates/menu/import_menu_options.tpl -text
 templates/menu/index.php -text
-templates/menu/manage_menu.tpl -text
+templates/menu/manage.tpl -text
 templates/messu-archive.tpl -text
 templates/messu-broadcast.tpl -text
 templates/messu-compose.tpl -text
