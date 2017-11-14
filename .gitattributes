@@ -1974,6 +1974,7 @@ installer/schema/20170925_add_general_to_language_tiki.sql -text
 installer/schema/20171002_queue_handler_size_increase_tiki.sql -text
 installer/schema/20171010_action_log_info_new_column.sql -text
 installer/schema/20171016_no_homepage_specificed_tiki.php -text
+installer/schema/20171114_create_plugin_include_relations.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
