@@ -6073,6 +6073,7 @@ templates/tiki-directory_search.tpl -text
 templates/tiki-directory_validate_sites.tpl -text
 templates/tiki-discount.tpl -text
 templates/tiki-edit-page-include-prompt_for_edit_or_translate.tpl -text
+templates/tiki-edit-page-included_by.tpl -text
 templates/tiki-edit_article.tpl -text
 templates/tiki-edit_banner.tpl -text
 templates/tiki-edit_blog.tpl -text
