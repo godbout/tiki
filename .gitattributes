@@ -4090,6 +4090,7 @@ lib/smarty_tiki/function.object_score.php -text
 lib/smarty_tiki/function.object_selector.php -text
 lib/smarty_tiki/function.object_selector_multi.php -text
 lib/smarty_tiki/function.object_title.php -text
+lib/smarty_tiki/function.object_type.php -text
 lib/smarty_tiki/function.page_alias.php -text
 lib/smarty_tiki/function.page_in_structure.php -text
 lib/smarty_tiki/function.payment.php -text
