@@ -1,6 +1,6 @@
 <?php
 // (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
@@ -35,7 +35,6 @@ class Search_MySql_TypeFactory implements Search_Type_Factory_Interface
 			// if mysql sql_mode is set to NO_ZERO_IN_DATE or NO_ZERO_DATE then'0000-00-00 00:00:00' produces errors
 			return new Search_Type_Timestamp(null);
 		}
-
 	}
 
 	function identifier($value)
@@ -64,7 +63,7 @@ class Search_MySql_TypeFactory implements Search_Type_Factory_Interface
 		return null;
 	}
 
-	/* Not supported in Lucene indexes - use elasticsearch */
+	/* Not supported in MySQL indexes - use elasticsearch */
 	function geopoint($values)
 	{
 		return null;
@@ -74,5 +73,9 @@ class Search_MySql_TypeFactory implements Search_Type_Factory_Interface
 	{
 		return new Search_Type_PlainShortText($value);
 	}
-}
 
+	function json($value)
+	{
+		return new Search_Type_PlainText($value);
+	}
+}

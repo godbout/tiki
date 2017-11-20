@@ -8,15 +8,15 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once ('tiki-setup.php');
-$auto_query_args = array('contentId','sort_mode','offset','find');
+require_once('tiki-setup.php');
+$auto_query_args = ['contentId','sort_mode','offset','find'];
 
 $access->check_feature('feature_dynamic_content');
 $access->check_permission('tiki_p_admin_dynamic');
 
 $dcslib = TikiLib::lib('dcs');
 
-if (!isset($_REQUEST["contentId"])) {
+if (! isset($_REQUEST["contentId"])) {
 	$smarty->assign('msg', tra("No content id indicated"));
 
 	$smarty->display("error.tpl");
@@ -34,6 +34,7 @@ if (isset($_REQUEST["remove"])) {
 }
 
 $smarty->assign('data', '');
+$tikilib = TikiLib::lib('tiki');
 $smarty->assign('publishDate', $tikilib->now);
 //Use 12- or 24-hour clock for $publishDate time selector based on admin and user preferences
 $userprefslib = TikiLib::lib('userprefs');
@@ -44,16 +45,16 @@ $smarty->assign('actual', '');
 if (isset($_REQUEST["save"])) {
 	check_ticket('edit-programmed-content');
 
-	if ( $_REQUEST['content_type'] == 'page' ) {
+	if ($_REQUEST['content_type'] == 'page') {
 		$content = 'page:' . $_REQUEST['page_name'];
 	} else {
 		$content = $_REQUEST['data'];
 	}
 
-	if (!empty($_REQUEST['Time_Meridian'])) {
+	if (! empty($_REQUEST['Time_Meridian'])) {
 		$_REQUEST['Time_Hour'] = date('H', strtotime($_REQUEST['Time_Hour'] . ':00 ' . $_REQUEST['Time_Meridian']));
 	}
-	$publishDate = TikiLib::make_time(
+	$publishDate = $tikilib->make_time(
 		$_REQUEST["Time_Hour"],
 		$_REQUEST["Time_Minute"],
 		0,
@@ -88,7 +89,7 @@ $smarty->assign('actual', $actual);
 // for the information as the number of
 // days to get in the log 1,3,4,etc
 // it will default to 1 recovering information for today
-if (!isset($_REQUEST["sort_mode"])) {
+if (! isset($_REQUEST["sort_mode"])) {
 	$sort_mode = 'publishDate_desc';
 } else {
 	$sort_mode = $_REQUEST["sort_mode"];
@@ -96,7 +97,7 @@ if (!isset($_REQUEST["sort_mode"])) {
 
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 
-if (!isset($_REQUEST["offset"])) {
+if (! isset($_REQUEST["offset"])) {
 	$offset = 0;
 } else {
 	$offset = $_REQUEST["offset"];

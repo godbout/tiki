@@ -6,17 +6,41 @@
 	<file>.</file>
 
 	<!-- Exclude libraries and other folders that should not contain code -->
+
+	<!-- vendor folders -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/vendor_bundled/*</exclude-pattern>
 	<exclude-pattern>*/vendor_custom/*</exclude-pattern>
 	<exclude-pattern>*/vendor_extra/*</exclude-pattern>
-	<exclude-pattern>*/lib/sheet/ole/*</exclude-pattern>
-	<exclude-pattern>*/lib/sheet/include/*</exclude-pattern>
-	<exclude-pattern>*/lib/webmail/*</exclude-pattern>
+
+	<!-- libraries bundled with tiki -->
+	<exclude-pattern>*/lib/dracula/*</exclude-pattern>
 	<exclude-pattern>*/lib/equation/*</exclude-pattern>
 	<exclude-pattern>*/lib/ical/*</exclude-pattern>
-	<exclude-pattern>*/lib/swfobject/src/swfobject.js</exclude-pattern>
+	<exclude-pattern>*/lib/openlayers/*</exclude-pattern>
+	<exclude-pattern>*/lib/sheet/excel/*</exclude-pattern>
+	<exclude-pattern>*/lib/sheet/include/*</exclude-pattern>
+	<exclude-pattern>*/lib/sheet/ole.php</exclude-pattern>
+	<exclude-pattern>*/lib/sheet/ole/*</exclude-pattern>
+	<exclude-pattern>*/lib/soap/nusoap/*</exclude-pattern>
+	<exclude-pattern>*/lib/swfobject/*</exclude-pattern>
+	<exclude-pattern>*/lib/tar.class.php</exclude-pattern>
+	<exclude-pattern>*/lib/tikihelp/js/*</exclude-pattern>
+	<exclude-pattern>*/lib/tikihelp/menu/*</exclude-pattern>
+	<exclude-pattern>*/lib/webmail/mimeDecode.php</exclude-pattern>
+	<exclude-pattern>*/lib/webmail/net_pop3.php</exclude-pattern>
+
+	<!-- any dot file -->
 	<exclude-pattern>*/\.*/*</exclude-pattern>
+
+	<!-- generated files / directories -->
+	<exclude-pattern>*/lang/*/language.php</exclude-pattern>
+	<exclude-pattern>*/lang/*/language.js</exclude-pattern>
+	<exclude-pattern>*/lib/test/language/fixtures/language_*</exclude-pattern>
+	<exclude-pattern>*/lib/core/JisonParser/Phraser.js</exclude-pattern>
+	<exclude-pattern>*/lib/core/JisonParser/Phraser.php</exclude-pattern>
+
+	<!-- other directories that should not contain core code -->
 	<!-- <exclude-pattern>*/doc/*</exclude-pattern> -->
 	<exclude-pattern>*/dump/*</exclude-pattern>
 	<exclude-pattern>*/img/*</exclude-pattern>
@@ -26,6 +50,7 @@
 	<!-- display progress -->
 	<arg value="p"/>
 	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
 
 	<!-- Tiki uses the Zend Coding Standards
 		reference: https://github.com/zendframework/zend-coding-standard/blob/master/ruleset.xml -->
@@ -50,6 +75,7 @@
 	<rule ref="Squiz.Strings.ConcatenationSpacing">
 		<properties>
 			<property name="spacing" value="1"/>
+			<property name="ignoreNewlines" value="true"/>
 		</properties>
 	</rule>
 
@@ -63,7 +89,6 @@
 		<properties>
 			<property name="indent" value="4"/>
 			<property name="tabIndent" value="true"/>
-			<property name="exact" value="true" />
 		</properties>
 	</rule>
 
@@ -82,11 +107,16 @@
 		Instead of error, these rules will return warning, and the severity is 6 so you can
 		display only these warning using the cli option warning-severity=6 -->
 
-	<!-- Relax PSR-1 -->
+	<!-- Relax PSR -->
 	<!-- Namespaces and classes MUST follow PSR-0.
 		This means each class is in a file by itself, and is in a namespace of at least one level: a top-level vendor name. -->
 	<rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
 		<message>Tiki PSR1 Relaxed: Each %s must be in a namespace of at least one level (a top-level vendor name)</message>
+		<type>warning</type>
+		<severity>6</severity>
+	</rule>
+	<rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
+		<message>Tiki PSR1 Relaxed: Each class must be in a file by itself</message>
 		<type>warning</type>
 		<severity>6</severity>
 	</rule>
@@ -102,7 +132,25 @@
 		<type>warning</type>
 		<severity>6</severity>
 	</rule>
-	<!-- ~ PSR-1 -->
+	<!-- Visibility MUST be declared on all properties -->
+	<rule ref="PSR2.Classes.PropertyDeclaration.ScopeMissing">
+		<message>Tiki PSR2 Relaxed: Visibility must be declared on property "%s"</message>
+		<type>warning</type>
+		<severity>6</severity>
+	</rule>
+	<!-- The var keyword MUST NOT be used to declare a property -->
+	<rule ref="PSR2.Classes.PropertyDeclaration.VarUsed">
+		<message>Tiki PSR2 Relaxed: The var keyword must not be used to declare a property</message>
+		<type>warning</type>
+		<severity>6</severity>
+	</rule>
+	<!-- Visibility MUST be declared on all methods. -->
+	<rule ref="Squiz.Scope.MethodScope.Missing">
+		<message>Tiki PSR2 Relaxed: Visibility must be declared on method "%s"</message>
+		<type>warning</type>
+		<severity>6</severity>
+	</rule>
+	<!-- ~ PSR -->
 
 	<!-- Relax ZF Coding Standards -->
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax">

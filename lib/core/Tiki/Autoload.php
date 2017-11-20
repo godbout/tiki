@@ -13,16 +13,28 @@
 class Tiki_Autoload
 {
 	/**
+	 * @var array Map class to file, for static class resolution
+	 */
+	protected static $mapInternalClassesNotInComposer = [
+		'PdfGenerator' => 'lib/pdflib.php',
+	];
+
+	/**
 	 * Entry point to the autoload
 	 *
 	 * @param string $class the name of the class to be autoloaded
 	 */
-	static public function autoload($class)
+	public static function autoload($class)
 	{
-		switch ($class){
+		switch ($class) {
 			case 'mPDF':
 				self::loadMpdf($class);
-			break;
+				break;
+			default:
+				if (array_key_exists($class, static::$mapInternalClassesNotInComposer)) {
+					self::loadInternalClassesNotInComposer($class);
+				}
+				break;
 		}
 	}
 
@@ -31,16 +43,15 @@ class Tiki_Autoload
 	 *
 	 * @param string $class the name of the class to be autoloaded
 	 */
-	static protected function loadMpdf($class)
+	protected static function loadMpdf($class)
 	{
 		global $prefs;
 
 		if ($class == 'mPDF'
 			&& ! empty($prefs['print_pdf_from_url']) && $prefs['print_pdf_from_url'] === 'mpdf'
 			&& ! empty($prefs['print_pdf_mpdf_path'])) {
-
 			$path = $prefs['print_pdf_mpdf_path'];
-			if (substr($prefs['print_pdf_mpdf_path'], -1) != '/'){
+			if (substr($prefs['print_pdf_mpdf_path'], -1) != '/') {
 				$path .= '/';
 			}
 			$path .= 'mpdf.php';
@@ -49,5 +60,19 @@ class Tiki_Autoload
 				include_once($path);
 			}
 		}
+	}
+
+	/**
+	 * Static loader for classes in Tiki not loaded automatically by composer (not PSR-0, PSR-4)
+	 *
+	 * Note: this should move in the future to use static mapping in composer (after removing duplicated class names)
+	 *
+	 * @param $class
+	 */
+	protected static function loadInternalClassesNotInComposer($class)
+	{
+		global $tikipath;
+
+		include_once $tikipath . DIRECTORY_SEPARATOR . static::$mapInternalClassesNotInComposer[$class];
 	}
 }

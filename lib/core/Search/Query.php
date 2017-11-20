@@ -16,14 +16,15 @@ class Search_Query implements Search_Query_Interface
 	private $identifierFields = null;
 
 	private $postFilter;
-	private $subQueries = array();
+	private $subQueries = [];
 	private $facets = [];
 	private $foreignQueries = [];
 	private $transformations = [];
+	private $returnOnlyResultList = [];
 
 	function __construct($query = null)
 	{
-		$this->expr = new Search_Expr_And(array());
+		$this->expr = new Search_Expr_And([]);
 
 		if ($query) {
 			$this->filterContent($query);
@@ -43,14 +44,14 @@ class Search_Query implements Search_Query_Interface
 	function addObject($type, $objectId)
 	{
 		if (is_null($this->objectList)) {
-			$this->objectList = new Search_Expr_Or(array());
+			$this->objectList = new Search_Expr_Or([]);
 			$this->expr->addPart($this->objectList);
 		}
 
 		$type = new Search_Expr_Token($type, 'identifier', 'object_type');
 		$objectId = new Search_Expr_Token($objectId, 'identifier', 'object_id');
 
-		$this->objectList->addPart(new Search_Expr_And(array($type, $objectId)));
+		$this->objectList->addPart(new Search_Expr_And([$type, $objectId]));
 	}
 
 	function filterContent($query, $field = 'contents')
@@ -72,7 +73,7 @@ class Search_Query implements Search_Query_Interface
 				}
 			}
 			if (isset($tokens)) {
-				$or =  new Search_Expr_Or($tokens);
+				$or = new Search_Expr_Or($tokens);
 				$this->addPart($or, 'identifier', 'object_type');
 			}
 		} elseif ($types) {
@@ -108,7 +109,7 @@ class Search_Query implements Search_Query_Interface
 
 	function filterPermissions(array $groups, $user = null)
 	{
-		$tokens = array();
+		$tokens = [];
 		foreach ($groups as $group) {
 			$tokens[] = new Search_Expr_Token($group);
 		}
@@ -136,7 +137,7 @@ class Search_Query implements Search_Query_Interface
 
 	function filterRange($from, $to, $field = 'modification_date')
 	{
-		if (!is_numeric($from)) {
+		if (! is_numeric($from)) {
 			$from2 = strtotime($from);
 			if ($from2) {
 				$from = $from2;
@@ -144,7 +145,7 @@ class Search_Query implements Search_Query_Interface
 				Feedback::error(tra('filterRange: "from" value not parsed'), 'session');
 			}
 		}
-		if (!is_numeric($to)) {
+		if (! is_numeric($to)) {
 			$to2 = strtotime($to);
 			if ($to2) {
 				$to = $to2;
@@ -165,7 +166,7 @@ class Search_Query implements Search_Query_Interface
 	function filterTextRange($from, $to, $field = 'title')
 	{
 		/* make the range filter work regardless of ordering - if from > to, swap */
-		if ( strcmp($from, $to) > 0 ) {
+		if (strcmp($from, $to) > 0) {
 			$temp = $to;
 			$to = $from;
 			$from = $temp;
@@ -183,28 +184,28 @@ class Search_Query implements Search_Query_Interface
 		$this->addPart(new Search_Expr_Not(new Search_Expr_Initial($initial)), 'plaintext', $field);
 	}
 
-	function filterRelation($query, array $invertable = array())
+	function filterRelation($query, array $invertable = [])
 	{
 		$query = $this->parse($query);
 		$replacer = new Search_Query_RelationReplacer($invertable);
-		$query = $query->walk(array($replacer, 'visit'));
+		$query = $query->walk([$replacer, 'visit']);
 		$this->addPart($query, 'multivalue', 'relations');
 	}
 
 	function filterSimilar($type, $object, $field = 'contents')
 	{
 		$part = new Search_Expr_And(
-			array(
+			[
 				new Search_Expr_Not(
 					new Search_Expr_And(
-						array(
+						[
 							new Search_Expr_Token($type, 'identifier', 'object_type'),
 							new Search_Expr_Token($object, 'identifier', 'object_id'),
-						)
+						]
 					)
 				),
 				$mlt = new Search_Expr_MoreLikeThis($type, $object),
-			)
+			]
 		);
 		$mlt->setField($field);
 		$this->expr->addPart($part);
@@ -215,10 +216,10 @@ class Search_Query implements Search_Query_Interface
 		$excluded = [];
 		foreach ($objects as $object) {
 			$excluded[] = new Search_Expr_And(
-				array(
+				[
 					new Search_Expr_Token($object['object_type'], 'identifier', 'object_type'),
 					new Search_Expr_Token($object['object_id'], 'identifier', 'object_id'),
-				)
+				]
 			);
 		}
 
@@ -226,10 +227,10 @@ class Search_Query implements Search_Query_Interface
 		$mlt->setField($field);
 
 		$part = new Search_Expr_And(
-			array(
+			[
 				$mlt,
 				new Search_Expr_Not(new Search_Expr_Or($excluded)),
-			)
+			]
 		);
 		$this->expr->addPart($part);
 	}
@@ -245,7 +246,7 @@ class Search_Query implements Search_Query_Interface
 			$field = explode(',', $field);
 		}
 
-		$parts = array();
+		$parts = [];
 		foreach ((array) $field as $f) {
 			$part = $this->parse($query);
 			$part->setType($type);
@@ -315,11 +316,11 @@ class Search_Query implements Search_Query_Interface
 
 		try {
 			$resultset = $index->find($this, $this->start, $this->count);
-		} catch(Search_Elastic_SortException $e) {
+		} catch (Search_Elastic_SortException $e) {
 			//on sort exception, try again without the sort field
 			$this->sortOrder = null;
 			$resultset = $index->find($this, $this->start, $this->count);
-		} catch(Exception $e) {
+		} catch (Exception $e) {
 			Feedback::error($e->getMessage(), 'session');
 			return Search_ResultSet::create([]);
 		}
@@ -349,6 +350,8 @@ class Search_Query implements Search_Query_Interface
 				return $entry;
 			});
 		}
+
+		$resultset = $this->processReturnOnlyResultsFromList($resultset);
 
 		return $resultset;
 	}
@@ -450,7 +453,7 @@ class Search_Query implements Search_Query_Interface
 
 	function getTerms()
 	{
-		$terms = array();
+		$terms = [];
 
 		$extractor = new Search_Type_Factory_Direct;
 
@@ -473,7 +476,7 @@ class Search_Query implements Search_Query_Interface
 
 		if (! isset($this->subQueries[$name])) {
 			$subquery = new self;
-			$subquery->expr = new Search_Expr_Or(array());
+			$subquery->expr = new Search_Expr_Or([]);
 			$this->expr->addPart($subquery->expr);
 
 			$this->subQueries[$name] = $subquery;
@@ -511,5 +514,47 @@ class Search_Query implements Search_Query_Interface
 	function getForeignQueries()
 	{
 		return $this->foreignQueries;
+	}
+
+	/**
+	 * Set list of results to return
+	 *
+	 * @param array $returnOnlyResultList
+	 * @return void
+	 */
+	public function setReturnOnlyResultList($returnOnlyResultList)
+	{
+		$this->returnOnlyResultList = $returnOnlyResultList;
+	}
+
+	/**
+	 * Get list of results to return
+	 *
+	 * @return array
+	 */
+	public function getReturnOnlyResultList()
+	{
+		return $this->returnOnlyResultList;
+	}
+
+	/**
+	 * Filter the results of the query
+	 *
+	 * @param Search_ResultSet $resultSet
+	 * @return Search_ResultSet
+	 */
+	protected function processReturnOnlyResultsFromList($resultSet)
+	{
+		if (! empty($this->getReturnOnlyResultList())) {
+			$tmpResults = [];
+			foreach ($this->getReturnOnlyResultList() as $resultPosition) {
+				$arrayKey = $resultPosition - 1;
+				if (isset($resultSet[$arrayKey])) {
+					$tmpResults[] = $resultSet[$arrayKey];
+				}
+			}
+			$resultSet = Search_ResultSet::create($tmpResults);
+		}
+		return $resultSet;
 	}
 }

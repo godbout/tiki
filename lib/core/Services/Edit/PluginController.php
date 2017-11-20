@@ -73,11 +73,11 @@ class Services_Edit_PluginController
 			}
 		}
 
-		return array(
+		return [
 			'plugins' => $res,
 			'title' => $title,
 			'pref_filters' => $filters,
-		);
+		];
 	}
 
 	/**
@@ -123,7 +123,6 @@ class Services_Edit_PluginController
 		$util = new Services_Utilities();
 		$util->checkTicket();
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $util->access->ticketMatch()) {
-
 			$this->action_replace($input);
 
 			TikiLib::lib('service')->internal('semaphore', 'unset', ['object_id' => $page]);
@@ -131,7 +130,6 @@ class Services_Edit_PluginController
 			return [
 				'redirect' => TikiLib::lib('wiki')->sefurl($page),
 			];
-
 		} elseif ($util->access->ticketSet()) {        // render the form
 
 			$info = $parserlib->plugin_info($type);
@@ -162,8 +160,9 @@ class Services_Edit_PluginController
 				if (isset($param['profile_reference'])) {
 					$param['selector_type'] = $objectlib->getSelectorType($param['profile_reference']);
 					if (isset($param['parent'])) {
-						if (! preg_match('/[\[\]#\.]/', $param['parent']))
+						if (! preg_match('/[\[\]#\.]/', $param['parent'])) {
 							$param['parent'] = "#option-{$param['parent']}";
+						}
 					} else {
 						$param['parent'] = null;
 					}
@@ -213,7 +212,6 @@ class Services_Edit_PluginController
 						// replace the module plugin description with the one from the select module
 						$info['params']['module']['description'] = $moduleInfo['description'];
 					}
-
 				}
 			}
 
@@ -302,7 +300,9 @@ class Services_Edit_PluginController
 
 			if ($index === $count) {
 				// by using content of "~same~", it will not replace the body that is there
-				$content = ($content == "~same~" ? $match->getBody() : $content);
+				if ($content == "~same~") {
+					$content = $match->getBody();
+				}
 
 				if (! $params) {
 					$params = $match->getArguments();
@@ -318,13 +318,10 @@ class Services_Edit_PluginController
 					$tikilib->get_ip_address()
 				);
 				Feedback::success(tr('Plugin %0 on page %1 successfully edited.', $plugin, $page), 'session');
-
-				break;
+				return [];
 			}
 		}
-
-		return [];
-
+		throw new Exception('Plugin edit failed');
 	}
 
 	/**
@@ -405,7 +402,6 @@ class Services_Edit_PluginController
 
 		/** @var WikiParser_PluginMatcher_Match $match */
 		foreach ($matches as $match) {
-
 			$name = $match->getName();
 
 			$matchArray = [
@@ -425,7 +421,6 @@ class Services_Edit_PluginController
 			}
 
 			if (in_array($name, $allowedPlugins) && ! in_array($matchArray, $done)) {
-
 				$thisBody = $match->getBody();
 
 				$thisPlugin = [
@@ -489,7 +484,7 @@ class Services_Edit_PluginController
 	{
 		$pluginNames = array_keys($plugins);
 
-		foreach($plugins as $plugin) {
+		foreach ($plugins as $plugin) {
 			if (is_array($plugin['params'])) {
 				foreach ($plugin['params'] as $param) {
 					if (is_array($param['options'])) {
@@ -506,5 +501,3 @@ class Services_Edit_PluginController
 		return $pluginNames;
 	}
 }
-
-

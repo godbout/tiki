@@ -3,17 +3,17 @@
  * @package tikiwiki
  */
 // (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
 $section = 'wiki page';
-require_once ('tiki-setup.php');
+require_once('tiki-setup.php');
 $tikilib = TikiLib::lib('tiki');
 $structlib = TikiLib::lib('struct');
 $wikilib = TikiLib::lib('wiki');
-include_once ('lib/wiki-plugins/wikiplugin_slideshow.php');
+include_once('lib/wiki-plugins/wikiplugin_slideshow.php');
 
 $access->check_feature('feature_wiki');
 $access->check_feature('feature_slideshow');
@@ -23,11 +23,11 @@ $tikilib->is_slideshow = true;
 $smarty->assign('is_slideshow', 'y');
 
 // Create the HomePage if it doesn't exist
-if (!$tikilib->page_exists($prefs['wikiHomePage'])) {
+if (! $tikilib->page_exists($prefs['wikiHomePage'])) {
 	$tikilib->create_page($prefs['wikiHomePage'], 0, '', date("U"), 'Tiki initialization');
 }
 
-if (!isset($_SESSION["thedate"])) {
+if (! isset($_SESSION["thedate"])) {
 	$thedate = date("U");
 } else {
 	$thedate = $_SESSION["thedate"];
@@ -39,31 +39,34 @@ if (isset($_REQUEST['pdf'])) {
 
 	$_POST["html"] = urldecode($_POST["html"]);
 
-	if ( isset( $_POST["html"] ) ) {
-
-		require_once 'lib/pdflib.php';
-		PdfGenerator::setupMPDFPathConstants(); // reuse mPDF settings
-		if (class_exists('mPDF')) { // use mPDF if available
-			$orientation =  isset($_REQUEST['landscape']) ? "L" : "P";
-			$mpdf = new mPDF(null, "letter-" . $orientation);
-			$mpdf->WriteHTML(preg_replace('/%u([a-fA-F0-9]{4})/', '&#x\\1;',$_POST["html"]));
-			$mpdf->Output();
-			exit(0);
+	if (isset($_POST["html"])) {
+		$generator = new PdfGenerator(PdfGenerator::MPDF);
+		if (! empty($generator->getError())) {
+			Feedback::error(
+				tr('Exporting slideshow as PDF requires a working installation of mPDF.')
+				. "<br \>"
+				. tr('Export to PDF error: %0', $generator->getError()),
+				'session'
+			);
+			$access = Tikilib::lib('access');
+			$access->redirect(str_replace('tiki-slideshow.php?', 'tiki-index.php?', $_SERVER['HTTP_REFERER']));
 		}
 
-		define("DOMPDF_ENABLE_REMOTE", true);
-		define('DOMPDF_ENABLE_AUTOLOAD', false);
+		$params = [
+			'orientation' => isset($_REQUEST['landscape']) ? 'L' : 'P',
+		];
+		$filename = TikiLib::lib('tiki')->remove_non_word_characters_and_accents($_REQUEST['page']);
 
-		require_once("vendor_bundled/vendor/dompdf/dompdf/dompdf_config.inc.php");
+		$pdf = $generator->getPdf($filename, $params, preg_replace('/%u([a-fA-F0-9]{4})/', '&#x\\1;', $_POST['html']));
 
-		// fallback to DOMPDF
-		$dompdf = new DOMPDF();
-
-		$dompdf->load_html($_POST["html"]);
-		$dompdf->set_paper("letter", (isset($_REQUEST['landscape']) ? "landscape" : "portrait"));
-		$dompdf->render();
-
-		$dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
+		$length = strlen($pdf);
+		header('Cache-Control: private, must-revalidate');
+		header('Pragma: private');
+		header('Content-disposition: inline; filename="' . $filename . '.pdf"');
+		header("Content-Type: application/pdf");
+		header("Content-Transfer-Encoding: binary");
+		header('Content-Length: ' . $length);
+		echo $pdf;
 
 		exit(0);
 	}
@@ -71,21 +74,21 @@ if (isset($_REQUEST['pdf'])) {
 }
 
 // Get the page from the request var or default it to HomePage
-if (!isset($_REQUEST["page"])) {
+if (! isset($_REQUEST["page"])) {
 	$_REQUEST["page"] = $wikilib->get_default_wiki_page();
 }
 $page = htmlspecialchars($_REQUEST['page']);
 $smarty->assign('page', $page);
 
 // If the page doesn't exist then display an error
-if (!($info = $tikilib->page_exists($page))) {
-	include_once ('tiki-index.php');
+if (! ($info = $tikilib->page_exists($page))) {
+	include_once('tiki-index.php');
 	die;
 }
 
 if (isset($_REQUEST['theme'])) {
-	echo json_encode($tikilib->getSlideshowTheme($_REQUEST['theme'])); 
-	die; 
+	echo json_encode($tikilib->getSlideshowTheme($_REQUEST['theme']));
+	die;
 }
 
 // Now check permissions to access this page
@@ -101,11 +104,11 @@ if ($tiki_p_view != 'y') {
 // BreadCrumbNavigation here
 // Remember to reverse the array when posting the array
 
-if (!isset($_SESSION["breadCrumb"])) {
-	$_SESSION["breadCrumb"] = array();
+if (! isset($_SESSION["breadCrumb"])) {
+	$_SESSION["breadCrumb"] = [];
 }
 
-if (!in_array($page, $_SESSION["breadCrumb"])) {
+if (! in_array($page, $_SESSION["breadCrumb"])) {
 	if (count($_SESSION["breadCrumb"]) > $prefs['userbreadCrumb']) {
 		array_shift($_SESSION["breadCrumb"]);
 	}
@@ -115,7 +118,7 @@ if (!in_array($page, $_SESSION["breadCrumb"])) {
 	// If the page is in the array move to the last position
 	$pos = array_search($page, $_SESSION["breadCrumb"]);
 
-	unset ($_SESSION["breadCrumb"][$pos]);
+	unset($_SESSION["breadCrumb"][$pos]);
 	array_push($_SESSION["breadCrumb"], $page);
 }
 
@@ -127,8 +130,9 @@ $parserlib = TikiLib::lib('parser');
 $info = $tikilib->get_page_info($page);
 $pdata = $parserlib->parse_data_raw($info["data"]);
 
-if (!isset($_REQUEST['pagenum']))
+if (! isset($_REQUEST['pagenum'])) {
 	$_REQUEST['pagenum'] = 1;
+}
 
 $pages = $wikilib->get_number_of_pages($pdata);
 $pdata = $wikilib->get_page($pdata, $_REQUEST['pagenum']);
@@ -148,12 +152,12 @@ if (empty($info["user"])) {
 
 $smarty->assign_by_ref('lastUser', $info["user"]);
 
-include_once ('tiki-section_options.php');
+include_once('tiki-section_options.php');
 
 $headerlib->add_cssfile('vendor_bundled/vendor/jquery/jquery-s5/jquery.s5.css');
 $headerlib->add_jsfile('vendor_bundled/vendor/jquery/jquery-s5/jquery.s5.js');
 $headerlib->add_jq_onready(
-    '
+	'
 	$("#toc").remove();
 	
 	window.s5Settings = (window.s5Settings ? window.s5Settings : {});
@@ -217,7 +221,7 @@ $headerlib->add_jq_onready(
 							
 							$.post("tiki-wikiplugin_edit.php", {
 								index: 1,
-								page: "'.$page.'",
+								page: "' . $page . '",
 								type: "slideshow",
 								label: tr("Update slideshow theme"),
 								content: "~same~",
@@ -247,7 +251,8 @@ $headerlib->add_jq_onready(
 		.change();'
 );
 // Jquery Chosen not working in slide footer.
-$headerlib->add_js('
+$headerlib->add_js(
+	'
 	if(jqueryTiki.chosen) {
 		jqueryTiki.chosen = false;
 	}
@@ -259,7 +264,8 @@ $headerlib->add_js('
 		 	jQuery(this).find("object, embed").remove();
 		});
 	}, 500);
-');
+'
+);
 
 ask_ticket('index-raw');
 

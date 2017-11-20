@@ -79,10 +79,10 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 	public function testGetComposerConfigOrDefault($composer, $composerDist, $expected)
 	{
 		$structure = [];
-		if (!is_null($composer)) {
+		if (! is_null($composer)) {
 			$structure['composer.json'] = $composer;
 		}
-		if (!is_null($composerDist)) {
+		if (! is_null($composerDist)) {
 			$structure['composer.json.dist'] = $composerDist;
 		}
 
@@ -92,7 +92,6 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 		$composerCli = new ComposerCli(vfsStream::url($stream));
 
 		$this->assertEquals(json_decode($expected, true), $composerCli->getComposerConfigOrDefault());
-
 	}
 
 	public function getComposerConfigOrDefaultProvider()
@@ -230,6 +229,29 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 						'status' => 'missing',
 						'required' => '^1.0.0',
 						'installed' => '',
+					],
+				],
+			],
+			[ // all packages installed, case mismatch
+				self::SAMPLE_COMPOSER_BIG,
+				[
+					'installed' => [
+						['name' => 'FOO/BAR', 'version' => '1.2.3'],
+						['name' => 'TesT/UniT', 'version' => '1.4.5'],
+					],
+				],
+				[
+					[
+						'name' => 'foo/bar',
+						'status' => 'installed',
+						'required' => '^1.0.0',
+						'installed' => '1.2.3',
+					],
+					[
+						'name' => 'test/unit',
+						'status' => 'installed',
+						'required' => '^1.0.0',
+						'installed' => '1.4.5',
 					],
 				],
 			],

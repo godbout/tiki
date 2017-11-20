@@ -42,12 +42,14 @@
 					{$label|tr_if|escape}
 				</option>
 			{/foreach}
-			{if ! isset($otherLabel)}
-				{assign var=otherLabel value="{tr}Other{/tr}"}
+			{if $field.type eq 'D'}
+				{if ! isset($otherLabel)}
+					{assign var=otherLabel value="{tr}Other{/tr}"}
+				{/if}
+				<option value="other" style="font-style: italic">
+					{$otherLabel}
+				</option>
 			{/if}
-			<option value="other" style="font-style: italic">
-				{$otherLabel}
-			</option>
 		</select>
 
 		{if $field.type eq 'D'}
@@ -63,11 +65,11 @@
 					$other = $('input[name="other_{{$field.ins_id|escape}}"]');
 				{{if !isset($field.possibilities[$field.value]) && $field.value}}
 				if (!$('> [selected]', $select).length) {
-					$select.val('{tr}other{/tr}').trigger('chosen:updated');
+					$select.val('other').trigger('chosen:updated');
 				}
 				{{/if}}
 				$select.change(function() {
-					if ($select.val() != '{tr}other{/tr}') {
+					if ($select.val() != 'other') {
 						$other.data('tiki_never_visited', '');
 						$other.val('').parent().hide();
 					} else {

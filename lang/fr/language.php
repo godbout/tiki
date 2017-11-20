@@ -1,17 +1,17 @@
 <?php
 // (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 
 // Note for translators about translation of text ending with punctuation
-// 
+//
 // The concerned punctuation signs can be found in tra_impl() (in 'lib/init/tra.php').
 // As of 2016-12-04, these are: ':', '!', ';', '.', ',', '?'.
 // For clarity, we explain here only for colons (':'), but it is the same for the rest.
-// 
+//
 // Short version: it is not a problem that string "Login:" has no translation. Only "Login" needs to be translated.
-// 
+//
 // Technical justification:
 // If a string ending with colon needs translating (like "{tr}Login:{/tr}")
 // then Tiki tries to translate 'Login' and ':' separately.
@@ -21,7 +21,7 @@
 // Note: the difference is invisible but " :" has an UTF-8 non-breaking-space, not a regular space, but the UTF-8 equivalent of the HTML &nbsp;.
 // This allows correctly displaying emails and JavaScript messages, not only web pages as would happen with &nbsp;.
 
-$lang = array(
+$lang = [
 "Welsh" => "Gallois",
 "Slovene" => "Slovène",
 "Arabic" => "Arabe",
@@ -1926,16 +1926,16 @@ $lang = array(
 // "Location: Field %0 not found for field \"%1\"" => "Location: Field %0 not found for field \"%1\"",
 // "Could not find a location for \"%0\"" => "Could not find a location for \"%0\"",
 "When enabled, the field's value is recorded as the item's geolocation to be displayed on locator maps" => "Quand activé, enregistre la valeur du champ en tant que géolocalisation de la fiche pour affichage sur les cartes de localisation",
-// "Mathematical Calculation" => "Mathematical Calculation",
-// "Performs a calculation upon saving the item based on other fields within the same item" => "Performs a calculation upon saving the item based on other fields within the same item",
-// "Calculation" => "Calculation",
+"Mathematical Calculation" => "Calcul mathématique",
+"Performs a calculation upon saving the item based on other fields within the same item" => "Effectue un calcul à partir d'autres champs de la fiche à chaque sauvegarde",
+"Calculation" => "Calcul",
 // "Calculation in the Rating Language" => "Calculation in the Rating Language",
-// "Re-calculation event" => "Re-calculation event",
-// "Allow specifying special calculation handling. Selection of indexing is useful for dynamic score fields that will not be displayed" => "Allow specifying special calculation handling. Selection of indexing is useful for dynamic score fields that will not be displayed",
-// "Value will be re-calculated on save. Current value: %0" => "Value will be re-calculated on save. Current value: %0",
+"Re-calculation event" => "Déclenchement du re-calcul",
+"Allow specifying special calculation handling. Selection of indexing is useful for dynamic score fields that will not be displayed" => "Permet de spécifier d'autres déclencheurs du re-calcul. Le choix de l'indexation est utile pour des champs de scores dynamiques qui ne sont jamais affichés",
+"Value will be re-calculated on save. Current value: %0" => "Cette valeur sera recalculée à chaque sauvegarde. Valeur actuelle : %0",
 "Numeric Field" => "Champ numérique",
 "Text to be displayed in front of the numeric value" => "Texte à afficher avant la valeur numérique",
-// "Thousands separator when displaying data" => "Thousands separator when displaying data",
+"Thousands separator when displaying data" => "Séparateur des milliers à l'affichage des données",
 "Page Selector" => "Sélecteur de page",
 "Allows a selection from the list of pages" => "Permet une sélection à partir de la liste des pages",
 "Will auto-assign the creator of the item" => "Assignera automatiquement le créateur de la fiche",
@@ -5561,7 +5561,7 @@ $lang = array(
 "Page name maximum displayed length" => "Longueur maximale affichée du nom de page",
 "Backlink page names maximum displayed length" => "Longueur maximale affichée des noms des pages pointant vers cette page",
 "Comment of the latest edit" => "Commentaire de la dernière modification",
-"Maximum displayed length of the latest edit's comment"=> "Longueur maximale affichée du commentaire de la dernière modification",
+"Maximum displayed length of the latest edit's comment" => "Longueur maximale affichée du commentaire de la dernière modification",
 'If the text is longer, it will be truncated after that length. Special value "0" disables truncation.' => "Si le texte est plus long, il sera tronqué après cette longueur. La valeur spéciale « 0 » désactive la troncature.",
 "Versions" => "Versions",
 "Categories path" => "Chemin des catégories",
@@ -12582,6 +12582,8 @@ $lang = array(
 // "To validate your account and login to the {\$prefs.mail_template_custom_text}site, please click on the following link" => "To validate your account and login to the {\$prefs.mail_template_custom_text}site, please click on the following link",
 "The administrator approved your account." => "L'administrateur a validé votre compte.",
 // "Confirm your {\$prefs.mail_template_custom_text}email at %s" => "Confirm your {\$prefs.mail_template_custom_text}email at %s",
+"The administrator approved your account." => "L'administrateur a validé votre compte.",
+"To validate your account and login to the {\$prefs.mail_template_custom_text}site, please click on the following link:" => "Pour valider votre compte et vous connecter au site {\$prefs.mail_template_custom_text}, veuillez cliquer sur le lien suivant :",
 // "Remove {\$prefs.mail_template_custom_text}file" => "Remove {\$prefs.mail_template_custom_text}file",
 "GalleryId" => "Id de la galerie",
 "Identifier" => "Identifiant",
@@ -14944,9 +14946,9 @@ $lang = array(
 "Note that plugin arguments can be enclosed with double quotes (&quot;); this allows them to contain , or = or &gt;" => "Notez que les arguments des plugiciels peuvent être encadrés par des guillemets (\") ; Ceci leur permet de comporter des virgules (,), des signes comme \"égal\" (=) ou \"supérieur à\" (>)",
 "More help here" => "Plus d'aide ici",
 "Wiki plugins extend the function of wiki syntax with more specialized commands" => "Les plugiciels Wiki étendent la syntaxe wiki avec des commandes plus spécialisées",
-"Activate/deactivate plugins" => "Activater/désactiver des plugiciels",
+"Activate/deactivate plugins" => "Activer/désactiver des plugiciels",
 "No description available" => "Aucune description disponible",
-"For more information, please see" => "Pour plus d'onformations, merci de voir",
+"For more information, please see" => "Pour plus d'information, voir",
 "WYSIWYG Editor" => "Editeur Wysiwyg",
 "More help on WYSIWYG editing" => "Davantage d'aide sur l'édition en wysiwyg",
 // "The WYSIWYG editor in Tiki is <a href=\"http://ckeditor.com\">CKEditor</a>" => "The WYSIWYG editor in Tiki is <a href=\"http://ckeditor.com\">CKEditor</a>",
@@ -18920,4 +18922,4 @@ $lang = array(
 // "New in Tiki 12 (LTS)" => "New in Tiki 12 (LTS)",
 "Contribute:" => "Contribuer :",
 "For translations specific to this Tiki instance, select No. If this translation can be contributed to the Tiki community, select Yes." => "Pour les traductions spécifiques à cette instance Tiki, choisissez Non. Si cette traduction peut être contribuée à la communauté Tiki, choisissez Oui.",
-);
+];

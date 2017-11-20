@@ -12,7 +12,7 @@
  * \enhanced by luci@sh.ground.cz
  *
  */
-require_once ('lib/tree/tree.php');
+require_once('lib/tree/tree.php');
 
 /**
  * \brief Class to render categories browse tree
@@ -24,7 +24,7 @@ class BrowseTreeMaker extends TreeMaker
 	{
 		$headerlib = TikiLib::lib('header');
 
-		$r = '<ul class="tree root">'."\n";
+		$r = '<ul class="tree root">' . "\n";
 
 		$r .= $this->make_tree_r($rootid, $ar) . "</ul>\n";
 
@@ -57,12 +57,12 @@ class BrowseTreeMaker extends TreeMaker
 		return "\t\t";
 	}
 
-	function node_start_code_flip($nodeinfo, $count=0)
+	function node_start_code_flip($nodeinfo, $count = 0)
 	{
 		return "\t" . '<li class="treenode withflip ' . (($count % 2) ? 'odd' : 'even') . '">';
 	}
 
-	function node_start_code($nodeinfo, $count=0)
+	function node_start_code($nodeinfo, $count = 0)
 	{
 		return "\t" . '<li class="treenode ' . (($count % 2) ? 'odd' : 'even') . '">';
 	}
@@ -88,8 +88,16 @@ class BrowseTreeMaker extends TreeMaker
 	//
 	function node_child_start_code($nodeinfo)
 	{
+		global $prefs;
+
+		if ($this->node_cookie_state($nodeinfo['id']) != 'o' && $prefs['javascript_enabled'] === 'y') {
+			$style = ' style="display:none;"';
+		} else {
+			$style = '';
+		}
+
 		return '<ul class="tree" data-id="' . $nodeinfo['id'] .
-			   	'" data-prefix="' . $this->prefix . '"' . ($this->node_cookie_state($nodeinfo['id']) != 'o' ? ' style="display:none;"' : '') . '>';
+				   '" data-prefix="' . $this->prefix . '"' . $style . '>';
 	}
 
 	//

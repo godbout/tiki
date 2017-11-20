@@ -58,6 +58,7 @@ db/cert/web.config -text
 db/config/controllers.xml -text
 db/config/index.php -text
 db/config/mailin.xml -text
+db/config/tiki-objectpermissions_order.yml -text
 db/config/tiki.xml -text
 db/index.php -text
 db/install.ini.dist -text
@@ -1702,7 +1703,6 @@ installer/schema/20100902_invit_tiki.sql -text
 installer/schema/20100903_article_ispublished_tiki.sql -text
 installer/schema/20100906_sheet_toolbar_default_tiki.sql -text
 installer/schema/20100909_alter_tiki_language_fields_to_text_tiki.sql -text
-installer/schema/20100909_ckeditor_upgrade_tiki.sql -text
 installer/schema/20100909_lengthen_wiki_attachments_filename_tiki.sql -text
 installer/schema/20100910_new_fields_for_tiki_blogs_tiki.sql -text
 installer/schema/20100912_rename_autosave_pref_tiki.sql -text
@@ -1972,7 +1972,9 @@ installer/schema/20170726_tabular_config_tiki.sql -text
 installer/schema/20170920_admin_webservices_menu_option_tiki.sql -text
 installer/schema/20170925_add_general_to_language_tiki.sql -text
 installer/schema/20171002_queue_handler_size_increase_tiki.sql -text
+installer/schema/20171010_action_log_info_new_column.sql -text
 installer/schema/20171016_no_homepage_specificed_tiki.php -text
+installer/schema/20171114_create_plugin_include_relations.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -1994,6 +1996,7 @@ lang/ca/custom.php_vos -text
 lang/ca/index.php -text
 lang/ca/language.js -text
 lang/ca/language.php -text
+lang/ca/language_r.php -text
 lang/ca/typography.php_example -text
 lang/cn/index.php -text
 lang/cn/language.js -text
@@ -2010,8 +2013,6 @@ lang/da/language.php -text
 lang/de/index.php -text
 lang/de/language.js -text
 lang/de/language.php -text
-lang/dk/index.php -text
-lang/dk/language.js -text
 lang/el/index.php -text
 lang/el/language.js -text
 lang/el/language.php -text
@@ -2022,12 +2023,14 @@ lang/en-uk/typography.php_example -text
 lang/en/index.php -text
 lang/en/language.js -text
 lang/en/language.php -text
+lang/en/language_r.php -text
 lang/en/typography.php_example -text
 lang/es/custom.js_example -text
 lang/es/custom.php_example -text
 lang/es/index.php -text
 lang/es/language.js -text
 lang/es/language.php -text
+lang/es/language_r.php -text
 lang/es/typography.php_example -text
 lang/fa/index.php -text
 lang/fa/language.js -text
@@ -2051,6 +2054,7 @@ lang/fy-NL/language.php -text
 lang/gl/index.php -text
 lang/gl/language.js -text
 lang/gl/language.php -text
+lang/he/custom.php_example.php -text
 lang/he/index.php -text
 lang/he/language.js -text
 lang/he/language.php -text
@@ -2638,6 +2642,7 @@ lib/core/Search/Type/Factory/Interface.php -text
 lib/core/Search/Type/Factory/index.php -text
 lib/core/Search/Type/GeoPoint.php -text
 lib/core/Search/Type/Interface.php -text
+lib/core/Search/Type/Json.php -text
 lib/core/Search/Type/MultivaluePlain.php -text
 lib/core/Search/Type/MultivalueText.php -text
 lib/core/Search/Type/Nested.php -text
@@ -3871,6 +3876,7 @@ lib/search/federatedsearchlib.php -text
 lib/search/index.php -text
 lib/search/refresh-functions.php -text
 lib/search/refresh.php -text
+lib/search/report_string_in_db.php -text
 lib/search/searchlib-mysql.php -text
 lib/search/searchlib-unified.php -text
 lib/search/searchstatslib.php -text
@@ -4084,6 +4090,7 @@ lib/smarty_tiki/function.object_score.php -text
 lib/smarty_tiki/function.object_selector.php -text
 lib/smarty_tiki/function.object_selector_multi.php -text
 lib/smarty_tiki/function.object_title.php -text
+lib/smarty_tiki/function.object_type.php -text
 lib/smarty_tiki/function.page_alias.php -text
 lib/smarty_tiki/function.page_in_structure.php -text
 lib/smarty_tiki/function.payment.php -text
@@ -4111,6 +4118,8 @@ lib/smarty_tiki/function.service.php -text
 lib/smarty_tiki/function.service_inline.php -text
 lib/smarty_tiki/function.set.php -text
 lib/smarty_tiki/function.show_sort.php -text
+lib/smarty_tiki/function.svn_lastup.php -text
+lib/smarty_tiki/function.svn_rev.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.ticket.php -text
 lib/smarty_tiki/function.toolbars.php -text
@@ -4844,6 +4853,7 @@ lib/wiki-plugins/wikiplugin_prettytrackerviews.php -text
 lib/wiki-plugins/wikiplugin_profile.php -text
 lib/wiki-plugins/wikiplugin_proposal.php -text
 lib/wiki-plugins/wikiplugin_quote.php -text
+lib/wiki-plugins/wikiplugin_r.php -text
 lib/wiki-plugins/wikiplugin_randominclude.php -text
 lib/wiki-plugins/wikiplugin_rcontent.php -text
 lib/wiki-plugins/wikiplugin_realnamelist.php -text
@@ -4853,6 +4863,7 @@ lib/wiki-plugins/wikiplugin_registermemberpayment.php -text
 lib/wiki-plugins/wikiplugin_relations.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
 lib/wiki-plugins/wikiplugin_report.php -text
+lib/wiki-plugins/wikiplugin_rr.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_scroll.php -text
 lib/wiki-plugins/wikiplugin_sf.php -text
@@ -5631,7 +5642,9 @@ templates/menu/clone_menu.tpl -text
 templates/menu/export_menu_options.tpl -text
 templates/menu/import_menu_options.tpl -text
 templates/menu/index.php -text
-templates/menu/manage_menu.tpl -text
+templates/menu/manage.tpl -text
+templates/menu/manage_option.tpl -text
+templates/menu/quicklinks.tpl -text
 templates/messu-archive.tpl -text
 templates/messu-broadcast.tpl -text
 templates/messu-compose.tpl -text
@@ -6061,6 +6074,7 @@ templates/tiki-directory_search.tpl -text
 templates/tiki-directory_validate_sites.tpl -text
 templates/tiki-discount.tpl -text
 templates/tiki-edit-page-include-prompt_for_edit_or_translate.tpl -text
+templates/tiki-edit-page-included_by.tpl -text
 templates/tiki-edit_article.tpl -text
 templates/tiki-edit_banner.tpl -text
 templates/tiki-edit_blog.tpl -text
@@ -7759,6 +7773,7 @@ themes/superhero/scss/index.php -text
 themes/superhero/scss/newsletter.scss -text
 themes/superhero/scss/superhero.scss -text
 themes/superhero/templates/index.php -text
+themes/templates/README -text
 themes/templates/index.php -text
 themes/thenews/css/index.php -text
 themes/thenews/css/newsletter.css -text

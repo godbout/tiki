@@ -9,10 +9,11 @@ class Tiki_Profile_InstallHandler_Blog extends Tiki_Profile_InstallHandler
 {
 	function getData()
 	{
-		if ( $this->data )
+		if ($this->data) {
 			return $this->data;
+		}
 
-		$defaults = array(
+		$defaults = [
 			'description' => '',
 			'user' => 'admin',
 			'public' => 'n',
@@ -22,7 +23,7 @@ class Tiki_Profile_InstallHandler_Blog extends Tiki_Profile_InstallHandler
 			'use_find' => 'y',
 			'comments' => 'n',
 			'show_avatar' => 'n',
-		);
+		];
 
 		$data = array_merge($defaults, $this->obj->getData());
 
@@ -34,8 +35,9 @@ class Tiki_Profile_InstallHandler_Blog extends Tiki_Profile_InstallHandler
 	function canInstall()
 	{
 		$data = $this->getData();
-		if ( ! isset( $data['title'] ) )
+		if (! isset($data['title'])) {
 			return false;
+		}
 
 		return true;
 	}
@@ -65,5 +67,23 @@ class Tiki_Profile_InstallHandler_Blog extends Tiki_Profile_InstallHandler
 		);
 
 		return $blogId;
+	}
+
+	/**
+	 * Remove blog
+	 *
+	 * @param string $blog
+	 * @return bool
+	 */
+	function remove($blog)
+	{
+		if (! empty($blog)) {
+			$bloglib = TikiLib::lib('blog');
+			$blog = $bloglib->get_blog_by_title($blog);
+			if (! empty($blog['blogId']) && $bloglib->remove_blog($blog['blogId'])) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

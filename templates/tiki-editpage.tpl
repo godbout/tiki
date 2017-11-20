@@ -60,6 +60,12 @@
 			{tr}The Sandbox is a page where you can practice editing, etc. and use the preview feature to check the appearance of the page. No versions are stored for this page.{/tr}
 		{/remarksbox}
 	{/if}
+        {if isset($included_by)}
+                {remarksbox type='Warning' title="{tr}Warning{/tr}"}
+                        {tr}The following item(s) include this one with Plugin Include and might be affected by these changes. Renaming sections can break related item(s).{/tr}
+		        {include file='tiki-edit-page-included_by.tpl'}
+                {/remarksbox}
+        {/if}
 	{if $category_needed eq 'y'}
 		{remarksbox type='Warning' title="{tr}Warning{/tr}"}
 			<div class="highlight"><em class='mandatory_note'>{tr}A category is mandatory{/tr}</em></div>
