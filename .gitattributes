@@ -3472,6 +3472,7 @@ lib/mailin/mailinlib.php -text
 lib/mailin/usermailinlib.php -text
 lib/menubuilder/index.php -text
 lib/menubuilder/menulib.php -text
+lib/menubuilder/tiki-admin_menu_options.js -text
 lib/messu/index.php -text
 lib/messu/messulib.php -text
 lib/metadata/datatypes/basicinfo.php -text
