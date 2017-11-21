@@ -5640,12 +5640,12 @@ templates/managestream/list.tpl -text
 templates/managestream/record.tpl -text
 templates/managestream/sample.tpl -text
 templates/managestream/tracker_filter.tpl -text
-templates/menu/clone_menu.tpl -text
+templates/menu/clone.tpl -text
+templates/menu/edit.tpl -text
+templates/menu/edit_option.tpl -text
 templates/menu/export_menu_options.tpl -text
 templates/menu/import_menu_options.tpl -text
 templates/menu/index.php -text
-templates/menu/manage.tpl -text
-templates/menu/manage_option.tpl -text
 templates/menu/quicklinks.tpl -text
 templates/messu-archive.tpl -text
 templates/messu-broadcast.tpl -text
