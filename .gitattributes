@@ -5313,6 +5313,7 @@ templates/admin/include_rss.tpl -text
 templates/admin/include_rtc.tpl -text
 templates/admin/include_score.tpl -text
 templates/admin/include_search.tpl -text
+templates/admin/include_search_report_string_in_db.tpl -text
 templates/admin/include_security.tpl -text
 templates/admin/include_sefurl.tpl -text
 templates/admin/include_semantic.tpl -text
@@ -6238,7 +6239,6 @@ templates/tiki-register_site.tpl -text
 templates/tiki-remind_password.tpl -text
 templates/tiki-rename_page.tpl -text
 templates/tiki-report_direct_object_perms.tpl -text
-templates/tiki-report_string_in_db.tpl -text
 templates/tiki-rollback.tpl -text
 templates/tiki-search_count.tpl -text
 templates/tiki-search_replace.tpl -text
