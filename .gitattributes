@@ -5646,6 +5646,7 @@ templates/menu/edit_option.tpl -text
 templates/menu/export_menu_options.tpl -text
 templates/menu/import_menu_options.tpl -text
 templates/menu/index.php -text
+templates/menu/preview.tpl -text
 templates/menu/quicklinks.tpl -text
 templates/messu-archive.tpl -text
 templates/messu-broadcast.tpl -text
