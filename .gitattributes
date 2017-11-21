@@ -8085,7 +8085,6 @@ themes/yeti/templates/index.php -text
 /tiki-remind_password.php -text
 /tiki-rename_page.php -text
 /tiki-report_direct_object_perms.php -text
-/tiki-report_string_in_db.php -text
 /tiki-rollback.php -text
 /tiki-rss_error.php -text
 /tiki-search_replace.php -text
