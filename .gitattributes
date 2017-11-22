@@ -1976,6 +1976,7 @@ installer/schema/20171002_queue_handler_size_increase_tiki.sql -text
 installer/schema/20171010_action_log_info_new_column.sql -text
 installer/schema/20171016_no_homepage_specificed_tiki.php -text
 installer/schema/20171121_create_plugin_include_relations_tiki.php -text
+installer/schema/20171122_h5p_update_add_hub_table_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2293,6 +2294,7 @@ lib/core/FutureLink/ReceiveFromPast.php -text
 lib/core/FutureLink/Search.php -text
 lib/core/FutureLink/SendToFuture.php -text
 lib/core/FutureLink/index.php -text
+lib/core/H5P/EditorTikiAjax.php -text
 lib/core/H5P/EditorTikiStorage.php -text
 lib/core/H5P/Event.php -text
 lib/core/H5P/H5PTiki.php -text
