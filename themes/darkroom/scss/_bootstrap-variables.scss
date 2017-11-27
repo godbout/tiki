@@ -1,26 +1,20 @@
-// $Id: bootstrap-variables.scss 64190 2017-10-10 04:10:27Z chibaguy $ Darkroom theme custom-variables.scss file. This is a duplicate of the default Bootstrap variables.scss, edited to override the original values.
-//
-// Variables
-// --------------------------------------------------
+// $Id: bootstrap-variables.scss 64190 2017-10-10 04:10:27Z chibaguy $ Darkroom theme Bootstrap variables file.
 
-//== Colors
-
-$gray-200: #1c1c1c;
-$gray-300: #505050;
-$gray-500: #565656;
-$gray-700: #9a9a9a;
-$gray-900: #ebebeb;
-
+// Colors
 $primary: #ababab;
-$success: #5cb85c;
-$info: #5bc0de;
-$warning: #f0ad4e;
-$danger: #d9534f;
 
-$link-color: #ababab; // $primary;
+// Options
+// Spacing
 
+// Body
 $body-bg:               #474747;
 $body-color:            #d8d8d8;
+
+// Links
+$link-color: #ababab; // $primary;
+
+// Components
+// Fonts
 
 // Tables
 $table-bg: #232323;
@@ -46,55 +40,62 @@ $btn-info-color: #ffffff;
 $btn-info-bg: $info;
 $btn-info-border: #50A3BF;
 
-//== Forms
+// Forms
 $input-bg: #292929;
 $input-bg-disabled: $gray-300;
 $input-color: #f5f5f5;
 $input-color-placeholder: $gray-300;
 
-//== Dropdowns
+// Dropdowns
 $dropdown-bg: #474747;
 $dropdown-border: rgba(0, 0, 0, .15);
 $dropdown-fallback-border: #cccccc;
 $dropdown-link-hover-color: #3f3f3f;
 $dropdown-link-hover-bg: #cccccc;
 
-//== Navbar
-
+// Navs
+// Navbar
 $navbar-dark-color: #a6a68d;
 $navbar-dark-bg: #4b4b4b;
 $navbar-default-link-color: #a6a68d;
 
-//== Navs
+// Navbarlinks
 $nav-link-hover-bg: #474747;
 $nav-tabs-link-hover-border-color: #474747;
 
-//== Pagination
+// Pagination
 $pagination-bg: #818181;
 
-
-//== Popovers
-$popover-bg: #474747;
-
-//== Modals
-$modal-content-bg: #555555;
-
-//== List group
-$list-group-bg: #818181;
-$list-group-disabled-color: $gray-300;
-$list-group-disabled-bg: $gray-500;
-
-//== Card
+// Jumbotron
+// Cards
 $card-bg: #474747;
 $card-inner-border: #474747;
 $card-footer-bg: #474747;
 
-//== Breadcrumbs
+// Tooltips
+// Popovers
+$popover-bg: #474747;
+
+// Badges
+// Modals
+$modal-content-bg: #555555;
+
+// Alerts
+// Progress bars
+// List group
+$list-group-bg: #818181;
+$list-group-disabled-color: $gray-300;
+$list-group-disabled-bg: $gray-500;
+
+// Image thumbnails
+// Figures
+// Breadcrumbs
 $breadcrumb-color: #848484;
 $breadcrumb-active-color: #959595;
 
-//== Code
+// Carousel
+// Close
+// Code
 $pre-bg: #292929;
 $pre-color: $gray-300;
 $pre-border-color: #292929;
-

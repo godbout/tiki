@@ -1,6 +1,7 @@
 // $Id$
 // Custom styles for the Business theme.
 
+// Colors
 $theme-colors: (
 	"primary": #0082e0,
 );
@@ -12,10 +13,21 @@ $gray-500: #737373; //lighten(@gray-base, 33.5%);
 $gray-300: lighten($gray-500, 10%);
 $gray-200: lighten($gray-500, 20%);
 
+//Options
+//Spacing
+
+//Body
 $body-color: $gray-800;
 
+//Links
+//Components
+//Fonts
 $font-family-sans-serif: Verdana, Geneva, Arial, Helvetica, sans-serif;
 
+// Tables
+$table-border-color: 			  #dddddd;
+
+// Buttons
 $btn-default-color: #ffffff;
 $btn-default-bg: #3676c4;
 $btn-default-border: #3676c4;
@@ -23,10 +35,11 @@ $btn-default-border: #3676c4;
 $btn-primary-color: #ffffff;
 $btn-primary-bg: #3676c4;
 
+// Forms
 $input-border: #dddddd;
-
-// Navbar
-
+// Dropdowns
+// Navs
+//Navbar
 $navbar-dark-color:			 #ffffff;
 $navbar-dark-bg:				 #1f5daa;
 $navbar-dark-border:			 darken($navbar-dark-bg, 6.5%);
@@ -39,13 +52,22 @@ $navbar-dark-active-color: 		 #ffffff;
 $navbar-dark-active-bg: 			 #3270bd;
 $navbar-dark-disabled-color:		 #cccccc;
 
-// Modals
-$modal-header-border-color:   #386dbb;
 
-// Cards
+// Pagination
+// Jumbotron
+//Cards
 $card-border-radius: $border-radius-lg;
 $card-text: #fff; // @gray-lighter;
 $card-heading-bg: #386dbb;
 
-$table-border-color: 			  #dddddd;
+//$card-border-radius: $border-radius-lg;
+//$card-text: #fff;//@gray-lighter;
+//$card-heading-bg: #386dbb;
 
+// Tooltips
+
+// Popovers
+
+// Badges
+// Modals
+$modal-header-border-color:   #386dbb;
