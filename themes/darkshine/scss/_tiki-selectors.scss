@@ -1,10 +1,9 @@
 // $Id: _tiki-selectors.scss 64190 2017-10-10 04:10:27Z chibaguy $
-// This file is for additional LESS rules beyond what are in variables.scss.
+// This file is for additional SASS rules beyond what are in _bootstrap-variables.scss.
+// Todo for Bootstrap 4: The theme files compile, but check if all these rules are still appropriate.
 // Image path example:
 $imagePath: "../images/";
-//
-// If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: $gray-lighter;}
+
 
 body,
 body.fullscreen {
@@ -51,7 +50,7 @@ h2.sitesubtitle {
 }
 
 .topbar a {
-	color: $navbar-default-link-color;
+	color: $navbar-light-color;
 }
 
 #middle,
@@ -62,7 +61,7 @@ h2.sitesubtitle {
 	border-width: 0 15px;
 }
 
-.top_modules div:not(.panel) .btn-link,
+.top_modules div:not(.card) .btn-link,
 #fullscreenbutton a {
 	color: #fe9b27;
 }
@@ -79,7 +78,7 @@ h2.sitesubtitle {
 //  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fea841', endColorstr='#fd7931',GradientType=0 );
 //}
 
-.btn-default {
+.btn-primary {
 	background: #ffd19f;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffd19f), color-stop(3%, #fea841), color-stop(5%, #fca73a), color-stop(8%, #fda541), color-stop(10%, #ffa340), color-stop(13%, #f8a441), color-stop(15%, #ffa439), color-stop(18%, #fba23e), color-stop(21%, #fea23f), color-stop(46%, #fc9338), color-stop(54%, #fe9039), color-stop(59%, #fc8c36), color-stop(100%, #fd7931));
 	background: -webkit-linear-gradient(top, #ffd19f 0%, #fea841 3%, #fca73a 5%, #fda541 8%, #ffa340 10%, #f8a441 13%, #ffa439 15%, #fba23e 18%, #fea23f 21%, #fc9338 46%, #fe9039 54%, #fc8c36 59%, #fd7931 100%);
@@ -88,7 +87,7 @@ h2.sitesubtitle {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd19f', endColorstr='#fd7931', GradientType=0);
 }
 
-.btn-default:hover {
+.btn-primary:hover {
 	background: #fd7931;
 	background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #ffd19f), color-stop(3%, #fea841), color-stop(5%, #fca73a), color-stop(8%, #fda541), color-stop(10%, #ffa340), color-stop(13%, #f8a441), color-stop(15%, #ffa439), color-stop(18%, #fba23e), color-stop(21%, #fea23f), color-stop(46%, #fc9338), color-stop(54%, #fe9039), color-stop(59%, #fc8c36), color-stop(100%, #fd7931));
 	background: -webkit-linear-gradient(bottom, #ffd19f 0%, #fea841 3%, #fca73a 5%, #fda541 8%, #ffa340 10%, #f8a441 13%, #ffa439 15%, #fba23e 18%, #fea23f 21%, #fc9338 46%, #fe9039 54%, #fc8c36 59%, #fd7931 100%);
@@ -108,15 +107,15 @@ h2.sitesubtitle {
 	}
 }
 
-.topbar .navbar-default .navbar-nav > li,
+.topbar .navbar-light .navbar-nav > li,
 .topbar .nav > li {
 	background: transparent;
 }
 
 #top_modules .navbar-default .navbar-collapse,
-#top_modules .navbar-default .navbar-form .panel-default > .panel-heading,
+#top_modules .navbar-default .navbar-form .card-default > .card-heading,
 #topbar_modules .navbar-default .navbar-collapse,
-#topbar_modules .navbar-default .navbar-form .panel-default > .panel-heading {
+#topbar_modules .navbar-default .navbar-form .card-default > .card-heading {
 	border: none;
 }
 
@@ -131,17 +130,17 @@ h2.sitesubtitle {
 	margin-bottom: 0;
 }
 
-.panel-title {
+.card-title {
 	color: #8A0700;
 	font: 1.8rem arial, verdana, helvetica, sans-serif;
 }
 
-#col2 .panel,
-#col3 .panel,
-#col2 .panel-default > .panel,
-#col3 .panel-default > .panel,
-#col2 .panel-default > .panel-heading,
-#col3 .panel-default > .panel-heading {
+#col2 .card,
+#col3 .card,
+#col2 .card-default > .card,
+#col3 .card-default > .card,
+#col2 .card-default > .card-heading,
+#col3 .card-default > .card-heading {
 	border: none;
 	background: transparent;
 }
@@ -161,12 +160,12 @@ h2.sitesubtitle {
 }
 
 .topbar .cssmenu_horiz > li > a {
-	color: $navbar-default-link-color;
+	color: $navbar-light-color;
 }
 
-.topbar .cssmenu_horiz > li:hover > a {
-	color: $navbar-default-link-hover-color;
-}
+//.topbar .cssmenu_horiz > li:hover > a {
+//	color: $navbar-light-link-hover-color;
+//}
 
 .cssmenu_horiz li ul,
 .cssmenu_vert li ul {
@@ -174,10 +173,9 @@ h2.sitesubtitle {
 	margin: 2px 0 0; // override default ul
 	//  font-size: $font-size-base;
 	background-color: $dropdown-bg;
-	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
-	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+	@include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 
@@ -205,16 +203,16 @@ h2.sitesubtitle {
 }
 
 footer.footer {
-	.panel-default {
+	.card-default {
 		border: none;
 	}
-	.panel {
+	.card {
 		background: transparent;
 		border: none;
 		-webkit-box-shadow: none;
 		box-shadow: none;
 	}
-	.panel-default > .panel-heading {
+	.card-default > .card-heading {
 		background-color: transparent;
 		border-color: transparent;
 
@@ -238,7 +236,7 @@ footer.footer {
 		}
 	}
 	h1, h2, h3, h4, h5 {
-		color: $brand-warning;
+		color: $warning;
 	}
 }
 
