@@ -1,12 +1,13 @@
 //  This is the SCSS template for
 /* $Id: greenvalley.less 64181 2017-10-09 05:47:00Z chibaguy $
 	Greenvalley theme (greenvalley.css) for Tiki Wiki CMS Groupware. */
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
-//@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
 @import "_bootstrap-variables.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two needed to prevent
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // compiling errors.
+@import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
+
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss"; // Needed for darken function.
 @import "../../base_files/scss/_tiki-selectors.scss";
-// Tiki non-Bootstrap CSS selectors related to color
-@import "../../base_files/scss/_tiki-variables.scss";
-// Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
-@import "../../base_files/scss/_external-scripts.scss";
+@import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "_tiki-selectors.scss";
+@import "../../base_files/scss/_external-scripts.scss";
