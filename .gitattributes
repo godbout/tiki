@@ -6853,7 +6853,6 @@ themes/didiem/images/magnify.png -text
 themes/didiem/images/topbar.jpg -text
 themes/didiem/index.php -text
 themes/didiem/scss/_bootstrap-variables.scss -text
-themes/didiem/scss/_tiki-selector-variables.scss -text
 themes/didiem/scss/_tiki-selectors.scss -text
 themes/didiem/scss/didiem.scss -text
 themes/didiem/scss/index.php -text

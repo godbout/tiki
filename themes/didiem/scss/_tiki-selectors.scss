@@ -1,37 +1,29 @@
 // $Id: _tiki-selectors.scss 63535 2017-08-12 05:41:04Z chibaguy $
 // This file is for additional LESS rules beyond what are in variables.scss.
-// Image path example:
+$imagePath: "../images/";
 
-// body {
-//	background-image: url('#{$imagePath}bg.jpg');
-// }
-//
-// If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
-
-#col2 .panel,
-#col3 .panel,
-#bottom_modules .panel {
-	//  background: url('#{$imagePath}options/plum/siteheader.jpg') -1000px -200px no-repeat #1C0029;
-	border: @side-column-border-size; // none;
+#col2 .card,
+#col3 .card,
+#bottom_modules .card {
+	border: none;
 }
 
-#col2 .panel-heading,
-#col3 .panel-heading,
-#bottom_modules .panel-heading {
-	background: @side-column-panel-heading-background; // #e1d518 url('#{$imagePath}siteheader.png') no-repeat -1000px -200px;
+#col2 .card-heading,
+#col3 .card-heading,
+#bottom_modules .card-heading {
+	background: #f2f2f2; // #e1d518 url('#{$imagePath}siteheader.png') no-repeat -1000px -200px;
 	border-bottom: none;
 }
 
 // Header graphics
 .header_outer {
 	/* whole width div containing the header strip */
-	background: @header_outer-background;
+	background: transparent;
 }
 
 .header_container > .header {
 	/* inner <header> element that gets .fixedwidth class applied */
-	background: @header_container_header-background;
+	background: transparent;
 }
 
 header.header .module.secondary_site_menu {
@@ -39,7 +31,7 @@ header.header .module.secondary_site_menu {
 }
 
 .middle_outer {
-	background: @middle_outer_background;
+	background: url('#{$imagePath}topbar.jpg') repeat-x;
 }
 
 .page-header {
@@ -60,8 +52,8 @@ input[type="number"],
 input#login-pass,
 textarea,
 .adminoptionbox option {
-	background-color: @form-control-background; //#f8f9d4;
-	border-color: @form-control-border-colors; // #F5FB86 #FBFBEE #FBFBEE #F5FB86;
+	background-color: #ffffff; //#f8f9d4;
+	border-color: #e0e0e0; // #F5FB86 #FBFBEE #FBFBEE #F5FB86;
 }
 
 .navbar-collapse {
@@ -69,43 +61,26 @@ textarea,
 }
 
 #footer {
-	background: @footer-background;
-	color: @footer-color; // #696969;
+	background: #ebebeb;
+	color: #696969; // #696969;
 	padding: 1px 0 2px 0;
 	width: 100%;
 }
 
 .footer_liner {
-	border-top: 1px solid @footer-border-color; //#ebdc14;
-	border-bottom: 1px solid @footer-border-color; // #ebdc14;
+	border-top: 1px solid transparent; //#ebdc14;
+	border-bottom: 1px solid transparent; // #ebdc14;
 }
 
-//.footer_liner {
-//	h3.panel-title {
-//		color: #ffffff;
-//		border-bottom: 1px dotted @footer-border-color;
-//	}
-//	//#ebdc14;
-//	legend,
-//	a,
-//	a:visited {
-//		color: @footer-link-color;
-//	}
-//	// #a9a9a9;
-//}
-
-// @navbar-default-link-background: #bfbd23;
 .navbar-nav .open .dropdown-menu,
 .navbar-nav .open .dropdown-menu li,
 .navbar-default .navbar-nav > li > a {
-	background: @navbar-default-navbar-nav-li-a-background; // #cdbe23;
+	background: #eeeeee; // #cdbe23;
 }
 
 
 .navbar-nav .open .dropdown-menu,
-.navbar-nav .open .dropdown-menu li
-// .navbar-default .navbar-nav > li > a
-	{
+.navbar-nav .open .dropdown-menu li	{
 	background: #aaaaaa;
 }
 
@@ -119,57 +94,53 @@ textarea,
 .navbar-default .navbar-nav > .open > a:focus,
 
 li.selected > a {
-	background: @navbar-default-navbar-nav-li-a-hover-background;
+	background: linear-gradient(to bottom, #93c44f 0%, #6d9f26 100%);
 	color: #ffffff;
 }
 
 
 .postbody-title {
-	background: @postbody-title-background; //url('#{$imagePath}siteheader.png') no-repeat -480px -200px;
+	background: #f0f0f0;
 }
 
 .siteloginbar_popup .dropdown-menu > li > a {
 	color: #ffffff;
 }
 
-// This comes last to enable site title color of theme options under FiveAlive-lite to have priority over the default set by FiveAlive.
 header.header {
 	.sitetitle,
 	.sitesubtitle {
-		color: @brand-primary;
+		color: $primary;
 		text-shadow: none;
 	}
-	//  a,
-	//  a:visited {color: @brand-primary;
-	//  }
 }
 
 h1 {
 	font-size: 1.6em;
-	background: @h1-background;
-	padding-left: @h1-padding-left;
+	background: url('#{$imagePath}h_bullet.jpg') no-repeat 0 50%;
+	padding-left: 19px;
 }
 
 h2 {
 	font-size: 1.6em;
-	background: @h2-background;
-	padding-left: @h2-padding-left;
+	background: url('#{$imagePath}h_bullet.jpg') no-repeat 0 50%;
+	padding-left: 19px;
 }
 
 h1.sitetitle {
-	background: @sitetitle-background;
+	background: none;
 }
 
 h2.sitesubtitle {
-	background: @sitesubtitle-background;
+	background: none;
 }
 
 .btn-default,
 input[type="reset"],
 input[type="submit"],
 .button input {
-	background: @button-background-gradient;
-	text-transform: @button-text-transform;
+	background: linear-gradient(to bottom, #a1bb87 0%, #8fa872 50%, #a1bb87 100%);
+	text-transform: uppercase;
 	border-width: 2px;
 }
 
@@ -177,7 +148,7 @@ input[type="submit"],
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 .button input:hover {
-	background: @button-hover-background-gradient;
+	background: linear-gradient(to bottom, #8fa872 50%, #8fa872 50%, #a1bb87 100%);
 }
 
 .btn.btn-link,
@@ -188,7 +159,7 @@ input[type="submit"].btn-link {
 
 .topbar {
 	margin-bottom: 20px;
-	.panel-heading,
+	.card-heading,
 	.navbar-default .navbar-collapse,
 	.navbar-default .navbar-form {
 		background: none;
