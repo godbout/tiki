@@ -1539,30 +1539,6 @@ class WikiLib extends TikiLib
 		$this->query($query, [$new, $old]);
 	}
 
-	public function refresh_backlinks()
-	{
-		global $prefs;
-		$tikilib = TikiLib::lib('tiki');
-		$tikilib->query('delete from tiki_links', []);
-
-		if ($prefs['feature_backlinks'] == 'n') {
-			return;
-		}
-
-		$listpages = $tikilib->list_pageNames();
-
-		if ($listpages['cant']) {
-			foreach ($listpages['data'] as $from) {
-				$info = $tikilib->get_page_info($from['pageName']);
-				$pages = TikiLib::lib('parser')->get_pages($info['data'], true);
-				foreach ($pages as $to => $types) {
-					$tikilib->replace_link($from['pageName'], $to, $types);
-					//echo '<br />FROM:'.$from['pageName']." TO: $to "; print_r($types);
-				}
-			}
-		}
-	}
-
 	public function get_pages_contains($searchtext, $offset = 0, $maxRecords = -1, $sort_mode = 'pageName_asc', $categFilter = [])
 	{
 		$jail_bind = [];
