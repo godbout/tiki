@@ -1297,15 +1297,35 @@ class WikiLib extends TikiLib
 	// Returns backlinks for a given page
 	public function get_backlinks($page)
 	{
-		global $user;
-		$query = "select `fromPage` from `tiki_links` where `toPage` = ? and `fromPage` not like 'objectlink:%'";
-		// backlinks do not include links from non-page objects TODO: full feature allowing this with options
+		global $user, $prefs;
+		$query = "select `fromPage` from `tiki_links` where `toPage` = ?";
 		$result = $this->query($query, [ $page ]);
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['fromPage'], 'wiki page', 'tiki_p_view')) {
-				$aux["fromPage"] = $res["fromPage"];
+			$is_wiki_page = substr($res['fromPage'], 0, 11) != 'objectlink:';
+			if ($is_wiki_page) {
+				$type = 'wiki page';
+				$objectId = $res['fromPage'];
+			} else {
+				$objectlinkparts = explode(':', $res['fromPage']);
+				$type = $objectlinkparts[1];
+				$objectId = substr($res['fromPage'], strlen($type) + 12);
+				if ($type == 'trackeritemfield') {
+					$feature = 'wiki_backlinks_show_trackeritem';
+				}
+				elseif (substr($type, -7) == 'comment') {
+					$feature = 'wiki_backlinks_show_comment';
+				} else {
+					$feature = 'wiki_backlinks_show_' . str_replace(" ", "_", $type);
+				}
+				if ($prefs[$feature] !== 'y') {
+					continue;
+				}
+			}
+			if ($this->user_has_perm_on_object($user, $objectId, $type, 'tiki_p_view')) {
+				$aux["type"] = $type;
+				$aux["objectId"] = $objectId;
 				$ret[] = $aux;
 			}
 		}
@@ -1537,30 +1557,6 @@ class WikiLib extends TikiLib
 						' `description`,`creator`,`page_size`,`is_html`,`created`, `flag`,`points`,`votes`' .
 						',`pageRank`,`lang`,`lockedby` from `tiki_pages` where `pageName`=?';
 		$this->query($query, [$new, $old]);
-	}
-
-	public function refresh_backlinks()
-	{
-		global $prefs;
-		$tikilib = TikiLib::lib('tiki');
-		$tikilib->query('delete from tiki_links', []);
-
-		if ($prefs['feature_backlinks'] == 'n') {
-			return;
-		}
-
-		$listpages = $tikilib->list_pageNames();
-
-		if ($listpages['cant']) {
-			foreach ($listpages['data'] as $from) {
-				$info = $tikilib->get_page_info($from['pageName']);
-				$pages = TikiLib::lib('parser')->get_pages($info['data'], true);
-				foreach ($pages as $to => $types) {
-					$tikilib->replace_link($from['pageName'], $to, $types);
-					//echo '<br />FROM:'.$from['pageName']." TO: $to "; print_r($types);
-				}
-			}
-		}
 	}
 
 	public function get_pages_contains($searchtext, $offset = 0, $maxRecords = -1, $sort_mode = 'pageName_asc', $categFilter = [])

@@ -71,8 +71,8 @@
 							<li class="divider"></li>
 							<li role="presentation">
 								{section name=back loop=$backlinks}
-									<a role="menuitem" tabindex="-1" href="{$backlinks[back].fromPage|sefurl:'wiki'}" title="{$backlinks[back].fromPage|escape}">
-										{if $prefs.wiki_backlinks_name_len ge '1'}{$backlinks[back].fromPage|truncate:$prefs.wiki_backlinks_name_len:"...":true|escape}{else}{$backlinks[back].fromPage|escape}{/if}
+									<a role="menuitem" tabindex="-1" href="{$backlinks[back].objectId|sefurl:$backlinks[back].type}" title="{object_title id=$backlinks[back].objectId type=$backlinks[back].type|escape}">
+									  {if $prefs.wiki_backlinks_name_len ge '1'}{object_title id=$backlinks[back].objectId type=$backlinks[back].type|truncate:$prefs.wiki_backlinks_name_len:"...":true|escape}{else}{object_title id=$backlinks[back].objectId type=$backlinks[back].type|escape}{/if}
 									</a>
 								{/section}
 							</li>

@@ -111,16 +111,6 @@ if ($access->ticketMatch()) {
 		Feedback::success(tr('Process to remove pictures has completed.'), 'session');
 	}
 
-	if ((isset($_REQUEST['feature_backlinks']) && $_REQUEST['feature_backlinks'] == 'on' && $prefs['feature_backlinks'] == 'y')
-		|| (empty($_REQUEST['feature_backlinks']) && $prefs['feature_backlinks'] == 'y')
-	) {
-		$backlinksChange = true;
-	}
-
-	if (isset($backlinksChange) && $backlinksChange) {
-		$wikilib = TikiLib::lib('wiki');
-		$wikilib->refresh_backlinks();
-	}
 }
 
 $smarty->assign('isDump', is_file($path));
