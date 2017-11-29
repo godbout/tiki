@@ -161,6 +161,14 @@
 			{preference name=feature_backlinks}
 			<div class="adminoptionboxchild" id="feature_backlinks_childcontainer">
 				{preference name=wiki_backlinks_name_len}
+                                {preference name=wiki_backlinks_show_forum_post}
+                                {preference name=wiki_backlinks_show_comment}
+                                {preference name=wiki_backlinks_show_post}
+                                {preference name=wiki_backlinks_show_article}
+                                {preference name=wiki_backlinks_show_trackeritem}
+                                {preference name=wiki_backlinks_show_tracker}
+                                {preference name=wiki_backlinks_show_trackerfield}
+                                {preference name=wiki_backlinks_show_calendar_event}
 				<div class="col-sm-offset-4 col-md-8">
 					{permission_link addclass="timeout" mode=button permType=wiki textFilter=backlinks showDisabled=y}
 				</div>

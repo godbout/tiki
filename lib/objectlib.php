@@ -456,6 +456,12 @@ class ObjectLib extends TikiLib
 				$info = TikiLib::lib('blog')->get_blog($object);
 				return ['title' => $info['title']];
 
+			case 'post':
+			case 'blog post':
+			case 'blogpost':
+				$info = TikiLib::lib('blog')->get_post($object);
+				return ['title' => $info['title']];
+
 			case 'forum':
 				$info = TikiLib::lib('comments')->get_forum($object);
 				return ['title' => $info['name']];
@@ -584,6 +590,9 @@ class ObjectLib extends TikiLib
 				return TikiLib::lib('user')->clean_user($id);
 			case 'calendar':
 				$info = TikiLib::lib('calendar')->get_calendar($id);
+				return $info['name'];
+			case 'calendar event':
+				$info = TikiLib::lib('calendar')->get_item($id);
 				return $info['name'];
 		}
 

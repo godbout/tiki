@@ -1297,15 +1297,35 @@ class WikiLib extends TikiLib
 	// Returns backlinks for a given page
 	public function get_backlinks($page)
 	{
-		global $user;
-		$query = "select `fromPage` from `tiki_links` where `toPage` = ? and `fromPage` not like 'objectlink:%'";
-		// backlinks do not include links from non-page objects TODO: full feature allowing this with options
+		global $user, $prefs;
+		$query = "select `fromPage` from `tiki_links` where `toPage` = ?";
 		$result = $this->query($query, [ $page ]);
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['fromPage'], 'wiki page', 'tiki_p_view')) {
-				$aux["fromPage"] = $res["fromPage"];
+			$is_wiki_page = substr($res['fromPage'], 0, 11) != 'objectlink:';
+			if ($is_wiki_page) {
+				$type = 'wiki page';
+				$objectId = $res['fromPage'];
+			} else {
+				$objectlinkparts = explode(':', $res['fromPage']);
+				$type = $objectlinkparts[1];
+				$objectId = substr($res['fromPage'], strlen($type) + 12);
+				if ($type == 'trackeritemfield') {
+					$feature = 'wiki_backlinks_show_trackeritem';
+				}
+				elseif (substr($type, -7) == 'comment') {
+					$feature = 'wiki_backlinks_show_comment';
+				} else {
+					$feature = 'wiki_backlinks_show_' . str_replace(" ", "_", $type);
+				}
+				if ($prefs[$feature] !== 'y') {
+					continue;
+				}
+			}
+			if ($this->user_has_perm_on_object($user, $objectId, $type, 'tiki_p_view')) {
+				$aux["type"] = $type;
+				$aux["objectId"] = $objectId;
 				$ret[] = $aux;
 			}
 		}
