@@ -76,7 +76,7 @@ class FilesCheckCommand extends Command
 		if ($result['issueCount'] === 0) {
 			$output->writeln('<info>' . tr('No Issues found') . '</info>');
 		} else {
-			$output->writeln('<error>' . tr('Found %0 Issues, details bellow:', $result['issueCount']) . '</error>');
+			$output->writeln('<error>' . tr('Found %0 Issues, details below:', $result['issueCount']) . '</error>');
 			if (count($result['missing']) > 0) {
 				$output->writeln('<info>' . tr('The following files are missing') . '</info>');
 				$table = new Table($output);
