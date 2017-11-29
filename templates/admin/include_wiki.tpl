@@ -26,6 +26,9 @@
 				<legend>{tr}Plugins{/tr}</legend>
 				{preference name=wikiplugin_author}
 				{preference name=wikiplugin_include}
+				<div class="adminoptionboxchild" id="wikiplugin_include_childcontainer">
+				  {preference name=wiki_plugin_include_read_more}
+				</div>
 				{preference name=wikiplugin_transclude}
 				{preference name=wikiplugin_randominclude}
 				{preference name=wikiplugin_slideshow}

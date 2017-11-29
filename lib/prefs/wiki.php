@@ -759,5 +759,12 @@ function prefs_wiki_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 		],
+		'wiki_plugin_include_read_more' => [
+			'name' => tr('Link to included page'),
+			'description' => tr('When only a portion of page is included, create a "Read more..." link to included page'),
+			'type' => 'flag',
+			'default' => 'n',
+			'dependencies' => ['wikiplugin_include'],
+		],
 	];
 }

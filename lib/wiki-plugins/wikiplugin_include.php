@@ -215,7 +215,7 @@ function wikiplugin_include($dataIn, $params)
 	$parserlib->setOptions($old_options);
 
 	// append a "Read more" link at end of text if only a portion of page is being included
-	if (isset($start) || isset($stop)) {
+	if ($prefs['wiki_plugin_include_read_more'] == 'y' && (isset($start) || isset($stop))) {
 	    $text .= '<p><a href="tiki-index.php?page='.urlencode($page).'" class="btn btn-default">'.smarty_function_icon(['name' => 'align-left'], $smarty).' '.tra("Read more...").'</a><p>';
 	}
 
