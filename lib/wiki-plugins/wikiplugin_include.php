@@ -42,7 +42,7 @@ function wikiplugin_include_info()
 				'since' => '1',
 				'default' => '',
 			],
-			'more' => [
+			'readmore' => [
 				'required' => false,
 				'name' => tra('Read more'),
 				'description' => tra('Put a "Read more..." link at the end of included content, linking to original page. Use "more=y"'),
@@ -222,7 +222,7 @@ function wikiplugin_include($dataIn, $params)
 	$parserlib->setOptions($old_options);
 
 	// append a "Read more" link at end of text if only a portion of page is being included
-	if (isset($more) && $more == 'y') {
+	if (isset($readmore) && $readmore == 'y') {
 	    $text .= '<p><a href="tiki-index.php?page='.urlencode($page).'" class="btn btn-default">'.smarty_function_icon(['name' => 'align-left'], $smarty).' '.tra("Read more...").'</a><p>';
 	}
 
