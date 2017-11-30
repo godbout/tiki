@@ -47,6 +47,7 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 			$href = $sefurl ? "blog$source" : "tiki-view_blog.php?blogId=$source";
 			break;
 
+		case 'blog post':
 		case 'blogpost':
 			$href = $sefurl ? "blogpost$source" : "tiki-view_blog_post.php?postId=$source";
 			break;
