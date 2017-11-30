@@ -42,10 +42,10 @@ function wikiplugin_include_info()
 				'since' => '1',
 				'default' => '',
 			],
-			'readmore' => [
+			'linkoriginal' => [
 				'required' => false,
 				'name' => tra('Read more'),
-				'description' => tra('Put a "Read more..." link at the end of included content, linking to original page. Use "more=y"'),
+				'description' => tra('Put a "See full page" link at the end of included content, linking to original page. Use "linkoriginal=y"'),
 				'since' => '18.0',
 				'default' => 'n',
 			],
@@ -221,10 +221,14 @@ function wikiplugin_include($dataIn, $params)
 	$text = $parserlib->parse_data($text, $options);
 	$parserlib->setOptions($old_options);
 
-	// append a "Read more" link at end of text if only a portion of page is being included
-	if (isset($readmore) && $readmore == 'y') {
+	// append a "See full page" link at end of text if only a portion of page is being included
+    if (($prefs['wiki_plugin_include_link_original'] == 'y' && (isset($start) || isset($stop))) || (isset($linkoriginal) && $linkoriginal == 'y')) {
         $wikilib = TikiLib::lib('wiki');
-	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-default">'.smarty_function_icon(['name' => 'align-left'], $smarty).' '.tra("Read more...").'</a><p>';
+	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-default"';
+        $text .= 'title="'.sprintf(tra('The text above comes from page "%s". Click to go to that page'), $page).'">';
+        $text .= smarty_function_icon(['name' => 'align-left'], $smarty).' ';
+        $text .= tra('See full page');
+        $text .= '</a><p>';
 	}
 
 	// append an edit button if page_edit_icon does not equal 'n'
