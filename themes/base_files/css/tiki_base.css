@@ -1492,6 +1492,10 @@ li.login_link ul li a {
 .siteloginbar_popup img {
   height: 24px;
 }
+.siteloginbar_popup .list-unstyled li a {
+  padding-left: 0;
+  padding-right: 0;
+}
 .navbar-form .siteloginbar_poppedup .form-control,
 .navbar-form .siteloginbar_poppedup .form-group.text-center {
   width: 100%;
