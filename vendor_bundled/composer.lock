@@ -2487,12 +2487,12 @@
         },
         {
             "name": "pear/xml_rpc",
-            "version": "1.5.1",
+            "version": "1.5.5",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/pear/xml_rpc/pear-xml_rpc-1.5.1.zip",
+                "url": "https://composer.tiki.org/dist/pear/xml_rpc/pear-xml_rpc-1.5.5.zip",
                 "reference": null,
-                "shasum": "9d3e0e12a023107ac1b041bae82e08a4bb72e6d8"
+                "shasum": "964aa71c2d9d6b1757e957137c4794e75fbc4253"
             },
             "type": "library"
         },
