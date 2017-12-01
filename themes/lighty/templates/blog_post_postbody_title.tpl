@@ -1,4 +1,4 @@
-{* $Id: blog_post_postbody_title.tpl 59162 2016-07-12 12:29:24Z chibaguy $ *}
+{* $Id$ *}
 <header class="clearfix panel-heading">
 	<div class="blog-postbody-title">
 		{if $blog_post_context eq 'view_blog'}
