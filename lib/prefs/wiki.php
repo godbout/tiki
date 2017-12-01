@@ -759,5 +759,12 @@ function prefs_wiki_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 		],
+        'wiki_plugin_include_link_original' => [
+			'name' => tr('Force link to included page'),
+			'description' => tr('When only a portion of page is included, create a "See full page" link to included page. It has the same effect of putting "linkoriginal=y" parameter everytime Plugin Include is used.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'dependencies' => ['wikiplugin_include'],
+		],
 	];
 }
