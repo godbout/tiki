@@ -1,4 +1,4 @@
-{* $Id: blog_wrapper.tpl 58019 2016-03-20 15:17:21Z lindonb $ *}
+{* $Id$ *}
 <div class="panel panel-default postbody clearfix">
 	<a id="postId{$post_info.postId}"></a>
 	{include file='blog_post_postbody_title.tpl'}
