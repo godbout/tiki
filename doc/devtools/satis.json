@@ -1550,6 +1550,17 @@
 		{
 			"type": "package",
 			"package": {
+				"name": "pear/xml_rpc",
+				"version": "1.5.5",
+				"dist": {
+					"url": "https://github.com/pear/XML_RPC/archive/tags/RELEASE_1_5_5.zip",
+					"type": "zip"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
 				"name": "player/mp3",
 				"version": "1.0",
 				"dist": {
