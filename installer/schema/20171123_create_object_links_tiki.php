@@ -20,7 +20,7 @@ function upgrade_20171123_create_object_links_tiki($installer)
 		$linkhandle = "objectlink:$type:$objectId";
 
         foreach ($pages as $page) {
-            $installer->query('REPLACE INTO `tiki_links` (`fromPage`, `toPage`) values (?, ?)', [$linkhandle, $page]);
+            $installer->query('REPLACE INTO `tiki_links` (`fromPage`, `toPage`) values (?, ?)', [$linkhandle, substr($page, 0, 160)]);
         }
     };
 
