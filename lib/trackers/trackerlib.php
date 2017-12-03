@@ -1884,7 +1884,7 @@ class TrackerLib extends TikiLib
 		// If this is a user tracker it needs to be detected right here before actual looping of fields happen
 		$trackersync_user = $user;
 		foreach ($ins_fields["data"] as $i => $array) {
-			if ($array['type'] == 'u' && isset($array['options_array'][0]) && $array['options_array'][0] == '1') {
+			if (isset($array['type']) && $array['type'] == 'u' && isset($array['options_array'][0]) && $array['options_array'][0] == '1') {
 				if ($prefs['user_selector_realnames_tracker'] == 'y' && $array['type'] == 'u') {
 					if (! $userlib->user_exists($array['value'])) {
 						$finalusers = $userlib->find_best_user([$array['value']], '', 'login');
@@ -1995,7 +1995,7 @@ class TrackerLib extends TikiLib
 			} else {
 				$is_date = isset($array['type']) ? in_array($array["type"], ['f', 'j']) : false;
 
-				if ($currentItemId || $array['type'] !== 'q') {	// autoincrement
+				if ($currentItemId || ( isset($array['type']) && $array['type'] !== 'q') ) {	// autoincrement
 					$this->modify_field($currentItemId, $fieldId, $value);
 					if ($old_value != $value) {
 						if ($is_date) {
