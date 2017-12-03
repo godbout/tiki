@@ -185,7 +185,7 @@ function wikiplugin_tracker_info()
 				'required' => false,
 				'name' => tra('URL'),
 				'description' => tr('URL the user is sent to after the form is submitted. The string %0itemId%1 will
-					be replaced with %0itemId=xx%1 where %0xx%1 is the new (or current) itemId. This parameter can be set in combination with the TABS plugin using %0?cookietab=1&itemId%1 (change the the cookietab parameter\'s value depending on the tab you want the user to be sent to).', '<code>', '</code>'),
+					be replaced with %0itemId=xx%1 where %0xx%1 is the new (or current) itemId. This parameter can be set in combination with the TABS plugin using %0?cookietab=1&itemId%1 (change the cookietab parameter\'s value depending on the tab you want the user to be sent to).', '<code>', '</code>'),
 				'since' => '1',
 				'filter' => 'url',
 				'separator' => ':',

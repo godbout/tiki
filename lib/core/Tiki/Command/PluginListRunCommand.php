@@ -9,6 +9,7 @@ namespace Tiki\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Helper\Table;
@@ -33,14 +34,20 @@ class PluginListRunCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
+		$logger = new ConsoleLogger($output);
+
 		$onlyPending = $input->getOption('pending');
 
 		$status = $onlyPending ? ['pending'] : ['accept', 'pending'];
+
+		$logger->debug(tr('Listing plugins in status: %0', implode(', ', $status)));
 
 		$parserLib = \TikiLib::lib('parser');
 
 		$pluginList = $parserLib->listPluginsByStatus($status);
 		$pluginTotal = count($pluginList);
+
+		$logger->info(tr('Found %0 plugins', $pluginTotal));
 
 		$table = new Table($output);
 		$table->setHeaders(['Plugin', 'Location', 'Added by', 'Status']);
@@ -62,6 +69,8 @@ class PluginListRunCommand extends Command
 			}
 			$table->setRows($rows);
 			$table->render();
+		} else {
+			$logger->warning(tr('No plugins found!'));
 		}
 	}
 }
