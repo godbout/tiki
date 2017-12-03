@@ -2137,8 +2137,8 @@ if ($standalone && ! $nagios) {
 		$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING'] . '&phpinfo=y">Append phpinfo();</a>';
 	}
 
-	$render .= '<h2>Benchmark PHP/MySQL</h2>';
-	$render .= '<a href="tiki-check.php?benchmark=run" style="margin-bottom: 10px;">Check</a>';
+	$render .= '<a name="benchmark"></a><h2>Benchmark PHP/MySQL</h2>';
+	$render .= '<a href="tiki-check.php?benchmark=run&ts=' . time() . '#benchmark" style="margin-bottom: 10px;">Check</a>';
 	if (! empty($benchmark)) {
 		renderTable($benchmark);
 	}

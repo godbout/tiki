@@ -20,7 +20,7 @@ function wikiplugin_include_info()
 			'page' => [
 				'required' => true,
 				'name' => tra('Page Name'),
-				'description' => tra('Wiki page name to include.'),
+				'description' => tra('Wiki page name which content should be included.'),
 				'since' => '1',
 				'filter' => 'pagename',
 				'default' => '',
@@ -29,45 +29,49 @@ function wikiplugin_include_info()
 			'start' => [
 				'required' => false,
 				'name' => tra('Start'),
-				'description' => tra('When only a portion of the page should be included, specify the marker from which
-					inclusion should start.'),
+				'description' => tra('When only a portion of the page should be included, specify the text of the full line from which
+					inclusion should start (not included).'),
 				'since' => '1',
 				'default' => '',
 			],
 			'stop' => [
 				'required' => false,
 				'name' => tra('Stop'),
-				'description' => tra('When only a portion of the page should be included, specify the marker at which
-					inclusion should end.'),
+				'description' => tra('When only a portion of the page should be included, specify the text of the full line from which
+					inclusion should end (not included).'),
 				'since' => '1',
 				'default' => '',
 			],
 			'linkoriginal' => [
 				'required' => false,
-				'name' => tra('Read more'),
-				'description' => tra('Put a "See full page" link at the end of included content, linking to original page. Use "linkoriginal=y"'),
+				'name' => tra('Read more button'),
+				'description' => tra('Add a "Read more" link at the end of included content, linking to the original page.'),
 				'since' => '18.0',
 				'default' => 'n',
+				'options' => [
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
 			],
 			'nopage_text' => [
 				'required' => false,
-				'name' => tra('Nopage Text'),
-				'description' => tra('Text to show when no page is found.'),
+				'name' => tra('Page not found'),
+				'description' => tra('Text to show when the selected page to be included is found anymore.'),
 				'since' => '6.0',
 				'filter' => 'text',
 				'default' => '',
 			],
 			'pagedenied_text' => [
 				'required' => false,
-				'name' => tra('Page Denied Text'),
-				'description' => tra('Text to show when the page exists but is denied to the user.'),
+				'name' => tra('Permission text warning'),
+				'description' => tra('Text to show when the page exists but the user has insufficient permissions to see it.'),
 				'since' => '6.0',
 				'filter' => 'text',
 				'default' => '',
 			],
             'pagenotapproved_text' => [
 				'required' => false,
-				'name' => tra('Page Denied Text'),
+				'name' => tra('None approved text warning'),
 				'description' => tra('Text to show when the page exists but no version is approved.'),
 				'since' => '18.0',
 				'filter' => 'text',
@@ -76,7 +80,7 @@ function wikiplugin_include_info()
 			'page_edit_icon' => [
 				'required' => false,
 				'name' => tra('Edit Icon'),
-				'description' => tra('Option to show the edit icon for the included page (shown by default).'),
+				'description' => tra('Option to show the edit icon for the included page (shown by default). Depend on the \"edit icons\" parameters and settings.'),
 				'since' => '12.1',
 				'default' => 'y',
 				'filter' => 'alpha',
@@ -227,7 +231,7 @@ function wikiplugin_include($dataIn, $params)
 	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-default"';
         $text .= 'title="'.sprintf(tra('The text above comes from page "%s". Click to go to that page'), $page).'">';
         $text .= smarty_function_icon(['name' => 'align-left'], $smarty).' ';
-        $text .= tra('See full page');
+        $text .= tra('Read more');
         $text .= '</a><p>';
 	}
 

@@ -366,8 +366,9 @@
 <h2>{tr}PHP Info{/tr}</h2>
 {tr}For more detailed information about your PHP installation see <a href="tiki-phpinfo.php">Admin->phpinfo</a>{/tr}.
 
+<a name="benchmark"></a>
 <h2>{tr}Benchmark PHP/MySQL{/tr}</h2>
-<a href="tiki-check.php?benchmark=run" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">{tr}Check{/tr}</a>
+<a href="tiki-check.php?benchmark=run&ts={$smarty.now}#benchmark" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">{tr}Check{/tr}</a>
 {if !empty($benchmark)}
 	<br />
 	<div class="table-responsive">
