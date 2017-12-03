@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Faker\Factory as FakerFactory;
 use TikiLib;
+use Tiki\Faker as TikiFaker;
 use Tracker_Definition;
 
 /**
@@ -127,8 +128,8 @@ class FakerTrackerCommand extends Command
 
 		/** @var \TrackerLib $trackerLib */
 		$trackerLib = TikiLib::lib('trk');
-
 		$faker = FakerFactory::create();
+		$faker->addProvider(new TikiFaker($faker));
 
 		for ($i = 0; $i < $numberItems; $i++) {
 			$fieldData = [];
@@ -139,6 +140,9 @@ class FakerTrackerCommand extends Command
 					$fakerAction = $fieldFaker['faker'][0];
 					$fakerArguments = $fieldFaker['faker'][1];
 					if (! is_array($fakerArguments)) {
+						if ($fakerArguments == 'fieldId') {
+							$fakerArguments = $trackerDefinition->getField($fieldFaker['fieldId']);
+						}
 						$fakerArguments = [$fakerArguments];
 					}
 					$value = call_user_func_array([$faker, $fakerAction], $fakerArguments);
@@ -146,14 +150,19 @@ class FakerTrackerCommand extends Command
 					$fakerAction = $fieldFaker['faker'];
 					$value = $faker->$fakerAction;
 				}
-				$fieldData[] = [
-					'fieldId' => $fieldFaker['fieldId'],
-					'value' => $value,
-				];
+
+				if (isset($value)) {
+					$fieldData[] = [
+						'fieldId' => $fieldFaker['fieldId'],
+						'value' => $value,
+					];
+				}
 			}
 
-			$status = ($randomizeStatus) ? array_rand(\TikiLib::lib('trk')->status_types()) : '';
-			$trackerLib->replace_item($trackerId, 0, ['data' => $fieldData], $status);
+			if (! empty($fieldData)) {
+				$status = ($randomizeStatus) ? array_rand(\TikiLib::lib('trk')->status_types()) : '';
+				$trackerLib->replace_item($trackerId, 0, ['data' => $fieldData], $status);
+			}
 		}
 	}
 
@@ -165,38 +174,38 @@ class FakerTrackerCommand extends Command
 	protected function mapTrackerItems()
 	{
 		$map = [
-			//'e' => '', // Category - lookup on the valid values for category
-			//'c' => '', // Checkbox - lookup on the valid values for the checkbox
+			'e' => 'tikiCategories', // Category - lookup on the valid values for category
+			'c' => 'tikiCheckbox', // Checkbox - lookup on the valid values for the checkbox
 			'y' => 'country', // Country Selector (improvement if uses the list from Tiki directly)
 			'b' => ['numberBetween', [0, 10000]], // Currency Field
 			'f' => 'unixTime', // Date and Time
 			'j' => 'unixTime', // Date and Time
-			//'d' => '', // Drop Down - lookup on the valid values for the drop down
-			//'D' => '', // Drop Down with Other field - lookup on the valid values for the drop down
-			//'R' => '', // Radio Buttons - lookup for valid values for Buttons
-			//'M' => '', // Multiselect - lookup on the valid values for the select
-			//'w' => '', // Dynamic Items List - lookup on the valid values from other tracker (and sync between different fields)
+			'd' => ['tikiDropdown', 'fieldId'], // Drop Down - lookup on the valid values for the drop down
+			'D' => ['tikiDropdown', 'fieldId'], // Drop Down with Other field - lookup on the valid values for the drop down
+			'R' => ['tikiRadio', 'fieldId'], // Radio Buttons - lookup for valid values for Buttons
+			'M' => ['tikiMultiselect', 'fieldId'], // Multiselect - lookup on the valid values for the select
+			'w' => '', // Dynamic Items List - lookup on the valid values from other tracker (and sync between different fields)
 			'm' => 'email', // Email
-			//'FG' => '', // Files - lookup on valid files from gallery
+			'FG' => ['tikiFiles', 'fieldId'], // Files - lookup on valid files from gallery
 			'h' => '', // Header - empty
-			//'icon' => '', // Icon - lookup on valid files from gallery
-			//'r' => '', // Item Link - lookup on valid items
+			'icon' => ['tikiFiles', ['fieldId', true]], // Icon - lookup on valid files from gallery
+			'r' => ['tikiItemLink', 'fieldId'], // Item Link - lookup on valid items
 			//'l' => '', // Items List - lookup on valid items
 			'LANG' => 'languageCode', // Language
-			//'G' => '', // Location - needs geo coordinates in the format <lat>,<long>,<zoom>
+			'G' => 'tikiLocation', // Location - needs geo coordinates in the format <lat>,<long>,<zoom>
 			'math' => '', // Mathematical Calculation - empty
 			'n' => ['numberBetween', [0, 10000]], // Numeric Field
-			//'k' => '', // Page Selector - lookup for valid page names
-			'S' => '', // Static Text - empty
+			'k' => 'tikiPageSelector', // Page Selector - lookup for valid page names
+			'S' => ['tikiStaticText', 'fieldId'], // Static Text - empty
 			'a' => 'text', // Text Area
 			't' => ['text', [30]], // Text Field
-			'q' => '', // AutoIncrement - empty
+			'q' => ['tikiUniqueIdentifier', 'fieldId'], // AutoIncrement - empty
 			'L' => 'url', // Url
-			//'u' => '', // User Selector - lookup for valid users
-			//'g' => '', // Group Selector - lookup for valid groups
+			'u' => ['tikiUserSelector', 'fieldId'], // User Selector - lookup for valid users
+			'g' => 'tikiGroupSelector', // Group Selector - lookup for valid groups
 			'wiki' => 'text', //Wiki Page
 			//'x' => '', // Action - Not supported
-			//'articles' => '', // Articles - lookup for valid articles
+			'articles' => 'tikiArticles', // Articles - lookup for valid articles
 			//'C' => '', // Computed Field - not supported - backward compatibility
 			//'A' => '', // Attachment - deprecated in favor of files field
 			'F' => ['words', [3, true]], // Tags
@@ -206,10 +215,10 @@ class FakerTrackerCommand extends Command
 			'I' => 'localIpv4', // IP Selector
 			//'kaltura' => '', // Kaltura video
 			'p' => '', // Ldap lookup - empty
-			//'STARS' => '', // Rating - lookup for valid values
+			'STARS' => ['tikiRating', 'fieldId'], // Rating - lookup for valid values
 			//'*' => '', // Stars (deprecated)
 			//'s' => '', // Stars (system - deprecated)
-			//'REL' => '', // Relations
+			'REL' => ['tikiRelations', 'fieldId'], // Relations
 			//'STO' => '', // show.tiki.org - Not supported
 			'usergroups' => '', // Display list of user groups - empty
 			//'p' => '', // User Preference - Not Supported
