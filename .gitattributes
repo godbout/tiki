@@ -1983,6 +1983,7 @@ installer/schema/20171122_h5p_update_add_hub_table_tiki.sql -text
 installer/schema/20171123_create_object_links_tiki.php -text
 installer/schema/20171129_backlinks_for_object_types_admin_options_tiki.sql -text
 installer/schema/20171130_plugin_include_link_original_tiki.sql -text
+installer/schema/20171204_update_geo_enabled_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text

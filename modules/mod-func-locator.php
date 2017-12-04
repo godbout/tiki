@@ -31,10 +31,16 @@ function module_locator_info()
  */
 function module_locator($mod_reference, $module_params)
 {
-	$headerlib = TikiLib::lib('header');
+	global $prefs;
+	$smarty = TikiLib::lib('smarty');
 
-	$headerlib->add_map();
+	if ($prefs['geo_enabled'] === 'y') {
 
-	// assign the default map centre from the prefs as a data attribute for the map-container div
-	TikiLib::lib('smarty')->assign('center', TikiLib::lib('geo')->get_default_center());
+		TikiLib::lib('header')->add_map();
+
+		// assign the default map centre from the prefs as a data attribute for the map-container div
+		$smarty->assign('center', TikiLib::lib('geo')->get_default_center());
+	} else {
+		$smarty->assign('module_error', tr('Preference "%0" is disabled', 'geo_enabled'));
+	}
 }
