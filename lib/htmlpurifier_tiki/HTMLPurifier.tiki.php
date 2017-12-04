@@ -50,7 +50,8 @@ function getHTMLPurifierTikiConfig()
 		if (! mkdir($d)) {
 			$d = $tikipath . 'temp/cache';
 		} else {
-			chmod($d, (int) $prefs['smarty_cache_perms']);
+			// add x for dir perms which is 0111 in octal, 73 in decimal
+			chmod($d, (int) $prefs['smarty_cache_perms'] | 73);
 		}
 	}
 	$conf = HTMLPurifier_Config::createDefault();
