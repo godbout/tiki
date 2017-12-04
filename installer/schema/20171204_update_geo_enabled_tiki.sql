@@ -1,1 +1,1 @@
-UPDATE `tiki_preferences` SET `value` = 'y' WHERE `name` = 'geo_enabled';
+INSERT INTO `tiki_preferences` VALUES ('geo_enabled','y');
