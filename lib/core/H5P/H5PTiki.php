@@ -185,7 +185,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * @param string $message
 	 *   The error message
 	 */
-	public function setErrorMessage($message)
+	public function setErrorMessage($message, $code = null)
 	{
 		if (Perms::get()->h5p_edit) {
 			// needs 'session' as the method param if the error happens asychronously
@@ -1447,5 +1447,16 @@ GROUP BY l.`name`, l.`major_version`, l.`minor_version`');
 	public function replaceContentTypeCache($contentTypeCache)
 	{
 		// TODO: Implement replaceContentTypeCache() method.
+	}
+
+	/**
+	 * Return messages
+	 *
+	 * @param string $type 'info' or 'error'
+	 * @return string[]
+	 */
+	public function getMessages($type)
+	{
+		// TODO: Implement getMessages() method.
 	}
 }

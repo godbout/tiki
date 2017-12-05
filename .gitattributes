@@ -1976,7 +1976,7 @@ installer/schema/20170920_admin_webservices_menu_option_tiki.sql -text
 installer/schema/20170925_add_general_to_language_tiki.sql -text
 installer/schema/20170930_custom_routes_menu_tiki.sql -text
 installer/schema/20171002_queue_handler_size_increase_tiki.sql -text
-installer/schema/20171010_action_log_info_new_column.sql -text
+installer/schema/20171010_action_log_info_new_column_tiki.sql -text
 installer/schema/20171016_no_homepage_specificed_tiki.php -text
 installer/schema/20171121_create_plugin_include_relations_tiki.php -text
 installer/schema/20171122_h5p_update_add_hub_table_tiki.sql -text
