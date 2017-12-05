@@ -45,17 +45,20 @@ function getHTMLPurifierTikiConfig()
 {
 	global $tikipath, $prefs;
 
-	$d = $tikipath . 'temp/cache/HTMLPurifierCache';
-	if (! is_dir($d)) {
-		if (! mkdir($d)) {
-			$d = $tikipath . 'temp/cache';
+	$directory = $tikipath . 'temp/cache/HTMLPurifierCache';
+	if (! is_dir($directory)) {
+		if (! mkdir($directory)) {
+			$directory = $tikipath . 'temp/cache';
 		} else {
-			// add x for dir perms which is 0111 in octal, 73 in decimal
-			chmod($d, (int) $prefs['smarty_cache_perms'] | 73);
+			chmod(
+                                $directory,
+                                (int) $prefs['smarty_cache_perms']
+                                | 0111 // Add search/execute permission for all ("chmod a+x"). "--x--x--x" is 0111 (octal).
+                                );
 		}
 	}
 	$conf = HTMLPurifier_Config::createDefault();
-	$conf->set('Cache.SerializerPath', $d);
+	$conf->set('Cache.SerializerPath', $directory);
 	if ($prefs['feature_wysiwyg'] == 'y' || $prefs['popupLinks'] == 'y') {
 		$conf->set('HTML.DefinitionID', 'allow target');
 		$conf->set('HTML.DefinitionRev', 1);
