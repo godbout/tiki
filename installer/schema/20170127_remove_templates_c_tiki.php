@@ -22,7 +22,7 @@ function upgrade_20170127_remove_templates_c_tiki($installer)
 		$dir_handle = opendir($dirname);
 	}
 	if (! $dir_handle) {
-		return false;
+		return;
 	}
 	while ($file = readdir($dir_handle)) {
 		if ($file != "." && $file != "..") {
