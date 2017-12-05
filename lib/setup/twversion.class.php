@@ -60,7 +60,7 @@ class TWVersion
 				7 => 'Mira',			// 1.4.x
 				8 => 'Regulus',		// 1.5.x
 				9 => 'Tau Ceti',		// 1.6.x
-				10 => 'Era Carinae',	// 1.7.x
+				10 => 'Eta Carinae',	// 1.7.x
 				11 => 'Polaris',		// 1.8.x
 				12 => 'Sirius',		// 1.9.x
 				13 => 'Arcturus',		// 2.x
