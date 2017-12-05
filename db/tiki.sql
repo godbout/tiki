@@ -86,7 +86,8 @@ CREATE TABLE `tiki_actionlog` (
   `ip` varchar(39) default NULL,
   `comment` text default NULL,
   `categId` int(12) NOT NULL default '0',
-    `client` VARCHAR( 200 ) NULL DEFAULT NULL,
+  `client` VARCHAR( 200 ) NULL DEFAULT NULL,
+  `log` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`actionId`),
   KEY `lastModif` (`lastModif`),
   KEY `object` (`object`(100), `objectType`, `action`(100))
