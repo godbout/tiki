@@ -7,7 +7,7 @@
 			<input type="text" id="{$data.element_id|escape}" name="{$field.ins_id}"{if $field.options_array[1] > 0} size="{$field.options_array[1]}"{/if}{if $field.options_array[3]>0} maxlength="{$field.options_array[3]}"{/if} value="{$field.value|escape}" onkeyup={$data.keyup} />
 		{else}
 			{if $field.options_array[7] == 'y'}
-				{textarea _class='form-control' id=$data.element_id name=$field.ins_id rows=$data.rows onkeyup=$data.keyup _wysiwyg='y' section="trackers"}
+				{textarea _class='form-control' id=$data.element_id name=$field.ins_id rows=$data.rows onkeyup=$data.keyup _wysiwyg='y' section='trackers' switcheditor='n'}
 					{$field.value}
 				{/textarea}
 			{else}
