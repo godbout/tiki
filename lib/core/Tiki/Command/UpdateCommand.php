@@ -22,7 +22,7 @@ class UpdateCommand extends Command
 			->setDescription('Update the database to the latest schema')
 			->addOption(
 				'auto-register',
-				null,
+				'a',
 				InputOption::VALUE_NONE,
 				'Record any failed patch as applied.'
 			);
