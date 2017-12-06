@@ -889,6 +889,8 @@ function prefs_feature_list($partial = false)
 			'help' => 'User+Menu',
 			'type' => 'flag',
 			'default' => 'n',
+			'warning' => tra('Unmaintained feature'),
+			'tags' => ['experimental'],
 		],
 		'feature_tasks' => [
 			'name' => tra('User tasks'),
