@@ -1319,19 +1319,19 @@ div.categbar {
   padding-left: 15px;
   padding-right: 15px;
 }
-.uol ol,
+.uol ol:not(.media-list),
 ol.uol {
   counter-reset: item;
 }
-.uol ol > li {
+.uol ol:not(.media-list) > li {
   display: block;
   text-indent: -1rem;
 }
-.uol ol > li:before {
+.uol ol:not(.media-list) > li:before {
   content: counters(item, ".") ".\0000a0";
   counter-increment: item;
 }
-.uol ol > li ol > li:before {
+.uol ol:not(.media-list) > li ol > li:before {
   content: counters(item, ".") "\0000a0";
   counter-increment: item;
 }
