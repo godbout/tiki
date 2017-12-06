@@ -1298,7 +1298,7 @@ DOCUMENTATION
 * http://doc.tiki.org/Installation for a setup guide
 
 * Notes about this release are accessible from $release_notes_url
-* Tikiwiki has an active IRC channel, #tikiwiki on irc.freenode.net
+* Tiki has an active IRC channel, #tikiwiki on irc.freenode.net
 
 INSTALLATION
 
