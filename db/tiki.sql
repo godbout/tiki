@@ -156,7 +156,6 @@ CREATE TABLE `tiki_articles` (
   `created` int(14) default NULL,
   `heading` text,
   `body` text,
-  `hash` varchar(32) default NULL,
   `author` varchar(200) default NULL,
   `nbreads` int(14) default NULL,
   `votes` int(8) default NULL,
@@ -626,6 +625,17 @@ CREATE TABLE `tiki_copyrights` (
   `userName` varchar(200) default '',
   PRIMARY KEY (`copyrightId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+
+DROP TABLE IF EXISTS `tiki_custom_route`;
+CREATE TABLE `tiki_custom_route` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `description` varchar(255) NULL,
+  `type` varchar(255) NOT NULL,
+  `from` varchar(255) NOT NULL,
+  `redirect` text NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `user_id` int(11) NOT NULL
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_directory_categories`;
 CREATE TABLE `tiki_directory_categories` (
@@ -1105,6 +1115,7 @@ CREATE TABLE tiki_h5p_libraries (
 	KEY runnable (runnable)
 )	ENGINE = MyISAM;
 
+DROP TABLE IF EXISTS `tiki_h5p_libraries_hub_cache`;
 CREATE TABLE tiki_h5p_libraries_hub_cache (
   id                INT UNSIGNED NOT NULL AUTO_INCREMENT,
   machine_name      VARCHAR(127) NOT NULL,
@@ -2251,7 +2262,6 @@ CREATE TABLE `tiki_submissions` (
   `resume` text,
   `heading` text,
   `body` text,
-  `hash` varchar(32) default NULL,
   `author` varchar(200) default NULL,
   `nbreads` int(14) default NULL,
   `votes` int(8) default NULL,
@@ -3531,7 +3541,7 @@ CREATE TABLE `tiki_payment_received` (
     KEY `payment_request_ix` (`paymentRequestId`)
 ) ENGINE=MyISAM;
 DROP TABLE IF EXISTS `tiki_discount`;
-CREATE TABLE `tiki_discount`(
+CREATE TABLE `tiki_discount` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `code` VARCHAR(255),
     `value` VARCHAR(255),
@@ -3771,6 +3781,7 @@ CREATE TABLE `tiki_acct_book` (
 
 DROP TABLE IF EXISTS `tiki_acct_item`;
 CREATE TABLE `tiki_acct_item` (
+  `itemId` int(11) NOT NULL AUTO_INCREMENT,
   `itemBookId` int(10) unsigned NOT NULL,
   `itemJournalId` int(10) unsigned NOT NULL DEFAULT '0',
   `itemAccountId` int(10) unsigned NOT NULL DEFAULT '0',
@@ -3778,7 +3789,7 @@ CREATE TABLE `tiki_acct_item` (
   `itemAmount` double NOT NULL DEFAULT '0',
   `itemText` varchar(255) NOT NULL DEFAULT '',
   `itemTs` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`itemBookId`,`itemJournalId`,`itemAccountId`,`itemType`)
+  PRIMARY KEY (`itemId`)
 ) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_acct_journal`;
@@ -3846,7 +3857,7 @@ CREATE TABLE `tiki_queue` (
     `entryId` INT PRIMARY KEY AUTO_INCREMENT,
     `queue` VARCHAR(25) NOT NULL,
     `timestamp` INT NOT NULL,
-    `handler` VARCHAR(20) NULL,
+    `handler` VARCHAR(64) NULL,
     `message` TEXT NOT NULL,
     KEY `queue_name_ix` (`queue`),
     KEY `queue_handler_ix` (`handler`)
@@ -4029,6 +4040,7 @@ CREATE TABLE `tiki_tabular_formats` (
 	`name` VARCHAR(30) NOT NULL,
 	`format_descriptor` TEXT,
 	`filter_descriptor` TEXT,
+	`config` TEXT,
 	KEY `tabular_tracker_ix` (`trackerId`)
 ) ENGINE=MyISAM;
 
