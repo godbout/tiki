@@ -33,10 +33,10 @@
 			<h2>{tr}Content{/tr}</h2>
 			<div class="form-group margin-side-0">
 				<label for="title">{tr}Title{/tr}</label>
-				<input type="text" name="title" value="{$arttitle|escape}" maxlength="255" class="form-control">
+				<input type="text" name="title" id="title" value="{$arttitle|escape}" maxlength="255" class="form-control">
 			</div>
 			<div class="form-group margin-side-0">
-				<label for="heading">{tr}Heading{/tr}</label>
+				<label for="subheading">{tr}Heading{/tr}</label>
 				{if $types.$type.heading_only eq 'y'}
 					{textarea name="heading" rows="5" class="form-control" id="subheading"}{$heading}{/textarea}
 				{else}
@@ -99,7 +99,7 @@
 			<div class="form-group clearfix">
 				<label for="topicId" class="control-label col-md-4">{tr}Topic{/tr}</label>
 				<div class="col-md-6">
-					<select name="topicId" class="form-control">
+					<select name="topicId" id="topicId" class="form-control">
 						{foreach $topics as $topic}
 							<option value="{$topic.topicId|escape}" {if $topicId eq $topic.topicId}selected="selected"{/if}>{$topic.name|escape}</option>
 						{/foreach}
@@ -115,7 +115,7 @@
 				{/if}
 			</div>
 			<div class="form-group clearfix">
-				<label for="type" class="control-label col-md-4">{tr}Type{/tr}</label>
+				<label for="articletype" class="control-label col-md-4">{tr}Type{/tr}</label>
 				<div class="col-md-6">
 					<select id='articletype' name="type" onchange='javascript:chgArtType();' class="form-control">
 						{foreach $types as $typei => $prop}
@@ -163,7 +163,7 @@
 			<div class="form-group clearfix">
 				<label for="authorName" class="control-label col-md-4">{tr}Author name (as displayed){/tr}</label>
 				<div class="col-md-4">
-					<input type="text" name="authorName" value="{$authorName|escape}" class="form-control">
+					<input type="text" name="authorName" id="authorName" value="{$authorName|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group {if $tiki_p_edit_article_user neq 'y'}hidden{/if} clearfix">
@@ -200,7 +200,7 @@
 				<input type="hidden" name="MAX_FILE_SIZE" value="{$prefs.article_image_file_size_max}">
 				<label for="userfile1" class="control-label col-md-4">{tr}Own Image{/tr}</label>
 				<div class="col-md-8">
-					<input class="form-control" name="userfile1" type="file" onchange="document.getElementById('useImage').checked = true;">
+					<input class="form-control" name="userfile1" id="userfile1" type="file" onchange="document.getElementById('useImage').checked = true;">
 					<span class="help-block">{tr}If not the topic image{/tr} - {tr}Max file size : {$prefs.article_image_file_size_max/1000} KB{/tr}</span>
 				</div>
 			</div>
@@ -219,7 +219,7 @@
 			<div class="form-group {if $types.$type.show_image_caption neq 'y'}hidden{/if}">
 				<label class="col-md-4 control-label" for="image_caption">{tr}Image caption{/tr}</label>
 				<div class="col-md-8">
-					<input type="text" class="form-control" name="image_caption" value="{$image_caption|escape}" >
+					<input type="text" class="form-control" name="image_caption" id="image_caption" value="{$image_caption|escape}" >
 					<div class="help-block">{tr}Default will use the topic name{/tr}</div>
 				</div>
 			</div>
@@ -241,14 +241,14 @@
 				<div class="form-group">
 					<label for="image_x" class="control-label col-md-4">{tr}Width{/tr}</label>
 					<div class="input-group col-sm-3">
-						<input type="text" class="form-control" name="image_x"{if $image_x > 0} value="{$image_x|escape}"{/if}>
+						<input type="text" class="form-control" name="image_x" id="image_x"{if $image_x > 0} value="{$image_x|escape}"{/if}>
 						<span class="input-group-addon">{tr}pixels{/tr}</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="image_y" class="control-label col-md-4">{tr}Height{/tr}</label>
 					<div class="input-group col-sm-3">
-						<input type="text" class="form-control" name="image_y"{if $image_y > 0} value="{$image_y|escape}"{/if}>
+						<input type="text" class="form-control" name="image_y" id="image_y"{if $image_y > 0} value="{$image_y|escape}"{/if}>
 						<span class="input-group-addon">{tr}pixels{/tr}</span>
 					</div>
 				</div>
@@ -259,14 +259,14 @@
 				<div class="form-group">
 					<label for="list_image_x" class="control-label col-sm-4">{tr}Width{/tr}</label>
 					<div class="input-group col-sm-3">
-						<input type="text" class="form-control" name="list_image_x"{if $list_image_x > 0} value="{$list_image_x|escape}"{/if}>
+						<input type="text" class="form-control" name="list_image_x" id="list_image_x"{if $list_image_x > 0} value="{$list_image_x|escape}"{/if}>
 						<span class="input-group-addon">{tr}pixels{/tr}</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="list_image_y" class="control-label col-sm-4">{tr}Height{/tr}</label>
 					<div class="input-group col-sm-3">
-						<input type="text" class="form-control" name="list_image_y"{if $list_image_y > 0} value="{$list_image_y|escape}"{/if}>
+						<input type="text" class="form-control" name="list_image_y" id="list_image_y"{if $list_image_y > 0} value="{$list_image_y|escape}"{/if}>
 						<span class="input-group-addon">{tr}pixels{/tr}</span>
 					</div>
 				</div>
@@ -280,26 +280,26 @@
 						{tr}Attach existing article ID as translation{/tr}
 					</label>
 					<div class="col-md-2">
-						<input name="translationOf" type="text" class="form-control"{if !empty($translations[1].objId)}value="{$translations[1].objId|escape}"{/if}>
+						<input name="translationOf" id="translationOf" type="text" class="form-control"{if !empty($translations[1].objId)}value="{$translations[1].objId|escape}"{/if}>
 					</div>
 				</div>
 			{/if}
 			<div class="form-group {if $types.$type.show_topline neq 'y'}hidden{/if}">
 				<label for="topline" class="control-label col-md-4">{tr}Topline{/tr}</label>
 				<div class="col-md-8">
-					<input type="text" name="topline" value="{$topline|escape}" class="form-control">
+					<input type="text" name="topline" id="topline" value="{$topline|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group {if $types.$type.show_subtitle neq 'y'}hidden{/if}">
 				<label for="subtitle" class="control-label col-md-4">{tr}Subtitle{/tr}</label>
 				<div class="col-md-8">
-					<input type="text" name="subtitle" value="{$subtitle|escape}" class="form-control">
+					<input type="text" name="subtitle" id="subtitle" value="{$subtitle|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group {if $types.$type.show_linkto neq 'y'}hidden{/if}">
 				<label for="linkto" class="control-label col-md-4">{tr}Source{/tr}</label>
 				<div class="col-md-8">
-					<input type="url" name="linkto" value="{$linkto|escape}" class="form-control" placeholder="{tr}http://...{/tr}">
+					<input type="url" name="linkto" id="linkto" value="{$linkto|escape}" class="form-control" placeholder="{tr}http://...{/tr}">
 					{if $linkto neq ''}
 						<div class="help-block">
 							{tr}Test your link: {/tr}
@@ -311,7 +311,7 @@
 			<div class="form-group {if $types.$type.use_ratings neq 'y'}hidden{/if}">
 				<label for="rating" class="col-md-4 control-label">{tr}Author rating{/tr}</label>
 				<div class="col-md-4">
-					<select name='rating' class="form-control">
+					<select name='rating' id='rating' class="form-control">
 						<option value="10" {if $rating eq 10}selected="selected"{/if}>10</option>
 						<option value="9.5" {if $rating eq "9.5"}selected="selected"{/if}>9.5</option>
 						<option value="9" {if $rating eq 9}selected="selected"{/if}>9</option>
@@ -350,7 +350,7 @@
 				<div class="form-group clearfix">
 					<label for="templateId" class="control-label col-md-4">{tr}Apply content template{/tr}</label>
 					<div class="col-md-8">
-						<select class="form-control" name="templateId" onchange="javascript:document.getElementById('editpageform').submit();">
+						<select class="form-control" name="templateId" id="templateId" onchange="javascript:document.getElementById('editpageform').submit();">
 							<option value="0">{tr}none{/tr}</option>
 							{foreach $templates as $template}
 								<option value="{$template.templateId|escape}">{tr}{$template.name|escape}{/tr}</option>
@@ -363,7 +363,7 @@
 				<div class="form-group">
 					<label for="emails" class="col-md-4">{tr}Email{/tr}</label>
 					<div class="col-md-8">
-						<input type="text" name="emails" value="{$emails|escape}" class="form-control">
+						<input type="text" name="emails" id="emails" value="{$emails|escape}" class="form-control">
 						<span class="help-block">{tr}Email addresses to be sent notifications (comma-separated){/tr}</span>
 						{if !empty($userEmail) and $userEmail neq $prefs.sender_email}
 							{tr}From:{/tr}
