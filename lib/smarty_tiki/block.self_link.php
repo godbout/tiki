@@ -125,6 +125,7 @@ function smarty_block_self_link($params, $content, $smarty, &$repeat = false)
 						$smarty,
 						$tmp = false
 					);
+					unset($params['_onclick']); // Prevent addition to $link later
 				} else {
 					$ret = 'href="' . $ret . '"';
 				}
