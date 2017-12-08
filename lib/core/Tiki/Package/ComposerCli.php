@@ -158,6 +158,9 @@ class ComposerCli
 		foreach (explode(PATH_SEPARATOR, $_SERVER['PATH']) as $path) {
 			foreach (self::PHP_COMMAND_NAMES as $cli) {
 				$possibleCli = $path . DIRECTORY_SEPARATOR . $cli;
+				if (\TikiInit::isWindows()) {
+					$possibleCli .= '.exe';
+				}
 				if (file_exists($possibleCli) && is_executable($possibleCli)) {
 					$version = $this->getPhpVersion($possibleCli);
 					if (version_compare($version, self::PHP_MIN_VERSION, '<')) {
