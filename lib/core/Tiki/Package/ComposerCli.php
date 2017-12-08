@@ -144,7 +144,7 @@ class ComposerCli
 	}
 
 	/**
-	 * Atempts to resolve the location of the PHP binary
+	 * Attempts to resolve the location of the PHP binary
 	 *
 	 * @return null|bool|string
 	 */
@@ -155,7 +155,7 @@ class ComposerCli
 		}
 
 		$this->phpCli = false;
-		foreach (explode(':', $_SERVER['PATH']) as $path) {
+		foreach (explode(PATH_SEPARATOR, $_SERVER['PATH']) as $path) {
 			foreach (self::PHP_COMMAND_NAMES as $cli) {
 				$possibleCli = $path . DIRECTORY_SEPARATOR . $cli;
 				if (file_exists($possibleCli) && is_executable($possibleCli)) {
