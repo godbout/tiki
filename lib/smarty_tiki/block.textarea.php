@@ -29,13 +29,22 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
+/**
+ * @param array $params
+ * @param string $content
+ * @param Smarty_Tiki $smarty
+ * @param boolean $repeat
+ * @return string
+ * @throws Exception
+ */
+
 function smarty_block_textarea($params, $content, $smarty, $repeat)
 {
 	global $prefs, $is_html, $tiki_p_admin;
 	$headerlib = TikiLib::lib('header');
 
 	if ($repeat) {
-		return;
+		return '';
 	}
 
 	// some defaults
@@ -83,7 +92,7 @@ function smarty_block_textarea($params, $content, $smarty, $repeat)
 	// mainly for modules admin - preview is for the module, not the custom module so don;t need to confirmExit
 	$params['_previewConfirmExit'] = isset($params['_previewConfirmExit']) ? $params['_previewConfirmExit'] : 'y';
 
-	if (! isset($params['section'])) {
+	if (empty($params['section'])) {
 		global $section;
 		$params['section'] = $section ? $section : 'wiki page';
 	}
@@ -99,7 +108,7 @@ function smarty_block_textarea($params, $content, $smarty, $repeat)
 	$editWarning = $prefs['wiki_timeout_warning'] === 'y' && isset($tmp_var) && $tmp_var !== 'sandbox';
 	if ($params['_simple'] === 'n' && $editWarning) {
 		$remrepeat = false;
-		if ($prefs['ajax_autosave'] === 'y' and $section === 'wiki page') {
+		if ($prefs['ajax_autosave'] === 'y' and $params['section'] === 'wiki page') {
 			$hint = '<strong>Save</strong> your work to restart the edit session timer';
 		} else {
 			$hint = '<strong>Preview</strong> (if available) or <strong>Save</strong> your work to restart the edit session timer';
