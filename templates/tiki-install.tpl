@@ -513,17 +513,16 @@
 						</p>
 					{/remarksbox}
 					{if $installer->queries.successful|@count gt 0}
-						<p>{icon name="ok"}
-						<span style="font-weight:bold">
+						<p><span class="text-success">{icon name="ok"}
 						{if isset($smarty.post.update)}
-							{tr}Upgrade operations executed successfully:{/tr}
+							<strong>{tr}Upgrade operations executed successfully:{/tr}</strong>
 						{else}
-							{tr}Installation operations executed successfully:{/tr}
+								<strong>{tr}Installation operations executed successfully:{/tr}</strong>
 						{/if}
 						</span>
 						{$installer->queries.successful|@count} {tr}SQL queries.{/tr}</p>
 					{else}
-						<p>{icon name="ok"} <span style="font-weight: bold">{tr}Database was left unchanged.{/tr}</span></p>
+						<p>{icon name="ok"} <span class="text-warning"><strong>{tr}Database was left unchanged.{/tr}</strong></span></p>
 					{/if}
 					<form action="tiki-install.php" method="post">
 						{if $installer->queries.failed|@count > 0}
@@ -535,10 +534,10 @@
 										{/literal}
 							//--><!]]></script>
 
-							<p>{icon name="error"} <strong>{tr}Operations failed:{/tr}</strong> {$installer->queries.failed|@count} {tr}SQL queries.{/tr}
+						<p><span class="text-danger">{icon name="error"} <strong>{tr}Operations failed:{/tr}</strong> {$installer->queries.failed|@count} {tr}SQL queries.{/tr}
 							<a href="javascript:sql_failed()">{tr}Display details.{/tr}</a>
 							<div id="sql_failed_log" style="display:none">
-								<p>{tr}During an upgrade, it is normal to have SQL failures resulting with <strong>Table already exists</strong> messages.{/tr}</p>
+						<p><span class="text-warning">{tr}During an upgrade, it is normal to have SQL failures resulting with <strong>Table already exists</strong> messages.{/tr}</span></p>
 								{assign var='patch' value=''}
 								{foreach from=$installer->queries.failed item=item}
 									{if $patch ne $item[2]}
