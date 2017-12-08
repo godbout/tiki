@@ -8,9 +8,9 @@
 function wikiplugin_include_info()
 {
 	return [
-		'name' => tra('Include'),
+		'name' => tr('Include'),
 		'documentation' => 'PluginInclude',
-		'description' => tra('Include a portion of another wiki page'),
+		'description' => tr('Include a portion of another wiki page'),
 		'prefs' => ['wikiplugin_include'],
 		'iconname' => 'copy',
 		'introduced' => 1,
@@ -19,8 +19,8 @@ function wikiplugin_include_info()
 		'params' => [
 			'page' => [
 				'required' => true,
-				'name' => tra('Page Name'),
-				'description' => tra('Wiki page name which content should be included.'),
+				'name' => tr('Page Name'),
+				'description' => tr('Wiki page name where is saved the content that should be included.'),
 				'since' => '1',
 				'filter' => 'pagename',
 				'default' => '',
@@ -28,66 +28,74 @@ function wikiplugin_include_info()
 			],
 			'start' => [
 				'required' => false,
-				'name' => tra('Start'),
-				'description' => tra('When only a portion of the page should be included, specify the text of the full line from which
-					inclusion should start (not included).'),
+				'name' => tr('Start'),
+				'description' => tr('When only a portion of the page should be included, enter the text of the full line after which
+					inclusion should start (it will not be included).'),
 				'since' => '1',
 				'default' => '',
 			],
 			'stop' => [
 				'required' => false,
-				'name' => tra('Stop'),
-				'description' => tra('When only a portion of the page should be included, specify the text of the full line from which
-					inclusion should end (not included).'),
+				'name' => tr('Stop'),
+				'description' => tr('When only a portion of the page should be included, enter the text of the full line before which
+					inclusion should end (it will not be included).'),
 				'since' => '1',
 				'default' => '',
 			],
 			'linkoriginal' => [
 				'required' => false,
-				'name' => tra('Read more button'),
-				'description' => tra('Add a "Read more" link at the end of included content, linking to the original page.'),
+				'name' => tr('Read more button'),
+				'description' => tr('Add a "Read more" link at the end of included content, linking to the original page. (shows \"Read More\" by default)'),
 				'since' => '18.0',
 				'default' => 'n',
 				'options' => [
-					['text' => tra('Yes'), 'value' => 'y'],
-					['text' => tra('No'), 'value' => 'n'],
+					['text' => tr('Yes'), 'value' => 'y'],
+					['text' => tr('No'), 'value' => 'n'],
 				],
+			],
+			'linkoriginal_text' => [
+				'required' => false,
+				'name' => tr('Read more button label'),
+				'description' => tr('Enter your text to change the default button label.'),
+				'since' => '18.0',
+				'filter' => 'text',
+				'default' => tr('Read more'),
 			],
 			'nopage_text' => [
 				'required' => false,
-				'name' => tra('Page not found'),
-				'description' => tra('Text to show when the selected page to be included is found anymore.'),
+				'name' => tr('Page not found'),
+				'description' => tr('Text to show when the page selected to be to be included is not found anymore.'),
 				'since' => '6.0',
 				'filter' => 'text',
 				'default' => '',
 			],
 			'pagedenied_text' => [
 				'required' => false,
-				'name' => tra('Permission text warning'),
-				'description' => tra('Text to show when the page exists but the user has insufficient permissions to see it.'),
+				'name' => tr('Permission denied message'),
+				'description' => tr('Text to show when the page exists but the user has insufficient permissions to see it.'),
 				'since' => '6.0',
 				'filter' => 'text',
 				'default' => '',
 			],
             'pagenotapproved_text' => [
 				'required' => false,
-				'name' => tra('None approved text warning'),
-				'description' => tra('Text to show when the page exists but no version is approved.'),
+				'name' => tr('No version approved error message'),
+				'description' => tr('Text to show when the page exists but no version is approved.'),
 				'since' => '18.0',
 				'filter' => 'text',
 				'default' => '',
             ],
 			'page_edit_icon' => [
 				'required' => false,
-				'name' => tra('Edit Icon'),
-				'description' => tra('Option to show the edit icon for the included page (shown by default). Depend on the \"edit icons\" parameters and settings.'),
+				'name' => tr('Edit Icon'),
+				'description' => tr('Option to show the edit icon for the included page (shown by default). Depends on the \"edit icons\" settings.'),
 				'since' => '12.1',
 				'default' => 'y',
 				'filter' => 'alpha',
 				'options' => [
 					['text' => '', 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
-					['text' => tra('No'), 'value' => 'n'],
+					['text' => tr('Yes'), 'value' => 'y'],
+					['text' => tr('No'), 'value' => 'n'],
 				],
 			],
 		],
@@ -107,7 +115,7 @@ function wikiplugin_include($dataIn, $params)
 		'nopage_text' => '',
 		'pagedenied_text' => '',
 		'page_edit_icon' => 'y',
-		'pagenotapproved_text' => tra('There are no approved versions of this page.'), 
+		'pagenotapproved_text' => tr('There are no approved versions of this page.'),
 	], $params);
 	extract($params, EXTR_SKIP);
 	if (! isset($page)) {
@@ -158,6 +166,12 @@ function wikiplugin_include($dataIn, $params)
 			$text = $pagedenied_text;
 			return($text);
 		}
+	}
+
+	if (! empty($params['linkoriginal_text'])) {
+		$linkoriginal_text = $params['linkoriginal_text'];
+	} else {
+		$linkoriginal_text = tr('Read more');
 	}
 
 	if ($data[$memo]) {
@@ -229,9 +243,9 @@ function wikiplugin_include($dataIn, $params)
     if (($prefs['wiki_plugin_include_link_original'] == 'y' && (isset($start) || isset($stop))) || (isset($linkoriginal) && $linkoriginal == 'y')) {
         $wikilib = TikiLib::lib('wiki');
 	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-default"';
-        $text .= 'title="'.sprintf(tra('The text above comes from page "%s". Click to go to that page'), $page).'">';
+        $text .= 'title="'.sprintf(tr('The text above comes from page "%s". Click to go to that page'), $page).'">';
         $text .= smarty_function_icon(['name' => 'align-left'], $smarty).' ';
-        $text .= tra('Read more');
+        $text .= tr($linkoriginal_text);
         $text .= '</a><p>';
 	}
 
@@ -241,7 +255,7 @@ function wikiplugin_include($dataIn, $params)
 			$smarty = TikiLib::lib('smarty');
 			$smarty->loadPlugin('smarty_block_ajax_href');
 			$smarty->loadPlugin('smarty_function_icon');
-			$tip = tra('Include Plugin') . ' | ' . tra('Edit the included page:') . ' &quot;' . $page . '&quot;';
+			$tip = tr('Include Plugin') . ' | ' . tr('Edit the included page:') . ' &quot;' . $page . '&quot;';
 			$returnto = ! empty($GLOBALS['page']) ? $GLOBALS['page'] : $_SERVER['REQUEST_URI'];
 			if (empty($_REQUEST['display']) || $_REQUEST['display'] != 'pdf') {
 				$text .= '<a class="editplugin tips" ' . // ironically smarty_block_self_link doesn't work for this! ;)

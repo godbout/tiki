@@ -25,6 +25,9 @@ function upgrade_20171121_create_plugin_include_relations_tiki($installer)
         foreach ($matches as $match) {
             if ($match->getName() == 'include') {
                 $params = $argParser->parse($match->getArguments());
+                if (!isset($params['page'])) {
+                    continue;
+                }
                 $existing = $installer->table('tiki_object_relations')->fetchCount([
                     'relation' => 'tiki.wiki.include',
                     'source_type' => $type,
