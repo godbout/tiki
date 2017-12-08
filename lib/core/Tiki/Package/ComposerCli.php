@@ -20,6 +20,7 @@ class ComposerCli
 	const COMPOSER_HOME = 'temp/composer';
 	const PHP_COMMAND_NAMES = [
 		'php',
+		// TODO: Dynamically build version part from running PHP version
 		'php56',
 		'php5.6',
 		'php5.6-cli',
@@ -158,6 +159,9 @@ class ComposerCli
 		foreach (explode(PATH_SEPARATOR, $_SERVER['PATH']) as $path) {
 			foreach (self::PHP_COMMAND_NAMES as $cli) {
 				$possibleCli = $path . DIRECTORY_SEPARATOR . $cli;
+				if (\TikiInit::isWindows()) {
+					$possibleCli .= '.exe';
+				}
 				if (file_exists($possibleCli) && is_executable($possibleCli)) {
 					$version = $this->getPhpVersion($possibleCli);
 					if (version_compare($version, self::PHP_MIN_VERSION, '<')) {
