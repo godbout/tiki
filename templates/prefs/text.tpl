@@ -28,6 +28,10 @@
 			<div class="help-block">{$p.hint|simplewiki}</div>
 		{/if}
 
+		{if $p.translatable eq 'y'}
+			{button _class="btn btn-link tips" _type="link" href="tiki-preference_translate.php?pref={$p.preference|escape}" _icon_name="language" _text="" _title=":{tr}Translate{/tr} {$p.name|escape}"}
+		{/if}
+
 		{include file="prefs/shared-dependencies.tpl"}
 	</div>
 </div>

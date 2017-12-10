@@ -15,6 +15,7 @@ function prefs_global_list($partial = false)
 			'default' => '',
 			'tags' => ['basic'],
 			'public' => true,
+			'translatable' => 'y',
 		],
 		'fallbackBaseUrl' => [
 			'name' => tra('Fallback for tiki base URL'),
