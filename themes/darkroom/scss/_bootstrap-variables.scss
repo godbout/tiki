@@ -1,101 +1,286 @@
-// $Id: bootstrap-variables.scss 64190 2017-10-10 04:10:27Z chibaguy $ Darkroom theme Bootstrap variables file.
+//$Id: _bootstrap-variables.scss 643522017-10-2312: 17: 27Z jonnybradley Ohia theme bootstrap-variables.scss.
 
-// Colors
-$primary: #ababab;
+//Custom styles for a new theme.
 
-// Options
-// Spacing
+//Colors
+$black: #fff;
+$gray-900: #f8f9fa;
+$gray-800: #e9ecef;
+$gray-700: #dee2e6;
+$gray-600: #ced4da;
+$gray-500: #adb5bd;
+$gray-400: #868e96;
+$gray-300: #495057;
+$gray-200: #343a40;
+$gray-100: #212529;
+$white: #000;
 
-// Body
-$body-bg:               #474747;
-$body-color:            #d8d8d8;
+$primary: #193c5a;//#193c5a
+$success: #aad4ab;//#3d6c2a
+$info: #aad0e2;//#1b6083
+$warning: #deceb3;//darken(#f0ad4e,30%)
+$danger: #dda8a7;
 
-// Links
-$link-color: #ababab; // $primary;
+$theme-colors: (
+		"primary": #193c5a,
+		"secondary": #dddddd,
+		"success": #aad4ab,
+		"info": #aad0e2,
+		"warning": #deceb3,
+		"danger": #dda8a7,
+		"light": #000000,
+		"dark": #ffffff
+);
 
-// Components
-// Fonts
+//Options
+//Spacing
 
-// Tables
-$table-bg: #232323;
-//** Background color used for `.table-striped`.
-$table-bg-accent: #292929;
-//** Background color used for `.table-hover`.
-$table-bg-hover: #555555;
+//Body
+$body-bg: #242424;
+$body-color: #e9ecef;
 
-// Buttons
-$btn-default-color: #d8d8d8;
-$btn-default-bg: #4b4b4b;
-$btn-default-border: #4b4b4b;
+//Links
+$link-color: #fd0006;
+$link-hover-color: #f4f4f4;
+$link-hover-decoration: none;
 
-$btn-primary-color: #ffffff;
-$btn-primary-bg: $primary;
-$btn-primary-border: #9a9a9a;
+//Components
+$component-active-color: #ffffff;
+$component-active-bg: #030511;
+
+
+//Fonts
+$font-family-sans-serif: "HelveticaNeue",Helvetica,Arial,sans-serif;
+$font-family-serif: Verdana,Geneva,Arial,Helvetica,sans-serif;
+$font-family-monospace: Menlo,Monaco,Consolas,"CourierNew",monospace;
+$font-family-base: $font-family-sans-serif;
+
+$headings-font-weight: 500;
+
+//Tables
+$table-bg: transparent;
+$table-bg-accent: #373737;
+$table-bg-hover: $gray-500;
+$table-bg-active: $table-bg-hover;
+
+//**Bordercolorfortableandcellborders.
+$table-border-color: #696969;
+
+//Buttons
+//$btn-default-color: #ffffff;
+//$btn-default-bg: #3676c4;
+//$btn-default-border: #3676c4;
+
+$btn-font-weight: normal;
+
+$btn-primary-color: #fd0006;
+$btn-primary-bg: #2f2f2f;
+//$btn-primary-border: #5f5f5f;
+
+$btn-secondary-color: #fd0006;
+$btn-secondary-color: #fd0006;
+$btn-secondary-bg: $btn-primary-bg;
+//$btn-secondary-border: $btn-primary-border;
 
 $btn-success-color: #ffffff;
 $btn-success-bg: $success;
-$btn-success-border: #55a650;
+//$btn-success-border: darken($btn-success-bg,5%);
 
 $btn-info-color: #ffffff;
 $btn-info-bg: $info;
-$btn-info-border: #50A3BF;
+//$btn-info-border: darken($btn-info-bg,5%);
 
-// Forms
-$input-bg: #292929;
-$input-bg-disabled: $gray-300;
-$input-color: #f5f5f5;
-$input-color-placeholder: $gray-300;
+$btn-warning-color: #ffffff;
+$btn-warning-bg: $warning;
+//$btn-warning-border: darken($btn-warning-bg,5%);
 
-// Dropdowns
-$dropdown-bg: #474747;
-$dropdown-border: rgba(0, 0, 0, .15);
-$dropdown-fallback-border: #cccccc;
-$dropdown-link-hover-color: #3f3f3f;
-$dropdown-link-hover-bg: #cccccc;
+$btn-danger-color: #ffffff;
+$btn-danger-bg: $danger;
+//$btn-danger-border: darken($btn-danger-bg,5%);
 
-// Navs
-// Navbar
-$navbar-dark-color: #a6a68d;
-$navbar-dark-bg: #4b4b4b;
-$navbar-default-link-color: #a6a68d;
+$btn-link-disabled-color: $gray-800;
 
-// Navbarlinks
-$nav-link-hover-bg: #474747;
-$nav-tabs-link-hover-border-color: #474747;
+//Forms
+$input-bg: #242424;
+$input-bg-disabled: $gray-800;
+$input-color: #cfcfcf;
+$input-border-color: #4c4c4c;
+$input-focus-border-color: $danger;
+$input-color-placeholder: $gray-800;
+$legend-color: #ffffff;
+$legend-border-color: #e5e5e5;
+$input-group-addon-bg: $gray-900;
+$input-group-addon-border-color: $input-border-color;
 
-// Pagination
-$pagination-bg: #818181;
+//Dropdowns
+$dropdown-bg: #242424;
+$dropdown-border-color: rgba(0,0,0,.15);
+$dropdown-divider-bg: #e5e5e5;
 
-// Jumbotron
-// Cards
-$card-bg: #474747;
-$card-inner-border: #474747;
-$card-footer-bg: #474747;
+$dropdown-link-color: #fd0006;
+$dropdown-link-hover-color: $gray-800;
+$dropdown-link-hover-bg: transparent;
 
-// Tooltips
-// Popovers
-$popover-bg: #474747;
+$dropdown-link-active-color: $component-active-color;
+$dropdown-link-active-bg: $component-active-bg;
+$dropdown-link-disabled-color: $gray-600;
+$dropdown-header-color: $gray-600;
 
-// Badges
-// Modals
-$modal-content-bg: #555555;
+//Navs
+//Navbar
+$navbar-light-color: #fd0006;
+$navbar-light-bg: #030511;
+$navbar-light-border: lighten($navbar-light-bg,6.5%);
 
-// Alerts
-// Progress bars
-// List group
-$list-group-bg: #818181;
-$list-group-disabled-color: $gray-300;
-$list-group-disabled-bg: $gray-500;
+//Navbarlinks??
+//Navbarlinks
+$navbar-light-link-color: #fd0006;
+$navbar-light-link-hover-color: #f4f4f4;
+$navbar-light-link-hover-bg: transparent;
+$navbar-light-link-active-color: #f4f4f4;
+//$navbar-default-link-active-bg//Deprecated?: transparent;
+//darken($navbar-default-bg,6.5%);
+$navbar-light-link-disabled-color: #cccccc;
+$navbar-light-link-disabled-bg: transparent;
 
-// Image thumbnails
-// Figures
-// Breadcrumbs
-$breadcrumb-color: #848484;
-$breadcrumb-active-color: #959595;
+//Navbarbrandlabel
+$navbar-light-brand-color: $navbar-light-color;
+$navbar-light-brand-hover-color: darken($navbar-light-color,10%);
+$navbar-light-brand-hover-bg: transparent;
 
-// Carousel
-// Close
-// Code
-$pre-bg: #292929;
-$pre-color: $gray-300;
-$pre-border-color: #292929;
+//Navbartoggle
+$navbar-default-toggle-hover-bg: transparent;
+$navbar-default-toggle-icon-bar-bg: #888888;
+$navbar-default-toggle-border-color: #dddddd;
+
+//==Tabs
+$nav-tabs-border-color: #dddddd;
+$nav-tabs-link-hover-border-color: $gray-700;
+$nav-tabs-active-link-hover-bg: $body-bg;
+$nav-tabs-active-link-hover-color: $gray-500;
+$nav-tabs-active-link-hover-border-color: #dddddd;
+$nav-tabs-justified-link-border-color: #dddddd;
+$nav-tabs-justified-active-link-border-color: $body-bg;
+
+//Pagination
+$pagination-color: $link-color;
+$pagination-bg: $gray-300;
+$pagination-border: $gray-500;
+
+$pagination-hover-color: $link-hover-color;
+$pagination-hover-bg: $dropdown-link-hover-bg;
+$pagination-hover-border: #dddddd;
+
+$pagination-active-color: #ffffff;
+$pagination-active-bg: $primary;
+$pagination-active-border: $primary;
+
+$pagination-disabled-color: $gray-800;
+$pagination-disabled-bg: #ffffff;
+$pagination-disabled-border: #dddddd;
+
+//Jumbotron
+$jumbotron-padding: 30px;
+$jumbotron-color: inherit;
+$jumbotron-bg: lighten($body-bg,10%);
+$jumbotron-heading-color: inherit;
+
+//Cards
+$card-bg: #030511;
+$card-inner-border: #5e0000;
+$card-footer-bg: darken(#5e0000,10%);
+$card-primary-text: #f4f4f4;
+$card-primary-border: #333333;
+$card-primary-heading-bg: #5e0000;
+
+//Tooltips
+$tooltip-color: #ffffff;
+$tooltip-bg: #000000;
+$tooltip-opacity: .9;
+$tooltip-arrow-color: $tooltip-bg;
+
+//Popovers
+$popover-bg: #ffffff;
+$popover-border-color: rgba(0,0,0,.2);
+$popover-title-bg: darken($popover-bg,3%);
+$popover-arrow-color: $popover-bg;
+
+//Badges
+$badge-color: #ffffff;
+$badge-link-hover-color: #ffffff;
+$badge-bg: $gray-300;
+$badge-active-color: $link-color;
+$badge-active-bg: #ffffff;
+
+//Modals
+$modal-content-bg: $body-bg;
+$modal-content-border-color: rgba(0,0,0,.2);
+$modal-backdrop-bg: darken(#d9534f,30%);
+$modal-header-border-color: #e5e5e5;
+$modal-footer-border-color: $modal-header-border-color;
+
+//Alerts
+//Progressbars
+
+//Listgroup
+$list-group-disabled-color: $gray-700;
+$list-group-disabled-bg: $gray-800;
+$list-group-disabled-text-color: $list-group-disabled-color;
+$list-group-link-color: $body-color;
+$list-group-link-hover-color: $list-group-link-color;
+$list-group-link-heading-color: $body-color;
+
+//Imagethumbnails
+$thumbnail-bg: $body-bg;
+$thumbnail-border: #dddddd;
+$thumbnail-caption-color: $body-color;
+
+//Figures
+
+//Breadcrumbs
+$breadcrumb-bg: $gray-900;
+$breadcrumb-color: $gray-300;
+$breadcrumb-active-color: $gray-500;
+
+//Carousel
+$carousel-text-shadow:  01px 2px rgba(0,0,0,.6);
+$carousel-control-color: #ffffff;
+$carousel-indicator-active-bg: #ffffff;
+$carousel-indicator-border-color: #ffffff;
+$carousel-caption-color: #ffffff;
+
+//Close
+$close-font-weight: bold;
+$close-color: #000000;
+$close-text-shadow: 01px0#ffffff;
+
+//Code
+$code-color: #c7254e;
+$code-bg: #f9f2f4;
+$kbd-color: #ffffff;
+$kbd-bg: #333333;
+$pre-bg: #f5f5f5;
+$pre-color: $gray-800;
+$pre-border-color: #cccccc;
+
+//==Pills
+$nav-pills-active-link-hover-bg: $component-active-bg;
+$nav-pills-active-link-hover-color: $component-active-color;
+
+//**Textmutedcolor
+$text-muted: $gray-200;
+//**Abbreviationsandacronymsbordercolor
+$abbr-border-color: $gray-200;
+//**Headingssmallcolor
+$headings-small-color: $gray-200;
+//**Blockquotesmallcolor
+$blockquote-small-color: $gray-200;
+
+//**Blockquotebordercolor
+$blockquote-border-color: $gray-400;
+//**Pageheaderbordercolor
+$page-header-border-color: $gray-500;
+
+
+//**Horizontallinecolor.
+$hr-border: $gray-500;

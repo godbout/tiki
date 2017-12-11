@@ -60,15 +60,15 @@ header.container {
 	&:hover,
 	&:focus {
 		text-decoration: none;
-		color: $navbar-default-link-hover-color;
-		background-color: $navbar-default-link-hover-bg;
+//		color: $navbar-default-link-hover-color;
+//		background-color: $navbar-default-link-hover-bg;
 	}
 }
 
 .cssmenu_horiz li.selected a,
 .cssmenu_vert li.selected a {
 	text-decoration: none;
-	color: $navbar-default-link-hover-color;
+//	color: $navbar-default-link-hover-color;
 //	background-color: //$navbar-default-link-active-bg  //Deprecated?;
 }
 
@@ -92,7 +92,7 @@ header.container {
 	.navbar {
 		margin-bottom: 0;
 	}
-	.navbar-default {
+	.navbar {
 		border: none;
 	}
 	.box-search .form-group {

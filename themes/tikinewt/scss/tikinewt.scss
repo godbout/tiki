@@ -1,10 +1,12 @@
 //  $Id$ tikinewt/less/tiki.less; compile to make
 /*  The TikiNewt theme style sheet for Tiki Wiki CMS Groupware. */
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
+@import url("//fonts.googleapis.com/css?family=Simonetta");
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two needed to prevent
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // compiling errors.
+@import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
 @import "_bootstrap-variables.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss"; // Needed for darken function.
 @import "../../base_files/scss/_tiki-selectors.scss";
-// Tiki non-Bootstrap CSS selectors related to color
-@import "../../base_files/scss/_tiki-variables.scss";
-// Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
+@import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "_tiki-selectors.scss";
 @import "../../base_files/scss/_external-scripts.scss";

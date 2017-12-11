@@ -28,13 +28,13 @@ header.container {
 
 .layout_social .navbar-fixed-top,
 .layout_social .navbar-fixed-top .container,
-.navbar-default,
+.navbar-light,
 .topbar,
 .topbar .cssmenu_horiz > ul,
-.topbar .navbar-default .navbar-nav > li,
+.topbar .navbar-light .navbar-nav > li,
 .topbar .nav > li,
-.layout_social .navbar-inverse .navbar-form,
-.layout_social .navbar-inverse .container {
+.layout_social .navbar-dark .navbar-form,
+.layout_social .navbar-dark .container {
 	background: url('#{$imagePath}flakesptn3.jpg');
 	border: none;
 }
@@ -50,14 +50,14 @@ header.container {
 	box-shadow: 0 0 100px 100px rgba(235, 242, 249, 1);
 }
 
-.layout_social .navbar-inverse {
+.layout_social .navbar-dark {
 	border-bottom: 1px solid #6c7b8c;
 }
 
 // Some of this at least should be set in bootstrap-variables.scss.
-.navbar-inverse .navbar-brand,
-.navbar-inverse a,
-.navbar-inverse .navbar-nav > li > a {
+.navbar-dark .navbar-brand,
+.navbar-dark a,
+.navbar-dark .navbar-nav > li > a {
 	color: #1c1329;
 }
 
@@ -71,32 +71,32 @@ header.container {
 	background: url('#{$imagePath}flakesptn4.jpg')
 }
 
-.panel {
+.card {
 	background: #d7e5f3; // url('#{$imagePath}flakesptn2.jpg');
 }
 
-.panel-heading,
-.panel-footer {
+.card-heading,
+.card-footer {
 	background: url('#{$imagePath}flakesptn3.jpg')
 }
 
-.blog-postbody-title h2.panel-title { font-size: 20px; }
+.blog-postbody-title h2.card-title { font-size: 1.3rem; }
 
 #col2,
 #col3 {
-	.panel,
-	.panel-default {
+	.card,
+	.card-primary {
 		background: none;
 		border: none;
 	}
-	.panel-footer {
+	.card-footer {
 		display: none;
 	}
 
 }
 
 .topbar {
-	.navbar-default {
+	.navbar-light {
 		background: transparent;
 		border: none;
 	}
@@ -105,34 +105,8 @@ header.container {
 	}
 }
 
-/*
-.topbar .nav > li > a:hover,
-.topbar .nav > li > a:focus,
-.topbar .cssmenu_horiz > li > a:hover,
-.topbar .cssmenu_horiz > li:hover,
-.topbar .cssmenu_horiz li.sfHover:hover,
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  background: #D7E5F3 url('#{$imagePath}pagetitle-bg.jpg') repeat-x;
-  color: #555555;
-}
-
-.dropdown-menu > li > form {
-  background: url('#{$imagePath}flakesptn2.jpg');
-}
-
-.dropdown-menu > li > a {
-  background: url('#{$imagePath}flakesptn2.jpg');
-  &:hover {
-    background: url('#{$imagePath}flakesptn3.jpg');
-  }
-}
-
-.nav > li > a:hover {background: url('#{$imagePath}flakesptn3.jpg');}
-*/
-
 .btn,
-.btn-default,
+.btn-primary,
 .nav-tabs > li > a,
 .input-group-addon {
 	background: url('#{$imagePath}pagetitle-bg.jpg');
@@ -152,32 +126,15 @@ header.container {
 	background: none;
 }
 
-/*
-.table-striped > tbody > tr:nth-child(2n+1) > td,
-.table-striped > tbody > tr:nth-child(2n+1) > th {background: transparent url('#{$imagePath}flakesptn3.jpg') }
-
-.table-striped > tbody > tr.success:nth-child(2n+1) > td,
-.table-striped > tbody > tr.success:nth-child(2n+1) > th {background: $state-success-bg; }
-
-.table-striped > tbody > tr.info:nth-child(2n+1) > td,
-.table-striped > tbody > tr.info:nth-child(2n+1) > th {background: $state-info-bg; }
-
-.table-striped > tbody > tr.warning:nth-child(2n+1) > td,
-.table-striped > tbody > tr.warning:nth-child(2n+1) > th {background: $state-warning-bg; }
-
-.table-striped > tbody > tr.danger:nth-child(2n+1) > td,
-.table-striped > tbody > tr.danger:nth-child(2n+1) > th {background: $state-danger-bg; }*/
-
 .cssmenu_horiz li ul,
 .cssmenu_vert li ul {
 	padding: 5px 0;
 	margin: 2px 0 0; // override default ul
 	//  font-size: $font-size-base;
 	background: url('#{$imagePath}flakesptn2.jpg');
-	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
-	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+	@include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 

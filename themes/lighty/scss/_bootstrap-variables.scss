@@ -1,0 +1,114 @@
+// variables.less 2017-05-16 made by BarbaraLassalle
+
+// Colors
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #868e96;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+$primary: #e2d4d4;
+
+$theme-colors: (
+ 	"primary": #e2d4d4
+);
+
+// Options
+// Spacing
+
+// Body
+$body-bg:               #f0f0f0;
+$text-color:            $gray-500;
+
+// Links
+$link-color:            $gray-500;
+$link-hover-color:      $primary;
+$link-focus-color:      $primary;
+$link-active-color:     $primary;
+$link-hover-decoration: none;
+
+// Components
+$border-radius-base:        0;
+$border-radius-large:       0;
+$border-radius-small:       0;
+$component-active-color:    $gray-500;
+
+// Fonts
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace: "Courier New", monospace;
+$headings-font-family:    $font-family-sans-serif;
+
+$h3-text-transform:       uppercase;
+$h4-color:                $gray-500;
+$h4-font-weight:          300;
+$h4-margin:               0;
+$h6-margin:               10/16rem 0;
+
+// Tables
+//$table-border-color: #dddddd;
+
+// Buttons
+$btn-primary-color:              $gray-300;
+$btn-primary-bg:                 #ffffff;
+$btn-primary-border:             $body-bg;
+
+$btn-secondary-color:            $btn-primary-color;
+$btn-secondary-bg:               $body-bg;
+$btn-secondary-border:           $btn-primary-border;
+
+// Forms
+$input-border: 					$body-bg;
+$input-border-focus:            $primary;
+$input-color-placeholder:       $gray-300;
+
+$legend-font-size:               21/16rem;
+$legend-border-bottom:           #e3e3e3;
+$legend-margin-bottom:           21/16rem;
+$legend-padding:                 10/16rem 0;
+
+// Dropdowns
+$dropdown-border: transparent;
+$dropdown-link-hover-color:      $gray-800;
+// Navs
+// Navbar
+$navbar-height:                    35px;
+$navbar-light-color:             $gray-500;
+$navbar-light-bg:                #ffffff;
+$navbar-light-border:            transparent;
+
+// Navbarlinks ??
+$navbar-light-link-color:                $gray-500;
+$navbar-light-link-hover-color:          $gray-800;
+$navbar-light-toggle-icon-bar-bg:        #cccccc;
+
+$navbar-dark-bg: #222;
+$navbar-dark-link-color:                 #ffffff;
+$navbar-dark-link-hover-color:           $gray-800;
+$navbar-dark-link-hover-bg:              darken($navbar-dark-bg, 6.5%);
+$navbar-dark-link-active-color:          #ffffff;
+$navbar-dark-link-active-bg:			darken($navbar-dark-bg, 6.5%);
+// Pagination
+// Jumbotron
+// Cards
+//$card-border-radius: $border-radius-lg;
+//$card-text: #fff;//@gray-lighter;
+//$card-heading-bg: #386dbb;
+
+// Tooltips
+// Popovers
+// Badges
+// Modals
+//$modal-header-border-color: #386dbb;
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+// Close
+// Code

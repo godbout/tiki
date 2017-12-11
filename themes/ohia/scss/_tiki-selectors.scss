@@ -1,4 +1,4 @@
-// $Id$  Ohia theme custom-other.less
+// $Id$  
 $imagePath: "../images/";
 // body {
 // 	background-image: url('#{$imagePath}bg.jpg');
@@ -32,15 +32,15 @@ button, input, optgroup, select, textarea {
 	//  margin-top: 18px;
 }
 
-.layout_social .navbar-inverse,
-.layout_social .navbar-inverse .navbar-collapse,
-.layout_social .navbar-inverse .navbar-form,
-.layout_social .navbar-inverse .container {
+.layout_social .navbar-dark,
+.layout_social .navbar-dark .navbar-collapse,
+.layout_social .navbar-dark .navbar-form,
+.layout_social .navbar-dark .container {
 	background: #5e0000;
 	border-color: transparent;
 }
 
-.navbar-default.navbar-fixed-top > .container {
+.navbar-light.navbar-fixed-top > .container {
 	border: none;
 	margin-bottom: 0;
 }
@@ -51,11 +51,11 @@ header.container,
 }
 
 .navbar-collapse {
-	background: $navbar-default-bg;
+	background: green; // $navbar-light-bg;
 }
 
 .top_modules,
-.navbar-default.navbar-fixed-top {
+.navbar-light.navbar-fixed-top {
 	background: url('#{$imagePath}header.png');
 //	background-size: cover;
 	a,
@@ -83,23 +83,16 @@ header.container,
 	padding-left: 0;
 }
 
-.navbar-collapse {
-	background: $navbar-default-bg;
-}
 
-.glyphicon {
-	color: $gray-lighter;
-}
-
-.panel-title,
-.panel-heading {
+.card-title,
+.card-heading {
 	font-weight: bold;
 }
 
 $nav-tabs-active-link-hover-color: #ffffff;
 
 .nav-tabs > li > a {
-	border: solid $gray;
+	border: solid $gray-500;
 	border-width: 1px 1px 0 1px;
 }
 
@@ -114,7 +107,7 @@ footer.footer .modules {
 }
 
 .popover {
-	background-color: $gray-darker;
+	background-color: $gray-300;
 }
 
 .popover-title {
@@ -128,10 +121,9 @@ footer.footer .modules {
 	margin: 2px 0 0; // override default ul
 	//  font-size: $font-size-base;
 	background-color: $dropdown-bg;
-	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
-	.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+	@include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 

@@ -1,14 +1,5 @@
 // $Id$
 // This file is for additional LESS rules beyond what are in variables.scss.
-// Image path example:
-// $imagePath: "newtheme/images/";
-// body {
-//	background-image: url('#{$imagePath}bg.jpg');
-// }
-//
-// If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
 
 .topbar {
 	border-radius: $border-radius;
@@ -28,32 +19,36 @@
 }
 
 
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus,
-.navbar-default,
+.navbar-light .navbar-nav > .active > a,
+.navbar-light .navbar-nav > .active > a:hover,
+.navbar-light .navbar-nav > .active > a:focus,
+.navbar-light,
 .topbar,
-	// .topbar .cssmenu_horiz ul,
-.topbar .navbar-default .navbar-nav > li,
+.topbar .navbar-light .navbar-nav > li,
 .topbar .nav > li,
-.panel-heading,
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
-	#gradient > .vertical($start-color: #e3e3e3; $end-color: #cccccc);
+.card-heading,
+.navbar-light .navbar-collapse,
+.navbar-light .navbar-form {
+//	#gradient > .vertical($start-color: #e3e3e3; $end-color: #cccccc);
+    background: linear-gradient(to bottom, #e3e3e3, #cccccc);
 }
 
-.panel-heading {
+.card-header {
 	margin: 3px;
 	border-bottom-left-radius: $border-radius;
 	border-bottom-right-radius: $border-radius;
+	font-size: 1rem;
 }
 
-.panel-title {
+.card-title {
 	font-weight: bold;
+	font-size: 1rem;
 }
 
-.btn-default,
+.card-body h4 { font-size: 1rem; }
+
 .btn-primary,
+.btn-secondary,
 .btn-success,
 .btn-info,
 .btn-warning,
@@ -64,10 +59,11 @@
 	background: -o-linear-gradient(top, #f2f2f2 0%, #f2f2f2 46%, #e6e6e6 50%, #eeeeee 50%, #eeeeee 100%);
 	background: linear-gradient(to bottom, #f2f2f2 0%, #f2f2f2 46%, #e6e6e6 50%, #eeeeee 50%, #eeeeee 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#eeeeee', GradientType=0);
+  color: #333;
 }
 
-.btn-default:hover,
 .btn-primary:hover,
+.btn-secondary:hover,
 .btn-success:hover,
 .btn-info:hover,
 .btn-warning:hover,
@@ -78,4 +74,9 @@
 	background: -o-linear-gradient(top,  #eeeeee 0%,#eeeeee 50%,#e6e6e6 50%,#f2f2f2 54%,#f2f2f2 100%);
 	background: linear-gradient(to bottom,  #eeeeee 0%,#eeeeee 50%,#e6e6e6 50%,#f2f2f2 54%,#f2f2f2 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#f2f2f2',GradientType=0 );
+  color: #333;
+}
+
+.show > .btn-primary.dropdown-toggle {
+  color: #333;
 }

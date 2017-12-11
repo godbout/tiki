@@ -54,14 +54,12 @@ h1 {
 	padding-right: 0;
 }
 
-.panel-body a//,
-//.panel-body a:visited
-  {
+.card-body a {
 	color: #333333;
 	font-weight: normal;
 }
 
-.panel-body a:hover {
+.card-body a:hover {
 	color: #999999;
 	text-decoration: none;
 }
@@ -107,28 +105,27 @@ li.menuoption a {
 }
 
 .sf-arrows .sf-with-ul:after {
-	border-color: #888 transparent transparent; /* IE8 */
 	border-color: rgba(0, 0, 0, .5) transparent transparent;
 }
 
-.panel {
+.card {
 	background: #ffffff;
 	border: 1px solid #dddddd;
 	//  margin: 0 0 .2em;
 }
 
-.panel-heading {
+.card-header {
 	background-color: #f4f4f4;
 }
 
-.panel-title {
+.card-title {
 	//  padding: .4em .7em .3em;
 	//  margin: 0;
 	color: #555555;
 	font-size: 125%;
 }
 
-.panel-title a {
+.card-title a {
 	color: #555555;
 }
 

@@ -9,9 +9,9 @@
 //## Gray and brand colors for use across Bootstrap.
 
 $gray-base: #000000;
-$gray-darker: lighten($gray-base, 13.5%);
+$gray-900er: lighten($gray-base, 13.5%);
 // #222
-$gray-dark: lighten($gray-base, 20%);
+$gray-900: lighten($gray-base, 20%);
 // #333
 $gray: lighten($gray-base, 33.5%);
 // #555
@@ -33,7 +33,7 @@ $brand-danger: #d9534f;
 //** Background color for `<body>`.
 $body-bg: #ffffff;
 //** Global text color on `<body>`.
-$body-color: $gray-dark;
+$body-color: $gray-900;
 
 //** Global textual link color.
 $link-color: $brand-primary;
@@ -214,7 +214,7 @@ $input-height-large: (ceil($font-size-large * $line-height-large) + ($padding-la
 //** Small `.form-control` height
 $input-height-small: (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2);
 
-$legend-color: $gray-dark;
+$legend-color: $gray-900;
 $legend-border-color: #e5e5e5;
 
 //** Background color for textual input addons
@@ -359,7 +359,7 @@ $navbar-padding-x: floor(($grid-gutter-width / 2));
 $navbar-padding-y: (($navbar-height - $line-height-base) / 2);
 $navbar-collapse-max-height: 340px;
 
-$navbar-default-color: $gray-dark;
+$navbar-default-color: $gray-900;
 $navbar-default-bg: #040404;
 $navbar-default-border: none;
 // darken($navbar-default-bg, 6.5%);
@@ -693,7 +693,7 @@ $panel-border-radius: $border-radius;
 $panel-inner-border: #dddddd;
 $panel-footer-bg: #f5f5f5;
 
-$panel-default-text: $gray-dark;
+$panel-default-text: $gray-900;
 $panel-default-border: #dddddd;
 $panel-default-heading-bg: #f5f5f5;
 
@@ -810,7 +810,7 @@ $kbd-color: #ffffff;
 $kbd-bg: #333333;
 
 $pre-bg: #f5f5f5;
-$pre-color: $gray-dark;
+$pre-color: $gray-900;
 $pre-border-color: #cccccc;
 $pre-scrollable-max-height: 340px;
 

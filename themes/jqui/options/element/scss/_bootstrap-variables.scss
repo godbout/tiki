@@ -1,30 +1,87 @@
 // $Id$ Custom variables for the Element theme option of the jQui theme
-// This file is a copy of the default bootstrap variables.scss file.
 
-// Variables
-// --------------------------------------------------
+// Colors
+$primary: #c21e3b;
 
-//== Colors
-//
-//## Gray and brand colors for use across Bootstrap.
+$theme-colors: (
+ 	"primary": #c21e3b
+);
 
-@gray-base: #000000;
-@gray-darker: lighten(@gray-base, 13.5%);
-// #222
-@gray-dark: lighten(@gray-base, 20%);
-// #333
-@gray: lighten(@gray-base, 33.5%);
-// #555
-@gray-light: lighten(@gray-base, 60%);
-// #999
-@gray-lighter: lighten(@gray-base, 93.5%);
-// #eee // #74c0e2
+// Options
+// Spacing
 
-@brand-primary: #c21e3b;
-@brand-success: #5cb85c;
-@brand-info: #5bc0de;
-@brand-warning: #f0ad4e;
-@brand-danger: #d9534f;
+// Body
+//$body-color: $gray-800;
+
+// Links
+$link-color: #2a5385;
+$link-hover-color: #7195c1;
+
+// Components
+//$padding-base-vertical: .5rem;
+//$padding-large-vertical: .9rem;
+
+// Fonts
+$headings-color: #7195c1;
+
+// Tables
+$table-border-color: #e7768a;
+
+// Buttons
+$btn-primary-color: #555555;
+$btn-primary-bg: #ffffff;
+$btn-primary-border: #777777;
+
+// Forms
+$input-bg: #f9dfe2;
+$input-color-placeholder: #999;
+$input-border: #fb999e;
+$input-border-focus: #fb999e;
+
+// Dropdowns
+$dropdown-bg: #8c1832;
+$dropdown-link-color: $link-color;
+$dropdown-link-hover-color: darken($link-color, 5%);
+$dropdown-link-hover-bg: #ea6;
+
+// Navs
+// Navbar
+$navbar-light-color: #363636;
+$navbar-light-bg: #cccccc;
+$navbar-light-border: #aaaaaa;
+
+
+// Navbarlinks ??
+$navbar-light-link-color: $link-color;
+$navbar-light-link-hover-color: $link-hover-color;
+$navbar-light-link-hover-bg: #eeaa66; //darken(@btn-default-bg, 6.5%);
+
+// Pagination
+// Jumbotron
+// Cards
+//$card-border-radius: $border-radius-lg;
+//$card-text: #fff;//@gray-lighter;
+//$card-heading-bg: #386dbb;
+
+// Tooltips
+// Popovers
+// Badges
+// Modals
+//$modal-header-border-color: #386dbb;
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+// Close
+// Code
+
+
+
+
+
 
 //== Scaffolding
 //
@@ -140,14 +197,14 @@
 
 // @btn-font-weight:                normal;
 
-@btn-default-color: #555555;
-@btn-default-bg: #ffffff;
-@btn-default-border: #777777;
+$btn-primary-color: #555555;
+$btn-primary-bg: #ffffff;
+$btn-primary-border: #777777;
 // #a61d35 #a61d35 #e7768a
 
-@btn-primary-color: @btn-default-color;
-@btn-primary-bg: @btn-default-bg;
-@btn-primary-border: @btn-default-border;
+@btn-primary-color: $btn-primary-color;
+@btn-primary-bg: $btn-primary-bg;
+@btn-primary-border: $btn-primary-border;
 // #b2a713 #b2a713 #f0e884; // darken(@btn-primary-bg, 5%);
 //== Forms
 //
@@ -323,9 +380,9 @@ $dropdown-border-color: rgba(0, 0, 0, .15);
 // Navbar links
 @navbar-default-link-color: @link-color;
 @navbar-default-link-hover-color: @link-hover-color;
-@navbar-default-link-hover-bg: #eeaa66; //darken(@btn-default-bg, 6.5%);
+@navbar-default-link-hover-bg: #eeaa66; //darken($btn-primary-bg, 6.5%);
 @navbar-default-link-active-color: @link-color;
-//$navbar-default-link-active-bg  //Deprecated?: darken(@btn-default-bg, 6.5%);
+//$navbar-default-link-active-bg  //Deprecated?: darken($btn-primary-bg, 6.5%);
 //darken(@navbar-default-bg, 6.5%);
 @navbar-default-link-disabled-color: lighten(@link-color,10%);
 @navbar-default-link-disabled-bg: transparent;

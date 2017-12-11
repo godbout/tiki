@@ -1,16 +1,7 @@
 // $Id$
-// This file is for additional LESS rules beyond what are in variables.scss.
+// This file is for additional SCSS rules beyond what are in _bootstrap-variables.scss.
 // Image path example:
 $imagePath: "../images/";
-// body {
-//	background-image: url('#{$imagePath}bg.jpg');
-// }
-//
-// If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
-
-//@topmodules-row-sidemargins: 0;
-//@topbar-row-sidemargins: -15px;
 
 body {
 	background: #214d68 url('#{$imagePath}body-bg_fw.png') repeat-x;
@@ -28,7 +19,9 @@ body.fullscreen.tiki.navbar-padding {
 	background: #ffffff;
 }
 
-.btn-default {
+.navbar .container { background: transparent; }
+
+.btn-primary {
 	border-color: #41cbe7 #223845 #223845 #41cbe7
 }
 
@@ -45,10 +38,10 @@ body.fullscreen.tiki.navbar-padding {
 	margin-bottom: 20px;
 }
 
-.navbar-default,
+.navbar-light,
 .topbar,
 .layout_fixed_top_modules #top_modules,
-.topbar .navbar-default .navbar-nav > li,
+.topbar .navbar-light .navbar-nav > li,
 .topbar .nav > li,
 .siteloginbar_popup .dropdown-menu {
 	background: #2498c7;
@@ -59,7 +52,7 @@ body.fullscreen.tiki.navbar-padding {
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2498c7', endColorstr='#44d1fe', GradientType=0);
 }
 
-.top_modules .navbar-default {
+.top_modules .navbar-light {
 	background: transparent;
 	border: none;
 }
@@ -68,8 +61,8 @@ body.fullscreen.tiki.navbar-padding {
 	background: $btn-primary-bg;
 }
 
-.navbar-default .navbar-nav > .active,
-.navbar-default .navbar-nav > .open {
+.navbar-light .navbar-nav > .active,
+.navbar-light .navbar-nav > .open {
 	> a,
 	> a:hover,
 	> a:focus {
@@ -78,7 +71,7 @@ body.fullscreen.tiki.navbar-padding {
 }
 
 .navbar-fixed-top .container,
-.navbar-fixed-top .container .navbar-default {
+.navbar-fixed-top .container .navbar-light {
 	background: transparent;
 	border: none;
 }
@@ -105,7 +98,7 @@ input,
 		//  line-height: .8em;
 		font-style: italic;
 	}
-	h3.panel-title {
+	h3.card-title {
 		font-style: normal;
 	}
 	h4 {
@@ -155,6 +148,8 @@ h1.pagetitle > a:hover {
 	text-decoration: none;
 }
 
+h3.card-title { font-size: 1.4rem; }
+
 #col2 {
 	background: lighten(#42cefb, 15%); // #a7e8fc;
 	padding-top: 5px;
@@ -167,7 +162,7 @@ h1.pagetitle > a:hover {
 #bottom_modules {
 	background: #2e3035;
 	color: #999999;
-	.panel-title {
+	.card-title {
 		color: #999999;
 	}
 	a:hover,
@@ -176,10 +171,10 @@ h1.pagetitle > a:hover {
 	}
 }
 
-.panel-default.module,
-.panel-default.module > .panel-heading,
-.panel-default.module > .panel-body,
-.panel-default.module > .panel-footer {
+.card-primary.module,
+.card-primary.module > .card-header,
+.card-primary.module > .card-body,
+.card-primary.module > .card-footer {
 	border: none;
 	background: transparent;
 }
@@ -197,10 +192,3 @@ td.heading a:visited {
 	color: #5ae0ff;
 	text-decoration: none;
 }
-
-//.adminanchors a.icon {
-//  color: @navbar-default-link-color;
-//  &:hover {
-//    color: @navbar-default-link-hover-color;
-//  }
-// }

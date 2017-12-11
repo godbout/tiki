@@ -15,21 +15,28 @@ body.fullscreen {
 	}
 }
 
-.panel {
+.card {
 	background: url('#{$imagePath}flakesptn2.jpg');
 }
 
-#col2 .panel-heading,
-#col3 .panel-heading {
+#col2 .card-header,
+#col3 .card-header {
 	background: url('#{$imagePath}boxtop.jpg') no-repeat transparent;
 	background-size: 100%;
 	border-bottom: medium none currentColor;
 	//  height: 35px;
 	//  padding-top: 8px;
+  & h3.card-title {
+	padding-top: 1rem;
+  }
 }
 
-#col2 .panel-footer,
-#col3 .panel-footer {
+#col2 .card-header + .card-body {
+  padding-top: 0;
+}
+
+#col2 .card-footer,
+#col3 .card-footer {
 	background: url('#{$imagePath}boxbtm.jpg') no-repeat transparent 0 100%;
 	background-size: 100%;
 	//  height: 54px;
@@ -38,35 +45,38 @@ body.fullscreen {
 
 #col2,
 #col3 {
-	.panel {
+	.card {
 		background: url('#{$imagePath}boxmid.jpg') repeat-y transparent;
 		background-size: 100%;
 		//  margin: 5px 10px;
 	}
-	.panel-footer {
+	.card-footer {
 		display: block;
 	}
 }
 
-.panel-body ol,
-.panel-body ul { padding-left: 1.5em; }
-
-.panel-body .cssmenu_vert { margin-left: -35px; }
+.card-body .cssmenu_vert { margin-left: -35px; }
 
 .navbar-fixed-top,
 .layout_fixed_top_modules .navbar-fixed-top,
 .layout_fixed_top_modules .navbar-fixed-top .container,
 .layout_social .navbar-fixed-top,
 .layout_social .navbar-fixed-top .container,
-.navbar-default,
+.navbar-dark,
 .topbar,
 .topbar .cssmenu_horiz > ul,
-.topbar .navbar-default .navbar-nav > li,
-.topbar .nav > li {
+.topbar .navbar-nav > li,
+.topbar .nav > li,
+.bg-dark {
 	background: #d7e5f3 url('#{$imagePath}pagetitle-bg.jpg') repeat-x !important;
 	background-size: 400px 100% !important;
 	margin-bottom: 0;
 	border: none;
+}
+
+.tiki.layout_social .navbar.navbar-dark .container {
+  background: transparent;
+  background-image: none;
 }
 
 .topbar .nav > li > a:hover,

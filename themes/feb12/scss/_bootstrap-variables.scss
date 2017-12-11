@@ -1,36 +1,61 @@
 // $Id$
 // This file defines variables for the Feb12 theme.
 
-// Variables
-// --------------------------------------------------
+// Colors
+$gray-700: #495057;
+$gray-900: #212529;
 
-//== Colors
 $primary: #3071a9;
 $success: #5cb85c;
 $info: #5bc0de;
 $warning: #f0ad4e;
 $danger: #d9534f;
 
+$theme-colors: (
+ 	"primary":        	#3071a9,
+// 	"secondary": 		#dddddd,
+ 	"success":         	#5cb85c,
+ 	"info":           	#5bc0de,
+ 	"warning":         	#f0ad4e,
+ 	"danger":          	#d9534f //,
+//	"light":			#ffffff,
+// 	"dark":				#000000
+);
 
-$gray-700: #495057 !default;
-$gray-900: #212529 !default;
+// Options
+// Spacing
 
-$btn-primary: $primary;
-
+// Body
 $body-bg: #e6f3f6;
 $body-color: $gray-700;
 
+// Links
 $link-hover-decoration: none;
+
+// Components
 $component-active-bg: #5bacd7;
 
-//== Dropdowns
+// Fonts
+$font-family-sans-serif: "Trebuchet MS", "Tahoma", sans-serif;
+$headings-font-weight: 700;
+$headings-color: #93554a;
+
+// Tables
+
+// Buttons
+$btn-primary: $primary;
+
+// Forms
+
+// Dropdowns
 $dropdown-bg: #a8cce2;
 
-//== Navbar
+// Navs
+
+// Navbar
 $navbar-dark-color: #ffffff;
 $navbar-dark-bg: #426d95;
 
-//== Navbar links
 // Navbar links
 $navbar-dark-color: #ffffff;
 //#777777;
@@ -46,4 +71,21 @@ $navbar-light-bg: #3e7ca1;
 
 // Inverted navbar links
 $navbar-link-color: #f5f5f5;
+
+// Pagination
+// Jumbotron
+// Cards
+// Tooltips
+// Popovers
+// Badges
+// Modals
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+// Close
+// Code
 

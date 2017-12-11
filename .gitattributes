@@ -7441,7 +7441,6 @@ themes/jqui/options/rising/icons/index.php -text
 themes/jqui/options/rising/images/arrows-ea2e11.png -text
 themes/jqui/options/rising/images/index.php -text
 themes/jqui/options/rising/scss/index.php -text
-themes/jqui/options/scss/_bootstrap-for-jqui-options.scss -text
 themes/jqui/options/scss/_tiki-selectors.scss -text
 themes/jqui/options/trontastic/arrows-000000.png -text
 themes/jqui/options/trontastic/arrows-b8ec79.png -text
@@ -7465,7 +7464,6 @@ themes/jqui/options/trontastic/scss/trontastic.scss -text
 themes/jqui/options/trontastic/trontastic.png -text
 themes/jqui/options/trontastic/ui-bg_diagonals-small_50_262626_40x40.png -text
 themes/jqui/options/trontastic/ui-bg_gloss-wave_55_000000_500x100.png -text
-themes/jqui/scss/_bootstrap-scss-for-options.scss -text
 themes/jqui/scss/_bootstrap-variables.scss -text
 themes/jqui/scss/_tiki-selectors-for-options.scss -text
 themes/jqui/scss/_tiki-selectors.scss -text
@@ -7480,11 +7478,11 @@ themes/lighty/css/lighty.css -text
 themes/lighty/images/index.php -text
 themes/lighty/images/lighty.png -text
 themes/lighty/images/map.jpg -text
-themes/lighty/less/index.php -text
-themes/lighty/less/lighty.less -text
-themes/lighty/less/newsletter.less -text
-themes/lighty/less/tiki-selectors.less -text
-themes/lighty/less/variables.less -text
+themes/lighty/scss/_bootstrap-variables.scss -text
+themes/lighty/scss/_tiki-selectors.scss -text
+themes/lighty/scss/index.php -text
+themes/lighty/scss/lighty.scss -text
+themes/lighty/scss/newsletter.scss -text
 themes/lighty/templates/antibot.tpl -text
 themes/lighty/templates/blog_post_postbody_title.tpl -text
 themes/lighty/templates/blog_wrapper.tpl -text

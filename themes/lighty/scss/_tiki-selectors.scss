@@ -22,7 +22,7 @@
 		}
 	}
 }
-.navbar-inverse {
+.navbar-dark {
 	.navbar-collapse {
 		border-color: #d4bfbf;
 	}
@@ -31,7 +31,7 @@
 		margin-top: 6px;
 	}
 }
-.navbar-default {
+.navbar-light {
 	.navbar-form {
 		margin-top: 6px;
 	}
@@ -106,7 +106,7 @@ ul.dropdown-menu {
 	padding: 15px 0 0 15px;
 }
 @media screen and (max-width: 767px) {
-	.navbar-default {
+	.navbar-light {
 		.navbar-nav {
 			>.open {
 				>a {
@@ -180,7 +180,7 @@ ul.dropdown-menu {
 &:hover,
   &:focus,
   &.focus {
-   background: @brand-primary;
+   background: $primary;
    border:  3px solid #e2d4d4;
   }
 }
@@ -189,7 +189,7 @@ ul.dropdown-menu {
   &:hover,
   &:focus,
   &.focus {
-   background: @body-bg;
+   background: $body-bg;
    border:  3px solid #f0f0f0;
   }
 }
@@ -207,7 +207,7 @@ ul.dropdown-menu {
 }
 .form-control {
 //  height: 38px; Textareas are also form-control so a height can't be set by CSS.
-  border: 3px solid @input-border;
+  border: 3px solid $input-border;
 }
 .form-horizontal {
     .form-group {

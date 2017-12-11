@@ -33,7 +33,7 @@ article {
     border-left: none;
 }
 
-.module.panel-default > .panel-heading {
+.module.card-primary > .card-header {
 	border-bottom: 2px solid #f7f7f7;
 	background: #fff;
 }
