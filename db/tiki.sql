@@ -2105,7 +2105,7 @@ CREATE TABLE tiki_secdb(
   `filename` varchar(250) NOT NULL,
   `tiki_version` varchar(60) NOT NULL,
   `severity` int(4) NOT NULL default '0',
-  PRIMARY KEY (`md5_value`,`filename`(100),`tiki_version`),
+  PRIMARY KEY (`filename`,`tiki_version`),
   KEY `sdb_fn` (filename)
 ) ENGINE=MyISAM;
 
