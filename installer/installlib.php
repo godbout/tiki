@@ -118,12 +118,12 @@ class Installer extends TikiDb_Bridge
 				// The batch loader failed
 				if (file_exists($secdb)) {
 					// Run single inserts
-					$this->runFile($secdb);
+					$this->runFile($secdb, false);
 				}
 			}
 		} elseif (file_exists($secdb)) {
 			// Run single inserts
-			$this->runFile($secdb);
+			$this->runFile($secdb, false);
 		}
 		foreach (Patch::getPatches([Patch::NOT_APPLIED]) as $patchName => $patch) {
 			try {
@@ -278,7 +278,7 @@ class Installer extends TikiDb_Bridge
 	 * @param $file
 	 * @return bool
 	 */
-	function runFile($file) // {{{
+	function runFile($file, $convertFormat=true) // {{{
 	{
 		if (! is_file($file) || ! $command = file_get_contents($file)) {
 			throw new Exception('Fatal: Cannot open ' . $file);
@@ -291,7 +291,7 @@ class Installer extends TikiDb_Bridge
 		foreach ($statements as $statement) {
 			if (trim($statement)) {
 				if (preg_match('/^\s*(?!-- )/m', $statement)) {// If statement is not commented
-					if ($this->useInnoDB) {
+					if ($this->useInnoDB && $convertFormat) {
 						// Convert all MyISAM statments to InnoDB
 						$statement = str_ireplace("MyISAM", "InnoDB", $statement);
 					}
