@@ -275,7 +275,8 @@ function updateSecdb($version)
 	if (! empty($queries)) {
 		sort($queries);
 		fwrite($fp, "start transaction;\n");
-		fwrite($fp, "DELETE FROM `tiki_secdb` WHERE `tiki_version` = '$version';\n\n");
+		fwrite($fp, "DELETE FROM `tiki_secdb`;\n");
+		fwrite($fp, "ALTER TABLE `tiki_secdb` DROP PRIMARY KEY, ADD PRIMARY KEY (`filename`, `tiki_version`);\n\n");
 		foreach ($queries as $q) {
 			fwrite($fp, "$q\n");
 		}
