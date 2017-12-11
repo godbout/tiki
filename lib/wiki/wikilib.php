@@ -271,15 +271,17 @@ class WikiLib extends TikiLib
 				}
 			}
 
-			if ($dupTags && $prefs['feature_freetags'] === 'y' && $globalperms->freetags_tag) {
-				$freetaglib = TikiLib::lib('freetag');
-				$freetags = $freetaglib->get_tags_on_object($name, 'wiki page');
+			if ($dupTags && $prefs['feature_freetags'] === 'y') {
+				if ($globalperms->freetags_tag) {
+					$freetaglib = TikiLib::lib('freetag');
+					$freetags = $freetaglib->get_tags_on_object($name, 'wiki page');
 
-				foreach ($freetags['data'] as $tag) {
-					$freetaglib->tag_object($user, $copyName, 'wiki page', $tag['tag']);
+					foreach ($freetags['data'] as $tag) {
+						$freetaglib->tag_object($user, $copyName, 'wiki page', $tag['tag']);
+					}
+				} else {
+					$warnings[] = tr("You don't have permission to edit tags.");
 				}
-			} else {
-				$warnings[] = tr("You don't have permission to edit tags.");
 			}
 
 			if (count($warnings) > 0) {
@@ -348,7 +350,7 @@ class WikiLib extends TikiLib
 			}
 
 			$parserlib = TikiLib::lib('parser');
-			
+
 			if ($is_wiki_page) {
 				$info = $this->get_page_info($linkOrigin);
 				//$data=addslashes(str_replace($oldName,$newName,$info['data']));
@@ -627,9 +629,7 @@ class WikiLib extends TikiLib
 
 		foreach ($includes as $include) {
 			$page = $include['arguments']['page'];
-			if (isset($page)) {
-				$relationlib->add_relation('tiki.wiki.include', $objectType, $itemId, 'wiki page', $page);
-			}
+			$relationlib->add_relation('tiki.wiki.include', $objectType, $itemId, 'wiki page', $page);
 		}
 	}
 
@@ -901,7 +901,7 @@ class WikiLib extends TikiLib
 		}
 
 		$query = 'select `user`,`attId`,`page`,`filename`,`filesize`,`filetype`,`hits`,`created`,`comment`' .
-						' from `tiki_wiki_attachments` ' . $mid . ' order by ' . $this->convertSortMode($sort_mode);
+			' from `tiki_wiki_attachments` ' . $mid . ' order by ' . $this->convertSortMode($sort_mode);
 		$query_cant = "select count(*) from `tiki_wiki_attachments` $mid";
 		$result = $this->query($query, $bindvars, $maxRecords, $offset);
 		$cant = $this->getOne($query_cant, $bindvars);
@@ -1219,8 +1219,8 @@ class WikiLib extends TikiLib
 		}
 
 		if ($prefs['feature_wiki_userpage'] == 'y'
-				&& strcasecmp(substr($page, 0, strlen($prefs['feature_wiki_userpage_prefix'])), $prefs['feature_wiki_userpage_prefix']) == 0
-				and strcasecmp($page, $prefs['feature_wiki_userpage_prefix'] . $user) != 0
+			&& strcasecmp(substr($page, 0, strlen($prefs['feature_wiki_userpage_prefix'])), $prefs['feature_wiki_userpage_prefix']) == 0
+			and strcasecmp($page, $prefs['feature_wiki_userpage_prefix'] . $user) != 0
 		) {
 			return false;
 		}
@@ -1245,7 +1245,7 @@ class WikiLib extends TikiLib
 			$result = $this->query($query, [$user, tra('Page locked'), $info['version'] + 1, $page]);
 
 			$query = 'insert into `tiki_history`(`pageName`, `version`, `lastModif`, `user`, `ip`, `comment`, `data`, `description`)' .
-								' values(?,?,?,?,?,?,?,?)';
+				' values(?,?,?,?,?,?,?,?)';
 			$result = $this->query(
 				$query,
 				[
@@ -1459,9 +1459,9 @@ class WikiLib extends TikiLib
 	public function get_user_all_pages($user, $sort_mode)
 	{
 		$query = "select p.`pageName`, p.`user` as lastEditor, p.`creator`, max(a.`lastModif`) as date" .
-						" from `tiki_actionlog` as a, `tiki_pages` as p" .
-						" where a.`object`= p.`pageName` and a.`user`= ? and (a.`action`=? or a.`action`=?)" .
-						" group by p.`pageName`, p.`user`, p.`creator` order by " . $this->convertSortMode($sort_mode);
+			" from `tiki_actionlog` as a, `tiki_pages` as p" .
+			" where a.`object`= p.`pageName` and a.`user`= ? and (a.`action`=? or a.`action`=?)" .
+			" group by p.`pageName`, p.`user`, p.`creator` order by " . $this->convertSortMode($sort_mode);
 
 		$result = $this->query($query, [$user, 'Updated', 'Created']);
 		$ret = [];
@@ -1495,9 +1495,9 @@ class WikiLib extends TikiLib
 		$script_name = 'tiki-index.php';
 
 		if ($prefs['feature_multilingual_one_page'] == 'y') {
-		// 	if ( basename($_SERVER['PHP_SELF']) == 'tiki-all_languages.php' ) {
-		// 		return 'tiki-all_languages.php?page='.urlencode($page);
-		// 	}
+			// 	if ( basename($_SERVER['PHP_SELF']) == 'tiki-all_languages.php' ) {
+			// 		return 'tiki-all_languages.php?page='.urlencode($page);
+			// 	}
 
 			if ($all_langs == 'y') {
 				$script_name = 'tiki-all_languages.php';
@@ -1554,11 +1554,11 @@ class WikiLib extends TikiLib
 	public function duplicate_page($old, $new)
 	{
 		$query = 'insert into `tiki_pages`' .
-						' (`pageName`,`hits`,`data`,`lastModif`,`comment`,`version`,`user`,`ip`,`description`,' .
-						' `creator`,`page_size`,`is_html`,`created`, `flag`,`points`,`votes`,`pageRank`,`lang`,' .
-						' `lockedby`) select ?,`hits`,`data`,`lastModif`,`comment`,`version`,`user`,`ip`,' .
-						' `description`,`creator`,`page_size`,`is_html`,`created`, `flag`,`points`,`votes`' .
-						',`pageRank`,`lang`,`lockedby` from `tiki_pages` where `pageName`=?';
+			' (`pageName`,`hits`,`data`,`lastModif`,`comment`,`version`,`user`,`ip`,`description`,' .
+			' `creator`,`page_size`,`is_html`,`created`, `flag`,`points`,`votes`,`pageRank`,`lang`,' .
+			' `lockedby`) select ?,`hits`,`data`,`lastModif`,`comment`,`version`,`user`,`ip`,' .
+			' `description`,`creator`,`page_size`,`is_html`,`created`, `flag`,`points`,`votes`' .
+			',`pageRank`,`lang`,`lockedby` from `tiki_pages` where `pageName`=?';
 		$this->query($query, [$new, $old]);
 	}
 
@@ -1675,8 +1675,8 @@ class WikiLib extends TikiLib
 		global $prefs;
 
 		if ($pageName
-					&& $prefs['namespace_enabled'] == 'y'
-					&& $prefs['namespace_separator']
+			&& $prefs['namespace_enabled'] == 'y'
+			&& $prefs['namespace_separator']
 		) {
 			$explicit = $this->get_explicit_namespace($pageName);
 
@@ -1699,8 +1699,8 @@ class WikiLib extends TikiLib
 		global $prefs;
 
 		if ($pageName
-					&& $prefs['namespace_enabled'] == 'y'
-					&& $prefs['namespace_separator']
+			&& $prefs['namespace_enabled'] == 'y'
+			&& $prefs['namespace_separator']
 		) {
 			return str_replace($prefs['namespace_separator'], ' / ', $pageName);
 		}
@@ -1832,7 +1832,7 @@ class convertToTiki9
 
 
 	//<!--below methods are used for converting objects
-		//<!--Start for converting pages
+	//<!--Start for converting pages
 	public function convertPages()
 	{
 		$infos = $this->parserlib->fetchAll(
@@ -1926,7 +1926,7 @@ class convertToTiki9
 			$this->saveObjectStatus($id, 'tiki_history', 'conv9.0');
 		}
 	}
-		//end for converting histories-->
+	//end for converting histories-->
 
 
 
@@ -1961,7 +1961,7 @@ class convertToTiki9
 			$this->saveObjectStatus($name, 'tiki_user_modules', 'conv9.0');
 		}
 	}
-		//end for converting modules-->
+	//end for converting modules-->
 	//end conversion of objects-->
 
 

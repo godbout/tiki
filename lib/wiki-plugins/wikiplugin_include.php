@@ -59,12 +59,12 @@ function wikiplugin_include_info()
 				'description' => tr('Enter your text to change the default button label.'),
 				'since' => '18.0',
 				'filter' => 'text',
-				'default' => tr('Read more'),
+				'default' => '',
 			],
 			'nopage_text' => [
 				'required' => false,
 				'name' => tr('Page not found'),
-				'description' => tr('Text to show when the page selected to be to be included is not found anymore.'),
+				'description' => tr('Text to show when the page selected to be included is not found anymore.'),
 				'since' => '6.0',
 				'filter' => 'text',
 				'default' => '',
@@ -171,7 +171,7 @@ function wikiplugin_include($dataIn, $params)
 	if (! empty($params['linkoriginal_text'])) {
 		$linkoriginal_text = $params['linkoriginal_text'];
 	} else {
-		$linkoriginal_text = tr('Read more');
+		$linkoriginal_text = 'Read more';
 	}
 
 	if ($data[$memo]) {
