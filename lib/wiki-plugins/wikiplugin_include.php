@@ -171,7 +171,7 @@ function wikiplugin_include($dataIn, $params)
 	if (! empty($params['linkoriginal_text'])) {
 		$linkoriginal_text = $params['linkoriginal_text'];
 	} else {
-		$linkoriginal_text = tr('Read more');
+		$linkoriginal_text = 'Read more';
 	}
 
 	if ($data[$memo]) {
