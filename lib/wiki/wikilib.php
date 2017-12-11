@@ -629,7 +629,9 @@ class WikiLib extends TikiLib
 
 		foreach ($includes as $include) {
 			$page = $include['arguments']['page'];
-			$relationlib->add_relation('tiki.wiki.include', $objectType, $itemId, 'wiki page', $page);
+			if (isset($page)) {
+				$relationlib->add_relation('tiki.wiki.include', $objectType, $itemId, 'wiki page', $page);
+			}
 		}
 	}
 
