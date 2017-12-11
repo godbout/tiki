@@ -227,6 +227,8 @@ class WikiLib extends TikiLib
 
 		$info = $tikilib->get_page_info($name);
 		$ip = $tikilib->get_ip_address();
+		$version = $info['version'];
+		$comment = tr("Initial content copied from version %0 of page %1", $version, $name);
 
 		if (! $info) {
 			return false;
@@ -241,7 +243,7 @@ class WikiLib extends TikiLib
 			0,
 			$info['data'],
 			$tikilib->now,
-			$info['comment'],
+			$comment,
 			$user,
 			$ip,
 			$info['description'],
