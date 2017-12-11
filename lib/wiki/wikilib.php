@@ -273,24 +273,17 @@ class WikiLib extends TikiLib
 				}
 			}
 
-			// Checking if freetags feature is enable
-			if ($prefs['feature_freetags'] === 'y') {
-
-				// Checking if user can edit tags so he can duplicate or not the existing tags
-				// TODO: decide the right scenario when user don't have perms to edit tags - for now if he don't have perms then he can't edit
+			if ($dupTags && $prefs['feature_freetags'] === 'y') {
 				if ($globalperms->freetags_tag) {
 					$freetaglib = TikiLib::lib('freetag');
 					$freetags = $freetaglib->get_tags_on_object($name, 'wiki page');
 
-					if ($dupTags) {
-						foreach ($freetags['data'] as $tag) {
-							$freetaglib->tag_object($user, $copyName, 'wiki page', $tag['tag']);
-						}
+					foreach ($freetags['data'] as $tag) {
+						$freetaglib->tag_object($user, $copyName, 'wiki page', $tag['tag']);
 					}
 				} else {
 					$warnings[] = tr("You don't have permission to edit tags.");
 				}
-
 			}
 
 			if (count($warnings) > 0) {
