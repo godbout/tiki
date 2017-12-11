@@ -276,6 +276,9 @@ function updateSecdb($version)
 		sort($queries);
 		fwrite($fp, "start transaction;\n");
 		fwrite($fp, "DELETE FROM `tiki_secdb`;\n");
+		// This index was originally created with a size limit that would raise an error on some versions,
+		// notably on 18.0. Since this file is executed before any patch in installer/schema, the fix had to
+		// be done here. It's a quick operation because table is empty, so no harm in leaving this here forever.
 		fwrite($fp, "ALTER TABLE `tiki_secdb` DROP PRIMARY KEY, ADD PRIMARY KEY (`filename`, `tiki_version`);\n\n");
 		foreach ($queries as $q) {
 			fwrite($fp, "$q\n");
