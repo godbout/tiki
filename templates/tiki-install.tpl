@@ -1,7 +1,9 @@
 <div class="tiki-install container">
-	<div class="row install-header page-header">
+	<div class="row install-header">
 		<div class="col-md-3">
-			<img alt="{tr}Tiki Wiki CMS Groupware{/tr}" src="{if isset($ie6)}img/tiki/tikisitelogo.gif{else}img/tiki/Tiki_WCG.png{/if}">
+			<div class="panel-body">
+				<img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-responsive" src="{if isset($ie6)}img/tiki/tikisitelogo.gif{else}img/tiki/Tiki_WCG.png{/if}">
+			</div>
 		</div>
 		<div class="col-md-9">
 			<h1>{tr}Tiki Installer{/tr} <small>{$tiki_version_name} <a title="{tr}Help{/tr}" href="https://doc.tiki.org/Installation" target="help">{icon name="help"}</a></small></h1>
