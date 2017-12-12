@@ -8911,3 +8911,6 @@ fieldset[disabled] .tiki #conversejs #controlbox .fancy-dropdown.focus {
 .tiki #conversejs .chatroom .box-flyout .chatroom-body .room-invite .invited-contact {
   border-color: #e7e7e7;
 }
+.dropdown .btn:hover {
+  margin-bottom: 1.5px;
+}
