@@ -8,8 +8,8 @@
 //## Gray and brand colors for use across Bootstrap.
 
 $gray-base:              #000000;
-$gray-darker:            lighten($gray-base, 13.5%); // #222
-$gray-dark:              lighten($gray-base, 20%);   // #333
+$gray-900er:            lighten($gray-base, 13.5%); // #222
+$gray-900:              lighten($gray-base, 20%);   // #333
 $gray:                   lighten($gray-base, 33.5%); // #555
 $gray-light:             lighten($gray-base, 46.7%); // #777
 $gray-lighter:           lighten($gray-base, 93.5%); // #eee
@@ -215,7 +215,7 @@ $input-height-small:             (floor($font-size-small * $line-height-small) +
 //** `.form-group` margin
 $form-group-margin-bottom:       15px;
 
-$legend-color:                   #ffffff; //$gray-dark;
+$legend-color:                   #ffffff; //$gray-900;
 $legend-border-color:            #76a547;
 
 //** Background color for textual input addons
@@ -241,9 +241,9 @@ $dropdown-fallback-border:       #cccccc;
 $dropdown-divider-bg:            #446e2a;
 
 //** Dropdown link text color.
-$dropdown-link-color:            #ffffff; // $gray-dark;
+$dropdown-link-color:            #ffffff; // $gray-900;
 //** Hover color for dropdown links.
-$dropdown-link-hover-color:      #ffffff; // darken($gray-dark, 5%);
+$dropdown-link-hover-color:      #ffffff; // darken($gray-900, 5%);
 //** Hover background for dropdown links.
 $dropdown-link-hover-bg:         #406727;
 
@@ -712,7 +712,7 @@ $panel-border-radius:         $border-radius;
 $panel-inner-border:          #69933f; // transparent; // #dddddd;
 $panel-footer-bg:             #3a6624;
 
-$panel-default-text:          $gray-dark;
+$panel-default-text:          $gray-900;
 $panel-default-border:        #dddddd;
 $panel-default-heading-bg:    #f5f5f5;
 
@@ -836,7 +836,7 @@ $kbd-color:                   #ffffff;
 $kbd-bg:                      #333333;
 
 $pre-bg:                      #f5f5f5;
-$pre-color:                   $gray-dark;
+$pre-color:                   $gray-900;
 $pre-border-color:            #cccccc;
 $pre-scrollable-max-height:   340px;
 

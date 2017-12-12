@@ -1,10 +1,7 @@
 // $Id$
 /* Flatly theme newsletter stylesheet */
-$web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic";
-.web-font($path) {
-	@import url("#{$path}");
-}
-.web-font($web-font-path);
+$web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic" !default;
+@import url($web-font-path);
 @import "../../base_files/scss/newsletter.scss";
 @import "_variables.scss";
 

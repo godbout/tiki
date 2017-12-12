@@ -1,21 +1,15 @@
 // $Id$
-$web-font-path: "https://fonts.googleapis.com/css?family=Ubuntu:400,700";
-
-.web-font($path) {
-	@import url("#{$path}");
-}
-.web-font($web-font-path);
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
-@import "../../base_files/scss/_bootswatch_overrides.scss";
-// So far, just removes the CSS content theme-option-required warning.
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins.scss"; //
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two are needed to prevent...
+@import "_variables.scss"; // Needs to follow _functions.scss because of containing "lighten".
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // ...compiling errors.
+@import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
 @import "_bootswatch.scss";
-// defines the theme's CSS values that are outside of variables.scss
-@import "_variables.scss";
-// the Bootstrap variables.scss file with theme-specific values replacing the defaults
-@import "../../base_files/scss/_tiki-variables.scss";
-// Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
+
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss"; // Needed for darken function.
+
 @import "../../base_files/scss/_tiki-selectors.scss";
-// Tiki non-Bootstrap CSS selectors related to color
+@import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "../../base_files/scss/_external-scripts.scss";
 
 .siteloginbar_poppedup .list-unstyled li { background: none !important; }
