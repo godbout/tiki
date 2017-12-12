@@ -46,19 +46,6 @@ class HistLib extends TikiLib
 	{
 		$this->invalidate_cache($page);
 
-		// Store the current page in tiki_history before rolling back
-		if (strtolower($page) != 'sandbox') {
-			$info = $this->get_hist_page_info($page);
-			$old_version = $info['version'] + 1;
-			$lastModif = $info["lastModif"];
-			$ip = $info["ip"];
-			$original_comment = $info["comment"];
-			$data = $info["data"];
-			$description = $info["description"];
-			$query = "insert into `tiki_history`(`pageName`, `version`, `version_minor`, `lastModif`, `user`, `ip`, `comment`, `data`, `description`,`is_html`) values(?,?,?,?,?,?,?,?,?,?)";
-			$this->query($query, [$page,(int) $old_version, (int) $info["version_minor"], (int) $lastModif, $info["user"], $ip, $original_comment, $data, $description, $info["is_html"]]);
-		}
-
 		$query = "select * from `tiki_history` where `pageName`=? and `version`=?";
 		$result = $this->query($query, [$page,$version]);
 
@@ -106,6 +93,8 @@ class HistLib extends TikiLib
 		foreach ($pages as $a_page => $types) {
 			$this->replace_link($page, $a_page, $types);
 		}
+
+		$this->replicate_page_to_history($page);
 
 		global $prefs;
 		if ($prefs['feature_actionlog'] == 'y') {

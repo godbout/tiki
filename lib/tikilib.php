@@ -4232,7 +4232,7 @@ class TikiLib extends TikiDb_Bridge
 	 * @param $pageName
 	 * @return bool|mixed
 	 */
-	private function replicate_page_to_history($pageName)
+	protected function replicate_page_to_history($pageName)
 	{
 		if (strtolower($pageName) == 'sandbox') {
 			return false;
