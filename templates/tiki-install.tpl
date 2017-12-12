@@ -2,7 +2,7 @@
 	<div class="row install-header">
 		<div class="col-md-3">
 			<div class="panel-body">
-				<img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-responsive" src="{if isset($ie6)}img/tiki/tikisitelogo.gif{else}img/tiki/Tiki_WCG.png{/if}">
+				<img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-responsive" src="img/tiki/Tiki_WCG.png">
 			</div>
 		</div>
 		<div class="col-md-9">
