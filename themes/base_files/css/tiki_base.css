@@ -1629,6 +1629,16 @@ div.cvsup {
 .layout_fixed_top_modules #top_modules .btn-link {
   margin-top: 6.57142857px;
 }
+.navbar-fixed-top .dropdown .btn,
+.layout_social .topbar_modules .dropdown .btn,
+.layout_social_modules .topbar_modules .dropdown .btn,
+.layout_fixed_top_modules #top_modules .dropdown .btn,
+.navbar-fixed-top .dropdown .btn-link,
+.layout_social .topbar_modules .dropdown .btn-link,
+.layout_social_modules .topbar_modules .dropdown .btn-link,
+.layout_fixed_top_modules #top_modules .dropdown .btn-link {
+  margin-top: inherit;
+}
 .layout_social_modules #topbar_modules {
   display: block;
 }

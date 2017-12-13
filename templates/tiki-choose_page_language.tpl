@@ -15,6 +15,7 @@
 		<div class="form-group">
 			<div class="col-sm-6 input-group">
 				<select name="lang" class="form-control">
+					<option value="">{tr}Unknown{/tr}</option>
 					{section name=ix loop=$languages}
 						<option value="{$languages[ix].value|escape}"{if $languages[ix].value|escape == $default_lang} selected="selected"{/if}>
 							{$languages[ix].name}

@@ -2075,7 +2075,7 @@ function wikiplugin_tracker_render_value($f, $item)
 }
 
 /**
- * Convert an email parameter componenet into a real email address or addresses.
+ * Convert an email parameter component into a real email address or addresses.
  *
  * @param string $emailOrField   int for a fieldId of UserSelector, GroupSelector, ItemsList, Email field, string for a username or email already
  * @param array $fields          tracker fields

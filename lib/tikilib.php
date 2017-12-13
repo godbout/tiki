@@ -4232,7 +4232,7 @@ class TikiLib extends TikiDb_Bridge
 	 * @param $pageName
 	 * @return bool|mixed
 	 */
-	private function replicate_page_to_history($pageName)
+	protected function replicate_page_to_history($pageName)
 	{
 		if (strtolower($pageName) == 'sandbox') {
 			return false;
@@ -4470,6 +4470,11 @@ class TikiLib extends TikiDb_Bridge
 				$namespace = TikiLib::lib('wiki')->get_namespace($pageFrom);
 				$pageTo = $namespace . $prefs['namespace_separator'] . $pageTo;
 		}
+		// The max pagename length is 160 characters ( tiki_pages.pageName varchar(160) ).
+		//	However, wiki_rename_page stores a page in the format: $tmpName = "~".$newName."~";
+		//	So, actual max page name length is 160 - 2 = 158
+		//	Strip excess characters (silently) and proceed.
+		$pageTo = substr($pageTo, 0, 158);
 
 		$links = $this->table('tiki_links');
 		$links->insert(['fromPage' => $pageFrom, 'toPage' => $pageTo], true);
