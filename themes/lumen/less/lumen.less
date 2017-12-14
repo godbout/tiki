@@ -17,6 +17,10 @@
 @import "../../base_files/less/external-scripts.less";
 @import "variables.less";
 
-.dropdown .btn:hover { margin-bottom: 1.5px; }
+// Override button movement on hover to prevent context problems
+.btn:hover {border-bottom-width: 2.5px;}
+.dropdown-menu .btn:hover { margin-bottom: 1px; }
+.btn.admbox:hover,
+.btn.admbox:active { margin-top: .4em; }
 
-// the Bootstrap variables.less file with theme-specific values replacing the defaults
+
