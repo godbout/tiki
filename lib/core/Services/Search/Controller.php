@@ -122,8 +122,10 @@ class Services_Search_Controller
 							} else {
 								return $item[$key];
 							}
-						} else {
+						} elseif ($format == '{title}') {
 							return tr('empty');
+						} else {
+							return '';
 						}
 					}, $format),
 				];

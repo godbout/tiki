@@ -64,7 +64,7 @@
 						<a role="button" data-toggle="dropdown" data-hover="dropdown" class="btn btn-link dropdown-toggle">
 							{icon name="backlink"}
 						</a>
-						<ul class="dropdown-menu" role="menu">
+						<ul class="dropdown-menu dropdown-menu-right" role="menu">
 							<li class="dropdown-title">
 								{tr}Backlinks{/tr}
 							</li>
