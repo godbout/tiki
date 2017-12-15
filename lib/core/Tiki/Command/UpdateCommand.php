@@ -56,15 +56,13 @@ class UpdateCommand extends Command
 
 			$output->writeln('<info>Queries executed successfully: ' . count($installer->queries['successful']) . '</info>');
 
-			if (count($installer->queries['failed'])) {
-				foreach ($installer->queries['failed'] as $key => $error) {
-					list( $query, $message, $patch ) = $error;
+			foreach ($installer->queries['failed'] as $key => $error) {
+				list( $query, $message, $patch ) = $error;
 
-					$output->writeln("<error>Error in $patch\n\t$query\n\t$message</error>");
+				$output->writeln("<error>Error in $patch\n\t$query\n\t$message</error>");
 
-					if ($autoRegister) {
-						\Patch::$list[$patch]->record();
-					}
+				if ($autoRegister) {
+					\Patch::$list[$patch]->record();
 				}
 			}
 
