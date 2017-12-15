@@ -56,9 +56,12 @@ class UpdateCommand extends Command
 
 			$output->writeln('<info>Queries executed successfully: ' . count($installer->queries['successful']) . '</info>');
 
-			foreach ($installer->queries['failed'] as $key => $error) {
+			foreach ($installer->queries['failed'] as $error) {
 				list( $query, $message, $patch ) = $error;
-
+				if (! $patch) {
+					// Installer::query() does not set a meaningful third element when the error is caused by a PHP script. Needs some architectural work to solve properly
+					$patch = 'unknown patch script';
+				}
 				$output->writeln("<error>Error in $patch\n\t$query\n\t$message</error>");
 
 				if ($autoRegister) {
