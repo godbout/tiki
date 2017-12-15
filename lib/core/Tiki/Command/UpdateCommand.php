@@ -63,10 +63,6 @@ class UpdateCommand extends Command
 					$patch = 'unknown patch script';
 				}
 				$output->writeln("<error>Error in $patch\n\t$query\n\t$message</error>");
-
-				if ($autoRegister) {
-					\Patch::$list[$patch]->record();
-				}
 			}
 
 			$cachelib = \TikiLib::lib('cache');
