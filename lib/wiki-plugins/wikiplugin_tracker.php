@@ -191,6 +191,15 @@ function wikiplugin_tracker_info()
 				'separator' => ':',
 				'default' => '',
 			],
+			'urlparams' => [
+				'required' => false,
+				'name' => tr('Keep params in URL'),
+				'description' => tr('Input form parameters (or field IDs) separated by a colon (%0:%1) to pass them in the URL after the form is submitted and redirected to the URL specified in the %0url%1 param. Example: %0urlparams="1:2:3:trackit"%1. Enter %0*%1 to keep all the submitted parameters in the URL.', '<code>', '</code>'),
+				'since' => '19.0',
+				'filter' => 'url',
+				'separator' => ':',
+				'default' => '',
+			],
 			'target' => [
 				'required' => false,
 				'name' => tra('URL Target'),
@@ -1403,6 +1412,23 @@ function wikiplugin_tracker($data, $params)
 							$url[$key] = str_replace('itemId', 'itemId=' . $rid, $url[$key]);
 						}
 					}
+
+					if (isset($urlparams)) {
+						$i = 0;
+						foreach ($_REQUEST as $kk => $vv) {
+							$ins = preg_replace('/^(ins_)/', '', $kk); // replace the ins_ from the input field names to match with e.g. urlparams="1:2:3"
+							$vv = urlencode($vv);
+							//Debug: echo $urlparams[$i] . "|" . $ins . "|" . $kk . "<br>\n"; TODO: cleanup this
+							if($urlparams[0] === '*' || in_array($ins, $urlparams)) {
+								$ss = strstr($url[$key], '?') ? '&' : '?'; // if there is "?" already in the URL, use "&" to separate the params
+								$url[$key] .= "$ss$kk=$vv";
+							}
+							$i++;
+						}
+						//Debug: echo "<hr>" . $url[$key]."\n"; //TODO: cleanup this
+						//die;
+					}
+
 					$msg = trim($data);
 					if (empty($msg)) {
 						$msg = tr('Form saved successfully.');
