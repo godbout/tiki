@@ -174,6 +174,7 @@ class Installer extends TikiDb_Bridge
 		if (function_exists($standalone)) {
 			$status = $standalone($this);
 			if (is_null($status)) {
+				trigger_error('Undefined exit status for ' . $patch . ' script; marking as applied anyway', E_USER_WARNING);
 				$status = true;
 			}
 		} else {
