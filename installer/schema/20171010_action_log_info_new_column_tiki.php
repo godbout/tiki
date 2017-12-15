@@ -24,9 +24,9 @@ function upgrade_20171010_action_log_info_new_column_tiki($installer)
 		"';"
 	);
 
-	if ($result == 0) {
-		$result = $installer->query('ALTER TABLE `tiki_actionlog` ADD COLUMN `log` TEXT NULL DEFAULT NULL AFTER `client`');
+	if ($result != 0) {
+		return true;
 	}
-
+	return $installer->query('ALTER TABLE `tiki_actionlog` ADD COLUMN `log` TEXT NULL DEFAULT NULL AFTER `client`');
 }
 
