@@ -61,10 +61,6 @@ class UpdateCommand extends Command
 					list( $query, $message, $patch ) = $error;
 
 					$output->writeln("<error>Error $key in $patch\n\t$query\n\t$message</error>");
-
-					if ($autoRegister) {
-						\Patch::$list[$patch]->record();
-					}
 				}
 			}
 
