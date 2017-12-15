@@ -553,12 +553,14 @@ class ObjectLib extends TikiLib
 					]);
 					$result = $query->search($lib->getIndex());
 					$result->applyTransform(function ($item) use ($format) {
-						return preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item) {
+						return preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item, $format) {
 							$key = $matches[1];
 							if (isset($item[$key])) {
 								return $item[$key];
-							} else {
+							} elseif (! $format || $format == '{title}') {
 								return tr('empty');
+							} else {
+								return '';
 							}
 						}, $format);
 					});
