@@ -8497,6 +8497,9 @@ body {
 .nav-justified .navbar-nav {
   width: 100%;
 }
+.autotoc .affix {
+  top: 80px;
+}
 @media (min-width: 768px) {
   .nav-justified .navbar-nav > li {
     float: none;
