@@ -2040,7 +2040,7 @@ if ($trimCapable) {
 
 	$trimClientRequirements['SSH or FTP server'] = [
 		'fitness' => tra('info'),
-		'message' => tra('To manage this instance from a remote server you need SSH or FTP to this server')
+		'message' => tra('To manage this instance from a remote server you need SSH or FTP access to this server')
 	];
 
 	$serverCommands = [
@@ -2076,7 +2076,7 @@ if ($trimCapable) {
 		} else {
 			$trimServerRequirements[$key] = [
 				'fitness' => tra('ugly'),
-				'message' => tra('Command not found, check if is installed and available in one of the paths above')
+				'message' => tra('Command not found, check if it is installed and available in one of the paths above')
 			];
 		}
 	}
@@ -2104,7 +2104,7 @@ if ($trimCapable) {
 		} else {
 			$trimClientRequirements[$key] = [
 				'fitness' => tra('ugly'),
-				'message' => tra('Command not found, check if is installed and available in one of the paths above')
+				'message' => tra('Command not found, check if it is installed and available in one of the paths above')
 			];
 		}
 	}
@@ -2246,7 +2246,7 @@ if ($standalone && ! $nagios) {
 		$render .= '<h3>Client Instance</h3>';
 		renderTable($trimClientRequirements);
 	} else {
-		$render .= '<p>Apparently tiki is running on a Windows based server. This feature is not supported natively.</p>';
+		$render .= '<p>Apparently Tiki is running on a Windows based server. This feature is not supported natively.</p>';
 	}
 
 
