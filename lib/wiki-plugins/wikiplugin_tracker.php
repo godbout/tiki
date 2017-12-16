@@ -1418,15 +1418,12 @@ function wikiplugin_tracker($data, $params)
 						foreach ($_REQUEST as $kk => $vv) {
 							$ins = preg_replace('/^(ins_)/', '', $kk); // replace the ins_ from the input field names to match with e.g. urlparams="1:2:3"
 							$vv = urlencode($vv);
-							//Debug: echo $urlparams[$i] . "|" . $ins . "|" . $kk . "<br>\n"; TODO: cleanup this
 							if($urlparams[0] === '*' || in_array($ins, $urlparams)) {
 								$ss = strstr($url[$key], '?') ? '&' : '?'; // if there is "?" already in the URL, use "&" to separate the params
 								$url[$key] .= "$ss$kk=$vv";
 							}
 							$i++;
 						}
-						//Debug: echo "<hr>" . $url[$key]."\n"; //TODO: cleanup this
-						//die;
 					}
 
 					$msg = trim($data);
