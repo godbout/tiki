@@ -901,6 +901,7 @@ class TikiAccessLib extends TikiLib
 			return;
 		}
 
+		// TODO: Validate URL
 		if ($url == '') {
 			$url = $prefs['tikiIndex'];
 		}
@@ -922,7 +923,7 @@ class TikiAccessLib extends TikiLib
 
 		session_write_close();
 		if (headers_sent()) {
-			echo "<script>document.location.href='$url';</script>\n";
+			echo "<script>document.location.href='" . smarty_modifier_escape($url, 'javascript') . "';</script>\n";
 		} else {
 			@ob_end_clean(); // clear output buffer
 			if ($prefs['feature_obzip'] == 'y') {
