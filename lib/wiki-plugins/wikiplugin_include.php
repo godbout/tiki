@@ -19,8 +19,8 @@ function wikiplugin_include_info()
 		'params' => [
 			'page' => [
 				'required' => true,
-				'name' => tr('Page Name'),
-				'description' => tr('Wiki page name where is saved the content that should be included.'),
+				'name' => tr('Page'),
+				'description' => tr('Name of the source wiki page (which contains the included portion)'),
 				'since' => '1',
 				'filter' => 'pagename',
 				'default' => '',
@@ -29,16 +29,16 @@ function wikiplugin_include_info()
 			'start' => [
 				'required' => false,
 				'name' => tr('Start'),
-				'description' => tr('When only a portion of the page should be included, enter the text of the full line after which
-					inclusion should start (it will not be included).'),
+				'description' => tr('When only a portion of the page should be included, full text of the line after which
+					inclusion should start'),
 				'since' => '1',
 				'default' => '',
 			],
 			'stop' => [
 				'required' => false,
 				'name' => tr('Stop'),
-				'description' => tr('When only a portion of the page should be included, enter the text of the full line before which
-					inclusion should end (it will not be included).'),
+				'description' => tr('When only a portion of the page should be included, full text of the line before which
+					inclusion should end'),
 				'since' => '1',
 				'default' => '',
 			],
@@ -56,7 +56,7 @@ function wikiplugin_include_info()
 			'linkoriginal_text' => [
 				'required' => false,
 				'name' => tr('Read more button label'),
-				'description' => tr('Enter your text to change the default button label.'),
+				'description' => tr('Label of the button linking to the source page (if it is displayed)'),
 				'since' => '18.0',
 				'filter' => 'text',
 				'default' => '',
@@ -77,14 +77,14 @@ function wikiplugin_include_info()
 				'filter' => 'text',
 				'default' => '',
 			],
-            'pagenotapproved_text' => [
+			'pagenotapproved_text' => [
 				'required' => false,
 				'name' => tr('No version approved error message'),
 				'description' => tr('Text to show when the page exists but no version is approved.'),
 				'since' => '18.0',
 				'filter' => 'text',
 				'default' => '',
-            ],
+			],
 			'page_edit_icon' => [
 				'required' => false,
 				'name' => tr('Edit Icon'),
@@ -169,9 +169,9 @@ function wikiplugin_include($dataIn, $params)
 	}
 
 	if (! empty($params['linkoriginal_text'])) {
-		$linkoriginal_text = $params['linkoriginal_text'];
+		$linkoriginal_text = tr($params['linkoriginal_text']);
 	} else {
-		$linkoriginal_text = 'Read more';
+		$linkoriginal_text = tr('Read more');
 	}
 
 	if ($data[$memo]) {
@@ -243,9 +243,9 @@ function wikiplugin_include($dataIn, $params)
     if (($prefs['wiki_plugin_include_link_original'] == 'y' && (isset($start) || isset($stop))) || (isset($linkoriginal) && $linkoriginal == 'y')) {
         $wikilib = TikiLib::lib('wiki');
 	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-default"';
-        $text .= 'title="'.sprintf(tr('The text above comes from page "%s". Click to go to that page'), $page).'">';
+        $text .= 'title="'.sprintf(tr('The text above comes from page "%s". Click to go to that page.'), htmlspecialchars($page)).'">';
         $text .= smarty_function_icon(['name' => 'align-left'], $smarty).' ';
-        $text .= tr($linkoriginal_text);
+        $text .= $linkoriginal_text;
         $text .= '</a><p>';
 	}
 
