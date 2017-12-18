@@ -13755,7 +13755,7 @@ $lang = [
 "Copy Rules" => "Recopie des règles",
 "view/hide copy rules dialog" => "afficher/masquer le dialogue des règles pour copier",
 "Source repository" => "Répertoire source",
-"Copy" => "Recopie",
+"Copy" => "Copier",
 // "Rules will be applied in this order ('0' or empty = auto)" => "Rules will be applied in this order ('0' or empty = auto)",
 "Rule order" => "Ordre des règles",
 "Text to search for" => "Texte recherché",
