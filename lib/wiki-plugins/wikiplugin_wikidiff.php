@@ -89,6 +89,14 @@ function wikiplugin_wikidiff_info()
 					['text' => tra('Yes'), 'value' => 'y'],
 				]
 			],
+			'pagedenied_text' => [
+				'required' => false,
+				'name' => tr('Permission denied message'),
+				'description' => tr('Text to show when the page exists but the user has insufficient permissions to see it.'),
+				'since' => '18.0',
+				'filter' => 'text',
+				'default' => '',
+			],
 		]
 	];
 }
@@ -102,6 +110,13 @@ function wikiplugin_wikidiff($data, $params)
 		$defaults["$key"] = $param['default'];
 	}
 	$params = array_merge($defaults, $params);
+
+	$tikilib = TikiLib::lib('tiki');
+	$perms = $tikilib->get_perm_object($params['object_id'], $params['object_type']);
+	if ($perms['tiki_p_view'] != 'y') {
+		$text = $params['pagedenied_text'];
+		return($text);
+	}
 
 	// Note: the underlying param is the opposite: hide_version_info
 	$params['show_version_info'] = $params['show_version_info'] !== 'n';
