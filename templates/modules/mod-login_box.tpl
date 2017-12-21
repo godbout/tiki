@@ -60,7 +60,11 @@ if (jqueryTiki.no_cookie) {
 						<div class="form-group">
 							<label for="login-switchuser_{$module_logo_instance}">
 								{if $prefs.login_is_email eq 'y'}
-									{tr}Email:{/tr}
+									{if $prefs.login_is_email_obscure eq 'n'}
+										{tr}Email:{/tr}
+									{else}
+										{tr}Name:{/tr}
+									{/if}
 								{else}
 									{if $prefs.login_allow_email eq 'y'}
 										{tr}Email address or {/tr}

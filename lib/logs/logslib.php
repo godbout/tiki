@@ -231,12 +231,23 @@ class LogsLib extends TikiLib
 					$actions[] = $this->lastInsertId();
 				}
 			} elseif (! in_array($object, $nottostore)) {
-				$query = "insert into `tiki_actionlog`" .
+				// It's possible that this action is being added during upgrade to 18.x before the `log` field has been added
+				// to the database. To avoid error on doc/devtools/svnup.php, do not use the field here if $log is null
+				if ($log != null) {
+					$query = "insert into `tiki_actionlog`" .
 								" (`action`, `object`, `lastModif`, `user`, `ip`, `comment`, `objectType`, `client`, `log`)" .
 								" values(?,?,?,?,?,?,?,?,?)"
 								;
 
-				$this->query($query, [$action, $object, (int)$date, $who, $ip, $param, $objectType, $client, $log]);
+					$this->query($query, [$action, $object, (int)$date, $who, $ip, $param, $objectType, $client, $log]);
+				} else {
+					$query = "insert into `tiki_actionlog`" .
+								" (`action`, `object`, `lastModif`, `user`, `ip`, `comment`, `objectType`, `client`)" .
+								" values(?,?,?,?,?,?,?,?)"
+								;
+
+					$this->query($query, [$action, $object, (int)$date, $who, $ip, $param, $objectType, $client]);
+				}
 				$actions[] = $this->lastInsertId();
 			}
 		}
