@@ -137,6 +137,8 @@ function upgrade_20171121_create_plugin_include_relations_tiki($installer)
             $create_relations($installer, 'trackeritemfield', $objectId, $itemField['value']);
         }
 	}
+
+    return true;
 }
 
 

@@ -87,4 +87,6 @@ function upgrade_20171123_create_object_links_tiki($installer)
             $create_links($installer, 'trackeritemfield', $objectId, $itemField['value']);
         }
 	}
+
+    return true;
 }
