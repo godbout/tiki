@@ -257,7 +257,7 @@ tiki_route($path);
 
 //it has to be here because tiki-setup.php needs a $_GET['page'] that is populated by tiki_route
 if (! empty($path)) {
-	require_once('tiki-setup.php');
+	require_once('tiki-setup_base.php');
 	if ($prefs['feature_sefurl_routes'] === 'y') {
 		\Tiki\CustomRoute\CustomRoute::match($path);
 	}
