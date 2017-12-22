@@ -178,6 +178,9 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 			$target = [];
 		}
 
+		// saved items should not refresh themselves later => solves odd issues with relation disappearing
+		self::$refreshedTargets[] = 'trackeritem:'.$this->getItemId();
+
 		if ($this->getOption(self::OPT_READONLY)) {
 			if ($this->getOption('refresh') == 'save') {
 				$this->prepareRefreshRelated($target);
