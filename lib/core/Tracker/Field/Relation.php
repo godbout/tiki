@@ -211,6 +211,10 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		foreach ($toAdd as $key) {
 			list($type, $id) = explode(':', $key, 2);
 
+			if ($type == 'trackeritem' && ! TikiLib::lib('trk')->get_item_info($id)) {
+				continue;
+			}
+
 			$relationlib->add_relation($this->getOption(self::OPT_RELATION), 'trackeritem', $this->getItemId(), $type, $id);
 		}
 
