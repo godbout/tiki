@@ -178,6 +178,11 @@ class ConsoleApplicationBuilder
 	protected function checkConfigurationIsAvailable()
 	{
 		$local_php = TikiInit::getCredentialsFile();
+		if (is_readable($local_php)) {
+			// TikiInit::getCredentialsFile will reset all globals bellow, requiring $local_php again to restore the environment.
+			global $api_tiki, $db_tiki, $dbversion_tiki, $host_tiki, $user_tiki, $pass_tiki, $dbs_tiki, $tikidomain, $dbfail_url;
+			require $local_php;
+		}
 		$result = (is_file($local_php) || TikiInit::getEnvironmentCredentials()) ? true : false;
 
 		return $result;

@@ -21,7 +21,7 @@ function upgrade_20171010_action_log_info_new_column_tiki($installer)
 		"SELECT COUNT(*) FROM information_schema.COLUMNS " .
 		" WHERE COLUMN_NAME='log' AND TABLE_NAME='tiki_actionlog' AND TABLE_SCHEMA='" .
 		$dbs_tiki .
-		"';"
+		"'"
 	);
 
 	if ($result != 0) {
