@@ -106,6 +106,7 @@ class WikiParser_OutputLink
 		} elseif (($info = $this->findWikiPage($pageId)) || $ck_editor) {
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
+				$pageId = substr($page, 0, 158);                
 			}
 
 			if ($description == $info['pageName']) {
