@@ -9,7 +9,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<ul class="nav navbar-nav filter-menu"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
+			<ul class="nav navbar-nav filter-menu col-xs-4 col-xs-push-1"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}">
 						{icon name="filter"} <span class="caret"></span>
@@ -114,7 +114,7 @@
 			</ul>
 		</form>
 	</div>
-	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">	
+	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		{include file="admin/admin_navbar_menu.tpl"}
 		<ul class="nav navbar-nav navbar-right">
 			<li>
