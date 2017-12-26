@@ -11,7 +11,7 @@
 			</button>
 			<ul class="nav navbar-nav filter-menu col-xs-4 col-xs-push-1"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 80px;">
 						{icon name="filter"} <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
