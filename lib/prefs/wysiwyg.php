@@ -37,22 +37,17 @@ function prefs_wysiwyg_list()
 		],
 
 		// TODO: wysiwyg_wiki_semi_parsed depends on wysiwyg_wiki_parsed. These 2 booleans should be replaced by a select with 3 options, but we would need to indicate that one of the options is experimental. Chealer
+		// FIXME: These 2 are not actually WYSIWYG preferences. See https://sourceforge.net/p/tikiwiki/mailman/tikiwiki-devel/thread/F2DE8896807BF045932776107E2E783D3505E26D%40CT20SEXCHP02.FONCIERQC.INTRA/#msg36170373
 		'wysiwyg_wiki_parsed' => [
 			'name' => tra("Support Tiki's \"wiki syntax\""),
 			'description' => tra('This allows a mixture of wiki syntax and HTML in the code of a text field in WYSIWYG mode.'),
 			'type' => 'flag',
-			'dependencies' => [
-				'feature_wysiwyg',
-			],
 			'default' => 'y',
 		],
 		'wysiwyg_wiki_semi_parsed' => [
 			'name' => tra('Limited wiki parsing'),
 			'description' => tra('If this preference is enabled, the set of features from Tiki\'s markup language allowed in parsed text fields is limited. Only some wiki syntax is parsed, such as plugins (not inline character styles, etc). If this preference is disabled, all markup features allowed in "wiki mode" are available.'),
 			'type' => 'flag',
-			'dependencies' => [
-				'feature_wysiwyg',
-			],
 			'default' => 'n',
 			'warning' => tra('Neglected. This feature can have unpredicable results and may be removed in future versions.'),
 			'tags' => ['experimental'],
