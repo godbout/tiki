@@ -53,6 +53,34 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="tiki-editpage.php?page=Test" title="Create page: Test" class="wiki wikinew text-danger tips real">Test</a>', $link->getHtml());
 	}
 
+	function testCreateLinkWithVeryBigName()
+	{
+        // If page name exceeds 158 characters, it must be trimmed.
+        // Link will be to trimmed page while displayed text will be full name
+		$link = new WikiParser_OutputLink;
+		$link->setIdentifier('TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabase');
+
+		$this->assertLinkIs('<a href="tiki-editpage.php?page=TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize" title="Create page: TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize" class="wiki wikinew text-danger tips">TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabase</a>', $link->getHtml());
+	}
+
+	function testCreateExistingLinkWithVeryBigName()
+	{
+        // If page name exceeds 158 characters, it must be trimmed.
+        // Link will be to trimmed page while displayed text will be full name
+		$this->info['TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize'] = [
+			'pageName' => 'TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize',
+			'description' => 'Testing',
+			'lastModif' => 1234567890,
+		];
+
+		$link = new WikiParser_OutputLink;
+		$link->setIdentifier('TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeTHISMUSTBETRIMMED');
+		$link->setWikiLookup([$this, 'getPageInfo']);
+		$link->setWikiLinkBuilder([$this, 'getWikiLink']);
+
+		$this->assertLinkIs('<a href="TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize" title="Testing" class="wiki wiki_page">TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeTHISMUSTBETRIMMED</a>', $link->getHtml());
+	}
+
 	function testPageDoesExist()
 	{
 		$this->info['Test'] = [

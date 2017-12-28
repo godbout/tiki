@@ -255,13 +255,17 @@ if (is_null($base) || is_null($path)) {
 
 tiki_route($path);
 
+/*
+
+temporarily commented out as it casued too many issues for 18.0 beta - better fix required for 18.0 release
+
 //it has to be here because tiki-setup.php needs a $_GET['page'] that is populated by tiki_route
 if (! empty($path)) {
 	require_once('tiki-setup_base.php');
 	if ($prefs['feature_sefurl_routes'] === 'y') {
 		\Tiki\CustomRoute\CustomRoute::match($path);
 	}
-}
+}*/
 
 if ($inclusion) {
 	$_SERVER['PHP_SELF'] = $base . $inclusion;

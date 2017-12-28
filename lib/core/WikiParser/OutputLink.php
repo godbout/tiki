@@ -93,12 +93,13 @@ class WikiParser_OutputLink
 			// When currently displayed page is in a namespace, interpret links as within namespace as a priority
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
+				$pageId = substr($page, 0, 158);                
 			}
 
 			return $this->outputLink(
 				$description,
 				[
-						'href' => call_user_func($this->wikiBuilder, $page) . $this->anchor,
+						'href' => call_user_func($this->wikiBuilder, $pageId) . $this->anchor,
 						'title' => $this->getTitle($info),
 						'class' => 'wiki wiki_page',
 				]
@@ -106,6 +107,7 @@ class WikiParser_OutputLink
 		} elseif (($info = $this->findWikiPage($pageId)) || $ck_editor) {
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
+				$pageId = substr($page, 0, 158);                
 			}
 
 			if ($description == $info['pageName']) {
@@ -122,6 +124,7 @@ class WikiParser_OutputLink
 			);
 		} else {
 			$page = $this->getTargetPage($page);
+			$pageId = substr($page, 0, 158);                
 			return $this->outputLink(
 				$description,
 				[
