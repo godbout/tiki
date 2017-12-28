@@ -18,6 +18,10 @@ class TikiFilter
 	 */
 	public static function get($filter)
 	{
+		global $prefs;
+		if ($prefs['feature_filtering'] == 'n') {
+			return new TikiFilter_None;
+		}
 		if ($filter instanceof \Zend\Filter\FilterInterface) {
 			return $filter;
 		}
@@ -102,7 +106,7 @@ class TikiFilter
 			case 'wikicontent':
 				return new TikiFilter_WikiContent;
 
-			// Dummy filter to keep value unchanges
+			// Dummy filter to keep value unchanged
 			case 'none':
 				return new TikiFilter_None;
 
