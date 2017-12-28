@@ -60,7 +60,8 @@ function smarty_function_preference($params, $smarty)
 
 		$smarty->assign('p', $info);
 
-
+		/* Allows having preference Lisa show only if its parent preference Homer is *un*checked (rather than checked), by setting mode=invert on Homer.
+		TODO: Replace this with something on children rather than on the parent, otherwise all children must display/hide at the same time. */
 		if (isset($params['mode']) && in_array($params['mode'], ['invert', 'notempty'])) {
 			$smarty->assign('mode', $params['mode']);
 		} else {
