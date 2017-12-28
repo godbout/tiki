@@ -24,9 +24,9 @@
 			{preference name=wysiwyg_memo}
 		</div>
 		
-		{preference name=wysiwyg_wiki_parsed}
-		<div class="adminoptionboxchild" id="wysiwyg_wiki_parsed_childcontainer">
-			{preference name=wysiwyg_wiki_semi_parsed}
+		{preference name=wysiwyg_wiki_semi_parsed mode="invert"}
+		<div class="adminoptionboxchild" id="wysiwyg_wiki_semi_parsed_childcontainer">
+			{preference name=wysiwyg_wiki_parsed}
 		</div>
 		
 		{preference name=wysiwyg_htmltowiki}
