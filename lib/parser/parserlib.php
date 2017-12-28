@@ -1634,7 +1634,7 @@ if ( \$('#$id') ) {
 		// basically, allow wiki plugins, wiki links and almost
 		// everything between {}
 		$simple_wiki = false;
-		if ($prefs['feature_wysiwyg'] == 'y' and $this->option['is_html']) {
+		if ($this->option['is_html']) {
 			if ($prefs['wysiwyg_wiki_semi_parsed'] == 'y') {
 				$simple_wiki = true;
 			} elseif ($prefs['wysiwyg_wiki_parsed'] == 'n') {
