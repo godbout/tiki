@@ -2261,6 +2261,12 @@ function prefs_feature_list($partial = false)
 			'description' => tra('allow import of HTML pages'),
 			'type' => 'flag',
 			'default' => 'n',
+			'tags' => [
+				// HTML may be "unparsed" even if the "Try to convert HTML to wiki" checkbox is not checked. Chealer 2017-12-28
+				// Unparsing HTML containing HTML entities will not render entities properly. Chealer 2017-12-28
+				// Importing HTML raw imports the whole document, including its head, and does not display in an iframe, resulting in invalid HTML. Chealer 2017-12-28
+				'experimental'
+			],
 		],
 		'feature_wiki_use_date' => [
 			'name' => tra('Use date parameter'),
