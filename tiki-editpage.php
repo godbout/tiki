@@ -577,8 +577,15 @@ if ($prefs['feature_wiki_attachments'] === 'y' && isset($_REQUEST["attach"]) && 
 
 // Suck another page and append to the end of current
 $suck_url = isset($_REQUEST["suck_url"]) ? $_REQUEST["suck_url"] : '';
-$parsehtml = isset($_REQUEST["parsehtml"]) ? ($_REQUEST["parsehtml"] === 'on' ? 'y' : 'n') : ($info['is_html'] ? 'n' : 'y');
+
+if (isset($_REQUEST["parsehtml"])) {
+	$parsehtml = $_REQUEST["parsehtml"] === 'on' ? 'y' : 'n';
+} else {
+	// FIXME: If the user hasn't checked, we attempt to unparse anyway if ! is_html. Better not display the checkbox than ignoring its value
+	$parsehtml = $info['is_html'] ? 'n' : 'y';
+}
 $smarty->assign('parsehtml', $parsehtml);
+
 if (isset($_REQUEST['do_suck']) && strlen($suck_url) > 0) {
 	// \note by zaufi
 	//   This is ugly implementation of wiki HTML import.
