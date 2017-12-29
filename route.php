@@ -163,6 +163,8 @@ function tiki_route($path)
 		}
 	}
 
+	tiki_route_attempt_custom_route_redirect();
+
 	tiki_route_attempt(
 		'|.*|',
 		'tiki-index.php',
@@ -201,6 +203,31 @@ function tiki_route_single($index, $name)
 	return function ($parts) use ($index, $name) {
 		return [$name => $parts[$index]];
 	};
+}
+
+/**
+ * Attempts to route based on custom routes, defined by the admin.
+ * If a suitable rule is found an HTTP redirect will be issued and the user sent to the right page/URL.
+ * Custom routes rules are only processed if none of the built in rules were successful
+ * This function also loads the minimal amount of framework to be able to query the db.
+ */
+function tiki_route_attempt_custom_route_redirect()
+{
+	global $path, $inclusion;
+
+	if ($inclusion || empty($path)) {
+		return;
+	}
+
+	require_once('db/tiki-db.php');
+	require_once('lib/tikilib.php');
+	$tikilib = new TikiLib;
+
+	$preferences = $tikilib->get_preferences(['feature_sefurl_routes' => 'n'], true);
+
+	if ($preferences['feature_sefurl_routes'] === 'y') {
+		\Tiki\CustomRoute\CustomRoute::match($path); // if match, will be redirected (http)
+	}
 }
 
 $sapi = php_sapi_name();
@@ -254,18 +281,6 @@ if (is_null($base) || is_null($path)) {
 }
 
 tiki_route($path);
-
-/*
-
-temporarily commented out as it casued too many issues for 18.0 beta - better fix required for 18.0 release
-
-//it has to be here because tiki-setup.php needs a $_GET['page'] that is populated by tiki_route
-if (! empty($path)) {
-	require_once('tiki-setup_base.php');
-	if ($prefs['feature_sefurl_routes'] === 'y') {
-		\Tiki\CustomRoute\CustomRoute::match($path);
-	}
-}*/
 
 if ($inclusion) {
 	$_SERVER['PHP_SELF'] = $base . $inclusion;
