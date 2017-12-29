@@ -223,9 +223,10 @@ function tiki_route_attempt_custom_route_redirect()
 	require_once('lib/tikilib.php');
 	$tikilib = new TikiLib;
 
-	$preferences = $tikilib->get_preferences(['feature_sefurl_routes' => 'n'], true);
+	global $prefs;
+	$tikilib->get_preferences(['feature_sefurl_routes'], true, true);
 
-	if ($preferences['feature_sefurl_routes'] === 'y') {
+	if ($prefs['feature_sefurl_routes'] === 'y') {
 		\Tiki\CustomRoute\CustomRoute::match($path); // if match, will be redirected (http)
 	}
 }
