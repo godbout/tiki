@@ -261,6 +261,10 @@ function updateSecdb($version)
 			`svn delete $file --force`;
 		}
 		echo (' Removed ' . count($files) . ' old secdb files.');
+
+		$excludes = [];
+	} else {
+		$excludes = array_keys(svn_files_differ(ROOT));
 	}
 
 	$file = "/db/tiki-secdb_{$version}_mysql.sql";
@@ -270,7 +274,7 @@ function updateSecdb($version)
 		return false;
 	}
 	$queries = [];
-	md5_check_dir(ROOT, $version, $queries);
+	build_secdb_queries(ROOT, $version, $queries, $excludes);
 
 	if (! empty($queries)) {
 		sort($queries);
@@ -296,11 +300,14 @@ function updateSecdb($version)
 }
 
 /**
- * @param $dir
- * @param $version
- * @param $queries
+ * Similar to md5_check_dir in tiki-admin_security.php but creates the sql queries for /db/tiki-secdb_{$version}_mysql.sql
+ *
+ * @param string $dir
+ * @param string $version
+ * @param array $queries queries returned
+ * @param array $excludes files to exclude when doing secdb on an svn checkout
  */
-function md5_check_dir($dir, $version, &$queries)
+function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 {
 	$d = dir($dir);
 	$link = null;
@@ -310,11 +317,15 @@ function md5_check_dir($dir, $version, &$queries)
 		if (is_dir($entry)) {
 			// do not descend and no CVS/Subversion files
 			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom') {
-				md5_check_dir($entry, $version, $queries);
+				build_secdb_queries($entry, $version, $queries, $excludes);
 			}
 		} else {
 			if (preg_match('/\.(sql|css|tpl|js|php)$/', $e) && realpath($entry) != __FILE__ && $entry != './db/local.php') {
 				$file = '.' . substr($entry, strlen(ROOT));
+
+				if (in_array($entry, $excludes)) {
+					continue;
+				}
 
 				// Escape filename. Since this requires a connection to MySQL (due to the charset), do so conditionally to reduce the risk of connection failure.
 				if (! preg_match('/^[a-zA-Z0-9\/ _+.-]+$/', $file)) {

@@ -347,15 +347,12 @@ class SvnUpCommand extends Command
 			// generate a secbb database so when database:update is run, it also gets updated.
 			if (! $input->getOption('no-secdb')) {
 				require_once($tikiBase . '/doc/devtools/svntools.php');
-				if (svn_files_identical($tikiBase)) {
-					$progress->setMessage('<comment>Working copy differs from repository, skipping SecDb Update.</comment>');
-					$progress->advance();
-				} else {
-					$progress->setMessage('Updating secdb');
-					$progress->advance();
-					$errors = ['is not writable', ''];
-					$this->OutputErrors($logger, shell_exec('php doc/devtools/release.php --only-secdb --no-check-svn'), 'Problem updating secdb', $errors);
-				}
+				$progress->setMessage('Updating secdb');
+				$progress->advance();
+
+				$errors = ['is not writable', ''];
+				$this->OutputErrors($logger, shell_exec('php doc/devtools/release.php --only-secdb --no-check-svn'), 'Problem updating secdb', $errors);
+
 			}
 
 			// note: running database update also clears the cache
