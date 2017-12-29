@@ -18,7 +18,7 @@
 			<div class="help-block">{$p.shorthint|simplewiki}</div>
 		{/if}
 
-		{include file="prefs/shared-flags.tpl"}
+		{include file="prefs/shared.tpl"}
 
 		{if $p.detail}
 			<div class="help-block">{$p.detail|simplewiki}</div>

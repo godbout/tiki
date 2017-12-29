@@ -5879,7 +5879,7 @@ templates/prefs/password.tpl -text
 templates/prefs/radio.tpl -text
 templates/prefs/selector.tpl -text
 templates/prefs/shared-dependencies.tpl -text
-templates/prefs/shared-flags.tpl -text
+templates/prefs/shared.tpl -text
 templates/prefs/text.tpl -text
 templates/prefs/textarea.tpl -text
 templates/print/index.php -text

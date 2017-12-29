@@ -9,7 +9,7 @@
 				data-tiki-admin-child-block="#{$p.preference|escape}_childcontainer"
 				data-tiki-admin-child-mode="{$mode|escape}"
 			>
-			{include file="prefs/shared-flags.tpl"}
+			{include file="prefs/shared.tpl"}
 			{if $p.hint}
 				<div class="help-block">{$p.hint|simplewiki}</div>
 			{/if}

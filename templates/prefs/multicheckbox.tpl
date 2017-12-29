@@ -7,7 +7,7 @@
 				</label>
 			{/foreach}
 		<div>
-			{include file="prefs/shared-flags.tpl"}
+			{include file="prefs/shared.tpl"}
 			{if $p.shorthint}
 				<div class="help-block">{$p.shorthint|simplewiki}</div>
 			{/if}

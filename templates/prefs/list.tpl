@@ -21,7 +21,7 @@
 		{if !empty($p.units)}
 			<span class="input-group-addon">{$p.units}</span></div>
 		{/if}
-		{include file="prefs/shared-flags.tpl"}
+		{include file="prefs/shared.tpl"}
 		{if $p.shorthint}
 			<div class="help-block">{$p.shorthint|simplewiki}</div>
 		{/if}

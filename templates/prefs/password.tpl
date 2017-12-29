@@ -3,7 +3,7 @@
 	<div class="col-sm-8">
 		<input name="{$p.preference|escape}" id="{$p.id|escape}" value="{$p.value|escape}" class="form-control" {* size="{$p.size|default:80|escape}" *} type="password" {$p.params}>
 		{$p.detail|escape}
-		{include file="prefs/shared-flags.tpl"}
+		{include file="prefs/shared.tpl"}
 		{if $p.shorthint}
 			<div class="help-block">{$p.shorthint|simplewiki}</div>
 		{/if}

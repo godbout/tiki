@@ -6,7 +6,7 @@
 				<option value="{$value|escape}"{if in_array($value, $p.value)} selected="selected"{/if} {$p.params}>{$label|escape}</option>
 			{/foreach}
 		</select>
-		{include file="prefs/shared-flags.tpl"}
+		{include file="prefs/shared.tpl"}
 		{if $p.shorthint}
 			<div class="help-block">{$p.shorthint|simplewiki}</div>
 		{/if}

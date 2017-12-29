@@ -5,7 +5,7 @@
 			<textarea name="{$p.preference|escape}" id="{$p.id|escape}" {if $syntax} data-syntax="{$syntax|escape}" data-codemirror="{$codemirror|escape}" {/if} class="form-control" {if $p.size} rows="{$p.size|escape}"{/if} {$p.params}>
 				{$p.value|escape}
 			</textarea>
-			{include file="prefs/shared-flags.tpl"}
+			{include file="prefs/shared.tpl"}
 			{if $p.hint}
 				<div class="help-block">{$p.hint|simplewiki}</div>
 			{/if}
