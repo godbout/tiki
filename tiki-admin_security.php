@@ -238,11 +238,10 @@ $secdb_severity = [
  * @param $dir
  * @param $result
  */
-function md5_check_dir($dir, &$result)
+function md5_check_dir($dir, &$result, $svn_diff = [])
 {
  // save all suspicious files in $result
-	global $tikilib;
-	global $tiki_versions;
+	global $tikilib, $tiki_versions, $tikipath;
 	$c_tiki_versions = count($tiki_versions);
 	$query = "select * from `tiki_secdb` where `filename`=?";
 	$d = dir($dir);
@@ -250,7 +249,7 @@ function md5_check_dir($dir, &$result)
 		$entry = $dir . '/' . $e;
 		if (is_dir($entry)) {
 			if ($e != '..' && $e != '.' && $entry != './temp/templates_c' && $entry != './temp') { // do not descend and no checking of templates_c since the file based md5 database would grow to big
-				md5_check_dir($entry, $result);
+				md5_check_dir($entry, $result, $svn_diff);
 			}
 		} elseif (preg_match('/\.(sql|css|tpl|js|php)$/', $e)) {
 			if (! is_readable($entry)) {
@@ -280,7 +279,11 @@ function md5_check_dir($dir, &$result)
 					}
 				}
 				if ($is_tikifile == false) {
-					$result[$entry] = tra('This is not a Tiki file. Check if this file was uploaded and if it is dangerous.');
+					if ($svn_diff && isset($svn_diff[substr($entry, 2)]) && $svn_diff[substr($entry, 2)] !== 'unversioned') {
+						$result[$entry] = tra('This Tiki file differs from the SVN repository version. Check if this file was uploaded and if it is dangerous.');
+					} else {
+						$result[$entry] = tra('This is not a Tiki file. Check if this file was uploaded and if it is dangerous.');
+					}
 				} elseif ($is_tikifile == true && count($is_tikiver) == 0) {
 					$result[$entry] = tra('This is a modified File. Cannot check version. Check if it is dangerous.');
 				} else {
@@ -308,14 +311,22 @@ function md5_check_dir($dir, &$result)
 	$d->close();
 }
 // if check installation is pressed, walk through all files and compute md5 sums
-if (isset($_REQUEST['check_files'])) {
+if (isset($_POST['check_files'])) {
 	global $tiki_versions;
 	require_once('lib/setup/twversion.class.php');
 	$version = new TWVersion();
 	$tiki_versions = $version->tikiVersions();
 	$tiki_versions[] = $version->version;
 	$result = [];
-	md5_check_dir(".", $result);
+
+	if (preg_match('/svn$/', $version->version) && is_readable('doc/devtools/svntools.php')) {	// svn checkout
+		require_once('doc/devtools/svntools.php');
+		$svn_diff = svn_files_differ('./');
+	} else {
+		$svn_diff = [];
+	}
+
+	md5_check_dir(".", $result, $svn_diff);
 	$smarty->assign('filecheck', true);
 	$smarty->assign_by_ref('tikifiles', $result);
 }
