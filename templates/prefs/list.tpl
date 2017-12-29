@@ -22,7 +22,5 @@
 			<span class="input-group-addon">{$p.units}</span></div>
 		{/if}
 		{include file="prefs/shared.tpl"}
-
-		{include file="prefs/shared-dependencies.tpl"}
 	</div>
 </div>

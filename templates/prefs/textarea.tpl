@@ -6,7 +6,6 @@
 				{$p.value|escape}
 			</textarea>
 			{include file="prefs/shared.tpl"}
-			{include file="prefs/shared-dependencies.tpl"}
 		</div>
 	</div>
 {/strip}

@@ -7,6 +7,5 @@
 		{/if}
 
 		{include file="prefs/shared.tpl"}
-		{include file="prefs/shared-dependencies.tpl"}
 	</div>
 </div>

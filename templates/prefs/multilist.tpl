@@ -7,7 +7,6 @@
 			{/foreach}
 		</select>
 		{include file="prefs/shared.tpl"}
-		{include file="prefs/shared-dependencies.tpl"}
 		{if $prefs.jquery_ui_chosen neq 'y'}
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
 		{/if}
