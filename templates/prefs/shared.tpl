@@ -47,13 +47,13 @@
 {/if}
 
 {if $p.shorthint}
-	<div class="help-block">{$p.shorthint|simplewiki}</div>
+	<div class="help-block">{$p.shorthint|parse:true}</div>
 {/if}
 {if $p.detail}
-	<div class="help-block">{$p.detail|simplewiki}</div>
+	<div class="help-block">{$p.detail|parse:true}</div>
 {/if}
 {if $p.hint}
-	<div class="help-block">{$p.hint|simplewiki}</div>
+	<div class="help-block">{$p.hint|parse:true}</div>
 {/if}
 
 {* Used by some preferences of type text (and textarea) *}

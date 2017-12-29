@@ -11,18 +11,23 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-/*
- * Smarty plugin
- * -------------------------------------------------------------
+/**
+ * Smarty parse modifier plugin
  * Type:     modifier
- * Name:     simplewiki
- * Purpose:  Simpler Tiki syntax parse
- * -------------------------------------------------------------
+ * Name:     parse
+ * Purpose:  Parse code in Tiki syntax
+ * 
+ * @param boolean $simple true for less parsing, false for normal parsing
+ * 
+ * @return string Parsed string
  */
-function smarty_modifier_simplewiki($string)
+function smarty_modifier_parse($string, $simple = false)
 {
 	$parserlib = TikiLib::lib('parser');
-
-	$string = htmlentities($string, ENT_QUOTES, 'UTF-8'); // Surely this should not be done here, if it is necessary. Chealer 2017-12-29
-	return $parserlib->parse_data_simple($string);
+	if ($simple) {
+		$string = htmlentities($string, ENT_QUOTES, 'UTF-8'); // Surely this should not be done here, if it is necessary. Chealer 2017-12-29
+		return $parserlib->parse_data_simple($string);
+	} else {
+		return $parserlib->parse_data($string);
+	}
 }
