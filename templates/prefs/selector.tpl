@@ -7,15 +7,6 @@
 		{/if}
 
 		{include file="prefs/shared.tpl"}
-
-		{if $p.detail}
-			<div class="help-block">{$p.detail|simplewiki}</div>
-		{/if}
-
-		{if $p.hint}
-			<div class="help-block">{$p.hint|simplewiki}</div>
-		{/if}
-
 		{include file="prefs/shared-dependencies.tpl"}
 	</div>
 </div>

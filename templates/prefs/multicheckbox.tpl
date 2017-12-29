@@ -8,12 +8,6 @@
 			{/foreach}
 		<div>
 			{include file="prefs/shared.tpl"}
-			{if $p.shorthint}
-				<div class="help-block">{$p.shorthint|simplewiki}</div>
-			{/if}
-			{if $p.hint}
-				<div class="help-block">{$p.hint|simplewiki}</div>
-			{/if}
 			{include file="prefs/shared-dependencies.tpl"}
 		</div>
 	</div>

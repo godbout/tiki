@@ -45,3 +45,18 @@
 		{tr}experimental{/tr}
 	</label>
 {/if}
+
+{if $p.shorthint}
+	<div class="help-block">{$p.shorthint|simplewiki}</div>
+{/if}
+{if $p.detail}
+	<div class="help-block">{$p.detail|simplewiki}</div>
+{/if}
+{if $p.hint}
+	<div class="help-block">{$p.hint|simplewiki}</div>
+{/if}
+
+{* Used by some preferences of type text (and textarea) *}
+{if $p.translatable eq 'y'}
+	{button _class="btn btn-link tips" _type="link" href="tiki-preference_translate.php?pref={$p.preference|escape}" _icon_name="language" _text="" _title=":{tr}Translate{/tr} {$p.name|escape}"}
+{/if}

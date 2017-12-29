@@ -7,12 +7,6 @@
 			{/foreach}
 		</select>
 		{include file="prefs/shared.tpl"}
-		{if $p.shorthint}
-			<div class="help-block">{$p.shorthint|simplewiki}</div>
-		{/if}
-		{if $p.hint}
-			<div class="help-block">{$p.hint|simplewiki}</div>
-		{/if}
 		{include file="prefs/shared-dependencies.tpl"}
 		{if $prefs.jquery_ui_chosen neq 'y'}
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
