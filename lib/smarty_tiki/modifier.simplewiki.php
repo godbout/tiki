@@ -15,18 +15,14 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * Smarty plugin
  * -------------------------------------------------------------
  * Type:     modifier
- * Name:     adjust
- * Purpose:  Adjust a string to a certain length if necessary,
- *           optionally splitting in the middle of a word, and
- *           appending the $etc string or padding the string
- *			 using $pad as filler.
+ * Name:     simplewiki
+ * Purpose:  Simpler Tiki syntax parse
  * -------------------------------------------------------------
  */
 function smarty_modifier_simplewiki($string)
 {
-	global $tikilib;
 	$parserlib = TikiLib::lib('parser');
 
-	$string = htmlentities($string, ENT_QUOTES, 'UTF-8');
+	$string = htmlentities($string, ENT_QUOTES, 'UTF-8'); // Surely this should not be done here, if it is necessary. Chealer 2017-12-29
 	return $parserlib->parse_data_simple($string);
 }
