@@ -204,7 +204,8 @@
 		]
 	},
 	"include-path": [
-		"vendor/pear/text_wiki_mediawiki/"
+		"vendor/pear/text_wiki_mediawiki/",
+		"vendor/pear/xml_rpc"
 	],
 	"scripts": {
 		"post-install-cmd": [

@@ -1429,6 +1429,7 @@ installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-e
 installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch -text
 installer/composer-patches/composer-patches.json -text
 installer/composer-patches/jquery-sheet_fix-visibility-issues.patch -text
+installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch -text
 installer/index.php -text
 installer/installlib.php -text
 installer/schema/00000000_schema_change_tiki.sql -text

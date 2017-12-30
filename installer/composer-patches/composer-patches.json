@@ -6,6 +6,9 @@
     },
     "jquery/jquery-sheet": {
       "Fix visibility issues": "../installer/composer-patches/jquery-sheet_fix-visibility-issues.patch"
+    },
+    "pear/xml_rpc": {
+      "Add support for PHP7": "../installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch"
     }
   }
 }
