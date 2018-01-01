@@ -213,21 +213,38 @@ function tiki_route_single($index, $name)
  */
 function tiki_route_attempt_custom_route_redirect()
 {
-	global $path, $inclusion;
+	global $path, $inclusion, $prefs;
 
 	if ($inclusion || empty($path)) {
 		return;
 	}
 
-	require_once('db/tiki-db.php');
-	require_once('lib/tikilib.php');
-	$tikilib = new TikiLib;
+	// bootstrap the essentials to be able to use tiki db and libraries
+	// in a sane state that allows tiki to be fallback to the default entrypoints
+	// if a custom route is not match
+	require_once __DIR__ . '/tiki-filter-base.php'; // sets $tikiroot, $tikipath
+	$GLOBALS['tikiroot'] = $tikiroot;
+	$GLOBALS['tikipath'] = $tikipath;
 
-	global $prefs;
-	$tikilib->get_preferences(['feature_sefurl_routes'], true, true);
+	require_once __DIR__ . '/db/tiki-db.php';
+	require_once __DIR__ . '/lib/tikilib.php';
+
+	$tikilib = new TikiLib;
+	$GLOBALS['tikilib'] = $tikilib;
+
+	$prefereces = [
+		'feature_sefurl_routes' => 'n',
+	];
+
+	$tikilib->get_preferences($prefereces, true, true);
+	// ~ bootstrap
 
 	if ($prefs['feature_sefurl_routes'] === 'y') {
-		\Tiki\CustomRoute\CustomRoute::match($path); // if match, will be redirected (http)
+		$route = \Tiki\CustomRoute\CustomRoute::matchRoute($path);
+		if ($route) {
+			require_once __DIR__ . '/tiki-setup.php';
+			\Tiki\CustomRoute\CustomRoute::executeRoute($route, $path);
+		}
 	}
 }
 
