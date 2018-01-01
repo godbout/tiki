@@ -83,6 +83,38 @@ class Item
 	 * @param $path
 	 * @return bool|string
 	 */
+	public function matchRoute($path)
+	{
+		switch ($this->type) {
+			case 'Direct':
+				if ($path === $this->from) {
+					return true;
+				}
+				break;
+			case 'Object':
+				if ($path === $this->from) {
+					return true;
+				}
+				break;
+			case 'TrackerField':
+				preg_match($this->from, $path, $matches);
+				if (! empty($matches[1])) {
+					return true;
+				}
+				break;
+			default:
+				break;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if a given path matches a custom route
+	 *
+	 * @param $path
+	 * @return bool|string
+	 */
 	public function getRedirectPath($path)
 	{
 		global $tikilib;
@@ -123,8 +155,7 @@ class Item
 				break;
 
 			case 'TrackerField':
-				$fromRegex = '|' . $this->from . '|';
-				preg_match($fromRegex, $path, $matches);
+				preg_match($this->from, $path, $matches);
 
 				if (empty($matches[1])) {
 					return false;
