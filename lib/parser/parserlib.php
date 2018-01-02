@@ -1785,7 +1785,7 @@ if ( \$('#$id') ) {
 		if (! $simple_wiki && $this->option['parsetoc']) {
 			$this->parse_data_process_maketoc($data, $noparsed);
 		} else {
-			$data = $this->parse_data_simple($data);
+			$data = $this->parse_data_inline_syntax($data);
 		}
 
 		// linebreaks using %%%
