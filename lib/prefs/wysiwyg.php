@@ -41,6 +41,9 @@ function prefs_wysiwyg_list()
 			'name' => tra("Support Tiki's \"wiki syntax\" in HTML pages"),
 			'description' => tra('This allows a mixture of wiki syntax and HTML in the code of wiki pages where HTML is allowed.'),
 			'type' => 'flag',
+			'dependencies' => [
+				'feature_wiki_allowhtml',
+			],
 			'default' => 'y',
 		],
 
