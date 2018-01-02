@@ -85,6 +85,9 @@
 				{preference name=feature_wiki_undo}
 				{preference name=feature_wiki_footnotes}
 				{preference name=feature_wiki_allowhtml}
+				<div class="adminoptionboxchild" id="feature_wiki_allowhtml_childcontainer">
+					{preference name=wysiwyg_wiki_parsed}
+				</div>
 				{preference name=feature_wysiwyg}
 				{preference name=wiki_timeout_warning}
 				{preference name=wiki_edit_plugin}
