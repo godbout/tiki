@@ -1633,16 +1633,8 @@ if ( \$('#$id') ) {
 			$headerlib->wysiwyg_parsing = true;
 		}
 
-		// if simple_wiki is true, disable some wiki syntax
-		// basically, allow wiki plugins, wiki links and almost
-		// everything between {}
-		$simple_wiki = false;
-		if ($this->option['is_html']) {
-			if ($prefs['wysiwyg_wiki_semi_parsed'] == 'y') {
-				$simple_wiki = true;
-			} elseif ($prefs['wysiwyg_wiki_parsed'] == 'n') {
-				return $data;
-			}
+		if ($this->option['is_html'] && $prefs['wysiwyg_wiki_parsed'] == 'n') {
+			return $data;
 		}
 
 		// remove tiki comments first
@@ -1669,57 +1661,49 @@ if ( \$('#$id') ) {
 		$data = preg_replace(';~pre~(.*?)~/pre~;s', '<pre>$1</pre>', $data);
 
 		// Strike-deleted text --text-- (but not in the context <!--[if IE]><--!> or <!--//--<!CDATA[//><!--
-		if (! $simple_wiki) {
-			// FIXME produces false positive for strings contining html comments. e.g: --some text<!-- comment -->
-			$data = preg_replace("#(?<!<!|//)--([^\s>].+?)--#", "<strike>$1</strike>", $data);
-		}
+		// FIXME produces false positive for strings containing html comments. e.g: --some text<!-- comment -->
+		$data = preg_replace("#(?<!<!|//)--([^\s>].+?)--#", "<strike>$1</strike>", $data);
 
 		// Handle html comment sections
 		$data = preg_replace(';~hc~(.*?)~/hc~;s', '<!-- $1 -->', $data);
 
 		// Replace special characters
-		// done after url catching because otherwise urls of dyn. sites will be modified
-		// not done in wysiwyg mode, i.e. $prefs['feature_wysiwyg'] set to something other than 'no' or not set at all
-		//			if (!$simple_wiki and $prefs['feature_wysiwyg'] == 'n')
-		//above line changed by mrisch - special functions were not parsing when wysiwyg is set but wysiswyg is not enabled
-		// further changed by nkoth - why not parse in wysiwyg mode as well, otherwise it won't parse for display/preview?
-		// must be done before color as we can have ~hs~~hs
+		// done after url catching because otherwise urls of dyn. sites will be modified // What? Chealer
+		// must be done before color as we can have "~hs~~hs" (2 consecutive non-breaking spaces. The color syntax uses "~~".)
 		// jb 9.0 html entity fix - excluded not $this->option['is_html'] pages
-		if (! $simple_wiki && ! $this->option['is_html']) {
+		if (! $this->option['is_html']) {
 			$this->parse_htmlchar($data);
 		}
 
 		//needs to be before text color syntax because of use of htmlentities in lib/core/WikiParser/OutputLink.php
-		$data = $this->parse_data_wikilinks($data, $simple_wiki, $this->option['ck_editor']);
+		$data = $this->parse_data_wikilinks($data, false, $this->option['ck_editor']);
 
-		if (! $simple_wiki) {
-			// Replace colors ~~foreground[,background]:text~~
-			// must be done before []as the description may contain color change
-			$parse_color = 1;
-			$temp = $data;
-			while ($parse_color) { // handle nested colors, parse innermost first
-				$temp = preg_replace_callback(
-					"/~~([^~:,]+)(,([^~:]+))?:([^~]*)(?!~~[^~:,]+(?:,[^~:]+)?:[^~]*~~)~~/Ums",
-					'self::colorAttrEscape',
-					$temp,
-					-1,
-					$parse_color
-				);
+		// Replace colors ~~foreground[,background]:text~~
+		// must be done before []as the description may contain color change
+		$parse_color = 1;
+		$temp = $data;
+		while ($parse_color) { // handle nested colors, parse innermost first
+			$temp = preg_replace_callback(
+				"/~~([^~:,]+)(,([^~:]+))?:([^~]*)(?!~~[^~:,]+(?:,[^~:]+)?:[^~]*~~)~~/Ums",
+				'self::colorAttrEscape',
+				$temp,
+				-1,
+				$parse_color
+			);
 
-				if (! empty($temp)) {
-					$data = $temp;
-				}
+			if (! empty($temp)) {
+				$data = $temp;
 			}
+		}
 
-			// On large pages, the above preg rule can hit a BACKTRACE LIMIT
-			// In case it does, use the simpler color replacement pattern.
-			if (empty($temp)) {
-				$data = preg_replace_callback(
-					"/\~\~([^\:\,]+)(,([^\:]+))?:([^~]*)\~\~/Ums",
-					'self::colorAttrEscape',
-					$data
-				);
-			}
+		// On large pages, the above preg rule can hit a BACKTRACE LIMIT
+		// In case it does, use the simpler color replacement pattern.
+		if (empty($temp)) {
+			$data = preg_replace_callback(
+				"/\~\~([^\:\,]+)(,([^\:]+))?:([^~]*)\~\~/Ums",
+				'self::colorAttrEscape',
+				$data
+			);
 		}
 
 		// Extract [link] sections (to be re-inserted later)
@@ -1727,17 +1711,15 @@ if ( \$('#$id') ) {
 
 		// This section matches [...].
 		// Added handling for [[foo] sections.  -rlpowell
-		if (! $simple_wiki) {
-			preg_match_all("/(?<!\[)(\[[^\[][^\]]+\])/", $data, $noparseurl);
+		preg_match_all("/(?<!\[)(\[[^\[][^\]]+\])/", $data, $noparseurl);
 
-			foreach (array_unique($noparseurl[1]) as $np) {
-				$key = '§' . md5($tikilib->genPass()) . '§';
+		foreach (array_unique($noparseurl[1]) as $np) {
+			$key = '§' . md5($tikilib->genPass()) . '§';
 
-				$aux["key"] = $key;
-				$aux["data"] = $np;
-				$noparsedlinks[] = $aux;
-				$data = preg_replace('/(^|[^a-zA-Z0-9])' . preg_quote($np, '/') . '([^a-zA-Z0-9]|$)/', '\1' . $key . '\2', $data);
-			}
+			$aux["key"] = $key;
+			$aux["data"] = $np;
+			$noparsedlinks[] = $aux;
+			$data = preg_replace('/(^|[^a-zA-Z0-9])' . preg_quote($np, '/') . '([^a-zA-Z0-9]|$)/', '\1' . $key . '\2', $data);
 		}
 
 		// BiDi markers
@@ -1754,19 +1736,17 @@ if ( \$('#$id') ) {
 
 		$data = $this->parse_data_dynamic_variables($data, $this->option['language']);
 
-		if (! $simple_wiki) {
-			// Replace boxes
-			$delim = (isset($prefs['feature_simplebox_delim']) && $prefs['feature_simplebox_delim'] != "" ) ? preg_quote($prefs['feature_simplebox_delim']) : preg_quote("^");
-			$data = preg_replace("/${delim}(.+?)${delim}/s", "<div class=\"well\">$1</div>", $data);
+		// Replace boxes
+		$delim = (isset($prefs['feature_simplebox_delim']) && $prefs['feature_simplebox_delim'] != "" ) ? preg_quote($prefs['feature_simplebox_delim']) : preg_quote("^");
+		$data = preg_replace("/${delim}(.+?)${delim}/s", "<div class=\"well\">$1</div>", $data);
 
-			// Underlined text
-			$data = preg_replace("/===(.+?)===/", "<u>$1</u>", $data);
-			// Center text
-			if ($prefs['feature_use_three_colon_centertag'] == 'y' || ($prefs['namespace_enabled'] == 'y' && $prefs['namespace_separator'] == '::')) {
-				$data = preg_replace("/:::(.+?):::/", "<div style=\"text-align: center;\">$1</div>", $data);
-			} else {
-				$data = preg_replace("/::(.+?)::/", "<div style=\"text-align: center;\">$1</div>", $data);
-			}
+		// Underlined text
+		$data = preg_replace("/===(.+?)===/", "<u>$1</u>", $data);
+		// Center text
+		if ($prefs['feature_use_three_colon_centertag'] == 'y' || ($prefs['namespace_enabled'] == 'y' && $prefs['namespace_separator'] == '::')) {
+			$data = preg_replace("/:::(.+?):::/", "<div style=\"text-align: center;\">$1</div>", $data);
+		} else {
+			$data = preg_replace("/::(.+?)::/", "<div style=\"text-align: center;\">$1</div>", $data);
 		}
 
 		// reinsert hash-replaced links into page
@@ -1780,16 +1760,16 @@ if ( \$('#$id') ) {
 
 		$data = $this->parse_data_externallinks($data);
 
-		$data = $this->parse_data_tables($data, $simple_wiki);
+		$data = $this->parse_data_tables($data);
 
 		/* parse_data_process_maketoc() calls parse_data_inline_syntax().
 		
-		It seems wrong to just call parse_data_inline_syntax() just because the parsetoc option is disabled.
+		It seems wrong to just call parse_data_inline_syntax() when the parsetoc option is disabled.
 		Despite its name, parse_data_process_maketoc() does not just deal with TOC-s.
 		
-		I believe it would be better that parse_data_process_maketoc() check parsetoc, only to set $need_maketoc. Chealer 2018-01-02
+		I believe it would be better that parse_data_process_maketoc() check parsetoc, only to set $need_maketoc, so that the following calls parse_data_process_maketoc() unconditionally. Chealer 2018-01-02
 		*/ 
-		if (! $simple_wiki && $this->option['parsetoc']) {
+		if ($this->option['parsetoc']) {
 			$this->parse_data_process_maketoc($data, $noparsed);
 		} else {
 			$data = $this->parse_data_inline_syntax($data);
@@ -2092,7 +2072,7 @@ if ( \$('#$id') ) {
 	}
 
 	//*
-	private function parse_data_tables($data, $simple_wiki)
+	private function parse_data_tables($data)
 	{
 		global $prefs;
 
@@ -2150,50 +2130,48 @@ if ( \$('#$id') ) {
 		} else {
 			// New syntax for tables
 			// REWRITE THIS CODE
-			if (! $simple_wiki) {
-				if (preg_match_all("/\|\|(.*?)\|\|/s", $data, $tables)) {
-					$maxcols = 1;
-					$cols = [];
-					$temp_max5 = count($tables[0]);
-					for ($i = 0; $i < $temp_max5; $i++) {
-						$rows = preg_split("/(\n|\<br\/\>)/", $tables[0][$i]);
-						$col[$i] = [];
-						$temp_max6 = count($rows);
-						for ($j = 0; $j < $temp_max6; $j++) {
-							$rows[$j] = str_replace('||', '', $rows[$j]);
-							$cols[$i][$j] = explode('|', $rows[$j]);
-							if (count($cols[$i][$j]) > $maxcols) {
-								$maxcols = count($cols[$i][$j]);
-							}
+			if (preg_match_all("/\|\|(.*?)\|\|/s", $data, $tables)) {
+				$maxcols = 1;
+				$cols = [];
+				$temp_max5 = count($tables[0]);
+				for ($i = 0; $i < $temp_max5; $i++) {
+					$rows = preg_split("/(\n|\<br\/\>)/", $tables[0][$i]);
+					$col[$i] = [];
+					$temp_max6 = count($rows);
+					for ($j = 0; $j < $temp_max6; $j++) {
+						$rows[$j] = str_replace('||', '', $rows[$j]);
+						$cols[$i][$j] = explode('|', $rows[$j]);
+						if (count($cols[$i][$j]) > $maxcols) {
+							$maxcols = count($cols[$i][$j]);
 						}
 					}
+				}
 
-					$temp_max7 = count($tables[0]);
-					for ($i = 0; $i < $temp_max7; $i++) {
-						$repl = '<table class="wikitable table table-striped table-hover">';
-						$temp_max8 = count($cols[$i]);
-						for ($j = 0; $j < $temp_max8; $j++) {
-							$ncols = count($cols[$i][$j]);
+				$temp_max7 = count($tables[0]);
+				for ($i = 0; $i < $temp_max7; $i++) {
+					$repl = '<table class="wikitable table table-striped table-hover">';
+					$temp_max8 = count($cols[$i]);
+					for ($j = 0; $j < $temp_max8; $j++) {
+						$ncols = count($cols[$i][$j]);
 
-							if ($ncols == 1 && ! $cols[$i][$j][0]) {
-								continue;
-							}
-
-							$repl .= '<tr>';
-
-							for ($k = 0; $k < $ncols; $k++) {
-								$repl .= '<td class="wikicell" ';
-								if ($k == $ncols - 1 && $ncols < $maxcols) {
-									$repl .= ' colspan="' . ($maxcols - $k) . '"';
-								}
-
-								$repl .= '>' . $cols[$i][$j][$k] . '</td>';
-							}
-							$repl .= '</tr>';
+						if ($ncols == 1 && ! $cols[$i][$j][0]) {
+							continue;
 						}
-						$repl .= '</table>';
-						$data = str_replace($tables[0][$i], $repl, $data);
+
+						$repl .= '<tr>';
+
+						for ($k = 0; $k < $ncols; $k++) {
+							$repl .= '<td class="wikicell" ';
+							if ($k == $ncols - 1 && $ncols < $maxcols) {
+								$repl .= ' colspan="' . ($maxcols - $k) . '"';
+							}
+
+							$repl .= '>' . $cols[$i][$j][$k] . '</td>';
+						}
+						$repl .= '</tr>';
 					}
+					$repl .= '</table>';
+					$data = str_replace($tables[0][$i], $repl, $data);
 				}
 			}
 		}
