@@ -29,7 +29,7 @@ function upgrade_20170127_remove_templates_c_tiki($installer)
 			if (! is_dir($dirname . "/" . $file)) {
 				unlink($dirname . "/" . $file);
 			} else {
-				delete_directory($dirname . '/' . $file);
+				rmdir($dirname . '/' . $file);
 			}
 		}
 	}
