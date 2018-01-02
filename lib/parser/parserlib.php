@@ -3321,63 +3321,61 @@ if ( \$('#$id') ) {
 							$maketoc_footer = '</div>';
 							$link_class = 'link';
 					}
-					if (count($anch)) {
-						foreach ($anch as $tocentry) {
-							if ($maketoc_args['maxdepth'] > 0 && $tocentry['hdrlevel'] > $maketoc_args['maxdepth']) {
-								continue;
-							}
-							if (! empty($maketoc_args['levels']) && ! in_array($tocentry['hdrlevel'], $maketoc_args['levels'])) {
-								continue;
-							}
-							// Generate the toc entry title (with nums)
-							if ($maketoc_args['nums'] == 'n') {
-								$tocentry_title = '';
-							} elseif ($maketoc_args['nums'] == 'force' && ! $need_autonumbering) {
-								$tocentry_title = $tocentry['title_real_num'];
-							} else {
-								$tocentry_title = $tocentry['title_displayed_num'];
-							}
-							$tocentry_title .= $tocentry['title'];
+					foreach ($anch as $tocentry) {
+						if ($maketoc_args['maxdepth'] > 0 && $tocentry['hdrlevel'] > $maketoc_args['maxdepth']) {
+							continue;
+						}
+						if (! empty($maketoc_args['levels']) && ! in_array($tocentry['hdrlevel'], $maketoc_args['levels'])) {
+							continue;
+						}
+						// Generate the toc entry title (with nums)
+						if ($maketoc_args['nums'] == 'n') {
+							$tocentry_title = '';
+						} elseif ($maketoc_args['nums'] == 'force' && ! $need_autonumbering) {
+							$tocentry_title = $tocentry['title_real_num'];
+						} else {
+							$tocentry_title = $tocentry['title_displayed_num'];
+						}
+						$tocentry_title .= $tocentry['title'];
 
-							// Generate the toc entry link
-							$tocentry_link = '#' . $tocentry['id'];
-							if ($tocentry['pagenum'] > 1) {
-								$tocentry_link = $_SERVER['PHP_SELF'] . '?page=' . $this->option['page'] . '&pagenum=' . $tocentry['pagenum'] . $tocentry_link;
-							}
-							if ($maketoc_args['nolinks'] != 'y') {
-								$tocentry_title = "<a href='$tocentry_link' class='link'>" . $tocentry_title . '</a>';
-							}
+						// Generate the toc entry link
+						$tocentry_link = '#' . $tocentry['id'];
+						if ($tocentry['pagenum'] > 1) {
+							$tocentry_link = $_SERVER['PHP_SELF'] . '?page=' . $this->option['page'] . '&pagenum=' . $tocentry['pagenum'] . $tocentry_link;
+						}
+						if ($maketoc_args['nolinks'] != 'y') {
+							$tocentry_title = "<a href='$tocentry_link' class='link'>" . $tocentry_title . '</a>';
+						}
 
-							if ($maketoc != '') {
-								$maketoc .= "\n";
-							}
-							$shift = $tocentry['hdrlevel'];
-							if (! empty($maketoc_args['levels'])) {
-								for ($i = 1; $i <= $tocentry['hdrlevel']; ++$i) {
-									if (! in_array($i, $maketoc_args['levels'])) {
-										--$shift;
-									}
+						if ($maketoc != '') {
+							$maketoc .= "\n";
+						}
+						$shift = $tocentry['hdrlevel'];
+						if (! empty($maketoc_args['levels'])) {
+							for ($i = 1; $i <= $tocentry['hdrlevel']; ++$i) {
+								if (! in_array($i, $maketoc_args['levels'])) {
+									--$shift;
 								}
 							}
-							switch ($maketoc_args['type']) {
-								case 'box':
-									$maketoc .= "<li class='toclevel-" . $shift . "'>" . $tocentry_title . "</li>";
-									break;
-								default:
-									$maketoc .= str_repeat('*', $shift) . $tocentry_title;
-							}
 						}
-
-						$maketoc = $this->parse_data($maketoc, ['noparseplugins' => true]);
-
-						if (preg_match("/^<ul>/", $maketoc)) {
-							$maketoc = preg_replace("/^<ul>/", '<ul class="toc">', $maketoc);
-							$maketoc .= '<!--toc-->';
+						switch ($maketoc_args['type']) {
+							case 'box':
+								$maketoc .= "<li class='toclevel-" . $shift . "'>" . $tocentry_title . "</li>";
+								break;
+							default:
+								$maketoc .= str_repeat('*', $shift) . $tocentry_title;
 						}
+					}
 
-						if ($link_class != 'link') {
-							$maketoc = preg_replace("/'link'/", "'$link_class'", $maketoc);
-						}
+					$maketoc = $this->parse_data($maketoc, ['noparseplugins' => true]);
+
+					if (preg_match("/^<ul>/", $maketoc)) {
+						$maketoc = preg_replace("/^<ul>/", '<ul class="toc">', $maketoc);
+						$maketoc .= '<!--toc-->';
+					}
+
+					if ($link_class != 'link') {
+						$maketoc = preg_replace("/'link'/", "'$link_class'", $maketoc);
 					}
 
 					//patch-ini - Patch taken from http://dev.tiki.org/item5405
