@@ -1412,7 +1412,7 @@ if ( \$('#$id') ) {
 
 	// Replace hotwords in given line
 	//*
-	function replace_hotwords($line, $words)
+	function replace_hotwords($line, $words = null)
 	{
 		global $prefs;
 
@@ -1422,6 +1422,9 @@ if ( \$('#$id') ) {
 			// FIXME: Replacements may fail if the value contains an unescaped metacharacters (which is why the default value contains escape characters). The value should probably be escaped with preg_quote().
 			$sep = empty($prefs['feature_hotwords_sep']) ? " \n\t\r\,\;\(\)\.\:\[\]\{\}\!\?\"" : $prefs['feature_hotwords_sep'];
 
+			if (is_null($words)) {
+				$words = $this->get_hotwords();
+			}
 			foreach ($words as $word => $url) {
 				$escapedWord = preg_quote($word, '/');
 
@@ -2055,7 +2058,7 @@ if ( \$('#$id') ) {
 	}
 
 	//*
-	private function parse_data_inline_syntax($line, $words = [], $ck_editor = false)
+	private function parse_data_inline_syntax($line, $words = null, $ck_editor = false)
 	{
 		global $prefs;
 
