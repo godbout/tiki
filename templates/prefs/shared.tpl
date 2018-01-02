@@ -46,6 +46,8 @@
 	</label>
 {/if}
 
+{* The 3 elements below are displayed with simple parsing (parse_data_simple()), which is probably better than using parse_data(), for performance and to obtain a more predictable parsing.
+Converting these elements to HTML may still be better. Chealer *}
 {if $p.shorthint}
 	<div class="help-block">{$p.shorthint|parse:true}</div>
 {/if}
