@@ -3253,7 +3253,7 @@ if ( \$('#$id') ) {
 		 */
 		$new_data = '';
 		$search_start = 0;
-		if ($need_maketoc && ! $this->option['ck_editor']) {
+		if ($need_maketoc) {
 			while (($maketoc_start = strpos($data, "{maketoc", $search_start)) !== false) {
 				$maketoc_length = strpos($data, "}", $maketoc_start) + 1 - $maketoc_start;
 				$maketoc_string = substr($data, $maketoc_start, $maketoc_length);
