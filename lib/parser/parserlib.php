@@ -1782,6 +1782,7 @@ if ( \$('#$id') ) {
 
 		$data = $this->parse_data_tables($data, $simple_wiki);
 
+		// parse_data_process_maketoc() calls parse_data_inline_syntax().
 		if (! $simple_wiki && $this->option['parsetoc']) {
 			$this->parse_data_process_maketoc($data, $noparsed);
 		} else {
@@ -2668,7 +2669,7 @@ if ( \$('#$id') ) {
 		return $value;
 	}
 
-	//*
+	/* This is only called by parse_data(). It does not just deal with TOC-s. */
 	private function parse_data_process_maketoc(&$data, $noparsed)
 	{
 
@@ -2828,11 +2829,12 @@ if ( \$('#$id') ) {
 			$inScript -= substr_count($lineInLowerCase, "</script>");
 
 			// If the first character is ' ' and we are not in pre then we are in pre
-			if (substr($line, 0, 1) == ' ' && $prefs['feature_wiki_monosp'] == 'y' && $inTable == 0 && $inPre == 0 && $inComment == 0 && ! $this->option['is_html']) {
+			if ($prefs['feature_wiki_monosp'] == 'y' && substr($line, 0, 1) == ' ' /* The first character is a space (' '). */ 
+				&& $inTable == 0 && $inPre == 0 && $inComment == 0 && ! $this->option['is_html']) {
 				// Close open paragraph and lists, but not div's
 				$this->close_blocks($data, $in_paragraph, $listbeg, $divdepth, 1, 1, 0);
 
-				// If the first character is space then make font monospaced.
+				// make font monospaced
 				// For fixed formatting, use ~pp~...~/pp~
 				$line = '<tt>' . $line . '</tt>';
 			}
