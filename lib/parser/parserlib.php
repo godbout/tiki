@@ -1876,17 +1876,9 @@ if ( \$('#$id') ) {
 	//*
 	function parse_data_simple($data)
 	{
-		global $prefs;
-		$words = [];
-
-		if ($prefs['feature_hotwords'] == 'y') {
-			// Get list of HotWords
-			$words = $this->get_hotwords();
-		}
-
 		$data = $this->parse_data_wikilinks($data, true);
 		$data = $this->parse_data_externallinks($data, true);
-		$data = $this->parse_data_inline_syntax($data, $words);
+		$data = $this->parse_data_inline_syntax($data);
 		if ($this->option['typography'] && ! $this->option['ck_editor']) {
 			$data = typography($data, $this->option['language']);
 		}
