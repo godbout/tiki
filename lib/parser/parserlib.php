@@ -3321,7 +3321,7 @@ if ( \$('#$id') ) {
 							$maketoc_footer = '</div>';
 							$link_class = 'link';
 					}
-					if (count($anch) and $need_maketoc !== false) {
+					if (count($anch)) {
 						foreach ($anch as $tocentry) {
 							if ($maketoc_args['maxdepth'] > 0 && $tocentry['hdrlevel'] > $maketoc_args['maxdepth']) {
 								continue;
