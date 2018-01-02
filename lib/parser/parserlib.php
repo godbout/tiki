@@ -1873,7 +1873,9 @@ if ( \$('#$id') ) {
 		return ($bwhite[0] . $data . $ewhite[0]);
 	}
 
-	//*
+	/** Simpler and faster parse than parse_data()
+	 * This is only called from the parse Smarty modifier, for preference definitions. 
+	 */ 
 	function parse_data_simple($data)
 	{
 		$data = $this->parse_data_wikilinks($data, true);
