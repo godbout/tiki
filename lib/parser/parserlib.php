@@ -1782,7 +1782,13 @@ if ( \$('#$id') ) {
 
 		$data = $this->parse_data_tables($data, $simple_wiki);
 
-		// parse_data_process_maketoc() calls parse_data_inline_syntax().
+		/* parse_data_process_maketoc() calls parse_data_inline_syntax().
+		
+		It seems wrong to just call parse_data_inline_syntax() just because the parsetoc option is disabled.
+		Despite its name, parse_data_process_maketoc() does not just deal with TOC-s.
+		
+		I believe it would be better that parse_data_process_maketoc() check parsetoc, only to set $need_maketoc. Chealer 2018-01-02
+		*/ 
 		if (! $simple_wiki && $this->option['parsetoc']) {
 			$this->parse_data_process_maketoc($data, $noparsed);
 		} else {
