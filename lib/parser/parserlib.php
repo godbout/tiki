@@ -1940,26 +1940,26 @@ if ( \$('#$id') ) {
 		// If they are parenthesized then don't treat as links
 		// Prevent ))PageName(( from being expanded \"\'
 		//[A-Z][a-z0-9_\-]+[A-Z][a-z0-9_\-]+[A-Za-z0-9\-_]*
-		if (! $simple_wiki && $prefs['feature_wiki'] == 'y' && $prefs['feature_wikiwords'] == 'y') {
-			// The first part is now mandatory to prevent [Foo|MyPage] from being converted!
-			if ($prefs['feature_wikiwords_usedash'] == 'y') {
-				preg_match_all("/(?<=[ \n\t\r\,\;]|^)([A-Z][a-z0-9_\-\x80-\xFF]+[A-Z][a-z0-9_\-\x80-\xFF]+[A-Za-z0-9\-_\x80-\xFF]*)(?=$|[ \n\t\r\,\;\.])/", $data, $pages);
-			} else {
-				preg_match_all("/(?<=[ \n\t\r\,\;]|^)([A-Z][a-z0-9\x80-\xFF]+[A-Z][a-z0-9\x80-\xFF]+[A-Za-z0-9\x80-\xFF]*)(?=$|[ \n\t\r\,\;\.])/", $data, $pages);
-			}
-			//TODO to have a real utf8 Wikiword where the capitals can be a utf8 capital
-			$words = ( $prefs['feature_hotwords'] == 'y' ) ? $this->get_hotwords() : [];
-			foreach (array_unique($pages[1]) as $page_parse) {
-				if (! array_key_exists($page_parse, $words)) {
-					$repl = $this->get_wiki_link_replacement($page_parse, ['plural' => $prefs['feature_wiki_plurals'] == 'y' ], $ck_editor);
+		if ($prefs['feature_wiki'] == 'y' && $prefs['feature_wikiwords'] == 'y') {
+			if (! $simple_wiki) {
+				// The first part is now mandatory to prevent [Foo|MyPage] from being converted!
+				if ($prefs['feature_wikiwords_usedash'] == 'y') {
+					preg_match_all("/(?<=[ \n\t\r\,\;]|^)([A-Z][a-z0-9_\-\x80-\xFF]+[A-Z][a-z0-9_\-\x80-\xFF]+[A-Za-z0-9\-_\x80-\xFF]*)(?=$|[ \n\t\r\,\;\.])/", $data, $pages);
+				} else {
+					preg_match_all("/(?<=[ \n\t\r\,\;]|^)([A-Z][a-z0-9\x80-\xFF]+[A-Z][a-z0-9\x80-\xFF]+[A-Za-z0-9\x80-\xFF]*)(?=$|[ \n\t\r\,\;\.])/", $data, $pages);
+				}
+				//TODO to have a real utf8 Wikiword where the capitals can be a utf8 capital
+				$words = ($prefs['feature_hotwords'] == 'y') ? $this->get_hotwords() : [];
+				foreach (array_unique($pages[1]) as $page_parse) {
+					if (! array_key_exists($page_parse, $words)) { // If this is not a hotword
+						$repl = $this->get_wiki_link_replacement($page_parse, ['plural' => $prefs['feature_wiki_plurals'] == 'y'], $ck_editor);
 
-					$data = preg_replace("/(?<=[ \n\t\r\,\;]|^)$page_parse(?=$|[ \n\t\r\,\;\.])/", "$1" . $repl . "$2", $data);
+						$data = preg_replace("/(?<=[ \n\t\r\,\;]|^)$page_parse(?=$|[ \n\t\r\,\;\.])/", "$1" . $repl . "$2", $data);
+					}
 				}
 			}
-		}
-
-		// Reinsert ))Words((
-		if ($prefs['feature_wikiwords'] == 'y') {
+			
+			// Reinsert ))Words((
 			$data = str_replace($noParseWikiLinksK, $noParseWikiLinksT, $data);
 		}
 
