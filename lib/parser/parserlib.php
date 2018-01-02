@@ -2710,16 +2710,6 @@ if ( \$('#$id') ) {
 		global $anch;
 		$pageNum = 1;
 
-		// 08-Jul-2003, by zaufi
-		// HotWords will be replace only in ordinal text
-		// It looks __really__ goofy in Headers or Titles
-
-		$words = [];
-		if ($prefs['feature_hotwords'] == 'y') {
-			// Get list of HotWords
-			$words = $this->get_hotwords();
-		}
-
 		// Now tokenize the expression and process the tokens
 		// Use tab and newline as tokenizing characters as well  ////
 		$lines = explode("\n", $data);
@@ -2847,7 +2837,11 @@ if ( \$('#$id') ) {
 				$line = '<tt>' . $line . '</tt>';
 			}
 
-			$line = $this->parse_data_inline_syntax($line, $words, $this->option['ck_editor']);
+			// Replace hotwords and more
+			// 08-Jul-2003, by zaufi
+			// HotWords will be replace only in ordinal text
+			// It looks __really__ goofy in Headers or Titles
+			$line = $this->parse_data_inline_syntax($line, null, $this->option['ck_editor']);
 
 			// This line is parseable then we have to see what we have
 			if (substr($line, 0, 3) == '---') {
