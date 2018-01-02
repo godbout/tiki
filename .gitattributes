@@ -5435,6 +5435,7 @@ templates/examples/shop/product_list_inner.tpl -text
 templates/examples/shop/readme.txt -text
 templates/feedback/action.tpl -text
 templates/feedback/default.tpl -text
+templates/feedback/link.tpl -text
 templates/feedback/perm.tpl -text
 templates/feedback/pref.tpl -text
 templates/fgal_attachments.tpl -text
