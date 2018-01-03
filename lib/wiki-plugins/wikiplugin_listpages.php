@@ -436,7 +436,9 @@ function wikiplugin_listpages($data, $params)
 			$listpages['data'][$i]['snippet'] = $tikilib->get_snippet($page['data'], $page['outputType'], ! empty($page['is_html']), '', $length, $start, $end);
 		}
 	}
-	$smarty->assign("redirectTo", $_REQUEST["page"]);
+	if (isset($_REQUEST["page"])) {
+		$smarty->assign("redirectTo", $_REQUEST["page"]);
+	}
 
 	// Count how many pages are left after sorting
 	$smarty->assign("cant", $listpages['cant']);
