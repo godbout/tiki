@@ -850,6 +850,7 @@ $lang = [
 // "Field %0 does not exist in the current index. If this is a tracker field, the proper syntax is tracker_field_%0" => "Field %0 does not exist in the current index. If this is a tracker field, the proper syntax is tracker_field_%0",
 // "Feature not supported" => "Feature not supported",
 // "Parsing search query failed: \"%0\"" => "Parsing search query failed: \"%0\"",
+"Malformed search query" => "Requête de recherche invalide",
 // "Sort field %0 not found in index" => "Sort field %0 not found in index",
 "No results for query" => "Aucun résultat pour la requête",
 // "Missing template \"%0\"" => "Missing template \"%0\"",
