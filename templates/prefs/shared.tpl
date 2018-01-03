@@ -45,6 +45,17 @@
 		{tr}experimental{/tr}
 	</label>
 {/if}
+{if $p.dependencies}
+	{foreach from=$p.dependencies item=dep}
+		{if $dep.met}
+			{icon name="ok" class="pref_dependency tips text-success" title="{tr}Requires:{/tr} "|cat:$dep.label|escape|cat:" (OK)"}
+		{elseif $dep.type eq 'profile'}
+			<div class="alert alert-warning pref_dependency highlight"{if not $p.modified} style="display:none;"{/if}>{tr}You need apply profile{/tr} <a href="{$dep.link|escape}" class="alert-link">{$dep.label|escape}</a></div>
+		{else}
+			<div class="alert alert-warning pref_dependency highlight"{if not $p.modified} style="display:none;"{/if}>{tr}You need to set{/tr} <a href="{$dep.link|escape}" class="alert-link">{$dep.label|escape}</a></div>
+		{/if}
+	{/foreach}
+{/if}
 
 {* The 3 elements below are displayed with simple parsing (parse_data_simple()), which is probably better than using parse_data(), for performance and to obtain a more predictable parsing.
 Converting these elements to HTML may still be better. Chealer *}
@@ -64,17 +75,6 @@ Converting these elements to HTML may still be better. Chealer *}
 {/if}
 
 <input class="system" type="hidden" name="lm_preference[]" value="{$p.preference|escape}">
-{if $p.dependencies}
-	{foreach from=$p.dependencies item=dep}
-		{if $dep.met}
-			{icon name="ok" class="pref_dependency tips text-success" title="{tr}Requires:{/tr} "|cat:$dep.label|escape|cat:" (OK)"}
-		{elseif $dep.type eq 'profile'}
-			<div class="alert alert-warning pref_dependency highlight"{if not $p.modified} style="display:none;"{/if}>{tr}You need apply profile{/tr} <a href="{$dep.link|escape}" class="alert-link">{$dep.label|escape}</a></div>
-		{else}
-			<div class="alert alert-warning pref_dependency highlight"{if not $p.modified} style="display:none;"{/if}>{tr}You need to set{/tr} <a href="{$dep.link|escape}" class="alert-link">{$dep.label|escape}</a></div>
-		{/if}
-	{/foreach}
-{/if}
 {if $p.packages_required}
 	{foreach from=$p.packages_required item=dep}
 		{if $dep.met}
