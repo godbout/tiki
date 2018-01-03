@@ -63,16 +63,16 @@ function wikiplugin_quote($data, $params)
 	$replyto = '';
 	$comment_info = '';
 
-	if ($params['thread_id']) {
+	if (isset($params['thread_id']) && $params['thread_id']) {
 		$comment_info = TikiLib::lib('comments')->get_comment($params['thread_id']);
 		$replyto = $comment_info['userName'];
-	} elseif ($params['replyto']) {
+	} elseif (isset($params['replyto']) && $params['replyto']) {
 		$replyto = $params['replyto'];
 	}
-	if ($params['source_url']) {
+	if (isset($params['source_url']) && $params['source_url']) {
 		$source_url = $params['source_url'];
 	}
-	if ($params['date']) {
+	if (isset($params['date']) && $params['date']) {
 		$date = strtotime($params['date']);
 	}
 
