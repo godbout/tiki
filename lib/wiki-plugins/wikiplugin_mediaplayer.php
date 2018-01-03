@@ -184,7 +184,7 @@ function wikiplugin_mediaplayer($data, $params)
 	if (empty($params['mp3']) && empty($params['flv']) && empty($params['src'])) {
 		return '';
 	}
-	if (! empty($params['src']) && $params['style'] != 'native') { // FIXME: Too broad - this does not use jQuery Media in all these cases.
+	if (! empty($params['src']) && isset($params['style']) && $params['style'] != 'native') { // FIXME: Too broad - this does not use jQuery Media in all these cases.
 		$access->check_feature('feature_jquery_media');
 	}
 	$defaults_mp3 = [
