@@ -1243,9 +1243,11 @@ if ( \$('#$id') ) {
 		}
 
 		// Make sure all arguments are declared
-		$params = $info['params'];
+		if (isset($info['params'])) {
+			$params = $info['params'];
+		}
 		$argsCopy = $args;
-		if (! isset($info['extraparams']) && is_array($params)) {
+		if (! isset($info['extraparams']) && isset($params) && is_array($params)) {
 			$args = array_intersect_key($args, $params);
 		}
 
