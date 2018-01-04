@@ -50,7 +50,7 @@ function prefs_wysiwyg_list()
 		// This preference is called "htmltowiki" because it involves conversion of the HTML code CKeditor handles to "wiki syntax" (Tiki's syntax)... although it equally involves the opposite conversion.
 		'wysiwyg_htmltowiki' => [
 			'name' => tra('Use Wiki syntax in WYSIWYG'),
-			'description' => tra('Allow keeping wiki syntax with the WYSIWYG editor. Sometimes referred to as a "visual wiki".'),
+			'description' => tra('Causes parsed text areas based on wiki syntax when not in WYSIWYG mode to keep using Tiki syntax, instead of HTML as the WYSIWYG editor uses by default. Sometimes referred to as a "visual wiki".'),
 			'hint' => tra('Using wiki syntax in WYSIWYG mode will limit toolbar to wiki tools'),
 			'type' => 'flag',
 			'dependencies' => [
