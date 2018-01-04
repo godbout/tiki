@@ -26,13 +26,14 @@ if ($prefs['feature_wysiwyg'] == 'y' && $prefs['javascript_enabled'] == 'y') {
 			$_SESSION['wysiwyg'] = 'y';
 		} elseif (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] == 'y') {
 			$_SESSION['wysiwyg'] = 'n';
-		} elseif (isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'y') {
-			$_SESSION['wysiwyg'] = 'y';
-		} elseif (isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'n') {
-			$_SESSION['wysiwyg'] = 'n';
+		} elseif (isset($_REQUEST['wysiwyg'])) {
+			if (! in_array($_REQUEST['wysiwyg'], ['y', 'n'])) {
+				throw new Exception('Invalid wysiwyg parameter');
+			}
+			$_SESSION['wysiwyg'] = $_REQUEST['wysiwyg'];
 		} elseif ($prefs['wysiwyg_memo'] == 'y' and ! empty($info['wysiwyg'])) {
 			$_SESSION['wysiwyg'] = $info['wysiwyg'];
-		} elseif (! isset($_REQUEST['wysiwyg'])) {
+		} else {
 			$_SESSION['wysiwyg'] = $prefs['wysiwyg_default'];
 		}
 	}
