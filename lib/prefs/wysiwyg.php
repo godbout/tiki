@@ -47,6 +47,7 @@ function prefs_wysiwyg_list()
 			'default' => 'y',
 		],
 
+		// This preference is called "htmltowiki" because it involves conversion of the HTML code CKeditor handles to "wiki syntax" (Tiki's syntax)... although it equally involves the opposite conversion.
 		'wysiwyg_htmltowiki' => [
 			'name' => tra('Use Wiki syntax in WYSIWYG'),
 			'description' => tra('Allow keeping wiki syntax with the WYSIWYG editor. Sometimes referred to as a "visual wiki".'),
@@ -55,6 +56,9 @@ function prefs_wysiwyg_list()
 			'dependencies' => [
 				'feature_wysiwyg',
 			],
+			// Should probably be (re)flagged as experimental. Chealer 2018-01-04
+			'warning' => tra('Existing wiki pages remain in HTML, unless they are converted to non-WYSIWYG and back to WYSIWYG (one by one).') .
+				' ' . tra('CKeditor offers possibilities which may not be expressible in Tiki syntax.') . ' See issue #6518 for example',
 			'default' => 'y',
 		],
 		'wysiwyg_toolbar_skin' => [
