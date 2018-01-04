@@ -23,9 +23,9 @@ if ($prefs['feature_wysiwyg'] == 'y' && $prefs['javascript_enabled'] == 'y') {
 		$_SESSION['wysiwyg'] = 'y';
 	} elseif (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] == 'y' and $prefs['wysiwyg_optional'] == 'y') {
 		$_SESSION['wysiwyg'] = 'n';
-	} elseif ((isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'y' and $prefs['wysiwyg_optional'] == 'y')) {
+	} elseif (isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'y' and $prefs['wysiwyg_optional'] == 'y') {
 		$_SESSION['wysiwyg'] = 'y';
-	} elseif ((isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'n' and $prefs['wysiwyg_optional'] == 'y')) {
+	} elseif (isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'n' and $prefs['wysiwyg_optional'] == 'y') {
 		$_SESSION['wysiwyg'] = 'n';
 	} elseif ($prefs['wysiwyg_optional'] == 'n') {
 		$_SESSION['wysiwyg'] = 'y';
@@ -33,8 +33,6 @@ if ($prefs['feature_wysiwyg'] == 'y' && $prefs['javascript_enabled'] == 'y') {
 		$_SESSION['wysiwyg'] = $info['wysiwyg'];
 	} elseif (! isset($_REQUEST['wysiwyg'])) {
 		$_SESSION['wysiwyg'] = $prefs['wysiwyg_default'];
-	} elseif ($prefs['wysiwyg_optional'] == 'y' and isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'n') {
-		$_SESSION['wysiwyg'] = 'n';
 	}
 } else {
 	$_SESSION['wysiwyg'] = 'n';
