@@ -908,8 +908,6 @@ if (isset($_REQUEST['translation_critical'])) {
 if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 	if (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] === 'y') {
 		// Convert page content, as we are switching from the WYSIWYG editor to the regular editor
-		$smarty->assign('msg', "Parsing html to wiki");
-
 		if (! $is_html) {
 			// we come from WYSIWYG-Wiki
 			$parsed = $edit_data;
@@ -923,8 +921,6 @@ if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 		$smarty->assign('allowhtml', 'n');
 	} elseif (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] === 'y') {
 		// We are switching from the regular editor to the WYSIWYG editor
-		$smarty->assign('msg', "Parsing wiki to html");
-
 		if (! $is_html && $prefs['wysiwyg_htmltowiki'] === 'y') {
 			// we switch to WYSIWYG-Wiki
 			$parsed = $edit_data;
