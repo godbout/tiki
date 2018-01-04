@@ -3007,7 +3007,7 @@ if ( \$('#$id') ) {
 						}
 
 						// Store the title number to use only if it has to be shown (if the '#' char is used)
-						$current_title_num = $show_title_level[$hdrlevel] ? implode('.', $hdr_structure[$nb_hdrs]) . '. ' : '';
+						$current_title_num = (! empty($show_title_level[$hdrlevel])) ? implode('.', $hdr_structure[$nb_hdrs]) . '. ' : '';
 
 						$nb_hdrs++;
 
