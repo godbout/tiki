@@ -907,7 +907,7 @@ if (isset($_REQUEST['translation_critical'])) {
 // Handles switching editor modes
 if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 	if (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] === 'y') {
-		// Parsing page data as first time seeing html page in normal editor
+		// Convert page content, as we are switching from the WYSIWYG editor to the regular editor
 		$smarty->assign('msg', "Parsing html to wiki");
 
 		if (! $is_html) {
@@ -922,17 +922,16 @@ if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 		$info['wysiwyg'] = false;
 		$smarty->assign('allowhtml', 'n');
 	} elseif (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] === 'y') {
-		// Parsing page data as first time seeing wiki page in wysiwyg editor
+		// We are switching from the regular editor to the WYSIWYG editor
 		$smarty->assign('msg', "Parsing wiki to html");
 
 		if (! $is_html && $prefs['wysiwyg_htmltowiki'] === 'y') {
 			// we switch to WYSIWYG-Wiki
 			$parsed = $edit_data;
-			$is_html = false;
 			$info['is_html'] = false;
 		} else {
-			// we switch to WYSIWYG-HTML
-			$parsed = $editlib->parseToWysiwyg($edit_data, true);
+			// we switch to WYSIWYG-HTML (regular WYSIWYG)
+			$parsed = $editlib->parseToWysiwyg($edit_data, true); // Convert page content
 			$is_html = true;
 			$info['is_html'] = true;
 			$smarty->assign('allowhtml', 'y');
