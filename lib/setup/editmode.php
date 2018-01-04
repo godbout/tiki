@@ -19,20 +19,22 @@ if (! isset($is_html)) {
 	}
 }
 if ($prefs['feature_wysiwyg'] == 'y' && $prefs['javascript_enabled'] == 'y') {
-	if (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] == 'y' and $prefs['wysiwyg_optional'] == 'y') {
+	if ($prefs['wysiwyg_optional'] == 'n') {
 		$_SESSION['wysiwyg'] = 'y';
-	} elseif (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] == 'y' and $prefs['wysiwyg_optional'] == 'y') {
-		$_SESSION['wysiwyg'] = 'n';
-	} elseif (isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'y' and $prefs['wysiwyg_optional'] == 'y') {
-		$_SESSION['wysiwyg'] = 'y';
-	} elseif (isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'n' and $prefs['wysiwyg_optional'] == 'y') {
-		$_SESSION['wysiwyg'] = 'n';
-	} elseif ($prefs['wysiwyg_optional'] == 'n') {
-		$_SESSION['wysiwyg'] = 'y';
-	} elseif ($prefs['wysiwyg_memo'] == 'y' and ! empty($info['wysiwyg'])) {
-		$_SESSION['wysiwyg'] = $info['wysiwyg'];
-	} elseif (! isset($_REQUEST['wysiwyg'])) {
-		$_SESSION['wysiwyg'] = $prefs['wysiwyg_default'];
+	} else {
+		if (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] == 'y') {
+			$_SESSION['wysiwyg'] = 'y';
+		} elseif (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] == 'y') {
+			$_SESSION['wysiwyg'] = 'n';
+		} elseif (isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'y') {
+			$_SESSION['wysiwyg'] = 'y';
+		} elseif (isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'n') {
+			$_SESSION['wysiwyg'] = 'n';
+		} elseif ($prefs['wysiwyg_memo'] == 'y' and ! empty($info['wysiwyg'])) {
+			$_SESSION['wysiwyg'] = $info['wysiwyg'];
+		} elseif (! isset($_REQUEST['wysiwyg'])) {
+			$_SESSION['wysiwyg'] = $prefs['wysiwyg_default'];
+		}
 	}
 } else {
 	$_SESSION['wysiwyg'] = 'n';
