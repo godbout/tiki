@@ -9,8 +9,8 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) != false) {
 	header('location: index.php');
 	exit;
 }
-global $parsemode_setup, $tiki_p_admin, $tiki_p_use_HTML, $prefs, $info, $jitRequest, $is_html;
-$parsemode_setup = 'y';
+global $tiki_p_admin, $tiki_p_use_HTML, $prefs, $info, $jitRequest, $is_html;
+
 if (! isset($is_html)) {
 	if (isset($info['is_html'])) {
 		$is_html = $info['is_html'];
