@@ -83,16 +83,16 @@ h6,
   border-color: #53b042;
 }
 .panel-default > .panel-heading {
-  color: #515151;
-  background-color: #e6ffb2;
+  color: #ffffff;
+  background-color: #02913d;
   border-color: #53b042;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #53b042;
 }
 .panel-default > .panel-heading .badge {
-  color: #e6ffb2;
-  background-color: #515151;
+  color: #02913d;
+  background-color: #ffffff;
 }
 .panel-default > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #53b042;

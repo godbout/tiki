@@ -81,7 +81,7 @@
 //** By default, this inherits from the `<body>`.
 @headings-font-family: inherit;
 @headings-font-weight: 500;
-@headings-line-height: 1.1;
+// @headings-line-height: 1.1;
 @headings-color: inherit;
 
 //== Iconography
@@ -155,8 +155,8 @@
 
 @btn-font-weight: normal;
 
-@btn-default-color: rgb(66, 40, 29);
-@btn-default-bg: #ffffff;
+@btn-default-color: #ffffff; // rgb(66, 40, 29);
+@btn-default-bg: rgba(84, 60, 27, 0.64); // #ffffff;
 @btn-default-border: rgba(84, 60, 27, 0.64);
 // #cccccc;
 
@@ -353,7 +353,7 @@
 //##
 
 // Basics of a navbar
-@navbar-height: 50px;
+@navbar-height: 46px;
 @navbar-margin-bottom: @line-height-computed;
 @navbar-border-radius: @border-radius-base;
 @navbar-padding-horizontal: floor((@grid-gutter-width / 2));
@@ -696,9 +696,9 @@
 @panel-inner-border: #53b042;
 @panel-footer-bg: #e6ffb2;
 
-@panel-default-text: @gray-dark;
+@panel-default-text: #ffffff;
 @panel-default-border: #53b042;
-@panel-default-heading-bg: #e6ffb2;
+@panel-default-heading-bg: #02913d;
 
 @panel-primary-text: #ffffff;
 @panel-primary-border: #53b042;
