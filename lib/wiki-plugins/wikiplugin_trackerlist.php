@@ -1180,7 +1180,7 @@ function wikiplugin_trackerlist($data, $params)
 		$smarty->assign_by_ref('showlastmodif', $showlastmodif);
 
 		if (! isset($showlastmodifby)) {
-			$showlastmodifby = $tracker_info['showLastModifBy'];
+			$showlastmodifby = (isset($tracker_info['showLastModifBy'])) ? $tracker_info['showLastModifBy'] : '';
 		}
 		$smarty->assign_by_ref('showlastmodifby', $showlastmodifby);
 
