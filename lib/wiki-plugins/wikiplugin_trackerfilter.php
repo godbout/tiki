@@ -528,7 +528,10 @@ function wikiplugin_trackerFilter_reset_filters($iTrackerFilter = 0)
 function wikiplugin_trackerFilter_get_session_filters_key($iTrackerFilter = 0)
 {
 	$trackerId = isset($_REQUEST['trackerId']) ? $_REQUEST['trackerId'] : 0;
-	return 'f_' . $_REQUEST['page'] . '_' . $iTrackerFilter;
+	if (! empty($_REQUEST['page'])) {
+		return 'f_' . $_REQUEST['page'] . '_' . $iTrackerFilter;
+	}
+	return '';
 }
 
 function wikiplugin_trackerFilter_save_session_filters($filters, $iTrackerFilter = 0)

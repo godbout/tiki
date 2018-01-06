@@ -797,7 +797,11 @@ class EditLib
 			$parsed = $parsed2;
 		}
 		// Fix IE7 wysiwyg editor always adding absolute path
-		$search = '/(<a[^>]+href=\")https?\:\/\/' . preg_quote($_SERVER['HTTP_HOST'] . $tikiroot, '/') . '([^>]+_cke_saved_href)/i';
+		if (isset($_SERVER['HTTP_HOST'])) {
+			$search = '/(<a[^>]+href=\")https?\:\/\/' . preg_quote($_SERVER['HTTP_HOST'] . $tikiroot, '/') . '([^>]+_cke_saved_href)/i';
+		} else {
+			$search = '/(<a[^>]+href=\")https?\:\/\/' . preg_quote($_SERVER['SERVER_NAME'] . $tikiroot, '/') . '([^>]+_cke_saved_href)/i';
+		}
 		$parsed = preg_replace($search, '$1$2', $parsed);
 
 		if (! $isHtml) {

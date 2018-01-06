@@ -1094,7 +1094,7 @@ function wikiplugin_img($data, $params)
 			}
 		}
 	}
-	if ($imgdata['retina'] == 'y' && $params['width']) {
+	if ($imgdata['retina'] == 'y' && $imgdata['width']) {
 		$srcset_arr = [];
 		$srcset_format = "tiki-download_file.php?display&fileId=%s&x=%d&y=%d %s";
 		$srcset_arr[] = sprintf($srcset_format, $params['fileId'], $width * 2, $height * 2, "2x");

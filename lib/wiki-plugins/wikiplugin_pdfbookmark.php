@@ -40,6 +40,7 @@ function wikiplugin_pdfbookmark_info()
 }
 function wikiplugin_pdfbookmark($data, $params)
 {
+	$paramList = '';
 	foreach ($params as $paramName => $param) {
 		$paramList .= $paramName . "='" . $param . "' ";
 	}

@@ -572,7 +572,7 @@ class ObjectLib extends TikiLib
 				if (empty($title)) {
 					$title = "$type:$id";
 				}
-				if ($extra) {
+				if (isset($extra) && $extra) {
 					$title .= ' (' . $extra . ')';
 				}
 				return $title;

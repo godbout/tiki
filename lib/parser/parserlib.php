@@ -1243,9 +1243,11 @@ if ( \$('#$id') ) {
 		}
 
 		// Make sure all arguments are declared
-		$params = $info['params'];
+		if (isset($info['params'])) {
+			$params = $info['params'];
+		}
 		$argsCopy = $args;
-		if (! isset($info['extraparams']) && is_array($params)) {
+		if (! isset($info['extraparams']) && isset($params) && is_array($params)) {
 			$args = array_intersect_key($args, $params);
 		}
 
@@ -2983,7 +2985,10 @@ if ( \$('#$id') ) {
 						}
 
 						// Store the title number to use only if it has to be shown (if the '#' char is used)
-						$current_title_num = $show_title_level[$hdrlevel] ? implode('.', $hdr_structure[$nb_hdrs]) . '. ' : '';
+						$current_title_num = '';
+						if (isset($show_title_level[$hdrlevel]) && isset($hdr_structure[$nb_hdrs])) {
+							$current_title_num = $show_title_level[$hdrlevel] ? implode('.', $hdr_structure[$nb_hdrs]) . '. ' : '';
+						}
 
 						$nb_hdrs++;
 

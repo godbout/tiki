@@ -335,7 +335,7 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 						if (mysqli_connect_errno()) {
 							global $phpCommand, $phpCommandArguments;
 							error(
-								"SecDB step failed because some filenames need escaping but no MySQL connection has been found (" . mysqli_connect_error() . ")."
+								"SecDB step failed because some filenames (e.g. {$file}) need escaping but no MySQL connection has been found (" . mysqli_connect_error() . ")."
 								. "\nTry this command line instead (replace HOST, USER and PASS by a valid MySQL host, user and password) :"
 								. "\n\n\t" . $phpCommand
 								. " -d mysqli.default_host=HOST -d mysqli.default_user=USER -d mysqli.default_pw=PASS "
