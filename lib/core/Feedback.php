@@ -148,13 +148,13 @@ class Feedback
 	private static function checkFeedback($feedback)
 	{
 		if (empty($feedback)) {
-			trigger_error(tr('Feedback class called with no feedback provided.'), E_NOTICE);
+			trigger_error(tr('Feedback class called with no feedback provided.'), E_USER_NOTICE);
 			return false;
 		} elseif (! is_array($feedback)) {
 			$feedback = ['mes' => $feedback];
 		} else {
 			if (empty($feedback['mes'])) {
-				trigger_error(tr('Feedback class called with no feedback provided.'), E_NOTICE);
+				trigger_error(tr('Feedback class called with no feedback provided.'), E_USER_NOTICE);
 				return false;
 			} elseif (! is_array($feedback['mes'])) {
 				$feedback['mes'] = [$feedback['mes']];
@@ -198,12 +198,14 @@ class Feedback
 			}
 			//add default tpl if not set
 			foreach ($feedback as $key => $item) {
-				$feedback[$key] = array_merge([
-					'tpl' => 'default',
-					'type' => 'feedback',
-					'icon' => '',
-					'title' => tr('Note')
-				], $item);
+				if (is_array($item)) {
+					$feedback[$key] = array_merge([
+						'tpl' => 'default',
+						'type' => 'feedback',
+						'icon' => '',
+						'title' => tr('Note')
+					], $item);
+				}
 				if (empty($item['tpl'])) {
 					$feedback[$key]['tpl'] = 'default';
 				}
