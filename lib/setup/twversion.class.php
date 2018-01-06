@@ -1,5 +1,5 @@
 <?php
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright 2002-2017 by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -24,11 +24,11 @@ class TWVersion
 		//   stable   : Represents stable releases.
 		//   unstable : Represents candidate and test/development releases.
 		//   trunk    : Represents next generation development version.
-		$this->branch 	= 'stable';
+		$this->branch 	= 'trunk';
 
 		// Set everything else, including defaults.
-		$this->version 	= '18.0svn';	// needs to have no spaces for releases
-		$this->star	= '?';
+		$this->version 	= '19.0svn';	// needs to have no spaces for releases
+		$this->star	= 'Alcyone';
 		$this->releases	= [];
 
 		// Check for Subversion or not
@@ -60,7 +60,7 @@ class TWVersion
 				7 => 'Mira',			// 1.4.x
 				8 => 'Regulus',		// 1.5.x
 				9 => 'Tau Ceti',		// 1.6.x
-				10 => 'Era Carinae',	// 1.7.x
+				10 => 'Eta Carinae',	// 1.7.x
 				11 => 'Polaris',		// 1.8.x
 				12 => 'Sirius',		// 1.9.x
 				13 => 'Arcturus',		// 2.x
@@ -79,6 +79,7 @@ class TWVersion
 				26 => 'Situla',		// 15.x
 				27 => 'Tabby\'s',		// 16.x
 				28 => 'Zeta Boötis',	// 17.x
+				29 => 'Alcyone',	// 8.x
 		];
 	}
 
@@ -257,6 +258,7 @@ class TWVersion
 				'17.0beta',
 				'17.0',
 				'17.1',
+				'18.0alpha',
 			];
 	}
 
@@ -269,13 +271,13 @@ class TWVersion
 		return $star;
 	}
 
-	// Determines the currently-running version of Tikiwiki.
+	// Determines the currently-running version of Tiki.
 	function getVersion()
 	{
 		return $this->version;
 	}
 
-	// Pulls the list of releases in the current branch of Tikiwiki from
+	// Pulls the list of releases in the current branch of Tiki from
 	// a central site.
 	private function pollVersion()
 	{

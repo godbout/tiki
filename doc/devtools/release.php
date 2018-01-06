@@ -261,6 +261,10 @@ function updateSecdb($version)
 			`svn delete $file --force`;
 		}
 		echo (' Removed ' . count($files) . ' old secdb files.');
+
+		$excludes = [];
+	} else {
+		$excludes = array_keys(svn_files_differ(ROOT));
 	}
 
 	$file = "/db/tiki-secdb_{$version}_mysql.sql";
@@ -270,12 +274,16 @@ function updateSecdb($version)
 		return false;
 	}
 	$queries = [];
-	md5_check_dir(ROOT, $version, $queries);
+	build_secdb_queries(ROOT, $version, $queries, $excludes);
 
 	if (! empty($queries)) {
 		sort($queries);
 		fwrite($fp, "start transaction;\n");
-		fwrite($fp, "DELETE FROM `tiki_secdb` WHERE `tiki_version` = '$version';\n\n");
+		fwrite($fp, "DELETE FROM `tiki_secdb`;\n");
+		// This index was originally created with a size limit that would raise an error on some versions,
+		// notably on 18.0. Since this file is executed before any patch in installer/schema, the fix had to
+		// be done here. It's a quick operation because table is empty, so no harm in leaving this here forever.
+		fwrite($fp, "ALTER TABLE `tiki_secdb` DROP PRIMARY KEY, ADD PRIMARY KEY (`filename`, `tiki_version`);\n\n");
 		foreach ($queries as $q) {
 			fwrite($fp, "$q\n");
 		}
@@ -292,11 +300,14 @@ function updateSecdb($version)
 }
 
 /**
- * @param $dir
- * @param $version
- * @param $queries
+ * Similar to md5_check_dir in tiki-admin_security.php but creates the sql queries for /db/tiki-secdb_{$version}_mysql.sql
+ *
+ * @param string $dir
+ * @param string $version
+ * @param array $queries queries returned
+ * @param array $excludes files to exclude when doing secdb on an svn checkout
  */
-function md5_check_dir($dir, $version, &$queries)
+function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 {
 	$d = dir($dir);
 	$link = null;
@@ -306,11 +317,15 @@ function md5_check_dir($dir, $version, &$queries)
 		if (is_dir($entry)) {
 			// do not descend and no CVS/Subversion files
 			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom') {
-				md5_check_dir($entry, $version, $queries);
+				build_secdb_queries($entry, $version, $queries, $excludes);
 			}
 		} else {
 			if (preg_match('/\.(sql|css|tpl|js|php)$/', $e) && realpath($entry) != __FILE__ && $entry != './db/local.php') {
 				$file = '.' . substr($entry, strlen(ROOT));
+
+				if (in_array($entry, $excludes)) {
+					continue;
+				}
 
 				// Escape filename. Since this requires a connection to MySQL (due to the charset), do so conditionally to reduce the risk of connection failure.
 				if (! preg_match('/^[a-zA-Z0-9\/ _+.-]+$/', $file)) {
@@ -320,7 +335,7 @@ function md5_check_dir($dir, $version, &$queries)
 						if (mysqli_connect_errno()) {
 							global $phpCommand, $phpCommandArguments;
 							error(
-								"SecDB step failed because some filenames need escaping but no MySQL connection has been found (" . mysqli_connect_error() . ")."
+								"SecDB step failed because some filenames (e.g. {$file}) need escaping but no MySQL connection has been found (" . mysqli_connect_error() . ")."
 								. "\nTry this command line instead (replace HOST, USER and PASS by a valid MySQL host, user and password) :"
 								. "\n\n\t" . $phpCommand
 								. " -d mysqli.default_host=HOST -d mysqli.default_user=USER -d mysqli.default_pw=PASS "
@@ -1298,7 +1313,7 @@ DOCUMENTATION
 * http://doc.tiki.org/Installation for a setup guide
 
 * Notes about this release are accessible from $release_notes_url
-* Tikiwiki has an active IRC channel, #tikiwiki on irc.freenode.net
+* Tiki has an active IRC channel, #tikiwiki on irc.freenode.net
 
 INSTALLATION
 

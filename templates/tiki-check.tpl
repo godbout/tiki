@@ -366,8 +366,9 @@
 <h2>{tr}PHP Info{/tr}</h2>
 {tr}For more detailed information about your PHP installation see <a href="tiki-phpinfo.php">Admin->phpinfo</a>{/tr}.
 
+<a name="benchmark"></a>
 <h2>{tr}Benchmark PHP/MySQL{/tr}</h2>
-<a href="tiki-check.php?benchmark=run" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">{tr}Check{/tr}</a>
+<a href="tiki-check.php?benchmark=run&ts={$smarty.now}#benchmark" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">{tr}Check{/tr}</a>
 {if !empty($benchmark)}
 	<br />
 	<div class="table-responsive">
@@ -408,19 +409,17 @@
 			<tr>
 				<th>{tr}Requirements{/tr}</th>
 				<th>{tr}Status{/tr}</th>
+				<th>{tr}Message{/tr}</th>
 			</tr>
 			{foreach from=$trim_server_requirements key=key item=item}
 				<tr>
 					<td class="text">{$key}</td>
 					<td class="text">
-						{if $item === true}
-							{icon name='ok' iclass='text-success'}
-						{elseif $item === false}
-							{icon name='remove' iclass='text-danger'}
-						{else}
-							{$item}
-						{/if}
+					<span class="text-{$fmap[$item.fitness]['class']}">
+						{icon name="{$fmap[$item.fitness]['icon']}"} {$item.fitness}
+					</span>
 					</td>
+					<td class="text">{$item.message}</td>
 				</tr>
 			{/foreach}
 		</table>
@@ -432,19 +431,17 @@
 			<tr>
 				<th>{tr}Requirements{/tr}</th>
 				<th>{tr}Status{/tr}</th>
+				<th>{tr}Message{/tr}</th>
 			</tr>
 			{foreach from=$trim_client_requirements key=key item=item}
 				<tr>
 					<td class="text">{$key}</td>
 					<td class="text">
-						{if $item === true}
-							{icon name='ok' iclass='text-success'}
-						{elseif $item === false}
-							{icon name='remove' iclass='text-danger'}
-						{else}
-							{$item}
-						{/if}
+					<span class="text-{$fmap[$item.fitness]['class']}">
+						{icon name="{$fmap[$item.fitness]['icon']}"} {$item.fitness}
+					</span>
 					</td>
+					<td class="text">{$item.message}</td>
 				</tr>
 			{/foreach}
 		</table>

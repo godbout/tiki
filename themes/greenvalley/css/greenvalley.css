@@ -2569,9 +2569,19 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   border-radius: 0.25rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
-/* line 24, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_hover.scss */
-.btn:focus, .btn:hover {
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn:hover,
+.btn:focus,
+.btn.focus {
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -2596,39 +2606,41 @@ a.btn.disabled,
 fieldset[disabled] a.btn {
   pointer-events: none;
 }
-
-/* line 54, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_buttons.scss */
-.btn-primary {
-  color: #fff;
-  background-color: #da388f;
-  border-color: #da388f;
+.btn-default {
+  color: #ffffff;
+  background-color: rgba(84, 60, 27, 0.64);
+  border-color: rgba(84, 60, 27, 0.64);
 }
-
-/* line 12, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_hover.scss */
-.btn-primary:hover {
-  color: #fff;
-  background-color: #c7257c;
-  border-color: #bc2375;
+.btn-default:focus,
+.btn-default.focus {
+  color: #ffffff;
+  background-color: rgba(45, 32, 15, 0.64);
+  border-color: rgba(0, 0, 0, 0.64);
 }
-
-/* line 18, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_buttons.scss */
-.btn-primary:focus, .btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(218, 56, 143, 0.5);
+.btn-default:hover {
+  color: #ffffff;
+  background-color: rgba(45, 32, 15, 0.64);
+  border-color: rgba(38, 27, 12, 0.64);
 }
-
-/* line 29, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_buttons.scss */
-.btn-primary.disabled, .btn-primary:disabled {
-  background-color: #da388f;
-  border-color: #da388f;
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #ffffff;
+  background-color: rgba(45, 32, 15, 0.64);
+  border-color: rgba(38, 27, 12, 0.64);
 }
-
-/* line 35, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_buttons.scss */
-.btn-primary:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active,
-.show > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #bc2375;
-  border-color: #b1216e;
-  box-shadow: 0 0 0 0.2rem rgba(218, 56, 143, 0.5);
+.btn-default:active:hover,
+.btn-default.active:hover,
+.open > .dropdown-toggle.btn-default:hover,
+.btn-default:active:focus,
+.btn-default.active:focus,
+.open > .dropdown-toggle.btn-default:focus,
+.btn-default:active.focus,
+.btn-default.active.focus,
+.open > .dropdown-toggle.btn-default.focus {
+  color: #ffffff;
+  background-color: rgba(18, 13, 6, 0.64);
+  border-color: rgba(0, 0, 0, 0.64);
 }
 
 /* line 54, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_buttons.scss */
@@ -2637,17 +2649,21 @@ fieldset[disabled] a.btn {
   background-color: #868e96;
   border-color: #868e96;
 }
-
-/* line 12, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_hover.scss */
-.btn-secondary:hover {
-  color: #fff;
-  background-color: #727b84;
-  border-color: #6c757d;
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus {
+  background-color: rgba(84, 60, 27, 0.64);
+  border-color: rgba(84, 60, 27, 0.64);
 }
-
-/* line 18, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_buttons.scss */
-.btn-secondary:focus, .btn-secondary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(134, 142, 150, 0.5);
+.btn-default .badge {
+  color: rgba(84, 60, 27, 0.64);
+  background-color: #ffffff;
 }
 
 /* line 29, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_buttons.scss */
@@ -4025,10 +4041,11 @@ tbody.collapse.show {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-/* line 75, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_nav.scss */
-.nav-pills .nav-link {
-  border-radius: 0.25rem;
+.navbar {
+  position: relative;
+  min-height: 46px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
 }
 
 /* line 79, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_nav.scss */
@@ -4140,9 +4157,15 @@ tbody.collapse.show {
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
-
-/* line 24, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_hover.scss */
-.navbar-toggler:focus, .navbar-toggler:hover {
+.navbar-brand {
+  float: left;
+  padding: 13px 15px;
+  font-size: 18px;
+  line-height: 20px;
+  height: 46px;
+}
+.navbar-brand:hover,
+.navbar-brand:focus {
   text-decoration: none;
 }
 
@@ -4165,43 +4188,32 @@ tbody.collapse.show {
     padding-left: 0;
   }
 }
-
-@media (min-width: 576px) {
-  /* line 140, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-sm {
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-  }
-  /* line 153, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-sm .navbar-nav {
-    flex-direction: row;
-  }
-  /* line 156, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-sm .navbar-nav .dropdown-menu {
-    position: absolute;
-  }
-  /* line 160, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-sm .navbar-nav .dropdown-menu-right {
-    right: 0;
-    left: auto;
-  }
-  /* line 165, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-sm .navbar-nav .nav-link {
-    padding-right: .5rem;
-    padding-left: .5rem;
-  }
-  /* line 172, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-sm > .container,
-  .navbar-expand-sm > .container-fluid {
-    flex-wrap: nowrap;
-  }
-  /* line 177, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-sm .navbar-collapse {
-    display: flex !important;
-    flex-basis: auto;
-  }
-  /* line 184, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-sm .navbar-toggler {
+.navbar-toggle {
+  position: relative;
+  float: right;
+  margin-right: 15px;
+  padding: 9px 10px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.navbar-toggle:focus {
+  outline: 0;
+}
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+}
+.navbar-toggle .icon-bar + .icon-bar {
+  margin-top: 4px;
+}
+@media (min-width: 768px) {
+  .navbar-toggle {
     display: none;
   }
   /* line 189, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
@@ -4210,7 +4222,14 @@ tbody.collapse.show {
     bottom: 100%;
   }
 }
-
+.navbar-nav {
+  margin: 6.5px -15px;
+}
+.navbar-nav > li > a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+}
 @media (max-width: 767px) {
   /* line 142, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
   .navbar-expand-md > .container,
@@ -4244,10 +4263,9 @@ tbody.collapse.show {
     padding-right: .5rem;
     padding-left: .5rem;
   }
-  /* line 172, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-md > .container,
-  .navbar-expand-md > .container-fluid {
-    flex-wrap: nowrap;
+  .navbar-nav > li > a {
+    padding-top: 13px;
+    padding-bottom: 13px;
   }
   /* line 177, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
   .navbar-expand-md .navbar-collapse {
@@ -4264,14 +4282,16 @@ tbody.collapse.show {
     bottom: 100%;
   }
 }
-
-@media (max-width: 991px) {
-  /* line 142, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-  .navbar-expand-lg > .container,
-  .navbar-expand-lg > .container-fluid {
-    padding-right: 0;
-    padding-left: 0;
-  }
+.navbar-form {
+  margin-left: -15px;
+  margin-right: -15px;
+  padding: 10px 15px;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 @media (min-width: 992px) {
@@ -4385,27 +4405,21 @@ tbody.collapse.show {
   padding-right: 0;
   padding-left: 0;
 }
-
-/* line 153, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-.navbar-expand .navbar-nav {
-  flex-direction: row;
+.navbar-btn {
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
-
-/* line 156, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-.navbar-expand .navbar-nav .dropdown-menu {
-  position: absolute;
+.navbar-btn.btn-sm {
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
-
-/* line 160, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-.navbar-expand .navbar-nav .dropdown-menu-right {
-  right: 0;
-  left: auto;
+.navbar-btn.btn-xs {
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
-
-/* line 165, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
-.navbar-expand .navbar-nav .nav-link {
-  padding-right: .5rem;
-  padding-left: .5rem;
+.navbar-text {
+  margin-top: 13px;
+  margin-bottom: 13px;
 }
 
 /* line 172, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_navbar.scss */
@@ -5621,8 +5635,364 @@ button.list-group-item-dark.active {
   background-color: #1b1e21;
   border-color: #1b1e21;
 }
-
-/* line 1, C:/cygwin64/home/Gary/bootstrap4/vendor_bundled/vendor/twbs/bootstrap/scss/_close.scss */
+.panel-footer {
+  padding: 10px 15px;
+  background-color: #e6ffb2;
+  border-top: 1px solid #53b042;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.panel > .list-group,
+.panel > .panel-collapse > .list-group {
+  margin-bottom: 0;
+}
+.panel > .list-group .list-group-item,
+.panel > .panel-collapse > .list-group .list-group-item {
+  border-width: 1px 0;
+  border-radius: 0;
+}
+.panel > .list-group:first-child .list-group-item:first-child,
+.panel > .panel-collapse > .list-group:first-child .list-group-item:first-child {
+  border-top: 0;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.panel > .list-group:last-child .list-group-item:last-child,
+.panel > .panel-collapse > .list-group:last-child .list-group-item:last-child {
+  border-bottom: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.panel > .panel-heading + .panel-collapse > .list-group .list-group-item:first-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.panel-heading + .list-group .list-group-item:first-child {
+  border-top-width: 0;
+}
+.list-group + .panel-footer {
+  border-top-width: 0;
+}
+.panel > .table,
+.panel > .table-responsive > .table,
+.panel > .panel-collapse > .table {
+  margin-bottom: 0;
+}
+.panel > .table caption,
+.panel > .table-responsive > .table caption,
+.panel > .panel-collapse > .table caption {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.panel > .table:first-child,
+.panel > .table-responsive:first-child > .table:first-child {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.panel > .table:first-child > thead:first-child > tr:first-child,
+.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child,
+.panel > .table:first-child > tbody:first-child > tr:first-child,
+.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel > .table:first-child > thead:first-child > tr:first-child td:first-child,
+.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:first-child,
+.panel > .table:first-child > tbody:first-child > tr:first-child td:first-child,
+.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:first-child,
+.panel > .table:first-child > thead:first-child > tr:first-child th:first-child,
+.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:first-child,
+.panel > .table:first-child > tbody:first-child > tr:first-child th:first-child,
+.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:first-child {
+  border-top-left-radius: 3px;
+}
+.panel > .table:first-child > thead:first-child > tr:first-child td:last-child,
+.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:last-child,
+.panel > .table:first-child > tbody:first-child > tr:first-child td:last-child,
+.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:last-child,
+.panel > .table:first-child > thead:first-child > tr:first-child th:last-child,
+.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:last-child,
+.panel > .table:first-child > tbody:first-child > tr:first-child th:last-child,
+.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:last-child {
+  border-top-right-radius: 3px;
+}
+.panel > .table:last-child,
+.panel > .table-responsive:last-child > .table:last-child {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.panel > .table:last-child > tbody:last-child > tr:last-child,
+.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child,
+.panel > .table:last-child > tfoot:last-child > tr:last-child,
+.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.panel > .table:last-child > tbody:last-child > tr:last-child td:first-child,
+.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:first-child,
+.panel > .table:last-child > tfoot:last-child > tr:last-child td:first-child,
+.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:first-child,
+.panel > .table:last-child > tbody:last-child > tr:last-child th:first-child,
+.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:first-child,
+.panel > .table:last-child > tfoot:last-child > tr:last-child th:first-child,
+.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:first-child {
+  border-bottom-left-radius: 3px;
+}
+.panel > .table:last-child > tbody:last-child > tr:last-child td:last-child,
+.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:last-child,
+.panel > .table:last-child > tfoot:last-child > tr:last-child td:last-child,
+.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:last-child,
+.panel > .table:last-child > tbody:last-child > tr:last-child th:last-child,
+.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:last-child,
+.panel > .table:last-child > tfoot:last-child > tr:last-child th:last-child,
+.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:last-child {
+  border-bottom-right-radius: 3px;
+}
+.panel > .panel-body + .table,
+.panel > .panel-body + .table-responsive,
+.panel > .table + .panel-body,
+.panel > .table-responsive + .panel-body {
+  border-top: 1px solid #dddddd;
+}
+.panel > .table > tbody:first-child > tr:first-child th,
+.panel > .table > tbody:first-child > tr:first-child td {
+  border-top: 0;
+}
+.panel > .table-bordered,
+.panel > .table-responsive > .table-bordered {
+  border: 0;
+}
+.panel > .table-bordered > thead > tr > th:first-child,
+.panel > .table-responsive > .table-bordered > thead > tr > th:first-child,
+.panel > .table-bordered > tbody > tr > th:first-child,
+.panel > .table-responsive > .table-bordered > tbody > tr > th:first-child,
+.panel > .table-bordered > tfoot > tr > th:first-child,
+.panel > .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+.panel > .table-bordered > thead > tr > td:first-child,
+.panel > .table-responsive > .table-bordered > thead > tr > td:first-child,
+.panel > .table-bordered > tbody > tr > td:first-child,
+.panel > .table-responsive > .table-bordered > tbody > tr > td:first-child,
+.panel > .table-bordered > tfoot > tr > td:first-child,
+.panel > .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+  border-left: 0;
+}
+.panel > .table-bordered > thead > tr > th:last-child,
+.panel > .table-responsive > .table-bordered > thead > tr > th:last-child,
+.panel > .table-bordered > tbody > tr > th:last-child,
+.panel > .table-responsive > .table-bordered > tbody > tr > th:last-child,
+.panel > .table-bordered > tfoot > tr > th:last-child,
+.panel > .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+.panel > .table-bordered > thead > tr > td:last-child,
+.panel > .table-responsive > .table-bordered > thead > tr > td:last-child,
+.panel > .table-bordered > tbody > tr > td:last-child,
+.panel > .table-responsive > .table-bordered > tbody > tr > td:last-child,
+.panel > .table-bordered > tfoot > tr > td:last-child,
+.panel > .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+  border-right: 0;
+}
+.panel > .table-bordered > thead > tr:first-child > td,
+.panel > .table-responsive > .table-bordered > thead > tr:first-child > td,
+.panel > .table-bordered > tbody > tr:first-child > td,
+.panel > .table-responsive > .table-bordered > tbody > tr:first-child > td,
+.panel > .table-bordered > thead > tr:first-child > th,
+.panel > .table-responsive > .table-bordered > thead > tr:first-child > th,
+.panel > .table-bordered > tbody > tr:first-child > th,
+.panel > .table-responsive > .table-bordered > tbody > tr:first-child > th {
+  border-bottom: 0;
+}
+.panel > .table-bordered > tbody > tr:last-child > td,
+.panel > .table-responsive > .table-bordered > tbody > tr:last-child > td,
+.panel > .table-bordered > tfoot > tr:last-child > td,
+.panel > .table-responsive > .table-bordered > tfoot > tr:last-child > td,
+.panel > .table-bordered > tbody > tr:last-child > th,
+.panel > .table-responsive > .table-bordered > tbody > tr:last-child > th,
+.panel > .table-bordered > tfoot > tr:last-child > th,
+.panel > .table-responsive > .table-bordered > tfoot > tr:last-child > th {
+  border-bottom: 0;
+}
+.panel > .table-responsive {
+  border: 0;
+  margin-bottom: 0;
+}
+.panel-group {
+  margin-bottom: 20px;
+}
+.panel-group .panel {
+  margin-bottom: 0;
+  border-radius: 4px;
+}
+.panel-group .panel + .panel {
+  margin-top: 5px;
+}
+.panel-group .panel-heading {
+  border-bottom: 0;
+}
+.panel-group .panel-heading + .panel-collapse > .panel-body,
+.panel-group .panel-heading + .panel-collapse > .list-group {
+  border-top: 1px solid #53b042;
+}
+.panel-group .panel-footer {
+  border-top: 0;
+}
+.panel-group .panel-footer + .panel-collapse .panel-body {
+  border-bottom: 1px solid #53b042;
+}
+.panel-default {
+  border-color: #53b042;
+}
+.panel-default > .panel-heading {
+  color: #ffffff;
+  background-color: #02913d;
+  border-color: #53b042;
+}
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #53b042;
+}
+.panel-default > .panel-heading .badge {
+  color: #02913d;
+  background-color: #ffffff;
+}
+.panel-default > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #53b042;
+}
+.panel-primary {
+  border-color: #53b042;
+}
+.panel-primary > .panel-heading {
+  color: #ffffff;
+  background-color: #da388f;
+  border-color: #53b042;
+}
+.panel-primary > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #53b042;
+}
+.panel-primary > .panel-heading .badge {
+  color: #da388f;
+  background-color: #ffffff;
+}
+.panel-primary > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #53b042;
+}
+.panel-success {
+  border-color: #d6e9c6;
+}
+.panel-success > .panel-heading {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.panel-success > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #d6e9c6;
+}
+.panel-success > .panel-heading .badge {
+  color: #dff0d8;
+  background-color: #3c763d;
+}
+.panel-success > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #d6e9c6;
+}
+.panel-info {
+  border-color: #bce8f1;
+}
+.panel-info > .panel-heading {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.panel-info > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #bce8f1;
+}
+.panel-info > .panel-heading .badge {
+  color: #d9edf7;
+  background-color: #31708f;
+}
+.panel-info > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #bce8f1;
+}
+.panel-warning {
+  border-color: #faebcc;
+}
+.panel-warning > .panel-heading {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.panel-warning > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #faebcc;
+}
+.panel-warning > .panel-heading .badge {
+  color: #fcf8e3;
+  background-color: #8a6d3b;
+}
+.panel-warning > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #faebcc;
+}
+.panel-danger {
+  border-color: #ebccd1;
+}
+.panel-danger > .panel-heading {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.panel-danger > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #ebccd1;
+}
+.panel-danger > .panel-heading .badge {
+  color: #f2dede;
+  background-color: #a94442;
+}
+.panel-danger > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #ebccd1;
+}
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.embed-responsive .embed-responsive-item,
+.embed-responsive iframe,
+.embed-responsive embed,
+.embed-responsive object,
+.embed-responsive video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  border: 0;
+}
+.embed-responsive-16by9 {
+  padding-bottom: 56.25%;
+}
+.embed-responsive-4by3 {
+  padding-bottom: 75%;
+}
+.well {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.well blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+.well-lg {
+  padding: 24px;
+  border-radius: 6px;
+}
+.well-sm {
+  padding: 9px;
+  border-radius: 3px;
+}
 .close {
   float: right;
   font-size: 1.5rem;
@@ -9612,7 +9982,7 @@ a.fc-event:hover {
 /* line 45, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
 .note-list .postbody-title {
   background: #e6ffb2;
-  color: #000000;
+  color: #ffffff;
 }
 
 /* line 51, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
@@ -9721,9 +10091,9 @@ a.fc-event:hover {
 .topbar > a,
 .topbar .navbar-default .navbar-nav > li > a,
 .topbar .nav > li > a {
-  color: rgba(255, 255, 255, 0.5);
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  color: #e0d6cc;
+  padding-top: 13px;
+  padding-bottom: 13px;
 }
 
 /* line 158, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
@@ -10220,9 +10590,9 @@ div.cvsup {
 
 /* line 614, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
 #intertrans-form {
-  background-color: #fff;
-  border: 1px solid #000000;
-  color: #000000;
+  background-color: #e6ffb2;
+  border: 1px solid #53b042;
+  color: #ffffff;
 }
 
 /* line 620, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
@@ -10747,8 +11117,8 @@ span.plugin-mouseover {
 
 /* line 1099, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
 .tiki .ui-widget button {
-  background: #fff;
-  color: #000000;
+  background: rgba(84, 60, 27, 0.64);
+  color: #ffffff;
 }
 
 /* line 1105, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
@@ -10834,9 +11204,9 @@ input[type="checkbox"].preffilter-toggle-round + label {
 
 /* line 1171, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #000000;
-  background-color: #fff;
-  border-color: #000000;
+  color: #ffffff;
+  background-color: rgba(84, 60, 27, 0.64);
+  border-color: rgba(84, 60, 27, 0.64);
 }
 
 /* line 1180, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-selectors.scss */
@@ -11099,10 +11469,10 @@ footer.footer {
   -webkit-text-size-adjust: 100%;
   padding: 2px 5px;
   white-space: nowrap;
-  background: #fff;
-  border: 1px solid #000000;
-  border-radius: 0.25rem;
-  color: #000000;
+  background: rgba(84, 60, 27, 0.64);
+  border: 1px solid rgba(84, 60, 27, 0.64);
+  border-radius: 4px;
+  color: #ffffff;
 }
 
 /* line 83, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_pivot-tiki.scss */
@@ -11177,15 +11547,15 @@ footer.footer {
 
 /* line 135, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_pivot-tiki.scss */
 .tiki .pvtFilterBox button {
-  background: #fff;
-  border: 1px solid #000000;
-  border-radius: 0.25rem;
-  color: #000000;
+  background: rgba(84, 60, 27, 0.64);
+  border: 1px solid rgba(84, 60, 27, 0.64);
+  border-radius: 4px;
+  color: #ffffff;
 }
 
 /* line 140, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_pivot-tiki.scss */
 .tiki .pvtFilterBox button:hover {
-  background: white;
+  background: rgba(84, 70, 27, 0.64);
 }
 
 /* line 143, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_pivot-tiki.scss */
@@ -11204,27 +11574,860 @@ footer.footer {
 .tiki select {
   font-size: 1rem;
 }
-
-/* line 5, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_jquery-ui-tiki.scss */
-.tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #000000;
-  background: #fff;
+.tiki .ui-state-default,
+.tiki .ui-widget-content .ui-state-default,
+.tiki .ui-widget-header .ui-state-default,
+.tiki .ui-button,
+.tiki html .ui-button.ui-state-disabled:hover,
+.tiki html .ui-button.ui-state-disabled:active {
+  border: 1px solid rgba(84, 60, 27, 0.64);
+  background: rgba(84, 60, 27, 0.64);
   font-weight: normal;
-  color: #000000;
-  font-size: 1rem;
+  color: #ffffff;
+  font-size: 14px;
 }
-
-/* line 12, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_jquery-ui-tiki.scss */
-.tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
-  border: 1px solid #000000;
-  background: #fff;
+.tiki .ui-state-hover,
+.tiki .ui-widget-content .ui-state-hover,
+.tiki .ui-widget-header .ui-state-hover,
+.tiki .ui-state-focus,
+.tiki .ui-widget-content .ui-state-focus,
+.tiki .ui-widget-header .ui-state-focus,
+.tiki .ui-button:hover,
+.tiki .ui-button:focus {
+  border: 1px solid rgba(84, 60, 27, 0.64);
+  background: rgba(84, 60, 27, 0.64);
   font-weight: normal;
-  color: #000000;
+  color: #ffffff;
 }
 
 /* line 18, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_jquery-ui-tiki.scss */
 .tiki .ui-widget-header a {
   color: #da388f;
 }
-
-/*# sourceMappingURL=../css/greenvalley.map */
+.tiki #converse-embedded-chat,
+.tiki #conversejs {
+  font-family: Century Gothic, Lucida Grande, Arial, Helvetcia, sans-serif;
+  color: #515151;
+}
+.tiki #converse-embedded-chat a,
+.tiki #conversejs a,
+.tiki #converse-embedded-chat a:visited,
+.tiki #conversejs a:visited {
+  color: #da388f;
+}
+.tiki #converse-embedded-chat input[type=text],
+.tiki #conversejs input[type=text],
+.tiki #converse-embedded-chat textarea,
+.tiki #conversejs textarea,
+.tiki #converse-embedded-chat select,
+.tiki #conversejs select {
+  background-color: #ffffff;
+  color: #737373;
+  border-color: #cccccc;
+}
+.tiki #converse-embedded-chat form.pure-form input[type=text],
+.tiki #conversejs form.pure-form input[type=text],
+.tiki #converse-embedded-chat form.pure-form textarea,
+.tiki #conversejs form.pure-form textarea,
+.tiki #converse-embedded-chat form.pure-form select,
+.tiki #conversejs form.pure-form select {
+  background-color: #ffffff;
+  color: #737373;
+  border-color: #cccccc;
+}
+.tiki #converse-embedded-chat form.pure-form.converse-form,
+.tiki #conversejs form.pure-form.converse-form {
+  background-color: inherit;
+}
+.tiki #converse-embedded-chat form.pure-form.converse-form .form-help,
+.tiki #conversejs form.pure-form.converse-form .form-help,
+.tiki #converse-embedded-chat form.pure-form.converse-form .form-help:hover,
+.tiki #conversejs form.pure-form.converse-form .form-help:hover {
+  color: #515151;
+}
+.tiki #converse-embedded-chat .button-primary,
+.tiki #conversejs .button-primary {
+  color: #ffffff;
+  background-color: #da388f;
+  border-color: #d22783;
+}
+.tiki #converse-embedded-chat .button-primary:focus,
+.tiki #conversejs .button-primary:focus,
+.tiki #converse-embedded-chat .button-primary.focus,
+.tiki #conversejs .button-primary.focus {
+  color: #ffffff;
+  background-color: #bc2375;
+  border-color: #661340;
+}
+.tiki #converse-embedded-chat .button-primary:hover,
+.tiki #conversejs .button-primary:hover {
+  color: #ffffff;
+  background-color: #bc2375;
+  border-color: #9e1d62;
+}
+.tiki #converse-embedded-chat .button-primary:active,
+.tiki #conversejs .button-primary:active,
+.tiki #converse-embedded-chat .button-primary.active,
+.tiki #conversejs .button-primary.active,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-primary,
+.open > .dropdown-toggle.tiki #conversejs .button-primary {
+  color: #ffffff;
+  background-color: #bc2375;
+  border-color: #9e1d62;
+}
+.tiki #converse-embedded-chat .button-primary:active:hover,
+.tiki #conversejs .button-primary:active:hover,
+.tiki #converse-embedded-chat .button-primary.active:hover,
+.tiki #conversejs .button-primary.active:hover,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-primary:hover,
+.open > .dropdown-toggle.tiki #conversejs .button-primary:hover,
+.tiki #converse-embedded-chat .button-primary:active:focus,
+.tiki #conversejs .button-primary:active:focus,
+.tiki #converse-embedded-chat .button-primary.active:focus,
+.tiki #conversejs .button-primary.active:focus,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-primary:focus,
+.open > .dropdown-toggle.tiki #conversejs .button-primary:focus,
+.tiki #converse-embedded-chat .button-primary:active.focus,
+.tiki #conversejs .button-primary:active.focus,
+.tiki #converse-embedded-chat .button-primary.active.focus,
+.tiki #conversejs .button-primary.active.focus,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-primary.focus,
+.open > .dropdown-toggle.tiki #conversejs .button-primary.focus {
+  color: #ffffff;
+  background-color: #9e1d62;
+  border-color: #661340;
+}
+.tiki #converse-embedded-chat .button-primary:active,
+.tiki #conversejs .button-primary:active,
+.tiki #converse-embedded-chat .button-primary.active,
+.tiki #conversejs .button-primary.active,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-primary,
+.open > .dropdown-toggle.tiki #conversejs .button-primary {
+  background-image: none;
+}
+.tiki #converse-embedded-chat .button-primary.disabled:hover,
+.tiki #conversejs .button-primary.disabled:hover,
+.tiki #converse-embedded-chat .button-primary[disabled]:hover,
+.tiki #conversejs .button-primary[disabled]:hover,
+fieldset[disabled] .tiki #converse-embedded-chat .button-primary:hover,
+fieldset[disabled] .tiki #conversejs .button-primary:hover,
+.tiki #converse-embedded-chat .button-primary.disabled:focus,
+.tiki #conversejs .button-primary.disabled:focus,
+.tiki #converse-embedded-chat .button-primary[disabled]:focus,
+.tiki #conversejs .button-primary[disabled]:focus,
+fieldset[disabled] .tiki #converse-embedded-chat .button-primary:focus,
+fieldset[disabled] .tiki #conversejs .button-primary:focus,
+.tiki #converse-embedded-chat .button-primary.disabled.focus,
+.tiki #conversejs .button-primary.disabled.focus,
+.tiki #converse-embedded-chat .button-primary[disabled].focus,
+.tiki #conversejs .button-primary[disabled].focus,
+fieldset[disabled] .tiki #converse-embedded-chat .button-primary.focus,
+fieldset[disabled] .tiki #conversejs .button-primary.focus {
+  background-color: #da388f;
+  border-color: #d22783;
+}
+.tiki #converse-embedded-chat .button-primary .badge,
+.tiki #conversejs .button-primary .badge {
+  color: #da388f;
+  background-color: #ffffff;
+}
+.tiki #converse-embedded-chat .button-secondary,
+.tiki #conversejs .button-secondary {
+  color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.tiki #converse-embedded-chat .button-secondary:focus,
+.tiki #conversejs .button-secondary:focus,
+.tiki #converse-embedded-chat .button-secondary.focus,
+.tiki #conversejs .button-secondary.focus {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #1b6d85;
+}
+.tiki #converse-embedded-chat .button-secondary:hover,
+.tiki #conversejs .button-secondary:hover {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.tiki #converse-embedded-chat .button-secondary:active,
+.tiki #conversejs .button-secondary:active,
+.tiki #converse-embedded-chat .button-secondary.active,
+.tiki #conversejs .button-secondary.active,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-secondary,
+.open > .dropdown-toggle.tiki #conversejs .button-secondary {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.tiki #converse-embedded-chat .button-secondary:active:hover,
+.tiki #conversejs .button-secondary:active:hover,
+.tiki #converse-embedded-chat .button-secondary.active:hover,
+.tiki #conversejs .button-secondary.active:hover,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-secondary:hover,
+.open > .dropdown-toggle.tiki #conversejs .button-secondary:hover,
+.tiki #converse-embedded-chat .button-secondary:active:focus,
+.tiki #conversejs .button-secondary:active:focus,
+.tiki #converse-embedded-chat .button-secondary.active:focus,
+.tiki #conversejs .button-secondary.active:focus,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-secondary:focus,
+.open > .dropdown-toggle.tiki #conversejs .button-secondary:focus,
+.tiki #converse-embedded-chat .button-secondary:active.focus,
+.tiki #conversejs .button-secondary:active.focus,
+.tiki #converse-embedded-chat .button-secondary.active.focus,
+.tiki #conversejs .button-secondary.active.focus,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-secondary.focus,
+.open > .dropdown-toggle.tiki #conversejs .button-secondary.focus {
+  color: #ffffff;
+  background-color: #269abc;
+  border-color: #1b6d85;
+}
+.tiki #converse-embedded-chat .button-secondary:active,
+.tiki #conversejs .button-secondary:active,
+.tiki #converse-embedded-chat .button-secondary.active,
+.tiki #conversejs .button-secondary.active,
+.open > .dropdown-toggle.tiki #converse-embedded-chat .button-secondary,
+.open > .dropdown-toggle.tiki #conversejs .button-secondary {
+  background-image: none;
+}
+.tiki #converse-embedded-chat .button-secondary.disabled:hover,
+.tiki #conversejs .button-secondary.disabled:hover,
+.tiki #converse-embedded-chat .button-secondary[disabled]:hover,
+.tiki #conversejs .button-secondary[disabled]:hover,
+fieldset[disabled] .tiki #converse-embedded-chat .button-secondary:hover,
+fieldset[disabled] .tiki #conversejs .button-secondary:hover,
+.tiki #converse-embedded-chat .button-secondary.disabled:focus,
+.tiki #conversejs .button-secondary.disabled:focus,
+.tiki #converse-embedded-chat .button-secondary[disabled]:focus,
+.tiki #conversejs .button-secondary[disabled]:focus,
+fieldset[disabled] .tiki #converse-embedded-chat .button-secondary:focus,
+fieldset[disabled] .tiki #conversejs .button-secondary:focus,
+.tiki #converse-embedded-chat .button-secondary.disabled.focus,
+.tiki #conversejs .button-secondary.disabled.focus,
+.tiki #converse-embedded-chat .button-secondary[disabled].focus,
+.tiki #conversejs .button-secondary[disabled].focus,
+fieldset[disabled] .tiki #converse-embedded-chat .button-secondary.focus,
+fieldset[disabled] .tiki #conversejs .button-secondary.focus {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.tiki #converse-embedded-chat .button-secondary .badge,
+.tiki #conversejs .button-secondary .badge {
+  color: #5bc0de;
+  background-color: #ffffff;
+}
+.tiki #converse-embedded-chat .toggle-controlbox,
+.tiki #conversejs .toggle-controlbox {
+  background-color: #da388f;
+  padding: 8px 10px 0 10px;
+}
+.tiki #converse-embedded-chat .toggle-controlbox span,
+.tiki #conversejs .toggle-controlbox span {
+  color: #ffffff;
+}
+.tiki #converse-embedded-chat #minimized-chats .chat-head-chatbox,
+.tiki #conversejs #minimized-chats .chat-head-chatbox {
+  background-color: #da388f;
+}
+.tiki #converse-embedded-chat #minimized-chats .chat-head-chatbox .restore-chat,
+.tiki #conversejs #minimized-chats .chat-head-chatbox .restore-chat,
+.tiki #converse-embedded-chat #minimized-chats .chat-head-chatbox .chatbox-btn,
+.tiki #conversejs #minimized-chats .chat-head-chatbox .chatbox-btn {
+  color: #ffffff;
+}
+.tiki #converse-embedded-chat #minimized-chats .chat-head-chatroom,
+.tiki #conversejs #minimized-chats .chat-head-chatroom {
+  background-color: #5bc0de;
+}
+.tiki #converse-embedded-chat #minimized-chats .chat-head-chatroom .restore-chat,
+.tiki #conversejs #minimized-chats .chat-head-chatroom .restore-chat,
+.tiki #converse-embedded-chat #minimized-chats .chat-head-chatroom .chatbox-btn,
+.tiki #conversejs #minimized-chats .chat-head-chatroom .chatbox-btn {
+  color: #ffffff;
+}
+.tiki #converse-embedded-chat #controlbox .box-flyout,
+.tiki #conversejs #controlbox .box-flyout,
+.tiki #converse-embedded-chat .chatbox .box-flyout,
+.tiki #conversejs .chatbox .box-flyout {
+  background-color: #addd63;
+}
+.tiki #converse-embedded-chat #controlbox .controlbox-head,
+.tiki #conversejs #controlbox .controlbox-head,
+.tiki #converse-embedded-chat #controlbox .controlbox-panes,
+.tiki #conversejs #controlbox .controlbox-panes,
+.tiki #converse-embedded-chat #controlbox .controlbox-pane,
+.tiki #conversejs #controlbox .controlbox-pane {
+  background-color: inherit;
+}
+.tiki #converse-embedded-chat #controlbox .controlbox-head,
+.tiki #conversejs #controlbox .controlbox-head {
+  border-bottom: 1px solid #dddddd;
+}
+.tiki #converse-embedded-chat #controlbox .controlbox-head .chatbox-btn,
+.tiki #conversejs #controlbox .controlbox-head .chatbox-btn {
+  color: #515151;
+}
+.tiki #converse-embedded-chat #controlbox #controlbox-tabs,
+.tiki #conversejs #controlbox #controlbox-tabs {
+  border-bottom: 1px solid #dddddd;
+}
+.tiki #converse-embedded-chat #controlbox #controlbox-tabs li a,
+.tiki #conversejs #controlbox #controlbox-tabs li a {
+  margin-left: 2px;
+  height: 48px;
+  line-height: 48px;
+  color: #da388f;
+  border: 1px solid transparent;
+  box-shadow: none;
+  background-color: transparent;
+}
+.tiki #converse-embedded-chat #controlbox #controlbox-tabs li a:hover,
+.tiki #conversejs #controlbox #controlbox-tabs li a:hover {
+  color: #da388f;
+}
+.tiki #converse-embedded-chat #controlbox #controlbox-tabs li a.current,
+.tiki #conversejs #controlbox #controlbox-tabs li a.current,
+.tiki #converse-embedded-chat #controlbox #controlbox-tabs li a.current:hover,
+.tiki #conversejs #controlbox #controlbox-tabs li a.current:hover,
+.tiki #converse-embedded-chat #controlbox #controlbox-tabs li a.current:focus,
+.tiki #conversejs #controlbox #controlbox-tabs li a.current:focus {
+  color: #737373;
+  background-color: #addd63;
+  border: 1px solid #dddddd;
+  border-bottom-color: transparent;
+  height: 48px;
+}
+.tiki #converse-embedded-chat #controlbox #chatrooms dl.rooms-list dt,
+.tiki #conversejs #controlbox #chatrooms dl.rooms-list dt {
+  color: #515151;
+  text-shadow: none;
+}
+.tiki #converse-embedded-chat #controlbox #chatrooms dl.rooms-list dd.available-chatroom:hover,
+.tiki #conversejs #controlbox #chatrooms dl.rooms-list dd.available-chatroom:hover {
+  background-color: inherit;
+}
+.tiki #converse-embedded-chat #controlbox #chatrooms dl.rooms-list dd.available-chatroom:hover a,
+.tiki #conversejs #controlbox #chatrooms dl.rooms-list dd.available-chatroom:hover a {
+  color: #515151;
+}
+.tiki #converse-embedded-chat #controlbox #chatrooms dl.rooms-list dd.available-chatroom a.room-info,
+.tiki #conversejs #controlbox #chatrooms dl.rooms-list dd.available-chatroom a.room-info {
+  margin-top: 2px;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown,
+.tiki #conversejs #controlbox .fancy-dropdown {
+  color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select:focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown:focus,
+.tiki #conversejs #controlbox .fancy-dropdown:focus,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.focus,
+.tiki #conversejs #controlbox .fancy-dropdown.focus {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #1b6d85;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:hover,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select:hover,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown:hover,
+.tiki #conversejs #controlbox .fancy-dropdown:hover {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:active,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select:active,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown:active,
+.tiki #conversejs #controlbox .fancy-dropdown:active,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.active,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.active,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.active,
+.tiki #conversejs #controlbox .fancy-dropdown.active,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select,
+.open > .dropdown-toggle.tiki #conversejs #controlbox #fancy-xmpp-status-select,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox .fancy-dropdown,
+.open > .dropdown-toggle.tiki #conversejs #controlbox .fancy-dropdown {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:active:hover,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select:active:hover,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown:active:hover,
+.tiki #conversejs #controlbox .fancy-dropdown:active:hover,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.active:hover,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.active:hover,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.active:hover,
+.tiki #conversejs #controlbox .fancy-dropdown.active:hover,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:hover,
+.open > .dropdown-toggle.tiki #conversejs #controlbox #fancy-xmpp-status-select:hover,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox .fancy-dropdown:hover,
+.open > .dropdown-toggle.tiki #conversejs #controlbox .fancy-dropdown:hover,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:active:focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select:active:focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown:active:focus,
+.tiki #conversejs #controlbox .fancy-dropdown:active:focus,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.active:focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.active:focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.active:focus,
+.tiki #conversejs #controlbox .fancy-dropdown.active:focus,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:focus,
+.open > .dropdown-toggle.tiki #conversejs #controlbox #fancy-xmpp-status-select:focus,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox .fancy-dropdown:focus,
+.open > .dropdown-toggle.tiki #conversejs #controlbox .fancy-dropdown:focus,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:active.focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select:active.focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown:active.focus,
+.tiki #conversejs #controlbox .fancy-dropdown:active.focus,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.active.focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.active.focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.active.focus,
+.tiki #conversejs #controlbox .fancy-dropdown.active.focus,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.focus,
+.open > .dropdown-toggle.tiki #conversejs #controlbox #fancy-xmpp-status-select.focus,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox .fancy-dropdown.focus,
+.open > .dropdown-toggle.tiki #conversejs #controlbox .fancy-dropdown.focus {
+  color: #ffffff;
+  background-color: #269abc;
+  border-color: #1b6d85;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:active,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select:active,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown:active,
+.tiki #conversejs #controlbox .fancy-dropdown:active,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.active,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.active,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.active,
+.tiki #conversejs #controlbox .fancy-dropdown.active,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select,
+.open > .dropdown-toggle.tiki #conversejs #controlbox #fancy-xmpp-status-select,
+.open > .dropdown-toggle.tiki #converse-embedded-chat #controlbox .fancy-dropdown,
+.open > .dropdown-toggle.tiki #conversejs #controlbox .fancy-dropdown {
+  background-image: none;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.disabled:hover,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.disabled:hover,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.disabled:hover,
+.tiki #conversejs #controlbox .fancy-dropdown.disabled:hover,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select[disabled]:hover,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select[disabled]:hover,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown[disabled]:hover,
+.tiki #conversejs #controlbox .fancy-dropdown[disabled]:hover,
+fieldset[disabled] .tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:hover,
+fieldset[disabled] .tiki #conversejs #controlbox #fancy-xmpp-status-select:hover,
+fieldset[disabled] .tiki #converse-embedded-chat #controlbox .fancy-dropdown:hover,
+fieldset[disabled] .tiki #conversejs #controlbox .fancy-dropdown:hover,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.disabled:focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.disabled:focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.disabled:focus,
+.tiki #conversejs #controlbox .fancy-dropdown.disabled:focus,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select[disabled]:focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select[disabled]:focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown[disabled]:focus,
+.tiki #conversejs #controlbox .fancy-dropdown[disabled]:focus,
+fieldset[disabled] .tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select:focus,
+fieldset[disabled] .tiki #conversejs #controlbox #fancy-xmpp-status-select:focus,
+fieldset[disabled] .tiki #converse-embedded-chat #controlbox .fancy-dropdown:focus,
+fieldset[disabled] .tiki #conversejs #controlbox .fancy-dropdown:focus,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.disabled.focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select.disabled.focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown.disabled.focus,
+.tiki #conversejs #controlbox .fancy-dropdown.disabled.focus,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select[disabled].focus,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select[disabled].focus,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown[disabled].focus,
+.tiki #conversejs #controlbox .fancy-dropdown[disabled].focus,
+fieldset[disabled] .tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select.focus,
+fieldset[disabled] .tiki #conversejs #controlbox #fancy-xmpp-status-select.focus,
+fieldset[disabled] .tiki #converse-embedded-chat #controlbox .fancy-dropdown.focus,
+fieldset[disabled] .tiki #conversejs #controlbox .fancy-dropdown.focus {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select .badge,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select .badge,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown .badge,
+.tiki #conversejs #controlbox .fancy-dropdown .badge {
+  color: #5bc0de;
+  background-color: #ffffff;
+}
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select .choose-xmpp-status,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select .choose-xmpp-status,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown .choose-xmpp-status,
+.tiki #conversejs #controlbox .fancy-dropdown .choose-xmpp-status,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select .toggle-xmpp-contact-form,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select .toggle-xmpp-contact-form,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown .toggle-xmpp-contact-form,
+.tiki #conversejs #controlbox .fancy-dropdown .toggle-xmpp-contact-form,
+.tiki #converse-embedded-chat #controlbox #fancy-xmpp-status-select a.change-xmpp-status-message,
+.tiki #conversejs #controlbox #fancy-xmpp-status-select a.change-xmpp-status-message,
+.tiki #converse-embedded-chat #controlbox .fancy-dropdown a.change-xmpp-status-message,
+.tiki #conversejs #controlbox .fancy-dropdown a.change-xmpp-status-message {
+  color: inherit;
+  text-shadow: none;
+}
+.tiki #converse-embedded-chat #controlbox .xmpp-status-menu li a.online,
+.tiki #conversejs #controlbox .xmpp-status-menu li a.online,
+.tiki #converse-embedded-chat #controlbox .xmpp-status-menu li a.dnd,
+.tiki #conversejs #controlbox .xmpp-status-menu li a.dnd,
+.tiki #converse-embedded-chat #controlbox .xmpp-status-menu li a.away,
+.tiki #conversejs #controlbox .xmpp-status-menu li a.away {
+  color: #1f7e9a;
+}
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-filter-form .filter-type,
+.tiki #conversejs #controlbox #converse-roster .roster-filter-form .filter-type {
+  border-color: #cccccc;
+}
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-filter-form .roster-filter,
+.tiki #conversejs #controlbox #converse-roster .roster-filter-form .roster-filter {
+  background-color: #ffffff;
+  color: #737373;
+  border-color: #cccccc;
+}
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-contacts dt,
+.tiki #conversejs #controlbox #converse-roster .roster-contacts dt {
+  color: #515151;
+}
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-contacts dt a,
+.tiki #conversejs #controlbox #converse-roster .roster-contacts dt a {
+  color: inherit;
+}
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-contacts dt:hover,
+.tiki #conversejs #controlbox #converse-roster .roster-contacts dt:hover {
+  background-color: transparent;
+}
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-contacts dd,
+.tiki #conversejs #controlbox #converse-roster .roster-contacts dd {
+  color: #da388f;
+  background-color: transparent;
+}
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-contacts dd a,
+.tiki #conversejs #controlbox #converse-roster .roster-contacts dd a,
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-contacts dd span,
+.tiki #conversejs #controlbox #converse-roster .roster-contacts dd span {
+  color: inherit;
+  text-shadow: none;
+}
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-contacts dd a:hover,
+.tiki #conversejs #controlbox #converse-roster .roster-contacts dd a:hover,
+.tiki #converse-embedded-chat #controlbox #converse-roster .roster-contacts dd span:hover,
+.tiki #conversejs #controlbox #converse-roster .roster-contacts dd span:hover {
+  color: #515151;
+}
+.tiki #converse-embedded-chat #controlbox #converse-register,
+.tiki #conversejs #controlbox #converse-register {
+  background-color: transparent;
+}
+.tiki #converse-embedded-chat #controlbox #converse-register .form-help .url,
+.tiki #conversejs #controlbox #converse-register .form-help .url {
+  color: #da388f;
+}
+.tiki #converse-embedded-chat #controlbox #converse-register .form-help .url:hover,
+.tiki #conversejs #controlbox #converse-register .form-help .url:hover {
+  color: #e679b3;
+}
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar {
+  background-color: #da388f;
+}
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar ul,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar ul {
+  background-color: #da388f;
+}
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar > li,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar > li {
+  margin: -2px;
+}
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar a,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar a,
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley,
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .unencrypted,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .unencrypted {
+  color: #ffffff;
+}
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley ul li:hover,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley ul li:hover {
+  background-color: #ffffff;
+}
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley ul li:hover a,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley ul li:hover a {
+  color: #da388f;
+}
+.tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .chat-toolbar-text,
+.tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .chat-toolbar-text {
+  text-shadow: none;
+}
+.tiki #converse-embedded-chat .chatbox .dropdown,
+.tiki #conversejs .chatbox .dropdown {
+  background-color: transparent;
+}
+.tiki #converse-embedded-chat .chatbox .chat-head,
+.tiki #conversejs .chatbox .chat-head {
+  border-bottom: 1px solid #515151;
+}
+.tiki #converse-embedded-chat .chatbox .chat-head.chat-head-chatbox,
+.tiki #conversejs .chatbox .chat-head.chat-head-chatbox {
+  background-color: #da388f;
+}
+.tiki #converse-embedded-chat .chatbox .chat-head .chat-title,
+.tiki #conversejs .chatbox .chat-head .chat-title,
+.tiki #converse-embedded-chat .chatbox .chat-head .close-chatbox-button,
+.tiki #conversejs .chatbox .chat-head .close-chatbox-button,
+.tiki #converse-embedded-chat .chatbox .chat-head .toggle-chatbox-button,
+.tiki #conversejs .chatbox .chat-head .toggle-chatbox-button {
+  color: #ffffff;
+}
+.tiki #converse-embedded-chat .chatbox .chat-body,
+.tiki #conversejs .chatbox .chat-body {
+  background-color: inherit;
+}
+.tiki #converse-embedded-chat .chatbox .chat-body .chat-content,
+.tiki #conversejs .chatbox .chat-body .chat-content {
+  height: calc(100% - 95px);
+  color: #515151;
+  background-color: inherit;
+}
+.tiki #converse-embedded-chat .chatbox .chat-body .chat-info,
+.tiki #conversejs .chatbox .chat-body .chat-info {
+  color: #da388f;
+}
+.tiki #converse-embedded-chat .chatbox .chat-body .chat-message span.chat-msg-me,
+.tiki #conversejs .chatbox .chat-body .chat-message span.chat-msg-me {
+  color: #5bc0de;
+}
+.tiki #converse-embedded-chat .chatbox .chat-body .chat-message span.chat-msg-them,
+.tiki #conversejs .chatbox .chat-body .chat-message span.chat-msg-them {
+  color: #da388f;
+}
+.tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom,
+.tiki #conversejs .chatroom .box-flyout .chat-head-chatroom {
+  background-color: #5bc0de;
+}
+.tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .close-chatbox-button,
+.tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .close-chatbox-button,
+.tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .toggle-chatbox-button,
+.tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .toggle-chatbox-button,
+.tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .toggle-bookmark,
+.tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .toggle-bookmark,
+.tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .chat-title,
+.tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .chat-title,
+.tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .chatroom-description,
+.tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .chatroom-description,
+.tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .configure-chatroom-button,
+.tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .configure-chatroom-button {
+  color: #ffffff;
+}
+.tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body p,
+.tiki #conversejs .chatroom .box-flyout .chatroom-body p {
+  color: #515151;
+}
+.tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .occupants,
+.tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants {
+  background-color: inherit;
+  border-left-color: #515151;
+}
+.tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .occupants ul li.moderator,
+.tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants ul li.moderator {
+  color: #da388f;
+}
+.tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .occupants ul li.occupant .occupant-status,
+.tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants ul li.occupant .occupant-status {
+  margin-left: 1px;
+  box-shadow: 0px 0px 1px 1px #444;
+}
+.tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .chatroom-form-container,
+.tiki #conversejs .chatroom .box-flyout .chatroom-body .chatroom-form-container {
+  background-color: inherit;
+  color: #515151;
+}
+.tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .room-invite .invited-contact,
+.tiki #conversejs .chatroom .box-flyout .chatroom-body .room-invite .invited-contact {
+  border-color: #cccccc;
+}
+.header_outer {
+  margin-top: 24px;
+}
+body.fullscreen .header_outer,
+body.fullscreen #footer {
+  display: none;
+}
+.page-header .top_modules {
+  min-height: 175px;
+  background: url('../images/header_background_ltr.jpg') 50% 0 no-repeat;
+  background-size: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.topbar {
+  margin-bottom: 20px;
+}
+.topbar,
+.navbar-default,
+.navbar-fixed-top {
+  background: #473119;
+  -webkit-box-shadow: inset 0 -3px 10px #331a00;
+  box-shadow: inset 0 -3px 10px #331a00;
+  border: none;
+  border-radius: 0;
+}
+.topbar .navbar-default,
+.topbar .cssmenu_horiz ul,
+.topbar .navbar-default .navbar-nav > li,
+.topbar .nav > li {
+  background: transparent;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  background: transparent;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background: transparent;
+}
+#topbar_modules {
+  background: #ffffff url('../images/menubar-wood.jpg');
+  -webkit-box-shadow: inset 0 -3px 10px #331a00;
+  box-shadow: inset 0 -3px 10px #331a00;
+  border: none;
+  border-radius: 0;
+}
+#topbar_modules .navbar-default {
+  background: transparent;
+  border: none;
+}
+#topbar_modules .form-group {
+  margin-bottom: 0;
+}
+#row-middle {
+  background: url('../images/page_background_ltr.jpg') repeat;
+  margin-top: -20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.layout_fixed_top_modules #middle {
+  background: url('../images/page_background_ltr.jpg') repeat;
+  padding-bottom: 20px;
+}
+#page-data {
+  text-shadow: 1px 1px 0 #ffffff;
+}
+.panel-default > .panel-heading {
+  min-height: 52px;
+  padding-top: 12px;
+  background: #02913d url('../images/box_header_bg.png') repeat-x 120% 100%;
+  text-align: center;
+  border: 1px solid #8bc541;
+  text-shadow: 2px 2px 0px #555;
+}
+.panel-title {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: #666 0 2px 3px;
+}
+.btn-default,
+input[type="reset"],
+input[type="submit"] {
+  background: url('../images/button_bck.jpg') 100% 50% repeat;
+  -webkit-box-shadow: 2px 2px 3px 1px rgba(43, 43, 43, 0.65);
+  box-shadow: 2px 2px 3px 1px rgba(43, 43, 43, 0.65);
+  text-shadow: #f2e4ab 0 1px 1px;
+}
+.btn-default:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+  color: #a99278;
+  background: url('../images/button_bck_hover.jpg') 100% 50% repeat;
+  -webkit-box-shadow: 1px 1px 2px 1px rgba(84, 60, 27, 0.64);
+  box-shadow: 1px 1px 2px 1px rgba(84, 60, 27, 0.64);
+  text-shadow: #2b2b2b 0 1px 1px;
+}
+#footer .row.row-sidemargins-zero {
+  margin-left: -15px;
+  margin-right: -15px;
+  padding-bottom: 15px;
+}
+footer.footer {
+  margin-bottom: 20px;
+}
+.footer .modules {
+  background: url('../images/footer_bck.jpg');
+  background-size: contain;
+  color: #e0d6cc;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-top: 20px;
+}
+.footer .modules h3 a,
+.footer .modules h3 a:visited {
+  color: #b29980;
+}
+.footer .modules h3:hover {
+  color: #c48054;
+}
+.articletitle .titleb {
+  color: #996633;
+  font-size: 0.9em;
+}
+#autosave_preview {
+  background: url('../images/page_background_ltr.jpg') repeat;
+  color: #515151;
+}
+.postbody-title .title > .panel-title a.link,
+.panel-default > .panel-heading .blog-postbody-title,
+.panel-default > .panel-heading a {
+  color: #ffffff;
+}
+.tiki .cke_wysiwyg_frame,
+.tiki .cke_wysiwyg_div {
+  background: #fff;
+}
+/* Hebrew */
+[lang="he"] .pull-left {
+  float: right !important;
+}
+/* Articles module */
+.box-articles .panel-body ul {
+  list-style: none;
+  margin-right: -2.5em;
+}
+.box-articles .panel-body ul li {
+  margin-bottom: 1em;
+}
+.box-articles .panel-body ul li .image {
+  display: inline-block;
+  width: 30px;
+}
+.box-articles .panel-body ul li a {
+  display: inline-block;
+  width: 180px;
+  vertical-align: top;
+  line-height: 1.1;
+  margin-top: -0.2em;
+}
+/* Logo and title */
+[lang="he"] .box-logo > div > .sitelogo + .sitetitles {
+  padding-right: 15px;
+}
+.sitetitles {
+  color: #fff;
+  text-shadow: 2px 2px 2px #666;
+  margin-top: 35px;
+}
+.sitetitle a {
+  font-size: 60px;
+  color: #fff;
+}
+.sitesubtitle {
+  margin-top: -30px;
+}

@@ -577,8 +577,15 @@ if ($prefs['feature_wiki_attachments'] === 'y' && isset($_REQUEST["attach"]) && 
 
 // Suck another page and append to the end of current
 $suck_url = isset($_REQUEST["suck_url"]) ? $_REQUEST["suck_url"] : '';
-$parsehtml = isset($_REQUEST["parsehtml"]) ? ($_REQUEST["parsehtml"] === 'on' ? 'y' : 'n') : ($info['is_html'] ? 'n' : 'y');
+
+if (isset($_REQUEST["parsehtml"])) {
+	$parsehtml = $_REQUEST["parsehtml"] === 'on' ? 'y' : 'n';
+} else {
+	// FIXME: If the user hasn't checked, we attempt to unparse anyway if ! is_html. Better not display the checkbox than ignoring its value
+	$parsehtml = $info['is_html'] ? 'n' : 'y';
+}
 $smarty->assign('parsehtml', $parsehtml);
+
 if (isset($_REQUEST['do_suck']) && strlen($suck_url) > 0) {
 	// \note by zaufi
 	//   This is ugly implementation of wiki HTML import.
@@ -900,9 +907,7 @@ if (isset($_REQUEST['translation_critical'])) {
 // Handles switching editor modes
 if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 	if (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] === 'y') {
-		// Parsing page data as first time seeing html page in normal editor
-		$smarty->assign('msg', "Parsing html to wiki");
-
+		// Convert page content, as we are switching from the WYSIWYG editor to the regular editor
 		if (! $is_html) {
 			// we come from WYSIWYG-Wiki
 			$parsed = $edit_data;
@@ -915,17 +920,14 @@ if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 		$info['wysiwyg'] = false;
 		$smarty->assign('allowhtml', 'n');
 	} elseif (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] === 'y') {
-		// Parsing page data as first time seeing wiki page in wysiwyg editor
-		$smarty->assign('msg', "Parsing wiki to html");
-
+		// We are switching from the regular editor to the WYSIWYG editor
 		if (! $is_html && $prefs['wysiwyg_htmltowiki'] === 'y') {
 			// we switch to WYSIWYG-Wiki
 			$parsed = $edit_data;
-			$is_html = false;
 			$info['is_html'] = false;
 		} else {
-			// we switch to WYSIWYG-HTML
-			$parsed = $editlib->parseToWysiwyg($edit_data, true);
+			// we switch to WYSIWYG-HTML (regular WYSIWYG)
+			$parsed = $editlib->parseToWysiwyg($edit_data, true); // Convert page content
 			$is_html = true;
 			$info['is_html'] = true;
 			$smarty->assign('allowhtml', 'y');

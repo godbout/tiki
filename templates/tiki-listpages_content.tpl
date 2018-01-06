@@ -404,7 +404,7 @@
 			{sectionelse}
 				{$find_htmlescaped = $find|escape}
 				{$initial_htmlescaped = $initial|escape}
-				{if $exact_match ne 'n'}{$intro = '{tr}No page:{/tr}'}{else}{$intro = '{tr}No pages found with:{/tr}'}{/if}
+				{if $exact_match ne 'n'}{$intro = "{tr}No page:{/tr}"}{else}{$intro = "{tr}No pages found with:{/tr}"}{/if}
 				{if $find ne '' && $aliases_were_found == 'y'}
 					{norecords _colspan=$cntcol _text="$intro &quot;$find_htmlescaped&quot;. <br/>However, some page aliases fitting the query were found (see Aliases section above)."}
 				{elseif $find ne '' && $initial ne '' && $aliases_were_found == 'y'}

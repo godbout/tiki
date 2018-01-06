@@ -32,7 +32,7 @@ function smarty_block_activityframe($params, $content, $smarty, &$repeat)
 		$params['activity']['like_list'] = $likes = [];
 	}
 
-	if (isset($params['activity']['user_groups'])) {
+	if (isset($params['activity']['user_groups']) && is_array($params['activity']['user_groups'])) {
 		$userGroups = TikiLib::lib('user')->get_user_groups($GLOBALS['user']);
 		$choiceGroups = TikiLib::lib('user')->get_groups_userchoice();
 		$sharedGroups = array_intersect($params['activity']['user_groups'], $userGroups, $choiceGroups);

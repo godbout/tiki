@@ -22,7 +22,7 @@ class UpdateCommand extends Command
 			->setDescription('Update the database to the latest schema')
 			->addOption(
 				'auto-register',
-				null,
+				'a',
 				InputOption::VALUE_NONE,
 				'Record any failed patch as applied.'
 			);
@@ -56,16 +56,13 @@ class UpdateCommand extends Command
 
 			$output->writeln('<info>Queries executed successfully: ' . count($installer->queries['successful']) . '</info>');
 
-			if (count($installer->queries['failed'])) {
-				foreach ($installer->queries['failed'] as $key => $error) {
-					list( $query, $message, $patch ) = $error;
-
-					$output->writeln("<error>Error $key in $patch\n\t$query\n\t$message</error>");
-
-					if ($autoRegister) {
-						\Patch::$list[$patch]->record();
-					}
+			foreach ($installer->queries['failed'] as $error) {
+				list( $query, $message, $patch ) = $error;
+				if (! $patch) {
+					// Installer::query() does not set a meaningful third element when the error is caused by a PHP script. Needs some architectural work to solve properly
+					$patch = 'unknown patch script';
 				}
+				$output->writeln("<error>Error in $patch\n\t$query\n\t$message</error>");
 			}
 
 			$cachelib = \TikiLib::lib('cache');

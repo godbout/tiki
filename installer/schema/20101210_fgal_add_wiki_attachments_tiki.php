@@ -27,7 +27,6 @@ function upgrade_20101210_fgal_add_wiki_attachments_tiki($installer)
 	$result = $installer->getOne("SELECT `galleryId` FROM `tiki_file_galleries` WHERE `name` = 'Wiki Attachments' and `type`='system'");
 
 	if ($result != 0) {
-		$galleryId = $result['galleryId'];
-		$installer->query("INSERT INTO `tiki_preferences` (`name`, `value`) VALUES ('fgal_root_wiki_attachments_id', '" . $galleryId . "' );");
+		$installer->query("INSERT INTO `tiki_preferences` (`name`, `value`) VALUES ('fgal_root_wiki_attachments_id', '" . $result . "' );");
 	}
 }

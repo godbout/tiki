@@ -47,7 +47,7 @@ class TikiLib extends TikiDb_Bridge
 	/** Gets a library reference
 	 *
 	 * @param $name string        The name of the library as specified in the id attribute in db/config/tiki.xml
-	 * @return \ActivityLib|\AdminLib|\AreasLib|\ArtLib|\AttributeLib|\AutoSaveLib|\BannerLib|\BigBlueButtonLib|\BlogLib|\CacheLib|\CalendarLib|\Captcha|\CartLib|\CategLib|\Comments|\ContactLib|\ContributionLib|\CreditsLib|\CryptLib|\cssLib|\DCSLib|\EditLib|\ErrorReportLib|\FaqLib|\FederatedSearchLib|\FileGalBatchLib|\FileGalLib|\FlaggedRevisionLib|\FreetagLib|\GeoLib|\GoalEventLib|\GoalLib|\GoalRewardLib|\GroupAlertLib|\H5PLib|\HeaderLib|\HistLib|\IconsetLib|\ImageGalsLib|\KalturaLib|\KalturaLib|\Language|\LanguageTranslations|\LdapLib|\LoginLib|\LogsLib|\LogsQueryLib|\MailinLib|\Memcachelib|\MenuLib|\Messu|\MimeLib|\ModLib|\MonitorLib|\MonitorMailLib|\MultilingualLib|\NotificationLib|\OAuthLib|\ObjectLib|\PageContentLib|\ParserLib|\PaymentLib|\PerspectiveLib|\PollLib|\PreferencesLib|\QuantifyLib|\QueueLib|\QuizLib|\RatingConfigLib|\RatingLib|\ReferencesLib|\RegistrationLib|\RelationLib|\RSSLib|\SchedulersLib|\ScoreLib|\ScormLib|\SearchStatsLib|\SemanticLib|\ServiceLib|\SheetLib|\Smarty_Tiki|\SocialLib|\StatsLib|\StoredSearchLib|\StructLib|\TemplatesLib|\ThemeControlLib|\ThemeLib|\Tiki_Connect_Client|\Tiki_Connect_Server|\Tiki_Event_Manager|\Tiki_Profile_SymbolLoader|\Tiki\Object\Selector|\Tiki\Recommendation\BatchProcessor|\Tiki\Wiki\SlugManager|\TikiAccessLib|\TikiCalendarLib|\TikiDate|\TodoLib|\Tracker\Tabular\Manager|\TrackerLib|\UnifiedSearchLib|\UserMailinLib|\UserModulesLib|\UserPrefsLib|\UsersLib|\Validators|\VimeoLib|\WikiLib|\WizardLib|\WYSIWYGLib|\ZoteroLib|\blacklistLib|\TWVersion|\AccountingLib
+	 * @return \ActivityLib|\AdminLib|\AreasLib|\ArtLib|\AttributeLib|\AutoSaveLib|\BannerLib|\BigBlueButtonLib|\BlogLib|\CacheLib|\CalendarLib|\Captcha|\CartLib|\CategLib|\Comments|\ContactLib|\ContributionLib|\CreditsLib|\CryptLib|\cssLib|\Tiki\CustomRoute\CustomRouteLib|\DCSLib|\EditLib|\ErrorReportLib|\FaqLib|\FederatedSearchLib|\FileGalBatchLib|\FileGalLib|\FlaggedRevisionLib|\FreetagLib|\GeoLib|\GoalEventLib|\GoalLib|\GoalRewardLib|\GroupAlertLib|\H5PLib|\HeaderLib|\HistLib|\IconsetLib|\ImageGalsLib|\KalturaLib|\KalturaLib|\Language|\LanguageTranslations|\LdapLib|\LoginLib|\LogsLib|\LogsQueryLib|\MailinLib|\Memcachelib|\MenuLib|\Messu|\MimeLib|\ModLib|\MonitorLib|\MonitorMailLib|\MultilingualLib|\NotificationLib|\OAuthLib|\ObjectLib|\PageContentLib|\ParserLib|\PaymentLib|\PerspectiveLib|\PollLib|\PreferencesLib|\QuantifyLib|\QueueLib|\QuizLib|\RatingConfigLib|\RatingLib|\ReferencesLib|\RegistrationLib|\RelationLib|\RSSLib|\SchedulersLib|\ScoreLib|\ScormLib|\SearchStatsLib|\SemanticLib|\ServiceLib|\SheetLib|\Smarty_Tiki|\SocialLib|\StatsLib|\StoredSearchLib|\StructLib|\TemplatesLib|\ThemeControlLib|\ThemeLib|\Tiki_Connect_Client|\Tiki_Connect_Server|\Tiki_Event_Manager|\Tiki_Profile_SymbolLoader|\Tiki\Object\Selector|\Tiki\Recommendation\BatchProcessor|\Tiki\Wiki\SlugManager|\TikiAccessLib|\TikiCalendarLib|\TikiDate|\TodoLib|\Tracker\Tabular\Manager|\TrackerLib|\UnifiedSearchLib|\UserMailinLib|\UserModulesLib|\UserPrefsLib|\UsersLib|\Validators|\VimeoLib|\WikiLib|\WizardLib|\WYSIWYGLib|\ZoteroLib|\blacklistLib|\TWVersion|\AccountingLib
 	 * @throws Exception
 	 */
 	public static function lib($name)
@@ -4214,8 +4214,8 @@ class TikiLib extends TikiDb_Bridge
 			]
 		);
 
-		// Update HTML wanted links when wysiwyg is in use - this is not an elegant fix
-		// but will do for now until the "use wiki syntax in WYSIWYG" feature is ready
+		// Update links to the URL of the new page from HTML wiki pages (when wysiwyg is in use).
+		// This is not an elegant fix but will do for now until the "use wiki syntax in WYSIWYG" feature is ready (if that ever replaces HTML-mode WYSIWYG completely).
 		if ($prefs['feature_wysiwyg'] == 'y' && $prefs['wysiwyg_htmltowiki'] != 'y') {
 			$wikilib = TikiLib::lib('wiki');
 			$temppage = md5($this->now . $name);
@@ -4232,7 +4232,7 @@ class TikiLib extends TikiDb_Bridge
 	 * @param $pageName
 	 * @return bool|mixed
 	 */
-	private function replicate_page_to_history($pageName)
+	protected function replicate_page_to_history($pageName)
 	{
 		if (strtolower($pageName) == 'sandbox') {
 			return false;
@@ -4470,6 +4470,11 @@ class TikiLib extends TikiDb_Bridge
 				$namespace = TikiLib::lib('wiki')->get_namespace($pageFrom);
 				$pageTo = $namespace . $prefs['namespace_separator'] . $pageTo;
 		}
+		// The max pagename length is 160 characters ( tiki_pages.pageName varchar(160) ).
+		//	However, wiki_rename_page stores a page in the format: $tmpName = "~".$newName."~";
+		//	So, actual max page name length is 160 - 2 = 158
+		//	Strip excess characters (silently) and proceed.
+		$pageTo = substr($pageTo, 0, 158);
 
 		$links = $this->table('tiki_links');
 		$links->insert(['fromPage' => $pageFrom, 'toPage' => $pageTo], true);

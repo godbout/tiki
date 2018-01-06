@@ -22,14 +22,14 @@ function upgrade_20170127_remove_templates_c_tiki($installer)
 		$dir_handle = opendir($dirname);
 	}
 	if (! $dir_handle) {
-		return false;
+		return;
 	}
 	while ($file = readdir($dir_handle)) {
 		if ($file != "." && $file != "..") {
 			if (! is_dir($dirname . "/" . $file)) {
 				unlink($dirname . "/" . $file);
 			} else {
-				delete_directory($dirname . '/' . $file);
+				rmdir($dirname . '/' . $file);
 			}
 		}
 	}

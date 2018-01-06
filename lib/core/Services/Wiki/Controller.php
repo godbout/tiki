@@ -260,7 +260,7 @@ class Services_Wiki_Controller
 							}
 						}
 						$feedback = [
-							'tpl' => 'action',
+							'tpl' => 'link',
 							'mes' => $msg,
 							'items' => $destinationPage,
 						];

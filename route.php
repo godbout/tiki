@@ -90,6 +90,7 @@ function tiki_route($path)
 	tiki_route_attempt_prefix('file', 'tiki-list_file_gallery.php', 'galleryId');
 	tiki_route_attempt_prefix('forum', 'tiki-view_forum.php', 'forumId');
 	tiki_route_attempt_prefix('forumthread', 'tiki-view_forum_thread.php', 'comments_parentId');
+	tiki_route_attempt_prefix('calevent', 'tiki-calendar_edit_item.php', 'viewcalitemId');
 	tiki_route_attempt_prefix('gallery', 'tiki-browse_gallery.php', 'galleryId');
 	tiki_route_attempt_prefix('img', 'show_image.php', 'id');
 	tiki_route_attempt_prefix('image', 'show_image.php', 'id');
@@ -103,8 +104,8 @@ function tiki_route($path)
 			];
 		}
 	);
+	tiki_route_attempt('|^item(\d+)(\-.*)?$|', 'tiki-view_tracker_item.php', tiki_route_single(1, 'itemId'));
 	tiki_route_attempt_prefix('int', 'tiki-integrator.php', 'repID');
-	tiki_route_attempt_prefix('item', 'tiki-view_tracker_item.php', 'itemId');
 	tiki_route_attempt_prefix('newsletter', 'tiki-newsletters.php', 'nlId', ['info' => '1']);
 	tiki_route_attempt_prefix('nl', 'tiki-newsletters.php', 'nlId', ['info' => '1']);
 	tiki_route_attempt_prefix('poll', 'tiki-poll_form.php', 'pollId');
@@ -162,6 +163,8 @@ function tiki_route($path)
 		}
 	}
 
+	tiki_route_attempt_custom_route_redirect();
+
 	tiki_route_attempt(
 		'|.*|',
 		'tiki-index.php',
@@ -200,6 +203,49 @@ function tiki_route_single($index, $name)
 	return function ($parts) use ($index, $name) {
 		return [$name => $parts[$index]];
 	};
+}
+
+/**
+ * Attempts to route based on custom routes, defined by the admin.
+ * If a suitable rule is found an HTTP redirect will be issued and the user sent to the right page/URL.
+ * Custom routes rules are only processed if none of the built in rules were successful
+ * This function also loads the minimal amount of framework to be able to query the db.
+ */
+function tiki_route_attempt_custom_route_redirect()
+{
+	global $path, $inclusion, $prefs;
+
+	if ($inclusion || empty($path)) {
+		return;
+	}
+
+	// bootstrap the essentials to be able to use tiki db and libraries
+	// in a sane state that allows tiki to be fallback to the default entrypoints
+	// if a custom route is not match
+	require_once __DIR__ . '/tiki-filter-base.php'; // sets $tikiroot, $tikipath
+	$GLOBALS['tikiroot'] = $tikiroot;
+	$GLOBALS['tikipath'] = $tikipath;
+
+	require_once __DIR__ . '/db/tiki-db.php';
+	require_once __DIR__ . '/lib/tikilib.php';
+
+	$tikilib = new TikiLib;
+	$GLOBALS['tikilib'] = $tikilib;
+
+	$prefereces = [
+		'feature_sefurl_routes' => 'n',
+	];
+
+	$tikilib->get_preferences($prefereces, true, true);
+	// ~ bootstrap
+
+	if ($prefs['feature_sefurl_routes'] === 'y') {
+		$route = \Tiki\CustomRoute\CustomRoute::matchRoute($path);
+		if ($route) {
+			require_once __DIR__ . '/tiki-setup.php';
+			\Tiki\CustomRoute\CustomRoute::executeRoute($route, $path);
+		}
+	}
 }
 
 $sapi = php_sapi_name();

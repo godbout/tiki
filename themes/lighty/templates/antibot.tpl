@@ -1,4 +1,4 @@
-{* $Id: antibot.tpl 59410 2016-08-10 02:11:50Z jyhem $ *}
+{* $Id$ *}
 {if empty($user) || $user eq 'anonymous' || !empty($showantibot)}
 	<style>
 	.antibot.row {

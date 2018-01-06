@@ -190,6 +190,7 @@ function get_default_prefs()
 			'feature_contribution_mandatory_forum' => 'n',
 			'feature_debugger_console' => 'n',
 			'feature_events' => 'n',
+			'feature_filtering' => 'y', // No preference definition yet, must be overriden in tiki_preferences. Allows disabling input filtering for performance and/or integrity
 			'feature_projects' => 'n',
 			'feature_ranking' => 'n',
 			'feature_top_banner' => 'n',
@@ -209,6 +210,7 @@ function get_default_prefs()
 
 			// SefUrl
 			'feature_sefurl_paths' => [''], //empty string needed to keep preference from setting unexpectedly
+			'feature_sefurl_routes' => 'n',
 
 			'feature_bidi' => 'n',
 			'feature_lastup' => 'y',

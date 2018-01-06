@@ -75,3 +75,14 @@ $smarty->assign('IP', $tikilib->get_ip_address());
 $tikilib->set_display_timezone($user);
 
 $smarty->refreshLanguage();
+
+if ($prefs['language'] != $prefs['site_language']) {
+	$prefslib = TikiLib::lib('prefs');
+	$translatablePreferences = $prefslib->getTranslatablePreferences();
+
+	foreach ($translatablePreferences as $preference) {
+		if (! empty($prefs[$preference . '_' . $prefs['language']])) {
+			$prefs[$preference . '_translated'] = $prefs[$preference . '_' . $prefs['language']];
+		}
+	}
+}

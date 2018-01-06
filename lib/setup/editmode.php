@@ -9,8 +9,8 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) != false) {
 	header('location: index.php');
 	exit;
 }
-global $parsemode_setup, $tiki_p_admin, $tiki_p_use_HTML, $prefs, $info, $jitRequest, $is_html;
-$parsemode_setup = 'y';
+global $tiki_p_admin, $tiki_p_use_HTML, $prefs, $info, $jitRequest, $is_html;
+
 if (! isset($is_html)) {
 	if (isset($info['is_html'])) {
 		$is_html = $info['is_html'];
@@ -19,22 +19,23 @@ if (! isset($is_html)) {
 	}
 }
 if ($prefs['feature_wysiwyg'] == 'y' && $prefs['javascript_enabled'] == 'y') {
-	if (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] == 'y' and $prefs['wysiwyg_optional'] == 'y') {
+	if ($prefs['wysiwyg_optional'] == 'n') {
 		$_SESSION['wysiwyg'] = 'y';
-	} elseif (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] == 'y' and $prefs['wysiwyg_optional'] == 'y') {
-		$_SESSION['wysiwyg'] = 'n';
-	} elseif ((isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'y' and $prefs['wysiwyg_optional'] == 'y')) {
-		$_SESSION['wysiwyg'] = 'y';
-	} elseif ((isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'n' and $prefs['wysiwyg_optional'] == 'y')) {
-		$_SESSION['wysiwyg'] = 'n';
-	} elseif ($prefs['wysiwyg_optional'] == 'n') {
-		$_SESSION['wysiwyg'] = 'y';
-	} elseif ($prefs['wysiwyg_memo'] == 'y' and ! empty($info['wysiwyg'])) {
-		$_SESSION['wysiwyg'] = $info['wysiwyg'];
-	} elseif (! isset($_REQUEST['wysiwyg'])) {
-		$_SESSION['wysiwyg'] = $prefs['wysiwyg_default'];
-	} elseif ($prefs['wysiwyg_optional'] == 'y' and isset($_REQUEST['wysiwyg']) and $_REQUEST['wysiwyg'] == 'n') {
-		$_SESSION['wysiwyg'] = 'n';
+	} else {
+		if (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] == 'y') {
+			$_SESSION['wysiwyg'] = 'y';
+		} elseif (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] == 'y') {
+			$_SESSION['wysiwyg'] = 'n';
+		} elseif (isset($_REQUEST['wysiwyg'])) {
+			if (! in_array($_REQUEST['wysiwyg'], ['y', 'n'])) {
+				throw new Exception('Invalid wysiwyg parameter');
+			}
+			$_SESSION['wysiwyg'] = $_REQUEST['wysiwyg'];
+		} elseif ($prefs['wysiwyg_memo'] == 'y' and ! empty($info['wysiwyg'])) {
+			$_SESSION['wysiwyg'] = $info['wysiwyg'];
+		} else {
+			$_SESSION['wysiwyg'] = $prefs['wysiwyg_default'];
+		}
 	}
 } else {
 	$_SESSION['wysiwyg'] = 'n';
@@ -45,8 +46,8 @@ if ($_SESSION['wysiwyg'] == 'y') {
 	if ($prefs['wysiwyg_htmltowiki'] !== 'y' && ! isset($info['is_html'])) { // new pages in wysiwyg mode
 		$is_html = true;
 	}
-	if ($is_html && $prefs['feature_wiki_allowhtml'] !== 'y') {
-		$prefs['feature_wiki_allowhtml'] = 'y';		// is page is html temporarily allow html even if pref says no
+	if ($is_html) {
+		$prefs['feature_wiki_allowhtml'] = 'y';		// FIXME: hack. If page is HTML, temporarily allow html even if pref disables it.
 	}
 } elseif ($prefs['feature_wiki_allowhtml'] == 'y' and ($tiki_p_admin == 'y' or $tiki_p_use_HTML == 'y')) {
 	if (isset($_REQUEST['preview']) || isset($jitRequest['edit'])) {

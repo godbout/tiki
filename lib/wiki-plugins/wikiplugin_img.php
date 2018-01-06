@@ -609,8 +609,15 @@ function wikiplugin_img($data, $params)
 	$imgdata['fromItemId']  = 0;		// ditto
 	$imgdata['checkItemPerms']  = 'y';	// ditto
 	$imgdata['noDrawIcon']  = 'y';
+	$imgdata['retina']  = 'n';
+	$imgdata['widths']  = '';
+	$imgdata['sizes']  = '';
+	$imgdata['featured']  = 'n';
 
 	$imgdata = array_merge($imgdata, $params);
+
+	$srcset = '';
+	$sizes = '';
 
 	//function calls
 	if (! empty($imgdata['default']) || ! empty($imgdata['mandatory'])) {
@@ -1087,14 +1094,14 @@ function wikiplugin_img($data, $params)
 			}
 		}
 	}
-	if ($params['retina'] && $params['width']) {
+	if ($imgdata['retina'] == 'y' && $imgdata['width']) {
 		$srcset_arr = [];
 		$srcset_format = "tiki-download_file.php?display&fileId=%s&x=%d&y=%d %s";
 		$srcset_arr[] = sprintf($srcset_format, $params['fileId'], $width * 2, $height * 2, "2x");
 		$srcset_arr[] = sprintf($srcset_format, $params['fileId'], $width, $height, "1x");
 		$srcset = implode(",", $srcset_arr);
 	}
-	if ($params['widths'] && $params['sizes']) {
+	if ($imgdata['widths'] <> '' && $params['sizes']) {
 		$srcset_arr = [];
 		$widths_arr = array_map('trim', explode(',', $params['widths']));
 		foreach ($widths_arr as $entry) {
@@ -1121,7 +1128,7 @@ function wikiplugin_img($data, $params)
 	//Start tag with src and dimensions
 	$src = filter_out_sefurl($src);
 
-	if ($params['featured'] === 'y') {
+	if ($imgdata['featured'] === 'y') {
 		$full_url = TikiLib::tikiUrl($src);
 		$header_featured_images = $smarty->getTemplateVars('header_featured_images');
 		if (! is_array($header_featured_images)) {

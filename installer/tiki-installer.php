@@ -1329,10 +1329,6 @@ $smarty->assign('install_type', $install_type);
 $smarty->assignByRef('prefs', $prefs);
 $smarty->assign('detected_https', isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on');
 
-if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6') !== false) {
-	$smarty->assign('ie6', true);
-}
-
 $client_charset = '';
 
 if (file_exists($local)) {

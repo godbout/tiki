@@ -136,6 +136,39 @@ class Perms_BaseTest extends TikiTestCase
 		Perms::get();
 	}
 
+	function testResolverCacheValidValues()
+	{
+		$defaultResolver = new Perms_Resolver_Default(true);
+
+		$mock1 = $this->createMock('Perms_ResolverFactory');
+		$mock2 = $this->createMock('Perms_ResolverFactory');
+
+		$mock1->expects($this->exactly(2))
+			->method('getHash')
+			->will($this->returnValue('123'));
+
+		$mock2->expects($this->exactly(2))
+			->method('getHash')
+			->will($this->returnValue('456'));
+
+		$mock1->expects($this->once())
+			->method('getResolver')
+			->will($this->returnValue(false));
+		$mock2->expects($this->once())
+			->method('getResolver')
+			->will($this->returnValue($defaultResolver));
+
+		$perms = new Perms;
+		$perms->setResolverFactories([$mock1,$mock2]);
+		Perms::set($perms);
+
+		// call 2 times to check hash cache contains valid values
+		$perms = Perms::get();
+		$this->assertSame($defaultResolver, $perms->getResolver());
+		$perms = Perms::get();
+		$this->assertSame($defaultResolver, $perms->getResolver());
+	}
+
 	function testBulkLoading()
 	{
 		$mockObject = $this->createMock('Perms_ResolverFactory');

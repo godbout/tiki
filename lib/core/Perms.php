@@ -342,8 +342,8 @@ class Perms
 			if (isset($this->hashes[$hash])) {
 				$finalResolver = $this->hashes[$hash];
 			} else {
-				$toSet[] = $hash;
 				$finalResolver = $factory->getResolver($context);
+				$toSet[$hash] = $finalResolver;
 			}
 
 			if ($finalResolver) {
@@ -356,8 +356,8 @@ class Perms
 			$this->hashes = [];
 		}
 
-		foreach ($toSet as $hash) {
-			$this->hashes[$hash] = $finalResolver;
+		foreach ($toSet as $hash => $resolver) {
+			$this->hashes[$hash] = $resolver;
 		}
 
 		return $finalResolver;

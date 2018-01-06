@@ -7,7 +7,6 @@
 
 namespace Tiki\Package;
 
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 
 /**
@@ -21,6 +20,7 @@ class ComposerCli
 	const COMPOSER_HOME = 'temp/composer';
 	const PHP_COMMAND_NAMES = [
 		'php',
+		// TODO: Dynamically build version part from running PHP version
 		'php56',
 		'php5.6',
 		'php5.6-cli',
@@ -145,7 +145,7 @@ class ComposerCli
 	}
 
 	/**
-	 * Atempts to resolve the location of the PHP binary
+	 * Attempts to resolve the location of the PHP binary
 	 *
 	 * @return null|bool|string
 	 */
@@ -156,9 +156,12 @@ class ComposerCli
 		}
 
 		$this->phpCli = false;
-		foreach (explode(':', $_SERVER['PATH']) as $path) {
+		foreach (explode(PATH_SEPARATOR, $_SERVER['PATH']) as $path) {
 			foreach (self::PHP_COMMAND_NAMES as $cli) {
 				$possibleCli = $path . DIRECTORY_SEPARATOR . $cli;
+				if (\TikiInit::isWindows()) {
+					$possibleCli .= '.exe';
+				}
 				if (file_exists($possibleCli) && is_executable($possibleCli)) {
 					$version = $this->getPhpVersion($possibleCli);
 					if (version_compare($version, self::PHP_MIN_VERSION, '<')) {
@@ -331,7 +334,7 @@ class ComposerCli
 	/**
 	 * Execute the diagnostic command
 	 *
-	 * @return array
+	 * @return array|bool
 	 */
 	public function execDiagnose()
 	{
@@ -372,6 +375,30 @@ class ComposerCli
 		. $fileContent . "\n\n"
 		. tr('= Composer execution output') . ":\n\n"
 		. $commandOutput;
+	}
+
+	/**
+	 * Update a package required version (from the package definition)
+	 *
+	 * @param ComposerPackage $package
+	 * @return bool
+	 */
+	public function updatePackage(ComposerPackage $package) {
+
+		if (!$this->canExecuteComposer() || !$this->checkConfigExists()) {
+			return false;
+		}
+
+		list($commandOutput, $errors) = $this->execComposer(
+			['require', $package->getName() . ':' . $package->getRequiredVersion(), '--update-no-dev', '-d', $this->workingPath, '--no-ansi', '--no-interaction']
+		);
+
+		$fileContent = file_get_contents($this->getComposerConfigFilePath());
+
+		return tr('= New composer.json file content') . ":\n\n"
+			. $fileContent . "\n\n"
+			. tr('= Composer execution output') . ":\n\n"
+			. $commandOutput . "\n" . $errors;
 	}
 
 	/**

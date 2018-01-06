@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: Object.php 62177 2017-04-10 06:06:43Z drsassafras $
+// $Id$
 
 class Search_Type_Json implements Search_Type_Interface
 {

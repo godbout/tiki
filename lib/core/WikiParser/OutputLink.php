@@ -80,7 +80,7 @@ class WikiParser_OutputLink
 		if ($this->description) {
 			$description = $this->description;
 		}
-
+		$pageId = substr($page, 0, 158);
 		if ($link = $this->handleExternal($page, $description, $class)) {
 			return $this->outputLink(
 				$description,
@@ -89,23 +89,25 @@ class WikiParser_OutputLink
 						'class' => $class,
 				]
 			);
-		} elseif ($this->namespace && (($info = $this->findWikiPage("{$this->namespace}{$this->namespaceSeparator}$page")) || $ck_editor)) {
+		} elseif ($this->namespace && (($info = $this->findWikiPage("{$this->namespace}{$this->namespaceSeparator}$pageId")) || $ck_editor)) {
 			// When currently displayed page is in a namespace, interpret links as within namespace as a priority
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
+				$pageId = substr($page, 0, 158);                
 			}
 
 			return $this->outputLink(
 				$description,
 				[
-						'href' => call_user_func($this->wikiBuilder, $page) . $this->anchor,
+						'href' => call_user_func($this->wikiBuilder, $pageId) . $this->anchor,
 						'title' => $this->getTitle($info),
 						'class' => 'wiki wiki_page',
 				]
 			);
-		} elseif (($info = $this->findWikiPage($page)) || $ck_editor) {
+		} elseif (($info = $this->findWikiPage($pageId)) || $ck_editor) {
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
+				$pageId = substr($page, 0, 158);                
 			}
 
 			if ($description == $info['pageName']) {
@@ -115,18 +117,19 @@ class WikiParser_OutputLink
 			return $this->outputLink(
 				$description,
 				[
-					'href' => call_user_func($this->wikiBuilder, $page) . $this->anchor,
+					'href' => call_user_func($this->wikiBuilder, $pageId) . $this->anchor,
 					'title' => $this->getTitle($info),
 					'class' => 'wiki wiki_page',
 				]
 			);
 		} else {
 			$page = $this->getTargetPage($page);
+			$pageId = substr($page, 0, 158);                
 			return $this->outputLink(
 				$description,
 				[
-					'href' => $this->getEditLink($page),
-					'title' => tra('Create page:') . ' ' . $page,
+					'href' => $this->getEditLink($pageId),
+					'title' => tra('Create page:') . ' ' . $pageId,
 					'class' => 'wiki wikinew text-danger tips',
 				]
 			);

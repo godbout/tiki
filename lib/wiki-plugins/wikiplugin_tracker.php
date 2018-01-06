@@ -185,8 +185,17 @@ function wikiplugin_tracker_info()
 				'required' => false,
 				'name' => tra('URL'),
 				'description' => tr('URL the user is sent to after the form is submitted. The string %0itemId%1 will
-					be replaced with %0itemId=xx%1 where %0xx%1 is the new (or current) itemId', '<code>', '</code>'),
+					be replaced with %0itemId=xx%1 where %0xx%1 is the new (or current) itemId. This parameter can be used in combination with the TABS plugin using %0?cookietab=1&itemId%1 (change the cookietab parameter\'s value depending on the tab you want the user to be sent to).', '<code>', '</code>'),
 				'since' => '1',
+				'filter' => 'url',
+				'separator' => ':',
+				'default' => '',
+			],
+			'urlparams' => [
+				'required' => false,
+				'name' => tr('Keep params in URL'),
+				'description' => tr('Input form parameters (or field IDs) separated by a colon (%0:%1) to pass them in the URL after the form is submitted and redirected to the URL specified in the %0url%1 param. Example: %0urlparams="1:2:3:trackit"%1. Enter %0*%1 to keep all the submitted parameters in the URL.', '<code>', '</code>'),
+				'since' => '19.0',
 				'filter' => 'url',
 				'separator' => ':',
 				'default' => '',
@@ -1193,7 +1202,7 @@ function wikiplugin_tracker($data, $params)
 					if ($transactionFinalStep == 'y') {
 						//-- final step: commit the transaction of registrations and tracker changes of all the transaction steps
 						foreach ($_SESSION[$transactionName] as $saveStep) {
-							$rid = wikiplugin_tracker_save($saveStep);
+							$rid = wikiplugin_tracker_save_item($saveStep);
 						}
 						unset($_SESSION[$transactionName]); // the tracker transaction can be closed
 					} else {
@@ -1201,7 +1210,7 @@ function wikiplugin_tracker($data, $params)
 					}
 				} else {
 					// no transaction is used
-					$rid = wikiplugin_tracker_save($saveThis);
+					$rid = wikiplugin_tracker_save_item($saveThis);
 				}
 				// now for wiki output if desired
 				if (isset($outputtowiki) && ! empty($outputwiki)) {
@@ -1403,6 +1412,20 @@ function wikiplugin_tracker($data, $params)
 							$url[$key] = str_replace('itemId', 'itemId=' . $rid, $url[$key]);
 						}
 					}
+
+					if (isset($urlparams)) {
+						$i = 0;
+						foreach ($_REQUEST as $kk => $vv) {
+							$ins = preg_replace('/^(ins_)/', '', $kk); // replace the ins_ from the input field names to match with e.g. urlparams="1:2:3"
+							$vv = urlencode($vv);
+							if($urlparams[0] === '*' || in_array($ins, $urlparams)) {
+								$ss = strstr($url[$key], '?') ? '&' : '?'; // if there is "?" already in the URL, use "&" to separate the params
+								$url[$key] .= "$ss$kk=$vv";
+							}
+							$i++;
+						}
+					}
+
 					$msg = trim($data);
 					if (empty($msg)) {
 						$msg = tr('Form saved successfully.');
@@ -2075,7 +2098,7 @@ function wikiplugin_tracker_render_value($f, $item)
 }
 
 /**
- * Convert an email parameter componenet into a real email address or addresses.
+ * Convert an email parameter component into a real email address or addresses.
  *
  * @param string $emailOrField   int for a fieldId of UserSelector, GroupSelector, ItemsList, Email field, string for a username or email already
  * @param array $fields          tracker fields
@@ -2140,7 +2163,7 @@ function wikiplugin_tracker_process_email_recipients($emailOrField, $fields, $it
 	return array_filter($output);
 }
 
-function wikiplugin_tracker_save($trackerSavedState)
+function wikiplugin_tracker_save_item($trackerSavedState)
 {
 	global $user;
 	$trklib = TikiLib::lib('trk');

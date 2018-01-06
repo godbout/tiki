@@ -28,7 +28,7 @@ class InstallCommand extends Command
 			)
 			->addOption(
 				'useInnoDB',
-				i,
+				'i',
 				InputOption::VALUE_REQUIRED,
 				tr('Use InnoDb as storage engine: 1 - InnoDb, 0 - MyISAM.'),
 				1

@@ -32,16 +32,16 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 18.0
+<http://doc.tiki.org/Tiki18>
+------------------
+
+----------------------------------------------
 Version 17.1
 <http://doc.tiki.org/Tiki17>
 ------------------
 
 ----------------------------------------------
-Version 16.2
-<http://doc.tiki.org/Tiki16>
-------------------
-
-----------------------------------------------
-Changelog for Tiki version 16.2, or older, available at:
-https://sourceforge.net/p/tikiwiki/code/HEAD/tree/tags/16.2/changelog.txt
+Changelog for Tiki version 17.1, or older, available at:
+https://sourceforge.net/p/tikiwiki/code/HEAD/tree/tags/17.1/changelog.txt
 

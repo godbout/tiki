@@ -26,6 +26,9 @@
 				<legend>{tr}Plugins{/tr}</legend>
 				{preference name=wikiplugin_author}
 				{preference name=wikiplugin_include}
+				<div class="adminoptionboxchild" id="wikiplugin_include_childcontainer">
+				  {preference name=wiki_plugin_include_link_original}
+				</div>
 				{preference name=wikiplugin_transclude}
 				{preference name=wikiplugin_randominclude}
 				{preference name=wikiplugin_slideshow}
@@ -82,6 +85,9 @@
 				{preference name=feature_wiki_undo}
 				{preference name=feature_wiki_footnotes}
 				{preference name=feature_wiki_allowhtml}
+				<div class="adminoptionboxchild" id="feature_wiki_allowhtml_childcontainer">
+					{preference name=wysiwyg_wiki_parsed}
+				</div>
 				{preference name=feature_wysiwyg}
 				{preference name=wiki_timeout_warning}
 				{preference name=wiki_edit_plugin}
@@ -161,6 +167,14 @@
 			{preference name=feature_backlinks}
 			<div class="adminoptionboxchild" id="feature_backlinks_childcontainer">
 				{preference name=wiki_backlinks_name_len}
+                                {preference name=wiki_backlinks_show_forum_post}
+                                {preference name=wiki_backlinks_show_comment}
+                                {preference name=wiki_backlinks_show_post}
+                                {preference name=wiki_backlinks_show_article}
+                                {preference name=wiki_backlinks_show_trackeritem}
+                                {preference name=wiki_backlinks_show_tracker}
+                                {preference name=wiki_backlinks_show_trackerfield}
+                                {preference name=wiki_backlinks_show_calendar_event}
 				<div class="col-sm-offset-4 col-md-8">
 					{permission_link addclass="timeout" mode=button permType=wiki textFilter=backlinks showDisabled=y}
 				</div>

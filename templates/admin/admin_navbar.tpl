@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default admin-navbar" role="navigation">
 	<div class="navbar-header">
 		<form method="post" action="" class="form" role="form">
 			<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
@@ -9,9 +9,9 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<ul class="nav navbar-nav filter-menu"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
+			<ul class="nav navbar-nav filter-menu col-xs-4 col-xs-push-1"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 80px;">
 						{icon name="filter"} <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
@@ -114,7 +114,7 @@
 			</ul>
 		</form>
 	</div>
-	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">	
+	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		{include file="admin/admin_navbar_menu.tpl"}
 		<ul class="nav navbar-nav navbar-right">
 			<li>

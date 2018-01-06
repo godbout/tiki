@@ -27,6 +27,7 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 		case 'wikipage':
 			$type = 'wiki';
 			break;
+		case 'post':
 		case 'blog post':
 			$type = 'blogpost';
 			break;
@@ -46,11 +47,16 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 			$href = $sefurl ? "blog$source" : "tiki-view_blog.php?blogId=$source";
 			break;
 
+		case 'blog post':
 		case 'blogpost':
 			$href = $sefurl ? "blogpost$source" : "tiki-view_blog_post.php?postId=$source";
 			break;
 		case 'calendar':
 			$href = $sefurl ? "cal$source" : "tiki-calendar.php?calIds[]=$source";
+			break;
+
+		case 'calendar event':
+			$href = $sefurl ? "calevent$source" : "tiki-calendar_edit_item.php?viewcalitemId=$source";
 			break;
 
 		case 'gallery':
@@ -92,6 +98,10 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 			$href = 'tiki-download_file.php?fileId=' . $source . '&amp;draft';
 			break;
 
+		case 'trackeritemfield':
+			$type = 'trackeritem';
+			$source = (int)explode(':', $source)[0];
+			
 		case 'tracker item':
 			$type = 'trackeritem';
 

@@ -16,7 +16,7 @@
 {elseif isset($galleryId) && $galleryId neq '' && $prefs.metatag_imagetitle neq 'n'}
 	<meta name="keywords" content="{tr}Images Galleries{/tr} {$title|escape} {if $prefs.feature_freetags eq 'y'}{foreach from=$freetags.data item=taginfo}{$taginfo.tag|escape} {/foreach}{/if}">
 {elseif $prefs.metatag_keywords neq '' or !empty($metatag_local_keywords)}
-	<meta name="keywords" content="{$prefs.metatag_keywords|escape} {if $prefs.feature_freetags eq 'y'}{foreach from=$freetags.data item="taginfo"}{$taginfo.tag|escape} {/foreach}{/if} {$metatag_local_keywords|escape}">
+	<meta name="keywords" content="{if not empty($prefs.metatag_keywords_translated)}{$prefs.metatag_keywords_translated|escape}{else}{$prefs.metatag_keywords|escape}{/if} {if $prefs.feature_freetags eq 'y'}{foreach from=$freetags.data item="taginfo"}{$taginfo.tag|escape} {/foreach}{/if} {$metatag_local_keywords|escape}">
 {/if}
 {if $prefs.metatag_author neq ''}
 	<meta name="author" content="{$prefs.metatag_author|escape}">
@@ -39,6 +39,8 @@
 	{/if}
 {elseif $prefs.metatag_pagedesc eq 'y' and not empty($description)}
 	{$metatag_description = $description|escape}
+{elseif not empty($prefs.metatag_description_translated)}
+	{$metatag_description = $prefs.metatag_description_translated|escape}
 {elseif not empty($prefs.metatag_description)}
 	{$metatag_description = $prefs.metatag_description|escape}
 {/if}
@@ -46,8 +48,8 @@
 	<meta name="description" content="{$metatag_description}" property="og:description">
 	<meta name="twitter:description" content="{$metatag_description}">
 {else}
-	<meta name="description" content="{$prefs.browsertitle|tr_if|escape}{if isset($title)} {$prefs.site_nav_seper} {$title}{/if}" property="og:description">
-	<meta name="twitter:description" content="{$prefs.browsertitle|tr_if|escape}{if isset($title)} {$prefs.site_nav_seper} {$title}{/if}">
+	<meta name="description" content="{if not empty($prefs.browsertitle_translated)}{$prefs.browsertitle_translated|tr_if|escape}{else}{$prefs.browsertitle|tr_if|escape}{/if}{if isset($title)} {$prefs.site_nav_seper} {$title}{/if}" property="og:description">
+	<meta name="twitter:description" content="{if not empty($prefs.browsertitle_translated)}{$prefs.browsertitle_translated|tr_if|escape}{else}{$prefs.browsertitle|tr_if|escape}{/if}{if isset($title)} {$prefs.site_nav_seper} {$title}{/if}">
 {/if}
 {if $prefs.metatag_geoposition neq ''}
 	<meta name="geo.position" content="{$prefs.metatag_geoposition|escape}">
@@ -71,8 +73,8 @@
 	<meta name="revisit-after" content="{$prefs.metatag_revisitafter|escape}">
 {/if}
 {* --- SocialNetwork:site_name --- *}
-<meta content="{if not empty($prefs.socialnetworks_facebook_site_name)}{$prefs.socialnetworks_facebook_site_name}{else}{$prefs.browsertitle|tr_if|escape}{/if}" property="og:site_name">
-<meta content="{if not empty($prefs.socialnetworks_twitter_site)}{$prefs.socialnetworks_twitter_site}{else}{$prefs.browsertitle|tr_if|escape}{/if}" name="twitter:site">
+<meta content="{if not empty($prefs.socialnetworks_facebook_site_name)}{$prefs.socialnetworks_facebook_site_name}{elseif not empty($prefs.browsertitle_translated)}{$prefs.browsertitle_translated|tr_if|escape}{else}{$prefs.browsertitle|tr_if|escape}{/if}" property="og:site_name">
+<meta content="{if not empty($prefs.socialnetworks_twitter_site)}{$prefs.socialnetworks_twitter_site}{elseif not empty($prefs.browsertitle_translated)}{$prefs.browsertitle_translated|tr_if|escape}{else}{$prefs.browsertitle|tr_if|escape}{/if}" name="twitter:site">
 {* --- SocialNetwork: fb:app_id ---*}
 {if not empty($prefs.socialnetworks_facebook_application_id)}<meta content="{$prefs.socialnetworks_facebook_application_id}" property="fb:app_id">{/if}
 
@@ -84,7 +86,7 @@
 		{$sswindowtitle|escape}
 	{/if}
 {else}
-	{if $prefs.site_title_location eq 'before'}{$prefs.browsertitle|tr_if|escape} {$prefs.site_nav_seper} {/if}
+	{if $prefs.site_title_location eq 'before'}{if not empty($prefs.browsertitle_translated)}{$prefs.browsertitle_translated|tr_if|escape}{else}{$prefs.browsertitle|tr_if|escape}{/if} {$prefs.site_nav_seper} {/if}
 	{capture assign="page_description_title"}
 		{if ($prefs.feature_breadcrumbs eq 'y' or $prefs.site_title_breadcrumb eq "desc") && isset($trail)}
 			{breadcrumbs type=$prefs.site_title_breadcrumb loc="head" crumbs=$trail}
@@ -96,7 +98,7 @@
 		{/section}
 	{/if}
 	{if $prefs.site_title_location eq 'only'}
-		{$prefs.browsertitle|tr_if|escape}
+		{if not empty($prefs.browsertitle_translated)}{$prefs.browsertitle_translated|tr_if|escape}{else}{$prefs.browsertitle|tr_if|escape}{/if}
 	{else}
 		{if !empty($page_description_title)}
 			{$page_description_title}
@@ -131,7 +133,7 @@
 			{/if}
 		{/if}
 	{/if}
-	{if $prefs.site_title_location eq 'after'} {$prefs.site_nav_seper} {$prefs.browsertitle|tr_if|escape}{/if}
+	{if $prefs.site_title_location eq 'after'} {$prefs.site_nav_seper} {if not empty($prefs.browsertitle_translated)}{$prefs.browsertitle_translated|tr_if|escape}{else}{$prefs.browsertitle|tr_if|escape}{/if}{/if}
 {/if}
 {/strip}{/capture}
 {* --- tiki block --- *}

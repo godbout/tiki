@@ -70,25 +70,10 @@ class PdfGenerator
 				}
 			}
 		} elseif ($printMode == self::MPDF) {
-			self::setupMPDFPathConstants();
-			$path = $prefs['print_pdf_mpdf_path'];
-			if (class_exists('mPDF')) { // Autoload will take care of loading the mpdf file
-				if (! is_writable(_MPDF_TEMP_PATH) ||! is_writable(_MPDF_TTFONTDATAPATH)) {
-					$this->error = tr(
-						'mPDF "%0" and "%1" directories must be writable',
-						'tmp',
-						'ttfontdata'
-					);
-				} else {
-					$this->mode = 'mpdf';
-					$this->location = $path;
-				}
+			if (class_exists('\\Mpdf\\Mpdf')) {
+				$this->mode = 'mpdf';
 			} else {
-				if (! empty($path)) {
-					$this->error = tr('mPDF not found in path "%0", and is not installed using packages.', $path);
-				} else {
-					$this->error = tr('The mPDF path has not been set, and is not installed using packages.');
-				}
+				$this->error = tr('The package mPDF is not installed. You can install it using packages.');
 			}
 		}
 		if ($this->error) {
@@ -238,42 +223,6 @@ class PdfGenerator
 	}
 
 	/**
-	 * Setup mPDF Constants related with PATHS in teh filesystem
-	 * It sets the cache locations to a folder (mpdf) inside the filesystem cache
-	 * It sets a extra folder to load fonts
-	 */
-	public static function setupMPDFPathConstants()
-	{
-		// Set custom Fonts path
-		if (! defined('_MPDF_SYSTEM_TTFONTS')) {
-			define('_MPDF_SYSTEM_TTFONTS', TIKI_PATH . '/lib/pdf/fontdata/fontttf/');
-		}
-
-		// set cache paths
-		$cache = new CacheLibFileSystem();
-		$mPDFBaseCachePath = $cache->folder . '/mpdf/';
-		if (! is_dir($mPDFBaseCachePath)) {
-			mkdir($mPDFBaseCachePath);
-			chmod($mPDFBaseCachePath, 0777);
-		}
-
-		$constantsAndDirectories = [
-			'_MPDF_TEMP_PATH'      => 'tmp/',
-			'_MPDF_TTFONTDATAPATH' => 'ttfontdata/',
-		];
-
-		foreach ($constantsAndDirectories as $constant => $directory) {
-			if (! is_dir($mPDFBaseCachePath . $directory)) {
-				mkdir($mPDFBaseCachePath . $directory);
-				chmod($mPDFBaseCachePath . $directory, 0777);
-			}
-			if (! defined($constant)) {
-				define($constant, $mPDFBaseCachePath . $directory);
-			}
-		}
-	}
-
-	/**
 	 * @param $url string - address of the item to print as PDF
 	 * @return string     - contents of the PDF
 	 */
@@ -308,11 +257,23 @@ class PdfGenerator
 		}
 		$this->_getImages($html, $tempImgArr);
 
-			   $this->_parseHTML($html);
+		$this->_parseHTML($html);
 
-		self::setupMPDFPathConstants();
-
-		  $mpdf = new mPDF('utf-8', $pdfSettings['pagesize'], '', '', $pdfSettings['margin_left'], $pdfSettings['margin_right'], $pdfSettings['margin_top'], $pdfSettings['margin_bottom'], $pdfSettings['margin_header'], $pdfSettings['margin_footer'], $pdfSettings['orientation']);
+		$defaults = new \Mpdf\Config\ConfigVariables();
+		$defaultVariables = $defaults->getDefaults();
+		$mpdfConfig = [
+			'fontDir' => array_merge([TIKI_PATH . '/lib/pdf/fontdata/fontttf/'], $defaultVariables['fontDir']),
+			'mode' => 'utf8',
+			'format' => $pdfSettings['pagesize'],
+			'margin_left' => $pdfSettings['margin_left'],
+			'margin_right' => $pdfSettings['margin_right'],
+			'margin_top' => $pdfSettings['margin_top'],
+			'margin_bottom' => $pdfSettings['margin_bottom'],
+			'margin_header' => $pdfSettings['margin_header'],
+			'margin_footer' => $pdfSettings['margin_footer'],
+			'orientation' => $pdfSettings['orientation'],
+		];
+		$mpdf = new \Mpdf\Mpdf($mpdfConfig);
 
 		//custom fonts add, currently fontawesome support is added, more fonts can be added in future
 		$custom_fontdata = [
@@ -357,7 +318,7 @@ class PdfGenerator
 		}
 
 		$pdfPages = $this->getPDFPages($html, $pdfSettings);
-		$cssStyles = str_replace([".tiki","opacity: 0;"], ["","fill: #fff;opacity:0.3;stroke:black"], '<style>' . $basecss . $themecss . $printcss . $pageCSS . $extcss . $this->bootstrapReplace() . '</style>'); //adding css styles with first page content
+		$cssStyles = str_replace([".tiki","opacity: 0;"], ["","fill: #fff;opacity:0.3;stroke:black"], '<style>' . $basecss . $themecss . $printcss . $pageCSS . $extcss . $this->bootstrapReplace() .$prefs["header_custom_css"]. '</style>'); //adding css styles with first page content
 		//cover page checking
 		if ($pdfSettings['coverpage_text_settings'] != '' || ($pdfSettings['coverpage_image_settings'] != '' && $pdfSettings['coverpage_image_settings'] != 'off')) {
 			$coverPage = explode("|", $pdfSettings['coverpage_text_settings']);
@@ -380,6 +341,7 @@ class PdfGenerator
 			$mpdf->h2bookmarks = $pdfSettings['autobookmarks'];
 		}
 		$pageNo = 1;
+		$pdfLimit = ini_get('pcre.backtrack_limit');
 		//end of coverpage generation
 		foreach ($pdfPages as $pdfPage) {
 			if (strip_tags(trim($pdfPage['pageContent'])) != '') {
@@ -421,8 +383,12 @@ class PdfGenerator
 				if ($pdfPage['background'] != '') {
 					$bgColor = "background-color:" . $pdfPage['background'];
 				}
-
-				$mpdf->WriteHTML('<html><body style="' . $bgColor . ';margin:0px;padding:0px;">' . $cssStyles . $pdfPage['pageContent'] . '</body></html>');
+				$mpdf->WriteHTML('<html><body style="' . $bgColor . ';margin:0px;padding:0px;">' . $cssStyles);
+				//checking if page content is less than mPDF character limit, otherwise split it and loop to writeHTML
+				for($charLimit=0;$charLimit<=strlen($pdfPage['pageContent']);$charLimit+=$pdfLimit) {
+					 $mpdf->WriteHTML(substr($pdfPage['pageContent'],$charLimit,$pdfLimit));
+				}
+				$mpdf->WriteHTML('</body></html>');
 				$pageNo++;
 				$cssStyles = ''; //set to blank after added with first page
 			}

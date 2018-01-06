@@ -1550,6 +1550,17 @@
 		{
 			"type": "package",
 			"package": {
+				"name": "pear/xml_rpc",
+				"version": "1.5.5",
+				"dist": {
+					"url": "https://github.com/pear/XML_RPC/archive/tags/RELEASE_1_5_5.zip",
+					"type": "zip"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
 				"name": "player/mp3",
 				"version": "1.0",
 				"dist": {
@@ -1598,6 +1609,17 @@
 				"version": "1",
 				"dist": {
 					"url": "https://github.com/koogle/undojs/archive/master.zip",
+					"type": "zip"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "zendframework/zendsearch",
+				"version": "dev-tiki",
+				"dist": {
+					"url": "https://github.com/tikiorg/ZendSearch/archive/tiki.zip",
 					"type": "zip"
 				}
 			}
@@ -1698,7 +1720,7 @@
 		"monolog/monolog": "~1.4",
 		"morteza/bootstrap-rtl": ">=3.3.2",
 		"mottie/tablesorter": ">=2.14.4",
-		"mpdf/mpdf": "^6.1",
+		"mpdf/mpdf": "^6.1 || ^7.0",
 		"myclabs/deep-copy": ">=1.3.0",
 		"nagarajanchinnasamy/subtotal": ">=1.9.0",
 		"nicolaskruchten/pivottable": ">=v2.7.0",
@@ -1719,7 +1741,7 @@
 		"pear/text_wiki": "dev-master",
 		"pear/text_wiki_mediawiki": "0.2.0 || dev-master",
 		"pear/xml_parser": "^1.3",
-		"pear/xml_rpc": "1.5.1",
+		"pear/xml_rpc": "^1.5",
 		"pear/xml_util": ">=1.4.3",
 		"phenx/php-font-lib": ">=0.2.2",
 		"phpcas/phpcas": ">=1.3.2",
@@ -1776,39 +1798,39 @@
 		"twitter/bootstrap": ">=3.3.6",
 		"undojs/undojs": "1",
 		"webmozart/assert": ">=1.0.2",
-		"zendframework/zend-captcha": "~2.4",
-		"zendframework/zend-code": "~2.4",
-		"zendframework/zend-config": "~2.4",
-		"zendframework/zend-crypt": "~2.4",
-		"zendframework/zend-escaper": "~2.4",
-		"zendframework/zend-eventmanager": "~2.4",
-		"zendframework/zend-feed": "~2.4",
-		"zendframework/zend-filter": "~2.4",
-		"zendframework/zend-http": "~2.4",
-		"zendframework/zend-hydrator": "~1.1",
-		"zendframework/zend-i18n": "~2.4",
-		"zendframework/zend-json": "~2.4",
-		"zendframework/zend-loader": "~2.4",
-		"zendframework/zend-log": "~2.4",
-		"zendframework/zend-mail": "~2.4",
-		"zendframework/zend-math": "~2.4",
-		"zendframework/zend-mime": "~2.4",
-		"zendframework/zend-server": "~2.4",
+		"zendframework/zend-captcha": ">=2.4",
+		"zendframework/zend-code": ">=2.4",
+		"zendframework/zend-config": ">=2.4",
+		"zendframework/zend-crypt": ">=2.4",
+		"zendframework/zend-escaper": ">=2.4",
+		"zendframework/zend-eventmanager": ">=2.4",
+		"zendframework/zend-feed": ">=2.4",
+		"zendframework/zend-filter": ">=2.4",
+		"zendframework/zend-http": ">=2.4",
+		"zendframework/zend-hydrator": ">=1.1",
+		"zendframework/zend-i18n": ">=2.4",
+		"zendframework/zend-json": ">=2.4",
+		"zendframework/zend-loader": ">=2.4",
+		"zendframework/zend-log": ">=2.4",
+		"zendframework/zend-mail": ">=2.4",
+		"zendframework/zend-math": ">=2.4",
+		"zendframework/zend-mime": ">=2.4",
+		"zendframework/zend-server": ">=2.4",
 		"zendframework/zend-servicemanager": ">=2.4",
-		"zendframework/zend-session": "~2.4",
-		"zendframework/zend-soap": "~2.4",
-		"zendframework/zend-stdlib": "~2.4",
-		"zendframework/zend-tag": "~2.4",
-		"zendframework/zend-uri": "~2.4",
-		"zendframework/zend-validator": "~2.4",
-		"zendframework/zend-version": "~2.4",
-		"zendframework/zendgdata": "~2.0",
-		"zendframework/zendoauth": "~2.0",
-		"zendframework/zendopenid": "~2.0",
-		"zendframework/zendsearch": "~2.0",
-		"zendframework/zendservice-akismet": "~2.0",
+		"zendframework/zend-session": ">=2.4",
+		"zendframework/zend-soap": ">=2.4",
+		"zendframework/zend-stdlib": ">=2.4",
+		"zendframework/zend-tag": ">=2.4",
+		"zendframework/zend-uri": ">=2.4",
+		"zendframework/zend-validator": ">=2.4",
+		"zendframework/zend-version": ">=2.4",
+		"zendframework/zendgdata": ">=2.0",
+		"zendframework/zendoauth": ">=2.0",
+		"zendframework/zendopenid": ">=2.0",
+		"zendframework/zendsearch": "~2.0||dev-tiki",
+		"zendframework/zendservice-akismet": ">=2.0",
 		"zendframework/zendservice-recaptcha": ">=2.0",
-		"zendframework/zendservice-twitter": "~2.0",
+		"zendframework/zendservice-twitter": ">=2.0",
 		"zetacomponents/base": ">=1.8",
 		"zetacomponents/webdav": ">=1.1.3"
 	},

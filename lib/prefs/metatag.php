@@ -15,6 +15,7 @@ function prefs_metatag_list()
 			'size' => '4',
 			'default' => '',
 			'tags' => ['basic'],
+			'translatable' => 'y',
 		],
 		'metatag_freetags' => [
 			'name' => tra('Include tags'),
@@ -50,6 +51,7 @@ function prefs_metatag_list()
 			'size' => '5',
 			'default' => '',
 			'tags' => ['basic'],
+			'translatable' => 'y',
 		],
 		'metatag_pagedesc' => [
 			'name' => tra('Page description'),

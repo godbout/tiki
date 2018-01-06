@@ -111,7 +111,7 @@ class Services_Search_Controller
 				return [
 					'object_type' => $item['object_type'],
 					'object_id' => $item['object_id'],
-					'title' => preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item) {
+					'title' => preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item, $format) {
 						$key = $matches[1];
 						if (isset($item[$key])) {
 							// if this is a trackeritem we do not want only the name but also the trackerid listed when setting up a field
@@ -122,8 +122,10 @@ class Services_Search_Controller
 							} else {
 								return $item[$key];
 							}
-						} else {
+						} elseif ($format == '{title}') {
 							return tr('empty');
+						} else {
+							return '';
 						}
 					}, $format),
 				];

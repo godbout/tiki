@@ -456,6 +456,12 @@ class ObjectLib extends TikiLib
 				$info = TikiLib::lib('blog')->get_blog($object);
 				return ['title' => $info['title']];
 
+			case 'post':
+			case 'blog post':
+			case 'blogpost':
+				$info = TikiLib::lib('blog')->get_post($object);
+				return ['title' => $info['title']];
+
 			case 'forum':
 				$info = TikiLib::lib('comments')->get_forum($object);
 				return ['title' => $info['name']];
@@ -547,12 +553,14 @@ class ObjectLib extends TikiLib
 					]);
 					$result = $query->search($lib->getIndex());
 					$result->applyTransform(function ($item) use ($format) {
-						return preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item) {
+						return preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item, $format) {
 							$key = $matches[1];
 							if (isset($item[$key])) {
 								return $item[$key];
-							} else {
+							} elseif (! $format || $format == '{title}') {
 								return tr('empty');
+							} else {
+								return '';
 							}
 						}, $format);
 					});
@@ -564,7 +572,7 @@ class ObjectLib extends TikiLib
 				if (empty($title)) {
 					$title = "$type:$id";
 				}
-				if ($extra) {
+				if (isset($extra) && $extra) {
 					$title .= ' (' . $extra . ')';
 				}
 				return $title;
@@ -584,6 +592,9 @@ class ObjectLib extends TikiLib
 				return TikiLib::lib('user')->clean_user($id);
 			case 'calendar':
 				$info = TikiLib::lib('calendar')->get_calendar($id);
+				return $info['name'];
+			case 'calendar event':
+				$info = TikiLib::lib('calendar')->get_item($id);
 				return $info['name'];
 		}
 
@@ -614,6 +625,9 @@ class ObjectLib extends TikiLib
 	 * Gets a wiki parsed content for an object. This is used in case an object can have wiki parsed
 	 * content that generates relations (ex: Plugin Include).
 	 *
+	 * This content can be used to find elements, but displaying to user might not be a good idea, since
+	 * text from different fields can be concatenated.
+	 *
 	 * @param string $type
 	 * @param $id
 	 * @return void|string
@@ -634,6 +648,9 @@ class ObjectLib extends TikiLib
 			case 'forum post':
 				$comment_info = TikiLib::lib('comments')->get_comment((int)$objectId);
 				return $comment_info['data'];
+			case 'article':
+				$info = TikiLib::lib('art')->get_article((int)$objectId);
+				return $info['heading'] . "\n" . $info['body'];
 			case 'tracker':
 				$tracker_info = TikiLib::lib('trk')->get_tracker((int)$objectId);
 				return $tracker_info['description'];

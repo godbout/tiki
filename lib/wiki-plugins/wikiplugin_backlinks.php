@@ -74,8 +74,8 @@ class WikiPluginBackLinks extends PluginsLib
 		$aBackRequest = [];
 		$aBackLinks = $wikilib->get_backlinks($page);
 		foreach ($aBackLinks as $backlink) {
-			if (! in_array($backlink["fromPage"], $exclude)) {
-				$aBackRequest[] = $backlink["fromPage"];
+			if ($backlink['type'] == 'wiki page' && ! in_array($backlink["objectId"], $exclude)) {
+				$aBackRequest[] = $backlink["objectId"];
 			}
 		}
 		if (isset($include_self) && $include_self) {

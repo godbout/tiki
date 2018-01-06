@@ -735,7 +735,6 @@ function prefs_feature_list($partial = false)
 				'ajax_autosave',
 				'feature_wiki_paragraph_formatting',
 				'feature_wiki_paragraph_formatting_add_br',
-				'wysiwyg_wiki_parsed',
 			],
 			'tags' => ['basic'],
 		],
@@ -889,6 +888,8 @@ function prefs_feature_list($partial = false)
 			'help' => 'User+Menu',
 			'type' => 'flag',
 			'default' => 'n',
+			'warning' => tra('Unmaintained feature'),
+			'tags' => ['experimental'],
 		],
 		'feature_tasks' => [
 			'name' => tra('User tasks'),
@@ -1288,6 +1289,14 @@ function prefs_feature_list($partial = false)
 			'dependencies' => ['feature_sefurl'],
 			'default' => 'y',
 		],
+		'feature_sefurl_title_trackeritem' => [
+			'name' => tra('Display tracker item title in the search engine friendly URL'),
+			'description' => tra('To enable the title, you should disable `Rewrite tiki-view_tracker.php?itemId=yyy to Prefixyyy page`'),
+			'type' => 'flag',
+			'perspective' => false,
+			'dependencies' => ['feature_sefurl'],
+			'default' =>'n',
+		],
 		'feature_sefurl_tracker_prefixalias' => [
 			'name' => tra('Rewrite tiki-view_tracker.php?itemId=yyy to Prefixyyy page'),
 			'description' => tra('This redirection uses the wiki prefix alias feature'),
@@ -1310,6 +1319,13 @@ function prefs_feature_list($partial = false)
 			'type' => 'text',
 			'dependencies' => ['feature_canonical_url'],
 			'default' => '',
+		],
+		'feature_sefurl_routes' => [
+			'name' => tra('Custom Routes'),
+			'description' => tra("Custom function of Routes"),
+			'dependencies' => ['feature_sefurl'],
+			'type' => 'flag',
+			'default' => 'n',
 		],
 		'feature_modulecontrols' => [
 			'name' => tra('Show module controls'),
@@ -2244,6 +2260,12 @@ function prefs_feature_list($partial = false)
 			'description' => tra('allow import of HTML pages'),
 			'type' => 'flag',
 			'default' => 'n',
+			'tags' => [
+				// HTML may be "unparsed" even if the "Try to convert HTML to wiki" checkbox is not checked. Chealer 2017-12-28
+				// Unparsing HTML containing HTML entities will not render entities properly. Chealer 2017-12-28
+				// Importing HTML raw imports the whole document, including its head, and does not display in an iframe, resulting in invalid HTML. Chealer 2017-12-28
+				'experimental'
+			],
 		],
 		'feature_wiki_use_date' => [
 			'name' => tra('Use date parameter'),
@@ -2753,7 +2775,7 @@ function prefs_feature_list($partial = false)
 
 			/*
 			 * Anchoring absolutely not robust. Positioning is verified with the tiki.comments.ranges attribute, which is not updated when wiki pages change. When annotated text changes, the annotation stops displaying (unless the range is unchanged). Chealer 2017-09-20
-             * Annotating is offered when selecting text in a WYSIWYG zone (WYSIWYG plugin) in edition mode. Chealer 2017-10-26
+			 * Annotating is offered when selecting text in a WYSIWYG zone (WYSIWYG plugin) in edition mode. Chealer 2017-10-26
 			 */
 			'tags' => ['experimental'],
 

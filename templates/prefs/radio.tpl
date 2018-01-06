@@ -12,13 +12,6 @@
 				<label for="{$p.id|cat:'_'|cat:$smarty.foreach.loop.index|escape}">{$label|escape}</label>
 			</div>
 		{/foreach}
-		{if $p.detail}
-			<div class="help-block">{$p.detail|simplewiki}</div>
-		{/if}
-		{include file="prefs/shared-flags.tpl"}
-		{if $p.hint}
-			<div class="help-block">{$p.hint|simplewiki}</div>
-		{/if}
-		{include file="prefs/shared-dependencies.tpl"}
+		{include file="prefs/shared.tpl"}
 	</div>
 </div>

@@ -20,6 +20,11 @@ function smarty_function_object_title($params, $smarty)
 	if (isset($params['type'], $params['id'])) {
 		$type = $params['type'];
 		$object = $params['id'];
+		if (substr($type, -7) == 'comment') {
+			$type = substr($type, 0, strlen($type) - 8);
+			$info = TikiLib::lib('comments')->get_comment((int)$object);
+			$object = $info['object'];
+		}
 	} else {
 		list($type, $object) = explode(':', $params['identifier'], 2);
 	}

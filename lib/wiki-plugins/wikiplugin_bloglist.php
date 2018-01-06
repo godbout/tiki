@@ -212,6 +212,16 @@ function wikiplugin_bloglist($data, $params)
 	}
 	$smarty->assign('container_class', $params['containerClass']);
 
+	if (! isset($params['wordBoundary'])) {
+		$params['wordBoundary'] = '';
+	}
+	if (! isset($params['ellipsis'])) {
+		$params['ellipsis'] = '';
+	}
+	if (! isset($params['more'])) {
+		$params['more'] = '';
+	}
+
 	if ($params['simpleList'] == 'y') {
 		$bloglib = TikiLib::lib('blog');
 		$blogItems = $bloglib->list_posts($params['offset'], $params['Items'], $params['sort_mode'], $params['find'], $params['Id'], $params['author'], '', $dateStartTS, $dateEndTS);

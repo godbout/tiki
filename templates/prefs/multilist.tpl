@@ -6,14 +6,7 @@
 				<option value="{$value|escape}"{if in_array($value, $p.value)} selected="selected"{/if} {$p.params}>{$label|escape}</option>
 			{/foreach}
 		</select>
-		{include file="prefs/shared-flags.tpl"}
-		{if $p.shorthint}
-			<div class="help-block">{$p.shorthint|simplewiki}</div>
-		{/if}
-		{if $p.hint}
-			<div class="help-block">{$p.hint|simplewiki}</div>
-		{/if}
-		{include file="prefs/shared-dependencies.tpl"}
+		{include file="prefs/shared.tpl"}
 		{if $prefs.jquery_ui_chosen neq 'y'}
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
 		{/if}

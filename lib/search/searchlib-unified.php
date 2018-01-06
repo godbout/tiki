@@ -240,6 +240,7 @@ class UnifiedSearchLib
 				}
 			);
 			$stat['total fields in the search index'] = $index->getFieldCount();
+			$tikilib->set_preference('unified_field_count', $index->getFieldCount());
 			$tikilib->set_preference('unified_identifier_fields', $index->getIdentifierFields());
 		} catch (Exception $e) {
 			Feedback::error(tr('The search index could not be rebuilt.') . '<br />' . $e->getMessage(), 'session');
@@ -807,6 +808,13 @@ class UnifiedSearchLib
 						$nodes = $connection->rawApi('/_nodes/stats');
 						foreach ($nodes->nodes as $node) {
 							$info[tr('Node %0', $node->name)] = tr('Using %0 bytes, since %1', number_format($node->jvm->mem->heap_used_in_bytes), date('Y-m-d H:i:s', $node->jvm->timestamp / 1000));
+						}
+
+						if (! empty($prefs['unified_field_count'])) {
+							$info[tr('Field Count Tried on Last Rebuild')] = $prefs['unified_field_count'];
+							if ($prefs['unified_field_count'] > $prefs['unified_elastic_field_limit']) {
+								$info[tr('Warning')] = tr('Field limit setting is lower than Tiki needs to store in the index!');
+							}
 						}
 					}
 				} catch (Search_Elastic_Exception $e) {

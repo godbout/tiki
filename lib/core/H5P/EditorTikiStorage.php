@@ -19,16 +19,16 @@ class H5P_EditorTikiStorage implements H5peditorStorage
 	 */
 	public static function get_h5peditor_instance()
 	{
-		global $tikipath;
 
 		static $h5peditor;
+
+		$ajaxInterface = new H5P_EditorTikiAjax();
 
 		if (empty($h5peditor)) {
 			$h5peditor = new H5peditor(
 				H5P_H5PTiki::get_h5p_instance('core'),
 				new H5P_EditorTikiStorage(),
-				$tikipath . H5P_H5PTiki::$h5p_path,
-				$tikipath . H5P_H5PTiki::$h5p_path
+				$ajaxInterface
 			);
 		}
 
@@ -170,5 +170,42 @@ ORDER BY `title`'
 	public function alterLibraryFiles(&$files, $libraries)
 	{
 		// Not really needed for Tiki
+	}
+
+	/**
+	 * Saves a file or moves it temporarily. This is often necessary in order to
+	 * validate and store uploaded or fetched H5Ps.
+	 *
+	 * @param string $data Uri of data that should be saved as a temporary file
+	 * @param boolean $move_file Can be set to TRUE to move the data instead of saving it
+	 *
+	 * @return bool|object Returns false if saving failed or the path to the file
+	 *  if saving succeeded
+	 */
+	public static function saveFileTemporarily($data, $move_file)
+	{
+		// TODO: Implement saveFileTemporarily() method.
+	}
+
+	/**
+	 * Marks a file for later cleanup, useful when files are not instantly cleaned
+	 * up. E.g. for files that are uploaded through the editor.
+	 *
+	 * @param H5peditorFile
+	 * @param $content_id
+	 */
+	public static function markFileForCleanup($file, $content_id)
+	{
+		// TODO: Implement markFileForCleanup() method.
+	}
+
+	/**
+	 * Clean up temporary files
+	 *
+	 * @param string $filePath Path to file or directory
+	 */
+	public static function removeTemporarilySavedFiles($filePath)
+	{
+		// TODO: Implement removeTemporarilySavedFiles() method.
 	}
 }

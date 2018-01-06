@@ -15,6 +15,15 @@ function prefs_global_list($partial = false)
 			'default' => '',
 			'tags' => ['basic'],
 			'public' => true,
+			'translatable' => 'y',
+		],
+		'fallbackBaseUrl' => [
+			'name' => tra('Fallback for tiki base URL'),
+			'description' => tra('The full URL to the Tiki base URL including protocol, domain and path (example: https://example.com/tiki/), used when the current URL can not be determined, example, when executing from the command line.'),
+			'type' => 'text',
+			'default' => '',
+			'tags' => array('basic'),
+			'public' => true,
 		],
 		'validateUsers' => [
 			'name' => tra('Validate new user registrations by email'),

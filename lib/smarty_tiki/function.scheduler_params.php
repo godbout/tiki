@@ -32,7 +32,7 @@ function smarty_function_scheduler_params($params, $smarty)
 	$html = '';
 
 	foreach ($inputParams as $key => $param) {
-		$escapedParam = smarty_modifier_escape($schedulerParams[$key]);
+		$escapedParam = (isset($schedulerParams[$key])) ? smarty_modifier_escape($schedulerParams[$key]) : '';
 		$inputKey = $taskName . '_' . $key;
 
 		switch ($param['type']) {

@@ -54,6 +54,8 @@
 			</span>
 		</div>
 		{preference name=wiki_url_scheme}
+
+        {preference name=feature_sefurl_routes}
 	</fieldset>
 	<fieldset>
 		<legend>{tr}Settings{/tr}</legend>
@@ -79,6 +81,7 @@
 		</div>
 		{preference name=feature_sefurl_title_article}
 		{preference name=feature_sefurl_title_blog}
+		{preference name=feature_sefurl_title_trackeritem}
 		{preference name=feature_sefurl_tracker_prefixalias}
 		{preference name=url_only_ascii}
 	</fieldset>

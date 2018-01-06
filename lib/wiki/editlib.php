@@ -797,7 +797,11 @@ class EditLib
 			$parsed = $parsed2;
 		}
 		// Fix IE7 wysiwyg editor always adding absolute path
-		$search = '/(<a[^>]+href=\")https?\:\/\/' . preg_quote($_SERVER['HTTP_HOST'] . $tikiroot, '/') . '([^>]+_cke_saved_href)/i';
+		if (isset($_SERVER['HTTP_HOST'])) {
+			$search = '/(<a[^>]+href=\")https?\:\/\/' . preg_quote($_SERVER['HTTP_HOST'] . $tikiroot, '/') . '([^>]+_cke_saved_href)/i';
+		} else {
+			$search = '/(<a[^>]+href=\")https?\:\/\/' . preg_quote($_SERVER['SERVER_NAME'] . $tikiroot, '/') . '([^>]+_cke_saved_href)/i';
+		}
 		$parsed = preg_replace($search, '$1$2', $parsed);
 
 		if (! $isHtml) {
@@ -812,20 +816,21 @@ class EditLib
 
 	/**
 	 * Converts wysiwyg plugins into wiki.
-	 * Also processes headings by removing surrounding <p> (possibly for wysiwyg_wiki_semi_parsed but not tested)
+	 * Also processes headings by removing surrounding <p>
 	 * Also used by ajax preview in Services_Edit_Controller
 	 *
 	 * @param string $inData	page data - mostly html but can have a bit of wiki in it
 	 * @return string			html with wiki plugins
 	 */
 
-	function partialParseWysiwygToWiki($inData)
+	static function partialParseWysiwygToWiki($inData)
 	{
-
 		// de-protect ck_protected comments
 		$ret = preg_replace('/<!--{cke_protected}{C}%3C!%2D%2D%20end%20tiki_plugin%20%2D%2D%3E-->/i', '<!-- end tiki_plugin -->', $inData);
+		
 		// remove the wysiwyg plugin elements leaving the syntax only remaining
 		$ret = preg_replace('/<(?:div|span)[^>]*syntax="(.*)".*end tiki_plugin --><\/(?:div|span)>/Umis', "$1", $ret);
+		
 		// preg_replace blows up here with a PREG_BACKTRACK_LIMIT_ERROR on pages with "corrupted" plugins
 		if (! $ret) {
 			$ret = $inData;

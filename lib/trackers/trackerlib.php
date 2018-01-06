@@ -1884,7 +1884,7 @@ class TrackerLib extends TikiLib
 		// If this is a user tracker it needs to be detected right here before actual looping of fields happen
 		$trackersync_user = $user;
 		foreach ($ins_fields["data"] as $i => $array) {
-			if ($array['type'] == 'u' && isset($array['options_array'][0]) && $array['options_array'][0] == '1') {
+			if (isset($array['type']) && $array['type'] == 'u' && isset($array['options_array'][0]) && $array['options_array'][0] == '1') {
 				if ($prefs['user_selector_realnames_tracker'] == 'y' && $array['type'] == 'u') {
 					if (! $userlib->user_exists($array['value'])) {
 						$finalusers = $userlib->find_best_user([$array['value']], '', 'login');
@@ -1995,7 +1995,7 @@ class TrackerLib extends TikiLib
 			} else {
 				$is_date = isset($array['type']) ? in_array($array["type"], ['f', 'j']) : false;
 
-				if ($currentItemId || $array['type'] !== 'q') {	// autoincrement
+				if ($currentItemId || ( isset($array['type']) && $array['type'] !== 'q') ) {	// autoincrement
 					$this->modify_field($currentItemId, $fieldId, $value);
 					if ($old_value != $value) {
 						if ($is_date) {
@@ -2830,6 +2830,10 @@ class TrackerLib extends TikiLib
 
 		// remove the object and uncategorize etc while the item still exists
 		$this->remove_object("trackeritem", $itemId);
+		$itemFields = $this->itemFields()->fetchAll(['fieldId'], ['itemId' => $itemId]);
+		foreach ($itemFields as $itemField) {
+			$this->remove_object("trackeritemfield", sprintf("%d:%d", (int)$itemId, (int)$itemField['fieldId']));
+		}
 
 		$this->trackers()->update(
 			['lastModif' => $this->now, 'items' => $this->trackers()->decrement(1)],
@@ -3091,7 +3095,9 @@ class TrackerLib extends TikiLib
 				}
 
 				$wikiParsed = $descriptionIsParsed == 'y';
-				TikiLib::lib('wiki')->update_wikicontent_relations($description, 'tracker', (int)$trackerId, $wikiParsed);
+				$wikilib = TikiLib::lib('wiki');
+				$wikilib->update_wikicontent_relations($description, 'tracker', (int)$trackerId, $wikiParsed);
+				$wikilib->update_wikicontent_links($description, 'tracker', (int)$trackerId, $wikiParsed);
 
 				$optionTable = $this->options();
 				$optionTable->deleteMultiple(['trackerId' => (int) $trackerId]);
@@ -3251,7 +3257,9 @@ class TrackerLib extends TikiLib
 		}
 
 		$wikiParsed = $descriptionIsParsed == 'y';
-		TikiLib::lib('wiki')->update_wikicontent_relations($description, 'trackerfield', (int)$fieldId, $wikiParsed);
+		$wikilib = TikiLib::lib('wiki');
+		$wikilib->update_wikicontent_relations($description, 'trackerfield', (int)$fieldId, $wikiParsed);
+		$wikilib->update_wikicontent_links($description, 'trackerfield', (int)$fieldId, $wikiParsed);
 
 		if ($logOption) {
 			$logslib = TikiLib::lib('logs');
@@ -3389,6 +3397,11 @@ class TrackerLib extends TikiLib
 			$this->remove_tracker_item($itemId);
 		}
 
+		$fields = $this->fields()->fetchAll(['fieldId'], ['trackerId' => $trackerId]);
+		foreach ($fields as $field) {
+			$this->remove_object("trackerfield", $field['fieldId']);
+		}
+
 		$conditions = [
 			'trackerId' => (int) $trackerId,
 		];
@@ -3457,7 +3470,7 @@ class TrackerLib extends TikiLib
 				'fieldId' => $fieldId,
 			]
 		);
-
+		$this->remove_object('trackerfield', $fieldId);
 		TikiLib::events()->trigger(
 			'tiki.trackerfield.delete',
 			['type' => 'trackerfield', 'object' => $fieldId]
@@ -5848,6 +5861,10 @@ class TrackerLib extends TikiLib
 			$item[$field['fieldId']] = $field['value'];
 		} elseif (isset($item['itemId'])) {
 			$item[$field['fieldId']] = $this->get_item_value(null, $item['itemId'], $field['fieldId']);
+		} elseif (isset($params['value'])) {
+			$field['value'] = $params['value'];
+			$field['ins_'.$field['fieldId']] = $field['value'];
+			$item[$field['fieldId']] = $field['value'];
 		}
 
 		// get the handler for the specific fieldtype.

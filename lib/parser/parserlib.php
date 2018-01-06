@@ -1137,7 +1137,7 @@ if ( \$('#$id') ) {
 		} else {
 			$elem = 'span';
 		}
-		$elem_style = 'position:relative;display:inline-block';
+		$elem_style = 'position:relative;display:inline-block;';
 		if (! $enabled) {
 			$elem_style .= 'opacity:0.3;';
 		}
@@ -1243,9 +1243,11 @@ if ( \$('#$id') ) {
 		}
 
 		// Make sure all arguments are declared
-		$params = $info['params'];
+		if (isset($info['params'])) {
+			$params = $info['params'];
+		}
 		$argsCopy = $args;
-		if (! isset($info['extraparams']) && is_array($params)) {
+		if (! isset($info['extraparams']) && isset($params) && is_array($params)) {
 			$args = array_intersect_key($args, $params);
 		}
 
@@ -1365,10 +1367,54 @@ if ( \$('#$id') ) {
 		return $result;
 	}
 
+	/**
+	 * Gets a wiki parseable content and substitutes links for $oldName by
+	 * links for $newName.
+	 *
+	 * @param string wiki parseable content
+	 * @param string old page name
+	 * @param string new page name
+	 * @return string new wiki parseable content with links replaced
+	 */
+	function replace_links($data, $oldName, $newName) {
+		global $prefs;
+		$quotedOldName = preg_quote($oldName, '/');
+		$semanticlib = TikiLib::lib('semantic');
+
+                // FIXME: Affects non-parsed sections
+		foreach ($semanticlib->getAllTokens() as $sem) {
+			$data = str_replace("($sem($oldName", "($sem($newName", $data);
+		}
+
+		if ($prefs['feature_wikiwords'] == 'y') {
+			if (strstr($newName, ' ')) {
+				$data = preg_replace("/(?<= |\n|\t|\r|\,|\;|^)$quotedOldName(?= |\n|\t|\r|\,|\;|$)/", '((' . $newName . '))', $data);
+			} else {
+				$data = preg_replace("/(?<= |\n|\t|\r|\,|\;|^)$quotedOldName(?= |\n|\t|\r|\,|\;|$)/", $newName, $data);
+			}
+		}
+
+		$data = preg_replace("/(?<=\(\()$quotedOldName(?=\)\)|\|)/i", $newName, $data);
+
+		$quotedOldHtmlName = preg_quote(urlencode($oldName), '/');
+
+		$htmlSearch = '/<a class="wiki" href="tiki-index\.php\?page=' . $quotedOldHtmlName . '([^"]*)"/i';
+		$htmlReplace = '<a class="wiki" href="tiki-index.php?page=' . urlencode($newName) . '\\1"';
+		$data = preg_replace($htmlSearch, $htmlReplace, $data);
+
+		$htmlSearch = '/<a class="wiki" href="' . $quotedOldHtmlName . '"/i';
+		$htmlReplace = '<a class="wiki" href="' . urlencode($newName) . '"';
+		$data = preg_replace($htmlSearch, $htmlReplace, $data);
+
+		$htmlWantedSearch = '/(' . $quotedOldName . ')?<a class="wiki wikinew" href="tiki-editpage\.php\?page=' . $quotedOldHtmlName . '"[^<]+<\/a>/i';
+		$data = preg_replace($htmlWantedSearch, '((' . $newName . '))', $data);
+
+		return $data;
+	}
 
 	// Replace hotwords in given line
 	//*
-	function replace_hotwords($line, $words)
+	function replace_hotwords($line, $words = null)
 	{
 		global $prefs;
 
@@ -1378,6 +1424,9 @@ if ( \$('#$id') ) {
 			// FIXME: Replacements may fail if the value contains an unescaped metacharacters (which is why the default value contains escape characters). The value should probably be escaped with preg_quote().
 			$sep = empty($prefs['feature_hotwords_sep']) ? " \n\t\r\,\;\(\)\.\:\[\]\{\}\!\?\"" : $prefs['feature_hotwords_sep'];
 
+			if (is_null($words)) {
+				$words = $this->get_hotwords();
+			}
 			foreach ($words as $word => $url) {
 				$escapedWord = preg_quote($word, '/');
 
@@ -1586,16 +1635,8 @@ if ( \$('#$id') ) {
 			$headerlib->wysiwyg_parsing = true;
 		}
 
-		// if simple_wiki is true, disable some wiki syntax
-		// basically, allow wiki plugins, wiki links and almost
-		// everything between {}
-		$simple_wiki = false;
-		if ($prefs['feature_wysiwyg'] == 'y' and $this->option['is_html']) {
-			if ($prefs['wysiwyg_wiki_semi_parsed'] == 'y') {
-				$simple_wiki = true;
-			} elseif ($prefs['wysiwyg_wiki_parsed'] == 'n') {
-				return $data;
-			}
+		if ($this->option['is_html'] && $prefs['wysiwyg_wiki_parsed'] == 'n') {
+			return $data;
 		}
 
 		// remove tiki comments first
@@ -1622,57 +1663,49 @@ if ( \$('#$id') ) {
 		$data = preg_replace(';~pre~(.*?)~/pre~;s', '<pre>$1</pre>', $data);
 
 		// Strike-deleted text --text-- (but not in the context <!--[if IE]><--!> or <!--//--<!CDATA[//><!--
-		if (! $simple_wiki) {
-			// FIXME produces false positive for strings contining html comments. e.g: --some text<!-- comment -->
-			$data = preg_replace("#(?<!<!|//)--([^\s>].+?)--#", "<strike>$1</strike>", $data);
-		}
+		// FIXME produces false positive for strings containing html comments. e.g: --some text<!-- comment -->
+		$data = preg_replace("#(?<!<!|//)--([^\s>].+?)--#", "<strike>$1</strike>", $data);
 
 		// Handle html comment sections
 		$data = preg_replace(';~hc~(.*?)~/hc~;s', '<!-- $1 -->', $data);
 
 		// Replace special characters
-		// done after url catching because otherwise urls of dyn. sites will be modified
-		// not done in wysiwyg mode, i.e. $prefs['feature_wysiwyg'] set to something other than 'no' or not set at all
-		//			if (!$simple_wiki and $prefs['feature_wysiwyg'] == 'n')
-		//above line changed by mrisch - special functions were not parsing when wysiwyg is set but wysiswyg is not enabled
-		// further changed by nkoth - why not parse in wysiwyg mode as well, otherwise it won't parse for display/preview?
-		// must be done before color as we can have ~hs~~hs
+		// done after url catching because otherwise urls of dyn. sites will be modified // What? Chealer
+		// must be done before color as we can have "~hs~~hs" (2 consecutive non-breaking spaces. The color syntax uses "~~".)
 		// jb 9.0 html entity fix - excluded not $this->option['is_html'] pages
-		if (! $simple_wiki && ! $this->option['is_html']) {
+		if (! $this->option['is_html']) {
 			$this->parse_htmlchar($data);
 		}
 
 		//needs to be before text color syntax because of use of htmlentities in lib/core/WikiParser/OutputLink.php
-		$data = $this->parse_data_wikilinks($data, $simple_wiki, $this->option['ck_editor']);
+		$data = $this->parse_data_wikilinks($data, false, $this->option['ck_editor']);
 
-		if (! $simple_wiki) {
-			// Replace colors ~~foreground[,background]:text~~
-			// must be done before []as the description may contain color change
-			$parse_color = 1;
-			$temp = $data;
-			while ($parse_color) { // handle nested colors, parse innermost first
-				$temp = preg_replace_callback(
-					"/~~([^~:,]+)(,([^~:]+))?:([^~]*)(?!~~[^~:,]+(?:,[^~:]+)?:[^~]*~~)~~/Ums",
-					'self::colorAttrEscape',
-					$temp,
-					-1,
-					$parse_color
-				);
+		// Replace colors ~~foreground[,background]:text~~
+		// must be done before []as the description may contain color change
+		$parse_color = 1;
+		$temp = $data;
+		while ($parse_color) { // handle nested colors, parse innermost first
+			$temp = preg_replace_callback(
+				"/~~([^~:,]+)(,([^~:]+))?:([^~]*)(?!~~[^~:,]+(?:,[^~:]+)?:[^~]*~~)~~/Ums",
+				'self::colorAttrEscape',
+				$temp,
+				-1,
+				$parse_color
+			);
 
-				if (! empty($temp)) {
-					$data = $temp;
-				}
+			if (! empty($temp)) {
+				$data = $temp;
 			}
+		}
 
-			// On large pages, the above preg rule can hit a BACKTRACE LIMIT
-			// In case it does, use the simpler color replacement pattern.
-			if (empty($temp)) {
-				$data = preg_replace_callback(
-					"/\~\~([^\:\,]+)(,([^\:]+))?:([^~]*)\~\~/Ums",
-					'self::colorAttrEscape',
-					$data
-				);
-			}
+		// On large pages, the above preg rule can hit a BACKTRACE LIMIT
+		// In case it does, use the simpler color replacement pattern.
+		if (empty($temp)) {
+			$data = preg_replace_callback(
+				"/\~\~([^\:\,]+)(,([^\:]+))?:([^~]*)\~\~/Ums",
+				'self::colorAttrEscape',
+				$data
+			);
 		}
 
 		// Extract [link] sections (to be re-inserted later)
@@ -1680,17 +1713,15 @@ if ( \$('#$id') ) {
 
 		// This section matches [...].
 		// Added handling for [[foo] sections.  -rlpowell
-		if (! $simple_wiki) {
-			preg_match_all("/(?<!\[)(\[[^\[][^\]]+\])/", $data, $noparseurl);
+		preg_match_all("/(?<!\[)(\[[^\[][^\]]+\])/", $data, $noparseurl);
 
-			foreach (array_unique($noparseurl[1]) as $np) {
-				$key = '§' . md5($tikilib->genPass()) . '§';
+		foreach (array_unique($noparseurl[1]) as $np) {
+			$key = '§' . md5($tikilib->genPass()) . '§';
 
-				$aux["key"] = $key;
-				$aux["data"] = $np;
-				$noparsedlinks[] = $aux;
-				$data = preg_replace('/(^|[^a-zA-Z0-9])' . preg_quote($np, '/') . '([^a-zA-Z0-9]|$)/', '\1' . $key . '\2', $data);
-			}
+			$aux["key"] = $key;
+			$aux["data"] = $np;
+			$noparsedlinks[] = $aux;
+			$data = preg_replace('/(^|[^a-zA-Z0-9])' . preg_quote($np, '/') . '([^a-zA-Z0-9]|$)/', '\1' . $key . '\2', $data);
 		}
 
 		// BiDi markers
@@ -1707,19 +1738,17 @@ if ( \$('#$id') ) {
 
 		$data = $this->parse_data_dynamic_variables($data, $this->option['language']);
 
-		if (! $simple_wiki) {
-			// Replace boxes
-			$delim = (isset($prefs['feature_simplebox_delim']) && $prefs['feature_simplebox_delim'] != "" ) ? preg_quote($prefs['feature_simplebox_delim']) : preg_quote("^");
-			$data = preg_replace("/${delim}(.+?)${delim}/s", "<div class=\"well\">$1</div>", $data);
+		// Replace boxes
+		$delim = (isset($prefs['feature_simplebox_delim']) && $prefs['feature_simplebox_delim'] != "" ) ? preg_quote($prefs['feature_simplebox_delim']) : preg_quote("^");
+		$data = preg_replace("/${delim}(.+?)${delim}/s", "<div class=\"well\">$1</div>", $data);
 
-			// Underlined text
-			$data = preg_replace("/===(.+?)===/", "<u>$1</u>", $data);
-			// Center text
-			if ($prefs['feature_use_three_colon_centertag'] == 'y' || ($prefs['namespace_enabled'] == 'y' && $prefs['namespace_separator'] == '::')) {
-				$data = preg_replace("/:::(.+?):::/", "<div style=\"text-align: center;\">$1</div>", $data);
-			} else {
-				$data = preg_replace("/::(.+?)::/", "<div style=\"text-align: center;\">$1</div>", $data);
-			}
+		// Underlined text
+		$data = preg_replace("/===(.+?)===/", "<u>$1</u>", $data);
+		// Center text
+		if ($prefs['feature_use_three_colon_centertag'] == 'y' || ($prefs['namespace_enabled'] == 'y' && $prefs['namespace_separator'] == '::')) {
+			$data = preg_replace("/:::(.+?):::/", "<div style=\"text-align: center;\">$1</div>", $data);
+		} else {
+			$data = preg_replace("/::(.+?)::/", "<div style=\"text-align: center;\">$1</div>", $data);
 		}
 
 		// reinsert hash-replaced links into page
@@ -1733,12 +1762,19 @@ if ( \$('#$id') ) {
 
 		$data = $this->parse_data_externallinks($data);
 
-		$data = $this->parse_data_tables($data, $simple_wiki);
+		$data = $this->parse_data_tables($data);
 
-		if (! $simple_wiki && $this->option['parsetoc']) {
+		/* parse_data_process_maketoc() calls parse_data_inline_syntax().
+		
+		It seems wrong to just call parse_data_inline_syntax() when the parsetoc option is disabled.
+		Despite its name, parse_data_process_maketoc() does not just deal with TOC-s.
+		
+		I believe it would be better that parse_data_process_maketoc() check parsetoc, only to set $need_maketoc, so that the following calls parse_data_process_maketoc() unconditionally. Chealer 2018-01-02
+		*/ 
+		if ($this->option['parsetoc']) {
 			$this->parse_data_process_maketoc($data, $noparsed);
 		} else {
-			$data = $this->parse_data_simple($data);
+			$data = $this->parse_data_inline_syntax($data);
 		}
 
 		// linebreaks using %%%
@@ -1826,20 +1862,14 @@ if ( \$('#$id') ) {
 		return ($bwhite[0] . $data . $ewhite[0]);
 	}
 
-	//*
+	/** Simpler and faster parse than parse_data()
+	 * This is only called from the parse Smarty modifier, for preference definitions. 
+	 */ 
 	function parse_data_simple($data)
 	{
-		global $prefs;
-		$words = [];
-
-		if ($prefs['feature_hotwords'] == 'y') {
-			// Get list of HotWords
-			$words = $this->get_hotwords();
-		}
-
 		$data = $this->parse_data_wikilinks($data, true);
 		$data = $this->parse_data_externallinks($data, true);
-		$data = $this->parse_data_inline_syntax($data, $words);
+		$data = $this->parse_data_inline_syntax($data);
 		if ($this->option['typography'] && ! $this->option['ck_editor']) {
 			$data = typography($data, $this->option['language']);
 		}
@@ -1901,26 +1931,26 @@ if ( \$('#$id') ) {
 		// If they are parenthesized then don't treat as links
 		// Prevent ))PageName(( from being expanded \"\'
 		//[A-Z][a-z0-9_\-]+[A-Z][a-z0-9_\-]+[A-Za-z0-9\-_]*
-		if (! $simple_wiki && $prefs['feature_wiki'] == 'y' && $prefs['feature_wikiwords'] == 'y') {
-			// The first part is now mandatory to prevent [Foo|MyPage] from being converted!
-			if ($prefs['feature_wikiwords_usedash'] == 'y') {
-				preg_match_all("/(?<=[ \n\t\r\,\;]|^)([A-Z][a-z0-9_\-\x80-\xFF]+[A-Z][a-z0-9_\-\x80-\xFF]+[A-Za-z0-9\-_\x80-\xFF]*)(?=$|[ \n\t\r\,\;\.])/", $data, $pages);
-			} else {
-				preg_match_all("/(?<=[ \n\t\r\,\;]|^)([A-Z][a-z0-9\x80-\xFF]+[A-Z][a-z0-9\x80-\xFF]+[A-Za-z0-9\x80-\xFF]*)(?=$|[ \n\t\r\,\;\.])/", $data, $pages);
-			}
-			//TODO to have a real utf8 Wikiword where the capitals can be a utf8 capital
-			$words = ( $prefs['feature_hotwords'] == 'y' ) ? $this->get_hotwords() : [];
-			foreach (array_unique($pages[1]) as $page_parse) {
-				if (! array_key_exists($page_parse, $words)) {
-					$repl = $this->get_wiki_link_replacement($page_parse, ['plural' => $prefs['feature_wiki_plurals'] == 'y' ], $ck_editor);
+		if ($prefs['feature_wiki'] == 'y' && $prefs['feature_wikiwords'] == 'y') {
+			if (! $simple_wiki) {
+				// The first part is now mandatory to prevent [Foo|MyPage] from being converted!
+				if ($prefs['feature_wikiwords_usedash'] == 'y') {
+					preg_match_all("/(?<=[ \n\t\r\,\;]|^)([A-Z][a-z0-9_\-\x80-\xFF]+[A-Z][a-z0-9_\-\x80-\xFF]+[A-Za-z0-9\-_\x80-\xFF]*)(?=$|[ \n\t\r\,\;\.])/", $data, $pages);
+				} else {
+					preg_match_all("/(?<=[ \n\t\r\,\;]|^)([A-Z][a-z0-9\x80-\xFF]+[A-Z][a-z0-9\x80-\xFF]+[A-Za-z0-9\x80-\xFF]*)(?=$|[ \n\t\r\,\;\.])/", $data, $pages);
+				}
+				//TODO to have a real utf8 Wikiword where the capitals can be a utf8 capital
+				$words = ($prefs['feature_hotwords'] == 'y') ? $this->get_hotwords() : [];
+				foreach (array_unique($pages[1]) as $page_parse) {
+					if (! array_key_exists($page_parse, $words)) { // If this is not a hotword
+						$repl = $this->get_wiki_link_replacement($page_parse, ['plural' => $prefs['feature_wiki_plurals'] == 'y'], $ck_editor);
 
-					$data = preg_replace("/(?<=[ \n\t\r\,\;]|^)$page_parse(?=$|[ \n\t\r\,\;\.])/", "$1" . $repl . "$2", $data);
+						$data = preg_replace("/(?<=[ \n\t\r\,\;]|^)$page_parse(?=$|[ \n\t\r\,\;\.])/", "$1" . $repl . "$2", $data);
+					}
 				}
 			}
-		}
-
-		// Reinsert ))Words((
-		if ($prefs['feature_wikiwords'] == 'y') {
+			
+			// Reinsert ))Words((
 			$data = str_replace($noParseWikiLinksK, $noParseWikiLinksT, $data);
 		}
 
@@ -2011,7 +2041,7 @@ if ( \$('#$id') ) {
 	}
 
 	//*
-	private function parse_data_inline_syntax($line, $words = [], $ck_editor = false)
+	private function parse_data_inline_syntax($line, $words = null, $ck_editor = false)
 	{
 		global $prefs;
 
@@ -2044,7 +2074,7 @@ if ( \$('#$id') ) {
 	}
 
 	//*
-	private function parse_data_tables($data, $simple_wiki)
+	private function parse_data_tables($data)
 	{
 		global $prefs;
 
@@ -2102,50 +2132,48 @@ if ( \$('#$id') ) {
 		} else {
 			// New syntax for tables
 			// REWRITE THIS CODE
-			if (! $simple_wiki) {
-				if (preg_match_all("/\|\|(.*?)\|\|/s", $data, $tables)) {
-					$maxcols = 1;
-					$cols = [];
-					$temp_max5 = count($tables[0]);
-					for ($i = 0; $i < $temp_max5; $i++) {
-						$rows = preg_split("/(\n|\<br\/\>)/", $tables[0][$i]);
-						$col[$i] = [];
-						$temp_max6 = count($rows);
-						for ($j = 0; $j < $temp_max6; $j++) {
-							$rows[$j] = str_replace('||', '', $rows[$j]);
-							$cols[$i][$j] = explode('|', $rows[$j]);
-							if (count($cols[$i][$j]) > $maxcols) {
-								$maxcols = count($cols[$i][$j]);
-							}
+			if (preg_match_all("/\|\|(.*?)\|\|/s", $data, $tables)) {
+				$maxcols = 1;
+				$cols = [];
+				$temp_max5 = count($tables[0]);
+				for ($i = 0; $i < $temp_max5; $i++) {
+					$rows = preg_split("/(\n|\<br\/\>)/", $tables[0][$i]);
+					$col[$i] = [];
+					$temp_max6 = count($rows);
+					for ($j = 0; $j < $temp_max6; $j++) {
+						$rows[$j] = str_replace('||', '', $rows[$j]);
+						$cols[$i][$j] = explode('|', $rows[$j]);
+						if (count($cols[$i][$j]) > $maxcols) {
+							$maxcols = count($cols[$i][$j]);
 						}
 					}
+				}
 
-					$temp_max7 = count($tables[0]);
-					for ($i = 0; $i < $temp_max7; $i++) {
-						$repl = '<table class="wikitable table table-striped table-hover">';
-						$temp_max8 = count($cols[$i]);
-						for ($j = 0; $j < $temp_max8; $j++) {
-							$ncols = count($cols[$i][$j]);
+				$temp_max7 = count($tables[0]);
+				for ($i = 0; $i < $temp_max7; $i++) {
+					$repl = '<table class="wikitable table table-striped table-hover">';
+					$temp_max8 = count($cols[$i]);
+					for ($j = 0; $j < $temp_max8; $j++) {
+						$ncols = count($cols[$i][$j]);
 
-							if ($ncols == 1 && ! $cols[$i][$j][0]) {
-								continue;
-							}
-
-							$repl .= '<tr>';
-
-							for ($k = 0; $k < $ncols; $k++) {
-								$repl .= '<td class="wikicell" ';
-								if ($k == $ncols - 1 && $ncols < $maxcols) {
-									$repl .= ' colspan="' . ($maxcols - $k) . '"';
-								}
-
-								$repl .= '>' . $cols[$i][$j][$k] . '</td>';
-							}
-							$repl .= '</tr>';
+						if ($ncols == 1 && ! $cols[$i][$j][0]) {
+							continue;
 						}
-						$repl .= '</table>';
-						$data = str_replace($tables[0][$i], $repl, $data);
+
+						$repl .= '<tr>';
+
+						for ($k = 0; $k < $ncols; $k++) {
+							$repl .= '<td class="wikicell" ';
+							if ($k == $ncols - 1 && $ncols < $maxcols) {
+								$repl .= ' colspan="' . ($maxcols - $k) . '"';
+							}
+
+							$repl .= '>' . $cols[$i][$j][$k] . '</td>';
+						}
+						$repl .= '</tr>';
 					}
+					$repl .= '</table>';
+					$data = str_replace($tables[0][$i], $repl, $data);
 				}
 			}
 		}
@@ -2627,7 +2655,7 @@ if ( \$('#$id') ) {
 		return $value;
 	}
 
-	//*
+	/* This is only called by parse_data(). It does not just deal with TOC-s. */
 	private function parse_data_process_maketoc(&$data, $noparsed)
 	{
 
@@ -2668,16 +2696,6 @@ if ( \$('#$id') ) {
 		$anch = [];
 		global $anch;
 		$pageNum = 1;
-
-		// 08-Jul-2003, by zaufi
-		// HotWords will be replace only in ordinal text
-		// It looks __really__ goofy in Headers or Titles
-
-		$words = [];
-		if ($prefs['feature_hotwords'] == 'y') {
-			// Get list of HotWords
-			$words = $this->get_hotwords();
-		}
 
 		// Now tokenize the expression and process the tokens
 		// Use tab and newline as tokenizing characters as well  ////
@@ -2797,16 +2815,21 @@ if ( \$('#$id') ) {
 			$inScript -= substr_count($lineInLowerCase, "</script>");
 
 			// If the first character is ' ' and we are not in pre then we are in pre
-			if (substr($line, 0, 1) == ' ' && $prefs['feature_wiki_monosp'] == 'y' && $inTable == 0 && $inPre == 0 && $inComment == 0 && ! $this->option['is_html']) {
+			if ($prefs['feature_wiki_monosp'] == 'y' && substr($line, 0, 1) == ' ' /* The first character is a space (' '). */ 
+				&& $inTable == 0 && $inPre == 0 && $inComment == 0 && ! $this->option['is_html']) {
 				// Close open paragraph and lists, but not div's
 				$this->close_blocks($data, $in_paragraph, $listbeg, $divdepth, 1, 1, 0);
 
-				// If the first character is space then make font monospaced.
+				// make font monospaced
 				// For fixed formatting, use ~pp~...~/pp~
 				$line = '<tt>' . $line . '</tt>';
 			}
 
-			$line = $this->parse_data_inline_syntax($line, $words, $this->option['ck_editor']);
+			// Replace hotwords and more
+			// 08-Jul-2003, by zaufi
+			// HotWords will be replace only in ordinal text
+			// It looks __really__ goofy in Headers or Titles
+			$line = $this->parse_data_inline_syntax($line, null, $this->option['ck_editor']);
 
 			// This line is parseable then we have to see what we have
 			if (substr($line, 0, 3) == '---') {
@@ -2830,11 +2853,6 @@ if ( \$('#$id') ) {
 						}
 					} elseif ($listlevel > count($listbeg)) {
 						$listyle = '';
-						if ($prefs['wiki_make_ordered_list_items_display_unique_numbers'] === 'y') {
-							$liclass = ' class="uol"'; // add the class to display the sub-items like 1.2, 1.3, etc.
-						} else {
-							$liclass = '';
-						}
 						while ($listlevel != count($listbeg)) {
 							array_unshift($listbeg, ($litype == '*' ? '</ul>' : '</ol>'));
 							if ($listlevel == count($listbeg)) {
@@ -2848,7 +2866,7 @@ if ( \$('#$id') ) {
 									$addremove = 1;
 								}
 							}
-							$data .= ($litype == '*' ? "<ul$listyle>" : "<ol$listyle$liclass>");
+							$data .= ($litype == '*' ? "<ul$listyle>" : "<ol$listyle>");
 						}
 						$liclose = '';
 					}
@@ -2967,7 +2985,10 @@ if ( \$('#$id') ) {
 						}
 
 						// Store the title number to use only if it has to be shown (if the '#' char is used)
-						$current_title_num = $show_title_level[$hdrlevel] ? implode('.', $hdr_structure[$nb_hdrs]) . '. ' : '';
+						$current_title_num = '';
+						if (isset($show_title_level[$hdrlevel]) && isset($hdr_structure[$nb_hdrs])) {
+							$current_title_num = $show_title_level[$hdrlevel] ? implode('.', $hdr_structure[$nb_hdrs]) . '. ' : '';
+						}
 
 						$nb_hdrs++;
 
@@ -3221,7 +3242,7 @@ if ( \$('#$id') ) {
 		 */
 		$new_data = '';
 		$search_start = 0;
-		if ($need_maketoc && ! $this->option['ck_editor']) {
+		if ($need_maketoc) {
 			while (($maketoc_start = strpos($data, "{maketoc", $search_start)) !== false) {
 				$maketoc_length = strpos($data, "}", $maketoc_start) + 1 - $maketoc_start;
 				$maketoc_string = substr($data, $maketoc_start, $maketoc_length);
@@ -3289,63 +3310,61 @@ if ( \$('#$id') ) {
 							$maketoc_footer = '</div>';
 							$link_class = 'link';
 					}
-					if (count($anch) and $need_maketoc !== false) {
-						foreach ($anch as $tocentry) {
-							if ($maketoc_args['maxdepth'] > 0 && $tocentry['hdrlevel'] > $maketoc_args['maxdepth']) {
-								continue;
-							}
-							if (! empty($maketoc_args['levels']) && ! in_array($tocentry['hdrlevel'], $maketoc_args['levels'])) {
-								continue;
-							}
-							// Generate the toc entry title (with nums)
-							if ($maketoc_args['nums'] == 'n') {
-								$tocentry_title = '';
-							} elseif ($maketoc_args['nums'] == 'force' && ! $need_autonumbering) {
-								$tocentry_title = $tocentry['title_real_num'];
-							} else {
-								$tocentry_title = $tocentry['title_displayed_num'];
-							}
-							$tocentry_title .= $tocentry['title'];
+					foreach ($anch as $tocentry) {
+						if ($maketoc_args['maxdepth'] > 0 && $tocentry['hdrlevel'] > $maketoc_args['maxdepth']) {
+							continue;
+						}
+						if (! empty($maketoc_args['levels']) && ! in_array($tocentry['hdrlevel'], $maketoc_args['levels'])) {
+							continue;
+						}
+						// Generate the toc entry title (with nums)
+						if ($maketoc_args['nums'] == 'n') {
+							$tocentry_title = '';
+						} elseif ($maketoc_args['nums'] == 'force' && ! $need_autonumbering) {
+							$tocentry_title = $tocentry['title_real_num'];
+						} else {
+							$tocentry_title = $tocentry['title_displayed_num'];
+						}
+						$tocentry_title .= $tocentry['title'];
 
-							// Generate the toc entry link
-							$tocentry_link = '#' . $tocentry['id'];
-							if ($tocentry['pagenum'] > 1) {
-								$tocentry_link = $_SERVER['PHP_SELF'] . '?page=' . $this->option['page'] . '&pagenum=' . $tocentry['pagenum'] . $tocentry_link;
-							}
-							if ($maketoc_args['nolinks'] != 'y') {
-								$tocentry_title = "<a href='$tocentry_link' class='link'>" . $tocentry_title . '</a>';
-							}
+						// Generate the toc entry link
+						$tocentry_link = '#' . $tocentry['id'];
+						if ($tocentry['pagenum'] > 1) {
+							$tocentry_link = $_SERVER['PHP_SELF'] . '?page=' . $this->option['page'] . '&pagenum=' . $tocentry['pagenum'] . $tocentry_link;
+						}
+						if ($maketoc_args['nolinks'] != 'y') {
+							$tocentry_title = "<a href='$tocentry_link' class='link'>" . $tocentry_title . '</a>';
+						}
 
-							if ($maketoc != '') {
-								$maketoc .= "\n";
-							}
-							$shift = $tocentry['hdrlevel'];
-							if (! empty($maketoc_args['levels'])) {
-								for ($i = 1; $i <= $tocentry['hdrlevel']; ++$i) {
-									if (! in_array($i, $maketoc_args['levels'])) {
-										--$shift;
-									}
+						if ($maketoc != '') {
+							$maketoc .= "\n";
+						}
+						$shift = $tocentry['hdrlevel'];
+						if (! empty($maketoc_args['levels'])) {
+							for ($i = 1; $i <= $tocentry['hdrlevel']; ++$i) {
+								if (! in_array($i, $maketoc_args['levels'])) {
+									--$shift;
 								}
 							}
-							switch ($maketoc_args['type']) {
-								case 'box':
-									$maketoc .= "<li class='toclevel-" . $shift . "'>" . $tocentry_title . "</li>";
-									break;
-								default:
-									$maketoc .= str_repeat('*', $shift) . $tocentry_title;
-							}
 						}
-
-						$maketoc = $this->parse_data($maketoc, ['noparseplugins' => true]);
-
-						if (preg_match("/^<ul>/", $maketoc)) {
-							$maketoc = preg_replace("/^<ul>/", '<ul class="toc">', $maketoc);
-							$maketoc .= '<!--toc-->';
+						switch ($maketoc_args['type']) {
+							case 'box':
+								$maketoc .= "<li class='toclevel-" . $shift . "'>" . $tocentry_title . "</li>";
+								break;
+							default:
+								$maketoc .= str_repeat('*', $shift) . $tocentry_title;
 						}
+					}
 
-						if ($link_class != 'link') {
-							$maketoc = preg_replace("/'link'/", "'$link_class'", $maketoc);
-						}
+					$maketoc = $this->parse_data($maketoc, ['noparseplugins' => true]);
+
+					if (preg_match("/^<ul>/", $maketoc)) {
+						$maketoc = preg_replace("/^<ul>/", '<ul class="toc">', $maketoc);
+						$maketoc .= '<!--toc-->';
+					}
+
+					if ($link_class != 'link') {
+						$maketoc = preg_replace("/'link'/", "'$link_class'", $maketoc);
 					}
 
 					//patch-ini - Patch taken from http://dev.tiki.org/item5405

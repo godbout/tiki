@@ -226,7 +226,7 @@ if ($standalone && ! $locked) {
 			$render .= <<<DBC
 <h2>Database credentials</h2>
 Couldn't connect to database, please provide valid credentials.
-<form method="post" action="{$_SERVER['PHP_SELF']}">
+<form method="post" action="{$_SERVER['SCRIPT_NAME']}">
 	<p><label for="dbhost">Database host</label>: <input type="text" id="dbhost" name="dbhost" value="localhost" /></p>
 	<p><label for="dbuser">Database username</label>: <input type="text" id="dbuser" name="dbuser" /></p>
 	<p><label for="dbpass">Database password</label>: <input type="password" id="dbpass" name="dbpass" /></p>
@@ -614,7 +614,7 @@ if ($php_properties['session.save_handler']['setting'] == 'files') {
 		$php_properties['session.save_path'] = [
 			'fitness' => tra('info'),
 			'setting' => $s,
-			'message' => tra('The session.save_path is writable.') . tra('It doesn\'t matter though, since your session.save_handler isn not set to \'files\'') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
+			'message' => tra('The session.save_path is writable.') . tra('It doesn\'t matter though, since your session.save_handler is not set to \'files\'.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
 		];
 	}
 }
@@ -2015,6 +2015,101 @@ if (isset($_REQUEST['benchmark'])) {
 	$benchmark = '';
 }
 
+/**
+ * TRIM (Tiki Remote Instance Manager) Section
+ **/
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+	$trimCapable = false;
+} else {
+	$trimCapable = true;
+}
+
+if ($trimCapable) {
+	$trimServerRequirements = [];
+	$trimClientRequirements = [];
+
+	$trimServerRequirements['Operating System Path'] = [
+		'fitness' => tra('info'),
+		'message' => $_SERVER['PATH']
+	];
+
+	$trimClientRequirements['Operating System Path'] = [
+		'fitness' => tra('info'),
+		'message' => $_SERVER['PATH']
+	];
+
+	$trimClientRequirements['SSH or FTP server'] = [
+		'fitness' => tra('info'),
+		'message' => tra('To manage this instance from a remote server you need SSH or FTP access to this server')
+	];
+
+	$serverCommands = [
+		'make' => 'make',
+		'php-cli' => 'php',
+		'rsync' => 'rsync',
+		'nice' => 'nice',
+		'tar' => 'tar',
+		'bzip2' => 'bzip2',
+		'ssh' => 'ssh',
+		'ssh-copy-id' => 'ssh-copy-id',
+		'scp' => 'scp',
+		'sqlite' => 'sqlite3'
+	];
+
+	$serverPHPExtensions = [
+		'php-sqlite' => 'sqlite3',
+	];
+
+	$clientCommands = [
+		'php-cli' => 'php',
+		'mysql' => 'mysql',
+		'mysqldump' => 'mysqldump',
+		'gzip' => 'gzip',
+	];
+
+	foreach ($serverCommands as $key => $command) {
+		if (commandIsAvailable($command)) {
+			$trimServerRequirements[$key] = [
+				'fitness' => tra('good'),
+				'message' => tra('Command found')
+			];
+		} else {
+			$trimServerRequirements[$key] = [
+				'fitness' => tra('ugly'),
+				'message' => tra('Command not found, check if it is installed and available in one of the paths above')
+			];
+		}
+	}
+
+	foreach ($serverPHPExtensions as $key => $extension) {
+		if (extension_loaded($extension)) {
+			$trimServerRequirements[$key] = [
+				'fitness' => tra('good'),
+				'message' => tra('Extension loaded in PHP')
+			];
+		} else {
+			$trimServerRequirements[$key] = [
+				'fitness' => tra('ugly'),
+				'message' => tra('Extension not loaded in PHP')
+			];
+		}
+	}
+
+	foreach ($clientCommands as $key => $command) {
+		if (commandIsAvailable($command)) {
+			$trimClientRequirements[$key] = [
+				'fitness' => tra('good'),
+				'message' => tra('Command found')
+			];
+		} else {
+			$trimClientRequirements[$key] = [
+				'fitness' => tra('ugly'),
+				'message' => tra('Command not found, check if it is installed and available in one of the paths above')
+			];
+		}
+	}
+}
+
 if ($standalone && ! $nagios) {
 	$render .= '<style type="text/css">td, th { border: 1px solid #000000; vertical-align: baseline; padding: .5em; }</style>';
 //	$render .= '<h1>Tiki Server Compatibility</h1>';
@@ -2049,22 +2144,22 @@ if ($standalone && ! $nagios) {
 			}
 			renderTable($mail);
 		} else {
-			$render .= '<form method="post" action="' . $_SERVER['PHP_SELF'] . '">';
+			$render .= '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '">';
 			$render .= '<p><label for="e-mail">e-mail address to send test mail to</label>: <input type="text" id="email_test_to" name="email_test_to" /></p>';
 			$render .= '<p><input type="submit" class="btn btn-default btn-sm" value=" Send e-mail " /></p>';
 			$render .= '<p><input type="hidden" id="dbhost" name="dbhost" value="';
 			if (isset($_POST['dbhost'])) {
-				$render .= strip_tags($_POST['dbhost']);
+				$render .= htmlentities(strip_tags($_POST['dbhost']));
 			};
 				$render .= '" /></p>';
 				$render .= '<p><input type="hidden" id="dbuser" name="dbuser" value="';
 			if (isset($_POST['dbuser'])) {
-				$render .= strip_tags($_POST['dbuser']);
+				$render .= htmlentities(strip_tags($_POST['dbuser']));
 			};
 				$render .= '"/></p>';
 				$render .= '<p><input type="hidden" id="dbpass" name="dbpass" value="';
 			if (isset($_POST['dbpass'])) {
-				$render .= strip_tags($_POST['dbpass']);
+				$render .= htmlentities(strip_tags($_POST['dbpass']));
 			};
 				$render .= '"/></p>';
 			$render .= '</form>';
@@ -2082,7 +2177,7 @@ if ($standalone && ! $nagios) {
 			if (isset($_REQUEST['apacheinfo']) && $_REQUEST['apacheinfo'] == 'y') {
 				$render .= $apache_server_info;
 			} else {
-				$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING'] . '&apacheinfo=y">Append Apache /server-info;</a>';
+				$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?apacheinfo=y">Append Apache /server-info;</a>';
 			}
 		} elseif ($apache_server_info == 'nocurl') {
 			$render .= 'You don\'t have the Curl extension in PHP, so we can\'t append Apache\'s server-info.';
@@ -2134,14 +2229,26 @@ if ($standalone && ! $nagios) {
 		$info = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $info);
 		$render .= $info;
 	} else {
-		$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING'] . '&phpinfo=y">Append phpinfo();</a>';
+		$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?phpinfo=y">Append phpinfo();</a>';
 	}
 
-	$render .= '<h2>Benchmark PHP/MySQL</h2>';
-	$render .= '<a href="tiki-check.php?benchmark=run" style="margin-bottom: 10px;">Check</a>';
+	$render .= '<a name="benchmark"></a><h2>Benchmark PHP/MySQL</h2>';
+	$render .= '<a href="tiki-check.php?benchmark=run&ts=' . time() . '#benchmark" style="margin-bottom: 10px;">Check</a>';
 	if (! empty($benchmark)) {
 		renderTable($benchmark);
 	}
+
+	$render .= '<h2>TRIM</h2>';
+	$render .= '<em>For more detailed information about Tiki Remote Instance Manager please check <a href="https://doc.tiki.org/TRIM">doc.tiki.org</a></em>.';
+	if ($trimCapable) {
+		$render .= '<h3>Server Instance</h3>';
+		renderTable($trimServerRequirements);
+		$render .= '<h3>Client Instance</h3>';
+		renderTable($trimClientRequirements);
+	} else {
+		$render .= '<p>Apparently Tiki is running on a Windows based server. This feature is not supported natively.</p>';
+	}
+
 
 	createPage('Tiki Server Compatibility', $render);
 } elseif ($nagios) {
@@ -2286,64 +2393,9 @@ if ($standalone && ! $nagios) {
 		$smarty->assign('bom_detected_files', $BOMFiles);
 	}
 
-
-	/**
-	 * TRIM (Tiki Remote Instance Manager) Section
-	 **/
-
-	if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-		$trimCapable = false;
-	} else {
-		$trimCapable = true;
-	}
-
 	$smarty->assign('trim_capable', $trimCapable);
-
 	if ($trimCapable) {
-		$trimServerRequirements = [];
-
-		$serverCommands = [
-			'make' => 'make',
-			'php-cli' => 'php',
-			'rsync' => 'rsync',
-			'nice' => 'nice',
-			'tar' => 'tar',
-			'bzip2' => 'bzip2',
-			'ssh' => 'ssh',
-			'ssh-copy-id' => 'ssh-copy-id',
-			'scp' => 'scp',
-			'sqlite' => 'sqlite3'
-		];
-
-		foreach ($serverCommands as $key => $command) {
-			$trimServerRequirements[$key] = `which $command` ? true : false;
-		}
-
-		$serverPHPExtensions = [
-			'php5-sqlite' => 'sqlite3',
-		];
-
-		foreach ($serverPHPExtensions as $key => $extension) {
-			$trimServerRequirements[$key] = extension_loaded($extension);
-		}
-
 		$smarty->assign('trim_server_requirements', $trimServerRequirements);
-
-		$trimClientRequirements = [
-			'SSH or FTP server' => '',
-		];
-
-		$clientCommands = [
-			'php-cli' => 'php',
-			'mysql' => 'mysql',
-			'mysqldump' => 'mysqldump',
-			'gzip' => 'gzip',
-		];
-
-		foreach ($clientCommands as $key => $command) {
-			$trimClientRequirements[$key] = `which $command` ? true : false;
-		}
-
 		$smarty->assign('trim_client_requirements', $trimClientRequirements);
 	}
 
@@ -2353,6 +2405,25 @@ if ($standalone && ! $nagios) {
 	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	$smarty->assign('mid', 'tiki-check.tpl');
 	$smarty->display('tiki.tpl');
+}
+
+/**
+ * Check if a given command can be located in the system
+ *
+ * @param $command
+ * @return bool true if available, false if not.
+ */
+function commandIsAvailable($command)
+{
+	if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+		$template = "where %s";
+	} else {
+		$template = "command -v %s 2>/dev/null";
+	}
+
+	exec(sprintf($template, escapeshellarg($command)), $output, $returnCode);
+
+	return $returnCode === 0 ? true : false;
 }
 
 /**

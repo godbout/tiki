@@ -607,14 +607,17 @@ class BlogLib extends TikiDb_Bridge
 		if (! $allowDrafts) {
 			$mid[] = "`priv`!='y'";
 		} else {
-			// Private posts can be accessed on the following conditions:
-			// user has tiki_p_admin or tiki_p_blog_admin or has written the post
-			// If blog is configured with 'Allow other user to post in this blog', then also if user has tiki_p_blog_post or is owner of this blog
-			if (($tiki_p_admin != 'y')
-				  and ($tiki_p_blog_admin != 'y')
-				  and ( (! isset($blog_data["public"])) || $blog_data["public"] != 'y' || $tiki_p_blog_post != 'y')
-				  and ( ! isset($blog_data["public"]) || $blog_data["public"] != 'y' || $ownsblog != 'y') ) {
-				if (isset($user)) {
+			/* Private posts can be accessed on the following conditions:
+				user has tiki_p_admin or tiki_p_blog_admin or has written the post
+				If blog is configured with 'Allow other user to post in this blog', then also if user has tiki_p_blog_post or is owner of this blog
+			
+			Basically, if the user can post to the post's blog. */
+			if (! (
+					$tiki_p_blog_admin == 'y'
+					|| (isset($blog_data["public"]) && $blog_data["public"] == 'y' && ($tiki_p_blog_post == 'y' || $ownsblog == 'y'))
+				)
+			) {
+				if (isset($user)) { // Is this needed? How can a user have a post in a blog without owning the blog nor tiki_p_blog_post? Chealer9 2017-12-07
 					$mid[] = "(tbp.`priv`!='y' or tbp.`user`=?)";
 					$bindvars[] = "$user";
 				} else {
@@ -810,7 +813,7 @@ class BlogLib extends TikiDb_Bridge
 		global $prefs;
 		$tikilib = TikiLib::lib('tiki');
 		$smarty = TikiLib::lib('smarty');
-
+        
 		if ($is_wysiwyg) {
 			$data = TikiFilter::get('purifier')->filter($data);
 			$excerpt = TikiFilter::get('purifier')->filter($excerpt);
@@ -828,6 +831,10 @@ class BlogLib extends TikiDb_Bridge
 		$query = "update `tiki_blogs` set `lastModif`=?,`posts`=`posts`+1 where `blogId`=?";
 		$result = $this->query($query, [(int) $created, (int) $blogId]);
 		$this->add_blog_activity($blogId);
+
+		$wikilib = TikiLib::lib('wiki');
+		$wikilib->update_wikicontent_relations($data, 'post', $id);
+		$wikilib->update_wikicontent_links($data, 'post', $id);
 
 		if ($prefs['feature_user_watches'] == 'y' or $prefs['feature_group_watches'] == 'y') {
 			$nots = $tikilib->get_event_watches('blog_post', $blogId);
@@ -900,11 +907,19 @@ class BlogLib extends TikiDb_Bridge
 	 */
 	function remove_blog($blogId)
 	{
-		global $tikilib, $user;
+		global $user;
+		$tikilib = TikiLib::lib('tiki');
 
 		$query = "delete from `tiki_blogs` where `blogId`=?";
 
 		$result = $this->query($query, [(int) $blogId]);
+
+		$query = "select `postId` from `tiki_blog_posts` where `blogId`=?";
+		$result = $this->query($query, [(int) $blogId]);
+		if ($res = $result->fetchRow()) {
+			$tikilib->remove_object('post', $res['postId']);
+		}
+
 		$query = "delete from `tiki_blog_posts` where `blogId`=?";
 		$result = $this->query($query, [(int) $blogId]);
 		$tikilib->remove_object('blog', $blogId);
@@ -951,6 +966,7 @@ class BlogLib extends TikiDb_Bridge
 			$logslib->add_action('Removed', $blogId, 'blog', $param);
 		}
 		if ($blogId) {
+			$tikilib->remove_object('post', (int)$postId);
 			$query = "delete from `tiki_blog_posts` where `postId`=?";
 
 			$result = $this->query($query, [(int) $postId]);
@@ -1122,6 +1138,11 @@ class BlogLib extends TikiDb_Bridge
 			$query = "update `tiki_blog_posts` set `blogId`=?,`data`=?,`excerpt`=?,`user`=?,`title`=?, `priv`=?, `wysiwyg`=? where `postId`=?";
 			$result = $this->query($query, [$blogId, $data, $excerpt, $user, $title, $priv, $wysiwyg, $postId]);
 		}
+        
+		$wikilib = TikiLib::lib('wiki');
+		$wikilib->update_wikicontent_relations($data, 'post', $postId);
+		$wikilib->update_wikicontent_links($data, 'post', $postId);
+
 		if ($prefs['feature_actionlog'] == 'y') {
 			$logslib = TikiLib::lib('logs');
 			$logslib->add_action('Updated', $blogId, 'blog', "blogId=$blogId&amp;postId=$postId#postId$postId", '', '', '', '', $contributions);

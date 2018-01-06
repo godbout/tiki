@@ -291,7 +291,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 		$groups = [];
 		foreach ($groupIds as $group) {
 			$info = $userslib->get_groupId_info($group);
-			if ($info['id']) {
+			if (isset($info['id']) && $info['id']) {
 				$groups[] = $group;
 			}
 		}
