@@ -226,7 +226,7 @@ if ($standalone && ! $locked) {
 			$render .= <<<DBC
 <h2>Database credentials</h2>
 Couldn't connect to database, please provide valid credentials.
-<form method="post" action="{$_SERVER['PHP_SELF']}">
+<form method="post" action="{$_SERVER['SCRIPT_NAME']}">
 	<p><label for="dbhost">Database host</label>: <input type="text" id="dbhost" name="dbhost" value="localhost" /></p>
 	<p><label for="dbuser">Database username</label>: <input type="text" id="dbuser" name="dbuser" /></p>
 	<p><label for="dbpass">Database password</label>: <input type="password" id="dbpass" name="dbpass" /></p>
@@ -2144,22 +2144,22 @@ if ($standalone && ! $nagios) {
 			}
 			renderTable($mail);
 		} else {
-			$render .= '<form method="post" action="' . $_SERVER['PHP_SELF'] . '">';
+			$render .= '<form method="post" action="' . $_SERVER['SCRIPT_NAME'] . '">';
 			$render .= '<p><label for="e-mail">e-mail address to send test mail to</label>: <input type="text" id="email_test_to" name="email_test_to" /></p>';
 			$render .= '<p><input type="submit" class="btn btn-default btn-sm" value=" Send e-mail " /></p>';
 			$render .= '<p><input type="hidden" id="dbhost" name="dbhost" value="';
 			if (isset($_POST['dbhost'])) {
-				$render .= strip_tags($_POST['dbhost']);
+				$render .= htmlentities(strip_tags($_POST['dbhost']));
 			};
 				$render .= '" /></p>';
 				$render .= '<p><input type="hidden" id="dbuser" name="dbuser" value="';
 			if (isset($_POST['dbuser'])) {
-				$render .= strip_tags($_POST['dbuser']);
+				$render .= htmlentities(strip_tags($_POST['dbuser']));
 			};
 				$render .= '"/></p>';
 				$render .= '<p><input type="hidden" id="dbpass" name="dbpass" value="';
 			if (isset($_POST['dbpass'])) {
-				$render .= strip_tags($_POST['dbpass']);
+				$render .= htmlentities(strip_tags($_POST['dbpass']));
 			};
 				$render .= '"/></p>';
 			$render .= '</form>';
@@ -2177,7 +2177,7 @@ if ($standalone && ! $nagios) {
 			if (isset($_REQUEST['apacheinfo']) && $_REQUEST['apacheinfo'] == 'y') {
 				$render .= $apache_server_info;
 			} else {
-				$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING'] . '&apacheinfo=y">Append Apache /server-info;</a>';
+				$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?apacheinfo=y">Append Apache /server-info;</a>';
 			}
 		} elseif ($apache_server_info == 'nocurl') {
 			$render .= 'You don\'t have the Curl extension in PHP, so we can\'t append Apache\'s server-info.';
@@ -2229,7 +2229,7 @@ if ($standalone && ! $nagios) {
 		$info = preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $info);
 		$render .= $info;
 	} else {
-		$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?' . $_SERVER['QUERY_STRING'] . '&phpinfo=y">Append phpinfo();</a>';
+		$render .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?phpinfo=y">Append phpinfo();</a>';
 	}
 
 	$render .= '<a name="benchmark"></a><h2>Benchmark PHP/MySQL</h2>';
