@@ -409,19 +409,17 @@
 			<tr>
 				<th>{tr}Requirements{/tr}</th>
 				<th>{tr}Status{/tr}</th>
+				<th>{tr}Message{/tr}</th>
 			</tr>
 			{foreach from=$trim_server_requirements key=key item=item}
 				<tr>
 					<td class="text">{$key}</td>
 					<td class="text">
-						{if $item === true}
-							{icon name='ok' iclass='text-success'}
-						{elseif $item === false}
-							{icon name='remove' iclass='text-danger'}
-						{else}
-							{$item}
-						{/if}
+					<span class="text-{$fmap[$item.fitness]['class']}">
+						{icon name="{$fmap[$item.fitness]['icon']}"} {$item.fitness}
+					</span>
 					</td>
+					<td class="text">{$item.message}</td>
 				</tr>
 			{/foreach}
 		</table>
@@ -433,19 +431,17 @@
 			<tr>
 				<th>{tr}Requirements{/tr}</th>
 				<th>{tr}Status{/tr}</th>
+				<th>{tr}Message{/tr}</th>
 			</tr>
 			{foreach from=$trim_client_requirements key=key item=item}
 				<tr>
 					<td class="text">{$key}</td>
 					<td class="text">
-						{if $item === true}
-							{icon name='ok' iclass='text-success'}
-						{elseif $item === false}
-							{icon name='remove' iclass='text-danger'}
-						{else}
-							{$item}
-						{/if}
+					<span class="text-{$fmap[$item.fitness]['class']}">
+						{icon name="{$fmap[$item.fitness]['icon']}"} {$item.fitness}
+					</span>
 					</td>
+					<td class="text">{$item.message}</td>
 				</tr>
 			{/foreach}
 		</table>
