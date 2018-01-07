@@ -3,9 +3,29 @@
 {if isset($composer_output)}
     {remarksbox type="note" title="{tr}Note{/tr}"}
 
-    {tr}The following changes have been applied:{/tr}<br />
+    {tr}Result of executing the changes to the packages:{/tr}<br />
         <pre>{$composer_output}</pre>
     {/remarksbox}
+{/if}
+
+{if isset($composer_installed_errors)}
+	{remarksbox type="warning" title="{tr}Composer errors{/tr}"}
+
+	{tr}Composer returned some errors:{/tr}<br />
+        <pre>{$composer_installed_errors}</pre>
+	{/remarksbox}
+{/if}
+
+{if isset($composer_environment_warning)}
+	{remarksbox type="warning" title="{tr}Issues with composer environment{/tr}"}
+
+    <p>{tr}Issues with composer environment:{/tr}</p>
+    <ul>
+    {foreach item=entry from=$composer_environment_warning}
+        <li>{$entry}</li>
+    {/foreach}
+    </ul>
+	{/remarksbox}
 {/if}
 
 {tabset name='tabs_admin-packages'}
@@ -56,7 +76,7 @@
             {/foreach}
             {if $composer_packages_missing}
                 <tr>
-                    <td colspan="4">
+                    <td colspan="5">
                         <h4>{tr}One or more packages appear to be missing{/tr}</h4>
                         {tr}In the list above, some packages could not be found. They are defined in the composer.json file, but do not seem to be installed.{/tr}
 
