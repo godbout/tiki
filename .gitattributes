@@ -7335,11 +7335,6 @@ themes/fivealiveHS/icons/index.php -text
 themes/fivealiveHS/images/index.php -text
 themes/fivealiveHS/js/custom.js -text
 themes/fivealiveHS/js/index.php -text
-themes/fivealiveHS/less/bootstrap-variables.less -text
-themes/fivealiveHS/less/fivealiveHS.less -text
-themes/fivealiveHS/less/index.php -text
-themes/fivealiveHS/less/newsletter.less -text
-themes/fivealiveHS/less/tiki-selectors.less -text
 themes/fivealiveHS/options/akebi/css/akebi.css -text
 themes/fivealiveHS/options/akebi/css/index.php -text
 themes/fivealiveHS/options/akebi/icons/index.php -text
@@ -7377,6 +7372,11 @@ themes/fivealiveHS/options/watermelon/css/index.php -text
 themes/fivealiveHS/options/watermelon/css/watermelon.css -text
 themes/fivealiveHS/options/watermelon/images/index.php -text
 themes/fivealiveHS/options/watermelon/index.php -text
+themes/fivealiveHS/scss/_bootstrap-variables.scss -text
+themes/fivealiveHS/scss/_tiki-selectors.scss -text
+themes/fivealiveHS/scss/fivealiveHS.scss -text
+themes/fivealiveHS/scss/index.php -text
+themes/fivealiveHS/scss/newsletter.scss -text
 themes/fivealiveHS/templates/index.php -text
 themes/flatly/css/flatly.css -text
 themes/flatly/css/index.php -text
