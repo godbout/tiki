@@ -7,6 +7,13 @@
     "jquery/jquery-sheet": {
       "Fix visibility issues": "../installer/composer-patches/jquery-sheet_fix-visibility-issues.patch"
     },
+    "pear/text_wiki": {
+      "Recursive call to constructor": "../installer/composer-patches/text_wiki__recursive_call_to_constructor.json"
+    },
+    "pear/text_wiki_mediawiki": {
+      "Removed deprecated syntax in PHP7": "../installer/composer-patches/text_wiki_mediawiki__php7fixes.patch",
+      "Renamed method to avoid collision with func from parent class": "../installer/composer-patches/text_wiki_mediawiki__func_collision.patch"
+    },
     "pear/xml_rpc": {
       "Add support for PHP7": "../installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch"
     }

@@ -1,0 +1,24 @@
+diff -urN text_wiki.old/Text/Wiki/Parse.php text_wiki/Text/Wiki/Parse.php
+--- text_wiki.old/Text/Wiki/Parse.php	2017-11-15 22:00:14.000000000 +0000
++++ text_wiki/Text/Wiki/Parse.php	2017-11-15 21:42:24.000000000 +0000
+@@ -145,7 +145,7 @@
+ 
+     function Text_Wiki_Parse(&$obj)
+     {
+-        $this->__construct($obj);
++        self::__construct($obj);
+     }
+ 
+ 
+diff -urN text_wiki.old/Text/Wiki.php text_wiki/Text/Wiki.php
+--- text_wiki.old/Text/Wiki.php	2017-11-15 22:00:14.000000000 +0000
++++ text_wiki/Text/Wiki.php	2017-11-15 21:42:11.000000000 +0000
+@@ -417,7 +417,7 @@
+     */
+     function Text_Wiki($rules = null)
+     {
+-        $this->__construct($rules);
++        self::__construct($rules);
+     }
+ 
+     /**

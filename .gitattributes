@@ -1429,6 +1429,9 @@ installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch
 installer/composer-patches/composer-patches.json -text
 installer/composer-patches/jquery-sheet_fix-visibility-issues.patch -text
 installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch -text
+installer/composer-patches/text_wiki__recursive_call_to_constructor.json -text
+installer/composer-patches/text_wiki_mediawiki__func_collision.patch -text
+installer/composer-patches/text_wiki_mediawiki__php7fixes.patch -text
 installer/index.php -text
 installer/installlib.php -text
 installer/schema/00000000_schema_change_tiki.sql -text
@@ -3395,9 +3398,14 @@ lib/images/imagick_old.php -text
 lib/images/img_plugin_default_and_mandatory.php -text
 lib/images/index.php -text
 lib/importer/index.php -text
+lib/importer/mediawiki_dump_v0.10.xsd -text
 lib/importer/mediawiki_dump_v0.3.xsd -text
 lib/importer/mediawiki_dump_v0.4.xsd -text
 lib/importer/mediawiki_dump_v0.5.xsd -text
+lib/importer/mediawiki_dump_v0.6.xsd -text
+lib/importer/mediawiki_dump_v0.7.xsd -text
+lib/importer/mediawiki_dump_v0.8.xsd -text
+lib/importer/mediawiki_dump_v0.9.xsd -text
 lib/importer/tikiimporter.php -text
 lib/importer/tikiimporter_blog.php -text
 lib/importer/tikiimporter_blog_wordpress.php -text
