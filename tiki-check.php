@@ -1988,7 +1988,9 @@ if (! $standalone) {
 	deack_on_state_change($php_properties, 'PHP');
 	deack_on_state_change($security, 'PHP Security');
 
-	if (! class_exists('mPDF')) {
+	$tikiWikiVersion = new TWVersion();
+	if (version_compare($tikiWikiVersion->getBaseVersion(), '18.0', '<') && ! class_exists('mPDF')
+		|| version_compare($tikiWikiVersion->getBaseVersion(), '18.0', '>=') && ! class_exists('\\Mpdf\\Mpdf')) {
 		$smarty->assign('mPDFClassMissing', true);
 	}
 }

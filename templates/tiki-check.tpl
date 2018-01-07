@@ -300,7 +300,7 @@
 {/remarksbox}
 {/if}
 
-{if $prefs.print_pdf_from_url === "mpdf" && $mPDFClassMissing}
+{if $prefs.print_pdf_from_url === "mpdf" && !empty($mPDFClassMissing)}
 	<h2>{tr}Print configurations{/tr}</h2>
 	{remarksbox type='error' title="{tr}mPDF Information{/tr}" close='n'}
 		<p>{tr}mPDF is selected as Print option, however the class can't be loaded, please check "Print Settings" in /tiki-admin.php?page=print{/tr}</p>
