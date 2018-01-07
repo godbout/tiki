@@ -243,7 +243,8 @@ class ComposerCli
 			}
 
 			$process = $builder->getProcess();
-			$process->setTimeout(1);
+
+			$process->setTimeout($this->timeout);
 
 			$process->run();
 
