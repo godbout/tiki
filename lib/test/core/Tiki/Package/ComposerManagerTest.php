@@ -7,11 +7,14 @@
 
 use Tiki\Package\ComposerManager;
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 
 class Tiki_Package_ComposerManagerTest extends TikiTestCase
 {
 
+	/** @var vfsStreamDirectory */
 	protected $root;
+	/** @var string */
 	protected $rootPath;
 
 	/** @var  ComposerManager */
@@ -329,5 +332,146 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		);
 
 		$this->assertEquals('__PACKAGE__REMOVED__', $composerManager->removePackage('CasperJS'));
+	}
+
+	/**
+	 * @dataProvider providerForTestCheckThatCanInstallPackages
+	 */
+	function testCheckThatCanInstallPackages($files, $expected)
+	{
+		foreach ($files as $file) {
+			list( $path, $isDir, $mode) = $file;
+			if ($path === '/') {
+				$this->root->chmod($mode);
+			}
+			if ($isDir) {
+				vfsStream::newDirectory($path, $mode)->at($this->root);
+			} else {
+				vfsStream::newFile($path, $mode)->at($this->root);
+			}
+		}
+
+		$result = $this->composerManager->checkThatCanInstallPackages();
+
+		$this->assertEquals($expected, $result);
+	}
+
+	function providerForTestCheckThatCanInstallPackages()
+	{
+		return [
+			[ // root dir writable, no files
+				[
+					['/', true, 0700],
+				],
+				[]
+			],
+			[ // root dir and all files / dir writable
+				[
+					['/', true, 0700],
+					['vendor', true, 0700],
+					['composer.json', false, 0600],
+					['composer.lock', false, 0600],
+				],
+				[]
+			],
+			[ // root dir not writable, all files and directories writable and in place
+				[
+					['/', true, 0111],
+					['vendor', true, 0700],
+					['composer.json', false, 0600],
+					['composer.lock', false, 0600],
+				],
+				[]
+			],
+			[ // all in place, but nothing is writable
+				[
+					['/', true, 0111],
+					['vendor', true, 0500],
+					['composer.json', false, 0400],
+					['composer.lock', false, 0400],
+				],
+				[
+					'Tiki can not write to file "vfs://Tiki_Package_ComposerManagerTest/composer.json"',
+					'Tiki can not write to file "vfs://Tiki_Package_ComposerManagerTest/composer.lock"',
+					'Tiki can not write to directory "vfs://Tiki_Package_ComposerManagerTest/vendor"',
+				]
+			],
+			[ // root dir not writable, no files
+				[
+					['/', true, 0000],
+				],
+				[
+					'Tiki root directory is not writable, so file "vfs://Tiki_Package_ComposerManagerTest/composer.json" can not be created',
+					'Tiki root directory is not writable, so file "vfs://Tiki_Package_ComposerManagerTest/composer.lock" can not be created',
+					'Tiki root directory is not writable, so directory "vfs://Tiki_Package_ComposerManagerTest/vendor" can not be created',
+				]
+			],
+			[ // Mixed Environment
+				[
+					['/', true, 0111],
+					['vendor', true, 0700],
+					['composer.json', false, 0400],
+					['composer.lock', false, 0400],
+				],
+				[
+					'Tiki can not write to file "vfs://Tiki_Package_ComposerManagerTest/composer.json"',
+					'Tiki can not write to file "vfs://Tiki_Package_ComposerManagerTest/composer.lock"',
+				]
+			],
+			[ // Mixed Environment
+				[
+					['/', true, 0111],
+					['vendor', true, 0500],
+					['composer.json', false, 0600],
+					['composer.lock', false, 0400],
+				],
+				[
+					'Tiki can not write to file "vfs://Tiki_Package_ComposerManagerTest/composer.lock"',
+					'Tiki can not write to directory "vfs://Tiki_Package_ComposerManagerTest/vendor"',
+				]
+			],
+			[ // Mixed Environment
+				[
+					['/', true, 0111],
+					['vendor', true, 0500],
+					['composer.json', false, 0400],
+					['composer.lock', false, 0600],
+				],
+				[
+					'Tiki can not write to file "vfs://Tiki_Package_ComposerManagerTest/composer.json"',
+					'Tiki can not write to directory "vfs://Tiki_Package_ComposerManagerTest/vendor"',
+				]
+			],
+			[ // root dir not writable, Mixed Environment
+				[
+					['/', true, 0000],
+					['vendor', true, 0700],
+				],
+				[
+					'Tiki root directory is not writable, so file "vfs://Tiki_Package_ComposerManagerTest/composer.json" can not be created',
+					'Tiki root directory is not writable, so file "vfs://Tiki_Package_ComposerManagerTest/composer.lock" can not be created',
+				]
+			],
+			[ // root dir not writable, Mixed Environment
+				[
+					['/', true, 0000],
+					['composer.json', false, 0600],
+				],
+				[
+					'Tiki root directory is not writable, so file "vfs://Tiki_Package_ComposerManagerTest/composer.lock" can not be created',
+					'Tiki root directory is not writable, so directory "vfs://Tiki_Package_ComposerManagerTest/vendor" can not be created',
+				]
+			],
+			[ // root dir not writable, Mixed Environment
+				[
+					['/', true, 0000],
+					['composer.lock', false, 0600],
+				],
+				[
+					'Tiki root directory is not writable, so file "vfs://Tiki_Package_ComposerManagerTest/composer.json" can not be created',
+					'Tiki root directory is not writable, so directory "vfs://Tiki_Package_ComposerManagerTest/vendor" can not be created',
+				]
+			],
+		];
 	}
 }

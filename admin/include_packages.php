@@ -45,6 +45,11 @@ if ($access->ticketMatch()) {
 }
 
 $installableList = $composerManager->getInstalled();
+$lastResult = $composerManager->getComposer()->getLastResult();
+if ($lastResult !== null && ! empty($lastResult['errors'])) {
+	$smarty->assign('composer_installed_errors', $lastResult['errors']);
+}
+
 if ($installableList === false) {
 	$packagesMissing = false;
 } else {
@@ -57,6 +62,7 @@ if ($installableList === false) {
 	);
 }
 
+$smarty->assign('composer_environment_warning', $composerManager->checkThatCanInstallPackages());
 $smarty->assign('composer_available', $composerManager->composerIsAvailable());
 $smarty->assign('composer_packages_installed', $installableList);
 $smarty->assign('composer_packages_missing', $packagesMissing);
