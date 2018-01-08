@@ -34,12 +34,12 @@ body.layout_social > .container {
 
 
 
-h3.panel-title {
+h3.card-title {
 	color: #9d9d9d;
 	font-size: 24px;
 }
 
-.panel-body {
+.card-body {
 	border: solid #292929;
 	border-width: 0 8px .5rem 8px;
 }
@@ -152,7 +152,6 @@ input {
 	margin: 2px 0 0; // override default ul
 	//  font-size: $font-size-base;
 	background-color: $dropdown-bg;
-	border: 1px solid $dropdown-fallback-border; // IE8 fallback
 	border: 1px solid $dropdown-border-color;
 	border-radius: $border-radius;
 	@include box-shadow(0 6px 12px rgba(0, 0, 0, .175));

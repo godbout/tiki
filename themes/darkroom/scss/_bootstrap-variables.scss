@@ -15,19 +15,19 @@ $gray-200: #343a40;
 $gray-100: #212529;
 $white: #000;
 
-$primary: #193c5a;//#193c5a
-$success: #aad4ab;//#3d6c2a
-$info: #aad0e2;//#1b6083
-$warning: #deceb3;//darken(#f0ad4e,30%)
-$danger: #dda8a7;
+$primary: #ababab;//#193c5a
+$success: #5cb85c;//#3d6c2a
+$info: #5bc0de;//#1b6083
+$warning: #f0ad4e;//darken(#f0ad4e,30%)
+$danger: #d9534f;
 
 $theme-colors: (
-		"primary": #193c5a,
+		"primary": #ababab,
 		"secondary": #dddddd,
-		"success": #aad4ab,
-		"info": #aad0e2,
-		"warning": #deceb3,
-		"danger": #dda8a7,
+		"success": #5cb85c,
+		"info": #5bc0de,
+		"warning": #f0ad4e,
+		"danger": #d9534f,
 		"light": #000000,
 		"dark": #ffffff
 );
@@ -36,12 +36,12 @@ $theme-colors: (
 //Spacing
 
 //Body
-$body-bg: #242424;
-$body-color: #e9ecef;
+$body-bg: #474747;
+$body-color: #d8d8d8;
 
 //Links
-$link-color: #fd0006;
-$link-hover-color: #f4f4f4;
+$link-color: #ababab;
+$link-hover-color: #858585;
 $link-hover-decoration: none;
 
 //Components
@@ -50,34 +50,29 @@ $component-active-bg: #030511;
 
 
 //Fonts
-$font-family-sans-serif: "HelveticaNeue",Helvetica,Arial,sans-serif;
-$font-family-serif: Verdana,Geneva,Arial,Helvetica,sans-serif;
-$font-family-monospace: Menlo,Monaco,Consolas,"CourierNew",monospace;
+$font-family-sans-serif: "Trebuchet MS", "Bitstream Vera Sans", sans-serif;
+$font-family-serif: Georgia, "Times New Roman", Times, serif;
+$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-family-base: $font-family-sans-serif;
 
 $headings-font-weight: 500;
 
 //Tables
-$table-bg: transparent;
-$table-bg-accent: #373737;
-$table-bg-hover: $gray-500;
+$table-bg: #232323;
+$table-bg-accent: #292929;
+$table-bg-hover: #555555;
 $table-bg-active: $table-bg-hover;
 
 //**Bordercolorfortableandcellborders.
 $table-border-color: #696969;
 
 //Buttons
-//$btn-default-color: #ffffff;
-//$btn-default-bg: #3676c4;
-//$btn-default-border: #3676c4;
+//$btn-primary-color: #d8d8d8;
+//$btn-primary-bg: #4b4b4b;
+//$btn-primary-border: #4b4b4b;
 
 $btn-font-weight: normal;
 
-$btn-primary-color: #fd0006;
-$btn-primary-bg: #2f2f2f;
-//$btn-primary-border: #5f5f5f;
-
-$btn-secondary-color: #fd0006;
 $btn-secondary-color: #fd0006;
 $btn-secondary-bg: $btn-primary-bg;
 //$btn-secondary-border: $btn-primary-border;
@@ -186,12 +181,16 @@ $jumbotron-bg: lighten($body-bg,10%);
 $jumbotron-heading-color: inherit;
 
 //Cards
-$card-bg: #030511;
-$card-inner-border: #5e0000;
-$card-footer-bg: darken(#5e0000,10%);
-$card-primary-text: #f4f4f4;
-$card-primary-border: #333333;
-$card-primary-heading-bg: #5e0000;
+$card-bg: #474747;
+$card-inner-border: #474747;
+$card-footer-bg: #474747;
+$card-primary-bg: #ababab;
+
+
+$card-primary-bg: #474747;
+$card-primary-text: #ffffff;
+$card-primary-border: #ababab;
+$card-primary-heading-bg: #ababab;
 
 //Tooltips
 $tooltip-color: #ffffff;
