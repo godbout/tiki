@@ -153,6 +153,12 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 	{
 		if ($context['list_mode'] === 'csv') {
 			return $this->getConfiguration('value');
+		} elseif ($context['list_mode'] === 'text') {
+			return implode("\n",
+				array_map(function($identifier) {
+					list($type, $object) = explode(':', $identifier, 2);
+					return TikiLib::lib('object')->get_title($type, $object, $this->getOption('format'));
+				}, $this->getConfiguration('relations')));
 		} else {
 			$display = $this->getOption('display');
 			if (! in_array($display, ['list', 'count', 'toggle'])) {

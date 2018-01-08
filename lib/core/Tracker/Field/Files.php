@@ -336,6 +336,13 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			return $value;
 		}
 
+		if ($context['list_mode'] === 'text') {
+			return implode("\n",
+				array_map(function($file){
+					return $file['name'];
+				}, $this->getConfiguration('files')));
+		}
+
 		$ret = '';
 		if (empty($value)) {
 			$ret = '&nbsp;';
