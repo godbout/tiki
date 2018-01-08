@@ -304,6 +304,7 @@ $smarty->assign('url_scheme', $url_scheme);
 $smarty->assign('url_host', $url_host);
 $smarty->assign('url_port', $url_port);
 $smarty->assign('url_path', $url_path);
+$dir_level = (! empty($dir_level)) ? $dir_level : '';
 $smarty->assign('dir_level', $dir_level);
 $smarty->assign('base_host', $base_host);
 $smarty->assign('base_url', $base_url);
