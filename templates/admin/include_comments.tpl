@@ -37,6 +37,9 @@
 	<fieldset>
 		<legend>{tr}Annotations{/tr}</legend>
 		{preference name=feature_inline_comments}
+		<div class="adminoptionboxchild" id="feature_inline_comments_childcontainer">
+			{preference name=comments_inline_annotator}
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend>{tr}Using comments in various features{/tr}</legend>
