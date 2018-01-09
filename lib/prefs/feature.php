@@ -724,6 +724,8 @@ function prefs_feature_list($partial = false)
 			'view' => 'tiki-list_invoices.php',
 			'tags' => ['experimental'],
 		],
+		
+		// TODO: Replace feature_wysiwyg and wysiwyg_optional with a single tri-state preference (allowing either just normal editor (default), just WYSIWYG or both) to clarify and avoid misinterpretation
 		'feature_wysiwyg' => [
 			'name' => tra('Full WYSIWYG editor'),
 			'description' => tra('WYSIWYG is an acronym for "What You See Is What You Get". <a href="https://ckeditor.com">CKEditor</a> is used to provide a word-processor-like editing experience.'),
@@ -736,8 +738,20 @@ function prefs_feature_list($partial = false)
 				'feature_wiki_paragraph_formatting',
 				'feature_wiki_paragraph_formatting_add_br',
 			],
-			'tags' => ['basic'],
+			'tags' => ['basic',
+				
+				/* FIXME: If wysiwyg_optional is enabled, which is the case by default, switching an article's body to WYSIWYG loses any unsaved modifications. Chealer 2018-01-04
+				 * FIXME: If wysiwyg_optional is enabled, switching from WYSIWYG to non-WYSIWYG or the opposite can quietly alter parse result (see ticket #5512). Chealer 2018-01-04
+				 * FIXME: If wysiwyg_htmltowiki is enabled, which is the case by default, the table builder inserts broken code (see ticket #6522). Chealer 2018-01-08
+				 * FIXME: If wysiwyg_wiki_parsed is enabled, which is the case by default, "What you see in WYSIWYG editor is NOT NECESSARILY what you get" (see ticket #6523). Chealer 2018-01-09
+				 * FIXME: If wysiwyg_wiki_parsed is disabled, WYSIWYG help is wrong/broken (see ticket #6527). Chealer 2018-01-09
+				 * Several other presumed bugs are reported. Chealer 2018-01-09
+				 */
+				'experimental'
+				
+			],
 		],
+		
 		'feature_kaltura' => [
 			'name' => tra('Kaltura video management'),
 			'description' => tra('Integration with the Kaltura video management platform'),

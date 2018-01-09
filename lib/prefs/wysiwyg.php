@@ -9,6 +9,7 @@ function prefs_wysiwyg_list()
 {
 
 	return [
+		// TODO: Replace feature_wysiwyg and wysiwyg_optional with a single tri-state preference (allowing either just normal editor (default), just WYSIWYG or both) to clarify and avoid misinterpretation
 		'wysiwyg_optional' => [
 			'name' => tra('Full WYSIWYG editor is optional'),
 			'type' => 'flag',
@@ -18,6 +19,7 @@ function prefs_wysiwyg_list()
 			],
 			'default' => 'y',
 		],
+		
 		'wysiwyg_default' => [
 			'name' => tra('Full WYSIWYG editor is displayed by default'),
 			'description' => tra('If both the WYSIWYG editor and the text editor are available, the WYSIWYG editor is used by default, for example, when creating new pages'),
