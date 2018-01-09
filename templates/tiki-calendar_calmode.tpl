@@ -26,11 +26,11 @@
 									<td class="focus {if $cell[w][d].day eq $today}calhighlight{/if}" style="width:50%;text-align:left">
 										{* test display_field_order and use %d/%m or %m/%d on each day 'cell' *}
 										{if ($prefs.display_field_order eq 'DMY') || ($prefs.display_field_order eq 'DYM') || ($prefs.display_field_order eq 'YDM')}
-											<a href="{$myurl}?focus={$cell[w][d].day}" title="{tr}Change Focus{/tr}" style="font-size:11px">
+											<a href="{$myurl}?focus={$cell[w][d].day}" title="{tr}Change Focus{/tr}">
 												{$cell[w][d].day|tiki_date_format:"%d/%m"}
 											</a>
 										{else}
-											<a href="{$myurl}?focus={$cell[w][d].day}" title="{tr}Change Focus{/tr}" style="font-size:11px">
+											<a href="{$myurl}?focus={$cell[w][d].day}" title="{tr}Change Focus{/tr}">
 												{$cell[w][d].day|tiki_date_format:"%m/%d"}
 											</a>
 										{/if}
