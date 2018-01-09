@@ -45,7 +45,7 @@
 							{/if}
 							<td class="{if isset($cell[w][d].day) and $date eq $today}calhighlight calborder{else}{cycle advance=false}{/if}{if isset($cell[w][d].items[0])
 								and ((isset($cell[w][d].items[0].modifiable) and $cell[w][d].items[0].modifiable eq "y")
-								|| $cell[w][d].items[0].visible eq 'y')} calmodfocus{/if}" style="text-align:center; font-size:0.8em; width=14%">
+								|| $cell[w][d].items[0].visible eq 'y')} calmodfocus{/if}" style="font-size:0.8em; width=14%">
 								{if isset($cell[w][d].over)}
 									{assign var=over value=$cell[w][d].over}
 								{elseif isset($cell[w][d].items[0])}
