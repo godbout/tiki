@@ -72,5 +72,16 @@ function prefs_comments_list()
 			'default' => 'y',
 			'tags' => ['advanced'],
 		],
+		'comments_inline_annotator' => [
+			'name' => tr('Inline comments using Apache Annotator'),
+			'description' => tr('Use the Open/Apache Annotator JavaScript based library for managing inline comments as annotations.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['advanced', 'experimental'],
+			'dependencies' => [
+				'feature_inline_comments',
+			],
+			'keywords' => 'annotation annotatorjs',
+		],
 	];
 }

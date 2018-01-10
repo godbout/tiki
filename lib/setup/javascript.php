@@ -195,6 +195,7 @@ if (inArray(m, allTimeZoneCodes)) {
 	$jqueryTiki['no_cookie'] = false;
 	$jqueryTiki['language'] = $prefs['language'];
 	$jqueryTiki['useInlineComment'] = $prefs['feature_inline_comments'] === 'y' ? true : false;
+	$jqueryTiki['useInlineAnnotations'] = $prefs['comments_inline_annotator'] === 'y' ? true : false;
 	$jqueryTiki['helpurl'] = $prefs['feature_help'] === 'y' ? $prefs['helpurl'] : '';
 	$jqueryTiki['shortDateFormat'] = $prefs['short_date_format_js'];
 	$jqueryTiki['shortTimeFormat'] = $prefs['short_time_format_js'];

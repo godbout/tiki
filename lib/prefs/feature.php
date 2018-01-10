@@ -2777,8 +2777,8 @@ function prefs_feature_list($partial = false)
 			'default' => 'n',
 		],
 		'feature_inline_comments' => [
-			'name' => tra('Inline comments (annotations)'),
-			'description' => tra('Contextual comments (using Apache Annotator)'),
+			'name' => tra('Inline comments'),
+			'description' => tra('Contextual comments'),
 			'dependencies' => [
 				'feature_wiki_comments',
 				'feature_wiki_paragraph_formatting',
@@ -2786,14 +2786,7 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 			'help' => 'Inline+comments',
-
-			/*
-			 * Anchoring absolutely not robust. Positioning is verified with the tiki.comments.ranges attribute, which is not updated when wiki pages change. When annotated text changes, the annotation stops displaying (unless the range is unchanged). Chealer 2017-09-20
-			 * Annotating is offered when selecting text in a WYSIWYG zone (WYSIWYG plugin) in edition mode. Chealer 2017-10-26
-			 */
 			'tags' => ['experimental'],
-
-			'keywords' => 'annotation annotatorjs',
 		],
 		'feature_equal_height_rows_js' => [
 			'name' => tra('Enable JavaScript plugin for equal-height rows'),

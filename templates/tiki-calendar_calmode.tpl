@@ -26,11 +26,11 @@
 									<td class="focus {if $cell[w][d].day eq $today}calhighlight{/if}" style="width:50%;text-align:left">
 										{* test display_field_order and use %d/%m or %m/%d on each day 'cell' *}
 										{if ($prefs.display_field_order eq 'DMY') || ($prefs.display_field_order eq 'DYM') || ($prefs.display_field_order eq 'YDM')}
-											<a href="{$myurl}?focus={$cell[w][d].day}" title="{tr}Change Focus{/tr}" style="font-size:11px">
+											<a href="{$myurl}?focus={$cell[w][d].day}" title="{tr}Change Focus{/tr}" class="change-focus">
 												{$cell[w][d].day|tiki_date_format:"%d/%m"}
 											</a>
 										{else}
-											<a href="{$myurl}?focus={$cell[w][d].day}" title="{tr}Change Focus{/tr}" style="font-size:11px">
+											<a href="{$myurl}?focus={$cell[w][d].day}" title="{tr}Change Focus{/tr}" class="change-focus">
 												{$cell[w][d].day|tiki_date_format:"%m/%d"}
 											</a>
 										{/if}
@@ -59,7 +59,7 @@
 									{assign var=calendarId value=$cell[w][d].items[item].calendarId}
 									<tr>
 										{if is_array($cell[w][d].items[item])}
-											<td class="Cal{$cell[w][d].items[item].type} calId{$cell[w][d].items[item].calendarId} viewcalitemId_{$cell[w][d].items[item].calitemId} tips" style="padding:0;height:14px;background-color:#{$infocals.$calendarId.custombgcolor};border-color:#{$infocals.$calendarId.customfgcolor};opacity:{if $cell[w][d].items[item].status eq '0'}0.8{else}1{/if};filter:Alpha(opacity={if $cell[w][d].items[item].status eq '0'}80{else}100{/if});text-align:left;border-width:1px {if $cell[w][d].items[item].endTimeStamp <= ($cell[w][d].day + 86400)}1{else}0{/if}px 1px {if $cell[w][d].items[item].startTimeStamp >= $cell[w][d].day}1{else}0{/if}px;cursor:pointer"
+											<td class="Cal{$cell[w][d].items[item].type} calId{$cell[w][d].items[item].calendarId} viewcalitemId_{$cell[w][d].items[item].calitemId} tips" style="padding:0;height:14px;background-color:#{$infocals.$calendarId.custombgcolor};border-color:#{$infocals.$calendarId.customfgcolor};opacity:{if $cell[w][d].items[item].status eq '0'}0.8{else}1{/if};filter:Alpha(opacity={if $cell[w][d].items[item].status eq '0'}80{else}100{/if});border-width:1px {if $cell[w][d].items[item].endTimeStamp <= ($cell[w][d].day + 86400)}1{else}0{/if}px 1px {if $cell[w][d].items[item].startTimeStamp >= $cell[w][d].day}1{else}0{/if}px;cursor:pointer"
 												{if $prefs.calendar_sticky_popup eq 'y'}
 													{popup caption="{tr}Event{/tr}" vauto=true hauto=true sticky=true fullhtml="1" trigger="onClick" text=$over}
 												{else}
