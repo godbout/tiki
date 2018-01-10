@@ -74,7 +74,7 @@ function prefs_comments_list()
 		],
 		'comments_inline_annotator' => [
 			'name' => tr('Inline comments using Apache Annotator'),
-			'description' => tr('Allow a comment to be modified by its author for a 30-minute period after posting it, for clarifications, correction of errors, etc.'),
+			'description' => tr('Use the Open/Apache Annotator JavaScript based library for managing inline comments as annotations.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['advanced', 'experimental'],
