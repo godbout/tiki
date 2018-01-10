@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "65d8fc8e05575b2612c189cbe9d0a14a",
+    "content-hash": "faeda395a3080e1a7041c97eb3f276bd",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -1830,17 +1830,17 @@
         },
         {
             "name": "nicolaskruchten/pivottable",
-            "version": "v2.7.0",
+            "version": "v2.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolaskruchten/pivottable.git",
-                "reference": "df476fad95f6e8c16eeb7c831e5390dc10625bde"
+                "reference": "f742ce1d27b867b3414684f54ef81f16c714af25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-df476fad95f6e8c16eeb7c831e5390dc10625bde-zip-d52146.zip",
-                "reference": "df476fad95f6e8c16eeb7c831e5390dc10625bde",
-                "shasum": "bc92b847bcfdf5539d65b00b4f7326594327d863"
+                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-f742ce1d27b867b3414684f54ef81f16c714af25-zip-df6207.zip",
+                "reference": "f742ce1d27b867b3414684f54ef81f16c714af25",
+                "shasum": "bc9a7424a1572ec5d26a3e11edd39c8233154356"
             },
             "require": {
                 "components/jquery": ">=1.9"
@@ -1857,7 +1857,7 @@
                 }
             ],
             "description": "Javascript Pivot Table (aka Pivot Grid, Pivot Chart, Cross-Tab) implementation with drag'n'drop.",
-            "homepage": "http://nicolas.kruchten.com/pivottable/",
+            "homepage": "https://pivottable.js.org/",
             "keywords": [
                 "crosstab",
                 "grid",
@@ -1869,7 +1869,7 @@
                 "pivottable",
                 "table"
             ],
-            "time": "2016-12-31T05:15:14+00:00"
+            "time": "2017-11-30T22:09:38+00:00"
         },
         {
             "name": "openannotation/annotator",
@@ -2672,17 +2672,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.23.2",
+            "version": "v1.31.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "2ec71e26d64e390bde4eefd38bed643b2dc57511"
+                "reference": "cc673fa1b691323ff2fb4165412441e90602dbed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-2ec71e26d64e390bde4eefd38bed643b2dc57511-zip-f9ea67.zip",
-                "reference": "2ec71e26d64e390bde4eefd38bed643b2dc57511",
-                "shasum": "8252eb7ef61f3bd8e0489fe1fb6fb2848b3e5ed3"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-cc673fa1b691323ff2fb4165412441e90602dbed-zip-f9d014.zip",
+                "reference": "cc673fa1b691323ff2fb4165412441e90602dbed",
+                "shasum": "f8dbf7d9ee1d142ade6c6275c4da37bd7d36a885"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2704,7 +2704,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2017-02-15T18:51:21+00:00"
+            "time": "2017-10-23T15:03:31+00:00"
         },
         {
             "name": "psr/container",
