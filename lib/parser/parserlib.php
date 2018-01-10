@@ -58,11 +58,17 @@ class ParserLib extends TikiDb_Bridge
 
 	function setOptions($option = [])
 	{
-		global $page;
+		global $page, $prefs;
 
 		$this->option = array_merge(
 			[
 				'is_html' => false,
+				
+				/* Determines if "Tiki syntax" is parsed in some circumstances.
+				Currently, when is_html is true, but that is probably wrong.
+				Overriden by the HTML plugin to force wiki parsing */
+				'parse_wiki' => $prefs['wysiwyg_wiki_parsed'] == 'y',
+				
 				'absolute_links' => false,
 				'language' => '',
 				'noparseplugins' => false,
@@ -1635,7 +1641,7 @@ if ( \$('#$id') ) {
 			$headerlib->wysiwyg_parsing = true;
 		}
 
-		if ($this->option['is_html'] && $prefs['wysiwyg_wiki_parsed'] == 'n') {
+		if ($this->option['is_html'] && ! $this->option['parse_wiki']) {
 			return $data;
 		}
 

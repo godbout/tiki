@@ -61,7 +61,7 @@ function wikiplugin_html($data, $params)
 
 	// parse using is_html if wiki param set, or just decode html entities
 	if ($params['wiki'] == 1) {
-		$html = TikiLib::lib('parser')->parse_data($html, ['is_html' => true]);
+		$html = TikiLib::lib('parser')->parse_data($html, ['is_html' => true, 'parse_wiki' => true]);
 	} else {
 		$html  = html_entity_decode($html, ENT_NOQUOTES, 'UTF-8');
 	}
