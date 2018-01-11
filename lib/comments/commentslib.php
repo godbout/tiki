@@ -3642,15 +3642,18 @@ class Comments extends TikiLib
 			return 0;
 		}
 
-		$noparsed = ['key' => [], 'data' => []];
 		$data = $params['comments_data'];
+		
+		// Strip (HTML) tags. Tags in CODE plugin calls are spared using plugins_remove().
+		//TODO: Use a standardized sanitization (if any)  
+		$noparsed = ['key' => [], 'data' => []];
 		$parserlib = TikiLib::lib('parser');
 		$parserlib->plugins_remove($data, $noparsed, function ($match) {
 			return $match->getName() == 'code';
 		});
-
 		$data = strip_tags($data);
 		$data = str_replace($noparsed['key'], $noparsed['data'], $data);
+		
 		$params['comments_data'] = rtrim($data);
 
 		if ($tiki_p_admin_forum != 'y') {// non admin can only post normal
