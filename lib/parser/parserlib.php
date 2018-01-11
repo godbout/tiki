@@ -197,8 +197,8 @@ class ParserLib extends TikiDb_Bridge
 	 *
 	 * @param $data	string		data to be cleaned of plugins
 	 * @param $noparsed array	output array
+	 * @see parserLib::plugins_replace()
 	 */
-
 	function plugins_remove(&$data, &$noparsed, $removeCb = null)
 	{
 		$tikilib = TikiLib::lib('tiki');
