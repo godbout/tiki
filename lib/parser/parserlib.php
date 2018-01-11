@@ -28,9 +28,6 @@ class ParserLib extends TikiDb_Bridge
 {
 	// private $makeTocCount = 0; Unused since Tiki 12 or earlier
 
-	public $isHtmlPurifying = false;
-	public $isEditMode = false;
-
 	//This var is used in both protectSpecialChars and unprotectSpecialChars to simplify the html ouput process. Can be replaced with a const starting with PHP 7
 	public $specialChars = [
 		'≤REAL_LT≥' => [
@@ -54,6 +51,13 @@ class ParserLib extends TikiDb_Bridge
 		],
 	];
 
+	/* These 2 options were declared as scalar properties to ease usage tracking.
+	TO DO: Replace $option with more?
+	Problem: No methods to manipulate these */
+	public $isHtmlPurifying = false;
+	public $isEditMode = false;
+	
+	// An associative array of (most) options (despite the singular)
 	public $option = [];
 
 	function setOptions($option = [])
