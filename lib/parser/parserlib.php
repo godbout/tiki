@@ -51,14 +51,17 @@ class ParserLib extends TikiDb_Bridge
 		],
 	];
 
-	/* These 2 options were declared as scalar properties to ease usage tracking.
-	TO DO: Replace $option with more?
-	Problem: No methods to manipulate these */
+	/*
+	 * Parsing "options". Some of these are real parsing parameters, such as protect_email and security options like isHtmlPurifying.
+	 * Others (like is_html) define the markup's semantic.  
+	 * 
+	 * The first 2 properties are scalar and each defines a single parameter to ease usage tracking.
+	 * Other parameters are defined in $option.
+	 * TO DO: Replace $option with more scalar properties? Problem: No methods to manipulate these
+	 */
 	public $isHtmlPurifying = false;
 	public $isEditMode = false;
-	
-	// An associative array of (most) options (despite the singular)
-	public $option = [];
+	public $option = []; // An associative array of (most) parameters (despite the singular)
 
 	function setOptions($option = [])
 	{
