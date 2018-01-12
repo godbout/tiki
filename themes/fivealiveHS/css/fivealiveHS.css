@@ -3559,7 +3559,7 @@ tbody.collapse.in {
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,
 .dropdown-menu > .disabled > a:focus {
-  color: #777777;
+  color: #eeeeee;
 }
 .dropdown-menu > .disabled > a:hover,
 .dropdown-menu > .disabled > a:focus {
@@ -3588,7 +3588,7 @@ tbody.collapse.in {
   padding: 3px 20px;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #777777;
+  color: #ffffff;
   white-space: nowrap;
 }
 .dropdown-backdrop {
@@ -6761,7 +6761,7 @@ a.fc-event:hover {
   background: url('../../../img/icons/dots.gif');
 }
 .dropdown-menu {
-  color: #777777;
+  color: #ffffff;
 }
 .cssmenu_horiz > li:hover,
 .cssmenu_horiz > li.sfHover,
