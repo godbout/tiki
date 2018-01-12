@@ -119,7 +119,7 @@ class ParserLib extends TikiDb_Bridge
 	// This function handles wiki codes for those special HTML characters
 	// that textarea won't leave alone.
 	//*
-	function parse_htmlchar(&$data)
+	private function parse_htmlchar(&$data)
 	{
 		// cleaning some user input
 		// ckeditor parses several times and messes things up, we should only let it parse once
@@ -239,7 +239,7 @@ class ParserLib extends TikiDb_Bridge
 	}
 
 	//*
-	function plugin_match(&$data, &$plugins)
+	private function plugin_match(&$data, &$plugins)
 	{
 		global $pluginskiplist;
 		if (! is_array($pluginskiplist)) {
