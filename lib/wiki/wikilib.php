@@ -1365,7 +1365,7 @@ class WikiLib extends TikiLib
 				$plugins = [];
 				foreach ($list as $name) {
 					$pinfo = [
-						'help' => $this->get_plugin_description($name, $enabled, $commonKey),
+						'help' => $parserlib->get_plugin_description($name, $enabled, $commonKey),
 						'name' => TikiLib::strtoupper($name),
 					];
 
@@ -1410,52 +1410,6 @@ class WikiLib extends TikiLib
 			sort($files);
 
 			return $files;
-		}
-	}
-
-	//
-	// Call 'wikiplugin_.*_description()' from given file
-	//
-	public function get_plugin_description($name, &$enabled, $area_id = 'editwiki')
-	{
-		$parserlib = TikiLib::lib('parser');
-
-		if (( ! $info = $parserlib->plugin_info($name) ) && $parserlib->plugin_exists($name, true)) {
-			$enabled = true;
-
-			$func_name = "wikiplugin_{$name}_help";
-			if (! function_exists($func_name)) {
-				return false;
-			}
-
-			$ret = $func_name();
-			return $parserlib->parse_data($ret);
-		} else {
-			$smarty = TikiLib::lib('smarty');
-			$enabled = true;
-
-			$ret = $info;
-
-			if (isset($ret['prefs'])) {
-				global $prefs;
-
-				// If the plugin defines required preferences, they should all be to 'y'
-				foreach ($ret['prefs'] as $pref) {
-					if (! isset($prefs[$pref]) || $prefs[$pref] != 'y') {
-						$enabled = false;
-						return;
-					}
-				}
-			}
-
-			if (isset($ret['documentation']) && ctype_alnum($ret['documentation'])) {
-				$ret['documentation'] = "http://doc.tiki.org/{$ret['documentation']}";
-			}
-
-			$smarty->assign('area_id', $area_id);
-			$smarty->assign('plugin', $ret);
-			$smarty->assign('plugin_name', TikiLib::strtoupper($name));
-			return $smarty->fetch('tiki-plugin_help.tpl');
 		}
 	}
 
