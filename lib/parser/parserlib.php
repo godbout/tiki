@@ -390,10 +390,6 @@ class ParserLib extends TikiDb_Bridge
 		$matches = WikiParser_PluginMatcher::match($data);
 		$argumentParser = new WikiParser_PluginArgumentParser;
 
-		if (! isset($this->option['parseimgonly'])) {
-			$this->option['parseimgonly'] = false;
-		}
-
 		foreach ($matches as $match) {
 			if ($this->option['parseimgonly'] && $this->getName() != 'img') {
 				continue;
