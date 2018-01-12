@@ -424,9 +424,7 @@ if (isset($_REQUEST['preview']) or ! empty($errors)) {
 
 		$body = TikiFilter::get('xss')->filter($body);
 
-		$parserlib->isEditMode = true;
 		$parserlib->plugins_replace($body, $noparsed, true);
-		$parserlib->isEditMode = false;
 
 		$heading = $_REQUEST['heading'];
 		$noparsed = [];
@@ -434,9 +432,7 @@ if (isset($_REQUEST['preview']) or ! empty($errors)) {
 
 		$heading = TikiFilter::get('xss')->filter($heading);
 
-		$parserlib->isEditMode = true;
 		$parserlib->plugins_replace($heading, $noparsed, true);
-		$parserlib->isEditMode = false;
 
 		//html is stored encoded in wysiwyg
 		if (isset($jitRequest['wysiwyg']) && $jitRequest['wysiwyg'] == 'y') {
@@ -506,9 +502,7 @@ if (isset($_REQUEST['save']) && empty($errors)) {
 
 		$body = TikiFilter::get('xss')->filter($body);
 
-		$parserlib->isEditMode = true;
 		$parserlib->plugins_replace($body, $noparsed, true);
-		$parserlib->isEditMode = false;
 
 		$heading = $_REQUEST['heading'];
 		$noparsed = [];
@@ -516,9 +510,7 @@ if (isset($_REQUEST['save']) && empty($errors)) {
 
 		$heading = TikiFilter::get('xss')->filter($heading);
 
-		$parserlib->isEditMode = true;
 		$parserlib->plugins_replace($heading, $noparsed, true);
-		$parserlib->isEditMode = false;
 
 		//html is stored encoded in wysiwyg
 		if (isset($jitRequest['wysiwyg']) && $jitRequest['wysiwyg'] == 'y') {

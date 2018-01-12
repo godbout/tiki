@@ -55,12 +55,11 @@ class ParserLib extends TikiDb_Bridge
 	 * Parsing "options". Some of these are real parsing parameters, such as protect_email and security options like isHtmlPurifying.
 	 * Others (like is_html) define the markup's semantic.  
 	 * 
-	 * The first 2 properties are scalar and each defines a single parameter to ease usage tracking.
+	 * The first property is scalar and defines a single parameter to ease usage tracking.
 	 * Other parameters are defined in $option.
 	 * TO DO: Replace $option with more scalar properties? Problem: No methods to manipulate these
 	 */
 	public $isHtmlPurifying = false;
-	public $isEditMode = false;
 	public $option = []; // An associative array of (most) parameters (despite the singular)
 
 	function setOptions($option = [])
@@ -125,7 +124,7 @@ class ParserLib extends TikiDb_Bridge
 	{
 		// cleaning some user input
 		// ckeditor parses several times and messes things up, we should only let it parse once
-		if ($this->isEditMode != true && ! $this->option['ck_editor']) {
+		if (! $this->option['ck_editor']) {
 			$data = str_replace('&', '&amp;', $data);
 		}
 
@@ -1643,13 +1642,6 @@ if ( \$('#$id') ) {
 			$this->setOptions($option);
 		}
 
-		$old_wysiwyg_parsing = null;
-		if ($this->option['ck_editor'] && $this->isEditMode) {
-			$headerlib = TikiLib::lib('header');
-			$old_wysiwyg_parsing = $headerlib->wysiwyg_parsing;
-			$headerlib->wysiwyg_parsing = true;
-		}
-
 		if ($this->option['is_html'] && ! $this->option['parse_wiki']) {
 			return $data;
 		}
@@ -1810,10 +1802,6 @@ if ( \$('#$id') ) {
 
 		if ($this->option['typography'] && ! $this->option['ck_editor']) {
 			$data = typography($data, $this->option['language']);
-		}
-
-		if ($old_wysiwyg_parsing !== null) {
-			$headerlib->wysiwyg_parsing = $old_wysiwyg_parsing;
 		}
 
 		return $data;
