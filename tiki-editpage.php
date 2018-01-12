@@ -1497,9 +1497,6 @@ if ($wikilib->contains_badchars($page) && ! $tikilib->page_exists($page)) {
 	$smarty->assign('page_badchars_display', $wikilib->get_badchars());
 }
 
-$plugins = $wikilib->list_plugins(true, 'editwiki');
-
-$smarty->assign_by_ref('plugins', $plugins);
 $smarty->assign('showstructs', []);
 if ($structlib->page_is_in_structure($_REQUEST["page"])) {
 	$structs = $structlib->get_page_structures($_REQUEST["page"]);
