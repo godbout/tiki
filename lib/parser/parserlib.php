@@ -52,14 +52,13 @@ class ParserLib extends TikiDb_Bridge
 	];
 
 	/*
-	 * Parsing "options". Some of these are real parsing parameters, such as protect_email and security options like isHtmlPurifying.
+	 * Parsing "options". Some of these are real parsing parameters, such as protect_email and security options.
 	 * Others (like is_html) define the markup's semantic.  
 	 * 
 	 * The first property is scalar and defines a single parameter to ease usage tracking.
 	 * Other parameters are defined in $option.
 	 * TO DO: Replace $option with more scalar properties? Problem: No methods to manipulate these
 	 */
-	public $isHtmlPurifying = false;
 	public $option = []; // An associative array of (most) parameters (despite the singular)
 
 	function setOptions($option = [])
@@ -150,7 +149,7 @@ class ParserLib extends TikiDb_Bridge
 	// parse_htmlchar runs, and as well so they can be properly seen, be it html or non-html
 	function protectSpecialChars($data, $is_html = false)
 	{
-		if (($this->isHtmlPurifying == true || (isset($this->option['is_html']) && $this->option['is_html'] != true)) || ! empty($this->option['ck_editor'])) {
+		if ((isset($this->option['is_html']) && $this->option['is_html'] != true) || ! empty($this->option['ck_editor'])) {
 			foreach ($this->specialChars as $key => $specialChar) {
 				$data = str_replace($specialChar['html'], $key, $data);
 			}

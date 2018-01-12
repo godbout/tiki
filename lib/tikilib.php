@@ -4097,7 +4097,6 @@ class TikiLib extends TikiDb_Bridge
 
 		$html = $is_html ? 1 : 0;
 		if ($html && $prefs['feature_purifier'] != 'n') {
-			$parserlib->isHtmlPurifying = true;
 			$noparsed = [];
 			$parserlib->plugins_remove($data, $noparsed);
 
@@ -4105,7 +4104,6 @@ class TikiLib extends TikiDb_Bridge
 			$data = HTMLPurifier($data);
 
 			$parserlib->plugins_replace($data, $noparsed, true);
-			$parserlib->isHtmlPurifying = false;
 		}
 
 		$insertData = [
@@ -4559,7 +4557,6 @@ class TikiLib extends TikiDb_Bridge
 		);
 
 		if ($html == 1 && $prefs['feature_purifier'] != 'n') {
-			$parserlib->isHtmlPurifying = true;
 			$noparsed = [];
 			$parserlib->plugins_remove($edit_data, $noparsed);
 
@@ -4567,7 +4564,6 @@ class TikiLib extends TikiDb_Bridge
 			$edit_data = HTMLPurifier($edit_data);
 
 			$parserlib->plugins_replace($edit_data, $noparsed, true);
-			$parserlib->isHtmlPurifying = false;
 		}
 
 		if (is_null($saveLastModif)) {
