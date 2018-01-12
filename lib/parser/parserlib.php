@@ -1561,57 +1561,6 @@ if ( \$('#$id') ) {
 		//		}
 	}
 
-	// split string into a list of
-	//*
-	function split_tag($string, $cleanup = true)
-	{
-		$_splts = explode('&quot;', $string);
-		$inside = false;
-		$parts = [];
-		$index = 0;
-
-		foreach ($_splts as $i) {
-			if ($cleanup) {
-				$i = str_replace('}', '', $i);
-				$i = str_replace('{', '', $i);
-				$i = str_replace('\'', '', $i);
-				$i = str_replace('"', '', $i);
-				// IE silently removes null-byte html char \0, so let's remove it anyways
-				$i = str_replace('\\0', '', $i);
-			}
-
-			if ($inside) {  // inside "foo bar" - append
-				if ($index > 0) {
-					$parts[$index - 1] .= $i;
-				} else {    // else: first element (should never happen)
-					$parts[] = $i;
-				}
-			} else {        //
-				$_spl = explode(" ", $i);
-				foreach ($_spl as $j) {
-					$parts[$index++] = $j;
-				}
-			}
-			$inside = ! $inside;
-		}
-		return $parts;
-	}
-
-	//*
-	function split_assoc_array($parts, $assoc)
-	{
-		//$assoc = array();
-		foreach ($parts as $part) {
-			$res = [];
-			$assoc[$part] = '';
-			preg_match("/(\w+)\s*=\s*(.*)/", $part, $res);
-			if ($res) {
-				$assoc[$res[1]] = $res[2];
-			}
-		}
-		return $assoc;
-	}
-
 	/**
 	 * close_blocks - Close out open paragraph, lists, and div's
 	 *
