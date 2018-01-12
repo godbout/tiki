@@ -188,7 +188,6 @@ dump/index.php -text
 /freetag_list.php -text
 /get_strings.php -text
 /group_tracker_ajax.php -text
-/help.php -text
 /htaccess.sh -text
 img/.htaccess -text
 img/arrows-000000.png -text
@@ -5230,7 +5229,6 @@ permissioncheck/worry/index.php -text
 permissioncheck/yes.bin -text
 /phpcs.xml.dist -text
 /phpunit.xml.dist -text
-/plugins_help.php -text
 /poll_categorize.php -text
 /prepare_permissioncheck.sh -text
 /received_article_image.php -text
