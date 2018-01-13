@@ -76,7 +76,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 			{else}
 				<select class="form-control{$groupClass}" type="text" name="params[{$name|escape}]" id="{$inputId}"{$dataAttribute}>
 					{foreach $param.options as $option}
-						<option value="{$option.value|escape}" {if isset($pluginArgs[$name]) and $pluginArgs[$name] eq $option.value} selected="selected"{/if}>
+						<option value="{$option.value|escape}" {if (isset($pluginArgs[$name]) and $pluginArgs[$name] eq $option.value) or (!isset($pluginArgs[$name]) and $option.value eq $param.default)} selected="selected"{/if}>
 							{$option.text|escape}
 						</option>
 					{/foreach}
