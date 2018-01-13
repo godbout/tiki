@@ -146,9 +146,14 @@ function wikiplugin_annotation($data, $params)
 
 	if ($tiki_p_edit == 'y') {
 		$editableStr = tra('Editable');
+		$accesslib = TikiLib::lib('access');
+		$accesslib->checkAuthenticity();
+		$ticket = $accesslib->getTicket();
 
 		$form = <<<FORM
 <form method="post" action="tiki-wikiplugin_edit.php" class="form save-annotations">
+	<input type="hidden" name="ticket" value="$ticket"/>
+	<input type="hidden" name="daconfirm" value="y"/>
 	<div style="display:none">
 		<input type="hidden" name="page" value="$page"/>
 		<input type="hidden" name="type" value="annotation"/>
