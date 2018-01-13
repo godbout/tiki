@@ -425,6 +425,11 @@ class Tracker_Item
 
 			$factory = $this->definition->getFieldFactory();
 			$handler = $factory->getHandler($field, $this->info);
+
+			if (! isset($input[$field['ins_id']]) && isset($input['fields'][$field['permName']])) {
+				// getFieldData expects the value to be in $input['ins_xx']
+				$input[$field['ins_id']] = $input['fields'][$field['permName']];
+			}
 			return array_merge($field, $handler->getFieldData($input));
 		}
 	}
