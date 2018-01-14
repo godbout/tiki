@@ -1762,9 +1762,9 @@ function wikiplugin_tracker($data, $params)
 
 		if ($registration == "y") {
 			$back .= '<input type="hidden" name="register" value="Register">';
-			$labelclass = 'col-md-4 col-sm-3';
-			$inputclass = 'col-md-4 col-sm-6';
-			$buttonclass = 'col-md-8 col-md-offset-4';
+			$labelclass = 'col-sm-4';
+			$inputclass = 'col-sm-8';
+			$buttonclass = 'col-sm-8 col-sm-offset-4';
 		}
 
 		// Loop on tracker fields and display form
@@ -1861,7 +1861,7 @@ function wikiplugin_tracker($data, $params)
 					}
 						$back .= '><label class="' . $labelclass . ' control-label" for="' . $f['ins_id'] . '">' // ><label for="'
 									. wikiplugin_tracker_name($f['fieldId'], tra($f['name']), $field_errors); //
-					if ($showmandatory == 'y' and $f['isMandatory'] == 'y'&& $registration != 'y') {
+					if ($showmandatory == 'y' and $f['isMandatory'] == 'y') {
 						$back .= " <strong class='mandatory_star text-danger tips' title=':" . tra('This field is mandatory') . "' >*</strong> ";
 					}
 						$back .= '</label>';
@@ -1875,10 +1875,6 @@ function wikiplugin_tracker($data, $params)
 
 						$back .= wikiplugin_tracker_render_input($f, $item, $dynamicSave);
 						$back .= '</div>'; // chibaguy added /divs
-					if ($showmandatory == 'y' and $f['isMandatory'] == 'y' && $registration == 'y') {
-						$back .= '<div class="col-md-1 col-sm-1"><strong class="mandatory_star text-danger tips" title=":'
-							. tra('This field is mandatory') . '">*</strong></div>';
-					}
 
 					if ($f['type'] === 'j') {
 						$datepicker = true;
@@ -1893,7 +1889,7 @@ function wikiplugin_tracker($data, $params)
 					if ($showfieldsdesc == 'y' && $f['description']) {
 						$back .= '<div class="form-group tracker-help-block tracker_field' . $f['fieldId'] . ' ">';
 						{
-							$back .= '<div class="col-md-12 trackerplugindesc help-block text-right">';
+							$back .= '<div class="col-md-8 col-sm-offset-4 trackerplugindesc help-block">';
 						if ($f['descriptionIsParsed'] == 'y') {
 							$back .= TikiLib::lib('parser')->parse_data($f['description']);
 						} else {
