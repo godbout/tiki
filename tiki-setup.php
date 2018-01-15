@@ -137,6 +137,8 @@ require_once('lib/setup/language.php');
 require_once('lib/setup/wiki.php');
 require_once('lib/setup/javascript.php');
 
+require_once('lib/setup/theme.php');
+
 /* Cookie consent setup, has to be after the JS decision and wiki setup */
 
 $cookie_consent_html = '';
@@ -195,7 +197,6 @@ if ($prefs['feature_sefurl'] == 'y' && ! defined('TIKI_CONSOLE')) {
 	}
 }
 
-require_once('lib/setup/theme.php');
 if (! empty($varcheck_errors)) {
 	$smarty->assign('msg', $varcheck_errors);
 	$smarty->display('error_raw.tpl');
