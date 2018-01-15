@@ -98,22 +98,23 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 			$entries = $selector->readMultiple($requestData[$insertId]);
 			$data = array_map('strval', $entries);
 		} else {
-			$data = $this->getRelations($this->getOption(self::OPT_RELATION));
-		}
-
-		if ($this->getOption(self::OPT_INVERT)) {
-			$inverts = array_diff(
-				$this->getRelations($this->getOption(self::OPT_RELATION) . '.invert'),
-				$data
-			);
-		} else {
-			$inverts = [];
+			$relation = $this->getOption(self::OPT_RELATION);
+			$relations = TikiLib::lib('relation')->get_relations_from('trackeritem', $this->getItemId(), $relation);
+			foreach ($relations as $rel) {
+				$data[] = $rel['type'] . ':' . $rel['itemId'];
+			}
+			if ($this->getOption(self::OPT_INVERT)) {
+				$relations = TikiLib::lib('relation')->get_relations_to('trackeritem', $this->getItemId(), $relation);
+				foreach ($relations as $rel) {
+					$data[] = $rel['type'] . ':' . $rel['itemId'];
+				}
+			}
+			$data = array_unique($data);
 		}
 
 		return [
 			'value' => implode("\n", $data),
 			'relations' => $data,
-			'inverts' => $inverts,
 		];
 	}
 
@@ -125,10 +126,6 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 
 		$labels = [];
 		foreach ($this->getConfiguration('relations') as $rel) {
-			list($type, $id) = explode(':', $rel, 2);
-			$labels[$rel] = TikiLib::lib('object')->get_title($type, $id, $this->getOption('format'));
-		}
-		foreach ($this->getConfiguration('inverts') as $rel) {
 			list($type, $id) = explode(':', $rel, 2);
 			$labels[$rel] = TikiLib::lib('object')->get_title($type, $id, $this->getOption('format'));
 		}
@@ -205,6 +202,14 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 			$id = $rel['relationId'];
 			$map[$key] = $id;
 		}
+		if ($this->getOption(self::OPT_INVERT)) {
+			$current = $relationlib->get_relations_to('trackeritem', $this->getItemId(), $this->getOption(self::OPT_RELATION));
+			foreach ($current as $rel) {
+				$key = $rel['type'] . ':' . $rel['itemId'];
+				$id = $rel['relationId'];
+				$map[$key] = $id;
+			}
+		}
 
 		$toRemove = array_diff(array_keys($map), $target);
 		$toAdd = array_diff($target, array_keys($map));
@@ -238,26 +243,6 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 	}
 
 	/**
-	 * Restrict some field option changes that can have potentially bad side effects.
-	 * E.g. changing relation to an already existing one.
-	 *
-	 * @param $params - array of field options
-	 * @throws Services_Exception
-	 */
-	public function validateFieldOptions($params)
-	{
-		if (empty($params['relation'])) {
-			return;
-		}
-		if ($params['relation'] != $this->getOption(self::OPT_RELATION)) {
-			$relationlib = TikiLib::lib('relation');
-			if ($relationlib->relation_exists($params['relation'], 'trackeritem')) {
-				throw new Exception(tr("Relation %0 already exists", $params['relation']));
-			}
-		}
-	}
-
-	/**
 	 * Update existing data in relations table when changing the relation name.
 	 * Used when updating field options.
 	 *
@@ -279,8 +264,9 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 	 */
 	public function handleFieldRemove()
 	{
+		$trackerId = $this->getTrackerDefinition()->getConfiguration('trackerId');
 		$relationlib = TikiLib::lib('relation');
-		$relationlib->remove_relation_type($this->getOption(self::OPT_RELATION));
+		$relationlib->remove_relation_type($this->getOption(self::OPT_RELATION), $trackerId);
 	}
 
 	private function prepareRefreshRelated($target)
@@ -314,25 +300,6 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		return $filter;
 	}
 
-	private function getRelations($relation)
-	{
-		$data = [];
-
-		$relations = TikiLib::lib('relation')->get_relations_from('trackeritem', $this->getItemId(), $relation);
-		foreach ($relations as $rel) {
-			$data[] = $rel['type'] . ':' . $rel['itemId'];
-		}
-
-		if (substr($relation, -7) == '.invert') {
-			$relations = TikiLib::lib('relation')->get_relations_to('trackeritem', $this->getItemId(), substr($relation, 0, -7));
-			foreach ($relations as $rel) {
-				$data[] = $rel['type'] . ':' . $rel['itemId'];
-			}
-		}
-
-		return array_unique($data);
-	}
-
 	public static function syncRelationAdded($args)
 	{
 		if ($args['sourcetype'] == 'trackeritem') {
@@ -356,23 +323,6 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 				if ($value != $old_value) {
 					$value = implode("\n", $value);
 					TikiLib::lib('trk')->modify_field($itemId, $fieldId, $value);
-				}
-				// include self-related inversions which lack .invert relation field
-				if ($trackerId == TikiLib::lib('trk')->get_tracker_for_item($args['object'])) {
-					$field = TikiLib::lib('trk')->get_tracker_field($fieldId);
-					$handler = TikiLib::lib('trk')->get_field_handler($field);
-					if ($handler->getOption(self::OPT_INVERT)) {
-						$itemId = $args['object'];
-						$value = $old_value = explode("\n", TikiLib::lib('trk')->get_item_value($trackerId, $itemId, $fieldId));
-						$other = $args['sourcetype'] . ':' . $args['sourceobject'];
-						if (! in_array($other, $value)) {
-							$value[] = $other;
-						}
-						if ($value != $old_value) {
-							$value = implode("\n", $value);
-							TikiLib::lib('trk')->modify_field($itemId, $fieldId, $value);
-						}
-					}
 				}
 			}
 		}
@@ -425,23 +375,6 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 				if ($value != $old_value) {
 					$value = implode("\n", $value);
 					TikiLib::lib('trk')->modify_field($itemId, $fieldId, $value);
-				}
-				// include self-related inversions which lack .invert relation field
-				if ($trackerId == TikiLib::lib('trk')->get_tracker_for_item($args['object'])) {
-					$field = TikiLib::lib('trk')->get_tracker_field($fieldId);
-					$handler = TikiLib::lib('trk')->get_field_handler($field);
-					if ($handler->getOption(self::OPT_INVERT)) {
-						$itemId = $args['object'];
-						$value = $old_value = explode("\n", TikiLib::lib('trk')->get_item_value($trackerId, $itemId, $fieldId));
-						$other = $args['sourcetype'] . ':' . $args['sourceobject'];
-						if (in_array($other, $value)) {
-							$value = array_diff($value, [$other]);
-						}
-						if ($value != $old_value) {
-							$value = implode("\n", $value);
-							TikiLib::lib('trk')->modify_field($itemId, $fieldId, $value);
-						}
-					}
 				}
 			}
 		}
