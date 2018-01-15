@@ -72,7 +72,7 @@ class ParserLib extends TikiDb_Bridge
 				/* Determines if "Tiki syntax" is parsed in some circumstances.
 				Currently, when is_html is true, but that is probably wrong.
 				Overriden by the HTML plugin to force wiki parsing */
-				'parse_wiki' => $prefs['wysiwyg_wiki_parsed'] == 'y',
+				'parse_wiki' => ! isset($prefs['wysiwyg_wiki_parsed']) || $prefs['wysiwyg_wiki_parsed'] === 'y',
 				
 				'absolute_links' => false,
 				'language' => '',
