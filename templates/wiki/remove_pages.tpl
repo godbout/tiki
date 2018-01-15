@@ -46,6 +46,7 @@
 					<label for="destpage" class="col-sm-2">{tr}Redirect to:{/tr}</label>
 				</div>
 				<div class="col-sm-10">
+					{jq}$("#destpage").tiki("autocomplete", "pagename");{/jq}
 					<input type='text' id='destpage' name='destpage' class="form-control" value=''>
 				</div>
 			</div>
