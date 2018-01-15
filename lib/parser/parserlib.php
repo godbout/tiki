@@ -54,10 +54,10 @@ class ParserLib extends TikiDb_Bridge
 	/*
 	 * Parsing "options". Some of these are real parsing parameters, such as protect_email and security options.
 	 * Others (like is_html) define the markup's semantic.  
-	 * 
-	 * The first property is scalar and defines a single parameter to ease usage tracking.
-	 * Other parameters are defined in $option.
-	 * TO DO: Replace $option with more scalar properties? Problem: No methods to manipulate these
+	 *
+	 * TODO: Separate real parsing parameters from properties of the parsable markup
+	 * TO DO: To ease usage tracking, it may be best to replace $option with individual properties.
+	 * Or replace setOptions() with individual setters?
 	 */
 	public $option = []; // An associative array of (most) parameters (despite the singular)
 
