@@ -3,7 +3,7 @@
 	RewriteEngine On
 
 	# -- Always Allow These File Types -- #
-	RewriteRule "\.(jpe?g|png|ico|gif|svgz?|ttf|eot|woff2?|otf|js|css)$" "-" [PT,L]
+	RewriteRule "\.(jpe?g|png|ico|gif|svgz?|ttf|eot|woff2?|otf|js|css|html)$" "-" [PT,L]
 
 	# -- Allow Access to files used by Developer Dubugging Tools -- #
 	RewriteRule "\.(map|less|scss)$" "-" [PT,L]
