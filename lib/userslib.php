@@ -346,7 +346,7 @@ class UsersLib extends TikiLib
 	 * @see TikiLib::genPass()
 	 * TODO: Merge with the above
 	 */
-	function genPass()
+	static function genPass()
 	{
 		// AWC: enable mixed case and digits, don't return too short password
 		global $prefs;
