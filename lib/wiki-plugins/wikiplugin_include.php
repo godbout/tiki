@@ -235,7 +235,6 @@ function wikiplugin_include($dataIn, $params)
 		$options['page'] = $_REQUEST['page'];
 	}
 	$parserlib->setOptions($options);
-	$parserlib->parse_wiki_argvariable($text);
 	$text = $parserlib->parse_data($text, $options);
 	$parserlib->setOptions($old_options);
 
