@@ -342,6 +342,10 @@ class UsersLib extends TikiLib
 		return;
 	}
 
+	/**
+	 * @see TikiLib::genPass()
+	 * TODO: Merge with the above
+	 */
 	function genPass()
 	{
 		// AWC: enable mixed case and digits, don't return too short password

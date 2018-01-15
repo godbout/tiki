@@ -1808,6 +1808,8 @@ class TikiLib extends TikiDb_Bridge
 	/*shared*/
 	/**
 	 * @return string
+	 * @see UsersLib::genPass(), which generates passwords easier to remember
+	 * TODO: Merge with above
 	 */
 	function genPass()
 	{
