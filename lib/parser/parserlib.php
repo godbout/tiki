@@ -119,7 +119,7 @@ class ParserLib extends TikiDb_Bridge
 	// This function handles wiki codes for those special HTML characters
 	// that textarea won't leave alone.
 	//*
-	private function parse_htmlchar(&$data)
+	protected function parse_htmlchar(&$data)
 	{
 		// cleaning some user input
 		// ckeditor parses several times and messes things up, we should only let it parse once
@@ -549,7 +549,7 @@ if ( \$('#$id') ) {
 		}
 	}
 
-	private function strip_unparsed_block(& $data, & $noparsed, $protect = false)
+	protected function strip_unparsed_block(& $data, & $noparsed, $protect = false)
 	{
 		$tikilib = TikiLib::lib('tiki');
 
@@ -1869,7 +1869,7 @@ if ( \$('#$id') ) {
 	}
 
 	//*
-	private function parse_data_wikilinks($data, $simple_wiki, $ck_editor = false) //TODO: need a wikilink handler
+	protected function parse_data_wikilinks($data, $simple_wiki, $ck_editor = false) //TODO: need a wikilink handler
 	{
 		global $page_regex, $prefs;
 
@@ -1948,7 +1948,7 @@ if ( \$('#$id') ) {
 		return $data;
 	}
 
-	private function parse_data_externallinks($data, $suppress_icons = false)
+	protected function parse_data_externallinks($data, $suppress_icons = false)
 	{
 		global $prefs;
 		$tikilib = TikiLib::lib('tiki');
@@ -2032,7 +2032,7 @@ if ( \$('#$id') ) {
 	}
 
 	//*
-	private function parse_data_inline_syntax($line, $words = null, $ck_editor = false)
+	protected function parse_data_inline_syntax($line, $words = null, $ck_editor = false)
 	{
 		global $prefs;
 
@@ -2065,7 +2065,7 @@ if ( \$('#$id') ) {
 	}
 
 	//*
-	private function parse_data_tables($data)
+	protected function parse_data_tables($data)
 	{
 		global $prefs;
 
@@ -2578,7 +2578,7 @@ if ( \$('#$id') ) {
 	}
 
 	//*
-	private function parse_data_dynamic_variables($data, $lang = null)
+	protected function parse_data_dynamic_variables($data, $lang = null)
 	{
 		global $tiki_p_edit_dynvar, $prefs;
 
@@ -2647,7 +2647,7 @@ if ( \$('#$id') ) {
 	}
 
 	/* This is only called by parse_data(). It does not just deal with TOC-s. */
-	private function parse_data_process_maketoc(&$data, $noparsed)
+	protected function parse_data_process_maketoc(&$data, $noparsed)
 	{
 
 		global $prefs;
