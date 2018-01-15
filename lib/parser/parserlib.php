@@ -1613,7 +1613,6 @@ if ( \$('#$id') ) {
 	//*
 	function parse_data($data, $option = [])
 	{
-		$tikilib = TikiLib::lib('tiki');
 		// Don't bother if there's nothing...
 		if (function_exists('mb_strlen')) {
 			if (mb_strlen($data) < 1) {
@@ -1711,7 +1710,7 @@ if ( \$('#$id') ) {
 		preg_match_all("/(?<!\[)(\[[^\[][^\]]+\])/", $data, $noparseurl);
 
 		foreach (array_unique($noparseurl[1]) as $np) {
-			$key = '§' . md5($tikilib->genPass()) . '§';
+			$key = '§' . md5(TikiLib::genPass()) . '§';
 
 			$aux["key"] = $key;
 			$aux["data"] = $np;

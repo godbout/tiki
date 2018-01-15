@@ -1811,7 +1811,7 @@ class TikiLib extends TikiDb_Bridge
 	 * @see UsersLib::genPass(), which generates passwords easier to remember
 	 * TODO: Merge with above
 	 */
-	function genPass()
+	static function genPass()
 	{
 		global $prefs;
 		$length = max($prefs['min_pass_length'], 8);
