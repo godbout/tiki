@@ -5969,7 +5969,7 @@ $lang = [
 // "Configured" => "Configured",
 // "Tracker rendering error (section=\"%0\" mode=\"%1\")" => "Tracker rendering error (section=\"%0\" mode=\"%1\")",
 "No rows found" => "Aucune ligne trouvée",
-"Toggle sections" => "Basculer de section",
+"Toggle sections" => "Commuter les sections",
 "Show only selected" => "N'afficher que les sélectionnés",
 "You might want to also set the tiki_p_modify_object_categories permission under the tiki section" => "Vous pouvez vouloir donner le droit tiki_p_modify_object_categories dans la section Tiki",
 // "You are logged in" => "You are logged in",
