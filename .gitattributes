@@ -3250,6 +3250,7 @@ lib/core/Tracker/Tabular/index.php -text
 lib/core/Tracker/index.php -text
 lib/core/Type.php -text
 lib/core/WikiParser/OutputLink.php -text
+lib/core/WikiParser/Parsable.php -text
 lib/core/WikiParser/PluginArgumentParser.php -text
 lib/core/WikiParser/PluginDefinition.php -text
 lib/core/WikiParser/PluginMatcher.php -text
