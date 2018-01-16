@@ -26,10 +26,8 @@ class WikiParser_Parsable extends ParserLib
 	function parse($options)
 	{
 		// Don't bother if there's nothing...
-		if (function_exists('mb_strlen')) {
-			if (mb_strlen($this->markup) < 1) {
-				return '';
-			}
+		if (mb_strlen($this->markup) < 1) {
+			return '';
 		}
 
 		global $prefs;
@@ -62,6 +60,9 @@ class WikiParser_Parsable extends ParserLib
 		$this->strip_unparsed_block($data, $noparsed, true);
 		if (! $this->option['noparseplugins'] || $this->option['stripplugins']) {
 			$this->parse_first($data, $preparsed, $noparsed);
+			
+			/* While re-calling this is surely sub-optimal, it seems intentional (cf r23940).
+			If I understand the commit message, re-called because plugins can alter $_GET. Perhaps the first call should be made only if this one won't be made. Chealer 2018-10-16 */
 			$this->parse_wiki_argvariable($data);
 		}
 
