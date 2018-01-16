@@ -70,6 +70,7 @@
 		<legend>{tr}Other features{/tr}</legend>
 		{preference name=print_original_url_tracker}
 		{preference name=print_original_url_forum}
+		{preference name=feature_slideshow_pdfexport}
 
 	</fieldset>
 	{include file='admin/include_apply_bottom.tpl'}
