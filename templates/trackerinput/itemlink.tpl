@@ -103,7 +103,7 @@
 			{/jq}
 			{/if}
 			{jq}
-				$("select[name={{$field.ins_id}}]").next().clickModal({
+				$("select[name={{$field.ins_id}}]").parent().find(".insert-tracker-item").clickModal({
 					success: function (data) {
 						$('<option>')
 							.attr('value', data.itemId)
