@@ -172,6 +172,7 @@ function wikiplugin_img_info()
 				'filter' => 'alpha',
 				'default' => 'n',
 				'options' => [
+					['text' => tra('Default'), 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n'],
 				],
@@ -249,6 +250,7 @@ function wikiplugin_img_info()
 				'advanced' => false,
 				'default' => 'n',
 				'options' => [
+					['text' => tra('Default'), 'value' => ''],
 					['text' => tra('No'), 'value' => 'n'],
 					['text' => tra('Yes'), 'value' => 'y'],
 				],
