@@ -104,9 +104,8 @@ function wikiplugin_include_info()
 
 function wikiplugin_include($dataIn, $params)
 {
-	global $user, $killtoc, $prefs;
+	global $killtoc, $prefs;
 	static $included_pages, $data;
-	$userlib = TikiLib::lib('user');
 	$tikilib = TikiLib::lib('tiki');
 
 	$killtoc = true;
