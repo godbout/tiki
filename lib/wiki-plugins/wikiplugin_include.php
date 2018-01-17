@@ -241,7 +241,8 @@ function wikiplugin_include($dataIn, $params)
 		$options['page'] = $_REQUEST['page'];
 	}
 	$parserlib->setOptions($options);
-	$text = $parserlib->parse_data($text, $options);
+	$fragment = new WikiParser_Parsable($text);
+	$text = $fragment->parse($options);
 	$parserlib->setOptions($old_options);
 
 	// append a "See full page" link at end of text if only a portion of page is being included
