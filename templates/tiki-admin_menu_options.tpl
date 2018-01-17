@@ -27,14 +27,19 @@
 		<h2>{tr}Menu options{/tr} <span class="badge">{$cant_pages}</span></h2>
 
 		<div class="navbar margin-bottom-md clearfix">
-			<ol class="new-option col-sm-4">
+			{button _text='{tr}Save Options{/tr}' _class='save_menu text-muted btn btn-sm disabled pull-left' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
+			<ol class="new-option col-sm-5">
 				<li id="node_new" class="clearfix new">
 					<div class="col-sm-12">
 						<div class="pull-left label-group">
 							<div class="input-group input-group-sm" style="max-width: 100%">
 								<span class="input-group-addon">{icon name='sort'}</span>
-								<input type="text" class="field-label form-control" value="" placeholder="{tr}New item{/tr}" readonly="readonly">
-								<a href="#" class="tips input-group-addon text-muted" title="{tr}New item{/tr}|{tr}Drag this on to the menu area below{/tr}">
+								<input type="text" class="field-label form-control" value="" placeholder="{tr}New option{/tr}" readonly="readonly">
+								<span class="tips input-group-addon option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
+									<input type="checkbox" class="samepos">
+									{$prevpos = $option.position}
+								</span>
+								<a href="#" class="tips input-group-addon text-muted" title="{tr}New option{/tr}|{tr}Drag this on to the menu area below{/tr}">
 									{icon name='info'}
 								</a>
 							</div>
@@ -44,9 +49,9 @@
 								<a href="#" class="input-group-addon" onclick='return false;'>
 									{icon name='link'}
 								</a>
-								<input type="text" class="field-url form-control" value="" placeholder="{tr}URL{/tr}">
+								<input type="text" class="field-url form-control" value="" placeholder="{tr}URL or ((page name)){/tr}">
 								<a href="#" class="input-group-addon text-muted option-edit">
-									{icon name='edit' _menu_icon='y' alt="{tr}Edit{/tr}"}
+									{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
 								</a>
 								<a href="#" class="input-group-addon text-danger option-remove" disabled="disabled">
 									{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
@@ -56,7 +61,6 @@
 					</div>
 				</li>
 			</ol>
-			{button _text='{tr}Save{/tr}' _class='save_menu text-muted btn btn-sm disabled' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
 		</div>
 		<form method="get" action="tiki-admin_menu_options.php">
 			{ticket}
@@ -139,12 +143,12 @@
 								</div>
 								<div class="pull-left url-group">
 									<div class="input-group input-group-sm">
-										<a href="{$option.sefurl|escape}" class="input-group-addon" target="_blank" onclick='return confirm("{tr}Are you sure you want to leave this page?{/tr}");'>
+										<a href="{$option.sefurl|escape}" class="input-group-addon tips confirm" title="|{tr}Test URL{/tr}">
 											{icon name='link'}
 										</a>
 										<input type="text" class="field-url form-control" value="{$option.canonic|escape}" placeholder="{tr}URL or ((page name)){/tr}">
-										<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-addon option-edit" title="|{tr}Edit{/tr}">
-											{icon name='edit' _menu_icon='y' alt="{tr}Edit{/tr}"}
+										<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-addon option-edit confirm" title="|{tr}Details{/tr}">
+											{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
 										</a>
 										<a href="#" class="tips input-group-addon text-danger option-remove" title="|{tr}Remove Option{/tr}">
 											{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
@@ -164,7 +168,7 @@
 
 		</form>
 
-		{button _text='{tr}Save{/tr}' _class='save_menu text-muted btn btn-sm disabled' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
+		{button _text='{tr}Save Options{/tr}' _class='save_menu text-muted btn btn-sm disabled' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
 
 	</div>
 {/tab}
