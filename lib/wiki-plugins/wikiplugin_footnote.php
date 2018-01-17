@@ -43,12 +43,12 @@ function wikiplugin_footnote_info()
  */
 function wikiplugin_footnote($data, $params, $offset, $context)
 {
-	$footnotes = &$context->footnotes;
+	$allFootnotes = &$context->footnotes;
 	$smarty = TikiLib::lib('smarty');
 
-	if (! isset($footnotes['lists'])) {   // if this is the first time the script has run, initialise
-		$footnotes['count'] = 0;
-		$footnotes['lists'] = [];    // data for general footnotes
+	if (! isset($allFootnotes['lists'])) {   // if this is the first time the script has run, initialise
+		$allFootnotes['count'] = 0;
+		$allFootnotes['lists'] = [];    // data for general footnotes
 	}
 
 	$data = trim($data);
@@ -56,7 +56,7 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 		return '<sup>' . tra('Error: Empty footnote') . '</sup>';
 	}
 
-	$footnotes['count']++;                      // keep a record of how many times footones is called to generate unique id's
+	$allFootnotes['count']++;                      // keep a record of how many times footones is called to generate unique id's
 
 	// Create an array of classes to be applied
 	$classes = (isset($params['class'])) ? explode(' ', trim($params["class"])) : [];
@@ -64,26 +64,26 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 	//set the current list to create
 	$list = '.def.';                            // Set the default to illegal class name to prevent conflicts
 	foreach ($classes as $class) {
-		if (isset($footnotes['lists'][$class])) {
+		if (isset($allFootnotes['lists'][$class])) {
 			$list = $class;                         // set list the the first occurrence, if there happens to be multiplies.
 			break;
 		}
 	}
 
 	// wow, thats a mouth full, lets make it a little more pleasing to the eyes.
-	$footnote = &$footnotes['lists'][$list];
+	$classFootnotes = &$allFootnotes['lists'][$list];
 
 	// set the current number of list entries
-	$listNum = count($footnote) + 1;
+	$listNum = count($classFootnotes) + 1;
 
-	$footnote[$listNum]['unique'] = $footnotes['count'];
-	$footnote[$listNum]['class'] = implode(' ', $classes);
+	$classFootnotes[$listNum]['unique'] = $allFootnotes['count'];
+	$classFootnotes[$listNum]['class'] = implode(' ', $classes);
 
-	$footnote[$listNum]['data'] = TikiLib::lib('parser')->parse_data_plugin($data, true);
+	$classFootnotes[$listNum]['data'] = TikiLib::lib('parser')->parse_data_plugin($data, true);
 
 
-	$smarty->assign('uniqueId', $footnote[$listNum]['unique']);
+	$smarty->assign('uniqueId', $classFootnotes[$listNum]['unique']);
 	$smarty->assign('listNum', $listNum);
-	$smarty->assign('class', $footnote[$listNum]['class']);
+	$smarty->assign('class', $classFootnotes[$listNum]['class']);
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnote.tpl');
 }
