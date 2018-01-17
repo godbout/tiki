@@ -18,6 +18,11 @@ class WikiParser_Parsable extends ParserLib
 	/** @var string Code usually containing text and markup */
 	private $markup;
 	
+	// Properties used by parallel parsing functions to share data
+	
+	/** @var array Footnotes added via the FOOTNOTE plugin. These are read by wikiplugin_footnotearea() */
+	public $footnotes;
+
 	function __construct($markup)
 	{
 		$this->markup = $markup;

@@ -31,9 +31,19 @@ function wikiplugin_footnote_info()
 	];
 }
 
-function wikiplugin_footnote($data, $params)
+/**
+ * @param string $data
+ * @param $params
+ * @param int $offset
+ * @param WikiParser_Parsable $context
+ * @return string
+ * @throws Exception
+ * 
+ * @see wikiplugin_footnotearea()
+ */
+function wikiplugin_footnote($data, $params, $offset, $context)
 {
-	global $footnotes;
+	$footnotes = &$context->footnotes;
 	$smarty = TikiLib::lib('smarty');
 
 	if (! isset($footnotes['lists'])) {   // if this is the first time the script has run, initialise

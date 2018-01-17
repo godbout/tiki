@@ -29,9 +29,9 @@ function wikiplugin_footnotearea_info()
 	];
 }
 
-function wikiplugin_footnotearea($data, $params)
+function wikiplugin_footnotearea($data, $params, $offset, $context)
 {
-	global $footnotes;
+	$footnotes = &$context->footnotes;
 	$smarty = TikiLib::lib('smarty');
 
 	$html = '';
@@ -62,7 +62,6 @@ function wikiplugin_footnotearea($data, $params)
 
 function genFootnoteArea($listName, $list)
 {
-
 	$smarty = TikiLib::lib('smarty');
 	if ($listName === '.def.') {
 		$smarty->assign('listName', '');                     // if default, dont include a class name
