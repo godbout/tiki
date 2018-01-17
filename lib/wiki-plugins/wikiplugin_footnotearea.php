@@ -32,7 +32,6 @@ function wikiplugin_footnotearea_info()
 function wikiplugin_footnotearea($data, $params, $offset, $context)
 {
 	$footnotes = &$context->footnotes;
-	$smarty = TikiLib::lib('smarty');
 
 	$html = '';
 	if (isset($params['class'])) {                                       // if class was given
@@ -44,6 +43,9 @@ function wikiplugin_footnotearea($data, $params, $offset, $context)
 		foreach ($footnotes['lists'] as $listName => $list) {
 			$html .= genFootnoteArea($listName, $list);
 		}
+		
+		// This is a behavioral addition to prevent multiple calls to FOOTNOTEAREA to display the same footnote more than once, not just an optimization.
+		// This could be made optional, probably by adding a parameter to FOOTNOTE.
 		unset($footnotes['lists']);
 	}
 
