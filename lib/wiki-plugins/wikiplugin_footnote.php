@@ -48,7 +48,6 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 
 	if (! isset($footnotes['lists'])) {   // if this is the first time the script has run, initialise
 		$footnotes['count'] = 0;
-		$footnotes['nest'] = 0;
 		$footnotes['lists'] = [];    // data for general footnotes
 	}
 
@@ -61,9 +60,6 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 
 	// Create an array of classes to be applied
 	$classes = (isset($params['class'])) ? explode(' ', trim($params["class"])) : [];
-	if ($footnotes['nest'] > 0) {   // if we are in a nested footnote, add a nested class
-		$classes[] = 'footnest' . $footnotes['nest'];
-	}
 
 	//set the current list to create
 	$list = '.def.';                            // Set the default to illegal class name to prevent conflicts
@@ -83,9 +79,7 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 	$footnote[$listNum]['unique'] = $footnotes['count'];
 	$footnote[$listNum]['class'] = implode(' ', $classes);
 
-	$footnotes['nest']++;
 	$footnote[$listNum]['data'] = TikiLib::lib('parser')->parse_data_plugin($data, true);
-	$footnotes['nest']--;
 
 
 	$smarty->assign('uniqueId', $footnote[$listNum]['unique']);
