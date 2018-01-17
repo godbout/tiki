@@ -89,7 +89,6 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 
 
 	$smarty->assign('uniqueId', $footnote[$listNum]['unique']);
-	$smarty->assign('unique', $footnote[$listNum]['unique']);
 	$smarty->assign('listNum', $listNum);
 	$smarty->assign('class', $footnote[$listNum]['class']);
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnote.tpl');
