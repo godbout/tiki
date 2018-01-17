@@ -37,7 +37,7 @@ function wikiplugin_footnotearea($data, $params, $offset, $context)
 	if (isset($params['class'])) {                                       // if class was given
 		if (isset($footnotes['lists'][$params['class']])) {        // if the class exists
 			$html = genFootnoteArea($params['class'], $footnotes['lists'][$params['class']]);
-			unset($footnotes['lists'][$params['class']]['entry']);
+			unset($footnotes['lists'][$params['class']]);
 		}
 	} else {                                                        // if no params are given, render in default way
 		foreach ($footnotes['lists'] as $listName => $list) {
@@ -70,7 +70,7 @@ function genFootnoteArea($listName, $list)
 	} else {
 		$smarty->assign('listName', ' ' . $listName);                // if we are in a list, fix spacing up nice
 	}
-	$smarty->assign('footnotes', $list['entry']);
+	$smarty->assign('footnotes', $list);
 
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnotearea.tpl');
 }
