@@ -71,7 +71,7 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 	}
 
 	// wow, thats a mouth full, lets make it a little more pleasing to the eyes.
-	$footnote = &$footnotes['lists'][$list]['entry'];
+	$footnote = &$footnotes['lists'][$list];
 
 	// set the current number of list entries
 	$listNum = count($footnote) + 1;
