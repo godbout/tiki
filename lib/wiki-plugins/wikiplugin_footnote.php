@@ -59,10 +59,10 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 	$footnote['class'] = implode(' ', $classes);
 	$footnote['data'] = TikiLib::lib('parser')->parse_data_plugin($data, true);
 	
-	$footnotes[$context->nextFootnote] = $footnote;
-	$context->nextFootnote++;
+	$footnotes[WikiParser_Parsable::$nextFootnote] = $footnote;
 
-	$smarty->assign('listNum', count($footnotes));
+	$smarty->assign('listNum', WikiParser_Parsable::$nextFootnote);
 	$smarty->assign('class', $footnote['class']);
+	WikiParser_Parsable::$nextFootnote++;
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnote.tpl');
 }
