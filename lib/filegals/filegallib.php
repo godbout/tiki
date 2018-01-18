@@ -4164,8 +4164,13 @@ class FileGalLib extends TikiLib
 
 			if ($dom->loadXML($data)) {
 
+				$elements = [];
 				/** @var DOMElement $element */
 				foreach ($dom->getElementsByTagName('*') as $element) {
+					$elements[] = $element;
+				}
+
+				foreach ($elements as $element) {
 
 					if (in_array($element->tagName, ['script', 'embed', 'object', 'applet', 'iframe', 'frame'])) {
 						$element->parentNode->removeChild($element);
@@ -4177,6 +4182,7 @@ class FileGalLib extends TikiLib
 						}
 					}
 				}
+
 				$data = $dom->saveXML();
 
 			}
