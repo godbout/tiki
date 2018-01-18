@@ -25,6 +25,9 @@ class PreferencesLib
 	{
 		global $prefs;
 
+		// Due to performance reasons and the small list of preferences to be translated, returned the current
+		// list of translatable preferences as hardcoded list instead of dynamically searching all preferences
+		/*
 		$translatablePreferences = [];
 		foreach ($prefs as $key => $val) {
 			$definition = $this->getPreference($key);
@@ -32,6 +35,14 @@ class PreferencesLib
 				$translatablePreferences[] = $key;
 			}
 		}
+		*/
+
+		$translatablePreferences = [
+			'browsertitle',
+			'metatag_keywords',
+			'metatag_description',
+		];
+
 		return $translatablePreferences;
 	}
 
