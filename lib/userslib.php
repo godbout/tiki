@@ -4443,6 +4443,15 @@ class UsersLib extends TikiLib
 				'scope' => 'object',
 			],
 			[
+				'name' => 'tiki_p_upload_javascript',
+				'description' => tra('Can upload files containing JavaScript'),
+				'level' => 'admin',
+				'type' => 'file galleries',
+				'admin' => false,
+				'prefs' => ['feature_file_galleries'],
+				'scope' => 'object',
+			],
+			[
 				'name' => 'tiki_p_admin_forum',
 				'description' => tra('Can admin forums'),
 				'level' => 'admin',
