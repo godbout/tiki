@@ -213,7 +213,7 @@ class SurveyLib extends TikiLib
 				'description' => $description,
 				'status' => $status,
 			],
-			['surveyId' => $surveyId]
+			['surveyId' => empty($surveyId) ? 0 : $surveyId]
 		);
 		return $newId ? $newId : $surveyId;
 	}
