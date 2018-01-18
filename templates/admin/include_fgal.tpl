@@ -81,6 +81,8 @@
 					<input type="submit" class="btn btn-default btn-sm timeout" name="updateMime" id="updateMime" value="{tr}Update mime of all non archived octet-stream files{/tr}">
 				</div>
 
+				{preference name='fgal_clean_xml_always'}
+
 				{preference name='fgal_upload_from_source'}
 				<div class="adminoptionboxchild" id="fgal_upload_from_source_childcontainer">
 					{preference name='fgal_source_refresh_frequency'}

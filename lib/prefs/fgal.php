@@ -269,6 +269,16 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 			'tags' => ['experimental'],
 			'help' => 'File+Gallery+config',
 		],
+		'fgal_clean_xml_always' => [
+			'name' => tra('Clean XML Always'),
+			'description' => tra('Sanitize XML based files such as SVG for all users.'),
+			'type' => 'flag',
+			'default' => 'y',
+			'help' => 'File+Gallery+config',
+			'permission' => [
+				'textFilter' => 'upload_javascript',
+			],
+		],
 		'fgal_browse_name_max_length' => [
 			'name' => tra('Maximum name length'),
 			'description' => tra('Length to which to truncate file names in browse view.'),

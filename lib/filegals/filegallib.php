@@ -4129,6 +4129,8 @@ class FileGalLib extends TikiLib
 		$savedir = $this->get_gallery_save_dir($gal_info['galleryId']);
 		$fhash = '';
 
+		$data = $this->clean_xml($data, $gal_info['galleryId']);
+
 		if ($savedir) {
 			$fhash = $this->find_unique_name($savedir, $gal_info['name']);
 			file_put_contents($savedir . $fhash, $data);
@@ -4137,6 +4139,56 @@ class FileGalLib extends TikiLib
 		}
 
 		return false;
+	}
+
+
+	/**
+	 * Sanitize XML based files
+	 *
+	 * @param string $data Image data
+	 * @param int $galleryId
+	 * @return string
+	 */
+	private function clean_xml($data, $galleryId)
+	{
+		global $prefs;
+
+		$perms = Perms::get([
+			'file gallery',
+			$galleryId
+		]);
+
+		if ($prefs['fgal_clean_xml_always'] === 'y' || ! $perms->upload_javascript) {
+
+			$dom = new DOMDocument();
+
+			if ($dom->loadXML($data)) {
+
+				$elements = [];
+				/** @var DOMElement $element */
+				foreach ($dom->getElementsByTagName('*') as $element) {
+					$elements[] = $element;
+				}
+
+				foreach ($elements as $element) {
+
+					if (in_array($element->tagName, ['script', 'embed', 'object', 'applet', 'iframe', 'frame'])) {
+						$element->parentNode->removeChild($element);
+					} else {
+						foreach ($element->attributes as $name => $node) {
+							if (stripos($name, 'on') === 0) {
+								$element->removeAttribute($name);
+							}
+						}
+					}
+				}
+
+				$data = $dom->saveXML();
+
+			}
+
+		}
+		return $data;
 	}
 
 	function get_info_from_url($url, $lastCheck = false, $eTag = false)
