@@ -32,44 +32,33 @@ function wikiplugin_footnotearea_info()
 function wikiplugin_footnotearea($data, $params, $offset, $context)
 {
 	$footnotes = &$context->footnotes;
-
-	$html = '';
-	if (isset($params['class'])) {                                       // if class was given
-		if (isset($footnotes['lists'][$params['class']])) {        // if the class exists
-			$html = genFootnoteArea($params['class'], $footnotes['lists'][$params['class']]);
-			unset($footnotes['lists'][$params['class']]);
+	$selectedFootnotes = [];
+	foreach ($footnotes as $key => $footnote) {
+		if (! $footnote['displayed'] && (! isset($params['class']) || $footnote['class'] == $params['class'])) {
+			$selectedFootnotes[$key] = $footnote;
+			
+			// This prevents multiple calls to FOOTNOTEAREA from displaying the same footnote more than once.
+			// This could be made optional, probably by adding a parameter to FOOTNOTE.
+			$footnotes[$key]['displayed'] = true;
 		}
-	} else {                                                        // if no params are given, render in default way
-		foreach ($footnotes['lists'] as $listName => $list) {
-			$html .= genFootnoteArea($listName, $list);
-		}
-		
-		// This is a behavioral addition to prevent multiple calls to FOOTNOTEAREA to display the same footnote more than once, not just an optimization.
-		// This could be made optional, probably by adding a parameter to FOOTNOTE.
-		unset($footnotes['lists']);
 	}
+	$html = genFootnoteArea($selectedFootnotes);
 
 	return $html;
 }
 
 /**
  *
- * Generate footnote area HTML, based upon a given class ( and data)
+ * Generate footnote area HTML
  *
- * @param $listName string the name of the class
- * @param $list array the array of the class to turn into HTML
+ * @param $list array the array to turn into HTML
  *
  * @return string
  */
 
-function genFootnoteArea($listName, $list)
+function genFootnoteArea($list)
 {
 	$smarty = TikiLib::lib('smarty');
-	if ($listName === '.def.') {
-		$smarty->assign('listName', '');                     // if default, dont include a class name
-	} else {
-		$smarty->assign('listName', ' ' . $listName);                // if we are in a list, fix spacing up nice
-	}
 	$smarty->assign('footnotes', $list);
 
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnotearea.tpl');

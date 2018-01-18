@@ -1,1 +1,1 @@
-<a {if $uniqueId}id="ref_footnote{$uniqueId}" {/if}href="#footnote{$uniqueId}" class="footlink {$class}">{$listNum|numStyle:"decimal"}</a>
+<a id="ref_footnote{$listNum}" href="#footnote{$listNum}" class="footlink {$class}">{$listNum|numStyle:"decimal"}</a>

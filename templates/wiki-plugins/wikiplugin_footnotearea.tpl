@@ -1,13 +1,8 @@
-<div class="footnotearea{$listName}">
+<div class="footnotearea">
 	{foreach $footnotes as $number => $footnote}
-		<div {if $footnote['class']}class="{$footnote['class']}" {/if}id="footnote{$footnote['unique']}">
+		<div {if $footnote['class']}class="{$footnote['class']}" {/if}id="footnote{$number}">
 			<span>
-				<a href="#ref_footnote{$footnote['unique']}">{$number|numStyle:"decimal"}</a>
-				{if isset($footnote['sameas'])}
-					{foreach $footnote['sameas'] as $num => $unique}
-						<a href="#ref_footnote{$unique}" class="sameas"> {($num+1)|numStyle:"disc"}</a>
-					{/foreach}
-				{/if}
+				<a href="#ref_footnote{$number}">{$number|numStyle:"decimal"}</a>
 			</span>
 			{$footnote['data']}
 		</div>

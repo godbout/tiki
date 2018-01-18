@@ -22,6 +22,8 @@ class WikiParser_Parsable extends ParserLib
 	
 	/** @var array Footnotes added via the FOOTNOTE plugin. These are read by wikiplugin_footnotearea() */
 	public $footnotes;
+	/** @var int Number of the next footnote */
+	public $nextFootnote = 1;
 
 	function __construct($markup)
 	{

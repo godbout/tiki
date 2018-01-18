@@ -43,47 +43,26 @@ function wikiplugin_footnote_info()
  */
 function wikiplugin_footnote($data, $params, $offset, $context)
 {
-	$allFootnotes = &$context->footnotes;
+	$footnotes = &$context->footnotes;
 	$smarty = TikiLib::lib('smarty');
-
-	if (! isset($allFootnotes['lists'])) {   // if this is the first time the script has run, initialise
-		$allFootnotes['count'] = 0;
-		$allFootnotes['lists'] = [];    // data for general footnotes
-	}
 
 	$data = trim($data);
 	if (empty($data)) {
 		return '<sup>' . tra('Error: Empty footnote') . '</sup>';
 	}
 
-	$allFootnotes['count']++;                      // keep a record of how many times footones is called to generate unique id's
-
 	// Create an array of classes to be applied
 	$classes = (isset($params['class'])) ? explode(' ', trim($params["class"])) : [];
 
-	//set the current list to create
-	$list = '.def.';                            // Set the default to illegal class name to prevent conflicts
-	foreach ($classes as $class) {
-		if (isset($allFootnotes['lists'][$class])) {
-			$list = $class;                         // set list the the first occurrence, if there happens to be multiplies.
-			break;
-		}
-	}
-
-	// wow, thats a mouth full, lets make it a little more pleasing to the eyes.
-	$classFootnotes = &$allFootnotes['lists'][$list];
-
 	// set the current number of list entries
-	$listNum = count($classFootnotes) + 1;
+	$footnote = ['displayed' => false];
+	$footnote['class'] = implode(' ', $classes);
+	$footnote['data'] = TikiLib::lib('parser')->parse_data_plugin($data, true);
+	
+	$footnotes[$context->nextFootnote] = $footnote;
+	$context->nextFootnote++;
 
-	$classFootnotes[$listNum]['unique'] = $allFootnotes['count'];
-	$classFootnotes[$listNum]['class'] = implode(' ', $classes);
-
-	$classFootnotes[$listNum]['data'] = TikiLib::lib('parser')->parse_data_plugin($data, true);
-
-
-	$smarty->assign('uniqueId', $classFootnotes[$listNum]['unique']);
-	$smarty->assign('listNum', $listNum);
-	$smarty->assign('class', $classFootnotes[$listNum]['class']);
+	$smarty->assign('listNum', count($footnotes));
+	$smarty->assign('class', $footnote['class']);
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnote.tpl');
 }
