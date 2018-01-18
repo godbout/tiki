@@ -31,7 +31,7 @@ class PreferencesLib
 		$translatablePreferences = [];
 		foreach ($prefs as $key => $val) {
 			$definition = $this->getPreference($key);
-			if ($definition['translatable'] == 'y') {
+			if ($definition['translatable'] === true) {
 				$translatablePreferences[] = $key;
 			}
 		}
@@ -124,6 +124,7 @@ class PreferencesLib
 			'plugin' => '',
 			'view' => '',
 			'public' => false,
+			'translatable' => false,
 		];
 		if ($data[$name]['type'] === 'textarea') {
 			$defaults['size'] = 10;
