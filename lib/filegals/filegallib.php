@@ -4162,7 +4162,7 @@ class FileGalLib extends TikiLib
 
 			$dom = new DOMDocument();
 
-			if ($dom->loadXML($data)) {
+			if ($dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
 
 				$elements = [];
 				/** @var DOMElement $element */
