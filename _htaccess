@@ -163,6 +163,10 @@ FileETag none
     # Prevents reading of SVN specific files, if your website is using this. (Development only normally)
     RewriteRule	.*/\.svn/.*	-	[F,L]
 
+    # -- Prevent HTTP TRACE method -- #
+    RewriteCond %{REQUEST_METHOD} ^TRACE
+    RewriteRule .* - [F]
+
     # -- If the URL Points to a File Then do Nothing -- #
     RewriteCond %{REQUEST_FILENAME} -s [OR]
     RewriteCond %{REQUEST_FILENAME} -l [OR]
