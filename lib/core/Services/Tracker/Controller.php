@@ -74,6 +74,17 @@ class Services_Tracker_Controller
 		// And to increase chances to avoid conflict when long names only differ in the end of the long string,
 		// where some meaningful info resides, we'll get the first 26 chars, 1 underscore and the last 9 chars.
 		$permName = (strlen($permName) > 36) ? substr($permName, 0, 26) . '_' . substr($permName, -9) : $permName;
+
+		// Quick way to solve permName conflict, which is very common in languages that only use characters considered
+		// special for this purpose (ie: hebrew). Ideally we should use fieldId, but it haven't been defined yet.
+		$tries = 0;
+		while ($definition->getFieldFromPermName($permName)) {
+			$permName = substr($permName, 0, 31) . "_" . rand(1000, 9999);
+			// Let's avoid theoretical chance of infinite loop
+			if (++$tries > 100) {
+				throw new Services_Exception_DuplicateValue('permName', $permName);
+			}
+		}
 		$type = $input->type->text();
 		$description = $input->description->text();
 		$wikiparse = $input->description_parse->int();
