@@ -473,14 +473,17 @@ class Services_User_Controller
 							'action' => 'confirm',
 							'confirmAction' => $input->action->word(),
 							'confirmController' => 'user',
-							'customMsg' => tr(
+							'customMsg' => sizeof($selected) == 1 ? tr(
 								'Remove user %0 from the following group?',
-								$selected[0]
-							),
+                                $selected[0]
+							) : tr(
+								'Remove users %0 from the following group?',
+								implode(', ', $selected)
+                            ),
 							'items' => $items,
 							'extra' => [
 								'add_remove'    => 'remove',
-								'user'          => $selected[0],
+								'user'          => $selected,
 								'referer'       => $referer,
 								'anchor'        => $input->anchor->striptags()
 							],
@@ -533,7 +536,7 @@ class Services_User_Controller
 			//single user removed from a particular group
 			} elseif (! empty($extra['add_remove'])) {
 				$groups = json_decode($input['items'], true);
-				$users[] = $extra['user'];
+				$users = $extra['user'];
 				$add_remove = $extra['add_remove'];
 			} elseif ($defaultGroup) {
 				$users = json_decode($input['items'], true);
