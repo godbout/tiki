@@ -159,9 +159,8 @@ FileETag none
     RewriteCond %{HTTP:Authorization} ^(.*)
     RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
 
-    # -- SVN Checkout Enabled Tiki -- #
-    # Prevents reading of SVN specific files, if your website is using this. (Development only normally)
-    RewriteRule	.*/\.svn/.*	-	[F,L]
+    # -- Disallow access to hidden files -- #
+    RewriteRule "(^|/)\." - [F,L]
 
     # -- Prevent HTTP TRACE method -- #
     RewriteCond %{REQUEST_METHOD} ^TRACE
