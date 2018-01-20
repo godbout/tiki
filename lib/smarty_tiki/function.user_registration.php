@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-function smarty_function_user_registration($params, $smarty)
+function smarty_function_user_registration($params, $smarty_tpl)
 {
 	global $prefs, $https_mode, $base_url_https, $user;
 	$registrationlib = TikiLib::lib('registration');
@@ -14,6 +14,9 @@ function smarty_function_user_registration($params, $smarty)
 	if ($prefs['allowRegister'] != 'y') {
 		return;
 	}
+
+	// we are passed the template here and value assigned to this tpl are not avialable elsewhere, so get the global "top level" smarty object
+	$smarty = $smarty_tpl->smarty;
 
 	$_VALID = tra("Please enter a valid %s.  No spaces, more than %d characters and contain %s");
 	$smarty->assign('_PROMPT_UNAME', sprintf($_VALID, tra("username"), $registrationlib->merged_prefs['min_username_length'], "0-9,a-z,A-Z"));
