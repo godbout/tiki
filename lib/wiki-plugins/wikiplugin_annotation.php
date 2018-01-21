@@ -7,6 +7,7 @@
 
 function wikiplugin_annotation_info()
 {
+	global $prefs;
 	return [
 		'name' => tra('Image Annotation'),
 		'documentation' => 'PluginAnnotation',
@@ -22,7 +23,7 @@ function wikiplugin_annotation_info()
 			'src' => [
 				'required' => true,
 				'name' => tra('Location'),
-				'description' => tra('Absolute URL to the image, relative path from Tiki site root or an image from the file gallery <code>display1</code>.'),
+				'description' => ($prefs['feature_sefurl'] === 'y') ? tra('Absolute URL to the image, relative path from Tiki site root or an image from the file gallery <code>display1</code>.') : tra('Absolute URL to the image or relative path from Tiki site root.'),
 				'filter' => 'url',
 				'default' => '',
 				'since' => '3.0',
