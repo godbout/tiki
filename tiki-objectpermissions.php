@@ -215,6 +215,54 @@ if (isset($_REQUEST['assign']) && ! isset($_REQUEST['quick_perms'])) {
 		$changed['added'][$groupName] = array_diff($newPerms[$groupName], $oldPerms[$groupName]);
 		$changed['deleted'][$groupName] = array_diff($oldPerms[$groupName], $newPerms[$groupName]);
 	}
+
+	$groupInheritance = [];
+	foreach ($groups['data'] as $row) {
+		if ($group_filter !== false && in_array($row['id'], $group_filter)) {
+			$groupList[] = $row['groupName'];
+			$groupInheritance[] = $userlib->get_included_groups($row['groupName']);
+		}
+	}
+
+	foreach ($changed['added'] as $groupName => $addPerms) { // group messages about permissions added by parent group
+		if (count($addPerms) == 0) {
+			continue;
+		}
+
+		$isParentGroup = false;
+		foreach ($groupInheritance as $index => $gi) {
+			if (is_array($gi) && in_array($groupName, $gi)) {
+				$delPerms = $changed['deleted'][$groupList[$index]];
+				$changed['deleted'][$groupList[$index]] = array_diff($delPerms, $addPerms);
+				$isParentGroup = true;
+			}
+		}
+
+		if ($isParentGroup) {
+			$changed['added'][tr('%0 and all the children groups', $groupName)] = $changed['added'][$groupName];
+			unset($changed['added'][$groupName]);
+		}
+	}
+
+	foreach ($changed['deleted'] as $groupName => $delPerms) {  // group messages about permissions removed by parent group
+		if (count($delPerms) == 0) {
+			continue;
+		}
+
+		$isParentGroup = false;
+		foreach ($groupInheritance as $index => $gi) {
+			if (is_array($gi) && in_array($groupName, $gi)) {
+				$isParentGroup = true;
+				break;
+			}
+		}
+
+		if ($isParentGroup) {
+			$changed['deleted'][tr('%0 and all the children groups', $groupName)] = $changed['deleted'][$groupName];
+			unset($changed['deleted'][$groupName]);
+		}
+	}
+
 	if (in_array('tiki_p_admin', $changed['deleted']['Admins'])) {
 		unset($changed['deleted']['Admins'][array_search('tiki_p_admin', $changed['deleted']['Admins'])]);
 	}
