@@ -1,11 +1,5 @@
 {* $Id$ *}
 {if empty($user) || $user eq 'anonymous' || !empty($showantibot)}
-	<style>
-	.antibot.row {
-		margin-left: 0;
-		margin-right: 0;
-	}
-	</style>
 	{$labelclass = 'col-md-3'}
 	{if $showmandatory eq 'y'}
 		{$inputclass = 'col-sm-11 col-md-8'} {* leave room for the * *}
@@ -18,7 +12,7 @@
 		{$inputclass = 'col-md-4 col-sm-6'}
 		{$captchaclass = 'col-md-5 col-sm-6 col-md-offset-4 col-sm-offset-3'}
 	{/if}
-	<div class="antibot row">
+	<div class="antibot">
 		{if $captchalib->type eq 'recaptcha' || $captchalib->type eq 'recaptcha20'}
 			<div class="form-group clearfix">
 				<div class="{$captchaclass}">
