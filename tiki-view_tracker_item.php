@@ -823,7 +823,7 @@ try {
 			Feedback::error($generator->error, 'session');
 			$access->redirect($page);
 		} else {
-			$pdf = $generator->getPdf('tiki-print.php', ['page' => $tracker_info['name']], str_ireplace("<h3>Attachments</h3>", "<h3>Comments</h3>" . $comments . "<br /><h3>Attachments</h3>", $trackerData));
+			$pdf = $generator->getPdf('tiki-print.php', ['page' => $tracker_info['name']], str_ireplace("</dl>", "</dl><h3>Comments</h3>" . $comments . "<br />", $trackerData));
 			$length = strlen($pdf);
 			header('Cache-Control: private, must-revalidate');
 			header('Pragma: private');
