@@ -4532,6 +4532,11 @@ lib/test/editlib/ParseToWysiwyg_LinkTest.php -text
 lib/test/editlib/ParseToWysiwyg_ListTest.php -text
 lib/test/editlib/ParseToWysiwyg_TextTest.php -text
 lib/test/editlib/index.php -text
+lib/test/filegals/FilegalsTest.php -text
+lib/test/filegals/testdata.png -text
+lib/test/filegals/testdata.png.gz -text
+lib/test/filegals/testdata.svg -text
+lib/test/filegals/testdata.svgz -text
 lib/test/freetag/FreetagTest.php -text
 lib/test/freetag/index.php -text
 lib/test/importer/TikiImporterBlogTest.php -text

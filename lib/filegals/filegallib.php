@@ -4141,6 +4141,17 @@ class FileGalLib extends TikiLib
 		return false;
 	}
 
+	public function fileContentIsSVG($data) {
+		$finfo = new finfo(FILEINFO_MIME);
+		$type = $finfo->buffer($data) . "\n";
+
+		if (substr($type, 0, 18) == 'application/x-gzip') {
+			$data = gzdecode($data);
+			$finfo = new finfo(FILEINFO_MIME);
+			$type = $finfo->buffer($data);
+		}
+		return substr($type, 0, 9) == 'image/svg';
+	}
 
 	/**
 	 * Sanitize XML based files
