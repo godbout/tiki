@@ -4452,6 +4452,15 @@ class UsersLib extends TikiLib
 				'scope' => 'object',
 			],
 			[
+				'name' => 'tiki_p_upload_svg',
+				'description' => tra('Can upload SVG files'),
+				'level' => 'admin',
+				'type' => 'file galleries',
+				'admin' => false,
+				'prefs' => ['fgal_allow_svg'],
+				'scope' => 'object',
+			],
+			[
 				'name' => 'tiki_p_admin_forum',
 				'description' => tra('Can admin forums'),
 				'level' => 'admin',
