@@ -183,7 +183,7 @@ class Tracker_Field_DynamicList extends Tracker_Field_Abstract
 		TikiLib::lib('header')->add_jq_onready(
 			'
 $("body").on("change", "input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldIdHere . ']", function(e) {
-	$( "select[name=\'' . $insertId . '\']").parent().tikiModal(tr("Loading...."));
+	$( "select[name=\'' . $insertId . '\']").parent().tikiModal(tr("Loading..."));
 	$.getJSON(
 		"tiki-tracker_http_request.php",
 		{
