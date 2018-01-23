@@ -80,6 +80,15 @@ if (isset($_REQUEST['import'])) {
 if (isset($_REQUEST['addtopic'])) {
 	check_ticket('minical-prefs');
 	if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
+		$filegallib = TikiLib::lib('filegal');
+		try {
+			$filegallib->assertUploadedFileIsSafe($_FILES["userfile1"]['tmp_name']);
+		} catch (Exception $e) {
+			$smarty->assign('errortype', 403);
+			$smarty->assign('msg', $e->getMessage());
+			$smarty->display("error.tpl");
+			die;
+		}
 		$fp = fopen($_FILES['userfile1']['tmp_name'], "rb");
 		$data = '';
 		while (! feof($fp)) {
