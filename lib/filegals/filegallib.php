@@ -4100,6 +4100,7 @@ class FileGalLib extends TikiLib
 		if (empty($asuser) || ! Perms::get()->admin) {
 			$asuser = $user;
 		}
+		$this->assertUploadIsSafe($data, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4117,6 +4118,7 @@ class FileGalLib extends TikiLib
 		if (empty($asuser)) {
 			$asuser = $user;
 		}
+		$this->assertUploadIsSafe($data, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4164,7 +4166,7 @@ class FileGalLib extends TikiLib
 		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
 		if ($this->fileContentIsSVG($data)) {
 			if ($prefs['fgal_allow_svg'] !== 'y') {
-				throw new Exception($svgErrorMsg);
+				throw new FileIsNotSafeException($svgErrorMsg);
 			}
 			$perms = Perms::get([
 				'file gallery',
@@ -4172,7 +4174,7 @@ class FileGalLib extends TikiLib
 			]);
 
 			if (!$perms->upload_svg) {
-				throw new Exception($svgErrorMsg);
+				throw new FileIsNotSafeException($svgErrorMsg);
 			}
 		}
 		return true;
@@ -4700,3 +4702,11 @@ class FileGalLib extends TikiLib
 		}
 	}
 }
+
+/**
+ *
+ */
+class FileIsNotSafeException extends Exception
+{
+}
+
