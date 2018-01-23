@@ -3732,6 +3732,12 @@ class FileGalLib extends TikiLib
 						$errors[] = tra('Cannot read the file:') . ' ' . $tmp_dest;
 					}
 
+					try {
+						$this->assertUploadedContentIsSafe($data, $galleryId);
+					} catch (Exception $e) {
+						$errors[] = $e->getMessage();
+					}
+
 					//Add metadata
 					$filemeta = $this->extractMetadataJson($tmp_dest);
 
@@ -4094,6 +4100,7 @@ class FileGalLib extends TikiLib
 		if (empty($asuser) || ! Perms::get()->admin) {
 			$asuser = $user;
 		}
+		$this->assertUploadedContentIsSafe($data, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4111,6 +4118,7 @@ class FileGalLib extends TikiLib
 		if (empty($asuser)) {
 			$asuser = $user;
 		}
+		$this->assertUploadedContentIsSafe($data, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4141,6 +4149,64 @@ class FileGalLib extends TikiLib
 		return false;
 	}
 
+	public function fileContentIsSVG(&$data) {
+		$finfo = new finfo(FILEINFO_MIME);
+		$type = $finfo->buffer($data) . "\n";
+
+		if (substr($type, 0, 18) == 'application/x-gzip') {
+			$data = gzdecode($data);
+			$finfo = new finfo(FILEINFO_MIME);
+			$type = $finfo->buffer($data);
+		}
+		return substr($type, 0, 9) == 'image/svg';
+	}
+
+	public function fileIsSVG($path) {
+		$type = mime_content_type($path);
+		if (substr($type, 0, 18) == 'application/x-gzip') {
+			$data = file_get_contents($path);
+			return $this->fileContentIsSVG($data);
+		}
+		return substr($type, 0, 9) == 'image/svg';
+	}
+
+	public function assertUploadedFileIsSafe($path, $galleryId = null) {
+		global $prefs;
+		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
+		if ($this->fileIsSVG($path)) {
+			if ($prefs['fgal_allow_svg'] !== 'y') {
+				throw new FileIsNotSafeException($svgErrorMsg);
+			}
+			$perms = Perms::get([
+				'file gallery',
+				$galleryId
+			]);
+
+			if (!$perms->upload_svg) {
+				throw new FileIsNotSafeException($svgErrorMsg);
+			}
+		}
+		return true;
+	}
+	
+	public function assertUploadedContentIsSafe(&$data, $galleryId = null) {
+		global $prefs;
+		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
+		if ($this->fileContentIsSVG($data)) {
+			if ($prefs['fgal_allow_svg'] !== 'y') {
+				throw new FileIsNotSafeException($svgErrorMsg);
+			}
+			$perms = Perms::get([
+				'file gallery',
+				$galleryId
+			]);
+
+			if (!$perms->upload_svg) {
+				throw new FileIsNotSafeException($svgErrorMsg);
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * Sanitize XML based files
@@ -4664,3 +4730,11 @@ class FileGalLib extends TikiLib
 		}
 	}
 }
+
+/**
+ *
+ */
+class FileIsNotSafeException extends Exception
+{
+}
+

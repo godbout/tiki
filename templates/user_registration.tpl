@@ -19,7 +19,8 @@
 						{if $merged_prefs.feature_antibot eq 'y'}{include file='antibot.tpl' form='register'}{/if}
 						<div class="row margin-bottom-md">
 							<div class="col-sm-8 col-sm-offset-4">
-								<button class="btn btn-primary registerSubmit submit" name="register" type="submit">{tr}Register{/tr} <!--i class="fa fa-check"></i--></button>
+							  <input type="hidden" name="register" value="1">
+							  <button class="btn btn-primary registerSubmit submit" name="register" type="submit">{tr}Register{/tr} <!--i class="fa fa-check"></i--></button>
 							</div>
 						</div>
 					</form>

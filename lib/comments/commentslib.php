@@ -146,12 +146,14 @@ class Comments extends TikiLib
 				$forum_info['att_store_dir'] .= '/';
 			}
 
-			@$fw = fopen($forum_info['att_store_dir'] . $fhash, "wb");
+			$filename = $forum_info['att_store_dir'] . $fhash;
+			@$fw = fopen($filename, "wb");
 			if (! $fw && ! $inbound_mail) {
 				$errors[] = tra('Cannot write to this file:') . ' ' . $forum_info['att_store_dir'] . $fhash;
 				return 0;
 			}
 		}
+		$filegallib = TikiLib::lib('filegal');
 		if ($fp) {
 			while (! feof($fp)) {
 				if ($forum_info['att_store'] == 'db') {
@@ -162,8 +164,31 @@ class Comments extends TikiLib
 				}
 			}
 			fclose($fp);
+			if ($forum_info['att_store'] == 'db') {
+				try {
+					$filegallib->assertUploadedContentIsSafe($data);
+				} catch (Exception $e) {
+					$errors[] = $e->getMessage();
+					return 0;
+				}
+			} else {
+				try {
+					$filegallib->assertUploadedFileIsSafe($filename);
+				} catch (Exception $e) {
+					$errors[] = $e->getMessage();
+					fclose($fw);
+					unlink($filename);
+					return 0;
+				}
+			}
 		} else {
 			if ($forum_info['att_store'] == 'dir') {
+				try {
+					$filegallib->assertUploadedContentIsSafe($data);
+				} catch (Exception $e) {
+					$errors[] = $e->getMessage();
+					return 0;
+				}
 				fwrite($fw, $data);
 			}
 		}
