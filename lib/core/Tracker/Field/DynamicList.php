@@ -151,7 +151,7 @@ class Tracker_Field_DynamicList extends Tracker_Field_Abstract
 		$insertId = $this->getInsertId();
 		$originalValue = $this->getConfiguration('value');
 		$hideBlank = $this->getOption('hideBlank');
-		$selectMultipleValues = $this->getOption('selectMultipleValues');
+		$selectMultipleValues = $this->getOption('selectMultipleValues', 0);
 
 		$filterFieldValueHere = $originalValue;
 		if (! empty($context['itemId'])) {
