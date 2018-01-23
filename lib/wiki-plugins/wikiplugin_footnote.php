@@ -43,6 +43,9 @@ function wikiplugin_footnote_info()
  */
 function wikiplugin_footnote($data, $params, $offset, $context)
 {
+	/** @var int $globalId Globally unique number of the next footnote, used for intra-document (anchor) links */
+	static $globalId = 1;
+	
 	$footnotes = &$context->footnotes;
 	$smarty = TikiLib::lib('smarty');
 
@@ -58,11 +61,12 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 	$footnote = ['displayed' => false];
 	$footnote['class'] = implode(' ', $classes);
 	$footnote['data'] = TikiLib::lib('parser')->parse_data_plugin($data, true);
+	$footnote['globalId'] = $globalId;
+	$globalId++;
 	
-	$footnotes[WikiParser_Parsable::$nextFootnote] = $footnote;
+	$footnotes[] = $footnote;
 
-	$smarty->assign('listNum', WikiParser_Parsable::$nextFootnote);
-	$smarty->assign('class', $footnote['class']);
-	WikiParser_Parsable::$nextFootnote++;
+	$smarty->assign('listNum', count($footnotes));
+	$smarty->assign('footnote', $footnote);
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnote.tpl');
 }

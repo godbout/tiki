@@ -20,19 +20,8 @@ class WikiParser_Parsable extends ParserLib
 	
 	// Properties used by parallel parsing functions to share data
 	
-	/** @var array Footnotes added via the FOOTNOTE plugin. These are read by wikiplugin_footnotearea() */
+	/** @var array Footnotes added via the FOOTNOTE plugin. These are read by wikiplugin_footnotearea(). */
 	public $footnotes;
-	/** @var int Number of the next footnote
-	 * This variable is global to prevent conflicts between different contexts. This ensures that in any single page load, no 2 notes can be confused.
-	 * 
-	 * 
-	 * This approach has the notable disadvantage of causing unstable footnote numbering; a given footnote in page x may have 2 different numbers at the same time, depending on the context in which it is viewed.
-	 * If x is viewed through an inclusion in y and y has 1 footnote before its inclusion, x's footnote identifier may become "2", even though it would be "1" if viewing x individually.
-	 * 
-	 * This could be solved at least for tiki-view_blog (different blog posts with footnotes in each) by considering 2 blog posts as different root contexts.
-	 * The case of inclusions, where a page can be a subcontext of another context - both having the same root context (the (most) parent page) - is more difficult.
-	 */
-	public static $nextFootnote = 1;
 
 	function __construct($markup)
 	{
