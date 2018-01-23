@@ -4162,6 +4162,10 @@ class FileGalLib extends TikiLib
 	}
 
 	public function fileIsSVG($path) {
+		$mimelib = TikiLib::lib('mime');
+		if (substr($mimelib->from_filename($path), 0, 9) == 'image/svg') {
+			return true;
+		}
 		$type = mime_content_type($path);
 		if (substr($type, 0, 18) == 'application/x-gzip') {
 			$data = file_get_contents($path);

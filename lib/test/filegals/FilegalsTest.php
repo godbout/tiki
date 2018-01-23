@@ -49,4 +49,11 @@ class FilegalsTest extends TikiTestCase
 		$path = 'lib/test/filegals/svg_content.png';
 		$this->assertTrue($fgallib->fileIsSVG($path));
 	}
+
+	function testHTMLFileWithSVGExtension()
+	{
+		$fgallib = TikiLib::lib('filegal');
+		$path = 'lib/test/filegals/4.svg';
+		$this->assertTrue($fgallib->fileIsSVG($path));
+	}
 }
