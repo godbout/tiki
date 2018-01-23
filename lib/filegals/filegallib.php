@@ -3732,6 +3732,12 @@ class FileGalLib extends TikiLib
 						$errors[] = tra('Cannot read the file:') . ' ' . $tmp_dest;
 					}
 
+					try {
+						$this->assertUploadIsSafe($data, $galleryId);
+					} catch (Exception $e) {
+						$errors[] = $e->getMessage();
+					}
+
 					//Add metadata
 					$filemeta = $this->extractMetadataJson($tmp_dest);
 
@@ -4141,7 +4147,7 @@ class FileGalLib extends TikiLib
 		return false;
 	}
 
-	public function fileContentIsSVG($data) {
+	public function fileContentIsSVG(&$data) {
 		$finfo = new finfo(FILEINFO_MIME);
 		$type = $finfo->buffer($data) . "\n";
 
@@ -4151,6 +4157,25 @@ class FileGalLib extends TikiLib
 			$type = $finfo->buffer($data);
 		}
 		return substr($type, 0, 9) == 'image/svg';
+	}
+
+	public function assertUploadIsSafe(&$data, $galleryId) {
+		global $prefs;
+		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
+		if ($this->fileContentIsSVG($data)) {
+			if ($prefs['fgal_allow_svg'] !== 'y') {
+				throw new Exception($svgErrorMsg);
+			}
+			$perms = Perms::get([
+				'file gallery',
+				$galleryId
+			]);
+
+			if (!$perms->upload_svg) {
+				throw new Exception($svgErrorMsg);
+			}
+		}
+		return true;
 	}
 
 	/**
