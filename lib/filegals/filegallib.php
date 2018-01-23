@@ -3733,7 +3733,7 @@ class FileGalLib extends TikiLib
 					}
 
 					try {
-						$this->assertUploadIsSafe($data, $galleryId);
+						$this->assertUploadedContentIsSafe($data, $galleryId);
 					} catch (Exception $e) {
 						$errors[] = $e->getMessage();
 					}
@@ -4100,7 +4100,7 @@ class FileGalLib extends TikiLib
 		if (empty($asuser) || ! Perms::get()->admin) {
 			$asuser = $user;
 		}
-		$this->assertUploadIsSafe($data, $gal_info['galleryId']);
+		$this->assertUploadedContentIsSafe($data, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4118,7 +4118,7 @@ class FileGalLib extends TikiLib
 		if (empty($asuser)) {
 			$asuser = $user;
 		}
-		$this->assertUploadIsSafe($data, $gal_info['galleryId']);
+		$this->assertUploadedContentIsSafe($data, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4161,7 +4161,35 @@ class FileGalLib extends TikiLib
 		return substr($type, 0, 9) == 'image/svg';
 	}
 
-	public function assertUploadIsSafe(&$data, $galleryId) {
+	public function fileIsSVG($path) {
+		$type = mime_content_type($path);
+		if (substr($type, 0, 18) == 'application/x-gzip') {
+			$data = file_get_contents($path);
+			return $this->fileContentIsSVG($data);
+		}
+		return substr($type, 0, 9) == 'image/svg';
+	}
+
+	public function assertUploadedFileIsSafe($path, $galleryId = null) {
+		global $prefs;
+		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
+		if ($this->fileIsSVG($path)) {
+			if ($prefs['fgal_allow_svg'] !== 'y') {
+				throw new FileIsNotSafeException($svgErrorMsg);
+			}
+			$perms = Perms::get([
+				'file gallery',
+				$galleryId
+			]);
+
+			if (!$perms->upload_svg) {
+				throw new FileIsNotSafeException($svgErrorMsg);
+			}
+		}
+		return true;
+	}
+	
+	public function assertUploadedContentIsSafe(&$data, $galleryId = null) {
 		global $prefs;
 		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
 		if ($this->fileContentIsSVG($data)) {

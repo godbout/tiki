@@ -10,29 +10,43 @@ class FilegalsTest extends TikiTestCase
 	function testPNGIsNotSVG()
 	{
 		$fgallib = TikiLib::lib('filegal');
-        $data = file_get_contents('lib/test/filegals/testdata.png');
-        $this->assertFalse($fgallib->fileContentIsSVG($data));
+		$path = 'lib/test/filegals/testdata.png';
+		$data = file_get_contents($path);
+		$this->assertFalse($fgallib->fileContentIsSVG($data));
+		$this->assertFalse($fgallib->fileIsSVG($path));
 	}
 
 	function testSVGDetect()
 	{
 		$fgallib = TikiLib::lib('filegal');
-        $data = file_get_contents('lib/test/filegals/testdata.svg');
-        $this->assertTrue($fgallib->fileContentIsSVG($data));
+		$path = 'lib/test/filegals/testdata.svg';
+		$data = file_get_contents($path);
+		$this->assertTrue($fgallib->fileContentIsSVG($data));
+		$this->assertTrue($fgallib->fileIsSVG($path));
 	}
 
 	function testCompressedPNGIsNotSVG()
 	{
 		$fgallib = TikiLib::lib('filegal');
-        $data = file_get_contents('lib/test/filegals/testdata.png.gz');
-        $this->assertFalse($fgallib->fileContentIsSVG($data));
+		$path = 'lib/test/filegals/testdata.png.gz';
+		$data = file_get_contents($path);
+		$this->assertFalse($fgallib->fileContentIsSVG($data));
+		$this->assertFalse($fgallib->fileIsSVG($path));
 	}
 
 	function testSVGDetectGzipped()
 	{
 		$fgallib = TikiLib::lib('filegal');
-        $data = file_get_contents('lib/test/filegals/testdata.svgz');
-        $this->assertTrue($fgallib->fileContentIsSVG($data));
+		$path = 'lib/test/filegals/testdata.svgz';
+		$data = file_get_contents($path);
+		$this->assertTrue($fgallib->fileContentIsSVG($data));
+		$this->assertTrue($fgallib->fileIsSVG($path));
 	}
 
+	function testSVGWithPNGExtensionIsDetectedAsSVG()
+	{
+		$fgallib = TikiLib::lib('filegal');
+		$path = 'lib/test/filegals/svg_content.png';
+		$this->assertTrue($fgallib->fileIsSVG($path));
+	}
 }

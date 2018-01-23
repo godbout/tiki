@@ -668,6 +668,17 @@ if ($tracker_info["useAttachments"] == 'y') {
 				fclose($fw);
 				$data = '';
 			}
+			try {
+				if ($prefs['t_use_db'] == 'n') {
+					$filegallib->assertUploadedFileIsSafe($prefs['t_use_dir'] . $fhash);
+				} else {
+					$filegallib->assertUploadedContentIsSafe($data);
+				}					
+			} catch (Exception $e) {
+				$smarty->assign('msg', $_FILES['userfile1']['name'] . ': ' . $e->getMessage());
+				$smarty->display("error.tpl");
+				die;
+			}
 			$size = $_FILES['userfile1']['size'];
 			$name = $_FILES['userfile1']['name'];
 			$type = $_FILES['userfile1']['type'];
