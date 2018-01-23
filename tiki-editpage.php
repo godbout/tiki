@@ -553,6 +553,17 @@ if (($prefs['feature_wiki_pictures'] === 'y') && (isset($tiki_p_upload_picture))
 			$picname = $_FILES['picfile' . $i]['name'];
 			if (preg_match('/\.(gif|png|jpe?g)$/i', $picname)) {
 				if (@getimagesize($_FILES['picfile' . $i]['tmp_name'])) {
+					$filegallib = TikiLib::lib('filegal');
+					try {
+						$filegallib->assertUploadedFileIsSafe($_FILES['picfile' . $i]['tmp_name']);
+					} catch (Exception $e) {
+						// This is never being reached, because right now getimagesize fails for
+						// any unsafe file (SVG). Doesn't hurt, as support is already done for future
+						// safety issues.
+						$smarty->assign('msg', $e->getMessage());
+						$smarty->display("error.tpl");
+						die();
+					}
 					move_uploaded_file($_FILES['picfile' . $i]['tmp_name'], "$wiki_up/$picname");
 					chmod("$wiki_up/$picname", 0644); // seems necessary on some system (see move_uploaded_file doc on php.net)
 				}
