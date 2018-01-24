@@ -3733,7 +3733,7 @@ class FileGalLib extends TikiLib
 					}
 
 					try {
-						$this->assertUploadedContentIsSafe($data, $galleryId);
+						$this->assertUploadedContentIsSafe($data, $file_name, $galleryId);
 					} catch (Exception $e) {
 						$errors[] = $e->getMessage();
 					}
@@ -4100,7 +4100,7 @@ class FileGalLib extends TikiLib
 		if (empty($asuser) || ! Perms::get()->admin) {
 			$asuser = $user;
 		}
-		$this->assertUploadedContentIsSafe($data, $gal_info['galleryId']);
+		$this->assertUploadedContentIsSafe($data, $name, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4118,7 +4118,7 @@ class FileGalLib extends TikiLib
 		if (empty($asuser)) {
 			$asuser = $user;
 		}
-		$this->assertUploadedContentIsSafe($data, $gal_info['galleryId']);
+		$this->assertUploadedContentIsSafe($data, $name, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4193,10 +4193,18 @@ class FileGalLib extends TikiLib
 		return true;
 	}
 	
-	public function assertUploadedContentIsSafe(&$data, $galleryId = null) {
+	public function assertUploadedContentIsSafe(&$data, $filename = null, $galleryId = null) {
 		global $prefs;
 		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
-		if ($this->fileContentIsSVG($data)) {
+		$safe = true;
+		if ($filename !== null) {
+			$mimelib = TikiLib::lib('mime');
+			if (substr($mimelib->from_filename($filename), 0, 9) == 'image/svg') {
+				$safe = false;
+			}
+		}
+		$safe = $safe && !$this->fileContentIsSVG($data);
+		if (!$safe) {
 			if ($prefs['fgal_allow_svg'] !== 'y') {
 				throw new FileIsNotSafeException($svgErrorMsg);
 			}
