@@ -6175,6 +6175,10 @@ JS;
 	}
 
 	/**
+	 * Possibly enhanced version of strtolower(), using multi-byte if mbstring is available
+	 * 
+	 * Since Tiki 17, mb_strtolower() can be used directly instead since Tiki indirectly depends on the symfony/polyfill-mbstring compatibility library.  
+	 * 
 	 * @param $string
 	 * @return string
 	 */
@@ -6188,6 +6192,10 @@ JS;
 	}
 
 	/**
+	 * Possibly enhanced version of strtoupper(), using multi-byte if mbstring is available
+	 * 
+	 * Since Tiki 17, mb_strtoupper() can be used directly instead since Tiki indirectly depends on the symfony/polyfill-mbstring compatibility library.
+	 * 
 	 * @param $string
 	 * @return string
 	 */
