@@ -4542,6 +4542,7 @@ lib/test/editlib/ParseToWysiwyg_LinkTest.php -text
 lib/test/editlib/ParseToWysiwyg_ListTest.php -text
 lib/test/editlib/ParseToWysiwyg_TextTest.php -text
 lib/test/editlib/index.php -text
+lib/test/filegals/4.svg -text
 lib/test/filegals/FilegalsTest.php -text
 lib/test/filegals/svg_content.png -text
 lib/test/filegals/testdata.png -text

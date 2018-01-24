@@ -670,9 +670,9 @@ if ($tracker_info["useAttachments"] == 'y') {
 			}
 			try {
 				if ($prefs['t_use_db'] == 'n') {
-					$filegallib->assertUploadedFileIsSafe($prefs['t_use_dir'] . $fhash);
+					$filegallib->assertUploadedFileIsSafe($prefs['t_use_dir'] . $fhash, $_FILES['userfile1']['name']);
 				} else {
-					$filegallib->assertUploadedContentIsSafe($data);
+					$filegallib->assertUploadedContentIsSafe($data, $_FILES['userfile1']['name']);
 				}					
 			} catch (Exception $e) {
 				$smarty->assign('msg', $_FILES['userfile1']['name'] . ': ' . $e->getMessage());

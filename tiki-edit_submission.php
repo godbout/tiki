@@ -306,6 +306,15 @@ if (isset($_REQUEST['preview']) || ! empty($errors)) {
 
 	// Parse the information of an uploaded file and use it for the preview
 	if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
+		$filegallib = TikiLib::lib('filegal');
+		try {
+			$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
+		} catch (Exception $e) {
+			$smarty->assign('errortype', 403);
+			$smarty->assign('msg', $e->getMessage());
+			$smarty->display("error.tpl");
+			die;
+		}
 		$file_name = $_FILES['userfile1']['name'];
 		// Simple check if it's an image file
 		if (preg_match('/\.(gif|png|jpe?g)$/i', $file_name)) {
@@ -430,6 +439,15 @@ if ((isset($_REQUEST['save']) || isset($_REQUEST['submitarticle'])) && empty($er
 	$imgsize = $_REQUEST['image_size'];
 
 	if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
+		$filegallib = TikiLib::lib('filegal');
+		try {
+			$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
+		} catch (Exception $e) {
+			$smarty->assign('errortype', 403);
+			$smarty->assign('msg', $e->getMessage());
+			$smarty->display("error.tpl");
+			die;
+		}
 		$fp = fopen($_FILES['userfile1']['tmp_name'], 'rb');
 
 		$imgdata = fread($fp, filesize($_FILES['userfile1']['tmp_name']));

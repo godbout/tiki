@@ -12,6 +12,7 @@ $section = 'galleries';
 require_once('tiki-setup.php');
 $categlib = TikiLib::lib('categ');
 $imagegallib = TikiLib::lib('imagegal');
+$filegallib = TikiLib::lib('filegal');
 
 $access->check_feature('feature_galleries');
 
@@ -88,6 +89,14 @@ if (isset($_REQUEST["upload"])) {
 		// We process here file uploads
 		if (isset($_FILES['userfile1']) && ! empty($_FILES['userfile1']['name'])) {
 			if (is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
+				try {
+					$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
+				} catch (Exception $e) {
+					$smarty->assign('errortype', 403);
+					$smarty->assign('msg', $e->getMessage());
+					$smarty->display("error.tpl");
+					die;
+				}
 				if (! empty($prefs['gal_match_regex'])) {
 					if (! preg_match('/' . $prefs['gal_match_regex'] . '/', $_FILES['userfile1']['name'], $reqs)) {
 						$smarty->assign('msg', tra('Invalid imagename (using filters for filenames)'));
@@ -157,6 +166,14 @@ if (isset($_REQUEST["upload"])) {
 	$up_thumb = 0;
 	// If the thumbnail was uploaded
 	if (isset($_FILES['userfile2']) && ! empty($_FILES['userfile2']['name'])) {
+		try {
+			$filegallib->assertUploadedFileIsSafe($_FILES['userfile2']['tmp_name'], $_FILES['userfile2']['name']);
+		} catch (Exception $e) {
+			$smarty->assign('errortype', 403);
+			$smarty->assign('msg', $e->getMessage());
+			$smarty->display("error.tpl");
+			die;
+		}
 		$thumb_data = $imagegallib->get_one_image_from_disk('userfile2');
 		if (isset($thumb_data['msg'])) {
 			$error_msg = $thumb_data['msg'];

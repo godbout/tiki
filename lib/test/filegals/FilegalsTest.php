@@ -43,10 +43,50 @@ class FilegalsTest extends TikiTestCase
 		$this->assertTrue($fgallib->fileIsSVG($path));
 	}
 
-	function testSVGWithPNGExtensionIsDetectedAsSVG()
+	function testSVGWithPNGExtensionIsNotSafe()
 	{
+        global $prefs;
+        $prefs['fgal_allow_svg'] = 'n';
 		$fgallib = TikiLib::lib('filegal');
 		$path = 'lib/test/filegals/svg_content.png';
-		$this->assertTrue($fgallib->fileIsSVG($path));
+		$data = file_get_contents($path);
+        $filename = 'svg_content.png';
+        $caught = false;
+        try {
+            $fgallib->assertUploadedContentIsSafe($data, $filename);
+        } catch (FileIsNotSafeException $e) {
+            $caught = true;
+        }
+        $this->assertTrue($caught);
+        try {
+            $fgallib->assertUploadedFileIsSafe($path);
+        } catch (FileIsNotSafeException $e) {
+            $caught = true;
+        }
+        $this->assertTrue($caught);
 	}
+
+	function testHTMLFileWithSVGExtensionIsNotSafe()
+	{
+        global $prefs;
+        $prefs['fgal_allow_svg'] = 'n';
+        $fgallib = TikiLib::lib('filegal');
+        $path = 'lib/test/filegals/4.svg';
+        $data = file_get_contents($path);
+        $filename = '4.svg';
+        $caught = false;
+        try {
+            $fgallib->assertUploadedContentIsSafe($data, $filename);
+        } catch (FileIsNotSafeException $e) {
+            $caught = true;
+        }
+        $this->assertTrue($caught);
+        try {
+            $fgallib->assertUploadedFileIsSafe($path);
+        } catch (FileIsNotSafeException $e) {
+            $caught = true;
+        }
+        $this->assertTrue($caught);
+    }
+
 }

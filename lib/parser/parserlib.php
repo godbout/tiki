@@ -1634,6 +1634,9 @@ class ParserLib extends TikiDb_Bridge
 	{
 		global $prefs;
 
+		// pretty trackers use pipe for output|template specification, so we need to escape
+		$data = preg_replace('/{\$f_(\w+)\|(output|template:.*?)}/i', '{\$f_$1-escapedpipe-$2}', $data);
+
 		/*
 		 * Wiki Tables syntax
 		 */
@@ -1733,6 +1736,9 @@ class ParserLib extends TikiDb_Bridge
 				}
 			}
 		}
+
+		// unescape the pipes for pretty tracker
+		$data = preg_replace('/{\$f_(\w+)-escapedpipe-(output|template:.*?)}/i', '{\$f_$1|$2}', $data);
 
 		return $data;
 	}

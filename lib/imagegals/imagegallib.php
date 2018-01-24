@@ -957,6 +957,8 @@ class ImageGalsLib extends TikiLib
 			if (! is_uploaded_file($file['tmp_name']) || ! ($fp = fopen($file['tmp_name'], "rb"))) {
 				return false;
 			}
+			$filegallib = TikiLib::lib('filegal');
+			$filegallib->assertUploadedFileIsSafe($file['tmp_name'], $file['name']);
 			$data = fread($fp, $file['size']);
 			$etag = md5($data);
 			fclose($fp);
@@ -2578,6 +2580,15 @@ class ImageGalsLib extends TikiLib
 		if (is_uploaded_file($_FILES[$userfile]['tmp_name'])) {
 			$file_name = $_FILES[$userfile]['name'];
 			$ret['filename'] = $file_name;
+
+			$filegallib = TikiLib::lib('filegal');
+			try {
+				$filegallib->assertUploadedFileIsSafe($_FILES[$userfile]['tmp_name'], $_FILES[$userfile]['name']);
+			} catch (Exception $e) {
+				$ret['msg'] = $e->getMessage();
+				return $ret;
+			}
+			
 			if (! empty($prefs['gal_match_regex']) && ! preg_match('/' . $prefs['gal_match_regex'] . '/', $file_name, $reqs)) {
 				$ret['msg'] = tra('Invalid imagename (using filters for filenames)');
 				return $ret;
