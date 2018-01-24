@@ -132,6 +132,6 @@ class Search_Elastic_RescoreQueryBuilder
 	private function getTerm($node)
 	{
 		$value = $node->getValue($this->factory);
-		return strtolower($value->getValue());
+		return mb_strtolower($value->getValue());
 	}
 }
