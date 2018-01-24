@@ -16,7 +16,7 @@ function wikiplugin_wysiwyg_info()
 		'prefs' => ['wikiplugin_wysiwyg'],
 		'iconname' => 'wysiwyg',
 		'introduced' => 9,
-		'tags' => [ 'experimental' ], // Several important bugs, notably serious #6476. Most bugs are probably not specific to the WYSIWYG *plugin*. Chealer 2017-11-02
+		'tags' => [ 'experimental' ], // Several important bugs, notably #6551 and serious #6476. Most bugs are probably not specific to the WYSIWYG *plugin* (see feature_wysiwyg). Chealer 2018-01-24
 		'filter' => 'purifier',			/* N.B. uses htmlpurifier to ensure only "clean" html gets in */
 		'format' => 'html',
 		'body' => tra('Content'),
