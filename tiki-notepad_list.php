@@ -17,7 +17,7 @@ if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_na
 	check_ticket('notepad-list');
 	$filegallib = TikiLib::lib('filegal');
 	try {
-		$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name']);
+		$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
 	} catch (Exception $e) {
 		$smarty->assign('errortype', 403);
 		$smarty->assign('msg', $e->getMessage());

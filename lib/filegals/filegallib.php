@@ -4162,10 +4162,6 @@ class FileGalLib extends TikiLib
 	}
 
 	public function fileIsSVG($path) {
-		$mimelib = TikiLib::lib('mime');
-		if (substr($mimelib->from_filename($path), 0, 9) == 'image/svg') {
-			return true;
-		}
 		$type = mime_content_type($path);
 		if (substr($type, 0, 18) == 'application/x-gzip') {
 			$data = file_get_contents($path);
@@ -4174,10 +4170,19 @@ class FileGalLib extends TikiLib
 		return substr($type, 0, 9) == 'image/svg';
 	}
 
-	public function assertUploadedFileIsSafe($path, $galleryId = null) {
+	public function assertUploadedFileIsSafe($path, $filename = null, $galleryId = null) {
 		global $prefs;
 		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
-		if ($this->fileIsSVG($path)) {
+		if ($filename === null) {
+			$filename = $path;
+		}
+		$safe = true;
+		$mimelib = TikiLib::lib('mime');
+		if (substr($mimelib->from_filename($filename), 0, 9) == 'image/svg') {
+			$safe = false;
+		}
+		$safe = $safe && !$this->fileIsSVG($path);
+		if (!$safe) {
 			if ($prefs['fgal_allow_svg'] !== 'y') {
 				throw new FileIsNotSafeException($svgErrorMsg);
 			}

@@ -90,7 +90,7 @@ if (isset($_REQUEST["upload"])) {
 		if (isset($_FILES['userfile1']) && ! empty($_FILES['userfile1']['name'])) {
 			if (is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
 				try {
-					$filegallib->assertUploadedFileIsSafe($_FILES["userfile1"]['tmp_name']);
+					$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
 				} catch (Exception $e) {
 					$smarty->assign('errortype', 403);
 					$smarty->assign('msg', $e->getMessage());
@@ -167,7 +167,7 @@ if (isset($_REQUEST["upload"])) {
 	// If the thumbnail was uploaded
 	if (isset($_FILES['userfile2']) && ! empty($_FILES['userfile2']['name'])) {
 		try {
-			$filegallib->assertUploadedFileIsSafe($_FILES["userfile2"]['tmp_name']);
+			$filegallib->assertUploadedFileIsSafe($_FILES['userfile2']['tmp_name'], $_FILES['userfile2']['name']);
 		} catch (Exception $e) {
 			$smarty->assign('errortype', 403);
 			$smarty->assign('msg', $e->getMessage());

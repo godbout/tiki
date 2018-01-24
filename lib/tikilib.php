@@ -5555,7 +5555,7 @@ class TikiLib extends TikiDb_Bridge
 		}
 		try {
 			$filegallib = TikiLib::lib('filegal');
-			$filegallib->assertUploadedFileIsSafe($tmp_dest);
+			$filegallib->assertUploadedFileIsSafe($tmp_dest, $file_name);
 		} catch (Exception $e) {
 			return ['ok' => false, 'error' => $e->getMessage()];
 		}

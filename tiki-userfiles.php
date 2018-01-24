@@ -42,7 +42,7 @@ for ($i = 0; $i < 5; $i++) {
 		check_ticket('user-files');
 		$filegallib = TikiLib::lib('filegal');
 		try {
-			$filegallib->assertUploadedFileIsSafe($_FILES["userfile$i"]['tmp_name']);
+			$filegallib->assertUploadedFileIsSafe($_FILES["userfile$i"]['tmp_name'], $_FILES["userfile$i"]['name']);
 		} catch (Exception $e) {
 			$smarty->assign('errortype', 403);
 			$smarty->assign('msg', $e->getMessage());

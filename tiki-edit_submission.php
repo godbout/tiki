@@ -308,7 +308,7 @@ if (isset($_REQUEST['preview']) || ! empty($errors)) {
 	if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
 		$filegallib = TikiLib::lib('filegal');
 		try {
-			$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name']);
+			$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
 		} catch (Exception $e) {
 			$smarty->assign('errortype', 403);
 			$smarty->assign('msg', $e->getMessage());
@@ -441,7 +441,7 @@ if ((isset($_REQUEST['save']) || isset($_REQUEST['submitarticle'])) && empty($er
 	if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
 		$filegallib = TikiLib::lib('filegal');
 		try {
-			$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name']);
+			$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
 		} catch (Exception $e) {
 			$smarty->assign('errortype', 403);
 			$smarty->assign('msg', $e->getMessage());

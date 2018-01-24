@@ -958,7 +958,7 @@ class ImageGalsLib extends TikiLib
 				return false;
 			}
 			$filegallib = TikiLib::lib('filegal');
-			$filegallib->assertUploadedFileIsSafe($file['tmp_name']);			
+			$filegallib->assertUploadedFileIsSafe($file['tmp_name'], $file['name']);
 			$data = fread($fp, $file['size']);
 			$etag = md5($data);
 			fclose($fp);
@@ -2583,7 +2583,7 @@ class ImageGalsLib extends TikiLib
 
 			$filegallib = TikiLib::lib('filegal');
 			try {
-				$filegallib->assertUploadedFileIsSafe($_FILES[$userfile]['tmp_name']);
+				$filegallib->assertUploadedFileIsSafe($_FILES[$userfile]['tmp_name'], $_FILES[$userfile]['name']);
 			} catch (Exception $e) {
 				$ret['msg'] = $e->getMessage();
 				return $ret;
