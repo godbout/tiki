@@ -237,6 +237,8 @@ class Services_Edit_PluginController
 	/**
 	 * Replace plugin in wiki content
 	 * Migrated from tiki-wikiplugin_edit.php
+	 * 
+	 * FIXME: No verification that the replaced call was not changed during edition. Should probably check a fingerprint of the plugin call.
 	 *
 	 * @param JitFilter $input
 	 * @return array
@@ -249,7 +251,6 @@ class Services_Edit_PluginController
 		global $user;
 
 		$tikilib = TikiLib::lib('tiki');
-		$parserlib = TikiLib::lib('parser');
 
 		$page = $input->page->pagename();
 		$type = $input->type->word();
@@ -267,11 +268,6 @@ class Services_Edit_PluginController
 		}
 
 		$plugin = strtolower($type);
-		$meta = $parserlib->plugin_info($plugin);
-
-		if (! $page || ! $type || ! $referer) {
-			throw new Services_Exception(tr('Plugin "%0" not found', $plugin));
-		}
 
 		if (! $message) {
 			$message = tr('%0 Plugin modified by editor.', $plugin);
