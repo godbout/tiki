@@ -1086,6 +1086,13 @@ class FileGalLib extends TikiLib
 					$upl = 0;
 				}
 
+				try {
+					$this->assertUploadedFileIsSafe($file);
+				} catch (Exception $e) {
+					$errors[] = $e->getMessage();
+					$upl = 0;
+				}
+
 				if (! $this->checkQuota(filesize($extract_dir . $file), $galleryId, $error)) {
 					$errors[] = $error;
 					$upl = 0;
