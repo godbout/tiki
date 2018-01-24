@@ -3642,6 +3642,16 @@ class FileGalLib extends TikiLib
 				$fileInfo['author'] = $params['author'][0];
 			}
 			if (! empty($params['filetype'][0])) {
+				if (isset($fileInfo['fileId']) && $fileInfo['filetype'] != $params['filetype'][0] && substr($params['filetype'][0], 0, 9) == 'image/svg') {
+					try {
+						// use a dummy.svg filename just so content checker knows this is being interpreted as svg
+						$this->assertUploadedContentIsSafe($fileInfo['data'], 'dummy.svg');
+					} catch (Exception $e) {
+						$smarty->assign('msg', tra("Forcing a filetype of image/svg+xml is blocked for security reasons"));
+						$smarty->display('error.tpl');
+						die;
+					}
+				}
 				$fileInfo['filetype'] = $params['filetype'][0];
 			}
 			if (! empty($params['comment'][0])) {
