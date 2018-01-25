@@ -1437,7 +1437,7 @@ function wikiplugin_tracker($data, $params)
 				}
 			}
 		} elseif (! empty($itemId)) {
-			if (isset($fields)) {
+			if (isset($fields) && empty($wiki) && empty($tpl)) {
 				$fl = $fields;
 				$filter = '';
 				foreach ($flds['data'] as $f) {
