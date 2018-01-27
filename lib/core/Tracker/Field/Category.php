@@ -185,6 +185,7 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 			$smarty->assign_by_ref('categories', $categories);
 			$cat_tree = TikiLib::lib('categ')->generate_cat_tree($categories, $changeall, $selected_categories);
 			$cat_tree = str_replace('name="cat_categories[]"', 'name="' . $this->getInsertId() . '[]"', $cat_tree);
+			$cat_tree = str_replace('name="cat_managed[]"', 'name="cat_managed_' . $this->getInsertId() . '[]"', $cat_tree);
 			$smarty->assign('cat_tree', $cat_tree);
 		}
 		return $this->renderTemplate('trackerinput/category.tpl', $context);
