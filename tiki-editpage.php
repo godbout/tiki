@@ -1207,7 +1207,7 @@ if (isset($_REQUEST["save"])
 			$edit = substr($info['data'], 0, $real_start) . $edit . substr($info['data'], $real_start + $real_len);
 		}
 
-		if ($_SESSION['wysiwyg'] === 'y' && $prefs['wysiwyg_wiki_parsed'] === 'y' && $prefs['wysiwyg_ckeditor'] === 'y') {
+		if ($_SESSION['wysiwyg'] === 'y' && $prefs['wysiwyg_wiki_parsed'] === 'y') {
 			$edit = $editlib->partialParseWysiwygToWiki($edit);
 		}
 
