@@ -23,6 +23,8 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 }
 $tikiBase = realpath(dirname(__FILE__) . '/../..');
 
+chdir($tikiBase);
+
 // will output db errors if 'php svnup.php dbcheck' is called
 if (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] === 'dbcheck') {
 	require($tikiBase . '/db/tiki-db.php');
@@ -162,8 +164,6 @@ class SvnUpCommand extends Command
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$tikiBase = realpath(dirname(__FILE__) . '/../..');
-
-		chdir($tikiBase);
 
 		$verbosityLevelMap = [
 			LogLevel::CRITICAL   => OutputInterface::VERBOSITY_NORMAL,
