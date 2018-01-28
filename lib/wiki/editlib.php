@@ -774,6 +774,11 @@ class EditLib
 		$parsed = preg_replace('/(!!*)[\+\-]/m', '$1', $inData);		// remove show/hide headings
 		$parsed = preg_replace('/&#039;/', '\'', $parsed);			// catch single quotes at html entities
 
+		if (preg_match('/^\|\|.*\|\|$/', $parsed)) {	// new tables get newlines converted to <br> then to %%%
+			$parsed = str_replace('<br>', "\n", $parsed);
+		}
+
+
 		$parsed = TikiLib::lib('parser')->parse_data(
 			$parsed,
 			array_merge([
