@@ -163,6 +163,8 @@ class SvnUpCommand extends Command
 	{
 		$tikiBase = realpath(dirname(__FILE__) . '/../..');
 
+		chdir($tikiBase);
+
 		$verbosityLevelMap = [
 			LogLevel::CRITICAL   => OutputInterface::VERBOSITY_NORMAL,
 			LogLevel::ERROR      => OutputInterface::VERBOSITY_NORMAL,
