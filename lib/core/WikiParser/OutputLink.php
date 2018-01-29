@@ -104,6 +104,19 @@ class WikiParser_OutputLink
 						'class' => 'wiki wiki_page',
 				]
 			);
+		} elseif ($this->qualifier === 'alias') {
+			//global $prefs;	TODO make incoming sefurl aliasses work
+			//$slug = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $page, $prefs['url_only_ascii'] === 'y');
+
+			$slug = urlencode($page);
+
+			return $this->outputLink(
+				$description,
+				[
+					'href' => call_user_func($this->wikiBuilder, $slug) . $this->anchor,
+					'class' => 'wiki wiki_page',
+				]
+			);
 		} elseif (($info = $this->findWikiPage($pageId)) || $ck_editor) {
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
