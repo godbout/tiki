@@ -41,6 +41,7 @@ class CleanVendorAfterVendorBundledMigration
 		 * 0) Make sure old bin links are removed so they can be created by composer
 		 * 1) If a file called do_not_clean.txt exists in the vendor folder stop
 		 * 2) If there is a vendor/autoload.php, check the hash of the folder structure, if different from at the time of the vendor_bundle migration, ignore
+		 * 2.1) Even if the hash do not match, check if 2 of the tiki bundled packages are installed, if that is the case warn the user as it might be a problem
 		 * 3) If we arrive here, clean all folders and autoload.php in the old (pre migration) vendor folder
 		 */
 
@@ -102,6 +103,14 @@ class CleanVendorAfterVendorBundledMigration
 			$md5checksum = md5($packagesString);
 
 			if ($md5checksum != self::PRE_MIGRATION_OLD_VENDOR_FOLDER_MD5_HASH) {
+				// * 2.1) Even if the hash do not match, check if 2 of the tiki bundled packages are installed, if that is the case warn the user as it might be a problem
+				if (file_exists($oldVendorFolder . '/zendframework/zend-config/src/Config.php') &&
+					file_exists($oldVendorFolder . '/smarty/smarty/libs/Smarty.class.php')) {
+					$io->write('');
+					$io->write('Your vendor folder contains packages normally bundled in Tiki, it might mean that you');
+					$io->write('did not clean your vendor folder after Tiki migrated this packages to vendor_bundled, and that might cause errors!');
+					$io->write('');
+				}
 				return;
 			}
 		}
