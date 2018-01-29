@@ -11,7 +11,7 @@
 					{$field.value}
 				{/textarea}
 			{else}
-				{textarea _class='form-control' id=$data.element_id name=$field.ins_id _toolbars=$data.toolbar _simple='y' rows=$data.rows onkeyup=$data.keyup _wysiwyg='n' section="trackers"}
+				{textarea _class='form-control' id=$data.element_id name=$field.ins_id _toolbars=$data.toolbar _simple='y' rows=$data.rows onkeyup=$data.keyup _wysiwyg='n' section="trackers" switcheditor='n'}
 					{$field.value}
 				{/textarea}
 			{/if}
@@ -39,7 +39,7 @@
 				{toolbars qtnum=$field.id area_id=$data.element_id|cat:'_'|cat:$ling.lang}
 			{/if}
 			{if $field.options_array[7] == 'y'}
-				{textarea _class='form-control' id="{$data.element_id}_{$ling.lang}" name="{$field.ins_id}[{$ling.lang}]" rows=$data.rows onkeyup=$data.keyup _wysiwyg='y' cols="{if $field.options_array[1] gt 1}{$field.options_array[1]}{else}50{/if}" section="trackers" }
+				{textarea _class='form-control' id="{$data.element_id}_{$ling.lang}" name="{$field.ins_id}[{$ling.lang}]" rows=$data.rows onkeyup=$data.keyup _wysiwyg='y' cols="{if $field.options_array[1] gt 1}{$field.options_array[1]}{else}50{/if}" section="trackers"  switcheditor='n'}
 					{$ling.value}
 				{/textarea}
 			{else}
