@@ -93,6 +93,12 @@ function wikiplugin_listexecute($data, $params)
 
 			if ($action && $action->isAllowed(Perms::get()->getGroups())) {
 				$actions[$action->getName()] = $action;
+			} else {
+				foreach ($action->getSteps() as $step) {
+					if ($step instanceof Search_Action_UnknownStep) {
+						Feedback::error(tr("Invalid action: %0.", $step->getName()));
+					}
+				}
 			}
 		}
 

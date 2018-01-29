@@ -32,4 +32,9 @@ class Search_Action_UnknownStep implements Search_Action_Step
 	{
 		return false;
 	}
+
+	function getName()
+	{
+		return $this->actionName;
+	}
 }
