@@ -5202,14 +5202,18 @@ class TrackerLib extends TikiLib
 					}
 					$smarty->assign('mail_to_user', $watcher['user']);
 					$mail_data = $smarty->fetchLang($watcher['language'], $content['template']);
-					$mail = new TikiMail($watcher['user']);
-					$mail->setSubject($watcher_subject);
-					if (isset($watcher['templateFormat']) && $watcher['templateFormat'] == 'html') {
-						$mail->setHtml($mail_data, str_replace('&nbsp;', ' ', strip_tags($mail_data)));
-					} else {
-						$mail->setText(str_replace('&nbsp;', ' ', strip_tags($mail_data)));
+
+					// if the tpl returns nothing then don't send the mail
+					if (! empty($mail_data)) {
+						$mail = new TikiMail($watcher['user']);
+						$mail->setSubject($watcher_subject);
+						if (isset($watcher['templateFormat']) && $watcher['templateFormat'] == 'html') {
+							$mail->setHtml($mail_data, str_replace('&nbsp;', ' ', strip_tags($mail_data)));
+						} else {
+							$mail->setText(str_replace('&nbsp;', ' ', strip_tags($mail_data)));
+						}
+						$mail->send([$watcher['email']]);
 					}
-					$mail->send([$watcher['email']]);
 				}
 			} else {
 					// Use simple email
