@@ -6629,6 +6629,7 @@ themes/amelia/less/variables.less -text
 themes/amelia/templates/index.php -text
 themes/base_files/css/newsletter.css -text
 themes/base_files/css/printpdf.css -text
+themes/base_files/css/printqueries.css -text
 themes/base_files/css/style-guide.css -text
 themes/base_files/css/tiki_base.css -text
 themes/base_files/favicons/android-chrome-192x192.png -text

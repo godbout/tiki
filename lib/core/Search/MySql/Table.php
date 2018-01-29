@@ -144,7 +144,7 @@ class Search_MySql_Table extends TikiDb_Table
 				`object_type` VARCHAR(15) NOT NULL,
 				`object_id` VARCHAR(300) NOT NULL,
 				PRIMARY KEY(`id`),
-				INDEX (`object_type`, `object_id`)
+				INDEX (`object_type`, `object_id`(160))
 			) ENGINE=MyISAM"
 		);
 		$this->exists = true;
