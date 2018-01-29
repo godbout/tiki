@@ -1,10 +1,10 @@
 {strip}
 	{if $field.options_map['wysiwyg'] eq 'y'}
-		{textarea _class='form-control' id=$data.element_id name=$field.ins_id rows=$data.rows onkeyup=$data.keyup _wysiwyg='y' section="trackers"}
+		{textarea _class='form-control' id=$data.element_id name=$field.ins_id rows=$data.rows onkeyup=$data.keyup _wysiwyg='y' section="trackers"  switcheditor='n'}
 			{$field.page_data}
 		{/textarea}
 	{else}
-		{textarea _class='form-control' id=$data.element_id name=$field.ins_id _toolbars=$data.toolbar _simple='y' rows=$data.rows onkeyup=$data.keyup _wysiwyg='n' section="trackers"}
+		{textarea _class='form-control' id=$data.element_id name=$field.ins_id _toolbars=$data.toolbar _simple='y' rows=$data.rows onkeyup=$data.keyup _wysiwyg='n' section="trackers"  switcheditor='n'}
 			{$field.page_data}
 		{/textarea}
 	{/if}
