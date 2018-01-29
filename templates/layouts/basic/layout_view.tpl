@@ -93,7 +93,7 @@
 				</div>
 			{/if}
 			{if $prefs.feature_right_column eq 'user'}
-				<div class="col-md-6 text-right side-col-toggle">
+				<div class="col-md-6 text-right side-col-toggle{if $prefs.feature_left_column neq 'user'} col-md-offset-6{/if}">
 					{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
 					{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 				</div>
