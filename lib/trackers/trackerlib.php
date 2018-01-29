@@ -5173,9 +5173,15 @@ class TrackerLib extends TikiLib
 					$smarty->assign('f_name_' . $fieldId, $field['name']);
 					$smarty->assign('f_name_' . $field['permName'], $field['name']);
 				}
+				// not a great test for a new item but we don't get the event type here
+				$created = empty($old_values) || $old_values === ['status' => ''];
 				foreach ($watchers as $watcher) {
 					$watcher['language'] = $this->get_user_preference($watcher['user'], 'language', $prefs['site_language']);
-					$label = $itemId ? tra('Item Modification', $watcher['language']) : tra('Item creation', $watcher['language']);
+					if ($created) {
+						$label = tra('Item Creation', $watcher['language']);
+					} else {
+						$label = tra('Item Modification', $watcher['language']);
+					}
 					$mail_action = "\r\n$label\r\n\r\n";
 					$mail_action .= tra('Tracker', $watcher['language']) . ":\n   " . tra($trackerName, $watcher['language']) . "\r\n";
 					$mail_action .= tra('Item', $watcher['language']) . ":\n   $itemId $desc";
