@@ -23,6 +23,8 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 }
 $tikiBase = realpath(dirname(__FILE__) . '/../..');
 
+chdir($tikiBase);
+
 // will output db errors if 'php svnup.php dbcheck' is called
 if (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] === 'dbcheck') {
 	require($tikiBase . '/db/tiki-db.php');
@@ -371,6 +373,7 @@ class SvnUpCommand extends Command
 					$shellCom .= ' -vvv';
 				}
 
+				putenv('SHELL_VERBOSITY'); // Clear the environment variable, since console.php (Symfony console application) will pick this value if set
 				$this->OutputErrors($logger, shell_exec($shellCom . ' 2>&1'), 'Problem Rebuilding Index', $errors, ! $input->getOption('no-db'));   // 2>&1 suppresses all terminal output, but allows full capturing for logs & verbiage
 			}
 		}
