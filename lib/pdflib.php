@@ -314,7 +314,7 @@ class PdfGenerator
 			 $printcss = file_get_contents('themes/base_files/css/printpdf.css'); // external css
 		} else {//preserving theme styles by removing media print styles to print what is shown on screen
 			$themecss = str_replace(["media print","color : fff"], ["media p","color : #fff"], $themecss);
-			$basecss = str_replace(["media print","color : fff"], ["media p","color : #fff"], $basecss);
+			$printcss = file_get_contents('themes/base_files/css/printqueries.css'); //for bootstrap print hidden, screen hidden styles on divs
 		}
 
 		$pdfPages = $this->getPDFPages($html, $pdfSettings);
