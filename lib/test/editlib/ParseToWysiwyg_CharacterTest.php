@@ -28,6 +28,9 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testFontFamily()
 	{
 		$this->markTestIncomplete('Work in progress.');
@@ -41,6 +44,9 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testFontSize()
 	{
 		$this->markTestIncomplete('Work in progress.');
@@ -90,6 +96,9 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testSubscript()
 	{
 		$this->markTestIncomplete('Work in progress.');
@@ -100,6 +109,9 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testSuperscript()
 	{
 		$this->markTestIncomplete('Work in progress.');
@@ -112,7 +124,9 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 		$this->assertContains($exp, $out);
 	}
 
-
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testMonospaced()
 	{
 		$this->markTestIncomplete('Work in progress.');
@@ -125,7 +139,9 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 		$this->assertContains($exp, $out);
 	}
 
-
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testTeletype()
 	{
 		$this->markTestIncomplete('Work in progress.');

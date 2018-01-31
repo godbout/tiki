@@ -33,6 +33,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 * Test bullet lists
 	 *
 	 * Test single lines with different numbers of '*'
+	 *
+	 * @group marked-as-skipped
 	 */
 	function testBulletList()
 	{
@@ -71,6 +73,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 * Test the continuation of bullet lists
 	 *
 	 * Test level one and two
+	 *
+	 * @group marked-as-skipped
 	 */
 	function testBulletListContinuation()
 	{
@@ -112,6 +116,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 * Test numbered lists
 	 *
 	 * Test single lines with different numbers of '#'
+	 *
+	 * @group marked-as-skipped
 	 */
 	function testNumberedList()
 	{
@@ -150,6 +156,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 * Test the continuation of numbered lists
 	 *
 	 * Test level one and two
+	 *
+	 * @group marked-as-skipped
 	 */
 	function testNumberedListContinuation()
 	{

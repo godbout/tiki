@@ -43,6 +43,9 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("Loading and validating the XML file\n\nImportation completed!\n\n<b><a href=\"tiki-importer.php\">Click here</a> to finish the import process</b>", $output);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testImportWithoutInternalMocking()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as the underlying PEAR is out of date.');
@@ -95,6 +98,9 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->obj->import(dirname(__FILE__) . '/fixtures/mediawiki_sample.xml');
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testConfigureParser()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as the underlying PEAR is out of date.');
@@ -484,6 +490,9 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	}
 
 	// TODO: find a way to mock the Text_Wiki object inside convertMakup()
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testConvertMarkup()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as the underlying PEAR is out of date.');
@@ -495,6 +504,9 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedResult, $this->obj->convertMarkup($mediawikiText));
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testConvertMarkupShouldReturnNullIfEmptyMediawikiText()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as the underlying PEAR is out of date.');

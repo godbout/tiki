@@ -6,6 +6,9 @@
 // $Id$
 class Calendar_DateTest extends TikiTestCase
 {
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testMake_time()
 	{
 		$this->markTestIncomplete('skiping because it is failing');

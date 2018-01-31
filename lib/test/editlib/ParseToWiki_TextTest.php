@@ -215,6 +215,8 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 
 	/**
 	 * Align paragraphs 'left'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testParagraphAlignLeft()
 	{
@@ -432,6 +434,8 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 
 	/**
 	 * Align paragraphs 'right'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testParagraphAlignRight()
 	{
@@ -460,6 +464,8 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 
 	/**
 	 * Align paragraphs 'justified'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testParagraphAlignJustified()
 	{

@@ -28,6 +28,9 @@ class TikiSecurityTest extends PHPUnit_Framework_TestCase
 		$this->assertNull($security->decode($string));
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	function testAlterData()
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
