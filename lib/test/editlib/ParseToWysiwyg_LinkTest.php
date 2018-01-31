@@ -9,8 +9,6 @@
  * @group unit
  *
  */
-
-
 class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 {
 	private $el = null; // the EditLib
@@ -43,7 +41,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	function tearDown()
 	{
 		/*
-         * remove the external Wikis defined in the tests
+		 * remove the external Wikis defined in the tests
 		 */
 		$tikilib = TikiLib::lib('tiki');
 
@@ -79,10 +77,10 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 
 
 		/*
-         * External Wiki
+		 * External Wiki
 		 * - page name
 		 */
-		$inData = "(($this->ext1:Download))" ;
+		$inData = "(($this->ext1:Download))";
 		$ex = '<a href="http://tikiwiki.org/tiki-index.php?page=Download" class="wiki ext_page test_ext1">Download</a>';
 		$out = trim($p->parse_data($inData));
 		$this->assertContains($ex, $out);
@@ -93,7 +91,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		 * - page name
 		 * - anchor
 		 */
-		$inData = "(($this->ext1:Download|#LTS_-_the_Long_Term_Support_release))" ;
+		$inData = "(($this->ext1:Download|#LTS_-_the_Long_Term_Support_release))";
 		$ex = '<a href="http://tikiwiki.org/tiki-index.php?page=Download#LTS_-_the_Long_Term_Support_release" class="wiki ext_page test_ext1">Download</a>';
 		$out = trim($p->parse_data($inData));
 		$this->assertContains($ex, $out);
@@ -105,7 +103,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		 * - anchor
 		 * - description
 		 */
-		$inData = "(($this->ext1:Download|#LTS_-_the_Long_Term_Support_release|Download LTS))" ;
+		$inData = "(($this->ext1:Download|#LTS_-_the_Long_Term_Support_release|Download LTS))";
 		$ex = '<a href="http://tikiwiki.org/tiki-index.php?page=Download#LTS_-_the_Long_Term_Support_release" class="wiki ext_page test_ext1">Download LTS</a>';
 		$out = trim($p->parse_data($inData));
 		$this->assertContains($ex, $out);
@@ -213,7 +211,6 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	}
 
 
-
 	/**
 	 * Test links to web pages
 	 *
@@ -222,7 +219,9 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	function testWebResource()
 	{
 
-		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
+		$this->markTestSkipped(
+			"As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now."
+		);
 
 		/*
 		 * Web Page:
@@ -273,7 +272,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		/*
 		 * Link to video
 		 * - link
-         *
+*
 		 */
 		$inData = '[http://www.youtube.com/v/KBewVCducWw&autoplay=1|nocache]';
 		$ex = '<a class="wiki external" target="_blank" href="http://www.youtube.com/v/KBewVCducWw&amp;autoplay=1" rel="external nofollow">http://www.youtube.com/v/KBewVCducWw&amp;autoplay=1</a>';
@@ -327,7 +326,9 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 
 		$tikilib = TikiLib::lib('tiki');
 
-		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
+		$this->markTestSkipped(
+			"As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now."
+		);
 
 		$homePage = 'HomePage';
 		$noPage = 'Page does not exist not exist';
@@ -364,7 +365,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 
 		/*
 		 * Default behavior -> class="wiki wikinew"
-         *
+		 *
 		 * - inexistent page
 		 */
 		$inData = "(($noPage))";
@@ -374,7 +375,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 
 		/*
 		 * Default behavior -> class="wiki wikinew"
-         *
+		 *
 		 * - inexistent page
 		 * - description
 		 */
@@ -386,7 +387,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 
 		/*
 		 * Default behavior -> class="wiki wikinew"
-         *
+		 *
 		 * - inexistent page
 		 * - link to an anchor
 		 * - description
@@ -409,7 +410,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 
 		/*
 		 * CKE behavior -> class="wiki page"
-         *
+		 *
 		 * - inexistent page
 		 * - description
 		 */
@@ -421,7 +422,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 
 		/*
 		 * CKE behavior -> class="wiki page"
-         *
+		 *
 		 * - inexistent page
 		 * - link to an anchor
 		 * - description
