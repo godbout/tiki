@@ -930,7 +930,7 @@ class EditLib
 							$c[$i]['content'] = '';
 							if (! isset($c[$i]['pars']['src'])) {
 								$i++;
-								while ($c[$i]['data']['name'] !== 'script' && $c[$i]['data']['type'] !== 'close' && $i <= $c['contentpos']) {
+								while ($c[$i]['type'] === 'text' || ($c[$i]['data']['name'] !== 'script' && $c[$i]['data']['type'] !== 'close' && $i <= $c['contentpos'])) {
 									$i++;    // skip contents of script tag
 								}
 							}
@@ -984,7 +984,7 @@ class EditLib
 						case "div": // Wiki parsing creates divs for center
 							if (isset($c[$i]['pars'])) {
 								$this->parseParDivTag($isPar, $c[$i]['pars'], $src, $p);
-							} elseif ($p['table']) {
+							} elseif (! empty($p['table'])) {
 								$src .= '%%%';
 							} else {	// normal para or div
 								$src .= $this->startNewLine($src);
