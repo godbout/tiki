@@ -52,11 +52,12 @@ class TrackerWriter
 
 			$tx->commit();
 
-			return call_user_func_array('array_merge', $result);
+			// FIXME this is just suppressing warnings for now
+			return @call_user_func_array('array_merge', $result);
 		};
 
 		if ($schema->isImportTransaction()) {
-			$errors = $iterate(function ($line, $info) use ($errors, $utilities, $schema) {
+			$errors = $iterate(function ($line, $info) use ($utilities, $schema) {
 				static $ids = [];
 				if (! empty($info['itemId']) && in_array($info['itemId'], $ids)) {
 					return [tr('Line %0:', $line + 1) . ' ' . tr('duplicate entry')];
@@ -82,6 +83,9 @@ class TrackerWriter
 		$iterate(function ($line, $info) use ($utilities, $schema) {
 			$definition = $schema->getDefinition();
 			if ($info['itemId']) {
+				if (empty($info['status'])) {
+					$info['status'] = $definition->getConfiguration('newItemStatus');
+				}
 				$success = $utilities->updateItem($definition, $info);
 			} else {
 				$success = $utilities->insertItem($definition, $info);

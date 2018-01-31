@@ -213,7 +213,7 @@ function tiki_route_single($index, $name)
  */
 function tiki_route_attempt_custom_route_redirect()
 {
-	global $path, $inclusion, $prefs;
+	global $path, $inclusion, $prefs, $tikiroot, $tikipath;
 
 	if ($inclusion || empty($path)) {
 		return;
