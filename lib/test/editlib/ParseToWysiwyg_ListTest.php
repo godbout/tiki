@@ -42,7 +42,7 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
 		/*
 		 * *Item 1
-         * *Item 2
+		 * *Item 2
 		 */
 		$inData = "*Item 1\n*Item 2\n";
 		$ex = '<ul><li>Item 1\n';
@@ -125,7 +125,7 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
 		/*
 		 * #Item 1
-         * #Item 2
+		 * #Item 2
 		 */
 		$inData = "#Item 1\n#Item 2\n";
 		$ex = '<ol><li>Item 1\n';
