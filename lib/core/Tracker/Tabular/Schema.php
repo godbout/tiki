@@ -87,6 +87,13 @@ class Schema
 
 	function loadConfig($config)
 	{
+		$config = array_merge([
+			'simple_headers' => 0,
+			'import_update' => 1,
+			'ignore_blanks' => 0,
+			'import_transaction' => 0,
+		], $config);
+
 		$this->config = $config;
 	}
 

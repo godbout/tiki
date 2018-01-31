@@ -60,6 +60,7 @@ class TrackerImportCommand extends Command
 		$schema = new \Tracker\Tabular\Schema($tracker);
 		$schema->loadFormatDescriptor($info['format_descriptor']);
 		$schema->loadFilterDescriptor($info['filter_descriptor']);
+		$schema->loadConfig($info['config']);
 
 		$schema->validate();
 
