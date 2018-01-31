@@ -5,5 +5,5 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-$lang=Array(
-"has no line with ###end### string in the end so it is invalid"=>"some translation");
+$lang=[
+"has no line with ###end### string in the end so it is invalid"=>"some translation"];

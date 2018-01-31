@@ -53,6 +53,9 @@ class Reports_CacheTest extends TikiDatabaseTestCase
 		$this->assertEquals($expectedResult, $entries);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testAdd_shouldAddInformationAboutChangedObjectToCache()
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");

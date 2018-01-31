@@ -171,6 +171,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testInsertItem_shouldCallInsertCommentsForPage()
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
@@ -185,6 +188,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$obj->insertItem($page);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testInsertItem_shouldCallInsertCommentsForPost()
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
@@ -235,6 +241,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testInsertComments()
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
@@ -256,6 +265,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$this->obj->insertComments(2, 'wiki page', $comments);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testInsertCommentsShouldConsiderIfCommentIsApprovedOrNot()
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
@@ -278,6 +290,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$this->obj->insertComments(2, 'wiki page', $comments);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testInsertPage()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
@@ -304,6 +319,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$obj->insertPage([]);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testInsertPost()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
@@ -326,6 +344,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$this->obj->insertPost($post);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testCreateTags()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
@@ -341,6 +362,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$this->obj->createTags($tags);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testCreateCategories()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
@@ -361,6 +385,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$this->obj->createCategories($categories);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testLinkObjectWithTags()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
@@ -376,6 +403,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$this->obj->linkObjectWithTags('HomePage', 'wiki page', $tags);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testLinkObjectWithCategories()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
@@ -394,6 +424,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$this->obj->linkObjectWithCategories('HomePage', 'wiki page', $categs);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testCreateBlog()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
@@ -409,6 +442,9 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$this->obj->createBlog();
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function testCreateBlogShouldSetBlogAsHomepage()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');

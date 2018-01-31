@@ -359,6 +359,9 @@ T-456|Foobar|1|120.50
 		);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	function testGetGiftCertificateCode_shouldReturnCodeIfNotNull()
 	{
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");

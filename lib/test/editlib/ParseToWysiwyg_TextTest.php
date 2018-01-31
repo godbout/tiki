@@ -31,6 +31,8 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 
 	/**
 	 * Align divs 'left'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testBlockAlignLeft()
 	{
@@ -61,6 +63,8 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 
 	/**
 	 * Align divs 'center'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testBlockAlignCentered()
 	{
@@ -92,6 +96,8 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 
 	/**
 	 * Align divs 'right'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testBlockAlignRight()
 	{
@@ -108,6 +114,8 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 
 	/**
 	 * Align divs 'justify'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testBlockAlignJustified()
 	{
@@ -124,6 +132,8 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 
 	/**
 	 * Align paragraphs 'left'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testParagraphAlignLeft()
 	{
@@ -226,6 +236,8 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 
 	/**
 	 * Align paragraphs 'center'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testParagraphAlignCentered()
 	{
@@ -240,6 +252,8 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 
 	/**
 	 * Align paragraphs 'right'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testParagraphAlignRight()
 	{
@@ -254,6 +268,8 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 
 	/**
 	 * Align paragraphs 'justify'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testParagraphAlignJustified()
 	{

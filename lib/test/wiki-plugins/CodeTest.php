@@ -11,6 +11,7 @@ class WikiPlugin_CodeTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider provider
+	 * @group marked-as-skipped
 	 */
 	public function testWikiPluginCode($data, $expectedOutput, $params = [])
 	{

@@ -4259,7 +4259,7 @@ class FileGalLib extends TikiLib
 	 * @param int $galleryId
 	 * @return string
 	 */
-	private function clean_xml($data, $galleryId)
+	public function clean_xml($data, $galleryId)
 	{
 		global $prefs;
 

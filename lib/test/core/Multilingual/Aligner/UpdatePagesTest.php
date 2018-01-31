@@ -179,6 +179,9 @@ class Multilingual_Aligner_UpdatePagesTest extends TikiTestCase
 		);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function test_sentence_inserted_in_both_source_and_target_sides()
 	{
 		$this->markTestSkipped("This test is failing at the moment. Need to fix it");
@@ -208,6 +211,9 @@ class Multilingual_Aligner_UpdatePagesTest extends TikiTestCase
 		);
 	}
 
+	/**
+	 * @group marked-as-skipped
+	 */
 	public function test_sentence_deleted_on_both_source_and_target_sides()
 	{
 		$this->markTestSkipped("This test is failing at the moment. Need to fix it");

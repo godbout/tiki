@@ -19,12 +19,19 @@
 	<testsuites>
 		<testsuite name="Tiki test suite">
 			<directory>./lib/test</directory>
+			<!-- Exclude files where all tests are marked as skipped -->
+			<exclude>./lib/test/AcceptanceTests/</exclude>
+			<exclude>./lib/test/core/Reports/ReportsEndToEndTest.php</exclude>
 		</testsuite>
 	</testsuites>
 
 	<groups>
 		<exclude>
 			<group>disable</group>
+			<group>marked-as-skipped</group>
+			<group>marked-as-incomplete</group>
+			<!-- require pref lang_google_api_key -->
+			<group>GoogleTranslate</group>
 		</exclude>
 	</groups>
 
