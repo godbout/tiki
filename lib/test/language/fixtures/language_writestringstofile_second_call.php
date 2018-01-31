@@ -1,7 +1,7 @@
 <?php
 // File header
 
-$lang = array(
+$lang = [
 // "Errors" => "Errors",
 "Errors:" => "خطاها:",
-);
+];
