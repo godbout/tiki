@@ -23,4 +23,9 @@ class UrlencodeGenerator implements Generator
 	{
 		return urlencode($pageName) . $suffix;
 	}
+
+	function degenerate($slug)
+	{
+		return urldecode($slug);
+	}
 }

@@ -105,10 +105,8 @@ class WikiParser_OutputLink
 				]
 			);
 		} elseif ($this->qualifier === 'alias') {
-			//global $prefs;	TODO make incoming sefurl aliasses work
-			//$slug = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $page, $prefs['url_only_ascii'] === 'y');
-
-			$slug = urlencode($page);
+			global $prefs;
+			$slug = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $page, $prefs['url_only_ascii'] === 'y');
 
 			return $this->outputLink(
 				$description,
