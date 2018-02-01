@@ -250,7 +250,11 @@ class Search_Elastic_Connection
 
 	function isRebuilding($aliasName)
 	{
-		$current = $this->rawApi('/_aliases');
+		try {
+			$current = $this->rawApi('/_aliases');
+		} catch (Search_Elastic_Exception $e) {
+			$current = [];
+		}
 		foreach ($current as $indexName => $info) {
 			$hasAlias = isset($info->aliases) && count((array) $info->aliases) > 0;
 			if (0 === strpos($indexName, $aliasName . '_') && ! $hasAlias) {
