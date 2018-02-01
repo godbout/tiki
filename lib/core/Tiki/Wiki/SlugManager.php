@@ -57,4 +57,11 @@ class SlugManager
 
 		return $slug;
 	}
+
+	function degenerate($generator, $slug)
+	{
+		$impl = $this->generators[$generator];
+
+		return $impl->degenerate($slug);
+	}
 }

@@ -1133,6 +1133,13 @@ class WikiLib extends TikiLib
 
 		$links = $semanticlib->getLinksUsing($tokens, [ 'toPage' => $toPage ]);
 
+		if (empty($links)) {	// if no linked pages found then the alias may be sefurl "slug" encoded, so try the un-slugged version
+			global $prefs;
+
+			$toPage = TikiLib::lib('slugmanager')->degenerate($prefs['wiki_url_scheme'], $toPage);
+			$links = $semanticlib->getLinksUsing($tokens, [ 'toPage' => $toPage ]);
+		}
+
 		if (count($links) > 0) {
 			foreach ($links as $row) {
 				$pages[] = $row['fromPage'];

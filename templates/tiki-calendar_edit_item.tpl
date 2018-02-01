@@ -418,7 +418,7 @@ $("#id_recurrent").click(function () {
 						{/if}
 					</div>
 					<div class="col-md-3 start time">
-						{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock}
+						{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 					</div>
 					<label class="col-md-2">
 						<input type="checkbox" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
@@ -450,10 +450,10 @@ $("#id_recurrent").click(function () {
 							{/if}
 					</div>
 					<div class="col-md-3 end time">
-						{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock}
+						{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 					</div>
 					<div class="col-md-3 duration time" style="display:none;">
-						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_timespan}
+						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_timespan class='form-control date nochosen'}
 					</div>
 					<div class="col-md-2 time">
 						<a href="#" id="durationBtn" class="btn btn-xs btn-default">
@@ -512,16 +512,30 @@ $("#durationBtn").click(function () {
 });
 
 var getEventTimes = function() {
-	var out = {};
-	out.start = new Date($("#start").val() * 1000);
-	out.start.setHours($("select[name=start_Hour]").val());
-	out.start.setMinutes($("select[name=start_Minute]").val());
-	out.end = new Date($("#end").val() * 1000);
-	out.end.setHours($("select[name=end_Hour]").val());
-	out.end.setMinutes($("select[name=end_Minute]").val());
-	out.duration = new Date(0);
-	out.duration.setHours($("select[name=duration_Hour]").val());
-	out.duration.setMinutes($("select[name=duration_Minute]").val());
+	var out = {},
+		start = parseInt($("#start").val()),
+		end = parseInt($("#end").val());
+	if (start) {
+		out.start = new Date(start * 1000);
+		out.start.setHours($("select[name=start_Hour]").val());
+		out.start.setMinutes($("select[name=start_Minute]").val());
+	} else {
+		out.start = null;
+	}
+	if (end) {
+		out.end = new Date(end * 1000);
+		out.end.setHours($("select[name=end_Hour]").val());
+		out.end.setMinutes($("select[name=end_Minute]").val());
+	} else {
+		out.end = null;
+	}
+	if (start && end) {
+		out.duration = new Date(0);
+		out.duration.setHours($("select[name=duration_Hour]").val());
+		out.duration.setMinutes($("select[name=duration_Minute]").val());
+	} else {
+		out.duration = null;
+	}
 
 	return out;
 };
@@ -543,9 +557,9 @@ $(".start.time select, .duration.time select, #start").change(function () {
 });
 $(".end.time select, #end").change(function () {
 	var times = getEventTimes(),
-		s = times.start.getTime(),
-		e = times.end.getTime();
-	if (e <= s) {
+		s = times.start ? times.start.getTime() : null,
+		e = times.end ? times.end.getTime() : null;
+	if (e && e <= s) {
 		$("select[name=start_Hour]").val(fNum(times.end.getHours())).trigger("chosen:updated");
 		$("select[name=start_Minute]").val(fNum(times.end.getMinutes())).trigger("chosen:updated");
 		$("#start").nextAll("input[type=text]")
@@ -554,9 +568,11 @@ $(".end.time select, #end").change(function () {
 		$("#start").val(times.end.getTime() / 1000);
 		s = e;
 	}
-	times.duration = new Date(e - s);
-	$("select[name=duration_Hour]").val(fNum(times.duration.getHours())).trigger("chosen:updated");
-	$("select[name=duration_Minute]").val(fNum(times.duration.getMinutes())).trigger("chosen:updated");
+	if (e) {
+		times.duration = new Date(e - s);
+		$("select[name=duration_Hour]").val(fNum(times.duration.getHours())).trigger("chosen:updated");
+		$("select[name=duration_Minute]").val(fNum(times.duration.getMinutes())).trigger("chosen:updated");
+	}
 }).change();	// set duration on load
 // reset confirm
 window.needToConfirm = false;

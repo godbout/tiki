@@ -93,7 +93,7 @@ class WikiParser_OutputLink
 			// When currently displayed page is in a namespace, interpret links as within namespace as a priority
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
-				$pageId = substr($page, 0, 158);                
+				$pageId = substr($page, 0, 158);
 			}
 
 			return $this->outputLink(
@@ -105,10 +105,8 @@ class WikiParser_OutputLink
 				]
 			);
 		} elseif ($this->qualifier === 'alias') {
-			//global $prefs;	TODO make incoming sefurl aliasses work
-			//$slug = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $page, $prefs['url_only_ascii'] === 'y');
-
-			$slug = urlencode($page);
+			global $prefs;
+			$slug = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $page, $prefs['url_only_ascii'] === 'y');
 
 			return $this->outputLink(
 				$description,
@@ -120,7 +118,7 @@ class WikiParser_OutputLink
 		} elseif (($info = $this->findWikiPage($pageId)) || $ck_editor) {
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
-				$pageId = substr($page, 0, 158);                
+				$pageId = substr($page, 0, 158);
 			}
 
 			if ($description == $info['pageName']) {

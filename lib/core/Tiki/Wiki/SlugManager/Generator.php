@@ -12,4 +12,5 @@ interface Generator
 	function getName();
 	function getLabel();
 	function generate($pageName, $suffix = null);
+	function degenerate($slug);
 }
