@@ -93,7 +93,7 @@ class WikiParser_OutputLink
 			// When currently displayed page is in a namespace, interpret links as within namespace as a priority
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
-				$pageId = substr($page, 0, 158);                
+				$pageId = substr($page, 0, 158);
 			}
 
 			return $this->outputLink(
@@ -118,7 +118,7 @@ class WikiParser_OutputLink
 		} elseif (($info = $this->findWikiPage($pageId)) || $ck_editor) {
 			if (! empty($info['pageName'])) {
 				$page = $info['pageName'];
-				$pageId = substr($page, 0, 158);                
+				$pageId = substr($page, 0, 158);
 			}
 
 			if ($description == $info['pageName']) {
