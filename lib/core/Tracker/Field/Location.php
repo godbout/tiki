@@ -154,7 +154,7 @@ class Tracker_Field_Location extends Tracker_Field_Abstract implements Tracker_F
 	{
 		$sourceFieldsList = $this->getOption('sourceFieldsList');
 
-		if ($sourceFieldsList) {
+		if (! empty(array_filter($sourceFieldsList))) {
 			$event = $this->getOption('sourceSearchEvent');
 
 			$emptyValue = ! $value || strpos($value, '0,0,') !== false;
