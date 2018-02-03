@@ -16,7 +16,7 @@
 	{/remarksbox}
 {/if}
 
-{if isset($composer_environment_warning)}
+{if isset($composer_environment_warning) && count($composer_environment_warning)}
 	{remarksbox type="warning" title="{tr}Issues with composer environment{/tr}"}
 
     <p>{tr}Issues with composer environment:{/tr}</p>
