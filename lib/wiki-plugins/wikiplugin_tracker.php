@@ -1859,8 +1859,16 @@ function wikiplugin_tracker($data, $params)
 					if (! empty($colwidth)) {
 						$back .= " width='" . $colwidth . "'";
 					}
-						$back .= '><label class="' . $labelclass . ' control-label" for="' . $f['ins_id'] . '">' // ><label for="'
-									. wikiplugin_tracker_name($f['fieldId'], tra($f['name']), $field_errors); //
+
+					// If on a different row the label should use all available width
+					$back .= '><label class="';
+					if ($isTextOnSameRow) {
+						$back .= $labelclass . ' control-label';
+					} else {
+						$back .= 'col-md-12';
+					}
+					$back .= '" for="' . $f['ins_id'] . '">' . wikiplugin_tracker_name($f['fieldId'], tra($f['name']), $field_errors);
+
 					if ($showmandatory == 'y' and $f['isMandatory'] == 'y') {
 						$back .= " <strong class='mandatory_star text-danger tips' title=':" . tra('This field is mandatory') . "' >*</strong> ";
 					}
@@ -1870,7 +1878,7 @@ function wikiplugin_tracker($data, $params)
 					if (! $isTextOnSameRow) {
 						$back .= "<br/>";
 					} else {
-						$back .= '<div class="' . $inputclass . ' tracker_input_value tracker_field' . $f['fieldId'] . '">'; // '</td><td class="tracker_input_value">';
+						$back .= '<div class="' . $inputclass . ' tracker_input_value tracker_field' . $f['fieldId'] . '">';
 					}
 
 						$back .= wikiplugin_tracker_render_input($f, $item, $dynamicSave);
