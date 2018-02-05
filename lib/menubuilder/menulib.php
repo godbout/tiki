@@ -598,7 +598,7 @@ class MenuLib extends TikiLib
 							. '","' . $option['perm']
 							. '","' . $option['groupname']
 							. '",' . $option['userlevel']
-							. '",' . $option['class']
+							. ',' . $option['class']
 							. ',"n"' . "\r\n"
 							;
 		}
