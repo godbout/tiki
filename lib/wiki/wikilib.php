@@ -1069,7 +1069,6 @@ class WikiLib extends TikiLib
 
 			$histlib = TikiLib::lib('hist');
 
-			$histlib->use_version($res['pageName'], $res['version']);
 			if ($prefs['feature_contribution'] == 'y') {
 				$contributionlib = TikiLib::lib('contribution');
 				$tikilib = TikiLib::lib('tiki');
@@ -1086,6 +1085,7 @@ class WikiLib extends TikiLib
 				);
 			}
 			$ret = $histlib->remove_version($res['pageName'], $res['version']);
+			$ret2 = $histlib->restore_page_from_history($res['pageName']);
 		} else {
 			$ret = $this->remove_all_versions($page);
 		}

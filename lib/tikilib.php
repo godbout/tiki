@@ -4255,6 +4255,46 @@ class TikiLib extends TikiDb_Bridge
 	}
 
 	/**
+	 * @param $pageName
+	 * @return bool|mixed
+	 */
+	protected function restore_page_from_history($pageName)
+	{
+		if (strtolower($pageName) == 'sandbox') {
+			return false;
+		}
+
+		$query = "SELECT `version`, `version_minor`, `lastModif`, `user`, `ip`, `comment`, `data`, `description`,`is_html`
+			FROM tiki_history
+			WHERE pageName = ? 
+			ORDER BY version DESC";
+
+		$bindvars = [$pageName];
+		$result = $this->query($query, $bindvars, 1);
+		if ($res = $result->fetchRow()) {
+			$query = "UPDATE `tiki_pages`
+			SET `version` = ?, `version_minor` = ?, `lastModif` = ?, `user` = ?, `ip` = ?, `comment` = ?, `data` = ?, `description` = ?,`is_html` = ?
+			WHERE pageName = ?";
+			$bindvars = [$res['version'], $res['version_minor'], $res['lastModif'], $res['user'], $res['ip'], $res['comment'], $res['data'], $res['description'], $res['is_html'], $pageName];
+			$this->query($query, $bindvars);
+		}
+
+		$bindvars = [$pageName];
+		$query = "SELECT `page_id` from `tiki_pages` WHERE pageName = ?";
+		$this->query($query, $bindvars);
+
+		if ($res = $result->fetchRow()) {
+			$id = $res['version'];
+		}
+
+		// FIXME: Are these lines necessary? If so, what is the proper status to use?
+		//$converter = new convertToTiki9();
+		//$converter->saveObjectStatus($id, 'tiki_pages', 'conv9.0');
+
+		return $id;
+	}
+
+	/**
 	 * @param $user
 	 * @param $max
 	 * @param string $who

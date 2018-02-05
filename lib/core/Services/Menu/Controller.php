@@ -305,10 +305,15 @@ class Services_Menu_Controller
 
 		//execute import
 		$confirm = $input->confirm->int();
+		$redirect = '';
 		if ($confirm) {
 			$menuId = $input->menuId->int();
 			$menuLib = $this->menulib;
 			$menuLib->import_menu_options($menuId);
+			global $base_url;
+			$redirect = $base_url . 'tiki-admin_menu_options.php?menuId=' . $menuId;
+			Feedback::success(tr('Your menu options have been imported successfully'), 'session');
+			Services_Utilities::sendFeedback($redirect);
 		}
 
 		//information for the import menu screen
@@ -317,6 +322,7 @@ class Services_Menu_Controller
 			'menuId' => $menuId,
 			'menuInfo' => $menuDetails["info"],
 			'menuSymbol' => $menuDetails["symbol"],
+			'FORWARD' => $redirect,
 		];
 	}
 
