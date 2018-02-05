@@ -153,6 +153,7 @@ $smarty->assign('tagList', $tagList);
 $smarty->assign('languageList', $used_languages);
 $smarty->assign('fullLanguageList', $allLanguages);
 $smarty->assign('rootlang', $rootlangs);
+$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 
 // Display the template
 $smarty->assign('mid', 'tiki-freetag-translate.tpl');
