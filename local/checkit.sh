@@ -7,39 +7,49 @@ SCRIPTPATH="${TIKIPATH}/local"
 
 SVR="software-versions-required.txt"
 
+# uncomment for local test, quick and dirty
 #SCRIPTPATH="./"
 
 # before doing a Tiki update check the required software versions
 cd ${SCRIPTPATH}
 svn up ${SVR}
 
+# choose a username and a password
 USER="next"		#
 PASSWORD="next"		#
 CREDENTIALS="${USER}:${PASSWORD}"
+
+# adjust this to your Tiki installation
 #PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
 PHPINFOURL="https://nextbranding.tiki.org/local/phpversion.php"
 
+# choose a temporary path to put the passwordfile in, it will be deleted after usage
 TMPPATH="/tmp"
+
 HTPASSWDFILE=${TMPPATH}/.htpasswd
-echo sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
-echo
-cat .htaccess
-echo
+#echo sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
+#echo
+#cat .htaccess
+#echo
 sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
 htpasswd -n -b ${USER} ${PASSWORD} | tee ${HTPASSWDFILE}
 
 # public access to phpinfo is dangerous, thus we added htaccess
+# old: use phpinfo()
 #mv phpinfo.php.bin phpinfo.php
 #X=`curl -u ${CREDENTIALS} ${PHPINFOURL} | grep PHP | grep -i version | grep -i php | grep -o [0-9]\\\.[0-9]\\\.[0-9] | tail -n 1 | grep -o [0-9]\\\.[0-9]`
 #mv phpinfo.php phpinfo.php.bin
+# new: use phpversion()
 mv phpversion.php.bin phpversion.php
 X=`curl -u ${CREDENTIALS} ${PHPINFOURL} | grep -o [0-9]\\\.[0-9]\\\.[0-9] | grep -o [0-9]\\\.[0-9]`
 mv phpversion.php phpversion.php.bin
+
 # delete password file when not needed
 rm ${HTPASSWDFILE}
 
-Y=`grep PHP ${SVR} | cut -d, -f2`
 #echo $X > foobar.tmp
+
+Y=`grep PHP ${SVR} | cut -d, -f2`
 
 # stripe decimal point, probably it won't work properly with versions like 5.10
 ## compared to 7.2 it will be 510>72 supposed to be sufficient, which is wrong
