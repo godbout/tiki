@@ -66,7 +66,7 @@
 				{/if}
 
 				<p>
-					<table style="width:520px;border: 0px;text-align:center">
+					<table style="width:520px;border: 0;text-align:center">
 						<tr>
 							<td><img src="{$memory_graph|escape}" width="250" height="100"></td>
 							<td><img src="{$hits_graph|escape}" width="250" height="100"></td>
@@ -164,6 +164,7 @@
 			{preference name=feature_actionlog_bytes}
 			{preference name=search_parsed_snippet}
 			{preference name="unified_lucene_highlight"}
+			{preference name=feature_blog_heading}
 			{preference name=error_reporting_level}
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}
 				{tr}Many search options impact performance. Please see <a href="tiki-admin.php?page=search">Search admin panel</a>.{/tr}

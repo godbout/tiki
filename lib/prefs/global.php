@@ -157,6 +157,7 @@ function prefs_global_list($partial = false)
 		'maxArticles' => [
 			'name' => tra('Maximum number of articles on the articles homepage'),
 			'type' => 'text',
+			'description' => tr('The number of articles to show on each page of the Article home.'),
 			'size' => '5',
 			'filter' => 'digits',
 			'units' => tra('articles'),
