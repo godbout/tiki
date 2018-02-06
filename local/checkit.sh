@@ -31,6 +31,8 @@ htpasswd -n -b ${USER} ${PASSWORD} | tee ${HTPASSWDFILE}
 mv phpinfo.php.bin phpinfo.php
 X=`curl -u ${CREDENTIALS} ${PHPINFOURL} | grep PHP | grep -i version | grep -i php | grep -o [0-9]\\\.[0-9]\\\.[0-9] | tail -n 1 | grep -o [0-9]\\\.[0-9]`
 mv phpinfo.php phpinfo.php.bin
+# delete password file when not needed
+rm ${HTPASSWDFILE}
 
 Y=`grep PHP ${SVR} | cut -d, -f2`
 #echo $X > foobar.tmp
