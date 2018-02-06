@@ -1,5 +1,5 @@
 #
-AuthUserFile .htpasswd
+AuthUserFile TEMPLATEPATH/.htpasswd
 AuthName "phpinfo password protection"
 AuthType Basic
 <Limit GET POST PUT>

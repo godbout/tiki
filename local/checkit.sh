@@ -7,6 +7,8 @@ SCRIPTPATH="${TIKIPATH}/local"
 
 SVR="software-versions-required.txt"
 
+#SCRIPTPATH="./"
+
 # before doing a Tiki update check the required software versions
 cd ${SCRIPTPATH}
 svn up ${SVR}
@@ -16,7 +18,14 @@ PASSWORD="next"		#
 CREDENTIALS="${USER}:${PASSWORD}"
 PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
 
-htpasswd -n -b ${USER} ${PASSWORD} | tee .htpasswd
+TMPPATH="/tmp"
+HTPASSWDFILE=${TMPPATH}/.htpasswd
+echo sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
+echo
+cat .htaccess
+echo
+sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
+htpasswd -n -b ${USER} ${PASSWORD} | tee ${HTPASSWDFILE}
 
 # public access to phpinfo is dangerous, thus we added htaccess
 mv phpinfo.php.bin phpinfo.php
