@@ -7,17 +7,22 @@ SCRIPTPATH="${TIKIPATH}/local"
 
 SVR="software-versions-required.txt"
 
-cd ${SCRIPTPATH}
-
 # before doing a Tiki update check the required software versions
+cd ${SCRIPTPATH}
 svn up ${SVR}
 
-CREDENTIALS="next:next"
+USER="next"		#
+PASSWORD="next"		#
+CREDENTIALS="${USER}:${PASSWORD}"
 PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
 
+htpasswd -n -b ${USER} ${PASSWORD} | tee .htpasswd
+
+# public access to phpinfo is dangerous
 mv phpinfo.php.bin phpinfo.php
 X=`curl -u ${CREDENTIALS} ${PHPINFOURL} | grep PHP | grep -i version | grep -i php | grep -o [0-9]\\\.[0-9]\\\.[0-9] | tail -n 1 | grep -o [0-9]\\\.[0-9]`
 mv phpinfo.php phpinfo.php.bin
+
 Y=`grep PHP ${SVR} | cut -d, -f2`
 #echo $X > foobar.tmp
 
