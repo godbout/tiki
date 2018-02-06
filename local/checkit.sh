@@ -2,7 +2,15 @@
 
 # draft script to compare PHP versions before an update
 
+TIKIPATH="./"
+SCRIPTPATH="${TIKIPATH}/local"
+
 SVR="software-versions-required.txt"
+
+cd ${SCRIPTPATH}
+
+# before doing a Tiki update check the required software versions
+svn up ${SVR}
 
 CREDENTIALS="next:next"
 PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
