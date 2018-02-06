@@ -16,7 +16,8 @@ svn up ${SVR}
 USER="next"		#
 PASSWORD="next"		#
 CREDENTIALS="${USER}:${PASSWORD}"
-PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
+#PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
+PHPINFOURL="https://nextbranding.tiki.org/local/phpversion.php"
 
 TMPPATH="/tmp"
 HTPASSWDFILE=${TMPPATH}/.htpasswd
@@ -28,9 +29,12 @@ sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
 htpasswd -n -b ${USER} ${PASSWORD} | tee ${HTPASSWDFILE}
 
 # public access to phpinfo is dangerous, thus we added htaccess
-mv phpinfo.php.bin phpinfo.php
-X=`curl -u ${CREDENTIALS} ${PHPINFOURL} | grep PHP | grep -i version | grep -i php | grep -o [0-9]\\\.[0-9]\\\.[0-9] | tail -n 1 | grep -o [0-9]\\\.[0-9]`
-mv phpinfo.php phpinfo.php.bin
+#mv phpinfo.php.bin phpinfo.php
+#X=`curl -u ${CREDENTIALS} ${PHPINFOURL} | grep PHP | grep -i version | grep -i php | grep -o [0-9]\\\.[0-9]\\\.[0-9] | tail -n 1 | grep -o [0-9]\\\.[0-9]`
+#mv phpinfo.php phpinfo.php.bin
+mv phpversion.php.bin phpversion.php
+X=`curl -u ${CREDENTIALS} ${PHPINFOURL} | grep -o [0-9]\\\.[0-9]\\\.[0-9] | grep -o [0-9]\\\.[0-9]`
+mv phpversion.php phpversion.php.bin
 # delete password file when not needed
 rm ${HTPASSWDFILE}
 

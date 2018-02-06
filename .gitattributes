@@ -5049,6 +5049,7 @@ lists/articles.php -text
 local/_htaccess -text
 local/checkit.sh -text
 local/phpinfo.php.bin -text
+local/phpversion.php.bin -text
 local/software-versions-required.txt -text
 /messu-archive.php -text
 /messu-broadcast.php -text
