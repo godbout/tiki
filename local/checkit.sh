@@ -30,7 +30,9 @@ PHPINFOURL="https://nextbranding.tiki.org/local/phpversion.php"
 # choose a temporary path to put the passwordfile in, it will be deleted after usage
 TMPPATH="/tmp"
 
-HTPASSWDFILE=${TMPPATH}/.htpasswd
+LOCKFILE="${TMPPATH}/locktikiupdate"
+
+HTPASSWDFILE=i"${TMPPATH}/.htpasswd"
 # some debug output
 #echo sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
 #echo
@@ -69,6 +71,15 @@ echo XX:${XX} // YY:${YY}
 # compare installed and required version
 if [ ${XX} -ge ${YY} ] ; then
    echo "we are good, we can run svn update"
+   if [ -e ${LOCKFILE} ] ; then
+      echo "updated is locked"
+      echo "you might want to remove ${LOCKFILE} and run this script again"
+      exit 1
+   else
+      touch ${LOCKFILE}
+      echo "run svn up now"
+      rm ${LOCKFILE}
+   fi
 else
    echo "we are too old, we should not run svn update"
 fi
