@@ -36,9 +36,11 @@ class Services_Edit_ListPluginHelper
 						'params' => [
 							'lon' => [
 								'type' => 'number',
+								'step' => '0.001',
 							],
 							'lat' => [
 								'type' => 'number',
+								'step' => '0.001',
 							],
 						],
 					],
