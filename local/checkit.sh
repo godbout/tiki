@@ -18,7 +18,7 @@ PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
 
 htpasswd -n -b ${USER} ${PASSWORD} | tee .htpasswd
 
-# public access to phpinfo is dangerous
+# public access to phpinfo is dangerous, thus we added htaccess
 mv phpinfo.php.bin phpinfo.php
 X=`curl -u ${CREDENTIALS} ${PHPINFOURL} | grep PHP | grep -i version | grep -i php | grep -o [0-9]\\\.[0-9]\\\.[0-9] | tail -n 1 | grep -o [0-9]\\\.[0-9]`
 mv phpinfo.php phpinfo.php.bin
@@ -27,6 +27,7 @@ Y=`grep PHP ${SVR} | cut -d, -f2`
 #echo $X > foobar.tmp
 
 # stripe decimal point, probably it won't work properly with versions like 5.10
+## compared to 7.2 it will be 510>72 supposed to be sufficient, which is wrong
 XX=`echo ${X} | sed -e 's/\.//g'`
 YY=`echo ${Y} | sed -e 's/\.//g'`
 
@@ -36,7 +37,7 @@ echo XX:${XX} // YY:${YY}
 
 # compare installed and required version
 if [ ${XX} -ge ${YY} ] ; then
-   echo "we are good, we can run a svn update"
+   echo "we are good, we can run svn update"
 else
    echo "we are too old, we should not run svn update"
 fi
