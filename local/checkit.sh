@@ -31,7 +31,7 @@ echo XX:${XX} // YY:${YY}
 
 # compare installed and required version
 if [ ${XX} -ge ${YY} ] ; then
-   echo "we are good"
+   echo "we are good, we can run a svn update"
 else
-   echo "we are too old"
+   echo "we are too old, we should not run svn update"
 fi
