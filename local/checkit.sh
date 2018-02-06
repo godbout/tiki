@@ -2,9 +2,13 @@
 
 # draft script to compare PHP versions before an update
 
+# adjust the Tikipath to your needs
 TIKIPATH="./"
+
+# keep this hardcoded
 SCRIPTPATH="${TIKIPATH}/local"
 
+# keep this hardcoded
 SVR="software-versions-required.txt"
 
 # uncomment for local test, quick and dirty
@@ -27,10 +31,12 @@ PHPINFOURL="https://nextbranding.tiki.org/local/phpversion.php"
 TMPPATH="/tmp"
 
 HTPASSWDFILE=${TMPPATH}/.htpasswd
+# some debug output
 #echo sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
 #echo
-#cat .htaccess
+#cat .htaccess # should be after modifying .htaccess
 #echo
+#
 sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
 htpasswd -n -b ${USER} ${PASSWORD} | tee ${HTPASSWDFILE}
 
