@@ -93,6 +93,7 @@ class PrefsDoc extends TWVersion
 	private $fileCount;
 	private $prefCount;
 	private $prefDefault;
+	private $prefDefaultFull;
 	private $prefDescription;
 	private $prefName;
 
@@ -213,7 +214,7 @@ class PrefsDoc extends TWVersion
 				$pref->warning = @$this->prevFilePrefs->$prefName->warning;
 			}
 			$this->setParams($pref);
-			$this->docTable .= $this->prefName . '~|~' . $this->prefDescription . '~|~' . $this->prefDefault . "\n";
+			$this->docTable .= $this->prefName . '~|~' . $this->prefDescription . '~|~<span title="'.$this->prefDefaultFull.'">' . $this->prefDefault . "</span>\n";
 		}
 		$this->prevFilePrefs = $FilePrefs->prefs;
 		$this->docTable .= "{FANCYTABLE}";
@@ -228,6 +229,8 @@ class PrefsDoc extends TWVersion
 	 */
 	private function setParams($param)
 	{
+		$this->prefDefaultFull = '';
+
 		// set default
 		if (! empty($param->options) && isset($param->default) && $param->default !== '') {
 			$this->prefDefault = $param->options->{$param->default};
@@ -250,6 +253,7 @@ class PrefsDoc extends TWVersion
 			$this->prefDefault = ucfirst($this->prefDefault);					// then caps the first letter.
 		} else {
 			if (strlen($this->prefDefault) > 30) {
+				$this->prefDefaultFull = $this->wikiConvert($this->prefDefault, true);
 				$this->prefDefault = substr($this->prefDefault, 0, 27) . '...';
 			}
 			$this->prefDefault = $this->wikiConvert($this->prefDefault, true);
