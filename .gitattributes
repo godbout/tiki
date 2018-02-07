@@ -5053,7 +5053,6 @@ lib/zoterolib.php -text
 /list-tracker_field_values_ajax.php -text
 lists/.htaccess -text
 lists/articles.php -text
-local/_htaccess -text
 local/checkit.sh -text
 local/phpinfo.php.bin -text
 local/phpversion.php.bin -text
