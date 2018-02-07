@@ -22,12 +22,12 @@ function prefs_directory_list()
 		],
 		'directory_validate_urls' => [
 			'name' => tra('Validate URLs'),
-			'description' => tra(''),
+			'description' => tra('Should Tiki check the URL?'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'directory_columns' => [
-			'name' => tra('Number of columns per page when listing directory categories'),
+			'name' => tra('Columns per page'),
 			'description' => tra('Number of columns per page when listing directory categories'),
 			'type' => 'list',
 			'units' => tra('columns'),
@@ -42,7 +42,7 @@ function prefs_directory_list()
 			],
 		'directory_links_per_page' => [
 			'name' => tra('Links per page'),
-			'description' => tra(''),
+			'description' => tra('How many links should be displayed per page.'),
 			'type' => 'text',
 			'units' => tra('links'),
 			'default' => 20,

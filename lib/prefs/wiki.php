@@ -190,6 +190,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_feature_copyrights' => [
 			'name' => tra('Wiki copyright'),
+			'description' => tra('Apply copyright management preferences to this feature.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_wiki',

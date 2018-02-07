@@ -109,7 +109,7 @@ function prefs_blog_list()
 		],
 		'blog_feature_copyrights' => [
 			'name' => tra('Blog post copyright'),
-			'description' => tra('Allows for addition of individual copyright notices on blog posts'),
+			'description' => tra('Apply copyright management preferences to this feature.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_blogs',

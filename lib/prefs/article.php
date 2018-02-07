@@ -146,7 +146,7 @@ function prefs_article_list()
 		],
 		'article_feature_copyrights' => [
 			'name' => tra('Article copyright'),
-			'description' => tra('Enables adding of copyright information for articles'),
+			'description' => tra('Apply copyright management preferences to this feature.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_articles',

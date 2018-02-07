@@ -100,12 +100,14 @@ function prefs_global_list($partial = false)
 		],
 		'wikiLicensePage' => [
 			'name' => tra('License page'),
+			'description' => tra('Name of the Wiki page where the licenses are stored'),
 			'type' => 'text',
 			'size' => '30',
 			'default' => '',
 		],
 		'wikiSubmitNotice' => [
 			'name' => tra('Submit notice'),
+			'description' => tra('Text to appear when content is being submitted'),
 			'type' => 'text',
 			'size' => '30',
 			'default' => '',

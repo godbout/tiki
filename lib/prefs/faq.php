@@ -40,7 +40,7 @@ function prefs_faq_list()
 		],
 		'faq_feature_copyrights' => [
 			'name' => tra('FAQ copyright'),
-			'description' => tra(''),
+			'description' => tra('Apply copyright management preferences to this feature.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_faqs',
