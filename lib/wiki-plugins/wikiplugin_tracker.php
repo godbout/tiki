@@ -165,8 +165,7 @@ function wikiplugin_tracker_info()
 						for the second from (otherwise the last given template will be used). Each template needs two files, one for the subject one for the body. The subject will be named
 						template_subject.tpl. All the templates must be in the %0templates/mail%1 directory. Example:
 						%0webmaster@my.com|a@my.com,b@my.com|templatea.tpl,templateb.tpl%1 (%0templates/mail/tracker_changed_notification.tpl%1
-						is the default from which you can get inspiration). Please note that you need to have an email
-						address in the normal "Copy activity to email" property in the Tracker notifications panel as well',
+						is the default from which you can get inspiration).',
 							'<code>',
 							'</code>'
 						),
@@ -1313,8 +1312,36 @@ function wikiplugin_tracker($data, $params)
 					}
 					$templateCounter = 0;
 					$subjectCounter = 0;
+
+					// Set all fields documented in https://doc.tiki.org/PluginTracker
 					$smarty->assign('mail_date', $tikilib->now);
 					$smarty->assign('mail_itemId', $rid);
+					$smarty->assign('mail_user', $user);
+					$smarty->assign('mail_item_desc', $trklib->get_isMain_value($trackerId, $rid));
+					$smarty->assign('mail_trackerId', $trackerId);
+					$smarty->assign('mail_trackerName', $tracker['name']);
+					$foo = parse_url($_SERVER["REQUEST_URI"]);
+					$mail_machine = $trklib->httpPrefix(true) . $foo["path"];
+					$smarty->assign('mail_machine', $mail_machine);
+					$parts = explode('/', $foo['path']);
+					if (count($parts) > 1) {
+						unset($parts[count($parts) - 1]);
+					}
+					$mail_machine_raw = $trklib->httpPrefix(true) . implode('/', $parts);
+					$smarty->assign('mail_machine_raw', $mail_machine_raw);
+					if (! isset($_SERVER["SERVER_NAME"])) {
+						$server_name = $_SERVER["SERVER_NAME"];
+					} else {
+						$server_name = $_SERVER["HTTP_HOST"];
+					}
+					$smarty->assign('server_name', $server_name);
+					if ( empty($status) ) {
+						$mail_status = $item_info['status'];
+					} else {
+						$mail_status = $status;
+					}
+					$smarty->assign('status', $mail_status);
+
 					foreach ($emailOptions[1] as $ieo => $ueos) {
 						$mailDir = strpos($tplSubject[$subjectCounter], 'wiki:') !== 0 ? 'mail/' : '';
 						@$mail_data = $smarty->fetch($mailDir . $tplSubject[$subjectCounter]);
