@@ -5053,7 +5053,6 @@ lib/zoterolib.php -text
 /list-tracker_field_values_ajax.php -text
 lists/.htaccess -text
 lists/articles.php -text
-local/checkit.sh -text
 /messu-archive.php -text
 /messu-broadcast.php -text
 /messu-compose.php -text
