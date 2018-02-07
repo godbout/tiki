@@ -8,6 +8,7 @@
 
 // Warning: this script does not check the required and available PHP versions
 // before doing an update. That might result in a broken Tiki installation.
+// TODO Todo todo: fix this with ideas from svnup.sh
 
 namespace Tiki\Command;
 

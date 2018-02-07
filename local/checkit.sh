@@ -2,6 +2,9 @@
 
 # draft script to compare PHP versions before an update
 
+# TODO Todo todo: merge this script with doc/devtools/svnup.sh
+#                 and look at doc/devtools/svnup.php
+
 # adjust the Tikipath to your needs
 TIKIPATH="./"
 

@@ -40,6 +40,9 @@ rm -f last.log
 # There are some version checks in the (quick and dirty) script
 # local/checkit.sh
 # which compares PHP installed version with PHP required version.
+#
+# TODO Todo todo: merge local/checkit.sh with this script
+#
 svn update > last.log
 
 # update composer and file perms
