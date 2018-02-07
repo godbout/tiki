@@ -1813,6 +1813,21 @@ function wikiplugin_tracker($data, $params)
 
 		$datepicker = false;
 
+		// https://doc.tiki.org/Pretty+Tracker states that also internal trackerfield names can be used
+		/*
+		{$f_created}: created date
+		{$f_status_input}: status input field (Value already set above)
+		{$f_status}: status (output)
+		{$f_itemId}: the item id
+		{$f_lastmodif}: last modified date (this will display unix date, for human readable date look below)
+		(In Tiki 8 onwards) {$itemoff}: the iteration number of each item
+		{$tr_offset}: the offset of the item, i.e. this is the nth item of the total number of x items
+		*/
+		$smarty->assign('f_created',$item_info['created']);
+		$smarty->assign('f_status',$item_info['status']);
+		$smarty->assign('f_itemId',$item_info['itemId']);
+		$smarty->assign('f_lastmodif',$item_info['lastModif']);
+
 		foreach ($flds['data'] as $f) {
 			if (! in_array($f['fieldId'], $auto_fieldId) && in_array($f['fieldId'], $hidden_fieldId)) {
 				// Show in hidden form
