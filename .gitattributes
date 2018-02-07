@@ -94,6 +94,10 @@ doc/devtools/csscheck.sh -text
 doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
 doc/devtools/diffsql.sh -text
+doc/devtools/etc/update/_htaccess -text
+doc/devtools/etc/update/phpinfo.php.bin -text
+doc/devtools/etc/update/phpversion.php.bin -text
+doc/devtools/etc/update/software-versions-required.txt -text
 doc/devtools/experimental/index.php -text
 doc/devtools/experimental/unzip/index.php -text
 doc/devtools/experimental/unzip/unzipper.php -text
