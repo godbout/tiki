@@ -6,6 +6,9 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+// Warning: this script does not check the required and available PHP versions
+// before doing an update. That might result in a broken Tiki installation.
+
 namespace Tiki\Command;
 
 use Symfony\Component\Console\Command\Command;
