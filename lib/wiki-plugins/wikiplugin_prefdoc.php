@@ -58,7 +58,7 @@ function wikiplugin_prefdoc($data, $params)
 		return $Doc->genPrefCodes();
 	}
 
-	if (! $Doc->genPrefHistory($params['tab'], $params['img'])) {
+	if (! $Doc->genPrefHistory($params['tab'], @$params['img'])) {
 		return $Doc->error;
 	}
 	return $Doc->error . $Doc->docTable;
@@ -93,6 +93,7 @@ class PrefsDoc extends TWVersion
 	private $fileCount;
 	private $prefCount;
 	private $prefDefault;
+	private $prefDefaultFull;
 	private $prefDescription;
 	private $prefName;
 
@@ -126,7 +127,7 @@ class PrefsDoc extends TWVersion
 		$images = explode('|', $images);
 		foreach ($images as $key => $image) {
 			$image = explode(':', $image);
-			$imageArray[$image[0]][0] = $image[1];
+			$imageArray[$image[0]][0] = @$image[1];
 			$imageArray[$image[0]][1] = $image[0];
 		}
 		unset($images);
@@ -135,7 +136,7 @@ class PrefsDoc extends TWVersion
 		foreach ($versions as $version) {
 			$count = $version;
 			while ($version - $count < 5) {         // If the image is older than 5 tiki versions, dont display it.
-				if ($imageArray[$count][0]) {
+				if (@$imageArray[$count][0]) {
 					$this->docTable .= '{img fileId="' . $imageArray[$count][0] . '" thumb="y" rel="box[g]" width="300" desc="Tiki ' . $imageArray[$count][1] . ' Preferences Image" alt="' . $tabName . '" align="center"}';
 					break;
 				}
@@ -194,26 +195,26 @@ class PrefsDoc extends TWVersion
 			$this->prevFilePrefs;
 
 			// carry over missing information filled out in a newer version
-			if (! $pref->description) {
-				$pref->description = $this->prevFilePrefs->$prefName->description;
+			if (empty($pref->description)) {
+				$pref->description = @$this->prevFilePrefs->$prefName->description;
 			}
-			if (! $pref->detail) {
-				$pref->help = $this->prevFilePrefs->$prefName->detail;
+			if (empty($pref->detail)) {
+				$pref->detail = @$this->prevFilePrefs->$prefName->detail;
 			}
-			if (! $pref->help) {
-				$pref->help = $this->prevFilePrefs->$prefName->help;
+			if (empty($pref->help)) {
+				$pref->help = @$this->prevFilePrefs->$prefName->help;
 			}
-			if (! $pref->hint) {
-				$pref->hint = $this->prevFilePrefs->$prefName->hint;
+			if (empty($pref->hint)) {
+				$pref->hint = @$this->prevFilePrefs->$prefName->hint;
 			}
-			if (! $pref->shorthint) {
-				$pref->shorthint = $this->prevFilePrefs->$prefName->shorthint;
+			if (empty($pref->shorthint)) {
+				$pref->shorthint = @$this->prevFilePrefs->$prefName->shorthint;
 			}
-			if (! $pref->warning) {
-				$pref->warning = $this->prevFilePrefs->$prefName->warning;
+			if (empty($pref->warning)) {
+				$pref->warning = @$this->prevFilePrefs->$prefName->warning;
 			}
 			$this->setParams($pref);
-			$this->docTable .= $this->prefName . '~|~' . $this->prefDescription . '~|~' . $this->prefDefault . "\n";
+			$this->docTable .= $this->prefName . '~|~' . $this->prefDescription . '~|~<span title="'.$this->prefDefaultFull.'">' . $this->prefDefault . "</span>\n";
 		}
 		$this->prevFilePrefs = $FilePrefs->prefs;
 		$this->docTable .= "{FANCYTABLE}";
@@ -228,10 +229,11 @@ class PrefsDoc extends TWVersion
 	 */
 	private function setParams($param)
 	{
+		$this->prefDefaultFull = '';
+
 		// set default
 		if (! empty($param->options) && isset($param->default) && $param->default !== '') {
-			$param->options = (array)$param->options;
-			$this->prefDefault = $param->options[$param->default];
+			$this->prefDefault = $param->options->{$param->default};
 		} elseif ($param->default === 'n') {
 			$this->prefDefault = 'Disabled';
 		} elseif ($param->default === 'y') {
@@ -251,6 +253,7 @@ class PrefsDoc extends TWVersion
 			$this->prefDefault = ucfirst($this->prefDefault);					// then caps the first letter.
 		} else {
 			if (strlen($this->prefDefault) > 30) {
+				$this->prefDefaultFull = $this->wikiConvert($this->prefDefault, true);
 				$this->prefDefault = substr($this->prefDefault, 0, 27) . '...';
 			}
 			$this->prefDefault = $this->wikiConvert($this->prefDefault, true);

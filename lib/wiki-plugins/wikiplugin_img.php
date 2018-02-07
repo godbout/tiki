@@ -147,7 +147,7 @@ function wikiplugin_img_info()
 				'required' => false,
 				'name' => tra('Image Height'),
 				'description' => tr('Height in pixels or percent. Syntax: %0100%1 or %0100px%1 means 100 pixels;
-					%050%%1 means 50 percent.', '<code>', '</code>'),
+					%050%%1 means 50 percent. Percent applies when Image Source is set to file galleries images only.', '<code>', '</code>'),
 				'since' => '3.0',
 				'doctype' => 'size',
 				'filter' => 'text',
@@ -157,7 +157,7 @@ function wikiplugin_img_info()
 				'required' => false,
 				'name' => tra('Image Width'),
 				'description' => tr('Width in pixels or percent. Syntax: %0100%1 or %0100px%1 means 100 pixels;
-					%050%%1 means 50 percent.', '<code>', '</code>'),
+					%050%%1 means 50 percent. Percent applies when Image Source is set to file galleries images only.', '<code>', '</code>'),
 				'since' => '3.0',
 				'doctype' => 'size',
 				'filter' => 'text',
@@ -204,6 +204,7 @@ function wikiplugin_img_info()
 				'doctype' => 'size',
 				'filter' => 'digits',
 				'default' => '',
+				'parentparam' => ['name' => 'type', 'value' => 'fileId'],
 			],
 			'desc' => [
 				'required' => false,

@@ -114,7 +114,8 @@ function prefs_feature_list($partial = false)
 			'tags' => ['experimental'],
 		],
 		'feature_image_galleries_comments' => [
-			'name' => tra('Comments'),
+			'name' => tra('Image Gallery Comments'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -1252,7 +1253,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_poll_comments' => [
 			'name' => tra('Comments for polls'),
-			'description' => tra('Permit commenting on polls'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_polls',
@@ -1263,7 +1264,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_faq_comments' => [
 			'name' => tra('Comments for FAQs'),
-			'description' => tra('Permit commenting on FAQs'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_faqs',
@@ -1393,7 +1394,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_article_comments' => [
 			'name' => tra('Comments on articles'),
-			'description' => tra('Users with permission can post and reply to article comments.'),
+			'description' => tra('Users with permission can post or reply to comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_articles',
@@ -1576,7 +1577,7 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_blogposts_comments' => [
-			'name' => tra('Comments on blog posts'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_blogs',
@@ -1602,7 +1603,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_file_galleries_comments' => [
 			'name' => tra('File gallery comments'),
-			'description' => tra('Users can post comments on file galleries'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'help' => 'Comments',
 			'default' => 'n',
@@ -2106,7 +2107,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_comments' => [
 			'name' => tra('Comments below wiki pages'),
-			'description' => tra('Allow users (with permission) to post threaded comments to a page.'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'help' => 'Comments',
 			'dependencies' => [
@@ -2397,8 +2398,9 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_wiki_paragraph_formatting_add_br' => [
-			'name' => tra('...but still create line breaks within paragraphs'),
+			'name' => tra('Create line breaks within paragraphs'),
 			'type' => 'flag',
+			'description' => tra('When Wiki paragraph formatting is enabled, this option creates line breaks within paragraphs.'),
 			'default' => 'y',
 		],
 		'feature_wiki_monosp' => [
