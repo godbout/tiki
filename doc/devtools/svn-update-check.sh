@@ -69,6 +69,7 @@ CREDENTIALS="${USER}:${PASSWORD}"
 # adjust this to your Tiki installation
 #PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
 PHPINFOURL="https://nextbranding.tiki.org/local/phpversion.php"
+#PHPINFOURL="https://nextbranding.tiki.org/doc/devtools/etc/update/phpversion.php"
 
 # choose a temporary path to put the passwordfile in, it will be deleted after usage
 TMPPATH="/tmp"
@@ -82,6 +83,7 @@ HTPASSWDFILE=i"${TMPPATH}/.htpasswd"
 #cat .htaccess # should be after modifying .htaccess
 #echo
 #
+cd ${SVR_PATH}
 sed -e "s/TEMPLATEPATH/\\${TMPPATH}/g" < _htaccess > .htaccess
 htpasswd -n -b ${USER} ${PASSWORD} | tee ${HTPASSWDFILE}
 
@@ -100,6 +102,8 @@ rm ${HTPASSWDFILE}
 
 #echo $X > foobar.tmp
 
+cd -
+
 Y=`grep PHP ${SVR} | cut -d, -f2`
 
 # stripe decimal point, probably it won't work properly with versions like 5.10
@@ -110,6 +114,8 @@ YY=`echo ${Y} | sed -e 's/\.//g'`
 # just some debug info
 echo X:${X} // Y:${Y}
 echo XX:${XX} // YY:${YY}
+
+#exit 1
 
 # compare installed and required version
 if [ ${XX} -ge ${YY} ] ; then
