@@ -1341,6 +1341,8 @@ function wikiplugin_img($data, $params)
 			$link = 'tiki-browse_image.php?imageId=' . $imgdata['id'];
 		} elseif ($javaset == 'true') {
 			$link = 'javascript:void(0)';
+			$fwidth = empty($fwidth) ? '' : $fwidth;
+			$fheight = empty($fheight) ? '' : $fheight;
 			$popup_params = [ 'text' => $data, 'width' => $fwidth, 'height' => $fheight, 'background' => $browse_full_image];
 			if ($imgdata['thumb'] == 'mousesticky') {
 				$popup_params['sticky'] = true;
