@@ -2378,8 +2378,9 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_wiki_paragraph_formatting_add_br' => [
-			'name' => tra('...but still create line breaks within paragraphs'),
+			'name' => tra('Create line breaks within paragraphs'),
 			'type' => 'flag',
+			'description' => tra('When Wiki paragraph formatting is enabled, this option creates line breaks within paragraphs.'),
 			'default' => 'y',
 		],
 		'feature_wiki_monosp' => [
