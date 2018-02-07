@@ -334,11 +334,6 @@ class Installer extends TikiDb_Bridge
 	 */
 	function buildPatchList()
 	{
-		// Optimization
-		if (! is_null(Patch::$list)) {
-			return;
-		}
-
 		$patches = [];
 		foreach (['sql', 'yml', 'php' /* "php" for standalone PHP scripts */] as $extension) {
 			$files = glob(dirname(__FILE__) . '/schema/*_*.' . $extension); // glob() does not portably support brace expansion, hence the loop
