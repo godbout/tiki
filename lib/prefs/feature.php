@@ -2911,25 +2911,31 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_intertiki_import_preferences' => [
 			'name' => tra('Import user preferences'),
+			'description' => tra('Client Tiki will copy the user preferences from the master server.'),
 			'type' => 'flag',
+			'warning' => tra('This will overwrite local user preferences every time the user logs in.'),
 			'default' => 'n',
 		],
 		'feature_intertiki_import_groups' => [
 			'name' => tra('Import user groups'),
+			'description' => tra('Groups the user belongs to on the master server will be imported (along with their security definitions).'),
 			'type' => 'flag',
+			'warning' => tra('This will overwrite local groups every time a user logs in.'),
 			'default' => 'n',
 		],
 		'feature_intertiki_imported_groups' => [
 			'name' => tra('Limit group import'),
-			'hint' => tra('Comma-separated list of imported groups. Leave empty to avoid limitation.'),
+			'hint' => tra('Comma-separated list of case-sensitive imported groups. Leave empty to avoid limitation.'),
 			'type' => 'text',
 			'filter' => 'text',
+			'description' => tra('This list will limit the group import feature to only those groups listed here.'),
 			'default' => '',
 		],
 		'feature_intertiki_sharedcookie' => [
 			'name' => tra('Intertiki shared cookie'),
-			'description' => tra('When enabled a user who logs into or out of either the client or master is automatically logged into or out of all other sites. The remember me login feature must be on.'),
+			'description' => tra('When enabled a user who logs into or out of either the client or master is automatically logged into or out of all other sites.'),
 			'type' => 'flag',
+			'hint' => 'The remember me login feature must be on.',
 			'default' => 'n',
 		],
 		'feature_intertiki_server' => [
