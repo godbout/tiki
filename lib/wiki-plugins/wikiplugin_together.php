@@ -41,7 +41,7 @@ function wikiplugin_together($data, $params)
 	TikiLib::lib('header')->add_jsfile('https://togetherjs.com/togetherjs-min.js', true)
 		->add_jq_onready('
 TogetherJS.on("ready", function () {
-	$(".page_actions a[href^=\'tiki-editpage.php?page=\'], #page-bar a[href^=\'tiki-editpage.php?page=\']").each(function () {
+	$(".page_actions a[href*=\'tiki-editpage.php?page=\'], #page-bar a[href*=\'tiki-editpage.php?page=\']").each(function () {
 		var href = $(this).attr("href");
 		$(this).attr("href", href + "&conflictoverride=y");	// add the conflictoverride param so the second user doesnt get the usual warning
 	});
