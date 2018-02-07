@@ -1821,7 +1821,7 @@ function wikiplugin_tracker($data, $params)
 		{$f_itemId}: the item id
 		{$f_lastmodif}: last modified date (this will display unix date, for human readable date look below)
 		(In Tiki 8 onwards) {$itemoff}: the iteration number of each item
-		{$tr_offset}: the offset of the item, i.e. this is the nth item of the total number of x items
+		{$tr_offset}: the offset of the item, i.e. this is the nth item of the total number of x items (TODO)
 		*/
 		$smarty->assign('f_created',$item_info['created']);
 		$smarty->assign('f_status',$item_info['status']);
