@@ -25,9 +25,6 @@
 
 		{preference name=sitead_publish}
 		{preference name=feature_sitead}
-		<div class="adminoptionbox" id="feature_sitead_childcontainer">
-			{preference name=sitead_publish}
-		</div>
 	</fieldset>
 	{include file='admin/include_apply_bottom.tpl'}
 </form>
