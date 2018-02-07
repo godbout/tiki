@@ -2,14 +2,43 @@
 
 # draft script to compare PHP versions before an update
 
+# Usage:
+#
+# this script is supposed to be invoked by a full absolute path including filename,
+# e.g.: sh /foo/bar/fizbuz.sh
+# the environment detection for Tiki root will fail if used another way
+#
+# Suggestion:
+# /${TIKIROOT}/doc/devtools/svnup.sh
+
+PATH="${PATH}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
 # TODO Todo todo: merge this script with doc/devtools/svnup.sh
 #                 and look at doc/devtools/svnup.php
 
+THIS_PWD=`pwd`						# this doesn't mean anything because this script can be started by cronjob or interactive
+THIS_DIRNAME=`dirname $0`				# this is the important information when run by cronjob
+THIS_BASENAME=`basename $0`				# this is additional information, JFTR
+#MYPATHLOG=/opt/tiki.repo/trunk/local/my.log		# debug nonsense
+#echo >> ${MYPATHLOG}					# debug nonsense
+#echo THIS_PWD ${THIS_PWD} >> ${MYPATHLOG}		# debug nonsense
+#echo THIS_DIRNAME ${THIS_DIRNAME} >> ${MYPATHLOG}	# debug nonsense
+#echo THIS_BASENAME ${THIS_BASENAME} >> ${MYPATHLOG}	# debug nonsense
+cd ${THIS_DIRNAME}					# now we are in a defined environment
+SCRIPT_DIRNAME=`pwd`
+cd ../../
+TIKI_ROOT=`pwd`
+#echo new PWD : `pwd` >> ${MYPATHLOG}			# debug nonsense
+#echo --- FIN --- >> ${MYPATHLOG}			# debug nonsense
+#exit 1							# debug nonsense
+
 # adjust the Tikipath to your needs
 TIKIPATH="./"
+TIKIPATH=${TIKI_ROOT}
 
 # keep this hardcoded
 SCRIPTPATH="${TIKIPATH}/local"
+#SCRIPTPATH="${TIKIPATH}/doc/devtools"
 
 # keep this hardcoded
 SVR="software-versions-required.txt"
