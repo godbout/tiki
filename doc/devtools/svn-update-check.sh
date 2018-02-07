@@ -17,7 +17,13 @@ PATH="${PATH}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 # TODO Todo todo: merge this script with doc/devtools/svnup.sh
 #                 and look at doc/devtools/svnup.php
 
-THIS_REL_PATH="doc/devtools"
+THIS_REL_PATH="doc/devtools"				# relative to TIKI_ROOT, which needn't be webservers document root
+
+LOG_PATH="var/log/update"
+LOG_FILENAME="update.log"
+LOG_FILE="${LOG_PATH}/${LOG_FILENAME}"
+
+LOCK_PATH="var/lock"					# not used yet
 
 THIS_PWD=`pwd`						# this doesn't mean anything because this script can be started by cronjob or interactive
 THIS_DIRNAME=`dirname $0`				# this is the important information when run by cronjob
@@ -27,17 +33,21 @@ THIS_BASENAME=`basename $0`				# this is additional information, JFTR
 #echo THIS_PWD ${THIS_PWD} >> ${MYPATHLOG}		# debug nonsense
 #echo THIS_DIRNAME ${THIS_DIRNAME} >> ${MYPATHLOG}	# debug nonsense
 #echo THIS_BASENAME ${THIS_BASENAME} >> ${MYPATHLOG}	# debug nonsense
+
 cd ${THIS_DIRNAME}					# now we are in a defined environment
-SCRIPT_DIRNAME=`pwd`
+SCRIPT_DIRNAME=`pwd`					# is this stupid nonsense?
+
+# very important: define the Tiki root environment variable
 cd ../../						# because we know we are in doc/devtools/ -> 2x up
 TIKI_ROOT=`pwd`
+
 #echo new PWD : `pwd` >> ${MYPATHLOG}			# debug nonsense
 #echo --- FIN --- >> ${MYPATHLOG}			# debug nonsense
 #exit 1							# debug nonsense
 
 # adjust the Tikipath to your needs
-TIKIPATH="./"
-TIKIPATH=${TIKI_ROOT}
+#TIKIPATH="./"						# debug nonsense
+TIKIPATH=${TIKI_ROOT}					# todo: REF , was old variable name convention
 
 # keep this hardcoded
 #SCRIPTPATH="${TIKIPATH}/local"
@@ -45,16 +55,17 @@ TIKIPATH=${TIKI_ROOT}
 SCRIPTPATH="${TIKIPATH}/${THIS_REL_PATH}"
 
 # keep this hardcoded
+# but use relative path for "svn up ..."
 cd ${SCRIPTPATH}
 #SVR_PATH="${TIKIPATH}/${THIS_REL_PATH}/etc/update"
 SVR_PATH="etc/update"
 SVR_FILE="software-versions-required.txt"
 #SVR=${SVR_PATH}/${SVR_FILE}
 SVR=${SVR_PATH}/${SVR_FILE}
-
+#
 # uncomment for local test, quick and dirty
 #SCRIPTPATH="./"
-
+#
 # before doing a Tiki update check the required software versions
 cd ${SCRIPTPATH}
 svn up ${SVR}
