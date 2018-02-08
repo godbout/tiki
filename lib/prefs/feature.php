@@ -1304,7 +1304,16 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'perspective' => false,
 			'dependencies' => ['feature_sefurl'],
-			'default' =>'n',
+			'default' => 'n',
+		],
+		'feature_sefurl_title_trackeritem_max_size' => [
+			'name' => tra('Max size of tracker item title in the search engine friendly URL'),
+			'description' => tra('Limit tracker item title in the number of character defined'),
+			'type' => 'text',
+			'filter' => 'digits',
+			'perspective' => false,
+			'dependencies' => ['feature_sefurl', 'feature_sefurl_title_trackeritem'],
+			'default' => '200',
 		],
 		'feature_sefurl_tracker_prefixalias' => [
 			'name' => tra('Rewrite tiki-view_tracker.php?itemId=yyy to Prefixyyy page'),
