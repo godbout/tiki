@@ -52,10 +52,24 @@
 	<arg name="colors"/>
 	<arg name="extensions" value="php"/>
 
+	<!-- Check for compatibility for PHP >= 5.6 -->
+	<config name="installed_paths" value="vendor_bundled/vendor/wimg/php-compatibility" />
+	<config name="testVersion" value="5.6-"/>
+	<rule ref="PHPCompatibility"/>
+	<rule ref="PHPCompatibility.PHP.RemovedExtensions">
+		<exclude-pattern>*/tiki-check.php</exclude-pattern>
+	</rule>
+
 	<!-- Tiki uses the Zend Coding Standards
 		reference: https://github.com/zendframework/zend-coding-standard/blob/master/ruleset.xml -->
 	<rule ref="PSR2"/>
-	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax">
+		<exclude-pattern>*/tiki-check.php</exclude-pattern>
+	</rule>
+	<!-- latest tiki-check.php may be used to test servers with a old version of php -->
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax">
+		<include-pattern>*/tiki-check.php</include-pattern>
+	</rule>
 	<rule ref="Generic.Formatting.SpaceAfterNot"/>
 	<rule ref="Squiz.WhiteSpace.OperatorSpacing">
 		<properties>
