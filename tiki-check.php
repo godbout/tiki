@@ -21,16 +21,16 @@ isset($_REQUEST['nagios']) ? $nagios = true : $nagios = false;
 file_exists('tiki-check.php.lock') ? $locked = true : $locked = false;
 $font = 'lib/captcha/DejaVuSansMono.ttf';
 
-$inputConfiguration = [
-	[
-		'staticKeyFilters' => [
+$inputConfiguration = array(
+	array(
+		'staticKeyFilters' => array(
 			'dbhost' => 'text',
 			'dbuser' => 'text',
 			'dbpass' => 'text',
 			'email_test_to' => 'email',
-		],
-	],
-];
+		),
+	),
+);
 
 // reflector for SefURL check
 if (isset($_REQUEST['tiki-check-ping'])) {
@@ -106,66 +106,66 @@ $d = ini_get('display_errors');
 $l = ini_get('log_errors');
 if ($l) {
 	if (! $d) {
-		$php_properties['Error logging'] = [
+		$php_properties['Error logging'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Enabled',
 		'message' => tra('Errors will be logged, since log_errors is enabled. Also, display_errors is disabled. This is good practice for a production site, to log the errors instead of displaying them.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	} else {
-		$php_properties['Error logging'] = [
+		$php_properties['Error logging'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Enabled',
 		'message' => tra('Errors will be logged, since log_errors is enabled, but display_errors is also enabled. Good practice, especially for a production site, is to log all errors instead of displaying them.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	}
 } else {
-	$php_properties['Error logging'] = [
+	$php_properties['Error logging'] = array(
 	'fitness' => tra('info'),
 	'setting' => 'Full',
 	'message' => tra('Errors will not be logged, since log_errors is not enabled. Good practice, especially for a production site, is to log all errors.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 if ($e == 0) {
 	if ($d != 1) {
-		$php_properties['Error reporting'] = [
+		$php_properties['Error reporting'] = array(
 			'fitness' => tra('info'),
 			'setting' => 'Disabled',
 			'message' => tra('Errors will not be reported, because error_reporting and display_errors are both turned off. This may be appropriate for a production site but, if any problems occur, enable these in php.ini to get more information.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	} else {
-		$php_properties['Error reporting'] = [
+		$php_properties['Error reporting'] = array(
 			'fitness' => tra('info'),
 			'setting' => 'Disabled',
 			'message' => tra('No errors will be reported, although display_errors is On, because the error_reporting level is set to 0. This may be appropriate for a production site but, in if any problems occur, raise the value in php.ini to get more information.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	}
 } elseif ($e > 0 && $e < 32767) {
 	if ($d != 1) {
-		$php_properties['Error reporting'] = [
+		$php_properties['Error reporting'] = array(
 			'fitness' => tra('info'),
 			'setting' => 'Disabled',
 			'message' => tra('No errors will be reported, because display_errors is turned off. This may be appropriate for a production site but, in any problems occur, enable it in php.ini to get more information. The error_reporting level is reasonable at ' . $e . '.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	} else {
-		$php_properties['Error reporting'] = [
+		$php_properties['Error reporting'] = array(
 			'fitness' => tra('info'),
 			'setting' => 'Partly',
 			'message' => tra('Not all errors will be reported as the error_reporting level is at ' . $e . '. ' . 'This is not necessarily a bad thing (and it may be appropriate for a production site) as critical errors will be reported, but sometimes it may be useful to get more information. Check the error_reporting level in php.ini if any problems are occurring.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	}
 } else {
 	if ($d != 1) {
-		$php_properties['Error reporting'] = [
+		$php_properties['Error reporting'] = array(
 			'fitness' => tra('info'),
 			'setting' => 'Disabled',
 			'message' => tra('No errors will be reported although the error_reporting level is all the way up at ' . $e . ', because display_errors is off. This may be appropriate for a production site but, in case of problems, enable it in php.ini to get more information.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	} else {
-		$php_properties['Error reporting'] = [
+		$php_properties['Error reporting'] = array(
 			'fitness' => tra('info'),
 			'setting' => 'Full',
 			'message' => tra('All errors will be reported as the error_reporting level is all the way up at ' . $e . ' and display_errors is on. This is good because, in case of problems, the error reports usually contain useful information.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	}
 }
 
@@ -175,48 +175,48 @@ error_reporting(-1);
 
 // Check if ini_set works
 if (function_exists('ini_set')) {
-	$php_properties['ini_set'] = [
+	$php_properties['ini_set'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Enabled',
 		'message' => tra('ini_set is used in some places to accommodate special needs of some Tiki features.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 	// As ini_set is available, use it for PDO error reporting
 	ini_set('display_errors', '1');
 } else {
-	$php_properties['ini_set'] = [
+	$php_properties['ini_set'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'Disabled',
 		'message' => tra('ini_set is used in some places to accommodate special needs of some Tiki features. Check disable_functions in your php.ini.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // First things first
 // If we don't have a DB-connection, some tests don't run
 $s = extension_loaded('pdo_mysql');
 if ($s) {
-	$php_properties['DB Driver'] = [
+	$php_properties['DB Driver'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'PDO',
 		'message' => tra('The PDO extension is the suggested database driver/abstraction layer.')
-	];
+	);
 } elseif ($s = extension_loaded('mysqli')) {
-	$php_properties['DB Driver'] = [
+	$php_properties['DB Driver'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'MySQLi',
 		'message' => tra('The recommended PDO database driver/abstraction layer cannot be found. The MySQLi driver is available, though, so the database connection will fall back to the AdoDB abstraction layer that is bundled with Tiki.')
-	];
+	);
 } elseif (extension_loaded('mysql')) {
-	$php_properties['DB Driver'] = [
+	$php_properties['DB Driver'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'MySQL',
 		'message' => tra('The recommended PDO database driver/abstraction layer cannot be found. The MySQL driver is available, though, so the database connection will fall back to the AdoDB abstraction layer that is bundled with Tiki.')
-	];
+	);
 } else {
-	$php_properties['DB Driver'] = [
+	$php_properties['DB Driver'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('None of the supported database drivers (PDO/mysqli/mysql) is loaded. This prevents Tiki from functioning.')
-	];
+	);
 }
 
 // Now connect to the DB and make all our connectivity methods work the same
@@ -267,7 +267,7 @@ DBC;
 					function query($query, $connection)
 					{
 						$result = $connection->query($query);
-						$return = [];
+						$return = array();
 						while ($row = $result->fetch_assoc()) {
 							$return[] = $row;
 						}
@@ -287,7 +287,7 @@ DBC;
 					function query($query, $connection = '')
 					{
 						$result = mysql_query($query);
-						$return = [];
+						$return = array();
 						while ($row = mysql_fetch_array($result)) {
 							$return[] = $row;
 						}
@@ -308,7 +308,7 @@ DBC;
 	{
 		global $tikilib;
 		$result = $tikilib->query($query);
-		$return = [];
+		$return = array();
 		while ($row = $result->fetchRow()) {
 			$return[] = $row;
 		}
@@ -317,16 +317,16 @@ DBC;
 }
 
 // Basic Server environment
-$server_information['Operating System'] = [
+$server_information['Operating System'] = array(
 	'value' => PHP_OS,
-];
+);
 
 if (PHP_OS == 'Linux' && function_exists('exec')) {
 	exec('lsb_release -d', $output, $retval);
 	if ($retval == 0) {
-		$server_information['Release'] = [
+		$server_information['Release'] = array(
 			'value' => str_replace('Description:', '', $output[0])
-		];
+		);
 		# Check for FreeType fails without a font, i.e. standalone mode
 		# Using a URL as font source doesn't work on all PHP installs
 		# So let's try to gracefully fall back to some locally installed font at least on Linux
@@ -334,155 +334,155 @@ if (PHP_OS == 'Linux' && function_exists('exec')) {
 			$font = exec('find /usr/share/fonts/ -type f -name "*.ttf" | head -n 1', $output);
 		}
 	} else {
-		$server_information['Release'] = [
+		$server_information['Release'] = array(
 			'value' => tra('N/A')
-		];
+		);
 	}
 }
 
-$server_information['Web Server'] = [
+$server_information['Web Server'] = array(
 	'value' => $_SERVER['SERVER_SOFTWARE']
-];
+);
 
 $server_information['Server Signature']['value'] = ! empty($_SERVER['SERVER_SIGNATURE']) ? $_SERVER['SERVER_SIGNATURE'] : 'off';
 
 // Free disk space
 if (function_exists('disk_free_space')) {
 	$bytes = @disk_free_space('.');	// this can fail on 32 bit systems with lots of disc space so suppress the possible warning
-	$si_prefix = [ 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' ];
+	$si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
 	$base = 1024;
 	$class = min((int) log($bytes, $base), count($si_prefix) - 1);
 	$free_space = sprintf('%1.2f', $bytes / pow($base, $class)) . ' ' . $si_prefix[$class];
 	if ($bytes === false) {
-		$server_properties['Disk Space'] = [
+		$server_properties['Disk Space'] = array(
 			'fitness' => 'ugly',
 			'setting' => tra('Unable to detect'),
 			'message' => tra('Cannot determine the size of this disk drive.')
-		];
+		);
 	} elseif ($bytes < 200 * 1024 * 1024) {
-		$server_properties['Disk Space'] = [
+		$server_properties['Disk Space'] = array(
 			'fitness' => 'bad',
 			'setting' => $free_space,
 			'message' => tra('Less than 200MB of free disk space is available. Tiki will not fit in this amount of disk space.')
-		];
+		);
 	} elseif ($bytes < 250 * 1024 * 1024) {
-		$server_properties['Disk Space'] = [
+		$server_properties['Disk Space'] = array(
 			'fitness' => 'ugly',
 			'setting' => $free_space,
 			'message' => tra('Less than 250MB of free disk space is available. This would be quite tight for a Tiki installation. Tiki needs disk space for compiled templates and uploaded files.') . ' ' . tra('When the disk space is filled, users, including administrators, will not be able to log in to Tiki.') . ' ' . tra('This test cannot reliably check for quotas, so be warned that if this server makes use of them, there might be less disk space available than reported.')
-		];
+		);
 	} else {
-		$server_properties['Disk Space'] = [
+		$server_properties['Disk Space'] = array(
 			'fitness' => 'good',
 			'setting' => $free_space,
 			'message' => tra('More than 251MB of free disk space is available. Tiki will run smoothly, but there may be issues when the site grows (because of file uploads, for example).') . ' ' . tra('When the disk space is filled, users, including administrators, will not be able to log in to Tiki.') . ' ' . tra('This test cannot reliably check for quotas, so be warned that if this server makes use of them, there might be less disk space available than reported.')
-		];
+		);
 	}
 } else {
-		$server_properties['Disk Space'] = [
+		$server_properties['Disk Space'] = array(
 			'fitness' => 'N/A',
 			'setting' => 'N/A',
 			'message' => tra('The PHP function disk_free_space is not available on your server, so the amount of available disk space can\'t be checked for.')
-		];
+		);
 }
 
 // PHP Version
 if (version_compare(PHP_VERSION, '5.1.0', '<')) {
-	$php_properties['PHP version'] = [
+	$php_properties['PHP version'] = array(
 		'fitness' => 'bad',
 		'setting' => phpversion(),
 		'message' => 'No supported versions of Tiki can be run with this very old version of PHP. Please see http://doc.tiki.org/Requirements for details.'
-	];
+	);
 } elseif (version_compare(PHP_VERSION, '5.2.0', '<')) {
-	$php_properties['PHP version'] = [
+	$php_properties['PHP version'] = array(
 		'fitness' => tra('bad'),
 		'setting' => phpversion(),
 		'message' => 'This PHP version is rather old. Tiki 6.x LTS can be run, but not newer versions.'
-	];
+	);
 } elseif (version_compare(PHP_VERSION, '5.3.0', '<')) {
-	$php_properties['PHP version'] = [
+	$php_properties['PHP version'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => phpversion(),
 		'message' => 'This PHP version is rather old. Tiki 6.x LTS or 9.x LTS can be run, but not newer versions.'
-	];
+	);
 } elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
-	$php_properties['PHP version'] = [
+	$php_properties['PHP version'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => phpversion(),
 		'message' => 'This PHP version is rather old. Tiki 6.x LTS, 9.x LTS or 12.x LTS can be run, but not newer versions.'
-	];
+	);
 } elseif (version_compare(PHP_VERSION, '5.6.0', '<')) {
-	$php_properties['PHP version'] = [
+	$php_properties['PHP version'] = array(
 	'fitness' => tra('ugly'),
 	'setting' => phpversion(),
 	'message' => 'This PHP version is somewhat old. Tiki 9.x LTS, 12.x LTS or 15.x LTS can be run, but not newer versions.'
-	];
+	);
 } else {
-	$php_properties['PHP version'] = [
+	$php_properties['PHP version'] = array(
 		'fitness' => tra('good'),
 		'setting' => phpversion(),
 		'message' => 'This version of PHP is recent, and any supported version of Tiki can be run.'
-	];
+	);
 }
 
 // PHP Server API (SAPI)
 $s = php_sapi_name();
 if (substr($s, 0, 3) == 'cgi') {
-	$php_properties['PHP Server API'] = [
+	$php_properties['PHP Server API'] = array(
 		'fitness' => tra('info'),
 		'setting' => $s,
 		'message' => tra('PHP is being run as CGI. Feel free to use a threaded Apache MPM to increase performance.')
-	];
+	);
 
-	$php_sapi_info = [
+	$php_sapi_info = array(
 		'message' => tra('Looks like you are running PHP as FPM/CGI/FastCGI, you may be able to override some of your PHP configurations by add them to .user.ini files, see:'),
 		'link' => 'http://php.net/manual/en/configuration.file.per-user.php'
-	];
+	);
 } elseif (substr($s, 0, 3) == 'fpm') {
-	$php_properties['PHP Server API'] = [
+	$php_properties['PHP Server API'] = array(
 		'fitness' => tra('info'),
 		'setting' => $s,
 		'message' => tra('PHP is being run using FPM (Fastcgi Process Manager). Feel free to use a threaded Apache MPM to increase performance.')
-	];
+	);
 
-	$php_sapi_info = [
+	$php_sapi_info = array(
 		'message' => tra('Looks like you are running PHP as FPM/CGI/FastCGI, you may be able to override some of your PHP configurations by add them to .user.ini files, see:'),
 		'link' => 'http://php.net/manual/en/configuration.file.per-user.php'
-	];
+	);
 } else {
 	if (substr($s, 0, 6) == 'apache') {
-		$php_sapi_info = [
+		$php_sapi_info = array(
 			'message' => tra('Looks like you are running PHP as a module in Apache, you may be able to override some of your PHP configurations by add them to .htaccess files, see:'),
 			'link' => 'http://php.net/manual/en/configuration.changes.php#configuration.changes.apache'
-		];
+		);
 	}
 
-	$php_properties['PHP Server API'] = [
+	$php_properties['PHP Server API'] = array(
 		'fitness' => tra('info'),
 		'setting' => $s,
 		'message' => tra('PHP is not being run as CGI. Be aware that PHP is not thread-safe and you should not use a threaded Apache MPM (like worker).')
-	];
+	);
 }
 
 // ByteCode Cache
 if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
-	$php_properties['ByteCode Cache'] = [
+	$php_properties['ByteCode Cache'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'APC',
 		'message' => tra('APC is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
-	];
+	);
 } elseif (function_exists('xcache_info') && ( ini_get('xcache.cacher') == '1' || ini_get('xcache.cacher') == 'On' )) {
-	$php_properties['ByteCode Cache'] = [
+	$php_properties['ByteCode Cache'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'xCache',
 		'message' => tra('xCache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
-	];
+	);
 } elseif (function_exists('opcache_get_configuration') && ( ini_get('opcache.enable') == 1 || ini_get('opcache.enable') == '1')) {
-	$php_properties['ByteCode Cache'] = [
+	$php_properties['ByteCode Cache'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'OPcache',
 		'message' => tra('OPcache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
-	];
+	);
 } elseif (function_exists('wincache_fcache_fileinfo')) {
 	// Determine if version 1 or 2 is used. Version 2 does not support ocache
 
@@ -491,17 +491,17 @@ if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
 		if (ini_get('wincache.ocenabled') == '1') {
 			$sapi_type = php_sapi_name();
 			if ($sapi_type == 'cgi-fcgi') {
-				$php_properties['ByteCode Cache'] = [
+				$php_properties['ByteCode Cache'] = array(
 					'fitness' => tra('good'),
 					'setting' => 'WinCache',
 					'message' => tra('WinCache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
-				];
+				);
 			} else {
-				$php_properties['ByteCode Cache'] = [
+				$php_properties['ByteCode Cache'] = array(
 					'fitness' => tra('ugly'),
 					'setting' => 'WinCache',
 					'message' => tra('WinCache is being used as the ByteCode Cache, but the required CGI/FastCGI server API is apparently not being used.')
-				];
+				);
 			}
 		} else {
 			no_cache_found();
@@ -511,17 +511,17 @@ if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
 		if (ini_get('wincache.fcenabled') == '1') {
 			$sapi_type = php_sapi_name();
 			if ($sapi_type == 'cgi-fcgi') {
-				$php_properties['ByteCode Cache'] = [
+				$php_properties['ByteCode Cache'] = array(
 					'fitness' => tra('info'),
 					'setting' => 'WinCache',
 					'message' => tra('WinCache version 2 or higher is being used as the FileCache. It does not support a ByteCode Cache.') . ' ' . tra('It is recommended to use Zend opcode cache as the ByteCode Cache.')
-				];
+				);
 			} else {
-				$php_properties['ByteCode Cache'] = [
+				$php_properties['ByteCode Cache'] = array(
 					'fitness' => tra('ugly'),
 					'setting' => 'WinCache',
 					'message' => tra('WinCache version 2 or higher is being used as the FileCache, but the required CGI/FastCGI server API is apparently not being used.') . ' ' . tra('It is recommended to use Zend opcode cache as the ByteCode Cache.')
-				];
+				);
 			}
 		} else {
 			no_cache_found();
@@ -540,82 +540,84 @@ $s = substr($s, 0, -1);
 switch ($last) {
 	case 'g':
 		$s *= 1024;
+		// no break
 	case 'm':
 		$s *= 1024;
+		// no break
 	case 'k':
 		$s *= 1024;
 }
 if ($s >= 160 * 1024 * 1024) {
-	$php_properties['memory_limit'] = [
+	$php_properties['memory_limit'] = array(
 		'fitness' => tra('good'),
 		'setting' => $memory_limit,
 		'message' => tra('The memory_limit is at') . ' ' . $memory_limit . '. ' . tra('This is known to support smooth functioning even for bigger sites.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } elseif ($s < 160 * 1024 * 1024 && $s > 127 * 1024 * 1024) {
-	$php_properties['memory_limit'] = [
+	$php_properties['memory_limit'] = array(
 		'fitness' => tra('ugly') ,
 		'setting' => $memory_limit,
 		'message' => tra('The memory_limit is at') . ' ' . $memory_limit . '. ' . tra('This will normally work, but the site might run into problems when it grows.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } elseif ($s == -1) {
-	$php_properties['memory_limit'] = [
+	$php_properties['memory_limit'] = array(
 		'fitness' => tra('ugly') ,
 		'setting' => $memory_limit,
 		'message' => tra("The memory_limit is unlimited. This is not necessarily bad, but it's a good idea to limit this on productions servers in order to eliminate unexpectedly greedy scripts.") . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['memory_limit'] = [
+	$php_properties['memory_limit'] = array(
 		'fitness' => tra('bad'),
 		'setting' => $memory_limit,
 		'message' => tra('Your memory_limit is at') . ' ' . $memory_limit . '. ' . tra('This is known to cause issues! Ther memory_limit should be increased to at least 128M, which is the PHP default.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // session.save_handler
 $s = ini_get('session.save_handler');
 if ($s != 'files') {
-	$php_properties['session.save_handler'] = [
+	$php_properties['session.save_handler'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $s,
 		'message' => tra('The session.save_handler should be set to \'files\'.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['session.save_handler'] = [
+	$php_properties['session.save_handler'] = array(
 		'fitness' => tra('good'),
 		'setting' => $s,
 		'message' => tra('Well set! The default setting of \'files\' is recommended for Tiki.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // session.save_path
 $s = ini_get('session.save_path');
 if ($php_properties['session.save_handler']['setting'] == 'files') {
 	if (empty($s) || ! is_writable($s)) {
-		$php_properties['session.save_path'] = [
+		$php_properties['session.save_path'] = array(
 			'fitness' => tra('bad'),
 			'setting' => $s,
 			'message' => tra('The session.save_path must writable.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	} else {
-		$php_properties['session.save_path'] = [
+		$php_properties['session.save_path'] = array(
 			'fitness' => tra('good'),
 			'setting' => $s,
 			'message' => tra('The session.save_path is writable.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	}
 } else {
 	if (empty($s) || ! is_writable($s)) {
-		$php_properties['session.save_path'] = [
+		$php_properties['session.save_path'] = array(
 			'fitness' => tra('ugly'),
 			'setting' => $s,
 			'message' => tra('If you would be using the recommended session.save_handler setting of \'files\', the session.save_path would have to be writable. Currently it is not.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	} else {
-		$php_properties['session.save_path'] = [
+		$php_properties['session.save_path'] = array(
 			'fitness' => tra('info'),
 			'setting' => $s,
 			'message' => tra('The session.save_path is writable.') . tra('It doesn\'t matter though, since your session.save_handler is not set to \'files\'.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-		];
+		);
 	}
 }
 
@@ -623,186 +625,186 @@ if ($php_properties['session.save_handler']['setting'] == 'files') {
 @session_start();
 
 if (empty($_SESSION['tiki-check'])) {
-	$php_properties['session'] = [
+	$php_properties['session'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => tra('empty'),
 		'message' => tra('The session is empty. Try reloading the page and, if this message is displayed again, there may be a problem with the server setup.')
-	];
+	);
 	$_SESSION['tiki-check'] = 1;
 } else {
-	$php_properties['session'] = [
+	$php_properties['session'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'ok',
 		'message' => tra('This appears to work.')
-	];
+	);
 }
 
 // zlib.output_compression
 $s = ini_get('zlib.output_compression');
 if ($s) {
-	$php_properties['zlib.output_compression'] = [
+	$php_properties['zlib.output_compression'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'On',
 		'message' => tra('zlib output compression is turned on. This saves bandwidth. On the other hand, turning it off would reduce CPU usage. The appropriate choice can be made for this Tiki.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['zlib.output_compression'] = [
+	$php_properties['zlib.output_compression'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Off',
 		'message' => tra('zlib output compression is turned off. This reduces CPU usage. On the other hand, turning it on would save bandwidth. The appropriate choice can be made for this Tiki.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // register globals
 $s = ini_get('register_globals');
 if ($s) {
-	$php_properties['register_globals'] = [
+	$php_properties['register_globals'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'On',
 		'message' => tra('register_globals should be off by default. See the PHP manual for details.')
-	];
+	);
 } else {
-	$php_properties['register_globals'] = [
+	$php_properties['register_globals'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Off',
 		'message' => tra('Correctly set! And this is also future proof as register_globals is deprecated.')
-	];
+	);
 }
 
 // safe mode
 $s = ini_get('safe_mode');
 if ($s) {
-	$php_properties['safe_mode'] = [
+	$php_properties['safe_mode'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'On',
 		'message' => tra('safe_mode is deprecated and should be off by default. See the <a href="http://www.php.net/manual/de/features.safe-mode.php">PHP manual</a> for details.')
-	];
+	);
 } else {
-	$php_properties['safe_mode'] = [
+	$php_properties['safe_mode'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Off',
 		'message' => tra('Correctly set! And this is also future proof as safe_mode is deprecated.')
-	];
+	);
 }
 
 // magic_quotes_gpc
 $s = ini_get('magic_quotes_gpc');
 if ($s) {
-	$php_properties['magic_quotes_gpc'] = [
+	$php_properties['magic_quotes_gpc'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'On',
 		'message' => tra('Some features like assigning permissions to a group whose name contains a quote will not work with this turned on. magic_quotes_gpc is also deprecated and should be off by default. See the PHP manual for details. Having this turned on may cause Tiki to show strange behavior.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['magic_quotes_gpc'] = [
+	$php_properties['magic_quotes_gpc'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Off',
 		'message' => tra('Correctly set! Some features like assigning permissions to a group whose name contains a quote will not work with this turned on. And this is also future proof as magic_quotes_gpc is deprecated.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // default_charset
 $s = ini_get('default_charset');
 if (strtolower($s) == 'utf-8') {
-	$php_properties['default_charset'] = [
+	$php_properties['default_charset'] = array(
 		'fitness' => tra('good'),
 		'setting' => $s,
 		'message' => tra('Correctly set! Tiki is fully UTF-8 and so should be this installation.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['default_charset'] = [
+	$php_properties['default_charset'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $s,
 		'message' => tra('default_charset should be UTF-8 as Tiki is fully UTF-8. Please check the php.ini file.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // date.timezone
 $s = ini_get('date.timezone');
 if (empty($s)) {
-	$php_properties['date.timezone'] = [
+	$php_properties['date.timezone'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $s,
 		'message' => tra('No time zone is set! While there are a number of fallbacks in PHP to determine the time zone, the only reliable solution is to set it explicitly in php.ini! Please check the value of date.timezone in php.ini.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['date.timezone'] = [
+	$php_properties['date.timezone'] = array(
 		'fitness' => tra('good'),
 		'setting' => $s,
 		'message' => tra('Well done! Having a time zone set protects the site from related errors.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // file_uploads
 $s = ini_get('file_uploads');
 if ($s) {
-	$php_properties['file_uploads'] = [
+	$php_properties['file_uploads'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'On',
 		'message' => tra('Files can be uploaded to Tiki.')
-	];
+	);
 } else {
-	$php_properties['file_uploads'] = [
+	$php_properties['file_uploads'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Off',
 		'message' => tra('Files cannot be uploaded to Tiki.')
-	];
+	);
 }
 
 // max_execution_time
 $s = ini_get('max_execution_time');
 if ($s >= 30 && $s <= 90) {
-	$php_properties['max_execution_time'] = [
+	$php_properties['max_execution_time'] = array(
 		'fitness' => tra('good'),
 		'setting' => $s . 's',
 		'message' => tra('The max_execution_time is at') . ' ' . $s . '. ' . tra('This is a good value for production sites. If timeouts are experienced (such as when performing admin functions) this may need to be increased nevertheless.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } elseif ($s == -1 || $s == 0) {
-	$php_properties['max_execution_time'] = [
+	$php_properties['max_execution_time'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $s . 's',
 		'message' => tra('The max_execution_time is unlimited.') . ' ' . tra('This is not necessarily bad, but it\'s a good idea to limit this time on productions servers in order to eliminate unexpectedly long running scripts.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } elseif ($s > 90) {
-	$php_properties['max_execution_time'] = [
+	$php_properties['max_execution_time'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $s . 's',
 		'message' => tra('The max_execution_time is at') . ' ' . $s . '. ' . tra('This is not necessarily bad, but it\'s a good idea to limit this time on productions servers in order to eliminate unexpectedly long running scripts.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['max_execution_time'] = [
+	$php_properties['max_execution_time'] = array(
 		'fitness' => tra('bad'),
 		'setting' => $s . 's',
 		'message' => tra('The max_execution_time is at') . ' ' . $s . '. ' . tra('It is likely that some scripts, such as admin functions, will not finish in this time! The max_execution_time should be incresed to at least 30s.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // max_input_time
 $s = ini_get('max_input_time');
 if ($s >= 30 && $s <= 90) {
-	$php_properties['max_input_time'] = [
+	$php_properties['max_input_time'] = array(
 		'fitness' => tra('good'),
 		'setting' => $s . 's',
 		'message' => tra('The max_input_time is at') . ' ' . $s . '. ' . tra('This is a good value for production sites. If timeouts are experienced (such as when performing admin functions) this may need to be increased nevertheless.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } elseif ($s == -1 || $s == 0) {
-	$php_properties['max_input_time'] = [
+	$php_properties['max_input_time'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $s . 's',
 		'message' => tra('The max_input_time is unlimited.') . ' ' . tra('This is not necessarily bad, but it\'s a good idea to limit this time on productions servers in order to eliminate unexpectedly long running scripts.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } elseif ($s > 90) {
-	$php_properties['max_input_time'] = [
+	$php_properties['max_input_time'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $s . 's',
 		'message' => tra('The max_input_time is at') . ' ' . $s . '. ' . tra('This is not necessarily bad, but it\'s a good idea to limit this time on productions servers in order to eliminate unexpectedly long running scripts.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['max_input_time'] = [
+	$php_properties['max_input_time'] = array(
 		'fitness' => tra('bad'),
 		'setting' => $s . 's',
 		'message' => tra('The max_input_time is at') . ' ' . $s . '. ' . tra('It is likely that some scripts, such as admin functions, will not finish in this time! The max_input_time should be increased to at least 30 seconds.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // upload_max_filesize
@@ -813,29 +815,31 @@ $s = substr($s, 0, -1);
 switch ($last) {
 	case 'g':
 		$s *= 1024;
+		// no break
 	case 'm':
 		$s *= 1024;
+		// no break
 	case 'k':
 		$s *= 1024;
 }
 if ($s >= 8 * 1024 * 1024) {
-	$php_properties['upload_max_filesize'] = [
+	$php_properties['upload_max_filesize'] = array(
 		'fitness' => tra('good'),
 		'setting' => $upload_max_filesize,
 		'message' => tra('The upload_max_filesize is at') . ' ' . $upload_max_filesize . '. ' . tra('Quite large files can be uploaded, but keep in mind to set the script timeouts accordingly.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } elseif ($s == 0) {
-	$php_properties['upload_max_filesize'] = [
+	$php_properties['upload_max_filesize'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $upload_max_filesize,
 		'message' => tra('The upload_max_filesize is at') . ' ' . $upload_max_filesize . '. ' . tra('Upload size is unlimited and this not advised. A user could mistakenly upload a very large file which could fill up the disk. This value should be set to accommodate the realistic needs of the site.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['upload_max_filesize'] = [
+	$php_properties['upload_max_filesize'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $upload_max_filesize,
 		'message' => tra('The upload_max_filesize is at') . ' ' . $upload_max_filesize . '. ' . tra('This is not a bad amount, but be sure the level is high enough to accommodate the needs of the site.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // post_max_size
@@ -846,56 +850,58 @@ $s = substr($s, 0, -1);
 switch ($last) {
 	case 'g':
 		$s *= 1024;
+		// no break
 	case 'm':
 		$s *= 1024;
+		// no break
 	case 'k':
 		$s *= 1024;
 }
 if ($s >= 8 * 1024 * 1024) {
-	$php_properties['post_max_size'] = [
+	$php_properties['post_max_size'] = array(
 		'fitness' => tra('good'),
 		'setting' => $post_max_size,
 		'message' => tra('The post_max_size is at') . ' ' . $post_max_size . '. ' . tra('Quite large files can be uploaded, but keep in mind to set the script timeouts accordingly.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$php_properties['post_max_size'] = [
+	$php_properties['post_max_size'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => $post_max_size,
 		'message' => tra('The post_max_size is at') . ' ' . $post_max_size . '. ' . tra('This is not a bad amount, but be sure the level is high enough to accommodate the needs of the site.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // PHP Extensions
 // fileinfo
 $s = extension_loaded('fileinfo');
 if ($s) {
-	$php_properties['fileinfo'] = [
+	$php_properties['fileinfo'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra("The fileinfo extension is needed for the 'Validate uploaded file content' preference.")
-	];
+	);
 } else {
-	$php_properties['fileinfo'] = [
+	$php_properties['fileinfo'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'Not available',
 		'message' => tra("The fileinfo extension is needed for the 'Validate uploaded file content' preference.")
-	];
+	);
 }
 
 // intl
 $s = extension_loaded('intl');
 if ($s) {
-	$php_properties['intl'] = [
+	$php_properties['intl'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra("The intl extension is required for Tiki 15 and newer.")
-	];
+	);
 } else {
-	$php_properties['intl'] = [
+	$php_properties['intl'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'Not available',
 		'message' => tra("intl extension is preferred for Tiki 15 and newer. Because is not available, the filters for text will not be able to detect the language and will use a generic range of characters as letters.")
-	];
+	);
 }
 
 // GD
@@ -910,32 +916,32 @@ if ($s && function_exists('gd_info')) {
 		$ft = @imageftbbox(12, 0, $font, 'test');
 	}
 	if ($im && $ft) {
-		$php_properties['gd'] = [
+		$php_properties['gd'] = array(
 			'fitness' => tra('good'),
 			'setting' => $gd_info['GD Version'],
 			'message' => tra('The GD extension is needed for manipulation of images and for CAPTCHA images.')
-		];
+		);
 		imagedestroy($im);
 	} elseif ($im) {
-		$php_properties['gd'] = [
+		$php_properties['gd'] = array(
 				'fitness' => tra('ugly'),
 				'setting' => $gd_info['GD Version'],
 				'message' => tra('The GD extension is loaded, and Tiki can create images, but the FreeType extension is needed for CAPTCHA text generation.')
-			];
+			);
 			imagedestroy($im);
 	} else {
-		$php_properties['gd'] = [
+		$php_properties['gd'] = array(
 			'fitness' => tra('ugly'),
 			'setting' => 'Dysfunctional',
 			'message' => tra('The GD extension is loaded, but Tiki is unable to create images. Please check your GD library configuration.')
-		];
+		);
 	}
 } else {
-	$php_properties['gd'] = [
+	$php_properties['gd'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('The GD extension is needed for manipulation of images and for CAPTCHA images.')
-	];
+	);
 }
 
 // Image Magick
@@ -944,25 +950,25 @@ if ($s) {
 	$image = new Imagick();
 	$image->newImage(100, 100, new ImagickPixel('red'));
 	if ($image) {
-		$php_properties['Image Magick'] = [
+		$php_properties['Image Magick'] = array(
 			'fitness' => tra('good'),
 			'setting' => 'Available',
 			'message' => tra('ImageMagick is used as a fallback in case GD is not available.')
-		];
+		);
 		$image->destroy();
 	} else {
-		$php_properties['Image Magick'] = [
+		$php_properties['Image Magick'] = array(
 			'fitness' => tra('ugly'),
 			'setting' => 'Dysfunctional',
 			'message' => tra('ImageMagick is used as a fallback in case GD is not available.') . tra('ImageMagick is available, but unable to create images. Please check your ImageMagick configuration.')
-			];
+			);
 	}
 } else {
-	$php_properties['Image Magick'] = [
+	$php_properties['Image Magick'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Not Available',
 		'message' => tra('ImageMagick is used as a fallback in case GD is not available.')
-		];
+		);
 }
 
 // mbstring
@@ -970,169 +976,169 @@ $s = extension_loaded('mbstring');
 if ($s) {
 	$func_overload = ini_get('mbstring.func_overload');
 	if ($func_overload == 0 && function_exists('mb_split')) {
-		$php_properties['mbstring'] = [
+		$php_properties['mbstring'] = array(
 			'fitness' => tra('good'),
 			'setting' => 'Loaded',
 			'message' => tra('mbstring extension is needed for an UTF-8 compatible lower case filter, in the admin search for example.')
-		];
+		);
 	} elseif ($func_overload != 0) {
-		$php_properties['mbstring'] = [
+		$php_properties['mbstring'] = array(
 			'fitness' => tra('ugly'),
 			'setting' => 'Badly configured',
 			'message' => tra('mbstring extension is loaded, but mbstring.func_overload = ' . ' ' . $func_overload . '.' . ' ' . 'Tiki only works with mbstring.func_overload = 0. Please check the php.ini file.')
-		];
+		);
 	} else {
-		$php_properties['mbstring'] = [
+		$php_properties['mbstring'] = array(
 			'fitness' => tra('bad'),
 			'setting' => 'Badly installed',
 			'message' => tra('mbstring extension is loaded, but missing important functions such as mb_split(). Reinstall it with --enable-mbregex or ask your a server administrator to do it.')
-		];
+		);
 	}
 } else {
-	$php_properties['mbstring'] = [
+	$php_properties['mbstring'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('mbstring extension is needed for an UTF-8 compatible lower case filter.')
-	];
+	);
 }
 
 // calendar
 $s = extension_loaded('calendar');
 if ($s) {
-	$php_properties['calendar'] = [
+	$php_properties['calendar'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('calendar extension is needed by Tiki.')
-	];
+	);
 } else {
-	$php_properties['calendar'] = [
+	$php_properties['calendar'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('calendar extension is needed by Tiki.') . ' ' . tra('The calendar feature of Tiki will not function without this.')
-	];
+	);
 }
 
 // ctype
 $s = extension_loaded('ctype');
 if ($s) {
-	$php_properties['ctype'] = [
+	$php_properties['ctype'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('ctype extension is needed by Tiki.')
-	];
+	);
 } else {
-	$php_properties['ctype'] = [
+	$php_properties['ctype'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('ctype extension is needed by Tiki.')
-	];
+	);
 }
 
 // libxml
 $s = extension_loaded('libxml');
 if ($s) {
-	$php_properties['libxml'] = [
+	$php_properties['libxml'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('This extension is needed for the dom extension (see below).')
-	];
+	);
 } else {
-	$php_properties['libxml'] = [
+	$php_properties['libxml'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('This extension is needed for the dom extension (see below).')
-	];
+	);
 }
 
 // dom (depends on libxml)
 $s = extension_loaded('dom');
 if ($s) {
-	$php_properties['dom'] = [
+	$php_properties['dom'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('This extension is needed by Tiki')
-	];
+	);
 } else {
-	$php_properties['dom'] = [
+	$php_properties['dom'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('This extension is needed by Tiki')
-	];
+	);
 }
 
 $s = extension_loaded('ldap');
 if ($s) {
-	$php_properties['LDAP'] = [
+	$php_properties['LDAP'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('This extension is needed to connect Tiki to an LDAP server. More info at: http://doc.tiki.org/LDAP ')
-	];
+	);
 } else {
-	$php_properties['LDAP'] = [
+	$php_properties['LDAP'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Not available',
 		'message' => tra('Tiki will not be able to connect to an LDAP server as the needed PHP extension is missing. More info at: http://doc.tiki.org/LDAP')
-	];
+	);
 }
 
 $s = extension_loaded('memcache');
 if ($s) {
-	$php_properties['memcache'] = [
+	$php_properties['memcache'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('This extension can be used to speed up Tiki by saving sessions as well as wiki and forum data on a memcached server.')
-	];
+	);
 } else {
-	$php_properties['memcache'] = [
+	$php_properties['memcache'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Not available',
 		'message' => tra('This extension can be used to speed up Tiki by saving sessions as well as wiki and forum data on a memcached server.')
-	];
+	);
 }
 
 $s = extension_loaded('ssh2');
 if ($s) {
-	$php_properties['SSH2'] = [
+	$php_properties['SSH2'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('This extension is needed for the show.tiki.org tracker field type, up to Tiki 17.')
-	];
+	);
 } else {
-	$php_properties['SSH2'] = [
+	$php_properties['SSH2'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Not available',
 		'message' => tra('This extension is needed for the show.tiki.org tracker field type, up to Tiki 17.')
-	];
+	);
 }
 
 $s = extension_loaded('curl');
 if ($s) {
-	$php_properties['curl'] = [
+	$php_properties['curl'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('This extension is required for H5P.')
-	];
+	);
 } else {
-	$php_properties['curl'] = [
+	$php_properties['curl'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('This extension is required for H5P.')
-	];
+	);
 }
 
 $s = extension_loaded('json');
 if ($s) {
-	$php_properties['json'] = [
+	$php_properties['json'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('This extension is required for many features in Tiki.')
-	];
+	);
 } else {
-	$php_properties['json'] = [
+	$php_properties['json'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('This extension is required for many features in Tiki.')
-	];
+	);
 }
 
 /*
@@ -1142,17 +1148,17 @@ if (is_file('.svn/wc.db')) {
 	// It's an TortoiseSVN 1.7+ installation
 	$s = extension_loaded('sqlite3');
 	if ($s) {
-		$php_properties['sqlite3'] = [
+		$php_properties['sqlite3'] = array(
 			'fitness' => tra('good'),
 			'setting' => 'Loaded',
 			'message' => tra('This extension is used to interpret SVN information for TortoiseSVN 1.7 or higher.')
-			];
+			);
 	} else {
-		$php_properties['sqlite3'] = [
+		$php_properties['sqlite3'] = array(
 			'fitness' => tra('ugly'),
 			'setting' => 'Not available',
 			'message' => tra('This extension is used to interpret SVN information for TortoiseSVN 1.7 or higher.')
-			];
+			);
 	}
 }
 
@@ -1160,45 +1166,45 @@ if (is_file('.svn/wc.db')) {
 $s = extension_loaded('openssl');
 $msg = tra('Enable safe, encrypted storage of data such as passwords. Required for the User Encryption feature and improves encryption in other features, when available.');
 if ($s) {
-	$php_properties['openssl'] = [
+	$php_properties['openssl'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => $msg
-	];
+	);
 } else {
-	$php_properties['openssl'] = [
+	$php_properties['openssl'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'Not available',
 		'message' => $msg
-	];
+	);
 }
 
 
 $s = extension_loaded('mcrypt');
 $msg = tra('MCrypt is abandonware and is being phased out. Starting in version 18, Tiki uses OpenSSL where it previously used MCrypt, except perhaps via third-party libraries.') . ' ' . tra('Tiki still uses MCrypt to decrypt user data encrypted with MCrypt, when converting that data to OpenSSL.');
 if ($s) {
-	$php_properties['mcrypt'] = [
+	$php_properties['mcrypt'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Loaded',
 		'message' => $msg
-	];
+	);
 } else {
-	$php_properties['mcrypt'] = [
+	$php_properties['mcrypt'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Not available',
 		'message' => $msg
-	];
+	);
 }
 
 
 if (! $standalone) {
 	// check Zend captcha will work which depends on \Zend\Math\Rand
 	$captcha = new Zend\Captcha\Dumb;
-	$math_random = [
+	$math_random = array(
 		'fitness' => tra('good'),
 		'setting' => 'Available',
 		'message' => tra('Ability to generate random numbers, useful for example for CAPTCHA and other security features.'),
-	];
+	);
 	try {
 		$captchaId = $captcha->getId();    // simple test for missing random generator
 	} catch (Exception $e) {
@@ -1212,17 +1218,17 @@ if (! $standalone) {
 $s = extension_loaded('iconv');
 $msg = tra('This extension is required and used frequently in validation functions invoked within Zend Framework.');
 if ($s) {
-	$php_properties['iconv'] = [
+	$php_properties['iconv'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => $msg
-	];
+	);
 } else {
-	$php_properties['iconv'] = [
+	$php_properties['iconv'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => $msg
-	];
+	);
 }
 
 // Check for existence of eval()
@@ -1230,65 +1236,65 @@ if ($s) {
 // so function_exists() doesn't work
 $s = eval('return 42;');
 if ($s == 42) {
-	$php_properties['eval()'] = [
+	$php_properties['eval()'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Available',
 		'message' => tra('The eval() function is required by the Smarty templating engine.')
-	];
+	);
 } else {
-	$php_properties['eval()'] = [
+	$php_properties['eval()'] = array(
 		'fitness' => tra('bad'),
 		'setting' => 'Not available',
 		'message' => tra('The eval() function is required by the Smarty templating engine.') . ' ' . tra('You will get "Please contact support about" messages instead of modules. eval() is most probably disabled via Suhosin.')
-	];
+	);
 }
 
 // Zip Archive class
 $s = class_exists('ZipArchive');
 if ($s) {
-	$php_properties['ZipArchive class'] = [
+	$php_properties['ZipArchive class'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Available',
 		'message' => tra('The ZipArchive class is needed for features such as XML Wiki Import/Export and PluginArchiveBuilder.')
-		];
+		);
 } else {
-	$php_properties['ZipArchive class'] = [
+	$php_properties['ZipArchive class'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'Not Available',
 		'message' => tra('The ZipArchive class is needed for features such as XML Wiki Import/Export and PluginArchiveBuilder.')
-		];
+		);
 }
 
 // DateTime class
 $s = class_exists('DateTime');
 if ($s) {
-	$php_properties['DateTime class'] = [
+	$php_properties['DateTime class'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Available',
 		'message' => tra('The DateTime class is needed for the WebDAV feature.')
-		];
+		);
 } else {
-	$php_properties['DateTime class'] = [
+	$php_properties['DateTime class'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => 'Not Available',
 		'message' => tra('The DateTime class is needed for the WebDAV feature.')
-		];
+		);
 }
 
 // Xdebug
 $has_xdebug = function_exists('xdebug_get_code_coverage') && is_array(xdebug_get_code_coverage());
 if ($has_xdebug) {
-	$php_properties['Xdebug'] = [
+	$php_properties['Xdebug'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Loaded',
 		'message' => tra('Xdebug can be very handy for a development server, but it might be better to disable it when on a production server.')
-	];
+	);
 } else {
-	$php_properties['Xdebug'] = [
+	$php_properties['Xdebug'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Not Available',
 		'message' => tra('Xdebug can be very handy for a development server, but it might be better to disable it when on a production server.')
-	];
+	);
 }
 
 // Get MySQL properties and check them
@@ -1301,17 +1307,17 @@ if ($connection || ! $standalone) {
 	$mysql_version = $result[0]['VERSION()'];
 	$s = version_compare($mysql_version, '5.0.2', '>=');
 	if ($s == true) {
-		$mysql_properties['Version'] = [
+		$mysql_properties['Version'] = array(
 			'fitness' => tra('good'),
 			'setting' => $mysql_version,
 			'message' => tra('Tiki requires MySQL >= 5.x.')
-		];
+		);
 	} else {
-		$mysql_properties['Version'] = [
+		$mysql_properties['Version'] = array(
 			'fitness' => tra('bad'),
 			'setting' => $mysql_version,
 			'message' => tra('Tiki requires MySQL >= 5.x.')
-		];
+		);
 	}
 
 	// max_allowed_packet
@@ -1320,17 +1326,17 @@ if ($connection || ! $standalone) {
 	$s = $result[0]['Value'];
 	$max_allowed_packet = $s / 1024 / 1024;
 	if ($s >= 8 * 1024 * 1024) {
-		$mysql_properties['max_allowed_packet'] = [
+		$mysql_properties['max_allowed_packet'] = array(
 			'fitness' => tra('good'),
 			'setting' => $max_allowed_packet . 'M',
 			'message' => tra('The max_allowed_packet setting is at') . ' ' . $max_allowed_packet . 'M. ' . tra('Quite large files can be uploaded, but keep in mind to set the script timeouts accordingly.') . ' ' . tra('This limits the size of binary files that can be uploaded to Tiki, when storing files in the database. Please see: <a href="http://doc.tiki.org/File+Storage">file storage</a>.')
-		];
+		);
 	} else {
-		$mysql_properties['max_allowed_packet'] = [
+		$mysql_properties['max_allowed_packet'] = array(
 			'fitness' => tra('ugly'),
 			'setting' => $max_allowed_packet . 'M',
 			'message' => tra('The max_allowed_packet setting is at') . ' ' . $max_allowed_packet . 'M. ' . tra('This is not a bad amount, but be sure the level is high enough to accommodate the needs of the site.') . ' ' . tra('This limits the size of binary files that can be uploaded to Tiki, when storing files in the database. Please see: <a href="http://doc.tiki.org/File+Storage">file storage</a>.')
-		];
+		);
 	}
 
 	// UTF-8 Charset
@@ -1340,17 +1346,17 @@ if ($connection || ! $standalone) {
 		$result = query($query, $connection);
 		foreach ($result as $value) {
 			if ($value['Value'] == 'utf8') {
-				$mysql_properties[$value['Variable_name']] = [
+				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('good'),
 					'setting' => $value['Value'],
 					'message' => tra('Tiki is fully UTF-8 and so should be every part of the stack.')
-				];
+				);
 			} else {
-				$mysql_properties[$value['Variable_name']] = [
+				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('ugly'),
 					'setting' => $value['Value'],
 					'message' => tra('On a fresh install everything should be set to UTF-8 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
-				];
+				);
 			}
 		}
 	}
@@ -1361,17 +1367,17 @@ if ($connection || ! $standalone) {
 		$result = query($query, $connection);
 		foreach ($result as $value) {
 			if (substr($value['Value'], 0, 4) == 'utf8') {
-				$mysql_properties[$value['Variable_name']] = [
+				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('good'),
 					'setting' => $value['Value'],
 					'message' => tra('Tiki is fully UTF-8 and so should be every part of the stack. utf8_unicode_ci is the default collation for Tiki.')
-				];
+				);
 			} else {
-				$mysql_properties[$value['Variable_name']] = [
+				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('ugly'),
 					'setting' => $value['Value'],
 					'message' => tra('On a fresh install everything should be set to UTF-8 to avoid unexpected results. utf8_unicode_ci is the default collation for Tiki. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
-				];
+				);
 			}
 		}
 	}
@@ -1381,17 +1387,17 @@ if ($connection || ! $standalone) {
 	$result = query($query, $connection);
 	$s = $result[0]['Value'];
 	if ($s == 'OFF') {
-		$mysql_properties['slow_query_log'] = [
+		$mysql_properties['slow_query_log'] = array(
 			'fitness' => tra('info'),
 			'setting' => $s,
 			'message' => tra('MySQL doesn\'t log slow queries. If performance issues are noticed, this could be enabled, but keep in mind that the logging itself slows MySQL down.')
-		];
+		);
 	} else {
-		$mysql_properties['slow_query_log'] = [
+		$mysql_properties['slow_query_log'] = array(
 			'fitness' => tra('info'),
 			'setting' => $s,
 			'message' => tra('MySQL logs slow queries. If no performance issues are noticed, this should be disabled on a production site as it slows MySQL down.')
-		];
+		);
 	}
 
 	// MySQL SSL
@@ -1428,11 +1434,11 @@ if ($connection || ! $standalone) {
 	if ($s == tra('ON')) {
 		$fitness = tra('good');
 	}
-	$mysql_properties['SSL connection'] = [
+	$mysql_properties['SSL connection'] = array(
 		'fitness' => $fitness,
 		'setting' => $s,
 		'message' => $msg
-	];
+	);
 
 	// Strict mode
 	$query = 'SELECT @@sql_mode as Value;';
@@ -1459,26 +1465,26 @@ if ($connection || ! $standalone) {
 			$msg = 'MySQL is not using strict mode.';
 		}
 	}
-	$mysql_properties['Strict Mode'] = [
+	$mysql_properties['Strict Mode'] = array(
 		'fitness' => tra('info'),
 		'setting' => $s,
 		'message' => $msg
-	];
+	);
 
 	// MySQL Variables
 	$query = "SHOW VARIABLES;";
 	$result = query($query, $connection);
 	foreach ($result as $value) {
-		$mysql_variables[$value['Variable_name']] = ['value' => $value['Value']];
+		$mysql_variables[$value['Variable_name']] = array('value' => $value['Value']);
 	}
 
 	if (! $standalone) {
-		$mysql_crashed_tables = [];
+		$mysql_crashed_tables = array();
 		// This should give all crashed tables (MyISAM at least) - does need testing though !!
 		$query = 'SHOW TABLE STATUS WHERE engine IS NULL AND comment <> "VIEW";';
 		$result = query($query, $connection);
 		foreach ($result as $value) {
-			$mysql_crashed_tables[$value['Name']] = ['Comment' => $value['Comment']];
+			$mysql_crashed_tables[$value['Name']] = array('Comment' => $value['Comment']);
 		}
 	}
 }
@@ -1494,17 +1500,17 @@ if (function_exists('apache_get_version')) {
 	$s = false;
 	$s = array_search('mod_rewrite', $apache_modules);
 	if ($s) {
-		$apache_properties['mod_rewrite'] = [
+		$apache_properties['mod_rewrite'] = array(
 			'setting' => 'Loaded',
 			'fitness' => tra('good') ,
 			'message' => tra('Tiki needs this module for Search Engine Friendly URLs via .htaccess. However, it can\'t be checked if this web server respects configurations made in .htaccess. For further information go to Admin->SefURL in your Tiki.')
-		];
+		);
 	} else {
-		$apache_properties['mod_rewrite'] = [
+		$apache_properties['mod_rewrite'] = array(
 			'setting' => 'Not available',
 			'fitness' => tra('ugly') ,
 			'message' => tra('Tiki needs this module for Search Engine Friendly URLs. For further information go to Admin->SefURL in the Tiki.')
-		];
+		);
 	}
 
 	if (! $standalone) {
@@ -1522,24 +1528,24 @@ if (function_exists('apache_get_version')) {
 			}
 			if ($url_path == $rewritebase) {
 				$smarty->assign('rewritebaseSetting', $rewritebase);
-				$apache_properties['RewriteBase'] = [
+				$apache_properties['RewriteBase'] = array(
 					'setting' => $rewritebase,
 					'fitness' => tra('good') ,
 					'message' => tra('RewriteBase is set correctly in .htaccess. Search Engine Friendly URLs should work. Be aware, though, that this test can\'t checked if Apache really loads .htaccess.')
-				];
+				);
 			} else {
-				$apache_properties['RewriteBase'] = [
+				$apache_properties['RewriteBase'] = array(
 					'setting' => $rewritebase,
 					'fitness' => tra('bad') ,
 					'message' => tra('RewriteBase is not set correctly in .htaccess. Search Engine Friendly URLs are not going to work with this configuration. It should be set to "') . substr($url_path, 0, -1) . '".'
-				];
+				);
 			}
 		} else {
-			$apache_properties['RewriteBase'] = [
+			$apache_properties['RewriteBase'] = array(
 				'setting' => tra('Not found'),
 				'fitness' => tra('info') ,
 				'message' => tra('The .htaccess file has not been activated, so this check cannot be  performed. To use Search Engine Friendly URLs, activate .htaccess by copying _htaccess into its place (or a symlink if supported by your Operating System). Then do this check again.')
-			];
+			);
 		}
 	}
 
@@ -1567,34 +1573,34 @@ if (function_exists('apache_get_version')) {
 		}
 
 		if (! $sef_test_folder_writable) {
-			$apache_properties['SefURL Test'] = [
+			$apache_properties['SefURL Test'] = array(
 			'setting' => tra('Not Working'),
 			'fitness' => tra('info') ,
 			'message' => tra('The automated test could not run. The required files could not be created  on the server to run the test. That may only mean that there were no permissions, but the Apache configuration should be checked. For further information go to Admin->SefURL in the Tiki.')
-			];
+			);
 		} else {
 			$pong_value = get_content_from_url($sef_test_url);
 			if ($pong_value != 'fail-no-request-done') {
 				if ('pong:' . $sef_test_ping_value == $pong_value) {
-					$apache_properties['SefURL Test'] = [
+					$apache_properties['SefURL Test'] = array(
 						'setting' => tra('Working'),
 						'fitness' => tra('good') ,
 						'message' => tra('An automated test was done, and the server appears to be configured correctly to handle Search Engine Friendly URLs.')
-					];
+					);
 				} else {
 					if (strncmp('fail-http-', $pong_value, 10) == 0) {
 						$apache_return_code = substr($pong_value, 10);
-						$apache_properties['SefURL Test'] = [
+						$apache_properties['SefURL Test'] = array(
 							'setting' => tra('Not Working'),
 							'fitness' => tra('info') ,
 							'message' => sprintf(tra('An automated test was done and, based on the results, the server does not appear to be configured correctly to handle Search Engine Friendly URLs. The server returned an unexpected HTTP code: "%s". This automated test may fail due to the infrastructure setup, but the Apache configuration should be checked. For further information go to Admin->SefURL in your Tiki.'), $apache_return_code)
-						];
+						);
 					} else {
-						$apache_properties['SefURL Test'] = [
+						$apache_properties['SefURL Test'] = array(
 							'setting' => tra('Not Working'),
 							'fitness' => tra('info') ,
 							'message' => tra('An automated test was done and, based on the results, the server does not appear to be configured correctly to handle Search Engine Friendly URLs. This automated test may fail due to the infrastructure setup, but the Apache configuration should be checked. For further information go to Admin->SefURL in your Tiki.')
-						];
+						);
 					}
 				}
 			}
@@ -1610,51 +1616,51 @@ if (function_exists('apache_get_version')) {
 	$s = false;
 	$s = array_search('mod_expires', $apache_modules);
 	if ($s) {
-		$apache_properties['mod_expires'] = [
+		$apache_properties['mod_expires'] = array(
 			'setting' => 'Loaded',
 			'fitness' => tra('good') ,
 			'message' => tra('With this module, the HTTP Expires header can be set, which increases performance. It can\'t be checked, though, if mod_expires is configured correctly.')
-		];
+		);
 	} else {
-		$apache_properties['mod_expires'] = [
+		$apache_properties['mod_expires'] = array(
 			'setting' => 'Not available',
 			'fitness' => tra('ugly') ,
 			'message' => tra('With this module, the HTTP Expires header can be set, which increases performance. Once it is installed, it still needs to be configured correctly.')
-		];
+		);
 	}
 
 	// mod_deflate
 	$s = false;
 	$s = array_search('mod_deflate', $apache_modules);
 	if ($s) {
-		$apache_properties['mod_deflate'] = [
+		$apache_properties['mod_deflate'] = array(
 			'setting' => 'Loaded',
 			'fitness' => tra('good') ,
 			'message' => tra('With this module, the data the webserver sends out can be compressed, which reduced data transfer amounts and increases performance. This test can\'t check, though, if mod_deflate is configured correctly.')
-		];
+		);
 	} else {
-		$apache_properties['mod_deflate'] = [
+		$apache_properties['mod_deflate'] = array(
 			'setting' => 'Not available',
 			'fitness' => tra('ugly') ,
 			'message' => tra('With this module, the data the webserver sends out can be compressed, which reduces data transfer amounts and increases performance. Once it is installed, it still needs to be configured correctly.')
-		];
+		);
 	}
 
 	// mod_security
 	$s = false;
 	$s = array_search('mod_security', $apache_modules);
 	if ($s) {
-		$apache_properties['mod_security'] = [
+		$apache_properties['mod_security'] = array(
 			'setting' => 'Loaded',
 			'fitness' => tra('info') ,
 			'message' => tra('This module can increase security of Tiki and therefore the server, but be aware that it is very tricky to configure correctly. A misconfiguration can lead to failed page saves or other hard to trace bugs.')
-		];
+		);
 	} else {
-		$apache_properties['mod_security'] = [
+		$apache_properties['mod_security'] = array(
 			'setting' => 'Not available',
 			'fitness' => tra('info') ,
 			'message' => tra('This module can increase security of Tiki and therefore the server, but be aware that it is very tricky to configure correctly. A misconfiguration can lead to failed page saves or other hard to trace bugs.')
-		];
+		);
 	}
 
 	// Get /server-info, if available
@@ -1682,17 +1688,17 @@ $iis_properties = false;
 if (check_isIIS()) {
 	// IIS Rewrite module
 	if (check_hasIIS_UrlRewriteModule()) {
-		$iis_properties['IIS Url Rewrite Module'] = [
+		$iis_properties['IIS Url Rewrite Module'] = array(
 			'fitness' => tra('good'),
 			'setting' => 'Available',
 			'message' => tra('The URL Rewrite Module is required to use SEFURL on IIS.')
-			];
+			);
 	} else {
-		$iis_properties['IIS Url Rewrite Module'] = [
+		$iis_properties['IIS Url Rewrite Module'] = array(
 			'fitness' => tra('bad'),
 			'setting' => 'Not Available',
 			'message' => tra('The URL Rewrite Module is required to use SEFURL on IIS.')
-			];
+			);
 	}
 }
 
@@ -1706,33 +1712,33 @@ $security = false;
 $s = ini_get('upload_tmp_dir');
 $sn = substr($_SERVER['SCRIPT_NAME'], 0, -14);
 if ($s != "" && strpos($sn, $s) !== false) {
-	$security['upload_tmp_dir'] = [
+	$security['upload_tmp_dir'] = array(
 		'fitness' => tra('unsafe') ,
 		'setting' => $s,
 		'message' => tra('upload_tmp_dir is probably inside the Tiki directory. There is a risk that someone can upload any file to this directory and access it via web browser')
-	];
+	);
 } else {
-	$security['upload_tmp_dir'] = [
+	$security['upload_tmp_dir'] = array(
 		'fitness' => tra('unknown') ,
 		'setting' => $s,
 		'message' => tra('It can\'t be reliably determined if the upload_tmp_dir is accessible via a web browser. To be sure, check the webserver configuration.')
-	];
+	);
 }
 
 // register globals
 $s = ini_get('register_globals');
 if ($s) {
-	$security['register_globals'] = [
+	$security['register_globals'] = array(
 		'setting' => 'On',
 		'fitness' => tra('unsafe'),
 		'message' => tra('register_globals should be off by default. See the PHP manual for details.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$security['register_globals'] = [
+	$security['register_globals'] = array(
 		'setting' => 'Off',
 		'fitness' => tra('safe'),
 		'message' => tra('register_globals should be off by default. See the PHP manual for details.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 // Determine system state
@@ -1745,157 +1751,157 @@ if (isset($prefs) && $prefs['feature_blogs'] == 'y') {
 	$feature_blogs = '<b>' . tra('The Blogs feature is enabled') . '.</b> ';
 }
 
-$fcts = [
-		 [
+$fcts = array(
+		 array(
 			'function' => 'exec',
 			'risky' => tra('Exec can potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled.'),
 			'safe' => tra('Exec can be potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; it is good that it is disabled.')
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'passthru',
 			'risky' => tra('Passthru is similar to exec.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled. However, the Composer package manager used for installations in Subversion checkouts may need it.'),
 			'safe' => tra('Passthru is similar to exec.') . ' ' . tra('Tiki does not need it; it is good that it is disabled. However, the Composer package manager used for installations in Subversion checkouts may need it.')
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'shell_exec',
 			'risky' => tra('Shell_exec is similar to exec.') . ' ' . tra('Tiki needs it to run PDF from URL: WebKit (wkhtmltopdf). ' . $pdf_webkit . 'If this is needed and the other PHP software on the server can be trusted, this should be enabled.'),
 			'safe' => tra('Shell_exec is similar to exec.') . ' ' . tra('Tiki needs it to run PDF from URL: WebKit (wkhtmltopdf). ' . $pdf_webkit . 'If this is needed and the other PHP software on the server can be trusted, this should be enabled.')
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'system',
 			'risky' => tra('System is similar to exec.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled.'),
 			'safe' => tra('System is similar to exec.') . ' ' . tra('Tiki does not need it; it is good that it is disabled.')
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'proc_open',
 			'risky' => tra('Proc_open is similar to exec.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled. However, the Composer package manager used for installations in Subversion checkouts may need it.'),
 			'safe' => tra('Proc_open is similar to exec.') . ' ' . tra('Tiki does not need it; it is good that it is disabled. However, the Composer package manager used for installations in Subversion checkouts may need it.')
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'popen',
 			'risky' => tra('popen is similar to exec.') . ' ' . tra('Tiki needs it for file search indexing in file galleries. If this is needed and other PHP software on the server can be trusted, this should be enabled.'),
 			'safe' => tra('popen is similar to exec.') . ' ' . tra('Tiki needs it for file search indexing in file galleries. If this is needed and other PHP software on the server can be trusted, this should be enabled.')
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'curl_exec',
 			'risky' => tra('Curl_exec can potentially be abused to write malicious code.') . ' ' . tra('Tiki needs it to run features like Kaltura, CAS login, CClite and the myspace and sf wiki-plugins. If these are needed and other PHP software on the server can be trusted, this should be enabled.'),
 			'safe' => tra('Curl_exec can potentially be abused to write malicious code.') . ' ' . tra('Tiki needs it to run features like Kaltura, CAS login, CClite and the myspace and sf wiki-plugins. If these are needed and other PHP software on the server can be trusted, this should be enabled.')
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'curl_multi_exec',
 			'risky' => tra('Curl_multi_exec can potentially be abused to write malicious code.') . ' ' . tra('Tiki needs it to run features like Kaltura, CAS login, CClite and the myspace and sf wiki-plugins. If these are needed and other PHP software on the server can be trusted, this should be enabled.'),
 			'safe' => tra('Curl_multi_exec can potentially be abused to write malicious code.') . ' ' . tra('Tiki needs it to run features like Kaltura, CAS login, CClite and the myspace and sf wiki-plugins. If these are needed and other PHP software on the server can be trusted, this should be enabled.')
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'parse_ini_file',
 			'risky' => tra('It is probably an urban myth that this is dangerous. Tiki team will reconsider this check, but be warned.') . ' ' . tra('It is required for the <a href="http://doc.tiki.org/System+Configuration" target="_blank">System Configuration</a> feature.'),
 			'safe' => tra('It is probably an urban myth that this is dangerous. Tiki team will reconsider this check, but be warned.') . ' ' . tra('It is required for the <a href="http://doc.tiki.org/System+Configuration" target="_blank">System Configuration</a> feature.'),
-		 ],
-		 [
+		 ),
+		 array(
 			'function' => 'show_source',
 			'risky' => tra('It is probably an urban myth that this is dangerous. Tiki team will reconsider this check, but be warned.'),
 			'safe' => tra('It is probably an urban myth that this is dangerous. Tiki team will reconsider this check, but be warned.'),
-		 ]
-	];
+		 )
+	);
 
 foreach ($fcts as $fct) {
 	if (function_exists($fct['function'])) {
-		$security[$fct['function']] = [
+		$security[$fct['function']] = array(
 			'setting' => tra('Enabled'),
 			'fitness' => tra('risky'),
 			'message' => $fct['risky']
-		];
+		);
 	} else {
-		$security[$fct['function']] = [
+		$security[$fct['function']] = array(
 			'setting' => tra('Disabled'),
 			'fitness' => tra('safe'),
 			'message' => $fct['safe']
-		];
+		);
 	}
 }
 
 // trans_sid
 $s = ini_get('session.use_trans_sid');
 if ($s) {
-	$security['session.use_trans_sid'] = [
+	$security['session.use_trans_sid'] = array(
 		'setting' => 'Enabled',
 		'fitness' => tra('unsafe'),
 		'message' => tra('session.use_trans_sid should be off by default. See the PHP manual for details.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$security['session.use_trans_sid'] = [
+	$security['session.use_trans_sid'] = array(
 		'setting' => 'Disabled',
 		'fitness' => tra('safe'),
 		'message' => tra('session.use_trans_sid should be off by default. See the PHP manual for details.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 $s = ini_get('xbithack');
 if ($s == 1) {
-	$security['xbithack'] = [
+	$security['xbithack'] = array(
 		'setting' => 'Enabled',
 		'fitness' => tra('unsafe'),
 		'message' => tra('Setting the xbithack option is unsafe. Depending on the file handling of the webserver and the Tiki settings, an attacker may be able to upload scripts to file gallery and execute them.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 } else {
-	$security['xbithack'] = [
+	$security['xbithack'] = array(
 		'setting' => 'Disabled',
 		'fitness' => tra('safe'),
 		'message' => tra('setting the xbithack option is unsafe. Depending on the file handling of the webserver and the Tiki settings,  an attacker may be able to upload scripts to file gallery and execute them.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	];
+	);
 }
 
 $s = ini_get('allow_url_fopen');
 if ($s == 1) {
-	$security['allow_url_fopen'] = [
+	$security['allow_url_fopen'] = array(
 		'setting' => 'Enabled',
 		'fitness' => tra('risky'),
 		'message' => tra('allow_url_fopen may potentially be used to upload remote data or scripts. Also used by Composer to fetch dependencies. ' . $feature_blogs . 'If this Tiki does not use the Blogs feature, this can be switched off.')
-	];
+	);
 } else {
-	$security['allow_url_fopen'] = [
+	$security['allow_url_fopen'] = array(
 		'setting' => 'Disabled',
 		'fitness' => tra('safe'),
 		'message' => tra('allow_url_fopen may potentially be used to upload remote data or scripts. Also used by Composer to fetch dependencies. ' . $feature_blogs . 'If this Tiki does not use the Blogs feature, this can be switched off.')
-	];
+	);
 }
 
 if ($standalone || (! empty($prefs) && $prefs['fgal_enable_auto_indexing'] === 'y')) {
 	// adapted from \FileGalLib::get_file_handlers
-	$fh_possibilities = [
-		'application/ms-excel' => ['xls2csv %1'],
-		'application/msexcel' => ['xls2csv %1'],
+	$fh_possibilities = array(
+		'application/ms-excel' => array('xls2csv %1'),
+		'application/msexcel' => array('xls2csv %1'),
 		// vnd.openxmlformats are handled natively in Zend
 		//'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => array('xlsx2csv.py %1'),
-		'application/ms-powerpoint' => ['catppt %1'],
-		'application/mspowerpoint' => ['catppt %1'],
+		'application/ms-powerpoint' => array('catppt %1'),
+		'application/mspowerpoint' => array('catppt %1'),
 		//'application/vnd.openxmlformats-officedocument.presentationml.presentation' => array('pptx2txt.pl %1 -'),
-		'application/msword' => ['catdoc %1', 'strings %1'],
+		'application/msword' => array('catdoc %1', 'strings %1'),
 		//'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => array('docx2txt.pl %1 -'),
-		'application/pdf' => ['pstotext %1', 'pdftotext %1 -'],
-		'application/postscript' => ['pstotext %1'],
-		'application/ps' => ['pstotext %1'],
-		'application/rtf' => ['catdoc %1'],
-		'application/sgml' => ['col -b %1', 'strings %1'],
-		'application/vnd.ms-excel' => ['xls2csv %1'],
-		'application/vnd.ms-powerpoint' => ['catppt %1'],
-		'application/x-msexcel' => ['xls2csv %1'],
-		'application/x-pdf' => ['pstotext %1', 'pdftotext %1 -'],
-		'application/x-troff-man' => ['man -l %1'],
-		'application/zip' => ['unzip -l %1'],
-		'text/enriched' => ['col -b %1', 'strings %1'],
-		'text/html' => ['elinks -dump -no-home %1'],
-		'text/richtext' => ['col -b %1', 'strings %1'],
-		'text/sgml' => ['col -b %1', 'strings %1'],
-		'text/tab-separated-values' => ['col -b %1', 'strings %1'],
-	];
+		'application/pdf' => array('pstotext %1', 'pdftotext %1 -'),
+		'application/postscript' => array('pstotext %1'),
+		'application/ps' => array('pstotext %1'),
+		'application/rtf' => array('catdoc %1'),
+		'application/sgml' => array('col -b %1', 'strings %1'),
+		'application/vnd.ms-excel' => array('xls2csv %1'),
+		'application/vnd.ms-powerpoint' => array('catppt %1'),
+		'application/x-msexcel' => array('xls2csv %1'),
+		'application/x-pdf' => array('pstotext %1', 'pdftotext %1 -'),
+		'application/x-troff-man' => array('man -l %1'),
+		'application/zip' => array('unzip -l %1'),
+		'text/enriched' => array('col -b %1', 'strings %1'),
+		'text/html' => array('elinks -dump -no-home %1'),
+		'text/richtext' => array('col -b %1', 'strings %1'),
+		'text/sgml' => array('col -b %1', 'strings %1'),
+		'text/tab-separated-values' => array('col -b %1', 'strings %1'),
+	);
 
-	$file_handlers = [];
+	$file_handlers = array();
 	foreach ($fh_possibilities as $type => $options) {
-		$file_handler = [
+		$file_handler = array(
 			'fitness' => '',
 			'message' => '',
-		];
+		);
 		foreach ($options as $opt) {
 			$optArray = explode(' ', $opt, 2);
 			$exec = reset($optArray);
@@ -1926,7 +1932,7 @@ if (! $standalone) {
 	if ($prefs['feature_forums'] == 'y') {
 		$dirs = TikiLib::lib('comments')->list_directories_to_save();
 	} else {
-		$dirs = [];
+		$dirs = array();
 	}
 	if ($prefs['feature_galleries'] == 'y' && ! empty($prefs['gal_use_dir'])) {
 		$dirs[] = $prefs['gal_use_dir'];
@@ -1951,7 +1957,7 @@ if (! $standalone) {
 		$dirs[] = 'img/wiki_up';
 	}
 	$dirs = array_unique($dirs);
-	$dirsExist = [];
+	$dirsExist = array();
 	foreach ($dirs as $i => $d) {
 		$dirsWritable[$i] = is_writable($d);
 	}
@@ -1995,20 +2001,20 @@ if (! $standalone) {
 	}
 }
 
-$sensitiveDataDetectedFiles = [];
+$sensitiveDataDetectedFiles = array();
 check_for_remote_readable_files($sensitiveDataDetectedFiles);
 
 if (! empty($sensitiveDataDetectedFiles)) {
 	$files = ' (Files: ' . trim(implode(', ', $sensitiveDataDetectedFiles)) . ')';
-	$tiki_security['Sensitive Data Exposure'] = [
+	$tiki_security['Sensitive Data Exposure'] = array(
 		'fitness' => tra('risky'),
 		'message' => tra('Tiki detected that there are temporary files in the db folder that may expose credentials or other sensitive information.') . $files
-	];
+	);
 } else {
-	$tiki_security['Sensitive Data Exposure'] = [
+	$tiki_security['Sensitive Data Exposure'] = array(
 		'fitness' => tra('safe'),
 		'message' => tra('Tiki did not detect temporary files in the db folder that may expose credentials or other sensitive information.')
-	];
+	);
 }
 
 if (isset($_REQUEST['benchmark'])) {
@@ -2027,25 +2033,25 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
 }
 
 if ($trimCapable) {
-	$trimServerRequirements = [];
-	$trimClientRequirements = [];
+	$trimServerRequirements = array();
+	$trimClientRequirements = array();
 
-	$trimServerRequirements['Operating System Path'] = [
+	$trimServerRequirements['Operating System Path'] = array(
 		'fitness' => tra('info'),
 		'message' => $_SERVER['PATH']
-	];
+	);
 
-	$trimClientRequirements['Operating System Path'] = [
+	$trimClientRequirements['Operating System Path'] = array(
 		'fitness' => tra('info'),
 		'message' => $_SERVER['PATH']
-	];
+	);
 
-	$trimClientRequirements['SSH or FTP server'] = [
+	$trimClientRequirements['SSH or FTP server'] = array(
 		'fitness' => tra('info'),
 		'message' => tra('To manage this instance from a remote server you need SSH or FTP access to this server')
-	];
+	);
 
-	$serverCommands = [
+	$serverCommands = array(
 		'make' => 'make',
 		'php-cli' => 'php',
 		'rsync' => 'rsync',
@@ -2056,58 +2062,58 @@ if ($trimCapable) {
 		'ssh-copy-id' => 'ssh-copy-id',
 		'scp' => 'scp',
 		'sqlite' => 'sqlite3'
-	];
+	);
 
-	$serverPHPExtensions = [
+	$serverPHPExtensions = array(
 		'php-sqlite' => 'sqlite3',
-	];
+	);
 
-	$clientCommands = [
+	$clientCommands = array(
 		'php-cli' => 'php',
 		'mysql' => 'mysql',
 		'mysqldump' => 'mysqldump',
 		'gzip' => 'gzip',
-	];
+	);
 
 	foreach ($serverCommands as $key => $command) {
 		if (commandIsAvailable($command)) {
-			$trimServerRequirements[$key] = [
+			$trimServerRequirements[$key] = array(
 				'fitness' => tra('good'),
 				'message' => tra('Command found')
-			];
+			);
 		} else {
-			$trimServerRequirements[$key] = [
+			$trimServerRequirements[$key] = array(
 				'fitness' => tra('ugly'),
 				'message' => tra('Command not found, check if it is installed and available in one of the paths above')
-			];
+			);
 		}
 	}
 
 	foreach ($serverPHPExtensions as $key => $extension) {
 		if (extension_loaded($extension)) {
-			$trimServerRequirements[$key] = [
+			$trimServerRequirements[$key] = array(
 				'fitness' => tra('good'),
 				'message' => tra('Extension loaded in PHP')
-			];
+			);
 		} else {
-			$trimServerRequirements[$key] = [
+			$trimServerRequirements[$key] = array(
 				'fitness' => tra('ugly'),
 				'message' => tra('Extension not loaded in PHP')
-			];
+			);
 		}
 	}
 
 	foreach ($clientCommands as $key => $command) {
 		if (commandIsAvailable($command)) {
-			$trimClientRequirements[$key] = [
+			$trimClientRequirements[$key] = array(
 				'fitness' => tra('good'),
 				'message' => tra('Command found')
-			];
+			);
 		} else {
-			$trimClientRequirements[$key] = [
+			$trimClientRequirements[$key] = array(
 				'fitness' => tra('ugly'),
 				'message' => tra('Command not found, check if it is installed and available in one of the paths above')
-			];
+			);
 		}
 	}
 }
@@ -2132,17 +2138,17 @@ if ($standalone && ! $nagios) {
 
 			$sentmail = mail($email, $email_test_subject, $email_test_body, $email_test_headers);
 			if ($sentmail) {
-				$mail['Sending mail'] = [
+				$mail['Sending mail'] = array(
 					'setting' => 'Accepted',
 					'fitness' => tra('good'),
 					'message' => tra('It was possible to send an e-mail. This only means that a mail server accepted the mail for delivery. This check can\;t verify if that server actually delivered the mail. Please check the inbox of ' . htmlspecialchars($email) . ' to see if the mail was delivered.')
-				];
+				);
 			} else {
-				$mail['Sending mail'] = [
+				$mail['Sending mail'] = array(
 					'setting' => 'Not accepted',
 					'fitness' => tra('bad'),
 					'message' => tra('It was not possible to send an e-mail. It may be that there is no mail server installed on this machine or that it is incorrectly configured. If the local mail server cannot be made to work, a regular mail account can be set up and its SMTP settings configured in tiki-admin.php.')
-				];
+				);
 			}
 			renderTable($mail);
 		} else {
@@ -2258,8 +2264,8 @@ if ($standalone && ! $nagios) {
 //  1	WARNING
 //  2	CRITICAL
 //  3	UNKNOWN
-	$monitoring_info = [ 'state' => 0,
-			 'message' => ''];
+	$monitoring_info = array( 'state' => 0,
+			 'message' => '');
 
 	function update_overall_status($check_group, $check_group_name)
 	{
@@ -2316,12 +2322,12 @@ if ($standalone && ! $nagios) {
 	echo $return;
 } else {	// not stand-alone
 	if (isset($_REQUEST['acknowledge']) || empty($last_state)) {
-		$tiki_check_status = [];
+		$tiki_check_status = array();
 		function process_acks(&$check_group, $check_group_name)
 		{
 			global $tiki_check_status;
 			foreach ($check_group as $key => $value) {
-				$formkey = str_replace(['.',' '], '_', $key);
+				$formkey = str_replace(array('.',' '), '_', $key);
 				if (isset($check_group["$key"]['fitness']) && ($check_group["$key"]['fitness'] === 'good' || $check_group["$key"]['fitness'] === 'safe') ||
 					(isset($_REQUEST["$formkey"]) && $_REQUEST["$formkey"] === "on")) {
 					$check_group["$key"]['ack'] = true;
@@ -2343,7 +2349,7 @@ if ($standalone && ! $nagios) {
 		process_acks($security, "PHP Security");
 		$json_tiki_check_status = json_encode($tiki_check_status);
 		$query = "INSERT INTO tiki_preferences (`name`, `value`) values('tiki_check_status', ? ) on duplicate key update `value`=values(`value`)";
-		$bindvars = [$json_tiki_check_status];
+		$bindvars = array($json_tiki_check_status);
 		$result = $tikilib->query($query, $bindvars);
 	}
 	$smarty->assign_by_ref('server_information', $server_information);
@@ -2369,16 +2375,16 @@ if ($standalone && ! $nagios) {
 	}
 	// disallow robots to index page:
 
-	$fmap = [
-		'good' => ['icon' => 'ok', 'class' => 'success'],
-		'safe' => ['icon' => 'ok', 'class' => 'success'],
-		'bad' => ['icon' => 'ban', 'class' => 'danger'],
-		'unsafe' => ['icon' => 'ban', 'class' => 'danger'],
-		'risky' => ['icon' => 'warning', 'class' => 'warning'],
-		'ugly' => ['icon' => 'warning', 'class' => 'warning'],
-		'info' => ['icon' => 'information', 'class' => 'info'],
-		'unknown' => ['icon' => 'help', 'class' => 'muted'],
-	];
+	$fmap = array(
+		'good' => array('icon' => 'ok', 'class' => 'success'),
+		'safe' => array('icon' => 'ok', 'class' => 'success'),
+		'bad' => array('icon' => 'ban', 'class' => 'danger'),
+		'unsafe' => array('icon' => 'ban', 'class' => 'danger'),
+		'risky' => array('icon' => 'warning', 'class' => 'warning'),
+		'ugly' => array('icon' => 'warning', 'class' => 'warning'),
+		'info' => array('icon' => 'information', 'class' => 'info'),
+		'unknown' => array('icon' => 'help', 'class' => 'muted'),
+	);
 	$smarty->assign('fmap', $fmap);
 
 	if (class_exists('BOMChecker_Scanner')) {
@@ -2444,7 +2450,7 @@ class BenchmarkPhp
 
 		global $host_tiki, $dbs_tiki, $user_tiki, $pass_tiki;
 
-		$options = [];
+		$options = array();
 
 		$options['db.host'] = $host_tiki;
 		$options['db.user'] = $user_tiki;
@@ -2463,7 +2469,7 @@ class BenchmarkPhp
 		$benchmark['total'] = $benchmarkResult['total'];
 		$benchmark = array_map(
 			function ($v) {
-				return ['value' => $v];
+				return array('value' => $v);
 			},
 			$benchmark
 		);
@@ -2480,7 +2486,7 @@ class BenchmarkPhp
 	{
 		$timeStart = microtime(true);
 
-		$result = [];
+		$result = array();
 		$result['version'] = '1.1';
 		$result['sysinfo']['time'] = date("Y-m-d H:i:s");
 		$result['sysinfo']['php_version'] = PHP_VERSION;
@@ -2509,7 +2515,7 @@ class BenchmarkPhp
 	{
 		$timeStart = microtime(true);
 
-		$mathFunctions = [
+		$mathFunctions = array(
 			"abs",
 			"acos",
 			"asin",
@@ -2523,10 +2529,10 @@ class BenchmarkPhp
 			"is_finite",
 			"is_nan",
 			"sqrt",
-		];
+		);
 		for ($i = 0; $i < $count; $i++) {
 			foreach ($mathFunctions as $function) {
-				call_user_func_array($function, [$i]);
+				call_user_func_array($function, array($i));
 			}
 		}
 		$result['benchmark']['math'] = self::timer_diff($timeStart);
@@ -2540,7 +2546,7 @@ class BenchmarkPhp
 	protected static function test_string(&$result, $count = 99999)
 	{
 		$timeStart = microtime(true);
-		$stringFunctions = [
+		$stringFunctions = array(
 			"addslashes",
 			"chunk_split",
 			"metaphone",
@@ -2553,12 +2559,12 @@ class BenchmarkPhp
 			"strlen",
 			"soundex",
 			"ord",
-		];
+		);
 
 		$string = 'the quick brown fox jumps over the lazy dog';
 		for ($i = 0; $i < $count; $i++) {
 			foreach ($stringFunctions as $function) {
-				call_user_func_array($function, [$string]);
+				call_user_func_array($function, array($string));
 			}
 		}
 		$result['benchmark']['string'] = self::timer_diff($timeStart);
@@ -2837,16 +2843,16 @@ function no_cache_found()
 	global $php_properties;
 
 	if (check_isIIS()) {
-		$php_properties['ByteCode Cache'] = [
+		$php_properties['ByteCode Cache'] = array(
 			'fitness' => tra('info'),
 			'setting' => 'N/A',
 			'message' => tra('Neither APC, WinCache nor xCache is being used as the ByteCode Cache; if one of these were used and correctly configured, performance would be increased. See Admin->Performance in the Tiki for more details.')
-		];
+		);
 	} else {
-		$php_properties['ByteCode Cache'] = [
+		$php_properties['ByteCode Cache'] = array(
 			'fitness' => tra('info'),
 			'setting' => 'N/A',
 			'message' => tra('Neither APC, xCache, nor OPcache is being used as the ByteCode Cache; if one of these were used and correctly configured, performance would be increased. See Admin->Performance in the Tiki for more details.')
-		];
+		);
 	}
 }
