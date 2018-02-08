@@ -61,7 +61,7 @@ function module_categories_info()
 			],
 			'customURL' => [
 				'name' => tra('Custom URL'),
-				'description' => tra('Custom URL for link to send you. Use %catId% as placeholder for catId. E.g. "ProductBrowse?categ=%catId%" '),
+				'description' => tra('Custom URL for link to send you. Use %catId% as placeholder for catId or %name% for name. E.g. "ProductBrowse?categ=%catId%" '),
 				'filter' => 'alpha',
 			],
 		],
@@ -149,8 +149,9 @@ function module_categories($mod_reference, &$module_params)
 		}
 		if (isset($module_params['selflink']) && $module_params['selflink'] == 'y') {
 			$url = filter_out_sefurl('tiki-index.php?page=' . urlencode($cat['name']));
-		} elseif (isset($module_params['customUrl'])) {
-			$url = str_replace("%catId%", $cat['categId'], $module_params['customUrl']);
+		} elseif (isset($module_params['customURL'])) {
+			$url = str_replace("%catId%", $cat['categId'], $module_params['customURL']);
+			$url = str_replace("%name%", $cat['name'], $module_params['customURL']);
 		} else {
 			$url = filter_out_sefurl('tiki-browse_categories.php?parentId=' . $cat['categId'], 'category', $cat['name'], ! empty($urlEnd)) . $urlEnd;
 		}
