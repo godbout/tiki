@@ -171,20 +171,6 @@ function smarty_function_trackerfields($params, $smarty)
 		}
 	}
 
-	// https://doc.tiki.org/Pretty+Tracker states that also that internal trackerfield names can be used
-	/*
-	{$f_created}: created date
-	{$f_status_input}: status input field
-	{$f_status}: status (output)
-	{$f_itemId}: the item id
-	{$f_lastmodif}: last modified date (this will display unix date, for human readable date look below)
-	(In Tiki 8 onwards) {$itemoff}: the iteration number of each item
-	{$tr_offset}: the offset of the item, i.e. this is the nth item of the total number of x items
-	*/
-	// @TODO need to add support
-
-
-
 	$smarty->assign('sections', array_values($out));
 	$smarty->assign('fields', $params['fields']);
 	$smarty->assign('auto', $auto);

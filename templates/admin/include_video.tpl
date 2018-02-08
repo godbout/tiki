@@ -76,15 +76,7 @@
 			<br>
 		{/tab}
 
-		{tab name="{tr}Interface{/tr}" key=interface}
-			<br>
-			<fieldset class="table clearfix featurelist">
-				<legend> {tr}jQuery plugins and add-ons{/tr} </legend>
-				{preference name=jquery_fitvidjs}
-			</fieldset>
-		{/tab}
-
-	    {tab name="{tr}Alchemy{/tr}" key=alchemy}
+	    {tab name="{tr}Media Alchemyst{/tr}" key=alchemy}
 			<br>
 			<fieldset class="table clearfix featurelist">
 				<legend> {tr}Settings for Alchemy{/tr} </legend>

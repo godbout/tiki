@@ -112,6 +112,11 @@ function filter_out_sefurl($tpl_output, $type = null, $title = '', $with_next = 
 				$title = preg_replace(PATTERN_TO_CLEAN_TEXT, CLEAN_CHAR, $tikilib->take_away_accent($title));
 				$title = preg_replace('/' . CLEAN_CHAR . CLEAN_CHAR . '+/', '-', $title);
 				$title = preg_replace('/' . CLEAN_CHAR . '+$/', '', $title);
+
+				if (! empty($prefs['feature_sefurl_title_trackeritem_max_size'])) {
+					$titleMaxLength = strrpos(substr($title, 0, ($prefs['feature_sefurl_title_trackeritem_max_size'] + 1)), CLEAN_CHAR);
+					$title = substr($title, 0, $titleMaxLength);
+				}
 			}
 
 			if ($prefs['feature_sefurl_tracker_prefixalias'] == 'y' && $prefs['tracker_prefixalias_on_links'] == 'y' &&

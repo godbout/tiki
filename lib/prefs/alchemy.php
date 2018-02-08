@@ -9,22 +9,24 @@ function prefs_alchemy_list()
 {
 	return [
 		'alchemy_ffmpeg_path' => [
-			'name' => tra('Path to ffmpeg binary'),
-			'description' => tra('Path to the location of ffmpeg'),
+			'name' => tra('ffmpeg path'),
+			'description' => tra('Path to the location of the ffmpeg binary.'),
 			'type' => 'text',
+			'help' => 'https://www.ffmpeg.org/',
 			'size' => '256',
 			'default' => '/usr/bin/ffmpeg',
 		],
 
 		'alchemy_ffprobe_path' => [
-			'name' => tra('Path to ffprobe binary'),
-			'description' => tra('Path to the location of ffprobe'),
+			'name' => tra('ffprobe path'),
+			'description' => tra('Path to the location of the ffprobe binary.'),
 			'type' => 'text',
+			'help' => 'https://ffmpeg.org/ffprobe.html',
 			'size' => '256',
 			'default' => '/usr/bin/ffprobe',
 		],
 		'alchemy_imagine_driver' => [
-			'name' => tra('Image library to use with Alchemy'),
+			'name' => tra('Alchemy Image library'),
 			'description' => tra('Select one of Image Magick or GD Graphics Library'),
 			'type' => 'list',
 			'options' => [

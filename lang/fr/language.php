@@ -4321,6 +4321,7 @@ $lang = [
 // "HTTP header public-key-pins" => "HTTP header public-key-pins",
 // "The public-key-pins header associates a specific cryptographic public key with a certain web server to decrease the risk of MITM attacks with forged certificates. If one or several keys are pinned and none of them are used by the server, the browser will not accept the response as legitimate, and will not display it" => "The public-key-pins header associates a specific cryptographic public key with a certain web server to decrease the risk of MITM attacks with forged certificates. If one or several keys are pinned and none of them are used by the server, the browser will not accept the response as legitimate, and will not display it",
 "Use HTTPS when building user-specific links" => "Utiliser HTTPS lors de la fabrication de liens spécifiques aux utilisateurs",
+"HTTPS for user-specific links" => "Utiliser HTTPS lors de la fabrication de liens spécifiques aux utilisateurs",
 // "When building notification emails, RSS feeds, the canonical URL or other externally available links, use HTTPS when the content applies to a specific user. HTTPS must be configured on the server" => "When building notification emails, RSS feeds, the canonical URL or other externally available links, use HTTPS when the content applies to a specific user. HTTPS must be configured on the server",
 "HTTPS port" => "Port HTTPS",
 // "the HTTPS port for this server" => "the HTTPS port for this server",

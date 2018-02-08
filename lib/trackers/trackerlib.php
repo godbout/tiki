@@ -4510,7 +4510,7 @@ class TrackerLib extends TikiLib
 			//matches[2] = trailing modifier text
 			//matches[3] = modifier name ('output' or 'template')
 			//matches[4] = modifier parameter (template name in this case)
-			preg_match_all('/\$f_(\w+)(\|(output|template):?(.*))?}/', $f, $matches);
+			preg_match_all('/\$f_(\w+)(\|(output|template):?([^}]*))?}/', $f, $matches);
 			$ret = [];
 			foreach ($matches[1] as $i => $val) {
 				if (ctype_digit($val)) {
