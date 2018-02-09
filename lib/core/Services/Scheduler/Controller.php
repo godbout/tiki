@@ -61,4 +61,56 @@ class Services_Scheduler_Controller
 			'name' => $scheduler['name'],
 		];
 	}
+
+	/**
+	 * Execute one scheduler from the admin interface
+	 *
+	 * @param $input
+	 * @return array
+	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_NotFound
+	 */
+	function action_run($input)
+	{
+		Services_Exception_Denied::checkGlobal('admin_users');
+
+		$schedulerId = $input->schedulerId->int();
+
+		$scheduler = $this->lib->get_scheduler($schedulerId);
+
+		if (! $scheduler) {
+			throw new Services_Exception_NotFound;
+		}
+
+		$runTask = $scheduler;
+		$logger = new Tiki_Log('Webcron', \Psr\Log\LogLevel::ERROR);
+
+		$schedulerTask = new Scheduler_Item(
+			$runTask['id'],
+			$runTask['name'],
+			$runTask['description'],
+			$runTask['task'],
+			$runTask['params'],
+			$runTask['run_time'],
+			$runTask['status'],
+			$runTask['re_run'],
+			$logger
+		);
+
+		$message = tr('Running scheduler %0', $schedulerTask->name) . '<br>';
+		$result = $schedulerTask->execute();
+
+		if ($result['status'] == 'failed') {
+			$message .= tr('Scheduler %0 - FAILED', $schedulerTask->name) . '<br>' . $result['message'];
+		} else {
+			$message .= tr('Scheduler %0 - OK', $schedulerTask->name) . '<br>';
+			$message .= $result['message'];
+		}
+
+		return [
+			'schedulerId' => $schedulerId,
+			'name' => $scheduler['name'],
+			'message' => $message,
+		];
+	}
 }

@@ -80,6 +80,9 @@
 							<td class="action">
 								{capture name=scheduler_actions}
 									{strip}
+										{$libeg}<a href="{bootstrap_modal controller=scheduler action=run schedulerId=$schedulers[scheduler].id}">
+										{icon name="gear" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr}"}
+										</a>{$liend}
 										{$libeg}<a href="{query _type='relative' scheduler=$schedulers[scheduler].id}">
 										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 										</a>{$liend}
