@@ -5,8 +5,8 @@
 <meta name="robots" content="noindex, nofollow" />
 <title>Tiki Installation Unzipper</title>
 <style type="text/css">
-        .block          {text-align: justify;}
-        a:hover         {background-color: orange;}
+		.block          {text-align: justify;}
+		a:hover         {background-color: orange;}
 </style>
 </head>
 <?php

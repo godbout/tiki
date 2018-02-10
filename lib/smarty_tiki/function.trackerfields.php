@@ -151,8 +151,8 @@ function smarty_function_trackerfields($params, $smarty)
 		$permName = $field['permName'];
 		if (empty($prettyModifier[$id])) {
 			$smarty->assign('f_' . $id, $auto['default'][$permName]);
-			// https://doc.tiki.org/Pretty+Tracker states that next to {f_id} also {f_fieldname} can be used. 
-			// Somehow there is the support missing here - so add it		
+			// https://doc.tiki.org/Pretty+Tracker states that next to {f_id} also {f_fieldname} can be used.
+			// Somehow there is the support missing here - so add it
 			$smarty->assign('f_' . $permName, $auto['default'][$permName]);
 		} elseif ($prettyModifier[$id] == "output") {
 			$smarty->assign('f_' . $id, $auto['output'][$permName]);

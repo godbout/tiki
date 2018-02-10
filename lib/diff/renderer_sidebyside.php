@@ -121,8 +121,8 @@ class Text_Diff_Renderer_sidebyside extends Tiki_Text_Diff_Renderer
 		$this->_deleted([$lines[0]], true);
 		$this->_added([$lines[1]], true);
 /* switch with these lines for no character diff
-        $this->_deleted($orig, TRUE);
-        $this->_added($final, TRUE);
+		$this->_deleted($orig, TRUE);
+		$this->_added($final, TRUE);
 */
 	}
 }

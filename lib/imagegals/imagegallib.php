@@ -2588,7 +2588,7 @@ class ImageGalsLib extends TikiLib
 				$ret['msg'] = $e->getMessage();
 				return $ret;
 			}
-			
+
 			if (! empty($prefs['gal_match_regex']) && ! preg_match('/' . $prefs['gal_match_regex'] . '/', $file_name, $reqs)) {
 				$ret['msg'] = tra('Invalid imagename (using filters for filenames)');
 				return $ret;

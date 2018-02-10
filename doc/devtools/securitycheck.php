@@ -334,13 +334,13 @@ function perform_feature_check(&$file) // {{{
 	// store, for each feature, which files are involved
 	foreach ($featuresInFile as $feature) {
 	  if (is_string($feature)) {
-	    if (preg_match('/feature/', $feature)) {
-	      // SMELL sure to be a better way to do this.
-	      //print "Listing as feature $feature\n";
-	      $featuresListed = (array) $features[$feature];
-	      array_push($featuresListed, $path);
-	      $features[$feature] = $featuresListed;
-	    }
+		if (preg_match('/feature/', $feature)) {
+		  // SMELL sure to be a better way to do this.
+		  //print "Listing as feature $feature\n";
+		  $featuresListed = (array) $features[$feature];
+		  array_push($featuresListed, $path);
+		  $features[$feature] = $featuresListed;
+		}
 	  // TODO SMELL: this regex should not be necessary, it should only contain features at this point.
 	  // SMELL: it will also miss some vital elements.
 	  }

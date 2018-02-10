@@ -131,7 +131,6 @@ class Services_Edit_PluginController
 				'redirect' => TikiLib::lib('wiki')->sefurl($page),
 			];
 		} elseif ($util->access->ticketSet()) {        // render the form
-
 			$info = $parserlib->plugin_info($type);
 			$info['advancedParams'] = [];
 			$validationRules = [];

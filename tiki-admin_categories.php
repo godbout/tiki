@@ -402,7 +402,6 @@ if (isset($_REQUEST["find_objects"])) {
 
 // ---------------------------------------------------
 if ($prefs['feature_search'] !== 'y' || $prefs['unified_add_to_categ_search'] !== 'y') {    // no unified search
-
 	@ini_set(
 		'max_execution_time',
 		0
@@ -539,7 +538,6 @@ if ($prefs['feature_search'] !== 'y' || $prefs['unified_add_to_categ_search'] !=
 	$smarty->assign('offset', $offset);
 	$smarty->assign('maximum', $maximum);
 } else {    // unified search
-
 	$objects = $categlib->list_category_objects(
 		$_REQUEST["parentId"],
 		$offset,

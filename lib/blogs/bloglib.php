@@ -810,7 +810,7 @@ class BlogLib extends TikiDb_Bridge
 		global $prefs;
 		$tikilib = TikiLib::lib('tiki');
 		$smarty = TikiLib::lib('smarty');
-        
+
 		if ($is_wysiwyg) {
 			$data = TikiFilter::get('purifier')->filter($data);
 			$excerpt = TikiFilter::get('purifier')->filter($excerpt);
@@ -1135,7 +1135,7 @@ class BlogLib extends TikiDb_Bridge
 			$query = "update `tiki_blog_posts` set `blogId`=?,`data`=?,`excerpt`=?,`user`=?,`title`=?, `priv`=?, `wysiwyg`=? where `postId`=?";
 			$result = $this->query($query, [$blogId, $data, $excerpt, $user, $title, $priv, $wysiwyg, $postId]);
 		}
-        
+
 		$wikilib = TikiLib::lib('wiki');
 		$wikilib->update_wikicontent_relations($data, 'post', $postId);
 		$wikilib->update_wikicontent_links($data, 'post', $postId);

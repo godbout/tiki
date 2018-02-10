@@ -20,9 +20,9 @@ class TestRunnerWithBaselineTest extends PHPUnit_Framework_TestCase
 		$this->runner = new TestRunnerWithBaseLine();
 
 		/* Remember what the command line args were, because some of
-           the tests below may need to mess around with them, and we
-           want to restore them to their original state afterwards.
-        */
+		   the tests below may need to mess around with them, and we
+		   want to restore them to their original state afterwards.
+		*/
 		$this->old_cmdline = $argv;
 	}
 

@@ -452,8 +452,8 @@ class EditLib
 
 
 			/*
-		 	* convert 'align' to 'style' definitions
-		    */
+			 * convert 'align' to 'style' definitions
+			*/
 			if (isset($args['align'])) {
 				$style['text-align'] = $args['align']['value'];
 			}

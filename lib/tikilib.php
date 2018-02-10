@@ -4849,7 +4849,7 @@ class TikiLib extends TikiDb_Bridge
 				$func_name = 'wikiplugin_' . $plugin_name . '_save';
 
 				if (function_exists($func_name)) {
-					$func_name( $context, $body, $arguments );
+					$func_name($context, $body, $arguments);
 				}
 			}
 		}
@@ -4968,7 +4968,6 @@ class TikiLib extends TikiDb_Bridge
 				if (TikiDate::TimezoneIsValidId($_COOKIE['local_tz'])) {
 					$prefs['display_timezone'] = $_COOKIE['local_tz'];
 				} elseif (in_array(strtolower($_COOKIE['local_tz']), TikiDate::getTimezoneAbbreviations())) {	// abbreviation like BST or CEST
-
 					// timezone_offset in seconds
 					$prefs['timezone_offset'] = isset($_COOKIE['local_tzoffset']) ? (int) $_COOKIE['local_tzoffset'] * 60 * 60 : -1;
 					$tzname = timezone_name_from_abbr($_COOKIE['local_tz'], $prefs['timezone_offset']);
@@ -6025,7 +6024,6 @@ JS;
 			$headerlib->add_js($js);
 			return "<div id=\"$myId\">" . $alt . "</div>";
 		} else { // link on the movie will not work with IE6
-
 			$asetup = "<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"{$params['width']}\" height=\"{$params['height']}\">";
 			$asetup .= "<param name=\"movie\" value=\"{$params['movie']}\" />";
 			$asetup .= "<param name=\"quality\" value=\"{$params['quality']}\" />";

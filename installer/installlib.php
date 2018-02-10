@@ -178,7 +178,7 @@ class Installer extends TikiDb_Bridge
 			}
 		} else {
 			if (function_exists($pre)) {
-				$pre( $this );
+				$pre($this);
 			}
 
 			if (file_exists($profile)) {
@@ -191,7 +191,7 @@ class Installer extends TikiDb_Bridge
 			}
 
 			if (function_exists($post)) {
-				$post( $this );
+				$post($this);
 			}
 		}
 		if (! isset($status)) {
@@ -278,7 +278,7 @@ class Installer extends TikiDb_Bridge
 	 * @param $file
 	 * @return bool
 	 */
-	function runFile($file, $convertFormat=true) // {{{
+	function runFile($file, $convertFormat = true) // {{{
 	{
 		if (! is_file($file) || ! $command = file_get_contents($file)) {
 			throw new Exception('Fatal: Cannot open ' . $file);

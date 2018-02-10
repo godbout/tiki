@@ -345,14 +345,14 @@ function error_and_exit()
 
 		$httpd_conf = 'httpd.conf';
 /*
-        ob_start();
-        phpinfo (INFO_MODULES);
+		ob_start();
+		phpinfo (INFO_MODULES);
 
-        if (preg_match('/Server Root<\/b><\/td><td\s+align="left">([^<]*)</', ob_get_contents(), $m)) {
-                $httpd_conf = $m[1] . '/' . $httpd_conf;
-        }
+		if (preg_match('/Server Root<\/b><\/td><td\s+align="left">([^<]*)</', ob_get_contents(), $m)) {
+				$httpd_conf = $m[1] . '/' . $httpd_conf;
+		}
 
-        ob_end_clean();
+		ob_end_clean();
 */
 
 		print "<html><body>\n<h2><IMG SRC=\"img/tiki/Tiki_WCG.png\" ALT=\"\" BORDER=0><br /\>

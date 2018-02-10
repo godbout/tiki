@@ -1376,7 +1376,8 @@ if ( \$('#$id') ) {
 	 * @param string new page name
 	 * @return string new wiki parseable content with links replaced
 	 */
-	function replace_links($data, $oldName, $newName) {
+	function replace_links($data, $oldName, $newName)
+	{
 		global $prefs;
 		$quotedOldName = preg_quote($oldName, '/');
 		$semanticlib = TikiLib::lib('semantic');

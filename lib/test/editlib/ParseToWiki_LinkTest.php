@@ -25,7 +25,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	function tearDown()
 	{
 		/*
-         * remove the external Wikis defined in the tests
+		 * remove the external Wikis defined in the tests
 		 */
 		global $tikilib;
 
@@ -330,7 +330,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 		/*
 		 * Link to video
 		 * - link
-         *
+		 *
 		 */
 		$inData = '<a class="wiki external" target="_blank" href="http://www.youtube.com/v/KBewVCducWw&amp;autoplay=1" rel="external nofollow">http://www.youtube.com/v/KBewVCducWw&amp;autoplay=1</a>';
 		$ex = '[http://www.youtube.com/v/KBewVCducWw&autoplay=1]';

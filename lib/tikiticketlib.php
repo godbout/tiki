@@ -17,8 +17,8 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 
 	 This protection is deprecated. Previous uses in the form...
 	 if (isset($_REQUEST['perform_action']) {
-	 	check_ticket('foo');
-	 	restricted_modification();
+		 check_ticket('foo');
+		 restricted_modification();
 	 }
 	 ask_ticket('foo');
 

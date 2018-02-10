@@ -1995,7 +1995,7 @@ class TrackerLib extends TikiLib
 			} else {
 				$is_date = isset($array['type']) ? in_array($array["type"], ['f', 'j']) : false;
 
-				if ($currentItemId || ( isset($array['type']) && $array['type'] !== 'q') ) {	// autoincrement
+				if ($currentItemId || ( isset($array['type']) && $array['type'] !== 'q')) {	// autoincrement
 					$this->modify_field($currentItemId, $fieldId, $value);
 					if ($old_value != $value) {
 						if ($is_date) {
@@ -2640,7 +2640,6 @@ class TrackerLib extends TikiLib
 				}
 				if ($f['type'] != 'q' and isset($f['isMandatory']) && $f['isMandatory'] == 'y') {
 					if (($f['type'] == 'e' || in_array($f['fieldId'], $categorized_fields)) && empty($f['value'])) {	// category: value is now categ id's
-
 						$mandatory_fields[] = $f;
 					} elseif (in_array($f['type'], ['a', 't']) && ($this->is_multilingual($f['fieldId']) == 'y')) {
 						if (! isset($multi_languages)) {

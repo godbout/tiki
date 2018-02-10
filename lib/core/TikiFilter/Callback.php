@@ -18,6 +18,6 @@ class TikiFilter_Callback implements Zend\Filter\FilterInterface
 	{
 		$f = $this->callback;
 
-		return $f( $value );
+		return $f($value);
 	}
 }
