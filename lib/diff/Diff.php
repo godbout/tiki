@@ -271,13 +271,13 @@ class Text_Diff_Engine_xdiff
 		$diff = explode("\n", $diff);
 
 		/* Walk through the diff one line at a time.  We build the $edits
-         * array of diff operations by reading the first character of the
-         * xdiff output (which is in the "unified diff" format).
-         *
-         * Note that we don't have enough information to detect "changed"
-         * lines using this approach, so we can't add Text_Diff_Op_changed
-         * instances to the $edits array.  The result is still perfectly
-         * valid, albeit a little less descriptive and efficient. */
+		 * array of diff operations by reading the first character of the
+		 * xdiff output (which is in the "unified diff" format).
+		 *
+		 * Note that we don't have enough information to detect "changed"
+		 * lines using this approach, so we can't add Text_Diff_Op_changed
+		 * instances to the $edits array.  The result is still perfectly
+		 * valid, albeit a little less descriptive and efficient. */
 		$edits = [];
 		foreach ($diff as $line) {
 			switch ($line[0]) {
@@ -447,7 +447,7 @@ class Text_Diff_Engine_native
 
 		if ($xlim - $xoff > $ylim - $yoff) {
 			/* Things seems faster (I'm not sure I understand why) when the
-             * shortest sequence is in X. */
+			 * shortest sequence is in X. */
 			$flip = true;
 			list ($xoff, $xlim, $yoff, $ylim)
 				= [$yoff, $ylim, $xoff, $xlim];
@@ -497,7 +497,7 @@ class Text_Diff_Engine_native
 					if ($y > $this->seq[$k - 1]) {
 //                        assert($y < $this->seq[$k]);
 						/* Optimization: this is a common case: next match is
-                         * just replacing previous match. */
+						 * just replacing previous match. */
 						$this->in_seq[$this->seq[$k]] = false;
 						$this->seq[$k] = $y;
 						$this->in_seq[$y] = 1;
@@ -581,8 +581,8 @@ class Text_Diff_Engine_native
 			$lcs = 0;
 		} else {
 			/* This is ad hoc but seems to work well.  $nchunks =
-             * sqrt(min($xlim - $xoff, $ylim - $yoff) / 2.5); $nchunks =
-             * max(2,min(8,(int)$nchunks)); */
+			 * sqrt(min($xlim - $xoff, $ylim - $yoff) / 2.5); $nchunks =
+			 * max(2,min(8,(int)$nchunks)); */
 			$nchunks = min(7, $xlim - $xoff, $ylim - $yoff) + 1;
 			list($lcs, $seps)
 				= $this->_diag($xoff, $xlim, $yoff, $ylim, $nchunks);
@@ -590,7 +590,7 @@ class Text_Diff_Engine_native
 
 		if ($lcs == 0) {
 			/* X and Y sequences have no common subsequence: mark all
-             * changed. */
+			 * changed. */
 			while ($yoff < $ylim) {
 				$this->ychanged[$this->yind[$yoff++]] = 1;
 			}
@@ -631,16 +631,16 @@ class Text_Diff_Engine_native
 
 		while (1) {
 			/* Scan forward to find the beginning of another run of
-             * changes. Also keep track of the corresponding point in the
-             * other file.
-             *
-             * Throughout this code, $i and $j are adjusted together so that
-             * the first $i elements of $changed and the first $j elements of
-             * $other_changed both contain the same number of zeros (unchanged
-             * lines).
-             *
-             * Furthermore, $j is always kept so that $j == $other_len or
-             * $other_changed[$j] == false. */
+			 * changes. Also keep track of the corresponding point in the
+			 * other file.
+			 *
+			 * Throughout this code, $i and $j are adjusted together so that
+			 * the first $i elements of $changed and the first $j elements of
+			 * $other_changed both contain the same number of zeros (unchanged
+			 * lines).
+			 *
+			 * Furthermore, $j is always kept so that $j == $other_len or
+			 * $other_changed[$j] == false. */
 			while ($j < $other_len && $other_changed[$j]) {
 				$j++;
 			}
@@ -667,12 +667,12 @@ class Text_Diff_Engine_native
 
 			do {
 				/* Record the length of this run of changes, so that we can
-                 * later determine whether the run has grown. */
+				 * later determine whether the run has grown. */
 				$runlength = $i - $start;
 
 				/* Move the changed region back, so long as the previous
-                 * unchanged line matches the last changed one.  This merges
-                 * with previous changed regions. */
+				 * unchanged line matches the last changed one.  This merges
+				 * with previous changed regions. */
 				while ($start > 0 && $lines[$start - 1] == $lines[$i - 1]) {
 					$changed[--$start] = 1;
 					$changed[--$i] = false;
@@ -687,16 +687,16 @@ class Text_Diff_Engine_native
 				}
 
 				/* Set CORRESPONDING to the end of the changed run, at the
-                 * last point where it corresponds to a changed run in the
-                 * other file. CORRESPONDING == LEN means no such point has
-                 * been found. */
+				 * last point where it corresponds to a changed run in the
+				 * other file. CORRESPONDING == LEN means no such point has
+				 * been found. */
 				$corresponding = $j < $other_len ? $i : $len;
 
 				/* Move the changed region forward, so long as the first
-                 * changed line matches the following unchanged one.  This
-                 * merges with following changed regions.  Do this second, so
-                 * that if there are no merges, the changed region is moved
-                 * forward as far as possible. */
+				 * changed line matches the following unchanged one.  This
+				 * merges with following changed regions.  Do this second, so
+				 * that if there are no merges, the changed region is moved
+				 * forward as far as possible. */
 				while ($i < $len && $lines[$start] == $lines[$i]) {
 					$changed[$start++] = false;
 					$changed[$i++] = 1;
@@ -716,7 +716,7 @@ class Text_Diff_Engine_native
 			} while ($runlength != $i - $start);
 
 			/* If possible, move the fully-merged run of changes back to a
-             * corresponding run in the other file. */
+			 * corresponding run in the other file. */
 			while ($corresponding < $i) {
 				$changed[--$start] = 1;
 				$changed[--$i] = 0;

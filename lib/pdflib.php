@@ -119,7 +119,7 @@ class PdfGenerator
 				}
 				$url = $base_url . $file . '?' . http_build_query($params, '', '&');
 				$session_params = session_get_cookie_params();
-				return $this->{$this->mode}( $url,$pdata,$params);
+				return $this->{$this->mode}($url, $pdata, $params);
 			}
 		);
 	}
@@ -318,7 +318,7 @@ class PdfGenerator
 		}
 
 		$pdfPages = $this->getPDFPages($html, $pdfSettings);
-		$cssStyles = str_replace([".tiki","opacity: 0;"], ["","fill: #fff;opacity:0.3;stroke:black"], '<style>' . $basecss . $themecss . $printcss . $pageCSS . $extcss . $this->bootstrapReplace() .$prefs["header_custom_css"]. '</style>'); //adding css styles with first page content
+		$cssStyles = str_replace([".tiki","opacity: 0;"], ["","fill: #fff;opacity:0.3;stroke:black"], '<style>' . $basecss . $themecss . $printcss . $pageCSS . $extcss . $this->bootstrapReplace() . $prefs["header_custom_css"] . '</style>'); //adding css styles with first page content
 		//cover page checking
 		if ($pdfSettings['coverpage_text_settings'] != '' || ($pdfSettings['coverpage_image_settings'] != '' && $pdfSettings['coverpage_image_settings'] != 'off')) {
 			$coverPage = explode("|", $pdfSettings['coverpage_text_settings']);
@@ -385,8 +385,8 @@ class PdfGenerator
 				}
 				$mpdf->WriteHTML('<html><body style="' . $bgColor . ';margin:0px;padding:0px;">' . $cssStyles);
 				//checking if page content is less than mPDF character limit, otherwise split it and loop to writeHTML
-				for($charLimit=0;$charLimit<=strlen($pdfPage['pageContent']);$charLimit+=$pdfLimit) {
-					 $mpdf->WriteHTML(substr($pdfPage['pageContent'],$charLimit,$pdfLimit));
+				for ($charLimit = 0; $charLimit <= strlen($pdfPage['pageContent']); $charLimit += $pdfLimit) {
+					 $mpdf->WriteHTML(substr($pdfPage['pageContent'], $charLimit, $pdfLimit));
 				}
 				$mpdf->WriteHTML('</body></html>');
 				$pageNo++;

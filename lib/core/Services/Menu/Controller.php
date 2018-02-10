@@ -10,7 +10,8 @@ class Services_Menu_Controller
 	/** @var  MenuLib */
 	private $menulib;
 
-	function setUp() {
+	function setUp()
+	{
 		$this->menulib = TikiLib::lib('menu');
 	}
 
@@ -394,7 +395,6 @@ class Services_Menu_Controller
 		}
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $util->access->ticketMatch()) {
-
 			$oldOptions = $this->menulib->list_menu_options($menuId);
 			$options = json_decode($input->data->striptags(), true);
 
@@ -459,7 +459,6 @@ class Services_Menu_Controller
 		$menuInfo = $this->menulib->get_menu($menuId);
 
 		if ($menuInfo) {
-
 			//get related symbol information
 			$menuSymbol = Tiki_Profile::getObjectSymbolDetails('menu', $menuId);
 
@@ -468,7 +467,6 @@ class Services_Menu_Controller
 				'info' => $menuInfo,
 				'symbol' => $menuSymbol,
 			];
-
 		} else {
 			return [];
 		}

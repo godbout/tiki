@@ -464,11 +464,11 @@ class WikiLib extends TikiLib
 
 			$modified = false;
 			$matches = [];
-			for ($i=0; $i<sizeof($data); $i++) {
+			for ($i = 0; $i < sizeof($data); $i++) {
 				$matches[] = WikiParser_PluginMatcher::match($data[$i]);
 				$argParser = new WikiParser_PluginArgumentParser();
-				foreach ( $matches[$i] as $match ) {
-					if ( $match->getName() == 'include' ) {
+				foreach ($matches[$i] as $match) {
+					if ($match->getName() == 'include') {
 						$arguments = $argParser->parse($match->getArguments());
 						if ($arguments['page'] == $oldName) {
 							$arguments['page'] = $newName;
@@ -647,7 +647,8 @@ class WikiLib extends TikiLib
 	 * @param string/int $itemId
 	 * @param boolean $wikiParsed Indicates if content is wiki parsed.
 	 */
-	public function update_wikicontent_links($data, $objectType, $itemId, $wikiParsed = true) {
+	public function update_wikicontent_links($data, $objectType, $itemId, $wikiParsed = true)
+	{
 		$parserlib = TikiLib::lib('parser');
 		$tikilib = TikiLib::lib('tiki');
 
@@ -1327,8 +1328,7 @@ class WikiLib extends TikiLib
 				$objectId = substr($res['fromPage'], strlen($type) + 12);
 				if ($type == 'trackeritemfield') {
 					$feature = 'wiki_backlinks_show_trackeritem';
-				}
-				elseif (substr($type, -7) == 'comment') {
+				} elseif (substr($type, -7) == 'comment') {
 					$feature = 'wiki_backlinks_show_comment';
 				} else {
 					$feature = 'wiki_backlinks_show_' . str_replace(" ", "_", $type);

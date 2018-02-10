@@ -12,7 +12,7 @@ class Perms_Check_Fixed implements Perms_Check
 
 	/*
 	 * Initialize internal permissions array and set each permission to true.
-     * @params array $permissions
+	 * @params array $permissions
 	 */
 	function __construct($permissions)
 	{
@@ -22,12 +22,12 @@ class Perms_Check_Fixed implements Perms_Check
 
 	/*
 	 * Check a specific permission against those given by the constructor for a specific list of groups
-     * This function requires that $this->setResolver($resolver) has been set before. Otherwise it will always return false.
+	 * This function requires that $this->setResolver($resolver) has been set before. Otherwise it will always return false.
 	 * @param Perms_Resolver $resolver - not used
 	 * @param array $context - not used
 	 * @param string $name - permission name to check
 	 * @param array $groups - list of groups to check permission against
-     * @return boolean $hasPermission- true|false
+	 * @return boolean $hasPermission- true|false
 	 */
 	function check(Perms_Resolver $resolver, array $context, $name, array $groups)
 	{

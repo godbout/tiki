@@ -280,12 +280,12 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 					$html .= '<li class="disabled"><span>«</span></li>';
 				} else {
 					$html .= '<li>' . $make_prevnext_link(
-							$url . $prev_offset,
-							'«',
-							$params,
-							'prevnext prev',
-							$prev_offset_val
-						) . '</li>';
+						$url . $prev_offset,
+						'«',
+						$params,
+						'prevnext prev',
+						$prev_offset_val
+					) . '</li>';
 				}
 			}
 
@@ -318,12 +318,12 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 							$url_k = $params['offset_arg'] . '=' . $url_k_val;
 						}
 						$html .= '<li>' . $make_prevnext_link(
-								$url . $url_k,
-								$k + 1,
-								$params,
-								'prevnext',
-								$url_k_val
-							) . '</li>';
+							$url . $url_k,
+							$k + 1,
+							$params,
+							'prevnext',
+							$url_k_val
+						) . '</li>';
 						$last_dots = false;
 					} elseif (! $last_dots) {
 						$html .= '<li class="disabled"><span>…</span>';
@@ -337,12 +337,12 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 					$html .= '<li class="disabled"><span>»</span></li>';
 				} else {
 					$html .= '<li>' . $make_prevnext_link(
-							$url . $next_offset,
-							'»',
-							$params,
-							'prevnext next',
-							$next_offset_val
-						) . '</li>';
+						$url . $next_offset,
+						'»',
+						$params,
+						'prevnext next',
+						$next_offset_val
+					) . '</li>';
 				}
 			}
 

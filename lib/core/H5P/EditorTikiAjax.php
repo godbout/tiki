@@ -45,7 +45,8 @@ class H5P_EditorTikiAjax implements H5PEditorAjaxInterface
            JOIN tiki_h5p_libraries hl4
              ON hl3.name = hl4.name
             AND hl3.major_version = hl4.major_version
-            AND hl3.minor_version = hl4.minor_version");
+            AND hl3.minor_version = hl4.minor_version"
+		);
 
 		$out = [];
 
@@ -64,7 +65,7 @@ class H5P_EditorTikiAjax implements H5PEditorAjaxInterface
 	 *
 	 * @return array|object|null Returns results from querying the database
 	 */
-	public function getContentTypeCache($machineName = NULL)
+	public function getContentTypeCache($machineName = null)
 	{
 		$tiki_h5p_libraries_hub_cache = TikiDb::get()->table('tiki_h5p_libraries_hub_cache');
 
@@ -79,7 +80,6 @@ class H5P_EditorTikiAjax implements H5PEditorAjaxInterface
 		return $tiki_h5p_libraries_hub_cache->fetchAll(
 			$tiki_h5p_libraries_hub_cache->all()
 		);
-
 	}
 
 	/**
@@ -92,14 +92,14 @@ class H5P_EditorTikiAjax implements H5PEditorAjaxInterface
 	{
 		// TODO (adapt for tiki action log
 
-		$recently_used =[];
+		$recently_used = [];
 
 /*		$result = TikiDb::get()->query(
 			"SELECT library_name, max(created_at) AS max_created_at
-         FROM tiki_h5p_events
-        WHERE type='content' AND sub_type = 'create' AND user_id = ?
-     GROUP BY library_name
-     ORDER BY max_created_at DESC",
+		 FROM tiki_h5p_events
+		WHERE type='content' AND sub_type = 'create' AND user_id = ?
+	 GROUP BY library_name
+	 ORDER BY max_created_at DESC",
 			get_current_user_id()
 		);
 

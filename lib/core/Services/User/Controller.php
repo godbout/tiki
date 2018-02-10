@@ -475,11 +475,11 @@ class Services_User_Controller
 							'confirmController' => 'user',
 							'customMsg' => sizeof($selected) == 1 ? tr(
 								'Remove user %0 from the following group?',
-                                $selected[0]
+								$selected[0]
 							) : tr(
 								'Remove users %0 from the following group?',
 								implode(', ', $selected)
-                            ),
+							),
 							'items' => $items,
 							'extra' => [
 								'add_remove'    => 'remove',

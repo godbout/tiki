@@ -17,7 +17,7 @@ interface Perms_Resolver
 	 * Check if a specific permission like 'add_object' exist in any of the groups
 	 * @param string $name  - permission name
 	 * @param array $groups - all groups available
-     * @return bool $success - true if permission was found
+	 * @return bool $success - true if permission was found
 	 */
 	function check($permission, array $groups);
 
@@ -29,7 +29,7 @@ interface Perms_Resolver
 
 	/*
 	 * Get array of applicable groups.
-     * @return array $ applicableGroups
+	 * @return array $ applicableGroups
 	 */
 	function applicableGroups();
 }

@@ -53,15 +53,15 @@ function wikiplugin_prefdoc($data, $params)
 	if (is_readable('storage/prefsdoc/state.json')) {
 		$Doc->state = json_decode(file_get_contents("storage/prefsdoc/state.json"));
 	}
-	if (!$Doc->genPrefsState()) {
+	if (! $Doc->genPrefsState()) {
 		return $Doc->error;
 	}
 
-	if (!isset($params['tab'])) {         // if no tab specified, return a list of available tabs
+	if (! isset($params['tab'])) {         // if no tab specified, return a list of available tabs
 		return $Doc->genPrefCodes();
 	}
 
-	if (!$Doc->genPrefHistory($params['tab'], @$params['img'])) {
+	if (! $Doc->genPrefHistory($params['tab'], @$params['img'])) {
 		return $Doc->error;
 	}
 	return $Doc->error . $Doc->docTable;
@@ -111,7 +111,7 @@ class PrefsDoc extends TWVersion
 	public function genPrefHistory($tabName, $images)
 	{
 
-		if (!isset($this->state->files->{$tabName})) {
+		if (! isset($this->state->files->{$tabName})) {
 			$this->error .= "Error: <strong>Cant find $tabName</strong> you may choose from one of the following: \n" . $this->genPrefCodes();
 			return false;
 		}
@@ -158,8 +158,8 @@ class PrefsDoc extends TWVersion
 	{
 
 		$codes = '';
-		foreach ($this->state->files as $key => $value){
-			$codes.= $key.'<br>';
+		foreach ($this->state->files as $key => $value) {
+			$codes .= $key . '<br>';
 		}
 
 		return $codes;
@@ -222,7 +222,7 @@ class PrefsDoc extends TWVersion
 		$this->prefDefaultFull = '';
 
 		// set default
-		if (!empty($param->options) && isset($param->default) && $param->default !== '') {
+		if (! empty($param->options) && isset($param->default) && $param->default !== '') {
 			$this->prefDefault = $param->options->{$param->default};
 		} elseif ($param->default === 'n') {
 			$this->prefDefault = 'Disabled';
@@ -237,9 +237,9 @@ class PrefsDoc extends TWVersion
 		$this->prefDefault = trim($this->prefDefault);
 		if ($this->prefDefault == '') {
 			$this->prefDefault = '~~gray:None~~';
-		} elseif (!empty($param->units)) {
+		} elseif (! empty($param->units)) {
 			$this->prefDefault .= ' ' . $param->units;
-		} elseif (!preg_match('/\W/', $this->prefDefault)) {                // if Pref is a singe word
+		} elseif (! preg_match('/\W/', $this->prefDefault)) {                // if Pref is a singe word
 			$this->prefDefault = ucfirst($this->prefDefault);                    // then caps the first letter.
 		} else {
 			if (strlen($this->prefDefault) > 30) {
@@ -284,7 +284,7 @@ class PrefsDoc extends TWVersion
 			$this->prefDescription .= '<span class="fa fa-exclamation-triangle text-warning" title="Warning"></span><i> ' . $param->warning . '</i>';
 		}
 		// display list of options
-		if (!empty($param->options)) {
+		if (! empty($param->options)) {
 			$count = 0;
 			$options = '';
 			foreach ($param->options as $option) {
@@ -363,8 +363,8 @@ class PrefsDoc extends TWVersion
 			return true;
 		}
 
-		if (!is_dir('storage/prefsdoc')) {
-			if (!mkdir('storage/prefsdoc')) {            // create subdir for housing generated files, if it does not exist
+		if (! is_dir('storage/prefsdoc')) {
+			if (! mkdir('storage/prefsdoc')) {            // create subdir for housing generated files, if it does not exist
 				$this->error .= "Cant create storage/prefsdoc directory.";
 				return false;
 			}
@@ -380,7 +380,7 @@ class PrefsDoc extends TWVersion
 			if (substr($fileName, 0, 8) === 'include_') {  // filter out any file thats not a pref file
 				$FilePrefs = $this->getAdminUIPrefs($fileName);
 				foreach ($FilePrefs as $tabName => $tab) {
-					if (!$this->writeFile($tabName, $tab)) {
+					if (! $this->writeFile($tabName, $tab)) {
 						return false;
 					}
 					$this->prefCount++;
@@ -490,14 +490,14 @@ class PrefsDoc extends TWVersion
 		]);
 
 		if (is_file('storage/prefsdoc/' . $version . $tabName)) {
-			if (!unlink('storage/prefsdoc/' . $version . $tabName)) {
+			if (! unlink('storage/prefsdoc/' . $version . $tabName)) {
 				$this->error .= ("Cant overwrite existing $version-$tabName.json ");
 
 				return false;
 			}
 		}
 
-		if (!file_put_contents('storage/prefsdoc/' . $version . $tabName, $prefs)) {
+		if (! file_put_contents('storage/prefsdoc/' . $version . $tabName, $prefs)) {
 			// write one file for each pref page on control panel
 			$this->error .= ("Unable to write $version.$tabName");
 			return false;

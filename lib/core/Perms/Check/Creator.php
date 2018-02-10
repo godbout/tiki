@@ -16,7 +16,7 @@ class Perms_Check_Creator implements Perms_Check
 	 * Initilize Class
 	 * @param string $user
 	 * @param string $key - the key used in the context array as the user
-     * @params string $suffix - suffix appended to the permission name in $this->check()
+	 * @params string $suffix - suffix appended to the permission name in $this->check()
 	 */
 	function __construct($user, $key = 'creator', $suffix = '_own')
 	{
@@ -31,7 +31,7 @@ class Perms_Check_Creator implements Perms_Check
 	 * Check a specific permission against those given by the constructor for a specific list of groups
 	 * This function requires that $this->setResolver($resolver) has been set before. Otherwise it will always return false.
 	 * @param Perms_Resolver $resolver
-     * @param array $context - context must have a key $key and with the value $user as set in the constructor. Otherwise check will fail.
+	 * @param array $context - context must have a key $key and with the value $user as set in the constructor. Otherwise check will fail.
 	 * @param string $name - permission name to check
 	 * @param array $groups - list of groups to check permission against
 	 * @return boolean $hasPermission- true|false

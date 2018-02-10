@@ -531,52 +531,52 @@ class ToolbarCkOnly extends Toolbar
 		switch ($name) {
 			case 'templates':
 				if ($prefs['feature_wiki_templates'] === 'y') {
-					return new self( 'Templates' );
+					return new self('Templates');
 				} else {
 					return null;
 				}
 			case 'cut':
-				return new self( 'Cut', null, 'scissors'  );
+				return new self('Cut', null, 'scissors');
 			case 'copy':
-				return new self( 'Copy', null, 'copy' );
+				return new self('Copy', null, 'copy');
 			case 'paste':
-				return new self( 'Paste', null, 'paste' );
+				return new self('Paste', null, 'paste');
 			case 'pastetext':
-				return new self( 'PasteText', null, 'paste'  );
+				return new self('PasteText', null, 'paste');
 			case 'pasteword':
-				return new self( 'PasteFromWord', null, 'paste'  );
+				return new self('PasteFromWord', null, 'paste');
 			case 'print':
-				return new self( 'Print', null, 'print' );
+				return new self('Print', null, 'print');
 			case 'spellcheck':
-				return new self( 'SpellChecker', null, 'ok' );
+				return new self('SpellChecker', null, 'ok');
 			case 'undo':
-				return new self( 'Undo', null, 'undo' );
+				return new self('Undo', null, 'undo');
 			case 'redo':
-				return new self( 'Redo', null, 'repeat' );
+				return new self('Redo', null, 'repeat');
 			case 'selectall':
-				return new self( 'SelectAll', null, 'selectall' );
+				return new self('SelectAll', null, 'selectall');
 			case 'removeformat':
-				return new self( 'RemoveFormat', null, 'erase'  );
+				return new self('RemoveFormat', null, 'erase');
 			case 'showblocks':
-				return new self( 'ShowBlocks', null, 'box' );
+				return new self('ShowBlocks', null, 'box');
 			case 'left':
-				return new self( 'JustifyLeft', null, 'align-left' );
+				return new self('JustifyLeft', null, 'align-left');
 			case 'right':
-				return new self( 'JustifyRight', null, 'align-right' );
+				return new self('JustifyRight', null, 'align-right');
 			case 'full':
-				return new self( 'JustifyBlock', null, 'align-justify' );
+				return new self('JustifyBlock', null, 'align-justify');
 			case 'indent':
-				return new self( 'Indent', null, 'indent' );
+				return new self('Indent', null, 'indent');
 			case 'outdent':
-				return new self( 'Outdent', null, 'outdent' );
+				return new self('Outdent', null, 'outdent');
 			case 'style':
-				return new self( 'Styles' );
+				return new self('Styles');
 			case 'fontname':
-				return new self( 'Font' );
+				return new self('Font');
 			case 'fontsize':
-				return new self( 'FontSize' );
+				return new self('FontSize');
 			case 'format':
-				return 	new self( 'Format' );
+				return 	new self('Format');
 			case 'source':
 				global $tikilib, $user, $page;
 				$p = $prefs['wysiwyg_htmltowiki'] == 'y' ? 'tiki_p_wiki_view_source' : 'tiki_p_use_HTML';
@@ -586,29 +586,29 @@ class ToolbarCkOnly extends Toolbar
 					return null;
 				}
 			case 'autosave':
-				return new self( 'autosave', 'img/ckeditor/ajaxSaveDirty.gif', 'floppy');
+				return new self('autosave', 'img/ckeditor/ajaxSaveDirty.gif', 'floppy');
 			case 'inlinesave':
-				return new self( 'Inline save', 'img/ckeditor/ajaxSaveDirty.gif');
+				return new self('Inline save', 'img/ckeditor/ajaxSaveDirty.gif');
 			case 'inlinecancel':
-				return new self( 'Inline cancel', 'img/icons/cross.png');
+				return new self('Inline cancel', 'img/icons/cross.png');
 			case 'sub':
-				return new self( 'Subscript', null, 'subscript' );
+				return new self('Subscript', null, 'subscript');
 			case 'sup':
-				return new self( 'Superscript', null, 'subscript'  );
+				return new self('Superscript', null, 'subscript');
 			case 'anchor':
-				return new self( 'Anchor', null, 'anchor' );
+				return new self('Anchor', null, 'anchor');
 			case 'bidiltr':
-				return new self( 'BidiLtr', null, 'arrow-right' );
+				return new self('BidiLtr', null, 'arrow-right');
 			case 'bidirtl':
-				return new self( 'BidiRtl', null, 'arrow-left' );
+				return new self('BidiRtl', null, 'arrow-left');
 			case 'image':
-				return new self( 'Image', null, 'image' );
+				return new self('Image', null, 'image');
 			case 'table':
-				return $is_html ? new self( 'Table' ) : null;
+				return $is_html ? new self('Table') : null;
 			case 'link':
-				return $is_html ? new self( 'Link' ) : null;
+				return $is_html ? new self('Link') : null;
 			case 'unlink':
-				return new self( 'Unlink', null, 'unlink' );
+				return new self('Unlink', null, 'unlink');
 		}
 	} // }}}
 

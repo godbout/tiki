@@ -366,7 +366,6 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 				$params['checkItemPerms'] = $item->canModify() ? 'n' : 'y';
 
 				if ($this->getOption('displayMode') == 'img') { // img
-
 					if ($context['list_mode'] === 'y') {
 						$params['thumb'] = $context['list_mode'];
 						$params['rel'] = 'box[' . $this->getInsertId() . ']';
@@ -374,7 +373,6 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 					include_once('lib/wiki-plugins/wikiplugin_img.php');
 					$ret = wikiplugin_img('', $params);
 				} elseif ($this->getOption('displayMode') == 'vimeo') {	// Vimeo videos stored as filegal REMOTEs
-
 					include_once('lib/wiki-plugins/wikiplugin_vimeo.php');
 					$ret = wikiplugin_vimeo('', $params);
 				} elseif ($this->getOption('displayMode') == 'moodlescorm') {

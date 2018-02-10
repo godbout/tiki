@@ -17,12 +17,12 @@ class WikiParser_PluginParser
 		}
 	}
 
-	function setArgumentParser(/* WikiParser_PluginArgumentParser */ $parser)
+	function setArgumentParser($parser)
 	{
 		$this->argumentParser = $parser;
 	}
 
-	function setPluginRunner(/* WikiParser_PluginRunner */ $runner)
+	function setPluginRunner($runner)
 	{
 		$this->pluginRunner = $runner;
 	}
