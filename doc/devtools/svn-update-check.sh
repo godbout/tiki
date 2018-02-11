@@ -17,6 +17,27 @@ PATH="${PATH}:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 # TODO Todo todo: merge this script with doc/devtools/svnup.sh
 #                 and look at doc/devtools/svnup.php
 
+# -----------------------------------------------------------------------------
+
+# local configuration, to be adjusted
+
+# choose a username and a password for htaccess protection
+USER="next"						#
+PASSWORD="next"						#
+CREDENTIALS="${USER}:${PASSWORD}"			#
+
+# adjust this to your Tiki installation
+#PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
+PHPINFOURL="https://nextbranding.tiki.org/local/phpversion.php"
+#PHPINFOURL="https://nextbranding.tiki.org/doc/devtools/etc/update/phpversion.php"
+
+# choose a temporary path to put the passwordfile in, it will be deleted after usage
+TMPPATH="/tmp"
+
+# -----------------------------------------------------------------------------
+
+# do not change hardcoded data here
+
 THIS_REL_PATH="doc/devtools"				# relative to TIKI_ROOT, which needn't be webservers document root
 
 LOG_PATH="var/log/update"
@@ -66,24 +87,16 @@ SVR=${SVR_PATH}/${SVR_FILE}
 # uncomment for local test, quick and dirty
 #SCRIPTPATH="./"
 #
+
+# -----------------------------------------------------------------------------
+
 # before doing a Tiki update check the required software versions
 cd ${SCRIPTPATH}
 svn up ${SVR}
 
+# -----------------------------------------------------------------------------
+
 # the tricky path stuff is done
-
-# choose a username and a password
-USER="next"		#
-PASSWORD="next"		#
-CREDENTIALS="${USER}:${PASSWORD}"
-
-# adjust this to your Tiki installation
-#PHPINFOURL="https://nextbranding.tiki.org/local/phpinfo.php"
-PHPINFOURL="https://nextbranding.tiki.org/local/phpversion.php"
-#PHPINFOURL="https://nextbranding.tiki.org/doc/devtools/etc/update/phpversion.php"
-
-# choose a temporary path to put the passwordfile in, it will be deleted after usage
-TMPPATH="/tmp"
 
 LOCKFILE="${TMPPATH}/locktikiupdate"
 
