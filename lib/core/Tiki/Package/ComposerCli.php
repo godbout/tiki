@@ -167,6 +167,30 @@ class ComposerCli
 		}
 
 		$this->phpCli = false;
+
+		// try to check the PHP binary path using operating system resolution mechanisms
+		foreach (self::PHP_COMMAND_NAMES as $cli) {
+			$possibleCli = $cli;
+			$builder = new ProcessBuilder();
+			if (\TikiInit::isWindows()) {
+				$possibleCli .= '.exe';
+				$builder->setPrefix('where');
+				$builder->setArguments([$possibleCli]);
+			} else {
+				$builder->setPrefix('command');
+				$builder->setArguments(['-v', $possibleCli]);
+			}
+			$process = $builder->getProcess();
+			$process->setTimeout($this->timeout);
+			$process->run();
+			$output = $process->getOutput();
+			if ($output) {
+				$this->phpCli = trim($output);
+				return $this->phpCli;
+			}
+		}
+
+		// Fall back to path search
 		foreach (explode(PATH_SEPARATOR, $_SERVER['PATH']) as $path) {
 			foreach (self::PHP_COMMAND_NAMES as $cli) {
 				$possibleCli = $path . DIRECTORY_SEPARATOR . $cli;
