@@ -425,6 +425,56 @@ if (version_compare(PHP_VERSION, '5.1.0', '<')) {
 	);
 }
 
+// Check PHP command line version
+if (function_exists('exec')) {
+	$cliSearchList = array('php', 'php56', 'php5.6', 'php5.6-cli');
+	$isUnix = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') ? false : true;
+	$cliCommand = '';
+	$cliVersion = '';
+	foreach ($cliSearchList as $command) {
+		if ($isUnix) {
+			$output = exec('command -v ' . escapeshellarg($command) . ' 2>/dev/null');
+		} else {
+			$output = exec('where ' . escapeshellarg($command . '.exe'));
+		}
+		if (! $output) {
+			continue;
+		}
+
+		$cliCommand = trim($output);
+		exec(escapeshellcmd(trim($cliCommand)) . ' --version', $output);
+		foreach ($output as $line) {
+			$parts = explode(' ', $line);
+			if ($parts[0] === 'PHP') {
+				$cliVersion = $parts[1];
+				break;
+			}
+		}
+		break;
+	}
+	if ($cliCommand) {
+		if (phpversion() == $cliVersion) {
+			$php_properties['PHP CLI version'] = array(
+				'fitness' => tra('good'),
+				'setting' => $cliVersion,
+				'message' => 'The version of the command line executable of PHP (' . $cliCommand . ') is the same version as the web server version.',
+			);
+		} else {
+			$php_properties['PHP CLI version'] = array(
+				'fitness' => tra('ugly'),
+				'setting' => $cliVersion,
+				'message' => 'The version of the command line executable of PHP (' . $cliCommand . ') is not the same as the web server version.',
+			);
+		}
+	} else {
+		$php_properties['PHP CLI version'] = array(
+			'fitness' => tra('ugly'),
+			'setting' => '',
+			'message' => 'Unable to determine the command line executable for PHP.',
+		);
+	}
+}
+
 // PHP Server API (SAPI)
 $s = php_sapi_name();
 if (substr($s, 0, 3) == 'cgi') {
