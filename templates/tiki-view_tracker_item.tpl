@@ -214,7 +214,7 @@
 					</form>
 				{/if}
 
-				<form class="form form-horizontal" enctype="multipart/form-data" action="tiki-view_tracker_item.php" method="post" id="editItemForm">
+				<form class="form form-horizontal" enctype="multipart/form-data" action="{$formAction}" method="post" id="editItemForm">
 					{if $special}
 						<input type="hidden" name="view" value=" {$special}">
 					{else}
