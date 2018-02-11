@@ -32,6 +32,10 @@
 	</table>
 </div>
 
+{if $engineTypeNote}
+	{remarksbox type="note" title="{tr}New database engine{/tr}"}{tr}Your website is using a 18.x or higher version of tiki wiki and your database tables are not using the InnoDB database engine, you should consider migrate to InnoDB, that is now the default database engine for Tiki{/tr}{/remarksbox}
+{/if}
+
 <h2>{tr}MySQL crashed Tables{/tr}</h2>
 {remarksbox type="note" title="{tr}Be careful{/tr}"}{tr}The following list is just a very quick look at SHOW TABLE STATUS that tells you, if tables have been marked as crashed. If you are experiencing database problems you should still run CHECK TABLE or myisamchk to make sure{/tr}.{/remarksbox}
 <div class="table-responsive">

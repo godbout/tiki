@@ -2049,6 +2049,22 @@ if (! $standalone) {
 		|| version_compare($tikiWikiVersion->getBaseVersion(), '18.0', '>=') && ! class_exists('\\Mpdf\\Mpdf')) {
 		$smarty->assign('mPDFClassMissing', true);
 	}
+
+	// Engine tables type
+	global $dbs_tiki;
+	if (! empty($dbs_tiki)) {
+		$engineType = '';
+		$query = 'SELECT ENGINE FROM information_schema.TABLES WHERE TABLE_NAME = "tiki_schema" AND TABLE_SCHEMA = "' . $dbs_tiki . '";';
+		$result = query($query, $connection);
+		if (!empty($result[0]['ENGINE'])) {
+			$engineType = $result[0]['ENGINE'];
+		}
+	}
+	if (version_compare($tikiWikiVersion->getBaseVersion(), '18.0', '>=') && ! empty($dbs_tiki) && $engineType != 'InnoDB') {
+		$smarty->assign('engineTypeNote', true);
+	} else {
+		$smarty->assign('engineTypeNote', false);
+	}
 }
 
 $sensitiveDataDetectedFiles = array();
