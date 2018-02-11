@@ -80,10 +80,11 @@
 				</span>
 			</div>
 		</div>
+		{preference name=feature_sefurl_title_max_size}
 		{preference name=feature_sefurl_title_article}
 		{preference name=feature_sefurl_title_blog}
+		{preference name=feature_sefurl_title_forumthread}
 		{preference name=feature_sefurl_title_trackeritem}
-		{preference name=feature_sefurl_title_trackeritem_max_size}
 		{preference name=feature_sefurl_tracker_prefixalias}
 		{preference name=url_only_ascii}
 	</fieldset>

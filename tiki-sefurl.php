@@ -113,8 +113,8 @@ function filter_out_sefurl($tpl_output, $type = null, $title = '', $with_next = 
 				$title = preg_replace('/' . CLEAN_CHAR . CLEAN_CHAR . '+/', '-', $title);
 				$title = preg_replace('/' . CLEAN_CHAR . '+$/', '', $title);
 
-				if (! empty($prefs['feature_sefurl_title_trackeritem_max_size'])) {
-					$titleMaxLength = strrpos(substr($title, 0, ($prefs['feature_sefurl_title_trackeritem_max_size'] + 1)), CLEAN_CHAR);
+				if (! empty($prefs['feature_sefurl_title_max_size'])) {
+					$titleMaxLength = strrpos(substr($title, 0, ($prefs['feature_sefurl_title_max_size'] + 1)), CLEAN_CHAR);
 					$title = substr($title, 0, $titleMaxLength);
 				}
 			}
@@ -130,6 +130,28 @@ function filter_out_sefurl($tpl_output, $type = null, $title = '', $with_next = 
 		$title = preg_replace(PATTERN_TO_CLEAN_TEXT, CLEAN_CHAR, $tikilib->take_away_accent($title));
 		$title = preg_replace('/' . CLEAN_CHAR . CLEAN_CHAR . '+/', '-', $title);
 		$title = preg_replace('/' . CLEAN_CHAR . '+$/', '', $title);
+	}
+	if (($type == 'forumthread' || $type == 'forum post') && empty($with_next) && $with_title == 'y') {
+		if ($prefs['feature_sefurl_title_forumthread'] == 'y') {
+			$commentslib = TikiLib::lib('comments');
+
+			if (preg_match('/comments_parentId=([0-9]+)/', $tpl_output, $matches) || preg_match('/forumthread([0-9]+)/', $tpl_output, $matches)) {
+				if (empty($title)) {
+					$commentInfo = $commentslib->get_comment($matches[1]);
+					$title = ! empty($commentInfo["title"]) ? $commentInfo["title"] : '';
+				}
+				$title = preg_replace(PATTERN_TO_CLEAN_TEXT, CLEAN_CHAR, $tikilib->take_away_accent($title));
+				$title = preg_replace('/' . CLEAN_CHAR . CLEAN_CHAR . '+/', '-', $title);
+				$title = preg_replace('/' . CLEAN_CHAR . '+$/', '', $title);
+
+				if (! empty($prefs['feature_sefurl_title_max_size'])) {
+					$titleMaxLength = strrpos(substr($title, 0, ($prefs['feature_sefurl_title_max_size'] + 1)), CLEAN_CHAR);
+					$title = substr($title, 0, $titleMaxLength);
+				}
+			}
+		} else {
+			$title = '';
+		}
 	}
 	foreach ($sefurl_regex_out as $regex) {
 		if ((empty($type) || $type == $regex['type']) &&
