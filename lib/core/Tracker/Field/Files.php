@@ -526,6 +526,31 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 
 	function watchCompare($old, $new)
 	{
+		$name = $this->getConfiguration('name');
+		$isVisible = $this->getConfiguration('isHidden', 'n') == 'n';
+
+		if (! $isVisible) {
+			return;
+		}
+
+		$filegallib = TikiLib::lib('filegal');
+
+		$oldFileIds = explode(',', $old);
+		$newFileIds = explode(',', $new);
+
+		$oldFileInfos = empty($oldFileIds) ? [] : $filegallib->get_files_info(null, $oldFileIds);
+		$newFileInfos = empty($newFileIds) ? [] : $filegallib->get_files_info(null, $newFileIds);
+
+		$oldValueLines = '';
+		foreach ($oldFileInfos as $info) {
+			$oldValueLines .= '> ' . $info['filename'];
+		}
+		$newValueLines = '';
+		foreach ($newFileInfos as $info) {
+			$newValueLines .= '> ' . $info['filename'];
+		}
+
+		return "[-[$name]-]:\n--[Old]--:\n$oldValueLines\n\n*-[New]-*:\n$newValueLines";
 	}
 
 	function filterFile($info)
