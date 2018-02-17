@@ -37,6 +37,12 @@
 	{elseif not empty ($body)}
 		{$metatag_description = $parsed_body|strip_tags:false|truncate:200|escape}
 	{/if}
+{* --- File Gallery description --- *}
+{elseif isset($section) and $section eq "file_galleries"}
+	{if not empty($gal_info.description)}
+		{$metatag_description = $gal_info.description|strip_tags:false|truncate:200|escape}
+	{/if}
+{* --- Page description --- *}
 {elseif $prefs.metatag_pagedesc eq 'y' and not empty($description)}
 	{$metatag_description = $description|escape}
 {elseif not empty($prefs.metatag_description_translated)}
