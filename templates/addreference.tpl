@@ -338,7 +338,14 @@ function delete_ref(ref_id){
 					<li id="{$references[i].ref_id|escape}" style='border-bottom: 1px dotted #161C17;'>
 				{/if}
 					{$references[i].biblio_code|escape}&nbsp;&nbsp;
-					<a class="edit_ref" title="{tr}Edit{/tr}" href="javascript:;" onclick="edit_ref('{$references[i].ref_id|escape}','{$references[i].biblio_code|escape}','{$references[i].author|escape}','{$references[i].title|escape}','{$references[i].year|escape}','{$references[i].part|escape}','{$references[i].uri|escape}','{$references[i].code|escape}','{$references[i].style|escape}','{$references[i].template|escape}','{$references[i].publisher|escape}','{$references[i].location|escape}')">{icon name='edit' alt="{tr}Edit{/tr}"}</a>
+					{if $prefs.feature_library_references eq 'y'}
+						{if $references[i].is_library lt 1 && $use_references eq 1 && $edit_references eq 1}
+							<a class="edit_ref" title="{tr}Edit{/tr}" href="javascript:;" onclick="edit_ref('{$references[i].ref_id|escape}','{$references[i].biblio_code|escape}','{$references[i].author|escape}','{$references[i].title|escape}','{$references[i].year|escape}','{$references[i].part|escape}','{$references[i].uri|escape}','{$references[i].code|escape}','{$references[i].style|escape}','{$references[i].template|escape}','{$references[i].publisher|escape}','{$references[i].location|escape}')">{icon name='edit' alt="{tr}Edit{/tr}"}</a>
+						{/if}
+					{/if}
+					{if $prefs.feature_library_references neq 'y'}
+						<a class="edit_ref" title="{tr}Edit{/tr}" href="javascript:;" onclick="edit_ref('{$references[i].ref_id|escape}','{$references[i].biblio_code|escape}','{$references[i].author|escape}','{$references[i].title|escape}','{$references[i].year|escape}','{$references[i].part|escape}','{$references[i].uri|escape}','{$references[i].code|escape}','{$references[i].style|escape}','{$references[i].template|escape}','{$references[i].publisher|escape}','{$references[i].location|escape}')">{icon name='edit' alt="{tr}Edit{/tr}"}</a>
+					{/if}
 					<a title="{tr}Delete{/tr}" onclick="delete_ref('{$references[i].ref_id|escape}')" >{icon name='remove' alt="{tr}Remove{/tr}"}</a>
 					{if $references[i].is_library lt 1 && $use_references eq 1 && $edit_references eq 1}
 						<a class="add_lib_btn" title="{tr}Add to library{/tr}" onclick="add_lib('{$references[i].ref_id|escape}','{$references[i].biblio_code|escape}','{$references[i].author|escape}','{$references[i].title|escape}','{$references[i].year|escape}','{$references[i].part|escape}','{$references[i].uri|escape}','{$references[i].code|escape}','{$references[i].style|escape}','{$references[i].template|escape}','{$references[i].publisher|escape}','{$references[i].location|escape}')" >{icon name='add' alt="{tr}Add to library{/tr}"}</a>

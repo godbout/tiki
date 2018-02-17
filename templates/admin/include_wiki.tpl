@@ -114,6 +114,11 @@
 			<br>
 			{preference name=feature_sandbox}
 			{preference name=feature_references}
+			<div class="adminoptionboxchild" id="feature_references_childcontainer">
+				{preference name=feature_library_references}
+				{preference name=feature_references_popover}
+				{preference name=feature_references_style}
+			</div>
 			{preference name=wiki_pagination}
 			<div class="adminoptionboxchild" id="wiki_pagination_childcontainer">
 				{preference name=wiki_page_separator}
