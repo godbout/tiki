@@ -62,6 +62,7 @@ if (isset($_REQUEST['addreference'])) {
 
 	if (count($errors) < 1) {
 		$id = $referenceslib->add_reference(
+			null,
 			$ref_biblio_code,
 			$ref_author,
 			$ref_title,

@@ -135,6 +135,7 @@ if (isset($_REQUEST['addlibreference']) && $action = 'a_lib') {
 			);
 		} else {
 			$id = $referenceslib->add_reference(
+				null,
 				$ref_biblio_code,
 				$ref_author,
 				$ref_title,
