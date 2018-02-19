@@ -830,21 +830,40 @@ class EditLib
 
 	function partialParseWysiwygToWiki($inData)
 	{
-
+		if (empty($inData)) {
+			return '';
+		}
 		// de-protect ck_protected comments
 		$ret = preg_replace('/<!--{cke_protected}{C}%3C!%2D%2D%20end%20tiki_plugin%20%2D%2D%3E-->/i', '<!-- end tiki_plugin -->', $inData);
-		// remove the wysiwyg plugin elements leaving the syntax only remaining
-		$ret = preg_replace('/<(?:div|span)[^>]*syntax="(.*)".*end tiki_plugin --><\/(?:div|span)>/Umis', "$1", $ret);
-		// preg_replace blows up here with a PREG_BACKTRACK_LIMIT_ERROR on pages with "corrupted" plugins
-		if (! $ret) {
+		if (!$ret) {
 			$ret = $inData;
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 1, preg_last_error()));
+		}
+		// remove the wysiwyg plugin elements leaving the syntax only remaining
+		$ret2 = preg_replace('/<(?:div|span)[^>]*syntax="(.*)".*end tiki_plugin --><\/(?:div|span)>/Umis', "$1", $ret);
+		// preg_replace blows up here with a PREG_BACKTRACK_LIMIT_ERROR on pages with "corrupted" plugins
+		if (! $ret2) {
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 2, preg_last_error()));
+		} else {
+			$ret = $ret2;
 		}
 
 		// take away the <p> that f/ck introduces around wiki heading ! to have maketoc/edit section working
-		$ret = preg_replace('/<p>!(.*)<\/p>/iu', "!$1\n", $ret);
+		$ret2 = preg_replace('/<p>\s*!(.*)<\/p>/Umis', "!$1\n", $ret);
+		if (! $ret2) {
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 3, preg_last_error()));
+		} else {
+			$ret = $ret2;
+		}
 
 		// strip the last empty <p> tag generated somewhere (ckeditor 3.6, Tiki 10)
-		$ret = preg_replace('/\s*<p>[\s]*<\/p>\s*$/iu', "$1\n", $ret);
+		$ret2 = preg_replace('/\s*<p>\s*<\/p>\s*$/Umis', "$1\n", $ret);
+		if (! $ret2) {
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 4, preg_last_error()));
+		} else {
+			$ret = $ret2;
+		}
+
 		return $ret;
 	}
 
