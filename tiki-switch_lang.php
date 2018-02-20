@@ -33,7 +33,12 @@ if ($prefs['feature_lang_nonswitchingpages'] == "y" && ! empty($prefs['feature_l
 
 // for item id when switching from one lang to other
 $item_url = parse_url($_SERVER['HTTP_REFERER']);
-$item_url = $item_url[query];
+$item_query = $item_url[query];
+// Also, if we are at the homepage and tikiIndex is set, the URL we need to take as reference is the tikiIndex
+$item_path = $item_url['path'];
+if ($item_path == '/' ) {
+	$orig_url = $prefs['tikiIndex'];
+}
 
 if ($prefs['feature_sefurl'] == 'y' && ! strstr($orig_url, '.php')) {
 	if (preg_match('/cat[0-9]+-?/', $orig_url)) {
@@ -104,11 +109,11 @@ if (strstr($orig_url, 'tiki-index.php') || strstr($orig_url, 'tiki-read_article.
 		$orig_url = filter_out_sefurl($orig_url);
 	}
 
-	if ($item_url) {
+	if ($item_query) {
 		if ($prefs['feature_sefurl'] == 'y') {
-			$orig_url = $orig_url . "?" . $item_url;
+			$orig_url = $orig_url . "?" . $item_query;
 		} elseif (! strstr($_SERVER['HTTP_REFERER'], 'tiki-index.php') && ! strstr($_SERVER['HTTP_REFERER'], 'tiki-read_article.php')) {
-			$orig_url = $orig_url . "&" . $item_url;
+			$orig_url = $orig_url . "&" . $item_query;
 		}
 	}
 }
