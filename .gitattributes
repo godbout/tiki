@@ -171,6 +171,7 @@ doc/devtools/tim/tim.conf -text
 doc/devtools/translate.php -text
 doc/devtools/update.dogfoodserver.sh -text
 doc/devtools/update_english_strings.php -text
+doc/devtools/upto_18_drop_unused_tables.sql -text
 doc/devtools/upto_4.1_delete_all_cetgory_perms.sql -text
 doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
 doc/devtools/upto_7_drop_unused_6.x_tables.sql -text
