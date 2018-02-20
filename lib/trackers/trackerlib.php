@@ -5870,6 +5870,10 @@ class TrackerLib extends TikiLib
 			$item[$field['fieldId']] = $field['value'];
 		} elseif (isset($item['itemId'])) {
 			$item[$field['fieldId']] = $this->get_item_value(null, $item['itemId'], $field['fieldId']);
+		} elseif (isset($params['value'])) {
+			$field['value'] = $params['value'];
+			$field['ins_'.$field['fieldId']] = $field['value'];
+			$item[$field['fieldId']] = $field['value'];
 		}
 
 		// get the handler for the specific fieldtype.

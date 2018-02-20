@@ -230,7 +230,7 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 				return '';
 			}
 		} else {
-			return implode('<br/>', $ret);
+			return implode("<br/>\n", $ret);
 		}
 	}
 
