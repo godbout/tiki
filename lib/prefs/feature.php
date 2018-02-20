@@ -432,6 +432,39 @@ function prefs_feature_list($partial = false)
 				],
 			'default' => 'n',
 		],
+		'feature_library_references' => [
+			'name' => tra('Library references'),
+			'description' => tra('Enforce library reference as master'),
+			'type' => 'flag',
+			'dependencies' => [
+				'feature_references',
+				],
+			'default' => 'n',
+		],
+		'feature_references_style' => [
+			'name' => tra('Reference style'),
+			'description' => tra('Default style when using references'),
+			'type' => 'list',
+			'options' => [
+				'ama' => tra('AMA citation style (default)'),
+				'mla' => tra('MLA citation style'),
+			],
+			'dependencies' => [
+				'feature_references',
+			],
+			'default' => 'ama',
+			'tags' => ['basic'],
+		],
+		'feature_references_popover' => [
+			'name' => tra('Display reference in a popover'),
+			'description' => tra('Display the details of the reference in a popover'),
+			'type' => 'flag',
+			'dependencies' => [
+				'feature_references',
+			],
+			'default' => 'n',
+			'tags' => ['basic'],
+		],
 		'feature_shoutbox' => [
 			'name' => tra('Shoutbox'),
 			'description' => tra('Quick comment (graffiti) box. Like a group chat, but not in real time.'),

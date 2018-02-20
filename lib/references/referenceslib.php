@@ -131,14 +131,49 @@ class ReferencesLib extends TikiLib
 		return $retval;
 	}
 
-	public function list_lib_references()
+	/**
+	 * list the library references (not linked to specific pages)
+	 *
+	 * @param string $search string to search (optional)
+	 * @param int $maxRecords
+	 * @param int $offset
+	 * @return array
+	 */
+	public function list_lib_references($search = '', $maxRecords = -1, $offset = 0)
 	{
-		global $page;
+		if (! empty($search)) {
+			$filter = ' AND (`biblio_code` LIKE ? OR `author` LIKE ? OR `title` LIKE ? OR `part` LIKE ? OR `uri` LIKE ?'
+				. ' OR `code` LIKE ? OR `year` LIKE ? OR `style` LIKE ? OR `template` LIKE ? OR `publisher` LIKE ? '
+				. ' OR `location` LIKE ?)';
+			$likeSearch = '%' . $search . '%';
+			$queryArg = [
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+				$likeSearch,
+			];
+		} else {
+			$filter = '';
+			$queryArg = [];
+		}
 
-		$query = 'select * from `tiki_page_references` WHERE `page_id` IS NULL ORDER BY `biblio_code`';
-		$query_cant = 'select count(*) from `tiki_page_references` WHERE `page_id` IS NULL';
-		$result = $this->query($query, [$page]);
-		$cant = $this->getOne($query_cant, [$page]);
+		$query = 'select * from `tiki_page_references` WHERE `page_id` IS NULL ' . $filter . ' ORDER BY `biblio_code`';
+
+		if ($maxRecords > 0) {
+			$query .= 'LIMIT ' . (int)$offset . ', ' . (int)$maxRecords;
+		}
+
+		$query_cant = 'select count(*) from `tiki_page_references` WHERE `page_id` IS NULL ' . $filter;
+
+		$result = $this->query($query, $queryArg);
+		$cant = $this->getOne($query_cant, $queryArg);
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
@@ -189,41 +224,98 @@ class ReferencesLib extends TikiLib
 				$location
 			]
 		);
+		if (empty($biblio_code)) {
+			$query = 'update `tiki_page_references`' .
+							' SET `biblio_code`=?' .
+							' where `ref_id`=?';
+
+			$this->query(
+				$query,
+				[
+					'BIBLIO' . $this->lastInsertId(),
+					(int)$this->lastInsertId(),
+				]
+			);
+		}
+
 
 		return $this->lastInsertId();
 	}
 
+	/**
+	 * Add a library reference to a page (duplicate and link to the page)
+	 *
+	 * @param int $ref_id Id of the reference
+	 * @param int $page id of the page
+	 * @return bool|int
+	 */
 	public function add_lib_ref_to_page($ref_id, $page)
 	{
 
 		$query = 'select * from `tiki_page_references` WHERE `ref_id`=?';
 		$result = $this->query($query, [$ref_id]);
 
-		$exists = $this->check_existence($page, $result->result[0]['biblio_code']);
+		if (! $result->numrows) {
+			return false;
+		}
+
+		return $this->copy_lib_ref_to_page($result->result[0], $page);
+	}
+
+	/**
+	 * Add a library reference to a page (duplicate and link to the page)
+	 *
+	 * @param string $code Bibliographic code
+	 * @param int $page id of the page
+	 * @return bool|int
+	 */
+	public function add_lib_ref_to_page_by_code($code, $page)
+	{
+
+		$query = 'select * from `tiki_page_references` WHERE `page_id` IS NULL AND `biblio_code`=?';
+		$result = $this->query($query, [$code]);
+
+		if (! $result->numrows) {
+			return false;
+		}
+
+		return $this->copy_lib_ref_to_page($result->result[0], $page);
+	}
+
+	/**
+	 * Copy the library reference to given page
+	 *
+	 * @param $libraryReference
+	 * @param $page
+	 * @return int the ID of the record inserted, -1 if exists
+	 */
+	protected function copy_lib_ref_to_page($libraryReference, $page)
+	{
+		$exists = $this->check_existence($page, $libraryReference['biblio_code']);
 
 		if ($exists > 0) {
 			return -1;
 		} else {
 			$query = 'insert `tiki_page_references`' .
-								' (`page_id`, `biblio_code`, `author`, `title`, `part`, `uri`,' .
-								' `code`, `year`, `style`, `template`, `publisher`, `location`)' .
-								' values (?,?,?,?,?,?,?,?,?,?,?,?)';
+				' (`page_id`, `biblio_code`, `author`, `title`, `part`, `uri`,' .
+				' `code`, `year`, `style`, `template`, `publisher`, `location`)' .
+				' values (?,?,?,?,?,?,?,?,?,?,?,?)';
 
 			$this->query(
 				$query,
 				[
 					$page,
-					$result->result[0]['biblio_code'],
-					$result->result[0]['author'],
-					$result->result[0]['title'],
-					$result->result[0]['part'],
-					$result->result[0]['uri'],
-					$result->result[0]['code'],
-					$result->result[0]['year'],
-					$result->result[0]['style'],
-					$result->result[0]['template'],
-					$result->result[0]['publisher'],
-					$result->result[0]['location']
+					$libraryReference['biblio_code'],
+					$libraryReference['author'],
+					$libraryReference['title'],
+					$libraryReference['part'],
+					$libraryReference['uri'],
+					$libraryReference['code'],
+					$libraryReference['year'],
+					$libraryReference['style'],
+					$libraryReference['template'],
+					$libraryReference['publisher'],
+					$libraryReference['location']
 				]
 			);
 
@@ -292,5 +384,66 @@ class ReferencesLib extends TikiLib
 		$result = $this->query($query, [$biblio_code]);
 
 		return $result->numrows;
+	}
+
+	/**
+	 * Return Library references containing the search term
+	 *
+	 * @param string $search
+	 * @return array
+	 */
+	public function getLibContaining($search)
+	{
+		$result = $this->list_lib_references($search);
+
+		$ret = [];
+
+		foreach ($result['data'] as $res) {
+			$label = [$res['biblio_code']];
+			if (! empty($res['author'])) {
+				$label[] = $res['author'];
+			}
+			if (! empty($res['title'])) {
+				$label[] = $res['title'];
+			}
+			$ret[] = [
+				'value' => $res['biblio_code'],
+				'label' => implode(', ', $label)
+			];
+		}
+		return $ret;
+	}
+
+	/**
+	 * Event listener for tiki.wiki.save, will help the user by auto link library references to the page on save
+	 * This avoids the need for the user to go page by page and manually link the references to the page.
+	 *
+	 * @param array $arguments see \TikiLib::create_page for format
+	 * @param string $eventName should be tiki.wiki.create or tiki.wiki.save (not used)
+	 * @param $priority the event priority (not used)
+	 */
+	public function autoCopyLibraryReferencesToPageReferences($arguments, $eventName, $priority)
+	{
+		if ($arguments['type'] !== 'wiki page') { // references are only linked in wiki pages
+			return;
+		}
+
+		$codeList = \Tiki\WikiPlugin\Reference::extractBibliographicCodesFromText($arguments['data'], true);
+
+		if (count($codeList) == 0) {
+			return;
+		}
+
+		$existingReferences = $this->get_reference_from_code_and_page($codeList, $arguments['page_id']);
+
+		$missingReferences = array_diff($codeList, array_keys($existingReferences));
+
+		if (count($missingReferences) == 0) {
+			return;
+		}
+
+		foreach ($missingReferences as $reference) {
+			$this->add_lib_ref_to_page_by_code($reference, $arguments['page_id']);
+		}
 	}
 }

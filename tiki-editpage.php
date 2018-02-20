@@ -785,12 +785,11 @@ if (isset($prefs['feature_references']) && $prefs['feature_references'] === 'y')
 			$assoc_references = $referenceslib->list_assoc_references($page_id);
 
 			$page_info = TikiLib::lib('tiki')->get_page_info($page);
-			$regex = "/{ADDREFERENCE\(?\ ?biblio_code=\"(.*)\"\)?}.*({ADDREFERENCE})?/siU";
-			preg_match_all($regex, $page_info['data'], $matches);
-			$matches[1] = array_unique($matches[1]);
+			$listOfCodes = \Tiki\WikiPlugin\Reference::extractBibliographicCodesFromText($page_info['data']);
+			$listOfCodes = array_unique($listOfCodes);
 
 			$key_exists = [];
-			foreach ($matches[1] as $m) {
+			foreach ($listOfCodes as $m) {
 				if (array_key_exists($m, $assoc_references['data'])) {
 					$key_exists[$m] = 1;
 				}
