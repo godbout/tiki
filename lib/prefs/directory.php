@@ -16,7 +16,6 @@ function prefs_directory_list()
 		],
 		'directory_cool_sites' => [
 			'name' => tra('Enable "popular sites"'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],

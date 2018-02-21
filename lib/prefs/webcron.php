@@ -17,7 +17,6 @@ function prefs_webcron_list()
 		],
 		'webcron_type' => [
 			'name' => tra('How to trigger Web Cron'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'url' => tra('Calling the Web Cron URL'),

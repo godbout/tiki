@@ -10,14 +10,12 @@ function prefs_main_list()
 	return [
 		'main_shadow_start' => [
 			'name' => tra('Main shadow start'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',
 		],
 		'main_shadow_end' => [
 			'name' => tra('Main shadow end'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',

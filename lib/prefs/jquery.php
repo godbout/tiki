@@ -30,7 +30,6 @@ function prefs_jquery_list($partial = false)
 	return [
 		'jquery_effect' => [
 			'name' => tra('Effect for modules'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => $jquery_effect_options,
 			'help' => 'JQuery#Effects',
@@ -39,7 +38,6 @@ function prefs_jquery_list($partial = false)
 		],
 		'jquery_effect_tabs' => [
 			'name' => tra('Effect for tabs'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => $jquery_effect_options,
 			'help' => 'JQuery#Effects',
@@ -47,7 +45,6 @@ function prefs_jquery_list($partial = false)
 		],
 		'jquery_effect_speed' => [
 			'name' => tra('Speed'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'fast' => tra('Fast'),
@@ -58,7 +55,6 @@ function prefs_jquery_list($partial = false)
 		],
 		'jquery_effect_direction' => [
 			'name' => tra('Direction'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'vertical' => tra('Vertical'),
@@ -72,7 +68,6 @@ function prefs_jquery_list($partial = false)
 		],
 		'jquery_effect_tabs_speed' => [
 			'name' => tra('Speed'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'fast' => tra('Fast'),
@@ -83,7 +78,6 @@ function prefs_jquery_list($partial = false)
 		],
 		'jquery_effect_tabs_direction' => [
 			'name' => tra('Direction'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'vertical' => tra('Vertical'),
@@ -106,7 +100,6 @@ function prefs_jquery_list($partial = false)
 		],
 		'jquery_colorbox_theme' => [
 			'name' => tra('Visual style of Colorbox (a.k.a. "Shadowbox")'),
-			'description' => tra(''),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [

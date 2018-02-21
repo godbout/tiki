@@ -10,13 +10,11 @@ function prefs_direct_list()
 	return [
 		'direct_pagination' => [
 			'name' => tra('Use direct pagination links'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'direct_pagination_max_middle_links' => [
 			'name' => tra('Maximum number of links around the current item'),
-			'description' => tra(''),
 			'type' => 'text',
 			'units' => tra('links'),
 			'size' => '4',
@@ -24,7 +22,6 @@ function prefs_direct_list()
 		],
 		'direct_pagination_max_ending_links' => [
 			'name' => tra('Maximum number of links after the first or before the last item'),
-			'description' => tra(''),
 			'type' => 'text',
 			'units' => tra('links'),
 			'size' => '4',

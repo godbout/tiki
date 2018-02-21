@@ -10,14 +10,12 @@ function prefs_center_list()
 	return [
 		'center_shadow_start' => [
 			'name' => tra('Center shadow start'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',
 		],
 		'center_shadow_end' => [
 			'name' => tra('Center shadow end'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',

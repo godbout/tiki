@@ -17,7 +17,6 @@ function prefs_cas_list()
 			],
 		'cas_autologin' => [
 			'name' => tra('Try automatically to connect SSO'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
@@ -31,21 +30,18 @@ function prefs_cas_list()
 			],
 		'cas_force_logout' => [
 			'name' => tra('Force CAS log-out when the user logs out from Tiki.'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
 			],
 		'cas_show_alternate_login' => [
 			'name' => tra('Show alternate log-in method in header'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'y',
 			],
 		'cas_version' => [
 			'name' => tra('CAS server version'),
-			'description' => tra(''),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [

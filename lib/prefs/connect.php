@@ -98,7 +98,6 @@ function prefs_connect_list()
 		],
 		'connect_last_post' => [
 			'name' => tra('Last connection'),
-			'description' => tra(''),
 			'type' => 'text',
 			'dependencies' => 'connect_feature',
 			'filter' => 'digits',

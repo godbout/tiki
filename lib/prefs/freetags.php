@@ -56,7 +56,6 @@ function prefs_freetags_list()
 			],
 			'freetags_browse_amount_tags_in_cloud' => [
 			'name' => tra('Maximum number of tags in cloud'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => '5',
 			'filter' => 'digits',

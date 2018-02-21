@@ -18,33 +18,28 @@ function prefs_forum_list()
 		],
 		'forum_comments_no_title_prefix' => [
 			'name' => tra("Do not start messages titles with 'Re:'"),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'forum_match_regex' => [
 			'name' => tra('Uploaded filenames must match regex'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => '20',
 			'default' => '',
 		],
 		'forum_thread_defaults_by_forum' => [
 			'name' => tra('Manage thread defaults per-forum'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'forum_thread_user_settings' => [
 			'name' => tra('Display thread configuration bar'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'hint' => tra('Allows users to override the defaults'),
 			'default' => 'y',
 		],
 		'forum_thread_user_settings_threshold' => [
 			'name' => tra('Display the thread configuration bar only when the number of posts exceeds'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => '5',
 			'filter' => 'digits',
@@ -53,13 +48,11 @@ function prefs_forum_list()
 				],
 		'forum_thread_user_settings_keep' => [
 			'name' => tra('Keep settings for all forums during the user session'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'forum_comments_per_page' => [
 			'name' => tra('Default number per page'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => '5',
 			'filter' => 'digits',
@@ -68,7 +61,6 @@ function prefs_forum_list()
 		],
 		'forum_thread_style' => [
 			'name' => tra('Default style'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'commentStyle_plain' => tra('Plain'),
@@ -79,7 +71,6 @@ function prefs_forum_list()
 		],
 		'forum_thread_sort_mode' => [
 			'name' => tra('Default sort mode'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'commentDate_desc' => tra('Newest first'),
@@ -92,43 +83,36 @@ function prefs_forum_list()
 		],
 		'forum_list_topics' => [
 			'name' => tra('Topics'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'forum_list_posts' => [
 			'name' => tra('Posts'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'forum_list_ppd' => [
 			'name' => tra('Posts per day') . ' (PPD)',
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'forum_list_lastpost' => [
 			'name' => tra('Last post'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'forum_list_visits' => [
 			'name' => tra('Visits'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'forum_list_desc' => [
 			'name' => tra('Description'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'forum_list_description_len' => [
 			'name' => tra('Description length'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => '5',
 			'filter' => 'digits',

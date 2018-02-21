@@ -39,7 +39,6 @@ function prefs_poll_list()
 		],
 		'poll_list_objects' => [
 			'name' => tra('Show objects'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		],

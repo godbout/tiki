@@ -10,14 +10,12 @@ function prefs_footer_list()
 	return [
 		'footer_shadow_start' => [
 			'name' => tra('Footer shadow div start'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',
 		],
 		'footer_shadow_end' => [
 			'name' => tra('Footer shadow div end'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',

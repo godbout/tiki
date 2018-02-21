@@ -56,21 +56,18 @@ function prefs_memcache_list()
 		],
 		'memcache_wiki_data' => [
 			'name' => tra('Cache wiki data in memcache'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 			'extensions' => [ 'memcache' ],
 		],
 		'memcache_wiki_output' => [
 			'name' => tra('Cache wiki output in memcache'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 			'extensions' => [ 'memcache' ],
 		],
 		'memcache_forum_output' => [
 			'name' => tra('Cache forum output in memcache'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 			'extensions' => [ 'memcache' ],

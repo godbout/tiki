@@ -10,7 +10,6 @@ function prefs_wizard_list()
 	return [
 			'wizard_admin_hide_on_login' => [
 			'name' => tra('Hide admin wizard on log-in when an admin user logs in'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],

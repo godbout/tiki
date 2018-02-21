@@ -10,7 +10,6 @@ function prefs_forums_list()
 	return [
 		'forums_ordering' => [
 			'name' => tra('Default order'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'created_asc' => tra('Creation date (asc)'),
