@@ -3275,6 +3275,7 @@ lib/core/WikiPlugin/Negotiator/Wiki.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/Alias.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/index.php -text
 lib/core/WikiPlugin/Negotiator/index.php -text
+lib/core/WikiPlugin/Reference.php -text
 lib/core/WikiPlugin/index.php -text
 lib/core/Yaml/Directive/DirectiveInclude.php -text
 lib/core/Yaml/Directives.php -text
@@ -5892,6 +5893,7 @@ templates/password_jq.tpl -text
 templates/permission_link.tpl -text
 templates/plugin/edit.tpl -text
 templates/plugin/list.tpl -text
+templates/plugin/quick_add_references.tpl -text
 templates/plugins/index.php -text
 templates/poll.tpl -text
 templates/prefs/flag.tpl -text
