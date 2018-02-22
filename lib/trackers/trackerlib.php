@@ -5158,23 +5158,24 @@ class TrackerLib extends TikiLib
 					unset($parts[count($parts) - 1]);
 				}
 				$smarty->assign('mail_machine_raw', $this->httpPrefix(true) . implode('/', $parts));
-				$smarty->assign_by_ref('status', $new_values['status']);
-				$smarty->assign_by_ref('status_old', $old_values['status']);
-				// expose the pretty tracker fields to the email tpls
-				foreach ($tracker_definition->getFields() as $field) {
-					$fieldId = $field['fieldId'];
-					$old_value = isset($old_values[$fieldId]) ? $old_values[$fieldId] : '';
-					$new_value = isset($new_values[$fieldId]) ? $new_values[$fieldId] : '';
-					$smarty->assign('f_' . $fieldId, $new_value);
-					$smarty->assign('f_' . $field['permName'], $new_value);
-					$smarty->assign('f_old_' . $fieldId, $old_value);
-					$smarty->assign('f_old_' . $field['permName'], $old_value);
-					$smarty->assign('f_name_' . $fieldId, $field['name']);
-					$smarty->assign('f_name_' . $field['permName'], $field['name']);
-				}
 				// not a great test for a new item but we don't get the event type here
 				$created = empty($old_values) || $old_values === ['status' => ''];
 				foreach ($watchers as $watcher) {
+					// assign these variables inside the loop as this->tracker_render_values overrides them in case trackeroutput or similar is used
+					$smarty->assign_by_ref('status', $new_values['status']);
+					$smarty->assign_by_ref('status_old', $old_values['status']);
+					// expose the pretty tracker fields to the email tpls
+					foreach ($tracker_definition->getFields() as $field) {
+						$fieldId = $field['fieldId'];
+						$old_value = isset($old_values[$fieldId]) ? $old_values[$fieldId] : '';
+						$new_value = isset($new_values[$fieldId]) ? $new_values[$fieldId] : '';
+						$smarty->assign('f_' . $fieldId, $new_value);
+						$smarty->assign('f_' . $field['permName'], $new_value);
+						$smarty->assign('f_old_' . $fieldId, $old_value);
+						$smarty->assign('f_old_' . $field['permName'], $old_value);
+						$smarty->assign('f_name_' . $fieldId, $field['name']);
+						$smarty->assign('f_name_' . $field['permName'], $field['name']);
+					}
 					$watcher['language'] = $this->get_user_preference($watcher['user'], 'language', $prefs['site_language']);
 					if ($created) {
 						$label = tra('Item Creation', $watcher['language']);

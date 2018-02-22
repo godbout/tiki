@@ -169,6 +169,9 @@
 				{preference name=feature_jquery_validation}
 				{preference name=feature_jquery_zoom}
 				{preference name=jquery_ui_chosen}
+				<div class="adminoptionboxchild" id="jquery_ui_chosen_childcontainer">
+					{preference name=jquery_ui_chosen_sortable}
+				</div>
 				{preference name=jquery_fitvidjs}
 				{preference name=jquery_timeago}
 				<div class="adminoptionboxchild">

@@ -186,6 +186,7 @@ if (inArray(m, allTimeZoneCodes)) {
 	$jqueryTiki['ajax'] = $prefs['feature_ajax'] === 'y' ? true : false;
 	$jqueryTiki['syntaxHighlighter'] = $prefs['feature_syntax_highlighter'] === 'y' ? true : false;
 	$jqueryTiki['chosen'] = $prefs['jquery_ui_chosen'] === 'y' ? true : false;
+	$jqueryTiki['chosen_sortable'] = $prefs['jquery_ui_chosen_sortable'] === 'y' ? true : false;
 	$jqueryTiki['mapTileSets'] = $tikilib->get_preference('geo_tilesets', ['openstreetmap'], true);
 	$jqueryTiki['infoboxTypes'] = Services_Object_Controller::supported();
 	$jqueryTiki['googleStreetView'] = $prefs['geo_google_streetview'] === 'y' ? true : false;

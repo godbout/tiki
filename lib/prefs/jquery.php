@@ -98,6 +98,15 @@ function prefs_jquery_list($partial = false)
 				'feature_jquery_ui',
 			],
 		],
+		'jquery_ui_chosen_sortable' => [
+			'name' => tra('Sortable Chosen Multi-selects'),
+			'description' => tra('Enable drag and drop re-ordering of Chosen multi-select options.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'dependencies' => [
+				'jquery_ui_chosen',
+			],
+		],
 		'jquery_colorbox_theme' => [
 			'name' => tra('Visual style of Colorbox (a.k.a. "Shadowbox")'),
 			'type' => 'list',
