@@ -1645,7 +1645,11 @@ if ( \$('#$id') ) {
 		}
 
 		// remove tiki comments first
-		$data = preg_replace(';~tc~(.*?)~/tc~;s', '', $data);
+		if ($this->option['ck_editor']) {
+			$data = preg_replace(';~tc~(.*?)~/tc~;s', '<tikicomment>$1</tikicomment>', $data);
+		} else {
+			$data = preg_replace(';~tc~(.*?)~/tc~;s', '', $data);
+		}
 
 		$this->parse_wiki_argvariable($data);
 
