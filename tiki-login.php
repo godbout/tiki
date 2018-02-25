@@ -189,8 +189,14 @@ if (isset($_REQUEST['intertiki']) and in_array($_REQUEST['intertiki'], array_key
 								$userlib->assign_user_to_group($user, trim($group));
 							}
 						}
-					} elseif ($userlib->group_exists($user_details['groups'])) {
-						$userlib->assign_user_to_groups($user, $user_details['groups']);
+					} else {
+						$filteredGroups = array_filter(
+							$user_details['groups'],
+							function ($group) use ($userlib) {
+								return $userlib->group_exists($group);
+							}
+						);
+						$userlib->assign_user_to_groups($user, $filteredGroups);
 					}
 				} else {
 					$groups = preg_split('/\s*,\s*/', $prefs['interlist'][$prefs['feature_intertiki_mymaster']]['groups']);
