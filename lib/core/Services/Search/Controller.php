@@ -19,6 +19,7 @@ class Services_Search_Controller
 	function action_rebuild($input)
 	{
 		global $num_queries;
+		global $prefs;
 
 		Services_Exception_Denied::checkGlobal('admin');
 
@@ -33,12 +34,22 @@ class Services_Search_Controller
 		$stat = null;
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// Apply 'Search index rebuild memory limit' setting if available
+			if (! empty($prefs['allocate_memory_unified_rebuild'])) {
+				$memory_limiter = new Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
+			}
+
 			$stat = $unifiedsearchlib->rebuild(isset($_REQUEST['loggit']));
 
 			TikiLib::lib('cache')->empty_type_cache('search_valueformatter');
 
 			// Also rebuild admin index
 			TikiLib::lib('prefs')->rebuildIndex();
+
+			// Back up original memory limit if possible
+			if (isset($memory_limiter)) {
+				unset($memory_limiter);
+			}
 		}
 
 		$num_queries_after = $num_queries;
