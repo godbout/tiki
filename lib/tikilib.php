@@ -527,6 +527,7 @@ class TikiLib extends TikiDb_Bridge
 				'HTTP_CACHE_INFO',
 				'HTTP_XPROXY',
 				'HTTP_PROXY',
+				'HTTP_PROXY_RENAMED',
 				'HTTP_PROXY_CONNECTION',
 				'HTTP_VIA',
 				'HTTP_X_COMING_FROM',

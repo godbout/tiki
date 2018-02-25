@@ -1010,6 +1010,11 @@ class HeaderLib
 		return [ $file ];
 	}
 
+	public function minify_css($file)
+	{
+		$minifier = new MatthiasMullie\Minify\CSS($file);
+		return $minifier->minify();
+	}
 
 	private function collect_css_files()
 	{

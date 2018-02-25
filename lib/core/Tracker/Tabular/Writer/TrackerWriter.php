@@ -47,20 +47,38 @@ class TrackerWriter
 					$info['fields'] = array_filter($info['fields']);
 				}
 
-				$result[] = $callback($line, $info);
+				$result[] = $callback($line, $info, $columns);
 			}
 
 			$tx->commit();
 
-			// FIXME this is just suppressing warnings for now
-			return @call_user_func_array('array_merge', $result);
+			if (!$result) {
+				return $result;
+			}
+			
+			return call_user_func_array('array_merge', $result);
 		};
 
 		if ($schema->isImportTransaction()) {
-			$errors = $iterate(function ($line, $info) use ($utilities, $schema) {
+			$errors = $iterate(function ($line, $info, $columns) use ($utilities, $schema) {
 				static $ids = [];
 				if (! empty($info['itemId']) && in_array($info['itemId'], $ids)) {
 					return [tr('Line %0:', $line + 1) . ' ' . tr('duplicate entry')];
+				}
+				foreach ($columns as $column) {
+					if ($column->isUniqueKey()) {
+						$table = \TikiDb::get()->table('tiki_tracker_item_fields');
+						$definition = $schema->getDefinition();
+						$f = $definition->getFieldFromPermName($column->getField());
+						$fieldId = $f['fieldId'];
+						$exists = $table->fetchOne('itemId', [
+							'fieldId' => $fieldId,
+							'value' => $info['fields'][$column->getField()],
+						]);
+						if ($exists) {
+							return [tr('Line %0:', $line + 1) . ' ' . tr('duplicate entry for unique column %0', $column->getLabel())];
+						}
+					}
 				}
 				$ids[] = $info['itemId'];
 				return array_map(
@@ -80,7 +98,7 @@ class TrackerWriter
 			}
 		}
 
-		$iterate(function ($line, $info) use ($utilities, $schema) {
+		$iterate(function ($line, $info, $columns) use ($utilities, $schema) {
 			$definition = $schema->getDefinition();
 			if ($info['itemId']) {
 				if (empty($info['status'])) {
@@ -90,7 +108,7 @@ class TrackerWriter
 			} else {
 				$success = $utilities->insertItem($definition, $info);
 			}
-			return $success;
+			return [$success];
 		});
 
 		return true;

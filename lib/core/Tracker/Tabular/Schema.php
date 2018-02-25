@@ -125,6 +125,7 @@ class Schema
 				continue;
 			}
 			$col->setExportOnly(! empty($column['isExportOnly']));
+			$col->setUniqueKey(! empty($column['isUniqueKey']));
 
 			if (! $col->isReadOnly() && ! empty($column['isReadOnly'])) {
 				$col->setReadOnly(true);
@@ -165,6 +166,7 @@ class Schema
 				'isPrimary' => $column->isPrimaryKey(),
 				'isReadOnly' => $column->isReadOnly(),
 				'isExportOnly' => $column->isExportOnly(),
+				'isUniqueKey' => $column->isUniqueKey(),
 			];
 		}, $this->columns);
 	}
