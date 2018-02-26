@@ -139,13 +139,12 @@ if ((isset($_POST['new_scheduler']) || (isset($_POST['editscheduler']) && isset(
 		$schedulerRuns = $schedLib->get_scheduler_runs($_REQUEST['scheduler'], 10);
 
 		// Check if last run is still running and can be stopped.
-		if (!empty($schedulerRuns[0]) &&
+		if (! empty($schedulerRuns[0]) &&
 			$schedulerRuns[0]['status'] == 'running' &&
 			$schedulerRuns[0]['start_time'] + 600 < time()) {
 			// If the task is running for more than 10min, maybe it's stucked.
 			$schedulerRuns[0]['can_stop'] = true;
 		}
-
 	}
 
 	if (isset($_REQUEST['logs'])) {
