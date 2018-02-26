@@ -226,7 +226,15 @@
 						<td>{$schedulerruns[run].start_time|date_format:"%b %e, %Y %H:%M:%S"}</td>
 						<td>{$schedulerruns[run].end_time|date_format:"%b %e, %Y %H:%M:%S"}</td>
 						<td>{$schedulerruns[run].status}</td>
-						<td>{$schedulerruns[run].output|nl2br}</td>
+						<td>
+							{if $schedulerruns[run].can_stop}
+								<a class="btn btn-primary btn-sm" href="{bootstrap_modal controller=scheduler action=reset schedulerId=$schedulerruns[run].scheduler_id startTime=$schedulerruns[run].start_time}">
+								{icon name="undo" _menu_text='y' _menu_icon='y' alt="{tr}Reset{/tr}"}
+								</a>
+							{else}
+								{$schedulerruns[run].output|nl2br}
+							{/if}
+						</td>
 					</tr>
 				{/section}
 				</tbody>
