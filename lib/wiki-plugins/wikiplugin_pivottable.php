@@ -185,6 +185,15 @@ function wikiplugin_pivottable_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'highlightGroupColors' => [
+				'required' => false,
+				'name' => tra('Color for each highlighted group items.'),
+				'description' => tr(''),
+				'since' => '18.1',
+				'filter' => 'text',
+				'default' => '',
+				'separator' => ':',
+			],
 			'xAxisLabel' => [
 				'name' => tr('xAxis label'),
 				'description' => tr('Override label of horizontal axis when using Chart renderers.'),
@@ -586,12 +595,24 @@ function wikiplugin_pivottable($data, $params)
 					$highlight[] = ['item' => $item, 'group' => $group];
 				}
 			}
+			$groupColors = [];
 			if ($prefs['feature_conditional_formatting'] === 'y') {
 				$groupsInfo = TikiLib::lib('user')->get_group_info($myGroups);
-				$groupColors = [];
 				foreach ($groupsInfo as $groupInfo) {
 					$groupColors[$groupInfo['groupName']] = $groupInfo['groupColor'];
 				}
+			}
+			if (!empty($params['highlightGroupColors'])) {
+				$index = 0;
+				foreach ($myGroups as $group) {
+					if (empty($params['highlightGroupColors'][$index])) {
+						break;
+					}
+					$groupColors[$group] = $params['highlightGroupColors'][$index];
+					$index++;
+				}
+			}
+			if ($groupColors) {
 				foreach ($highlight as &$row) {
 					$group = $row['group'];
 					if ($group && ! empty($groupColors[$group])) {
