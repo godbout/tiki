@@ -1946,21 +1946,54 @@ if ($standalone || (! empty($prefs) && $prefs['fgal_enable_auto_indexing'] === '
 		'text/tab-separated-values' => array('col -b %1', 'strings %1'),
 	);
 
+	$fh_native = array(
+		'application/pdf' => 18.0,
+		'application/x-pdf' => 18.0,
+	);
+
 	$file_handlers = array();
+	if (! $standalone) {
+		$tikiWikiVersion = new TWVersion();
+	}
+
 	foreach ($fh_possibilities as $type => $options) {
 		$file_handler = array(
 			'fitness' => '',
 			'message' => '',
 		);
-		foreach ($options as $opt) {
-			$optArray = explode(' ', $opt, 2);
-			$exec = reset($optArray);
 
-			$which_exec = `which $exec`;
-			if ($which_exec) {
+		if (! $standalone && array_key_exists($type, $fh_native)) {
+			if ($tikiWikiVersion->getBaseVersion() >= $fh_native["$type"]) {
 				$file_handler['fitness'] = 'good';
-				$file_handler['message'] = "will be handled by $which_exec";
-				break;
+				$file_handler['message'] = "will be handled natively";
+			}
+		}
+		if ($standalone && array_key_exists($type, $fh_native)) {
+			$file_handler['fitness'] = 'info';
+			$file_handler['message'] = "will be handled natively by Tiki &gt;= " . $fh_native["$type"];
+		}
+		if ($file_handler['fitness'] == '' || $file_handler['fitness'] == 'info') {
+			foreach ($options as $opt) {
+				$optArray = explode(' ', $opt, 2);
+				$exec = reset($optArray);
+				$which_exec = `which $exec`;
+				if ($which_exec) {
+					if ($file_handler['fitness'] == 'info') {
+						$file_handler['message'] .= ", otherwise handled by $which_exec";
+					} else {
+						$file_handler['message'] = "will be handled by $which_exec";
+					}
+					$file_handler['fitness'] = 'good';
+					break;
+				}
+			}
+			if ($file_handler['fitness'] == 'info') {
+				$fh_commands = '';
+				foreach ($options as $opt) {
+					$fh_commands .= $fh_commands ? ' or ' : '';
+					$fh_commands .= '"' . substr($opt, 0, strpos($opt, ' ')) . '"';
+				}
+				$file_handler['message'] .= ', otherwise you need to install ' . $fh_commands . ' to index this type of file';
 			}
 		}
 		if (! $file_handler['fitness']) {

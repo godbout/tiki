@@ -143,7 +143,7 @@
 				<input type="submit" class="btn btn-default btn-sm" value="{tr}Find{/tr}" name="search">
 			</div>
 		</div>
-		<span class="help-block">{help url="#" desc="{tr}Find in:{/tr} <ul><li>{tr}Name{/tr}</li><li>{tr}Description{/tr}</li></ul>"}</span>
+		<span class="help-block" style="display:inline-block; margin: 0;">{help url="#" desc="{tr}Find in:{/tr} <ul><li>{tr}Name{/tr}</li><li>{tr}Description{/tr}</li></ul>"}</span>
 	</div>
 	<div class="form-group">
 		<div class="checkbox">

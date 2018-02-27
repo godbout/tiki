@@ -7556,11 +7556,12 @@ input[type="checkbox"]:disabled:checked:after,
 .warning a:visited {
   color: #ff9800;
 }
-.calhighlight {
+.calhighlight,
+.tiki .fc-state-highlight {
   color: #9c27b0;
   background: #e1bee7;
 }
-a.fc-event:hover {
+.tiki a.fc-event:hover {
   color: #ffffff;
 }
 .filter .fancyfilter {
@@ -7720,12 +7721,6 @@ table.treetable.objectperms td.removed {
   border: solid 5px transparent !important;
   -webkit-box-shadow: -5px 0 5px 2px rgba(0, 0, 0, 0.1), -1px 0 0 rgba(0, 0, 0, 0.1), -2px 0 0 rgba(255, 255, 255, 0.25);
   box-shadow: -5px 0 5px 2px rgba(0, 0, 0, 0.1), -1px 0 0 rgba(0, 0, 0, 0.1), -2px 0 0 rgba(255, 255, 255, 0.25);
-}
-.dirsitetrail {
-  color: #f5f5f5;
-}
-.dirsitecats {
-  color: #f5f5f5;
 }
 #resultzone > div:hover {
   background: #4caf50;

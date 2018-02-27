@@ -1,7 +1,9 @@
 {title help="Payment" admpage="payment"}{tr}Payment{/tr}{/title}
 
 {if isset($invoice)}
-	{payment id=$invoice}
+	<div class="margin-bottom-md">
+		{payment id=$invoice}
+	</div>
 {/if}
 {if $user}
 	{if $prefs.javascript_enabled !== 'y'}
