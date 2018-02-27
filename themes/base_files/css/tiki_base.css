@@ -1024,6 +1024,9 @@ img.icon {
 a .icon {
   font-size: 1.2em;
 }
+.input-group-addon a .icon {
+  font-size: .9rem;
+}
 .nav a .icon.icon-menuitem {
   font-size: 0.8em;
 }
