@@ -65,7 +65,24 @@ class Services_File_Controller
 
 				$data = file_get_contents($_FILES['data']['tmp_name']);
 			} else {
-				throw new Services_Exception_NotAvailable(tr('File could not be uploaded.'));
+				$message = tr('File could not be uploaded:') . ' ';
+
+				switch ($_FILES['data']['error']) {
+					case UPLOAD_ERR_OK:
+						break;
+					case UPLOAD_ERR_NO_FILE:
+						$message .= tr('No file arrived');
+						break;
+					case UPLOAD_ERR_INI_SIZE:
+					case UPLOAD_ERR_FORM_SIZE:
+						$message .= tr('File too large');
+						break;
+					default:
+						$message .= tr('Unknown errors');
+						break;
+				}
+
+				throw new Services_Exception_NotAvailable(tr($message));
 			}
 		} else {
 			$name = $input->name->text();
@@ -85,7 +102,16 @@ class Services_File_Controller
 		*/
 
 		if (empty($name) || $size == 0 || empty($data)) {
-			throw new Services_Exception(tr('File could not be uploaded. File empty.'), 406);
+
+			$message = tr('File could not be uploaded:') . ' ';
+			$error = error_get_last();
+
+			if (empty($error)) {
+				$message .= tr('File empty');
+			} else {
+				$message = $error['message'];
+			}
+			throw new Services_Exception(tr($message), 406);
 		}
 
 		if ($fileId) {
