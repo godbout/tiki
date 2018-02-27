@@ -344,15 +344,15 @@
 			{/if}
 			{if $banners}
 				<div class="form-group">
-					<label class="col-sm-3 control-label">{tr}Banner zones{/tr}</label>
-					<div class="col-sm-6 col-sm-offset-1">
+					<label class="col-sm-4 control-label">{tr}Banner zones{/tr}</label>
+					<div class="col-sm-6">
 						<select name="banners" id='list_banners' class="form-control">
 							{section name=ix loop=$banners}
 								<option value="{literal}{{/literal}banner zone={$banners[ix].zone}{literal}}{/literal}">{$banners[ix].zone}</option>
 							{/section}
 						</select>
 					</div>
-					<div class="col-sm-1">
+					<div class="col-sm-2">
 						<a class="tips" href="javascript:setUserModuleFromCombo('list_banners', 'um_data');" title=":{tr}Use banner zone{/tr}">{icon name='add' alt="{tr}Use{/tr}"}</a>
 						<a title="{tr}Help{/tr}" {popup text="Params: zone= target=_blank|_self|" width=100 center=true}>{icon name='help'}</a>
 					</div>
