@@ -34,6 +34,8 @@ class Table_Code_MainOptions extends Table_Code_Manager
 
 		/***  onRenderHeader option - change html elements before table renders. Repeated for each column. ***/
 		$orh = [];
+		/*** Headers ***/
+		$headers = [];
 		/* First handle column-specific code since the array index is used for the column number */
 		foreach (parent::$s['columns'] as $col => $info) {
 			//turn off column resizing per settings
@@ -113,10 +115,10 @@ class Table_Code_MainOptions extends Table_Code_Manager
 					$orh[$col] .= '.' . $attr . '(\'' . $args . '\')';
 				}
 				$orh[$col] .= ';}';
+				$headers[] = $col . ": { sorter: 'textextractor' }";
 			}
 			unset($col, $info);
 		}
-
 		/* Handle code that applies to all columns now that the array index is not important*/
 		//get rid of self-links
 		if (isset(parent::$s['selflinks']) && parent::$s['selflinks']) {
@@ -135,6 +137,11 @@ class Table_Code_MainOptions extends Table_Code_Manager
 		}
 		/***  end onRenderHeader section ***/
 
+		/*** headers ***/
+		if (count($headers) > 0) {
+			$mo[] = $this->iterate($headers, 'headers: {', '}', '', '', ', ', ', ' );
+		}
+            
 		/*** widgets ***/
 		//standard ones
 		$w[] = 'stickyHeaders';
