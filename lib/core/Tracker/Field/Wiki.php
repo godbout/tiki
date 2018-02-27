@@ -108,6 +108,16 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 							'y' => tr('Yes'),
 						],
 					],
+					'actions' => [
+						'name' => tr('Action Buttons'),
+						'description' => tr('Display wiki page buttons when editing the item.'),
+						'default' => 'n',
+						'filter' => 'alpha',
+						'options' => [
+							'n' => tr('No'),
+							'y' => tr('Yes'),
+						],
+					],
 					'samerow' => [
 						'name' => tr('Same Row'),
 						'description' => tr('Display the field name and input on the same row.'),
@@ -294,6 +304,13 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 		} else {
 			$is_html = '';
 		}
+		$perms = Perms::get(['type' => 'wiki page', 'object' => $this->getValue('')]);
+		$data['perms'] = [
+			'view' => $perms->view,
+			'edit' => $perms->edit,
+			'wiki_view_source' => $perms->wiki_view_source,
+			'wiki_view_history' => $perms->wiki_view_history,
+		];
 		return $this->renderTemplate('trackerinput/wiki.tpl', $context, $data) . $is_html;
 	}
 
