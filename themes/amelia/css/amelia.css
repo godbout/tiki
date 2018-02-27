@@ -6917,11 +6917,12 @@ a.thumbnail.active {
 .warning a:visited {
   color: #ffffff;
 }
-.calhighlight {
+.calhighlight,
+.tiki .fc-state-highlight {
   color: #ffffff;
   background: #4d3a7d;
 }
-a.fc-event:hover {
+.tiki a.fc-event:hover {
   color: #ffffff;
 }
 .filter .fancyfilter {

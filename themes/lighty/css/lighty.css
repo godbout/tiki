@@ -6730,11 +6730,12 @@ button.close {
 .warning a:visited {
   color: #c09853;
 }
-.calhighlight {
+.calhighlight,
+.tiki .fc-state-highlight {
   color: #3a87ad;
   background: #d9edf7;
 }
-a.fc-event:hover {
+.tiki a.fc-event:hover {
   color: #ffffff;
 }
 .filter .fancyfilter {

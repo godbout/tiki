@@ -7235,11 +7235,12 @@ a.list-group-item-danger.active:focus {
 .warning a:visited {
   color: #ffffff;
 }
-.calhighlight {
+.calhighlight,
+.tiki .fc-state-highlight {
   color: #ffffff;
   background: #75caeb;
 }
-a.fc-event:hover {
+.tiki a.fc-event:hover {
   color: #ffffff;
 }
 .filter .fancyfilter {

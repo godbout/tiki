@@ -21,11 +21,12 @@
 .warning a:visited {
   color: #8a6d3b;
 }
-.calhighlight {
+.calhighlight,
+.tiki .fc-state-highlight {
   color: #31708f;
   background: #d9edf7;
 }
-a.fc-event:hover {
+.tiki a.fc-event:hover {
   color: #ffffff;
 }
 .filter .fancyfilter {

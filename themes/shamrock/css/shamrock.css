@@ -6819,11 +6819,12 @@ header.page-header::before,
 .warning a:visited {
   color: #e0b952;
 }
-.calhighlight {
+.calhighlight,
+.tiki .fc-state-highlight {
   color: #45accf;
   background: #538935;
 }
-a.fc-event:hover {
+.tiki a.fc-event:hover {
   color: #ffffff;
 }
 .filter .fancyfilter {

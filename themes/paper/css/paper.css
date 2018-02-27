@@ -7556,11 +7556,12 @@ input[type="checkbox"]:disabled:checked:after,
 .warning a:visited {
   color: #ff9800;
 }
-.calhighlight {
+.calhighlight,
+.tiki .fc-state-highlight {
   color: #9c27b0;
   background: #e1bee7;
 }
-a.fc-event:hover {
+.tiki a.fc-event:hover {
   color: #ffffff;
 }
 .filter .fancyfilter {

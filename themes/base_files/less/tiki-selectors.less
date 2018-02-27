@@ -14,14 +14,15 @@
 	color: @alert-warning-text; // #b93c2e
 }
 
-// tiki-calendar.less - tiki-calendar_calmode.tpl, mod-calendar_new.tpl
-.calhighlight {
+// tiki-calendar.less - tiki-calendar_calmode.tpl, mod-calendar_new.tpl; fullcalendar.js
+.calhighlight,
+.tiki .fc-state-highlight {
 	color: @state-info-text;
 	background: @state-info-bg;
 }
 
 //fullcalendar.js
-a.fc-event:hover {
+.tiki a.fc-event:hover {
 	color: @tooltip-color;
 }
 

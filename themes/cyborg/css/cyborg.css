@@ -7648,11 +7648,12 @@ fieldset[disabled] .tiki #conversejs #controlbox .fancy-dropdown.focus {
 .warning a:visited {
   color: #ffffff;
 }
-.calhighlight {
+.calhighlight,
+.tiki .fc-state-highlight {
   color: #ffffff;
   background: #9933cc;
 }
-a.fc-event:hover {
+.tiki a.fc-event:hover {
   color: #ffffff;
 }
 .filter .fancyfilter {
