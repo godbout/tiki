@@ -12,6 +12,7 @@ function wikiplugin_pivottable_info()
 		'description' => tr('Create and display data in pivot table for reporting'),
 		'prefs' => ['wikiplugin_pivottable'],
 		'body' => tra('Leave one space in the box below to allow easier editing of current values with the plugin popup helper later on'),
+		'validate' => 'all',
 		'format' => 'html',
 		'iconname' => 'table',
 		'introduced' => '16.1',
@@ -24,6 +25,19 @@ function wikiplugin_pivottable_info()
 				'filter' => 'text',
 				'profile_reference' => 'tracker',
 				'separator' => ':',
+			],
+			'overridePermissions' => [
+				'name' => tra('Override item permissions'),
+				'description' => tra('Return all tracker items ignoring permissions to view the corresponding items.'),
+				'since' => '18.1',
+				'required' => false,
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
 			],
 			'width' => [
 				'required' => false,
@@ -284,7 +298,7 @@ function wikiplugin_pivottable($data, $params)
 
 	$fields = $definition->getFields();
 
-	if (! $perms->admin_trackers) {
+	if (! $perms->admin_trackers && $params['overridePermissions'] !== 'y') {
 		$hasFieldPermissions = false;
 		foreach ($fields as $key => $field) {
 			$isHidden = $field['isHidden'];
@@ -386,7 +400,12 @@ function wikiplugin_pivottable($data, $params)
 	$query->filterContent($trackerId, 'tracker_id');
 
 	$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-	$unifiedsearchlib->initQuery($query);
+	if ($params['overridePermissions'] === 'y') {
+		$unifiedsearchlib->initQueryBase($query);
+		$unifiedsearchlib->initQueryPresentation($query);
+	} else {
+		$unifiedsearchlib->initQuery($query);
+	}
 
 	$matches = WikiParser_PluginMatcher::match($data);
 
