@@ -32,7 +32,7 @@
 			{$div_checkbox_redirect_display = 'block'}
 		{/if}
 		{include file='access/include_hidden.tpl'}
-		{if $prefs.feature_semantic eq 'y' and $prefs.feature_wiki_1like_redirection eq 'y' and $prefs.feature_wiki_pagealias eq 'y'}
+		{if $prefs.feature_wiki_pagealias eq 'y'}
 			<div class="checkbox" id="div_checkbox_redirect" style="display:{$div_checkbox_redirect_display};">
 					<label>
 						<input type='checkbox' id='create_redirect' name='create_redirect' value='y' onclick="$('#div_redirect').toggle();return true;" > {tr}Create redirect{/tr}
