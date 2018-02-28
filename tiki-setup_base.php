@@ -189,6 +189,12 @@ if (isset($_SERVER["REQUEST_URI"])) {
 		session_set_cookie_params($session_params['lifetime'], $tikiroot);
 		unset($session_params);
 
+		$error = TikiSetup::checkSession();
+
+		if ($error) {
+			trigger_error($error);
+		}
+
 		try {
 			Zend\Session\Container::getDefaultManager()->start();
 
