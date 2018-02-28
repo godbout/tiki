@@ -23,7 +23,9 @@ include('tiki-setup.php');
 
 $access->check_feature('feature_newsletters');
 
-if (php_sapi_name() != 'cli') {
+if (php_sapi_name() == 'cli') {
+	new Perms_Context('admin'); // run as admin when executed from command line
+} else {
 	$access->check_permission('tiki_p_send_newsletters');
 }
 
