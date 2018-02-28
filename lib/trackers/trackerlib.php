@@ -1788,7 +1788,9 @@ class TrackerLib extends TikiLib
 		global $user, $prefs, $tiki_p_admin_trackers, $tiki_p_admin_users;
 		$final_event = 'tiki.trackeritem.update';
 
-		$transaction = $this->begin();
+		if (! $bulk_import) {
+			$transaction = $this->begin();
+		}
 
 		$categlib = TikiLib::lib('categ');
 		$cachelib = TikiLib::lib('cache');
@@ -2087,7 +2089,9 @@ class TrackerLib extends TikiLib
 			$arguments
 		);
 
-		$transaction->commit();
+		if (! $bulk_import) {
+			$transaction->commit();
+		}
 
 		return $currentItemId;
 	}

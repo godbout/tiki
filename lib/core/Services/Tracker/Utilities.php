@@ -12,7 +12,7 @@ class Services_Tracker_Utilities
 		$newItem = $this->replaceItem($definition, 0, $item['status'], $item['fields'], [
 			'validate' => isset($item['validate']) ? $item['validate'] : true,
 			'skip_categories' => false,
-			'bulk_import' => false,
+			'bulk_import' => isset($item['bulk_import']) ? $item['bulk_import'] : false,
 		]);
 
 		return $newItem;
@@ -21,9 +21,9 @@ class Services_Tracker_Utilities
 	function updateItem($definition, $item)
 	{
 		return $this->replaceItem($definition, $item['itemId'], $item['status'], $item['fields'], [
-			'validate' => true,
+			'validate' => isset($item['validate']) ? $item['validate'] : true,
 			'skip_categories' => false,
-			'bulk_import' => false,
+			'bulk_import' => isset($item['bulk_import']) ? $item['bulk_import'] : false,
 		]);
 	}
 

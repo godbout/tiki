@@ -250,6 +250,15 @@
 					</a>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">{tr}Bulk import{/tr}</label>
+				<div class="col-sm-9">
+					<input type="checkbox" name="config[bulk_import]" value="1" {if $config['bulk_import']} checked {/if}>
+					<a class="tikihelp" title="{tr}Bulk Import{/tr}: {tr}Import in 'bulk' mode so the search index is not updated for each item and no notifications should be sent.{/tr}">
+						{icon name=information}
+					</a>
+				</div>
+			</div>
 			<div class="form-group submit">
 				<div class="col-sm-9 col-sm-push-3">
 					<input type="submit" class="btn btn-primary" value="{tr}Update{/tr}">

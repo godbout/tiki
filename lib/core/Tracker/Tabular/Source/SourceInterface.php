@@ -14,5 +14,8 @@ interface SourceInterface
 	 */
 	function getEntries();
 
+	/**
+	 * @return \Tracker\Tabular\Schema
+	 */
 	function getSchema();
 }

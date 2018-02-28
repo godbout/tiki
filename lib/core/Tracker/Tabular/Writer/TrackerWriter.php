@@ -27,6 +27,7 @@ class TrackerWriter
 
 			$result = [];
 
+			/** @var \Tracker\Tabular\Source\CsvSourceEntry $entry */
 			foreach ($source->getEntries() as $line => $entry) {
 				$info = [
 					'itemId' => false,
@@ -45,6 +46,10 @@ class TrackerWriter
 
 				if ($schema->ignoreImportBlanks()) {
 					$info['fields'] = array_filter($info['fields']);
+				}
+
+				if ($schema->useBulkImport()) {
+					$info['bulk_import'] = true;
 				}
 
 				$result[] = $callback($line, $info, $columns);
