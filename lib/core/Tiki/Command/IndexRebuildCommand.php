@@ -87,7 +87,7 @@ class IndexRebuildCommand extends Command
 
 		// Apply 'Search index rebuild memory limit' setting if available
 		if (! empty($prefs['allocate_memory_unified_rebuild'])) {
-			$memory_limiter = new Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
+			$memory_limiter = new \Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
 		}
 
 		$result = $unifiedsearchlib->rebuild($log);
