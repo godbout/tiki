@@ -1,4 +1,4 @@
-{if $ratings|@count and $tiki_p_wiki_view_ratings eq 'y'}
+{if not empty($ratings) and $tiki_p_wiki_view_ratings eq 'y'}
 	<div style="display:inline;float:right;padding: 1px 3px; border:1px solid #666666; -moz-border-radius : 10px;font-size:.8em;">
 		<div id="pollopen">
 			{button href="#" _onclick="show('pollzone');hide('polledit');hide('pollopen');return false;" class="link" _text="{tr}Rating{/tr}"}

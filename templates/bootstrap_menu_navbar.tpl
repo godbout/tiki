@@ -1,6 +1,6 @@
 <ul class="{if $bs_menu_class}{$bs_menu_class}{else}nav navbar-nav{/if}">
 	{foreach from=$list item=item}
-		{if $item.children|default:null|count}
+		{if not empty($item.children)}
 			<li class="dropdown{if $item.selected|default:null} active{/if} {$item.class|escape}">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					{tr}{$item.name}{/tr}
