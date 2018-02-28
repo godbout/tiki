@@ -17,8 +17,14 @@ class TrackerWriter
 	{
 		$utilities = new \Services_Tracker_Utilities;
 		$schema = $source->getSchema();
+		$bulkImport = $schema->useBulkImport();
 
-		$iterate = function ($callback) use ($source, $schema) {
+		if ($bulkImport) {
+			global $prefs;
+			$prefs['categories_cache_refresh_on_object_cat'] = 'n';
+		}
+
+		$iterate = function ($callback) use ($source, $schema, $bulkImport) {
 			$columns = $schema->getColumns();
 
 			$tx = \TikiDb::get()->begin();
@@ -27,6 +33,7 @@ class TrackerWriter
 
 			$result = [];
 
+			/** @var \Tracker\Tabular\Source\CsvSourceEntry $entry */
 			foreach ($source->getEntries() as $line => $entry) {
 				$info = [
 					'itemId' => false,
@@ -45,6 +52,10 @@ class TrackerWriter
 
 				if ($schema->ignoreImportBlanks()) {
 					$info['fields'] = array_filter($info['fields']);
+				}
+
+				if ($bulkImport) {
+					$info['bulk_import'] = true;
 				}
 
 				$result[] = $callback($line, $info, $columns);

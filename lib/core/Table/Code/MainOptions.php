@@ -141,7 +141,7 @@ class Table_Code_MainOptions extends Table_Code_Manager
 		if (count($headers) > 0) {
 			$mo[] = $this->iterate($headers, 'headers: {', '}', '', '', ', ', ', ' );
 		}
-            
+
 		/*** widgets ***/
 		//standard ones
 		$w[] = 'stickyHeaders';

@@ -1634,6 +1634,7 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_blogposts_comments' => [
+			'name' => tra('Blog post Comments'),
 			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [

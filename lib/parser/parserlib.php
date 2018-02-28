@@ -2502,7 +2502,7 @@ class ParserLib extends TikiDb_Bridge
 						//     array( 1, 2, 2.1, 2.1.1, 2.1.2, 2.2, ... , X.Y.Z... )
 						//
 
-						$hdr_structure[$nb_hdrs] = '';
+						$hdr_structure[$nb_hdrs] = [];
 
 						// Generate the number (e.g. 1.2.1.1) of the current title, based on the previous title number :
 						//   - if the current title deepest level is lesser than (or equal to)

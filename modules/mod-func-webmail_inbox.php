@@ -146,6 +146,10 @@ function module_webmail_inbox($mod_reference, $module_params)
 		$headerlib->add_js('setTimeout("doRefreshWebmail()", ' . ($module_params["autoloaddelay"] * 1000) . ');');
 	}
 
+	if (! isset($webmail_list_page)) {
+		$webmail_list_page = [];
+	}
+
 	$smarty->assign('webmail_list', $webmail_list_page);
 
 	$smarty->assign_by_ref('module_params', $module_params); // re-assigning this to cater for AJAX reloads
