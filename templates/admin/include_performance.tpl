@@ -161,6 +161,7 @@
 			{preference name=log_mail}
 			{preference name=log_tpl}
 			{preference name=category_browse_count_objects}
+			{preference name=categories_cache_refresh_on_object_cat}
 			{preference name=feature_actionlog_bytes}
 			{preference name=search_parsed_snippet}
 			{preference name="unified_lucene_highlight"}
