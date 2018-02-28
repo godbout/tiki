@@ -258,6 +258,12 @@ class PreferencesLib
 			}
 		}
 
+		foreach (['name', 'preference'] as $key) {
+			if (empty($info[$key])) {
+				trigger_error(tr('Missing preference "%0" for "%1"', $key, $name));
+			}
+		}
+
 		return $info;
 	}
 
