@@ -2096,7 +2096,7 @@ body.tiki_forums .normal {
 #comment-container {
   display: none;
   margin: 0;
-  padding: 0;
+  padding: 0 15px;
 }
 #comment-container-below {
   display: none;
