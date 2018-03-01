@@ -8,7 +8,7 @@ CREATE TABLE `tiki_invit` (
   `wikicontent` text,
   `wikipageafter` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE `tiki_invited` (
   `id` int(11) NOT NULL auto_increment,
@@ -21,6 +21,6 @@ CREATE TABLE `tiki_invited` (
   PRIMARY KEY  (`id`),
   KEY `id_invit` (`id_invit`),
   KEY `used_on_user` (`used_on_user`)
-);
+) ENGINE=MyISAM;
 
 INSERT INTO `users_permissions` (`permName`, `permDesc`, `level`, `type`, `admin`, `feature_check`) VALUES ('tiki_p_invit', 'Can invit users by email, and include them in groups', 'registered', 'tiki', NULL, 'feature_invit');

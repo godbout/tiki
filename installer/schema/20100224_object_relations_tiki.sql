@@ -7,4 +7,4 @@ CREATE TABLE `tiki_object_relations` (
 	`target_itemId` varchar(255) NOT NULL,
 	KEY `relation_source_ix` (`source_type`, `source_itemId`),
 	KEY `relation_target_ix` (`target_type`, `target_itemId`)
-);
+) ENGINE=MyISAM;

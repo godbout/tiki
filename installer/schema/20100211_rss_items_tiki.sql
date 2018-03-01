@@ -11,7 +11,7 @@ CREATE TABLE `tiki_rss_items` (
 	`content` TEXT,
 	KEY `tiki_rss_items_rss` (`rssId`),
 	UNIQUE `tiki_rss_items_item` (`rssId`, `guid`)
-);
+) ENGINE=MyISAM;
 
 ALTER TABLE `tiki_rss_modules` DROP COLUMN `content`;
 ALTER TABLE `tiki_rss_modules` ADD COLUMN `sitetitle` VARCHAR(255);

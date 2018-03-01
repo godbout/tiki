@@ -6,4 +6,4 @@ CREATE TABLE `tiki_object_attributes` (
 	`value` varchar(100),
 	UNIQUE `item_attribute_uq` ( `type`, `itemId`, `attribute` ),
 	KEY `attribute_lookup_ix` (`attribute`, `value`)
-);
+) ENGINE=MyISAM;

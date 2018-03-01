@@ -8,4 +8,4 @@ CREATE TABLE `tiki_sent_newsletters_files` (
   `filename` varchar(256) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `editionId` (`editionId`)
-);
+) ENGINE=MyISAM;

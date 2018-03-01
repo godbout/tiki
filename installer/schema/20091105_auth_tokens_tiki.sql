@@ -9,4 +9,4 @@ CREATE TABLE `tiki_auth_tokens` (
 	`groups` VARCHAR(255),
 	PRIMARY KEY( `tokenId` ),
 	KEY `tiki_auth_tokens_token` (`token`)
-);
+) ENGINE=MyISAM;

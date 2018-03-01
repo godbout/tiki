@@ -6,4 +6,4 @@ CREATE TABLE `tiki_discount`(
 	`comment` TEXT,
 	PRIMARY KEY(`id`),
 	KEY `code` (`code`)
-);
+) ENGINE=MyISAM;

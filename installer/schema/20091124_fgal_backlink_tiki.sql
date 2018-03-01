@@ -3,4 +3,4 @@ CREATE TABLE `tiki_file_backlinks` (
 	   `objectId` int(12) NOT NULL,
 	   KEY `objectId` (`objectId`),
 	   KEY `fileId` (`fileId`)
-);
+) ENGINE=MyISAM;

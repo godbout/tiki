@@ -7,7 +7,7 @@ CREATE TABLE `metrics_assigned` (
 	PRIMARY KEY (`assigned_id`),
 	KEY `metric_id` (`metric_id`),
 	KEY `tab_id` (`tab_id`)
-);
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `metrics_metric`;
 CREATE TABLE `metrics_metric` (
@@ -19,7 +19,7 @@ CREATE TABLE `metrics_metric` (
 	`metric_query` text,
 	PRIMARY KEY (`metric_id`),
 	UNIQUE KEY `metric_name` (`metric_name`)
-);
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `metrics_tab`;
 CREATE TABLE `metrics_tab` (
@@ -29,5 +29,5 @@ CREATE TABLE `metrics_tab` (
 	`tab_content` longtext NOT NULL,
 	PRIMARY KEY (`tab_id`),
 	UNIQUE KEY `tab_name` (`tab_name`)
-);
+) ENGINE=MyISAM;
 
