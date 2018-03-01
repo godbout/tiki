@@ -115,7 +115,7 @@ class Table_Code_MainOptions extends Table_Code_Manager
 					$orh[$col] .= '.' . $attr . '(\'' . $args . '\')';
 				}
 				$orh[$col] .= ';}';
-				$headers[] = $col . ": { sorter: 'textextractor' }";
+				$headers[] = "'$col': { sorter: 'textextractor' }";
 			}
 			unset($col, $info);
 		}
