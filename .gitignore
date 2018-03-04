@@ -20,6 +20,8 @@ db/local.php
 db/lock
 db/tiki-secdb_*svn_mysql.sql
 db/virtuals.inc
+doc/devtools/dbdiff/cache
+doc/devtools/dbdiff/vendor
 /dummy.php
 /dump
 /files
