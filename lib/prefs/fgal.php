@@ -480,6 +480,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 			'type' => 'list',
 			'options' => $showOptions,
 			'default' => 'o',
+			'dependencies' => ['feature_stats'],
 		],
 		'fgal_list_lastDownload' => [
 			'name' => tra('Last download'),
