@@ -19,10 +19,11 @@ class TikiMail
 	public $errors;
 
 	/**
-	 * @param null $user	to username
-	 * @param null $from	from email
+	 * @param string|null $user	to username
+	 * @param string|null $from	from email
+	 * @param string|null $fromName	from Name
 	 */
-	function __construct($user = null, $from = null)
+	function __construct($user = null, $from = null, $fromName = null)
 	{
 		global $user_preferences, $prefs;
 
@@ -49,13 +50,13 @@ class TikiMail
 		if (! empty($from)) {
 			$this->mail = tiki_get_basic_mail();
 			try {
-				$this->mail->setFrom($from);
+				$this->mail->setFrom($from, $fromName);
 				$this->mail->setSender($from);
 			} catch (Exception $e) {
 				// was already set, then do nothing
 			}
 		} else {
-			$this->mail = tiki_get_admin_mail();
+			$this->mail = tiki_get_admin_mail($fromName);
 		}
 		if (! empty($to)) {
 			$this->mail->addTo($to);

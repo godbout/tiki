@@ -434,12 +434,12 @@ function sendWikiEmailNotification(
  * \param $subjectParam: le param to be inserted in the subject or null
  * \param $txtTpl : texte template file (ex: "submission_notifcation.tpl")
  * \param $from email from to not the default one
+ * \param $fromName name to use when sending emails
  * \ $smarty is supposed to be already built to fit $txtTpl
  * \return the nb of sent emails
  */
-function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $txtTpl, $from = '')
+function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $txtTpl, $from = '', $fromName = null)
 {
-
 	global $prefs;
 
 	$smarty = TikiLib::lib('smarty');
@@ -492,7 +492,7 @@ function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $tx
 				$machine = substr($machine, 0, -1);
 			}
 			$smarty->assign('mail_machine', $machine);
-			$mail = new TikiMail(null, $from);
+			$mail = new TikiMail(null, $from, $fromName);
 			if ($key) {
 				$mail->setUser($key);
 			}
@@ -513,7 +513,7 @@ function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $tx
 		}
 	} else {
 		foreach ($watches as $watch) {
-			$mail = new TikiMail(null, $from);
+			$mail = new TikiMail(null, $from, $fromName);
 
 			$smarty->assign('watchId', $watch['watchId']);
 			if ($watch['user']) {
@@ -928,7 +928,19 @@ function sendCommentNotification($type, $id, $title, $content, $commentId, $anon
 		$smarty->assign('mail_comment', $content);
 		$smarty->assign('comment_id', $commentId);
 
-		return sendEmailNotification($watches, null, 'user_watch_comment_subject.tpl', null, 'user_watch_comment.tpl');
+		if ($prefs['feature_comments_send_author_name'] == 'y') {
+			if (! empty($anonymousName)) {
+				$fromName = $anonymousName;
+			} else {
+				$fromName = $tikilib->get_user_preference($user, 'realName');
+				if (empty($fromName)) {
+					$fromName = $user;
+				}
+			}
+			return sendEmailNotification($watches, null, 'user_watch_comment_subject.tpl', null, 'user_watch_comment.tpl', '', $fromName);
+		} else {
+			return sendEmailNotification($watches, null, 'user_watch_comment_subject.tpl', null, 'user_watch_comment.tpl');
+		}
 	}
 
 	return 0;
