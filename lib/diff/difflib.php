@@ -17,14 +17,14 @@ require_once("lib/diff/Renderer.php");
 /* @brief modif tiki for the renderer lib	*/
 class Tiki_Text_Diff_Renderer extends Text_Diff_Renderer
 {
-	function _lines($lines, $prefix = '', $suffix = '')
+	protected function _lines($lines, $prefix = '', $suffix = '', $type = '')
 	{
 //ADD $suffix
 		foreach ($lines as $line) {
 			echo "$prefix$line$suffix\n";
 		}
 	}
-	function render($diff)
+	public function render($diff)
 	{
 		$x0 = $y0 = 0;
 		$xi = $yi = 1;

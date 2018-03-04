@@ -14,14 +14,14 @@ include_once("Renderer.php");
 
 class Text_Diff_Renderer_htmldiff extends Tiki_Text_Diff_Renderer
 {
-	function __construct($context_lines = 0, $words = 0)
+	public function __construct($context_lines = 0, $words = 0)
 	{
 		$this->_leading_context_lines = $context_lines;
 		$this->_trailing_context_lines = $context_lines;
 		$this->_words = $words;
 	}
 
-	function _startDiff()
+	protected function _startDiff()
 	{
 		ob_start();
 		$this->original = "";
@@ -33,7 +33,7 @@ class Text_Diff_Renderer_htmldiff extends Tiki_Text_Diff_Renderer
 		$this->tracked_tags = ["table", "ul"];
 	}
 
-	function _endDiff()
+	protected function _endDiff()
 	{
 		for ($i = 0; $i <= $this->n; $i++) {
 			if ($this->original[$i] != "" and $this->final[$i] != "") {
@@ -46,20 +46,20 @@ class Text_Diff_Renderer_htmldiff extends Tiki_Text_Diff_Renderer
 		return $val;
 	}
 
-	function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
+	protected function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
 	{
 		return "$xbeg,$xlen,$ybeg,$ylen";
 	}
 
-	function _startBlock($header)
+	protected function _startBlock($header)
 	{
 	}
 
-	function _endBlock()
+	protected function _endBlock()
 	{
 	}
 
-	function _insert_tag($line, $tag, &$span)
+	protected function _insert_tag($line, $tag, &$span)
 	{
 		$string = "";
 		if ($line != '') {
@@ -85,7 +85,7 @@ class Text_Diff_Renderer_htmldiff extends Tiki_Text_Diff_Renderer
 		return $string;
 	}
 
-	function _count_tags($line, $version)
+	protected function _count_tags($line, $version)
 	{
 
 		preg_match("#<(/?)([^ >]+)#", $line, $out);
@@ -100,7 +100,7 @@ class Text_Diff_Renderer_htmldiff extends Tiki_Text_Diff_Renderer
 		}
 	}
 
-	function _can_break($line)
+	protected function _can_break($line)
 	{
 
 		if (preg_match("#<(p|h\d|br)#", $line) == 0) {
@@ -119,7 +119,7 @@ class Text_Diff_Renderer_htmldiff extends Tiki_Text_Diff_Renderer
 		return true;
 	}
 
-	function _lines($type, $lines, $prefix = '')
+	protected function _lines($lines, $prefix = '', $suffix = '', $type = '')
 	{
 		static $context = 0;
 
@@ -174,30 +174,30 @@ class Text_Diff_Renderer_htmldiff extends Tiki_Text_Diff_Renderer
 		}
 	}
 
-	function _context($lines)
+	protected function _context($lines)
 	{
-		$this->_lines('context', $lines);
+		$this->_lines($lines, '', '', 'context');
 	}
 
-	function _added($lines, $changemode = false)
+	protected function _added($lines, $changemode = false)
 	{
 		if ($changemode) {
-			$this->_lines('change-added', $lines, '+');
+			$this->_lines($lines, '+', '', 'change-added');
 		} else {
-			$this->_lines('added', $lines, '+');
+			$this->_lines($lines, '+', '', 'added');
 		}
 	}
 
-	function _deleted($lines, $changemode = false)
+	protected function _deleted($lines, $changemode = false)
 	{
 		if ($changemode) {
-			$this->_lines('change-deleted', $lines, '-');
+			$this->_lines($lines, '-', '', 'change-deleted');
 		} else {
-			$this->_lines('deleted', $lines, '-');
+			$this->_lines($lines, '-', '', 'deleted');
 		}
 	}
 
-	function _changed($orig, $final)
+	protected function _changed($orig, $final)
 	{
 		$this->_deleted($orig, true);
 		$this->_added($final, true);
