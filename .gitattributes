@@ -4528,6 +4528,17 @@ lib/test/core/index.php -text
 lib/test/core/phpunit.xml -text
 lib/test/core/temp/cache/index.php -text
 lib/test/core/temp/index.php -text
+lib/test/diff/fixtures/htmldiff.html -text
+lib/test/diff/fixtures/inlinediff-char.html -text
+lib/test/diff/fixtures/inlinediff-full-char.html -text
+lib/test/diff/fixtures/inlinediff-full.html -text
+lib/test/diff/fixtures/inlinediff.html -text
+lib/test/diff/fixtures/page1.wiki -text
+lib/test/diff/fixtures/page2.wiki -text
+lib/test/diff/fixtures/sidediff-char.html -text
+lib/test/diff/fixtures/sidediff-full-char.html -text
+lib/test/diff/fixtures/sidediff-full.html -text
+lib/test/diff/fixtures/sidediff.html -text
 lib/test/editlib/EditLibTest.php -text
 lib/test/editlib/ParseToWiki_CharacterTest.php -text
 lib/test/editlib/ParseToWiki_LinkTest.php -text

@@ -1,0 +1,26 @@
+!Congratulations
+This is the default homepage for your Tiki. Changes Inline. If you are seeing this page, your installation was successful.
+
+You can change this page after logging in. Please review the [http://doc.tiki.org/wiki+syntax|wiki syntax] for editing details.
+
+Some changes
+
+More text added
+And even more
+
+!!Get started.
+To begin configuring your site:
+{FANCYLIST()}
+1) Log in with your newly created password.
+2) Manually [tiki-admin.php?page=features|Enable specific Tiki features] that you didn’t enable with the Admin wizard.
+3) Run [tiki-admin.php?page=profiles|Tiki Profiles] to quickly get up and running.
+{FANCYLIST}
+
+More changes here [http://www.tiki.org]
+
+!!Need help?
+For more information:
+*[https://tiki.org/Introduction|Learn more about Tiki].
+*[https://tiki.org/|Get help], including the [http://doc.tiki.org|official documentation] and [http://tiki.org/forums|support forums].
+*[https://tiki.org/Join|Join the Tiki community].
+
