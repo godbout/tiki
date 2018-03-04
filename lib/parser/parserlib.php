@@ -1651,8 +1651,6 @@ if ( \$('#$id') ) {
 			$data = preg_replace(';~tc~(.*?)~/tc~;s', '', $data);
 		}
 
-		$this->parse_wiki_argvariable($data);
-
 		/* <x> XSS Sanitization handling */
 
 		// Fix false positive in wiki syntax
@@ -1665,8 +1663,8 @@ if ( \$('#$id') ) {
 		$this->strip_unparsed_block($data, $noparsed, true);
 		if (! $this->option['noparseplugins'] || $this->option['stripplugins']) {
 			$this->parse_first($data, $preparsed, $noparsed);
-			$this->parse_wiki_argvariable($data);
 		}
+		$this->parse_wiki_argvariable($data);
 
 		// Handle ~pre~...~/pre~ sections
 		$data = preg_replace(';~pre~(.*?)~/pre~;s', '<pre>$1</pre>', $data);
