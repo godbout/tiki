@@ -24,8 +24,8 @@ class Text_Diff_Renderer_htmldiff extends Tiki_Text_Diff_Renderer
 	protected function _startDiff()
 	{
 		ob_start();
-		$this->original = "";
-		$this->final = "";
+		$this->original = [];
+		$this->final = [];
 		$this->n = 0;
 		$this->rspan = false;
 		$this->lspan = false;
