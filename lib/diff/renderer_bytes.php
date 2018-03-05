@@ -17,37 +17,37 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 class Text_Diff_Renderer_bytes extends Text_Diff_Renderer
 {
-	function __construct($first = -1)
+	public function __construct($first = -1)
 	{
 		$this->_addBytes = 0;
 		$this->_delBytes = 0;
 		$this->_first = $first;
 	}
 
-	function _startDiff()
+	protected function _startDiff()
 	{
 	}
 
-	function _endDiff()
+	protected function _endDiff()
 	{
 		return 'add=' . $this->_addBytes . '&amp;del=' . $this->_delBytes;
 	}
 
-	function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
+	protected function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
 	{
 	}
 
-	function _added($lines)
+	protected function _added($lines)
 	{
 		$this->_addBytes += $this->_count($lines);
 	}
 
-	function _deleted($lines)
+	protected function _deleted($lines)
 	{
 		$this->_delBytes += $this->_count($lines);
 	}
 
-	function _changed($orig, $final)
+	protected function _changed($orig, $final)
 	{
 		if ($this->_first >= 0) { // stop recursion
 			$this->_addBytes += count($final);
@@ -59,7 +59,7 @@ class Text_Diff_Renderer_bytes extends Text_Diff_Renderer
 		$this->_addBytes += $matches[1];
 		$this->_delBytes += $matches[2];
 	}
-	function _count($lines)
+	protected function _count($lines)
 	{
 		$bytes = 0;
 		foreach ($lines as $line) {

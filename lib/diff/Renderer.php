@@ -17,7 +17,7 @@ class Text_Diff_Renderer
 	 * This should be left at zero for this class, but subclasses may want to
 	 * set this to other values.
 	 */
-	var $_leading_context_lines = 0;
+	protected $_leading_context_lines = 0;
 
 	/**
 	 * Number of trailing context "lines" to preserve.
@@ -25,12 +25,12 @@ class Text_Diff_Renderer
 	 * This should be left at zero for this class, but subclasses may want to
 	 * set this to other values.
 	 */
-	var $_trailing_context_lines = 0;
+	protected $_trailing_context_lines = 0;
 
 	/**
 	 * Constructor.
 	 */
-	function __construct($params = [])
+	public function __construct($params = [])
 	{
 		foreach ($params as $param => $value) {
 			$v = '_' . $param;
@@ -47,7 +47,7 @@ class Text_Diff_Renderer
 	 *
 	 * @return string  The formatted output.
 	 */
-	function render($diff)
+	public function render($diff)
 	{
 		$xi = $yi = 1;
 		$block = false;
@@ -113,7 +113,7 @@ class Text_Diff_Renderer
 		return $this->_endDiff();
 	}
 
-	function _block($xbeg, $xlen, $ybeg, $ylen, &$edits)
+	protected function _block($xbeg, $xlen, $ybeg, $ylen, &$edits)
 	{
 		$this->_startBlock($this->_blockHeader($xbeg, $xlen, $ybeg, $ylen));
 		foreach ($edits as $edit) {
@@ -142,19 +142,19 @@ class Text_Diff_Renderer
 		}
 	}
 
-	function _startDiff()
+	protected function _startDiff()
 	{
 		ob_start();
 	}
 
-	function _endDiff()
+	protected function _endDiff()
 	{
 		$val = ob_get_contents();
 		ob_end_clean();
 		return $val;
 	}
 
-	function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
+	protected function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
 	{
 		if ($xlen > 1) {
 			$xbeg .= ',' . ($xbeg + $xlen - 1);
@@ -166,39 +166,39 @@ class Text_Diff_Renderer
 		return $xbeg . ($xlen ? ($ylen ? 'c' : 'd') : 'a') . $ybeg;
 	}
 
-	function _startBlock($header)
+	protected function _startBlock($header)
 	{
 		// TODO: What's this output for? It breaks XML pages
 		// echo $header . "\n";
 	}
 
-	function _endBlock()
+	protected function _endBlock()
 	{
 	}
 
-	function _lines($lines, $prefix = ' ')
+	protected function _lines($lines, $prefix = '', $suffix = '', $type = '')
 	{
 		foreach ($lines as $line) {
-			echo "$prefix$line\n";
+			echo "$prefix$line$suffix\n";
 		}
 	}
 
-	function _context($lines)
+	protected function _context($lines)
 	{
-		$this->_lines($lines);
+		$this->_lines($lines, ' ');
 	}
 
-	function _added($lines)
+	protected function _added($lines)
 	{
 		$this->_lines($lines, '>');
 	}
 
-	function _deleted($lines)
+	protected function _deleted($lines)
 	{
 		$this->_lines($lines, '<');
 	}
 
-	function _changed($orig, $final)
+	protected function _changed($orig, $final)
 	{
 		$this->_deleted($orig);
 		echo "---\n";

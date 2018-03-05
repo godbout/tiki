@@ -14,10 +14,10 @@
  */
 class Text_Diff_Renderer_character extends Tiki_Text_Diff_Renderer
 {
-	var $orig;
-	var $final;
+	protected $orig;
+	protected $final;
 
-	function __construct($context_lines = 0)
+	public function __construct($context_lines = 0)
 	{
 		$this->_leading_context_lines = $context_lines;
 		$this->_trailing_context_lines = $context_lines;
@@ -25,29 +25,29 @@ class Text_Diff_Renderer_character extends Tiki_Text_Diff_Renderer
 		$this->final = "";
 	}
 
-	function _startDiff()
+	protected function _startDiff()
 	{
 	}
 
-	function _endDiff()
+	protected function _endDiff()
 	{
 		return [$this->orig, $this->final];
 	}
 
-	function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
+	protected function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
 	{
 	}
 
-	function _startBlock($header)
+	protected function _startBlock($header)
 	{
 		echo $header;
 	}
 
-	function _endBlock()
+	protected function _endBlock()
 	{
 	}
 
-	function _lines($lines, $prefix = '', $suffix = '', $type = '')
+	protected function _lines($lines, $prefix = '', $suffix = '', $type = '')
 	{
 		if ($type == 'context') {
 			foreach ($lines as $line) {
@@ -73,12 +73,12 @@ class Text_Diff_Renderer_character extends Tiki_Text_Diff_Renderer
 		}
 	}
 
-	function _context($lines)
+	protected function _context($lines)
 	{
 		$this->_lines($lines, '', '', 'context');
 	}
 
-	function _added($lines, $changemode = false)
+	protected function _added($lines, $changemode = false)
 	{
 		if ($changemode) {
 			$this->_lines($lines, '+', '', 'change-added');
@@ -87,7 +87,7 @@ class Text_Diff_Renderer_character extends Tiki_Text_Diff_Renderer
 		}
 	}
 
-	function _deleted($lines, $changemode = false)
+	protected function _deleted($lines, $changemode = false)
 	{
 		if ($changemode) {
 			$this->_lines($lines, '-', '', 'change-deleted');
@@ -96,7 +96,7 @@ class Text_Diff_Renderer_character extends Tiki_Text_Diff_Renderer
 		}
 	}
 
-	function _changed($orig, $final)
+	protected function _changed($orig, $final)
 	{
 		$this->_deleted($orig, true);
 		$this->_added($final, true);

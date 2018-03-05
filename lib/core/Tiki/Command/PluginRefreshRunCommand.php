@@ -31,6 +31,6 @@ class PluginRefreshRunCommand extends Command
 		$parserLib = \TikiLib::lib('parser');
 		$parserLib->pluginRefresh($logger);
 
-		$logger->info(tr('Plugin list refreshed with success'));
+		$output->writeln(tr('Plugin list refreshed with success'));
 	}
 }

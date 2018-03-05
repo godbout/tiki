@@ -2935,18 +2935,31 @@ function prefs_feature_list($partial = false)
 			],
 			'default' => '',
 		],
+		'feature_typo_enable' => [
+			'name' => tra('Enable Typography Features'),
+			'description' => tra('Features to replace normal characters with typographic equivalents'),
+			'type' => 'flag',
+			'tags' => ['basic'],
+			'default' => 'y',
+		],
 		'feature_typo_quotes' => [
 			'name' => tra('Smart “curly” quotes'),
 			'description' => tra('Convert \"straight\" quotes to “curly” ones, also convert ’ apostrophe and ‘single’ quotes'),
 			'type' => 'flag',
 			'tags' => ['basic'],
 			'default' => 'y',
+			'dependencies' => [
+				'feature_typo_enable',
+			],
 		],
 		'feature_typo_approximative_quotes' => [
 			'name' => tra('Convert approximative ASCII quotes'),
 			'description' => tra('Convert plain-ASCII quote substitutes `` \'\' ,, << >> to their typographic equivalent “ ” „ « »'),
 			'type' => 'flag',
 			'default' => 'n',
+			'dependencies' => [
+				'feature_typo_enable',
+			],
 		],
 		'feature_typo_dashes_and_ellipses' => [
 			'name' => tra('Smart em-dash and ellipsis'),
@@ -2954,6 +2967,9 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'tags' => ['basic'],
 			'default' => 'n',
+			'dependencies' => [
+				'feature_typo_enable',
+			],
 		],
 		'feature_typo_nobreak_spaces' => [
 			'name' => tra('Smart no-break space'),
@@ -2961,6 +2977,9 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'tags' => ['basic'],
 			'default' => 'y',
+			'dependencies' => [
+				'feature_typo_enable',
+			],
 		],
 		'feature_default_calendars' => [
 			'name' => tra('Display only select calendars by default'),

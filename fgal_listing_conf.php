@@ -62,6 +62,10 @@ foreach ($fgal_listing_conf as $k => $v) {
 		}
 	}
 }
+// If feature_status is disabled remove hits field.
+if (isset($prefs) && $prefs['feature_stats'] != 'y') {
+	unset($fgal_listing_conf['hits']);
+}
 // Do not show "Locked by" info if the gallery is not lockable
 if (isset($gal_info) && isset($gal_info['galleryId']) && isset($gal_info['lockable']) && $gal_info['lockable'] != 'y') {
 	$fgal_listing_conf['lockedby']['value'] = 'n';

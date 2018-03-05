@@ -45,6 +45,15 @@ class PluginApproveRunCommand extends Command
 		$pluginFingerprints = $input->getArgument('pluginFingerprints');
 		$all = $input->getOption('all');
 
+		if (! $all && ! $pluginFingerprints) {
+			$output->writeln(
+				'<error>'
+				. tr('You must either use the option --all or provide a list of fingerprints to approve.')
+				. '</error>'
+			);
+			return;
+		}
+
 		if ($all) {
 			$logger->info(tr('Approving all pending plugins'));
 			$parserLib->approve_all_pending_plugins();
@@ -54,10 +63,8 @@ class PluginApproveRunCommand extends Command
 				$logger->debug(tr('Approving plugin %0', $fingerprint));
 				$parserLib->approve_selected_pending_plugings($fingerprint);
 			}
-		} else {
-			$logger->warning(tr('You must either use the option --all or provide a list of fingerprints to approve.'));
 		}
 
-		$logger->info(tr('Plugins approved with success'));
+		$output->writeln(tr('Plugins approved with success'));
 	}
 }

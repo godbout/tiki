@@ -50,6 +50,7 @@ $memory_limiter = new Tiki_MemoryLimit('128M'); // Keep in variable to hold scop
 
 // ---------------------------------------------------------------------
 // inclusions of mandatory stuff and setup
+require_once('lib/setup/tikisetup.class.php');
 require_once('lib/tikiticketlib.php');
 require_once('db/tiki-db.php');
 require_once('lib/tikilib.php');
@@ -189,7 +190,7 @@ if (isset($_SERVER["REQUEST_URI"])) {
 		session_set_cookie_params($session_params['lifetime'], $tikiroot);
 		unset($session_params);
 
-		$error = TikiSetup::checkSession();
+		$error = \TikiSetup::checkSession();
 
 		if ($error) {
 			trigger_error($error);

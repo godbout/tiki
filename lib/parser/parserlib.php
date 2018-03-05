@@ -53,7 +53,7 @@ class ParserLib extends TikiDb_Bridge
 
 	/*
 	 * Parsing "options". Some of these are real parsing parameters, such as protect_email and security options.
-	 * Others (like is_html) define the markup's semantic.  
+	 * Others (like is_html) define the markup's semantic.
 	 *
 	 * TODO: Separate real parsing parameters from properties of the parsable markup
 	 * TO DO: To ease usage tracking, it may be best to replace $option with individual properties.
@@ -68,12 +68,12 @@ class ParserLib extends TikiDb_Bridge
 		$this->option = array_merge(
 			[
 				'is_html' => false,
-				
+
 				/* Determines if "Tiki syntax" is parsed in some circumstances.
 				Currently, when is_html is true, but that is probably wrong.
 				Overriden by the HTML plugin to force wiki parsing */
 				'parse_wiki' => ! isset($prefs['wysiwyg_wiki_parsed']) || $prefs['wysiwyg_wiki_parsed'] === 'y',
-				
+
 				'absolute_links' => false,
 				'language' => '',
 				'noparseplugins' => false,
@@ -1420,8 +1420,8 @@ class ParserLib extends TikiDb_Bridge
 	}
 
 	/** Simpler and faster parse than parse_data()
-	 * This is only called from the parse Smarty modifier, for preference definitions. 
-	 */ 
+	 * This is only called from the parse Smarty modifier, for preference definitions.
+	 */
 	function parse_data_simple($data)
 	{
 		$data = $this->parse_data_wikilinks($data, true);
@@ -1506,7 +1506,7 @@ class ParserLib extends TikiDb_Bridge
 					}
 				}
 			}
-			
+
 			// Reinsert ))Words((
 			$data = str_replace($noParseWikiLinksK, $noParseWikiLinksT, $data);
 		}
@@ -2379,7 +2379,7 @@ class ParserLib extends TikiDb_Bridge
 			$inScript -= substr_count($lineInLowerCase, "</script>");
 
 			// If the first character is ' ' and we are not in pre then we are in pre
-			if ($prefs['feature_wiki_monosp'] == 'y' && substr($line, 0, 1) == ' ' /* The first character is a space (' '). */ 
+			if ($prefs['feature_wiki_monosp'] == 'y' && substr($line, 0, 1) == ' ' /* The first character is a space (' '). */
 				&& $inTable == 0 && $inPre == 0 && $inComment == 0 && ! $this->option['is_html']) {
 				// Close open paragraph and lists, but not div's
 				$this->close_blocks($data, $in_paragraph, $listbeg, $divdepth, 1, 1, 0);
@@ -3204,6 +3204,7 @@ class ParserLib extends TikiDb_Bridge
 		preg_match_all('/<a class="wiki[^\"]*" href="tiki-index\.php\?page=([^\?&"]+)[^"]*"/', $data, $htmlLinks1);
 		preg_match_all('/<a href="tiki-index\.php\?page=([^\?&"]+)[^"]*"/', $data, $htmlLinks2);
 		$htmlLinks[1] = array_merge($htmlLinks1[1], $htmlLinks2[1]);
+		$htmlLinks[1] = array_filter($htmlLinks[1]);
 		preg_match_all('/<a class="wiki[^\"]*" href="([^\?&"]+)[^"]*"/', $data, $htmlLinksSefurl1);
 		preg_match_all('/<a href="([^\?&"]+)[^"]*"/', $data, $htmlLinksSefurl2);
 		$htmlLinksSefurl[1] = array_merge($htmlLinksSefurl1[1], $htmlLinksSefurl2[1]);
