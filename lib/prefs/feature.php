@@ -2912,7 +2912,7 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Features to replace normal characters with typographic equivalents'),
 			'type' => 'flag',
 			'tags' => ['basic'],
-			'default' => 'y',
+			'default' => 'n',
 		],
 		'feature_typo_quotes' => [
 			'name' => tra('Smart “curly” quotes'),
