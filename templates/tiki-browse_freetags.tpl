@@ -21,7 +21,6 @@
 		</div>
 	</div>
 	<div class="form-inline margin-bottom-md">
-		<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 		<input type="radio" name="broaden" class="radio" id="stopb1" value="n"{if $broaden eq 'n'} checked="checked"{/if}>
 		<label for="stopb1">{tr}With all selected tags{/tr}</label>
 		<input type="radio" name="broaden" class="radio" id="stopb2" value="y"{if $broaden eq 'y'} checked="checked"{/if}>
@@ -90,7 +89,7 @@
 						{/if}
 						{assign var=thistype value=$objectType|escape:'url'}
 						{capture name="fl"}{tr}{$feature_label}{/tr}{/capture}
-						{button _text=$smarty.capture.fl _class=$thisclass href="tiki-browse_freetags.php?tag=$tagString$thisbroaden&amp;type=$thistype&amp;sort_mode=$sort_mode"}
+						{button _text=$smarty.capture.fl _class=$thisclass href="tiki-browse_freetags.php?tag=$tagString$thisbroaden&amp;type=$thistype"}
 						{assign var=cpt value=$cpt+1}
 					{/if}
 					{if isset($sect.itemObjectType) and $sect.itemObjectType eq $objectType}
@@ -112,7 +111,7 @@
 						{/if}
 						{assign var=thistype value=$objectType|escape:'url'}
 						{capture name="fl"}{tr}{$feature_label}{/tr}{/capture}
-						{button _text=$smarty.capture.fl _class=$thisclass href="tiki-browse_freetags.php?tag=$tagString$thisbroaden&amp;type=$thistype&amp;sort_mode=$sort_mode"}
+						{button _text=$smarty.capture.fl _class=$thisclass href="tiki-browse_freetags.php?tag=$tagString$thisbroaden&amp;type=$thistype"}
 						{assign var=cpt value=$cpt+1}
 					{/if}
 				{/foreach}
@@ -125,7 +124,6 @@
 					<input type="submit" class="btn btn-default btn-sm" value="{tr}Filter{/tr}">
 				</div>
 			</div>
-			<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 			<input type="hidden" name="old_type" value="{$type|escape}">
 			{if !empty($blogs)}
 				<div class="form-group">
