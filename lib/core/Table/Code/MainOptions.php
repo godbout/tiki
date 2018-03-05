@@ -31,6 +31,7 @@ class Table_Code_MainOptions extends Table_Code_Manager
 		$mo = [];
 
 		$mo[] = 'showProcessing: true';
+		$mo[] = 'ignoreCase: false';
 
 		/***  onRenderHeader option - change html elements before table renders. Repeated for each column. ***/
 		$orh = [];
