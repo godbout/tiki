@@ -19,13 +19,18 @@
 						{else}
 							<p>{tr}This page has no prior approved revision. <strong>All of the content must be reviewed.</strong>{/tr}</p>
 						{/if}
-						<div class="submit">
-							<input type="hidden" name="revision" value="{$revision_displayed|escape}">
+						<div class="submit row">
+						  <input type="hidden" name="revision" value="{$revision_displayed|escape}">
+						  <div class="col-md-6">
 							<input type="submit" class="btn btn-default btn-sm" name="approve" value="{tr}Approve current revision{/tr}">
+						  </div>
 							<!-- TODO work on layout here -->
-							<input type="submit" class="btn btn-default btn-sm pull-right" name="reject" value="{tr}Reject current revision{/tr}">
-							<div class="pull-right">&nbsp;</div>
-							<input type="text" class="pull-right px-2" name="reason" placeholder="Why is this not approved?">
+							<div class="col-md-6">
+							  <input type="text" name="reason" placeholder="Why is this not approved?">
+							  <input type="submit" class="btn btn-default btn-sm" name="reject" value="{tr}Reject current revision{/tr}">
+							  <br/>
+							  <input type="checkbox" name="delete_revision" value="on"> <label for="delete_version">Permanently delete this revision</label>
+							</div>
 						</div>
 					</form>
 				{/if}

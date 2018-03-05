@@ -428,7 +428,12 @@ if (isset($_REQUEST['reject'], $_REQUEST['revision']) && $_REQUEST['revision'] <
 		$perms = Perms::get('wiki page', $page);
 
 		if ($perms->wiki_approve) {
-			$flaggedrevisionlib->flag_revision($page, $_REQUEST['revision'], 'moderation', 'REJECT', $_REQUEST['reason']);
+			if ($_REQUEST['delete_revision'] == 'on') {
+				$histlib = TikiLib::lib('hist');
+				$histlib->remove_version($page, $_REQUEST['revision']);
+			} else {
+				$flaggedrevisionlib->flag_revision($page, $_REQUEST['revision'], 'moderation', 'REJECT', $_REQUEST['reason']);
+			}
 			$latest_approved = $flaggedrevisionlib->get_version_with($page, 'moderation', 'OK');
 			if ($latest_approved) {
 				$info = $latest_approved;
