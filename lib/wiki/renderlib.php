@@ -323,6 +323,7 @@ class WikiRenderer
 					}
 
 					$this->smartyassign('revision_displayed', $revision_displayed);
+					$this->smartyassign('revision_displayed_author', $this->info['user']);
 
 					if ($revision_displayed == $version_info['version']) {
 						$approval = $flaggedrevisionlib->find_approval_information($this->page, $revision_displayed);

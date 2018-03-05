@@ -1,6 +1,6 @@
 {* $Id$ *}
 {if $prefs.flaggedrev_approval eq 'y' and $revision_approval}
-	{if ($revision_approved or $revision_displayed) and $revision_approved neq $lastVersion and $tiki_p_wiki_view_latest eq 'y'}
+	{if ($revision_approved or $revision_displayed) and $revision_approved neq $lastVersion and ($tiki_p_wiki_view_latest eq 'y' or $revision_displayed_author == $user)}
 		{if $lastVersion eq $revision_displayed}
 			{remarksbox type=warning title="{tr}Content waiting for approval{/tr}"}
 				<p>
