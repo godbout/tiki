@@ -421,6 +421,24 @@ if (isset($_REQUEST['approve'], $_REQUEST['revision']) && $_REQUEST['revision'] 
 	$access->redirect($wikilib->sefurl($page));
 }
 
+if (isset($_REQUEST['reject'], $_REQUEST['revision']) && $_REQUEST['revision'] <= $info['version']) {
+	$flaggedrevisionlib = TikiLib::lib('flaggedrevision');
+
+	if ($flaggedrevisionlib->page_requires_approval($page)) {
+		$perms = Perms::get('wiki page', $page);
+
+		if ($perms->wiki_approve) {
+			$flaggedrevisionlib->flag_revision($page, $_REQUEST['revision'], 'moderation', 'REJECT', $_REQUEST['reason']);
+			$latest_approved = $flaggedrevisionlib->get_version_with($page, 'moderation', 'OK');
+			if ($latest_approved) {
+				$info = $latest_approved;
+				$tikilib->restore_page_from_history($page, $version=$info['version']);
+			}
+		}
+	}
+	$access->redirect($wikilib->sefurl($page));
+}
+
 $pageRenderer = new WikiRenderer($info, $user);
 $objectperms = $pageRenderer->applyPermissions();
 

@@ -9,7 +9,7 @@ class FlaggedRevisionLib extends TikiDb_Bridge
 {
 	const ACTION = 'Flagged';
 
-	function flag_revision($pageName, $version, $flag, $value)
+	function flag_revision($pageName, $version, $flag, $value, $comment='')
 	{
 		global $prefs;
 		$attributelib = TikiLib::lib('attribute');
@@ -24,7 +24,7 @@ class FlaggedRevisionLib extends TikiDb_Bridge
 			}
 
 			$attribute = $this->get_attribute_for_flag($flag);
-			$attributelib->set_attribute('wiki history', $version_info['historyId'], $attribute, $value);
+			$attributelib->set_attribute('wiki history', $version_info['historyId'], $attribute, $value, $comment);
 
 			require_once('lib/search/refresh-functions.php');
 			refresh_index('pages', $pageName);
@@ -58,6 +58,22 @@ class FlaggedRevisionLib extends TikiDb_Bridge
 		}
 
 		return $versions;
+	}
+
+	function get_flag_comment($pageName, $version, $flag, $value)
+	{
+		$query = 'SELECT toa.`comment` FROM `tiki_history` th INNER JOIN `tiki_object_attributes` toa ON toa.`itemId` = `historyId` AND toa.`type` = ? WHERE toa.`attribute` = ? AND toa.`value` = ? AND th.`pageName` = ? AND th.`version`=?';
+		$bindvars = [
+			'wiki history',
+			$this->get_attribute_for_flag($flag),
+			$value,
+			$pageName,
+			$version,
+		];
+
+		$result = $this->fetchAll($query, $bindvars, 1);
+		$first = reset($result);
+		return $first['comment'];
 	}
 
 	private function get_version_query($pageName, $flag, $value, & $query, & $bindvars, $fields = 'th.*')

@@ -22,6 +22,10 @@
 						<div class="submit">
 							<input type="hidden" name="revision" value="{$revision_displayed|escape}">
 							<input type="submit" class="btn btn-default btn-sm" name="approve" value="{tr}Approve current revision{/tr}">
+							<!-- TODO work on layout here -->
+							<input type="submit" class="btn btn-default btn-sm pull-right" name="reject" value="{tr}Reject current revision{/tr}">
+							<div class="pull-right">&nbsp;</div>
+							<input type="text" class="pull-right px-2" name="reason" placeholder="Why is this not approved?">
 						</div>
 					</form>
 				{/if}

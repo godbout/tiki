@@ -4259,7 +4259,7 @@ class TikiLib extends TikiDb_Bridge
 	 * @param $pageName
 	 * @return bool|mixed
 	 */
-	protected function restore_page_from_history($pageName)
+	public function restore_page_from_history($pageName, $version=null)
 	{
 		if (strtolower($pageName) == 'sandbox') {
 			return false;
@@ -4267,10 +4267,17 @@ class TikiLib extends TikiDb_Bridge
 
 		$query = "SELECT `version`, `version_minor`, `lastModif`, `user`, `ip`, `comment`, `data`, `description`,`is_html`
 			FROM tiki_history
-			WHERE pageName = ? 
-			ORDER BY version DESC";
+			WHERE pageName = ? ";
 
 		$bindvars = [$pageName];
+
+		if ($version === null) {
+			$query .= "ORDER BY version DESC";
+		} else {
+			$query .= "AND `version`=?";
+			$bindvars[] = $version;
+		}
+
 		$result = $this->query($query, $bindvars, 1);
 		if ($res = $result->fetchRow()) {
 			$query = "UPDATE `tiki_pages`
@@ -4566,16 +4573,10 @@ class TikiLib extends TikiDb_Bridge
 			$edit_description = $info['description'];
 		}
 
-		// Use largest version +1 in history table rather than tiki_page because versions used to be bugged
-		// tiki_history is also bugged as not all changes get stored in the history, like minor changes
-		// and changes that do not modify the body of the page. Both numbers are wrong, but the largest of
-		// them both is right.
-		$old_version = max($info["version"], $histlib->get_page_latest_version($pageName));
-
 		$user = $info["user"] ? $info["user"] : 'anonymous';
 		$data = $info["data"];
 		$willDoHistory = ($prefs['feature_wiki_history_full'] == 'y' || $data != $edit_data || $info['description'] != $edit_description || $info["comment"] != $edit_comment );
-		$version = $old_version + ($willDoHistory ? 1 : 0);
+		$version = $histlib->get_page_next_version($pageName, $willDoHistory);
 
 		if ($is_html === null) {
 			$html = $info['is_html'];
