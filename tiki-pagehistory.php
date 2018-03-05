@@ -323,8 +323,10 @@ if (isset($preview)) {
 		$preview = $rversion;
 	}
 	if ($preview == $info['version'] || $preview == 0) {
-		$previewd = (new WikiLibOutput($info, $info['data'], ['preview_mode' => true, 'is_html' => $info['is_html']]))->parsedValue;
-		$smarty->assign('previewd', $previewd);
+		if ($prefs['flaggedrev_approval'] != 'y' || !$flaggedrevisionlib->page_requires_approval($page) || $info['approved'] || $info['rejected'] || $tiki_p_wiki_approve == 'y') {
+			$previewd = (new WikiLibOutput($info, $info['data'], ['preview_mode' => true, 'is_html' => $info['is_html']]))->parsedValue;
+			$smarty->assign('previewd', $previewd);
+		}
 		$smarty->assign('preview', $info['version']);
 	} else {
 		$version = $histlib->get_version($page, $preview);
