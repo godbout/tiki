@@ -73,6 +73,23 @@ class FlaggedRevisionLib extends TikiDb_Bridge
 		];
 	}
 
+	public function version_is_flagged($pageName, $version, $flag, $value)
+	{
+		$query = 'SELECT th.historyId FROM `tiki_history` th INNER JOIN `tiki_object_attributes` toa ON toa.`itemId` = `historyId` AND toa.`type` = ? WHERE toa.`attribute` = ? AND toa.`value` = ? AND th.`pageName` = ? AND th.`version` = ? ORDER BY `th`.`version` DESC';
+
+		$bindvars = [
+			'wiki history',
+			$this->get_attribute_for_flag($flag),
+			$value,
+			$pageName,
+			$version,
+		];
+
+		$result = $this->fetchAll($query, $bindvars);
+
+		return (bool)$result;
+	}
+
 	function page_requires_approval($pageName)
 	{
 		global $prefs, $tikilib;
