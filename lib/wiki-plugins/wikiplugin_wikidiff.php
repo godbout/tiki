@@ -103,7 +103,7 @@ function wikiplugin_wikidiff_info()
 				'description' => tr('Text to show when the page exists but no version is approved.'),
 				'since' => '18.0',
 				'filter' => 'text',
-				'default' => "You don't have permission to see this content, because it haven't been approved",
+				'default' => "You don't have permission to see this content, because it hasn't been approved",
 			],
 		]
 	];
