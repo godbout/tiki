@@ -124,8 +124,8 @@ if ($prefs['flaggedrev_approval'] == 'y') {
 			}
 		}
 
-		while ($tiki_p_wiki_approve != 'y' && !$info['approved'] && sizeof($new_history) > 0) {
-			$info = array_shift($new_history);
+		while ($tiki_p_wiki_approve != 'y' && sizeof($new_history) > 0 && !$new_history[0]['approved'] && !$new_history[0]['rejected']) {
+			array_shift($new_history);
 		}
 
 		$history = $new_history;
