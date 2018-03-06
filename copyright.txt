@@ -2,7 +2,7 @@ Tiki Copyright
 ----------------
 
 The following list attempts to gather the copyright holders for Tiki
-as of version 18.0.
+as of version 18.1.
 
 Accounts listed below with commits have contributed source code to CVS or SVN.
 Please note that even more people contributed on various other aspects (documentation,
