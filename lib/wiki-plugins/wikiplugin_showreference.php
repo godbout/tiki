@@ -75,6 +75,14 @@ function wikiplugin_showreference_info()
 				],
 				'default' => '',
 			],
+			// Add new parameter pageid
+			'pageid' => [
+				'required' => false,
+				'name' => tra('Page identifier'),
+				'description' => tr('Provide the page id'),
+				'since' => '18.0',
+				'default' => '',
+			],
 		],
 	];
 }
@@ -87,46 +95,41 @@ function wikiplugin_showreference($data, $params)
 	$referenceStyle = (! empty($prefs['feature_references_style']) && $prefs['feature_references_style'] === 'mla') ? 'mla' : 'ama';
 
 	$params['title'] = empty($params['title']) ? '' : trim($params['title']);
-	$params['showtitle'] = empty($params['showtitle']) ? '' : trim($params['showtitle']);
 	$params['hlevel'] = empty($params['hlevel']) ? '' : trim($params['hlevel']);
 	$params['removelines'] = empty($params['removelines']) ? '' : trim($params['removelines']);
+	$params['pageid'] = empty($params['pageid']) ? '' : trim($params['pageid']);
 
-	$title = 'Bibliography';
-	if (isset($params['title']) && $params['title'] != '') {
-		$title = $params['title'];
-	}
-
-	if (isset($params['showtitle'])) {
-		$showtitle = $params['showtitle'];
-	}
-	if ($showtitle == 'yes' || $showtitle == '') {
-		$showtitle = 1;
-	} else {
-		$showtitle = 0;
-	}
-
-	$hlevel_start = '<h1>';
-	$hlevel_end = '</h1>';
+	$title = empty($params['title']) ? tr('Bibliography') : $params['title'];
+	$showtitle = empty($params['showtitle']) || trim($params['showtitle']) !== 'no';
 
 	if (isset($params['hlevel']) && $params['hlevel'] != '') {
 		if ($params['hlevel'] != '0') {
 			$hlevel_start = '<h' . $params['hlevel'] . '>';
 			$hlevel_end = '</h' . $params['hlevel'] . '>';
 		} else {
-			$hlevel_start = '';
-			$hlevel_end = '';
+			$hlevel_start = '<p>';
+			$hlevel_end = '</p>';
 		}
-	} else {
-		$hlevel_start = '<h1>';
-		$hlevel_end = '</h1>';
+	}
+	else {
+		$hlevel_start = '<p>';
+		$hlevel_end = '</p>';
 	}
 
 	if ($prefs['wikiplugin_showreference'] == 'y') {
-		if (empty($GLOBALS['info']) || empty($GLOBALS['info']['page_id'])) {
-			return '';
+		// Check first if the param pageid is passed.
+		// If not then check the global info:page_id
+		if(strlen($params['pageid'])==0) {
+			if (empty($GLOBALS['info']) || empty($GLOBALS['info']['page_id'])) {
+				return 'error';
+			}
+			else{
+				$page_id = $GLOBALS['info']['page_id'];
+			}
 		}
-
-		$page_id = $GLOBALS['info']['page_id'];
+		else {
+			$page_id = $params['pageid'];
+		}
 
 		$tags = Reference::getTagsToParse();
 
@@ -134,6 +137,10 @@ function wikiplugin_showreference($data, $params)
 
 		$referenceslib = TikiLib::lib('references');
 		$references = $referenceslib->list_assoc_references($page_id);
+
+		// Return empty html if no references are associated
+		if(count($references['data'])==0)
+			return '';
 
 		$referencesData = [];
 		$is_global = 1;
@@ -224,7 +231,7 @@ function wikiplugin_showreference($data, $params)
 
 			$htm .= '</div>';
 		}
-
 		return $htm;
 	}
+	return "not showing plugin";
 }

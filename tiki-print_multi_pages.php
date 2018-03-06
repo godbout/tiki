@@ -6,9 +6,10 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id$
+// $Id: tiki-print_multi_pages.php 64607 2017-11-17 02:06:23Z rjsmelo $
 
 require_once('tiki-setup.php');
+
 $structlib = TikiLib::lib('struct');
 
 $access->check_feature('feature_wiki_multiprint');
@@ -62,6 +63,14 @@ if (isset($_REQUEST["print"]) || isset($_REQUEST["display"])) {
 			// Use the alias as the display name, if an alias is defined
 			if (isset($struct_page['page_alias'])) {
 				$page_info['pageName'] = $struct_page['page_alias'];
+			}
+
+			// Get the page_id from the page_ref_id
+			try{
+				$page_info['id'] = $tikilib->getOne("select `page_id` from `tiki_structures` where `page_ref_id` = " . $page_ref_id);
+			}
+			catch(Exception $e){
+				$page_info['id'] = -1;
 			}
 
 			$page_info['pos'] = $struct_page['pos'];
