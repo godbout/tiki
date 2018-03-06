@@ -401,7 +401,10 @@ class ParserLib extends TikiDb_Bridge
 			}
 
 			$plugin_data = $match->getBody();
-			$arguments = $argumentParser->parse($match->getArguments());
+			$argumentString = $match->getArguments();
+			$unparsedArguments = $argumentParser->parse($argumentString);
+			$this->parse_wiki_argvariable($argumentString);
+			$arguments = $argumentParser->parse($argumentString);
 			$start = $match->getStart();
 
 			$pluginOutput = null;
@@ -496,7 +499,7 @@ if ( \$('#$id') ) {
 					. ', '
 					. json_encode($this->option['page'])
 					. ', '
-					. json_encode($arguments)
+					. json_encode($unparsedArguments)
 					. ', '
 					. json_encode($this->unprotectSpecialChars($plugin_data, true)) //we restore it back to html here so that it can be edited, we want no modification, ie, it is brought back to html
 					. ", event.target);
