@@ -401,10 +401,7 @@ class ParserLib extends TikiDb_Bridge
 			}
 
 			$plugin_data = $match->getBody();
-			$argumentString = $match->getArguments();
-			$unparsedArguments = $argumentParser->parse($argumentString);
-			$this->parse_wiki_argvariable($argumentString);
-			$arguments = $argumentParser->parse($argumentString);
+			$arguments = $argumentParser->parse($match->getArguments());
 			$start = $match->getStart();
 
 			$pluginOutput = null;
@@ -499,7 +496,7 @@ if ( \$('#$id') ) {
 					. ', '
 					. json_encode($this->option['page'])
 					. ', '
-					. json_encode($unparsedArguments)
+					. json_encode($arguments)
 					. ', '
 					. json_encode($this->unprotectSpecialChars($plugin_data, true)) //we restore it back to html here so that it can be edited, we want no modification, ie, it is brought back to html
 					. ", event.target);
@@ -1654,6 +1651,8 @@ if ( \$('#$id') ) {
 			$data = preg_replace(';~tc~(.*?)~/tc~;s', '', $data);
 		}
 
+		$this->parse_wiki_argvariable($data);
+
 		/* <x> XSS Sanitization handling */
 
 		// Fix false positive in wiki syntax
@@ -1666,8 +1665,8 @@ if ( \$('#$id') ) {
 		$this->strip_unparsed_block($data, $noparsed, true);
 		if (! $this->option['noparseplugins'] || $this->option['stripplugins']) {
 			$this->parse_first($data, $preparsed, $noparsed);
+			$this->parse_wiki_argvariable($data);
 		}
-		$this->parse_wiki_argvariable($data);
 
 		// Handle ~pre~...~/pre~ sections
 		$data = preg_replace(';~pre~(.*?)~/pre~;s', '<pre>$1</pre>', $data);
