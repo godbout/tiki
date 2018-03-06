@@ -91,12 +91,6 @@ class DiffTest extends TikiTestCase
 				file_get_contents(__DIR__ . '/fixtures/page2.wiki'),
 				include __DIR__ . '/fixtures/unidiff.php',
 			],
-			[
-				'sideview',
-				file_get_contents(__DIR__ . '/fixtures/page1.wiki'),
-				file_get_contents(__DIR__ . '/fixtures/page2.wiki'),
-				file_get_contents(__DIR__ . '/fixtures/sideview.html'),
-			],
 		];
 	}
 
