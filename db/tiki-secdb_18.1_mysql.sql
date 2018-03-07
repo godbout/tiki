@@ -2265,7 +2265,7 @@ INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/openpgp/index.php', '022f203b4fcc6e53ade50da5ff35d82b', '18.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/openpgp/openpgplib.php', '7eabd2e59e7013c693e5a71f3d83329e', '18.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/parser/index.php', '682392240c29b57880da1c093e65cbe8', '18.1');
-INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/parser/parserlib.php', '4e6aa75e21846dd52aa91e21b2da139e', '18.1');
+INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/parser/parserlib.php', '52ae8494d7d120b9faa03117b74eb5a9', '18.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/pass_blacklists/index.php', '89cc80ccb4ac26e4de3c563f7834fff4', '18.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/payment/behavior/cancel_cart_order.php', '907c9aee8da2534da5718bc806fad0b8', '18.1');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./lib/payment/behavior/cancel_membership_extension.php', '954f482f5f81218d0979fbe62f992afa', '18.1');
