@@ -2465,7 +2465,7 @@ class TikiLib extends TikiDb_Bridge
 
 		/// Match things like [...], but ignore things like [[foo].
 		// -Robin
-		if (preg_match_all("/(?<!\[)\[([^\[\|\]]+)(?:\|?[^\[\|\]]+){0,2}\]/", $data, $r1)) {
+		if (preg_match_all("/(?<!\[)\[([^\[\|\]]+)(?:\|?[^\[\|\]]*){0,2}\]/", $data, $r1)) {
 			$res = $r1[1];
 			$links = array_unique($res);
 		}
