@@ -1577,6 +1577,7 @@ class ParserLib extends TikiDb_Bridge
 				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\">$link</a>$ext_icon $cosa", $data);
 			} else {
 				$link2 = str_replace("/", "\/", preg_quote($link));
+				$link = trim($link);
 				$data = str_replace("|nocache", "", $data);
 
 				$pattern = "/(?<!\[)\[$link2\|([^\]\|]+)\|([^\]]+)\]/";
@@ -1584,7 +1585,7 @@ class ParserLib extends TikiDb_Bridge
 				$pattern = "/(?<!\[)\[$link2\|([^\]\|]+)([^\]])*\]/";
                 $link = str_replace('"', '%22', $link);
 				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\">$1</a>$ext_icon", $data);
-				$pattern = "/(?<!\[)\[$link2\]/";
+				$pattern = "/(?<!\[)\[$link2\|?\]/";
 				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\">$link</a>$ext_icon", $data);
 			}
 		}
