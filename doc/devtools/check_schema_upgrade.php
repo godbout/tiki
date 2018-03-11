@@ -127,6 +127,7 @@ class CheckSchemaUpgrade
 			$this->runDbCompare();
 
 		} catch (\Exception $e) {
+			$this->printMessageError($e->getMessage());
 			$resultValue = 1;
 		}
 
@@ -330,7 +331,7 @@ class CheckSchemaUpgrade
 	 */
 	protected function prepareDb($dbConfig)
 	{
-		$db = new PDO('mysql:' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
+		$db = new PDO('mysql:host=' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
 		$db->query('DROP DATABASE IF EXISTS `' . $dbConfig['dbs'] . '`;');
 		$db->query(
 			'CREATE DATABASE `' . $dbConfig['dbs'] . '` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
@@ -568,10 +569,14 @@ class CheckSchemaUpgrade
 
 		$dbdiff = new DBDiff\DBDiff;
 
+		$errorLevel = error_reporting();
 		ob_start();
 		try {
+			error_reporting($errorLevel & ~E_NOTICE); // DBDiff returns some notices of undefined offsets
 			$dbdiff->run();
+			error_reporting($errorLevel);
 		} catch (\Exception $e) {
+			error_reporting($errorLevel);
 			ob_end_flush();
 			throw $e;
 		}
