@@ -397,63 +397,85 @@
 	</table>
 	<br>
 	<form action="tiki-webmail.php" method="post" name="mailb">
-		<input type="hidden" name="quickFlag" value="">
-		<input type="hidden" name="quickFlagMsg" value="">
-		<input type="hidden" name="locSection" value="mailbox">
-		<input type="submit" class="btn btn-warning btn-sm" name="delete" value="{tr}Delete{/tr}">
-		<input type="hidden" name="start" value="{$start|escape}">
-		<select name="action">
-			<option value="flag">{tr}Mark as flagged{/tr}</option>
-			<option value="unflag">{tr}Mark as unflagged{/tr}</option>
-			<option value="read">{tr}Mark as read{/tr}</option>
-			<option value="unread">{tr}Mark as unread{/tr}</option>
-		</select>
-		<input type="submit" class="btn btn-default btn-sm" name="operate" value="{tr}Mark{/tr}">
-		<br>
-		<br>
-		<div class="table-responsive">
-			<table class="table webmail_list">
-				<tr>
-					<th>{select_all checkbox_names='msg[]'}</th>
-					<th>&nbsp;</th>
-					<th>{tr}Sender{/tr}</th>
-					<th>{tr}Subject{/tr}</th>
-					<th>{tr}Date{/tr}</th>
-					<th>{tr}Size{/tr}</th>
-				</tr>
-				{section name=ix loop=$list}
-					{if $list[ix].isRead eq 'y'}
-						{assign var=class value="webmail_read"}
-					{else}
-						{assign var=class value=""}
-					{/if}
-					<tr class="{$class}">
-						<td class="checkbox-cell">
-							<input type="checkbox" name="msg[]" value="{$list[ix].msgid}">
-							<input type="hidden" name="realmsg[{$list[ix].msgid}]" value="{$list[ix].realmsgid|escape}">
-						</td>
-						<td class="icon">
-							{if $list[ix].isFlagged eq 'y'}
-								<a href="javascript: submit_form('{$list[ix].realmsgid|escape}','n')"><img src="img/webmail/flagged.gif" alt="{tr}Flagged{/tr}"></a>
+		<div class="row form-group">
+			<div class="col-sm-1">
+				<input type="submit" class="btn btn-warning btn-sm" name="delete" value="{tr}Delete{/tr}">
+				<input type="hidden" name="quickFlag" value="">
+				<input type="hidden" name="quickFlagMsg" value="">
+				<input type="hidden" name="locSection" value="mailbox">
+				<input type="hidden" name="start" value="{$start|escape}">
+			</div>
+			<div class="col-sm-4">
+				<select name="action" class="form-control">
+					<option value="flag">{tr}Mark as flagged{/tr}</option>
+					<option value="unflag">{tr}Mark as unflagged{/tr}</option>
+					<option value="read">{tr}Mark as read{/tr}</option>
+					<option value="unread">{tr}Mark as unread{/tr}</option>
+				</select>
+			</div>
+			<div class="col-sm-1">
+				<input type="submit" class="btn btn-default btn-sm" name="operate" value="{tr}Mark{/tr}">
+			</div>
+			<label for="folder" class="col-sm-2 form-label">
+				{tr}Folder{/tr}
+			</label>
+			<div class="col-sm-4">
+				<select name="folder" id="folder" class="form-control" onchange="$(this).form().find('input[name=start]').val('').form().submit();return false;">
+					{foreach $folders as $localName => $folder}
+						<option value="{$localName|escape}"{if not $folder->isSelectable()} disabled="disabled"{/if}{if $localName eq $currentFolder} selected="selected"{/if}>
+							{$localName|escape}
+						</option>
+					{/foreach}
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="table-responsive">
+					<table class="table webmail_list">
+						<tr>
+							<th>{select_all checkbox_names='msg[]'}</th>
+							<th>&nbsp;</th>
+							<th>{tr}Sender{/tr}</th>
+							<th>{tr}Subject{/tr}</th>
+							<th>{tr}Date{/tr}</th>
+							<th>{tr}Size{/tr}</th>
+						</tr>
+						{section name=ix loop=$list}
+							{if $list[ix].isRead eq 'y'}
+								{assign var=class value="webmail_read"}
 							{else}
-								{if $prefs.webmail_quick_flags eq 'y'}
-									<a href="javascript: submit_form('{$list[ix].realmsgid|escape}','y')"><img src="img/webmail/unflagged.gif" alt="{tr}unFlagged{/tr}"></a>
-								{/if}
+								{assign var=class value=""}
 							{/if}
-							{if $list[ix].isReplied eq 'y'}
-								<img src="img/webmail/replied.gif" alt="{tr}Replied{/tr}">
-							{/if}
-						</td>
-						<td class="email">{$list[ix].sender.name}</td>
-						<td class="text">
-							{self_link msgid=$list[ix].msgid locSection='read'}{$list[ix].subject}{/self_link}
-							{if $list[ix].has_attachment}<img src="img/webmail/clip.gif" alt="{tr}Clip{/tr}">{/if}
-						</td>
-						<td class="date">{$list[ix].timestamp|tiki_short_datetime}</td>
-						<td class="integer">{$list[ix].size|kbsize}</td>
-					</tr>
-				{/section}
-			</table>
+							<tr class="{$class}">
+								<td class="checkbox-cell">
+									<input type="checkbox" name="msg[]" value="{$list[ix].msgid}">
+									<input type="hidden" name="realmsg[{$list[ix].msgid}]" value="{$list[ix].realmsgid|escape}">
+								</td>
+								<td class="icon">
+									{if $list[ix].isFlagged eq 'y'}
+										<a href="javascript: submit_form('{$list[ix].realmsgid|escape}','n')"><img src="img/webmail/flagged.gif" alt="{tr}Flagged{/tr}"></a>
+									{else}
+										{if $prefs.webmail_quick_flags eq 'y'}
+											<a href="javascript: submit_form('{$list[ix].realmsgid|escape}','y')"><img src="img/webmail/unflagged.gif" alt="{tr}unFlagged{/tr}"></a>
+										{/if}
+									{/if}
+									{if $list[ix].isReplied eq 'y'}
+										<img src="img/webmail/replied.gif" alt="{tr}Replied{/tr}">
+									{/if}
+								</td>
+								<td class="email">{$list[ix].sender.name}</td>
+								<td class="text">
+									{self_link msgid=$list[ix].msgid locSection='read'}{$list[ix].subject}{/self_link}
+									{if $list[ix].has_attachment}<img src="img/webmail/clip.gif" alt="{tr}Clip{/tr}">{/if}
+								</td>
+								<td class="date">{$list[ix].timestamp|tiki_short_datetime}</td>
+								<td class="integer">{$list[ix].size|kbsize}</td>
+							</tr>
+						{/section}
+					</table>
+				</div>
+			</div>
 		</div>
 	</form>
 {/if}

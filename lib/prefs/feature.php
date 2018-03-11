@@ -916,7 +916,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_group_watches' => [
 			'name' => tra('Group watches'),
-			'description' => tra('All users in a group selected by an admin will receive email notification of changes to specific items. Users cannot choose to stop receiving those notifications while they are members of that group'),
+			'description' => tra('All users in a group selected by a users admin (tiki_p_admin_users) will receive email notification of changes to specific items. Users cannot choose to stop receiving those notifications while they are members of that group'),
 			'help' => 'Group+Watches',
 			'type' => 'flag',
 			'default' => 'n',
