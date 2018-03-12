@@ -622,61 +622,67 @@
 	{if $attaching eq 'n'}
 		{if $sent eq 'n'}
 			<form action="tiki-webmail.php" method="post">
-				<input type="hidden" name="locSection" value="compose">
-				<input type="hidden" name="current" value="{$curacctId|escape}">
-				<input type="hidden" name="attach1" value="{$attach1|escape}">
-				<input type="hidden" name="attach2" value="{$attach2|escape}">
-				<input type="hidden" name="attach3" value="{$attach3|escape}">
-				<input type="hidden" name="attach1file" value="{$attach1file|escape}">
-				<input type="hidden" name="attach2file" value="{$attach2file|escape}">
-				<input type="hidden" name="attach3file" value="{$attach3file|escape}">
-				<input type="hidden" name="attach1type" value="{$attach1type|escape}">
-				<input type="hidden" name="attach2type" value="{$attach2type|escape}">
-				<input type="hidden" name="attach3type" value="{$attach3type|escape}">
-				<input type="hidden" name="fattId" value="{$fattId|escape}">
-				<input type="submit" class="btn btn-primary btn-sm" name="send" value="{tr}Send{/tr}">
-				<table class="formcolor">
+				<table class="table">
 					<tr>
-						<td colspan="4">
-							{tr}Sending from webmail account:{/tr} {$sendFrom}
-						</td>
-					</tr>
-					<tr>
-						<td>{tr}Wiki page after send{/tr}</td>
+						<td> </td>
 						<td colspan="3">
-							<input size="69" type="text" name="pageaftersend" value="{$pageaftersend|escape}">
+							<em>{tr}Sending from webmail account:{/tr} <code>{$sendFrom}</code></em>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<a title="{tr}Select from address book{/tr}" class="link" href="#" onclick="javascript:window.open('tiki-webmail_contacts.php?element=to','','menubar=no,width=452,height=550');">{tr}To{/tr}</a>:
+							<label for="to">
+								<a title="|{tr}Select from address book{/tr}" class="tips" href="#" onclick="window.open('tiki-webmail_contacts.php?element=to','','menubar=no,width=452,height=550');">
+									{tr}To{/tr}
+								</a>:
+							</label>
 						</td>
 						<td colspan="3">
-							<input size="69" type="text" id="to" name="to" value="{$to|escape}">
+							<input size="69" type="text" id="to" name="to" value="{$to|escape}" class="form-control">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<a title="{tr}Select from address book{/tr}" class="link" href="#" onclick="javascript:window.open('tiki-webmail_contacts.php?element=cc','','menubar=no,width=452,height=550');">{tr}CC{/tr}</a>:
+							<label for="cc">
+								<a title="|{tr}Select from address book{/tr}" class="tips" href="#" onclick="window.open('tiki-webmail_contacts.php?element=cc','','menubar=no,width=452,height=550');">
+									{tr}CC{/tr}
+								</a>:
+							</label>
 						</td>
 						<td>
-							<input id="cc" type="text" name="cc" value="{$cc|escape}"></td>
-						<td>
-							<a title="{tr}Select from address book{/tr}" class="link" href="#" onclick="javascript:window.open('tiki-webmail_contacts.php?element=bcc','','menubar=no,width=452,height=550');">{tr}BCC{/tr}</a>:
+							<input id="cc" type="text" name="cc" value="{$cc|escape}" class="form-control">
 						</td>
 						<td>
-							<input type="text" name="bcc" value="{$bcc}" id="bcc">
+							<label for="bcc">
+								<a title="|{tr}Select from address book{/tr}" class="tips" href="#" onclick="window.open('tiki-webmail_contacts.php?element=bcc','','menubar=no,width=452,height=550');">
+									{tr}BCC{/tr}
+								</a>:
+							</label>
+						</td>
+						<td>
+							<input type="text" name="bcc" value="{$bcc}" id="bcc" class="form-control">
 						</td>
 					</tr>
 					<tr>
-						<td>{tr}Subject{/tr}</td>
+						<td><label for="subject">{tr}Subject{/tr}</label></td>
 						<td colspan="3">
-							<input size="69" type="text" name="subject" value="{$subject|escape}">
+							<input size="69" type="text" name="subject" id="subject" value="{$subject|escape}" class="form-control">
 						</td>
 					</tr>
 					<tr>
+						<td>&nbsp;</td>
+						<td colspan="3">
+							<!--textarea name="body" cols="60" rows="30">{$body}</textarea-->
+							{textarea name='body'}{$body}{/textarea}
+						</td>
+					</tr>
+					<tr>
+						<td>{tr}Use HTML mail{/tr}</td>
+						<td>
+							<input type="checkbox" name="useHTML"{if $useHTML eq "y" || $smarty.session.wysiwyg eq "y"} checked="checked"{/if}>
+						</td>
 						<td>{tr}Attachments{/tr}</td>
-						<td colspan="3">
+						<td>
 							{if $attach1}
 								({$attach1})
 							{/if}
@@ -689,21 +695,31 @@
 							{if $fattId}
 								(File Gallery file: {$fattId})
 							{/if}
-							<input type="submit" class="btn btn-primary btn-sm" name="attach" value="{tr}Add{/tr}">
+							<input type="submit" class="btn btn-default btn-sm" name="attach" value="{tr}Add{/tr}">
 						</td>
 					</tr>
 					<tr>
-					<tr>
-						<td>&nbsp;</td>
+						<td><label for="pageaftersend">{tr}Wiki page after send{/tr}</label></td>
 						<td colspan="3">
-							<!--textarea name="body" cols="60" rows="30">{$body}</textarea-->
-							{textarea name='body'}{$body}{/textarea}
+							<input size="69" type="text" name="pageaftersend" id="pageaftersend" value="{$pageaftersend|escape}" class="form-control">
 						</td>
 					</tr>
 					<tr>
-						<td>{tr}Use HTML mail{/tr}</td>
-						<td colspan="3">
-							<input type="checkbox" name="useHTML"{if $useHTML eq "y" || $smarty.session.wysiwyg eq "y"} checked="checked"{/if}>
+						<td> </td>
+						<td>
+							<input type="hidden" name="locSection" value="compose">
+							<input type="hidden" name="current" value="{$curacctId|escape}">
+							<input type="hidden" name="attach1" value="{$attach1|escape}">
+							<input type="hidden" name="attach2" value="{$attach2|escape}">
+							<input type="hidden" name="attach3" value="{$attach3|escape}">
+							<input type="hidden" name="attach1file" value="{$attach1file|escape}">
+							<input type="hidden" name="attach2file" value="{$attach2file|escape}">
+							<input type="hidden" name="attach3file" value="{$attach3file|escape}">
+							<input type="hidden" name="attach1type" value="{$attach1type|escape}">
+							<input type="hidden" name="attach2type" value="{$attach2type|escape}">
+							<input type="hidden" name="attach3type" value="{$attach3type|escape}">
+							<input type="hidden" name="fattId" value="{$fattId|escape}">
+							<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}">
 						</td>
 					</tr>
 				</table>
