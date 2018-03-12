@@ -60,25 +60,23 @@
 						</tr>
 
 						{section name=ix loop=$accounts}
-							{if $accounts[ix].current eq 'y' and $accounts[ix].user eq $user or $accounts[ix].accountId eq $mailCurrentAccount}{assign var=active value=true}{else}{assign var=active value=false}{/if}
+							{$active = ($accounts[ix].current eq 'y' and $accounts[ix].user eq $user or $accounts[ix].accountId eq $mailCurrentAccount)}
 							<tr>
 								<td class="icon">
 									{if !$active}
-										<span style="color:gray">
-											{self_link current=$accounts[ix].accountId _icon_name='star' _menu_text='y' _menu_icon='y'}
+										<span class="small">
+											{self_link current=$accounts[ix].accountId _icon_name='star' _menu_text='y' _menu_icon='y' _class="text-muted"}
 												{tr}Activate{/tr}
 											{/self_link}
 										</span>
 									{else}
-										{icon name='star'}
+										<span class="text-warning">{icon name='star'}</span>
 									{/if}
 								</td>
 								<td class="username">
-									{if !$active}
-										{self_link current=$accounts[ix].accountId _title="{tr}Activate{/tr}"}{$accounts[ix].account}{/self_link}
-									{else}
+									{self_link accountId=$accounts[ix].accountId _title="{$accounts[ix].account|escape}|{tr}Edit Account{/tr}" _class='tips'}
 										{$accounts[ix].account|escape}
-									{/if}
+									{/self_link}
 								</td>
 								<td class="text">
 									{if !empty($accounts[ix].imap)}{tr}IMAP:{/tr} {$accounts[ix].imap} ({$accounts[ix].port})
@@ -211,7 +209,7 @@
 			{/if}
 		{/tab}
 
-		{if $accountId eq 0}{assign var="tablab" value="{tr}Create{/tr}"}{else}{assign var="tablab" value="{tr}Edit{/tr}"}{/if}
+		{if $accountId eq 0}{assign var="tablab" value="{tr}Create Account{/tr}"}{else}{assign var="tablab" value="{tr}Edit Account{/tr}"}{/if}
 		{tab name=$tablab}
 			<h2>{$tablab}</h2>
 			{if $tiki_p_admin_personal_webmail eq 'y' or $tiki_p_admin_group_webmail eq 'y' or !isset($info.user) or $user eq $info.user}
@@ -219,109 +217,148 @@
 					<form action="tiki-webmail.php" method="post" name="settings">
 						<input type="hidden" name="accountId" value="{$accountId|escape}">
 						<input type="hidden" name="locSection" value="settings">
-						<table class="formcolor">
+						<table class="table">
 							<tr>
-								<td>{tr}Account name{/tr}</td>
 								<td>
-									<input type="text" name="account" value="{$info.account|escape}">
+									<label for="account">{tr}Account name{/tr}</label>
 								</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr><td colspan="4">
-								<hr>
-								<h3>{tr}Incoming servers (used in this order){/tr}</h3>
-							</td></tr>
-							<tr>
-								<td>{tr}IMAP server{/tr}</td>
-								<td>
-									<input type="text" name="imap" value="{$info.imap|escape}">
-								</td>
-								<td rowspan="2" valign="middle">{tr}Port{/tr}</td>
-								<td rowspan="2" valign="middle">
-									<input type="text" name="port" size="7" value="{$info.port}">
+								<td colspan="3">
+									<input type="text" name="account" id="account" value="{$info.account|escape}" class="form-control">
 								</td>
 							</tr>
 							<tr>
-								<td>{tr}Mbox filepath{/tr}</td>
-								<td>
-									<input type="text" name="mbox" value="{$info.mbox|escape}">
+								<td colspan="4">
+									<h3>{tr}Incoming servers (used in this order){/tr}</h3>
 								</td>
 							</tr>
 							<tr>
-								<td>{tr}Maildir mail directory{/tr}</td>
+								<td><label for="imap">{tr}IMAP server{/tr}</label></td>
 								<td>
-									<input type="text" name="maildir" value="{$info.maildir|escape}">
+									<input type="text" name="imap" id="imap" value="{$info.imap|escape}" class="form-control">
 								</td>
-								<td rowspan="2" valign="middle">{tr}Use SSL{/tr}</td>
-								<td rowspan="2" valign="middle">
-									<input type="checkbox" name="useSSL" value="y" {if $info.useSSL eq 'y'}checked="checked"{/if}>
+								<td>
+									<label for="port">{tr}Port{/tr}</label>
+								</td>
+								<td>
+									<input type="text" name="port" id="port" value="{$info.port}" class="form-control">
 								</td>
 							</tr>
 							<tr>
-								<td>{tr}POP server{/tr}</td>
 								<td>
-									<input type="text" name="pop" value="{$info.pop|escape}">
+									<label for="mbox">{tr}Mbox filepath{/tr}</label>
+								</td>
+								<td colspan="3">
+									<input type="text" name="mbox" id="mbox" value="{$info.mbox|escape}" class="form-control">
 								</td>
 							</tr>
-							<tr><td colspan="4">
-								<hr>
-								<h3>{tr}Outgoing server{/tr}</h3>
-							</td></tr>
 							<tr>
-								<td>{tr}SMTP server{/tr}</td>
 								<td>
-									<input type="text" name="smtp" value="{$info.smtp|escape}">
+									<label for="maildir">{tr}Maildir mail directory{/tr}</label>
 								</td>
-								<td>{tr}Port{/tr}</td>
 								<td>
-									<input type="text" name="smtpPort" size="7" value="{$info.smtpPort}">
+									<input type="text" name="maildir" id="maildir" value="{$info.maildir|escape}" class="form-control">
+								</td>
+								<td>
+									<label for="useSSL">{tr}Use SSL{/tr}</label>
+								</td>
+								<td>
+									<input type="checkbox" name="useSSL" id="useSSL" value="y"{if $info.useSSL eq 'y'} checked="checked"{/if} class="form-control">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="pop">{tr}POP server{/tr}</label>
+								</td>
+								<td colspan="3">
+									<input type="text" name="pop" id="pop" value="{$info.pop|escape}" class="form-control">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									<h3>{tr}Outgoing server{/tr}</h3>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="smtp">{tr}SMTP server{/tr}</label>
+								</td>
+								<td>
+									<input type="text" name="smtp" id="smtp" value="{$info.smtp|escape}" class="form-control">
+								</td>
+								<td>
+									<label for="smtpPort">{tr}Port{/tr}</label>
+								</td>
+								<td>
+									<input type="text" name="smtpPort" id="smtpPort" value="{$info.smtpPort}" class="form-control">
 								</td>
 							</tr>
 							<tr>
 								<td>{tr}SMTP requires authentication{/tr}</td>
-								<td colspan="3">
-									{tr}Yes{/tr}<input type="radio" name="useAuth" value="y" {if $info.useAuth eq 'y'}checked="checked"{/if}>
-									{tr}No{/tr}<input type="radio" name="useAuth" value="n" {if $info.useAuth eq 'n'}checked="checked"{/if}>
+								<td colspan="3" class="radio">
+									<label>
+										<input type="radio" name="useAuth" value="y" {if $info.useAuth eq 'y'}checked="checked"{/if}>
+										{tr}Yes{/tr}
+									</label>
+									<label>
+										<input type="radio" name="useAuth" value="n" {if $info.useAuth eq 'n'}checked="checked"{/if}>
+										{tr}No{/tr}
+									</label>
 								</td>
 							</tr>
 							<tr>
-								<td>{tr}From email{/tr}</td>
-								<td colspan="2">
-									<input type="text" name="fromEmail" value="{$info.fromEmail}">
-								</td>
 								<td>
+									<label for="fromEmail">{tr}From email{/tr}</label>
+								</td>
+								<td colspan="3">
+									<input type="text" name="fromEmail" id="fromEmail" value="{$info.fromEmail}" class="form-control">
+									<br>
 									<em>{tr}Uses the user's login email address if empty{/tr} ({if !empty($userEmail)}{$userEmail}{else}<strong>{tr}No email set:{/tr}</strong> {icon name="next" href="tiki-user_preferences.php?cookietab=2"}{/if})</em>
 								</td>
 							</tr>
-							<tr><td colspan="4">
-								<hr>
-								<h3>{tr}Account details{/tr}</h3>
-							</td></tr>
 							<tr>
-								<td>{tr}Username{/tr}</td>
-								<td colspan="3">
-									<input type="text" name="username" value="{$info.username|escape}">
+								<td colspan="4">
+									<h3>{tr}Account details{/tr}</h3>
 								</td>
 							</tr>
 							<tr>
-								<td>{tr}Password{/tr}</td>
+								<td>
+									<label for="username">{tr}Username{/tr}</label>
+								</td>
 								<td colspan="3">
-									<input type="password" name="pass" value="{$info.pass|escape}">
+									<input type="text" name="username" id="username" value="{$info.username|escape}" class="form-control">
 								</td>
 							</tr>
 							<tr>
-								<td>{tr}Messages per page{/tr}</td>
-								<td colspan="3">
-									<input type="text" name="msgs" size="4" value="{$info.msgs|escape}">
+								<td>
+									<label for="pass">{tr}Password{/tr}</label>
 								</td>
+								<td colspan="3">
+									<input type="password" name="pass" id="pass" value="{$info.pass|escape}" class="form-control">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="msgs">{tr}Messages per page{/tr}</label>
+								</td>
+								<td>
+									<input type="text" name="msgs" id="msgs" value="{$info.msgs|escape}" class="form-control">
+								</td>
+								<td></td>
+								<td></td>
 							</tr>
 
 							{if ($tiki_p_admin_group_webmail eq 'y' and $tiki_p_admin_personal_webmail eq 'y') or $tiki_p_admin eq 'y'}
 								<tr>
 									<td>{tr}Group (shared mail inbox) or private{/tr}</td>
-									<td colspan="3">
-										{tr}Group{/tr}<input type="radio" name="flagsPublic" value="y" {if $info.flagsPublic eq 'y'}checked="checked"{/if}> {tr}Private{/tr}<input type="radio" name="flagsPublic" value="n" {if $info.flagsPublic eq 'n'}checked="checked"{/if}>
+									<td colspan="3" class="radio">
+										<label>
+											<input type="radio" name="flagsPublic" value="y" {if $info.flagsPublic eq 'y'}checked="checked"{/if}>
+											{tr}Group{/tr}
+										</label>
+										<label>
+											<input type="radio" name="flagsPublic" value="n" {if $info.flagsPublic eq 'n'}checked="checked"{/if}>
+											{tr}Private{/tr}
+										</label>
 									</td>
 								</tr>
 							{else}
@@ -336,22 +373,29 @@
 								</tr>
 							{/if}
 							<tr>
-								<td>{tr}Auto-refresh page time{/tr}</td>
+								<td>
+									<label for="autoRefresh">{tr}Auto-refresh page time{/tr}</label>
+								</td>
 								<td colspan="3">
-									<input type="text" name="autoRefresh" size="4" value="{$info.autoRefresh|escape}"> {tr}seconds (0 = no auto refresh){/tr}
+									<input type="text" name="autoRefresh" id="autoRefresh" size="4" value="{$info.autoRefresh|escape}" class="form-control">
+									{tr}seconds (0 = no auto refresh){/tr}
 								</td>
 							</tr>
+							{if $tiki_p_admin_group_webmail eq 'y'}
+								<tr>
+									<td colspan="4">
+										{include file='categorize.tpl'}
+									</td>
+								</tr>
+							{/if}
 							<tr>
 								<td>&nbsp;</td>
 								<td colspan="3">
-									<input type="submit" class="btn btn-primary btn-sm" name="new_acc" value="{if $accountId eq ''}{tr}Add{/tr}{else}{tr}Update{/tr}{/if}">
-									<input type="submit" class="btn btn-default btn-sm" name="cancel_acc" value="{tr}Cancel{/tr}">
+									<input type="submit" class="btn btn-primary" name="new_acc" value="{if $accountId eq ''}{tr}Add{/tr}{else}{tr}Update{/tr}{/if}">
+									<input type="submit" class="btn btn-default" name="cancel_acc" value="{tr}Cancel{/tr}">
 								</td>
 							</tr>
 						</table>
-							{if $tiki_p_admin_group_webmail eq 'y'}
-								{include file='categorize.tpl'}
-							{/if}
 					</form>
 				</div>
 			{else}
