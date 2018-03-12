@@ -361,7 +361,32 @@ END;
 	}
 
 	// get folder list
-	$smarty->assign('folders', $mail->getFolders());
+
+	/**
+	 * Recurse through the folders to make a flat list for the select options
+	 *
+	 * @param \Zend\Mail\Storage\Folder $currentFolder   folder object from $mail->getFolders()
+	 * @param array                     $output          plain array for the output
+	 * @param string                    $delimiter       folder delimiter string (e.g. "/" or ".")
+	 */
+	function listFolders($currentFolder, & $output, $delimiter) {
+
+		$globalName = $currentFolder->getGlobalName();
+		if ( $globalName !== '/') {
+			$output[$globalName] = [
+				'label' => str_pad('', substr_count($globalName, $delimiter) * 12, '&nbsp;') . $currentFolder->getLocalName(),
+				'disabled' => ! $currentFolder->isSelectable(),
+			];
+		}
+		foreach ($currentFolder as $folder) {
+			listFolders($folder, $output, $delimiter);
+		}
+	}
+
+	$foldersSelect = [];
+	listFolders($mail->getFolders(), $foldersSelect, $mail->delimiter());
+
+	$smarty->assign('folders', $foldersSelect);
 	$smarty->assign('currentFolder', $mail->getCurrentFolder());
 
 	// The user just clicked on one of the flags, so set up for flag change
