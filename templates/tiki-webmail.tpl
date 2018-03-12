@@ -421,9 +421,9 @@
 			</label>
 			<div class="col-sm-4">
 				<select name="folder" id="folder" class="form-control" onchange="$(this).form().find('input[name=start]').val('').form().submit();return false;">
-					{foreach $folders as $localName => $folder}
-						<option value="{$localName|escape}"{if not $folder->isSelectable()} disabled="disabled"{/if}{if $localName eq $currentFolder} selected="selected"{/if}>
-							{$localName|escape}
+					{foreach $folders as $globalName => $folder}
+						<option value="{$globalName|escape}"{if $folder.disabled} disabled="disabled"{/if}{if $globalName eq $currentFolder} selected="selected"{/if}>
+							{$folder.label|escape}
 						</option>
 					{/foreach}
 				</select>
