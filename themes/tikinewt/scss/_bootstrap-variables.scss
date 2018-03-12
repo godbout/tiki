@@ -42,11 +42,19 @@ $link-color: #2d3741;
 // Components
 //$padding-base-vertical: .5rem;
 //$padding-large-vertical: .9rem;
+//
+
+// Components
+$grid-gutter-width:           20px;
+
+$border-radius:               .1rem; // Not being implemented - why?
+$border-radius-lg:            .2rem;
+$border-radius-sm:            0rem;
 
 // Fonts
 $font-family-sans-serif: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
-$font-size-base: .95rem;
+$font-size-base: .90rem;
 
 // Tables
 //$table-border-color: #dddddd;
@@ -76,9 +84,12 @@ $btn-primary-border: #999999;
 // Pagination
 // Jumbotron
 // Cards
-//$card-border-radius: $border-radius-lg;
+$card-border-radius: $border-radius;
+$card-border-color: #acccdd;
 //$card-text: #fff;//@gray-lighter;
-//$card-heading-bg: #386dbb;
+//$card-heading-bg: red;
+$card-heading-padding: 10px 15px;
+$card-cap-bg: #f3f6f9;
 
 // Tooltips
 // Popovers

@@ -1,20 +1,16 @@
 /* Green Valley theme newsletter stylesheet */
-/* line 39, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-variables.scss */
 .margin-bottom-xs {
   margin-bottom: 0.375rem;
 }
 
-/* line 40, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-variables.scss */
 .margin-bottom-sm {
   margin-bottom: 1rem;
 }
 
-/* line 41, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-variables.scss */
 .margin-bottom-md {
   margin-bottom: 1.5rem;
 }
 
-/* line 42, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/_tiki-variables.scss */
 .margin-bottom-lg {
   margin-bottom: 3rem;
 }
@@ -32,7 +28,6 @@ $admbox-off-color: darken($btn-primary-color, 40%); //#9f9f9f;
 $admbox-off-hover-border: darken($btn-primary-border, 40%); //#a9a9a9;
 $admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
 */
-/* line 10, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/newsletter.scss */
 body {
   background: #fff;
   color: #000000;
@@ -40,27 +35,23 @@ body {
   padding: 15px;
 }
 
-/* line 17, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/newsletter.scss */
 a,
 a:visited {
   color: #007bff;
   text-decoration: underline;
 }
 
-/* line 23, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/newsletter.scss */
 a:hover {
   color: #0056b3;
   text-decoration: underline;
 }
 
-/* line 28, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/newsletter.scss */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
   font-weight: 500;
   color: inherit;
 }
 
-/* line 40, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/newsletter.scss */
 .panel {
   margin-bottom: 1.5;
   background-color: #fff;
@@ -68,12 +59,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   border-radius: 0.25rem;
 }
 
-/* line 55, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/newsletter.scss */
 .panel-heading {
   border-bottom: 1px solid transparent;
 }
 
-/* line 62, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/newsletter.scss */
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
@@ -81,7 +70,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: inherit;
 }
 
-/* line 68, C:/cygwin64/home/Gary/bootstrap4/themes/base_files/scss/newsletter.scss */
 .panel-title > a,
 .panel-title > small,
 .panel-title > .small,
@@ -92,24 +80,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 /*.panel-default {
 	.panel-variant($panel-default-border; $panel-default-text; $panel-default-heading-bg; $panel-default-border);
-}
-.panel-default {
-  border-color: #53b042;
-}
-.panel-default > .panel-heading {
-  color: #ffffff;
-  background-color: #02913d;
-  border-color: #53b042;
-}
-.panel-default > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #53b042;
-}
-.panel-default > .panel-heading .badge {
-  color: #02913d;
-  background-color: #ffffff;
-}
-.panel-default > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #53b042;
 }
 .panel-primary {
 	.panel-variant($panel-primary-border; $panel-primary-text; $panel-primary-heading-bg; $panel-primary-border);
@@ -127,9 +97,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	.panel-variant($panel-danger-border; $panel-danger-text; $panel-danger-heading-bg; $panel-danger-border);
 }
 */
-/* line 8, C:/cygwin64/home/Gary/bootstrap4/themes/greenvalley/scss/newsletter.scss */
 body {
   background: url("../images/page_background_ltr.jpg") repeat;
 }
-
-/*# sourceMappingURL=../css/newsletter.map */

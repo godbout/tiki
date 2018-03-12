@@ -1,5 +1,7 @@
 // $Id$
-
+/* Adapted by the Tiki Community for Tiki Wiki CMS Groupware.
+ Original Bootswatch information:
+ */
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins.scss"; //
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two are needed to prevent...
 @import "_variables.scss"; // Needs to follow _functions.scss because of containing "lighten".
@@ -23,3 +25,9 @@
 }
 
 body.fullscreen { background: $body-bg; }
+
+//Theme variables aren't overriding default values for these.
+body {
+  color: #EBEBEB;
+  background: #2B3E50;
+}

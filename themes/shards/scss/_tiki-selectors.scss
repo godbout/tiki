@@ -1,0 +1,190 @@
+// $Id: _tiki-selectors.scss 61747 2017-03-18 18:28:58Z rjsmelo $
+// This file is for additional SCSS rules beyond what are in _bootstrap-variables.scss.
+// The rules here so far are actually from Business theme, so most need to be replaced (Nov14, 2017).
+// Image path example:
+$imagePath: "../images/";
+// body {
+//	background-image: url('#{$imagePath}bg.jpg');
+// }
+
+$topmodules-row-sidemargins: 0;
+$topbar-row-sidemargins: -15px;
+
+@media (max-width: 575px) {
+  html {
+	font-size: 15px;
+  }
+}
+
+body { font-weight: 300; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 0.75rem;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  color: #212529;
+}
+
+.form-control {
+//  padding: .664rem 1rem;
+  font-size: .95rem;
+  line-height: 1.125rem;
+  color: #495057;
+  border: 1px solid #becad6;
+  border-top-color: rgb(190, 202, 214);
+  border-right-color: rgb(190, 202, 214);
+  border-bottom-color: rgb(190, 202, 214);
+  border-left-color: rgb(190, 202, 214);
+  font-weight: 300;
+  border-radius: .375rem;
+  transition: border-color 250ms cubic-bezier(.27,.01,.38,1.06),box-shadow 250ms cubic-bezier(.27,.01,.38,1.06);
+}
+
+.form-control:hover {
+  border-color: #8fa4b8;
+}
+
+.wikitext .table {
+  background: #fff;
+  box-shadow: 0 0 25px rgba(40,47,60,.05),0 20px 25px rgba(40,47,60,.05),0 3px 4px rgba(40,47,60,.05);
+}
+
+.page-header .top_modules {
+	background: #8ba8c8; /* Old browsers */
+	color: #fff;
+	& button { color: #fff; }
+	& a { color: #fff; }
+}
+
+.sitetitles a {
+	color: #ffffff;
+}
+
+.sitetitles {
+	font-weight: 700
+}
+
+h1.sitetitle {
+//	font-size: 24px;
+}
+
+h2.sitesubtitle {
+//	font-size: 13px;
+//	color: #91bef5;
+//	font-style: italic;
+}
+
+.navbar-dark,
+.topbar,
+	// .topbar .cssmenu_horiz ul,
+.topbar .navbar-default .navbar-nav > li,
+.topbar .nav > li {
+//	background: #1f5daa; /* Old browsers */
+//	border-left: 1px solid #3676C4;
+//	border-right: 1px solid #1957AA;
+}
+
+.navbar li.dropdown {
+//	border-left: 1px solid #3676c4;
+//	border-right: 1px solid #1957aa;
+}
+
+//.cssmenu_horiz li:hover,.cssmenu_horiz li.sfHover, .cssmenu_vert li:hover, .cssmenu_vert li.sfHover
+
+// topbar hover
+.topbar .nav > li > a:hover,
+.topbar .nav > li > a:focus,
+.topbar .cssmenu_horiz > li > a:hover,
+.topbar .cssmenu_horiz > li:hover,
+.topbar .cssmenu_horiz li.sfHover:hover,
+.topbar .cssmenu_horiz > li.selected > a,
+.navbar-dark .navbar-nav > li > a:hover,
+.navbar-dark .navbar-nav > li > a:focus,
+.navbar-dark .navbar-nav > .active > a {
+//	background: #3270bd; /* Old browsers */
+}
+
+//.topbar .navbar {
+//  margin-bottom: 0;
+//  border: none;
+//}
+
+.topbar .cssmenu_horiz > li > a,
+.topbar .navbar-dark .navbar-nav > li > a {
+	//  color: #ffffff;
+//	text-transform: uppercase;
+//	padding-bottom: 15px;
+//	padding-top: 15px;
+//	font-weight: 700;
+//	font-size: 12px;
+}
+
+#col1, #col2, #col3 {
+	padding-top: 1em;
+}
+
+/*.module */.card-header,
+.modal-header {
+	//  background: #3475c6 url('#{$imagePath}title_bg.png') no-repeat 0 0;
+//	background: #386dbb; /* Old browsers */
+//	text-transform: uppercase;
+  //	color: #fff;
+}
+
+h3.card-title,
+h3.card-header {
+//	font-size: 90%;
+//	font-weight: 700;
+}
+
+.modal-header {
+//	color: $gray-300;
+}
+
+//#topbar_modules .box-search .form-inline .form-group { display: block;}
+
+//#topbar_modules .box-search .form-control { z-index: 1; }
+
+.topbar .sf-arrows .sf-with-ul:after {
+	/* order of following 3 rules important for fallbacks to work */
+//	border: 5px solid transparent;
+//	border-top-color: #ffffff; /* edit this to suit design (no rgba in IE8) */
+//	border-top-color: rgba(255, 255, 255, .5);
+}
+
+.sf-arrows > li > .sf-with-ul:focus:after,
+.sf-arrows > li:hover > .sf-with-ul:after,
+.sf-arrows > .sfHover > .sf-with-ul:after {
+//	border-top-color: #ffffff; /* IE8 fallback colour */
+}
+
+/* styling for right-facing arrows */
+.sf-arrows ul .sf-with-ul:after {
+//	border-color: transparent;
+//	border-left-color: #dfeeff; /* edit this to suit design (no rgba in IE8) */
+//	border-left-color: rgba(255, 255, 255, .5);
+}
+
+.sf-arrows ul li > .sf-with-ul:focus:after,
+.sf-arrows ul li:hover > .sf-with-ul:after,
+.sf-arrows ul .sfHover > .sf-with-ul:after {
+//	border-left-color: #ffffff;
+}
+
+//.cssmenu_horiz li:hover,
+//.cssmenu_horiz li.sfHover,
+//.cssmenu_vert li:hover,
+//.cssmenu_vert li.sfHover {
+//  color: $dropdown-link-hover-color;
+//  background: $dropdown-link-hover-bg;
+//}
+
+.postbody-title .title > .card-title a.link,
+.card > .card-heading a {
+	color: $card-text;
+}
+
+.popover {
+	color: $body-color;
+}

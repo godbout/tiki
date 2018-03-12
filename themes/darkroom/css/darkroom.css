@@ -7099,6 +7099,9 @@ h3.card-title {
   border: solid #292929;
   border-width: 0 8px 0.5rem 8px; }
 
+.card-primary .card-header {
+  background: #292929; }
+
 .navbar-fixed-top .container, .navbar-dark, .topbar, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li, .btn, .nav-tabs > li > a, .input-group-addon {
   background: #818181;
   /* Old browsers */

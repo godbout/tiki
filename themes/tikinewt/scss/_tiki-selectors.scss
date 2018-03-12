@@ -11,10 +11,11 @@
 
 $navbar-default-bg: #c7d0d9;
 
+.container { background: #fff; }
+
 body > .container {
 	border: solid #aaaaaa;
 	border-width: 0 1px;
-	background: #ffffff;
 }
 
 body > .container, // basic layout (bootstrap)
@@ -128,3 +129,7 @@ body.fullscreen {
 	}
 }
 
+h3.card-title {
+	font-size: 1.15rem;
+	margin-bottom: 0;
+}
