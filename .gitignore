@@ -38,7 +38,9 @@ lib/test/clover.xml
 lib/test/core/Search/Index/test_index
 lib/test/core/Search/test_index
 lib/test/local.php
+lib/test/phpunit-log.current.json
 lib/test/templates_c
+lib/test/traces-phpunit_with_baseline.txt
 /maps
 /mods
 modules/.htaccess
