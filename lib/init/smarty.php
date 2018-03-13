@@ -80,8 +80,64 @@ class Tiki_Security_Policy extends Smarty_Security
 		}
 
 		// Add defaults
-		$this->php_modifiers = array_merge(['nl2br', 'escape', 'count', 'addslashes', 'ucfirst', 'ucwords', 'urlencode', 'md5', 'implode', 'explode', 'is_array', 'htmlentities', 'var_dump', 'strip_tags', 'json_encode', 'stristr', 'trim', 'array_reverse', 'tra', 'strpos', 'preg_split'], $modifiers);
-		$this->php_functions = array_merge(['isset', 'empty', 'count', 'sizeof', 'in_array', 'is_array', 'time', 'nl2br', 'tra', 'strlen', 'strstr', 'strtolower', 'basename', 'ereg', 'array_key_exists', 'preg_match', 'preg_match_all', 'json_encode', 'stristr', 'is_numeric', 'array', 'zone_is_empty', 'min', 'max' ], $functions);
+		$this->php_modifiers = array_merge([
+			'addslashes',
+			'array_filter',
+			'array_reverse',
+			'count',
+			'escape',
+			'explode',
+			'htmlentities',
+			'implode',
+			'is_array',
+			'json_decode',
+			'json_encode',
+			'md5',
+			'nl2br',
+			'preg_split',
+			'strip_tags',
+			'stristr',
+			'strpos',
+			'substr',
+			'tra',
+			'trim',
+			'ucfirst',
+			'ucwords',
+			'urlencode',
+			'var_dump',
+		], $modifiers);
+
+		$this->php_functions = array_merge(['isset',
+			'array',		// not needed? use {$value = []}
+			'array_rand',
+			'array_key_exists',
+			'basename',
+			'count',
+			'empty',
+			'ereg',			// deprecated and removed in php7+ use preg functions instead
+			'in_array',
+			'is_array',
+			'is_numeric',
+			'json_encode',
+			'min',
+			'max',
+			'nl2br',
+			'preg_match',
+			'preg_match_all',
+			'preg_replace',
+			'sizeof',
+			'strlen',
+			'stristr',
+			'strpos',
+			'strstr',
+			'str_replace',
+			'strtolower',
+			'time',
+			'tra',
+			'trim',
+			'zone_is_empty',
+		], $functions);
+
 		$this->secure_dir = array_merge($this->secure_dir, $dirs);
 	}
 }
