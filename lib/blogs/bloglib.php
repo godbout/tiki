@@ -446,28 +446,31 @@ class BlogLib extends TikiDb_Bridge
 	 * replace_blog Change the attributes of a blog
 	 *
 	 * @param string $title
-	 * @param swtring $description
+	 * @param string $description
 	 * @param string $user
-	 * @param char[1] $public
+	 * @param $public
 	 * @param int $maxPosts
 	 * @param int $blogId
 	 * @param string $heading
-	 * @param char[1] $use_title
-	 * @param char[1] $use_title_in_post
-	 * @param char[1] $use_description
-	 * @param char[1] $use_breadcrumbs
-	 * @param char[1] $use_author
-	 * @param char[1] $use_find
-	 * @param char[1] $allow_comments
-	 * @param char[1] $show_avatar
+	 * @param $use_title
+	 * @param $use_title_in_post
+	 * @param $use_description
+	 * @param $use_breadcrumbs
+	 * @param $use_author
+	 * @param $add_date
+	 * @param $use_find
+	 * @param $allow_comments
+	 * @param $show_avatar
+	 * @param $alwaysOwner
 	 * @param string $post_heading
-	 * @param char[1] $show_related display related content on the bottom of each post
+	 * @param $show_related
 	 * @param int $related_max control the maximum number of related posts displayed per post
 	 * @param int $use_excerpt use a post excerpt instead of the main content when listing posts of a blog
 	 * @param int $created if 0 use $tikilib->now
 	 * @param int $lastModif if 0 use $tikilib->now
-	 * @access public
 	 * @return int blogId
+	 * @throws Exception
+	 * @access public
 	 */
 	function replace_blog(
 		$title,
