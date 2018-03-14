@@ -47,10 +47,12 @@
 					<td>{$email}</td>
 				</tr>
 				{/if}
+				{if $prefs.feature_community_mouseover_lastlogin eq 'y'}
 				<tr>
 					<td><strong>{tr}Last login{/tr}</strong></td>
 					<td>{if !empty($lastSeen)}{$lastSeen|tiki_short_datetime}{else}{tr}Never logged in{/tr}{/if}</td>
 				</tr>
+				{/if}
 				{if $shared_groups}
 				<tr>
 					<td><strong>{tr}Shared groups{/tr}</strong></td>
