@@ -4852,7 +4852,6 @@ lib/wiki-plugins/wikiplugin_includetpl.php -text
 lib/wiki-plugins/wikiplugin_includeurl.php -text
 lib/wiki-plugins/wikiplugin_insert.php -text
 lib/wiki-plugins/wikiplugin_invite.php -text
-lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_jq.php -text
 lib/wiki-plugins/wikiplugin_js.php -text
 lib/wiki-plugins/wikiplugin_kaltura.php -text
