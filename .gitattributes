@@ -6634,7 +6634,6 @@ templates/workspace/edit_template.tpl -text
 templates/workspace/index.php -text
 templates/workspace/list_templates.tpl -text
 templates/workspace/select_permissions.tpl -text
-templates/xmpp-client.tpl -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text

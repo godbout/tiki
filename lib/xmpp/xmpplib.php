@@ -90,8 +90,8 @@ class XMPPLib extends TikiLib
 		if (! empty($prefs['xmpp_openfire_use_token']) && $prefs['xmpp_openfire_use_token'] === 'y') {
 			$token = $tokenlib->createToken(
 				'openfireauthtoken',
-				['user' => $user], // parameters
-				[], // groups
+				['user' => $user],	// parameters
+				[], 				// groups
 				[
 					'timeout' => 300,
 					'createUser' => 'n',
@@ -120,5 +120,94 @@ class XMPPLib extends TikiLib
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Add css and js files and initialising js to the page
+	 *
+	 * @param array $params:
+	 * 		view__mode => overlayed | fullscreen | mobile | embedded
+	 *
+	 * @throws Exception
+	 */
+	function addConverseJSToPage($params = []) {
+		global $user, $prefs;
+
+		static $instance = 0;
+		$instance++;
+
+		if ($instance > 1) {
+			Feedback::error(tr('Only one instance of XMPP chat per page'));
+			return '';
+		}
+
+		$headerlib = TikiLib::lib('header');
+
+		$params = array_merge([
+			'view_mode' => 'overlayed',
+			'room' => '',
+		], $params);
+
+		switch ($params['view_mode']) {
+			case 'fullscreen':
+				$css_file = 'inverse.css';
+				break;
+			case 'embedded':
+				$css_file = 'converse-muc-embedded.css';
+				break;
+			case 'mobile':
+				$css_file = 'mobile.css';
+				break;
+			case 'overlayed':
+			default:
+				$css_file = 'converse.css';
+		}
+
+		$headerlib->add_cssfile('vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file . '');
+
+		$xmpplib = TikiLib::lib('xmpp');
+
+		$options = [
+			'bosh_service_url' => $xmpplib->getServerHttpBind(),
+			'jid' => $xmpplib->get_user_jid($user),
+			'authentication' => 'prebind',
+			'prebind_url' => TikiLib::lib('service')->getUrl([
+				'controller' => 'xmpp',
+				'action' => 'prebind',
+			]),
+			'whitelisted_plugins' => ['tiki'],
+			'debug' => $prefs['xmpp_conversejs_debug'] === 'y',
+
+		];
+
+		if ($params['room']) {
+			$options['auto_login'] = true;
+			$options['auto_join_rooms'] = [$params['room']];
+		}
+
+		if (! empty($prefs['xmpp_conversejs_init_json'])) {
+			$extraOptions = json_decode($prefs['xmpp_conversejs_init_json'], true);
+			$options = array_merge($options, $extraOptions);
+		}
+
+		$optionString = json_encode($options, JSON_UNESCAPED_SLASHES);
+
+		$js = '
+(function () {
+	converse.plugins.add("tiki", {
+		"initialize": function () {
+			var _converse = this._converse;
+			_converse.api.listen.on("noResumeableSession", function (xhr) {
+				feedback (tr("XMPP Module error") + ": " + xhr.statusText, "error", false);
+				$("#conversejs").fadeOut("fast");
+			});
+		}
+	});
+	debugger;
+	converse.initialize(' . $optionString . ');
+})();
+';
+		$headerlib->add_jsfile('vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js')
+			->add_jq_onready($js);
 	}
 }
