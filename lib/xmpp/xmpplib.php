@@ -203,7 +203,7 @@ class XMPPLib extends TikiLib
 			});
 		}
 	});
-	debugger;
+	
 	converse.initialize(' . $optionString . ');
 })();
 ';
