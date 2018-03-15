@@ -48,7 +48,22 @@ function prefs_xmpp_list()
 			'keywords' => 'xmpp openfire token',
 			'type' => 'flag',
 			'tags' => ['basic'],
+		],
+		'xmpp_conversejs_debug' => [
+			'name' => tra('ConverseJS Debug Mode'),
+			'default' => 'n',
+			'description' => tra('Enabled more logging, e.g. XML stanzas and error tracebacks to the JavaScript Console'),
+			'keywords' => 'xmpp openfire chat',
+			'type' => 'flag',
+		],
+		'xmpp_conversejs_init_json' => [
+			'name' => tra('ConverseJS Extra Settings'),
+			'description' => tra('JSON format object defining extra optional settings to initialize ConverseJS'),
+			'type' => 'textarea',
+			'filter' => 'text',
+			'keywords' => 'xmpp openfire converse chat',
+			'size' => 10,
 			'default' => '',
-		]
+		],
 	];
 }
