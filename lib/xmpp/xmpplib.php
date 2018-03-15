@@ -150,20 +150,22 @@ class XMPPLib extends TikiLib
 
 		switch ($params['view_mode']) {
 			case 'fullscreen':
-				$css_file = 'inverse.css';
+				$css_files = ['inverse.css'];
 				break;
 			case 'embedded':
-				$css_file = 'converse-muc-embedded.css';
+				$css_files = ['converse.css', 'converse-muc-embedded.css'];
 				break;
 			case 'mobile':
-				$css_file = 'mobile.css';
+				$css_files = ['converse.css', 'mobile.css'];
 				break;
 			case 'overlayed':
 			default:
-				$css_file = 'converse.css';
+				$css_files = ['converse.css'];
 		}
 
-		$headerlib->add_cssfile('vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file . '');
+		foreach ($css_files as $css_file) {
+			$headerlib->add_cssfile('vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file);
+		}
 
 		$xmpplib = TikiLib::lib('xmpp');
 
