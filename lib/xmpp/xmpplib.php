@@ -178,6 +178,7 @@ class XMPPLib extends TikiLib
 				'action' => 'prebind',
 			]),
 			'whitelisted_plugins' => ['tiki'],
+			'view_mode' => $params['view_mode'],
 			'debug' => $prefs['xmpp_conversejs_debug'] === 'y',
 
 		];
