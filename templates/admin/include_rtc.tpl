@@ -25,6 +25,7 @@
 			<div class="adminoptionboxchild" id="xmpp_feature_childcontainer">
 				{preference name=xmpp_server_host}
 				{preference name=xmpp_server_http_bind}
+				{preference name=xmpp_muc_component_domain}
 				{preference name=xmpp_openfire_use_token}
 				{preference name=xmpp_conversejs_debug}
 				{preference name=xmpp_conversejs_init_json}

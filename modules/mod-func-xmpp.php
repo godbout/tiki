@@ -31,5 +31,5 @@ function module_xmpp_info()
  */
 function module_xmpp($mod_reference, &$module_params)
 {
-	TikiLib::lib('xmpp')->addConverseJSToPage();
+	TikiLib::lib('xmpp')->addConverseJSToPage(['late_css' => true]);
 }

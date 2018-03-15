@@ -125,9 +125,10 @@ class XMPPLib extends TikiLib
 	/**
 	 * Add css and js files and initialising js to the page
 	 *
-	 * @param array $params:
-	 * 		view__mode => overlayed | fullscreen | mobile | embedded
+	 * @param array $params :
+	 *        view__mode => overlayed | fullscreen | mobile | embedded
 	 *
+	 * @return string
 	 * @throws Exception
 	 */
 	function addConverseJSToPage($params = []) {
@@ -163,8 +164,13 @@ class XMPPLib extends TikiLib
 				$css_files = ['converse.css'];
 		}
 
+		$cssjs = '';
 		foreach ($css_files as $css_file) {
-			$headerlib->add_cssfile('vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file);
+			if (! empty($params['late_css'])) {
+				$cssjs .= '$("<link rel=\"stylesheet\">").attr("href", "vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file . '").appendTo("head");';
+			} else {
+				$headerlib->add_cssfile('vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file);
+			}
 		}
 
 		$xmpplib = TikiLib::lib('xmpp');
@@ -185,6 +191,9 @@ class XMPPLib extends TikiLib
 
 		if ($params['room']) {
 			$options['auto_login'] = true;
+			if (strpos($params['room'], '@') === false && ! empty($prefs['xmpp_muc_component_domain'])) {
+				$params['room'] .= '@' . $prefs['xmpp_muc_component_domain'];
+			}
 			$options['auto_join_rooms'] = [$params['room']];
 		}
 
@@ -214,6 +223,8 @@ class XMPPLib extends TikiLib
 	converse.initialize(' . $optionString . ');
 })();
 ';
+		$js .= $cssjs;
+
 		$headerlib->add_jsfile('vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js')
 			->add_jq_onready($js);
 	}
