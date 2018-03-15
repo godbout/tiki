@@ -187,7 +187,11 @@ class XMPPLib extends TikiLib
 
 		if (! empty($prefs['xmpp_conversejs_init_json'])) {
 			$extraOptions = json_decode($prefs['xmpp_conversejs_init_json'], true);
-			$options = array_merge($options, $extraOptions);
+			if ($extraOptions) {
+				$options = array_merge($options, $extraOptions);
+			} else {
+				Feedback::warning(tr('Preference "xmpp_conversejs_init_json" does not contain valid JSON'));
+			}
 		}
 
 		$optionString = json_encode($options, JSON_UNESCAPED_SLASHES);
