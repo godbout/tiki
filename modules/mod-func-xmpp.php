@@ -32,11 +32,12 @@ function module_xmpp_info()
 function module_xmpp($mod_reference, &$module_params)
 {
 	global $user;
+	/** @var XMPPLib $xmpplib */
 	$xmpplib = TikiLib::lib('xmpp');
 	$smarty = TikiLib::lib('smarty');
 
 	$xmpp = [
-		'server_http_bind' => $xmpplib->server_http_bind,
+		'server_http_bind' => $xmpplib->getServerHttpBind(),
 		'user_jid' => $xmpplib->get_user_jid($user)
 	];
 

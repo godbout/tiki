@@ -9,6 +9,16 @@ require_once dirname(__FILE__) . '/TikiXmppPrebind.php';
 
 class XMPPLib extends TikiLib
 {
+	private $server_host = '';
+	private $server_http_bind = '';
+
+	/**
+	 * @return string
+	 */
+	public function getServerHttpBind(): string
+	{
+		return $this->server_http_bind;
+	}
 
 	function __construct()
 	{
@@ -36,6 +46,8 @@ class XMPPLib extends TikiLib
 
 		if (count($ret) === 1) {
 			return $ret['value'];
+		} else {
+			return '';
 		}
 	}
 
@@ -46,6 +58,8 @@ class XMPPLib extends TikiLib
 
 	function check_token($givenUser, $givenToken)
 	{
+		global $prefs;
+
 		$tokenlib = AuthTokens::build($prefs);
 		$token = $tokenlib->getToken($givenToken);
 
@@ -55,7 +69,7 @@ class XMPPLib extends TikiLib
 		// TODO: figure out how to delete token after n usages
 		$tokenlib->deleteToken($token['tokenId']);
 
-		$param = json_decode($token['parameters'], A_ARRAY);
+		$param = json_decode($token['parameters'], true);
 		return is_array($param)
 			&& ! empty($param['user'])
 			&& $param['user'] === $givenUser;
@@ -65,7 +79,6 @@ class XMPPLib extends TikiLib
 	{
 		global $prefs;
 
-		$tikilib = TikiLib::lib('tiki');
 		$tokenlib = AuthTokens::build($prefs);
 
 		if (empty($this->server_host) ||  empty($this->server_http_bind)) {
