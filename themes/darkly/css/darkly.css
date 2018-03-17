@@ -182,9 +182,9 @@ body {
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #000;
+  color: #fff;
   text-align: left;
-  background-color: #fff; }
+  background-color: #222; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -1222,7 +1222,7 @@ pre {
   .table tbody + tbody {
     border-top: 2px solid #444; }
   .table .table {
-    background-color: #fff; }
+    background-color: #222; }
 
 .table-sm th, .table-sm td {
   padding: 0.3rem; }
@@ -1582,7 +1582,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   .was-validated .custom-control-input:valid:checked ~ .custom-control-label::before, .custom-control-input.is-valid:checked ~ .custom-control-label::before {
     background-color: #00efb2; }
   .was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, .custom-control-input.is-valid:focus ~ .custom-control-label::before {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 188, 140, .25); }
+    box-shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(0, 188, 140, .25); }
 
 .was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label {
   border-color: #00bc8c; }
@@ -1634,7 +1634,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   .was-validated .custom-control-input:invalid:checked ~ .custom-control-label::before, .custom-control-input.is-invalid:checked ~ .custom-control-label::before {
     background-color: #ed7669; }
   .was-validated .custom-control-input:invalid:focus ~ .custom-control-label::before, .custom-control-input.is-invalid:focus ~ .custom-control-label::before {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(231, 76, 60, .25); }
+    box-shadow: 0 0 0 1px #222, 0 0 0 0.2rem rgba(231, 76, 60, .25); }
 
 .was-validated .custom-file-input:invalid ~ .custom-file-label, .custom-file-input.is-invalid ~ .custom-file-label {
   border-color: #e74c3c; }
@@ -2418,7 +2418,7 @@ tbody.collapse.show {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 0.9375rem;
-  color: #000;
+  color: #fff;
   text-align: left;
   list-style: none;
   background-color: #222;
@@ -6388,17 +6388,17 @@ button.close {
     border: 1px solid #ddd !important; } }
 
 .tiki .pvtUi {
-  color: #000; }
+  color: #fff; }
   .tiki table.pvtTable {
     font-size: 0.9375rem; }
   .tiki table.pvtTable tr th {
-    background-color: #fff;
-    color: #000;
+    background-color: #222;
+    color: #fff;
     border: 1px solid #444;
     font-size: 0.9375rem;
     padding: 5px; }
   .tiki table.pvtTable tr td {
-    color: #000;
+    color: #fff;
     background-color: transparent;
     border-color: #444; }
   .tiki .pvtTotal, .tiki .pvtGrandTotal {
@@ -6413,7 +6413,7 @@ button.close {
     border-radius: 0.25rem; }
   .tiki .pvtAxisContainer, .tiki .pvtVals {
     border-color: #444;
-    background: #fff;
+    background: #222;
     padding: 5px; }
   .tiki .pvtAxisContainer li.pvtPlaceholder {
     padding: 3px 15px;
@@ -6423,10 +6423,10 @@ button.close {
     -webkit-text-size-adjust: 100%;
     padding: 2px 5px;
     white-space: nowrap;
-    background: #fff;
-    border: 1px solid #000;
+    background: #222;
+    border: 1px solid #fff;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #fff; }
   .tiki .pvtTriangle {
     cursor: pointer;
     color: grey; }
@@ -6462,31 +6462,31 @@ button.close {
   .tiki .pvtRendererArea {
     padding: 5px; }
   .tiki .pvtFilterBox button {
-    background: #fff;
-    border: 1px solid #000;
+    background: #222;
+    border: 1px solid #fff;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #fff; }
   .tiki .pvtFilterBox button:hover {
-    background: #fff; }
+    background: #222; }
   .tiki .pvtFilterBox button + button {
     margin-left: 4px;
     margin-bottom: 4px; }
   .tiki .c3 line, .tiki .c3 path, .tiki .c3 svg {
     fill: none;
-    stroke: #000; }
+    stroke: #fff; }
   .tiki select {
     font-size: 0.9375rem; }
 
 .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #000;
-  background: #fff;
+  border: 1px solid #fff;
+  background: #222;
   font-weight: normal;
-  color: #000;
+  color: #fff;
   font-size: 0.9375rem; }
   .tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
-    border: 1px solid #000;
-    background: #fff;
+    border: 1px solid #fff;
+    background: #222;
     font-weight: normal;
-    color: #000; }
+    color: #fff; }
   .tiki .ui-widget-header a {
     color: #00bc8c; }

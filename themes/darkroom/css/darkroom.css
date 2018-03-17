@@ -6331,7 +6331,7 @@ a.fc-event:hover {
 
 .note-list .postbody-title {
   background: #474747;
-  color: #000; }
+  color: #d8d8d8; }
 
 .post-approved-n {
   border-left: 3px dotted #5cb85c; }
@@ -6533,7 +6533,7 @@ input:-webkit-autofill {
   background-color: #474747; }
 
 #captchaImg {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 form.simple label.error {
   background: url("../../../img/icons/error.png") no-repeat 0 4px;
@@ -6615,10 +6615,10 @@ div.cvsup {
   color: #d8d8d8; }
 
 .webmail_item {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .webmail_list .odd {
-  background: #292929; }
+  background: rgba(0, 0, 0, .05); }
 
 .webmail_list .button {
   background: #474747;
@@ -6644,14 +6644,14 @@ div.cvsup {
   background: transparent; }
 
 .tiki_sheet table td {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .odd {
   background: #232323;
   color: #d8d8d8; }
 
 .even {
-  background: #292929;
+  background: rgba(0, 0, 0, .05);
   color: #d8d8d8; }
 
 .objectperms .checkBoxHeader:nth-of-type(odd) > div > label, .objectperms td.checkBoxCell:nth-of-type(odd), .objectperms .checkBoxHeader:nth-of-type(odd) > .checkBoxLabel {
@@ -6687,8 +6687,8 @@ div.cvsup {
 
 #intertrans-form {
   background-color: #fff;
-  border: 1px solid #000;
-  color: #000; }
+  border: 1px solid #212529;
+  color: #212529; }
 
 #edit_translations tr.last {
   border-bottom: 2px solid #5cb85c; }
@@ -6707,7 +6707,7 @@ ul.all_languages > li {
   color: #5cb85c; }
 
 .author1 {
-  color: #000; }
+  color: #212529; }
 
 .author2 {
   color: #5bc0de; }
@@ -6759,7 +6759,7 @@ ul.all_languages > li {
 
 .tiki .cke_wysiwyg_frame, .tiki .cke_wysiwyg_div {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .tiki_plugin {
   background-color: transparent;
@@ -6917,7 +6917,7 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   background: #5cb85c; }
 
 .searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
-  color: #000;
+  color: #212529;
   background: #fff; }
 
 .searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
@@ -7009,7 +7009,7 @@ div.drillshow {
 
 .tiki .ui-widget button {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .tiki .modal-content .ui-state-default {
   color: #007bff; }
@@ -7021,7 +7021,7 @@ div.drillshow {
   color: #fd0006; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .codecaption {
   display: inline-block;
@@ -7063,14 +7063,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #495057; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #000;
+  color: #212529;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #212529; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #000;
+  color: #212529;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #212529; }
 
 body, body.fullscreen {
   background-image: url("../images/474747_5e5e5e_40.png"); }
@@ -7089,7 +7089,7 @@ body.layout_social > .container {
 
 .cke_contents > .cke_wysiwyg_frame, .cke_contents > .cke_wysiwyg_div {
   background: #3f3f3f !important;
-  color: #000 !important; }
+  color: #d8d8d8 !important; }
 
 h3.card-title {
   color: #9d9d9d;
@@ -7150,7 +7150,7 @@ select {
   color: #fff !important; }
 
 .even {
-  background: #f9f9f9; }
+  background: #292929; }
 
 .odd, #trig_dptxt {
   background: #232323;
@@ -7171,7 +7171,7 @@ textarea, input {
   background: #292929 !important; }
 
 .box-quickadmin .cssmenu_horiz ul li {
-  background-color: #fff; }
+  background-color: #474747; }
 
 #admin-navbar-collapse-1 {
   border: 8px solid #292929;
@@ -7201,17 +7201,17 @@ textarea, input {
   background-color: transparent; }
 
 .tiki .pvtUi {
-  color: #000; }
+  color: #212529; }
   .tiki table.pvtTable {
     font-size: 1rem; }
   .tiki table.pvtTable tr th {
     background-color: #fff;
-    color: #000;
+    color: #212529;
     border: 1px solid #dee2e6;
     font-size: 1rem;
     padding: 5px; }
   .tiki table.pvtTable tr td {
-    color: #000;
+    color: #212529;
     background-color: transparent;
     border-color: #dee2e6; }
   .tiki .pvtTotal, .tiki .pvtGrandTotal {
@@ -7236,10 +7236,10 @@ textarea, input {
     -webkit-text-size-adjust: 100%;
     padding: 2px 5px;
     white-space: nowrap;
-    background: #fff;
-    border: 1px solid #000;
+    background: #474747;
+    border: 1px solid #d8d8d8;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #212529; }
   .tiki .pvtTriangle {
     cursor: pointer;
     color: grey; }
@@ -7276,9 +7276,9 @@ textarea, input {
     padding: 5px; }
   .tiki .pvtFilterBox button {
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #d8d8d8;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #212529; }
   .tiki .pvtFilterBox button:hover {
     background: #fff; }
   .tiki .pvtFilterBox button + button {
@@ -7286,20 +7286,20 @@ textarea, input {
     margin-bottom: 4px; }
   .tiki .c3 line, .tiki .c3 path, .tiki .c3 svg {
     fill: none;
-    stroke: #000; }
+    stroke: #212529; }
   .tiki select {
     font-size: 1rem; }
 
 .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #000;
-  background: #fff;
+  border: 1px solid #d8d8d8;
+  background: #474747;
   font-weight: normal;
-  color: #000;
+  color: #d8d8d8;
   font-size: 1rem; }
   .tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
-    border: 1px solid #000;
-    background: #fff;
+    border: 1px solid #d8d8d8;
+    background: #474747;
     font-weight: normal;
-    color: #000; }
+    color: #d8d8d8; }
   .tiki .ui-widget-header a {
     color: #ababab; }

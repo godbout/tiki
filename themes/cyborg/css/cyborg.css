@@ -35,7 +35,7 @@
 .navbar.bg-primary {
   border: 1px solid #282828; }
   .navbar.bg-dark {
-    background-color: #fff !important;
+    background-color: #060606 !important;
     border: 1px solid #282828; }
   .navbar.bg-light {
     background-color: #888 !important; }
@@ -215,9 +215,9 @@ body {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #000;
+  color: #888;
   text-align: left;
-  background-color: #fff; }
+  background-color: #060606; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -1255,7 +1255,7 @@ pre {
   .table tbody + tbody {
     border-top: 2px solid #282828; }
   .table .table {
-    background-color: #fff; }
+    background-color: #060606; }
 
 .table-sm th, .table-sm td {
   padding: 0.3rem; }
@@ -1615,7 +1615,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   .was-validated .custom-control-input:valid:checked ~ .custom-control-label::before, .custom-control-input.is-valid:checked ~ .custom-control-label::before {
     background-color: #99e600; }
   .was-validated .custom-control-input:valid:focus ~ .custom-control-label::before, .custom-control-input.is-valid:focus ~ .custom-control-label::before {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(119, 179, 0, .25); }
+    box-shadow: 0 0 0 1px #060606, 0 0 0 0.2rem rgba(119, 179, 0, .25); }
 
 .was-validated .custom-file-input:valid ~ .custom-file-label, .custom-file-input.is-valid ~ .custom-file-label {
   border-color: #77b300; }
@@ -1667,7 +1667,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   .was-validated .custom-control-input:invalid:checked ~ .custom-control-label::before, .custom-control-input.is-invalid:checked ~ .custom-control-label::before {
     background-color: #f00; }
   .was-validated .custom-control-input:invalid:focus ~ .custom-control-label::before, .custom-control-input.is-invalid:focus ~ .custom-control-label::before {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(204, 0, 0, .25); }
+    box-shadow: 0 0 0 1px #060606, 0 0 0 0.2rem rgba(204, 0, 0, .25); }
 
 .was-validated .custom-file-input:invalid ~ .custom-file-label, .custom-file-input.is-invalid ~ .custom-file-label {
   border-color: #c00; }
@@ -2451,7 +2451,7 @@ tbody.collapse.show {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 0.875rem;
-  color: #000;
+  color: #888;
   text-align: left;
   list-style: none;
   background-color: #282828;
@@ -6437,14 +6437,14 @@ a.fc-event:hover {
   border: thin solid #2a9fd6;
   /*black*/ }
   .filter .fancyfilter .token {
-    background: #fff;
+    background: #060606;
     border: 1px solid #e9ecef;
     font-size: 11px;
     padding: 3px; }
 
 .note-list .postbody-title {
-  background: #282828;
-  color: #000; }
+  background: #060606;
+  color: #888; }
 
 .post-approved-n {
   border-left: 3px dotted #77b300; }
@@ -6553,7 +6553,7 @@ table.treetable.objectperms td.removed {
 
 .olControlMousePosition {
   background: rgba(0, 0, 0, 0.75);
-  color: #fff; }
+  color: #060606; }
 
 .olControlScaleLineTop, .olControlScaleLineBottom {
   background-color: rgba(255, 255, 255, 0.5); }
@@ -6643,10 +6643,10 @@ input:-webkit-autofill {
   /* the Google guys forgot the number-one rule... when they specify background they should specify forgeround color too ;) */ }
 
 #cboxTitle {
-  background-color: #fff; }
+  background-color: #060606; }
 
 #captchaImg {
-  border: 1px solid #000; }
+  border: 1px solid #888; }
 
 form.simple label.error {
   background: url("../../../img/icons/error.png") no-repeat 0 4px;
@@ -6656,11 +6656,11 @@ form.simple label .warning {
   color: #c00; }
 
 .tiki-modal .mask {
-  background-color: #fff; }
+  background-color: #060606; }
 
 .ui-dialog {
-  background: #fff;
-  color: #000; }
+  background: #060606;
+  color: #888; }
 
 .cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
   text-decoration: none;
@@ -6668,7 +6668,7 @@ form.simple label .warning {
   background-color: #2a9fd6; }
 
 .box-quickadmin .cssmenu_horiz ul li {
-  background-color: #fff; }
+  background-color: #060606; }
 
 .box-switch_lang .box-data img.highlight {
   border: 0.1em solid #c00; }
@@ -6725,16 +6725,16 @@ div.cvsup {
   background: #dee2e6; }
 
 .readlink {
-  color: #000; }
+  color: #888; }
 
 .webmail_item {
-  border: 1px solid #000; }
+  border: 1px solid #888; }
 
 .webmail_list .odd {
-  background: #f9f9f9; }
+  background: rgba(255, 255, 255, .05); }
 
 .webmail_list .button {
-  background: #fff;
+  background: #060606;
   border: 1px solid #282828; }
 
 .webmail_list .webmail_read {
@@ -6748,24 +6748,24 @@ div.cvsup {
   color: #f80; }
 
 .webmail_message {
-  background: #fff; }
+  background: #060606; }
 
 .webmail_message_headers {
-  background: #fff; }
+  background: #060606; }
 
 .webmail_message_headers th {
   background: transparent; }
 
 .tiki_sheet table td {
-  border: 1px solid #000; }
+  border: 1px solid #888; }
 
 .odd {
   background: transparent;
-  color: #000; }
+  color: #888; }
 
 .even {
-  background: #f9f9f9;
-  color: #000; }
+  background: rgba(255, 255, 255, .05);
+  color: #888; }
 
 .objectperms .checkBoxHeader:nth-of-type(odd) > div > label, .objectperms td.checkBoxCell:nth-of-type(odd), .objectperms .checkBoxHeader:nth-of-type(odd) > .checkBoxLabel {
   background: rgba(242, 242, 242, .05); }
@@ -6777,18 +6777,18 @@ div.cvsup {
   border-left: medium double #e9ecef; }
 
 .toolbars-picker {
-  background: #fff;
-  border: thin solid #000;
-  color: #000; }
+  background: #060606;
+  border: thin solid #888;
+  color: #888; }
 
 .toolbars-picker a {
-  border: 1px solid #fff;
-  color: #000; }
+  border: 1px solid #060606;
+  color: #888; }
 
 .toolbars-picker a:hover {
   border: 1px solid #c00;
   background: #dee2e6;
-  color: #000; }
+  color: #888; }
 
 .textarea-toolbar > div {
   background-color: #e9ecef;
@@ -6799,9 +6799,9 @@ div.cvsup {
   color: #77b300; }
 
 #intertrans-form {
-  background-color: #fff;
-  border: 1px solid #000;
-  color: #000; }
+  background-color: #060606;
+  border: 1px solid #888;
+  color: #888; }
 
 #edit_translations tr.last {
   border-bottom: 2px solid #77b300; }
@@ -6820,7 +6820,7 @@ ul.all_languages > li {
   color: #77b300; }
 
 .author1 {
-  color: #000; }
+  color: #888; }
 
 .author2 {
   color: #93c; }
@@ -6871,8 +6871,8 @@ ul.all_languages > li {
   outline: #888 dotted 1px; }
 
 .tiki .cke_wysiwyg_frame, .tiki .cke_wysiwyg_div {
-  background: #fff;
-  color: #000; }
+  background: #060606;
+  color: #888; }
 
 .tiki_plugin {
   background-color: transparent;
@@ -6894,13 +6894,13 @@ ul.all_languages > li {
   color: #1d7097; }
 
 .plugin-form-float {
-  background: #fff;
-  color: #000;
-  border: solid 2px #000; }
+  background: #060606;
+  color: #888;
+  border: solid 2px #888; }
 
 body.wikitext {
-  background: #fff;
-  color: #000; }
+  background: #060606;
+  color: #888; }
 
 .editable-inline {
   background: transparent url("../../../img/icons/database_lightning.png") no-repeat top right;
@@ -6934,12 +6934,12 @@ body.wikitext {
   background-color: #888; }
 
 .TextArea-fullscreen .actions, .CodeMirror-fullscreen .actions {
-  background-color: #fff;
+  background-color: #060606;
   border-top: #dee2e6 1px solid; }
 
 #autosave_preview {
-  background-color: #fff;
-  color: #000; }
+  background-color: #060606;
+  color: #888; }
 
 #autosave_preview_grippy {
   background-color: #dee2e6;
@@ -7030,8 +7030,8 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   background: #77b300; }
 
 .searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
-  color: #000;
-  background: #fff; }
+  color: #888;
+  background: #060606; }
 
 .searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
   background: #f80; }
@@ -7105,24 +7105,24 @@ div.drillshow {
  }*/
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #222;
-  color: #000;
+  color: #888;
   border: 1px solid rgba(0, 0, 0, .2); }
 
 .tiki .ui-widget-header {
   background: #222;
-  color: #000;
+  color: #888;
   border: 1px solid rgba(0, 0, 0, .2); }
 
 .tiki .ui-dialog-content {
   background: #222;
-  color: #000; }
+  color: #888; }
   .tiki .ui-dialog-content select, .tiki .ui-dialog-content input, .tiki .ui-dialog-content optgroup, .tiki .ui-dialog-content textarea {
     background: #fff;
     color: #282828; }
 
 .tiki .ui-widget button {
-  background: #fff;
-  color: #000; }
+  background: #060606;
+  color: #888; }
 
 .tiki .modal-content .ui-state-default {
   color: #2a9fd6; }
@@ -7134,7 +7134,7 @@ div.drillshow {
   color: #fff; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid #000; }
+  border: 1px solid #888; }
 
 .codecaption {
   display: inline-block;
@@ -7176,27 +7176,27 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #000;
-  background-color: #fff;
-  border-color: #000; }
+  color: #888;
+  background-color: #060606;
+  border-color: #888; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #000;
-  background-color: #fff;
-  border-color: #000; }
+  color: #888;
+  background-color: #060606;
+  border-color: #888; }
 
 .tiki .pvtUi {
-  color: #000; }
+  color: #888; }
   .tiki table.pvtTable {
     font-size: 0.875rem; }
   .tiki table.pvtTable tr th {
-    background-color: #fff;
-    color: #000;
+    background-color: #060606;
+    color: #888;
     border: 1px solid #282828;
     font-size: 0.875rem;
     padding: 5px; }
   .tiki table.pvtTable tr td {
-    color: #000;
+    color: #888;
     background-color: transparent;
     border-color: #282828; }
   .tiki .pvtTotal, .tiki .pvtGrandTotal {
@@ -7211,7 +7211,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     border-radius: 0.25rem; }
   .tiki .pvtAxisContainer, .tiki .pvtVals {
     border-color: #282828;
-    background: #fff;
+    background: #060606;
     padding: 5px; }
   .tiki .pvtAxisContainer li.pvtPlaceholder {
     padding: 3px 15px;
@@ -7221,10 +7221,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     -webkit-text-size-adjust: 100%;
     padding: 2px 5px;
     white-space: nowrap;
-    background: #fff;
-    border: 1px solid #000;
+    background: #060606;
+    border: 1px solid #888;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #888; }
   .tiki .pvtTriangle {
     cursor: pointer;
     color: grey; }
@@ -7260,31 +7260,31 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   .tiki .pvtRendererArea {
     padding: 5px; }
   .tiki .pvtFilterBox button {
-    background: #fff;
-    border: 1px solid #000;
+    background: #060606;
+    border: 1px solid #888;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #888; }
   .tiki .pvtFilterBox button:hover {
-    background: #fff; }
+    background: #060606; }
   .tiki .pvtFilterBox button + button {
     margin-left: 4px;
     margin-bottom: 4px; }
   .tiki .c3 line, .tiki .c3 path, .tiki .c3 svg {
     fill: none;
-    stroke: #000; }
+    stroke: #888; }
   .tiki select {
     font-size: 0.875rem; }
 
 .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #000;
-  background: #fff;
+  border: 1px solid #888;
+  background: #060606;
   font-weight: normal;
-  color: #000;
+  color: #888;
   font-size: 0.875rem; }
   .tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
-    border: 1px solid #000;
-    background: #fff;
+    border: 1px solid #888;
+    background: #060606;
     font-weight: normal;
-    color: #000; }
+    color: #888; }
   .tiki .ui-widget-header a {
     color: #2a9fd6; }

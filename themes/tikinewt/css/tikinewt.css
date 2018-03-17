@@ -5757,8 +5757,8 @@ a.fc-event:hover {
     padding: 3px; }
 
 .note-list .postbody-title {
-  background: #fff;
-  color: #000; }
+  background: #f4f4f4;
+  color: #222; }
 
 .post-approved-n {
   border-left: 3px dotted #28a745; }
@@ -5960,7 +5960,7 @@ input:-webkit-autofill {
   background-color: #f4f4f4; }
 
 #captchaImg {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 form.simple label.error {
   background: url("../../../img/icons/error.png") no-repeat 0 4px;
@@ -6042,10 +6042,10 @@ div.cvsup {
   color: #222; }
 
 .webmail_item {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .webmail_list .odd {
-  background: #f9f9f9; }
+  background: rgba(0, 0, 0, .05); }
 
 .webmail_list .button {
   background: #f4f4f4;
@@ -6071,14 +6071,14 @@ div.cvsup {
   background: transparent; }
 
 .tiki_sheet table td {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .odd {
   background: transparent;
   color: #222; }
 
 .even {
-  background: #f9f9f9;
+  background: rgba(0, 0, 0, .05);
   color: #222; }
 
 .objectperms .checkBoxHeader:nth-of-type(odd) > div > label, .objectperms td.checkBoxCell:nth-of-type(odd), .objectperms .checkBoxHeader:nth-of-type(odd) > .checkBoxLabel {
@@ -6114,8 +6114,8 @@ div.cvsup {
 
 #intertrans-form {
   background-color: #fff;
-  border: 1px solid #000;
-  color: #000; }
+  border: 1px solid #212529;
+  color: #212529; }
 
 #edit_translations tr.last {
   border-bottom: 2px solid #28a745; }
@@ -6134,7 +6134,7 @@ ul.all_languages > li {
   color: #28a745; }
 
 .author1 {
-  color: #000; }
+  color: #212529; }
 
 .author2 {
   color: #17a2b8; }
@@ -6186,7 +6186,7 @@ ul.all_languages > li {
 
 .tiki .cke_wysiwyg_frame, .tiki .cke_wysiwyg_div {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .tiki_plugin {
   background-color: transparent;
@@ -6344,7 +6344,7 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   background: #28a745; }
 
 .searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
-  color: #000;
+  color: #212529;
   background: #fff; }
 
 .searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
@@ -6436,7 +6436,7 @@ div.drillshow {
 
 .tiki .ui-widget button {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .tiki .modal-content .ui-state-default {
   color: #007bff; }
@@ -6448,7 +6448,7 @@ div.drillshow {
   color: #212529; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .codecaption {
   display: inline-block;
@@ -6490,9 +6490,9 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #000;
+  color: #212529;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #212529; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   color: #234;
@@ -6577,17 +6577,17 @@ h3.card-title {
   margin-bottom: 0; }
 
 .tiki .pvtUi {
-  color: #000; }
+  color: #212529; }
   .tiki table.pvtTable {
     font-size: 1rem; }
   .tiki table.pvtTable tr th {
     background-color: #fff;
-    color: #000;
+    color: #212529;
     border: 1px solid #dee2e6;
     font-size: 1rem;
     padding: 5px; }
   .tiki table.pvtTable tr td {
-    color: #000;
+    color: #212529;
     background-color: transparent;
     border-color: #dee2e6; }
   .tiki .pvtTotal, .tiki .pvtGrandTotal {
@@ -6612,10 +6612,10 @@ h3.card-title {
     -webkit-text-size-adjust: 100%;
     padding: 2px 5px;
     white-space: nowrap;
-    background: #fff;
-    border: 1px solid #000;
+    background: #f4f4f4;
+    border: 1px solid #222;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #212529; }
   .tiki .pvtTriangle {
     cursor: pointer;
     color: grey; }
@@ -6652,9 +6652,9 @@ h3.card-title {
     padding: 5px; }
   .tiki .pvtFilterBox button {
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #222;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #212529; }
   .tiki .pvtFilterBox button:hover {
     background: #fff; }
   .tiki .pvtFilterBox button + button {
@@ -6662,20 +6662,20 @@ h3.card-title {
     margin-bottom: 4px; }
   .tiki .c3 line, .tiki .c3 path, .tiki .c3 svg {
     fill: none;
-    stroke: #000; }
+    stroke: #212529; }
   .tiki select {
     font-size: 1rem; }
 
 .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #000;
-  background: #fff;
+  border: 1px solid #222;
+  background: #f4f4f4;
   font-weight: normal;
-  color: #000;
+  color: #222;
   font-size: 0.9rem; }
   .tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
-    border: 1px solid #000;
-    background: #fff;
+    border: 1px solid #222;
+    background: #f4f4f4;
     font-weight: normal;
-    color: #000; }
+    color: #222; }
   .tiki .ui-widget-header a {
     color: #2d3741; }

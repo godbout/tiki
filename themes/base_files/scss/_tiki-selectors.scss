@@ -4,6 +4,9 @@
 //@import "_tiki-variables.scss";
 $imagePathToImgDir: "../../../img/";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss";
+
+
 // Background color for navbar collapse dropdowns (Tiki's aren't .dropdown li).
 .navbar-collapse.collapse.in {
 	background: $navbar-dark-bg;
@@ -43,8 +46,8 @@ a.fc-event:hover {
 
 // tiki-comments.less - tiki-jquery.js
 .note-list .postbody-title {
-	background: $card-bg; // /*#ccc*/
-	color: $card-text; // /*#000*/
+	background: $body-bg; // /*#ccc*/
+	color: $body-color; // /*#000*/
 }
 
 // Comments moderation - comment.tpl, tiki-list_comments.tpl
@@ -516,7 +519,7 @@ div.cvsup {
 }
 
 .webmail_list .odd {
-	background: $table-bg-accent;
+	background: $table-accent-bg;
 }
 
 .webmail_list .button {
@@ -562,7 +565,7 @@ div.cvsup {
 }
 
 .even {
-	background: $table-bg-accent;
+	background: $table-accent-bg;
 	color: $body-color;
 }
 

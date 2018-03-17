@@ -43,9 +43,9 @@ body.fullscreen {
   border-top-color: #fff; }
 
 .btn-primary:hover {
-  color: #000; }
+  color: #111; }
   .btn-primary .caret {
-    border-top-color: #000; }
+    border-top-color: #111; }
 
 .text-primary, .text-primary:hover {
   color: #f0a6ac; }
@@ -94,7 +94,7 @@ legend {
     border-color: #93e08b; }
 
 .input-group-addon {
-  color: #000; }
+  color: #111; }
 
 .pagination a:hover {
   color: #fff; }
@@ -6925,8 +6925,8 @@ a.fc-event:hover {
     padding: 3px; }
 
 .note-list .postbody-title {
-  background: #fff;
-  color: #000; }
+  background: #108a93;
+  color: #fff; }
 
 .post-approved-n {
   border-left: 3px dotted #48ca3b; }
@@ -7128,7 +7128,7 @@ input:-webkit-autofill {
   background-color: #108a93; }
 
 #captchaImg {
-  border: 1px solid #000; }
+  border: 1px solid #111; }
 
 form.simple label.error {
   background: url("../../../img/icons/error.png") no-repeat 0 4px;
@@ -7210,10 +7210,10 @@ div.cvsup {
   color: #fff; }
 
 .webmail_item {
-  border: 1px solid #000; }
+  border: 1px solid #111; }
 
 .webmail_list .odd {
-  background: #f9f9f9; }
+  background: rgba(0, 0, 0, .05); }
 
 .webmail_list .button {
   background: #108a93;
@@ -7239,14 +7239,14 @@ div.cvsup {
   background: transparent; }
 
 .tiki_sheet table td {
-  border: 1px solid #000; }
+  border: 1px solid #111; }
 
 .odd {
   background: transparent;
   color: #fff; }
 
 .even {
-  background: #f9f9f9;
+  background: rgba(0, 0, 0, .05);
   color: #fff; }
 
 .objectperms .checkBoxHeader:nth-of-type(odd) > div > label, .objectperms td.checkBoxCell:nth-of-type(odd), .objectperms .checkBoxHeader:nth-of-type(odd) > .checkBoxLabel {
@@ -7282,8 +7282,8 @@ div.cvsup {
 
 #intertrans-form {
   background-color: #fff;
-  border: 1px solid #000;
-  color: #000; }
+  border: 1px solid #111;
+  color: #111; }
 
 #edit_translations tr.last {
   border-bottom: 2px solid #48ca3b; }
@@ -7302,7 +7302,7 @@ ul.all_languages > li {
   color: #48ca3b; }
 
 .author1 {
-  color: #000; }
+  color: #111; }
 
 .author2 {
   color: #4d3a7d; }
@@ -7354,7 +7354,7 @@ ul.all_languages > li {
 
 .tiki .cke_wysiwyg_frame, .tiki .cke_wysiwyg_div {
   background: #fff;
-  color: #000; }
+  color: #111; }
 
 .tiki_plugin {
   background-color: transparent;
@@ -7512,7 +7512,7 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   background: #48ca3b; }
 
 .searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
-  color: #000;
+  color: #111;
   background: #fff; }
 
 .searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
@@ -7604,7 +7604,7 @@ div.drillshow {
 
 .tiki .ui-widget button {
   background: #fff;
-  color: #000; }
+  color: #111; }
 
 .tiki .modal-content .ui-state-default {
   color: #ad1d28; }
@@ -7616,7 +7616,7 @@ div.drillshow {
   color: #111; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid #000; }
+  border: 1px solid #111; }
 
 .codecaption {
   display: inline-block;
@@ -7658,27 +7658,27 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #bbb; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #000;
+  color: #111;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #111; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #000;
+  color: #111;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #111; }
 
 .tiki .pvtUi {
-  color: #000; }
+  color: #111; }
   .tiki table.pvtTable {
     font-size: 1rem; }
   .tiki table.pvtTable tr th {
     background-color: #fff;
-    color: #000;
+    color: #111;
     border: 1px solid #bbb;
     font-size: 1rem;
     padding: 5px; }
   .tiki table.pvtTable tr td {
-    color: #000;
+    color: #111;
     background-color: transparent;
     border-color: #bbb; }
   .tiki .pvtTotal, .tiki .pvtGrandTotal {
@@ -7703,10 +7703,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     -webkit-text-size-adjust: 100%;
     padding: 2px 5px;
     white-space: nowrap;
-    background: #fff;
-    border: 1px solid #000;
+    background: #108a93;
+    border: 1px solid #fff;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #111; }
   .tiki .pvtTriangle {
     cursor: pointer;
     color: grey; }
@@ -7743,9 +7743,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     padding: 5px; }
   .tiki .pvtFilterBox button {
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #fff;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #111; }
   .tiki .pvtFilterBox button:hover {
     background: #fff; }
   .tiki .pvtFilterBox button + button {
@@ -7753,21 +7753,21 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     margin-bottom: 4px; }
   .tiki .c3 line, .tiki .c3 path, .tiki .c3 svg {
     fill: none;
-    stroke: #000; }
+    stroke: #111; }
   .tiki select {
     font-size: 1rem; }
 
 .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #000;
-  background: #fff;
+  border: 1px solid #fff;
+  background: #108a93;
   font-weight: normal;
-  color: #000;
+  color: #fff;
   font-size: 1rem; }
   .tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
-    border: 1px solid #000;
-    background: #fff;
+    border: 1px solid #fff;
+    background: #108a93;
     font-weight: normal;
-    color: #000; }
+    color: #fff; }
   .tiki .ui-widget-header a {
     color: #e8d069; }
 
@@ -7775,7 +7775,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   color: #111; }
 
 body.fullscreen {
-  background: #fff; }
+  background: #108a93; }
 
 .bg-dark {
   background: #ad1d28 !important; }

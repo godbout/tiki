@@ -110,7 +110,7 @@ body {
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #000;
+  color: #373a3c;
   text-align: left;
   background-color: #fff; }
 
@@ -2342,7 +2342,7 @@ tbody.collapse.show {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 0.9375rem;
-  color: #000;
+  color: #373a3c;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -6203,7 +6203,7 @@ a.fc-event:hover {
 
 .note-list .postbody-title {
   background: #fff;
-  color: #000; }
+  color: #373a3c; }
 
 .post-approved-n {
   border-left: 3px dotted #3fb618; }
@@ -6405,7 +6405,7 @@ input:-webkit-autofill {
   background-color: #fff; }
 
 #captchaImg {
-  border: 1px solid #000; }
+  border: 1px solid #373a3c; }
 
 form.simple label.error {
   background: url("../../../img/icons/error.png") no-repeat 0 4px;
@@ -6419,7 +6419,7 @@ form.simple label .warning {
 
 .ui-dialog {
   background: #fff;
-  color: #000; }
+  color: #373a3c; }
 
 .cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
   text-decoration: none;
@@ -6484,13 +6484,13 @@ div.cvsup {
   background: #dee2e6; }
 
 .readlink {
-  color: #000; }
+  color: #373a3c; }
 
 .webmail_item {
-  border: 1px solid #000; }
+  border: 1px solid #373a3c; }
 
 .webmail_list .odd {
-  background: #f9f9f9; }
+  background: rgba(0, 0, 0, .05); }
 
 .webmail_list .button {
   background: #fff;
@@ -6516,15 +6516,15 @@ div.cvsup {
   background: transparent; }
 
 .tiki_sheet table td {
-  border: 1px solid #000; }
+  border: 1px solid #373a3c; }
 
 .odd {
   background: transparent;
-  color: #000; }
+  color: #373a3c; }
 
 .even {
-  background: #f9f9f9;
-  color: #000; }
+  background: rgba(0, 0, 0, .05);
+  color: #373a3c; }
 
 .objectperms .checkBoxHeader:nth-of-type(odd) > div > label, .objectperms td.checkBoxCell:nth-of-type(odd), .objectperms .checkBoxHeader:nth-of-type(odd) > .checkBoxLabel {
   background: rgba(0, 0, 0, .05); }
@@ -6537,17 +6537,17 @@ div.cvsup {
 
 .toolbars-picker {
   background: #fff;
-  border: thin solid #000;
-  color: #000; }
+  border: thin solid #373a3c;
+  color: #373a3c; }
 
 .toolbars-picker a {
   border: 1px solid #fff;
-  color: #000; }
+  color: #373a3c; }
 
 .toolbars-picker a:hover {
   border: 1px solid #ff0039;
   background: #dee2e6;
-  color: #000; }
+  color: #373a3c; }
 
 .textarea-toolbar > div {
   background-color: #e9ecef;
@@ -6559,8 +6559,8 @@ div.cvsup {
 
 #intertrans-form {
   background-color: #fff;
-  border: 1px solid #000;
-  color: #000; }
+  border: 1px solid #373a3c;
+  color: #373a3c; }
 
 #edit_translations tr.last {
   border-bottom: 2px solid #3fb618; }
@@ -6579,7 +6579,7 @@ ul.all_languages > li {
   color: #3fb618; }
 
 .author1 {
-  color: #000; }
+  color: #373a3c; }
 
 .author2 {
   color: #9954bb; }
@@ -6631,7 +6631,7 @@ ul.all_languages > li {
 
 .tiki .cke_wysiwyg_frame, .tiki .cke_wysiwyg_div {
   background: #fff;
-  color: #000; }
+  color: #373a3c; }
 
 .tiki_plugin {
   background-color: transparent;
@@ -6654,12 +6654,12 @@ ul.all_languages > li {
 
 .plugin-form-float {
   background: #fff;
-  color: #000;
-  border: solid 2px #000; }
+  color: #373a3c;
+  border: solid 2px #373a3c; }
 
 body.wikitext {
   background: #fff;
-  color: #000; }
+  color: #373a3c; }
 
 .editable-inline {
   background: transparent url("../../../img/icons/database_lightning.png") no-repeat top right;
@@ -6698,7 +6698,7 @@ body.wikitext {
 
 #autosave_preview {
   background-color: #fff;
-  color: #000; }
+  color: #373a3c; }
 
 #autosave_preview_grippy {
   background-color: #dee2e6;
@@ -6789,7 +6789,7 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   background: #3fb618; }
 
 .searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
-  color: #000;
+  color: #373a3c;
   background: #fff; }
 
 .searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
@@ -6864,24 +6864,24 @@ div.drillshow {
  }*/
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #fff;
-  color: #000;
+  color: #373a3c;
   border: 1px solid rgba(0, 0, 0, .2); }
 
 .tiki .ui-widget-header {
   background: #fff;
-  color: #000;
+  color: #373a3c;
   border: 1px solid rgba(0, 0, 0, .2); }
 
 .tiki .ui-dialog-content {
   background: #fff;
-  color: #000; }
+  color: #373a3c; }
   .tiki .ui-dialog-content select, .tiki .ui-dialog-content input, .tiki .ui-dialog-content optgroup, .tiki .ui-dialog-content textarea {
     background: #fff;
     color: #495057; }
 
 .tiki .ui-widget button {
   background: #fff;
-  color: #000; }
+  color: #373a3c; }
 
 .tiki .modal-content .ui-state-default {
   color: #2780e3; }
@@ -6893,7 +6893,7 @@ div.drillshow {
   color: #212529; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid #000; }
+  border: 1px solid #373a3c; }
 
 .codecaption {
   display: inline-block;
@@ -6935,27 +6935,27 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #000;
+  color: #373a3c;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #373a3c; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #000;
+  color: #373a3c;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #373a3c; }
 
 .tiki .pvtUi {
-  color: #000; }
+  color: #373a3c; }
   .tiki table.pvtTable {
     font-size: 0.9375rem; }
   .tiki table.pvtTable tr th {
     background-color: #fff;
-    color: #000;
+    color: #373a3c;
     border: 1px solid #dee2e6;
     font-size: 0.9375rem;
     padding: 5px; }
   .tiki table.pvtTable tr td {
-    color: #000;
+    color: #373a3c;
     background-color: transparent;
     border-color: #dee2e6; }
   .tiki .pvtTotal, .tiki .pvtGrandTotal {
@@ -6981,9 +6981,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     padding: 2px 5px;
     white-space: nowrap;
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #373a3c;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #373a3c; }
   .tiki .pvtTriangle {
     cursor: pointer;
     color: grey; }
@@ -7020,9 +7020,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     padding: 5px; }
   .tiki .pvtFilterBox button {
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #373a3c;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #373a3c; }
   .tiki .pvtFilterBox button:hover {
     background: #fff; }
   .tiki .pvtFilterBox button + button {
@@ -7030,20 +7030,20 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     margin-bottom: 4px; }
   .tiki .c3 line, .tiki .c3 path, .tiki .c3 svg {
     fill: none;
-    stroke: #000; }
+    stroke: #373a3c; }
   .tiki select {
     font-size: 0.9375rem; }
 
 .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #000;
+  border: 1px solid #373a3c;
   background: #fff;
   font-weight: normal;
-  color: #000;
+  color: #373a3c;
   font-size: 0.9375rem; }
   .tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
-    border: 1px solid #000;
+    border: 1px solid #373a3c;
     background: #fff;
     font-weight: normal;
-    color: #000; }
+    color: #373a3c; }
   .tiki .ui-widget-header a {
     color: #2780e3; }

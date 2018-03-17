@@ -49,7 +49,7 @@ a.fc-event:hover {
 
 .note-list .postbody-title {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .post-approved-n {
   border-left: 3px dotted #28a745; }
@@ -251,7 +251,7 @@ input:-webkit-autofill {
   background-color: #fff; }
 
 #captchaImg {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 form.simple label.error {
   background: url("../../../img/icons/error.png") no-repeat 0 4px;
@@ -265,7 +265,7 @@ form.simple label .warning {
 
 .ui-dialog {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
   text-decoration: none;
@@ -330,13 +330,13 @@ div.cvsup {
   background: #dee2e6; }
 
 .readlink {
-  color: #000; }
+  color: #212529; }
 
 .webmail_item {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .webmail_list .odd {
-  background: #f9f9f9; }
+  background: rgba(0, 0, 0, .05); }
 
 .webmail_list .button {
   background: #fff;
@@ -362,15 +362,15 @@ div.cvsup {
   background: transparent; }
 
 .tiki_sheet table td {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .odd {
   background: transparent;
-  color: #000; }
+  color: #212529; }
 
 .even {
-  background: #f9f9f9;
-  color: #000; }
+  background: rgba(0, 0, 0, .05);
+  color: #212529; }
 
 .objectperms .checkBoxHeader:nth-of-type(odd) > div > label, .objectperms td.checkBoxCell:nth-of-type(odd), .objectperms .checkBoxHeader:nth-of-type(odd) > .checkBoxLabel {
   background: rgba(0, 0, 0, .05); }
@@ -383,17 +383,17 @@ div.cvsup {
 
 .toolbars-picker {
   background: #fff;
-  border: thin solid #000;
-  color: #000; }
+  border: thin solid #212529;
+  color: #212529; }
 
 .toolbars-picker a {
   border: 1px solid #fff;
-  color: #000; }
+  color: #212529; }
 
 .toolbars-picker a:hover {
   border: 1px solid #dc3545;
   background: #dee2e6;
-  color: #000; }
+  color: #212529; }
 
 .textarea-toolbar > div {
   background-color: #e9ecef;
@@ -405,8 +405,8 @@ div.cvsup {
 
 #intertrans-form {
   background-color: #fff;
-  border: 1px solid #000;
-  color: #000; }
+  border: 1px solid #212529;
+  color: #212529; }
 
 #edit_translations tr.last {
   border-bottom: 2px solid #28a745; }
@@ -425,7 +425,7 @@ ul.all_languages > li {
   color: #28a745; }
 
 .author1 {
-  color: #000; }
+  color: #212529; }
 
 .author2 {
   color: #17a2b8; }
@@ -477,7 +477,7 @@ ul.all_languages > li {
 
 .tiki .cke_wysiwyg_frame, .tiki .cke_wysiwyg_div {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .tiki_plugin {
   background-color: transparent;
@@ -500,12 +500,12 @@ ul.all_languages > li {
 
 .plugin-form-float {
   background: #fff;
-  color: #000;
-  border: solid 2px #000; }
+  color: #212529;
+  border: solid 2px #212529; }
 
 body.wikitext {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .editable-inline {
   background: transparent url("../../../img/icons/database_lightning.png") no-repeat top right;
@@ -544,7 +544,7 @@ body.wikitext {
 
 #autosave_preview {
   background-color: #fff;
-  color: #000; }
+  color: #212529; }
 
 #autosave_preview_grippy {
   background-color: #dee2e6;
@@ -635,7 +635,7 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   background: #28a745; }
 
 .searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
-  color: #000;
+  color: #212529;
   background: #fff; }
 
 .searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
@@ -710,24 +710,24 @@ div.drillshow {
  }*/
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #fff;
-  color: #000;
+  color: #212529;
   border: 1px solid rgba(0, 0, 0, .2); }
 
 .tiki .ui-widget-header {
   background: #fff;
-  color: #000;
+  color: #212529;
   border: 1px solid rgba(0, 0, 0, .2); }
 
 .tiki .ui-dialog-content {
   background: #fff;
-  color: #000; }
+  color: #212529; }
   .tiki .ui-dialog-content select, .tiki .ui-dialog-content input, .tiki .ui-dialog-content optgroup, .tiki .ui-dialog-content textarea {
     background: #fff;
     color: #495057; }
 
 .tiki .ui-widget button {
   background: #fff;
-  color: #000; }
+  color: #212529; }
 
 .tiki .modal-content .ui-state-default {
   color: #007bff; }
@@ -739,7 +739,7 @@ div.drillshow {
   color: #212529; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid #000; }
+  border: 1px solid #212529; }
 
 .codecaption {
   display: inline-block;
@@ -781,14 +781,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #000;
+  color: #212529;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #212529; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #000;
+  color: #212529;
   background-color: #fff;
-  border-color: #000; }
+  border-color: #212529; }
 
 .button.highlight {
   background: inherit; }
@@ -1350,7 +1350,7 @@ a.toolbar, a.toolbar:hover {
   display: inline-block;
   border: none;
   background: transparent;
-  color: #000; }
+  color: #212529; }
 
 .toolbar-list {
   padding: 0 0 0 0.5em;
@@ -2207,7 +2207,7 @@ a.fc-event:hover {
   border-bottom: 1px solid #dee2e6; }
 
 #calprio {
-  color: #000; }
+  color: #212529; }
 
 .calprio1 {
   background: #dae0e0; }
@@ -2237,12 +2237,12 @@ a.fc-event:hover {
   background: #da9a9a; }
 
 .calprio1 a, .calprio2 a, .calprio3 a, .calprio4 a, .calprio5 a, .calprio6 a, .calprio7 a, .calprio8 a, .calprio9 a {
-  color: #000;
+  color: #212529;
   font-weight: normal; }
 
 .status0, .status1, .status2 {
-  border: 1px solid #000;
-  color: #000; }
+  border: 1px solid #212529;
+  color: #212529; }
 
 .status0 {
   background: #17a2b8; }
@@ -2491,7 +2491,7 @@ fieldset.dropzone {
   color: #000; }
 
 .webmail_item {
-  border: 1px solid #000;
+  border: 1px solid #212529;
   padding: 0 1px; }
 
 .webmail_refresh_message {
@@ -3413,7 +3413,7 @@ div.tiki_plugin {
 
 .autotoc .nav > li > a:focus, .autotoc .nav > li > a:hover {
   padding-left: 19px;
-  border-left: 1px solid #000; }
+  border-left: 1px solid #212529; }
 
 .autotoc > .nav > li > .nav > li {
   padding-bottom: 5px; }
@@ -3422,7 +3422,7 @@ div.tiki_plugin {
   padding-left: 18px;
   font-weight: 700;
   border: none;
-  border-left: 2px solid #000;
+  border-left: 2px solid #212529;
   background-color: transparent; }
 
 .autotoc .nav .nav {
@@ -3905,17 +3905,17 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
       font-size: 0.8em; }
 
 .tiki .pvtUi {
-  color: #000; }
+  color: #212529; }
   .tiki table.pvtTable {
     font-size: 1rem; }
   .tiki table.pvtTable tr th {
     background-color: #fff;
-    color: #000;
+    color: #212529;
     border: 1px solid #dee2e6;
     font-size: 1rem;
     padding: 5px; }
   .tiki table.pvtTable tr td {
-    color: #000;
+    color: #212529;
     background-color: transparent;
     border-color: #dee2e6; }
   .tiki .pvtTotal, .tiki .pvtGrandTotal {
@@ -3941,9 +3941,9 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     padding: 2px 5px;
     white-space: nowrap;
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #212529;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #212529; }
   .tiki .pvtTriangle {
     cursor: pointer;
     color: grey; }
@@ -3980,9 +3980,9 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     padding: 5px; }
   .tiki .pvtFilterBox button {
     background: #fff;
-    border: 1px solid #000;
+    border: 1px solid #212529;
     border-radius: 0.25rem;
-    color: #000; }
+    color: #212529; }
   .tiki .pvtFilterBox button:hover {
     background: #fff; }
   .tiki .pvtFilterBox button + button {
@@ -3990,7 +3990,7 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     margin-bottom: 4px; }
   .tiki .c3 line, .tiki .c3 path, .tiki .c3 svg {
     fill: none;
-    stroke: #000; }
+    stroke: #212529; }
   .tiki select {
     font-size: 1rem; }
 /* End of file */
