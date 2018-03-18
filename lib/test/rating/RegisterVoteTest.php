@@ -241,14 +241,14 @@ class Rating_RegisterVoteTest extends TikiTestCase
 
 	function testEnvironmentAnonymousLookup()
 	{
-		session_id('deadbeef01234567');
+		$sessionId = session_id();
 
 		$lib = new RatingLib;
 		$this->assertTrue($lib->record_vote('test', '123', 2));
 
 		$this->assertEquals(
 			[
-				['user' => "anonymous\0deadbeef01234567", 'id' => 'test.123', 'optionId' => 2],
+				['user' => "anonymous\0" . $sessionId, 'id' => 'test.123', 'optionId' => 2],
 			],
 			$this->getTestData()
 		);
