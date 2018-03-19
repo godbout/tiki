@@ -10,14 +10,12 @@ function prefs_box_list()
 	return [
 		'box_shadow_start' => [
 			'name' => tra('Module (box) shadow start'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',
 		],
 		'box_shadow_end' => [
 			'name' => tra('Module (box) shadow end'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',

@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\WikiPlugin\Reference;
+
 function wikiplugin_showreference_info()
 {
 	return [
@@ -61,6 +63,26 @@ function wikiplugin_showreference_info()
 				'filter' => 'digits',
 				'default' => '',
 			],
+			'removelines' => [
+				'required' => false,
+				'name' => tra('Remove the lines around the list of references'),
+				'description' => tr('Remove the horizontal lines displayed above and bellow the list of references.'),
+				'since' => '18.0',
+				'options' => [
+					['text' => tra(''), 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'yes'],
+					['text' => tra('No'), 'value' => 'no'],
+				],
+				'default' => '',
+			],
+			// Add new parameter pageid
+			'pageid' => [
+				'required' => false,
+				'name' => tra('Page identifier'),
+				'description' => tr('Provide the page id'),
+				'since' => '18.0',
+				'default' => '',
+			],
 		],
 	];
 }
@@ -70,59 +92,55 @@ function wikiplugin_showreference($data, $params)
 
 	global $prefs;
 
-	$params['title'] = trim($params['title']);
-	$params['showtitle'] = trim($params['showtitle']);
-	$params['hlevel'] = trim($params['hlevel']);
+	$referenceStyle = (! empty($prefs['feature_references_style']) && $prefs['feature_references_style'] === 'mla') ? 'mla' : 'ama';
 
-	$title = 'Bibliography';
-	if (isset($params['title']) && $params['title'] != '') {
-		$title = $params['title'];
-	}
+	$params['title'] = empty($params['title']) ? '' : trim($params['title']);
+	$params['hlevel'] = empty($params['hlevel']) ? '' : trim($params['hlevel']);
+	$params['removelines'] = empty($params['removelines']) ? '' : trim($params['removelines']);
+	$params['pageid'] = empty($params['pageid']) ? '' : trim($params['pageid']);
 
-	if (isset($params['showtitle'])) {
-		$showtitle = $params['showtitle'];
-	}
-	if ($showtitle == 'yes' || $showtitle == '') {
-		$showtitle = 1;
-	} else {
-		$showtitle = 0;
-	}
-
-	$hlevel_start = '<h1>';
-	$hlevel_end = '</h1>';
+	$title = empty($params['title']) ? tr('Bibliography') : $params['title'];
+	$showtitle = empty($params['showtitle']) || trim($params['showtitle']) !== 'no';
 
 	if (isset($params['hlevel']) && $params['hlevel'] != '') {
 		if ($params['hlevel'] != '0') {
 			$hlevel_start = '<h' . $params['hlevel'] . '>';
 			$hlevel_end = '</h' . $params['hlevel'] . '>';
 		} else {
-			$hlevel_start = '';
-			$hlevel_end = '';
+			$hlevel_start = '<p>';
+			$hlevel_end = '</p>';
 		}
-	} else {
-		$hlevel_start = '<h1>';
-		$hlevel_end = '</h1>';
+	}
+	else {
+		$hlevel_start = '<p>';
+		$hlevel_end = '</p>';
 	}
 
 	if ($prefs['wikiplugin_showreference'] == 'y') {
-		$page_id = $GLOBALS['info']['page_id'];
+		// Check first if the param pageid is passed.
+		// If not then check the global info:page_id
+		if(strlen($params['pageid'])==0) {
+			if (empty($GLOBALS['info']) || empty($GLOBALS['info']['page_id'])) {
+				return 'error';
+			}
+			else{
+				$page_id = $GLOBALS['info']['page_id'];
+			}
+		}
+		else {
+			$page_id = $params['pageid'];
+		}
 
-		$tags = [
-				'~biblio_code~' => 'biblio_code',
-				'~author~' => 'author',
-				'~title~' => 'title',
-				'~year~' => 'year',
-				'~part~' => 'part',
-				'~uri~' => 'uri',
-				'~code~' => 'code',
-				'~publisher~' => 'publisher',
-				'~location~' => 'location'
-		];
+		$tags = Reference::getTagsToParse();
 
 		$htm = '';
 
 		$referenceslib = TikiLib::lib('references');
 		$references = $referenceslib->list_assoc_references($page_id);
+
+		// Return empty html if no references are associated
+		if(count($references['data'])==0)
+			return '';
 
 		$referencesData = [];
 		$is_global = 1;
@@ -145,7 +163,9 @@ function wikiplugin_showreference($data, $params)
 				$htm .= $hlevel_start . $title . $hlevel_end;
 			}
 
-			$htm .= '<hr>';
+			if ($params['removelines'] !== 'yes') {
+				$htm .= '<hr>';
+			}
 
 			$htm .= '<ul style="list-style: none outside none;">';
 
@@ -177,65 +197,41 @@ function wikiplugin_showreference($data, $params)
 						$cssClass = $values['data'][$ref]['style'];
 					}
 
-					$text = parseTemplate($tags, $ref, $values['data']);
+					$text = Reference::parseTemplate($tags, $ref, $values['data'], $referenceStyle);
 				} else {
 					if (array_key_exists($ref, $excluded)) {
-						$text = parseTemplate($tags, $ref, $references['data']);
+						$text = Reference::parseTemplate($tags, $ref, $references['data'], $referenceStyle);
 					}
 				}
 				$anchor = "<a name='" . $ref . "'>&nbsp;</a>";
-				if (strlen($text)) {
-					$htm .= "<li class='" . $cssClass . "'>" . $anchor . $ref_no . ". " . $text . '</li>';
+				if ($referenceStyle === 'mla') {
+					if (strlen($text)) {
+						$htm .= "<li class='" . $cssClass . "'>" . $text . $anchor . '</li>';
+					} else {
+						$htm .= "<li class='" . $cssClass . "' style='font-style:italic'>" .
+							$ref . ': ' . tr('missing bibliography definition') . $anchor .
+							'</li>';
+					}
 				} else {
-					$htm .= "<li class='" . $cssClass . "' style='font-style:italic'>" . $anchor .
-											$ref_no . '. missing bibliography definition' .
-											'</li>';
+					if (strlen($text)) {
+						$htm .= "<li class='" . $cssClass . "'>" . $ref_no . ". " . $text . $anchor . '</li>';
+					} else {
+						$htm .= "<li class='" . $cssClass . "' style='font-style:italic'>" .
+							$ref_no . '. ' . tr('missing bibliography definition') . $anchor .
+							'</li>';
+					}
 				}
 			}
 
 			$htm .= '</ul>';
 
-			$htm .= '<hr>';
+			if ($params['removelines'] !== 'yes') {
+				$htm .= '<hr>';
+			}
 
 			$htm .= '</div>';
 		}
-
 		return $htm;
 	}
-}
-
-function parseTemplate($tags, $ref, $values)
-{
-
-	$text = $values[$ref]['template'];
-	if ($text == '') {
-		$text = '~title~, ~part~, ~author~, ~location~, ~year~, ~publisher~, ~code~';
-	}
-
-	if ($text != '') {
-		foreach ($tags as $tag => $val) {
-			if ($values[$ref][$val] == '') {
-				$pos = strpos($text, $tag);
-				$len = strlen($tag);
-				$prevWhiteSpace = $text[$pos - 1];
-
-				if ($prevWhiteSpace != ' ' && $pos) {
-					$text = str_replace($text[$pos - 1], '', $text);
-				}
-
-				$pos = strpos($text, $tag);
-				$len = strlen($tag);
-				$postWhiteSpace = $text[$pos + $len];
-
-				if ($postWhiteSpace != ' ' && $pos) {
-					$text = str_replace($text[$pos + $len], '', $text);
-				}
-
-				$text = str_replace($tag, $values[$ref][$val], $text);
-			} else {
-				$text = str_replace($tag, $values[$ref][$val], $text);
-			}
-		}
-	}
-	return $text;
+	return "not showing plugin";
 }

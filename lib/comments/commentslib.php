@@ -146,12 +146,14 @@ class Comments extends TikiLib
 				$forum_info['att_store_dir'] .= '/';
 			}
 
-			@$fw = fopen($forum_info['att_store_dir'] . $fhash, "wb");
+			$filename = $forum_info['att_store_dir'] . $fhash;
+			@$fw = fopen($filename, "wb");
 			if (! $fw && ! $inbound_mail) {
 				$errors[] = tra('Cannot write to this file:') . ' ' . $forum_info['att_store_dir'] . $fhash;
 				return 0;
 			}
 		}
+		$filegallib = TikiLib::lib('filegal');
 		if ($fp) {
 			while (! feof($fp)) {
 				if ($forum_info['att_store'] == 'db') {
@@ -162,8 +164,31 @@ class Comments extends TikiLib
 				}
 			}
 			fclose($fp);
+			if ($forum_info['att_store'] == 'db') {
+				try {
+					$filegallib->assertUploadedContentIsSafe($data, $name);
+				} catch (Exception $e) {
+					$errors[] = $e->getMessage();
+					return 0;
+				}
+			} else {
+				try {
+					$filegallib->assertUploadedFileIsSafe($filename, $name);
+				} catch (Exception $e) {
+					$errors[] = $e->getMessage();
+					fclose($fw);
+					unlink($filename);
+					return 0;
+				}
+			}
 		} else {
 			if ($forum_info['att_store'] == 'dir') {
+				try {
+					$filegallib->assertUploadedContentIsSafe($data, $name);
+				} catch (Exception $e) {
+					$errors[] = $e->getMessage();
+					return 0;
+				}
 				fwrite($fw, $data);
 			}
 		}
@@ -2645,7 +2670,7 @@ class Comments extends TikiLib
 	}
 
 	/* @brief: gets the comments of the thread and of all its fathers (ex cept first one for forum)
- 	*/
+	 */
 	function get_comments_fathers($threadId, $ret = null, $message_id = null)
 	{
 		$com = $this->get_comment($threadId, $message_id);
@@ -3565,7 +3590,7 @@ class Comments extends TikiLib
 	/* post a topic or a reply in forum
 	 * @param array forum_info
 	 * @param array $params: list of options($_REQUEST)
- 	 * @return the threadId
+	  * @return the threadId
 	 * @return $feedbacks, $errors */
 	/**
 	 * @param $forum_info
@@ -3642,15 +3667,18 @@ class Comments extends TikiLib
 			return 0;
 		}
 
-		$noparsed = ['key' => [], 'data' => []];
 		$data = $params['comments_data'];
+		
+		// Strip (HTML) tags. Tags in CODE plugin calls are spared using plugins_remove().
+		//TODO: Use a standardized sanitization (if any)  
+		$noparsed = ['key' => [], 'data' => []];
 		$parserlib = TikiLib::lib('parser');
 		$parserlib->plugins_remove($data, $noparsed, function ($match) {
 			return $match->getName() == 'code';
 		});
-
 		$data = strip_tags($data);
 		$data = str_replace($noparsed['key'], $noparsed['data'], $data);
+		
 		$params['comments_data'] = rtrim($data);
 
 		if ($tiki_p_admin_forum != 'y') {// non admin can only post normal

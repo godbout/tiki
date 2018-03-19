@@ -79,6 +79,43 @@ class ComposerManager
 	}
 
 	/**
+	 * Check that composer can install packages, and return a list of issues, if found
+	 * @return array
+	 */
+	public function checkThatCanInstallPackages()
+	{
+		$errors = [];
+
+		$composerFile = $this->composerWrapper->getComposerConfigFilePath();
+		$composerLockFile = substr($composerFile, 0, -5) . '.lock'; // replace .json with .lock
+		$composerRootDir = dirname($composerFile);
+		$composerVendorDir = $composerRootDir . DIRECTORY_SEPARATOR . 'vendor';
+
+		if (! is_writable($composerRootDir)) {
+			if (! file_exists($composerFile)) {
+				$errors[] = tr('Tiki root directory is not writable, so file "%0" can not be created', $composerFile);
+			}
+			if (! file_exists($composerLockFile)) {
+				$errors[] = tr('Tiki root directory is not writable, so file "%0" can not be created', $composerLockFile);
+			}
+			if (! is_dir($composerVendorDir)) {
+				$errors[] = tr('Tiki root directory is not writable, so directory "%0" can not be created', $composerVendorDir);
+			}
+		}
+		if (file_exists($composerFile) && ! is_writable($composerFile)) {
+			$errors[] = tr('Tiki can not write to file "%0"', $composerFile);
+		}
+		if (file_exists($composerLockFile) && ! is_writable($composerLockFile)) {
+			$errors[] = tr('Tiki can not write to file "%0"', $composerLockFile);
+		}
+		if (is_dir($composerVendorDir) && ! is_writable($composerVendorDir)) {
+			$errors[] = tr('Tiki can not write to directory "%0"', $composerVendorDir);
+		}
+
+		return $errors;
+	}
+
+	/**
 	 * Check if composer is available
 	 * @return bool
 	 */

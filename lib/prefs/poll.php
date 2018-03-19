@@ -30,7 +30,7 @@ function prefs_poll_list()
 		],
 		'poll_list_categories' => [
 			'name' => tra('Show categories'),
-			'description' => tra(''),
+			'description' => tra('Tiki displays the poll’s category, if applicable.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_categories',
@@ -39,7 +39,6 @@ function prefs_poll_list()
 		],
 		'poll_list_objects' => [
 			'name' => tra('Show objects'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		],

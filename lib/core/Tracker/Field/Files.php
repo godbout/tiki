@@ -336,6 +336,13 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			return $value;
 		}
 
+		if ($context['list_mode'] === 'text') {
+			return implode("\n",
+				array_map(function($file){
+					return $file['name'];
+				}, $this->getConfiguration('files')));
+		}
+
 		$ret = '';
 		if (empty($value)) {
 			$ret = '&nbsp;';
@@ -359,7 +366,6 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 				$params['checkItemPerms'] = $item->canModify() ? 'n' : 'y';
 
 				if ($this->getOption('displayMode') == 'img') { // img
-
 					if ($context['list_mode'] === 'y') {
 						$params['thumb'] = $context['list_mode'];
 						$params['rel'] = 'box[' . $this->getInsertId() . ']';
@@ -367,7 +373,6 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 					include_once('lib/wiki-plugins/wikiplugin_img.php');
 					$ret = wikiplugin_img('', $params);
 				} elseif ($this->getOption('displayMode') == 'vimeo') {	// Vimeo videos stored as filegal REMOTEs
-
 					include_once('lib/wiki-plugins/wikiplugin_vimeo.php');
 					$ret = wikiplugin_vimeo('', $params);
 				} elseif ($this->getOption('displayMode') == 'moodlescorm') {
@@ -521,6 +526,31 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 
 	function watchCompare($old, $new)
 	{
+		$name = $this->getConfiguration('name');
+		$isVisible = $this->getConfiguration('isHidden', 'n') == 'n';
+
+		if (! $isVisible) {
+			return;
+		}
+
+		$filegallib = TikiLib::lib('filegal');
+
+		$oldFileIds = explode(',', $old);
+		$newFileIds = explode(',', $new);
+
+		$oldFileInfos = empty($oldFileIds) ? [] : $filegallib->get_files_info(null, $oldFileIds);
+		$newFileInfos = empty($newFileIds) ? [] : $filegallib->get_files_info(null, $newFileIds);
+
+		$oldValueLines = '';
+		foreach ($oldFileInfos as $info) {
+			$oldValueLines .= '> ' . $info['filename'];
+		}
+		$newValueLines = '';
+		foreach ($newFileInfos as $info) {
+			$newValueLines .= '> ' . $info['filename'];
+		}
+
+		return "[-[$name]-]:\n--[Old]--:\n$oldValueLines\n\n*-[New]-*:\n$newValueLines";
 	}
 
 	function filterFile($info)

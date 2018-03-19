@@ -38,7 +38,7 @@ function wikiplugin_h5p($data, $params)
 	$instance++;
 
 	// temporary issue in 17.x with annotatorjs 1.2 (we hope)
-	if ($prefs['feature_inline_comments'] === 'y') {
+	if ($prefs['comments_inline_annotator'] === 'y') {
 		if ($instance === 1) {
 			Feedback::warning(tr('H5P is not compatible with the Inline comments (annotations) feature'));
 		}

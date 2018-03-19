@@ -904,7 +904,6 @@ function runR($output, $convert, $sha1, $input, $r_echo, $ws, $params, $user, $r
 			// Add the user input code at the end
 			$content .= $input . "\n";
 		} else {	// png can be used because R was compiled with support for X11
-
 			// Set R echo to false and Change the working directory to the current subfolder in the temp/cache folder
 			$content = 'options(echo=FALSE)' . "\n" . 'cat(" -->")' . "\n" . 'setwd("' . $r_dir . '/")' . "\n";
 
@@ -991,7 +990,6 @@ function runR($output, $convert, $sha1, $input, $r_echo, $ws, $params, $user, $r
 		}
 
 		if ($r_exitcode == 0) { // case when no error occurred
-
 			// Start of Preprocessing HTML before sending it to the user's browser: cleanup, etc.
 			// ----------------------------------
 			//remove empty lines produced by some R packages such as googleVis that were inserting too much white space for granted before the graphs produced by the Google Visualization API

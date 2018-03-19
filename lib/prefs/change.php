@@ -20,7 +20,6 @@ function prefs_change_list()
 		],
 		'change_theme' => [
 			'name' => tra('Users can change theme'),
-			'description' => tra(''),
 			'warning' => tra('Users can override the theme with this setting.'),
 			'type' => 'flag',
 			'default' => 'n',

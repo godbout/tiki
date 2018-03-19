@@ -58,16 +58,16 @@ class WikiParser_PluginOutput
 		$repeat = false;
 
 		return new self(
-					'html',
-					smarty_block_remarksbox(
-						[
+			'html',
+			smarty_block_remarksbox(
+				[
 							'type' => 'error',
 							'title' => $label,
 						],
-						$message,
-						$smarty,
-						$repeat
-					)
+				$message,
+				$smarty,
+				$repeat
+			)
 		);
 	}
 

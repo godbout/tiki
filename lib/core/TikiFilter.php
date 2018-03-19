@@ -5,23 +5,28 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+/**
+ * Class TikiFilter
+ * 
+ * Just offers a get method to obtain an instance of a Zend\Filter\FilterInterface implementation, either stock (Zend) or custom.
+ * The objects are "filters" in an extended sense. Data is not necessarily just filtered, but can be otherwise altered.
+ * For example, special characters can be escaped.
+ * 
+ * FIXME: The filter() method may perform lossy data alteration quietly, which complicates debugging. See https://github.com/zendframework/zend-filter/issues/63
+ */
 class TikiFilter
 {
 	/**
-	 * Provides a filter instance based on the input. Either a filter
-	 * can be passed or a shortcut name.
+	 * Provides an object implementing Zend\Filter\FilterInterface based on the input
 	 *
-	 * @param \Zend\Filter\FilterInterface|string $filter		A filter shortcut name, or the filter name its self.
-	 * @return \Zend\Filter\FilterInterface 					The filter to apply.
+	 * @param \Zend\Filter\FilterInterface|string $filter		A filter shortcut name, or the filter itself.
+	 * @return \Zend\Filter\FilterInterface 					The filter object requested
 	 *
 	 * @link https://dev.tiki.org/Filtering+Best+Practices
+	 * @link https://zendframework.github.io/zend-filter/
 	 */
 	public static function get($filter)
 	{
-		global $prefs;
-		if ($prefs['feature_filtering'] == 'n') {
-			return new TikiFilter_None;
-		}
 		if ($filter instanceof \Zend\Filter\FilterInterface) {
 			return $filter;
 		}
@@ -66,8 +71,8 @@ class TikiFilter
 				// Only characters matched, not patterns - eg 'x75||xx44|' will return '75||44|'
 				return new Zend\Filter\PregReplace('/[^\p{N}\|]*/', '');
 			case 'int':
-				// Transforms a sclar phrase into an integer. eg. '-4 is less than 0' returns -4, while '' returns 0
-				// return type: (int)
+				// Transforms a phrase into an integer. eg. '-4 is less than 0' returns -4, while '' returns 0
+				// return type: (int), if the input is scalar
 				return new Zend\Filter\ToInt;
 			case 'isodate':
 				return new TikiFilter_IsoDate;

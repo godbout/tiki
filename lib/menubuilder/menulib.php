@@ -131,7 +131,7 @@ class MenuLib extends TikiLib
 		}
 
 		$this->empty_menu_cache($menuId);
-		$result = $this->query($query, $bindvars);
+		$this->query($query, $bindvars, -1, -1, TikiDb::ERR_EXCEPTION);
 		return true;
 	}
 
@@ -598,7 +598,7 @@ class MenuLib extends TikiLib
 							. '","' . $option['perm']
 							. '","' . $option['groupname']
 							. '",' . $option['userlevel']
-							. '",' . $option['class']
+							. ',' . $option['class']
 							. ',"n"' . "\r\n"
 							;
 		}

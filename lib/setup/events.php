@@ -144,6 +144,10 @@ function tiki_setup_events()
 		$events->bind('tiki.save', $defer('filegal', 'save_sync_file_backlinks'));
 	}
 
+	if ($prefs['feature_library_references'] == 'y') {
+		$events->bind('tiki.wiki.save', $defer('references', 'autoCopyLibraryReferencesToPageReferences'));
+	}
+
 	if ($prefs['dailyreports_enabled_for_new_users'] == 'y') {
 		$events->bind('tiki.user.create', [Reports_Factory::build('Reports_Users'), 'addUserToDailyReports']);
 	}

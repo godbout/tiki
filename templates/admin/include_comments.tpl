@@ -13,6 +13,7 @@
 		<div class="admin featurelist">
 			{preference name=feature_comments_moderation}
 			{preference name=feature_comments_locking}
+			{preference name=feature_comments_send_author_name}
 			{preference name=feature_comments_post_as_anonymous}
 			{preference name=comments_vote}
 			{preference name=comments_archive}
@@ -37,6 +38,9 @@
 	<fieldset>
 		<legend>{tr}Annotations{/tr}</legend>
 		{preference name=feature_inline_comments}
+		<div class="adminoptionboxchild" id="feature_inline_comments_childcontainer">
+			{preference name=comments_inline_annotator}
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend>{tr}Using comments in various features{/tr}</legend>

@@ -10,14 +10,12 @@ function prefs_header_list()
 	return [
 		'header_shadow_start' => [
 			'name' => tra('HHeader shadow div start'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',
 		],
 		'header_shadow_end' => [
 			'name' => tra('Header shadow div end'),
-			'description' => tra(''),
 			'type' => 'textarea',
 			'size' => '2',
 			'default' => '',

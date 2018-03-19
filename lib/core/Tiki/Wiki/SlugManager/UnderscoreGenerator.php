@@ -29,4 +29,9 @@ class UnderscoreGenerator implements Generator
 
 		return $slug;
 	}
+
+	function degenerate($slug)
+	{
+		return preg_replace('/_+/', ' ', trim($slug));
+	}
 }

@@ -106,6 +106,7 @@ class ConsoleApplicationBuilder
 					new SchedulerRunCommand,
 					new TrackerImportCommand,
 					new SitemapGenerateCommand,
+					new TikiInfoCommand,
 					new TrackerClearCommand,
 					new AdminIndexRebuildCommand,
 					new UsersListCommand,

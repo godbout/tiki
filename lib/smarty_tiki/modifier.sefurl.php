@@ -101,7 +101,7 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 		case 'trackeritemfield':
 			$type = 'trackeritem';
 			$source = (int)explode(':', $source)[0];
-			
+
 		case 'tracker item':
 			$type = 'trackeritem';
 

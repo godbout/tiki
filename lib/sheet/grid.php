@@ -2004,7 +2004,7 @@ class TikiSheetOutputHandler extends TikiSheetDataHandler
 
 				$format = $sheet->cellInfo[$i][$j]['format'];
 				if (! empty($format)) {
-					$data = TikiSheetDataFormat::$format( $data );
+					$data = TikiSheetDataFormat::$format($data);
 				}
 
 				$style = $sheet->cellInfo[$i][$j]['style'];
@@ -2185,7 +2185,7 @@ class TikiSheetLabeledOutputHandler extends TikiSheetDataHandler
 
 				$format = $sheet->cellInfo[$i][$j]['format'];
 				if (! empty($format)) {
-					$data = TikiSheetDataFormat::$format( $data );
+					$data = TikiSheetDataFormat::$format($data);
 				}
 
 				$style = $sheet->cellInfo[$i][$j]['style'];

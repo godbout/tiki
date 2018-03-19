@@ -19,7 +19,6 @@ function prefs_gmap_list()
 		],
 		'gmap_defaultx' => [
 			'name' => tra('Default x for map center'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'filter' => 'striptags',
@@ -27,7 +26,6 @@ function prefs_gmap_list()
 		],
 		'gmap_defaulty' => [
 			'name' => tra('Default y for map center'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'filter' => 'striptags',
@@ -35,7 +33,6 @@ function prefs_gmap_list()
 		],
 		'gmap_defaultz' => [
 			'name' => tra('Default zoom level'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				1 => tra('whole earth'),
@@ -61,7 +58,6 @@ function prefs_gmap_list()
 		],
 		'gmap_article_list' => [
 			'name' => tra('Show map mode buttons in articles list'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'dependencies' => [
 				'geo_locate_article',
@@ -70,7 +66,6 @@ function prefs_gmap_list()
 		],
 		'gmap_page_list' => [
 			'name' => tra('Show map mode buttons in page list'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'dependencies' => [
 				'geo_locate_wiki',

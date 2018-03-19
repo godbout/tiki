@@ -388,13 +388,14 @@ class WebMailLib extends TikiLib
 	}
 
 	/**
-	 * @param string $user		current user
-	 * @param int $accountid	can be 0 (uses current account)
-	 * @param bool $reload		force reload from mail server?
-	 * @return array			of partial message headers
+	 * @param string $user current user
+	 * @param int $accountid can be 0 (uses current account)
+	 * @param bool $reload force reload from mail server?
+	 * @param string $folder
+	 * @return array            of partial message headers
 	 * @throws Exception
 	 */
-	function refresh_mailbox($user, $accountid, $reload)
+	function refresh_mailbox($user, $accountid, $reload, $folder = '')
 	{
 
 		if (! empty($accountid)) {
@@ -407,6 +408,9 @@ class WebMailLib extends TikiLib
 			return [];
 		}
 
+		// the current folder to list, not stored in the database
+		$this->current_account['folder'] = $folder ? $folder : 'INBOX';
+
 		// start getting mail
 
 		$timeout = -1;
@@ -415,17 +419,23 @@ class WebMailLib extends TikiLib
 		}
 
 		$serialized_params = $this->current_account['accountId'] . ':' .
-													$this->current_account['user'] . ':' .
-													$this->current_account['account'];
+			$this->current_account['user'] . ':' .
+			$this->current_account['account'] . ':' .
+			$this->current_account['folder'];
 
-		if (isset($_SESSION['webmailinbox'][$serialized_params]) && ((! isset($reload) || ! $reload) && (isset($_SESSION['webmailinbox'][$serialized_params]['timestamp']) && $_SESSION['webmailinbox'][$serialized_params]['timestamp'] > $timeout))) {
+		if (isset($_SESSION['webmailinbox'][$serialized_params]) &&
+			(
+				(! isset($reload) || ! $reload) &&
+				(isset($_SESSION['webmailinbox'][$serialized_params]['timestamp']) && $_SESSION['webmailinbox'][$serialized_params]['timestamp'] > $timeout)
+			)
+		) {
 			$webmail_list = $_SESSION['webmailinbox'][$serialized_params]['webmail_list'];
 		} else {	// no cached list or timed out
 
 			// get mail the zend way
 
 			try {
-				$mail = $this->get_mail_storage($this->current_account);
+				$mail = $this->get_mail_storage();
 			} catch (Exception $e) {
 				// do something better with the error
 				unset($_SESSION['webmailinbox'][$serialized_params]['webmail_list']);
@@ -492,8 +502,10 @@ class WebMailLib extends TikiLib
 		return $webmail_list;
 	}	// end refresh_mailbox()
 
-	function get_mail_storage($webmail_account)
+	function get_mail_storage()
 	{
+		$this->current_account['folder'] = ! empty($_REQUEST['folder']) ? $_REQUEST['folder'] : 'INBOX';
+
 		if (! empty($this->current_account['imap'])) {
 			// connecting with Imap
 			return new Zend\Mail\Storage\Imap(
@@ -501,8 +513,10 @@ class WebMailLib extends TikiLib
 					'host'     => $this->current_account["imap"],
 					'user'     => $this->current_account["username"],
 					'password' => $this->current_account["pass"],
-					'port'	 => $this->current_account["port"],
-					'ssl'		 => $this->current_account["useSSL"] == 'y' ? 'SSL' : false]
+					'port'	   => $this->current_account["port"],
+					'ssl'      => $this->current_account["useSSL"] == 'y' ? 'SSL' : false,
+					'folder'   => $this->current_account['folder'],
+				]
 			);
 		} elseif (! empty($this->current_account['mbox'])) {
 			// connecting with Mbox locally
@@ -521,8 +535,10 @@ class WebMailLib extends TikiLib
 					'host'     => $this->current_account["pop"],
 					'user'     => $this->current_account["username"],
 					'password' => $this->current_account["pass"],
-					'port'	 => $this->current_account["port"],
-					'ssl'		 => $this->current_account["useSSL"] == 'y' ? 'SSL' : false]
+					'port'     => $this->current_account["port"],
+					'ssl'      => $this->current_account["useSSL"] == 'y' ? 'SSL' : false,
+					'folder'   => $this->current_account['folder'],
+				]
 			);
 		}
 		// not returned yet?
@@ -601,7 +617,7 @@ class WebMailLib extends TikiLib
 
 		// connecting with Zend
 		try {
-			$mail = $this->get_mail_storage($this->current_account);
+			$mail = $this->get_mail_storage();
 		} catch (Exception $e) {
 			// do something better with the error
 			return '';

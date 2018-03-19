@@ -21,6 +21,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals($data, $parser->parse($data));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testCallToArgumentParser()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
@@ -45,6 +48,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals($data, $parser->parse($data));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testFullSyntax()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
@@ -65,6 +71,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals('This is a test and will change', $parser->parse($data));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testShortSyntax()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
@@ -85,6 +94,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals('This is a test and will change', $parser->parse($data));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testShortSyntaxWithoutArguments()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
@@ -105,6 +117,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals('This is a test and will change', $parser->parse($data));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testSkipNoParse()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
@@ -121,6 +136,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals('~np~ {a} ~/np~ return ~np~ {c} ~/np~', $parser->parse($data));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testNestingNoSecondCall()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
@@ -137,6 +155,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals('no plugin', $parser->parse($data));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testPluginReturningPlugin()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
@@ -151,6 +172,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals('before __hello__ after', $parser->parse('before {a} after'));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testInnerPluginNotExecutedFirst()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
@@ -165,6 +189,9 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$this->assertEquals('__hello__', $parser->parse('{A()} {b} {A}'));
 	}
 
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testPluginReturnsNonParseCode()
 	{
 		$this->markTestIncomplete('Implementation not written yet');

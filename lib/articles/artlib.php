@@ -444,12 +444,12 @@ class ArtLib extends TikiLib
 
 		$wikilib = TikiLib::lib('wiki');
 		$wikilib->update_wikicontent_relations(
-			$heading."\n".$body,            
+			$heading . "\n" . $body,
 			'article',
 			(int)$articleId
 		);
 		$wikilib->update_wikicontent_links(
-			$heading."\n".$body,            
+			$heading . "\n" . $body,
 			'article',
 			(int)$articleId
 		);

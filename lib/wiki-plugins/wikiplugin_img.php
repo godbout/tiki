@@ -147,7 +147,7 @@ function wikiplugin_img_info()
 				'required' => false,
 				'name' => tra('Image Height'),
 				'description' => tr('Height in pixels or percent. Syntax: %0100%1 or %0100px%1 means 100 pixels;
-					%050%%1 means 50 percent.', '<code>', '</code>'),
+					%050%%1 means 50 percent. Percent applies when Image Source is set to file galleries images only.', '<code>', '</code>'),
 				'since' => '3.0',
 				'doctype' => 'size',
 				'filter' => 'text',
@@ -157,7 +157,7 @@ function wikiplugin_img_info()
 				'required' => false,
 				'name' => tra('Image Width'),
 				'description' => tr('Width in pixels or percent. Syntax: %0100%1 or %0100px%1 means 100 pixels;
-					%050%%1 means 50 percent.', '<code>', '</code>'),
+					%050%%1 means 50 percent. Percent applies when Image Source is set to file galleries images only.', '<code>', '</code>'),
 				'since' => '3.0',
 				'doctype' => 'size',
 				'filter' => 'text',
@@ -172,6 +172,7 @@ function wikiplugin_img_info()
 				'filter' => 'alpha',
 				'default' => 'n',
 				'options' => [
+					['text' => tra('Default'), 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n'],
 				],
@@ -203,6 +204,7 @@ function wikiplugin_img_info()
 				'doctype' => 'size',
 				'filter' => 'digits',
 				'default' => '',
+				'parentparam' => ['name' => 'type', 'value' => 'fileId'],
 			],
 			'desc' => [
 				'required' => false,
@@ -249,6 +251,7 @@ function wikiplugin_img_info()
 				'advanced' => false,
 				'default' => 'n',
 				'options' => [
+					['text' => tra('Default'), 'value' => ''],
 					['text' => tra('No'), 'value' => 'n'],
 					['text' => tra('Yes'), 'value' => 'y'],
 				],
@@ -1338,6 +1341,8 @@ function wikiplugin_img($data, $params)
 			$link = 'tiki-browse_image.php?imageId=' . $imgdata['id'];
 		} elseif ($javaset == 'true') {
 			$link = 'javascript:void(0)';
+			$fwidth = empty($fwidth) ? '' : $fwidth;
+			$fheight = empty($fheight) ? '' : $fheight;
 			$popup_params = [ 'text' => $data, 'width' => $fwidth, 'height' => $fheight, 'background' => $browse_full_image];
 			if ($imgdata['thumb'] == 'mousesticky') {
 				$popup_params['sticky'] = true;

@@ -452,8 +452,8 @@ class EditLib
 
 
 			/*
-		 	* convert 'align' to 'style' definitions
-		    */
+			 * convert 'align' to 'style' definitions
+			*/
 			if (isset($args['align'])) {
 				$style['text-align'] = $args['align']['value'];
 			}
@@ -774,6 +774,11 @@ class EditLib
 		$parsed = preg_replace('/(!!*)[\+\-]/m', '$1', $inData);		// remove show/hide headings
 		$parsed = preg_replace('/&#039;/', '\'', $parsed);			// catch single quotes at html entities
 
+		if (preg_match('/^\|\|.*\|\|$/', $parsed)) {	// new tables get newlines converted to <br> then to %%%
+			$parsed = str_replace('<br>', "\n", $parsed);
+		}
+
+
 		$parsed = TikiLib::lib('parser')->parse_data(
 			$parsed,
 			array_merge([
@@ -825,22 +830,48 @@ class EditLib
 
 	static function partialParseWysiwygToWiki($inData)
 	{
+		if (empty($inData)) {
+			return '';
+		}
 		// de-protect ck_protected comments
 		$ret = preg_replace('/<!--{cke_protected}{C}%3C!%2D%2D%20end%20tiki_plugin%20%2D%2D%3E-->/i', '<!-- end tiki_plugin -->', $inData);
-		
-		// remove the wysiwyg plugin elements leaving the syntax only remaining
-		$ret = preg_replace('/<(?:div|span)[^>]*syntax="(.*)".*end tiki_plugin --><\/(?:div|span)>/Umis', "$1", $ret);
-		
-		// preg_replace blows up here with a PREG_BACKTRACK_LIMIT_ERROR on pages with "corrupted" plugins
 		if (! $ret) {
 			$ret = $inData;
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 1, preg_last_error()));
+		}
+		// remove the wysiwyg plugin elements leaving the syntax only remaining
+		$ret2 = preg_replace('/<(?:div|span)[^>]*syntax="(.*)".*end tiki_plugin --><\/(?:div|span)>/Umis', "$1", $ret);
+		// preg_replace blows up here with a PREG_BACKTRACK_LIMIT_ERROR on pages with "corrupted" plugins
+		if (! $ret2) {
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 2, preg_last_error()));
+		} else {
+			$ret = $ret2;
 		}
 
 		// take away the <p> that f/ck introduces around wiki heading ! to have maketoc/edit section working
-		$ret = preg_replace('/<p>!(.*)<\/p>/iu', "!$1\n", $ret);
+		$ret2 = preg_replace('/<p>\s*!(.*)<\/p>/Umis', "!$1\n", $ret);
+		if (! $ret2) {
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 3, preg_last_error()));
+		} else {
+			$ret = $ret2;
+		}
 
 		// strip the last empty <p> tag generated somewhere (ckeditor 3.6, Tiki 10)
-		$ret = preg_replace('/\s*<p>[\s]*<\/p>\s*$/iu', "$1\n", $ret);
+		$ret2 = preg_replace('/\s*<p>\s*<\/p>\s*$/Umis', "$1\n", $ret);
+		if (! $ret2) {
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 4, preg_last_error()));
+		} else {
+			$ret = $ret2;
+		}
+
+		// convert tikicomment tags back to ~tc~tiki comments~/tc~
+		$ret2 = preg_replace('/<tikicomment>(.*)<\/tikicomment>/Umis', '~tc~$1~/tc~', $ret);
+		if (! $ret2) {
+			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 5, preg_last_error()));
+		} else {
+			$ret = $ret2;
+		}
+
 		return $ret;
 	}
 
@@ -867,32 +898,35 @@ class EditLib
 		if (! $c) {
 			return;
 		}
+		$parserlib = TikiLib::lib('parser');
 
-		for ($i = 0; $i <= $c["contentpos"]; $i++) {
+		for ($i = 0; $i <= $c['contentpos']; $i++) {
+			$node = $c[$i];
 			// If content type 'text' output it to destination...
-			if ($c[$i]["type"] == "text") {
-				if (! ctype_space($c[$i]["data"])) {
-					$add = $c[$i]["data"];
+
+			if ($node['type'] == 'text') {
+				if (! ctype_space($node['data'])) {
+					$add = $node['data'];
 					$noparsed = [];
-					 TikiLib::lib('parser')->plugins_remove($add, $noparsed);
+					$parserlib->plugins_remove($add, $noparsed);
 					$add = str_replace(["\r","\n"], '', $add);
 					$add = str_replace('&nbsp;', ' ', $add);
-					TikiLib::lib('parser')->plugins_replace($add, $noparsed, true);
+					$parserlib->plugins_replace($add, $noparsed, true);
 					$src .= $add;
 				} else {
-					$src .= str_replace(["\n", "\r"], '', $c[$i]["data"]);	// keep the spaces
+					$src .= str_replace(["\n", "\r"], '', $node['data']);	// keep the spaces
 				}
-			} elseif ($c[$i]["type"] == "comment") {
-				$src .= preg_replace('/<!--/', "\n~hc~", preg_replace('/-->/', "~/hc~\n", $c[$i]["data"]));
-			} elseif ($c[$i]["type"] == "tag") {
-				if ($c[$i]["data"]["type"] == "open") {
+			} elseif ($node['type'] == 'comment') {
+				$src .= preg_replace('/<!--/', "\n~hc~", preg_replace('/-->/', "~/hc~\n", $node['data']));
+			} elseif ($node['type'] == 'tag') {
+				if ($node['data']['type'] == 'open') {
 					// Open tag type
 
 					// deal with plugins - could be either span of div so process before the switch statement
-					if (isset($c[$i]['pars']['plugin']) && isset($c[$i]['pars']['syntax'])) {	// handling for tiki plugins
-						$src .= html_entity_decode($c[$i]['pars']['syntax']['value']);
+					if (isset($node['pars']['plugin']) && isset($node['pars']['syntax'])) {	// handling for tiki plugins
+						$src .= html_entity_decode($node['pars']['syntax']['value']);
 						$more_spans = 1;
-						$elem_type = $c[$i]["data"]["name"];
+						$elem_type = $node['data']['name'];
 						$other_elements = 0;
 						$j = $i + 1;
 						while ($j < $c['contentpos']) {	// loop through contents of this span and discard everything
@@ -916,31 +950,31 @@ class EditLib
 
 					$isPar = false; // assuming "div" when calling parseParDivTag()
 
-					switch ($c[$i]["data"]["name"]) {
+					switch ($node['data']['name']) {
 						// Tags we don't want at all.
-						case "meta":
+						case 'meta':
 						case 'link':
-							$c[$i]["content"] = '';
+							$node['content'] = '';
 							break;
 						case 'script':
-							$c[$i]['content'] = '';
-							if (! isset($c[$i]['pars']['src'])) {
+							$node['content'] = '';
+							if (! isset($node['pars']['src'])) {
 								$i++;
-								while ($c[$i]['data']['name'] !== 'script' && $c[$i]['data']['type'] !== 'close' && $i <= $c['contentpos']) {
+								while ($node['type'] === 'text' || ($node['data']['name'] !== 'script' && $node['data']['type'] !== 'close' && $i <= $c['contentpos'])) {
 									$i++;    // skip contents of script tag
 								}
 							}
 							break;
 						case 'style':
-							$c[$i]['content'] = '';
+							$node['content'] = '';
 							$i++;
-							while ($c[$i]['data']['name'] !== 'style' && $c[$i]['data']['type'] !== 'close' && $i <= $c['contentpos']) {
+							while ($node['data']['name'] !== 'style' && $node['data']['type'] !== 'close' && $i <= $c['contentpos']) {
 								$i++;    // skip contents of script tag
 							}
 							break;
 
 						// others we do want
-						case "br":
+						case 'br':
 							if ($p['wiki_lbr']) { // "%%%" or "\n" ?
 								$src .= ' %%% ';
 							} else {
@@ -965,55 +999,55 @@ class EditLib
 								}
 							}
 							break;
-						case "hr":
+						case 'hr':
 							$src .= $this->startNewLine($src) . '---';
 							break;
-						case "title":
+						case 'title':
 							$src .= "\n!";
 							$p['stack'][] = ['tag' => 'title', 'string' => "\n"];
 							break;
-						case "p":
+						case 'p':
 							$isPar = true;
 							if ($src && $prefs['feature_wiki_paragraph_formatting'] !== 'y') {
 								$src .= "\n";
 							}
-						case "div": // Wiki parsing creates divs for center
-							if (isset($c[$i]['pars'])) {
-								$this->parseParDivTag($isPar, $c[$i]['pars'], $src, $p);
-							} elseif ($p['table']) {
+						case 'div': // Wiki parsing creates divs for center
+							if (isset($node['pars'])) {
+								$this->parseParDivTag($isPar, $node['pars'], $src, $p);
+							} elseif (! empty($p['table'])) {
 								$src .= '%%%';
 							} else {	// normal para or div
 								$src .= $this->startNewLine($src);
-								$p['stack'][] = ['tag' => $c[$i]['data']['name'], 'string' => "\n\n"];
+								$p['stack'][] = ['tag' => $node['data']['name'], 'string' => "\n\n"];
 							}
 							break;
-						case "span":
-							if (isset($c[$i]['pars'])) {
-								$this->parseSpanTag($c[$i]['pars'], $src, $p);
+						case 'span':
+							if (isset($node['pars'])) {
+								$this->parseSpanTag($node['pars'], $src, $p);
 							}
 							break;
-						case "b":
+						case 'b':
 							$this->processWikiTag('b', $src, $p, '__', '__', true);
 							break;
-						case "i":
+						case 'i':
 							$this->processWikiTag('i', $src, $p, '\'\'', '\'\'', true);
 							break;
-						case "em":
+						case 'em':
 							$this->processWikiTag('em', $src, $p, '\'\'', '\'\'', true);
 							break;
-						case "strong":
+						case 'strong':
 							$this->processWikiTag('strong', $src, $p, '__', '__', true);
 							break;
-						case "u":
+						case 'u':
 							$this->processWikiTag('u', $src, $p, '===', '===', true);
 							break;
-						case "strike":
+						case 'strike':
 							$this->processWikiTag('strike', $src, $p, '--', '--', true);
 							break;
-						case "del":
+						case 'del':
 							$this->processWikiTag('del', $src, $p, '--', '--', true);
 							break;
-						case "center":
+						case 'center':
 							if ($prefs['feature_use_three_colon_centertag'] == 'y') {
 								$src .= ':::';
 								$p['stack'][] = ['tag' => 'center', 'string' => ':::'];
@@ -1022,67 +1056,67 @@ class EditLib
 								$p['stack'][] = ['tag' => 'center', 'string' => '::'];
 							}
 							break;
-						case "code":
+						case 'code':
 							$src .= '-+';
 							$p['stack'][] = ['tag' => 'code', 'string' => '+-'];
 							break;
-						case "dd":
+						case 'dd':
 							$src .= ':';
 							$p['stack'][] = ['tag' => 'dd', 'string' => "\n"];
 							break;
-						case "dt":
+						case 'dt':
 							$src .= ';';
 							$p['stack'][] = ['tag' => 'dt', 'string' => ''];
 							break;
 
-						case "h1":
-						case "h2":
-						case "h3":
-						case "h4":
-						case "h5":
-						case "h6":
+						case 'h1':
+						case 'h2':
+						case 'h3':
+						case 'h4':
+						case 'h5':
+						case 'h6':
 							$p['wiki_lbr']++; // force wiki line break mode
-							$hlevel = (int) $c[$i]["data"]["name"]{1};
-							if (isset($c[$i]['pars']['style']['value']) && strpos($c[$i]['pars']['style']['value'], 'text-align: center;') !== false) {
+							$hlevel = (int) $node['data']['name']{1};
+							if (isset($node['pars']['style']['value']) && strpos($node['pars']['style']['value'], 'text-align: center;') !== false) {
 								if ($prefs['feature_use_three_colon_centertag'] == 'y') {
 									$src .= $this->startNewLine($src) . str_repeat('!', $hlevel) . ':::';
-									$p['stack'][] = ['tag' => $c[$i]['data']['name'], 'string' => ":::\n"];
+									$p['stack'][] = ['tag' => $node['data']['name'], 'string' => ":::\n"];
 								} else {
 									$src .= $this->startNewLine($src) . str_repeat('!', $hlevel) . '::';
-									$p['stack'][] = ['tag' => $c[$i]['data']['name'], 'string' => "::\n"];
+									$p['stack'][] = ['tag' => $node['data']['name'], 'string' => "::\n"];
 								}
 							} else {	// normal para or div
 								$src .= $this->startNewLine($src) . str_repeat('!', $hlevel);
-								$p['stack'][] = ['tag' => $c[$i]["data"]["name"], 'string' => "\n"];
+								$p['stack'][] = ['tag' => $node['data']['name'], 'string' => "\n"];
 							}
 							break;
-						case "pre":
+						case 'pre':
 							$src .= "~pre~\n";
 							$p['stack'][] = ['tag' => 'pre', 'string' => "~/pre~\n"];
 							break;
-						case "sub":
-							$src .= "{SUB()}";
-							$p['stack'][] = ['tag' => 'sub', 'string' => "{SUB}"];
+						case 'sub':
+							$src .= '{SUB()}';
+							$p['stack'][] = ['tag' => 'sub', 'string' => '{SUB}'];
 							break;
-						case "sup":
-							$src .= "{SUP()}";
-							$p['stack'][] = ['tag' => 'sup', 'string' => "{SUP}"];
+						case 'sup':
+							$src .= '{SUP()}';
+							$p['stack'][] = ['tag' => 'sup', 'string' => '{SUP}'];
 							break;
-						case "tt":
+						case 'tt':
 							$src .= '{DIV(type="tt")}';
-							$p['stack'][] = ['tag' => 'tt', 'string' => "{DIV}"];
+							$p['stack'][] = ['tag' => 'tt', 'string' => '{DIV}'];
 							break;
-						case "s":
+						case 's':
 							$src .= $this->processWikiTag('s', $src, $p, '--', '--', true);
 							break;
 						// Table parser
-						case "table":
+						case 'table':
 							$src .= $this->startNewLine($src) . '||';
 							$p['stack'][] = ['tag' => 'table', 'string' => '||'];
 							$p['first_tr'] = true;
 							$p['table'] = true;
 							break;
-						case "tr":
+						case 'tr':
 							if (! $p['first_tr']) {
 								$this->startNewLine($src);
 							}
@@ -1090,7 +1124,7 @@ class EditLib
 							$p['first_td'] = true;
 							$p['wiki_lbr']++; // force wiki line break mode
 							break;
-						case "td":
+						case 'td':
 							if ($p['first_td']) {
 								$src .= '';
 							} else {
@@ -1099,36 +1133,36 @@ class EditLib
 							$p['first_td'] = false;
 							break;
 						// Lists parser
-						case "ul":
+						case 'ul':
 							$p['listack'][] = '*';
 							break;
-						case "ol":
+						case 'ol':
 							$p['listack'][] = '#';
 							break;
-						case "li":
+						case 'li':
 							// Generate wiki list item according to current list depth.
 							$src .= $this->startNewLine($src) . str_repeat(end($p['listack']), count($p['listack']));
 							break;
-						case "font":
+						case 'font':
 							// If color attribute present in <font> tag
-							if (isset($c[$i]["pars"]["color"]["value"])) {
-								$src .= '~~' . $c[$i]["pars"]["color"]["value"] . ':';
+							if (isset($node['pars']['color']['value'])) {
+								$src .= '~~' . $node['pars']['color']['value'] . ':';
 								$p['stack'][] = ['tag' => 'font', 'string' => '~~'];
 							}
 							break;
-						case "img":
+						case 'img':
 							// If src attribute present in <img> tag
-							if (isset($c[$i]["pars"]["src"]["value"])) {
+							if (isset($node['pars']['src']['value'])) {
 								// Note what it produce (img) not {img}! Will fix this below...
-								if (strstr($c[$i]["pars"]["src"]["value"], "http:")) {
-									$src .= '{img src="' . $c[$i]["pars"]["src"]["value"] . '"}';
+								if (strstr($node['pars']['src']['value'], 'http:')) {
+									$src .= '{img src="' . $node['pars']['src']['value'] . '"}';
 								} else {
-									$src .= '{img src="' . $head_url . $c[$i]["pars"]["src"]["value"] . '"}';
+									$src .= '{img src="' . $head_url . $node['pars']['src']['value'] . '"}';
 								}
 							}
 							break;
-						case "a":
-							if (isset($c[$i]['pars'])) {
+						case 'a':
+							if (isset($node['pars'])) {
 								// get the link text
 								$text = '';
 								if ($i < count($c)) {
@@ -1138,22 +1172,22 @@ class EditLib
 									}
 								}
 								// parse the link
-								$this->parseLinkTag($c[$i]['pars'], $text, $src, $p);
+								$this->parseLinkTag($node['pars'], $text, $src, $p);
 							}
 
 							// deactivated by mauriz, will be replaced by the routine above
 							// If href attribute present in <a> tag
 							/*
-							if (isset($c[$i]["pars"]["href"]["value"])) {
-								if ( strstr( $c[$i]["pars"]["href"]["value"], "http:" )) {
-									$src .= '['.$c[$i]["pars"]["href"]["value"].'|';
+							if (isset($c[$i]['pars']['href']['value'])) {
+								if ( strstr( $c[$i]['pars']['href']['value'], 'http:' )) {
+									$src .= '['.$c[$i]['pars']['href']['value'].'|';
 								} else {
-									$src .= '['.$head_url.$c[$i]["pars"]["href"]["value"].'|';
+									$src .= '['.$head_url.$c[$i]['pars']['href']['value'].'|';
 								}
 								$p['stack'][] = array('tag' => 'a', 'string' => ']');
 							}
-							if ( isset($c[$i]["pars"]["name"]["value"])) {
-								$src .= '{ANAME()}'.$c[$i]["pars"]["name"]["value"].'{ANAME}';
+							if ( isset($c[$i]['pars']['name']['value'])) {
+								$src .= '{ANAME()}'.$c[$i]['pars']['name']['value'].'{ANAME}';
 							}
 							*/
 
@@ -1162,8 +1196,8 @@ class EditLib
 					}	// end switch on tag name
 				} else {
 					// This is close tag type. Is that smth we r waiting for?
-					switch ($c[$i]["data"]["name"]) {
-						case "ul":
+					switch ($node['data']['name']) {
+						case 'ul':
 							if (end($p['listack']) == '*') {
 								array_pop($p['listack']);
 							}
@@ -1171,7 +1205,7 @@ class EditLib
 								$src .= "\n";
 							}
 							break;
-						case "ol":
+						case 'ol':
 							if (end($p['listack']) == '#') {
 								array_pop($p['listack']);
 							}
@@ -1181,11 +1215,11 @@ class EditLib
 							break;
 						default:
 							$e = end($p['stack']);
-							if ($c[$i]["data"]["name"] == $e['tag']) {
+							if ($node['data']['name'] == $e['tag']) {
 								$src .= $e['string'];
 								array_pop($p['stack']);
 							}
-							if ($c[$i]["data"]["name"] === 'table') {
+							if ($node['data']['name'] === 'table') {
 								$p['table'] = false;
 							}
 							break;
@@ -1199,26 +1233,26 @@ class EditLib
 					}
 
 					// can we leave wiki line break mode ?
-					switch ($c[$i]["data"]["name"]) {
-						case "a":
-						case "h1":
-						case "h2":
-						case "h3":
-						case "h4":
-						case "h5":
-						case "h6":
-						case "tr":
+					switch ($node['data']['name']) {
+						case 'a':
+						case 'h1':
+						case 'h2':
+						case 'h3':
+						case 'h4':
+						case 'h5':
+						case 'h6':
+						case 'tr':
 							$p['wiki_lbr']--;
 							break;
 					}
 				}
 			}
 			// Recursive call on tags with content...
-			if (isset($c[$i]["content"])) {
-				if (substr($src, -1) != " ") {
-					$src .= " ";
+			if (! empty($node['content'])) {
+				if (substr($src, -1) != ' ') {
+					$src .= ' ';
 				}
-				$this->walk_and_parse($c[$i]["content"], $src, $p, $head_url);
+				$this->walk_and_parse($node['content'], $src, $p, $head_url);
 			}
 		}
 		if (substr($src, -2) == "\n\n") {	// seem to always get too many line ends
@@ -1232,23 +1266,24 @@ class EditLib
 			$str .= "\n";
 		}
 	}
+
 	/**
 	 * wrapper around zaufi's HTML sucker code just to use the html to wiki bit
 	 *
-	 * \param &$c string -- HTML in
-	 * \param &$src string -- output string
+	 * @param string $inHtml -- HTML in
+	 * @return null|string
+	 * @throws Exception
 	 */
 
 
 	function parse_html(&$inHtml)
 	{
-		$smarty = TikiLib::lib('smarty');
-
 		include('lib/htmlparser/htmlparser.inc');
 
 		// Read compiled (serialized) grammar
 		$grammarfile = TIKI_PATH . '/lib/htmlparser/htmlgrammar.cmp';
 		if (! $fp = @fopen($grammarfile, 'r')) {
+			$smarty = TikiLib::lib('smarty');
 			$smarty->assign('msg', tra("Can't parse HTML data - no grammar file"));
 			$smarty->display("error.tpl");
 			die;

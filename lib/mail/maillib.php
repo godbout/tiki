@@ -133,9 +133,10 @@ function tiki_get_basic_mail()
 }
 
 /**
+ * @param string|null $fromName Optional name to be used when sending emails
  * @return Zend\Mail\Message
  */
-function tiki_get_admin_mail()
+function tiki_get_admin_mail($fromName = null)
 {
 	global $prefs;
 
@@ -146,7 +147,7 @@ function tiki_get_admin_mail()
 		// Added returnpath for Sendmail; does not send without;
 		// catch/ignore error, if already set
 		try {
-			$mail->setFrom($prefs['sender_email']);
+			$mail->setFrom($prefs['sender_email'], $fromName);
 			$mail->setSender($prefs['sender_email']);
 		} catch (Exception $e) {
 			// was already set, then do nothing

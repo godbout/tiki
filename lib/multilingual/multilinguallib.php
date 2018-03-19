@@ -22,8 +22,8 @@ class MultilingualLib extends TikiLib
 
 
 	/*
-     * Create the translation of wiki page $srcPageName.
-     */
+	 * Create the translation of wiki page $srcPageName.
+	 */
 	function createTranslationOfPage($srcPageName, $srcLang, $targPageName, $targLang, $targPageContent)
 	{
 		global $tikilib, $user;

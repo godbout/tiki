@@ -97,12 +97,21 @@ function wikiplugin_wikidiff_info()
 				'filter' => 'text',
 				'default' => '',
 			],
+			'pagenotapproved_text' => [
+				'required' => false,
+				'name' => tr('No version approved error message'),
+				'description' => tr('Text to show when the page exists but no version is approved.'),
+				'since' => '18.0',
+				'filter' => 'text',
+				'default' => "You don't have permission to see this content, because it hasn't been approved",
+			],
 		]
 	];
 }
 
 function wikiplugin_wikidiff($data, $params)
 {
+	global $prefs;
 	// TODO refactor: defaults for plugins?
 	$defaults = [];
 	$plugininfo = wikiplugin_wikidiff_info();
@@ -118,12 +127,36 @@ function wikiplugin_wikidiff($data, $params)
 		return($text);
 	}
 
+	if ($prefs['flaggedrev_approval'] == 'y') {
+		$flaggedrevisionlib = TikiLib::lib('flaggedrevision');
+		if ($flaggedrevisionlib->page_requires_approval($params['object_id'])) {
+			if (!$flaggedrevisionlib->version_is_flagged($params['object_id'], $params['oldver'], 'moderation', 'OK')) {
+				// If oldver (required) is not approved, display error message
+				$text = $params['pagenotapproved_text'];
+				return($text);
+			}
+			if (isset($params['newver']) && !empty($params['newver'])) {
+				// If specific version is specified, check if it has been approved
+				if (!$flaggedrevisionlib->version_is_flagged($params['object_id'], $params['newver'], 'moderation', 'OK')) {
+					return($params['pagenotapproved_text']);
+				}
+			} else {
+				// No version provided, get latest approved version
+				if ($version_info = $flaggedrevisionlib->get_version_with($params['object_id'], 'moderation', 'OK')) {
+					$params['newver'] = (int)$version_info['version'];
+					if ($params['newver'] < (int)$params['oldver']) {
+						return($params['pagenotapproved_text']);
+					}
+				}
+			}
+		}
+	}
+
 	// Note: the underlying param is the opposite: hide_version_info
 	$params['show_version_info'] = $params['show_version_info'] !== 'n';
 
 	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_function_wikidiff');
-
 
 	$ret = smarty_function_wikidiff($params, $smarty);
 	return $ret;

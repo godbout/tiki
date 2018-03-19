@@ -10,7 +10,6 @@ function prefs_blog_list()
 	return [
 		'blog_comments_per_page' => [
 			'name' => tra('Default number per page'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => '3',
 			'units' => tra('comments'),
@@ -18,7 +17,6 @@ function prefs_blog_list()
 		],
 		'blog_comments_default_ordering' => [
 			'name' => tra('Default ordering'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'commentDate_desc' => tra('Newest first'),
@@ -29,7 +27,6 @@ function prefs_blog_list()
 		],
 		'blog_list_order' => [
 			'name' => tra('Default order'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'created_desc' => tra('Creation Date (desc)'),
@@ -43,13 +40,11 @@ function prefs_blog_list()
 		],
 		'blog_list_title' => [
 			'name' => tra('Title'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'blog_list_title_len' => [
 			'name' => tra('Title length'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => '3',
 			'units' => tra('characters'),
@@ -62,7 +57,6 @@ function prefs_blog_list()
 		],
 		'blog_list_created' => [
 			'name' => tra('Creation date'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],
@@ -73,7 +67,6 @@ function prefs_blog_list()
 		],
 		'blog_list_user' => [
 			'name' => tra('User'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 				'disabled' => tra('Disabled'),
@@ -85,7 +78,6 @@ function prefs_blog_list()
 		],
 		'blog_list_posts' => [
 			'name' => tra('Posts'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],
@@ -96,7 +88,6 @@ function prefs_blog_list()
 		],
 		'blog_list_activity' => [
 			'name' => tra('Activity'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -109,7 +100,7 @@ function prefs_blog_list()
 		],
 		'blog_feature_copyrights' => [
 			'name' => tra('Blog post copyright'),
-			'description' => tra('Allows for addition of individual copyright notices on blog posts'),
+			'description' => tra('Apply copyright management preferences to this feature.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_blogs',

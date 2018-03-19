@@ -12,11 +12,11 @@ class TestHelpers
 	private $orig_user;
 
 	/*
-     * Restore the application and DB to its original state.
-     * - Undo any changes that may have been done to the DB through TestHelpers methods
-     * - If any global libs were replaced by mock implementations, reset them to their
-     *   real implementation.
-     */
+	 * Restore the application and DB to its original state.
+	 * - Undo any changes that may have been done to the DB through TestHelpers methods
+	 * - If any global libs were replaced by mock implementations, reset them to their
+	 *   real implementation.
+	 */
 	public function reset_all()
 	{
 		global $tikilib;
@@ -48,8 +48,8 @@ class TestHelpers
 	}
 
 	/*
-     * Like $tikilib->create_page(), except that it will delete the page if it already exists.
-     */
+	 * Like $tikilib->create_page(), except that it will delete the page if it already exists.
+	 */
 	public function create_page($name, $hits, $data, $lastModif = null, $comment = '', $user = 'admin', $ip = '0.0.0.0', $description = '', $lang = '', $is_html = false, $hash = null, $wysiwyg = null, $wiki_authors_style = '', $minor = 0, $created = '')
 	{
 		global $tikilib;

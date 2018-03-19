@@ -225,20 +225,19 @@ class Services_Wiki_Controller
 							// where $page is the name of the deleted page:
 							// "\r\n~tc~(alias($page))~/tc~"
 							// We use the ~tc~ so that it doesn't make the destination page look ugly
-							$pageHyphensForSpaces = str_replace(" ", "-", $page); // Otherwise pages with spaces won't work
 							if (sizeof($items) > 1) {
 								$comment = tr('Semantic aliases (301 Redirects) to this page were created when other pages were deleted');
 							} else {
 								$comment = tr('A semantic alias (301 Redirect) to this page was created when page %0 was deleted', $page);
 							}
-							$appendString .= "\r\n~tc~ (alias($pageHyphensForSpaces)) ~/tc~";
+							$appendString .= "\r\n~tc~ (alias($page)) ~/tc~";
 						}
 						if (TikiLib::lib('tiki')->page_exists($destinationPage)) {
 							// Get wiki page content
 							$infoDestinationPage = TikiLib::lib('tiki')->get_page_info($destinationPage);
 							$page_data = $infoDestinationPage['data'];
 							$page_data .= $appendString;
-							TikiLib::lib('tiki')->update_page($destinationPage, $page_data, $comment, $infoDestinationPage['user'], TikiLib::lib('tiki')->get_ip_address());
+							TikiLib::lib('tiki')->update_page($destinationPage, $page_data, $comment, $user, TikiLib::lib('tiki')->get_ip_address());
 							if (sizeof($items) > 1) {
 								$msg = tr('301 Redirects to the following page were created:');
 							} else {

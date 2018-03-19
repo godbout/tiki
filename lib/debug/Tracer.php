@@ -137,5 +137,5 @@ class Tracer
 if (file_exists('db/local.php')) {
 	include 'db/local.php';
 }
-global $tiki_traces_fpath, $tiki_traces_are_on, $tiki_traces_active_ids;
+global $tiki_traces_fpath, $tiki_traces_are_on, $tiki_traces_active_ids, $tracer;
 $tracer = new Tracer($tiki_traces_fpath, $tiki_traces_are_on, $tiki_traces_active_ids);

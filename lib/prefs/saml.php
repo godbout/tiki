@@ -9,7 +9,6 @@ function prefs_saml_list()
 	return [
 		'saml_auth_enabled' => [
 			'name' => tra('Enable SAML Auth'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
@@ -204,7 +203,6 @@ function prefs_saml_list()
 		],
 		'saml_advanced_nameid_encrypted' => [
 			'name' => tra('Encrypt nameID'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => false,

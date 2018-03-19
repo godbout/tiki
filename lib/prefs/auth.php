@@ -112,7 +112,6 @@ function prefs_auth_list()
 		],
 		'auth_phpbb_version' => [
 			'name' => tra('phpBB Version'),
-			'description' => tra(''),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [
@@ -122,7 +121,6 @@ function prefs_auth_list()
 		],
 		'auth_phpbb_dbhost' => [
 			'name' => tra('phpBB Database Hostname'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 40,
 			'perspective' => false,
@@ -130,7 +128,6 @@ function prefs_auth_list()
 		],
 		'auth_phpbb_dbuser' => [
 			'name' => tra('phpBB Database Username'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 40,
 			'perspective' => false,
@@ -138,7 +135,6 @@ function prefs_auth_list()
 		],
 		'auth_phpbb_dbpasswd' => [
 			'name' => tra('phpBB Database Password'),
-			'description' => tra(''),
 			'type' => 'password',
 			'size' => 40,
 			'perspective' => false,
@@ -146,7 +142,6 @@ function prefs_auth_list()
 		],
 		'auth_phpbb_dbname' => [
 			'name' => tra('phpBB Database Name'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 40,
 			'perspective' => false,
@@ -154,7 +149,6 @@ function prefs_auth_list()
 		],
 		'auth_phpbb_table_prefix' => [
 			'name' => tra('phpBB Table Prefix'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 40,
 			'perspective' => false,
@@ -197,14 +191,12 @@ function prefs_auth_list()
 		],
 		'auth_ldap_ssl' => [
 			'name' => tra('Use SSL (ldaps)'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
 		],
 		'auth_ldap_starttls' => [
 			'name' => tra('Use TLS'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
@@ -238,7 +230,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_version' => [
 			'name' => tra('LDAP version'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 5,
 			'perspective' => false,
@@ -246,7 +237,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_basedn' => [
 			'name' => tra('Base DN'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 15,
 			'perspective' => false,
@@ -254,7 +244,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_userdn' => [
 			'name' => tra('User DN'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -262,7 +251,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_userattr' => [
 			'name' => tra('User attribute'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -270,7 +258,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_useroc' => [
 			'name' => tra('User OC'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -305,7 +292,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_groupdn' => [
 			'name' => tra('Group DN'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -313,7 +299,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_groupattr' => [
 			'name' => tra('Group name attribute'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -321,7 +306,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_groupdescattr' => [
 			'name' => tra('Group description attribute'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -329,7 +313,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_groupoc' => [
 			'name' => tra('Group OC'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -337,7 +320,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_memberattr' => [
 			'name' => tra('Member attribute'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -345,14 +327,12 @@ function prefs_auth_list()
 		],
 		'auth_ldap_memberisdn' => [
 			'name' => tra('Member is DN'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'y',
 		],
 		'auth_ldap_usergroupattr' => [
 			'name' => tra('Group attribute'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -360,7 +340,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_groupgroupattr' => [
 			'name' => tra('Group attribute in group entry'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'hint' => tra('(Leave this empty if the group name is already given in the user attribute)'),
@@ -369,7 +348,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_adminuser' => [
 			'name' => tra('Admin user'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 15,
 			'autocomplete' => 'off',
@@ -378,7 +356,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_adminpass' => [
 			'name' => tra('Admin password'),
-			'description' => tra(''),
 			'type' => 'password',
 			'size' => 15,
 			'autocomplete' => 'off',
@@ -387,14 +364,12 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_external' => [
 			'name' => tra('Use an external LDAP server for groups'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
 		],
 		'auth_ldap_group_host' => [
 			'name' => tra('Host'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -402,7 +377,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_port' => [
 			'name' => tra('Port'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 5,
 			'filter' => 'digits',
@@ -419,14 +393,12 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_ssl' => [
 			'name' => tra('Use SSL (ldaps)'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
 		],
 		'auth_ldap_group_starttls' => [
 			'name' => tra('Use TLS'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
@@ -448,7 +420,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_scope' => [
 			'name' => tra('Search scope'),
-			'description' => tra(''),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [
@@ -460,7 +431,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_version' => [
 			'name' => tra('LDAP version'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 5,
 			'perspective' => false,
@@ -468,7 +438,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_basedn' => [
 			'name' => tra('Base DN'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 15,
 			'perspective' => false,
@@ -476,7 +445,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_userdn' => [
 			'name' => tra('User DN'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -484,7 +452,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_userattr' => [
 			'name' => tra('User attribute'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -492,7 +459,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_corr_userattr' => [
 			'name' => tra('Corresponding user attribute in 1st directory'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -500,7 +466,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_useroc' => [
 			'name' => tra('User OC'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 20,
 			'perspective' => false,
@@ -508,7 +473,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_adminuser' => [
 			'name' => tra('Admin user'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => 15,
 			'perspective' => false,
@@ -516,7 +480,6 @@ function prefs_auth_list()
 		],
 		'auth_ldap_group_adminpass' => [
 			'name' => tra('Admin password'),
-			'description' => tra(''),
 			'type' => 'password',
 			'size' => 15,
 			'perspective' => false,

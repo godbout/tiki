@@ -64,9 +64,9 @@ class ThemeControlLib extends ThemeLib
 	}
 
 	/*
-    @param $categId
-    @return string
-    */
+	@param $categId
+	@return string
+	*/
 	function tc_get_theme_by_categ($categId)
 	{
 		if ($this->getOne("select count(*) from `tiki_theme_control_categs` where `categId`=?", [$categId])) {

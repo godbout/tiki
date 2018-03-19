@@ -29,4 +29,9 @@ class DashGenerator implements Generator
 
 		return $slug;
 	}
+
+	function degenerate($slug)
+	{
+		return preg_replace('/\-+/', ' ', trim($slug));
+	}
 }

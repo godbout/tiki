@@ -160,6 +160,7 @@ function prefs_tiki_list()
 		'tiki_key' => [
 			'name' => tr('Client key for this site'),
 			'type' => 'text',
+			'description' => tra('This must match the shared key entered in the Master’s key field.'),
 			'size' => 32,
 			'filter' => 'text',
 			'default' => '',

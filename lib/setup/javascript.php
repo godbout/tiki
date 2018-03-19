@@ -186,6 +186,7 @@ if (inArray(m, allTimeZoneCodes)) {
 	$jqueryTiki['ajax'] = $prefs['feature_ajax'] === 'y' ? true : false;
 	$jqueryTiki['syntaxHighlighter'] = $prefs['feature_syntax_highlighter'] === 'y' ? true : false;
 	$jqueryTiki['chosen'] = $prefs['jquery_ui_chosen'] === 'y' ? true : false;
+	$jqueryTiki['chosen_sortable'] = $prefs['jquery_ui_chosen_sortable'] === 'y' ? true : false;
 	$jqueryTiki['mapTileSets'] = $tikilib->get_preference('geo_tilesets', ['openstreetmap'], true);
 	$jqueryTiki['infoboxTypes'] = Services_Object_Controller::supported();
 	$jqueryTiki['googleStreetView'] = $prefs['geo_google_streetview'] === 'y' ? true : false;
@@ -195,6 +196,7 @@ if (inArray(m, allTimeZoneCodes)) {
 	$jqueryTiki['no_cookie'] = false;
 	$jqueryTiki['language'] = $prefs['language'];
 	$jqueryTiki['useInlineComment'] = $prefs['feature_inline_comments'] === 'y' ? true : false;
+	$jqueryTiki['useInlineAnnotations'] = $prefs['comments_inline_annotator'] === 'y' ? true : false;
 	$jqueryTiki['helpurl'] = $prefs['feature_help'] === 'y' ? $prefs['helpurl'] : '';
 	$jqueryTiki['shortDateFormat'] = $prefs['short_date_format_js'];
 	$jqueryTiki['shortTimeFormat'] = $prefs['short_time_format_js'];

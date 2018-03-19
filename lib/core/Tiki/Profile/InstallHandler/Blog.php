@@ -63,7 +63,15 @@ class Tiki_Profile_InstallHandler_Blog extends Tiki_Profile_InstallHandler
 			$data['use_find'],
 			$data['allow_comments'],
 			$data['show_avatar'],
-			$data['post_heading']
+			$data['post_heading'],
+			$data['use_find'],
+			$data['allow_comments'],
+			$data['show_avatar'],
+			$data['alwaysOwner'],
+			$data['post_heading'],
+			$data['show_related'],
+			$data['related_max'],
+			$data['use_excerpt']
 		);
 
 		return $blogId;

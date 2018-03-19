@@ -14,32 +14,32 @@
  */
 class Text_Diff_Renderer_sidebyside extends Tiki_Text_Diff_Renderer
 {
-	function __construct($context_lines = 4, $words = 1)
+	public function __construct($context_lines = 4, $words = 1)
 	{
 		$this->_leading_context_lines = $context_lines;
 		$this->_trailing_context_lines = $context_lines;
 		$this->_words = $words;
 	}
 
-	function _startDiff()
+	protected function _startDiff()
 	{
 		ob_start();
 		//echo '<table class="table-bordered diff">';
 	}
 
-	function _endDiff()
+	protected function _endDiff()
 	{
 		$val = ob_get_contents();
 		ob_end_clean();
 		return $val;
 	}
 
-	function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
+	protected function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
 	{
 		return "$xbeg,$xlen,$ybeg,$ylen";
 	}
 
-	function _startBlock($header)
+	protected function _startBlock($header)
 	{
 		$h = explode(",", $header);
 		echo '<tr class="diffheader"><td colspan="2">';
@@ -60,11 +60,11 @@ class Text_Diff_Renderer_sidebyside extends Tiki_Text_Diff_Renderer
 		echo '</td></tr>';
 	}
 
-	function _endBlock()
+	protected function _endBlock()
 	{
 	}
 
-	function _lines($type, $lines, $prefix = '')
+	protected function _lines($lines, $prefix = '', $suffix = '', $type = '')
 	{
 		// MODIFIED BY THE TIKI PROJECT
 		if ($type == 'context') {
@@ -92,37 +92,37 @@ class Text_Diff_Renderer_sidebyside extends Tiki_Text_Diff_Renderer
 		}
 	}
 
-	function _context($lines)
+	protected function _context($lines)
 	{
-		$this->_lines('context', $lines);
+		$this->_lines($lines, '', '', 'context');
 	}
 
-	function _added($lines, $changemode = false)
+	protected function _added($lines, $changemode = false)
 	{
 		if ($changemode) {
-			$this->_lines('change-added', $lines, '+');
+			$this->_lines($lines, '+', '', 'change-added');
 		} else {
-			$this->_lines('added', $lines, '+');
+			$this->_lines($lines, '+', '', 'added');
 		}
 	}
 
-	function _deleted($lines, $changemode = false)
+	protected function _deleted($lines, $changemode = false)
 	{
 		if ($changemode) {
-			$this->_lines('change-deleted', $lines, '-');
+			$this->_lines($lines, '-', '', 'change-deleted');
 		} else {
-			$this->_lines('deleted', $lines, '-');
+			$this->_lines($lines, '-', '', 'deleted');
 		}
 	}
 
-	function _changed($orig, $final)
+	protected function _changed($orig, $final)
 	{
 		$lines = diffChar($orig, $final, $this->_words);
 		$this->_deleted([$lines[0]], true);
 		$this->_added([$lines[1]], true);
 /* switch with these lines for no character diff
-        $this->_deleted($orig, TRUE);
-        $this->_added($final, TRUE);
+		$this->_deleted($orig, TRUE);
+		$this->_added($final, TRUE);
 */
 	}
 }

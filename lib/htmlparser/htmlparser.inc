@@ -74,6 +74,7 @@ if (! defined("_ECHOSERVER_HTML_PARSER")) {
 			$this->incomment = 0;
 			$this->tagreg = [];
 			$this->wasquot = 0;
+			$this->pars = [];
 
 			if (isset($this->data) && is_array($this->data)) {
 				$this->content=&$data;

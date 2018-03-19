@@ -283,7 +283,7 @@ class ThemeLib extends TikiLib
 	{
 		global $prefs;
 		$available_themes = [];
-		if (count($prefs['available_themes'] != 0) and ! empty($prefs['available_themes'][0])) { //if pref['available_themes'] is set, than use it
+		if (! empty($prefs['available_themes']) && ! empty($prefs['available_themes'][0])) { //if pref['available_themes'] is set, than use it
 			foreach ($prefs['available_themes'] as $available_theme) {
 				$theme = $this->extract_theme_and_option($available_theme)[0];
 				$available_themes[$theme] = $theme;
@@ -303,7 +303,7 @@ class ThemeLib extends TikiLib
 	{
 		global $prefs;
 		$available_options = [];
-		if (count($prefs['available_themes'] != 0) and ! empty($prefs['available_themes'][0])) {
+		if (! empty($prefs['available_themes']) && ! empty($prefs['available_themes'][0])) {
 			foreach ($prefs['available_themes'] as $available_themeandoption) {
 				$themeandoption = $this->extract_theme_and_option($available_themeandoption);
 				if ($theme === $themeandoption[0] && ! empty($themeandoption[1])) {

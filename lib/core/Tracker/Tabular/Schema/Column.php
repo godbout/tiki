@@ -17,6 +17,7 @@ class Column
 	private $isPrimary = false;
 	private $isReadOnly = false;
 	private $isExportOnly = false;
+	private $isUniqueKey = false;
 	private $displayAlign = 'left';
 	private $renderTransform;
 	private $parseIntoTransform;
@@ -90,6 +91,12 @@ class Column
 		return $this;
 	}
 
+	function setUniqueKey($uniqueKey)
+	{
+		$this->isUniqueKey = (bool) $uniqueKey;
+		return $this;
+	}
+
 	function setPlainReplacement($replacement)
 	{
 		$this->plainReplacement = $replacement;
@@ -114,6 +121,11 @@ class Column
 	function isExportOnly()
 	{
 		return $this->isExportOnly;
+	}
+
+	function isUniqueKey()
+	{
+		return $this->isUniqueKey;
 	}
 
 	function getField()
@@ -208,6 +220,7 @@ class Column
 		$column->isPrimary = $this->isPrimary;
 		$column->isReadOnly = $this->isReadOnly;
 		$column->isExportOnly = $this->isExportOnly;
+		$column->isUniqueKey = $this->isUniqueKey;
 		$column->displayAlign = $this->displayAlign;
 		$column->parseIntoTransform = $this->parseIntoTransform;
 		$column->querySources = $this->querySources;

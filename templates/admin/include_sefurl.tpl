@@ -48,6 +48,7 @@
 		{/if}
 		{preference name=feature_canonical_url}
 		<div id="feature_canonical_url_childcontainer" class="clearfix">
+			{preference name=https_external_links_for_users}
 			{preference name=feature_canonical_domain}
 			<span class="help-block col-md-8 col-md-push-4">
 				{tr}For example, if the field is left blank, the canonical URL domain is:{/tr} {$base_url_canonical_default}
@@ -79,8 +80,10 @@
 				</span>
 			</div>
 		</div>
+		{preference name=feature_sefurl_title_max_size}
 		{preference name=feature_sefurl_title_article}
 		{preference name=feature_sefurl_title_blog}
+		{preference name=feature_sefurl_title_forumthread}
 		{preference name=feature_sefurl_title_trackeritem}
 		{preference name=feature_sefurl_tracker_prefixalias}
 		{preference name=url_only_ascii}

@@ -28,7 +28,6 @@ function prefs_pagination_list()
 		],
 		'pagination_icons' => [
 			'name' => tra('Use Icons'),
-			'description' => tra(''),
 			'type' => 'flag',
 			'default' => 'y',
 		],

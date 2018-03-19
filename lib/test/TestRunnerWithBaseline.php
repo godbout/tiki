@@ -229,9 +229,9 @@ See above details about each error or failure.
 			}
 
 			/* For some reason, sometimes an event=test entry does not have
-               a 'status' field.
-               Whenever that happens, it seems to be a sign of an error.
-            */
+			   a 'status' field.
+			   Whenever that happens, it seems to be a sign of an error.
+			*/
 			$status = 'fail';
 			if (isset($log_entry['status'])) {
 				$status = $log_entry['status'];

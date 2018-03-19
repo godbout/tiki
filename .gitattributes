@@ -187,7 +187,6 @@ dump/index.php -text
 /freetag_list.php -text
 /get_strings.php -text
 /group_tracker_ajax.php -text
-/help.php -text
 /htaccess.sh -text
 img/.htaccess -text
 img/arrows-000000.png -text
@@ -3247,6 +3246,7 @@ lib/core/Tracker/Tabular/index.php -text
 lib/core/Tracker/index.php -text
 lib/core/Type.php -text
 lib/core/WikiParser/OutputLink.php -text
+lib/core/WikiParser/Parsable.php -text
 lib/core/WikiParser/PluginArgumentParser.php -text
 lib/core/WikiParser/PluginDefinition.php -text
 lib/core/WikiParser/PluginMatcher.php -text
@@ -3263,6 +3263,7 @@ lib/core/WikiPlugin/Negotiator/Wiki.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/Alias.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/index.php -text
 lib/core/WikiPlugin/Negotiator/index.php -text
+lib/core/WikiPlugin/Reference.php -text
 lib/core/WikiPlugin/index.php -text
 lib/core/Yaml/Directive/DirectiveInclude.php -text
 lib/core/Yaml/Directives.php -text
@@ -3398,6 +3399,9 @@ lib/importer/index.php -text
 lib/importer/mediawiki_dump_v0.3.xsd -text
 lib/importer/mediawiki_dump_v0.4.xsd -text
 lib/importer/mediawiki_dump_v0.5.xsd -text
+lib/importer/mediawiki_dump_v0.6.xsd -text
+lib/importer/mediawiki_dump_v0.7.xsd -text
+lib/importer/mediawiki_dump_v0.9.xsd -text
 lib/importer/tikiimporter.php -text
 lib/importer/tikiimporter_blog.php -text
 lib/importer/tikiimporter_blog_wordpress.php -text
@@ -4013,6 +4017,7 @@ lib/simile_tiki/index.php -text
 lib/simile_tiki/tiki-timeline.js -text
 lib/smarty_tiki/block.accordion.php -text
 lib/smarty_tiki/block.accordion_group.php -text
+lib/smarty_tiki/block.actions.php -text
 lib/smarty_tiki/block.activityframe.php -text
 lib/smarty_tiki/block.addonview.php -text
 lib/smarty_tiki/block.ajax_href.php -text
@@ -4522,6 +4527,17 @@ lib/test/core/index.php -text
 lib/test/core/phpunit.xml -text
 lib/test/core/temp/cache/index.php -text
 lib/test/core/temp/index.php -text
+lib/test/diff/fixtures/htmldiff.html -text
+lib/test/diff/fixtures/inlinediff-char.html -text
+lib/test/diff/fixtures/inlinediff-full-char.html -text
+lib/test/diff/fixtures/inlinediff-full.html -text
+lib/test/diff/fixtures/inlinediff.html -text
+lib/test/diff/fixtures/page1.wiki -text
+lib/test/diff/fixtures/page2.wiki -text
+lib/test/diff/fixtures/sidediff-char.html -text
+lib/test/diff/fixtures/sidediff-full-char.html -text
+lib/test/diff/fixtures/sidediff-full.html -text
+lib/test/diff/fixtures/sidediff.html -text
 lib/test/editlib/EditLibTest.php -text
 lib/test/editlib/ParseToWiki_CharacterTest.php -text
 lib/test/editlib/ParseToWiki_LinkTest.php -text
@@ -4532,6 +4548,13 @@ lib/test/editlib/ParseToWysiwyg_LinkTest.php -text
 lib/test/editlib/ParseToWysiwyg_ListTest.php -text
 lib/test/editlib/ParseToWysiwyg_TextTest.php -text
 lib/test/editlib/index.php -text
+lib/test/filegals/4.svg -text
+lib/test/filegals/FilegalsTest.php -text
+lib/test/filegals/svg_content.png -text
+lib/test/filegals/testdata.png -text
+lib/test/filegals/testdata.png.gz -text
+lib/test/filegals/testdata.svg -text
+lib/test/filegals/testdata.svgz -text
 lib/test/freetag/FreetagTest.php -text
 lib/test/freetag/index.php -text
 lib/test/importer/TikiImporterBlogTest.php -text
@@ -4811,7 +4834,6 @@ lib/wiki-plugins/wikiplugin_includetpl.php -text
 lib/wiki-plugins/wikiplugin_includeurl.php -text
 lib/wiki-plugins/wikiplugin_insert.php -text
 lib/wiki-plugins/wikiplugin_invite.php -text
-lib/wiki-plugins/wikiplugin_jabber.php -text
 lib/wiki-plugins/wikiplugin_jq.php -text
 lib/wiki-plugins/wikiplugin_js.php -text
 lib/wiki-plugins/wikiplugin_kaltura.php -text
@@ -4945,6 +4967,7 @@ lib/wiki-plugins/wikiplugin_webservice.php -text
 lib/wiki-plugins/wikiplugin_wikidiff.php -text
 lib/wiki-plugins/wikiplugin_wysiwyg.php -text
 lib/wiki-plugins/wikiplugin_xmlupdate.php -text
+lib/wiki-plugins/wikiplugin_xmpp.php -text
 lib/wiki-plugins/wikiplugin_youtube.php -text
 lib/wiki-plugins/wikiplugin_zotero.php -text
 lib/wiki-plugins/wikiplugin_zoterolist.php -text
@@ -5221,7 +5244,6 @@ permissioncheck/worry/index.php -text
 permissioncheck/yes.bin -text
 /phpcs.xml.dist -text
 /phpunit.xml.dist -text
-/plugins_help.php -text
 /poll_categorize.php -text
 /prepare_permissioncheck.sh -text
 /received_article_image.php -text
@@ -6592,7 +6614,6 @@ templates/workspace/edit_template.tpl -text
 templates/workspace/index.php -text
 templates/workspace/list_templates.tpl -text
 templates/workspace/select_permissions.tpl -text
-templates/xmpp-client.tpl -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text

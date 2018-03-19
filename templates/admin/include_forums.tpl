@@ -56,6 +56,7 @@
 				{preference name=forum_comments_per_page}
 				{preference name=forum_thread_style}
 				{preference name=forum_thread_sort_mode}
+				{preference name=feature_sefurl_title_forumthread}
 			</fieldset>
 			<fieldset>
 				<legend>{tr}Searches{/tr}</legend>

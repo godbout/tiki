@@ -295,16 +295,18 @@ class RelationLib extends TikiDb_Bridge
 	}
 
 	/**
-	 * Remove all relations from that type.
+	 * Remove all relations from that type and source items belonging to that tracker
 	 * @param $relation - the relation type
+	 * @param $trackerId - the tracker id
 	 */
-	public function remove_relation_type($relation)
+	public function remove_relation_type($relation, $trackerId)
 	{
-		return $this->table->deleteMultiple(
-			[
-				'relation' => $relation,
-			]
-		);
+		return $this->query("DELETE FROM tiki_object_relations
+			WHERE relation = ?
+			AND source_type = 'trackeritem'
+			AND source_itemId IN(
+				SELECT itemId FROM tiki_tracker_items WHERE trackerId = ?
+			)", [$relation, $trackerId]);
 	}
 
 	/**
@@ -322,7 +324,6 @@ class RelationLib extends TikiDb_Bridge
 				'source_itemId' => $fromId
 			]
 		);
-		$this->remove_relation_type($relationType);
 	}
 
 	/**

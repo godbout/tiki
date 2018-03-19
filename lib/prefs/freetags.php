@@ -50,13 +50,12 @@ function prefs_freetags_list()
 			],
 			'freetags_browse_show_cloud' => [
 			'name' => tra('Show tag cloud'),
-			'description' => tra(''),
+			'description' => tra('Visibility of the full tag cloud in the list tags screen'),
 			'type' => 'flag',
 			'default' => 'y',
 			],
 			'freetags_browse_amount_tags_in_cloud' => [
 			'name' => tra('Maximum number of tags in cloud'),
-			'description' => tra(''),
 			'type' => 'text',
 			'size' => '5',
 			'filter' => 'digits',
@@ -65,13 +64,13 @@ function prefs_freetags_list()
 			],
 			'freetags_show_middle' => [
 			'name' => tra('Show tags in middle column'),
-			'description' => tra(''),
+			'description' => tra('Where pages have tag content, this option enables freetag display on that page at the top. Freetags can be set in the Properties tab when editing Wiki pages for example.'),
 			'type' => 'flag',
 			'default' => 'y',
 			],
 			'freetags_preload_random_search' => [
 			'name' => tra('Preload random tag'),
-			'description' => tra(''),
+			'description' => tra('A random tag will be selected when displaying the freetag search page (if no tag is pre-selected).'),
 			'type' => 'flag',
 			'default' => 'y',
 			],
@@ -86,14 +85,15 @@ function prefs_freetags_list()
 			],
 			'freetags_normalized_valid_chars' => [
 			'name' => tra('Valid characters pattern'),
-			'description' => tra(''),
+			'description' => tra('Click on the links below to set or clear a pattern to limit Freetag characters accepted. '),
 			'type' => 'text',
 			'size' => '30',
+			'hint' => 'Useful to eliminate characters such as “,” which users can enter by mistake instead of a space.',
 			'default' => '',
 			],
 			'freetags_lowercase_only' => [
 			'name' => tra('Lowercase tags only'),
-			'description' => tra(''),
+			'description' => tra('Converts all uppercase characters into lower case. Another useful feature to make Freetags slightly more user friently.'),
 			'type' => 'flag',
 			'default' => 'y',
 			],

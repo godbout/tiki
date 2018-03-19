@@ -9,13 +9,15 @@ function prefs_webmail_list()
 {
 	return [
 		'webmail_view_html' => [
-			'name' => tra('Allow viewing HTML emails?'),
+			'name' => tra('HTML email'),
 			'type' => 'flag',
+			'description' => tra('Allow viewing HTML emails.'),
 			'default' => 'y',
 		],
 		'webmail_max_attachment' => [
-			'name' => tra('Maximum size for each attachment'),
+			'name' => tra('Maximum attachment size'),
 			'type' => 'list',
+			'description' => tra('Maximum size for each attachment.'),
 			'options' => [
 				'500000' => tra('500Kb'),
 				'1000000' => tra('1Mb'),
@@ -28,8 +30,9 @@ function prefs_webmail_list()
 			'default' => 1500000,
 		],
 		'webmail_quick_flags' => [
-			'name' => tra('Include a flag by all messages to quickly flag/unflag them?'),
+			'name' => tra('Checkbox per email'),
 			'type' => 'flag',
+			'description' => tra('Enable easy selecting multiple mails for common actions.'),
 			'default' => 'n',
 		],
 	];

@@ -139,10 +139,6 @@ class Tracker_Field_Icon extends Tracker_Field_Abstract
 		];
 	}
 
-	function watchCompare($old, $new)
-	{
-	}
-
 	public static function updateIcon($args)
 	{
 		$definition = Tracker_Definition::get($args['trackerId']);

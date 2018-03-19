@@ -22,23 +22,23 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 class Text_Diff_Renderer_unified extends Tiki_Text_Diff_Renderer
 {
-	function __construct($context_lines = 4)
+	public function __construct($context_lines = 4)
 	{
 		$this->_leading_context_lines = $context_lines;
 		$this->_trailing_context_lines = $context_lines;
 		$this->_table = [];
 	}
 
-	function _startDiff()
+	protected function _startDiff()
 	{
 	}
 
-	function _endDiff()
+	protected function _endDiff()
 	{
 		return $this->_table;
 	}
 
-	function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
+	protected function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
 	{
 		if ($xlen != 1) {
 			$l = $xbeg + $xlen - 1;
@@ -51,21 +51,21 @@ class Text_Diff_Renderer_unified extends Tiki_Text_Diff_Renderer
 		$this->_table[] = ['type' => "diffheader", 'old' => "$xbeg", 'new' => "$ybeg"];
 	}
 
-	function _context($lines)
+	protected function _context($lines)
 	{
 		$this->_table[] = ['type' => "diffbody", 'data' => $lines];
 	}
-	function _added($lines)
+	protected function _added($lines)
 	{
 		$this->_table[] = ['type' => "diffadded", 'data' => $lines];
 	}
 
-	function _deleted($lines)
+	protected function _deleted($lines)
 	{
 		$this->_table[] = ['type' => "diffdeleted", 'data' => $lines];
 	}
 
-	function _changed($orig, $final)
+	protected function _changed($orig, $final)
 	{
 		$lines = diffChar($orig, $final, 0);
 		$this->_deleted([$lines[0]]);

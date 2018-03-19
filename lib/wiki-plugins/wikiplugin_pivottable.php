@@ -12,6 +12,7 @@ function wikiplugin_pivottable_info()
 		'description' => tr('Create and display data in pivot table for reporting'),
 		'prefs' => ['wikiplugin_pivottable'],
 		'body' => tra('Leave one space in the box below to allow easier editing of current values with the plugin popup helper later on'),
+		'validate' => 'all',
 		'format' => 'html',
 		'iconname' => 'table',
 		'introduced' => '16.1',
@@ -24,6 +25,19 @@ function wikiplugin_pivottable_info()
 				'filter' => 'text',
 				'profile_reference' => 'tracker',
 				'separator' => ':',
+			],
+			'overridePermissions' => [
+				'name' => tra('Override item permissions'),
+				'description' => tra('Return all tracker items ignoring permissions to view the corresponding items.'),
+				'since' => '18.1',
+				'required' => false,
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
 			],
 			'width' => [
 				'required' => false,
@@ -185,6 +199,15 @@ function wikiplugin_pivottable_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'highlightGroupColors' => [
+				'required' => false,
+				'name' => tra('Color for each highlighted group items.'),
+				'description' => tr(''),
+				'since' => '18.1',
+				'filter' => 'text',
+				'default' => '',
+				'separator' => ':',
+			],
 			'xAxisLabel' => [
 				'name' => tr('xAxis label'),
 				'description' => tr('Override label of horizontal axis when using Chart renderers.'),
@@ -275,7 +298,7 @@ function wikiplugin_pivottable($data, $params)
 
 	$fields = $definition->getFields();
 
-	if (! $perms->admin_trackers) {
+	if (! $perms->admin_trackers && $params['overridePermissions'] !== 'y') {
 		$hasFieldPermissions = false;
 		foreach ($fields as $key => $field) {
 			$isHidden = $field['isHidden'];
@@ -377,7 +400,12 @@ function wikiplugin_pivottable($data, $params)
 	$query->filterContent($trackerId, 'tracker_id');
 
 	$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-	$unifiedsearchlib->initQuery($query);
+	if ($params['overridePermissions'] === 'y') {
+		$unifiedsearchlib->initQueryBase($query);
+		$unifiedsearchlib->initQueryPresentation($query);
+	} else {
+		$unifiedsearchlib->initQuery($query);
+	}
 
 	$matches = WikiParser_PluginMatcher::match($data);
 
@@ -586,12 +614,24 @@ function wikiplugin_pivottable($data, $params)
 					$highlight[] = ['item' => $item, 'group' => $group];
 				}
 			}
+			$groupColors = [];
 			if ($prefs['feature_conditional_formatting'] === 'y') {
 				$groupsInfo = TikiLib::lib('user')->get_group_info($myGroups);
-				$groupColors = [];
 				foreach ($groupsInfo as $groupInfo) {
 					$groupColors[$groupInfo['groupName']] = $groupInfo['groupColor'];
 				}
+			}
+			if (!empty($params['highlightGroupColors'])) {
+				$index = 0;
+				foreach ($myGroups as $group) {
+					if (empty($params['highlightGroupColors'][$index])) {
+						break;
+					}
+					$groupColors[$group] = $params['highlightGroupColors'][$index];
+					$index++;
+				}
+			}
+			if ($groupColors) {
 				foreach ($highlight as &$row) {
 					$group = $row['group'];
 					if ($group && ! empty($groupColors[$group])) {

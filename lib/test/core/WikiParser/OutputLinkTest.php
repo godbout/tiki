@@ -55,8 +55,8 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 
 	function testCreateLinkWithVeryBigName()
 	{
-        // If page name exceeds 158 characters, it must be trimmed.
-        // Link will be to trimmed page while displayed text will be full name
+		// If page name exceeds 158 characters, it must be trimmed.
+		// Link will be to trimmed page while displayed text will be full name
 		$link = new WikiParser_OutputLink;
 		$link->setIdentifier('TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabase');
 
@@ -65,8 +65,8 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 
 	function testCreateExistingLinkWithVeryBigName()
 	{
-        // If page name exceeds 158 characters, it must be trimmed.
-        // Link will be to trimmed page while displayed text will be full name
+		// If page name exceeds 158 characters, it must be trimmed.
+		// Link will be to trimmed page while displayed text will be full name
 		$this->info['TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize'] = [
 			'pageName' => 'TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize',
 			'description' => 'Testing',

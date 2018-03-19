@@ -47,7 +47,7 @@ class TikiLib extends TikiDb_Bridge
 	/** Gets a library reference
 	 *
 	 * @param $name string        The name of the library as specified in the id attribute in db/config/tiki.xml
-	 * @return \ActivityLib|\AdminLib|\AreasLib|\ArtLib|\AttributeLib|\AutoSaveLib|\BannerLib|\BigBlueButtonLib|\BlogLib|\CacheLib|\CalendarLib|\Captcha|\CartLib|\CategLib|\Comments|\ContactLib|\ContributionLib|\CreditsLib|\CryptLib|\cssLib|\Tiki\CustomRoute\CustomRouteLib|\DCSLib|\EditLib|\ErrorReportLib|\FaqLib|\FederatedSearchLib|\FileGalBatchLib|\FileGalLib|\FlaggedRevisionLib|\FreetagLib|\GeoLib|\GoalEventLib|\GoalLib|\GoalRewardLib|\GroupAlertLib|\H5PLib|\HeaderLib|\HistLib|\IconsetLib|\ImageGalsLib|\KalturaLib|\KalturaLib|\Language|\LanguageTranslations|\LdapLib|\LoginLib|\LogsLib|\LogsQueryLib|\MailinLib|\Memcachelib|\MenuLib|\Messu|\MimeLib|\ModLib|\MonitorLib|\MonitorMailLib|\MultilingualLib|\NotificationLib|\OAuthLib|\ObjectLib|\PageContentLib|\ParserLib|\PaymentLib|\PerspectiveLib|\PollLib|\PreferencesLib|\QuantifyLib|\QueueLib|\QuizLib|\RatingConfigLib|\RatingLib|\ReferencesLib|\RegistrationLib|\RelationLib|\RSSLib|\SchedulersLib|\ScoreLib|\ScormLib|\SearchStatsLib|\SemanticLib|\ServiceLib|\SheetLib|\Smarty_Tiki|\SocialLib|\StatsLib|\StoredSearchLib|\StructLib|\TemplatesLib|\ThemeControlLib|\ThemeLib|\Tiki_Connect_Client|\Tiki_Connect_Server|\Tiki_Event_Manager|\Tiki_Profile_SymbolLoader|\Tiki\Object\Selector|\Tiki\Recommendation\BatchProcessor|\Tiki\Wiki\SlugManager|\TikiAccessLib|\TikiCalendarLib|\TikiDate|\TodoLib|\Tracker\Tabular\Manager|\TrackerLib|\UnifiedSearchLib|\UserMailinLib|\UserModulesLib|\UserPrefsLib|\UsersLib|\Validators|\VimeoLib|\WikiLib|\WizardLib|\WYSIWYGLib|\ZoteroLib|\blacklistLib|\TWVersion|\AccountingLib
+	 * @return \AccountingLib|\ActivityLib|\AdminLib|\AreasLib|\ArtLib|\AttributeLib|\AutoSaveLib|\BannerLib|\BigBlueButtonLib|\blacklistLib|\BlogLib|\CacheLib|\CalendarLib|\Captcha|\CartLib|\CategLib|\Comments|\ContactLib|\ContributionLib|\CreditsLib|\CryptLib|\cssLib|\Tiki\CustomRoute\CustomRouteLib|\DCSLib|\EditLib|\ErrorReportLib|\FaqLib|\FederatedSearchLib|\FileGalBatchLib|\FileGalLib|\FlaggedRevisionLib|\FreetagLib|\GeoLib|\GoalEventLib|\GoalLib|\GoalRewardLib|\GroupAlertLib|\H5PLib|\HeaderLib|\HistLib|\IconsetLib|\ImageGalsLib|\KalturaLib|\KalturaLib|\Language|\LanguageTranslations|\LdapLib|\LoginLib|\LogsLib|\LogsQueryLib|\MailinLib|\Memcachelib|\MenuLib|\Messu|\MimeLib|\ModLib|\MonitorLib|\MonitorMailLib|\MultilingualLib|\NotificationLib|\OAuthLib|\ObjectLib|\PageContentLib|\ParserLib|\PaymentLib|\PerspectiveLib|\PollLib|\PreferencesLib|\QuantifyLib|\QueueLib|\QuizLib|\RatingConfigLib|\RatingLib|\ReferencesLib|\RegistrationLib|\RelationLib|\RSSLib|\SchedulersLib|\ScoreLib|\ScormLib|\SearchStatsLib|\SemanticLib|\ServiceLib|\SheetLib|\Smarty_Tiki|\SocialLib|\StatsLib|\StoredSearchLib|\StructLib|\TemplatesLib|\ThemeControlLib|\ThemeLib|\Tiki_Connect_Client|\Tiki_Connect_Server|\Tiki_Event_Manager|\Tiki_Profile_SymbolLoader|\Tiki\Object\Selector|\Tiki\Recommendation\BatchProcessor|\Tiki\Wiki\SlugManager|\TikiAccessLib|\TikiCalendarLib|\TikiDate|\TodoLib|\Tracker\Tabular\Manager|\TrackerLib|\TWVersion|\UnifiedSearchLib|\UserMailinLib|\UserModulesLib|\UserPrefsLib|\UsersLib|\Validators|\VimeoLib|\WikiLib|\WizardLib|\WYSIWYGLib|\XMPPLib|\ZoteroLib
 	 * @throws Exception
 	 */
 	public static function lib($name)
@@ -527,6 +527,7 @@ class TikiLib extends TikiDb_Bridge
 				'HTTP_CACHE_INFO',
 				'HTTP_XPROXY',
 				'HTTP_PROXY',
+				'HTTP_PROXY_RENAMED',
 				'HTTP_PROXY_CONNECTION',
 				'HTTP_VIA',
 				'HTTP_X_COMING_FROM',
@@ -1808,8 +1809,10 @@ class TikiLib extends TikiDb_Bridge
 	/*shared*/
 	/**
 	 * @return string
+	 * @see UsersLib::genPass(), which generates passwords easier to remember
+	 * TODO: Merge with above
 	 */
-	function genPass()
+	static function genPass()
 	{
 		global $prefs;
 		$length = max($prefs['min_pass_length'], 8);
@@ -2464,7 +2467,7 @@ class TikiLib extends TikiDb_Bridge
 
 		/// Match things like [...], but ignore things like [[foo].
 		// -Robin
-		if (preg_match_all("/(?<!\[)\[([^\[\|\]]+)(?:\|?[^\[\|\]]+){0,2}\]/", $data, $r1)) {
+		if (preg_match_all("/(?<!\[)\[([^\[\|\]]+)(?:\|?[^\[\|\]]*){0,2}\]/", $data, $r1)) {
 			$res = $r1[1];
 			$links = array_unique($res);
 		}
@@ -4097,8 +4100,6 @@ class TikiLib extends TikiDb_Bridge
 
 		$html = $is_html ? 1 : 0;
 		if ($html && $prefs['feature_purifier'] != 'n') {
-			$parserlib->isHtmlPurifying = true;
-			$parserlib->isEditMode = true;
 			$noparsed = [];
 			$parserlib->plugins_remove($data, $noparsed);
 
@@ -4106,8 +4107,6 @@ class TikiLib extends TikiDb_Bridge
 			$data = HTMLPurifier($data);
 
 			$parserlib->plugins_replace($data, $noparsed, true);
-			$parserlib->isHtmlPurifying = false;
-			$parserlib->isEditMode = false;
 		}
 
 		$insertData = [
@@ -4252,6 +4251,53 @@ class TikiLib extends TikiDb_Bridge
 		$wikilib = TikiLib::lib('wiki');
 		$converter = new convertToTiki9();
 		$converter->saveObjectStatus($id, 'tiki_history');
+
+		return $id;
+	}
+
+	/**
+	 * @param $pageName
+	 * @return bool|mixed
+	 */
+	public function restore_page_from_history($pageName, $version=null)
+	{
+		if (strtolower($pageName) == 'sandbox') {
+			return false;
+		}
+
+		$query = "SELECT `version`, `version_minor`, `lastModif`, `user`, `ip`, `comment`, `data`, `description`,`is_html`
+			FROM tiki_history
+			WHERE pageName = ? ";
+
+		$bindvars = [$pageName];
+
+		if ($version === null) {
+			$query .= "ORDER BY version DESC";
+		} else {
+			$query .= "AND `version`=?";
+			$bindvars[] = $version;
+		}
+
+		$result = $this->query($query, $bindvars, 1);
+		if ($res = $result->fetchRow()) {
+			$query = "UPDATE `tiki_pages`
+			SET `version` = ?, `version_minor` = ?, `lastModif` = ?, `user` = ?, `ip` = ?, `comment` = ?, `data` = ?, `description` = ?,`is_html` = ?
+			WHERE pageName = ?";
+			$bindvars = [$res['version'], $res['version_minor'], $res['lastModif'], $res['user'], $res['ip'], $res['comment'], $res['data'], $res['description'], $res['is_html'], $pageName];
+			$this->query($query, $bindvars);
+		}
+
+		$bindvars = [$pageName];
+		$query = "SELECT `page_id` from `tiki_pages` WHERE pageName = ?";
+		$this->query($query, $bindvars);
+
+		if ($res = $result->fetchRow()) {
+			$id = $res['version'];
+		}
+
+		// FIXME: Are these lines necessary? If so, what is the proper status to use?
+		//$converter = new convertToTiki9();
+		//$converter->saveObjectStatus($id, 'tiki_pages', 'conv9.0');
 
 		return $id;
 	}
@@ -4527,16 +4573,10 @@ class TikiLib extends TikiDb_Bridge
 			$edit_description = $info['description'];
 		}
 
-		// Use largest version +1 in history table rather than tiki_page because versions used to be bugged
-		// tiki_history is also bugged as not all changes get stored in the history, like minor changes
-		// and changes that do not modify the body of the page. Both numbers are wrong, but the largest of
-		// them both is right.
-		$old_version = max($info["version"], $histlib->get_page_latest_version($pageName));
-
 		$user = $info["user"] ? $info["user"] : 'anonymous';
 		$data = $info["data"];
 		$willDoHistory = ($prefs['feature_wiki_history_full'] == 'y' || $data != $edit_data || $info['description'] != $edit_description || $info["comment"] != $edit_comment );
-		$version = $old_version + ($willDoHistory ? 1 : 0);
+		$version = $histlib->get_page_next_version($pageName, $willDoHistory);
 
 		if ($is_html === null) {
 			$html = $info['is_html'];
@@ -4561,8 +4601,6 @@ class TikiLib extends TikiDb_Bridge
 		);
 
 		if ($html == 1 && $prefs['feature_purifier'] != 'n') {
-			$parserlib->isHtmlPurifying = true;
-			$parserlib->isEditMode = true;
 			$noparsed = [];
 			$parserlib->plugins_remove($edit_data, $noparsed);
 
@@ -4570,8 +4608,6 @@ class TikiLib extends TikiDb_Bridge
 			$edit_data = HTMLPurifier($edit_data);
 
 			$parserlib->plugins_replace($edit_data, $noparsed, true);
-			$parserlib->isHtmlPurifying = false;
-			$parserlib->isEditMode = false;
 		}
 
 		if (is_null($saveLastModif)) {
@@ -4809,7 +4845,7 @@ class TikiLib extends TikiDb_Bridge
 				$func_name = 'wikiplugin_' . $plugin_name . '_save';
 
 				if (function_exists($func_name)) {
-					$func_name( $context, $body, $arguments );
+					$func_name($context, $body, $arguments);
 				}
 			}
 		}
@@ -4928,7 +4964,6 @@ class TikiLib extends TikiDb_Bridge
 				if (TikiDate::TimezoneIsValidId($_COOKIE['local_tz'])) {
 					$prefs['display_timezone'] = $_COOKIE['local_tz'];
 				} elseif (in_array(strtolower($_COOKIE['local_tz']), TikiDate::getTimezoneAbbreviations())) {	// abbreviation like BST or CEST
-
 					// timezone_offset in seconds
 					$prefs['timezone_offset'] = isset($_COOKIE['local_tzoffset']) ? (int) $_COOKIE['local_tzoffset'] * 60 * 60 : -1;
 					$tzname = timezone_name_from_abbr($_COOKIE['local_tz'], $prefs['timezone_offset']);
@@ -5553,6 +5588,12 @@ class TikiLib extends TikiDb_Bridge
 		if (! move_uploaded_file($file_tmp_name, $tmp_dest)) {
 			return ["ok" => false, "error" => tra('Errors detected')];
 		}
+		try {
+			$filegallib = TikiLib::lib('filegal');
+			$filegallib->assertUploadedFileIsSafe($tmp_dest, $file_name);
+		} catch (Exception $e) {
+			return ['ok' => false, 'error' => $e->getMessage()];
+		}
 		$fp = fopen($tmp_dest, "rb");
 		$data = '';
 		$fhash = '';
@@ -5979,7 +6020,6 @@ JS;
 			$headerlib->add_js($js);
 			return "<div id=\"$myId\">" . $alt . "</div>";
 		} else { // link on the movie will not work with IE6
-
 			$asetup = "<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"{$params['width']}\" height=\"{$params['height']}\">";
 			$asetup .= "<param name=\"movie\" value=\"{$params['movie']}\" />";
 			$asetup .= "<param name=\"quality\" value=\"{$params['quality']}\" />";
@@ -6175,6 +6215,10 @@ JS;
 	}
 
 	/**
+	 * Possibly enhanced version of strtolower(), using multi-byte if mbstring is available
+	 * 
+	 * Since Tiki 17, mb_strtolower() can be used directly instead since Tiki indirectly depends on the symfony/polyfill-mbstring compatibility library.  
+	 * 
 	 * @param $string
 	 * @return string
 	 */
@@ -6188,6 +6232,10 @@ JS;
 	}
 
 	/**
+	 * Possibly enhanced version of strtoupper(), using multi-byte if mbstring is available
+	 * 
+	 * Since Tiki 17, mb_strtoupper() can be used directly instead since Tiki indirectly depends on the symfony/polyfill-mbstring compatibility library.
+	 * 
 	 * @param $string
 	 * @return string
 	 */

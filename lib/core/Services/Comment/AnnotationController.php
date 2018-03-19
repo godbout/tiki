@@ -21,9 +21,13 @@ class Services_Comment_AnnotationController
 	private $commentController;
 
 
+	/**
+	 * @throws Exception
+	 * @throws Services_Exception_Disabled
+	 */
 	function setUp()
 	{
-		Services_Exception_Disabled::check('feature_inline_comments');
+		Services_Exception_Disabled::check('comments_inline_annotator');
 
 		$this->commentslib = TikiLib::lib('comments');
 		$this->commentController = new Services_Comment_Controller();
@@ -42,6 +46,7 @@ class Services_Comment_AnnotationController
 	 *
 	 * @return array    unused probably
 	 *
+	 * @throws Exception
 	 * @throws Services_Exception_Denied
 	 */
 
@@ -105,7 +110,9 @@ class Services_Comment_AnnotationController
 	 *
 	 * @return array    unused probably
 	 *
+	 * @throws Exception
 	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_NotFound
 	 */
 
 	function action_update($input)
@@ -142,7 +149,7 @@ class Services_Comment_AnnotationController
 	 *        int       threadId  comment id to delete
 	 *
 	 * @return array
-	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception
 	 */
 
 	function action_destroy($input)
@@ -164,6 +171,8 @@ class Services_Comment_AnnotationController
 	 *        string    uri     object-type:object-id identifier for the tiki object to search
 	 *
 	 * @return array    [total, rows]
+	 * @throws Exception
+	 * @throws Services_Exception
 	 */
 
 	function action_search($input)
@@ -226,6 +235,8 @@ class Services_Comment_AnnotationController
 	/**
 	 * @param $text
 	 * @return string
+	 * @throws Exception
+	 * @throws SmartyException
 	 */
 	private function createTitle($text)
 	{

@@ -654,7 +654,7 @@ class RSSLib extends TikiDb_Bridge
 				unset($action['type']);
 
 				if ($action['active']) {
-					$this->$method( $action, $data, $rssId );
+					$this->$method($action, $data, $rssId);
 				}
 			}
 		}

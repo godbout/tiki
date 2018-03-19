@@ -16,7 +16,7 @@ function wikiplugin_wysiwyg_info()
 		'prefs' => ['wikiplugin_wysiwyg'],
 		'iconname' => 'wysiwyg',
 		'introduced' => 9,
-		'tags' => [ 'experimental' ], // Several important bugs, notably serious #6476. Most bugs are probably not specific to the WYSIWYG *plugin*. Chealer 2017-11-02
+		'tags' => [ 'experimental' ], // Several important bugs, notably #6551 and serious #6476. Most bugs are probably not specific to the WYSIWYG *plugin* (see feature_wysiwyg). Chealer 2018-01-24
 		'filter' => 'purifier',			/* N.B. uses htmlpurifier to ensure only "clean" html gets in */
 		'format' => 'html',
 		'body' => tra('Content'),
@@ -41,8 +41,8 @@ function wikiplugin_wysiwyg_info()
 			'use_html' => [
 				'required' => false,
 				'name' => tra('Use HTML'),
-				'description' => tr('Override the %0wysiwyg_htmltowiki%1 preference if needed. Defaults to No (%0n%1)
-					if wysiwyg_htmltowiki is set to Yes (%0y%1).', '<code>', '</code>'),
+				'description' => tr('By default, the body (content) of calls to the WYSIWYG plugin is interpreted according to the "Use Wiki syntax in WYSIWYG" (%0wysiwyg_htmltowiki%1) preference. By default, "Use HTML" is considered enabled if "Use Wiki syntax in WYSIWYG" is disabled, and vice versa.
+				 This parameter allows overriding that preference if needed.', '<code>', '</code>'),
 				'since' => '14.1',
 				'filter' => 'alpha',
 				'default' => $prefs['wysiwyg_htmltowiki'] == 'y' ? 'n' : 'y',

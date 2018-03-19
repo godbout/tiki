@@ -57,7 +57,7 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 			'title' => $typeFactory->sortable($item['name']),
 			'language' => $typeFactory->identifier(empty($item['lang']) ? 'unknown' : $item['lang']),
 			'creation_date' => $typeFactory->timestamp($item['created']),
-			'modification_date' => $typeFactory->timestamp($item['lastmodif']),
+			'modification_date' => $typeFactory->timestamp($item['lastModif']),
 			'contributors' => $typeFactory->multivalue([$item['user']]),
 			'description' => $typeFactory->plaintext($item['description']),
 

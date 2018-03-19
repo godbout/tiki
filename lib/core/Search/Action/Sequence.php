@@ -68,4 +68,9 @@ class Search_Action_Sequence
 		}
 		return false;
 	}
+
+	function getSteps()
+	{
+		return $this->steps;
+	}
 }

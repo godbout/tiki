@@ -34,6 +34,8 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * => {FONT(family="tahoma", size="12pt")}text{FONT}
 	 * - 'font-family'
 	 * - 'font-size'
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testFontFamily()
 	{
@@ -298,6 +300,8 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 *
 	 * => -+
 	 * - <code>
+	 *
+	 * @group marked-as-incomplete
 	 */
 	function testMonospace()
 	{

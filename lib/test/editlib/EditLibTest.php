@@ -305,7 +305,9 @@ class EditLibTest extends TikiTestCase
 		$this->assertEquals($ex, $res);
 	}
 
-
+	/**
+	 * @group marked-as-incomplete
+	 */
 	function testSpanNestedTitle()
 	{
 		$this->markTestIncomplete('Work in progress.');

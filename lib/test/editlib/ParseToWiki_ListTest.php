@@ -36,7 +36,7 @@ class EditLib_ParseToWiki_ListTest extends TikiTestCase
 
 		/*
 		 * *Item 1
-         * *Item 2
+		 * *Item 2
 		 */
 		$ex = '*Item 1\n*Item 2\n';
 		$inData = "<ul><li>Item 1\n";
@@ -114,7 +114,7 @@ class EditLib_ParseToWiki_ListTest extends TikiTestCase
 
 		/*
 		 * #Item 1
-         * #Item 2
+		 * #Item 2
 		 */
 		$ex = '#Item 1\n#Item 2\n';
 		$inData = "<ol><li>Item 1\n";

@@ -114,7 +114,8 @@ function prefs_feature_list($partial = false)
 			'tags' => ['experimental'],
 		],
 		'feature_image_galleries_comments' => [
-			'name' => tra('Comments'),
+			'name' => tra('Image Gallery Comments'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -431,6 +432,39 @@ function prefs_feature_list($partial = false)
 				],
 			'default' => 'n',
 		],
+		'feature_library_references' => [
+			'name' => tra('Library references'),
+			'description' => tra('Enforce library reference as master'),
+			'type' => 'flag',
+			'dependencies' => [
+				'feature_references',
+				],
+			'default' => 'n',
+		],
+		'feature_references_style' => [
+			'name' => tra('Reference style'),
+			'description' => tra('Default style when using references'),
+			'type' => 'list',
+			'options' => [
+				'ama' => tra('AMA citation style (default)'),
+				'mla' => tra('MLA citation style'),
+			],
+			'dependencies' => [
+				'feature_references',
+			],
+			'default' => 'ama',
+			'tags' => ['basic'],
+		],
+		'feature_references_popover' => [
+			'name' => tra('Display reference in a popover'),
+			'description' => tra('Display the details of the reference in a popover'),
+			'type' => 'flag',
+			'dependencies' => [
+				'feature_references',
+			],
+			'default' => 'n',
+			'tags' => ['basic'],
+		],
 		'feature_shoutbox' => [
 			'name' => tra('Shoutbox'),
 			'description' => tra('Quick comment (graffiti) box. Like a group chat, but not in real time.'),
@@ -505,6 +539,14 @@ function prefs_feature_list($partial = false)
 		'feature_comments_moderation' => [
 			'name' => tra('Comments moderation'),
 			'description' => tra('Enables the admin or other authorized group member to validate comments before they are visible'),
+			'help' => 'Comments',
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['basic'],
+		],
+		'feature_comments_send_author_name' => [
+			'name' => tra('Add author name in From email header'),
+			'description' => tra('Add the name of the comment author in the email header "From", making the email look like sent from  "John Doe <noreply@example.com>"'),
 			'help' => 'Comments',
 			'type' => 'flag',
 			'default' => 'n',
@@ -724,6 +766,8 @@ function prefs_feature_list($partial = false)
 			'view' => 'tiki-list_invoices.php',
 			'tags' => ['experimental'],
 		],
+		
+		// TODO: Replace feature_wysiwyg and wysiwyg_optional with a single tri-state preference (allowing either just normal editor (default), just WYSIWYG or both) to clarify and avoid misinterpretation
 		'feature_wysiwyg' => [
 			'name' => tra('Full WYSIWYG editor'),
 			'description' => tra('WYSIWYG is an acronym for "What You See Is What You Get". <a href="https://ckeditor.com">CKEditor</a> is used to provide a word-processor-like editing experience.'),
@@ -736,8 +780,21 @@ function prefs_feature_list($partial = false)
 				'feature_wiki_paragraph_formatting',
 				'feature_wiki_paragraph_formatting_add_br',
 			],
-			'tags' => ['basic'],
+			'tags' => ['basic',
+				
+				/* FIXME: If wysiwyg_optional is enabled, which is the case by default, switching an article's body to WYSIWYG loses any unsaved modifications. Chealer 2018-01-04
+				 * FIXME: If wysiwyg_optional is enabled, switching from WYSIWYG to non-WYSIWYG or the opposite can quietly alter parse result (see ticket #5512). Chealer 2018-01-04
+				 * FIXME: If wysiwyg_htmltowiki is enabled, which is the case by default, the table builder inserts broken code (see ticket #6522). Chealer 2018-01-08
+				 * FIXME: If wysiwyg_htmltowiki is enabled, "Advanced" tables can be altered (see ticket #6518). Chealer 2018-01-10
+				 * FIXME: What you see in WYSIWYG editor is NOT NECESSARILY what you get (see tickets #6523 and #6532). Chealer 2018-01-09
+				 * FIXME: If wysiwyg_wiki_parsed is disabled, WYSIWYG help is wrong/broken (see ticket #6527). Chealer 2018-01-09
+				 * Several other presumed bugs are reported. Chealer 2018-01-09
+				 */
+				'experimental'
+				
+			],
 		],
+		
 		'feature_kaltura' => [
 			'name' => tra('Kaltura video management'),
 			'description' => tra('Integration with the Kaltura video management platform'),
@@ -859,7 +916,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_group_watches' => [
 			'name' => tra('Group watches'),
-			'description' => tra('All users in a group selected by an admin will receive email notification of changes to specific items. Users cannot choose to stop receiving those notifications while they are members of that group'),
+			'description' => tra('All users in a group selected by a users admin (tiki_p_admin_users) will receive email notification of changes to specific items. Users cannot choose to stop receiving those notifications while they are members of that group'),
 			'help' => 'Group+Watches',
 			'type' => 'flag',
 			'default' => 'n',
@@ -953,7 +1010,9 @@ function prefs_feature_list($partial = false)
 			'name' => tra('Debugger console'),
 			'help' => 'Debugger+Console',
 			'type' => 'flag',
+			'description' => tra('A popup console with a list of all PHP and Smarty variables used to render the current webpage. It can be viewed by clicking \'Quick Administration->Smarty debug window\' or by appending ?show_smarty_debug=1 or &show_smarty_debug=1 to the page URL. You may also execute SQL, watch vars and perform a number of other functions.'),
 			'perspective' => false,
+			'hint' => tra('Only viewable by admins'),
 			'default' => 'n',
 			'warning' => tr('Not suitable for production use.'),
 		],
@@ -1224,18 +1283,20 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Allow anonymous users to participate in voting'),
 			'type' => 'flag',
 			'default' => 'n',
+			'hint' => tr('This can be overridden by specific permissions.'),
 			'tags' => ['basic'],
 		],
 		'feature_poll_revote' => [
 			'name' => tra('Allow re-voting'),
-			'description' => tra('permit multiple votes'),
+			'description' => tra('Visitors can vote mulitiple times for a poll.'),
 			'type' => 'flag',
 			'default' => 'y',
+			'details' => tr('When logged in, Tiki tracks users by username or otherwise IP address.'),
 			'tags' => ['basic'],
 		],
 		'feature_poll_comments' => [
 			'name' => tra('Comments for polls'),
-			'description' => tra('Permit commenting on polls'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_polls',
@@ -1246,7 +1307,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_faq_comments' => [
 			'name' => tra('Comments for FAQs'),
-			'description' => tra('Permit commenting on FAQs'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_faqs',
@@ -1269,33 +1330,54 @@ function prefs_feature_list($partial = false)
 			'admin' => 'sefurl',
 		],
 		'feature_sefurl_filter' => [
-			'name' => tra('Search engine friendly URL postfilter'),
+			'name' => tra('SEFURL postfilter'),
 			'help' => 'Rewrite+Rules',
 			'type' => 'flag',
+			'warning' => tra('Do not enable this feature as most Tiki features output friendly URLs and this feature has high processor overhead.'),
 			'perspective' => false,
 			'default' => 'n',
 		],
 		'feature_sefurl_title_article' => [
-			'name' => tra('Display article title in the search engine friendly URL'),
+			'name' => tra('Article title in SEFURL'),
 			'type' => 'flag',
 			'perspective' => false,
+			'description' => tra('The article title rather than article number can be displayed in the search engine friendly URL.'),
 			'dependencies' => ['feature_sefurl'],
+			'help' => 'Apache Clean URLs',
 			'default' => 'y',
 		],
 		'feature_sefurl_title_blog' => [
-			'name' => tra('Display blog title in the search engine friendly URL'),
+			'name' => tra('Blog title in SEFURL'),
+			'type' => 'flag',
+			'perspective' => false,
+			'description' => tra('The blog title rather than blog number can be displayed in the search engine friendly URL.'),
+			'dependencies' => ['feature_sefurl'],
+			'help' => 'Apache Clean URLs',
+			'default' => 'y',
+		],
+		'feature_sefurl_title_forumthread' => [
+			'name' => tra('Display forum thread or forum post title in the search engine friendly URL'),
 			'type' => 'flag',
 			'perspective' => false,
 			'dependencies' => ['feature_sefurl'],
 			'default' => 'y',
 		],
 		'feature_sefurl_title_trackeritem' => [
-			'name' => tra('Display tracker item title in the search engine friendly URL'),
-			'description' => tra('To enable the title, you should disable `Rewrite tiki-view_tracker.php?itemId=yyy to Prefixyyy page`'),
+			'name' => tra('Tracker title in SEFURL'),
+			'description' => tra('To display the title, you should disable `Rewrite tiki-view_tracker.php?itemId=yyy to Prefixyyy page`'),
 			'type' => 'flag',
 			'perspective' => false,
 			'dependencies' => ['feature_sefurl'],
-			'default' =>'n',
+			'default' => 'n',
+		],
+		'feature_sefurl_title_max_size' => [
+			'name' => tra('Max size of title in the search engine friendly URL (Tracker Items and Forum Threads)'),
+			'description' => tra('Limit tracker item / forum thread title in the number of character defined'),
+			'type' => 'text',
+			'filter' => 'digits',
+			'perspective' => false,
+			'dependencies' => ['feature_sefurl'],
+			'default' => '200',
 		],
 		'feature_sefurl_tracker_prefixalias' => [
 			'name' => tra('Rewrite tiki-view_tracker.php?itemId=yyy to Prefixyyy page'),
@@ -1310,6 +1392,7 @@ function prefs_feature_list($partial = false)
 			'name' => tra('Canonical URL tag'),
 			'description' => tra('Indicates to search engines which URL to use, to prevent duplicate listings'),
 			'type' => 'flag',
+			'help' => 'Canonical link element',
 			'perspective' => false,
 			'default' => 'y',
 		],
@@ -1376,7 +1459,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_article_comments' => [
 			'name' => tra('Comments on articles'),
-			'description' => tra('Enable comments on articles'),
+			'description' => tra('Users with permission can post or reply to comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_articles',
@@ -1509,34 +1592,34 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_search_show_search_box' => [
 			'name' => tra('Search box'),
-			'description' => tra('make the search box visible'),
+			'description' => tra('Shows a search box above the search results to do additional searches.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'feature_search_show_visit_count' => [
 			'name' => tra('Visits'),
-			'description' => tra('show number of visits'),
+			'description' => tra('Include the number of visits in the search results.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
 		],
 		'feature_search_show_pertinence' => [
 			'name' => tra('Relevance'),
-			'description' => tra('enable searching by relevance'),
+			'description' => tra('Display Tiki\'s estimate of the relevance of search matches in the search results.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
 		],
 		'feature_search_show_object_type' => [
 			'name' => tra('Object type'),
-			'description' => tra('search for a specific object type'),
+			'description' => tra('Shows object type filters above the search results to further reduce search results by object type.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
 		],
 		'feature_search_show_last_modification' => [
 			'name' => tra('Last-modified date'),
-			'description' => tra('Show the last-modified date'),
+			'description' => tra('Show the last-modified date in search results.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
@@ -1559,7 +1642,8 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_blogposts_comments' => [
-			'name' => tra('Comments on blog posts'),
+			'name' => tra('Blog post Comments'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_blogs',
@@ -1585,7 +1669,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_file_galleries_comments' => [
 			'name' => tra('File gallery comments'),
-			'description' => tra('Users can post comments on file galleries'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'help' => 'Comments',
 			'default' => 'n',
@@ -1659,7 +1743,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_forum_allow_flat_forum_quotes' => [
 			'name' => tra('Allows quoting in flat forums'),
-			'description' => tra('Allows users to reply/'),
+			'description' => tra('Allows users to reply.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
@@ -2089,7 +2173,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_comments' => [
 			'name' => tra('Comments below wiki pages'),
-			'description' => tra('Allow users (with permission) to post threaded comments to a page.'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'help' => 'Comments',
 			'dependencies' => [
@@ -2380,8 +2464,9 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_wiki_paragraph_formatting_add_br' => [
-			'name' => tra('...but still create line breaks within paragraphs'),
+			'name' => tra('Create line breaks within paragraphs'),
 			'type' => 'flag',
+			'description' => tra('When Wiki paragraph formatting is enabled, this option creates line breaks within paragraphs.'),
 			'default' => 'y',
 		],
 		'feature_wiki_monosp' => [
@@ -2763,8 +2848,8 @@ function prefs_feature_list($partial = false)
 			'default' => 'n',
 		],
 		'feature_inline_comments' => [
-			'name' => tra('Inline comments (annotations)'),
-			'description' => tra('Contextual comments (using Apache Annotator)'),
+			'name' => tra('Inline comments'),
+			'description' => tra('Contextual comments'),
 			'dependencies' => [
 				'feature_wiki_comments',
 				'feature_wiki_paragraph_formatting',
@@ -2772,14 +2857,7 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 			'help' => 'Inline+comments',
-
-			/*
-			 * Anchoring absolutely not robust. Positioning is verified with the tiki.comments.ranges attribute, which is not updated when wiki pages change. When annotated text changes, the annotation stops displaying (unless the range is unchanged). Chealer 2017-09-20
-			 * Annotating is offered when selecting text in a WYSIWYG zone (WYSIWYG plugin) in edition mode. Chealer 2017-10-26
-			 */
 			'tags' => ['experimental'],
-
-			'keywords' => 'annotation annotatorjs',
 		],
 		'feature_equal_height_rows_js' => [
 			'name' => tra('Enable JavaScript plugin for equal-height rows'),
@@ -2857,18 +2935,31 @@ function prefs_feature_list($partial = false)
 			],
 			'default' => '',
 		],
+		'feature_typo_enable' => [
+			'name' => tra('Enable Typography Features'),
+			'description' => tra('Features to replace normal characters with typographic equivalents'),
+			'type' => 'flag',
+			'tags' => ['basic'],
+			'default' => 'n',
+		],
 		'feature_typo_quotes' => [
 			'name' => tra('Smart “curly” quotes'),
 			'description' => tra('Convert \"straight\" quotes to “curly” ones, also convert ’ apostrophe and ‘single’ quotes'),
 			'type' => 'flag',
 			'tags' => ['basic'],
 			'default' => 'y',
+			'dependencies' => [
+				'feature_typo_enable',
+			],
 		],
 		'feature_typo_approximative_quotes' => [
 			'name' => tra('Convert approximative ASCII quotes'),
 			'description' => tra('Convert plain-ASCII quote substitutes `` \'\' ,, << >> to their typographic equivalent “ ” „ « »'),
 			'type' => 'flag',
 			'default' => 'n',
+			'dependencies' => [
+				'feature_typo_enable',
+			],
 		],
 		'feature_typo_dashes_and_ellipses' => [
 			'name' => tra('Smart em-dash and ellipsis'),
@@ -2876,6 +2967,9 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'tags' => ['basic'],
 			'default' => 'n',
+			'dependencies' => [
+				'feature_typo_enable',
+			],
 		],
 		'feature_typo_nobreak_spaces' => [
 			'name' => tra('Smart no-break space'),
@@ -2883,6 +2977,9 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'tags' => ['basic'],
 			'default' => 'y',
+			'dependencies' => [
+				'feature_typo_enable',
+			],
 		],
 		'feature_default_calendars' => [
 			'name' => tra('Display only select calendars by default'),
@@ -2899,25 +2996,31 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_intertiki_import_preferences' => [
 			'name' => tra('Import user preferences'),
+			'description' => tra('Client Tiki will copy the user preferences from the master server.'),
 			'type' => 'flag',
+			'warning' => tra('This will overwrite local user preferences every time the user logs in.'),
 			'default' => 'n',
 		],
 		'feature_intertiki_import_groups' => [
 			'name' => tra('Import user groups'),
+			'description' => tra('Groups the user belongs to on the master server will be imported (along with their security definitions).'),
 			'type' => 'flag',
+			'warning' => tra('This will overwrite local groups every time a user logs in.'),
 			'default' => 'n',
 		],
 		'feature_intertiki_imported_groups' => [
 			'name' => tra('Limit group import'),
-			'hint' => tra('Comma-separated list of imported groups. Leave empty to avoid limitation.'),
+			'hint' => tra('Comma-separated list of case-sensitive imported groups. Leave empty to avoid limitation.'),
 			'type' => 'text',
 			'filter' => 'text',
+			'description' => tra('This list will limit the group import feature to only those groups listed here.'),
 			'default' => '',
 		],
 		'feature_intertiki_sharedcookie' => [
 			'name' => tra('Intertiki shared cookie'),
-			'description' => tra('When enabled a user who logs into or out of either the client or master is automatically logged into or out of all other sites. The remember me login feature must be on.'),
+			'description' => tra('When enabled a user who logs into or out of either the client or master is automatically logged into or out of all other sites.'),
 			'type' => 'flag',
+			'hint' => 'The remember me login feature must be on.',
 			'default' => 'n',
 		],
 		'feature_intertiki_server' => [

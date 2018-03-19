@@ -9,15 +9,18 @@ function prefs_wysiwyg_list()
 {
 
 	return [
+		// TODO: Replace feature_wysiwyg and wysiwyg_optional with a single tri-state preference (allowing either just normal editor (default), just WYSIWYG or both) to clarify and avoid misinterpretation
 		'wysiwyg_optional' => [
 			'name' => tra('Full WYSIWYG editor is optional'),
 			'type' => 'flag',
-			'description' => tra('If WYSIWYG is optional, the wiki text editor is also available. Otherwise only the WYSIWYG editor is used.') . ' ' . tra('Switching between HTML and wiki formats can cause problems for some pages.'),
+			'description' => tra('If WYSIWYG is optional, the wiki text editor is also available. Otherwise only the WYSIWYG editor is used.'),
 			'dependencies' => [
 				'feature_wysiwyg',
 			],
+			'warning' => tra('Switching between HTML and wiki formats can cause problems for some pages.'),
 			'default' => 'y',
 		],
+		
 		'wysiwyg_default' => [
 			'name' => tra('Full WYSIWYG editor is displayed by default'),
 			'description' => tra('If both the WYSIWYG editor and the text editor are available, the WYSIWYG editor is used by default, for example, when creating new pages'),
@@ -30,6 +33,7 @@ function prefs_wysiwyg_list()
 		'wysiwyg_memo' => [
 			'name' => tra('Reopen with the same editor'),
 			'type' => 'flag',
+			'description' => tra('Ensures the editor last used to edit a page or item is used for the next edit as the default.'),
 			'dependencies' => [
 				'feature_wysiwyg',
 			],
@@ -64,6 +68,7 @@ function prefs_wysiwyg_list()
 		'wysiwyg_toolbar_skin' => [
 			'name' => tra('Full WYSIWYG editor skin'),
 			'type' => 'list',
+			'help' => 'http://ckeditor.com/addons/skins/all',
 			'options' => [
 				'moono' => tra('Moono (Default)'),
 				'kama' => tra('Kama'),

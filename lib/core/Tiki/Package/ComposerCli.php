@@ -7,6 +7,7 @@
 
 namespace Tiki\Package;
 
+use Symfony\Component\Process\Exception\ExceptionInterface as ProcessExceptionInterface;
 use Symfony\Component\Process\ProcessBuilder;
 
 /**
@@ -45,6 +46,16 @@ class ComposerCli
 	protected $phpCli = null;
 
 	/**
+	 * @var int timeout in seconds waiting for composer commands to execute, default 5 min (300s)
+	 */
+	protected $timeout = 300;
+
+	/**
+	 * @var null|array Result from last execution null if never executed, else an array with command, output, errors and code
+	 */
+	protected $lastResult = null;
+
+	/**
 	 * ComposerCli constructor.
 	 * @param string $basePath
 	 * @param string $workingPath
@@ -70,7 +81,7 @@ class ComposerCli
 	 * Returns the location of the composer.json file
 	 * @return string
 	 */
-	protected function getComposerConfigFilePath()
+	public function getComposerConfigFilePath()
 	{
 		return $this->workingPath . self::COMPOSER_CONFIG;
 	}
@@ -156,6 +167,30 @@ class ComposerCli
 		}
 
 		$this->phpCli = false;
+
+		// try to check the PHP binary path using operating system resolution mechanisms
+		foreach (self::PHP_COMMAND_NAMES as $cli) {
+			$possibleCli = $cli;
+			$builder = new ProcessBuilder();
+			if (\TikiInit::isWindows()) {
+				$possibleCli .= '.exe';
+				$builder->setPrefix('where');
+				$builder->setArguments([$possibleCli]);
+			} else {
+				$builder->setPrefix('command');
+				$builder->setArguments(['-v', $possibleCli]);
+			}
+			$process = $builder->getProcess();
+			$process->setTimeout($this->timeout);
+			$process->run();
+			$output = $process->getOutput();
+			if ($output) {
+				$this->phpCli = trim($output);
+				return $this->phpCli;
+			}
+		}
+
+		// Fall back to path search
 		foreach (explode(PATH_SEPARATOR, $_SERVER['PATH']) as $path) {
 			foreach (self::PHP_COMMAND_NAMES as $cli) {
 				$possibleCli = $path . DIRECTORY_SEPARATOR . $cli;
@@ -213,30 +248,46 @@ class ComposerCli
 			$args = [$args];
 		}
 
-		$builder = new ProcessBuilder();
+		$output = $errors = '';
 
-		$cmd = $this->getPhpPath();
-		if ($cmd) {
-			$builder->setPrefix($cmd);
-			array_unshift($args, $this->getComposerPharPath());
-		} else {
-			$builder->setPrefix($this->getComposerPharPath());
+		try {
+			$builder = new ProcessBuilder();
+
+			$cmd = $this->getPhpPath();
+			if ($cmd) {
+				$builder->setPrefix($cmd);
+				array_unshift($args, $this->getComposerPharPath());
+			} else {
+				$builder->setPrefix($this->getComposerPharPath());
+			}
+
+			$builder->setArguments($args);
+
+			if (! getenv('HOME') && ! getenv('COMPOSER_HOME')) {
+				$builder->setEnv('COMPOSER_HOME', $this->basePath . self::COMPOSER_HOME);
+			}
+
+			$process = $builder->getProcess();
+
+			$process->setTimeout($this->timeout);
+
+			$process->run();
+
+			$code = $process->getExitCode();
+
+			$output = $process->getOutput();
+			$errors = $process->getErrorOutput();
+		} catch (ProcessExceptionInterface $e) {
+			$errors .= $e->getMessage();
+			$code = 1;
 		}
 
-		$builder->setArguments($args);
-
-		if (! getenv('HOME') && ! getenv('COMPOSER_HOME')) {
-			$builder->setEnv('COMPOSER_HOME', $this->basePath . self::COMPOSER_HOME);
-		}
-
-		$process = $builder->getProcess();
-
-		$process->run();
-
-		$code = $process->getExitCode();
-
-		$output = $process->getOutput();
-		$errors = $process->getErrorOutput();
+		$this->lastResult = [
+			'command' => $process->getCommandLine(),
+			'output' => $output,
+			'errors' => $errors,
+			'code' => $code
+		];
 
 		return [$output, $errors, $code];
 	}
@@ -328,7 +379,7 @@ class ComposerCli
 			['--no-ansi', '--no-dev', '--prefer-dist', 'update', '-d', $this->workingPath, 'nothing']
 		);
 
-		return $output . "\n" . $errors;
+		return $this->glueOutputAndErrors($output, $errors);
 	}
 
 	/**
@@ -344,7 +395,7 @@ class ComposerCli
 
 		list($output, $errors) = $this->execComposer(['--no-ansi', 'diagnose', '-d', $this->workingPath]);
 
-		return $output . "\n" . $errors;
+		return $this->glueOutputAndErrors($output, $errors);
 	}
 
 	/**
@@ -398,7 +449,7 @@ class ComposerCli
 		return tr('= New composer.json file content') . ":\n\n"
 			. $fileContent . "\n\n"
 			. tr('= Composer execution output') . ":\n\n"
-			. $commandOutput . "\n" . $errors;
+			. $this->glueOutputAndErrors($commandOutput, $errors);
 	}
 
 	/**
@@ -422,7 +473,7 @@ class ComposerCli
 		return tr('= New composer.json file content') . ":\n\n"
 		. $fileContent . "\n\n"
 		. tr('= Composer execution output') . ":\n\n"
-		. $commandOutput . "\n" . $errors;
+		. $this->glueOutputAndErrors($commandOutput, $errors);
 	}
 
 
@@ -494,5 +545,62 @@ class ComposerCli
 	public function normalizePackageName($packageName)
 	{
 		return strtolower($packageName);
+	}
+
+	/**
+	 * Sets the execution timeout for composer
+	 *
+	 * @param int $timeout max amount of seconds waiting for a composer command to finish
+	 */
+	public function setTimeout($timeout)
+	{
+		$this->timeout = (int)$timeout;
+	}
+
+	/**
+	 * Retrieves the execution timeout for composer
+	 *
+	 * @return int return the value of timeout in seconds
+	 */
+	public function getTimeout()
+	{
+		return $this->timeout;
+	}
+
+	/**
+	 * Returns the result of the last composer command executed
+	 *
+	 * @return array|null last result, null for never executed, array(command, output, error, code) if executed
+	 */
+	public function getLastResult()
+	{
+		return $this->lastResult;
+	}
+
+	/**
+	 * Clear the information about the last execution result
+	 */
+	public function clearLastResult()
+	{
+		$this->lastResult = null;
+	}
+
+	/**
+	 * Glue both output ans errors, Checking if the different parts are not empty
+	 * @param $output
+	 * @param $errors
+	 * @return string
+	 */
+	protected function glueOutputAndErrors($output, $errors)
+	{
+		$string = $output;
+
+		if (!empty($errors)) {
+			if (!empty($string)) {
+				$string .= "\n";
+			}
+			$string .= tr('Errors:') . "\n" . $errors;
+		}
+		return $string;
 	}
 }

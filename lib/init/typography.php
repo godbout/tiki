@@ -24,6 +24,10 @@ function typography($content, $lg = '', $ui_flag = false)
 	global $prefs;
 	static $smartypants_parsers = [];
 
+	if (empty($prefs['feature_typo_enable']) || $prefs['feature_typo_enable'] !== 'y') {
+		return $content;
+	}
+
 	if ($lg == '') {
 		if (! empty($prefs['language'])) {
 			$lang = $prefs['language'];

@@ -24,7 +24,6 @@ class TikiSetup extends TikiInit
 
 		$checked = true;
 
-		$errors = '';
 
 		if (isset($_SERVER['SERVER_SOFTWARE']) && strpos($_SERVER['SERVER_SOFTWARE'], 'IIS') == true) {
 			if (array_key_exists('SCRIPT_FILENAME', $_SERVER)) {
@@ -38,28 +37,7 @@ class TikiSetup extends TikiInit
 			$docroot = getcwd();
 		}
 
-		if (ini_get('session.save_handler') == 'files') {
-			$save_path = ini_get('session.save_path');
-			// check if we can check it. The session.save_path can be outside
-			// the open_basedir paths.
-			$open_basedir = ini_get('open_basedir');
-			if (empty($open_basedir)) {
-				if (! is_dir($save_path)) {
-					$errors .= "The directory '$save_path' does not exist or PHP is not allowed to access it (check open_basedir entry in php.ini).\n";
-				} elseif (! TikiSetup::is_writeable($save_path)) {
-					$errors .= "The directory '$save_path' is not writeable.\n";
-				}
-			}
-
-			if ($errors) {
-				$save_path = TikiSetup::tempdir();
-
-				if (is_dir($save_path) && TikiSetup::is_writeable($save_path)) {
-					session_save_path($save_path);
-					$errors = '';
-				}
-			}
-		}
+		$errors = self::checkSession();
 
 		$wwwuser = '';
 		$wwwgroup = '';
@@ -165,5 +143,40 @@ $PHP_CONFIG_FILE_PATH/php.ini or $httpd_conf.
 			}
 			exit;
 		}
+	}
+
+	/**
+	 * Checks if we're using files for the sessions and checks the dir is accessible
+	 * But only if the session has not been started yet.
+	 *
+	 * @return string errors if present
+	 */
+	public static function checkSession()
+	{
+		$errors = '';
+
+		if (ini_get('session.save_handler') == 'files') {
+			$save_path = ini_get('session.save_path');
+			// check if we can check it. The session.save_path can be outside
+			// the open_basedir paths.
+			$open_basedir = ini_get('open_basedir');
+			if (empty($open_basedir)) {
+				if (! is_dir($save_path)) {
+					$errors .= "The directory '$save_path' does not exist or PHP is not allowed to access it (check open_basedir entry in php.ini).\n";
+				} elseif (! TikiSetup::is_writeable($save_path)) {
+					$errors .= "The directory '$save_path' is not writeable.\n";
+				}
+			}
+
+			if ($errors) {
+				$save_path = sys_get_temp_dir();
+
+				if (is_dir($save_path) && TikiSetup::is_writeable($save_path) && session_status() !== PHP_SESSION_ACTIVE) {
+					session_save_path($save_path);
+					$errors = '';
+				}
+			}
+		}
+		return $errors;
 	}
 }

@@ -83,6 +83,16 @@ class Tracker_Field_DynamicList extends Tracker_Field_Abstract
 						],
 						'legacy_index' => 5,
 					],
+					'selectMultipleValues' => [
+						'name' => tr('Select multiple values'),
+						'description' => tr('Allow the user to select multiple values'),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+						'legacy_index' => 6,
+					],
 				],
 			],
 		];
@@ -91,10 +101,32 @@ class Tracker_Field_DynamicList extends Tracker_Field_Abstract
 	function getFieldData(array $requestData = [])
 	{
 		$ins_id = $this->getInsertId();
-		return [
+		$data = [
 			'value' => (isset($requestData[$ins_id]))
 				? $requestData[$ins_id]
 				: $this->getValue(),
+		];
+
+		if ($this->getOption('selectMultipleValues') && ! is_array($data['value'])) {
+			$data['value'] = explode(',', $data['value']);
+		}
+
+		return $data;
+	}
+
+	function handleSave($value, $oldValue)
+	{
+		// if selectMultipleValues is enabled, convert the array of options to string before saving the field value in the db
+		if ($this->getOption('selectMultipleValues')) {
+			if (is_array($value)) {
+				$value = implode(',', $value);
+			}
+		} else {
+			$value = (int) $value;
+		}
+
+		return [
+			'value' => $value,
 		];
 	}
 
@@ -119,6 +151,7 @@ class Tracker_Field_DynamicList extends Tracker_Field_Abstract
 		$insertId = $this->getInsertId();
 		$originalValue = $this->getConfiguration('value');
 		$hideBlank = $this->getOption('hideBlank');
+		$selectMultipleValues = $this->getOption('selectMultipleValues', 0);
 
 		$filterFieldValueHere = $originalValue;
 		if (! empty($context['itemId'])) {
@@ -136,9 +169,21 @@ class Tracker_Field_DynamicList extends Tracker_Field_Abstract
 			return tr('*** ERROR: Field %0 not found ***', $listFieldIdThere);
 		}
 
+		if ($this->getOption('selectMultipleValues')) {
+			if (is_array($originalValue)) {
+				$originalValue = implode(',', $originalValue);
+			}
+			$filterFieldValueHere = explode(',', $originalValue);
+			$multiple = ' multiple="multiple"';
+			$insertId .= '[]';
+		} else {
+			$multiple = '';
+		}
+
 		TikiLib::lib('header')->add_jq_onready(
 			'
 $("body").on("change", "input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldIdHere . ']", function(e) {
+	$( "select[name=\'' . $insertId . '\']").parent().tikiModal(tr("Loading..."));
 	$.getJSON(
 		"tiki-tracker_http_request.php",
 		{
@@ -151,13 +196,14 @@ $("body").on("change", "input[name=ins_' . $filterFieldIdHere . '], select[name=
 			insertId: "' . $insertId . '",  // need to pass $insertId in case we have more than one field bound to the same eventsource
 			originalValue:  "' . $originalValue . '",
 			hideBlank: ' . intval($hideBlank) . ',
+			selectMultipleValues: ' . $selectMultipleValues . ',
 			filterFieldValueHere: $(this).val() // We need the field value for the fieldId filterfield for the item $(this).val
 		},
 		
 		// callback
 		function(data, status) {
 			if (data && data.request && data.response) {
-				targetDDL = "select[name=" + data.request.insertId + "]";
+				targetDDL = "select[name=\'" + data.request.insertId + "\']";
 				$ddl = $(targetDDL);
 				$ddl.empty();
 				
@@ -178,8 +224,10 @@ $("body").on("change", "input[name=ins_' . $filterFieldIdHere . '], select[name=
 					);
 				}); // each
 					
-					if (data.request.originalValue) {
-					$ddl.val(data.request.originalValue);
+				if (data.request.originalValue) {
+					$.each(data.request.originalValue.split(","), function(i,e){
+						$("option[value=\'" + e + "\']", $ddl).prop("selected", true);
+					});
 				}
 			}
 
@@ -187,6 +235,7 @@ $("body").on("change", "input[name=ins_' . $filterFieldIdHere . '], select[name=
 				$ddl.trigger("chosen:updated");
 			}
 			$ddl.trigger("change");
+			$ddl.parent().tikiModal();
 		} // callback
 	);  // getJSON
 });
@@ -201,7 +250,7 @@ if( $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFi
 $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldIdHere . ']").trigger("change", "initial");
 ', 1);
 
-		return '<select class="form-control" name="' . $insertId . '"></select>';
+		return '<select class="form-control"' . $multiple . ' name="' . $insertId . '"></select>';
 	}
 
 
@@ -230,67 +279,75 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 			return tr('*** ERROR: Field %0 not found ***', $listFieldIdThere);
 		}
 
-		$remoteItemId = $this->getValue();
-		$itemInfo = $trklib->get_tracker_item($remoteItemId);
+		$remoteItemIds = (array) $this->getValue();
+		$output = '';
 
-		switch ($listFieldThere['type']) {
-			// e = category
-			// d = dropdown
-			case 'e':
-			case 'd':
-				//$listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
-				$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
-				// array selected_categories etc.
-				$valueField = $handler->getFieldData();
-				// for some reason, need to apply the values back, otherwise renderOutput does not return a value - bug or intended?
-				$listFieldThere = array_merge($listFieldThere, $valueField);
-				$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
-				$context = ['showlinks' => 'n'];
-				$labelField = $handler->renderOutput($context);
-				return $labelField;
-			break;
+		foreach ($remoteItemIds as $remoteItemId) {
 
-			// r = item-link requires $listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
-			case 'r':
-				$listFieldThere = array_merge($listFieldThere, ['value' => $remoteItemId]);
-				$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
-				// do not inherit showlinks settings from remote items.
-				$context = ['showlinks' => 'n'];
-				$labelField = $handler->renderOutput($context);
-				return $labelField;
-			break;
+			$itemInfo = $trklib->get_tracker_item($remoteItemId);
 
-			//l = item-list
-			case 'l':
-				// show selected item of that list - requires match in tiki-tracker_http_request.php
-				//$listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
-				$handler = $trklib->get_field_handler($listFieldThere);
-				$displayFieldIdThere = $handler->getOption('displayFieldIdThere');
-				// do not inherit showlinks settings from remote items.
-				$context = ['showlinks' => 'n'];
-				foreach ($displayFieldIdThere as $displayFieldId) {
-					$displayField = $trklib->get_tracker_field($displayFieldId);
-					// not shure why this is needed - and only for some fieldtypes?
-					//renderOutput() in abstract checks only $this->definition['value'], not $this->itemdata
-					$displayField = array_merge($displayField, ['value' => $itemInfo[$displayFieldId]]);
-					$handler = $trklib->get_field_handler($displayField, $itemInfo);
-					$labelFields[] = $handler->renderOutput($context);
-				}
-				$labelField = implode(' ', $labelFields);
-				return $labelField;
-			break;
+			$output .= $output ? '<br>' : '';	// just line breaks for now
+
+			switch ($listFieldThere['type']) {
+				// e = category
+				// d = dropdown
+				case 'e':
+				case 'd':
+					//$listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
+					$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
+					// array selected_categories etc.
+					$valueField = $handler->getFieldData();
+					// for some reason, need to apply the values back, otherwise renderOutput does not return a value - bug or intended?
+					$listFieldThere = array_merge($listFieldThere, $valueField);
+					$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
+					$context = ['showlinks' => 'n'];
+					$labelField = $handler->renderOutput($context);
+					$output .= $labelField;
+					break;
+
+				// r = item-link requires $listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
+				case 'r':
+					$listFieldThere = array_merge($listFieldThere, ['value' => $remoteItemId]);
+					$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
+					// do not inherit showlinks settings from remote items.
+					$context = ['showlinks' => 'n'];
+					$labelField = $handler->renderOutput($context);
+					$output .= $labelField;
+					break;
+
+				//l = item-list
+				case 'l':
+					// show selected item of that list - requires match in tiki-tracker_http_request.php
+					//$listFieldThere = array_merge($listFieldThere, array('value' => $remoteItemId));
+					$handler = $trklib->get_field_handler($listFieldThere);
+					$displayFieldIdThere = $handler->getOption('displayFieldIdThere');
+					// do not inherit showlinks settings from remote items.
+					$context = ['showlinks' => 'n'];
+					foreach ($displayFieldIdThere as $displayFieldId) {
+						$displayField = $trklib->get_tracker_field($displayFieldId);
+						// not shure why this is needed - and only for some fieldtypes?
+						//renderOutput() in abstract checks only $this->definition['value'], not $this->itemdata
+						$displayField = array_merge($displayField, ['value' => $itemInfo[$displayFieldId]]);
+						$handler = $trklib->get_field_handler($displayField, $itemInfo);
+						$labelFields[] = $handler->renderOutput($context);
+					}
+					$labelField = implode(' ', $labelFields);
+					$output .= $labelField;
+					break;
 
 
-			// i.e textfield - requires $listFieldThere = array_merge($listFieldThere, array('value' => $itemInfo[$listFieldIdThere]));
-			default:
-				$listFieldThere = array_merge($listFieldThere, ['value' => $itemInfo[$listFieldIdThere]]);
-				$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
-				// do not inherit showlinks settings from remote items.
-				$context = ['showlinks' => 'n'];
-				$labelField = $handler->renderOutput($context);
-				return $labelField;
-			break;
+				// i.e textfield - requires $listFieldThere = array_merge($listFieldThere, array('value' => $itemInfo[$listFieldIdThere]));
+				default:
+					$listFieldThere = array_merge($listFieldThere, ['value' => $itemInfo[$listFieldIdThere]]);
+					$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
+					// do not inherit showlinks settings from remote items.
+					$context = ['showlinks' => 'n'];
+					$labelField = $handler->renderOutput($context);
+					$output .= $labelField;
+					break;
+			}
 		}
+		return $output;
 	}
 
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)

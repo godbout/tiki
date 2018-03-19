@@ -91,7 +91,6 @@ function prefs_category_list()
 		],
 		'category_morelikethis_algorithm' => [
 			'name' => tra('"More Like This" algorithm for categories'),
-			'description' => tra(''),
 			'type' => 'list',
 			'options' => [
 							   '' => '',
@@ -102,7 +101,6 @@ function prefs_category_list()
 		],
 		'category_morelikethis_mincommon' => [
 			'name' => tra('Minimum number of categories in common'),
-			'description' => tra(''),
 			'type' => 'list',
 			'units' => tra('categories'),
 			'options' => [

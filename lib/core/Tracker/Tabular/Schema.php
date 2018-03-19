@@ -87,6 +87,14 @@ class Schema
 
 	function loadConfig($config)
 	{
+		$config = array_merge([
+			'simple_headers' => 0,
+			'import_update' => 1,
+			'ignore_blanks' => 0,
+			'import_transaction' => 0,
+			'bulk_import' => 0,
+		], $config);
+
 		$this->config = $config;
 	}
 
@@ -105,6 +113,11 @@ class Schema
 		return $this->config['import_transaction'];
 	}
 
+	function useBulkImport()
+	{
+		return $this->config['bulk_import'];
+	}
+
 	function loadFormatDescriptor($descriptor)
 	{
 		foreach ($descriptor as $column) {
@@ -118,6 +131,7 @@ class Schema
 				continue;
 			}
 			$col->setExportOnly(! empty($column['isExportOnly']));
+			$col->setUniqueKey(! empty($column['isUniqueKey']));
 
 			if (! $col->isReadOnly() && ! empty($column['isReadOnly'])) {
 				$col->setReadOnly(true);
@@ -158,6 +172,7 @@ class Schema
 				'isPrimary' => $column->isPrimaryKey(),
 				'isReadOnly' => $column->isReadOnly(),
 				'isExportOnly' => $column->isExportOnly(),
+				'isUniqueKey' => $column->isUniqueKey(),
 			];
 		}, $this->columns);
 	}

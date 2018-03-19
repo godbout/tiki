@@ -19,14 +19,14 @@ require_once "renderer_sidebyside.php";
 class Text_Diff_Renderer_inline extends Text_Diff_Renderer_sidebyside
 {
 
-	function __construct($context_lines = 4, $words = 1)
+	public function __construct($context_lines = 4, $words = 1)
 	{
 		$this->_leading_context_lines = $context_lines;
 		$this->_trailing_context_lines = $context_lines;
 		$this->_words = $words;
 	}
 
-	function _block($xbeg, $xlen, $ybeg, $ylen, &$edits)
+	protected function _block($xbeg, $xlen, $ybeg, $ylen, &$edits)
 	{
 		$this->_startBlock($this->_blockHeader($xbeg, $xlen, $ybeg, $ylen));
 		$orig = [];

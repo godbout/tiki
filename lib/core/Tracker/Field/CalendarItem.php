@@ -17,7 +17,8 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 				'name' => tr('Date and Time (Calendar Item)'),
 				'description' => tr('Associates calendar items to tracker items.'),
 				'prefs' => ['trackerfield_calendaritem'],
-				'tags' => ['advanced'],
+				'tags' => ['advanced', 'experimental'],
+				'warning' => tra('Experimental: (work in progress, use with care)'),
 				'default' => 'n',
 				'supported_changes' => ['f', 'j', 'CAL'],
 				'params' => [
@@ -80,7 +81,7 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			$name = $trklib->get_isMain_value($trackerId, $itemId);
 			;
 
-			$calitemId = $attributelib->get_attribute('tracker_item', $itemId, 'tiki.calendar.item');
+			$calitemId = $this->getCalendarItemId();
 			$new = ! $calitemId;
 
 			// save the event whether new or not as start time or the title/name might have changed
@@ -120,7 +121,7 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 	{
 		$baseKey = $this->getBaseKey();
 
-		$calitemId = TikiLib::lib('attribute')->get_attribute('tracker_item', $this->getItemId(), 'tiki.calendar.item');
+		$calitemId = $this->getCalendarItemId();
 
 		return [
 			$baseKey => $typeFactory->timestamp($this->getValue(), $this->getOption('datetime') == 'd'),
@@ -133,13 +134,56 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 		return parent::getFieldData($requestData);
 	}
 
+	/**
+	 * @param array $context
+	 * @return string
+	 * @throws Exception
+	 */
 	function renderInput($context = [])
 	{
-		return parent::renderInput($context);
+		global $tikiroot;
+
+		/** @var Smarty_Tiki $smarty */
+		$smarty = TikiLib::lib('smarty');
+		/** @var CalendarLib $calendarlib */
+		$calendarlib = TikiLib::lib('calendar');
+
+		$smarty->assign('datePickerHtml', parent::renderInput($context));
+
+		$event = $calendarlib->get_item($this->getCalendarItemId());
+		$perms = Perms::get([ 'type' => 'calendar', 'object' => $event['calendarId']]);
+
+		if ($perms->change_events) {
+			$editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&calitemId=' . $event['calitemId'];
+			$headerlib = TikiLib::lib('header');
+
+			$headerlib->add_js_config('window.CKEDITOR_BASEPATH = "' . $tikiroot . 'vendor_bundled/vendor/ckeditor/ckeditor/";')
+				->add_jsfile('vendor_bundled/vendor/ckeditor/ckeditor/ckeditor.js', true)
+				->add_js('window.dialogData = [];', 1);
+				// ->add_js('window.CKEDITOR.config._TikiRoot = "' . $tikiroot . '";', 1);
+			TikiLib::lib('header')->add_jq_onready('$.validator.classRuleSettings.date = false;
+	');
+
+		} else {
+			$editUrl = '';
+		}
+		$smarty->assign('editUrl', $editUrl);
+
+		return $this->renderTemplate('trackerinput/calendaritem.tpl', $context);
 	}
 
 	function isValid($ins_fields_data)
 	{
 		return parent::isValid($ins_fields_data);
+	}
+
+	/**
+	 * @return bool|string
+	 * @throws Exception
+	 */
+	private function getCalendarItemId()
+	{
+		$calitemId = TikiLib::lib('attribute')->get_attribute('tracker_item', $this->getItemId(), 'tiki.calendar.item');
+		return $calitemId;
 	}
 }

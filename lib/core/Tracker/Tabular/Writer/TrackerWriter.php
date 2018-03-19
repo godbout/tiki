@@ -17,8 +17,14 @@ class TrackerWriter
 	{
 		$utilities = new \Services_Tracker_Utilities;
 		$schema = $source->getSchema();
+		$bulkImport = $schema->useBulkImport();
 
-		$iterate = function ($callback) use ($source, $schema) {
+		if ($bulkImport) {
+			global $prefs;
+			$prefs['categories_cache_refresh_on_object_cat'] = 'n';
+		}
+
+		$iterate = function ($callback) use ($source, $schema, $bulkImport) {
 			$columns = $schema->getColumns();
 
 			$tx = \TikiDb::get()->begin();
@@ -27,6 +33,7 @@ class TrackerWriter
 
 			$result = [];
 
+			/** @var \Tracker\Tabular\Source\CsvSourceEntry $entry */
 			foreach ($source->getEntries() as $line => $entry) {
 				$info = [
 					'itemId' => false,
@@ -47,19 +54,42 @@ class TrackerWriter
 					$info['fields'] = array_filter($info['fields']);
 				}
 
-				$result[] = $callback($line, $info);
+				if ($bulkImport) {
+					$info['bulk_import'] = true;
+				}
+
+				$result[] = $callback($line, $info, $columns);
 			}
 
 			$tx->commit();
 
+			if (!$result) {
+				return $result;
+			}
+			
 			return call_user_func_array('array_merge', $result);
 		};
 
 		if ($schema->isImportTransaction()) {
-			$errors = $iterate(function ($line, $info) use ($errors, $utilities, $schema) {
+			$errors = $iterate(function ($line, $info, $columns) use ($utilities, $schema) {
 				static $ids = [];
 				if (! empty($info['itemId']) && in_array($info['itemId'], $ids)) {
 					return [tr('Line %0:', $line + 1) . ' ' . tr('duplicate entry')];
+				}
+				foreach ($columns as $column) {
+					if ($column->isUniqueKey()) {
+						$table = \TikiDb::get()->table('tiki_tracker_item_fields');
+						$definition = $schema->getDefinition();
+						$f = $definition->getFieldFromPermName($column->getField());
+						$fieldId = $f['fieldId'];
+						$exists = $table->fetchOne('itemId', [
+							'fieldId' => $fieldId,
+							'value' => $info['fields'][$column->getField()],
+						]);
+						if ($exists) {
+							return [tr('Line %0:', $line + 1) . ' ' . tr('duplicate entry for unique column %0', $column->getLabel())];
+						}
+					}
 				}
 				$ids[] = $info['itemId'];
 				return array_map(
@@ -79,14 +109,17 @@ class TrackerWriter
 			}
 		}
 
-		$iterate(function ($line, $info) use ($utilities, $schema) {
+		$iterate(function ($line, $info, $columns) use ($utilities, $schema) {
 			$definition = $schema->getDefinition();
 			if ($info['itemId']) {
+				if (empty($info['status'])) {
+					$info['status'] = $definition->getConfiguration('newItemStatus');
+				}
 				$success = $utilities->updateItem($definition, $info);
 			} else {
 				$success = $utilities->insertItem($definition, $info);
 			}
-			return $success;
+			return [$success];
 		});
 
 		return true;

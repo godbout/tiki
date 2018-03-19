@@ -25,13 +25,24 @@ class PreferencesLib
 	{
 		global $prefs;
 
+		// Due to performance reasons and the small list of preferences to be translated, returned the current
+		// list of translatable preferences as hardcoded list instead of dynamically searching all preferences
+		/*
 		$translatablePreferences = [];
 		foreach ($prefs as $key => $val) {
 			$definition = $this->getPreference($key);
-			if ($definition['translatable'] == 'y') {
+			if ($definition['translatable'] === true) {
 				$translatablePreferences[] = $key;
 			}
 		}
+		*/
+
+		$translatablePreferences = [
+			'browsertitle',
+			'metatag_keywords',
+			'metatag_description',
+		];
+
 		return $translatablePreferences;
 	}
 
@@ -113,6 +124,7 @@ class PreferencesLib
 			'plugin' => '',
 			'view' => '',
 			'public' => false,
+			'translatable' => false,
 		];
 		if ($data[$name]['type'] === 'textarea') {
 			$defaults['size'] = 10;
@@ -320,6 +332,12 @@ class PreferencesLib
 				} else {
 					$info['type'] = 'multiselector';
 				}
+			}
+		}
+
+		foreach (['name', 'preference'] as $key) {
+			if (empty($info[$key])) {
+				trigger_error(tr('Missing preference "%0" for "%1"', $key, $name));
 			}
 		}
 

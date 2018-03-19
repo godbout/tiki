@@ -120,8 +120,11 @@
 				{preference name=unsuccessful_logins_invalid}
 				{preference name=eponymousGroups}
 				{preference name=desactive_login_autocomplete}
+				{preference name=permission_denied_login_box}
 				{preference name=login_multiple_forbidden}
-				{preference name=login_grab_session}
+				<div class="adminoptionboxchild" id="login_multiple_forbidden_childcontainer">
+					{preference name=login_grab_session}
+				</div>
 				{preference name=session_protected}
 				{preference name=https_login}
 				{preference name=login_http_basic}

@@ -28,11 +28,13 @@ if ($prefs['error_reporting_adminonly'] == 'y' and $tiki_p_admin != 'y') {
 
 // Handle Smarty notices
 if (! empty($prefs['smarty_notice_reporting']) and $prefs['smarty_notice_reporting'] === 'y') {
-	// FIXME: This reports all notices, whether or not they are from Smarty. But if we don't do it, we get no Smarty notices if they are enabled and notices are not. Solving involves clarifying the interface so that $prefs['smarty_notice_reporting'] depends on notices being reported.
-	$errorReportingLevel = $errorReportingLevel | E_NOTICE | E_USER_NOTICE ;
+	$smartyErrorReportingLevel = $errorReportingLevel | E_NOTICE | E_USER_NOTICE ;
+} else {
+	$smartyErrorReportingLevel = $errorReportingLevel;
 }
+$smarty->error_reporting = $smartyErrorReportingLevel; // Ensure that Smarty respects the same level of report as Tiki (pref smarty_notice_reporting is already handled above)
 
-if (php_sapi_name() != 'cli') {
+if (php_sapi_name() != 'cli') { // This handler collects errors to display at the bottom of the general template, so don't use it in CLI, otherwise errors would be lost.
 	set_error_handler('tiki_error_handling', $errorReportingLevel);
 }
 error_reporting($errorReportingLevel);

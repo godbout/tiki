@@ -33,6 +33,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 * Test bullet lists
 	 *
 	 * Test single lines with different numbers of '*'
+	 *
+	 * @group marked-as-skipped
 	 */
 	function testBulletList()
 	{
@@ -40,7 +42,7 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
 		/*
 		 * *Item 1
-         * *Item 2
+		 * *Item 2
 		 */
 		$inData = "*Item 1\n*Item 2\n";
 		$ex = '<ul><li>Item 1\n';
@@ -71,6 +73,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 * Test the continuation of bullet lists
 	 *
 	 * Test level one and two
+	 *
+	 * @group marked-as-skipped
 	 */
 	function testBulletListContinuation()
 	{
@@ -112,6 +116,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 * Test numbered lists
 	 *
 	 * Test single lines with different numbers of '#'
+	 *
+	 * @group marked-as-skipped
 	 */
 	function testNumberedList()
 	{
@@ -119,7 +125,7 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
 		/*
 		 * #Item 1
-         * #Item 2
+		 * #Item 2
 		 */
 		$inData = "#Item 1\n#Item 2\n";
 		$ex = '<ol><li>Item 1\n';
@@ -150,6 +156,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 * Test the continuation of numbered lists
 	 *
 	 * Test level one and two
+	 *
+	 * @group marked-as-skipped
 	 */
 	function testNumberedListContinuation()
 	{

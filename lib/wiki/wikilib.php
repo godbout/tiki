@@ -464,11 +464,11 @@ class WikiLib extends TikiLib
 
 			$modified = false;
 			$matches = [];
-			for ($i=0; $i<sizeof($data); $i++) {
+			for ($i = 0; $i < sizeof($data); $i++) {
 				$matches[] = WikiParser_PluginMatcher::match($data[$i]);
 				$argParser = new WikiParser_PluginArgumentParser();
-				foreach ( $matches[$i] as $match ) {
-					if ( $match->getName() == 'include' ) {
+				foreach ($matches[$i] as $match) {
+					if ($match->getName() == 'include') {
 						$arguments = $argParser->parse($match->getArguments());
 						if ($arguments['page'] == $oldName) {
 							$arguments['page'] = $newName;
@@ -647,7 +647,8 @@ class WikiLib extends TikiLib
 	 * @param string/int $itemId
 	 * @param boolean $wikiParsed Indicates if content is wiki parsed.
 	 */
-	public function update_wikicontent_links($data, $objectType, $itemId, $wikiParsed = true) {
+	public function update_wikicontent_links($data, $objectType, $itemId, $wikiParsed = true)
+	{
 		$parserlib = TikiLib::lib('parser');
 		$tikilib = TikiLib::lib('tiki');
 
@@ -1069,7 +1070,6 @@ class WikiLib extends TikiLib
 
 			$histlib = TikiLib::lib('hist');
 
-			$histlib->use_version($res['pageName'], $res['version']);
 			if ($prefs['feature_contribution'] == 'y') {
 				$contributionlib = TikiLib::lib('contribution');
 				$tikilib = TikiLib::lib('tiki');
@@ -1086,6 +1086,7 @@ class WikiLib extends TikiLib
 				);
 			}
 			$ret = $histlib->remove_version($res['pageName'], $res['version']);
+			$ret2 = $histlib->restore_page_from_history($res['pageName']);
 		} else {
 			$ret = $this->remove_all_versions($page);
 		}
@@ -1132,6 +1133,13 @@ class WikiLib extends TikiLib
 		}
 
 		$links = $semanticlib->getLinksUsing($tokens, [ 'toPage' => $toPage ]);
+
+		if (empty($links)) {	// if no linked pages found then the alias may be sefurl "slug" encoded, so try the un-slugged version
+			global $prefs;
+
+			$toPage = TikiLib::lib('slugmanager')->degenerate($prefs['wiki_url_scheme'], $toPage);
+			$links = $semanticlib->getLinksUsing($tokens, [ 'toPage' => $toPage ]);
+		}
 
 		if (count($links) > 0) {
 			foreach ($links as $row) {
@@ -1320,8 +1328,7 @@ class WikiLib extends TikiLib
 				$objectId = substr($res['fromPage'], strlen($type) + 12);
 				if ($type == 'trackeritemfield') {
 					$feature = 'wiki_backlinks_show_trackeritem';
-				}
-				elseif (substr($type, -7) == 'comment') {
+				} elseif (substr($type, -7) == 'comment') {
 					$feature = 'wiki_backlinks_show_comment';
 				} else {
 					$feature = 'wiki_backlinks_show_' . str_replace(" ", "_", $type);
@@ -1365,7 +1372,7 @@ class WikiLib extends TikiLib
 				$plugins = [];
 				foreach ($list as $name) {
 					$pinfo = [
-						'help' => $this->get_plugin_description($name, $enabled, $commonKey),
+						'help' => $parserlib->get_plugin_description($name, $enabled, $commonKey),
 						'name' => TikiLib::strtoupper($name),
 					];
 
@@ -1410,52 +1417,6 @@ class WikiLib extends TikiLib
 			sort($files);
 
 			return $files;
-		}
-	}
-
-	//
-	// Call 'wikiplugin_.*_description()' from given file
-	//
-	public function get_plugin_description($name, &$enabled, $area_id = 'editwiki')
-	{
-		$parserlib = TikiLib::lib('parser');
-
-		if (( ! $info = $parserlib->plugin_info($name) ) && $parserlib->plugin_exists($name, true)) {
-			$enabled = true;
-
-			$func_name = "wikiplugin_{$name}_help";
-			if (! function_exists($func_name)) {
-				return false;
-			}
-
-			$ret = $func_name();
-			return $parserlib->parse_data($ret);
-		} else {
-			$smarty = TikiLib::lib('smarty');
-			$enabled = true;
-
-			$ret = $info;
-
-			if (isset($ret['prefs'])) {
-				global $prefs;
-
-				// If the plugin defines required preferences, they should all be to 'y'
-				foreach ($ret['prefs'] as $pref) {
-					if (! isset($prefs[$pref]) || $prefs[$pref] != 'y') {
-						$enabled = false;
-						return;
-					}
-				}
-			}
-
-			if (isset($ret['documentation']) && ctype_alnum($ret['documentation'])) {
-				$ret['documentation'] = "http://doc.tiki.org/{$ret['documentation']}";
-			}
-
-			$smarty->assign('area_id', $area_id);
-			$smarty->assign('plugin', $ret);
-			$smarty->assign('plugin_name', TikiLib::strtoupper($name));
-			return $smarty->fetch('tiki-plugin_help.tpl');
 		}
 	}
 

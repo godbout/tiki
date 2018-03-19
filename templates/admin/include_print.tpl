@@ -48,6 +48,7 @@
 		</div>
 		{preference name=allocate_memory_print_pdf}
 		{preference name=allocate_time_print_pdf}
+		{preference name=feature_slideshow_pdfexport}
 	</fieldset>
 
 	<fieldset>

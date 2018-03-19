@@ -89,7 +89,7 @@ class AuthTokens
 			$keys = array_keys($_GET);
 			$seftype = '';
 
-			for ($i = 1; $i < count($keys); $i++) {
+			for ($i = 0; $i < count($keys); $i++) {
 				$seftype = $sefurlTypeMap[$keys[$i]];
 				if ($seftype) {
 					$key = $keys[$i];

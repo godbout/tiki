@@ -211,7 +211,6 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_hyperlinks' => [
 			'name' => tra('Hyperlink behaviour in PDF'),
-			'description' => tra(''),
 			'tags' => ['advanced'],
 			'type' => 'list',
 			'default' => '',
@@ -231,7 +230,6 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_columns' => [
 			'name' => tra('Number of columns'),
-			'description' => tra(''),
 			'tags' => ['advanced'],
 			'type' => 'list',
 			'default' => '',

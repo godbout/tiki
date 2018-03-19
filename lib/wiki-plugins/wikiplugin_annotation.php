@@ -7,6 +7,7 @@
 
 function wikiplugin_annotation_info()
 {
+	global $prefs;
 	return [
 		'name' => tra('Image Annotation'),
 		'documentation' => 'PluginAnnotation',
@@ -22,7 +23,7 @@ function wikiplugin_annotation_info()
 			'src' => [
 				'required' => true,
 				'name' => tra('Location'),
-				'description' => tra('Absolute URL to the image, relative path from Tiki site root or an image from the file gallery <code>display1</code>.'),
+				'description' => ($prefs['feature_sefurl'] === 'y') ? tra('Absolute URL to the image, relative path from Tiki site root or an image from the file gallery <code>display1</code>.') : tra('Absolute URL to the image or relative path from Tiki site root.'),
 				'filter' => 'url',
 				'default' => '',
 				'since' => '3.0',
@@ -146,9 +147,14 @@ function wikiplugin_annotation($data, $params)
 
 	if ($tiki_p_edit == 'y') {
 		$editableStr = tra('Editable');
+		$accesslib = TikiLib::lib('access');
+		$accesslib->checkAuthenticity();
+		$ticket = $accesslib->getTicket();
 
 		$form = <<<FORM
 <form method="post" action="tiki-wikiplugin_edit.php" class="form save-annotations">
+	<input type="hidden" name="ticket" value="$ticket"/>
+	<input type="hidden" name="daconfirm" value="y"/>
 	<div style="display:none">
 		<input type="hidden" name="page" value="$page"/>
 		<input type="hidden" name="type" value="annotation"/>

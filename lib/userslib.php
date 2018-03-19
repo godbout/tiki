@@ -342,7 +342,11 @@ class UsersLib extends TikiLib
 		return;
 	}
 
-	function genPass()
+	/**
+	 * @see TikiLib::genPass()
+	 * TODO: Merge with the above
+	 */
+	static function genPass()
 	{
 		// AWC: enable mixed case and digits, don't return too short password
 		global $prefs;
@@ -1912,7 +1916,6 @@ class UsersLib extends TikiLib
 
 		// check for account flags
 		if ($res['waiting'] == 'u') {				// if account is in validation mode.
-
 			if ($pass == $res['valid']) { 			// if user successfully provides code from email
 				return [USER_VALID, $user];
 			} else {
@@ -1935,7 +1938,6 @@ class UsersLib extends TikiLib
 
 
 		if ($res['hash'][0] == '$') {				// if password was created by crypt (old tiki hash) or password_hash (current tiki hash)
-
 			if (password_verify($pass, $res['hash'])) {
 				if (password_needs_rehash($res['hash'], PASSWORD_DEFAULT)) {
 					$this->set_user_password($res['userId'], $pass);			//if its a old hash style, rehash it in a more secure way
@@ -2081,8 +2083,7 @@ class UsersLib extends TikiLib
 		// check if the login correct
 		if ($a->addUser($user, $pass, $userattr) === true) {
 			$status = USER_VALID;
-		}
-		else {
+		} else {
 			// otherwise use the error status given back
 			$status = $a->getStatus();
 		}
@@ -2872,7 +2873,6 @@ class UsersLib extends TikiLib
 			$home = $this->get_group_home($group);
 		}
 		if (! $home) {	// work through the other groups this user is a member of
-
 			$query = "select g.`groupHome`, g.`groupName`" .
 				" from `users_usergroups` as gu, `users_users` as u, `users_groups`as g" .
 				" where gu.`userId`= u.`userId` and u.`login`=? and gu.`groupName`= g.`groupName` and g.`groupHome` != '' and g.`groupHome` is not null";
@@ -4440,6 +4440,24 @@ class UsersLib extends TikiLib
 				'type' => 'file galleries',
 				'admin' => false,
 				'prefs' => ['fgal_show_path'],
+				'scope' => 'object',
+			],
+			[
+				'name' => 'tiki_p_upload_javascript',
+				'description' => tra('Can upload files containing JavaScript'),
+				'level' => 'admin',
+				'type' => 'file galleries',
+				'admin' => false,
+				'prefs' => ['feature_file_galleries'],
+				'scope' => 'object',
+			],
+			[
+				'name' => 'tiki_p_upload_svg',
+				'description' => tra('Can upload SVG files'),
+				'level' => 'admin',
+				'type' => 'file galleries',
+				'admin' => false,
+				'prefs' => ['fgal_allow_svg'],
 				'scope' => 'object',
 			],
 			[

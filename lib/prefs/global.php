@@ -15,7 +15,7 @@ function prefs_global_list($partial = false)
 			'default' => '',
 			'tags' => ['basic'],
 			'public' => true,
-			'translatable' => 'y',
+			'translatable' => true,
 		],
 		'fallbackBaseUrl' => [
 			'name' => tra('Fallback for tiki base URL'),
@@ -101,12 +101,14 @@ function prefs_global_list($partial = false)
 		],
 		'wikiLicensePage' => [
 			'name' => tra('License page'),
+			'description' => tra('Name of the Wiki page where the licenses are stored'),
 			'type' => 'text',
 			'size' => '30',
 			'default' => '',
 		],
 		'wikiSubmitNotice' => [
 			'name' => tra('Submit notice'),
+			'description' => tra('Text to appear when content is being submitted'),
 			'type' => 'text',
 			'size' => '30',
 			'default' => '',
@@ -158,6 +160,7 @@ function prefs_global_list($partial = false)
 		'maxArticles' => [
 			'name' => tra('Maximum number of articles on the articles homepage'),
 			'type' => 'text',
+			'description' => tr('The number of articles to show on each page of the Article home.'),
 			'size' => '5',
 			'filter' => 'digits',
 			'units' => tra('articles'),

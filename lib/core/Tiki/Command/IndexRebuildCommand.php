@@ -44,6 +44,7 @@ class IndexRebuildCommand extends Command
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		global $num_queries;
+		global $prefs;
 
 		$force = $input->getOption('force');
 		if ($input->getOption('log')) {
@@ -84,10 +85,20 @@ class IndexRebuildCommand extends Command
 
 		$num_queries_before = $num_queries;
 
+		// Apply 'Search index rebuild memory limit' setting if available
+		if (! empty($prefs['allocate_memory_unified_rebuild'])) {
+			$memory_limiter = new \Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
+		}
+
 		$result = $unifiedsearchlib->rebuild($log);
 
 		// Also rebuild admin index
 		\TikiLib::lib('prefs')->rebuildIndex();
+
+		// Back up original memory limit if possible
+		if (isset($memory_limiter)) {
+			unset($memory_limiter);
+		}
 
 		$queries_after = $num_queries;
 

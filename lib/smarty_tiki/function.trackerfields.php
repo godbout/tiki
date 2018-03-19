@@ -44,6 +44,26 @@ function smarty_function_trackerfields($params, $smarty)
 		$sectionFormat = $params['format'];
 	}
 
+	$editItemPretty = isset($params['editItemPretty']) ? $params['editItemPretty'] : '';
+	$viewItemPretty = isset($params['viewItemPretty']) ? $params['viewItemPretty'] : '';
+
+	$trklib = TikiLib::lib('trk');
+	$trklib->registerSectionFormat('config', 'edit', $editItemPretty, tr('Configured'));
+	$trklib->registerSectionFormat('config', 'view', $viewItemPretty, tr('Configured'));
+	$template = $trklib->getSectionFormatTemplate($sectionFormat, $params['mode']);
+
+	// smarty doesn't use tpl: as a resource prefix any more
+	$template = stripos($template, 'tpl:') === 0 ? substr($template, 4) : $template;
+
+	$trklib->unregisterSectionFormat('config');
+
+	$prettyModifier = [];
+	if (stripos($template, 'wiki:') === 0) {
+		$trklib->get_pretty_fieldIds(substr($template, 5), 'wiki', $prettyModifier, $params['trackerId']);
+	} else {
+		$trklib->get_pretty_fieldIds($template, 'tpl', $prettyModifier, $params['trackerId']);
+	}
+
 	$trackerInfo = $definition->getInformation();
 	$smarty->assign('tracker_info', $trackerInfo);
 	$smarty->assign('status_types', TikiLib::lib('trk')->status_types());
@@ -129,42 +149,31 @@ function smarty_function_trackerfields($params, $smarty)
 	foreach ($params['fields'] as $field) {
 		$id = $field['fieldId'];
 		$permName = $field['permName'];
-		$smarty->assign('f_' . $id, $auto['default'][$permName]);
-		// https://doc.tiki.org/Pretty+Tracker states that next to {f_id} also {f_fieldname} can be used.
-		// Somehow there is the support missing here - so add it
-		$smarty->assign('f_' . $permName, $auto['default'][$permName]);
+		if (empty($prettyModifier[$id])) {
+			$smarty->assign('f_' . $id, $auto['default'][$permName]);
+			// https://doc.tiki.org/Pretty+Tracker states that next to {f_id} also {f_fieldname} can be used.
+			// Somehow there is the support missing here - so add it
+			$smarty->assign('f_' . $permName, $auto['default'][$permName]);
+		} elseif ($prettyModifier[$id] == "output") {
+			$smarty->assign('f_' . $id, $auto['output'][$permName]);
+			$smarty->assign('f_' . $permName, $auto['output'][$permName]);
+		} else {
+			$smarty->assign("field_name", $field['name']);
+			$smarty->assign("field_id", $id);
+			$smarty->assign("permname", $permName);
+			$smarty->assign("mandatory_sym", '');
+			$smarty->assign("field_input", $auto['input'][$permName]);
+			$smarty->assign("description", '');
+			$smarty->assign("field_type", $field['type']);
+			$prettyout = $smarty->fetch($prettyModifier[$id]); //fetch template identified in prettyModifier
+			$smarty->assign('f_' . $id, $prettyout);
+			$smarty->assign('f_' . $permName, $prettyout);
+		}
 	}
-
-	// https://doc.tiki.org/Pretty+Tracker states that also that internal trackerfield names can be used
-	/*
-	{$f_created}: created date
-	{$f_status_input}: status input field
-	{$f_status}: status (output)
-	{$f_itemId}: the item id
-	{$f_lastmodif}: last modified date (this will display unix date, for human readable date look below)
-	(In Tiki 8 onwards) {$itemoff}: the iteration number of each item
-	{$tr_offset}: the offset of the item, i.e. this is the nth item of the total number of x items
-	*/
-	// @TODO need to add support
-
-
 
 	$smarty->assign('sections', array_values($out));
 	$smarty->assign('fields', $params['fields']);
 	$smarty->assign('auto', $auto);
-
-	$editItemPretty = isset($params['editItemPretty']) ? $params['editItemPretty'] : '';
-	$viewItemPretty = isset($params['viewItemPretty']) ? $params['viewItemPretty'] : '';
-
-	$trklib = TikiLib::lib('trk');
-	$trklib->registerSectionFormat('config', 'edit', $editItemPretty, tr('Configured'));
-	$trklib->registerSectionFormat('config', 'view', $viewItemPretty, tr('Configured'));
-	$template = $trklib->getSectionFormatTemplate($sectionFormat, $params['mode']);
-
-	// smarty doesn't use tpl: as a resource prefix any more
-	$template = stripos($template, 'tpl:') === 0 ? substr($template, 4) : $template;
-
-	$trklib->unregisterSectionFormat('config');
 
 	try {
 		$result = $smarty->fetch($template);

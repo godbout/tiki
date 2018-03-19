@@ -72,7 +72,7 @@ class AttributeLib extends TikiDb_Bridge
 	 * attribute naming, and document new tiki.*.* names that you add
 	 * (also grep "set_attribute" just in case there are undocumented names already used)
 	 */
-	function set_attribute($type, $objectId, $attribute, $value)
+	function set_attribute($type, $objectId, $attribute, $value, $comment=null)
 	{
 		if (false === $name = $this->get_valid($attribute)) {
 			return false;
@@ -88,7 +88,10 @@ class AttributeLib extends TikiDb_Bridge
 			);
 		} else {
 			$this->attributes->insertOrUpdate(
-				['value' => $value],
+				[
+					'value' => $value,
+					'comment' => $comment,
+				],
 				[
 					'type' => $type,
 					'itemId' => $objectId,

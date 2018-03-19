@@ -1788,7 +1788,9 @@ class TrackerLib extends TikiLib
 		global $user, $prefs, $tiki_p_admin_trackers, $tiki_p_admin_users;
 		$final_event = 'tiki.trackeritem.update';
 
-		$transaction = $this->begin();
+		if (! $bulk_import) {
+			$transaction = $this->begin();
+		}
 
 		$categlib = TikiLib::lib('categ');
 		$cachelib = TikiLib::lib('cache');
@@ -1995,7 +1997,7 @@ class TrackerLib extends TikiLib
 			} else {
 				$is_date = isset($array['type']) ? in_array($array["type"], ['f', 'j']) : false;
 
-				if ($currentItemId || ( isset($array['type']) && $array['type'] !== 'q') ) {	// autoincrement
+				if ($currentItemId || ( isset($array['type']) && $array['type'] !== 'q')) {	// autoincrement
 					$this->modify_field($currentItemId, $fieldId, $value);
 					if ($old_value != $value) {
 						if ($is_date) {
@@ -2087,7 +2089,9 @@ class TrackerLib extends TikiLib
 			$arguments
 		);
 
-		$transaction->commit();
+		if (! $bulk_import) {
+			$transaction->commit();
+		}
 
 		return $currentItemId;
 	}
@@ -2640,7 +2644,6 @@ class TrackerLib extends TikiLib
 				}
 				if ($f['type'] != 'q' and isset($f['isMandatory']) && $f['isMandatory'] == 'y') {
 					if (($f['type'] == 'e' || in_array($f['fieldId'], $categorized_fields)) && empty($f['value'])) {	// category: value is now categ id's
-
 						$mandatory_fields[] = $f;
 					} elseif (in_array($f['type'], ['a', 't']) && ($this->is_multilingual($f['fieldId']) == 'y')) {
 						if (! isset($multi_languages)) {
@@ -4510,7 +4513,7 @@ class TrackerLib extends TikiLib
 			//matches[2] = trailing modifier text
 			//matches[3] = modifier name ('output' or 'template')
 			//matches[4] = modifier parameter (template name in this case)
-			preg_match_all('/\$f_(\w+)(\|(output|template):?(.*))?}/', $f, $matches);
+			preg_match_all('/\$f_(\w+)(\|(output|template):?([^}]*))?}/', $f, $matches);
 			$ret = [];
 			foreach ($matches[1] as $i => $val) {
 				if (ctype_digit($val)) {
@@ -5159,23 +5162,30 @@ class TrackerLib extends TikiLib
 					unset($parts[count($parts) - 1]);
 				}
 				$smarty->assign('mail_machine_raw', $this->httpPrefix(true) . implode('/', $parts));
-				$smarty->assign_by_ref('status', $new_values['status']);
-				$smarty->assign_by_ref('status_old', $old_values['status']);
-				// expose the pretty tracker fields to the email tpls
-				foreach ($tracker_definition->getFields() as $field) {
-					$fieldId = $field['fieldId'];
-					$old_value = isset($old_values[$fieldId]) ? $old_values[$fieldId] : '';
-					$new_value = isset($new_values[$fieldId]) ? $new_values[$fieldId] : '';
-					$smarty->assign('f_' . $fieldId, $new_value);
-					$smarty->assign('f_' . $field['permName'], $new_value);
-					$smarty->assign('f_old_' . $fieldId, $old_value);
-					$smarty->assign('f_old_' . $field['permName'], $old_value);
-					$smarty->assign('f_name_' . $fieldId, $field['name']);
-					$smarty->assign('f_name_' . $field['permName'], $field['name']);
-				}
+				// not a great test for a new item but we don't get the event type here
+				$created = empty($old_values) || $old_values === ['status' => ''];
 				foreach ($watchers as $watcher) {
+					// assign these variables inside the loop as this->tracker_render_values overrides them in case trackeroutput or similar is used
+					$smarty->assign_by_ref('status', $new_values['status']);
+					$smarty->assign_by_ref('status_old', $old_values['status']);
+					// expose the pretty tracker fields to the email tpls
+					foreach ($tracker_definition->getFields() as $field) {
+						$fieldId = $field['fieldId'];
+						$old_value = isset($old_values[$fieldId]) ? $old_values[$fieldId] : '';
+						$new_value = isset($new_values[$fieldId]) ? $new_values[$fieldId] : '';
+						$smarty->assign('f_' . $fieldId, $new_value);
+						$smarty->assign('f_' . $field['permName'], $new_value);
+						$smarty->assign('f_old_' . $fieldId, $old_value);
+						$smarty->assign('f_old_' . $field['permName'], $old_value);
+						$smarty->assign('f_name_' . $fieldId, $field['name']);
+						$smarty->assign('f_name_' . $field['permName'], $field['name']);
+					}
 					$watcher['language'] = $this->get_user_preference($watcher['user'], 'language', $prefs['site_language']);
-					$label = $itemId ? tra('Item Modification', $watcher['language']) : tra('Item creation', $watcher['language']);
+					if ($created) {
+						$label = tra('Item Creation', $watcher['language']);
+					} else {
+						$label = tra('Item Modification', $watcher['language']);
+					}
 					$mail_action = "\r\n$label\r\n\r\n";
 					$mail_action .= tra('Tracker', $watcher['language']) . ":\n   " . tra($trackerName, $watcher['language']) . "\r\n";
 					$mail_action .= tra('Item', $watcher['language']) . ":\n   $itemId $desc";
@@ -5196,14 +5206,18 @@ class TrackerLib extends TikiLib
 					}
 					$smarty->assign('mail_to_user', $watcher['user']);
 					$mail_data = $smarty->fetchLang($watcher['language'], $content['template']);
-					$mail = new TikiMail($watcher['user']);
-					$mail->setSubject($watcher_subject);
-					if (isset($watcher['templateFormat']) && $watcher['templateFormat'] == 'html') {
-						$mail->setHtml($mail_data, str_replace('&nbsp;', ' ', strip_tags($mail_data)));
-					} else {
-						$mail->setText(str_replace('&nbsp;', ' ', strip_tags($mail_data)));
+
+					// if the tpl returns nothing then don't send the mail
+					if (! empty($mail_data)) {
+						$mail = new TikiMail($watcher['user']);
+						$mail->setSubject($watcher_subject);
+						if (isset($watcher['templateFormat']) && $watcher['templateFormat'] == 'html') {
+							$mail->setHtml($mail_data, str_replace('&nbsp;', ' ', strip_tags($mail_data)));
+						} else {
+							$mail->setText(str_replace('&nbsp;', ' ', strip_tags($mail_data)));
+						}
+						$mail->send([$watcher['email']]);
 					}
-					$mail->send([$watcher['email']]);
 				}
 			} else {
 					// Use simple email

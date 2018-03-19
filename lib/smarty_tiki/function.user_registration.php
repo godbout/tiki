@@ -45,12 +45,13 @@ function smarty_function_user_registration($params, $smarty)
 
 //groups choice
 	if (count($registrationlib->merged_prefs['choosable_groups'])) {
-		$smarty->assign('listgroups', $registrationlib->merged_prefs['choosable_groups']);
+		// we are passed the template here and value assigned to this tpl are not avialable elsewhere, so assign these to the global "top level" smarty object
+		$smarty->smarty->assign('listgroups', $registrationlib->merged_prefs['choosable_groups']);
 		if (count($registrationlib->merged_prefs['choosable_groups']) == 1) {
-			$smarty->assignByRef('theChoiceGroup', $registrationlib->merged_prefs['choosable_groups'][0]['groupName']);
+			$smarty->smarty->assign('theChoiceGroup', $registrationlib->merged_prefs['choosable_groups'][0]['groupName']);
 		}
 		if ($registrationlib->merged_prefs['userTracker'] == 'y') {
-			$smarty->assign('trackerEditFormId', 1);	// switch on to make mandatory_star *'s appear even though the tracker form is loaded by ajax
+			$smarty->smarty->assign('trackerEditFormId', 1);	// switch on to make mandatory_star *'s appear even though the tracker form is loaded by ajax
 		}
 	}
 	if (isset($_REQUEST['register']) && $_SERVER['REQUEST_METHOD'] == 'POST') {

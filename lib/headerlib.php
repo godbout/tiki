@@ -112,9 +112,6 @@ class HeaderLib
 	public $metatags;
 	public $linktags;
 
-	public $wysiwyg_parsing;
-
-
 	/* If set to true, any js added through add_jsfile() that has not rank 'external' will be put to rank 'late'
 	 * Only set once in tiki-setup.php to separate wiki page specific js from common js.
 	 * @var boolean
@@ -144,7 +141,6 @@ class HeaderLib
 		$this->metatags = [];
 		$this->rawhtml = '';
 
-		$this->wysiwyg_parsing = false;
 		$this->forceJsRankLate = false;
 	}
 
@@ -297,7 +293,7 @@ class HeaderLib
 			$rank = '60late';
 		}
 
-		if (! $this->wysiwyg_parsing && (empty($this->jsfiles[$rank]) or ! in_array($file, $this->jsfiles[$rank]))) {
+		if (empty($this->jsfiles[$rank]) or ! in_array($file, $this->jsfiles[$rank])) {
 			$this->jsfiles[$rank][] = $file;
 			if ($skip_minify) {
 				$this->skip_minify[$file] = $skip_minify;
@@ -315,7 +311,7 @@ class HeaderLib
 	 */
 	function add_js_config($script, $rank = 0)
 	{
-		if (! $this->wysiwyg_parsing && (empty($this->js_config[$rank]) or ! in_array($script, $this->js_config[$rank]))) {
+		if (empty($this->js_config[$rank]) or ! in_array($script, $this->js_config[$rank])) {
 			$this->js_config[$rank][] = $script;
 		}
 		return $this;
@@ -330,7 +326,7 @@ class HeaderLib
 	 */
 	function add_js($script, $rank = 0)
 	{
-		if (! $this->wysiwyg_parsing && (empty($this->js[$rank]) or ! in_array($script, $this->js[$rank]))) {
+		if (empty($this->js[$rank]) or ! in_array($script, $this->js[$rank])) {
 			$this->js[$rank][] = $script;
 		}
 		return $this;
@@ -344,7 +340,7 @@ class HeaderLib
 	 */
 	function add_jq_onready($script, $rank = 0)
 	{
-		if (! $this->wysiwyg_parsing && (empty($this->jq_onready[$rank]) or ! in_array($script, $this->jq_onready[$rank]))) {
+		if (empty($this->jq_onready[$rank]) or ! in_array($script, $this->jq_onready[$rank])) {
 			$this->jq_onready[$rank][] = $script;
 		}
 		return $this;
@@ -1014,6 +1010,11 @@ class HeaderLib
 		return [ $file ];
 	}
 
+	public function minify_css($file)
+	{
+		$minifier = new MatthiasMullie\Minify\CSS($file);
+		return $minifier->minify();
+	}
 
 	private function collect_css_files()
 	{

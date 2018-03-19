@@ -28,7 +28,7 @@ class TWVersion
 
 		// Set everything else, including defaults.
 		$this->version 	= '19.0svn';	// needs to have no spaces for releases
-		$this->star	= 'Alcyone';
+		$this->star	= 'TBA';
 		$this->releases	= [];
 
 		// Check for Subversion or not
@@ -79,7 +79,7 @@ class TWVersion
 				26 => 'Situla',		// 15.x
 				27 => 'Tabby\'s',		// 16.x
 				28 => 'Zeta Boötis',	// 17.x
-				29 => 'Alcyone',	// 8.x
+				29 => 'Alcyone',	// 18.x
 		];
 	}
 
@@ -259,6 +259,9 @@ class TWVersion
 				'17.0',
 				'17.1',
 				'18.0alpha',
+				'18.0beta',
+				'18.0',
+				'18.1',
 			];
 	}
 

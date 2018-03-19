@@ -376,7 +376,7 @@ function wikiplugin_slider($data, $params)
 	$params = array_merge($default, $params);
 	extract($params, EXTR_SKIP);
 
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/anythingslider/js/swfobject.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/anythingslider/js/swfobject.js', true);
 	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/anythingslider/js/jquery.anythingslider.js');
 	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/anythingslider/js/jquery.anythingslider.fx.js');
 	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/anythingslider/js/jquery.anythingslider.video.js');
