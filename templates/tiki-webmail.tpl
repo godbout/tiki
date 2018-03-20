@@ -479,7 +479,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="table-responsive">
-					<table class="table webmail_list">
+					<table class="table table-hover webmail_list">
 						<tr>
 							<th>{select_all checkbox_names='msg[]'}</th>
 							<th>&nbsp;</th>
@@ -491,8 +491,10 @@
 						{section name=ix loop=$list}
 							{if $list[ix].isRead eq 'y'}
 								{assign var=class value="webmail_read"}
+							{elseif $list[ix].isFlagged eq 'y'}
+								{assign var=class value="bg-warning webmail_flagged"}
 							{else}
-								{assign var=class value=""}
+								{assign var=class value="webmail_unread"}
 							{/if}
 							<tr class="{$class}">
 								<td class="checkbox-cell">
@@ -513,7 +515,7 @@
 								</td>
 								<td class="email">{$list[ix].sender.name}</td>
 								<td class="text">
-									{self_link msgid=$list[ix].msgid locSection='read'}{$list[ix].subject}{/self_link}
+									{if $list[ix].isRead neq 'y'}<strong>{/if}{self_link msgid=$list[ix].msgid locSection='read'}{$list[ix].subject}{/self_link}{if $list[ix].isRead neq 'y'}</strong>{/if}
 									{if $list[ix].has_attachment}<img src="img/webmail/clip.gif" alt="{tr}Clip{/tr}">{/if}
 								</td>
 								<td class="date">{$list[ix].timestamp|tiki_short_datetime}</td>
@@ -533,9 +535,9 @@
 	{if $next}{self_link msgid=$next}{tr}Next{/tr}{/self_link} |{/if}
 	{self_link locSection=mailbox}{tr}Back To Mailbox{/tr}{/self_link} |
 	{if $fullheaders eq 'n'}
-		{self_link msgid=$msgid fullheaders='1' msgid=$next}{tr}Full Headers{/tr}{/self_link}
+		{self_link msgid=$msgid fullheaders='1'}{tr}Full Headers{/tr}{/self_link}
 	{else}
-		{self_link msgid=$msgid msgid=$next}{tr}Normal Headers{/tr}{/self_link}
+		{self_link msgid=$msgid}{tr}Normal Headers{/tr}{/self_link}
 	{/if}
 	<table>
 		<tr>
