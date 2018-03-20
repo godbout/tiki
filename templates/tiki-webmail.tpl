@@ -768,7 +768,7 @@
 							<input type="hidden" name="attach2type" value="{$attach2type|escape}">
 							<input type="hidden" name="attach3type" value="{$attach3type|escape}">
 							<input type="hidden" name="fattId" value="{$fattId|escape}">
-							<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}">
+							<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}" onclick="needToConfirm=false;">
 						</td>
 					</tr>
 				</table>
