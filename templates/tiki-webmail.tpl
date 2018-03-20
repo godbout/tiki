@@ -425,13 +425,16 @@
 				{/if}
 			</td>
 			<td align="right" style="text-align:right">
-				{if $flagsPublic eq 'y'}
-					{tr}Group messages{/tr}
+				{if $total gt 0}
+					{if $flagsPublic eq 'y'}
+						{tr}Group messages{/tr}
+					{else}
+						{tr}Messages{/tr}
+					{/if}
+					{$showstart} {tr}to{/tr} {$showend} {tr}of{/tr} {$total}
 				{else}
-					{tr}Messages{/tr}
+					{tr}No messages{/tr}
 				{/if}
-				{$showstart} {tr}to{/tr} {$showend} {tr}of{/tr} {$total}
-				&nbsp;
 				| {if $first}{self_link start=$first}{tr}First{/tr}{/self_link}{else}{tr}First{/tr}{/if}
 				| {if $prevstart}{self_link start=$prevstart}{tr}Prev{/tr}{/self_link}{else}{tr}Prev{/tr}{/if}
 				| {if $nextstart}{self_link start=$nextstart}{tr}Next{/tr}{/self_link}{else}{tr}Next{/tr}{/if}
