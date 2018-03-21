@@ -748,12 +748,6 @@
 						</td>
 					</tr>
 					<tr>
-						<td><label for="pageaftersend">{tr}Wiki page after send{/tr}</label></td>
-						<td colspan="3">
-							<input size="69" type="text" name="pageaftersend" id="pageaftersend" value="{$pageaftersend|escape}" class="form-control">
-						</td>
-					</tr>
-					<tr>
 						<td> </td>
 						<td>
 							<input type="hidden" name="locSection" value="compose">
@@ -772,12 +766,6 @@
 						</td>
 					</tr>
 				</table>
-			</form>
-		{elseif $pageaftersend ne ''}
-			{$msg}
-			<br><br>
-			<form action="tiki-index.php?page={$pageaftersend}" method="post">
-			{tr}Click to go to:{/tr} {$pageaftersend} <input type="submit" class="btn btn-default btn-sm" name="pageafter" value="{tr}Go to page{/tr}">
 			</form>
 		{else}
 			{$msg}
@@ -843,7 +831,6 @@
 			<input type="hidden" name="attach2type" value="{$attach2type|escape}">
 			<input type="hidden" name="attach3type" value="{$attach3type|escape}">
 			<input type="hidden" name="fattId" value="{$fattId|escape}">
-			<input type="hidden" name="pageaftersend" value="{$pageaftersend|escape}">
 			<table class="formcolor">
 				{if $attach1}
 					<tr>
