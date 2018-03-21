@@ -26,6 +26,12 @@ function module_webmail_inbox_info()
 				'description' => tra('Webmail account identifier (if not set uses user\'s current account)'),
 				'filter' => 'int'
 			],
+			'autoloaddelay' => [
+				'name' => tra('Auto-load delay'),
+				'description' => tra('The delay in seconds the module should auto-load itself. Default is 1 second. Use -1 to disable autoloading.'),
+				'default' => 1,
+				'filter' => 'int'
+			],
 			'mode' => [
 				'name' => tra('Mode'),
 				'description' => tra('Mode.') . ' ' . tra('Possible values:') . ' "webmail", "groupmail".',
