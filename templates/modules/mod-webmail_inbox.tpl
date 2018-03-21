@@ -85,7 +85,7 @@
 									<span class="mod_webmail_from">{$sender.email|truncate:20:"...":true}</span>
 								{/if}
 								{capture assign=tit}{strip}
-									{$subject|replace:":":"%3A"}:{tr}From{/tr} <em>{$sender.name}</em> &nbsp; <tt>&amp;lt;{$sender.email}&amp;gt;</tt><br><small>[{$date_value}]</small>
+									<strong>{tr}Message details{/tr}</strong>:<b>{tr}Subject:{/tr}</b> {$subject|escape}<br><b>{tr}From:{/tr}</b> <em>{$sender.name|escape}</em> <tt>&amp;lt;{$sender.email}&amp;gt;</tt><br><small>[{$date_value}]</small>
 								{/strip}{/capture}
 								{self_link _script='tiki-webmail.php' msgid=$webmail_list[ix].msgid locSection='read' _noauto='y' _class='clearfix linkmodule tips webmail_subject' _title=$tit}
 									{if $maxlen > 0}{* default value for maxlen param eq 26 *}
