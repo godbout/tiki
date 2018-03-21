@@ -18,13 +18,9 @@
 						{*icon _id='resultset_first' class=''*}
 						{if isset($prevstart) and $prevstart}
 							<a href="#" onclick="doRefreshWebmail({$prevstart});return false;">{icon name='caret-left'}</a>
-						{else}
-							{icon name='stop'}
 						{/if}
 						{if isset($nextstart) and $nextstart}
 							<a href="#" onclick="doRefreshWebmail({$nextstart});return false;">{icon name='caret-right'}</a>
-						{else}
-							{icon name='stop'}
 						{/if}
 						{*icon _id='resultset_last' class=''*}
 					</div>
