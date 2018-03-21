@@ -143,9 +143,9 @@ function module_webmail_inbox($mod_reference, $module_params)
 	$webmail_reload = (isset($module_params['reload']) && $module_params['reload'] == 'y');
 	$webmail_start = isset($_SESSION['webmailinbox'][$mod_reference['moduleId']]['start']) ? $_SESSION['webmailinbox'][$mod_reference['moduleId']]['start'] : 0;
 
-	if (isset($_REQUEST['refresh_mail'])) {
-		webmail_refresh();
-	}
+	//if (isset($_REQUEST['refresh_mail'])) {
+		webmail_refresh(); // refresh webmail on each load automatically
+	//}
 
 	$module_params['autoloaddelay'] = isset($module_params['autoloaddelay']) ? isset($module_params['autoloaddelay']) : 1;
 	if ($module_params['autoloaddelay'] > -1) {
