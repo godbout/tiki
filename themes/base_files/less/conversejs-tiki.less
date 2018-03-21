@@ -1,3 +1,11 @@
+.converse-btn-primary {
+	.button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+}
+
+.converse-btn-secondary {
+	.button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+}
+
 .tiki {
 	#converse-embedded-chat, #conversejs {
 		font-family:@font-family-base; color:@text-color;
@@ -20,13 +28,8 @@
 			}
 		}
 
-		.button-primary {
-			.button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
-		}
-
-		.button-secondary {
-			.button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
-		}
+		.button-primary { .converse-btn-primary; }
+		.button-secondary { .converse-btn-secondary; }
 
 		.toggle-controlbox {
 			background-color:@btn-primary-bg; padding:8px 10px 0 10px;
@@ -54,41 +57,50 @@
 			.controlbox-head, .controlbox-panes,
 			.controlbox-pane, { background-color:inherit; }
 			.controlbox-head {
-				border-bottom:1px solid @nav-tabs-border-color;
+				border-bottom:1px solid @text-color;
 				.chatbox-btn { color:@text-color; }
 			}
 
 			#controlbox-tabs {
-				border-bottom:1px solid @nav-tabs-border-color;
+				border-bottom:1px solid @text-color;
 				li a {
 					margin-left:2px; height:48px; line-height:48px; color:@link-color;
 					border:1px solid transparent; box-shadow:none;
 					background-color:transparent;
-					&:hover { color:@link-color; }
+					&:hover { color:@text-color; }
 					&.current, &.current:hover, &.current:focus {
-						color:@nav-tabs-active-link-hover-color;
-						background-color:@nav-tabs-active-link-hover-bg;
-						border:1px solid @nav-tabs-active-link-hover-border-color;
+						color:@text-color;
+						background-color:transparent;
+						border:1px solid @text-color;
 						border-bottom-color:transparent; height:48px;
 					}
 				}
 			}
 
-			#chatrooms dl.rooms-list {
-				dt { color:@text-color; text-shadow:none; }
-				dd.available-chatroom {
-					&:hover {
-						background-color:inherit;
-						a { color:@text-color; }
+			#chatrooms {
+				.rooms-list-container {
+					dl.rooms-list {
+						dt { color:@text-color; text-shadow:none; }
+						dd.available-chatroom {
+							&:hover {
+								background-color:inherit;
+								a { color:@text-color; }
+							}
+							a.room-info { margin-top:2px; }
+							.add-bookmark { color:@link-color; }
+						}
 					}
-					a.room-info { margin-top:2px; }
+					.rooms-toggle {
+						&, &:hover { color:@text-color; }
+					}
 				}
 			}
 
 			#fancy-xmpp-status-select, .fancy-dropdown {
-				.button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+				.converse-btn-secondary;
 				.choose-xmpp-status, .toggle-xmpp-contact-form, a.change-xmpp-status-message {
 					color:inherit; text-shadow:none;
+					&:hover { color:inherit; }
 				}
 			}
 			.xmpp-status-menu li a {
@@ -116,6 +128,17 @@
 							&:hover { color:@text-color; }
 						}
 					}
+
+					.roster-group {
+						li a:hover, .group-toggle {
+							&, &:hover { color:@text-color; }
+						}
+
+						li a.remove-xmpp-contact {
+							color:@link-color;
+							&:hover { color:@text-color; }
+						}
+					}
 				}
 			}
 
@@ -138,7 +161,7 @@
 				a, .toggle-smiley, .unencrypted { color:@btn-primary-color; }
 
 				.toggle-smiley ul li:hover {
-					background-color:@btn-primary-color;
+//					background-color:@btn-primary-color;
 					a { color:@btn-primary-bg; }
 				}
 				.chat-toolbar-text { text-shadow:none; }
@@ -168,13 +191,17 @@
 				}
 
 				.chatroom-body {
+					background-color:inherit;
 					p { color:@text-color; }
 					.occupants {
 						background-color:inherit; border-left-color:@text-color;
 						ul li.moderator { color:@link-color; }
 						ul li.occupant .occupant-status { margin-left:1px; box-shadow:0px 0px 1px 1px #444; }
 					}
-					.chatroom-form-container { background-color:inherit; color:@text-color; }
+					.chatroom-form-container {
+						background-color:inherit; color:@text-color;
+						.button-primary { .converse-btn-primary; }
+					}
 					.room-invite .invited-contact { border-color:@input-border; }
 				}
 			}
