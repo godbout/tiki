@@ -27,6 +27,7 @@ class Scheduler_Item
 		'ConsoleCommandTask' => 'ConsoleCommand',
 		'ShellCommandTask' => 'ShellCommand',
 		'HTTPGetCommandTask' => 'HTTPGetCommand',
+		'TikiCheckerCommandTask' => 'TikiCheckerCommand',
 	];
 
 	public function __construct($id, $name, $description, $task, $params, $run_time, $status, $re_run, LoggerInterface $logger)
