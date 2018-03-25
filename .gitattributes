@@ -2713,6 +2713,7 @@ lib/core/Services/ContentTemplate/index.php -text
 lib/core/Services/Draw/Controller.php -text
 lib/core/Services/Draw/index.php -text
 lib/core/Services/Edit/Controller.php -text
+lib/core/Services/Edit/ListConverter.php -text
 lib/core/Services/Edit/ListPluginHelper.php -text
 lib/core/Services/Edit/PluginController.php -text
 lib/core/Services/Edit/SemaphoreController.php -text

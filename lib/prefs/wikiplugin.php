@@ -116,6 +116,7 @@ function prefs_wikiplugin_list($partial = false)
 		}
 		$out['wikiplugin_snarf_cache'] = ['default' => 0];
 		$out['wikiplugin_list_gui'] = ['default' => 'n'];
+		$out['wikiplugin_list_convert_trackerlist'] = ['default' => 'n'];
 		$out['wikiplugin_maximum_passes'] = ['default' => 500];
 
 		return $out;
@@ -164,6 +165,17 @@ function prefs_wikiplugin_list($partial = false)
 		'tags' => ['experimental'],
 		'default' => 'n',
 		'dependencies' => ['wikiplugin_list'],
+		'filter' => 'alpha',
+		'type' => 'flag'
+	];
+
+	// temporary pref for developpment of the list plugin converter from trackerlist
+	$prefs['wikiplugin_list_convert_trackerlist'] = [
+		'name' => tr('Plugin trackerlist converter'),
+		'description' => tr('Button on trackerlist plugin edit form to convert it to use the list plugin instead.'),
+		'tags' => ['experimental'],
+		'default' => 'n',
+		'dependencies' => ['wikiplugin_list', 'wikiplugin_trackerlist'],
 		'filter' => 'alpha',
 		'type' => 'flag'
 	];

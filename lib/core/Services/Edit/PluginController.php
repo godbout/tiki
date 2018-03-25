@@ -236,7 +236,7 @@ class Services_Edit_PluginController
 	/**
 	 * Replace plugin in wiki content
 	 * Migrated from tiki-wikiplugin_edit.php
-	 * 
+	 *
 	 * FIXME: No verification that the replaced call was not changed during edition. Should probably check a fingerprint of the plugin call.
 	 *
 	 * @param JitFilter $input
@@ -320,10 +320,103 @@ class Services_Edit_PluginController
 	}
 
 	/**
+	 * Convert a trackerlist plugin to list
+	 *
+	 * @param JitFilter $input
+	 * @return array
+	 * @throws Services_Exception
+	 * @throws Services_Exception_BadRequest
+	 * @throws Services_Exception_Denied
+	 */
+	function action_convert_trackerlist($input)
+	{
+		global $user;
+
+		Services_Exception_Disabled::check('feature_trackers');
+		Services_Exception_Disabled::check('wikiplugin_list');
+		Services_Exception_Disabled::check('wikiplugin_trackerlist');
+		Services_Exception_Disabled::check('wikiplugin_list_convert_trackerlist');
+
+		$tikilib = TikiLib::lib('tiki');
+
+		$page = $input->page->pagename();
+		$type = $input->type->word();
+		$message = $input->message->text();
+		$content = $input->content->wikicontent();
+		$index = $input->index->int();
+		$params = $input->asArray('params');
+
+		$referer = $_SERVER['HTTP_REFERER'];
+		$util = new Services_Utilities();
+		$util->checkTicket();
+
+		if (! $page || ! $type || ! $referer || $_SERVER['REQUEST_METHOD'] !== 'POST' || ! $util->access->ticketMatch()) {
+			throw new Services_Exception(tr('Missing parameters'));
+		}
+
+		$plugin = strtolower($type);
+
+		if (! $message) {
+			$message = tr('%0 Plugin converted to list.', $plugin);
+		}
+
+		$info = $tikilib->get_page_info($page);
+		if (! $info) {
+			throw new Services_Exception_BadRequest(tr('Page "%0" not found', $page));
+		}
+
+		$perms = $tikilib->get_perm_object($page, 'wiki page', $info, false);
+		if ($perms['tiki_p_edit'] !== 'y') {
+			throw new Services_Exception_Denied(tr('You do not have permission to edit "%0"', $page));
+		}
+
+		$current = $info['data'];
+
+		$matches = WikiParser_PluginMatcher::match($current);
+		$count = 0;
+		foreach ($matches as $match) {
+			if ($match->getName() !== $plugin) {
+				continue;
+			}
+
+			++$count;
+
+			if ($index === $count) {
+
+				if (! $params) {
+					$params = $match->getArguments();
+				}
+
+				$converter = new Services_Edit_ListConverter('trackerlist');
+
+				$content = $converter->convert($params, $content);
+
+				$match->replaceWithPlugin('list', [], $content);
+
+				$text = $matches->getText();
+				$text .= $converter->getErrorsComment();
+
+				$tikilib->update_page(
+					$page,
+					$text,
+					$message,
+					$user,
+					$tikilib->get_ip_address()
+				);
+
+				Feedback::success(tr('Plugin %0 on page %1 converted.', $plugin, $page), 'session');
+				return [];
+			}
+		}
+		throw new Exception('Plugin convert failed');
+	}
+
+	/**
 	 * Create the data for the list plugin GUI
 	 *
 	 * @param JitFilter $input
 	 * @return array
+	 * @throws Exception
 	 */
 	function action_list_edit($input)
 	{
