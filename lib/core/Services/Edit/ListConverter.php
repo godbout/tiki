@@ -1,5 +1,5 @@
 <?php
-// (c) Copyright 2002-2017 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright 2002-2018 by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -35,7 +35,7 @@ class Services_Edit_ListConverter
 			'sort' => false,            // allow sorting
 			'links' => false,           // show item links
 			'edit' => false,            // all ditable
-			'editable' => [],			// editable field id's
+			'editable' => [],            // editable field id's
 		];
 
 		$this->titleFound = false;
@@ -79,12 +79,19 @@ class Services_Edit_ListConverter
 		$sortMode = [];
 		$pagination = [];
 		$tableSorter = ['sortable' => 'n'];
+		$filterFields = [];
+		$filterValues = [];
+		$filterExact = [];
+
 		$showLastModif = false;
 		$showCreated = false;
 
 		unset($params['trackerId']);    // got it before
 
 		foreach ($params as $param => $value) {
+			if ($value === 'Y' || $value === 'N') {
+				$value = strtolower($value);    // some people seem to use capitals for y/n
+			}
 			switch ($param) {
 				case 'fields':
 					$fields = $this->utilities->getFieldsFromIds($definition, explode(':', $value));
@@ -93,12 +100,30 @@ class Services_Edit_ListConverter
 				case 'showstatus':
 					$this->columnOptions['links'] = $value === 'y';    // compromise on this - we can only do format=objectlink
 					break;
+				case 'status':
+					$filters[] = [
+						'field' => 'tracker_status',
+						'content' => implode(' OR ', str_split($value)),
+					];
+					break;
+				// *********************** filtering *************************
+				case 'filterfield':
+					$filterFields = explode(':', $value);
+					break;
+				case 'filtervalue':
+					$filterValues = explode(':', $value);
+					break;
+				case 'exactvalue':
+					$filterExact = explode(':', $value);
+					break;
+				// *********************** editable *************************
 				case 'editableall':
 					$this->columnOptions['edit'] = $value === 'y';
 					break;
 				case 'editable':
 					$this->columnOptions['editable'] = explode(':', $value);
 					break;
+				// *********************** sorting *************************
 				case 'sort':
 					$this->columnOptions['sort'] = $value === 'y';
 					break;
@@ -111,21 +136,18 @@ class Services_Edit_ListConverter
 						$sortMode = ['mode' => $value];    // e.g. f_xxx_desc
 					}
 					break;
-				case 'status':
-					$filters[] = [
-						'field' => 'tracker_status',
-						'content' => implode(' OR ', str_split($value)),
-					];
-					break;
+				// ***********************  dates  *************************
 				case 'showlastmodif':
 					$showLastModif = $value === 'y';
 					break;
 				case 'showcreated':
 					$showCreated = $value === 'y';
 					break;
+				// *********************** pagination *************************
 				case 'max':
 					$pagination = ['max' => $value];
 					break;
+				// *********************** tablesorter *************************
 				case 'sortable':
 					$tableSorter['sortable'] = $value;
 					break;
@@ -133,7 +155,7 @@ class Services_Edit_ListConverter
 					$tableSorter['server'] = $value;
 					break;
 				case 'tsfilters':
-					if ($params['showstatus'] === 'y') {	// when showing the status trackerfilter adds an extra column for it
+					if ($params['showstatus'] === 'y') {    // when showing the status trackerfilter adds an extra column for it
 						$value = preg_replace('/^.*?\|/', '', $value);
 					}
 					$tableSorter['tsfilters'] = $value;
@@ -180,6 +202,23 @@ class Services_Edit_ListConverter
 					$sortMode['mode'] = 'tracker_field_' . $field['permName'] . '_' . $match[1];
 				}
 			}
+			if ($filterFields) {
+				for ($i = 0; $i < count($filterFields); $i++) {
+					if ($filterFields[$i] == $field['fieldId']) {
+						if (isset($filterValues[$i])) {
+							$filters[] = [
+								'field' => 'tracker_field_' . $field['permName'],
+								'content' => $filterValues[$i],
+							];
+						} else if (isset($filterExact[$i])) {
+							$filters[] = [
+								'field' => 'tracker_field_' . $field['permName'],
+								'exact' => $filterExact[$i],
+							];
+						}
+					}
+				}
+			}
 		}
 
 		if ($this->columnOptions['links'] && ! $this->titleFound) {    // object link not listed in fields
@@ -210,8 +249,12 @@ class Services_Edit_ListConverter
 
 		$result .= $this->arrayToInlinePluginString('filter', $filters);
 
-		$result .= $this->arrayToInlinePluginString('sort', [$sortMode]);
-		$result .= $this->arrayToInlinePluginString('pagination', [$pagination]);
+		if ($sortMode) {
+			$result .= $this->arrayToInlinePluginString('sort', [$sortMode]);
+		}
+		if ($pagination) {
+			$result .= $this->arrayToInlinePluginString('pagination', [$pagination]);
+		}
 
 		$result .= "{OUTPUT(template=\"table\")}\n";
 		$result .= $this->arrayToInlinePluginString('column', $this->columns);
