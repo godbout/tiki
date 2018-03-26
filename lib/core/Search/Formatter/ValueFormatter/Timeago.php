@@ -18,7 +18,7 @@ class Search_Formatter_ValueFormatter_Timeago extends Search_Formatter_ValueForm
 			$value = date_create_from_format('YmdHise', $value . 'UTC')->getTimestamp();
 		}
 
-		if ($prefs['jquery_timeago'] === 'y') {
+		if ($prefs['jquery_timeago'] === 'y' && $value) {
 			TikiLib::lib('header')->add_jq_onready('$("time.timeago").timeago();');
 			return '<time class="timeago" datetime="' . TikiLib::date_format('c', $value, false, 5, false) . '">' . $value . '</time>';
 		} else {
