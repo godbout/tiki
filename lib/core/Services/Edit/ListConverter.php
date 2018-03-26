@@ -78,6 +78,7 @@ class Services_Edit_ListConverter
 		$fields = [];
 		$sortMode = [];
 		$pagination = [];
+		$tableSorter = ['sortable' => 'n'];
 		$showLastModif = false;
 		$showCreated = false;
 
@@ -124,6 +125,45 @@ class Services_Edit_ListConverter
 					break;
 				case 'max':
 					$pagination = ['max' => $value];
+					break;
+				case 'sortable':
+					$tableSorter['sortable'] = $value;
+					break;
+				case 'server':
+					$tableSorter['server'] = $value;
+					break;
+				case 'tsfilters':
+					if ($params['showstatus'] === 'y') {	// when showing the status trackerfilter adds an extra column for it
+						$value = preg_replace('/^.*?\|/', '', $value);
+					}
+					$tableSorter['tsfilters'] = $value;
+					break;
+				case 'tsfilteroptions':
+					$tableSorter['tsfilteroptions'] = $value;
+					break;
+				case 'tsortcolumns':
+					if ($params['showstatus'] === 'y') {
+						$value = preg_replace('/^.*?\|/', '', $value);
+					}
+					$tableSorter['tsortcolumns'] = $value;
+					break;
+				case 'tscolselect':
+					$tableSorter['tscolselect'] = $value;
+					break;
+				case 'tstotals':
+					if ($params['showstatus'] === 'y') {
+						$value = preg_replace('/^.*?\|/', '', $value);
+					}
+					$tableSorter['tstotals'] = $value;
+					break;
+				case 'tstotaloptions':
+					$tableSorter['tstotaloptions'] = $value;
+					break;
+				case 'tspaginate':
+					$tableSorter['tspaginate'] = $value;
+					break;
+				case 'sortList':
+					$tableSorter['sortList'] = $value;
 					break;
 				default:
 					$this->missed[$param] = $value;
@@ -175,6 +215,11 @@ class Services_Edit_ListConverter
 
 		$result .= "{OUTPUT(template=\"table\")}\n";
 		$result .= $this->arrayToInlinePluginString('column', $this->columns);
+
+		if ($tableSorter['sortable'] === 'y') {
+			$result .= $this->arrayToInlinePluginString('tablesorter', [$tableSorter]);
+		}
+
 		$result .= "{OUTPUT}\n";
 
 		$result .= $this->arrayToBlockPluginString('format', $this->formats);
