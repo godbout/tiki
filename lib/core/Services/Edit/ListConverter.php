@@ -211,10 +211,42 @@ class Services_Edit_ListConverter
 								'content' => $filterValues[$i],
 							];
 						} else if (isset($filterExact[$i])) {
-							$filters[] = [
-								'field' => 'tracker_field_' . $field['permName'],
-								'exact' => $filterExact[$i],
-							];
+							$exactValue = $filterExact[$i];
+							if (preg_match('/^(not)?categories\((\d+)\)$/', $exactValue, $matches)) {
+								$filters[] = [
+									'deepcategories' => strtoupper($matches[1]) . ' ' . $matches[2],
+								];
+							} else if (preg_match('/^(not)?preference\((.*)\)$/', $exactValue, $matches)) {
+								$prefValue = TikiLib::lib('tiki')->get_preference($matches[2]);
+								$filters[] = [
+									'field' => 'tracker_field_' . $field['permName'],
+									'exact' => strtoupper($matches[1]) . ' ' . $prefValue,
+								];
+							} else if (preg_match('/^(not)?field\((\d+?),\s*(\d+)\)$/', $exactValue, $matches)) {
+								$prefValue = TikiLib::lib('trk')->get_field_value($matches[2], $matches[3]);
+								$filters[] = [
+									'field' => 'tracker_field_' . $field['permName'],
+									'exact' => strtoupper($matches[1]) . ' ' . $prefValue,
+								];
+							} else if (preg_match('/^not\((.*)\)$/', $exactValue, $matches)) {
+								$filters[] = [
+									'field' => 'tracker_field_' . $field['permName'],
+									'exact' => 'NOT ' . $exactValue,
+								];
+								// still TODO:
+								// less(equal)(date)
+								// greater(equal)(date)
+							} else if (strtolower($exactValue) === 'not()') {
+								$filters[] = [
+									'field' => 'tracker_field_' . $field['permName'],
+									'exact' => 'NOT ""',
+								];
+							} else {
+								$filters[] = [
+									'field' => 'tracker_field_' . $field['permName'],
+									'exact' => $exactValue,
+								];
+							}
 						}
 					}
 				}
