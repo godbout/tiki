@@ -17,10 +17,10 @@ class Services_Edit_ListConverter
 	private $columns;
 	private $formats;
 	private $missed;
+
 	private $titleFound;
 
-	private $showItemLinks;
-	private $sort;
+	private $columnOptions;
 
 	public function __construct($sourcePlugin)
 	{
@@ -30,11 +30,15 @@ class Services_Edit_ListConverter
 		$this->formats = [];
 		$this->columns = [];
 		$this->missed = [];
+		$this->columnOptions = [
+			'label' => true,            // show labels
+			'sort' => false,            // allow sorting
+			'links' => false,           // show item links
+			'edit' => false,            // all ditable
+			'editable' => [],			// editable field id's
+		];
 
 		$this->titleFound = false;
-		$this->showItemLinks = false;
-		$this->sort = false;
-
 	}
 
 	/**
@@ -86,10 +90,16 @@ class Services_Edit_ListConverter
 					break;
 				case 'showlinks':
 				case 'showstatus':
-					$this->showItemLinks = $value === 'y';    // compromise on this - we can only do format=objectlink
+					$this->columnOptions['links'] = $value === 'y';    // compromise on this - we can only do format=objectlink
+					break;
+				case 'editableall':
+					$this->columnOptions['edit'] = $value === 'y';
+					break;
+				case 'editable':
+					$this->columnOptions['editable'] = explode(':', $value);
 					break;
 				case 'sort':
-					$this->sort = $value === 'y';
+					$this->columnOptions['sort'] = $value === 'y';
 					break;
 				case 'sort_mode':
 					if (strpos($value, 'lastModif_') === 0) {
@@ -97,7 +107,7 @@ class Services_Edit_ListConverter
 					} else if (strpos($value, 'created_') === 0) {
 						$sortMode = ['mode' => 'creation_date_' . str_replace('lastModif_', '', 'n' . $value)];
 					} else {
-						$sortMode = ['mode' => $value];	// e.g. f_xxx_desc
+						$sortMode = ['mode' => $value];    // e.g. f_xxx_desc
 					}
 					break;
 				case 'status':
@@ -132,7 +142,7 @@ class Services_Edit_ListConverter
 			}
 		}
 
-		if ($this->showItemLinks && ! $this->titleFound) {    // object link not listed in fields
+		if ($this->columnOptions['links'] && ! $this->titleFound) {    // object link not listed in fields
 			foreach ($definition->getFields() as $field) {
 				if ($field['isMain'] === 'y') {
 					$this->processFieldAsColumn($field, true);
@@ -144,7 +154,7 @@ class Services_Edit_ListConverter
 			$this->processFieldAsColumn([
 				'name' => 'LastModif',
 				'permName' => 'modification_date',
-				'type' => 'f',		// pretend this is a date field
+				'type' => 'f',        // pretend this is a date field
 				'datetime' => 'dt',
 			]);
 		}
@@ -208,40 +218,54 @@ class Services_Edit_ListConverter
 	}
 
 	/**
-	 * @param array $field
-	 * @param bool $first
+	 * @param array $field field definition array
+	 * @param bool $first add this column at the beginning
 	 */
 	private function processFieldAsColumn($field, $first = false)
 	{
 		global $prefs;
 
 		$permName = $field['permName'];
+		$rawMode = false;
 
 		$display = [
 			'default' => '',
 		];
 
 		if (! empty($field['fieldId'])) {
-			$display['name'] = 'tracker_field_' . $permName;
+			$fullPermName = 'tracker_field_' . $permName;
 		} else {
-			$display['name'] = $permName;
+			$fullPermName = $permName;    // if not an atual tracker field, e.g. mod or create date
 		}
-		if ($this->showItemLinks && $field['isMain'] === 'y') {
+		$display['name'] = $fullPermName;
+
+		if ($this->columnOptions['links'] && $field['isMain'] === 'y') {
 			$display['format'] = 'objectlink';
 			$this->titleFound = true;
+			$rawMode = true;
 		}
-		if (in_array($field['type'], ['f', 'j'])) {	// or just use trackerrender?
+		if ($this->columnOptions['edit'] || in_array($field['fieldId'], $this->columnOptions['editable'])) {
+			$display['editable'] = 'inline';
+			$rawMode = true;
+		}
+		if (in_array($field['type'], ['f', 'j'])) {    // or just use trackerrender?
 			if ($field['options_map']['datetime'] === 'dt') {
-				$display['format'] = $prefs['jquery_timeago'] === 'y' ? 'timeago' : 'datetime';
+				if ($prefs['jquery_timeago'] === 'y') {
+					$display['format'] = 'timeago';
+					$rawMode = true;
+				} else {
+					$display['format'] = 'datetime';
+				}
 			} else {
 				$display['format'] = 'date';
 			}
 		}
-		if (in_array($field['type'], ['e', 'FG', 'a', 'G', 'icon', 'L', 'p', 'r', 'u', 'w', 'y'])) {
+		if (in_array($field['type'], ['a', 'e', 'FG', 'G', 'icon', 'L', 'p', 'r', 'u', 'w', 'y']) || ! empty($display['editable'])) {
 			$display['format'] = 'trackerrender';
+			$rawMode = true;
 		}
 		$displays = rtrim($this->arrayToInlinePluginString('display', [$display]));
-		if ($first) {
+		if ($this->columnOptions['first']) {
 			$arr = array_reverse($this->formats, true);
 			$arr[$permName] = $displays;
 			$this->formats = array_reverse($arr, true);
@@ -249,15 +273,16 @@ class Services_Edit_ListConverter
 			$this->formats[$permName] = $displays;
 		}
 
-		$column = [
-			'field' => $permName,
-			'label' => $field['name'],
-		];
-		if (! empty($display['format']) && ! in_array($display['format'], ['plain', 'datetime', 'date'])) {
-			$column['mode'] = 'raw';
+		$column = ['field' => $permName];
+
+		if ($this->columnOptions['label']) {
+			$column['label'] = $field['name'];
 		}
-		if ($this->sort) {
-			$column['sort'] = 'tracker_field_' . $permName;
+		if ($this->columnOptions['sort']) {
+			$column['sort'] = $fullPermName;
+		}
+		if ($rawMode) {
+			$column['mode'] = 'raw';
 		}
 		if ($first) {
 			$arr = array_reverse($this->columns, true);
