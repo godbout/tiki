@@ -24,7 +24,7 @@ class Search_Indexer
 		if (! $logWriter instanceof \Zend\Log\Writer\AbstractWriter) {
 			$logWriter = new Zend\Log\Writer\Noop();
 		}
-		$logWriter->setFormatter(new Zend\Log\Formatter\Simple(Zend\Log\Formatter\Simple::DEFAULT_FORMAT . ' [%memoryUsage% bytes]' . PHP_EOL));
+		$logWriter->setFormatter(new Zend\Log\Formatter\Simple());
 		$this->log = new Zend\Log\Logger();
 		$this->log->addWriter($logWriter);
 
@@ -285,6 +285,6 @@ class Search_Indexer
 
 	private function log($message)
 	{
-		$this->log->info($message, ['memoryUsage' => memory_get_usage()]);
+		$this->log->info($message, ['memoryUsage' => \Symfony\Component\Console\Helper\Helper::formatMemory(memory_get_usage())]);
 	}
 }
