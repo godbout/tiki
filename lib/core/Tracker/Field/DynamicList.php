@@ -282,10 +282,11 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 		$remoteItemIds = $this->getValue();
 		if ($this->getOption('selectMultipleValues') && ! is_array($remoteItemIds)) {
 			$remoteItemIds = explode(',', $remoteItemIds);
+			$remoteItemIds = array_filter($remoteItemIds);
 		}
 		$output = '';
 
-		foreach ($remoteItemIds as $remoteItemId) {
+		foreach ((array) $remoteItemIds as $remoteItemId) {
 
 			$itemInfo = $trklib->get_tracker_item($remoteItemId);
 
