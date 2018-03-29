@@ -4826,8 +4826,27 @@ class TrackerLib extends TikiLib
 			$join = '?';
 			$bindvars = array_merge(['trackeritem', $item_info['itemId']], $bindvars);
 		}
-		$query = 'select ttifl.`version`, ttifl.`fieldId`, ttifl.`value`, ta.`user`, ta.`lastModif` from `tiki_tracker_item_field_logs` ttifl left join `tiki_actionlog` ta on (ta.`comment`=ttifl.`version` and ta.`objectType`=? and ta.`object`=' . $join . ') where ' . implode(' and ', $mid) . ' order by ttifl.`itemId` asc, ttifl.`version` desc, ttifl.`fieldId` asc';
-		$all = $this->fetchAll($query, $bindvars, -1, 0);
+		$count = $this->getOne('SELECT COUNT(DISTINCT `version`) FROM `tiki_tracker_item_field_logs` WHERE `itemId`=?', [$item_info['itemId']]);
+		$page = $this->fetchAll(
+			'SELECT DISTINCT ttifl.`version` FROM `tiki_tracker_item_field_logs` ttifl WHERE ttifl.`itemId`=? ORDER BY `version` DESC',
+			[$item_info['itemId']],
+			$max,
+			$offset
+		);
+
+		if (! empty($page)) {
+			$mid[] = 'ttifl.`version`<=?';
+			$bindvars[] = $page[0]['version'];
+			$mid[] = 'ttifl.`version`>=?';
+			$bindvars[] = $page[count($page) - 1]['version'];
+		}
+
+		$query = 'SELECT ttifl.`version`, ttifl.`fieldId`, ttifl.`value`, ta.`user`, ta.`lastModif` '.
+					'FROM `tiki_tracker_item_field_logs` ttifl '.
+					'LEFT JOIN `tiki_actionlog` ta ON (ta.`comment`=ttifl.`version` AND ta.`objectType`=? AND ta.`object`=' . $join . ') '.
+					'WHERE ' . implode(' AND ', $mid) . ' ORDER BY ttifl.`itemId` ASC, ttifl.`version` DESC, ttifl.`fieldId` ASC';
+
+		$all = $this->fetchAll($query, $bindvars);
 		$history['data'] = [];
 		$i = 0;
 		foreach ($all as $hist) {
@@ -4835,13 +4854,12 @@ class TrackerLib extends TikiLib
 			if ($hist['new'] == $hist['value']) {
 				continue;
 			}
-			if ($i >= $offset && ($max == -1 || $i < $offset + $max)) {
-				$history['data'][] = $hist;
-			}
+			$history['data'][] = $hist;
+
 			$last[$hist['fieldId']] = $hist['value'];
 			++$i;
 		}
-		$history['cant'] = count($history['data']);
+		$history['cant'] = $count;
 		return $history;
 	}
 
@@ -5832,18 +5850,18 @@ class TrackerLib extends TikiLib
 	 * @param array $params - either a complete field array or a trackerid and a permName
 	 * <pre>
 	 * $param = array(
-	 * 		// required
-	 * 		'field' => array( 'fieldId' => 1, 'trackerId' => 2, 'permName' => 'myPermName', 'etc' => '...')
-	 * 		//'trackerId' => 1 // instread of 'field'
-	 * 		//'permName>' => 'myPermName' // instread of 'field'
+	 *        // required
+	 *        'field' => array( 'fieldId' => 1, 'trackerId' => 2, 'permName' => 'myPermName', 'etc' => '...')
+	 *        //'trackerId' => 1 // instread of 'field'
+	 *        //'permName>' => 'myPermName' // instread of 'field'
 	 *
-	 * 		// optional
-	 * 		'item' => array('fieldId1' => fieldValue1, 'fieldId2' => fieldValue2) // optional
-	 * 		'itemId' = 5 // itemId
-	 * 		'process' => 'y' // ? will be used in xyz
+	 *        // optional
+	 *        'item' => array('fieldId1' => fieldValue1, 'fieldId2' => fieldValue2) // optional
+	 *        'itemId' = 5 // itemId
+	 *        'process' => 'y' // ? will be used in xyz
 	 *
-	 * 		// unsure
-	 * 		'list_mode' => '' // i.e. 'cvs' will be used in xyz
+	 *        // unsure
+	 *        'list_mode' => '' // i.e. 'cvs' will be used in xyz
 	 * )
 	 * </pre>
 	 * @return string - rendered value (with html ?). i.e from $r = $handler->renderInput($context)
