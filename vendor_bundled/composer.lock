@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "adc499acf17f15ed626507c098ab3cc4",
+    "content-hash": "f7c460056ae69c032d02baf544c00a76",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -1830,17 +1830,17 @@
         },
         {
             "name": "nicolaskruchten/pivottable",
-            "version": "v2.18.0",
+            "version": "v2.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolaskruchten/pivottable.git",
-                "reference": "f742ce1d27b867b3414684f54ef81f16c714af25"
+                "reference": "4a9badf2eefd5afa5c8ade879c2c390bf8a21fff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-f742ce1d27b867b3414684f54ef81f16c714af25-zip-df6207.zip",
-                "reference": "f742ce1d27b867b3414684f54ef81f16c714af25",
-                "shasum": "bc9a7424a1572ec5d26a3e11edd39c8233154356"
+                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-4a9badf2eefd5afa5c8ade879c2c390bf8a21fff-zip-88c948.zip",
+                "reference": "4a9badf2eefd5afa5c8ade879c2c390bf8a21fff",
+                "shasum": "558b84d45ea71529924d24a81f3a2eac17c8ab57"
             },
             "require": {
                 "components/jquery": ">=1.9"
@@ -1848,7 +1848,7 @@
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT License"
+                "MIT"
             ],
             "authors": [
                 {
@@ -1869,7 +1869,7 @@
                 "pivottable",
                 "table"
             ],
-            "time": "2017-11-30T22:09:38+00:00"
+            "time": "2018-03-21T14:30:58+00:00"
         },
         {
             "name": "openannotation/annotator",
