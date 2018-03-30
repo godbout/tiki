@@ -25,10 +25,8 @@ doc/devtools/dbdiff/vendor
 /dummy.php
 /dump
 /files
-img/trackers/*
 img/wiki/*.gif
 img/wiki/*.pad_xml
-img/wiki_up/*
 installer/.htaccess
 lang/.htaccess
 /last.log
