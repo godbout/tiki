@@ -26,8 +26,9 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 		$redirect = ['to' => 'http://tiki.org'];
 		$description = 'Test route';
 		$active = 1;
+		$shortUrl = 0;
 
-		$this->item = new Item($type, $from, $redirect, $description, $active, $id);
+		$this->item = new Item($type, $from, $redirect, $description, $active, $shortUrl, $id);
 	}
 
 	/**
@@ -43,6 +44,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 			'params' => json_decode($this->item->redirect, true),
 			'description' => $this->item->description,
 			'active' => $this->item->active,
+			'short_url' => $this->item->short_url,
 		];
 
 		$this->assertEquals($this->item->toArray(), $expect);

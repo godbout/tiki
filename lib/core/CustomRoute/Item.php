@@ -20,6 +20,11 @@ class Item
 	public $redirect;
 	public $description;
 	public $active;
+	public $short_url;
+
+	const TYPE_DIRECT = 'Direct';
+	const TYPE_OBJECT = 'Object';
+	const TYPE_TRACKER_FIELD = 'TrackerField';
 
 	/**
 	 * Item constructor.
@@ -29,15 +34,17 @@ class Item
 	 * @param $redirect
 	 * @param $description
 	 * @param int $active
+	 * @param int $short_url
 	 * @param null $id
 	 */
-	public function __construct($type, $from, $redirect, $description, $active = 1, $id = null)
+	public function __construct($type, $from, $redirect, $description, $active = 1, $short_url = 0, $id = null)
 	{
 		$this->type = $type;
 		$this->from = $from;
 		$this->redirect = is_array($redirect) ? json_encode($redirect) : $redirect;
 		$this->description = $description;
 		$this->active = $active;
+		$this->short_url = $short_url;
 		$this->id = $id;
 	}
 
@@ -46,9 +53,12 @@ class Item
 	 */
 	public function save()
 	{
-		/** @var \CustomRouteLib $routeLib */
 		$routeLib = TikiLib::lib('custom_route');
-		$routeLib->setRoute($this->type, $this->from, $this->redirect, $this->description, $this->active, $this->id);
+		$id = $routeLib->setRoute($this->type, $this->from, $this->redirect, $this->description, $this->active, $this->short_url, $this->id);
+
+		if ($id) {
+			$this->id  = $id;
+		}
 	}
 
 	/**
@@ -59,7 +69,6 @@ class Item
 	 */
 	public static function load($id)
 	{
-		/** @var \CustomRouteLib $routeLib */
 		$routeLib = TikiLib::lib('custom_route');
 		$details = $routeLib->getRoute($id);
 
@@ -73,6 +82,7 @@ class Item
 			$details['redirect'],
 			$details['description'],
 			$details['active'],
+			$details['short_url'],
 			$details['id']
 		);
 	}
@@ -234,6 +244,7 @@ class Item
 			'params' => json_decode($this->redirect, true),
 			'description' => $this->description,
 			'active' => $this->active,
+			'short_url' => $this->short_url,
 		];
 	}
 }

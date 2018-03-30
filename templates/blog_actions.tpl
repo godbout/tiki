@@ -65,6 +65,14 @@
 					</a>
 				</li>
 			{/if}
+			{if $prefs.feature_short_url eq 'y'}
+				<li>
+					<a href="tiki-short_url.php?type=blog&objectId={$blogId}">
+						{icon name="link"} {tr}Get a short URL{/tr}
+						{assign var="hasPageAction" value="1"}
+					</a>
+				</li>
+			{/if}
 		</ul>
 		{if $js == 'n'}</li></ul>{/if}
 		{if $user and $prefs.feature_user_watches eq 'y'}

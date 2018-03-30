@@ -41,7 +41,7 @@
 						</a>
 					{/if}
 				</li>
-                
+
 				{if $item_info.logs.cant|default:null}
 					<li>
 						<a href="tiki-tracker_view_history.php?itemId={$itemId}">
@@ -78,6 +78,14 @@
 							</a>
 						</li>
 					{/if}
+				{/if}
+				{if $prefs.feature_short_url eq 'y'}
+					<li>
+						<a href="tiki-short_url.php?type={'tracker item'|escape:"url"}&objectId={$itemId}">
+							{icon name="link"} {tr}Get a short URL{/tr}
+							{assign var="hasPageAction" value="1"}
+						</a>
+					</li>
 				{/if}
 			</ul>
 			{if $js == 'n'}</li></ul>{/if}
@@ -121,7 +129,7 @@
 	.tab-content .tab-pane {
     	display:block;
 	}</style>
-{/if} 
+{/if}
 {* print_page *}
 
 
@@ -129,7 +137,7 @@
 {tabset name='tabs_view_tracker_item' skipsingle=1 toggle=n}
 
 	{* when printing, no js is called to select the tab thus no class "active" assigned (would show nothing). print=y sets this class on printing *}
-	{tab name="{tr}View{/tr}" print=y} 
+	{tab name="{tr}View{/tr}" print=y}
 		{* --- tab with view ------------------------------------------------------------------------- *}
 		{* In most cases one will not want this header when viewing an item *}
 		{* <h3>{$tracker_info.name|escape}</h3> *}
