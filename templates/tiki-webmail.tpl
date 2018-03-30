@@ -581,7 +581,7 @@
 					<input type="hidden" name="realmsgid" value="{$realmsgid|escape}">
 					<input type="hidden" name="to" value="">
 					<input type="hidden" name="cc" value="">
-					<input type="hidden" name="subject" value="Fw: {$headers.subject}">
+					<input type="hidden" name="subject" value="Fwd: {$headers.subject}">
 					<input type="hidden" name="body" value="{$plainbody|escape}">
 				</form>
 			</td>
