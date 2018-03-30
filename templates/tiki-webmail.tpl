@@ -559,7 +559,7 @@
 					<input type="submit" class="btn btn-default btn-sm" name="reply" value="{tr}Reply{/tr}">
 					<input type="hidden" name="realmsgid" value="{$realmsgid|escape}">
 					<input type="hidden" name="to" value="{$headers.replyto|escape}">
-					<input type="hidden" name="subject" value="Re:{$headers.subject}">
+					<input type="hidden" name="subject" value="Re: {$headers.subject}">
 					<input type="hidden" name="body" value="{$plainbody|escape}">
 				</form>
 			</td>
@@ -570,17 +570,18 @@
 					<input type="hidden" name="to" value="{$headers.replyto|escape}">
 					<input type="hidden" name="realmsgid" value="{$realmsgid|escape}">
 					<input type="hidden" name="cc" value="{$headers.replycc|escape}">
-					<input type="hidden" name="subject" value="Re:{$headers.subject}">
+					<input type="hidden" name="subject" value="Re: {$headers.subject}">
 					<input type="hidden" name="body" value="{$plainbody|escape}">
 				</form>
 			</td>
 			<td>
 				<form method="post" action="tiki-webmail.php">
-					<input type="submit" class="btn btn-default btn-sm" name="reply" value="{tr}Forward{/tr}">
+					<input type="submit" class="btn btn-default btn-sm" name="forward" value="{tr}Forward{/tr}">
 					<input type="hidden" name="locSection" value="compose">
+					<input type="hidden" name="realmsgid" value="{$realmsgid|escape}">
 					<input type="hidden" name="to" value="">
 					<input type="hidden" name="cc" value="">
-					<input type="hidden" name="subject" value="Fw:{$headers.subject}">
+					<input type="hidden" name="subject" value="Fw: {$headers.subject}">
 					<input type="hidden" name="body" value="{$plainbody|escape}">
 				</form>
 			</td>
