@@ -666,6 +666,10 @@ composer()
 	fi
 }
 
+http_composer() {
+	"${PHPCLI}" doc/devtools/composer_http_mode.php execute "$OPT_QUIET"
+}
+
 
 # part 4.3 - several command options as fix, open, ...
 
@@ -1021,6 +1025,7 @@ Composer: If you are installing via a released Tiki package (zip, tar.gz, tar.bz
  c run composer (log output on screen, not all warnings) and exit (recommended to be done first)
  L run composer (log output to logfile) and exit (recommended to be done first)
  V run composer (verbose log output on screen) and exit (recommended to be done first)
+ H make composer download packages over HTTP and return here
 
 For all Tiki instances (via SVN or via a released package):
 
@@ -1082,6 +1087,7 @@ tiki_setup_default() {
 			C)	WHAT=$WHAT_NEXT_AFTER_c ; LOGCOMPOSERFLAG="0" ; composer ;;
 			L)	WHAT=$WHAT_NEXT_AFTER_c ; LOGCOMPOSERFLAG="1" ; composer ;;
 			V)	WHAT=$WHAT_NEXT_AFTER_c ; LOGCOMPOSERFLAG="2" ; composer ;;
+			H)	WHAT=${DEFAULT_WHAT} ; http_composer ;;
 			q)	echo ""; exit ;;
 			Q)	echo ""; exit ;;
 			x)	echo ""; exit ;;
