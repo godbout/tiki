@@ -2000,6 +2000,7 @@ installer/schema/20171123_create_object_links_tiki.php -text
 installer/schema/20171129_backlinks_for_object_types_admin_options_tiki.sql -text
 installer/schema/20171130_plugin_include_link_original_tiki.sql -text
 installer/schema/20171204_update_geo_enabled_tiki.sql -text
+installer/schema/20171231_add_short_url_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -4336,6 +4337,7 @@ lib/test/core/Category/ManipulatorTest.php -text
 lib/test/core/Category/index.php -text
 lib/test/core/Connect/ClientTest.php -text
 lib/test/core/Connect/index.php -text
+lib/test/core/CustomRoute/CustomRouteTest.php -text
 lib/test/core/DeclFilter/BaseTest.php -text
 lib/test/core/DeclFilter/CatchAllFilterTest.php -text
 lib/test/core/DeclFilter/CatchAllUnsetTest.php -text
@@ -8207,6 +8209,7 @@ themes/yeti/templates/index.php -text
 /tiki-setup_base.php -text
 /tiki-share.php -text
 /tiki-sheets.php -text
+/tiki-short_url.php -text
 /tiki-shoutbox.php -text
 /tiki-shoutbox_rss.php -text
 /tiki-show_all_images.php -text
