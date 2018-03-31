@@ -710,7 +710,7 @@
 							</label>
 						</td>
 						<td>
-							<input type="text" name="bcc" value="{$bcc}" id="bcc" class="form-control">
+							<input type="text" name="bcc" value="{$bcc|escape}" id="bcc" class="form-control">
 						</td>
 					</tr>
 					<tr>

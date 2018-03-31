@@ -42,7 +42,7 @@
 								<td class="text">{$channels[user].firstName}</td>
 								<td class="text">{$channels[user].lastName}</td>
 								<td class="email">
-									<a class="link" href="#" onClick="javascript:window.opener.document.getElementById('{$element}').value=window.opener.document.getElementById('{$element}').value + '{$channels[user].email}' + ' ';">
+									<a class="link" href="#" onclick="var em = window.opener.document.getElementById('{$element}').value; if (em != '') window.opener.document.getElementById('{$element}').value = window.opener.document.getElementById('{$element}').value + ', {$channels[user].email}'; if (em == '') window.opener.document.getElementById('{$element}').value = window.opener.document.getElementById('{$element}').value + '{$channels[user].email}';">{* TODO: optimize the Javascript code *}
 										{$channels[user].email}
 									</a>
 									[&nbsp;&nbsp;
