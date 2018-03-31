@@ -53,14 +53,7 @@ if (isset($_REQUEST['request_facebook'])) {
 	} else {
 		// this is the callback from facebook
 		check_ticket('socialnetworks');
-		if ($user) {
-			if ($tikilib->get_user_preference($user, 'facebook_token', '') == '') {
-				$socialnetworkslib->getFacebookAccessToken();
-			} // if user already has a token, it is just a refresh of the page
-		} else {
-			// Simply login user with Facebook
-			$socialnetworkslib->getFacebookAccessToken();
-		}
+		$socialnetworkslib->facebookLoginPre();
 	}
 }
 if (isset($_REQUEST['remove_facebook'])) {
