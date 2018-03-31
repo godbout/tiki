@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+namespace TikiDevTools;
+
 /**
  * Script to check sql CREATE statements used MyISAM engine in ../../db/tiki.sql and ../../installer/schema sql files
  *
@@ -171,6 +173,11 @@ class CheckSqlEngine
 	}
 }
 
+// Make sure script is run from a shell
+if (PHP_SAPI !== 'cli') {
+	die("Please run from a shell");
+}
+
 $checker = new CheckSqlEngine();
 $errorCount = $checker->execute();
 
@@ -178,5 +185,3 @@ if ($errorCount > 0) {
 	exit(1);
 }
 exit(0);
-
-

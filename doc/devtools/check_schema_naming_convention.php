@@ -5,6 +5,10 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+namespace TikiDevTools;
+
+use DateTime;
+
 /*
  *  Script to check name convention of schema files
  *  Available options:
@@ -168,6 +172,11 @@ class CheckSchemaNamingConvention
 		echo "\033[0;32mCompleted\033[0m" . PHP_EOL;
 		return $errorCount;
 	}
+}
+
+// Make sure script is run from a shell
+if (PHP_SAPI !== 'cli') {
+	die("Please run from a shell");
 }
 
 $checker = new CheckSchemaNamingConvention();

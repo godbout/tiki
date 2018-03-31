@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+namespace TikiDevTools;
+
 /**
  *  Script to check sql CREATE statements have got DROP IF EXIST in front of it
  *  Available commands:
@@ -61,7 +63,7 @@ class CheckSchemaSqlDrop
 	 *
 	 * @return array
 	 */
-	function getOpts()
+	protected function getOpts()
 	{
 		$shortOpts = "p:o:f::";
 		$longOpts = [
@@ -77,7 +79,7 @@ class CheckSchemaSqlDrop
 	 *
 	 * @return string
 	 */
-	function getPath()
+	protected function getPath()
 	{
 		$sqlPath = '../../db/tiki.sql';
 		$options = $this->getOpts();
@@ -98,7 +100,7 @@ class CheckSchemaSqlDrop
 	 * @param $path
 	 * @return int
 	 */
-	function checkFile($path)
+	protected function checkFile($path)
 	{
 		$sqlFile = file_get_contents($path);
 
@@ -157,11 +159,8 @@ class CheckSchemaSqlDrop
 			for ($i = 0; $i < sizeof($queries) - 1; $i++) {
 				$curQuery = $queries[$i];
 				$nextQuery = $queries[$i + 1];
-				if (strpos($curQuery, "DROP TABLE IF EXISTS") !== false && substr(
-						$nextQuery,
-						0,
-						2
-					) === (PHP_EOL . PHP_EOL)) {
+				if (strpos($curQuery, "DROP TABLE IF EXISTS") !== false
+					&& substr($nextQuery, 0, 2) === (PHP_EOL . PHP_EOL)) {
 					$queries[++$i] = substr($nextQuery, 1);
 				}
 			}
@@ -180,6 +179,11 @@ class CheckSchemaSqlDrop
 		$this->printMessage('Completed');
 		return $errorCount - $fixedCount;
 	}
+}
+
+// Make sure script is run from a shell
+if (PHP_SAPI !== 'cli') {
+	die("Please run from a shell");
 }
 
 $checker = new CheckSchemaSqlDrop();
