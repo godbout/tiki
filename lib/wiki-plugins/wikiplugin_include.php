@@ -104,12 +104,9 @@ function wikiplugin_include_info()
 
 function wikiplugin_include($dataIn, $params)
 {
-	global $killtoc, $prefs;
-	
-	/** @var int[] $numberOfInclusions Associative array of the number of times each key (fragment) was included */
-	static $numberOfInclusions;
-	
-	static $data;
+	global $user, $killtoc, $prefs;
+	static $included_pages, $data;
+	$userlib = TikiLib::lib('user');
 	$tikilib = TikiLib::lib('tiki');
 
 	$killtoc = true;
@@ -129,46 +126,43 @@ function wikiplugin_include($dataIn, $params)
 	global $wikiplugin_included_page;
 	$wikiplugin_included_page = $page;
 
-	/** @var string $fragmentIdentifier Identifier of included fragment */
-	$fragmentIdentifier = $page;
+	$memo = $page;
 	if (isset($start)) {
-		$fragmentIdentifier .= "/$start";
+		$memo .= "/$start";
 	}
 	if (isset($end)) {
-		$fragmentIdentifier .= "/$end";
+		$memo .= "/$end";
 	}
-	
-	if (isset($numberOfInclusions[$fragmentIdentifier])) {
-		if ($numberOfInclusions[$fragmentIdentifier] >= $max_times) {
-			trigger_error('Inclusion failed', E_USER_WARNING);
+	if (isset($included_pages[$memo])) {
+		if ($included_pages[$memo] >= $max_times) {
 			return '';
 		}
-		$numberOfInclusions[$fragmentIdentifier]++;
+		$included_pages[$memo]++;
 	} else {
-		$numberOfInclusions[$fragmentIdentifier] = 1;
+		$included_pages[$memo] = 1;
 		// only evaluate permission the first time round
 		// evaluate if object or system permissions enables user to see the included page
 		if ($prefs['flaggedrev_approval'] != 'y') {
-			$data[$fragmentIdentifier] = $tikilib->get_page_info($page);
+			$data[$memo] = $tikilib->get_page_info($page);
 		} else {
 			$flaggedrevisionlib = TikiLib::lib('flaggedrevision');
 			if ($flaggedrevisionlib->page_requires_approval($page)) {
 				if ($version_info = $flaggedrevisionlib->get_version_with($page, 'moderation', 'OK')) {
-					$data[$fragmentIdentifier] = $version_info;
+					$data[$memo] = $version_info;
 				} else {
-					$numberOfInclusions[$fragmentIdentifier] = $max_times;
+					$included_pages[$memo] = $max_times;
 					return($pagenotapproved_text);
 				}
 			} else {
-				$data[$fragmentIdentifier] = $tikilib->get_page_info($page);
+				$data[$memo] = $tikilib->get_page_info($page);
 			}
 		}
-		if (! $data[$fragmentIdentifier]) {
+		if (! $data[$memo]) {
 			$text = $nopage_text;
 		}
-		$perms = $tikilib->get_perm_object($page, 'wiki page', $data[$fragmentIdentifier], false);
+		$perms = $tikilib->get_perm_object($page, 'wiki page', $data[$memo], false);
 		if ($perms['tiki_p_view'] != 'y') {
-			$numberOfInclusions[$fragmentIdentifier] = $max_times;
+			$included_pages[$memo] = $max_times;
 			$text = $pagedenied_text;
 			return($text);
 		}
@@ -180,23 +174,23 @@ function wikiplugin_include($dataIn, $params)
 		$linkoriginal_text = tr('Read more');
 	}
 
-	if ($data[$fragmentIdentifier]) {
-		$text = $data[$fragmentIdentifier]['data'];
+	if ($data[$memo]) {
+		$text = $data[$memo]['data'];
 		if (isset($start) || isset($stop)) {
-			$lines = explode("\n", $text);
+			$explText = explode("\n", $text);
 			if (isset($start) && isset($stop)) {
 				$state = 0;
-				foreach ($lines as $i => $line) {
+				foreach ($explText as $i => $line) {
 					if ($state == 0) {
 						// Searching for start marker, dropping lines until found
-						unset($lines[$i]);	// Drop the line
+						unset($explText[$i]);	// Drop the line
 						if (0 == strcmp($start, trim($line))) {
 							$state = 1;	// Start retaining lines and searching for stop marker
 						}
 					} else {
 						// Searching for stop marker, retaining lines until found
 						if (0 == strcmp($stop, trim($line))) {
-							unset($lines[$i]);	// Stop marker, drop the line
+							unset($explText[$i]);	// Stop marker, drop the line
 							$state = 0; 		// Go back to looking for start marker
 						}
 					}
@@ -204,8 +198,8 @@ function wikiplugin_include($dataIn, $params)
 			} elseif (isset($start)) {
 				// Only start marker is set. Search for it, dropping all lines until
 				// it is found.
-				foreach ($lines as $i => $line) {
-					unset($lines[$i]); // Drop the line
+				foreach ($explText as $i => $line) {
+					unset($explText[$i]); // Drop the line
 					if (0 == strcmp($start, trim($line))) {
 						break;
 					}
@@ -214,35 +208,34 @@ function wikiplugin_include($dataIn, $params)
 				// Only stop marker is set. Search for it, dropping all lines after
 				// it is found.
 				$state = 1;
-				foreach ($lines as $i => $line) {
+				foreach ($explText as $i => $line) {
 					if ($state == 0) {
 						// Dropping lines
-						unset($lines[$i]);
+						unset($explText[$i]);
 					} else {
 						// Searching for stop marker, retaining lines until found
 						if (0 == strcmp($stop, trim($line))) {
-							unset($lines[$i]);	// Stop marker, drop the line
+							unset($explText[$i]);	// Stop marker, drop the line
 							$state = 0; 		// Start dropping lines
 						}
 					}
 				}
 			}
-			$text = implode("\n", $lines);
+			$text = implode("\n", $explText);
 		}
 	}
 
 	$parserlib = TikiLib::lib('parser');
 	$old_options = $parserlib->option;
 	$options = [
-		'is_html' => $data[$fragmentIdentifier]['is_html'],
+		'is_html' => $data[$memo]['is_html'],
 		'suppress_icons' => true,
 	];
 	if (! empty($_REQUEST['page'])) {
 		$options['page'] = $_REQUEST['page'];
 	}
 	$parserlib->setOptions($options);
-	$fragment = new WikiParser_Parsable($text);
-	$text = $fragment->parse($options);
+	$text = $parserlib->parse_data($text, $options);
 	$parserlib->setOptions($old_options);
 
 	// append a "See full page" link at end of text if only a portion of page is being included
