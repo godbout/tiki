@@ -8,6 +8,10 @@
 
 	-->
 	<services>
+		<!-- this makes public all the services defined in this file -->
+		<!-- https://symfony.com/blog/new-in-symfony-3-4-services-are-private-by-default -->
+		<defaults public="true" />
+
 		<service id="tiki.mailin.providerlist" class="Tiki\MailIn\Provider\ProviderList">
 		</service>
 
