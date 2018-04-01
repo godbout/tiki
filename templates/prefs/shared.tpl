@@ -1,6 +1,6 @@
 {if $p.helpurl}
 	{$icon = "help"}
-{else}
+{elseif $p.description}
 	{$icon = "information"}
 {/if}
 {if isset($icon)}

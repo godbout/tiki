@@ -1,0 +1,48 @@
+$ diff -urN text_wiki_mediawiki.old text_wiki_mediawiki
+diff -urN text_wiki_mediawiki.old/Text/Wiki.php text_wiki_mediawiki/Text/Wiki.php
+--- text_wiki_mediawiki.old/Text/Wiki.php       2017-11-15 22:53:21.266979000 +0000
++++ text_wiki_mediawiki/Text/Wiki.php   2017-11-15 23:08:49.432984200 +0000
+@@ -449,7 +449,7 @@
+             if (Text_Wiki::isError($ret)) {
+                 return $ret;
+             }
+-            $only[$parser] =& $ret;
++            $only[$parser] = $ret;
+         }
+         return $only[$parser];
+     }
+@@ -478,7 +478,7 @@
+             }
+         }
+
+-        $obj =& new $class($rules);
++        $obj = new $class($rules);
+         return $obj;
+     }
+
+@@ -1328,7 +1328,7 @@
+             }
+         }
+
+-        $this->parseObj[$rule] =& new $class($this);
++        $this->parseObj[$rule] = new $class($this);
+
+     }
+
+@@ -1364,7 +1364,7 @@
+             }
+         }
+
+-        $this->renderObj[$rule] =& new $class($this);
++        $this->renderObj[$rule] = new $class($this);
+     }
+
+
+@@ -1397,7 +1397,7 @@
+             }
+         }
+
+-        $this->formatObj[$format] =& new $class($this);
++        $this->formatObj[$format] = new $class($this);
+     }
+

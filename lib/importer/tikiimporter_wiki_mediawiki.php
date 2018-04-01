@@ -28,7 +28,7 @@ class TikiImporter_Wiki_Mediawiki extends TikiImporter_Wiki
 	 * Array of the valid mime types for the
 	 * input file
 	 */
-	public $validTypes = ['application/xml', 'text/xml'];
+	public $validTypes = ['application/xml', 'text/xml', 'text/html'];
 
 	/**
 	 * The directory used to save the attachments.
@@ -143,7 +143,7 @@ class TikiImporter_Wiki_Mediawiki extends TikiImporter_Wiki
 	/**
 	 * At present this method only validates the Mediawiki XML
 	 * against its DTD (Document Type Definition). Mediawiki XML
-	 * versions 0.3 and 0.4 are supported.
+	 * versions from 0.3 till 0.10 are supported.
 	 *
 	 * Note: we use schemaValidate() instead of validate() because
 	 * for some unknown reason the former method is unable to automatically
@@ -164,6 +164,11 @@ class TikiImporter_Wiki_Mediawiki extends TikiImporter_Wiki
 				case '0.3':
 				case '0.4':
 				case '0.5':
+				case '0.6':
+				case '0.7':
+				case '0.8':
+				case '0.9':
+				case '0.10':
 					$xmlDtdFile = dirname(__FILE__) . "/mediawiki_dump_v$xmlVersion.xsd";
 					break;
 				default:
