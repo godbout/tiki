@@ -29,6 +29,10 @@
   border-bottom: 1px solid #e60b7f;
 }
 
+.topbar .navbar-nav > li.dropdown {
+  border-bottom: none;
+}
+
 #page-header .dropdown-menu,
 .topbar .cssmenu_horiz ul {
 	background: #e60b7f;
@@ -636,7 +640,7 @@ textarea,
 .navbar-nav .open .dropdown-menu,
 .navbar-nav .open .dropdown-menu li,
 .navbar-default .navbar-nav > li > a {
-  background: #e60b7f;
+  background: #35061d;
 }
 .navbar-default .navbar-nav > li > a:hover {
   background: #f4178c;

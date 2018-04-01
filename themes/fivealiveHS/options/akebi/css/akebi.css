@@ -31,6 +31,10 @@
   border-bottom: 1px solid #18a3bb;
 }
 
+.topbar .navbar-nav > li.dropdown {
+  border-bottom: none;
+}
+
 #page-header .dropdown-menu,
 .topbar .cssmenu_horiz ul {
 	background: #18a3bb;
@@ -237,7 +241,7 @@ hr {
 .navbar-dark .navbar-nav > .active > a:hover,
 .navbar-dark .navbar-nav > .active > a:focus {
   color: #ffffff;
-  background-color: #14899e;
+  background-color: #063065;
 }
 .navbar-dark .navbar-nav > .disabled > a,
 .navbar-dark .navbar-nav > .disabled > a:hover,
@@ -638,9 +642,10 @@ textarea,
   color: #f4f4f4;
 }
 .admin-navbar,
+.navbar-nav .open .dropdown-menu,
 .navbar-nav .open .dropdown-menu li,
 .navbar-dark .navbar-nav > li > a {
-  background: #19a5be;
+  background: #063035;
 }
 .navbar-dark .navbar-nav > li > a:hover {
   background: #1cb9d5;

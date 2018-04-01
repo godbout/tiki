@@ -5,7 +5,7 @@
 	"homepage": "https://tiki.org",
 	"minimum-stability": "stable",
 	"require": {
-		"Sam152/Javascript-Equal-Height-Responsive-Rows": "1.0.0",
+		"Sam152/Javascript-Equal-Height-Responsive-Rows" : "1.0.0",
 		"adodb/adodb-php": "^5.20",
 		"afarkas/html5shiv": "3.7.3",
 		"ahand/mobileesp": "dev-master",
@@ -29,12 +29,12 @@
 		"evert/sitemap-php": "^1.2",
 		"ezyang/htmlpurifier": "^4.8.0",
 		"fortawesome/font-awesome": "^4.6.3",
-		"google/apiclient": "1.1.6",
-		"h5p/h5p-core": "~1.17.0",
-		"h5p/h5p-editor": "~1.17.0",
-		"itsjavi/bootstrap-colorpicker": "^2.5.1",
+		"google/apiclient":"1.1.6",
+		"h5p/h5p-core":"~1.17.0",
+		"h5p/h5p-editor":"~1.17.0",
+		"itsjavi/bootstrap-colorpicker":"^2.5.1",
 		"jasig/phpcas": "^1.3",
-		"jcbrand/converse.js": "^3.3",
+		"jcbrand/converse.js": "^3.0",
 		"jquery-form/form": "^3.51",
 		"jquery/jquery-s5": "1.0.1",
 		"jquery/jquery-sheet": "3.1",
@@ -60,17 +60,17 @@
 		"jquery/plugins/treetable": "3.2.0",
 		"jquery/plugins/zoom": "1.7.18",
 		"kaltura/api-client-library": "^12.18",
-		"leafo/scssphp": ">=0.6.7",
 		"matthiasmullie/minify": "~1.3",
 		"mediumjs/mediumjs": "1.0.1",
 		"michelf/php-smartypants": "^1.8.1",
 		"morteza/bootstrap-rtl": "3.3.2",
 		"mottie/tablesorter": "^2.28",
 		"nagarajanchinnasamy/subtotal": "~1.9",
-		"nicolaskruchten/pivottable": "^2.20.0",
+		"nicolaskruchten/pivottable":"~2.18.0",
 		"openannotation/annotator": ">=1.2.10",
 		"openid/php-openid": "2.2.2",
 		"openlayers/ol3": ">=3.6.0",
+		"oyejorge/less.php": "^1.7.0.10",
 		"paragonie/random_compat": "^2.0",
 		"pclzip/pclzip": "^2.8",
 		"pear/db": "1.7.13",
@@ -96,7 +96,7 @@
 		"symfony/process": "^3.2.6",
 		"symfony/yaml": "^3.2.6",
 		"tijsverkoyen/css-to-inline-styles": "^2.2.0",
-		"twbs/bootstrap": ">=4.0.0-beta",
+		"twitter/bootstrap": "^3.3.6",
 		"undojs/undojs": "1",
 		"zendframework/zend-captcha": "^2.6",
 		"zendframework/zend-config": "^3.0",
@@ -144,7 +144,7 @@
 			"DeclFilter": "../lib/core/",
 			"Feed": "../lib/core/",
 			"FutureLink": "../lib/core/",
-			"H5P": "../lib/core/",
+			"H5P" : "../lib/core/",
 			"IDS": "../lib/core",
 			"JisonParser": "../lib/core/",
 			"JitFilter": "../lib/core/",
@@ -187,7 +187,7 @@
 			"vendor/pear/xml_rpc",
 			"vendor/smarty/smarty/libs/sysplugins/smarty_security.php"
 		],
-		"exclude-from-classmap": [
+		"exclude-from-classmap" : [
 			"../lib/openpgp/OpenPGP_Zend_Mail_Transport_Smtp.php",
 			"vendor/adodb/adodb-php/adodb-active-recordx.inc.php",
 			"vendor/adodb/adodb-php/adodb-xmlschema03.inc.php",
@@ -224,9 +224,6 @@
 		]
 	},
 	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://composer.tiki.org"
-		}
+		{ "type": "composer", "url": "https://composer.tiki.org" }
 	]
 }
