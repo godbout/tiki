@@ -3319,7 +3319,6 @@ class FileGalLib extends TikiLib
 					}
 				}
 			} else {	// a gallery
-
 				$res['name'] = $this->get_user_gallery_name($res);
 			}
 
@@ -4166,7 +4165,8 @@ class FileGalLib extends TikiLib
 		return false;
 	}
 
-	public function fileContentIsSVG(&$data) {
+	public function fileContentIsSVG(&$data)
+	{
 		$finfo = new finfo(FILEINFO_MIME);
 		$type = $finfo->buffer($data) . "\n";
 
@@ -4178,7 +4178,8 @@ class FileGalLib extends TikiLib
 		return substr($type, 0, 9) == 'image/svg';
 	}
 
-	public function fileIsSVG($path) {
+	public function fileIsSVG($path)
+	{
 		$type = mime_content_type($path);
 		if (substr($type, 0, 18) == 'application/x-gzip') {
 			$data = file_get_contents($path);
@@ -4187,7 +4188,8 @@ class FileGalLib extends TikiLib
 		return substr($type, 0, 9) == 'image/svg';
 	}
 
-	public function assertUploadedFileIsSafe($path, $filename = null, $galleryId = null) {
+	public function assertUploadedFileIsSafe($path, $filename = null, $galleryId = null)
+	{
 		global $prefs;
 		if ($filename === null) {
 			$filename = $path;
@@ -4197,15 +4199,15 @@ class FileGalLib extends TikiLib
 		if (substr($mimelib->from_filename($filename), 0, 9) == 'image/svg') {
 			$dom = new DOMDocument();
 			$data = file_get_contents($path);
-			if (!$dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
+			if (! $dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
 				throw new FileIsNotSafeException("You are trying to upload a file as SVG, but content can't be parsed as XML. This is a security risk.");
 			}
 			$data = null;
 			$safe = false;
 		}
-		$safe = $safe && !$this->fileIsSVG($path);
+		$safe = $safe && ! $this->fileIsSVG($path);
 		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
-		if (!$safe) {
+		if (! $safe) {
 			if ($prefs['fgal_allow_svg'] !== 'y') {
 				throw new FileIsNotSafeException($svgErrorMsg);
 			}
@@ -4214,29 +4216,30 @@ class FileGalLib extends TikiLib
 				$galleryId
 			]);
 
-			if (!$perms->upload_svg) {
+			if (! $perms->upload_svg) {
 				throw new FileIsNotSafeException($svgErrorMsg);
 			}
 		}
 		return true;
 	}
-	
-	public function assertUploadedContentIsSafe(&$data, $filename = null, $galleryId = null) {
+
+	public function assertUploadedContentIsSafe(&$data, $filename = null, $galleryId = null)
+	{
 		global $prefs;
 		$safe = true;
 		if ($filename !== null) {
 			$mimelib = TikiLib::lib('mime');
 			if (substr($mimelib->from_filename($filename), 0, 9) == 'image/svg') {
 				$dom = new DOMDocument();
-				if (!$dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
+				if (! $dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
 					throw new FileIsNotSafeException("You are trying to upload a file as SVG, but content can't be parsed as XML. This is a security risk.");
 				}
 				$safe = false;
 			}
 		}
-		$safe = $safe && !$this->fileContentIsSVG($data);
+		$safe = $safe && ! $this->fileContentIsSVG($data);
 		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
-		if (!$safe) {
+		if (! $safe) {
 			if ($prefs['fgal_allow_svg'] !== 'y') {
 				throw new FileIsNotSafeException($svgErrorMsg);
 			}
@@ -4245,7 +4248,7 @@ class FileGalLib extends TikiLib
 				$galleryId
 			]);
 
-			if (!$perms->upload_svg) {
+			if (! $perms->upload_svg) {
 				throw new FileIsNotSafeException($svgErrorMsg);
 			}
 		}
@@ -4269,11 +4272,9 @@ class FileGalLib extends TikiLib
 		]);
 
 		if ($prefs['fgal_clean_xml_always'] === 'y' || ! $perms->upload_javascript) {
-
 			$dom = new DOMDocument();
 
 			if ($dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
-
 				$elements = [];
 				/** @var DOMElement $element */
 				foreach ($dom->getElementsByTagName('*') as $element) {
@@ -4281,7 +4282,6 @@ class FileGalLib extends TikiLib
 				}
 
 				foreach ($elements as $element) {
-
 					if (in_array($element->tagName, ['script', 'embed', 'object', 'applet', 'iframe', 'frame'])) {
 						$element->parentNode->removeChild($element);
 					} else {
@@ -4294,9 +4294,7 @@ class FileGalLib extends TikiLib
 				}
 
 				$data = $dom->saveXML();
-
 			}
-
 		}
 		return $data;
 	}
@@ -4781,4 +4779,3 @@ class FileGalLib extends TikiLib
 class FileIsNotSafeException extends Exception
 {
 }
-

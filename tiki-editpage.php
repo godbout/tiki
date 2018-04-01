@@ -949,9 +949,9 @@ if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 				unset($_REQUEST['save']);	// don't save an ajax error
 			}
 		} else {
-			 $parsed = $parserlib->parse_data(
-				 $edit_data,
-				 [
+			$parsed = $parserlib->parse_data(
+				$edit_data,
+				[
 					'absolute_links' => true,
 					'noheaderinc' => true,
 					'suppress_icons' => true,
@@ -959,7 +959,7 @@ if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 					'is_html' => true,
 					'process_wiki_paragraphs' => false
 				 ]
-			 );
+			);
 		}
 	}
 }
