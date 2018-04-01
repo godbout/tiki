@@ -29,8 +29,6 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 						'description' => tr('Field to get page name to create page name with.'),
 						'filter' => 'int',
 						'profile_reference' => 'tracker_field',
-						'parent' => 'input[name=trackerId]',
-						'parentkey' => 'tracker_id',
 					],
 					'namespace' => [
 						'name' => tr('Namespace for Wiki Page'),
@@ -101,16 +99,6 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 					'wysiwyg' => [
 						'name' => tr('Use WYSIWYG'),
 						'description' => tr('Use a rich text editor instead of inputting plain text.'),
-						'default' => 'n',
-						'filter' => 'alpha',
-						'options' => [
-							'n' => tr('No'),
-							'y' => tr('Yes'),
-						],
-					],
-					'actions' => [
-						'name' => tr('Action Buttons'),
-						'description' => tr('Display wiki page buttons when editing the item.'),
 						'default' => 'n',
 						'filter' => 'alpha',
 						'options' => [
@@ -201,13 +189,8 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 				$itemData = $this->getItemData();					// caluculated field types like auto-increment need rendering
 				$definition = $this->getTrackerDefinition();
 				$factory = $definition->getFieldFactory();
-				$field_info = $definition->getField($this->getOption('fieldIdForPagename'));
-				if ($field_info) {
-					$handler = $factory->getHandler($field_info, $itemData);
-					$page_name = $handler->renderOutput(['list_mode' => 'csv']);
-				} else {
-					Feedback::error(tr('Missing Page Name field #%0 for Wiki field #%1', $this->getOption('fieldIdForPagename'), $fieldId));
-				}
+				$handler = $factory->getHandler($definition->getField($this->getOption('fieldIdForPagename')), $itemData);
+				$page_name = $handler->renderOutput(['list_mode' => 'csv']);
 			}
 			$page_name = $this->getFullPageName($page_name);	// from tabular import replace
 			$itemId = $requestData['itemId'];
@@ -304,13 +287,6 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 		} else {
 			$is_html = '';
 		}
-		$perms = Perms::get(['type' => 'wiki page', 'object' => $this->getValue('')]);
-		$data['perms'] = [
-			'view' => $perms->view,
-			'edit' => $perms->edit,
-			'wiki_view_source' => $perms->wiki_view_source,
-			'wiki_view_history' => $perms->wiki_view_history,
-		];
 		return $this->renderTemplate('trackerinput/wiki.tpl', $context, $data) . $is_html;
 	}
 
