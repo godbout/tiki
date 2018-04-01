@@ -165,7 +165,8 @@ function wikiplugin_tracker_info()
 						for the second from (otherwise the last given template will be used). Each template needs two files, one for the subject one for the body. The subject will be named
 						template_subject.tpl. All the templates must be in the %0templates/mail%1 directory. Example:
 						%0webmaster@my.com|a@my.com,b@my.com|templatea.tpl,templateb.tpl%1 (%0templates/mail/tracker_changed_notification.tpl%1
-						is the default from which you can get inspiration).',
+						is the default from which you can get inspiration). Please note that you need to have an email
+						address in the normal "Copy activity to email" property in the Tracker notifications panel as well',
 							'<code>',
 							'</code>'
 						),
@@ -1321,36 +1322,8 @@ function wikiplugin_tracker($data, $params)
 					}
 					$templateCounter = 0;
 					$subjectCounter = 0;
-
-					// Set all fields documented in https://doc.tiki.org/PluginTracker
 					$smarty->assign('mail_date', $tikilib->now);
 					$smarty->assign('mail_itemId', $rid);
-					$smarty->assign('mail_user', $user);
-					$smarty->assign('mail_item_desc', $trklib->get_isMain_value($trackerId, $rid));
-					$smarty->assign('mail_trackerId', $trackerId);
-					$smarty->assign('mail_trackerName', $tracker['name']);
-					$foo = parse_url($_SERVER["REQUEST_URI"]);
-					$mail_machine = $trklib->httpPrefix(true) . $foo["path"];
-					$smarty->assign('mail_machine', $mail_machine);
-					$parts = explode('/', $foo['path']);
-					if (count($parts) > 1) {
-						unset($parts[count($parts) - 1]);
-					}
-					$mail_machine_raw = $trklib->httpPrefix(true) . implode('/', $parts);
-					$smarty->assign('mail_machine_raw', $mail_machine_raw);
-					if (! isset($_SERVER["SERVER_NAME"])) {
-						$server_name = $_SERVER["SERVER_NAME"];
-					} else {
-						$server_name = $_SERVER["HTTP_HOST"];
-					}
-					$smarty->assign('server_name', $server_name);
-					if ( empty($status) ) {
-						$mail_status = $item_info['status'];
-					} else {
-						$mail_status = $status;
-					}
-					$smarty->assign('status', $mail_status);
-
 					foreach ($emailOptions[1] as $ieo => $ueos) {
 						$mailDir = strpos($tplSubject[$subjectCounter], 'wiki:') !== 0 ? 'mail/' : '';
 						@$mail_data = $smarty->fetch($mailDir . $tplSubject[$subjectCounter]);
@@ -1487,7 +1460,7 @@ function wikiplugin_tracker($data, $params)
 				}
 			}
 		} elseif (! empty($itemId)) {
-			if (isset($fields) && empty($wiki) && empty($tpl)) {
+			if (isset($fields)) {
 				$fl = $fields;
 				$filter = '';
 				foreach ($flds['data'] as $f) {
@@ -1836,21 +1809,6 @@ function wikiplugin_tracker($data, $params)
 
 		$datepicker = false;
 
-		// https://doc.tiki.org/Pretty+Tracker states that also internal trackerfield names can be used
-		/*
-		{$f_created}: created date
-		{$f_status_input}: status input field (Value already set above)
-		{$f_status}: status (output)
-		{$f_itemId}: the item id
-		{$f_lastmodif}: last modified date (this will display unix date, for human readable date look below)
-		(In Tiki 8 onwards) {$itemoff}: the iteration number of each item
-		{$tr_offset}: the offset of the item, i.e. this is the nth item of the total number of x items (TODO)
-		*/
-		$smarty->assign('f_created',$item_info['created']);
-		$smarty->assign('f_status',$item_info['status']);
-		$smarty->assign('f_itemId',$item_info['itemId']);
-		$smarty->assign('f_lastmodif',$item_info['lastModif']);
-
 		foreach ($flds['data'] as $f) {
 			if (! in_array($f['fieldId'], $auto_fieldId) && in_array($f['fieldId'], $hidden_fieldId)) {
 				// Show in hidden form
@@ -1924,16 +1882,8 @@ function wikiplugin_tracker($data, $params)
 					if (! empty($colwidth)) {
 						$back .= " width='" . $colwidth . "'";
 					}
-
-					// If on a different row the label should use all available width
-					$back .= '><label class="';
-					if ($isTextOnSameRow) {
-						$back .= $labelclass . ' control-label';
-					} else {
-						$back .= 'col-md-12';
-					}
-					$back .= '" for="' . $f['ins_id'] . '">' . wikiplugin_tracker_name($f['fieldId'], tra($f['name']), $field_errors);
-
+						$back .= '><label class="' . $labelclass . ' control-label" for="' . $f['ins_id'] . '">' // ><label for="'
+									. wikiplugin_tracker_name($f['fieldId'], tra($f['name']), $field_errors); //
 					if ($showmandatory == 'y' and $f['isMandatory'] == 'y') {
 						$back .= " <strong class='mandatory_star text-danger tips' title=':" . tra('This field is mandatory') . "' >*</strong> ";
 					}
@@ -1943,7 +1893,7 @@ function wikiplugin_tracker($data, $params)
 					if (! $isTextOnSameRow) {
 						$back .= "<br/>";
 					} else {
-						$back .= '<div class="' . $inputclass . ' tracker_input_value tracker_field' . $f['fieldId'] . '">';
+						$back .= '<div class="' . $inputclass . ' tracker_input_value tracker_field' . $f['fieldId'] . '">'; // '</td><td class="tracker_input_value">';
 					}
 
 						$back .= wikiplugin_tracker_render_input($f, $item, $dynamicSave);
