@@ -190,6 +190,10 @@ FileETag none
 	# Example rewrite rule to use the search as a simple RSS feed
 	#RewriteRule feed-(.*)\.rss         tiki-searchindex.php?httpaccept=application\%2Frss\%2Bxml&filter~content=$1  [QSA,L]
 
+    # If you use session_protected and want to use apache monitoring you may get "certificate verify failed" errors on https://127.0.0.1/server-status
+    # If so, uncomment this line which will route these requests straight to apache and so not get forced into https
+    # RewriteRule ^server-status.* - [L]
+
     # -- Tiki URL Rewriting -- #
     # Read more: https://dev.tiki.org/URL+Rewriting+Revamp
     RewriteRule .*                     route.php                                [L]

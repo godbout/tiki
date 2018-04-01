@@ -1,5 +1,5 @@
 Name,min,max
 MariaDB,10.1,10.1
 MySQL,5.5,5.5
-PHP,5.6,7.0
-Tiki,18,18
+PHP,7.1,7.2
+Tiki,19,19

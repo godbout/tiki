@@ -5,6 +5,15 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+namespace TikiDevTools;
+
+use DBDiff;
+use Exception;
+use PDO;
+use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
+use TWVersion;
+
 /**
  * Class CheckSchemaUpgrade is a helper to check differences between upgrade and install a tiki db
  */
@@ -125,8 +134,8 @@ class CheckSchemaUpgrade
 			//
 			$this->printMessage('Comparing Databases');
 			$this->runDbCompare();
-
 		} catch (\Exception $e) {
+			$this->printMessageError($e->getMessage());
 			$resultValue = 1;
 		}
 
@@ -330,7 +339,7 @@ class CheckSchemaUpgrade
 	 */
 	protected function prepareDb($dbConfig)
 	{
-		$db = new PDO('mysql:' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
+		$db = new PDO('mysql:host=' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
 		$db->query('DROP DATABASE IF EXISTS `' . $dbConfig['dbs'] . '`;');
 		$db->query(
 			'CREATE DATABASE `' . $dbConfig['dbs'] . '` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
@@ -342,7 +351,7 @@ class CheckSchemaUpgrade
 	/**
 	 * Loads the a SQL file from a major into Tiki database (so we can run upgrade)
 	 *
-	 * @param $dbConnection
+	 * @param PDO $dbConnection
 	 * @return bool
 	 * @throws Exception
 	 */
@@ -403,10 +412,8 @@ class CheckSchemaUpgrade
 		}
 
 		$dbContent = file_get_contents(sprintf(self::DB_URL_TEMPLATE, $major));
-		if (! empty($dbContent) && strpos(
-				$dbContent,
-				'CREATE TABLE `tiki_schema`'
-			) !== false) { //check that looks like a sql file
+		/** @noinspection SyntaxError */
+		if (! empty($dbContent) && strpos($dbContent, 'CREATE TABLE `tiki_schema`') !== false) { //check that looks like a sql file
 			$sql = $dbContent;
 			file_put_contents($cachedDbFile, $dbContent);
 			return $sql;
@@ -460,9 +467,9 @@ class CheckSchemaUpgrade
 	 */
 	protected function runDatabaseUpdate()
 	{
-		$phpFinder = new \Symfony\Component\Process\PhpExecutableFinder();
+		$phpFinder = new PhpExecutableFinder();
 
-		$process = new \Symfony\Component\Process\Process(
+		$process = new Process(
 			[
 				$phpFinder->find(),
 				'console.php',
@@ -488,9 +495,9 @@ class CheckSchemaUpgrade
 	 */
 	protected function runDatabaseInstall()
 	{
-		$phpFinder = new \Symfony\Component\Process\PhpExecutableFinder();
+		$phpFinder = new PhpExecutableFinder();
 
-		$process = new \Symfony\Component\Process\Process(
+		$process = new Process(
 			[
 				$phpFinder->find(),
 				'console.php',
@@ -539,12 +546,12 @@ class CheckSchemaUpgrade
 		// set a well defined date for some records
 		$dbConnection->exec("UPDATE `tiki_schema` SET `install_date` = '2001-01-01 01:01:01'");
 
-		// remove cache clean messages from action log
-		$dbConnection->exec("DELETE FROM `tiki_actionlog` WHERE `comment` = 'erased all cache content'");
+		// remove messages from action log (are not part of the schema)
+		$dbConnection->exec("DELETE FROM `tiki_actionlog`");
 	}
 
 	/**
-	 * Execute the DB comparation between the instance that was upgraded and the instance that did the clean install
+	 * Execute the DB comparision between the instance that was upgraded and the instance that did the clean install
 	 *
 	 * @throws Exception
 	 */
@@ -568,10 +575,14 @@ class CheckSchemaUpgrade
 
 		$dbdiff = new DBDiff\DBDiff;
 
+		$errorLevel = error_reporting();
 		ob_start();
 		try {
+			error_reporting($errorLevel & ~E_NOTICE); // DBDiff returns some notices of undefined offsets
 			$dbdiff->run();
+			error_reporting($errorLevel);
 		} catch (\Exception $e) {
+			error_reporting($errorLevel);
 			ob_end_flush();
 			throw $e;
 		}
@@ -612,10 +623,9 @@ class CheckSchemaUpgrade
 		$result = array_filter(
 			$parts,
 			function ($item) {
-				if (
-					strncmp($item, 'DELETE FROM `tiki_preferences`', 30) === 0
-					|| strncmp($item, 'INSERT INTO `tiki_preferences`', 30) === 0
-				) {
+				/** @noinspection SyntaxError */
+				if (strncmp($item, 'DELETE FROM `tiki_preferences`', 30) === 0
+					|| strncmp($item, 'INSERT INTO `tiki_preferences`', 30) === 0) {
 					return false;
 				}
 				return true;
@@ -655,7 +665,7 @@ class CheckSchemaUpgrade
 	/**
 	 * Get the options from command line
 	 */
-	function getOpts()
+	protected function getOpts()
 	{
 		$shortOpts = 'm:vp';
 		$longOpts = [
@@ -678,7 +688,7 @@ class CheckSchemaUpgrade
 	 * @param null $long
 	 * @return null
 	 */
-	function getOption($options, $short = null, $long = null)
+	protected function getOption($options, $short = null, $long = null)
 	{
 		if (! empty($long) && array_key_exists($long, $options)) {
 			return $options[$long];
@@ -690,6 +700,11 @@ class CheckSchemaUpgrade
 
 		return null;
 	}
+}
+
+// Make sure script is run from a shell
+if (PHP_SAPI !== 'cli') {
+	die("Please run from a shell");
 }
 
 $checker = new CheckSchemaUpgrade();
