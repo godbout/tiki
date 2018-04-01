@@ -166,14 +166,14 @@ class Comments extends TikiLib
 			fclose($fp);
 			if ($forum_info['att_store'] == 'db') {
 				try {
-					$filegallib->assertUploadedContentIsSafe($data);
+					$filegallib->assertUploadedContentIsSafe($data, $name);
 				} catch (Exception $e) {
 					$errors[] = $e->getMessage();
 					return 0;
 				}
 			} else {
 				try {
-					$filegallib->assertUploadedFileIsSafe($filename);
+					$filegallib->assertUploadedFileIsSafe($filename, $name);
 				} catch (Exception $e) {
 					$errors[] = $e->getMessage();
 					fclose($fw);
@@ -184,7 +184,7 @@ class Comments extends TikiLib
 		} else {
 			if ($forum_info['att_store'] == 'dir') {
 				try {
-					$filegallib->assertUploadedContentIsSafe($data);
+					$filegallib->assertUploadedContentIsSafe($data, $name);
 				} catch (Exception $e) {
 					$errors[] = $e->getMessage();
 					return 0;

@@ -151,8 +151,8 @@ function smarty_function_trackerfields($params, $smarty)
 		$permName = $field['permName'];
 		if (empty($prettyModifier[$id])) {
 			$smarty->assign('f_' . $id, $auto['default'][$permName]);
-			// https://doc.tiki.org/Pretty+Tracker states that next to {f_id} also {f_fieldname} can be used.
-			// Somehow there is the support missing here - so add it
+			// https://doc.tiki.org/Pretty+Tracker states that next to {f_id} also {f_fieldname} can be used. 
+			// Somehow there is the support missing here - so add it		
 			$smarty->assign('f_' . $permName, $auto['default'][$permName]);
 		} elseif ($prettyModifier[$id] == "output") {
 			$smarty->assign('f_' . $id, $auto['output'][$permName]);
@@ -170,6 +170,20 @@ function smarty_function_trackerfields($params, $smarty)
 			$smarty->assign('f_' . $permName, $prettyout);
 		}
 	}
+
+	// https://doc.tiki.org/Pretty+Tracker states that also that internal trackerfield names can be used
+	/*
+	{$f_created}: created date
+	{$f_status_input}: status input field
+	{$f_status}: status (output)
+	{$f_itemId}: the item id
+	{$f_lastmodif}: last modified date (this will display unix date, for human readable date look below)
+	(In Tiki 8 onwards) {$itemoff}: the iteration number of each item
+	{$tr_offset}: the offset of the item, i.e. this is the nth item of the total number of x items
+	*/
+	// @TODO need to add support
+
+
 
 	$smarty->assign('sections', array_values($out));
 	$smarty->assign('fields', $params['fields']);

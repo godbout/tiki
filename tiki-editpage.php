@@ -555,7 +555,7 @@ if (($prefs['feature_wiki_pictures'] === 'y') && (isset($tiki_p_upload_picture))
 				if (@getimagesize($_FILES['picfile' . $i]['tmp_name'])) {
 					$filegallib = TikiLib::lib('filegal');
 					try {
-						$filegallib->assertUploadedFileIsSafe($_FILES['picfile' . $i]['tmp_name']);
+						$filegallib->assertUploadedFileIsSafe($_FILES['picfile' . $i]['tmp_name'], $_FILES['picfile' . $i]['name']);
 					} catch (Exception $e) {
 						// This is never being reached, because right now getimagesize fails for
 						// any unsafe file (SVG). Doesn't hurt, as support is already done for future

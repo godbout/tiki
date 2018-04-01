@@ -29,7 +29,7 @@
 
 <form name="checkform" method="post">
 	<input type="hidden" name="maxRecords" value="{$maxRecords|escape}">
-	<div class="{if $js === 'y'}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
+	<div class="table"> {*the table-responsive class cuts off dropdown menus when chosen is selected*}
 		<table class="table table-striped table-hover">
 			{assign var=numbercol value=0}
 			<tr>

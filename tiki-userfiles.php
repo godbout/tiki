@@ -40,6 +40,15 @@ $smarty->assign('limitmb', $prefs['userfiles_quota']);
 for ($i = 0; $i < 5; $i++) {
 	if (isset($_FILES["userfile$i"]) && is_uploaded_file($_FILES["userfile$i"]['tmp_name'])) {
 		check_ticket('user-files');
+		$filegallib = TikiLib::lib('filegal');
+		try {
+			$filegallib->assertUploadedFileIsSafe($_FILES["userfile$i"]['tmp_name'], $_FILES["userfile$i"]['name']);
+		} catch (Exception $e) {
+			$smarty->assign('errortype', 403);
+			$smarty->assign('msg', $e->getMessage());
+			$smarty->display("error.tpl");
+			die;
+		}
 		$fp = fopen($_FILES["userfile$i"]['tmp_name'], "rb");
 		$data = '';
 		$fhash = '';
