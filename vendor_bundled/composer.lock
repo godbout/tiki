@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f06745d7eda0ec2badbf8ae79d9ec16",
+    "content-hash": "1f9bfbc3175d561825f65d6e91cb4b6d",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -19,17 +19,17 @@
         },
         {
             "name": "adodb/adodb-php",
-            "version": "v5.20.10",
+            "version": "v5.20.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ADOdb/ADOdb.git",
-                "reference": "2db8794c142ecc9ca9c5398737bb35ca39031fe3"
+                "reference": "0e5243790c5a02a88b0dfe78c390fe795ad2d672"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/adodb/adodb-php/adodb-adodb-php-2db8794c142ecc9ca9c5398737bb35ca39031fe3-zip-576345.zip",
-                "reference": "2db8794c142ecc9ca9c5398737bb35ca39031fe3",
-                "shasum": "f9829620d1dab76e6fa15a09388e98d7827e111b"
+                "url": "https://composer.tiki.org/dist/adodb/adodb-php/adodb-adodb-php-0e5243790c5a02a88b0dfe78c390fe795ad2d672-zip-240134.zip",
+                "reference": "0e5243790c5a02a88b0dfe78c390fe795ad2d672",
+                "shasum": "e43ab35e05bdb6ddc49a2e525f6273eddd4108ed"
             },
             "require": {
                 "php": ">=5.3.2"
@@ -75,7 +75,7 @@
                 "library",
                 "php"
             ],
-            "time": "2018-03-08T22:32:18+00:00"
+            "time": "2018-03-30T17:31:04+00:00"
         },
         {
             "name": "afarkas/html5shiv",
@@ -319,17 +319,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.9.0",
+            "version": "4.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "a8497c4d9c8b8b559ac1e2fb99b397fd2167ae27"
+                "reference": "e0b461194197838f9ee52f11b2b469dde9e1b8f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-a8497c4d9c8b8b559ac1e2fb99b397fd2167ae27-zip-fb1e3f.zip",
-                "reference": "a8497c4d9c8b8b559ac1e2fb99b397fd2167ae27",
-                "shasum": "7faea59e86d37ec265b34ef09d648c85ad318cbf"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-e0b461194197838f9ee52f11b2b469dde9e1b8f8-zip-5b4fa4.zip",
+                "reference": "e0b461194197838f9ee52f11b2b469dde9e1b8f8",
+                "shasum": "be2185fb62f766a28afc2c764a8fd04d8e04d474"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -356,7 +356,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2018-03-15T07:19:37+00:00"
+            "time": "2018-03-26T17:19:45+00:00"
         },
         {
             "name": "ckeditor/ckeditor/skins/bootstrapck",
@@ -1882,17 +1882,17 @@
         },
         {
             "name": "nicolaskruchten/pivottable",
-            "version": "v2.18.0",
+            "version": "v2.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolaskruchten/pivottable.git",
-                "reference": "f742ce1d27b867b3414684f54ef81f16c714af25"
+                "reference": "4a9badf2eefd5afa5c8ade879c2c390bf8a21fff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-f742ce1d27b867b3414684f54ef81f16c714af25-zip-df6207.zip",
-                "reference": "f742ce1d27b867b3414684f54ef81f16c714af25",
-                "shasum": "bc9a7424a1572ec5d26a3e11edd39c8233154356"
+                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-4a9badf2eefd5afa5c8ade879c2c390bf8a21fff-zip-88c948.zip",
+                "reference": "4a9badf2eefd5afa5c8ade879c2c390bf8a21fff",
+                "shasum": "558b84d45ea71529924d24a81f3a2eac17c8ab57"
             },
             "require": {
                 "components/jquery": ">=1.9"
@@ -1900,7 +1900,7 @@
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT License"
+                "MIT"
             ],
             "authors": [
                 {
@@ -1921,7 +1921,7 @@
                 "pivottable",
                 "table"
             ],
-            "time": "2017-11-30T22:09:38+00:00"
+            "time": "2018-03-21T14:30:58+00:00"
         },
         {
             "name": "openannotation/annotator",
@@ -2944,17 +2944,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.34",
+            "version": "2.1.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "e81438beb745bf1171bc6f01843265da9ba37756"
+                "reference": "a2f2bc903ccd9e60e6c4a237f92ddc813adef179"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-e81438beb745bf1171bc6f01843265da9ba37756-zip-d92cc9.zip",
-                "reference": "e81438beb745bf1171bc6f01843265da9ba37756",
-                "shasum": "ba3f315f3f03cbed6bbc079509529129643f7d5d"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-a2f2bc903ccd9e60e6c4a237f92ddc813adef179-zip-f2dc3c.zip",
+                "reference": "a2f2bc903ccd9e60e6c4a237f92ddc813adef179",
+                "shasum": "d369c0ff5dbcb00317af1949fe44a35fb84e000b"
             },
             "require": {
                 "php": ">=5.2"
@@ -2998,7 +2998,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2018-03-18T05:59:56+00:00"
+            "time": "2018-03-28T05:39:24+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -6939,6 +6939,58 @@
                 "validate"
             ],
             "time": "2018-01-29T19:49:41+00:00"
+        },
+        {
+            "name": "wimg/php-compatibility",
+            "version": "8.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wimg/PHPCompatibility.git",
+                "reference": "4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e-zip-3ccb54.zip",
+                "reference": "4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e",
+                "shasum": "ccce91b7992ffe4b412e98d196d787e55d788149"
+            },
+            "require": {
+                "php": ">=5.3",
+                "squizlabs/php_codesniffer": "^2.2 || ^3.0.2"
+            },
+            "conflict": {
+                "squizlabs/php_codesniffer": "2.6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
+            },
+            "suggest": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
+            },
+            "type": "phpcodesniffer-standard",
+            "autoload": {
+                "psr-4": {
+                    "PHPCompatibility\\": "PHPCompatibility/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Wim Godden",
+                    "role": "lead"
+                }
+            ],
+            "description": "A set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
+            "homepage": "http://techblog.wimgodden.be/tag/codesniffer/",
+            "keywords": [
+                "compatibility",
+                "phpcs",
+                "standards"
+            ],
+            "time": "2017-12-27T21:58:38+00:00"
         }
     ],
     "aliases": [],

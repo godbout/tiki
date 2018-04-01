@@ -279,10 +279,14 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 			return tr('*** ERROR: Field %0 not found ***', $listFieldIdThere);
 		}
 
-		$remoteItemIds = (array) $this->getValue();
+		$remoteItemIds = $this->getValue();
+		if ($this->getOption('selectMultipleValues') && ! is_array($remoteItemIds)) {
+			$remoteItemIds = explode(',', $remoteItemIds);
+			$remoteItemIds = array_filter($remoteItemIds);
+		}
 		$output = '';
 
-		foreach ($remoteItemIds as $remoteItemId) {
+		foreach ((array) $remoteItemIds as $remoteItemId) {
 
 			$itemInfo = $trklib->get_tracker_item($remoteItemId);
 
@@ -356,9 +360,14 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 		$baseKey = $this->getBaseKey();
 
 		$out = [
-			$baseKey => $typeFactory->identifier($item),
 			"{$baseKey}_text" => $typeFactory->sortable($this->renderInnerOutput()),
 		];
+		if ($this->getOption('selectMultipleValues') && ! is_array($item)) {
+			$out[$baseKey] = $typeFactory->multivalue(explode(',', $item));
+		} else {
+			$out[$baseKey] = $typeFactory->identifier($item);
+		}
+
 		return $out;
 	}
 

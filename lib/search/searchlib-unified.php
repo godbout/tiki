@@ -541,10 +541,24 @@ class UnifiedSearchLib
 
 		$logWriter = null;
 
-		if ((int) $loggit == 1) {
-			$logWriter = new Zend\Log\Writer\Stream($prefs['tmpDir'] . '/Search_Indexer.log', 'w');
-		} elseif ((int) $loggit == 2) {
-			$logWriter = new Zend\Log\Writer\Stream($prefs['tmpDir'] . '/Search_Indexer_console.log', 'w');
+		if ($loggit) {
+			$logName = 'Search_Indexer';
+
+			switch ($prefs['unified_engine']) {
+				case 'elastic':
+					$logName .=  '_elastic_' . rtrim($prefs['unified_elastic_index_prefix'], '_');
+					break;
+				case 'mysql':
+					$logName .=  '_mysql_' . TikiDb::get()->getOne('SELECT DATABASE()');
+					break;
+				case 'lucene':
+					$logName .=  '_lucene';
+					break;
+			}
+			if ($loggit == 2) {
+				$logName .= '_console';
+			}
+			$logWriter = new Zend\Log\Writer\Stream($prefs['tmpDir'] . '/' . $logName . '.log', 'w');
 		}
 
 		$indexer = new Search_Indexer($index, $logWriter);

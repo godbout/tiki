@@ -118,7 +118,7 @@ function smarty_function_jscalendar($params, $smarty)
 	$datepicker_options .= $datepicker_options_common;
 
 	$html = '<input type="hidden" id="' . $params['id'] . '"' . $name . ' value="' . $params['date'] . '" class="isDatepicker">';
-	$html .= '<input type="hidden" id="tzoffset" name="tzoffset" value="">';
+	$html .= '<input type="hidden" name="tzoffset" value="">';
 	$headerlib->add_jq_onready('$("input[name=tzoffset]").val((new Date()).getTimezoneOffset());');
 	if (isset($params['isutc']) && $params['isutc']) {
 		$headerlib->add_jq_onready('$("#' . $params['id'] . '").val(' . intval($params['date']) . ' + (new Date()).getTimezoneOffset()*60);');

@@ -2,7 +2,7 @@
 /**
  * @package tikiwiki
  */
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright 2002-2018 by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -140,7 +140,7 @@ if ($_REQUEST['locSection'] == 'read') {
 		try {
 			$message = $mail->getMessage($_REQUEST['msgid']);
 			$aux = $message->getHeaders()->toArray();
-			$realmsgid = preg_replace('/[<>]/', '', $aux['message-id']);
+			$realmsgid = preg_replace('/[<>]/', '', $aux['Message-ID']); // this replaces the <<>> from the Message-ID header key (previous lowercase message-id did not match)
 			$smarty->assign('msgid', $_REQUEST['msgid']);
 			$smarty->assign('realmsgid', $realmsgid);
 			$webmaillib->set_mail_flag($current['accountId'], $user, $realmsgid, 'isRead', 'y');

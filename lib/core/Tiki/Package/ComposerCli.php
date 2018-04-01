@@ -26,7 +26,7 @@ class ComposerCli
 		'php5.6',
 		'php5.6-cli',
 	];
-	const PHP_MIN_VERSION = '5.6.0';
+	const PHP_MIN_VERSION = '7.1.0';
 
 	const FALLBACK_COMPOSER_JSON = '{"minimum-stability": "stable","config": {"process-timeout": 5000,"bin-dir": "bin"}}';
 

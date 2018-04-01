@@ -49,9 +49,9 @@ $smarty->assign('routeId', $_REQUEST['route']);
 $smarty->assign(
 	'routerTypes',
 	[
-		'Direct' => 'Redirect to another URL',
-		'Object' => 'Redirect to tiki object',
-		'TrackerField' => 'To tracker item by field value',
+		\Tiki\CustomRoute\Item::TYPE_DIRECT => 'Redirect to another URL',
+		\Tiki\CustomRoute\Item::TYPE_OBJECT => 'Redirect to tiki object',
+		\Tiki\CustomRoute\Item::TYPE_TRACKER_FIELD => 'To tracker item by field value',
 	]
 );
 

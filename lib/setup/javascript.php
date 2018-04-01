@@ -220,7 +220,7 @@ if (inArray(m, allTimeZoneCodes)) {
 
 	$js = '
 // JS Object to hold prefs for jq
-var jqueryTiki = ' . json_encode($jqueryTiki) . "\n";
+var jqueryTiki = ' . json_encode($jqueryTiki, JSON_UNESCAPED_SLASHES) . "\n";
 
 	if ($prefs['feature_syntax_highlighter'] !== 'y') {
 		// add a dummy syntaxHighlighter object as it seems to be used all over the place without checking for the feature

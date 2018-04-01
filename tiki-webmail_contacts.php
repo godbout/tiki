@@ -101,5 +101,5 @@ $smarty->assign_by_ref('channels', $contacts);
 
 ask_ticket('webmail-contact');
 
-//$smarty->display("tiki-webmail_contacts.tpl");
+$smarty->assign('title', tr("Address book"));
 $smarty->display("tiki-webmail_contacts.tpl");

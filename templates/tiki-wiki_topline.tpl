@@ -249,6 +249,14 @@
 								{/literal}
 							</li>
 						{/if}
+						{if $prefs.feature_short_url eq 'y'}
+							<li>
+								<a href="tiki-short_url.php?page={$page|escape:"url"}">
+									{icon name="link"} {tr}Get a short URL{/tr}
+									{assign var="hasPageAction" value="1"}
+								</a>
+							</li>
+						{/if}
 						{if !empty($user) and $prefs.feature_notepad eq 'y' and $tiki_p_notepad eq 'y'}
 							<li>
 								<a class="dropdown-item" href="tiki-index.php?page={$page|escape:"url"}&amp;savenotepad=1{if !empty($page_ref_id)}&amp;page_ref_id={$page_ref_id}{/if}">

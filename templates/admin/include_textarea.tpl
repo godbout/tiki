@@ -170,6 +170,7 @@
 					{preference name=wiki_edit_icons_toggle}
 				</div>
 				{preference name=wikiplugin_list_gui}
+				{preference name=wikiplugin_list_convert_trackerlist}
 			</fieldset>
 
 			<fieldset class="margin-bottom-lg" id="plugins">

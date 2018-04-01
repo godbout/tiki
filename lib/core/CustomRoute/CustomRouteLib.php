@@ -45,25 +45,30 @@ class CustomRouteLib extends TikiLib
 	 * @param $redirect
 	 * @param $description
 	 * @param $active
+	 * @param $shortUrl
 	 * @param $id
+	 * @return int
+	 *   The route id value
 	 */
-	public function setRoute($type, $from, $redirect, $description, $active, $id)
+	public function setRoute($type, $from, $redirect, $description, $active, $shortUrl, $id)
 	{
 
 		$values = [
-		'type' => $type,
-		'from' => $from,
-		'redirect' => $redirect,
-		'description' => $description,
-		'active' => $active
+			'type' => $type,
+			'from' => $from,
+			'redirect' => $redirect,
+			'description' => $description,
+			'active' => $active,
+			'short_url' => $shortUrl,
 		];
 
 		$routeTable = $this->table($this->tableName);
 
 		if (! $id) {
-			$routeTable->insert($values);
+			return $routeTable->insert($values);
 		} else {
 			$routeTable->update($values, ['id' => $id]);
+			return $id;
 		}
 	}
 
@@ -125,7 +130,7 @@ class CustomRouteLib extends TikiLib
 	 * @param $id
 	 *
 	 * @return bool
-	 * 	True router is already defined, false otherwise.
+	 *    True router is already defined, false otherwise.
 	 */
 	public function checkRouteExists($from, $id = null)
 	{
@@ -133,7 +138,7 @@ class CustomRouteLib extends TikiLib
 		$routeTable = $this->table($this->tableName);
 
 		$conditions = [
-		'from' => $from,
+			'from' => $from,
 		];
 
 		if (! empty($id)) {
@@ -143,5 +148,19 @@ class CustomRouteLib extends TikiLib
 		$duplicateId = $routeTable->fetchOne('id', $conditions);
 
 		return $duplicateId !== false;
+	}
+
+	/**
+	 * Search for Routes passing an array of filter conditions
+	 *
+	 * @param array $conditions
+	 * @return mixed
+	 */
+	public function findRoute(array $conditions)
+	{
+
+		$routeTable = $this->table($this->tableName);
+
+		return $routeTable->fetchRow([], $conditions);
 	}
 }

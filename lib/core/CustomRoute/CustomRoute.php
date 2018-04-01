@@ -26,7 +26,7 @@ class CustomRoute
 		$routes = $routeLib->getRouteByType(null, ['type' => 'asc']);
 
 		foreach ($routes as $row) {
-			$route = new Item($row['type'], $row['from'], $row['redirect'], $row['active'], $row['id']);
+			$route = new Item($row['type'], $row['from'], $row['redirect'], $row['description'], $row['active'], $row['short_url'], $row['id']);
 			if ($match = $route->matchRoute($path)) {
 				return $route;
 			}
@@ -50,5 +50,53 @@ class CustomRoute
 		} else {
 			$access->display_error($path, tra("Page cannot be found"), '404');
 		}
+	}
+
+	/**
+	 * Generate a hash to use in the shorturls to redirect to the selected page.
+	 * @param int $size The hash size
+	 * @return bool|string
+	 * @throws \Exception
+	 */
+	public static function generateShortUrlHash($size = 6)
+	{
+
+		$routeLib = TikiLib::lib('custom_route');
+
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		$validHash = false;
+		$hash = '';
+
+		while (! $validHash) {
+			$hash = substr(str_shuffle($chars), 0, $size);
+			$validHash = ! $routeLib->checkRouteExists($hash);
+		}
+
+		return $hash;
+	}
+
+	/**
+	 * Check if the given object already has a short_url generated
+	 *
+	 * @param $type
+	 * @param $objectId
+	 * @return null|String
+	 * @throws \Exception
+	 */
+	public static function getShortUrl($type, $objectId)
+	{
+
+		$routeLib = TikiLib::lib('custom_route');
+
+		$conditions = [
+			'type' => Item::TYPE_OBJECT,
+			'redirect' => json_encode(['type' => $type, 'object' => $objectId]),
+			'active' => 1,
+			'short_url' => 1,
+		];
+
+		$route = $routeLib->findRoute($conditions);
+
+		return empty($route) ? null : $route['from'];
 	}
 }

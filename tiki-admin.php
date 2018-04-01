@@ -606,36 +606,10 @@ $forcecheck = ! empty($_GET['forcecheck']);
 // Versioning feature has been enabled, so if the time is right, do a live
 // check, otherwise display the stored data.
 if ($prefs['feature_version_checks'] == 'y' || $forcecheck) {
-	$checker = new Tiki_Version_Checker;
-	$checker->setVersion($TWV->version);
-	$checker->setCycle($prefs['tiki_release_cycle']);
+	$versionUtils = new Tiki_Version_Utils();
+	$upgrades = $versionUtils->checkUpdatesForVersion($TWV->version);
 
-	$expiry = $tikilib->now - $prefs['tiki_version_check_frequency'];
-	$upgrades = $checker->check(
-		function ($url) use ($expiry) {
-			$cachelib = TikiLib::lib('cache');
-			$tikilib = TikiLib::lib('tiki');
-
-			$content = $cachelib->getCached($url, 'http', $expiry);
-
-			if ($content === false) {
-				$content = $tikilib->httprequest($url);
-				$cachelib->cacheItem($url, $content, 'http');
-			}
-
-			return $content;
-		}
-	);
-
-	$smarty->assign(
-		'upgrade_messages',
-		array_map(
-			function ($upgrade) {
-				return $upgrade->getMessage();
-			},
-			$upgrades
-		)
-	);
+	$smarty->assign('upgrade_messages', $upgrades);
 }
 
 foreach ($admin_icons as &$admin_icon) {

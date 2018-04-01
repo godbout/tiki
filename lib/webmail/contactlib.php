@@ -384,10 +384,10 @@ class ContactLib extends TikiLib
 				'WHERE f.`flagsPublic`=\'y\' AND f.`fieldname`=? AND x.`contactId`=?';
 			$res = $this->query($query, [$name, (int) $contactId]);
 		}
-		if (! $res || ! $res->numRows()) {	// temporary global fields - need to add groupishness one day..?
+		if (empty($res) || ! $res->numRows()) {	// temporary global fields - need to add groupishness one day..?
 			$res = $this->query('SELECT * FROM `tiki_webmail_contacts_fields` WHERE `user`=? AND `fieldname`=?', [$user, $name]);
 		}
-		if (! $res || ! $res->numRows()) {
+		if (empty($res) || ! $res->numRows()) {
 			$res = $this->query('SELECT * FROM `tiki_webmail_contacts_fields` WHERE `fieldname`=? AND `flagsPublic`=\'y\'', [$name]);
 		}
 		if (! $res->numRows()) {

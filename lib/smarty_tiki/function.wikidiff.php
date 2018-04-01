@@ -65,6 +65,7 @@ function smarty_function_wikidiff($params, $smarty)
 		}
 
 		$smarty->assign('hide_version_info', ! $params['show_version_info']);
+		$smarty->assign('hide_example_wikidiff_plugin_syntax', true);
 
 		histlib_helper_setup_diff($params['object_id'], $oldver, $newver, $params['diff_style']);
 

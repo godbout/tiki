@@ -29,6 +29,7 @@ class Controller
 		$from = isset($request['router_from']) ? $request['router_from'] : '';
 		$description = isset($request['router_description']) ? $request['router_description'] : '';
 		$active = empty($request['router_active']) ? 0 : 1;
+		$shortUrl = empty($request['router_short_url']) ? 0 : 1;
 		$params = [];
 
 		if (! empty($type)) {
@@ -43,7 +44,7 @@ class Controller
 			$params = $class->parseParams($request);
 		}
 
-		return new Item($type, $from, $params, $description, $active, $id);
+		return new Item($type, $from, $params, $description, $active, $shortUrl, $id);
 	}
 
 	/**

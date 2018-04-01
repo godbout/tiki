@@ -149,6 +149,10 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 	function renderOutput($context = [])
 	{
 		if ($context['list_mode'] === 'csv') {
+			$fieldId = $this->getConfiguration('fieldId');
+			if (! empty($fieldId)) {
+				return $this->getData($fieldId);
+			}
 			return $this->getConfiguration('value');
 		} elseif ($context['list_mode'] === 'text') {
 			return implode("\n",

@@ -27,6 +27,7 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
 			'router_from' => 'http://dummy.tiki.org',
 			'router_description' => 'Test route',
 			'router_active' => 1,
+			'router_short_url' => 0,
 			'direct_to' => 'http://tiki.org',
 		];
 
@@ -38,6 +39,7 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($item->from, $request['router_from']);
 		$this->assertEquals($item->description, $request['router_description']);
 		$this->assertEquals($item->active, $request['router_active']);
+		$this->assertEquals($item->short_url, $request['router_short_url']);
 		$this->assertEquals($item->redirect, json_encode(['to' => $request['direct_to']]));
 	}
 }

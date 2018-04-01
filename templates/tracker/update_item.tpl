@@ -12,7 +12,7 @@
 
 {block name="content"}
 	{if $skip_form eq 'y'}
-		<form method="post" class="confirm-action" action="{service controller=tracker
+		<form method="post" action="{service controller=tracker
 		action=update_item
 		trackerId={$trackerId}
 		itemId={$itemId}
@@ -30,7 +30,7 @@
 			</div>
 		</form>
 	{else}
-		<form method="post" class="confirm-action" action="{service controller=tracker action=update_item format=$format editItemPretty=$editItemPretty}" id="updateItemForm{$trackerId|escape}">
+		<form method="post" action="{service controller=tracker action=update_item format=$format editItemPretty=$editItemPretty}" id="updateItemForm{$trackerId|escape}">
 			{trackerfields trackerId=$trackerId fields=$fields status=$status itemId=$itemId format=$format editItemPretty=$editItemPretty}
 			<div class="submit">
 				<input type="hidden" name="itemId" value="{$itemId|escape}">

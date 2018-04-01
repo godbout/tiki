@@ -47,6 +47,7 @@
 			<fieldset>
 				<legend>{tr}Mail{/tr}</legend>
 				{preference name=sender_email}
+				{preference name=sender_name}
 				{preference name=default_mail_charset}
 				{preference name=mail_crlf}
 				{preference name=zend_mail_handler}

@@ -61,6 +61,14 @@
 				{/literal}
 			</li>
 		{/if}
+		{if $prefs.feature_short_url eq 'y'}
+			<li>
+				<a href="tiki-short_url.php?type=post&objectId={$postId}">
+					{icon name="link"} {tr}Get a short URL{/tr}
+					{assign var="hasPageAction" value="1"}
+				</a>
+			</li>
+		{/if}
 	</ul>
 	{if $js == 'n'}</li></ul>{/if}
 </div>

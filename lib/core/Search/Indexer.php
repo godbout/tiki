@@ -23,8 +23,56 @@ class Search_Indexer
 	{
 		if (! $logWriter instanceof \Zend\Log\Writer\AbstractWriter) {
 			$logWriter = new Zend\Log\Writer\Noop();
+		} else {
+			// writing logs
+			set_error_handler(function ($errno, $errstr, $errfile = '', $errline = 0) {
+
+				$error = '';
+
+				switch ($errno) {
+					case E_PARSE:
+					case E_ERROR:
+					case E_CORE_ERROR:
+					case E_COMPILE_ERROR:
+					case E_USER_ERROR:
+						$error = 'FATAL';
+						break;
+					case E_WARNING:
+					case E_USER_WARNING:
+					case E_COMPILE_WARNING:
+					case E_RECOVERABLE_ERROR:
+						$error = 'WARNING';
+						break;
+					case E_NOTICE:
+					case E_USER_NOTICE:
+						$error = 'NOTICE';
+						break;
+					case E_STRICT:
+						$error = 'STRICT';
+						break;
+					case E_DEPRECATED:
+					case E_USER_DEPRECATED:
+						$error = 'DEPRECATED';
+						break;
+					default :
+						break;
+				}
+
+				$this->log->err($error . ': ' . $errstr, [
+					'code' => $errno,
+					'file' => $errfile,
+					'line' => $errline,
+				]);
+
+				return [$error, $errstr];
+			});
+
+			// set smarty error muting again after declaring our handler becasue smarty is set up in tiki-setup.php
+			// before we get here so smarty then doesn't know about us
+			Smarty_Tiki::muteExpectedErrors();
 		}
-		$logWriter->setFormatter(new Zend\Log\Formatter\Simple(Zend\Log\Formatter\Simple::DEFAULT_FORMAT . ' [%memoryUsage% bytes]' . PHP_EOL));
+
+		$logWriter->setFormatter(new Zend\Log\Formatter\Simple());
 		$this->log = new Zend\Log\Logger();
 		$this->log->addWriter($logWriter);
 
@@ -285,6 +333,6 @@ class Search_Indexer
 
 	private function log($message)
 	{
-		$this->log->info($message, ['memoryUsage' => memory_get_usage()]);
+		$this->log->info($message, ['memoryUsage' => \Symfony\Component\Console\Helper\Helper::formatMemory(memory_get_usage())]);
 	}
 }

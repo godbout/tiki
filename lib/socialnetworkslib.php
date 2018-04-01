@@ -168,29 +168,23 @@ class SocialNetworksLib extends LogsLib
 			$url = preg_replace('/\?.*/', '', $url);
 		}
 		$url = urlencode($url . '?request_facebook');
-		$url = 'https://www.facebook.com/v2.0/dialog/oauth?client_id=' . $prefs['socialnetworks_facebook_application_id'] .
+		$url = 'https://www.facebook.com/v2.12/dialog/oauth?client_id=' . $prefs['socialnetworks_facebook_application_id'] .
 			'&scope=' . $scope . '&redirect_uri=' . $url;
 		header("Location: $url");
 		die();
 	}
 
+	
 	/**
-	 * When the user confirms the request token, facebook redirects back to our site providing us with a request token.
-	 * This function receives a permanent access token for the given user and stores it in his preferences
-	 *
-	 * @param string $user  user Id of the user to store the access token for
-	 *
-	 * @return bool 		true on success
-	 */
+	* Old tiki way of getting access_token using socket. Some say it faster than curl. Maybe we
+	* need to move it to hybridauth as an alternative to curl, like guzzle?
+	*/
 	function getFacebookAccessToken()
 	{
 		global $prefs, $user;
 		$userlib = TikiLib::lib('user');
-		if ($prefs['socialnetworks_facebook_application_id'] == '' or $prefs['socialnetworks_facebook_application_secr'] == '') {
-			return false;
-		}
 
-		$url = '/v2.0/oauth/access_token?client_id=' . $prefs['socialnetworks_facebook_application_id'] .
+		$url = '/v2.12/oauth/access_token?client_id=' . $prefs['socialnetworks_facebook_application_id'] .
 			'&redirect_uri=' . $this->getURL() . '&client_secret=' . $prefs['socialnetworks_facebook_application_secr']; // code is already in the url
 
 
@@ -214,7 +208,7 @@ class SocialNetworksLib extends LogsLib
 		}
 		$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
 		$ret = $ret[1];
-
+		$ret = substr( $ret ,  3, strlen ($ret) - 10 );
 		$json_decoded_ret = json_decode($ret, true);
 
 		if (isset($json_decoded_ret['access_token']) || substr($ret, 0, 13) == 'access_token=') {
@@ -226,104 +220,163 @@ class SocialNetworksLib extends LogsLib
 					// Returned string may have other var like expiry
 					$access_token = substr($access_token, 0, $endoftoken);
 				}
-			}
-			$fields = ['id', 'name', 'first_name', 'last_name'];
+			}			
 
-			if ($prefs['socialnetworks_facebook_email'] == 'y') {
-				$fields[] = 'email';
-			}
+			return $access_token;
+		}
+		else
+			return null;
+	}
 
-			$fb_profile = json_decode($this->facebookGraph('', 'me', ['fields' => implode(',', $fields),'access_token' => $access_token], false, 'GET'));
-			if (empty($fb_profile->id)) {
+	function getFacebookUserProfile($access_token)
+	{
+		global $prefs;
+
+		$fields = ['id', 'name', 'first_name', 'last_name'];
+
+		if ($prefs['socialnetworks_facebook_email'] == 'y') {
+			$fields[] = 'email';
+		}
+
+		$resp = $this->facebookGraph('', 'me', ['fields' => implode(',', $fields),'access_token' => $access_token], false, 'GET');
+		$resp = substr($resp, 3, strlen ($resp) - 10);
+		$fb_profile = json_decode($resp);
+
+		return $fb_profile;
+	}
+
+	
+	/**
+	*
+	* Facebook pre-login
+	*/
+	function facebookLoginPre()
+	{
+		global $prefs, $user;
+		
+		if ($prefs['socialnetworks_facebook_application_id'] == '' or $prefs['socialnetworks_facebook_application_secr'] == '') {
+			return false;
+		}
+
+		$access_token = $this->getFacebookAccessToken();
+		$fb_profile = $this->getFacebookUserProfile($access_token);
+		$this->facebookLogin($access_token, $fb_profile);
+
+		return true;
+	}
+	
+	/**
+	*
+	* This is where real login happens
+	*/
+	function facebookLogin($access_token, $fb_profile)
+	{
+		global $prefs, $user;
+		$userlib = TikiLib::lib('user');
+			
+		if (! $user) {
+			if ($prefs['socialnetworks_facebook_login'] != 'y') {
 				return false;
 			}
-			if (! $user) {
-				if ($prefs['socialnetworks_facebook_login'] != 'y') {
-					return false;
-				}
-				$local_user = $this->getOne("select `user` from `tiki_user_preferences` where `prefName` = 'facebook_id' and `value` = ?", [$fb_profile->id]);
-				if ($local_user) {
-					$user = $local_user;
-				} elseif ($prefs['socialnetworks_facebook_autocreateuser'] == 'y') {
-					$randompass = $userlib->genPass();
-					$email = $prefs['socialnetworks_facebook_email'] === 'y' ? $fb_profile->email : '';
-					if ($prefs['login_is_email'] == 'y' && $email) {
-						$user = $email;
-					} elseif ($prefs['login_autogenerate'] == 'y') {
-						$user = '';
-					} else {
-						$user = 'fb_' . $fb_profile->id;
-					}
-					$user = $userlib->add_user($user, $randompass, $email);
-
-					if (! $user) {
-						$smarty = TikiLib::lib('smarty');
-						$smarty->assign('errortype', 'login');
-						$smarty->assign('msg', tra('We were unable to log you in using your Facebook account. Please contact the administrator.'));
-						$smarty->display('error.tpl');
-						die;
-					}
-
-					$ret = $userlib->get_usertrackerid("Registered");
-					$userTracker = $ret['usersTrackerId'];
-					$userField = $ret['usersFieldId'];
-					if ($prefs['socialnetworks_facebook_create_user_trackeritem'] == 'y' && $userTracker && $userField) {
-						$definition = Tracker_Definition::get($userTracker);
-						$utilities = new Services_Tracker_Utilities();
-						$fields = ['ins_' . $userField => $user];
-						if (! empty($prefs['socialnetworks_facebook_names'])) {
-							$names = array_map('trim', explode(',', $prefs['socialnetworks_facebook_names']));
-							$fields['ins_' . $names[0]] = $fb_profile->first_name;
-							$fields['ins_' . $names[1]] = $fb_profile->last_name;
-						}
-						$utilities->insertItem(
-							$definition,
-							[
-								'status' => '',
-								'fields' => $fields,
-								'validate' => false,
-							]
-						);
-					}
-
-					$this->set_user_preference($user, 'realName', $fb_profile->name);
-					if ($prefs['socialnetworks_facebook_firstloginpopup'] == 'y') {
-						$this->set_user_preference($user, 'socialnetworks_user_firstlogin', 'y');
-					}
-					if ($prefs['feature_userPreferences'] == 'y') {
-						$fb_avatar = json_decode($this->facebookGraph('', 'me/picture', ['type' => 'square', 'width' => '480', 'redirect' => '0','access_token' => $access_token], false, 'GET'));
-						$avatarlib = TikiLib::lib('avatar');
-						$avatarlib->set_avatar_from_url($fb_avatar->data->url, $user);
-					}
-				} else {
-					$smarty = TikiLib::lib('smarty');
-					$smarty->assign('errortype', 'login');
-					$smarty->assign('msg', tra('You need to link your local account to Facebook before you can login using it'));
-					$smarty->display('error.tpl');
-					die;
-				}
-				global $user_cookie_site;
-				$_SESSION[$user_cookie_site] = $user;
-				$userlib->update_expired_groups();
-				$this->set_user_preference($user, 'facebook_id', $fb_profile->id);
-				$this->set_user_preference($user, 'facebook_token', $access_token);
-				$userlib->update_lastlogin($user);
-				header('Location: tiki-index.php');
-				die;
-			} else {
-				$this->set_user_preference($user, 'facebook_id', $fb_profile->id);
-				$this->set_user_preference($user, 'facebook_token', $access_token);
+			
+			$local_user = $this->getOne("select `user` from `tiki_user_preferences` where `prefName` = 'facebook_id' and `value` = ?", [$fb_profile->id]);
+			if ($local_user) {
+				$user = $local_user;
+			} elseif ($prefs['socialnetworks_facebook_autocreateuser'] == 'y') {
+				$local_user = $this->facebookCreateUser($access_token, $fb_profile);
 			}
-			return true;
+			
+			if ($local_user) {
+				$user = $local_user;
+			} else {
+				$smarty = TikiLib::lib('smarty');
+				$smarty->assign('errortype', 'login');
+				$smarty->assign('msg', tra('You need to link your local account to Facebook before you can login using it'));
+				$smarty->display('error.tpl');
+				die;
+			}
+			
+			global $user_cookie_site;
+			$_SESSION[$user_cookie_site] = $user;
+			$userlib->update_expired_groups();
+			$this->set_user_preference($user, 'facebook_id', $fb_profile->id);
+			$this->set_user_preference($user, 'facebook_token', $access_token);
+			$userlib->update_lastlogin($user);
+			header('Location: tiki-index.php');
+			die;
+			
 		} else {
+			$this->set_user_preference($user, 'facebook_id', $fb_profile->id);
+			$this->set_user_preference($user, 'facebook_token', $access_token);
+		}
+		return true;	//do we need this?
+	}
+	
+	
+	/**
+	 * Creates a new user from facebook profile
+	 *
+	 * @returns $user it created
+	 */
+	function facebookCreateUser($access_token, $fb_profile)
+	{
+		global $prefs, $user;
+		$userlib = TikiLib::lib('user');
+				
+		$randompass = $userlib->genPass();
+		$email = $prefs['socialnetworks_facebook_email'] === 'y' ? $fb_profile->email : '';
+		if ($prefs['login_is_email'] == 'y' && $email) {
+			$user = $email;
+		} elseif ($prefs['login_autogenerate'] == 'y') {
+			$user = '';
+		} else {
+			$user = 'fb_' . $fb_profile->id;
+		}
+		$user = $userlib->add_user($user, $randompass, $email);
+
+		if (! $user) {
 			$smarty = TikiLib::lib('smarty');
 			$smarty->assign('errortype', 'login');
-			$smarty->assign('msg', tra('We were unable to log you in using your Facebook account. Please contact the administrator.'));
+			$smarty->assign('msg', tra('We were unable to create a new user with your Facebook account. Please contact the administrator.'));
 			$smarty->display('error.tpl');
 			die;
 		}
-	}
 
+		$ret = $userlib->get_usertrackerid("Registered");
+		$userTracker = $ret['usersTrackerId'];
+		$userField = $ret['usersFieldId'];
+		if ($prefs['socialnetworks_facebook_create_user_trackeritem'] == 'y' && $userTracker && $userField) {
+			$definition = Tracker_Definition::get($userTracker);
+			$utilities = new Services_Tracker_Utilities();
+			$fields = ['ins_' . $userField => $user];
+			if (! empty($prefs['socialnetworks_facebook_names'])) {
+				$names = array_map('trim', explode(',', $prefs['socialnetworks_facebook_names']));
+				$fields['ins_' . $names[0]] = $fb_profile->first_name;
+				$fields['ins_' . $names[1]] = $fb_profile->last_name;
+			}
+			$utilities->insertItem(
+				$definition,
+				[
+					'status' => '',
+					'fields' => $fields,
+					'validate' => false,
+				]
+			);
+		}
+
+		$this->set_user_preference($user, 'realName', $fb_profile->name);
+		if ($prefs['socialnetworks_facebook_firstloginpopup'] == 'y') {
+			$this->set_user_preference($user, 'socialnetworks_user_firstlogin', 'y');
+		}
+		if ($prefs['feature_userPreferences'] == 'y') {
+			$fb_avatar = json_decode($this->facebookGraph('', 'me/picture', ['type' => 'square', 'width' => '480', 'redirect' => '0','access_token' => $access_token], false, 'GET'));
+			$avatarlib = TikiLib::lib('avatar');
+			$avatarlib->set_avatar_from_url($fb_avatar->data->url, $user);
+		}
+		
+		return $user;
+	}
+	
 	/**
 	 * Checks if the site is registered with linkedIn (client id  and secret are set)
 	 *

@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-{* Index we display a wiki page here *}
-
-<html>
+<html lang="{$prefs.language}">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link rel="StyleSheet" href="styles/{$prefs.style}" type="text/css">
-		<title>{tr}Address book{/tr}</title>
+		{include file='header.tpl'}
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<div id="tiki-clean">
+		<div id="tiki-clean" class="container">
 
 			<h2>{tr}Contacts{/tr}</h2>
-			<div align="center">
+			<div class="row">
+			<div class="col-md-12">
 				{include file='find.tpl'}
 				{initials_filter_links}
 				<div class="table-responsive">
@@ -44,7 +42,7 @@
 								<td class="text">{$channels[user].firstName}</td>
 								<td class="text">{$channels[user].lastName}</td>
 								<td class="email">
-									<a class="link" href="#" onClick="javascript:window.opener.document.getElementById('{$element}').value=window.opener.document.getElementById('{$element}').value + '{$channels[user].email}' + ' ';">
+									<a class="link" href="#" onclick="var em = window.opener.document.getElementById('{$element}').value; if (em != '') window.opener.document.getElementById('{$element}').value = window.opener.document.getElementById('{$element}').value + ', {$channels[user].email}'; if (em == '') window.opener.document.getElementById('{$element}').value = window.opener.document.getElementById('{$element}').value + '{$channels[user].email}';">{* TODO: optimize the Javascript code *}
 										{$channels[user].email}
 									</a>
 									[&nbsp;&nbsp;
@@ -65,7 +63,7 @@
 						</a>
 						]&nbsp;
 					{/if}
-					{tr}Page:{/tr} {$actual_page}/{$cant_pages}
+					{tr}Page:{/tr} {$actual_page}/{if $cant_pages > 0}{$cant_pages}{else}1{/if}
 					{if $next_offset >= 0}
 						&nbsp;[
 						<a class="prevnext" href="tiki-webmail_contacts.php?element={$element}&amp;section=contacts&amp;find={$find}&amp;offset={$next_offset}&amp;sort_mode={$sort_mode}">
@@ -82,6 +80,7 @@
 						{/section}
 					{/if}
 				</div>
+			</div>
 			</div>
 		</div>
 	</body>

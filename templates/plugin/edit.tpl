@@ -114,6 +114,9 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 				<input type="hidden" name="page" value="{$pageName|escape}">
 				<input type="hidden" name="type" value="{$type}">
 				<input type="hidden" name="index" value="{$index}">
+				{if $prefs.wikiplugin_list_convert_trackerlist eq 'y' and $type eq 'trackerlist'}
+					<input type="submit" class="btn btn-default" value="{tr}Convert to List{/tr}" data-alt_controller="plugin" data-alt_action="convert_trackerlist">
+				{/if}
 				<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
 			</div>
 
