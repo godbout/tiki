@@ -117,23 +117,23 @@ class ScssCompileCommand extends Command
 					$this->compile($file['scss'], $file['css'], $output);
 				}
 			} catch (ParserException $e) {
-				$output->writeln('<error>' . tr('SCSS Parse Error') . '</error>');
+				$output->writeln('<error>' . tr('SCSS Parse Error') . ' compiling: ' . $scss_file . '</error>');
 				$output->writeln('<info>' . $e->getMessage() . '</info>');
 				return false;
 			} catch (CompilerException $e) {
-				$output->writeln('<error>' . tr('SCSS Compiler Error') . '</error>');
+				$output->writeln('<error>' . tr('SCSS Compiler Error') . ' compiling: ' . $scss_file . '</error>');
 				$output->writeln('<info>' . $e->getMessage() . '</info>');
 				return false;
 			} catch (RangeException $e) {
-				$output->writeln('<error>' . tr('SCSS Range Error') . '</error>');
+				$output->writeln('<error>' . tr('SCSS Range Error') . ' compiling: ' . $scss_file . '</error>');
 				$output->writeln('<info>' . $e->getMessage() . '</info>');
 				return false;
 			} catch (ServerException $e) {
-				$output->writeln('<error>' . tr('SCSS Server Error') . '</error>');
+				$output->writeln('<error>' . tr('SCSS Server Error') . ' compiling: ' . $scss_file . '</error>');
 				$output->writeln('<info>' . $e->getMessage() . '</info>');
 				return false;
 			} catch (\Exception $e) {
-				$output->writeln('<error>' . tr('SCSS Error'));
+				$output->writeln('<error>' . tr('SCSS Error') . ' compiling: ' . $scss_file . '</error>');
 				$output->writeln('<info>' . $e->getMessage() . '</info>');
 				return false;
 			}
