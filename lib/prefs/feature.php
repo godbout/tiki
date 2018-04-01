@@ -432,6 +432,39 @@ function prefs_feature_list($partial = false)
 				],
 			'default' => 'n',
 		],
+		'feature_library_references' => [
+			'name' => tra('Library references'),
+			'description' => tra('Enforce library reference as master'),
+			'type' => 'flag',
+			'dependencies' => [
+				'feature_references',
+				],
+			'default' => 'n',
+		],
+		'feature_references_style' => [
+			'name' => tra('Reference style'),
+			'description' => tra('Default style when using references'),
+			'type' => 'list',
+			'options' => [
+				'ama' => tra('AMA citation style (default)'),
+				'mla' => tra('MLA citation style'),
+			],
+			'dependencies' => [
+				'feature_references',
+			],
+			'default' => 'ama',
+			'tags' => ['basic'],
+		],
+		'feature_references_popover' => [
+			'name' => tra('Display reference in a popover'),
+			'description' => tra('Display the details of the reference in a popover'),
+			'type' => 'flag',
+			'dependencies' => [
+				'feature_references',
+			],
+			'default' => 'n',
+			'tags' => ['basic'],
+		],
 		'feature_shoutbox' => [
 			'name' => tra('Shoutbox'),
 			'description' => tra('Quick comment (graffiti) box. Like a group chat, but not in real time.'),
@@ -1322,6 +1355,13 @@ function prefs_feature_list($partial = false)
 			'help' => 'Apache Clean URLs',
 			'default' => 'y',
 		],
+		'feature_sefurl_title_forumthread' => [
+			'name' => tra('Display forum thread or forum post title in the search engine friendly URL'),
+			'type' => 'flag',
+			'perspective' => false,
+			'dependencies' => ['feature_sefurl'],
+			'default' => 'y',
+		],
 		'feature_sefurl_title_trackeritem' => [
 			'name' => tra('Tracker title in SEFURL'),
 			'description' => tra('To display the title, you should disable `Rewrite tiki-view_tracker.php?itemId=yyy to Prefixyyy page`'),
@@ -1330,13 +1370,13 @@ function prefs_feature_list($partial = false)
 			'dependencies' => ['feature_sefurl'],
 			'default' => 'n',
 		],
-		'feature_sefurl_title_trackeritem_max_size' => [
-			'name' => tra('Max size of tracker item title in the search engine friendly URL'),
-			'description' => tra('Limit tracker item title in the number of character defined'),
+		'feature_sefurl_title_max_size' => [
+			'name' => tra('Max size of title in the search engine friendly URL (Tracker Items and Forum Threads)'),
+			'description' => tra('Limit tracker item / forum thread title in the number of character defined'),
 			'type' => 'text',
 			'filter' => 'digits',
 			'perspective' => false,
-			'dependencies' => ['feature_sefurl', 'feature_sefurl_title_trackeritem'],
+			'dependencies' => ['feature_sefurl'],
 			'default' => '200',
 		],
 		'feature_sefurl_tracker_prefixalias' => [

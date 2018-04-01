@@ -172,6 +172,9 @@ if ($access->is_serializable_request() && isset($_REQUEST['listonly'])) {
 	} elseif ($_REQUEST['listonly'] == 'trackername') {
 		$trackers = TikiLib::lib('trk')->get_trackers_containing($query);
 		$access->output_serialized($trackers);
+	} elseif ($_REQUEST['listonly'] == 'references') {
+		$references = TikiLib::lib('references')->getLibContaining($query);
+		$access->output_serialized($references);
 	}
 } elseif ($access->is_serializable_request() && isset($_REQUEST['zotero_tags'])) { // Handle Zotero Requests
 	$access->check_feature([ 'zotero_enabled' ]);

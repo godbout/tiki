@@ -68,6 +68,8 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 							{jq}$({{$inputId}}).tiki("autocomplete", "groupname", {multiple: true, multipleSeparator: "|"});{/jq}
 						{elseif $param.filter eq "username"}
 							{jq}$({{$inputId}}).tiki("autocomplete", "username", {multiple: true, multipleSeparator: "|"});{/jq}
+						{elseif $name eq "biblio_code"}
+							{jq}$({{$inputId}}).tiki("autocomplete", "reference", {multiple: true, multipleSeparator: ":"});{/jq}
 						{elseif $param.filter eq "date"}
 							{jq}$({{$inputId}}).tiki("datepicker");{/jq}
 						{/if}
@@ -145,8 +147,8 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 					});
 				{/jq}
 			{/if}
-
 		</form>
+		{include file="plugin/quick_add_references.tpl"}
 	</div>
 {/block}
 

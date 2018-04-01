@@ -30,5 +30,8 @@
 	{elseif $mid eq 'tiki-browse_categories.tpl'}
 		<link rel="canonical" href="{$base_url_canonical}{$parentId|sefurl:category}">
 		<meta content="{$base_url_canonical}{$parentId|sefurl:category}" property="og:url">
+	{elseif $mid eq 'tiki-list_file_gallery.tpl'}
+		<link rel="canonical" href="{$base_url_canonical}file{$galleryId}">
+		<meta content="{$base_url_canonical}file{$galleryId}" property="og:url">
 	{/if}
 {/if}

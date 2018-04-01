@@ -89,7 +89,7 @@ function tiki_route($path)
 	tiki_route_attempt_prefix('faq', 'tiki-view_faq.php', 'faqId');
 	tiki_route_attempt_prefix('file', 'tiki-list_file_gallery.php', 'galleryId');
 	tiki_route_attempt_prefix('forum', 'tiki-view_forum.php', 'forumId');
-	tiki_route_attempt_prefix('forumthread', 'tiki-view_forum_thread.php', 'comments_parentId');
+	tiki_route_attempt('|^forumthread(\d+)(\-.*)?$|', 'tiki-view_forum_thread.php', tiki_route_single(1, 'comments_parentId'));
 	tiki_route_attempt_prefix('calevent', 'tiki-calendar_edit_item.php', 'viewcalitemId');
 	tiki_route_attempt_prefix('gallery', 'tiki-browse_gallery.php', 'galleryId');
 	tiki_route_attempt_prefix('img', 'show_image.php', 'id');

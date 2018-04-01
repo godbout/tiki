@@ -29,6 +29,8 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 						'description' => tr('Field to get page name to create page name with.'),
 						'filter' => 'int',
 						'profile_reference' => 'tracker_field',
+						'parent' => 'input[name=trackerId]',
+						'parentkey' => 'tracker_id',
 					],
 					'namespace' => [
 						'name' => tr('Namespace for Wiki Page'),

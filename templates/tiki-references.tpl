@@ -1,177 +1,298 @@
 {* $Id$ *}
-{if $prefs.wikiplugin_addreference eq 'y'}
+{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
+{if $prefs.javascript_enabled !== 'y'}
+	{$js = 'n'}
+	{$libeg = '<li>'}
+	{$liend = '</li>'}
+{else}
+	{$js = 'y'}
+	{$libeg = ''}
+	{$liend = ''}
+{/if}
+{title help="References" admpage="wiki" url="tiki-references.php"}{tr}References{/tr}{/title}
+<div class="t_navbar margin-bottom-md">
+	{if isset($referenceinfo.ref_id)}
+		{button href="?add=1" class="btn btn-default" _text="{tr}Add a new library reference{/tr}"}
+	{/if}
+</div>
+{tabset name='tabs_admin_references'}
 
-	{jq}
-		jQuery(document).ready(function(){
-			jQuery('#main').find('input[type="text"]').each(function(){
-				jQuery(this).keydown(function(){
-					var id = jQuery(this).parents('form').attr('id');
-					var btn = jQuery('#save_'+id);
-					btn.removeAttr('disabled');
-				});
-			});
-		});
-	{/jq}
+	{* ---------------------- tab with list -------------------- *}
+{if $references|count > 0}
+	{tab name="{tr}References{/tr}"}
+		<h2>{tr}References{/tr}</h2>
+		<form method="get" class="form-horizontal small" action="tiki-references.php">
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="find">{tr}Find{/tr}</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control input-sm" id="find" name="find" value="{$find|escape}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-4" for="numrows">{tr}Number of displayed rows{/tr}</label>
+				<div class="col-sm-8">
+					<input class="form-control input-sm" type="number" id="maxRecords" name="maxRecords" value="{$maxRecords|escape}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-4">
+					<input type="submit" class="btn btn-default btn-sm" value="{tr}Find{/tr}" name="search">
+				</div>
+			</div>
+		</form>
+		<div id="admin_references-div">
+			<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv">
+				{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
+				<table id="admin_references" class="table normal table-striped table-hover" data-count="{$references|count}">
+					<thead>
+					<tr>
+						<th>
+							{tr}Biblio Code{/tr}
+						</th>
+						<th>
+							{tr}Author{/tr}
+						</th>
+						<th>
+							{tr}Year{/tr}
+						</th>
+						<th>
+							{tr}Title{/tr}
+						</th>
+						<th id="actions"></th>
+					</tr>
+					</thead>
+					<tbody>
+					{section name=reference loop=$references}
+						{$reference_code = $references[reference].biblio_code|escape}
+						<tr>
+							<td class="reference_code">
+								<a class="link tips" href="tiki-references.php?referenceId={$references[reference].ref_id}&details=1{if $prefs.feature_tabs ne 'y'}#tab2{/if}" title="{$reference_code}:{tr}Edit reference settings{/tr}">
+									{$reference_code}
+								</a>
+							</td>
+							<td class="reference_author">
+								{$references[reference].author|truncate:60|escape}
+							</td>
+							<td class="reference_year">
+								{$references[reference].year|escape}
+							</td>
+							<td class="reference_title">
+								{$references[reference].title|truncate:60|escape}
+							</td>
+							<td class="action">
+								{capture name=reference_actions}
+									{strip}
+										{$libeg}<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id details='1'}">
+										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+										</a>{$liend}
+										{$libeg}
+									<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id usage='1'}">
+										{icon name="link" _menu_text='y' _menu_icon='y' alt="{tr}Reference usage{/tr}"}
+										</a>{$liend}
+										{$libeg}
+									<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id action=delete}">
+										{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+										</a>{$liend}
+									{/strip}
+								{/capture}
+								{if $js === 'n'}
+								<ul class="cssmenu_horiz">
+									<li>{/if}
+										<a class="tips" title="{tr}Actions{/tr}" href="#"
+												{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.reference_actions}{/if}
+										   style="padding:0; margin:0; border:0">
+											{icon name='wrench'}
+										</a>
+										{if $js === 'n'}
+										<ul class="dropdown-menu" role="menu">{$smarty.capture.reference_actions}</ul>
+									</li>
+								</ul>
+								{/if}
+							</td>
+						</tr>
+					{/section}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	{pagination_links cant=$cant step=$maxRecords offset=$offset}
+		tiki-references.php?find={$find}&maxRecords={$maxRecords}
+	{/pagination_links}
+	{/tab}
+{/if}
+	{* ---------------------- tab with form -------------------- *}
+	<a id="tab2"></a>
+{if isset($referenceinfo.ref_id) && $referenceinfo.ref_id}
+	{$add_edit_reference_tablabel = "{tr}Edit reference{/tr}"}
+	{$schedulename = "<i>{$referenceinfo.biblio_code|escape}</i>"}
+{else}
+	{$add_edit_reference_tablabel = "{tr}Add a new library reference{/tr}"}
+	{$schedulename = ""}
+{/if}
 
-
-	<h2>{tr}Library References{/tr}: <a href="tiki-index.php?page={$page|escape:"url"}">{$page}</a></h2>
-
-	<div id="main">
-		{section name=i loop=$references}
-			<form action="tiki-references.php" method="post" id="{$references[i].ref_id|escape}" class="form-horizontal">
-				<input type="hidden" name="referenceId" value="{$references[i].ref_id|escape}">
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Biblio Code{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_biblio_code" id="ref_biblio_code" value="{$references[i].biblio_code|escape}" maxlength="50">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Author{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_author" id="ref_author" value="{$references[i].author|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Title{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_title" id="ref_title" value="{$references[i].title|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Year{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_year" id="ref_year" value="{$references[i].year|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Part{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_part" id="ref_part" value="{$references[i].part|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}URI{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_uri" id="ref_uri" value="{$references[i].uri|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Code{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_code" id="ref_code" value="{$references[i].code|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Publisher{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_publisher" id="ref_publisher" value="{$references[i].publisher|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Location{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_style" id="ref_location" value="{$references[i].location|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Style{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_style" id="ref_style" value="{$references[i].style|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Template{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_template" id="ref_template" value="{$references[i].template|escape}">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3"></label>
-					<div class="col-sm-7">
-						<input type="submit" class="btn btn-default btn-sm" name="editreference" value="{tr}Save{/tr}" id="save_{$references[i].ref_id|escape}" disabled="disabled">
-						<a title=":{tr}Delete{/tr}" class="btn btn-default btn-sm" href="tiki-references.php?action=delete&amp;referenceId={$references[i].ref_id}" >
-							{icon name='remove'}
-						</a>
-					</div>
-				</div>
-			</form>
-		{/section}
-		<div>
-			<form action="tiki-references.php" method="post" class="form-horizontal">
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Biblio Code{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_biblio_code" id="ref_biblio_code" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Author{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_author" id="ref_author" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Title{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_title" id="ref_title" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Year{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_year" id="ref_year" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Part{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_part" id="ref_part" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}URI{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_uri" id="ref_uri" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Code{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_code" id="ref_code" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Publisher{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_publisher" id="ref_publisher" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Location{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_style" id="ref_location" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Style{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_style" id="ref_style" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}Template{/tr}:</label>
-					<div class="col-sm-7">
-						<input type="text" size="40" class="form-control" name="ref_template" id="ref_template" value="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3"></label>
-					<div class="col-sm-7">
-						<input type="submit" class="btn btn-default btn-sm" name="addreference" value="{tr}Add{/tr}">
-					</div>
-				</div>
-			</form>
+{tab name="{$add_edit_reference_tablabel} {$schedulename}"}
+	<br>
+	<br>
+{if isset($referenceinfo.id) && $referenceinfo.ref_id}
+	<div class="row">
+		<div class="col-md-offset-2 col-md-6">
+			{remarksbox type="note" title="{tr}Information{/tr}"}
+			{tr}If you change the value of Biblio Code, you might loose the link between references{/tr}
+			{/remarksbox}
 		</div>
 	</div>
 {/if}
+	<form class="form form-horizontal" action="tiki-references.php" method="post" enctype="multipart/form-data" id="references-edit-form" name="RegForm" autocomplete="off">
+		{ticket}
+		{if empty($referenceinfo.biblio_code)}
+			<div class="form-group">
+				<label class="col-sm-2 control-label" for="add_ref_auto_biblio_code">{tr}Auto generate Biblio Code{/tr}:</label>
+				<div class="col-sm-10">
+					<input type="checkbox" class="form-check wikiedit" name="ref_auto_biblio_code" id="add_ref_auto_biblio_code" checked="checked" />
+				</div>
+			</div>
+		{/if}
+		<div class="form-group" id="ref_biblio_code_block" {if empty($referenceinfo.biblio_code)}style="display: none;"{/if}>
+			<label class="col-sm-3 col-md-2 control-label" for="ref_biblio_code">{tr}Biblio Code{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_biblio_code' class="form-control" name='ref_biblio_code' value="{$referenceinfo.biblio_code|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_author">{tr}Author{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_author' class="form-control" name='ref_author' value="{$referenceinfo.author|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}Title{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_title' class="form-control" name='ref_title' value="{$referenceinfo.title|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}Year{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_year' class="form-control" name='ref_year' value="{$referenceinfo.year|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}Part{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_part' class="form-control" name='ref_part' value="{$referenceinfo.part|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}URI{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_uri' class="form-control" name='ref_uri' value="{$referenceinfo.uri|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}Code{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_code' class="form-control" name='ref_code' value="{$referenceinfo.code|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}Publisher{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_publisher' class="form-control" name='ref_publisher' value="{$referenceinfo.publisher|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}Location{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_location' class="form-control" name='ref_location' value="{$referenceinfo.location|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}Style{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_style' class="form-control" name='ref_style' value="{$referenceinfo.style|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 col-md-2 control-label" for="ref_title">{tr}Template{/tr}</label>
+			<div class="col-sm-7 col-md-6">
+				<input type="text" id='ref_template' class="form-control" name='ref_template' value="{$referenceinfo.template|escape}">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-7 col-md-6 col-sm-offset-3 col-md-offset-2">
+				{if isset($referenceinfo.ref_id) && $referenceinfo.ref_id}
+					<input type="hidden" name="referenceId" value="{$referenceinfo.ref_id|escape}">
+					<input type="hidden" name="editreference" value="1">
+					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+				{else}
+					<input type="submit" class="btn btn-primary" name="addreference" value="{tr}Add{/tr}">
+				{/if}
+			</div>
+		</div>
+	</form>
+{/tab}
+	<a id="tab3"></a>
+{if isset($referenceinfo.ref_id) && $referenceinfo.ref_id}
+	{tab name="{tr}Reference usage{/tr}"}
+		<h2>{tr _0=$referenceinfo.biblio_code|escape}Pages using reference %0{/tr}</h2>
+		<table class="table normal table-striped table-hover">
+			<thead>
+			<tr>
+				<th>Page Name</th>
+			</tr>
+			</thead>
+			<tbody>
+			{section name=page loop=$pagereferences}
+				<tr>
+					<td>
+						<a href="{$pagereferences[page].pageName|sefurl}" class="link tips" title="{$pagereferences[page].pageName|escape}:{tr}View page{/tr}">
+							{$pagereferences[page].pageName|truncate:$prefs.wiki_list_name_len:"...":true|escape}
+						</a>
+					</td>
+				</tr>
+			{/section}
+			</tbody>
+		</table>
+	{/tab}
+{/if}
+{/tabset}
+{if empty($referenceinfo.biblio_code)}
+	{jq}
+		$('#add_ref_auto_biblio_code').click(function(){
+		if ($('#add_ref_auto_biblio_code').is(':checked')) {
+		$('#ref_biblio_code_block').hide();
+		$('#ref_biblio_code').val('');
+		} else {
+		$('#ref_biblio_code_block').show();
+		}
+		});
+	{/jq}
+{/if}
+{jq}
+	$('#references-edit-form').submit(function(event){
+	var ck_code = /^[A-Za-z0-9]+$/;
+	{* var ck_uri = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2, }){1, 3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/; *}
+	var ck_year = /^[1-2][0-9][0-9][0-9]$/;
+	if (!$('#add_ref_auto_biblio_code').is(':checked') && $('#ref_biblio_code').val() == '') {
+	alert('Please fill the biblio code field or enable biblio code auto generator');
+	return false;
+	}
+	if(!$('#add_ref_auto_biblio_code').is(':checked') && !ck_code.test($('#ref_biblio_code').val())){
+	alert('Biblio code is not valid');
+	return false;
+	}
+	{* if(!$('#add_ref_uri').val() == '' &&  !ck_uri.test($('#add_ref_uri').val())){
+		alert('uri no valid');
+		return false;
+	} *}
+	if(!$('#ref_author').val().trim()){
+	alert('Author is not valid');
+	return false;
+	}
+	if(!$('#ref_year').val() == '' && !ck_year.test($('#ref_year').val())){
+	alert('Year is not valid');
+	return false;
+	}
+	return true;
+	})
+{/jq}
