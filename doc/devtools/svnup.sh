@@ -33,6 +33,16 @@
 # Make display of log an option
 
 rm -f last.log
+# memo 2018-02-07
+# a little warning: running an svn update in trunk might result in a version
+# of Tiki which requires a newer version of PHP than installed on the system.
+# By running this script in a cronjob you might break your Tiki installation.
+# There are some version checks in the (quick and dirty) script
+# local/checkit.sh
+# which compares PHP installed version with PHP required version.
+#
+# TODO Todo todo: merge local/checkit.sh with this script
+#
 svn update > last.log
 
 # update composer and file perms

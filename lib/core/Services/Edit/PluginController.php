@@ -236,6 +236,8 @@ class Services_Edit_PluginController
 	/**
 	 * Replace plugin in wiki content
 	 * Migrated from tiki-wikiplugin_edit.php
+	 * 
+	 * FIXME: No verification that the replaced call was not changed during edition. Should probably check a fingerprint of the plugin call.
 	 *
 	 * FIXME: No verification that the replaced call was not changed during edition. Should probably check a fingerprint of the plugin call.
 	 *

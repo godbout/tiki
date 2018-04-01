@@ -31,7 +31,6 @@ class Table_Code_MainOptions extends Table_Code_Manager
 		$mo = [];
 
 		$mo[] = 'showProcessing: true';
-		$mo[] = 'ignoreCase: false';
 
 		/***  onRenderHeader option - change html elements before table renders. Repeated for each column. ***/
 		$orh = [];
@@ -116,7 +115,7 @@ class Table_Code_MainOptions extends Table_Code_Manager
 					$orh[$col] .= '.' . $attr . '(\'' . $args . '\')';
 				}
 				$orh[$col] .= ';}';
-				$headers[] = "'$col': { filter: 'text', sorter: 'text' }";
+				$headers[] = $col . ": { sorter: 'textextractor' }";
 			}
 			unset($col, $info);
 		}
@@ -142,7 +141,7 @@ class Table_Code_MainOptions extends Table_Code_Manager
 		if (count($headers) > 0) {
 			$mo[] = $this->iterate($headers, 'headers: {', '}', '', '', ', ', ', ' );
 		}
-
+            
 		/*** widgets ***/
 		//standard ones
 		$w[] = 'stickyHeaders';

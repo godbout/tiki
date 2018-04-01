@@ -24,6 +24,8 @@ if (isset($_REQUEST['del'])) {
 		die;
 	}
 }
+$smarty->assign('metatag_robots', 'NOINDEX, FOLLOW');
+
 if ($freetaglib->count_tags() == 0) {
 	$smarty->assign('msg', tra("Nothing tagged yet") . '.');
 	$smarty->display("error.tpl");

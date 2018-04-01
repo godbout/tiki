@@ -230,11 +230,7 @@ if ( \$('#$id') ) {
 		}
 
 		// remove tiki comments first
-		if ($this->option['ck_editor']) {
-			$data = preg_replace(';~tc~(.*?)~/tc~;s', '<tikicomment>$1</tikicomment>', $this->markup);
-		} else {
-			$data = preg_replace(';~tc~(.*?)~/tc~;s', '', $this->markup);
-		}
+		$data = preg_replace(';~tc~(.*?)~/tc~;s', '', $this->markup);
 
 		$this->parse_wiki_argvariable($data);
 
@@ -250,6 +246,9 @@ if ( \$('#$id') ) {
 		$this->strip_unparsed_block($data, $noparsed, true);
 		if (! $this->option['noparseplugins'] || $this->option['stripplugins']) {
 			$this->parse_first($data, $preparsed, $noparsed);
+			
+			/* While re-calling this is surely sub-optimal, it seems intentional (cf r23940).
+			If I understand the commit message, re-called because plugins can alter $_GET. Perhaps the first call should be made only if this one won't be made. Chealer 2018-10-16 */
 			$this->parse_wiki_argvariable($data);
 		}
 

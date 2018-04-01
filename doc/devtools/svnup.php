@@ -6,6 +6,10 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+// Warning: this script does not check the required and available PHP versions
+// before doing an update. That might result in a broken Tiki installation.
+// TODO Todo todo: fix this with ideas from svnup.sh
+
 namespace Tiki\Command;
 
 use Symfony\Component\Console\Command\Command;
@@ -22,6 +26,8 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 	die('Only available through command-line.');
 }
 $tikiBase = realpath(dirname(__FILE__) . '/../..');
+
+chdir($tikiBase);
 
 // will output db errors if 'php svnup.php dbcheck' is called
 if (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] === 'dbcheck') {
@@ -371,6 +377,7 @@ class SvnUpCommand extends Command
 					$shellCom .= ' -vvv';
 				}
 
+				putenv('SHELL_VERBOSITY'); // Clear the environment variable, since console.php (Symfony console application) will pick this value if set
 				$this->OutputErrors($logger, shell_exec($shellCom . ' 2>&1'), 'Problem Rebuilding Index', $errors, ! $input->getOption('no-db'));   // 2>&1 suppresses all terminal output, but allows full capturing for logs & verbiage
 			}
 		}

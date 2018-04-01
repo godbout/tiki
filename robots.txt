@@ -31,7 +31,7 @@ User-agent: *
 
 
 # This is to slow down any crawling so as not to put pressure on your server
-Crawl-Delay: 30
+Crawl-Delay: 10
 
 #filter out crawling that applies in all situations
 Disallow: /temp/

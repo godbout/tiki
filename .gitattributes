@@ -93,6 +93,10 @@ doc/devtools/csscheck.sh -text
 doc/devtools/cssmap.pl -text
 doc/devtools/diffsql.cmd -text
 doc/devtools/diffsql.sh -text
+doc/devtools/etc/update/_htaccess -text
+doc/devtools/etc/update/phpinfo.php.bin -text
+doc/devtools/etc/update/phpversion.php.bin -text
+doc/devtools/etc/update/software-versions-required.txt -text
 doc/devtools/experimental/index.php -text
 doc/devtools/experimental/unzip/index.php -text
 doc/devtools/experimental/unzip/unzipper.php -text
@@ -138,6 +142,7 @@ doc/devtools/sqlupgrade.sh -text
 doc/devtools/stripbraces.pl -text
 doc/devtools/stripcomments.php -text
 doc/devtools/stripcomments.pl -text
+doc/devtools/svn-update-check.sh -text
 doc/devtools/svnbranch.php -text
 doc/devtools/svnbranchreview.php -text
 doc/devtools/svnbranchupdate.php -text
@@ -174,6 +179,8 @@ doc/devtools/update_english_strings.php -text
 doc/devtools/upto_4.1_delete_all_cetgory_perms.sql -text
 doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
 doc/devtools/upto_7_drop_unused_6.x_tables.sql -text
+doc/devtools/var/lock/dummy.lock -text
+doc/devtools/var/log/update/update.log -text
 doc/index.php -text
 doc/longterm.cycle -text
 doc/readme.txt -text
@@ -5900,6 +5907,7 @@ templates/password_jq.tpl -text
 templates/permission_link.tpl -text
 templates/plugin/edit.tpl -text
 templates/plugin/list.tpl -text
+templates/plugin/quick_add_references.tpl -text
 templates/plugins/index.php -text
 templates/poll.tpl -text
 templates/prefs/flag.tpl -text

@@ -1798,6 +1798,7 @@
 		"twitter/bootstrap": ">=3.3.6",
 		"undojs/undojs": "1",
 		"webmozart/assert": ">=1.0.2",
+		"wimg/php-compatibility": ">=8.1",
 		"zendframework/zend-captcha": ">=2.4",
 		"zendframework/zend-code": ">=2.4",
 		"zendframework/zend-config": ">=2.4",

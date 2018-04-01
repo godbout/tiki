@@ -126,25 +126,7 @@ if (isset($_REQUEST['refresh'])) {
 	$tikilib->invalidate_cache($page);
 }
 
-// Here's where the data is parsed
-// if using cache
-//
-// get cache information
-// if cache is valid then pdata is cache
-// else
-// pdata is parse_data
-//   if using cache then update the cache
-// assign_by_ref
 $smarty->assign('cached_page', 'n');
-
-// Get ~pp~, ~np~ and <pre> out of the way. --rlpowell, 24 May 2004
-$preparsed = [];
-$noparsed = [];
-$parserlib->parse_first($info["data"], $preparsed, $noparsed);
-
-$pdata = $wikilib->get_parse($page, $canBeRefreshed);
-
-$pdata = str_replace('tiki-index.php', 'tiki-index_p.php', $pdata);
 
 if (! isset($_REQUEST['pagenum'])) {
 	$_REQUEST['pagenum'] = 1;

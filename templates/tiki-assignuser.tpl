@@ -77,12 +77,8 @@
 {* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
 {if $prefs.javascript_enabled !== 'y'}
 	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
 {else}
 	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
 {/if}
 
 <form method="post" action="tiki-assignuser.php{if $assign_user}?assign_user={$assign_user|escape:'url'}{/if}">
@@ -114,32 +110,19 @@
 
 				{/if}</td>
 				<td class="action">
-					{capture name=assign_user_actions}
+					{actions}
 						{strip}
 							{if $users[user].what ne 'real'}
-								{$libeg}<a href="tiki-assignuser.php?{if $offset}offset={$offset}&amp;{/if}maxRecords={$prefs.maxRecords}&amp;sort_mode={$sort_mode}&amp;action=assign&amp;group={$users[user].groupName|escape:url}{if $assign_user}&amp;assign_user={$assign_user|escape:url}{/if}">
+								<action><a href="tiki-assignuser.php?{if $offset}offset={$offset}&amp;{/if}maxRecords={$prefs.maxRecords}&amp;sort_mode={$sort_mode}&amp;action=assign&amp;group={$users[user].groupName|escape:url}{if $assign_user}&amp;assign_user={$assign_user|escape:url}{/if}">
 									{icon name='add' _menu_text='y' _menu_icon='y' alt="{tr}Assign{/tr}"}
-								</a>{$liend}
+								</a></action>
 							{elseif $users[user].groupName ne "Registered"}
-								{$libeg}<a href="tiki-assignuser.php?{if $offset}offset={$offset}&amp;{/if}maxRecords={$prefs.maxRecords}&amp;sort_mode={$sort_mode}{if $assign_user}&amp;assign_user={$assign_user|escape:url}{/if}&amp;action=removegroup&amp;group={$users[user].groupName|escape:url}">
+								<action><a href="tiki-assignuser.php?{if $offset}offset={$offset}&amp;{/if}maxRecords={$prefs.maxRecords}&amp;sort_mode={$sort_mode}{if $assign_user}&amp;assign_user={$assign_user|escape:url}{/if}&amp;action=removegroup&amp;group={$users[user].groupName|escape:url}">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Unassign{/tr}"}
-								</a>{$liend}
+								</a></action>
 							{/if}
 						{/strip}
-					{/capture}
-					{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-					<a
-						class="tips"
-						title="{tr}Actions{/tr}"
-						href="#"
-						{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.assign_user_actions}{/if}
-						style="padding:0; margin:0; border:0"
-					>
-						{icon name='wrench'}
-					</a>
-					{if $js === 'n'}
-						<ul class="dropdown-menu" role="menu">{$smarty.capture.assign_user_actions}</ul></li></ul>
-					{/if}
+					{/actions}
 				</td>
 			</tr>
 		{/if}

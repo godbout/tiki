@@ -237,7 +237,7 @@
 				{preference name=feature_redirect_on_error}
 				{preference name='feature_wiki_1like_redirection'}
 				<hr>
-				{preference name='permission_denied_login_box' mode='invert'}
+				{preference name='permission_denied_login_box' mode='invert'}{* Is also in the login panel *}
 				<div class="adminoptionboxchild" id="permission_denied_login_box_childcontainer">
 					<div style="text-indent: 28%">
 						<strong>{tr}or{/tr}</strong>
