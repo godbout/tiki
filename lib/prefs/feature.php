@@ -114,7 +114,8 @@ function prefs_feature_list($partial = false)
 			'tags' => ['experimental'],
 		],
 		'feature_image_galleries_comments' => [
-			'name' => tra('Comments'),
+			'name' => tra('Image Gallery Comments'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -1247,18 +1248,20 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Allow anonymous users to participate in voting'),
 			'type' => 'flag',
 			'default' => 'n',
+			'hint' => tr('This can be overridden by specific permissions.'),
 			'tags' => ['basic'],
 		],
 		'feature_poll_revote' => [
 			'name' => tra('Allow re-voting'),
-			'description' => tra('permit multiple votes'),
+			'description' => tra('Visitors can vote mulitiple times for a poll.'),
 			'type' => 'flag',
 			'default' => 'y',
+			'details' => tr('When logged in, Tiki tracks users by username or otherwise IP address.'),
 			'tags' => ['basic'],
 		],
 		'feature_poll_comments' => [
 			'name' => tra('Comments for polls'),
-			'description' => tra('Permit commenting on polls'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_polls',
@@ -1269,7 +1272,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_faq_comments' => [
 			'name' => tra('Comments for FAQs'),
-			'description' => tra('Permit commenting on FAQs'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_faqs',
@@ -1399,7 +1402,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_article_comments' => [
 			'name' => tra('Comments on articles'),
-			'description' => tra('Enable comments on articles'),
+			'description' => tra('Users with permission can post or reply to comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_articles',
@@ -1532,34 +1535,34 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_search_show_search_box' => [
 			'name' => tra('Search box'),
-			'description' => tra('make the search box visible'),
+			'description' => tra('Shows a search box above the search results to do additional searches.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'feature_search_show_visit_count' => [
 			'name' => tra('Visits'),
-			'description' => tra('show number of visits'),
+			'description' => tra('Include the number of visits in the search results.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
 		],
 		'feature_search_show_pertinence' => [
 			'name' => tra('Relevance'),
-			'description' => tra('enable searching by relevance'),
+			'description' => tra('Display Tiki\'s estimate of the relevance of search matches in the search results.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
 		],
 		'feature_search_show_object_type' => [
 			'name' => tra('Object type'),
-			'description' => tra('search for a specific object type'),
+			'description' => tra('Shows object type filters above the search results to further reduce search results by object type.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
 		],
 		'feature_search_show_last_modification' => [
 			'name' => tra('Last-modified date'),
-			'description' => tra('Show the last-modified date'),
+			'description' => tra('Show the last-modified date in search results.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
@@ -1582,7 +1585,7 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_blogposts_comments' => [
-			'name' => tra('Comments on blog posts'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_blogs',
@@ -1608,7 +1611,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_file_galleries_comments' => [
 			'name' => tra('File gallery comments'),
-			'description' => tra('Users can post comments on file galleries'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'help' => 'Comments',
 			'default' => 'n',
@@ -1682,7 +1685,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_forum_allow_flat_forum_quotes' => [
 			'name' => tra('Allows quoting in flat forums'),
-			'description' => tra('Allows users to reply/'),
+			'description' => tra('Allows users to reply.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
@@ -2112,7 +2115,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_comments' => [
 			'name' => tra('Comments below wiki pages'),
-			'description' => tra('Allow users (with permission) to post threaded comments to a page.'),
+			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'help' => 'Comments',
 			'dependencies' => [
@@ -2403,8 +2406,9 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_wiki_paragraph_formatting_add_br' => [
-			'name' => tra('...but still create line breaks within paragraphs'),
+			'name' => tra('Create line breaks within paragraphs'),
 			'type' => 'flag',
+			'description' => tra('When Wiki paragraph formatting is enabled, this option creates line breaks within paragraphs.'),
 			'default' => 'y',
 		],
 		'feature_wiki_monosp' => [

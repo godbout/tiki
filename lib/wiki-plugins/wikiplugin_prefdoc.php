@@ -50,9 +50,6 @@ function wikiplugin_prefdoc($data, $params)
 
 	$Doc = new PrefsDoc();
 
-	if (is_readable('storage/prefsdoc/state.json')) {
-		$Doc->state = json_decode(file_get_contents("storage/prefsdoc/state.json"));
-	}
 	if (! $Doc->genPrefsState()) {
 		return $Doc->error;
 	}
@@ -66,6 +63,7 @@ function wikiplugin_prefdoc($data, $params)
 	}
 	return $Doc->error . $Doc->docTable;
 }
+
 
 
 /**
@@ -83,12 +81,13 @@ function wikiplugin_prefdoc($data, $params)
  * @var $docTable string The output to be sent to displayed, in wiki format
  *
  */
+
+
 class PrefsDoc extends TWVersion
 {
 
 	public $docTable;
 	public $error;
-	public $state;
 	private $PrefVars;
 	private $prevFilePrefs;
 	private $fileCount;
@@ -111,12 +110,19 @@ class PrefsDoc extends TWVersion
 	public function genPrefHistory($tabName, $images)
 	{
 
-		if (! isset($this->state->files->{$tabName})) {
+		$version = (int)$this->getBaseVersion();
+		if (! is_file("storage/prefsdoc/$version-$tabName.json")) {
 			$this->error .= "Error: <strong>Cant find $tabName</strong> you may choose from one of the following: \n" . $this->genPrefCodes();
 			return false;
 		}
+		$file = json_decode(file_get_contents("storage/prefsdoc/$version-$tabName.json"));
 
-		$this->docTable = '{TABS(name="' . $tabName . '" tabs="Tiki Version ' . implode('|', $this->state->files->{$tabName}) . "\" toggle=\"n\")}";
+		while ($version >= $file->oldest) {
+			$versions[] = $version;
+			$version --;
+		}
+
+		$this->docTable = '{TABS(name="' . $tabName . '" tabs="Tiki Version ' . implode('|', $versions) . "\" toggle=\"n\")}";
 		$imageArray = [];
 		$images = explode('|', $images);
 		foreach ($images as $key => $image) {
@@ -127,7 +133,7 @@ class PrefsDoc extends TWVersion
 		unset($images);
 
 		// carry over images from past versions of Tiki, if available.
-		foreach ($this->state->files->{$tabName} as $key => $version) {
+		foreach ($versions as $version) {
 			$count = $version;
 			while ($version - $count < 5) {         // If the image is older than 5 tiki versions, dont display it.
 				if (@$imageArray[$count][0]) {
@@ -137,8 +143,7 @@ class PrefsDoc extends TWVersion
 				$count--;
 			}
 			$this->genPrefVersion("storage/prefsdoc/$version-$tabName.json");
-			$key ++;
-			if (isset($this->state->files->{$tabName}[$key])) {
+			if ($file->oldest !== $version) {
 				$this->docTable .= "/////\n";
 			}
 		}
@@ -157,19 +162,24 @@ class PrefsDoc extends TWVersion
 	public function genPrefCodes()
 	{
 
-		$codes = '';
-		foreach ($this->state->files as $key => $value) {
-			$codes .= $key . '<br>';
+		$version = (int)$this->getBaseVersion();
+		$files = glob('storage/prefsdoc/' . $version . '-*.json');
+		if (! $files) {
+			return 'There was no files found, please Clear All Caches to reindex files.';
 		}
-
-		return $codes;
+		foreach ($files as $key => $file) {
+			$file = substr($file, 20);
+			$files[$key] = substr($file, 0, -5);
+		}
+		$files = implode('<br>', $files);
+		return $files;
 	}
 
 	/**
 	 *
 	 * Generates a wiki syntax table for a specific version of tiki
 	 *
-	 * @param string $fileName The file name to write to disk.
+	 * @param string $fileName  The file name to write to disk.
 	 *
 	 * @return bool false on error, true otherwise
 	 */
@@ -204,7 +214,7 @@ class PrefsDoc extends TWVersion
 				$pref->warning = @$this->prevFilePrefs->$prefName->warning;
 			}
 			$this->setParams($pref);
-			$this->docTable .= $this->prefName . '~|~' . $this->prefDescription . '~|~<span title="' . $this->prefDefaultFull . '">' . $this->prefDefault . "</span>\n";
+			$this->docTable .= $this->prefName . '~|~' . $this->prefDescription . '~|~<span title="'.$this->prefDefaultFull.'">' . $this->prefDefault . "</span>\n";
 		}
 		$this->prevFilePrefs = $FilePrefs->prefs;
 		$this->docTable .= "{FANCYTABLE}";
@@ -227,7 +237,7 @@ class PrefsDoc extends TWVersion
 		} elseif ($param->default === 'n') {
 			$this->prefDefault = 'Disabled';
 		} elseif ($param->default === 'y') {
-			$this->prefDefault = 'Enabled';                        // Change default codes to human readable format
+			$this->prefDefault = 'Enabled';						// Change default codes to human readable format
 		} elseif (is_array($param->default)) {
 			$this->prefDefault = implode(', ', $param->default);
 		} else {
@@ -239,8 +249,8 @@ class PrefsDoc extends TWVersion
 			$this->prefDefault = '~~gray:None~~';
 		} elseif (! empty($param->units)) {
 			$this->prefDefault .= ' ' . $param->units;
-		} elseif (! preg_match('/\W/', $this->prefDefault)) {                // if Pref is a singe word
-			$this->prefDefault = ucfirst($this->prefDefault);                    // then caps the first letter.
+		} elseif (! preg_match('/\W/', $this->prefDefault)) {				// if Pref is a singe word
+			$this->prefDefault = ucfirst($this->prefDefault);					// then caps the first letter.
 		} else {
 			if (strlen($this->prefDefault) > 30) {
 				$this->prefDefaultFull = $this->wikiConvert($this->prefDefault, true);
@@ -281,7 +291,7 @@ class PrefsDoc extends TWVersion
 			if ($this->prefDescription) {					// new line if existing content
 				$this->prefDescription .= '<br>';
 			}
-			$this->prefDescription .= '<span class="fa fa-exclamation-triangle text-warning" title="Warning"></span><i> ' . $param->warning . '</i>';
+				$this->prefDescription .= '<span class="fa fa-exclamation-triangle text-warning" title="Warning"></span><i> ' . $param->warning . '</i>';
 		}
 		// display list of options
 		if (! empty($param->options)) {
@@ -291,8 +301,8 @@ class PrefsDoc extends TWVersion
 				if ($count) {
 					$options .= ' | ';
 				}
-				$options .= $option;
-				$count++;
+					$options .= $option;
+					$count++;
 			}
 			if ($count) {											// If options exist, then add them
 				if ($this->prefDescription) {						// new line if existing content
@@ -359,14 +369,19 @@ class PrefsDoc extends TWVersion
 
 	public function genPrefsState()
 	{
-		if ($this->state->version === $this->getBaseVersion()) {
-			return true;
-		}
 
 		if (! is_dir('storage/prefsdoc')) {
 			if (! mkdir('storage/prefsdoc')) {            // create subdir for housing generated files, if it does not exist
-				$this->error .= "Cant create storage/prefsdoc directory.";
+				$this->error .= "Cant create storage/prefsdoc directory. ";
 				return false;
+			}
+		}
+
+		// check if the current prefs doc is up to date, if its not, continue
+		if (is_file('storage/prefsdoc/state.json')) {
+			$state = json_decode(file_get_contents('storage/prefsdoc/state.json'));
+			if ($state->version === $this->getBaseVersion()) {
+				return true;
 			}
 		}
 
@@ -383,28 +398,15 @@ class PrefsDoc extends TWVersion
 					if (! $this->writeFile($tabName, $tab)) {
 						return false;
 					}
-					$this->prefCount++;
+					$this->prefCount ++;
 				}
 			}
 		}
 		// record the state so its easy to figure out whats what next time.
-		$preState = (object)[];
-		$files = scandir('storage/prefsdoc/');
-		foreach ($files as $file) {
-			if (preg_match('/^([\d]+)-([a-z-]+).json$/', $file, $matches)) {    // return version number and tab name, filtering out non-matching files
-				$preState->{$matches[2]}[] = (int)$matches[1];
-			}
-		}
-		foreach ($preState as $key => $tabState) {                                        // sort the versions from high to low
-			rsort($preState->$key);
-		}
-
-		$this->state = json_encode([
+		$state = json_encode([
 			'version' => $this->getBaseVersion(),
-			'created' => time(),
-			'files'   => $preState]);
-		file_put_contents('storage/prefsdoc/state.json', $this->state);
-		$this->state = json_decode($this->state);
+			'created' => time()]);
+		file_put_contents('storage/prefsdoc/state.json', $state);
 
 		$logslib = TikiLib::lib('logs');
 		$logslib->add_log('prefDoc', $this->fileCount . ' pref doc files generated/updated covering ' . $this->prefCount . ' prefs');
@@ -424,7 +426,7 @@ class PrefsDoc extends TWVersion
 			if ($fileName !== 'index.php' && substr($fileName, -4) === '.php') {  // filter out any file thats not a pref file
 				require_once('lib/prefs/' . $fileName);
 				$callVar = 'prefs_' . substr($fileName, 0, -4) . '_list';
-				$prefs = array_merge($prefs, $callVar());            // create one big var with all the pref info
+				$prefs = array_merge($prefs, $callVar());			// create one big var with all the pref info
 			}
 		}
 		// Sanitise specific output
@@ -445,23 +447,23 @@ class PrefsDoc extends TWVersion
 	private function getAdminUIPrefs($fileName)
 	{
 		$file = file_get_contents('templates/admin/' . $fileName);
-		$fileName = substr(substr($fileName, 8), 0, -4);                        // prepare the file name for further use
+		$fileName = substr(substr($fileName, 8), 0, -4);						// prepare the file name for further use
 		$count = preg_match_all('/{tab name="?\'?(?:{tr})?([\w\s]*)(?:{\/tr})?"?\'?.*?}([\w\W]*?){\/tab}/i', $file, $tabs);
 		if ($count) {
 			while ($count >= 1) {
 				$count--;
 				$prefs = [];
-				preg_match_all('/{preference.*name="?\'?(\w*)"?\'?.*}/i', $tabs[2][$count], $prefs);                    // Generate array of all the prefs
-				$tabs[1][$count] = mb_ereg_replace('\W', '', strtolower($tabs[1][$count]));                // sanitize the tab name for disk
+				preg_match_all('/{preference.*name="?\'?(\w*)"?\'?.*}/i', $tabs[2][$count], $prefs);					// Generate array of all the prefs
+				$tabs[1][$count] = mb_ereg_replace('\W', '', strtolower($tabs[1][$count]));				// sanitize the tab name for disk
 				foreach ($prefs[1] as $pref) {
-					if ($this->PrefVars[$pref]['name']) {                                                                        // dont save prefs that have no name
-						$tabPrefs[$fileName . '-' . $tabs[1][$count]][$pref] = $this->PrefVars[$pref];                        // Add full pref info in right order
+					if ($this->PrefVars[$pref]['name']) {																		// dont save prefs that have no name
+						$tabPrefs[$fileName . '-' . $tabs[1][$count]][$pref] = $this->PrefVars[$pref];						// Add full pref info in right order
 					}
 				}
 			}
 		} elseif (preg_match_all('/{preference.*name="?\'?(\w*)"?\'?.*}/i', $file, $prefs)) {
 			foreach ($prefs[1] as $pref) {
-				$tabPrefs[$fileName][$pref] = $this->PrefVars[$pref];            // Add full pref info in right order
+				$tabPrefs[$fileName][$pref] = $this->PrefVars[$pref];			// Add full pref info in right order
 			}
 		}
 
@@ -482,11 +484,16 @@ class PrefsDoc extends TWVersion
 	private function writeFile($tabName, $prefs)
 	{
 		$version = (int)$this->getBaseVersion();
-
+		$oldest = $version;
 		$tabName = '-' . $tabName . '.json';                // Name of file to be written, minus prefex
 
+		while (is_file('storage/prefsdoc/' . ($oldest - 1) . $tabName)) {
+			$oldest--;
+		}
+
 		$prefs = json_encode([
-			'prefs' => $prefs,
+			'oldest' => $oldest,
+			'prefs'  => $prefs,
 		]);
 
 		if (is_file('storage/prefsdoc/' . $version . $tabName)) {

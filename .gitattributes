@@ -86,6 +86,7 @@ doc/devtools/check_filegal_dir.php -text
 doc/devtools/check_tiki-new.php -text
 doc/devtools/check_tiki.php -text
 doc/devtools/cleanwatch.sh -text
+doc/devtools/clear_tracker_fast.sql -text
 doc/devtools/composer_http_mode.php -text
 doc/devtools/convert_templates_prefs-2.0.php -text
 doc/devtools/convert_tpl_ajax.php -text

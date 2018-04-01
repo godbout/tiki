@@ -26,11 +26,6 @@
 		<div class="submit">
 			<input type="hidden" name="confirm" value="1">
 			<input type="submit" class="btn btn-primary" name="import" value="{tr}Import{/tr}">
-			{if isset($confirm)}
-				<a class="btn btn-default" href="tiki-admin_menu_options.php?menuId={$menuId}">
-					{icon name="list"} {tr}Menu Options{/tr}
-				</a>
-			{/if}
 		</div>
 	</form>
 {/block}
