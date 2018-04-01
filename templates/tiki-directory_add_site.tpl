@@ -17,26 +17,26 @@
 		</div>
 		<div class="form-horizontal">
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Name{/tr}</label>
+				<label class="col-sm-3 text-right">{tr}Name{/tr}</label>
 				<div class="col-sm-7">
 					{$info.name}
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Description{/tr}</label>
+				<label class="col-sm-3 text-right">{tr}Description{/tr}</label>
 				<div class="col-sm-7">
 					{$info.description}
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}URL{/tr}</label>
+				<label class="col-sm-3 text-right">{tr}URL{/tr}</label>
 				<div class="col-sm-7">
 					{$info.url}
 				</div>
 			</div>
 			{if $prefs.directory_country_flag eq 'y'}
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Country{/tr}</label>
+				<label class="col-sm-3 text-right">{tr}Country{/tr}</label>
 				<div class="col-sm-7">
 					{$info.country}
 				</div>

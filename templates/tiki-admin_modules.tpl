@@ -4,7 +4,7 @@
 {title help="Modules" admpage="module"}{tr}Admin Modules{/tr}{/title}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-admin_modules.php?clear_cache=1" _icon_name="trash" _text="{tr}Clear Cache{/tr}"}
+	{button href="tiki-admin_modules.php?clear_cache=1" _icon_name="trash" _text="{tr}Clear Cache{/tr}"}&nbsp;
 	{if empty($smarty.request.show_hidden_modules)}
 		{button show_hidden_modules="y" _icon_name="ok" _text="{tr}Show hidden modules{/tr}"}
 	{else}
@@ -344,15 +344,15 @@
 			{/if}
 			{if $banners}
 				<div class="form-group">
-					<label class="col-sm-3 control-label">{tr}Banner zones{/tr}</label>
-					<div class="col-sm-6 col-sm-offset-1">
+					<label class="col-sm-4 control-label">{tr}Banner zones{/tr}</label>
+					<div class="col-sm-6">
 						<select name="banners" id='list_banners' class="form-control">
 							{section name=ix loop=$banners}
 								<option value="{literal}{{/literal}banner zone={$banners[ix].zone}{literal}}{/literal}">{$banners[ix].zone}</option>
 							{/section}
 						</select>
 					</div>
-					<div class="col-sm-1">
+					<div class="col-sm-2">
 						<a class="tips" href="javascript:setUserModuleFromCombo('list_banners', 'um_data');" title=":{tr}Use banner zone{/tr}">{icon name='add' alt="{tr}Use{/tr}"}</a>
 						<a title="{tr}Help{/tr}" {popup text="Params: zone= target=_blank|_self|" width=100 center=true}>{icon name='help'}</a>
 					</div>

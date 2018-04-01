@@ -107,7 +107,9 @@
 							{/foreach}
 						</select>
 					{else}
-						{$listcals[$calitem.calendarId].name|escape}
+						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+							{$listcals[$calitem.calendarId].name|escape}
+						</div>
 					{/if}
 				</div>
 			</div>
@@ -118,9 +120,9 @@
 					{if $edit}
 						<input type="text" name="save[name]" value="{$calitem.name|escape}" size="32" class="form-control">
 					{else}
-						<span class="summary">
+						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
 							{$calitem.name|escape}
-						</span>
+						</div>
 					{/if}
 				</div>
 
@@ -128,9 +130,9 @@
 			<div class="form-group">
 				<label class="control-label col-md-3">{tr}Created by{/tr}</label>
 				<div class="col-md-9">
-					<span class="summary">
+					<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
 							{$calitem.user|escape}
-					</span>
+					</div>
 
 				</div>
 			</div>
@@ -426,15 +428,17 @@ $("#id_recurrent").click(function () {
 					</label>
 				{else}
 					<div class="col-md-9">
-						{if $calitem.allday}
-							<abbr class="dtstart" title="{$calitem.start|tiki_short_date:'n'}">
-								{$calitem.start|tiki_long_date}
-							</abbr>
-						{else}
-							<abbr class="dtstart" title="{$calitem.start|isodate}">
-								{$calitem.start|tiki_long_datetime}
-							</abbr>
-						{/if}
+						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+							{if $calitem.allday}
+								<abbr class="dtstart" title="{$calitem.start|tiki_short_date:'n'}">
+									{$calitem.start|tiki_long_date}
+								</abbr>
+							{else}
+								<abbr class="dtstart" title="{$calitem.start|isodate}">
+									{$calitem.start|tiki_long_datetime}
+								</abbr>
+							{/if}
+						</div>
 					</div>
 				{/if}
 			</div> <!-- / .form-group -->
@@ -462,23 +466,25 @@ $("#id_recurrent").click(function () {
 					</div>
 				{else}
 					<div class="col-md-9">
-						{if $calitem.allday}
-							{if $calitem.end}
-								<abbr class="dtend" title="{$calitem.end|tiki_short_date:'n'}">
+						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+							{if $calitem.allday}
+								{if $calitem.end}
+									<abbr class="dtend" title="{$calitem.end|tiki_short_date:'n'}">
+								{/if}
+								{$calitem.end|tiki_long_date}
+								{if $calitem.end}
+									</abbr>
+								{/if}
+							{else}
+								{if $calitem.end}
+									<abbr class="dtend" title="{$calitem.end|isodate}">
+								{/if}
+								{$calitem.end|tiki_long_datetime}
+								{if $calitem.end}
+									</abbr>
+								{/if}
 							{/if}
-							{$calitem.end|tiki_long_date}
-							{if $calitem.end}
-								</abbr>
-							{/if}
-						{else}
-							{if $calitem.end}
-								<abbr class="dtend" title="{$calitem.end|isodate}">
-							{/if}
-							{$calitem.end|tiki_long_datetime}
-							{if $calitem.end}
-								</abbr>
-							{/if}
-						{/if}
+						</div>
 					</div>
 				{/if}
 				{if $impossibleDates}
@@ -591,9 +597,9 @@ $("input, select, textarea", "#editcalitem").change(function () {
 								{/textarea}
 							{/strip}
 						{else}
-							<span{if $prefs.calendar_description_is_html neq 'y'} class="description"{/if}>
+							<div{if $prefs.calendar_description_is_html neq 'y'} class="description"{/if}  style="margin-bottom: 0; padding-top: 9px;">
 								{$calitem.parsed|default:"<i>{tr}No description{/tr}</i>"}
-							</span>
+							</div>
 						{/if}
 					</div>
 				</div>

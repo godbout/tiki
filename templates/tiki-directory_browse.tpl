@@ -120,7 +120,7 @@
 					{/if}
 					<div class="description help-block">{$items[ix].description}</div>
 					{assign var=fsfs value=1}
-					<span class="dirsitecats">
+					<span class="dirsitecats text-info">
 						{tr}Directory Categories:{/tr}
 						{section name=ii loop=$items[ix].cats}
 							{if $fsfs}
@@ -130,7 +130,7 @@
 						{/section}
 					</span>
 					<br>
-					<span class="dirsitetrail"> {tr}Added:{/tr} {$items[ix].created|tiki_short_date} {tr}Last updated:{/tr} {$items[ix].lastModif|tiki_short_date} {tr}Hits:{/tr} {$items[ix].hits} </span>
+					<span class="dirsitetrail text-info"> {tr}Added:{/tr} {$items[ix].created|tiki_short_date} {tr}Last updated:{/tr} {$items[ix].lastModif|tiki_short_date} {tr}Hits:{/tr} {$items[ix].hits} </span>
 				</div>
 			{/section}
 		</div>
