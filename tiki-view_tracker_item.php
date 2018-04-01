@@ -668,6 +668,17 @@ if ($tracker_info["useAttachments"] == 'y') {
 				fclose($fw);
 				$data = '';
 			}
+			try {
+				if ($prefs['t_use_db'] == 'n') {
+					$filegallib->assertUploadedFileIsSafe($prefs['t_use_dir'] . $fhash);
+				} else {
+					$filegallib->assertUploadedContentIsSafe($data);
+				}					
+			} catch (Exception $e) {
+				$smarty->assign('msg', $_FILES['userfile1']['name'] . ': ' . $e->getMessage());
+				$smarty->display("error.tpl");
+				die;
+			}
 			$size = $_FILES['userfile1']['size'];
 			$name = $_FILES['userfile1']['name'];
 			$type = $_FILES['userfile1']['type'];
@@ -823,7 +834,7 @@ try {
 			Feedback::error($generator->error, 'session');
 			$access->redirect($page);
 		} else {
-			$pdf = $generator->getPdf('tiki-print.php', ['page' => $tracker_info['name']], str_ireplace("<h3>Attachments</h3>", "<h3>Comments</h3>" . $comments . "<br /><h3>Attachments</h3>", $trackerData));
+			$pdf = $generator->getPdf('tiki-print.php', ['page' => $tracker_info['name']], str_ireplace("</dl>", "</dl><h3>Comments</h3>" . $comments . "<br />", $trackerData));
 			$length = strlen($pdf);
 			header('Cache-Control: private, must-revalidate');
 			header('Pragma: private');

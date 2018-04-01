@@ -82,6 +82,7 @@
 				</div>
 
 				{preference name='fgal_clean_xml_always'}
+				{preference name='fgal_allow_svg'}
 
 				{preference name='fgal_upload_from_source'}
 				<div class="adminoptionboxchild" id="fgal_upload_from_source_childcontainer">

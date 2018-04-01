@@ -15,11 +15,14 @@
 				{else}
 					<form action="tiki-register.php{if !empty($prefs.registerKey)}?key={$prefs.registerKey|escape:'url'}{/if}" class="form-horizontal" method="post" name="RegForm">
 						{if $smarty.request.invite}<input type='hidden' name='invite' value='{$smarty.request.invite|escape}'>{/if}
-							{include file="register-form.tpl"}
-							{if $merged_prefs.feature_antibot eq 'y'}{include file='antibot.tpl' td_style='formcolor' form='register'}{/if}
-							<div class="form-group col-sm-9 col-sm-offset-3 text-center">
-								<button class="btn btn-primary registerSubmit submit" name="register" type="submit">{tr}Register{/tr} <!--i class="fa fa-check"></i--></button>
+						{include file="register-form.tpl"}
+						{if $merged_prefs.feature_antibot eq 'y'}{include file='antibot.tpl' form='register'}{/if}
+						<div class="row margin-bottom-md">
+							<div class="col-sm-8 col-sm-offset-4">
+							  <input type="hidden" name="register" value="1">
+							  <button class="btn btn-primary registerSubmit submit" name="register" type="submit">{tr}Register{/tr} <!--i class="fa fa-check"></i--></button>
 							</div>
+						</div>
 					</form>
 				{/if}
 			</div>

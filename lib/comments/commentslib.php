@@ -166,14 +166,14 @@ class Comments extends TikiLib
 			fclose($fp);
 			if ($forum_info['att_store'] == 'db') {
 				try {
-					$filegallib->assertUploadedContentIsSafe($data, $name);
+					$filegallib->assertUploadedContentIsSafe($data);
 				} catch (Exception $e) {
 					$errors[] = $e->getMessage();
 					return 0;
 				}
 			} else {
 				try {
-					$filegallib->assertUploadedFileIsSafe($filename, $name);
+					$filegallib->assertUploadedFileIsSafe($filename);
 				} catch (Exception $e) {
 					$errors[] = $e->getMessage();
 					fclose($fw);
@@ -184,7 +184,7 @@ class Comments extends TikiLib
 		} else {
 			if ($forum_info['att_store'] == 'dir') {
 				try {
-					$filegallib->assertUploadedContentIsSafe($data, $name);
+					$filegallib->assertUploadedContentIsSafe($data);
 				} catch (Exception $e) {
 					$errors[] = $e->getMessage();
 					return 0;
@@ -2670,7 +2670,7 @@ class Comments extends TikiLib
 	}
 
 	/* @brief: gets the comments of the thread and of all its fathers (ex cept first one for forum)
-	 */
+ 	*/
 	function get_comments_fathers($threadId, $ret = null, $message_id = null)
 	{
 		$com = $this->get_comment($threadId, $message_id);
@@ -3590,7 +3590,7 @@ class Comments extends TikiLib
 	/* post a topic or a reply in forum
 	 * @param array forum_info
 	 * @param array $params: list of options($_REQUEST)
-	  * @return the threadId
+ 	 * @return the threadId
 	 * @return $feedbacks, $errors */
 	/**
 	 * @param $forum_info
