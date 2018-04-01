@@ -35,7 +35,7 @@
 			{/if}
 		{/if}
 	</div>
-	{if (isset($flaggedrev_approval) and $flaggedrev_approval) and $tiki_p_wiki_approve eq 'y'}
+	{if (isset($flaggedrev_approval) and $flaggedrev_approval) and $tiki_p_wiki_approve eq 'y' && !$flaggedrev_preview_rejected}
 		{remarksbox type=comment title="{tr}Content Approval{/tr}"}
 			<form method="post" action="tiki-pagehistory.php?page={$page|escape:'url'}&amp;preview={$preview|escape:'url'}">
 				{if $flaggedrev_preview_approved}
@@ -61,7 +61,11 @@
 				{if $flaggedrev_preview_approved}
 						{tr}This revision may not be the latest approved revision{/tr}!
 				{else}
+					{if $flaggedrev_preview_rejected}
+						{tr}This revision has been rejected.{/tr}
+					{else}
 						{tr}This revision has not been approved.{/tr}
+					{/if}
 				{/if}
 			</p>
 		{/remarksbox}
@@ -414,6 +418,7 @@
 								{if $element.comment}<span class="help-block">{$element.comment|escape}</span>{/if}
 
 								{if (isset($flaggedrev_approval) and $flaggedrev_approval) and $tiki_p_wiki_view_latest eq 'y' and $element.approved}<strong>({tr}approved{/tr})</strong>{/if}
+								{if (isset($flaggedrev_approval) and $flaggedrev_approval) and $element.rejected}<strong>({tr}rejected:{/tr}</strong> {$element.rejection_reason}<strong>)</strong>{/if}
 
 								{if isset($translation_sources[$element.version]) and $translation_sources[$element.version]}
 									{foreach item=source from=$translation_sources[$element.version]}

@@ -1,6 +1,6 @@
 {* $Id$ *}
 {if $prefs.flaggedrev_approval eq 'y' and $revision_approval}
-	{if ($revision_approved or $revision_displayed) and $revision_approved neq $lastVersion and $tiki_p_wiki_view_latest eq 'y'}
+	{if ($revision_approved or $revision_displayed) and $revision_approved neq $lastVersion and ($tiki_p_wiki_view_latest eq 'y' or $tiki_p_edit eq 'y')}
 		{if $lastVersion eq $revision_displayed}
 			{remarksbox type=warning title="{tr}Content waiting for approval{/tr}"}
 				<p>
@@ -19,9 +19,18 @@
 						{else}
 							<p>{tr}This page has no prior approved revision. <strong>All of the content must be reviewed.</strong>{/tr}</p>
 						{/if}
-						<div class="submit">
-							<input type="hidden" name="revision" value="{$revision_displayed|escape}">
+						<div class="submit row">
+						  <input type="hidden" name="revision" value="{$revision_displayed|escape}">
+						  <div class="col-md-6">
 							<input type="submit" class="btn btn-default btn-sm" name="approve" value="{tr}Approve current revision{/tr}">
+						  </div>
+							<!-- TODO work on layout here -->
+							<div class="col-md-6">
+							  <input type="text" name="reason" placeholder="Why is this not approved?">
+							  <input type="submit" class="btn btn-default btn-sm" name="reject" value="{tr}Reject current revision{/tr}">
+							  <br/>
+							  <input type="checkbox" name="delete_revision" value="on"> <label for="delete_version">Permanently delete this revision</label>
+							</div>
 						</div>
 					</form>
 				{/if}

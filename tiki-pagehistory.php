@@ -81,7 +81,7 @@ $smarty->assign('paginate', $paginate);
 if (isset($_REQUEST['history_offset']) && $paginate) {
 	$history_offset = $_REQUEST['history_offset'];
 } else {
-	$history_offset = 1;
+	$history_offset = 0;
 }
 $smarty->assign('history_offset', $history_offset);
 
@@ -104,18 +104,28 @@ if ($prefs['flaggedrev_approval'] == 'y') {
 
 	if ($flaggedrevisionlib->page_requires_approval($page)) {
 		$approved_versions = $flaggedrevisionlib->get_versions_with($page, 'moderation', 'OK');
+		$rejected_versions = $flaggedrevisionlib->get_versions_with($page, 'moderation', 'REJECT');
 
 		$smarty->assign('flaggedrev_approval', true);
 
 		$info['approved'] = in_array($info['version'], $approved_versions);
+		$info['rejected'] = in_array($info['version'], $rejected_versions); 
 
 		$new_history = [];
 
 		foreach ($history as $version) {
 			$version['approved'] = in_array($version['version'], $approved_versions);
-			if ($tiki_p_wiki_view_latest == 'y' || $version['approved']) {
+			$version['rejected'] = in_array($version['version'], $rejected_versions);
+			if ($version['rejected']) {
+				$version['rejection_reason'] = $flaggedrevisionlib->get_flag_comment($page, $version['version'], 'moderation', 'REJECT');
+			}
+			if ($tiki_p_wiki_view_latest == 'y' || $version['approved'] || $version['rejected']) {
 				$new_history[] = $version;
 			}
+		}
+
+		while ($tiki_p_wiki_approve != 'y' && sizeof($new_history) > 0 && !$new_history[0]['approved'] && !$new_history[0]['rejected']) {
+			array_shift($new_history);
 		}
 
 		$history = $new_history;
@@ -313,8 +323,10 @@ if (isset($preview)) {
 		$preview = $rversion;
 	}
 	if ($preview == $info['version'] || $preview == 0) {
-		$previewd = (new WikiLibOutput($info, $info['data'], ['preview_mode' => true, 'is_html' => $info['is_html']]))->parsedValue;
-		$smarty->assign('previewd', $previewd);
+		if ($prefs['flaggedrev_approval'] != 'y' || !$flaggedrevisionlib->page_requires_approval($page) || $info['approved'] || $info['rejected'] || $tiki_p_wiki_approve == 'y') {
+			$previewd = (new WikiLibOutput($info, $info['data'], ['preview_mode' => true, 'is_html' => $info['is_html']]))->parsedValue;
+			$smarty->assign('previewd', $previewd);
+		}
 		$smarty->assign('preview', $info['version']);
 	} else {
 		$version = $histlib->get_version($page, $preview);
@@ -326,6 +338,7 @@ if (isset($preview)) {
 	}
 
 	$smarty->assign('flaggedrev_preview_approved', isset($approved_versions) && in_array($preview, $approved_versions));
+	$smarty->assign('flaggedrev_preview_rejected', isset($rejected_versions) && in_array($preview, $rejected_versions));
 }
 if (isset($preview)) {
 	$smarty->assign('current', $preview);

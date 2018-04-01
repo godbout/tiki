@@ -315,7 +315,7 @@ class Installer extends TikiDb_Bridge
 	 * @param string $patch
 	 * @return bool
 	 */
-	function query($query = null, $values = [], $numrows = -1, $offset = -1, $reporterrors = true, $patch = '') // {{{
+	function query($query = null, $values = null, $numrows = -1, $offset = -1, $reporterrors = true, $patch = '') // {{{
 	{
 		$error = '';
 		$result = $this->queryError($query, $error, $values);

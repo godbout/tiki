@@ -147,7 +147,7 @@ function tiki_get_admin_mail($fromName = null)
 		// Added returnpath for Sendmail; does not send without;
 		// catch/ignore error, if already set
 		try {
-			$mail->setFrom($prefs['sender_email'], $fromName ? $fromName : $prefs['sender_name']);
+			$mail->setFrom($prefs['sender_email'], $fromName);
 			$mail->setSender($prefs['sender_email']);
 		} catch (Exception $e) {
 			// was already set, then do nothing
