@@ -35,6 +35,14 @@ if (version_compare(PHP_VERSION, '7.1.0', '<')) {
 // Be sure that the user is not already defined by PHP on hosts that still have the php.ini config "register_globals = On"
 unset($user);
 
+// Ensure that we clean PROXY headers
+if (! empty($_SERVER['HTTP_PROXY'])) {
+	$_SERVER['HTTP_PROXY_RENAMED'] = $_SERVER['HTTP_PROXY'];
+	unset($_SERVER['HTTP_PROXY']);
+	putenv('HTTP_PROXY');
+	putenv('PHP_PEAR_HTTP_PROXY=');
+}
+
 require_once 'lib/setup/third_party.php';
 // Enable Versioning
 include_once('lib/setup/twversion.class.php');

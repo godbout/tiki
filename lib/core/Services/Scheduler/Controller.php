@@ -113,4 +113,36 @@ class Services_Scheduler_Controller
 			'message' => $message,
 		];
 	}
+
+	/**
+	 * Reset a running scheduler (if it's stucked for a unknown reason)
+	 *
+	 * @param $input
+	 * @return array
+	 * @throws Services_Exception_Denied
+	 */
+	function action_reset($input)
+	{
+		global $user;
+
+		Services_Exception_Denied::checkGlobal('admin_users');
+
+		$schedulerId = $input->schedulerId->int();
+		$startTime = $input->startTime->int();
+		$confirm = $input->confirm->int();
+
+		if ($confirm) {
+			$this->lib->end_scheduler_run($schedulerId, 'failed', 'Reset by ' . $user, $startTime);
+
+			return [
+				'schedulerId' => 0
+			];
+		}
+
+		return [
+			'title' => tr('Reset scheduler run?'),
+			'schedulerId' => $schedulerId,
+			'startTime' => $startTime,
+		];
+	}
 }

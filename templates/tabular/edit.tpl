@@ -31,6 +31,7 @@
 								<th>{tr}Field{/tr}</th>
 								<th>{tr}Mode{/tr}</th>
 								<th><abbr title="{tr}Primary Key{/tr}">{tr}PK{/tr}</abbr></th>
+								<th><abbr title="{tr}Unique Key{/tr}">{tr}UK{/tr}</abbr></th>
 								<th><abbr title="{tr}Read-Only{/tr}">{tr}RO{/tr}</abbr></th>
 								<th><abbr title="{tr}Export-Only{/tr}">{tr}EO{/tr}</abbr></th>
 								<th></th>
@@ -59,6 +60,7 @@
 								</td>
 								<td><span class="field">Field Name</span>:<span class="mode">Mode</span></td>
 								<td><input class="primary" type="radio" name="pk" /></td>
+								<td><input class="unique-key" type="checkbox" /></td>
 								<td><input class="read-only" type="checkbox" /></td>
 								<td><input class="export-only" type="checkbox" /></td>
 								<td class="text-right"><button class="remove">{icon name=remove}</button></td>
@@ -91,6 +93,7 @@
 										</a>
 									</td>
 									<td><input class="primary" type="radio" name="pk" {if $column->isPrimaryKey()} checked {/if} /></td>
+									<td><input class="unique-key" type="checkbox" {if $column->isUniqueKey()} checked {/if} /></td>
 									<td><input class="read-only" type="checkbox" {if $column->isReadOnly()} checked {/if} /></td>
 									<td><input class="export-only" type="checkbox" {if $column->isExportOnly()} checked {/if} /></td>
 									<td class="text-right"><button class="remove">{icon name=remove}</button></td>
@@ -124,6 +127,7 @@
 					</table>
 					<div class="help-block">
 						<p><strong>{tr}Primary Key:{/tr}</strong> {tr}Required to import data. Can be any field as long as it is unique.{/tr}</p>
+						<p><strong>{tr}Unique Key:{/tr}</strong> {tr}Impose unique value requirement for the target column. This only works with Transactional Import feature.{/tr}</p>
 						<p><strong>{tr}Read-only:{/tr}</strong> {tr}When importing a file, read-only fields will be skipped, preventing them from being modified, but also speeding-up the process.{/tr}</p>
 						<p>{tr}When two fields affecting the same value are included in the format, such as the ID and the text value for an Item Link field, one of the two fields must be marked as read-only to prevent a conflict.{/tr}</p>
 					</div>
