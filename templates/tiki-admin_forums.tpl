@@ -139,11 +139,7 @@
 								</td>
 							</tr>
 						{sectionelse}
-							{if !$ts.enabled || ($ts.enabled && $ts.ajax)}
-								{norecords _colspan=$numbercol _text="No forums found"}
-							{else}
-								{norecords _colspan=$numbercol _text="Retrieving forums..."}
-							{/if}
+							{norecords _colspan=$numbercol _text="No forums found"}
 						{/section}
 					</tbody>
 				</table>

@@ -189,8 +189,13 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 				$itemData = $this->getItemData();					// caluculated field types like auto-increment need rendering
 				$definition = $this->getTrackerDefinition();
 				$factory = $definition->getFieldFactory();
-				$handler = $factory->getHandler($definition->getField($this->getOption('fieldIdForPagename')), $itemData);
-				$page_name = $handler->renderOutput(['list_mode' => 'csv']);
+				$field_info = $definition->getField($this->getOption('fieldIdForPagename'));
+				if ($field_info) {
+					$handler = $factory->getHandler($field_info, $itemData);
+					$page_name = $handler->renderOutput(['list_mode' => 'csv']);
+				} else {
+					Feedback::error(tr('Missing Page Name field #%0 for Wiki field #%1', $this->getOption('fieldIdForPagename'), $fieldId));
+				}
 			}
 			$page_name = $this->getFullPageName($page_name);	// from tabular import replace
 			$itemId = $requestData['itemId'];

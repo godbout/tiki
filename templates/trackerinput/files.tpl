@@ -12,10 +12,14 @@
 						{icon name='vimeo'}
 					{elseif $field.options_map.displayMode eq 'img'}
 						<img src="tiki-download_file.php?fileId={$info.fileId|escape}&display&y=24" height="24">
+						{$info.name|escape}
 					{else}
-						<img src="tiki-download_file.php?fileId={$info.fileId|escape}&thumbnail" width="32" height="32">
+						<a href="tiki-download_file.php?fileId={$info.fileId|escape}" >
+							<img src="tiki-download_file.php?fileId={$info.fileId|escape}&thumbnail" width="32" height="32">
+							{$info.name|escape}
+						</a>
 					{/if}
-					{$info.name|escape} <a href="#" class="file-delete-icon">
+					<a href="#" class="file-delete-icon">
 						{icon name='delete'}
 					</a>
 				</li>

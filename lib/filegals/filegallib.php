@@ -1086,13 +1086,6 @@ class FileGalLib extends TikiLib
 					$upl = 0;
 				}
 
-				try {
-					$this->assertUploadedFileIsSafe($file);
-				} catch (Exception $e) {
-					$errors[] = $e->getMessage();
-					$upl = 0;
-				}
-
 				if (! $this->checkQuota(filesize($extract_dir . $file), $galleryId, $error)) {
 					$errors[] = $error;
 					$upl = 0;
@@ -3319,6 +3312,7 @@ class FileGalLib extends TikiLib
 					}
 				}
 			} else {	// a gallery
+
 				$res['name'] = $this->get_user_gallery_name($res);
 			}
 
@@ -3641,16 +3635,6 @@ class FileGalLib extends TikiLib
 				$fileInfo['author'] = $params['author'][0];
 			}
 			if (! empty($params['filetype'][0])) {
-				if (isset($fileInfo['fileId']) && $fileInfo['filetype'] != $params['filetype'][0] && substr($params['filetype'][0], 0, 9) == 'image/svg') {
-					try {
-						// use a dummy.svg filename just so content checker knows this is being interpreted as svg
-						$this->assertUploadedContentIsSafe($fileInfo['data'], 'dummy.svg');
-					} catch (Exception $e) {
-						$smarty->assign('msg', tra("Forcing a filetype of image/svg+xml is blocked for security reasons"));
-						$smarty->display('error.tpl');
-						die;
-					}
-				}
 				$fileInfo['filetype'] = $params['filetype'][0];
 			}
 			if (! empty($params['comment'][0])) {
@@ -3746,12 +3730,6 @@ class FileGalLib extends TikiLib
 
 					if (false === $data = file_get_contents($tmp_dest)) {
 						$errors[] = tra('Cannot read the file:') . ' ' . $tmp_dest;
-					}
-
-					try {
-						$this->assertUploadedContentIsSafe($data, $file_name, $galleryId);
-					} catch (Exception $e) {
-						$errors[] = $e->getMessage();
 					}
 
 					//Add metadata
@@ -4116,7 +4094,6 @@ class FileGalLib extends TikiLib
 		if (empty($asuser) || ! Perms::get()->admin) {
 			$asuser = $user;
 		}
-		$this->assertUploadedContentIsSafe($data, $name, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4134,7 +4111,6 @@ class FileGalLib extends TikiLib
 		if (empty($asuser)) {
 			$asuser = $user;
 		}
-		$this->assertUploadedContentIsSafe($data, $name, $gal_info['galleryId']);
 		if ($this->convert_from_data($gal_info, $fhash, $data)) {
 			$data = null;
 		}
@@ -4165,95 +4141,6 @@ class FileGalLib extends TikiLib
 		return false;
 	}
 
-	public function fileContentIsSVG(&$data)
-	{
-		$finfo = new finfo(FILEINFO_MIME);
-		$type = $finfo->buffer($data) . "\n";
-
-		if (substr($type, 0, 18) == 'application/x-gzip') {
-			$data = gzdecode($data);
-			$finfo = new finfo(FILEINFO_MIME);
-			$type = $finfo->buffer($data);
-		}
-		return substr($type, 0, 9) == 'image/svg';
-	}
-
-	public function fileIsSVG($path)
-	{
-		$type = mime_content_type($path);
-		if (substr($type, 0, 18) == 'application/x-gzip') {
-			$data = file_get_contents($path);
-			return $this->fileContentIsSVG($data);
-		}
-		return substr($type, 0, 9) == 'image/svg';
-	}
-
-	public function assertUploadedFileIsSafe($path, $filename = null, $galleryId = null)
-	{
-		global $prefs;
-		if ($filename === null) {
-			$filename = $path;
-		}
-		$safe = true;
-		$mimelib = TikiLib::lib('mime');
-		if (substr($mimelib->from_filename($filename), 0, 9) == 'image/svg') {
-			$dom = new DOMDocument();
-			$data = file_get_contents($path);
-			if (! $dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
-				throw new FileIsNotSafeException("You are trying to upload a file as SVG, but content can't be parsed as XML. This is a security risk.");
-			}
-			$data = null;
-			$safe = false;
-		}
-		$safe = $safe && ! $this->fileIsSVG($path);
-		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
-		if (! $safe) {
-			if ($prefs['fgal_allow_svg'] !== 'y') {
-				throw new FileIsNotSafeException($svgErrorMsg);
-			}
-			$perms = Perms::get([
-				'file gallery',
-				$galleryId
-			]);
-
-			if (! $perms->upload_svg) {
-				throw new FileIsNotSafeException($svgErrorMsg);
-			}
-		}
-		return true;
-	}
-
-	public function assertUploadedContentIsSafe(&$data, $filename = null, $galleryId = null)
-	{
-		global $prefs;
-		$safe = true;
-		if ($filename !== null) {
-			$mimelib = TikiLib::lib('mime');
-			if (substr($mimelib->from_filename($filename), 0, 9) == 'image/svg') {
-				$dom = new DOMDocument();
-				if (! $dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
-					throw new FileIsNotSafeException("You are trying to upload a file as SVG, but content can't be parsed as XML. This is a security risk.");
-				}
-				$safe = false;
-			}
-		}
-		$safe = $safe && ! $this->fileContentIsSVG($data);
-		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
-		if (! $safe) {
-			if ($prefs['fgal_allow_svg'] !== 'y') {
-				throw new FileIsNotSafeException($svgErrorMsg);
-			}
-			$perms = Perms::get([
-				'file gallery',
-				$galleryId
-			]);
-
-			if (! $perms->upload_svg) {
-				throw new FileIsNotSafeException($svgErrorMsg);
-			}
-		}
-		return true;
-	}
 
 	/**
 	 * Sanitize XML based files
@@ -4262,7 +4149,7 @@ class FileGalLib extends TikiLib
 	 * @param int $galleryId
 	 * @return string
 	 */
-	public function clean_xml($data, $galleryId)
+	private function clean_xml($data, $galleryId)
 	{
 		global $prefs;
 
@@ -4272,9 +4159,11 @@ class FileGalLib extends TikiLib
 		]);
 
 		if ($prefs['fgal_clean_xml_always'] === 'y' || ! $perms->upload_javascript) {
+
 			$dom = new DOMDocument();
 
-			if ($dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
+			if ($dom->loadXML($data)) {
+
 				$elements = [];
 				/** @var DOMElement $element */
 				foreach ($dom->getElementsByTagName('*') as $element) {
@@ -4282,6 +4171,7 @@ class FileGalLib extends TikiLib
 				}
 
 				foreach ($elements as $element) {
+
 					if (in_array($element->tagName, ['script', 'embed', 'object', 'applet', 'iframe', 'frame'])) {
 						$element->parentNode->removeChild($element);
 					} else {
@@ -4294,7 +4184,9 @@ class FileGalLib extends TikiLib
 				}
 
 				$data = $dom->saveXML();
+
 			}
+
 		}
 		return $data;
 	}
@@ -4771,11 +4663,4 @@ class FileGalLib extends TikiLib
 			return json_decode($metadata, true);
 		}
 	}
-}
-
-/**
- *
- */
-class FileIsNotSafeException extends Exception
-{
 }
