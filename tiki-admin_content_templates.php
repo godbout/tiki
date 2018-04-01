@@ -289,10 +289,10 @@ $smarty->assign('canEdit', $canEdit);
 $smarty->assign_by_ref('channels', $channels["data"]);
 ask_ticket('admin-content-templates');
 $wikilib = TikiLib::lib('wiki');
-$plugins = $wikilib->list_plugins(true, 'editwiki');
-$smarty->assign_by_ref('plugins', $plugins);
+
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
+
 // Display the template
 $smarty->assign('mid', 'tiki-admin_content_templates.tpl');
 $smarty->display("tiki.tpl");

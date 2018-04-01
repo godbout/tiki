@@ -2415,7 +2415,13 @@
                 "reference": null,
                 "shasum": "8e7ab56efd4d446887b601bcfa70ecb2cd495c4d"
             },
-            "type": "library"
+            "type": "library",
+            "extra": {
+                "patches_applied": {
+                    "Removed deprecated syntax in PHP7": "../installer/composer-patches/text_wiki_mediawiki__php7fixes.patch",
+                    "Renamed method to avoid collision with func from parent class": "../installer/composer-patches/text_wiki_mediawiki__func_collision.patch"
+                }
+            }
         },
         {
             "name": "pear/xml_parser",

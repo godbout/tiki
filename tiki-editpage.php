@@ -924,14 +924,13 @@ if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 		if (! $is_html && $prefs['wysiwyg_htmltowiki'] === 'y') {
 			// we switch to WYSIWYG-Wiki
 			$parsed = $edit_data;
-			$info['is_html'] = false;
 		} else {
 			// we switch to WYSIWYG-HTML (regular WYSIWYG)
 			$parsed = $editlib->parseToWysiwyg($edit_data, true); // Convert page content
 			$is_html = true;
-			$info['is_html'] = true;
 			$smarty->assign('allowhtml', 'y');
 		}
+		$info['is_html'] = $is_html;
 		$info['wysiwyg'] = true;
 	} elseif ($_SESSION['wysiwyg'] === 'y') {
 		if (empty($info['is_html'])) {
@@ -1498,9 +1497,6 @@ if ($wikilib->contains_badchars($page) && ! $tikilib->page_exists($page)) {
 	$smarty->assign('page_badchars_display', $wikilib->get_badchars());
 }
 
-$plugins = $wikilib->list_plugins(true, 'editwiki');
-
-$smarty->assign_by_ref('plugins', $plugins);
 $smarty->assign('showstructs', []);
 if ($structlib->page_is_in_structure($_REQUEST["page"])) {
 	$structs = $structlib->get_page_structures($_REQUEST["page"]);
