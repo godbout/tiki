@@ -64,7 +64,7 @@ db/index.php -text
 db/install.ini.dist -text
 db/preconfiguration.php -text
 db/tiki-db.php -text
-db/tiki-secdb_18.0beta_mysql.sql -text
+db/tiki-secdb_18.0_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -6653,6 +6653,7 @@ themes/amelia/scss/newsletter.scss -text
 themes/amelia/templates/index.php -text
 themes/base_files/css/newsletter.css -text
 themes/base_files/css/printpdf.css -text
+themes/base_files/css/printqueries.css -text
 themes/base_files/css/style-guide.css -text
 themes/base_files/css/tiki_base.css -text
 themes/base_files/favicons/android-chrome-192x192.png -text

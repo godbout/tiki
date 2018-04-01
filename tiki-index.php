@@ -270,7 +270,11 @@ if (empty($info) && ! ($user && $prefs['feature_wiki_userpage'] == 'y' && strcas
 	}
 
 	$referencedPages = $wikilib->get_pages_by_alias($page);
-	$likepages = $wikilib->get_like_pages($page);
+	if ($prefs['feature_likePages'] === 'y' || $prefs['feature_wiki_1like_redirection'] === 'y') {
+		$likepages = $wikilib->get_like_pages($page);
+	} else {
+		$likepages = [];
+	}
 
 	if ($prefs['feature_wiki_pagealias'] == 'y' && count($referencedPages) == 1) {
 		$newPage = $referencedPages[0];
