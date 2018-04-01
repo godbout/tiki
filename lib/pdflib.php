@@ -688,6 +688,7 @@ class PdfGenerator
 			foreach($cloneArr as $cloneData) {
 				$this->insertNewNodes($cloneData,$table);	//this will be recursive function to split row multiple times if needed
 			}
+			$table->setAttribute("style", "overflow:wrap");
 		}
 		$html = @$doc->saveHTML();
 		

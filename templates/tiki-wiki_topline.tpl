@@ -28,7 +28,7 @@
 	{else}
 		{$js = 'y'}
 	{/if}
-	<div class="wikiactions_wrapper clearfix">
+	<div class="wikiactions_wrapper">
 		<div class="wikiactions icons btn-group pull-right">
 			<div class="btn-group">
 				{* Show language dropdown only if there is more than 1 language or user has right to edit *}
