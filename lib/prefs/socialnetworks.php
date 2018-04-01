@@ -66,7 +66,7 @@ function prefs_socialnetworks_list()
 		],
 		'socialnetworks_facebook_site_image' => [
 			'name' => tra('Facebook site image'),
-			'description' => tra('The default image (logo, picture, etc) that will be used by Facebook (og:image) for every webpage. Must be specified as a URL. The minimum valid image size is 200x200px however Facebook recommends 1200x630px or larger for the best display on high resolution devices.'),
+			'description' => tra('THe default image (logo, picture, etc) that will be used by Facebook (og:image) for every webpage. Must be specified as a URL. The minimum valid image size is 200x200px however Facebook recommends 1200x630px or larger for the best display on high resolution devices.'),
 			'keywords' => 'social networks',
 			'type' => 'text',
 			'size' => 60,
