@@ -542,23 +542,7 @@ class UnifiedSearchLib
 		$logWriter = null;
 
 		if ($loggit) {
-			$logName = 'Search_Indexer';
-
-			switch ($prefs['unified_engine']) {
-				case 'elastic':
-					$logName .=  '_elastic_' . rtrim($prefs['unified_elastic_index_prefix'], '_');
-					break;
-				case 'mysql':
-					$logName .=  '_mysql_' . TikiDb::get()->getOne('SELECT DATABASE()');
-					break;
-				case 'lucene':
-					$logName .=  '_lucene';
-					break;
-			}
-			if ($loggit == 2) {
-				$logName .= '_console';
-			}
-			$logWriter = new Zend\Log\Writer\Stream($prefs['tmpDir'] . '/' . $logName . '.log', 'w');
+			$logWriter = new Zend\Log\Writer\Stream($this->getLogFilename($loggit), 'w');
 		}
 
 		$indexer = new Search_Indexer($index, $logWriter);
@@ -1281,5 +1265,35 @@ class UnifiedSearchLib
 		if (isset($types['group'])) {
 			// todo: unable to track groups by dates
 		}
+	}
+
+	/**
+	 * Provide the name of the log file
+	 *
+	 * @param int $rebuildType    0: no log, 1: browser rebuild, 2: console rebuild
+	 * @return string
+	 */
+	public function getLogFilename($rebuildType = 0): string
+	{
+		global $prefs;
+
+		$logName = 'Search_Indexer';
+
+		switch ($prefs['unified_engine']) {
+			case 'elastic':
+				$logName .= '_elastic_' . rtrim($prefs['unified_elastic_index_prefix'], '_');
+				break;
+			case 'mysql':
+				$logName .= '_mysql_' . TikiDb::get()->getOne('SELECT DATABASE()');
+				break;
+			case 'lucene':
+				$logName .= '_lucene';
+				break;
+		}
+		if ($rebuildType == 2) {
+			$logName .= '_console';
+		}
+		$logName = $prefs['tmpDir'] . (substr($prefs['tmpDir'], -1) === '/' ? '' : '/') . $logName . '.log';
+		return $logName;
 	}
 }

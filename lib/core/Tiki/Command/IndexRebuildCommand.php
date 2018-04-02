@@ -64,7 +64,11 @@ class IndexRebuildCommand extends Command
 		}
 
 		if (! $cron) {
-			$output->writeln('[' . \TikiLib::lib('tiki')->get_short_datetime(0) . '] Started rebuilding index...');
+			$message = '[' . \TikiLib::lib('tiki')->get_short_datetime(0) . '] Started rebuilding index...';
+			if ($log) {
+				$message .= ' logging to file: ' . $unifiedsearchlib->getLogFilename($log);
+			}
+			$output->writeln($message);
 		}
 
 		if (! $cron) {
