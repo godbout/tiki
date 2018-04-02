@@ -342,7 +342,9 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 
 				// i.e textfield - requires $listFieldThere = array_merge($listFieldThere, array('value' => $itemInfo[$listFieldIdThere]));
 				default:
-					$listFieldThere = array_merge($listFieldThere, ['value' => $itemInfo[$listFieldIdThere]]);
+					if (isset($itemInfo[$listFieldIdThere])) {
+						$listFieldThere = array_merge($listFieldThere, ['value' => $itemInfo[$listFieldIdThere]]);
+					}
 					$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
 					// do not inherit showlinks settings from remote items.
 					$context = ['showlinks' => 'n'];

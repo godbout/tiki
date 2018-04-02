@@ -103,6 +103,10 @@ class Tracker_Field_Text extends Tracker_Field_Abstract implements Tracker_Field
 		$pre = '';
 		$post = '';
 
+		$context = array_merge([
+			'list_mode' => '',
+		], $context);
+
 		if ($this->getConfiguration('type') == 't') {
 			if ($this->getOption('prepend')) {
 				if ($context['list_mode'] !== 'csv') {
