@@ -121,14 +121,15 @@
 			</div>
 		</footer>
 
-		<nav class="navbar navbar-toggleable-md navbar-dark fixed-top bg-dark" role="navigation" id="navbar-fixed-top">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 				<a class="navbar-brand" href="./">{if $prefs.sitelogo_icon}<img src="{$prefs.sitelogo_icon}">{/if} {$prefs.sitetitle|escape}</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav mr-auto">
+					{modulelist zone="topbar" id="topbar_modules_social"}
+					<ul class="navbar-nav ml-auto">
 						{if $user}
 							<li class="nav-item">
 								<a class="nav-link" href="{if $prefs.feature_sefurl eq 'y'}logout{else}tiki-logout.php{/if}">{tr}Log out{/tr}</a>
@@ -137,7 +138,7 @@
 							<li class="dropdown">
 								<a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Log in{/tr} <span
 								class="caret"></span></a>
-								<ul class="dropdown-menu dropdown-login panel-body">
+								<ul class="dropdown-menu dropdown-login card-body">
 									<li>
 										<div>
 		{module
@@ -156,13 +157,12 @@
 								</ul>
 							</li>
 		{if $prefs.allowRegister eq 'y'}
-							<li>
-								<a href="{if $prefs.feature_sefurl eq 'y'}register{else}tiki-register.php{/if}">{tr}Register{/tr}</a>
+							<li class="nav-item">
+								<a class="nav-link" href="{if $prefs.feature_sefurl eq 'y'}register{else}tiki-register.php{/if}">{tr}Register{/tr}</a>
 							</li>
 		{/if}
 	{/if}
 						</ul>
-					{modulelist zone="topbar" id="topbar_modules_social" style="float:left"}
 				</div> {* navbar-collapse-social *}
 			</div> {* container *}
 
