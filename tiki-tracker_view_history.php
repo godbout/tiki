@@ -19,8 +19,8 @@ $auto_query_args = ['offset', 'itemId', 'fieldId', 'filter'];
 
 if (! empty($_REQUEST['itemId'])) {
 	$item_info = $trklib->get_item_info($_REQUEST['itemId']);
-	$perms = Perms::get(['type' => 'tracker', 'object' => $item_info['trackerId']]);
-	if (! $perms->view_trackers) {
+	$item = Tracker_Item::fromInfo($item_info);
+	if (! $item->canView()) {
 		$smarty->assign('errortype', 401);
 		$smarty->assign('msg', tra('You do not have permission to view this page.'));
 		$smarty->display('error.tpl');
