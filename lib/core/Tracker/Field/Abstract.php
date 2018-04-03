@@ -185,7 +185,7 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 		$result = '';
 
 		if (is_array($diff)) {
-			// unusued
+			// unidiff mode
 			foreach ($diff as $part) {
 				if ($part["type"] == "diffdeleted") {
 					foreach ($part["data"] as $chunk) {

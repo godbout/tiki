@@ -94,15 +94,10 @@
 							<td class="text">{$hist.new|escape}</td>
 						{/if}
 					{else}
-						{if $field_value.fieldId}
-							<td colspan="2" class="tracker-diff {$diff_style}">
-								{$field_value.value=$hist.new}
-								{trackeroutput field=$field_value list_mode='y' history=y item=$item_info process=y oldValue=$hist.value diff_style=$diff_style}
-							</td>
-						{else}
-							<td colspan="2" class="text">{$hist.value|escape}<br>
-								{$hist.new|escape}</td>
-						{/if}
+						<td colspan="2" class="tracker-diff {$diff_style}">
+							{$field_value.value=$hist.new}
+							{trackeroutput field=$field_value list_mode='y' history=y item=$item_info process=y oldValue=$hist.value diff_style=$diff_style}
+						</td>
 					{/if}
 				</tr>
 			{/if}

@@ -42,7 +42,15 @@ if (! empty($_REQUEST['itemId'])) {
 
 	foreach ($history['data'] as $i => $hist) {
 		if (empty($field_option[$hist['fieldId']])) {
-			$field_option[$hist['fieldId']] = $trklib->get_tracker_field($hist['fieldId']);
+			if ($hist['fieldId'] > 0) {
+				$field_option[$hist['fieldId']] = $trklib->get_tracker_field($hist['fieldId']);
+			} else {
+				$field_option[$hist['fieldId']] = [	// fake field to do the diff on
+					'type' => 't',
+					'name' => tr('Status'),
+					'trackerId' => $item_info['trackerId'],
+				];
+			}
 		}
 	}
 
