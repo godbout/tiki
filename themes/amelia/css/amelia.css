@@ -519,7 +519,7 @@ mark, .mark {
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #fff;
+  background-color: #108a93;
   border: 1px solid #bbb;
   border-radius: 0.25rem;
   max-width: 100%;
@@ -1410,7 +1410,7 @@ pre {
     background-color: rgba(0, 0, 0, .075); }
 
 .table .thead-dark th {
-  color: #fff;
+  color: #108a93;
   background-color: #111;
   border-color: #242424; }
   .table .thead-light th {
@@ -1419,7 +1419,7 @@ pre {
     border-color: #bbb; }
 
 .table-dark {
-  color: #fff;
+  color: #108a93;
   background-color: #111; }
   .table-dark th, .table-dark td, .table-dark thead th {
     border-color: #242424; }
@@ -2975,7 +2975,7 @@ tbody.collapse.show {
     color: #fff;
     background-color: #ad1d28; }
   .custom-control-input:focus ~ .custom-control-label::before {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(173, 29, 40, .25); }
+    box-shadow: 0 0 0 1px #108a93, 0 0 0 0.2rem rgba(173, 29, 40, .25); }
   .custom-control-input:active ~ .custom-control-label::before {
     color: #fff;
     background-color: #ec9097; }
@@ -3151,8 +3151,8 @@ tbody.collapse.show {
     border-color: transparent; }
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     color: #444;
-    background-color: #fff;
-    border-color: #bbb #bbb #fff; }
+    background-color: #108a93;
+    border-color: #bbb #bbb #108a93; }
   .nav-tabs .dropdown-menu {
     margin-top: -1px;
     border-top-left-radius: 0;
@@ -4479,7 +4479,7 @@ button.close {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #fff;
+  background-color: #108a93;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 0.3rem;
@@ -7028,7 +7028,7 @@ table.treetable.objectperms td.removed {
 
 .progressContainer {
   border: solid 1px rgba(0, 0, 0, .2);
-  background-color: #fff; }
+  background-color: #108a93; }
 
 .filter-panel-heading a:after {
   color: #555; }
@@ -7281,7 +7281,7 @@ div.cvsup {
   color: #48ca3b; }
 
 #intertrans-form {
-  background-color: #fff;
+  background-color: #108a93;
   border: 1px solid #111;
   color: #111; }
 
@@ -7353,7 +7353,7 @@ ul.all_languages > li {
   outline: #555 dotted 1px; }
 
 .tiki .cke_wysiwyg_frame, .tiki .cke_wysiwyg_div {
-  background: #fff;
+  background: #108a93;
   color: #111; }
 
 .tiki_plugin {
@@ -7513,7 +7513,7 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
 
 .searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
   color: #111;
-  background: #fff; }
+  background: #108a93; }
 
 .searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
   background: #debb27; }
@@ -7586,24 +7586,24 @@ div.drillshow {
  }
  }*/
 .tiki .ui-widget-content, span.plugin-mouseover {
-  background: #fff;
+  background: #108a93;
   color: #fff;
   border: 1px solid rgba(0, 0, 0, .2); }
 
 .tiki .ui-widget-header {
-  background: #fff;
+  background: #108a93;
   color: #fff;
   border: 1px solid rgba(0, 0, 0, .2); }
 
 .tiki .ui-dialog-content {
-  background: #fff;
+  background: #108a93;
   color: #fff; }
   .tiki .ui-dialog-content select, .tiki .ui-dialog-content input, .tiki .ui-dialog-content optgroup, .tiki .ui-dialog-content textarea {
     background: #fff;
     color: #444; }
 
 .tiki .ui-widget button {
-  background: #fff;
+  background: #108a93;
   color: #111; }
 
 .tiki .modal-content .ui-state-default {
@@ -7659,12 +7659,12 @@ input[type="checkbox"].preffilter-toggle-round + label {
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
   color: #111;
-  background-color: #fff;
+  background-color: #108a93;
   border-color: #111; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   color: #111;
-  background-color: #fff;
+  background-color: #108a93;
   border-color: #111; }
 
 .tiki .pvtUi {
@@ -7672,7 +7672,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   .tiki table.pvtTable {
     font-size: 1rem; }
   .tiki table.pvtTable tr th {
-    background-color: #fff;
+    background-color: #108a93;
     color: #111;
     border: 1px solid #bbb;
     font-size: 1rem;
@@ -7693,7 +7693,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     border-radius: 0.25rem; }
   .tiki .pvtAxisContainer, .tiki .pvtVals {
     border-color: #bbb;
-    background: #fff;
+    background: #108a93;
     padding: 5px; }
   .tiki .pvtAxisContainer li.pvtPlaceholder {
     padding: 3px 15px;
@@ -7720,7 +7720,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     z-index: 100;
     width: 280px;
     border: 1px solid #bbb;
-    background-color: #fff;
+    background-color: #108a93;
     position: absolute;
     padding: 20px;
     text-align: center; }
@@ -7742,12 +7742,12 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   .tiki .pvtRendererArea {
     padding: 5px; }
   .tiki .pvtFilterBox button {
-    background: #fff;
+    background: #108a93;
     border: 1px solid #fff;
     border-radius: 0.25rem;
     color: #111; }
   .tiki .pvtFilterBox button:hover {
-    background: #fff; }
+    background: #107493; }
   .tiki .pvtFilterBox button + button {
     margin-left: 4px;
     margin-bottom: 4px; }

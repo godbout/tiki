@@ -27,6 +27,7 @@ $theme-colors: (
 // Options
 // Spacing
 // Body
+$body-bg: #108a93;
 // Links
 //$link-color: lighten(theme-color("warning"), 15%);
 //$link-hover-color: $link-color;
@@ -52,6 +53,7 @@ $headings-font-family: 'Lobster', cursive;
 // Popovers
 // Badges
 // Modals
+$modal-content-bg: $body-bg;
 // Alerts
 // Progress bars
 // List group
