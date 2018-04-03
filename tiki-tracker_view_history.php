@@ -45,6 +45,10 @@ if (! empty($_REQUEST['itemId'])) {
 			$field_option[$hist['fieldId']] = $trklib->get_tracker_field($hist['fieldId']);
 		}
 	}
+
+	$diff_style = empty($_REQUEST['diff_style']) ? '' : $_REQUEST['diff_style'];
+	$smarty->assign('diff_style', $diff_style);
+
 	$smarty->assign_by_ref('item_info', $item_info);
 	$smarty->assign_by_ref('field_option', $field_option);
 }

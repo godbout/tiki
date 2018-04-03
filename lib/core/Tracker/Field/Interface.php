@@ -27,7 +27,7 @@ interface Tracker_Field_Interface
 	 * return the html of the input form for a field
 	 *  either call renderTemplate if using a tpl or use php code
 	 * @param
-	 * @return html
+	 * @return string html
 	*/
 	function renderInput($context = []);
 
@@ -36,9 +36,16 @@ interface Tracker_Field_Interface
 	 *  with the link, prepend, append....
 	 *  Use renderInnerOutput
 	 * @param
-	 * @return html
+	 * @return string html
 	*/
 	function renderOutput($context = []);
+
+	/**
+	 * return the html for the diff of two values for a field
+	 * @param array $context [value, oldValue, etc as for renderOutput]
+	 * @return string html
+	 */
+	function renderDiff($context = []);
 
 	/**
 	 * Generate the plain text comparison to include in the watch email.

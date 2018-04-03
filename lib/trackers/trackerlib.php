@@ -5852,19 +5852,19 @@ class TrackerLib extends TikiLib
 	 * $param = array(
 	 *        // required
 	 *        'field' => array( 'fieldId' => 1, 'trackerId' => 2, 'permName' => 'myPermName', 'etc' => '...')
-	 *        //'trackerId' => 1 // instread of 'field'
+	 *        //'trackerId' => 1            // instread of 'field'
 	 *        //'permName>' => 'myPermName' // instread of 'field'
 	 *
 	 *        // optional
 	 *        'item' => array('fieldId1' => fieldValue1, 'fieldId2' => fieldValue2) // optional
-	 *        'itemId' = 5 // itemId
-	 *        'process' => 'y' // ? will be used in xyz
-	 *
-	 *        // unsure
-	 *        'list_mode' => '' // i.e. 'cvs' will be used in xyz
+	 *        'itemId' = 5                  // itemId
+	 *        'process' => 'y'              // renders the value using the correct field handler
+	 *        'oldValue' => ''              // renders the new and old values using \Tracker_Field_Abstract::renderDiff
+	 *        'list_mode' => ''             // i.e. 'y', 'cvs' or 'text' will be used in \Tracker_Field_Abstract::renderOutput
 	 * )
 	 * </pre>
-	 * @return string - rendered value (with html ?). i.e from $r = $handler->renderInput($context)
+	 * @return string - rendered value (with html ?). i.e from $r = $handler->renderInput($context), renderOutput or renderDiff
+	 * @throws Exception
 	 */
 	public function field_render_value($params)
 	{
@@ -5960,6 +5960,8 @@ class TrackerLib extends TikiLib
 						'field_fetch_url' => $fetchUrl,
 					]
 				);
+			} else if (isset($params['oldValue'])) {
+				$r = $handler->renderDiff($context);
 			} else {
 				$r = $handler->renderOutput($context);
 			}
