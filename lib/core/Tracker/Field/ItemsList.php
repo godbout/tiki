@@ -201,6 +201,27 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 		}
 	}
 
+	function itemsRequireRefresh($trackerId, $modifiedFields)
+	{
+		if ($this->getOption('trackerId') != $trackerId) {
+			return false;
+		}
+
+		$displayFields = $this->getOption('displayFieldIdThere');
+		if (!is_array($displayFields)) {
+			$displayFields = array($displayFields);
+		}
+
+		$usedFields = array_merge(
+			[$this->getOption('fieldIdThere')],
+			$displayFields
+		);
+
+		$intersect = array_intersect($usedFields, $modifiedFields);
+
+		return count($intersect) > 0;
+	}
+
 	function watchCompare($old, $new)
 	{
 		$o = '';

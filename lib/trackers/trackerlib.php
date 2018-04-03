@@ -6038,6 +6038,72 @@ class TrackerLib extends TikiLib
 		return array_unique($items);
 	}
 
+	public function refresh_itemslist_index($args) {
+		// Event handler
+		// See pref tracker_refresh_itemslist_detail
+
+		$modifiedFields = [];
+		foreach ($args['old_values'] as $key => $old) {
+			if (! isset($args['values'][$key]) || $args['values'][$key] != $old) {
+				$modifiedFields[] = $key;
+			}
+		}
+		foreach ($args['values'] as $key => $new) {
+			if (! isset($args['old_values'][$key]) || $args['old_values'][$key] != $new) {
+				$modifiedFields[] = $key;
+			}
+		}
+		$modifiedFields = array_unique($modifiedFields);
+
+		$items = [];
+
+		$fields = $this->table('tiki_tracker_fields');
+		$list = $fields->fetchAll(
+			$fields->all(),
+			['type' => $fields->exactly('l')]
+		);
+		foreach ($list as $field) {
+			$handler = $this->get_field_handler($field);
+			if ($handler && $handler->itemsRequireRefresh($args['trackerId'], $modifiedFields)) {
+				$itemId = $args['object'];
+
+				$fieldIdHere = (int) $handler->getOption('fieldIdHere');
+				$fieldIdThere = (int) $handler->getOption('fieldIdThere');
+
+				// quick way of getting all ItemsList items pointing to the itemId via the field we examine
+				if (empty($fieldIdThere)) {
+					$query = "SELECT value as itemId
+					FROM tiki_tracker_item_fields ttif
+					WHERE ttif.fieldId = ?
+					AND ttif.itemId = ?";
+					$bindvars = [$fieldIdHere, $itemId];
+				} else {
+					$query = "SELECT COALESCE(ttif2.itemId, ttif1.value) as itemId
+					FROM tiki_tracker_item_fields ttif1
+					LEFT JOIN tiki_tracker_item_fields ttif2 ON (ttif2.value = ttif1.value OR ttif2.value = ttif1.itemId) AND ttif2.fieldId = ?
+					WHERE ttif1.fieldId = ?
+					AND ttif1.itemId = ?";
+					$bindvars = [$fieldIdHere, $fieldIdThere, $itemId];
+				}
+
+				$fieldItems = $this->fetchAll($query, $bindvars);
+				$fieldItems = array_map(
+					function ($row) {
+						return $row['itemId'];
+					},
+					$fieldItems
+				);
+				$items = array_merge($items, $fieldItems);
+			}
+		}
+		$items = array_unique($items);
+
+		$searchlib = TikiLib::lib('unifiedsearch');
+		foreach ($items as $itemId) {
+			$searchlib->invalidateObject('trackeritem', $itemId);
+		}
+	}
+
 	public function update_user_account($args)
 	{
 		// Try to find if the tracker is a user tracker, flag update to associated user
