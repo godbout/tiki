@@ -41,13 +41,6 @@ interface Tracker_Field_Interface
 	function renderOutput($context = []);
 
 	/**
-	 * return the html for the diff of two values for a field
-	 * @param array $context [value, oldValue, etc as for renderOutput]
-	 * @return string html
-	 */
-	function renderDiff($context = []);
-
-	/**
 	 * Generate the plain text comparison to include in the watch email.
 	 */
 	function watchCompare($old, $new);
