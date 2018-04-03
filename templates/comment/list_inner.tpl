@@ -78,6 +78,22 @@
 						{if $prefs.wiki_comments_simple_ratings eq 'y' && ($tiki_p_ratings_view_results eq 'y' or $tiki_p_admin eq 'y')}
 							{rating_result type="comment" id=$comment.threadId}
 						{/if}
+						{if $comment.diffInfo}
+							<div class="well"><pre style="display: none;">{$comment.diffInfo|var_dump}</pre>
+								<h4 class="btn btn-link" type="button" data-toggle="collapse" data-target=".version{$comment.diffInfo[0].version}" aria-expanded="false" aria-controls="collapseExample">
+									Version {$comment.diffInfo[0].version}
+									{icon name='history'}
+								</h4>
+								<div class="collapse table-responsive version{$comment.diffInfo[0].version}">
+									<table class="table">
+										{foreach $comment.diffInfo as $info}
+											<label>{$info.fieldName}</label>
+											{trackeroutput fieldId=$info.fieldId list_mode='y' history=y process=y oldValue=$info.value value=$info.new diff_style='sidediff'}
+										{/foreach}
+									</table>
+								</div>
+							</div>
+						{/if}
 
 					</div><!-- End of comment-footer -->
 				</div><!-- End of comment-item -->

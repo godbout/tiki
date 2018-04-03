@@ -23,10 +23,30 @@
 				{textarea codemirror='true' syntax='tiki' name=data comments="y" _wysiwyg="n" rows=$smarty.capture.rows}{$comment.data}{/textarea}
 				</div>
 				<div class="panel-footer">
-					<input type="submit" class="clearfix comment-editclass btn btn-primary btn-sm" value="{tr}Save{/tr}"/>
-					<div class="btn btn-link">
-						<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
-					</div>
+					{if empty($comment.version)}
+						<div class="form-group comment-post">
+							<input type="submit" class="clearfix comment-editclass btn btn-primary btn-sm" value="{tr}Save{/tr}"/>
+							<div class="btn btn-link">
+								<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
+							</div>
+						</div>
+					{else}
+						{if $diffInfo}
+							<div class="well">
+								{foreach $diffInfo as $info}
+									<label>{$info.fieldName}</label> {*{$info.value} => {$info.new}<br>*}
+									{trackeroutput fieldId=$info.fieldId list_mode='y' history=y process=y oldValue=$info.value value=$info.new diff_style='sidediff'}
+								{/foreach}
+							</div>
+						{/if}
+						<div class="submit">
+							<input type="hidden" name="version" value="{$comment.version|escape}"/>
+							<input type="submit" class="comment-post btn btn-primary" value="{tr}Post{/tr}"/>
+							<div class="btn btn-link">
+								<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
+							</div>
+						</div>
+					{/if}
 				</div>
 			</fieldset>
 		</div>

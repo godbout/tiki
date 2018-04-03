@@ -65,12 +65,27 @@
 						{include file='antibot.tpl'}
 					{/if}
 					<input type="hidden" name="return_url" value="{$return_url|escape}">
-					<div class="form-group comment-post">
-						<input type="submit" class="comment-post btn btn-primary btn-sm" value="{tr}Post{/tr}"/>
-						<div class="btn btn-link">
-							<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
+					{if empty($version)}
+						<div class="form-group comment-post">
+							<input type="submit" class="comment-post btn btn-primary btn-sm" value="{tr}Post{/tr}"/>
+							<div class="btn btn-link">
+								<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
+							</div>
 						</div>
-					</div>
+					{else}
+						{if $diffInfo}
+							<div class="well">
+								{foreach $diffInfo as $info}
+									<label>{$info.fieldName}</label> {*{$info.value} => {$info.new}<br>*}
+									{trackeroutput fieldId=$info.fieldId list_mode='y' history=y process=y oldValue=$info.value value=$info.new diff_style='sidediff'}
+								{/foreach}
+							</div>
+						{/if}
+						<div class="submit">
+							<input type="hidden" name="version" value="{$version|escape}"/>
+							<input type="submit" class="comment-post btn btn-primary" value="{tr}Post{/tr}"/>
+						</div>
+					{/if}
 				</div>
 			</div>
 		</form>

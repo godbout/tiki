@@ -73,6 +73,13 @@
 					{tr}Display last comment author and date{/tr}
 				</label>
 			</div>
+			<div class="checkbox depends" data-on="useComments">
+				<label>
+					<input type="checkbox" name="saveAndComment" value="1"
+							{if $info.saveAndComment eq 'y'} checked="checked"{/if}>
+					{tr}Save and Comment{/tr}
+				</label>
+			</div>
 			<div class="checkbox">
 				<label>
 					<input type="checkbox" name="useAttachments" value="1"

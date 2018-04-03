@@ -1778,6 +1778,10 @@ class Comments extends TikiLib
 			$res['deliberations'] = $this->get_forum_deliberations($res['threadId']);
 		}
 
+		if (! empty($res['objectType']) && $res['objectType'] == 'trackeritem') {
+			$res['version'] = TikiLib::lib('attribute')->get_attribute('comment', $res['threadId'], 'tiki.comment.version');
+		}
+
 		return $res;
 	}
 
@@ -2450,6 +2454,29 @@ class Comments extends TikiLib
 			if (! $userlib->user_exists($ret[$key]['userName'])) {
 				$ret[$key]['anonymous_name'] = $ret[$key]['userName'];
 			}
+
+			$ret[$key]['version'] = 0;
+			$ret[$key]['diffInfo'] = [];
+			if (! empty($ret[$key]['objectType']) && $ret[$key]['objectType'] == 'trackeritem') {
+				$ret[$key]['version'] = TikiLib::lib('attribute')->get_attribute('comment', $ret[$key]['threadId'], 'tiki.comment.version');
+				if ($ret[$key]['version']) {
+					$history = TikiLib::lib('trk')->get_item_history(
+						['itemId' => $ret[$key]['object']],
+						0,
+						['version' => $ret[$key]['version']]
+					);
+
+					foreach ($history['data'] as &$hist) {
+						$field_info = TikiLib::lib('trk')->get_field_info($hist['fieldId']);
+						$hist['fieldName'] = $field_info['name'];
+					}
+
+					if (! empty($history['data'])) {
+						$ret[$key]['diffInfo'] = $history['data'];
+					}
+				}
+			}
+
 		}
 
 		if ($old_sort_mode == 'replies_asc') {
@@ -2941,22 +2968,25 @@ class Comments extends TikiLib
 	/**
 	 * Post a new comment (forum post or comment on some Tiki object)
 	 *
-	 * @param string $objectId object type and id separated by two colon ('wiki page:HomePage' or 'blog post:2')
-	 * @param int $parentId id of parent comment of this comment
-	 * @param string $userName if empty $anonumous_name is used
+	 * @param string $objectId           object type and id separated by two colon ('wiki page:HomePage' or 'blog post:2')
+	 * @param int $parentId              id of parent comment of this comment
+	 * @param string $userName           if empty $anonumous_name is used
 	 * @param string $title
 	 * @param string $data
-	 * @param unknown_type $message_id
-	 * @param unknown_type $in_reply_to
-	 * @param unknown_type $type
-	 * @param unknown_type $summary
-	 * @param unknown_type $smiley
-	 * @param unknown_type $contributions
-	 * @param string $anonymous_name name when anonymous user post a comment (optional)
-	 * @param int $postDate when the post was created (defaults to now)
-	 * @param string $anonymous_email optional
-	 * @param string $anonymous_website optional
+	 * @param string $message_id
+	 * @param string $in_reply_to
+	 * @param string $type
+	 * @param string $summary
+	 * @param string $smiley
+	 * @param string $contributions
+	 * @param string $anonymous_name      name when anonymous user post a comment (optional)
+	 * @param string $postDate            when the post was created (defaults to now)
+	 * @param string $anonymous_email     optional
+	 * @param string $anonymous_website   optional
+	 * @param array $parent_comment_info
+	 * @param int    $version             version number being commented about (trackers only as yet)
 	 * @return int $threadId id of the new comment
+	 * @throws Exception
 	 */
 	function post_new_comment(
 		$objectId,
@@ -2974,7 +3004,8 @@ class Comments extends TikiLib
 		$postDate = '',
 		$anonymous_email = '',
 		$anonymous_website = '',
-		$parent_comment_info = ''
+		$parent_comment_info = [],
+		$version = 0
 	) {
 
 		global $user;
@@ -3197,6 +3228,11 @@ class Comments extends TikiLib
 					'content' => $data,
 				]
 			);
+		}
+
+		// store the related version being commented about as an attribute of this comment
+		if ($version) {
+			TikiLib::lib('attribute')->set_attribute('comment', $threadId, 'tiki.comment.version', $version);
 		}
 
 		$tx->commit();

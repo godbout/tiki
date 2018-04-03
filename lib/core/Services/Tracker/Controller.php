@@ -1034,8 +1034,25 @@ class Services_Tracker_Controller
 			if (isset($input['edit']) && $input['edit'] === 'inline') {
 				Feedback::send_headers();
 			} else {
-				//return to page
 				$redirect = $input->redirect->url();
+
+				if ($input->saveAndComment->int()) {
+					$version = TikiLib::lib('trk')->last_log_version($itemId);
+
+					return [
+						'FORWARD' => [
+							'controller' => 'comment',
+							'action' => 'post',
+							'type' => 'trackeritem',
+							'objectId' => $itemId,
+							'parentId' => 0,
+							'version' => $version,
+							'return_url' => $redirect,
+							'title' => tr('Comment for edit #%0', $version),
+						],
+					];
+				}
+				//return to page
 				if (! $redirect) {
 					$referer = Services_Utilities::noJsPath();
 					return Services_Utilities::refresh($referer);
@@ -1114,6 +1131,13 @@ class Services_Tracker_Controller
 			$status = $input->status->word();
 		}
 
+		$saveAndComment = $definition->getConfiguration('saveAndComment');
+		if ($saveAndComment !== 'n') {
+			if (! Tracker_Item::fromId($itemId)->canPostComments()) {
+				$saveAndComment = 'n';
+			}
+		}
+
 		return [
 			'title' => $title,
 			'trackerId' => $trackerId,
@@ -1127,6 +1151,7 @@ class Services_Tracker_Controller
 			'editItemPretty' => $editItemPretty,
 			'button_label' => $button_label,
 			'redirect' => $input->redirect->none(),
+			'saveAndComment' => $saveAndComment,
 		];
 	}
 
@@ -1569,6 +1594,7 @@ class Services_Tracker_Controller
 				'useComments' => $input->useComments->int() ? 'y' : 'n',
 				'showComments' => $input->showComments->int() ? 'y' : 'n',
 				'showLastComment' => $input->showLastComment->int() ? 'y' : 'n',
+				'saveAndComment' => $input->saveAndComment->int() ? 'y' : 'n',
 				'useAttachments' => $input->useAttachments->int() ? 'y' : 'n',
 				'showAttachments' => $input->showAttachments->int() ? 'y' : 'n',
 				'orderAttachments' => implode(',', $input->orderAttachments->word()),

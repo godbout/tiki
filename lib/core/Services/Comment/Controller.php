@@ -68,6 +68,7 @@ class Services_Comment_Controller
 		$objectId = $input->objectId->pagename();
 		$parentId = $input->parentId->int();
 		$return_url = $input->return_url->url();
+		$version = $input->version->int();
 
 		// Check general permissions
 
@@ -141,6 +142,8 @@ class Services_Comment_Controller
 				$errors[] = tr('Duplicated comment, there is already another comment with the same text');
 			}
 
+			$diffInfo = [];	// for saveAndComment
+
 			if (count($errors) === 0) {
 				$message_id = ''; // By ref
 				$threadId = $commentslib->post_new_comment(
@@ -158,7 +161,9 @@ class Services_Comment_Controller
 					$anonymous_name,
 					'',
 					$anonymous_email,
-					$anonymous_website
+					$anonymous_website,
+					[],
+					$version
 				);
 				// Set watch if requested
 				if ($prefs['feature_user_watches'] == 'y' && $watch == 'y') {
@@ -251,8 +256,9 @@ class Services_Comment_Controller
 					];
 				}
 			}
+		} else if ($version) {	// not the post
+			$diffInfo = $this->setUpDiffInfo($type, $objectId, $version);
 		}
-
 		return [
 			'parentId' => $parentId,
 			'type' => $type,
@@ -265,6 +271,8 @@ class Services_Comment_Controller
 			'anonymous_website' => $anonymous_website,
 			'errors' => $errors,
 			'return_url' => $return_url,
+			'version' => $version,
+			'diffInfo' => $diffInfo,
 		];
 	}
 
@@ -280,6 +288,8 @@ class Services_Comment_Controller
 			throw new Services_Exception_Denied;
 		}
 
+		$diffInfo = [];	// for saveAndComment
+
 		if ($input->edit->int()) {
 			$title = trim($input->title->text());
 			$data = trim($input->data->wikicontent());
@@ -291,10 +301,13 @@ class Services_Comment_Controller
 				'threadId' => $threadId,
 				'comment' => $comment,
 			];
+		} else if ($comment['version']) {	// not the post
+			$diffInfo = $this->setUpDiffInfo($comment['objectType'], $comment['object'], $comment['version']);
 		}
 
 		return [
 			'comment' => $comment,
+			'diffInfo' => $diffInfo,
 		];
 	}
 
@@ -762,5 +775,43 @@ class Services_Comment_Controller
 		}
 
 		$_SESSION['created_comments'][] = $threadId;
+	}
+
+	/**
+	 * @param $type
+	 * @param $objectId
+	 * @param $version
+	 * @return mixed
+	 * @throws Exception
+	 */
+	private function setUpDiffInfo($type, $objectId, $version)
+	{
+		if ($type === 'trackeritem') {    // for saveAndComment
+			$trackerLib = TikiLib::lib('trk');
+
+			$history = $trackerLib->get_item_history(
+				['itemId' => $objectId],
+				0,
+				['version' => $version]
+			);
+
+			$diffInfo = [];
+
+			foreach($history['data'] as $info) {
+				$field_info = $trackerLib->get_field_info($info['fieldId']);
+				$info['fieldName'] = $field_info['name'];
+				$diffInfo[] = $info;
+			}
+		}
+		// add some specific js to set up comment post form in a modal dialog
+		// so it can refresh the page after the post
+		TikiLib::lib('header')->add_jq_onready(/** @lang JavaScript */
+			'	
+$(".comment-post").parents("form").submit(ajaxSubmitEventHandler(function (data) {
+	$.closeModal();
+	location.href = location.href.replace(/#.*$/, "");
+}));
+			');
+		return $diffInfo;
 	}
 }
