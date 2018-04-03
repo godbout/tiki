@@ -5874,6 +5874,8 @@ class TrackerLib extends TikiLib
 		} elseif (isset($params['trackerId'], $params['permName'])) {
 			$definition = Tracker_Definition::get($params['trackerId']);
 			$field = $definition->getFieldFromPermName($params['permName']);
+		} elseif (isset($params['fieldId'])) {
+			$field = $this->get_field_info($params['fieldId']);
 		} else {
 			return tr('Field not specified');
 		}
