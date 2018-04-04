@@ -267,6 +267,16 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		}
 	}
 
+	public function handleFieldSave($data)
+	{
+		$trackerId = $this->getConfiguration('trackerId');
+		$options = json_decode($data['options'], true);
+		
+		if (preg_match("/tracker_id=[^&]*{$trackerId}/", $options['filter']) && $options['invert'] && $options['refresh']) {
+			Feedback::warning(tr('Self-related fields with Include Invert option set to Yes should not have Force Refresh option on save.'), 'session');
+		}
+	}
+
 	/**
 	 * When Relation field is removed, clean up the relations table.
 	 */
