@@ -33,7 +33,7 @@
 		<form method="post" action="{service controller=tracker action=update_item format=$format editItemPretty=$editItemPretty}" id="updateItemForm{$trackerId|escape}">
 			{trackerfields trackerId=$trackerId fields=$fields status=$status itemId=$itemId format=$format editItemPretty=$editItemPretty}
 			<div class="submit">
-				{if $saveAndComment neq 'n'}
+				{if not empty($saveAndComment) and $saveAndComment neq 'n'}
 					<input type="hidden" name="saveAndComment" id="saveAndComment" value="">
 					<input type="submit" class="btn btn-default" onclick="$('#saveAndComment').val(1);" value="{tr}Save and Comment{/tr}">
 				{/if}
