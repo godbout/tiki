@@ -148,10 +148,12 @@ function filter_out_sefurl($tpl_output, $type = null, $title = '', $with_next = 
 				$title = preg_replace('/' . CLEAN_CHAR . '+$/', '', $title);
 
 				if (! empty($prefs['feature_sefurl_title_max_size'])) {
-					$title = substr($title, 0, ($prefs['feature_sefurl_title_max_size'] + 1));
-					$titleMaxLength = strrpos($title, CLEAN_CHAR);
-					if ($titleMaxLength > 0) {
-						$title = substr($title, 0, $titleMaxLength);
+					if (strlen($title) > $prefs['feature_sefurl_title_max_size']) {
+						$title = substr($title, 0, ($prefs['feature_sefurl_title_max_size'] + 1));
+						$titleMaxLength = strrpos($title, CLEAN_CHAR);
+						if ($titleMaxLength > 0) {
+							$title = substr($title, 0, $titleMaxLength);
+						}
 					}
 				}
 			}
