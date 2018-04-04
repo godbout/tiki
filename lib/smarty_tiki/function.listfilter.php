@@ -114,7 +114,7 @@ function smarty_function_listfilter($params, $smarty)
 		$smartylib->loadPlugin('smarty_function_icon');
 		$icon = smarty_function_icon(['name' => 'delete'], $smarty);
 		$input .= "<a href='#' onclick=\"\$('#$id').val('').focus().keyup();return false;\" class='closeicon tips' title=':"
-				. tr('Clear fiilter') . "'>$icon</a>";
+				. tr('Clear filter') . "'>$icon</a>";
 		$input .= '</div></div></div>';
 
 		if (! isset($selectors)) {

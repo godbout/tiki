@@ -181,7 +181,7 @@
                                 {preference name=wiki_backlinks_show_trackerfield}
                                 {preference name=wiki_backlinks_show_calendar_event}
 				<div class="col-sm-offset-4 col-md-8">
-					{permission_link addclass="timeout" mode=button permType=wiki textFilter=backlinks showDisabled=y}
+					{permission_link addclass="timeout" mode=button textFilter=backlinks showDisabled=y}
 				</div>
 			</div>
 			{preference name=feature_semantic}
