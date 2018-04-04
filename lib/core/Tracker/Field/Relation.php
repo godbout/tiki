@@ -131,8 +131,12 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		}
 
 		$filter = $this->buildFilter();
-		if (! isset($filter['object_id']) && $this->getItemId()) {
-			$filter['object_id'] = 'NOT ' . $this->getItemId();
+
+		if (isset($filter['tracker_id']) &&
+				$this->getConfiguration('trackerId') == $filter['tracker_id'] &&
+				! isset($filter['object_id']) && $this->getItemId()) {
+
+			$filter['object_id'] = 'NOT ' . $this->getItemId();	// exclude this item if we are related to the same tracker_id
 		}
 
 		return $this->renderTemplate(
