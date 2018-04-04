@@ -1,5 +1,5 @@
 {if $field.isMultilingual ne 'y'}
-	<div class="input-group">
+	<div{if $field.options_map.prepend or $field.options_map.append} class="input-group"{/if}>
 		{if $field.options_map.prepend}
 			<span class="input-group-addon">{$field.options_map.prepend}&nbsp;</span>
 		{/if}
@@ -15,7 +15,7 @@
 {else}
 	{foreach from=$field.lingualvalue item=ling name=multi}
 		<label for="{$ling.id|escape}">{$ling.lang|langname}</label>
-		<div class="input-group">
+		<div{if $field.options_map.prepend or $field.options_map.append} class="input-group"{/if}>
 			{if !empty($field.options_map.prepend)}
 				<span class="input-group-addon">{$field.options_map.prepend}&nbsp;</span>
 			{/if}
