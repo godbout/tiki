@@ -12,6 +12,10 @@ class Search_Type_Factory_Direct implements Search_Type_Factory_Interface
 		return new Search_Type_Whole($value);
 	}
 
+	function plainmediumtext($value) {
+		return new Search_Type_PlainMediumText($value);
+	}
+
 	function wikitext($value)
 	{
 		return new Search_Type_PlainText($value);

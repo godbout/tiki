@@ -12,6 +12,10 @@ class Search_Lucene_TypeFactory implements Search_Type_Factory_Interface
 		return new Search_Type_PlainText($value);
 	}
 
+	function plainmediumtext($value) {
+		return new Search_Type_PlainMediumText($value);
+	}
+
 	function wikitext($value)
 	{
 		return new Search_Type_WikiText($value);

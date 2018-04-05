@@ -250,7 +250,7 @@ class Search_Indexer
 		$base = [
 			'object_type' => $typeFactory->identifier($objectType),
 			'object_id' => $typeFactory->identifier($objectId),
-			'contents' => $typeFactory->plaintext($this->getGlobalContent($data, $globalFields)),
+			'contents' => $typeFactory->plainmediumtext($this->getGlobalContent($data, $globalFields)),
 		];
 
 		$data = array_merge(array_filter($data), $base);

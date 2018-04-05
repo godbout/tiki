@@ -2677,6 +2677,7 @@ lib/core/Search/Type/MultivalueText.php -text
 lib/core/Search/Type/Nested.php -text
 lib/core/Search/Type/Numeric.php -text
 lib/core/Search/Type/Object.php -text
+lib/core/Search/Type/PlainMediumText.php -text
 lib/core/Search/Type/PlainShortText.php -text
 lib/core/Search/Type/PlainText.php -text
 lib/core/Search/Type/ShortText.php -text
