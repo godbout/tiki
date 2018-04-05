@@ -2081,7 +2081,12 @@ class TrackerLib extends TikiLib
 		}
 
 		if (strlen($encoded) >= 65535) {
-			unset($arguments['values_by_permname'], $arguments['old_values_by_permname']);	// fields are duplicated sadly
+			unset($arguments['old_values_by_permname']);	// fields are duplicated sadly
+			$encoded = json_encode($arguments);
+		}
+
+		if (strlen($encoded) >= 65535) {
+			unset($arguments['values_by_permname']);		// no field values at all
 		}
 
 		TikiLib::events()->trigger(
