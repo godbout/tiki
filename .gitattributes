@@ -188,6 +188,7 @@ doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
 doc/devtools/upto_7_drop_unused_6.x_tables.sql -text
 doc/devtools/var/lock/dummy.lock -text
 doc/devtools/var/log/update/update.log -text
+doc/devtools/vendorsecurity.php -text
 doc/index.php -text
 doc/longterm.cycle -text
 doc/readme.txt -text
