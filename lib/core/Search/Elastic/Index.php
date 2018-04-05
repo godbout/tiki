@@ -107,11 +107,12 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 					return [
 						"type" => $this->connection->getVersion() >= 5 ? "keyword" : "string",
 						"index" => $this->connection->getVersion() >= 5 ? true : "not_analyzed",
+						"ignore_above" => 32765,
 						"fields" => [
 							"sort" => $this->connection->getVersion() >= 5 ?
 							[
 								"type" => "keyword",
-								"ignore_above" => 200,
+								"ignore_above" => 1000,
 							] : [
 								"type" => "string",
 								"analyzer" => "sortable",
@@ -161,9 +162,8 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 						"fields" => [
 							"sort" => $this->connection->getVersion() >= 5 ?
 							[
-								"type" => "text",
-								"analyzer" => "sortable",
-								"fielddata" => true,
+								"type" => "keyword",
+								"ignore_above" => 1000,
 							] : [
 								"type" => "string",
 								"analyzer" => "sortable",
