@@ -631,11 +631,21 @@ class HeaderLib
 	private function minifyJSFiles($allJsfiles, $ranks)
 	{
 		global $tikidomainslash;
+		$cachelib = TikiLib::lib('cache');
+		$cacheType = 'js_minify_hash';
 
 		// build hash to identify minified file based on the _requested_ ranks, NOT on the entire jsfiles array
 		// $jsfiles contains only those keys defined in $ranks
 		$jsfiles = array_intersect_key($allJsfiles, array_flip($ranks));
-		$hash = md5(serialize($jsfiles));
+		$cacheName = md5(serialize($jsfiles));
+
+		// create the minified filename based on the contents of the files, and cache that hash as it's expensive to create
+		// browsers will automatically load new js if it has changed after the cache has been cleared, after an upgrade for instance
+		$hash = $cachelib->getCached($cacheName, $cacheType);
+		if (! $hash) {
+			$hash = $this->getFilesContentsHash($jsfiles);
+			$cachelib->cacheItem($cacheName, $hash, $cacheType);
+		}
 		$tempDir = 'temp/public/' . $tikidomainslash;
 		$file = $tempDir . "min_main_" . $hash . ".js";
 		$cdnFile = $this->convert_cdn($file);
@@ -715,6 +725,24 @@ class HeaderLib
 		return $file;
 	}
 
+	/**
+	 * Calculate a hash based on the contents of files recursively
+	 *
+	 * @param array $files   multidimansional array of filepaths to minify/hash
+	 * @param string $hash
+	 * @return string        hash based on contents of the files
+	 */
+	private function getFilesContentsHash(array $files, & $hash = '')
+	{
+		foreach ($files as $file) {
+			if (is_array($file)) {
+				$hash .= $this->getFilesContentsHash($file, $hash);
+			} else {
+				$hash .= md5_file($file);
+			}
+		}
+		return md5($hash);
+	}
 
 
 	/**
