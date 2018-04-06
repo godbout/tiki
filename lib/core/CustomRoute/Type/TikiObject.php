@@ -13,7 +13,7 @@ use Tiki\CustomRoute\Type;
 /**
  * Custom route for objects
  */
-class Object extends Type
+class TikiObject extends Type
 {
 	/**
 	 * @inheritdoc
