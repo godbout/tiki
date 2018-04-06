@@ -604,6 +604,12 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			foreach ($ids as $id) {
 				if (isset($out[$id])) {
 					$out2["$id"] = $out[$id];
+				} else {
+					Feedback::warning(tr('File #%0 missing (was attached to trackerfield #%1 on item #%2)',
+						$id,
+						$this->getConfiguration('fieldId'),
+						$this->getItemId()
+					));
 				}
 			}
 			$out = $out2;
