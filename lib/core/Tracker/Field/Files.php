@@ -602,7 +602,9 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		if (! $sortOrder) {	// re-order result into order they were attached
 			$out2 = [];
 			foreach ($ids as $id) {
-				$out2["$id"] = $out[$id];
+				if (isset($out[$id])) {
+					$out2["$id"] = $out[$id];
+				}
 			}
 			$out = $out2;
 		}
