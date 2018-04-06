@@ -129,6 +129,8 @@ class Item
 	{
 		global $tikilib;
 
+
+
 		switch ($this->type) {
 			case 'Direct':
 				if ($path === $this->from) {
@@ -158,7 +160,9 @@ class Item
 					require_once('tiki-sefurl.php');
 					$smarty = TikiLib::lib('smarty');
 					$smarty->loadPlugin('smarty_modifier_sefurl');
+					$isExternal = TikiLib::setExternalContext(true);
 					$url = smarty_modifier_sefurl($objectId, $type);
+					TikiLib::setExternalContext($isExternal);
 
 					return $url;
 				}
@@ -184,7 +188,14 @@ class Item
 					return false;
 				}
 
-				return 'item' . $itemId;
+				require_once('tiki-sefurl.php');
+				$smarty = TikiLib::lib('smarty');
+				$smarty->loadPlugin('smarty_modifier_sefurl');
+				$isExternal = TikiLib::setExternalContext(true);
+				$url = smarty_modifier_sefurl($itemId, 'trackeritem');
+				TikiLib::setExternalContext($isExternal);
+
+				return $url;
 
 				break;
 			default:
