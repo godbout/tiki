@@ -1,13 +1,13 @@
 #!/usr/bin/php
 <?php
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright 2002-2018 by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
 if ($argc < 3) {
-	$helpMsg = "\nUsage: php doc/devtools/convert_tracker_attachments.php trackerId fieldId [fileGalId]\n";
+	$helpMsg = "\nUsage: php doc/devtools/convert_tracker_attachments.php trackerId fieldId [fileGalId] ['remove']\n";
 	$helpMsg .= "\nExamples: \n\t\tphp doc/devtools/convert_tracker_attachments.php 1 2";
 	$helpMsg .= "\n\t\tphp doc/devtools/convert_tracker_attachments.php 1 2 2\n\n";
 	exit($helpMsg);
@@ -19,133 +19,169 @@ $context = new Perms_Context("admin");
 
 $trackerId = $argv[1];
 $fieldId = $argv[2];
-$galleryId = $argv[3];
 
-if (!isset($trackerId)) {
+if (! isset($trackerId)) {
 	echo "Error: Missing trackerId\n";
 	exit(1);
 }
 
-if (!isset($fieldId)) {
+if (! isset($fieldId)) {
 	echo "Error: Missing fieldId\n";
 	exit(1);
 }
 
-if (!isset($galleryId)) {
-	$galleryId = 1;
+if (isset($argv[3])) {
+	$galleryId = $argv[3];
+} else {
+	$galleryId = 0;
 }
 
-// Check if tracker and fieldId are valid
-$trklib = TikiLib::lib('trk');
-$fgFields = $trklib->get_field_id_from_type($trackerId, 'FG', null, false);
-
-if (empty($fgFields) || !in_array($fieldId, $fgFields)) {
-	echo "Error: Invalid fieldId {$fieldId} for trackerId {$trackerId}\n";
-	exit(1);
+if (isset($argv[4]) && $argv[4] === 'remove') {
+	$remove = true;
+} else {
+	$remove = false;
 }
 
-// Check if its a valid file gallery
-try {
-	$fileUtilities = new Services_File_Utilities;
-	$galInfo = $fileUtilities->checkTargetGallery($galleryId);
-} catch (Services_Exception $e) {
-    echo "Error: {$e->getMessage()}\n";
-    exit(1);
-}
+/**
+ * @param $trackerId
+ * @param $fieldId
+ * @param int $galleryId
+ * @throws Services_Exception
+ * @throws Exception
+ */
+function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = false)
+{
+	global $prefs;
 
-$items = $trklib->list_items($trackerId, 0, -1, 'lastModif_asc', '', '', '', '', '', '', '', null, false, true);
-
-$trackerUtilities = new Services_Tracker_Utilities;
-
-foreach ($items['data'] as $item) {
-	$itemId = $item['itemId'];
-
-	echo "Updating tracker item {$itemId}:\n";
-
+	$trklib = TikiLib::lib('trk');
+	$trackerUtilities = new Services_Tracker_Utilities;
 	$definition = Tracker_Definition::get($trackerId);
 
-	$itemInfo = $trklib->get_tracker_item($itemId);
-	if (!$itemInfo || $itemInfo['trackerId'] != $trackerId) {
-		continue;
+	// Check if tracker and fieldId are valid
+	$fgField = $trackerUtilities->getFieldsFromIds($definition, [$fieldId]);
+
+	if (! $fgField || $fgField[0]['type'] !== 'FG') {
+		echo "Error: Invalid fieldId {$fieldId} for trackerId {$trackerId}\n";
+		exit(1);
+	}
+	$fgField = $fgField[0];
+
+	if (! $galleryId && isset($fgField['options_map']['galleryId'])) {
+		$galleryId = $fgField['options_map']['galleryId'];
 	}
 
-	$atts = $trklib->list_item_attachments($itemId, 0, -1, 'comment_asc', '');
-	$fileIdList = [];
-
-	$numAttachments = sizeof($atts['data']);
-	echo "- Found {$numAttachments} attachment(s)\n";
-
-	if ($numAttachments === 0) {
-		echo "Tracker Item {$itemId} skipped\n";
-		continue;
+	if (! $galleryId) {
+		$galleryId = $prefs['fgal_root_id'];
 	}
 
-	foreach ($atts['data'] as $attachment) {
-		$attachment = $trklib->get_item_attachment($attachment['attId']);
+// Check if its a valid file gallery
+	try {
+		$fileUtilities = new Services_File_Utilities;
+		$galInfo = $fileUtilities->checkTargetGallery($galleryId);
+	} catch (Services_Exception $e) {
+		echo "Error: {$e->getMessage()}\n";
+		exit(1);
+	}
 
-		if (!$attachment) {
-			echo "- Warning: Unable to get item attachment with attId {$attachment['attId']}\n";
+	$items = $trackerUtilities->getItems(['trackerId' => $trackerId]);
+
+
+	foreach ($items as $item) {
+		$itemId = $item['itemId'];
+
+
+		$itemObject = Tracker_Item::fromId($itemId);
+
+		if (! $itemObject || $itemObject->getDefinition() !== $definition) {
 			continue;
 		}
 
-		$name = $attachment['filename'];
-		$size = $attachment['filesize'];
-		$type = $attachment['filetype'];
-		$data = $attachment['data'];
-		$asuser = null;
-		$imageX = 0;
-		$imageY = 0;
+		$atts = $trklib->list_item_attachments($itemId, 0, -1, 'comment_asc', '');
+		$fileIdList = [];
 
-		$fileId = $fileUtilities->uploadFile($galInfo, $name, $size, $type, $data, $asuser, $imageX, $imageY);
+		$numAttachments = sizeof($atts['data']);
 
-		if ($fileId !== false) {
-			array_push($fileIdList, $fileId);
-			echo "- Attachment {$attachment['filename']} uploaded to file gallery\n";
+		if ($numAttachments === 0) {
+			echo "Tracker Item {$itemId} skipped (no attachments)\n";
+			continue;
 		} else {
-			echo "- Failed to upload attachment {$attachment['filename']} to file gallery\n";
+			echo "Updating tracker item {$itemId}:\n";
+			$ess = $numAttachments > 1 ? 's' : '';
+			echo "- Found {$numAttachments} attachment$ess\n";
 		}
-	}
 
-	if (empty($fileIdList)) {
-		echo "No files were uploaded to the file gallery\n";
-		echo "Tracker Item {$itemId} skipped\n";
-		continue;
-	}
+		foreach ($atts['data'] as $attachment) {
+			$attachment = $trklib->get_item_attachment($attachment['attId']);
 
-	$itemObject = Tracker_Item::fromInfo($itemInfo);
+			if (! $attachment) {
+				echo "- Warning: Unable to get item attachment with attId {$attachment['attId']}\n";
+				continue;
+			}
 
-	$input = new JitFilter([
-		'trackerId' => $trackerId,
-		'itemId' => $itemId
-	]);
+			$name = $attachment['filename'];
+			$size = $attachment['filesize'];
+			$type = $attachment['filetype'];
+			$data = $attachment['data'];
 
-	$processedFields = $itemObject->prepareInput($input);
+			$fileId = $fileUtilities->uploadFile($galInfo, $name, $size, $type, $data);
 
-	$fields = [];
-
-	foreach ($processedFields as $key => $field) {
-		$permName = $field['permName'];
-		$fields[$permName] = isset($field['value']) ? $field['value'] : '';
-
-		if ($field['fieldId'] == $fieldId && $field['type'] == 'FG') {
-			$fields[$permName] = empty($fields[$permName]) ? implode(',', $fileIdList) : $fields[$permName] . ',' . implode(',', $fileIdList);
+			if ($fileId !== false) {
+				array_push($fileIdList, $fileId);
+				echo "- Attachment {$attachment['filename']} uploaded to file gallery\n";
+			} else {
+				echo "- Failed to upload attachment {$attachment['filename']} to file gallery\n";
+			}
 		}
-	}
 
-	$result = $trackerUtilities->updateItem(
-		$definition,
-		[
+		if (empty($fileIdList)) {
+			echo "No files were uploaded to the file gallery\n";
+			echo "Tracker Item {$itemId} skipped\n";
+			continue;
+		}
+
+		$input = new JitFilter([
+			'trackerId' => $trackerId,
 			'itemId' => $itemId,
-			'status' => '',
-			'fields' => $fields,
-		]
-	);
+		]);
 
-	if ($result !== false) {
-		echo "Tracker item {$itemId} updated successfully\n";
-	} else {
-		echo "Tracker item {$itemId} update failed\n";
+		$processedFields = $itemObject->prepareInput($input);
+
+		$fields = [];
+
+		foreach ($processedFields as $key => $field) {
+			$permName = $field['permName'];
+			$fields[$permName] = isset($field['value']) ? $field['value'] : '';
+
+			if ($field['fieldId'] == $fieldId && $field['type'] == 'FG') {
+				$fields[$permName] = empty($fields[$permName]) ? implode(',', $fileIdList) : $fields[$permName] . ',' . implode(',', $fileIdList);
+			}
+		}
+
+		$result = $trackerUtilities->updateItem(
+			$definition,
+			[
+				'itemId' => $itemId,
+				'status' => '',
+				'fields' => $fields,
+			]
+		);
+
+		if ($result !== false) {
+			if ($remove) {
+				foreach ($atts['data'] as $attachment) {
+					$trklib->remove_item_attachment($attachment['attId'], $itemId);
+				}
+				echo "Tracker item {$itemId} updated successfully and $numAttachments attachment$ess removed\n";
+			} else {
+				echo "Tracker item {$itemId} updated successfully\n";
+			}
+		} else {
+			echo "Tracker item {$itemId} update failed\n";
+		}
 	}
 }
+
+convertAttachments($trackerId, $fieldId, $galleryId, $remove);
+
 exit(0);
 
