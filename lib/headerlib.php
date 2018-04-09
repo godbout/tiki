@@ -728,7 +728,7 @@ class HeaderLib
 	/**
 	 * Calculate a hash based on the contents of files recursively
 	 *
-	 * @param array $files   multidimansional array of filepaths to minify/hash
+	 * @param array $files   multidimensional array of filepaths to minify/hash
 	 * @param string $hash
 	 * @return string        hash based on contents of the files
 	 */
