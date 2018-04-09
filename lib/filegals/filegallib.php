@@ -4266,6 +4266,10 @@ class FileGalLib extends TikiLib
 	{
 		global $prefs;
 
+		if (empty($data)) {
+			return '';
+		}
+
 		$perms = Perms::get([
 			'file gallery',
 			$galleryId
