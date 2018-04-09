@@ -114,6 +114,14 @@ function prefs_tiki_list()
 			'filter' => 'url',
 			'default' => '',
 		],
+		'tiki_cdn_check' => [
+			'name' => tra('Check CDN files exists'),
+			'description' => tra('Check that minified JS and CSS files exist before including them in the page.'),
+			'help' => 'Content+Delivery+Network',
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'y',
+		],
 		'tiki_domain_prefix' => [
 			'name' => tra('Domain prefix handling'),
 			'description' => tra('Strip or automatically add the "www." prefix on domain names to standardize URLs.'),

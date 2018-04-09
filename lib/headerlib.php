@@ -630,7 +630,8 @@ class HeaderLib
 	 */
 	private function minifyJSFiles($allJsfiles, $ranks)
 	{
-		global $tikidomainslash;
+		global $tikidomainslash, $prefs;
+
 		$cachelib = TikiLib::lib('cache');
 		$cacheType = 'js_minify_hash';
 
@@ -650,9 +651,18 @@ class HeaderLib
 		$file = $tempDir . "min_main_" . $hash . ".js";
 		$cdnFile = $this->convert_cdn($file);
 
-		// check if we are on a user defined CDN.
+		// check if we are on a user defined CDN and the file exists (if tiki_cdn_check is enabled)
 		if ($file != $cdnFile) {
-			return $cdnFile;
+			$cacheType = 'cdn_minify_check';
+			if ($prefs['tiki_cdn_check'] === 'y' && ! $cachelib->isCached($cdnFile, $cacheType)) {
+
+				$cdnHeaders = get_headers($cdnFile);
+				if (strpos(current($cdnHeaders), '200') !== false) {	// check the file is really there
+					$cachelib->cacheItem($cdnFile, $cdnHeaders, $cacheType);
+				}
+			} else {
+				return $cdnFile;
+			}
 		}
 
 		if (file_exists($file)) {
