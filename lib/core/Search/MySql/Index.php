@@ -57,6 +57,8 @@ class Search_MySql_Index implements Search_Index_Interface
 			$this->table->ensureHasField($name, 'TEXT');
 		} elseif ($value instanceof Search_Type_PlainText) {
 			$this->table->ensureHasField($name, 'TEXT');
+		} elseif ($value instanceof Search_Type_PlainMediumText) {
+			$this->table->ensureHasField($name, 'MEDIUMTEXT');
 		} elseif ($value instanceof Search_Type_WikiText) {
 			$this->table->ensureHasField($name, 'TEXT');
 		} elseif ($value instanceof Search_Type_MultivalueText) {

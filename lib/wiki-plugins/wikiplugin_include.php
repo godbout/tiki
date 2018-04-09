@@ -98,6 +98,14 @@ function wikiplugin_include_info()
 					['text' => tr('No'), 'value' => 'n'],
 				],
 			],
+			'max_inclusions' => [
+				'required' => false,
+				'name' => tr('Max inclusions'),
+				'description' => tr('Maximum amount of times the same page can be included. Defaults to 5'),
+				'since' => '18.2',
+				'filter' => 'text',
+				'default' => 5,
+			],
 		],
 	];
 }
@@ -113,7 +121,6 @@ function wikiplugin_include($dataIn, $params)
 	$tikilib = TikiLib::lib('tiki');
 
 	$killtoc = true;
-	$max_times = 5;
 	$params = array_merge([
 		'nopage_text' => '',
 		'pagedenied_text' => '',
@@ -123,6 +130,9 @@ function wikiplugin_include($dataIn, $params)
 	extract($params, EXTR_SKIP);
 	if (! isset($page)) {
 		return ("<b>missing page for plugin INCLUDE</b><br />");
+	}
+	if (!isset($max_inclusions)) {
+		$max_inclusions = 5;
 	}
 
 	// This variable is for accessing included page name within plugins in that page
@@ -139,7 +149,7 @@ function wikiplugin_include($dataIn, $params)
 	}
 	
 	if (isset($numberOfInclusions[$fragmentIdentifier])) {
-		if ($numberOfInclusions[$fragmentIdentifier] >= $max_times) {
+		if ($numberOfInclusions[$fragmentIdentifier] >= $max_inclusions) {
 			trigger_error('Inclusion failed', E_USER_WARNING);
 			return '';
 		}
@@ -156,7 +166,7 @@ function wikiplugin_include($dataIn, $params)
 				if ($version_info = $flaggedrevisionlib->get_version_with($page, 'moderation', 'OK')) {
 					$data[$fragmentIdentifier] = $version_info;
 				} else {
-					$numberOfInclusions[$fragmentIdentifier] = $max_times;
+					$numberOfInclusions[$fragmentIdentifier] = $max_inclusions;
 					return($pagenotapproved_text);
 				}
 			} else {
@@ -168,7 +178,7 @@ function wikiplugin_include($dataIn, $params)
 		}
 		$perms = $tikilib->get_perm_object($page, 'wiki page', $data[$fragmentIdentifier], false);
 		if ($perms['tiki_p_view'] != 'y') {
-			$numberOfInclusions[$fragmentIdentifier] = $max_times;
+			$numberOfInclusions[$fragmentIdentifier] = $max_inclusions;
 			$text = $pagedenied_text;
 			return($text);
 		}

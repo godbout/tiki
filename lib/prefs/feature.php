@@ -1409,6 +1409,7 @@ function prefs_feature_list($partial = false)
 			'dependencies' => ['feature_sefurl'],
 			'type' => 'flag',
 			'default' => 'n',
+			'view' => 'tiki-admin_routes.php',
 		],
 		'feature_modulecontrols' => [
 			'name' => tra('Show module controls'),

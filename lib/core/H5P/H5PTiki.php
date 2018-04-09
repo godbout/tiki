@@ -45,7 +45,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 		self::$h5p_path = 'storage/public';
 
-		if ($this->getOption('cron_last_run') < time() - 86400) {
+		if ($this->getOption('cron_last_run') < time() - 86400 && ! empty($_SERVER['HTTP_HOST'])) {
 			// Cron not run in >24h, trigger it
 
 			// Determine full URL

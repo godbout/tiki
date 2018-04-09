@@ -128,6 +128,10 @@ function tiki_setup_events()
 			$events->bind('tiki.trackeritem.update', $defer('trk', 'refresh_index_on_master_update'));
 		}
 
+		if ($prefs['tracker_refresh_itemslist_detail'] == 'y') {
+			$events->bind('tiki.trackeritem.save', $defer('trk', 'refresh_itemslist_index'));
+		}
+
 		if ($prefs['tracker_wikirelation_synctitle'] == 'y') {
 			$events->bind('tiki.trackeritem.save', $defer('trk', 'rename_linked_page'));
 		}

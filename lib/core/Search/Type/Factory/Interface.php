@@ -9,6 +9,8 @@ interface Search_Type_Factory_Interface
 {
 	// tokenized - indexed - unstored in database
 	function plaintext($value);
+	// tokenized - indexed - unstored in database
+	function plainmediumtext($value);
 	// wiki parsed before indexed - tokenized - indexed - unstored in database
 	function wikitext($value);
 	// not tokenized - indexed - stored in database

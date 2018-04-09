@@ -91,6 +91,7 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 	 * </pre>
 	 *
 	 * @return string $renderedContent depending on the $context
+	 * @throws Exception
 	 */
 	public function renderOutput($context = [])
 	{
@@ -158,13 +159,60 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 		}
 	}
 
+	/**
+	 * Render a diff of two values for a tracker field.
+	 * Will use the item value if $context['oldValue'] is not supplied
+	 *
+	 * @param array $context [value, oldValue, etc as for renderOutput]
+	 * @return string|string[] html, usually a table
+	 */
+	public function renderDiff($context = []) {
+		if ($context['oldValue']) {
+			$old = $context['oldValue'];
+		} else {
+			$old = '';
+		}
+		if ($context['value']) {
+			$new = $context['value'];
+		} else {
+			$new = $this->getValue('');
+		}
+		if (empty($context['diff_style'])) {
+			$context['diff_style'] = 'inlinediff';
+		}
+		require_once('lib/diff/difflib.php');
+		$diff = diff2($old, $new, $context['diff_style']);
+		$result = '';
+
+		if (is_array($diff)) {
+			// unidiff mode
+			foreach ($diff as $part) {
+				if ($part["type"] == "diffdeleted") {
+					foreach ($part["data"] as $chunk) {
+						$result .= "<blockquote>- $chunk</blockquote>";
+					}
+				}
+				if ($part["type"] == "diffadded") {
+					foreach ($part["data"] as $chunk) {
+						$result .= "<blockquote>+ $chunk</blockquote>";
+					}
+				}
+			}
+		} else {
+			$result = strpos($diff, '<tr') === 0 ? '<table>' . $diff . '</table>' : $diff;
+			$result = preg_replace('/<tr class="diffheader">.*?<\/tr>/', '', $result);
+			$result = str_replace('<table>', '<table class="table">', $result);
+		}
+		return $result;
+	}
+
 	function watchCompare($old, $new)
 	{
 		$name = $this->getConfiguration('name');
 		$is_visible = $this->getConfiguration('isHidden', 'n') == 'n';
 
 		if (! $is_visible) {
-			return;
+			return '';
 		}
 
 		if ($old) {

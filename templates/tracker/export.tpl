@@ -126,12 +126,13 @@
 	<form class="simple" action="" method="post">
 		<div class="form-group">
 			<label for="export">{tr}Tracker Export{/tr}</label>
-			<textarea name="export" class="form-control" rows="20">{$export|escape}</textarea>
+			<textarea name="export" id="export" class="form-control" rows="20">{$export|escape}</textarea>
 		</div>
 		<div class="description">
 			{tr}Copy the definition text above and paste into the Import Structure box for a new tracker.{/tr}
 		</div>
 	</form>
+	{service_inline controller='tracker' action='export_fields' trackerId=$trackerId}
 	{/accordion_group}
 	{accordion_group title="{tr}Profile Export{/tr}"}
 	<form method="post" class="simple no-ajax" action="{service controller=tracker action=export_profile trackerId=$trackerId}">

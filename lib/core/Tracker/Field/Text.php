@@ -103,17 +103,29 @@ class Tracker_Field_Text extends Tracker_Field_Abstract implements Tracker_Field
 		$pre = '';
 		$post = '';
 
+		$context = array_merge([
+			'list_mode' => '',
+		], $context);
+
 		if ($this->getConfiguration('type') == 't') {
 			if ($this->getOption('prepend')) {
-				$pre = '<span class="formunit">' . $this->getOption('prepend') . '</span>';
+				if ($context['list_mode'] !== 'csv') {
+					$pre = '<span class="formunit">' . $this->getOption('prepend') . '</span>';
+				} else {
+					$pre = $this->getOption('prepend');
+				}
 			}
 
 			if ($this->getOption('append')) {
-				$post = '<span class="formunit">' . $this->getOption('append') . '</span>';
+				if ($context['list_mode'] !== 'csv') {
+					$post = '<span class="formunit">' . $this->getOption('append') . '</span>';
+				} else {
+					$post = $this->getOption('append');
+				}
 			}
 		}
 		$value = parent::renderInnerOutput($context);
-		if ($this->getConfiguration('type') === 't') {	// not TextAreas
+		if ($this->getConfiguration('type') === 't' && $context['list_mode'] !== 'csv') {	// not TextAreas or csv output
 			TikiLib::lib('smarty')->loadPlugin('smarty_modifier_escape');
 			$value = smarty_modifier_escape($value);
 		}

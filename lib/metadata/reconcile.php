@@ -265,6 +265,8 @@ class ReconcileExifIptcXmp
 	 */
 	function reconcileAllMeta($metadata)
 	{
+		$types = [];
+
 		//check which metadata types exist
 		foreach ($this->alltypes as $alltype => $val) {
 			if ($metadata[$alltype] !== false) {

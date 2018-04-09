@@ -64,7 +64,11 @@ class IndexRebuildCommand extends Command
 		}
 
 		if (! $cron) {
-			$output->writeln('Started rebuilding index...');
+			$message = '[' . \TikiLib::lib('tiki')->get_short_datetime(0) . '] Started rebuilding index...';
+			if ($log) {
+				$message .= ' logging to file: ' . $unifiedsearchlib->getLogFilename($log);
+			}
+			$output->writeln($message);
 		}
 
 		if (! $cron) {
@@ -87,7 +91,7 @@ class IndexRebuildCommand extends Command
 
 		// Apply 'Search index rebuild memory limit' setting if available
 		if (! empty($prefs['allocate_memory_unified_rebuild'])) {
-			$memory_limiter = new Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
+			$memory_limiter = new \Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
 		}
 
 		$result = $unifiedsearchlib->rebuild($log);

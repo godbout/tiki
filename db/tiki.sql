@@ -635,7 +635,6 @@ CREATE TABLE `tiki_custom_route` (
   `from` varchar(255) NOT NULL,
   `redirect` text NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
-  `user_id` int(11) NOT NULL,
   `short_url` tinyint(1) DEFAULT '0'
 ) ENGINE=MyISAM;
 

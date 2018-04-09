@@ -5469,7 +5469,11 @@ class TikiLib extends TikiDb_Bridge
 
 	static function setExternalContext($isExternal)
 	{
+		$oldValue = self::$isExternalContext;
+
 		self::$isExternalContext = (bool) $isExternal;
+
+		return $oldValue;
 	}
 
 	static function contextualizeKey($key, $param1 = null, $param2 = null)

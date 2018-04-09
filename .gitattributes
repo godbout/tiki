@@ -90,6 +90,7 @@ doc/devtools/clear_tracker_fast.sql -text
 doc/devtools/composer_http_mode.php -text
 doc/devtools/convert_templates_prefs-2.0.php -text
 doc/devtools/convert_tpl_ajax.php -text
+doc/devtools/convert_tracker_attachments.php -text
 doc/devtools/csscheck.sh -text
 doc/devtools/cssmap.pl -text
 doc/devtools/dbdiff/composer.json -text
@@ -186,6 +187,7 @@ doc/devtools/upto_4.1_drop_unused_4.0_tables.sql -text
 doc/devtools/upto_7_drop_unused_6.x_tables.sql -text
 doc/devtools/var/lock/dummy.lock -text
 doc/devtools/var/log/update/update.log -text
+doc/devtools/vendorsecurity.php -text
 doc/index.php -text
 doc/longterm.cycle -text
 doc/readme.txt -text
@@ -2001,6 +2003,7 @@ installer/schema/20171129_backlinks_for_object_types_admin_options_tiki.sql -tex
 installer/schema/20171130_plugin_include_link_original_tiki.sql -text
 installer/schema/20171204_update_geo_enabled_tiki.sql -text
 installer/schema/20171231_add_short_url_tiki.sql -text
+installer/schema/20180405_remove_unused_user_id_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2675,6 +2678,7 @@ lib/core/Search/Type/MultivalueText.php -text
 lib/core/Search/Type/Nested.php -text
 lib/core/Search/Type/Numeric.php -text
 lib/core/Search/Type/Object.php -text
+lib/core/Search/Type/PlainMediumText.php -text
 lib/core/Search/Type/PlainShortText.php -text
 lib/core/Search/Type/PlainText.php -text
 lib/core/Search/Type/ShortText.php -text

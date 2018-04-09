@@ -39,7 +39,7 @@ class Services_Search_Controller
 				$memory_limiter = new Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
 			}
 
-			$stat = $unifiedsearchlib->rebuild(isset($_REQUEST['loggit']));
+			$stat = $unifiedsearchlib->rebuild($input->loggit->int());
 
 			TikiLib::lib('cache')->empty_type_cache('search_valueformatter');
 
@@ -67,6 +67,8 @@ class Services_Search_Controller
 			'memory_peak_usage_before' => FormatterHelper::formatMemory($memory_peak_usage_before),
 			'memory_peak_usage_after' => FormatterHelper::formatMemory(memory_get_peak_usage()),
 			'num_queries' => ($num_queries_after - $num_queries_before),
+			'log_file_browser' => $unifiedsearchlib->getLogFilename(1),
+			'log_file_console' => $unifiedsearchlib->getLogFilename(2),
 		];
 	}
 

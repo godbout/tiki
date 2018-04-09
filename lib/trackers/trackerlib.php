@@ -2081,7 +2081,12 @@ class TrackerLib extends TikiLib
 		}
 
 		if (strlen($encoded) >= 65535) {
-			unset($arguments['values_by_permname'], $arguments['old_values_by_permname']);	// fields are duplicated sadly
+			unset($arguments['old_values_by_permname']);	// fields are duplicated sadly
+			$encoded = json_encode($arguments);
+		}
+
+		if (strlen($encoded) >= 65535) {
+			unset($arguments['values_by_permname']);		// no field values at all
 		}
 
 		TikiLib::events()->trigger(
@@ -5854,19 +5859,19 @@ class TrackerLib extends TikiLib
 	 * $param = array(
 	 *        // required
 	 *        'field' => array( 'fieldId' => 1, 'trackerId' => 2, 'permName' => 'myPermName', 'etc' => '...')
-	 *        //'trackerId' => 1 // instread of 'field'
+	 *        //'trackerId' => 1            // instread of 'field'
 	 *        //'permName>' => 'myPermName' // instread of 'field'
 	 *
 	 *        // optional
 	 *        'item' => array('fieldId1' => fieldValue1, 'fieldId2' => fieldValue2) // optional
-	 *        'itemId' = 5 // itemId
-	 *        'process' => 'y' // ? will be used in xyz
-	 *
-	 *        // unsure
-	 *        'list_mode' => '' // i.e. 'cvs' will be used in xyz
+	 *        'itemId' = 5                  // itemId
+	 *        'process' => 'y'              // renders the value using the correct field handler
+	 *        'oldValue' => ''              // renders the new and old values using \Tracker_Field_Abstract::renderDiff
+	 *        'list_mode' => ''             // i.e. 'y', 'cvs' or 'text' will be used in \Tracker_Field_Abstract::renderOutput
 	 * )
 	 * </pre>
-	 * @return string - rendered value (with html ?). i.e from $r = $handler->renderInput($context)
+	 * @return string - rendered value (with html ?). i.e from $r = $handler->renderInput($context), renderOutput or renderDiff
+	 * @throws Exception
 	 */
 	public function field_render_value($params)
 	{
@@ -5876,6 +5881,8 @@ class TrackerLib extends TikiLib
 		} elseif (isset($params['trackerId'], $params['permName'])) {
 			$definition = Tracker_Definition::get($params['trackerId']);
 			$field = $definition->getFieldFromPermName($params['permName']);
+		} elseif (isset($params['fieldId'])) {
+			$field = $this->get_field_info($params['fieldId']);
 		} else {
 			return tr('Field not specified');
 		}
@@ -5962,6 +5969,8 @@ class TrackerLib extends TikiLib
 						'field_fetch_url' => $fetchUrl,
 					]
 				);
+			} else if (isset($params['oldValue'])) {
+				$r = $handler->renderDiff($context);
 			} else {
 				$r = $handler->renderOutput($context);
 			}
@@ -6036,6 +6045,72 @@ class TrackerLib extends TikiLib
 		);
 
 		return array_unique($items);
+	}
+
+	public function refresh_itemslist_index($args) {
+		// Event handler
+		// See pref tracker_refresh_itemslist_detail
+
+		$modifiedFields = [];
+		foreach ($args['old_values'] as $key => $old) {
+			if (! isset($args['values'][$key]) || $args['values'][$key] != $old) {
+				$modifiedFields[] = $key;
+			}
+		}
+		foreach ($args['values'] as $key => $new) {
+			if (! isset($args['old_values'][$key]) || $args['old_values'][$key] != $new) {
+				$modifiedFields[] = $key;
+			}
+		}
+		$modifiedFields = array_unique($modifiedFields);
+
+		$items = [];
+
+		$fields = $this->table('tiki_tracker_fields');
+		$list = $fields->fetchAll(
+			$fields->all(),
+			['type' => $fields->exactly('l')]
+		);
+		foreach ($list as $field) {
+			$handler = $this->get_field_handler($field);
+			if ($handler && $handler->itemsRequireRefresh($args['trackerId'], $modifiedFields)) {
+				$itemId = $args['object'];
+
+				$fieldIdHere = (int) $handler->getOption('fieldIdHere');
+				$fieldIdThere = (int) $handler->getOption('fieldIdThere');
+
+				// quick way of getting all ItemsList items pointing to the itemId via the field we examine
+				if (empty($fieldIdThere)) {
+					$query = "SELECT value as itemId
+					FROM tiki_tracker_item_fields ttif
+					WHERE ttif.fieldId = ?
+					AND ttif.itemId = ?";
+					$bindvars = [$fieldIdHere, $itemId];
+				} else {
+					$query = "SELECT COALESCE(ttif2.itemId, ttif1.value) as itemId
+					FROM tiki_tracker_item_fields ttif1
+					LEFT JOIN tiki_tracker_item_fields ttif2 ON (ttif2.value = ttif1.value OR ttif2.value = ttif1.itemId) AND ttif2.fieldId = ?
+					WHERE ttif1.fieldId = ?
+					AND ttif1.itemId = ?";
+					$bindvars = [$fieldIdHere, $fieldIdThere, $itemId];
+				}
+
+				$fieldItems = $this->fetchAll($query, $bindvars);
+				$fieldItems = array_map(
+					function ($row) {
+						return $row['itemId'];
+					},
+					$fieldItems
+				);
+				$items = array_merge($items, $fieldItems);
+			}
+		}
+		$items = array_unique($items);
+
+		$searchlib = TikiLib::lib('unifiedsearch');
+		foreach ($items as $itemId) {
+			$searchlib->invalidateObject('trackeritem', $itemId);
+		}
 	}
 
 	public function update_user_account($args)

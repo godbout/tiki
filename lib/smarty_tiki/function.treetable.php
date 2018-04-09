@@ -197,8 +197,8 @@ function smarty_function_treetable($params, $smarty)
 			[
 				'id' => $id . '_filter',
 				'selectors' => "#$id tbody tr",
-				'parentSelector' => "#$id .collapsed, #$id .expanded",
-				'exclude' => ".subHeader"
+				'parentSelector' => "#$id .collapsed:not(\".leaf\"), #$id .expanded:not(\".leaf\")",
+				'exclude' => ""
 			],
 			$smarty
 		);

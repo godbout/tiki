@@ -138,15 +138,15 @@ class FileMetadata
 	 */
 	private function setBestMetadata()
 	{
-		if (isset($this->typemeta['reconciled']) && count($this->typemeta['reconciled']) > 0) {
+		if (! empty($this->typemeta['reconciled'])) {
 			$this->typemeta['best'] = $this->typemeta['reconciled'];
-		} elseif (isset($this->typemeta['combined']) && count($this->typemeta['combined']) > 0) {
+		} elseif (! empty($this->typemeta['combined'])) {
 			$this->typemeta['best'] = $this->typemeta['combined'];
-		} elseif (isset($this->basicinfo) && count($this->basicinfo) > 0) {
+		} elseif (! empty($this->basicinfo)) {
 			$this->typemeta['best'] = ['basiconly' => true, 'Basic Information' =>
 				 ['File Data' => $this->basicinfo]];
 		} else {
-			$this->typemeta['best'] = false;
+			$this->typemeta['best'] = [];
 		}
 	}
 
@@ -190,7 +190,7 @@ class FileMetadata
 				//add extraction time
 				$metarray['reconciled'][$sumtab] = $extractarray + $metarray['reconciled'][$sumtab];
 			}
-			if (is_array($metarray['combined'])) {
+			if (isset($metarray['combined']) && is_array($metarray['combined'])) {
 				$metarray['combined'] = [$sumtab => [$bheader => $metaObj->basicinfo]] + $metarray['combined'];
 			} else {
 				$metarray['combined'][$sumtab][$bheader] = $metaObj->basicinfo;

@@ -348,7 +348,7 @@ class HeaderLib
 
 	function add_cssfile($file, $rank = 0)
 	{
-		if (empty($this->cssfiles[$rank]) or ! in_array($file, $this->cssfiles[$rank])) {
+		if ((empty($this->cssfiles[$rank]) or ! in_array($file, $this->cssfiles[$rank])) && ! empty($file)) {
 			$this->cssfiles[$rank][] = $file;
 		}
 		return $this;
@@ -630,19 +630,39 @@ class HeaderLib
 	 */
 	private function minifyJSFiles($allJsfiles, $ranks)
 	{
-		global $tikidomainslash;
+		global $tikidomainslash, $prefs;
+
+		$cachelib = TikiLib::lib('cache');
+		$cacheType = 'js_minify_hash';
 
 		// build hash to identify minified file based on the _requested_ ranks, NOT on the entire jsfiles array
 		// $jsfiles contains only those keys defined in $ranks
 		$jsfiles = array_intersect_key($allJsfiles, array_flip($ranks));
-		$hash = md5(serialize($jsfiles));
+		$cacheName = md5(serialize($jsfiles));
+
+		// create the minified filename based on the contents of the files, and cache that hash as it's expensive to create
+		// browsers will automatically load new js if it has changed after the cache has been cleared, after an upgrade for instance
+		$hash = $cachelib->getCached($cacheName, $cacheType);
+		if (! $hash) {
+			$hash = $this->getFilesContentsHash($jsfiles);
+			$cachelib->cacheItem($cacheName, $hash, $cacheType);
+		}
 		$tempDir = 'temp/public/' . $tikidomainslash;
 		$file = $tempDir . "min_main_" . $hash . ".js";
 		$cdnFile = $this->convert_cdn($file);
 
-		// check if we are on a user defined CDN.
+		// check if we are on a user defined CDN and the file exists (if tiki_cdn_check is enabled)
 		if ($file != $cdnFile) {
-			return $cdnFile;
+			$cacheType = 'cdn_minify_check';
+			if ($prefs['tiki_cdn_check'] === 'y' && ! $cachelib->isCached($cdnFile, $cacheType)) {
+
+				$cdnHeaders = get_headers($cdnFile);
+				if (strpos(current($cdnHeaders), '200') !== false) {	// check the file is really there
+					$cachelib->cacheItem($cdnFile, $cdnHeaders, $cacheType);
+				}
+			} else {
+				return $cdnFile;
+			}
 		}
 
 		if (file_exists($file)) {
@@ -715,6 +735,24 @@ class HeaderLib
 		return $file;
 	}
 
+	/**
+	 * Calculate a hash based on the contents of files recursively
+	 *
+	 * @param array $files   multidimensional array of filepaths to minify/hash
+	 * @param string $hash
+	 * @return string        hash based on contents of the files
+	 */
+	private function getFilesContentsHash(array $files, & $hash = '')
+	{
+		foreach ($files as $file) {
+			if (is_array($file)) {
+				$hash .= $this->getFilesContentsHash($file, $hash);
+			} else {
+				$hash .= md5_file($file);
+			}
+		}
+		return md5($hash);
+	}
 
 
 	/**

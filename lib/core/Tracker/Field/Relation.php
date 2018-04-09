@@ -131,8 +131,12 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		}
 
 		$filter = $this->buildFilter();
-		if (! isset($filter['object_id']) && $this->getItemId()) {
-			$filter['object_id'] = 'NOT ' . $this->getItemId();
+
+		if (isset($filter['tracker_id']) &&
+				$this->getConfiguration('trackerId') == $filter['tracker_id'] &&
+				! isset($filter['object_id']) && $this->getItemId()) {
+
+			$filter['object_id'] = 'NOT ' . $this->getItemId();	// exclude this item if we are related to the same tracker_id
 		}
 
 		return $this->renderTemplate(
@@ -260,6 +264,16 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		if ($params['relation'] != $this->getOption(self::OPT_RELATION)) {
 			$relationlib = TikiLib::lib('relation');
 			$relationlib->update_relation($this->getOption(self::OPT_RELATION), $params['relation']);
+		}
+	}
+
+	public function handleFieldSave($data)
+	{
+		$trackerId = $this->getConfiguration('trackerId');
+		$options = json_decode($data['options'], true);
+		
+		if (preg_match("/tracker_id=[^&]*{$trackerId}/", $options['filter']) && $options['invert'] && $options['refresh']) {
+			Feedback::warning(tr('Self-related fields with Include Invert option set to Yes should not have Force Refresh option on save.'), 'session');
 		}
 	}
 

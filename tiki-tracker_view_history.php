@@ -18,9 +18,9 @@ $trklib = TikiLib::lib('trk');
 $auto_query_args = ['offset', 'itemId', 'fieldId', 'filter'];
 
 if (! empty($_REQUEST['itemId'])) {
-	$item_info = $trklib->get_item_info($_REQUEST['itemId']);
-	$perms = Perms::get(['type' => 'tracker', 'object' => $item_info['trackerId']]);
-	if (! $perms->view_trackers) {
+	$item_info = $trklib->get_tracker_item($_REQUEST['itemId']);
+	$item = Tracker_Item::fromInfo($item_info);
+	if (! $item->canView()) {
 		$smarty->assign('errortype', 401);
 		$smarty->assign('msg', tra('You do not have permission to view this page.'));
 		$smarty->display('error.tpl');
@@ -42,9 +42,21 @@ if (! empty($_REQUEST['itemId'])) {
 
 	foreach ($history['data'] as $i => $hist) {
 		if (empty($field_option[$hist['fieldId']])) {
-			$field_option[$hist['fieldId']] = $trklib->get_tracker_field($hist['fieldId']);
+			if ($hist['fieldId'] > 0) {
+				$field_option[$hist['fieldId']] = $trklib->get_tracker_field($hist['fieldId']);
+			} else {
+				$field_option[$hist['fieldId']] = [	// fake field to do the diff on
+					'type' => 't',
+					'name' => tr('Status'),
+					'trackerId' => $item_info['trackerId'],
+				];
+			}
 		}
 	}
+
+	$diff_style = empty($_REQUEST['diff_style']) ? '' : $_REQUEST['diff_style'];
+	$smarty->assign('diff_style', $diff_style);
+
 	$smarty->assign_by_ref('item_info', $item_info);
 	$smarty->assign_by_ref('field_option', $field_option);
 }

@@ -4110,7 +4110,7 @@ class FileGalLib extends TikiLib
 		}
 	}
 
-	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null)
+	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '')
 	{
 		global $user;
 		if (empty($asuser) || ! Perms::get()->admin) {
@@ -4122,7 +4122,7 @@ class FileGalLib extends TikiLib
 		}
 
 		$tx = $this->begin();
-		$ret = $this->insert_file($gal_info['galleryId'], $name, '', $name, $data, $size, $type, $asuser, $fhash, '', null, '', null, null, 0, null, $image_x, $image_y);
+		$ret = $this->insert_file($gal_info['galleryId'], $name, $description, $name, $data, $size, $type, $asuser, $fhash, '', null, '', null, null, 0, null, $image_x, $image_y);
 		$tx->commit();
 
 		return $ret;
@@ -4265,6 +4265,10 @@ class FileGalLib extends TikiLib
 	public function clean_xml($data, $galleryId)
 	{
 		global $prefs;
+
+		if (empty($data)) {
+			return '';
+		}
 
 		$perms = Perms::get([
 			'file gallery',

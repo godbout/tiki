@@ -38,7 +38,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 					],
 					'owner' => [
 						'name' => tr('Item Owner'),
-						'description' => tr('Is this field an ItemOwner field that determines permissions of the item?'),
+						'description' => tr('Field that determines permissions of the item when "User can see his own items" is enabled for the tracker'),
 						'filter' => 'int',
 						'options' => [
 							0 => tr('No'),

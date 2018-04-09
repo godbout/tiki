@@ -824,7 +824,7 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 				// Check if there is a url in the text
 				$linkSup = $doc->createElement("sup");
 				if (preg_match("/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/", $anchor->getAttribute('href'), $url)) {
-					$linkAn = $doc->createElement("anchor", "[" . $linkCnt . "]");
+					$linkAn = $doc->createElement("hyperanchor", "[" . $linkCnt . "]");
 					$linkAn->setAttribute("href", "#" . $pageCounter . "lnk" . $linkCnt);
 					$linkSup->appendChild($linkAn);
 					$link->appendChild($linkSup);
@@ -843,7 +843,7 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 		$hrefDiv->setAttribute('class', "footnotearea");
 		$doc->getElementsByTagName('body')->item(0)->appendChild($hrefDiv);
 		$content = $doc->saveHTML();
-		return str_replace("anchor", "a", $content);
+		return str_replace("hyperanchor", "a", $content);
 	}// End of processHyperlinks
 
 	/**

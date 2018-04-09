@@ -27,7 +27,7 @@ interface Tracker_Field_Interface
 	 * return the html of the input form for a field
 	 *  either call renderTemplate if using a tpl or use php code
 	 * @param
-	 * @return html
+	 * @return string html
 	*/
 	function renderInput($context = []);
 
@@ -36,7 +36,7 @@ interface Tracker_Field_Interface
 	 *  with the link, prepend, append....
 	 *  Use renderInnerOutput
 	 * @param
-	 * @return html
+	 * @return string html
 	*/
 	function renderOutput($context = []);
 

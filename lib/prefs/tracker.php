@@ -20,6 +20,12 @@ function prefs_tracker_list()
 			'type' => 'flag',
 			'default' => 'n',
 		],
+		'tracker_refresh_itemslist_detail' => [
+			'name' => tr('Refresh items list items when related items are created or modified'),
+			'description' => tr('Use this when you want the ItemsList fields to refresh their content in the search index when related tracker items are created or modified.'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
 		'tracker_clone_item' => [
 			'name' => tr('Clone tracker items'),
 			'description' => tr('Allow copying tracker item information to a new tracker item.'),

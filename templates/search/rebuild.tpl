@@ -42,7 +42,7 @@
 						<input type="checkbox" name="loggit" value="1">
 						{tr}Enable logging{/tr}
 					</label>
-					<div class="help-block">{tr}Log file is saved as {$prefs.tmpDir}/Search_Indexer.log{/tr}</div>
+					<div class="help-block">{tr _0=$log_file_browser}Log file is saved as %0{/tr}</div>
 				</div>
 			</div>
 			<div class="form-group submit">
@@ -66,11 +66,12 @@
 				<li><strong>{tr}High resource usage.{/tr}</strong> Some plugins in your pages may cause excessive load. Blacklisting some plugins during indexing can help.</li>
 			</ul>
 		{/remarksbox}
+
+		{remarksbox type=tip title="{tr}Command Line Utilities{/tr}"}
+			<kbd>php console.php{if not empty($tikidomain)} --site={$tikidomain|replace:'/':''}{/if} index:optimize</kbd><br>
+			<kbd>php console.php{if not empty($tikidomain)} --site={$tikidomain|replace:'/':''}{/if} index:rebuild</kbd><br>
+			<kbd>php console.php{if not empty($tikidomain)} --site={$tikidomain|replace:'/':''}{/if} index:rebuild --log</kbd><br>
+			<p>{tr _0=$log_file_console}Log file is saved as %0{/tr}</p>
+		{/remarksbox}
 	{/if}
-	{remarksbox type=tip title="{tr}Command Line Utilities{/tr}"}
-		<kbd>php console.php{if not empty($tikidomain)} --site={$tikidomain|replace:'/':''}{/if} index:optimize</kbd><br>
-		<kbd>php console.php{if not empty($tikidomain)} --site={$tikidomain|replace:'/':''}{/if} index:rebuild</kbd><br>
-		<kbd>php console.php{if not empty($tikidomain)} --site={$tikidomain|replace:'/':''}{/if} index:rebuild --log</kbd><br>
-		<p>{tr}Log file is saved as {$prefs.tmpDir}/Search_Indexer_console.log{/tr}</p>
-	{/remarksbox}
 {/block}

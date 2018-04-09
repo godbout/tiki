@@ -57,6 +57,8 @@
 		{preference name=wiki_url_scheme}
 
         {preference name=feature_sefurl_routes}
+        {preference name=feature_short_url}
+        {preference name=feature_short_url_domain}
 	</fieldset>
 	<fieldset>
 		<legend>{tr}Settings{/tr}</legend>

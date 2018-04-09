@@ -303,6 +303,7 @@ class Search_Lucene_Index implements Search_Index_Interface
 		$typeMap = [
 			'Search_Type_WikiText' => 'UnStored',
 			'Search_Type_PlainText' => 'UnStored',
+			'Search_Type_PlainMediumText' => 'UnStored',
 			'Search_Type_Whole' => 'Keyword',
 			'Search_Type_Numeric' => 'Keyword',
 			'Search_Type_Timestamp' => 'Keyword',

@@ -125,7 +125,7 @@ foreach ($remoteItemIds as $remoteItemId) {
 	$listFieldThere = array_merge($listFieldThere, ['value' => $itemInfo[$listFieldIdThere]]);
 	$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
 	// do not inherit showlinks settings from remote items.
-	$context = ['showlinks' => 'n'];
+	$context = ['showlinks' => 'n', 'list_mode' => 'csv'];
 
 	// permissions are ok, now get the values depending on the fieldtype of $listFieldIdThere
 	switch ($listFieldThere['type']) {

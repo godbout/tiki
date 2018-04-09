@@ -33,6 +33,10 @@
 		<form method="post" action="{service controller=tracker action=update_item format=$format editItemPretty=$editItemPretty}" id="updateItemForm{$trackerId|escape}">
 			{trackerfields trackerId=$trackerId fields=$fields status=$status itemId=$itemId format=$format editItemPretty=$editItemPretty}
 			<div class="submit">
+				{if not empty($saveAndComment) and $saveAndComment neq 'n'}
+					<input type="hidden" name="saveAndComment" id="saveAndComment" value="">
+					<input type="submit" class="btn btn-default" onclick="$('#saveAndComment').val(1);" value="{tr}Save and Comment{/tr}">
+				{/if}
 				<input type="hidden" name="itemId" value="{$itemId|escape}">
 				<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 				{foreach from=$forced key=permName item=value}
