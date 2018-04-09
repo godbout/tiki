@@ -84,6 +84,7 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 	}
 
 	$items = $trackerUtilities->getItems(['trackerId' => $trackerId]);
+	$failedAttIds = [];
 
 
 	foreach ($items as $item) {
@@ -127,13 +128,20 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 			}
 			$data = $attachment['data'];
 
-			$fileId = $fileUtilities->uploadFile($galInfo, $name, $size, $type, $data, null, null, null, $description);
+			try {
+				$fileId = $fileUtilities->uploadFile($galInfo, $name, $size, $type, $data, null, null, null, $description);
+			} catch (Exception $e) {
+				$fileId = false;
+				echo "Error: File  {$attachment['filename']} on item  {$itemId} could not be saved\n";
+				echo "{$e->getMessage()}\n";
+			}
 
 			if ($fileId !== false) {
 				array_push($fileIdList, $fileId);
 				echo "- Attachment {$attachment['filename']} uploaded to file gallery\n";
 			} else {
 				echo "- Failed to upload attachment {$attachment['filename']} to file gallery\n";
+				$failedAttIds[] = $attachment['attId'];
 			}
 		}
 
@@ -173,7 +181,12 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 		if ($result !== false) {
 			if ($remove) {
 				foreach ($atts['data'] as $attachment) {
-					$trklib->remove_item_attachment($attachment['attId'], $itemId);
+					if (! in_array($attachment['attId'], $failedAttIds)) {
+						$trklib->remove_item_attachment($attachment['attId'], $itemId);
+					} else {
+						echo "(Attachment {$attachment['attId']} {$attachment['filename']} not removed)\n";
+						$numAttachments--;
+					}
 				}
 				echo "Tracker item {$itemId} updated successfully and $numAttachments attachment$ess removed\n";
 			} else {
