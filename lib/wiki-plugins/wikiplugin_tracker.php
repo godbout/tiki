@@ -679,7 +679,9 @@ function wikiplugin_tracker($data, $params)
 
 	extract($params, EXTR_SKIP);
 
-	if (empty($transactionName) xor empty($transactionStep)) {
+	$nameExist = isset($transactionName) && strlen($transactionName) > 0;
+	$stepExist = isset($transactionStep) && strlen($transactionStep) > 0;
+	if ($nameExist xor $stepExist) {
 		return '<b>' . tra("You need to define both transaction name and transaction step, or none of the two.") . '</b>';
 	} elseif (isset($transactionName) && isset($transactionStep)) {
 		if (! isset($_SESSION[$transactionName])) {
