@@ -348,7 +348,7 @@ class HeaderLib
 
 	function add_cssfile($file, $rank = 0)
 	{
-		if (empty($this->cssfiles[$rank]) or ! in_array($file, $this->cssfiles[$rank])) {
+		if ((empty($this->cssfiles[$rank]) or ! in_array($file, $this->cssfiles[$rank])) && ! empty($file)) {
 			$this->cssfiles[$rank][] = $file;
 		}
 		return $this;
