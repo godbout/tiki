@@ -18,7 +18,7 @@ $trklib = TikiLib::lib('trk');
 $auto_query_args = ['offset', 'itemId', 'fieldId', 'filter'];
 
 if (! empty($_REQUEST['itemId'])) {
-	$item_info = $trklib->get_item_info($_REQUEST['itemId']);
+	$item_info = $trklib->get_tracker_item($_REQUEST['itemId']);
 	$item = Tracker_Item::fromInfo($item_info);
 	if (! $item->canView()) {
 		$smarty->assign('errortype', 401);
