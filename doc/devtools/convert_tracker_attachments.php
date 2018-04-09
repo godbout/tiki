@@ -85,6 +85,9 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 
 	$items = $trackerUtilities->getItems(['trackerId' => $trackerId]);
 
+	require_once("lib/encoding/lib-encoding.php");
+	$encoding = new Encoding();
+
 
 	foreach ($items as $item) {
 		$itemId = $item['itemId'];
@@ -121,7 +124,8 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 			$name = $attachment['filename'];
 			$size = $attachment['filesize'];
 			$type = $attachment['filetype'];
-			$description = $attachment['longdesc'];
+			// description is a blob so maybe be in another encoding
+			$description = $encoding->convert_encoding($attachment['longdesc']);
 			if ($attachment['comment']) {
 				$description .= "\nComment\n" . $attachment['comment'];
 			}
