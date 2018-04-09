@@ -121,9 +121,13 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 			$name = $attachment['filename'];
 			$size = $attachment['filesize'];
 			$type = $attachment['filetype'];
+			$description = $attachment['longdesc'];
+			if ($attachment['comment']) {
+				$description .= "\nComment\n" . $attachment['comment'];
+			}
 			$data = $attachment['data'];
 
-			$fileId = $fileUtilities->uploadFile($galInfo, $name, $size, $type, $data);
+			$fileId = $fileUtilities->uploadFile($galInfo, $name, $size, $type, $data, null, null, null, $description);
 
 			if ($fileId !== false) {
 				array_push($fileIdList, $fileId);
