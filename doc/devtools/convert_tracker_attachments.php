@@ -85,6 +85,9 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 
 	$items = $trackerUtilities->getItems(['trackerId' => $trackerId]);
 	$failedAttIds = [];
+	$itemsFailed = 0;
+	$itemsProcessed = 0;
+	$attachmentsProcessed = 0;
 
 
 	foreach ($items as $item) {
@@ -179,10 +182,12 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 		);
 
 		if ($result !== false) {
+			$itemsProcessed++;
 			if ($remove) {
 				foreach ($atts['data'] as $attachment) {
 					if (! in_array($attachment['attId'], $failedAttIds)) {
 						$trklib->remove_item_attachment($attachment['attId'], $itemId);
+						$attachmentsProcessed++;
 					} else {
 						echo "(Attachment {$attachment['attId']} {$attachment['filename']} not removed)\n";
 						$numAttachments--;
@@ -190,12 +195,19 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 				}
 				echo "Tracker item {$itemId} updated successfully and $numAttachments attachment$ess removed\n";
 			} else {
+				$attachmentsProcessed += $numAttachments;
 				echo "Tracker item {$itemId} updated successfully\n";
 			}
 		} else {
 			echo "Tracker item {$itemId} update failed\n";
+			$itemsFailed++;
 		}
 	}
+
+	$failCount = count($failedAttIds);
+	$op = $remove ? "moved" : "copied";
+
+	echo "\nConvert completed:\n    {$itemsProcessed} processed ({$itemsFailed} failed) and\n    {$attachmentsProcessed} attachments {$op} ({$failCount} failed)\n\n";
 }
 
 convertAttachments($trackerId, $fieldId, $galleryId, $remove);
