@@ -263,7 +263,7 @@
 																	{* ------------------- *}
 						{if $tracker_info.showStatus eq 'y' or ($tracker_info.showStatusAdminOnly eq 'y' and $tiki_p_admin_trackers eq 'y')}
 							<div class="form-group">
-								<label class="form-label col-sm-3">{tr}Status{/tr}</label>
+								<label class="control-label col-sm-3">{tr}Status{/tr}</label>
 								<div class="col-sm-9">
 									{include file='tracker_status_input.tpl' item=$item_info form_status=edstatus}
 								</div>
