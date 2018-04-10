@@ -41,6 +41,46 @@ if ($access->ticketMatch()) {
 				$smarty->assign('diagnostic_composer_output', $composerManager->getComposer()->execDiagnose());
 			}
 		}
+		if ($_POST['remove-composer-locker']) {
+			$path = $tikipath . DIRECTORY_SEPARATOR . 'composer.lock';
+			if (file_exists($path)) {
+				if (is_writable($path)) {
+					unlink($path);
+					$smarty->assign('composer_management_success', tr('composer.lock file was removed'));
+				} else {
+					$smarty->assign('composer_management_error', tr('composer.lock file is not writable, so it can not be removed')
+					);
+				}
+			} else {
+				$smarty->assign('composer_management_success', tr('composer.lock file do not exists'));
+			}
+		}
+		if ($_POST['clean-vendor-folder']) {
+			$dir = $tikipath . DIRECTORY_SEPARATOR . 'vendor/';
+			if (file_exists($dir)) {
+				if (is_writable($dir)) {
+					$files = new RecursiveIteratorIterator(
+						new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS),
+						RecursiveIteratorIterator::CHILD_FIRST
+					);
+					foreach ($files as $file) {
+						if ($file->getFilename() === '.htaccess') {
+							continue;
+						}
+						if ($file->isDir()) {
+							rmdir($file->getRealPath());
+						} else {
+							unlink($file->getRealPath());
+						}
+					}
+					$smarty->assign('composer_management_success', tr('Vendor folder contents was removed'));
+				} else {
+					$smarty->assign('composer_management_error', tr('Vendor folder is not writable'));
+				}
+			} else {
+				$smarty->assign('composer_management_success', tr('Vendor folder do not exists'));
+			}
+		}
 	}
 }
 
