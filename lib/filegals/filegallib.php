@@ -487,6 +487,9 @@ class FileGalLib extends TikiLib
 		}
 		if (empty($created)) {
 			$created = $this->now;
+			$lastModif = $this->now;
+		} else {
+			$lastModif = $created;
 		}
 
 		$fileData = [
@@ -504,7 +507,7 @@ class FileGalLib extends TikiLib
 			'hash' => $checksum,
 			'search_data' => $search_data,
 			'metadata' => $metadata,
-			'lastModif' => $this->now,
+			'lastModif' => $lastModif,
 			'lastModifUser' => $user,
 			'comment' => $comment,
 			'author' => $author,
