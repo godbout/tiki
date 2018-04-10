@@ -15,6 +15,9 @@ if ($argc < 3) {
 	exit($helpMsg);
 }
 
+// run even (especially) if the site is closed
+$bypass_siteclose_check = true;
+
 require_once('tiki-setup.php');
 ob_end_flush();
 ob_implicit_flush();
