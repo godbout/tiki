@@ -7,13 +7,17 @@
 // $Id$
 
 if ($argc < 3) {
-	$helpMsg = "\nUsage: php doc/devtools/convert_tracker_attachments.php trackerId fieldId [fileGalId] ['remove']\n";
+	$helpMsg = "\nUsage: php doc/devtools/convert_tracker_attachments.php trackerId fieldId [fileGalId] ['remove|copy']\n";
+	$helpMsg .= "\nRuns in preview mode unless remove or copy are specified (n.b. remove does copy as well)\n";
 	$helpMsg .= "\nExamples: \n\t\tphp doc/devtools/convert_tracker_attachments.php 1 2";
 	$helpMsg .= "\n\t\tphp doc/devtools/convert_tracker_attachments.php 1 2 2\n\n";
+	$helpMsg .= "\n\t\tphp doc/devtools/convert_tracker_attachments.php 42 7 0 remove\n\n";
 	exit($helpMsg);
 }
 
 require_once('tiki-setup.php');
+ob_end_flush();
+ob_implicit_flush();
 
 $context = new Perms_Context("admin");
 
@@ -36,20 +40,26 @@ if (isset($argv[3])) {
 	$galleryId = 0;
 }
 
+// default mode is "preview" with no changes
+$remove = false;    // remove the attachment files afterwards
+$copy = false;      // copy the attachments to the filegal
+
 if (isset($argv[4]) && $argv[4] === 'remove') {
 	$remove = true;
-} else {
-	$remove = false;
+	$copy = true;
+} else if (isset($argv[4]) && $argv[4] === 'copy') {
+	$copy = true;
 }
 
 /**
  * @param $trackerId
  * @param $fieldId
  * @param int $galleryId
+ * @param bool $remove
+ * @param bool $copy
  * @throws Services_Exception
- * @throws Exception
  */
-function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = false)
+function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = false, $copy = false)
 {
 	global $prefs;
 
@@ -89,6 +99,8 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 	$itemsProcessed = 0;
 	$attachmentsProcessed = 0;
 
+	$mode = $remove ? "Moving" : ($copy ? "Copying" : "Previewing");
+	echo "{$mode} attachment files from field {$fgField['permName']} tracker {$trackerId} to filegal {$galleryId}\n\n";
 
 	foreach ($items as $item) {
 		$itemId = $item['itemId'];
@@ -106,51 +118,66 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 		$numAttachments = sizeof($atts['data']);
 
 		if ($numAttachments === 0) {
-			echo "Tracker Item {$itemId} skipped (no attachments)\n";
+			echo "[{$mode}] Tracker Item {$itemId} skipped (no attachments)\n";
 			continue;
 		} else {
-			echo "Updating tracker item {$itemId}:\n";
 			$ess = $numAttachments > 1 ? 's' : '';
-			echo "- Found {$numAttachments} attachment$ess\n";
+			echo "[{$mode}] Updating tracker item {$itemId}: - {$numAttachments} attachment$ess\n";
 		}
 
 		foreach ($atts['data'] as $attachment) {
 			$attachment = $trklib->get_item_attachment($attachment['attId']);
 
 			if (! $attachment) {
-				echo "- Warning: Unable to get item attachment with attId {$attachment['attId']}\n";
+				echo "\t- Warning: Unable to get item attachment with attId {$attachment['attId']}\n";
 				continue;
 			}
 
 			$name = $attachment['filename'];
 			$size = $attachment['filesize'];
 			$type = $attachment['filetype'];
+			$created = $attachment['created'];
+			$auser = $attachment['user'];
 			$description = $attachment['longdesc'];
 			if ($attachment['comment']) {
 				$description .= "\nComment\n" . $attachment['comment'];
 			}
-			$data = $attachment['data'];
-
-			try {
-				$fileId = $fileUtilities->uploadFile($galInfo, $name, $size, $type, $data, null, null, null, $description);
-			} catch (Exception $e) {
-				$fileId = false;
-				echo "Error: File  {$attachment['filename']} on item  {$itemId} could not be saved\n";
-				echo "{$e->getMessage()}\n";
+			if ($attachment['version']) {
+				$description .= "\nVersion\n" . $attachment['version'];
+			}
+			if (file_exists($prefs['t_use_dir'] . $attachment['path'])) {
+				$data = file_get_contents($prefs['t_use_dir'] . $attachment['path']);
+			} else {
+				$data = $attachment['data'];
 			}
 
-			if ($fileId !== false) {
-				array_push($fileIdList, $fileId);
-				echo "- Attachment {$attachment['filename']} uploaded to file gallery\n";
+			$actualSize = strlen($data);
+			if ((int) $size !== $actualSize) {
+				echo "\t- Warning, size difference: {$size} !== {$actualSize}\n";
+			}
+
+			if ($copy) {
+				try {
+					$fileId = $fileUtilities->uploadFile($galInfo, $name, $size, $type, $data, $auser, null, null, $description, $created);
+				} catch (Exception $e) {
+					$fileId = false;
+					echo "\tError: File  {$attachment['filename']} on item  {$itemId} could not be saved\n";
+					echo "{$e->getMessage()}\n";
+				}
+				if ($fileId !== false) {
+					$fileIdList[] = $fileId;
+					echo "\t- Attachment {$attachment['filename']} uploaded to file gallery ({$actualSize} bytes)\n";
+				} else {
+					echo "\t- Failed to upload attachment {$attachment['filename']} to file gallery\n";
+					$failedAttIds[] = $attachment['attId'];
+				}
 			} else {
-				echo "- Failed to upload attachment {$attachment['filename']} to file gallery\n";
-				$failedAttIds[] = $attachment['attId'];
+				echo "\t{$attachment['filename']} uploaded to file gallery ({$actualSize} bytes)\n";
 			}
 		}
 
-		if (empty($fileIdList)) {
-			echo "No files were uploaded to the file gallery\n";
-			echo "Tracker Item {$itemId} skipped\n";
+		if (empty($fileIdList) && $copy) {
+			echo "[{$mode}] No files were uploaded to the file gallery (Item {$itemId} skipped)\n";
 			continue;
 		}
 
@@ -193,23 +220,24 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 						$numAttachments--;
 					}
 				}
-				echo "Tracker item {$itemId} updated successfully and $numAttachments attachment$ess removed\n";
+				echo "\tTracker item {$itemId} updated successfully and $numAttachments attachment$ess removed\n";
 			} else {
 				$attachmentsProcessed += $numAttachments;
-				echo "Tracker item {$itemId} updated successfully\n";
+				echo "\t[tracker item {$itemId} updated successfully]\n";
 			}
 		} else {
-			echo "Tracker item {$itemId} update failed\n";
+			echo "\tTracker item {$itemId} update failed\n";
 			$itemsFailed++;
 		}
+		echo "\n";
 	}
 
 	$failCount = count($failedAttIds);
 	$op = $remove ? "moved" : "copied";
 
-	echo "\nConvert completed:\n    {$itemsProcessed} processed ({$itemsFailed} failed) and\n    {$attachmentsProcessed} attachments {$op} ({$failCount} failed)\n\n";
+	echo "\nConvert completed:\n\t{$itemsProcessed} item processed ({$itemsFailed} failed) and\n\t{$attachmentsProcessed} attachments {$op} ({$failCount} failed)\n\n";
 }
 
-convertAttachments($trackerId, $fieldId, $galleryId, $remove);
+convertAttachments($trackerId, $fieldId, $galleryId, $remove, $copy);
 
 exit(0);
