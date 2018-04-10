@@ -386,7 +386,7 @@ foreach ($fieldDefinitions as &$fieldDefinition) {
 }
 unset($fieldDefinition);
 
-if (isset($_REQUEST["save"]) || isset($_REQUEST["save_return"])) {
+if (isset($_REQUEST["save"]) || isset($_REQUEST["save_return"]) || isset($_REQUEST['save_and_comment'])) {
 	foreach ($fieldDefinitions as $i => $current_field) {
 		$fid = $current_field["fieldId"];
 		$fieldIsVisible = $itemObject->canViewField($fid);
@@ -473,12 +473,35 @@ if (isset($_REQUEST["save"]) || isset($_REQUEST["save_return"])) {
 				$_REQUEST['save'] = 'save';
 				unset($_REQUEST['save_return']);
 			}
+			if (isset($_REQUEST['save_and_comment'])) {
+				$_REQUEST['save'] = 'save';
+				unset($_REQUEST['save_and_comment']);
+			}
 		}
 		if (isset($_REQUEST['save_return']) && isset($_REQUEST['from'])) {
 			$fromUrl = filter_out_sefurl('tiki-index.php?page=' . urlencode($_REQUEST['from']));
 			header("Location: {$fromUrl}");
 			exit;
 		}
+
+		if (isset($_REQUEST['save_and_comment'])) {
+			$version = $trklib->last_log_version($itemId);
+			$smarty->assign('version', $version);
+
+			$modalUrl = TikiLib::lib('service')->getUrl([
+				'controller' => 'comment',
+				'action' => 'post',
+				'type' => 'trackeritem',
+				'objectId' => $itemId,
+				'parentId' => 0,
+				'version' => $version,
+				'return_url' => '',
+				'title' => tr('Comment for edit #%0', $version),
+				]);
+
+			$headerlib->add_jq_onready('$.openModal({ remote:"' . $modalUrl . '"});');
+			}
+
 	}
 }
 // remove image from an image field
@@ -625,6 +648,14 @@ if ($tracker_info['useComments'] == 'y') {
 	$comCount = $trklib->get_item_nb_comments($itemId);
 	$smarty->assign("comCount", $comCount);
 	$smarty->assign("canViewCommentsAsItemOwner", $itemObject->canViewComments());
+
+	$saveAndComment = $definition->getConfiguration('saveAndComment');
+	if ($saveAndComment !== 'n') {
+		if (! $itemObject->canPostComments()) {
+			$saveAndComment = 'n';
+		}
+	}
+	$smarty->assign("saveAndComment", $saveAndComment);
 }
 
 if ($tracker_info["useAttachments"] == 'y') {

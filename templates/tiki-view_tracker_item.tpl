@@ -249,6 +249,11 @@
 									{* --------------------------- to return to tracker list after saving --------- *}
 									{if $canView}
 										<input type="submit" class="btn btn-primary btn-sm" name="save_return" value="{tr}Save Returning to Item List{/tr}" onclick="needToConfirm=false">
+
+										{if not empty($saveAndComment) and $saveAndComment neq 'n'}
+											<input type="submit" class="btn btn-default btn-sm" name="save_and_comment" value="{tr}Save and Comment{/tr}">
+										{/if}
+
 										{if $canRemove}
 											<a class="btn btn-primary btn-sm" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title="{tr}Delete{/tr}">{icon name='delete' alt="{tr}Delete{/tr}"}</a>
 										{/if}
@@ -325,6 +330,10 @@
 								{if $canView}
 									<input type="submit" class="btn btn-primary btn-sm" name="save_return" value="{tr}Save Returning to Item List{/tr}" onclick="needToConfirm=false">
 								{/if}
+								{if not empty($saveAndComment) and $saveAndComment neq 'n'}
+									<input type="submit" class="btn btn-default btn-sm" name="save_and_comment" value="{tr}Save and Comment{/tr}">
+								{/if}
+
 								{if $canRemove}
 									<a class="link tips" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title=":{tr}Delete{/tr}">
 										{icon name='remove'}
