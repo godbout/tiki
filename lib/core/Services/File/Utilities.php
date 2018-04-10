@@ -36,10 +36,10 @@ class Services_File_Utilities
 		return $filegallib->get_file_gallery_info($galleryId);
 	}
 
-	function uploadFile($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '')
+	function uploadFile($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '')
 	{
 		$filegallib = TikiLib::lib('filegal');
-		return $filegallib->upload_single_file($gal_info, $name, $size, $type, $data, $asuser, $image_x, $image_y, $description);
+		return $filegallib->upload_single_file($gal_info, $name, $size, $type, $data, $asuser, $image_x, $image_y, $description, $created);
 	}
 
 	function updateFile($gal_info, $name, $size, $type, $data, $fileId, $asuser = null)
