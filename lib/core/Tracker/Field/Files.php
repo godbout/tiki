@@ -52,19 +52,16 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							'googleviewer' => tr('Google Viewer'),
 							'moodlescorm' => tr('Moodle Scorm Viewer'),
 						],
-						'legacy_index' => 3,
 					],
 					'displayParams' => [
 						'name' => tr('Display parameters'),
 						'description' => tr('URL-encoded parameters used such as in the {img} plugin, for example,.') . ' "max=400&desc=namedesc&stylebox=block"',
 						'filter' => 'text',
-						'legacy_index' => 4,
 					],
 					'displayParamsForLists' => [
 						'name' => tr('Display parameters for lists'),
 						'description' => tr('URL-encoded parameters used such as in the {img} plugin, for example,.') . ' "thumb=box&max=60"',
 						'filter' => 'text',
-						'legacy_index' => 5,
 					],
 					'displayOrder' => [
 						'name' => tr('Display Order'),
@@ -94,7 +91,6 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							0 => tr('No'),
 							1 => tr('Yes'),
 						],
-						'legacy_index' => 6,
 					],
 					'replace' => [
 						'name' => tr('Replace Existing File'),
@@ -105,20 +101,17 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							'n' => tr('No'),
 							'y' => tr('Yes'),
 						],
-						'legacy_index' => 7,
 					],
 					'browseGalleryId' => [
 						'name' => tr('Browse Gallery ID'),
 						'description' => tr('File gallery browse files. Use 0 for root file gallery. (requires elFinder feature - experimental)') . '. ' . tr('Restrict permissions to view the file gallery to hide the button.') ,
 						'filter' => 'int',
-						'legacy_index' => 8,
 						'profile_reference' => 'file_gallery',
 					],
 					'duplicateGalleryId' => [
 						'name' => tr('Duplicate Gallery ID'),
 						'description' => tr('File gallery to duplicate files into when copying the tracker item. 0 or empty means do not duplicate (default).'),
 						'filter' => 'int',
-						'legacy_index' => 9,
 						'profile_reference' => 'file_gallery',
 					],
 					'indexGeometry' => [
@@ -131,7 +124,6 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							'geojson' => tr('GeoJSON'),
 							'gpx' => tr('GPX'),
 						],
-						'legacy_index' => 10,
 					],
 					'uploadInModal' => [
 						'name' => tr('Upload In Modal'),
@@ -142,20 +134,17 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							'n' => tr('No'),
 							'y' => tr('Yes'),
 						],
-						'legacy_index' => 11,
 					],
 					'image_x' => [
 						'name' => tr('Maximum image width'),
 						'description' => tr('Leave blank to use selected gallery default setting or enter value in pixels to override gallery settings'),
 						'filter' => 'text',
 						'default' => '',
-						'legacy_index' => 12,
 					],
 					'image_y' => [
 						'name' => tr('Maximum image height'),
 						'description' => tr('Leave blank to use selected gallery default settings or enter value in pixels to override gallery settings'),
 						'filter' => 'text',
-						'legacy_index' => 13,
 					],
 					'addDecriptionOnUpload' => [
 						'name' => tr('Add Descriptions'),
