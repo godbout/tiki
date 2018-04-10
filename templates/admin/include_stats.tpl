@@ -26,6 +26,8 @@
 				{preference name=site_google_analytics_account}
 				{preference name=site_google_analytics_gtag}
 				{preference name=site_google_credentials}
+				{preference name=site_google_analytics_group_option}
+				{preference name=site_google_analytics_groups}
 			</fieldset>
 		{/tab}
 
@@ -35,6 +37,8 @@
 				{preference name=site_piwik_analytics_server_url}
 				{preference name=site_piwik_site_id}
 				{preference name=site_piwik_code syntax="javascript"}
+				{preference name=site_piwik_group_option}
+				{preference name=site_piwik_groups}
 			</fieldset>
 		{/tab}
 	{/tabset}

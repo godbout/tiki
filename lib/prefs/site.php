@@ -11,6 +11,12 @@ function prefs_site_list()
 
 	$available_layouts = TikiLib::lib('css')->list_user_selectable_layouts(isset($prefs['site_theme']) ? $prefs['site_theme'] : '', isset($prefs['theme_option']) ? $prefs['theme_option'] : '');
 	$available_admin_layouts = TikiLib::lib('css')->list_user_selectable_layouts(isset($prefs['site_theme_admin']) ? $prefs['site_theme_admin'] : '', isset($prefs['theme_option_admin']) ? $prefs['theme_option_admin'] : '');
+	$listGroups = TikiLib::lib('user')->get_groups();
+	$groups[''] = tr('All');
+	foreach ($listGroups['data'] as $group) {
+		$groups[$group['groupName']] = $group['groupName'];
+	}
+	unset($groups['Anonymous']);
 
 	return  [
 		'site_closed' => [
@@ -118,6 +124,33 @@ Use the Message to display to specify the message that visitors will see when at
 				'wikiplugin_googleanalytics',
 			],
 		],
+		'site_google_analytics_group_option' => [
+			'name' => tr('Google Analytics Groups Option'),
+			'description' => tr('Define option for Google Analytics groups'),
+			'type' => 'list',
+			'tags' => ['advanced'],
+			'options' => [
+				'' => tr('None'),
+				'included' => tr('Included'),
+				'excluded' => tr('Excluded'),
+			],
+			'default' => '',
+			'dependencies' => [
+				'wikiplugin_googleanalytics',
+			],
+		],
+		'site_google_analytics_groups' => [
+			'name' => tra('Google Analytics Available Groups'),
+			'description' => tr('User groups for which Google Analytics will be available'),
+			'type' => 'multilist',
+			'tags' => ['advanced'],
+			'options' => $groups,
+			'default' => [''],
+			'dependencies' => [
+				'site_google_analytics_group_option',
+				'wikiplugin_googleanalytics',
+			],
+		],
 		'site_google_analytics_gtag' => [
 			'name' => tr('Google Global Site Tag Mode'),
 			'description' => tra('Use the newer Google Global Site Tag (gtag.js) as opposed to the previous ga.js.'),
@@ -188,6 +221,35 @@ Use the Message to display to specify the message that visitors will see when at
 			'default' => '',
 			'dependencies' => [
 				'site_piwik_analytics_server_url',
+				'wikiplugin_piwik',
+			],
+		],
+		'site_piwik_group_option' => [
+			'name' => tr('Piwik Groups Option'),
+			'description' => tr('Define option for Piwik groups'),
+			'type' => 'list',
+			'tags' => ['advanced'],
+			'options' => [
+				'' => tr('None'),
+				'included' => tr('Included'),
+				'excluded' => tr('Excluded'),
+			],
+			'default' => '',
+			'dependencies' => [
+				'site_piwik_code',
+				'wikiplugin_piwik',
+			],
+		],
+		'site_piwik_groups' => [
+			'name' => tr('Piwik Available Groups'),
+			'description' => tr('User groups for which piwik will be available'),
+			'type' => 'multilist',
+			'tags' => ['advanced'],
+			'options' => $groups,
+			'default' => [''],
+			'dependencies' => [
+				'site_piwik_group_option',
+				'wikiplugin_piwik',
 			],
 		],
 	];
