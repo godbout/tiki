@@ -30,6 +30,10 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 }';
 
 	const SAMPLE_COMPOSER = '{
+    "name": "tiki/tiki-custom",
+    "description": "Tiki Wiki CMS Groupware",
+    "license": "LGPL-2.1",
+    "homepage": "https://tiki.org",
     "minimum-stability": "stable",
     "config": {
         "process-timeout": 5000,

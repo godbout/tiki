@@ -1,18 +1,24 @@
 {
-  "minimum-stability": "stable",
-  "config": {
-    "process-timeout": 5000,
-    "bin-dir": "bin"
-  },
-  "require": {
-    "jerome-breton/casperjs-installer": "dev-master"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "CasperJsInstaller\\Installer::install"
-    ],
-    "post-update-cmd": [
-      "CasperJsInstaller\\Installer::install"
-    ]
-  }
+	"minimum-stability": "stable",
+	"config": {
+		"process-timeout": 5000,
+		"bin-dir": "bin"
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://composer.tiki.org"
+		}
+	],
+	"require": {
+		"jerome-breton/casperjs-installer": "dev-master"
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"CasperJsInstaller\\Installer::install"
+		],
+		"post-update-cmd": [
+			"CasperJsInstaller\\Installer::install"
+		]
+	}
 }

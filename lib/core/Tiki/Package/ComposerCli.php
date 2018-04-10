@@ -28,7 +28,7 @@ class ComposerCli
 	];
 	const PHP_MIN_VERSION = '7.1.0';
 
-	const FALLBACK_COMPOSER_JSON = '{"minimum-stability": "stable","config": {"process-timeout": 5000,"bin-dir": "bin"}}';
+	const FALLBACK_COMPOSER_JSON = '{"minimum-stability": "stable","config": {"process-timeout": 5000,"bin-dir": "bin"}, "repositories": [{"type": "composer","url": "https://composer.tiki.org"}]}';
 
 	/**
 	 * @var string path to the base folder from tiki
@@ -108,19 +108,24 @@ class ComposerCli
 	public function getComposerConfigOrDefault()
 	{
 		$content = $this->getComposerConfig();
-		if ($content !== false) {
-			return $content;
+		if (!is_array($content)) {
+			$content = [];
 		}
 
 		$distFile = $this->workingPath . self::COMPOSER_CONFIG . '.dist';
+		$distContent = [];
 		if (file_exists($distFile)) {
-			$content = json_decode(file_get_contents($distFile), true);
-			if ($content !== false) {
-				return $content;
+			$distContent = json_decode(file_get_contents($distFile), true);
+			if (!is_array($distContent)) {
+				$distContent = [];
 			}
 		}
 
-		return json_decode(self::FALLBACK_COMPOSER_JSON, true);
+		if (empty($distContent)) {
+			$distContent = json_decode(self::FALLBACK_COMPOSER_JSON, true);
+		}
+
+		return array_merge($distContent, $content);
 	}
 
 	/**

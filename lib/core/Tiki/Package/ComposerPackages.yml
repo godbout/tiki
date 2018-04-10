@@ -46,3 +46,10 @@ MediaAlchemyst:
   requiredBy:
     - wikiplugin_preview
   requiredVersion: ^0.5.1
+PdfJs:
+  licence: Apache-2.0
+  licenceUrl: "https://github.com/mozilla/pdfjs-dist/blob/master/LICENSE"
+  name: npm-asset/pdfjs-dist
+  requiredBy:
+    - NotUsed
+  requiredVersion: ~2.0.487
