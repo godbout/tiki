@@ -232,11 +232,6 @@
 					{if $from}
 						<input type="hidden" name="from" value="{$from}">
 					{/if}
-					{section name=ix loop=$fields}
-						{if !empty($fields[ix].value)}
-							<input type="hidden" name="{$fields[ix].name|escape}" value="{$fields[ix].value|escape}">
-						{/if}
-					{/section}
 					{if $cant}
 						<input type="hidden" name="cant" value="{$cant}">
 					{/if}
