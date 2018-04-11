@@ -1262,6 +1262,7 @@ class Comments extends TikiLib
 			$forums->update($data, ['forumId' => (int) $forumId]);
 			$event = 'tiki.forum.update';
 		} else {
+			$oldData = null;
 			$data['created'] = $this->now;
 			$forumId = $forums->insert($data);
 			$event = 'tiki.forum.create';
