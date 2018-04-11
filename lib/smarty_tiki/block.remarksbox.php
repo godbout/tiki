@@ -56,6 +56,7 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 	$params = array_merge([	// default params
 		'type' => 'tip',
 		'title' => '',
+		'icon' => '',
 		'close' => 'y',
 		'width' => '',
 		'id' => 'rbox_' . $remarksboxInstance,
@@ -73,22 +74,36 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 		$highlightClass = '';
 	}
 
+	// If a custom icon is part of the paramters we assign it to the $custom_icon
+	if (isset($params['icon'])){
+		$custom_icon = $params['icon'];
+	};
+
 	switch ($params['type']) {
 		case 'error':
 		case 'errors':
 		case 'danger':
 			$class = 'alert-danger';
-			$icon = 'error';
+			if (! empty ($custom_icon)){
+				$icon = $custom_icon;
+			} else {
+			$icon = 'error';}
 			break;
 		case 'warning':
 			$class = 'alert-warning';
-			$icon = 'warning';
+			if (! empty ($custom_icon)){
+				$icon = $custom_icon;
+			} else {
+			$icon = 'warning';}
 			break;
 		case 'success':
 		case 'confirm':
 		case 'feedback': // Deprecated
 			$class = 'alert-success';
-			$icon = 'success';
+			if (! empty ($custom_icon)){
+				$icon = $custom_icon;
+			} else {
+				$icon = 'success';}
 			break;
 		case 'comment':
 		case 'info':
@@ -96,7 +111,10 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 		case 'tip':
 		default:
 			$class = 'alert-info';
-			$icon = 'information';
+			if (! empty ($custom_icon)){
+				$icon = $custom_icon;
+			} else {
+			$icon = 'information';}
 			break;
 	}
 
