@@ -255,7 +255,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(
 			[
 				"match_phrase_prefix" => [
-					"title.sort" => [
+					"title" => [
 						"query" => "hello",
 						"boost" => 1.5,
 					],

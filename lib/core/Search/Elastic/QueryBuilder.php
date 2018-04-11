@@ -138,7 +138,7 @@ class Search_Elastic_QueryBuilder
 		} elseif ($node instanceof Initial) {
 			return [
 				'match_phrase_prefix' => [
-					$this->getNodeField($node) . '.sort' => [
+					$this->getNodeField($node) => [
 						"query" => $this->getTerm($node),
 						"boost" => $node->getWeight(),
 					],
