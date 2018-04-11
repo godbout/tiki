@@ -4053,7 +4053,7 @@ CREATE TABLE `tiki_scheduler` (
   `name` VARCHAR(255),
   `description` VARCHAR(255),
   `task`VARCHAR(255),
-  `params` VARCHAR(255),
+  `params` TEXT,
   `run_time` VARCHAR(255),
   `status` VARCHAR(10),
   `re_run` TINYINT
