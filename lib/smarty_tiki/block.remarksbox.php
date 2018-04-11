@@ -84,26 +84,17 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 		case 'errors':
 		case 'danger':
 			$class = 'alert-danger';
-			if (! empty ($custom_icon)){
-				$icon = $custom_icon;
-			} else {
-			$icon = 'error';}
+			$icon = 'error';
 			break;
 		case 'warning':
 			$class = 'alert-warning';
-			if (! empty ($custom_icon)){
-				$icon = $custom_icon;
-			} else {
-			$icon = 'warning';}
+			$icon = $custom_icon;
 			break;
 		case 'success':
 		case 'confirm':
 		case 'feedback': // Deprecated
 			$class = 'alert-success';
-			if (! empty ($custom_icon)){
-				$icon = $custom_icon;
-			} else {
-				$icon = 'success';}
+			$icon = 'success';
 			break;
 		case 'comment':
 		case 'info':
@@ -111,11 +102,13 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 		case 'tip':
 		default:
 			$class = 'alert-info';
-			if (! empty ($custom_icon)){
-				$icon = $custom_icon;
-			} else {
-			$icon = 'information';}
+			$icon = 'information';
 			break;
+	}
+
+	// If the variable $custom_icon is not empty we replace the selected case icon with the custom one
+	if (! empty ($custom_icon)){
+		$icon = $custom_icon;
 	}
 
 	if ($prefs['javascript_enabled'] != 'y') {

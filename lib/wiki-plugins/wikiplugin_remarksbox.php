@@ -59,9 +59,9 @@ function wikiplugin_remarksbox_info()
 			'icon' => [
 				'required' => false,
 				'name' => tra('Custom Icon'),
-				'description' => tra('Enter a custom icon name (from tiki available icon at https://doc.tiki.org/PluginIcon)'),
+				'description' => tra('Enter a Tiki icon file name (with or without extension) or path to display a custom icon'),
 				'since' => '2.0',
-				'filter' => 'text',
+				'filter' => 'url',
 				'default' => '',
 			],
 			'close' => [
