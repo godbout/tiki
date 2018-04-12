@@ -2192,6 +2192,10 @@ function prefs_feature_list($partial = false)
 			'help' => 'Wiki-Syntax+Images',
 			'default' => 'y',
 			'tags' => ['basic'],
+			'permission' => [
+				'permType' => 'wiki',
+				'textFilter' => 'picture',
+			],
 		],
 		'feature_wiki_export' => [
 			'name' => tra('Export'),
@@ -2199,6 +2203,10 @@ function prefs_feature_list($partial = false)
 			'help' => 'XML-Wiki-Import-Export',
 			'type' => 'flag',
 			'default' => 'n',
+			'permission' => [
+				'permType' => 'wiki',
+				'textFilter' => 'export',
+			],
 		],
 		'feature_wikiwords' => [
 			'name' => tra('WikiWords'),
@@ -2223,6 +2231,10 @@ function prefs_feature_list($partial = false)
 			'help' => 'History',
 			'default' => 'y',
 			'tags' => ['basic'],
+			'permission' => [
+				'permType' => 'wiki',
+				'textFilter' => 'history',
+			],
 		],
 		'feature_wiki_history_ip' => [
 			'name' => tra('Display IP address'),
@@ -2252,6 +2264,9 @@ function prefs_feature_list($partial = false)
 				'feature_forums'
 			],
 			'default' => 'n',
+			'permission' => [
+				'permType' => 'forums',
+			],
 		],
 		'feature_source' => [
 			'name' => tra('View source'),
@@ -2259,6 +2274,10 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['basic'],
+			'permission' => [
+				'permType' => 'wiki',
+				'textFilter' => 'source',
+			],
 		],
 		'feature_wiki_ratings' => [
 			'name' => tra('Rating'),
@@ -2270,6 +2289,10 @@ function prefs_feature_list($partial = false)
 				'feature_polls'
 			],
 			'default' => 'n',
+			'permission' => [
+				'permType' => 'wiki',
+				'textFilter' => 'ratings',
+			],
 		],
 		'feature_backlinks' => [
 			'name' => tra('Backlinks'),
@@ -2278,6 +2301,10 @@ function prefs_feature_list($partial = false)
 			'help' => 'Backlinks',
 			'default' => 'n',
 			'tags' => ['basic'],
+			'permission' => [
+				'permType' => 'wiki',
+				'textFilter' => 'backlinks',
+			],
 		],
 		'feature_likePages' => [
 			'name' => tra('Similar pages'),
@@ -2385,6 +2412,10 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Enable users to lock pages and so prevent others from editing them'),
 			'type' => 'flag',
 			'default' => 'n',
+			'permission' => [
+				'permType' => 'wiki',
+				'textFilter' => 'lock',
+			],
 		],
 		'feature_wiki_multiprint' => [
 			'name' => tra('MultiPrint'),
