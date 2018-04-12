@@ -21,9 +21,41 @@ class Services_File_Controller
 		$this->utilities = new Services_File_Utilities;
 	}
 
+	/**
+	 * Call to prepare the upload in modal dialg, and then after the upload has happened
+	 * Here we add a description if that's enabled
+	 *
+	 * @param JitFilter $input
+	 * @return array
+	 * @throws Exception
+	 */
 	function action_uploader($input)
 	{
 		$gal_info = $this->checkTargetGallery($input);
+		$filegallib = TikiLib::lib('filegal');
+
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			if ($input->offsetExists('description')) {
+
+				$files = $input->asArray('file');
+				$descriptions = $input->asArray('description');
+
+				foreach ($files as $c => $file) {
+					$fileInfo = $filegallib->get_file_info($file);
+
+					if (isset($descriptions[$c])) {
+
+						$filegallib->update_file(
+							$fileInfo['fileId'],
+							$fileInfo['filename'],
+							$descriptions[$c],
+							$fileInfo['asuser']
+						);
+					}
+				}
+			}
+		}
 
 		return [
 			'title' => tr('File Upload'),
@@ -33,21 +65,25 @@ class Services_File_Controller
 			'uploadInModal' => $input->uploadInModal->int(),
 			'files' => $this->getFilesInfo((array) $input->file->int()),
 			'image_max_size_x' => $input->image_max_size_x->text(),
-			'image_max_size_y' => $input->image_max_size_y->text()
-
+			'image_max_size_y' => $input->image_max_size_y->text(),
+			'addDecriptionOnUpload' => $input->addDecriptionOnUpload->int(),
 		];
 	}
 
 	function action_upload($input)
 	{
 		if ($input->files->asArray()) {
-			return;
+			return [];
 		}
 
 		$gal_info = $this->checkTargetGallery($input);
 
 		$fileId = $input->fileId->int();
 		$asuser = $input->user->text();
+
+		if (empty($asuser)) {
+			$asuser = $GLOBALS['user'];
+		}
 		if (! $input->imagesize->word()) {
 			$image_x = $input->image_max_size_x->text();
 			$image_y = $input->image_max_size_y->text();

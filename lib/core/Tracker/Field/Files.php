@@ -157,9 +157,16 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 						'filter' => 'text',
 						'legacy_index' => 13,
 					],
-
-
-
+					'addDecriptionOnUpload' => [
+						'name' => tr('Add Descriptions'),
+						'description' => tr('Add descriptions on uploaded files.'),
+						'filter' => 'alpha',
+						'default' => 'n',
+						'options' => [
+							'n' => tr('No'),
+							'y' => tr('Yes'),
+						],
+					],
 				],
 			],
 		];
@@ -306,7 +313,8 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		}
 
 		return $this->renderTemplate('trackerinput/files.tpl', $context, [
-			'replaceFile' => 'y' == $this->getOption('replace', 'n')
+			'replaceFile' => 'y' == $this->getOption('replace', 'n'),
+			'addDecriptionOnUpload' => $this->getOption('addDecriptionOnUpload') === 'y' ? 1 : 0,
 		]);
 	}
 

@@ -29,7 +29,7 @@
 			</p>
 		</form>
 		<form class="file-uploader-result" method="post" action="{service controller=file action=uploader galleryId=$galleryId}">
-			<ul class="list-unstyled">
+			<ul class="list-unstyled" data-adddescription="{$addDecriptionOnUpload}">
 			</ul>
 
 			<div class="submit">
