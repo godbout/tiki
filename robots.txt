@@ -50,7 +50,7 @@ Disallow: /modules/
 Disallow: /permissioncheck/
 Disallow: /popups/
 Disallow: /templates/
-Disallow: /tests/s
+Disallow: /tests/
 Disallow: /vendor*
 Allow: /vendor*.gif$
 Allow: /vendor*.jpg$
