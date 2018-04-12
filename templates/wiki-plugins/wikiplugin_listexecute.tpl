@@ -35,4 +35,13 @@ $('#listexecute-{{$iListExecute}}').find('select[name=list_action]').on('change'
 		$(this).siblings('input[name=list_input]').hide();
 	}
 });
+$('#listexecute-{{$iListExecute}}').submit(function(){
+	var filters = $('#list_filter{{$iListExecute|replace:'wplistexecute-':''}} form').serializeArray();
+	for(var i = 0, l = filters.length; i < l; i++) {
+		var inp = $('<input type="hidden">');
+		inp.attr('name', filters[i].name);
+		inp.val(filters[i].value);
+		$('#listexecute-{{$iListExecute}}').append(inp);
+	}
+});
 {/jq}
