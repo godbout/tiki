@@ -258,7 +258,17 @@ function wikiplugin_listpages_info()
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
 				]
-			]
+			],
+			'exclude_pages' => [
+				'required' => false,
+				'name' => tra('Exclude Page(s)'),
+				'description' => tr('Wiki page names to be excluded from list'),
+				'since' => '19.0',
+				'filter' => 'pagename',
+				'default' => '',
+				'separator' => '|',
+				'profile_reference' => 'wiki_page',
+			],
 		]
 	];
 }
@@ -363,8 +373,8 @@ function wikiplugin_listpages($data, $params)
 	$only_orphan_pages = ( isset($only_orphan_pages) && $only_orphan_pages == 'y' );
 	$for_list_pages = ( isset($for_list_pages) && $for_list_pages == 'y' );
 	$only_cant = false;
-	$listpages = $tikilib->list_pages($offset, $max, $sort, $find, $initial, $exact_match, $only_name, $for_list_pages, $only_orphan_pages, $filter, $only_cant);
 
+	$listpages = $tikilib->list_pages($offset, $max, $sort, $find, $initial, $exact_match, $only_name, $for_list_pages, $only_orphan_pages, $filter, $only_cant, '' ,$exclude_pages);
 	if (! empty($includetag) || ! empty($excludetag)) {
 		if (preg_match('/;/', $includetag)) {
 			$aIncludetag = explode(';', $includetag);
