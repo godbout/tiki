@@ -75,9 +75,25 @@ class XMPPLib extends TikiLib
 			&& $param['user'] === $givenUser;
 	}
 
+	function sanitize_name($text)
+	{
+		global $tikilib;
+		$result = $tikilib->take_away_accent($text);
+		$result = preg_replace('*[ $&`:<>\[\]{}"+#%@/;=?^|~\',]+*', '-', $result);
+		$result = strtolower($result);
+		$result = trim($result);
+		return $result;
+	}
+
 	function prebind($user)
 	{
 		global $prefs;
+		global $tikilib;
+
+		$session_id = substr($tikilib->sessionId, 0, 5);
+		$browser_title = $prefs['browsertitle'];
+		$browser_title = $this->sanitize_name($browser_title);
+		$resource_name = "{$browser_title}-{$session_id}";
 
 		$tokenlib = AuthTokens::build($prefs);
 
@@ -100,12 +116,15 @@ class XMPPLib extends TikiLib
 			$xmpp_password = "$token";
 		} else {
 			$xmpp_password = $this->get_user_password($user);
+			if ( empty($xmpp_password) ) {
+				return [];
+			}
 		}
 
 		$xmppPrebind = new TikiXmppPrebind(
 			$this->server_host,
 			$this->server_http_bind,
-			'tikiwiki',
+			$resource_name,
 			false,
 			false
 		);
