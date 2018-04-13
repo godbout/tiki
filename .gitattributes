@@ -122,7 +122,6 @@ doc/devtools/make_db_local.sql -text
 doc/devtools/mass_wording_corrections.pl -text
 doc/devtools/mergelang.php -text
 doc/devtools/migrate_image_galleries.php -text
-doc/devtools/mods.sh -text
 doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
 doc/devtools/parse_changelog.pl -text
 doc/devtools/parse_tiki.php -text
@@ -3535,8 +3534,6 @@ lib/mime/mimelib.php -text
 lib/mime/mimetypes.php -text
 lib/minical/index.php -text
 lib/minical/minicallib.php -text
-lib/mods/index.php -text
-lib/mods/modslib.php -text
 lib/modules/index.php -text
 lib/modules/modlib.php -text
 lib/modules/tiki-admin_modules.js -text
@@ -5091,7 +5088,6 @@ lists/articles.php -text
 /messu-read_archive.php -text
 /messu-read_sent.php -text
 /messu-sent.php -text
-/modsadm.php -text
 modules/.htaccess -text
 modules/cache/README -text
 modules/cache/index.php -text
@@ -6245,8 +6241,6 @@ templates/tiki-mindmap.tpl -text
 templates/tiki-minical.tpl -text
 templates/tiki-minical_prefs.tpl -text
 templates/tiki-mods.tpl -text
-templates/tiki-mods_admin.tpl -text
-templates/tiki-mods_config.tpl -text
 templates/tiki-my_tiki.tpl -text
 templates/tiki-mytiki_bar.tpl -text
 templates/tiki-newsletter_archives.tpl -text
@@ -8155,7 +8149,6 @@ themes/yeti/templates/index.php -text
 /tiki-minical_reminders.php -text
 /tiki-minichat_ajax.php -text
 /tiki-mods.php -text
-/tiki-mods_admin.php -text
 /tiki-module_controls.php -text
 /tiki-modules.php -text
 /tiki-monitor.php -text
