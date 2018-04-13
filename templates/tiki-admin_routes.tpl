@@ -197,7 +197,7 @@
 		$('div [data-task-name="'+taskName+'"]').show();
 	});
 
-	$('select[name="object_type"]').on('change', function() {
+	$('select[name="tikiobject_type"]').on('change', function() {
 		$('input[name="load_options"]').val(1);
 		$(this).parents('form').submit();
 	});

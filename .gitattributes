@@ -2003,6 +2003,7 @@ installer/schema/20171129_backlinks_for_object_types_admin_options_tiki.sql -tex
 installer/schema/20171130_plugin_include_link_original_tiki.sql -text
 installer/schema/20171204_update_geo_enabled_tiki.sql -text
 installer/schema/20171231_add_short_url_tiki.sql -text
+installer/schema/20180331_rename_custom_route_object_type_tiki.sql -text
 installer/schema/20180405_remove_unused_user_id_tiki.sql -text
 installer/schema/20180410_install_piwik_plugin_tiki.php -text
 installer/schema/20180411_schedulers_change_column_to_text_tiki.sql -text

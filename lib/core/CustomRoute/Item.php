@@ -23,7 +23,7 @@ class Item
 	public $short_url;
 
 	const TYPE_DIRECT = 'Direct';
-	const TYPE_OBJECT = 'Object';
+	const TYPE_OBJECT = 'TikiObject';
 	const TYPE_TRACKER_FIELD = 'TrackerField';
 
 	/**
@@ -96,17 +96,17 @@ class Item
 	public function matchRoute($path)
 	{
 		switch ($this->type) {
-			case 'Direct':
+			case self::TYPE_DIRECT:
 				if ($path === $this->from) {
 					return true;
 				}
 				break;
-			case 'Object':
+			case self::TYPE_OBJECT:
 				if ($path === $this->from) {
 					return true;
 				}
 				break;
-			case 'TrackerField':
+			case self::TYPE_TRACKER_FIELD:
 				preg_match($this->from, $path, $matches);
 				if (! empty($matches[1])) {
 					return true;
@@ -132,14 +132,14 @@ class Item
 
 
 		switch ($this->type) {
-			case 'Direct':
+			case self::TYPE_DIRECT:
 				if ($path === $this->from) {
 					$redirectDetails = json_decode($this->redirect, true);
 					return $redirectDetails['to'];
 				}
 				break;
 
-			case 'Object':
+			case self::TYPE_OBJECT:
 				if ($path === $this->from) {
 					$redirectDetails = json_decode($this->redirect, true);
 
@@ -168,7 +168,7 @@ class Item
 				}
 				break;
 
-			case 'TrackerField':
+			case self::TYPE_TRACKER_FIELD:
 				preg_match($this->from, $path, $matches);
 
 				if (empty($matches[1])) {
