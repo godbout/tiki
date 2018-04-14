@@ -53,6 +53,13 @@ class FakerTrackerCommand extends Command
 				'r',
 				InputOption::VALUE_NONE,
 				'Generate random item status'
+			)
+			->addOption(
+				'reuse-files',
+				null,
+				InputOption::VALUE_OPTIONAL,
+				'Reuse existing files in the file gallery when possible',
+				1
 			);
 	}
 
@@ -75,6 +82,7 @@ class FakerTrackerCommand extends Command
 		$numberItems = $input->getOption('items');
 		$randomizeStatus = empty($input->getOption('random-status')) ? false : true;
 		$fieldOverrideDefinition = $input->getOption('field');
+		$reuseFiles = empty($input->getOption('reuse-files')) ? false : true;
 
 		if (! is_numeric($numberItems)) {
 			$output->writeln('<error>' . tra('The value of items is not a number') . '</error>');
@@ -129,7 +137,9 @@ class FakerTrackerCommand extends Command
 		/** @var \TrackerLib $trackerLib */
 		$trackerLib = TikiLib::lib('trk');
 		$faker = FakerFactory::create();
-		$faker->addProvider(new TikiFaker($faker));
+		$tikiFaker = new TikiFaker($faker);
+		$tikiFaker->setTikiFilesReuseFiles($reuseFiles);
+		$faker->addProvider($tikiFaker);
 
 		for ($i = 0; $i < $numberItems; $i++) {
 			$fieldData = [];

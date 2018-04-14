@@ -23,6 +23,11 @@ use JitFilter;
 class Faker extends FakerProviderBase
 {
 	/**
+	 * @var bool if Faker should reuse files in the file gallery or create new files
+	 */
+	protected $tikiFilesReuseFiles = true;
+
+	/**
 	 * Random categories from tiki
 	 *
 	 * @return int
@@ -122,7 +127,11 @@ class Faker extends FakerProviderBase
 
 		if (! empty($field['options_map']['galleryId'])) {
 			$galleryId = $field['options_map']['galleryId'];
-			$files = $filegallib->get_files_info($galleryId);
+			if ($this->tikiFilesReuseFiles) {
+				$files = $filegallib->get_files_info($galleryId);
+			} else {
+				$files = [];
+			}
 		}
 		if (! empty($files)) {
 			$filesRand = $files[array_rand($files)];
@@ -371,5 +380,15 @@ class Faker extends FakerProviderBase
 			}
 		}
 		return '';
+	}
+
+	/**
+	 * Set if Faker should reuse files in the file gallery or create new files
+	 *
+	 * @param $reuse
+	 */
+	public function setTikiFilesReuseFiles($reuse)
+	{
+		$this->tikiFilesReuseFiles = (bool)$reuse;
 	}
 }
