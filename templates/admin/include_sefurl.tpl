@@ -56,9 +56,11 @@
 		</div>
 		{preference name=wiki_url_scheme}
 
-        {preference name=feature_sefurl_routes}
-        {preference name=feature_short_url}
-        {preference name=feature_short_url_domain}
+		{preference name=feature_sefurl_routes}
+		{preference name=sefurl_short_url}
+		<div class="adminoptionboxchild" id="sefurl_short_url_childcontainer">
+			{preference name=sefurl_short_url_base_url}
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend>{tr}Settings{/tr}</legend>

@@ -73,7 +73,7 @@
 								var element{/literal}{$articleId}{literal} = document.getElementById("share{/literal}{$articleId}{literal}"); object{/literal}{$articleId}{literal}.attachButton(element{/literal}{$articleId}{literal}); </script>{/literal}
 						</li>
 					{/if}
-					{if $prefs.feature_short_url eq 'y'}
+					{if $prefs.sefurl_short_url eq 'y'}
 						<li>
 							<a href="tiki-short_url.php?type=article&objectId={$articleId}">
 								{icon name="link"} {tr}Get a short URL{/tr}

@@ -233,6 +233,7 @@ function tiki_route_attempt_custom_route_redirect()
 	$GLOBALS['tikilib'] = $tikilib;
 
 	$prefereces = [
+		'feature_sefurl' => 'n',
 		'feature_sefurl_routes' => 'n',
 	];
 
@@ -243,6 +244,8 @@ function tiki_route_attempt_custom_route_redirect()
 		$route = \Tiki\CustomRoute\CustomRoute::matchRoute($path);
 		if ($route) {
 			require_once __DIR__ . '/tiki-setup.php';
+			// Reload necessary preferences for SEF url
+			$tikilib->get_preferences($prefereces, true, true);
 			\Tiki\CustomRoute\CustomRoute::executeRoute($route, $path);
 		}
 	}

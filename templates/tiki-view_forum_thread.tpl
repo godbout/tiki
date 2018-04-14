@@ -82,6 +82,14 @@
 						{icon name="print"} {tr}Print all pages{/tr}
 					</a>
 				</li>
+				{if $prefs.sefurl_short_url eq 'y'}
+					<li>
+						<a href="tiki-short_url.php?type=forumthread&objectId={$comments_parentId}">
+							{icon name="link"} {tr}Get a short URL{/tr}
+							{assign var="hasPageAction" value="1"}
+						</a>
+					</li>
+				{/if}
 				{if $prefs.feature_forum_topics_archiving eq 'y' && $tiki_p_admin_forum eq 'y'}
 					<li>
 						{if $thread_info.archived eq 'y'}

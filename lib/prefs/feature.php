@@ -3069,26 +3069,5 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 			'tags' => ['advanced'],
 		],
-		'feature_short_url' => [
-			'name' => tr('Short URL'),
-			'description' => tr('Provides the ability to create a short url, easy to share.'),
-			'type' => 'flag',
-			'default' => 'n',
-			'keywords' => 'short url',
-			'dependencies' => [
-				'feature_sefurl_routes',
-			],
-		],
-		'feature_short_url_domain' => [
-			'name' => tr('Short URL Domain'),
-			'description' => tra('The domain that is used in the short urls.'),
-			'type' => 'text',
-			'size' => '50',
-			'default' => 'n',
-			'keywords' => 'short url',
-			'dependencies' => [
-				'feature_short_url',
-			],
-		],
 	];
 }

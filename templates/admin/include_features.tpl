@@ -115,11 +115,6 @@
 							{preference name=feature_share}
 							{preference name=feature_webmail}
 							{preference name=feature_mailin}
-							{preference name=feature_short_url}
-							<div class="adminoptionboxchild" id="feature_short_url_childcontainer">
-								{preference name=feature_short_url_domain}
-							</div>
-
 						</fieldset>
 					</div>
 					{preference name=feature_docs}
