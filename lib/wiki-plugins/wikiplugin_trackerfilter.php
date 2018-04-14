@@ -725,14 +725,23 @@ function wikiplugin_trackerFilter_get_filters($trackerId = 0, array $listfields 
 				case 'M': // Multiple Values
 					$cumul = '';
 					foreach ($field['options_array'] as $val) {
-						$sval = strip_tags(TikiLib::lib('parser')->parse_data($val, ['parsetoc' => false]));
-						$opt['id'] = $val;
+						// check if exists custom label, the format is 'value=label'
+						$delimiterPos = stripos($val, '=');
+						if ($delimiterPos !== false) {
+							$optval = substr($val, 0, $delimiterPos);
+							$sval = substr($val, $delimiterPos + 1);
+						} else {
+							$optval = $val;
+							$sval = $val;
+						}
+						$sval = strip_tags(TikiLib::lib('parser')->parse_data($sval, ['parsetoc' => false]));
+						$opt['id'] = $optval;
 						if ($field['type'] == '*') {
 							$cumul = $opt['name'] = "$cumul*";
 						} else {
 							$opt['name'] = $sval;
 						}
-						if (! empty($_REQUEST['f_' . $fieldId]) && ((! is_array($_REQUEST['f_' . $fieldId]) && $_REQUEST['f_' . $fieldId] == $val) || (is_array($_REQUEST['f_' . $fieldId]) && in_array($val, $_REQUEST['f_' . $fieldId])))) {
+						if (! empty($_REQUEST['f_' . $fieldId]) && ((! is_array($_REQUEST['f_' . $fieldId]) && $_REQUEST['f_' . $fieldId] == $optval) || (is_array($_REQUEST['f_' . $fieldId]) && in_array($optval, $_REQUEST['f_' . $fieldId])))) {
 							$opt['selected'] = 'y';
 							$selected = true;
 						} else {

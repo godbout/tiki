@@ -59,6 +59,7 @@ class Services_CustomRoute_Controller
 		}
 
 		return [
+			'title' => tr('Remove custom route?'),
 			'routeId' => $routeId,
 			'from_path' => $route['from'],
 		];

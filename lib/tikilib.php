@@ -3011,7 +3011,7 @@ class TikiLib extends TikiDb_Bridge
 	 * @param string $ref
 	 * @return array
 	 */
-	function list_pages($offset = 0, $maxRecords = -1, $sort_mode = 'pageName_desc', $find = '', $initial = '', $exact_match = true, $onlyName = false, $forListPages = false, $only_orphan_pages = false, $filter = '', $onlyCant = false, $ref = '')
+	function list_pages($offset = 0, $maxRecords = -1, $sort_mode = 'pageName_desc', $find = '', $initial = '', $exact_match = true, $onlyName = false, $forListPages = false, $only_orphan_pages = false, $filter = '', $onlyCant = false, $ref = '', $exclude_pages='')
 	{
 		global $prefs, $tiki_p_wiki_view_ratings;
 
@@ -3058,6 +3058,19 @@ class TikiLib extends TikiDb_Bridge
 		} else {
 			$bindvars = [];
 			$mid = '';
+		}
+
+		//check if exclude page is array and then add its values in bindvars and 
+		if ($exclude_pages && is_array($exclude_pages)) { // you can use an array of pages
+			if (!empty($mid)) {
+				$mid .= " AND (LOWER(`pageName`) NOT IN (" . implode(',', array_fill(0, count($exclude_pages), 'LOWER(?)')) . "))";
+			} else {
+				$mid = " where LOWER(`pageName`) NOT IN (" . implode(',', array_fill(0, count($exclude_pages), 'LOWER(?)')) . ")";
+			}
+			
+			foreach ($exclude_pages as $epKey => $epVal) {
+				$bindvars[] = $epVal;
+			}
 		}
 
 		$categlib = TikiLib::lib('categ');

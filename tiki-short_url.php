@@ -15,7 +15,7 @@ use Tiki\CustomRoute\CustomRoute;
 require_once('tiki-setup.php');
 
 // Check if feature is enabled
-$access->check_feature('feature_short_url');
+$access->check_feature('sefurl_short_url');
 //@todo check if user has access to feature?
 
 
@@ -52,7 +52,7 @@ if (empty($hash)) {
 global $prefs, $base_url;
 //$url = $url_scheme . '://' . $url_host . (($url_port != '') ? ":$url_port" : '') : $base_url . $url;
 
-$shortUrl = ! empty($prefs['feature_short_url_domain']) ? $prefs['feature_short_url_domain'] : $base_url;
+$shortUrl = ! empty($prefs['sefurl_short_url_base_url']) ? $prefs['sefurl_short_url_base_url'] : $base_url;
 $shortUrl = rtrim($shortUrl, '/') . '/' . $hash;
 
 // Generate a custom path (from)

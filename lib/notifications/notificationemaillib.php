@@ -82,10 +82,6 @@ function sendForumEmailNotification(
 		$mail->setFrom($my_sender, $author);
 		$mail->setSubject($topicName);
 
-		if ($inReplyTo) {
-			$mail->setHeader("In-Reply-To", "<" . $inReplyTo . ">");
-		}
-
 		$commentslib = TikiLib::lib('comments');
 		$attachments = $commentslib->get_thread_attachments($event == 'forum_post_topic' ? $threadId : $object, 0);
 
@@ -102,7 +98,10 @@ function sendForumEmailNotification(
 		}
 
 		// Message-ID is set below buildMessage because otherwise lib/webmail/htmlMimeMail.php will over-write it.
-		$mail->setHeader("Message-ID", "<" . $messageId . ">");
+		$additionalHeaders = \Tiki\Notifications\Email::getEmailThreadHeaders('forum', $threadId);
+		foreach ($additionalHeaders as $headerName => $headerValue) {
+			$mail->setHeader($headerName, $headerValue);
+		}
 
 		$mail->send([$forum_info['outbound_address']]);
 	}
@@ -222,6 +221,10 @@ function sendForumEmailNotification(
 				$mail_data = $smarty->fetchLang($not['language'], "mail/forum_post_notification.tpl");
 			}
 			$mail->setText($mail_data);
+			$additionalHeaders = \Tiki\Notifications\Email::getEmailThreadHeaders('forum', $threadId);
+			foreach ($additionalHeaders as $headerName => $headerValue) {
+				$mail->setHeader($headerName, $headerValue);
+			}
 			$mail->send([$not['email']]);
 		}
 	}
@@ -435,10 +438,12 @@ function sendWikiEmailNotification(
  * \param $txtTpl : texte template file (ex: "submission_notifcation.tpl")
  * \param $from email from to not the default one
  * \param $fromName name to use when sending emails
+ * \param $additionalHeaders additional headers to append to email
  * \ $smarty is supposed to be already built to fit $txtTpl
  * \return the nb of sent emails
  */
-function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $txtTpl, $from = '', $fromName = null)
+
+function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $txtTpl, $from = '', $fromName = null, $additionalHeaders = [])
 {
 	global $prefs;
 
@@ -492,7 +497,13 @@ function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $tx
 				$machine = substr($machine, 0, -1);
 			}
 			$smarty->assign('mail_machine', $machine);
+
 			$mail = new TikiMail(null, $from, $fromName);
+
+			foreach ($additionalHeaders as $headerName => $headerValue) {
+				$mail->setHeader($headerName, $headerValue);
+			}
+
 			if ($key) {
 				$mail->setUser($key);
 			}
@@ -514,6 +525,10 @@ function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $tx
 	} else {
 		foreach ($watches as $watch) {
 			$mail = new TikiMail(null, $from, $fromName);
+
+			foreach ($additionalHeaders as $headerName => $headerValue) {
+				$mail->setHeader($headerName, $headerValue);
+			}
 
 			$smarty->assign('watchId', $watch['watchId']);
 			if ($watch['user']) {
@@ -928,6 +943,8 @@ function sendCommentNotification($type, $id, $title, $content, $commentId, $anon
 		$smarty->assign('mail_comment', $content);
 		$smarty->assign('comment_id', $commentId);
 
+		$additionalHeaders = \Tiki\Notifications\Email::getEmailThreadHeaders($type, $commentId);
+
 		if ($prefs['feature_comments_send_author_name'] == 'y') {
 			if (! empty($anonymousName)) {
 				$fromName = $anonymousName;
@@ -937,9 +954,9 @@ function sendCommentNotification($type, $id, $title, $content, $commentId, $anon
 					$fromName = $user;
 				}
 			}
-			return sendEmailNotification($watches, null, 'user_watch_comment_subject.tpl', null, 'user_watch_comment.tpl', '', $fromName);
+			return sendEmailNotification($watches, null, 'user_watch_comment_subject.tpl', null, 'user_watch_comment.tpl', '', $fromName, $additionalHeaders);
 		} else {
-			return sendEmailNotification($watches, null, 'user_watch_comment_subject.tpl', null, 'user_watch_comment.tpl');
+			return sendEmailNotification($watches, null, 'user_watch_comment_subject.tpl', null, 'user_watch_comment.tpl', '', '', $additionalHeaders);
 		}
 	}
 

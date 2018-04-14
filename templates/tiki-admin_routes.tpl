@@ -9,7 +9,7 @@
 	{$libeg = ''}
 	{$liend = ''}
 {/if}
-{title help="Custom Route" admpage="general" url="tiki-admin_routes.php"}{tr}Custom Route{/tr}{/title}
+{title help="Custom Route" admpage="sefurl" url="tiki-admin_routes.php"}{tr}Custom Route{/tr}{/title}
 <div class="t_navbar margin-bottom-md">
 	{if isset($route.id)}
 		{button href="?add=1" class="btn btn-default" _text="{tr}Add a new Custom Route{/tr}"}
@@ -27,7 +27,6 @@
 				<table id="admin_custom_routes" class="table normal table-striped table-hover" data-count="{$routes|count}">
 					<thead>
 					<tr>
-
 						<th>
 							{tr}From{/tr}
 						</th>
@@ -38,7 +37,10 @@
 							{tr}Type{/tr}
 						</th>
 						<th>
-							{tr}Active?{/tr}
+							{tr}Short URL{/tr}
+						</th>
+						<th>
+							{tr}Active{/tr}
 						</th>
 						<th id="actions"></th>
 					</tr>
@@ -61,8 +63,11 @@
 							<td class="route_type">
 								{$routes[route].type|escape}
 							</td>
+							<td class="route_short_url">
+								{icon name="{if $routes[route].short_url}check{else}close{/if}" alt="$routes[route].short_url"}
+							</td>
 							<td class="route_active">
-								{$routes[route].active|escape}
+								{icon name="{if $routes[route].active}check{else}close{/if}" alt="$routes[route].active"}
 							</td>
 							<td class="action">
 								{capture name=router_actions}
@@ -71,7 +76,7 @@
 										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 										</a>{$liend}
 										{$libeg}<a href="{bootstrap_modal controller=customroute action=remove routeId=$routes[route].id}">
-										{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+										{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 										</a>{$liend}
 									{/strip}
 								{/capture}
@@ -197,7 +202,7 @@
 		$('div [data-task-name="'+taskName+'"]').show();
 	});
 
-	$('select[name="object_type"]').on('change', function() {
+	$('select[name="tikiobject_type"]').on('change', function() {
 		$('input[name="load_options"]').val(1);
 		$(this).parents('form').submit();
 	});

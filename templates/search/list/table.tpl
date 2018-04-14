@@ -146,6 +146,13 @@
 	$('#listexecute-{{$iListExecute}}').submit(function(){
 		feedback(tr('Action is being executed, please wait.'));
 		$(this).tikiModal(" ");
+		var filters = $('#list_filter{{$iListExecute|replace:'wplistexecute-':''}} form').serializeArray();
+		for(var i = 0, l = filters.length; i < l; i++) {
+			var inp = $('<input type="hidden">');
+			inp.attr('name', filters[i].name);
+			inp.val(filters[i].value);
+			$('#listexecute-{{$iListExecute}}').append(inp);
+		}
 	});
 })();
 {/jq}

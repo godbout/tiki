@@ -52,6 +52,15 @@ Disallow: /popups/
 Disallow: /templates/
 Disallow: /tests/
 Disallow: /vendor*
+Allow: /vendor*.gif$
+Allow: /vendor*.jpg$
+Allow: /vendor*.png$
+Allow: /vendor*.svg$
+Allow: /vendor*.js$
+Allow: /vendor*.css$
+Allow: /vendor*.otf$
+Allow: /vendor*.eot$
+Allow: /vendor*.ttf$
 Disallow: /about.php
 Disallow: /get_strings.php
 Disallow: /tiki-admin

@@ -45,6 +45,10 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$objectId = 'myShortUrlPage-' . $hash;
 
 		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test short url route', 1, 1);
+
+		$errors = $route->validate();
+		$this->assertEmpty($errors);
+
 		$route->save();
 
 		self::$routes[] = $route->id;
@@ -63,6 +67,10 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$objectId = 'myShortUrlPage-' . $hash;
 
 		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test short url route', 0, 1);
+
+		$errors = $route->validate();
+		$this->assertEmpty($errors);
+
 		$route->save();
 
 		self::$routes[] = $route->id;
@@ -81,6 +89,10 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$objectId = 'myShortUrlPage-' . $hash;
 
 		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test short url route', 1, 1);
+
+		$errors = $route->validate();
+		$this->assertEmpty($errors);
+
 		$route->save();
 
 		self::$routes[] = $route->id;
@@ -101,6 +113,10 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$objectId = 'myShortUrlPage-' . $hash;
 
 		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test short url route', 0, 1);
+
+		$errors = $route->validate();
+		$this->assertEmpty($errors);
+
 		$route->save();
 
 		self::$routes[] = $route->id;
@@ -117,6 +133,201 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$hash = CustomRoute::generateShortUrlHash() . '-empty';
 		$match = CustomRoute::matchRoute($hash);
 		$this->assertEmpty($match);
+	}
+
+	public function testAddDirectCustomRoute()
+	{
+		$route = new Item(Item::TYPE_DIRECT, 'direct-test-route', ['to' => 'https://tiki.org'], 'Custom route test', 1, 0);
+
+		$errors = $route->validate();
+		$this->assertEmpty($errors);
+
+		$route->save();
+
+		self::$routes[] = $route->id;
+
+		$this->assertNotEmpty($route->id);
+	}
+
+	/**
+	 * @dataProvider getDirectRouteData
+	 */
+	public function testAddInvalidDirectCustomRoute($from, $routerDetails, $expectError)
+	{
+		$route = new Item(Item::TYPE_DIRECT, $from, $routerDetails, 'Custom route test', 1, 0);
+
+		$errors = $route->validate();
+		$this->assertEquals($expectError, !empty($errors));
+	}
+
+	public function getDirectRouteData()
+	{
+		return [
+			[
+				'test-direct-route',
+				['to' => ''],
+				true
+			],
+			[
+				'test-direct-route',
+				[],
+				true
+			],
+			[
+				'',
+				['to' => 'http://example.com'],
+				true
+			],
+			[
+				'direct-test-route', // same From as route saved in testAddDirectCustomRoute()
+				['to' => 'http://example.com'],
+				true
+			],
+			[
+				'test-direct-route',
+				['to' => 'http://example.com'],
+				false
+			]
+		];
+	}
+
+	public function testAddTikiObjectCustomRoute()
+	{
+
+		$routerDetails = [
+			'type' => 'wiki page',
+			'object' => '1'
+		];
+
+		$route = new Item(Item::TYPE_OBJECT, 'object-test-route', $routerDetails, 'Custom route test', 1, 0);
+
+		$errors = $route->validate();
+		$this->assertEmpty($errors);
+
+		$route->save();
+
+		self::$routes[] = $route->id;
+
+		$this->assertNotEmpty($route->id);
+	}
+
+	/**
+	 * @dataProvider getTikiObjectRouteData
+	 */
+	public function testAddInvalidTikiObjectCustomRoute($from, $routerDetails, $expectError)
+	{
+		$route = new Item(Item::TYPE_OBJECT, $from, $routerDetails, 'Custom route test', 1, 0);
+
+		$errors = $route->validate();
+		$this->assertEquals($expectError, !empty($errors));
+	}
+
+	public function getTikiObjectRouteData()
+	{
+		return [
+			[
+				'test-object-route',
+				[
+					'type' => '',
+					'object' => '1'
+				],
+				true
+			],
+			[
+				'test-object-route',
+				[
+					'type' => 'wiki page',
+					'object' => ''
+				],
+				true
+			],
+			[
+				'test-object-route',
+				[
+					'type' => 'wiki page',
+				],
+				true
+			],
+			[
+				'',
+				[
+					'type' => 'wiki page',
+					'object' => '1'
+				],
+				true
+			],
+			[
+				'object-test-route', // same From as route saved in testAddDirectCustomRoute()
+				[
+					'type' => 'wiki page',
+					'object' => '1'
+				],
+				true
+			],
+			[
+				'test-object-route',
+				[
+					'type' => 'wiki page',
+					'object' => '1'
+				],
+				false
+			]
+		];
+	}
+
+	public function testAddTrackerFieldCustomRoute()
+	{
+		$from = '|^test-(\w+)$|';
+		$routerDetails = ['tracker' => '2', 'tracker_field' => '3'];
+
+		$route = new Item(Item::TYPE_TRACKER_FIELD, $from, $routerDetails, 'Custom route test', 1, 0);
+
+		$errors = $route->validate();
+		$this->assertEmpty($errors);
+
+		$route->save();
+
+		self::$routes[] = $route->id;
+
+		$this->assertNotEmpty($route->id);
+	}
+
+	/**
+	 * @dataProvider getTrackerFieldRouteData
+	 */
+	public function testAddValidTrackerFieldCustomRoute($from, $routerDetails, $expectError)
+	{
+		$route = new Item(Item::TYPE_TRACKER_FIELD, $from, $routerDetails, 'Custom route test', 1, 0);
+
+		$errors = $route->validate();
+
+		$this->assertEquals($expectError, !empty($errors));
+	}
+
+	public function getTrackerFieldRouteData()
+	{
+		return [
+			[
+				'|^test-user-(\w+)$|',
+				['tracker' => '2'],
+				true
+			],
+			[
+				'',
+				['tracker' => '2', 'tracker_field' => '3'],
+				true
+			],
+			[
+				'|^test-user-(\w+)$|',
+				['tracker_field' => '3'],
+				true
+			],
+			[
+				'|^test-user-(\w+)$|',
+				['tracker' => '2', 'tracker_field' => '3'],
+				false
+			],
+		];
 	}
 
 

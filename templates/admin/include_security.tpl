@@ -27,52 +27,60 @@
 	{tabset}
 
 		{tab name="{tr}General Security{/tr}"}
-			<br>
-			<div class="adminoptionboxchild" id="smarty_security_childcontainer">
-			{if $haveMySQLSSL}
-				{if $mysqlSSL === true}
-					<p class="mysqlsslstatus">{icon name="lock" iclass="text-success"} {tr}MySQL SSL connection is active{/tr}
-					<a class="tikihelp" title="MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
-						{icon name="help"}
-					</a>
-					</p>
-				{else}
-					<p class="mysqlsslstatus">{icon name="unlock"} {tr}MySQL connection is not encrypted{/tr}<br>
-					{tr}To activate SSL, copy the keyfiles (.pem) til db/cert folder. The filenames must end with "-key.pem", "-cert.pem", "-ca.pem"{/tr}
-					<a class="tikihelp" title="MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
-						{icon name="help"}
-					</a>
-					</p>
-				{/if}
-			{else}
-				<p>{icon name="lock" iclass="text-warning"} {tr}MySQL Server does not have SSL activated{/tr}
-				<a class="tikihelp" title="MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
-					{icon name="help"}
-				</a>
-				</p>
-			{/if}
-			</div>
-			{preference name=smarty_security}
-			<div class="adminoptionboxchild" id="smarty_security_childcontainer">
-				{preference name=smarty_security_functions}
-				{preference name=smarty_security_modifiers}
-				{preference name=smarty_security_dirs}
-			</div>
-			{preference name=feature_purifier}
-			{preference name=feature_htmlpurifier_output}
+			<fieldset>
+				{if $haveMySQLSSL}{if $mysqlSSL}{$sslInfoType = 'info'}{else}{$sslInfoType = 'warning'}{/if}{else}{$sslInfoType = 'tip'}{/if}
+				{remarksbox type=$sslInfoType title='{tr}MySQL SSL connection{/tr}'}
+					{if $haveMySQLSSL}
+						{if $mysqlSSL}
+							<p class="mysqlsslstatus">{icon name="lock" iclass="text-success"} {tr}MySQL SSL connection is active{/tr}
+							<a class="tikihelp" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
+								{icon name="help"}
+							</a>
+							</p>
+						{else}
+							<p class="mysqlsslstatus">{icon name="unlock"} {tr}MySQL connection is not encrypted{/tr}<br>
+							{tr}To activate SSL, copy the keyfiles (.pem) til db/cert folder. The filenames must end with "-key.pem", "-cert.pem", "-ca.pem"{/tr}
+							<a class="tikihelp" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
+								{icon name="help"}
+							</a>
+							</p>
+						{/if}
+					{else}
+						<p>{icon name="lock" iclass="text-warning"} {tr}MySQL Server does not have SSL activated{/tr}
+						<a class="tikihelp" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
+							{icon name="help"}
+						</a>
+						</p>
+					{/if}
+				{/remarksbox}
+			</fieldset>
+			<fieldset>
+				<legend>{tr}Smarty and Features Security{/tr}</legend>
+				{preference name=smarty_security}
+				<div class="adminoptionboxchild" id="smarty_security_childcontainer">
+					{preference name=smarty_security_functions}
+					{preference name=smarty_security_modifiers}
+					{preference name=smarty_security_dirs}
+				</div>
+				{preference name=feature_purifier}
+				{preference name=feature_htmlpurifier_output}
 
-			{preference name=session_protected}
-			{preference name=login_http_basic}
+				{preference name=session_protected}
+				{preference name=login_http_basic}
 
-			{tr}Please also see:{/tr} <a href="tiki-admin.php?page=login">{tr}HTTPS (SSL) and other login preferences{/tr}</a>
+				{tr}Please also see:{/tr} <a href="tiki-admin.php?page=login">{tr}HTTPS (SSL) and other login preferences{/tr}</a>
 
-			{preference name=newsletter_external_client}
+				{preference name=newsletter_external_client}
 
-			{preference name=tiki_check_file_content}
-			{preference name=tiki_allow_trust_input}
-			{preference name=feature_quick_object_perms}
-			{preference name=zend_http_sslverifypeer}
-			{preference name=feature_debug_console}
+				{preference name=tiki_check_file_content}
+				{preference name=tiki_allow_trust_input}
+				{preference name=feature_quick_object_perms}
+				{preference name=zend_http_sslverifypeer}
+				{preference name=feature_debug_console}
+				{preference name=feature_view_tpl}
+				{preference name=feature_edit_templates}
+				{preference name=feature_editcss}
+			</fieldset>
 			<fieldset>
 				<legend>{tr}User Encryption{/tr}{help url="User Encryption"}</legend>
 				{preference name=feature_user_encryption}
@@ -108,7 +116,6 @@
 				{preference name=feature_ticketlib}
 				{preference name=feature_ticketlib2}
 			</fieldset>
-			<br/>
 			<fieldset>
 				<legend>{tr}HTTP Headers{/tr}{help url="Security"}</legend>
 				<div class="adminoptionbox">
@@ -145,7 +152,6 @@
 		{/tab}
 
 		{tab name="{tr}Spam Protection{/tr}"}
-			<br>
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}
 				{tr}You can additionally protect from spam enabling the "<a href="http://doc.tiki.org/Forum+Admin#Forum_moderation" target="_blank">moderation queue on forums</a>", or through <strong>banning</strong> multiple ip's from the "<a href="tiki-admin_actionlog.php" target="_blank">Action log</a>", from "<a href="tiki-adminusers.php" target="_blank">Users registration</a>", or from the "<a href="tiki-list_comments.php" target="_blank">Comments moderation queue</a>" itself{/tr}.
 			{/remarksbox}
@@ -190,13 +196,11 @@
 		{/tab}
 
 		{tab name="{tr}Search results{/tr}"}
-			<br>
 			{preference name=feature_search_show_forbidden_cat}
 			{preference name=feature_search_show_forbidden_obj}
 		{/tab}
 
 		{tab name="{tr}Site Access{/tr}"}
-			<br>
 			{preference name=site_closed}
 			<div class="adminoptionboxchild" id="site_closed_childcontainer">
 				{preference name=site_closed_msg}
@@ -228,7 +232,6 @@
 		{/tab}
 
 		{tab name="{tr}Tokens{/tr}"}
-			<br>
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}
 				{tr}To manage tokens go to <a href="tiki-admin_tokens.php">Admin Tokens</a> page. Tokens are also used for the Temporary Users feature (see <a href="tiki-adminusers.php">Admin Users</a>).{/tr}
 			{/remarksbox}
@@ -241,7 +244,6 @@
 		{/tab}
 
 		{tab name="{tr}OpenPGP{/tr}"}
-			<br>
 			<fieldset>
 				<legend>{tr}OpenPGP functionality for PGP/MIME encrypted email messaging{/tr}</legend>
 				{remarksbox type="tip" title="{tr}Note{/tr}"}

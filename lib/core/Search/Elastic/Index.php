@@ -164,6 +164,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 							[
 								"type" => "keyword",
 								"ignore_above" => 1000,
+								"normalizer" => "sortable",
 							] : [
 								"type" => "string",
 								"analyzer" => "sortable",
@@ -208,6 +209,13 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 					'sortable' => [
 						'tokenizer' => 'keyword',
 						'filter' => ['lowercase', 'asciifolding'],
+					],
+				],
+				'normalizer' => [
+					'sortable' => [
+						'type' => 'custom',
+						'char_filter' => [],
+						'filter' => ['lowercase', 'asciifolding']
 					],
 				],
 				'filter' => [

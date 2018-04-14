@@ -128,8 +128,6 @@
 			</div>
 			{preference name=feature_wiki_export}
 			<div class="adminoptionboxchild col-md-8 col-sm-offset-4" id="feature_wiki_export_childcontainer">
-				{permission_link addclass="timeout" mode=button permType=wiki textFilter=export showDisabled=y label="{tr}Export permissions{/tr}"}
-				{permission_link addclass="timeout" mode=button permType=wiki textFilter=picture showDisabled=y label="{tr}Picture permissions{/tr}"}
 				{button _class="timeout" href="tiki-export_wiki_pages.php" _text="{tr}Export Wiki Pages{/tr}"}
 			</div>
 			{preference name=feature_wikiwords}
@@ -139,9 +137,6 @@
 			</div>
 			{preference name=feature_history}
 			<div class="adminoptionboxchild" id="feature_history_childcontainer">
-				<div class="col-sm-offset-4 col-sm-8" style="margin-bottom:10px">
-					{permission_link addclass="timeout" mode=button permType=wiki textFilter=history showDisabled=y}
-				</div>
 				{preference name=maxVersions}
 				{preference name=keep_versions}
 				{preference name=feature_wiki_history_ip}
@@ -152,19 +147,10 @@
 			{preference name=feature_wiki_discuss}
 			<div class="adminoptionboxchild" id="feature_wiki_discuss_childcontainer">
 				{preference name=wiki_forum_id}
-				<div class="col-sm-offset-4 col-sm-8" style="margin-bottom:10px">
-					{permission_link addclass="timeout" mode=button permType=forums}
-				</div>
 				{preference name=wiki_discuss_visibility}
 			</div>
 			{preference name=feature_source}
-			<div class="adminoptionboxchild col-md-8 col-sm-offset-4" id="feature_source_childcontainer">
-				{permission_link addclass="timeout" mode=button permType=wiki textFilter=source showDisabled=y}
-			</div>
 			{preference name=feature_wiki_ratings}
-			<div class="adminoptionboxchild col-sm-offset-4 col-sm-8" id="feature_wiki_ratings_childcontainer">
-				{permission_link addclass="timeout" mode=button permType=wiki textFilter=ratings showDisabled=y}
-			</div>
 			{preference name=wiki_simple_ratings}
 			<div class="adminoptionboxchild" id="wiki_simple_ratings_childcontainer">
 				{preference name=wiki_simple_ratings_options}
@@ -180,9 +166,6 @@
                                 {preference name=wiki_backlinks_show_tracker}
                                 {preference name=wiki_backlinks_show_trackerfield}
                                 {preference name=wiki_backlinks_show_calendar_event}
-				<div class="col-sm-offset-4 col-md-8">
-					{permission_link addclass="timeout" mode=button textFilter=backlinks showDisabled=y}
-				</div>
 			</div>
 			{preference name=feature_semantic}
 			{preference name=wiki_prefixalias_tokens}
@@ -206,9 +189,6 @@
 				{preference name=feature_wiki_userpage_prefix}
 			</div>
 			{preference name=feature_wiki_usrlock}
-			<div class="adminoptionboxchild col-sm-8 col-sm-offset-4" id="feature_wiki_usrlock_childcontainer">
-				{permission_link addclass="timeout" mode=button permType=wiki textFilter=lock showDisabled=y}
-			</div>
 			{preference name=wiki_creator_admin}
 			{preference name=feature_wiki_mindmap}
 			{preference name=wiki_feature_copyrights}
@@ -230,9 +210,6 @@
 					</div>
 					{preference name=feature_wiki_pictures}
 					<div class="adminoptionboxchild" id="feature_wiki_pictures_childcontainer">
-						<div class="col-sm-offset-4 col-sm-8">
-							{permission_link addclass="timeout" mode=button permType=wiki textFilter=picture showDisabled=y}
-						</div>
 						{preference name=feature_filegals_manager}
 						<div class="col-sm-offset-4 col-sm-8">
 							{button _class="timeout" href="tiki-admin.php?page=wiki&amp;rmvunusedpic=1" _text="{tr}Remove unused pictures{/tr}"}

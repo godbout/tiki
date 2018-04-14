@@ -25,6 +25,19 @@ function wikiplugin_googleanalytics_info()
 				'filter' => 'text',
 				'default' => ''
 			],
+			'group_option' => [
+				'required' => true,
+				'name' => tra('Groups Option'),
+				'description' => tr('Define option for Google Analytics groups, include or exclude'),
+				'filter' => 'text',
+				'default' => ''
+			],
+			'groups' => [
+				'required' => true,
+				'name' => tra('Available Groups'),
+				'description' => tr('User groups for which Google Analytics will be available'),
+				'default' => ''
+			],
 		],
 	];
 }
@@ -32,6 +45,11 @@ function wikiplugin_googleanalytics_info()
 function wikiplugin_googleanalytics($data, $params)
 {
 	global $feature_no_cookie, $prefs;	// set according to cookie_consent_feature pref in tiki-setup.php
+
+	$showCode = WikiPlugin_Helper::showAnalyticsCode($params);
+	if (! $showCode) {
+		return;
+	}
 
 	if (empty($params['account'])) {
 		return tra('Missing parameter');

@@ -157,12 +157,6 @@ function get_default_prefs()
 			'feature_sitenav' => 'n',
 			'sitenav' => '{tr}Navigation : {/tr}<a href="tiki-contact.php" accesskey="10" title="">{tr}Contact Us{/tr}</a>',
 
-			// mods
-			'feature_mods_provider' => 'n',
-			'mods_dir' => 'mods',
-			'mods_server' => 'http://mods.tiki.org',
-
-
 			// toolbars
 			// comma delimited items, / delimited rows and | denotes items right justified in toolbar (in reverse order)
 			// full list in lib/toolbars/toolbarslib.php Toolbar::getList()

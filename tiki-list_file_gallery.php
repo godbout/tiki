@@ -96,9 +96,15 @@ if (empty($galleryId) && isset($_REQUEST['parentId'])) {
 		$smarty->display('error.tpl');
 		die;
 	}
-	$gal_info['usedSize'] = $filegallib->getUsedSize($galleryId);
-	$gal_info['maxQuota'] = $filegallib->getQuota($gal_info['parentId']);
-	$gal_info['minQuota'] = $filegallib->getMaxQuotaDescendants($galleryId);
+	if ($prefs['fgal_quota_per_fgal'] === 'y') {
+		$gal_info['usedSize'] = $filegallib->getUsedSize($galleryId);
+		$gal_info['maxQuota'] = $filegallib->getQuota($gal_info['parentId']);
+		$gal_info['minQuota'] = $filegallib->getMaxQuotaDescendants($galleryId);
+	} else {
+		$gal_info['usedSize'] = 0;
+		$gal_info['maxQuota'] = 0;
+		$gal_info['minQuota'] = 0;
+	}
 
 	if ($galleryId == $prefs['fgal_root_user_id'] && $tiki_p_admin_file_galleries !== 'y') {
 		include_once('tiki-sefurl.php');

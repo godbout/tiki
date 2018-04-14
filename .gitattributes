@@ -121,7 +121,6 @@ doc/devtools/make_db_local.sql -text
 doc/devtools/mass_wording_corrections.pl -text
 doc/devtools/mergelang.php -text
 doc/devtools/migrate_image_galleries.php -text
-doc/devtools/mods.sh -text
 doc/devtools/myspell_dic_2_tikiWiki_sql.pl -text
 doc/devtools/parse_changelog.pl -text
 doc/devtools/parse_tiki.php -text
@@ -2003,7 +2002,10 @@ installer/schema/20171129_backlinks_for_object_types_admin_options_tiki.sql -tex
 installer/schema/20171130_plugin_include_link_original_tiki.sql -text
 installer/schema/20171204_update_geo_enabled_tiki.sql -text
 installer/schema/20171231_add_short_url_tiki.sql -text
+installer/schema/20180331_rename_custom_route_object_type_tiki.sql -text
 installer/schema/20180405_remove_unused_user_id_tiki.sql -text
+installer/schema/20180410_install_piwik_plugin_tiki.php -text
+installer/schema/20180411_schedulers_change_column_to_text_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3282,6 +3284,7 @@ lib/core/WikiPlugin/Casperjs/Render.php -text
 lib/core/WikiPlugin/Casperjs/Result.php -text
 lib/core/WikiPlugin/Casperjs/Runner.php -text
 lib/core/WikiPlugin/Casperjs/index.php -text
+lib/core/WikiPlugin/Helper.php -text
 lib/core/WikiPlugin/Negotiator/Wiki.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/Alias.php -text
 lib/core/WikiPlugin/Negotiator/Wiki/index.php -text
@@ -3530,8 +3533,6 @@ lib/mime/mimelib.php -text
 lib/mime/mimetypes.php -text
 lib/minical/index.php -text
 lib/minical/minicallib.php -text
-lib/mods/index.php -text
-lib/mods/modslib.php -text
 lib/modules/index.php -text
 lib/modules/modlib.php -text
 lib/modules/tiki-admin_modules.js -text
@@ -5085,7 +5086,6 @@ lists/articles.php -text
 /messu-read_archive.php -text
 /messu-read_sent.php -text
 /messu-sent.php -text
-/modsadm.php -text
 modules/.htaccess -text
 modules/cache/README -text
 modules/cache/index.php -text
@@ -6239,8 +6239,6 @@ templates/tiki-mindmap.tpl -text
 templates/tiki-minical.tpl -text
 templates/tiki-minical_prefs.tpl -text
 templates/tiki-mods.tpl -text
-templates/tiki-mods_admin.tpl -text
-templates/tiki-mods_config.tpl -text
 templates/tiki-my_tiki.tpl -text
 templates/tiki-mytiki_bar.tpl -text
 templates/tiki-newsletter_archives.tpl -text
@@ -8222,7 +8220,6 @@ themes/yeti/templates/index.php -text
 /tiki-minical_reminders.php -text
 /tiki-minichat_ajax.php -text
 /tiki-mods.php -text
-/tiki-mods_admin.php -text
 /tiki-module_controls.php -text
 /tiki-modules.php -text
 /tiki-monitor.php -text

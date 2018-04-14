@@ -594,7 +594,6 @@ function prefs_wiki_list($partial = false)
 			'filter' => 'digits',
 			'dependencies' => [ 'feature_backlinks' ],
 			'default' => 0,
-			'units' => tra('characters'),
 		],
         'wiki_backlinks_show_post' => [
             'name' => tra('Show blog posts'),

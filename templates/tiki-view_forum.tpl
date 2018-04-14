@@ -103,7 +103,7 @@
 						</a>
 					</li>
 				{/if}
-				{if $prefs.feature_short_url eq 'y'}
+				{if $prefs.sefurl_short_url eq 'y'}
 					<li>
 						<a href="tiki-short_url.php?type=forum&objectId={$forumId}">
 							{icon name="link"} {tr}Get a short URL{/tr}

@@ -59,17 +59,17 @@
                         {/if}
                     </td>
                     <td>{$entry.installed|default:'&nbsp;'}</td>
-                    <td>{if $entry.installed && $entry.key}
+                    <td>
+                        {if $entry.key}
                             <form action="tiki-admin.php?page=packages&cookietab=1" method="post">
                                 <input type="hidden" name="redirect" value="0">
+                                <input type="hidden" name="installed" value="{$entry.installed}">
                                 {ticket}
-                                {if $entry.upgradeVersion}
-                                <button name="auto-update-package" value="{$entry.key}">{tr}Update{/tr}</button>
+                                {if $entry.installed && $entry.upgradeVersion}
+                                    <button name="auto-update-package" value="{$entry.key}">{tr}Update{/tr}</button>
                                 {/if}
                                 <button name="auto-remove-package" value="{$entry.key}">{tr}Remove{/tr}</button>
                             </form>
-                        {else}
-                            &nbsp;
                         {/if}
                     </td>
                 </tr>
@@ -246,7 +246,17 @@
             {ticket}
             <button name="auto-run-diagnostics" value="run">{tr}Diagnose Composer{/tr}</button>
         </form>
-        {if isset($diagnostic_composer_location) || $diagnostic_composer_output}
+        <br />
+        <h4>{tr}Composer management{/tr}</h4>
+        <form action="tiki-admin.php?page=packages&cookietab=4" method="post">
+            <input type="hidden" name="redirect" value="0">
+            {ticket}
+            <button name="remove-composer-locker" value="run">{tr}Remove composer.lock{/tr}</button>
+            <button name="clean-vendor-folder" value="run">{tr}Clean vendor folder{/tr}</button>
+        </form>
+        <br />
+
+    {if isset($diagnostic_composer_location) || $diagnostic_composer_output || $composer_management_success || $composer_management_error}
             <br />
             <h4>Results</h4>
             {if isset($diagnostic_composer_location) }
@@ -255,6 +265,18 @@
             {if $diagnostic_composer_output}
                 <p><strong>Composer diagnose output</strong></p>
                 <pre>{$diagnostic_composer_output}</pre>
+            {/if}
+
+            {if $composer_management_success}
+                {remarksbox type="success" title="{tr}Success{/tr}" close="n"}
+                {$composer_management_success}
+                {/remarksbox}
+            {/if}
+
+            {if $composer_management_error}
+                {remarksbox type="error" title="{tr}Error{/tr}" close="n"}
+                {$composer_management_error}
+                {/remarksbox}
             {/if}
             <br>
         {/if}

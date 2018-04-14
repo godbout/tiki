@@ -143,6 +143,26 @@ function wikiplugin_piwik_info()
 					['text' => tra('Yes'), 'value' => 'yes'],
 				],
 			],
+			'code' => [
+				'required' => true,
+				'name' => tra('Piwik javascript code'),
+				'description' => tr('Piwik JavaScript tracking code'),
+				'filter' => 'none',
+				'default' => ''
+			],
+			'group_option' => [
+				'required' => true,
+				'name' => tra('Groups Option'),
+				'description' => tr('Define option for Piwik groups, include or exclude'),
+				'filter' => 'text',
+				'default' => ''
+			],
+			'groups' => [
+				'required' => true,
+				'name' => tra('Available Groups'),
+				'description' => tr('User groups for which piwik will be available'),
+				'default' => ''
+			],
 		],
 	];
 }
@@ -150,6 +170,14 @@ function wikiplugin_piwik_info()
 function wikiplugin_piwik($data, $params)
 {
 	global $prefs;
+
+	if (! empty($params['code'])) {
+		$showCode = WikiPlugin_Helper::showAnalyticsCode($params);
+		if ($showCode) {
+			return $params['code'];
+		}
+		return;
+	}
 
 	$plugininfo = wikiplugin_piwik_info();
 	$default = [];

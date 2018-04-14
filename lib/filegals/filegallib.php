@@ -1853,12 +1853,14 @@ class FileGalLib extends TikiLib
 	 */
 	function _getGalleryChildrenIdsList($allIds, &$subtree, $parentId)
 	{
-		foreach ($allIds as $k => $v) {
-			if ($v['parentId'] == $parentId) {
-				$galleryId = $v['galleryId'];
-				$subtree[] = (int)$galleryId;
-				$this->_getGalleryChildrenIdsList($allIds, $subtree, $galleryId);
-			}
+		if (empty($allIds[$parentId])) {
+			return;
+		}
+
+		foreach($allIds[$parentId] as $child) {
+			$galleryId = $child;
+			$subtree[] = (int)$galleryId;
+			$this->_getGalleryChildrenIdsList($allIds, $subtree, $galleryId);
 		}
 	}
 
@@ -1873,12 +1875,14 @@ class FileGalLib extends TikiLib
 	 */
 	function _getGalleryChildrenIdsTree($allIds, &$subtree, $parentId)
 	{
-		foreach ($allIds as $v) {
-			if ($v['parentId'] == $parentId) {
-				$galleryId = $v['galleryId'];
-				$subtree[ (int)$galleryId ] = [];
-				$this->_getGalleryChildrenIdsTree($allIds, $subtree[$galleryId], $galleryId);
-			}
+		if (empty($allIds[$parentId])) {
+			return;
+		}
+
+		foreach($allIds[$parentId] as $child) {
+			$galleryId = $child;
+			$subtree[ (int)$galleryId ] = [];
+			$this->_getGalleryChildrenIdsTree($allIds, $subtree[$galleryId], $galleryId);
 		}
 	}
 	// Get a tree or a list of a gallery children ids, optionnally under a specific parentId
@@ -1887,13 +1891,18 @@ class FileGalLib extends TikiLib
 	{
 		$allIds = $this->getGalleriesParentIds();
 
+		$allChildIds = [];
+		foreach ($allIds as $v) {
+			$allChildIds[$v['parentId']][] = $v['galleryId'];
+		}
+
 		switch ($format) {
 			case 'list':
-				$this->_getGalleryChildrenIdsList($allIds, $subtree, $parentId);
+				$this->_getGalleryChildrenIdsList($allChildIds, $subtree, $parentId);
 				break;
 			case 'tree':
 			default:
-				$this->_getGalleryChildrenIdsTree($allIds, $subtree, $parentId);
+				$this->_getGalleryChildrenIdsTree($allChildIds, $subtree, $parentId);
 		}
 	}
 

@@ -9,5 +9,11 @@
 	"config": {
 		"process-timeout": 5000,
 		"bin-dir": "bin"
-	}
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://composer.tiki.org"
+		}
+	]
 }
