@@ -213,7 +213,7 @@ function tiki_route_single($index, $name)
  */
 function tiki_route_attempt_custom_route_redirect()
 {
-	global $path, $inclusion, $prefs, $tikiroot, $tikipath;
+	global $path, $inclusion, $prefs, $tikiroot, $tikipath, $base, $full;
 
 	if ($inclusion || empty($path)) {
 		return;
@@ -243,10 +243,17 @@ function tiki_route_attempt_custom_route_redirect()
 	if ($prefs['feature_sefurl_routes'] === 'y') {
 		$route = \Tiki\CustomRoute\CustomRoute::matchRoute($path);
 		if ($route) {
-			require_once __DIR__ . '/tiki-setup.php';
-			// Reload necessary preferences for SEF url
-			$tikilib->get_preferences($prefereces, true, true);
-			\Tiki\CustomRoute\CustomRoute::executeRoute($route, $path);
+			$routeParameters = \Tiki\CustomRoute\CustomRoute::getInPlaceRoutingParameters($route, $path);
+			if ($routeParameters !== false) {
+				$inclusion = $routeParameters['file'];
+				$full = $base . $inclusion;
+				$_GET = array_merge($_GET, $routeParameters['get_param']);
+			} else {
+				require_once __DIR__ . '/tiki-setup.php';
+				// Reload necessary preferences for SEF url
+				$tikilib->get_preferences($prefereces, true, true);
+				\Tiki\CustomRoute\CustomRoute::executeRoute($route, $path);
+			}
 		}
 	}
 }

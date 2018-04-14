@@ -1405,8 +1405,11 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_sefurl_routes' => [
 			'name' => tra('Custom Routes'),
-			'description' => tra("Custom function of Routes"),
-			'dependencies' => ['feature_sefurl'],
+			'description' => tra('Custom routes allow the definition of URLs by the admin, that can be mapped to existing Tiki objects like pages and trackers.  "Add BASE tag in the page HEAD" is required when you have "/" as part of the URL.'),
+			'dependencies' => [
+				'feature_sefurl',
+				'feature_html_head_base_tag',
+			],
 			'type' => 'flag',
 			'default' => 'n',
 			'view' => 'tiki-admin_routes.php',

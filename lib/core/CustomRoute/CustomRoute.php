@@ -53,6 +53,18 @@ class CustomRoute
 	}
 
 	/**
+	 * Retrieves the parameters for in-place route
+	 *
+	 * @param Item $route
+	 * @param string $path
+	 * @return array|bool
+	 */
+	public static function getInPlaceRoutingParameters($route, $path)
+	{
+		return $route->getInPlaceRoutingParameters($path);
+	}
+
+	/**
 	 * Generate a hash to use in the shorturls to redirect to the selected page.
 	 * @param int $size The hash size
 	 * @return bool|string

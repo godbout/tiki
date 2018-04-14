@@ -120,6 +120,97 @@ class Item
 	}
 
 	/**
+	 * Attempts to determine if is viable to do an in-place redirect and return the appropriate setting (or false)
+	 *
+	 * @param $path
+	 * @return array|bool The setting for in place redirect of false
+	 */
+	public function getInPlaceRoutingParameters($path)
+	{
+		switch ($this->type) {
+			case self::TYPE_OBJECT:
+				$redirectDetails = json_decode($this->redirect, true);
+
+				$objectType = $redirectDetails['type'];
+				$objectId = $redirectDetails['object'];
+
+				break;
+
+			case self::TYPE_TRACKER_FIELD:
+				$redirectDetails = json_decode($this->redirect, true);
+
+				preg_match($this->from, $path, $matches);
+
+				if (empty($matches[1])) {
+					return false;
+				}
+
+				$itemId = TikiLib::lib('trk')->get_item_id(
+					$redirectDetails['tracker'],
+					$redirectDetails['tracker_field'],
+					$matches[1]
+				);
+
+				if (empty($itemId)) {
+					return false;
+				}
+
+				$objectType = 'tracker item';
+				$objectId = $itemId;
+
+				break;
+
+			default:
+				return false;
+		}
+
+		switch ($objectType) {
+			case 'article':
+				$file = 'tiki-read_article.php';
+				$params = ['articleId' => $objectId];
+				break;
+
+			case 'blog':
+				$file = 'tiki-view_blog.php';
+				$params = ['blogId' => $objectId];
+				break;
+
+			case 'forum':
+				$file = 'tiki-view_forum.php';
+				$params = ['forumId' => $objectId];
+				break;
+
+			case 'tracker item':
+				$file = 'tiki-view_tracker_item.php';
+				$params = ['itemId' => $objectId];
+				break;
+
+			case 'wiki page':
+				/** @var \WikiLib $wikiLib */
+				$wikiLib = TikiLib::lib('wiki');
+				$pageName = $wikiLib->get_page_name_from_id($objectId);
+				$pageSlug = $wikiLib->get_slug_by_page($pageName);
+
+				if (empty($pageSlug)) {
+					return false;
+				}
+
+				$file = 'tiki-index.php';
+				$params = ['page' => $pageSlug];
+
+				break;
+
+			default:
+				return false;
+		}
+
+		return [
+			'file' => $file,
+			'get_param' => $params
+		];
+	}
+
+	/**
 	 * Check if a given path matches a custom route
 	 *
 	 * @param $path
@@ -127,10 +218,6 @@ class Item
 	 */
 	public function getRedirectPath($path)
 	{
-		global $tikilib;
-
-
-
 		switch ($this->type) {
 			case self::TYPE_DIRECT:
 				if ($path === $this->from) {
@@ -147,8 +234,10 @@ class Item
 					$objectId = $redirectDetails['object'];
 
 					if ($type == 'wiki page') {
-						$pageName = $tikilib->get_page_name_from_id($objectId);
-						$pageSlug = TikiLib::lib('wiki')->get_slug_by_page($pageName);
+						/** @var \WikiLib $wikiLib */
+						$wikiLib = TikiLib::lib('wiki');
+						$pageName = $wikiLib->get_page_name_from_id($objectId);
+						$pageSlug = $wikiLib->get_slug_by_page($pageName);
 
 						if (empty($pageSlug)) {
 							return false;
