@@ -14,8 +14,8 @@
 						<img src="tiki-download_file.php?fileId={$info.fileId|escape}&display&y=24" height="24">
 						{$info.name|escape}
 					{else}
-						<a href="tiki-download_file.php?fileId={$info.fileId|escape}" >
-							<img src="tiki-download_file.php?fileId={$info.fileId|escape}&thumbnail" width="32" height="32">
+						{$info.fileId|sefurl:'file'|iconify:$info.filetype:$info.fileId:2}
+						<a href="{$info.fileId|sefurl:'file'}" >
 							{$info.name|escape}
 						</a>
 					{/if}

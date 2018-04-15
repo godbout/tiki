@@ -436,6 +436,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			} else {
 				$smarty = TikiLib::lib('smarty');
 				$smarty->loadPlugin('smarty_function_object_link');
+				$smarty->loadPlugin('smarty_modifier_iconify');
 				$ret = '<ol class="tracker-item-files">';
 
 				foreach ($this->getConfiguration('files') as $fileId => $file) {
@@ -443,7 +444,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 					if ($prefs->vimeo_upload == 'y' && $this->getOption('displayMode') == 'vimeo') {
 						$ret .= smarty_function_icon(['name' => 'vimeo'], $smarty);
 					} else {
-						$ret .= '<img src="tiki-download_file.php?fileId=' . $fileId . '&thumbnail" width="32" height="32"> ';
+						$ret .= smarty_modifier_iconify('tiki-download_file.php?fileId=' . $fileId, $file['filetype'], $fileId, 2);
 					}
 
 					$ret .= smarty_function_object_link(['type' => 'file', 'id' => $fileId, 'title' => $file['name']], $smarty);
