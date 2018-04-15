@@ -108,7 +108,7 @@ class ComposerCli
 	public function getComposerConfigOrDefault()
 	{
 		$content = $this->getComposerConfig();
-		if (!is_array($content)) {
+		if (! is_array($content)) {
 			$content = [];
 		}
 
@@ -116,7 +116,7 @@ class ComposerCli
 		$distContent = [];
 		if (file_exists($distFile)) {
 			$distContent = json_decode(file_get_contents($distFile), true);
-			if (!is_array($distContent)) {
+			if (! is_array($distContent)) {
 				$distContent = [];
 			}
 		}
@@ -253,7 +253,7 @@ class ComposerCli
 			$args = [$args];
 		}
 
-		$output = $errors = '';
+		$command = $output = $errors = '';
 
 		try {
 			$builder = new ProcessBuilder();
@@ -274,6 +274,8 @@ class ComposerCli
 
 			$process = $builder->getProcess();
 
+			$command = $process->getCommandLine();
+
 			$process->setTimeout($this->timeout);
 
 			$process->run();
@@ -288,7 +290,7 @@ class ComposerCli
 		}
 
 		$this->lastResult = [
-			'command' => $process->getCommandLine(),
+			'command' => $command,
 			'output' => $output,
 			'errors' => $errors,
 			'code' => $code
@@ -439,9 +441,10 @@ class ComposerCli
 	 * @param ComposerPackage $package
 	 * @return bool
 	 */
-	public function updatePackage(ComposerPackage $package) {
+	public function updatePackage(ComposerPackage $package)
+	{
 
-		if (!$this->canExecuteComposer() || !$this->checkConfigExists()) {
+		if (! $this->canExecuteComposer() || ! $this->checkConfigExists()) {
 			return false;
 		}
 
@@ -600,8 +603,8 @@ class ComposerCli
 	{
 		$string = $output;
 
-		if (!empty($errors)) {
-			if (!empty($string)) {
+		if (! empty($errors)) {
+			if (! empty($string)) {
 				$string .= "\n";
 			}
 			$string .= tr('Errors:') . "\n" . $errors;
