@@ -43,8 +43,9 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 		$smarty->loadPlugin('smarty_modifier_escape');
 		$icon = smarty_modifier_sefurl($fileId, 'thumbnail');
 		$icon = smarty_modifier_escape($icon);
+		$width = 16 * $size;
 
-		return "<img src=\"$icon\" width=\"16\"/>";
+		return "<img src=\"$icon\" width=\"$width\"/>";
 	} else {
 		include_once('lib/mime/mimetypes.php');
 		global $mimetypes;
