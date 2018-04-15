@@ -138,7 +138,10 @@ class Table_Code_MainOptions extends Table_Code_Manager
 		/*** widgets ***/
 		//standard ones
 		$w[] = 'stickyHeaders';
-		$w[] = 'sort2Hash';
+		//sort2Hash doesn't work with ajax yet
+		if (! parent::$ajax) {
+			$w[] = 'sort2Hash';
+		}
 		//only fancytable uses this and it is set in wikiplugin_fancytable.php
 		//other tables don't show up full width due to use of table-responsive class in wrapper div
 		if (isset(parent::$s['resizable']) && parent::$s['resizable']) {
