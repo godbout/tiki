@@ -43,8 +43,9 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 		$smarty->loadPlugin('smarty_modifier_escape');
 		$icon = smarty_modifier_sefurl($fileId, 'thumbnail');
 		$icon = smarty_modifier_escape($icon);
+		$width = 16 * $size;
 
-		return "<img src=\"$icon\" width=\"16\"/>";
+		return "<img src=\"$icon\" width=\"$width\"/>";
 	} else {
 		include_once('lib/mime/mimetypes.php');
 		global $mimetypes;
@@ -88,6 +89,7 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 			}
 			switch ($type) {
 				case $type === 'application/msword'
+					|| $type === 'application/vnd.ms-word'
 					|| strpos($type, 'application/vnd.openxmlformats-officedocument.wordprocessingml') === 0:
 					$iconname = 'word';
 					break;
@@ -97,13 +99,14 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 				case $type === 'application/vnd.ms-excel'
 					|| $type === 'application/ms-excel'
 					|| $type === 'application/msexcel'
-					|| strpos($type, 'application/vnd.openxmlformats-officedocument.spreadsheetml') === 0:
+					|| $type === 'application/vnd.openxmlformats-officedocument.spreadsheetml'
+					|| $type === 'application/vnd.oasis.opendocument.spreadsheet':
 					$iconname = 'excel';
 					break;
 				case $type === 'application/vnd.ms-powerpoint'
 					|| $type === 'application/ms-powerpoint'
 					|| $type === 'application/mspowerpoint'
-					|| strpos($type, 'application/vnd.openxmlformats-officedocument.presentationml') === 0:
+					|| $type == 'application/vnd.openxmlformats-officedocument.presentationml':
 					$iconname = 'powerpoint';
 					break;
 				case strpos($type, 'audio/') === 0:
@@ -113,13 +116,39 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 					$iconname = 'image';
 					break;
 				case strpos($type, 'text/') === 0:
+					switch ($ext) {
+						case 'c':
+						case 'cpp':
+						case 'css':
+						case 'htm':
+						case 'html':
+						case 'java':
+						case 'js':
+						case 'less':
+						case 'php':
+						case 'py':
+						case 'scss':
+							$iconname = 'code_file';
+							break;
+						case 'eml':
+							$iconname = 'envelope';
+							break;
+						default:
+							$iconname = 'textfile';
+					}
+					break;
+				case $type === 'application/vnd.oasis.opendocument.text':
 					$iconname = 'textfile';
 					break;
 				case strpos($type, 'video/') === 0:
-					$iconname = 'video_file';
+					$iconname = 'video';
 					break;
-				case strpos($type, 'application/') === 0:
-					$iconname = 'code_file';
+				case strpos($type, 'application/') === 0 && strpos($type, 'zip') !== false:
+					$iconname = 'zip';
+					break;
+				case strpos($type, 'application/') === 0 &&
+						(strpos($type, 'mail') !== false || $type === 'CDFV2-corrupt'):		// outlook mail
+					$iconname = 'envelope';
 					break;
 				default:
 					$iconname = 'file';

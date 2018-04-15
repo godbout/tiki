@@ -17,8 +17,12 @@
 		{foreach from=$data.files item=file}
 			<tr>
 				<td>
-					<img src="tiki-download_file.php?fileId={$file.fileId|escape}&amp;thumbnail" width="32" height="32">
-					{object_link type="file" id=$file.fileId title=$file.name}
+					{$file.fileId|sefurl:'file'|iconify:$file.filetype:$file.fileId:2}
+					{if $file.filetype|strpos:'image' === 0}
+						{object_link type="display" id=$file.fileId title=$file.name}
+					{else}
+						{object_link type="file" id=$file.fileId title=$file.name}
+					{/if}
 				</td>
 				<td>{$file.lastModif|tiki_short_datetime}</td>
 				{if $showdescriptions}<td>{$file.description|escape}</td>{/if}

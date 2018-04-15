@@ -25,8 +25,15 @@ class H5PLib
 
 	private static $settings = null;
 
+	/**
+	 * H5PLib constructor.
+	 * @throws Exception
+	 */
 	function __construct()
 	{
+		if (! extension_loaded('zip')) {
+			throw new Exception(tr('PHP Zip extension not found, reqiuired for Feature H5P'));
+		}
 		$this->H5PTiki = \H5P_H5PTiki::get_h5p_instance('interface');
 	}
 

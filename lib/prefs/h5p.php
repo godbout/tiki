@@ -15,7 +15,7 @@ function prefs_h5p_list($partial = false)
 			'dependencies' => [
 				'feature_file_galleries',
 			],
-			'extensions' => ['curl'],
+			'extensions' => ['curl', 'zip'],
 			'type' => 'flag',
 			'default' => 'n',
 			'filter' => 'alpha',
