@@ -147,7 +147,7 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 					$iconname = 'zip';
 					break;
 				case strpos($type, 'application/') === 0 &&
-						(strpos($type, 'mail') !== false || $type === 'CDFV2-corrupt'):		// outlook mail
+						(strpos($type, 'mail') !== false || $type === 'application/CDFV2-corrupt'):		// outlook mail
 					$iconname = 'envelope';
 					break;
 				default:
