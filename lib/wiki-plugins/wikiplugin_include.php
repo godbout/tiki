@@ -49,6 +49,7 @@ function wikiplugin_include_info()
 				'since' => '18.0',
 				'default' => 'n',
 				'options' => [
+                    ['text' => '', 'value' => ''],
 					['text' => tr('Yes'), 'value' => 'y'],
 					['text' => tr('No'), 'value' => 'n'],
 				],
