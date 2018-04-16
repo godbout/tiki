@@ -22,7 +22,7 @@ class Services_StyleGuide_Controller
 	 */
 	function action_show($input)
 	{
-
+		Services_Exception_Denied::checkGlobal('admin');
 		$sections = $input->sections->text();
 
 		if (empty($sections)) {
