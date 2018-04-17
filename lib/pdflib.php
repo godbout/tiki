@@ -255,10 +255,8 @@ class PdfGenerator
 			}
 			$html = "<html><tocpagebreak " . $links . " toc-preHTML=\"" . $tocpreHTML . "\" toc-resetpagenum=\"1\" toc-suppress=\"on\" />" . $html . "</html>";
 		}
-		$this->_getImages($html, $tempImgArr);
-
 		$this->_parseHTML($html);
-
+		$this->_getImages($html, $tempImgArr);
 		$defaults = new \Mpdf\Config\ConfigVariables();
 		$defaultVariables = $defaults->getDefaults();
 		$mpdfConfig = [
@@ -716,7 +714,7 @@ class PdfGenerator
 						$newNode['node']=$cloneData['node']->cloneNode(true);
 						$newNode['row']=$cloneData['node'];
 					}
-					$td->textContent='(cont’d)'.substr($longValue,$breaktill+1,$end);
+					$td->textContent='(cont\'d)'.substr($longValue,$breaktill+1,$end);
 				}
 				else {
 					$td->textContent='';
