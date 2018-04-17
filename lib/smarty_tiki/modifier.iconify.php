@@ -106,7 +106,7 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 				case $type === 'application/vnd.ms-powerpoint'
 					|| $type === 'application/ms-powerpoint'
 					|| $type === 'application/mspowerpoint'
-					|| strpos($type, $type == 'application/vnd.openxmlformats-officedocument.presentationml') === 0:
+					|| strpos($type, 'application/vnd.openxmlformats-officedocument.presentationml') === 0:
 					$iconname = 'powerpoint';
 					break;
 				case strpos($type, 'audio/') === 0:
