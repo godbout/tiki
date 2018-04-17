@@ -85,7 +85,7 @@ function wikiplugin_wikidiff_info()
 				'default' => 'n',
 				'filter' => 'text',
 				'options' => [
-                    ['text' => '', 'value' => ''],
+					['text' => '', 'value' => ''],
 					['text' => tra('No'), 'value' => 'n'],
 					['text' => tra('Yes'), 'value' => 'y'],
 				]
