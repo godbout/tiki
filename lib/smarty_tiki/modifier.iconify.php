@@ -99,14 +99,14 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 				case $type === 'application/vnd.ms-excel'
 					|| $type === 'application/ms-excel'
 					|| $type === 'application/msexcel'
-					|| $type === 'application/vnd.openxmlformats-officedocument.spreadsheetml'
+					|| strpos($type, 'application/vnd.openxmlformats-officedocument.spreadsheetml') === 0
 					|| $type === 'application/vnd.oasis.opendocument.spreadsheet':
 					$iconname = 'excel';
 					break;
 				case $type === 'application/vnd.ms-powerpoint'
 					|| $type === 'application/ms-powerpoint'
 					|| $type === 'application/mspowerpoint'
-					|| $type == 'application/vnd.openxmlformats-officedocument.presentationml':
+					|| strpos($type, $type == 'application/vnd.openxmlformats-officedocument.presentationml') === 0:
 					$iconname = 'powerpoint';
 					break;
 				case strpos($type, 'audio/') === 0:
