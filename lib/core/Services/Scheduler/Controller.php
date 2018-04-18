@@ -97,7 +97,7 @@ class Services_Scheduler_Controller
 			$logger
 		);
 
-		$message = tr('Running scheduler %0', $schedulerTask->name) . '<br>';
+		$message = tr('Execution output:') . '<br><br>';
 		$result = $schedulerTask->execute();
 
 		if ($result['status'] == 'failed') {
@@ -108,6 +108,7 @@ class Services_Scheduler_Controller
 		}
 
 		return [
+			'title' => tr('Running %0', $schedulerTask->name),
 			'schedulerId' => $schedulerId,
 			'name' => $scheduler['name'],
 			'message' => $message,
