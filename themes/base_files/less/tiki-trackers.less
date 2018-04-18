@@ -24,7 +24,7 @@
 
 .tracker-item-files li {
 	clear: right;
-	padding-right: 1em;
+	padding: 0.5em 0.5em 0.5em 0;
 	font-size: 0.9em;
 }
 
@@ -32,6 +32,10 @@
 	display: inline-block;
 	clear: right;
 	float: right;
+}
+
+.tracker-item-files:not(.current-list) li {
+	span, img { margin-right: 5px; }
 }
 
 .tracker-item-files {
