@@ -90,7 +90,9 @@ if ($prefs['allowmsg_is_optional'] == 'y') {
 }
 $smarty->assign('allowMsgs', $allowMsgs);
 $smarty->assign_by_ref('user_prefs', $user_preferences[$userwatch]);
-$user_style = $tikilib->get_user_preference($userwatch, 'theme', $prefs['site_style']);
+if (! empty($prefs['site_style'])) {
+	$user_style = $tikilib->get_user_preference($userwatch, 'theme', $prefs['site_style']);
+}
 $smarty->assign_by_ref('user_style', $user_style);
 $user_language = $tikilib->get_language($userwatch);
 $langLib = TikiLib::lib('language');

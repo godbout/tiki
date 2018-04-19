@@ -757,7 +757,9 @@ if ($itemObject->canRemove()) {
 } else {
 	$smarty->assign('editTitle', tr('Edit'));
 }
-$smarty->assign('formAction', $path);
+if (! empty($path)) {
+	$smarty->assign('formAction', $path);
+}
 $smarty->assign('pdf_export', ($prefs['print_pdf_from_url'] != 'none') ? 'y' : 'n');
 $smarty->assign('canView', $itemObject->canView());
 $smarty->assign('canModify', $itemObject->canModify());

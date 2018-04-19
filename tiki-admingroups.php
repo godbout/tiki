@@ -408,7 +408,9 @@ $smarty->assign('groupdesc', $groupdesc);
 $smarty->assign('grouphome', $grouphome);
 $smarty->assign('groupdefcat', $groupdefcat);
 $smarty->assign('grouptheme', $grouptheme);
-$smarty->assign('groupcolor', $groupcolor);
+if (! empty($groupcolor)) {
+	$smarty->assign('groupcolor', $groupcolor);
+}
 $smarty->assign('groupperms', $groupperms);
 $smarty->assign_by_ref('userChoice', $userChoice);
 $smarty->assign_by_ref('cant_pages', $users["cant"]);
