@@ -29,7 +29,7 @@ class Captcha_ReCaptcha20 extends Zend\Captcha\ReCaptcha
 		}
 
 		if (! extension_loaded('curl')) {
-			$this->error('ReCaptcha 2 requires the PHP CURL extension');
+			$this->error('reCAPTCHA 2 requires the PHP CURL extension');
 			return false;
 		}
 

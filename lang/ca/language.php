@@ -1,6 +1,6 @@
 <?php
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 
@@ -5039,20 +5039,20 @@ $lang = [
 // "List of options available" => "List of options available",
 // "Multiple votes per user" => "Multiple votes per user",
 // "Allow the user to cast multiple votes for the same object" => "Allow the user to cast multiple votes for the same object",
-"Use ReCaptcha" => "Utilitza reCAPTCHA",
-"Use ReCaptcha, a specialized captcha service, instead of default CAPTCHA" => "Utilitza reCAPTCHA, un servei Captcha especialitzada, en lloc de CAPTCHA per omissió",
+"Use reCAPTCHA" => "Utilitza reCAPTCHA",
+"Use reCAPTCHA, a specialized captcha service, instead of default CAPTCHA" => "Utilitza reCAPTCHA, un servei Captcha especialitzada, en lloc de CAPTCHA per omissió",
 "You will need to register at [http://www.google.com/recaptcha]" => "Hauràs de registrar-te a [http://www.google.com/recaptcha]",
 // "Site key" => "Site key",
-"ReCaptcha public key obtained after registering" => "Clau pública reCAPTCHA obtingut després de registrar",
+"reCAPTCHA public key obtained after registering" => "Clau pública reCAPTCHA obtingut després de registrar",
 // "Secret key" => "Secret key",
-"ReCaptcha private key obtained after registering" => "Clau privada reCAPTCHA obtingut després de registrar",
-"ReCaptcha theme" => "Reconèixer el tema",
-"Choose a theme for the ReCaptcha widget" => "Triar un tema per al giny reCAPTCHA",
+"reCAPTCHA private key obtained after registering" => "Clau privada reCAPTCHA obtingut després de registrar",
+"reCAPTCHA theme" => "Reconèixer el tema",
+"Choose a theme for the reCAPTCHA widget" => "Triar un tema per al giny reCAPTCHA",
 "Clean" => "Neteja",
 "Black Glass" => "Negre Cristall",
 "Red" => "Vermell",
 "White" => "Blanc",
-// "ReCaptcha version" => "ReCaptcha version",
+// "reCAPTCHA version" => "reCAPTCHA version",
 // "1.0" => "1.0",
 // "2.0" => "2.0",
 "Record untranslated strings" => "Registre no traduït",

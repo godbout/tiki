@@ -1,6 +1,6 @@
 <?php
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 
@@ -5041,20 +5041,20 @@ $lang = [
 // "List of options available" => "List of options available",
 // "Multiple votes per user" => "Multiple votes per user",
 // "Allow the user to cast multiple votes for the same object" => "Allow the user to cast multiple votes for the same object",
-"Use ReCaptcha" => "ReCaptcha 사용",
-"Use ReCaptcha, a specialized captcha service, instead of default CAPTCHA" => "특화된 CAPTCHA 서비스인 ReCaptcha 를 기본 CAPTCHA 대신 사용",
+"Use reCAPTCHA" => "reCAPTCHA 사용",
+"Use reCAPTCHA, a specialized captcha service, instead of default CAPTCHA" => "특화된 CAPTCHA 서비스인 reCAPTCHA 를 기본 CAPTCHA 대신 사용",
 "You will need to register at [http://www.google.com/recaptcha]" => "[http://www.google.com/recaptcha] 에서 등록해야 합니다",
 // "Site key" => "Site key",
-// "ReCaptcha public key obtained after registering" => "ReCaptcha public key obtained after registering",
+// "reCAPTCHA public key obtained after registering" => "reCAPTCHA public key obtained after registering",
 // "Secret key" => "Secret key",
-// "ReCaptcha private key obtained after registering" => "ReCaptcha private key obtained after registering",
-// "ReCaptcha theme" => "ReCaptcha theme",
-// "Choose a theme for the ReCaptcha widget" => "Choose a theme for the ReCaptcha widget",
+// "reCAPTCHA private key obtained after registering" => "reCAPTCHA private key obtained after registering",
+// "reCAPTCHA theme" => "reCAPTCHA theme",
+// "Choose a theme for the reCAPTCHA widget" => "Choose a theme for the reCAPTCHA widget",
 // "Clean" => "Clean",
 // "Black Glass" => "Black Glass",
 // "Red" => "Red",
 // "White" => "White",
-// "ReCaptcha version" => "ReCaptcha version",
+// "reCAPTCHA version" => "reCAPTCHA version",
 // "1.0" => "1.0",
 // "2.0" => "2.0",
 "Record untranslated strings" => "미번역 문자열 기록",

@@ -1,6 +1,6 @@
 <?php
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 
@@ -5035,20 +5035,20 @@ $lang = [
 // "List of options available" => "List of options available",
 // "Multiple votes per user" => "Multiple votes per user",
 // "Allow the user to cast multiple votes for the same object" => "Allow the user to cast multiple votes for the same object",
-"Use ReCaptcha" => "Utilisation du ReCaptcha",
-"Use ReCaptcha, a specialized captcha service, instead of default CAPTCHA" => "Utiliser ReCaptcha, un service spécialisé de captcha, plutôt que le CAPTCHA par défaut",
+"Use reCAPTCHA" => "Utilisation du reCAPTCHA",
+"Use reCAPTCHA, a specialized captcha service, instead of default CAPTCHA" => "Utiliser reCAPTCHA, un service spécialisé de captcha, plutôt que le CAPTCHA par défaut",
 "You will need to register at [http://www.google.com/recaptcha]" => "Vous devrez vous enregistrer à [http://www.google.com/recaptcha]",
 // "Site key" => "Site key",
-// "ReCaptcha public key obtained after registering" => "ReCaptcha public key obtained after registering",
+// "reCAPTCHA public key obtained after registering" => "reCAPTCHA public key obtained after registering",
 // "Secret key" => "Secret key",
-// "ReCaptcha private key obtained after registering" => "ReCaptcha private key obtained after registering",
-// "ReCaptcha theme" => "ReCaptcha theme",
-// "Choose a theme for the ReCaptcha widget" => "Choose a theme for the ReCaptcha widget",
+// "reCAPTCHA private key obtained after registering" => "reCAPTCHA private key obtained after registering",
+// "reCAPTCHA theme" => "reCAPTCHA theme",
+// "Choose a theme for the reCAPTCHA widget" => "Choose a theme for the reCAPTCHA widget",
 "Clean" => "Nettoyer",
 // "Black Glass" => "Black Glass",
 "Red" => "Rouge",
 // "White" => "White",
-// "ReCaptcha version" => "ReCaptcha version",
+// "reCAPTCHA version" => "reCAPTCHA version",
 // "1.0" => "1.0",
 // "2.0" => "2.0",
 "Record untranslated strings" => "Enregistrer les chaînes non traduites",
