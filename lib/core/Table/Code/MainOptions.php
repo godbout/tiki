@@ -35,8 +35,6 @@ class Table_Code_MainOptions extends Table_Code_Manager
 
 		/***  onRenderHeader option - change html elements before table renders. Repeated for each column. ***/
 		$orh = [];
-		/*** Headers ***/
-		$headers = [];
 		/* First handle column-specific code since the array index is used for the column number */
 		foreach (parent::$s['columns'] as $col => $info) {
 			//turn off column resizing per settings
@@ -116,7 +114,6 @@ class Table_Code_MainOptions extends Table_Code_Manager
 					$orh[$col] .= '.' . $attr . '(\'' . $args . '\')';
 				}
 				$orh[$col] .= ';}';
-				$headers[] = "'$col': { filter: 'text', sorter: 'text' }";
 			}
 			unset($col, $info);
 		}
@@ -138,15 +135,13 @@ class Table_Code_MainOptions extends Table_Code_Manager
 		}
 		/***  end onRenderHeader section ***/
 
-		/*** headers ***/
-		if (count($headers) > 0) {
-			$mo[] = $this->iterate($headers, 'headers: {', '}', '', '', ', ', ', ' );
-		}
-            
 		/*** widgets ***/
 		//standard ones
 		$w[] = 'stickyHeaders';
-		$w[] = 'sort2Hash';
+		//sort2Hash doesn't work with ajax yet
+		if (! parent::$ajax) {
+			$w[] = 'sort2Hash';
+		}
 		//only fancytable uses this and it is set in wikiplugin_fancytable.php
 		//other tables don't show up full width due to use of table-responsive class in wrapper div
 		if (isset(parent::$s['resizable']) && parent::$s['resizable']) {

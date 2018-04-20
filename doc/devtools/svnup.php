@@ -328,6 +328,9 @@ class SvnUpCommand extends Command
 			$endRev = ' unknown';
 		}
 
+		$raw = shell_exec('svn cleanup  2>&1');
+		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
+
 		if (! $input->getOption('no-db')) {
 			$progress->setMessage('Clearing all caches');
 			$progress->advance();

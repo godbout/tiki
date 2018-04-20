@@ -763,15 +763,24 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 
 	private function handleDuplicates($list)
 	{
+		$uniqueList = array_unique($list);
 		if ($this->getOption('displayOneItem') != 'multi') {
 			$value = $this->getValue();
-			if ($value && isset($list[$value])) {
+			if ($value && isset($list[$value]) && ! isset($uniqueList[$value])) {
 				// if we already have a value set make sure we return the correct itemId one
-				return [$value => $list[$value]];
-			} else {
-				return array_unique($list);
+				$uniqueList = [];
+				foreach ($list as $itemId => $label) {
+					if (! in_array($label, $uniqueList)) {
+						if ($label === $list[$value]) {
+							$uniqueList[$value] = $label;
+						} else {
+							$uniqueList[$itemId] = $label;
+						}
+					}
+				}
 			}
-		} elseif (array_unique($list) != $list) {
+			return $uniqueList;
+		} elseif ($uniqueList != $list) {
 			$newlist = [];
 			foreach ($list as $itemId => $label) {
 				if (in_array($label, $newlist)) {
