@@ -63,6 +63,7 @@ $langmapping = [
 	'sq' => ['Shqip', tra("Albanian")],
 	'sr-latn' => ['Srpski', tra("Serbian Latin")],
 	'sv' => ['Svenska', tra("Swedish")],
+	'sw' => ['Swahili', tra("Swahili")],
 	'th' => ['ภาษาไทย', tra("Thai")],
 	'tv' => ['Tuvaluan', tra("Tuvaluan")],
 	'tr' => ['Türkçe', tra("Turkish")],

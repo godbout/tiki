@@ -51,6 +51,7 @@ $flagmapping = [
 	'sr-latn'	=> ['Serbia'],
 	'sq' 	=> ['Albania'],
 	'sv' 	=> ['Sweden'],
+	'sw'    => ['Swahili'],
 	'tr' 	=> ['Turkey'],
 	'tv' 	=> ['Tuvalu'],
 	'uk' 	=> ['Ukraine'],
