@@ -89,6 +89,7 @@ Disallow: /tiki-share.php
 Disallow: /tiki-slideshow.php
 Disallow: /tiki-slideshow2.php
 Disallow: /tiki-tell_a_friend.php
+Disallow: /tiki-tracker_view_history.php
 Disallow: /tiki-user_information.php
 Disallow: /tiki-view_cache.php
 Disallow: /tiki-index_raw.php

@@ -4,7 +4,7 @@ CREATE TABLE `tiki_rating_configs` (
 	`expiry` INT NOT NULL DEFAULT 3600,
 	`formula` TEXT NOT NULL,
 	`callbacks` TEXT
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE `tiki_rating_obtained` (
 	`ratingId` INT PRIMARY KEY AUTO_INCREMENT,
@@ -14,4 +14,4 @@ CREATE TABLE `tiki_rating_obtained` (
 	`expire` INT NOT NULL,
 	`value` FLOAT NOT NULL,
 	UNIQUE `tiki_obtained_rating_uq` (`type`, `object`, `ratingConfigId`)
-);
+) ENGINE=MyISAM;

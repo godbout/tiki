@@ -11,7 +11,7 @@ CREATE TABLE `tiki_sefurl_regex_out` (
   PRIMARY KEY(`id`),
   UNIQUE KEY `left`(`left`(256)),
   INDEX `idx1` (silent, type, feature(30))
-);
+) ENGINE=MyISAM;
 INSERT INTO `tiki_sefurl_regex_out` (`left`, `right`, `type`, `feature`) VALUES('tiki-index.php\\?page=(.+)', '$1', 'wiki', 'feature_wiki');
 INSERT INTO `tiki_sefurl_regex_out` (`left`, `right`, `type`, `feature`) VALUES('tiki-slideshow.php\\?page=(.+)', 'show:$1', '', 'feature_wiki');
 INSERT INTO `tiki_sefurl_regex_out` (`left`, `right`, `type`, `feature`) VALUES('tiki-read_article.php\\?articleId=(\\d+)', 'article$1', 'article', 'feature_articles');

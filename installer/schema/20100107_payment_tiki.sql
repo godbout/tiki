@@ -10,7 +10,7 @@ CREATE TABLE `tiki_payment_requests` (
 	`description` VARCHAR(100) NOT NULL,
 	`actions` TEXT,
 	PRIMARY KEY( `paymentRequestId` )
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE `tiki_payment_received` (
 	`paymentReceivedId` INT NOT NULL AUTO_INCREMENT,
@@ -21,7 +21,7 @@ CREATE TABLE `tiki_payment_received` (
 	`details` TEXT,
 	PRIMARY KEY(`paymentReceivedId`),
 	KEY `payment_request_ix` (`paymentRequestId`)
-);
+) ENGINE=MyISAM;
 
 INSERT INTO `users_permissions` (`permName`, `permDesc`, `level`, `type`, `admin`, `feature_check`) VALUES('tiki_p_payment_admin', 'Can administer payments', 'admin', 'payment', 'y', 'payment_feature');
 INSERT INTO `users_permissions` (`permName`, `permDesc`, `level`, `type`, `admin`, `feature_check`) VALUES('tiki_p_payment_view', 'Can view payment requests and details', 'admin', 'payment', NULL, 'payment_feature');

@@ -24,4 +24,17 @@
 			{if $field.options_map['wordmax'] > 0} {tr}Max:{/tr} {$field.options_map['wordmax']}{/if}
 		</div>
 	{/if}
+	{if $field.options_map['actions']}
+		<div class="wiki-field btn-bar">
+			{if $data.perms.view}
+				{button _keepall='y' href=$field.value|sefurl _text="{tr}View{/tr}" _title="{tr}View stand alone wiki page{/tr}" _class='btn-sm'}
+			{/if}
+			{if $prefs.feature_source eq 'y' and $data.perms.wiki_view_source}
+				{button _keepall='y' href='tiki-pagehistory.php' page=$field.value source='0' _text="{tr}Source{/tr}" _title="{tr}Source of wiki page{/tr}" _class='btn-sm' _type='info'}
+			{/if}
+			{if $prefs.feature_history eq 'y' and $data.perms.wiki_view_history}
+				{button _keepall='y' href='tiki-pagehistory.php' page=$page _text="{tr}History{/tr}" _title="{tr}History of wiki page{/tr}" _class='btn-sm' _type='info'}
+			{/if}
+		</div>
+	{/if}
 {/strip}

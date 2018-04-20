@@ -766,7 +766,7 @@ function prefs_feature_list($partial = false)
 			'view' => 'tiki-list_invoices.php',
 			'tags' => ['experimental'],
 		],
-		
+
 		// TODO: Replace feature_wysiwyg and wysiwyg_optional with a single tri-state preference (allowing either just normal editor (default), just WYSIWYG or both) to clarify and avoid misinterpretation
 		'feature_wysiwyg' => [
 			'name' => tra('Full WYSIWYG editor'),
@@ -781,7 +781,7 @@ function prefs_feature_list($partial = false)
 				'feature_wiki_paragraph_formatting_add_br',
 			],
 			'tags' => ['basic',
-				
+
 				/* FIXME: If wysiwyg_optional is enabled, which is the case by default, switching an article's body to WYSIWYG loses any unsaved modifications. Chealer 2018-01-04
 				 * FIXME: If wysiwyg_optional is enabled, switching from WYSIWYG to non-WYSIWYG or the opposite can quietly alter parse result (see ticket #5512). Chealer 2018-01-04
 				 * FIXME: If wysiwyg_htmltowiki is enabled, which is the case by default, the table builder inserts broken code (see ticket #6522). Chealer 2018-01-08
@@ -791,10 +791,10 @@ function prefs_feature_list($partial = false)
 				 * Several other presumed bugs are reported. Chealer 2018-01-09
 				 */
 				'experimental'
-				
+
 			],
 		],
-		
+
 		'feature_kaltura' => [
 			'name' => tra('Kaltura video management'),
 			'description' => tra('Integration with the Kaltura video management platform'),
@@ -916,7 +916,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_group_watches' => [
 			'name' => tra('Group watches'),
-			'description' => tra('All users in a group selected by an admin will receive email notification of changes to specific items. Users cannot choose to stop receiving those notifications while they are members of that group'),
+			'description' => tra('All users in a group selected by a users admin (tiki_p_admin_users) will receive email notification of changes to specific items. Users cannot choose to stop receiving those notifications while they are members of that group'),
 			'help' => 'Group+Watches',
 			'type' => 'flag',
 			'default' => 'n',
@@ -1646,6 +1646,7 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 		],
 		'feature_blogposts_comments' => [
+			'name' => tra('Blog post Comments'),
 			'description' => tra('Users with permission may post threaded comments. The comments will appear at the bottom of the page.'),
 			'type' => 'flag',
 			'dependencies' => [

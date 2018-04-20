@@ -56,7 +56,7 @@ foreach ($modules as $zone => & $moduleList) {
 //add necessary css files to header as required for specific modules
 //TODO only add css when module will actually be showing
 $cssadd = array_intersect_key($modlib->cssfiles, $modnames);
-if (count($cssadd > 0)) {
+if (count($cssadd)) {
 	$headerlib = TikiLib::lib('header');
 	foreach ($cssadd as $add) {
 		$headerlib->add_cssfile($add['csspath'], $add['rank']);

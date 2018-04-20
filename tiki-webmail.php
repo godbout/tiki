@@ -74,7 +74,7 @@ if (isset($_REQUEST['locSection']) && $_REQUEST['locSection'] == 'settings') {
 	}
 }
 
-$auto_query_args = ['msgid', 'locSection', 'filter'];
+$auto_query_args = ['msgid', 'locSection', 'filter', 'folder'];
 
 if (! isset($_REQUEST['locSection'])) {
 	$_REQUEST['locSection'] = 'mailbox';
@@ -118,7 +118,7 @@ if ($_REQUEST['locSection'] == 'read') {
 
 	// connecting with Zend
 	try {
-		$mail = $webmaillib->get_mail_storage($current);
+		$mail = $webmaillib->get_mail_storage();
 	} catch (Exception $e) {
 		// do something better with the error
 		Feedback::error(tra('There was a problem connecting to that account:') . ' ' . $e->getMessage());
@@ -343,8 +343,16 @@ END;
 
 	$webmail_reload = isset($_REQUEST['refresh_mail']);
 
+	// connecting with Zend
 	try {
-		$webmail_list = $webmaillib->refresh_mailbox($user, $current['accountId'], $webmail_reload);
+		$mail = $webmaillib->get_mail_storage();
+	} catch (Exception $e) {
+		// do something better with the error
+		Feedback::error(tra('There was a problem connecting to that account:') . ' ' . $e->getMessage());
+	}
+
+	try {
+		$webmail_list = $webmaillib->refresh_mailbox($user, $current['accountId'], $webmail_reload, $webmaillib->current_account['folder']);
 	} catch (Exception $e) {
 		$err = $e->getMessage();
 		Feedback::error(['mes' => $e->getMessage()], 'session');
@@ -352,13 +360,34 @@ END;
 		handleWebmailRedirect($urlq);
 	}
 
-	// connecting with Zend
-	try {
-		$mail = $webmaillib->get_mail_storage($current);
-	} catch (Exception $e) {
-		// do something better with the error
-		Feedback::error(tra('There was a problem connecting to that account:') . ' ' . $e->getMessage());
+	// get folder list
+
+	/**
+	 * Recurse through the folders to make a flat list for the select options
+	 *
+	 * @param \Zend\Mail\Storage\Folder $currentFolder   folder object from $mail->getFolders()
+	 * @param array                     $output          plain array for the output
+	 * @param string                    $delimiter       folder delimiter string (e.g. "/" or ".")
+	 */
+	function listFolders($currentFolder, & $output, $delimiter) {
+
+		$globalName = $currentFolder->getGlobalName();
+		if ( $globalName !== '/') {
+			$output[$globalName] = [
+				'label' => str_pad('', substr_count($globalName, $delimiter) * 12, '&nbsp;') . $currentFolder->getLocalName(),
+				'disabled' => ! $currentFolder->isSelectable(),
+			];
+		}
+		foreach ($currentFolder as $folder) {
+			listFolders($folder, $output, $delimiter);
+		}
 	}
+
+	$foldersSelect = [];
+	listFolders($mail->getFolders(), $foldersSelect, $mail->delimiter());
+
+	$smarty->assign('folders', $foldersSelect);
+	$smarty->assign('currentFolder', $mail->getCurrentFolder());
 
 	// The user just clicked on one of the flags, so set up for flag change
 	if (isset($_REQUEST['quickFlagMsg'])) {
@@ -457,7 +486,7 @@ END;
 
 	$numshow = $current['msgs'];
 
-	if (isset($_REQUEST['start']) && $_REQUEST['start'] > $mailsum) {
+	if (isset($_REQUEST['start']) && ($_REQUEST['start'] > $mailsum || empty($_REQUEST['start']))) {
 		$_REQUEST['start'] = $mailsum;
 	}
 

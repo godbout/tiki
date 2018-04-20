@@ -13,6 +13,9 @@
 	{permission name=tabular_export type=tabular object=$tabularId}
 		<a class="btn btn-default" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=export _params=$baseArguments}">{icon name=export}{tr}Export{/tr}</a>
 	{/permission}
+	{permission name=tabular_import type=tabular object=$tabularId}
+		<a class="btn btn-default" href="{bootstrap_modal controller=tabular action=import_csv tabularId=$tabularId target=list _params=$baseArguments}">{icon name=import}{tr}Import{/tr}</a>
+	{/permission}
 	{permission name=admin_trackers}
 		<a class="btn btn-default" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
 	{/permission}

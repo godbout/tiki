@@ -865,7 +865,7 @@ class EditLib
 		}
 
 		// convert tikicomment tags back to ~tc~tiki comments~/tc~
-		$ret2 = preg_replace('/(?:<p>)<tikicomment>(.*)<\/tikicomment>(?:<\/p>)/Umis', '~tc~$1~/tc~', $ret);
+		$ret2 = preg_replace('/<tikicomment>(.*)<\/tikicomment>/Umis', '~tc~$1~/tc~', $ret);
 		if (! $ret2) {
 			trigger_error(tr('Parse To Wiki %0: preg_replace error #%1', 5, preg_last_error()));
 		} else {

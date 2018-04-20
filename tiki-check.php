@@ -387,41 +387,35 @@ if (function_exists('disk_free_space')) {
 }
 
 // PHP Version
-if (version_compare(PHP_VERSION, '5.1.0', '<')) {
+if (version_compare(PHP_VERSION, '5.3.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => 'bad',
 		'setting' => phpversion(),
 		'message' => 'No supported versions of Tiki can be run with this very old version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
-} elseif (version_compare(PHP_VERSION, '5.2.0', '<')) {
-	$php_properties['PHP version'] = array(
-		'fitness' => tra('bad'),
-		'setting' => phpversion(),
-		'message' => 'This PHP version is rather old. Tiki 6.x LTS can be run, but not newer versions.'
-	);
-} elseif (version_compare(PHP_VERSION, '5.3.0', '<')) {
-	$php_properties['PHP version'] = array(
-		'fitness' => tra('ugly'),
-		'setting' => phpversion(),
-		'message' => 'This PHP version is rather old. Tiki 6.x LTS or 9.x LTS can be run, but not newer versions.'
-	);
 } elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('ugly'),
 		'setting' => phpversion(),
-		'message' => 'This PHP version is rather old. Tiki 6.x LTS, 9.x LTS or 12.x LTS can be run, but not newer versions.'
+		'message' => 'This PHP version is rather old. 12.x LTS can be run, but not newer versions.'
 	);
 } elseif (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	$php_properties['PHP version'] = array(
 	'fitness' => tra('ugly'),
 	'setting' => phpversion(),
-	'message' => 'This PHP version is somewhat old. Tiki 9.x LTS, 12.x LTS or 15.x LTS can be run, but not newer versions.'
+	'message' => 'This PHP version is somewhat old. 15.x LTS can be run, but not newer versions.'
+	);
+} elseif (version_compare(PHP_VERSION, '7.1.0', '<')) {
+	$php_properties['PHP version'] = array(
+	'fitness' => tra('ugly'),
+	'setting' => phpversion(),
+	'message' => 'This PHP version is too old for this version, 15.x or 18.x LTS will work fine on this version of PHP.'
 	);
 } else {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('good'),
 		'setting' => phpversion(),
-		'message' => 'This version of PHP is recent, and any supported version of Tiki can be run.'
+		'message' => 'This version of PHP is recent, and only versions of Tiki since 16.x can be run safely.'
 	);
 }
 
@@ -1946,21 +1940,54 @@ if ($standalone || (! empty($prefs) && $prefs['fgal_enable_auto_indexing'] === '
 		'text/tab-separated-values' => array('col -b %1', 'strings %1'),
 	);
 
+	$fh_native = array(
+		'application/pdf' => 18.0,
+		'application/x-pdf' => 18.0,
+	);
+
 	$file_handlers = array();
+	if (! $standalone) {
+		$tikiWikiVersion = new TWVersion();
+	}
+
 	foreach ($fh_possibilities as $type => $options) {
 		$file_handler = array(
 			'fitness' => '',
 			'message' => '',
 		);
-		foreach ($options as $opt) {
-			$optArray = explode(' ', $opt, 2);
-			$exec = reset($optArray);
 
-			$which_exec = `which $exec`;
-			if ($which_exec) {
+		if (! $standalone && array_key_exists($type, $fh_native)) {
+			if ($tikiWikiVersion->getBaseVersion() >= $fh_native["$type"]) {
 				$file_handler['fitness'] = 'good';
-				$file_handler['message'] = "will be handled by $which_exec";
-				break;
+				$file_handler['message'] = "will be handled natively";
+			}
+		}
+		if ($standalone && array_key_exists($type, $fh_native)) {
+			$file_handler['fitness'] = 'info';
+			$file_handler['message'] = "will be handled natively by Tiki &gt;= " . $fh_native["$type"];
+		}
+		if ($file_handler['fitness'] == '' || $file_handler['fitness'] == 'info') {
+			foreach ($options as $opt) {
+				$optArray = explode(' ', $opt, 2);
+				$exec = reset($optArray);
+				$which_exec = `which $exec`;
+				if ($which_exec) {
+					if ($file_handler['fitness'] == 'info') {
+						$file_handler['message'] .= ", otherwise handled by $which_exec";
+					} else {
+						$file_handler['message'] = "will be handled by $which_exec";
+					}
+					$file_handler['fitness'] = 'good';
+					break;
+				}
+			}
+			if ($file_handler['fitness'] == 'info') {
+				$fh_commands = '';
+				foreach ($options as $opt) {
+					$fh_commands .= $fh_commands ? ' or ' : '';
+					$fh_commands .= '"' . substr($opt, 0, strpos($opt, ' ')) . '"';
+				}
+				$file_handler['message'] .= ', otherwise you need to install ' . $fh_commands . ' to index this type of file';
 			}
 		}
 		if (! $file_handler['fitness']) {

@@ -70,7 +70,7 @@ if ((isset($_REQUEST["rename"]) || isset($_REQUEST["confirm"])) && $access->chec
 		$perspectivelib = TikiLib::lib('perspective');
 		$perspectivelib->replace_preference('wsHomepage', $page, $newName);
 
-	// If user has checked "semantic_alias" (Use Semantic Alias to redirect the old page to the new one?)
+		// If user has checked "semantic_alias" (Use Semantic Alias to redirect the old page to the new one?)
 		// We'll append on the renamed page's content the following string, where $page is the original name
 		// "\r\n~tc~(alias($page))~/tc~"
 		// We use the ~tc~ so that it doesn't make the page look ugly
@@ -80,13 +80,12 @@ if ((isset($_REQUEST["rename"]) || isset($_REQUEST["confirm"])) && $access->chec
 			} else {
 				$remoteIp = '0.0.0.0';
 			}
-	  // Obtain info on the page being renamed
+			// Obtain info on the page being renamed
 			$infoRenamedPage = $tikilib->get_page_info($newName);
 			$edit_data = $infoRenamedPage["data"];
-			$pageHyphensForSpaces = str_replace(" ", "-", $page); // Otherwise pages with spaces won't work
-			$edit_data = $edit_data . "\r\n~tc~ (alias($pageHyphensForSpaces)) ~/tc~";
+			$edit_data = $edit_data . "\r\n~tc~ (alias($page)) ~/tc~";
 			$edit_comment = tr('Page renamed from %0 to %1. Semantic alias redirect created', $page, $newName);
-			$res = TikiLib::lib('tiki')->update_page($newName, $edit_data, $edit_comment, $infoRenamedPage["user"], $remoteIp);
+			$res = TikiLib::lib('tiki')->update_page($newName, $edit_data, $edit_comment, $user, $remoteIp);
 		}
 		$access->redirect($wikilib->sefurl($newName));
 	}

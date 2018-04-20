@@ -9,10 +9,10 @@ CREATE TABLE `tiki_todo` (
 	PRIMARY KEY (`todoId`),
 	KEY `what` (`objectType`, `objectId`),
 	KEY `after` (`after`)
-);
+) ENGINE=MyISAM;
 CREATE TABLE `tiki_todo_notif` (
 	`todoId` INT(12) NOT NULL,
 	`objectId` VARCHAR(255) default NULL,
 	KEY `todoId` (`todoId`),
 	KEY `objectId` (`objectId`)
-);
+) ENGINE=MyISAM;
