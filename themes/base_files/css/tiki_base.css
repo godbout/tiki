@@ -2003,7 +2003,7 @@ table.treetable tr.expanded span.indenter a {
 
 .tracker-item-files li {
   clear: right;
-  padding-right: 1em;
+  padding: 0.5em 0.5em 0.5em 0;
   font-size: 0.9em; }
 
 .tracker-item-files a.file-delete-icon {
@@ -2011,6 +2011,10 @@ table.treetable tr.expanded span.indenter a {
   clear: right;
   float: right; }
 
+.tracker-item-files:not(.current-list) li span,
+.tracker-item-files:not(.current-list) li img {
+  margin-right: 5px;
+}
 .tracker-item-files {
   -webkit-column-count: 2;
   -moz-column-count: 2;

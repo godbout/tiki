@@ -1,5 +1,5 @@
 <?php // -*- coding:utf-8 -*-
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -63,6 +63,7 @@ $langmapping = [
 	'sq' => ['Shqip', tra("Albanian")],
 	'sr-latn' => ['Srpski', tra("Serbian Latin")],
 	'sv' => ['Svenska', tra("Swedish")],
+	'sw' => ['Swahili', tra("Swahili")],
 	'th' => ['ภาษาไทย', tra("Thai")],
 	'tv' => ['Tuvaluan', tra("Tuvaluan")],
 	'tr' => ['Türkçe', tra("Turkish")],

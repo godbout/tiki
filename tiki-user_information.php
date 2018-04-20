@@ -2,7 +2,7 @@
 /**
  * @package tikiwiki
  */
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -90,7 +90,9 @@ if ($prefs['allowmsg_is_optional'] == 'y') {
 }
 $smarty->assign('allowMsgs', $allowMsgs);
 $smarty->assign_by_ref('user_prefs', $user_preferences[$userwatch]);
-$user_style = $tikilib->get_user_preference($userwatch, 'theme', $prefs['site_style']);
+if (! empty($prefs['site_style'])) {
+	$user_style = $tikilib->get_user_preference($userwatch, 'theme', $prefs['site_style']);
+}
 $smarty->assign_by_ref('user_style', $user_style);
 $user_language = $tikilib->get_language($userwatch);
 $langLib = TikiLib::lib('language');

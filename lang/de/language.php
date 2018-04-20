@@ -1,6 +1,6 @@
 <?php
-// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
-// 
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 
@@ -5041,20 +5041,20 @@ $lang = [
 // "List of options available" => "List of options available",
 // "Multiple votes per user" => "Multiple votes per user",
 // "Allow the user to cast multiple votes for the same object" => "Allow the user to cast multiple votes for the same object",
-"Use ReCaptcha" => "Benutze ReCaptcha",
-"Use ReCaptcha, a specialized captcha service, instead of default CAPTCHA" => "Benutze ReCaptcha, einen speziallen Captchadienst anstelle des Standard CAPTCHA",
+"Use reCAPTCHA" => "Benutze reCAPTCHA",
+"Use reCAPTCHA, a specialized captcha service, instead of default CAPTCHA" => "Benutze reCAPTCHA, einen speziallen Captchadienst anstelle des Standard CAPTCHA",
 "You will need to register at [http://www.google.com/recaptcha]" => "Du musst Dich hierfür unter [http://www.google.com/recaptcha] registrieren",
 // "Site key" => "Site key",
-// "ReCaptcha public key obtained after registering" => "ReCaptcha public key obtained after registering",
+// "reCAPTCHA public key obtained after registering" => "reCAPTCHA public key obtained after registering",
 // "Secret key" => "Secret key",
-// "ReCaptcha private key obtained after registering" => "ReCaptcha private key obtained after registering",
-// "ReCaptcha theme" => "ReCaptcha theme",
-// "Choose a theme for the ReCaptcha widget" => "Choose a theme for the ReCaptcha widget",
+// "reCAPTCHA private key obtained after registering" => "reCAPTCHA private key obtained after registering",
+// "reCAPTCHA theme" => "reCAPTCHA theme",
+// "Choose a theme for the reCAPTCHA widget" => "Choose a theme for the reCAPTCHA widget",
 "Clean" => "Aufräumen",
 // "Black Glass" => "Black Glass",
 "Red" => "Rot",
 // "White" => "White",
-// "ReCaptcha version" => "ReCaptcha version",
+// "reCAPTCHA version" => "reCAPTCHA version",
 // "1.0" => "1.0",
 // "2.0" => "2.0",
 "Record untranslated strings" => "Zeichne nicht übersetzte Texte auf",
