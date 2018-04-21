@@ -13,7 +13,7 @@
 	{if ! $itemId}
 		{if $trackerLogo}
 			<div class="page_header media">
-				<img src="{$trackerLogo|escape}" class="pull-left img-responsive img-rounded" alt="{$trackerName|escape}" height="64px" width="64px">
+				<img src="{$trackerLogo|escape}" class="pull-left img-fluid img-rounded" alt="{$trackerName|escape}" height="64px" width="64px">
 			</div>
 		{/if}
 		<form method="post" action="{service controller=tracker action=insert_item format=$format editItemPretty=$editItemPretty}" id="insertItemForm{$trackerId|escape}" {if ! $trackerId}display="hidden"{/if}>

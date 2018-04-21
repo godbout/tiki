@@ -9,8 +9,8 @@ function prefs_image_list()
 {
 	return [
 		'image_responsive_class' => [
-			'name' => tra('Default for img-responsive class used in the IMG plugin'),
-			'description' => tra('Default option for whether an image produced with the IMG plugin has the img-responsive class - a plugin parameter allows this to be overridden'),
+			'name' => tra('Default for img-fluid class used in the IMG plugin'),
+			'description' => tra('Default option for whether an image produced with the IMG plugin has the img-fluid class - a plugin parameter allows this to be overridden'),
 			'type' => 'flag',
 			'default' => 'y',
 		],

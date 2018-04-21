@@ -230,7 +230,7 @@ function wikiplugin_img_info()
 				'required' => false,
 				'name' => tra('Responsive Image'),
 				'filter' => 'alpha',
-				'description' => tr('Default set by the admin using a preference and determines whether the image has the %0img-responsive%1 class.', '<code>', '</code>'),
+				'description' => tr('Default set by the admin using a preference and determines whether the image has the %0img-fluid%1 class.', '<code>', '</code>'),
 				'since' => '14.0',
 				'doctype' => 'style',
 				'advanced' => false,
@@ -1171,7 +1171,7 @@ function wikiplugin_img($data, $params)
 		}
 		$imgdata['class'] .= ' regImage pluginImg' . $imgdata['fileId'];
 		if ($imgdata['responsive'] == 'y') {
-			$imgdata['class'] .= ' img-responsive';
+			$imgdata['class'] .= ' img-fluid';
 		}
 		if ($imgdata['featured'] == 'y') {
 			$imgdata['class'] .= ' featured';
