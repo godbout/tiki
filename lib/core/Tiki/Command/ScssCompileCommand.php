@@ -148,11 +148,8 @@ class ScssCompileCommand extends Command
 	 * @param string $outputFile
 	 * @param OutputInterface $output
 	 */
-	private
-	function compile($inputFile, $outputFile = '', $output = null)
+	protected function compile($inputFile, $outputFile = '', $output = null)
 	{
-		include __DIR__ . '../../../../../vendor_bundled/vendor/leafo/scssphp/scss.inc.php';
-
 		$data = file_get_contents($inputFile);
 
 		$newWorkingDir = dirname(realpath($inputFile));
