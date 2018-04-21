@@ -1,0 +1,13 @@
+// $Id$ - orange/tiki.less; compile to make
+/*  The Orange theme option file for the FiveAlive-lite theme of Tiki Wiki CMS Groupware. */
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
+// To apply variables defined in bootstrap-variables.scss.
+@import "../../../scss/_bootstrap-scss-for-options.scss";
+// Contains relevant Bootstrap .less file sections to expose variables for the theme options to provide values for.]
+@import "../../../scss/_tiki-selectors-for-options.scss";
+// Contains CSS for styling Tiki elements not covered by Bootstrap.
+@import "_bootstrap-variables.scss";
+// A copy of the Bootstrap variables.scss file but using only color settings.
+@import "_tiki-selector-variables.scss";
+
+// Provides values for "legacy" Tiki CSS selectors (not covered by Bootstrap).

@@ -61,7 +61,7 @@ class ConsoleApplicationBuilder
 				'action' => self::ACTION_NOT_AVAILABLE,
 				'commands' => [
 					new CacheClearCommand,
-					new LessCompileCommand,
+					new ScssCompileCommand,
 					new BackupDBCommand,
 					new BackupFilesCommand,
 					new ProfileBaselineCommand,

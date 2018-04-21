@@ -1,0 +1,107 @@
+// $Id$
+
+// Colors
+// $white:    #fff !default;
+// $gray-100: #f8f9fa !default;
+// $gray-200: #e9ecef !default;
+// $gray-300: #dee2e6 !default;
+// $gray-400: #ced4da !default;
+// $gray-500: #adb5bd !default;
+// $gray-600: #868e96 !default;
+// $gray-700: #495057 !default;
+// $gray-800: #343a40 !default;
+// $gray-900: #212529 !default;
+// $black:    #000 !default;
+
+$primary:         #6c839b;
+//$success: #48ca3b;
+//$info: #4d3a7d;
+//$warning: #debb27;
+//$danger: #df6e1e;
+
+$theme-colors: (
+ 	"primary":        	#6c839b //,
+// 	"secondary": 		#dddddd,
+// 	"success":         	#5cb85c,
+// 	"info":           	#5bc0de,
+// 	"warning":         	#f0ad4e,
+// 	"danger":          	#d9534f,
+//		"light":			#ffffff,
+// 	"dark":				#000000
+);
+
+// Options
+// Spacing
+
+// Body
+$body-bg: #f4f4f4;
+$body-color: #222;
+
+// Links
+$link-color: #2d3741;
+// Components
+//$padding-base-vertical: .5rem;
+//$padding-large-vertical: .9rem;
+//
+
+// Components
+$grid-gutter-width:           20px;
+
+$border-radius:               .1rem; // Not being implemented - why?
+$border-radius-lg:            .2rem;
+$border-radius-sm:            0rem;
+
+// Fonts
+$font-family-sans-serif: Cabin, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-serif: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
+$font-size-base: .90rem;
+
+// Tables
+//$table-border-color: #dddddd;
+
+// Buttons
+$btn-primary-color: #223344;
+$btn-primary-bg: #c7d0d9;
+$btn-primary-border: #999999;
+
+// Forms
+//$input-bg: #999;
+// Dropdowns
+// Navs
+// Navbar
+//$navbar-dark-color: #ffffff;
+//$navbar-dark-bg: #1f5daa;
+//$navbar-dark-border: darken($navbar-dark-bg, 6.5%);
+
+// Navbarlinks ??
+//$navbar-dark-color: #ffffff;
+//$navbar-dark-hover-color: darken(#fff, 10%);
+//$navbar-dark-hover-bg: #3270bd;
+//$navbar-dark-active-color: #ffffff;
+//$navbar-dark-active-bg: #3270bd;
+//$navbar-dark-disabled-color: #cccccc;
+
+// Pagination
+// Jumbotron
+// Cards
+$card-border-radius: $border-radius;
+$card-border-color: #acccdd;
+//$card-text: #fff;//@gray-lighter;
+//$card-heading-bg: red;
+$card-heading-padding: 10px 15px;
+$card-cap-bg: #f3f6f9;
+
+// Tooltips
+// Popovers
+// Badges
+// Modals
+//$modal-header-border-color: #386dbb;
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+// Close
+// Code

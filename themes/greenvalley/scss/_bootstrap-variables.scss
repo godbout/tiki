@@ -1,0 +1,91 @@
+// $Id$
+
+// Colors
+$gray-900: #222;
+$primary: rgb(218, 56, 143);
+// #428bca;
+$success: #5cb85c;
+$info: #5bc0de;
+$warning: #f0ad4e;
+$danger: #d9534f;
+
+$theme-colors: (
+ 	"primary":        	rgb(218, 56, 143),
+// 	"secondary": 		#dddddd,
+ 	"success":         	#5cb85c,
+ 	"info":           	#5bc0de,
+ 	"warning":         	#f0ad4e,
+ 	"danger":          	#d9534f //,
+//	"light":			#ffffff,
+ //	"dark":				#000000
+);
+
+// Options
+// Spacing
+
+// Body
+$body-bg: #addd63;// darken(#bce380, 7%);
+$body-color: $gray-900;
+
+// Links
+$link-color: $primary;
+$link-hover-color: lighten($link-color, 15%);
+
+// Components
+$component-active-bg: #cda256;
+
+// Fonts
+$font-family-sans-serif: Century Gothic, Lucida Grande, Arial, Helvetica, sans-serif;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: 1rem;
+
+// Tables
+// Buttons
+// Forms
+// Dropdowns
+// Navbar
+$navbar-light-color: #e0d6cc;
+$navbar-light-bg: #f8f8f8;
+$navbar-light-border: darken($navbar-light-bg, 6.5%);
+
+// Navbar links
+$navbar-light-link-color: #e0d6cc;
+$navbar-light-link-hover-color: #cda256;
+$navbar-light-link-hover-bg: #42281d;
+$navbar-light-link-active-color: #555555;
+$navbar-light-toggle-hover-bg: transparent;
+
+// Pagination
+$pagination-active-color: #ffffff;
+$pagination-active-bg: #cda256;
+$pagination-active-border: #cda256;
+
+// Jumbotron
+$jumbotron-bg: lighten(#E6FFB2, 10%);
+$jumbotron-font-size: ceil(($font-size-base * 1.5));
+
+// Cards
+$card-bg: #e6ffb2;
+$card-inner-border: #53b042;
+$card-footer-bg: #e6ffb2;
+
+$card-primary-text: $gray-900;
+$card-primary-border: #53b042;
+$card-primary-heading-bg: #e6ffb2;
+
+$card-secondary-text: #ffffff;
+$card-secondary-border: #53b042;
+
+// Tooltips
+// Popovers
+// Badges
+// Modals
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+// Close
+// Code

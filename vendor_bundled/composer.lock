@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26182eb5d268a87d17417de08e2d34a6",
+    "content-hash": "5551c6aa1afd798dad8e6414ae5a5364",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -3602,18 +3602,18 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
-            "name": "twitter/bootstrap",
-            "version": "v3.3.7",
+            "name": "twbs/bootstrap",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
+                "reference": "8f7bd419935adfcd53c471a0202083464800619e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/twitter/bootstrap/twitter-bootstrap-0b9c4a4007c44201dce9a6cc1a38407005c26c86-zip-d3d7dc.zip",
-                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
-                "shasum": "b92d9602040c64dcda409d677038e0f1527acd60"
+                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-8f7bd419935adfcd53c471a0202083464800619e-zip-53bd09.zip",
+                "reference": "8f7bd419935adfcd53c471a0202083464800619e",
+                "shasum": "c0580a46f22094a1e64d17a659e36c5453079971"
             },
             "replace": {
                 "twitter/bootstrap": "self.version"
@@ -3639,18 +3639,18 @@
                 }
             ],
             "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-            "homepage": "http://getbootstrap.com",
+            "homepage": "https://getbootstrap.com/",
             "keywords": [
                 "JS",
                 "css",
                 "framework",
                 "front-end",
-                "less",
                 "mobile-first",
                 "responsive",
+                "sass",
                 "web"
             ],
-            "time": "2016-07-25T15:51:55+00:00"
+            "time": "2018-04-09T16:00:23+00:00"
         },
         {
             "name": "undojs/undojs",
@@ -4794,17 +4794,17 @@
         },
         {
             "name": "zendframework/zend-stdlib",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-stdlib.git",
-                "reference": "debedcfc373a293f9250cc9aa03cf121428c8e78"
+                "reference": "10ef03144902d1955f935fff5346ed52f7d99bcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-stdlib/zendframework-zend-stdlib-debedcfc373a293f9250cc9aa03cf121428c8e78-zip-5df78f.zip",
-                "reference": "debedcfc373a293f9250cc9aa03cf121428c8e78",
-                "shasum": "b8d209d554b083e3673015f485e4bb87e01b5bdd"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-stdlib/zendframework-zend-stdlib-10ef03144902d1955f935fff5346ed52f7d99bcc-zip-1f2a17.zip",
+                "reference": "10ef03144902d1955f935fff5346ed52f7d99bcc",
+                "shasum": "dfcfa4ba1ee4f03a1cc89402e59c8a42c2aaeb01"
             },
             "require": {
                 "php": "^5.6 || ^7.0"
@@ -4812,7 +4812,7 @@
             "require-dev": {
                 "athletic/athletic": "~0.1",
                 "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "^2.6.2"
+                "zendframework/zend-coding-standard": "~1.0.0"
             },
             "type": "library",
             "extra": {
@@ -4835,7 +4835,7 @@
                 "stdlib",
                 "zf2"
             ],
-            "time": "2016-09-13T14:38:50+00:00"
+            "time": "2018-04-12T16:05:42+00:00"
         },
         {
             "name": "zendframework/zend-tag",
@@ -7017,6 +7017,7 @@
     "stability-flags": {
         "ahand/mobileesp": 20,
         "candy-chat/xmpp-prebind-php": 20,
+        "twbs/bootstrap": 10,
         "zendframework/zendsearch": 20,
         "bafs/testify": 20
     },

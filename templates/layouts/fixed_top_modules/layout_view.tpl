@@ -27,7 +27,7 @@
 
 		<div class="row" id="row-middle">
 			{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
-				<div class="col-md-12 col1" id="col1">
+				<div class="col col1 col-md-12" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
 					{/if}
@@ -47,7 +47,7 @@
 					{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 				</div>
 			{/if}
-				<div class="col-md-9 col1" id="col1">
+				<div class="col col1 col-md-9" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
 					{/if}
@@ -60,7 +60,7 @@
 						{modulelist zone=pagebottom}
 					{/if}
 				</div>
-				<div class="col-md-3" id="col3">
+				<div class="col col3 col-md-3" id="col3">
 					{modulelist zone=right}
 				</div>
 			{elseif zone_is_empty('right') or $prefs.feature_right_column eq 'n'}
@@ -70,7 +70,7 @@
 					{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 				</div>
 			{/if}
-				<div class="col-md-9 col-md-push-3 col1" id="col1">
+				<div class="col col1 col-md-9" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
 					{/if}
@@ -83,7 +83,7 @@
 						{modulelist zone=pagebottom}
 					{/if}
 				</div>
-				<div class="col-md-3 col-md-pull-9" id="col2">
+				<div class="col col2 col-md-3 order-sm-2 order-md-1" id="col2">
 					{modulelist zone=left}
 				</div>
 			{else}
@@ -99,7 +99,7 @@
 						{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 					</div>
 				{/if}
-				<div class="col-md-8 col-md-push-2 col1" id="col1">
+				<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
 					{/if}
@@ -112,10 +112,10 @@
 						{modulelist zone=pagebottom}
 					{/if}
 				</div>
-				<div class="col-md-2 col-md-pull-8" id="col2">
+				<div class="col col2 col-sm-6 col-lg-2 order-md-2 order-lg-1" id="col2">
 					{modulelist zone=left}
 				</div>
-				<div class="col-md-2" id="col3">
+				<div class="col col3 col-sm-6 col-lg-2 order-md-3" id="col3">
 					{modulelist zone=right}
 				</div>
 			{/if}
@@ -134,7 +134,7 @@
 {/if}
 
 {if $smarty.session.fullscreen ne 'y'}
-<nav class="navbar {* navbar-inverse *}navbar-default navbar-fixed-top" role="navigation" id="navbar-fixed-top">
+<nav class="navbar {* navbar-inverse *}navbar-dark bg-dark fixed-top" role="navigation" id="navbar-fixed-top">
 	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 		<div class="navbar-header">
 			{if $module_params.navbar_toggle neq 'n'}

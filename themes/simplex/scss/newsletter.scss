@@ -1,0 +1,11 @@
+// $Id$
+/* Simplex theme newsletter stylesheet */
+@import "../../base_files/scss/newsletter.scss";
+@import "_variables.scss";
+
+$web-font-path: "https://fonts.googleapis.com/css?family=Open+Sans:400,700" !default;
+@import url($web-font-path);
+
+$font-family-sans-serif:  "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-base:        $font-family-sans-serif;
+$font-size-base:          13px;

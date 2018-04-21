@@ -1,0 +1,98 @@
+// $Id$
+//
+// Colors
+// $white:    #fff !default;
+// $gray-100: #f8f9fa !default;
+// $gray-200: #e9ecef !default;
+// $gray-300: #dee2e6 !default;
+// $gray-400: #ced4da !default;
+// $gray-500: #adb5bd !default;
+// $gray-600: #868e96 !default;
+// $gray-700: #495057 !default;
+// $gray-800: #343a40 !default;
+// $gray-900: #212529 !default;
+// $black:    #000 !default;
+
+$primary: #005faa;
+//$success: #48ca3b;
+//$info: #4d3a7d;
+//$warning: #debb27;
+//$danger: #df6e1e;
+
+$theme-colors: (
+ 	"primary":        	#005faa // ,
+// 	"secondary": 		#dddddd,
+// 	"success":         	#5cb85c,
+// 	"info":           	#5bc0de,
+// 	"warning":         	#f0ad4e,
+// 	"danger":          	#d9534f,
+//		"light":			#ffffff,
+// 	"dark":				#000000
+);
+
+// Options
+// Spacing
+
+// Body
+$body-bg: #f4f4f4;
+//$body-color: $gray-800;
+
+// Links
+// Components
+$border-radius:               0rem;
+$border-radius-lg:            .2rem;
+$border-radius-sm:            .1rem;
+
+// Fonts
+$font-family-serif: Georgia, "Times New Roman", Times, serif;
+$font-family-base: $font-family-serif;
+
+// Tables
+//$table-border-color: #dddddd;
+
+// Buttons
+//$btn-default-color: #ffffff;
+//$btn-default-bg: #3676c4;
+//$btn-default-border: #3676c4;
+
+//$btn-primary-color: #ffffff;
+//$btn-primary-bg: #3676c4;
+
+// Forms
+//$input-border: #dddddd;
+// Dropdowns
+// Navs
+// Navbar
+//$navbar-dark-color: #ffffff;
+//$navbar-dark-bg: #1f5daa;
+//$navbar-dark-border: darken($navbar-dark-bg, 6.5%);
+
+// Navbarlinks ??
+//$navbar-dark-color: #ffffff;
+//$navbar-dark-hover-color: darken(#fff, 10%);
+//$navbar-dark-hover-bg: #3270bd;
+//$navbar-dark-active-color: #ffffff;
+//$navbar-dark-active-bg: #3270bd;
+//$navbar-dark-disabled-color: #cccccc;
+
+// Pagination
+// Jumbotron
+// Cards
+//$card-border-radius: $border-radius-lg;
+//$card-text: #fff;//@gray-lighter;
+//$card-heading-bg: #386dbb;
+
+// Tooltips
+// Popovers
+// Badges
+// Modals
+//$modal-header-border-color: #386dbb;
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+// Close
+// Code

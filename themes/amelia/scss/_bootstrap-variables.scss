@@ -1,0 +1,70 @@
+// $Id$
+// Amelia for Bootstrap 4.0.0
+// Variables
+
+// Colors
+$gray-900: #111111; // Are these being used?
+$gray-700: #444444;
+//$gray-500: lighten(#000000, 33.5%); //
+$gray-300: #bbbbbb;
+$gray-100: #dddddd;
+
+$primary: #ad1d28; //These aren't overriding the defaults in this position, so were added to amelia.scss at the top.
+$success: #48ca3b;
+$info: #4d3a7d;
+$warning: #debb27;
+$danger: #df6e1e;
+
+$theme-colors: (
+	"primary":        	#ad1d28,
+	"secondary": 		#dddddd,
+	"success":         	#48ca3b,
+	"info":           	#4d3a7d,
+	"warning":         	#debb27,
+	"danger":          	#df6e1e
+);
+
+// Options
+// Spacing
+// Body
+$body-bg: #108a93;
+// Links
+//$link-color: lighten(theme-color("warning"), 15%);
+//$link-hover-color: $link-color;
+
+//Components
+$padding-base-vertical: .5rem;
+$padding-large-vertical: .9rem;
+
+//Fonts
+$font-family-sans-serif: "Cabin", Arial, sans-serif;
+$headings-font-family: 'Lobster', cursive;
+
+// Tables
+// Forms
+// Dropdowns
+// Navs
+// Navbar
+// Navbarlinks
+// Pagination
+// Jumbotron
+// Cards
+// Tooltips
+// Popovers
+// Badges
+// Modals
+$modal-content-bg: $body-bg;
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+// Close
+// Code
+
+//$bg-dark: #ad1d28 !important;
+//$navbar-dark-bg: #ad1d28 !important;
+//body.fullscreen { background: $body-bg; }
+//.bg-dark { background: #ad1d28 !important; }

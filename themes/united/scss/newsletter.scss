@@ -1,0 +1,8 @@
+// $Id$
+/* United theme newsletter stylesheet */
+$web-font-path: "https://fonts.googleapis.com/css?family=Ubuntu:400,700" !default;
+@import url($web-font-path);
+
+$font-family-sans-serif:  "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-base:        $font-family-sans-serif;
+$font-size-base:          14px;

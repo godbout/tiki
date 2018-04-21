@@ -1,0 +1,87 @@
+// $Id$
+
+// Colors
+
+$primary: #600000;
+$success: #5cb85c;
+$info: #5bc0de;
+$warning: #f0ad4e;
+$danger: #d9534f;
+
+$theme-colors: (
+ 	"primary":        	#600000,
+ 	"secondary": 		#dddddd,
+ 	"success":         	#5cb85c,
+ 	"info":           	#5bc0de,
+ 	"warning":         	#f0ad4e,
+ 	"danger":          	#d9534f,
+	"light":			#ffffff,
+ 	"dark":				#000000
+);
+
+// Options
+// Spacing
+
+// Body
+$body-bg: #90140c;
+
+// Links
+$link-color: $primary;
+$link-hover-color: darken($link-color, 15%);
+
+// Fonts
+$font-family-sans-serif: Arial, sans-serif;
+$font-family-base: $font-family-sans-serif;
+$headings-color: #8a0700;
+
+// Tables
+// Buttons
+
+// Components
+$component-active-color: #ffffff;
+$component-active-bg: $primary;
+
+// Forms
+// Dropdowns
+// Navs
+// Navbar
+$navbar-height: 40px;
+$navbar-light-color: #ffffff;
+$navbar-light-bg: #000000;
+
+// Tabs
+$nav-tabs-border-color: lighten( $body-bg, 90% );
+$nav-tabs-link-hover-border-color: lighten( $nav-tabs-border-color, 10% );
+$nav-tabs-active-link-hover-bg: darken( $nav-tabs-border-color, 10% );
+
+// Pagination
+// Jumbotron
+// Cards
+// Tooltips
+// Popovers
+// Badges
+// Modals
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+
+// Close
+$close-font-weight: bold;
+$close-color: #000000;
+$close-text-shadow: 0 1px 0 #ffffff;
+
+// Code
+$code-color: #c7254e;
+$code-bg: #f9f2f4;
+
+$kbd-color: #ffffff;
+$kbd-bg: #333333;
+
+$pre-bg: #f5f5f5;
+$pre-color: $gray-900;
+$pre-border-color: #cccccc;
+$pre-scrollable-max-height: 340px;

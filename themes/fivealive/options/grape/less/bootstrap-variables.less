@@ -1,5 +1,5 @@
 // $Id$ Custom variables for the Grape theme option of the FiveAlive and FiveAlive-lite themes
-// This file is a copy of the default bootstrap variables.less file.
+// This file is a copy of the default bootstrap variables.scss file.
 
 // Variables
 // --------------------------------------------------
@@ -31,7 +31,7 @@
 // ## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg: #ffffff;
+$body-bg: #ffffff;
 //** Global text color on `<body>`.
 @text-color: @gray-dark;
 
@@ -45,27 +45,27 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-// @font-family-sans-serif:  Arial, Helvetica, sans-serif;
+// $font-family-sans-serif:  Arial, Helvetica, sans-serif;
 // @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 // //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 // @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-// @font-family-base:        @font-family-sans-serif;
+// $font-family-base:        $font-family-sans-serif;
 
-// @font-size-base:          14px;
-// @font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
-// @font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+// $font-size-base:          14px;
+// @font-size-large:         ceil(($font-size-base * 1.25)); // ~18px
+// @font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
 //
-// @font-size-h1:            floor((@font-size-base * 2.6)); // ~36px
-// @font-size-h2:            floor((@font-size-base * 2.15)); // ~30px
-// @font-size-h3:            ceil((@font-size-base * 1.7)); // ~24px
-// @font-size-h4:            ceil((@font-size-base * 1.25)); // ~18px
-// @font-size-h5:            @font-size-base;
-// @font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
+// @font-size-h1:            floor(($font-size-base * 2.6)); // ~36px
+// @font-size-h2:            floor(($font-size-base * 2.15)); // ~30px
+// @font-size-h3:            ceil(($font-size-base * 1.7)); // ~24px
+// @font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
+// @font-size-h5:            $font-size-base;
+// @font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 
 // //** Unit-less `line-height` for use in components like buttons.
 // @line-height-base:        1.428571429; // 20/14
 // //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
-// @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+// @line-height-computed:    floor(($font-size-base * @line-height-base)); // ~20px
 //
 // //** By default, this inherits from the `<body>`.
 // @headings-font-family:    inherit;
@@ -77,7 +77,7 @@
 // //
 // //## Specify custom locations of the include Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
-@icon-font-path: "../../../../../vendor_bundled/vendor/twitter/bootstrap/fonts/";
+@icon-font-path: "../../../../../vendor_bundled/vendor/twbs/bootstrap/fonts/";
 @icon-font-name: "glyphicons-halflings-regular";
 @icon-font-svg-id: "glyphicons_halflingsregular";
 
@@ -100,7 +100,7 @@
 // @line-height-large:         1.33;
 // @line-height-small:         1.5;
 //
-// @border-radius-base:        4px;
+// $border-radius:        4px;
 // @border-radius-large:       6px;
 // @border-radius-small:       3px;
 
@@ -181,10 +181,10 @@
 //** Text color for `<input>`s
 @input-color: @gray;
 //** `<input>` border color
-@input-border: #e4afd3;
+$input-border-color: #e4afd3;
 // #faf1f8 #faf1f8 #e4afd3
 //** `<input>` border radius
-// @input-border-radius:            @border-radius-base;
+// @input-border-radius:            $border-radius;
 //** Border color for inputs on focus
 @input-border-focus: #e4afd3;
 // #66afe9;
@@ -214,7 +214,7 @@
 //** Background for the dropdown menu.
 @dropdown-bg: #3b284a;
 //** Dropdown menu `border-color`.
-@dropdown-border: rgba(0, 0, 0, .15);
+$dropdown-border-color: rgba(0, 0, 0, .15);
 //** Dropdown menu `border-color` **for IE8**.
 @dropdown-fallback-border: #cccccc;
 //** Divider color for between dropdown items.
@@ -329,7 +329,7 @@
 // Basics of a navbar
 @navbar-height: 48px;
 // @navbar-margin-bottom:             @line-height-computed;
-// @navbar-border-radius:             @border-radius-base;
+// @navbar-border-radius:             $border-radius;
 // @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
 // @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height: 340px;
@@ -344,7 +344,7 @@
 @navbar-default-link-hover-color: #f9f9f9;
 @navbar-default-link-hover-bg: darken(@btn-default-bg, 6.5%);
 @navbar-default-link-active-color: #ffffff;
-@navbar-default-link-active-bg: darken(@btn-default-bg, 6.5%);
+//$navbar-default-link-active-bg  //Deprecated?: darken(@btn-default-bg, 6.5%);
 //darken(@navbar-default-bg, 6.5%);
 @navbar-default-link-disabled-color: #ffffff;
 @navbar-default-link-disabled-bg: transparent;
@@ -403,15 +403,15 @@
 //
 // @nav-tabs-link-hover-border-color:          @gray-lighter;
 //
-// @nav-tabs-active-link-hover-bg:             @body-bg;
+// @nav-tabs-active-link-hover-bg:             $body-bg;
 // @nav-tabs-active-link-hover-color:          @gray;
 // @nav-tabs-active-link-hover-border-color:   #dddddd;
 //
 // @nav-tabs-justified-link-border-color:            #dddddd;
-// @nav-tabs-justified-active-link-border-color:     @body-bg;
+// @nav-tabs-justified-active-link-border-color:     $body-bg;
 //
 //== Pills
-// @nav-pills-border-radius:                   @border-radius-base;
+// @nav-pills-border-radius:                   $border-radius;
 @nav-pills-active-link-hover-bg: @component-active-bg;
 @nav-pills-active-link-hover-color: @component-active-color;
 
@@ -458,7 +458,7 @@
 // @jumbotron-color:                inherit;
 // @jumbotron-bg:                   @gray-lighter;
 // @jumbotron-heading-color:        inherit;
-// @jumbotron-font-size:            ceil((@font-size-base * 1.5));
+// @jumbotron-font-size:            ceil(($font-size-base * 1.5));
 
 //== Form states and alerts
 //
@@ -466,19 +466,19 @@
 
 @state-success-text: #3c763d;
 @state-success-bg: #dff0d8;
-@state-success-border: darken(spin(@state-success-bg, -10), 5%);
+@state-success-border: darken(adjust-hue(@state-success-bg, -10), 5%);
 
 @state-info-text: #31708f;
 @state-info-bg: #d9edf7;
-@state-info-border: darken(spin(@state-info-bg, -10), 7%);
+@state-info-border: darken(adjust-hue(@state-info-bg, -10), 7%);
 
 @state-warning-text: #8a6d3b;
 @state-warning-bg: #fcf8e3;
-@state-warning-border: darken(spin(@state-warning-bg, -10), 5%);
+@state-warning-border: darken(adjust-hue(@state-warning-bg, -10), 5%);
 
 @state-danger-text: #a94442;
 @state-danger-bg: #f2dede;
-@state-danger-border: darken(spin(@state-danger-bg, -10), 5%);
+@state-danger-border: darken(adjust-hue(@state-danger-bg, -10), 5%);
 
 // //== Tooltips
 // //
@@ -521,7 +521,7 @@
 // //** Popover outer arrow width
 // @popover-arrow-outer-width:           (@popover-arrow-width + 1);
 // //** Popover outer arrow color
-// @popover-arrow-outer-color:           fadein(@popover-border-color, 5%);
+// @popover-arrow-outer-color:           fade-in(@popover-border-color, 5%);
 // //** Popover outer arrow fallback color
 // @popover-arrow-outer-fallback-color:  darken(@popover-fallback-border-color, 20%);
 
@@ -584,7 +584,7 @@
 // //## Define alert colors, border radius, and padding.
 //
 // @alert-padding:               15px;
-// @alert-border-radius:         @border-radius-base;
+// @alert-border-radius:         $border-radius;
 // @alert-link-font-weight:      bold;
 //
 // @alert-success-bg:            @state-success-bg;
@@ -632,7 +632,7 @@
 //** `.list-group-item` border color
 @list-group-border: #dddddd;
 //** List group border radius
-// @list-group-border-radius:      @border-radius-base;
+// @list-group-border-radius:      $border-radius;
 
 //** Background color of single list elements on hover
 @list-group-hover-bg: #f5f5f5;
@@ -653,7 +653,7 @@
 
 @panel-bg: #ffffff;
 @panel-body-padding: 15px;
-// @panel-border-radius:         @border-radius-base;
+// @panel-border-radius:         $border-radius;
 
 //** Border color for elements within panels
 @panel-inner-border: #dddddd;
@@ -691,11 +691,11 @@
 // //** Padding around the thumbnail image
 // @thumbnail-padding:           4px;
 // //** Thumbnail background color
-// @thumbnail-bg:                @body-bg;
+// @thumbnail-bg:                $body-bg;
 // //** Thumbnail border color
 // @thumbnail-border:            #dddddd;
 // //** Thumbnail border radius
-// @thumbnail-border-radius:     @border-radius-base;
+// @thumbnail-border-radius:     $border-radius;
 
 // //** Custom text color for thumbnail captions
 // @thumbnail-caption-color:     @text-color;
@@ -794,7 +794,7 @@
 // //** Blockquote small color
 // @blockquote-small-color:      @gray-light;
 //** Blockquote font size
-// @blockquote-font-size:        (@font-size-base * 1.25);
+// @blockquote-font-size:        ($font-size-base * 1.25);
 //** Blockquote border color
 // // @blockquote-border-color:     @gray-lighter;
 //** Page header border color

@@ -26,7 +26,7 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #ffffff;
+$body-bg:               #ffffff;
 //** Global text color on `<body>`.
 @text-color:            #3e3f3a;
 
@@ -42,27 +42,27 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-@font-family-sans-serif:  "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
+$font-family-base:        $font-family-sans-serif;
 
-@font-size-base:          14px;
-@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
-@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+$font-size-base:          14px;
+@font-size-large:         ceil(($font-size-base * 1.25)); // ~18px
+@font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
 
-@font-size-h1:            floor((@font-size-base * 2.6)); // ~36px
-@font-size-h2:            floor((@font-size-base * 2.15)); // ~30px
-@font-size-h3:            ceil((@font-size-base * 1.7)); // ~24px
-@font-size-h4:            ceil((@font-size-base * 1.25)); // ~18px
-@font-size-h5:            @font-size-base;
-@font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
+@font-size-h1:            floor(($font-size-base * 2.6)); // ~36px
+@font-size-h2:            floor(($font-size-base * 2.15)); // ~30px
+@font-size-h3:            ceil(($font-size-base * 1.7)); // ~24px
+@font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
+@font-size-h5:            $font-size-base;
+@font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 
 //** Unit-less `line-height` for use in components like buttons.
 @line-height-base:        1.428571429; // 20/14
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
-@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+@line-height-computed:    floor(($font-size-base * @line-height-base)); // ~20px
 
 //** By default, this inherits from the `<body>`.
 @headings-font-family:    inherit;
@@ -76,7 +76,7 @@
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-@icon-font-path:          "../../../vendor_bundled/vendor/twitter/bootstrap/fonts/";
+@icon-font-path:          "../../../vendor_bundled/vendor/twbs/bootstrap/fonts/";
 //** File name for all font files.
 @icon-font-name:          "glyphicons-halflings-regular";
 //** Element ID within SVG icon file.
@@ -102,7 +102,7 @@
 @line-height-large:         1.3333333; // extra decimals for Win 8.1 Chrome
 @line-height-small:         1.5;
 
-@border-radius-base:        4px;
+$border-radius:        4px;
 @border-radius-large:       6px;
 @border-radius-small:       3px;
 
@@ -171,7 +171,7 @@
 @btn-link-disabled-color:        @gray-light;
 
 // Allows for customizing button radius independently from global border radius
-@btn-border-radius-base:         @border-radius-base;
+@btn-border-radius-base:         $border-radius;
 @btn-border-radius-large:        @border-radius-large;
 @btn-border-radius-small:        @border-radius-small;
 
@@ -188,12 +188,12 @@
 //** Text color for `<input>`s
 @input-color:                    @text-color;
 //** `<input>` border color
-@input-border:                   @gray-light;
+$input-border-color:                   @gray-light;
 
 // TODO: Rename `@input-border-radius` to `@input-border-radius-base` in v4
 //** Default `.form-control` border radius
 // This has no effect on `<select>`s in some browsers, due to the limited stylability of `<select>`s in CSS.
-@input-border-radius:            @border-radius-base;
+@input-border-radius:            $border-radius;
 //** Large `.form-control` border radius
 @input-border-radius-large:      @border-radius-large;
 //** Small `.form-control` border radius
@@ -234,7 +234,7 @@
 //** Background for the dropdown menu.
 @dropdown-bg:                    #ffffff;
 //** Dropdown menu `border-color`.
-@dropdown-border:                @gray-light;
+$dropdown-border-color:                @gray-light;
 //** Dropdown menu `border-color` **for IE8**.
 @dropdown-fallback-border:       @gray-light;
 //** Divider color for between dropdown items.
@@ -359,7 +359,7 @@
 // Basics of a navbar
 @navbar-height:                    60px;
 @navbar-margin-bottom:             @line-height-computed;
-@navbar-border-radius:             @border-radius-base;
+@navbar-border-radius:             $border-radius;
 @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height:       340px;
@@ -373,7 +373,7 @@
 @navbar-default-link-hover-color:          #ffffff;
 @navbar-default-link-hover-bg:             transparent;
 @navbar-default-link-active-color:         #ffffff;
-@navbar-default-link-active-bg:            darken(@navbar-default-bg, 2%);
+//$navbar-default-link-active-bg  //Deprecated?:            darken(@navbar-default-bg, 2%);
 @navbar-default-link-disabled-color:       #cccccc;
 @navbar-default-link-disabled-bg:          transparent;
 
@@ -383,7 +383,7 @@
 @navbar-default-brand-hover-bg:            transparent;
 
 // Navbar toggle
-@navbar-default-toggle-hover-bg:           @navbar-default-link-active-bg;
+@navbar-default-toggle-hover-bg:           //$navbar-default-link-active-bg  //Deprecated?;
 @navbar-default-toggle-icon-bar-bg:        @navbar-default-link-color;
 @navbar-default-toggle-border-color:       transparent;
 
@@ -430,15 +430,15 @@
 
 @nav-tabs-link-hover-border-color:          @gray-light;
 
-@nav-tabs-active-link-hover-bg:             @body-bg;
+@nav-tabs-active-link-hover-bg:             $body-bg;
 @nav-tabs-active-link-hover-color:          @gray;
 @nav-tabs-active-link-hover-border-color:   @gray-light;
 
 @nav-tabs-justified-link-border-color:            @gray-light;
-@nav-tabs-justified-active-link-border-color:     @body-bg;
+@nav-tabs-justified-active-link-border-color:     $body-bg;
 
 //== Pills
-@nav-pills-border-radius:                   @border-radius-base;
+@nav-pills-border-radius:                   $border-radius;
 @nav-pills-active-link-hover-bg:            @component-active-bg;
 @nav-pills-active-link-hover-color:         @component-active-color;
 
@@ -488,8 +488,8 @@
 @jumbotron-color:                inherit;
 @jumbotron-bg:                   @gray-lighter;
 @jumbotron-heading-color:        inherit;
-@jumbotron-font-size:            ceil((@font-size-base * 1.5));
-@jumbotron-heading-font-size:    ceil((@font-size-base * 4.5));
+@jumbotron-font-size:            ceil(($font-size-base * 1.5));
+@jumbotron-heading-font-size:    ceil(($font-size-base * 4.5));
 
 
 //== Form states and alerts
@@ -498,19 +498,19 @@
 
 @state-success-text:             @brand-success;
 @state-success-bg:               #dff0d8;
-@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
+@state-success-border:           darken(adjust-hue(@state-success-bg, -10), 5%);
 
 @state-info-text:                @brand-info;
 @state-info-bg:                  #d9edf7;
-@state-info-border:              darken(spin(@state-info-bg, -10), 7%);
+@state-info-border:              darken(adjust-hue(@state-info-bg, -10), 7%);
 
 @state-warning-text:             @brand-warning;
 @state-warning-bg:               #fcf8e3;
-@state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
+@state-warning-border:           darken(adjust-hue(@state-warning-bg, -10), 5%);
 
 @state-danger-text:              @brand-danger;
 @state-danger-bg:                #f2dede;
-@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
+@state-danger-border:            darken(adjust-hue(@state-danger-bg, -10), 5%);
 
 
 //== Tooltips
@@ -555,7 +555,7 @@
 //** Popover outer arrow width
 @popover-arrow-outer-width:           (@popover-arrow-width + 1);
 //** Popover outer arrow color
-@popover-arrow-outer-color:           fadein(@popover-border-color, 5%);
+@popover-arrow-outer-color:           fade-in(@popover-border-color, 5%);
 //** Popover outer arrow fallback color
 @popover-arrow-outer-fallback-color:  darken(@popover-fallback-border-color, 20%);
 
@@ -621,7 +621,7 @@
 //## Define alert colors, border radius, and padding.
 
 @alert-padding:               15px;
-@alert-border-radius:         @border-radius-base;
+@alert-border-radius:         $border-radius;
 @alert-link-font-weight:      bold;
 
 @alert-success-bg:            @brand-success;
@@ -650,7 +650,7 @@
 //** Progress bar text color
 @progress-bar-color:          #ffffff;
 //** Variable for setting rounded corners on progress bar.
-@progress-border-radius:      @border-radius-base;
+@progress-border-radius:      $border-radius;
 
 //** Default progress bar color
 @progress-bar-bg:             @brand-primary;
@@ -673,7 +673,7 @@
 //** `.list-group-item` border color
 @list-group-border:             @gray-light;
 //** List group border radius
-@list-group-border-radius:      @border-radius-base;
+@list-group-border-radius:      $border-radius;
 
 //** Background color of single list items on hover
 @list-group-hover-bg:           @gray-lighter;
@@ -706,7 +706,7 @@
 @panel-body-padding:          15px;
 @panel-heading-padding:       10px 15px;
 @panel-footer-padding:        @panel-heading-padding;
-@panel-border-radius:         @border-radius-base;
+@panel-border-radius:         $border-radius;
 
 //** Border color for elements within panels
 @panel-inner-border:          @gray-light;
@@ -748,7 +748,7 @@
 //** Thumbnail border color
 @thumbnail-border:            @gray-light;
 //** Thumbnail border radius
-@thumbnail-border-radius:     @border-radius-base;
+@thumbnail-border-radius:     $border-radius;
 
 //** Custom text color for thumbnail captions
 @thumbnail-caption-color:     @text-color;
@@ -856,7 +856,7 @@
 //** Blockquote small color
 @blockquote-small-color:      @text-color;
 //** Blockquote font size
-@blockquote-font-size:        (@font-size-base * 1.25);
+@blockquote-font-size:        ($font-size-base * 1.25);
 //** Blockquote border color
 @blockquote-border-color:     @gray-light;
 //** Page header border color

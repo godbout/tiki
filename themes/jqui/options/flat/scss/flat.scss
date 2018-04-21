@@ -1,0 +1,15 @@
+// $Id$ This is the element.less file. Compile to produce
+/* Jqui theme (jqui.css) Flat theme option (flat.css)
+	Thanks to garkpit for the random name.
+	Visit http://themes.tiki.org for more information.*/
+
+
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
+// To apply variables defined in bootstrap-variables.scss.
+//@import "../../../scss/bootstrap-scss-for-options.scss";
+// Contains relevant Bootstrap .less file sections to expose variables for the theme options to provide values for.]
+//@import "../../../scss/tiki-selectors-for-options.scss";
+// Contains CSS for styling Tiki elements not covered by Bootstrap.
+@import "_tiki-selector-variables.scss";
+// Provides values for "legacy" Tiki CSS selectors (not covered by Bootstrap).
+@import "_bootstrap-variables.scss";

@@ -1,0 +1,30 @@
+// $Id$
+/*
+ * Original homepage: http://bootswatch.com
+ * Copyright 2012-2014 Thomas Park
+ * Licensed under MIT
+ * Based on Bootstrap
+ * Orphaned theme Adapted for Tiki Wiki CMS Groupware
+*/
+@import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
+@import "_bootstrap-variables.scss"; // Needs to follow _functions.scss because of containing "lighten".
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two are needed to prevent...
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // ...compiling errors.
+@import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
+@import "_bootswatch.scss";
+
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss"; // Needed for darken function.
+@import "../../base_files/scss/_tiki-selectors.scss";
+@import "../../base_files/scss/_bs3-bs4-transition.scss";
+@import "../../base_files/scss/_external-scripts.scss";
+
+.dropdown-menu {
+	color: $dropdown-link-color;
+}
+
+body.fullscreen { background: $body-bg; }
+
+.bg-dark { background: #ad1d28 !important; }
+
+//This arrangement works, to implement colors so far, but it shouldn't be necessary to put CSS here for it to override.
+

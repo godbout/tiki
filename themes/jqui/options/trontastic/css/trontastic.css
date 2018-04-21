@@ -450,7 +450,7 @@ textarea a:hover,
 }
 .caltable .even,
 .caltable .odd {
-  background: #0a0a0a url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/trontastic/images/ui-bg_gloss-wave_55_000000_500x100.png') repeat-x scroll 50% 50%;
+  background: #0A0A0A url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/trontastic/images/ui-bg_gloss-wave_55_000000_500x100.png') repeat-x scroll 50% 50%;
   border: 1px solid #1b1613;
   color: #b8ec79;
 }

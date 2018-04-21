@@ -1,0 +1,82 @@
+// $Id$
+// This file is for additional LESS rules beyond what are in variables.scss.
+
+.topbar {
+	border-radius: $border-radius;
+	border: 1px solid #aaaaaa;
+	margin-bottom: 20px;
+}
+
+.topbar {
+	.nav > li > a {
+		border-right: 1px solid #aaaaaa;
+		font-weight: bold;
+	}
+
+	.nav > li:first-of-type > a {
+		border-left: none;
+	}
+}
+
+
+.navbar-light .navbar-nav > .active > a,
+.navbar-light .navbar-nav > .active > a:hover,
+.navbar-light .navbar-nav > .active > a:focus,
+.navbar-light,
+.topbar,
+.topbar .navbar-light .navbar-nav > li,
+.topbar .nav > li,
+.card-heading,
+.navbar-light .navbar-collapse,
+.navbar-light .navbar-form {
+//	#gradient > .vertical($start-color: #e3e3e3; $end-color: #cccccc);
+    background: linear-gradient(to bottom, #e3e3e3, #cccccc);
+}
+
+.card-header {
+	margin: 3px;
+	border-bottom-left-radius: $border-radius;
+	border-bottom-right-radius: $border-radius;
+	font-size: 1rem;
+}
+
+.card-title {
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+.card-body h4 { font-size: 1rem; }
+
+.btn-primary,
+.btn-secondary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+	background: #f2f2f2;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f2f2), color-stop(46%, #f2f2f2), color-stop(50%, #e6e6e6), color-stop(50%, #eeeeee), color-stop(100%, #eeeeee));
+	background: -webkit-linear-gradient(top, #f2f2f2 0%, #f2f2f2 46%, #e6e6e6 50%, #eeeeee 50%, #eeeeee 100%);
+	background: -o-linear-gradient(top, #f2f2f2 0%, #f2f2f2 46%, #e6e6e6 50%, #eeeeee 50%, #eeeeee 100%);
+	background: linear-gradient(to bottom, #f2f2f2 0%, #f2f2f2 46%, #e6e6e6 50%, #eeeeee 50%, #eeeeee 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#eeeeee', GradientType=0);
+  color: #333;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-success:hover,
+.btn-info:hover,
+.btn-warning:hover,
+.btn-danger:hover {
+	background: #eeeeee;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(50%,#eeeeee), color-stop(50%,#e6e6e6), color-stop(54%,#f2f2f2), color-stop(100%,#f2f2f2));
+	background: -webkit-linear-gradient(top,  #eeeeee 0%,#eeeeee 50%,#e6e6e6 50%,#f2f2f2 54%,#f2f2f2 100%);
+	background: -o-linear-gradient(top,  #eeeeee 0%,#eeeeee 50%,#e6e6e6 50%,#f2f2f2 54%,#f2f2f2 100%);
+	background: linear-gradient(to bottom,  #eeeeee 0%,#eeeeee 50%,#e6e6e6 50%,#f2f2f2 54%,#f2f2f2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#f2f2f2',GradientType=0 );
+  color: #333;
+}
+
+.show > .btn-primary.dropdown-toggle {
+  color: #333;
+}

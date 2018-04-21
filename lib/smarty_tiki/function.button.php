@@ -24,7 +24,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  *	- _flip_hide_text: if set to 'n', do not display a '(Hide)' suffix after _text when status is not 'hidden'
  *	- _flip_default_open: if set to 'y', the flip is open by default (if no cookie jar)
  *	- _escape: if set to 'y', will escape the apostrophes in onclick
- *  - _type: button styling. Possible values: default, primary, success, info, warning, danger, link (following bootstrap conventions)
+ *  - _type: button styling. Possible values: primary, secondary, success, info, warning, danger, link (following bootstrap conventions)
  *     Set different class, title, text and icon depending on whether the button is disabled or selected
  *  - _disabled: set to y to disable the button
  *  - _disabled_class: class to use if _disabled is set to y. Default is 'disabled'
@@ -183,7 +183,7 @@ function smarty_function_button($params, $smarty)
 		);
 	}
 
-	$type = isset($params['_type']) ? $params['_type'] : 'default';
+	$type = isset($params['_type']) ? $params['_type'] : 'primary';
 
 	$auto_query_args = $auto_query_args_orig;
 	$html = preg_replace('/<a /', '<a class="btn btn-' . $type . ' ' . $class . '" data-role="button" data-inline="true" ' . $id . ' ', $html);

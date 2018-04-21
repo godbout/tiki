@@ -1,21 +1,21 @@
 // $Id$
-@web-font-path: "https://fonts.googleapis.com/css?family=Roboto:400,500";
+$web-font-path: "https://fonts.googleapis.com/css?family=Roboto:400,500";
 
-.web-font(@path) {
-	@import url("@{path}");
+.web-font($path) {
+	@import url("#{$path}");
 }
-.web-font(@web-font-path);
-@import "../../../vendor_bundled/vendor/twitter/bootstrap/less/bootstrap.less";
-@import "../../base_files/less/bootswatch_overrides.less";
+.web-font($web-font-path);
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
+@import "../../base_files/scss/_bootswatch_overrides.scss";
 // So far, just removes the CSS content theme-option-required warning.
-@import "bootswatch.less";
-// defines the theme's CSS values that are outside of variables.less.
-@import "variables.less";
-// @import "tiki-selectors.less";
-// the Bootstrap variables.less file with theme-specific values replacing the defaults
-@import "../../base_files/less/tiki-variables.less";
-// Values/definitions for Tiki variables (outside of Bootstrap variables) such as tiki-selectors.less.
-@import "../../base_files/less/tiki-selectors.less";
+@import "_bootswatch.scss";
+// defines the theme's CSS values that are outside of variables.scss.
+@import "_variables.scss";
+// @import "_tiki-selectors.scss";
+// the Bootstrap variables.scss file with theme-specific values replacing the defaults
+@import "../../base_files/scss/_tiki-variables.scss";
+// Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
+@import "../../base_files/scss/_tiki-selectors.scss";
 // Tiki non-Bootstrap CSS selectors related to color
-@import "../../base_files/less/external-scripts.less";
+@import "../../base_files/scss/_external-scripts.scss";
 

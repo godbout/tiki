@@ -1,0 +1,80 @@
+// $Id$ Custom variables for the Didiem theme option of the jQui theme.
+
+// Colors
+$primary: #8bbb47;
+
+$theme-colors: (
+	"primary":        	#a1bb87
+);
+
+// Options
+// Spacing
+
+// Body
+$body-color: #363636;
+
+// Links
+$link-color:       $primary;
+$link-hover-color: #8bbb47;
+
+// Components
+
+// Fonts
+$font-family-sans-serif:  Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+// Tables
+
+// Buttons
+$btn-primary-color: #ffffff;
+$btn-primary-bg: #a1bb87;
+$btn-primary-border: #8fa872;
+
+$btn-secondary-color: #ffffff;
+$btn-secondary-bg: #a1bb87;
+$btn-secondary-border: #8fa872;
+
+// Forms
+$input-bg: #f8f9d4;
+$input-bg-disabled: $gray-300;
+$input-color: $gray-900;
+$input-border-color: #e0e0e0;
+$input-focus-border-color: darken(#e0e0e0, 15%);
+
+// Dropdowns
+$dropdown-bg:                    #aaaaaa;
+$dropdown-divider-bg:            #e5e5e5;
+$dropdown-link-color:            #ffffff;
+$dropdown-link-hover-color: darken(#ffffff, 5%);
+$dropdown-link-hover-bg: #6D9F26;
+
+// Navs
+// Navbar
+$navbar-height:        34px;
+$navbar-light-color: #000000;
+$navbar-light-bg: #eeeeee;
+$navbar-light-border: none;
+
+// Navbarlinks ??
+$navbar-light-link-color: #000000;
+$navbar-light-link-hover-color: #ffffff;
+$navbar-light-link-hover-bg: linear-gradient(to bottom, #93c44f 0%, #6d9f26 100%);
+$navbar-light-link-active-color: #000000;
+$navbar-light-link-disabled-color: #ffffff;
+$navbar-light-link-disabled-bg: transparent;
+
+// Pagination
+// Jumbotron
+// Cards
+// Tooltips
+// Popovers
+// Badges
+// Modals
+// Alerts
+// Progress bars
+// List group
+// Image thumbnails
+// Figures
+// Breadcrumbs
+// Carousel
+// Close
+// Code
