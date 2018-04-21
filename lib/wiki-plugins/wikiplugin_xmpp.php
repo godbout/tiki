@@ -72,7 +72,7 @@ function wikiplugin_xmpp($data, $params)
 		return '';
 	}
 	$result = '<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
-	unset( $params['width'], $params['height']);
+	unset($params['width'], $params['height']);
 
 	TikiLib::lib('xmpp')->addConverseJSToPage($params);
 

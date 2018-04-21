@@ -131,14 +131,14 @@ function wikiplugin_wikidiff($data, $params)
 	if ($prefs['flaggedrev_approval'] == 'y') {
 		$flaggedrevisionlib = TikiLib::lib('flaggedrevision');
 		if ($flaggedrevisionlib->page_requires_approval($params['object_id'])) {
-			if (!$flaggedrevisionlib->version_is_flagged($params['object_id'], $params['oldver'], 'moderation', 'OK')) {
+			if (! $flaggedrevisionlib->version_is_flagged($params['object_id'], $params['oldver'], 'moderation', 'OK')) {
 				// If oldver (required) is not approved, display error message
 				$text = $params['pagenotapproved_text'];
 				return($text);
 			}
-			if (isset($params['newver']) && !empty($params['newver'])) {
+			if (isset($params['newver']) && ! empty($params['newver'])) {
 				// If specific version is specified, check if it has been approved
-				if (!$flaggedrevisionlib->version_is_flagged($params['object_id'], $params['newver'], 'moderation', 'OK')) {
+				if (! $flaggedrevisionlib->version_is_flagged($params['object_id'], $params['newver'], 'moderation', 'OK')) {
 					return($params['pagenotapproved_text']);
 				}
 			} else {

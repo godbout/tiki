@@ -63,10 +63,10 @@ class TrackerWriter
 
 			$tx->commit();
 
-			if (!$result) {
+			if (! $result) {
 				return $result;
 			}
-			
+
 			return call_user_func_array('array_merge', $result);
 		};
 

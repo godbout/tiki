@@ -66,10 +66,9 @@ if (isset($_REQUEST["print"]) || isset($_REQUEST["display"])) {
 			}
 
 			// Get the page_id from the page_ref_id
-			try{
+			try {
 				$page_info['id'] = $tikilib->getOne("select `page_id` from `tiki_structures` where `page_ref_id` = " . $page_ref_id);
-			}
-			catch(Exception $e){
+			} catch (Exception $e) {
 				$page_info['id'] = -1;
 			}
 

@@ -886,7 +886,6 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 		$perms = TikiLib::lib('tiki')->get_perm_object($galleryId, 'file gallery', $gal_info);
 		if ($perms['tiki_p_admin_file_galleries'] === 'y' ||
 				($gal_info['type'] === 'user' && $perms['tiki_p_create_file_galleries'])) {		// users can create and remove their own gals only
-
 			return $this->filegallib->remove_file_gallery($this->pathToId($path), $this->pathToId($path));
 		} else {
 			return false;

@@ -87,7 +87,7 @@ function smarty_function_html_body_attributes($params, $smarty)
 
 	if ($prefs['wiki_make_ordered_list_items_display_unique_numbers'] === 'y') {
 		$class .= ' uol'; // add class to display all the ordered lists sub-items indented with unique numbering like "1.2", "1.2.1", etc.
-		}
+	}
 
 	if (! empty($onload)) {
 		$back .= ' onload="' . $onload . '"';

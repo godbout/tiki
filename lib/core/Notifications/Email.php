@@ -30,7 +30,7 @@ class Email
 		}
 
 		//Only support Forum/Blog Post comments
-		if (!in_array($type, ['forum', 'blog post'])) {
+		if (! in_array($type, ['forum', 'blog post'])) {
 			return [];
 		}
 
@@ -47,10 +47,9 @@ class Email
 		$headers['Message-Id'] = $comment['message_id'];
 
 		$hash = md5($comment['objectType'] . '.' . $comment['object']) . '@' . $_SERVER["SERVER_NAME"];
-		$headers['In-Reply-To'] = !empty($parentInfo['Message-Id']) ? $parentInfo['Message-Id'] : $hash;
-		$headers['References'] = !empty($parentInfo['References']) ? $headers['In-Reply-To'] . ', ' . $parentInfo['References'] : $hash;
+		$headers['In-Reply-To'] = ! empty($parentInfo['Message-Id']) ? $parentInfo['Message-Id'] : $hash;
+		$headers['References'] = ! empty($parentInfo['References']) ? $headers['In-Reply-To'] . ', ' . $parentInfo['References'] : $hash;
 
 		return $headers;
 	}
-
 }

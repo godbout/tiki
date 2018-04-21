@@ -49,7 +49,7 @@ if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_na
 		$smarty->display("error.tpl");
 		die;
 	}
-		
+
 	$avatarlib = TikiLib::lib('avatar');
 	$avatarlib->set_avatar_from_url($_FILES['userfile1']['tmp_name'], $userwatch, $name);
 

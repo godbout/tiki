@@ -116,7 +116,7 @@ class XMPPLib extends TikiLib
 			$xmpp_password = "$token";
 		} else {
 			$xmpp_password = $this->get_user_password($user);
-			if ( empty($xmpp_password) ) {
+			if (empty($xmpp_password)) {
 				return [];
 			}
 		}
@@ -150,7 +150,8 @@ class XMPPLib extends TikiLib
 	 * @return string
 	 * @throws Exception
 	 */
-	function addConverseJSToPage($params = []) {
+	function addConverseJSToPage($params = [])
+	{
 		global $user, $prefs;
 
 		static $instance = 0;

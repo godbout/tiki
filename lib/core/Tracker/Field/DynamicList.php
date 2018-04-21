@@ -287,7 +287,6 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 		$output = '';
 
 		foreach ((array) $remoteItemIds as $remoteItemId) {
-
 			$itemInfo = $trklib->get_tracker_item($remoteItemId);
 
 			$output .= $output ? '<br>' : '';	// just line breaks for now

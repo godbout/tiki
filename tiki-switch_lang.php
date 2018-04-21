@@ -36,7 +36,7 @@ $item_url = parse_url($_SERVER['HTTP_REFERER']);
 $item_query = $item_url[query];
 // Also, if we are at the homepage and tikiIndex is set, the URL we need to take as reference is the tikiIndex
 $item_path = $item_url['path'];
-if ($item_path == '/' ) {
+if ($item_path == '/') {
 	$orig_url = $prefs['tikiIndex'];
 }
 

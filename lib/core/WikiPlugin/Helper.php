@@ -21,7 +21,7 @@ class WikiPlugin_Helper
 	{
 		global $user;
 
-		if ($user && !empty($prefs['group_option'])) {
+		if ($user && ! empty($prefs['group_option'])) {
 			if ($prefs['group_option'] == 'included' && empty($prefs['groups'])) {
 				return true;
 			}
@@ -36,7 +36,7 @@ class WikiPlugin_Helper
 			$validGroups = array_intersect($userGroups, $availableGroups);
 
 			if (($prefs['group_option'] == 'included' && empty($validGroups)) ||
-				($prefs['group_option'] == 'excluded' && !empty($validGroups))) {
+				($prefs['group_option'] == 'excluded' && ! empty($validGroups))) {
 				return false;
 			}
 		}

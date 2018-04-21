@@ -374,7 +374,7 @@ function wikiplugin_listpages($data, $params)
 	$for_list_pages = ( isset($for_list_pages) && $for_list_pages == 'y' );
 	$only_cant = false;
 
-	$listpages = $tikilib->list_pages($offset, $max, $sort, $find, $initial, $exact_match, $only_name, $for_list_pages, $only_orphan_pages, $filter, $only_cant, '' ,$exclude_pages);
+	$listpages = $tikilib->list_pages($offset, $max, $sort, $find, $initial, $exact_match, $only_name, $for_list_pages, $only_orphan_pages, $filter, $only_cant, '', $exclude_pages);
 	if (! empty($includetag) || ! empty($excludetag)) {
 		if (preg_match('/;/', $includetag)) {
 			$aIncludetag = explode(';', $includetag);

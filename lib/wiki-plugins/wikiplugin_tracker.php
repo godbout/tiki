@@ -1346,7 +1346,7 @@ function wikiplugin_tracker($data, $params)
 						$server_name = $_SERVER["HTTP_HOST"];
 					}
 					$smarty->assign('server_name', $server_name);
-					if ( empty($status) ) {
+					if (empty($status)) {
 						$mail_status = $item_info['status'];
 					} else {
 						$mail_status = $status;
@@ -1447,7 +1447,7 @@ function wikiplugin_tracker($data, $params)
 						foreach ($_REQUEST as $kk => $vv) {
 							$ins = preg_replace('/^(ins_)/', '', $kk); // replace the ins_ from the input field names to match with e.g. urlparams="1:2:3"
 							$vv = urlencode($vv);
-							if($urlparams[0] === '*' || in_array($ins, $urlparams)) {
+							if ($urlparams[0] === '*' || in_array($ins, $urlparams)) {
 								$ss = strstr($url[$key], '?') ? '&' : '?'; // if there is "?" already in the URL, use "&" to separate the params
 								$url[$key] .= "$ss$kk=$vv";
 							}
@@ -1848,10 +1848,10 @@ function wikiplugin_tracker($data, $params)
 		(In Tiki 8 onwards) {$itemoff}: the iteration number of each item
 		{$tr_offset}: the offset of the item, i.e. this is the nth item of the total number of x items (TODO)
 		*/
-		$smarty->assign('f_created',$item_info['created']);
-		$smarty->assign('f_status',$item_info['status']);
-		$smarty->assign('f_itemId',$item_info['itemId']);
-		$smarty->assign('f_lastmodif',$item_info['lastModif']);
+		$smarty->assign('f_created', $item_info['created']);
+		$smarty->assign('f_status', $item_info['status']);
+		$smarty->assign('f_itemId', $item_info['itemId']);
+		$smarty->assign('f_lastmodif', $item_info['lastModif']);
 
 		foreach ($flds['data'] as $f) {
 			if (! in_array($f['fieldId'], $auto_fieldId) && in_array($f['fieldId'], $hidden_fieldId)) {

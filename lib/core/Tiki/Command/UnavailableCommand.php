@@ -36,7 +36,7 @@ class UnavailableCommand extends Command
 		$installer = new Installer;
 		$message = "Command not available at this stage. Complete required installation steps.";
 		if ($installer->requiresUpdate()) {
-			$message .= ' '.'Perhaps your database structure is not up to date? Solved by: php console.php database:update';
+			$message .= ' ' . 'Perhaps your database structure is not up to date? Solved by: php console.php database:update';
 		}
 		$output->writeln('<error>' . $message . '</error>');
 	}

@@ -49,7 +49,7 @@ function wikiplugin_include_info()
 				'since' => '18.0',
 				'default' => 'n',
 				'options' => [
- 					['text' => '', 'value' => ''],
+					['text' => '', 'value' => ''],
 					['text' => tr('Yes'), 'value' => 'y'],
 					['text' => tr('No'), 'value' => 'n'],
 				],
@@ -114,10 +114,10 @@ function wikiplugin_include_info()
 function wikiplugin_include($dataIn, $params)
 {
 	global $killtoc, $prefs;
-	
+
 	/** @var int[] $numberOfInclusions Associative array of the number of times each key (fragment) was included */
 	static $numberOfInclusions;
-	
+
 	static $data;
 	$tikilib = TikiLib::lib('tiki');
 
@@ -132,7 +132,7 @@ function wikiplugin_include($dataIn, $params)
 	if (! isset($page)) {
 		return ("<b>missing page for plugin INCLUDE</b><br />");
 	}
-	if (!isset($max_inclusions)) {
+	if (! isset($max_inclusions)) {
 		$max_inclusions = 5;
 	}
 
@@ -148,7 +148,7 @@ function wikiplugin_include($dataIn, $params)
 	if (isset($end)) {
 		$fragmentIdentifier .= "/$end";
 	}
-	
+
 	if (isset($numberOfInclusions[$fragmentIdentifier])) {
 		if ($numberOfInclusions[$fragmentIdentifier] >= $max_inclusions) {
 			trigger_error('Inclusion failed', E_USER_WARNING);
@@ -257,13 +257,13 @@ function wikiplugin_include($dataIn, $params)
 	$parserlib->setOptions($old_options);
 
 	// append a "See full page" link at end of text if only a portion of page is being included
-    if (($prefs['wiki_plugin_include_link_original'] == 'y' && (isset($start) || isset($stop))) || (isset($linkoriginal) && $linkoriginal == 'y')) {
-        $wikilib = TikiLib::lib('wiki');
-	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-primary"';
-        $text .= 'title="'.sprintf(tr('The text above comes from page "%s". Click to go to that page.'), htmlspecialchars($page)).'">';
-        $text .= smarty_function_icon(['name' => 'align-left'], $smarty).' ';
-        $text .= $linkoriginal_text;
-        $text .= '</a><p>';
+	if (($prefs['wiki_plugin_include_link_original'] == 'y' && (isset($start) || isset($stop))) || (isset($linkoriginal) && $linkoriginal == 'y')) {
+		$wikilib = TikiLib::lib('wiki');
+		$text .= '<p><a href="' . $wikilib->sefurl($page) . '" class="btn btn-primary"';
+		$text .= 'title="' . sprintf(tr('The text above comes from page "%s". Click to go to that page.'), htmlspecialchars($page)) . '">';
+		$text .= smarty_function_icon(['name' => 'align-left'], $smarty) . ' ';
+		$text .= $linkoriginal_text;
+		$text .= '</a><p>';
 	}
 
 	// append an edit button if page_edit_icon does not equal 'n'

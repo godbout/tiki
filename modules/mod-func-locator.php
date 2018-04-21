@@ -35,7 +35,6 @@ function module_locator($mod_reference, $module_params)
 	$smarty = TikiLib::lib('smarty');
 
 	if ($prefs['geo_enabled'] === 'y') {
-
 		TikiLib::lib('header')->add_map();
 
 		// assign the default map centre from the prefs as a data attribute for the map-container div

@@ -361,7 +361,6 @@ class SvnUpCommand extends Command
 
 				$errors = ['is not writable', ''];
 				$this->OutputErrors($logger, shell_exec('php doc/devtools/release.php --only-secdb --no-check-svn'), 'Problem updating secdb', $errors);
-
 			}
 
 			// note: running database update also clears the cache

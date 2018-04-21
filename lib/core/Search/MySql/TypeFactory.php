@@ -12,7 +12,8 @@ class Search_MySql_TypeFactory implements Search_Type_Factory_Interface
 		return new Search_Type_PlainText($value);
 	}
 
-	function plainmediumtext($value) {
+	function plainmediumtext($value)
+	{
 		return new Search_Type_PlainMediumText($value);
 	}
 

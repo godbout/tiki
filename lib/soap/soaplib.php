@@ -23,7 +23,7 @@ class Tiki_Soap
 	}
 
 	/*
-    *   If fullResponse = true, "out" parameters from .NET calls are included in the response.
+	*   If fullResponse = true, "out" parameters from .NET calls are included in the response.
 	*	If false, only the <request>Response part of the reply is included.
 	*/
 	public function performRequest($wsdl, $operation, $params, $options = [ 'encoding' => 'UTF-8' ], $fullReponse = false)

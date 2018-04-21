@@ -25,7 +25,7 @@ function wikiplugin_footnotearea_info()
 				'filter' => 'alnum',
 				'accepted' => tra('Valid CSS class'),
 			],
-			'sameasstyle' => array(
+			'sameasstyle' => [
 				'required' => false,
 				'name' => tra('SameAs Style'),
 				'description' => tra('Numbering style for sameas referencing.'),
@@ -33,24 +33,26 @@ function wikiplugin_footnotearea_info()
 				'default' => 'disc',
 				'filter' => 'text',
 				'accepted' => tra('Valid Tiki ((Number Style))'),
-			),
+			],
 		],
 	];
 }
 
 function wikiplugin_footnotearea($data, $params)
-{	global $footnotes;
+{
+	global $footnotes;
 	$smarty = TikiLib::lib('smarty');
 
-	if (isset($params['sameasstyle']))
-		$smarty->assign('sameType',$params['sameasstyle']);
-	else
-		$smarty->assign('sameType','disc');
+	if (isset($params['sameasstyle'])) {
+		$smarty->assign('sameType', $params['sameasstyle']);
+	} else {
+		$smarty->assign('sameType', 'disc');
+	}
 	$html = '';
 	if (isset($params['class'])) {                                       // if class was given
-		if (isset($footnotes['lists'][$params['class']])){        // if the class exists
+		if (isset($footnotes['lists'][$params['class']])) {        // if the class exists
 			$html = genFootnoteArea($params['class'], $footnotes['lists'][$params['class']]);
-			unset ($footnotes['lists'][$params['class']]['entry']);
+			unset($footnotes['lists'][$params['class']]['entry']);
 		}
 	}
 	$html = genFootnoteArea($selectedFootnotes);
@@ -71,7 +73,7 @@ function genFootnoteArea($list)
 {
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('footnotes', $list);
-	$smarty->assign('listType',$list['listType']);
+	$smarty->assign('listType', $list['listType']);
 
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnotearea.tpl');
 }

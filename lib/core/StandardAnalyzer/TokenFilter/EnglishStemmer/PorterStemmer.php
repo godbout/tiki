@@ -87,7 +87,6 @@ class PorterStemmer
 			// ing and ed
 			if (preg_match("#$v+#", substr($word, 0, -3)) && self::replace($word, 'ing', '')
 					or preg_match("#$v+#", substr($word, 0, -2)) && self::replace($word, 'ed', '')) { // Note use of && and OR, for precedence reasons
-
 				// If one of above two test successful
 				if (! self::replace($word, 'at', 'ate')
 						and ! self::replace($word, 'bl', 'ble')

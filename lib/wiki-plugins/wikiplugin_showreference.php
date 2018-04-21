@@ -110,8 +110,7 @@ function wikiplugin_showreference($data, $params)
 			$hlevel_start = '<p>';
 			$hlevel_end = '</p>';
 		}
-	}
-	else {
+	} else {
 		$hlevel_start = '<p>';
 		$hlevel_end = '</p>';
 	}
@@ -119,15 +118,13 @@ function wikiplugin_showreference($data, $params)
 	if ($prefs['wikiplugin_showreference'] == 'y') {
 		// Check first if the param pageid is passed.
 		// If not then check the global info:page_id
-		if(strlen($params['pageid'])==0) {
+		if (strlen($params['pageid']) == 0) {
 			if (empty($GLOBALS['info']) || empty($GLOBALS['info']['page_id'])) {
 				return 'error';
-			}
-			else{
+			} else {
 				$page_id = $GLOBALS['info']['page_id'];
 			}
-		}
-		else {
+		} else {
 			$page_id = $params['pageid'];
 		}
 
@@ -139,8 +136,9 @@ function wikiplugin_showreference($data, $params)
 		$references = $referenceslib->list_assoc_references($page_id);
 
 		// Return empty html if no references are associated
-		if(count($references['data'])==0)
+		if (count($references['data']) == 0) {
 			return '';
+		}
 
 		$referencesData = [];
 		$is_global = 1;

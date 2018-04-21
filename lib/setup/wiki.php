@@ -33,7 +33,6 @@ if (strstr($_SERVER['SCRIPT_NAME'], 'tiki-index.php')
 	if ($prefs['feature_multilingual'] == 'y'
 			&& (isset($_REQUEST['page']) || isset($_REQUEST['page_ref_id']) || isset($_REQUEST['page_id']))
 	) { // perhaps we have to go to an another page
-
 		$multilinguallib = TikiLib::lib('multilingual');
 		if ($multilinguallib->useBestLanguage()) {
 			if (empty($_REQUEST['page_id'])) {

@@ -322,7 +322,7 @@ class Search_Query implements Search_Query_Interface
 			$resultset = $index->find($this, $this->start, $this->count);
 		} catch (Exception $e) {
 			Feedback::error(tra("Malformed search query"), 'session');
-			trigger_error($e->getMessage(),E_USER_WARNING);
+			trigger_error($e->getMessage(), E_USER_WARNING);
 			return Search_ResultSet::create([]);
 		}
 

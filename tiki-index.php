@@ -437,7 +437,7 @@ if (isset($_REQUEST['reject'], $_REQUEST['revision']) && $_REQUEST['revision'] <
 			$latest_approved = $flaggedrevisionlib->get_version_with($page, 'moderation', 'OK');
 			if ($latest_approved) {
 				$info = $latest_approved;
-				$tikilib->restore_page_from_history($page, $version=$info['version']);
+				$tikilib->restore_page_from_history($page, $version = $info['version']);
 			}
 		}
 	}

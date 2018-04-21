@@ -302,7 +302,6 @@ function wikiplugin_googlechart_authenticate($credentials_file)
 	$token = isset($_SESSION['ga_access_token']) && $_SESSION['ga_access_token'] ? $_SESSION['ga_access_token'] : false;
 
 	if (empty($token) || $token['created'] + 3600 < time()) {	// in v2 it will be $token['expires_in'] but hard coded to 3600 for v1 api
-
 		$data = json_decode(file_get_contents($credentials_file));
 
 		$cred = new Google_Auth_AssertionCredentials(
@@ -339,7 +338,6 @@ function wikiplugin_googlechart_authenticate($credentials_file)
 
 		return $token['access_token'];
 	} else {    // no token
-
 		return false;
 	}
 }

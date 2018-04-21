@@ -227,7 +227,6 @@ if (isset($_REQUEST['intertiki']) and in_array($_REQUEST['intertiki'], array_key
 	// The user must re-enter the old password so no security risk here
 	if (! $isvalid && $error === ACCOUNT_WAITING_USER && $access->checkOrigin('page')) {
 		if ($requestedUser != 'admin') { // admin has not necessarely an email
-
 			if ($userlib->is_email_due($requestedUser, 'email')) {
 				$userlib->send_confirm_email($requestedUser);
 				$userlib->change_user_waiting($requestedUser, 'u');

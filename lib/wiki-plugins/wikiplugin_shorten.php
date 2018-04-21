@@ -168,7 +168,6 @@ function wikiplugin_shorten($data, $params)
 		$out = sprintf($html, $sample, $content);
 		return $out;
 	} else {		// short enough already
-
 		return $parserlib->parse_data_plugin($data);
 	}
 }

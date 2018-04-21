@@ -91,12 +91,10 @@ if ($prefs['fgal_viewerjs_feature'] === 'y') {
 	if (empty($prefs['fgal_viewerjs_uri'])) {
 		$viewerjs_err = tra('ViewerJS URI not set');
 	} elseif (strpos($prefs['fgal_viewerjs_uri'], '://') === false) {	// local install
-
 		if (! is_readable($prefs['fgal_viewerjs_uri'])) {
 			$viewerjs_err = tr('ViewerJS URI not found (local file not readable)');
 		}
 	} else {												// remote (will take a while)
-
 		$file_headers = get_headers(TikiLib::lib('access')->absoluteUrl($prefs['fgal_viewerjs_uri']));
 		if (strpos($file_headers[0], '200') === false) {
 			$viewerjs_err = tr('ViewerJS URI not found (%0)', $file_headers[0]);

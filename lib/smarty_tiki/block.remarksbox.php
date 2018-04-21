@@ -75,7 +75,7 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 	}
 
 	// If a custom icon is part of the paramters we assign it to the $custom_icon
-	if (isset($params['icon'])){
+	if (isset($params['icon'])) {
 		$custom_icon = $params['icon'];
 	};
 
@@ -84,26 +84,29 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 		case 'errors':
 		case 'danger':
 			$class = 'alert-danger';
-			if (! empty ($custom_icon)){
+			if (! empty($custom_icon)) {
 				$icon = $custom_icon;
 			} else {
-			$icon = 'error';}
+				$icon = 'error';
+			}
 			break;
 		case 'warning':
 			$class = 'alert-warning';
-			if (! empty ($custom_icon)){
+			if (! empty($custom_icon)) {
 				$icon = $custom_icon;
 			} else {
-			$icon = 'warning';}
+				$icon = 'warning';
+			}
 			break;
 		case 'success':
 		case 'confirm':
 		case 'feedback': // Deprecated
 			$class = 'alert-success';
-			if (! empty ($custom_icon)){
+			if (! empty($custom_icon)) {
 				$icon = $custom_icon;
 			} else {
-				$icon = 'success';}
+				$icon = 'success';
+			}
 			break;
 		case 'comment':
 		case 'info':
@@ -111,10 +114,11 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 		case 'tip':
 		default:
 			$class = 'alert-info';
-			if (! empty ($custom_icon)){
+			if (! empty($custom_icon)) {
 				$icon = $custom_icon;
 			} else {
-			$icon = 'information';}
+				$icon = 'information';
+			}
 			break;
 	}
 

@@ -135,7 +135,6 @@ class Services_Object_Controller
 		$lockedby = $attributelib->get_attribute($type, $object, $attribute);
 
 		if ($lockedby) {	// it's locked
-
 			if ($perms->$adminperm || ($user === $lockedby && $perms->$perm)) {
 				if (! empty($object)) {
 					$res = $attributelib->set_attribute($type, $object, $attribute, '');

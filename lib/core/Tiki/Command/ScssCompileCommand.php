@@ -98,7 +98,6 @@ class ScssCompileCommand extends Command
 			}
 
 			if (! $input->getOption('without-options') && is_dir("$location/$themename/options")) {
-
 				foreach (new \DirectoryIterator("$location/$themename/options") as $fileInfo2) {
 					if ($fileInfo2->isDot() || ! $fileInfo2->isDir()) {
 						continue;

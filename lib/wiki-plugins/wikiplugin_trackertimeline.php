@@ -304,7 +304,6 @@ function wikiplugin_trackertimeline($data, $params)
 		$smarty->assign('link_group_names', isset($params['link_group']) && $params['link_group'] == 'y');
 		return $smarty->fetch('wiki-plugins/wikiplugin_trackertimeline.tpl');
 	} else {	// SIMILE Timeline Widget setup
-
 		$headerlib = TikiLib::lib('header');
 
 		// static js moved to lib

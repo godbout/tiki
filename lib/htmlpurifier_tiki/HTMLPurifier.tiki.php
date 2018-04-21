@@ -51,10 +51,9 @@ function getHTMLPurifierTikiConfig()
 			$directory = $tikipath . 'temp/cache';
 		} else {
 			chmod(
-                                $directory,
-                                (int) $prefs['smarty_cache_perms']
-                                | 0111 // Add search/execute permission for all ("chmod a+x"). "--x--x--x" is 0111 (octal).
-                                );
+				$directory,
+				(int)$prefs['smarty_cache_perms'] | 0111 // Add search/execute permission for all ("chmod a+x"). "--x--x--x" is 0111 (octal).
+			);
 		}
 	}
 	$conf = HTMLPurifier_Config::createDefault();

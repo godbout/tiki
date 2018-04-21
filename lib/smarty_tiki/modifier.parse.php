@@ -16,9 +16,9 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * Type:     modifier
  * Name:     parse
  * Purpose:  Parse code in Tiki syntax
- * 
+ *
  * @param boolean $simple true for less parsing, false for normal parsing
- * 
+ *
  * @return string Parsed string
  */
 function smarty_modifier_parse($string, $simple = false)

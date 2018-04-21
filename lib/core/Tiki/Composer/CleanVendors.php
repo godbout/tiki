@@ -415,7 +415,8 @@ class CleanVendors
 			]
 		);
 
-		self::removeMultiple($vendors . 'plotly/plotly.js/',
+		self::removeMultiple(
+			$vendors . 'plotly/plotly.js/',
 			[
 				'src',
 				'dist/extras',

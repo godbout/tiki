@@ -1178,7 +1178,7 @@ class ParserLib extends TikiDb_Bridge
 		$quotedOldName = preg_quote($oldName, '/');
 		$semanticlib = TikiLib::lib('semantic');
 
-                // FIXME: Affects non-parsed sections
+				// FIXME: Affects non-parsed sections
 		foreach ($semanticlib->getAllTokens() as $sem) {
 			$data = str_replace("($sem($oldName", "($sem($newName", $data);
 		}
@@ -1583,7 +1583,7 @@ class ParserLib extends TikiDb_Bridge
 				$pattern = "/(?<!\[)\[$link2\|([^\]\|]+)\|([^\]]+)\]/";
 				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\" data-box=\"$2\">$1</a>$ext_icon", $data);
 				$pattern = "/(?<!\[)\[$link2\|([^\]\|]+)([^\]])*\]/";
-                $link = str_replace('"', '%22', $link);
+				$link = str_replace('"', '%22', $link);
 				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\">$1</a>$ext_icon", $data);
 				$pattern = "/(?<!\[)\[$link2\|?\]/";
 				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\">$link</a>$ext_icon", $data);

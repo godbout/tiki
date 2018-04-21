@@ -9,7 +9,7 @@ class FlaggedRevisionLib extends TikiDb_Bridge
 {
 	const ACTION = 'Flagged';
 
-	function flag_revision($pageName, $version, $flag, $value, $comment='')
+	function flag_revision($pageName, $version, $flag, $value, $comment = '')
 	{
 		global $prefs;
 		$attributelib = TikiLib::lib('attribute');

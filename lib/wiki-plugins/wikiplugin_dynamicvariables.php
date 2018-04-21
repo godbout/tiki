@@ -42,8 +42,8 @@ function wikiplugin_dynamicvariables_info()
 				'description' => tra('Set to sort in ascending or descending order (unsorted by default'),
 				'default' => '',
 				'options' => array(
-                    array('text' => '', 'value' => ''),
-                    array('text' => tra('Ascending'), 'value' => 'asc'),
+					array('text' => '', 'value' => ''),
+					array('text' => tra('Ascending'), 'value' => 'asc'),
 					array('text' => tra('Descending'), 'value' => 'desc')
 				)
 			),

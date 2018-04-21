@@ -24,16 +24,16 @@ class Services_PDF_Controller
 	   //create session array to hold temp tables for printing, table original name and file name
 		chmod($tableFile, 0755);
 	}
-	
-	function action_checkPDFFile(){
-	
-		if(file_exists('temp/public/pdffile_'.session_id().'.txt')){
-			
-			$pdfLenght=file_get_contents('temp/public/pdffile_'.session_id().'.txt');
-			unlink('temp/public/pdffile_'.session_id().'.txt');
+
+	function action_checkPDFFile()
+	{
+
+		if (file_exists('temp/public/pdffile_' . session_id() . '.txt')) {
+			$pdfLenght = file_get_contents('temp/public/pdffile_' . session_id() . '.txt');
+			unlink('temp/public/pdffile_' . session_id() . '.txt');
 			return $pdfLenght;
 		}
-		
+
 		return false;
 	}
 }

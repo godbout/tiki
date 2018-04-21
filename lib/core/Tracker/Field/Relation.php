@@ -135,7 +135,6 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		if (isset($filter['tracker_id']) &&
 				$this->getConfiguration('trackerId') == $filter['tracker_id'] &&
 				! isset($filter['object_id']) && $this->getItemId()) {
-
 			$filter['object_id'] = 'NOT ' . $this->getItemId();	// exclude this item if we are related to the same tracker_id
 		}
 
@@ -159,11 +158,16 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 			}
 			return $this->getConfiguration('value');
 		} elseif ($context['list_mode'] === 'text') {
-			return implode("\n",
-				array_map(function($identifier) {
-					list($type, $object) = explode(':', $identifier, 2);
-					return TikiLib::lib('object')->get_title($type, $object, $this->getOption('format'));
-				}, $this->getConfiguration('relations')));
+			return implode(
+				"\n",
+				array_map(
+					function ($identifier) {
+						list($type, $object) = explode(':', $identifier, 2);
+						return TikiLib::lib('object')->get_title($type, $object, $this->getOption('format'));
+					},
+					$this->getConfiguration('relations')
+				)
+			);
 		} else {
 			$display = $this->getOption('display');
 			if (! in_array($display, ['list', 'count', 'toggle'])) {
@@ -190,7 +194,7 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		}
 
 		// saved items should not refresh themselves later => solves odd issues with relation disappearing
-		self::$refreshedTargets[] = 'trackeritem:'.$this->getItemId();
+		self::$refreshedTargets[] = 'trackeritem:' . $this->getItemId();
 
 		if ($this->getOption(self::OPT_READONLY)) {
 			if ($this->getOption('refresh') == 'save') {
@@ -271,7 +275,7 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 	{
 		$trackerId = $this->getConfiguration('trackerId');
 		$options = json_decode($data['options'], true);
-		
+
 		if (preg_match("/tracker_id=[^&]*{$trackerId}/", $options['filter']) && $options['invert'] && $options['refresh']) {
 			Feedback::warning(tr('Self-related fields with Include Invert option set to Yes should not have Force Refresh option on save.'), 'session');
 		}

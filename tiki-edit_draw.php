@@ -89,11 +89,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_REQUEST['data'])) {
 	$_REQUEST["fileId"] = (int)$_REQUEST["fileId"];
 	// Sanitize
 	$dom = new DOMDocument();
-	if (!$dom->loadXML($_REQUEST['data'], LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
+	if (! $dom->loadXML($_REQUEST['data'], LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
 		// Not good error handling, but no error handling interface is available.
 		// If we got here, user is trying to hack the system, this silent error won't happen in
 		// normal usage
-		die; 
+		die;
 	}
 	$_REQUEST['data'] = $filegallib->clean_xml($_REQUEST['data'], $_REQUEST['galleryId']);
 	if (isset($_REQUEST['imgParams'])) {

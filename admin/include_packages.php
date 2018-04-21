@@ -48,8 +48,7 @@ if ($access->ticketMatch()) {
 					unlink($path);
 					$smarty->assign('composer_management_success', tr('composer.lock file was removed'));
 				} else {
-					$smarty->assign('composer_management_error', tr('composer.lock file is not writable, so it can not be removed')
-					);
+					$smarty->assign('composer_management_error', tr('composer.lock file is not writable, so it can not be removed'));
 				}
 			} else {
 				$smarty->assign('composer_management_success', tr('composer.lock file do not exists'));

@@ -16,7 +16,6 @@ $access->check_feature(['feature_webmail', 'feature_ajax' ]);	// AJAX_TODO
 $access->check_permission_either(['tiki_p_use_webmail', 'tiki_p_use_group_webmail']);
 
 if (! isset($_REQUEST['callback'])) {	// "normal" (non-AJAX) page load
-
 	$divId = 'mod-webmail_inbox' . $module_params['module_position'] . $module_params['module_ord'];
 	$module_params['module_id'] = $divId;
 

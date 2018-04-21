@@ -174,7 +174,7 @@ class SocialNetworksLib extends LogsLib
 		die();
 	}
 
-	
+
 	/**
 	* Old tiki way of getting access_token using socket. Some say it faster than curl. Maybe we
 	* need to move it to hybridauth as an alternative to curl, like guzzle?
@@ -208,7 +208,7 @@ class SocialNetworksLib extends LogsLib
 		}
 		$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
 		$ret = $ret[1];
-		$ret = substr( $ret ,  3, strlen ($ret) - 10 );
+		$ret = substr($ret, 3, strlen($ret) - 10);
 		$json_decoded_ret = json_decode($ret, true);
 
 		if (isset($json_decoded_ret['access_token']) || substr($ret, 0, 13) == 'access_token=') {
@@ -220,12 +220,12 @@ class SocialNetworksLib extends LogsLib
 					// Returned string may have other var like expiry
 					$access_token = substr($access_token, 0, $endoftoken);
 				}
-			}			
+			}
 
 			return $access_token;
-		}
-		else
+		} else {
 			return null;
+		}
 	}
 
 	function getFacebookUserProfile($access_token)
@@ -239,13 +239,13 @@ class SocialNetworksLib extends LogsLib
 		}
 
 		$resp = $this->facebookGraph('', 'me', ['fields' => implode(',', $fields),'access_token' => $access_token], false, 'GET');
-		$resp = substr($resp, 3, strlen ($resp) - 10);
+		$resp = substr($resp, 3, strlen($resp) - 10);
 		$fb_profile = json_decode($resp);
 
 		return $fb_profile;
 	}
 
-	
+
 	/**
 	*
 	* Facebook pre-login
@@ -253,7 +253,7 @@ class SocialNetworksLib extends LogsLib
 	function facebookLoginPre()
 	{
 		global $prefs, $user;
-		
+
 		if ($prefs['socialnetworks_facebook_application_id'] == '' or $prefs['socialnetworks_facebook_application_secr'] == '') {
 			return false;
 		}
@@ -264,7 +264,7 @@ class SocialNetworksLib extends LogsLib
 
 		return true;
 	}
-	
+
 	/**
 	*
 	* This is where real login happens
@@ -273,19 +273,19 @@ class SocialNetworksLib extends LogsLib
 	{
 		global $prefs, $user;
 		$userlib = TikiLib::lib('user');
-			
+
 		if (! $user) {
 			if ($prefs['socialnetworks_facebook_login'] != 'y') {
 				return false;
 			}
-			
+
 			$local_user = $this->getOne("select `user` from `tiki_user_preferences` where `prefName` = 'facebook_id' and `value` = ?", [$fb_profile->id]);
 			if ($local_user) {
 				$user = $local_user;
 			} elseif ($prefs['socialnetworks_facebook_autocreateuser'] == 'y') {
 				$local_user = $this->facebookCreateUser($access_token, $fb_profile);
 			}
-			
+
 			if ($local_user) {
 				$user = $local_user;
 			} else {
@@ -295,7 +295,7 @@ class SocialNetworksLib extends LogsLib
 				$smarty->display('error.tpl');
 				die;
 			}
-			
+
 			global $user_cookie_site;
 			$_SESSION[$user_cookie_site] = $user;
 			$userlib->update_expired_groups();
@@ -304,15 +304,14 @@ class SocialNetworksLib extends LogsLib
 			$userlib->update_lastlogin($user);
 			header('Location: tiki-index.php');
 			die;
-			
 		} else {
 			$this->set_user_preference($user, 'facebook_id', $fb_profile->id);
 			$this->set_user_preference($user, 'facebook_token', $access_token);
 		}
 		return true;	//do we need this?
 	}
-	
-	
+
+
 	/**
 	 * Creates a new user from facebook profile
 	 *
@@ -322,7 +321,7 @@ class SocialNetworksLib extends LogsLib
 	{
 		global $prefs, $user;
 		$userlib = TikiLib::lib('user');
-				
+
 		$randompass = $userlib->genPass();
 		$email = $prefs['socialnetworks_facebook_email'] === 'y' ? $fb_profile->email : '';
 		if ($prefs['login_is_email'] == 'y' && $email) {
@@ -373,10 +372,10 @@ class SocialNetworksLib extends LogsLib
 			$avatarlib = TikiLib::lib('avatar');
 			$avatarlib->set_avatar_from_url($fb_avatar->data->url, $user);
 		}
-		
+
 		return $user;
 	}
-	
+
 	/**
 	 * Checks if the site is registered with linkedIn (client id  and secret are set)
 	 *

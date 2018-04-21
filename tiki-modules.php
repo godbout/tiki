@@ -35,7 +35,6 @@ $modnames = [];
 foreach ($modules as $zone => & $moduleList) {
 	if ($prefs['feature_fullscreen'] != 'y' || empty($_SESSION['fullscreen']) || $_SESSION['fullscreen'] != 'y' ||
 			strpos($zone, 'page') === 0) {	// pagetop and pagebottom zones appear in fullscreen
-
 		foreach ($moduleList as & $mod_reference) {
 			$show_columns[$zone] = 'y';
 

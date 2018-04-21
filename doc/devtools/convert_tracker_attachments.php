@@ -213,4 +213,3 @@ function convertAttachments($trackerId, $fieldId, $galleryId = 0, $remove = fals
 convertAttachments($trackerId, $fieldId, $galleryId, $remove);
 
 exit(0);
-

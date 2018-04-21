@@ -109,7 +109,7 @@ if ($prefs['flaggedrev_approval'] == 'y') {
 		$smarty->assign('flaggedrev_approval', true);
 
 		$info['approved'] = in_array($info['version'], $approved_versions);
-		$info['rejected'] = in_array($info['version'], $rejected_versions); 
+		$info['rejected'] = in_array($info['version'], $rejected_versions);
 
 		$new_history = [];
 
@@ -124,7 +124,7 @@ if ($prefs['flaggedrev_approval'] == 'y') {
 			}
 		}
 
-		while ($tiki_p_wiki_approve != 'y' && sizeof($new_history) > 0 && !$new_history[0]['approved'] && !$new_history[0]['rejected']) {
+		while ($tiki_p_wiki_approve != 'y' && sizeof($new_history) > 0 && ! $new_history[0]['approved'] && ! $new_history[0]['rejected']) {
 			array_shift($new_history);
 		}
 
@@ -323,7 +323,7 @@ if (isset($preview)) {
 		$preview = $rversion;
 	}
 	if ($preview == $info['version'] || $preview == 0) {
-		if ($prefs['flaggedrev_approval'] != 'y' || !$flaggedrevisionlib->page_requires_approval($page) || $info['approved'] || $info['rejected'] || $tiki_p_wiki_approve == 'y') {
+		if ($prefs['flaggedrev_approval'] != 'y' || ! $flaggedrevisionlib->page_requires_approval($page) || $info['approved'] || $info['rejected'] || $tiki_p_wiki_approve == 'y') {
 			$previewd = (new WikiLibOutput($info, $info['data'], ['preview_mode' => true, 'is_html' => $info['is_html']]))->parsedValue;
 			$smarty->assign('previewd', $previewd);
 		}

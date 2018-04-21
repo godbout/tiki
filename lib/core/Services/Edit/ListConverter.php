@@ -130,7 +130,7 @@ class Services_Edit_ListConverter
 				case 'sort_mode':
 					if (strpos($value, 'lastModif_') === 0) {
 						$sortMode = ['mode' => 'modification_date_' . str_replace('lastModif_', '', 'n' . $value)];
-					} else if (strpos($value, 'created_') === 0) {
+					} elseif (strpos($value, 'created_') === 0) {
 						$sortMode = ['mode' => 'creation_date_' . str_replace('lastModif_', '', 'n' . $value)];
 					} else {
 						$sortMode = ['mode' => $value];    // e.g. f_xxx_desc
@@ -210,25 +210,25 @@ class Services_Edit_ListConverter
 								'field' => 'tracker_field_' . $field['permName'],
 								'content' => $filterValues[$i],
 							];
-						} else if (isset($filterExact[$i])) {
+						} elseif (isset($filterExact[$i])) {
 							$exactValue = $filterExact[$i];
 							if (preg_match('/^(not)?categories\((\d+)\)$/', $exactValue, $matches)) {
 								$filters[] = [
 									'deepcategories' => strtoupper($matches[1]) . ' ' . $matches[2],
 								];
-							} else if (preg_match('/^(not)?preference\((.*)\)$/', $exactValue, $matches)) {
+							} elseif (preg_match('/^(not)?preference\((.*)\)$/', $exactValue, $matches)) {
 								$prefValue = TikiLib::lib('tiki')->get_preference($matches[2]);
 								$filters[] = [
 									'field' => 'tracker_field_' . $field['permName'],
 									'exact' => strtoupper($matches[1]) . ' ' . $prefValue,
 								];
-							} else if (preg_match('/^(not)?field\((\d+?),\s*(\d+)\)$/', $exactValue, $matches)) {
+							} elseif (preg_match('/^(not)?field\((\d+?),\s*(\d+)\)$/', $exactValue, $matches)) {
 								$prefValue = TikiLib::lib('trk')->get_field_value($matches[2], $matches[3]);
 								$filters[] = [
 									'field' => 'tracker_field_' . $field['permName'],
 									'exact' => strtoupper($matches[1]) . ' ' . $prefValue,
 								];
-							} else if (preg_match('/^not\((.*)\)$/', $exactValue, $matches)) {
+							} elseif (preg_match('/^not\((.*)\)$/', $exactValue, $matches)) {
 								$filters[] = [
 									'field' => 'tracker_field_' . $field['permName'],
 									'exact' => 'NOT ' . $exactValue,
@@ -236,7 +236,7 @@ class Services_Edit_ListConverter
 								// still TODO:
 								// less(equal)(date)
 								// greater(equal)(date)
-							} else if (strtolower($exactValue) === 'not()') {
+							} elseif (strtolower($exactValue) === 'not()') {
 								$filters[] = [
 									'field' => 'tracker_field_' . $field['permName'],
 									'exact' => 'NOT ""',
@@ -412,5 +412,4 @@ class Services_Edit_ListConverter
 			$this->columns[$permName] = $column;
 		}
 	}
-
 }

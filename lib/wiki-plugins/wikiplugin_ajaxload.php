@@ -179,7 +179,6 @@ function wikiplugin_ajaxload($data, $params)
 	});
 })(jQuery);');
 	} else {		// no js
-
 		$html = "<iframe src=\"{$params['url']}\" id=\"$id\"$attributes></iframe>";
 	}
 

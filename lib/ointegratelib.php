@@ -556,7 +556,6 @@ class OIntegrate_Converter_Indexer implements OIntegrate_Converter
 	{
 		if ($this->format === 'html' || $this->format === 'tikiwiki') {
 			if (! empty($_REQUEST['nt_name'])) {	// preview from admin/webservice page
-
 				$source = new Search_ContentSource_WebserviceSource();
 				$factory = new Search_Type_Factory_Direct();
 

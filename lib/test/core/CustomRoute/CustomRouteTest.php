@@ -157,7 +157,7 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$route = new Item(Item::TYPE_DIRECT, $from, $routerDetails, 'Custom route test', 1, 0);
 
 		$errors = $route->validate();
-		$this->assertEquals($expectError, !empty($errors));
+		$this->assertEquals($expectError, ! empty($errors));
 	}
 
 	public function getDirectRouteData()
@@ -219,7 +219,7 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$route = new Item(Item::TYPE_OBJECT, $from, $routerDetails, 'Custom route test', 1, 0);
 
 		$errors = $route->validate();
-		$this->assertEquals($expectError, !empty($errors));
+		$this->assertEquals($expectError, ! empty($errors));
 	}
 
 	public function getTikiObjectRouteData()
@@ -301,7 +301,7 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 
 		$errors = $route->validate();
 
-		$this->assertEquals($expectError, !empty($errors));
+		$this->assertEquals($expectError, ! empty($errors));
 	}
 
 	public function getTrackerFieldRouteData()
@@ -329,6 +329,4 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 			],
 		];
 	}
-
-
 }

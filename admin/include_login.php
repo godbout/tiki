@@ -104,7 +104,6 @@ if ($access->ticketMatch()) {
 		$blackL->limit = $_POST['limit'];
 
 		if (isset($_POST['viewblacklist'])) {  // if viewing the password list, enter plain text mode, spit out passwords, then exit.
-
 			header('Content-type: text/plain');
 			$blackL->generatePassList(false);
 			exit;

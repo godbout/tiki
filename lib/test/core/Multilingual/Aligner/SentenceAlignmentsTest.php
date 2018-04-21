@@ -43,7 +43,7 @@ class Multilingual_Aligner_SentenceAlignmentsTest extends TikiTestCase
 	////////////////////////////////////////////////////////////////
 
 	/*
-     * In the remainder of these tests, you can assume that
+	 * In the remainder of these tests, you can assume that
 	 * $this->alignments alignments contains an instance of
 	 * SentenceAligners built as in the above test.
 	 */

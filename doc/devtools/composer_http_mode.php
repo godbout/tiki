@@ -24,10 +24,9 @@ if ($_SERVER['argc'] <= 1 || isset($_SERVER['argv']['help'])) {
     revert : Revert changes to use normal https mode
 ';
 	return;
-
-} else if ($_SERVER['argv'][1] === 'revert') {
+} elseif ($_SERVER['argv'][1] === 'revert') {
 	revert();
-} else if ($_SERVER['argv'][1] === 'execute') {
+} elseif ($_SERVER['argv'][1] === 'execute') {
 	execute();
 }
 
@@ -105,5 +104,4 @@ function revert()
 	rename($composerLockFileBackup, $composerLockFile);
 
 	echo "Done\n";
-
 }

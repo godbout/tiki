@@ -20,7 +20,6 @@ if (! isset($_REQUEST['mobile_mode']) || $_REQUEST['mobile_mode'] === 'y') {
 						$uagent_info->DetectPalmWebOS();
 
 	if ((! getCookie('mobile_mode') && $supported_device) || getCookie('mobile_mode') === 'y') {		// supported by jquery.mobile
-
 		if (! is_array($prefs['mobile_perspectives'])) {
 			$prefs['mobile_perspectives'] = unserialize($prefs['mobile_perspectives']);
 		}
@@ -65,7 +64,6 @@ if ($photosToSwipe.length) {$photosToSwipe.photoSwipe();}', 5)
 				global $base_url;
 				$perspectivelib = TikiLib::lib('perspective');
 				if (! in_array($perspectivelib->get_current_perspective($prefs), $prefs['mobile_perspectives'])) {	// change perspective
-
 					$hp = $prefs['wikiHomePage'];							// get default non mobile homepage
 
 					$_SESSION['current_perspective'] = $persp;

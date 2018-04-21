@@ -135,7 +135,7 @@ class WikiParser_OutputLink
 			);
 		} else {
 			$page = $this->getTargetPage($page);
-			$pageId = substr($page, 0, 158);                
+			$pageId = substr($page, 0, 158);
 			return $this->outputLink(
 				$description,
 				[

@@ -170,7 +170,7 @@ class Tracker_Field_DateTime extends Tracker_Field_Abstract implements Tracker_F
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
 	{
 		if ($this->getValue() && (strlen($this->getValue()) > 10 || intval($this->getValue()) <= 0)) {
-			trigger_error("Possibly incorrect timestamp value found when trying to send to search index. Tracker item ".$this->getItemId().", field ".$this->getConfiguration('permName').", value ".$this->getValue(), E_USER_WARNING);
+			trigger_error("Possibly incorrect timestamp value found when trying to send to search index. Tracker item " . $this->getItemId() . ", field " . $this->getConfiguration('permName') . ", value " . $this->getValue(), E_USER_WARNING);
 		}
 		$baseKey = $this->getBaseKey();
 		return [

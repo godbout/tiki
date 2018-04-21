@@ -189,7 +189,6 @@ function smarty_function_user_registration($params, $smarty)
 				$smarty->assign('msg', '');
 				$smarty->assign('showmsg', 'n');
 			} elseif (isset($_REQUEST['name'])) {		// user tracker saved ok
-
 				$result = $registrationlib->register_new_user($_REQUEST);
 				if (is_array($result)) {
 					foreach ($result as $r) {

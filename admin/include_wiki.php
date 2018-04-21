@@ -110,7 +110,6 @@ if ($access->ticketMatch()) {
 		$adminlib->remove_unused_pictures();
 		Feedback::success(tr('Process to remove pictures has completed.'), 'session');
 	}
-
 }
 
 $smarty->assign('isDump', is_file($path));

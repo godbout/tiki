@@ -5,8 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once ('function.popup.php');
-require_once ('function.icon.php');
+require_once('function.popup.php');
+require_once('function.icon.php');
 
 function smarty_block_actions($params, $content, $smarty, $repeat = false)
 {
@@ -44,7 +44,7 @@ function smarty_block_actions($params, $content, $smarty, $repeat = false)
 
 	$return .= '<a
 			class="tips"
-			title="'.tra('Actions').'"
+			title="' . tra('Actions') . '"
 			href="#"';
 
 	if ($js === 'y') {
@@ -56,7 +56,7 @@ function smarty_block_actions($params, $content, $smarty, $repeat = false)
 	$return .= '</a>';
 
 	if ($js === 'n') {
-		$return .= '<ul class="dropdown-menu" role="menu">'.$content.'</ul></li></ul>';
+		$return .= '<ul class="dropdown-menu" role="menu">' . $content . '</ul></li></ul>';
 	}
 
 	$return = str_ireplace('<action>', $libeg, $return);

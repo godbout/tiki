@@ -106,7 +106,7 @@ function module_login_box($mod_reference, &$module_params)
 	} else {
 		$module_params['show_forgot'] = 'n';
 	}
-	if (!isset($module_params['groups'])) {
+	if (! isset($module_params['groups'])) {
 		$module_params['groups'] = '';
 	}
 }

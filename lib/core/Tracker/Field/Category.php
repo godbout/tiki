@@ -659,7 +659,6 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 			$diff = array_diff($newValue, $value);
 
 			if ($diff) {		// unsaved categs found
-
 				$categlib = TikiLib::lib('categ');
 				$itemId = $this->getItemId();
 

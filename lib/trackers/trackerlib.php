@@ -4846,9 +4846,9 @@ class TrackerLib extends TikiLib
 			$bindvars[] = $page[count($page) - 1]['version'];
 		}
 
-		$query = 'SELECT ttifl.`version`, ttifl.`fieldId`, ttifl.`value`, ta.`user`, ta.`lastModif` '.
-					'FROM `tiki_tracker_item_field_logs` ttifl '.
-					'LEFT JOIN `tiki_actionlog` ta ON (ta.`comment`=ttifl.`version` AND ta.`objectType`=? AND ta.`object`=' . $join . ') '.
+		$query = 'SELECT ttifl.`version`, ttifl.`fieldId`, ttifl.`value`, ta.`user`, ta.`lastModif` ' .
+					'FROM `tiki_tracker_item_field_logs` ttifl ' .
+					'LEFT JOIN `tiki_actionlog` ta ON (ta.`comment`=ttifl.`version` AND ta.`objectType`=? AND ta.`object`=' . $join . ') ' .
 					'WHERE ' . implode(' AND ', $mid) . ' ORDER BY ttifl.`itemId` ASC, ttifl.`version` DESC, ttifl.`fieldId` ASC';
 
 		$all = $this->fetchAll($query, $bindvars);
@@ -5902,7 +5902,7 @@ class TrackerLib extends TikiLib
 			$item[$field['fieldId']] = $this->get_item_value(null, $item['itemId'], $field['fieldId']);
 		} elseif (isset($params['value'])) {
 			$field['value'] = $params['value'];
-			$field['ins_'.$field['fieldId']] = $field['value'];
+			$field['ins_' . $field['fieldId']] = $field['value'];
 			$item[$field['fieldId']] = $field['value'];
 		}
 
@@ -5967,7 +5967,7 @@ class TrackerLib extends TikiLib
 						'field_fetch_url' => $fetchUrl,
 					]
 				);
-			} else if (isset($params['oldValue'])) {
+			} elseif (isset($params['oldValue'])) {
 				$r = $handler->renderDiff($context);
 			} else {
 				$r = $handler->renderOutput($context);
@@ -6045,7 +6045,8 @@ class TrackerLib extends TikiLib
 		return array_unique($items);
 	}
 
-	public function refresh_itemslist_index($args) {
+	public function refresh_itemslist_index($args)
+	{
 		// Event handler
 		// See pref tracker_refresh_itemslist_detail
 

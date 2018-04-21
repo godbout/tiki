@@ -69,7 +69,6 @@ class AreasLib extends CategLib
 			}
 		}
 		if ($objectPerspective < 1 && ! empty($_SESSION['current_perspective'])) { // uncategorised objects
-
 			$area = $this->getAreaByPerspId($_SESSION['current_perspective']);
 			if ($area) {
 				if (! $area['share_common']) {

@@ -116,7 +116,6 @@ function batchImportUsers()
 			if (empty($u['login']) && empty($u['email'])) {
 				$local[] = discardUser($u, tra('User login or email is required'));
 			} else { // pick up the info on the master
-
 				$info = $userlib->interGetUserInfo(
 					$prefs['interlist'][$prefs['feature_intertiki_mymaster']],
 					empty($u['login']) ? '' : $u['login'],

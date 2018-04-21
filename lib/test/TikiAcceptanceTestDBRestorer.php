@@ -111,7 +111,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 {
 	/*
 	 * This subclass uses SQL dumps of the DB to create DB snapshots and restore them.
-     * It tries to only restore those tables that have changed since the last time
+	 * It tries to only restore those tables that have changed since the last time
 	 * the snapshot was restored.
 	 */
 

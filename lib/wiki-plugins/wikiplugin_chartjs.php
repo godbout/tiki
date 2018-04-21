@@ -7,74 +7,74 @@
 
 function wikiplugin_chartjs_info()
 {
-	return array(
+	return [
 		'name' => tra('Chart JS'),
 		'documentation' => 'PluginChartJS',
 		'description' => tra('Create a JS Chart'),
-		'prefs' => array('wikiplugin_chartjs'),
+		'prefs' => ['wikiplugin_chartjs'],
 		'body' => tra('A chart using ChartJS'),
-		'tags' => array('advanced'),
+		'tags' => ['advanced'],
 		'introduced' => 16,
-		'params' => array(
-			'id' => array(
+		'params' => [
+			'id' => [
 				'name' => tra('Chart Id'),
 				'description' => tr('The ID of the chart - useful and required if multiple charts are used.'),
 				'filter' => 'text',
 				'default' => 'tikiChart',
 				'since' => '16.0',
-			),
-			'type' => array(
+			],
+			'type' => [
 				'name' => tra('Chart Type'),
 				'description' => tr('The type of chart. Currently works with pie, bar and doughnut'),
 				'filter' => 'text',
 				'default' => 'pie',
 				'since' => '16.0',
-			),
-			'height' => array(
+			],
+			'height' => [
 				'name' => tra('Chart Height'),
 				'description' => tr('The height of the chart in px'),
 				'filter' => 'text',
 				'default' => '200',
 				'since' => '16.0',
-			),
-			'width' => array(
+			],
+			'width' => [
 				'name' => tra('Chart Width'),
 				'description' => tr('The width of the chart in px'),
 				'filter' => 'text',
 				'default' => '200',
 				'since' => '16.0',
-			),
-			'values' => array(
+			],
+			'values' => [
 				'name' => tra('Chart data values'),
 				'required' => true,
 				'description' => tr('Colon-separated values for the chart'),
 				'filter' => 'text',
 				'since' => '16.0',
-			),
-			'data_labels' => array(
+			],
+			'data_labels' => [
 				'name' => tra('Chart data labels'),
 				'description' => tr('Colon-separated labels for the datasets in the chart. Max 10, if left empty'),
 				'filter' => 'text',
 				'default' => 'A:B:C:D:E:F:G:H:I:J',
 				'since' => '16.0',
-			),
-			'data_colors' => array(
+			],
+			'data_colors' => [
 				'name' => tra('Chart values'),
 				'description' => tr('Colon-separated colors for the datasets in the chart. Max 10, if left empty'),
 				'filter' => 'text',
 				'default' => 'red:blue:green:purple:grey:orange:yellow:black:brown:cyan',
 				'since' => '16.0',
-			),
-			'data_highlights' => array(
+			],
+			'data_highlights' => [
 				'name' => tra('Chart highlight'),
 				'description' => tr('Colon-separated color of chart section when highlighted'),
 				'filter' => 'text',
 				'default' => '',
 				'since' => '16.0',
-			),
-		),
+			],
+		],
 		'iconname' => 'pie-chart',
-	);
+	];
 }
 
 function wikiplugin_chartjs($data, $params)
@@ -82,7 +82,7 @@ function wikiplugin_chartjs($data, $params)
 
 	//set defaults
 	$plugininfo = wikiplugin_chartjs_info();
-	$defaults = array();
+	$defaults = [];
 	foreach ($plugininfo['params'] as $key => $param) {
 		$defaults[$key] = $param['default'];
 	}

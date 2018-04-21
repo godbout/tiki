@@ -37,7 +37,6 @@ class Services_File_Controller
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($input->offsetExists('description')) {
-
 				$files = $input->asArray('file');
 				$descriptions = $input->asArray('description');
 
@@ -45,7 +44,6 @@ class Services_File_Controller
 					$fileInfo = $filegallib->get_file_info($file);
 
 					if (isset($descriptions[$c])) {
-
 						$filegallib->update_file(
 							$fileInfo['fileId'],
 							$fileInfo['filename'],
@@ -138,7 +136,6 @@ class Services_File_Controller
 		*/
 
 		if (empty($name) || $size == 0 || empty($data)) {
-
 			$message = tr('File could not be uploaded:') . ' ';
 			$error = error_get_last();
 

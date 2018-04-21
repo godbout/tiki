@@ -621,7 +621,7 @@ function wikiplugin_pivottable($data, $params)
 					$groupColors[$groupInfo['groupName']] = $groupInfo['groupColor'];
 				}
 			}
-			if (!empty($params['highlightGroupColors'])) {
+			if (! empty($params['highlightGroupColors'])) {
 				$index = 0;
 				foreach ($myGroups as $group) {
 					if (empty($params['highlightGroupColors'][$index])) {

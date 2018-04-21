@@ -796,7 +796,6 @@ function cs_design_select($id, $fieldname, $fieldid, $arguments, $default, &$scr
 			$options = array_keys($labels);
 			$labels = array_values($labels);
 		} elseif ($field['type'] === 't') {	// Text field so get all values up to a sensible(?) amount
-
 			global $prefs;
 
 			// turns out using a straight "old fashioned" DISTINCT MySQL query here is the most efficient
@@ -828,7 +827,6 @@ function cs_design_select($id, $fieldname, $fieldid, $arguments, $default, &$scr
 				}
 			}
 		} elseif ($field['type'] === 'u') {	// User Selector (only when in dropdown list mode)
-
 			$html = $handler->renderInput();
 			$html = preg_replace('/id=[\'"].*?[\'"]/', 'id="' . $fieldid . '"', $html);
 			$script .= "

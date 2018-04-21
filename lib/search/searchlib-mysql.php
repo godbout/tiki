@@ -243,7 +243,6 @@ class SearchLib extends TikiLib
 		$cant = $result->numRows();
 
 		if (! $cant && $boolean != 'y') { // no result
-
 			if ($fulltext && $words) { // try a simple search
 				return $this->_find($h, $words, $offset, $maxRecords, false, $filter, $boolean, $type, $searchDate, $categId);
 			} else {

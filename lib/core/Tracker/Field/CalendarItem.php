@@ -163,7 +163,6 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 				// ->add_js('window.CKEDITOR.config._TikiRoot = "' . $tikiroot . '";', 1);
 			TikiLib::lib('header')->add_jq_onready('$.validator.classRuleSettings.date = false;
 	');
-
 		} else {
 			$editUrl = '';
 		}

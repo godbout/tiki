@@ -20,7 +20,7 @@ function prefs_wysiwyg_list()
 			'warning' => tra('Switching between HTML and wiki formats can cause problems for some pages.'),
 			'default' => 'y',
 		],
-		
+
 		'wysiwyg_default' => [
 			'name' => tra('Full WYSIWYG editor is displayed by default'),
 			'description' => tra('If both the WYSIWYG editor and the text editor are available, the WYSIWYG editor is used by default, for example, when creating new pages'),

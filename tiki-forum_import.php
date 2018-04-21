@@ -151,7 +151,6 @@ if (isset($_POST["step4"])) {
 	} elseif ($_POST["import"] == 'same') {		// Same db and server
 	} elseif ($_POST["import"] == 'other') {	// Different db & server
 	} elseif ($_POST["import"] == 'sql') {		// Import from SQL file
-
 		/* Import from the SQL file will only look in $tikiroot/$tmpDir or
 		 * $tikiroot/img/wiki_up for the speficied file.  Any path is
 		 * stripped off the filename input by the user.  $tmpDir overrides

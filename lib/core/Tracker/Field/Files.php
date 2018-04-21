@@ -345,10 +345,15 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		}
 
 		if ($context['list_mode'] === 'text') {
-			return implode("\n",
-				array_map(function($file){
-					return $file['name'];
-				}, $this->getConfiguration('files')));
+			return implode(
+				"\n",
+				array_map(
+					function ($file) {
+						return $file['name'];
+					},
+					$this->getConfiguration('files')
+				)
+			);
 		}
 
 		$ret = '';
@@ -614,7 +619,8 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 				if (isset($out[$id])) {
 					$out2["$id"] = $out[$id];
 				} else {
-					Feedback::warning(tr('File #%0 missing (was attached to trackerfield #%1 on item #%2)',
+					Feedback::warning(tr(
+						'File #%0 missing (was attached to trackerfield #%1 on item #%2)',
 						$id,
 						$this->getConfiguration('fieldId'),
 						$this->getItemId()

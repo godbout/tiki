@@ -7,19 +7,19 @@
 
 /**
  * A text of markup, usually using Tiki's syntax ("wiki syntax"), which can be parsed
- * 
+ *
  * This class is a contextual version of ParserLib. ParserLib is not contextual.
  * This class can be used to analyze 2 different pages in a single request and recognize those as different contexts. 2 fragments of the same wiki page can also be different contexts.
  * The extension of ParserLib is hopefully temporary. Ideally ParserLib would be replaced by a more complete version of this class.
- * TODO: Move remaining ParserLib methods and option property here 
+ * TODO: Move remaining ParserLib methods and option property here
 */
 class WikiParser_Parsable extends ParserLib
 {
 	/** @var string Code usually containing text and markup */
 	private $markup;
-	
+
 	// Properties used by parallel parsing functions to share data
-	
+
 	/** @var array Footnotes added via the FOOTNOTE plugin. These are read by wikiplugin_footnotearea(). */
 	public $footnotes;
 
@@ -203,11 +203,11 @@ if ( \$('#$id') ) {
 			}
 		}
 	}
-	
+
 	/**
 	 * Standard parsing
 	 * options defaults : is_html => false, absolute_links => false, language => ''
-	 * @return string 
+	 * @return string
 	 */
 	function parse($options)
 	{
@@ -359,12 +359,12 @@ if ( \$('#$id') ) {
 		$data = $this->parse_data_tables($data);
 
 		/* parse_data_process_maketoc() calls parse_data_inline_syntax().
-		
+
 		It seems wrong to just call parse_data_inline_syntax() when the parsetoc option is disabled.
 		Despite its name, parse_data_process_maketoc() does not just deal with TOC-s.
-		
+
 		I believe it would be better that parse_data_process_maketoc() check parsetoc, only to set $need_maketoc, so that the following calls parse_data_process_maketoc() unconditionally. Chealer 2018-01-02
-		*/ 
+		*/
 		if ($this->option['parsetoc']) {
 			$this->parse_data_process_maketoc($data, $noparsed);
 		} else {
@@ -393,7 +393,7 @@ if ( \$('#$id') ) {
 
 		return $data;
 	}
-	
+
 	function plugin_execute($name, $data = '', $args = [], $offset = 0, $validationPerformed = false, $option = [])
 	{
 		global $killtoc;

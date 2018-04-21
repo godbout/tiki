@@ -42,7 +42,6 @@ function upgrade_20091123_upgrade_categperm_2_tiki($installer)
 
 
 	if ($feature_cats) {	// only relevant if categories are enabled
-
 		$edit[] = 'tiki_p_modify_tracker_items';
 		$edit[] = 'tiki_p_create_tracker_items';
 		$edit[] = 'tiki_p_modify_tracker_items_pending';

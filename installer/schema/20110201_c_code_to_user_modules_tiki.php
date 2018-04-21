@@ -65,7 +65,6 @@ function upgrade_20110201_c_code_to_user_modules_tiki($installer)
 		$custom_code = $prefs['sitemycode'];
 
 		if (preg_replace('/\s/', '', $custom_code) != preg_replace('/\s/', '', $defaultsitemycode)) {	// line ends seem to differ
-
 			$installer->query(
 				"INSERT INTO `tiki_user_modules` (name,title,data,parse) VALUES (?,?,?,?);",
 				[

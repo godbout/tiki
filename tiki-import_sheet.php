@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Instanciate the handler
 	switch ($handler) {
 		case 'TikiSheetWikiTableHandler': // Well known, special handlers
-			$handler = new $handler( $_POST['page'] );
+			$handler = new $handler($_POST['page']);
 			break;
 		default: // All file based handlers registered
 			if (! in_array($handler, TikiSheet::getHandlerList())) {
@@ -56,8 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$smarty->display("error.tpl");
 				die;
 			}
-
-					   $handler = new $handler( $_FILES['file']['tmp_name'], $encoding, 'UTF-8');
+			$handler = new $handler($_FILES['file']['tmp_name'], $encoding, 'UTF-8');
 	}
 
 	if (! $grid->import($handler)) {

@@ -1857,7 +1857,7 @@ class FileGalLib extends TikiLib
 			return;
 		}
 
-		foreach($allIds[$parentId] as $child) {
+		foreach ($allIds[$parentId] as $child) {
 			$galleryId = $child;
 			$subtree[] = (int)$galleryId;
 			$this->_getGalleryChildrenIdsList($allIds, $subtree, $galleryId);
@@ -1879,7 +1879,7 @@ class FileGalLib extends TikiLib
 			return;
 		}
 
-		foreach($allIds[$parentId] as $child) {
+		foreach ($allIds[$parentId] as $child) {
 			$galleryId = $child;
 			$subtree[ (int)$galleryId ] = [];
 			$this->_getGalleryChildrenIdsTree($allIds, $subtree[$galleryId], $galleryId);

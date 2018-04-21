@@ -7,11 +7,11 @@
 
 /**
  * Class TikiFilter
- * 
+ *
  * Just offers a get method to obtain an instance of a Zend\Filter\FilterInterface implementation, either stock (Zend) or custom.
  * The objects are "filters" in an extended sense. Data is not necessarily just filtered, but can be otherwise altered.
  * For example, special characters can be escaped.
- * 
+ *
  * FIXME: The filter() method may perform lossy data alteration quietly, which complicates debugging. See https://github.com/zendframework/zend-filter/issues/63
  */
 class TikiFilter

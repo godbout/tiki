@@ -167,7 +167,6 @@ class FilegalBatchLib extends FileGalLib
 						}
 					}
 				} else {	// not subdirIntegerToSubgalId
-
 					foreach ($dirs as $dir) {
 						$foundDir = false;
 

@@ -75,7 +75,6 @@ if ($prefs['javascript_enabled'] == 'n') {
 }
 
 if ($prefs['javascript_enabled'] == 'y') {	// we have JavaScript
-
 	$prefs['feature_jquery'] = 'y';	// just in case
 
 	// load translations lang object from /lang/xx/language.js if there

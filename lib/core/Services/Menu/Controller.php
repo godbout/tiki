@@ -213,15 +213,13 @@ class Services_Menu_Controller
 			//get current menu for menuId
 			$oldOptions = $this->menulib->list_menu_options($menuId);
 			//check if user enters the position in the form
-			if (!empty($input->position)) {
+			if (! empty($input->position)) {
 				$position = $input->position->int();
-			}
-			else {
+			} else {
 				//Get position from current menu
 				if ($oldOptions) {
-					$position = intval($oldOptions['cant'])+1;
-				}
-				else {
+					$position = intval($oldOptions['cant']) + 1;
+				} else {
 					$position = 1;
 				}
 			}

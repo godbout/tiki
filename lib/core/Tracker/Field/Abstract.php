@@ -166,7 +166,8 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 	 * @param array $context [value, oldValue, etc as for renderOutput]
 	 * @return string|string[] html, usually a table
 	 */
-	public function renderDiff($context = []) {
+	public function renderDiff($context = [])
+	{
 		if ($context['oldValue']) {
 			$old = $context['oldValue'];
 		} else {

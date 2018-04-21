@@ -431,7 +431,6 @@ class WebMailLib extends TikiLib
 		) {
 			$webmail_list = $_SESSION['webmailinbox'][$serialized_params]['webmail_list'];
 		} else {	// no cached list or timed out
-
 			// get mail the zend way
 
 			try {

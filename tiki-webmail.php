@@ -369,10 +369,10 @@ END;
 	 * @param array                     $output          plain array for the output
 	 * @param string                    $delimiter       folder delimiter string (e.g. "/" or ".")
 	 */
-	function listFolders($currentFolder, & $output, $delimiter) {
-
+	function listFolders($currentFolder, & $output, $delimiter)
+	{
 		$globalName = $currentFolder->getGlobalName();
-		if ( $globalName !== '/') {
+		if ($globalName !== '/') {
 			$output[$globalName] = [
 				'label' => str_pad('', substr_count($globalName, $delimiter) * 12, '&nbsp;') . $currentFolder->getLocalName(),
 				'disabled' => ! $currentFolder->isSelectable(),

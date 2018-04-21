@@ -382,7 +382,6 @@ class Services_Edit_PluginController
 			++$count;
 
 			if ($index === $count) {
-
 				if (! $params) {
 					$params = $match->getArguments();
 				}

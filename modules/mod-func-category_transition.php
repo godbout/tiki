@@ -53,7 +53,6 @@ function module_category_transition($mod_reference, $module_params)
 		$transitions = $transitionlib->getAvailableTransitions($cat_objid, $cat_type);
 		$smarty->assign('mod_transitions', $transitions);
 	} elseif ($modlib->is_admin_mode(true)) {	// add a dummy transition to display on the module admin page
-
 		$smarty->assign(
 			'mod_transitions',
 			[

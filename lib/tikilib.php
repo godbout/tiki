@@ -3011,7 +3011,7 @@ class TikiLib extends TikiDb_Bridge
 	 * @param string $ref
 	 * @return array
 	 */
-	function list_pages($offset = 0, $maxRecords = -1, $sort_mode = 'pageName_desc', $find = '', $initial = '', $exact_match = true, $onlyName = false, $forListPages = false, $only_orphan_pages = false, $filter = '', $onlyCant = false, $ref = '', $exclude_pages='')
+	function list_pages($offset = 0, $maxRecords = -1, $sort_mode = 'pageName_desc', $find = '', $initial = '', $exact_match = true, $onlyName = false, $forListPages = false, $only_orphan_pages = false, $filter = '', $onlyCant = false, $ref = '', $exclude_pages = '')
 	{
 		global $prefs, $tiki_p_wiki_view_ratings;
 
@@ -3060,14 +3060,14 @@ class TikiLib extends TikiDb_Bridge
 			$mid = '';
 		}
 
-		//check if exclude page is array and then add its values in bindvars and 
+		//check if exclude page is array and then add its values in bindvars and
 		if ($exclude_pages && is_array($exclude_pages)) { // you can use an array of pages
-			if (!empty($mid)) {
+			if (! empty($mid)) {
 				$mid .= " AND (LOWER(`pageName`) NOT IN (" . implode(',', array_fill(0, count($exclude_pages), 'LOWER(?)')) . "))";
 			} else {
 				$mid = " where LOWER(`pageName`) NOT IN (" . implode(',', array_fill(0, count($exclude_pages), 'LOWER(?)')) . ")";
 			}
-			
+
 			foreach ($exclude_pages as $epKey => $epVal) {
 				$bindvars[] = $epVal;
 			}
@@ -4272,7 +4272,7 @@ class TikiLib extends TikiDb_Bridge
 	 * @param $pageName
 	 * @return bool|mixed
 	 */
-	public function restore_page_from_history($pageName, $version=null)
+	public function restore_page_from_history($pageName, $version = null)
 	{
 		if (strtolower($pageName) == 'sandbox') {
 			return false;
@@ -6233,9 +6233,9 @@ JS;
 
 	/**
 	 * Possibly enhanced version of strtolower(), using multi-byte if mbstring is available
-	 * 
-	 * Since Tiki 17, mb_strtolower() can be used directly instead since Tiki indirectly depends on the symfony/polyfill-mbstring compatibility library.  
-	 * 
+	 *
+	 * Since Tiki 17, mb_strtolower() can be used directly instead since Tiki indirectly depends on the symfony/polyfill-mbstring compatibility library.
+	 *
 	 * @param $string
 	 * @return string
 	 */
@@ -6250,9 +6250,9 @@ JS;
 
 	/**
 	 * Possibly enhanced version of strtoupper(), using multi-byte if mbstring is available
-	 * 
+	 *
 	 * Since Tiki 17, mb_strtoupper() can be used directly instead since Tiki indirectly depends on the symfony/polyfill-mbstring compatibility library.
-	 * 
+	 *
 	 * @param $string
 	 * @return string
 	 */

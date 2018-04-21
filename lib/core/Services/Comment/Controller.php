@@ -256,7 +256,7 @@ class Services_Comment_Controller
 					];
 				}
 			}
-		} else if ($version) {	// not the post
+		} elseif ($version) {	// not the post
 			$diffInfo = $this->setUpDiffInfo($type, $objectId, $version);
 		}
 		return [
@@ -301,7 +301,7 @@ class Services_Comment_Controller
 				'threadId' => $threadId,
 				'comment' => $comment,
 			];
-		} else if ($comment['version']) {	// not the post
+		} elseif ($comment['version']) {	// not the post
 			$diffInfo = $this->setUpDiffInfo($comment['objectType'], $comment['object'], $comment['version']);
 		}
 
@@ -797,7 +797,7 @@ class Services_Comment_Controller
 
 			$diffInfo = [];
 
-			foreach($history['data'] as $info) {
+			foreach ($history['data'] as $info) {
 				$field_info = $trackerLib->get_field_info($info['fieldId']);
 				$info['fieldName'] = $field_info['name'];
 				$diffInfo[] = $info;
@@ -811,7 +811,8 @@ $(".comment-post").parents("form").submit(ajaxSubmitEventHandler(function (data)
 	$.closeModal();
 	location.href = location.href.replace(/#.*$/, "");
 }));
-			');
+			'
+		);
 		return $diffInfo;
 	}
 }

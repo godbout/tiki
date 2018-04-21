@@ -65,7 +65,7 @@ function prefs_print_list()
 				'L' => tra('Landscape'),
 			],
 			'default' => 'P',
-			'packages_required' => array('mpdf/mpdf' => 'Mpdf\\Mpdf'),
+			'packages_required' => ['mpdf/mpdf' => 'Mpdf\\Mpdf'],
 		],
 		'print_pdf_mpdf_size' => [
 			'name' => tra('PDF page size'),

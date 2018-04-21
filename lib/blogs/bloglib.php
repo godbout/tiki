@@ -613,7 +613,7 @@ class BlogLib extends TikiDb_Bridge
 			/* Private posts can be accessed on the following conditions:
 				user has tiki_p_admin or tiki_p_blog_admin or has written the post
 				If blog is configured with 'Allow other user to post in this blog', then also if user has tiki_p_blog_post or is owner of this blog
-			
+
 			Basically, if the user can post to the post's blog. */
 			if (! (
 					$tiki_p_blog_admin == 'y'

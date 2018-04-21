@@ -2083,7 +2083,7 @@ if (! $standalone) {
 		$engineType = '';
 		$query = 'SELECT ENGINE FROM information_schema.TABLES WHERE TABLE_NAME = "tiki_schema" AND TABLE_SCHEMA = "' . $dbs_tiki . '";';
 		$result = query($query, $connection);
-		if (!empty($result[0]['ENGINE'])) {
+		if (! empty($result[0]['ENGINE'])) {
 			$engineType = $result[0]['ENGINE'];
 		}
 	}

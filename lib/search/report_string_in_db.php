@@ -94,7 +94,7 @@ function searchAllDB($search)
 */
 function tableCount($searchResult)
 {
-	$tableCount = array();
+	$tableCount = [];
 	$countLast = 0;
 	$last = '';
 	foreach ($searchResult as $thisResult) {

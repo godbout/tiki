@@ -316,13 +316,14 @@ class HistLib extends TikiLib
 		return $ret;
 	}
 
-    // Use largest version +1 in history table rather than tiki_page because versions used to be bugged
-    // tiki_history is also bugged as not all changes get stored in the history, like minor changes
-    // and changes that do not modify the body of the page. Both numbers are wrong, but the largest of
-    // them both is right.
-    // Also, it's possible that latest version in history has been rejected (with Flagged Revisions),
-    // so the current version is not the biggest number.
-    function get_page_next_version($page, $willDoHistory=true) {
+	// Use largest version +1 in history table rather than tiki_page because versions used to be bugged
+	// tiki_history is also bugged as not all changes get stored in the history, like minor changes
+	// and changes that do not modify the body of the page. Both numbers are wrong, but the largest of
+	// them both is right.
+	// Also, it's possible that latest version in history has been rejected (with Flagged Revisions),
+	// so the current version is not the biggest number.
+	function get_page_next_version($page, $willDoHistory = true)
+	{
 		$query = "select `version` from `tiki_history` where `pageName`=? order by `version` desc";
 		$result = $this->query($query, [$page], 1);
 		$version = 0;
@@ -339,7 +340,7 @@ class HistLib extends TikiLib
 		}
 
 		return $version + ($willDoHistory ? 1 : 0);
-    }
+	}
 
 	function version_exists($pageName, $version)
 	{

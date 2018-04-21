@@ -54,7 +54,7 @@ class Search_Indexer
 					case E_USER_DEPRECATED:
 						$error = 'DEPRECATED';
 						break;
-					default :
+					default:
 						break;
 				}
 

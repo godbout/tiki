@@ -339,7 +339,7 @@ class PdfGenerator
 			$mpdf->h2bookmarks = $pdfSettings['autobookmarks'];
 		}
 		$pageNo = 1;
-		$pagesTotal=1;
+		$pagesTotal = 1;
 		$pdfLimit = ini_get('pcre.backtrack_limit');
 		//end of coverpage generation
 		foreach ($pdfPages as $pdfPage) {
@@ -383,7 +383,7 @@ class PdfGenerator
 					$bgColor = "background-color:" . $pdfPage['background'];
 				}
 				$mpdf->WriteHTML('<html><body style="' . $bgColor . ';margin:0px;padding:0px;">' . $cssStyles);
-				$pagesTotal+=floor(strlen($pdfPage['pageContent'])/3000);
+				$pagesTotal += floor(strlen($pdfPage['pageContent']) / 3000);
 				//checking if page content is less than mPDF character limit, otherwise split it and loop to writeHTML
 				for ($charLimit = 0; $charLimit <= strlen($pdfPage['pageContent']); $charLimit += $pdfLimit) {
 					 $mpdf->WriteHTML(substr($pdfPage['pageContent'], $charLimit, $pdfLimit));
@@ -399,8 +399,8 @@ class PdfGenerator
 		$mpdf->SetHeader($pdfSettings['header']);
 		$mpdf->SetFooter($pdfSettings['footer']);
 		$this->clearTempImg($tempImgArr);
-		$tempFile = fopen("temp/public/pdffile_".session_id().".txt", "w");
-		fwrite($tempFile,($pagesTotal*30));
+		$tempFile = fopen("temp/public/pdffile_" . session_id() . ".txt", "w");
+		fwrite($tempFile, ($pagesTotal * 30));
 		return $mpdf->Output('', 'S');					// Return as a string
 	}
 
@@ -657,82 +657,78 @@ class PdfGenerator
 		//& sign added in fa unicodes for proper printing in pdf
 		$html = str_replace('#x', "&#x", $html);
 	}
-	private function checkLargeTables(&$doc){
+	private function checkLargeTables(&$doc)
+	{
 		//new code to split table large cells
 		foreach ($doc->getElementsByTagName('table') as $table) {
 			// iterate over each row in the table
-			$trs=$table->getElementsByTagName('tr');
-			$cloneArr=array();		
-			foreach($trs as $tr) {
-				$cloned=0;
-				foreach( $tr->getElementsByTagName('td') as $td) { // get the columns in this row
-					if(strlen($td->textContent)>2000) {
-						$longValue=$td->nodeValue;
-						$breaktill=strpos($td->nodeValue,'.', 1000);
-						if($cloned==0) {
-							$cloneNode=$tr->cloneNode(true);
-							$cloned=1;
-							$cloneArr[]=array("node"=>$cloneNode,'row'=>$tr,'breaktill'=>$breaktill);
+			$trs = $table->getElementsByTagName('tr');
+			$cloneArr = [];
+			foreach ($trs as $tr) {
+				$cloned = 0;
+				foreach ($tr->getElementsByTagName('td') as $td) { // get the columns in this row
+					if (strlen($td->textContent) > 2000) {
+						$longValue = $td->nodeValue;
+						$breaktill = strpos($td->nodeValue, '.', 1000);
+						if ($cloned == 0) {
+							$cloneNode = $tr->cloneNode(true);
+							$cloned = 1;
+							$cloneArr[] = ["node" => $cloneNode,'row' => $tr,'breaktill' => $breaktill];
 						}
-						$td->textContent=substr($longValue,0,$breaktill).'. (cont.)';
-						$td->setAttribute("style:","white-space: nowrap");
-						$td->setAttribute("width","20%");
-						
+						$td->textContent = substr($longValue, 0, $breaktill) . '. (cont.)';
+						$td->setAttribute("style:", "white-space: nowrap");
+						$td->setAttribute("width", "20%");
 					}
-				} 
+				}
 			}
-			
+
 			//here insert new nodes
-			foreach($cloneArr as $cloneData) {
-				$this->insertNewNodes($cloneData,$table);	//this will be recursive function to split row multiple times if needed
+			foreach ($cloneArr as $cloneData) {
+				$this->insertNewNodes($cloneData, $table);	//this will be recursive function to split row multiple times if needed
 			}
 		}
 		$html = @$doc->saveHTML();
-		
 	}
-	
-	private function insertNewNodes(&$cloneData,&$table,$start=1000){
-		
-		//processing cloneNodes
-		$cloned=0;
-		foreach($cloneData['node']->getElementsByTagName('td') as $td)
-			{
-				$longValue=$td->textContent;
-				if(strlen($longValue)>$start) {
-					$breaktill=strpos($longValue,'.', $start); //starting point after first fullstop
-					if(strlen($longValue)>($breaktill+1000)) {
-						$endPoint=$breaktill+1000;
-						$end=strpos($longValue,'.',$endPoint)-$breaktill; //end point till last sentence
-					}
-					else {
-						$end=1000;
-					}
 
-					if(strlen($longValue)>$end+$breaktill && $cloned==0){
-						$cloned=1;
-						$newNode=array();
-						$newNode['node']=$cloneData['node']->cloneNode(true);
-						$newNode['row']=$cloneData['node'];
-					}
-					$td->textContent='(cont\'d)'.substr($longValue,$breaktill+1,$end);
+	private function insertNewNodes(&$cloneData, &$table, $start = 1000)
+	{
+
+		//processing cloneNodes
+		$cloned = 0;
+		foreach ($cloneData['node']->getElementsByTagName('td') as $td) {
+				$longValue = $td->textContent;
+			if (strlen($longValue) > $start) {
+				$breaktill = strpos($longValue, '.', $start); //starting point after first fullstop
+				if (strlen($longValue) > ($breaktill + 1000)) {
+					$endPoint = $breaktill + 1000;
+					$end = strpos($longValue, '.', $endPoint) - $breaktill; //end point till last sentence
+				} else {
+					$end = 1000;
 				}
-				else {
-					$td->textContent='';
+
+				if (strlen($longValue) > $end + $breaktill && $cloned == 0) {
+					$cloned = 1;
+					$newNode = [];
+					$newNode['node'] = $cloneData['node']->cloneNode(true);
+					$newNode['row'] = $cloneData['node'];
 				}
+				$td->textContent = '(cont\'d)' . substr($longValue, $breaktill + 1, $end);
+			} else {
+				$td->textContent = '';
 			}
+		}
 
 		try {
-			$cloneData['row']->parentNode->insertBefore( $cloneData['node'], $cloneData['row']->nextSibling );
+			$cloneData['row']->parentNode->insertBefore($cloneData['node'], $cloneData['row']->nextSibling);
+		} catch (\Exception $e) {
+			$table->appendChild($cloneData['node']);
 		}
-		catch(\Exception $e){
-			$table->appendChild( $cloneData['node']);
-		}
-				
-		if($cloned==1){
-			$this->insertNewNodes($newNode,$table,$start+1000);
+
+		if ($cloned == 1) {
+			$this->insertNewNodes($newNode, $table, $start + 1000);
 		}
 	}
-	
+
 	function fontawesome(&$html)
 	{
 		$doc = new DOMDocument();

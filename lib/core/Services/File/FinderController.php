@@ -193,7 +193,6 @@ class Services_File_FinderController
 				$url = $base_url . 'tiki-download_file.php?fileId=' . $fileId;
 
 				if (! $input->download->int()) {	// images can be displayed
-
 					$info = $filegallib->get_file($fileId);
 
 					if (strpos($info['filetype'], 'image/') !== false) {

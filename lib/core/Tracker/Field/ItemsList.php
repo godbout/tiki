@@ -208,8 +208,8 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 		}
 
 		$displayFields = $this->getOption('displayFieldIdThere');
-		if (!is_array($displayFields)) {
-			$displayFields = array($displayFields);
+		if (! is_array($displayFields)) {
+			$displayFields = [$displayFields];
 		}
 
 		$usedFields = array_merge(

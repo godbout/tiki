@@ -82,7 +82,6 @@ class Services_Connect_Client
 		$confirmedGuid = $this->connectlib->getConfirmedGuid();
 
 		if (empty($confirmedGuid) || empty($prefs['connect_guid']) || $prefs['connect_guid'] !== $confirmedGuid) {	// not connected?
-
 			$pending = $this->connectlib->getPendingGuid();
 
 			if (empty($pending)) {

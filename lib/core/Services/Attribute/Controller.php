@@ -36,7 +36,6 @@ class Services_Attribute_Controller
 		}
 
 		if ($object) {		// for objects yet to be created we don't get an object id, so don't set any attributes
-
 			$value = TikiLib::lib('attribute')->get_attribute($type, $object, $attribute);
 		}
 

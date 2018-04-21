@@ -263,14 +263,15 @@ if (isset($_REQUEST['preview'])) {
 			$function = 'module_' . $_REQUEST['assign_name'];
 			if (function_exists($function)) {
 				$function(
-						[
+					[
 							'name' => $_REQUEST['assign_name'],
 							'position' => $_REQUEST['assign_position'],
 							'ord' => $_REQUEST['assign_order'],
 							'cache_time' => $_REQUEST['assign_cache'],
 							'rows' => $module_rows
 							],
-						$_REQUEST['assign_params'] ); // Warning: First argument should have all tiki_modules table fields. This is just a best effort.
+					$_REQUEST['assign_params']
+				); // Warning: First argument should have all tiki_modules table fields. This is just a best effort.
 			}
 		}
 

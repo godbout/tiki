@@ -56,7 +56,6 @@ class Tracker_Field_StaticText extends Tracker_Field_Abstract implements Tracker
 		if ($this->getOption('wikiparse') == 1) {
 			$value = TikiLib::lib('parser')->parse_data($value);
 		} elseif ($this->getOption('wikiparse') == 2) {	// do pretty tracker replacements
-
 			$definition = Tracker_Definition::get($this->getConfiguration('trackerId'));
 			$itemData = $this->getItemData();
 
