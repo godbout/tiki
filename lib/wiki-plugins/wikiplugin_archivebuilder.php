@@ -103,7 +103,7 @@ function wikiplugin_archivebuilder($data, $params)
 		$archiveParams[$archive] = $label;
 		$archiveParamStr = http_build_query($archiveParams, null, '&');
 
-		$downloadLink = '<a href=' . $path . '?' . $archiveParamStr . ' class="btn btn-default btn-sm">' . $label . '</a>';
+		$downloadLink = '<a href=' . $path . '?' . $archiveParamStr . ' class="btn btn-primary btn-sm">' . $label . '</a>';
 		return $downloadLink;
 	}
 }

@@ -22,12 +22,12 @@
 						<div class="submit row">
 						  <input type="hidden" name="revision" value="{$revision_displayed|escape}">
 						  <div class="col-md-6">
-							<input type="submit" class="btn btn-default btn-sm" name="approve" value="{tr}Approve current revision{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm" name="approve" value="{tr}Approve current revision{/tr}">
 						  </div>
 							<!-- TODO work on layout here -->
 							<div class="col-md-6">
 							  <input type="text" name="reason" placeholder="Why is this not approved?">
-							  <input type="submit" class="btn btn-default btn-sm" name="reject" value="{tr}Reject current revision{/tr}">
+							  <input type="submit" class="btn btn-primary btn-sm" name="reject" value="{tr}Reject current revision{/tr}">
 							  <br/>
 							  <input type="checkbox" name="delete_revision" value="on"> <label for="delete_version">Permanently delete this revision</label>
 							</div>

@@ -9,7 +9,7 @@
 			<input type="hidden" name="list" value="{$entryType}">
 		</div>
 		<div class="col-sm-2">
-			<input type="submit" class="btn btn-default btn-sm" name="search" value="{tr}Go{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Go{/tr}">
 		</div>
 	</form>
 </div>

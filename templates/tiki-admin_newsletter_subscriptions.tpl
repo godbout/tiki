@@ -3,11 +3,11 @@
 {title url="tiki-admin_newsletter_subscriptions.php?nlId=$nlId_urlencoded"}{tr}Admin newsletter subscriptions{/tr}{/title}
 
 <div class="t_navbar btn-group form-group">
-	{button href="tiki-newsletters.php" class="btn btn-default" _icon_name="list" _text="{tr}List{/tr}"}
+	{button href="tiki-newsletters.php" class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
 	{assign var="nlid_encod" value=$nlId|urlencode}
-	{button href="tiki-admin_newsletters.php?nlId=$nlid_encod" class="btn btn-default" _icon_name="edit" _text="{tr}Edit{/tr}"}
-	{button href="tiki-admin_newsletters.php" class="btn btn-default" _icon_name="cog" _text="{tr}Admin{/tr}"}
-	{button href="tiki-send_newsletters.php?nlId=$nlid_encod" class="btn btn-default" _icon_name="envelope" _text="{tr}Send{/tr}"}
+	{button href="tiki-admin_newsletters.php?nlId=$nlid_encod" class="btn btn-primary" _icon_name="edit" _text="{tr}Edit{/tr}"}
+	{button href="tiki-admin_newsletters.php" class="btn btn-primary" _icon_name="cog" _text="{tr}Admin{/tr}"}
+	{button href="tiki-send_newsletters.php?nlId=$nlid_encod" class="btn btn-primary" _icon_name="envelope" _text="{tr}Send{/tr}"}
 </div>
 
 <div class="table-responsive">
@@ -261,7 +261,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="add" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -290,7 +290,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-						<input type="submit" class="btn btn-primary btn-sm" name="addbatch" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-secondary btn-sm" name="addbatch" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>
@@ -317,7 +317,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-						<input type="submit" class="btn btn-primary btn-sm" name="importPage" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-secondary btn-sm" name="importPage" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>
@@ -349,7 +349,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-primary btn-sm" name="addgroup" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="addgroup" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -373,7 +373,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-primary btn-sm" name="addincluded" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="addincluded" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -406,7 +406,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-primary btn-sm" name="addPage" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="addPage" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -420,7 +420,7 @@
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group">
 				<div class="col-sm-12 margin-bottom-sm">
-					<input type="submit" class="btn btn-primary btn-sm" name="export" value="{tr}Export{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="export" value="{tr}Export{/tr}">
 				</div>
 			</div>
 		</form>

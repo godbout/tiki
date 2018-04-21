@@ -101,10 +101,10 @@
 				<input type="hidden" name="forumId" value="{$forumId|escape}">
 				<input type="hidden" name="in_reply_to" value="{$msg_info.in_reply_to|escape}">
 				<input type="hidden" name="qId" value="{$smarty.request.qId|escape}">
-				<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
-				<input type="submit" class="btn btn-primary btn-sm" name="saveapp" value="{tr}Save and Approve{/tr}" onclick="needToConfirm=false">
+				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
+				<input type="submit" class="btn btn-secondary btn-sm" name="saveapp" value="{tr}Save and Approve{/tr}" onclick="needToConfirm=false">
 				<input type="submit" class="btn btn-warning btn-sm" name="remove" value="{tr}Remove{/tr}" onclick="needToConfirm=false">
-				<input type="submit" class="btn btn-default btn-sm" name="topicize" value="{tr}Convert to topic{/tr}" onclick="needToConfirm=false">
+				<input type="submit" class="btn btn-primary btn-sm" name="topicize" value="{tr}Convert to topic{/tr}" onclick="needToConfirm=false">
 			</div>
 		</div>
 	</form>
@@ -120,7 +120,7 @@
 			<div class="input-group">
 				<input type="text" name="find" value="{$find|escape}" class="form-control" placeholder="{tr}Find{/tr}...">
 				<div class="input-group-btn">
-					<input type="submit" class="btn btn-default" name="filter" value="{tr}Filter{/tr}">
+					<input type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}">
 				</div>
 			</div>
 		</div>
@@ -186,8 +186,8 @@
 	{if $items}
 		<br>
 		{tr}Perform action with checked:{/tr}
-		<input type="submit" class="btn btn-default btn-sm" name="rej" value="{tr}Reject{/tr}">
-		<input type="submit" class="btn btn-default btn-sm" name="app" value="{tr}Approve{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" name="rej" value="{tr}Reject{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" name="app" value="{tr}Approve{/tr}">
 	{/if}
 </form>
 {* END OF LISTING *}

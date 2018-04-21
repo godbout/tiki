@@ -1,10 +1,10 @@
 {title admpage="articles" help="Articles"}{tr}Submissions{/tr}{/title}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-edit_submission.php" class="btn btn-default" _icon_name="create" _text="{tr}New Submission{/tr}"}
+	{button href="tiki-edit_submission.php" class="btn btn-primary" _icon_name="create" _text="{tr}New Submission{/tr}"}
 	{button href="tiki-list_submissions.php?deleteexpired=y" _icon_name="delete" _text="{tr}Delete Expired Submissions{/tr}" _title="{tr}Deletes expired submissions 1000 at a time to avoid timeouts{/tr}"}
 	{if $tiki_p_read_article eq 'y'}
-		{button href="tiki-list_articles.php" class="btn btn-default" _icon_name="list" _text="{tr}List Articles{/tr}"}
+		{button href="tiki-list_articles.php" class="btn btn-primary" _icon_name="list" _text="{tr}List Articles{/tr}"}
 	{/if}
 </div>
 
@@ -177,7 +177,7 @@
 										{if $tiki_p_approve_submission eq 'y'}<option value="approve_subs" >{tr}Approve{/tr}</option>{/if}
 									</select>
 								</label>
-								<input type="submit" class="btn btn-default btn-sm" value="{tr}Ok{/tr}">
+								<input type="submit" class="btn btn-primary btn-sm" value="{tr}Ok{/tr}">
 							</p>
 						{/if}
 					</td>

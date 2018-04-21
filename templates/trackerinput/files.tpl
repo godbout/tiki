@@ -30,12 +30,12 @@
 				{wikiplugin _name='vimeo' fromFieldId=$field.fieldId|escape fromItemId=$item.itemId|escape galleryId=$field.galleryId|escape}{/wikiplugin}
 			{else}
 				{if $field.options_map.uploadInModal neq 'n'}
-					<a href="{service controller=file action=uploader uploadInModal=1 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload}" class="btn btn-default upload-files">
+					<a href="{service controller=file action=uploader uploadInModal=1 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload}" class="btn btn-primary upload-files">
 						{if $field.limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}
 					</a>
 				{else}
 					<div class="upload-files-inline-form"></div>
-					<a href="{service controller=file action=uploader uploadInModal=0 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload}" class="btn btn-default upload-files-inline">
+					<a href="{service controller=file action=uploader uploadInModal=0 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload}" class="btn btn-primary upload-files-inline">
 						{if $field.limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}
 					</a>
 				{/if}
@@ -46,7 +46,7 @@
 				_onclick=$context.onclick
 					title="{tr}Browse files{/tr}"}
 			{else}
-				<a href="{service controller=file action=browse galleryId=$galleryId limit=$field.limit|default:100 type=$field.filter image_x=$field.image_x image_y=$field.image_y}" class="btn btn-default browse-files">{tr}Browse Files{/tr}</a>
+				<a href="{service controller=file action=browse galleryId=$galleryId limit=$field.limit|default:100 type=$field.filter image_x=$field.image_x image_y=$field.image_y}" class="btn btn-primary browse-files">{tr}Browse Files{/tr}</a>
 			{/if}
 		{/if}
 		{if $prefs.fgal_upload_from_source eq 'y' and $field.canUpload}

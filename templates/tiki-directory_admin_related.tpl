@@ -23,7 +23,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="go" value="{tr}Go{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
 	</div>
 </form>
@@ -50,7 +50,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="add" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>
@@ -82,8 +82,8 @@
 							{/section}
 						</select>
 					</td>
-					<td class="text-center"><input type="submit" class="btn btn-default btn-sm" name="remove" value="{tr}Remove{/tr}"/></td>
-					<td class="text-center"><input type="submit" class="btn btn-default btn-sm" name="update" value="{tr}Update{/tr}"></td>
+					<td class="text-center"><input type="submit" class="btn btn-primary btn-sm" name="remove" value="{tr}Remove{/tr}"/></td>
+					<td class="text-center"><input type="submit" class="btn btn-primary btn-sm" name="update" value="{tr}Update{/tr}"></td>
 				</tr>
 				{sectionelse}
 					{norecords}

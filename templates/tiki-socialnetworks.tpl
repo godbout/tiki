@@ -23,7 +23,7 @@
 						<a href="https://twitter.com/settings/connections" target="_blank">{tr}Click here{/tr}</a> {tr}to manage your authorisations at Twitter{/tr}<br>
 					{else}
 						{* Can't use button here, we need the reload/redirect to work *}
-						<span class="button btn btn-default"><a href="tiki-socialnetworks.php?request_twitter=true">Authorize</a></span>
+						<span class="button btn btn-primary"><a href="tiki-socialnetworks.php?request_twitter=true">Authorize</a></span>
 						{tr}this site with twitter.com to use Twitter integration of this site.{/tr}
 					{/if}
 				{/if}
@@ -42,7 +42,7 @@
 						<a href="http://facebook.com/editapps.php" target="_blank">{tr}Click here{/tr}</a> {tr}to manage your authorizations at Facebook{/tr}<br>
 					{else}
 						{* Can't use button here, we need the reload/redirect to work *}
-						<span class="button btn btn-default"><a href="tiki-socialnetworks.php?request_facebook=true">Authorize</a></span>
+						<span class="button btn btn-primary"><a href="tiki-socialnetworks.php?request_facebook=true">Authorize</a></span>
 						{tr}this site within facebook.com to use Facebook integration with this site.{/tr}
 					{/if}
 				{/if}
@@ -57,7 +57,7 @@
 					{button href="tiki-socialnetworks_linkedin.php?remove=true" _text="{tr}Remove{/tr}"}
 					{tr}LinkedIn authorisation.{/tr}
 				{else}
-					<a class="button btn btn-default" href="tiki-socialnetworks_linkedin.php?link=true">Authorize</a>
+					<a class="button btn btn-primary" href="tiki-socialnetworks_linkedin.php?link=true">Authorize</a>
 					{tr}this site to link your user to your LinkedIn account.{/tr}
 				{/if}
 			{/if}
@@ -82,7 +82,7 @@
 			{/if}
 			<div class="form-group">
 				<div class="col-sm-12">
-					<input type="submit" class="btn btn-primary btn-sm" name="accounts" value="{tr}Save changes{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="accounts" value="{tr}Save changes{/tr}">
 				</div>
 			</div>
 		</form>

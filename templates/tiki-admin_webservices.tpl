@@ -4,10 +4,10 @@
 <form action="tiki-admin_webservices.php" method="post">
 	<div class="t_navbar margin-bottom-md">
 		{foreach from=$webservices item=name}
-			{button href="tiki-admin_webservices.php?name=$name" class="btn btn-default" _text=$name}
+			{button href="tiki-admin_webservices.php?name=$name" class="btn btn-primary" _text=$name}
 		{/foreach}
 		{if $storedName}
-			{button href="tiki-admin_webservices.php" class="btn btn-default" _text="{tr}Create New{/tr}"}
+			{button href="tiki-admin_webservices.php" class="btn btn-primary" _text="{tr}Create New{/tr}"}
 		{/if}
 	</div>
 
@@ -30,7 +30,7 @@
 			{/if}
 			<div class="col-sm-8 col-sm-offset-4 clearfix">
 				<input type="hidden" name="name" value="{$storedName|escape}">
-				{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-primary btn-sm'}
+				{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-secondary btn-sm'}
 				{button _icon_name='delete' _text="{tr}Delete{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&delete" _class='btn btn-danger btn-sm'}
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 				<p id="ws_operation" style="display: none;">{tr}Operation:{/tr}
 					<input type="text" name="operation" size="30" value="{$operation|escape}" class="form-control"/>
 				</p>
-				<p><input type="submit" class="btn btn-default btn-sm" name="parse" value="{tr}Lookup{/tr}"/></p>
+				<p><input type="submit" class="btn btn-primary btn-sm" name="parse" value="{tr}Lookup{/tr}"/></p>
 			</div>
 		</div>
 		{if $edit}
@@ -82,7 +82,7 @@
 			{/if}
 			<div class="col-sm-8 col-sm-offset-4">
 				<div class="form-group">
-					<input type="submit" class="btn btn-default btn-sm col-sm-2" name="test" value="{tr}Test Input{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm col-sm-2" name="test" value="{tr}Test Input{/tr}">
 					<label class="col-sm-10"> <input type="checkbox" checked="checked" name="nocache">
 						{tr}Bypass cache{/tr}
 					</label>
@@ -136,7 +136,7 @@
 							<tr>
 								<th>
 									{$template.engine|escape}/{$template.output|escape}
-									<input type="submit" class="btn btn-default btn-sm" name="add[{$number}]" value="{tr}Add{/tr}"/>
+									<input type="submit" class="btn btn-primary btn-sm" name="add[{$number}]" value="{tr}Add{/tr}"/>
 								</th>
 								<td>
 									<pre>{$template.content|escape}</pre>
@@ -158,7 +158,7 @@
 						{else}
 							<input type="text" name="new_name" class="form-control">
 						{/if}
-						<input type="submit" class="btn btn-default btn-sm" name="register" value="{tr}Register Service{/tr}"/>
+						<input type="submit" class="btn btn-primary btn-sm" name="register" value="{tr}Register Service{/tr}"/>
 					</p>
 				{else}
 					<h3>{tr}Registered Templates{/tr}</h3>
@@ -173,13 +173,13 @@
 							{foreach from=$storedTemplates item=template}
 								<tr>
 									<td>
-										<input type="submit" class="btn btn-default btn-sm" name="loadtemplate" value="{$template->name|escape}" title="{tr}Edit{/tr}">
+										<input type="submit" class="btn btn-primary btn-sm" name="loadtemplate" value="{$template->name|escape}" title="{tr}Edit{/tr}">
 										{icon name='delete' title='{tr}Delete{/tr}' href='tiki-admin_webservices.php?name='|cat:($storedName|escape)|cat:'&deletetemplate='|cat:($template->name|escape)}
 									</td>
 									<td>{$template->engine|escape}</td>
 									<td>{$template->output|escape}</td>
 									<td>
-										<input type="submit" class="btn btn-default btn-sm" name="preview" value="{$template->name|escape}"/>
+										<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{$template->name|escape}"/>
 									</td>
 									<td>
 										<a class="btn btn-link" role="button" data-toggle="collapse" href="#template_{$template->name|escape}"
@@ -239,7 +239,7 @@
 							</tr>
 							<tr>
 								<td colspan="4">
-									<input type="submit" class="btn btn-default btn-sm" name="create_template" value="{tr}Register Template{/tr}"/>
+									<input type="submit" class="btn btn-primary btn-sm" name="create_template" value="{tr}Register Template{/tr}"/>
 								</td>
 							</tr>
 						</table>

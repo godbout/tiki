@@ -49,7 +49,7 @@ if (jqueryTiki.no_cookie) {
 						<legend>{tr}Return to Main User{/tr}</legend>
 						<input type="hidden" name="su" value="revert" />
 						<input type="hidden" name="username" value="auto" />
-						<div class="text-center"><button type="submit" class="btn btn-primary" name="actsu">{tr}Switch{/tr}</button></div>
+						<div class="text-center"><button type="submit" class="btn btn-secondary" name="actsu">{tr}Switch{/tr}</button></div>
 					</fieldset>
 				</form>
 			{elseif $tiki_p_admin eq 'y'}
@@ -83,7 +83,7 @@ if (jqueryTiki.no_cookie) {
 							{/if}
 							{user_selector groupIds=$module_params.groups id="login-switchuser_"|cat:$module_logo_instance name='username' user='' editable=$tiki_p_admin class='form-control'}
 						</div>
-						<div class="text-center"><button type="submit" class="btn btn-primary" name="actsu">{tr}Switch{/tr}</button></div>
+						<div class="text-center"><button type="submit" class="btn btn-secondary" name="actsu">{tr}Switch{/tr}</button></div>
 					</fieldset>
 				</form>
 			{/if}
@@ -122,7 +122,7 @@ if (jqueryTiki.no_cookie) {
 					{/foreach}
 					</select>
 					<input type="hidden" name="action" value="select"/>
-					<input type="submit" class="btn btn-primary" value="{tr}Go{/tr}"/>
+					<input type="submit" class="btn btn-secondary" value="{tr}Go{/tr}"/>
 				</fieldset>
 			</form>
 		{/if}
@@ -247,7 +247,7 @@ if (jqueryTiki.no_cookie) {
 			{/if}
 		{/if}
 		<div class="form-group text-center">
-			<button class="btn btn-primary button submit" type="submit" name="login">{tr}Log in{/tr} <!--i class="fa fa-arrow-circle-right"></i--></button>
+			<button class="btn btn-secondary button submit" type="submit" name="login">{tr}Log in{/tr} <!--i class="fa fa-arrow-circle-right"></i--></button>
 		</div>
 		{if $module_params.show_forgot eq 'y' or $module_params.show_register eq 'y'}
 			<div {if $mode eq 'header'}class="text-right" style="display:inline;"{/if}>
@@ -311,7 +311,7 @@ if (jqueryTiki.no_cookie) {
 					<div class="form-group">
 						<div class="input-group input-group-sm">
 							<input class="form-control" type="text" name="openid_url"/>
-							<span class="input-group-btn"><button type="submit" class="btn btn-default" title="{tr}Go{/tr}"><img alt="{tr}OpenID Login{/tr}" class="img-circle" src="img/icons/login-OpenID-bg.gif"></button></span>
+							<span class="input-group-btn"><button type="submit" class="btn btn-primary" title="{tr}Go{/tr}"><img alt="{tr}OpenID Login{/tr}" class="img-circle" src="img/icons/login-OpenID-bg.gif"></button></span>
 						</div>
 						<span class="help-block"><a class="linkmodule tikihelp" target="_blank" href="http://doc.tiki.org/OpenID">{tr}What is OpenID?{/tr}</a></span>
 					</div>

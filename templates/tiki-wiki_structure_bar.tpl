@@ -51,7 +51,7 @@
 							<input type="text" id="structure_add_page" name="page" class="form-control input-sm">
 							{autocomplete element='#structure_add_page' type='pagename'}
 							<div class="input-group-btn">
-								<input type="submit" class="btn btn-default btn-sm" name="insert_into_struct" value="{tr}Add Page{/tr}">
+								<input type="submit" class="btn btn-primary btn-sm" name="insert_into_struct" value="{tr}Add Page{/tr}">
 							</div>
 						</div>
 					</div>

@@ -105,7 +105,7 @@
 					<option value="y">{tr}Delete{/tr}</option>
 				</select>
 				<div class="input-group-btn">
-					<input type="submit" class="btn btn-default" name="remove" value="{tr}Ok{/tr}">
+					<input type="submit" class="btn btn-primary" name="remove" value="{tr}Ok{/tr}">
 				</div>
 			</div>
 		</div>

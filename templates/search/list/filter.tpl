@@ -20,8 +20,8 @@
 		<tr>
 			<td>&nbsp;</td>
 			<td>
-				<input class="button submit btn btn-default" type="submit" name="filter" value="{tr}Filter{/tr}">
-				<input class="button submit btn btn-default" type="reset" name="reset_filter" value="{tr}Reset{/tr}">
+				<input class="button submit btn btn-primary" type="submit" name="filter" value="{tr}Filter{/tr}">
+				<input class="button submit btn btn-primary" type="reset" name="reset_filter" value="{tr}Reset{/tr}">
 			</td>
 		</tr>
 		</table>

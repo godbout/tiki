@@ -85,7 +85,7 @@
 			</tr>
 		{/foreach}
 	</table>
-	<a href="{bootstrap_modal controller=mailin action=replace_account}" class="btn btn-default">{icon name="add"} {tr}Add Account{/tr}</a>
+	<a href="{bootstrap_modal controller=mailin action=replace_account}" class="btn btn-primary">{icon name="add"} {tr}Add Account{/tr}</a>
 	{button _icon_name="cog" _text="{tr}Admin Mail-in Routes{/tr}" _type="link" href="tiki-admin_mailin_routes.php"}
 
 	<h2>{tr}Check Mail-in accounts{/tr}</h2>
@@ -110,7 +110,7 @@
 			</div>
 		</div>
 		<div class="submit col-md-offset-3 col-md-9">
-			<input type="submit" name="set_auto" value="{tr}Set{/tr}" class="btn btn-primary">
+			<input type="submit" name="set_auto" value="{tr}Set{/tr}" class="btn btn-secondary">
 			<a class="btn btn-link" href="tiki-mailin.php">{tr}Check Manually Now{/tr}</a>
 		</div>
 	</form>

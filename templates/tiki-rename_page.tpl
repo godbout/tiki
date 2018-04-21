@@ -2,7 +2,7 @@
 
 <div class="navbar" role="navigation">
 	{assign var=thispage value=$page|escape:url}
-	{button href="tiki-index.php?page=$thispage" class="btn btn-default btn-sm navbar-btn" _text="{tr}View page{/tr}"}
+	{button href="tiki-index.php?page=$thispage" class="btn btn-primary btn-sm navbar-btn" _text="{tr}View page{/tr}"}
 </div>
 
 <form action="tiki-rename_page.php" method="post" class="form-horizontal" role="form">
@@ -17,7 +17,7 @@
 				{tr _0=$page_badchars_display|escape}The page name specified contains characters that may render the page hard to access. You may want to consider removing those: <strong>%0</strong>{/tr}
 			{/remarksbox}
 			<input type="hidden" name="badname" value="{$newname|escape}">
-			<input type="submit" class="btn btn-default btn-sm" name="confirm" value="{tr}Use this name anyway{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="confirm" value="{tr}Use this name anyway{/tr}">
 		{/if}
 	{elseif isset($msg)}
 		{remarksbox type=errors}
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		<div class="col-sm-2">
-			<input type="submit" class="btn btn-primary btn-sm" name="rename" value="{tr}Rename{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="rename" value="{tr}Rename{/tr}">
 		</div>
 	</div>
 </form>

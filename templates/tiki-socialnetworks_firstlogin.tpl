@@ -34,7 +34,7 @@ $("#email").val("{{$userinfo.email|escape}}");
 <div class="form-group">
 	<label class="control-label col-sm-3"></label>
 	<div class="col-sm-7">
-		<input type="submit" class="btn btn-default" name="localinfosubmit" value="{tr}Submit{/tr}">
+		<input type="submit" class="btn btn-primary" name="localinfosubmit" value="{tr}Submit{/tr}">
 	</div>
 </div>
 </form>
@@ -57,7 +57,7 @@ $("#email").val("{{$userinfo.email|escape}}");
 	<div class="form-group">
 		<label class="control-label col-sm-3"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default" name="linkaccount" value="{tr}Link to Existing Account{/tr}">
+			<input type="submit" class="btn btn-primary" name="linkaccount" value="{tr}Link to Existing Account{/tr}">
 		</div>
 	</div>
 </form>

@@ -3,9 +3,9 @@
 {title url='tiki-admin_surveys.php' help="Surveys"}{tr}Admin surveys{/tr}{/title}
 
 <div class="t_navbar btn-group form-group">
-	{button href="tiki-list_surveys.php" class="btn btn-default" _icon_name="list" _text="{tr}List{/tr}"}
-	{button href="tiki-survey_stats.php" class="btn btn-default" _icon_name="chart" _text="{tr}Stats{/tr}"}
-	{button surveyId=0 _anchor='content_admin_surveys1-2' _auto_args="surveyId" class="btn btn-default" _icon_name="create" _text="{tr}Create{/tr}"}
+	{button href="tiki-list_surveys.php" class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
+	{button href="tiki-survey_stats.php" class="btn btn-primary" _icon_name="chart" _text="{tr}Stats{/tr}"}
+	{button surveyId=0 _anchor='content_admin_surveys1-2' _auto_args="surveyId" class="btn btn-primary" _icon_name="create" _text="{tr}Create{/tr}"}
 </div>
 
 {tabset}
@@ -142,7 +142,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-10 col-sm-offset-2">
-					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>
 		</form>

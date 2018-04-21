@@ -82,7 +82,7 @@
 						</tr>
 					{/if}
 				</table>
-				<input type="submit" class="btn btn-default btn-sm" value="Save" />
+				<input type="submit" class="btn btn-primary btn-sm" value="Save" />
 			</form>
 		{else}
 			<p>

@@ -6,16 +6,16 @@
 		{icon name="list"} {tr}List Menus{/tr}
 	</a>
 	{if $tiki_p_edit_menu eq 'y'}
-		<a class="btn btn-default" href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId}">
+		<a class="btn btn-primary" href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId}">
 			{icon name="create"} {tr}Create menu option{/tr}
 		</a>
-		<a class="btn btn-default" href="{bootstrap_modal controller=menu action=edit menuId=$menuId}">
+		<a class="btn btn-primary" href="{bootstrap_modal controller=menu action=edit menuId=$menuId}">
 			{icon name="edit"} {tr}Edit This Menu{/tr}
 		</a>
-		<a class="btn btn-default" href="{bootstrap_modal controller=menu action=export_menu_options menuId=$menuId}" title="{tr}Export menu options{/tr}">
+		<a class="btn btn-primary" href="{bootstrap_modal controller=menu action=export_menu_options menuId=$menuId}" title="{tr}Export menu options{/tr}">
 			{icon name="export"} {tr}Export{/tr}
 		</a>
-		<a class="btn btn-default no-ajax" href="{bootstrap_modal controller=menu action=import_menu_options menuId=$menuId}" title="{tr}Import menu options{/tr}">
+		<a class="btn btn-primary no-ajax" href="{bootstrap_modal controller=menu action=import_menu_options menuId=$menuId}" title="{tr}Import menu options{/tr}">
 			{icon name="import"} {tr}Import{/tr}
 		</a>
 	{/if}

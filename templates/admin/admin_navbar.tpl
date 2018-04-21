@@ -27,7 +27,7 @@
 								</li>
 							{/foreach}
 							<div class="text-center">
-								<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-primary btn-sm">
+								<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-secondary btn-sm">
 							</div>
 							{if $prefs.connect_feature eq "y"}
 								{capture name=likeicon}{icon name="thumbs-up"}{/capture}
@@ -123,7 +123,7 @@
 						<input type="hidden" name="filters">
 						<input type="text" name="lm_criteria" value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}..." autofocus="autofocus">
 					</div>
-					<button type="submit" class="btn btn-default" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
+					<button type="submit" class="btn btn-primary" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 				</form>
 			</li>
 		</ul>
@@ -145,7 +145,7 @@
 				{/foreach}
 			</div>
 			<div class="panel-footer text-center">
-				<input class="btn btn-primary" type="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input class="btn btn-secondary" type="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</div>
 			<input type="hidden" name="lm_criteria" value="{$lm_criteria|escape}">
 			{ticket}

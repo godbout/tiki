@@ -49,7 +49,7 @@
 			{else}
 				<input type="hidden" name="msgId" value="">
 			{/if}
-			<input type="submit" class="btn btn-default btn-sm pull-right" name="delete" value="{tr}Delete{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm pull-right" name="delete" value="{tr}Delete{/tr}">
 		</form>
 	</div>
 </div>

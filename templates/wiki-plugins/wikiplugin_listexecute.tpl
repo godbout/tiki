@@ -1,6 +1,6 @@
 <a name="listexecute_{$iListExecute}"></a>
 <form method="post" action="#listexecute_{$iListExecute}" class="form-inline" id="listexecute-{$iListExecute}">
-	<button class="listexecute-select-all btn btn-default btn-sm">{tr}Select All{/tr}</button>
+	<button class="listexecute-select-all btn btn-primary btn-sm">{tr}Select All{/tr}</button>
 	<ol>
 		{foreach from=$results item=entry}
 			<li>
@@ -21,7 +21,7 @@
 		{/foreach}
 	</select>
 	<input type="text" name="list_input" value="" class="form-control" style="display:none">
-	<input type="submit" class="btn btn-default btn-sm" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 </form>
 {jq}
 $('.listexecute-select-all').removeClass('listexecute-select-all').on('click', function (e) {

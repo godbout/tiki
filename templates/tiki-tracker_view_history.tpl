@@ -1,6 +1,6 @@
 {title help="trackers"}{tr}Tracker Item History{/tr}{/title}
 <div class="t_navbar margin-bottom-md">
-	{button _keepall='y' href="tiki-view_tracker_item.php" itemId=$item_info.itemId _class="btn btn-default" _text="{tr}View Tracker Item{/tr}"}
+	{button _keepall='y' href="tiki-view_tracker_item.php" itemId=$item_info.itemId _class="btn btn-primary" _text="{tr}View Tracker Item{/tr}"}
 </div>
 
 {if $logging eq 0}
@@ -41,7 +41,7 @@
 		</div>
 		<div class=" col-sm-3">
 			<br>
-			<input type="submit" class="btn btn-default" name="Filter" value="{tr}Filter{/tr}">
+			<input type="submit" class="btn btn-primary" name="Filter" value="{tr}Filter{/tr}">
 		</div>
 	</form>
 </div>

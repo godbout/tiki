@@ -46,7 +46,7 @@
 					<input type="hidden" name="subject" value="{tr}Re:{/tr} {$msg.subject|escape}">
 					<input type="hidden" name="body" value="{$msg.body|quoted:$quote_format:$msg.user_from|escape}">
 					<input type="hidden" name="replyto_hash" value="{$msg.hash}">
-					<input type="submit" class="btn btn-default btn-sm pull-right timeout" name="reply" value="{tr}Reply{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm pull-right timeout" name="reply" value="{tr}Reply{/tr}">
 				</form>
 		</div>
 		<div class="col-xs-4 col-sm-3 col-lg-2">
@@ -68,7 +68,7 @@
 					<input type="hidden" name="subject" value="{tr}Re:{/tr} {$msg.subject|escape}">
 					<input type="hidden" name="body" value="{$msg.body|quoted:$quote_format:$msg.user_from|escape}">
 					<input type="hidden" name="replyto_hash" value="{$msg.hash}">
-					<button type="submit" class="btn btn-default btn-sm pull-right timeout" name="replyall" value="{tr}replyall{/tr}">Reply All</button>
+					<button type="submit" class="btn btn-primary btn-sm pull-right timeout" name="replyall" value="{tr}replyall{/tr}">Reply All</button>
 				</form>
 		</div>
 		<div class="col-xs-4 col-sm-3 col-lg-2">

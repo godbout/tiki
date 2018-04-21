@@ -67,7 +67,7 @@
 					<input type="hidden" name="return_url" value="{$return_url|escape}">
 					{if empty($version)}
 						<div class="form-group comment-post">
-							<input type="submit" class="comment-post btn btn-primary btn-sm" value="{tr}Post{/tr}"/>
+							<input type="submit" class="comment-post btn btn-secondary btn-sm" value="{tr}Post{/tr}"/>
 							<div class="btn btn-link">
 								<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
 							</div>
@@ -83,7 +83,7 @@
 						{/if}
 						<div class="submit">
 							<input type="hidden" name="version" value="{$version|escape}"/>
-							<input type="submit" class="comment-post btn btn-primary" value="{tr}Post{/tr}"/>
+							<input type="submit" class="comment-post btn btn-secondary" value="{tr}Post{/tr}"/>
 						</div>
 					{/if}
 				</div>

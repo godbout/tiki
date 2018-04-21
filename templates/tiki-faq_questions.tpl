@@ -1,10 +1,10 @@
 {title}{tr}Admin FAQ:{/tr} {$faq_info.title}{/title}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-list_faqs.php" class="btn btn-default" _text="{tr}List FAQs{/tr}"}
-	{button href="tiki-view_faq.php?faqId=$faqId" class="btn btn-default" _text="{tr}View FAQ{/tr}"}
-	{button href="tiki-list_faqs.php?faqId=$faqId" class="btn btn-default" _text="{tr}Edit this FAQ{/tr}"}
-	{button href="tiki-faq_questions.php?faqId=$faqId" class="btn btn-default" _text="{tr}New Question{/tr}"}
+	{button href="tiki-list_faqs.php" class="btn btn-primary" _text="{tr}List FAQs{/tr}"}
+	{button href="tiki-view_faq.php?faqId=$faqId" class="btn btn-primary" _text="{tr}View FAQ{/tr}"}
+	{button href="tiki-list_faqs.php?faqId=$faqId" class="btn btn-primary" _text="{tr}Edit this FAQ{/tr}"}
+	{button href="tiki-faq_questions.php?faqId=$faqId" class="btn btn-primary" _text="{tr}New Question{/tr}"}
 </div>
 
 <h2>{if $questionId}{tr}Edit FAQ question{/tr}{else}{tr}Add FAQ question{/tr}{/if}</h2>
@@ -29,7 +29,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" tabindex="3">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}" tabindex="3">
 		</div>
 	</div>
 </form>
@@ -47,7 +47,7 @@
 				<div class="input-group">
 					<input type="text" name="filter" id="filter" value="{$filter|escape}" class="form-control input-sm">
 					<div class="input-group-btn">
-						<input type="submit" class="btn btn-default btn-sm" name="filteruseq" value="{tr}Filter{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="filteruseq" value="{tr}Filter{/tr}">
 					</div>
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-7">
-				<input type="submit" class="btn btn-default btn-sm" name="useq" value="{tr}Use{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="useq" value="{tr}Use{/tr}">
 			</div>
 		</div>
 	</form>

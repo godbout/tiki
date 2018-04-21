@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<input type="hidden" name="badname" value="{$newname|escape}">
-			<input type="submit" class="btn btn-default btn-sm" name="confirm" value="{tr}Use this name anyway{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="confirm" value="{tr}Use this name anyway{/tr}">
 		{/if}
 	{elseif isset($msg)}
 		{remarksbox type=errors}
@@ -62,7 +62,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="copy" value="{tr}Copy{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="copy" value="{tr}Copy{/tr}">
 		</div>
 	</div>
 </form>

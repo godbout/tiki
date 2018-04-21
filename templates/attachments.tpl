@@ -137,7 +137,7 @@
 						<input class="form-control" type="text" name="attach_comment" maxlength="250" id="attach-comment" placeholder="{tr}File upload comment{/tr}...">
 					</div>
 					<div class="col-sm-2">
-						<input type="submit" class="btn btn-primary" name="attach" value="{tr}Attach{/tr}">
+						<input type="submit" class="btn btn-secondary" name="attach" value="{tr}Attach{/tr}">
 					</div>
 				</div>
 			</form>

@@ -4,7 +4,7 @@
 
 {if $tiki_p_admin eq 'y'}
 	<div class="t_navbar">
-		{button href="tiki-admin_integrator.php" class="btn btn-default" _text="{tr}Configure Repositories{/tr}"}
+		{button href="tiki-admin_integrator.php" class="btn btn-primary" _text="{tr}Configure Repositories{/tr}"}
 	</div>
 {/if}
 

@@ -306,7 +306,7 @@
 							<a href="tiki-admin.php?page=textarea&amp;plugin_alias={$name|escape}">{$name|escape}</a>
 						{/foreach}
 						<div align="center">
-							<input type="submit" class="btn btn-default btn-sm timeout" name="enable" value="{tr}Enable Plugins{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm timeout" name="enable" value="{tr}Enable Plugins{/tr}">
 							<input type="submit" class="btn btn-warning btn-sm timeout" name="delete" value="{tr}Delete Plugins{/tr}">
 						</div>
 						{remarksbox type="tip" title="{tr}Tip{/tr}"}

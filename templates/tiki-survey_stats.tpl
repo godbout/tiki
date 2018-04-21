@@ -3,10 +3,10 @@
 {title}{tr}Stats for surveys{/tr}{/title}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-list_surveys.php" class="btn btn-default" _text="{tr}List Surveys{/tr}"}
-	{button href="tiki-survey_stats.php" class="btn btn-default" _text="{tr}Survey Stats{/tr}"}
+	{button href="tiki-list_surveys.php" class="btn btn-primary" _text="{tr}List Surveys{/tr}"}
+	{button href="tiki-survey_stats.php" class="btn btn-primary" _text="{tr}Survey Stats{/tr}"}
 	{if $tiki_p_admin_surveys eq 'y'}
-		{button href="tiki-admin_surveys.php" class="btn btn-default" _text="{tr}Admin Surveys{/tr}"}
+		{button href="tiki-admin_surveys.php" class="btn btn-primary" _text="{tr}Admin Surveys{/tr}"}
 	{/if}
 </div>
 

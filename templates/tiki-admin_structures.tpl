@@ -202,7 +202,7 @@
 							<option value="delete_with_page">{tr}Delete with the pages{/tr}</option>
 						</select>
 						<div class="input-group-btn">
-							<input type="submit" class="btn btn-primary" name="act" value="{tr}Ok{/tr}">
+							<input type="submit" class="btn btn-secondary" name="act" value="{tr}Ok{/tr}">
 						</div>
 					</div>
 				</div>
@@ -248,7 +248,7 @@
 				{/if}
 				<div class="form-group">
 					<div class="submit col-md-9 col-md-push-3">
-						<input type="submit" class="btn btn-primary" value="{tr}Create New Structure{/tr}" name="create">
+						<input type="submit" class="btn btn-secondary" value="{tr}Create New Structure{/tr}" name="create">
 					</div>
 				</div>
 			</form>

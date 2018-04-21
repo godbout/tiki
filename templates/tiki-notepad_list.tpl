@@ -3,7 +3,7 @@
 	{include file='tiki-mytiki_bar.tpl'}
 
 <div class="t_navbar">
-	{button href="tiki-notepad_write.php" _class="btn btn-default" _text="{tr}Write a note{/tr}"}
+	{button href="tiki-notepad_write.php" _class="btn btn-primary" _text="{tr}Write a note{/tr}"}
 </div>
 
 <div style="text-align:center;">
@@ -31,7 +31,7 @@
 			<table class="table table-striped table-hover">
 				<tr>
 					<th style="text-align:center;">
-						<input type="submit" class="btn btn-default btn-sm" name="delete" value="{tr}x{/tr} ">
+						<input type="submit" class="btn btn-primary btn-sm" name="delete" value="{tr}x{/tr} ">
 					</th>
 					<th>
 						<a href="tiki-notepad_list.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'name_desc'}name_asc{else}name_desc{/if}">{tr}Name{/tr}</a>
@@ -102,7 +102,7 @@
 				{/section}
 				<tr>
 					<td colspan="4">
-						<input type="submit" class="btn btn-default btn-sm" name="merge" value="{tr}Merge selected notes into{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="merge" value="{tr}Merge selected notes into{/tr}">
 						<input type="text" name="merge_name" size="20">
 					</td>
 				</tr>
@@ -125,7 +125,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="upload" value="{tr}Upload{/tr}">
 		</div>
 	</div>
 </form>

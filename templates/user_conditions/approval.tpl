@@ -17,7 +17,7 @@
 				{tr}I approve the above terms and conditions{/tr}
 			</label>
 		</div>
-		<input class="btn btn-lg btn-primary" type="submit" name="accept" value="{tr}Continue{/tr}">
+		<input class="btn btn-lg btn-secondary" type="submit" name="accept" value="{tr}Continue{/tr}">
 		<input class="btn btn-sm btn-danger" type="submit" name="decline" value="{tr}I Decline, log out{/tr}">
 		<input name="origin" value="{$origin|escape}" type="hidden">
 	</form>

@@ -8,7 +8,7 @@
 
 {if $prefs.feature_tabs neq 'y' and $user and $prefs.feature_messages eq 'y' and $tiki_p_messages eq 'y' and $allowMsgs eq 'y'}
 	<div class="t_navbar">
-		{button href="#message" class="btn btn-default" _text="{tr}Send me a message{/tr}"}
+		{button href="#message" class="btn btn-primary" _text="{tr}Send me a message{/tr}"}
 	</div>
 {/if}
 
@@ -405,7 +405,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-10 col-sm-push-2">
-								<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}">
+								<input type="submit" class="btn btn-secondary" name="send" value="{tr}Send{/tr}">
 								<input type="checkbox" name="replytome" id="replytome">
 								<label for="replytome">
 									{tr}Reply-to my email{/tr}

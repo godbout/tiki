@@ -29,7 +29,7 @@
 				<option value="{$softwareClassName}">{$softwareName}</option>
 			{/foreach}
 		</select>
-		<input type="submit" class="btn btn-default btn-sm" value="{tr}OK{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" value="{tr}OK{/tr}">
 	</form>
 	<br>
 	<a href="tiki-import_xml_zip.php">Import wiki pages in an XML Zip file from another Tiki</a>
@@ -54,7 +54,7 @@
 		{/foreach}
 		<br><br>
 		<input type="file" name="importFile"><br>
-		<input type="submit" class="btn btn-default btn-sm" value="{tr}Import{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" value="{tr}Import{/tr}">
 	</form>
 
 {elseif !empty($importFeedback)}

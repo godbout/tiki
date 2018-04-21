@@ -72,10 +72,10 @@
 			</div>
 			<div class="adminoptionbox form-group">
 				<div class="col-sm-offset-4 col-sm-8">
-					<input name="load" type="submit" class="btn btn-default" value="{tr}Load{/tr}">
-					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
-					{if $loaded neq 'global' and $not_global}<input type="submit" class="btn btn-default" name="reset" value="{tr}Reset to Global{/tr}">{/if}
-					{if $loaded eq 'global' and $not_default}<input type="submit" class="btn btn-default" name="reset_global" value="{tr}Reset to defaults{/tr}">{/if}
+					<input name="load" type="submit" class="btn btn-primary" value="{tr}Load{/tr}">
+					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
+					{if $loaded neq 'global' and $not_global}<input type="submit" class="btn btn-primary" name="reset" value="{tr}Reset to Global{/tr}">{/if}
+					{if $loaded eq 'global' and $not_default}<input type="submit" class="btn btn-primary" name="reset_global" value="{tr}Reset to defaults{/tr}">{/if}
 				</div>
 			</div>
 			<input id="qt-form-field" type="hidden" name="pref" value="">

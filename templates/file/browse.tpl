@@ -14,7 +14,7 @@
 					<input type="hidden" name="galleryId" value="{$galleryId|escape}"/>
 					<input type="hidden" name="type" value="{$typeFilter|escape}"/>
 				</div>
-				<button class="btn btn-default">{tr}Search{/tr}</button>
+				<button class="btn btn-primary">{tr}Search{/tr}</button>
 			</form>
 			<h4>{tr}Select files{/tr}</h4>
 			<div class="gallery-list">
@@ -40,9 +40,9 @@
 				</div>
 				<div class="submit">
 					{if $canUpload}
-						<a class="btn btn-default upload-files custom-handling" href="{service controller=file action=uploader galleryId=$galleryId limit=$limit type=$typeFilter}">{tr}Upload Files{/tr}</a>
+						<a class="btn btn-primary upload-files custom-handling" href="{service controller=file action=uploader galleryId=$galleryId limit=$limit type=$typeFilter}">{tr}Upload Files{/tr}</a>
 					{/if}
-					<input type="submit" class="btn btn-primary" value="{tr}Select{/tr}">
+					<input type="submit" class="btn btn-secondary" value="{tr}Select{/tr}">
 				</div>
 			</form>
 		</div>

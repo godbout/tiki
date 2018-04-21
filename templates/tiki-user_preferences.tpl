@@ -175,7 +175,7 @@
 					</div>
 				</div>
 				<div class="submit text-center">
-					<input type="submit" class="btn btn-primary" name="new_prefs" value="{tr}Save changes{/tr}">
+					<input type="submit" class="btn btn-secondary" name="new_prefs" value="{tr}Save changes{/tr}">
 				</div>
 			</form>
 		{/tab}
@@ -535,7 +535,7 @@
 					</div>
 				</div>
 				<div class="submit text-center">
-					<input type="submit" class="btn btn-primary" name="new_prefs" value="{tr}Save changes{/tr}">
+					<input type="submit" class="btn btn-secondary" name="new_prefs" value="{tr}Save changes{/tr}">
 				</div>
 			</form>
 		{/tab}
@@ -595,7 +595,7 @@
 						{/if}
 					{/if}
 					<div class="submit text-center">
-						<input type="submit" class="btn btn-primary btn-sm" name="chgadmin" value="{tr}Save changes{/tr}">
+						<input type="submit" class="btn btn-secondary btn-sm" name="chgadmin" value="{tr}Save changes{/tr}">
 					</div>
 			</form>
 		{/tab}

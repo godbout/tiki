@@ -25,7 +25,7 @@
 		</div>
 		<div class="submit">
 			<input type="hidden" name="confirm" value="1">
-			<input type="submit" class="btn btn-primary" name="import" value="{tr}Import{/tr}">
+			<input type="submit" class="btn btn-secondary" name="import" value="{tr}Import{/tr}">
 		</div>
 	</form>
 {/block}

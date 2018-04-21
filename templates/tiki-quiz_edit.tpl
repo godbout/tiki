@@ -7,10 +7,10 @@
 {title help="Quiz"}{tr}Edit quiz:{/tr} {$quiz->name}{/title}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-list_quizzes.php" class="btn btn-default" _text="{tr}List Quizzes{/tr}"}
-	{button href="tiki-quiz_stats.php" class="btn btn-default" _text="{tr}Quiz Stats{/tr}"}
-	{button href="tiki-quiz_stats_quiz.php" _auto_args='quizId' class="btn btn-default" _text="{tr}This Quiz Stats{/tr}"}
-	{button href="tiki-quiz_edit.php" class="btn btn-default" _text="{tr}Admin Quizzes{/tr}"}
+	{button href="tiki-list_quizzes.php" class="btn btn-primary" _text="{tr}List Quizzes{/tr}"}
+	{button href="tiki-quiz_stats.php" class="btn btn-primary" _text="{tr}Quiz Stats{/tr}"}
+	{button href="tiki-quiz_stats_quiz.php" _auto_args='quizId' class="btn btn-primary" _text="{tr}This Quiz Stats{/tr}"}
+	{button href="tiki-quiz_edit.php" class="btn btn-primary" _text="{tr}Admin Quizzes{/tr}"}
 </div>
 
 <form enctype="multipart/form-data" method="post" action="tiki-quiz_edit.php" class="form-horizontal">
@@ -247,8 +247,8 @@
 				<td>
 				</td>
 				<td>
-					<input type="submit" class="wikiaction btn btn-default" name="save" value="{tr}Save{/tr}">
-					<a class="btn btn-default" href="tiki-index.php?page={$page|escape:"url"}">{tr}Cancel Edit{/tr}</a>
+					<input type="submit" class="wikiaction btn btn-primary" name="save" value="{tr}Save{/tr}">
+					<a class="btn btn-primary" href="tiki-index.php?page={$page|escape:"url"}">{tr}Cancel Edit{/tr}</a>
 				</td>
 			</tr>
 		</table>

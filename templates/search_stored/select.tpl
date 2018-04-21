@@ -32,7 +32,7 @@
 				<textarea class="form-control" name="description" rows="5" data-codemirror="true" data-syntax="tiki">{$description|escape}</textarea>
 			</div>
 			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="{tr}Create{/tr}"/>
+				<input type="submit" class="btn btn-secondary" value="{tr}Create{/tr}"/>
 			</div>
 		</div>
 	</div>
@@ -76,7 +76,7 @@
 			</tbody>
 		</table>
 		<div class="form-group">
-			<input type="submit" class="btn btn-default" value="{tr}Select{/tr}"/>
+			<input type="submit" class="btn btn-primary" value="{tr}Select{/tr}"/>
 		</div>
 		</div>
 	</div>

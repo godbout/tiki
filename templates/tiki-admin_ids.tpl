@@ -12,7 +12,7 @@
 {title admpage="security" url="tiki-admin_ids.php"}{tr}IDS Rules{/tr}{/title}
 <div class="t_navbar margin-bottom-md">
 	{if isset($ruleinfo.id)}
-		{button href="?add=1" class="btn btn-default" _text="{tr}Add a new Rule{/tr}"}
+		{button href="?add=1" class="btn btn-primary" _text="{tr}Add a new Rule{/tr}"}
 	{/if}
 
 </div>
@@ -158,9 +158,9 @@
 				{if isset($ruleinfo.id) && $ruleinfo.id && !$ruleinfo.error}
 					<input type="hidden" name="rule" value="{$ruleinfo.id|escape}">
 					<input type="hidden" name="editrule" value="1">
-					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				{else}
-					<input type="submit" class="btn btn-primary" name="new_rule" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-secondary" name="new_rule" value="{tr}Add{/tr}">
 				{/if}
 			</div>
 		</div>

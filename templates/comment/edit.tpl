@@ -25,7 +25,7 @@
 				<div class="panel-footer">
 					{if empty($comment.version)}
 						<div class="form-group comment-post">
-							<input type="submit" class="clearfix comment-editclass btn btn-primary btn-sm" value="{tr}Save{/tr}"/>
+							<input type="submit" class="clearfix comment-editclass btn btn-secondary btn-sm" value="{tr}Save{/tr}"/>
 							<div class="btn btn-link">
 								<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
 							</div>
@@ -41,7 +41,7 @@
 						{/if}
 						<div class="submit">
 							<input type="hidden" name="version" value="{$comment.version|escape}"/>
-							<input type="submit" class="comment-post btn btn-primary" value="{tr}Post{/tr}"/>
+							<input type="submit" class="comment-post btn btn-secondary" value="{tr}Post{/tr}"/>
 							<div class="btn btn-link">
 								<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
 							</div>

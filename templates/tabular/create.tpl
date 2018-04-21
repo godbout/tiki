@@ -7,7 +7,7 @@
 {block name="navigation"}
 	<div class="form-group">
 		{permission name=admin_trackers}
-			<a class="btn btn-default" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
+			<a class="btn btn-primary" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
 		{/permission}
 	</div>
 {/block}
@@ -28,7 +28,7 @@
 		</div>
 		<div class="form-group submit">
 			<div class="col-sm-9 col-sm-push-3">
-				<input type="submit" class="btn btn-primary" value="{tr}Create{/tr}">
+				<input type="submit" class="btn btn-secondary" value="{tr}Create{/tr}">
 			</div>
 		</div>
 	</form>

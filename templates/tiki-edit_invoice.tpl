@@ -68,5 +68,5 @@
 	<br>
 	<textarea name="InvoiceNote" id="InvoiceNote">{$invoice.$InvoiceNote}</textarea>
 	<br>
-	<input type="submit" class="btn btn-default btn-sm" value="{tr}Save Invoice{/tr}" name="submit">
+	<input type="submit" class="btn btn-primary btn-sm" value="{tr}Save Invoice{/tr}" name="submit">
 </form>

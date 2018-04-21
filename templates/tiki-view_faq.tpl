@@ -5,13 +5,13 @@
 	{self_link print='y' _icon_name='print' _menu_text='y' _menu_icon='y'}
 		{tr}Print{/tr}
 	{/self_link}
-	{button href="tiki-list_faqs.php" class="btn btn-default" _text="{tr}List FAQs{/tr}"}
+	{button href="tiki-list_faqs.php" class="btn btn-primary" _text="{tr}List FAQs{/tr}"}
 
 	{if $tiki_p_admin_faqs eq 'y'}
-		{button href="tiki-list_faqs.php?faqId=$faqId" class="btn btn-default" _text="{tr}Edit this FAQ{/tr}"}
+		{button href="tiki-list_faqs.php?faqId=$faqId" class="btn btn-primary" _text="{tr}Edit this FAQ{/tr}"}
 	{/if}
 	{if $tiki_p_admin_faqs eq 'y'}
-		{button href="tiki-faq_questions.php?faqId=$faqId" class="btn btn-default" _text="{tr}New Question{/tr}"}
+		{button href="tiki-faq_questions.php?faqId=$faqId" class="btn btn-primary" _text="{tr}New Question{/tr}"}
 	{/if}
 </div>
 
@@ -96,7 +96,7 @@
 				<tr>
 					<td>&nbsp;</td>
 					<td>
-						<input type="submit" class="btn btn-default btn-sm" name="sugg" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="sugg" value="{tr}Add{/tr}">
 					</td>
 				</tr>
 			</table>

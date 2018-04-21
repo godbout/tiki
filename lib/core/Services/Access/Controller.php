@@ -41,7 +41,7 @@ class Services_Access_Controller
 	{
 		$title = ! empty($input['title']) ? $input['title'] : tra('Please confirm');
 		$confirmButton = ! empty($input['confirmButton']) ? $input['confirmButton'] : tra('OK');
-		$confirmButtonClass = ! empty($input['confirmButtonClass']) ? $input['confirmButtonClass'] : 'btn-primary';
+		$confirmButtonClass = ! empty($input['confirmButtonClass']) ? $input['confirmButtonClass'] : 'btn-secondary';
 		$items = $input->asArray('items');
 
 		/*** confirm message ***/

@@ -2,7 +2,7 @@
 {title url="tiki-invite.php"}{tr}Invitation{/tr}{/title}
 
 <div class="t_navbar">
-	{button class="btn btn-default" _text="{tr}Invitations list{/tr}" href="tiki-list_invite.php"}
+	{button class="btn btn-primary" _text="{tr}Invitations list{/tr}" href="tiki-list_invite.php"}
 </div>
 
 {if $sentresult}

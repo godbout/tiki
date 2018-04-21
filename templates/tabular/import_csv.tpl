@@ -7,8 +7,8 @@
 {block name="navigation"}
 	<div class="form-group">
 		{permission name=admin_trackers}
-			<a class="btn btn-default" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
-			<a class="btn btn-default" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
+			<a class="btn btn-primary" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
+			<a class="btn btn-primary" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
 		{/permission}
 	</div>
 {/block}
@@ -25,7 +25,7 @@
 				<input type="file" name="file" accept="text/csv">
 			</div>
 			<div class="submit">
-				<input class="btn btn-primary" type="submit" value="{tr}Import{/tr}">
+				<input class="btn btn-secondary" type="submit" value="{tr}Import{/tr}">
 			</div>
 		</form>
 	{/if}

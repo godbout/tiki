@@ -259,7 +259,7 @@ function wikiplugin_include($dataIn, $params)
 	// append a "See full page" link at end of text if only a portion of page is being included
     if (($prefs['wiki_plugin_include_link_original'] == 'y' && (isset($start) || isset($stop))) || (isset($linkoriginal) && $linkoriginal == 'y')) {
         $wikilib = TikiLib::lib('wiki');
-	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-default"';
+	    $text .= '<p><a href="'.$wikilib->sefurl($page).'" class="btn btn-primary"';
         $text .= 'title="'.sprintf(tr('The text above comes from page "%s". Click to go to that page.'), htmlspecialchars($page)).'">';
         $text .= smarty_function_icon(['name' => 'align-left'], $smarty).' ';
         $text .= $linkoriginal_text;

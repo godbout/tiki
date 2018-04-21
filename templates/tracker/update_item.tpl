@@ -26,7 +26,7 @@
 					<input type="hidden" name="forced~{$permName|escape}" value="{$value|escape}">
 				{/foreach}
 				<input type="hidden" name="redirect" value="{$redirect|escape}">
-				<input type="submit" class="btn btn-primary" value="{$button_label}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-secondary" value="{$button_label}" onclick="needToConfirm=false;">
 			</div>
 		</form>
 	{else}
@@ -35,7 +35,7 @@
 			<div class="submit">
 				{if not empty($saveAndComment) and $saveAndComment neq 'n'}
 					<input type="hidden" name="saveAndComment" id="saveAndComment" value="">
-					<input type="submit" class="btn btn-default" onclick="$('#saveAndComment').val(1);" value="{tr}Save and Comment{/tr}">
+					<input type="submit" class="btn btn-primary" onclick="$('#saveAndComment').val(1);" value="{tr}Save and Comment{/tr}">
 				{/if}
 				<input type="hidden" name="itemId" value="{$itemId|escape}">
 				<input type="hidden" name="trackerId" value="{$trackerId|escape}">
@@ -43,7 +43,7 @@
 					<input type="hidden" name="forced~{$permName|escape}" value="{$value|escape}">
 				{/foreach}
 				<input type="hidden" name="redirect" value="{$redirect|escape}">
-				<input type="submit" class="btn btn-primary" value="{$button_label}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-secondary" value="{$button_label}" onclick="needToConfirm=false;">
 			</div>
 		</form>
 		{* Don't warn on leaving page if the modal is closed without saving *}

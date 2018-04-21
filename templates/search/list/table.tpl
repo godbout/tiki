@@ -104,7 +104,7 @@
 		{/foreach}
 	</select>
 	<input type="text" name="list_input" value="" class="form-control" style="display:none">
-	<input type="submit" class="btn btn-default btn-sm" title="{tr}Apply Changes{/tr}" id="submit_form_{$id}" disabled value="{tr}Apply{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm" title="{tr}Apply Changes{/tr}" id="submit_form_{$id}" disabled value="{tr}Apply{/tr}">
 </form>
 {jq}
 (function(){
@@ -164,7 +164,7 @@
 	<form method="post" id="listexecute-download-{$iListExecute}">
 		<input type="hidden" name="download" value="1">
 		<input type="hidden" name="tsAjax" value="y">
-		<input type="submit" name="submit" value="{tr}Download{/tr}" class="btn btn-default">
+		<input type="submit" name="submit" value="{tr}Download{/tr}" class="btn btn-primary">
 	</form>
 {jq}
 (function(){

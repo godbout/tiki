@@ -32,7 +32,7 @@
 
 		<div class="form-group">
 			<div class="col-sm-9 col-sm-offset-3">
-				<input type="submit" class="btn btn-default btn-sm" name="editcopyright" value="{tr}Edit{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="editcopyright" value="{tr}Edit{/tr}">
 
 				<a class="tips" title=":{tr}Delete{/tr}" href="copyrights.php?page={$page|escape:"url"}&amp;action=delete&amp;copyrightId={$copyrights[i].copyrightId}" >
 					{icon name='remove' alt="{tr}Remove{/tr}"}
@@ -75,7 +75,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-9 col-sm-offset-3">
-			<input type="submit" class="btn btn-default btn-sm" name="addcopyright" value="{tr}Add{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="addcopyright" value="{tr}Add{/tr}">
 		</div>
 	</div>
 	<input type="hidden" name="page" value="{$page|escape}">

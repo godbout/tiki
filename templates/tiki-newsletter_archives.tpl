@@ -2,16 +2,16 @@
 
 <div class="t_navbar margin-bottom-md">
 	{if $tiki_p_list_newsletters eq "y"}
-		{button href="tiki-newsletters.php" class="btn btn-default" _text="{tr}List Newsletters{/tr}"}
+		{button href="tiki-newsletters.php" class="btn btn-primary" _text="{tr}List Newsletters{/tr}"}
 	{/if}
 	{if $tiki_p_subscribe_newsletters eq "y"}
-		{button href="tiki-newsletters.php?nlId=$nlId&amp;info=1" class="btn btn-default" _text="{tr}Subscribe{/tr}"}
+		{button href="tiki-newsletters.php?nlId=$nlId&amp;info=1" class="btn btn-primary" _text="{tr}Subscribe{/tr}"}
 	{/if}
 	{if $tiki_p_send_newsletters eq "y"}
-		{button href="tiki-send_newsletters.php?nlId=$nlId" class="btn btn-default" _text="{tr}Send Newsletters{/tr}"}
+		{button href="tiki-send_newsletters.php?nlId=$nlId" class="btn btn-primary" _text="{tr}Send Newsletters{/tr}"}
 	{/if}
 	{if $tiki_p_admin_newsletters eq "y"}
-		{button href="tiki-admin_newsletters.php" class="btn btn-default" _text="{tr}Admin Newsletters{/tr}"}
+		{button href="tiki-admin_newsletters.php" class="btn btn-primary" _text="{tr}Admin Newsletters{/tr}"}
 	{/if}
 </div>
 <br>

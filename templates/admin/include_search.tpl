@@ -20,7 +20,7 @@
 		<div class="form-group col-lg-12 clearfix">
 			{if $prefs.feature_search eq 'y'}
 				<a role="link" href="tiki-searchindex.php" class="btn btn-link">{icon name="search"} {tr}Search{/tr}</a>
-				<a role="link" href="{bootstrap_modal controller=search action=rebuild}" class="btn btn-default timeout">{icon name="cog"} {tr}Rebuild Index{/tr}</a>
+				<a role="link" href="{bootstrap_modal controller=search action=rebuild}" class="btn btn-primary timeout">{icon name="cog"} {tr}Rebuild Index{/tr}</a>
 			{/if}
 			{include file='admin/include_apply_top.tpl'}
 		</div>

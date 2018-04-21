@@ -207,7 +207,7 @@
 			{/if}
 		</select>
 		<span class="input-group-btn">
-			<button type="submit" class="btn btn-primary">{tr}OK{/tr}</button>
+			<button type="submit" class="btn btn-secondary">{tr}OK{/tr}</button>
 		</span>
 	</div>
 	</form>

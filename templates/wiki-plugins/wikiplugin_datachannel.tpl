@@ -18,7 +18,7 @@
 			<label class="div"></label>
 			<input type="hidden" name="datachannel_execution" value="{$datachannel_execution|escape}">
 			<div class="col-md-9 col-md-offset-3">
-				<input type="submit" class="btn btn-primary btn-sm" value="{tr}{$button_label}{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm" value="{tr}{$button_label}{/tr}">
 			</div>
 		</div>
 	</div>

@@ -3,12 +3,12 @@
 {title help="Integrator"}{tr}Edit Rules for Repository:{/tr} {$name}{/title}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-admin_integrator.php" class="btn btn-default" _icon_name="cog" _text="{tr}Configure Repositories{/tr}"}
-	{button href="tiki-list_integrator_repositories.php" class="btn btn-default" _icon_name="list" _text="{tr}List Repositories{/tr}"}
+	{button href="tiki-admin_integrator.php" class="btn btn-primary" _icon_name="cog" _text="{tr}Configure Repositories{/tr}"}
+	{button href="tiki-list_integrator_repositories.php" class="btn btn-primary" _icon_name="list" _text="{tr}List Repositories{/tr}"}
 	{assign var=thisrepID value=$repID|escape}
-	{button href="tiki-admin_integrator.php?action=edit&amp;repID=$thisrepID" class="btn btn-default" _icon_name="wrench" _text="{tr}Configure this Repository{/tr}"}
-	{button href="tiki-integrator.php?repID=$thisrepID" _text="{tr}View this Repository{/tr}" _icon_name="view" class="btn btn-default"}
-	{button href="tiki-admin_integrator_rules.php?repID=$thisrepID" _text="{tr}New Rule{/tr}" _icon_name="create" class="btn btn-default"}
+	{button href="tiki-admin_integrator.php?action=edit&amp;repID=$thisrepID" class="btn btn-primary" _icon_name="wrench" _text="{tr}Configure this Repository{/tr}"}
+	{button href="tiki-integrator.php?repID=$thisrepID" _text="{tr}View this Repository{/tr}" _icon_name="view" class="btn btn-primary"}
+	{button href="tiki-admin_integrator_rules.php?repID=$thisrepID" _text="{tr}New Rule{/tr}" _icon_name="create" class="btn btn-primary"}
 	{if count($reps) gt 0}
 		{button _onclick="javascript:flip('rules-copy-panel');" _text="{tr}Copy Rules{/tr}" _icon_name="copy" _title="{tr}view/hide copy rules dialog{/tr}"}
 	{/if}
@@ -23,7 +23,7 @@
 					<select name="srcrep" class="form-control">{html_options options=$reps}</select>
 				</div>
 				<div class="col-sm-1">
-					<input type="submit" class="btn btn-default btn-sm" name="copy" value="{tr}Copy{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="copy" value="{tr}Copy{/tr}">
 				</div>
 			</div>
 		</form>
@@ -87,7 +87,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7 col-sm-offset-1">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 	<div class="form-group">
@@ -126,7 +126,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7 col-sm-offset-1">
-			<input type="submit" class="btn btn-default btn-sm" name="preview" value="{tr}Preview{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}">
 		</div>
 	</div>
 </form>

@@ -57,7 +57,7 @@
 
 							{if $smod_params.compact eq "y"}
 
-								<button type="submit" class="btn btn-default search_mod_magnifier">
+								<button type="submit" class="btn btn-primary search_mod_magnifier">
 									{icon name="search"}
 								</button>
 							</div>
@@ -70,7 +70,7 @@
 								<input type="hidden" name="filter~{$key|escape}" value="{$filter|escape}"/>
 							{/foreach}
 							{if $smod_params.show_search_button eq 'y'}
-								<input type = "submit" class="btn btn-default btn-sm tips{if $smod_params.default_button eq 'search'} btn-primary button_default{/if}{if $smod_params.compact eq "y"} bottom{else} btn-xs{/if}"
+								<input type = "submit" class="btn btn-primary btn-sm tips{if $smod_params.default_button eq 'search'} btn-secondary button_default{/if}{if $smod_params.compact eq "y"} bottom{else} btn-xs{/if}"
 									name = "search" value = "{$smod_params.search_submit|escape}"
 									title="{tr}Search{/tr}|{tr}Search for text throughout the site.{/tr}"
 									{if $smod_params.compact eq "y"}data-placement="bottom"{/if}
@@ -79,7 +79,7 @@
 							{/if}
 							{if $smod_params.show_go_button eq 'y'}
 								<input type="hidden" name="exact_match" value="" />
-								<input type = "submit" class="btn btn-default btn-sm tips{if $smod_params.compact eq "y"} bottom{else} btn-xs{/if}{if $smod_params.default_button eq 'go'} btn-primary button_default{/if}"
+								<input type = "submit" class="btn btn-primary btn-sm tips{if $smod_params.compact eq "y"} bottom{else} btn-xs{/if}{if $smod_params.default_button eq 'go'} btn-secondary button_default{/if}"
 									name = "go" value = "{$smod_params.go_submit|escape}"
 									title="{tr}Go{/tr}|{tr}Go directly to a page, or search in page titles if exact match is not found.{/tr}"
 									{if $smod_params.compact eq "y"}data-placement="bottom"{/if}
@@ -91,7 +91,7 @@
 								>
 							{/if}
 							{if $smod_params.show_edit_button eq 'y' and $tiki_p_edit eq 'y'}
-								<input type = "submit" class = "btn btn-default btn-sm tips{if $smod_params.compact eq "y"} bottom{else} btn-xs{/if}{if $smod_params.default_button eq 'edit'} btn-primary button_default{/if}"
+								<input type = "submit" class = "btn btn-primary btn-sm tips{if $smod_params.compact eq "y"} bottom{else} btn-xs{/if}{if $smod_params.default_button eq 'edit'} btn-secondary button_default{/if}"
 									name = "edit" value = "{$smod_params.edit_submit|escape}"
 									title="{tr}Edit{/tr}|{tr}Edit existing page or create a new one.{/tr}"
 									{if $smod_params.compact eq "y"}data-placement="bottom"{/if}

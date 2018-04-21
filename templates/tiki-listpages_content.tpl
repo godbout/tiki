@@ -469,7 +469,7 @@
 					type="submit"
 					form="checkboxes_on"
 					formaction="{bootstrap_modal controller=wiki version=all}"
-					class="btn btn-primary confirm-submit"
+					class="btn btn-secondary confirm-submit"
 				>
 					{tr}OK{/tr}
 				</button>
@@ -481,7 +481,7 @@
 		{capture assign='find_htmlescaped'}{$find|escape}{/capture}
 		{capture assign='find_urlescaped'}{$find|escape:'url'}{/capture}
 		<div class="t_navbar">
-			{button _text="{tr}Create Page:{/tr} $find_htmlescaped" href="tiki-editpage.php?page=$find_urlescaped&lang=$find_lang&templateId=$template_id&template_name=$template_name&categId=$create_page_with_categId" class="btn btn-default" _title="{tr}Create{/tr}"}
+			{button _text="{tr}Create Page:{/tr} $find_htmlescaped" href="tiki-editpage.php?page=$find_urlescaped&lang=$find_lang&templateId=$template_id&template_name=$template_name&categId=$create_page_with_categId" class="btn btn-primary" _title="{tr}Create{/tr}"}
 		</div>
 	{/if}
 

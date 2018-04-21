@@ -74,7 +74,7 @@
 
 						{if $multiple eq 'y' and $add eq 'y'}
 							<div class="form-group">
-								<input type="submit" class="btn btn-default btn-sm" name="categorize" value="{if isset($module_params.categorize)}{tr}{$module_params.categorize}{/tr}{else}{tr}Categorize{/tr}{/if}" />
+								<input type="submit" class="btn btn-primary btn-sm" name="categorize" value="{if isset($module_params.categorize)}{tr}{$module_params.categorize}{/tr}{else}{tr}Categorize{/tr}{/if}" />
 							</div>
 						{/if}
 					</form>

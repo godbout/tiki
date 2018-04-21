@@ -3,7 +3,7 @@
 		{foreach from=$freetags.data item=taginfo}
 			{capture name=tagurl}{if (strstr($taginfo.tag, ' '))}"{$taginfo.tag}"{else}{$taginfo.tag}{/if}{/capture}
 			{if isset($links_inactive) and $links_inactive eq 'y'}
-				<a class="btn-default btn-sm" href="#">{$taginfo.tag|escape}</a>
+				<a class="btn-primary btn-sm" href="#">{$taginfo.tag|escape}</a>
 			{else}
 				<a class="label label-default" href="tiki-browse_freetags.php?tag={$smarty.capture.tagurl|escape:'url'}">{$taginfo.tag|escape}</a>
 				{if isset($deleteTag) and $tiki_p_unassign_freetags eq 'y'}

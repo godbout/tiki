@@ -161,9 +161,9 @@ function wikiplugin_shorten($data, $params)
 		$index = strlen($match[0]);
 
 		$sample = $parserlib->parse_data_plugin(substr($data, 0, $index));
-		$sample .= '<a href="#" class="btn_more btn btn-default">' . $moreText . '</a>';
+		$sample .= '<a href="#" class="btn_more btn btn-primary">' . $moreText . '</a>';
 
-		$content = $parserlib->parse_data_plugin($data) . '<a href="#" class="btn_less btn btn-default">' . $lessText . '</a>';
+		$content = $parserlib->parse_data_plugin($data) . '<a href="#" class="btn_less btn btn-primary">' . $lessText . '</a>';
 
 		$out = sprintf($html, $sample, $content);
 		return $out;

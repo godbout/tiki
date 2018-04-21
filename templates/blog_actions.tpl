@@ -80,7 +80,7 @@
 				<div>
 					{tr}Watched by categories:{/tr}
 					{section name=i loop=$watching_categories}
-						<a href="tiki-browse_categories.php?parentId={$watching_categories[i].categId}" class="btn btn-default btn-small">{$watching_categories[i].name|escape}</a>&nbsp;
+						<a href="tiki-browse_categories.php?parentId={$watching_categories[i].categId}" class="btn btn-primary btn-small">{$watching_categories[i].name|escape}</a>&nbsp;
 					{/section}
 				</div>
 			{/if}

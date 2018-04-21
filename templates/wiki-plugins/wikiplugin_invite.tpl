@@ -23,6 +23,6 @@
 		</div>
 	</div>
 	<div class="text-center margin-bottom-md">
-		<input type="submit" class="btn btn-default" name="invite" value="{tr}Invite{/tr}">
+		<input type="submit" class="btn btn-primary" name="invite" value="{tr}Invite{/tr}">
 	</div>
 </form>

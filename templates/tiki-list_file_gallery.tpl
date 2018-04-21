@@ -195,7 +195,7 @@
 				</label>
 					<input type="text" name="comment" id="comment" class="form-control">
 			</div>
-				<button type="submit" class="btn btn-default btn-sm">{icon name='ok'} {tr}Save{/tr}</button>
+				<button type="submit" class="btn btn-primary btn-sm">{icon name='ok'} {tr}Save{/tr}</button>
 		</form>
 	{/remarksbox}
 {/if}
@@ -238,7 +238,7 @@
 								jQuery("#fileId").tooltip();
 							{/jq}
 							<div class="input-group-btn">
-								<button type="submit" class="btn btn-default" style="text-align: right">{tr}Search by identifier{/tr}</button>
+								<button type="submit" class="btn btn-primary" style="text-align: right">{tr}Search by identifier{/tr}</button>
 							</div>
 						</div>
 					</form>
@@ -253,7 +253,7 @@
 						<div class="input-group">
 							<input name="highlight" size="30" type="text" placeholder="{tr}Search in content{/tr}..." class="form-control">
 							<div class="input-group-btn">
-								<input type="submit" class="wikiaction btn btn-default" name="search" value="{tr}Go{/tr}">
+								<input type="submit" class="wikiaction btn btn-primary" name="search" value="{tr}Go{/tr}">
 							</div>
 						</div>
 					</form>
@@ -271,7 +271,7 @@
 				<label for="maxWidth">
 					{tr}Maximum width{/tr}&nbsp;<input id="maxWidth" class="form-control" type="text" name="maxWidth" value="{$maxWidth}">
 				</label>
-				<input type="submit" class="wikiaction btn btn-default" name="setSize" value="{tr}Submit{/tr}">
+				<input type="submit" class="wikiaction btn btn-primary" name="setSize" value="{tr}Submit{/tr}">
 			</form>
 		</div><br>
 		{pagination_links cant=$cant step=$maxRecords offset=$offset}
@@ -391,7 +391,7 @@ window.handleFinderFile = function (file, elfinder) {
 		|| $tiki_p_edit_comments == 'y')}
 
 		<div id="page-bar">
-			<a id="comment-toggle" href="{service controller=comment action=list type="file gallery" objectId=$galleryId}#comment-container" class="btn btn-default btn-sm">
+			<a id="comment-toggle" href="{service controller=comment action=list type="file gallery" objectId=$galleryId}#comment-container" class="btn btn-primary btn-sm">
 				{icon name="comments"} {tr}Comments{/tr}
 			</a>
 			{jq}

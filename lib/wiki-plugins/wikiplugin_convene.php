@@ -166,14 +166,14 @@ function wikiplugin_convene($data, $params)
 			$dateHeader .= $tikilib->get_short_datetime($stamp);
 		}
 		$dateHeader .= '</span>';
-		$dateHeader .= ($perms->edit ? " <button class='conveneDeleteDate$i icon btn btn-default btn-xs' data-date='$stamp'>$deleteicon</button>" : "") . "</td>";
+		$dateHeader .= ($perms->edit ? " <button class='conveneDeleteDate$i icon btn btn-primary btn-xs' data-date='$stamp'>$deleteicon</button>" : "") . "</td>";
 	}
 	$result .= "<tr class='conveneHeaderRow'>";
 
 	$result .= "<td style='vertical-align: middle'>" . (
 		$perms->edit
 			?
-				"<input type='button' class='conveneAddDate$i btn btn-default btn-sm' value='" . tr('Add Date') . "'/>"
+				"<input type='button' class='conveneAddDate$i btn btn-primary btn-sm' value='" . tr('Add Date') . "'/>"
 			: ""
 	) . "</td>";
 
@@ -186,7 +186,7 @@ function wikiplugin_convene($data, $params)
 	$userList = "";
 	foreach ($rows as $user => $row) {
 		$userList .= "<tr class='conveneVotes conveneUserVotes$i'>";
-		$userList .= "<td style='white-space: nowrap'>" . ($perms->edit ? "<button class='conveneUpdateUser$i icon btn btn-default btn-sm'>"
+		$userList .= "<td style='white-space: nowrap'>" . ($perms->edit ? "<button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
 				. smarty_function_icon(['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
 					. tr("Edit User/Save changes")], $smarty)
 				. "</button><button data-user='$user' title='" . tr("Delete User")
@@ -226,7 +226,7 @@ function wikiplugin_convene($data, $params)
 				?
 				"<div class='btn-group'>
 						<input class='conveneAddUser$i form-control' value='' placeholder='" . tr("Username...") . "' style='float:left;width:72%;border-bottom-right-radius:0;border-top-right-radius:0;'>
-						<input type='button' value='+' title='" . tr('Add User') . "' class='conveneAddUserButton$i btn btn-default' />
+						<input type='button' value='+' title='" . tr('Add User') . "' class='conveneAddUserButton$i btn btn-primary' />
 					</div>"
 				: ""
 			) .
@@ -243,7 +243,7 @@ function wikiplugin_convene($data, $params)
 			$pic .= ($perms->edit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':'
 					. tr("Selected Date")], $smarty) : "");
 			if ($perms->edit && $votes[$topVoteStamp] >= $minvotes) {
-				$pic .= "<a class='btn btn-default btn-xs' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
+				$pic .= "<a class='btn btn-primary btn-xs' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
 					. tr("Add as Calendar Event") . "'>"
 					. smarty_function_icon(['name' => 'calendar'], $smarty)
 					. "</a>";

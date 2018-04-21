@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div class="form-group text-center">
-			<input type="submit" class="btn btn-default btn-sm" name="replace" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="replace" value="{tr}Save{/tr}">
 		</div>
 	</form>
 {/if}
@@ -76,7 +76,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-default btn-sm" name="setting" value="{tr}Save{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" name="setting" value="{tr}Save{/tr}">
 	</div>
 </form>
 
@@ -97,7 +97,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-default btn-sm" name="add" value="{tr}Add{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
 	</div>
 </form>
 <h2>{tr}List of contributions{/tr}</h2>

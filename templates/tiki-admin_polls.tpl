@@ -5,7 +5,7 @@
 	<a href="tiki-admin_polls.php?setlast=1" class="btn btn-link" title="">{icon name="previous"} {tr}Set last poll as current{/tr} </a>
 	<a href="tiki-admin_polls.php?closeall=1" class="btn btn-link" title="">{icon name="disable"} {tr}Close all polls but last{/tr}</a>
 	<a href="tiki-admin_polls.php?activeall=1" class="btn btn-link" title="">{icon name="enable"} {tr}Activate all polls{/tr}</a>
-	{if $pollId neq '0'}{button pollId=0 cookietab=1 class="btn btn-default" _icon_name="create" _text="{tr}Create poll{/tr}"}{/if}
+	{if $pollId neq '0'}{button pollId=0 cookietab=1 class="btn btn-primary" _icon_name="create" _text="{tr}Create poll{/tr}"}{/if}
 </div>
 
 {tabset}
@@ -85,7 +85,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1">
-					<input type="submit" class="btn btn-default btn-sm" name="add" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -235,7 +235,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-default btn-sm" name="addPoll" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="addPoll" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>

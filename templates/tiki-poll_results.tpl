@@ -3,8 +3,8 @@
 {title help="polls" admpage="polls"}{tr}Poll Results{/tr}{/title}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-old_polls.php" class="btn btn-default" _text="{tr}Polls{/tr}"}
-	{button href="tiki-poll_results.php" class="btn btn-default" _text="{tr}Top Voted Polls{/tr}"}
+	{button href="tiki-old_polls.php" class="btn btn-primary" _text="{tr}Polls{/tr}"}
+	{button href="tiki-poll_results.php" class="btn btn-primary" _text="{tr}Top Voted Polls{/tr}"}
 	{if $tiki_p_admin_polls eq 'y'}
 		{if empty($pollId)}{button href="tiki-admin_polls.php" _text="{tr}Admin Polls{/tr}"}{else}{button href="tiki-admin_polls.php?pollId=$pollId" _text="{tr}Edit Poll{/tr}"}{/if}
 	{/if}
@@ -53,7 +53,7 @@
 		</label>
 	{/if}
 	<br>
-	<input type="submit" class="btn btn-default btn-sm" name="search" value="{tr}Find{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Find{/tr}">
 </form>
 
 {section name=x loop=$poll_info_arr}
@@ -72,7 +72,7 @@
 	{if $tiki_p_view_poll_voters eq 'y' && $poll_info_arr[x].votes > 0}
 		<div class="t_navbar">
 			{assign var=thispoll_info_arr value=$poll_info_arr[x].pollId}
-			{button href="?list=y&amp;pollId=$thispoll_info_arr" class="btn btn-default" _text="{tr}List Votes{/tr}" _auto_args="$auto_args"}
+			{button href="?list=y&amp;pollId=$thispoll_info_arr" class="btn btn-primary" _text="{tr}List Votes{/tr}" _auto_args="$auto_args"}
 		</div>
 	{/if}
 
@@ -91,7 +91,7 @@
 				<td class="text-center">
 					<form method="get" action="tiki-poll_results.php">
 						<input type="text" name="find" value="{$find|escape}">
-						<input type="submit" class="btn btn-default btn-sm" value="{tr}Find{/tr}" name="search">
+						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
 						<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 						<input type="hidden" name="pollId" value="{$pollId|escape}">
 						<input type="hidden" name="list" value="y">
@@ -141,7 +141,7 @@
 	|| $tiki_p_post_comments == 'y'
 	|| $tiki_p_edit_comments == 'y')}
 	<div id="page-bar" class="btn-group">
-		<span class="button btn-default"><a id="comment-toggle" href="{service controller=comment action=list type=poll objectId=$pollId}#comment-container">{tr}Comments{/tr}</a></span>
+		<span class="button btn-primary"><a id="comment-toggle" href="{service controller=comment action=list type=poll objectId=$pollId}#comment-container">{tr}Comments{/tr}</a></span>
 		{jq}
 			$('#comment-toggle').comment_toggle();
 		{/jq}

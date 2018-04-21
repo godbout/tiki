@@ -22,7 +22,7 @@
 		</div>
 		<div class="submit text-center">
 			<input type="hidden" name="confirm" value="1">
-			<input type="submit" class="btn btn-primary" data-dismiss="modal" value="{tr}Select{/tr}">
+			<input type="submit" class="btn btn-secondary" data-dismiss="modal" value="{tr}Select{/tr}">
 		</div>
 	</form>
 {/block}

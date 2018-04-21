@@ -22,5 +22,5 @@
 			<input class="form-control" type="text" name="local" id="local">
 		</div>
 	</div>
-	<input type="submit" class="btn btn-default btn-sm" name="import" value="{tr}Import{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}Import{/tr}">
 </form>

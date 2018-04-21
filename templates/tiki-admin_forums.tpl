@@ -4,10 +4,10 @@
 
 	<div class="t_navbar margin-bottom-md">
 		{if $tiki_p_admin_forum eq 'y' && $forumId > 0 or (isset($dup_mode) and $dup_mode eq 'y')}
-			{button class="btn btn-default" href="?" _icon_name="add" _text="{tr}Create Forum{/tr}"}
+			{button class="btn btn-primary" href="?" _icon_name="add" _text="{tr}Create Forum{/tr}"}
 		{/if}
 		{if $tiki_p_admin_forum eq 'y' && (!isset($dup_mode) or $dup_mode ne 'y')}
-			{button class="btn btn-default" href="tiki-admin_forums.php?dup_mode=y" _icon_name="copy" _text="{tr}Duplicate{/tr}"}
+			{button class="btn btn-primary" href="tiki-admin_forums.php?dup_mode=y" _icon_name="copy" _text="{tr}Duplicate{/tr}"}
 		{/if}
 		{if $forumId > 0}
 			{button _type="link" class="btn btn-link" href="tiki-view_forum.php?forumId=$forumId" _icon_name="view" _text="{tr}View{/tr}"}
@@ -163,7 +163,7 @@
 								type="submit"
 								form='admin_forums'
 								formaction="{bootstrap_modal controller=forum}"
-								class="btn btn-primary confirm-submit"
+								class="btn btn-secondary confirm-submit"
 							>
 								{tr}OK{/tr}
 							</button>
@@ -569,7 +569,7 @@
 					</fieldset>
 
 					<div class="text-center">
-						<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+						<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 					</div>
 				</form>
 
@@ -611,7 +611,7 @@
 						</div>
 					</div>
 					<div class="text-center">
-						<input type="submit" class="btn btn-default" name="duplicate" value="{tr}Duplicate{/tr}">
+						<input type="submit" class="btn btn-primary" name="duplicate" value="{tr}Duplicate{/tr}">
 					</div>
 				</form>
 			{/if}

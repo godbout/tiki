@@ -3,11 +3,11 @@
 
 <div class="t_navbar margin-bottom-md">
 	{if $tiki_p_view_survey_stats eq 'y'}
-		{button href="tiki-survey_stats.php" class="btn btn-default" _text="{tr}Survey stats{/tr}"}
+		{button href="tiki-survey_stats.php" class="btn btn-primary" _text="{tr}Survey stats{/tr}"}
 	{/if}
 	{if $tiki_p_admin_surveys eq 'y'}
-		{button href="tiki-admin_surveys.php?cookietab=2" class="btn btn-default" _text="{tr}Create New Survey{/tr}"}
-		{button href="tiki-admin_surveys.php?cookietab=1" class="btn btn-default" _text="{tr}Admin Surveys{/tr}"}
+		{button href="tiki-admin_surveys.php?cookietab=2" class="btn btn-primary" _text="{tr}Create New Survey{/tr}"}
+		{button href="tiki-admin_surveys.php?cookietab=1" class="btn btn-primary" _text="{tr}Admin Surveys{/tr}"}
 	{/if}
 </div>
 {* Use css menus as fallback for item dropdown action menu if javascript is not being used *}

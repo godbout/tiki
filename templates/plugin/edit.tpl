@@ -16,9 +16,9 @@
 			{if not empty($param.type)}
 				{$onclick = "openFgalsWindow('{$prefs.home_file_gallery|sefurl:'file gallery':true}filegals_manager={$param.area|escape}&id=1', true);return false;"}
 				{if $param.type eq 'image'}
-					<br>{icon name='image' title='{tr}Select image{/tr}' onclick=$onclick class='btn btn-xs btn-default'}
+					<br>{icon name='image' title='{tr}Select image{/tr}' onclick=$onclick class='btn btn-xs btn-primary'}
 				{elseif $param.type eq 'fileId'}
-					<br>{icon name='file' title='{tr}Pick a file{/tr}' onclick=$onclick class='btn btn-xs btn-default'}
+					<br>{icon name='file' title='{tr}Pick a file{/tr}' onclick=$onclick class='btn btn-xs btn-primary'}
 				{elseif $param.type eq 'kaltura'}
 					{jq}
 $("#picker_{{$name|escape}}").parent().click(function () {
@@ -36,7 +36,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 	return false;
 });
 					{/jq}
-					<br>{icon name='video' title='{tr}Upload or record media{/tr}' href={service controller='kaltura' action='upload'} id='picker_'|cat:$name|escape class='btn btn-xs btn-default'}
+					<br>{icon name='video' title='{tr}Upload or record media{/tr}' href={service controller='kaltura' action='upload'} id='picker_'|cat:$name|escape class='btn btn-xs btn-primary'}
 				{/if}
 			{/if}
 		</div>
@@ -117,9 +117,9 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 				<input type="hidden" name="type" value="{$type}">
 				<input type="hidden" name="index" value="{$index}">
 				{if $prefs.wikiplugin_list_convert_trackerlist eq 'y' and $type eq 'trackerlist'}
-					<input type="submit" class="btn btn-default" value="{tr}Convert to List{/tr}" data-alt_controller="plugin" data-alt_action="convert_trackerlist">
+					<input type="submit" class="btn btn-primary" value="{tr}Convert to List{/tr}" data-alt_controller="plugin" data-alt_action="convert_trackerlist">
 				{/if}
-				<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
+				<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}">
 			</div>
 
 			{if $type eq 'module'}

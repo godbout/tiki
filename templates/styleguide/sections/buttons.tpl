@@ -2,27 +2,27 @@
 	<h2>Buttons</h2>
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-default btn-xs">Default</button>
-			<button type="button" class="btn btn-default btn-sm">Default</button>
-			<button type="button" class="btn btn-default">Default</button>
-			<button type="button" class="btn btn-default btn-lg">Default</button>
-			<button type="button" class="btn btn-default disabled">Default</button>
+			<button type="button" class="btn btn-primary btn-xs">Default</button>
+			<button type="button" class="btn btn-primary btn-sm">Default</button>
+			<button type="button" class="btn btn-primary">Default</button>
+			<button type="button" class="btn btn-primary btn-lg">Default</button>
+			<button type="button" class="btn btn-primary disabled">Default</button>
 		</div>
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
-				<p class="picker" data-selector=".style-guide .btn-default" data-element="background-color">
+				<p class="picker" data-selector=".style-guide .btn-primary" data-element="background-color">
 					<label for="sg-btn-default-bg-color">Background:</label>
-					<input id="sg-btn-default-bg-color" data-selector=".style-guide .btn-default" data-element="background-color" data-var="@btn-default-bg" type="text">
+					<input id="sg-btn-default-bg-color" data-selector=".style-guide .btn-primary" data-element="background-color" data-var="@btn-default-bg" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".style-guide .btn-default" data-element="border-color">
+				<p class="picker" data-selector=".style-guide .btn-primary" data-element="border-color">
 					<label for="sg-btn-default-border-color">Border:</label>
-					<input id="sg-btn-default-border-color" data-selector=".style-guide .btn-default" data-element="border-color" data-var="@btn-default-border" type="text">
+					<input id="sg-btn-default-border-color" data-selector=".style-guide .btn-primary" data-element="border-color" data-var="@btn-default-border" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".style-guide .btn-default" data-element="color">
+				<p class="picker" data-selector=".style-guide .btn-primary" data-element="color">
 					<label for="sg-btn-default-text-color">Text:</label>
-					<input id="sg-btn-default-text-color" data-selector=".style-guide .btn-default" data-element="color" data-var="@btn-default-color" type="text">
+					<input id="sg-btn-default-text-color" data-selector=".style-guide .btn-primary" data-element="color" data-var="@btn-default-color" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 			</div>
@@ -31,27 +31,27 @@
 
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-primary btn-xs">Primary</button>
-			<button type="button" class="btn btn-primary btn-sm">Primary</button>
-			<button type="button" class="btn btn-primary">Primary</button>
-			<button type="button" class="btn btn-primary btn-lg">Primary</button>
-			<button type="button" class="btn btn-primary disabled">Primary</button>
+			<button type="button" class="btn btn-secondary btn-xs">Primary</button>
+			<button type="button" class="btn btn-secondary btn-sm">Primary</button>
+			<button type="button" class="btn btn-secondary">Primary</button>
+			<button type="button" class="btn btn-secondary btn-lg">Primary</button>
+			<button type="button" class="btn btn-secondary disabled">Primary</button>
 		</div>
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
-				<p class="picker" data-selector=".style-guide .btn-primary" data-element="background-color">
+				<p class="picker" data-selector=".style-guide .btn-secondary" data-element="background-color">
 					<label for="sg-btn-primary-bg-color">Background:</label>
-					<input id="sg-btn-primary-bg-color" data-selector=".style-guide .btn-primary" data-element="background-color" data-var="@btn-primary-bg" type="text">
+					<input id="sg-btn-primary-bg-color" data-selector=".style-guide .btn-secondary" data-element="background-color" data-var="@btn-primary-bg" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".style-guide .btn-primary" data-element="border-color">
+				<p class="picker" data-selector=".style-guide .btn-secondary" data-element="border-color">
 					<label for="sg-btn-primary-border-color">Border:</label>
-					<input id="sg-btn-primary-border-color" data-selector=".style-guide .btn-primary" data-element="border-color" data-var="@btn-primary-border" type="text">
+					<input id="sg-btn-primary-border-color" data-selector=".style-guide .btn-secondary" data-element="border-color" data-var="@btn-primary-border" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".style-guide .btn-primary" data-element="color">
+				<p class="picker" data-selector=".style-guide .btn-secondary" data-element="color">
 					<label for="sg-btn-primary-text-color">Text:</label>
-					<input id="sg-btn-primary-text-color" data-selector=".style-guide .btn-primary" data-element="color" data-var="@btn-primary-color" type="text">
+					<input id="sg-btn-primary-text-color" data-selector=".style-guide .btn-secondary" data-element="color" data-var="@btn-primary-color" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 			</div>

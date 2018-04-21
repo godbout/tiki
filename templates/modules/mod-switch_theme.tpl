@@ -30,7 +30,7 @@
 				<input type="hidden" name="theme_option" value="">
 			{/if}
 			<noscript>
-				<button type="submit" class="btn btn-default btn-sm">{tr}Switch{/tr}</button>
+				<button type="submit" class="btn btn-primary btn-sm">{tr}Switch{/tr}</button>
 			</noscript>
 		</fieldset>
 	</form>

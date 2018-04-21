@@ -1,10 +1,10 @@
 {title help="Live Support"}{tr}Live support system{/tr}{/title}
 
 <div class="t_navbar margin-bottom-md">
-	{button href='#' _onclick="javascript:window.open('tiki-live_support_console.php','','menubar=no,scrollbars=yes,resizable=yes,height=400,width=600');" class="btn btn-default" _text="{tr}Open operator console{/tr}"}
-	{button href='#' _onclick="javascript:window.open('tiki-live_support_client.php','','menubar=no,scrollbars=yes,resizable=yes,height=450,width=300');" class="btn btn-default" _text="{tr}Open client window{/tr}"}
-	{button href="?show_html" class="btn btn-default" _text="{tr}Generate HTML{/tr}"}
-	{button href="tiki-live_support_transcripts.php" class="btn btn-default" _type="link" _icon_name="file-text-o" _text="{tr}Transcripts{/tr}"}
+	{button href='#' _onclick="javascript:window.open('tiki-live_support_console.php','','menubar=no,scrollbars=yes,resizable=yes,height=400,width=600');" class="btn btn-primary" _text="{tr}Open operator console{/tr}"}
+	{button href='#' _onclick="javascript:window.open('tiki-live_support_client.php','','menubar=no,scrollbars=yes,resizable=yes,height=450,width=300');" class="btn btn-primary" _text="{tr}Open client window{/tr}"}
+	{button href="?show_html" class="btn btn-primary" _text="{tr}Generate HTML{/tr}"}
+	{button href="tiki-live_support_transcripts.php" class="btn btn-primary" _type="link" _icon_name="file-text-o" _text="{tr}Transcripts{/tr}"}
 </div>
 
 {if $html}
@@ -135,7 +135,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-7">
-				<input type="submit" class="btn btn-default btn-sm" name="adduser" value="{tr}Set as Operator{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="adduser" value="{tr}Set as Operator{/tr}">
 			</div>
 		</div>
 	</form>

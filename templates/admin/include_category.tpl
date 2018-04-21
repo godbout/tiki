@@ -63,7 +63,7 @@
 		<div class="form-group">
 			<div class="col-sm-8 col-sm-offset-4">
 				{if !empty($prefs.category_defaults)}
-					<button type="submit" class="btn btn-default" name="assignWikiCategories" value="y">
+					<button type="submit" class="btn btn-primary" name="assignWikiCategories" value="y">
 						{tr}Re-apply last saved category defaults to wiki pages{/tr}
 					</button>
 				{/if}

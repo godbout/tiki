@@ -1,8 +1,8 @@
 {title url="tiki-admin_poll_options.php?pollId=$pollId"}{tr}Admin Polls:{/tr} {$menu_info.title}{/title}
 
 <div class="t_navbar btn-group form-group">
-	{button href="tiki-admin_polls.php" class="btn btn-default" _icon_name="list" _text="{tr}List{/tr}"}
-	{button href="tiki-admin_polls.php?pollId=$pollId" class="btn btn-default" _icon_name="edit" _text="{tr}Edit{/tr}"}
+	{button href="tiki-admin_polls.php" class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
+	{button href="tiki-admin_polls.php?pollId=$pollId" class="btn btn-primary" _icon_name="edit" _text="{tr}Edit{/tr}"}
 </div>
 
 <h2>{tr}Preview poll{/tr}</h2>
@@ -37,7 +37,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>

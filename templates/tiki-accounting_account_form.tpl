@@ -63,7 +63,7 @@
 				</div>
 			</div>
 
-			<input type="submit" class="btn btn-primary timeout col-md-offset-4" name="submit" value="{if $action=='new'}{tr}Create account{/tr}{else}{tr}Modify account{/tr}{/if}">
+			<input type="submit" class="btn btn-secondary timeout col-md-offset-4" name="submit" value="{if $action=='new'}{tr}Create account{/tr}{else}{tr}Modify account{/tr}{/if}">
 			{if $account.changeable==1 && $action=="edit"}
 				{button href="tiki-accounting_account.php?bookId={$bookId}&accountId={$accountId}&action=delete{ticket mode=get}" _class="timeout" _text="{tr}Delete this account{/tr}"}
 			{/if}

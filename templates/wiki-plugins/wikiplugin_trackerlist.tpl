@@ -20,7 +20,7 @@
 		{remarksbox type='errors' title="{tr}Field error{/tr}"}{$nonPublicFieldsWarning}{/remarksbox}
 	{/if}
 	{if $allowtableexpansion eq 'y'}
-		<button title="{tr}Expand table{/tr}" class="btn btn-default btn-sm table-expand-toggle" type="button" ><span class="icon fa fa-caret-square-o-right fa-fw "></span></button>
+		<button title="{tr}Expand table{/tr}" class="btn btn-primary btn-sm table-expand-toggle" type="button" ><span class="icon fa fa-caret-square-o-right fa-fw "></span></button>
 		{jq}
 			$(".table-expand-toggle").click(function(){
 				var $this = $(this);
@@ -63,7 +63,7 @@
 		<div class="trackerlistsort">
 			<form method="post">
 				{include file='tracker_sort_input.tpl'}
-				<input type="submit" class="btn btn-default btn-sm" name="sort" value="{tr}Sort{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="sort" value="{tr}Sort{/tr}">
 			</form>
 		</div>
 	{/if}
@@ -96,8 +96,8 @@
 
 			{if $prefs.tracker_report_resize_button eq 'y'}
 				<p class="tracker-resize" style="display:none;text-align:right">
-					<button class="tracker-resize-expand btn btn-default" title="{tr}Resize{/tr}">{icon name='expand'}</button>
-					<button class="tracker-resize-compress btn btn-default" title="{tr}Resize{/tr}" style="display:none">{icon name='compress'}</button>
+					<button class="tracker-resize-expand btn btn-primary" title="{tr}Resize{/tr}">{icon name='expand'}</button>
+					<button class="tracker-resize-compress btn btn-primary" title="{tr}Resize{/tr}" style="display:none">{icon name='compress'}</button>
 				</p>
 				{jq}
 					$('[id^="wptrackerlist"].ts-wrapperdiv').each(function() {
@@ -257,7 +257,7 @@ the section loop so that the vars are not replaced by nested pretty tracker exec
 			{if $checkbox.tpl}{include file="$checkbox.tpl"}{/if}
 			{if !empty($checkbox.submit) and !empty($checkbox.title)}
 				<br>
-				<input type="submit" class="btn btn-default btn-sm" name="{$checkbox.submit}" value="{tr}{$checkbox.title}{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="{$checkbox.submit}" value="{tr}{$checkbox.title}{/tr}">
 			{/if}
 			{if !$checkbox.embed}
 			</form>

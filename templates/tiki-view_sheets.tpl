@@ -25,11 +25,11 @@
 
 <div class="t_navbar btn-group form-group">
 	{if $page}
-		{button href="tiki-index.php" page="$page" class="btn btn-default" _text="{tr}Back to Page{/tr}"}
+		{button href="tiki-index.php" page="$page" class="btn btn-primary" _text="{tr}Back to Page{/tr}"}
 	{/if}
 
 	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-sheets.php" class="btn btn-default" _text="{tr}List Spreadsheets{/tr}"}
+		{button href="tiki-sheets.php" class="btn btn-primary" _text="{tr}List Spreadsheets{/tr}"}
 	{/if}
 
 	{if $objectperms->edit_sheet}

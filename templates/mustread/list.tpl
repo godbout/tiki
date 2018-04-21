@@ -42,13 +42,13 @@
 			<tr>
 				<td colspan="3">
 					{if $canAdd}
-						<a class="btn btn-default add-mustread-item" href="{service controller=tracker action=insert_item trackerId=$prefs.mustread_tracker modal=1}">{icon name="add"} {tr}Add Item{/tr}</a>
+						<a class="btn btn-primary add-mustread-item" href="{service controller=tracker action=insert_item trackerId=$prefs.mustread_tracker modal=1}">{icon name="add"} {tr}Add Item{/tr}</a>
 					{/if}
 					&nbsp;
 				</td>
 				<td>
 					{if $list|count > 0}
-						<input class="btn btn-primary" type="submit" value="{tr}Save{/tr}">
+						<input class="btn btn-secondary" type="submit" value="{tr}Save{/tr}">
 					{/if}
 				</td>
 			</tr>

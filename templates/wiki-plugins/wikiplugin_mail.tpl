@@ -19,15 +19,15 @@
 		</ul>
 		<input type="hidden" name="mail_subject" value="{$mail_subject|escape}">
 		<input type="hidden" name="mail_mess" value="{$mail_mess|escape}">
-		<input type="submit" class="btn btn-primary" name="mail_send{$ipluginmail}" value="{tr}Send Mail{/tr}">
+		<input type="submit" class="btn btn-secondary" name="mail_send{$ipluginmail}" value="{tr}Send Mail{/tr}">
 	</form>
 	<form method="post">
-		<input type="submit" class="btn btn-default" name="mail_cancel{$ipluginmail}" value="{tr}Cancel{/tr}">
+		<input type="submit" class="btn btn-primary" name="mail_cancel{$ipluginmail}" value="{tr}Cancel{/tr}">
 	</form>
 {else}
 	<div>
 		{if $mail_popup == 'y'}
-			<p><input name="sendmailload{{$ipluginmail}}" type="submit" class="btn btn-default" value="{$mail_label_name|escape}" /></p>
+			<p><input name="sendmailload{{$ipluginmail}}" type="submit" class="btn btn-primary" value="{$mail_label_name|escape}" /></p>
 			<div style="display: none;">
 		{/if}
 		<div id="wikiplugin_mail" class="">
@@ -115,9 +115,9 @@
 
 				<div class="form-group text-center margin-bottom-sm">
 					{if $bypass_preview != 'y'}
-						<input type="submit" class="btn btn-default" name="mail_preview{$ipluginmail}" value="{tr}Preview Mail{/tr}">
+						<input type="submit" class="btn btn-primary" name="mail_preview{$ipluginmail}" value="{tr}Preview Mail{/tr}">
 					{else}
-						<input type="submit" class="btn btn-default" value="{tr}Send Mail{/tr}">
+						<input type="submit" class="btn btn-primary" value="{tr}Send Mail{/tr}">
 						<input type="hidden" name="mail_send{$ipluginmail}" value="{tr}Send Mail{/tr}">
 					{/if}
 				</div>

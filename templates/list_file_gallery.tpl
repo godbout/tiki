@@ -138,7 +138,7 @@
 								{/if}
 							</select>
 							<span class="input-group-btn">
-								<button class="btn btn-primary" form="fgalform" type="submit">
+								<button class="btn btn-secondary" form="fgalform" type="submit">
 									{tr}OK{/tr}
 								</button>
 							</span>
@@ -169,7 +169,7 @@
 								</div>
 							</div>
 							<div class="panel-footer">
-								<input type='submit' class="btn btn-primary" form="fgalform" name='movesel' value="{tr}Move{/tr}">
+								<input type='submit' class="btn btn-secondary" form="fgalform" name='movesel' value="{tr}Move{/tr}">
 							</div>
 						</div>
 					{/if}
@@ -206,7 +206,7 @@
 							</div>
 						</div>
 						<div class="panel-footer">
-							<input class="btn btn-primary" type="submit" name="permsel" value="{tr}Assign{/tr}">
+							<input class="btn btn-secondary" type="submit" name="permsel" value="{tr}Assign{/tr}">
 						</div>
 					</div>
 				{/if}

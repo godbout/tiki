@@ -4,15 +4,15 @@
 
 <div class="t_navbar margin-bottom-md">
 	{assign var=thispage value=$page|escape:url}
-	{button href="tiki-index.php?page=$thispage" class="btn btn-default" _text="{tr}View page{/tr}" _icon_name="view"}
+	{button href="tiki-index.php?page=$thispage" class="btn btn-primary" _text="{tr}View page{/tr}" _icon_name="view"}
 	{if $editable}
-		{button href="tiki-editpage.php?page=$thispage" class="btn btn-default" _text="{tr}Edit page{/tr}" _icon_name="edit"}
+		{button href="tiki-editpage.php?page=$thispage" class="btn btn-primary" _text="{tr}Edit page{/tr}" _icon_name="edit"}
 	{/if}
 	{if !isset($noHistory)}
 		{if $show_all_versions eq "y"}
-			{button _text="{tr}Collapse Into Edit Sessions{/tr}" href="?clear_versions=1&show_all_versions=n" _auto_args="*" class="btn btn-default" _icon_name="expanded"}
+			{button _text="{tr}Collapse Into Edit Sessions{/tr}" href="?clear_versions=1&show_all_versions=n" _auto_args="*" class="btn btn-primary" _icon_name="expanded"}
 		{else}
-			{button _text="{tr}Show All Versions{/tr}" href="?clear_versions=1&show_all_versions=y" _auto_args="*" class="btn btn-default" _icon_name="collapsed"}
+			{button _text="{tr}Show All Versions{/tr}" href="?clear_versions=1&show_all_versions=y" _auto_args="*" class="btn btn-primary" _icon_name="collapsed"}
 		{/if}
 	{/if}
 </div>
@@ -42,13 +42,13 @@
 					<p>{tr}This revision is currently marked as approved.{/tr}<p>
 					<div class="submit">
 						<input type="hidden" name="unapprove" value="{$preview|escape}">
-						<input type="submit" class="btn btn-default btn-sm" name="flaggedrev" value="{tr}Remove Approval{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="flaggedrev" value="{tr}Remove Approval{/tr}">
 					</div>
 				{else}
 					<p>{tr}This revision has not been approved.{/tr}<p>
 					<div class="submit">
 						<input type="hidden" name="approve" value="{$preview|escape}">
-						<input type="submit" class="btn btn-default btn-sm" name="flaggedrev" value="{tr}Approve Revision{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="flaggedrev" value="{tr}Approve Revision{/tr}">
 					</div>
 				{/if}
 			</form>
@@ -103,7 +103,7 @@
 			<p>{tr}This revision has not been approved.{/tr}<p>
 			<div class="submit">
 				<input type="hidden" name="approve" value="{$new.version|escape}">
-				<input type="submit" class="btn btn-default btn-sm" name="flaggedrev" value="{tr}Approve Revision{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="flaggedrev" value="{tr}Approve Revision{/tr}">
 			</div>
 		</form>
 	{/remarksbox}
@@ -143,12 +143,12 @@
 							{/section}
 						</select>
 						<div class="input-group-btn">
-							<input type="submit" class="btn btn-primary btn-sm" name="update_translation" value="{tr}Update Translation{/tr}"/>
+							<input type="submit" class="btn btn-secondary btn-sm" name="update_translation" value="{tr}Update Translation{/tr}"/>
 							{if $show_translation_history}
 								<input type="hidden" name="show_translation_history" value="1">
-								{button show_translation_history=0 _text="{tr}Hide translation history{/tr}" _auto_args="*" _class="btn btn-default btn-sm"}
+								{button show_translation_history=0 _text="{tr}Hide translation history{/tr}" _auto_args="*" _class="btn btn-primary btn-sm"}
 							{else}
-								{button show_translation_history=1 _text="{tr}Show translation history{/tr}" _auto_args="*" _class="btn btn-default btn-sm"}
+								{button show_translation_history=1 _text="{tr}Show translation history{/tr}" _auto_args="*" _class="btn btn-primary btn-sm"}
 							{/if}
 						</div>
 					</div>
@@ -203,7 +203,7 @@
 					{/if}
 					{if $prefs.javascript_enabled eq "y"}
 						<span class="input-group-btn">
-							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-default btn-sm"}
+							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-primary btn-sm"}
 						</span>
 						{jq}
 	$("form#pagehistory")
@@ -310,7 +310,7 @@
 						<th></th>
 						{if $prefs.default_wiki_diff_style != "old" and $history}
 							<th colspan="2">
-								<input type="submit" class="btn btn-default btn-sm" name="compare" value="{tr}Compare{/tr}">
+								<input type="submit" class="btn btn-primary btn-sm" name="compare" value="{tr}Compare{/tr}">
 							</th>
 						{/if}
 					</tr>
@@ -537,7 +537,7 @@
 						type="submit"
 						form="pagehistory"
 						formaction="{bootstrap_modal controller=wiki}"
-						class="btn btn-primary confirm-submit">
+						class="btn btn-secondary confirm-submit">
 						{tr}OK{/tr}
 					</button>
 				</span>

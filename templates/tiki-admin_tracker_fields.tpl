@@ -9,8 +9,8 @@
 	{assign var='title' value="{tr}Admin Tracker:{/tr} "|cat:$tracker_info.name|escape}
 	<div class="t_navbar margin-bottom-md">
 		<div class="btn-group">
-			<a href="{service controller=tracker action=add_field trackerId=$trackerId}" class="btn btn-default add-field">{icon name="create"} {tr}Add Field{/tr}</a>
-			<a href="{bootstrap_modal controller=tracker action=import_fields trackerId=$trackerId}" class="btn btn-default">{icon name="import"} {tr}Import Fields{/tr}</a>
+			<a href="{service controller=tracker action=add_field trackerId=$trackerId}" class="btn btn-primary add-field">{icon name="create"} {tr}Add Field{/tr}</a>
+			<a href="{bootstrap_modal controller=tracker action=import_fields trackerId=$trackerId}" class="btn btn-primary">{icon name="import"} {tr}Import Fields{/tr}</a>
 		</div>
 		{include file="tracker_actions.tpl"}
 	</div>
@@ -46,7 +46,7 @@
 				<span class="input-group-btn">
 					<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 					<input type="hidden" name="confirm" value="0">
-					<button type="submit" class="btn btn-primary" name="submit">{tr}Go{/tr}</button>
+					<button type="submit" class="btn btn-secondary" name="submit">{tr}Go{/tr}</button>
 				</span>
 			</div>
 		</div>

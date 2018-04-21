@@ -30,6 +30,6 @@
 			</tr>
 		{/foreach}
 	</table>
-	<button class="btn btn-default add pull-right">{icon name="add"} {tr}Add Condition{/tr}</button>
+	<button class="btn btn-primary add pull-right">{icon name="add"} {tr}Add Condition{/tr}</button>
 	<input type="hidden" name="conditions" value="{$conditions|json_encode|escape}">
 {/block}

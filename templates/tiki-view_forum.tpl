@@ -22,7 +22,7 @@
 		{assign var=thisforum_info value=$forum_info.forumId}
 		{if ($tiki_p_forum_post_topic eq 'y' and ($prefs.feature_wiki_discuss ne 'y' or $prefs.$forumId ne $prefs.wiki_forum_id)) or $tiki_p_admin_forum eq 'y'}
 			{if !isset($comments_threadId) or $comments_threadId eq 0}
-				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick="$('#forumpost').show();return false;" _icon_name="create" _type="default" class="btn btn-default" _text="{tr}New Topic{/tr}"}
+				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick="$('#forumpost').show();return false;" _icon_name="create" _type="default" class="btn btn-primary" _text="{tr}New Topic{/tr}"}
 			{else}
 				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick="$('#forumpost').show();return false;" _icon_name="create" _type="link" class="btn btn-link" _text="{tr}New Topic{/tr}"}
 			{/if}
@@ -371,9 +371,9 @@
 							{if empty($user)}
 								{tr}Enter your name:{/tr}&nbsp;<input type="text" maxlength="50" id="anonymous_name" name="anonymous_name">
 							{/if}
-							<input type="submit" class="btn btn-primary btn-sm" name="comments_postComment" value="{tr}Post{/tr}" {if empty($user)}onclick="setCookie('anonymous_name',document.getElementById('anonymous_name').value);needToConfirm=false;"{/if}>
-							<input type="submit" class="btn btn-default btn-sm" name="comments_previewComment" value="{tr}Preview{/tr}" {if empty($user)}onclick="setCookie('anonymous_name',document.getElementById('anonymous_name').value);needToConfirm=false;"{/if}>
-							<input type="submit" class="btn btn-default btn-sm" name="comments_postCancel" value="{tr}Cancel{/tr}" {if $comment_preview neq 'y'}onclick="hide('forumpost');window.location='#header';return false;"{/if}>
+							<input type="submit" class="btn btn-secondary btn-sm" name="comments_postComment" value="{tr}Post{/tr}" {if empty($user)}onclick="setCookie('anonymous_name',document.getElementById('anonymous_name').value);needToConfirm=false;"{/if}>
+							<input type="submit" class="btn btn-primary btn-sm" name="comments_previewComment" value="{tr}Preview{/tr}" {if empty($user)}onclick="setCookie('anonymous_name',document.getElementById('anonymous_name').value);needToConfirm=false;"{/if}>
+							<input type="submit" class="btn btn-primary btn-sm" name="comments_postCancel" value="{tr}Cancel{/tr}" {if $comment_preview neq 'y'}onclick="hide('forumpost');window.location='#header';return false;"{/if}>
 						</div>
 					</div>
 				</div>
@@ -396,7 +396,7 @@
 						<div class="input-group-btn">
 							<input type="hidden" name="where" value="forums">
 							<input type="hidden" name="forumId" value="{$forum_info.forumId}">
-							<input type="submit" class="wikiaction btn btn-default" name="search" value="{tr}Find{/tr}">
+							<input type="submit" class="wikiaction btn btn-primary" name="search" value="{tr}Find{/tr}">
 						</div>
 					</div>
 				</div>
@@ -418,7 +418,7 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=merge_topic}"
 						title=":{tr}Merge{/tr}"
-						class="btn btn-default btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips confirm-submit"
 					>
 						{icon name="merge"}
 					</button>
@@ -429,7 +429,7 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=move_topic}"
 						title=":{tr}Move{/tr}"
-						class="btn btn-default btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips confirm-submit"
 					>
 						{icon name="move"}
 					</button>
@@ -440,7 +440,7 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=lock_topic}"
 						title=":{tr}Lock{/tr}"
-						class="btn btn-default btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips confirm-submit"
 					>
 						{icon name="lock"}
 					</button>
@@ -449,7 +449,7 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=unlock_topic}"
 						title=":{tr}Unlock{/tr}"
-						class="btn btn-default btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips confirm-submit"
 					>
 						{icon name="unlock"}
 					</button>
@@ -458,7 +458,7 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=delete_topic}"
 						title=":{tr}Delete{/tr}"
-						class="btn btn-default btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips confirm-submit"
 					>
 						{icon name="remove"}
 					</button>
@@ -466,10 +466,10 @@
 			</div>
 			<div class="pull-right">
 				{if $reported > 0}
-					<a class="btn btn-default btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge">{$reported}<span></a>
+					<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge">{$reported}<span></a>
 				{/if}
 				{if $queued > 0}
-					<a class="btn btn-default btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge">{$queued}</span></a>
+					<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge">{$queued}</span></a>
 				{/if}
 			</div>
 		</div>
@@ -855,7 +855,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-offset-4">
-									<input type="submit" class="btn btn-default btn-sm" id="filter_submit" value="{tr}Filter{/tr}">
+									<input type="submit" class="btn btn-primary btn-sm" id="filter_submit" value="{tr}Filter{/tr}">
 								</div>
 							</div>
 						</form>

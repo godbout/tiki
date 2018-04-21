@@ -2,7 +2,7 @@
 
 {block name="navigation"}
 	{include file='tracker_actions.tpl'}
-	<a class="btn btn-default" href="{service controller=tracker action=select_tracker}">{tr}Select Tracker{/tr}</a>
+	<a class="btn btn-primary" href="{service controller=tracker action=select_tracker}">{tr}Select Tracker{/tr}</a>
 {/block}
 
 {block name="title"}
@@ -32,7 +32,7 @@
 			{/if}
 			<div class="submit">
 				<input type="hidden" name="trackerId" value="{$trackerId|escape}">
-				<input type="submit" class="btn btn-primary" value="{tr}Create{/tr}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-secondary" value="{tr}Create{/tr}" onclick="needToConfirm=false;">
 				{foreach from=$forced key=permName item=value}
 					<input type="hidden" name="forced~{$permName|escape}" value="{$value|escape}">
 				{/foreach}

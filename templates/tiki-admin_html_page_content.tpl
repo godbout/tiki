@@ -3,10 +3,10 @@
 <h2>{tr}Page:{/tr} {$pageName}</h2>
 
 <div class="t_navbar btn-group">
-	{button href="tiki-admin_html_pages.php" class="btn btn-default" _icon_name="cog" _text="{tr}Admin HTML pages{/tr}"}
+	{button href="tiki-admin_html_pages.php" class="btn btn-primary" _icon_name="cog" _text="{tr}Admin HTML pages{/tr}"}
 	{assign var='pname' value=$pageName|escape:"url"}
-	{button href="tiki-admin_html_pages.php?pageName=$pname" class="btn btn-default" _icon_name="edit" _text="{tr}Edit this page{/tr}"}
-	{button href="tiki-page.php?pageName=$pname" class="btn btn-default" _icon_name="view" _text="{tr}View page{/tr}"}
+	{button href="tiki-admin_html_pages.php?pageName=$pname" class="btn btn-primary" _icon_name="edit" _text="{tr}Edit this page{/tr}"}
+	{button href="tiki-page.php?pageName=$pname" class="btn btn-primary" _icon_name="view" _text="{tr}View page{/tr}"}
 </div>
 
 {if $zone}
@@ -33,7 +33,7 @@
 		<div class="form-group">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-				<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 			</div>
 		</div>
 	</form>
@@ -79,7 +79,7 @@
 	<div class="form-group">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-7 col-sm-offset-2">
-			<input type="submit" class="btn btn-default btn-sm" name="editmany" value="{tr}Mass update{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="editmany" value="{tr}Mass update{/tr}">
 		</div>
 	</div>
 </form>

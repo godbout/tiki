@@ -13,11 +13,11 @@
 {/if}
 
 <div class="t_navbar btn-group form-group">
-	{button href="tiki-list_integrator_repositories.php" class="btn btn-default" _icon_name="list" _text="{tr}List{/tr}"}
-	{button href="tiki-admin_integrator.php" class="btn btn-default" _icon_name="create" _text="{tr}New{/tr}"}
+	{button href="tiki-list_integrator_repositories.php" class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
+	{button href="tiki-admin_integrator.php" class="btn btn-primary" _icon_name="create" _text="{tr}New{/tr}"}
 	{if isset($repID) and $repID ne '0'}
 		{assign var=thisrepID value=$repID|escape}
-		{button href="tiki-integrator.php?repID=$thisrepID" class="btn btn-default" _icon_name="view" _text="{tr}View{/tr}"}
+		{button href="tiki-integrator.php?repID=$thisrepID" class="btn btn-primary" _icon_name="view" _text="{tr}View{/tr}"}
 	{/if}
 </div>
 
@@ -82,7 +82,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-7 col-sm-offset-3 text-center">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>

@@ -2,7 +2,7 @@
 {title}{tr}Invitations list{/tr}{/title}
 
 <div class="t_avbar">
-	{button href="tiki-invite.php" class="btn btn-default" _text="{tr}Invite{/tr}"}
+	{button href="tiki-invite.php" class="btn btn-primary" _text="{tr}Invite{/tr}"}
 	{if $tiki_p_admin eq 'y'}{button href="tiki-adminusers.php" _text="{tr}Admin users{/tr}"}{/if}
 </div>
 
@@ -23,7 +23,7 @@
 			<input type="checkbox" name="only_pending"{if $only_pending eq 'y'} checked="checked"{/if}>
 		</label>
 		<br>
-		<input type="submit" class="btn btn-default btn-sm" name="filter" value="{tr}Filter{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" name="filter" value="{tr}Filter{/tr}">
 	</form>
 </div>
 

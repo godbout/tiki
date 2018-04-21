@@ -37,7 +37,7 @@
 			{tr}Qty:{/tr} <input type="text" name="quantity" value="1" size="2">
 		{/if}
 	{/if}
-	<input type="submit" class="btn btn-primary" value="{tr}{$params.label|escape}{/tr}">
+	<input type="submit" class="btn btn-secondary" value="{tr}{$params.label|escape}{/tr}">
 	{if $params.exchangeorderitemid}
 		<input type="hidden" value="{$params.exchangeorderitemid|escape}" name="exchangeorderitemid">
 		<input type="hidden" value="{$params.exchangetoproductid|escape}" name="exchangetoproductid">

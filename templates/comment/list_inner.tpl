@@ -52,9 +52,9 @@
 							{if $comment.approved eq 'r'}
 								<span class="label label-danger">{tr}Rejected{/tr}</span>
 							{/if}
-							<a href="{service controller=comment action=moderate do=approve threadId=$comment.threadId}" class="btn btn-default btn-sm tips" title="{tr}Approve{/tr}">{icon name="ok"}</a>
+							<a href="{service controller=comment action=moderate do=approve threadId=$comment.threadId}" class="btn btn-primary btn-sm tips" title="{tr}Approve{/tr}">{icon name="ok"}</a>
 							{if $comment.approved eq 'n'}
-								<a href="{service controller=comment action=moderate do=reject threadId=$comment.threadId}" class="btn btn-default btn-sm tips" title="{tr}Reject{/tr}">{icon name="remove"}</a>
+								<a href="{service controller=comment action=moderate do=reject threadId=$comment.threadId}" class="btn btn-primary btn-sm tips" title="{tr}Reject{/tr}">{icon name="remove"}</a>
 							{/if}
 						{/if}
 						{if $comment.userName ne $user and $comment.approved eq 'y' and $allow_vote}

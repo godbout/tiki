@@ -98,7 +98,7 @@
 					{/if}
 					<div class="form-group">
 						<div class="col-sm-8 col-sm-offset-3 input-group">
-							<input type="submit" class="btn btn-primary" name="request" value="{tr}Request{/tr}">
+							<input type="submit" class="btn btn-secondary" name="request" value="{tr}Request{/tr}">
 						</div>
 					</div>
 				</form>

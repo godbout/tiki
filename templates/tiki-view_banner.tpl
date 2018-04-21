@@ -1,10 +1,10 @@
 {title help="Banners"}{tr}Banner stats{/tr}{/title}
 
 <div class="t_navbar btn-group form-group">
-	{button href="tiki-list_banners.php" class="btn btn-default" _text="{tr}List banners{/tr}"}
+	{button href="tiki-list_banners.php" class="btn btn-primary" _text="{tr}List banners{/tr}"}
 	{if $tiki_p_admin_banners eq 'y'}
-		{button href="tiki-edit_banner.php?bannerId=$bannerId" class="btn btn-default" _text="{tr}Edit{/tr}"}
-		{button href="tiki-edit_banner.php" class="btn btn-default" _text="{tr}Create new banner{/tr}"}
+		{button href="tiki-edit_banner.php?bannerId=$bannerId" class="btn btn-primary" _text="{tr}Edit{/tr}"}
+		{button href="tiki-edit_banner.php" class="btn btn-primary" _text="{tr}Create new banner{/tr}"}
 	{/if}
 </div>
 

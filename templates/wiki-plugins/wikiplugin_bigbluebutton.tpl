@@ -9,9 +9,9 @@
 		{if ! $user}
 			{tr}Name:{/tr}
 			<input type="text" name="bbb_name">
-			<input type="submit" class="btn btn-default btn-sm" value="{tr}Join{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" value="{tr}Join{/tr}">
 		{else}
-			<input type="submit" class="button btn btn-default" value="{tr}Join{/tr}">
+			<input type="submit" class="button btn btn-primary" value="{tr}Join{/tr}">
 		{/if}
 	</div>
 	{if $bbb_show_attendees}

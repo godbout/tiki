@@ -106,7 +106,7 @@
 			<input type="number" name="recordsOffset" value="1" class="form-control">
 		</div>
 		<div>
-			<input type="submit" class="btn btn-default" value="{tr}Export{/tr}">
+			<input type="submit" class="btn btn-primary" value="{tr}Export{/tr}">
 		</div>
 	</form>
 	{/accordion_group}
@@ -117,7 +117,7 @@
 			<p>{tr}If you use field types such as 'User Preference', 'Relations' or 'Items list/Item link', please export your items through the next section below 'Export Tracker Items'{/tr}</p>
 		{/remarksbox}
 		<div>
-			<input type="submit" class="btn btn-default" value="{tr}Export{/tr}">
+			<input type="submit" class="btn btn-primary" value="{tr}Export{/tr}">
 		</div>
 	</form>
 {/accordion_group}
@@ -143,7 +143,7 @@
 			<p>{tr}For example: $profileobject:field_ref${/tr}</p>
 		{/remarksbox}
 		<div>
-			<input type="submit" class="btn btn-default" value="{tr}Export Profile{/tr}">
+			<input type="submit" class="btn btn-primary" value="{tr}Export Profile{/tr}">
 		</div>
 	</form>
 	{/accordion_group}

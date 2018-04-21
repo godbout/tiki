@@ -3,7 +3,7 @@
 		<div class="input-group">
 			{input _filter="content" _field="title,contents" type="text" placeholder="Search... " class="form-control clearfield"}
 			<span class="input-group-btn">
-				{input type=reset value="Clear" class="btn btn-default clearbox"}
+				{input type=reset value="Clear" class="btn btn-primary clearbox"}
 				{input type=submit value="Search" class="btn btn-search"}
 			</span>
 		</div>

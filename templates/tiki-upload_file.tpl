@@ -8,21 +8,21 @@
 {if !empty($galleryId) or (isset($galleries) and count($galleries) > 0 and $tiki_p_list_file_galleries eq 'y') or (isset($uploads) and count($uploads) > 0)}
 	<div class="t_navbar margin-bottom-md">
 		{if !empty($galleryId)}
-			{button galleryId="$galleryId" href="tiki-list_file_gallery.php" class="btn btn-default" _text="{tr}Browse Gallery{/tr}"}
+			{button galleryId="$galleryId" href="tiki-list_file_gallery.php" class="btn btn-primary" _text="{tr}Browse Gallery{/tr}"}
 		{/if}
 		{if isset($galleries) and count($galleries) > 0 and $tiki_p_list_file_galleries eq 'y'}
 			{if !empty($filegals_manager)}
 				{assign var=fgmanager value=$filegals_manager|escape}
-				{button href="tiki-list_file_gallery.php?filegals_manager=$fgmanager" class="btn btn-default" _text="{tr}List Galleries{/tr}"}
+				{button href="tiki-list_file_gallery.php?filegals_manager=$fgmanager" class="btn btn-primary" _text="{tr}List Galleries{/tr}"}
 			{else}
-				{button href="tiki-list_file_gallery.php" class="btn btn-default" _text="{tr}List Galleries{/tr}"}
+				{button href="tiki-list_file_gallery.php" class="btn btn-primary" _text="{tr}List Galleries{/tr}"}
 			{/if}
 		{/if}
 		{if isset($uploads) and count($uploads) > 0}
-			{button href="#upload" class="btn btn-default" _text="{tr}Upload File{/tr}"}
+			{button href="#upload" class="btn btn-primary" _text="{tr}Upload File{/tr}"}
 		{/if}
 		{if !empty($filegals_manager)}
-			{if $simpleMode eq 'y'}{button simpleMode='n' galleryId=$galleryId href="" class="btn btn-default" _text="{tr}Advanced mode{/tr}" _ajax="n"}{else}{button galleryId=$galleryId href="" _text="{tr}Simple mode{/tr}" _ajax="n"}{/if}
+			{if $simpleMode eq 'y'}{button simpleMode='n' galleryId=$galleryId href="" class="btn btn-primary" _text="{tr}Advanced mode{/tr}" _ajax="n"}{else}{button galleryId=$galleryId href="" _text="{tr}Simple mode{/tr}" _ajax="n"}{/if}
 			<span{if $simpleMode eq 'y'} style="display:none;"{/if}>
 				<label for="keepOpenCbx">{tr}Keep gallery window open{/tr}</label>
 				<input type="checkbox" id="keepOpenCbx" checked="checked">
@@ -322,7 +322,7 @@
 				{include file='categorize.tpl'}<br>
 				<div id="page_bar" class="form-group">
 					<div class="col-md-8 col-md-push-4">
-						<input name="upload" type="submit" class="btn btn-default" value="{tr}Save{/tr}">
+						<input name="upload" type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
 					</div>
 				</div>
 			{elseif $prefs.javascript_enabled neq 'y'}
@@ -332,7 +332,7 @@
 					{include file='categorize.tpl'}<br>
 					<div id="page_bar" class="form-group">
 						<div class="col-md-8 col-md-offset-4">
-							<input type="submit" class="btn btn-default btn-sm" name="upload" value="{tr}Upload{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
 						</div>
 					</div>
 				{/if}
@@ -340,13 +340,13 @@
 			{if !$editFileId && $prefs.file_galleries_use_jquery_upload neq 'y'}
 				<div id="page_bar" class="form-group">
 					<div class="col-md-8 col-md-offset-4">
-						<input type="submit" class="btn btn-primary btn-sm"
+						<input type="submit" class="btn btn-secondary btn-sm"
 							onClick="upload_files(); return false"
 							id="btnUpload"
 							name="upload"
 							value="{tr}Upload File(s){/tr}"
 						>
-						<input type="submit" class="btn btn-default btn-sm" onclick="javascript:add_upload_file('multiple_upload'); return false" value="{tr}Add Another File{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" onclick="javascript:add_upload_file('multiple_upload'); return false" value="{tr}Add Another File{/tr}">
 					</div>
 				</div>
 			{/if}
@@ -421,7 +421,7 @@
 				</label>
 			{/if}
 			<div class="col-md-8 col-md-offset-4">
-				<input type="submit" class="btn btn-default btn-sm" value="{tr}Add{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
 			</div>
 			<div class="result col-md-8 col-md-offset-4"></div>
 		</div>

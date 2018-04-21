@@ -18,7 +18,7 @@
 		</div>
 
 		{if $categIdstr}<input type="hidden" name="categId" value="{$categIdstr}">{/if}
-		<input type="submit" class="btn btn-default" name="selrank" value="{tr}View{/tr}">
+		<input type="submit" class="btn btn-primary" name="selrank" value="{tr}View{/tr}">
 	</form>
 </div>
 

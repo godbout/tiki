@@ -12,7 +12,7 @@
 			<div class="input-group">
 				<input type="text" name="new_type" class="form-control" placeholder="{tr}Add article type{/tr}...">
 				<div class="input-group-btn">
-					<button type="submit" class="btn btn-primary" name="add_type">{tr}Add{/tr}</button>
+					<button type="submit" class="btn btn-secondary" name="add_type">{tr}Add{/tr}</button>
 				</div>
 			</div>
 		</div>
@@ -141,7 +141,7 @@
 				</table>
 			</div>
 		{/if}
-		<input type="submit" class="btn btn-primary btn-sm" name="update_type" value="{tr}Save{/tr}"><br>
+		<input type="submit" class="btn btn-secondary btn-sm" name="update_type" value="{tr}Save{/tr}"><br>
 		<hr>
 		<br>
 	{/section}

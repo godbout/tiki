@@ -14,7 +14,7 @@
 				</select>
 			</div>
 			<noscript>
-				<input type="submit" class="btn btn-default btn-sm" value="{tr}Go{/tr}"/>
+				<input type="submit" class="btn btn-primary btn-sm" value="{tr}Go{/tr}"/>
 			</noscript>
 		</form>
 		{if $tiki_p_perspective_admin eq 'y'}

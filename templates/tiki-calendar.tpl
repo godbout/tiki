@@ -136,7 +136,7 @@
 				{/foreach}
 				<div class="calinput">
 					<input type="hidden" name="todate" value="{$focusdate}">
-					<input type="submit" class="btn btn-default btn-sm" name="refresh" value="{tr}Refresh{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="refresh" value="{tr}Refresh{/tr}">
 				</div>
 			</div>
 		</form>
@@ -159,8 +159,8 @@
 				<a href="{$iCalAdvParamsUrl}">{tr}advanced parameters{/tr}</a>
 			</div>
 			<div class="calinput">
-				<input type="submit" class="btn btn-default btn-sm" name="ical" value="{tr}Export as iCal{/tr}">
-				<input type="submit" class="btn btn-default btn-sm" name="csv" value="{tr}Export as CSV{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="ical" value="{tr}Export as iCal{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="csv" value="{tr}Export as CSV{/tr}">
 			</div>
 		</form>
 	{/if}

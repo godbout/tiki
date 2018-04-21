@@ -36,17 +36,17 @@
 					<div class="panel-body form-inline">
 						<span class="infos pull-right">
 							{if $reported > 0}
-								<a class="btn btn-default btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge">{$reported}</span></a>
+								<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge">{$reported}</span></a>
 							{/if}
 							{if $queued > 0}
-								<a class="btn btn-default btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge">{$queued}</span></a>
+								<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge">{$queued}</span></a>
 							{/if}
 						</span>
 						{if $topics|@count > 1}
 							<button
 								type="submit" formaction="{bootstrap_modal controller=forum action=merge_topic}" title=":{tr}Merge{/tr}"
 								form="comment-form"
-								class="btn btn-default btn-sm tips confirm-submit"
+								class="btn btn-primary btn-sm tips confirm-submit"
 							>
 								{icon name="merge"}
 							</button>
@@ -54,7 +54,7 @@
 						<button
 							type="submit" formaction="{bootstrap_modal controller=forum action=delete_topic}" title=":{tr}Delete{/tr}"
 							form="comment-form"
-							class="btn btn-default btn-sm tips confirm-submit"
+							class="btn btn-primary btn-sm tips confirm-submit"
 						>
 							{icon name="remove"}
 						</button>
@@ -115,7 +115,7 @@
 								<label for="comments-search">{tr}Search:{/tr}</label>
 								<input type="text" size="7" name="comments_commentFind" id="comments-search" value="{$comments_commentFind|escape}">
 
-								<input type="submit" class="btn btn-default btn-sm" name="comments_setOptions" value="{tr}Set{/tr}">
+								<input type="submit" class="btn btn-primary btn-sm" name="comments_setOptions" value="{tr}Set{/tr}">
 							</span>
 						</div>
 					</div>
@@ -282,18 +282,18 @@
 								</label>
 							{/if}
 							<div class="col-sm-10">
-								<input type="submit" class="btn btn-default btn-sm" id="comments_postComment" name="comments_postComment" value="{tr}Post{/tr}" onclick="needToConfirm=false;">
+								<input type="submit" class="btn btn-primary btn-sm" id="comments_postComment" name="comments_postComment" value="{tr}Post{/tr}" onclick="needToConfirm=false;">
 								{if !empty($user) && $prefs.feature_comments_post_as_anonymous eq 'y'}
-									<input type="submit" class="btn btn-default btn-sm" name="comments_postComment_anonymous" value="{tr}Post as Anonymous{/tr}" onclick="needToConfirm=false;">
+									<input type="submit" class="btn btn-primary btn-sm" name="comments_postComment_anonymous" value="{tr}Post as Anonymous{/tr}" onclick="needToConfirm=false;">
 								{/if}
-								<input type="submit" class="btn btn-default btn-sm" name="comments_previewComment" id="comments_previewComment" value="{tr}Preview{/tr}">
+								<input type="submit" class="btn btn-primary btn-sm" name="comments_previewComment" id="comments_previewComment" value="{tr}Preview{/tr}">
 								{jq}$("#comments_previewComment").click(function () {
 									if ($("#userfile1").val()) {
 									alert("{tr}Please note that the preview does not keep the attached file which you will have to choose before posting.{/tr}");
 									}
 									needToConfirm=false;
 									});{/jq}
-								<input type="submit" class="btn btn-default btn-sm" name="comments_cancelComment" value="{tr}Cancel{/tr}" onclick="hide('{$postclass}open'); return false">
+								<input type="submit" class="btn btn-primary btn-sm" name="comments_cancelComment" value="{tr}Cancel{/tr}" onclick="hide('{$postclass}open'); return false">
 							</div>
 						</div>
 					</form>

@@ -92,7 +92,7 @@
 		</div>
 		{if $canModify && $prefs.tracker_legacy_insert neq 'y'}
 			{if not empty($smarty.request.from)}{$from = $smarty.request.from}{else}{$from=''}{/if}
-			<a class="btn btn-default" href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$itemId redirect=$from}">{icon name="edit"} {tr}Edit{/tr}</a>
+			<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$itemId redirect=$from}">{icon name="edit"} {tr}Edit{/tr}</a>
 		{/if}
 
 		{* only include actions bar if no custom view template is assigned *}
@@ -102,7 +102,7 @@
 
 		{* show button back only if tpl has been set with vi_tpl or ei_tpl *}
 		{if $viewItemPretty.override and !empty($referer)}
-			<a class="btn btn-default" href="{$referer}" title="{tr}Back{/tr}">{icon name="arrow-circle-left"} {tr}Back{/tr}</a>
+			<a class="btn btn-primary" href="{$referer}" title="{tr}Back{/tr}">{icon name="arrow-circle-left"} {tr}Back{/tr}</a>
 		{/if}
 	</div>
 
@@ -218,7 +218,7 @@
 								{/if}
 							{/foreach}
 						</select>
-						<input type="submit" class="btn btn-default btn-sm" name="go" value="{tr}Move to another tracker{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Move to another tracker{/tr}">
 					</form>
 				{/if}
 
@@ -245,12 +245,12 @@
 
 					<div class="form-group margin-side-0">
 								{if count($fields) >= 5}
-									<input type="submit" class="btn btn-default btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
+									<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
 									{* --------------------------- to return to tracker list after saving --------- *}
 									{if $canView}
-										<input type="submit" class="btn btn-default btn-sm" name="save_return" value="{tr}Save Returning to Item List{/tr}" onclick="needToConfirm=false">
+										<input type="submit" class="btn btn-primary btn-sm" name="save_return" value="{tr}Save Returning to Item List{/tr}" onclick="needToConfirm=false">
 										{if $canRemove}
-											<a class="btn btn-default btn-sm" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title="{tr}Delete{/tr}">{icon name='delete' alt="{tr}Delete{/tr}"}</a>
+											<a class="btn btn-primary btn-sm" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title="{tr}Delete{/tr}">{icon name='delete' alt="{tr}Delete{/tr}"}</a>
 										{/if}
 									{/if}
 								{/if}
@@ -320,10 +320,10 @@
 						{/if}
 						<div class="form-group margin-side-0">
 
-								<input type="submit" class="btn btn-default btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
+								<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
 								{* --------------------------- to return to tracker list after saving --------- *}
 								{if $canView}
-									<input type="submit" class="btn btn-default btn-sm" name="save_return" value="{tr}Save Returning to Item List{/tr}" onclick="needToConfirm=false">
+									<input type="submit" class="btn btn-primary btn-sm" name="save_return" value="{tr}Save Returning to Item List{/tr}" onclick="needToConfirm=false">
 								{/if}
 								{if $canRemove}
 									<a class="link tips" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title=":{tr}Delete{/tr}">
@@ -365,7 +365,7 @@
 											{$cur_field.name|tra}
 										</div>
 										<div class="col-sm-6">
-											<input type="submit" class="btn btn-default btn-sm" name="trck_act" value="{$cur_field.options_array[0]|escape}" >
+											<input type="submit" class="btn btn-primary btn-sm" name="trck_act" value="{$cur_field.options_array[0]|escape}" >
 										</div>
 								</div>
 							</form>

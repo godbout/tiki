@@ -32,9 +32,9 @@
 		<div class="form-group">
 			<label class="control-label col-sm-3"></label>
 			<div class="col-sm-7">
-				<input type="submit" class="btn btn-default btn-sm" name="preview" value="{tr}Preview{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}">
 				&nbsp;
-				<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 			</div>
 		</div>
 	</form>
@@ -193,6 +193,6 @@
 	</div>
 	<div class="form-inline">
 	{tr}Prefix the checked: {/tr}<input type="text" name="prefix" class="form-control">
-	{tr} Postfix the checked: {/tr}<input type="text" name="postfix" class="form-control">&nbsp;<input type="submit" class="btn btn-default " value="{tr}OK{/tr}">
+	{tr} Postfix the checked: {/tr}<input type="text" name="postfix" class="form-control">&nbsp;<input type="submit" class="btn btn-primary " value="{tr}OK{/tr}">
 	</div>
 </form>

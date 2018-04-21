@@ -18,7 +18,7 @@
 			</select>
 		</div>
 		<div class="submit">
-			<input class="btn btn-primary" type="submit" value="{if $columnIndex}{tr}Edit{/tr}{else}{tr}Add{/tr}{/if}">
+			<input class="btn btn-secondary" type="submit" value="{if $columnIndex}{tr}Edit{/tr}{else}{tr}Add{/tr}{/if}">
 		</div>
 	</form>
 {/block}

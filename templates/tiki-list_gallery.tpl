@@ -19,7 +19,7 @@
 	{button href="tiki-browse_gallery.php?galleryId=$galleryId" class="btn btn-link" _type="text" _icon_name="view" _text="{tr}Browse Gallery{/tr}"}
 	{if $system eq 'n'}
 	{if $tiki_p_admin_galleries eq 'y' or ($user and $user eq $owner)}
-	{button href="tiki-list_gallery.php?galleryId=$galleryId&rebuild=$galleryId" class="btn btn-default" _icon_name="cog" _text="{tr}Rebuild Thumbnails{/tr}"}
+	{button href="tiki-list_gallery.php?galleryId=$galleryId&rebuild=$galleryId" class="btn btn-primary" _icon_name="cog" _text="{tr}Rebuild Thumbnails{/tr}"}
 	{/if}
 	{/if}
 </div>

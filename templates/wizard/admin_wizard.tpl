@@ -41,7 +41,7 @@
 					</a>
 				</p>
 
-				<input type="submit" class="btn btn-primary" name="use-default-prefs" value="{tr}Start Configuration Profiles Wizard (Macros){/tr}" />
+				<input type="submit" class="btn btn-secondary" name="use-default-prefs" value="{tr}Start Configuration Profiles Wizard (Macros){/tr}" />
 			</div>
 		</div>
 		<div class="media margin-bottom-lg">
@@ -59,7 +59,7 @@
 						{icon name="help"}
 					</a>
 				</p>
-				<input type="submit" class="btn btn-primary" name="continue" value="{tr}Start Configuration Wizard{/tr}" />
+				<input type="submit" class="btn btn-secondary" name="continue" value="{tr}Start Configuration Wizard{/tr}" />
 			</div>
 		</div>
 		<div class="media margin-bottom-lg">
@@ -81,7 +81,7 @@
 					</a>
 				</p>
 
-					<input type="submit" class="btn btn-primary" name="use-upgrade-wizard" value="{tr}Start Upgrade Wizard{/tr}" />
+					<input type="submit" class="btn btn-secondary" name="use-upgrade-wizard" value="{tr}Start Upgrade Wizard{/tr}" />
 			</div>
 		</div>
 		<div class="media margin-bottom-lg">

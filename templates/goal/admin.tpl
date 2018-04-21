@@ -48,5 +48,5 @@
 			{/foreach}
 		</tbody>
 	</table>
-	<a class="btn btn-primary" href="{service controller=goal action=create}">{tr}Create Goal{/tr}</a>
+	<a class="btn btn-secondary" href="{service controller=goal action=create}">{tr}Create Goal{/tr}</a>
 {/block}

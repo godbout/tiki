@@ -1,7 +1,7 @@
 {* $Id$ *}
 
 {remarksbox type="tip" title="{tr}Tip{/tr}"}
-	{tr}Use the 'Quick Edit' module to easily create or edit wiki pages.{/tr} <a class="btn btn-default" href="tiki-admin_modules.php">{icon name="module"} {tr}Modules{/tr}</a>
+	{tr}Use the 'Quick Edit' module to easily create or edit wiki pages.{/tr} <a class="btn btn-primary" href="tiki-admin_modules.php">{icon name="module"} {tr}Modules{/tr}</a>
 {/remarksbox}
 <form class="form-horizontal" action="tiki-admin.php?page=wiki" method="post">
 	{ticket}
@@ -358,7 +358,7 @@
 					Create database archives of wiki pages for restoring at a later date.<br>
 					<label for="tagname">{tr}Name for dump{/tr}</label>
 					<input maxlength="20" size="20" type="text" name="newtagname" id="newtagname">
-					<input type="submit" class="btn btn-default btn-sm timeout" name="createtag" value="{tr}Create Database Dump{/tr}"><br>
+					<input type="submit" class="btn btn-primary btn-sm timeout" name="createtag" value="{tr}Create Database Dump{/tr}"><br>
 
 					<label for="databasetag">{tr}Wiki database{/tr}</label>
 					<select name="tagname" {if $tags|@count eq '0'} disabled="disabled"{/if}>
@@ -368,8 +368,8 @@
 							<option value=''>{tr}None{/tr}</option>
 						{/section}
 					</select>
-					<input type="submit" class="btn btn-default btn-sm timeout" name="restoretag" value="{tr}Restore{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}>
-					<input type="submit" class="btn btn-default btn-sm timeout" name="removetag" value="{tr}Remove{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}>
+					<input type="submit" class="btn btn-primary btn-sm timeout" name="restoretag" value="{tr}Restore{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}>
+					<input type="submit" class="btn btn-primary btn-sm timeout" name="removetag" value="{tr}Remove{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}>
 					<h4>{tr}Dump files{/tr}</h4>
 					{tr}Dump files archive wiki pages for various usages such as off-line browsing or distribution on optical disks.{/tr}
 					<h5>{tr}Warnings{/tr}</h5>
@@ -379,9 +379,9 @@
 					</ul>
 					<br><br>
 
-					<input type="submit" class="btn btn-default btn-sm timeout" name="createdump" value="{tr}Create Dump File{/tr}">
-					<input type="submit" class="btn btn-default btn-sm timeout" name="downloaddump" value="{tr}Download Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
-					<input type="submit" class="btn btn-default btn-sm timeout" name="removedump" data-target="_blank" value="{tr}Remove Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
+					<input type="submit" class="btn btn-primary btn-sm timeout" name="createdump" value="{tr}Create Dump File{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm timeout" name="downloaddump" value="{tr}Download Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
+					<input type="submit" class="btn btn-primary btn-sm timeout" name="removedump" data-target="_blank" value="{tr}Remove Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
 				</div>
 			<br>
 			<h4><a class="timeout" href="tiki-search_replace.php">{tr}Mass search and replace{/tr}</a></h4>

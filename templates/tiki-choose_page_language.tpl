@@ -23,7 +23,7 @@
 					{/section}
 				</select>
 				<span class="input-group-btn">
-					<input type="submit" class="btn btn-primary" name="select_language" value="{tr}Choose language{/tr}" onclick="needToConfirm=false;">
+					<input type="submit" class="btn btn-secondary" name="select_language" value="{tr}Choose language{/tr}" onclick="needToConfirm=false;">
 				</span>
 			</div>
 		</div>

@@ -153,7 +153,7 @@ function wikiplugin_miniquiz($data, $params)
 			}
 		}
 
-		$back .= "<br /><div><input type='reset' name='reset' value='Start Over' class='btn btn-info' /><input type='submit' name='action' value='Finish'  class='btn btn-default' />";
+		$back .= "<br /><div><input type='reset' name='reset' value='Start Over' class='btn btn-info' /><input type='submit' name='action' value='Finish'  class='btn btn-primary' />";
 		$back .= '</div>';
 		$back .= '<br /><div><b>Students</b>: <a href="tiki-view_tracker.php?trackerId=' . $params['trackerId'] . '&amp;new">Suggest a new question</a></div>';
 

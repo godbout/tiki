@@ -14,13 +14,13 @@
 
 	<div class="t_navbar margin-bottom-md">
 		{if $tiki_p_admin eq 'y'} {* only full admins can manage groups, not tiki_p_admin_users *}
-			{button href="tiki-admingroups.php" class="btn btn-default" _type="link" _icon_name="group" _text="{tr}Admin Groups{/tr}"}
+			{button href="tiki-admingroups.php" class="btn btn-primary" _type="link" _icon_name="group" _text="{tr}Admin Groups{/tr}"}
 		{/if}
 		{if $tiki_p_admin eq 'y'}
 			{permission_link mode=button_link}
 		{/if}
 		{if isset($userinfo.userId)}
-			{button href="?add=1" class="btn btn-default" _text="{tr}Add a New User{/tr}"}
+			{button href="?add=1" class="btn btn-primary" _text="{tr}Add a New User{/tr}"}
 		{/if}
 		{if $prefs.feature_invite eq 'y' and $tiki_p_invite eq 'y'}
 			{button href="tiki-list_invite.php" _type="link" _icon_name="thumbs-up" _text="{tr}Invitation List{/tr}"}
@@ -107,7 +107,7 @@
 					<div class="form-group">
 						<div class="col-sm-8 col-sm-offset-4">
 							<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
-							<input type="submit" class="btn btn-default btn-sm" value="{tr}Find{/tr}" name="search">
+							<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
 						</div>
 					</div>
 				</form>
@@ -352,7 +352,7 @@
 									type="submit"
 									form="checkform"
 									formaction="{bootstrap_modal controller=user}"
-									class="btn btn-primary confirm-submit"
+									class="btn btn-secondary confirm-submit"
 								>
 									{tr}OK{/tr}
 								</button>
@@ -549,7 +549,7 @@
 							<div class="col-md-10">
 								{if $usersitemid}
 									<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$userstrackerid itemId=$usersitemid}"
-										onclick="$('[data-toggle=popover]').popover('hide');" class="btn btn-default edit-usertracker"
+										onclick="$('[data-toggle=popover]').popover('hide');" class="btn btn-primary edit-usertracker"
 									>
 										{tr}Edit Item{/tr}
 									</a>
@@ -558,7 +558,7 @@
 									<a>
 								{else}
 									<a href="{bootstrap_modal controller=tracker action=insert_item trackerId=$userstrackerid forced=$usersTrackerForced}"
-										onclick="$('[data-toggle=popover]').popover('hide');" class="btn btn-default insert-usertracker"
+										onclick="$('[data-toggle=popover]').popover('hide');" class="btn btn-primary insert-usertracker"
 									>
 										{tr}Create Item{/tr}
 									</a>
@@ -572,9 +572,9 @@
 							{if isset($userinfo.userId) && $userinfo.userId}
 								<input type="hidden" name="user" value="{$userinfo.userId|escape}">
 								<input type="hidden" name="edituser" value="1">
-								<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+								<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 							{else}
-								<input type="submit" class="btn btn-primary" name="newuser" value="{tr}Add{/tr}">
+								<input type="submit" class="btn btn-secondary" name="newuser" value="{tr}Add{/tr}">
 							{/if}
 						</div>
 					</div>
@@ -695,7 +695,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-9 col-md-offset-3">
-						<input type="submit" class="btn btn-primary" name="batch" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-secondary" name="batch" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>
@@ -773,7 +773,7 @@
 						<div class="col-sm-10 col-sm-offset-4 col-md-10 col-md-offset-4">
 							<input
 								type="submit"
-								class="btn btn-primary service-submit"
+								class="btn btn-secondary service-submit"
 								form="tempuser"
 								formaction="{service controller=user action=invite_tempuser}"
 								value="{tr}Invite{/tr}"

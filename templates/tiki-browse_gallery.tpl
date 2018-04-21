@@ -77,7 +77,7 @@
 	{/if}
 	{if $system eq 'n'}
 		{if $tiki_p_admin_galleries eq 'y' or ($user and $user eq $owner)}
-			{button href="tiki-browse_gallery.php?galleryId=$galleryId&amp;rebuild=$galleryId" class="btn btn-default" _icon_name='cog' _text="{tr}Rebuild Thumbnails{/tr}"}
+			{button href="tiki-browse_gallery.php?galleryId=$galleryId&amp;rebuild=$galleryId" class="btn btn-primary" _icon_name='cog' _text="{tr}Rebuild Thumbnails{/tr}"}
 		{/if}
 	{/if}
 </div>
@@ -256,7 +256,7 @@
 	|| $tiki_p_post_comments == 'y'
 	|| $tiki_p_edit_comments == 'y')}
 	<div id="page-bar" class="btn-group">
-		<span class="button btn-default"><a id="comment-toggle" href="{service controller=comment action=list type="image gallery" objectId=$galleryId}#comment-container">{tr}Comments{/tr}</a></span>
+		<span class="button btn-primary"><a id="comment-toggle" href="{service controller=comment action=list type="image gallery" objectId=$galleryId}#comment-container">{tr}Comments{/tr}</a></span>
 		{jq}
 			$('#comment-toggle').comment_toggle();
 		{/jq}

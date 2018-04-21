@@ -7,7 +7,7 @@
 
 <h2>{tr}Clear cached content{/tr}</h2>
 <div class="text-center margin-bottom-md">
-	<a href="tiki-admin_system.php?do=all" class="btn btn-primary" title="{tr}Empty{/tr}">{icon name="trash"} {tr}Clear all caches{/tr}</a>
+	<a href="tiki-admin_system.php?do=all" class="btn btn-secondary" title="{tr}Empty{/tr}">{icon name="trash"} {tr}Clear all caches{/tr}</a>
 </div>
 <table class="table table-striped table-hover">
 	<tr>
@@ -55,7 +55,7 @@
 		<div class="input-group">
 			<input type="text" name="zipPath" value="{$zipPath|escape}" class="form-control" placeholder="{tr}Full Path to the Zip File{/tr}">
 			<span class="input-group-btn">
-				<button type="submit" class="btn btn-primary" name="zip" title="{tr}ZIP{/tr}">{icon name="zip"} {tr}Generate zip{/tr}</button>
+				<button type="submit" class="btn btn-secondary" name="zip" title="{tr}ZIP{/tr}">{icon name="zip"} {tr}Generate zip{/tr}</button>
 			</span>
 		</div>
 		{if $zipPath}

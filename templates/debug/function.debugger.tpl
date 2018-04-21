@@ -23,7 +23,7 @@
 				<tr>
 					<td></td>
 					<td>
-						<input type="submit" class="btn btn-default btn-sm" name="exec" value="{tr}exec{/tr}"> &nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" class="btn btn-primary btn-sm" name="exec" value="{tr}exec{/tr}"> &nbsp;&nbsp;&nbsp;&nbsp;
 						<small>{tr}Type <code>help</code> to get list of available commands{/tr}</small>
 					</td>
 				</tr>

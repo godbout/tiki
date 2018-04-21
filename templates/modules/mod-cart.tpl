@@ -56,7 +56,7 @@
 			{/foreach}
 			{if $module_params.ajax eq 'n'}<tr>
 				<td></td>
-				<td colspan="2" align="right"><input type="submit" class="btn btn-default btn-sm" name="update" value="{tr}Update{/tr}"></td>
+				<td colspan="2" align="right"><input type="submit" class="btn btn-primary btn-sm" name="update" value="{tr}Update{/tr}"></td>
 			</tr>
 			{else}
 				<input type="hidden" name="update" value="1">
@@ -86,13 +86,13 @@
 					<input type="submit" class="btn btn-warning btn-sm" name="remove_gift_certificate" value="{tr}Remove Gift Certificate{/tr}">
 				{else}
 					Code: <input type="text" name="gift_certificate_redeem_code" style="width: 70px;">
-					<input type="submit" class="btn btn-default btn-sm" name="add_gift_certificate" value="{tr}Add Gift Certificate{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="add_gift_certificate" value="{tr}Add Gift Certificate{/tr}">
 				{/if}
 			</div>
 		{/if}
 		<p>{tr}Total:{/tr} <strong>{$cart_total|escape} {$prefs.payment_currency|escape}</strong></p>
 
-		<input type="submit" class="btn btn-default btn-sm" name="checkout" value="{tr}Check-out{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" name="checkout" value="{tr}Check-out{/tr}">
 	</form>
 {else}
 	<p>{tr}Your cart is empty{/tr}</p>

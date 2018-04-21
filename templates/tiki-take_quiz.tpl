@@ -44,7 +44,7 @@
 				{/if}
 			</div>
 		{/section}
-		<input type="submit" class="btn btn-default btn-sm" value="{tr}Send Answers{/tr}" name="ans">
+		<input type="submit" class="btn btn-primary btn-sm" value="{tr}Send Answers{/tr}" name="ans">
 	{/if}
 	{if $ans eq 'y'}
 		{tr}Result:{/tr}

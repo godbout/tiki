@@ -31,7 +31,7 @@ class Table_Code_Other extends Table_Code_Manager
 		//column selector
 		if (parent::$s['colselect']['type'] === true) {
 			$buttons[] = '<button id="' . parent::$s['colselect']['button']['id']
-				. '" type="button" class="btn btn-default btn-sm" title="' . parent::$s['colselect']['button']['text']
+				. '" type="button" class="btn btn-primary btn-sm" title="' . parent::$s['colselect']['button']['text']
 				. '" style="margin-right:3px">' . smarty_function_icon(['name' => 'columns'], $smarty) . '</button>';
 			$jq[] = '$(\'button#' . parent::$s['colselect']['button']['id'] . '\').popover({'
 				. $this->nt2 . 'placement: \'right\','
@@ -55,7 +55,7 @@ class Table_Code_Other extends Table_Code_Manager
 			$jq[] = '$(\'button#' . $s['reset']['id'] . '\').click(function(){$(\'' . parent::$tid
 				. '\').trigger(\'sortReset\')' . $sr . ';});';
 			$buttons[] = '<button id="' . $s['reset']['id']
-				. '" type="button" class="btn btn-default btn-sm tips" title=":' . $s['reset']['text']
+				. '" type="button" class="btn btn-primary btn-sm tips" title=":' . $s['reset']['text']
 				. '" style="margin-right:3px">' . smarty_function_icon(['name' => 'sort'], $smarty) . '</button>';
 		}
 
@@ -65,7 +65,7 @@ class Table_Code_Other extends Table_Code_Manager
 			//reset button
 			if ($f['type'] === 'reset') {
 				$buttons[] = '<button id="' . $f['reset']['id']
-					. '" type="button" class="btn btn-default btn-sm tips" title=":' . $f['reset']['text'] . '">'
+					. '" type="button" class="btn btn-primary btn-sm tips" title=":' . $f['reset']['text'] . '">'
 					. smarty_function_icon(['name' => 'filter'], $smarty) . '</button>';
 			}
 			if (isset($buttons) && count($buttons) > 0) {

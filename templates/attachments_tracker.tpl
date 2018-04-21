@@ -40,7 +40,7 @@
 			</div>
 			<div class="form-group clearfix">
 				<div class="text-center">
-					<input type="submit" class="btn btn-default btn-sm" name="attach" value={if $attach_file|default:null}"{tr}Edit{/tr}"{else}"{tr}Attach{/tr}"{/if}>
+					<input type="submit" class="btn btn-primary btn-sm" name="attach" value={if $attach_file|default:null}"{tr}Edit{/tr}"{else}"{tr}Attach{/tr}"{/if}>
 				</div>
 			</div>
 		</form>

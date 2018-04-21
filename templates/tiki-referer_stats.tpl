@@ -1,7 +1,7 @@
 {title help="Referer Stats"}{tr}Referer stats{/tr}{/title}
 
 <div class="t_navbar">
-	{button href="tiki-referer_stats.php?clear=1" class="btn btn-default" _text="{tr}Clear Stats{/tr}"}
+	{button href="tiki-referer_stats.php?clear=1" class="btn btn-primary" _text="{tr}Clear Stats{/tr}"}
 </div>
 
 {include file='find.tpl'}

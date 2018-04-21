@@ -105,7 +105,7 @@
 				</div>
 			</div>
 			<div class="panel-footer text-center">
-				<input type="submit" class="btn btn-primary btn-sm" name="add_tran" value="{tr}Add{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm" name="add_tran" value="{tr}Add{/tr}">
 			</div>
 		</div>
 	{/if}
@@ -167,7 +167,7 @@
 										</label>
 									{/if}
 									<div>
-										<button type="submit" class="btn btn-primary btn-sm tips" name="edit_tran_{$smarty.foreach.translations.index}" title=":{tr}Save translation in the database{/tr}">
+										<button type="submit" class="btn btn-secondary btn-sm tips" name="edit_tran_{$smarty.foreach.translations.index}" title=":{tr}Save translation in the database{/tr}">
 											{tr}Translate{/tr}
 										</button>
 										{if $action eq 'edit_tran_sw' && isset($item.changed)}
@@ -178,7 +178,7 @@
 									</div>
 									{assign var=itemIndex value=$smarty.foreach.translations.index}
 									{if isset($item.originalTranslation)}
-										{button _flip_id="diff_$itemIndex" _flip_hide_text="n" _text="{tr}Compare{/tr}" _title=":{tr}Compare the original translation with the database translation{/tr}" _class="btn btn-default btn-sm tips"}
+										{button _flip_id="diff_$itemIndex" _flip_hide_text="n" _text="{tr}Compare{/tr}" _title=":{tr}Compare the original translation with the database translation{/tr}" _class="btn btn-primary btn-sm tips"}
 									{/if}
 									{if isset($item.user) && isset($item.lastModif)}
 										<span class="help-block">
@@ -222,7 +222,7 @@
 			<div class="panel-footer text-center">
 				<input type="hidden" name="offset" value="{$offset|escape}">
 				{if !empty($translations)}
-					<input type="submit" class="btn btn-primary btn-sm" name="translate_all" value="{tr}Translate all{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="translate_all" value="{tr}Translate all{/tr}">
 					{if $action eq 'edit_rec_sw' && $hasDbTranslations == true && $only_db_untranslated eq 'y'}
 						<input type="submit" class="btn btn-warning btn-sm" name="tran_reset" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all untranslated strings from database?{/tr}')">
 					{/if}

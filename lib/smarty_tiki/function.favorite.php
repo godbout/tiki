@@ -37,7 +37,7 @@ function smarty_function_favorite($params, $smarty)
 	if (isset($params['button_classes'])) {
 		$button_classes = $params['button_classes'];
 	} else {
-		$button_classes = "btn btn-default";
+		$button_classes = "btn btn-primary";
 	}
 
 	return '<a class="' . $button_classes . ' favorite-toggle" href="' . $url . '" data-key="favorite_' . $e_user . '"> ' . $label . '</a>';

@@ -494,11 +494,11 @@
 
 						<input type="file" name="passwordlist" accept="text/plain" />
 						Use 'LOAD DATA INFILE': <input type="checkbox" name="loaddata" /> {help desc="Allows much larger files to be uploaded, but requires MySQL on localhost with extra permissions."}<br>
-						<input type="submit" value="Create or Replace Word Index" name="uploadIndex" class="btn btn-primary btn-sm timeout">
+						<input type="submit" value="Create or Replace Word Index" name="uploadIndex" class="btn btn-secondary btn-sm timeout">
 						{help desc="Text files with one word per line accepted.
 						The word list will be converted to all lowe case. Duplicate entries will be removed.
 						Typically passwords lists should be arranged with the most commonly used passwords first."}<br>
-						<input type="submit" value="Delete Temporary Index" name="deleteIndex" class="btn btn-primary btn-sm timeout">
+						<input type="submit" value="Delete Temporary Index" name="deleteIndex" class="btn btn-secondary btn-sm timeout">
 						{help desc="It is recommended that you delete indexed passwords from your database after your done generating your password lists.
 						They can take up quite a lot of space and serve no pourpose after processing is complete."}
 
@@ -517,8 +517,8 @@
 							{help desc="If checked, will filter out any password that does not have both upper and lower case letters."}<br>
 							Require Special Characters: <input type="checkbox" name="special" {if $special}checked{/if} />
 							{help desc="If checked, will filter out any passwords that do not have special characters."}<br>
-							<input type="submit" value="Save & Set as Default" name="saveblacklist" class="btn btn-primary btn-sm timeout">
-							<input type="submit" value="View Password List" name="viewblacklist" class="btn btn-primary btn-sm timeout" formtarget="_blank">
+							<input type="submit" value="Save & Set as Default" name="saveblacklist" class="btn btn-secondary btn-sm timeout">
+							<input type="submit" value="View Password List" name="viewblacklist" class="btn btn-secondary btn-sm timeout" formtarget="_blank">
 						{/if}
 				</div>
 			</fieldset>

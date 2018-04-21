@@ -40,7 +40,7 @@
 	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
 	<input type="text" name="find" id="mess-mailcont" value="{$find|escape:"attr"}" class="form-control">
 		</div>
-	<input type="submit" class="btn btn-default btn-sm" name="filter" value="{tr}Filter{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm" name="filter" value="{tr}Filter{/tr}">
 </form>
 
 
@@ -54,7 +54,7 @@
 	<input type="hidden" name="flagval" value="{$flagval|escape:"attr"}">
 	<input type="hidden" name="priority" value="{$priority|escape:"attr"}">
 	<input type="submit" class="btn btn-warning btn-sm timeout" name="delete" value="{tr}Delete{/tr}">
-	<input type="submit" class="btn btn-default btn-sm timeout" name="download" value="{tr}Download{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm timeout" name="download" value="{tr}Download{/tr}">
 		</div>
 {jq notonready=true}
 var CHECKBOX_LIST = [{{section name=user loop=$items}'msg[{$items[user].msgId}]'{if not $smarty.section.user.last},{/if}{/section}}];

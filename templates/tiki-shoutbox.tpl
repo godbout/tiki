@@ -7,7 +7,7 @@
 		<a href="tiki-admin_shoutbox_words.php" class="btn btn-link" title="List">
 			{icon name="list"} {tr}Banned Words{/tr}
 		</a>
-	{*	{button href="tiki-admin_shoutbox_words.php" class="btn btn-default" _text="{tr}Banned Words{/tr}"} *}
+	{*	{button href="tiki-admin_shoutbox_words.php" class="btn btn-primary" _text="{tr}Banned Words{/tr}"} *}
 	</div>
 
 	<h2>{tr}Change shoutbox general settings{/tr}</h2>
@@ -19,7 +19,7 @@
 			</label>
 		</div>
 		<div class="text-center">
-			<input type="submit" class="btn btn-default btn-sm" name="shoutbox_admin" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="shoutbox_admin" value="{tr}Save{/tr}">
 		</div>
 	</form>
 {/if}
@@ -56,7 +56,7 @@
 			{include file='antibot.tpl'}
 		{/if}
 		<div class="text-center">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
 	</form>
 {/if}

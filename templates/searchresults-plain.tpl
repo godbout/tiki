@@ -12,7 +12,7 @@
 			</div>
 		{/foreach}
 		<div class="form-group">
-			<button class="btn btn-default">{tr}Filter{/tr}</button>
+			<button class="btn btn-primary">{tr}Filter{/tr}</button>
 		</div>
 	</div>
 	{jq}

@@ -151,7 +151,7 @@
 				<option value="inlinediff"{if isset($diff_style) && $diff_style eq "inlinediff"} selected="selected"{/if} >{tr}text{/tr}</option>
 				<option value="inlinediff-full"{if isset($diff_style) && $diff_style eq "inlinediff-full"} selected="selected"{/if} >{tr}text full{/tr}</option>
 			</select>
-			<input type="submit" class="wikiaction tips btn btn-default" title="{tr}Edit wiki page{/tr}|{tr}Change the style used to display differences to be translated.{/tr}" name="preview" value="{tr}Change diff styles{/tr}" onclick="needToConfirm=false;">
+			<input type="submit" class="wikiaction tips btn btn-primary" title="{tr}Edit wiki page{/tr}|{tr}Change the style used to display differences to be translated.{/tr}" name="preview" value="{tr}Change diff styles{/tr}" onclick="needToConfirm=false;">
 		{/if}
 		{if $page_ref_id}<input type="hidden" name="page_ref_id" value="{$page_ref_id}">{/if}
 		{if isset($hdr)}<input type="hidden" name="hdr" value="{$hdr}">{/if}
@@ -176,7 +176,7 @@
 					{/remarksbox}
 				{/if}
 					<p>{tr}Page name:{/tr} <input type="text" name="page" value="{$page|escape}">
-						<input type="submit" class="btn btn-default btn-sm" name="rename" value="{tr}Rename{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="rename" value="{tr}Rename{/tr}">
 					</p>
 			{else}
 				<input type="hidden" name="page" value="{$page|escape}">
@@ -338,7 +338,7 @@
 								<label for="suck_url" class="col-md-4 control-label">{tr}Import HTML{/tr}</label>
 								<div class="col-md-8 form-inline">
 									<input class="form-control wikiedit" type="text" id="suck_url" name="suck_url" value="{$suck_url|escape}">
-									<input type="submit" class="wikiaction btn btn-default" name="do_suck" value="{tr}Import{/tr}" onclick="needToConfirm=false;">
+									<input type="submit" class="wikiaction btn btn-primary" name="do_suck" value="{tr}Import{/tr}" onclick="needToConfirm=false;">
 									<label><input type="checkbox" name="parsehtml" {if $parsehtml eq 'y'}checked="checked"{/if}>&nbsp;
 									{tr}Try to convert HTML to wiki{/tr}</label>
 								</div>
@@ -350,7 +350,7 @@
 								<div class="col-md-8 form-inline">
 									<input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
 									<input class="form-control" id="userfile1" name="userfile1" type="file">
-									<input type="submit" class="wikiaction btn btn-default" name="attach" value="{tr}Import{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
+									<input type="submit" class="wikiaction btn btn-primary" name="attach" value="{tr}Import{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
 								</div>
 							</div>
 						{/if}
@@ -358,7 +358,7 @@
 							<div class="form-group">
 								<label for="" class="col-md-4 control-label">{tr}Export page{/tr}</label>
 								<div class="col-md-8">
-									<a href="tiki-export_wiki_pages.php?page={$page|escape:"url"}&amp;all=1" class="btn btn-default">{icon name="export"} {tr}Export all versions{/tr}</a>
+									<a href="tiki-export_wiki_pages.php?page={$page|escape:"url"}&amp;all=1" class="btn btn-primary">{icon name="export"} {tr}Export all versions{/tr}</a>
 								</div>
 							</div>
 						{/if}
@@ -372,7 +372,7 @@
 									<div class="col-md-8 form-inline">
 										<input name="userfile2" type="file" id="attach-upload" class="form-control">
 										<input type="text" name="attach_comment" class="form-control" maxlength="250" id="attach-comment" placeholder="{tr}Comment{/tr}">
-										<input type="submit" class="wikiaction btn btn-default" name="attach" value="{tr}Attach{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
+										<input type="submit" class="wikiaction btn btn-primary" name="attach" value="{tr}Attach{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
 									</div>
 								</div>
 							{/if}

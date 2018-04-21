@@ -3,7 +3,7 @@
 	{if $tiki_p_admin eq 'y'}
 		<div class="t_navbar margin-bottom-md">
 			<div class="btn-group">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{icon name="create"} {tr}Create{/tr} <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
@@ -35,7 +35,7 @@
 			{$headerlib->add_jsfile('lib/dracula/graffle.js', true)}
 			{$headerlib->add_jsfile('lib/dracula/graph.js', true)}
 			{$headerlib->add_jsfile('lib/jquery_tiki/activity.js', true)}
-			<button href="#" id="graph-draw" class="btn btn-default">{icon name="image"}{tr}Event Chain Diagram{/tr}</button>
+			<button href="#" id="graph-draw" class="btn btn-primary">{icon name="image"}{tr}Event Chain Diagram{/tr}</button>
 			<div id="graph-canvas" class="graph-canvas" data-graph-nodes="{$event_graph.nodes|@json_encode|escape}" data-graph-edges="{$event_graph.edges|@json_encode|escape}"></div>
 	{jq}
 		$('#graph-draw').click(function(e) {

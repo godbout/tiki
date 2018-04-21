@@ -1,12 +1,12 @@
 {title url="tiki-admin_survey_questions.php?surveyId=$surveyId"}{tr}Edit survey questions:{/tr} {$survey_info.name}{/title}
 
 <div class="t_navbar btn-group form-group">
-	{button href="tiki-admin_survey_questions.php?surveyId=$surveyId" class="btn btn-default" _icon_name='create' _text="{tr}Add a New Question{/tr}"}
-	{button href="tiki-list_surveys.php" class="btn btn-default" _icon_name='list' _text="{tr}List Surveys{/tr}"}
-	{button href="tiki-survey_stats.php" class="btn btn-default" _icon_name='chart' _text="{tr}Survey Stats{/tr}"}
-	{button href="tiki-survey_stats_survey.php?surveyId=$surveyId" class="btn btn-default" _icon_name='chart' _text="{tr}This survey stats{/tr}"}
-	{button href="tiki-admin_surveys.php?surveyId=$surveyId" class="btn btn-default" _icon_name='edit' _text="{tr}Edit this Survey{/tr}"}
-	{button href="tiki-admin_surveys.php" class="btn btn-default" _icon_name='cog' _text="{tr}Admin Surveys{/tr}"}
+	{button href="tiki-admin_survey_questions.php?surveyId=$surveyId" class="btn btn-primary" _icon_name='create' _text="{tr}Add a New Question{/tr}"}
+	{button href="tiki-list_surveys.php" class="btn btn-primary" _icon_name='list' _text="{tr}List Surveys{/tr}"}
+	{button href="tiki-survey_stats.php" class="btn btn-primary" _icon_name='chart' _text="{tr}Survey Stats{/tr}"}
+	{button href="tiki-survey_stats_survey.php?surveyId=$surveyId" class="btn btn-primary" _icon_name='chart' _text="{tr}This survey stats{/tr}"}
+	{button href="tiki-admin_surveys.php?surveyId=$surveyId" class="btn btn-primary" _icon_name='edit' _text="{tr}Edit this Survey{/tr}"}
+	{button href="tiki-admin_surveys.php" class="btn btn-primary" _icon_name='cog' _text="{tr}Admin Surveys{/tr}"}
 </div>
 
 {if !empty($questionId)}{$tablabel='Edit Survey Question'|tr_if}{else}{$tablabel='Add a New Question to this survey'|tr_if}{/if}
@@ -170,7 +170,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1">
-					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>
 		</form>

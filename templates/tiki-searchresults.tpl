@@ -9,7 +9,7 @@
 		<div class="t_navbar margin-bottom-sm">
 			{tr}Search in:{/tr}
 			{foreach item=name key=k from=$where_list}
-				{button _auto_args='where,highlight' href="tiki-searchresults.php?where=$k" _selected="{if $where == $k}y{else}n{/if}" _selected_class="highlight" class="btn btn-default" _text="$name"}
+				{button _auto_args='where,highlight' href="tiki-searchresults.php?where=$k" _selected="{if $where == $k}y{else}n{/if}" _selected_class="highlight" class="btn btn-primary" _text="$name"}
 			{/foreach}
 		</div>
 	{/if}
@@ -155,7 +155,7 @@
 				{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 			{/if}
 			<label class="findsubmit">
-				<input type="submit" class="btn btn-default" name="search" value="{tr}Go{/tr}">
+				<input type="submit" class="btn btn-primary" name="search" value="{tr}Go{/tr}">
 			</label>
 			{if !$searchNoResults}
 				{button _auto_args='highlight' href="tiki-searchresults.php?highlight=" _text="{tr}Clear Filter{/tr}"}

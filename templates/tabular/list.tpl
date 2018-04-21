@@ -6,18 +6,18 @@
 
 {block name="navigation"}
 <div class="navbar">
-	<a class="btn btn-default" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=list _params=$baseArguments}">{icon name=filter}{tr}Filter{/tr}</a>
+	<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=list _params=$baseArguments}">{icon name=filter}{tr}Filter{/tr}</a>
 	{permission name=tabular_edit type=tabular object=$tabularId}
-		<a class="btn btn-default" href="{service controller=tabular action=edit tabularId=$tabularId}">{icon name=edit}{tr}Edit{/tr}</a>
+		<a class="btn btn-primary" href="{service controller=tabular action=edit tabularId=$tabularId}">{icon name=edit}{tr}Edit{/tr}</a>
 	{/permission}
 	{permission name=tabular_export type=tabular object=$tabularId}
-		<a class="btn btn-default" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=export _params=$baseArguments}">{icon name=export}{tr}Export{/tr}</a>
+		<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=export _params=$baseArguments}">{icon name=export}{tr}Export{/tr}</a>
 	{/permission}
 	{permission name=tabular_import type=tabular object=$tabularId}
-		<a class="btn btn-default" href="{bootstrap_modal controller=tabular action=import_csv tabularId=$tabularId target=list _params=$baseArguments}">{icon name=import}{tr}Import{/tr}</a>
+		<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=import_csv tabularId=$tabularId target=list _params=$baseArguments}">{icon name=import}{tr}Import{/tr}</a>
 	{/permission}
 	{permission name=admin_trackers}
-		<a class="btn btn-default" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
+		<a class="btn btn-primary" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
 	{/permission}
 </div>
 {/block}
@@ -43,7 +43,7 @@
 				{/foreach}
 			</div>
 			<div class="col-sm-9 col-sm-push-3">
-				<input class="btn btn-primary" type="submit" value="{tr}Search{/tr}">
+				<input class="btn btn-secondary" type="submit" value="{tr}Search{/tr}">
 			</div>
 		</div>
 	</form>
@@ -99,7 +99,7 @@
 							{$filter.control}
 						{/foreach}
 					</div>
-					<input class="btn btn-default" type="submit" value="{tr}Filter{/tr}">
+					<input class="btn btn-primary" type="submit" value="{tr}Filter{/tr}">
 				</div>
 			</form>
 		</div>

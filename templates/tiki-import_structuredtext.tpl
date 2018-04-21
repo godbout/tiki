@@ -44,7 +44,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="import" value="{tr}import{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}import{/tr}">
 		</div>
 	</div>
 </form>

@@ -3,11 +3,11 @@
 
 <div class="t_navbar btn-group form-group">
 	{if $galleryId ne ''}
-		{button href="tiki-browse_gallery.php?galleryId=$galleryId" class="btn btn-default" _text="{tr}Browse Gallery{/tr}"}
+		{button href="tiki-browse_gallery.php?galleryId=$galleryId" class="btn btn-primary" _text="{tr}Browse Gallery{/tr}"}
 	{else}
-		{button href="tiki-galleries.php" class="btn btn-default" _text="{tr}Browse Gallery{/tr}"}
+		{button href="tiki-galleries.php" class="btn btn-primary" _text="{tr}Browse Gallery{/tr}"}
 	{/if}
-	{button href="tiki-upload_image.php" class="btn btn-default" _text="{tr}Upload From Disk{/tr}"}
+	{button href="tiki-upload_image.php" class="btn btn-primary" _text="{tr}Upload From Disk{/tr}"}
 </div>
 
 {if count($feedback)}<div class="alert alert-warning">{section name=i loop=$feedback}{$feedback[i]}<br>{/section}</div>{/if}
@@ -55,6 +55,6 @@
 			{/if}
 		{/section}
 	</select>
-	&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" class="btn btn-default btn-sm" name="batch_upload" value="{tr}Process{/tr}">
+	&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" class="btn btn-primary btn-sm" name="batch_upload" value="{tr}Process{/tr}">
 </form>
 <br>

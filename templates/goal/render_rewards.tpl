@@ -21,6 +21,6 @@
 			</tr>
 		{/foreach}
 	</table>
-	<button class="btn btn-default add pull-right">{icon name="add"} {tr}Add Reward{/tr}</button>
+	<button class="btn btn-primary add pull-right">{icon name="add"} {tr}Add Reward{/tr}</button>
 	<input type="hidden" name="rewards" value="{$rewards|json_encode|escape}">
 {/block}

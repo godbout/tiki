@@ -8,7 +8,7 @@
 	{button href="tiki-list_blogs.php" _type="link" class="btn btn-link" _icon_name="list" _text="{tr}List Blogs{/tr}"}
 	{if $blogId > 0}
 		{assign var=thisblogId value=$blogId|sefurl:blog}
-		{button href=$thisblogId class="btn btn-default" _text="{tr}View Blog{/tr}"}
+		{button href=$thisblogId class="btn btn-primary" _text="{tr}View Blog{/tr}"}
 	{/if}
 </div>
 
@@ -184,9 +184,9 @@
 		{/tab}
 	{/tabset}
 	{if $prefs.feature_blog_heading eq 'y' and $tiki_p_edit_templates eq 'y'}
-		<input type="submit" class="wikiaction btn btn-default" name="preview" value="{tr}Heading preview{/tr}">
+		<input type="submit" class="wikiaction btn btn-primary" name="preview" value="{tr}Heading preview{/tr}">
 	{/if}
 	<div class="form-group text-center">
-		<input type="submit" class="wikiaction btn btn-primary" name="save" value="{tr}Save{/tr}">
+		<input type="submit" class="wikiaction btn btn-secondary" name="save" value="{tr}Save{/tr}">
 	</div>
 </form>

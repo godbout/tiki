@@ -289,7 +289,7 @@ function wp_map_plugin_searchlayer($body, $args)
 	$escapedSuffix = smarty_modifier_escape($suffix);
 	return <<<OUT
 <form method="post" action="tiki-searchindex.php" class="search-box onload" style="display: none" data-result-refresh="$refresh" data-result-layer="$escapedLayer" data-result-suffix="$escapedSuffix" data-load-delay="$load_delay"{$popup_config}>
-	<p>$maxRecords$sort_mode$fieldList$filters<input type="submit" class="btn btn-default btn-sm" /></p>
+	<p>$maxRecords$sort_mode$fieldList$filters<input type="submit" class="btn btn-primary btn-sm" /></p>
 
 </form>
 OUT;

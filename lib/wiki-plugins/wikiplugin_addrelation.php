@@ -84,7 +84,7 @@ function wikiplugin_addrelation_info()
 				'description' => tra('Class or classes for the Button'),
 				'filter' => 'text',
 				'since' => '8.0',
-				'default' => 'btn btn-default',
+				'default' => 'btn btn-primary',
 			],
 		],
 	];
@@ -134,7 +134,7 @@ function wikiplugin_addrelation($data, $params)
 	if (! empty($params['button_class'])) {
 		$button_class = $params['button_class'];
 	} else {
-		$button_class = "btn btn-default";
+		$button_class = "btn btn-primary";
 	}
 	$relationlib = TikiLib::lib('relation');
 

@@ -38,7 +38,7 @@
 	<div class="form-group">
 	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
 	<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control">
-	<input type="submit" class="btn btn-default btn-sm" name="filter" value="{tr}Filter{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm" name="filter" value="{tr}Filter{/tr}">
 		</div>
 </form>
 
@@ -92,15 +92,15 @@
 			{tr}Perform action with checked:{/tr}
 
 		<input type="submit" class="btn btn-warning btn-sm timeout" name="delete" value="{tr}Delete{/tr}">
-		<input type="submit" class="btn btn-default btn-sm timeout" name="archive" value="{tr}Archive{/tr}">
-		<input type="submit" class="btn btn-default btn-sm timeout" name="download" value="{tr}Download{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm timeout" name="archive" value="{tr}Archive{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm timeout" name="download" value="{tr}Download{/tr}">
 		<select name="action" class="form-control">
 			<option value="isRead_y">{tr}Mark as read{/tr}</option>
 			<option value="isRead_n">{tr}Mark as unread{/tr}</option>
 			<option value="isFlagged_y">{tr}Mark as flagged{/tr}</option>
 			<option value="isFlagged_n">{tr}Mark as unflagged{/tr}</option>
 		</select>
-		<input type="submit" class="btn btn-default btn-sm timeout" name="mark" value="{tr}Mark{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm timeout" name="mark" value="{tr}Mark{/tr}">
 		</div>
 	{/if}
 </form>

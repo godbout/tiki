@@ -52,7 +52,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="filter-categories">{tr}Categories{/tr}</label>
 				<div class="col-sm-4">
-					<a class="category-lookup btn btn-default margin-bottom-sm" href="#">{tr}Lookup{/tr}</a>
+					<a class="category-lookup btn btn-primary margin-bottom-sm" href="#">{tr}Lookup{/tr}</a>
 					<input type="text" name="filter~categories" id="filter-categories" class="category-wizard form-control" value="{$filter_categories|escape}">
 				</div>
 				<div class="col-sm-5 checkbox">
@@ -70,7 +70,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label" for="filter-tags">{tr}Tags{/tr}</label>
 				<div class="col-sm-4">
-					<a class="tag-lookup btn btn-default" href="#">{tr}Lookup{/tr}</a>
+					<a class="tag-lookup btn btn-primary" href="#">{tr}Lookup{/tr}</a>
 					<input type="text" name="filter~tags" class="tag-wizard" id="filter-tags" value="{$filter_tags|escape}">
 				</div>
 				<div class="tag-picker" title="{tr}Select Tags{/tr}" style="display:none;">
@@ -112,10 +112,10 @@
 		{/if}
 
 	<div class="text-center">
-		<input type="submit" class="btn btn-primary" value="{tr}Search{/tr}">
+		<input type="submit" class="btn btn-secondary" value="{tr}Search{/tr}">
 		{if $prefs.tracker_tabular_enabled eq 'y' && ! empty($smarty.get.tabularId)}
 			<input type="hidden" name="tabularId" value="{$smarty.get.tabularId|escape}">
-			<button class="tabular-export btn btn-default">
+			<button class="tabular-export btn btn-primary">
 				{icon name=export} {tr}Export{/tr}
 			</button>
 			{jq}
@@ -128,7 +128,7 @@
 				});
 			{/jq}
 		{elseif $prefs.tracker_tabular_enabled eq 'y' && ! empty($filter.tracker_id)}
-			<button class="tabular-export btn btn-default">
+			<button class="tabular-export btn btn-primary">
 				{icon name=export} {tr}Export{/tr}
 			</button>
 			{jq}
@@ -145,7 +145,7 @@
 		{/if}
 		{if $prefs.storedsearch_enabled eq 'y' and $user}
 			<input type="hidden" name="storeAs" value=""/>
-			<a href="{service controller=search_stored action=select modal=true}" id="store-query" class="btn btn-default">{tr}Save Search{/tr}</a>
+			<a href="{service controller=search_stored action=select modal=true}" id="store-query" class="btn btn-primary">{tr}Save Search{/tr}</a>
 			<a href="{service controller=search_stored action=list}" class="btn btn-link">{tr}View Saved Searches{/tr}</a>
 			{jq}
 				$('#store-query').clickModal({

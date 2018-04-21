@@ -24,7 +24,7 @@
 {tabset name="admin_rssmodules"}
 
 	{tab name="{tr}External Feeds{/tr}"}
-		<a class="btn btn-primary pull-right" href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;refresh_all=y"
+		<a class="btn btn-secondary pull-right" href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;refresh_all=y"
 			data-toggle="tooltip" data-placement="top" title="Please be patient, this may take a while.">
 			{icon name="refresh" _menu_text='y' _menu_icon='y' alt="{tr}Refresh All feeds{/tr}"}
 		</a>
@@ -184,7 +184,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-9 col-sm-offset-3">
-					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>
 		</form>
@@ -317,7 +317,7 @@
 					{include file='categorize.tpl'}
 				</p>
 				<p>
-					<input type="submit" class="btn btn-default btn-sm" value="{tr}Configure{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" value="{tr}Configure{/tr}">
 				</p>
 			</form>
 		{/tab}

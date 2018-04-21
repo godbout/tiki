@@ -180,7 +180,7 @@ EOF;
 ~np~
 <form method="post" action="">
 	<p>
-		<input type="submit" name="create_sheet" class="btn btn-default" value="$label"/>
+		<input type="submit" name="create_sheet" class="btn btn-primary" value="$label"/>
 		<input type="hidden" name="index" value="$index"/>
 	</p>
 </form>

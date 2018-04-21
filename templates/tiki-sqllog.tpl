@@ -6,7 +6,7 @@
 {/if}
 
 <div class="t_navbar">
-	{button href="?clean=y" class="btn btn-default" _text="{tr}Clean{/tr}"}
+	{button href="?clean=y" class="btn btn-primary" _text="{tr}Clean{/tr}"}
 </div>
 
 {include file='find.tpl' find_show_num_rows='y'}

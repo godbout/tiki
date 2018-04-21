@@ -1,9 +1,9 @@
 {if $prefs.javascript_enabled !== 'y'}
 	<div class="modal-footer">
-		<a class="btn btn-default" href="{$extra.referer}">
+		<a class="btn btn-primary" href="{$extra.referer}">
 			{tr}Back{/tr}
 		</a>
-		<button type='submit' form="confirm-action" class="btn {if !empty($confirmButtonClass)}{$confirmButtonClass}{else}btn-primary{/if}">
+		<button type='submit' form="confirm-action" class="btn {if !empty($confirmButtonClass)}{$confirmButtonClass}{else}btn-secondary{/if}">
 			{if !empty($confirmButton)}
 				{$confirmButton}
 			{else}

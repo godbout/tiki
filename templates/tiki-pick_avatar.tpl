@@ -14,7 +14,7 @@
 {else}
 	<div class="t_navbar">
 		{assign var=thisuserwatch value=$userwatch|escape}
-		{button href="tiki-user_preferences.php?view_user=$thisuserwatch" class="btn btn-default" _text="{tr}User Preferences{/tr}"}
+		{button href="tiki-user_preferences.php?view_user=$thisuserwatch" class="btn btn-primary" _text="{tr}User Preferences{/tr}"}
 	</div>
 {/if}
 
@@ -95,9 +95,9 @@
 				<tr>
 					<td>
 						<div align="center">
-							<input type="submit" class="btn btn-default btn-sm" name="rand" value="{tr}random{/tr}">
-							<input type="submit" class="btn btn-default btn-sm" name="uselib" value="{tr}Use{/tr}">
-							<input type="submit" class="btn btn-default btn-sm" name="reset" value="{tr}no profile picture{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm" name="rand" value="{tr}random{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm" name="uselib" value="{tr}Use{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm" name="reset" value="{tr}no profile picture{/tr}">
 						</div>
 					</td>
 				</tr>
@@ -123,7 +123,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-7">
-				<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm" name="upload" value="{tr}Upload{/tr}">
 			</div>
 		</div>
 	</form>

@@ -44,10 +44,10 @@
 <div class="t_navbar">
 	<form action="tiki-admin_banning.php" method="post">
 	<input type="hidden" name="export" value="y">
-		<button name="csv" type="submit" class="btn btn-default">
+		<button name="csv" type="submit" class="btn btn-primary">
 			{icon name="export"} {tr}Export as CSV{/tr}
 		</button>
-		{button _text="{tr}Import as CSV{/tr}" _icon_name="import" href="#Import_rules_as_CSV" class="btn btn-default"}
+		{button _text="{tr}Import as CSV{/tr}" _icon_name="import" href="#Import_rules_as_CSV" class="btn btn-primary"}
 	</form>
 </div>
 
@@ -144,7 +144,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-8 col-sm-offset-4">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>
@@ -167,7 +167,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-8 col-sm-offset-4">
-			<input type="submit" class="btn btn-default btn-sm" name="import" value="{tr}Import{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}Import{/tr}">
 		</div>
 	</div>
  </form>

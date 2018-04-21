@@ -66,7 +66,7 @@
 			</div>
 
 			<p>
-				<input type="submit" name="submit" class="btn btn-primary" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input type="submit" name="submit" class="btn btn-secondary" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</p>
 		</form>
 	{/tab}
@@ -118,7 +118,7 @@
 			</div>
 		{/if}
 		<div class="form-group text-center">
-			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="add" value="{tr}Add{/tr}">
 		</div>
 	</form>
 	{jq}
@@ -287,7 +287,7 @@
 
 		<div class="checkbox">
 			<label>
-				<input type="submit" class="btn btn-primary btn-sm" name="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm" name="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</label>
 		</div>
 	</form>

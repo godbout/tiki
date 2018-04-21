@@ -24,7 +24,7 @@
 								<input type="text" name="find" class="form-control" value="{$find|escape}" placeholder="{tr}Find{/tr}...">
 								<div class="input-group-btn">
 									<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
-									<input type="submit" class="btn btn-default" value="{tr}Search by name{/tr}" name="search">
+									<input type="submit" class="btn btn-primary" value="{tr}Search by name{/tr}" name="search">
 								</div>
 							</div>
 						</div>
@@ -43,7 +43,7 @@
 									<div class="input-group-btn">
 										<input type="hidden" name="where" value="forums">
 										<input type="hidden" name="filter~type" value="forum post">
-										<input type="submit" class="wikiaction btn btn-default" name="search" value="{tr}Search in content{/tr}">
+										<input type="submit" class="wikiaction btn btn-primary" name="search" value="{tr}Search in content{/tr}">
 									</div>
 								</div>
 							</div>

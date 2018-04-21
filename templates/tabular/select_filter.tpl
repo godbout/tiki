@@ -15,7 +15,7 @@
 			</select>
 		</div>
 		<div class="submit">
-			<input class="btn btn-primary" type="submit" value="{tr}Add{/tr}">
+			<input class="btn btn-secondary" type="submit" value="{tr}Add{/tr}">
 		</div>
 	</form>
 {/block}

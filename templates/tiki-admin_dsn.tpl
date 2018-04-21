@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+		<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 	</div>
 </form>
 {* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
@@ -149,7 +149,7 @@
 				<tr>
 					<td><input type="text" name="post_new_field"></td>
 					<td><input type="text" name="post_new_value"></td>
-					<td><input type="submit" class="btn btn-default btn-sm" name="post_new_add" value="{tr}Add{/tr}"></td>
+					<td><input type="submit" class="btn btn-primary btn-sm" name="post_new_add" value="{tr}Add{/tr}"></td>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -162,8 +162,8 @@
 	</fieldset>
 	<fieldset>
 		<div class="form-group text-center">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
-			<input type="submit" class="btn btn-default btn-sm" name="delete" value="{tr}Delete{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="delete" value="{tr}Delete{/tr}">
 		</div>
 	</fieldset>
 </form>

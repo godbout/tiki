@@ -38,7 +38,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
 					<div class="col-sm-7">
-						<input type="submit" class="btn btn-default btn-sm" value="{tr}Get Forum List{/tr}">>
+						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Get Forum List{/tr}">>
 					</div>
 				</div>
 			</form>
@@ -94,7 +94,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
 					<div class="col-sm-7">
-						<input type="submit" class="btn btn-default btn-sm" value="Test Connection">
+						<input type="submit" class="btn btn-primary btn-sm" value="Test Connection">
 					</div>
 				</div>
 			</form>
@@ -141,7 +141,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
 					<div class="col-sm-7">
-						<input type="submit" class="btn btn-default btn-sm" value="{tr}Get Forum List{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Get Forum List{/tr}">
 					</div>
 				</div>
 			</form>
@@ -175,9 +175,9 @@
 				<p> </p>
 				<div align="center">
 					{if $passed eq 'true'}
-						<input type="submit" class="btn btn-default btn-sm" value="{tr}Proceed{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Proceed{/tr}">
 					{else}
-						<input type="submit" class="btn btn-default btn-sm" value="{tr}Go Back{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Go Back{/tr}">
 					{/if}
 				</div>
 				<br>
@@ -249,7 +249,7 @@
 					{elseif $noforumsT eq 'true'}
 						<b><i>There are no forums to migrate into! Create one first.</i></b>
 					{else}
-						<input type="submit" class="btn btn-default btn-sm" value="Import Forum">
+						<input type="submit" class="btn btn-primary btn-sm" value="Import Forum">
 						<p> </p>
 						<b><i>Please note that by clicking on Import Forum, depending on the size of your SQL file, import may take several minutes. Please be patient.</i></b>
 					{/if}
@@ -270,7 +270,7 @@
 
 			You must select both a source forum and a destination forum!
 			<div align="center">
-				<input type="submit" class="btn btn-default btn-sm" value="{tr}Go Back{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" value="{tr}Go Back{/tr}">
 			</div>
 			<br>
 		</form>

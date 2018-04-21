@@ -3,7 +3,7 @@
 {title help="SearchStats"}{tr}Search statistics{/tr}{/title}
 
 <div class="t_navbar">
-	{button href="?clear=1" class="btn btn-default" _text="{tr}Clear Stats{/tr}"}
+	{button href="?clear=1" class="btn btn-primary" _text="{tr}Clear Stats{/tr}"}
 </div>
 
 {include file='find.tpl'}

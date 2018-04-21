@@ -3,11 +3,11 @@
 {include file='tiki-mytiki_bar.tpl'}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-minical.php#add" class="btn btn-default" _text="{tr}Add{/tr} "}
-	{button href="tiki-minical_prefs.php" class="btn btn-default" _text="{tr}Prefs{/tr}"}
-	{button href="tiki-minical.php?view=daily" class="btn btn-default" _text="{tr}Daily{/tr}"}
-	{button href="tiki-minical.php?view=weekly" class="btn btn-default" _text="{tr}Weekly{/tr}"}
-	{button href="tiki-minical.php?view=list" class="btn btn-default" _text="{tr}List{/tr}"}
+	{button href="tiki-minical.php#add" class="btn btn-primary" _text="{tr}Add{/tr} "}
+	{button href="tiki-minical_prefs.php" class="btn btn-primary" _text="{tr}Prefs{/tr}"}
+	{button href="tiki-minical.php?view=daily" class="btn btn-primary" _text="{tr}Daily{/tr}"}
+	{button href="tiki-minical.php?view=weekly" class="btn btn-primary" _text="{tr}Weekly{/tr}"}
+	{button href="tiki-minical.php?view=list" class="btn btn-primary" _text="{tr}List{/tr}"}
 </div>
 
 <h2>{tr}Preferences{/tr}</h2>
@@ -64,7 +64,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>
@@ -81,7 +81,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="import" value="{tr}import{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}import{/tr}">
 		</div>
 	</div>
 </form>
@@ -109,7 +109,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="addtopic" value="{tr}Add Topic{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="addtopic" value="{tr}Add Topic{/tr}">
 		</div>
 	</div>
 </form>

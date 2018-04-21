@@ -22,7 +22,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="go" value="{tr}Go{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
 	</div>
 </form>
@@ -88,7 +88,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>
@@ -177,7 +177,7 @@
 	</div>
 	{if $items}
 		{tr}Perform action with selected:{/tr}
-		<input type="submit" class="btn btn-default btn-sm" name="groupdel" value=" {tr}Delete{/tr} ">
+		<input type="submit" class="btn btn-primary btn-sm" name="groupdel" value=" {tr}Delete{/tr} ">
 	{/if}
 </form>
 {pagination_links cant=$cant_pages step=$prefs.maxRecords offset=$offset}{/pagination_links}

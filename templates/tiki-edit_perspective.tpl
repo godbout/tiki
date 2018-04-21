@@ -94,7 +94,7 @@
 					<label>{tr}Name:{/tr} </label>
 						<input type="text" name="name" class="form-control">
 				</div>
-				<input type="submit" class="btn btn-default" name="create" value="{tr}Create{/tr}">
+				<input type="submit" class="btn btn-primary" name="create" value="{tr}Create{/tr}">
 			</form>
 		{/tab}
 	{/if}
@@ -120,7 +120,7 @@
 					</fieldset>
 				</div>
 				<div class="text-center">
-					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 				</div>
 			</form>
 			<form method="post" id="searchform" action="tiki-edit_perspective.php" class="form col-sm-offset-2 clearfix" role="form">
@@ -136,7 +136,7 @@
 							</span>
 							<input id="criteria" type="text" name="criteria" class="form-control" placeholder="{tr}Search preferences{/tr}...">
 							<div class="input-group-btn">
-								<input type="submit" class="btn btn-default" value="{tr}Search{/tr}">
+								<input type="submit" class="btn btn-primary" value="{tr}Search{/tr}">
 							</div>
 						</div>
 					</div>

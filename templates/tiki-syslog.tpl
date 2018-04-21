@@ -4,8 +4,8 @@
 <div class="t_navbar margin-bottom-md">
 	<a href="tiki-sqllog.php" class="btn btn-link" title="{tr}Log SQL{/tr}">{icon name="pencil"} {tr}Log SQL{/tr}</a>
 	<a href="tiki-admin_actionlog.php#Report" class="btn btn-link" title="{tr}Export through Action Log{/tr}">{icon name="upload"} {tr}Export through Action Log{/tr}</a>
-{*	{button class="btn btn-default" _text="{tr}Log SQL{/tr}" href="tiki-sqllog.php"}
-	{button class="btn btn-default" _text="{tr}Export through Action Log{/tr}" href="tiki-admin_actionlog.php#Report"}
+{*	{button class="btn btn-primary" _text="{tr}Log SQL{/tr}" href="tiki-sqllog.php"}
+	{button class="btn btn-primary" _text="{tr}Export through Action Log{/tr}" href="tiki-admin_actionlog.php#Report"}
 *}</div>
 
 <form method="get" action="tiki-syslog.php" class="form-inline margin-bottom-md">
@@ -13,7 +13,7 @@
 		<label>{tr}Clean logs older than{/tr}&nbsp;
 		<input type="text" name="months" class="form-control"></label> {tr}months{/tr}
 	</div>
-	<input type="submit" class="btn btn-default btn-sm" value="{tr}Clean{/tr}" name="clean">
+	<input type="submit" class="btn btn-primary btn-sm" value="{tr}Clean{/tr}" name="clean">
 </form>
 
 {include file='find.tpl'}
@@ -47,7 +47,7 @@
 							{ticket}
 							<input type="hidden" name="page" value="profiles">
 							<input type="hidden" name="actionId" value="{$list[ix].actionId}">
-							<input type="submit" class="btn btn-primary" name="revert" value="{tr}Revert{/tr}">
+							<input type="submit" class="btn btn-secondary" name="revert" value="{tr}Revert{/tr}">
 						</form>
 					{/if}
 				</td>

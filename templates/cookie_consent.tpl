@@ -17,7 +17,7 @@
 			{else}
 				<input type="hidden" name="cookie_consent_checkbox" value="1">
 			{/if}
-			<input type="submit" class="btn btn-default" id="cookie_consent_button" name="cookie_consent_button" value="{tr}{$prefs.cookie_consent_button}{/tr}">
+			<input type="submit" class="btn btn-primary" id="cookie_consent_button" name="cookie_consent_button" value="{tr}{$prefs.cookie_consent_button}{/tr}">
 		</form>
 	</div>
 	{jq}

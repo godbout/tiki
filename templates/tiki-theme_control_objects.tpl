@@ -1,8 +1,8 @@
 {* $Id$ *}
 {title help="Theme Control"}{tr}Theme Control{/tr}: {tr}Objects{/tr}{/title}
 <div class="t_navbar btn-group">
-	{button href="tiki-theme_control.php" class="btn btn-default" _text="{tr}Control by Categories{/tr}"}
-	{button href="tiki-theme_control_sections.php" class="btn btn-default" _text="{tr}Control by Sections{/tr}"}
+	{button href="tiki-theme_control.php" class="btn btn-primary" _text="{tr}Control by Categories{/tr}"}
+	{button href="tiki-theme_control_sections.php" class="btn btn-primary" _text="{tr}Control by Sections{/tr}"}
 </div>
 
 <h2>{tr}Assign themes to objects{/tr}</h2>
@@ -14,7 +14,7 @@
 				<option value="{$objectypes[ix]|escape}" {if $type eq $objectypes[ix]}selected="selected"{/if}>{$objectypes[ix]}</option>
 			{/section}
 		</select>
-		<!--<input type="submit" class="btn btn-default btn-sm" name="settype" value="{tr}Set{/tr}">-->
+		<!--<input type="submit" class="btn btn-primary btn-sm" name="settype" value="{tr}Set{/tr}">-->
 	</div>
 	<div class="form-group">
 		<label for="objdata">{tr}Object{/tr}</label>
@@ -32,7 +32,7 @@
 			{/foreach}
 		</select>
 	</div>
-	<input type="submit" class="btn btn-primary btn-sm" name="assign" value="{tr}Assign{/tr}">
+	<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
 </form>
 
 <h2>{tr}Assigned objects{/tr}</h2>

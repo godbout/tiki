@@ -2,11 +2,11 @@
 
 <div class="t_navbar btn-group form-group">
 	{if $galleryId}
-		{button href="tiki-list_file_gallery.php?galleryId=$galleryId" class="btn btn-default" _text="{tr}Browse File Gallery{/tr}"}
-		{button href="tiki-upload_file.php?galleryId=$galleryId" class="btn btn-default" _text="{tr}Upload From Disk{/tr}"}
+		{button href="tiki-list_file_gallery.php?galleryId=$galleryId" class="btn btn-primary" _text="{tr}Browse File Gallery{/tr}"}
+		{button href="tiki-upload_file.php?galleryId=$galleryId" class="btn btn-primary" _text="{tr}Upload From Disk{/tr}"}
 	{else}
-		{button href="tiki-list_file_gallery.php" class="btn btn-default" _text="{tr}Browse File Gallery{/tr}"}
-		{button href="tiki-upload_file.php" class="btn btn-default" _text="{tr}Upload From Disk{/tr}"}
+		{button href="tiki-list_file_gallery.php" class="btn btn-primary" _text="{tr}Browse File Gallery{/tr}"}
+		{button href="tiki-upload_file.php" class="btn btn-primary" _text="{tr}Upload From Disk{/tr}"}
 	{/if}
 </div>
 
@@ -121,7 +121,7 @@ $("#batchUploadForm").submit(function () {
 	<div class="form-group">
 		<label class="col-sm-4 control-label"></label>
 		<div class="col-sm-8">
-			<input type="submit" class="btn btn-default btn-sm" name="batch_upload" value="{tr}Process files{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="batch_upload" value="{tr}Process files{/tr}">
 		</div>
 	</div>
 </form>

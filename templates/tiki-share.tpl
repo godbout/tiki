@@ -401,7 +401,7 @@
 			<input type="hidden" name="url" value="{$url|escape}">
 			<input type="hidden" name="back_url" value="{$back_url|escape}">
 			<input type="hidden" name="report" value="{$report}">
-			<button type="submit" class="btn btn-primary" name="send">
+			<button type="submit" class="btn btn-secondary" name="send">
 				{icon name="share"} {tr}Share{/tr}
 			</button>
 			{if $share_access}

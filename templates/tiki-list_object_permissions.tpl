@@ -23,7 +23,7 @@
 				</select>
 			</div>
 			<div>
-				<input type="submit" class="btn btn-default" name="filter" value="{tr}Filter{/tr}">
+				<input type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}">
 			</div>
 		</fieldset>
 	</div>
@@ -77,7 +77,7 @@
 										{tr}Delete{/tr}
 									</label>
 									<div class="col-lg-2">
-										<button class="btn btn-default" name="delete" value="delete">
+										<button class="btn btn-primary" name="delete" value="delete">
 											{tr}OK{/tr}
 										</button>
 									</div>
@@ -91,7 +91,7 @@
 										<div class="input-group">
 											<input type="text" name="toGroup" class="form-control">
 										<span class="input-group-btn">
-											<button class="btn btn-default" name="duplicate" value="duplicate">
+											<button class="btn btn-primary" name="duplicate" value="duplicate">
 												{tr}OK{/tr}
 											</button>
 										</span>
@@ -146,7 +146,7 @@
 									{tr}Delete{/tr}
 								</label>
 								<div class="col-lg-2">
-									<button class="btn btn-default" name="delete" value="delete">
+									<button class="btn btn-primary" name="delete" value="delete">
 										{tr}OK{/tr}
 									</button>
 								</div>
@@ -160,7 +160,7 @@
 									<div class="input-group">
 										<input type="text" name="toGroup" class="form-control">
 										<span class="input-group-btn">
-											<button class="btn btn-default" name="duplicate" value="duplicate">
+											<button class="btn btn-primary" name="duplicate" value="duplicate">
 												{tr}OK{/tr}
 											</button>
 										</span>

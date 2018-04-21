@@ -56,5 +56,5 @@ TogetherJS.config("getUserAvatar", function () {
 });
 		');
 
-	return '<button onclick="TogetherJS(this); return false;" class="btn btn-default">' . $params['buttonname'] . '</button>';
+	return '<button onclick="TogetherJS(this); return false;" class="btn btn-primary">' . $params['buttonname'] . '</button>';
 }

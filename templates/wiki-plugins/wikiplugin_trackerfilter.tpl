@@ -130,18 +130,18 @@
 					<td>
 						<div id="trackerFilter{$iTrackerFilter}-result"></div>
 						{if !empty($export_action)}
-							<input class="button submit btn btn-default" type="submit" name="export_filter" value="{tr}{$export_action}{/tr}">
+							<input class="button submit btn btn-primary" type="submit" name="export_filter" value="{tr}{$export_action}{/tr}">
 						{elseif $action and $action neq " "}
-							<input class="button submit btn btn-default" type="submit" name="filter" value="{if empty($action)}{tr}Filter{/tr}{else}{tr}{$action}{/tr}{/if}">
-							<input class="button submit btn btn-default" type="submit" name="reset_filter" value="{tr}Reset{/tr}">
+							<input class="button submit btn btn-primary" type="submit" name="filter" value="{if empty($action)}{tr}Filter{/tr}{else}{tr}{$action}{/tr}{/if}">
+							<input class="button submit btn btn-primary" type="submit" name="reset_filter" value="{tr}Reset{/tr}">
 						{else}
 							&nbsp;
 						{/if}
 						{if $mapButtons && $mapButtons eq 'y'}
 							{if isset($mapview) && $mapview}
-							<br><input class="button submit btn btn-default" type="submit" name="searchlist" value="{tr}List View{/tr}">
+							<br><input class="button submit btn btn-primary" type="submit" name="searchlist" value="{tr}List View{/tr}">
 							{else}
-							<br><input class="button submit btn btn-default" type="submit" name="searchmap" value="{tr}Map View{/tr}">
+							<br><input class="button submit btn btn-primary" type="submit" name="searchmap" value="{tr}Map View{/tr}">
 							{/if}
 						{/if}
 					</td>

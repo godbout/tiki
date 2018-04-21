@@ -68,7 +68,7 @@
 			{/if}
 			<div class="form-group">
 				<div class="col-sm-9 col-sm-offset-3">
-					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>
 		</form>
@@ -94,7 +94,7 @@ potato,,vegetable
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3 col-sm-offset-3">
-						<input type="submit" class="btn btn-primary" name="import" value="{tr}Upload{/tr}">
+						<input type="submit" class="btn btn-secondary" name="import" value="{tr}Upload{/tr}">
 					</div>
 				</div>
 			</form>
@@ -107,7 +107,7 @@ potato,,vegetable
 				<form method="get" action="tiki-admin_categories.php">
 					<label>{tr}Find:{/tr}<input type="text" name="find"></label>
 					<input type="hidden" name="parentId" value="{$parentId|escape}">
-					<input type="submit" class="btn btn-default btn-sm" value="{tr}Filter{/tr}" name="search">
+					<input type="submit" class="btn btn-primary btn-sm" value="{tr}Filter{/tr}" name="search">
 					<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 					<input type="hidden" name="find_objects" value="{$find_objects|escape}">
 				</form>
@@ -163,7 +163,7 @@ potato,,vegetable
 							{tr}Unassign{/tr}
 						</label>
 						<div class="col-sm-6 input-group">
-							<input type="submit" class="btn btn-default btn-sm" name="unassign" value="{tr}OK{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm" name="unassign" value="{tr}OK{/tr}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -181,7 +181,7 @@ potato,,vegetable
 								{/foreach}
 							</select>
 							<span class="input-group-btn">
-								<input type="submit" class="btn btn-default" name="move_to" value="{tr}OK{/tr}">
+								<input type="submit" class="btn btn-primary" name="move_to" value="{tr}OK{/tr}">
 							</span>
 						</div>
 					</div>
@@ -200,7 +200,7 @@ potato,,vegetable
 								{/foreach}
 							</select>
 							<span class="input-group-btn">
-								<input type="submit" class="btn btn-default" name="copy_from" value="{tr}OK{/tr}">
+								<input type="submit" class="btn btn-primary" name="copy_from" value="{tr}OK{/tr}">
 							</span>
 						</div>
 					</div>
@@ -229,7 +229,7 @@ potato,,vegetable
 					<div>
 						<input type="hidden" name="categId" value="{$parentId|escape}">
 						<input type="hidden" name="confirm" value="1">
-						<input type="submit" class="btn btn-default btn-sm" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
 						<span id="add_object_message" style="display: none;"></span>
 					</div>
 				</form>
@@ -288,7 +288,7 @@ $("#add_object_type").change(function () {
 						<div class="col-sm-6 input-group">
 							<input type="text" name="find_objects" id="find_objects" class="form-control">
 							<span class="input-group-btn">
-								<input type="submit" class="btn btn-default" value="{tr}Filter{/tr}" name="search_objects">
+								<input type="submit" class="btn btn-primary" value="{tr}Filter{/tr}" name="search_objects">
 							</span>
 						</div>
 					</div>
@@ -315,7 +315,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<div>
-										<input type="submit" class="btn btn-default" name="addpage" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addpage" value="{tr}Add{/tr}">
 									</div>
 								</div>
 							</div>
@@ -335,7 +335,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addarticle" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addarticle" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -355,7 +355,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addblog" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addblog" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -375,7 +375,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="adddirectory" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="adddirectory" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -395,7 +395,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addgallery" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addgallery" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -415,7 +415,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addfilegallery" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addfilegallery" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -435,7 +435,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addforum" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addforum" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -455,7 +455,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addpoll" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addpoll" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -475,7 +475,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addfaq" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addfaq" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -495,7 +495,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addtracker" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addtracker" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>
@@ -515,7 +515,7 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default" name="addquiz" value="{tr}Add{/tr}">
+										<input type="submit" class="btn btn-primary" name="addquiz" value="{tr}Add{/tr}">
 									</span>
 								</div>
 							</div>

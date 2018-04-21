@@ -24,7 +24,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="go" value="{tr}Go{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
 	</div>
 </form>
@@ -101,7 +101,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input class="btn btn-default" type="submit" name="save" value="{tr}Save{/tr}">
+			<input class="btn btn-primary" type="submit" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 	{include file='categorize.tpl'}

@@ -14,7 +14,7 @@
 		</select>
 		<input type="text" name="words" value="{$words|escape}" size="30">
 		<input type="hidden" name="where" value="all">
-		<input type="submit" class="btn btn-default btn-sm" value="search">
+		<input type="submit" class="btn btn-primary btn-sm" value="search">
 	</form>
 </div>
 <div class="dirlistsites">
@@ -34,7 +34,7 @@
 				<option value="lastModif_desc" {if $sort_mode eq 'lastModif_desc'}selected="selected"{/if}>{tr}Last updated (desc){/tr}</option>
 				<option value="lastModif_asc" {if $sort_mode eq 'lastModif_asc'}selected="selected"{/if}>{tr}Last updated (asc){/tr}</option>
 			</select>
-			<input type="submit" class="btn btn-default btn-sm" name="xx" value="sort">
+			<input type="submit" class="btn btn-primary btn-sm" name="xx" value="sort">
 		</form>
 		<br>
 	{/if}

@@ -458,7 +458,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="submit" class="btn btn-primary col-sm-offset-3" name="save" value="{tr}Save{/tr}">
+				<input type="submit" class="btn btn-secondary col-sm-offset-3" name="save" value="{tr}Save{/tr}">
 			</div>
 			</fieldset>
 			<fieldset>

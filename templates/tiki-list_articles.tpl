@@ -251,7 +251,7 @@
 					</select>
 				</label>
 				<span class="input-group-btn">
-				<input type="submit" class="btn btn-primary" value="{tr}OK{/tr}">
+				<input type="submit" class="btn btn-secondary" value="{tr}OK{/tr}">
 				</span>
 			</div>
 		</div>

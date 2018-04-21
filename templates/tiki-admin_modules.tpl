@@ -166,7 +166,7 @@
 						{include file='admin_modules_form.tpl'}
 					{if empty($assign_name)}
 						<div class="input_submit_container">
-							<input type="submit" class="btn btn-default btn-sm" name="preview" value="{tr}Module Options{/tr}" onclick="needToConfirm=false;">
+							<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Module Options{/tr}" onclick="needToConfirm=false;">
 						</div>
 					{else}
 						{jq}$("#module_params").tabs();{/jq}
@@ -400,7 +400,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label"></label>
 				<div class="col-sm-9">
-					<input type="submit" class="btn btn-primary" name="um_update" value="{if empty($um_name)}{tr}Create{/tr}{else}{tr}Save{/tr}{/if}" onclick="needToConfirm=false">
+					<input type="submit" class="btn btn-secondary" name="um_update" value="{if empty($um_name)}{tr}Create{/tr}{else}{tr}Save{/tr}{/if}" onclick="needToConfirm=false">
 				</div>
 			</div>
 		</form>

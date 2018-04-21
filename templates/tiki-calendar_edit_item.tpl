@@ -69,7 +69,7 @@
 					{if $edit}
 						{if $prefs.javascript_enabled eq 'n'}
 							{$calendar.name|escape}<br>{tr}or{/tr}&nbsp;
-							<input type="submit" class="btn btn-default btn-sm" name="changeCal" value="{tr}Go to{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm" name="changeCal" value="{tr}Go to{/tr}">
 						{/if}
 						<select name="save[calendarId]" id="calid" onchange="needToConfirm=false;document.getElementById('editcalitem').submit();" class="form-control">
 							{foreach item=it key=itid from=$listcals}
@@ -460,7 +460,7 @@ $("#id_recurrent").click(function () {
 						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_timespan class='form-control date nochosen'}
 					</div>
 					<div class="col-md-2 time">
-						<a href="#" id="durationBtn" class="btn btn-xs btn-default">
+						<a href="#" id="durationBtn" class="btn btn-xs btn-primary">
 							{tr}Show duration{/tr}
 						</a>
 					</div>
@@ -834,7 +834,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 									<form action="tiki-calendar_edit_item.php" method="post">
 										<input type ="hidden" name="viewcalitemId" value="{$id}">
 										<input type="text" name="guests">{help desc="{tr}Format:{/tr} {tr}Participant names separated by comma{/tr}" url='calendar'}
-										<input type="submit" class="btn btn-default btn-sm" name="add_guest" value="Add guests">
+										<input type="submit" class="btn btn-primary btn-sm" name="add_guest" value="Add guests">
 									</form>
 								*}
 							{/if}
@@ -895,8 +895,8 @@ $("input, select, textarea", "#editcalitem").change(function () {
 		<div class="modal-footer">
 			<div class="row submit">
 				<div class="col-md-9 col-md-push-3">
-					<input type="submit" class="btn btn-default" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
-					<input type="submit" class="btn btn-primary" name="act" value="{tr}Save{/tr}" onclick="needToConfirm=false;">
+					<input type="submit" class="btn btn-primary" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
+					<input type="submit" class="btn btn-secondary" name="act" value="{tr}Save{/tr}" onclick="needToConfirm=false;">
 					{if $id}
 						<input type="submit" class="btn btn-danger" onclick="needToConfirm=false;document.location='tiki-calendar_edit_item.php?calitemId={$id}&amp;delete=y';return false;" value="{tr}Delete event{/tr}">
 					{/if}
@@ -908,7 +908,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 							{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _text="{tr}Export Event as iCal{/tr}"}
 						{/if}
 					{/if}
-					<input type="submit" class="btn btn-default" onclick="needToConfirm=false;document.location='{$referer|escape:'html'}';return false;" value="{tr}Cancel{/tr}">
+					<input type="submit" class="btn btn-primary" onclick="needToConfirm=false;document.location='{$referer|escape:'html'}';return false;" value="{tr}Cancel{/tr}">
 				</div>
 			</div>
 		</div>

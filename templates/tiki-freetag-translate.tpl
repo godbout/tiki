@@ -4,7 +4,7 @@
 		{button href="tiki-browse_freetags.php" _class="btn btn-link" _icon_name="list" _text="{tr}Browse Tags{/tr}"}
 	{/if}
 	{if isset($data)}
-		{button href="tiki-index.php?page=$objId" class="btn btn-default" _text="{tr}View page{/tr}"}
+		{button href="tiki-index.php?page=$objId" class="btn btn-primary" _text="{tr}View page{/tr}"}
 	{/if}
 </div>
 {remarksbox type="tip" title="{tr}Note{/tr}"}
@@ -112,7 +112,7 @@ $('#scblink').click(function(e){
 				<tr>
 					<td colspan="{if in_array('',$languageList)}{($languageList|@count) - 1}{else}{$languageList|@count}{/if}">
 						<div class="text-center">
-							<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+							<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 						</div>
 					</td>
 				</tr>
@@ -130,7 +130,7 @@ $('#scblink').click(function(e){
 				{/foreach}
 			</select>
 			<span class="input-group-btn">
-				<input type="submit" class="btn btn-default" value="{tr}Select{/tr}">
+				<input type="submit" class="btn btn-primary" value="{tr}Select{/tr}">
 			</span>
 		</div>
 	</div>

@@ -87,7 +87,7 @@ class WikiParser_PluginOutput
 			$check = $access->check_authenticity(null, false);
 			$content .= '<input type="hidden" name="ticket" value="' . $check['ticket'] . '">';
 			$content .= '<input type="hidden" name="daconfirm" value="y">';
-			$content .= '<input type="submit" class="btn btn-default btn-sm" value="' . smarty_modifier_escape(tra('Set')) . '">';
+			$content .= '<input type="submit" class="btn btn-primary btn-sm" value="' . smarty_modifier_escape(tra('Set')) . '">';
 			$content .= '</form>';
 		}
 		return self::error(tra('Plugin disabled'), $content);

@@ -3,12 +3,12 @@
 {if $tiki_p_create_galleries eq 'y'}
 	{if $edit_mode ne 'y' or $galleryId ne 0}
 		<div class="t_navbar">
-			{button href="?edit_mode=1&amp;galleryId=0" class="btn btn-default" _icon_name="create" _text="{tr}Create New Gallery{/tr}"}
+			{button href="?edit_mode=1&amp;galleryId=0" class="btn btn-primary" _icon_name="create" _text="{tr}Create New Gallery{/tr}"}
 			{if $galleryId ne 0}
-				{button href="tiki-browse_gallery.php?galleryId=$galleryId" class="btn btn-default" _icon_name="view" _text="{tr}Browse Gallery{/tr}"}
+				{button href="tiki-browse_gallery.php?galleryId=$galleryId" class="btn btn-primary" _icon_name="view" _text="{tr}Browse Gallery{/tr}"}
 			{/if}
 			{if $display_migrate_filegal}
-				{button href="tiki-galleries.php?migrate_images_to_fgal=1" class="btn btn-default" _icon_name="file" _text="{tr}Migrate Images to File Gallery{/tr}"}
+				{button href="tiki-galleries.php?migrate_images_to_fgal=1" class="btn btn-primary" _icon_name="file" _text="{tr}Migrate Images to File Gallery{/tr}"}
 			{/if}
 		</div>
 	{/if}
@@ -241,7 +241,7 @@
 				{include file='freetag.tpl'}
 
 				<div class="text-center">
-					<input type="submit" class="btn btn-default" value="{tr}Save{/tr}" name="edit">
+					<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}" name="edit">
 				</div>
 
 			</form>
@@ -258,7 +258,7 @@
 {/if}
 {if $tiki_p_create_galleries eq 'y' && $galleryId ne 0}
 	<div class="t_navbar">
-		<a href="tiki-galleries.php?edit_mode=1&amp;galleryId=0" class="btn btn-default">{tr}Create New Gallery{/tr}</a>
+		<a href="tiki-galleries.php?edit_mode=1&amp;galleryId=0" class="btn btn-primary">{tr}Create New Gallery{/tr}</a>
 	</div>
 {/if}
 <h2>{tr}Available Galleries{/tr}</h2>
@@ -279,7 +279,7 @@
 						{/foreach*}
 					</select>
 					<span class="input-group-btn">
-						<input type="submit" class="btn btn-default" value="{tr}Filter{/tr}">
+						<input type="submit" class="btn btn-primary" value="{tr}Filter{/tr}">
 					</span>
 				</div>
 			</form>

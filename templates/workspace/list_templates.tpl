@@ -6,10 +6,10 @@
 
 {block name="navigation"}
 	<div class="navbar">
-		<a class="btn btn-default" href="{bootstrap_modal controller=workspace action=add_template}">
+		<a class="btn btn-primary" href="{bootstrap_modal controller=workspace action=add_template}">
 			{icon name="create"} {tr}Create Workspace Template{/tr}
 		</a>
-		<a class="btn btn-default" href="{bootstrap_modal controller=workspace action=create}">
+		<a class="btn btn-primary" href="{bootstrap_modal controller=workspace action=create}">
 			{icon name="create"} {tr}Create Workspace{/tr}
 		</a>
 	</div>
@@ -33,8 +33,8 @@
 					</td>
 					<td>
 						{permission name=admin}
-							<a title="{tr}Edit{/tr}" class="btn btn-default btn-sm service-dialog reload" href="{service controller=workspace action=edit_template id=$template.templateId}">{icon name="edit"} {tr}Edit{/tr}</a>
-							<span class="btn btn-default btn-sm">
+							<a title="{tr}Edit{/tr}" class="btn btn-primary btn-sm service-dialog reload" href="{service controller=workspace action=edit_template id=$template.templateId}">{icon name="edit"} {tr}Edit{/tr}</a>
+							<span class="btn btn-primary btn-sm">
 								{permission_link mode=text type=workspace id=$template.templateId title=$template.name}
 							</span>
 						{/permission}

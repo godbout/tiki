@@ -72,12 +72,12 @@
 				<input type="hidden" name="permType" value="{$permType|escape}">
 
 				<div class="input_submit_container" style="text-align: center">
-					<input type="submit" class="btn btn-primary btn-sm" name="assign" value="{tr}Assign{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
 					{if $permissions_displayed eq 'direct' and $objectType neq 'global'}
 						<input type="submit" class="btn btn-warning btn-sm" name="remove" value="{if $objectType eq 'category'}{tr}Delete category permissions{/tr}{else}{tr}Delete object permissions{/tr}{/if}" class="tips" title="{tr}Reset Perms{/tr}|{if $objectType neq 'category'}{tr}This will remove all the settings here and permissions will be reset to inherit any category permissions that are set, or the global sitewide permissions.{/tr}{else}{tr}This will remove all the settings here and permissions will be reset to inherit the global sitewide permissions.{/tr}{/if}">
 					{/if}
-					<input type="submit" class="btn btn-default btn-sm" name="copy" value="{tr}Copy{/tr}" class="tips" title="{tr}Permissions Clipboard{/tr}|{tr}Copy the permissions set here{/tr}">
-					{if !empty($perms_clipboard_source)}<input type="submit" class="btn btn-default btn-sm" name="paste" value="{tr}Paste{/tr}" class="tips" title="{tr}Permissions Clipboard{/tr}|{tr}Paste copied permissions from {/tr}<em>{$perms_clipboard_source}</em>" />{/if}
+					<input type="submit" class="btn btn-primary btn-sm" name="copy" value="{tr}Copy{/tr}" class="tips" title="{tr}Permissions Clipboard{/tr}|{tr}Copy the permissions set here{/tr}">
+					{if !empty($perms_clipboard_source)}<input type="submit" class="btn btn-primary btn-sm" name="paste" value="{tr}Paste{/tr}" class="tips" title="{tr}Permissions Clipboard{/tr}|{tr}Paste copied permissions from {/tr}<em>{$perms_clipboard_source}</em>" />{/if}
 				</div>
 
 				{if $objectType eq 'category'}
@@ -120,9 +120,9 @@
 			{if ($perms|@count) eq '0'}{remarksbox type="warning" title="{tr}Warning{/tr}"}{tr}You must select at least one feature{/tr}.{/remarksbox}{/if}
 
 			<div class="input_submit_container" style="text-align: center">
-				<input type="submit" class="btn btn-primary btn-sm" name="assign" value="{tr}Assign{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
 				{if $permissions_displayed eq 'direct' and $objectType neq 'global'}
-					<input type="submit" class="btn btn-default btn-sm" name="remove" value="{if $objectType eq 'category'}{tr}Delete category permissions{/tr}{else}{tr}Delete object permissions{/tr}{/if}" class="tips" title="{tr}Reset Perms{/tr}|{tr}This will remove all the settings here and permissions will be reset to inherit the global sitewide permissions.{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="remove" value="{if $objectType eq 'category'}{tr}Delete category permissions{/tr}{else}{tr}Delete object permissions{/tr}{/if}" class="tips" title="{tr}Reset Perms{/tr}|{tr}This will remove all the settings here and permissions will be reset to inherit the global sitewide permissions.{/tr}">
 				{/if}
 			</div>
 		</form>
@@ -158,7 +158,7 @@
 			{/if}
 			{if $objectId}
 			<div class="t_navbar">
-				<input type="submit" class="btn btn-default btn-sm" name="used_groups" value="{tr}Select only groups that have a perm with the object{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="used_groups" value="{tr}Select only groups that have a perm with the object{/tr}">
 			</div>
 			{/if}
 
@@ -172,7 +172,7 @@
 			</div>
 
 			<div class="input_submit_container" style="text-align: center">
-				<input type="submit" class="btn btn-default btn-sm" name="group_select" value="{tr}Select{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="group_select" value="{tr}Select{/tr}">
 			</div>
 		</div>
 		</form>
@@ -198,7 +198,7 @@
 			</div>
 
 			<div class="input_submit_container" style="text-align: center">
-				<input type="submit" class="btn btn-default btn-sm" name="feature_select" value="{tr}Select{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="feature_select" value="{tr}Select{/tr}">
 			</div>
 		</div>
 		</form>
@@ -256,7 +256,7 @@
 		<input type="hidden" name="permType" value="{$permType|escape}">
 		<input type="hidden" name="show_disabled_features" value="{$show_disabled_features}">
 		<div class="input_submit_container" style="text-align: center">
-			<input type="submit" class="btn btn-primary btn-sm" name="assign" value="{tr}Assign{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
 		</div>
 
 		{if empty($filegals_manager)}

@@ -8,14 +8,14 @@
 {block name="navigation"}
 	{if $tiki_p_admin_trackers eq 'y'}
 		<div class="form-group">{* Class provides 15px bottom margin. *}
-			<a class="btn btn-default" href="{bootstrap_modal controller=tracker action=replace}">
+			<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=replace}">
 				{icon name="create"} {tr}Create{/tr}
 			</a>
-			<a class="btn btn-default" href="{bootstrap_modal controller=tracker action=duplicate}">
+			<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=duplicate}">
 				{icon name="copy"} {tr}Duplicate{/tr}
 			</a>
 			<div class="btn-group">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					{icon name="import"} {tr}Import{/tr}
 					<span class="caret"></span>
 				</button>
@@ -40,12 +40,12 @@
 				</ul>
 			</div>
 			{if $prefs.tracker_tabular_enabled eq 'y'}
-				<a class="btn btn-default" href="{service controller=tabular action=manage}">
+				<a class="btn btn-primary" href="{service controller=tabular action=manage}">
 					{icon name="list"} {tr}Manage Tabular Formats{/tr}
 				</a>
 			{/if}
 			{if $prefs.tracker_remote_sync eq 'y'}
-				<a class="btn btn-default" href="{service controller=tracker_sync action=clone_remote}">
+				<a class="btn btn-primary" href="{service controller=tracker_sync action=clone_remote}">
 					{icon name="copy"} {tr}Clone remote{/tr}
 				</a>
 			{/if}

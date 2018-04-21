@@ -2,7 +2,7 @@
 
 {title help="Sitemap" admpage="General#contentadmin_general-3"}{tr}Sitemap{/tr}{/title}
 
-{button href="tiki-admin_sitemap.php?rebuild=1" _icon_name="sitemap" class="btn btn-default" _text="{tr}Rebuild sitemap{/tr}"}
+{button href="tiki-admin_sitemap.php?rebuild=1" _icon_name="sitemap" class="btn btn-primary" _text="{tr}Rebuild sitemap{/tr}"}
 
 <br/><h2>{tr}Submit the Sitemap{/tr}</h2>
 {remarksbox type="info" title="{tr}Submit the Sitemap{/tr}" close="n"}

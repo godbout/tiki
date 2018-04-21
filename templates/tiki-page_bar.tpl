@@ -93,11 +93,11 @@
 				{/if}
 				{if $prefs.feature_wiki_usrlock eq 'y' and $user and $tiki_p_lock eq 'y'}
 					{if !$lock}
-						<a class="btn btn-default" href="{bootstrap_modal controller=wiki action=lock_pages checked=$page}">
+						<a class="btn btn-primary" href="{bootstrap_modal controller=wiki action=lock_pages checked=$page}">
 							{tr}Lock{/tr}
 						</a>
 					{elseif $tiki_p_admin_wiki eq 'y' or $user eq $page_user}
-						<a class="btn btn-default" href="{bootstrap_modal controller=wiki action=unlock_pages checked=$page}">
+						<a class="btn btn-primary" href="{bootstrap_modal controller=wiki action=unlock_pages checked=$page}">
 							{tr}Unlock{/tr}
 						</a>
 					{/if}
@@ -122,7 +122,7 @@
 						{/jq}
 						{/if}
 
-						<a class="btn btn-default" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
+						<a class="btn btn-primary" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
 							{tr}Comments{/tr}
 							{if $count_comments}
 								&nbsp;<span class="count_comments badge">{$count_comments}</span>
@@ -167,7 +167,7 @@
 			{/if}
 			{if $more_section|trim neq ''}
 				<div class="btn-group dropup">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 						{tr}More{/tr} <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">

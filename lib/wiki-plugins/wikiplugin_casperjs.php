@@ -46,7 +46,7 @@ function wikiplugin_casperjs($data, $params)
 	}
 	$requestParams[$actionKey] = $label;
 	$requestParamStr = http_build_query($requestParams, null, '&');
-	$link = '<a href=' . $path . '?' . $requestParamStr . ' class="btn btn-default btn-sm">' . $label . '</a>';
+	$link = '<a href=' . $path . '?' . $requestParamStr . ' class="btn btn-primary btn-sm">' . $label . '</a>';
 
 	$htmlResult .= $link;
 

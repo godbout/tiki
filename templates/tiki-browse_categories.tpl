@@ -14,8 +14,8 @@
 <div class="t_navbar margin-bottom-md">
 	{tr}Browse in:{/tr}
 	<div class="btn-group">
-		<a class="btn btn-default" {if $type eq ''} id="highlight"{/if} href="tiki-browse_categories.php?find={$find|escape:"url"}&amp;deep={$deep}&amp;parentId={$parentId|escape:"url"}&amp;sort_mode={$sort_mode|escape:"url"}">{tr}All{/tr}</a>
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		<a class="btn btn-primary" {if $type eq ''} id="highlight"{/if} href="tiki-browse_categories.php?find={$find|escape:"url"}&amp;deep={$deep}&amp;parentId={$parentId|escape:"url"}&amp;sort_mode={$sort_mode|escape:"url"}">{tr}All{/tr}</a>
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 			{tr}or in{/tr}
 			<span class="caret"></span>
 			<span class="sr-only">Toggle Dropdown</span>
@@ -140,7 +140,7 @@
 			</span>
 			<input class="form-control input-sm" type="text" name="find" id="find" value="{$find|escape}">
 			<div class="input-group-btn">
-				<input type="submit" class="btn btn-default btn-sm" value="{tr}Find{/tr}" name="search">
+				<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
 			</div>
 		</div>
 		<span class="help-block" style="display:inline-block; margin: 0;">{help url="#" desc="{tr}Find in:{/tr} <ul><li>{tr}Name{/tr}</li><li>{tr}Description{/tr}</li></ul>"}</span>

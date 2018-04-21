@@ -101,7 +101,7 @@ var account='';
 					{/section}
 					<tr id="Row_SplitDebit"{if count($creditAccount)>1} style="display:none;"{/if}>
 						<td colspan="3">
-							<input type="button" class="btn btn-default btn-sm pull-right" value="{tr}Add entry{/tr}" id="SplitDebit" onclick="javascript:splitDebit()">
+							<input type="button" class="btn btn-primary btn-sm pull-right" value="{tr}Add entry{/tr}" id="SplitDebit" onclick="javascript:splitDebit()">
 						</td>
 					</tr>
 				</table>
@@ -133,12 +133,12 @@ var account='';
 					{/section}
 					<tr id="Row_SplitCredit"{if count($creditAccount)>1} style="display:none;"{/if}>
 						<td colspan="3">
-							<input type="button" class="btn btn-default btn-sm pull-right" value="{tr}Add entry{/tr}" id="SplitCredit" onclick="javascript:splitCredit()">
+							<input type="button" class="btn btn-primary btn-sm pull-right" value="{tr}Add entry{/tr}" id="SplitCredit" onclick="javascript:splitCredit()">
 						</td>
 					</tr>
 				</table>
 			</fieldset>
-			<input type="submit" class="btn btn-primary timeout" name="bookstack" id="bookstack" value="{tr}Book{/tr}">
+			<input type="submit" class="btn btn-secondary timeout" name="bookstack" id="bookstack" value="{tr}Book{/tr}">
 			{button href="tiki-accounting.php?bookId=$bookId" _text="{tr}Back to book page{/tr}"}
 		</form>
 	</div>

@@ -21,7 +21,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-default btn-sm" name="save_keywords" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="save_keywords" value="{tr}Save{/tr}">
 				</div>
 			</div>
 		</form>
@@ -36,7 +36,7 @@
 			<input type="text" name="q" value="{if $smarty.request.q}{$smarty.request.q|escape}{/if}" class="form-control">
 		</div>
 		<div class="col-sm-1">
-			<input type="submit" class="btn btn-default btn-sm" name="search" value="{tr}Go{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Go{/tr}">
 		</div>
 	</div>
 </form>

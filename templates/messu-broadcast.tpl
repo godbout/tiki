@@ -22,7 +22,7 @@
 				<input type="hidden" name="replyto_hash" value="{$replyto_hash|escape}">
 				<input type="hidden" name="subject" value="{$subject|escape}">
 				<input type="hidden" name="body" value="{$body|escape}">
-				<input type="submit" class="btn btn-default btn-sm timeout" name="send" value="{tr}Please Confirm{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm timeout" name="send" value="{tr}Please Confirm{/tr}">
 			</form>
 		{/if}
 	</div>
@@ -72,7 +72,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10 col-sm-push-2">
-				<input type="submit" class="btn btn-primary timeout" name="preview" value="{tr}Send{/tr}">
+				<input type="submit" class="btn btn-secondary timeout" name="preview" value="{tr}Send{/tr}">
 			</div>
 		</div>
 	</form>

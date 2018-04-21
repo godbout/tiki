@@ -12,9 +12,9 @@
 	{title}{tr}Browsing Image:{/tr} {$name}{/title}
 <div id="{$rootid}browse_image">
 	<div class="t_navbar">
-		{button href="tiki-browse_gallery.php?galleryId=$galleryId&amp;offset=$offset" class="btn btn-default" _icon_name="previous" _text="{tr}Return to Gallery{/tr}"}
+		{button href="tiki-browse_gallery.php?galleryId=$galleryId&amp;offset=$offset" class="btn btn-primary" _icon_name="previous" _text="{tr}Return to Gallery{/tr}"}
 		{if $tiki_p_admin_galleries eq 'y' or ($user and $user eq $owner)}
-			{button href="tiki-edit_image.php?galleryId=$galleryId&amp;edit=$imageId&amp;sort_mode=$sort_mode" class="btn btn-default" _icon_name="edit" _text="{tr}Edit Image{/tr}"}
+			{button href="tiki-edit_image.php?galleryId=$galleryId&amp;edit=$imageId&amp;sort_mode=$sort_mode" class="btn btn-primary" _icon_name="edit" _text="{tr}Edit Image{/tr}"}
 		{/if}
 	</div>
 {/if}
@@ -141,7 +141,7 @@
 								<option value="{$galleries[idx].id|escape}" {if $galleries[idx].id eq $galleryId}selected="selected"{/if}>{$galleries[idx].name}</option>
 							{/section}
 						</select>
-						<input type="submit" class="btn btn-default btn-sm" name="move_image" value="{tr}Move{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="move_image" value="{tr}Move{/tr}">
 					</form>
 				</td>
 			</tr>

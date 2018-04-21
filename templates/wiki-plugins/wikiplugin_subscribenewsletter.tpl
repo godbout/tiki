@@ -26,9 +26,9 @@
 		{/if}
 		<div class="form-group text-center">
 			{if empty($subcribeMessage)}
-				<input type="submit" class="btn btn-default" name="wpSubscribe" value="{tr}Subscribe to the newsletter:{/tr} {$subscribeInfo.name}">
+				<input type="submit" class="btn btn-primary" name="wpSubscribe" value="{tr}Subscribe to the newsletter:{/tr} {$subscribeInfo.name}">
 			{else}
-				<input type="submit" class="btn btn-default" name="wpSubscribe" value="{$subcribeMessage|escape}">
+				<input type="submit" class="btn btn-primary" name="wpSubscribe" value="{$subcribeMessage|escape}">
 			{/if}
 		</div>
 	</form>

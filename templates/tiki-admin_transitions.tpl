@@ -51,7 +51,7 @@
 			</fieldset>
 
 			<p>
-				<input type="submit" class="btn btn-primary" value="{tr}Select{/tr}">
+				<input type="submit" class="btn btn-secondary" value="{tr}Select{/tr}">
 				<div class="help-block">
 					{tr}At least two elements are required to create transitions. Additional tabs appear once the selection is completed.{/tr}
 				</div>
@@ -223,7 +223,7 @@
 					</div>
 				</div>
 				<div class="submit">
-					<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}">
 				</div>
 			</form>
 		{/tab}
@@ -296,7 +296,7 @@
 						{/foreach}
 					</fieldset>
 					<div class="submit">
-						<input type="submit" class="btn btn-primary" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-secondary" value="{tr}Add{/tr}">
 					</div>
 				</form>
 			{/tab}

@@ -1,7 +1,7 @@
 {title help="Theme Control"}{tr}Theme Control{/tr}: {tr}Sections{/tr}{/title}
 <div class="t_navbar btn-group">
-	{button href="tiki-theme_control.php" class="btn btn-default" _text="{tr}Control by Categories{/tr}"}
-	{button href="tiki-theme_control_objects.php" class="btn btn-default" _text="{tr}Control by Objects{/tr}"}
+	{button href="tiki-theme_control.php" class="btn btn-primary" _text="{tr}Control by Categories{/tr}"}
+	{button href="tiki-theme_control_objects.php" class="btn btn-primary" _text="{tr}Control by Objects{/tr}"}
 </div>
 <h2>{tr}Assign themes to sections{/tr}</h2>
 <form action="tiki-theme_control_sections.php" method="post" class="form-inline" role="form">
@@ -21,7 +21,7 @@
 			{/foreach}
 		</select>
 	</div>
-	<input type="submit" class="btn btn-primary btn-sm" name="assign" value="{tr}Assign{/tr}">
+	<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
 </form>
 
 <h2>{tr}Assigned sections{/tr}</h2>

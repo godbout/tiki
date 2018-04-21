@@ -97,7 +97,7 @@
 					</tr>
 					</tbody>
 				</table>
-				<a id="add_row" href="javascript:void(0);" class="btn btn-default btn-block tips" title=":{tr}Add a new row{/tr}">
+				<a id="add_row" href="javascript:void(0);" class="btn btn-primary btn-block tips" title=":{tr}Add a new row{/tr}">
 					{icon name="add"} {tr}Add row{/tr}
 				</a>
 			</div>
@@ -105,7 +105,7 @@
 		<div class="submit text-center">
 			<input type="hidden" name="confirm" value="1">
 			<input type="hidden" name="language" value={$language}>
-			<input type="submit" class="btn btn-primary btn-sm" name="custom_save" value="{tr}Save{/tr}" />
+			<input type="submit" class="btn btn-secondary btn-sm" name="custom_save" value="{tr}Save{/tr}" />
 		</div>
 		{jq}
 			$('#add_row').click(function() {

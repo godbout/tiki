@@ -13,7 +13,7 @@
 			</div>
 		{/foreach}
 		<div class="submit">
-			<button class="btn btn-primary">{tr}Save{/tr}</button>
+			<button class="btn btn-secondary">{tr}Save{/tr}</button>
 		</div>
 	</form>
 {/block}

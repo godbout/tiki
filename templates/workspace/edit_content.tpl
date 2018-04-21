@@ -16,7 +16,7 @@
 		<textarea name="content">{$content|escape}</textarea>
 	</label>
 	<div class="submit">
-		<input type="submit" class="btn btn-default btn-sm" value="{tr}Set{/tr}"/>
+		<input type="submit" class="btn btn-primary btn-sm" value="{tr}Set{/tr}"/>
 	</div>
 </form>
 {/block}

@@ -25,7 +25,7 @@
 		</div>
 		<div class="submit">
 			<input type="hidden" name="confirm" value="1">
-			<button type="submit" class="btn btn-primary" name="export">{tr}Export{/tr}</button>
+			<button type="submit" class="btn btn-secondary" name="export">{tr}Export{/tr}</button>
 		</div>
 	</form>
 {/block}

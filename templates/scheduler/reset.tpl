@@ -12,7 +12,7 @@
 		<input type="hidden" name="confirm" value="1">
 		<input type="hidden" name="schedulerId" value="{$schedulerId|escape}">
 		<input type="hidden" name="startTime" value="{$startTime|escape}">
-		<input type="submit" class="btn btn-default" value="{tr}Reset{/tr}">
+		<input type="submit" class="btn btn-primary" value="{tr}Reset{/tr}">
 	</div>
 </form>
 {else}

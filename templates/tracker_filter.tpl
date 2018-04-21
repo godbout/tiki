@@ -119,7 +119,7 @@
 		</div>
 		{if isset($filter_button) && $filter_button eq 'y'}
 			<div style="display:inline-block" class="form-group">
-				<input id="filterbutton" type="submit" class="btn btn-default" name="filter" value="{tr}Filter{/tr}" style="display:{if $filterfield}inline{else}none{/if}">
+				<input id="filterbutton" type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}" style="display:{if $filterfield}inline{else}none{/if}">
 			</div>
 		{/if}
 	</div>

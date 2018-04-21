@@ -3,8 +3,8 @@
 {include file='tiki-mytiki_bar.tpl'}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-notepad_list.php" _class="btn btn-default" _text="{tr}List notes{/tr}"}
-	{button href="tiki-notepad_write.php" _class="btn btn-default" _text="{tr}Write note{/tr}"}
+	{button href="tiki-notepad_list.php" _class="btn btn-primary" _text="{tr}List notes{/tr}"}
+	{button href="tiki-notepad_write.php" _class="btn btn-primary" _text="{tr}Write note{/tr}"}
 </div>
 
 <table>
@@ -27,7 +27,7 @@
 		<td>
 			<form action="tiki-notepad_write.php" method="post">
 				<input type="hidden" name="noteId" value="{$noteId|escape}">
-				<input type="submit" class="btn btn-default btn-sm" name="write" value="{tr}Edit{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="write" value="{tr}Edit{/tr}">
 			</form>
 		</td>
 		{if $tiki_p_edit eq 'y'}

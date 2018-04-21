@@ -12,7 +12,7 @@
 {title help="References" admpage="wiki" url="tiki-references.php"}{tr}References{/tr}{/title}
 <div class="t_navbar margin-bottom-md">
 	{if isset($referenceinfo.ref_id)}
-		{button href="?add=1" class="btn btn-default" _text="{tr}Add a new library reference{/tr}"}
+		{button href="?add=1" class="btn btn-primary" _text="{tr}Add a new library reference{/tr}"}
 	{/if}
 </div>
 {tabset name='tabs_admin_references'}
@@ -36,7 +36,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-8 col-sm-offset-4">
-					<input type="submit" class="btn btn-default btn-sm" value="{tr}Find{/tr}" name="search">
+					<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
 				</div>
 			</div>
 		</form>
@@ -223,9 +223,9 @@
 				{if isset($referenceinfo.ref_id) && $referenceinfo.ref_id}
 					<input type="hidden" name="referenceId" value="{$referenceinfo.ref_id|escape}">
 					<input type="hidden" name="editreference" value="1">
-					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				{else}
-					<input type="submit" class="btn btn-primary" name="addreference" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-secondary" name="addreference" value="{tr}Add{/tr}">
 				{/if}
 			</div>
 		</div>

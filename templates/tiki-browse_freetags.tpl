@@ -12,7 +12,7 @@
 				<span class="input-group-addon" id="basic-addon1">{icon name="tags"} {tr}Tags{/tr}</span>
 				<input type="text" id="tagBox" class="form-control" name="tag" value="{$tagString|escape}">
 				<div class="input-group-btn">
-					<input type="submit" class="btn btn-default tips" value="{tr}Go{/tr}">
+					<input type="submit" class="btn btn-primary tips" value="{tr}Go{/tr}">
 				</div>
 			</div>
 		</div>
@@ -121,7 +121,7 @@
 			<div class="input-group col-sm-6">
 				<input type="text" name="find" value="{$find|escape}" class="form-control input-sm" placeholder="{tr}Find{/tr}...">
 				<div class="input-group-btn">
-					<input type="submit" class="btn btn-default btn-sm" value="{tr}Filter{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" value="{tr}Filter{/tr}">
 				</div>
 			</div>
 			<input type="hidden" name="old_type" value="{$type|escape}">

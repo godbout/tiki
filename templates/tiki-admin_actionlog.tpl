@@ -132,7 +132,7 @@
 
 					{if $prefs.feature_contribution eq 'y'}
 						<div class="form-group">
-							<input type="submit" class="btn btn-default btn-sm" name="graph"
+							<input type="submit" class="btn btn-primary btn-sm" name="graph"
 								value="{tr}Graph Contributions{/tr}">
 							{if $prefs.feature_jpgraph eq 'y'}
 								<br>
@@ -168,11 +168,11 @@
 				</fieldset>
 				<input type="hidden" name="max" value="{$maxRecords}">
 				<span class="input_submit_container">
-					<input type="submit" class="btn btn-default btn-sm" name="list" value="{tr}Report{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="list" value="{tr}Report{/tr}">
 				</span>
 				{if $tiki_p_admin eq 'y'}
 					<span class="input_submit_container">
-						<input type="submit" class="btn btn-default btn-sm" name="export" value="{tr}Export{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="export" value="{tr}Export{/tr}">
 					</span>
 				{/if}
 
@@ -361,7 +361,7 @@
 							</option>
 						</select>
 						<span class="input-group-btn">
-							<button type="submit" class="btn btn-primary">{tr}OK{/tr}</button>
+							<button type="submit" class="btn btn-secondary">{tr}OK{/tr}</button>
 						</span>
 					</div>
 				{/if}
@@ -391,7 +391,7 @@
 						<tr>
 							<td>&nbsp;</td>
 							<td>
-								<input type="submit" class="btn btn-default btn-sm" name="saveAction"
+								<input type="submit" class="btn btn-primary btn-sm" name="saveAction"
 									value="{tr}Save Action{/tr}">
 							</td>
 						</tr>
@@ -594,7 +594,7 @@
 								{if $tiki_p_admin eq 'y'}
 									<form method="post" action="{$smarty.server.PHP_SELF}?{$smarty.server.QUERY_STRING}"/>
 										<span class="input_submit_container">
-										<input type="submit" class="btn btn-default btn-sm" name="export_bbb" value="{tr}Export{/tr}" />
+										<input type="submit" class="btn btn-primary btn-sm" name="export_bbb" value="{tr}Export{/tr}" />
 										</span>
 									</form>
 								{/if}
@@ -787,7 +787,7 @@
 						</select>
 					</div>
 					<span class="input_submit_container">
-						<input type="submit" class="btn btn-default btn-sm" name="search" value="{tr}Search{/tr}">
+						<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Search{/tr}">
 					</span>
 				</div>
 
@@ -796,7 +796,7 @@
 
 			<div class="form-group" style="display:block;">
 				<div class="col-sm-1 col-sm-offset-11">
-					<input type="submit" class="btn btn-default btn-sm" name="save" value="{tr}Set{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}">
 				</div>
 			</div>
 			<div class="form-group" style="display:block;">
@@ -837,7 +837,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-1 col-sm-offset-11">
-					<input type="submit" class="btn btn-default btn-sm" name="save" value="{tr}Set{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}">
 				</div>
 			</div>
 		</form>

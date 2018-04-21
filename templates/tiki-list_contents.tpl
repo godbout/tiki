@@ -92,7 +92,7 @@
 		</h2>
 
 		{if $contentId ne ''}
-			<div class="t_navbar">{button href="tiki-list_contents.php" class="btn btn-default" _text="{tr}Create New Block{/tr}"}</div>
+			<div class="t_navbar">{button href="tiki-list_contents.php" class="btn btn-primary" _text="{tr}Create New Block{/tr}"}</div>
 		{/if}
 		<br>
 		<form action="tiki-list_contents.php" method="post" class="form-horizontal">
@@ -114,7 +114,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7">
-					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>
 		</form>

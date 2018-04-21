@@ -70,7 +70,7 @@
 			{/if}
 			<input type="hidden" name="confirm" value="1">
 			<input type="hidden" name="menuId" value="{$info.menuId|escape}">
-			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 		</div>
 	</form>
 {/block}

@@ -1,5 +1,5 @@
 {if $show_in_popup}
-	<a role="button" class="btn btn-default btn-multilike" data-target="#ml{$type}{$object}" data-placement="{$popup_placement}">Like</a>
+	<a role="button" class="btn btn-primary btn-multilike" data-target="#ml{$type}{$object}" data-placement="{$popup_placement}">Like</a>
 	<div class="screen hide">{* screen/hide the multilike inline, so that it only shows in the popup *}
 {/if}
 <div id="ml{$type}{$object}" class="multilike">

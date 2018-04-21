@@ -3,7 +3,7 @@
 {include file='tiki-mytiki_bar.tpl'}
 
 <div class="t_navbar">
-	{button href="tiki-notepad_list.php" class="btn btn-default" _text="{tr}Notes{/tr}"}
+	{button href="tiki-notepad_list.php" class="btn btn-primary" _text="{tr}Notes{/tr}"}
 </div>
 
 <form action="tiki-notepad_write.php" method="post" class="form-horizontal">
@@ -24,7 +24,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>

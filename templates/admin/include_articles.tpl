@@ -17,7 +17,7 @@
 			{icon name="flag"} {tr}Article Topics{/tr}
 		</a>
 		{if $prefs.feature_submissions eq "y"}
-			<a role="link" class="btn btn-default btn-sm tips" href="tiki-list_submissions.php" title=":{tr}List{/tr}">
+			<a role="link" class="btn btn-primary btn-sm tips" href="tiki-list_submissions.php" title=":{tr}List{/tr}">
 				{icon name="list"} {tr}Submissions{/tr}
 			</a>
 		{/if}
@@ -96,7 +96,7 @@
 						<input type="file" name="csvlist" id="csvlist">
 						<span class="help-block">{tr}File format: title,authorName,heading,body,lang,user{/tr}....</span>
 						<div align="center">
-							<input type="submit" class="btn btn-default btn-sm timeout" name="import" value="{tr}Import{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm timeout" name="import" value="{tr}Import{/tr}">
 						</div>
 					</div>
 				</div>

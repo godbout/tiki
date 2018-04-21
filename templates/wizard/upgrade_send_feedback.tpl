@@ -30,10 +30,10 @@
 			{preference name="connect_feature"}
 			<div class="adminoptionboxchild" id="connect_feature_childcontainer">
 				<div class="t_navbar btn-group form-group">
-					{button _script="#" class="btn btn-default" _text="{tr}Send Info{/tr}" _title="{tr}Send the data{/tr}" _id="connect_send_btn"}
-					{button _script="#" class="btn btn-default" _text="{tr}Preview info{/tr}" _title="{tr}See what is going to be sent{/tr}" _id="connect_list_btn"}
+					{button _script="#" class="btn btn-primary" _text="{tr}Send Info{/tr}" _title="{tr}Send the data{/tr}" _id="connect_send_btn"}
+					{button _script="#" class="btn btn-primary" _text="{tr}Preview info{/tr}" _title="{tr}See what is going to be sent{/tr}" _id="connect_list_btn"}
 					{if empty($prefs.connect_site_title)}
-						{button _text="{tr}Fill form{/tr}" class="btn btn-default" _title="{tr}Fill this form in based on other preferences{/tr}" _id="connect_defaults_btn" _script="#"}
+						{button _text="{tr}Fill form{/tr}" class="btn btn-primary" _title="{tr}Fill this form in based on other preferences{/tr}" _id="connect_defaults_btn" _script="#"}
 					{/if}
 				</div>
 				{preference name="connect_send_info"}

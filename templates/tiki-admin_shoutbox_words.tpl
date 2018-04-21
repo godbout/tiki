@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	<div class="text-center margin-bottom-lg">
-		<input type="submit" class="btn btn-default btn-sm" name="add" value="{tr}Add{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
 	</div>
 </form>
 

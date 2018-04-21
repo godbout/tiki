@@ -9,7 +9,7 @@
 {/title}
 
 <div class="t_navbar">
-	{button href="$url" class="btn btn-default" _text="{tr}Back{/tr}"}
+	{button href="$url" class="btn btn-primary" _text="{tr}Back{/tr}"}
 </div>
 
 {if isset($sent)}
@@ -68,7 +68,7 @@
 	<div class="form-group">
 		<label class="control-label col-sm-3"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-default btn-sm" name="send" value="{tr}Send{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="send" value="{tr}Send{/tr}">
 			{if $prefs.auth_token_tellafriend eq 'y'}
 				<input type="checkbox" name="share_access" value="1" id="share_access">
 				<label for="share_access">{tr}Share access rights{/tr}</label>

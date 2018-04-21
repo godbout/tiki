@@ -24,7 +24,7 @@
 		<div class="panel-body">
 			<div class="form-inline">
 			<label>{tr}Filter:{/tr}&nbsp;</label><input type="text" name="find" value="{$find|escape}" class="form-control">
-			<input type="submit" class="btn btn-default" name="filter" value="{tr}Filter{/tr}"><br>
+			<input type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}"><br>
 			</div>
 		</div>
 	</div>
@@ -52,8 +52,8 @@
 							<option value="{$pages[ix].pageName|escape}">{$pages[ix].pageName|escape}</option>
 						{/section}
 					</select>
-					<input type="submit" class="btn btn-default" name="addpage" value="{tr}Add Page{/tr}">
-					<input type="submit" class="btn btn-default" name="clearpages" value="{tr}Clear{/tr}">
+					<input type="submit" class="btn btn-primary" name="addpage" value="{tr}Add Page{/tr}">
+					<input type="submit" class="btn btn-primary" name="clearpages" value="{tr}Clear{/tr}">
 				</div>
 			</div>
 		</div>
@@ -81,8 +81,8 @@
 								<option value="{$struct.page_ref_id|escape}">{$struct.pageName|escape}{if $struct.page_alias} (alias: {$struct.page_alias}){/if}</option>
 							{/foreach}
 						</select>
-						<input type="submit" class="btn btn-default" name="addstructure" value="{tr}Add Structure{/tr}">
-						<input type="submit" class="btn btn-default" name="clearstructures" value="{tr}Clear{/tr}">
+						<input type="submit" class="btn btn-primary" name="addstructure" value="{tr}Add Structure{/tr}">
+						<input type="submit" class="btn btn-primary" name="clearstructures" value="{tr}Clear{/tr}">
 					</div>
 				</div>
 			</div>
@@ -112,8 +112,8 @@
 							<option value="{$articles[ix].articleId|escape}">{$articles[ix].articleId}: {$articles[ix].title|escape}</option>
 						{/section}
 					</select>
-					<input type="submit" class="btn btn-default" name="addarticle" value="{tr}Add Article{/tr}">
-					<input type="submit" class="btn btn-default" name="cleararticles" value="{tr}Clear{/tr}">
+					<input type="submit" class="btn btn-primary" name="addarticle" value="{tr}Add Article{/tr}">
+					<input type="submit" class="btn btn-primary" name="cleararticles" value="{tr}Clear{/tr}">
 				</div>
 			</div>
 		</div>
@@ -174,7 +174,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-3"></label>
 					<div class="col-sm-7">
-						<input type="submit" class="btn btn-default" name="send" value="{tr}Send{/tr}">
+						<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}">
 					</div>
 				</div>
 			</div>

@@ -7,8 +7,8 @@
 {block name="navigation"}
 	<div class="navbar">
 		{permission name=admin_trackers}
-			<a class="btn btn-default" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
-			<a class="btn btn-default" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
+			<a class="btn btn-primary" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
+			<a class="btn btn-primary" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
 		{/permission}
 	</div>
 {/block}
@@ -44,7 +44,7 @@
 										<span class="input-group-addon">{icon name=sort}</span>
 										<input type="text" class="field-label form-control" />
 										<div class="input-group-btn">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<span class="align">{tr}Left{/tr}</span>
 												<span class="caret"></span>
 												<input class="display-align" type="hidden" value="left">
@@ -72,7 +72,7 @@
 											<span class="input-group-addon">{icon name=sort}</span>
 											<input type="text" class="field-label form-control" style="width: auto" value="{$column->getLabel()|escape}" />
 											<div class="input-group-btn">
-												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 													<span class="align">{$column->getDisplayAlign()|ucfirst|tra}</span>
 													<span class="caret"></span>
 													<input class="display-align" type="hidden" value="{$column->getDisplayAlign()|escape}">
@@ -111,7 +111,7 @@
 									</select>
 								</td>
 								<td>
-									<a href="{service controller=tabular action=select trackerId=$trackerId}" class="btn btn-default add-field">{tr}Select Mode{/tr}</a>
+									<a href="{service controller=tabular action=select trackerId=$trackerId}" class="btn btn-primary add-field">{tr}Select Mode{/tr}</a>
 									<textarea name="fields" class="hidden">{$schema->getFormatDescriptor()|json_encode}</textarea>
 								</td>
 								<td colspan="3">
@@ -151,7 +151,7 @@
 										<span class="input-group-addon">{icon name=sort}</span>
 										<input type="text" class="filter-label form-control" value="Label" />
 										<div class="input-group-btn">
-											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<span class="position-label">{tr}Default{/tr}</span>
 												<span class="caret"></span>
 												<input class="position" type="hidden" value="default">
@@ -174,7 +174,7 @@
 											<span class="input-group-addon">{icon name=sort}</span>
 											<input type="text" class="field-label form-control" value="{$filter->getLabel()|escape}" />
 											<div class="input-group-btn">
-												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 													<span class="position-label">{$filter->getPosition()|ucfirst|tra}</span>
 													<span class="caret"></span>
 													<input class="position" type="hidden" value="{$filter->getPosition()|escape}">
@@ -203,7 +203,7 @@
 									</select>
 								</td>
 								<td>
-									<a href="{service controller=tabular action=select_filter trackerId=$trackerId}" class="btn btn-default add-filter">{tr}Select Mode{/tr}</a>
+									<a href="{service controller=tabular action=select_filter trackerId=$trackerId}" class="btn btn-primary add-filter">{tr}Select Mode{/tr}</a>
 									<textarea name="filters" class="hidden">{$filterCollection->getFilterDescriptor()|json_encode}</textarea>
 								</td>
 							</tr>
@@ -261,7 +261,7 @@
 			</div>
 			<div class="form-group submit">
 				<div class="col-sm-9 col-sm-push-3">
-					<input type="submit" class="btn btn-primary" value="{tr}Update{/tr}">
+					<input type="submit" class="btn btn-secondary" value="{tr}Update{/tr}">
 				</div>
 			</div>
 		</form>

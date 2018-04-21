@@ -78,7 +78,7 @@
 							{/if}
 						</div>
 						<div class="panel-footer text-center">
-							<input type="submit" class="btn btn-primary btn-sm" value="{tr}Create translation{/tr}">
+							<input type="submit" class="btn btn-secondary btn-sm" value="{tr}Create translation{/tr}">
 						</div>
 					</div>
 				</form>
@@ -108,7 +108,7 @@
 						<div class="panel-footer text-center">
 							<input type="hidden" name="id" value="{$id}">
 							<input type="hidden" name="type" value="{$type}">
-							<input type="submit" class="btn btn-primary btn-sm" name="switch" value="{tr}Change Language{/tr}">
+							<input type="submit" class="btn btn-secondary btn-sm" name="switch" value="{tr}Change Language{/tr}">
 						</div>
 					</div>
 				</form>
@@ -166,7 +166,7 @@
 			<div class="input-group-btn">
 				<input type="hidden" name="id" value="{$id}">
 				<input type="hidden" name="type" value="{$type|escape}">
-				<input type="submit" class="btn btn-primary" value="{tr}Set Page Language{/tr}">
+				<input type="submit" class="btn btn-secondary" value="{tr}Set Page Language{/tr}">
 			</div>
 		</div>
 	</form>

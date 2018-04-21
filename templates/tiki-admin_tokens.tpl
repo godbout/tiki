@@ -91,7 +91,7 @@
 			<div class="form-group">
 				<label class="col-sm-4 control-label"></label>
 				<div class="col-sm-7 col-sm-offset-1">
-					<input type="submit" class="btn btn-default btn-sm" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>

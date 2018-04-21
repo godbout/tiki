@@ -3,18 +3,18 @@
 {title help="Groups Management" admpage="login"}{tr}Admin groups{/tr}{/title}
 {if !$ts.ajax}
 	<div class="t_navbar margin-bottom-md">
-		{button href="tiki-adminusers.php" class="btn btn-default" _type="link" _icon_name="user" _text="{tr}Admin Users{/tr}"}
+		{button href="tiki-adminusers.php" class="btn btn-primary" _type="link" _icon_name="user" _text="{tr}Admin Users{/tr}"}
 		{button href="tiki-admingroups.php?clean=y" class="btn btn-link" _type="link" _icon_name="trash" _text="{tr}Clear cache{/tr}"}
 		{if $groupname}
 			{if $prefs.feature_tabs ne 'y'}
-				{button href="tiki-admingroups.php?add=1&amp;cookietab=2#tab2" class="btn btn-default" _icon_name="create" _text="{tr}Add New Group{/tr}"}
+				{button href="tiki-admingroups.php?add=1&amp;cookietab=2#tab2" class="btn btn-primary" _icon_name="create" _text="{tr}Add New Group{/tr}"}
 			{else}
-				{button href="tiki-admingroups.php?add=1&amp;cookietab=2" class="btn btn-default" _icon_name="create" _text="{tr}Add New Group{/tr}"}
+				{button href="tiki-admingroups.php?add=1&amp;cookietab=2" class="btn btn-primary" _icon_name="create" _text="{tr}Add New Group{/tr}"}
 			{/if}
 		{/if}
 		{button href="tiki-objectpermissions.php" class="btn btn-link" _type="link" _icon_name="permission" _text="{tr}Permissions{/tr}"}
 		{if $prefs.feature_invite eq 'y' and $tiki_p_invite eq 'y'}
-			{button href="tiki-list_invite.php" class="btn btn-default" _type="link" _icon_name="thumbs-up" _text="{tr}Invitation List{/tr}"}
+			{button href="tiki-list_invite.php" class="btn btn-primary" _type="link" _icon_name="thumbs-up" _text="{tr}Invitation List{/tr}"}
 		{/if}
 	</div>
 {/if}
@@ -143,7 +143,7 @@
 							type="submit"
 							form="checkform1"
 							formaction="{bootstrap_modal controller=group}"
-							class="btn btn-primary confirm-submit"
+							class="btn btn-secondary confirm-submit"
 						>
 							{tr}OK{/tr}
 						</button>
@@ -478,11 +478,11 @@
 				<div class="col-md-9 col-md-offset-3">
 					{if $group ne ''}
 						<input type="hidden" name="olgroup" value="{$group|escape}">
-						<button type="submit" class="btn btn-primary confirm-submit" form="groupEdit" formaction="{bootstrap_modal controller=group action=modify_group}">
+						<button type="submit" class="btn btn-secondary confirm-submit" form="groupEdit" formaction="{bootstrap_modal controller=group action=modify_group}">
 							{tr}Save{/tr}
 						</button>
 					{else}
-						<button type="submit" class="btn btn-primary confirm-submit" form="groupEdit" formaction="{bootstrap_modal controller=group action=new_group}">
+						<button type="submit" class="btn btn-secondary confirm-submit" form="groupEdit" formaction="{bootstrap_modal controller=group action=new_group}">
 							{tr}Add{/tr}
 						</button>
 					{/if}
@@ -584,7 +584,7 @@
 										<option value="manage_groups">{tr}Unassign{/tr}</option>
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-default confirm-submit" form="checkform2" formaction="{bootstrap_modal controller=user groupremove="$groupname" anchor='#contenttabs_admingroups-3'} "value="{tr}OK{/tr}">
+										<input type="submit" class="btn btn-primary confirm-submit" form="checkform2" formaction="{bootstrap_modal controller=user groupremove="$groupname" anchor='#contenttabs_admingroups-3'} "value="{tr}OK{/tr}">
 									</span>
 								</div>
 							{/if}
@@ -662,7 +662,7 @@
 						<option value="unban_user">{tr}Unban{/tr}</option>
 					</select>
 					<span class="input-group-btn">
-						<input type="submit" class="btn btn-primary btn-sm confirm-submit" form="checkform3" formaction="{bootstrap_modal controller=group} "value="{tr}OK{/tr}">
+						<input type="submit" class="btn btn-secondary btn-sm confirm-submit" form="checkform3" formaction="{bootstrap_modal controller=group} "value="{tr}OK{/tr}">
 					</span>
 				</div>
 					</form><br>
@@ -716,7 +716,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
 					<div class="col-sm-7">
-						<input type="submit" class="btn btn-default" name="export" value="{tr}Export{/tr}">
+						<input type="submit" class="btn btn-primary" name="export" value="{tr}Export{/tr}">
 					</div>
 				</div>
 				<br>
@@ -736,7 +736,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label"></label>
 					<div class="col-sm-7">
-						<input type="submit" class="btn btn-default" name="import" value="{tr}Import{/tr}">
+						<input type="submit" class="btn btn-primary" name="import" value="{tr}Import{/tr}">
 					</div>
 				</div>
 			</form>

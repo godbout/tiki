@@ -108,7 +108,7 @@
 			{/foreach}
 		{/tabset}
 		{if $Need_app|escape neq $execution_key|escape}
-			{if $can_apply}<input type="submit" class="btn btn-default btn-sm" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">{/if}
+			{if $can_apply}<input type="submit" class="btn btn-primary btn-sm" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">{/if}
 		{/if}
 	</div>
 </form>

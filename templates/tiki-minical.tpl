@@ -3,13 +3,13 @@
 {include file='tiki-mytiki_bar.tpl'}
 
 <div class="t_navbar margin-bottom-md">
-	{button href="tiki-minical.php#add" class="btn btn-default" _text="{tr}Add{/tr} "}
-	{button href="tiki-minical_prefs.php" class="btn btn-default" _text="{tr}Prefs{/tr}"}
-	{button href="tiki-minical.php?view=daily" class="btn btn-default" _text="{tr}Daily{/tr}"}
-	{button href="tiki-minical.php?view=weekly" class="btn btn-default" _text="{tr}Weekly{/tr}"}
-	{button href="tiki-minical.php?view=list" class="btn btn-default" _text="{tr}List{/tr}"}
-	{button href="tiki-minical_export.php" class="btn btn-default" _text="{tr}Export{/tr}"}
-	{button href="tiki-minical_prefs.php#import" class="btn btn-default" _text="{tr}Import{/tr}"}
+	{button href="tiki-minical.php#add" class="btn btn-primary" _text="{tr}Add{/tr} "}
+	{button href="tiki-minical_prefs.php" class="btn btn-primary" _text="{tr}Prefs{/tr}"}
+	{button href="tiki-minical.php?view=daily" class="btn btn-primary" _text="{tr}Daily{/tr}"}
+	{button href="tiki-minical.php?view=weekly" class="btn btn-primary" _text="{tr}Weekly{/tr}"}
+	{button href="tiki-minical.php?view=list" class="btn btn-primary" _text="{tr}List{/tr}"}
+	{button href="tiki-minical_export.php" class="btn btn-primary" _text="{tr}Export{/tr}"}
+	{button href="tiki-minical_prefs.php#import" class="btn btn-primary" _text="{tr}Import{/tr}"}
 </div>
 
 <div class="table-responsive">
@@ -133,7 +133,7 @@
 		<div class="table-responsive">
 			<table class="table">
 				<tr>
-					<th><input type="submit" class="btn btn-default btn-sm" name="delete" value="x "></th>
+					<th><input type="submit" class="btn btn-primary btn-sm" name="delete" value="x "></th>
 					<th>
 						<a href="tiki-minical.php?view={$view}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'title_desc'}title_asc{else}title_desc{/if}">{tr}Title{/tr}</a>
 					</th>
@@ -238,7 +238,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 			{if $eventId}
 				<input type="submit" class="btn btn-warning btn-sm" name="remove2" value="{tr}Delete{/tr}">
 			{/if}

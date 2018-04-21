@@ -12,7 +12,7 @@
 {title help="Scheduler" admpage="general" url="tiki-admin_schedulers.php"}{tr}Scheduler{/tr}{/title}
 <div class="t_navbar margin-bottom-md">
 	{if isset($schedulerinfo.id)}
-		{button href="?add=1" class="btn btn-default" _text="{tr}Add a new Scheduler{/tr}"}
+		{button href="?add=1" class="btn btn-primary" _text="{tr}Add a new Scheduler{/tr}"}
 	{/if}
 
 </div>
@@ -198,9 +198,9 @@
 				{if isset($schedulerinfo.id) && $schedulerinfo.id}
 					<input type="hidden" name="scheduler" value="{$schedulerinfo.id|escape}">
 					<input type="hidden" name="editscheduler" value="1">
-					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				{else}
-					<input type="submit" class="btn btn-primary" name="new_scheduler" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-secondary" name="new_scheduler" value="{tr}Add{/tr}">
 				{/if}
 			</div>
 		</div>
@@ -228,7 +228,7 @@
 						<td>{$schedulerruns[run].status}</td>
 						<td>
 							{if $schedulerruns[run].can_stop}
-								<a class="btn btn-primary btn-sm" href="{bootstrap_modal controller=scheduler action=reset schedulerId=$schedulerruns[run].scheduler_id startTime=$schedulerruns[run].start_time}">
+								<a class="btn btn-secondary btn-sm" href="{bootstrap_modal controller=scheduler action=reset schedulerId=$schedulerruns[run].scheduler_id startTime=$schedulerruns[run].start_time}">
 								{icon name="undo" _menu_text='y' _menu_icon='y' alt="{tr}Reset{/tr}"}
 								</a>
 							{else}

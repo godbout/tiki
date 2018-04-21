@@ -7,27 +7,27 @@
 
 <div class="t_navbar margin-bottom-md">
 	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-sheets.php" class="btn btn-default" _text="{tr}List Sheets{/tr}"}
+		{button href="tiki-sheets.php" class="btn btn-primary" _text="{tr}List Sheets{/tr}"}
 	{/if}
 
 	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-view_sheets.php?sheetId=$sheetId" class="btn btn-default" _text="{tr}View{/tr}"}
+		{button href="tiki-view_sheets.php?sheetId=$sheetId" class="btn btn-primary" _text="{tr}View{/tr}"}
 	{/if}
 
 	{if $tiki_p_edit_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-view_sheets.php?sheetId=$sheetId&amp;readdate=$read_date&amp;mode=edit" class="btn btn-default" _text="{tr}Edit{/tr}"}
+		{button href="tiki-view_sheets.php?sheetId=$sheetId&amp;readdate=$read_date&amp;mode=edit" class="btn btn-primary" _text="{tr}Edit{/tr}"}
 	{/if}
 
 	{if $tiki_p_view_sheet_history eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-history_sheets.php?sheetId=$sheetId" class="btn btn-default" _text="{tr}History{/tr}"}
+		{button href="tiki-history_sheets.php?sheetId=$sheetId" class="btn btn-primary" _text="{tr}History{/tr}"}
 	{/if}
 
 	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-export_sheet.php?sheetId=$sheetId" class="btn btn-default" _text="{tr}Export{/tr}"}
+		{button href="tiki-export_sheet.php?sheetId=$sheetId" class="btn btn-primary" _text="{tr}Export{/tr}"}
 	{/if}
 
 	{if $chart_enabled eq 'y'}
-		{button href="tiki-graph_sheet.php?sheetId=$sheetId" class="btn btn-default" _text="{tr}Graph{/tr}"}
+		{button href="tiki-graph_sheet.php?sheetId=$sheetId" class="btn btn-primary" _text="{tr}Graph{/tr}"}
 	{/if}
 </div>
 
@@ -53,13 +53,13 @@
 		<br>
 		<br>
 		<input type="file" name="file">
-		<input type="submit" class="btn btn-default btn-sm" value="{tr}Import{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" value="{tr}Import{/tr}">
 	</form>
 	<form method="post" action="tiki-import_sheet.php?mode=import&sheetId={$sheetId}">
 		<h2>{tr}Grab Wiki Tables{/tr}</h2>
 		<input id="querypage" type="text" name="page">
 		<input type="hidden" name="handler" value="TikiSheetWikiTableHandler">
-		<input type="submit" class="btn btn-default btn-sm" value="Import">
+		<input type="submit" class="btn btn-primary btn-sm" value="Import">
 	</form>
 	{if $prefs.javascript_enabled eq 'y' and $prefs.feature_jquery_autocomplete eq 'y'}
 		{jq}

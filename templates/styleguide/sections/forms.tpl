@@ -17,7 +17,7 @@
 						<input id="sg-remember-example" type="checkbox"> Remember me
 					</p>
 					<p class="form-group">
-						<button class="btn btn-default">Login</button>
+						<button class="btn btn-primary">Login</button>
 					</p>
 					<hr/>
 

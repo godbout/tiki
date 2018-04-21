@@ -68,10 +68,10 @@ function wikiplugin_tracker_info()
 					'Sets button style classes for action buttons. If multiple buttons have been set
 					in the %0 parameter, the same number of colon-separated styles must be set here. Example:',
 					'<code>action</code>'
-				) . "<code>btn btn-primary:btn btn-success:btn btn-default pull-right</code>",
+				) . "<code>btn btn-secondary:btn btn-success:btn btn-primary pull-right</code>",
 				'since' => '14.1',
 				'separator' => ':',
-				'default' => 'btn btn-primary'
+				'default' => 'btn btn-secondary'
 			],
 			'showtitle' => [
 				'required' => false,
@@ -778,7 +778,7 @@ function wikiplugin_tracker($data, $params)
 	if (! isset($action_style)) {
 		$action_style = [];
 		foreach ($action as $ac) {
-			$action_style[] = 'btn btn-primary';
+			$action_style[] = 'btn btn-secondary';
 		}
 	}
 
@@ -2050,7 +2050,7 @@ FILL;
 					$back .= '<input class="button submit preview" type="reset" name="tr_reset" value="' . tra($reset) . '" />';
 			}
 			if (! empty($preview)) {
-					$back .= '<input class="btn btn-default button submit preview" type="submit" name="tr_preview" value="' . tra($preview) . '" />';
+					$back .= '<input class="btn btn-primary button submit preview" type="submit" name="tr_preview" value="' . tra($preview) . '" />';
 			}
 			foreach ($action as $key => $act) {
 					$back .= '<input class="button submit ' . $action_style[$key] . '" type="submit" name="action' . $key . '" value="' . tra($act) . '" onclick="needToConfirm=false" />';

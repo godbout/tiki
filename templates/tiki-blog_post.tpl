@@ -3,17 +3,17 @@
 
 <div class="t_navbar btn-group form-group">
 	{if $postId > 0}
-		{button href=$postId|sefurl:blogpost class="btn btn-default" _text="{tr}View post{/tr}"} 
+		{button href=$postId|sefurl:blogpost class="btn btn-primary" _text="{tr}View post{/tr}"} 
 	{/if}
 
 	{if $blogId gt 0}
 		{assign var=thisblog value=$blogId|sefurl:blog}
-		{button href=$thisblog class="btn btn-default" _text="{tr}View Blog{/tr}"}
+		{button href=$thisblog class="btn btn-primary" _text="{tr}View Blog{/tr}"}
 	{/if}
 
 	{if $blogs|@count gt 1}
 		{* No need for users to go to blog list if they are already looking at the only blog *}
-		{button href="tiki-list_blogs.php" class="btn btn-default" _text="{tr}List Blogs{/tr}"}
+		{button href="tiki-list_blogs.php" class="btn btn-primary" _text="{tr}List Blogs{/tr}"}
 	{/if}
 </div>
 
@@ -141,8 +141,8 @@
 		{include file='categorize.tpl'}
 	</fieldset>
 	<div class="text-center">
-		<input type="submit" class="wikiaction btn btn-default" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false">
-		<input type="submit" class="wikiaction btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
+		<input type="submit" class="wikiaction btn btn-primary" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false">
+		<input type="submit" class="wikiaction btn btn-secondary" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
 		<input type="hidden" name="referer" value="{$referer|escape}">
 		<input type="submit" class="btn btn-link" name="cancel" onclick='document.location="{$referer|escape:'html'}";needToConfirm=false;return false;' value="{tr}Cancel{/tr}">
 	</div>

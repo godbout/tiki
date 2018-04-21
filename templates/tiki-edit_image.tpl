@@ -1,8 +1,8 @@
 {title}{tr}Edit Image{/tr}{/title}
 
 <div class="t_navbar">
-	{button href="tiki-browse_gallery.php" _auto_args='galleryId' class="btn btn-default" _icon_name="previous" _text="{tr}Return to Gallery{/tr}"}
-	{button href="tiki-browse_image.php?imageId=$imageId" class="btn btn-default" _icon_name="view" _text="{tr}Browse Images{/tr}"}
+	{button href="tiki-browse_gallery.php" _auto_args='galleryId' class="btn btn-primary" _icon_name="previous" _text="{tr}Return to Gallery{/tr}"}
+	{button href="tiki-browse_image.php?imageId=$imageId" class="btn btn-primary" _icon_name="view" _text="{tr}Browse Images{/tr}"}
 </div>
 
 <div align="center">
@@ -42,9 +42,9 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-7 margin-bottom-sm">
-				<input type="submit" class="btn btn-default btn-sm" name="editimage" value="{tr}Save{/tr}">
-				<input type="submit" class="btn btn-default btn-sm" name="editimage_andgonext" value="{tr}Save and Go Next{/tr}">
-				<a class="link btn btn-default btn-sm" href="tiki-browse_image.php?imageId={$imageId}">{tr}Cancel Edit{/tr}</a>
+				<input type="submit" class="btn btn-primary btn-sm" name="editimage" value="{tr}Save{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="editimage_andgonext" value="{tr}Save and Go Next{/tr}">
+				<a class="link btn btn-primary btn-sm" href="tiki-browse_image.php?imageId={$imageId}">{tr}Cancel Edit{/tr}</a>
 			</div>
 		</div>
 	</form>
@@ -79,7 +79,7 @@
 									<option value="{$galleries[idx].id|escape}" {if $galleries[idx].id eq $galleryId}selected="selected"{/if}>{$galleries[idx].name}</option>
 								{/section}
 							</select>
-							<input type="submit" class="btn btn-default btn-sm" name="move_image" value="{tr}Move{/tr}">
+							<input type="submit" class="btn btn-primary btn-sm" name="move_image" value="{tr}Move{/tr}">
 						</form>
 					</td>
 				</tr>

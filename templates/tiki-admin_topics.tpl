@@ -31,7 +31,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-10 col-sm-offset-2">
-			<input type="submit" class="btn btn-primary btn-sm" name="addtopic" value="{tr}Add{/tr}">
+			<input type="submit" class="btn btn-secondary btn-sm" name="addtopic" value="{tr}Add{/tr}">
 		</div>
 	</div>
 </form>

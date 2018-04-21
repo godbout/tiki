@@ -4,7 +4,7 @@
 
 {if isset($referer)}
 	<div class="t_navbar">
-		{button href="$referer" class="btn btn-default" _text="{tr}Back{/tr}"}
+		{button href="$referer" class="btn btn-primary" _text="{tr}Back{/tr}"}
 	</div>
 {/if}
 
@@ -49,7 +49,7 @@
 
 <form method="post" action="{$smarty.server.REQUEST_URI|escape}">
 <input type="hidden" name="referer" value="{$referer|escape}">
-<div style="float: left; margin-right: 10px;"><input type="submit" class="btn btn-default btn-sm" name="assign" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}"></div>
+<div style="float: left; margin-right: 10px;"><input type="submit" class="btn btn-primary btn-sm" name="assign" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}"></div>
 {if $isTop ne 'y'}
 	<p>{tr}Groups watching:{/tr} {$group_watches|@count}</p>
 {else}
@@ -100,5 +100,5 @@
 	{/foreach}
 </table>
 </div>
-	<p><div style="float: left; margin-right: 10px;"><input type="submit" class="btn btn-default btn-sm" name="assign" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}"></div></p>
+	<p><div style="float: left; margin-right: 10px;"><input type="submit" class="btn btn-primary btn-sm" name="assign" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}"></div></p>
 </form>

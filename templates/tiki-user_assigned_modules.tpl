@@ -3,7 +3,7 @@
 {include file='tiki-mytiki_bar.tpl'}
 
 <div class="t_navbar">
-	{button href="tiki-user_assigned_modules.php?recreate=1" class="btn btn-default" _text="{tr}Restore defaults{/tr}"}
+	{button href="tiki-user_assigned_modules.php?recreate=1" class="btn btn-primary" _text="{tr}Restore defaults{/tr}"}
 </div>
 
 <h2>{tr}User assigned modules{/tr}</h2>
@@ -136,7 +136,7 @@
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
-				<td><input type="submit" class="btn btn-default btn-sm" name="assign" value="{tr}Assign{/tr}"></td>
+				<td><input type="submit" class="btn btn-primary btn-sm" name="assign" value="{tr}Assign{/tr}"></td>
 			</tr>
 		</table>
 	</form>

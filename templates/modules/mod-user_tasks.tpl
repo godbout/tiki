@@ -5,7 +5,7 @@
 <div class="module">
 <form action="{$ownurl}" method="post">
 <input style="font-size: 9px;" type="text" name="modTasksTitle" />
-<input style="font-size: 9px;" type="submit" class="btn btn-default btn-sm" name="modTasksSave" value="{tr}Add{/tr}" />
+<input style="font-size: 9px;" type="submit" class="btn btn-primary btn-sm" name="modTasksSave" value="{tr}Add{/tr}" />
 </form>
 </div>
 <form action="{$ownurl}" method="post">
@@ -21,8 +21,8 @@
 	</li>
 {/section}
 {if $nonums != 'y'}</ol>{else}</ul>{/if}
-<input style="font-size: 9px;" type="submit" class="btn btn-default btn-sm" name="modTasksCom" value="{tr}Done{/tr}" />
-<input style="font-size: 9px;" type="submit" class="btn btn-default btn-sm" name="modTasksDel" value="{tr}Del{/tr}" />
+<input style="font-size: 9px;" type="submit" class="btn btn-primary btn-sm" name="modTasksCom" value="{tr}Done{/tr}" />
+<input style="font-size: 9px;" type="submit" class="btn btn-primary btn-sm" name="modTasksDel" value="{tr}Del{/tr}" />
 </form>
 {/tikimodule}
 {/if}

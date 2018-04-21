@@ -5,7 +5,7 @@
 		<a role="link" href="tiki-admin_newsletters.php" class="btn btn-link" title="{tr}Admin Newsletters{/tr}">
 			{icon name="cog"} {tr}Admin Newsletters{/tr}
 		</a>
-{*		{button href="tiki-admin_newsletters.php" class="btn btn-default" _text="{tr}Admin Newsletters{/tr}"}*}
+{*		{button href="tiki-admin_newsletters.php" class="btn btn-primary" _text="{tr}Admin Newsletters{/tr}"}*}
 	</div>
 {/if}
 <br>
@@ -79,7 +79,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7">
-					<input type="submit" class="btn btn-primary btn-sm" name="subscribe" value="{tr}Subscribe to this Newsletter{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="subscribe" value="{tr}Subscribe to this Newsletter{/tr}">
 				</div>
 			</div>
 		{/if}

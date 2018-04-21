@@ -3,12 +3,12 @@
 <div class="t_navbar margin-bottom-md">
 	{self_link print='y' _icon_name='print' hspace='1' _class='tips pull-right' _title=":{tr}Print{/tr}"}
 	{/self_link}
-	{button href="tiki-list_surveys.php" class="btn btn-default" _icon_name='list' _text="{tr}List Surveys{/tr}"}
-	{button href="tiki-survey_stats.php" class="btn btn-default" _icon_name='chart' _text="{tr}Survey Stats{/tr}"}
+	{button href="tiki-list_surveys.php" class="btn btn-primary" _icon_name='list' _text="{tr}List Surveys{/tr}"}
+	{button href="tiki-survey_stats.php" class="btn btn-primary" _icon_name='chart' _text="{tr}Survey Stats{/tr}"}
 	{if $tiki_p_admin_surveys eq 'y'}
-		{button _keepall='y' href="tiki-admin_surveys.php" surveyId=$surveyId class="btn btn-default" _icon_name='edit' _text="{tr}Edit this Survey{/tr}"}
-		{button _keepall='y' href="tiki-survey_stats_survey.php" surveyId=$surveyId clear=$surveyId class="btn btn-default" _icon_name='trash' _text="{tr}Clear Stats{/tr}"}
-		{button href="tiki-admin_surveys.php" class="btn btn-default" _icon_name='cog' _text="{tr}Admin Surveys{/tr}"}
+		{button _keepall='y' href="tiki-admin_surveys.php" surveyId=$surveyId class="btn btn-primary" _icon_name='edit' _text="{tr}Edit this Survey{/tr}"}
+		{button _keepall='y' href="tiki-survey_stats_survey.php" surveyId=$surveyId clear=$surveyId class="btn btn-primary" _icon_name='trash' _text="{tr}Clear Stats{/tr}"}
+		{button href="tiki-admin_surveys.php" class="btn btn-primary" _icon_name='cog' _text="{tr}Admin Surveys{/tr}"}
 	{/if}
 </div>
 <br>
@@ -23,7 +23,7 @@
 		{/foreach}
 	</select>
 	<input type="hidden" name="surveyId" value="{$surveyId|escape}" />
-	<input type="submit" class="btn btn-default btn-sm" name="selectuservoted" value="{tr}Select User{/tr}" />
+	<input type="submit" class="btn btn-primary btn-sm" name="selectuservoted" value="{tr}Select User{/tr}" />
 </form>
 </div>
 

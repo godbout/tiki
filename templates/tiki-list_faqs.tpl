@@ -95,7 +95,7 @@
 			{if $faqId > 0}
 				<h2>{tr}Edit this FAQ:{/tr} {$title}</h2>
 				<div class="t_navbar">
-					{button href="tiki-list_faqs.php" class="btn btn-default" _text="{tr}Create new FAQ{/tr}"}
+					{button href="tiki-list_faqs.php" class="btn btn-primary" _text="{tr}Create new FAQ{/tr}"}
 				</div>
 			{else}
 				<h2>{tr}Create New FAQ:{/tr}</h2>
@@ -130,7 +130,7 @@
 
 						</td>
 						<td>
-							<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
+							<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 						</td>
 					</tr>
 				</table>

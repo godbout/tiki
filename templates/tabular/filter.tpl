@@ -16,7 +16,7 @@
 		<input type="hidden" name="tabularId" value="{$tabularId|escape}"/>
 		<input type="hidden" name="controller" value="tabular"/>
 		<input type="hidden" name="action" value="{$action|escape}"/>
-		<input type="submit" class="btn btn-primary" value="{$label|escape}">
+		<input type="submit" class="btn btn-secondary" value="{$label|escape}">
 	</div>
 </form>
 {/block}

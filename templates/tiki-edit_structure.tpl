@@ -67,7 +67,7 @@
 				<div class="input-group">
 					<input type="text" class="form-control input-sm" name="pageAlias" id="pageAlias" value="{$topPageAlias|escape}">
 					<div class="input-group-btn">
-						<input type="submit" class="btn btn-primary btn-sm" name="create" value="{tr}Update{/tr}">
+						<input type="submit" class="btn btn-secondary btn-sm" name="create" value="{tr}Update{/tr}">
 					</div>
 				</div>
 			</div>
@@ -137,7 +137,7 @@
 						<div class="input-group">
 							<input type="text" name="find_objects" id="find_objects" value="{$find_objects|escape}" class="form-control input-sm" placeholder="{tr}Find{/tr}...">
 							<div class="input-group-btn">
-								<input type="submit" class="btn btn-default btn-sm" value="{tr}Filter{/tr}" name="search_objects">
+								<input type="submit" class="btn btn-primary btn-sm" value="{tr}Filter{/tr}" name="search_objects">
 							</div>
 							{autocomplete element='#find_objects' type='pagename'}
 						</div>
@@ -174,7 +174,7 @@
 					{include file='categorize.tpl'}
 				</div>
 				<div class="panel-footer text-center">
-					<input type="submit" class="btn btn-primary btn-sm" name="recategorize" value="{tr}Update{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="recategorize" value="{tr}Update{/tr}">
 					<input type="checkbox" name="cat_override" >{tr}Remove existing categories from ALL pages before recategorizing{/tr}
 				</div>
 			</div>
@@ -202,7 +202,7 @@
 			<div class="pull-left"><input type="radio" id="begin2" name="begin" value="0" {if $structures|@count eq '1'}disabled="disabled"{/if}></div>
 			<hr>
 			<div class="pull-left input_submit_container">
-				<input type="submit" class="btn btn-primary btn-sm" name="move_to" value="{tr}Move{/tr}" {if $structures|@count eq '1'} disabled="disabled"{/if}>
+				<input type="submit" class="btn btn-secondary btn-sm" name="move_to" value="{tr}Move{/tr}" {if $structures|@count eq '1'} disabled="disabled"{/if}>
 			</div>
 		</form>
 	</div>
@@ -219,7 +219,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7">
-					<input type="submit" class="btn btn-primary btn-sm" name="create" value="{tr}Update{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm" name="create" value="{tr}Update{/tr}">
 				</div>
 			</div>
 		</form>

@@ -88,7 +88,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7">
-					<input type="submit" class="btn btn-default btn-sm" name="create_zone" value="{tr}Create{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="create_zone" value="{tr}Create{/tr}">
 				</div>
 			</div>
 		</div>
@@ -243,7 +243,7 @@
 			</div>
 		</div>
 	</div>
-	<input type="submit" class="btn btn-default" name="save" value="{tr}Save the Banner{/tr}">
+	<input type="submit" class="btn btn-primary" name="save" value="{tr}Save the Banner{/tr}">
 </form>
 
 {if $zones}

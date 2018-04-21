@@ -122,7 +122,7 @@
 							{/if}
 							<input type="hidden" name="lang" value="{if $lang}{$lang}{/if}">
 							<input type="hidden" name="install_step" value="1">
-							<input type="submit" class="btn btn-primary" value="{tr}Continue{/tr}">
+							<input type="submit" class="btn btn-secondary" value="{tr}Continue{/tr}">
 						</div>
 					</form>
 				</div><!-- End of install-step0 -->
@@ -138,7 +138,7 @@
 								{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 								{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 								<input type="hidden" name="install_step" value="2">
-								<input type="submit" class="btn btn-primary" value="{tr}Continue{/tr}" >
+								<input type="submit" class="btn btn-secondary" value="{tr}Continue{/tr}" >
 							</div>
 						</form>
 					</div>
@@ -222,7 +222,7 @@
 					<form action="tiki-install.php" method="post" role="form">
 						<div class="form-group text-center">
 							<input type="hidden" name="install_step" value="3">
-							<input type="submit" class="btn btn-primary" value=" {tr}Continue{/tr} ">
+							<input type="submit" class="btn btn-secondary" value=" {tr}Continue{/tr} ">
 							{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 							{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 						</div>
@@ -252,7 +252,7 @@
 								<input type="hidden" name="install_step" value="4">
 								{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 								{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
-								<input type="submit" class="btn btn-primary" value=" {tr}Use Existing Connection{/tr} ">
+								<input type="submit" class="btn btn-secondary" value=" {tr}Use Existing Connection{/tr} ">
 							</form>
 							<hr>
 							<a href="#" onclick="$('#installer_3_new_db_form').toggle();return false;" class="btn btn-warning">{tr}Modify database connection{/tr}</a>
@@ -382,7 +382,7 @@
 								<p><a href="https://doc.tiki.org/Understanding+Encoding" onclick="window.open(this.href); return false;">{tr}More information{/tr}</a></p>
 							</fieldset>
 							<div class="form-group text-center">
-								<input type="submit" class="btn btn-primary" name="dbinfo" value="{tr}Continue{/tr}">
+								<input type="submit" class="btn btn-secondary" name="dbinfo" value="{tr}Continue{/tr}">
 							</div>
 						</form>
 					</div>
@@ -481,7 +481,7 @@
 											<p>{tr}Automatically upgrade your existing database to version{/tr}
 												<strong>{$tiki_version_name}</strong>.
 											</p>
-											<p class="text-center"><input type="submit" class="btn btn-primary" name="update" value="{tr}Upgrade{/tr}"></p>
+											<p class="text-center"><input type="submit" class="btn btn-secondary" name="update" value="{tr}Upgrade{/tr}"></p>
 										</div><!-- End of db-upgrade -->
 									{/if}
 								</form>
@@ -495,7 +495,7 @@
 									<table>
 										<tr><td class="module">{tr}User:{/tr}</td><td><input value="admin" disabled="disabled" size="20"></td></tr>
 										<tr><td class="module">{tr}Pass:{/tr}</td><td><input type="password" name="pass" size="20"></td></tr>
-										<tr><td colspan="2"><p align="center"><input type="submit" class="btn btn-default btn-sm" name="login" value="{tr}Log in{/tr}"></p></td></tr>
+										<tr><td colspan="2"><p align="center"><input type="submit" class="btn btn-primary btn-sm" name="login" value="{tr}Log in{/tr}"></p></td></tr>
 									</table>
 								</form>
 							{/if}
@@ -566,7 +566,7 @@
 						<div align="center">
 							<input type="hidden" name="install_step" value="6">
 							<input type="hidden" name="install_type" value="{$install_type}">
-							<input type="submit" class="btn btn-primary" value=" {tr}Continue{/tr} ">
+							<input type="submit" class="btn btn-secondary" value=" {tr}Continue{/tr} ">
 							{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 							{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 						</div>
@@ -753,7 +753,7 @@
 							<input type="hidden" name="install_step" value="7">
 							<input type="hidden" name="install_type" value="{$install_type}">
 							<input type="hidden" name="general_settings" value="y">
-							<input type="submit" class="btn btn-primary" value="{tr}Continue{/tr}">
+							<input type="submit" class="btn btn-secondary" value="{tr}Continue{/tr}">
 						</div>
 					</form>
 				</div><!-- End of install-step6 -->
@@ -814,7 +814,7 @@
 						{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 						<input type="hidden" name="install_step" value="8">
 						<input type="hidden" name="install_type" value="{$install_type}">
-						<input type="submit" class="btn btn-primary" value="{tr}Continue{/tr}">
+						<input type="submit" class="btn btn-secondary" value="{tr}Continue{/tr}">
 					</div>
 				</form>
 			</div><!-- End of install-step7 -->
@@ -850,7 +850,7 @@
 							{/if}
 							<input type="hidden" name="install_type" value="{$install_type}">
 							<input type="hidden" name="install_step" value="9">
-							<input type="submit" value="{tr}Enter Tiki and Lock Installer{/tr} ({tr}Recommended{/tr})" class="btn btn-primary">
+							<input type="submit" value="{tr}Enter Tiki and Lock Installer{/tr} ({tr}Recommended{/tr})" class="btn btn-secondary">
 						</form>
 						<form method="post" action="tiki-install.php" class="btn pvtVertList">
 							<input type="hidden" name="nolockenter" value="1">

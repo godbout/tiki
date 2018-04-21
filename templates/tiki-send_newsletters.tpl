@@ -10,11 +10,11 @@
 
 {if $tiki_p_admin_newsletters eq "y"}
 	<div class="t_navbar margin-bottom-md">
-		{button href="tiki-newsletters.php" class="btn btn-default" _text="{tr}List Newsletters{/tr}"}
+		{button href="tiki-newsletters.php" class="btn btn-primary" _text="{tr}List Newsletters{/tr}"}
 		{if $nlId}
-			{button href="tiki-admin_newsletters.php?nlId=$nlId" class="btn btn-default" _text="{tr}Admin Newsletters{/tr}"}
+			{button href="tiki-admin_newsletters.php?nlId=$nlId" class="btn btn-primary" _text="{tr}Admin Newsletters{/tr}"}
 		{else}
-			{button href="tiki-admin_newsletters.php" class="btn btn-default" _text="{tr}Admin Newsletters{/tr}"}
+			{button href="tiki-admin_newsletters.php" class="btn btn-primary" _text="{tr}Admin Newsletters{/tr}"}
 		{/if}
 	</div>
 {/if}
@@ -77,8 +77,8 @@
 			<input type="hidden" name="sendfrom" value="{$sendfrom|escape}">
 			<input type="hidden" name="wysiwyg" value="{$info.wysiwyg|escape}">
 			<input type="hidden" name="is_html" value="{$info.is_html|escape}">
-			<input type="submit" class="btn btn-default btn-sm" name="send" value="{tr}Send{/tr}" onclick="document.getElementById('confirmArea').style.display = 'none'; document.getElementById('sendingArea').style.display = 'block';">
-			<input type="submit" class="btn btn-default btn-sm" name="cancel" value="{tr}Cancel{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="send" value="{tr}Send{/tr}" onclick="document.getElementById('confirmArea').style.display = 'none'; document.getElementById('sendingArea').style.display = 'block';">
+			<input type="submit" class="btn btn-primary btn-sm" name="cancel" value="{tr}Cancel{/tr}">
 			{foreach from=$info.files item=newsletterfile key=fileid}
 				<input type='hidden' name='newsletterfile[{$fileid}]' value='{$newsletterfile.id}'>
 			{/foreach}
@@ -262,7 +262,7 @@
 				<div class="form-group" id="clipcol1"{if $allowArticleClip eq 'n'} style="display:none;"{/if}>
 					<label class="control-label col-sm-2">{tr}Article Clip (read only):{/tr}</label>
 					<div class="col-sm-10">
-						<input type="submit" name="clipArticles" value="{tr}Clip Now{/tr}" class="wikiaction tips btn btn-default" title="{tr}Clip Articles{/tr}" onclick="needToConfirm=false">
+						<input type="submit" name="clipArticles" value="{tr}Clip Now{/tr}" class="wikiaction tips btn btn-primary" title="{tr}Clip Articles{/tr}" onclick="needToConfirm=false">
 					</div>
 				</div>
 				<div class="form-group" id="clipcol2"{if $allowArticleClip eq 'n'} style="display:none;"{/if}>
@@ -285,13 +285,13 @@
 						<div id="newsletterfiles">
 						{foreach from=$info.files item=newsletterfile key=fileid}
 							<div id='newsletterfileid_{$fileid}'>
-								<a href="javascript:remove_newsletter_file('{$fileid}');" class="btn btn-default">{tr}remove{/tr}</a>
+								<a href="javascript:remove_newsletter_file('{$fileid}');" class="btn btn-primary">{tr}remove{/tr}</a>
 								{$newsletterfile.name|escape} ({$newsletterfile.type|escape}, {$newsletterfile.size|escape} {tr}octets{/tr})
 								<input type='hidden' name='newsletterfile[{$fileid}]' value='{$newsletterfile.id}'>
 							</div>
 						{/foreach}
 						</div>
-						<p><a class="btn btn-default" href="javascript:add_newsletter_file();">{tr}To add a file, click here{/tr}</a></p>
+						<p><a class="btn btn-primary" href="javascript:add_newsletter_file();">{tr}To add a file, click here{/tr}</a></p>
 					</div>
 				</div>
 				<div class="form-group">
@@ -315,11 +315,11 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2"></label>
 					<div class="col-sm-10">
-						<input type="submit" name="preview" value="{tr}Preview{/tr}" class="wikiaction tips btn btn-default" title="{tr}Send Newsletters{/tr}|{tr}Preview your changes.{/tr}" onclick="needToConfirm=false">
+						<input type="submit" name="preview" value="{tr}Preview{/tr}" class="wikiaction tips btn btn-primary" title="{tr}Send Newsletters{/tr}|{tr}Preview your changes.{/tr}" onclick="needToConfirm=false">
 						&nbsp;
-						<input type="submit" name="save_only" value="{tr}Save as Draft{/tr}" class="wikiaction tips btn btn-default" title="{tr}Send Newsletters{/tr}|{tr}Save your changes.{/tr}" onclick="needToConfirm=false">
+						<input type="submit" name="save_only" value="{tr}Save as Draft{/tr}" class="wikiaction tips btn btn-primary" title="{tr}Send Newsletters{/tr}|{tr}Save your changes.{/tr}" onclick="needToConfirm=false">
 						&nbsp;
-						<input type="submit" name="save" value="{tr}Send Newsletter{/tr}" class="wikiaction tips btn btn-primary" title="{tr}Send Newsletters{/tr}|{tr}Save any changes and send to all subscribers.{/tr}" onclick="needToConfirm=false"></td>
+						<input type="submit" name="save" value="{tr}Send Newsletter{/tr}" class="wikiaction tips btn btn-secondary" title="{tr}Send Newsletters{/tr}|{tr}Save any changes and send to all subscribers.{/tr}" onclick="needToConfirm=false"></td>
 					</div>
 				</div>
 			</form>
@@ -376,7 +376,7 @@
 {jq notonready=true}
 var newsletterfileid={{$info.files|@count}};
 function add_newsletter_file() {
-	document.getElementById('newsletterfileshack').innerHTML='<div id="newsletterfileid_'+newsletterfileid+'" class="form-group form-inline"><input type="file" name="newsletterfile['+newsletterfileid+']"><a href="javascript:remove_newsletter_file('+newsletterfileid+');" class="btn btn-default">{tr}remove{/tr}</a></div>';
+	document.getElementById('newsletterfileshack').innerHTML='<div id="newsletterfileid_'+newsletterfileid+'" class="form-group form-inline"><input type="file" name="newsletterfile['+newsletterfileid+']"><a href="javascript:remove_newsletter_file('+newsletterfileid+');" class="btn btn-primary">{tr}remove{/tr}</a></div>';
 	document.getElementById('newsletterfiles').appendChild(document.getElementById('newsletterfileid_'+newsletterfileid));
 	newsletterfileid++;
 }

@@ -32,5 +32,5 @@
 			</td>
 		</tr>
 	</table>
-	<input type="submit" class="btn btn-primary btn-sm center-block" name="edittopic" value="{tr}Save{/tr}">
+	<input type="submit" class="btn btn-secondary btn-sm center-block" name="edittopic" value="{tr}Save{/tr}">
 </form>

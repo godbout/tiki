@@ -14,7 +14,7 @@
 			<br>
 			<div class="form-group col-lg-12 clearfix">
 				<div class="pull-right">
-					<input type="submit" class="btn btn-primary btn-sm tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply changes{/tr}" value="{tr}Apply{/tr}">
+					<input type="submit" class="btn btn-secondary btn-sm tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply changes{/tr}" value="{tr}Apply{/tr}">
 				</div>
 			</div>
 			<fieldset>
@@ -75,7 +75,7 @@
 			</fieldset>
 			<br>
 			<div class="form-group col-lg-12 text-center">
-				<input type="submit" class="btn btn-primary btn-sm tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</div>
 		</form>
 	{/tab}
@@ -91,7 +91,7 @@
 						{tr}Remove unused images in the system gallery{/tr}
 					</label>
 					<div class="col-sm-8">
-						<button type="submit" class="btn btn-default btn-sm timeout" form="galremove" name="rmvorphimg" value="1">
+						<button type="submit" class="btn btn-primary btn-sm timeout" form="galremove" name="rmvorphimg" value="1">
 							{tr}Remove{/tr}
 						</button>
 						<span class="help-block">
@@ -124,7 +124,7 @@
 								<option value="{$galleries[ix].galleryId|escape}">{$galleries[ix].name|truncate:20:"...":true}</option>
 							{/section}
 						</select><br>
-						<button type="submit" class="btn btn-default btn-sm timeout" form="galmove" name="mvimg" value="{$value}">
+						<button type="submit" class="btn btn-primary btn-sm timeout" form="galmove" name="mvimg" value="{$value}">
 							{tr}Move{/tr}
 						</button>
 					</div>
@@ -140,7 +140,7 @@
 								<div class="col-sm-8">
 									<input type="text" name="gal_use_dir" value="{$prefs.gal_use_dir|escape}" size="50" disabled="disabled">
 									<br>
-									<button type="submit" class="btn btn-default btn-sm" name="newdir" value="to_newdir">
+									<button type="submit" class="btn btn-primary btn-sm" name="newdir" value="to_newdir">
 										{tr}Move{/tr}
 									</button>
 								</div>

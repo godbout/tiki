@@ -13,7 +13,7 @@
 						<p>
 						<small>{tr}You receive this notification because you requested it.{/tr} {tr}If you did not request these emails or did so in an error, please use the following link:{/tr}</small>
 						</p>
-						<a class="btn btn-default btn-sm" href="{service controller=monitor action=object type=$monitor.type object=$monitor.object}">{tr}Manage your notifications{/tr}</a>
+						<a class="btn btn-primary btn-sm" href="{service controller=monitor action=object type=$monitor.type object=$monitor.object}">{tr}Manage your notifications{/tr}</a>
 					</div>
 				</div>
 			</div>

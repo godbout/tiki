@@ -6,7 +6,7 @@
 
 {block name="navigation"}
 	<div class="navbar">
-		<a class="btn btn-default" href="{service controller=workspace action=list_templates}" title="{tr}List{/tr}">
+		<a class="btn btn-primary" href="{service controller=workspace action=list_templates}" title="{tr}List{/tr}">
 			{icon name="list"} {tr}Workspace Templates{/tr}
 		</a>
 	</div>
@@ -30,7 +30,7 @@
 			{textarea syntax='tiki' codemirror='true'}{$definition}{/textarea}
 		</div>
 		<div class="submit text-center">
-			<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}">
 		</div>
 	</form>
 {/block}

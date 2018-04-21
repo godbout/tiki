@@ -22,7 +22,7 @@
 					</option>
 				{/foreach}
 			</select>
-			<input type="submit" class="btn btn-default btn-sm" name="search" value="{tr}Search{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Search{/tr}">
 		</form>
 	</div>
 </div>
@@ -77,7 +77,7 @@
 			<input type="hidden" name="maxRecords" value="{$maxRecords}">
 			<input type="hidden" name="casesensitive" value="{$casesensitive}">
 			<input type="hidden" name="paddingLength" value="{$paddingLength}">
-			<input type="submit" class="btn btn-default btn-sm" name="replace" value="{tr}Replace selected{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="replace" value="{tr}Replace selected{/tr}">
 			{pagination_links cant=$cant step=$maxRecords offset=$offset}{/pagination_links}
 		{/if}
 	</form>

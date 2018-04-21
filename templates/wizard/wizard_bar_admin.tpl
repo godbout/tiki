@@ -74,12 +74,12 @@
 			<input type="hidden" name="use-upgrade-wizard" value="{$useUpgradeWizard}">
 		{/if}
 		{if $prefs.feature_bidi neq 'y'}
-			{if !isset($firstWizardPage)}<input type="submit" class="btn btn-default btn-sm" name="back" value="{tr}Back{/tr}" />{/if}
+			{if !isset($firstWizardPage)}<input type="submit" class="btn btn-primary btn-sm" name="back" value="{tr}Back{/tr}" />{/if}
 		{/if}&nbsp;
-		<input type="submit" class="btn btn-primary btn-sm" name="{if isset($firstWizardPage)}use-default-prefs{else}continue{/if}" value="{if isset($lastWizardPage)}{tr}Finish{/tr}{elseif isset($firstWizardPage)}{tr}Start{/tr}{else}{if $isEditable eq true}{tr}Save and Continue{/tr}{else}{tr}Next{/tr}{/if}{/if}" />
+		<input type="submit" class="btn btn-secondary btn-sm" name="{if isset($firstWizardPage)}use-default-prefs{else}continue{/if}" value="{if isset($lastWizardPage)}{tr}Finish{/tr}{elseif isset($firstWizardPage)}{tr}Start{/tr}{else}{if $isEditable eq true}{tr}Save and Continue{/tr}{else}{tr}Next{/tr}{/if}{/if}" />
 		<input type="submit" class="btn btn-warning btn-sm" name="close" value="{tr}Close{/tr}" />
 		{if $prefs.feature_bidi eq 'y'}
-			{if !isset($firstWizardPage)}<input type="submit" class="btn btn-default btn-sm" name="back" value="{tr}Back{/tr}" />{/if}
+			{if !isset($firstWizardPage)}<input type="submit" class="btn btn-primary btn-sm" name="back" value="{tr}Back{/tr}" />{/if}
 		{/if}&nbsp;
 	</div>
 	<div class="col-sm-9 text-center">
