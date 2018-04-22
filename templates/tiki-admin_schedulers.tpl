@@ -225,6 +225,7 @@
 	{if isset($schedulerinfo.id) && $schedulerinfo.id}
 		{tab name="{tr}Scheduler logs{/tr}"}
 			<h2>{tr}Scheduler{/tr} {$schedulerinfo.name|escape} Logs</h2>
+			<h3>{tr}Last {$cant} Logs{/tr}</h3>
 			<table class="table normal table-striped table-hover">
 				<thead>
 				<tr>
@@ -253,6 +254,7 @@
 				{/section}
 				</tbody>
 			</table>
+        {pagination_links cant=$cant step=$numrows offset=$offset}{/pagination_links}
 		{/tab}
 	{/if}
 {/tabset}

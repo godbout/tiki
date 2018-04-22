@@ -115,6 +115,13 @@ $access->check_permission(['tiki_p_admin_schedulers']);
 $auto_query_args = [];
 $cookietab = 1;
 
+$auto_query_args = [
+	'offset',
+	'numrows',
+	'scheduler',
+	'logs',
+];
+
 $schedLib = TikiLib::lib('scheduler');
 
 if ((isset($_POST['new_scheduler']) || (isset($_POST['editscheduler']) && isset($_POST['scheduler']))) && $access->ticketMatch()) {
@@ -136,7 +143,31 @@ if ((isset($_POST['new_scheduler']) || (isset($_POST['editscheduler']) && isset(
 		$_REQUEST['scheduler'] = 0;
 	} else {
 		$schedulerinfo['params'] = json_decode($schedulerinfo['params'], true);
-		$schedulerRuns = $schedLib->get_scheduler_runs($_REQUEST['scheduler'], 10);
+
+		if (empty($_REQUEST['offset'])) {
+			$offset = 0;
+		} else {
+			$offset = $_REQUEST['offset'];
+		}
+		$smarty->assign_by_ref('offset', $offset);
+
+		if (empty($_REQUEST['numrows'])) {
+			$numRows = $maxRecords;
+		} else {
+			$numRows = $_REQUEST['numrows'];
+		}
+		$smarty->assign_by_ref('numrows', $numRows);
+
+		$tikilib = TikiLib::lib('tiki');
+		$numOfLogs = $tikilib->get_preference('scheduler_keep_logs');
+		$schedulerRuns = $schedLib->get_scheduler_runs($_REQUEST['scheduler'], $numRows, $offset);
+		$runsCount = $schedLib->countRuns($_REQUEST['scheduler']);
+
+		if ($runsCount > $numOfLogs && $numOfLogs > 0) {
+			$runsCount = $numOfLogs;
+		}
+
+		$smarty->assign_by_ref('cant', $runsCount);
 
 		// Check if last run is still running and can be stopped.
 		if (! empty($schedulerRuns[0]) &&

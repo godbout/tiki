@@ -19,7 +19,7 @@ class Scheduler_Manager
 
 	public function run()
 	{
-		global $prefs;
+		global $tikilib;
 
 		$start_time = time();
 
@@ -37,6 +37,10 @@ class Scheduler_Manager
 			$schedulerTask = Scheduler_Item::fromArray($scheduler, $this->logger);
 			if ($schedulerTask->isStalled()) {
 				$this->logger->info(tr("Scheduler %0 (id: %1) is stalled", $schedulerTask->name, $schedulerTask->id));
+
+				//Attempt to heal
+				$notify = $tikilib->get_preference('scheduler_notify_on_healing', 'y');
+				$schedulerTask->heal('Scheduler was healed by cron', $notify);
 			}
 		}
 
@@ -86,6 +90,43 @@ class Scheduler_Manager
 				$this->logger->error(sprintf(tra("***** Scheduler %s - FAILED *****\n%s"), $schedulerTask->name, $result['message']));
 			} else {
 				$this->logger->notice(sprintf(tra("***** Scheduler %s - OK *****"), $schedulerTask->name));
+			}
+		}
+	}
+
+	/**
+	 * Heal a specific or all stalled schedulers
+	 *
+	 * @param $schedulerId
+	 *   A specific scheduler id to heal
+	 */
+	public function heal($schedulerId = null)
+	{
+		$schedLib = TikiLib::lib('scheduler');
+		$schedulers = $schedLib->get_scheduler($schedulerId, 'active');
+
+		if (empty($schedulers) && $schedulerId) {
+			$this->logger->error(tr("Scheduler with id %0 does not exist or is not active", $schedulerId));
+			return;
+		}
+
+		if ($schedulerId != null) {
+			$schedulers = [$schedulers];
+		}
+
+		foreach ($schedulers as $scheduler) {
+			$item = Scheduler_Item::fromArray($scheduler, $this->logger);
+
+			if ($item->isStalled()) {
+				$this->logger->notice(tr("Scheduler `%0` (id: %1) is stalled", $item->name, $item->id));
+
+				if ($item->heal('Scheduler healed through command', false, true)) {
+					$this->logger->notice(tr("Scheduler `%0` (id: %1) was healed", $item->name, $item->id));
+				} else {
+					$this->logger->notice(tr("Scheduler `%0` (id: %1) was not healed", $item->name, $item->id));
+				}
+			} else {
+				$this->logger->notice(tr("Scheduler %0 (id: %1) is not stalled, no need to heal", $item->name, $item->id));
 			}
 		}
 	}

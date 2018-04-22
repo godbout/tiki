@@ -104,6 +104,7 @@ class ConsoleApplicationBuilder
 					new RefreshRssCommand,
 					new RssClearCacheCommand,
 					new SchedulerRunCommand,
+					new SchedulerHealCommand,
 					new TrackerImportCommand,
 					new SitemapGenerateCommand,
 					new TikiInfoCommand,

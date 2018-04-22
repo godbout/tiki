@@ -23,5 +23,30 @@ function prefs_scheduler_list($partial = false)
 			'default' => 'y',
 			'tags' => ['advanced'],
 		],
+		'scheduler_healing_timeout' => [
+			'name' => tr('Self healing after (minutes)'),
+			'description' => tr('Self healing resets a stalled scheduler automatically after the timeout set. 0 disables self healing'),
+			'type' => 'text',
+			'size' => '5',
+			'default' => 30,
+			'filter' => 'digits',
+			'tags' => ['advanced'],
+		],
+		'scheduler_notify_on_healing' => [
+			'name' => tr('Notify admins on healed schedulers'),
+			'description' => tr('Send an email notification to tiki admins when a stalled scheduler was healed.'),
+			'type' => 'flag',
+			'default' => 'y',
+			'tags' => ['advanced'],
+		],
+		'scheduler_keep_logs' => [
+			'name' => tr('Number of logs to keep'),
+			'description' => tr('0 will keep all logs'),
+			'type' => 'text',
+			'size' => '5',
+			'default' => 10000,
+			'filter' => 'digits',
+			'tags' => ['advanced'],
+		],
 	];
 }

@@ -58,9 +58,12 @@
 					{preference name=feature_stats}
 					{preference name=feature_actionlog}
 					{preference name=feature_scheduler}
-					<div class="adminoptionboxchild" id="feature_scheduler_childcontainer" >
+					<div class="adminoptionboxchild" id="feature_scheduler_childcontainer">
 						{preference name=scheduler_stalled_timeout}
 						{preference name=scheduler_notify_on_stalled}
+						{preference name=scheduler_healing_timeout}
+						{preference name=scheduler_notify_on_healing}
+						{preference name=scheduler_keep_logs}
 					</div>
 					<div class="adminoptionboxchild">
 						<fieldset>

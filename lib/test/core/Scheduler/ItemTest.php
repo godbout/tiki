@@ -83,4 +83,97 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 		$this->assertEmpty($lastRun['end_time']);
 		$this->assertFalse((bool) $lastRun['stalled']);
 	}
+
+	public function testReduceLogs()
+	{
+		global $prefs;
+
+		$logger = new Tiki_Log('UnitTests', \Psr\Log\LogLevel::ERROR);
+		$scheduler = new Scheduler_Item(
+			null,
+			'Test Scheduler',
+			'Test Scheduler',
+			'ConsoleCommandTask',
+			'{"console_command":"index:rebuild"}',
+			'*/10 * * * *',
+			'active',
+			0,
+			$logger
+		);
+
+		$scheduler->save();
+		self::$items[] = $scheduler->id;
+
+		$schedlib = TikiLib::lib('scheduler');
+
+		$totalRuns = 100;
+		for ($i = 0; $i < $totalRuns; $i++) {
+			// Simulate runs
+			$schedlib->start_scheduler_run($scheduler->id);
+		}
+
+		$this->assertEquals($totalRuns, $schedlib->countRuns($scheduler->id));
+
+		$scheduler->reduceLogs(0);
+		$this->assertEquals($totalRuns, $schedlib->countRuns($scheduler->id));
+
+		$scheduler->reduceLogs(50); // Keep last 50 logs
+		$this->assertEquals(50, $schedlib->countRuns($scheduler->id));
+
+		$expect = $prefs['scheduler_keep_logs'] = 10;
+		$scheduler->reduceLogs(); // Reduce logs to tiki preferences
+		$this->assertEquals($expect, $schedlib->countRuns($scheduler->id));
+	}
+
+	/**
+	 * @covers Scheduler_Item::heal()
+	 */
+	public function testHeal()
+	{
+		global $prefs, $tikilib;
+
+		$logger = new Tiki_Log('UnitTests', \Psr\Log\LogLevel::ERROR);
+		$scheduler = new Scheduler_Item(
+			null,
+			'Test Scheduler',
+			'Test Scheduler',
+			'ConsoleCommandTask',
+			'{"console_command":"index:rebuild"}',
+			'*/10 * * * *',
+			'active',
+			0,
+			$logger
+		);
+
+		$scheduler->save();
+		self::$items[] = $scheduler->id;
+
+		$schedlib = TikiLib::lib('scheduler');
+		$message = 'Heal Unit Test';
+
+		// Running scheduler since now
+		$schedlib->start_scheduler_run($scheduler->id);
+		$this->assertFalse($scheduler->heal($message, false));
+
+		// Running scheduler since now
+		$threshold = $tikilib->get_preference('scheduler_healing_timeout', 30);
+		$schedlib->start_scheduler_run($scheduler->id, strtotime(sprintf("-%d min", $threshold)));
+		$this->assertTrue($scheduler->heal($message, false));
+
+		$lastRun = $scheduler->getLastRun();
+		$this->assertEquals('failed', $lastRun['status']);
+		$this->assertNotEmpty($lastRun['end_time']);
+		$this->assertEquals('Heal Unit Test', $lastRun['output']);
+		$this->assertTrue((bool)$lastRun['healed']);
+
+		// With Self healing disabled
+		$prefs['scheduler_healing_timeout'] = 0;
+		$schedlib->start_scheduler_run($scheduler->id, strtotime(sprintf("-%d min", $threshold)));
+		$this->assertFalse($scheduler->heal($message, false));
+
+		$lastRun = $scheduler->getLastRun();
+		$this->assertEquals('running', $lastRun['status']);
+		$this->assertEmpty($lastRun['end_time']);
+		$this->assertFalse((bool)$lastRun['healed']);
+	}
 }

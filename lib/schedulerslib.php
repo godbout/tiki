@@ -86,7 +86,7 @@ class SchedulersLib extends TikiLib
 	 *
 	 * @return array An array with the scheduler runs found
 	 */
-	public function get_scheduler_runs($scheduler_id, $limit = 10)
+	public function get_scheduler_runs($scheduler_id, $limit = 10, $offset = -1)
 	{
 		if (! is_numeric($limit)) {
 			$limit = -1;
@@ -94,7 +94,20 @@ class SchedulersLib extends TikiLib
 
 		$schedulersRunTable = $this->table('tiki_scheduler_run');
 
-		return $schedulersRunTable->fetchAll([], ['scheduler_id' => $scheduler_id], $limit, -1, ['id' => 'DESC']);
+		return $schedulersRunTable->fetchAll([], ['scheduler_id' => $scheduler_id], $limit, $offset, ['id' => 'DESC']);
+	}
+
+	/**
+	 * Count the number of runs in logs for a given scheduler id.
+	 *
+	 * @param $schedulerId
+	 *
+	 * @return int
+	 */
+	public function countRuns($schedulerId)
+	{
+		$schedulersRunTable = $this->table('tiki_scheduler_run');
+		return $schedulersRunTable->fetchCount(['scheduler_id' => $schedulerId]);
 	}
 
 	/**
@@ -149,7 +162,7 @@ class SchedulersLib extends TikiLib
 	 *
 	 * @return int	The end time in timestamp format
 	 */
-	public function end_scheduler_run($scheduler_id, $run_id, $executionStatus, $errorMessage, $end_time = null)
+	public function end_scheduler_run($scheduler_id, $run_id, $executionStatus, $errorMessage, $end_time = null, $healed = false)
 	{
 
 		if (empty($end_time)) {
@@ -160,7 +173,8 @@ class SchedulersLib extends TikiLib
 		$schedulersRunTable->update([
 			'status' => $executionStatus,
 			'output' => $errorMessage,
-			'end_time' => $end_time
+			'end_time' => $end_time,
+			'healed' => $healed,
 		], [
 			'scheduler_id' => $scheduler_id,
 			'status' => 'running',
@@ -168,6 +182,18 @@ class SchedulersLib extends TikiLib
 		]);
 
 		return $end_time;
+	}
+
+	/**
+	 * Remove old scheduler runs
+	 *
+	 * @param int	$schedulerId	The scheduler id
+	 * @param int	$runId			The run id to keep since, older ids (less than) will be deleted.
+	 */
+	public function removeLogs($schedulerId, $runId)
+	{
+		$schedulersRunTable = $this->table('tiki_scheduler_run');
+		$schedulersRunTable->deleteMultiple(['scheduler_id' => $schedulerId, 'id' => $schedulersRunTable->lesserThan($runId)]);
 	}
 
 	/**
@@ -189,6 +215,18 @@ class SchedulersLib extends TikiLib
 	}
 
 	/**
+	 * Mark the scheduler run as healed, allowing it to be executed next time
+	 *
+	 * @param $schedulerId
+	 * @param $runId
+	 * @param $message
+	 */
+	public function setSchedulerRunHealed($schedulerId, $runId, $message)
+	{
+		$this->end_scheduler_run($schedulerId, $runId, 'failed', $message, null, 1);
+	}
+
+	/**
 	 * Remove the scheduler and its runs/logs
 	 *
 	 * @param int	$scheduler_id	The Scheduler Id
@@ -197,7 +235,7 @@ class SchedulersLib extends TikiLib
 	{
 
 		$schedulersRunTable = $this->table('tiki_scheduler_run');
-		$schedulersRunTable->delete(['scheduler_id' => $scheduler_id]);
+		$schedulersRunTable->deleteMultiple(['scheduler_id' => $scheduler_id]);
 
 		$schedulersTable = $this->table('tiki_scheduler');
 		$schedulersTable->delete(['id' => $scheduler_id]);

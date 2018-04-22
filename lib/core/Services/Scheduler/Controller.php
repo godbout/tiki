@@ -86,7 +86,7 @@ class Services_Scheduler_Controller
 		$schedulerTask = Scheduler_Item::fromArray($scheduler, $logger);
 
 		$message = tr('Execution output:') . '<br><br>';
-		$result = $schedulerTask->execute();
+		$result = $schedulerTask->execute(true);
 
 		if ($result['status'] == 'failed') {
 			$message .= tr('Scheduler %0 - FAILED', $schedulerTask->name) . '<br>' . $result['message'];
@@ -128,7 +128,7 @@ class Services_Scheduler_Controller
 		if ($confirm) {
 			$logger = new Tiki_Log('Webcron', \Psr\Log\LogLevel::ERROR);
 			$item = Scheduler_Item::fromArray($scheduler, $logger);
-			$item->resetRun('Reset by ' . $user);
+			$item->heal('Reset by ' . $user, false, true);
 
 			return [
 				'schedulerId' => 0

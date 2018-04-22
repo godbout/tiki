@@ -54,7 +54,16 @@ class Scheduler_Item
 	public function save()
 	{
 		$schedLib = TikiLib::lib('scheduler');
-		$id = $schedLib->set_scheduler($this->name, $this->description, $this->task, $this->params, $this->run_time, $this->status, $this->re_run, $this->id);
+		$id = $schedLib->set_scheduler(
+			$this->name,
+			$this->description,
+			$this->task,
+			$this->params,
+			$this->run_time,
+			$this->status,
+			$this->re_run,
+			$this->id
+		);
 
 		if ($id) {
 			$this->id = $id;
@@ -75,7 +84,7 @@ class Scheduler_Item
 	/**
 	 * Check if scheduler is stalled (running for long time)
 	 *
-	 * @param bool	$notify	Send tiki admins an email notification if scheduler is marked as stalled, if null uses tiki stored preferences
+	 * @param bool|null	$notify	Send tiki admins an email notification if scheduler is marked as stalled, if null uses tiki stored preferences
 	 *
 	 * @return int|bool	The scheduler run id if is stalled, false otherwise
 	 */
@@ -114,8 +123,8 @@ class Scheduler_Item
 	/**
 	 * Sets last run as stalled
 	 *
-	 * @param int	$runId	The run id to mark as stalled
-	 * @param bool 	$notify	Send tiki admins an email notification, if null uses tiki stored preferences
+	 * @param int		$runId	The run id to mark as stalled
+	 * @param bool|null	$notify	Send tiki admins an email notification, if null uses tiki stored preferences
 	 */
 	protected function setStalled($runId, $notify = null)
 	{
@@ -134,30 +143,90 @@ class Scheduler_Item
 	}
 
 	/**
-	 * Reset a stalled run in order to allow run scheduler again
+	 * Mark last run as healed
 	 *
-	 * @param string $message	The message to include in the run output
+	 * @param string	$message	The output message when healed
+	 * @param bool|null	$notify		Send email notification to tiki admins when scheduler is marked as healed, if null uses tiki stored preferences
+	 * @param bool		$force		Force heal even if not in the timeframe
 	 *
-	 * @return bool	True if stalled run was reset, false if otherwise.
+	 * @return bool	True if healed, false otherwise.
 	 */
-	public function resetRun($message)
+	public function heal($message, $notify = null, $force = false)
 	{
-		if (! $runId = $this->isStalled()) {
+		global $tikilib;
+
+		$threshold = $tikilib->get_preference('scheduler_healing_timeout', 30);
+
+		if ($threshold === 0 && ! $force) {
+			return false;
+		}
+
+		$lastRun = $this->getLastRun();
+
+		if (empty($lastRun) || $lastRun['status'] != 'running' || $lastRun['healed']) {
+			return false;
+		}
+
+		$startTime = $lastRun['start_time'];
+		$now = time();
+
+		if ($now < ($startTime + $threshold * 60) && ! $force) {
 			return false;
 		}
 
 		$schedLib = TikiLib::lib('scheduler');
-		$schedLib->end_scheduler_run($this->id, $runId, 'failed', $message);
+		$schedLib->setSchedulerRunHealed($this->id, $lastRun['id'], $message);
+
+		if (is_null($notify)) {
+			$notify = $tikilib->get_preference('scheduler_notify_on_healing', 'y') === 'y';
+		}
+
+		if ($notify) {
+			Tiki\Notifications\Email::sendSchedulerNotification('scheduler_healed_notification_subject.tpl', 'scheduler_healed_notification.tpl', $this);
+		}
+
+		$this->reduceLogs();
 
 		return true;
 	}
 
 	/**
-	 * @return array
+	 * Remove old logs
+	 *
+	 * @param int|null $numberLogs THe number of logs to keep
 	 */
-	public function execute()
+	public function reduceLogs($numberLogs = null)
 	{
-		global $prefs;
+		global $tikilib;
+
+		if (is_null($numberLogs) || ! is_numeric($numberLogs)) {
+			$numberLogs = $tikilib->get_preference('scheduler_keep_logs');
+		}
+
+		if (empty($numberLogs)) {
+			return;
+		}
+
+		$schedLib = TikiLib::lib('scheduler');
+		$count = $schedLib->countRuns($this->id);
+
+		if ($count > $numberLogs) {
+			// Get the older run to keep
+			$schedulers = $schedLib->get_scheduler_runs($this->id, 1, $numberLogs - 1);
+			$runId = $schedulers[0]['id'];
+
+			$schedLib->removeLogs($this->id, $runId);
+		}
+	}
+
+	/**
+	 * @param bool	$userTriggered	True if user triggered the execution, false otherwise.
+	 *
+	 * @return	array	The execution status and output message
+	 */
+	public function execute($userTriggered = false)
+	{
+		global $user, $prefs;
 
 		$schedlib = TikiLib::lib('scheduler');
 		$status = $schedlib->get_run_status($this->id);
@@ -207,8 +276,16 @@ class Scheduler_Item
 		$executionStatus = $result ? 'done' : 'failed';
 		$outputMessage = $task->getOutput();
 
+		if ($userTriggered) {
+			$userlib = TikiLib::lib('user');
+			$email = $userlib->get_user_email($user);
+			$outputMessage = sprintf('Run triggered by %s - %s. ', $user, $email) . $outputMessage;
+		}
+
 		$endTime = $schedlib->end_scheduler_run($this->id, $runId, $executionStatus, $outputMessage);
 		$this->logger->debug("End time: " . $endTime);
+
+		$this->reduceLogs();
 
 		return [
 			'status' => $executionStatus,
