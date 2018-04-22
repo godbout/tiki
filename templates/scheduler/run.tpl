@@ -6,10 +6,8 @@
 
 {block name="content"}
 {if $schedulerId}
-	<form class="simple" method="post" action="{service controller=scheduler action=remove}">
-		<p>{tr}{$message}{/tr}</p>
-	</form>
+	<p>{$message}</p>
 {else}
-	<a href="tiki-admin_schedulers.php">{tr}Back to tracker list{/tr}
+	<a href="tiki-admin_schedulers.php">{tr}Back to schedulers list{/tr}
 {/if}
 {/block}

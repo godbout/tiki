@@ -19,6 +19,7 @@ class Scheduler_Manager
 
 	public function run()
 	{
+		global $prefs;
 
 		$start_time = time();
 
@@ -30,6 +31,14 @@ class Scheduler_Manager
 
 		$runTasks = [];
 		$reRunTasks = [];
+
+		// Check for stalled tasks
+		foreach ($activeSchedulers as $scheduler) {
+			$schedulerTask = Scheduler_Item::fromArray($scheduler, $this->logger);
+			if ($schedulerTask->isStalled()) {
+				$this->logger->info(tr("Scheduler %0 (id: %1) is stalled", $schedulerTask->name, $schedulerTask->id));
+			}
+		}
 
 		foreach ($activeSchedulers as $scheduler) {
 			try {
@@ -68,17 +77,7 @@ class Scheduler_Manager
 		}
 
 		foreach ($runTasks as $runTask) {
-			$schedulerTask = new Scheduler_Item(
-				$runTask['id'],
-				$runTask['name'],
-				$runTask['description'],
-				$runTask['task'],
-				$runTask['params'],
-				$runTask['run_time'],
-				$runTask['status'],
-				$runTask['re_run'],
-				$this->logger
-			);
+			$schedulerTask = Scheduler_Item::fromArray($scheduler, $this->logger);
 
 			$this->logger->notice(sprintf(tra('***** Running scheduler %s *****'), $schedulerTask->name));
 			$result = $schedulerTask->execute();

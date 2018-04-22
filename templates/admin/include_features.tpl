@@ -58,6 +58,10 @@
 					{preference name=feature_stats}
 					{preference name=feature_actionlog}
 					{preference name=feature_scheduler}
+					<div class="adminoptionboxchild" id="feature_scheduler_childcontainer" >
+						{preference name=scheduler_stalled_timeout}
+						{preference name=scheduler_notify_on_stalled}
+					</div>
 					<div class="adminoptionboxchild">
 						<fieldset>
 							<legend>{tr}Watches{/tr}</legend>

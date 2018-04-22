@@ -164,6 +164,17 @@ if ((isset($_POST['new_scheduler']) || (isset($_POST['editscheduler']) && isset(
 }
 
 $tasks = $schedLib->get_scheduler();
+
+$logger = new Tiki_Log('Webcron', \Psr\Log\LogLevel::ERROR);
+foreach ($tasks as $key => $task) {
+	$schedulerItem = Scheduler_Item::fromArray($task, $logger);
+	if (! $schedulerItem instanceof Scheduler_Item) {
+		continue;
+	}
+
+	$tasks[$key]['stalled'] = $schedulerItem->isStalled();
+}
+
 $smarty->assign_by_ref('schedulers', $tasks);
 
 if (isset($_REQUEST['add'])) {

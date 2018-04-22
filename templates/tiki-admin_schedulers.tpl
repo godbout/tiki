@@ -46,6 +46,9 @@
 						<th>
 							{tr}Re-Run{/tr}
 						</th>
+						<th>
+							{*Reserved for stalled notices*}
+						</th>
 						<th id="actions"></th>
 					</tr>
 					</thead>
@@ -77,12 +80,23 @@
 							<td class="scheduler_re_run">
 								<input type="checkbox" {if $schedulers[scheduler].re_run}checked{/if} disabled>
 							</td>
+							<td class="scheduler_stalled">
+								{if $schedulers[scheduler].stalled}
+									<span class="label label-danger">{tr}Stalled{/tr}</span>
+								{/if}
+							</td>
 							<td class="action">
 								{capture name=scheduler_actions}
 									{strip}
-										{$libeg}<a href="{bootstrap_modal controller=scheduler action=run schedulerId=$schedulers[scheduler].id}">
-										{icon name="gear" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr}"}
-										</a>{$liend}
+										{if $schedulers[scheduler].stalled}
+											{$libeg}<a href="{bootstrap_modal controller=scheduler action=reset schedulerId=$schedulers[scheduler].id}">
+											{icon name="undo" _menu_text='y' _menu_icon='y' alt="{tr}Reset{/tr}"}
+											</a>{$liend}
+										{else}
+											{$libeg}<a href="{bootstrap_modal controller=scheduler action=run schedulerId=$schedulers[scheduler].id}" disabled>
+											{icon name="gear" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr}"}
+											</a>{$liend}
+										{/if}
 										{$libeg}<a href="{query _type='relative' scheduler=$schedulers[scheduler].id}">
 										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 										</a>{$liend}

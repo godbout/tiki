@@ -7,6 +7,8 @@
 
 namespace Tiki\Notifications;
 
+require_once 'lib/notifications/notificationemaillib.php';
+
 class Email
 {
 	/**
@@ -51,5 +53,29 @@ class Email
 		$headers['References'] = ! empty($parentInfo['References']) ? $headers['In-Reply-To'] . ', ' . $parentInfo['References'] : $hash;
 
 		return $headers;
+	}
+
+	/**
+	 * Send email notification to tiki admins regarding scheduler run status (stalled/healed)
+	 *
+	 * @param string 			$subjectTpl	Email subject template file path
+	 * @param string 			$txtTpl		Email body template file path
+	 * @param \Scheduler_Item	$scheduler	The scheduler that if being notified about.
+	 *
+	 * @return int The number of sent emails
+	 */
+	public static function sendSchedulerNotification($subjectTpl, $txtTpl, $scheduler)
+	{
+		global $prefs;
+
+		$smarty = \TikiLib::lib('smarty');
+		$smarty->assign('schedulerName', $scheduler->name);
+		$smarty->assign('stalledTimeout', $prefs['scheduler_stalled_timeout']);
+
+		// Need to fetch users with email address listed
+		$userlib = \TikiLib::lib('user');
+		$adminUsers = $userlib->get_group_users('Admins', 0, -1, '*');
+
+		return sendEmailNotification($adminUsers, null, $subjectTpl, null, $txtTpl);
 	}
 }

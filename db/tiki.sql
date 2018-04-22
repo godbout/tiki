@@ -4067,7 +4067,8 @@ CREATE TABLE `tiki_scheduler_run` (
   `start_time` INT(14),
   `end_time` INT(14),
   `status` VARCHAR(10),
-  `output` TEXT
+  `output` TEXT,
+  `stalled` TINYINT DEFAULT 0
 ) ENGINE=MyISAM;
 
 SET FOREIGN_KEY_CHECKS = 1;

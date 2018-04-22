@@ -17,11 +17,12 @@ class SchedulersLib extends TikiLib
 	/**
 	 * Let a list of schedulers
 	 *
-	 * @param null $schedulerId
-	 * @param null $status
-	 * @return array|mixed
+	 * @param int 		$schedulerId	The Scheduler Id
+	 * @param string 	$status			The Scheduler current status
+	 *
+	 * @return array	An array of schedulers or the scheduler details if $schedulerId is not null
 	 */
-	function get_scheduler($schedulerId = null, $status = null)
+	public function get_scheduler($schedulerId = null, $status = null)
 	{
 
 		$schedulersTable = $this->table('tiki_scheduler');
@@ -43,16 +44,18 @@ class SchedulersLib extends TikiLib
 	/**
 	 * Save scheduler details
 	 *
-	 * @param $name
-	 * @param $description (optional)
-	 * @param $task
-	 * @param $params (optional)
-	 * @param $run_time
-	 * @param $status
-	 * @param $re_run
-	 * @param $scheduler_id (optional)
+	 * @param string 		$name			The scheduler name
+	 * @param string|null 	$description 	The scheduler description text
+	 * @param string 		$task			The scheduler task (check Scheduler_Item::$availableTasks)
+	 * @param string|null 	$params 		The task parameters
+	 * @param string 		$run_time		The cron run time
+	 * @param string 		$status 		The scheduler status (active, inactive)
+	 * @param int 			$re_run 		0 or 1 to run case failed
+	 * @param int|null 		$scheduler_id 	The scheduler id (optional)
+	 *
+	 * @return int	The scheduler id
 	 */
-	function set_scheduler($name, $description = null, $task, $params = null, $run_time, $status, $re_run, $scheduler_id = null)
+	public function set_scheduler($name, $description, $task, $params, $run_time, $status, $re_run, $scheduler_id = null)
 	{
 
 		$values = [
@@ -68,22 +71,22 @@ class SchedulersLib extends TikiLib
 		$schedulersTable = $this->table('tiki_scheduler');
 
 		if (! $scheduler_id) {
-			$schedulersTable->insert($values);
+			return $schedulersTable->insert($values);
 		} else {
 			$schedulersTable->update($values, ['id' => $scheduler_id]);
+			return $scheduler_id;
 		}
 	}
 
 	/**
 	 * Get the info of the last scheduler runs
 	 *
-	 * @param $scheduler_id
-	 *   The scheduler id
-	 * @param int $limit
-	 *   The number of runs to return
-	 * @return array
+	 * @param int $scheduler_id The scheduler id
+	 * @param int $limit 		The number of runs to return
+	 *
+	 * @return array An array with the scheduler runs found
 	 */
-	function get_scheduler_runs($scheduler_id, $limit = 10)
+	public function get_scheduler_runs($scheduler_id, $limit = 10)
 	{
 		if (! is_numeric($limit)) {
 			$limit = -1;
@@ -97,10 +100,11 @@ class SchedulersLib extends TikiLib
 	/**
 	 * Get scheduler last run status
 	 *
-	 * @param $scheduler_id
+	 * @param int $scheduler_id	The Scheduler Id
+	 *
 	 * @return bool|mixed
 	 */
-	function get_run_status($scheduler_id)
+	public function get_run_status($scheduler_id)
 	{
 		$schedulersRunTable = $this->table('tiki_scheduler_run');
 		return $schedulersRunTable->fetchOne('status', ['scheduler_id' => $scheduler_id], ['id' => 'DESC']);
@@ -109,12 +113,12 @@ class SchedulersLib extends TikiLib
 	/**
 	 * Mark scheduler run as active (running)
 	 *
-	 * @param $scheduler_id
-	 * @param null $start_time
-	 * @return int
-	 *   Start time
+	 * @param string 	$scheduler_id	The scheduler id
+	 * @param int|null 	$start_time 	Run start time in timestamp format
+	 *
+	 * @return array	An array with the run id and start time
 	 */
-	function start_scheduler_run($scheduler_id, $start_time = null)
+	public function start_scheduler_run($scheduler_id, $start_time = null)
 	{
 
 		if (empty($start_time)) {
@@ -122,26 +126,30 @@ class SchedulersLib extends TikiLib
 		}
 
 		$schedulersRunTable = $this->table('tiki_scheduler_run');
-		$schedulersRunTable->insert([
+		$runId = $schedulersRunTable->insert([
 			'scheduler_id' => $scheduler_id,
 			'start_time' => $start_time,
 			'status' => 'running'
 		]);
 
-		return $start_time;
+		return [
+			'run_id' => $runId,
+			'start_time' => $start_time
+		];
 	}
 
 	/**
 	 * Mark scheduler run as finished
 	 *
-	 * @param $scheduler_id
-	 * @param $executionStatus
-	 * @param $errorMessage
-	 * @param $start_time
-	 * @param null $end_time
-	 * @return int|null
+	 * @param int		$scheduler_id		The scheduler id
+	 * @param int		$run_id				The scheduler run id
+	 * @param string	$executionStatus	The execution status (done, failed)
+	 * @param string 	$errorMessage		The output message
+	 * @param int|null	$end_time			The run end time in timestamp format
+	 *
+	 * @return int	The end time in timestamp format
 	 */
-	function end_scheduler_run($scheduler_id, $executionStatus, $errorMessage, $start_time, $end_time = null)
+	public function end_scheduler_run($scheduler_id, $run_id, $executionStatus, $errorMessage, $end_time = null)
 	{
 
 		if (empty($end_time)) {
@@ -156,18 +164,36 @@ class SchedulersLib extends TikiLib
 		], [
 			'scheduler_id' => $scheduler_id,
 			'status' => 'running',
-			'start_time' => $start_time
+			'id' => $run_id,
 		]);
 
 		return $end_time;
 	}
 
 	/**
+	 * Set a scheduler run as stalled
+	 *
+	 * @param int	$schedulerId 	The Scheduler Id
+	 * @param int	$runId		The run id that is stalled
+	 */
+	public function setSchedulerRunStalled($schedulerId, $runId)
+	{
+		$schedulersRunTable = $this->table('tiki_scheduler_run');
+		$schedulersRunTable->update([
+			'stalled' => 1,
+		], [
+			'scheduler_id' => $schedulerId,
+			'id' => $runId,
+			'status' => 'running',
+		]);
+	}
+
+	/**
 	 * Remove the scheduler and its runs/logs
 	 *
-	 * @param $scheduler_id
+	 * @param int	$scheduler_id	The Scheduler Id
 	 */
-	function remove_scheduler($scheduler_id)
+	public function remove_scheduler($scheduler_id)
 	{
 
 		$schedulersRunTable = $this->table('tiki_scheduler_run');

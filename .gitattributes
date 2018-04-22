@@ -2007,6 +2007,7 @@ installer/schema/20180331_rename_custom_route_object_type_tiki.sql -text
 installer/schema/20180405_remove_unused_user_id_tiki.sql -text
 installer/schema/20180410_install_piwik_plugin_tiki.php -text
 installer/schema/20180411_schedulers_change_column_to_text_tiki.sql -text
+installer/schema/20180419_scheduler_run_stalled_column_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text

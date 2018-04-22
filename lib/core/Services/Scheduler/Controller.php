@@ -18,7 +18,7 @@ class Services_Scheduler_Controller
 	 */
 	private $access;
 
-	function setUp()
+	public function setUp()
 	{
 		$this->lib = TikiLib::lib('scheduler');
 		$this->access = TikiLib::lib('access');
@@ -35,7 +35,7 @@ class Services_Scheduler_Controller
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_NotFound
 	 */
-	function action_remove($input)
+	public function action_remove($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin_users');
 
@@ -70,7 +70,7 @@ class Services_Scheduler_Controller
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_NotFound
 	 */
-	function action_run($input)
+	public function action_run($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin_users');
 
@@ -82,20 +82,8 @@ class Services_Scheduler_Controller
 			throw new Services_Exception_NotFound;
 		}
 
-		$runTask = $scheduler;
 		$logger = new Tiki_Log('Webcron', \Psr\Log\LogLevel::ERROR);
-
-		$schedulerTask = new Scheduler_Item(
-			$runTask['id'],
-			$runTask['name'],
-			$runTask['description'],
-			$runTask['task'],
-			$runTask['params'],
-			$runTask['run_time'],
-			$runTask['status'],
-			$runTask['re_run'],
-			$logger
-		);
+		$schedulerTask = Scheduler_Item::fromArray($scheduler, $logger);
 
 		$message = tr('Execution output:') . '<br><br>';
 		$result = $schedulerTask->execute();
@@ -122,18 +110,25 @@ class Services_Scheduler_Controller
 	 * @return array
 	 * @throws Services_Exception_Denied
 	 */
-	function action_reset($input)
+	public function action_reset($input)
 	{
 		global $user;
 
 		Services_Exception_Denied::checkGlobal('admin_users');
 
 		$schedulerId = $input->schedulerId->int();
-		$startTime = $input->startTime->int();
 		$confirm = $input->confirm->int();
 
+		$scheduler = $this->lib->get_scheduler($schedulerId);
+
+		if (! $scheduler) {
+			throw new Services_Exception_NotFound;
+		}
+
 		if ($confirm) {
-			$this->lib->end_scheduler_run($schedulerId, 'failed', 'Reset by ' . $user, $startTime);
+			$logger = new Tiki_Log('Webcron', \Psr\Log\LogLevel::ERROR);
+			$item = Scheduler_Item::fromArray($scheduler, $logger);
+			$item->resetRun('Reset by ' . $user);
 
 			return [
 				'schedulerId' => 0
@@ -143,7 +138,6 @@ class Services_Scheduler_Controller
 		return [
 			'title' => tr('Reset scheduler run?'),
 			'schedulerId' => $schedulerId,
-			'startTime' => $startTime,
 		];
 	}
 }
