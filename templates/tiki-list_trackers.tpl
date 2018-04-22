@@ -20,18 +20,18 @@
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li>
+					<li class="dropdown-item">
 						<a href="{bootstrap_modal controller=tracker action=import}">
 							{tr}Import Structure{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="{bootstrap_modal controller=tracker action=import_profile}">
 							{tr}Import From Profile/YAML{/tr}
 						</a>
 					</li>
 					{if $prefs.tracker_tabular_enabled eq 'y' && $tiki_p_admin_trackers eq 'y'}
-						<li>
+						<li class="dropdown-item">
 							<a href="{service controller=tabular action=manage}">
 								{tr}Manage Tabular Formats{/tr}
 							</a>

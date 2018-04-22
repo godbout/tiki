@@ -17,9 +17,9 @@
 					<li class="dropdown-title">
 						{tr}Recent Preferences{/tr}
 					</li>
-					<li class="divider"></li>
+					<li class="dropdown-divider"></li>
 					{foreach $recent_prefs as $p}
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-admin.php?lm_criteria={$p|escape}&amp;exact">{$p|stringfix}</a>
 						</li>
 						{foreachelse}
@@ -37,18 +37,18 @@
 					<li class="dropdown-title">
 						{tr}Quick Administration{/tr}
 					</li>
-					<li class="divider"></li>
-					<li>
+					<li class="dropdown-divider"></li>
+					<li class="dropdown-item">
 						<a href="tiki-wizard_admin.php?stepNr=0&amp;url=index.php">
 							{icon name="wizard"} {tr}Wizards{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-admin.php">
 							{icon name="cog"} {tr}Control panels{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-admin.php?page=look">
 							{icon name="image"} {tr}Themes{/tr}
 						</a>
@@ -58,21 +58,21 @@
 							{icon name="user"} {tr}Users{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-admingroups.php">
 							{icon name="group"} {tr}Groups{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						{permission_link mode=text}
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-admin_menus.php">
 							{icon name="menu"} {tr}Menus{/tr}
 						</a>
 					</li>
 						{if $prefs.lang_use_db eq "y"}
-							<li>
+							<li class="dropdown-item">
 								{if isset($smarty.session.interactive_translation_mode) && $smarty.session.interactive_translation_mode eq "on"}
 									<a href="tiki-interactive_trans.php?interactive_translation_mode=off">
 										{icon name="translate"} {tr}Turn off interactive translation{/tr}
@@ -85,13 +85,13 @@
 							</li>
 						{/if}
 					{if $prefs.feature_comments_moderation eq "y"}
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-list_comments.php">
 								{icon name="comments"} {tr}Comment moderation{/tr}
 							</a>
 						</li>
 					{/if}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-admin_system.php?do=all">
 							{icon name="trash"} {tr}Clear all caches{/tr}
 						</a>
@@ -101,37 +101,37 @@
 							{icon name="index"} {tr}Rebuild search index{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-plugins.php">
 							{icon name="plugin"} {tr}Plugin approval{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-syslog.php">
 							{icon name="log"} {tr}Logs{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-admin_modules.php">
 							{icon name="module"} {tr}Modules{/tr}
 						</a>
 					</li>
 					{if $prefs.feature_scheduler eq "y"}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-admin_schedulers.php">
 							{icon name="calendar"} {tr}Scheduler{/tr}
 						</a>
 					</li>
 					{/if}
 					{if $prefs.feature_sefurl_routes eq "y"}
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-admin_routes.php">
 								{icon name="random"} {tr}Custom Routes{/tr}
 							</a>
 						</li>
 					{/if}
 					{if $prefs.feature_debug_console eq 'y'}
-						<li>
+						<li class="dropdown-item">
 							<a href="{query _type='relative' show_smarty_debug=1}">
 								{icon name="bug"} {tr}Smarty debug window{/tr}
 							</a>

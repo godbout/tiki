@@ -7,22 +7,22 @@
 					{icon name="create"} {tr}Create{/tr} <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li>
+					<li class="dropdown-item">
 						<a href="{bootstrap_modal controller=managestream action=sample}">
 							{tr}Sample Rule{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="{bootstrap_modal controller=managestream action=record}">
 							{tr}Basic Rule (Record Event){/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="{bootstrap_modal controller=managestream action=tracker_filter}">
 							{tr}Tracker Rule{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="{bootstrap_modal controller=managestream action=advanced}">
 							{tr}Advanced Rule{/tr}
 						</a>

@@ -24,9 +24,9 @@
 				<li class="dropdown-title">
 					{tr}Monitoring{/tr}
 				</li>
-				<li class="divider"></li>
+				<li class="dropdown-divider"></li>
 				{if $displayedcals|@count eq 1 and $user and $prefs.feature_user_watches eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						{if $user_watching eq 'y'}
 							<a href="tiki-calendar.php?watch_event=calendar_changed&amp;watch_action=remove" hspace="1">
 								{icon name="stop-watching"} {tr}Stop monitoring{/tr}
@@ -39,7 +39,7 @@
 					</li>
 				{/if}
 				{if $displayedcals|@count eq 1 and $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-object_watches.php?objectId={$displayedcals[0]|escape:"url"}&amp;watch_event=calendar_changed&amp;objectType=calendar&amp;objectName={$infocals[$x].name|escape:"url"}&amp;objectHref={'tiki-calendar.php?calIds[]='|cat:$displayedcals[0]|escape:"url"}" hspace="1">
 							{icon name="watch-group"} {tr}Group Monitor{/tr}
 						</a>

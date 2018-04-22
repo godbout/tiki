@@ -64,26 +64,26 @@
 				<li class="dropdown-title">
 					{tr}Thread actions{/tr}
 				</li>
-				<li class="divider"></li>
-				<li>
+				<li class="dropdown-divider"></li>
+				<li class="dropdown-item">
 					{if $pdf_export eq 'y'}
 						<a href="{$smarty.server.PHP_SELF}?{query display='pdf'}">
 							{icon name="pdf"} {tr}PDF{/tr}
 						</a>
 					{/if}
 				</li>
-				<li>
+				<li class="dropdown-item">
 					<a href="{$smarty.server.PHP_SELF}?{query display='print'}">
 						{icon name="print"} {tr}Print this page{/tr}
 					</a>
 				</li>
-				<li>
+				<li class="dropdown-item">
 					<a href="{$smarty.server.PHP_SELF}?{query display='print_all'}">
 						{icon name="print"} {tr}Print all pages{/tr}
 					</a>
 				</li>
 				{if $prefs.sefurl_short_url eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-short_url.php?type=forumthread&objectId={$comments_parentId}">
 							{icon name="link"} {tr}Get a short URL{/tr}
 							{assign var="hasPageAction" value="1"}
@@ -91,7 +91,7 @@
 					</li>
 				{/if}
 				{if $prefs.feature_forum_topics_archiving eq 'y' && $tiki_p_admin_forum eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						{if $thread_info.archived eq 'y'}
 							<a href="{$smarty.server.PHP_SELF}?{query archive="n"}">
 								{icon name="file-archive-open"} {tr}Unarchive{/tr}
@@ -104,7 +104,7 @@
 					</li>
 				{/if}
 				{if isset($tiki_p_forum_lock) and $tiki_p_forum_lock eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						{if $thread_info.locked eq 'y'}
 							<a href="{query _type='relative' lock='n'}">
 								{icon name="unlock"} {tr}Unlock{/tr}

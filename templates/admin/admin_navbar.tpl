@@ -15,10 +15,10 @@
 						{icon name="filter"} <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><span class="dropdown-title">{tr}Preference Filters{/tr}</span></li>
+						<li class="dropdown-item"><span class="dropdown-title">{tr}Preference Filters{/tr}</span></li>
 							<input type="hidden" name="pref_filters[]" value="basic">
 							{foreach from=$pref_filters key=name item=info}
-								<li>
+								<li class="dropdown-item">
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" class="preffilter {$info.type|escape}" name="pref_filters[]" value="{$name|escape}"{if $info.selected} checked="checked"{/if}{if $name eq {tr}basic{/tr}} disabled="disabled"{/if}>{$info.label|escape}
@@ -98,13 +98,13 @@
 									updateVisible();
 								});
 							{/jq}
-						<li class="divider"></li>
-						<li>
+						<li class="dropdown-divider"></li>
+						<li class="dropdown-item">
 							<a href="tiki-admin.php?prefrebuild">
 								{tr}Rebuild Admin Index{/tr}
 							</a>
 						</li>
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-admin.php">
 								{tr}Control Panels{/tr}
 							</a>

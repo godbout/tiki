@@ -14,10 +14,10 @@
 			<li class="dropdown-title">
 				{tr}Blog Actions{/tr}
 			</li>
-			<li class="divider"></li>
+			<li class="dropdown-divider"></li>
 			{if $tiki_p_blog_post eq "y"}
 				{if $ownsblog eq "y" or $tiki_p_blog_admin eq "y" or $public eq "y"}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-blog_post.php?blogId={$blogId}">
 							{icon name='post'} {tr}Post{/tr}
 						</a>
@@ -25,13 +25,13 @@
 				{/if}
 			{/if}
 			{if $ownsblog eq "y" or $tiki_p_blog_admin eq "y"}
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-edit_blog.php?blogId={$blogId}">
 						{icon name='edit'} {tr}Edit{/tr}
 					</a>
 				</li>
 				{if $allow_comments eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						<a href='tiki-list_comments.php?types_section=blogs&amp;blogId={$blogId}'>
 							{icon name='comments'} {tr}Comments{/tr}
 						</a>
@@ -39,7 +39,7 @@
 				{/if}
 			{/if}
 			{if $user and $prefs.feature_user_watches eq 'y'}
-				<li>
+				<li class="dropdown-item">
 					{if $user_watching_blog eq 'n'}
 						<a href="tiki-view_blog.php?blogId={$blogId}&amp;watch_event=blog_post&amp;watch_object={$blogId}&amp;watch_action=add">
 							{icon name='watch'} {tr}Monitor{/tr}
@@ -52,21 +52,21 @@
 				</li>
 			{/if}
 			{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-object_watches.php?objectId={$blogId|escape:"url"}&amp;watch_event=blog_post&amp;objectType=blog&amp;objectName={$title|escape:"url"}&amp;objectHref={'tiki-view_blog.php?blogId='|cat:$blogId|escape:"url"}">
 						{icon name="watch-group"} {tr}Group Monitor{/tr}
 					</a>
 				</li>
 			{/if}
 			{if $prefs.feed_blog eq "y"}
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-blog_rss.php?blogId={$blogId}">
 						{icon name='rss'} {tr}RSS{/tr}
 					</a>
 				</li>
 			{/if}
 			{if $prefs.sefurl_short_url eq 'y'}
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-short_url.php?type=blog&objectId={$blogId}">
 						{icon name="link"} {tr}Get a short URL{/tr}
 						{assign var="hasPageAction" value="1"}

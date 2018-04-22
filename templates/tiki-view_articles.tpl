@@ -38,8 +38,8 @@
 					<li class="dropdown-title">
 						{tr}Monitoring{/tr}
 					</li>
-					<li class="divider"></li>
-					<li>
+					<li class="dropdown-divider"></li>
+					<li class="dropdown-item">
 						{if $user_watching_articles eq 'n'}
 							{self_link watch_event='article_*' watch_object='*' watch_action='add' _icon_name='watch' _text="{tr}Monitor articles{/tr}"}
 							{/self_link}
@@ -48,7 +48,7 @@
 							{/self_link}
 						{/if}
 					</li>
-					<li>
+					<li class="dropdown-item">
 						{if $prefs.feature_group_watches eq 'y' and $tiki_p_admin_users eq 'y'}
 							<a href="tiki-object_watches.php?watch_event=article_*&amp;objectId=*">
 								{icon name='watch-group'} {tr}Group monitor{/tr}
@@ -277,24 +277,24 @@
 							<li class="dropdown-title">
 								{tr _0="{$listpages[ix].title}"}Actions for %0{/tr}
 							</li>
-							<li class="divider"></li>
+							<li class="dropdown-divider"></li>
 							{if $tiki_p_edit_article eq 'y' or (!empty($user) and $listpages[ix].author eq $user
 							and $listpages[ix].creator_edit eq 'y')}
-								<li>
+								<li class="dropdown-item">
 									<a href="tiki-edit_article.php?articleId={$listpages[ix].articleId}">
 										{icon name='edit'} {tr}Edit{/tr}
 									</a>
 								</li>
 							{/if}
 							{if $prefs.feature_cms_print eq 'y'}
-								<li>
+								<li class="dropdown-item">
 									<a href="tiki-print_article.php?articleId={$listpages[ix].articleId}">
 										{icon name='print'} {tr}Print{/tr}
 									</a>
 								</li>
 							{/if}
 							{if $tiki_p_remove_article eq 'y'}
-								<li>
+								<li class="dropdown-item">
 									<a href="tiki-list_articles.php?remove={$listpages[ix].articleId}">
 										{icon name='remove'} {tr}Remove{/tr}
 									</a>

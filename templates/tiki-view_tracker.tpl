@@ -28,16 +28,16 @@
 			<li class="dropdown-title">
 				{tr}Tracker actions{/tr}
 			</li>
-			<li class="divider"></li>
+			<li class="dropdown-divider"></li>
 			{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-object_watches.php?objectId={$trackerId|escape:"url"}&amp;watch_event=tracker_modified&amp;objectType=tracker&amp;objectName={$tracker_info.name|escape:"url"}&amp;objectHref={'tiki-view_tracker.php?trackerId='|cat:$trackerId|escape:"url"}">
 						{icon name="watch-group"} {tr}Group Monitoring{/tr}
 					</a>
 				</li>
 			{/if}
 			{if $prefs.feature_user_watches eq 'y' and $tiki_p_watch_trackers eq 'y' and $user}
-				<li>
+				<li class="dropdown-item">
 					{if $user_watching_tracker ne 'y'}
 						<a href="tiki-view_tracker.php?trackerId={$trackerId}&amp;watch=add">
 							{icon name="watch"} {tr}Monitor{/tr}
@@ -50,14 +50,14 @@
 				</li>
 			{/if}
 			{if $prefs.feed_tracker eq "y"}
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-tracker_rss.php?trackerId={$trackerId}">
 						{icon name="rss"} {tr}RSS{/tr}
 					</a>
 				</li>
 			{/if}
 			{if $tiki_p_admin_trackers eq "y"}
-				<li>
+				<li class="dropdown-item">
 					<a class="import dialog" href="{service controller=tracker action=import_items trackerId=$trackerId}">
 						{icon name="import"} {tr}Import{/tr}
 					</a>
@@ -78,7 +78,7 @@
 				{/jq}
 			{/if}
 			{if $tiki_p_export_tracker eq "y"}
-				<li>
+				<li class="dropdown-item">
 					<a class="export dialog" href="{service controller=tracker action=export trackerId=$trackerId filterfield=$filterfield filtervalue=$filtervalue}">
 						{icon name="export"} {tr}Export{/tr}
 					</a>
@@ -101,17 +101,17 @@
 				{/jq}
 			{/if}
 			{if $tiki_p_admin_trackers eq "y"}
-				<li>
+				<li class="dropdown-item">
 					{permission_link mode=text type=tracker id=$trackerId permType=trackers}
 				</li>
 			{/if}
 			{if $prefs.sefurl_short_url eq 'y'}
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-short_url.php?type=tracker&objectId={$trackerId}">
 						{icon name="link"} {tr}Get a short URL{/tr}
 						{assign var="hasPageAction" value="1"}
 					</a>
-				</li>
+				</li class="dropdown-item">
 			{/if}
 		</ul>
 		{if $js == 'n'}</li></ul>{/if}

@@ -79,13 +79,13 @@ header.page-header::before,
 
 
 // Widens scope of Bootstrap rule to cover L&F admin anchors filter, etc.
-.dropdown-menu li {
+li.dropdown-item {
 	background-color: $dropdown-bg;
 	color: $dropdown-link-color;
 }
 
-.dropdown-menu li:hover,
-.dropdown-menu li:focus {
+.dropdown-item:hover,
+.dropdown-item:focus {
 	background-color: $dropdown-link-hover-bg;
 	color: $dropdown-link-hover-color;
 }

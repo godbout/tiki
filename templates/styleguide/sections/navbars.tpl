@@ -27,13 +27,13 @@
 									Dropdown <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="javascript:void(0);">Action</a></li>
-									<li><a href="javascript:void(0);">Another action</a></li>
-									<li><a href="javascript:void(0);">Something else here</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="javascript:void(0);">Separated link</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="javascript:void(0);">One more separated link</a></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">Action</a></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">Another action</a></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">Something else here</a></li>
+									<li role="separator" class="dropdown-divider"></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">Separated link</a></li>
+									<li role="separator" class="dropdown-divider"></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">One more separated link</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -50,11 +50,11 @@
 									Dropdown <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="javascript:void(0);">Action</a></li>
-									<li><a href="javascript:void(0);">Another action</a></li>
-									<li><a href="javascript:void(0);">Something else here</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="javascript:void(0);">Separated link</a></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">Action</a></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">Another action</a></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">Something else here</a></li>
+									<li role="separator" class="dropdown-divider"></li>
+									<li class="dropdown-item"><a href="javascript:void(0);">Separated link</a></li>
 								</ul>
 							</li>
 						</ul>

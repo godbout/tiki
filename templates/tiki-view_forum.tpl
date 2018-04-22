@@ -44,9 +44,9 @@
 				<li class="dropdown-title">
 					{tr}Forum actions{/tr}
 				</li>
-				<li class="divider"></li>
+				<li class="dropdown-divider"></li>
 				{if $user and $prefs.feature_user_watches eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						{if $user_watching_forum eq 'n'}
 							<a href="tiki-view_forum.php?forumId={$forumId}&amp;watch_event=forum_post_topic&amp;watch_object={$forumId}&amp;watch_action=add">
 								{icon name="watch"} {tr}Monitor topics{/tr}
@@ -59,7 +59,7 @@
 					</li>
 				{/if}
 				{if $user and $prefs.feature_user_watches eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						{if $user_watching_forum_topic_and_thread eq 'n'}
 							<a href="tiki-view_forum.php?forumId={$forumId}&amp;watch_event=forum_post_topic_and_thread&amp;watch_object={$forumId}&amp;watch_action=add">
 								{icon name="watch"} {tr}Monitor topics and threads{/tr}
@@ -72,19 +72,19 @@
 					</li>
 				{/if}
 				{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-object_watches.php?objectId={$forumId|escape:"url"}&amp;watch_event=forum_post_topic&amp;objectType=forum&amp;objectName={$forum_info.name|escape:"url"}&amp;objectHref={'tiki-view_forum.php?forumId='|cat:$forumId|escape:"url"}">
 							{icon name="watch-group"} {tr}Group monitor topics{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-object_watches.php?objectId={$forumId|escape:"url"}&amp;watch_event=forum_post_topic_and_thread&amp;objectType=forum&amp;objectName={$forum_info.name|escape:"url"}&amp;objectHref={'tiki-view_forum.php?forumId='|cat:$forumId|escape:"url"}">
 							{icon name="watch-group"} {tr}Group monitor topics and threads{/tr}
 						</a>
 					</li>
 				{/if}
 				{if !empty($tiki_p_forum_lock) and $tiki_p_forum_lock eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						{if $forum_info.is_locked eq 'y'}
 							{self_link lock='n' _icon_name='unlock' _menu_text='y' _menu_icon='y'}
 								{tr}Unlock{/tr}
@@ -97,14 +97,14 @@
 					</li>
 				{/if}
 				{if $prefs.feed_forum eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-forum_rss.php?forumId={$forumId}">
 							{icon name="rss"} {tr}RSS feed{/tr}
 						</a>
 					</li>
 				{/if}
 				{if $prefs.sefurl_short_url eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-short_url.php?type=forum&objectId={$forumId}">
 							{icon name="link"} {tr}Get a short URL{/tr}
 							{assign var="hasPageAction" value="1"}

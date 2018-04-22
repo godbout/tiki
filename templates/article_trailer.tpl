@@ -24,42 +24,42 @@
 					<li class="dropdown-title">
 						{tr}Article actions{/tr}
 					</li>
-					<li class="divider"></li>
+					<li class="dropdown-divider"></li>
 					{if $tiki_p_edit_article eq 'y'}
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-edit_article.php?articleId={$articleId}">
 								{icon name='edit'} {tr}Edit{/tr}
 							</a>
 						</li>
 					{/if}
 					{if $prefs.feature_cms_print eq 'y'}
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-print_article.php?articleId={$articleId}">
 								{icon name='print'} {tr}Print{/tr}
 							</a>
 						</li>
 					{/if}
 					{if $prefs.user_favorites eq 'y'}
-						<li>
+						<li class="dropdown-item">
 							{favorite type="article" object=$articleId button_classes="icon"}
 						</li>
 					{/if}
 					{if $prefs.feature_tell_a_friend eq 'y' && $tiki_p_tell_a_friend eq 'y'}
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
 								{icon name='envelope'} {tr}Send a link{/tr}
 							</a>
 						</li>
 					{/if}
 					{if $prefs.feature_share eq 'y' && $tiki_p_share eq 'y'}
-						<li>
+						<li class="dropdown-item">
 							<a class="tips" href="tiki-share.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
 								{icon name='share'} {tr}Share{/tr}
 							</a>
 						</li>
 					{/if}
 					{if $prefs.feature_cms_sharethis eq "y"}
-						<li>
+						<li class="dropdown-item">
 							{capture name=shared_title}
 								{tr}ShareThis{/tr}
 							{/capture}
@@ -74,14 +74,14 @@
 						</li>
 					{/if}
 					{if $prefs.sefurl_short_url eq 'y'}
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-short_url.php?type=article&objectId={$articleId}">
 								{icon name="link"} {tr}Get a short URL{/tr}
 								{assign var="hasPageAction" value="1"}
 							</a>
 						</li>
 					{/if}
-					<li>
+					<li class="dropdown-item">
 						{if $tiki_p_remove_article eq 'y'}
 							<a href="tiki-list_articles.php?remove={$articleId}">
 								{icon name='remove'} {tr}Remove{/tr}

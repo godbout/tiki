@@ -68,8 +68,8 @@
 							<li class="dropdown-title">
 								{tr}Backlinks{/tr}
 							</li>
-							<li class="divider"></li>
-							<li role="presentation">
+							<li class="dropdown-divider"></li>
+							<li role="presentation" class="dropdown-item">
 								{section name=back loop=$backlinks}
 									<a role="menuitem" tabindex="-1" href="{$backlinks[back].objectId|sefurl:$backlinks[back].type}" title="{object_title id=$backlinks[back].objectId type=$backlinks[back].type|escape}">
 									  {if $prefs.wiki_backlinks_name_len ge '1'}{object_title id=$backlinks[back].objectId type=$backlinks[back].type|truncate:$prefs.wiki_backlinks_name_len:"...":true|escape}{else}{object_title id=$backlinks[back].objectId type=$backlinks[back].type|escape}{/if}
@@ -90,8 +90,8 @@
 							<li class="dropdown-title">
 								{tr}Structures{/tr}
 							</li>
-							<li class="divider"></li>
-							<li role="presentation">
+							<li class="dropdown-divider"></li>
+							<li class="dropdown-item" role="presentation">
 								{section name=struct loop=$showstructs}
 									<a href="tiki-index.php?page={$page|escape:url}&amp;structure={$showstructs[struct].pageName|escape:url}" {if isset($structure_path[0].pageName) and $showstructs[struct].pageName eq $structure_path[0].pageName} title="Current structure: {$showstructs[struct].pageName|escape}" class="selected tips" {else} class="tips" title="{tr}Show structure{/tr}: {$showstructs[struct].pageName|escape}"{/if}>
 										{if $showstructs[struct].page_alias}
@@ -103,8 +103,8 @@
 								{/section}
 							</li>
 							{if isset($structure_path) && $showstructs[struct].pageName neq $structure_path[0].pageName and $prefs.feature_wiki_open_as_structure neq 'y'}
-								<li role="presentation" class="divider"></li>
-								<li role="presentation">
+								<li role="presentation" class="dropdown-divider"></li>
+								<li role="presentation" class="dropdown-item">
 									<a href="tiki-index.php?page={$page|escape:url}" class="tips" title=":{tr}Hide structure bar and any toc{/tr}">
 										{tr}Hide structure{/tr}
 									</a>
@@ -126,8 +126,8 @@
 						<li class="dropdown-title">
 							{tr}Page actions{/tr}
 						</li>
-						<li class="divider"></li>
-						<li>
+						<li class="dropdown-divider"></li>
+						<li class="dropdown-item">
 							{if $pdf_export eq 'y'}
 								<a href="tiki-print.php?{query _keepall='y' display="pdf" page=$page}">
 									{icon name="pdf"} {tr}PDF{/tr}
@@ -142,8 +142,8 @@
 						{/if}
 						{if $prefs.flaggedrev_approval neq 'y' or ! $revision_approval or $lastVersion eq $revision_displayed}
 							{if $editable and ($tiki_p_edit eq 'y' or $page|lower eq 'sandbox') and $beingEdited ne 'y' and $machine_translate_to_lang eq ''}
-								<li>
-									<a class="dropdown-item" {ajax_href template="tiki-editpage.tpl"}tiki-editpage.php?page={$page|escape:"url"}{if !empty($page_ref_id) and (empty($needsStaging) or $needsStaging neq 'y')}&amp;page_ref_id={$page_ref_id}{/if}{/ajax_href}>
+								<li class="dropdown-item">
+									<a {ajax_href template="tiki-editpage.tpl"}tiki-editpage.php?page={$page|escape:"url"}{if !empty($page_ref_id) and (empty($needsStaging) or $needsStaging neq 'y')}&amp;page_ref_id={$page_ref_id}{/if}{/ajax_href}>
 										{icon name="edit"} {tr}Edit{/tr}
 										{assign var="hasPageAction" value="1"}
 									</a>
@@ -165,8 +165,8 @@
 										});
 										if (!getCookie("wiki_plugin_edit_view")) {$(".editplugin, .icon_edit_section").hide(); } else { $("#wiki_plugin_edit_view").click(); }
 									{/jq}
-									<li>
-										<a class="dropdown-item" href="#" id="wiki_plugin_edit_view">
+									<li class="dropdown-item">
+										<a href="#" id="wiki_plugin_edit_view">
 											{icon name='plugin'} {tr}Edit icons{/tr}
 											{assign var="hasPageAction" value="1"}
 										</a>
@@ -191,8 +191,8 @@
 										});
 										if (getCookie("wysiwyg_inline_edit", "preview")) { $("#wysiwyg_inline_edit").click(); }
 									{/jq}
-									<li>
-										<a class="dropdown-item" href="#" id="wysiwyg_inline_edit">
+									<li class="dropdown-item">
+										<a href="#" id="wysiwyg_inline_edit">
 											{icon name='edit'} {tr}Inline edit{/tr}
 											{assign var="hasPageAction" value="1"}
 										</a>
@@ -201,32 +201,32 @@
 							{/if}
 						{/if}
 						{if $cached_page eq 'y'}
-							<li>
-								<a class="dropdown-item" href="{$page|sefurl:'wiki':'with_next'}refresh=1">
+							<li class="dropdown-item">
+								<a href="{$page|sefurl:'wiki':'with_next'}refresh=1">
 									{icon name="refresh"} {tr}Refresh{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>
 							</li>
 						{/if}
 						{if $prefs.feature_wiki_print eq 'y'}
-							<li>
-								<a class="dropdown-item" href="tiki-print.php?{query _keepall='y' page=$page}">
+							<li class="dropdown-item">
+								<a href="tiki-print.php?{query _keepall='y' page=$page}">
 									{icon name="print"} {tr}Print{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>
 							</li>
 						{/if}
 						{if $prefs.feature_share eq 'y' && $tiki_p_share eq 'y'}
-							<li>
-								<a class="dropdown-item" href="tiki-share.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
+							<li class="dropdown-item">
+								<a href="tiki-share.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
 									{icon name="share"} {tr}Share{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>
 							</li>
 						{/if}
 						{if $prefs.feature_tell_a_friend eq 'y' && $tiki_p_tell_a_friend eq 'y'}
-							<li>
-								<a class="dropdown-item" href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
+							<li class="dropdown-item">
+								<a href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
 									{icon name="envelope"} {tr}Send link{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>
@@ -258,8 +258,8 @@
 							</li>
 						{/if}
 						{if !empty($user) and $prefs.feature_notepad eq 'y' and $tiki_p_notepad eq 'y'}
-							<li>
-								<a class="dropdown-item" href="tiki-index.php?page={$page|escape:"url"}&amp;savenotepad=1{if !empty($page_ref_id)}&amp;page_ref_id={$page_ref_id}{/if}">
+							<li class="dropdown-item">
+								<a href="tiki-index.php?page={$page|escape:"url"}&amp;savenotepad=1{if !empty($page_ref_id)}&amp;page_ref_id={$page_ref_id}{/if}">
 									{icon name="notepad"} {tr}Save to notepad{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>
@@ -268,15 +268,15 @@
 						{monitor_link type="wiki page" object=$page class="" linktext="{tr}Notification{/tr}" tag="li"}
 						{if !empty($user) and $prefs.feature_user_watches eq 'y'}
 							{if $user_watching_page eq 'n'}
-								<li>
-									<a class="dropdown-item" href="tiki-index.php?page={$page|escape:"url"}&amp;watch_event=wiki_page_changed&amp;watch_object={$page|escape:"url"}&amp;watch_action=add{if $structure eq 'y'}&amp;structure={$home_info.pageName|escape:'url'}{/if}" class="icon">
+								<li class="dropdown-item">
+									<a href="tiki-index.php?page={$page|escape:"url"}&amp;watch_event=wiki_page_changed&amp;watch_object={$page|escape:"url"}&amp;watch_action=add{if $structure eq 'y'}&amp;structure={$home_info.pageName|escape:'url'}{/if}" class="icon">
 										{icon name="watch"} {tr}Monitor page{/tr}
 										{assign var="hasPageAction" value="1"}
 									</a>
 								</li>
 							{else}
-								<li>
-									<a class="dropdown-item" href="tiki-index.php?page={$page|escape:"url"}&amp;watch_event=wiki_page_changed&amp;watch_object={$page|escape:"url"}&amp;watch_action=remove{if $structure eq 'y'}&amp;structure={$home_info.pageName|escape:'url'}{/if}" class="icon">
+								<li class="dropdown-item">
+									<a href="tiki-index.php?page={$page|escape:"url"}&amp;watch_event=wiki_page_changed&amp;watch_object={$page|escape:"url"}&amp;watch_action=remove{if $structure eq 'y'}&amp;structure={$home_info.pageName|escape:'url'}{/if}" class="icon">
 										{icon name="stop-watching"} {tr}Stop monitoring page{/tr}
 										{assign var="hasPageAction" value="1"}
 									</a>
@@ -284,15 +284,15 @@
 							{/if}
 							{if $structure eq 'y' and $tiki_p_watch_structure eq 'y'}
 								{if $user_watching_structure ne 'y'}
-									<li>
-										<a class="dropdown-item" href="tiki-index.php?page={$page|escape:"url"}&amp;watch_event=structure_changed&amp;watch_object={$page_info.page_ref_id}&amp;watch_action=add_desc&amp;structure={$home_info.pageName|escape:'url'}">
+									<li class="dropdown-item">
+										<a href="tiki-index.php?page={$page|escape:"url"}&amp;watch_event=structure_changed&amp;watch_object={$page_info.page_ref_id}&amp;watch_action=add_desc&amp;structure={$home_info.pageName|escape:'url'}">
 											{icon name="watch"} {tr}Monitor sub-structure{/tr}
 											{assign var="hasPageAction" value="1"}
 										</a>
 									</li>
 								{else}
-									<li>
-										<a class="dropdown-item" href="tiki-index.php?page={$page|escape:"url"}&amp;watch_event=structure_changed&amp;watch_object={$page_info.page_ref_id}&amp;watch_action=remove_desc&amp;structure={$home_info.pageName|escape:'url'}">
+									<li class="dropdown-item">
+										<a href="tiki-index.php?page={$page|escape:"url"}&amp;watch_event=structure_changed&amp;watch_object={$page_info.page_ref_id}&amp;watch_action=remove_desc&amp;structure={$home_info.pageName|escape:'url'}">
 											{icon name="stop-watching"} {tr}Stop monitoring sub-structure{/tr}
 											{assign var="hasPageAction" value="1"}
 										</a>
@@ -301,15 +301,15 @@
 							{/if}
 						{/if}
 						{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
-							<li>
-								<a class="dropdown-item" href="tiki-object_watches.php?objectId={$page|escape:"url"}&amp;watch_event=wiki_page_changed&amp;objectType=wiki+page&amp;objectName={$page|escape:"url"}&amp;objectHref={'tiki-index.php?page='|cat:$page|escape:"url"}" class="icon">
+							<li class="dropdown-item">
+								<a href="tiki-object_watches.php?objectId={$page|escape:"url"}&amp;watch_event=wiki_page_changed&amp;objectType=wiki+page&amp;objectName={$page|escape:"url"}&amp;objectHref={'tiki-index.php?page='|cat:$page|escape:"url"}" class="icon">
 									{icon name="watch-group"} {tr}Group monitor{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>
 							</li>
 							{if $structure eq 'y'}
-								<li>
-									<a class="dropdown-item" href="tiki-object_watches.php?objectId={$page_info.page_ref_id|escape:"url"}&amp;watch_event=structure_changed&amp;objectType=structure&amp;objectName={$page|escape:"url"}&amp;objectHref={'tiki-index.php?page_ref_id='|cat:$page_ref_id|escape:"url"}" class="icon">
+								<li class="dropdown-item">
+									<a href="tiki-object_watches.php?objectId={$page_info.page_ref_id|escape:"url"}&amp;watch_event=structure_changed&amp;objectType=structure&amp;objectName={$page|escape:"url"}&amp;objectHref={'tiki-index.php?page_ref_id='|cat:$page_ref_id|escape:"url"}" class="icon">
 										{icon name="watch-group"} {tr}Group monitor structure{/tr}
 										{assign var="hasPageAction" value="1"}
 									</a>
@@ -317,7 +317,7 @@
 							{/if}
 						{/if}
 						{if $user and $prefs.user_favorites eq 'y'}
-							<li>
+							<li class="dropdown-item">
 								{favorite type="wiki page" object=$page button_classes="icon"}
 								{assign var="hasPageAction" value="1"}
 							</li>

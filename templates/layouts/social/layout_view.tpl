@@ -139,7 +139,7 @@
 								<a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Log in{/tr} <span
 								class="caret"></span></a>
 								<ul class="dropdown-menu dropdown-login card-body">
-									<li>
+									<li class="dropdown-item">
 										<div>
 		{module
 			module=login_box

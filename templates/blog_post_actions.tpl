@@ -13,7 +13,7 @@
 		<li class="dropdown-title">
 			{tr}Blog post actions{/tr}
 		</li>
-		<li class="divider"></li>
+		<li class="dropdown-divider"></li>
 		<li>
 			<a href="tiki-print_blog_post.php?postId={$post_info.postId}">
 				{icon name="print" _menu_text='y' _menu_icon='y' alt="{tr}Print{/tr}"}
@@ -21,19 +21,19 @@
 		</li>
 		{if $blog_post_context ne 'print'}
 			{if ($ownsblog eq 'y') or ($user and $post_info.user eq $user) or $tiki_p_blog_admin eq 'y'}
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-blog_post.php?blogId={$post_info.blogId}&amp;postId={$post_info.postId}">
 						{icon name="edit"} {tr}Edit{/tr}
 					</a>
 				</li>
-				<li>
+				<li class="dropdown-item">
 					<a href="tiki-view_blog.php?blogId={$post_info.blogId}&amp;remove={$post_info.postId}">
 						{icon name="remove"} {tr}Remove{/tr}
 					</a>
 				</li>
 			{/if}
 			{if $user and $prefs.feature_notepad eq 'y' and $tiki_p_notepad eq 'y'}
-				<li>
+				<li class="dropdown-item">
 					{if $blog_post_context eq 'view_blog'}
 						<a href="tiki-view_blog.php?blogId={$post_info.blogId}&amp;savenotepad={$post_info.postId}">
 							{icon name="notepad"} {tr}Save to notepad{/tr}
@@ -47,7 +47,7 @@
 			{/if}
 		{/if}
 		{if $prefs.feature_blog_sharethis eq "y"}
-			<li>
+			<li class="dropdown-item">
 				{literal}
 				<script type="text/javascript">
 					//Create your sharelet with desired properties and set button element to false
@@ -62,7 +62,7 @@
 			</li>
 		{/if}
 		{if $prefs.sefurl_short_url eq 'y'}
-			<li>
+			<li class="dropdown-item">
 				<a href="tiki-short_url.php?type=post&objectId={$postId}">
 					{icon name="link"} {tr}Get a short URL{/tr}
 					{assign var="hasPageAction" value="1"}

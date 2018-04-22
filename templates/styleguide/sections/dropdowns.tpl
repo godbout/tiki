@@ -7,11 +7,11 @@
 					Dropdown <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					<li><a href="javascript:void(0);">Action</a></li>
-					<li><a href="javascript:void(0);">Another action</a></li>
-					<li><a href="javascript:void(0);">Something else here</a></li>
-					<li role="separator" class="divider"></li>
-					<li><a href="javascript:void(0);">Separated link</a></li>
+					<li class="dropdown-item"><a href="javascript:void(0);">Action</a></li>
+					<li class="dropdown-item"><a href="javascript:void(0);">Another action</a></li>
+					<li class="dropdown-item"><a href="javascript:void(0);">Something else here</a></li>
+					<li role="separator" class="dropdown-divider"></li>
+					<li class="dropdown-item"><a href="javascript:void(0);">Separated link</a></li>
 				</ul>
 			</div>
 		</div>
@@ -23,9 +23,9 @@
 					<input id="sg-dropdown-bg-color" data-selector=".style-guide .dropdown-menu" data-element="background-color" data-var="@dropdown-bg" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".style-guide .dropdown-menu > li > a" data-element="color">
+				<p class="picker" data-selector=".style-guide .dropdown-menu > li.dropdown-item > a" data-element="color">
 					<label for="sg-dropdown-text-color">Text color:</label>
-					<input id="sg-dropdown-text-color" data-selector=".style-guide .dropdown-menu > li > a" data-element="color" data-var="@dropdown-link-color" type="text">
+					<input id="sg-dropdown-text-color" data-selector=".style-guide .dropdown-menu > li.dropdown-item > a" data-element="color" data-var="@dropdown-link-color" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p> </p>
