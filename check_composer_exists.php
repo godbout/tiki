@@ -38,7 +38,7 @@ if (! file_exists('vendor_bundled/vendor/autoload.php')) {
 function createPage($title, $content)
 {
 	echo <<<END
-<!DOCTYPE html 
+<!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -47,7 +47,7 @@ function createPage($title, $content)
 		<link type="text/css" rel="stylesheet" href="themes/default/css/default.css" />
 		<title>$title</title>
 	</head>
-	<body class="tiki_wiki fixed_width">
+	<body class="tiki_wiki fixed_width" style="padding: 3em">
 		<div id="fixedwidth" class="fixedwidth">
 			<div class="header_outer">
 				<div class="header_container">
@@ -59,18 +59,18 @@ function createPage($title, $content)
 								</div>
 							</div>
 						</header>
-					</div>	
+					</div>
 				</div>
 			</div>
 			<div class="middle_outer">
 				<div name="middle" class="fixedwidth">
 					<div class="topbar clearfix">
-						<h1 style="font-size: 30px; line-height: 30px; text-shadow: 3px 2px 0 #ccccff; margin: 8px 0 0 10px; padding: 0;">
+						<h1 style="font-size: 30px; line-height: 30px; text-shadow: 3px 2px 0 #ccccff; margin-top: 50px">
 							$title
 						</h1>
 					</div>
 				</div>
-				<div id="middle" style="width: 960px; text-align: left; padding: 3em;">
+				<div id="middle" style="text-align: left; padding: 3em 0">
 					$content
 				</div>
 			</div>
