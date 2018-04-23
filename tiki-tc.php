@@ -71,11 +71,6 @@ if ($prefs['feature_theme_control'] == 'y' && empty($_SESSION['try_theme'])) {
 			$headerlib->add_cssfile($tc_custom_css, 53);
 		}
 
-		//RESET IE specific CSS
-		global $style_ie8_css, $style_ie9_css;
-		$style_ie8_css = $themelib->get_theme_path($tc_theme, $tc_theme_option, 'ie8.css');
-		$style_ie9_css = $themelib->get_theme_path($tc_theme, $tc_theme_option, 'ie9.css');
-
 		//RESET $theme_path global variable
 		$theme_path = $tc_theme_path;
 

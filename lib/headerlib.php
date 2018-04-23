@@ -426,7 +426,6 @@ class HeaderLib
 
 	function output_headers()
 	{
-		global $style_ie8_css, $style_ie9_css;
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_modifier_escape');
 
@@ -481,19 +480,6 @@ class HeaderLib
 			$back .= "-->\n</style>\n";
 		}
 
-		// Handle theme's special CSS file for IE8 or IE9 hacks
-		$back .= "<!--[if IE 8]>\n"
-				. '<link rel="stylesheet" href="themes/base_files/feature_css/ie8.css" type="text/css">' . "\n";
-		if ($style_ie8_css != '') {
-			$back .= '<link rel="stylesheet" href="' . smarty_modifier_escape($this->convert_cdn($style_ie8_css)) . '" type="text/css" />' . "\n";
-		}
-		$back .= "<![endif]-->\n";
-		$back .= "<!--[if IE 9]>\n"
-				. '<link rel="stylesheet" href="themes/base_files/feature_css/ie9.css" type="text/css">' . "\n";
-		if ($style_ie9_css != '') {
-			$back .= '<link rel="stylesheet" href="' . smarty_modifier_escape($this->convert_cdn($style_ie9_css)) . '" type="text/css" />' . "\n";
-		}
-		$back .= "<![endif]-->\n";
 
 		if (count($this->rssfeeds)) {
 			foreach ($this->rssfeeds as $x => $rssf) {

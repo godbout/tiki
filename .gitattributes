@@ -6682,8 +6682,6 @@ themes/base_files/feature_css/calendar.css -text
 themes/base_files/feature_css/codemirror_mode_tiki.css -text
 themes/base_files/feature_css/codemirror_tiki.css -text
 themes/base_files/feature_css/galleriffic.css -text
-themes/base_files/feature_css/ie8.css -text
-themes/base_files/feature_css/ie9.css -text
 themes/base_files/feature_css/index.php -text
 themes/base_files/feature_css/jscalendar.css -text
 themes/base_files/feature_css/svg-edit-draw.css -text

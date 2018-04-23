@@ -112,9 +112,9 @@ if (! empty($prefs['header_custom_less'])) {
 	}
 }
 
-//6) Allow to have a IE specific CSS files for the theme's specific hacks
-$style_ie8_css = $themelib->get_theme_path($theme_active, $theme_option_active, 'ie8.css');
-$style_ie9_css = $themelib->get_theme_path($theme_active, $theme_option_active, 'ie9.css');
+//6) Allow to have a IE specific CSS files for the theme's specific hacks (IE 8 and 9 support dropped in Bootstrap 4)
+// $style_ie8_css = $themelib->get_theme_path($theme_active, $theme_option_active, 'ie8.css');
+// $style_ie9_css = $themelib->get_theme_path($theme_active, $theme_option_active, 'ie9.css');
 
 //7) include optional custom.css if there. In case of theme option, first include main theme's custom.css, than the option's custom.css
 if (! empty($theme_option_active)) {
