@@ -77,16 +77,11 @@ class Services_Menu_Controller
 		];
 	}
 
-
-
-    function action_edit_icon($input)
-    {
-
-        $menuLib=$this->menulib;
-        $menuLib->replace_menu_icon($input->optionid->text(), $input->updatedicon->text());
-
-
-    }
+	function action_edit_icon($input)
+	{
+		$menuLib=$this->menulib;
+		$menuLib->replace_menu_icon($input->optionid->text(), $input->updatedicon->text());
+	}
 
 	function action_clone($input)
 	{
