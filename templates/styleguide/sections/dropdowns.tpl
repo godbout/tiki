@@ -21,12 +21,12 @@
 				<p class="picker" data-selector=".style-guide .dropdown-menu" data-element="background-color">
 					<label for="sg-dropdown-bg-color">Background:</label>
 					<input id="sg-dropdown-bg-color" data-selector=".style-guide .dropdown-menu" data-element="background-color" data-var="@dropdown-bg" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<span class="input-group-append"><i></i></span>
 				</p>
 				<p class="picker" data-selector=".style-guide .dropdown-menu > li.dropdown-item > a" data-element="color">
 					<label for="sg-dropdown-text-color">Text color:</label>
 					<input id="sg-dropdown-text-color" data-selector=".style-guide .dropdown-menu > li.dropdown-item > a" data-element="color" data-var="@dropdown-link-color" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<span class="input-group-append"><i></i></span>
 				</p>
 				<p> </p>
 				<p>

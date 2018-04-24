@@ -33,7 +33,7 @@
 	<div class="panel panel-default hidden">
 		<div class="panel-heading">
 			<div class="input-group">
-				<span class="input-group-addon">
+				<span class="input-group-append">
 					{icon name="search"}
 				</span>
 				<input type="text" placeholder="{$object_selector.placeholder|escape}..." value="" class="filter form-control" autocomplete="off">

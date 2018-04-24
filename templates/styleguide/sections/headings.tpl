@@ -21,7 +21,7 @@
 				</p>
 				<p class="picker" data-selector=".h1" data-element="color">
 					<label for="sg-h1-color">Color:</label>
-					<input id="sg-h1-color" data-selector=".h1" data-element="color" type="text"><span class="input-group-addon"><i></i></span>
+					<input id="sg-h1-color" data-selector=".h1" data-element="color" type="text"><span class="input-group-append"><i></i></span>
 				</p>
 				<p>
 					<input id="sg-h1-uppercase" class="nocolor check" data-selector=".h1" data-element="text-transform" type="checkbox" data-default="none" data-check="uppercase">
@@ -52,7 +52,7 @@
 				</p>
 				<p class="picker" data-selector=".h2" data-element="color">
 					<label for="sg-h2-color">Color:</label>
-					<input id="sg-h2-color" data-selector=".h2" data-element="color" type="text"><span class="input-group-addon"><i></i></span>
+					<input id="sg-h2-color" data-selector=".h2" data-element="color" type="text"><span class="input-group-append"><i></i></span>
 				</p>
 				<p>
 					<input id="sg-h2-uppercase" class="nocolor check" data-selector=".h2" data-element="text-transform" type="checkbox" data-default="none" data-check="uppercase">
@@ -83,7 +83,7 @@
 				</p>
 				<p class="picker" data-selector=".h3" data-element="color">
 					<label for="sg-h3-color">Color:</label>
-					<input id="sg-h3-color" data-selector=".h3" data-element="color" type="text"><span class="input-group-addon"><i></i></span>
+					<input id="sg-h3-color" data-selector=".h3" data-element="color" type="text"><span class="input-group-append"><i></i></span>
 				</p>
 				<p>
 					<input id="sg-h3-uppercase" class="nocolor check" data-selector=".h3" data-element="text-transform" type="checkbox" data-default="none" data-check="uppercase">
@@ -115,7 +115,7 @@
 				<p class="picker" data-selector=".h4" data-element="color">
 					<label for="sg-h4-color">Color:</label>
 					<input id="sg-h4-color" data-selector=".h4" data-element="color" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<span class="input-group-append"><i></i></span>
 				</p>
 				<p>
 					<input id="sg-h4-uppercase" class="nocolor check" data-selector=".h4" data-element="text-transform" type="checkbox" data-default="none" data-check="uppercase">
@@ -147,7 +147,7 @@
 				<p class="picker" data-selector=".h5" data-element="color">
 					<label for="sg-h5-color">Color:</label>
 					<input id="sg-h5-color" data-selector=".h5" data-element="color" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<span class="input-group-append"><i></i></span>
 				</p>
 				<p>
 					<input id="sg-h5-uppercase" class="nocolor check" data-selector=".h5" data-element="text-transform" type="checkbox" data-default="none" data-check="uppercase">
@@ -179,7 +179,7 @@
 				<p class="picker" data-selector=".h6" data-element="color">
 					<label for="sg-h6-color">Color:</label>
 					<input id="sg-h6-color" data-selector=".h6" data-element="color" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<span class="input-group-append"><i></i></span>
 				</p>
 				<p>
 					<input id="sg-h6-uppercase" class="nocolor check" data-selector=".h6" data-element="text-transform" type="checkbox" data-default="none" data-check="uppercase">

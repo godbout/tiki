@@ -33,27 +33,27 @@
 					<div class="col-sm-12">
 						<div class="pull-left label-group">
 							<div class="input-group input-group-sm" style="max-width: 100%">
-								<span class="input-group-addon">{icon name='sort'}</span>
+								<span class="input-group-append">{icon name='sort'}</span>
 								<input type="text" class="field-label form-control" value="" placeholder="{tr}New option{/tr}" readonly="readonly">
-								<span class="tips input-group-addon option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
+								<span class="tips input-group-append option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
 									<input type="checkbox" class="samepos">
 									{$prevpos = $option.position}
 								</span>
-								<a href="#" class="tips input-group-addon text-muted" title="{tr}New option{/tr}|{tr}Drag this on to the menu area below{/tr}">
+								<a href="#" class="tips input-group-append text-muted" title="{tr}New option{/tr}|{tr}Drag this on to the menu area below{/tr}">
 									{icon name='info'}
 								</a>
 							</div>
 						</div>
 						<div class="pull-left url-group hidden">
 							<div class="input-group input-group-sm">
-								<a href="#" class="input-group-addon" onclick='return false;'>
+								<a href="#" class="input-group-append" onclick='return false;'>
 									{icon name='link'}
 								</a>
 								<input type="text" class="field-url form-control" value="" placeholder="{tr}URL or ((page name)){/tr}">
-								<a href="#" class="input-group-addon text-muted option-edit">
+								<a href="#" class="input-group-append text-muted option-edit">
 									{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
 								</a>
-								<a href="#" class="input-group-addon text-danger option-remove" disabled="disabled">
+								<a href="#" class="input-group-append text-danger option-remove" disabled="disabled">
 									{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</div>
@@ -130,27 +130,27 @@
 
 								<div class="pull-left label-group">
 									<div class="input-group input-group-sm">
-										<span class="input-group-addon">{icon name='sort'}</span>
+										<span class="input-group-append">{icon name='sort'}</span>
 										<input type="text" class="field-label form-control" value="{$option.name|escape}" placeholder="{tr}Label{/tr}">
-										<span class="tips input-group-addon option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
+										<span class="tips input-group-append option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
 											<input type="checkbox" class="samepos"{if $option.position eq $prevpos} checked="checked"{/if}>
 											{$prevpos = $option.position}
 										</span>
-										<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-addon" title='{$tooltip|escape}'>
+										<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-append" title='{$tooltip|escape}'>
 											{icon name='info'}
 										</a>
 									</div>
 								</div>
 								<div class="pull-left url-group">
 									<div class="input-group input-group-sm">
-										<a href="{$option.sefurl|escape}" class="input-group-addon tips confirm" title="|{tr}Test URL{/tr}">
+										<a href="{$option.sefurl|escape}" class="input-group-append tips confirm" title="|{tr}Test URL{/tr}">
 											{icon name='link'}
 										</a>
 										<input type="text" class="field-url form-control" value="{$option.canonic|escape}" placeholder="{tr}URL or ((page name)){/tr}">
-										<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-addon option-edit confirm" title="|{tr}Details{/tr}">
+										<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-append option-edit confirm" title="|{tr}Details{/tr}">
 											{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
 										</a>
-										<a href="#" class="tips input-group-addon text-danger option-remove" title="|{tr}Remove Option{/tr}">
+										<a href="#" class="tips input-group-append text-danger option-remove" title="|{tr}Remove Option{/tr}">
 											{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
 										</a>
 									</div>

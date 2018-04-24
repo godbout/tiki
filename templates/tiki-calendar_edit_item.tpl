@@ -194,7 +194,7 @@ $("#id_recurrent").click(function () {
 								{if $recurrence.id eq 0 or $recurrence.weekly}
 									<div class="form-group">
 										<div class="col-md-offset-1 col-md-4 input-group">
-											<span class="input-group-addon">{tr}Each{/tr}</span>
+											<span class="input-group-append">{tr}Each{/tr}</span>
 											<select name="weekday" class="form-control">
 												<option value="0" {if $recurrence.weekday eq '0'} selected="selected" {/if} >
 													{tr}Sunday{/tr}
@@ -219,7 +219,7 @@ $("#id_recurrent").click(function () {
 													{tr}Saturday{/tr}
 												</option>
 											</select>
-											<span class="input-group-addon">{tr}of the week{/tr}</span>
+											<span class="input-group-append">{tr}of the week{/tr}</span>
 										</div>
 										<hr/>
 									</div>
@@ -237,7 +237,7 @@ $("#id_recurrent").click(function () {
 								{if $recurrence.id eq 0 or $recurrence.monthly}
 								<div class="form-group">
 									<div class="col-md-offset-1 col-md-4 input-group">
-										<span class="input-group-addon">{tr}Each{/tr}</span>
+										<span class="input-group-append">{tr}Each{/tr}</span>
 										<select name="dayOfMonth" class="form-control">
 											{section name=k start=1 loop=32}
 												<option value="{$smarty.section.k.index}" {if $recurrence.dayOfMonth eq $smarty.section.k.index} selected="selected" {/if} >
@@ -248,7 +248,7 @@ $("#id_recurrent").click(function () {
 												</option>
 											{/section}
 										</select>
-										<span class="input-group-addon">{tr}of the month{/tr}</span>
+										<span class="input-group-append">{tr}of the month{/tr}</span>
 									</div>
 									<hr/>
 								</div>
@@ -269,7 +269,7 @@ $("#id_recurrent").click(function () {
 								{if $recurrence.id eq 0 or $recurrence.yearly}
 								<div class="form-group">
 									<div class="col-md-offset-1 col-md-4 input-group">
-										<span class="input-group-addon">{tr}Each{/tr}</span>
+										<span class="input-group-append">{tr}Each{/tr}</span>
 										<select name="dateOfYear_day" class="form-control" onChange="checkDateOfYear(this.options[this.selectedIndex].value,document.forms['f'].elements['dateOfYear_month'].options[document.forms['f'].elements['dateOfYear_month'].selectedIndex].value);">
 											{section name=k start=1 loop=32}
 												<option value="{$smarty.section.k.index}" {if $recurrence.dateOfYear_day eq $smarty.section.k.index} selected="selected" {/if} >
@@ -280,7 +280,7 @@ $("#id_recurrent").click(function () {
 												</option>
 											{/section}
 										</select>
-										<span class="input-group-addon">{tr}of{/tr}</span>
+										<span class="input-group-append">{tr}of{/tr}</span>
 										<select name="dateOfYear_month" class="form-control" onChange="checkDateOfYear(document.forms['f'].elements['dateOfYear_day'].options[document.forms['f'].elements['dateOfYear_day'].selectedIndex].value,this.options[this.selectedIndex].value);">
 											<option value="1" {if $recurrence.dateOfYear_month eq '1'} selected="selected" {/if} >
 												{tr}January{/tr}
@@ -362,7 +362,7 @@ $("#id_recurrent").click(function () {
 											{assign var='occurnumber' value="{tr}occurrences{/tr}"}
 										{/if}
 										">
-										<span class="input-group-addon">{$occurnumber}</span>
+										<span class="input-group-append">{$occurnumber}</span>
 									</div>
 									<br>
 									<input type="radio" id="id_endTypeDt" name="endType" value="dt" {if $recurrence.endPeriod gt 0} checked="checked" {/if} >

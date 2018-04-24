@@ -47,7 +47,7 @@
 					<div class="form-group">
 						<input type="hidden" name="current_page_id" value="{$page_info.page_ref_id}">
 						<div class="input-group">
-							<span class="input-group-addon">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
+							<span class="input-group-append">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
 							<input type="text" id="structure_add_page" name="page" class="form-control input-sm">
 							{autocomplete element='#structure_add_page' type='pagename'}
 							<div class="input-group-btn">

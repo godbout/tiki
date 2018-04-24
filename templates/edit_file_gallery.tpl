@@ -152,7 +152,7 @@ if ($(this).val() != '') {
 							<div class="col-sm-8">
 								<div class="input-group col-sm-4">
 									<input type="text" class="form-control" id="quota" name="quota" value="{$gal_info.quota}" size="5">
-									<span class="input-group-addon"> {tr}Mb{/tr}</span>
+									<span class="input-group-append"> {tr}Mb{/tr}</span>
 								</div>
 								<span class="help-block">{tr}0 for unlimited{/tr}</span>
 								{if $gal_info.usedSize}<br>{tr}Used:{/tr} {$gal_info.usedSize|kbsize}{/if}
@@ -193,7 +193,7 @@ if ($(this).val() != '') {
 					<div class="col-sm-8">
 						<div class="input-group col-sm-4">
 							<input type="text" name="image_max_size_x" id="image_max_size_x" value="{$gal_info.image_max_size_x|escape}" class="form-control text-right">
-							<span class="input-group-addon"> px</span>
+							<span class="input-group-append"> px</span>
 						</div>
 						<span class="help-block">{tr}If an image is wider than this, it will be resized.{/tr} {tr}Attention: In this case, the original image will be lost.{/tr} (0={tr}unlimited{/tr})</span>
 					</div>
@@ -203,7 +203,7 @@ if ($(this).val() != '') {
 					<div class="col-sm-8">
 						<div class="input-group col-sm-4">
 							<input type="text" name="image_max_size_y" id="image_max_size_y" value="{$gal_info.image_max_size_y|escape}" class="form-control text-right">
-							<span class="input-group-addon"> px</span>
+							<span class="input-group-append"> px</span>
 						</div>
 						<span class="help-block">{tr}If an image is higher than this, it will be resized.{/tr} {tr}Attention: In this case, the original image will be lost.{/tr} (0={tr}unlimited{/tr})</span>
 					</div>

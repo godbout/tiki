@@ -38,7 +38,7 @@
 		<div class="find-text form-group">
 			<div class="col-xs-12">
 				<div class="input-group">
-					<span class="input-group-addon">
+					<span class="input-group-append">
 						{* This icon made some sense when this form was on a single line by default. Now that it spans numerous lines, the area indicated by this search icon is no longer clear. This should be removed or the scope should be clarified. 2017-09-01 *}
 						{icon name="search"}
 					</span>
