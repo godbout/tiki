@@ -46,7 +46,7 @@
 				</div>
 			{/if}
 
-			<div class="col col1 col-md-9" id="col1">
+			<div class="col col1 col-md-12 col-lg-9" id="col1">
 				{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 					{modulelist zone=pagetop}
 				{/if}
@@ -59,7 +59,7 @@
 					{modulelist zone=pagebottom}
 				{/if}
 			</div>
-			<div class="col col3 col-md-3" id="col3">
+			<div class="col col3 col-md-12 col-lg-3" id="col3">
 				{modulelist zone=right}
 			</div>
 		{elseif zone_is_empty('right') or $prefs.feature_right_column eq 'n'}
@@ -69,7 +69,7 @@
 					{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 				</div>
 			{/if}
-			<div class="col col1 col-md-9" id="col1">
+			<div class="col col1 col-md-12 col-lg-9 order-md-1 order-lg-2" id="col1">
 				{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 					{modulelist zone=pagetop}
 				{/if}
@@ -82,7 +82,7 @@
 					{modulelist zone=pagebottom}
 				{/if}
 			</div>
-			<div class="col col2 col-md-3 order-sm-2 order-md-1" id="col2">
+			<div class="col col2 col-md-12 col-lg-3 order-sm-2 order-md-2 order-lg-1" id="col2">
 				{modulelist zone=left}
 			</div>
 		{else}
