@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark admin-navbar" role="navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light admin-navbar" role="navigation">
 
 		<form method="post" action="" class="form my-2 my-md-0" role="form">
 			<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
@@ -125,7 +125,7 @@
 	</div>
 </nav>
 	{if $include != "list_sections"}
-		<div class="adminanchors panel-body clearfix bg-dark"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
+		<div class="adminanchors panel-body clearfix bg-light"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
 	{/if}
 
 
