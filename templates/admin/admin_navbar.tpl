@@ -1,15 +1,12 @@
-<nav class="navbar navbar-default admin-navbar" role="navigation">
-	<div class="navbar-header">
-		<form method="post" action="" class="form" role="form">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark admin-navbar" role="navigation">
+
+		<form method="post" action="" class="form my-2 my-md-0" role="form">
 			<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
 			<label for="preffilter-toggle-1"></label>
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#admin-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<ul class="nav navbar-nav filter-menu col-xs-4 col-xs-push-1"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse-1" aria-controls="admin-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			<ul class="nav navbar-nav filter-menu {*col-xs-4 col-xs-push-1*}"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 80px;">
 						{icon name="filter"} <span class="caret"></span>
@@ -113,25 +110,24 @@
 				</li>
 			</ul>
 		</form>
-	</div>
+
 	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		{include file="admin/admin_navbar_menu.tpl"}
-		<ul class="nav navbar-nav navbar-right">
-			<li>
-				<form method="post" action="" class="navbar-form" role="form">
+
+				<form method="post" action="" class="form-inline my-2 my-md-0" role="form">
 					<div class="form-group">
 						<input type="hidden" name="filters">
 						<input type="text" name="lm_criteria" value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}..." autofocus="autofocus">
 					</div>
 					<button type="submit" class="btn btn-primary" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 				</form>
-			</li>
-		</ul>
+
 	</div>
-	{if $include != "list_sections"}
-		<div class="adminanchors panel-body clearfix"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
-	{/if}
 </nav>
+	{if $include != "list_sections"}
+		<div class="adminanchors panel-body clearfix bg-dark"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
+	{/if}
+
 
 {if $lm_searchresults}
 	<div class="panel panel-default" id="pref_searchresults">
