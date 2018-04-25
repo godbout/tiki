@@ -122,7 +122,7 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-3">{tr}Image size:{/tr}</label>
-			<div class="col-sm-7 form-control-static">
+			<div class="col-sm-7 form-control-plaintext">
 				{$image_size}
 			</div>
 		</div>

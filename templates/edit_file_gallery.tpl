@@ -15,7 +15,7 @@
 				<div class="form-group">
 					<label for="name" class="col-sm-4 control-label">{tr}Name{/tr}</label>
 					<div class="col-sm-8">
-						<p class="form-control-static">
+						<p class="form-control-plaintext">
 							{if $galleryId eq $treeRootId or $gal_info.type eq 'user'}
 								<b>{tr}{$gal_info.name}{/tr}</b>
 								<input type="hidden" name="name" value="{$gal_info.name|escape}" class="form-control">
@@ -58,7 +58,7 @@ if ($(this).val() != '') {
 				<div class="form-group">
 					<label for="fgal_type" class="col-sm-4 control-label">{tr}Type{/tr}</label>
 					<div class="col-sm-8">
-						<p class="form-control-static">
+						<p class="form-control-plaintext">
 							{if $galleryId eq $treeRootId or $gal_info.type eq 'user'}
 								{if $gal_info.type eq 'system'}
 									{tr}System{/tr}

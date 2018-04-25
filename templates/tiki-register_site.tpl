@@ -83,7 +83,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-3">{tr}URL:{/tr}</label>
-						<div class="col-sm-7 form-control-static">
+						<div class="col-sm-7 form-control-plaintext">
 							<input type="hidden" name="url" value="{$info.url|escape}" class="form-control">{$info.url|escape}
 						</div>
 					</div>

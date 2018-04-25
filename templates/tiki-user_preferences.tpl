@@ -199,7 +199,7 @@
 							</select>
 							<span class="help-block">If email is public, select a scrambling method to prevent spam</span>
 						{else}
-							<p class="form-control-static">{tr}Unavailable - please set your email below{/tr}</p>
+							<p class="form-control-plaintext">{tr}Unavailable - please set your email below{/tr}</p>
 						{/if}
 					</div>
 				</div>

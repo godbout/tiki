@@ -9,7 +9,7 @@
 				<input type="hidden" name="oe" value="UTF-8"/>
 				<input type="hidden" name="ie" value="UTF-8"/>
 				<input type="hidden" name="btnG" value="Google Search"/>
-				<input name="googles" class="form-control-static" type="image" src="img/googleg.gif" alt="Google" />
+				<input name="googles" class="form-control-plaintext" type="image" src="img/googleg.gif" alt="Google" />
 			</div>
 			<div class="col-sm-10">
 				<input type="text" name="q" class="form-control" maxlength="100" />

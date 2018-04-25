@@ -38,7 +38,7 @@
 							<input type="text" class="form-control" id="user" name="user">
 						{else}
 							<input type="hidden" id="user" name="user" value="{$userlogin|escape}">
-							<div class="form-control-static"><strong>{$userlogin|escape}</strong></div>
+							<div class="form-control-plaintext"><strong>{$userlogin|escape}</strong></div>
 						{/if}
 					</div>
 				</div>

@@ -248,7 +248,7 @@
 				</div>
 				<div class="form-group form-inline">
 					<label class="control-label col-sm-2">{tr}Must be wiki parsed:{/tr}</label>
-					<div class="col-sm-10 form-control-static">
+					<div class="col-sm-10 form-control-plaintext">
 						<label><input type="checkbox" name="wikiparse" {if empty($info.wikiparse) or $info.wikiparse eq 'y'} checked="checked"{/if}> {tr}Wiki Parsed{/tr}&nbsp;</label>
 						<label><input type="checkbox" name="is_html" {if $info.is_html} checked="checked"{/if}> {tr}Is HTML{/tr}</label>
 					</div>

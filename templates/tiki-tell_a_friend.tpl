@@ -27,7 +27,7 @@
 	<input type="hidden" name="url" value="{$url|escape:url}">
 	<div class="form-group">
 		<label class="control-label col-sm-3">{tr}Link{/tr}</label>
-		<div class="col-sm-7 form-control-static">
+		<div class="col-sm-7 form-control-plaintext">
 			<a href={$prefix}{$url}>{$prefix}{$url}</a>
 		</div>
 	</div>

@@ -53,13 +53,13 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label">{tr}Name{/tr}</label>
 			<div class="col-sm-7">
-				<p class="form-control-static">{$nl_info.name|escape}</p>
+				<p class="form-control-plaintext">{$nl_info.name|escape}</p>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">{tr}Description{/tr}</label>
 			<div class="col-sm-7">
-				<p class="form-control-static">{$nl_info.description|escape|nl2br}</p>
+				<p class="form-control-plaintext">{$nl_info.description|escape|nl2br}</p>
 			</div>
 		</div>
 		{if ($nl_info.allowUserSub eq 'y') or ($tiki_p_admin_newsletters eq 'y')}

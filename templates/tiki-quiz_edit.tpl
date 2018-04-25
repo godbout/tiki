@@ -18,7 +18,7 @@
 
 	<div class="form-group">
 		<label class="control-label col-sm-2 text-left">{tr}Status{/tr}</label>
-		<div class="col-sm-7 form-control-static">
+		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('status');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('status');">{tr}Hide{/tr}</a> ]
 			<div id="status" style="display:none;">
@@ -51,7 +51,7 @@
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2">{tr}General Options{/tr}</label>
-		<div class="col-sm-7 form-control-static">
+		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('general');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('general');">{tr}Hide{/tr}</a> ]
 			<div id="general" style="display:none;">
@@ -85,7 +85,7 @@
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2 text-left">{tr}Test-time Options{/tr}</label>
-		<div class="col-sm-7 form-control-static">
+		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('test-time');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('test-time');">{tr}Hide{/tr}</a> ]
 			<div id="test-time" style="display:none;">
@@ -148,7 +148,7 @@
 
 	<div class="form-group">
 		<label class="control-label col-sm-2 text-left">{tr}Grading and Feedback{/tr}</label>
-		<div class="col-sm-7 form-control-static">
+		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('feedback');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('feedback');">{tr}Hide{/tr}</a> ]
 			<div id="feedback" style="display:none;">
@@ -202,7 +202,7 @@
 
 	<div class="form-group">
 		<label class="control-label col-sm-2 text-left">{tr}Extra Options{/tr}</label>
-		<div class="col-sm-7 form-control-static">
+		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('after-test');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('after-test');">{tr}Hide{/tr}</a> ]
 			<div id="after-test" style="display:none;">
