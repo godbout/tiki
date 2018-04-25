@@ -50,7 +50,7 @@
 							{if $payment_info.state eq 'authorized'}
 								{permission name=payment_admin}
 									<form method="post" action="{service controller=payment action=capture paymentId=$payment_info.paymentRequestId}">
-										<input type="submit" class="btn btn-xs btn-warning" value="{tr}Capture Payment{/tr}">
+										<input type="submit" class="btn btn-sm btn-warning" value="{tr}Capture Payment{/tr}">
 										<input type="hidden" name="next" value="{$smarty.server.REQUEST_URI|escape}">
 									</form>
 								{/permission}

@@ -16,9 +16,9 @@
 			{if not empty($param.type)}
 				{$onclick = "openFgalsWindow('{$prefs.home_file_gallery|sefurl:'file gallery':true}filegals_manager={$param.area|escape}&id=1', true);return false;"}
 				{if $param.type eq 'image'}
-					<br>{icon name='image' title='{tr}Select image{/tr}' onclick=$onclick class='btn btn-xs btn-primary'}
+					<br>{icon name='image' title='{tr}Select image{/tr}' onclick=$onclick class='btn btn-sm btn-primary'}
 				{elseif $param.type eq 'fileId'}
-					<br>{icon name='file' title='{tr}Pick a file{/tr}' onclick=$onclick class='btn btn-xs btn-primary'}
+					<br>{icon name='file' title='{tr}Pick a file{/tr}' onclick=$onclick class='btn btn-sm btn-primary'}
 				{elseif $param.type eq 'kaltura'}
 					{jq}
 $("#picker_{{$name|escape}}").parent().click(function () {
@@ -36,7 +36,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 	return false;
 });
 					{/jq}
-					<br>{icon name='video' title='{tr}Upload or record media{/tr}' href={service controller='kaltura' action='upload'} id='picker_'|cat:$name|escape class='btn btn-xs btn-primary'}
+					<br>{icon name='video' title='{tr}Upload or record media{/tr}' href={service controller='kaltura' action='upload'} id='picker_'|cat:$name|escape class='btn btn-sm btn-primary'}
 				{/if}
 			{/if}
 		</div>
@@ -96,7 +96,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 				</div>
 			{/foreach}
 			{if not empty($info.advancedParams)}
-				{button _text='Advanced' _onclick="$('.form-group.advanced.default').toggle('fast'); return false;" _class='btn btn-xs margin-bottom-md'}
+				{button _text='Advanced' _onclick="$('.form-group.advanced.default').toggle('fast'); return false;" _class='btn btn-sm margin-bottom-md'}
 				{foreach $info.advancedParams as $name => $param}
 					<div class="form-group advanced default" style="display: none;">
 						{plugin_edit_row param=$param name=$name info=$info pluginArgs=$pluginArgs}

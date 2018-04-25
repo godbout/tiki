@@ -460,7 +460,7 @@ $("#id_recurrent").click(function () {
 						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_timespan class='form-control date nochosen'}
 					</div>
 					<div class="col-md-2 time">
-						<a href="#" id="durationBtn" class="btn btn-xs btn-primary">
+						<a href="#" id="durationBtn" class="btn btn-sm btn-primary">
 							{tr}Show duration{/tr}
 						</a>
 					</div>

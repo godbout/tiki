@@ -2,7 +2,6 @@
 	<h2>Buttons</h2>
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-primary btn-xs">Default</button>
 			<button type="button" class="btn btn-primary btn-sm">Default</button>
 			<button type="button" class="btn btn-primary">Default</button>
 			<button type="button" class="btn btn-primary btn-lg">Default</button>
@@ -31,7 +30,6 @@
 
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-secondary btn-xs">Primary</button>
 			<button type="button" class="btn btn-secondary btn-sm">Primary</button>
 			<button type="button" class="btn btn-secondary">Primary</button>
 			<button type="button" class="btn btn-secondary btn-lg">Primary</button>
@@ -60,7 +58,6 @@
 
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-success btn-xs">Success</button>
 			<button type="button" class="btn btn-success btn-sm">Success</button>
 			<button type="button" class="btn btn-success">Success</button>
 			<button type="button" class="btn btn-success btn-lg">Success</button>
@@ -89,7 +86,6 @@
 
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-info btn-xs">Info</button>
 			<button type="button" class="btn btn-info btn-sm">Info</button>
 			<button type="button" class="btn btn-info">Info</button>
 			<button type="button" class="btn btn-info btn-lg">Info</button>
@@ -118,7 +114,6 @@
 
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-warning btn-xs">Warning</button>
 			<button type="button" class="btn btn-warning btn-sm">Warning</button>
 			<button type="button" class="btn btn-warning">Warning</button>
 			<button type="button" class="btn btn-warning btn-lg">Warning</button>
@@ -147,7 +142,6 @@
 
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-danger btn-xs">Danger</button>
 			<button type="button" class="btn btn-danger btn-sm">Danger</button>
 			<button type="button" class="btn btn-danger">Danger</button>
 			<button type="button" class="btn btn-danger btn-lg">Danger</button>

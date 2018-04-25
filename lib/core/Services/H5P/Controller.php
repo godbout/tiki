@@ -48,7 +48,7 @@ class Services_H5P_Controller
 							'index' => $index,
 						]),
 						'_text' => tra('Create H5P content'),
-						'_class' => 'create-h5p-content btn-xs',
+						'_class' => 'create-h5p-content btn-sm',
 					], $smarty),
 				];
 			} else {
@@ -94,7 +94,7 @@ class Services_H5P_Controller
 					'index' => $index,
 				]),
 				'_text' => tra('Edit'),
-				'_class' => 'edit-h5p-content btn-xs',
+				'_class' => 'edit-h5p-content btn-sm',
 			], $smarty);
 		}
 		return [

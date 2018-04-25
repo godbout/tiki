@@ -99,7 +99,7 @@
 				d.style.display="none";
 
 				d=document.getElementById('minichata_'+minichat_selectedchan.id);
-				d.setAttribute('class', 'btn btn-primary btn-xs minichata_unselected');
+				d.setAttribute('class', 'btn btn-primary btn-sm minichata_unselected');
 
 				minichat_selectedchan=null;
 			}
@@ -110,7 +110,7 @@
 					d.style.display="";
 
 					d=document.getElementById('minichata_'+c.id);
-					d.setAttribute('class', 'active btn btn-primary btn-xs minichata_selected');
+					d.setAttribute('class', 'active btn btn-primary btn-sm minichata_selected');
 
 					minichat_selectedchan=c;
 				}
@@ -130,7 +130,7 @@
 			var d=minichat_newelem("div", { 'id' : 'minichatdiv_'+c.id , 'class' : 'minichatdiv' });
 			document.getElementById('minichat').appendChild(d);
 
-			d=minichat_newelem("a", { 'id' : 'minichata_'+c.id, 'class' : 'btn btn-primary btn-xs minichata_unselected', 'role' : 'button' , 'href' : "javascript: minichat_selectchannel('"+c.name+"');" });
+			d=minichat_newelem("a", { 'id' : 'minichata_'+c.id, 'class' : 'btn btn-primary btn-sm minichata_unselected', 'role' : 'button' , 'href' : "javascript: minichat_selectchannel('"+c.name+"');" });
 			d.innerHTML=c.name;
 			document.getElementById('minichatchans').appendChild(d);
 

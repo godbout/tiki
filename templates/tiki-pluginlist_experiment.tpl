@@ -20,7 +20,7 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-6 col-sm-push-6">
-								<input class="btn btn-secondary btn-xs" type="submit" name="quickedit" value="{tr}Test Plugin LIST{/tr}">
+								<input class="btn btn-secondary btn-sm" type="submit" name="quickedit" value="{tr}Test Plugin LIST{/tr}">
 							</div>
 							<div class="col-sm-6 col-sm-pull-6">
 								<label for="comment">Plugin LIST content:</label>

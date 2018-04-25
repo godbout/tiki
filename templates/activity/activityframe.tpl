@@ -49,26 +49,26 @@
 		<div class="content">{$activityframe.content}</div>
 		<div class="footer">
 			{if $activityframe.comment && $activity_format neq 'extended'}
-				<a class="comment btn btn-xs" href="{service controller=comment action=list type=$activityframe.comment.type objectId=$activityframe.comment.id modal=true}">
+				<a class="comment btn btn-sm" href="{service controller=comment action=list type=$activityframe.comment.type objectId=$activityframe.comment.id modal=true}">
 					{tr}Comment{/tr}
 					{if $activityframe.activity.comment_count}({$activityframe.activity.comment_count|escape}){/if}
 				</a>
 			{/if}
 			{if $prefs.feature_friends eq 'y' && $activityframe.likeactive}
 				{if $activityframe.like}
-					<a class="like btn btn-xs" href="{service controller=social action=unlike type=$activityframe.object.type id=$activityframe.object.id}">
+					<a class="like btn btn-sm" href="{service controller=social action=unlike type=$activityframe.object.type id=$activityframe.object.id}">
 						{tr}Unlike{/tr}
 						{if $activityframe.activity.like_list}({$activityframe.activity.like_list|count}){/if}
 					</a>
 				{else}
-					<a class="like btn btn-xs" href="{service controller=social action=like type=$activityframe.object.type id=$activityframe.object.id}">
+					<a class="like btn btn-sm" href="{service controller=social action=like type=$activityframe.object.type id=$activityframe.object.id}">
 						{tr}Like{/tr}
 						{if $activityframe.activity.like_list}({$activityframe.activity.like_list|count}){/if}
 					</a>
 				{/if}
 			{/if}
 			{if $tiki_p_admin == 'y'}
-				<a class="delete-activity btn btn-xs" href="{bootstrap_modal controller=managestream action=deleteactivity activityId=$activityframe.activity.object_id}" data-activity-id="{$activityframe.activity.object_id}">
+				<a class="delete-activity btn btn-sm" href="{bootstrap_modal controller=managestream action=deleteactivity activityId=$activityframe.activity.object_id}" data-activity-id="{$activityframe.activity.object_id}">
 					{tr}Delete{/tr}
 				</a>
 			{/if}

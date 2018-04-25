@@ -166,7 +166,7 @@ function wikiplugin_convene($data, $params)
 			$dateHeader .= $tikilib->get_short_datetime($stamp);
 		}
 		$dateHeader .= '</span>';
-		$dateHeader .= ($perms->edit ? " <button class='conveneDeleteDate$i icon btn btn-primary btn-xs' data-date='$stamp'>$deleteicon</button>" : "") . "</td>";
+		$dateHeader .= ($perms->edit ? " <button class='conveneDeleteDate$i icon btn btn-primary btn-sm' data-date='$stamp'>$deleteicon</button>" : "") . "</td>";
 	}
 	$result .= "<tr class='conveneHeaderRow'>";
 
@@ -243,7 +243,7 @@ function wikiplugin_convene($data, $params)
 			$pic .= ($perms->edit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':'
 					. tr("Selected Date")], $smarty) : "");
 			if ($perms->edit && $votes[$topVoteStamp] >= $minvotes) {
-				$pic .= "<a class='btn btn-primary btn-xs' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
+				$pic .= "<a class='btn btn-primary btn-sm' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
 					. tr("Add as Calendar Event") . "'>"
 					. smarty_function_icon(['name' => 'calendar'], $smarty)
 					. "</a>";
