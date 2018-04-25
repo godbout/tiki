@@ -10,7 +10,7 @@
 			{tr}Cached sample data helps to view available variables for event types{/tr}
 		{/remarksbox}
 		<div class="form-group clearfix">
-			<label for="event" class="control-label col-md-3">
+			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}
 			</label>
 			<div class="col-md-9">
@@ -23,7 +23,7 @@
 			</label>
 		</div>
 		<div class="form-group clearfix">
-			<label for="notes" class="control-label col-md-3">
+			<label for="notes" class="col-form-label col-md-3">
 				{tr}Description{/tr}
 			</label>
 			<div class="col-md-9">
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="sample" class="control-label col-md-3">
+			<label for="sample" class="col-form-label col-md-3">
 				{tr}Sample{/tr}
 			</label>
 			<div id="sample" class="col-md-9">
@@ -39,7 +39,7 @@
 			</div>
 		</div>		
 		<div class="form-group clearfix">
-			<label for="rule" class="control-label col-md-3">
+			<label for="rule" class="col-form-label col-md-3">
 				{tr}Rule{/tr}
 			</label>
 			<div class="col-md-9">

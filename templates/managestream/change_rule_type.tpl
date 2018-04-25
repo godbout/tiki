@@ -5,25 +5,25 @@
 {block name="content"}
 	<form role="form" class="form" method="post" action="{service controller=managestream action=change_rule_type}">
 		<div class="form-group">
-			<label class="control-label">
+			<label class="col-form-label">
 				{tr}Description{/tr}
 			</label>
 			<textarea class="form-control" readonly>{$rule.notes|escape}</textarea>
 		</div>
 		<div class="form-group">
-			<label class="control-label">
+			<label class="col-form-label">
 				{tr}Rule{/tr}
 			</label>
 			<pre>{$rule.rule|escape}</pre>
 		</div>
 		<div class="form-group">
-			<label class="control-label">
+			<label class="col-form-label">
 				{tr}Current Type{/tr}
 			</label>
 			<pre>{$currentRuleType|escape}</pre>
 		</div>
 		<div class="form-group">
-			<label class="control-label">
+			<label class="col-form-label">
 				{tr}New Type{/tr}
 			</label>
 			<select name="ruleType" class="form-control">

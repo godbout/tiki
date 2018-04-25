@@ -10,7 +10,7 @@
 	{/if}
 	<form role="form" class="form form-horizontal" method="post" action="{service controller=managestream action=advanced}">
 		<div class="form-group clearfix">
-			<label for="event" class="control-label col-md-3">
+			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}
 			</label>
 			<div class="col-md-9">
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="notes" class="control-label col-md-3">
+			<label for="notes" class="col-form-label col-md-3">
 				{tr}Description{/tr}
 			</label>
 			<div class="col-md-9">
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="rule" class="control-label col-md-3">
+			<label for="rule" class="col-form-label col-md-3">
 				{tr}Rule{/tr}
 			</label>
 			<div class="col-md-9">

@@ -21,7 +21,7 @@
 			{/remarksbox}
 		{/if}
 		<div class="form-group">
-			<label for="name" class="control-label">
+			<label for="name" class="col-form-label">
 				{tr}Name{/tr}
 			</label>
 			<input type="text" name="name" value="{$name|escape}" class="form-control">

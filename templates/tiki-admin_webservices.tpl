@@ -71,7 +71,7 @@
 			{if $params|@count}
 				{foreach from=$params key=name item=value}
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="params[{$name|escape}]">{$name|escape}</label>
+						<label class="col-sm-4 col-form-label" for="params[{$name|escape}]">{$name|escape}</label>
 						<div class="col-sm-8">
 							<input type="text" name="params[{$name|escape}]" id="params[{$name|escape}]" value="{$value|escape}" class="form-control">
 						</div>

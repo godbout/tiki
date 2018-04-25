@@ -19,35 +19,35 @@
 	<input type="hidden" name="contactId" value="{$contactId|escape}">
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}First Name{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}First Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" maxlength="80" size="20" name="firstName" value="{$info.firstName|escape}" class="form-control">
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Last Name{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Last Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" maxlength="80" size="20" name="lastName" value="{$info.lastName|escape}" class="form-control">
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Email{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Email{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" maxlength="80" size="20" name="email" value="{$info.email|escape}" class="form-control">
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Nickname{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Nickname{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" maxlength="80" size="20" name="nickname" value="{$info.nickname|escape}" class="form-control">
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Publish this contact to groups{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Publish this contact to groups{/tr}</label>
 		<div class="col-sm-7">
 			<select multiple="multiple" name="groups[]" size="6" class="form-control">
 				<option value=""></option>
@@ -59,7 +59,7 @@
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Extra Fields{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Extra Fields{/tr}</label>
 		<div class="col-sm-7">
 			<select id='select_exts' onchange='ext_select();' class="form-control">
 				<option>{tr}More...{/tr}</option>
@@ -69,7 +69,7 @@
 
 	<div id="extra-fields-placeholder">
 		<div class="form-group hidden">
-			<label class="col-sm-3 control-label"></label>
+			<label class="col-sm-3 col-form-label"></label>
 			<div class="col-sm-7">
 				<input value="" name="" size="20" maxlength="80" class="form-control">
 			</div>
@@ -80,7 +80,7 @@
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
@@ -274,7 +274,7 @@
 	function ext_add(extid, text, defaultvalue, pub) {
 		var newElement = document.querySelector("#extra-fields-placeholder .form-group.hidden").cloneNode(true); //clones nodes too
 		newElement = createElementOrFill(newElement, { id : 'tr_ext_'+extid });
-		var label = newElement.querySelector('.control-label').innerHTML = text;
+		var label = newElement.querySelector('.col-form-label').innerHTML = text;
 		var input = createElementOrFill(newElement.querySelector('input'), { maxlength : 80, name : 'ext_'+extid, value : defaultvalue});
 		newElement.classList.remove('hidden');
 		document.querySelector('#extra-fields-placeholder').appendChild(newElement);

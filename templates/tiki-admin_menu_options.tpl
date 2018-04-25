@@ -179,28 +179,28 @@
 			<form action="{service controller='menu' action='preview'}" class="form-inline preview">
 				<input type="hidden" name="menuId" value="{$menuId}">
 				<div class="form-group col-sm-3">
-					<label for="preview_type" class="control-label">{tr}Type{/tr}:</label>
+					<label for="preview_type" class="col-form-label">{tr}Type{/tr}:</label>
 					<select id="preview_type" class="form-control" name="preview_type">
 						<option value="vert"{if $preview_type eq 'vert'} selected{/if}>{tr}Vertical{/tr}</option>
 						<option value="horiz"{if $preview_type eq 'horiz'} selected{/if}>{tr}Horizontal{/tr}</option>
 					</select>
 				</div>
 				<div class="form-group col-sm-2">
-					<label for="preview_bootstrap" class="control-label">
+					<label for="preview_bootstrap" class="col-form-label">
 						Bootstrap
 					</label>
 					<br>
 					<input type="checkbox" id="preview_bootstrap" name="preview_bootstrap" class="form-control"{if $preview_bootstrap eq 'y'} checked="checked"{/if}>
 				</div>
 				<div class="form-group col-sm-2">
-					<label for="preview_css" class="control-label">
+					<label for="preview_css" class="col-form-label">
 						CSS
 					</label>
 					<br>
 					<input type="checkbox" id="preview_css" name="preview_css" class="form-control"{if $preview_css eq 'y'} checked="checked"{/if}>
 				</div>
 				<div class="form-group col-sm-3">
-					<label for="preview_position" class="control-label">
+					<label for="preview_position" class="col-form-label">
 						{tr}Position{/tr}
 					</label>
 					<select id="preview_position" class="form-control">

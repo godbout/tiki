@@ -11,7 +11,7 @@
 			{tr}<span class="add-count">0</span> have been added. <span class="skip-count">0</span> were skipped.{/tr}
 		</div>
 		<div class="form-group">
-			<label for="required_action" class="control-label">{tr}Required Action{/tr}</label>
+			<label for="required_action" class="col-form-label">{tr}Required Action{/tr}</label>
 			<select name="required_action" class="form-control" data-copy-into="#selection-action">
 				{foreach $actions as $action => $label}
 					<option value="{$action|escape}">{$label|escape}</option>
@@ -19,7 +19,7 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="group" class="control-label">{tr}Group{/tr}</label>
+			<label for="group" class="col-form-label">{tr}Group{/tr}</label>
 			{object_selector _simplename=group type=group _simpleclass="group-field" _placeholder="{tr}Group{/tr}"}
 		</div>
 		<div class="form-group">

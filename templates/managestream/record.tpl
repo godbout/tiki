@@ -5,7 +5,7 @@
 {block name="content"}
 	<form role="form" class="form form-horizontal" method="post" action="{service controller=managestream action=record}">
 		<div class="form-group clearfix">
-			<label for="event" class="control-label col-md-3">
+			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}
 			</label>
 			<div class="col-md-9">		
@@ -30,7 +30,7 @@
 			</div>
 			<div class="priority-div hidden clearfix">
 				<div class="form-group col-md-push-4 col-md-8">
-					<label for="priorityinput" class="control-label">{tr}Priority{/tr}</label>
+					<label for="priorityinput" class="col-form-label">{tr}Priority{/tr}</label>
 					<select id="priorityinput" name="priority" class="form-control">
 						<option value="low">Low</option>
 						<option value="high">High</option>
@@ -38,13 +38,13 @@
 					</select>
 				</div>
 				<div class="form-group col-md-push-4 col-md-8">
-					<label for="userInput" class="control-label">{tr}Recipient{/tr}</label>
+					<label for="userInput" class="col-form-label">{tr}Recipient{/tr}</label>
 					<input id="userInput" name="user" class="form-control" value="user">
 				</div>
 			</div>
 		{/if}
 		<div class="form-group clearfix">
-			<label for="notes" class="control-label col-md-3">
+			<label for="notes" class="col-form-label col-md-3">
 				{tr}Description{/tr}
 			</label>
 			<div class="col-md-9">
@@ -52,7 +52,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="rule" class="control-label col-md-3">
+			<label for="rule" class="col-form-label col-md-3">
 				{tr}Rule{/tr}
 			</label>
 			<div class="col-md-9">

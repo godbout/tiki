@@ -5,7 +5,7 @@
 {block name="content"}
 	<form role="form" class="form-horizontal" method="post" action="{service controller=managestream action=tracker_filter}">
 		<div class="form-group clearfix">
-			<label for="sourceEvent" class="control-label col-md-3">
+			<label for="sourceEvent" class="col-form-label col-md-3">
 				{tr}Source Event{/tr}
 			</label>
 			<div class="col-md-9">
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="notes" class="control-label col-md-3">
+			<label for="notes" class="col-form-label col-md-3">
 				{tr}Description{/tr}
 			</label>
 			<div class="col-md-9">
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="targetEvent" class="control-label col-md-3">
+			<label for="targetEvent" class="col-form-label col-md-3">
 				{tr}Target Event{/tr}
 			</label>
 			<div class="col-md-9">
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="tracker" class="control-label col-md-3">
+			<label for="tracker" class="col-form-label col-md-3">
 				{tr}Tracker{/tr}
 			</label>
 			<div class="col-md-9">
@@ -50,7 +50,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="parameters" class="control-label col-md-3">
+			<label for="parameters" class="col-form-label col-md-3">
 				{tr}Parameters{/tr}
 			</label>
 			<div class="col-md-9">
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label for="rule" class="control-label col-md-3">
+			<label for="rule" class="col-form-label col-md-3">
 				{tr}Rule{/tr}
 			</label>
 			<div class="col-md-9">

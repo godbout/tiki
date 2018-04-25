@@ -1,6 +1,6 @@
 {if $status}
 	<div class="form-group">
-		<label for="trackerinput_status" class="control-label">{tr}Status{/tr}</label>
+		<label for="trackerinput_status" class="col-form-label">{tr}Status{/tr}</label>
 		<div id="trackerinput_status">
 			{include 'trackerinput/status.tpl' status_types=$status_types status=$status}
 		</div>
@@ -9,7 +9,7 @@
 {$jscal = 0}
 {foreach from=$fields item=field}
 	<div class="form-group">
-		<label for="trackerinput_{$field.fieldId|escape}" class="control-label{if $field.type eq 'h'} h{$field.options_map.level}{/if}">
+		<label for="trackerinput_{$field.fieldId|escape}" class="col-form-label{if $field.type eq 'h'} h{$field.options_map.level}{/if}">
 			{$field.name|tra|escape}
 			{if $field.isMandatory eq 'y'}
 				<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>

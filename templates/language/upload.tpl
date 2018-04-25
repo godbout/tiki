@@ -21,7 +21,7 @@
 {block name="content"}
 	<form action="{service controller=language action=upload}" method="post" role="form" class="form" enctype="multipart/form-data">
 		<div class="form-group">
-			<label for="language" class="control-label">
+			<label for="language" class="col-form-label">
 				{tr}Language{/tr}
 			</label>
 			<select id="language" class="translation_action form-control" name="language">
@@ -31,7 +31,7 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label class="control-label" for="file_type">
+			<label class="col-form-label" for="file_type">
 				{tr}Process Type{/tr}
 			</label>
 			<select name="process_type" class="translation_action form-control">
@@ -46,7 +46,7 @@
 			</span>
 		</div>
 		<div class="form-group">
-			<label class="control-label" for="language_file">
+			<label class="col-form-label" for="language_file">
 				{tr}File{/tr}
 			</label>
 			<input name="language_file" type="file" required="required">

@@ -7,7 +7,7 @@
 {block name="content"}
 	<form method="post" action="{service controller=workspace action=create}" role="form" class="form">
 		<div class="form-group">
-			<label for="template" class="control-label">
+			<label for="template" class="col-form-label">
 				{tr}Template{/tr}
 			</label>
 			<select name="template" class="form-control">
@@ -17,7 +17,7 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="name" class="control-label">
+			<label for="name" class="col-form-label">
 				{tr}Workspace Name{/tr}
 			</label>
 			<input type="text" name="name" value="" class="form-control"/>

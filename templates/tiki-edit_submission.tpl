@@ -39,32 +39,32 @@
 	</div></div>
 	<br>
 	<div class="form-group" id='show_topline' {if $types.$type.show_topline eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Topline{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Topline{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="topline" value="{$topline|escape}" size="60" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Title{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Title{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="title" value="{$arttitle|escape}" maxlength="255" size="60" class="form-control">
 		</div>
 	</div>
 	<div class="form-group" id='show_subtitle' {if $types.$type.show_subtitle eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Subtitle{/tr} *</label>
+		<label class="col-sm-3 col-form-label">{tr}Subtitle{/tr} *</label>
 		<div class="col-sm-7">
 			<input type="text" name="subtitle" value="{$subtitle|escape}" size="60" class="form-contorl">
 		</div>
 	</div>
 	<div class="form-group" id='show_linkto' {if $types.$type.show_linkto eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Source{/tr} ({tr}URL{/tr}) *</label>
+		<label class="col-sm-3 col-form-label">{tr}Source{/tr} ({tr}URL{/tr}) *</label>
 		<div class="col-sm-7">
 			<input type="text" name="linkto" value="{$linkto|escape}" size="60" class="form-control">{if $linkto neq ''}<a href="{$linkto|escape}" target="_blank">{tr}View{/tr}</a>{/if}
 		</div>
 	</div>
 	{if $prefs.feature_multilingual eq 'y'}
 	<div class="form-group" id='show_lang'>
-		<label class="col-sm-3 control-label">{tr}Language{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Language{/tr}</label>
 		<div class="col-sm-7">
 			<select name="lang" class="form-control">
 				<option value="">{tr}All{/tr}</option>
@@ -76,13 +76,13 @@
 	</div>
 	{/if}	
 	<div class="form-group" id='show_author' {if $types.$type.show_author eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Author Name{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Author Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="authorName" value="{$authorName|escape}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Topic{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Topic{/tr}</label>
 		<div class="col-sm-7">
 			<select name="topicId" class="form-control">
 				<option value="" {if $topicId eq 0}selected="selected"{/if}>{tr}None{/tr}</option>
@@ -96,7 +96,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Type{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Type{/tr}</label>
 		<div class="col-sm-7">
 			<select id='articletype' name='type' onchange='javascript:chgArtType();' class="form-control">
 				{foreach from=$types key=typei item=prop}
@@ -109,7 +109,7 @@
 		</div>
 	</div>
 	<div class="form-group" id='use_ratings' {if $types.$type.use_ratings eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Author rating{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Author rating{/tr}</label>
 		<div class="col-sm-7">
 			<select name='rating' class="form-control">
 				<option value="10" {if $rating eq 10}selected="selected"{/if}>10</option>
@@ -137,7 +137,7 @@
 		</div>
 	</div>
 	<div class="form-group" id='show_image_1' {if $types.$type.show_image eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Own Image{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Own Image{/tr}</label>
 		<div class="col-sm-7">
 			<input type="hidden" name="MAX_FILE_SIZE" value="1000000">
 			<input name="userfile1" type="file" onchange="document.getElementById('useImage').checked = true;">
@@ -145,13 +145,13 @@
 	</div>
 	{if $hasImage eq 'y'}
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Own Image{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Own Image{/tr}</label>
 		<div class="col-sm-7">
 			{$image_name} [{$image_type}] ({$image_size} {tr}bytes{/tr})
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Own Image{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Own Image{/tr}</label>
 		<div class="col-sm-7">
 			{if $imageIsChanged eq 'y'}
 				<img alt="{tr}Article image{/tr}" src="article_image.php?image_type=preview&amp;id={$previewId}">
@@ -163,19 +163,19 @@
 	{/if}
 
 	<div class="form-group" id='show_image_2' {if $types.$type.show_image eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Use own image{/tr} *</label>
+		<label class="col-sm-3 col-form-label">{tr}Use own image{/tr} *</label>
 		<div class="col-sm-7">
 			<input type="checkbox" name="useImage" id="useImage" {if $useImage eq 'y'}checked='checked'{/if}>
 		</div>
 	</div>
 	<div class="form-group" id='show_image_3' {if $types.$type.show_image eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Float text around image{/tr} *</label>
+		<label class="col-sm-3 col-form-label">{tr}Float text around image{/tr} *</label>
 		<div class="col-sm-7">
 			<input type="checkbox" name="isfloat" {if $isfloat eq 'y'}checked='checked'{/if}>
 		</div>
 	</div>
 	<div class="form-group" d='show_image_4' {if $types.$type.show_image eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Own image size x{/tr} *</label>
+		<label class="col-sm-3 col-form-label">{tr}Own image size x{/tr} *</label>
 		<div class="col-sm-7">
 			<input type="text" name="image_x" value="{$image_x|escape}" class="form-control">
 			<div class="help-block">
@@ -184,7 +184,7 @@
 		</div>
 	</div>
 	<div class="form-group" id='show_image_5' {if $types.$type.show_image eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Own image size y{/tr} *</label>
+		<label class="col-sm-3 col-form-label">{tr}Own image size y{/tr} *</label>
 		<div class="col-sm-7">
 			<input type="text" name="image_y" value="{$image_y|escape}" class="form-control">
 			<div class="help-block">
@@ -193,14 +193,14 @@
 		</div>
 	</div>
 	<div class="form-group" id='show_image_caption' {if $types.$type.show_image_caption eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Image caption{/tr} *</label>
+		<label class="col-sm-3 col-form-label">{tr}Image caption{/tr} *</label>
 		<div class="col-sm-7">
 			<input type="text" name="image_caption" value="{$image_caption|escape}" size="60" class="form-control">
 		</div>
 	</div>
 	{if $prefs.feature_cms_templates eq 'y' and $tiki_p_use_content_templates eq 'y' and $templates|@count ne 0}
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Apply template{/tr} *</label>
+		<label class="col-sm-3 col-form-label">{tr}Apply template{/tr} *</label>
 		<div class="col-sm-7">
 			<select name="templateId" onchange="javascript:document.getElementById('editpageform').submit();" class="form-control">
 				<option value="0">{tr}none{/tr}</option>
@@ -215,7 +215,7 @@
 	{include file='categorize.tpl'}
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Heading{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Heading{/tr}</label>
 		<div class="col-sm-7">
 			{if $types.$type.heading_only eq 'y'}
 				{textarea name="heading" rows="5" cols="80" Height="200px" id="subheading" class="form-control"}{$heading}{/textarea}
@@ -225,13 +225,13 @@
 		</div>
 	</div>
 	<div class="form-group" id='heading_only' {if $types.$type.heading_only eq 'y'}style="display: none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Body{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Body{/tr}</label>
 		<div class="col-sm-7">
 			{textarea name="body" id="body"}{$body}{/textarea}
 		</div>
 	</div>
 	<div class="form-group" id='show_pubdate' {if $types.$type.show_pubdate eq 'y' || $types.$type.show_pre_publ ne 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Publish Date{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Publish Date{/tr}</label>
 		<div class="col-sm-7">
 			{html_select_date prefix="publish_" time=$publishDate start_year="-10" end_year="+10" field_order=$prefs.display_field_order}
 			{tr}at{/tr}
@@ -243,7 +243,7 @@
 		</div>
 	</div>
 	<div class="form-group" id='show_expdate' {if $types.$type.show_expdate eq 'y' || $types.$type.show_post_expire ne 'y'}style="display:;"{else}style="display:none;"{/if}>
-		<label class="col-sm-3 control-label">{tr}Expiration Date{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Expiration Date{/tr}</label>
 		<div class="col-sm-7">
 			{html_select_date prefix="expire_" time=$expireDate start_year="-10" end_year="+10" field_order=$prefs.display_field_order}
 			{tr}at{/tr}
@@ -257,7 +257,7 @@
 	{if $tiki_p_use_HTML eq 'y'}
 		{if $smarty.session.wysiwyg neq 'y'}
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{tr}Allow full HTML{/tr} <em>({tr}Keep any HTML tag.{/tr})</em></label>
+			<label class="col-sm-3 col-form-label">{tr}Allow full HTML{/tr} <em>({tr}Keep any HTML tag.{/tr})</em></label>
 			<div class="col-sm-7">
 				<input type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
 				<div class="help-block">
@@ -272,7 +272,7 @@
 
 	{if $prefs.feature_cms_emails eq 'y' and $articleId eq 0}
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{tr}Email addresses to be sent notifications (comma-separated){/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Email addresses to be sent notifications (comma-separated){/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" name="emails" value="{$emails|escape}" size="60" class="form-control">
 				<br>
@@ -293,7 +293,7 @@
 		{assign var='attid' value=$att.itemId|replace:'.':'_'}
 		{assign var='attfullname' value=$att.itemId}
 		<div class="form-group" id={$attid} {if $types.$type.$attid eq 'y'}style="display:;"{else}style="display:none;"{/if}>
-			<label class="col-sm-3 control-label">{$attname|escape}</label>
+			<label class="col-sm-3 col-form-label">{$attname|escape}</label>
 			<div class="col-sm-7">
 				<input type="text" name="{$attfullname}" value="{$article_attributes.$attfullname|escape}" size="60" maxlength="255" class="form-control">
 			</div>

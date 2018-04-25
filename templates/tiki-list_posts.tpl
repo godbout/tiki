@@ -99,7 +99,7 @@
 
 {if $posts and $tiki_p_blog_admin eq 'y'}
 		<div class="form-group">
-			<label for="remove" class="control-label">{tr}Perform action with selected{/tr}</label>
+			<label for="remove" class="col-form-label">{tr}Perform action with selected{/tr}</label>
 			<div class="input-group col-sm-4">
 				<select name="remove" class="form-control">
 					<option value="y">{tr}Delete{/tr}</option>

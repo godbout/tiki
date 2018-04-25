@@ -22,7 +22,7 @@
 	<form action="{service controller=language action=manage_custom_translations}" method="post" role="form" class="form">
 		<div class="form-group clearfix">
 			<div class="col-md-6">
-				<label class="control-label" for="custom_lang_select">
+				<label class="col-form-label" for="custom_lang_select">
 					{tr}Language{/tr}
 				</label>
 				<select name="language" id="custom_lang_select" class="form-control" onchange="this.form.submit()">

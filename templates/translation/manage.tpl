@@ -29,7 +29,7 @@
 		{if $filters.language}
 			<form class="simple" method="post" action="{service controller=translation action=attach}">
 				<div class="form-group">
-					<label class="control-label">
+					<label class="col-form-label">
 						{tr}Add a new object to the set{/tr}
 					</label>
 					{object_selector _name=target _filter=$filters}
