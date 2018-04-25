@@ -65,7 +65,7 @@
 				<label for="pageAlias" class="control-label">{tr}Alias{/tr}:</label>
 				<input type="hidden" name="page_ref_id" value="{$structure_id}">
 				<div class="input-group">
-					<input type="text" class="form-control input-sm" name="pageAlias" id="pageAlias" value="{$topPageAlias|escape}">
+					<input type="text" class="form-control form-control-sm" name="pageAlias" id="pageAlias" value="{$topPageAlias|escape}">
 					<div class="input-group-btn">
 						<input type="submit" class="btn btn-secondary btn-sm" name="create" value="{tr}Update{/tr}">
 					</div>
@@ -135,7 +135,7 @@
 					<div class="form-group">
 						<label class="sr-only" for="find_objects">{tr}Find{/tr}</label>
 						<div class="input-group">
-							<input type="text" name="find_objects" id="find_objects" value="{$find_objects|escape}" class="form-control input-sm" placeholder="{tr}Find{/tr}...">
+							<input type="text" name="find_objects" id="find_objects" value="{$find_objects|escape}" class="form-control form-control-sm" placeholder="{tr}Find{/tr}...">
 							<div class="input-group-btn">
 								<input type="submit" class="btn btn-primary btn-sm" value="{tr}Filter{/tr}" name="search_objects">
 							</div>
@@ -144,7 +144,7 @@
 					</div>
 					{if $prefs.feature_categories eq 'y'}
 						<div class="form-group">
-							<select name="categId" class="form-control input-sm">
+							<select name="categId" class="form-control form-control-sm">
 								<option value='' {if $find_categId eq ''}selected="selected"{/if}>{tr}any category{/tr}</option>
 								{foreach $categories as $catix}
 									<option value="{$catix.categId|escape}" {if !empty($find_categId) and $find_categId eq $catix.categId}selected="selected"{/if}>{tr}{$catix.categpath}{/tr}</option>

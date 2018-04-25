@@ -39,7 +39,7 @@
 			<label for="theme" class="control-label">
 				{tr}Theme{/tr}
 			</label>
-			<select name="theme" class="form-control input-sm" required>
+			<select name="theme" class="form-control form-control-sm" required>
 				<option value="">{tr}Select{/tr}...</option>
 				{foreach from=$themes key=theme_key item=theme_name}
 					<option value="{$theme_key|escape}" {if $theme eq $theme_key}selected="selected"{/if}>{$theme_name}</option>

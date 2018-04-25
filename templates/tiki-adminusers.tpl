@@ -45,13 +45,13 @@
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="find">{tr}Find{/tr}</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control input-sm" id="find" name="find" value="{$find|escape}">
+							<input type="text" class="form-control form-control-sm" id="find" name="find" value="{$find|escape}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-4" for="numrows">{tr}Number of displayed rows{/tr}</label>
 						<div class="col-sm-8">
-							<input class="form-control input-sm" type="number" id="numrows" name="numrows" value="{$numrows|escape}">
+							<input class="form-control form-control-sm" type="number" id="numrows" name="numrows" value="{$numrows|escape}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -66,7 +66,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4" for="filterGroup">{tr}Group (direct){/tr}</label>
 							<div class="col-sm-8">
-								<select class="form-control input-sm" name="filterGroup" id="filterGroup">
+								<select class="form-control form-control-sm" name="filterGroup" id="filterGroup">
 									<option value=""></option>
 									{section name=ix loop=$all_groups}
 										{if $all_groups[ix] != 'Registered' && $all_groups[ix] != 'Anonymous'}

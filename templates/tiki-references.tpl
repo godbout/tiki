@@ -25,13 +25,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="find">{tr}Find{/tr}</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control input-sm" id="find" name="find" value="{$find|escape}">
+					<input type="text" class="form-control form-control-sm" id="find" name="find" value="{$find|escape}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="numrows">{tr}Number of displayed rows{/tr}</label>
 				<div class="col-sm-8">
-					<input class="form-control input-sm" type="number" id="maxRecords" name="maxRecords" value="{$maxRecords|escape}">
+					<input class="form-control form-control-sm" type="number" id="maxRecords" name="maxRecords" value="{$maxRecords|escape}">
 				</div>
 			</div>
 			<div class="form-group">

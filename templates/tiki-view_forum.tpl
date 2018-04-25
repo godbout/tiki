@@ -785,9 +785,9 @@
 							<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
 							<input type="hidden" name="forumId" value="{$forumId|escape}">
 							<div class="form-group">
-								<label class="col-md-4 control-label input-sm" for="filter_time">{tr}Last post date{/tr}</label>
+								<label class="col-md-4 control-label form-control-sm" for="filter_time">{tr}Last post date{/tr}</label>
 								<div class="col-md-8">
-									<select id="filter_time" name="time_control" class="form-control input-sm">
+									<select id="filter_time" name="time_control" class="form-control form-control-sm">
 										<option value="" {if $smarty.request.time_control eq ''}selected="selected"{/if}>{tr}All posts{/tr}</option>
 										<option value="3600" {if $smarty.request.time_control eq 3600}selected="selected"{/if}>{tr}Last hour{/tr}</option>
 										<option value="86400" {if $smarty.request.time_control eq 86400}selected="selected"{/if}>{tr}Last 24 hours{/tr}</option>
@@ -797,7 +797,7 @@
 							</div>
 							{if $prefs.feature_forum_topics_archiving eq 'y'}
 								<div class="form-group">
-									<label class="col-md-4 control-label input-sm" for="show_archived">{tr}Show archived posts{/tr}</label>
+									<label class="col-md-4 control-label form-control-sm" for="show_archived">{tr}Show archived posts{/tr}</label>
 									<div class="col-md-8">
 										<input type="checkbox" id="show_archived" name="show_archived" {if $show_archived eq 'y'}checked="checked"{/if}>
 									</div>
@@ -805,9 +805,9 @@
 							{/if}
 							{if $user}
 								<div class="form-group">
-									<label class="col-md-4 control-label input-sm" for="filter_poster">{tr}Containing posts by{/tr}</label>
+									<label class="col-md-4 control-label form-control-sm" for="filter_poster">{tr}Containing posts by{/tr}</label>
 									<div class="col-md-8">
-										<select id="filter_poster" class="form-control input-sm" name="poster">
+										<select id="filter_poster" class="form-control form-control-sm" name="poster">
 											<option value=""{if empty($smarty.request.poster)} selected="selected"{/if}>
 												{tr}All posts{/tr}
 											</option>
@@ -819,9 +819,9 @@
 								</div>
 							{/if}
 							<div class="form-group">
-								<label class="col-md-4 control-label input-sm" for="filter_type">{tr}Type{/tr}</label>
+								<label class="col-md-4 control-label form-control-sm" for="filter_type">{tr}Type{/tr}</label>
 								<div class="col-md-8">
-									<select id="filter_type" name="filter_type" class="form-control input-sm">
+									<select id="filter_type" name="filter_type" class="form-control form-control-sm">
 										<option value=""{if empty($smarty.request.filter_type)}selected="selected"{/if}>
 											{tr}All posts{/tr}
 										</option>
@@ -841,9 +841,9 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-4 control-label input-sm" for="filter_replies">{tr}Replies{/tr}</label>
+								<label class="col-md-4 control-label form-control-sm" for="filter_replies">{tr}Replies{/tr}</label>
 								<div class="col-md-8">
-									<select id="filter_replies" name="reply_state" class="form-control input-sm">
+									<select id="filter_replies" name="reply_state" class="form-control form-control-sm">
 										<option value=""{if empty($smarty.request.reply_state)} selected="selected"{/if}>
 											{tr}All posts{/tr}
 										</option>

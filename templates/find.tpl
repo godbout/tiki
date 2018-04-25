@@ -63,7 +63,7 @@
 					{tr}Article Type{/tr}
 				</label>
 				<div class="col-sm-8">
-					<select name="type" class="findtypes form-control input-sm">
+					<select name="type" class="findtypes form-control form-control-sm">
 						<option value='' {if $find_type eq ''}selected="selected"{/if}>{tr}any type{/tr}</option>
 						{section name=t loop=$types}
 							<option value="{$types[t].type|escape}" {if $find_type eq $types[t].type}selected="selected"{/if}>
@@ -80,7 +80,7 @@
 					{tr}Article Topic{/tr}
 				</label>
 				<div class="col-sm-8">
-					<select name="topic" class="findtopics form-control input-sm">
+					<select name="topic" class="findtopics form-control form-control-sm">
 						<option value='' {if $find_topic eq ''}selected="selected"{/if}>{tr}any topic{/tr}</option>
 						{foreach $topics as $topic}
 							<option value="{$topic.topicId|escape}" {if $find_topic eq $topic.topicId}selected="selected"{/if}>
@@ -98,7 +98,7 @@
 				</label>
 				<div class="col-sm-8">
 					<span class="findlang">
-						<select name="lang" class="in form-control input-sm">
+						<select name="lang" class="in form-control form-control-sm">
 							<option value='' {if $find_lang eq ''}selected="selected"{/if}>{tr}any language{/tr}</option>
 							{section name=ix loop=$languages}
 								<option value="{$languages[ix].value|escape}" {if $find_lang eq $languages[ix].value}selected="selected"{/if}>
@@ -113,7 +113,7 @@
 								</label>
 							</span>
 							<span>
-								<select name="langOrphan" class="notin form-control input-sm">
+								<select name="langOrphan" class="notin form-control form-control-sm">
 									<option value='' {if $find_langOrphan eq ''}selected="selected"{/if}></option>
 									{section name=ix loop=$languages}
 										<option value="{$languages[ix].value|escape}" {if $find_langOrphan eq $languages[ix].value}selected="selected"{/if}>
@@ -152,7 +152,7 @@
 						{tr}Category{/tr}
 					</label>
 					<div id="category_singleselect_find" class="col-sm-8">
-						<select name="categId" class="findcateg form-control input-sm">
+						<select name="categId" class="findcateg form-control form-control-sm">
 							<option value='' {if $find_categId eq ''}selected="selected"{/if}>{tr}any category{/tr}</option>
 							{foreach $categories as $identifier => $category}
 								<option value="{$identifier}" {if $find_categId eq $identifier}selected="selected"{/if}>
@@ -213,7 +213,7 @@
 						{$filter_names.$key}
 					</label>
 					<div class="col-sm-8">
-						<select name="findfilter_{$key}" class="form-control input-sm">
+						<select name="findfilter_{$key}" class="form-control form-control-sm">
 							<option value='' {if $filter_values.$key eq ''}selected="selected"{/if}>--</option>
 							{foreach key=key2 item=value from=$item}
 								<option value="{$key2}"{if $filter_values.$key eq $key2} selected="selected"{/if}>{$value}</option>
@@ -251,7 +251,7 @@
 					{tr}{$find_other}{/tr}
 				</label>
 				<div class="col-sm-6">
-					<input type="text" name="find_other" id="find_other" value="{if !empty($find_other_val)}{$find_other_val|escape}{/if}" class="form-control input-sm">
+					<input type="text" name="find_other" id="find_other" value="{if !empty($find_other_val)}{$find_other_val|escape}{/if}" class="form-control form-control-sm">
 				</div>
 			</div>
 		{/if}
@@ -261,7 +261,7 @@
 					{tr}Displayed rows{/tr}
 				</label>
 				<div class="col-sm-6">
-					<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}" size="3" class="form-control input-sm">
+					<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}" size="3" class="form-control form-control-sm">
 				</div>
 			</div>
 		{/if}

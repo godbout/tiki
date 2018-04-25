@@ -7,7 +7,7 @@
 <form action="tiki-theme_control_sections.php" method="post" class="form-inline" role="form">
 	<div class="form-group">
 		<label for="section">{tr}Section{/tr}</label>
-		<select name="section" class="form-control input-sm">
+		<select name="section" class="form-control form-control-sm">
 			{foreach key=sec item=ix from=$sections}
 				<option value="{$sec|escape}" {if $a_section eq $sec}selected="selected"{/if}>{$sec}</option>
 			{/foreach}
@@ -15,7 +15,7 @@
 	</div>
 	<div class="form-group">
 		<label for="theme">{tr}Theme{/tr}</label>
-		<select name="theme" class="form-control input-sm">
+		<select name="theme" class="form-control form-control-sm">
 			{foreach from=$themes key=theme item=theme_name}
 				<option value="{$theme|escape}">{$theme_name}</option>
 			{/foreach}

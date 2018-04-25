@@ -119,7 +119,7 @@
 		</div>
 		<div class="form-inline margin-bottom-md">
 			<div class="input-group col-sm-6">
-				<input type="text" name="find" value="{$find|escape}" class="form-control input-sm" placeholder="{tr}Find{/tr}...">
+				<input type="text" name="find" value="{$find|escape}" class="form-control form-control-sm" placeholder="{tr}Find{/tr}...">
 				<div class="input-group-btn">
 					<input type="submit" class="btn btn-primary btn-sm" value="{tr}Filter{/tr}">
 				</div>

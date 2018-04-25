@@ -9,7 +9,7 @@
 <form id='objform' action="tiki-theme_control_objects.php" method="post" class="form-inline" role="form">
 	<div class="form-group">
 		<label for="type">{tr}Type{/tr}</label>
-		<select name="type" onchange="javascript:document.getElementById('objform').submit();" class="form-control input-sm">
+		<select name="type" onchange="javascript:document.getElementById('objform').submit();" class="form-control form-control-sm">
 			{section name=ix loop=$objectypes}
 				<option value="{$objectypes[ix]|escape}" {if $type eq $objectypes[ix]}selected="selected"{/if}>{$objectypes[ix]}</option>
 			{/section}
@@ -18,7 +18,7 @@
 	</div>
 	<div class="form-group">
 		<label for="objdata">{tr}Object{/tr}</label>
-		<select name="objdata" class="form-control input-sm">
+		<select name="objdata" class="form-control form-control-sm">
 			{section name=ix loop=$objects}
 				<option value="{$objects[ix].objId|escape}|{$objects[ix].objName}" {if $a_object eq $objects[ix].objId|cat:'|'|cat:$objects[ix].objName}selected="selected"{/if}>{$objects[ix].objName}</option>
 			{/section}
@@ -26,7 +26,7 @@
 	</div>
 	<div class="form-group">
 		<label for="theme">{tr}Theme{/tr}</label>
-		<select name="theme" class="form-control input-sm">
+		<select name="theme" class="form-control form-control-sm">
 			{foreach from=$themes key=theme item=theme_name}
 				<option value="{$theme|escape}">{$theme_name}</option>
 			{/foreach}

@@ -8,7 +8,7 @@
 <form action="tiki-theme_control.php" method="post" class="form-inline" role="form">
 	<div class="form-group">
 		<label for="categoryId">{tr}Category{/tr}</label>
-		<select name="categoryId" class="form-control input-sm">
+		<select name="categoryId" class="form-control form-control-sm">
 			{foreach from=$categories key=categoryId item=category}
 				<option value="{$categoryId|escape}">
 					{$category.name|escape} (Id:{$categoryId})
@@ -18,7 +18,7 @@
 	</div>
 	<div class="form-group">
 		<label for="theme">{tr}Theme{/tr}</label>
-		<select name="theme" class="form-control input-sm">
+		<select name="theme" class="form-control form-control-sm">
 			{foreach from=$themes key=theme item=theme_name}
 				<option value="{$theme|escape}">{$theme_name}</option>
 			{/foreach}
