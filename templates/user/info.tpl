@@ -105,7 +105,7 @@
 			</tbody>
 		</table>
 		{if $add_friend_button}
-			<a class="add-friend btn btn-primary btn-sm center-block" href="{service controller=social action=add_friend username=$other_user}">
+			<a class="add-friend btn btn-primary btn-sm mx-auto" href="{service controller=social action=add_friend username=$other_user}">
 				{$add_friend_button}
 			</a>
 		{/if}

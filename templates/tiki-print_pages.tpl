@@ -81,7 +81,7 @@
 							</select>
 						</td>
 						<td style="vertical-align:middle; text-align:center;" width="20%">
-							<div class="center-block">
+							<div class="mx-auto">
 								{if $pages}
 									<p><input type="submit" class="btn btn-primary btn-sm" name="addpage" title="{tr}Add Page{/tr}" value="{tr}Add Page{/tr} &gt;"></p>
 								{/if}

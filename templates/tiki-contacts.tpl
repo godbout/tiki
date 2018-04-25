@@ -223,7 +223,7 @@
 </div>
 
 {if $cant_pages > 0}
-<div class="center-block">
+<div class="mx-auto">
 	{if $prev_offset >= 0}
 		[<a class="prevnext" href="tiki-contacts.php?find={$find}&amp;offset={$prev_offset}&amp;sort_mode={$sort_mode}">{tr}Prev{/tr}</a>]
 		&nbsp;

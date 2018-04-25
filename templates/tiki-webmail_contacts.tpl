@@ -56,7 +56,7 @@
 						{/section}
 					</table>
 				</div>
-				<div class="center-block">
+				<div class="mx-auto">
 					{if $prev_offset >= 0}
 						[<a class="prevnext" href="tiki-webmail_contacts.php?element={$element}&amp;section=contacts&amp;find={$find}&amp;offset={$prev_offset}&amp;sort_mode={$sort_mode}">
 							{tr}Prev{/tr}

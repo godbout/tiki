@@ -94,7 +94,7 @@
 
 		{*	{if $big_image}
 				{if $show_image_caption eq 'y' and $image_caption || $image_x > 0}
-					<div class="center-block thumbcaption">
+					<div class="mx-auto thumbcaption">
 						{if $image_x > 0}<div class="magnify"><a class="internal cboxElement" data-box="box" href="article_image.php?image_type=article&amp;id={$articleId}">{icon name='view' title=$smarty.capture.imgTitle}</a></div>{/if}
 						{if $show_image_caption eq 'y' and $image_caption}{$image_caption|escape}{else}&nbsp;{/if}
 					</div>
