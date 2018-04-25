@@ -1,12 +1,12 @@
 // $Id$
-// $Id$
 
-//#top_modules,
-//#topbar_modules,
-//#pagebottom_modules {
-//  margin-left: -15px;
-//  margin-right: -15px;
-//}
+#top_modules,
+#topbar_modules,
+#pagebottom_modules,
+#bottom_modules {
+	display: flex !important;
+	flex-direction: row !important;
+}
 
 //***** Site Header & Identity *****/
 .box-quickadmin li {

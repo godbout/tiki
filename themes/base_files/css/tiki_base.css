@@ -1092,6 +1092,10 @@ div.categbar {
   text-align: right;
   clear: both; }
 
+#top_modules, #topbar_modules, #pagebottom_modules, #bottom_modules {
+  display: flex !important;
+  flex-direction: row !important; }
+
 .box-quickadmin li {
   font-size: 0.9em; }
 
