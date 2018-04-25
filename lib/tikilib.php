@@ -1476,7 +1476,7 @@ class TikiLib extends TikiDb_Bridge
 		switch ($type) {
 			case 'l':
 				if ($libname) {
-					$ret = '<img class="user-profile-picture img-rounded" width="45" height="45" src="' . $libname . '" ' . $style . ' alt="' . $username . '">';
+					$ret = '<img class="user-profile-picture rounded" width="45" height="45" src="' . $libname . '" ' . $style . ' alt="' . $username . '">';
 				}
 				break;
 			case 'u':
@@ -1485,11 +1485,11 @@ class TikiLib extends TikiDb_Bridge
 
 				if ($path) {
 					$url = $this->tikiUrlOpt($path);
-					$ret = '<img class="user-profile-picture img-rounded" src="' . htmlspecialchars($url, ENT_NOQUOTES) . '" ' . $style . ' alt="' . $username . '">';
+					$ret = '<img class="user-profile-picture rounded" src="' . htmlspecialchars($url, ENT_NOQUOTES) . '" ' . $style . ' alt="' . $username . '">';
 				}
 				break;
 			case 'g':
-				$ret = '<img class="user-profile-picture img-rounded" src="' . htmlspecialchars($url, ENT_NOQUOTES) . '" ' . $style . ' alt="' . $username . '">';
+				$ret = '<img class="user-profile-picture rounded" src="' . htmlspecialchars($url, ENT_NOQUOTES) . '" ' . $style . ' alt="' . $username . '">';
 				break;
 			case 'n':
 			default:
