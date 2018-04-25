@@ -1,7 +1,7 @@
 <div class='popover tour'>
 	<div class='arrow'></div>
-	<h3 class='popover-title'></h3>
-	<div class='popover-content'></div>
+	<h3 class='popover-header'></h3>
+	<div class='popover-body'></div>
 	<div class='popover-navigation'>
 		<div class='btn-group'>
 			<button class='btn btn-sm btn-primary' data-role='prev'>« {tr}Prev{/tr}</button>
