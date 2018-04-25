@@ -435,17 +435,17 @@ function delete_ref(ref_id){
 					<label class="col-sm-2 control-label" for="e_ref_style">{tr}Style{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_style" id="e_ref_style" value="">
-						<span class="help-block">{tr}Enter the CSS class name to be added in the 'li' tag for listing this reference.{/tr}</span>
+						<span class="form-text">{tr}Enter the CSS class name to be added in the 'li' tag for listing this reference.{/tr}</span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" for="e_ref_template">{tr}Template{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_template" id="e_ref_template" value="">
-						<span class="help-block">
+						<span class="form-text">
 							{tr}Enter template format in which you want to display the reference details in the bibliography listing. For example{/tr}: ~title~ (~year~) ~author~
 						</span>
-						<span class="help-block">
+						<span class="form-text">
 							{tr}All the codes must be in lower case letters separated with spaces.{/tr}
 						</span>
 					</div>

@@ -15,7 +15,7 @@
 	{/block}
 
 	{if $forum_info.show_description eq 'y'}
-		<div class="description help-block">{wiki}{$forum_info.description}{/wiki}</div>
+		<div class="description form-text">{wiki}{$forum_info.description}{/wiki}</div>
 	{/if}
 
 	<div class="t_navbar margin-bottom-md">

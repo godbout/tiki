@@ -218,7 +218,7 @@
 							<option value="{$gr|escape}" {if $yn eq 'y'} selected="selected"{/if}>{$gr|truncate:"52"|escape}</option>
 						{/foreach}
 					</select>
-					<div class="help-block">
+					<div class="form-text">
 						<p>{tr}Permissions will be inherited from these groups.{/tr} {if $prefs.jquery_ui_chosen neq 'y'}{tr}Use Ctrl+Click to select multiple options{/tr}</p>{/if}
 					</div>
 					{if $indirectly_inherited_groups|@count > 0}
@@ -237,7 +237,7 @@
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="home" id="groups_home" value="{$grouphome|escape}">
 						{autocomplete element='#groups_home' type='pagename'}
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Use wiki page name or full URL.{/tr}
 							{tr}For other Tiki features, use links relative to the Tiki root (such as <em>/tiki-forums.php</em>).{/tr}
 						</div>
@@ -254,7 +254,7 @@
 								<option value="{$id|escape}" {if $id eq $groupdefcat}selected="selected"{/if}>{$category.categpath|escape}</option>
 							{/foreach}
 						</select>
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Default category assigned to uncategorized objects edited by a user with this default group.{/tr}
 						</div>
 					</div>
@@ -278,7 +278,7 @@
 					<label for="groups_color" class="control-label col-md-3">{tr}Group color{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="color" id="groups_color" value="{$groupcolor|escape}">
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Default color to use when plotting values for this group in charts. Use HEX notation, e.g. #FF0000 for red color.{/tr}
 						</div>
 					</div>
@@ -294,7 +294,7 @@
 								<option value="{$tid}"{if isset($grouptrackerid) && $tid eq $grouptrackerid} {assign var="ggr" value="$tit"}selected="selected"{/if}>{$tit|escape}</option>
 							{/foreach}
 						</select>
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Choose a group tracker which can be used to add user registration fields or allow group permissions on a tracker. The tracker must have one user selector field that is set to auto-assign.{/tr}
 						</div>
 						{if isset($grouptrackerid) || $prefs.javascript_enabled eq 'y'}
@@ -307,7 +307,7 @@
 									{/section}
 								{/if}
 							</select>
-							<div class="help-block">
+							<div class="form-text">
 								{tr}Select the user selector field from the above tracker.{/tr}
 							</div>
 						</div>
@@ -330,7 +330,7 @@
 								<option value="{$tid}"{if isset($userstrackerid) && $tid eq $userstrackerid} {assign var="ugr" value="$tit"}selected="selected"{/if}>{$tit|escape}</option>
 							{/foreach}
 						</select>
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Choose a user tracker to provide fields for a new user to complete upon registration. The tracker must have one user selector field that is set to auto-assign.{/tr}
 						</div>
 						{if (isset($userstrackerid) or $prefs.javascript_enabled eq 'y')}
@@ -346,7 +346,7 @@
 										<option value="0">{tr}No fields in tracker ...{/tr}</option>
 									{/if}
 								</select>
-								<div class="help-block">
+								<div class="form-text">
 									{tr}Select the user selector field from the above tracker to link a tracker item to the user upon registration.{/tr}
 								</div>
 							</div>
@@ -407,7 +407,7 @@
 					<label for="registrationUserFieldIds" class="control-label col-md-3">{tr}Group or User Tracker Registration Fields{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="registrationUsersFieldIds" value="{$registrationUsersFieldIds|escape}">
-						<div class="help-block">
+						<div class="form-text">
 							<p>{tr}If either a group information tracker or user registration tracker has been selected above, enter colon-separated field ID numbers for the tracker fields in the above tracker to include on the registration form for a new user to complete.{/tr}</p>
 						</div>
 					</div>
@@ -429,11 +429,11 @@
 					<div class="col-md-9">
 						<label>{tr}Anniversary{/tr}</label>
 						<input type="text" name="anniversary" class="form-control" value="{$group_info.anniversary|escape}">
-						<div class="help-block">{tr}Use MMDD to specify an annual date as of which all users will be unassigned from the group, or DD to specify a monthly date.{/tr}</div>
+						<div class="form-text">{tr}Use MMDD to specify an annual date as of which all users will be unassigned from the group, or DD to specify a monthly date.{/tr}</div>
 						<label>{tr}Or{/tr}</label><br>
 						<label>{tr}Number of Days{/tr}</label>
 						<input type="text" class="form-control" name="expireAfter" value="{$group_info.expireAfter|escape}">
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Number of days after which all users will be unassigned from the group.{/tr}
 						</div>
 					</div>
@@ -446,7 +446,7 @@
 							<option value="month" {if $group_info.prorateInterval eq 'month'}selected="selected"{/if}>{tr}Month{/tr}</option>
 							<option value="year" {if $group_info.prorateInterval eq 'year'}selected="selected"{/if}>{tr}Year{/tr}</option>
 						</select>
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Payment for membership extension is prorated at a minimum interval.{/tr}
 						</div>
 					</div>
@@ -456,7 +456,7 @@
 				<label class="control-label col-md-3">{tr}Group{/tr}</label>
 				<div class="col-md-9">
 					<input class="form-control" type="text" size="40" name="emailPattern" value="{$group_info.emailPattern|escape}">
-					<div class="help-block">
+					<div class="form-text">
 						<p>{tr}Users are automatically assigned at registration in the group if their emails match the pattern.{/tr}</p>
 						<p>{tr}Example:{/tr} /@(tw.org$)|(tw\.com$)/</p>
 					</div>
@@ -728,7 +728,7 @@
 					</label>
 					<div class="col-sm-7">
 						<input name="csvlist" type="file" class="form-control">
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Imported users must already exist. To create users and assign them to groups, go to <a href="tiki-adminusers.php">admin->users</a>.{/tr}
 						</div>
 					</div>

@@ -97,7 +97,7 @@
 				<div class="col-sm-2">
 					<input type="text" name="maxPosts" id="blogs-number" class="form-control" value="{$maxPosts|escape}">
 				</div>
-				<div class="help-block">{tr}Number of posts to show per page{/tr}</div>
+				<div class="form-text">{tr}Number of posts to show per page{/tr}</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-3 col-sm-9">
@@ -148,7 +148,7 @@
 							<input type="checkbox" name="show_related" id="blogs-post-related" {if $show_related eq 'y'}checked='checked'{/if} {if $prefs.feature_freetags ne 'y'}disabled="disabled"{/if}>
 							{tr}Show the post's related content{/tr}
 							{if $prefs.feature_freetags neq 'y'}
-								<span class="help-block">{tr}The checkbox is disabled because the tags feature is disabled globally.{/tr}</span>
+								<span class="form-text">{tr}The checkbox is disabled because the tags feature is disabled globally.{/tr}</span>
 							{/if}
 						</label>
 					</div>
@@ -159,7 +159,7 @@
 				<div class="col-sm-2">
 					<input type="text" name="related_max" id="blogs-post-max-related" class="form-control" value="{$related_max|escape}">
 				</div>
-				<div class="help-block">{tr}Maximum number of related posts to display{/tr}</div>
+				<div class="form-text">{tr}Maximum number of related posts to display{/tr}</div>
 			</div>
 			{if $prefs.feature_blog_heading eq 'y' and $tiki_p_edit_templates eq 'y'}
 				<div class="form-group">

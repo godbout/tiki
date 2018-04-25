@@ -232,7 +232,7 @@
 					<label class="control-label col-md-3" for="tree">{tr}Tree{/tr}</label>
 					<div class="col-md-9">
 						<textarea rows="5" cols="60" id="tree" name="tree" class="form-control"></textarea>
-						<div class="help-block">{tr}Use single spaces to indent structure levels{/tr}</div>
+						<div class="form-text">{tr}Use single spaces to indent structure levels{/tr}</div>
 					</div>
 				</div>
 				{if $prefs.lock_wiki_structures eq 'y'}

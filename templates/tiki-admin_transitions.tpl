@@ -44,7 +44,7 @@
 				<div class="form-group">
 					<label for="transition-group-auto">{tr}Add Group{/tr}</label>
 					<input type="text" id="transition-group-auto">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Press Enter for each group{/tr}
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 
 			<p>
 				<input type="submit" class="btn btn-secondary" value="{tr}Select{/tr}">
-				<div class="help-block">
+				<div class="form-text">
 					{tr}At least two elements are required to create transitions. Additional tabs appear once the selection is completed.{/tr}
 				</div>
 			</p>

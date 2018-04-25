@@ -57,7 +57,7 @@
 						<td class="id">{$channels[chan].rssId|escape}</td>
 						<td class="text">
 							{$channels[chan].name|escape}
-							<span class="help-block">
+							<span class="form-text">
 								{if $channels[chan].description}{$channels[chan].description|escape|nl2br}<br>{/if}
 								{tr}Site:{/tr} <a href="{$channels[chan].siteurl|escape}">{$channels[chan].sitetitle|escape}</a><br>
 								{tr}Feed:{/tr} <a class="link" href="{$channels[chan].url|escape}">{$channels[chan].url|truncate:50:"...":true}</a>
@@ -65,7 +65,7 @@
 						</td>
 						<td class="text">
 							{if $channels[chan].lastUpdated eq '1000000'}{tr}Never{/tr}{else}{$channels[chan].lastUpdated|tiki_short_datetime}{/if}
-							<span class="help-block">{tr}Refresh rate:{/tr} {$channels[chan].refresh|duration}</span>
+							<span class="form-text">{tr}Refresh rate:{/tr} {$channels[chan].refresh|duration}</span>
 						</td>
 						<td class="text">{$channels[chan].showTitle|escape}</td>
 						<td class="text">{$channels[chan].showPubDate|escape}</td>

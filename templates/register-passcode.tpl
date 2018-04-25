@@ -9,7 +9,7 @@
 			</label>
 			<div class="col-sm-8">
 				<input class="form-control" required="" type="password" name="passcode" id="passcode" onkeypress="regCapsLock(event)" value="{if !empty($smarty.post.passcode)}{$smarty.post.passcode}{/if}">
-				<em class="help-block">{tr}Not your password.{/tr} <span id="passcode-help" style="display:none">{tr}To request a passcode, {if $prefs.feature_contact eq 'y'}<a href="tiki-contact.php">{/if}
+				<em class="form-text">{tr}Not your password.{/tr} <span id="passcode-help" style="display:none">{tr}To request a passcode, {if $prefs.feature_contact eq 'y'}<a href="tiki-contact.php">{/if}
 					contact the system administrator{if $prefs.feature_contact eq 'y'}</a>{/if}{/tr}.</span>
 				</em>
 			</div>

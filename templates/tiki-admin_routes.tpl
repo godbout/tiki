@@ -170,7 +170,7 @@
 			<label class="col-sm-3 col-md-2 control-label" for="router_short_url">{tr}Short URL{/tr}</label>
 			<div class="col-sm-9 col-md-10">
 				<input type="checkbox" id='router_short_url' name='router_short_url' {if $route.short_url}checked{/if}>
-				<span id="helpBlock" class="help-block">{tr}Check this option to set route as a Short URL.{/tr}</span>
+				<span id="helpBlock" class="form-text">{tr}Check this option to set route as a Short URL.{/tr}</span>
 			</div>
 		</div>
 

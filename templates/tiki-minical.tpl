@@ -205,7 +205,7 @@
 			<select name="duration_hours" class="form-control">
 				{html_options output=$hours values=$hours selected=$duration_hours}
 			</select>
-			<div class="help-block">
+			<div class="form-text">
 				{if $duration_hours>1}{tr}hours{/tr}{else}{tr}hour{/tr}{/if}
 			</div>
 		</div>
@@ -213,7 +213,7 @@
 			<select name="duration_minutes" class="form-control">
 				{html_options output=$minutes values=$minutes selected=$duration_minutes}
 			</select>
-			<div class="help-block">
+			<div class="form-text">
 				{tr}minutes{/tr}
 			</div>
 		</div>

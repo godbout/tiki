@@ -21,7 +21,7 @@
 
 {* The category path *}
 {if $prefs.feature_breadcrumbs ne 'y'} <a class="dirlink" href="tiki-directory_browse.php?parent=0">{tr}Top{/tr}</a>{if $parent > 0} >> {/if}{$path}{/if}
-<div class="description help-block">{$parent_info.description|escape}</div>
+<div class="description form-text">{$parent_info.description|escape}</div>
 {if count($items) > 0}
 	<div class="text-center">
 		<form action="tiki-directory_search.php" method="post" class="form-inline">
@@ -118,7 +118,7 @@
 					{if $prefs.cachepages eq 'y'}
 						(<a class="dirsitelink" href="tiki-view_cache.php?url={$items[ix].url}" target="_blank">{tr}Cache{/tr}</a>)
 					{/if}
-					<div class="description help-block">{$items[ix].description}</div>
+					<div class="description form-text">{$items[ix].description}</div>
 					{assign var=fsfs value=1}
 					<span class="dirsitecats text-info">
 						{tr}Directory Categories:{/tr}

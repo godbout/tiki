@@ -82,7 +82,7 @@
 					<label class="control-label col-sm-3">{tr}CSV File{/tr}</label>
 					<div class="col-sm-9">
 						<input type="file" class="form-control" name="csvlist">
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Sample file content{/tr}
 <pre>{* can't indent <pre> tag contents *}
 category,description,parent

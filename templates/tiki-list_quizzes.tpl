@@ -50,7 +50,7 @@
 				<tr>
 					<td class="text">
 						<a class="tablename" href="tiki-take_quiz.php?quizId={$channels[user].quizId}">{$channels[user].name|escape}</a>
-						<span class="help-block">
+						<span class="form-text">
 							{$channels[user].description|escape|nl2br}
 						</span>
 					</td>

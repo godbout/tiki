@@ -39,7 +39,7 @@
 					{else}
 						{$channels[user].name|escape}
 					{/if}
-					<span class="help-block">
+					<span class="form-text">
 						{$channels[user].description|escape|nl2br}
 					</span>
 				</td>

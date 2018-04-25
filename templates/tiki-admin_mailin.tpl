@@ -104,7 +104,7 @@
 			<label for="mailin_autocheckFreq" class="control-label col-md-3">{tr}Frequency{/tr}</label>
 			<div class="col-md-3">
 				<input type="text" name="mailin_autocheckFreq" value="{$prefs.mailin_autocheckFreq|escape}" class="form-control">
-				<div class="help-block">
+				<div class="form-text">
 					{tr}minutes{/tr}
 				</div>
 			</div>

@@ -79,7 +79,7 @@
 							</a>
 						{/if}
 						{if $prefs.blog_list_description eq 'y'}
-							<div class="help-block">{$listpages[changes].description|escape|nl2br}</div>
+							<div class="form-text">{$listpages[changes].description|escape|nl2br}</div>
 						{/if}
 					</td>
 				{/if}

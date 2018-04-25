@@ -82,11 +82,11 @@
 			<label class="col-sm-3 control-label">{tr}Value{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" id="code" name="code" {if !empty($info.code)}value="{$info.code|escape}"{/if} class="form-control">
-				<div class="help-block">
+				<div class="form-text">
 					{tr}{$prefs.payment_currency|escape}{/tr} {tr} or {/tr}
 				</div>
 				<input type="text" id="percent" name="percent" {if !empty($info.percent)} value="{$info.percent|escape}"{/if} class="form-control">
-				<div class="help-block">
+				<div class="form-text">
 					%
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 			<label class="col-sm-3 control-label">{tr}Maximum time the discount can be used in the first phase of payment{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" id="max" name="max" {if !empty($info.max)} value="{$info.max|escape}"{/if} class="form-control">
-				<div class="help-block">
+				<div class="form-text">
 					{tr}-1 for unlimited{/tr}
 				</div>
 			</div>

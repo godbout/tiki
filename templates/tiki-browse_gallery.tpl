@@ -96,7 +96,7 @@
 {/if}
 
 {if strlen($description) > 0}
-	<div class="description help-block">
+	<div class="description form-text">
 		{$description|escape}
 	</div>
 {/if}

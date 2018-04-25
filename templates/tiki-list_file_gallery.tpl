@@ -170,7 +170,7 @@
 </div>
 
 {if $edit_mode neq 'y' and $gal_info.description neq ''}
-	<div class="description help-block">
+	<div class="description form-text">
 		{$gal_info.description|escape|nl2br}
 	</div>
 {/if}

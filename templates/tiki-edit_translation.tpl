@@ -71,7 +71,7 @@
 								</label>
 								<div class="col-md-8">
 									{include file="categorize.tpl" notable=y}
-									<span class="help-block">
+									<span class="form-text">
 										{tr}Assign categories to this new translation (Note: they should probably be the same as the categories of the page being translate){/tr}
 									</span>
 								</div>

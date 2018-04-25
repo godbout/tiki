@@ -239,7 +239,7 @@
 								<label class="col-sm-4 control-label" for="image">{tr}Image{/tr}</label>
 								<div class="col-sm-8">
 									{file_selector name="image" value=$image type="image/*" galleryId=$prefs.forum_image_file_gallery}
-									<div class="help-block">
+									<div class="form-text">
 										{tr}Image symbolizing the forum.{/tr}
 									</div>
 								</div>
@@ -557,7 +557,7 @@
 							<label class="control-label col-sm-4" for="att_max_size">{tr}Max attachment size (bytes){/tr}</label>
 							<div class="col-sm-8">
 								<input type="text" name="att_max_size" id="att_max_size" class="form-control" value="{$att_max_size|escape}">
-								<span class="help-block">{tr}Max:{/tr} {$maxAttachSize|escape} ({$maxAttachSize|kbsize})</span>
+								<span class="form-text">{tr}Max:{/tr} {$maxAttachSize|escape} ({$maxAttachSize|kbsize})</span>
 							</div>
 						</div>
 						<div class="form-group">

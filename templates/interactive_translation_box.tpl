@@ -47,7 +47,7 @@
 					<input id="intertrans-submit" type="submit" class="btn btn-secondary" value="{tr}Save translations{/tr}">
 					<input id="intertrans-cancel" class="btn btn-primary" type="reset" value="{tr}Cancel{/tr}">
 					<input id="intertrans-close" class="btn btn-primary" type="reset" value="{tr}Close{/tr}">
-					<span id="intertrans-help" class="help-block">
+					<span id="intertrans-help" class="form-text">
 						{tr}Changes will be applied on next page load only.{/tr}
 					</span>
 				</div>

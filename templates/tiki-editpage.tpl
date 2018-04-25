@@ -318,7 +318,7 @@
 								<label class="col-md-4 control-label" for="allowhtml">{tr}Allow HTML{/tr}</label>
 								<div class="col-md-8">
 									<input type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
-									<span class="help-block">
+									<span class="form-text">
 										{tr}HTML tags are used to create elements of the wiki page, instead of being displayed as code.{/tr}
 									</span>
 								</div>
@@ -553,7 +553,7 @@
 												<option value="{$languages[ix].value|escape}"{if $lang eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name}</option>
 											{/section}
 										</select>
-										<span class="help-block">
+										<span class="form-text">
 											{tr _0="tiki-edit_translation.php?no_bl=y&amp;page={$page|escape:url}"}To translate, do not change the language and the content. Instead, <a class="alert-link" href="%0">create a new translation</a> in the new language.{/tr}
 											{if $translationOf}
 												<input type="hidden" name="translationOf" value="{$translationOf|escape}">
@@ -620,7 +620,7 @@
 								<label for="explicit_namespace" class="col-md-4 control-label">{tr}Namespace{/tr}</label>
 								<div class="col-md-8">
 									<input type="text" class="form-control" name="explicit_namespace" value="{$explicit_namespace|escape}" placeholder="{tr}Explicit Namespace{/tr}">
-									<span class="help-block">
+									<span class="form-text">
 										{tr}The namespace for a page is guessed automatically from the page name. However, some exceptions may arise. This option allows to override the namespace.{/tr}
 									</span>
 								</div>

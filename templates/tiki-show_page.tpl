@@ -170,7 +170,7 @@ Note: The show content block must be defined at root level to use the include. A
 		<div class="wikitext" id="wikifootnote">{$footnote}</div>
 	{/if}
 
-	<footer class="help-block">
+	<footer class="form-text">
 		{if $prefs.wiki_simple_ratings eq 'y' && $tiki_p_wiki_vote_ratings eq 'y'}
 			{tr}Rate this page:{/tr}
 			<form method="post" action="">

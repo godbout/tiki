@@ -10,7 +10,7 @@
 		<div class="col-sm-8">
 		{if $prefs.login_is_email eq 'y'}
 			<input type="email" name="name" id="name" value="{if !empty($smarty.post.name)}{$smarty.post.name}{/if}" class="form-control" >
-			<div class="help-block">{tr}Use your email address as your log-in name{/tr}</div>
+			<div class="form-text">{tr}Use your email address as your log-in name{/tr}</div>
 		{else}
 			<input type="text" name="name" id="name" value="{if !empty($smarty.post.name)}{$smarty.post.name}{/if}" class="form-control" >
 			{if $prefs.feature_jquery_validation eq 'n'}

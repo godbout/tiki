@@ -11,7 +11,7 @@
 			{/if}
 		{/foreach}
 	</select>
-	{if isset($assign_info)}<div class="description help-block">{$assign_info.description}{if isset($assign_info.documentation)} {help url=$assign_info.documentation}{/if}</div>{/if}
+	{if isset($assign_info)}<div class="description form-text">{$assign_info.description}{if isset($assign_info.documentation)} {help url=$assign_info.documentation}{/if}</div>{/if}
 </div>
 <div id="module_params">
 	{if !empty($assign_name)}

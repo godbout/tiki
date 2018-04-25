@@ -60,7 +60,7 @@
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="maxRows" name="maxRows"{if !empty($maxRows)} value="{$maxRows|escape}"{/if}>
 						</div>
-						<div class="col-sm-4 help-block">
+						<div class="col-sm-4 form-text">
 							{tr}Default:{/tr} {if !empty($prefs.maxRowsGalleries)}{$prefs.maxRowsGalleries}{else}10{/if}
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 						<div class="col-sm-4">
 							<input type="text" class="form-control" name="rowImages" id="rowImages" {if !empty($rowImages)} value="{$rowImages|escape}"{/if}>
 						</div>
-						<div class="col-sm-4 help-block">
+						<div class="col-sm-4 form-text">
 							{tr}Default:{/tr} {if !empty($prefs.rowImagesGalleries)}{$prefs.rowImagesGalleries}{else}6{/if}
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 						<div class="col-sm-4">
 							<input type="text" id="thumbSizeX" name="thumbSizeX" class="form-control" {if !empty($thumbSizeX)} value="{$thumbSizeX|escape}"{/if}>
 						</div>
-						<div class="col-sm-4 help-block">
+						<div class="col-sm-4 form-text">
 							{tr}Default:{/tr} {if !empty($prefs.thumbSizeXGalleries)}{$prefs.thumbSizeXGalleries}{else}80{/if}
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="thumbSizeY" name="thumbSizeY" {if !empty($thumbSizeY)} value="{$thumbSizeY|escape}"{/if}>
 						</div>
-						<div class="col-sm-4 help-block">
+						<div class="col-sm-4 form-text">
 							{tr}Default:{/tr} {if !empty($prefs.thumbSizeYGalleries)}{$prefs.thumbSizeYGalleries}{else}80{/if}
 						</div>
 					</div>
@@ -218,7 +218,7 @@
 						<div class="col-sm-4">
 							<input type="text" id="scaleSize" class="form-control" name="scaleSize">
 						</div>
-						<div class="col-sm-4 help-block">
+						<div class="col-sm-4 form-text">
 							{tr}pixels{/tr}
 						</div>
 					</div>

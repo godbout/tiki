@@ -13,21 +13,21 @@
 		<label for="extwiki" class="col-sm-3 control-label">{tr}URL{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" maxlength="255" class="form-control" name="extwiki" id="extwiki" value="{$info.extwiki|escape}">
-			<p class="help-block">{tr}URL (use $page to be replaced by the page name in the URL example: http://www.example.com/tiki-index.php?page=$page):{/tr}</p>
+			<p class="form-text">{tr}URL (use $page to be replaced by the page name in the URL example: http://www.example.com/tiki-index.php?page=$page):{/tr}</p>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="indexname" class="col-sm-3 control-label">{tr}Index{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" maxlength="255" class="form-control" name="indexname" id="indexname" value="{$info.indexname|escape}">
-			<p class="help-block">{tr}<em>[prefix]</em>main, such as tiki_main{/tr}</p>
+			<p class="form-text">{tr}<em>[prefix]</em>main, such as tiki_main{/tr}</p>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="groups" class="col-sm-3 control-label">{tr}Search as{/tr}</label>
 		<div class="col-sm-9">
 			{object_selector_multi _simplename=groups _simpleid=groups _simplevalue=$info.groups type="group" _separator=";"}
-			<p class="help-block">{tr}Leave blank to search using currently active groups.{/tr}</p>
+			<p class="form-text">{tr}Leave blank to search using currently active groups.{/tr}</p>
 		</div>
 	</div>
 	<div class="form-group text-center">

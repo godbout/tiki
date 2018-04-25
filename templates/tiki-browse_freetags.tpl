@@ -162,7 +162,7 @@
 							<a href="{$objects[ix].href}">
 								{$objects[ix].name|strip_tags|escape}
 							</a>
-							<span class="help-block">
+							<span class="form-text">
 								{$objects[ix].description|strip_tags|escape}
 							</span>
 						</td>

@@ -135,7 +135,7 @@
 					<label class="control-label col-sm-3">{tr}Site:{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="site" value="{$site|escape}" class="form-control">
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Ex: http://tiki.org or localhost{/tr}
 						</div>
 					</div>
@@ -144,7 +144,7 @@
 					<label class="control-label col-sm-3">{tr}Path:{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="path" value="{$path|escape}" class="form-control">
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Use /commxmlrpc.php if your Tiki site is installed at the root, otherwise adapt /tiki to your need{/tr}
 						</div>
 					</div>

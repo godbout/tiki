@@ -9,7 +9,7 @@
 			<div class="col-sm-8">
 				<input class="form-control" type="text" id="email" name="email" value="{if !empty($smarty.post.email)}{$smarty.post.email}{/if}">
 				{if $prefs.validateUsers eq 'y' and $prefs.validateEmail ne 'y'}
-					<p class="help-block">
+					<p class="form-text">
 						<em>{tr}A valid email is mandatory to register{/tr}</em>
 					</p>
 				{/if}

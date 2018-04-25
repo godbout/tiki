@@ -11,7 +11,7 @@
 				{tr}Theme{/tr}
 			</label>
 			<input type="text" name="theme" value="{$theme}" class="form-control" readonly>
-			<small class="help-block">CSS {tr}file{/tr}: {$file}</small>
+			<small class="form-text">CSS {tr}file{/tr}: {$file}</small>
 			<div class="input-group">
 				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 				<input type="submit" class="btn btn-secondary btn-sm" name="save_and_view" value="{tr}Save{/tr} &amp; {tr}View{/tr}">

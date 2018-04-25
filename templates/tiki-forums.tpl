@@ -120,7 +120,7 @@
 							{$channels[user].name|addongroupname|escape}
 						{/if}
 						{if $prefs.forum_list_desc eq 'y'}
-							<div class="help-block">
+							<div class="form-text">
 								{capture name="parsedDesc"}{wiki}{$channels[user].description}{/wiki}{/capture}
 								{if strlen($smarty.capture.parsedDesc) < $prefs.forum_list_description_len}
 									{$smarty.capture.parsedDesc}

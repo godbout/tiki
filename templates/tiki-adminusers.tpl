@@ -521,7 +521,7 @@
 										{tr}Send an email to the user to enable him or her to validate their account.{/tr}
 									</label>
 									{if empty($prefs.sender_email)}
-										<div class="help-block"><span class="highlight">{tr}You need to set <a href="tiki-admin.php?page=general">Sender Email</a>{/tr}</span></div>
+										<div class="form-text"><span class="highlight">{tr}You need to set <a href="tiki-admin.php?page=general">Sender Email</a>{/tr}</span></div>
 									{/if}
 								</div>
 							</div>
@@ -633,7 +633,7 @@
 					<label for="csvlist" class="control-label col-md-3">{tr}CSV File{/tr}</label>
 					<div class="col-md-9">
 						<input type="file" id="csvlist" name="csvlist">
-						<div class="help-block">
+						<div class="form-text">
 							{tr}CSV file layout{/tr} {tr}login,password,email,groups,default_group,realName<br>user1,pass1,email1,group1,group1<br>user2,pass2,email2,"group1,group2",group1{/tr}<br><br>{tr}Only login, password, email are mandatory.Use an empty password for automatic password generation. Use same login and email if the login use email. Groups are separated by comma. With group name with comma, double the comma.{/tr}
 						</div>
 					</div>

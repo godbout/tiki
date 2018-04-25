@@ -36,7 +36,7 @@
 			<label class="control-label col-sm-3">{tr}Friend's email{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" size="60" name="addresses" value="{$addresses|escape}" class="form-control">
-				<div class="help-block">
+				<div class="form-text">
 					{tr}Separate multiple email addresses with a comma.{/tr}
 				</div>
 			</div>

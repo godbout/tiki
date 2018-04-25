@@ -26,7 +26,7 @@
 					</label>
 					<div class="col-md-8">
 						<input class="form-control" disabled value="{$userinfo.login|escape}">
-						<span class="help-block">
+						<span class="form-text">
 							{tr}Last login:{/tr} {$userinfo.lastLogin|tiki_long_datetime}
 						</span>
 					</div>
@@ -197,7 +197,7 @@
 									</option>
 								{/section}
 							</select>
-							<span class="help-block">If email is public, select a scrambling method to prevent spam</span>
+							<span class="form-text">If email is public, select a scrambling method to prevent spam</span>
 						{else}
 							<p class="form-control-plaintext">{tr}Unavailable - please set your email below{/tr}</p>
 						{/if}
@@ -215,7 +215,7 @@
 								</option>
 							{/section}
 						</select>
-						<span class="help-block">Special character set for your email application</span>
+						<span class="form-text">Special character set for your email application</span>
 					</div>
 				</div>
 				{if $prefs.change_theme eq 'y' && empty($group_theme)}
@@ -276,7 +276,7 @@
 								</option>
 							{/section}
 						</select>
-						<div class="help-block">{tr}Select from the dropdown to add automatically to the list below{/tr}</div>
+						<div class="form-text">{tr}Select from the dropdown to add automatically to the list below{/tr}</div>
 					</div>
 					<label for="read-language-input" class="col-md-8 col-md-push-4">
 						<input class="form-control" id="read-language-input" type="text" name="read_language" value="{$user_prefs.read_language}">
@@ -385,7 +385,7 @@
 								<option value="5" {if $user_prefs.minPrio eq 5}selected="selected"{/if}>5 -{tr}Very High{/tr}-</option>
 								<option value="6" {if $user_prefs.minPrio eq 6}selected="selected"{/if}>{tr}none{/tr}</option>
 							</select>
-							<span class="help-block">{tr}Send me an email for messages with priority equal to or greater than{/tr}</span>
+							<span class="form-text">{tr}Send me an email for messages with priority equal to or greater than{/tr}</span>
 						</div>
 					</div>
 					<div class="form-group clearfix">
@@ -405,7 +405,7 @@
 								<option value="50" {if $user_prefs.mess_archiveAfter eq 50}selected="selected"{/if}>50</option>
 								<option value="60" {if $user_prefs.mess_archiveAfter eq 60}selected="selected"{/if}>60</option>
 							</select>
-							<span class="help-block">{tr}Auto-archive read messages after selected days{/tr}</span>
+							<span class="form-text">{tr}Auto-archive read messages after selected days{/tr}</span>
 						</div>
 					</div>
 				{/if}

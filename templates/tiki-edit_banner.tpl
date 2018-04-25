@@ -25,7 +25,7 @@
 				<label class="col-sm-3 control-label">{tr}Maximum impressions{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="maxImpressions" value="{$maxImpressions|escape}" maxlength="7" class="form-control">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}-1 for unlimited{/tr}
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 				<label class="col-sm-3 control-label">{tr}Maximum number of impressions for a user{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="maxUserImpressions" value="{$maxUserImpressions|escape}" maxlength="7" class="form-control">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}-1 for unlimited{/tr}
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 				<label class="col-sm-3 control-label">{tr}Maximum clicks{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="maxClicks" value="{$maxClicks|escape}" maxlength="7" class="form-control">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}-1 for unlimited{/tr}
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 				<label class="col-sm-3 control-label">{tr}URIs where the banner appears only{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="onlyInURIs" value="{$onlyInURIs|escape}" class="form-control">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Type each URI enclosed with the # character. Exemple:#/this_page#/tiki-index.php?page=this_page#{/tr}
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 				<label class="col-sm-3 control-label">{tr}URIs where the banner will not appear{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="exceptInURIs" value="{$exceptInURIs|escape}" class="form-control">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Type each URI enclosed with the # character. Exemple:#/this_page#/tiki-index.php?page=this_page#{/tr}
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 							<option value="" disabled="disabled" selected="selected">{tr}None{/tr}</option>
 						{/section}
 					</select>
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Or, create a new zone{/tr}
 					</div>
 				</div>
@@ -160,7 +160,7 @@
 				<label class="col-sm-3 control-label"><label class="radio-inline"><input type="radio" name="use" value="useHTML" {if $use eq 'useHTML'}checked="checked"{/if}>{tr}Use HTML{/tr}</label></label>
 				<div class="col-sm-7">
 					<textarea class="form-control" rows="5" name="HTMLData">{if $use ne 'useFlash'}{$HTMLData|escape}{/if}</textarea>
-					<div class="help-block">
+					<div class="form-text">
 						{tr}HTML code{/tr}
 					</div>
 				</div>
@@ -187,7 +187,7 @@
 				<label class="col-sm-3 control-label"><label class="radio-inline"><input type="radio" name="use" value="useFixedURL" {if $use eq 'useFixedURL'}checked="checked"{/if}>{tr}Use Image from URL{/tr}</label></label>
 				<div class="col-sm-7">
 					<input type="text" name="fixedURLData" value="{$fixedURLData|escape}" class="form-control">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}(the image will be requested at the URL for each impression){/tr}
 					</div>
 				</div>
@@ -210,13 +210,13 @@
 				<label class="col-sm-3 control-label">{tr}Movie Size{/tr}</label>
 				<div class="col-sm-3">
 					<input type="text" name="movieWidth" value="{$movie.width|escape}" class="form-control" placeholder="{tr}width in pixels{/tr}">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Pixels{/tr}
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<input type="text" name="movieHeight" value="{$movie.height|escape}" class="form-control" placeholder="{tr}height in pixels{/tr}">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Pixels{/tr}
 					</div>
 				</div>
@@ -225,12 +225,12 @@
 				<label class="col-sm-3 control-label">{tr}FlashPlugin min version{/tr}</label>
 				<div class="col-sm-7 margin-bottom-sm">
 					<input type="text" name="movieVersion" value="{$movie.version|escape}" class="form-control">
-					<div class="help-block">
+					<div class="form-text">
 						({tr}ex:{/tr}9.0.0)
 					</div>
 				</div>
 				<div class="col-sm-7 col-sm-offset-4">
-					<div class="help-block">
+					<div class="form-text">
 						Note: To be managed with tiki , your flash banner link should be: <a class="link" href="banner_click.php?id={$bannerId}&amp;url={$url}">banner_click.php?id={$bannerId}&amp;url={$url}</a>
 					</div>
 				</div>

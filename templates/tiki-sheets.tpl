@@ -95,7 +95,7 @@
 								</option>
 							{/foreach}
 						</select>
-						<span class="help-block">
+						<span class="form-text">
 							{tr}Makes this sheet a "child" sheet of a multi-sheet set{/tr}
 						</span>
 					</div>
