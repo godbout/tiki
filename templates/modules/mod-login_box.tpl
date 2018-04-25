@@ -153,7 +153,7 @@ if (jqueryTiki.no_cookie) {
 				<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
 					{tr}Log in{/tr}
 				</button>
-				<div class="siteloginbar_poppedup dropdown-menu pull-right modal-sm"><div class="panel-body">
+				<div class="siteloginbar_poppedup dropdown-menu pull-right modal-sm"><div class="card-body">
 					{capture assign="close_tags"}</div></div></div>{$close_tags}{/capture}
 		{/if}
 
@@ -250,15 +250,15 @@ if (jqueryTiki.no_cookie) {
 		{if $module_params.show_forgot eq 'y' or $module_params.show_register eq 'y'}
 			<div {if $mode eq 'header'}class="text-right" style="display:inline;"{/if}>
 				{strip}
-					<div {if $mode eq 'header'}style="display: inline-block"{/if}><ul class="{if $mode neq 'header'}list-unstyled nav"{else}list-inline"{/if}>
+					<div {if $mode eq 'header'}style="display: inline-block"{/if}><ul class="{if $mode neq 'header'}list-unstyled"{else}list-inline"{/if}>
 						{if $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
-							<li class="pass"><a href="tiki-remind_password.php" title="{tr}Click here if you've forgotten your password{/tr}">{tr}I forgot my password{/tr}</a></li>
+							<li class="pass list-item"><a href="tiki-remind_password.php" title="{tr}Click here if you've forgotten your password{/tr}">{tr}I forgot my password{/tr}</a></li>
 						{/if}
 						{if $module_params.show_register eq 'y' && $prefs.allowRegister eq 'y'}
 							{if $mode eq 'header' && $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
 								&nbsp;|&nbsp;
 							{/if}
-							<li class="register"><a href="tiki-register.php{if !empty($prefs.registerKey)}?key={$prefs.registerKey|escape:'url'}{/if}" title="{tr}Click here to register{/tr}"{if !empty($prefs.registerKey)} rel="nofollow"{/if}>{tr}Register{/tr}</a></li>
+							<li class="register list-item"><a href="tiki-register.php{if !empty($prefs.registerKey)}?key={$prefs.registerKey|escape:'url'}{/if}" title="{tr}Click here to register{/tr}"{if !empty($prefs.registerKey)} rel="nofollow"{/if}>{tr}Register{/tr}</a></li>
 						{/if}
 					</ul></div>
 				{/strip}
@@ -311,7 +311,7 @@ if (jqueryTiki.no_cookie) {
 							<input class="form-control" type="text" name="openid_url"/>
 							<span class="input-group-btn"><button type="submit" class="btn btn-primary" title="{tr}Go{/tr}"><img alt="{tr}OpenID Login{/tr}" class="img-circle" src="img/icons/login-OpenID-bg.gif"></button></span>
 						</div>
-						<span class="help-block"><a class="linkmodule tikihelp" target="_blank" href="http://doc.tiki.org/OpenID">{tr}What is OpenID?{/tr}</a></span>
+						<span class="form-text"><a class="linkmodule tikihelp" target="_blank" href="http://doc.tiki.org/OpenID">{tr}What is OpenID?{/tr}</a></span>
 					</div>
 				</fieldset>
 			</form>
