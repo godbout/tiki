@@ -26,7 +26,7 @@ function prefs_flaggedrev_list()
 			'dependencies' => [
 				'feature_categories',
 			],
-			'default' => [''], //empty string needed to keep preference from setting unexpectedly
+			'default' => [],
 		],
 	];
 }
