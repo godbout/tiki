@@ -19,7 +19,7 @@
 				{* For all object types: Show everything as a dropdown for visibility *}
 				{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
 				<button class="btn btn-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-					{icon name="translate"} {$trads[0].langName|escape} ({$trads[0].lang|escape}) <span class="caret"></span>
+					{icon name="translate"} {$trads[0].langName|escape} ({$trads[0].lang|escape})
 				</button>
 		{/if}
 {else}

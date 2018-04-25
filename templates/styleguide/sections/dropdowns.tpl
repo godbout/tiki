@@ -4,7 +4,7 @@
 		<div class="col-sm-8 col-md-9">
 			<div class="dropdown">
 				<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Dropdown <span class="caret"></span>
+					Dropdown
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					<li class="dropdown-item"><a href="javascript:void(0);">Action</a></li>

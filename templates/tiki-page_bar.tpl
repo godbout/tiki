@@ -167,9 +167,7 @@
 			{/if}
 			{if $more_section|trim neq ''}
 				<div class="btn-group dropup">
-					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-						{tr}More{/tr} <span class="caret"></span>
-					</button>
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"></button>
 					<ul class="dropdown-menu" role="menu">
 						{$more_section}
 					</ul>

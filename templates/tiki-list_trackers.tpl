@@ -17,7 +17,6 @@
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					{icon name="import"} {tr}Import{/tr}
-					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
 					<li class="dropdown-item">

@@ -47,7 +47,7 @@
 
 			<div class="dropup">
 				<a id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-					Select a section: <span class="caret"></span>
+					Select a section:
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="dLabel">
 				</ul>

@@ -46,7 +46,6 @@
 										<div class="input-group-btn">
 											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<span class="align">{tr}Left{/tr}</span>
-												<span class="caret"></span>
 												<input class="display-align" type="hidden" value="left">
 											</button>
 											<ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -74,7 +73,6 @@
 											<div class="input-group-btn">
 												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 													<span class="align">{$column->getDisplayAlign()|ucfirst|tra}</span>
-													<span class="caret"></span>
 													<input class="display-align" type="hidden" value="{$column->getDisplayAlign()|escape}">
 												</button>
 												<ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -153,7 +151,6 @@
 										<div class="input-group-btn">
 											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<span class="position-label">{tr}Default{/tr}</span>
-												<span class="caret"></span>
 												<input class="position" type="hidden" value="default">
 											</button>
 											<ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -176,7 +173,6 @@
 											<div class="input-group-btn">
 												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 													<span class="position-label">{$filter->getPosition()|ucfirst|tra}</span>
-													<span class="caret"></span>
 													<input class="position" type="hidden" value="{$filter->getPosition()|escape}">
 												</button>
 												<ul class="dropdown-menu dropdown-menu-right" role="menu">

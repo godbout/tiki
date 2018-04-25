@@ -16,7 +16,7 @@
 
 	<div class="btn-group">
 		<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-				{tr}More{/tr} <span class="caret"></span>
+				{tr}More{/tr}
 		</button>
 		<ul class="dropdown-menu" role="menu">
 			{if $prefs.feature_messages eq 'y' and $tiki_p_messages eq 'y'}

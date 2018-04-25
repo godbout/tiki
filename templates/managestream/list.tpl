@@ -4,7 +4,7 @@
 		<div class="t_navbar margin-bottom-md">
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					{icon name="create"} {tr}Create{/tr} <span class="caret"></span>
+					{icon name="create"} {tr}Create{/tr}
 				</button>
 				<ul class="dropdown-menu">
 					<li class="dropdown-item">

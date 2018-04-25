@@ -24,7 +24,7 @@
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-									Dropdown <span class="caret"></span>
+									Dropdown
 								</a>
 								<ul class="dropdown-menu">
 									<li class="dropdown-item"><a href="javascript:void(0);">Action</a></li>
@@ -47,7 +47,7 @@
 							<li><a href="javascript:void(0);">Link</a></li>
 							<li class="dropdown">
 								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-									Dropdown <span class="caret"></span>
+									Dropdown
 								</a>
 								<ul class="dropdown-menu">
 									<li class="dropdown-item"><a href="javascript:void(0);">Action</a></li>
