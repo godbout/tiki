@@ -1,4 +1,36 @@
-/*  The Kiwi theme option file for the FiveAlive-lite themes of Tiki Wiki CMS Groupware. */
+/*  The Kiwi theme option file for the FiveAlive-lite theme of Tiki Wiki CMS Groupware. */
+
+.header_outer,
+.layout_basic #top_modules,
+.postbody-title {  background: #96a032; }
+
+.middle_outer {
+  -webkit-box-shadow: inset 0 28px 0 0 #cdbe23;
+  -moz-box-shadow: inset 0 28px 0 0 #cdbe23;
+  box-shadow: inset 0 28px 0 0 #cdbe23;
+}
+
+.topbar,
+.navbar-default,
+.topbar .navbar-default .navbar-nav > li,
+.topbar .nav > li {
+  background: #cdbe23;
+  color: #cdbe23;
+}
+
+.navbar-nav > li.dropdown {
+  border-bottom: 1px solid #bcb923;
+}
+
+.topbar .navbar-nav > li.dropdown {
+  border-bottom: none;
+}
+
+#page-header .dropdown-menu,
+.topbar .cssmenu_horiz ul {
+  background: #bcb923;
+}
+
 a,
 .btn-link {
   color: #638637;
@@ -126,20 +158,7 @@ fieldset[disabled] .btn-primary.focus {
 hr {
   border-top: 1px solid #bcb923;
 }
-/*
-.alert-success {
-  .alert-variant(@alert-success-bg; @alert-success-border; @alert-success-text);
-}
-.alert-info {
-  .alert-variant(@alert-info-bg; @alert-info-border; @alert-info-text);
-}
-.alert-warning {
-  .alert-variant(@alert-warning-bg; @alert-warning-border; @alert-warning-text);
-}
-.alert-danger {
-  .alert-variant(@alert-danger-bg; @alert-danger-border; @alert-danger-text);
-}
-*/
+
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -190,10 +209,7 @@ hr {
   background-image: none;
   border: 1px solid #f5fb86;
 }
-.navbar-default {
-  background-color: #cdbe23;
-  border-color: none;
-}
+
 .navbar-default .navbar-brand {
   color: #ffffff;
 }
@@ -237,7 +253,7 @@ hr {
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: none;
+  border-color: transparent;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
@@ -412,7 +428,7 @@ hr {
 }
 .panel-default > .panel-heading {
   color: #ffffff;
-  background-color: #638637;
+  background-color: #7f7f23;
   border-color: #dddddd;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
@@ -564,35 +580,91 @@ hr {
 .label-danger[href]:focus {
   background-color: #c9302c;
 }
-.middle_outer {
-  -webkit-box-shadow: inset 0 24px 0 0 #cdbe23;
-  box-shadow: inset 0 24px 0 0 #cdbe23;
+
+header.page-header {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: none;
 }
-.fullscreen .middle_outer {
-  -webkit-box-shadow: inset 0 3px 0 0 #cdbe23;
-  box-shadow: inset 0 3px 0 0 #cdbe23;
+header.page-header a,
+header.page-header a.btn-link {
+  color: #ffffff !important;
 }
-.topbar,
-.topbar_container,
-.layout_basic .page-header > .topbar {
-  background: #cdbe23;
+.form-control,
+select,
+input[type="text"],
+input[type="password"],
+input[type="file"],
+input[type="email"],
+input[type="file"],
+input[type="search"],
+input[type="number"],
+input#login-pass,
+textarea,
+.adminoptionbox option {
+  background-color: #f8f9d4;
+  border-color: #f5fb86 #fbfbee #fbfbee #f5fb86;
 }
-.top_modules a,
-.topbar a,
-.top_modules label,
-.topbar label {
+.navbar-collapse {
+  border: none;
+}
+#footer {
+  background: black;
+  color: #f4f4f4;
+  padding: 1px 0 2px 0;
+  width: 100%;
+}
+.footer {
+  border-top: 1px solid #ebdc14;
+  border-bottom: 1px solid #ebdc14;
+}
+.footer_liner h3.panel-title {
   color: #ffffff;
+  border-bottom: 1px dotted #ebdc14;
 }
-.navbar-collapse.collapse.in {
-  background: #cdbe23;
+.footer_liner legend,
+.footer_liner a,
+.footer_liner a:visited {
+  color: #a9a9a9;
 }
+.footer_liner a.btn-default,
+.footer_liner a.btn-default:visited {
+  color: #f4f4f4;
+}
+.admin-navbar,
 .navbar-nav .open .dropdown-menu,
 .navbar-nav .open .dropdown-menu li,
 .navbar-default .navbar-nav > li > a {
-  background: #cdbe23;
+  background: #313109;
 }
-.topbar .cssmenu_horiz ul {
-  background: #658838;
+.navbar-default .navbar-nav > li > a:hover {
+  background: #dbcc2e;
+}
+.postbody-title .title > .panel-title a.link,
+.panel-default > .panel-heading a {
+  color: #ffffff;
+}
+.blog-postbody-title h2.panel-title {
+  font-size: 20px;
+}
+.siteloginbar_popup .dropdown-menu > li > a {
+  color: #ffffff;
+}
+header.header .sitetitle,
+header.header .sitesubtitle {
+  color: #638637;
+  text-shadow: none;
+}
+.searchresults blockquote em,
+.highlight,
+.btn-default.highlight a,
+.btn-default a.highlight {
+  background: #f2dede;
+  color: #a94442;
+  border-color: #ebccd1;
+}
+.btn-default.highlight:hover {
+  background: #dca7a7;
 }
 .cssmenu_horiz li ul,
 .cssmenu_vert li ul {
@@ -611,10 +683,6 @@ hr {
   color: #ffffff;
   background: #658838;
 }
-.topbar .cssmenu_horiz li.selected a,
-.cssmenu_horiz ul li.selected a {
-  background: #587631;
-}
 .cssmenu_horiz > li > a:hover,
 .cssmenu_vert > li > a:hover,
 .cssmenu_horiz ul > li > a:hover,
@@ -625,7 +693,7 @@ hr {
 .cssmenu_vert ul > li > a:focus {
   text-decoration: none;
   color: #f2f2f2;
-  background-color: #cdbe23;
+  background-color: #658838;
 }
 .topbar .cssmenu_horiz li a:hover {
   background: #a09d1e;
@@ -633,9 +701,6 @@ hr {
 .topbar .navbar-nav > li > a,
 .topbar .navbar > li > a,
 .topbar .cssmenu_horiz > li > a {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  line-height: 1;
   color: #ffffff;
 }
 .sf-arrows .sf-with-ul:after {
@@ -665,122 +730,6 @@ hr {
   border-color: transparent;
   border-left-color: #f2f2f2;
 }
-.topbar .navbar {
-  margin-bottom: 0;
-}
-.header_outer,
-.layout_fixed_top_modules .navbar-fixed-top,
-.layout_social_modules .navbar-fixed-top,
-.layout_basic .page-header > .top_modules {
-  background: #96a032;
-  border-bottom: 5px solid #000000;
-}
-.header_container > .header {
-  background: none;
-}
-header.header .module.secondary_site_menu {
-  background: none;
-}
-.page-header {
-  margin-top: 0;
-  margin-bottom: 0;
-  border-bottom: none;
-}
-.form-control,
-select,
-input[type="text"],
-input[type="password"],
-input[type="file"],
-input[type="email"],
-input[type="file"],
-input[type="search"],
-input[type="number"],
-input#login-pass,
-textarea,
-.adminoptionbox option {
-  background-color: #f8f9d4;
-  border-color: #f5fb86 #fbfbee #fbfbee #f5fb86;
-}
-.navbar-collapse {
-  border: none;
-}
-#col2 .panel,
-#col3 .panel {
-  border: none;
-}
-#col2 .panel-default > .panel-heading,
-#col3 .panel-default > .panel-heading {
-  background: #ffffff;
-  border-width: 0 0 1px 0;
-  border-style: solid;
-  border-color: #cdbe23;
-}
-#col2 .panel-title,
-#col3 .panel-title,
-a.flipmoduletitle,
-#col2 .panel-default > .panel-heading a,
-#col3 .panel-default > .panel-heading a {
-  color: #cdbe23;
-}
-#footer {
-  background: #000000;
-  color: #ffffff;
-  padding: 1px 0 2px 0;
-  width: 100%;
-}
-.footer {
-  border-top: 1px solid #ebdc14;
-  border-bottom: 1px solid #ebdc14;
-}
-.footer_liner .panel,
-.footer_liner .panel-default,
-.footer_liner .panel-heading {
-  background: transparent;
-}
-.footer_liner h3.panel-title {
-  color: #ffffff;
-  border-bottom: 1px dotted #ebdc14;
-}
-.footer_liner a.btn-default,
-.footer_liner a.btn-default:visited {
-  color: #e6e6e6;
-}
-.postbody-title {
-  background: url('../images/siteheader.png') no-repeat -480px -200px;
-  color: #ffffff;
-}
-.postbody-title .title > .panel-title a.link,
-.panel-default > .panel-heading a {
-  color: #ffffff;
-}
-.blog-postbody-title h2.panel-title {
-  font-size: 20px;
-}
-.siteloginbar_popup .dropdown-menu > li > a {
-  color: #ffffff;
-}
-.layout_basic .page-header > .top_modules a,
-header.header a,
-.layout_basic .page-header > .top_modules .btn-link,
-header.header .btn-link,
-.layout_basic .page-header > .top_modules .sitetitle,
-header.header .sitetitle,
-.layout_basic .page-header > .top_modules .sitesubtitle,
-header.header .sitesubtitle {
-  color: #ffffff;
-  text-shadow: none;
-}
-.searchresults blockquote em,
-.highlight,
-.btn-default.highlight a,
-.btn-default a.highlight {
-  background: #f2dede;
-  color: #a94442;
-  border-color: #ebccd1;
-}
-.btn-default.highlight:hover {
-  background: #dca7a7;
-}
 .chosen-container-multi .chosen-choices {
   background-color: #ffffff;
   color: #555555;
@@ -803,14 +752,20 @@ header.header .sitesubtitle {
   color: #f2f2f2;
 }
 .autotoc > .nav {
-  background: #ffffff;
-  border-color: #ebdc14;
+  background: #658838;
 }
 .autotoc * {
-  color: #638637;
+  color: #ffffff;
 }
 .autotoc .nav > li > a:hover,
 .autotoc .nav .nav > li > a:hover {
   color: #f2f2f2;
   background: #587631;
+}
+#col2 .panel-title,
+#col3 .panel-title,
+a.flipmoduletitle,
+#col2 .panel-default > .panel-heading a,
+#col3 .panel-default > .panel-heading a {
+  color: #cdbe23;
 }
