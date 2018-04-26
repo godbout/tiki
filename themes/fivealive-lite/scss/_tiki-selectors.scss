@@ -6,7 +6,7 @@
 // }
 //
 // If Glyphicons should be rendered in a color other than the Bootstrap default or the theme default, uncomment and specify the color.
-// .glyphicon {color: @gray-lighter;}
+// .glyphicon {color: $gray-lighter;}
 $imagePath: "../images/";
 .middle_outer {
 	-webkit-box-shadow: inset 0 24px 0 0 #28a7de;
@@ -27,7 +27,7 @@ body.tiki.navbar-padding,
 	//.layout_fixed_top_modules .navbar-fixed-top,
 .layout_fixed_top_modules,
 .layout_social_modules {
-	padding-top: @navbar-fixed-height;
+	padding-top: $navbar-fixed-height;
 	h1.sitetitle {
 		line-height: normal;
 	}
@@ -41,13 +41,13 @@ body.fullscreen.tiki.navbar-padding {
 .layout_fixed_top_modules #top_modules h1.sitetitle {
 	float: left;
 	font-size: 1.8rem;
-	line-height: @navbar-fixed-height;
+	line-height: $navbar-fixed-height;
 }
 
 //#top_modules,
 .layout_fixed_top_modules .top_modules,
 .navbar-fixed-top {
-	height: @navbar-fixed-height;
+	height: $navbar-fixed-height;
 	//  overflow: hidden;
 	.sitelogo img {
 		width: auto !important;
@@ -73,21 +73,21 @@ body.fullscreen.tiki.navbar-padding {
 		float: left;
 		font-size: 1.5em;
 		margin: 0 0 0 1.5em;
-		line-height: @navbar-fixed-height;
-		height: @navbar-fixed-height;
+		line-height: $navbar-fixed-height;
+		height: $navbar-fixed-height;
 		color: #ffffff;
 	}
 }
 
 .topbar_container,
 .layout_basic .page-header > .topbar {
-	background: @topbar_container_background;
+	background: $topbar_container_background;
 }
 
 header.header {
 	.sitetitle,
 	.sitesubtitle {
-		color: @header-color;
+		color: $header-color;
 		text-shadow: none;
 	}
 }
@@ -116,33 +116,44 @@ header.header {
 	line-height: 1;
 }
 
+.topbar > a,
+.topbar .navbar-dark .navbar-nav > li > a,
+.topbar .nav > li > a {
+  color: #fff;
+}
+
+
+
 .topbar {
 	margin-bottom: 2rem;
 }
 
-#col2 .panel,
-#col3 .panel {
-	border: @side-column-border; // none;
+.card-title { font-size: 1.1rem; }
+.card-header { padding-bottom: 0; }
+
+#col2 .card,
+#col3 .card {
+	border: $side-column-border; // none;
 }
 
-#col2 .panel-default > .panel-heading,
-#col3 .panel-default > .panel-heading {
-	background: @side-column-panel-heading-background; // #e1d518 url('#{$imagePath}siteheader.png') no-repeat -1000px -200px;
-	border-width: @side-column-panel-heading-border-width;
+#col2 .card-header,
+#col3 .card-header {
+	background: $side-column-card-header-background; // #e1d518 url('#{$imagePath}siteheader.png') no-repeat -1000px -200px;
+	border-width: $side-column-card-header-border-width;
 	border-style: solid;
-	border-color: @side-column-panel-heading-border-color;
+	border-color: $side-column-card-header-border-color;
 }
 
-#col2 .panel-title,
-#col3 .panel-title {
-	color: @side-column-panel-title-color;
+#col2 .card-header,
+#col3 .card-header {
+	color: $side-column-card-header-color;
 }
 
 // Header graphics
 .header_outer,
 .layout_basic .page-header > .top_modules {
 	// whole width div containing the header strip
-	background: @header_outer-background; // url('#{$imagePath}siteheadertile.png') 0 0 no-repeat;
+	background: $header_outer-background; // url('#{$imagePath}siteheadertile.png') 0 0 no-repeat;
 	border-bottom: 5px solid #000000;
 	color: #000000;
 }
@@ -151,7 +162,7 @@ header.header {
 
 .header_container > .header {
 	// inner <header> element that gets .fixedwidth class applied
-	background: none; // @header_container_header-background; // url('#{$imagePath}siteheader.png') -248px 0 no-repeat;
+	background: none; // $header_container_header-background; // url('#{$imagePath}siteheader.png') -248px 0 no-repeat;
 }
 
 header.header .module.secondary_site_menu {
@@ -188,8 +199,8 @@ input[type="number"],
 input#login-pass,
 textarea,
 .adminoptionbox option {
-	background-color: @form-control-background; //#f8f9d4;
-	border-color: @form-control-border-colors; // #F5FB86 #FBFBEE #FBFBEE #F5FB86;
+	background-color: $form-control-background; //#f8f9d4;
+	border-color: $form-control-border-colors; // #F5FB86 #FBFBEE #FBFBEE #F5FB86;
 }
 
 .navbar-collapse {
@@ -198,30 +209,30 @@ textarea,
 
 #footer {
 	background: #000000;
-	color: @footer-color; // #696969;
+	color: $footer-color; // #696969;
 	padding: 1px 0 2px 0;
 	width: 100%;
 }
 
 .footer {
-	border-top: 1px solid @footer-border-color; //#ebdc14;
-	border-bottom: 1px solid @footer-border-color; // #ebdc14;
+	border-top: 1px solid $footer-border-color; //#ebdc14;
+	border-bottom: 1px solid $footer-border-color; // #ebdc14;
 }
 
 .footer_liner {
-	.panel-default,
-	.panel-default > .panel-heading {
+	.card-default,
+	.card-default > .card-header {
 		border: none;
 	}
-	h3.panel-title {
+	h3.card-header {
 		color: #ffffff;
-		border-bottom: 1px dotted @footer-border-color;
+		border-bottom: 1px dotted $footer-border-color;
 	}
 	//#ebdc14;
 	legend,
 	a,
 	a:visited {
-		color: @footer-link-color;
+		color: $footer-link-color;
 	}
 	// #a9a9a9;
 }
@@ -249,20 +260,20 @@ textarea,
 .navbar-nav .open .dropdown-menu,
 .navbar-nav .open .dropdown-menu li,
 .navbar-default .navbar-nav > li > a {
-	//  background: @navbar-default-navbar-nav-li-a-background; // #cdbe23;
+	//  background: $navbar-default-navbar-nav-li-a-background; // #cdbe23;
 }
 
-.navbar-default .navbar-nav > li > a:hover {
-	background: lighten(@navbar-default-navbar-nav-li-a-background, 5%);
-}
+//.navbar-default .navbar-nav > li > a:hover {
+//	background: lighten($navbar-default-navbar-nav-li-a-background, 5%);
+//}
 
 .postbody-title {
-	background: @postbody-title-background; //url('#{$imagePath}siteheader.png') no-repeat -480px -200px;
+	background: $postbody-title-background; //url('#{$imagePath}siteheader.png') no-repeat -480px -200px;
 }
 
 .siteloginbar_poppedup li > a,
 .siteloginbar_poppedup label {
-	color: @navbar-default-link-color;
+	color: $navbar-dark-color;
 }
 
 // This comes last to enable site title color of theme options under FiveAlive-lite to have priority over the default set by FiveAlive.
@@ -277,7 +288,7 @@ header.header {
 }
 
 .popover {
-	color: @text-color;
+	color: $body-color;
 }
 
 label a:hover { text-decoration: none; }
