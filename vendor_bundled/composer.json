@@ -68,6 +68,7 @@
 		"mottie/tablesorter": "^2.28",
 		"nagarajanchinnasamy/subtotal": "~1.9",
 		"nicolaskruchten/pivottable": "^2.20.0",
+		"npm-asset/popper.js": "^1.13.4",
 		"openannotation/annotator": ">=1.2.10",
 		"openid/php-openid": "2.2.2",
 		"openlayers/ol3": ">=3.6.0",

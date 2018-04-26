@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de188d7ec312f7820c642314fbd03a52",
+    "content-hash": "b7faca7a6c80e172d3fe98c599d77ad2",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -1922,6 +1922,20 @@
                 "table"
             ],
             "time": "2018-03-21T14:30:58+00:00"
+        },
+        {
+            "name": "npm-asset/popper.js",
+            "version": "1.14.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/popper-js/npm-asset-popper-js-1.14.3.zip",
+                "reference": null,
+                "shasum": "b5a050ecee9cecc7e3c10377e5c5bacc5eacf3c4"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "openannotation/annotator",
