@@ -100,7 +100,7 @@ FileETag none
     # -- Webfont Access -- #
     # Allow access from all domains for webfonts.
     # Alternatively you could whitelist your subdomains like "subdomain.example.com".
-    <FilesMatch "(?i)\.(ttf|ttc|otf|eot|woff2?|css|js)$">
+    <FilesMatch "(?i)\.(ttf|ttc|otf|eot|woff2?)$">
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
 
