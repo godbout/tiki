@@ -1152,7 +1152,7 @@ class NlLib extends TikiLib
 			$smarty->assign("nlArticleClipAuthorName", $art["authorName"]);
 			$articleClip .= $smarty->fetch("mail/newsletter_articleclip.tpl");
 		}
-		return '<div class="articleclip">' . $articleClip . '</div>';
+		return "<div class=\"articleclip\">\n" . $articleClip . "\n<!-- " . tr("End of last article") . " -->\n</div>";
 	}
 
 	// functions for getting email addresses from wiki pages
