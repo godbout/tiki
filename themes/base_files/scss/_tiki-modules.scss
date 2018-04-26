@@ -8,6 +8,8 @@
 	flex-direction: row !important;
 }
 
+#bottom_modules { align-items: flex-start; }
+
 //***** Site Header & Identity *****/
 .box-quickadmin li {
 	font-size: 0.9em;
@@ -121,7 +123,7 @@ li.archivedate {
 	border-top-right-radius: $btn-border-radius;
 }
 
-// Modules with nobox=y should have same whitespace below as panels do.
+// Modules with nobox=y should have same whitespace below as cards do.
 #col2 .module,
 #col3 .module { margin-bottom: 1.25rem; }
 
@@ -242,7 +244,7 @@ a.flip:hover,
 	font-size: 1em;
 }
 
-footer.footer .modules > .module:not(.panel) {
+footer.footer .modules > .module:not(.card) {
 	padding-left: 15px;
 	padding-right: 15px;
 }

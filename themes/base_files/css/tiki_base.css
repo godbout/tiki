@@ -1096,6 +1096,9 @@ div.categbar {
   display: flex !important;
   flex-direction: row !important; }
 
+#bottom_modules {
+  align-items: flex-start; }
+
 .box-quickadmin li {
   font-size: 0.9em; }
 
@@ -1246,7 +1249,7 @@ a.flip, a.flip:visited, .tellafriend a, .share a, .tellafriend a:visited, .share
 #rss small {
   font-size: 1em; }
 
-footer.footer .modules > .module:not(.panel) {
+footer.footer .modules > .module:not(.card) {
   padding-left: 15px;
   padding-right: 15px; }
 
