@@ -216,12 +216,11 @@ class Services_Menu_Controller
 				throw new Services_Exception_MissingValue('name');
 			}
 
-			//get current menu for menuId
-			$oldOptions = $this->menulib->list_menu_options($menuId);
 			//check if user enters the position in the form
-			if (! empty($input->position)) {
-				$position = $input->position->int();
-			} else {
+			$position = $input->position->int();
+			if (empty($position)) {
+				//get current menu for menuId
+				$oldOptions = $this->menulib->list_menu_options($menuId);
 				//Get position from current menu
 				if ($oldOptions) {
 					$position = intval($oldOptions['cant']) + 1;
