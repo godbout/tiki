@@ -443,6 +443,26 @@ class CleanVendors
 				'dist/plotly-locale-*'
 			]
 		);
+
+		self::removeMultiple(
+			$vendors . 'css-tricks/anythingslider-themes',
+			[
+				'demos',
+				'README.markdown',
+				'index.html',
+			]
+		);
+
+		self::removeMultiple(
+			$vendors . 'vimeo/froogaloop',
+			[
+				'actionscript',
+				'javascript/froogaloop.js',
+				'javascript/playground.html',
+				'javascript/readme.mdown',
+				'readme.mdown',
+			]
+		);
 	}
 
 	private static function addIndexFile($path)

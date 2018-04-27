@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7faca7a6c80e172d3fe98c599d77ad2",
+    "content-hash": "25f7174e804585c5e41ccf7403e1d32b",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -666,6 +666,17 @@
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "css-tricks/anythingslider-themes",
+            "version": "1.4.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/css-tricks/anythingslider-themes/css-tricks-anythingslider-themes-1.4.1.zip",
+                "reference": null,
+                "shasum": "0a5d45168d648642410cae1362e1be73a5f9ed75"
+            },
+            "type": "library"
         },
         {
             "name": "cweagans/composer-patches",
@@ -3726,6 +3737,17 @@
                 "url": "https://composer.tiki.org/dist/undojs/undojs/undojs-undojs-1.zip",
                 "reference": null,
                 "shasum": "9e9593f6000809ce8ad9293a97ad5ab6abdbc55d"
+            },
+            "type": "library"
+        },
+        {
+            "name": "vimeo/froogaloop",
+            "version": "1.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/vimeo/froogaloop/vimeo-froogaloop-1.0.zip",
+                "reference": null,
+                "shasum": "4cf4e5ca02b2a79c58f02b08c50164ecb8164bef"
             },
             "type": "library"
         },

@@ -53,3 +53,11 @@ PdfJs:
   requiredBy:
     - NotUsed
   requiredVersion: ~2.0.487
+WebODF:
+  licence: AGPL
+  licenceUrl: "https://github.com/kogmbh/webodf.js_release/blob/master/AGPL-3.0.txt"
+  name: bower-asset/wodo.texteditor
+  link: 'https://asset-packagist.org/package/detail?fullname=bower-asset/wodo.texteditor'
+  requiredBy:
+    - feature_docs
+  requiredVersion: ^0.5.9

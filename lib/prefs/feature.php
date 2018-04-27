@@ -1193,6 +1193,7 @@ function prefs_feature_list($partial = false)
 			'dependencies' => [
 				'feature_file_galleries',
 			],
+			'packages_required' => ['bower-asset/wodo.texteditor' => 'vendor/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js'],
 			'tags' => ['experimental'],
 		],
 		'feature_dynamic_content' => [

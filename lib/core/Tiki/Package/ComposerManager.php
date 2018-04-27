@@ -45,7 +45,7 @@ class ComposerManager
 	 * @param ComposerCli $composerWrapper composer.phar wrapper, optional in the constructor to allow injection for test
 	 * @param string $packagesConfigFile package config file path, optional in the constructor to allow injection for test
 	 */
-	function __construct($basePath, $workingPath = null, $composerWrapper = null, $packagesConfigFile = null)
+	public function __construct($basePath, $workingPath = null, $composerWrapper = null, $packagesConfigFile = null)
 	{
 		$this->basePath = $basePath;
 
@@ -337,5 +337,46 @@ class ComposerManager
 		}
 
 		return $availablePackages;
+	}
+
+	/**
+	 * Retrieve Package information from a PackageConfigFile
+	 *
+	 * @param $packageNames
+	 *   A string with the package name, or an array with package names to lookup.
+	 * @param null $packagesConfigFile
+	 *   The path for a PackagesConfigFile, if empty the default will be used.
+	 * @return array
+	 *   An array with the packages information, empty if not found.
+	 */
+	public static function getPackageInfo($packageNames, $packagesConfigFile = null)
+	{
+
+		if (is_null($packagesConfigFile)) {
+			$packagesConfigFile = __DIR__ . DIRECTORY_SEPARATOR . self::CONFIG_PACKAGE_FILE;
+		}
+
+		try {
+			$yamlContent = Yaml::parse(file_get_contents($packagesConfigFile));
+			if (! $yamlContent || ! is_array($yamlContent)) {
+				return [];
+			}
+		} catch (ParseException $e) {
+			return [];
+		}
+
+		if (! is_array($packageNames)) {
+			$packageNames = [$packageNames];
+		}
+
+		$info = [];
+
+		foreach ($yamlContent as $fileInfo) {
+			if (in_array($fileInfo['name'], $packageNames)) {
+				$info[] = $fileInfo;
+			}
+		}
+
+		return sizeof($info) == 1 ? array_shift($info) : $info;
 	}
 }

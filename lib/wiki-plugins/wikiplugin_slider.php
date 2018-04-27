@@ -386,17 +386,17 @@ function wikiplugin_slider($data, $params)
 	$headerlib->add_cssfile('vendor_bundled/vendor/jquery/plugins/anythingslider/css/theme-metallic.css');
 	$headerlib->add_cssfile('vendor_bundled/vendor/jquery/plugins/anythingslider/css/theme-minimalist-round.css');
 	$headerlib->add_cssfile('vendor_bundled/vendor/jquery/plugins/anythingslider/css/theme-minimalist-square.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-default1.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-default2.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-mini-dark.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-mini-light.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-office.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-polished.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-ribbon.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-shiny.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-simple.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-tabs-dark.css');
-	$headerlib->add_cssfile('vendor_extra/anythingslider-themes/css/theme-tabs-light.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-default1.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-default2.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-mini-dark.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-mini-light.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-office.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-polished.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-ribbon.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-shiny.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-simple.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-tabs-dark.css');
+	$headerlib->add_cssfile('vendor_bundled/vendor/css-tricks/anythingslider-themes/css/theme-tabs-light.css');
 
 	if (isset($theme) && ! empty($theme)) {
 		switch (strtolower($theme)) {

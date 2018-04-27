@@ -8379,18 +8379,6 @@ vendor_bundled/.htaccess -text
 vendor_bundled/composer.json -text
 vendor_bundled/composer.lock -text
 vendor_extra/.htaccess -text
-vendor_extra/anythingslider-themes/css/theme-default1.css -text
-vendor_extra/anythingslider-themes/css/theme-default2.css -text
-vendor_extra/anythingslider-themes/css/theme-mini-dark.css -text
-vendor_extra/anythingslider-themes/css/theme-mini-light.css -text
-vendor_extra/anythingslider-themes/css/theme-office.css -text
-vendor_extra/anythingslider-themes/css/theme-polished.css -text
-vendor_extra/anythingslider-themes/css/theme-ribbon.css -text
-vendor_extra/anythingslider-themes/css/theme-shiny.css -text
-vendor_extra/anythingslider-themes/css/theme-simple.css -text
-vendor_extra/anythingslider-themes/css/theme-tabs-dark.css -text
-vendor_extra/anythingslider-themes/css/theme-tabs-light.css -text
-vendor_extra/anythingslider-themes/css/wrappers.css -text
 vendor_extra/anythingslider-themes/images/bkgd-carbon-fiber.gif -text
 vendor_extra/anythingslider-themes/images/bkgd-leather.jpg -text
 vendor_extra/anythingslider-themes/images/bkgd-noise.png -text
@@ -8430,8 +8418,6 @@ vendor_extra/pear/Net/LDAP2/Util.php -text
 vendor_extra/pear/Net/LDAP2/index.php -text
 vendor_extra/pear/Net/index.php -text
 vendor_extra/pear/index.php -text
-vendor_extra/vimeo/froogaloop.min.js -text
 vendor_extra/vimeo/vimeo.js -text
-vendor_extra/webodf/webodf.js -text
 /web_config -text
 /xmlrpc.php -text

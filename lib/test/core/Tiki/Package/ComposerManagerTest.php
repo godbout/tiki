@@ -474,4 +474,45 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 			],
 		];
 	}
+
+	/**
+	 * @covers ComposerManager::getPackageInfo()
+	 */
+	public function testGetPackagesInfo()
+	{
+		$configFile = __DIR__ . DIRECTORY_SEPARATOR . 'Fixtures' . DIRECTORY_SEPARATOR . 'ComposerPackages.yml';
+
+		$expected = [
+			'licence' => 'MIT',
+			'licenceUrl' => 'https://github.com/jerome-breton/casperjs-installer/blob/master/LICENSE',
+			'name' => 'jerome-breton/casperjs-installer',
+			'requiredBy' => [
+				'wikiplugin_casperjs'
+			],
+			'requiredVersion' => 'dev-master',
+			'scripts' => [
+				'post-install-cmd' => [
+					"CasperJsInstaller\Installer::install"
+				],
+				'post-update-cmd' => [
+					'CasperJsInstaller\Installer::install',
+				]
+			]
+		];
+
+		$this->assertEquals($expected, ComposerManager::getPackageInfo('jerome-breton/casperjs-installer', $configFile));
+
+		$expected = [$expected];
+		$expected[] = [
+			'licence' => 'MIT',
+			'licenceUrl' => 'https://github.com/enygma/expose/blob/master/LICENSE',
+			'name' => 'enygma/expose',
+			'requiredBy' => [
+				'ids_enabled'
+			],
+			'requiredVersion' => '^3.0',
+		];
+
+		$this->assertEquals($expected, ComposerManager::getPackageInfo(['jerome-breton/casperjs-installer', 'enygma/expose'], $configFile));
+	}
 }

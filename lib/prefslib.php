@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\ComposerManager;
+
 class PreferencesLib
 {
 	private $data = [];
@@ -623,13 +625,26 @@ class PreferencesLib
 		$out = [];
 
 		foreach ((array) $packages as $key => $dep) {
-			$out[] = [
+			$met = class_exists($dep) || file_exists($dep);
+
+			$package = [
 				'name' => $key,
 				'label' => $key,
 				'type' => 'composer',
 				'link' => 'https://packagist.org/packages/' . $key,
-				'met' => class_exists($dep)
+				'met' => $met
 			];
+
+			if ($packageInfo = ComposerManager::getPackageInfo($key)) {
+				$package['name'] = $packageInfo['name'];
+				$package['label'] = $packageInfo['name'];
+
+				if (! empty($packageInfo['link'])) {
+					$package['link'] = $packageInfo['link'];
+				}
+			}
+
+			$out[] = $package;
 		}
 
 		return $out;

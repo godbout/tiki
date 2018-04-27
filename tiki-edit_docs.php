@@ -132,48 +132,73 @@ $smarty->assign('page', $page);
 $smarty->assign('isFromPage', isset($page));
 $smarty->assign('fileId', $fileId);
 
-$headerlib->add_jsfile('vendor_extra/webodf/webodf.js');
+$odfViewerAvailable = file_exists('vendor/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js');
 
-$savingText = json_encode(tr('Saving...'));
+if (! $odfViewerAvailable) {
+	$smarty->assign('missingPackage', true);
+} else {
+	$smarty->assign('missingPackage', false);
 
-$headerlib->add_jq_onready(
-	"window.odfcanvas = new odf.OdfCanvas($('#tiki_doc')[0]);
-	odfcanvas.load('tiki-download_file.php?fileId=' + $('#fileId').val());
+	if (isset($_REQUEST['edit'])) {
+		$savingText = json_encode(tr('Saving...'));
+		$smarty->assign('edit', 'true');
 
-	//make editable
-	$('.editButton').click(function() {
-		odfcanvas.setEditable(true);
+		$headerlib->add_jsfile('vendor/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js');
+		$headerlib->add_jq_onready("
+Wodo.createTextEditor('tiki_doc', {
+	allFeaturesEnabled: true
+}, function (err, editor) {
+	if (err) {
+		// something failed unexpectedly, deal with it (here just a simple alert)
+		alert(err);
+		return;
+	}
 
-		$('.editState,.viewState').toggle();
-
-		return false;
+	var documentURL = 'tiki-download_file.php?fileId=' + $('#fileId').val();
+	editor.openDocumentFromUrl(documentURL, function(err) {
+		if (err) {
+			// something failed unexpectedly, deal with it (here just a simple alert)
+			alert(\"There was an error on opening the document: \" + err);
+		}
 	});
-
-	runtime.writeFile = function(path, data) {
-		$.tikiModal($savingText);
-		var base64 = new core.Base64();
-		data = base64.convertUTF8ArrayToBase64(data);
-		$.post('tiki-edit_docs.php', {
-			fileId: $('#fileId').val(),
-			data: data
-		}, function(id) {
+	
+	$('.saveButton').on('click', function (e) {
+		function saveByteArrayTiki(err, data) {
+			if (err) {
+				alert(err);
+				return;
+			}
+			
+			var base64 = new core.Base64();
+			data = base64.convertUTF8ArrayToBase64(data);
+			
+			$.tikiModal($savingText);
+			
+			$.post('tiki-edit_docs.php', {
+				fileId: $('#fileId').val(),
+				data: data
+			}, function(id) {
 				$.tikiModal();
 				$('#fileId').val(id);
-		});
-	};
+				editor.setDocumentModified(false);
+			});
+		}
+		
+		editor.getDocumentAsByteArray(saveByteArrayTiki);
+	});
+});
+");
+	} else {
+		$smarty->assign('edit', 'false');
 
-	$('.saveButton').click(function() {
-		odfcanvas.save();
-		return false;
-	});"
-);
-
-if (isset($_REQUEST['edit'])) {
-	$smarty->assign('edit', 'true');
-	$headerlib->add_jq_onready('odfcanvas.setEditable(true);');
-} else {
-	$smarty->assign('edit', 'false');
+		$headerlib->add_jsfile('vendor/bower-asset/wodo.texteditor/wodotexteditor/webodf.js');
+		$headerlib->add_jq_onready("
+window.odfcanvas = new odf.OdfCanvas($('#tiki_doc')[0]);
+odfcanvas.load('tiki-download_file.php?fileId=' + $('#fileId').val());
+");
+	}
 }
+
 
 
 // Display the template
