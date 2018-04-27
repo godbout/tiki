@@ -267,6 +267,17 @@
 		{
 			"type": "package",
 			"package": {
+				"name": "css-tricks/anythingslider-themes",
+				"version": "1.4.1",
+				"dist": {
+					"url": "https://github.com/CSS-Tricks/AnythingSlider-Themes/archive/v1.4.1.zip",
+					"type": "zip"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
 				"name": "fezvrasta/popper.js",
 				"version": "1.12.5",
 				"dist": {
@@ -1627,6 +1638,17 @@
 					"type": "zip"
 				}
 			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "vimeo/froogaloop",
+				"version": "1.0",
+				"dist": {
+					"url": "https://github.com/vimeo/player-api/archive/archived.zip",
+					"type": "zip"
+				}
+			}
 		}
 	],
 	"require": {
@@ -1641,6 +1663,7 @@
 		"blueimp/javascript-load-image": ">=1.14.0",
 		"blueimp/jquery-file-upload": ">=9.11.0",
 		"bombayworks/zendframework1": ">=1.12.3",
+		"bower-asset/wodo.texteditor": "^0.5.9",
 		"candy-chat/xmpp-prebind-php": "dev-master",
 		"chartjs/Chart.js": ">=2.5.0",
 		"christian-vigh-phpclasses/PdfToText": ">=1.6.0",
@@ -1656,6 +1679,7 @@
 		"components/jquery-migrate": ">=3.0.0",
 		"components/jqueryui": ">=1.12",
 		"container-interop/container-interop": ">=1.0",
+		"css-tricks/anythingslider-themes": ">=1.4.1",
 		"cweagans/composer-patches": ">=1.6.2",
 		"cwspear/bootstrap-hover-dropdown": ">=2.0.11",
 		"desandro/masonry": ">=4.1.1",
@@ -1817,6 +1841,7 @@
 		"twbs/bootstrap": ">=3.3.7",
 		"twitter/bootstrap": ">=3.3.6",
 		"undojs/undojs": "1",
+		"vimeo/froogaloop": "1.0",
 		"webmozart/assert": ">=1.0.2",
 		"wimg/php-compatibility": ">=8.1",
 		"zendframework/zend-captcha": ">=2.4",
