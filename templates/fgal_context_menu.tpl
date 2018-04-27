@@ -79,6 +79,10 @@
 			<a href="tiki-view_sheets.php?fileId={$file.id}">
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
 			</a>
+		{elseif $prefs.fgal_pdfjs_feature eq 'y' and $file.type eq 'application/pdf'}
+			<a href="tiki-display_pdf.php?fileSrc={$base_url}{$file.id|sefurl:display}">
+				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
+			</a>
 		{elseif $prefs.fgal_viewerjs_feature eq 'y' and ($file.type eq 'application/pdf' or $file.type|strpos:'application/vnd.oasis.opendocument.' !== false)}
 			<a href="{$prefs.fgal_viewerjs_uri}#{$base_url}{$file.id|sefurl:display}">
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}

@@ -337,6 +337,16 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 			'help' => 'ViewerJS',
 			'tags' => ['experimental'],
 		],
+		'fgal_pdfjs_feature' => [
+			'name' => tra('Use PDF JS'),
+			'description' => tra('Uses PDFJS from https://asset-packagist.org/package/npm-asset/pdfjs-dist'),
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'n',
+			'help' => 'PDFJS',
+			'tags' => ['experimental'],
+			'packages_required' => ['npm-asset/pdfjs-dist' => 'vendor/npm-asset/pdfjs-dist/build/pdf.js'],
+		],
 		'fgal_viewerjs_uri' => [
 			'name' => tra('Viewer JS URI'),
 			'description' => tra('Where ViewerJS is installed'),
