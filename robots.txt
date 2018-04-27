@@ -11,6 +11,10 @@ User-agent: *
 # Uncomment the following line to indicate to robots __not__ to crawl your site.
 # Disallow: /
 
+# Uncomment and update the domain name of your website to point search engines to your sitemap
+# Be sure to enable the feature and periodically re-generate with scheduler (https://doc.tiki.org/Sitemap)
+# Sitemap: http://mysite.org/storage/public/sitemap-index.xml
+
 #  == Begin SEF URL Section ==
 #remove pages in favour of the SEF counterpart (Enable only after SEF URL’s are enabled in tiki will otherwise prevent indexing.)
 #Disallow: /tiki-forums.php
