@@ -2,12 +2,12 @@
 
 		<form method="post" action="" class="form my-2 my-md-0" role="form">
 			<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
-			<label for="preffilter-toggle-1"></label>
+			<label for="preffilter-toggle-1" class="mr-2"></label>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse-1" aria-controls="admin-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 			<ul class="nav navbar-nav filter-menu {*col-xs-4 col-xs-push-1*}"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
-				<li class="dropdown">
+				<li class="dropdown mr-2" style="padding-top: 6px;">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 80px;">
 						{icon name="filter"}
 					</a>
@@ -114,10 +114,10 @@
 	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		{include file="admin/admin_navbar_menu.tpl"}
 
-				<form method="post" action="" class="form-inline my-2 my-md-0" role="form">
+				<form method="post" action="" class="form-inline my-2 my-md-0 ml-auto" role="form">
 					<div class="form-group">
 						<input type="hidden" name="filters">
-						<input type="text" name="lm_criteria" value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}..." autofocus="autofocus">
+						<input type="text" name="lm_criteria" style="width: 170px;" value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}..." autofocus="autofocus">
 					</div>
 					<button type="submit" class="btn btn-primary" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 				</form>

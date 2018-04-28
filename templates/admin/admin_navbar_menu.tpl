@@ -1,7 +1,7 @@
 {* navbar menu for admin_navbar.tpl *}
 <ul class="nav navbar-nav clearfix">
-	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Access{/tr} <b class="caret"></b></a>
+	<li class="dropdown  mr-1">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Access{/tr}</a>
 		<ul class="dropdown-menu">
 			{if $tiki_p_admin eq "y" and $tiki_p_admin_users eq "y"}
 				<li class="dropdown-item"><a href="tiki-adminusers.php">{tr}Users{/tr}</a></li>
@@ -18,8 +18,8 @@
 			{/if}
 		</ul>
 	</li>
-	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Content{/tr} <b class="caret"></b></a>
+	<li class="dropdown mr-1">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Content{/tr}</a>
 		<ul class="dropdown-menu">
 			{if $prefs.feature_articles eq "y"}
 				<li class="dropdown-item"><a href="tiki-list_articles.php">{tr}Articles{/tr}</a></li>
@@ -86,8 +86,8 @@
 			{/if}
 		</ul>
 	</li>
-	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}System{/tr} <b class="caret"></b></a>
+	<li class="dropdown mr-1">
+		<a href="#" class="dropdown-toggle mr-2" data-toggle="dropdown">{tr}System{/tr}</a>
 		<ul class="dropdown-menu">
 			{if $tiki_p_admin eq "y"}
 				<li class="dropdown-item"><a href="{service controller=managestream action=list}">{tr}Activity Rules{/tr}</a></li>
@@ -151,8 +151,8 @@
 			<li class="dropdown-item"><a href="tiki-mods.php">{tr}Mods{/tr}</a></li>
 		</ul>
 	</li>
-	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Tools{/tr} <b class="caret"></b></a>
+	<li class="dropdown mr-1">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Tools{/tr}</a>
 		<ul class="dropdown-menu">
 			{if $prefs.feature_actionlog eq "y" and $tiki_p_view_actionlog}
 				<li class="dropdown-item"><a href="tiki-admin_actionlog.php">{tr}Action Log{/tr}</a></li>
