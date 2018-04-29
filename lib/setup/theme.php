@@ -46,7 +46,7 @@ if (! empty($_SESSION['try_theme'])) {
 //START loading theme related items
 
 //1) Always add default bootstrap JS and make some preference settings (adding popper.js required for bootstrap 4)
-$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/popper.js/dist/popper.js');
+$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/popper.js/dist/umd/popper.js');
 $headerlib->add_jsfile('vendor_bundled/vendor/twbs/bootstrap/dist/js/bootstrap.js');
 $headerlib->add_jsfile('lib/jquery_tiki/tiki-bootstrapmodalfix.js');
 
