@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/images/images.php');
+use Tiki\Lib\Image\Image;
 
 class Search_Action_FileGalleryImageOverlay implements Search_Action_Action
 {
@@ -245,7 +245,7 @@ class Search_Action_FileGalleryImageOverlay implements Search_Action_Action
 	 */
 	public function addTextToImage($imageString, $text)
 	{
-		$image = new Image($imageString);
+		$image = Image::create($imageString);
 
 		$image->addTextToImage($text);
 

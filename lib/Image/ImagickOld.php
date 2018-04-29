@@ -5,12 +5,12 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/images/abstract.php');
+namespace Tiki\Lib\Image;
 
 /**
  *
  */
-class Image extends ImageAbstract
+class ImagickOld extends ImageAbstract
 {
 
 	/**

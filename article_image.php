@@ -20,6 +20,8 @@
 // If image_type has no value, we default to "article" to preserve previous behaviour
 
 require_once('tiki-setup.php');
+use Tiki\Lib\Image\Image;
+
 $artlib = TikiLib::lib('art');
 
 $access->check_feature('feature_articles');
@@ -88,8 +90,7 @@ if ($imagePrefix == "article_preview" && ! is_file($temporaryFile)) {
 	$data =& $storedData["image_data"];
 	header("Content-type: " . $type);
 	if (! empty($_REQUEST['width'])) {
-		require_once('lib/images/images.php');
-		$image = new Image($data);
+		$image = Image::create($data);
 		if ($image->get_width() > $_REQUEST['width']) {
 			$image->resize($_REQUEST['width'], 0);
 			$data = $image->display();

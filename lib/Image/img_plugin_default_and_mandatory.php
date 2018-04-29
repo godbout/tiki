@@ -36,7 +36,6 @@ if (! function_exists('apply_default_and_mandatory')) {
 									if (! empty($param_var)) {	// if a parameter exists
 										$img_parameter_array = explode('=', trim($param_var)); // separate parameters and values
 										if (! empty($img_parameter_array[0])) {  // if a parameter with a value has been extracted
-
 											$img_condition_status = false;	// initialise condition as not being true
 
 											$img_condition_name = strtolower(trim($img_condition_name));

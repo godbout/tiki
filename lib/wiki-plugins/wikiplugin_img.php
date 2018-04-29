@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Lib\Image\Image;
+
 function wikiplugin_img_info()
 {
 	global $prefs;
@@ -624,7 +626,7 @@ function wikiplugin_img($data, $params)
 
 	//function calls
 	if (! empty($imgdata['default']) || ! empty($imgdata['mandatory'])) {
-		require_once('lib/images/img_plugin_default_and_mandatory.php');
+		require_once('lib/Images/img_plugin_default_and_mandatory.php');
 		if (! empty($imgdata['default'])) {
 			$imgdata = apply_default_and_mandatory($imgdata, 'default');	//first process defaults
 			$imgdata = array_merge($imgdata, $params);					//then apply user settings, overriding defaults
@@ -780,7 +782,6 @@ function wikiplugin_img($data, $params)
 			}
 		}
 		$imageObj = '';
-		require_once('lib/images/images.php');
 		//Deal with images with info in tiki databases (file and image galleries and attachments)
 		if (empty($imgdata['randomGalleryId']) && (! empty($imgdata['id']) || ! empty($imgdata['fileId'])
 			|| ! empty($imgdata['attId']))
@@ -815,7 +816,7 @@ function wikiplugin_img($data, $params)
 					return '^' . tra('File not found.') . '^';
 				} elseif (substr($dbinfo['filetype'], 0, 5) != 'image' and ! preg_match('/thumbnail/i', $imgdata['fileId'])) {
 					return '^' . tra('File is not an image.') . '^';
-				} elseif (! class_exists('Image')) {
+				} elseif (! Image::isAvailable()) {
 					return '^' . tra('Server does not support image manipulation.') . '^';
 				} elseif (! empty($imgdata['fileId'])) {
 					if (! $userlib->user_has_perm_on_object($user, $dbinfo['galleryId'], 'file gallery', 'tiki_p_download_files')) {
@@ -835,13 +836,13 @@ function wikiplugin_img($data, $params)
 
 		//get image to get height and width and iptc data
 		if (! empty($dbinfo['data'])) {
-			$imageObj = new Image($dbinfo['data'], false);
+			$imageObj = Image::create($dbinfo['data'], false);
 			$filename = $dbinfo['filename'];
 		} elseif (! empty($dbinfo['path'])) {
-			$imageObj = new Image($basepath . $dbinfo['path'], true);
+			$imageObj = Image::create($basepath . $dbinfo['path'], true);
 			$filename = $dbinfo['filename'];
 		} elseif (strpos($src, '//') === false) {
-			$imageObj = new Image($src, true);
+			$imageObj = Image::create($src, true);
 			$filename = $src;
 		}
 		// NOTE image sizing should only happen with local images, otherwise will break if remote server can't be reached
@@ -869,9 +870,9 @@ function wikiplugin_img($data, $params)
 		//get image gal thumbnail image for height and width
 		if (! empty($dbinfot['data']) || ! empty($dbinfot['path'])) {
 			if (! empty($dbinfot['data'])) {
-				$imageObjt = new Image($dbinfot['data'], false);
+				$imageObjt = Image::create($dbinfot['data'], false);
 			} elseif (! empty($dbinfot['path'])) {
-				$imageObjt = new Image($basepath . $dbinfot['path'] . '.thumb', true);
+				$imageObjt = Image::create($basepath . $dbinfot['path'] . '.thumb', true);
 			}
 			$fwidtht = $imageObjt->get_width();
 			$fheightt = $imageObjt->get_height();

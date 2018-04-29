@@ -8,6 +8,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Lib\Image\Image;
+
 $force_no_compression = true;
 $skip = false;
 $thumbnail_format = 'jpeg';
@@ -264,8 +266,7 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 	if ($build_content) {
 		// Modify the original image if needed
 		if (! isset($_GET['display']) || isset($_GET['x']) || isset($_GET['y']) || $scale || isset($_GET['max']) || isset($_GET['format']) || isset($_GET['thumbnail'])) {
-			require_once('lib/images/images.php');
-			if (! class_exists('Image')) {
+			if (! Image::isAvailable()) {
 				die();
 			}
 
@@ -273,7 +274,7 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 			$format = substr($info['filename'], strrpos($info['filename'], '.') + 1);
 
 			// Fallback to an icon if the format is not supported
-			$tmp = new Image('img/trans.png', true, 'png');	// needed to call non-static Image functions non-statically
+			$tmp = Image::create('img/trans.png', true, 'png');	// needed to call non-static Image functions non-statically
 			if (! $tmp->is_supported($format)) {
 				// Is the filename correct? Maybe it doesn't have an extenstion?
 				// Try to determine the format from the filetype too
@@ -309,9 +310,9 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 
 				if (! isset($_GET['icon']) || ( isset($_GET['format']) && $_GET['format'] != $format )) {
 					if (! empty($info['path'])) {
-						$image = new Image($prefs['fgal_use_dir'] . $info['path'], true, $format);
+						$image = Image::create($prefs['fgal_use_dir'] . $info['path'], true, $format);
 					} else {
-						$image = new Image($content, false, $format);
+						$image = Image::create($content, false, $format);
 						$content = null; // Explicitely free memory before getting cache
 					}
 					if ($image->is_empty()) {
@@ -338,9 +339,9 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 								$info_thumb = $filegallib->get_file($_GET['thumbnail']);
 							}
 							if (! empty($info_thumb['path'])) {
-								$image = new Image($prefs['fgal_use_dir'] . $info_thumb['path'], true);
+								$image = Image::create($prefs['fgal_use_dir'] . $info_thumb['path'], true);
 							} else {
-								$image = new Image($info_thumb['data']);
+								$image = Image::create($info_thumb['data']);
 								$content = null; // Explicitely free memory before getting cache
 							}
 							if ($image->is_empty()) {

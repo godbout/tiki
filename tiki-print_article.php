@@ -8,6 +8,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Lib\Image\Image;
+
 $section = 'cms';
 require_once('tiki-setup.php');
 $artlib = TikiLib::lib('art');
@@ -101,8 +103,7 @@ if (strlen($article_data["image_data"]) > 0) {
 if ($article_data['image_x'] > 0) {
 	$smarty->assign('width', $article_data['image_x']);
 } else {
-	require_once('lib/images/images.php');
-	$img = new Image($article_data['image_x'], false);
+	$img = Image::create($article_data['image_x'], false);
 	$smarty->assign('width', $img->get_width() + 2);
 }
 $smarty->assign('heading', $article_data["heading"]);

@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+namespace Tiki\Lib\Image;
+
 /**
  *
  */
@@ -130,6 +132,7 @@ class ImageAbstract
 
 	function resizethumb()
 	{
+		require_once('tiki-setup.php');
 		global $prefs;
 		$this->resizemax($prefs['fgal_thumb_max_size']);
 	}
@@ -271,7 +274,7 @@ class ImageAbstract
 		}
 
 		if (! $keep_original && $format != 'svg') {
-			$icon = new Image($name, true, $format);
+			$icon = Image::create($name, true, $format);
 			if ($format != $icon_format) {
 				$icon->convert($icon_format);
 			}
