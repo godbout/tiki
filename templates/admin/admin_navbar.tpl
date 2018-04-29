@@ -16,9 +16,9 @@
 							<input type="hidden" name="pref_filters[]" value="basic">
 							{foreach from=$pref_filters key=name item=info}
 								<li class="dropdown-item">
-									<div class="checkbox">
+									<div class="form-check">
 										<label>
-											<input type="checkbox" class="preffilter {$info.type|escape}" name="pref_filters[]" value="{$name|escape}"{if $info.selected} checked="checked"{/if}{if $name eq {tr}basic{/tr}} disabled="disabled"{/if}>{$info.label|escape}
+											<input class="form-check-input" type="checkbox" class="preffilter {$info.type|escape}" name="pref_filters[]" value="{$name|escape}"{if $info.selected} checked="checked"{/if}{if $name eq {tr}basic{/tr}} disabled="disabled"{/if}>{$info.label|escape}
 										</label>
 									</div>
 								</li>
