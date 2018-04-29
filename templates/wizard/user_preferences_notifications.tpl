@@ -20,18 +20,18 @@
 				{tr}Send notification when I am the editor:{/tr}
 				<tr>
 					<td style="width:48%">
-						<p><input type="checkbox" name="user_wiki_watch_editor" {if $user_wiki_watch_editor eq 'y'}checked{/if}> {tr}Wiki{/tr}</p>
-						<p><input type="checkbox" name="user_article_watch_editor" {if $user_article_watch_editor eq 'y'}checked{/if}> {tr}Article{/tr}</p>
-						<p><input type="checkbox" name="user_blog_watch_editor" {if $user_blog_watch_editor eq 'y'}checked{/if}> {tr}Blog{/tr}</p>
-						<p><input type="checkbox" name="user_category_watch_editor" {if $user_category_watch_editor eq 'y'}checked{/if}> {tr}Category{/tr}</p>
+						<p><input type="checkbox" class="form-check-input" name="user_wiki_watch_editor" {if $user_wiki_watch_editor eq 'y'}checked{/if}> {tr}Wiki{/tr}</p>
+						<p><input type="checkbox" class="form-check-input" name="user_article_watch_editor" {if $user_article_watch_editor eq 'y'}checked{/if}> {tr}Article{/tr}</p>
+						<p><input type="checkbox" class="form-check-input" name="user_blog_watch_editor" {if $user_blog_watch_editor eq 'y'}checked{/if}> {tr}Blog{/tr}</p>
+						<p><input type="checkbox" class="form-check-input" name="user_category_watch_editor" {if $user_category_watch_editor eq 'y'}checked{/if}> {tr}Category{/tr}</p>
 					</td>
 					<td style="width:4%">
 						&nbsp;
 					</td>
 					<td style="width:48%">
-						<p><input type="checkbox" name="user_tracker_watch_editor" {if $user_tracker_watch_editor eq 'y'}checked{/if}> {tr}Tracker{/tr}</p>
-						<p><input type="checkbox" name="user_calendar_watch_editor" {if $user_calendar_watch_editor eq 'y'}checked{/if}> {tr}Calendar{/tr}</p>
-						<p><input type="checkbox" name="user_comment_watch_editor" {if $user_comment_watch_editor eq 'y'}checked{/if}> {tr}Comment{/tr}</p>
+						<p><input type="checkbox" class="form-check-input" name="user_tracker_watch_editor" {if $user_tracker_watch_editor eq 'y'}checked{/if}> {tr}Tracker{/tr}</p>
+						<p><input type="checkbox" class="form-check-input" name="user_calendar_watch_editor" {if $user_calendar_watch_editor eq 'y'}checked{/if}> {tr}Calendar{/tr}</p>
+						<p><input type="checkbox" class="form-check-input" name="user_comment_watch_editor" {if $user_comment_watch_editor eq 'y'}checked{/if}> {tr}Comment{/tr}</p>
 					</td>
 				</tr>
 			</table>

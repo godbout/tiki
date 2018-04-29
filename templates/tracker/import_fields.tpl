@@ -10,9 +10,9 @@
 			</label>
 			<textarea class="form-control" name="raw" rows="30"></textarea>
 		</div>
-		<div class="checkbox">
+		<div class="form-check">
 			<label>
-				<input type="checkbox" name="preserve_ids" value="1">
+				<input type="checkbox" class="form-check-input" name="preserve_ids" value="1">
 				{tr}Preserve Field IDs{/tr}
 			</label>
 		</div>

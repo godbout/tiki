@@ -119,14 +119,14 @@
 				<tr>
 					<td>{tr}Use 12-hour clock in time selectors:{/tr}</td>
 					<td>
-						<input type="checkbox" name="display_12hr_clock" {if $display_12hr_clock eq 'y'}checked="checked"{/if}>
+						<input type="checkbox" class="form-check-input" name="display_12hr_clock" {if $display_12hr_clock eq 'y'}checked="checked"{/if}>
 					</td>
 				</tr>
 				{if $prefs.feature_community_mouseover eq 'y'}
 					<tr>
 						<td>{tr}Display info tooltip on mouseover for every user who allows his/her information to be public{/tr}</td>
 						<td>
-							<input type="checkbox" name="show_mouseover_user_info" {if $show_mouseover_user_info eq 'y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="show_mouseover_user_info" {if $show_mouseover_user_info eq 'y'}checked="checked"{/if}>
 						</td>
 					</tr>
 				{/if}
@@ -143,7 +143,7 @@
 						<tr>
 							<td>{tr}Allow messages from other users{/tr}</td>
 							<td>
-								<input type="checkbox" name="allowMsgs" {if $allowMsgs eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="allowMsgs" {if $allowMsgs eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}
@@ -197,7 +197,7 @@
 						<tr>
 							<td>{tr}My pages{/tr}:</td>
 							<td>
-								<input type="checkbox" name="mytiki_pages" {if $mytiki_pages eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_pages" {if $mytiki_pages eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}
@@ -206,7 +206,7 @@
 						<tr>
 							<td>{tr}My blogs{/tr}</td>
 							<td>
-								<input type="checkbox" name="mytiki_blogs" {if $mytiki_blogs eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_blogs" {if $mytiki_blogs eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}
@@ -215,7 +215,7 @@
 						<tr>
 							<td>{tr}My galleries{/tr}</td>
 							<td>
-								<input type="checkbox" name="mytiki_gals" {if $mytiki_gals eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_gals" {if $mytiki_gals eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}
@@ -224,7 +224,7 @@
 						<tr>
 							<td>{tr}My messages{/tr}</td>
 							<td>
-								<input type="checkbox" name="mytiki_msgs" {if $mytiki_msgs eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_msgs" {if $mytiki_msgs eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}
@@ -233,7 +233,7 @@
 						<tr>
 							<td>{tr}My tasks{/tr}</td>
 							<td>
-								<input type="checkbox" name="mytiki_tasks" {if $mytiki_tasks eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_tasks" {if $mytiki_tasks eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}
@@ -242,13 +242,13 @@
 						<tr>
 							<td>{tr}My forum topics{/tr}</td>
 							<td>
-								<input type="checkbox" name="mytiki_forum_topics" {if $mytiki_forum_topics eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_forum_topics" {if $mytiki_forum_topics eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 						<tr>
 							<td>{tr}My forum replies{/tr}</td>
 							<td>
-								<input type="checkbox" name="mytiki_forum_replies" {if $mytiki_forum_replies eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_forum_replies" {if $mytiki_forum_replies eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}
@@ -257,7 +257,7 @@
 						<tr>
 							<td>{tr}My user items{/tr}</td>
 							<td>
-								<input type="checkbox" name="mytiki_items" {if $mytiki_items eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_items" {if $mytiki_items eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}
@@ -266,7 +266,7 @@
 						<tr>
 							<td>{tr}My Articles{/tr}</td>
 							<td>
-								<input type="checkbox" name="mytiki_articles" {if $mytiki_articles eq 'y'}checked="checked"{/if}>
+								<input type="checkbox" class="form-check-input" name="mytiki_articles" {if $mytiki_articles eq 'y'}checked="checked"{/if}>
 							</td>
 						</tr>
 					{/if}

@@ -24,8 +24,8 @@
 		<fieldset class="table clearfix featurelist">
 			<legend> {tr}File Galleries{/tr} </legend>
 			{preference name=fgal_elfinder_feature}
-			<div class="adminoptionboxchild" id="fgal_elfinder_feature_childcontainer">
-				<input type="checkbox" name="useElFinderAsDefault" {if !isset($useElFinderAsDefault) or $useElFinderAsDefault eq true}checked='checked'{/if} /> {tr}Set elFinder as the default file gallery viewer{/tr}.
+			<div class="adminoptionboxchild form-check" id="fgal_elfinder_feature_childcontainer">
+				<input type="checkbox" class="form-check-input" name="useElFinderAsDefault" {if !isset($useElFinderAsDefault) or $useElFinderAsDefault eq true}checked='checked'{/if} /> {tr}Set elFinder as the default file gallery viewer{/tr}.
 				<div class="adminoptionboxchild">
 					{tr}See also{/tr} <a href="http://doc.tiki.org/elFinder" target="_blank">{tr}elFinder{/tr} @ doc.tiki.org</a>
 				</div>

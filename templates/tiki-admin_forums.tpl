@@ -397,42 +397,42 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label">{tr}Topic list configuration{/tr}</label>
 							<div class="col-sm-8">
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="topics_list_replies">
 										<input type="checkbox" class="form-check-input" name="topics_list_replies" id="topics_list_replies" {if $topics_list_replies eq 'y'}checked="checked"{/if}> {tr}Replies{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="topics_list_reads">
 										<input type="checkbox" class="form-check-input" name="topics_list_reads" id="topics_list_reads" {if $topics_list_reads eq 'y'}checked="checked"{/if}> {tr}Reads{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="topics_list_pts">
 										<input type="checkbox" class="form-check-input" name="topics_list_pts" id="topics_list_pts" {if $topics_list_pts eq 'y'}checked="checked"{/if}> {tr}Points{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="topics_list_lastpost">
 										<input type="checkbox" class="form-check-input" name="topics_list_lastpost" id="topics_list_lastpost" {if $topics_list_lastpost eq 'y'}checked="checked"{/if}> {tr}Last post{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="topics_list_lastpost_title">
 										<input type="checkbox" name="topics_list_lastpost_title" id="topics_list_lastpost_title" {if $topics_list_lastpost_title eq 'y'}checked="checked"{/if}> {tr}Last post title{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="topics_list_lastpost_avatar">
 										<input type="checkbox" name="topics_list_lastpost_avatar" id="topics_list_lastpost_avatar" {if $topics_list_lastpost_avatar eq 'y'}checked="checked"{/if}> {tr}Last post profile picture{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="topics_list_author">
 										<input type="checkbox" name="topics_list_author" id="topics_list_author" {if $topics_list_author eq 'y'}checked="checked"{/if}> {tr}Author{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="topics_list_author_avatar">
 										<input type="checkbox" name="topics_list_author_avatar" id="topics_list_author_avatar" {if $topics_list_author_avatar eq 'y'}checked="checked"{/if}> {tr}Author profile picture{/tr}
 									</label>
@@ -486,37 +486,37 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label">{tr}User information display{/tr}</label>
 							<div class="col-sm-8">
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="ui_avatar">
 										<input type="checkbox" name="ui_avatar" id="ui_avatar" {if $ui_avatar eq 'y'}checked="checked"{/if}> {tr}Profile picture{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="ui_rating_choice_topic">
 										<input type="checkbox" name="ui_rating_choice_topic" id="ui_rating_choice_topic" {if $ui_rating_choice_topic eq 'y'}checked="checked"{/if}> {tr}Topic Rating{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="ui_flag">
 										<input type="checkbox" name="ui_flag" id="ui_flag" {if $ui_flag eq 'y'}checked="checked"{/if}> {tr}Flag{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="ui_posts">
 										<input type="checkbox" name="ui_posts" id="ui_posts" {if $ui_posts eq 'y'}checked="checked"{/if}> {tr}Posts{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="ui_level">
 										<input type="checkbox" name="ui_level" id="ui_level" {if $ui_level eq 'y'}checked="checked"{/if}> {tr}User Level{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="ui_email">
 										<input type="checkbox" name="ui_email" id="ui_email" {if $ui_email eq 'y'}checked="checked"{/if}> {tr}eMail{/tr}
 									</label>
 								</div>
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="ui_online">
 										<input type="checkbox" name="ui_online" id="ui_online" {if $ui_online eq 'y'}checked="checked"{/if}> {tr}Online{/tr}
 									</label>

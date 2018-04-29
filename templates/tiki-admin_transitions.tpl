@@ -187,7 +187,7 @@
 						<label class="control-label" for="new-transition-name">{tr}Label{/tr}</label>
 						<input type="text" name="label" {if $selected_transition}value="{$selected_transition.name|escape}"{/if} class="form-control">
 					</div>
-					<div class="checkbox">
+					<div class="form-check">
 						<label>
 							<input type="checkbox" name="preserve" value="y" id="new-transition-preserve" {if $selected_transition && $selected_transition.preserve}checked="checked"{/if}>
 							{tr}Upon trigger, preserve the initial state{/tr}
@@ -199,7 +199,7 @@
 						<fieldset>
 							<legend>{tr}From{/tr}</legend>
 							{foreach from=$available_states item=label key=value}
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="state-from-{$value|escape}">
 										<input type="radio" name="from" value="{$value|escape}" id="state-from-{$value|escape}"{if $selected_transition && $selected_transition.from eq $value} checked="checked"{/if}>
 										{$label|escape}
@@ -212,7 +212,7 @@
 						<fieldset>
 							<legend>{tr}To{/tr}</legend>
 							{foreach from=$available_states item=label key=value}
-								<div class="checkbox">
+								<div class="form-check">
 									<label for="state-to-{$value|escape}">
 										<input type="radio" name="to" value="{$value|escape}" id="state-to-{$value|escape}"{if $selected_transition && $selected_transition.to eq $value} checked="checked"{/if}>
 										{$label|escape}
@@ -287,7 +287,7 @@
 					<fieldset>
 						<legend>{tr}States{/tr}</legend>
 						{foreach from=$available_states item=label key=value}
-							<div class="checkbox">
+							<div class="form-check">
 								<label for="guard-state-{$value|escape}">
 									<input type="checkbox" name="states[]" value="{$value|escape}" id="guard-state-{$value|escape}">
 									{$label|escape}

@@ -416,7 +416,7 @@
 			{if $groupname neq 'Anonymous' and $groupname neq 'Registered' and $groupname neq 'Admins'}
 				<div class="form-group">
 					<div class="col-md-9 col-md-offset-3">
-						<div class="checkbox">
+						<div class="form-check">
 							<label>
 								<input type="checkbox" name="userChoice"{if $userChoice eq 'y'} checked="checked"{/if}>
 								{tr}User can assign himself or herself to the group{/tr}
@@ -696,17 +696,17 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">{tr}Fields{/tr}</label>
 					<div class="col-sm-7">
-						<div class="checkbox">
+						<div class="form-check">
 							<label>
 								<input type="checkbox" name="username" checked="checked"> {tr}Username{/tr}
 							</label>
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<label>
 								<input type="checkbox" name="email"> {tr}Email{/tr}
 							</label>
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<label>
 								<input type="checkbox" name="lastLogin"> {tr}Last login{/tr}
 							</label>

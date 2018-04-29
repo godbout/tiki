@@ -9,14 +9,14 @@
 		{if $prefs.feature_daily_report_watches eq 'y'}
 			<legend>{tr}Report Preferences{/tr}</legend>
 			<div class="userWizardIconright"><img src="img/icons/large/stock_mail48x48.png" alt="{tr}Report Preferences{/tr}" /></div>
-			<table class="formcolor">
+			<div class="formcolor">
 
 				{if isset($remove_user_watch_error) && $remove_user_watch_error}
 					{remarksbox type="error" title="{tr}Error{/tr}"}{tr}You are not allowed to remove this notification !{/tr}{/remarksbox}
 				{/if}
 
-				<p><input type="checkbox" name="use_daily_reports" value="true" {if $report_preferences != false}checked{/if}> {tr}Use reports{/tr}</p>
-				<p>
+				<div class="form-check"><input type="checkbox" class="form-check-input" name="use_daily_reports" value="true" {if $report_preferences != false}checked{/if}> {tr}Use reports{/tr}</div>
+
 					{tr}Interval in which you want to get the reports{/tr}
 					<select name="interval">
 						<option value="minute" {if $report_preferences.interval eq "minute"}selected{/if}>{tr}Every minute{/tr}</option>
@@ -25,7 +25,7 @@
 						<option value="weekly" {if $report_preferences.interval eq "weekly"}selected{/if}>{tr}Weekly{/tr}</option>
 						<option value="monthly" {if $report_preferences.interval eq "monthly"}selected{/if}>{tr}Monthly{/tr}</option>
 					</select>
-				</p>
+				</>
 
 				<div style="float:left; margin-right: 50px;">
 					<input type="radio" name="view" value="short"{if $report_preferences.view eq "short"} checked="checked"{/if}> {tr}Short report{/tr}<br>
@@ -35,8 +35,8 @@
 					<input type="radio" name="type" value="html"{if $report_preferences.type eq "html" OR $report_preferences eq false} checked="checked"{/if}> {tr}HTML-Email{/tr}<br>
 					<input type="radio" name="type" value="plain"{if $report_preferences.type eq "plain"} checked="checked"{/if}> {tr}Plain text{/tr}<br>
 				</div>
-				<div>
-					<input type="checkbox" name="always_email" value="1"{if $report_preferences.always_email eq 1 OR $report_preferences eq false} checked="checked"{/if}> {tr}Send me an email also if nothing happened{/tr}
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" name="always_email" value="1"{if $report_preferences.always_email eq 1 OR $report_preferences eq false} checked="checked"{/if}> {tr}Send me an email also if nothing happened{/tr}
 				</div>
 
 			</table>

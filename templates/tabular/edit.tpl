@@ -212,8 +212,8 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3">{tr}Simple headers{/tr}</label>
-				<div class="col-sm-9">
-					<input type="checkbox" name="config[simple_headers]" value="1" {if $config['simple_headers']} checked {/if}>
+				<div class="col-sm-9 form-check">
+					<input type="checkbox" class="form-check-input" name="config[simple_headers]" value="1" {if $config['simple_headers']} checked {/if}>
 					<a class="tikihelp" title="{tr}Simple headers{/tr}: {tr}Allow using field labels only as a header row when importing rather than the full &quot;Field [permName:type]&quot; format.{/tr}">
 						{icon name=information}
 					</a>
@@ -221,8 +221,8 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3">{tr}Import updates{/tr}</label>
-				<div class="col-sm-9">
-					<input type="checkbox" name="config[import_update]" value="1" {if $config['import_update']} checked {/if}>
+				<div class="col-sm-9 form-check">
+					<input type="checkbox" class="form-check-input" name="config[import_update]" value="1" {if $config['import_update']} checked {/if}>
 					<a class="tikihelp" title="{tr}Import update{/tr}: {tr}Allow updating existing entries matched by PK when importing. If this is disabled, only new items will be imported.{/tr}">
 						{icon name=information}
 					</a>
@@ -230,8 +230,8 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3">{tr}Ignore blanks{/tr}</label>
-				<div class="col-sm-9">
-					<input type="checkbox" name="config[ignore_blanks]" value="1" {if $config['ignore_blanks']} checked {/if}>
+				<div class="col-sm-9 form-check">
+					<input type="checkbox" class="form-check-input" name="config[ignore_blanks]" value="1" {if $config['ignore_blanks']} checked {/if}>
 					<a class="tikihelp" title="{tr}Ignore blanks{/tr}: {tr}Ignore blank values when import is updating existing items. Only non-blank values will be updated this way.{/tr}">
 						{icon name=information}
 					</a>
@@ -239,8 +239,8 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3">{tr}Transactional import{/tr}</label>
-				<div class="col-sm-9">
-					<input type="checkbox" name="config[import_transaction]" value="1" {if $config['import_transaction']} checked {/if}>
+				<div class="col-sm-9 form-check">
+					<input type="checkbox" class="form-check-input" name="config[import_transaction]" value="1" {if $config['import_transaction']} checked {/if}>
 					<a class="tikihelp" title="{tr}Import transaction{/tr}: {tr}Import in a single transaction. If any of the items fails validation, the whole import is rejected and nothing is saved.{/tr}">
 						{icon name=information}
 					</a>
@@ -248,8 +248,8 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-3">{tr}Bulk import{/tr}</label>
-				<div class="col-sm-9">
-					<input type="checkbox" name="config[bulk_import]" value="1" {if $config['bulk_import']} checked {/if}>
+				<div class="col-sm-9 form-check">
+					<input type="checkbox" class="form-check-input" name="config[bulk_import]" value="1" {if $config['bulk_import']} checked {/if}>
 					<a class="tikihelp" title="{tr}Bulk Import{/tr}: {tr}Import in 'bulk' mode so the search index is not updated for each item and no notifications should be sent.{/tr}">
 						{icon name=information}
 					</a>

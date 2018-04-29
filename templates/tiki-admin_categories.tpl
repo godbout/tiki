@@ -57,7 +57,7 @@
 			{if $tiki_p_admin_categories == 'y'}
 				<div class="form-group">
 					<div class="col-sm-9 col-sm-offset-3">
-						<div class="checkbox">
+						<div class="form-check">
 							<label>
 								<input type="checkbox" name="parentPerms" {if empty($categId)}checked="checked"{/if}>
 								{tr}Apply parent category permissions{/tr}

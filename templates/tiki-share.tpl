@@ -156,7 +156,7 @@
 				{if $prefs.share_token_notification eq 'y'}
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-9">
-							<div class="checkbox">
+							<div class="form-check">
 								<label>
 									<input type="checkbox" value="y" name="share_token_notification" {if $share_token_notification eq 'y'}checked="checked" {/if}> {tr}Subscribe{/tr}
 								</label>

@@ -213,7 +213,7 @@ if (jqueryTiki.no_cookie) {
 			{else}
 				<div class="form-group">
 					<div class="checkbox rme">
-						<label for="login-remember-module_{$module_logo_instance}"><input type="checkbox" name="rme" id="login-remember-module_{$module_logo_instance}" value="on" />
+						<label for="login-remember-module_{$module_logo_instance}"><input type="checkbox" class="form-check-input" name="rme" id="login-remember-module_{$module_logo_instance}" value="on" />
 							{tr}Remember me{/tr}
 							({tr}for{/tr}
 							{if $prefs.remembertime eq 300}
@@ -275,7 +275,7 @@ if (jqueryTiki.no_cookie) {
 		{if $prefs.feature_show_stay_in_ssl_mode eq 'y' && $show_stay_in_ssl_mode eq 'y'}
 			<div>
 				<label for="login-stayssl_{$module_logo_instance}">{tr}Stay in SSL mode:{/tr}</label>?
-				<input type="checkbox" name="stay_in_ssl_mode" id="login-stayssl_{$module_logo_instance}" {if $stay_in_ssl_mode eq 'y'}checked="checked"{/if} />
+				<input type="checkbox" class="form-check-input" name="stay_in_ssl_mode" id="login-stayssl_{$module_logo_instance}" {if $stay_in_ssl_mode eq 'y'}checked="checked"{/if} />
 			</div>
 		{/if}
 		{* This is needed as unchecked checkboxes are not sent. The other way of setting hidden field with same name is potentially non-standard *}

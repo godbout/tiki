@@ -22,7 +22,7 @@
 				{if $actions}
 					{$fieldcount = 1}
 					<th>
-						<input type="checkbox" name="selectall" value="" class="listexecute-select-all">
+						<input type="checkbox" class="form-check-input" name="selectall" value="" class="listexecute-select-all">
 						<input type="hidden" name="objects[]" value="" class="listexecute-all">
 					</th>
 				{/if}
@@ -73,7 +73,7 @@
 			<tr>
 				{if $actions}
 					<td>
-						<input type="checkbox" name="objects[]" class="checkbox_objects" value="{$row.object_type|escape}:{$row.object_id|escape}">
+						<input type="checkbox" name="objects[]" class="checkbox_objects form-check-input" value="{$row.object_type|escape}:{$row.object_id|escape}">
 						{if $row.report_status eq 'success'}
 							{icon name='ok'}
 						{elseif $row.report_status eq 'error'}

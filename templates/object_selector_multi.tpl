@@ -45,7 +45,7 @@
 			<p class="too-many">{tr}Search and select what you are looking for from the options that appear..{/tr}</p>
 			<div class="results">
 				{foreach $object_selector_multi.current_selection as $object}
-					<div class="checkbox">
+					<div class="form-check">
 						<label>
 							<input type="checkbox" value="{$object|escape}" checked>
 							{$object.title|escape}

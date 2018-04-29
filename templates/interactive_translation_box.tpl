@@ -1,5 +1,5 @@
 <div class="intertrans text-center" id="intertrans-indicator">
-	<div class="checkbox">
+	<div class="form-check">
 		<label for="intertrans-active">
 			<input type="checkbox" id="intertrans-active"> {tr}Interactive Translation{/tr}
 		</label>

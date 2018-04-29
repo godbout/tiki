@@ -10,7 +10,7 @@
 				<button type="submit" class="wikiaction btn btn-primary" name="search" value="{tr}Go{/tr}">{tr}Go{/tr}</button>
 			</span>
 		</div>
-		<input type="checkbox" name="exact_match"{if $exact eq 'y'} checked="checked"{/if}>
+		<input type="checkbox" class="form-check-input" name="exact_match"{if $exact eq 'y'} checked="checked"{/if}>
 		<label for="exact_match"><span style="white-space: nowrap">{tr}Exact match{/tr}</span></label>
 	</form>
 {/tikimodule}

@@ -50,21 +50,21 @@
 		<label for="separator">{tr}Separator{/tr}</label>
 		<input type="text" name="separator" value="," size="2" class="form-control">
 	</div>
-	<div class="checkbox">
+	<div class="form-check">
 		<label>
-			<input type="checkbox" name="add_items" value="1">
+			<input type="checkbox" class="form-check-input" name="add_items" value="1">
 			{tr}Create as new items{/tr}
 		</label>
 	</div>
-	<div class="checkbox">
+	<div class="form-check">
 		<label>
-			<input type="checkbox" name="updateLastModif" checked="checked" value="1">
+			<input type="checkbox" class="form-check-input" name="updateLastModif" checked="checked" value="1">
 			{tr}Update lastModif date if updating items (status and created are updated only if the fields are specified in the csv){/tr}
 		</label>
 	</div>
-	<div class="checkbox">
+	<div class="form-check">
 		<label>
-			<input type="checkbox" name="convertItemLinkValues" value="1">
+			<input type="checkbox" class="form-check-input" name="convertItemLinkValues" value="1">
 			{tr}Convert values of ItemLink and Relation type fields from the value in the CSV file to the itemId of the linked item. Requires the linked or related item to be correctly set up in advance.{/tr}
 		</label>
 	</div>

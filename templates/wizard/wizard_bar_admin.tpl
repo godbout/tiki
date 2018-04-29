@@ -2,9 +2,9 @@
 <div class="row form-group">
 	{if $prefs.feature_bidi eq 'y'}
 		<div dir="rtl">
-			<div class="col-sm-9">
+			<div class="col-sm-9 form-check">
 			{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
-				<input type="checkbox" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} /> {tr}Show on admin login{/tr}
+				<input type="checkbox" class="form-check-input" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} /> {tr}Show on admin login{/tr}
 				{assign var="showOnLoginDisplayed" value="y" scope="root"}
 			{else}
 				&nbsp;
@@ -13,9 +13,9 @@
 	{else}
 			<div class="col-sm-9">
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-3 form-check">
 			{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
-					<input type="checkbox" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} /> {tr}Show on admin login{/tr}
+					<input type="checkbox" class="form-check-input" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} /> {tr}Show on admin login{/tr}
 					{assign var="showOnLoginDisplayed" value="y" scope="root"}
 				{else}
 					&nbsp;
@@ -26,7 +26,7 @@
 		{if !isset($provideFeedback) or $provideFeedback neq 'y'}
 			{capture name=likeicon}{icon name="thumbs-up"}{/capture}
 			<label>
-				<input type="checkbox" id="connect_feedback_cbx" {if !empty($connect_feedback_showing)}checked="checked"{/if}>
+				<input type="checkbox" class="form-check-input" id="connect_feedback_cbx" {if !empty($connect_feedback_showing)}checked="checked"{/if}>
 				{tr}Provide Feedback{/tr}
 				<a href="http://doc.tiki.org/Connect" target="tikihelp" class="tikihelp" title="{tr}Provide Feedback:{/tr}
 					{tr}Once selected, some icon/s will be shown next to all features so that you can provide some on-site feedback about them{/tr}.

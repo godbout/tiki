@@ -9,9 +9,9 @@
 		<input type="hidden" name="accountId" value="{$accountId|escape}">
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
-						<input type="checkbox" name="active" value="1" {if $info.active eq 'y'}checked{/if}>
+						<input type="checkbox" class="form-check-input" name="active" value="1" {if $info.active eq 'y'}checked{/if}>
 						{tr}Active{/tr}
 					</label>
 				</div>
@@ -100,9 +100,9 @@
 		{/if}
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
-						<input type="checkbox" name="anonymous" value="1" {if $info.anonymous eq 'y'}checked{/if}>
+						<input type="checkbox" class="form-check-input" name="anonymous" value="1" {if $info.anonymous eq 'y'}checked{/if}>
 						{tr}Allow anonymous access{/tr}
 					</label>
 					<div class="help-block">
@@ -113,9 +113,9 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
-						<input type="checkbox" name="admin" value="1" {if $info.admin eq 'y'}checked{/if}>
+						<input type="checkbox" class="form-check-input" name="admin" value="1" {if $info.admin eq 'y'}checked{/if}>
 						{tr}Allow admin access{/tr}
 					</label>
 					<div class="help-block">
@@ -127,9 +127,9 @@
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
 				{if $prefs.feature_wiki_attachments eq 'y'}
-					<div class="checkbox">
+					<div class="form-check">
 						<label>
-							<input type="checkbox" name="attachments" value="1" {if $info.attachments eq 'y'}checked{/if}>
+							<input type="checkbox" class="form-check-input" name="attachments" value="1" {if $info.attachments eq 'y'}checked{/if}>
 							{tr}Allow attachments{/tr}
 						</label>
 					</div>
@@ -141,9 +141,9 @@
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
 				{if $prefs.feature_wiki eq 'y'}
-					<div class="checkbox">
+					<div class="form-check">
 						<label>
-							<input type="checkbox" name="routing" value="1" {if $info.routing eq 'y'}checked{/if}>
+							<input type="checkbox" class="form-check-input" name="routing" value="1" {if $info.routing eq 'y'}checked{/if}>
 							{tr}Allow routing{/tr}
 						</label>
 						<div class="help-block">
@@ -158,9 +158,9 @@
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
 				{if $prefs.feature_wiki_attachments eq 'y'}
-					<div class="checkbox">
+					<div class="form-check">
 						<label>
-							<input type="checkbox" name="show_inlineImages" value="1" {if $info.show_inlineImages eq 'y'}checked{/if}>
+							<input type="checkbox" class="form-check-input" name="show_inlineImages" value="1" {if $info.show_inlineImages eq 'y'}checked{/if}>
 							{tr}Show inline images{/tr}
 						</label>
 							<div class="help-block">
@@ -174,9 +174,9 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
-						<input type="checkbox" name="save_html" value="1" {if $info.save_html eq 'y'}checked{/if}>
+						<input type="checkbox" class="form-check-input" name="save_html" value="1" {if $info.save_html eq 'y'}checked{/if}>
 						{tr}Keep HTML format{/tr}
 					</label>
 					<div class="help-block">
@@ -215,9 +215,9 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
-						<input type="checkbox" name="respond_email" value="1" {if $info.respond_email eq 'y'}checked{/if}>
+						<input type="checkbox" class="form-check-input" name="respond_email" value="1" {if $info.respond_email eq 'y'}checked{/if}>
 						{tr}Email response when no access{/tr}
 					</label>
 				</div>
@@ -225,9 +225,9 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
-						<input type="checkbox" name="leave_email" value="1" {if $info.leave_email eq 'y'}checked{/if}>
+						<input type="checkbox" class="form-check-input" name="leave_email" value="1" {if $info.leave_email eq 'y'}checked{/if}>
 						{tr}Leave email on server on error{/tr}
 					</label>
 					<div class="help-block">

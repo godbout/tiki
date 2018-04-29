@@ -37,9 +37,9 @@
 	{else}
 		<form method="post" class="no-ajax" action="{service controller=search action=rebuild}" onsubmit="$(this).parent().tikiModal('{tr}Rebuilding index...{/tr}')">
 			<div class="form-group">
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
-						<input type="checkbox" name="loggit" value="1">
+						<input type="checkbox" class="form-check-input" name="loggit" value="1">
 						{tr}Enable logging{/tr}
 					</label>
 					<div class="help-block">{tr _0=$log_file_browser}Log file is saved as %0{/tr}</div>

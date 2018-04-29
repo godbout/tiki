@@ -607,7 +607,7 @@
 				<form role="form" class="form-horizontal" action="tiki-user_preferences.php" method="post" onsubmit='return confirm("{tr _0=$userwatch|escape}Are you really sure you want to delete the account %0?{/tr}");'>
 					{if !empty($userwatch)}<input type="hidden" name="view_user" value="{$userwatch|escape}">{/if}
 					<p>
-						<div class="checkbox">
+						<div class="form-check">
 						<label for="deleteaccountconfirm">
 							<input type='checkbox' name='deleteaccountconfirm' id="deleteaccountconfirm" value='1'> {tr}Check this box if you really want to delete the account{/tr}
 						</label>

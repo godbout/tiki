@@ -16,9 +16,9 @@
 			<label name="description" class="control-label">{tr}Description{/tr}</label>
 			<textarea name="description" class="form-control">{$field.description|escape}</textarea>
 		</div>
-		<div class="checkbox">
+		<div class="form-check">
 			<label>
-				<input type="checkbox" name="description_parse" value="1"
+				<input type="checkbox" class="form-check-input" name="description_parse" value="1"
 					{if $field.descriptionIsParsed eq 'y'}checked="checked"{/if}
 					>
 				{tr}Description contains wiki syntax{/tr}
@@ -30,9 +30,9 @@
 
 			{if $field.type eq 't' or $field.type eq 'a'}
 				{* Pretend the field attribute is just an option as it only exists for two field types *}
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
-						<input type="checkbox" name="multilingual" value="1"
+						<input type="checkbox" class="form-check-input" name="multilingual" value="1"
 							{if $field.isMultilingual eq 'y'}checked="checked"{/if}>
 						{tr}Multilingual{/tr}
 					</label>
