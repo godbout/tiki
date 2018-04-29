@@ -12,16 +12,16 @@ namespace Tiki\Lib\Image;
  */
 class Gd extends ImageAbstract
 {
-	var $gdinfo;
-	var $gdversion;
-	var $havegd = false;
+	protected $gdinfo;
+	protected $gdversion;
+	protected $havegd = false;
 
 	/**
 	 * @param $image
 	 * @param bool $isfile
 	 * @param string $format
 	 */
-	function __construct($image, $isfile = false, $format = 'jpeg')
+	public function __construct($image, $isfile = false, $format = 'jpeg')
 	{
 
 		// Which GD Version do we have?
@@ -44,7 +44,7 @@ class Gd extends ImageAbstract
 		}
 	}
 
-	function _load_data()
+	protected function _load_data()
 	{
 		if (! $this->loaded && $this->havegd) {
 			if (! empty($this->filename) && is_file($this->filename)) {
@@ -79,7 +79,7 @@ class Gd extends ImageAbstract
 	 * @param $x
 	 * @param $y
 	 */
-	function _resize($x, $y)
+	protected function _resize($x, $y)
 	{
 		if ($this->data) {
 			if ($this->format == 'svg') {
@@ -99,7 +99,7 @@ class Gd extends ImageAbstract
 		}
 	}
 
-	function resizethumb()
+	public function resizethumb()
 	{
 		if ($this->thumb !== null) {
 			$this->data = imagecreatefromstring($this->thumb);
@@ -113,7 +113,7 @@ class Gd extends ImageAbstract
 	/**
 	 * @return null|string
 	 */
-	function display()
+	public function display()
 	{
 
 		$this->_load_data();
@@ -154,7 +154,7 @@ class Gd extends ImageAbstract
 	 * @param $angle
 	 * @return bool
 	 */
-	function rotate($angle)
+	public function rotate($angle)
 	{
 		$this->_load_data();
 		if ($this->data) {
@@ -168,7 +168,7 @@ class Gd extends ImageAbstract
 	/**
 	 * @return array
 	 */
-	function get_gdinfo()
+	protected function get_gdinfo()
 	{
 		$gdinfo = [];
 		$gdversion = '';
@@ -206,7 +206,7 @@ class Gd extends ImageAbstract
 	{
 
 		if (! function_exists('imagetypes')) {
-			$gdinfo = isset($this) ? $this->gdinfo : Image::get_gdinfo();
+			$gdinfo = isset($this) ? $this->gdinfo : $this->get_gdinfo();
 		}
 
 		switch (strtolower($format)) {

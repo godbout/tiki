@@ -12,21 +12,21 @@ namespace Tiki\Lib\Image;
  */
 class ImageAbstract
 {
-	var $data = null;
-	var $format = 'jpeg';
-	var $height = null;
-	var $width = null;
-	var $classname = 'ImageAbstract';
-	var $filename = null;
-	var $thumb = null;
-	var $loaded = false;
-	var $metadata = null;			//to hold metadata from the FileMetadata class
+	protected $data = null;
+	protected $format = 'jpeg';
+	protected $height = null;
+	protected $width = null;
+	protected $classname = 'ImageAbstract';
+	protected $filename = null;
+	protected $thumb = null;
+	protected $loaded = false;
+	protected $metadata = null;			//to hold metadata from the FileMetadata class
 
 	/**
 	 * @param $image
 	 * @param bool $isfile
 	 */
-	function __construct($image, $isfile = false)
+	public function __construct($image, $isfile = false)
 	{
 		if (! empty($image) || $this->filename !== null) {
 			if (is_readable($this->filename) && function_exists('exif_thumbnail') && in_array(image_type_to_mime_type(exif_imagetype($this->filename)), ['image/jpeg', 'image/tiff'])) {
@@ -44,7 +44,7 @@ class ImageAbstract
 		}
 	}
 
-	function _load_data()
+	protected function _load_data()
 	{
 		if (! $this->loaded) {
 			if (! empty($this->filename)) {
@@ -59,7 +59,7 @@ class ImageAbstract
 	/**
 	 * @return bool
 	 */
-	function is_empty()
+	public function is_empty()
 	{
 		return empty($this->data) && empty($this->filename);
 	}
@@ -68,7 +68,7 @@ class ImageAbstract
 	 * @param $filename
 	 * @return null|string
 	 */
-	function get_from_file($filename)
+	public function get_from_file($filename)
 	{
 		$content = null;
 		if (is_readable($filename)) {
@@ -84,7 +84,7 @@ class ImageAbstract
 	 * @param $x
 	 * @param $y
 	 */
-	function _resize($x, $y)
+	protected function _resize($x, $y)
 	{
 	}
 
@@ -92,7 +92,7 @@ class ImageAbstract
 	 * @param int $x
 	 * @param int $y
 	 */
-	function resize($x = 0, $y = 0)
+	public function resize($x = 0, $y = 0)
 	{
 		$this->_load_data();
 		if ($this->data) {
@@ -114,7 +114,7 @@ class ImageAbstract
 	/**
 	 * @param $max
 	 */
-	function resizemax($max)
+	public function resizemax($max)
 	{
 		$this->_load_data();
 		if ($this->data) {
@@ -130,7 +130,7 @@ class ImageAbstract
 		}
 	}
 
-	function resizethumb()
+	public function resizethumb()
 	{
 		require_once('tiki-setup.php');
 		global $prefs;
@@ -140,7 +140,7 @@ class ImageAbstract
 	/**
 	 * @param $r
 	 */
-	function scale($r)
+	public function scale($r)
 	{
 		$this->_load_data();
 		$x0 = $this->get_width();
@@ -154,7 +154,7 @@ class ImageAbstract
 	/**
 	 * @return string
 	 */
-	function get_mimetype()
+	public function get_mimetype()
 	{
 		return 'image/' . strtolower($this->get_format());
 	}
@@ -162,7 +162,7 @@ class ImageAbstract
 	/**
 	 * @param $format
 	 */
-	function set_format($format)
+	public function set_format($format)
 	{
 		$this->format = $format;
 	}
@@ -170,7 +170,7 @@ class ImageAbstract
 	/**
 	 * @return string
 	 */
-	function get_format()
+	public function get_format()
 	{
 		if ($this->format == '') {
 			$this->set_format('jpeg');
@@ -183,7 +183,7 @@ class ImageAbstract
 	/**
 	 * @return null
 	 */
-	function display()
+	public function display()
 	{
 		$this->_load_data();
 		return $this->data;
@@ -193,7 +193,7 @@ class ImageAbstract
 	 * @param $format
 	 * @return bool
 	 */
-	function convert($format)
+	public function convert($format)
 	{
 		if ($this->is_supported($format)) {
 			$this->set_format($format);
@@ -206,7 +206,7 @@ class ImageAbstract
 	/**
 	 * @param $angle
 	 */
-	function rotate($angle)
+	public function rotate($angle)
 	{
 	}
 
@@ -214,7 +214,7 @@ class ImageAbstract
 	 * @param $format
 	 * @return bool
 	 */
-	function is_supported($format)
+	public function is_supported($format)
 	{
 		return false;
 	}
@@ -222,7 +222,7 @@ class ImageAbstract
 	/**
 	 * @return string
 	 */
-	function get_icon_default_format()
+	public function get_icon_default_format()
 	{
 		return 'png';
 	}
@@ -230,7 +230,7 @@ class ImageAbstract
 	/**
 	 * @return int
 	 */
-	function get_icon_default_x()
+	public function get_icon_default_x()
 	{
 		return 16;
 	}
@@ -238,7 +238,7 @@ class ImageAbstract
 	/**
 	 * @return int
 	 */
-	function get_icon_default_y()
+	public function get_icon_default_y()
 	{
 		return 16;
 	}
@@ -249,7 +249,7 @@ class ImageAbstract
 	 * @param int $y
 	 * @return bool|null|string
 	 */
-	function icon($extension, $x = 0, $y = 0)
+	public function icon($extension, $x = 0, $y = 0)
 	{
 		$keep_original = ( $x == 0 && $y == 0 );
 
@@ -291,7 +291,7 @@ class ImageAbstract
 	/**
 	 * @return null
 	 */
-	function _get_height()
+	protected function _get_height()
 	{
 		return null;
 	}
@@ -299,7 +299,7 @@ class ImageAbstract
 	/**
 	 * @return null
 	 */
-	function _get_width()
+	protected function _get_width()
 	{
 		return null;
 	}
@@ -307,7 +307,7 @@ class ImageAbstract
 	/**
 	 * @return null
 	 */
-	function get_height()
+	public function get_height()
 	{
 		if ($this->height === null) {
 			$this->height = $this->_get_height();
@@ -318,7 +318,7 @@ class ImageAbstract
 	/**
 	 * @return null
 	 */
-	function get_width()
+	public function get_width()
 	{
 		if ($this->width === null) {
 			$this->width = $this->_get_width();
@@ -333,7 +333,7 @@ class ImageAbstract
 	 * @param bool $bestarray
 	 * @return FileMetadata|null
 	 */
-	function getMetadata($filename = null, $ispath = true, $extended = true, $bestarray = true)
+	public function getMetadata($filename = null, $ispath = true, $extended = true, $bestarray = true)
 	{
 		include_once('lib/metadata/metadatalib.php');
 		if ($filename === null) {
@@ -357,7 +357,7 @@ class ImageAbstract
 	 * @param $text
 	 * @return string || boolean
 	 */
-	function addTextToImage($text)
+	public function addTextToImage($text)
 	{
 	}
 }

@@ -18,7 +18,7 @@ class ImagickOld extends ImageAbstract
 	 * @param bool $isfile
 	 * @param string $format
 	 */
-	function __construct($image, $isfile = false, $format = 'jpeg')
+	public function __construct($image, $isfile = false, $format = 'jpeg')
 	{
 		if ($isfile) {
 			$this->filename = $image;
@@ -28,7 +28,7 @@ class ImagickOld extends ImageAbstract
 		}
 	}
 
-	function _load_data()
+	protected function _load_data()
 	{
 		if (! $this->loaded) {
 			if (! empty($this->filename)) {
@@ -49,14 +49,14 @@ class ImagickOld extends ImageAbstract
 	 * @param $y
 	 * @return mixed
 	 */
-	function _resize($x, $y)
+	protected function _resize($x, $y)
 	{
 		if ($this->data) {
 			return imagick_scale($this->data, $x, $y);
 		}
 	}
 
-	function resizethumb()
+	public function resizethumb()
 	{
 		if ($this->thumb !== null) {
 			$this->data = imagick_blob2image($this->thumb);
@@ -72,7 +72,7 @@ class ImagickOld extends ImageAbstract
 	/**
 	 * @return mixed
 	 */
-	function get_mimetype()
+	public function get_mimetype()
 	{
 		$this->_load_data();
 		if ($this->data) {
@@ -83,7 +83,7 @@ class ImagickOld extends ImageAbstract
 	/**
 	 * @param $format
 	 */
-	function set_format($format)
+	public function set_format($format)
 	{
 		$this->_load_data();
 		$this->format = $format;
@@ -95,7 +95,7 @@ class ImagickOld extends ImageAbstract
 	/**
 	 * @return string
 	 */
-	function get_format()
+	public function get_format()
 	{
 		return $this->format;
 	}
@@ -103,7 +103,7 @@ class ImagickOld extends ImageAbstract
 	/**
 	 * @return mixed
 	 */
-	function display()
+	public function display()
 	{
 		$this->_load_data();
 		if ($this->data) {
@@ -115,7 +115,7 @@ class ImagickOld extends ImageAbstract
 	 * @param $angle
 	 * @return bool
 	 */
-	function rotate($angle)
+	public function rotate($angle)
 	{
 		$this->_load_data();
 		if ($this->data) {
@@ -130,7 +130,7 @@ class ImagickOld extends ImageAbstract
 	 * @param $format
 	 * @return bool
 	 */
-	function is_supported($format)
+	public function is_supported($format)
 	{
 		// not handled yet: html, mpeg, pdf
 		return in_array(
@@ -214,7 +214,7 @@ class ImagickOld extends ImageAbstract
 	/**
 	 * @return mixed
 	 */
-	function get_height()
+	public function get_height()
 	{
 		$this->_load_data();
 		if ($this->data) {
@@ -225,7 +225,7 @@ class ImagickOld extends ImageAbstract
 	/**
 	 * @return mixed
 	 */
-	function get_width()
+	public function get_width()
 	{
 		$this->_load_data();
 		if ($this->data) {
