@@ -92,7 +92,7 @@
 	<form class="form-horizontal" action="tiki-admin_mailin.php" method="post">
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
-				<div class="checkbox">
+				<div class="form-check">
 					<label>
 						<input type="checkbox" class="form-check-input" name="mailin_autocheck" value="y" {if $prefs.mailin_autocheck eq 'y'}checked{/if}>
 						{tr}Check automatically{/tr}

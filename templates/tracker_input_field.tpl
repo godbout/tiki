@@ -1,6 +1,6 @@
 <div class="form-group">
 	{if $field_type eq 'c'}
-		<div class="checkbox">
+		<div class="form-check">
 			<label>
 				{$field_input} {$field_name} {$mandatory_sym}
 			</label>

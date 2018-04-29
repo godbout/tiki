@@ -78,7 +78,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-8">
-								<div class="checkbox">
+								<div class="form-check">
 									<label>
 										<input id="filterEmailNotConfirmed" name="filterEmailNotConfirmed" type="checkbox"{if !empty($smarty.request.filterEmailNotConfirmed)} checked="checked"{/if}>{tr}Email not confirmed{/tr}
 									</label>
@@ -87,7 +87,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-8">
-								<div class="checkbox">
+								<div class="form-check">
 									<label>
 										<input id="filterNeverLoggedIn" name="filterNeverLoggedIn" type="checkbox"{if !empty($smarty.request.filterNeverLoggedIn)} checked="checked"{/if}>{tr}Never logged in{/tr}
 									</label>
@@ -96,7 +96,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-8">
-								<div class="checkbox">
+								<div class="form-check">
 									<label>
 										<input id="filterNotValidated" name="filterNotValidated" type="checkbox"{if !empty($smarty.request.filterNotValidated)} checked="checked"{/if}>{tr}User not validated{/tr}
 									</label>
@@ -494,7 +494,7 @@
 						{if $userinfo.login neq 'admin' && $prefs.change_password neq 'n'}
 							<div class="form-group">
 								<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-									<div class="checkbox">
+									<div class="form-check">
 										<label>
 											<input type="checkbox" name="pass_first_login"{if isset($userinfo.pass_confirm) && $userinfo.pass_confirm eq '0'} checked="checked"{/if}>
 											{tr}User must change password at next login{/tr}
@@ -515,7 +515,7 @@
 					{if $userinfo.login neq 'admin' and ($prefs.validateUsers eq 'y' or $prefs.validateRegistration eq 'y')}
 						<div class="form-group">
 							<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-								<div class="checkbox">
+								<div class="form-check">
 									<label>
 										<input type="checkbox" name="need_email_validation" {if ($userinfo.login eq '' and ($prefs.validateUsers eq 'y' or $prefs.validateRegistration eq 'y')) or $userinfo.provpass neq '' or $userinfo.valid neq ''}checked="checked"{/if}>
 										{tr}Send an email to the user to enable him or her to validate their account.{/tr}
@@ -530,7 +530,7 @@
 					{if $prefs.userTracker eq 'y' and $userinfo.login eq ''}
 						<div class="form-group">
 							<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-								<div class="checkbox">
+								<div class="form-check">
 									<label>
 										<input type="checkbox" name="insert_user_tracker_item">
 										{tr}Add a user tracker item for this user{/tr}
@@ -653,7 +653,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-9 col-md-offset-3">
-						<div class="checkbox">
+						<div class="form-check">
 							<label>
 								<input type="checkbox" name="overwriteGroup">
 								{tr}Overwrite groups{/tr}
@@ -663,7 +663,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-md-9 col-md-offset-3">
-						<div class="checkbox">
+						<div class="form-check">
 							<label>
 								<input type="checkbox" name="createGroup">
 								{tr}Create groups{/tr}
@@ -674,7 +674,7 @@
 				{if $prefs.change_password neq 'n'}
 					<div class="form-group">
 						<div class="col-md-9 col-md-offset-3">
-							<div class="checkbox">
+							<div class="form-check">
 								<label>
 									<input type="checkbox" name="forcePasswordChange">
 									{tr}The user must change his or her password the first time they log in{/tr}
@@ -685,7 +685,7 @@
 				{/if}
 				<div class="form-group">
 					<div class="col-md-9 col-md-offset-3">
-						<div class="checkbox">
+						<div class="form-check">
 							<label>
 								<input type="checkbox" name="notification">
 								{tr}Send an email to the user to enable him or her to validate their account.{/tr}

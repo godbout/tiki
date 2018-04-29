@@ -45,7 +45,7 @@
 				</div>
 				{if $tiki_p_admin_galleries eq 'y'}
 					<div class="form-group">
-						<div class="checkbox col-sm-push-4">
+						<div class="form-check col-sm-push-4">
 							<input type="checkbox" class="form-check-input" name="visible" {if $visible eq 'y'}checked="checked"{/if}>
 							{tr}Gallery is visible to non-admin users?{/tr}
 						</div>
@@ -114,43 +114,43 @@
 					<label class="control-label col-sm-4">{tr}Fields to show during browsing the gallery:{/tr}</label>
 					<div class="col-sm-4">
 
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showname" value="y" {if $showname=='y'}checked="checked"{/if}>
 							{tr}Name{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showimageid" value="y" {if $showimageid=='y'}checked="checked"{/if}>
 							{tr}Image ID{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showdescription" value="y" {if $showdescription=='y'}checked="checked"{/if}>
 							{tr}Description{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showcreated" value="y" {if $showcreated=='y'}checked="checked"{/if}>
 							{tr}Creation Date{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showuser" value="y" {if $showuser=='y'}checked="checked"{/if}>
 							{tr}User{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showhits" value="y" {if $showhits=='y'}checked="checked"{/if}>
 							{tr}Hits{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showxysize" value="y" {if $showxysize=='y'}checked="checked"{/if}>
 							{tr}XY-Size{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showfilesize" value="y" {if $showfilesize=='y'}checked="checked"{/if}>
 							{tr}Filesize{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showfilename" value="y" {if $showfilename=='y'}checked="checked"{/if}>
 							{tr}Filename{/tr}
 						</div>
-						<div class="checkbox">
+						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showcategories" value="y" {if $showcategories=='y'}checked="checked"{/if}>
 							{tr}Categories{/tr}
 						</div>
@@ -230,7 +230,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="checkbox col-sm-push-4">
+					<div class="form-check col-sm-push-4">
 						<label>
 							<input type="checkbox" class="form-check-input" name="public" {if $public eq 'y'}checked="checked"{/if}>
 							{tr}Other users can upload images to this gallery{/tr}

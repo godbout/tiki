@@ -237,7 +237,7 @@
 		{/if}
 		{if !empty($show_find_orphans) and $show_find_orphans eq 'y'}
 			<div class="form-group find-orphans" style="margin-top: -15px;">
-				<div class="checkbox col-sm-push-4">
+				<div class="form-check col-sm-push-4">
 					<label class="find_orphans control-label" style="padding-left: 0; font-weight: bold;" for="find_orphans">
 						{tr}Orphans{/tr}
 						<input type="checkbox" style="margin-left: 30px;" name="find_orphans" id="find_orphans" {if isset($find_orphans) and $find_orphans eq 'y'}checked="checked"{/if}>

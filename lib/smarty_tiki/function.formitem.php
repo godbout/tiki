@@ -57,7 +57,7 @@ function smarty_function_formitem($params, $smarty)
 	}
 
 	if ($params['is_checkbox'] == 'y') {
-		$html = '<div class="checkbox"><label>' . $params['_field'] . $params['_label'] . '</label> ' . $popup . '</div>';
+		$html = '<div class="form-check"><label>' . $params['_field'] . $params['_label'] . '</label> ' . $popup . '</div>';
 	} else {
 		$html = '<div ' . $id . ' class="form-group ' . $params['class'] . '"><label>' . $params['_label'] . '</label> ' . $popup . $help . $params['_field'] . '</div>';
 	}

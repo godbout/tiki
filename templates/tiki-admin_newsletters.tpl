@@ -119,49 +119,49 @@
 					<textarea class="form-control" name="description" id="description">{$info.description|escape}</textarea>
 				</div>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label>
 					<input type="checkbox" class="form-check-input" name="allowUserSub" {if $info.allowUserSub eq 'y'}checked="checked"{/if}>
 						{tr}Users can subscribe/unsubscribe to this list{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label>
 					<input type="checkbox" class="form-check-input" name="allowAnySub" {if $info.allowAnySub eq 'y'}checked="checked"{/if}>
 					{tr}Users can subscribe any email address{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label>
 					<input type="checkbox" class="form-check-input" name="unsubMsg" {if $info.unsubMsg eq 'y'}checked="checked"{/if}>
 					{tr}Add unsubscribe instructions to each newsletter{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label>
 					<input type="checkbox" class="form-check-input" name="validateAddr" {if $info.validateAddr eq 'y'}checked="checked"{/if}>
 					{tr}Validate email addresses{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label>
 					<input type="checkbox" class="form-check-input" name="allowTxt" {if $info.allowTxt eq 'y'}checked="checked"{/if}>
 					{tr}Allow customized text message to be sent with the HTML version{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label>
 					<input type="checkbox" class="form-check-input" name="allowArticleClip" {if $info.allowArticleClip eq 'y'}checked="checked"{/if}>
 					{tr}Allow clipping of articles into newsletter{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label>
 					<input type="checkbox" class="form-check-input" name="autoArticleClip" {if $info.autoArticleClip eq 'y'}checked="checked"{/if}>
 					{tr}Automatically clip articles into newsletter{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2" style="margin-bottom: 15px;">
+			<div class="form-check col-md-offset-2" style="margin-bottom: 15px;">
 				<label>
 					<input type="checkbox" class="form-check-input" name="emptyClipBlocksSend" {if $info.emptyClipBlocksSend eq 'y'}checked="checked"{/if}>
 					{tr}Do not send newsletter if clip is empty{/tr}

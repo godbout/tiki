@@ -145,7 +145,7 @@
 								<input type="hidden" name="recurrent" value="1">
 								{tr}This event depends on a recurrence rule{/tr}
 							{else}
-								<div class="checkbox">
+								<div class="form-check">
 									<label>
 										<input type="checkbox" class="form-check-input" id="id_recurrent" name="recurrent" value="1"{if $calitem.recurrenceId gt 0 or $recurrent eq 1} checked="checked" {/if}>
 										{tr}This event depends on a recurrence rule{/tr}

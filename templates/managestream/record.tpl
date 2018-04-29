@@ -21,7 +21,7 @@
 		{if $prefs.activity_notifications eq 'y'}
 			<div class="form-group clearfix">
 				<div class="col-md-offset-3 col-md-9">
-					<div class="checkbox">
+					<div class="form-check">
 						<label for="notification_checkbox">
 							<input id="notification_checkbox" name="is_notification" type="checkbox"> {tr}Allow Notifications{/tr}
 						</label>

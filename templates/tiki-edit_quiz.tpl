@@ -136,45 +136,45 @@
 					{html_select_time prefix="expire_" time=$expireDateSite display_seconds=false use_24_hours=$use_24hr_clock} {$siteTimeZone}
 				</div>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label for="quiz-repeat">
 					<input type="checkbox" name="canRepeat" id="quiz-repeat" {if $canRepeat eq 'y'}checked="checked"{/if}>
 					{tr}Quiz can be repeated{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label for="quiz-results">
 					<input type="checkbox" name="storeResults" id="quiz-results" {if $storeResults eq 'y'}checked="checked"{/if}>
 					{tr}Store quiz results{/tr}
 				</label>
 			</div>
 			{* Not implemented
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label for="immediate-feedback">
 					<input type="checkbox" name="immediateFeedback" id="immediate-feedback" {if $immediateFeedback eq 'y'}checked="checked"{/if}>
 					{tr}Immediate feedback{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label for="show-answers">
 					<input type="checkbox" name="showAnswers" id="show-answers" {if $showAnswers eq 'y'}checked="checked"{/if}>
 					{tr}Show correct answers{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label for="shuffle-questions">
 					<input type="checkbox" name="shuffleQuestions" id="shuffle-questions" {if $shuffleQuestions eq 'y'}checked="checked"{/if}>
 					{tr}Shuffle questions{/tr}
 				</label>
 			</div>
-			<div class="checkbox col-md-offset-2">
+			<div class="form-check col-md-offset-2">
 				<label for="shuffle-answers">
 					<input type="checkbox" name="shuffleAnswers" id="shuffle-answers" {if $shuffleAnswers eq 'y'}checked="checked"{/if}>
 					{tr}Shuffle answers{/tr}
 				</label>
 			</div>
 		*}
-			<div class="checkbox col-md-offset-2" style="margin-bottom: 15px;">
+			<div class="form-check col-md-offset-2" style="margin-bottom: 15px;">
 				<label for="quiz-timelimit">
 					<input type="checkbox" name="timeLimited" id="quiz-timelimit"
 						{if $timeLimited eq 'y'}checked="checked"{/if}>

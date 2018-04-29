@@ -164,7 +164,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-9 col-sm-offset-3">
-					<div class="checkbox">
+					<div class="form-check">
 						<label>
 							<input type="checkbox" class="form-check-input" name="showTitle" {if $showTitle eq 'y'}checked="checked"{/if}>
 							{tr}Show feed title{/tr}
@@ -174,7 +174,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-9 col-sm-offset-3">
-					<div class="checkbox">
+					<div class="form-check">
 						<label>
 							<input type="checkbox" class="form-check-input" name="showPubDate" {if $showPubDate eq 'y'}checked="checked"{/if}>
 							{tr}Show publish date{/tr}
