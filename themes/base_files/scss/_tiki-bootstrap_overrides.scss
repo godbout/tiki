@@ -190,12 +190,13 @@ body.fullscreen.tiki.navbar-padding {
 
 #topbar_modules_social { float: left; }
 
+// Commented this out for BS4 because it conflicts with img-fluid.
 // https://github.com/twbs/bootstrap/issues/16120
-.img-thumbnail {
-	&.media-object {
-		max-width: none;
-	}
-}
+// .img-thumbnail {
+//	&.media-object {
+//		max-width: none;
+//	}
+//}
 
 // Needed to align checkbox with label, which has a top margin (admin forms with labels on left of input)
 .tiki .form-horizontal .form-group label + div > input[type="checkbox"] { margin-top: .8em; }

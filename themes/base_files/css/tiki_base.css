@@ -3115,9 +3115,6 @@ body.fullscreen.tiki.navbar-padding {
 #topbar_modules_social {
   float: left; }
 
-.img-thumbnail.media-object {
-  max-width: none; }
-
 .tiki .form-horizontal .form-group label + div > input[type="checkbox"] {
   margin-top: 0.8em; }
 
