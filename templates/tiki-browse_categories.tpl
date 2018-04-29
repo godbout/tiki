@@ -145,8 +145,8 @@
 		<span class="help-block" style="display:inline-block; margin: 0;">{help url="#" desc="{tr}Find in:{/tr} <ul><li>{tr}Name{/tr}</li><li>{tr}Description{/tr}</li></ul>"}</span>
 	</div>
 	<div class="form-group">
-		<div class="checkbox">
-			<label><input type="checkbox" name="deep" {if $deep eq 'on'}checked="checked"{/if}>{tr} in the current category and its subcategories{/tr}</label>
+		<div class="form-check">
+			<label><input type="checkbox" class="form-check-input" name="deep" {if $deep eq 'on'}checked="checked"{/if}>{tr} in the current category and its subcategories{/tr}</label>
 		</div>
 	</div>
 	<input type="hidden" name="parentId" value="{$parentId|escape}">
