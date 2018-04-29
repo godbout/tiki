@@ -99,11 +99,11 @@
 					{icon name="admin_webmail"} {tr}Send email{/tr}
 				</label>
 				{if $report !='y'}
-					<label class="radio-inline">					
+					<label>
 						<input class="share-email-show" type="radio" name="do_email" value="1" checked="checked" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('emailtable')" {/if} class="share-email-toggle">
 						{tr}Yes{/tr}
 					</label>
-					<label class="radio-inline">
+					<label>
 						<input class="share-email-hide" type="radio" name="do_email" value="0" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('emailtable')" {/if}>
 						{tr}No{/tr}
 					</label>
@@ -266,11 +266,11 @@
 								<div class="form-group">
 									<label class="control-label col-sm-3">{tr}Like this post{/tr}</label>
 									<div class="col-sm-7">
-										<label class="radio-inline">
+										<label>
 											<input type="radio" name="fblike" value="1" {if $fblike==1}checked="checked" {/if}>
 											{tr}Yes{/tr}
 										</label>
-										<label class="radio-inline">
+										<label>
 											<input type="radio" name="fblike" value="0" {if $fblike==0}checked="checked" {/if}>
 											{tr}No{/tr}
 										</label>
@@ -291,11 +291,11 @@
 						<label for="do_message" class="control-label col-sm-3">
 							{icon name="admin_messages"} {tr}Send a message{/tr}
 						</label>
-						<label class="radio-inline">
+						<label>
 							<input class="share-message-show" type="radio" name="do_message" value="1" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('messagetable')" {/if}>
 							{tr}Yes{/tr}
 						</label>
-						<label class="radio-inline">
+						<label>
 							<input class="share-message-hide" type="radio" name="do_message" value="0" checked="checked" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('messagetable')" {/if}>
 							{tr}No{/tr}
 						</label>
@@ -349,11 +349,11 @@
 						<label for="do_forum" class="control-label col-sm-3">
 							{icon name="admin_forums"} {tr}Post on forum{/tr}
 						</label>
-						<label class="radio-inline">
+						<label>
 							<input class="share-forum-show" type="radio" name="do_forum" value="1" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('forumtable')" {/if}>
 							{tr}Yes{/tr}
 						</label>
-						<label class="radio-inline">
+						<label>
 							<input class="share-forum-hide" type="radio" name="do_forum" value="0" checked="checked" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('forumtable')" {/if}>
 							{tr}No{/tr}
 						</label>

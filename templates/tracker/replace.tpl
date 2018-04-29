@@ -284,7 +284,7 @@
 				<label>{tr}Default status displayed in list mode{/tr}</label>
 				<div class="form-check">
 					{foreach key=st item=stdata from=$statusTypes}
-						<label class="checkbox-inline">
+						<label>
 							<input type="checkbox" class="form-check-input" name="defaultStatus[]" value="{$st|escape}"{if in_array($st, $statusList)} checked="checked"{/if}>
 							{$stdata.label|escape}
 						</label>

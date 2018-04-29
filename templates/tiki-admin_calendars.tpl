@@ -343,7 +343,7 @@
 				</label>
 				<div class="col-sm-9">
 					{section name="viewdays" start=0 loop=7}
-					<div class="checkbox-inline">
+					<div>
 						<label class="col-form-label"><input type="checkbox" name="viewdays[]" value="{$smarty.section.viewdays.index}" {if !empty($info.viewdays) && in_array($smarty.section.viewdays.index,$info.viewdays)} checked="checked" {/if}>
 							{$days_names[$smarty.section.viewdays.index]}
 						</label>

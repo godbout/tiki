@@ -641,11 +641,11 @@
 				<div class="form-group">
 					<label class="col-md-3 col-form-label">{tr}Existing Users{/tr}</label>
 					<div class="col-md-9">
-						<label class="radio-inline">
+						<label>
 							<input type="radio" name="overwrite" value="y">
 							{tr}Overwrite{/tr}
 						</label>
-						<label class="radio-inline">
+						<label>
 							<input type="radio" name="overwrite" value="n" checked>
 							{tr}Don't overwrite{/tr}
 						</label>

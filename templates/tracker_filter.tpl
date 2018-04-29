@@ -76,7 +76,7 @@
 						<div style="display:{if $filterfield eq $fid}block{else}none{/if};" id="fid{$fid}">
 							{if empty($field.options_map.inputtype)}
 								{foreach from=$field.possibilities key=value item=label}
-									<label class="checkbox-inline">
+									<label>
 										<input type="checkbox" class="form-check-input" name="filtervalue[{$fid}][]" value="{$value|escape}" {if $fid == $filterfield and is_array($filtervalue) and in_array($value, $filtervalue)}checked="checked"{/if}>
 										{$label|tr_if|escape}
 									</label>

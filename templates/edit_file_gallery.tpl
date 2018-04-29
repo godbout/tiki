@@ -257,11 +257,11 @@ if ($(this).val() != '') {
 							{/foreach}
 						</select>
 						<span class="form-text">
-							<label class="radio-inline" for="fgal_sortdirection1">
+							<label  for="fgal_sortdirection1">
 								<input type="radio" id="fgal_sortdirection1" name="sortdirection" value="desc" {if $sortdirection == 'desc'}checked="checked"{/if} />
 								{tr}Descending{/tr}
 							</label>
-							<label class="radio-inline" for="fgal_sortdirection2">
+							<label for="fgal_sortdirection2">
 								<input type="radio" id="fgal_sortdirection2" name="sortdirection" value="asc" {if $sortdirection == 'asc'}checked="checked"{/if} />
 								{tr}Ascending{/tr}
 							</label>

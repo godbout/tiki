@@ -42,11 +42,11 @@
 				<div class="form-group">
 					<label class="control-label col-md-3">{tr}Goal Attribution{/tr}</label>
 					<div class="col-md-9">
-						<label class="radio-inline">
+						<label>
 							<input type="radio" name="type" value="user" {if $goal.type neq 'group'}checked{/if}>
 							{tr}Individual Goal{/tr}
 						</label>
-						<label class="radio-inline">
+						<label>
 							<input type="radio" name="type" value="group" {if $goal.type eq 'group'}checked{/if}>
 							{tr}Group Goal{/tr}
 						</label>
@@ -67,11 +67,11 @@
 				<div class="form-group">
 					<label class="control-label col-md-3">{tr}Range Type{/tr}</label>
 					<div class="col-md-9">
-						<label class="radio-inline">
+						<label>
 							<input name="range_type" type="radio" value="rolling" {if $goal.daySpan} checked {/if} data-target="#date-span">
 							{tr}Rolling{/tr}
 						</label>
-						<label class="radio-inline">
+						<label>
 							<input name="range_type" type="radio" value="fixed" {if ! $goal.daySpan} checked {/if} data-target="#date-from,#date-to">
 							{tr}Fixed{/tr}
 						</label>

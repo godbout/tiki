@@ -2,7 +2,7 @@
 	{if $field.type eq 'R'}
 		<div class="input-group">
 		{foreach from=$field.possibilities key=value item=label}
-			<label class="radio-inline">
+			<label>
 				<input type="radio" name="{$field.ins_id|escape}" value="{$value|escape}" {if $field.value eq "$value"}checked="checked"{/if}>
 				{$label|tr_if|escape}
 			</label>
@@ -12,7 +12,7 @@
 		{if empty($field.options_map.inputtype)}
 			<div class="input-group">
 				{foreach from=$field.possibilities key=value item=label}
-					<label class="checkbox-inline">
+					<label>
 						<input type="checkbox" name="{$field.ins_id|escape}[]" value="{$value|escape}" {if in_array("$value", $field.selected)}checked="checked"{/if}>
 						{$label|tr_if|escape}
 					</label>

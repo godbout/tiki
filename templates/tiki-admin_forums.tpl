@@ -225,7 +225,7 @@
 							<div class="form-group">
 								<label class="col-sm-4 col-form-label" for="forumLanguage">{tr}Language{/tr}</label>
 								<div class="col-sm-8">
-									<select name="forumLanguage" id="forumLanguage" class="checkbox-inline">
+									<select name="forumLanguage" id="forumLanguage">
 										<option value="">{tr}Unknown{/tr}</option>
 										{section name=ix loop=$languages}
 											<option value="{$languages[ix].value|escape}"{if $forumLanguage eq $languages[ix].value or (empty($data.page_id) and $forumLanguage eq '' and $languages[ix].value eq $prefs.language)} selected="selected"{/if}>{$languages[ix].name}</option>
@@ -563,7 +563,7 @@
 						<div class="form-group">
 							<label class=" col-sm-4 col-form-label" for="att_list_nb">{tr}Shows number of attachments of the all thread in forum list{/tr}</label>
 								<div class="col-sm-8">
-									<input type="checkbox" class="checkbox-inline" id="att_list_nb" name="att_list_nb"{if $att_list_nb eq 'y'} checked="checked"{/if} id="att_list_nb">
+									<input type="checkbox" id="att_list_nb" name="att_list_nb"{if $att_list_nb eq 'y'} checked="checked"{/if} id="att_list_nb">
 								</div>
 						</div>
 					</fieldset>

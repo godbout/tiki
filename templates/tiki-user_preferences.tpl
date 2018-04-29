@@ -59,13 +59,13 @@
 							{tr}Gender{/tr}
 						</label>
 						<div class="col-md-8">
-							<label class="radio-inline">
+							<label>
 								<input type="radio" name="gender" value="Male" {if $user_prefs.gender eq 'Male'}checked="checked"{/if}> {tr}Male{/tr}
 							</label>
-							<label class="radio-inline">
+							<label>
 								<input type="radio" name="gender" value="Female" {if $user_prefs.gender eq 'Female'}checked="checked"{/if}> {tr}Female{/tr}
 							</label>
-							<label class="radio-inline">
+							<label>
 								<input type="radio" name="gender" value="Hidden" {if $user_prefs.gender eq 'Hidden'}checked="checked"{/if}> {tr}Hidden{/tr}
 							</label>
 						</div>
