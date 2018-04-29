@@ -28,7 +28,7 @@ class Gd extends ImageAbstract
 		$exts = get_loaded_extensions();
 		if (in_array('gd', $exts) && ! empty($image)) {
 			$this->havegd = true;
-			$this->get_gdinfo();
+			$this->getGdInfo();
 			if ($isfile) {
 				$this->filename = $image;
 				parent::__construct(null, false);
@@ -44,7 +44,7 @@ class Gd extends ImageAbstract
 		}
 	}
 
-	protected function _load_data()
+	protected function loadData()
 	{
 		if (! $this->loaded && $this->havegd) {
 			if (! empty($this->filename) && is_file($this->filename)) {
@@ -56,7 +56,7 @@ class Gd extends ImageAbstract
 					$tmp = image_type_to_mime_type($type);
 					$this->format = strtolower(substr($tmp, strrpos($tmp, "/") + 1));
 				}
-				if ($this->is_supported($this->format)) {
+				if ($this->isSupported($this->format)) {
 					if ($this->format == 'jpg') {
 						$this->format = 'jpeg';
 					}
@@ -70,7 +70,7 @@ class Gd extends ImageAbstract
 				$this->data = imagecreatefromstring($this->data);
 				$this->loaded = true;
 			} else {
-				parent::_load_data();
+				parent::loadData();
 			}
 		}
 	}
@@ -79,7 +79,7 @@ class Gd extends ImageAbstract
 	 * @param $x
 	 * @param $y
 	 */
-	protected function _resize($x, $y)
+	protected function resizeImage($x, $y)
 	{
 		if ($this->data) {
 			if ($this->format == 'svg') {
@@ -92,22 +92,22 @@ class Gd extends ImageAbstract
 				$trans_colour = imagecolorallocatealpha($t, 0, 0, 0, 127);
 				imagefill($t, 0, 0, $trans_colour);
 
-				imagecopyresampled($t, $this->data, 0, 0, 0, 0, $x, $y, $this->get_width(), $this->get_height());
+				imagecopyresampled($t, $this->data, 0, 0, 0, 0, $x, $y, $this->getWidth(), $this->getHeight());
 				$this->data = $t;
 				unset($t);
 			}
 		}
 	}
 
-	public function resizethumb()
+	public function resizeThumb()
 	{
 		if ($this->thumb !== null) {
 			$this->data = imagecreatefromstring($this->thumb);
 			$this->loaded = true;
 		} else {
-			$this->_load_data();
+			$this->loadData();
 		}
-		return parent::resizethumb();
+		return parent::resizeThumb();
 	}
 
 	/**
@@ -116,7 +116,7 @@ class Gd extends ImageAbstract
 	public function display()
 	{
 
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
 			//@ob_end_flush();	// ignore E_NOTICE if no buffer
 			ob_start();
@@ -156,7 +156,7 @@ class Gd extends ImageAbstract
 	 */
 	public function rotate($angle)
 	{
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
 			$this->data = imagerotate($this->data, $angle, 0);
 			return true;
@@ -168,7 +168,7 @@ class Gd extends ImageAbstract
 	/**
 	 * @return array
 	 */
-	protected function get_gdinfo()
+	protected function getGdInfo()
 	{
 		$gdinfo = [];
 		$gdversion = '';
@@ -202,11 +202,11 @@ class Gd extends ImageAbstract
 	 * @param $format
 	 * @return bool|int
 	 */
-	function is_supported($format)
+	public function isSupported($format)
 	{
 
 		if (! function_exists('imagetypes')) {
-			$gdinfo = isset($this) ? $this->gdinfo : $this->get_gdinfo();
+			$gdinfo = isset($this) ? $this->gdinfo : $this->getGdInfo();
 		}
 
 		switch (strtolower($format)) {
@@ -251,7 +251,7 @@ class Gd extends ImageAbstract
 	/**
 	 * @return int|null
 	 */
-	function _get_height()
+	protected function getHeightImpl()
 	{
 		if ($this->loaded && $this->data) {
 			if ($this->format == 'svg') {
@@ -270,7 +270,7 @@ class Gd extends ImageAbstract
 			}
 		}
 		if (! $this->loaded || ! $this->data) {
-			$this->_load_data();
+			$this->loadData();
 		}
 		if ($this->data) {
 			return @imagesy($this->data);
@@ -280,7 +280,7 @@ class Gd extends ImageAbstract
 	/**
 	 * @return int|null
 	 */
-	function _get_width()
+	protected function getWidthImpl()
 	{
 		if ($this->loaded && $this->data) {
 			if ($this->format == 'svg') {
@@ -299,7 +299,7 @@ class Gd extends ImageAbstract
 			}
 		}
 		if (! $this->loaded || ! $this->data) {
-			$this->_load_data();
+			$this->loadData();
 		}
 		if ($this->data) {
 			return @imagesx($this->data);
@@ -312,10 +312,10 @@ class Gd extends ImageAbstract
 	 * @param $text
 	 * @return string || boolean
 	 */
-	function addTextToImage($text)
+	public function addTextToImage($text)
 	{
 		if (! $this->loaded) {
-			$this->_load_data();
+			$this->loadData();
 		}
 
 		if (! $this->data) {
@@ -324,7 +324,7 @@ class Gd extends ImageAbstract
 
 		$fontFile = '/lib/captcha/DejaVuSansMono.ttf';
 		$padLeft = 20;
-		$padBottom = $this->get_height() - 20;
+		$padBottom = $this->getHeight() - 20;
 		$fontSize = 12;
 		$textAngle = 0;
 		$fontColor = imagecolorallocate($this->data, 255, 255, 0);

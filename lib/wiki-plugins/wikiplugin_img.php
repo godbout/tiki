@@ -864,8 +864,8 @@ function wikiplugin_img($data, $params)
 			$fwidth = 1;
 			$fheight = 1;
 		} else {
-			$fwidth = $imageObj->get_width();
-			$fheight = $imageObj->get_height();
+			$fwidth = $imageObj->getWidth();
+			$fheight = $imageObj->getHeight();
 		}
 		//get image gal thumbnail image for height and width
 		if (! empty($dbinfot['data']) || ! empty($dbinfot['path'])) {
@@ -874,8 +874,8 @@ function wikiplugin_img($data, $params)
 			} elseif (! empty($dbinfot['path'])) {
 				$imageObjt = Image::create($basepath . $dbinfot['path'] . '.thumb', true);
 			}
-			$fwidtht = $imageObjt->get_width();
-			$fheightt = $imageObjt->get_height();
+			$fwidtht = $imageObjt->getWidth();
+			$fheightt = $imageObjt->getHeight();
 		}
 	/////////////////////////////////////Add image dimensions to src string////////////////////////////////////////////
 		//Use url resizing parameters for file gallery images to set $height and $width

@@ -275,11 +275,11 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 
 			// Fallback to an icon if the format is not supported
 			$tmp = Image::create('img/trans.png', true, 'png');	// needed to call non-static Image functions non-statically
-			if (! $tmp->is_supported($format)) {
+			if (! $tmp->isSupported($format)) {
 				// Is the filename correct? Maybe it doesn't have an extenstion?
 				// Try to determine the format from the filetype too
 				$format = substr($info['filetype'], strrpos($info['filetype'], '/') + 1);
-				if (! $tmp->is_supported($format)) {
+				if (! $tmp->isSupported($format)) {
 					$_GET['icon'] = 'y';
 					$_GET['max'] = 32;
 				}
@@ -303,7 +303,7 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 					$ext = pathinfo($info['filename']);	// TODO replace with mimelib functions
 					$format = isset($ext['extension']) ? $ext['extension'] : $format;
 					$content = $tmp->icon($format, $icon_x, $icon_y);
-					$format = $tmp->get_icon_default_format();
+					$format = $tmp->getIconDefaultFormat();
 					$info['filetype'] = 'image/' . $format;
 					$info['lastModif'] = 0;
 				}
@@ -315,7 +315,7 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 						$image = Image::create($content, false, $format);
 						$content = null; // Explicitely free memory before getting cache
 					}
-					if ($image->is_empty()) {
+					if ($image->isEmpty()) {
 						die;
 					}
 
@@ -330,7 +330,7 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 						$resize = true;
 					} elseif (isset($_GET['max'])) {
 					// We reduce size if length or width is greater that $_GET['max'] if needed
-						$image->resizemax($_GET['max'] + 0);
+						$image->resizeMax($_GET['max'] + 0);
 						$resize = true;
 					} elseif (isset($_GET['thumbnail'])) {
 					// We resize to a thumbnail size if needed
@@ -344,24 +344,24 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 								$image = Image::create($info_thumb['data']);
 								$content = null; // Explicitely free memory before getting cache
 							}
-							if ($image->is_empty()) {
+							if ($image->isEmpty()) {
 								die;
 							}
 						}
-						$image->resizethumb();
+						$image->resizeThumb();
 					} elseif (isset($_GET['preview'])) {
 					// We resize to a preview size if needed
-						$image->resizemax('800');
+						$image->resizeMax('800');
 						$resize = true;
 					}
 
 					// We change the image format if needed
-					if (isset($_GET['format']) && $image->is_supported($_GET['format'])) {
+					if (isset($_GET['format']) && $image->isSupported($_GET['format'])) {
 						$image->convert($_GET['format']);
-					} elseif (isset($_GET['thumbnail']) && $image->format != 'svg') {
+					} elseif (isset($_GET['thumbnail']) && $image->getFormat() != 'svg') {
 						// Or, if no format is explicitely specified and a thumbnail has to be created, we convert the image to the $thumbnail_format
-						if ($image->format) {
-							$thumbnail_format = $image->format;	// preserves transparency if png or gif
+						if ($image->getFormat()) {
+							$thumbnail_format = $image->getFormat();	// preserves transparency if png or gif
 						}
 						$image->convert($thumbnail_format);
 					}
@@ -374,7 +374,7 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 						$_GET['icon'] = 'y';
 						$_GET['max'] = 32;
 					} else {
-						$info['filetype'] = $image->get_mimetype();
+						$info['filetype'] = $image->getMimeType();
 					}
 				}
 			} while ($tryIconFallback);

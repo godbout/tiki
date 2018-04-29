@@ -91,7 +91,7 @@ if ($imagePrefix == "article_preview" && ! is_file($temporaryFile)) {
 	header("Content-type: " . $type);
 	if (! empty($_REQUEST['width'])) {
 		$image = Image::create($data);
-		if ($image->get_width() > $_REQUEST['width']) {
+		if ($image->getWidth() > $_REQUEST['width']) {
 			$image->resize($_REQUEST['width'], 0);
 			$data = $image->display();
 		}

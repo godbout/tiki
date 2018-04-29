@@ -29,7 +29,7 @@ class ImagickNew extends ImageAbstract
 		$this->format = $format;
 	}
 
-	protected function _load_data()
+	protected function loadData()
 	{
 		if (! $this->loaded) {
 			if (! empty($this->filename)) {
@@ -63,14 +63,14 @@ class ImagickNew extends ImageAbstract
 	 * @param $y
 	 * @return mixed
 	 */
-	protected function _resize($x, $y)
+	protected function resizeImage($x, $y)
 	{
 		if ($this->data) {
 			return $this->data->scaleImage($x, $y);
 		}
 	}
 
-	public function resizethumb()
+	public function resizeThumb()
 	{
 		if ($this->thumb !== null) {
 			$this->data = new Imagick();
@@ -82,19 +82,19 @@ class ImagickNew extends ImageAbstract
 				$this->data = null;
 			}
 		} else {
-			$this->_load_data();
+			$this->loadData();
 		}
 		if ($this->data) {
-			parent::resizethumb();
+			parent::resizeThumb();
 		}
 	}
 
 	/**
 	 * @param $format
 	 */
-	public function set_format($format)
+	public function setFormat($format)
 	{
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
 			$this->format = $format;
 			$this->data->setFormat($format);
@@ -104,7 +104,7 @@ class ImagickNew extends ImageAbstract
 	/**
 	 * @return string
 	 */
-	public function get_format()
+	public function getFormat()
 	{
 		return $this->format;
 	}
@@ -114,7 +114,7 @@ class ImagickNew extends ImageAbstract
 	 */
 	public function display()
 	{
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
 			return $this->data->getImageBlob();
 		}
@@ -126,7 +126,7 @@ class ImagickNew extends ImageAbstract
 	 */
 	public function rotate($angle)
 	{
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
 			$this->data->rotateImage(-$angle);
 			return true;
@@ -139,7 +139,7 @@ class ImagickNew extends ImageAbstract
 	 * @param $format
 	 * @return bool
 	 */
-	public function is_supported($format)
+	public function isSupported($format)
 	{
 		$image = new Imagick();
 		$format = strtoupper(trim($format));
@@ -157,9 +157,9 @@ class ImagickNew extends ImageAbstract
 	/**
 	 * @return mixed
 	 */
-	public function get_height()
+	public function getHeight()
 	{
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
 			return $this->data->getImageHeight();
 		}
@@ -168,9 +168,9 @@ class ImagickNew extends ImageAbstract
 	/**
 	 * @return mixed
 	 */
-	public function get_width()
+	public function getWidth()
 	{
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
 			return $this->data->getImageWidth();
 		}
@@ -183,7 +183,7 @@ class ImagickNew extends ImageAbstract
 	 */
 	public function addTextToImage($text)
 	{
-		$this->_load_data();
+		$this->loadData();
 
 		if (! $this->data) {
 			return false;

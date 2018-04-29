@@ -44,11 +44,11 @@ class ImageAbstract
 		}
 	}
 
-	protected function _load_data()
+	protected function loadData()
 	{
 		if (! $this->loaded) {
 			if (! empty($this->filename)) {
-				$this->data = $this->get_from_file($this->filename);
+				$this->data = $this->getFromFile($this->filename);
 				$this->loaded = true;
 			} elseif (! empty($this->data)) {
 				$this->loaded = true;
@@ -59,7 +59,7 @@ class ImageAbstract
 	/**
 	 * @return bool
 	 */
-	public function is_empty()
+	public function isEmpty()
 	{
 		return empty($this->data) && empty($this->filename);
 	}
@@ -68,7 +68,7 @@ class ImageAbstract
 	 * @param $filename
 	 * @return null|string
 	 */
-	public function get_from_file($filename)
+	public function getFromFile($filename)
 	{
 		$content = null;
 		if (is_readable($filename)) {
@@ -84,7 +84,7 @@ class ImageAbstract
 	 * @param $x
 	 * @param $y
 	 */
-	protected function _resize($x, $y)
+	protected function resizeImage($x, $y)
 	{
 	}
 
@@ -94,10 +94,10 @@ class ImageAbstract
 	 */
 	public function resize($x = 0, $y = 0)
 	{
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
-			$x0 = $this->get_width();
-			$y0 = $this->get_height();
+			$x0 = $this->getWidth();
+			$y0 = $this->getHeight();
 
 			if ($x > 0 || $y > 0) {
 				if ($x <= 0) {
@@ -106,7 +106,7 @@ class ImageAbstract
 				if ($y <= 0) {
 					$y = $y0 * ( $x / $x0 );
 				}
-				$this->_resize($x + 0, $y + 0);
+				$this->resizeImage($x + 0, $y + 0);
 			}
 		}
 	}
@@ -114,12 +114,12 @@ class ImageAbstract
 	/**
 	 * @param $max
 	 */
-	public function resizemax($max)
+	public function resizeMax($max)
 	{
-		$this->_load_data();
+		$this->loadData();
 		if ($this->data) {
-			$x0 = $this->get_width();
-			$y0 = $this->get_height();
+			$x0 = $this->getWidth();
+			$y0 = $this->getHeight();
 			if ($x0 <= 0 || $y0 <= 0 || $max <= 0) {
 				return;
 			}
@@ -130,11 +130,11 @@ class ImageAbstract
 		}
 	}
 
-	public function resizethumb()
+	public function resizeThumb()
 	{
 		require_once('tiki-setup.php');
 		global $prefs;
-		$this->resizemax($prefs['fgal_thumb_max_size']);
+		$this->resizeMax($prefs['fgal_thumb_max_size']);
 	}
 
 	/**
@@ -142,27 +142,27 @@ class ImageAbstract
 	 */
 	public function scale($r)
 	{
-		$this->_load_data();
-		$x0 = $this->get_width();
-		$y0 = $this->get_height();
+		$this->loadData();
+		$x0 = $this->getWidth();
+		$y0 = $this->getHeight();
 		if ($x0 <= 0 || $y0 <= 0 || $r <= 0) {
 			return;
 		}
-		$this->_resize($x0 * $r, $y0 * $r);
+		$this->resizeImage($x0 * $r, $y0 * $r);
 	}
 
 	/**
 	 * @return string
 	 */
-	public function get_mimetype()
+	public function getMimeType()
 	{
-		return 'image/' . strtolower($this->get_format());
+		return 'image/' . strtolower($this->getFormat());
 	}
 
 	/**
 	 * @param $format
 	 */
-	public function set_format($format)
+	public function setFormat($format)
 	{
 		$this->format = $format;
 	}
@@ -170,10 +170,10 @@ class ImageAbstract
 	/**
 	 * @return string
 	 */
-	public function get_format()
+	public function getFormat()
 	{
 		if ($this->format == '') {
-			$this->set_format('jpeg');
+			$this->setFormat('jpeg');
 			return 'jpeg';
 		} else {
 			return $this->format;
@@ -185,7 +185,7 @@ class ImageAbstract
 	 */
 	public function display()
 	{
-		$this->_load_data();
+		$this->loadData();
 		return $this->data;
 	}
 
@@ -195,8 +195,8 @@ class ImageAbstract
 	 */
 	public function convert($format)
 	{
-		if ($this->is_supported($format)) {
-			$this->set_format($format);
+		if ($this->isSupported($format)) {
+			$this->setFormat($format);
 			return true;
 		} else {
 			return false;
@@ -214,7 +214,7 @@ class ImageAbstract
 	 * @param $format
 	 * @return bool
 	 */
-	public function is_supported($format)
+	public function isSupported($format)
 	{
 		return false;
 	}
@@ -222,7 +222,7 @@ class ImageAbstract
 	/**
 	 * @return string
 	 */
-	public function get_icon_default_format()
+	public function getIconDefaultFormat()
 	{
 		return 'png';
 	}
@@ -230,7 +230,7 @@ class ImageAbstract
 	/**
 	 * @return int
 	 */
-	public function get_icon_default_x()
+	public function getIconDefaultX()
 	{
 		return 16;
 	}
@@ -238,7 +238,7 @@ class ImageAbstract
 	/**
 	 * @return int
 	 */
-	public function get_icon_default_y()
+	public function getIconDefaultY()
 	{
 		return 16;
 	}
@@ -253,15 +253,15 @@ class ImageAbstract
 	{
 		$keep_original = ( $x == 0 && $y == 0 );
 
-		$format = $this->get_icon_default_format();
+		$format = $this->getIconDefaultFormat();
 		$icon_format = '';
 
 		if (! $keep_original) {
 			$icon_format = $format;
 
-			if ($this->is_supported('png')) {
+			if ($this->isSupported('png')) {
 				$format = 'png';
-			} elseif ($this->is_supported('svg')) {
+			} elseif ($this->isSupported('svg')) {
 				$format = 'svg';
 			} else {
 				return false;
@@ -278,20 +278,20 @@ class ImageAbstract
 			if ($format != $icon_format) {
 				$icon->convert($icon_format);
 			}
-			if ($x < $this->_get_width() && $y < $this->_get_height()) {
+			if ($x < $this->getWidthImpl() && $y < $this->getHeightImpl()) {
 				$icon->resize($x, $y);
 			}
 
 			return $icon->display();
 		} else {
-			return $this->get_from_file($name);
+			return $this->getFromFile($name);
 		}
 	}
 
 	/**
 	 * @return null
 	 */
-	protected function _get_height()
+	protected function getHeightImpl()
 	{
 		return null;
 	}
@@ -299,7 +299,7 @@ class ImageAbstract
 	/**
 	 * @return null
 	 */
-	protected function _get_width()
+	protected function getWidthImpl()
 	{
 		return null;
 	}
@@ -307,10 +307,10 @@ class ImageAbstract
 	/**
 	 * @return null
 	 */
-	public function get_height()
+	public function getHeight()
 	{
 		if ($this->height === null) {
-			$this->height = $this->_get_height();
+			$this->height = $this->getHeightImpl();
 		}
 		return $this->height;
 	}
@@ -318,10 +318,10 @@ class ImageAbstract
 	/**
 	 * @return null
 	 */
-	public function get_width()
+	public function getWidth()
 	{
 		if ($this->width === null) {
-			$this->width = $this->_get_width();
+			$this->width = $this->getWidthImpl();
 		}
 		return $this->width;
 	}
@@ -359,5 +359,6 @@ class ImageAbstract
 	 */
 	public function addTextToImage($text)
 	{
+		return false;
 	}
 }

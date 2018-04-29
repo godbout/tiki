@@ -116,7 +116,7 @@ if ($article_data['image_x'] > 0) {
 	$smarty->assign('width', $article_data['image_x']);
 } else {
 	$img = Image::create($article_data['image_x'], false);
-	$smarty->assign('width', $img->get_width() + 2);
+	$smarty->assign('width', $img->getWidth() + 2);
 }
 $smarty->assign('heading', $article_data["heading"]);
 if ($prefs['article_paginate'] == 'y') {
