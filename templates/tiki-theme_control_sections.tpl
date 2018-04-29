@@ -48,7 +48,7 @@
 			{section name=user loop=$channels}
 				<tr>
 					<td class="checkbox-cell">
-						<input type="checkbox" name="sec[{$channels[user].section}]">
+						<input type="checkbox" class="form-check-input" name="sec[{$channels[user].section}]">
 					</td>
 					<td class="text">
 						{$channels[user].section}

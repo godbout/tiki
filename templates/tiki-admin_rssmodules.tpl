@@ -166,7 +166,7 @@
 				<div class="col-sm-9 col-sm-offset-3">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" name="showTitle" {if $showTitle eq 'y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showTitle" {if $showTitle eq 'y'}checked="checked"{/if}>
 							{tr}Show feed title{/tr}
 						</label>
 					</div>
@@ -176,7 +176,7 @@
 				<div class="col-sm-9 col-sm-offset-3">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" name="showPubDate" {if $showPubDate eq 'y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showPubDate" {if $showPubDate eq 'y'}checked="checked"{/if}>
 							{tr}Show publish date{/tr}
 						</label>
 					</div>
@@ -205,12 +205,12 @@
 
 			<form method="post" action="">
 				<p>
-					<input id="article_active" type="checkbox" name="enable" value="1"{if $articleConfig.active} checked="checked"{/if}>
+					<input id="article_active" type="checkbox" class="form-check-input" name="enable" value="1"{if $articleConfig.active} checked="checked"{/if}>
 					<label for="article_active">{tr}Enable{/tr}</label>
 				</p>
 				{if $prefs.feature_submissions eq 'y'}
 					<p>
-						<input id="article_submission" type="checkbox" name="submission" value="1"{if $articleConfig.submission} checked="checked"{/if}>
+						<input id="article_submission" type="checkbox" class="form-check-input" name="submission" value="1"{if $articleConfig.submission} checked="checked"{/if}>
 						<label for="article_submission">{tr}Use Article Submission System{/tr}</label>
 					</p>
 				{/if}

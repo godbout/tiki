@@ -122,7 +122,7 @@
 				{if (($info.user ne $info.creator) or ($taskId eq 0))}
 					&nbsp;
 					<input {if $info.creator ne $user} disabled="disabled" {/if}
-						{if $info.rights_by_creator eq 'y'} checked="checked" {/if} name="rights_by_creator" type="checkbox">
+						{if $info.rights_by_creator eq 'y'} checked="checked" {/if} name="rights_by_creator" type="checkbox" class="form-check-input">
 					&nbsp;{tr}Only the creator can delete this task{/tr}
 				{/if}
 			</td>
@@ -146,7 +146,7 @@
 				{html_select_date time=$start_date prefix="start_" end_year="+4" field_order=$prefs.display_field_order}
 				&nbsp;-&nbsp;
 				{html_select_time minute_interval=10 time=$start_date prefix="start_" display_seconds=false use_24_hours=$use_24hr_clock}
-				&nbsp;<input name="use_start_date" {if $info.start or $taskId eq 0} checked="checked" {/if} type="checkbox">
+				&nbsp;<input name="use_start_date" {if $info.start or $taskId eq 0} checked="checked" {/if} type="checkbox" class="form-check-input">
 				&nbsp;{tr}Use start date and time{/tr}
 			</td>
 		</tr>
@@ -156,7 +156,7 @@
 				{html_select_date time=$end_date prefix="end_" end_year="+4" field_order=$prefs.display_field_order}
 				&nbsp;-&nbsp;
 				{html_select_time minute_interval=10 time=$end_date prefix="end_" display_seconds=false use_24_hours=$use_24hr_clock}
-				&nbsp;<input name="use_end_date" {if $info.end} checked="checked" {/if} type="checkbox">
+				&nbsp;<input name="use_end_date" {if $info.end} checked="checked" {/if} type="checkbox" class="form-check-input">
 				&nbsp;{tr}Use end date and time{/tr}
 			</td>
 		</tr>
@@ -249,7 +249,7 @@
 				<td colspan="3">
 					{tr}This message will be send to users if you are makeing changes of assigned tasks{/tr}<br>
 					<textarea style="width:98%;" rows="2" cols="80" name="task_info_message">{$info.info|escape}</textarea>
-					<input checked="checked" type="checkbox" name="task_send_changes_message">{tr}Send a message with changes{/tr}
+					<input checked="checked" type="checkbox" class="form-check-input" name="task_send_changes_message">{tr}Send a message with changes{/tr}
 				</td>
 			</tr>
 		{/if}
@@ -274,7 +274,7 @@
 				<tr>
 					<td colspan="4">
 						<div align="center">
-							<input checked="checked" type="checkbox" name="send_email_newtask">{tr}Inform task user by email{/tr}
+							<input checked="checked" type="checkbox" class="form-check-input" name="send_email_newtask">{tr}Inform task user by email{/tr}
 						</div>
 					</td>
 				</tr>

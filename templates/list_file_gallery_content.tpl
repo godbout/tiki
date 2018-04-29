@@ -256,7 +256,7 @@
 						{else}
 							{assign var='checkname' value='file'}
 						{/if}
-						<input type="checkbox" name="{$checkname}[]" value="{$files[changes].id|escape}"
+						<input type="checkbox" class="form-check-input" name="{$checkname}[]" value="{$files[changes].id|escape}"
 							{if isset($smarty.request.$checkname) and $smarty.request.$checkname
 								and in_array($files[changes].id,$smarty.request.$checkname)}checked="checked"{/if}>
 					</td>

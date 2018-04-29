@@ -29,7 +29,7 @@
 							  <input type="text" name="reason" placeholder="Why is this not approved?">
 							  <input type="submit" class="btn btn-primary btn-sm" name="reject" value="{tr}Reject current revision{/tr}">
 							  <br/>
-							  <input type="checkbox" name="delete_revision" value="on"> <label for="delete_version">Permanently delete this revision</label>
+							  <input type="checkbox" class="form-check-input" name="delete_revision" value="on"> <label for="delete_version">Permanently delete this revision</label>
 							</div>
 						</div>
 					</form>

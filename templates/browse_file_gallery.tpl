@@ -42,7 +42,7 @@
 					<div class="thumbactions">
 				{if $prefs.fgal_checked neq 'n' and $tiki_p_admin_file_galleries eq 'y'}
 					<label style="float:left">
-						<input type="checkbox" onclick="flip_thumbnail_status('{$checkname}_{$file.id}')" name="{$checkname}[]" value="{$file.id|escape}" {if $is_checked eq 'y'}checked="checked"{/if}>
+						<input type="checkbox" class="form-check-input" onclick="flip_thumbnail_status('{$checkname}_{$file.id}')" name="{$checkname}[]" value="{$file.id|escape}" {if $is_checked eq 'y'}checked="checked"{/if}>
 						{if isset($checkbox_label)}
 							{$checkbox_label}
 						{/if}

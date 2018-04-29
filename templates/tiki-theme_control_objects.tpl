@@ -64,7 +64,7 @@
 			{section name=user loop=$channels}
 				<tr>
 					<td class="checkbox-cell">
-						<input type="checkbox" name="obj[{$channels[user].objId}]">
+						<input type="checkbox" class="form-check-input" name="obj[{$channels[user].objId}]">
 					</td>
 					<td class="text">{$channels[user].type}</td>
 					<td class="text">{$channels[user].name}</td>

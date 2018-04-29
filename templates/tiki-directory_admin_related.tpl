@@ -44,7 +44,7 @@
 	<div class="form-group">
 		<label class="col-sm-3 control-label">{tr}Mutual:{/tr}</label>
 		<div class="col-sm-7">
-			<input type="checkbox" name="mutual">
+			<input type="checkbox" class="form-check-input" name="mutual">
 		</div>
 	</div>
 	<div class="form-group">

@@ -9,7 +9,7 @@
 	<div class="panel-body">
 		<form action="tiki-search_replace.php" method="post">
 			{tr}Search:{/tr} <input type="text" size="30" name="searchtext" value="{$searchtext|escape}">
-			&nbsp;{tr}Case sensitive:{/tr} <input type="checkbox" name="casesensitive" value="y" {if $casesensitive eq 'y'}checked="checked"{/if}>
+			&nbsp;{tr}Case sensitive:{/tr} <input type="checkbox" class="form-check-input" name="casesensitive" value="y" {if $casesensitive eq 'y'}checked="checked"{/if}>
 			<br>{tr}Replace:{/tr} <input type="text" size="30" name="replacetext" value="{$replacetext|escape}">
 			<br>{tr}Max number of pages at a time:{/tr} <input type="text" size="5" name="maxRecords" value="{$maxRecords|escape}">
 			&nbsp;{tr}Number of surrounding chars to preview:{/tr} <input type="text" size="5" name="paddingLength" value="{$paddingLength|escape}">
@@ -61,7 +61,7 @@
 													{$results[search].afterSnippet[snippet]}
 												</td>
 												<td>
-													{if $results[search].searchreplace[snippet] != '0:0:0'}<input type="checkbox" name="checked[]" value="{$results[search].searchreplace[snippet]}">{/if}
+													{if $results[search].searchreplace[snippet] != '0:0:0'}<input type="checkbox" class="form-check-input" name="checked[]" value="{$results[search].searchreplace[snippet]}">{/if}
 												</td>
 											</tr>
 										{/section}

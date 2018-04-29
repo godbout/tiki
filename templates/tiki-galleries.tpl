@@ -46,7 +46,7 @@
 				{if $tiki_p_admin_galleries eq 'y'}
 					<div class="form-group">
 						<div class="checkbox col-sm-push-4">
-							<input type="checkbox" name="visible" {if $visible eq 'y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="visible" {if $visible eq 'y'}checked="checked"{/if}>
 							{tr}Gallery is visible to non-admin users?{/tr}
 						</div>
 					</div>
@@ -115,43 +115,43 @@
 					<div class="col-sm-4">
 
 						<div class="checkbox">
-							<input type="checkbox" name="showname" value="y" {if $showname=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showname" value="y" {if $showname=='y'}checked="checked"{/if}>
 							{tr}Name{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showimageid" value="y" {if $showimageid=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showimageid" value="y" {if $showimageid=='y'}checked="checked"{/if}>
 							{tr}Image ID{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showdescription" value="y" {if $showdescription=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showdescription" value="y" {if $showdescription=='y'}checked="checked"{/if}>
 							{tr}Description{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showcreated" value="y" {if $showcreated=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showcreated" value="y" {if $showcreated=='y'}checked="checked"{/if}>
 							{tr}Creation Date{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showuser" value="y" {if $showuser=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showuser" value="y" {if $showuser=='y'}checked="checked"{/if}>
 							{tr}User{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showhits" value="y" {if $showhits=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showhits" value="y" {if $showhits=='y'}checked="checked"{/if}>
 							{tr}Hits{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showxysize" value="y" {if $showxysize=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showxysize" value="y" {if $showxysize=='y'}checked="checked"{/if}>
 							{tr}XY-Size{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showfilesize" value="y" {if $showfilesize=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showfilesize" value="y" {if $showfilesize=='y'}checked="checked"{/if}>
 							{tr}Filesize{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showfilename" value="y" {if $showfilename=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showfilename" value="y" {if $showfilename=='y'}checked="checked"{/if}>
 							{tr}Filename{/tr}
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" name="showcategories" value="y" {if $showcategories=='y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="showcategories" value="y" {if $showcategories=='y'}checked="checked"{/if}>
 							{tr}Categories{/tr}
 						</div>
 					</div>
@@ -192,7 +192,7 @@
 							{section name=scales loop=$scaleinfo}
 								{if $scaleinfo[scales].scale ne $prefs.scaleSizeGalleries}
 									{tr}Remove:{/tr}
-									<input type="checkbox" name="removescale_{$scaleinfo[scales].scale|escape}">
+									<input type="checkbox" class="form-check-input" name="removescale_{$scaleinfo[scales].scale|escape}">
 									{$scaleinfo[scales].scale}x{$scaleinfo[scales].scale} ({tr}Bounding box{/tr})
 									<div class="radio">
 									<label>
@@ -232,7 +232,7 @@
 				<div class="form-group">
 					<div class="checkbox col-sm-push-4">
 						<label>
-							<input type="checkbox" name="public" {if $public eq 'y'}checked="checked"{/if}>
+							<input type="checkbox" class="form-check-input" name="public" {if $public eq 'y'}checked="checked"{/if}>
 							{tr}Other users can upload images to this gallery{/tr}
 						</label>
 					</div>

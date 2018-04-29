@@ -90,7 +90,7 @@
 		{/capture}
 
 		<tr class="{cycle}{if $prefs.feature_comments_moderation eq 'y'} post-approved-{$comments[ix].approved}{/if}">
-			<td class="checkbox-cell"><input type="checkbox" name="checked[]" value="{$id}" {if isset($rejected[$id]) }checked="checked"{/if}></td>
+			<td class="checkbox-cell"><input type="checkbox" class="form-check-input" name="checked[]" value="{$id}" {if isset($rejected[$id]) }checked="checked"{/if}></td>
 			<td class="action">
 				{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
 				<a

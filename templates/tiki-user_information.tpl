@@ -406,12 +406,12 @@
 						<div class="form-group">
 							<div class="col-sm-10 col-sm-push-2">
 								<input type="submit" class="btn btn-secondary" name="send" value="{tr}Send{/tr}">
-								<input type="checkbox" name="replytome" id="replytome">
+								<input type="checkbox" class="form-check-input" name="replytome" id="replytome">
 								<label for="replytome">
 									{tr}Reply-to my email{/tr}
 									{help url="User+Information" desc="{tr}Reply-to my email:{/tr}{tr}The user will be able to reply to you directly via email.{/tr}"}
 								</label>
-								<input type="checkbox" name="bccme" id="bccme">
+								<input type="checkbox" class="form-check-input" name="bccme" id="bccme">
 								<label for="bccme">
 									{tr}Send me a copy{/tr}
 									{help url="User+Information" desc="{tr}Send me a copy:{/tr}{tr}You will be sent a copy of this email.{/tr}"}

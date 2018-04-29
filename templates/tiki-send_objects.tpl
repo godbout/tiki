@@ -166,7 +166,7 @@
 					<div class="col-sm-7">
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="dbg"{if $dbg eq 'on'} checked="checked"{/if}>{tr}Enable{/tr}
+								<input type="checkbox" class="form-check-input" name="dbg"{if $dbg eq 'on'} checked="checked"{/if}>{tr}Enable{/tr}
 							</label>
 						</div>
 					</div>

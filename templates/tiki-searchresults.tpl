@@ -27,7 +27,7 @@
 			{if !( $searchStyle eq "menu" )}
 				<div class="form-group">
 					<label class="searchboolean control-label" for="boolean">
-						{tr}Advanced search:{/tr} <input type="checkbox" name="boolean" id="boolean" {if $boolean eq 'y'} checked="checked"{/if}>
+						{tr}Advanced search:{/tr} <input type="checkbox" class="form-check-input" name="boolean" id="boolean" {if $boolean eq 'y'} checked="checked"{/if}>
 					</label>
 					<a href="{bootstrap_modal controller=search action=help}">{tr}Search Help{/tr} {icon name='help'}</a>
 				</div>

@@ -147,7 +147,7 @@
 							{else}
 								<div class="checkbox">
 									<label>
-										<input type="checkbox" id="id_recurrent" name="recurrent" value="1"{if $calitem.recurrenceId gt 0 or $recurrent eq 1} checked="checked" {/if}>
+										<input type="checkbox" class="form-check-input" id="id_recurrent" name="recurrent" value="1"{if $calitem.recurrenceId gt 0 or $recurrent eq 1} checked="checked" {/if}>
 										{tr}This event depends on a recurrence rule{/tr}
 										{jq}
 $("#id_recurrent").click(function () {
@@ -423,7 +423,7 @@ $("#id_recurrent").click(function () {
 						{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 					</div>
 					<label class="col-md-2">
-						<input type="checkbox" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
+						<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
 						{tr}All day{/tr}
 					</label>
 				{else}
@@ -755,7 +755,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 							{if $showeachuser eq 'n'}
 								<input type="hidden" name="listtoalert[]" value="{$listusertoalert[idx].user}">
 							{else}
-								<input type="checkbox" name="listtoalert[]" value="{$listusertoalert[idx].user}"> {$listusertoalert[idx].user}
+								<input type="checkbox" class="form-check-input" name="listtoalert[]" value="{$listusertoalert[idx].user}"> {$listusertoalert[idx].user}
 							{/if}
 						{/section}
 					</div>

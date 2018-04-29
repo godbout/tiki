@@ -212,7 +212,7 @@
 									{/if}
 									{if $tiki_p_admin_trackers eq 'y'}
 										<td class="checkbox-cell">
-											<input type="checkbox" name="action[]" value='{$items[user].itemId}' style="border:1px;font-size:80%;">
+											<input type="checkbox" class="form-check-input" name="action[]" value='{$items[user].itemId}' style="border:1px;font-size:80%;">
 										</td>
 									{/if}
 
@@ -392,7 +392,7 @@
 									{if $showeachuser eq 'n'}
 										<input type="hidden" name="listtoalert[]" value="{$listusertoalert[idx].user}">
 									{else}
-										<input type="checkbox" name="listtoalert[]" value="{$listusertoalert[idx].user}"> {$listusertoalert[idx].user}
+										<input type="checkbox" class="form-check-input" name="listtoalert[]" value="{$listusertoalert[idx].user}"> {$listusertoalert[idx].user}
 									{/if}
 								</div>
 							{/section}
@@ -496,7 +496,7 @@
 									var li = $('<li/>');
 									li.append($('<label/>')
 										.text(info.title)
-										.prepend($('<input type="checkbox" name="' + name + '[]">').attr('value', info.itemId))
+										.prepend($('<input type="checkbox" class="form-check-input" name="' + name + '[]">').attr('value', info.itemId))
 									);
 
 									$.each({localUrl: "{tr}Local{/tr}", remoteUrl: "{tr}Remote{/tr}"}, function (key, label) {

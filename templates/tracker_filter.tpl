@@ -77,7 +77,7 @@
 							{if empty($field.options_map.inputtype)}
 								{foreach from=$field.possibilities key=value item=label}
 									<label class="checkbox-inline">
-										<input type="checkbox" name="filtervalue[{$fid}][]" value="{$value|escape}" {if $fid == $filterfield and is_array($filtervalue) and in_array($value, $filtervalue)}checked="checked"{/if}>
+										<input type="checkbox" class="form-check-input" name="filtervalue[{$fid}][]" value="{$value|escape}" {if $fid == $filterfield and is_array($filtervalue) and in_array($value, $filtervalue)}checked="checked"{/if}>
 										{$label|tr_if|escape}
 									</label>
 								{/foreach}
@@ -96,7 +96,7 @@
 							<ul class="list-inline">
 								{foreach key=ku item=iu from=$field.list name=eforeach}
 									<li>
-										<input type="checkbox" name="filtervalue[{$fid}][]" value="{$iu.categId}" id="cat{$iu.categId}"
+										<input type="checkbox" class="form-check-input" name="filtervalue[{$fid}][]" value="{$iu.categId}" id="cat{$iu.categId}"
 											{if $fid == $filterfield && is_array($filtervalue) && in_array($iu.categId,$filtervalue)} checked="checked"{/if}>
 										<label for="cat{$iu.categId}">{$iu.name|escape}</label>
 									</li>
