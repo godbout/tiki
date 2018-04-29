@@ -5,7 +5,7 @@
 		{/capture}
 		{if $prefs.wiki_feature_copyrights eq 'y' and $copyright_context eq 'wiki'}
 			{if $prefs.wikiLicensePage == $page and $tiki_p_edit_copyrights eq 'y'}
-				<div class="help-block">{tr}To edit the copyright notices{/tr} <a href="copyrights.php?page={$copyrightpage}">{tr}Click Here{/tr}</a>.</div>
+				<div class="form-text">{tr}To edit the copyright notices{/tr} <a href="copyrights.php?page={$copyrightpage}">{tr}Click Here{/tr}</a>.</div>
 			{else}
 				{$smarty.capture.copyright_content}
 			{/if}

@@ -94,7 +94,7 @@
 						<button type="submit" class="btn btn-primary btn-sm timeout" form="galremove" name="rmvorphimg" value="1">
 							{tr}Remove{/tr}
 						</button>
-						<span class="help-block">
+						<span class="form-text">
 						{tr}Remove images not being used in wiki pages, articles or blog posts{/tr}
 						</span>
 					</div>

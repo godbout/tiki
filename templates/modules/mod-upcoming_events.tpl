@@ -49,7 +49,7 @@ html indentation and smarty indentation are independant. Please keep consistent 
 			</a>
 
 			{if $showDescription eq 'y'}
-			<div class="description help-block">{$modUpcomingEvents[ix].parsed}</div>
+			<div class="description form-text">{$modUpcomingEvents[ix].parsed}</div>
 			{/if}
 
 			{if $smarty.section.ix.last}

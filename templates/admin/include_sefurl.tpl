@@ -50,7 +50,7 @@
 		<div id="feature_canonical_url_childcontainer" class="clearfix">
 			{preference name=https_external_links_for_users}
 			{preference name=feature_canonical_domain}
-			<span class="help-block col-md-8 col-md-push-4">
+			<span class="form-text col-md-8 col-md-push-4">
 				{tr}For example, if the field is left blank, the canonical URL domain is:{/tr} {$base_url_canonical_default}
 			</span>
 		</div>
@@ -79,7 +79,7 @@
 			{/strip}
 			<div class="col-md-8">
 				<input type="text" class="form-control" id="feature_sefurl_paths" name="feature_sefurl_paths" value="{$smarty.capture.paths|escape}" />
-				<span class="help-block">
+				<span class="form-text">
 					{tr}List of Url Parameters that should go in the path{/tr}
 				</span>
 			</div>

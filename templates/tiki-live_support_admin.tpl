@@ -127,7 +127,7 @@
 						<option value="{$users[ix].user|escape}">{$users[ix].user|escape}</option>
 					{/section}
 				</select>
-				<div class="help-block">
+				<div class="form-text">
 					{tr}Operators must be tiki users{/tr}
 				</div>
 			</div>

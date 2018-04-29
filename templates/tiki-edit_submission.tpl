@@ -178,7 +178,7 @@
 		<label class="col-sm-3 col-form-label">{tr}Own image size x{/tr} *</label>
 		<div class="col-sm-7">
 			<input type="text" name="image_x" value="{$image_x|escape}" class="form-control">
-			<div class="help-block">
+			<div class="form-text">
 				{tr}pixels{/tr}
 			</div>
 		</div>
@@ -187,7 +187,7 @@
 		<label class="col-sm-3 col-form-label">{tr}Own image size y{/tr} *</label>
 		<div class="col-sm-7">
 			<input type="text" name="image_y" value="{$image_y|escape}" class="form-control">
-			<div class="help-block">
+			<div class="form-text">
 				{tr}pixels{/tr}
 			</div>
 		</div>
@@ -260,7 +260,7 @@
 			<label class="col-sm-3 col-form-label">{tr}Allow full HTML{/tr} <em>({tr}Keep any HTML tag.{/tr})</em></label>
 			<div class="col-sm-7">
 				<input type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
-				<div class="help-block">
+				<div class="form-text">
 					<em>{tr}If not enabled, Tiki will retain some HTML tags (a, p, pre, img, hr, b, i){/tr}.</em>
 				</div>
 			</div>

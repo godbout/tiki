@@ -24,7 +24,7 @@
 			</label>
 			<input type="text" name="name" value="{$name|escape}" class="form-control"/>
 			{if $area}
-				<span class="help-block">
+				<span class="form-text">
 					<label>
 						<input type="checkbox" name="area" value="1" {if $area eq 'y'}checked="checked"{/if} />
 						{tr}Bind area{/tr}

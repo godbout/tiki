@@ -5,7 +5,7 @@
 		{title url="tiki-take_survey.php?surveyId=$surveyId"}{$survey_info.name}{/title}
 	{/if}
 	<div class="surveyquestions">
-		<div class="description help-block questionblock page0">{wiki}{$survey_info.description}{/wiki}</div>
+		<div class="description form-text questionblock page0">{wiki}{$survey_info.description}{/wiki}</div>
 		{$pageCount=0}
 		{section name=ix loop=$questions}
 			{$questionId = 'question_'|cat:$questions[ix].questionId}

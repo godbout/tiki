@@ -4,7 +4,7 @@
 	{title actions="{$smarty.capture.blog_actions}"}{$title}{/title}
 {/if}
 {if $blog_data.use_description eq 'y' && $description neq ""}
-	<div class="description help-block">{$description|escape}</div>
+	<div class="description form-text">{$description|escape}</div>
 {/if}
 {if $blog_data.use_breadcrumbs eq 'y'}
 	<div class="breadcrumb"><a class="link" href="tiki-list_blogs.php">{tr}Blogs{/tr}</a> {$prefs.site_crumb_seper} {$title|escape}</div>

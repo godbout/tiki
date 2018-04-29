@@ -55,7 +55,7 @@
 								<input type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
 								{tr}Allow full HTML{/tr} <em>({tr}Keep any HTML tag.{/tr})</em>
 							</label>
-							<div class="help-block">{tr}If not enabled, Tiki will retain some HTML tags (a, p, pre, img, hr, b, i){/tr}.</div>
+							<div class="form-text">{tr}If not enabled, Tiki will retain some HTML tags (a, p, pre, img, hr, b, i){/tr}.</div>
 						</div>
 					</div>
 				{else}
@@ -73,7 +73,7 @@
 							{/section}
 						</select>
 						{if $articleId != 0}
-							<span class="help-block">
+							<span class="form-text">
 								{tr _0="tiki-edit_article.php?translationOf=$articleId"}To translate, do not change the language and the content. Instead, <a class="alert-link" href="%0">create a new translation</a> in the new language.{/tr}
 							</span>
 							{if $translations and $translations[1].objId}
@@ -155,7 +155,7 @@
 							<strong>{tr}Published{/tr}</strong>
 						</label>
 					</div>
-					<div class="help-block">
+					<div class="form-text">
 						{tr}If checked, the article is published.{/tr}
 					</div>
 				</div>
@@ -201,7 +201,7 @@
 				<label for="userfile1" class="control-label col-md-4">{tr}Own Image{/tr}</label>
 				<div class="col-md-8">
 					<input class="form-control" name="userfile1" id="userfile1" type="file" onchange="document.getElementById('useImage').checked = true;">
-					<span class="help-block">{tr}If not the topic image{/tr} - {tr}Max file size : {$prefs.article_image_file_size_max/1000} KB{/tr}</span>
+					<span class="form-text">{tr}If not the topic image{/tr} - {tr}Max file size : {$prefs.article_image_file_size_max/1000} KB{/tr}</span>
 				</div>
 			</div>
 			{if $hasImage eq 'y'}
@@ -220,7 +220,7 @@
 				<label class="col-md-4 control-label" for="image_caption">{tr}Image caption{/tr}</label>
 				<div class="col-md-8">
 					<input type="text" class="form-control" name="image_caption" id="image_caption" value="{$image_caption|escape}" >
-					<div class="help-block">{tr}Default will use the topic name{/tr}</div>
+					<div class="form-text">{tr}Default will use the topic name{/tr}</div>
 				</div>
 			</div>
 			<div class="checkbox {if $types.$type.show_image neq 'y'}hidden{/if} col-md-offset-4">
@@ -237,7 +237,7 @@
 			</div>
 			<fieldset class="{if $types.$type.show_image neq 'y'}hidden{/if} form-horizontal">
 				<legend>{tr}Read Article{/tr}</legend>
-				<span class="help-block">{tr}Maximum dimensions of custom image in view mode{/tr}</span>
+				<span class="form-text">{tr}Maximum dimensions of custom image in view mode{/tr}</span>
 				<div class="form-group">
 					<label for="image_x" class="control-label col-md-4">{tr}Width{/tr}</label>
 					<div class="input-group col-sm-3">
@@ -255,7 +255,7 @@
 			</fieldset>
 			<fieldset class="{if $types.$type.show_image neq 'y'}hidden{/if} form-horizontal">
 				<legend>{tr}View Articles{/tr}</legend>
-				<span class="help-block">{tr}Maximum dimensions of custom image in list mode{/tr}</span>
+				<span class="form-text">{tr}Maximum dimensions of custom image in list mode{/tr}</span>
 				<div class="form-group">
 					<label for="list_image_x" class="control-label col-sm-4">{tr}Width{/tr}</label>
 					<div class="input-group col-sm-3">
@@ -301,7 +301,7 @@
 				<div class="col-md-8">
 					<input type="url" name="linkto" id="linkto" value="{$linkto|escape}" class="form-control" placeholder="{tr}http://...{/tr}">
 					{if $linkto neq ''}
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Test your link: {/tr}
 							<a href="{$linkto|escape}" target="_blank">{tr}View{/tr}</a>
 						</div>
@@ -364,7 +364,7 @@
 					<label for="emails" class="col-md-4">{tr}Email{/tr}</label>
 					<div class="col-md-8">
 						<input type="text" name="emails" id="emails" value="{$emails|escape}" class="form-control">
-						<span class="help-block">{tr}Email addresses to be sent notifications (comma-separated){/tr}</span>
+						<span class="form-text">{tr}Email addresses to be sent notifications (comma-separated){/tr}</span>
 						{if !empty($userEmail) and $userEmail neq $prefs.sender_email}
 							{tr}From:{/tr}
 							<label>

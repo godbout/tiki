@@ -11,7 +11,7 @@
 			</a>
 		{/if}
 		{if isset($module_params.showdescription) and $module_params.showdescription eq 'y'}
-			<div class="description help-block">{$img.description|escape}</div>
+			<div class="description form-text">{$img.description|escape}</div>
 		{/if}
 	</div>
 {/tikimodule}

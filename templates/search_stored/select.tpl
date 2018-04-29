@@ -17,7 +17,7 @@
 			<div class="form-group">
 				<label for="label" class="control-label">{tr}Label{/tr}</label>
 				<input type="text" class="form-control" name="label"/>
-				<span class="help-block">{tr}This will help you recognize your stored queries if ever you want to modify or remove them.{/tr}</span>
+				<span class="form-text">{tr}This will help you recognize your stored queries if ever you want to modify or remove them.{/tr}</span>
 			</div>
 			<div class="form-group">
 				<label for="priority" class="control-label">Priority</label>

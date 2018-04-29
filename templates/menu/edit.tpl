@@ -45,7 +45,7 @@
 				<input type="checkbox" name="parse" id="menus_parse"{if $info.parse eq 'y'} checked="checked"{/if} value="1">
 				{tr}Wiki Parse{/tr}
 			</label>
-			<div class="help-block">{tr}Labels of all options will be wiki parsed.{/tr}</div>
+			<div class="form-text">{tr}Labels of all options will be wiki parsed.{/tr}</div>
 		</div>
 		{if $prefs.feature_menusfolderstyle eq 'y'}
 			<div class="form-group">
@@ -53,7 +53,7 @@
 					{tr}Folder Icon{/tr}
 				</label>
 				<input type="text" id="icon" name="icon" value="{$info.icon|escape}" class="form-control">
-				<div class="help-block">{tr}Path and filename of closed folder icon{/tr}</div>
+				<div class="form-text">{tr}Path and filename of closed folder icon{/tr}</div>
 			</div>
 		{/if}
 		{if $prefs.menus_items_icons eq 'y'}

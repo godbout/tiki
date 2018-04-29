@@ -39,7 +39,7 @@
 						<td class="id">{$channels[user].quizId}</td>
 						<td class="text">
 							{$channels[user].name|escape}
-							<span class="help-block">
+							<span class="form-text">
 								{$channels[user].description|escape|nl2br}
 							</span>
 						</td>
@@ -189,7 +189,7 @@
 					<select class="form-control" name="timeLimit" id="quiz-maxtime">
 						{html_options values=$mins selected=$timeLimit output=$mins}
 					</select>
-					<div class="help-block">
+					<div class="form-text">
 						{tr}minutes{/tr}
 					</div>
 				</div>
@@ -200,7 +200,7 @@
 				</label>
 				<div class="col-md-3">
 					<input type="text" name="passingperct" id="quiz-passingperct" class="form-control" maxlength='3' value="{$passingperct}">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}%{/tr}
 					</div>
 				</div>

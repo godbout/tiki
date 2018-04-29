@@ -10,7 +10,7 @@
 			<label class="control-label">{tr}Email this wiki page{/tr}</label>
 			<div>
 				<input class="form-control" type="text" name="wikiTpl">
-				<div class="help-block">{tr}Enter page name.
+				<div class="form-text">{tr}Enter page name.
 						The wiki page must have a page description, which is used as the subject of the email.
 						Enable the page descriptions feature at Control Panels &gt; Wiki.{/tr}
 				</div>
@@ -20,7 +20,7 @@
 			<label class="control-label">{tr}Bcc{/tr}</label>
 			<div>
 				<input class="form-control" type="text" name="bcc">
-				<div class="help-block">{tr}Enter a valid email to send a blind copy to (optional).{/tr}</div>
+				<div class="form-text">{tr}Enter a valid email to send a blind copy to (optional).{/tr}</div>
 			</div>
 		</div>
 	</form>

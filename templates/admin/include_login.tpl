@@ -77,7 +77,7 @@
 									{/if}
 								{/foreach}
 							</select>
-							<div class="help-block">{tr}By default, new users automatically join the Registered group{/tr}.</div>
+							<div class="form-text">{tr}By default, new users automatically join the Registered group{/tr}.</div>
 						</div>
 					</div>
 					{preference name=user_must_choose_group}
@@ -193,7 +193,7 @@
 				<div class="form-group">
 					<div class="col-sm-8 col-sm-offset-4">
 						{button href="?page=login&amp;refresh_email_group=y" _class="timeout" _text="{tr}Assign users to groups by matching email patterns{/tr}"}
-						<div class="help-block">{tr}An email pattern must be defined in the settings for at least one group for this to produce any results.{/tr}</div>
+						<div class="form-text">{tr}An email pattern must be defined in the settings for at least one group for this to produce any results.{/tr}</div>
 					</div>
 				</div>
 			</fieldset>

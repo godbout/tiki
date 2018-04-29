@@ -9,7 +9,7 @@
 {/if}
 <div class="page-header">
 	{title help="$helpUrl"}{$admintitle}{/title}
-	<span class="help-block">{$description}</span>
+	<span class="form-text">{$description}</span>
 </div>
 
 <div id="pageheader">

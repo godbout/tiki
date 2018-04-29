@@ -91,7 +91,7 @@
 		<div class="form-group">
 			<label for="body">{tr}Mail body ressource{/tr}</label>
 			<input type="text" name="body" class="form-control">
-			<div class="help-block">
+			<div class="form-text">
 				{tr}wiki:pageName for a wiki page or tplName.tpl for a template{/tr}
 			</div>
 		</div>

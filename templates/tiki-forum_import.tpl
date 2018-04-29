@@ -133,7 +133,7 @@
 					<label class="col-sm-3 control-label">{tr}Local SQL Filename on Server (path will be stripped):{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="server" class="form-control">
-						<div class="help-block">
+						<div class="form-text">
 							<i>{tr}Must be in tikiroot/{$tmpdir} or tikiroot/img/wiki_up{/tr}</i>
 						</div>
 					</div>

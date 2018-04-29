@@ -46,7 +46,7 @@
 				{/foreach}
 			</select>
 			{if $theme}	
-				<small class="help-block">CSS {tr}file{/tr}: {$file}</small>
+				<small class="form-text">CSS {tr}file{/tr}: {$file}</small>
 			{/if}
 			<div class="input-group">
 				<input type="submit" class="btn btn-primary btn-sm" name="try" value="{tr}Try{/tr}">

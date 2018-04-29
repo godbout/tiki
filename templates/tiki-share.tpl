@@ -86,7 +86,7 @@
 						{tr}Short link{/tr}
 					</label>
 					<div class="col-sm-9">
-						<span class="help-block">
+						<span class="form-text">
 							<a href="{$shorturl}">{$shorturl}</a>
 						</span>
 					</div>
@@ -120,12 +120,12 @@
 						<div class="col-sm-9">
 							{if $prefs.feature_jquery_autocomplete == 'y'}
 								{user_selector contact='true' user = '' multiple='true' editable='y' mustmatch='false' group='all' name='addresses' id='addresses' class='form-control' user_selector_threshold=0 style='width:99%'}
-								<span class="help-block">
+								<span class="form-text">
 									{tr}Separate multiple email addresses with a comma and a space{/tr}
 								</span>
 							{else}
 								<input class="form-control" type="text" size="60" name="addresses" value="{$addresses|escape}">
-								<span class="help-block">
+								<span class="form-text">
 									{tr}Separate multiple email addresses with a comma.{/tr}
 								</span>
 							{/if}
@@ -160,7 +160,7 @@
 								<label>
 									<input type="checkbox" value="y" name="share_token_notification" {if $share_token_notification eq 'y'}checked="checked" {/if}> {tr}Subscribe{/tr}
 								</label>
-								<span class="help-block">
+								<span class="form-text">
 									{tr}Recipients can subscribe to token notifications{/tr}
 								</span>
 							</div>
@@ -183,7 +183,7 @@
 								</select>
 							{/if}
 						</div>
-						<div class="help-block col-sm-9 col-sm-offset-3">
+						<div class="form-text col-sm-9 col-sm-offset-3">
 							{tr}How many times recipients can access this page{/tr}
 						</div>
 					</div>
@@ -258,7 +258,7 @@
 									<label class="control-label col-sm-3">{tr}Link text{/tr}</label>
 									<div class="col-sm-7">
 										<input type="text" name="fblinktitle" id="fblinktitle" value="{$fblinktitle|escape}" style="width: 95%;" class="form-control">
-										<div class="help-block">
+										<div class="form-text">
 											{tr}This will be the title for the URL{/tr}
 										</div>
 									</div>
@@ -317,7 +317,7 @@
 							{else}
 								<input class="form-control" type="text" class="form-control" name="messageto" value="{$messageto|escape}">
 							{/if}
-							<span class="help-block">
+							<span class="form-text">
 								{tr}Separate multiple recipients with a semicolon.{/tr}
 							</span>
 						</div>

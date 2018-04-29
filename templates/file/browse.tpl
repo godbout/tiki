@@ -35,7 +35,7 @@
 						</li>
 					{/foreach}
 				</ul>
-				<div class="help-block">
+				<div class="form-text">
 					{tr}Click to remove{/tr}
 				</div>
 				<div class="submit">

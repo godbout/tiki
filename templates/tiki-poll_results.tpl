@@ -64,7 +64,7 @@
 		{/remarksbox}
 	{/if}
 	{if $poll_info_arr[x].from or $poll_info_arr[x].to}
-		<div class="description help-block">
+		<div class="description form-text">
 		{if $poll_info_arr[x].from}{$poll_info_arr[x].from|tiki_short_date}{else}{$poll_info_arr[x].publishDate|tiki_short_date}{/if}
 		- {if $poll_info_arr[x].to}{$poll_info_arr[x].to|tiki_short_date}{else}{tr}Today{/tr}{/if}
 		</div>

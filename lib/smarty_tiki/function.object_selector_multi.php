@@ -66,7 +66,7 @@ function smarty_function_object_selector_multi($params, $smarty)
 				$help = tr('%0 list separated with "%1"', ucfirst($params['type']), $arguments['separator']);
 			}
 			return "<input type='text' name='{$arguments['simplename']}' value='{$arguments['simplevalue']}' size='50'>" .
-					"<div class='help-block'>" . $help . "</div>";
+					"<div class='form-text'>" . $help . "</div>";
 		} else {
 			return tra('Object selector requires Unified Index to be enabled.');
 		}

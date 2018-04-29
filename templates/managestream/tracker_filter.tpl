@@ -30,7 +30,7 @@
 			</label>
 			<div class="col-md-9">
 				<input type="text" name="targetEvent" value="{$targetEvent|escape}" class="form-control"/>
-				<span class="help-block">
+				<span class="form-text">
 					{tr}All event names are required to have at least 3 components.{/tr}
 				</span>
 			</div>

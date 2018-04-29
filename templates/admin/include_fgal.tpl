@@ -133,7 +133,7 @@
 
 		{tab name="{tr}Listings{/tr}"}
 			<br>
-			<span class="help-block">{tr}Configuration for gallery listings{/tr}</span>
+			<span class="form-text">{tr}Configuration for gallery listings{/tr}</span>
 			{remarksbox title="Note"}
 				{tr}Changing these settings will <em>not</em> affect existing file galleries. These changes will apply <em>only</em> to new file galleries{/tr}.
 			{/remarksbox}
@@ -182,7 +182,7 @@
 		{if $section eq 'admin'}
 			{tab name="{tr}Admin Listings{/tr}"}
 				<br>
-				<span class="help-block">{tr}Configuration for gallery administration listings{/tr}</span>
+				<span class="form-text">{tr}Configuration for gallery administration listings{/tr}</span>
 				<fieldset>
 					{preference name='fgal_list_id_admin'}
 					{preference name='fgal_list_type_admin'}

@@ -53,7 +53,7 @@
 		<label class="col-sm-3 control-label">{tr}Refresh rate (if dynamic){/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<input type="text" name="refresh" value="{$info.refresh|escape}" class="form-control"> 
-			<div class="help-block">
+			<div class="form-text">
 				{tr}seconds{/tr}
 			</div>
 		</div>

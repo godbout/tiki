@@ -40,7 +40,7 @@ function smarty_function_trackerinput($params, $smarty)
 				$desc = htmlspecialchars($desc);
 			}
 			if (! empty($desc)) {
-				$desc = '<div class="description help-block">' . $desc . '</div>';
+				$desc = '<div class="description form-text">' . $desc . '</div>';
 			}
 		}
 

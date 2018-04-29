@@ -319,25 +319,25 @@
 				{preference name=users_prefs_display_timezone}
 				<div class="clearfix">
 					{preference name=long_date_format}
-					<span class="help-block col-md-8 col-md-push-4">
+					<span class="form-text col-md-8 col-md-push-4">
 					{tr}Sample:{/tr} {$now|tiki_long_date}
 				</span>
 				</div>
 				<div class="clearfix">
 					{preference name=short_date_format}
-					<span class="help-block col-md-8 col-md-push-4">
+					<span class="form-text col-md-8 col-md-push-4">
 					{tr}Sample:{/tr} {$now|tiki_short_date}
 				</span>
 				</div>
 				<div class="clearfix">
 					{preference name=long_time_format}
-					<span class="help-block col-md-8 col-md-push-4">
+					<span class="form-text col-md-8 col-md-push-4">
 					{tr}Sample:{/tr} {$now|tiki_long_time}
 				</span>
 				</div>
 				<div class="clearfix">
 					{preference name=short_time_format}
-					<span class="help-block col-md-8 col-md-push-4">
+					<span class="form-text col-md-8 col-md-push-4">
 					{tr}Sample:{/tr} {$now|tiki_short_time}
 				</span>
 				</div>

@@ -96,7 +96,7 @@
 						>
 							{$tracker.name|escape}
 						</a>
-						<div class="description help-block">
+						<div class="description form-text">
 							{if $tracker.descriptionIsParsed eq 'y'}
 								{wiki}{$tracker.description}{/wiki}
 							{else}

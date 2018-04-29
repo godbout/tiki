@@ -57,7 +57,7 @@
 			{tr}Translations{/tr} <span class="badge">{$custom_translation_item_count}</span>
 		</h2>
 		{if $custom_file}
-			<span class="help-block">
+			<span class="form-text">
 				{icon name="file"} {$custom_file}
 			</span>
 		{/if}

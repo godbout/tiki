@@ -10,7 +10,7 @@
 		<div class="form-group">
 			<label class="control-label" for="replacement">{tr}Replacement{/tr}</label>
 			{object_selector _id=replacement _simplename=replacement type=trackeritem tracker_id=$trackerId}
-			<div class="help-block">
+			<div class="form-text">
 				{tr _0=$affectedCount}%0 other item(s) currently refer to the element you are trying to delete. They will be replaced by this one.{/tr}
 			</div>
 		</div>

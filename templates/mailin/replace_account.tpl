@@ -31,7 +31,7 @@
 						<option value="{$intype|escape}" {if $intype eq $info.type}selected{/if} {if ! $detail.enabled}disabled{/if}>{$detail.name|escape}</option>
 					{/foreach}
 				</select>
-				<div class="help-block">
+				<div class="form-text">
 					<p>{tr}Wiki (multiple action) allows to prefix the subject with GET:, PREPEND: or APPEND:{/tr}</p>
 					<p>{tr}Reply handler requires notifications to be enabled and the reply email pattern to be configured.{/tr}</p>
 				</div>
@@ -75,7 +75,7 @@
 						<option value="" {if $info.article_topicId eq 0}selected="selected"{/if}>{tr}None{/tr}</option>
 					</select>
 					{if $tiki_p_admin_cms eq 'y'}
-						<div class="help-block">
+						<div class="form-text">
 							<a href="tiki-admin_topics.php" class="link">{tr}Admin Topics{/tr}</a>
 						</div>
 					{/if}
@@ -91,7 +91,7 @@
 						{/foreach}
 					</select>
 					{if $tiki_p_admin_cms eq 'y'}
-						<div class="help-block">
+						<div class="form-text">
 							<a href="tiki-admin_types.php" class="link">{tr}Admin Types{/tr}</a>
 						</div>
 					{/if}
@@ -105,7 +105,7 @@
 						<input type="checkbox" class="form-check-input" name="anonymous" value="1" {if $info.anonymous eq 'y'}checked{/if}>
 						{tr}Allow anonymous access{/tr}
 					</label>
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Warning: Enabling anonymous access will disable all permission checking for mailed-in content.{/tr}
 					</div>
 				</div>
@@ -118,7 +118,7 @@
 						<input type="checkbox" class="form-check-input" name="admin" value="1" {if $info.admin eq 'y'}checked{/if}>
 						{tr}Allow admin access{/tr}
 					</label>
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Administrators have full access to the system. Disabling admin mail-in is the safest option.{/tr}
 					</div>
 				</div>
@@ -146,7 +146,7 @@
 							<input type="checkbox" class="form-check-input" name="routing" value="1" {if $info.routing eq 'y'}checked{/if}>
 							{tr}Allow routing{/tr}
 						</label>
-						<div class="help-block">
+						<div class="form-text">
 							{tr}Allow per user routing of incoming email to structures.{/tr}
 						</div>
 					</div>
@@ -163,7 +163,7 @@
 							<input type="checkbox" class="form-check-input" name="show_inlineImages" value="1" {if $info.show_inlineImages eq 'y'}checked{/if}>
 							{tr}Show inline images{/tr}
 						</label>
-							<div class="help-block">
+							<div class="form-text">
 							{tr}For HTML email, attempt to create a WYSIWYG wiki-page.{/tr}
 						</div>
 					</div>
@@ -179,7 +179,7 @@
 						<input type="checkbox" class="form-check-input" name="save_html" value="1" {if $info.save_html eq 'y'}checked{/if}>
 						{tr}Keep HTML format{/tr}
 					</label>
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Always save Email in HTML format as a wiki page in HTML format, regardless of editor availability or selection.{/tr}
 					</div>
 				</div>
@@ -196,7 +196,7 @@
 			<div class="col-md-6">
 				{if $prefs.feature_categories eq 'y'}
 					<input type="text" name="categoryId" value="{$info.categoryId|escape}" class="form-control" placeholder="{tr}Category ID{/tr}">
-					<div class="help-block">{tr}Only affects wiki-put, when creating a new wiki page{/tr}</div>
+					<div class="form-text">{tr}Only affects wiki-put, when creating a new wiki page{/tr}</div>
 				{else}
 					<a href="tiki-admin.php?page=features&highlight=feature_categories">Activate categories</a>
 				{/if}
@@ -207,7 +207,7 @@
 			<div class="col-md-6">
 				{if $prefs.namespace_enabled eq 'y'}
 					<input type="text" name="namespace" value="{$info.namespace|escape}" class="form-control">
-					<div class="help-block">{tr}Only affects wiki-put, when creating a new wiki page{/tr}</div>
+					<div class="form-text">{tr}Only affects wiki-put, when creating a new wiki page{/tr}</div>
 				{else}
 					<a href="tiki-admin.php?page=wiki&cookietab=2&highlight=namespace_enabled">Activate namespaces</a>
 				{/if}
@@ -230,7 +230,7 @@
 						<input type="checkbox" class="form-check-input" name="leave_email" value="1" {if $info.leave_email eq 'y'}checked{/if}>
 						{tr}Leave email on server on error{/tr}
 					</label>
-					<div class="help-block">
+					<div class="form-text">
 						{tr}Leave the email on the mail server, when an error occurs and the content has not been integrated into Tiki.{/tr}
 					</div>
 				</div>

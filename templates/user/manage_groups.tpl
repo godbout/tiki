@@ -33,7 +33,7 @@
 				{/section}
 			</select>
 			{if $prefs.jquery_ui_chosen !== 'y'}
-				<div class="help-block">
+				<div class="form-text">
 					{tr}Use Ctrl+Click or Command+Click to select multiple options{/tr}
 				</div>
 			{/if}

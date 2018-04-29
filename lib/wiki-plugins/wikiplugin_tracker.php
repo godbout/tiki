@@ -1962,9 +1962,9 @@ function wikiplugin_tracker($data, $params)
 
 				if ($f['type'] != 'S' && empty($tpl) && empty($wiki)) {
 					if ($showfieldsdesc == 'y' && $f['description']) {
-						$back .= '<div class="form-group tracker-help-block tracker_field' . $f['fieldId'] . ' ">';
+						$back .= '<div class="form-group tracker-form-text tracker_field' . $f['fieldId'] . ' ">';
 						{
-							$back .= '<div class="col-md-8 col-sm-offset-4 trackerplugindesc help-block">';
+							$back .= '<div class="col-md-8 col-sm-offset-4 trackerplugindesc form-text">';
 						if ($f['descriptionIsParsed'] == 'y') {
 							$back .= TikiLib::lib('parser')->parse_data($f['description']);
 						} else {

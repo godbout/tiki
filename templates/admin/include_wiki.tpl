@@ -214,7 +214,7 @@
 						<div class="col-sm-offset-4 col-sm-8">
 							{button _class="timeout" href="tiki-admin.php?page=wiki&amp;rmvunusedpic=1" _text="{tr}Remove unused pictures{/tr}"}
 							{button _class="timeout" href="tiki-admin.php?page=wiki&amp;moveWikiUp=1" _text="{tr}Move images from wiki_up to the home file gallery{/tr}"}
-							<span class="help-block">
+							<span class="form-text">
 								{tr}If you use these buttons please make sure to have a backup of the database and the directory wiki_up{/tr}
 							</span>
 						</div>

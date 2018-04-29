@@ -42,7 +42,7 @@
 						<input type="checkbox" class="form-check-input" name="loggit" value="1">
 						{tr}Enable logging{/tr}
 					</label>
-					<div class="help-block">{tr _0=$log_file_browser}Log file is saved as %0{/tr}</div>
+					<div class="form-text">{tr _0=$log_file_browser}Log file is saved as %0{/tr}</div>
 				</div>
 			</div>
 			<div class="form-group submit">

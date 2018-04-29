@@ -415,7 +415,7 @@
 								{icon name="user"}{$element.user|userlink}
 								{if $prefs.feature_wiki_history_ip ne 'n'}{tr _0=$element.ip}from %0{/tr}{/if}
 
-								{if $element.comment}<span class="help-block">{$element.comment|escape}</span>{/if}
+								{if $element.comment}<span class="form-text">{$element.comment|escape}</span>{/if}
 
 								{if (isset($flaggedrev_approval) and $flaggedrev_approval) and $tiki_p_wiki_view_latest eq 'y' and $element.approved}<strong>({tr}approved{/tr})</strong>{/if}
 								{if (isset($flaggedrev_approval) and $flaggedrev_approval) and $element.rejected}<strong>({tr}rejected:{/tr}</strong> {$element.rejection_reason}<strong>)</strong>{/if}

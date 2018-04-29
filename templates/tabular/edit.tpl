@@ -123,7 +123,7 @@
 							</tr>
 						</tfoot>
 					</table>
-					<div class="help-block">
+					<div class="form-text">
 						<p><strong>{tr}Primary Key:{/tr}</strong> {tr}Required to import data. Can be any field as long as it is unique.{/tr}</p>
 						<p><strong>{tr}Unique Key:{/tr}</strong> {tr}Impose unique value requirement for the target column. This only works with Transactional Import feature.{/tr}</p>
 						<p><strong>{tr}Read-only:{/tr}</strong> {tr}When importing a file, read-only fields will be skipped, preventing them from being modified, but also speeding-up the process.{/tr}</p>
@@ -205,7 +205,7 @@
 							</tr>
 						</tfoot>
 					</table>
-					<div class="help-block">
+					<div class="form-text">
 						<p>{tr}Filters will be available in partial export menus.{/tr}</p>
 					</div>
 				</div>

@@ -2,7 +2,7 @@
 {title}{if $parentId ne 0}{tr}Category{/tr}: {$p_info.name}{else}{tr}Categories{/tr}{/if}{/title}
 
 {if $parentId and $p_info.description}
-	<div class="description help-block">{$p_info.description|escape|nl2br}</div>
+	<div class="description form-text">{$p_info.description|escape|nl2br}</div>
 {/if}
 <div class="form-group categbar">
 	{button href="tiki-edit_categories.php" _type="link" _text="{tr}Organize Objects{/tr}" _icon_name="structure" _title="{tr}Organize Objects{/tr}"}
@@ -142,7 +142,7 @@
 				<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
 			</div>
 		</div>
-		<span class="help-block" style="display:inline-block; margin: 0;">{help url="#" desc="{tr}Find in:{/tr} <ul><li>{tr}Name{/tr}</li><li>{tr}Description{/tr}</li></ul>"}</span>
+		<span class="form-text" style="display:inline-block; margin: 0;">{help url="#" desc="{tr}Find in:{/tr} <ul><li>{tr}Name{/tr}</li><li>{tr}Description{/tr}</li></ul>"}</span>
 	</div>
 	<div class="form-group">
 		<div class="form-check">

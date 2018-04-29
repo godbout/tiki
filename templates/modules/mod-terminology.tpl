@@ -30,7 +30,7 @@
 				<input type="submit" class="wikiaction btn btn-primary btn-sm" name="search" value="{tr}Go{/tr}"/>
 			</div>
 			<div class="col-sm-8 checkbox-inline">
-				<div class="help-block">{tr}If not found, you will be given a chance to create it.{/tr}</div>
+				<div class="form-text">{tr}If not found, you will be given a chance to create it.{/tr}</div>
 			</div>
 		</div>
 	</form>

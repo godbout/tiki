@@ -94,7 +94,7 @@
 					<label for="csvlist" class="control-label col-sm-4">{tr}Batch upload (CSV file){/tr}</label>
 					<div class="col-sm-8">
 						<input type="file" name="csvlist" id="csvlist">
-						<span class="help-block">{tr}File format: title,authorName,heading,body,lang,user{/tr}....</span>
+						<span class="form-text">{tr}File format: title,authorName,heading,body,lang,user{/tr}....</span>
 						<div align="center">
 							<input type="submit" class="btn btn-primary btn-sm timeout" name="import" value="{tr}Import{/tr}">
 						</div>

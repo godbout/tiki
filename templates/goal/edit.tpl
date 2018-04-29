@@ -81,7 +81,7 @@
 					<label class="control-label col-md-3" for="daySpan">{tr}Time span{/tr}</label>
 					<div class="col-md-9">
 						<input class="form-control" name="daySpan" type="number" value="{$goal.daySpan|escape}">
-						<div class="help-block">
+						<div class="form-text">
 							{tr}In days{/tr}
 						</div>
 					</div>

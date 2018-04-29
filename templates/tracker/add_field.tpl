@@ -27,7 +27,7 @@
 			{/foreach}
 		</select>
 		{foreach from=$types item=info key=k}
-			<div class="help-block {$k|escape}" style="display: none;">
+			<div class="form-text {$k|escape}" style="display: none;">
 				{$info.description|escape}
 				{if $info.help}
 					<a href="{$prefs.helpurl|escape}{$info.help|escape:'url'}" target="tikihelp" class="tikihelp" title="{$info.name|escape}">
@@ -60,7 +60,7 @@
 		<label>
 			<input type="checkbox" name="adminOnly" value="1">
 			{tr}Restrict visibility to administrators{/tr}
-			<div class="help-block">
+			<div class="form-text">
 				{tr}Useful if you are working on a live tracker.{/tr}
 			</div>
 		</label>

@@ -115,7 +115,7 @@
 			<div class="col-sm-7">
 				<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
 				<input id="userfile1" name="userfile1" type="file">
-				<div class="help-block">
+				<div class="form-text">
 					{if $prefs.user_store_file_gallery_picture neq 'y'}{tr}File (only .gif, .jpg and .png images approximately 45px × 45px){/tr}{else}{tr}File (only .gif, .jpg and .png images){/tr}{/if}:
 				</div>
 			</div>

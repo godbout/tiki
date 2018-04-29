@@ -17,7 +17,7 @@
 						class="form-control"
 						placeholder="{tr}File{/tr}..."
 					>
-					<span class="help-block">
+					<span class="form-text">
 						{tr}Enter the ID of any file in any gallery to be used as the icon for this gallery in browse view{/tr}
 					</span>
 				</div>
@@ -39,17 +39,17 @@
 					>
 					{$item.name}
 					{if isset($edit_mode) and $edit_mode eq 'y' and $prefs.$pref_name neq 'y'}
-						<span class="help-block">
+						<span class="form-text">
 							{tr}The checkbox is disabled because this preference is disabled globally.{/tr}
 						</span>
 						{if $tiki_p_admin eq 'y' or $tiki_p_admin_file_galleries eq 'y'}
-							<span class="help-block">
+							<span class="form-text">
 								<a href="tiki-admin.php?page=fgal">
 									{tr}Please enable the preference globally first.{/tr}
 								</a>
 							</span>
 						{else}
-							<span class="help-block">
+							<span class="form-text">
 								{tr}Site administrators can enable the preference.{/tr}
 							</span>
 						{/if}

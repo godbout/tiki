@@ -41,7 +41,7 @@
 					</option>
 				{/foreach}
 			</select>
-			<span class="help-block">
+			<span class="form-text">
 				{tr}Select how the uploaded translations should be processed{/tr}
 			</span>
 		</div>

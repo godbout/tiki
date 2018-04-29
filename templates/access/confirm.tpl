@@ -8,7 +8,7 @@
 		{include file='access/include_hidden.tpl'}
 	</form>
 	{if !empty($help)}
-		<span class="help-block">
+		<span class="form-text">
 			{$help|escape}
 		</span>
 	{/if}

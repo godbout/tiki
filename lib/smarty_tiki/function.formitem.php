@@ -38,7 +38,7 @@ function smarty_function_formitem($params, $smarty)
 
 	$help = "";
 	if (isset($params['_help'])) {
-		$help = '<span class="help-block">' . $params['_help'] . '</span>';
+		$help = '<span class="form-text">' . $params['_help'] . '</span>';
 	}
 
 	if ($params['_help-popup']) {

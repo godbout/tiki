@@ -592,7 +592,7 @@
 										{tr}Browser title:{/tr}
 									</label>
 									<input class="form-control" type="text" size="40" name="browsertitle" id="browsertitle" value="{if $prefs.browsertitle}{$prefs.browsertitle|escape}{else}{tr}My Tiki{/tr}{/if}">
-									<span class="help-block">
+									<span class="form-text">
 										{tr}This will appear in the browser title bar.{/tr}
 									</span>
 								</div>
@@ -601,7 +601,7 @@
 										{tr}Sender email:{/tr}
 									</label>
 									<input type="text" class="form-control" size="40" name="sender_email" id="sender_email" value="{$prefs.sender_email|escape}" placeholder="{tr}tiki@example.com{/tr}">
-									<span class="help-block">
+									<span class="form-text">
 										{tr}Email sent by your site will use this address.{/tr}
 									</span>
 								</div>
@@ -690,7 +690,7 @@
 										{tr}Admin email:{/tr}
 									</label>
 									<input type="text" class="form-control" size="40" name="admin_email" id="admin_email" value="{if isset($admin_email)}{$admin_email}{/if}" placeholder="{tr}admin@example.com{/tr}">
-									<span class="help-block">
+									<span class="form-text">
 										{tr}This is the email address for your administrator account.{/tr}
 									</span>
 								</div>
@@ -712,7 +712,7 @@
 												</option>
 											{/foreach}
 										</select>
-										<span class="help-block">
+										<span class="form-text">
 											{tr}Select how to set up your htaccess file.{/tr}
 										</span>
 									</div>

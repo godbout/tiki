@@ -22,7 +22,7 @@
 			<label for="location" class="control-label col-sm-3">{tr}Location{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" name="location" value="{$location|escape}"/>
-				<div class="help-block">
+				<div class="form-text">
 					{tr}If you want this index to be on a different cluster, connected as a tribe node, you need to enter the primary cluster location here. Indices cannot be created on tribe nodes.{/tr}
 				</div>
 			</div>

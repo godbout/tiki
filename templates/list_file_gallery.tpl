@@ -182,7 +182,7 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<div class="col-sm-6">
-									<span class="help-block">
+									<span class="form-text">
 										{tr}Permissions{/tr}
 									</span>
 									<select name="perms[]" multiple="multiple" size="12" class="form-control">
@@ -192,7 +192,7 @@
 									</select>
 								</div>
 								<div class="col-sm-6">
-									<span class="help-block">
+									<span class="form-text">
 										{tr}Groups{/tr}
 									</span>
 									<select name="groups[]" multiple="multiple" size="12" class="form-control">

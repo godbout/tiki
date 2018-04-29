@@ -60,13 +60,13 @@
 {* The 3 elements below are displayed with simple parsing (parse_data_simple()), which is probably better than using parse_data(), for performance and to obtain a more predictable parsing.
 Converting these elements to HTML may still be better. Chealer *}
 {if $p.shorthint}
-	<div class="help-block">{$p.shorthint|parse:true}</div>
+	<div class="form-text">{$p.shorthint|parse:true}</div>
 {/if}
 {if $p.detail}
-	<div class="help-block">{$p.detail|parse:true}</div>
+	<div class="form-text">{$p.detail|parse:true}</div>
 {/if}
 {if $p.hint}
-	<div class="help-block">{$p.hint|parse:true}</div>
+	<div class="form-text">{$p.hint|parse:true}</div>
 {/if}
 
 {* Used by some preferences of type text (and textarea) *}
@@ -85,5 +85,5 @@ Converting these elements to HTML may still be better. Chealer *}
 	{/foreach}
 {/if}
 {foreach from=$p.notes item=note}
-	<div class="help-block pref_note">{$note|escape}</div>
+	<div class="form-text pref_note">{$note|escape}</div>
 {/foreach}

@@ -181,7 +181,7 @@
 										{button _flip_id="diff_$itemIndex" _flip_hide_text="n" _text="{tr}Compare{/tr}" _title=":{tr}Compare the original translation with the database translation{/tr}" _class="btn btn-primary btn-sm tips"}
 									{/if}
 									{if isset($item.user) && isset($item.lastModif)}
-										<span class="help-block">
+										<span class="form-text">
 											<small>{tr _0=$item.user|userlink _1=$item.lastModif|tiki_short_date}Last changed by %0 on %1{/tr}</small>
 										</span>
 									{/if}

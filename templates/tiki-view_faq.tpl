@@ -1,5 +1,5 @@
 {title help="FAQs"}{tr}{$faq_info.title}{/tr}{/title}
-<div class="description help-block">{$faq_info.description|escape}</div>
+<div class="description form-text">{$faq_info.description|escape}</div>
 
 <div class="t_navbar btn-group form-group">
 	{self_link print='y' _icon_name='print' _menu_text='y' _menu_icon='y'}
@@ -126,7 +126,7 @@
 
 {* When copyright section is not empty show it *}
 {if $smarty.capture.copyright_section neq ''}
-	<footer class="help-block editdate">
+	<footer class="form-text editdate">
 		{$smarty.capture.copyright_section}
 	</footer>
 {/if}

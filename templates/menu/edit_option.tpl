@@ -23,7 +23,7 @@
 					{autocomplete element="#menu_url" type='pagename' options=$smarty.capture.options}
 					<input id="menu_url" type="text" name="url" value="{$info.url|escape}" class="form-control">
 
-					<div class="help-block">{tr}For wiki page, use ((PageName)).{/tr}</div>
+					<div class="form-text">{tr}For wiki page, use ((PageName)).{/tr}</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -72,7 +72,7 @@
 				<div class="col-md-9">
 					<input id="menu_section" type="text" name="section" value="{$info.section|escape}" class="form-control"><br>
 					{autocomplete element="#menu_section" type="array" options="source:prefNames,multiple:true,multipleSeparator:','"}{* note, multiple doesn't work in jquery-ui 1.8 *}
-					<div class="help-block">{tr}Separate multiple feature/preferences with a comma ( , ) for an AND or a vertical bar ( | ) for an OR.{/tr}</div>
+					<div class="form-text">{tr}Separate multiple feature/preferences with a comma ( , ) for an AND or a vertical bar ( | ) for an OR.{/tr}</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -81,7 +81,7 @@
 				<div class="col-md-9">
 					<input id="menu_perm" type="text" name="perm" value="{$info.perm|escape}" class="form-control"><br>
 					{autocomplete element="#menu_perm" type="array" options="source:permNames,multiple:true,multipleSeparator:','"}{* note, multiple doesn't work in jquery-ui 1.8 *}
-					<div class="help-block">{tr}Separate multiple permissions with a comma ( , ) for an AND or a vertical bar ( | ) for an OR.{/tr}</div>
+					<div class="form-text">{tr}Separate multiple permissions with a comma ( , ) for an AND or a vertical bar ( | ) for an OR.{/tr}</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -90,7 +90,7 @@
 				<div class="col-md-9">
 					<input id="menu_class" type="text" name="class" value="{$info.class|escape}" class="form-control"><br>
 
-					<div class="help-block">{tr}Input an HTML class value for the menu option. Separate with a space for multiple classes.{/tr}</div>
+					<div class="form-text">{tr}Input an HTML class value for the menu option. Separate with a space for multiple classes.{/tr}</div>
 				</div>
 			</div>
 			{if $prefs.feature_userlevels eq 'y'}

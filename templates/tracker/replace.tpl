@@ -110,7 +110,7 @@
 			<div class="form-group">
 				<label class="control-label" for="logo">{tr}Logo{/tr}</label>
 				<input class="form-control" type="text" name="logo" id="logo" value="{$info.logo|escape}">
-				<div class="help-block">
+				<div class="form-text">
 					{tr}Recommended size: 64x64px.{/tr}
 				</div>
 			</div>
@@ -138,7 +138,7 @@
 			<div class="form-group depends" data-on="showCreated">
 				<label for="showCreatedFormat">{tr}Creation date format{/tr}</label>
 				<input type="text" name="showCreatedFormat" id="showCreatedFormat" value="{$info.showCreatedFormat|escape}">
-				<div class="help-block">
+				<div class="form-text">
 					<a rel="external" class="link" target="strftime" href="http://www.php.net/manual/en/function.strftime.php">{tr}Date and Time Format Help{/tr}</a>
 				</div>
 			</div>
@@ -173,7 +173,7 @@
 			<div class="form-group depends" data-on="showLastModif">
 				<label for="showLastModifFormat">{tr}Modification date format{/tr}</label>
 				<input class="form-control" type="text" name="showLastModifFormat" id="showLastModifFormat" value="{$info.showLastModifFormat|escape}">
-				<div class="help-block">
+				<div class="form-text">
 					<a class="link" target="strftime" href="http://www.php.net/manual/en/function.strftime.php">{tr}Date and Time Format Help{/tr}</a>
 				</div>
 			</div>
@@ -221,7 +221,7 @@
 							<option value="{$format|escape}"{if $info.sectionFormat eq $format} selected="selected"{/if}>{$label|escape}</option>
 						{/foreach}
 					</select>
-					<div class="help-block">
+					<div class="form-text">
 						<p>{tr}Determines how headers will be rendered when using header fields as form section dividers.{/tr}</p>
 						<p>{tr}Set to <em>Configured</em> to use the four following fields.{/tr}</p>
 					</div>
@@ -235,21 +235,21 @@
 				<div class="form-group">
 					<label for="formClasses">{tr}Input Form Classes{/tr}</label>
 					<input class="form-control" type="text" name="formClasses" id="formClasses" value="{$info.formClasses|escape}">
-					<div class="help-block">
+					<div class="form-text">
 						<p>{tr}Sets classes for form to be used in Tracker Plugin (e.g. form-horizontal or col-md-9).{/tr}</p>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="viewItemPretty">{tr}Template to display an item{/tr}</label>
 					<input class="form-control" type="text" name="viewItemPretty" id="viewItemPretty" value="{$info.viewItemPretty|escape}">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}wiki:pageName for a wiki page or tpl:tplName for a template{/tr}
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="editItemPretty">{tr}Template to edit an item{/tr}</label>
 					<input class="form-control" type="text" name="editItemPretty" id="editItemPretty" value="{$info.editItemPretty|escape}">
-					<div class="help-block">
+					<div class="form-text">
 						{tr}wiki:pageName for a wiki page or tpl:tplName for a template{/tr}
 					</div>
 				</div>
@@ -296,7 +296,7 @@
 			<div class="form-group">
 				<label for="outboundEmail">{tr}Copy activity to email{/tr}</label>
 				<input name="outboundEmail" id="outboundEmail" value="{$info.outboundEmail|escape}" class="email_multi form-control" size="60">
-				<div class="help-block">
+				<div class="form-text">
 					{tr}You can add several email addresses by separating them with commas.{/tr}
 				</div>
 			</div>
@@ -306,7 +306,7 @@
 						{if $info.simpleEmail eq 'y'} checked="checked"{/if}>
 					{tr}Use simplified email format{/tr}
 				</label>
-				<div class="help-block">
+				<div class="form-text">
 					{tr}The tracker will use the text field named Subject if any as subject and will use the user email or for anonymous the email field if any as sender{/tr}
 				</div>
 			</div>
@@ -317,7 +317,7 @@
 						{if $info.publishRSS eq 'y'}checked="checked"{/if}>
 					{tr}Publish RSS feed for this tracker{/tr}
 				</label>
-				<div class="help-block">
+				<div class="form-text">
 					{tr}Requires "RSS per tracker" to be set in Admin/RSS{/tr}
 					{if $prefs.feed_tracker eq 'y'}
 						{tr}(Currently set){/tr}
@@ -362,7 +362,7 @@
 						{if $info.writerCanModify eq 'y'}checked="checked"{/if}>
 					{tr}Item creator can modify his items{/tr}
 				</label>
-				<div class="description help-block">
+				<div class="description form-text">
 					{tr}The tracker needs a user field with the auto-assign activated{/tr}
 				</div>
 			</div>
@@ -372,7 +372,7 @@
 						{if $info.writerCanRemove eq 'y'}checked="checked"{/if}>
 					{tr}Item creator can remove his items{/tr}
 				</label>
-				<div class="description help-block">
+				<div class="description form-text">
 					{tr}The tracker needs a user field with the auto-assign activated{/tr}
 				</div>
 			</div>
@@ -389,7 +389,7 @@
 						{if $info.oneUserItem eq 'y'}checked="checked"{/if}>
 					{tr}Only one item per user or IP{/tr}
 				</label>
-				<div class="description help-block">
+				<div class="description form-text">
 					{tr}The tracker needs a user or IP address field with the auto-assign set to Creator{/tr}
 				</div>
 			</div>
@@ -399,7 +399,7 @@
 						{if $info.writerGroupCanModify eq 'y'}checked="checked"{/if}>
 					{tr}Members of the creator group can modify items{/tr}
 				</label>
-				<div class="description help-block">
+				<div class="description form-text">
 					{tr}The tracker needs a group field with the auto-assign activated{/tr}
 				</div>
 			</div>
@@ -409,7 +409,7 @@
 						{if $info.writerGroupCanRemove eq 'y'}checked="checked"{/if}>
 					{tr}Members of the creator group can remove items{/tr}
 				</label>
-				<div class="description help-block">
+				<div class="description form-text">
 					{tr}The tracker needs a group field with the auto-assign activated{/tr}
 				</div>
 			</div>
@@ -418,7 +418,7 @@
 					<input type="checkbox" class="form-check-input" name="adminOnlyViewEditItem" value="1"
 						{if $info.adminOnlyViewEditItem eq 'y'} checked="checked"{/if}>
 					{tr}Restrict non admins to wiki page access only{/tr}
-					<div class="description help-block">
+					<div class="description form-text">
 						{tr}Only users with admin tracker permission (tiki_p_admin_trackers) can use the built-in tracker interfaces (tiki-view_tracker.php and tiki-view_tracker_item.php). This is useful if you want the users of these trackers to only access them via wiki pages, where you can use the various tracker plugins to embed forms and reports.{/tr}
 					</div>
 				</label>

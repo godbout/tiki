@@ -66,12 +66,12 @@
 					{else}
 						<input type="text" name="option~{$param|escape}" value="{$options[$param]|escape}" class="form-control">
 					{/if}
-					<div class="help-block">{$def.description|escape}</div>
+					<div class="form-text">{$def.description|escape}</div>
 					{if ! $def.selector_type}
 						{if $def.count eq '*'}
-							<div class="help-block">{tr}Separate multiple with commas.{/tr}</div>
+							<div class="form-text">{tr}Separate multiple with commas.{/tr}</div>
 						{elseif $def.separator}
-							<div class="help-block">{tr}Separate multiple with &quot;{$def.separator}&quot;{/tr}</div>
+							<div class="form-text">{tr}Separate multiple with &quot;{$def.separator}&quot;{/tr}</div>
 						{/if}
 					{/if}
 					{if $def.depends}
@@ -129,7 +129,7 @@
 					<option value="c"{if $field.isHidden eq 'c'} selected="selected"{/if}>{tr}Editable by administrators and creator only{/tr}</option>
 					<option value="i"{if $field.isHidden eq 'i'} selected="selected"{/if}>{tr}Immutable after creation{/tr}</option>
 				</select>
-				<div class="help-block">
+				<div class="form-text">
 					{tr}Creator requires a user field with auto-assign to creator (1){/tr}
 				</div>
 			</div>
@@ -138,7 +138,7 @@
 				<label for="visible_by" class="groupselector control-label">{tr}Visible by{/tr}</label>
 				<input type="text" name="visible_by" id="visible_by" value="{foreach from=$field.visibleBy item=group}{$group|escape}, {/foreach}" class="form-control">
 				{autocomplete element='#visible_by' type='groupname' options="multiple:true,multipleSeparator:','"}{* note, multiple doesn't work in jquery-ui 1.8 *}
-				<div class="help-block">
+				<div class="form-text">
 					{tr}List of Group names with permission to see this field{/tr}. {tr}Separated by comma (,){/tr}
 				</div>
 			</div>
@@ -147,7 +147,7 @@
 				<label for="editable_by" class="groupselector control-label">{tr}Editable by{/tr}</label>
 				<input type="text" name="editable_by" id="editable_by" value="{foreach from=$field.editableBy item=group}{$group|escape}, {/foreach}" class="form-control">
 				{autocomplete element='#editable_by' type='groupname' options="multiple:true,multipleSeparator:','"}{* note, multiple doesn't work in jquery-ui 1.8 *}
-				<div class="help-block">
+				<div class="form-text">
 					{tr}List of Group names with permission to edit this field{/tr}. {tr}Separated by comma (,){/tr}
 				</div>
 			</div>
@@ -162,7 +162,7 @@
 			<div class="form-group">
 				<label for="permName" class="control-label">{tr}Permanent name{/tr}</label>
 				<input type="text" name="permName" value="{$field.permName|escape}" pattern="[a-zA-Z0-9_]+" class="form-control">
-				<div class="help-block">
+				<div class="form-text">
 					{tr}Changing the permanent name may have consequences in integrated systems.{/tr}
 				</div>
 			</div>
@@ -179,7 +179,7 @@
 						{/foreach}
 					</select>
 					{foreach from=$types item=info key=k}
-						<div class="help-block field {$k|escape}">
+						<div class="form-text field {$k|escape}">
 							{$info.description|escape}
 							{if $info.help}
 								<a href="{$prefs.helpurl|escape}{$info.help|escape:'url'}" target="tikihelp" class="tikihelp" title="{$info.name|escape}">
@@ -191,7 +191,7 @@
 {jq}
 $('select[name=type]').change(function () {
 	var descriptions = $(this).closest('.form-group').
-			find('.help-block.field').
+			find('.form-text.field').
 			hide();
 
 	if ($(this).val()) {
