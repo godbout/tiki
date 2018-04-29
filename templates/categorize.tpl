@@ -9,7 +9,7 @@
 	{if !isset($notable) || $notable neq 'y'}
 		<!-- div class="form-horizontal" -->
 			<div class="form-group">
-				<label class="col-sm-{$labelcol} control-label{if !empty($labelclass)} {$labelclass}{/if}">
+				<label class="col-sm-{$labelcol} col-form-label{if !empty($labelclass)} {$labelclass}{/if}">
 					{tr}Categorize{/tr}
 				</label>
 				<div class="col-sm-{$inputcol}">

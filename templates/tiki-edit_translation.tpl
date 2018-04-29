@@ -42,7 +42,7 @@
 						</div>
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="lang" class="control-label col-md-4">
+								<label for="lang" class="col-form-label col-md-4">
 									{tr}Select language to translate to:{/tr}
 								</label>
 								<div class="col-md-8">
@@ -55,7 +55,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="page" class="control-label col-md-4">
+								<label for="page" class="col-form-label col-md-4">
 									{tr}Enter the page title:{/tr}
 								</label>
 								<div class="col-md-8">
@@ -66,7 +66,7 @@
 								</div>
 							</div>
 							{if $prefs.feature_categories eq 'y'}
-								<label for="page" class="control-label col-md-4">
+								<label for="page" class="col-form-label col-md-4">
 									{tr}Categories{/tr}
 								</label>
 								<div class="col-md-8">
@@ -92,7 +92,7 @@
 						</div>
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="langpage" class="control-label col-md-4">
+								<label for="langpage" class="col-form-label col-md-4">
 									{tr}Language{/tr}
 								</label>
 								<div class="col-md-8">

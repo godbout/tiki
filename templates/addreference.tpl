@@ -378,68 +378,68 @@ function delete_ref(ref_id){
 				<input type="hidden" name="e_ref_id" id="e_ref_id" value="">
 				<input type="hidden" name="page" value="{$page|escape}">
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_biblio_code">{tr}Biblio Code{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_biblio_code">{tr}Biblio Code{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_biblio_code" id="e_ref_biblio_code" maxlength="50" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_author">{tr}Author{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_author">{tr}Author{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_author" id="e_ref_author" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_title">{tr}Title{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_title">{tr}Title{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_title" id="e_ref_title" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_year">{tr}Year{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_year">{tr}Year{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_year" id="e_ref_year" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_part">{tr}Part{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_part">{tr}Part{/tr}:</label>
 					<div class="col-sm-10">
 					<input type="text" class="form-control wikiedit" name="e_ref_part" id="e_ref_part" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_uri">{tr}URI{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_uri">{tr}URI{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_uri" id="e_ref_uri" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_biblio_code">{tr}Code{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_biblio_code">{tr}Code{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_code" id="e_ref_code" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_publisher">{tr}Publisher{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_publisher">{tr}Publisher{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_publisher" id="e_ref_publisher" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_location">{tr}Location{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_location">{tr}Location{/tr}:</label>
 					<div class="col-sm-10">
 					<input type="text" class="form-control wikiedit" name="e_ref_location" id="e_ref_location" value="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_style">{tr}Style{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_style">{tr}Style{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_style" id="e_ref_style" value="">
 						<span class="form-text">{tr}Enter the CSS class name to be added in the 'li' tag for listing this reference.{/tr}</span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="e_ref_template">{tr}Template{/tr}:</label>
+					<label class="col-sm-2 col-form-label" for="e_ref_template">{tr}Template{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_template" id="e_ref_template" value="">
 						<span class="form-text">

@@ -23,19 +23,19 @@
 	<input type="hidden" name="pollId" value="{$pollId|escape}">
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Option{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Option{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="title" value="{$title|escape}" maxlength="40" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Position{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="position" value="{$position|escape}" maxlength="4" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>

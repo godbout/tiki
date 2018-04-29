@@ -43,13 +43,13 @@
 			{if !$ts.enabled}
 				<form method="get" class="form-horizontal small" action="tiki-adminusers.php">
 					<div class="form-group">
-						<label class="control-label col-sm-4" for="find">{tr}Find{/tr}</label>
+						<label class="col-form-label col-sm-4" for="find">{tr}Find{/tr}</label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm" id="find" name="find" value="{$find|escape}">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-sm-4" for="numrows">{tr}Number of displayed rows{/tr}</label>
+						<label class="col-form-label col-sm-4" for="numrows">{tr}Number of displayed rows{/tr}</label>
 						<div class="col-sm-8">
 							<input class="form-control form-control-sm" type="number" id="numrows" name="numrows" value="{$numrows|escape}">
 						</div>
@@ -64,7 +64,7 @@
 					{autocomplete element='#find' type='username'}
 					<div class="col-sm-12" id="search" {if $filterGroup or $filterEmail}style="display:block;"{else}style="display:none;"{/if}>
 						<div class="form-group">
-							<label class="control-label col-sm-4" for="filterGroup">{tr}Group (direct){/tr}</label>
+							<label class="col-form-label col-sm-4" for="filterGroup">{tr}Group (direct){/tr}</label>
 							<div class="col-sm-8">
 								<select class="form-control form-control-sm" name="filterGroup" id="filterGroup">
 									<option value=""></option>
@@ -410,7 +410,7 @@
 			{if $userinfo.editable}
 				<form class="form form-horizontal" action="tiki-adminusers.php" method="post" enctype="multipart/form-data" name="RegForm" autocomplete="off">
 					<div class="form-group">
-						<label class="col-sm-3 col-md-2 control-label" for="login">{if $prefs.login_is_email eq 'y'}{tr}Email{/tr}{else}{tr}User{/tr}{/if}</label>
+						<label class="col-sm-3 col-md-2 col-form-label" for="login">{if $prefs.login_is_email eq 'y'}{tr}Email{/tr}{else}{tr}User{/tr}{/if}</label>
 						<div class="col-sm-7 col-md-6">
 							{if $userinfo.login neq 'admin'}
 								<input type="text" id='login' class="form-control" name='login' value="{$userinfo.login|escape}"{if $prefs.feature_intertiki_server eq 'y'} disabled="disabled"{/if}>
@@ -455,7 +455,7 @@
 					{else}
 						{include file='password_jq.tpl' ignorejq='y'}
 						<div class="form-group">
-							<label class="col-sm-3 col-md-2 control-label" for="pass1">{if isset($userinfo.userId)}{tr}New password{/tr}{else}{tr}Password{/tr}{/if}</label>
+							<label class="col-sm-3 col-md-2 col-form-label" for="pass1">{if isset($userinfo.userId)}{tr}New password{/tr}{else}{tr}Password{/tr}{/if}</label>
 							<div class="col-sm-7 col-md-6">
 								<input type="password" class="form-control" placeholder="{tr}Password{/tr}" name="pass" id="pass1">
 								<div style="margin-left:5px;">
@@ -468,7 +468,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 col-md-2 control-label" for="pass2">{if isset($userinfo.userId)}{tr}Confirm new password{/tr}{else}{tr}Confirm password{/tr}{/if}</label>
+							<label class="col-sm-3 col-md-2 col-form-label" for="pass2">{if isset($userinfo.userId)}{tr}Confirm new password{/tr}{else}{tr}Confirm password{/tr}{/if}</label>
 							<div class="col-sm-7 col-md-6">
 								<input type="password" class="form-control" name="passAgain" id="pass2" placeholder="{tr}Password{/tr}">
 								<div id="mypassword2_text">
@@ -506,7 +506,7 @@
 					{/if}
 					{if $prefs.login_is_email neq 'y'}
 						<div class="form-group">
-							<label class="col-sm-3 col-md-2 control-label" for="pass1">{tr}Email{/tr}</label>
+							<label class="col-sm-3 col-md-2 col-form-label" for="pass1">{tr}Email{/tr}</label>
 							<div class="col-sm-7 col-md-6">
 								<input type="text" class="form-control" id="email" name="email" size="30" value="{$userinfo.email|escape}">
 							</div>
@@ -542,7 +542,7 @@
 
 					{if $prefs.userTracker eq 'y' and $userstrackerid}
 						<div class="form-group">
-							<label class="col-md-2 control-label">
+							<label class="col-md-2 col-form-label">
 								{tr}User tracker{/tr}
 							</label>
 
@@ -630,7 +630,7 @@
 			<form class="form-horizontal" action="tiki-adminusers.php" method="post" enctype="multipart/form-data">
 				{ticket}
 				<div class="form-group">
-					<label for="csvlist" class="control-label col-md-3">{tr}CSV File{/tr}</label>
+					<label for="csvlist" class="col-form-label col-md-3">{tr}CSV File{/tr}</label>
 					<div class="col-md-9">
 						<input type="file" id="csvlist" name="csvlist">
 						<div class="form-text">
@@ -639,7 +639,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">{tr}Existing Users{/tr}</label>
+					<label class="col-md-3 col-form-label">{tr}Existing Users{/tr}</label>
 					<div class="col-md-9">
 						<label class="radio-inline">
 							<input type="radio" name="overwrite" value="y">
@@ -739,32 +739,32 @@
 				{/remarksbox}
 				<form class="form-horizontal" name="tempuser" id="tempuser" method="post">
 					<div class="form-group">
-						<label class="col-sm-4 col-md-4 control-label" for="tempuser_emails">{tr}Email addresses (comma-separated){/tr}</label>
+						<label class="col-sm-4 col-md-4 col-form-label" for="tempuser_emails">{tr}Email addresses (comma-separated){/tr}</label>
 						<div class="col-sm-8 col-md-8">
 							<input type="text" class="form-control" name="tempuser_emails" id="tempuser_emails" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-md-4 control-label" for="tempuser_groups">{tr}Groups (comma-separated){/tr}</label>
+						<label class="col-sm-4 col-md-4 col-form-label" for="tempuser_groups">{tr}Groups (comma-separated){/tr}</label>
 						<div class="col-sm-8 col-md-8">
 							<input type="text" class="form-control" name="tempuser_groups" id="tempuser_groups" />
 							{autocomplete element='#tempuser_groups' type='groupname'}
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-md-4 control-label" for="tempuser_expiry">{tr}Valid for days (use -1 for forever){/tr}</label>
+						<label class="col-sm-4 col-md-4 col-form-label" for="tempuser_expiry">{tr}Valid for days (use -1 for forever){/tr}</label>
 						<div class="col-sm-8 col-md-8">
 							<input type="text" class="form-control" name="tempuser_expiry" id="tempuser_expiry" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-md-4 control-label" for="tempuser_prefix">{tr}Username prefix{/tr}</label>
+						<label class="col-sm-4 col-md-4 col-form-label" for="tempuser_prefix">{tr}Username prefix{/tr}</label>
 						<div class="col-sm-8 col-md-8">
 							<input type="text" class="form-control" name="tempuser_prefix" id="tempuser_prefix" placeholder="guest"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-md-4 control-label" for="tempuser_path">{tr}Autologin (non-SEFURL) path{/tr}</label>
+						<label class="col-sm-4 col-md-4 col-form-label" for="tempuser_path">{tr}Autologin (non-SEFURL) path{/tr}</label>
 						<div class="col-sm-8 col-md-8">
 							<input type="text" class="form-control" name="tempuser_path" id="tempuser_path" placeholder="index.php"/>
 						</div>

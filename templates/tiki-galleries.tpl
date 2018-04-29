@@ -31,13 +31,13 @@
 			<form action="tiki-galleries.php" method="post" id="gal-edit-form" class="form-horizontal">
 				<input type="hidden" name="galleryId" value="{$galleryId|escape}">
 				<div class="form-group">
-					<label class="col-sm-4 control-label" for="name">{tr}Name:{/tr}</label>
+					<label class="col-sm-4 col-form-label" for="name">{tr}Name:{/tr}</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" name="name" id="name" value="{$name|escape}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-4 control-label" for="gal-desc">{tr}Description:{/tr}</label>
+					<label class="col-sm-4 col-form-label" for="gal-desc">{tr}Description:{/tr}</label>
 					<div class="col-sm-8">
 						<textarea rows="10" class="form-control" name="description"
 							id="gal-desc">{$description|escape}</textarea>
@@ -56,7 +56,7 @@
 				{/if}
 				{if $prefs.preset_galleries_info ne 'y'}
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="maxRows">{tr}Max Rows per page:{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="maxRows">{tr}Max Rows per page:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="maxRows" name="maxRows"{if !empty($maxRows)} value="{$maxRows|escape}"{/if}>
 						</div>
@@ -65,7 +65,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="rowImages">{tr}Images per row:{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="rowImages">{tr}Images per row:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" name="rowImages" id="rowImages" {if !empty($rowImages)} value="{$rowImages|escape}"{/if}>
 						</div>
@@ -74,7 +74,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="thumbSizeX">{tr}Thumbnails size X:{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="thumbSizeX">{tr}Thumbnails size X:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" id="thumbSizeX" name="thumbSizeX" class="form-control" {if !empty($thumbSizeX)} value="{$thumbSizeX|escape}"{/if}>
 						</div>
@@ -83,7 +83,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="thumbSizeY">{tr}Thumbnails size Y:{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="thumbSizeY">{tr}Thumbnails size Y:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="thumbSizeY" name="thumbSizeY" {if !empty($thumbSizeY)} value="{$thumbSizeY|escape}"{/if}>
 						</div>
@@ -93,7 +93,7 @@
 					</div>
 				{/if}
 				<div class="form-group">
-					<label class="col-sm-4 control-label" for="sortorder">{tr}Default sort order:{/tr}</label>
+					<label class="col-sm-4 col-form-label" for="sortorder">{tr}Default sort order:{/tr}</label>
 					<div class="col-sm-4">
 						<select name="sortorder" id="sortorder" class="form-control">
 							{foreach from=$options_sortorder key=key item=item}
@@ -111,7 +111,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-4">{tr}Fields to show during browsing the gallery:{/tr}</label>
+					<label class="col-form-label col-sm-4">{tr}Fields to show during browsing the gallery:{/tr}</label>
 					<div class="col-sm-4">
 
 						<div class="form-check">
@@ -158,7 +158,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-4 control-label" for="galleryimage">{tr}Gallery Image:{/tr}</label>
+					<label class="col-sm-4 col-form-label" for="galleryimage">{tr}Gallery Image:{/tr}</label>
 					<div class="col-sm-4">
 						<select id="galleryimage" class="form-control" name="galleryimage">
 							{foreach from=$options_galleryimage key=key item=item}
@@ -168,7 +168,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-4 control-label" for="parentgallery">{tr}Parent gallery{/tr}</label>
+					<label class="col-sm-4 col-form-label" for="parentgallery">{tr}Parent gallery{/tr}</label>
 					<div class="col-sm-4">
 						<select id="parentgallery" class="form-control" name="parentgallery">
 							<option value="-1" {if $parentgallery == -1} selected="selected"{/if}>{tr}none{/tr}</option>
@@ -180,7 +180,7 @@
 				</div>
 				{if $prefs.preset_galleries_info ne 'y'}
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="parentgallery">{tr}Available scales:{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="parentgallery">{tr}Available scales:{/tr}</label>
 						<div class="col-sm-4">
 							<div class="radio">
 								<label>
@@ -213,7 +213,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="scaleSize" class="col-sm-4 control-label">
+						<label for="scaleSize" class="col-sm-4 col-form-label">
 							{tr}Add scaled images with bounding box of square size:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" id="scaleSize" class="form-control" name="scaleSize">
@@ -224,7 +224,7 @@
 					</div>
 				{/if}
 				<div class="form-group">
-					<label class="col-sm-4 control-label" for="owner">{tr}Owner of the gallery{/tr}</label>
+					<label class="col-sm-4 col-form-label" for="owner">{tr}Owner of the gallery{/tr}</label>
 					<div class="col-sm-4">
 						<input type="text" id="owner" class="form-control" name="owner" value="{$owner|escape}">
 					</div>

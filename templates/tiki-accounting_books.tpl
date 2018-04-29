@@ -49,20 +49,20 @@
 					<fieldset>
 						<legend>{tr}Book properties{/tr}</legend>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Name of the book{/tr} <span class="text-danger">*</span></label>
+							<label class="col-form-label col-md-4">{tr}Name of the book{/tr} <span class="text-danger">*</span></label>
 							<div class="col-md-8">
 								<input type="text" class=" form-control" name="bookName" id="bookName" {if $bookName}value="{$bookName}"{/if}>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}First date in journal{/tr} <span class="text-danger">*</span></label>
+							<label class="col-form-label col-md-4">{tr}First date in journal{/tr} <span class="text-danger">*</span></label>
 							<div class="col-md-8">
 								{*<input type="text" class=" form-control" name="bookStartDate" id="bookStartDate" value="{$bookStartDate}">*}
 								{html_select_date prefix="book_start_" time=$bookStartDate start_year="-10" end_year="+10" field_order=$prefs.display_field_order}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Last date in journal{/tr} <span class="text-danger">*</span></label>
+							<label class="col-form-label col-md-4">{tr}Last date in journal{/tr} <span class="text-danger">*</span></label>
 							<div class="col-md-8">
 								{*<input type="text" class=" form-control" name="bookEndDate" id="bookEndDate" value="{$bookEndDate}">*}
 								{html_select_date prefix="book_end_" time=$bookEndDate start_year="-10" end_year="+10" field_order=$prefs.display_field_order}
@@ -72,13 +72,13 @@
 					<fieldset>
 						<legend>{tr}Currency settings{/tr}</legend>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Currency (up to 3 letters) {/tr}</label>
+							<label class="col-form-label col-md-4">{tr}Currency (up to 3 letters) {/tr}</label>
 							<div class="col-md-8">
 								<input type="text" class=" form-control" name="bookCurrency" id="bookCurrency" value="{$bookCurrency}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Position of the currency {/tr}</label>
+							<label class="col-form-label col-md-4">{tr}Position of the currency {/tr}</label>
 							<div class="col-md-8">
 								<select class=" form-control" name="bookCurrencyPos" id="bookCurrencyPos">
 									<option value="0"{if $bookCurrencyPos==0} selected="selected"{/if}>{tr}Show no currency{/tr}</option>
@@ -88,13 +88,13 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Decimals{/tr}</label>
+							<label class="col-form-label col-md-4">{tr}Decimals{/tr}</label>
 							<div class="col-md-8">
 								<input type="text" class=" form-control" name="bookDecimals" id="bookDecimals" value="{$bookDecimals}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Decimal point{/tr}</label>
+							<label class="col-form-label col-md-4">{tr}Decimal point{/tr}</label>
 							<div class="col-md-8">
 								<select class=" form-control" name="bookDecPoint" id="bookDecPoint">
 									<option value="," {if $bookDecPoint eq ','}selected="selected"{/if}>{tr}Comma{/tr}</option>
@@ -104,7 +104,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Thousands separator{/tr}</label>
+							<label class="col-form-label col-md-4">{tr}Thousands separator{/tr}</label>
 							<div class="col-md-8">
 								<select class=" form-control" name="bookThousand" id="bookThousand" >
 									<option value="," {if empty($bookThousand) or $bookThousand eq ','}selected="selected"{/if}>{tr}Comma{/tr}</option>
@@ -116,19 +116,19 @@
 					<fieldset>
 						<legend>CSV export settings</legend>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Separator{/tr}</label>
+							<label class="col-form-label col-md-4">{tr}Separator{/tr}</label>
 							<div class="col-md-8">
 								<input type="text" class=" form-control" name="exportSeparator" id="exportSeparator" value="{$exportSeparator}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}Quote strings with{/tr}</label>
+							<label class="col-form-label col-md-4">{tr}Quote strings with{/tr}</label>
 							<div class="col-md-8">
 								<input type="text" class=" form-control" name="exportQuote" id="exportQuote" value="{$exportQuote}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-4">{tr}End of Line{/tr}</label>
+							<label class="col-form-label col-md-4">{tr}End of Line{/tr}</label>
 							<div class="col-md-8">
 								<select class=" form-control" name="exportEOL" id="exportEOL">
 									<option value="CR"{if $exportEOL=='CR'} selected="selected"{/if}>{tr}Carriage return{/tr}</option>
@@ -142,7 +142,7 @@
 						<legend>{tr}Automatic Tax Calculation{/tr}</legend>
 						<div class="form-group">
 							<div class="col-md-4">
-								<label class="control-label">{tr}Allow automatic tax calculation{/tr}</label>
+								<label class="col-form-label">{tr}Allow automatic tax calculation{/tr}</label>
 							</div>
 							<div class="col-md-8">
 								<div class="radio">

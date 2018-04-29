@@ -73,7 +73,7 @@
 								</div>
 								<legend>{tr}Perform action with selected permissions:{/tr}</legend>
 								<div class="form-group">
-									<label for="delete" class="col-lg-4 control-label">
+									<label for="delete" class="col-lg-4 col-form-label">
 										{tr}Delete{/tr}
 									</label>
 									<div class="col-lg-2">
@@ -84,7 +84,7 @@
 									<div class="col-lg-6"></div><br>
 								</div>
 								<div class="form-group">
-									<label for="duplicate" class="col-lg-4 control-label">
+									<label for="duplicate" class="col-lg-4 col-form-label">
 										{tr}Assign to this group{/tr}
 									</label>
 									<div class="col-lg-4">
@@ -142,7 +142,7 @@
 							</div>
 							<legend>{tr}Perform action with selected permissions:{/tr}</legend>
 							<div class="form-group">
-								<label for="delete" class="col-lg-4 control-label">
+								<label for="delete" class="col-lg-4 col-form-label">
 									{tr}Delete{/tr}
 								</label>
 								<div class="col-lg-2">
@@ -153,7 +153,7 @@
 								<div class="col-lg-6"></div><br>
 							</div>
 							<div class="form-group">
-								<label for="duplicate" class="col-lg-4 control-label">
+								<label for="duplicate" class="col-lg-4 col-form-label">
 									{tr}Assign to this group{/tr}
 								</label>
 								<div class="col-lg-4">

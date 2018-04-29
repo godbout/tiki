@@ -21,25 +21,25 @@
 	<input type="hidden" name="questionId" value="{$questionId|escape}">
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Question{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Question{/tr}</label>
 		<div class="col-sm-7">
 			<textarea name="question" rows="5" cols="80" class="form-control">{$question|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Position{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
 		<div class="col-sm-7">
 			<select name="position" class="form-control">{html_options values=$positions output=$positions selected=$position}</select>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Question Type{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Question Type{/tr}</label>
 		<div class="col-sm-7">
 			<select name="questionType" class="form-control">{html_options options=$questionTypes selected=$type}</select>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>
@@ -60,13 +60,13 @@
 		{tr}Instructions: Type, or paste your multiple choice questions below. Provide one line for the question, then provide as many answers on want on subsequent lines. Separate questions with a blank line. To indicate correct answers, you may initiate an answer with "*" (without the quotes). None, any or all the answers are possible to be marked as correct.{/tr}
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Input{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Input{/tr}</label>
 		<div class="col-sm-7">
 			<textarea class="form-control wikiedit" name="input_data" rows="30" cols="80" id='subheading'></textarea>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="wikiaction btn btn-primary" name="import" value="Import">
 		</div>

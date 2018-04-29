@@ -14,19 +14,19 @@
 	<input type="hidden" name="questionId" value="{$questionId|escape}">
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Option{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Option{/tr}</label>
 		<div class="col-sm-7">
 			<textarea name="optionText" rows="5" cols="40" class="form-control">{$optionText|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Points{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Points{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="points" value="{$points|escape}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>

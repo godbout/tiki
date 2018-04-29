@@ -172,7 +172,7 @@
 				</div>
 			{/if}
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="calendarName">
+				<label class="col-sm-3 col-form-label" for="calendarName">
 					{tr}Name{/tr}
 				</label>
 				<div class="col-sm-6">
@@ -186,7 +186,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="calendarDescription">
+				<label class="col-sm-3 col-form-label" for="calendarDescription">
 					{tr}Description{/tr}
 				</label>
 				<div class="col-sm-6">
@@ -195,14 +195,14 @@
 					</textarea>
 				</div>
 				<div class="checkbox col-sm-3">
-					<label for="showCalDescriptionPopup" class="control-label">
+					<label for="showCalDescriptionPopup" class="col-form-label">
 						<input type="checkbox" id="showCalDescriptionPopup" name="show[description]" value="on"{if $show_description eq 'y'} checked="checked"{/if}>
 						{tr}Show in popup box{/tr}
 					</label>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customlocations">
+				<label class="col-sm-3 col-form-label" for="customlocations">
 					{tr}Custom location{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -219,7 +219,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customparticipants">
+				<label class="col-sm-3 col-form-label" for="customparticipants">
 					{tr}Custom participants{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -236,7 +236,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customcategories">
+				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}Custom classification{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -253,7 +253,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customlanguages">
+				<label class="col-sm-3 col-form-label" for="customlanguages">
 					{tr}Custom language{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -270,7 +270,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customurl">
+				<label class="col-sm-3 col-form-label" for="customurl">
 					{tr}Custom URL{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -280,7 +280,7 @@
 					</select>
 				</div>
 				<div class="checkbox col-sm-3">
-					<label for="showurlpopup" class="control-label">
+					<label for="showurlpopup" class="col-form-label">
 						<input type="checkbox" id="showurlpopup" name="show[url]" value="on"{if $show_url eq 'y'} checked="checked"{/if}>
 						{tr}Show in popup box{/tr}
 					</label>
@@ -288,7 +288,7 @@
 			</div>
 			{if $prefs.feature_newsletters eq 'y'}
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="customsubscription">
+					<label class="col-sm-3 col-form-label" for="customsubscription">
 						{tr}Custom subscription list{/tr}
 					</label>
 					<div class="col-sm-2">
@@ -300,7 +300,7 @@
 				</div>
 			{/if}
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="custompriorities">
+				<label class="col-sm-3 col-form-label" for="custompriorities">
 					{tr}Custom priority{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -311,7 +311,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="personal">
+				<label class="col-sm-3 col-form-label" for="personal">
 					{tr}Personal Calendar{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -322,7 +322,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customcategories">
+				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}Start of day{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -330,7 +330,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customcategories">
+				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}End of day{/tr}
 				</label>
 				<div class="col-sm-9">
@@ -338,13 +338,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customcategories">
+				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}Days to display{/tr}
 				</label>
 				<div class="col-sm-9">
 					{section name="viewdays" start=0 loop=7}
 					<div class="checkbox-inline">
-						<label class="control-label"><input type="checkbox" name="viewdays[]" value="{$smarty.section.viewdays.index}" {if !empty($info.viewdays) && in_array($smarty.section.viewdays.index,$info.viewdays)} checked="checked" {/if}>
+						<label class="col-form-label"><input type="checkbox" name="viewdays[]" value="{$smarty.section.viewdays.index}" {if !empty($info.viewdays) && in_array($smarty.section.viewdays.index,$info.viewdays)} checked="checked" {/if}>
 							{$days_names[$smarty.section.viewdays.index]}
 						</label>
 					</div>
@@ -352,7 +352,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customcategories">
+				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}Standard color{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -368,7 +368,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="fgColorField">
+				<label class="col-sm-3 col-form-label" for="fgColorField">
 					{tr}Custom foreground color{/tr}
 				</label>
 				<div class="col-sm-9">
@@ -376,7 +376,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="bgColorField">
+				<label class="col-sm-3 col-form-label" for="bgColorField">
 					{tr}Custom background color{/tr}
 				</label>
 				<div class="col-sm-9">
@@ -384,7 +384,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="customstatus">
+				<label class="col-sm-3 col-form-label" for="customstatus">
 					{tr}Status{/tr}
 				</label>
 				<div class="col-sm-2">
@@ -395,7 +395,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">
+				<label class="col-sm-3 col-form-label">
 					{tr}Default event status:{/tr}
 				</label>
 				<div class="col-sm-3">
@@ -404,7 +404,7 @@
 			</div>
 			<div class="form-group">
 				<div class="checkbox col-sm-4 col-sm-offset-3">
-					<label class="control-label">
+					<label class="col-form-label">
 						<input type="checkbox" name="show[status]" value="on"{if $info.show_status eq 'y'} checked="checked"{/if}>
 						{tr}Show in popup view{/tr}
 					</label>
@@ -412,7 +412,7 @@
 			</div>
 			<div class="form-group">
 				<div class="checkbox col-sm-4 col-sm-offset-3">
-					<label class="control-label">
+					<label class="col-form-label">
 						<input type="checkbox" name="show[status_calview]" value="on"{if $info.show_status_calview ne 'n'} checked="checked"{/if}>
 						{tr}Show in calendar view{/tr}
 					</label>
@@ -420,7 +420,7 @@
 			</div>
 			{if $prefs.feature_groupalert eq 'y'}
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="groupforAlert">
+					<label class="col-sm-3 col-form-label" for="groupforAlert">
 						{tr}Group of users alerted when calendar event is modified{/tr}
 					</label>
 					<div class="col-sm-2">
@@ -433,7 +433,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="showeachuser">
+					<label class="col-sm-3 col-form-label" for="showeachuser">
 						{tr}Allows each user to be selected for small groups{/tr}
 					</label>
 					<div class="col-sm-2">
@@ -442,7 +442,7 @@
 				</div>
 			{/if}
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="allday">
+				<label class="col-sm-3 col-form-label" for="allday">
 					{tr}Default length of events is all day{/tr}
 				</label>
 				<div class="col-sm-9">
@@ -450,7 +450,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="nameoneachday">
+				<label class="col-sm-3 col-form-label" for="nameoneachday">
 					{tr}Event name on each day in calendar view{/tr}
 				</label>
 				<div class="col-sm-9">
@@ -464,7 +464,7 @@
 			<fieldset>
 				<legend>Delete old events</legend>
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="days">
+					<label class="col-sm-3 col-form-label" for="days">
 						{tr}Delete events older than:{/tr}
 					</label>
 					<div class="col-sm-2 input-group">

@@ -7,13 +7,13 @@
 {block name="content"}
 <form role="form" class="form-horizontal" method="post" action="{service controller=search_stored action=edit queryId=$queryId}">
 	<div class="form-group">
-		<label for="label" class="col-md-3 control-label">{tr}Label{/tr}</label>
+		<label for="label" class="col-md-3 col-form-label">{tr}Label{/tr}</label>
 		<div class="col-md-9">
 			<input type="text" class="form-control" name="label" value="{$label|escape}"/>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="priority" class="col-md-3 control-label">Priority</label>
+		<label for="priority" class="col-md-3 col-form-label">Priority</label>
 		<div class="col-md-9">
 			<select name="priority" class="form-control">
 				{foreach $priorities as $key => $info}
@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="label" class="col-md-3 control-label">{tr}Description{/tr}</label>
+		<label for="label" class="col-md-3 col-form-label">{tr}Description{/tr}</label>
 		<div class="col-md-9">
 			<textarea class="form-control" name="description" rows="5" data-codemirror="true" data-syntax="tiki">{$description|escape}</textarea>
 		</div>

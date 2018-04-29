@@ -9,7 +9,7 @@
 <form name="path" method="post" action="tiki-directory_admin_categories.php" class="form-horizontal">
 	<br>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">
+		<label class="col-sm-3 col-form-label">
 			{tr}Parent directory category{/tr}
 		</label>
 		<div class="col-sm-7">
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
@@ -41,19 +41,19 @@
 	<input type="hidden" name="categId" value="{$categId|escape}">
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Name{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="name" value="{$info.name|escape}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Description{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Description{/tr}</label>
 		<div class="col-sm-7">
 			<textarea rows="5" cols="60" name="description" class="form-control">{$info.description|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Child type{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Child type{/tr}</label>
 		<div class="col-sm-7">
 			<select name="childrenType" class="form-control">
 				<option value='c' {if $info.childrenType eq 'c'}selected="selected"{/if}>{tr}Most visited directory sub-categories{/tr}</option>
@@ -63,7 +63,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Maximum number of child directory categories to show{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Maximum number of child directory categories to show{/tr}</label>
 		<div class="col-sm-7">
 			<select name="viewableChildren" class="form-control">
 				<option value="0" {if $info.viewableChildren eq 0}selected="selected"{/if}>{tr}none{/tr}</option>
@@ -76,19 +76,19 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Allow sites in this directory category{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Allow sites in this directory category{/tr}</label>
 		<div class="col-sm-7">
 			<input name="allowSites" type="checkbox" {if $info.allowSites eq 'y'}checked="checked"{/if} >
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Show number of sites in this directory category{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Show number of sites in this directory category{/tr}</label>
 		<div class="col-sm-7">
 			<input name="showCount" type="checkbox" {if $info.showCount eq 'y'}checked="checked"{/if}>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Editor group{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Editor group{/tr}</label>
 		<div class="col-sm-7">
 			<select name="editorGroup" class="form-control">
 					<option value="">{tr}None{/tr}</option>
@@ -99,7 +99,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input class="btn btn-primary" type="submit" name="save" value="{tr}Save{/tr}">
 		</div>

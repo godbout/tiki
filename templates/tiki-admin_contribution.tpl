@@ -7,13 +7,13 @@
 	<form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" class="form-horizontal" role="form">
 		<input type="hidden" name="contributionId" value="{$contribution.contributionId}">
 		<div class="form-group">
-			<label class="col-sm-3 control-label" for="name">{tr}Name{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr}</label>
 			<div class="col-sm-9">
 					<input type="text" name="name" class="form-control" id="name" {if $contribution.name} value="{$contribution.name|escape}"{/if}>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label" for="description">{tr}Description{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="description">{tr}Description{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" name="description" id="description" class="form-control" maxlength="250"{if $contribution.description} value="{$contribution.description|escape}"{/if}>
 			</div>
@@ -85,13 +85,13 @@
 
 <form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" class="form-horizontal" role="form">
 	<div class="form-group">
-		<label class="col-sm-3 control-label" for="new_contribution_name">{tr}Name{/tr}</label>
+		<label class="col-sm-3 col-form-label" for="new_contribution_name">{tr}Name{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" name="new_contribution_name" id="new_contribution_name" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label" for="new_contribution_name">{tr}Description{/tr}</label>
+		<label class="col-sm-3 col-form-label" for="new_contribution_name">{tr}Description{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" name="description" class="form-control" maxlength="250">
 		</div>

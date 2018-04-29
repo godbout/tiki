@@ -14,7 +14,7 @@
 				<fieldset>
 					<legend>{tr}Date{/tr}</legend>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="">{tr}Start{/tr}</label>
+						<label class="col-sm-2 col-form-label" for="">{tr}Start{/tr}</label>
 
 						<div class="col-sm-8">
 							<div class="">
@@ -23,7 +23,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="">{tr}End{/tr}</label>
+						<label class="col-sm-2 col-form-label" for="">{tr}End{/tr}</label>
 
 						<div class="col-sm-8">
 							<div class="">
@@ -36,7 +36,7 @@
 					<legend>{tr}Users and Groups{/tr}</legend>
 					{if $tiki_p_list_users eq 'y'}
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="selectedUsers">{tr}User{/tr}</label>
+							<label class="col-sm-2 col-form-label" for="selectedUsers">{tr}User{/tr}</label>
 
 							<div class="col-sm-6">
 								<select multiple="multiple"
@@ -57,7 +57,7 @@
 
 					{if $groups|@count >= 1}
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="selectedGroups">{tr}Group{/tr}</label>
+							<label class="col-sm-2 col-form-label" for="selectedGroups">{tr}Group{/tr}</label>
 
 							<div class="col-sm-6">
 								<select multiple="multiple"
@@ -76,7 +76,7 @@
 				<fieldset>
 					<legend>{tr}Category{/tr}</legend>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="categId">{tr}Category{/tr}</label>
+						<label class="col-sm-2 col-form-label" for="categId">{tr}Category{/tr}</label>
 
 						<div class="col-sm-6">
 							<select name="categId" id="categId" class="form-control">
@@ -123,7 +123,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="">{tr}Search{/tr}</label>
+						<label class="col-sm-2 col-form-label" for="">{tr}Search{/tr}</label>
 
 						<div class="col-sm-4">
 							<input class="form-control" type="text" name="find" value="{$find}">

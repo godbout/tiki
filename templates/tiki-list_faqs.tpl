@@ -104,7 +104,7 @@
 			<form action="tiki-list_faqs.php" method="post" class="form-horizontal">
 				<input type="hidden" name="faqId" value="{$faqId|escape}">
 				<div class="form-group">
-					<label class="control-label col-md-3">
+					<label class="col-form-label col-md-3">
 						{tr}Title:{/tr}
 					</label>
 					<div class="col-md-9">
@@ -112,7 +112,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-3">
+					<label class="col-form-label col-md-3">
 						{tr}Description:{/tr}
 					</label>
 					<div class="col-md-9">
@@ -121,7 +121,7 @@
 				</div>
 				{include file='categorize.tpl'}
 				<div class="form-check">
-					<label class="control-label col-md-offset-3">
+					<label class="col-form-label col-md-offset-3">
 						<input type="checkbox" class="form-check-input" name="canSuggest" {if $canSuggest eq 'y'}checked="checked"{/if}>
 						{tr}Users can suggest questions:{/tr}
 					</label>

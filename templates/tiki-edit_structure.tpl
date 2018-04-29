@@ -62,7 +62,7 @@
 	{if $editable eq 'y'}
 		<form action="tiki-edit_structure.php?page_ref_id={$page_ref_id}" method="post" class="form-inline" role="form" style="display: inline-block">
 			<div class="form-group">
-				<label for="pageAlias" class="control-label">{tr}Alias{/tr}:</label>
+				<label for="pageAlias" class="col-form-label">{tr}Alias{/tr}:</label>
 				<input type="hidden" name="page_ref_id" value="{$structure_id}">
 				<div class="input-group">
 					<input type="text" class="form-control form-control-sm" name="pageAlias" id="pageAlias" value="{$topPageAlias|escape}">
@@ -210,14 +210,14 @@
 		<form action="tiki-edit_structure.php" method="post" class="form-horizontal">
 			<input type="hidden" name="page_ref_id" value="{$page_ref_id}">
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Create Page{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Create Page{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="name" id="name" class="form-control">
 					{autocomplete element='#name' type='pagename'}
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label"></label>
+				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7">
 					<input type="submit" class="btn btn-secondary btn-sm" name="create" value="{tr}Update{/tr}">
 				</div>

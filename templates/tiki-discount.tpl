@@ -73,13 +73,13 @@
 		<br>
 		{if !empty($info.id)}<input type="hidden" name="id" value="{$info.id}">{/if}
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{tr}Code{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Code{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" id="code" name="code" {if !empty($info.code)}value="{$info.code|escape}"{/if} class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{tr}Value{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Value{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" id="code" name="code" {if !empty($info.code)}value="{$info.code|escape}"{/if} class="form-control">
 				<div class="form-text">
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{tr}Maximum time the discount can be used in the first phase of payment{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Maximum time the discount can be used in the first phase of payment{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" id="max" name="max" {if !empty($info.max)} value="{$info.max|escape}"{/if} class="form-control">
 				<div class="form-text">
@@ -101,13 +101,13 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{tr}Comment{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Comment{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" id="comment" name="comment" {if !empty($info.comment)} value="{$info.comment|escape}"{/if} class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label"></label>
+			<label class="col-sm-3 col-form-label"></label>
 			<div class="col-sm-7">
 				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 			</div>

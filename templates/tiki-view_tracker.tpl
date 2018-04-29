@@ -349,7 +349,7 @@
 
 					{if $tracker_info.showStatus eq 'y' and ($tracker_info.showStatusAdminOnly ne 'y' or $tiki_p_admin_trackers eq 'y')}
 						<div class="form-group">
-							<label class="col-sm-3 control-label">{tr}Status{/tr}</label>
+							<label class="col-sm-3 col-form-label">{tr}Status{/tr}</label>
 							<div class="col-sm-8">
 								{include file='tracker_status_input.tpl' tracker=$tracker_info form_status=status}
 							</div>
@@ -361,7 +361,7 @@
 								!($field_value.type eq 's' and $field_value.name eq 'Rating')
 						}
 							<div class="form-group">
-								<label class="col-sm-3 control-label">
+								<label class="col-sm-3 col-form-label">
 										{if $field_value.isMandatory eq 'y'}
 											{$field_value.name|tra} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
 										{else}
@@ -384,7 +384,7 @@
 						<div class="form-group">
 							{if $showeachuser eq 'y'}
 
-								<label class="col-sm-3 control-label">{tr}Choose users to alert{/tr}</label>
+								<label class="col-sm-3 col-form-label">{tr}Choose users to alert{/tr}</label>
 
 							{/if}
 							{section name=idx loop=$listusertoalert}
@@ -401,7 +401,7 @@
 					{/if}
 
 					<div class="form-group">
-						<label class="col-sm-3 control-label">&nbsp;</label>
+						<label class="col-sm-3 col-form-label">&nbsp;</label>
 						<div class="col-sm-8 checkbox-inline">
 						<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm = false;">
 						<input type="radio" name="viewitem" value="view" /> {tr}View inserted item{/tr}

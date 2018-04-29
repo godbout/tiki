@@ -16,25 +16,25 @@
 	<input type="hidden" name="quizId" value="{$quizId|escape}">
 	<input type="hidden" name="resultId" value="{$resultId|escape}">
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}From Points{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}From Points{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="fromPoints" value="{$fromPoints|escape}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}To Points{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}To Points{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="toPoints" value="{$toPoints|escape}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Answer{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Answer{/tr}</label>
 		<div class="col-sm-7">
 			<textarea name="answer" rows="10" cols="40" class="form-control">{$answer|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 		</div>

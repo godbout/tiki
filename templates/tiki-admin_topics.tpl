@@ -9,20 +9,20 @@
 <form enctype="multipart/form-data" action="tiki-admin_topics.php" method="post" class="form-horizontal" role="form">
 	<h2>{tr}Add topic{/tr}</h2>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for="name">{tr}Name{/tr}</label>
+		<label class="col-sm-2 col-form-label" for="name">{tr}Name{/tr}</label>
 		<div class="col-sm-10">
 			<input type="text" name="name" id="name" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for="image">{tr}Image{/tr}</label>
+		<label class="col-sm-2 col-form-label" for="image">{tr}Image{/tr}</label>
 		<div class="col-sm-10">
 			<input type="hidden" name="MAX_FILE_SIZE" value="1000000">
 			<input class="form-control" name="userfile1" type="file">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for="notificationemail">{tr}Notification Email{/tr}</label>
+		<label class="col-sm-2 col-form-label" for="notificationemail">{tr}Notification Email{/tr}</label>
 		<div class="col-sm-10">
 			<div class="well well-sm">
 				{tr}You will be able to add a notification email per article topic when you edit the topic after its creation{/tr}

@@ -32,7 +32,7 @@ $("#email").val("{{$userinfo.email|escape}}");
 {include file="register-groupchoice.tpl"}
 {if $msg}<p>{$msg|escape}</p>{/if}
 <div class="form-group">
-	<label class="control-label col-sm-3"></label>
+	<label class="col-form-label col-sm-3"></label>
 	<div class="col-sm-7">
 		<input type="submit" class="btn btn-primary" name="localinfosubmit" value="{tr}Submit{/tr}">
 	</div>
@@ -43,19 +43,19 @@ $("#email").val("{{$userinfo.email|escape}}");
 <p>{tr}Login to link to it using the following form instead{/tr}</p>
 <form action="tiki-socialnetworks_firstlogin.php" method="post" name="RegForm2" class="form-horizontal">
 	<div class="form-group">
-		<label class="control-label col-sm-3">{tr}Login:{/tr}</label>
+		<label class="col-form-label col-sm-3">{tr}Login:{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="userlogin" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-3">{tr}Password:{/tr}</label>
+		<label class="col-form-label col-sm-3">{tr}Password:{/tr}</label>
 		<div class="col-sm-7">
 			<input type="password" name="userpass" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-3"></label>
+		<label class="col-form-label col-sm-3"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary" name="linkaccount" value="{tr}Link to Existing Account{/tr}">
 		</div>

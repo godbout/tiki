@@ -8,7 +8,7 @@
 		<input type="hidden" name="to" value="{$prefs.contact_user|escape}">
 		{if $prefs.contact_priority_onoff eq 'y'}
 			<div class="form-group">
-				<label for="priority" class="col-sm-3 control-label">{tr}Priority:{/tr}</label>
+				<label for="priority" class="col-sm-3 col-form-label">{tr}Priority:{/tr}</label>
 				<div class="col-sm-9">
 					<select id="priority" name="priority" class="form-control">
 						<option value="1" {if $priority eq 1}selected="selected"{/if}>1 -{tr}Lowest{/tr}-</option>
@@ -22,20 +22,20 @@
 		{/if}
 		{if $user eq ''}
 			<div class="form-group">
-				<label for="from" class="col-sm-3 control-label">{tr}Your email{/tr}:</label>
+				<label for="from" class="col-sm-3 col-form-label">{tr}Your email{/tr}:</label>
 				<div class="col-sm-9">
 					<input type="text" id="from" name="from" value="{$from}" class="form-control">
 				</div>
 			</div>
 		{/if}
 		<div class="form-group">
-			<label for="subject" class="col-sm-3 control-label">{tr}Subject:{/tr}</label>
+			<label for="subject" class="col-sm-3 col-form-label">{tr}Subject:{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" id="subject" name="subject" value="{$subject}" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="body" class="col-sm-3 control-label">{tr}Message:{/tr}</label>
+			<label for="body" class="col-sm-3 col-form-label">{tr}Message:{/tr}</label>
 			<div class="col-sm-9">
 				{textarea rows="20" name="body" id="body" class="form-control" _simple='y' _toolbars='n'}{$body}{/textarea}
 			</div>

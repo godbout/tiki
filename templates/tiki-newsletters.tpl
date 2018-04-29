@@ -51,13 +51,13 @@
 	<form method="post" action="tiki-newsletters.php" class="form-horizontal">
 		<input type="hidden" name="nlId" value="{$nlId|escape}">
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{tr}Name{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Name{/tr}</label>
 			<div class="col-sm-7">
 				<p class="form-control-plaintext">{$nl_info.name|escape}</p>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">{tr}Description{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Description{/tr}</label>
 			<div class="col-sm-7">
 				<p class="form-control-plaintext">{$nl_info.description|escape|nl2br}</p>
 			</div>
@@ -65,7 +65,7 @@
 		{if ($nl_info.allowUserSub eq 'y') or ($tiki_p_admin_newsletters eq 'y')}
 			{if $tiki_p_subscribe_email eq 'y' and (($nl_info.allowAnySub eq 'y' and $user) || !$user)}
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="email">{tr}Email{/tr}</label>
+					<label class="col-sm-3 col-form-label" for="email">{tr}Email{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="email" id="email" value="{$email|escape}" class="form-control">
 					</div>
@@ -77,7 +77,7 @@
 				{include file='antibot.tpl' tr_style="formcolor"}
 			{/if}
 			<div class="form-group">
-				<label class="col-sm-3 control-label"></label>
+				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7">
 					<input type="submit" class="btn btn-secondary btn-sm" name="subscribe" value="{tr}Subscribe to this Newsletter{/tr}">
 				</div>

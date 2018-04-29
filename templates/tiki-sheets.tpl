@@ -48,7 +48,7 @@
 			<form action="tiki-sheets.php" method="post" class="form-horizontal" role="form">
 				<input type="hidden" name="sheetId" value="{$sheetId|escape}">
 				<div class="form-group">
-					<label for="title" class="control-label col-sm-3">
+					<label for="title" class="col-form-label col-sm-3">
 						{tr}Title{/tr}
 					</label>
 					<div class="col-sm-9">
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 				<div class="form-group">				
-					<label for="description" class="control-label col-sm-3">
+					<label for="description" class="col-form-label col-sm-3">
 						{tr}Description{/tr}
 					</label>
 					<div class="col-sm-9">
@@ -74,7 +74,7 @@
 				</div>
 				{if $tiki_p_admin_sheet eq "y"}
 					<div class="form-group">
-						<label for="creator" class="control-label col-sm-3">
+						<label for="creator" class="col-form-label col-sm-3">
 							{tr}Creator{/tr}
 						</label>
 						<div class="col-sm-9">
@@ -83,7 +83,7 @@
 					</div>
 				{/if}
 				<div class="form-group">
-					<label for="parentSheetId" class="control-label col-sm-3">
+					<label for="parentSheetId" class="col-form-label col-sm-3">
 						{tr}Parent Spreadsheet{/tr}
 					</label>
 					<div class="col-sm-9">

@@ -3,7 +3,7 @@
 
 <div class="row form-group">
 	<form method="post" class="col-md-12 form-inline form-horizontal" role="form">
-		<label class="control-label col-sm-2" for="find">{tr}Find{/tr}</label>
+		<label class="col-form-label col-sm-2" for="find">{tr}Find{/tr}</label>
 		<div class="input-group col-sm-8">
 			<input type="text" name="find" class="form-control" id="find" value="{$find|escape}">
 			<input type="hidden" name="list" value="{$entryType}">

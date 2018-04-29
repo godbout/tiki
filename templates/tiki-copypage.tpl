@@ -35,7 +35,7 @@
 	{/if}
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}New name{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}New name{/tr}</label>
 		<div class="col-sm-7">
 			<input type='text' id='newpage' name='newpage' size='40' value='{$newname|escape}' class="form-control">
 		</div>
@@ -43,7 +43,7 @@
 
 	{if $tiki_p_add_object eq 'y' and $prefs.feature_categories == 'y' }
 		<div class="form-group">
-			<label class="col-sm-3 control-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
 			<div class="col-sm-7">
 				<input type="checkbox" name="dupCateg" id="duplicate_categories" value="y" checked="checked">
 			</div>
@@ -52,7 +52,7 @@
 
 	{if $tiki_p_freetags_tag eq 'y' and $prefs.feature_freetags == 'y' }
 		<div class="form-group">
-			<label class="col-sm-3 control-label" for="duplicate_freetags">{tr}Duplicate tags{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="duplicate_freetags">{tr}Duplicate tags{/tr}</label>
 			<div class="col-sm-7">
 				<input type="checkbox" name="dupTags" id="duplicate_freetags" value="y" checked="checked">
 			</div>
@@ -60,7 +60,7 @@
 	{/if}
 
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="copy" value="{tr}Copy{/tr}">
 		</div>

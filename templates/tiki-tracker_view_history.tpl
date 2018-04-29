@@ -12,17 +12,17 @@
 <div class="clearfix">
 	<form method="post" class="form">
 		<div class="form-group col-sm-3">
-			<label class="control-label">{tr}Version{/tr}
+			<label class="col-form-label">{tr}Version{/tr}
 				<input type="text" name="version" value="{if !empty($filter.version)}{$filter.version|escape}{/if}" class="form-control">
 			</label>
 		</div>
 		<div class="form-group col-sm-3">
-			<label class="control-label">{tr}Field ID{/tr}
+			<label class="col-form-label">{tr}Field ID{/tr}
 				<input type="text" name="fieldId" value="{if !empty($fieldId)}{$fieldId|escape}{/if}" class="form-control">
 			</label>
 		</div>
 		<div class="form-group col-sm-3">
-			<label class="control-label">
+			<label class="col-form-label">
 				{tr}Diff Style{/tr}
 			</label>
 			<br>

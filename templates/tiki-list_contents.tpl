@@ -100,19 +100,19 @@
 			<input type="hidden" name="contentId" value="{$contentId|escape}">
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Label{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Label{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="contentLabel" style="width:40%" value="{$contentLabel|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Description{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Description{/tr}</label>
 				<div class="col-sm-7">
 					<textarea rows="5" cols="40" name="description" style="width:95%" class="form-control">{$description|escape}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label"></label>
+				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7">
 					<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 				</div>

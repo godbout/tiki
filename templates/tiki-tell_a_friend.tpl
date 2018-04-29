@@ -26,14 +26,14 @@
 <form method="post" action="tiki-tell_a_friend.php" id="tellafriend" class="form-horizontal">
 	<input type="hidden" name="url" value="{$url|escape:url}">
 	<div class="form-group">
-		<label class="control-label col-sm-3">{tr}Link{/tr}</label>
+		<label class="col-form-label col-sm-3">{tr}Link{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			<a href={$prefix}{$url}>{$prefix}{$url}</a>
 		</div>
 	</div>
 	{if $report ne 'y'}
 		<div class="form-group">
-			<label class="control-label col-sm-3">{tr}Friend's email{/tr}</label>
+			<label class="col-form-label col-sm-3">{tr}Friend's email{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" size="60" name="addresses" value="{$addresses|escape}" class="form-control">
 				<div class="form-text">
@@ -45,19 +45,19 @@
 		<input type="hidden" name="report" value="y">
 	{/if}
 	<div class="form-group">
-		<label class="control-label col-sm-3">{tr}Your name{/tr}</label>
+		<label class="col-form-label col-sm-3">{tr}Your name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="name" value="{$name}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-3">{tr}Your email{/tr}{if empty($email)} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}</label>
+		<label class="col-form-label col-sm-3">{tr}Your email{/tr}{if empty($email)} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}</label>
 		<div class="col-sm-7">
 			<div class="mandatory_field"><input class="form-control" type="text" name="email" value="{$email}"></div>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-3">{tr}Your comment{/tr}</label>
+		<label class="col-form-label col-sm-3">{tr}Your comment{/tr}</label>
 		<div class="col-sm-7">
 			<textarea name="comment" class="form-control" rows="10" id='comment'>{$comment|escape|@default:"{tr}I found an interesting page that I thought you would like.{/tr}"}</textarea>
 		</div>
@@ -66,7 +66,7 @@
 		{include file='antibot.tpl' td_style="formcolor"}
 	{/if}
 	<div class="form-group">
-		<label class="control-label col-sm-3"></label>
+		<label class="col-form-label col-sm-3"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="send" value="{tr}Send{/tr}">
 			{if $prefs.auth_token_tellafriend eq 'y'}

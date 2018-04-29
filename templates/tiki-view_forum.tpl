@@ -172,14 +172,14 @@
 				<input type="hidden" name="forumId" value="{$forumId|escape}">
 				<div class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="comments_title">{tr}Title{/tr}</label>
+						<label class="col-sm-2 col-form-label" for="comments_title">{tr}Title{/tr}</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" name="comments_title" id="comments_title" value="{$comment_title|escape}">
 						</div>
 					</div>
 					{if $forum_info.forum_use_password ne 'n'}
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="comment_password">{tr}Password{/tr}</label>
+							<label class="col-sm-2 col-form-label" for="comment_password">{tr}Password{/tr}</label>
 							<div class="col-sm-10">
 								<input type="password" name="comment_password" id="comment_password" class="form-control">
 							</div>
@@ -187,7 +187,7 @@
 					{/if}
 					{if $tiki_p_admin_forum eq 'y' or $forum_info.topic_smileys eq 'y'}
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="comments_topictype">{tr}Type{/tr}</label>
+						<label class="col-sm-2 col-form-label" for="comments_topictype">{tr}Type{/tr}</label>
 						<div class="col-sm-2">
 							{if $tiki_p_admin_forum eq 'y'}
 									<select name="comment_topictype" id="comment_topictype" class="form-control comment_topictype">
@@ -220,21 +220,21 @@
 
 					{if $forum_info.topic_summary eq 'y'}
 						<div class="form-group">
-							<label class="col-sm-2 control-label">{tr}Summary{/tr}</label>
+							<label class="col-sm-2 col-form-label">{tr}Summary{/tr}</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" name="comment_topicsummary" id="comment_topicsummary" value="{$comment_topicsummary|escape}" maxlength="240">
 							</div>
 						</div>
 					{/if}
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="editpost">{tr}Message{/tr}</label>
+						<label class="col-sm-2 col-form-label" for="editpost">{tr}Message{/tr}</label>
 						<div class="col-sm-10">
 							{textarea id="editpost" class="form-control" name="comments_data" _simple="y" codemirror="y" syntax="tiki" _toolbars=$prefs.feature_forum_parse}{$comment_data}{/textarea}
 						</div>
 					</div>
 					{if ($forum_info.att eq 'att_all') or ($forum_info.att eq 'att_admin' and $tiki_p_admin_forum eq 'y') or ($forum_info.att eq 'att_perm' and $tiki_p_forum_attach eq 'y')}
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="userfile1">{tr}Attach a file{/tr}</label>
+							<label class="col-sm-2 col-form-label" for="userfile1">{tr}Attach a file{/tr}</label>
 							<div class="col-sm-10">
 								<input type="hidden" name="MAX_FILE_SIZE" value="{$forum_info.att_max_size|escape}">
 								<input name="userfile1" id="userfile1" class="form-control" type="file">{tr}Maximum size:{/tr} {$forum_info.att_max_size|kbsize}
@@ -328,7 +328,7 @@
 						});
 					{/jq}
 					<div class="form-group forum_deliberation" style="display: none;">
-						<label class="col-sm-2 control-label">{tr}Deliberation{/tr}</label>
+						<label class="col-sm-2 col-form-label">{tr}Deliberation{/tr}</label>
 						<div class="col-sm-10 forum_deliberation_items">
 							<div class="forum_deliberation_items_toolbar">
 								{button href="#" _class="forum_deliberation_add_item" _text="{tr}Add Deliberation Item{/tr}"}
@@ -346,7 +346,7 @@
 
 					{if $user and $prefs.feature_user_watches eq 'y' and (!isset($comments_threadId) or $comments_threadId eq 0)}
 						<div class="form-group">
-							<label class="col-sm-2 control-label">{tr}Watch for replies{/tr}</label>
+							<label class="col-sm-2 col-form-label">{tr}Watch for replies{/tr}</label>
 							<div class="col-sm-10">
 								<input type="radio" name="set_thread_watch" value="y" id="thread_watch_yes" checked="checked">
 								<label for="thread_watch_yes">{tr}Send me an email when someone replies to my topic{/tr}</label>
@@ -358,7 +358,7 @@
 					{/if}
 					{if empty($user) && $prefs.feature_user_watches eq 'y'}
 						<div class="form-group">
-							<label for="anonymous_email" class="col-sm-2 control-label">{tr}If you would like to be notified when someone replies to this topic<br>please tell us your e-mail address:{/tr}</label></td>
+							<label for="anonymous_email" class="col-sm-2 col-form-label">{tr}If you would like to be notified when someone replies to this topic<br>please tell us your e-mail address:{/tr}</label></td>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="anonymous_email" name="anonymous_email">
 							</div>
@@ -366,7 +366,7 @@
 					{/if}
 
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="anonymous_name">{tr}Post{/tr}</label>
+						<label class="col-sm-2 col-form-label" for="anonymous_name">{tr}Post{/tr}</label>
 						<div class="col-sm-10">
 							{if empty($user)}
 								{tr}Enter your name:{/tr}&nbsp;<input type="text" maxlength="50" id="anonymous_name" name="anonymous_name">
@@ -785,7 +785,7 @@
 							<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
 							<input type="hidden" name="forumId" value="{$forumId|escape}">
 							<div class="form-group">
-								<label class="col-md-4 control-label form-control-sm" for="filter_time">{tr}Last post date{/tr}</label>
+								<label class="col-md-4 col-form-label form-control-sm" for="filter_time">{tr}Last post date{/tr}</label>
 								<div class="col-md-8">
 									<select id="filter_time" name="time_control" class="form-control form-control-sm">
 										<option value="" {if $smarty.request.time_control eq ''}selected="selected"{/if}>{tr}All posts{/tr}</option>
@@ -797,7 +797,7 @@
 							</div>
 							{if $prefs.feature_forum_topics_archiving eq 'y'}
 								<div class="form-group">
-									<label class="col-md-4 control-label form-control-sm" for="show_archived">{tr}Show archived posts{/tr}</label>
+									<label class="col-md-4 col-form-label form-control-sm" for="show_archived">{tr}Show archived posts{/tr}</label>
 									<div class="col-md-8">
 										<input type="checkbox" class="form-check-input" id="show_archived" name="show_archived" {if $show_archived eq 'y'}checked="checked"{/if}>
 									</div>
@@ -805,7 +805,7 @@
 							{/if}
 							{if $user}
 								<div class="form-group">
-									<label class="col-md-4 control-label form-control-sm" for="filter_poster">{tr}Containing posts by{/tr}</label>
+									<label class="col-md-4 col-form-label form-control-sm" for="filter_poster">{tr}Containing posts by{/tr}</label>
 									<div class="col-md-8">
 										<select id="filter_poster" class="form-control form-control-sm" name="poster">
 											<option value=""{if empty($smarty.request.poster)} selected="selected"{/if}>
@@ -819,7 +819,7 @@
 								</div>
 							{/if}
 							<div class="form-group">
-								<label class="col-md-4 control-label form-control-sm" for="filter_type">{tr}Type{/tr}</label>
+								<label class="col-md-4 col-form-label form-control-sm" for="filter_type">{tr}Type{/tr}</label>
 								<div class="col-md-8">
 									<select id="filter_type" name="filter_type" class="form-control form-control-sm">
 										<option value=""{if empty($smarty.request.filter_type)}selected="selected"{/if}>
@@ -841,7 +841,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-4 control-label form-control-sm" for="filter_replies">{tr}Replies{/tr}</label>
+								<label class="col-md-4 col-form-label form-control-sm" for="filter_replies">{tr}Replies{/tr}</label>
 								<div class="col-md-8">
 									<select id="filter_replies" name="reply_state" class="form-control form-control-sm">
 										<option value=""{if empty($smarty.request.reply_state)} selected="selected"{/if}>

@@ -14,7 +14,7 @@
 	{if $offset}<input type="hidden" name="offset" value="{$offset|escape}">{/if}
 	{if $numrows ne $prefs.maxRecords and $numrows}<input type="hidden" name="numrows" value="{$numrows|escape}">{/if}
 	<div class="form-group">
-		<label for="event" class="control-label col-sm-3">
+		<label for="event" class="col-form-label col-sm-3">
 			{tr}Event{/tr}
 		</label>
 		<div class="col-sm-9">
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="destination" class="control-label col-sm-3">
+		<label for="destination" class="col-form-label col-sm-3">
 			{tr}Destination{/tr}
 		</label>
 		<div class="col-sm-9">
@@ -49,7 +49,7 @@
 		</div>
 	</div>
 	<div id="loginrow" class="form-group">
-		<label for="flogin" class="control-label col-sm-3">
+		<label for="flogin" class="col-form-label col-sm-3">
 			{tr}User{/tr}
 		</label>
 		<div class="col-sm-6">
@@ -61,7 +61,7 @@
 		</div>
 	</div>
 	<div class="form-group" id="emailrow" style="display:none">
-		<label for="femail" class="control-label col-sm-3">
+		<label for="femail" class="col-form-label col-sm-3">
 			{tr}Email{/tr}
 		</label>
 		<div class="col-sm-9">

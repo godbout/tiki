@@ -2,13 +2,13 @@
 
 <form method="post" action="tiki-import_structuredtext.php" class="form-horizontal">
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Name of the dump file (it has to be in dump/){/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Name of the dump file (it has to be in dump/){/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="path" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Overwrite existing pages if the name is the same{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Overwrite existing pages if the name is the same{/tr}</label>
 		<div class="col-sm-1">
 			<div class="radio">
 				<label>
@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Remove previously existing page versions:{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Remove previously existing page versions:{/tr}</label>
 		<div class="col-sm-1">
 			<div class="radio">
 				<label>
@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}import{/tr}">
 		</div>

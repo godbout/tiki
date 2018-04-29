@@ -6,7 +6,7 @@
 			</label>
 		</div>
 	{else}
-		<label class="control-label field_{$permname}" for="ins_{$field_id}">{$field_name} {$mandatory_sym}</label>
+		<label class="col-form-label field_{$permname}" for="ins_{$field_id}">{$field_name} {$mandatory_sym}</label>
 		{$field_input}
 	{/if}
 	{$description}

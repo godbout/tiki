@@ -21,13 +21,13 @@
 			<input type="hidden" name="pollId" value="{$pollId|escape}">
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="title">{tr}Title{/tr}</label>
+				<label class="col-sm-3 col-form-label" for="title">{tr}Title{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="title" id="title" value="{$info.title|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="active">{tr}Active{/tr}</label>
+				<label class="col-sm-3 col-form-label" for="active">{tr}Active{/tr}</label>
 				<div class="col-sm-7">
 					<select name="active" id="active" class="form-control">
 						<option value='a' {if $info.active eq 'a'}selected="selected"{/if}>{tr}active{/tr}</option>
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Options{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Options{/tr}</label>
 				<div class="col-sm-7">
 					<a href="javascript://toggle quick options" onclick="pollsToggleQuickOptions()">{tr}Toggle Quick Options{/tr}</a>
 				</div>
@@ -64,14 +64,14 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Publish Date{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Publish Date{/tr}</label>
 				<div class="col-sm-7">
 					{html_select_date time=$info.publishDate end_year="+1" field_order=$prefs.display_field_order} {tr}at{/tr}
 					{html_select_time time=$info.publishDate display_seconds=false use_24_hours=$use_24hr_clock}
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Votes older than x days are not considered{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Votes older than x days are not considered{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" id="voteConsiderationSpan" name="voteConsiderationSpan" size="5" value="{$info.voteConsiderationSpan|escape}" class="form-control">
 					<div class="small-hint">
@@ -83,7 +83,7 @@
 				{include file='categorize.tpl'}
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label"></label>
+				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
 				</div>
@@ -197,7 +197,7 @@
 		<h2>{tr}Add poll to pages{/tr}</h2>
 		<form action="tiki-admin_polls.php" method="post" class="form-horizontal">
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Poll{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Poll{/tr}</label>
 				<div class="col-sm-7">
 					<select name="poll_template" class="form-control">
 						{section name=ix loop=$channels}
@@ -210,13 +210,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Title{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Title{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="poll_title" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Wiki pages{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Wiki pages{/tr}</label>
 				<div class="col-sm-7">
 					<select name="pages[]" multiple="multiple" class="form-control">
 						{section name=ix loop=$listPages}
@@ -227,13 +227,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Lock the pages{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Lock the pages{/tr}</label>
 				<div class="col-sm-7">
 					<input type="checkbox" name="locked">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label"></label>
+				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 					<input type="submit" class="btn btn-primary btn-sm" name="addPoll" value="{tr}Add{/tr}">
 				</div>

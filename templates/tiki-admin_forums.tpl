@@ -193,19 +193,19 @@
 					<fieldset>
 						<legend>{tr}Main details{/tr}</legend>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="name">{tr}Name{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="name">{tr}Name{/tr}</label>
 							<div class="col-sm-8">
 								<input type="text" name="name" class="form-control" id="name" value="{$name|escape}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="name">{tr}Description{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="name">{tr}Description{/tr}</label>
 							<div class="col-sm-8">
 								<textarea name="description" rows="4" class="form-control" id="description">{$description|escape}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="section">{tr}Section{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="section">{tr}Section{/tr}</label>
 							<div class="col-sm-4">
 								<select name="section" id="section" class="form-control">
 									<option value="" {if $forumSection eq ""}selected="selected"{/if}>{tr}None{/tr}</option>
@@ -223,7 +223,7 @@
 						{include file='categorize.tpl' labelcol='4' inputcol='8'}
 						{if $prefs.feature_multilingual eq 'y'}
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="forumLanguage">{tr}Language{/tr}</label>
+								<label class="col-sm-4 col-form-label" for="forumLanguage">{tr}Language{/tr}</label>
 								<div class="col-sm-8">
 									<select name="forumLanguage" id="forumLanguage" class="checkbox-inline">
 										<option value="">{tr}Unknown{/tr}</option>
@@ -236,7 +236,7 @@
 						{/if}
 						{if $prefs.feature_file_galleries eq 'y' && $prefs.forum_image_file_gallery}
 							<div class="form-group">
-								<label class="col-sm-4 control-label" for="image">{tr}Image{/tr}</label>
+								<label class="col-sm-4 col-form-label" for="image">{tr}Image{/tr}</label>
 								<div class="col-sm-8">
 									{file_selector name="image" value=$image type="image/*" galleryId=$prefs.forum_image_file_gallery}
 									<div class="form-text">
@@ -246,57 +246,57 @@
 							</div>
 						{/if}
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="is_flat">{tr}Only allow replies to the first message (flat forum){/tr}</label>
+							<label class="col-sm-4 col-form-label" for="is_flat">{tr}Only allow replies to the first message (flat forum){/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" class="form-check-input" name="is_flat" id="is_flat" {if $is_flat eq 'y'}checked="checked"{/if}>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="moderator_user">{tr}Moderator user{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="moderator_user">{tr}Moderator user{/tr}</label>
 							<div class="col-sm-8">
 								<input id="moderator_user" class="form-control" type="text" name="moderator" value="{$moderator|escape}">
 								{autocomplete element='#moderator_user' type='username'}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="moderator_group">{tr}Moderator group{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="moderator_group">{tr}Moderator group{/tr}</label>
 							<div class="col-sm-8">
 								<input id="moderator_group" type="text" class="form-control" name="moderator_group" id="moderator_group" value="{$moderator_group|escape}">
 								{autocomplete element='#moderator_group' type='groupname'}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="forum_use_password">{tr}Password protected{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="forum_use_password">{tr}Password protected{/tr}</label>
 							<div class="col-sm-4">
 								{html_options name=forum_use_password options=$forum_use_password_options selected=$forum_use_password class=form-control}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="forum_password">{tr}Forum password{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="forum_password">{tr}Forum password{/tr}</label>
 							<div class="col-sm-8">
 								<input type="text" name="forum_password" id="forum_password" class="form-control" value="{$forum_password|escape}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="controlFlood">{tr}Prevent flooding{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="controlFlood">{tr}Prevent flooding{/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" class="form-check-input" name="controlFlood" id="controlFlood" {if $controlFlood eq 'y'}checked="checked"{/if}>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="floodInterval">{tr}Minimum time between posts{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="floodInterval">{tr}Minimum time between posts{/tr}</label>
 							<div class="col-sm-4 checkbox-inline">
 								{html_options name=floodInterval id=floodInterval class="form-control" options=$flood_options selected=$floodInterval}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="useMail"><input type="checkbox" class="form-check-input" name="useMail" id="useMail" {if $useMail eq 'y'}checked="checked"{/if}> {tr}Send this forums posts to this email{/tr} </label>
+							<label class="col-sm-4 col-form-label" for="useMail"><input type="checkbox" class="form-check-input" name="useMail" id="useMail" {if $useMail eq 'y'}checked="checked"{/if}> {tr}Send this forums posts to this email{/tr} </label>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="mail" value="{$mail|escape}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="usePruneUnreplied">
+							<label class="col-sm-4 col-form-label" for="usePruneUnreplied">
 								<input type="checkbox" class="form-check-input" name="usePruneUnreplied" id="usePruneUnreplied" {if $usePruneUnreplied eq 'y'}checked="checked"{/if}> {tr}Prune unreplied messages after{/tr}
 							</label>
 							<div class="col-sm-4 checkbox-inline">
@@ -304,7 +304,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="usePruneOld">
+							<label class="col-sm-4 col-form-label" for="usePruneOld">
 								<input type="checkbox" class="form-check-input" name="usePruneOld" id="usePruneOld" {if $usePruneOld eq 'y'}checked="checked"{/if}> {tr}Prune old messages after{/tr}
 							</label>
 							<div class="col-sm-4 checkbox-inline">
@@ -316,46 +316,46 @@
 					<fieldset>
 						<legend>{tr}Forum-Mailing list synchronization{/tr}</legend>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="outbound_address">{tr}Forward messages to this forum to this email address, in a format that can be used for sending back to the inbound forum email address{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="outbound_address">{tr}Forward messages to this forum to this email address, in a format that can be used for sending back to the inbound forum email address{/tr}</label>
 							<div class="col-sm-8">
 								<input type="text" name="outbound_address" id="outbound_address" class="form-control" value="{$outbound_address|escape}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="outbound_mails_for_inbound_mails">{tr}Send mails even when the post is generated by inbound mail{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="outbound_mails_for_inbound_mails">{tr}Send mails even when the post is generated by inbound mail{/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" class="form-check-input" name="outbound_mails_for_inbound_mails" id="outbound_mails_for_inbound_mails" {if $outbound_mails_for_inbound_mails eq 'y'}checked="checked"{/if}>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="outbound_mails_reply_link">{tr}Append a reply link to outbound mails{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="outbound_mails_reply_link">{tr}Append a reply link to outbound mails{/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" class="form-check-input" name="outbound_mails_reply_link" id="outbound_mails_reply_link" {if $outbound_mails_reply_link eq 'y'}checked="checked"{/if}>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="outbound_from">{tr}Originating email address for mails from this forum{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="outbound_from">{tr}Originating email address for mails from this forum{/tr}</label>
 							<div class="col-sm-8">
 								<input type="text" name="outbound_from" id="outbound_from" class="form-control" value="{$outbound_from|escape}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{tr}Add messages from this email to the forum{/tr}</label>
+							<label class="col-sm-4 col-form-label">{tr}Add messages from this email to the forum{/tr}</label>
 							<div class="col-sm-8">
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="inbound_pop_server">{tr}POP3 server{/tr}</label>
+									<label class="col-sm-4 col-form-label" for="inbound_pop_server">{tr}POP3 server{/tr}</label>
 									<div class="col-sm-8">
 										<input type="text" name="inbound_pop_server" id="inbound_pop_server" class="form-control" value="{$inbound_pop_server|escape}">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="inbound_pop_user">{tr}User{/tr}</label>
+									<label class="col-sm-4 col-form-label" for="inbound_pop_user">{tr}User{/tr}</label>
 									<div class="col-sm-8">
 										<input type="text" name="inbound_pop_user" id="inbound_pop_user" class="form-control"value="{$inbound_pop_user|escape}" autocomplete="off">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" for="inbound_pop_password">{tr}Password{/tr}</label>
+									<label class="col-sm-4 col-form-label" for="inbound_pop_password">{tr}Password{/tr}</label>
 									<div class="col-sm-8">
 										<input type="password" name="inbound_pop_password" id="inbound_pop_password" class="form-control" value="{$inbound_pop_password|escape}" autocomplete="off">
 									</div>
@@ -367,13 +367,13 @@
 					<fieldset>
 						<legend>{tr}Forums list{/tr}</legend>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="show_description">{tr}Show description{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="show_description">{tr}Show description{/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" class="form-check-input" name="show_description" id="show_description" {if $show_description eq 'y'}checked="checked"{/if}>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="forum_last_n">{tr}Display last post titles{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="forum_last_n">{tr}Display last post titles{/tr}</label>
 							<div class="col-sm-4 checkbox-inline">
 								{html_options name=forum_last_n id=forum_last_n options=$forum_last_n_options selected=$forum_last_n}
 							</div>
@@ -383,19 +383,19 @@
 					<fieldset>
 						<legend>{tr}Forum topics (threads) list{/tr}</legend>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="topicOrdering">{tr}Default ordering for topics{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="topicOrdering">{tr}Default ordering for topics{/tr}</label>
 							<div class="col-sm-8 checkbox-inline">
 								{html_options name=topicOrdering id=topicOrdering options=$topicOrdering_options selected=$topicOrdering}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="topicsPerPage">{tr}Topics per page{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="topicsPerPage">{tr}Topics per page{/tr}</label>
 							<div class="col-sm-4">
 								<input type="text" class="form-control" name="topicsPerPage" id="topicsPerPage" value="{$topicsPerPage|escape}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{tr}Topic list configuration{/tr}</label>
+							<label class="col-sm-4 col-form-label">{tr}Topic list configuration{/tr}</label>
 							<div class="col-sm-8">
 								<div class="form-check">
 									<label for="topics_list_replies">
@@ -440,13 +440,13 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="topic_smileys">{tr}Use topic smileys{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="topic_smileys">{tr}Use topic smileys{/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" name="topic_smileys" id="topic_smileys" {if $topic_smileys eq 'y'}checked="checked"{/if}>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="topic_summary">{tr}Show topic summary{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="topic_summary">{tr}Show topic summary{/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" name="topic_summary" id="topic_summary" {if $topic_summary eq 'y'}checked="checked"{/if}>
 							</div>
@@ -456,19 +456,19 @@
 					<fieldset>
 						<legend>{tr}Forum threads{/tr}</legend>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="threadOrdering">{tr}Default ordering of threads{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="threadOrdering">{tr}Default ordering of threads{/tr}</label>
 							<div class="col-sm-8">
 								{html_options name=threadOrdering id=threadOrdering options=$threadOrdering_options selected=$threadOrdering}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="threadStyle">{tr}Default style of threads{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="threadStyle">{tr}Default style of threads{/tr}</label>
 							<div class="col-sm-8">
 								{html_options name=threadStyle id=threadStyle options=$threadStyle_options selected=$threadStyle}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="commentsPerPage">{tr}Default number of comments per page{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="commentsPerPage">{tr}Default number of comments per page{/tr}</label>
 							<div class="col-sm-8">
 								{html_options name=commentsPerPage id=commentsPerPage options=$commentsPerPage_options selected=$commentsPerPage}
 							</div>
@@ -478,13 +478,13 @@
 					<fieldset>
 						<legend>{tr}Posts{/tr}</legend>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="approval_type">{tr}Approval type{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="approval_type">{tr}Approval type{/tr}</label>
 							<div class="col-sm-4 checkbox-inline">
 								{html_options name=approval_type for=approval_type id=approval_type class=form-control options=$approval_options selected=$approval_type}
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label">{tr}User information display{/tr}</label>
+							<label class="col-sm-4 col-form-label">{tr}User information display{/tr}</label>
 							<div class="col-sm-8">
 								<div class="form-check">
 									<label for="ui_avatar">
@@ -524,7 +524,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="vote_threads">{tr}Posts can be rated{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="vote_threads">{tr}Posts can be rated{/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" name="vote_threads" id="vote_threads" {if $vote_threads eq 'y'}checked="checked"{/if}>
 							</div>
@@ -534,13 +534,13 @@
 					<fieldset>
 						<legend>{tr}Attachments{/tr}</legend>
 						<div class="form-group">
-							<label class="col-sm-4 control-label" for="att">{tr}Permission{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="att">{tr}Permission{/tr}</label>
 							<div class="col-sm-8 checkbox-inline">
 								{html_options name=att id=att options=$attachment_options selected=$att}
 							</div>
 						</div>
 						<div class="row">
-							<label class="col-sm-4 control-label" for="att_store_db">{tr}Store attachments in{/tr}</label>
+							<label class="col-sm-4 col-form-label" for="att_store_db">{tr}Store attachments in{/tr}</label>
 							<div class="col-sm-2 checkbox-inline">
 								<input type="radio" name="att_store" id="att_store_db" value="db" {if $att_store eq 'db'}checked="checked"{/if}> {tr}Database{/tr}
 							</div>
@@ -548,20 +548,20 @@
 						<div class="form-group">
 							<div class="col-sm-2 col-sm-offset-4 checkbox-inline">
 								<input type="radio" name="att_store" value="dir" {if $att_store eq 'dir'}checked="checked"{/if}> {tr}File system{/tr}</div>
-							<label class="control-label col-sm-2" for="att_store_dir">{tr}Path{/tr}</label>
+							<label class="col-form-label col-sm-2" for="att_store_dir">{tr}Path{/tr}</label>
 							<div class="col-sm-4 checkbox-inline">
 								<input type="text" name="att_store_dir" id="att_store_dir" value="{$att_store_dir|escape}" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-sm-4" for="att_max_size">{tr}Max attachment size (bytes){/tr}</label>
+							<label class="col-form-label col-sm-4" for="att_max_size">{tr}Max attachment size (bytes){/tr}</label>
 							<div class="col-sm-8">
 								<input type="text" name="att_max_size" id="att_max_size" class="form-control" value="{$att_max_size|escape}">
 								<span class="form-text">{tr}Max:{/tr} {$maxAttachSize|escape} ({$maxAttachSize|kbsize})</span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class=" col-sm-4 control-label" for="att_list_nb">{tr}Shows number of attachments of the all thread in forum list{/tr}</label>
+							<label class=" col-sm-4 col-form-label" for="att_list_nb">{tr}Shows number of attachments of the all thread in forum list{/tr}</label>
 								<div class="col-sm-8">
 									<input type="checkbox" class="checkbox-inline" id="att_list_nb" name="att_list_nb"{if $att_list_nb eq 'y'} checked="checked"{/if} id="att_list_nb">
 								</div>
@@ -577,19 +577,19 @@
 				<h2>{tr}Duplicate Forum{/tr}</h2>
 				<form action="tiki-admin_forums.php" method="post" class="form-horizontal" role="form">
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="duplicate_name">{tr}Name{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="duplicate_name">{tr}Name{/tr}</label>
 						<div class="col-sm-8">
 							<input type="text" name="duplicate_name" id="duplicate_name" class="form-control" value="{$name|escape}">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="duplicate_description">{tr}Description{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="duplicate_description">{tr}Description{/tr}</label>
 						<div class="col-sm-8">
 							<textarea name="description" rows="4" id="duplicate_description" class="form-control">{$description|escape}</textarea>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="duplicate_forumId">{tr}Forum{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="duplicate_forumId">{tr}Forum{/tr}</label>
 						<div class="col-sm-8">
 							<select name="duplicate_forumId" id="duplicate_forumId" class="form-control">
 								{section name=ix loop=$allForums}
@@ -599,13 +599,13 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
 						<div class="col-sm-8 checkbox-inline">
 							<input type="checkbox" name="dupCateg" id="duplicate_categories">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="duplicate_perms">{tr}Duplicate permissions{/tr}</label>
+						<label class="col-sm-4 col-form-label" for="duplicate_perms">{tr}Duplicate permissions{/tr}</label>
 						<div class="col-sm-8 checkbox-inline">
 							<input type="checkbox" name="dupPerms" id="duplicate_perms">
 						</div>

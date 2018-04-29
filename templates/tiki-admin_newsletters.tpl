@@ -108,13 +108,13 @@
 			<input type="hidden" name="nlId" value="{$info.nlId|escape}">
 			<input type="hidden" name="author" value="{$user|escape}">
 			<div class="form-group">
-				<label class="col-md-2 control-label"> {tr}Name:{/tr} </label>
+				<label class="col-md-2 col-form-label"> {tr}Name:{/tr} </label>
 				<div class="col-md-10">
 						<input class="form-control" type="text" name="name" value="{$info.name|escape}">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label" for="description">{tr}Description:{/tr}</label>
+				<label class="col-md-2 col-form-label" for="description">{tr}Description:{/tr}</label>
 				<div class="col-md-10">
 					<textarea class="form-control" name="description" id="description">{$info.description|escape}</textarea>
 				</div>
@@ -168,14 +168,14 @@
 				</label>
 			</div>
 			<div class="form-group">
-				<label class="col-md-5 control-label" for="articleClipRangeDays">
+				<label class="col-md-5 col-form-label" for="articleClipRangeDays">
 					{tr}Clip articles published in the past number of days{/tr}</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" name="articleClipRangeDays" id="articleClipRangeDays" value="{$info.articleClipRangeDays|escape}">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-5 control-label" for="articleClipTypes">
+				<label class="col-md-5 col-form-label" for="articleClipTypes">
 					{tr}Article types to clip{/tr}</label>
 				<div class="col-md-4">
 					<select id="articleClipTypes" name="articleClipTypes[]" class="form-control" multiple="multiple">

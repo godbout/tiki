@@ -380,7 +380,7 @@
 
 
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="priority">{tr}Priority{/tr}</label>
+							<label class="col-sm-2 col-form-label" for="priority">{tr}Priority{/tr}</label>
 							<div class="col-sm-10">
 								<select name="priority" id="priority" class="form-control">
 									<option value="1" {if $priority eq 1}selected="selected"{/if}>1: {tr}Lowest{/tr}</option>
@@ -392,13 +392,13 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="subject">{tr}Subject{/tr}</label>
+							<label class="col-sm-2 col-form-label" for="subject">{tr}Subject{/tr}</label>
 							<div class="col-sm-10">
 								<input type="text" name="subject" id="subject" value="" maxlength="255" class="form-control">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="message">{tr}Message Body{/tr}</label>
+							<label class="col-sm-2 col-form-label" for="message">{tr}Message Body{/tr}</label>
 							<div class="col-sm-10">
 								<textarea rows="20" class="form-control" name="body" id="message"></textarea>
 							</div>

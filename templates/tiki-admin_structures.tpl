@@ -194,7 +194,7 @@
 
 			{if $tiki_p_admin eq 'y'}
 				<div class="form-group">
-					<label for="batchaction" class="control-label">{tr}Perform action with selected{/tr}</label>
+					<label for="batchaction" class="col-form-label">{tr}Perform action with selected{/tr}</label>
 					<div class="input-group col-sm-6">
 						<select name="batchaction" class="form-control">
 							<option value="">{tr}...{/tr}</option>
@@ -217,19 +217,19 @@
 			<h2>{tr}Create Structure{/tr}</h2>
 			<form class="form-horizontal" action="tiki-admin_structures.php" method="post">
 				<div class="form-group">
-					<label class="control-label col-md-3" for="name">{tr}Structure{/tr}</label>
+					<label class="col-form-label col-md-3" for="name">{tr}Structure{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" name="name" id="name" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-3" for="alias">{tr}Alias{/tr}</label>
+					<label class="col-form-label col-md-3" for="alias">{tr}Alias{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" name="alias" id="alias" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-3" for="tree">{tr}Tree{/tr}</label>
+					<label class="col-form-label col-md-3" for="tree">{tr}Tree{/tr}</label>
 					<div class="col-md-9">
 						<textarea rows="5" cols="60" id="tree" name="tree" class="form-control"></textarea>
 						<div class="form-text">{tr}Use single spaces to indent structure levels{/tr}</div>
@@ -237,7 +237,7 @@
 				</div>
 				{if $prefs.lock_wiki_structures eq 'y'}
 					<div class="form-group">
-						<label class="col-sm-3 control-label">{tr}Lock{/tr}</label>
+						<label class="col-sm-3 col-form-label">{tr}Lock{/tr}</label>
 						<div class="col-sm-9">
 							{lock type='wiki structure' object=0}
 						</div>

@@ -75,7 +75,7 @@
 {/if}
 <form action="tiki-admin_links.php" method="post" class="form-horizontal">
 	<div class="form-group">
-		<label class="col-sm-3 control-label">URL</label>
+		<label class="col-sm-3 col-form-label">URL</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			{if $editurl eq 'n'}
 				<input type="text" name="url" class="form-control">
@@ -87,13 +87,13 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Title{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Title{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<input type="text" name="title" value="{$title|escape}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Position{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<input type="text" size="3" name="position" value="{$position|escape}" class="form-control">
 			<div class="small-hint">
@@ -102,7 +102,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label">{tr}Link type{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Link type{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<select name="type" class="form-control">
 				<option value="r" {if $type eq 'r'}selected="selected"{/if}>{tr}replace current page{/tr}</option>
@@ -112,7 +112,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-3 control-label"></label>
+		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">
 		</div>

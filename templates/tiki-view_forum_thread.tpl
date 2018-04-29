@@ -157,7 +157,7 @@
 		<input type="hidden" name="topics_threshold" value="{$smarty.request.topics_threshold|escape}">
 		<input type="hidden" name="forumId" value="{$forumId|escape}">
 
-		<label class="col-sm-2 control-label" for="userfile1">{tr}Show posts:{/tr}</label>
+		<label class="col-sm-2 col-form-label" for="userfile1">{tr}Show posts:{/tr}</label>
 		<div class="col-sm-3">
 			<select class="form-control" name="time_control" onchange="javascript:document.getElementById('time_control').submit();">
 				<option value="" {if empty($smarty.request.time_control)}selected="selected"{/if}>
@@ -180,7 +180,7 @@
 <div class="form-group pull-right">
 	{if $prefs.feature_forum_quickjump eq 'y' && $all_forums|@count > 1}
 		<form class="form-horizontal" role="form" id='quick' method="get" action="tiki-view_forum.php">
-			<label class="col-sm-6 control-label" for="forumId">{tr}Jump to forum:{/tr}</label>
+			<label class="col-sm-6 col-form-label" for="forumId">{tr}Jump to forum:{/tr}</label>
 			<div class="col-sm-6">
 				<select id="forumId" class="form-control" name="forumId" onchange="javascript:document.getElementById('quick').submit();">
 					{section name=ix loop=$all_forums}

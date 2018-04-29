@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="user">{tr}Username{/tr}</label>
+					<label class="col-md-4 col-form-label" for="user">{tr}Username{/tr}</label>
 					<div class="col-md-8">
 						{if empty($userlogin)}
 							<input type="text" class="form-control" id="user" name="user">
@@ -44,7 +44,7 @@
 				</div>
 				{if empty($smarty.request.actpass) and ($new_user_validation neq 'y' or empty($oldpass))}
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="oldpass">{tr}Old Password{/tr}</label>
+						<label class="col-md-4 col-form-label" for="oldpass">{tr}Old Password{/tr}</label>
 						<div class="col-md-8">
 							<input style="display:none">{* This seems to be required for the Chromium browser to prevent replacing the admin password in a new install from console.php with some password stored in the user's browser *}
 							<input type="password" style="display:none" name="oldpass_autocomplete_off">{* This seems to be required for the Chromium browser to prevent replacing the admin password in a new install from console.php with some password stored in the user's browser *}
@@ -53,7 +53,7 @@
 					</div>
 				{/if}
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="pass1">{tr}New Password{/tr}</label>
+					<label class="col-md-4 col-form-label" for="pass1">{tr}New Password{/tr}</label>
 					<div class="col-md-8">
 						<input type="password" class="form-control" placeholder="{tr}New Password{/tr}" name="pass" id="pass1">
 						<div style="margin-left:5px;">
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="pass2">{tr}Repeat Password{/tr}</label>
+					<label class="col-md-4 col-form-label" for="pass2">{tr}Repeat Password{/tr}</label>
 					<div class="col-md-8">
 						<input type="password" class="form-control" name="passAgain" id="pass2" placeholder="{tr}Repeat Password{/tr}">
 						<div id="mypassword2_text">
@@ -91,7 +91,7 @@
 				{/if}
 				{if empty($email)}
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="email">{tr}Email{/tr}</label>
+						<label class="col-md-4 col-form-label" for="email">{tr}Email{/tr}</label>
 						<div class="col-md-8">
 							<input type="email" class="form-control" name="email" id="email" placeholder="{tr}Email{/tr}" value="{if not empty($email)}{$email|escape}{/if}">
 						</div>

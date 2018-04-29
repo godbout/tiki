@@ -45,7 +45,7 @@
 	<fieldset class="tabcontent">
 		{if $blogs|@count gt 1 and ( !isset($blogId) or $blogId eq 0 )}
 			<div class="form-group">
-				<label class="col-sm-2 control-label" for="blogId">{tr}Blog{/tr}</label>
+				<label class="col-sm-2 col-form-label" for="blogId">{tr}Blog{/tr}</label>
 				<div class="col-sm-10">
 					<select name="blogId" id="blogId" class="form-control">
 						{section name=ix loop=$blogs}
@@ -59,28 +59,28 @@
 		{/if}
 		<div class="form-group">
 			<div class="col-md-12">
-				<label class="control-label" for="title">{tr}Title{/tr}</label>
+				<label class="col-form-label" for="title">{tr}Title{/tr}</label>
 				<input type="text" maxlength="255" class="form-control" name="title" id="blog_title" {if isset($post_info.title)}value="{$post_info.title|escape}"{/if}>
 			</div>
 		</div>
 		{if $blog_data.use_excerpt eq 'y'}
 			<div class="form-group">
 				<div class="col-md-12">
-					<label class="control-label" for="post_excerpt">{tr}Excerpt{/tr}</label>
+					<label class="col-form-label" for="post_excerpt">{tr}Excerpt{/tr}</label>
 					{textarea id="post_excerpt" class="form-control wikiedit" name="excerpt" rows="3"}{if isset($post_info.excerpt)}{$post_info.excerpt}{/if}{/textarea}
 				</div>
 			</div>
 		{/if}
 		<div class="form-group">
 			<div class="col-md-12">
-				<label class="control-label" for="blogedit">{tr}Body{/tr}</label>
+				<label class="col-form-label" for="blogedit">{tr}Body{/tr}</label>
 				{textarea id='blogedit' class="form-control wikiedit" name="data"}{if isset($data)}{$data}{/if}{/textarea}
 			</div>
 		</div>
 		{if $postId > 0 && $wysiwyg ne 'y'}
 			{if count($post_images) > 0}
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="post_images">{tr}Images{/tr}</label>
+					<label class="col-sm-2 col-form-label" for="post_images">{tr}Images{/tr}</label>
 					<div class="col-sm-10">
 						<table>
 							{section name=ix loop=$post_images}
@@ -104,7 +104,7 @@
 		{/if}
 		{if $prefs.geo_locate_blogpost eq 'y'}
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="geolocation">{tr}Location{/tr}</label>
+				<label class="col-md-4 col-form-label" for="geolocation">{tr}Location{/tr}</label>
 				<div class="col-md-8">
 					{$headerlib->add_map()}
 					<div class="map-container form-control" data-geo-center="{defaultmapcenter}" data-target-field="geolocation" style="height: 250px;"></div>
@@ -113,14 +113,14 @@
 			</div>
 		{/if}
 		<div class="form-group">
-			<label class="col-md-4 control-label" for="blogpriv">{tr}Private{/tr}</label>
+			<label class="col-md-4 col-form-label" for="blogpriv">{tr}Private{/tr}</label>
 			<div class="col-md-8">
 				<input type="checkbox" name="blogpriv" id="blogpriv" {if $blogpriv eq 'y'}checked="checked"{/if}>
 			</div>
 		</div>
 		{if $prefs.feature_blog_edit_publish_date eq 'y'}
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="show_pubdate">{tr}Publish Date{/tr}</label>
+				<label class="col-md-4 col-form-label" for="show_pubdate">{tr}Publish Date{/tr}</label>
 				<div class="col-md-8">
 					{if isset($post_info.created)}
 						{$created = $post_info.created}

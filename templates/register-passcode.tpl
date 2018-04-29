@@ -5,7 +5,7 @@
 {else}
 	{if $prefs.useRegisterPasscode eq 'y'}
 		<div class="form-group">
-			<label class="col-sm-4 control-label" for="passcode">{tr}Passcode to register{/tr} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
+			<label class="col-sm-4 col-form-label" for="passcode">{tr}Passcode to register{/tr} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
 			</label>
 			<div class="col-sm-8">
 				<input class="form-control" required="" type="password" name="passcode" id="passcode" onkeypress="regCapsLock(event)" value="{if !empty($smarty.post.passcode)}{$smarty.post.passcode}{/if}">

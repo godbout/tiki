@@ -96,25 +96,25 @@
 			<input type="hidden" name="questionId" value="{$questionId|escape}">
 			</br>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Question{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Question{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<textarea name="question" class="form-control">{$info.question|escape}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Answer is mandatory{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Answer is mandatory{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<input type="checkbox" name="mandatory" {if $info.mandatory eq 'y'}checked="checked"{/if}>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Position{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<select name="position" class="form-control">{html_options values=$positions output=$positions selected=$info.position}</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Type{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Type{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<select name="type" class="form-control">
 						{foreach $types as $initial => $label}
@@ -124,11 +124,11 @@
 				</div>
 			</div>
 			<div class="form-group type_option type_m type_g">
-				<label class="col-sm-3 control-label">{tr}Required answers{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Required answers{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<div class="col-sm-6">
 						<div class="col-sm-3">
-							<label class="control-label">{tr}Min{/tr}</label>
+							<label class="col-form-label">{tr}Min{/tr}</label>
 						</div>
 						<div class="col-sm-9">
 							<input type="text" name="min_answers" maxlength="4" value="{$info.min_answers}" class="form-control">
@@ -136,7 +136,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="col-sm-3">
-							<label class="control-label">{tr}Maximum{/tr}</label>
+							<label class="col-form-label">{tr}Maximum{/tr}</label>
 						</div>
 						<div class="col-sm-9">
 							<input type="text" name="max_answers" maxlength="4" value="{$info.max_answers}" class="form-control">
@@ -162,13 +162,13 @@
 				{/jq}
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">{tr}Options (if apply):{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Options (if apply):{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<input type="text" name="options" value="{$info.options|escape}" maxlength="80" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label"></label>
+				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 				</div>

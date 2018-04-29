@@ -26,7 +26,7 @@
 			</div>
 			{if !( $searchStyle eq "menu" )}
 				<div class="form-group">
-					<label class="searchboolean control-label" for="boolean">
+					<label class="searchboolean col-form-label" for="boolean">
 						{tr}Advanced search:{/tr} <input type="checkbox" class="form-check-input" name="boolean" id="boolean" {if $boolean eq 'y'} checked="checked"{/if}>
 					</label>
 					<a href="{bootstrap_modal controller=search action=help}">{tr}Search Help{/tr} {icon name='help'}</a>
@@ -34,7 +34,7 @@
 
 				{if $prefs.feature_search_show_last_modification eq 'y'}
 					<div class="form-group">
-						<label class="searchdate control-label" for="date">{tr}Date Search:{/tr}</label>
+						<label class="searchdate col-form-label" for="date">{tr}Date Search:{/tr}</label>
 						<select id="date" class="form-control" name="date" onchange="javascript:submit()">
 							{section name=date start=0 loop=12 step=1}
 								<option value="{$smarty.section.date.index|escape}" {if $smarty.section.date.index eq $date}selected="selected"{/if}>

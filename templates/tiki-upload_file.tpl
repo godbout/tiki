@@ -102,7 +102,7 @@
 				{if $prefs.file_galleries_use_jquery_upload neq 'y' or $editFileId}
 					{if $simpleMode neq 'y'}
 						<div class="form-group">
-							<label for="name" class="col-md-4 control-label">{tr}File title{/tr}</label>
+							<label for="name" class="col-md-4 col-form-label">{tr}File title{/tr}</label>
 							<div class="col-md-8">
 								<input class="form-control" type="text" id="name" name="name[]"
 									{if isset($fileInfo) and $fileInfo.name}
@@ -116,7 +116,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="description" class="col-md-4 control-label">{tr}File description{/tr}</label>
+							<label for="description" class="col-md-4 col-form-label">{tr}File description{/tr}</label>
 							<div class="col-md-8">
 								<textarea class="form-control" id="description" name="description[]">{if isset($fileInfo.description)}{$fileInfo.description|escape}{/if}</textarea>
 								{if isset($gal_info.type) and ($gal_info.type eq "podcast" or $gal_info.type eq "vidcast")}
@@ -127,7 +127,7 @@
 					{/if}
 					{if $prefs.file_galleries_use_jquery_upload neq 'y' || $editFileId}
 						<div class="form-group">
-							<label for="userfile" class="col-md-4 control-label">{if $editFileId}{tr}Re-upload from disk{/tr}{else}{tr}Upload from disk{/tr}{/if}</label>
+							<label for="userfile" class="col-md-4 col-form-label">{if $editFileId}{tr}Re-upload from disk{/tr}{else}{tr}Upload from disk{/tr}{/if}</label>
 							<div class="col-md-8">
 								{if $editFileId}
 									{$fileInfo.filename|escape}
@@ -178,7 +178,7 @@
 					{/if}
 					{if $prefs.fgal_delete_after eq 'y'}
 						<div class="form-group">
-							<label for="deleteAfter" class="col-md-4 control-label">{tr}File can be deleted after{/tr}</label>
+							<label for="deleteAfter" class="col-md-4 col-form-label">{tr}File can be deleted after{/tr}</label>
 							<div class="col-md-8">
 								{if $editFileId}
 									{html_select_duration prefix='deleteAfter' id="deleteAfter" default_value=$fileInfo.deleteAfter}
@@ -201,7 +201,7 @@
 							{/if}
 						{elseif empty($groupforalert)}
 							<div class="form-group">
-								<label for="galleryId" class="col-md-4 control-label">{tr}File gallery{/tr}</label>
+								<label for="galleryId" class="col-md-4 col-form-label">{tr}File gallery{/tr}</label>
 								<div class="col-md-8">
 									<select id="galleryId" name="galleryId[]" class="form-control">
 										<option value="{$treeRootId}" {if $treeRootId eq $galleryId}selected="selected"{/if} style="font-style:italic; border-bottom:1px dashed #666;">{tr}Root{/tr}</option>
@@ -218,14 +218,14 @@
 						{/if}
 					{/if}
 					<div class="form-group">
-						<label for="user" class="col-md-4 control-label">{tr}Uploaded by{/tr}</label>
+						<label for="user" class="col-md-4 col-form-label">{tr}Uploaded by{/tr}</label>
 						<div class="col-md-8">
 							{user_selector id='user' name='user[]' select=$fileInfo.user editable=$tiki_p_admin_file_galleries}
 						</div>
 					</div>
 					{if $prefs.feature_file_galleries_author eq 'y'}
 						<div class="form-group">
-							<label for="author" class="col-md-4 control-label">{tr}Creator{/tr}</label>
+							<label for="author" class="col-md-4 col-form-label">{tr}Creator{/tr}</label>
 							<div class="col-md-8">
 								<input type="text" id="author"name="author[]" value="{$fileInfo.author|escape}"><br>
 								<span class="description">{tr}Creator of file, if different from the 'Uploaded by' user{/tr}</span>
@@ -235,7 +235,7 @@
 					{if !empty($groupforalert)}
 						{if $showeachuser eq 'y'}
 							<div class="form-group">
-								<label class="col-md-4 control-label">{tr}Choose users to alert{/tr}</label>
+								<label class="col-md-4 col-form-label">{tr}Choose users to alert{/tr}</label>
 								<div class="col-md-8">
 									{section name=idx loop=$listusertoalert}
 										<label>
@@ -252,7 +252,7 @@
 					{/if}
 					{if $editFileId}
 						<div class="form-group">
-							<label for="filetype" class="col-md-4 control-label">{tr}File Type{/tr}</label>
+							<label for="filetype" class="col-md-4 col-form-label">{tr}File Type{/tr}</label>
 							<div class="col-md-8">
 								<select id="filetype" class="form-control" name="filetype[]">
 									{if $fileInfo.filetype ne '' }
@@ -410,7 +410,7 @@
 		<h3>{tr}Upload from URL{/tr}</h3>
 		<div class="form-group">
 			<input type="hidden" name="galleryId" value="{$galleryId|escape}">
-			<label class="col-md-4 control-label">{tr}URL:{/tr}</label>
+			<label class="col-md-4 col-form-label">{tr}URL:{/tr}</label>
 			<div class="col-md-8">
 				<input type="url" name="url" placeholder="http://" class="form-control">
 			</div>

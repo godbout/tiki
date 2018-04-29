@@ -286,7 +286,7 @@
 						</div>
 						{if $prefs.feature_wiki_templates eq 'y' and $tiki_p_use_content_templates eq 'y'}
 							<div class="form-group">
-								<label for="templateId" class="col-md-4 control-label">{tr}Apply content template{/tr}</label>
+								<label for="templateId" class="col-md-4 col-form-label">{tr}Apply content template{/tr}</label>
 								<div class="col-md-8">
 									<select class="form-control" id="templateId" name="templateId" onchange="needToConfirm=false;$('#editpageform').submit();">
 										<option value="0">{tr}none{/tr}</option>
@@ -299,7 +299,7 @@
 						{/if}
 						{if $prefs.feature_wiki_usrlock eq 'y' && ($tiki_p_lock eq 'y' || $tiki_p_admin_wiki eq 'y')}
 							<div class="form-group">
-								<label for="lock_it" class="col-md-4 control-label">{tr}Lock this page{/tr}</label>
+								<label for="lock_it" class="col-md-4 col-form-label">{tr}Lock this page{/tr}</label>
 								<div class="col-md-8">
 									<input type="checkbox" id="lock_it" name="lock_it" {if $lock_it eq 'y'}checked="checked"{/if}>
 								</div>
@@ -307,7 +307,7 @@
 						{/if}
 						{if $prefs.wiki_comments_allow_per_page neq 'n'}
 							<div class="form-group">
-								<label for="comments_enabled" class="col-md-4 control-label">{tr}Allow comments on this page{/tr}</label>
+								<label for="comments_enabled" class="col-md-4 col-form-label">{tr}Allow comments on this page{/tr}</label>
 								<div class="col-md-8">
 									<input type="checkbox" id="comments_enabled" name="comments_enabled" {if $comments_enabled eq 'y'}checked="checked"{/if}>
 								</div>
@@ -315,7 +315,7 @@
 						{/if}
 						{if $prefs.feature_wiki_allowhtml eq 'y' and $tiki_p_use_HTML eq 'y' and ($wysiwyg neq 'y' or $prefs.wysiwyg_htmltowiki eq 'y')}
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="allowhtml">{tr}Allow HTML{/tr}</label>
+								<label class="col-md-4 col-form-label" for="allowhtml">{tr}Allow HTML{/tr}</label>
 								<div class="col-md-8">
 									<input type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
 									<span class="form-text">
@@ -335,7 +335,7 @@
 						{/if}
 						{if $prefs.feature_wiki_import_html eq 'y'}
 							<div class="form-group">
-								<label for="suck_url" class="col-md-4 control-label">{tr}Import HTML{/tr}</label>
+								<label for="suck_url" class="col-md-4 col-form-label">{tr}Import HTML{/tr}</label>
 								<div class="col-md-8 form-inline">
 									<input class="form-control wikiedit" type="text" id="suck_url" name="suck_url" value="{$suck_url|escape}">
 									<input type="submit" class="wikiaction btn btn-primary" name="do_suck" value="{tr}Import{/tr}" onclick="needToConfirm=false;">
@@ -346,7 +346,7 @@
 						{/if}
 						{if $prefs.feature_wiki_import_page eq 'y'}
 							<div class="form-group clearfix">
-								<label for="userfile1" class="col-md-4 control-label">{tr}Import page{/tr}</label>
+								<label for="userfile1" class="col-md-4 col-form-label">{tr}Import page{/tr}</label>
 								<div class="col-md-8 form-inline">
 									<input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
 									<input class="form-control" id="userfile1" name="userfile1" type="file">
@@ -356,7 +356,7 @@
 						{/if}
 						{if $prefs.feature_wiki_export eq 'y' and $tiki_p_export_wiki eq 'y'}
 							<div class="form-group">
-								<label for="" class="col-md-4 control-label">{tr}Export page{/tr}</label>
+								<label for="" class="col-md-4 col-form-label">{tr}Export page{/tr}</label>
 								<div class="col-md-8">
 									<a href="tiki-export_wiki_pages.php?page={$page|escape:"url"}&amp;all=1" class="btn btn-primary">{icon name="export"} {tr}Export all versions{/tr}</a>
 								</div>
@@ -368,7 +368,7 @@
 								<input type="hidden" name="hasAlreadyInserted2" value="">
 								<input type="hidden" id="page2" name="page2" value="{$page}">
 								<div class="form-group clearfix">
-									<label for="attach-upload" class="col-md-4 control-label">{tr}Attach file{/tr}</label>
+									<label for="attach-upload" class="col-md-4 col-form-label">{tr}Attach file{/tr}</label>
 									<div class="col-md-8 form-inline">
 										<input name="userfile2" type="file" id="attach-upload" class="form-control">
 										<input type="text" name="attach_comment" class="form-control" maxlength="250" id="attach-comment" placeholder="{tr}Comment{/tr}">
@@ -381,7 +381,7 @@
 						{if $page|lower neq 'sandbox'}
 							{if $prefs.wikiplugin_addreference eq 'y' && $showBiblioSection}
 								<div class="form-group">
-									<label for="" class="col-md-4 control-label">{tr}Bibliography{/tr}</label>
+									<label for="" class="col-md-4 col-form-label">{tr}Bibliography{/tr}</label>
 									<div class="col-md-8">
 										{include file='addreference.tpl'}
 									</div>
@@ -394,7 +394,7 @@
 							{/if}
 							{if $prefs.feature_wiki_icache eq 'y'}
 								<div class="form-group">
-									<label for="wiki_cache" class="control-label col-md-4">{tr}Cache{/tr}</label>
+									<label for="wiki_cache" class="col-form-label col-md-4">{tr}Cache{/tr}</label>
 									<div class="col-md-8">
 										<select id="wiki_cache" name="wiki_cache" class="form-control">
 											<option value="0" {if $prefs.wiki_cache eq 0}selected="selected"{/if}>0 ({tr}no cache{/tr})</option>
@@ -414,7 +414,7 @@
 							{/if}
 							{if $prefs.feature_wiki_structure eq 'y' && $showstructs|@count gt 0}
 								<div class="form-group">
-									<label class="col-md-4 control-label">{tr}Structures{/tr}</label>
+									<label class="col-md-4 col-form-label">{tr}Structures{/tr}</label>
 									<div class="col-md-8" id="showstructs">
 										<ul>
 											{foreach from=$showstructs item=page_info}
@@ -426,28 +426,28 @@
 							{/if}
 							{if $prefs.feature_copyright eq 'y' and $prefs.wiki_feature_copyrights eq 'y'}
 								<div class="form-group clearfix">
-									<label for="" class="col-md-4 control-label">{tr}Copyright{/tr}</label>
+									<label for="" class="col-md-4 col-form-label">{tr}Copyright{/tr}</label>
 									<div class="col-md-8">
 										<div class="form-group">
-											<label class="col-md-4 control-label" for="copyrightTitle">{tr}Title{/tr}</label>
+											<label class="col-md-4 col-form-label" for="copyrightTitle">{tr}Title{/tr}</label>
 											<div class="col-md-8">
 												<input class="form-control wikiedit" type="text" id="copyrightTitle" name="copyrightTitle" value="{$copyrightTitle|escape}">
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-4 control-label" for="copyrightYear">{tr}Year{/tr}</label>
+											<label class="col-md-4 col-form-label" for="copyrightYear">{tr}Year{/tr}</label>
 											<div class="col-md-8">
 												<input size="4" class="form-control wikiedit" type="text" id="copyrightYear" name="copyrightYear" value="{$copyrightYear|escape}">
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-4 control-label" for="copyrightAuthors">{tr}Authors{/tr}</label>
+											<label class="col-md-4 col-form-label" for="copyrightAuthors">{tr}Authors{/tr}</label>
 											<div class="col-md-8">
 												<input class="form-control wikiedit" id="copyrightAuthors" name="copyrightAuthors" type="text" value="{$copyrightAuthors|escape}">
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-4 control-label" for="copyrightHolder">{tr}Copyright Holder{/tr}</label>
+											<label class="col-md-4 col-form-label" for="copyrightHolder">{tr}Copyright Holder{/tr}</label>
 											<div class="col-md-8">
 												<input class="form-control wikiedit" id="copyrightHolder" name="copyrightHolder" type="text" value="{$copyrightHolder|escape}">
 											</div>
@@ -464,7 +464,7 @@
 							{/if}
 							{if $tiki_p_admin_wiki eq 'y' && $prefs.wiki_authors_style_by_page eq 'y'}
 								<div class="form-group">
-									<label class="col-md-4 control-label">{tr}Authors{/tr}</label>
+									<label class="col-md-4 col-form-label">{tr}Authors{/tr}</label>
 									<div class="col-md-8">
 										<select name="wiki_authors_style" id="wiki_authors_style" class="form-control">
 											{if isset($wiki_authors_style_site) && $wiki_authors_style_site eq 'y'}
@@ -483,9 +483,9 @@
 						{if $prefs.feature_wiki_description eq 'y' or $prefs.metatag_pagedesc eq 'y'}
 							<div class="form-group">
 								{if $prefs.metatag_pagedesc eq 'y'}
-									<label for="" class="col-md-4 control-label">{tr}Description (used for metatags){/tr}</label>
+									<label for="" class="col-md-4 col-form-label">{tr}Description (used for metatags){/tr}</label>
 								{else}
-									<label for="" class="col-md-4 control-label">{tr}Description{/tr}</label>
+									<label for="" class="col-md-4 col-form-label">{tr}Description{/tr}</label>
 								{/if}
 								<div class="col-md-8">
 									<input class="form-control" type="text" id="description" name="description" value="{$description|escape}">
@@ -495,7 +495,7 @@
 						{if $prefs.feature_wiki_footnotes eq 'y'}
 							{if $user}
 								<div class="form-group">
-									<label for="footnote" class="col-md-4 control-label">{tr}My Footnotes{/tr}</label>
+									<label for="footnote" class="col-md-4 col-form-label">{tr}My Footnotes{/tr}</label>
 									<div class="col-md-8">
 										<textarea id="footnote" name="footnote" class="form-control" rows="8">{$footnote|escape}</textarea>
 									</div>
@@ -504,7 +504,7 @@
 						{/if}
 						{if $prefs.feature_wiki_ratings eq 'y' and $tiki_p_wiki_admin_ratings eq 'y'}
 							<div class="form-group">
-								<label for="" class="col-md-4 control-label">{tr}Rating{/tr}</label>
+								<label for="" class="col-md-4 col-form-label">{tr}Rating{/tr}</label>
 								<div class="col-md-8">
 									{foreach from=$poll_rated item=rating}
 										<div>
@@ -545,7 +545,7 @@
 						{if $prefs.feature_multilingual eq 'y'}
 							<fieldset>
 								<div class="form-group clearfix">
-									<label for="" class="col-md-4 control-label">{tr}Language{/tr}</label>
+									<label for="" class="col-md-4 col-form-label">{tr}Language{/tr}</label>
 									<div class="col-md-8">
 										<select name="lang" id="lang" class="form-control margin-bottom-sm">
 											<option value=""{if empty($lang)} selected="selected"{/if}>{tr}Unknown{/tr}</option>
@@ -564,7 +564,7 @@
 							</fieldset>
 							{if $trads|@count > 1 and $urgent_allowed}
 								<div class="form-group">
-									<label for="" class="col-md-4 control-label">{tr}Translation{/tr}</label>
+									<label for="" class="col-md-4 col-form-label">{tr}Translation{/tr}</label>
 									<div class="col-md-8">
 										<fieldset {if $prefs.feature_urgent_translation neq 'y' or $diff_style} style="display:none;"{/if}>
 											<legend>{tr}Translation request:{/tr}</legend>
@@ -583,7 +583,7 @@
 						{if $prefs.geo_locate_wiki eq 'y'}
 							{$headerlib->add_map()}
 							<div class="form-group">
-								<label for="" class="col-md-4 control-label">{tr}Geolocation{/tr}</label>
+								<label for="" class="col-md-4 col-form-label">{tr}Geolocation{/tr}</label>
 								<div class="col-md-8">
 									<div class="map-container form-control" data-geo-center="{$defaultmapcenter}" data-target-field="geolocation" style="height: 250px;"></div>
 									<input type="hidden" name="geolocation" value="{$geolocation_string}">
@@ -593,7 +593,7 @@
 						{* check if wiki_auto_toc is set - but don't understand why wiki_page_hide_title is checked - also the logic made into an 'and' since the previous 'or' made no sense *}
 						{if $prefs.wiki_auto_toc eq 'y' and $prefs.wiki_page_hide_title eq 'y'}
 							<div class="form-group clearfix">
-								<label for="pageAutoToc" class="col-md-4 control-label">{tr}Automatic table of contents{/tr}</label>
+								<label for="pageAutoToc" class="col-md-4 col-form-label">{tr}Automatic table of contents{/tr}</label>
 								<div class="col-md-8">
 									<select name="pageAutoToc" class="form-control">
 										<option value="0" {if $pageAutoToc == 0}selected{/if}>{tr}Default{/tr}</option>
@@ -605,7 +605,7 @@
 						{/if}
 						{if $prefs.wiki_page_hide_title eq 'y' && ($prefs.wiki_page_name_above eq 'y' or $prefs.feature_page_title eq 'y' or $prefs.wiki_page_name_inside eq 'y')}
 							<div class="form-group clearfix">
-								<label for="page_hide_title" class="col-md-4 control-label">{tr}Show page title{/tr}</label>
+								<label for="page_hide_title" class="col-md-4 col-form-label">{tr}Show page title{/tr}</label>
 								<div class="col-md-8">
 									<select name="page_hide_title" class="form-control">
 										<option value="0" {if $page_hide_title == 0}selected{/if}>{tr}Default{/tr}</option>
@@ -617,7 +617,7 @@
 						{/if}
 						{if $prefs.namespace_enabled eq 'y'}
 							<div class="form-group clearfix">
-								<label for="explicit_namespace" class="col-md-4 control-label">{tr}Namespace{/tr}</label>
+								<label for="explicit_namespace" class="col-md-4 col-form-label">{tr}Namespace{/tr}</label>
 								<div class="col-md-8">
 									<input type="text" class="form-control" name="explicit_namespace" value="{$explicit_namespace|escape}" placeholder="{tr}Explicit Namespace{/tr}">
 									<span class="form-text">
@@ -629,7 +629,7 @@
 						{if $prefs.site_layout_per_object eq 'y'}
 							<fieldset>
 								<div class="form-group">
-									<label for="object_layout" class="col-md-4 control-label">{tr}Page layout{/tr}</label>
+									<label for="object_layout" class="col-md-4 col-form-label">{tr}Page layout{/tr}</label>
 									<div class="col-md-8">
 										<select name="object_layout" class="form-control">
 											<option value="">{tr}Site Default{/tr}</option>

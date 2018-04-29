@@ -21,7 +21,7 @@
 			<form role="form" action="tiki-user_preferences.php" method="post" class="form-horizontal">
 				<input type="hidden" name="view_user" value="{$userwatch|escape}">
 				<div class="form-group">
-					<label class="control-label col-md-4" for="userIn">
+					<label class="col-form-label col-md-4" for="userIn">
 						{tr}User{/tr}
 					</label>
 					<div class="col-md-8">
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-4" for="realName">
+					<label class="col-form-label col-md-4" for="realName">
 						{tr}Real Name{/tr}
 					</label>
 					<div class="col-md-8">
@@ -41,7 +41,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-4">
+					<label class="col-form-label col-md-4">
 						{tr}Profile picture{/tr}
 					</label>
 					<div class="col-md-8">
@@ -55,7 +55,7 @@
 				</div>
 				{if $prefs.feature_community_gender eq 'y'}
 					<div class="form-group">
-						<label class="control-label col-md-4" for="gender">
+						<label class="col-form-label col-md-4" for="gender">
 							{tr}Gender{/tr}
 						</label>
 						<div class="col-md-8">
@@ -72,7 +72,7 @@
 					</div>
 				{/if}
 				<div class="form-group">
-					<label class="control-label col-md-4" for="country">
+					<label class="col-form-label col-md-4" for="country">
 						{tr}Country{/tr}
 					</label>
 					{*{if isset($user_prefs.country) && $user_prefs.country != "None" && $user_prefs.country != "Other"}*}
@@ -94,7 +94,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-4" for="location">
+					<label class="col-form-label col-md-4" for="location">
 						{tr}Location{/tr}
 					</label>
 					<div class="col-md-8 margin-bottom-lg" style="height: 250px;" data-geo-center="{defaultmapcenter}" data-target-field="location">
@@ -103,7 +103,7 @@
 					<input type="hidden" name="location" id="location" value="{$location|escape}">
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-4" for="homePage">
+					<label class="col-form-label col-md-4" for="homePage">
 						{tr}Homepage URL{/tr}
 					</label>
 					<div class="col-md-8">
@@ -112,7 +112,7 @@
 				</div>
 				{if $prefs.feature_wiki eq 'y' and $prefs.feature_wiki_userpage eq 'y'}
 					<div class="form-group">
-						<label class="control-label col-md-4">
+						<label class="col-form-label col-md-4">
 							{tr}Your Personal Wiki Page{/tr}
 						</label>
 						<div class="col-md-8">
@@ -135,14 +135,14 @@
 				{if $prefs.userTracker eq 'y' && $usertrackerId}
 					<div class="form-group">
 						{if $tiki_p_admin eq 'y' and !empty($userwatch) and $userwatch neq $user}
-							<label class="control-label col-md-4">{tr}User's personal tracker information{/tr}</label>
+							<label class="col-form-label col-md-4">{tr}User's personal tracker information{/tr}</label>
 							<div class="col-md-8">
 								<a class="link" href="tiki-view_tracker_item.php?trackerId={$usertrackerId}&user={$userwatch|escape:url}&view=+user">
 									{tr}View extra information{/tr}
 								</a>
 							</div>
 						{else}
-							<label class="control-label col-md-4">{tr}Your personal tracker information{/tr}</label>
+							<label class="col-form-label col-md-4">{tr}Your personal tracker information{/tr}</label>
 							<div class="col-md-8">
 								<a class="link" href="tiki-view_tracker_item.php?view=+user">
 									{tr}View extra information{/tr}
@@ -160,7 +160,7 @@
 					{/if}
 				{/section}
 				<div class="form-group">
-					<label class="control-label col-md-4" for="user_information">
+					<label class="col-form-label col-md-4" for="user_information">
 						{tr}User Information{/tr}
 					</label>
 					<div class="col-md-8">
@@ -185,7 +185,7 @@
 			<form role="form" action="tiki-user_preferences.php" method="post" class="form-horizontal">
 				<input type="hidden" name="view_user" value="{$userwatch|escape}">
 				<div class="form-group">
-					<label class="control-label col-md-4" for="email_isPublic">
+					<label class="col-form-label col-md-4" for="email_isPublic">
 						{tr}Is email public?{/tr}
 					</label>
 					<div class="col-md-8">
@@ -204,7 +204,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-4" for="mailCharset">
+					<label class="col-form-label col-md-4" for="mailCharset">
 						{tr}Email character set{/tr}
 					</label>
 					<div class="col-md-8">
@@ -220,7 +220,7 @@
 				</div>
 				{if $prefs.change_theme eq 'y' && empty($group_theme)}
 					<div class="form-group">
-						<label class="control-label col-md-4" for="mytheme">
+						<label class="col-form-label col-md-4" for="mytheme">
 							{tr}Theme{/tr}
 						</label>
 						<div class="col-md-8">
@@ -236,7 +236,7 @@
 				{/if}
 				{if $prefs.change_language eq 'y'}
 					<div class="form-group clearfix">
-						<label class="control-label col-md-4" for="language">
+						<label class="col-form-label col-md-4" for="language">
 							{tr}Language{/tr}
 						</label>
 						<div class="col-md-8">
@@ -266,7 +266,7 @@
 						</div>
 						<div id="read-lang-div" style="display: none" class="form-group clearfix">
 					{/if}
-					<label class="control-label col-md-4" for="read-language">{tr}Other languages you can read{/tr}</label>
+					<label class="col-form-label col-md-4" for="read-language">{tr}Other languages you can read{/tr}</label>
 					<div class="col-md-8">
 						<select class="form-control" id="read-language" name="_blank" onchange="document.getElementById('read-language-input').value+=' '+this.options[this.selectedIndex].value+' '">
 							<option value="">{tr}Select language...{/tr}</option>
@@ -284,7 +284,7 @@
 					</div>
 				{/if}
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4" for="userbreadCrumb">
+					<label class="col-form-label col-md-4" for="userbreadCrumb">
 						{tr}Number of visited pages to remember{/tr}
 					</label>
 					<div class="col-md-8">
@@ -299,7 +299,7 @@
 					</div>
 				</div>
 				<div class="form-group clearfix">
-					<label class="control-label col-md-4" for="display_timezone">
+					<label class="col-form-label col-md-4" for="display_timezone">
 						{tr}Displayed timezone{/tr}
 					</label>
 					<div class="col-md-8">
@@ -341,7 +341,7 @@
 				{if $prefs.feature_messages eq 'y' and $tiki_p_messages eq 'y'}
 					<legend>{tr}User Messages{/tr}</legend>
 					<div class="form-group clearfix">
-						<label class="control-label col-md-4" for="mess_maxRecords">
+						<label class="col-form-label col-md-4" for="mess_maxRecords">
 							{tr}Messages per page{/tr}
 						</label>
 						<div class="col-md-8">
@@ -373,7 +373,7 @@
 						</div>
 					</div>
 					<div class="form-group clearfix">
-						<label class="control-label col-md-4" for="minPrio">
+						<label class="col-form-label col-md-4" for="minPrio">
 							{tr}Message priority notification{/tr}
 						</label>
 						<div class="col-md-8">
@@ -389,7 +389,7 @@
 						</div>
 					</div>
 					<div class="form-group clearfix">
-						<label class="control-label col-md-4" for="mess_archiveAfter" >
+						<label class="col-form-label col-md-4" for="mess_archiveAfter" >
 							{tr}Read message auto-archiving{/tr}
 						</label>
 						<div class="col-md-8">
@@ -412,7 +412,7 @@
 				{if $prefs.feature_tasks eq 'y' and $tiki_p_tasks eq 'y'}
 					<legend>{tr}User Tasks{/tr}</legend>
 					<div class="form-group">
-						<label class="control-label col-md-4" for="tasks_maxRecords">
+						<label class="col-form-label col-md-4" for="tasks_maxRecords">
 							{tr}Tasks per page{/tr}
 						</label>
 						<div class="col-md-8">
@@ -432,7 +432,7 @@
 				<div class="clearfix">
 					{if $prefs.xmpp_feature eq 'y'}
 						<div class="form-group">
-							<label class="control-label col-md-4" for="xmpp_password">
+							<label class="col-form-label col-md-4" for="xmpp_password">
 								{tr}XMPP account password{/tr}
 							</label>
 							<div class="col-md-8">
@@ -505,7 +505,7 @@
 				</div>
 				{if $prefs.feature_userlevels eq 'y'}
 					<div class="form-group clearfix">
-						<label class="control-label col-md-4" for="mylevel">
+						<label class="col-form-label col-md-4" for="mylevel">
 							{tr}My level{/tr}
 						</label>
 						<div class="col-md-8">
@@ -518,7 +518,7 @@
 					</div>
 				{/if}
 				<div class="form-group">
-						<label class="control-label col-md-4" for="remember_closed_rboxes">
+						<label class="col-form-label col-md-4" for="remember_closed_rboxes">
 							{tr}Keep closed remarksbox hidden{/tr}
 						</label>
 						<div class="col-md-8">
@@ -527,7 +527,7 @@
 								{tr}Remember which remarksbox (alert box) you have closed and don't show them again.{/tr}<br>
 							</p>
 						</div>
-					<label class="control-label col-md-4">
+					<label class="col-form-label col-md-4">
 						{tr}Reset remark boxes visibility{/tr}
 					</label>
 					<div class="col-md-8">
@@ -556,7 +556,7 @@
 						<input type="hidden" name="email" value="{$userinfo.email|escape}">
 					{else}
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="email">
+							<label class="col-md-4 col-form-label" for="email">
 								{tr}Email address:{/tr}
 							</label>
 							<div class="col-md-8">
@@ -567,7 +567,7 @@
 					{if $prefs.auth_method neq 'cas' || ($prefs.cas_skip_admin eq 'y' && $user eq 'admin')}
 						{if $prefs.change_password neq 'n'}
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="pass1">
+								<label class="col-md-4 col-form-label" for="pass1">
 									{tr}New password:{/tr}
 								</label>
 								<div class="col-md-8">
@@ -575,7 +575,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="pass2">
+								<label class="col-md-4 col-form-label" for="pass2">
 									{tr}Confirm new password:{/tr}
 								</label>
 								<div class="col-md-8">
@@ -585,7 +585,7 @@
 						{/if}
 						{if $tiki_p_admin ne 'y' or $userwatch eq $user}
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="pass">
+								<label class="col-md-4 col-form-label" for="pass">
 									{tr}Current password (required):{/tr}
 								</label>
 								<div class="col-md-8">

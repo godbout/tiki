@@ -133,7 +133,7 @@
 	{if !$ts.ajax}
 			</div>
 				<div class="input-group col-sm-6">
-					<label for="submit_mult" class="control-label sr-only">{tr}Select action to perform with checked{/tr}</label>
+					<label for="submit_mult" class="col-form-label sr-only">{tr}Select action to perform with checked{/tr}</label>
 						<select name="action" class="form-control">
 							<option value="no_action" selected="selected">{tr}Select action to perform with checked{/tr}...</option>
 							<option value="remove_groups" >{tr}Remove{/tr}</option>
@@ -184,7 +184,7 @@
 
 		<form class="form-horizontal" action="tiki-admingroups.php" id="groupEdit" method="post">
 			<div class="form-group">
-				<label for="groups_group" class="control-label col-md-3">{tr}Group{/tr}</label>
+				<label for="groups_group" class="col-form-label col-md-3">{tr}Group{/tr}</label>
 				<div class="col-md-9">
 					{if $groupname neq 'Anonymous' and $groupname neq 'Registered' and $groupname neq 'Admins'}
 						<input type="text" name="name" id="groups_group" value="{$groupname|escape}" class="form-control">
@@ -195,13 +195,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="groups_desc" class="control-label col-md-3">{tr}Description{/tr}</label>
+				<label for="groups_desc" class="col-form-label col-md-3">{tr}Description{/tr}</label>
 				<div class="col-md-9">
 					<textarea rows="5" name="desc" id="groups_desc" class="form-control">{$groupdesc|escape}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="groups_inc" class="control-label col-md-3">{tr}Inheritance{/tr}</label>
+				<label for="groups_inc" class="col-form-label col-md-3">{tr}Inheritance{/tr}</label>
 				<div class="col-md-9">
 					{if $inc|@count > 20 and $hasOneIncludedGroup eq "y"}
 						<ul>
@@ -233,7 +233,7 @@
 			</div>
 			{if $prefs.useGroupHome eq 'y'}
 				<div class="form-group">
-					<label for="groups_home" class="control-label col-md-3">{tr}Group Home{/tr}</label>
+					<label for="groups_home" class="col-form-label col-md-3">{tr}Group Home{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="home" id="groups_home" value="{$grouphome|escape}">
 						{autocomplete element='#groups_home' type='pagename'}
@@ -246,7 +246,7 @@
 			{/if}
 			{if $prefs.feature_categories eq 'y'}
 				<div class="form-group">
-					<label for="groups_defcat" class="control-label col-md-3">{tr}Default Category{/tr}</label>
+					<label for="groups_defcat" class="col-form-label col-md-3">{tr}Default Category{/tr}</label>
 					<div class="col-md-9">
 						<select name="defcat" id="groups_defcat" class="form-control">
 							<option value="" {if ($groupdefcat eq "") or ($groupdefcat eq 0)} selected="selected"{/if}>{tr}none{/tr}</option>
@@ -262,7 +262,7 @@
 			{/if}
 			{if $prefs.useGroupTheme eq 'y'}
 				<div class="form-group">
-					<label for="groups_theme" class="control-label col-md-3">{tr}Group theme{/tr}</label>
+					<label for="groups_theme" class="col-form-label col-md-3">{tr}Group theme{/tr}</label>
 					<div class="col-md-9">
 						<select name="theme" id="groups_theme" class="form-control">
 							<option value="" {if $grouptheme eq ""} selected="selected"{/if}>{tr}none{/tr} ({tr}Use site default{/tr})</option>
@@ -275,7 +275,7 @@
 			{/if}
 			{if $prefs.feature_conditional_formatting eq 'y'}
 				<div class="form-group">
-					<label for="groups_color" class="control-label col-md-3">{tr}Group color{/tr}</label>
+					<label for="groups_color" class="col-form-label col-md-3">{tr}Group color{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="color" id="groups_color" value="{$groupcolor|escape}">
 						<div class="form-text">
@@ -286,7 +286,7 @@
 			{/if}
 			{if $prefs.groupTracker eq 'y'}
 				<div class="form-group">
-					<label for="groupstracker" class="control-label col-md-3">{tr}Group Information Tracker{/tr}</label>
+					<label for="groupstracker" class="col-form-label col-md-3">{tr}Group Information Tracker{/tr}</label>
 					<div class="col-md-9">
 						<select name="groupstracker" id="groupstracker" class="form-control">
 							<option value="0">{tr}choose a group tracker ...{/tr}</option>
@@ -322,7 +322,7 @@
 			{/if}
 			{if $prefs.userTracker eq 'y'}
 				<div class="form-group">
-					<label for="userstracker" class="control-label col-md-3">{tr}User Registration Tracker{/tr}</label>
+					<label for="userstracker" class="col-form-label col-md-3">{tr}User Registration Tracker{/tr}</label>
 					<div class="col-md-9">
 						<select name="userstracker" id="userstracker" class="form-control">
 							<option value="0">{tr}choose a user tracker ...{/tr}</option>
@@ -395,7 +395,7 @@
 				</div>
 				{if $prefs.feature_wizard_user eq 'y' and $groupname == 'Registered'}
 					<div class="form-group">
-						<label class="control-label col-md-3">{tr}User Wizard Fields{/tr}</label>
+						<label class="col-form-label col-md-3">{tr}User Wizard Fields{/tr}</label>
 						<div class="col-md-9">
 							{tr}By default, the same fields as in registration are used.{/tr} {tr _0="tiki-admin.php?page=login"}You can choose in the <a href="%0">Login admin panel</a> to show different fields in User Wizard than the ones asked at Registration Time{/tr}.</td>
 						</div>
@@ -404,7 +404,7 @@
 			{/if}
 			{if $prefs.userTracker == 'y' || $prefs.useGroupTheme == 'y'}
 				<div id="registerfields" class="form-group"{if empty($userstrackerid) && empty($grouptrackerid) && $prefs.javascript_enabled == 'y' && $prefs.jquery_ui_chosen != 'y'} style="display: none;"{/if}>
-					<label for="registrationUserFieldIds" class="control-label col-md-3">{tr}Group or User Tracker Registration Fields{/tr}</label>
+					<label for="registrationUserFieldIds" class="col-form-label col-md-3">{tr}Group or User Tracker Registration Fields{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="registrationUsersFieldIds" value="{$registrationUsersFieldIds|escape}">
 						<div class="form-text">
@@ -425,7 +425,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-3">{tr}Membership expiry{/tr}</label>
+					<label class="col-form-label col-md-3">{tr}Membership expiry{/tr}</label>
 					<div class="col-md-9">
 						<label>{tr}Anniversary{/tr}</label>
 						<input type="text" name="anniversary" class="form-control" value="{$group_info.anniversary|escape}">
@@ -439,7 +439,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="prorateInterval" class="control-label col-md-3">{tr}Pro-Rate Membership{/tr}</label>
+					<label for="prorateInterval" class="col-form-label col-md-3">{tr}Pro-Rate Membership{/tr}</label>
 					<div class="col-md-9">
 						<select name="prorateInterval" class="form-control">
 							<option value="day" {if $group_info.prorateInterval eq 'day'}selected="selected"{/if}>{tr}Day{/tr}</option>
@@ -453,7 +453,7 @@
 				</div>
 			{/if}
 			<div class="form-group">
-				<label class="control-label col-md-3">{tr}Group{/tr}</label>
+				<label class="col-form-label col-md-3">{tr}Group{/tr}</label>
 				<div class="col-md-9">
 					<input class="form-control" type="text" size="40" name="emailPattern" value="{$group_info.emailPattern|escape}">
 					<div class="form-text">
@@ -465,7 +465,7 @@
 
 			{if $group ne ''and $groupname neq 'Anonymous'}
 				<div class="form-group">
-					<label class="control-label col-md-3">{tr}Assign group <em>management</em> permissions{/tr}</label>
+					<label class="col-form-label col-md-3">{tr}Assign group <em>management</em> permissions{/tr}</label>
 					<div class="col-md-9">
 						{self_link _script="tiki-objectpermissions.php" objectType="group" objectId=$groupname objectName=$groupname permType="group"}
 							{icon _text="{tr}Assign Permissions{/tr}" name="key"}
@@ -685,7 +685,7 @@
 				<h2>{tr}Export group users (CSV file){/tr}</h2>
 				<br>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">{tr}Charset encoding{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Charset encoding{/tr}</label>
 					<div class="col-sm-7">
 						<select name="encoding" class="form-control">
 							<option value="UTF-8" selected="selected">{tr}UTF-8{/tr}</option>
@@ -694,7 +694,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">{tr}Fields{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Fields{/tr}</label>
 					<div class="col-sm-7">
 						<div class="form-check">
 							<label>
@@ -714,7 +714,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"></label>
+					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7">
 						<input type="submit" class="btn btn-primary" name="export" value="{tr}Export{/tr}">
 					</div>
@@ -723,7 +723,7 @@
 				<h2>{tr}Import users to group (CSV file){/tr}</h2>
 				<br>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">
+					<label class="col-sm-3 col-form-label">
 						{tr}CSV File{/tr} <a title="{tr}Help{/tr}" {popup text='user<br>user1<br>user2'}>{icon name='help'}</a>
 					</label>
 					<div class="col-sm-7">
@@ -734,7 +734,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label"></label>
+					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7">
 						<input type="submit" class="btn btn-primary" name="import" value="{tr}Import{/tr}">
 					</div>

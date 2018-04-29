@@ -101,7 +101,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="mailin_autocheckFreq" class="control-label col-md-3">{tr}Frequency{/tr}</label>
+			<label for="mailin_autocheckFreq" class="col-form-label col-md-3">{tr}Frequency{/tr}</label>
 			<div class="col-md-3">
 				<input type="text" name="mailin_autocheckFreq" value="{$prefs.mailin_autocheckFreq|escape}" class="form-control">
 				<div class="form-text">

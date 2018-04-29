@@ -184,7 +184,7 @@
 				<fieldset>
 					<legend>{tr}General{/tr}</legend>
 					<div class="form-group">
-						<label class="control-label" for="new-transition-name">{tr}Label{/tr}</label>
+						<label class="col-form-label" for="new-transition-name">{tr}Label{/tr}</label>
 						<input type="text" name="label" {if $selected_transition}value="{$selected_transition.name|escape}"{/if} class="form-control">
 					</div>
 					<div class="form-check">
@@ -272,7 +272,7 @@
 					<fieldset>
 						<legend>{tr}General{/tr}</legend>
 						<div class="form-group">
-							<label class="control-label" for="guard-type">{tr}Type{/tr}</label>
+							<label class="col-form-label" for="guard-type">{tr}Type{/tr}</label>
 							<select id="guard-type" name="type" class="form-control">
 								<option value="exactly">{tr}Exactly{/tr}</option>
 								<option value="atLeast">{tr}At Least{/tr}</option>
@@ -280,7 +280,7 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="guard-count" class="control-label">{tr}Count{/tr}</label>
+							<label for="guard-count" class="col-form-label">{tr}Count{/tr}</label>
 							<input type="text" name="count" class="form-control">
 						</div>
 					</fieldset>

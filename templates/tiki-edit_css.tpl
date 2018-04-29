@@ -7,7 +7,7 @@
 <form method="post" action="tiki-edit_css.php" class="form">
 	{if $action eq "edit"}
 		<div class="form-group">
-			<label for="theme" class="control-label">
+			<label for="theme" class="col-form-label">
 				{tr}Theme{/tr}
 			</label>
 			<input type="text" name="theme" value="{$theme}" class="form-control" readonly>
@@ -36,7 +36,7 @@
 			{/remarksbox}
 		{/if}
 		<div class="form-group clearfix">
-			<label for="theme" class="control-label">
+			<label for="theme" class="col-form-label">
 				{tr}Theme{/tr}
 			</label>
 			<select name="theme" class="form-control form-control-sm" required>

@@ -17,7 +17,7 @@
 		<div class="col-sm-12">{tr}Or{/tr}</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-4" for="local">{tr}Name of the zip file on the server{/tr}</label>
+		<label class="col-form-label col-sm-4" for="local">{tr}Name of the zip file on the server{/tr}</label>
 		<div class="col-sm-8">
 			<input class="form-control" type="text" name="local" id="local">
 		</div>

@@ -116,21 +116,21 @@
 			enctype="multipart/form-data" name="RegForm" autocomplete="off">
 		{ticket}
 		<div class="form-group">
-			<label class="col-sm-3 col-md-2 control-label" for="rule_id">{tr}Rule Id{/tr}</label>
+			<label class="col-sm-3 col-md-2 col-form-label" for="rule_id">{tr}Rule Id{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_id' class="form-control" name='rule_id'
 					value="{$ruleinfo.id|escape}" {if $ruleinfo.id && !$ruleinfo.error}readonly{/if}>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 col-md-2 control-label" for="rule_regex">{tr}Rule Regex{/tr}</label>
+			<label class="col-sm-3 col-md-2 col-form-label" for="rule_regex">{tr}Rule Regex{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_regex' class="form-control" name='rule_regex'
 					   value="{$ruleinfo.regex|escape}">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 col-md-2 control-label" for="rule_description">{tr}Description{/tr}</label>
+			<label class="col-sm-3 col-md-2 col-form-label" for="rule_description">{tr}Description{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_description' class="form-control" name='rule_description'
 					value="{$ruleinfo.description|escape}">
@@ -138,7 +138,7 @@
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-3 col-md-2 control-label" for="rule_tags">{tr}Tags{/tr}</label>
+			<label class="col-sm-3 col-md-2 col-form-label" for="rule_tags">{tr}Tags{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_tags' class="form-control" name='rule_tags'
 					value="{$ruleinfo.tags|escape}">
@@ -146,7 +146,7 @@
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-3 col-md-2 control-label" for="rule_impact">{tr}Impact{/tr}</label>
+			<label class="col-sm-3 col-md-2 col-form-label" for="rule_impact">{tr}Impact{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_impact' class="form-control" name='rule_impact'
 					   value="{$ruleinfo.impact|escape}">

@@ -4,27 +4,27 @@
 <form action="tiki-admin_external_wikis.php" method="post" class="form-horizontal" role="form">
 	<input type="hidden" name="extwikiId" value="{$extwikiId|escape}">
 	<div class="form-group">
-		<label for="name" class="col-sm-3 control-label">{tr}Name{/tr}</label>
+		<label for="name" class="col-sm-3 col-form-label">{tr}Name{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" maxlength="255" class="form-control" name="name" value="{$info.name|escape}">
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="extwiki" class="col-sm-3 control-label">{tr}URL{/tr}</label>
+		<label for="extwiki" class="col-sm-3 col-form-label">{tr}URL{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" maxlength="255" class="form-control" name="extwiki" id="extwiki" value="{$info.extwiki|escape}">
 			<p class="form-text">{tr}URL (use $page to be replaced by the page name in the URL example: http://www.example.com/tiki-index.php?page=$page):{/tr}</p>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="indexname" class="col-sm-3 control-label">{tr}Index{/tr}</label>
+		<label for="indexname" class="col-sm-3 col-form-label">{tr}Index{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" maxlength="255" class="form-control" name="indexname" id="indexname" value="{$info.indexname|escape}">
 			<p class="form-text">{tr}<em>[prefix]</em>main, such as tiki_main{/tr}</p>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="groups" class="col-sm-3 control-label">{tr}Search as{/tr}</label>
+		<label for="groups" class="col-sm-3 col-form-label">{tr}Search as{/tr}</label>
 		<div class="col-sm-9">
 			{object_selector_multi _simplename=groups _simpleid=groups _simplevalue=$info.groups type="group" _separator=";"}
 			<p class="form-text">{tr}Leave blank to search using currently active groups.{/tr}</p>

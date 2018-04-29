@@ -135,25 +135,25 @@
 		<form action="tiki-admin_rssmodules.php" method="post" class="form-horizontal">
 			<input type="hidden" name="rssId" value="{$rssId|escape}">
 			<div class="form-group">
-				<label for="name" class="control-label col-sm-3">{tr}Name{/tr}</label>
+				<label for="name" class="col-form-label col-sm-3">{tr}Name{/tr}</label>
 				<div class="col-sm-9">
 					<input type="text" name="name" value="{$name|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="url" class="control-label col-sm-3">{tr}URL{/tr}</label>
+				<label for="url" class="col-form-label col-sm-3">{tr}URL{/tr}</label>
 				<div class="col-sm-9">
 					<input type="url" name="url" value="{$url|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="description" class="control-label col-sm-3">{tr}Description{/tr}</label>
+				<label for="description" class="col-form-label col-sm-3">{tr}Description{/tr}</label>
 				<div class="col-sm-9">
 					<textarea name="description" rows="4" class="form-control">{$description|escape}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="refresh" class="control-label col-sm-3">{tr}Refresh rate{/tr}</label>
+				<label for="refresh" class="col-form-label col-sm-3">{tr}Refresh rate{/tr}</label>
 				<div class="col-sm-9">
 					<select class="form-control" name="refresh">
 						{foreach [1, 5, 10, 15, 20, 30, 45, 60, 90, 120, 360, 720, 1440] as $min}

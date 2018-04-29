@@ -32,7 +32,7 @@
 		<form action="tiki-admin_categories.php" method="post" class="form-horizontal" role="form">
 			<input type="hidden" name="categId" value="{$categId|escape}">
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="parentId">{tr}Parent{/tr}</label>
+				<label class="col-sm-3 col-form-label" for="parentId">{tr}Parent{/tr}</label>
 				<div class="col-sm-9">
 					<select name="parentId" id="parentId" class="form-control">
 						{if $tiki_p_admin_categories eq 'y'}<option value="0">{tr}Top{/tr}</option>{/if}
@@ -43,13 +43,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="name">{tr}Name{/tr}</label>
+				<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr}</label>
 				<div class="col-sm-9">
 					<input type="text" class="form-control" name="name" id="name" value="{$categoryName|escape}">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="description">{tr}Description{/tr}</label>
+				<label class="col-sm-3 col-form-label" for="description">{tr}Description{/tr}</label>
 				<div class="col-sm-9">
 					<textarea rows="2" class="form-control" name="description" id="description" maxlength=500>{$description|escape}</textarea>
 				</div>
@@ -79,7 +79,7 @@
 			<h2>{tr}Batch upload{/tr}</h2>
 			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
 				<div class="form-group">
-					<label class="control-label col-sm-3">{tr}CSV File{/tr}</label>
+					<label class="col-form-label col-sm-3">{tr}CSV File{/tr}</label>
 					<div class="col-sm-9">
 						<input type="file" class="form-control" name="csvlist">
 						<div class="form-text">
@@ -159,7 +159,7 @@ potato,,vegetable
 					<legend>{tr}Perform an action on all objects in the current category:{/tr}</legend>
 					<input type="hidden" name="parentId" value="{$parentId|escape}">
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="unassign">
+						<label class="col-sm-4 col-form-label" for="unassign">
 							{tr}Unassign{/tr}
 						</label>
 						<div class="col-sm-6 input-group">
@@ -167,7 +167,7 @@ potato,,vegetable
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="toId">
+						<label class="col-sm-4 col-form-label" for="toId">
 							{tr}Move to selected category{/tr}
 						</label>
 						<div class="col-sm-6 input-group">
@@ -186,7 +186,7 @@ potato,,vegetable
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="to">
+						<label class="col-sm-4 col-form-label" for="to">
 							{tr}Copy to selected category{/tr}
 						</label>
 						<div class="col-sm-6 input-group">
@@ -282,7 +282,7 @@ $("#add_object_type").change(function () {
 
 				<form method="get" action="tiki-admin_categories.php" class="form-horizontal" role="form">
 					<div class="form-group">
-						<label class="col-sm-3 control-label" for="find_objects">
+						<label class="col-sm-3 col-form-label" for="find_objects">
 							{tr}Find{/tr}
 						</label>
 						<div class="col-sm-6 input-group">
@@ -303,7 +303,7 @@ $("#add_object_type").change(function () {
 					<fieldset>
 						{if $prefs.feature_wiki eq 'y' and $pages}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="pageName">
+								<label class="col-sm-3 col-form-label" for="pageName">
 									{tr}Page{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -323,7 +323,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_articles eq 'y' and $articles}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="articleId">
+								<label class="col-sm-3 col-form-label" for="articleId">
 									{tr}Article{/tr}
 								</label>
 								<div class="col-lg-6 input-group">
@@ -343,7 +343,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_blogs eq 'y' and $blogs}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="blogId">
+								<label class="col-sm-3 col-form-label" for="blogId">
 									{tr}Blog{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -363,7 +363,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_directory eq 'y'and $directories}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="directoryId">
+								<label class="col-sm-3 col-form-label" for="directoryId">
 									{tr}Directory{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -383,7 +383,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_galleries eq 'y' and $galleries}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="galleryId">
+								<label class="col-sm-3 col-form-label" for="galleryId">
 									{tr}Image gallery{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -403,7 +403,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_file_galleries eq 'y' and $file_galleries}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="file_galleryId">
+								<label class="col-sm-3 col-form-label" for="file_galleryId">
 									{tr}File gallery{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -423,7 +423,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_forums eq 'y' and $forums}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="forumId">
+								<label class="col-sm-3 col-form-label" for="forumId">
 									{tr}Forum{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -443,7 +443,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_polls eq 'y' and $polls}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="pollId">
+								<label class="col-sm-3 col-form-label" for="pollId">
 									{tr}Poll{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -463,7 +463,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_faqs eq 'y' and $faqs}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="faqId">
+								<label class="col-sm-3 col-form-label" for="faqId">
 									{tr}FAQ{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -483,7 +483,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_trackers eq 'y' and $trackers}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="trackerId">
+								<label class="col-sm-3 col-form-label" for="trackerId">
 									{tr}Tracker{/tr}
 								</label>
 								<div class="col-sm-6 input-group">
@@ -503,7 +503,7 @@ $("#add_object_type").change(function () {
 
 						{if $prefs.feature_quizzes eq 'y' and $quizzes}
 							<div class="form-group">
-								<label class="col-sm-3 control-label" for="quizId">
+								<label class="col-sm-3 col-form-label" for="quizId">
 									{tr}Quiz{/tr}
 								</label>
 								<div class="col-sm-6 input-group">

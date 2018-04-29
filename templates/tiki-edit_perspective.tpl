@@ -104,7 +104,7 @@
 			<h2>{tr}Edit{/tr}</h2>
 			<form method="post" action="tiki-edit_perspective.php" class="form-horizontal">
 				<div class="form-group clearfix">
-					<label for="name" class="col-sm-2 control-label">{tr}Name{/tr}</label>
+					<label for="name" class="col-sm-2 col-form-label">{tr}Name{/tr}</label>
 					<div class="col-sm-10">
 						<input type="text" name="name" id="name" value="{$perspective_info.name|escape}" class="form-control">
 					</div>
