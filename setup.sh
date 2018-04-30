@@ -553,10 +553,10 @@ composer_core()
 	then
 		if exists curl;
 		then
-			curl -s https://getcomposer.org/installer | php -- --install-dir=temp
+			curl -s https://getcomposer.org/installer | "${PHPCLI}" -- --install-dir=temp
 		else
 			# todo : if exists php;
-			php -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));" -- --install-dir=temp
+			"${PHPCLI}" -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));" -- --install-dir=temp
 		fi
 		# if PATCHCOMPOSERFLAG then modify temp/composer.phar to avoid the warnings
 		# this hack is not yet possible because of a self signature check in temp/composer.phar
