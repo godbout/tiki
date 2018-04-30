@@ -503,14 +503,14 @@
 								</td>
 								<td class="icon">
 									{if $list[ix].isFlagged eq 'y'}
-										<a href="javascript: submit_form('{$list[ix].realmsgid|escape}','n')"><img src="img/webmail/flagged.gif" alt="{tr}Flagged{/tr}"></a>
+										{icon class="" name="flag" title="{tr}Flagged{/tr}" href="javascript: submit_form('{$list[ix].realmsgid|escape}','n')"}
 									{else}
 										{if $prefs.webmail_quick_flags eq 'y'}
-											<a href="javascript: submit_form('{$list[ix].realmsgid|escape}','y')"><img src="img/webmail/unflagged.gif" alt="{tr}unFlagged{/tr}"></a>
+										{icon class="" name="flag-o" title="{tr}Unflagged{/tr}" href="javascript: submit_form('{$list[ix].realmsgid|escape}','y')"}
 										{/if}
 									{/if}
 									{if $list[ix].isReplied eq 'y'}
-										<img src="img/webmail/replied.gif" alt="{tr}Replied{/tr}">
+										{icon class="" name="reply" title="{tr}Replied{/tr}"}
 									{/if}
 								</td>
 								<td class="email">{$list[ix].sender.name}</td>
