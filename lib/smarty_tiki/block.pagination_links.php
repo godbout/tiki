@@ -336,7 +336,7 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 				if ($params['offset'] + $params['step'] >= $params['cant']) {
 					$html .= '<li class="page-item disabled"><span class="page-link">»</span></li>';
 				} else {
-					$html .= '<lii class="page-item">' . $make_prevnext_link(
+					$html .= '<li class="page-item">' . $make_prevnext_link(
 						$url . $next_offset,
 						'»',
 						$params,

@@ -195,9 +195,10 @@ OUT;
 			)
 		);
 
-		$this->assertContains('>1<', $output);
-		$this->assertContains('>2<', $output);
-		$this->assertContains('<span>3 ', $output);
+		$this->assertRegExp('/<li[^>]*><a[^>]*>1<\/a><\/li>/', $output);
+		$this->assertRegExp('/<li[^>]*><a[^>]*>2<\/a><\/li>/', $output);
+		$this->assertRegExp('/<li[^>]*><a[^>]*>2<\/a><\/li>/', $output);
+		$this->assertRegExp('/<li[^>]*><span[^>]*>3 <span[^>]*>/', $output);
 		$this->assertNotContains('>4<', $output);
 	}
 
