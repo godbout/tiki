@@ -245,7 +245,7 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 		$make_prevnext_link = function ($url, $content, $params, $class = 'prevnext', $linkoffset) {
 			$smarty = TikiLib::lib('smarty');
 
-			$link = '<a class="' . $class . '" ';
+			$link = '<a class="page-link ' . $class . '" ';
 			$url = TikiLib::tikiUrlOpt($url);
 			if ($params['_ajax'] == 'y') {
 				// setting javascript offset variable if requested
@@ -273,13 +273,13 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 		};
 
 		if (($prefs['direct_pagination'] == 'y' || $prefs['nextprev_pagination'] === 'y') && $nb_pages > 1) {
-			$html .= '<ul class="pagination">';
+			$html .= '<ul class="pagination justify-content-center">';
 
 			if ($prefs['nextprev_pagination'] != 'n' || $params['show_numbers'] !== 'y') {
 				if ($params['offset'] == 0) {
-					$html .= '<li class="disabled"><span>«</span></li>';
+					$html .= '<li class="page-item disabled"><span class="page-link">«</span></li>';
 				} else {
-					$html .= '<li>' . $make_prevnext_link(
+					$html .= '<li class="page-item">' . $make_prevnext_link(
 						$url . $prev_offset,
 						'«',
 						$params,
@@ -294,7 +294,7 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 				$page_num = floor($real_offset / $params['step']);
 				foreach (range(0, $nb_pages - 1) as $k) {
 					if ($k + $zero_based_min == $page_num) {
-						$html .= '<li class="active"><span>' . ($k + 1) . ' <span class="sr-only">(' . tr(
+						$html .= '<li class="page-item active"><span class="page-link">' . ($k + 1) . ' <span class="sr-only">(' . tr(
 							'current'
 						) . ')</span></span></li>';
 						$last_dots = false;
@@ -326,7 +326,7 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 						) . '</li>';
 						$last_dots = false;
 					} elseif (! $last_dots) {
-						$html .= '<li class="disabled"><span>…</span>';
+						$html .= '<li class="page-item disabled"><span class="page-link">…</span>';
 						$last_dots = true;
 					}
 				}
@@ -334,9 +334,9 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 
 			if ($prefs['nextprev_pagination'] != 'n' || $params['show_numbers'] !== 'y') {
 				if ($params['offset'] + $params['step'] >= $params['cant']) {
-					$html .= '<li class="disabled"><span>»</span></li>';
+					$html .= '<li class="page-item disabled"><span class="page-link">»</span></li>';
 				} else {
-					$html .= '<li>' . $make_prevnext_link(
+					$html .= '<lii class="page-item">' . $make_prevnext_link(
 						$url . $next_offset,
 						'»',
 						$params,
