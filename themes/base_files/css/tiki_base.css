@@ -790,6 +790,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   background-color: #fff;
   border-color: #212529; }
 
+a {
+  word-wrap: break-word; }
+
 .button.highlight {
   background: inherit; }
 

@@ -17,6 +17,12 @@
 //   background: darken($state-danger-bg, 15%);
 // }
 
+
+// Avoid long URLs overflow and wrap them into several lines instead
+a {
+	word-wrap: break-word;
+}
+
 // Since button background is actually applied to the link within the button, apply button highlight to same bg area as normal button state .
 .button.highlight {
 	background: inherit;
