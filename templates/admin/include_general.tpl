@@ -117,6 +117,15 @@
 					</div>
 				</div>
 			</fieldset>
+			<fieldset>
+				<legend>{tr}Scheduler Settings{/tr}</legend>
+				{preference name=feature_scheduler}
+				{preference name=scheduler_stalled_timeout}
+				{preference name=scheduler_notify_on_stalled}
+				{preference name=scheduler_healing_timeout}
+				{preference name=scheduler_notify_on_healing}
+				{preference name=scheduler_keep_logs}
+			</fieldset>
 		{/tab}
 		{tab name="{tr}General Settings{/tr}"}
 			<br>
