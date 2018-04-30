@@ -154,7 +154,23 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		if ($context['list_mode'] === 'csv') {
 			$fieldId = $this->getConfiguration('fieldId');
 			if (! empty($fieldId)) {
-				return $this->getData($fieldId);
+				$itemData = $this->getData($fieldId);
+				$items = preg_split('/[\s]+/', $itemData);
+
+				$returnValue = '';
+				foreach ($items as $itemValue) {
+					$itemFieldValue = explode(':', $itemValue);
+					if (! empty($itemFieldValue[0]) && ! empty($itemFieldValue[1])) {
+						$objectLib = TikiLib::lib('object');
+						$value = $objectLib->get_title($itemFieldValue[0], $itemFieldValue[1]);
+					} else {
+						$value = $itemValue;
+					}
+
+					$returnValue .= ! empty($returnValue) ? ', ' . $value : $value;
+				}
+
+				return ! empty($returnValue) ? $returnValue : $itemData;
 			}
 			return $this->getConfiguration('value');
 		} elseif ($context['list_mode'] === 'text') {
