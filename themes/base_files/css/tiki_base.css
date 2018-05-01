@@ -834,7 +834,7 @@ address, blockquote, dd, dl, dt, h1, h2, h3, h4, h5, h6, li, nav, noscript, ol, 
 #attzone, #bottom_modules .box-rsslist br, #comzone, #edithelpzone, #forumpost, #polledit, #pollzone, #rules-copy-panel, #tiki-clean a.editplugin, .collapsed ul, .convene-no img, .s5-slide a.editplugin, .tabs br, .wiki-edithelp, .wpfade-div-plain, form[name=editpageform] .form-group .tab-content .alert-warning {
   display: none; }
 
-#attzoneopen, #comzoneopen, #pollopen, .all .comment.archived {
+#attzoneopen, #comzoneopen, #pollopen, .flex-column.collapsing, .all .comment.archived {
   display: block; }
 
 #ajaxLoadingBG {

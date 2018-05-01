@@ -123,6 +123,7 @@ form[name=editpageform] .form-group .tab-content .alert-warning {
 #attzoneopen,
 #comzoneopen,
 #pollopen,
+.flex-column.collapsing, // to prevent jumpy behavior of flex-column collapsing sub-items in vertical menus
 .all .comment.archived {
 	display: block;
 }
