@@ -1197,6 +1197,8 @@ function checkCommands($input)
 			'readdataSK', 'biocLite',
 			'runApp', 'runExample', 'runGist', 'runGitHub', 'runUrl', # from Shiny
 			'png', 'jpeg', 'pdf',
+			'p_load', 'p_load_gh', 'p_install', 'p_install_gh', # from pacman
+			'p_install_version', 'p_temp', 'p_update', # from pacman
 			'get', 'rgl.init', # Suggested by Carlos J. Gil Bellosta , and Miguel Angel Rodriguez Muinos from list r-help-es
 			'call', 'eval',	 # added by suggestion of M. Cassin
 			'paste',	 # added by suggestion of Philippe Grosjean from Numerical Ecology of Aquatic Systems, Mons University, Belgium
