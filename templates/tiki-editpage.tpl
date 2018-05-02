@@ -203,7 +203,7 @@
 					{/if}
 					{if $page|lower neq 'sandbox'}
 						<fieldset class="edit-zone-footer">
-							<label for="comment">{tr}Describe the change you made{/tr} {help url='Editing+Wiki+Pages' desc="{tr}Edit comment: Enter some text to describe the changes you are currently making{/tr}"}</label>
+							<label for="comment">{tr}Describe the change you made{/tr} {help url='Editing Wiki Pages' desc="{tr}Edit comment: Enter some text to describe the changes you are currently making{/tr}"}</label>
 							<input class="form-control wikiedit" type="text" id="comment" name="comment" value="{$commentdata|escape}" maxlength="255">
 							{if isset($show_watch) && $show_watch eq 'y'}
 								<label for="watch">{tr}Monitor this page{/tr}</label>
