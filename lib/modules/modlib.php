@@ -138,8 +138,9 @@ class ModLib extends TikiLib
 
 		if ($res["groups"]) {
 			$grps = unserialize($res["groups"]);
-
-			$res["module_groups"] = implode(' ', $res['groups']);
+			if (! empty($grps)) {
+				$res["module_groups"] = implode(' ', $grps);
+			}
 		}
 
 		return $res;
