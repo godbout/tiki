@@ -178,75 +178,93 @@ class Tiki_Profile_InstallHandler_Forum extends Tiki_Profile_InstallHandler
 		return $id;
 	}
 
-	public static function export(Tiki_Profile_Writer $writer, $forumId)
+	/**
+	 * Export forums
+	 *
+	 * @param Tiki_Profile_Writer $writer
+	 * @param int $forumId
+	 * @param bool $all
+	 * @return bool
+	 */
+	public static function export(Tiki_Profile_Writer $writer, $forumId, $all = false)
 	{
 		$forumlib = TikiLib::lib('comments');
-		if (! $info = $forumlib->get_forum($forumId)) {
+
+		if (isset($forumId) && ! $all) {
+			$listForums = [];
+			$listForums[] = $forumlib->get_forum($forumId);
+		} else {
+			$listForums = $listForums = $forumlib->list_forums();
+			$listForums = $listForums['data'];
+		}
+
+		if (empty($listForums[0]['forumId'])) {
 			return false;
 		}
 
-		$writer->addObject(
-			'forum',
-			$forumId,
-			[
-				'name' => $info['name'],
-				'description' => $info['description'],
-				'enable_flood_control' => $info['controlFlood'],
-				'flood_interval' => $info['floodInterval'],
-				'moderator' => $info['moderator'],
-				'mail' => $info['mail'],
-				'enable_inbound_mail' => $info['useMail'],
-				'section' => $info['section'],
-				'enable_prune_unreplied' => $info['usePruneUnreplied'],
-				'prune_unreplied_max_age' => $info['pruneUnrepliedAge'],
-				'enable_prune_old' => $info['usePruneOld'],
-				'prune_max_age' => $info['pruneMaxAge'],
-				'per_page' => $info['topicsPerPage'],
-				'topic_order' => $info['topicOrdering'],
-				'thread_order' => $info['threadOrdering'],
-				'attachments' => self::getAttConverter()->reverse($info['att']),
-				'attachments_store' => $info['att_store'],
-				'attachments_store_dir' => $info['att_store_dir'],
-				'attachments_max_size' => $info['att_max_size'],
-				'list_att_nb' => $info['att_list_nb'],
-				'enable_ui_level' => $info['ui_level'],
-				'enable_password_protection' => $info['forum_use_password'],
-				'forum_password' => $info['forum_password'],
-				'moderator_group' => $info['moderator_group'],
-				'approval_type' => $info['approval_type'],
-				'outbound_address' => $info['outbound_address'],
-				'enable_outbound_for_inbound' => $info['outbound_mails_for_inbound_mails'],
-				'enable_outbound_mail_reply_link' => $info['outbound_mails_reply_link'],
-				'outbound_from' => $info['outbound_from'],
-				'inbound_pop_server' => $info['inbound_pop_server'],
-				'inbound_pop_port' => $info['inbound_pop_port'],
-				'inbound_pop_user' => $info['inbound_pop_user'],
-				'inbound_pop_password' => $info['inbound_pop_password'],
-				'enable_topic_smiley' => $info['topic_smileys'],
-				'enable_ui_avatar' => $info['ui_avatar'],
-				'enable_ui_rating_choice_topic' => $info['ui_rating_choice_topic'],
-				'enable_ui_flag' => $info['ui_flag'],
-				'enable_ui_posts' => $info['ui_posts'],
-				'enable_ui_email' => $info['ui_email'],
-				'enable_ui_online' => $info['ui_online'],
-				'enable_topic_summary' => $info['topic_summary'],
-				'show_description' => $info['show_description'],
-				'list_topic_replies' => $info['topics_list_replies'],
-				'list_topic_reads' => $info['topics_list_reads'],
-				'list_topic_points' => $info['topics_list_pts'],
-				'list_topic_last_post' => $info['topics_list_lastpost'],
-				'list_topic_last_post_title' => $info['topics_list_lastpost_title'],
-				'list_topic_last_post_avatar' => $info['topics_list_lastpost_avatar'],
-				'list_topic_author_avatar' => $info['topics_list_author_avatar'],
-				'list_topic_author' => $info['topics_list_author'],
-				'enable_vote_threads' => $info['vote_threads'],
-				'forum_last_n' => $info['forum_last_n'],
-				'thread_style' => $info['threadStyle'],
-				'comments_per_page' => $info['commentsPerPage'],
-				'is_flat' => $info['is_flat'],
-			]
-		);
-
+		foreach ($listForums as $forum) {
+			$writer->addObject(
+				'forum',
+				$forum['forumId'],
+				[
+					'name' => $forum['name'],
+					'description' => $forum['description'],
+					'enable_flood_control' => $forum['controlFlood'],
+					'flood_interval' => $forum['floodInterval'],
+					'moderator' => $forum['moderator'],
+					'mail' => $forum['mail'],
+					'enable_inbound_mail' => $forum['useMail'],
+					'section' => $forum['section'],
+					'enable_prune_unreplied' => $forum['usePruneUnreplied'],
+					'prune_unreplied_max_age' => $forum['pruneUnrepliedAge'],
+					'enable_prune_old' => $forum['usePruneOld'],
+					'prune_max_age' => $forum['pruneMaxAge'],
+					'per_page' => $forum['topicsPerPage'],
+					'topic_order' => $forum['topicOrdering'],
+					'thread_order' => $forum['threadOrdering'],
+					'attachments' => self::getAttConverter()->reverse($forum['att']),
+					'attachments_store' => $forum['att_store'],
+					'attachments_store_dir' => $forum['att_store_dir'],
+					'attachments_max_size' => $forum['att_max_size'],
+					'list_att_nb' => $forum['att_list_nb'],
+					'enable_ui_level' => $forum['ui_level'],
+					'enable_password_protection' => $forum['forum_use_password'],
+					'forum_password' => $forum['forum_password'],
+					'moderator_group' => $forum['moderator_group'],
+					'approval_type' => $forum['approval_type'],
+					'outbound_address' => $forum['outbound_address'],
+					'enable_outbound_for_inbound' => $forum['outbound_mails_for_inbound_mails'],
+					'enable_outbound_mail_reply_link' => $forum['outbound_mails_reply_link'],
+					'outbound_from' => $forum['outbound_from'],
+					'inbound_pop_server' => $forum['inbound_pop_server'],
+					'inbound_pop_port' => $forum['inbound_pop_port'],
+					'inbound_pop_user' => $forum['inbound_pop_user'],
+					'inbound_pop_password' => $forum['inbound_pop_password'],
+					'enable_topic_smiley' => $forum['topic_smileys'],
+					'enable_ui_avatar' => $forum['ui_avatar'],
+					'enable_ui_rating_choice_topic' => $forum['ui_rating_choice_topic'],
+					'enable_ui_flag' => $forum['ui_flag'],
+					'enable_ui_posts' => $forum['ui_posts'],
+					'enable_ui_email' => $forum['ui_email'],
+					'enable_ui_online' => $forum['ui_online'],
+					'enable_topic_summary' => $forum['topic_summary'],
+					'show_description' => $forum['show_description'],
+					'list_topic_replies' => $forum['topics_list_replies'],
+					'list_topic_reads' => $forum['topics_list_reads'],
+					'list_topic_points' => $forum['topics_list_pts'],
+					'list_topic_last_post' => $forum['topics_list_lastpost'],
+					'list_topic_last_post_title' => $forum['topics_list_lastpost_title'],
+					'list_topic_last_post_avatar' => $forum['topics_list_lastpost_avatar'],
+					'list_topic_author_avatar' => $forum['topics_list_author_avatar'],
+					'list_topic_author' => $forum['topics_list_author'],
+					'enable_vote_threads' => $forum['vote_threads'],
+					'forum_last_n' => $forum['forum_last_n'],
+					'thread_style' => $forum['threadStyle'],
+					'comments_per_page' => $forum['commentsPerPage'],
+					'is_flat' => $forum['is_flat'],
+				]
+			);
+		}
 		return true;
 	}
 

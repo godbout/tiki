@@ -85,39 +85,63 @@ class Tiki_Profile_InstallHandler_Category extends Tiki_Profile_InstallHandler
 		return $id;
 	}
 
-	public static function export(Tiki_Profile_Writer $writer, $categId, $deep, $includeObjectCallback)
+	/**
+	 * Export categories
+	 *
+	 * @param Tiki_Profile_Writer $writer
+	 * @param int $categId
+	 * @param bool $deep
+	 * @param mixed $includeObjectCallback
+	 * @param bool $all
+	 * @return bool
+	 */
+	public static function export(Tiki_Profile_Writer $writer, $categId, $deep, $includeObjectCallback, $all = false)
 	{
 		$categlib = TikiLib::lib('categ');
-		if (! $info = $categlib->get_category($categId)) {
+
+		if (isset($categId) && ! $all) {
+			$listCategories = [];
+			$listCategories[] = $categlib->get_category($categId);
+			$error = isset($listCategories[0]) ? false : true;
+		} else {
+			$listCategories = $categlib->getCategories();
+			$error = isset($listCategories[1]) ? false : true;
+		}
+
+		if ($error) {
 			return false;
 		}
 
-		$items = [];
-		foreach ($categlib->get_category_objects($categId) as $row) {
-			if ($includeObjectCallback($row['type'], $row['itemId'])) {
-				$items[] = [$row['type'], $writer->getReference($row['type'], $row['itemId'])];
+		foreach ($listCategories as $category) {
+			$categId = $category['categId'];
+
+			$items = [];
+			foreach ($categlib->get_category_objects($categId) as $row) {
+				if ($includeObjectCallback($row['type'], $row['itemId'])) {
+					$items[] = [$row['type'], $writer->getReference($row['type'], $row['itemId'])];
+				}
 			}
-		}
 
-		$data = [
-			'name' => $info['name'],
-		];
+			$data = [
+				'name' => $category['name'],
+			];
 
-		if (! empty($info['parentId'])) {
-			$data['parent'] = $writer->getReference('category', $info['parentId']);
-		}
+			if (! empty($category['parentId'])) {
+				$data['parent'] = $writer->getReference('category', $category['parentId']);
+			}
 
-		if (! empty($items)) {
-			$data['items'] = $items;
-		}
+			if (! empty($items)) {
+				$data['items'] = $items;
+			}
 
-		$writer->addObject('category', $categId, $data);
+			$writer->addObject('category', $categId, $data);
 
-		if ($deep) {
-			$descendants = $categlib->get_category_descendants($categId);
-			array_shift($descendants);
-			foreach ($descendants as $children) {
-				self::export($writer, $children, $deep, $includeObjectCallback);
+			if ($deep) {
+				$descendants = $categlib->get_category_descendants($categId);
+				array_shift($descendants);
+				foreach ($descendants as $children) {
+					self::export($writer, $children, $deep, $includeObjectCallback);
+				}
 			}
 		}
 

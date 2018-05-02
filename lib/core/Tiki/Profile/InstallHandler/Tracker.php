@@ -157,96 +157,116 @@ class Tiki_Profile_InstallHandler_Tracker extends Tiki_Profile_InstallHandler
 		return $trklib->replace_tracker($trackerId, $name, $description, $options, 'y');
 	} // }}}
 
-	public static function export(Tiki_Profile_Writer $writer, $trackerId) // {{{
+	/**
+	 * Export trackers
+	 *
+	 * @param Tiki_Profile_Writer $writer
+	 * @param int $trackerId
+	 * @param bool $all
+	 * @return bool
+	 */
+	public static function export(Tiki_Profile_Writer $writer, $trackerId, $all = false) // {{{
 	{
 		$trklib = TikiLib::lib('trk');
-		$info = $trklib->get_tracker($trackerId);
 
-		if (! $info) {
-			return false;
+		if (isset($trackerId) && ! $all) {
+			$listTrackers = [];
+			$listTrackers[] = ['trackerId' => $trackerId];
+		} else {
+			$listTrackers = $trklib->list_trackers();
+			$listTrackers = $listTrackers['data'];
 		}
 
-		if ($options = $trklib->get_tracker_options($trackerId)) {
-			$info = array_merge($info, $options);
-		}
+		foreach ($listTrackers as $tracker) {
+			$trackerId = $tracker['trackerId'];
+			$info = $trklib->get_tracker($trackerId);
 
-		$data = [
-			'name' => $info['name'],
-			'description' => $info['description'],
-		];
-
-		$optionMap = array_flip(self::getOptionMap());
-		$defaults = self::getDefaults();
-		$conversions = self::getOptionConverters();
-
-		$allow = [];
-		$show = [];
-
-		foreach ($info as $key => $value) {
-			if (empty($optionMap[$key])) {
-				continue;
+			if (empty($info)) {
+				return false;
 			}
 
-			$optionKey = $optionMap[$key];
-			$default = '';
-			if (isset($defaults[$optionKey])) {
-				$default = $defaults[$optionKey];
+			if ($options = $trklib->get_tracker_options($trackerId)) {
+				$info = array_merge($info, $options);
 			}
 
-			if ($value != $default) {
-				if (strstr($optionKey, 'allow_')) {
-					$allow[] = str_replace('allow_', '', $optionKey);
-				} elseif (strstr($optionKey, 'show_')) {
-					$show[] = str_replace('show_', '', $optionKey);
-				} elseif (isset($conversions[$optionKey]) && method_exists($conversions[$optionKey], 'reverse')) {
-					$data[$optionKey] = $conversions[$optionKey]->reverse($value);
-				} else {
-					$data[$optionKey] = $value;
+			$data = [
+				'name' => $info['name'],
+				'description' => $info['description'],
+			];
+
+			$optionMap = array_flip(self::getOptionMap());
+			$defaults = self::getDefaults();
+			$conversions = self::getOptionConverters();
+
+			$allow = [];
+			$show = [];
+
+			foreach ($info as $key => $value) {
+				if (empty($optionMap[$key])) {
+					continue;
+				}
+
+				$optionKey = $optionMap[$key];
+				$default = '';
+				if (isset($defaults[$optionKey])) {
+					$default = $defaults[$optionKey];
+				}
+
+				if ($value != $default) {
+					if (strstr($optionKey, 'allow_')) {
+						$allow[] = str_replace('allow_', '', $optionKey);
+					} elseif (strstr($optionKey, 'show_')) {
+						$show[] = str_replace('show_', '', $optionKey);
+					} elseif (isset($conversions[$optionKey]) && method_exists($conversions[$optionKey], 'reverse')) {
+						$data[$optionKey] = $conversions[$optionKey]->reverse($value);
+					} else {
+						$data[$optionKey] = $value;
+					}
 				}
 			}
-		}
 
-		if (! empty($allow)) {
-			$data['allow'] = $allow;
-		}
-		if (! empty($show)) {
-			$data['show'] = $show;
-		}
-
-		$fieldReferences = [];
-		foreach (['sort_default_field', 'popup_fields'] as $key) {
-			if (isset($data[$key])) {
-				$fieldReferences[$key] = $data[$key];
-				unset($data[$key]);
+			if (! empty($allow)) {
+				$data['allow'] = $allow;
 			}
-		}
+			if (! empty($show)) {
+				$data['show'] = $show;
+			}
 
-		$reference = $writer->addObject('tracker', $trackerId, $data);
+			$fieldReferences = [];
+			foreach (['sort_default_field', 'popup_fields'] as $key) {
+				if (isset($data[$key])) {
+					$fieldReferences[$key] = $data[$key];
+					unset($data[$key]);
+				}
+			}
 
-		$fields = $trklib->list_tracker_fields($trackerId);
-		foreach ($fields['data'] as $field) {
-			$writer->pushReference("{$reference}_{$field['permName']}");
-			Tiki_Profile_InstallHandler_TrackerField::export($writer, $field);
-		}
+			$reference = $writer->addObject('tracker', $trackerId, $data);
 
-		foreach (array_filter($fieldReferences) as $key => $value) {
-			$value = preg_replace_callback(
-				'/(\d+)/',
-				function ($match) use ($writer) {
-					return $writer->getReference('tracker_field', $match[1]);
-				},
-				$value
-			);
-			$writer->pushReference("{$reference}_{$key}");
-			$writer->addObject(
-				'tracker_option',
-				"$key-$trackerId",
-				[
-					'tracker' => $writer->getReference('tracker', $trackerId),
-					'name' => $key,
-					'value' => $value,
-				]
-			);
+			$fields = $trklib->list_tracker_fields($trackerId);
+			foreach ($fields['data'] as $field) {
+				$writer->pushReference("{$reference}_{$field['permName']}");
+				Tiki_Profile_InstallHandler_TrackerField::export($writer, $field);
+			}
+
+			foreach (array_filter($fieldReferences) as $key => $value) {
+				$value = preg_replace_callback(
+					'/(\d+)/',
+					function ($match) use ($writer) {
+						return $writer->getReference('tracker_field', $match[1]);
+					},
+					$value
+				);
+				$writer->pushReference("{$reference}_{$key}");
+				$writer->addObject(
+					'tracker_option',
+					"$key-$trackerId",
+					[
+						'tracker' => $writer->getReference('tracker', $trackerId),
+						'name' => $key,
+						'value' => $value,
+					]
+				);
+			}
 		}
 
 		return true;

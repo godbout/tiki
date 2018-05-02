@@ -33,7 +33,7 @@ abstract class ObjectWriter extends Command
 	protected function getProfileWriter(InputInterface $input)
 	{
 		$ini = parse_ini_file('profiles/info.ini');
-		$activeProfile = $ini['profile.name'];
+		$activeProfile = ! empty($ini['profile.name']) ? $ini['profile.name'] : '';
 
 		$writer = new \Tiki_Profile_Writer("profiles", $activeProfile);
 

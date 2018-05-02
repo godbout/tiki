@@ -296,26 +296,39 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 		return $name;
 	}
 
-	public static function export(Tiki_Profile_Writer $writer, $page)
+	/**
+	 * Export wikipages
+	 *
+	 * @param Tiki_Profile_Writer $writer
+	 * @param string $page
+	 * @param bool $all
+	 * @return bool
+	 */
+	public static function export(Tiki_Profile_Writer $writer, $page, $all = false)
 	{
 		$tikilib = \TikiLib::lib('tiki');
-		if (! $info = $tikilib->get_page_info($page)) {
+
+		$pageName = ! empty($page) ? $page : '';
+		$listPages = $tikilib->list_pages(0, -1, 'pageName_desc', $pageName);
+		if ($listPages['cant'] == 0) {
 			return false;
 		}
 
-		$writer->writeExternal($page, $writer->getReference('wiki_content', $info['data']));
-		$writer->addObject(
-			'wiki_page',
-			$page,
-			array_filter([
-				'name' => $page,
-				'content' => "wikicontent:$page",
-				'description' => $info['description'],
-				'lang' => $info['lang'],
-				'wysiwyg' => $info['wysiwyg'],
-			])
-		);
-
+		foreach ($listPages['data'] as $page) {
+			$pageName = $page['pageName'];
+			$writer->writeExternal($pageName, $writer->getReference('wiki_content', $page['data']));
+			$writer->addObject(
+				'wiki_page',
+				$pageName,
+				array_filter([
+					'name' => $pageName,
+					'content' => "wikicontent:$pageName",
+					'description' => $page['description'],
+					'lang' => $page['lang'],
+					'wysiwyg' => $page['wysiwyg'],
+				])
+			);
+		}
 		return true;
 	}
 

@@ -19,9 +19,15 @@ class Tracker extends ObjectWriter
 		$this
 			->setName('profile:export:tracker')
 			->setDescription('Export a tracker definition')
+			->addOption(
+				'all',
+				null,
+				InputOption::VALUE_NONE,
+				'Export all trackers'
+			)
 			->addArgument(
 				'tracker',
-				InputArgument::REQUIRED,
+				InputArgument::OPTIONAL,
 				'Tracker ID'
 			);
 
@@ -31,6 +37,12 @@ class Tracker extends ObjectWriter
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$trackerId = $input->getArgument('tracker');
+		$all = $input->getOption('all');
+
+		if (! $all && empty($trackerId)) {
+			$output->writeln('<error>' . tra('Not enough arguments (missing: "tracker" or "--all" option)') . '</error>');
+			return false;
+		}
 
 		$ref = $input->getOption('reference');
 		if ($ref && ! \Tiki_Profile::isValidReference($ref, true)) {
@@ -40,7 +52,7 @@ class Tracker extends ObjectWriter
 
 		$writer = $this->getProfileWriter($input);
 
-		$result = \Tiki_Profile_InstallHandler_Tracker::export($writer, $trackerId);
+		$result = \Tiki_Profile_InstallHandler_Tracker::export($writer, $trackerId, $all);
 
 		if ($result) {
 			$writer->save();

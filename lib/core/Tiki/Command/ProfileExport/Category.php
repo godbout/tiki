@@ -21,8 +21,14 @@ class Category extends ObjectWriter
 			->setDescription('Export a category')
 			->addArgument(
 				'category',
-				InputArgument::REQUIRED,
+				InputArgument::OPTIONAL,
 				'Category ID'
+			)
+			->addOption(
+				'all',
+				null,
+				InputOption::VALUE_NONE,
+				'Export all categories'
 			)
 			->addOption(
 				'deep',
@@ -50,6 +56,12 @@ class Category extends ObjectWriter
 	{
 		$category = $input->getArgument('category');
 		$deep = $input->getOption('deep');
+		$all = $input->getOption('all');
+
+		if (! $all && empty($category)) {
+			$output->writeln('<error>' . tra('Not enough arguments (missing: "category" or "--all" options)') . '</error>');
+			return false;
+		}
 
 		$writer = $this->getProfileWriter($input);
 
@@ -69,7 +81,7 @@ class Category extends ObjectWriter
 			};
 		}
 
-		if (\Tiki_Profile_InstallHandler_Category::export($writer, $category, $deep, $includeObject)) {
+		if (\Tiki_Profile_InstallHandler_Category::export($writer, $category, $deep, $includeObject, $all)) {
 			$writer->save();
 		} else {
 			$output->writeln("<error>Category not found: $category</error>");

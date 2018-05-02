@@ -19,9 +19,15 @@ class Calendar extends ObjectWriter
 		$this
 			->setName('profile:export:calendar')
 			->setDescription('Export a calendar')
+			->addOption(
+				'all',
+				null,
+				InputOption::VALUE_NONE,
+				'Export all calendars'
+			)
 			->addArgument(
 				'calendar',
-				InputArgument::REQUIRED,
+				InputArgument::OPTIONAL,
 				'Calendar ID'
 			);
 
@@ -31,9 +37,15 @@ class Calendar extends ObjectWriter
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$calendarId = $input->getArgument('calendar');
+		$all = $input->getOption('all');
+
+		if (! $all && empty($calendarId)) {
+			$output->writeln('<error>' . tra('Not enough arguments (missing: "calendar" or "--all" option)') . '</error>');
+			return false;
+		}
 
 		$writer = $this->getProfileWriter($input);
-		if (\Tiki_Profile_InstallHandler_Calendar::export($writer, $calendarId)) {
+		if (\Tiki_Profile_InstallHandler_Calendar::export($writer, $calendarId, $all)) {
 			$writer->save();
 		} else {
 			$output->writeln("<error>Calendar not found: $calendarId</error>");

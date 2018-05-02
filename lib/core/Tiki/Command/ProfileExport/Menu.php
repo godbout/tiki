@@ -19,9 +19,15 @@ class Menu extends ObjectWriter
 		$this
 			->setName('profile:export:menu')
 			->setDescription('Export a menu definition')
+			->addOption(
+				'all',
+				null,
+				InputOption::VALUE_NONE,
+				'Export all menus'
+			)
 			->addArgument(
 				'menu',
-				InputArgument::REQUIRED,
+				InputArgument::OPTIONAL,
 				'Menu ID'
 			);
 
@@ -31,10 +37,16 @@ class Menu extends ObjectWriter
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$menuId = $input->getArgument('menu');
+		$all = $input->getOption('all');
+
+		if (! $all && empty($menuId)) {
+			$output->writeln('<error>' . tra('Not enough arguments (missing: "menu" or "--all" option)') . '</error>');
+			return false;
+		}
 
 		$writer = $this->getProfileWriter($input);
 
-		$result = \Tiki_Profile_InstallHandler_Menu::export($writer, $menuId);
+		$result = \Tiki_Profile_InstallHandler_Menu::export($writer, $menuId, $all);
 
 		if ($result) {
 			$writer->save();

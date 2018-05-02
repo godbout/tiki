@@ -1127,22 +1127,40 @@ class PreferencesLib
 		}
 	}
 
-	public function exportPreference(Tiki_Profile_Writer $writer, $preferenceName)
+	/**
+	 * Export preferences
+	 *
+	 * @param Tiki_Profile_Writer $writer
+	 * @param string $preferenceName
+	 * @param bool $all
+	 * @return bool
+	 */
+	public function exportPreference(Tiki_Profile_Writer $writer, $preferenceName, $all = null)
 	{
-		global $prefs;
+		if (isset($preferenceName) && ! $all) {
+			$listPrefs = [];
+			$listPrefs[$preferenceName] = true;
+		} else {
+			$listPrefs = $this->getModifiedPrefsForExport(true);
+		}
 
-		if ($info = $this->getPreference($preferenceName)) {
-			if (isset($info['profile_reference'])) {
-				$writer->setPreference($preferenceName, $writer->getReference($info['profile_reference'], $info['value']));
+		if (empty($listPrefs)) {
+			return false;
+		}
 
-				return true;
-			} else {
-				$writer->setPreference($preferenceName, $info['value']);
-				return true;
+		foreach ($listPrefs as $preferenceName => $value) {
+			if (is_string($preferenceName)) {
+				if ($info = $this->getPreference($preferenceName)) {
+					if (isset($info['profile_reference'])) {
+						$writer->setPreference($preferenceName, $writer->getReference($info['profile_reference'], $info['value']));
+					} else {
+						$writer->setPreference($preferenceName, $info['value']);
+					}
+				}
 			}
 		}
 
-		return false;
+		return true;
 	}
 
 	public function getAddonPrefs()

@@ -31,9 +31,15 @@ class Article extends ObjectWriter
 				InputOption::VALUE_NONE,
 				'Includes article type'
 			)
+			->addOption(
+				'all',
+				null,
+				InputOption::VALUE_NONE,
+				'Export all articles'
+			)
 			->addArgument(
 				'article',
-				InputArgument::REQUIRED,
+				InputArgument::OPTIONAL,
 				'Article ID'
 			);
 
@@ -45,10 +51,16 @@ class Article extends ObjectWriter
 		$id = $input->getArgument('article');
 		$withTopic = $input->getOption('with-topic');
 		$withType = $input->getOption('with-type');
+		$all = $input->getOption('all');
+
+		if (! $all && empty($id)) {
+			$output->writeln('<error>' . tra('Not enough arguments (missing: "article" or "--all" options)') . '</error>');
+			return false;
+		}
 
 		$writer = $this->getProfileWriter($input);
 
-		$result = \Tiki_Profile_InstallHandler_Article::export($writer, $id, $withTopic, $withType);
+		$result = \Tiki_Profile_InstallHandler_Article::export($writer, $id, $withTopic, $withType, $all);
 
 		if ($result) {
 			$writer->save();

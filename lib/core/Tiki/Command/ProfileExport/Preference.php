@@ -19,9 +19,15 @@ class Preference extends ObjectWriter
 		$this
 			->setName('profile:export:preference')
 			->setDescription('Include a preference within the profile definition')
+			->addOption(
+				'all',
+				null,
+				InputOption::VALUE_NONE,
+				'Export all preferences'
+			)
 			->addArgument(
 				'name',
-				InputArgument::REQUIRED,
+				InputArgument::OPTIONAL,
 				'Preference name'
 			);
 	}
@@ -29,11 +35,17 @@ class Preference extends ObjectWriter
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$preference = $input->getArgument('name');
+		$all = $input->getOption('all');
+
+		if (! $all && empty($preference)) {
+			$output->writeln('<error>' . tra('Not enough arguments (missing: "name" or "--all" options)') . '</error>');
+			return false;
+		}
 
 		$writer = $this->getProfileWriter($input);
 
 		$prefslib = \TikiLib::lib('prefs');
-		$result = $prefslib->exportPreference($writer, $preference);
+		$result = $prefslib->exportPreference($writer, $preference, $all);
 
 		if ($result) {
 			$writer->save();

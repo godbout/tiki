@@ -87,49 +87,74 @@ class Tiki_Profile_InstallHandler_Article extends Tiki_Profile_InstallHandler
 		return $id;
 	}
 
-	public static function export(Tiki_Profile_Writer $writer, $id, $withTopic = false, $withType = false)
+	/**
+	 * Export articles
+	 *
+	 * @param Tiki_Profile_Writer $writer
+	 * @param int $id
+	 * @param bool $withTopic
+	 * @param bool $withType
+	 * @param bool $all
+	 * @return bool
+	 */
+	public static function export(Tiki_Profile_Writer $writer, $id, $withTopic = false, $withType = false, $all = false)
 	{
 		$artlib = TikiLib::lib('art');
-		$info = $artlib->get_article($id, false);
 
-		if (! $info) {
+		if (isset($id) && ! $all) {
+			$listArticles = [];
+			$listArticles[] = $artlib->get_article($id, false);
+		} else {
+			$listArticles = $artlib->list_articles();
+			$listArticles = $listArticles['data'];
+		}
+
+		if (empty($listArticles[0])) {
 			return false;
 		}
 
-		$bodypage = "article_{$id}_body";
-		$writer->writeExternal($bodypage, $writer->getReference('wiki_content', $info['body']));
-		$out = [
-			'title' => $info['title'],
-			'author' => $info['authorName'],
-			'body' => "wikicontent:$bodypage",
-			'type' => $writer->getReference('article_type', $info['type']),
-			'publication_date' => $info['publishDate'],
-			'expiration_date' => $info['expireDate'],
-			'topline' => $info['topline'],
-			'subtitle' => $info['subtitle'],
-			'link_to' => $info['linkto'],
-			'language' => $info['lang'],
-		];
+		foreach ($listArticles as $article) {
+			$id = $article['articleId'];
 
-		if ($info['topicId']) {
-			if ($withTopic) {
-				Tiki_Profile_InstallHandler_ArticleTopic::export($writer, $info['topicId']);
+			if (! $id) {
+				return false;
 			}
 
-			$out['topic'] = $writer->getReference('article_topic', $info['topicId']);
-		}
+			$bodypage = "article_{$id}_body";
+			$writer->writeExternal($bodypage, $writer->getReference('wiki_content', $article['body']));
+			$out = [
+				'title' => $article['title'],
+				'author' => $article['authorName'],
+				'body' => "wikicontent:$bodypage",
+				'type' => $writer->getReference('article_type', $article['type']),
+				'publication_date' => $article['publishDate'],
+				'expiration_date' => $article['expireDate'],
+				'topline' => $article['topline'],
+				'subtitle' => $article['subtitle'],
+				'link_to' => $article['linkto'],
+				'language' => $article['lang'],
+			];
 
-		if ($info['heading']) {
-			$headerpage = "article_{$id}_heading";
-			$writer->writeExternal($headerpage, $writer->getReference('wiki_content', $info['heading']));
-			$out['heading'] = "wikicontent:$headerpage";
-		}
+			if ($article['topicId']) {
+				if ($withTopic) {
+					Tiki_Profile_InstallHandler_ArticleTopic::export($writer, $article['topicId']);
+				}
 
-		$out = array_filter($out);
-		$writer->addObject('article', $id, $out);
+				$out['topic'] = $writer->getReference('article_topic', $article['topicId']);
+			}
 
-		if ($withType) {
-			Tiki_Profile_InstallHandler_ArticleType::export($writer, $info['type']);
+			if ($article['heading']) {
+				$headerpage = "article_{$id}_heading";
+				$writer->writeExternal($headerpage, $writer->getReference('wiki_content', $article['heading']));
+				$out['heading'] = "wikicontent:$headerpage";
+			}
+
+			$out = array_filter($out);
+			$writer->addObject('article', $id, $out);
+
+			if ($withType) {
+				Tiki_Profile_InstallHandler_ArticleType::export($writer, $article['type']);
+			}
 		}
 
 		return true;

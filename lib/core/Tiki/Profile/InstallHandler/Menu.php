@@ -191,28 +191,48 @@ class Tiki_Profile_InstallHandler_Menu extends Tiki_Profile_InstallHandler
 		return $menuId;
 	}
 
-	public static function export(Tiki_Profile_Writer $writer, $menuId)
+	/**
+	 * Export menus
+	 *
+	 * @param Tiki_Profile_Writer $writer
+	 * @param int $menuId
+	 * @param bool $all
+	 * @return bool
+	 */
+	public static function export(Tiki_Profile_Writer $writer, $menuId, $all = false)
 	{
 		$menulib = TikiLib::lib('menu');
-		$menu = $menulib->get_menu($menuId);
 
-		if (! $menu) {
+		if (isset($menuId) && ! $all) {
+			$listMenu = [];
+			$listMenu[] = $menulib->get_menu($menuId);
+		} else {
+			$listMenu = $menulib->list_menus();
+			$listMenu = $listMenu['data'];
+		}
+
+		if (empty($listMenu[0]['menuId'])) {
 			return false;
 		}
 
-		$options = $menulib->list_menu_options($menuId, 0, -1, 'position_asc', '', true, 0, true);
-
-		$menu['items'] = array_map(function ($entry) use ($writer) {
-			unset($entry['menuId']);
-			unset($entry['optionId']);
-			if ($entry['perm']) {
-				$entry['permissions'] = [$entry['perm']];
+		foreach ($listMenu as $menu) {
+			$menuId = $menu['menuId'];
+			if ($menuId == 42) { // The system menu has a value hardcoded of 42
+				continue;
 			}
+			$options = $menulib->list_menu_options($menuId, 0, -1, 'position_asc', '', true, 0, true);
+			$menu['items'] = array_map(function ($entry) use ($writer) {
+				unset($entry['menuId']);
+				unset($entry['optionId']);
+				if ($entry['perm']) {
+					$entry['permissions'] = [$entry['perm']];
+				}
 
-			return $entry;
-		}, $options['data']);
+				return $entry;
+			}, $options['data']);
 
-		$writer->addObject('menu', $menuId, $menu);
+			$writer->addObject('menu', $menuId, $menu);
+		}
 
 		return true;
 	}

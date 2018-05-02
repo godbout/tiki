@@ -19,9 +19,15 @@ class Forum extends ObjectWriter
 		$this
 			->setName('profile:export:forum')
 			->setDescription('Export a forum definition')
+			->addOption(
+				'all',
+				null,
+				InputOption::VALUE_NONE,
+				'Export all forums'
+			)
 			->addArgument(
 				'forum',
-				InputArgument::REQUIRED,
+				InputArgument::OPTIONAL,
 				'Forum ID'
 			);
 
@@ -31,10 +37,16 @@ class Forum extends ObjectWriter
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$forumId = $input->getArgument('forum');
+		$all = $input->getOption('all');
+
+		if (! $all && empty($forumId)) {
+			$output->writeln('<error>' . tra('Not enough arguments (missing: "forum" or "--all" option)') . '</error>');
+			return false;
+		}
 
 		$writer = $this->getProfileWriter($input);
 
-		$result = \Tiki_Profile_InstallHandler_Forum::export($writer, $forumId);
+		$result = \Tiki_Profile_InstallHandler_Forum::export($writer, $forumId, $all);
 
 		if ($result) {
 			$writer->save();
