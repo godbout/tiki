@@ -8,7 +8,7 @@
 <form method="post" action="{service controller="tracker" action="remove_item"}">
 	{if $affectedCount}
 		<div class="form-group">
-			<label class="control-label" for="replacement">{tr}Replacement{/tr}</label>
+			<label class="col-form-label" for="replacement">{tr}Replacement{/tr}</label>
 			{object_selector _id=replacement _simplename=replacement type=trackeritem tracker_id=$trackerId}
 			<div class="form-text">
 				{tr _0=$affectedCount}%0 other item(s) currently refer to the element you are trying to delete. They will be replaced by this one.{/tr}

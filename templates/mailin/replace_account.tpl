@@ -18,13 +18,13 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="account" class="control-label col-md-3">{tr}Account name{/tr}</label>
+			<label for="account" class="col-form-label col-md-3">{tr}Account name{/tr}</label>
 			<div class="col-md-9">
 				<input type="text" name="account" value="{$info.account|escape}" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="type" class="control-label col-md-3">{tr}Type{/tr}</label>
+			<label for="type" class="col-form-label col-md-3">{tr}Type{/tr}</label>
 			<div class="col-md-9">
 				<select name="type" class="form-control">
 					{foreach $mailinTypes as $intype => $detail}
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="host" class="control-label col-md-3">{tr}POP server{/tr} / {tr}Port{/tr}</label>
+			<label for="host" class="col-form-label col-md-3">{tr}POP server{/tr} / {tr}Port{/tr}</label>
 			<div class="col-md-3">
 				<select name="protocol" class="form-control">
 					<option value="pop" {if $info.protocol eq 'pop'}selected{/if}>{tr}POP{/tr}</option>
@@ -53,20 +53,20 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="username" class="control-label col-md-3">{tr}Username{/tr}</label>
+			<label for="username" class="col-form-label col-md-3">{tr}Username{/tr}</label>
 			<div class="col-md-6">
 				<input type="text" name="username" value="{$info.username|escape}" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="pass" class="control-label col-md-3">{tr}Password{/tr}</label>
+			<label for="pass" class="col-form-label col-md-3">{tr}Password{/tr}</label>
 			<div class="col-md-4">
 				<input type="password" name="pass" value="{$info.password|escape}" class="form-control">
 			</div>
 		</div>
 		{if $prefs.feature_articles eq 'y'}
 			<div class="form-group">
-				<label for="article_topicId" class="control-label col-md-3">{tr}Article Topic{/tr}</label>
+				<label for="article_topicId" class="col-form-label col-md-3">{tr}Article Topic{/tr}</label>
 				<div class="col-md-9">
 					<select name="article_topicId" class="form-control">
 						{foreach $topics as $topicId=>$topic}
@@ -82,7 +82,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="article_type" class="control-label col-md-3">{tr}Article Topic{/tr}</label>
+				<label for="article_type" class="col-form-label col-md-3">{tr}Article Topic{/tr}</label>
 				<div class="col-md-9">
 					<select name="article_type" class="form-control">
 						<option value="">{tr}None{/tr}</option>
@@ -186,13 +186,13 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="discard_after" class="control-label col-md-3">{tr}Discard to the end from{/tr}</label>
+			<label for="discard_after" class="col-form-label col-md-3">{tr}Discard to the end from{/tr}</label>
 			<div class="col-md-9">
 				<input type="text" name="discard_after" value="{$info.discard_after|escape}" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="cartegoryId" class="control-label col-md-3">{tr}Auto-assign category{/tr}</label>
+			<label for="cartegoryId" class="col-form-label col-md-3">{tr}Auto-assign category{/tr}</label>
 			<div class="col-md-6">
 				{if $prefs.feature_categories eq 'y'}
 					<input type="text" name="categoryId" value="{$info.categoryId|escape}" class="form-control" placeholder="{tr}Category ID{/tr}">
@@ -203,7 +203,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="namespace" class="control-label col-md-3">{tr}Auto-assign namespace{/tr}</label>
+			<label for="namespace" class="col-form-label col-md-3">{tr}Auto-assign namespace{/tr}</label>
 			<div class="col-md-6">
 				{if $prefs.namespace_enabled eq 'y'}
 					<input type="text" name="namespace" value="{$info.namespace|escape}" class="form-control">

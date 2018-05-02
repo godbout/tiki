@@ -133,7 +133,7 @@
 			<form action="tiki-admin_content_templates.php" method="post" class="form-horizontal" role="form">
 				<input type="hidden" name="templateId" value="{$templateId|escape}">
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="name">{tr}Name{/tr} *</label>
+					<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr} *</label>
 					<div class="col-sm-9">
 						<input type="text" maxlength="255" class="form-control" id="name" name="name" value="{$info.name|escape}">
 						{if $emptyname}
@@ -142,7 +142,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="section_css">{tr}Sections{/tr}</label>
+					<label class="col-sm-3 col-form-label" for="section_css">{tr}Sections{/tr}</label>
 					<div class="col-sm-9">
 						{$toolbar_section='admin'}
 						{if $prefs.feature_cms_templates eq 'y'}
@@ -199,7 +199,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="type-selector">{tr}Template Type{/tr}</label>
+					<label class="col-sm-3 col-form-label" for="type-selector">{tr}Template Type{/tr}</label>
 					<div class="col-sm-9">
 						<select name="template_type" id="type-selector" class="form-control">
 							<option value="static"{if $info.template_type eq 'static'} selected="selected"{/if}>{tr}Text area{/tr}</option>
@@ -208,21 +208,21 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label" for="is_html">{tr}HTML{/tr}</label>
+					<label class="col-sm-3 col-form-label" for="is_html">{tr}HTML{/tr}</label>
 					<div class="col-sm-9">
 						<input type="checkbox" name="section_wiki_html" id="is_html" class="form=control" {if $info.section_wiki_html eq 'y'}checked="checked"{/if}>
 					</div>
 				</div>
 				{if $prefs.lock_content_templates eq 'y'}
 					<div class="form-group">
-						<label class="col-sm-3 control-label">{tr}Lock{/tr}</label>
+						<label class="col-sm-3 col-form-label">{tr}Lock{/tr}</label>
 						<div class="col-sm-9">
 							{lock type='template' object=$templateId}
 						</div>
 					</div>
 				{/if}
 				<div class="form-group type-cond for-page">
-					<label class="col-sm-3 control-label" for="page_name">{tr}Page Name{/tr}</label>
+					<label class="col-sm-3 col-form-label" for="page_name">{tr}Page Name{/tr}</label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" name="page_name" id="page_name" value="{$info.page_name}" placeholder="{tr}Find{/tr}...">
 						{autocomplete element='input[name=page_name]' type='pagename'}

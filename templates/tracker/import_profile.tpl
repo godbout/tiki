@@ -10,7 +10,7 @@
 			{tr}Please note: This is an experimental new feature - work in progress{/tr}
 		{/remarksbox}
 		<div class="form-group">
-			<label class="control-label">{tr}YAML{/tr}</label>
+			<label class="col-form-label">{tr}YAML{/tr}</label>
 			<textarea name="yaml" id="importFromProfileYaml" data-codemirror="true" data-syntax="yaml" data-line-numbers="true" style="height: 400px;" class="form-control" required="required"></textarea>
 		</div>
 		<div class="submit text-center">

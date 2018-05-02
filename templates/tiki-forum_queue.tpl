@@ -13,7 +13,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="form-group">
-					<label for="title" class="control-label col-sm-2">
+					<label for="title" class="col-form-label col-sm-2">
 						{tr}Title{/tr}
 					</label>
 					<div class="col-sm-10">
@@ -22,7 +22,7 @@
 				</div>
 				{if $msg_info.parentId > 0}
 					<div class="form-group">
-						<label for="parentId" class="control-label col-sm-2">
+						<label for="parentId" class="col-form-label col-sm-2">
 							{tr}Topic{/tr}
 						</label>
 						<div class="col-sm-10">
@@ -35,7 +35,7 @@
 					</div>
 				{else}
 					<div class="form-group">
-						<label for="parentId" class="control-label col-sm-2">
+						<label for="parentId" class="col-form-label col-sm-2">
 							{tr}Make this a thread of{/tr}
 						</label>
 						<div class="col-sm-10">
@@ -50,7 +50,7 @@
 				{/if}
 				{if $msg_info.parentId eq 0 and $forum_info.topic_summary eq 'y'}
 					<div class="form-group">
-						<label for="summary" class="control-label col-sm-2">
+						<label for="summary" class="col-form-label col-sm-2">
 							{tr}summary{/tr}
 						</label>
 						<div class="col-sm-10">
@@ -60,7 +60,7 @@
 				{/if}
 				{if $msg_info.parentId eq 0}
 					<div class="form-group">
-						<label for="type" class="control-label col-sm-2">
+						<label for="type" class="col-form-label col-sm-2">
 							{tr}Type{/tr}
 						</label>
 						<div class="col-sm-10">
@@ -89,7 +89,7 @@
 					</div>
 				{/if}
 				<div class="form-group">
-					<label for="data" class="control-label col-sm-2">
+					<label for="data" class="col-form-label col-sm-2">
 						{tr}Body{/tr}
 					</label>
 					<div class="col-sm-10">

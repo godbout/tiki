@@ -2,7 +2,7 @@
 
 	<form class="form" method="post" action="tiki-listpages.php" role="form">
 		<div class="form-group">
-			<label class="col-sm-2 control-label">{tr}Find term:{/tr}</label>
+			<label class="col-sm-2 col-form-label">{tr}Find term:{/tr}</label>
 			{if $term_root_category_id != ''}
 				<input type="hidden" name="categId" value="{$term_root_category_id}"/>
 				<input type="hidden" name="create_page_with_search_category" value="y"/>

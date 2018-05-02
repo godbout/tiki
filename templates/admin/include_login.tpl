@@ -68,7 +68,7 @@
 					</fieldset>
 					<legend>{tr}Group and tracker login settings{/tr}</legend>
 					<div class="adminoptionbox form-group">
-						<label for="registration_choices" class="col-sm-4 control-label">{tr}Users can select a group to join at registration:{/tr}</label>
+						<label for="registration_choices" class="col-sm-4 col-form-label">{tr}Users can select a group to join at registration:{/tr}</label>
 						<div class="col-sm-8 adminoptionlabel">
 							<select id="registration_choices" name="registration_choices[]" multiple="multiple" size="5" class="form-control">
 								{foreach key=g item=gr from=$listgroups}

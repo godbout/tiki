@@ -18,7 +18,7 @@
 		<h5>{tr}Queue size:{/tr} {$queue_count|escape}</h5>
 
 		<div class="form-group">
-			<label for="batch" class="control-label">{tr}Batch Size{/tr}</label>
+			<label for="batch" class="col-form-label">{tr}Batch Size{/tr}</label>
 			<select name="batch" id="batch" class="form-control">
 				{foreach [10, 20, 50, 100, 250] as $count}
 					<option value="{$count|escape}" {if $count eq $batch}selected{/if} >{tr _0=$count}Process %0{/tr}</option>

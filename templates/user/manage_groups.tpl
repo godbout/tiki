@@ -7,7 +7,7 @@
 	<form method="post" id="confirm-action" class="confirm-action" action="{service controller=$confirmController action=$confirmAction}">
 		{include file='access/include_hidden.tpl'}
 		<div class="form-group">
-			<label for="add_remove" class="control-label">
+			<label for="add_remove" class="col-form-label">
 				{tr}Add to or remove from:{/tr}
 			</label>
 			<div class="radio">
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="select_groups" class="control-label">
+			<label for="select_groups" class="col-form-label">
 				{tr}These groups:{/tr}
 			</label>
 			<select name="checked_groups[]" multiple="multiple" size="{$countgrps}" class="form-control" id="select_groups" data-usergroups='{$userGroups}'>
@@ -57,7 +57,7 @@ $("input[name=add_remove]").change(function () {
 			{/jq}
 		</div>
 		<div class="form-group">
-			<label for="default_group" class="control-label">
+			<label for="default_group" class="col-form-label">
 				{tr}Set default group:{/tr}
 			</label>
 			<select name="default_group" size="{$countgrps}" class="form-control" id="default_group">

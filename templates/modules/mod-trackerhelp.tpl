@@ -5,7 +5,7 @@
 	{/if}
 	<form method="post">
 		<div class="form-group">
-			<label class="col-sm-3 control-label" for="trackerhelp_name">{tr}Tracker name:{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="trackerhelp_name">{tr}Tracker name:{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" name="trackerhelp_name" id="trackerhelp_name" class="form-control trackername"{if isset($smarty.session.trackerhelp_name)} value="{$smarty.session.trackerhelp_name|escape}"{/if} />
 			</div>

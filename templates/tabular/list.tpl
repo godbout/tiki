@@ -27,7 +27,7 @@
 	<form class="form-horizontal" method="get" action="{service controller=tabular action=list}">
 		{foreach $filters.primary.controls as $filter}
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="{$filter.id|escape}">{$filter.label|escape}</label>
+				<label class="col-sm-3 col-form-label" for="{$filter.id|escape}">{$filter.label|escape}</label>
 				<div class="col-sm-9">
 					{$filter.control}
 				</div>
@@ -82,7 +82,7 @@
 			<form method="get" action="{service controller=tabular action=list}">
 				{foreach $filters.side.controls as $filter}
 					<div class="form-group">
-						<label class="control-label" for="{$filter.id|escape}">{$filter.label|escape}</label>
+						<label class="col-form-label" for="{$filter.id|escape}">{$filter.label|escape}</label>
 						{$filter.control}
 					</div>
 				{/foreach}

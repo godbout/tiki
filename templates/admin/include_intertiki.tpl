@@ -27,7 +27,7 @@
 				<legend>{tr}Add an available master server{/tr}</legend>
 				{foreach $serverFields as $field}
 					<div class="form-group">
-						<label class="col-sm-4 control-label">{tr}Server {$field}{/tr}</label>
+						<label class="col-sm-4 col-form-label">{tr}Server {$field}{/tr}</label>
 						<div class="col-sm-8">
 							<input type="text" name="new[{$field}]" value="" class="form-control">
 						</div>

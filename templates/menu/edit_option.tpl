@@ -9,14 +9,14 @@
 	<form action="{service controller=menu action=edit_option}" method="post" role="form" class="form">
 		<div class="form form-horizontal">
 			<div class="form-group">
-				<label class="control-label col-md-3" for="menu_name">{tr}Name:{/tr}</label>
+				<label class="col-form-label col-md-3" for="menu_name">{tr}Name:{/tr}</label>
 
 				<div class="col-md-9">
 					<input id="menu_name" class="form-control" type="text" name="name" value="{$info.name|escape}">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-md-3" for="menu_url">{tr}URL:{/tr}</label>
+				<label class="col-form-label col-md-3" for="menu_url">{tr}URL:{/tr}</label>
 
 				<div class="col-md-9">
 					{capture name='options'}select:function(event,ui){ldelim}ui.item.value='(('+ui.item.value+'))';{rdelim}{/capture}
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-md-3" for="type">{tr}Type{/tr}:</label>
+				<label class="col-form-label col-md-3" for="type">{tr}Type{/tr}:</label>
 
 				<div class="col-md-9">
 					<select name="type" class="form-control">
@@ -42,14 +42,14 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-md-3" for="position">{tr}Position:{/tr}</label>
+				<label class="col-form-label col-md-3" for="position">{tr}Position:{/tr}</label>
 
 				<div class="col-md-9">
 					<input type="text" name="position" id="position" value="{$info.position|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-md-3" for="menu_groupname">{tr}Group:{/tr}</label>
+				<label class="col-form-label col-md-3" for="menu_groupname">{tr}Group:{/tr}</label>
 
 				<div class="col-md-9">
 					<select id="menu_groupname" name="groupname[]" class="form-control margin-bottom-md" multiple="multiple">
@@ -67,7 +67,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-md-3" for="menu_section">{tr}Sections:{/tr}</label>
+				<label class="col-form-label col-md-3" for="menu_section">{tr}Sections:{/tr}</label>
 
 				<div class="col-md-9">
 					<input id="menu_section" type="text" name="section" value="{$info.section|escape}" class="form-control"><br>
@@ -76,7 +76,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-md-3" for="menu_perm">{tr}Permissions:{/tr}</label>
+				<label class="col-form-label col-md-3" for="menu_perm">{tr}Permissions:{/tr}</label>
 
 				<div class="col-md-9">
 					<input id="menu_perm" type="text" name="perm" value="{$info.perm|escape}" class="form-control"><br>
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-md-3" for="menu_class">{tr}Class:{/tr}</label>
+				<label class="col-form-label col-md-3" for="menu_class">{tr}Class:{/tr}</label>
 
 				<div class="col-md-9">
 					<input id="menu_class" type="text" name="class" value="{$info.class|escape}" class="form-control"><br>
@@ -95,7 +95,7 @@
 			</div>
 			{if $prefs.feature_userlevels eq 'y'}
 				<div class="form-group">
-					<label class="control-label col-md-3" for="level">{tr}Level:{/tr}</label>
+					<label class="col-form-label col-md-3" for="level">{tr}Level:{/tr}</label>
 
 					<div class="col-md-9">
 						<select name="level" id="level">
@@ -109,7 +109,7 @@
 			{/if}
 			{if $prefs.menus_items_icons eq 'y'}
 				<div class="form-group">
-					<label class="control-label col-md-3" for="icon">{tr}Icon:{/tr}</label>
+					<label class="col-form-label col-md-3" for="icon">{tr}Icon:{/tr}</label>
 
 					<div class="col-md-9">
 						<input type="text" name="icon" value="{$info.icon|escape}" class="form-control">

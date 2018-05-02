@@ -22,7 +22,7 @@
 		{elseif $captchalib->type eq 'questions'}
 			<input type="hidden" name="captcha[id]" id="captchaId" value="{$captchalib->generate()}">
 			<div class="form-group">
-				<label class="col-md-4 col-sm-3 control-label">
+				<label class="col-md-4 col-sm-3 col-form-label">
 					{$captchalib->render()}
 				</label>
 				{if $showmandatory eq 'y'}
@@ -42,7 +42,7 @@
 			{* Default captcha *}
 			<input type="hidden" name="captcha[id]" id="captchaId" value="{$captchalib->generate()}">
 			<div class="form-group">
-				<label class="control-label {$labelclass}" for="antibotcode">{tr}Enter the code below{/tr}{if $showmandatory eq 'y' && $form ne 'register'}<strong class="mandatory_star"> *</strong>{/if}</label>
+				<label class="col-form-label {$labelclass}" for="antibotcode">{tr}Enter the code below{/tr}{if $showmandatory eq 'y' && $form ne 'register'}<strong class="mandatory_star"> *</strong>{/if}</label>
 				<div class="{if !empty($inputclass)}{$inputclass}{else}col-md-8 col-sm-9{/if}">
 					<input class="form-control" type="text" maxlength="8" name="captcha[input]" id="antibotcode">
 				</div>

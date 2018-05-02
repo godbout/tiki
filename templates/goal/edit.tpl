@@ -26,13 +26,13 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="name" class="control-label col-md-3">{tr}Name{/tr}</label>
+					<label for="name" class="col-form-label col-md-3">{tr}Name{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" name="name" class="form-control" value="{$goal.name|escape}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="description" class="control-label col-md-3">{tr}Description{/tr}</label>
+					<label for="description" class="col-form-label col-md-3">{tr}Description{/tr}</label>
 					<div class="col-md-9">
 						<textarea name="description" class="form-control">{$goal.description|escape}</textarea>
 					</div>
@@ -40,7 +40,7 @@
 			{/tab}
 			{tab name="{tr}Eligibility{/tr}"}
 				<div class="form-group">
-					<label class="control-label col-md-3">{tr}Goal Attribution{/tr}</label>
+					<label class="col-form-label col-md-3">{tr}Goal Attribution{/tr}</label>
 					<div class="col-md-9">
 						<label>
 							<input type="radio" name="type" value="user" {if $goal.type neq 'group'}checked{/if}>
@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="eligible" class="control-label col-md-3">{tr}Groups{/tr}</label>
+					<label for="eligible" class="col-form-label col-md-3">{tr}Groups{/tr}</label>
 					<div class="col-md-9">
 						<select name="eligible[]" class="form-control" multiple>
 							{foreach $groups as $groupName}
@@ -65,7 +65,7 @@
 			{/tab}
 			{tab name="{tr}Conditions{/tr}"}
 				<div class="form-group">
-					<label class="control-label col-md-3">{tr}Range Type{/tr}</label>
+					<label class="col-form-label col-md-3">{tr}Range Type{/tr}</label>
 					<div class="col-md-9">
 						<label>
 							<input name="range_type" type="radio" value="rolling" {if $goal.daySpan} checked {/if} data-target="#date-span">
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 				<div class="form-group" id="date-span">
-					<label class="control-label col-md-3" for="daySpan">{tr}Time span{/tr}</label>
+					<label class="col-form-label col-md-3" for="daySpan">{tr}Time span{/tr}</label>
 					<div class="col-md-9">
 						<input class="form-control" name="daySpan" type="number" value="{$goal.daySpan|escape}">
 						<div class="form-text">
@@ -87,13 +87,13 @@
 					</div>
 				</div>
 				<div class="form-group" id="date-from">
-					<label class="control-label col-md-3" for="from">{tr}From{/tr}</label>
+					<label class="col-form-label col-md-3" for="from">{tr}From{/tr}</label>
 					<div class="col-md-9">
 						<input class="form-control" name="from" type="datetime" value="{$goal.from|escape}" placeholder="{tr}YYYY-MM-DD HH:MM:SS{/tr}">
 					</div>
 				</div>
 				<div class="form-group" id="date-to">
-					<label class="control-label col-md-3" for="to">{tr}To{/tr}</label>
+					<label class="col-form-label col-md-3" for="to">{tr}To{/tr}</label>
 					<div class="col-md-9">
 						<input class="form-control" name="to" type="datetime" value="{$goal.to|escape}" placeholder="{tr}YYYY-MM-DD HH:MM:SS{/tr}">
 					</div>

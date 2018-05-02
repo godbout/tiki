@@ -18,7 +18,7 @@
 	{/remarksbox}
 	<form action="{service controller=menu action=import_menu_options menuId=$menuId}" method="post" enctype="multipart/form-data" role="form" class="no-ajax form">
 		<div class="form-group">
-			<label for="csvfile" class="control-label">
+			<label for="csvfile" class="col-form-label">
 				{tr}File{/tr} 
 			</label>
 			<input name="csvfile" type="file" required="required">

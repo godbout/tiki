@@ -1,5 +1,5 @@
 <div class="form-group adminoptionbox preference clearfix {$p.tagstring|escape}{if isset($smarty.request.highlight) and $smarty.request.highlight eq $p.preference} highlight{/if}">
-	<label class="control-label col-sm-4" for="{$p.id|escape}">{$p.name|escape}</label>
+	<label class="col-form-label col-sm-4" for="{$p.id|escape}">{$p.name|escape}</label>
 	<div class="col-sm-8">
 		{if !empty($p.units)}
 			<div class="input-group">

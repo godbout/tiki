@@ -8,7 +8,7 @@
 	<form method="post" action="{service controller=tabular action=select trackerId=$trackerId permName=$permName}">
 		{if $columnIndex}<input type="hidden" name="columnIndex" value="{$columnIndex}">{/if}
 		<div class="form-group">
-			<label class="control-label">{tr}Modes{/tr}</label>
+			<label class="col-form-label">{tr}Modes{/tr}</label>
 			<select name="mode" class="form-control">
 				{foreach $schema->getColumns() as $column}
 					<option value="{$column->getMode()|escape}" {if $mode eq $column->getMode()} selected="selected"{/if}>

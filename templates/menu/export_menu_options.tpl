@@ -15,7 +15,7 @@
 			{/if}
 		{/remarksbox}
 		<div class="form-group hidden" > {* hiding enconding as it does not seem to work *}
-			<label for="encoding" class="control-label">
+			<label for="encoding" class="col-form-label">
 				{tr}Encoding{/tr}
 			</label>
 			<select name="encoding" class="form-control">

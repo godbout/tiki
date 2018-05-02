@@ -66,7 +66,7 @@
 		<legend>{tr}Settings{/tr}</legend>
 		{preference name=feature_sefurl_filter}
 		<div class="adminoptionbox clearfix">
-			<label for="feature_sefurl_paths" class="control-label col-md-4">
+			<label for="feature_sefurl_paths" class="col-form-label col-md-4">
 				{tr}URL parameters{/tr}
 			</label>
 			{strip}

@@ -87,7 +87,7 @@
 			<fieldset>
 				<legend>{tr}Remove unused images{/tr}</legend>
 				<div class="form-group">
-					<label class="control-label col-sm-4">
+					<label class="col-form-label col-sm-4">
 						{tr}Remove unused images in the system gallery{/tr}
 					</label>
 					<div class="col-sm-8">
@@ -115,7 +115,7 @@
 			<fieldset>
 				<legend>{tr}Move images{/tr}</legend>
 				<div class="form-group">
-					<label class="control-label col-sm-4">{$label}</label>
+					<label class="col-form-label col-sm-4">{$label}</label>
 					<div class="col-sm-8">
 						<select name="move_gallery" class="form-control">
 							<option value="-1">{tr}All galleries{/tr}</option>
@@ -134,7 +134,7 @@
 			{* Don't see a function that does this
 						{if $prefs.gal_use_db eq 'n'}
 							<div class="form-group">
-								<label class="control-label col-sm-4">
+								<label class="col-form-label col-sm-4">
 									{tr}Move images from old filesystem store to new directory{/tr}
 								</label>
 								<div class="col-sm-8">

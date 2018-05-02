@@ -166,7 +166,7 @@
 				<legend>{tr}Jitsi{/tr}{help url="Jitsi"}</legend>
 
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="jitsi-url">
+					<label class="col-form-label col-sm-4" for="jitsi-url">
 						{tr}Provision URL{/tr}
 					</label>
 					<div class="col-sm-8">

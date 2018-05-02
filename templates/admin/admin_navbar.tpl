@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light admin-navbar" role="navigation">
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark admin-navbar" role="navigation">
 		<form method="post" action="" class="form my-2 my-md-0" role="form">
 			<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
 			<label for="preffilter-toggle-1" class="mr-2"></label>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse-1" aria-controls="admin-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+
 			<ul class="nav navbar-nav filter-menu {*col-xs-4 col-xs-push-1*}"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
 				<li class="dropdown mr-2" style="padding-top: 6px;">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 80px;">
@@ -29,7 +29,7 @@
 							{if $prefs.connect_feature eq "y"}
 								{capture name=likeicon}{icon name="thumbs-up"}{/capture}
 								<label>
-									<input type="checkbox" id="connect_feedback_cbx" {if !empty($connect_feedback_showing)}checked="checked"{/if}>
+									<input type="checkbox" id="connect_feedback_cbx" class="form-check-input" {if !empty($connect_feedback_showing)}checked="checked"{/if}>
 									{tr}Provide Feedback{/tr}
 									<a href="https://doc.tiki.org/Connect" target="tikihelp" class="tikihelp" title="{tr}Provide Feedback:{/tr}
 										{tr}Once selected, some icon/s will be shown next to all features so that you can provide some on-site feedback about them{/tr}.
@@ -39,7 +39,7 @@
 	<!--											<li>{tr}Icon for 'Fix me'{/tr} <img src=img/icons/connect_fix.png></li> -->
 	<!--											<li>{tr}Icon for 'What is this for?'{/tr} <img src=img/icons/connect_wtf.png></li> -->
 										</ul>
-										<br/>
+										<br>
 										{tr}Your votes will be sent when you connect with mother.tiki.org (currently only by clicking the 'Connect > <strong>Send Info</strong>' button){/tr}
 										<br/><br/>
 										{tr}Click to read more{/tr}
@@ -110,7 +110,6 @@
 				</li>
 			</ul>
 		</form>
-
 	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		{include file="admin/admin_navbar_menu.tpl"}
 
@@ -121,13 +120,12 @@
 					</div>
 					<button type="submit" class="btn btn-primary" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 				</form>
-
 	</div>
 </nav>
-	{if $include != "list_sections"}
-		<div class="adminanchors panel-body clearfix bg-light"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
-	{/if}
 
+{if $include != "list_sections"}
+	<div class="adminanchors card-body clearfix bg-dark"><ul class="navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
+{/if}
 
 {if $lm_searchresults}
 	<div class="panel panel-default" id="pref_searchresults">

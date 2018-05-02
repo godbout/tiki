@@ -1930,7 +1930,7 @@ function wikiplugin_tracker($data, $params)
 					// If on a different row the label should use all available width
 					$back .= '><label class="';
 					if ($isTextOnSameRow) {
-						$back .= $labelclass . ' control-label';
+						$back .= $labelclass . ' col-form-label';
 					} else {
 						$back .= 'col-md-12';
 					}
@@ -1995,7 +1995,7 @@ function wikiplugin_tracker($data, $params)
 			}
 		}
 		if (isset($params['fieldsfill']) && ! empty($params['fieldsfill']) && empty($itemId)) {
-			$back .= '<div class="form-group ins_fill"><label class="col-md-3 control-label" for="ins_fill">' . tra("Insert one item per line:")
+			$back .= '<div class="form-group ins_fill"><label class="col-md-3 col-form-label" for="ins_fill">' . tra("Insert one item per line:")
 				. '<br />'
 				. '<br />'
 				. '<br />'

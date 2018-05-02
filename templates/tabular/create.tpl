@@ -15,13 +15,13 @@
 {block name="content"}
 	<form class="form-horizontal" method="post" action="{service controller=tabular action=create}">
 		<div class="form-group">
-			<label class="control-label col-sm-3">{tr}Name{/tr}</label>
+			<label class="col-form-label col-sm-3">{tr}Name{/tr}</label>
 			<div class="col-sm-9">
 				<input class="form-control" type="text" name="name" required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-sm-3">{tr}Tracker{/tr}</label>
+			<label class="col-form-label col-sm-3">{tr}Tracker{/tr}</label>
 			<div class="col-sm-9">
 				{object_selector _class="form-control" type="tracker" _simplename="trackerId"}
 			</div>

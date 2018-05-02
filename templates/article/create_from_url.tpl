@@ -13,13 +13,13 @@
 	{/if}
 	<form method="post" action="{service controller=article action=create_from_url}">
 		<div class="form-group">
-			<label for="url" class="control-label">{tr}URL{/tr}</label>
+			<label for="url" class="col-form-label">{tr}URL{/tr}</label>
 			<input type="url" name="url" class="form-control">
 		</div>
 
 		{if $topics}
 		<div class="form-group">
-			<label for="topicId" class="control-label">{tr}Topic{/tr}</label>
+			<label for="topicId" class="col-form-label">{tr}Topic{/tr}</label>
 			<select name="topicId" class="form-control">
 				{foreach $topics as $topicId => $name}
 					<option value="{$topicId|escape}">{$name|escape}</option>
@@ -29,7 +29,7 @@
 		{/if}
 
 		<div class="form-group">
-			<label for="type" class="control-label">{tr}Article Type{/tr}</label>
+			<label for="type" class="col-form-label">{tr}Article Type{/tr}</label>
 			<select name="type" class="form-control">
 				{foreach $types as $name}
 					<option value="{$name|escape}">{$name|escape}</option>

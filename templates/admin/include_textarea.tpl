@@ -181,7 +181,7 @@
 				<fieldset class="margin-bottom-lg donthide">
 					{preference name='unified_search_textarea_admin'}
 					{if $prefs.unified_search_textarea_admin eq 'y'}
-						<label for="pluginfilter" class="col-sm-4 control-label">{tr}Filter:{/tr}</label>
+						<label for="pluginfilter" class="col-sm-4 col-form-label">{tr}Filter:{/tr}</label>
 						<div class="col-sm-8">
 							<input type="text" id="pluginfilter" class="form-control">
 						</div>
@@ -324,7 +324,7 @@
 
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="plugin_alias">
+						<label class="col-form-label col-sm-4" for="plugin_alias">
 							{tr}Plugin name{/tr}
 						</label>
 						<div class="col-sm-8">
@@ -339,7 +339,7 @@
 				</div><br><br>
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="implementation">
+						<label class="col-form-label col-sm-4" for="implementation">
 							{tr}Base plugin{/tr}
 						</label>
 						<div class="col-sm-8">
@@ -355,7 +355,7 @@
 				</div><br>
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="plugin_name">
+						<label class="col-form-label col-sm-4" for="plugin_name">
 							{tr}Name{/tr}
 						</label>
 						<div class="col-sm-8">
@@ -365,7 +365,7 @@
 				</div><br>
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="plugin_description">
+						<label class="col-form-label col-sm-4" for="plugin_description">
 							{tr}Description{/tr}
 						</label>
 						<div class="col-sm-8">
@@ -375,7 +375,7 @@
 				</div><br>
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="plugin_body">
+						<label class="col-form-label col-sm-4" for="plugin_body">
 							{tr}Body label{/tr}
 						</label>
 						<div class="col-sm-8">
@@ -385,7 +385,7 @@
 				</div><br>
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="plugin_deps">
+						<label class="col-form-label col-sm-4" for="plugin_deps">
 							{tr}Dependencies{/tr}
 						</label>
 						<div class="col-sm-8">
@@ -395,7 +395,7 @@
 				</div><br>
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="filter">
+						<label class="col-form-label col-sm-4" for="filter">
 							{tr}Filter{/tr}
 						</label>
 						<div class="col-sm-8">
@@ -405,7 +405,7 @@
 				</div><br>
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="validate">
+						<label class="col-form-label col-sm-4" for="validate">
 							{tr}Validation{/tr}
 						</label>
 						<div class="col-sm-8">
@@ -421,7 +421,7 @@
 				</div><br>
 				<div class="adminoptionbox form-group">
 					<div class="adminoptionlabel">
-						<label class="control-label col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
+						<label class="col-form-label col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
 						<div class="col-sm-8">
 							<input class="form-control" type="checkbox" id="inline" name="inline" value="1" {if !empty($plugin_admin.description.inline)}checked="checked"{/if}>
 						</div>
@@ -456,10 +456,10 @@
 					{{/if}}
 				{/jq}
 				<div class="adminoptionbox form-group">
-					<label class="control-label col-sm-4 col-sm-offset-4 text-left">
+					<label class="col-form-label col-sm-4 col-sm-offset-4 text-left">
 						{tr}Argument{/tr}
 					</label>
-					<label class="control-label col-sm-4 text-left">
+					<label class="col-form-label col-sm-4 text-left">
 						{tr}Default{/tr}
 					</label>
 				</div>
@@ -500,7 +500,7 @@
 						<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_doc_new{/if}">
 							<div class="adminnestedbox form-group">
 								<div class="adminoptionlabel form-group">
-									<label class="control-label col-sm-4" for="input[{$token|escape}][token]">
+									<label class="col-form-label col-sm-4" for="input[{$token|escape}][token]">
 										{tr}Parameter{/tr}
 									</label>
 									<div class="col-sm-8">
@@ -508,7 +508,7 @@
 									</div>
 								</div>
 								<div class="adminoptionlabel form-group">
-									<label class="control-label col-sm-4" for="input[{$token|escape}][name]"
+									<label class="col-form-label col-sm-4" for="input[{$token|escape}][name]"
 											>{tr}Name{/tr}
 									</label>
 									<div class="col-sm-8">
@@ -516,7 +516,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-4" for="input[{$token|escape}][description]">
+									<label class="col-form-label col-sm-4" for="input[{$token|escape}][description]">
 										{tr}Description{/tr}
 									</label>
 									<div class="col-sm-8">
@@ -524,7 +524,7 @@
 									</div>
 								</div>
 								<div class="adminoptionlabel form-group">
-									<label class="control-label col-sm-4" for="input[{$token|escape}][required]">
+									<label class="col-form-label col-sm-4" for="input[{$token|escape}][required]">
 										{tr}Required{/tr}
 									</label>
 									<div class="col-sm-8">
@@ -532,7 +532,7 @@
 									</div>
 								</div>
 								<div class="adminoptionlabel form-group">
-									<label class="control-label col-sm-4" for="input[{$token|escape}][safe]">
+									<label class="col-form-label col-sm-4" for="input[{$token|escape}][safe]">
 										{tr}Safe{/tr}
 									</label>
 									<div class="col-sm-8">
@@ -540,7 +540,7 @@
 									</div>
 								</div>
 								<div class="adminoptionlabel form-group">
-									<label class="control-label col-sm-4" for="input[{$token|escape}][filter]">
+									<label class="col-form-label col-sm-4" for="input[{$token|escape}][filter]">
 										{tr}Filter{/tr}
 									</label>
 									<div class="col-sm-8">
@@ -562,7 +562,7 @@
 
 					<div class="adminoptionbox">
 						<div class="adminoptionlabel form-group">
-							<label class="control-label col-sm-4" for="ignorebody">
+							<label class="col-form-label col-sm-4" for="ignorebody">
 								{tr}Ignore user input{/tr}
 							</label>
 							<div class="col-sm-8">
@@ -572,7 +572,7 @@
 					</div>
 					<div class="adminoptionbox form-group">
 						<div class="adminoptionlabel form-group">
-							<label class="control-label col-sm-4" for="defaultbody">{tr}Default content{/tr}</label>
+							<label class="col-form-label col-sm-4" for="defaultbody">{tr}Default content{/tr}</label>
 							<div class="col-sm-8">
 								<textarea class="form-control" cols="60" rows="12" id="defaultbody" name="defaultbody">{$plugin_admin.body.default|default:''|escape}</textarea>
 							</div>
@@ -587,7 +587,7 @@
 								{foreach from=$plugin_admin.body.params key=token item=detail}
 									<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_body_new{/if}">
 										<div class="adminoptionlabel form-group">
-											<label class="control-label col-sm-6" for="bodyparam[{$token|escape}][token]">
+											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][token]">
 												{tr}Parameter{/tr}
 											</label>
 											<div class="col-sm-6">
@@ -595,7 +595,7 @@
 											</div>
 										</div>
 										<div class="adminoptionlabel form-group">
-											<label class="control-label col-sm-6" for="bodyparam[{$token|escape}][encoding]">
+											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][encoding]">
 												{tr}Encoding{/tr}
 											</label>
 											<div class="col-sm-6">
@@ -609,7 +609,7 @@
 											</div>
 										</div>
 										<div class="adminoptionlabel form-group">
-											<label class="control-label col-sm-6" for="bodyparam[{$token|escape}][input]">
+											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][input]">
 												{tr}Argument source (if different){/tr}
 											</label>
 											<div class="col-sm-6">
@@ -617,7 +617,7 @@
 											</div>
 										</div>
 										<div class="adminoptionlabel form-group">
-											<label class="control-label col-sm-6" for="bodyparam[{$token|escape}][default]">
+											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][default]">
 												{tr}Default value{/tr}
 											</label>
 											<div class="col-sm-6">
@@ -644,7 +644,7 @@
 							{if !isset($composed_args)}{assign var=composed_args value=true}{/if}
 							<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_composed_new{/if}">
 								<div class="adminoptionlabel form-group">
-									<label class="control-label col-sm-4" for="cparams[{$token|escape}][token]">
+									<label class="col-form-label col-sm-4" for="cparams[{$token|escape}][token]">
 										{tr}Parameter{/tr}
 									</label>
 									<div class="col-sm-8">
@@ -652,7 +652,7 @@
 									</div>
 								</div>
 								<div class="adminoptionlabel form-group">
-									<label class="control-label col-sm-4" for="cparams[{$token|escape}][pattern]">
+									<label class="col-form-label col-sm-4" for="cparams[{$token|escape}][pattern]">
 										{tr}Pattern{/tr}
 									</label>
 									<div class="col-sm-8">
@@ -669,7 +669,7 @@
 											{foreach from=$detail.params key=t item=d}
 												<div class="clearfix adminoptionbox{if $t eq '__NEW__'} hidefirst" id="pluginalias_composed_newparam{/if}">
 													<div class="adminoptionlabel form-group">
-														<label class="control-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][token]">
+														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][token]">
 															{tr}Parameter{/tr}
 														</label>
 														<div class="col-sm-6">
@@ -677,7 +677,7 @@
 														</div>
 													</div>
 													<div class="adminoptionlabel form-group">
-														<label class="control-label col-sm-6" for="cparams[{$token|escape}][pattern]">
+														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][pattern]">
 															{tr}Encoding{/tr}
 														</label>
 														<div class="col-sm-6">
@@ -689,7 +689,7 @@
 														</div>
 													</div>
 													<div class="adminoptionlabel form-group">
-														<label class="control-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
+														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
 															{tr}Argument source (if different):{/tr}
 														</label>
 														<div class="col-sm-6">
@@ -697,7 +697,7 @@
 														</div>
 													</div>
 													<div class="adminoptionlabel form-group">
-														<label class="control-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
+														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
 															{tr}Default value{/tr}
 														</label>
 														<div class="col-sm-6">

@@ -17,7 +17,7 @@
 {block name="content"}
 	<form class="form-horizontal" method="post" action="{service controller=goal action=edit_eligible goalId=$goal.goalId}">
 		<div class="form-group">
-			<label for="eligible" class="control-label col-md-3">
+			<label for="eligible" class="col-form-label col-md-3">
 				{if $goal.type eq 'group'}
 					{tr}Groups{/tr}
 				{else}

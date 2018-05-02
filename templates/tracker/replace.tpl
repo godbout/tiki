@@ -108,7 +108,7 @@
 		{/accordion_group}
 		{accordion_group title="{tr}Display{/tr}"}
 			<div class="form-group">
-				<label class="control-label" for="logo">{tr}Logo{/tr}</label>
+				<label class="col-form-label" for="logo">{tr}Logo{/tr}</label>
 				<input class="form-control" type="text" name="logo" id="logo" value="{$info.logo|escape}">
 				<div class="form-text">
 					{tr}Recommended size: 64x64px.{/tr}

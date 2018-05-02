@@ -8,7 +8,7 @@
 <form class="no-ajax" method="{$method|escape}" action="{service controller="tabular" action=$action}">
 	{foreach $filters as $filter}
 		<div class="form-group">
-			<label class="control-label" for="{$filter.id|escape}">{$filter.label|escape}</label>
+			<label class="col-form-label" for="{$filter.id|escape}">{$filter.label|escape}</label>
 			{$filter.control}
 		</div>
 	{/foreach}

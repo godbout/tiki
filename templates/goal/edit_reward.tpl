@@ -10,7 +10,7 @@
 	{/remarksbox}
 	<form class="form-horizontal reward-form" method="post" action="{service controller=goal action=edit_reward}">
 		<div class="form-group">
-			<label class="control-label col-md-3">{tr}Type{/tr}</label>
+			<label class="col-form-label col-md-3">{tr}Type{/tr}</label>
 			<div class="col-md-9">
 				<select name="rewardType" class="form-control">
 					{foreach $rewards as $key => $info}
@@ -21,7 +21,7 @@
 		</div>
 		{if $rewards.credit}
 			<div class="form-group argument creditType">
-				<label class="control-label col-md-3">{tr}Credit Type{/tr}</label>
+				<label class="col-form-label col-md-3">{tr}Credit Type{/tr}</label>
 				<div class="col-md-9">
 					<select name="creditType" class="form-control">
 						{foreach $rewards.credit.options as $creditType => $creditLabel}
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="form-group argument creditQuantity">
-				<label class="control-label col-md-3">{tr}Credit Quantity{/tr}</label>
+				<label class="col-form-label col-md-3">{tr}Credit Quantity{/tr}</label>
 				<div class="col-md-9">
 					<input type="text" class="form-control" name="creditQuantity" value="{$reward.creditQuantity|escape}">
 				</div>
@@ -39,7 +39,7 @@
 		{/if}
 		{if $rewards.tracker_badge_add}
 			<div class="form-group argument trackerItemBadge">
-				<label class="control-label col-md-3">{tr}Badge{/tr}</label>
+				<label class="col-form-label col-md-3">{tr}Badge{/tr}</label>
 				<div class="col-md-9">
 					{object_selector _name=trackerItemBadge _value="trackeritem:`$reward.trackerItemBadge`" tracker_id=$rewards.tracker_badge_add.tracker _class="form-control"}
 				</div>

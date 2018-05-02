@@ -6,7 +6,7 @@
 
 {block name="content"}
 <form class="no-ajax" method="get" action="{service controller="tabular" action="export_search_csv"}">
-	<label class="control-label">{tr}Format{/tr}</label>
+	<label class="col-form-label">{tr}Format{/tr}</label>
 	<select name="tabularId" class="form-control">
 		{foreach $formats as $format}
 			<option value="{$format.tabularId|escape}">{$format.name|escape}</option>

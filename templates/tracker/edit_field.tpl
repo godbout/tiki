@@ -9,11 +9,11 @@
 	{accordion}
 		{accordion_group title="{tr}General{/tr}"}
 		<div class="form-group">
-			<label for="name" class="control-label">{tr}Name{/tr}</label>
+			<label for="name" class="col-form-label">{tr}Name{/tr}</label>
 			<input type="text" name="name" value="{$field.name|escape}" required="required" class="form-control">
 		</div>
 		<div class="form-group">
-			<label name="description" class="control-label">{tr}Description{/tr}</label>
+			<label name="description" class="col-form-label">{tr}Description{/tr}</label>
 			<textarea name="description" class="form-control">{$field.description|escape}</textarea>
 		</div>
 		<div class="form-check">
@@ -41,7 +41,7 @@
 
 			{foreach from=$info.params key=param item=def}
 				<div class="form-group">
-					<label for="option~{$param|escape}" class="control-label">{$def.name|escape}</label>
+					<label for="option~{$param|escape}" class="col-form-label">{$def.name|escape}</label>
 					{if $def.options}
 						<select name="option~{$param|escape}" class="form-control">
 							{foreach from=$def.options key=val item=label}
@@ -95,7 +95,7 @@
 
 		{accordion_group title="{tr}Validation{/tr}"}
 			<div class="form-group">
-				<label for="validation_type" class="control-label">{tr}Type{/tr}</label>
+				<label for="validation_type" class="col-form-label">{tr}Type{/tr}</label>
 				<select name="validation_type" class="form-control">
 					{foreach from=$validation_types key=type item=label}
 						<option value="{$type|escape}"
@@ -107,19 +107,19 @@
 			</div>
 
 			<div class="form-group">
-				<label for="validation_parameter" class="control-label">{tr}Parameters{/tr}</label>
+				<label for="validation_parameter" class="col-form-label">{tr}Parameters{/tr}</label>
 				<input type="text" name="validation_parameter" value="{$field.validationParam|escape}" class="form-control">
 			</div>
 
 			<div class="form-group">
-				<label for="validation_message" class="control-label">{tr}Error Message{/tr}</label>
+				<label for="validation_message" class="col-form-label">{tr}Error Message{/tr}</label>
 				<input type="text" name="validation_message" value="{$field.validationMessage|escape}" class="form-control">
 			</div>
 		{/accordion_group}
 
 		{accordion_group title="{tr}Permissions{/tr}"}
 			<div class="form-group">
-				<label for="visibility" class="control-label">{tr}Visibility{/tr}</label>
+				<label for="visibility" class="col-form-label">{tr}Visibility{/tr}</label>
 				<select name="visibility" class="form-control">
 					<option value="n"{if $field.isHidden eq 'n'} selected="selected"{/if}>{tr}Visible by all{/tr}</option>
 					<option value="r"{if $field.isHidden eq 'r'} selected="selected"{/if}>{tr}Visible by all but not in RSS feeds{/tr}</option>
@@ -135,7 +135,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="visible_by" class="groupselector control-label">{tr}Visible by{/tr}</label>
+				<label for="visible_by" class="groupselector col-form-label">{tr}Visible by{/tr}</label>
 				<input type="text" name="visible_by" id="visible_by" value="{foreach from=$field.visibleBy item=group}{$group|escape}, {/foreach}" class="form-control">
 				{autocomplete element='#visible_by' type='groupname' options="multiple:true,multipleSeparator:','"}{* note, multiple doesn't work in jquery-ui 1.8 *}
 				<div class="form-text">
@@ -144,7 +144,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="editable_by" class="groupselector control-label">{tr}Editable by{/tr}</label>
+				<label for="editable_by" class="groupselector col-form-label">{tr}Editable by{/tr}</label>
 				<input type="text" name="editable_by" id="editable_by" value="{foreach from=$field.editableBy item=group}{$group|escape}, {/foreach}" class="form-control">
 				{autocomplete element='#editable_by' type='groupname' options="multiple:true,multipleSeparator:','"}{* note, multiple doesn't work in jquery-ui 1.8 *}
 				<div class="form-text">
@@ -153,14 +153,14 @@
 			</div>
 
 			<div class="form-group">
-				<label for="error_message" class="control-label">{tr}Error Message{/tr}</label>
+				<label for="error_message" class="col-form-label">{tr}Error Message{/tr}</label>
 				<input type="text" name="error_message" value="{$field.errorMsg|escape}" class="form-control">
 			</div>
 		{/accordion_group}
 
 		{accordion_group title="{tr}Advanced{/tr}"}
 			<div class="form-group">
-				<label for="permName" class="control-label">{tr}Permanent name{/tr}</label>
+				<label for="permName" class="col-form-label">{tr}Permanent name{/tr}</label>
 				<input type="text" name="permName" value="{$field.permName|escape}" pattern="[a-zA-Z0-9_]+" class="form-control">
 				<div class="form-text">
 					{tr}Changing the permanent name may have consequences in integrated systems.{/tr}
@@ -168,7 +168,7 @@
 			</div>
 			{if $types}
 				<div class="form-group">
-					<label for="type" class="control-label">{tr}Field Type{/tr}</label>
+					<label for="type" class="col-form-label">{tr}Field Type{/tr}</label>
 					<select name="type" data-original="{$field.type}" class="confirm-prompt form-control">
 						{foreach from=$types key=k item=info}
 							<option value="{$k|escape}"

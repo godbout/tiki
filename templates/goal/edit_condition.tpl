@@ -10,13 +10,13 @@
 	{/remarksbox}
 	<form class="form-horizontal condition-form" method="post" action="{service controller=goal action=edit_condition}">
 		<div class="form-group">
-			<label class="control-label col-md-3">{tr}Label{/tr}</label>
+			<label class="col-form-label col-md-3">{tr}Label{/tr}</label>
 			<div class="col-md-9">
 				<input type="text" class="form-control" name="label" value="{$condition.label|escape}">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-md-3">{tr}Operator{/tr}</label>
+			<label class="col-form-label col-md-3">{tr}Operator{/tr}</label>
 			<div class="col-md-9">
 				<label>
 					<input type="radio" name="operator" value="atLeast" {if $condition.operator neq 'atMost'} checked {/if}>
@@ -29,13 +29,13 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-md-3">{tr}Count{/tr}</label>
+			<label class="col-form-label col-md-3">{tr}Count{/tr}</label>
 			<div class="col-md-9">
 				<input type="number" class="form-control" name="count" value="{$condition.count|escape}">
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-md-3">{tr}Metric{/tr}</label>
+			<label class="col-form-label col-md-3">{tr}Metric{/tr}</label>
 			<div class="col-md-9">
 				<select name="metric" class="form-control">
 					{foreach $metrics as $key => $metric}
@@ -45,14 +45,14 @@
 			</div>
 		</div>
 		<div class="form-group argument eventType">
-			<label class="control-label col-md-3">{tr}Event Type{/tr}</label>
+			<label class="col-form-label col-md-3">{tr}Event Type{/tr}</label>
 			<div class="col-md-9">
 				<input type="text" class="form-control" name="eventType" value="{$condition.eventType|escape}">
 			</div>
 		</div>
 		{if $prefs.goal_badge_tracker}
 			<div class="form-group argument trackerItemBadge">
-				<label class="control-label col-md-3">{tr}Badge{/tr}</label>
+				<label class="col-form-label col-md-3">{tr}Badge{/tr}</label>
 				<div class="col-md-9">
 					{object_selector _name=trackerItemBadge _value="trackeritem:`$condition.trackerItemBadge`" tracker_id=$prefs.goal_badge_tracker _class="form-control"}
 				</div>

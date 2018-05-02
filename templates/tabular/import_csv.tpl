@@ -21,7 +21,7 @@
 	{else}
 		<form class="no-ajax" method="post" action="{service controller=tabular action=import_csv tabularId=$tabularId}" enctype="multipart/form-data">
 			<div class="form-group">
-				<label class="control-label">{tr}File{/tr}</label>
+				<label class="col-form-label">{tr}File{/tr}</label>
 				<input type="file" name="file" accept="text/csv">
 			</div>
 			<div class="submit">

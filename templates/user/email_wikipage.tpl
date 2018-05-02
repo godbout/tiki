@@ -7,7 +7,7 @@
 	<form method="post" id="confirm-action" class="confirm-action" action="{service controller=$confirmController action=$confirmAction}">
 		{include file='access/include_hidden.tpl'}
 		<div class="form-group">
-			<label class="control-label">{tr}Email this wiki page{/tr}</label>
+			<label class="col-form-label">{tr}Email this wiki page{/tr}</label>
 			<div>
 				<input class="form-control" type="text" name="wikiTpl">
 				<div class="form-text">{tr}Enter page name.
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label">{tr}Bcc{/tr}</label>
+			<label class="col-form-label">{tr}Bcc{/tr}</label>
 			<div>
 				<input class="form-control" type="text" name="bcc">
 				<div class="form-text">{tr}Enter a valid email to send a blind copy to (optional).{/tr}</div>

@@ -8,7 +8,7 @@
 	{if !$success}
 		<form class="form" method="post" action="{service controller=tracker action=import}" role=form">
 			<div class="form-group">
-				<label class="control-label">{tr}Raw data{/tr}</label>
+				<label class="col-form-label">{tr}Raw data{/tr}</label>
 				<textarea name="raw" rows="20" class="form-control" required="required"></textarea>
 			</div>
 			<div class="form-group">

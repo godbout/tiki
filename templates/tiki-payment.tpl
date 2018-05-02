@@ -56,7 +56,7 @@
 			{tab name="{tr}Request{/tr}"}
 				<form method="post" action=""><br>
 					<div class="form-group">
-						<label class="col-sm-3 control-label text-right" for="description">
+						<label class="col-sm-3 col-form-label text-right" for="description">
 							{tr}Description{/tr}
 						</label>
 						<div class="col-sm-8 input-group">
@@ -64,7 +64,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label text-right" for="detail">
+						<label class="col-sm-3 col-form-label text-right" for="detail">
 							{tr}Detail{/tr}
 						</label>
 						<div class="col-sm-8 input-group">
@@ -72,7 +72,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label text-right" for="amount">
+						<label class="col-sm-3 col-form-label text-right" for="amount">
 							{tr}Amount{/tr}
 						</label>
 						<div class="col-sm-8 input-group">
@@ -83,7 +83,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label text-right" for="payable">
+						<label class="col-sm-3 col-form-label text-right" for="payable">
 							{tr}Payable within{/tr}
 						</label>
 					</div>

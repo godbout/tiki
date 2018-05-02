@@ -56,7 +56,7 @@
 	<div id="ajaxmsg"></div>
 	<form method="post" action="tiki-share.php?url={$url|escape:url}" id="share-form" class="form-horizontal" role="form">
 		<div class="form-group">
-			<label class="control-label col-sm-3">
+			<label class="col-form-label col-sm-3">
 				{tr}Subject{/tr}
 			</label>
 			<div class="col-sm-9">
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 		<div class="form-group clearfix">
-			<label class="control-label col-sm-3">
+			<label class="col-form-label col-sm-3">
 				{tr}Text{/tr}
 			</label>
 			<div class="col-sm-9">
@@ -73,7 +73,7 @@
 		</div>
 		{if $prefs.share_display_links eq 'y'}
 			<div class="form-group">
-				<label for="url" class="control-label col-sm-3">
+				<label for="url" class="col-form-label col-sm-3">
 					{tr}Link{/tr}
 				</label>
 				<div class="col-sm-9">
@@ -82,7 +82,7 @@
 			</div>
 			<div class="form-group">
 				{if $report != 'y' and $shorturl neq $prefix|cat:$url}
-					<label for="url" class="control-label col-sm-3">
+					<label for="url" class="col-form-label col-sm-3">
 						{tr}Short link{/tr}
 					</label>
 					<div class="col-sm-9">
@@ -95,7 +95,7 @@
 		{/if}
 		<div class="panel panel-default">
 			<div class="panel-heading radio">
-				<label for="do_email" class="control-label col-sm-3 pull-left">
+				<label for="do_email" class="col-form-label col-sm-3 pull-left">
 					{icon name="admin_webmail"} {tr}Send email{/tr}
 				</label>
 				{if $report !='y'}
@@ -114,7 +114,7 @@
 			<div class="panel-body share-email-details">
 				{if $report!='y'}
 					<div class="form-group">
-						<label for="addresses" class="control-label col-sm-3">
+						<label for="addresses" class="col-form-label col-sm-3">
 							{tr}Recipient(s){/tr}
 						</label>
 						<div class="col-sm-9">
@@ -134,7 +134,7 @@
 				{/if}
 				{if $prefs.share_display_name_and_email eq 'y'}
 					<div class="form-group">
-						<label for="name" class="control-label col-sm-3">
+						<label for="name" class="col-form-label col-sm-3">
 							{tr}Your name{/tr}
 						</label>
 						<div class="col-sm-9">
@@ -142,7 +142,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="email" class="control-label col-sm-3">
+						<label for="email" class="col-form-label col-sm-3">
 							{tr}Your email{/tr}{if empty($email)} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}
 						</label>
 						<div class="mandatory_field col-sm-9">
@@ -169,7 +169,7 @@
 				{/if}
 				{if $prefs.share_can_choose_how_much_time_access eq 'y' && $prefs.auth_token_access eq 'y'}
 					<div class="form-group">
-						<label for="how_much_time_access" class="control-label col-sm-3">
+						<label for="how_much_time_access" class="col-form-label col-sm-3">
 							{tr}Token Access Limit{/tr}
 						</label>
 						<div class="col-sm-2">
@@ -216,7 +216,7 @@
 						{if $twitter}
 							<div class="form-horizontal" id="twittertable" style="display: none;">
 								<div class="form-group">
-									<label class="control-label col-sm-3">{tr}Tweet{/tr}</label>
+									<label class="col-form-label col-sm-3">{tr}Tweet{/tr}</label>
 									<div class="col-sm-7">
 										<input type="text" class="form-control" name="tweet" maxlength="140" style="width:95%;" id="tweet" value="{$subject|escape|default:"{tr}Have a look at {/tr}"} {$shorturl}">
 									</div>
@@ -255,7 +255,7 @@
 						{if $facebook}
 							<div class="form-horizontal" id="fbtable" style="display: none;">
 								<div class="form-group">
-									<label class="control-label col-sm-3">{tr}Link text{/tr}</label>
+									<label class="col-form-label col-sm-3">{tr}Link text{/tr}</label>
 									<div class="col-sm-7">
 										<input type="text" name="fblinktitle" id="fblinktitle" value="{$fblinktitle|escape}" style="width: 95%;" class="form-control">
 										<div class="form-text">
@@ -264,7 +264,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-sm-3">{tr}Like this post{/tr}</label>
+									<label class="col-form-label col-sm-3">{tr}Like this post{/tr}</label>
 									<div class="col-sm-7">
 										<label>
 											<input type="radio" name="fblike" value="1" {if $fblike==1}checked="checked" {/if}>
@@ -288,7 +288,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading radio">
 					{if $send_msg=='y'}
-						<label for="do_message" class="control-label col-sm-3">
+						<label for="do_message" class="col-form-label col-sm-3">
 							{icon name="admin_messages"} {tr}Send a message{/tr}
 						</label>
 						<label>
@@ -308,7 +308,7 @@
 				<div class="panel-body share-message-details hidden">
 				{if $send_msg}
 					<div class="form-group clearfix">
-						<label for="messageto" class="control-label col-sm-3">
+						<label for="messageto" class="col-form-label col-sm-3">
 							{tr}User(s){/tr}
 						</label>
 						<div class="col-sm-9">
@@ -323,7 +323,7 @@
 						</div>
 					</div>
 					<div class="form-group clearfix">
-						<label for="priority" class="control-label col-sm-3">
+						<label for="priority" class="col-form-label col-sm-3">
 							{tr}Priority{/tr}
 						</label>
 						<div class="col-sm-9">
@@ -346,7 +346,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading radio">
 					{if count($forums)>0}
-						<label for="do_forum" class="control-label col-sm-3">
+						<label for="do_forum" class="col-form-label col-sm-3">
 							{icon name="admin_forums"} {tr}Post on forum{/tr}
 						</label>
 						<label>
@@ -366,7 +366,7 @@
 				<div class="panel-body share-forum-details hidden">
 					{if count($forums)>0}
 						<div class="form-group">
-							<label class="control-label col-sm-3">
+							<label class="col-form-label col-sm-3">
 								{tr}Forum{/tr}
 							</label>
 							<div class="col-sm-9">
@@ -380,7 +380,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-sm-3">
+							<label class="col-form-label col-sm-3">
 								{tr}Password{/tr}
 							</label>
 							<div class="col-sm-9">

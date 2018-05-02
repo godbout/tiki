@@ -1,6 +1,6 @@
 <div class="adminoptionbox preference clearfix {$p.tagstring|escape}{if isset($smarty.request.highlight) and $smarty.request.highlight eq $p.preference} highlight{/if}">
 	<div class="adminoption form-group">
-		<label class="col-sm-4 control-label">
+		<label class="col-sm-4 col-form-label">
 			{$p.name|escape}
 		</label>
 		<div class="col-sm-8">

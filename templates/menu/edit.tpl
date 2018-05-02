@@ -19,19 +19,19 @@
 	<form action="{service controller=menu action=edit}" method="post" role="form" class="form">
 		{ticket}
 		<div class="form-group">
-			<label for="menus_name" class="control-label">
+			<label for="menus_name" class="col-form-label">
 				{tr}Name{/tr}
 			</label>
 			<input type="text" name="name" id="menus_name" value="{$info.name|escape}" class="form-control" required="required">
 		</div>
 		<div class="form-group">
-			<label for="menus_desc" class="control-label">
+			<label for="menus_desc" class="col-form-label">
 				{tr}Description{/tr}
 			</label>
 			<textarea name="description" id="menus_desc" class="form-control">{$info.description|escape}</textarea>
 		</div>
 		<div class="form-group">
-			<label for="menus_type" class="control-label">
+			<label for="menus_type" class="col-form-label">
 				{tr}Type{/tr}
 			</label>
 			<select name="type" id="menus_type" class="form-control">
@@ -49,7 +49,7 @@
 		</div>
 		{if $prefs.feature_menusfolderstyle eq 'y'}
 			<div class="form-group">
-				<label for="icon" class="control-label">
+				<label for="icon" class="col-form-label">
 					{tr}Folder Icon{/tr}
 				</label>
 				<input type="text" id="icon" name="icon" value="{$info.icon|escape}" class="form-control">

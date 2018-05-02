@@ -7,13 +7,13 @@
 {block name="content"}
 	<form class="form" name="duplicate_tracker" action="{service controller=tracker action=duplicate}" method="post">
 		<div class="form-group">
-			<label class="control-label" for="name">
+			<label class="col-form-label" for="name">
 				{tr}Name{/tr}
 			</label>
 			<input type="text" name="name" id="name" class="form-control" placeholder="Name of the new tracker" required="required">
 		</div>
 		<div class="form-group">
-			<label class="control-label" for="trackerId">
+			<label class="col-form-label" for="trackerId">
 				{tr}Tracker{/tr}
 			</label>
 			<select name="trackerId" id="trackerId" class="form-control" required="required">

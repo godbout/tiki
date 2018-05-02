@@ -11,7 +11,7 @@
 
 		<p>{tr}The following message will be sent to user{/tr} {$userwatch|username}:</p>
 		<div class="form-group">
-			<label class="control-label" for="priority">{tr}Priority{/tr}</label>
+			<label class="col-form-label" for="priority">{tr}Priority{/tr}</label>
 			<select name="priority" id="priority" class="form-control">
 				<option value="1" {if $priority eq 1}selected="selected"{/if}>1: {tr}Lowest{/tr}</option>
 				<option value="2" {if $priority eq 2}selected="selected"{/if}>2: {tr}Low{/tr}</option>
@@ -21,11 +21,11 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label class="control-label" for="subject">{tr}Subject{/tr}</label>
+			<label class="col-form-label" for="subject">{tr}Subject{/tr}</label>
 			<input type="text" name="subject" id="subject" value="" maxlength="255" class="form-control">
 		</div>
 		<div class="form-group">
-			<label class="control-label" for="message">{tr}Message Body{/tr}</label>
+			<label class="col-form-label" for="message">{tr}Message Body{/tr}</label>
 			<textarea rows="12" class="form-control" name="body" id="message"></textarea>
 		</div>
 		<div class="form-group">

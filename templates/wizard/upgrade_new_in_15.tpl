@@ -73,7 +73,7 @@
 			<legend>{tr}Temporary User Accounts{/tr}</legend>
 				<div class="adminoptionbox preference clearfix advanced pref-fake all modified">
 					<div class="adminoption form-group">
-						<label class="col-sm-4 control-label">
+						<label class="col-sm-4 col-form-label">
 							{tr}Display more information here{/tr}
 						</label>
 						<div class="col-sm-8">

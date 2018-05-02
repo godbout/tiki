@@ -8,7 +8,7 @@
 						<div class="{if $smod_params.compact eq "y"}btn-group{else}input-group input-group-sm{/if}" style="margin-left:-7px;margin-right:-7px;">
 							<input style="float:left;{if $smod_params.compact eq "y"}width:72%;border-bottom-right-radius:0;border-top-right-radius: 0;{/if}" placeholder="{tr}Find{/tr}" class="form-control" id="search_mod_input_{$search_mod_usage_counter}" name="{if $smod_params.search_action eq 'tiki-searchindex.php'}filter~content{else}find{/if}" {if !empty($smod_params.input_size)}size="{$smod_params.input_size}" style="width: auto"{/if} type="text" accesskey="s" value="{$smod_params.input_value|escape}">
 							{if $smod_params.show_object_filter eq 'y'}
-								<label class="control-label" for="filterType">
+								<label class="col-form-label" for="filterType">
 									{tr}in{/tr}&nbsp;
 								</label>
 								<div class="form-group">
