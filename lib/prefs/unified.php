@@ -321,7 +321,7 @@ function prefs_unified_list()
 			'warning' => tra('Some plugins may not appear. When using the MySQL engine, can have problems with short plugin names (for MyISAM, those under "ft_min_word_len").'), // See ticket #6313
 		],
 		'unified_elastic_possessive_stemmer' => [
-			'name' => tr('Possesive Stemmer'),
+			'name' => tr('Possessive Stemmer'),
 			'description' => tr("The possessive stemmer removes 's from any words before indexing"),
 			'type' => 'flag',
 			'default' => 'y',
