@@ -1,14 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark admin-navbar" role="navigation">
+<nav class="navbar-expand-md navbar-dark bg-dark admin-navbar" role="navigation">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse-1" aria-controls="admin-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+{*	<div class="navbar-header"> *}
 		<form method="post" action="" class="form my-2 my-md-0" role="form">
-			<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
-			<label for="preffilter-toggle-1" class="mr-2"></label>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse-1" aria-controls="admin-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+			<div class="form=check">
+				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
+				<label for="preffilter-toggle-1"></label>
+			</div>
 
-			<ul class="nav navbar-nav filter-menu {*col-xs-4 col-xs-push-1*}"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
-				<li class="dropdown mr-2" style="padding-top: 6px;">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 80px;">
+			<ul class="nav navbar-nav filter-menu"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
+				<li class="nav-item dropdown mr-2" style="padding-top: 6px;">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 80px;">
 						{icon name="filter"}
 					</a>
 					<ul class="dropdown-menu" role="menu">
@@ -18,16 +21,17 @@
 								<li class="dropdown-item">
 									<div class="form-check">
 										<label>
-											<input class="form-check-input" type="checkbox" class="preffilter {$info.type|escape}" name="pref_filters[]" value="{$name|escape}"{if $info.selected} checked="checked"{/if}{if $name eq {tr}basic{/tr}} disabled="disabled"{/if}>{$info.label|escape}
+											<input type="checkbox" class="form-check-input preffilter {$info.type|escape}" name="pref_filters[]" value="{$name|escape}"{if $info.selected} checked="checked"{/if}{if $name eq {tr}basic{/tr}} disabled="disabled"{/if}>{$info.label|escape}
 										</label>
 									</div>
 								</li>
 							{/foreach}
 							<div class="text-center">
-								<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-secondary btn-sm">
+								<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-primary btn-sm">
 							</div>
 							{if $prefs.connect_feature eq "y"}
 								{capture name=likeicon}{icon name="thumbs-up"}{/capture}
+								<div class="form=check">
 								<label>
 									<input type="checkbox" id="connect_feedback_cbx" class="form-check-input" {if !empty($connect_feedback_showing)}checked="checked"{/if}>
 									{tr}Provide Feedback{/tr}
@@ -47,6 +51,7 @@
 										{icon name="help"}
 									</a>
 								</label>
+								</div>
 								{$headerlib->add_jsfile("lib/jquery_tiki/tiki-connect.js")}
 							{/if}
 							{jq}
@@ -110,27 +115,30 @@
 				</li>
 			</ul>
 		</form>
+	{* </div> *}
 	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		{include file="admin/admin_navbar_menu.tpl"}
-
+		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+			<li class="nav-item">
 				<form method="post" action="" class="form-inline my-2 my-md-0 ml-auto" role="form">
 					<div class="form-group">
 						<input type="hidden" name="filters">
-						<input type="text" name="lm_criteria" style="width: 170px;" value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}..." autofocus="autofocus">
+						<input type="text" name="lm_criteria" style="width: 170px;"value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}..." autofocus="autofocus">
 					</div>
 					<button type="submit" class="btn btn-primary" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 				</form>
+			</li>
+		</ul>
 	</div>
+	{if $include != "list_sections"}
+		<div class="adminanchors card-body bg-dark"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
+	{/if}
 </nav>
 
-{if $include != "list_sections"}
-	<div class="adminanchors card-body clearfix bg-dark"><ul class="navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
-{/if}
-
 {if $lm_searchresults}
-	<div class="panel panel-default" id="pref_searchresults">
-		<div class="panel-heading">
-			<h3 class="panel-title">{tr}Preference Search Results{/tr}<button type="button" id="pref_searchresults-close" class="close" aria-hidden="true">&times;</button></h3>
+	<div class="card card-primary" id="pref_searchresults">
+		<div class="card-header">
+			<h3 class="card-title">{tr}Preference Search Results{/tr}<button type="button" id="pref_searchresults-close" class="close" aria-hidden="true">&times;</button></h3>
 		</div>
 		<form method="post" action="" href="tiki-admin.php" class="table" role="form">
 			<div class="pref_search_results panel-body">
@@ -138,8 +146,8 @@
 					{preference name=$prefName get_pages='y' visible='always'}
 				{/foreach}
 			</div>
-			<div class="panel-footer text-center">
-				<input class="btn btn-secondary" type="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+			<div class="card-footer text-center">
+				<input class="btn btn-primary" type="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</div>
 			<input type="hidden" name="lm_criteria" value="{$lm_criteria|escape}">
 			{ticket}
