@@ -692,6 +692,7 @@ $lang = [
 // "Loading.." => "Loading..",
 // "Edit FutureLink \" + type) + '</a></span>')\n\t\t\t\t\t\t\t\t.click(function() {\n\t\t\t\t\t\t\t\t\tvar box = \$('<table style=\"width: 100%;\" />');\n\n\t\t\t\t\t\t\t\t\t\$.each(item, function() {\n\t\t\t\t\t\t\t\t\t\t\$('<tr>')\n\t\t\t\t\t\t\t\t\t\t\t.append('<td>' + this.Value + '</td>')\n\t\t\t\t\t\t\t\t\t\t\t.append('<td title=\"' + tr(\"Edit" => "Edit FutureLink \" + type) + '</a></span>')\n\t\t\t\t\t\t\t\t.click(function() {\n\t\t\t\t\t\t\t\t\tvar box = \$('<table style=\"width: 100%;\" />');\n\n\t\t\t\t\t\t\t\t\t\$.each(item, function() {\n\t\t\t\t\t\t\t\t\t\t\$('<tr>')\n\t\t\t\t\t\t\t\t\t\t\t.append('<td>' + this.Value + '</td>')\n\t\t\t\t\t\t\t\t\t\t\t.append('<td title=\"' + tr(\"Edit",
 "Delete" => "Fuortsmite",
+"Remove" => "Fuortsmite",
 // "Are you sure" => "Are you sure",
 // "Edit FutureLink \" + type),\n\t\t\t\t\t\t\t\t\t\t\tmodal: true,\n\t\t\t\t\t\t\t\t\t\t\tbuttons: {}\n\t\t\t\t\t\t\t\t\t};\n\n\t\t\t\t\t\t\t\t\tif (item.length < 1) {\n\t\t\t\t\t\t\t\t\t\tbox.options.buttons[tr(\"New" => "Edit FutureLink \" + type),\n\t\t\t\t\t\t\t\t\t\t\tmodal: true,\n\t\t\t\t\t\t\t\t\t\t\tbuttons: {}\n\t\t\t\t\t\t\t\t\t};\n\n\t\t\t\t\t\t\t\t\tif (item.length < 1) {\n\t\t\t\t\t\t\t\t\t\tbox.options.buttons[tr(\"New",
 // "Edit FutureLink Questions" => "Edit FutureLink Questions",

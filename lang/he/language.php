@@ -1301,6 +1301,7 @@ $lang = [
 "Filter" => "סינון",
 // "Export %0" => "Export %0",
 "Export" => "יצוא",
+"Fields Export" => "יצוא",
 // "Operation reserved for tracker administrators" => "Operation reserved for tracker administrators",
 "Events" => "אירועים",
 // "The following mandatory fields are missing: %0" => "The following mandatory fields are missing: %0",

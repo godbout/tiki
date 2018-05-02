@@ -1301,6 +1301,7 @@ $lang = [
 "Filter" => "Suodin",
 // "Export %0" => "Export %0",
 "Export" => "Vie",
+"Fields Export" => "Vie",
 // "Operation reserved for tracker administrators" => "Operation reserved for tracker administrators",
 "Events" => "Tapahtumat",
 // "The following mandatory fields are missing: %0" => "The following mandatory fields are missing: %0",

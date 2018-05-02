@@ -1301,6 +1301,7 @@ $lang = [
 "Filter" => "Hidlo",
 // "Export %0" => "Export %0",
 "Export" => "Allforio",
+"Fields Export" => "Allforio",
 // "Operation reserved for tracker administrators" => "Operation reserved for tracker administrators",
 "Events" => "Digwyddiadau",
 // "The following mandatory fields are missing: %0" => "The following mandatory fields are missing: %0",
