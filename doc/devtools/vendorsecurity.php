@@ -4,7 +4,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: svnup.php 65474 2018-02-07 15:15:28Z fmg-sf $
+// $Id$
 
 namespace Tiki\Command;
 

@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: wikiplugin_jabber.php 64629 2017-11-19 12:06:52Z rjsmelo $
+// $Id$
 
 function wikiplugin_xmpp_info()
 {

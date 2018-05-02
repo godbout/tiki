@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: ListPluginHelper.php 65435 2018-02-06 14:51:00Z jonnybradley $
+// $Id$
 
 /**
  * Class Services_Edit_ListConverter
