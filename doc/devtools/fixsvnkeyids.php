@@ -6,13 +6,17 @@
 // $Id$
 
 
-require_once('../../tiki-setup_base.php');
-require_once('svntools.php');
-
 // Make sure script is run from a shell
 if (PHP_SAPI !== 'cli') {
 	die("Please run from a shell");
 }
+
+$tikiBase = realpath(dirname(__FILE__) . '/../..');
+
+chdir($tikiBase);
+
+require_once('tiki-setup_base.php');
+require_once('doc/devtools/svntools.php');
 
 
 /**
@@ -26,7 +30,7 @@ if (PHP_SAPI !== 'cli') {
 $xml = new DOMDocument;
 $xml->loadXML(shell_exec('svn propget -R svn:keywords --xml'));
 
-// find the offset lengh of the base pathname
+// find the offset length of the base pathname
 $pathLen = strlen(realpath(dirname(__FILE__) . '/../..')) + 1;
 
 $Ids = [];
