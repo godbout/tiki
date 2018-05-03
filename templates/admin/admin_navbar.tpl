@@ -3,7 +3,10 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 {*	<div class="navbar-header"> *}
-		<form method="post" action="" class="form form-inline my-2 my-md-0" role="form">
+
+	{* </div> *}
+	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
+		<form method="post" action="" class="form form-inline my-2 my-md-0" role="form" style="width: 180px;">
 			<div class="form=check">
 				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
 				<label for="preffilter-toggle-1"></label>
@@ -11,27 +14,27 @@
 
 			<ul class="nav navbar-nav filter-menu"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
 				<li class="nav-item dropdown mr-2" style="padding-top: 6px;">
-					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 80px;">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 60px;">
 						{icon name="filter"}
 					</a>
 					<ul class="dropdown-menu" role="menu">
 						<li class="dropdown-item"><span class="dropdown-title">{tr}Preference Filters{/tr}</span></li>
-							<input type="hidden" name="pref_filters[]" value="basic">
-							{foreach from=$pref_filters key=name item=info}
-								<li class="dropdown-item">
-									<div class="form-check">
-										<label>
-											<input type="checkbox" class="form-check-input preffilter {$info.type|escape}" name="pref_filters[]" value="{$name|escape}"{if $info.selected} checked="checked"{/if}{if $name eq {tr}basic{/tr}} disabled="disabled"{/if}>{$info.label|escape}
-										</label>
-									</div>
-								</li>
-							{/foreach}
-							<div class="text-center">
-								<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-primary btn-sm">
-							</div>
-							{if $prefs.connect_feature eq "y"}
-								{capture name=likeicon}{icon name="thumbs-up"}{/capture}
-								<div class="form=check">
+						<input type="hidden" name="pref_filters[]" value="basic">
+						{foreach from=$pref_filters key=name item=info}
+							<li class="dropdown-item">
+								<div class="form-check">
+									<label>
+										<input type="checkbox" class="form-check-input preffilter {$info.type|escape}" name="pref_filters[]" value="{$name|escape}"{if $info.selected} checked="checked"{/if}{if $name eq {tr}basic{/tr}} disabled="disabled"{/if}>{$info.label|escape}
+									</label>
+								</div>
+							</li>
+						{/foreach}
+						<div class="text-center">
+							<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-primary btn-sm">
+						</div>
+						{if $prefs.connect_feature eq "y"}
+							{capture name=likeicon}{icon name="thumbs-up"}{/capture}
+							<div class="form=check">
 								<label>
 									<input type="checkbox" id="connect_feedback_cbx" class="form-check-input" {if !empty($connect_feedback_showing)}checked="checked"{/if}>
 									{tr}Provide Feedback{/tr}
@@ -51,55 +54,55 @@
 										{icon name="help"}
 									</a>
 								</label>
-								</div>
-								{$headerlib->add_jsfile("lib/jquery_tiki/tiki-connect.js")}
-							{/if}
-							{jq}
-								var updateVisible = function() {
-									var show = function (selector) {
-										selector.show();
-										selector.parents('fieldset:not(.tabcontent)').show();
-										selector.closest('fieldset.tabcontent').addClass('filled');
-									};
-									var hide = function (selector) {
-										selector.hide();
-										/*selector.parents('fieldset:not(.tabcontent)').hide();*/
-									};
+							</div>
+							{$headerlib->add_jsfile("lib/jquery_tiki/tiki-connect.js")}
+						{/if}
+						{jq}
+							var updateVisible = function() {
+							var show = function (selector) {
+							selector.show();
+							selector.parents('fieldset:not(.tabcontent)').show();
+							selector.closest('fieldset.tabcontent').addClass('filled');
+							};
+							var hide = function (selector) {
+							selector.hide();
+							/*selector.parents('fieldset:not(.tabcontent)').hide();*/
+							};
 
-									var filters = [];
-									var prefs = $('.adminoptionbox.preference, .admbox').hide();
-									prefs.parents('fieldset:not(.tabcontent)').hide();
-									prefs.closest('fieldset.tabcontent').removeClass('filled');
-									$('.preffilter').each(function () {
-										var targets = $('.adminoptionbox.preference.' + $(this).val() + ',.admbox.' + $(this).val());
-										if ($(this).is(':checked')) {
-											filters.push($(this).val());
-											show(targets);
-										} else if ($(this).is('.negative:not(:checked)')) {
-											hide(targets);
-										}
-									});
+							var filters = [];
+							var prefs = $('.adminoptionbox.preference, .admbox').hide();
+							prefs.parents('fieldset:not(.tabcontent)').hide();
+							prefs.closest('fieldset.tabcontent').removeClass('filled');
+							$('.preffilter').each(function () {
+							var targets = $('.adminoptionbox.preference.' + $(this).val() + ',.admbox.' + $(this).val());
+							if ($(this).is(':checked')) {
+							filters.push($(this).val());
+							show(targets);
+							} else if ($(this).is('.negative:not(:checked)')) {
+							hide(targets);
+							}
+							});
 
-									show($('.adminoptionbox.preference.modified'));
+							show($('.adminoptionbox.preference.modified'));
 
-									$('input[name="filters"]').val(filters.join(' '));
-									$('.tabset .tabmark a').each(function () {
-										var selector = 'fieldset.tabcontent.' + $(this).attr('href').substring(1);
-										var content = $(this).closest('.tabset').find(selector);
+							$('input[name="filters"]').val(filters.join(' '));
+							$('.tabset .tabmark a').each(function () {
+							var selector = 'fieldset.tabcontent.' + $(this).attr('href').substring(1);
+							var content = $(this).closest('.tabset').find(selector);
 
-										$(this).parent().toggle(content.is('.filled') || content.find('.preference').length === 0);
-									});
-								};
+							$(this).parent().toggle(content.is('.filled') || content.find('.preference').length === 0);
+							});
+							};
 
-								updateVisible();
-								$('.preffilter').change(updateVisible);
-								$('.preffilter-toggle').change(function () {
-									var checked = $(this).is(":checked");
-									$("input.preffilter[value=advanced]").prop("checked", checked);
-									$(".filter-menu.nav").css("display", checked ? "block" : "none");
-									updateVisible();
-								});
-							{/jq}
+							updateVisible();
+							$('.preffilter').change(updateVisible);
+							$('.preffilter-toggle').change(function () {
+							var checked = $(this).is(":checked");
+							$("input.preffilter[value=advanced]").prop("checked", checked);
+							$(".filter-menu.nav").css("display", checked ? "block" : "none");
+							updateVisible();
+							});
+						{/jq}
 						<li class="dropdown-divider"></li>
 						<li class="dropdown-item">
 							<a href="tiki-admin.php?prefrebuild">
@@ -115,8 +118,6 @@
 				</li>
 			</ul>
 		</form>
-	{* </div> *}
-	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		{include file="admin/admin_navbar_menu.tpl"}
 		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
 			<li class="nav-item">
