@@ -595,6 +595,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			[
 				'fileId',
 				'name',
+				'filename',
 				'filetype',
 				'archiveId',
 				'lastModif',
@@ -628,6 +629,22 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 				}
 			}
 			$out = $out2;
+		} elseif (strstr($sortOrder, 'name')) {
+			$sep = strrpos($sortOrder, '_');
+			$field = substr($sortOrder, 0, $sep);
+			$dir = substr($sortOrder, $sep+1);
+			$sortArray = array_map(function($file) use ($field) {
+				return isset($file[$field]) ? $file[$field] : '';
+			}, $out);
+			natsort($sortArray);
+			if ($dir == 'desc') {
+				$sortArray = array_reverse($sortArray, true);
+			}
+			$sorted = [];
+			foreach ($sortArray as $key => $_) {
+				$sorted[$key] = $out[$key];
+			}
+			$out = $sorted;
 		}
 
 		return $out;
