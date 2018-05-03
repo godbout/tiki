@@ -3,7 +3,7 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 {*	<div class="navbar-header"> *}
-		<form method="post" action="" class="form my-2 my-md-0" role="form">
+		<form method="post" action="" class="form form-inline my-2 my-md-0" role="form">
 			<div class="form=check">
 				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
 				<label for="preffilter-toggle-1"></label>
