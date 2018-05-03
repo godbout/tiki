@@ -386,14 +386,14 @@ if (empty($txt) && ! empty($_REQUEST["data"])) {
 	}
 }
 if (! empty($_REQUEST['resendEditionId'])) {
-	if (($info = $nllib->get_edition($_REQUEST['resendEditionId'])) !== false && $info['nlId'] == $_REQUEST['nlId'] && ($_REQUEST['editionId'] = $nllib->replace_edition($info['nlId'], $info['subject'], $info['data'], 0, 0, false, $info['datatxt'], $info['files'], $info['wysiwyg']))) {
+	if (($info = $nllib->get_edition($_REQUEST['resendEditionId'])) !== false && $info['nlId'] == $_REQUEST['nlId'] && ($_REQUEST['editionId'] = $nllib->replace_edition($info['nlId'], $info['subject'], $info['data'], 0, 0, false, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']))) {
 		$_REQUEST['data'] = $info['data'];
 		$_REQUEST['subject'] = $info['subject'];
 		$_REQUEST['datatxt'] = $info['datatxt'];
 		$_REQUEST['wysiwyg'] = $info['wysiwyg'];
 		$_REQUEST['is_html'] = $info['is_html'];
 		$_REQUEST['dataparsed'] = $info['data'];
-		$_REQUEST['editionId'] = $nllib->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, 0, false, $info['datatxt'], $info['files'], $info['wysiwyg']);
+		$_REQUEST['editionId'] = $nllib->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, 0, false, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
 		$resend = 'y';
 	} else {
 		$smarty->assign('msg', tra('Incorrect param'));
@@ -476,7 +476,7 @@ if (isset($_REQUEST["save_only"])) {
 		$txt = "";
 	}
 	$smarty->assign('nlId', $_REQUEST['nlId']);
-	$editionId = $nllib->replace_edition($_REQUEST['nlId'], $_REQUEST['subject'], $_REQUEST['data'], -1, $_REQUEST['editionId'], true, $txt, $info['files'], $_REQUEST['wysiwyg']);
+	$editionId = $nllib->replace_edition($_REQUEST['nlId'], $_REQUEST['subject'], $_REQUEST['data'], -1, $_REQUEST['editionId'], true, $txt, $info['files'], $_REQUEST['wysiwyg'], $_REQUEST['is_html']);
 	foreach ($info['files'] as $k => $f) {
 		if ($f['savestate'] == 'tikitemp') {
 			unlink($f['path'] . '.infos');

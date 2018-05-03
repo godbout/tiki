@@ -2131,6 +2131,7 @@ CREATE TABLE `tiki_sent_newsletters` (
   `data` longblob,
   `datatxt` longblob,
   `wysiwyg` char(1) default NULL,
+  `is_html` varchar(2) default NULL,
   PRIMARY KEY (`editionId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 

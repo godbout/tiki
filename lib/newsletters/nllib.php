@@ -116,22 +116,22 @@ class NlLib extends TikiLib
 		return $nlId;
 	}
 
-	public function replace_edition($nlId, $subject, $data, $users, $editionId = 0, $draft = false, $datatxt = '', $files = [], $wysiwyg = null)
+	public function replace_edition($nlId, $subject, $data, $users, $editionId = 0, $draft = false, $datatxt = '', $files = [], $wysiwyg = null, $is_html = null)
 	{
 		if ($draft == false) {
 			if ($editionId > 0 && $this->getOne('select `sent` from `tiki_sent_newsletters` where `editionId`=?', [ (int) $editionId ]) == -1) {
 				// save and send a draft
-				$query = "update `tiki_sent_newsletters` set `subject`=?, `data`=?, `sent`=?, `users`=? , `datatxt`=?, `wysiwyg`=? ";
+				$query = "update `tiki_sent_newsletters` set `subject`=?, `data`=?, `sent`=?, `users`=? , `datatxt`=?, `wysiwyg`=?, `is_html`=? ";
 				$query .= "where editionId=? and nlId=?";
-				$result = $this->query($query, [$subject, $data, (int) $this->now, $users, $datatxt, $wysiwyg, (int) $editionId, (int) $nlId]);
+				$result = $this->query($query, [$subject, $data, (int) $this->now, $users, $datatxt, $wysiwyg, $is_html, (int) $editionId, (int) $nlId]);
 				$query = "update `tiki_newsletters` set `editions`= `editions`+ 1 where `nlId`=? ";
 				$result = $this->query($query, [(int) $nlId]);
 				$query = "delete from `tiki_sent_newsletters_files` where `editionId`=?";
 				$result = $this->query($query, [(int) $editionId]);
 			} else {
 				 // save and send an edition
-				$query = "insert into `tiki_sent_newsletters`(`nlId`,`subject`,`data`,`sent`,`users` ,`datatxt`, `wysiwyg`) values(?,?,?,?,?,?,?)";
-				$result = $this->query($query, [(int) $nlId, $subject, $data, (int) $this->now, $users, $datatxt, $wysiwyg]);
+				$query = "insert into `tiki_sent_newsletters`(`nlId`,`subject`,`data`,`sent`,`users` ,`datatxt`, `wysiwyg`, `is_html`) values(?,?,?,?,?,?,?,?)";
+				$result = $this->query($query, [(int) $nlId, $subject, $data, (int) $this->now, $users, $datatxt, $wysiwyg, $is_html]);
 				$query = "update `tiki_newsletters` set `editions`= `editions`+ 1 where `nlId`=?";
 				$result = $this->query($query, [(int) $nlId]);
 				$editionId = $this->getOne('select max(`editionId`) from `tiki_sent_newsletters`');
@@ -139,14 +139,14 @@ class NlLib extends TikiLib
 		} else {
 			if ($editionId > 0 && $this->getOne('select `sent` from `tiki_sent_newsletters` where `editionId`=?', [(int) $editionId ]) == -1) {
 				// save an existing draft
-				$query = "update `tiki_sent_newsletters` set `subject`=?, `data`=?, `datatxt`=?, `wysiwyg`=? ";
+				$query = "update `tiki_sent_newsletters` set `subject`=?, `data`=?, `datatxt`=?, `wysiwyg`=?, `is_html`=? ";
 				$query .= "where editionId=? and nlId=?";
-				$result = $this->query($query, [$subject, $data, $datatxt, $wysiwyg, (int) $editionId, (int) $nlId]);
+				$result = $this->query($query, [$subject, $data, $datatxt, $wysiwyg, $is_html, (int) $editionId, (int) $nlId]);
 				$query = "delete from `tiki_sent_newsletters_files` where `editionId`=?";
 				$result = $this->query($query, [(int) $editionId]);
 			} else {
 				// save a new draft
-				$query = "insert into `tiki_sent_newsletters`(`nlId`,`subject`,`data`,`sent`,`users`,`datatxt`, `wysiwyg`) values(?,?,?,?,?,?,?)";
+				$query = "insert into `tiki_sent_newsletters`(`nlId`,`subject`,`data`,`sent`,`users`,`datatxt`, `wysiwyg`, `is_html`) values(?,?,?,?,?,?,?,?)";
 				$result = $this->query($query, [(int) $nlId, $subject, $data, -1, 0, $datatxt, $wysiwyg]);
 				$editionId = $this->getOne('select max(`editionId`) from `tiki_sent_newsletters`');
 			}
@@ -1391,9 +1391,9 @@ class NlLib extends TikiLib
 		$users = $this->get_all_subscribers($nl_info['nlId'], $nl_info['unsubMsg'] == 'y');
 
 		if (empty($info['editionId'])) {
-			$info['editionId'] = $this->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, 0, true, $info['datatxt'], $info['files'], $info['wysiwyg']);
+			$info['editionId'] = $this->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, 0, true, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
 		} else {
-			$this->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, $info['editionId'], true, $info['datatxt'], $info['files'], $info['wysiwyg']);
+			$this->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, $info['editionId'], true, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
 		}
 
 		if (isset($info['begin'])) {
@@ -1522,7 +1522,8 @@ class NlLib extends TikiLib
 			false,
 			$info['datatxt'],
 			$info['files'],
-			$info['wysiwyg']
+			$info['wysiwyg'],
+			$info['is_html']
 		);
 		foreach ($info['files'] as $k => $f) {
 			if ($f['savestate'] == 'tikitemp') {
