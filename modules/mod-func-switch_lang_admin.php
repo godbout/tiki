@@ -14,11 +14,11 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 /**
  * @return array
  */
-function module_switch_lang_info()
+function module_switch_lang_admin_info()
 {
 	return [
-		'name' => tra('Switch Language'),
-		'description' => tra('Displays a language picker to change the language of the site.'),
+		'name' => tra('Switch Admin Language'),
+		'description' => tra('Displays a language picker to change the language of admin site.'),
 		'prefs' => ['feature_multilingual', 'change_language'],
 		'params' => [
 			'mode' => [
@@ -34,21 +34,38 @@ function module_switch_lang_info()
  * @param $mod_reference
  * @param $module_params
  */
-function module_switch_lang($mod_reference, $module_params)
+function module_switch_lang_admin($mod_reference, $module_params)
 {
 	global $prefs, $user;
+
+	if (empty($user)) {
+		return false;
+	}
+
+	$userlib = TikiLib::lib('user');
+	if (! $userlib->user_has_permission($user, 'tiki_p_admin')) {
+		return false;
+	}
+
+	$frontendLang = $prefs['language'];
+	$userlib = TikiLib::lib('user');
+	$languageAdmin = ! empty($prefs['language_admin']) ? $prefs['language_admin'] : $frontendLang;
+	$userLang = $userlib->get_user_preference($user, 'language');
+	$userAdminLang = $userlib->get_user_preference($user, 'language_admin');
+
+	if (! empty($userAdminLang)) {
+		$frontendLang = $userAdminLang;
+	} elseif (! empty($languageAdmin)) {
+		$frontendLang = $languageAdmin;
+	} elseif (! empty($userLang)) {
+		$frontendLang = $userLang;
+	} else {
+		$frontendLang = $prefs['site_language'];
+	}
+
 	$smarty = TikiLib::lib('smarty');
 	$tikilib = TikiLib::lib('tiki');
 
-	$frontendLang = $prefs['language'];
-	if (! empty($user)) {
-		$userlib = TikiLib::lib('user');
-		$userLang = $userlib->get_user_preference($user, 'language');
-		$frontendLang = ! empty($userLang) ? $userLang : $prefs['site_language'];
-	}
-
-	// tiki-setup has already set the $language variable
-	//Create a list of languages
 	$languages = [];
 	$langLib = TikiLib::lib('language');
 	$languages = $langLib->list_languages(false, 'y');
@@ -57,7 +74,6 @@ function module_switch_lang($mod_reference, $module_params)
 	if ($mode == 'flags' || $mode == 'words' || $mode == 'abrv') {
 		include('lang/flagmapping.php');
 		global $pageRenderer;
-		//$trads = $multilinguallib->getTranslations('wiki page', $page_id, $page, $prefs['language']);
 
 		for ($i = 0, $icount_languages = count($languages); $i < $icount_languages; $i++) {
 			if (isset($flagmapping[$languages[$i]['value']])) {
@@ -75,7 +91,7 @@ function module_switch_lang($mod_reference, $module_params)
 			} else {
 				$languages[$i]['class'] = '';
 			}
-			if ($languages[$i]['value'] == $frontendLang) {
+			if (isset($languageAdmin) && $languages[$i]['value'] == $languageAdmin) {
 				$languages[$i]['class'] .= ' highlight';
 			}
 		}

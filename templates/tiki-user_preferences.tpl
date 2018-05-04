@@ -252,6 +252,25 @@
 							</select>
 						</div>
 					</div>
+					{if $tiki_p_admin eq 'y'}
+						<div class="form-group clearfix">
+							<label class="col-form-label col-md-4" for="languageAdmin">
+								{tr}Admin Language{/tr}
+							</label>
+							<div class="col-md-8">
+								<select id="languageAdmin" name="languageAdmin" class="form-control">
+									{section name=ix loop=$languages}
+										<option value="{$languages[ix].value|escape}" {if $user_prefs.language_admin eq $languages[ix].value}selected="selected"{/if}>
+											{$languages[ix].name}
+										</option>
+									{/section}
+									<option value='' {if !$user_prefs.language_admin}selected="selected"{/if}>
+										{tr}Site default{/tr}
+									</option>
+								</select>
+							</div>
+						</div>
+					{/if}
 				{/if}
 				{if $prefs.feature_multilingual eq 'y'}
 					{if $user_prefs.read_language}

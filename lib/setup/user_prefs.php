@@ -74,6 +74,10 @@ $smarty->assign('IP', $tikilib->get_ip_address());
 
 $tikilib->set_display_timezone($user);
 
+if (! empty($section) && $section == 'admin' && ! empty($prefs['language_admin'])) {
+	$prefs['language'] = $prefs['language_admin'];
+}
+
 $smarty->refreshLanguage();
 
 if ($prefs['language'] != $prefs['site_language']) {

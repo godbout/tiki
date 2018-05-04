@@ -22,15 +22,18 @@ function isValidLocale($localeIdentifier = '')
 // Sets the language
 // $localeIdentifier: the identifier of the locale to set
 // Returns true on success, false on failure (if $localeIdentifier is not a valid and allowed locale identifier)
-function setLanguage($localeIdentifier = '')
+function setLanguage($localeIdentifier = '', $languageAdmin = false)
 {
 	$smarty = TikiLib::lib('smarty');
 	$tikilib = TikiLib::lib('tiki');
 	global $prefs, $user;
+
+	$prefName = $languageAdmin ? 'language_admin' : 'language';
+
 	if (isValidLocale($localeIdentifier)) {
-		$prefs['language'] = $localeIdentifier;
+		$prefs[$prefName] = $localeIdentifier;
 		$smarty->refreshLanguage();
-		return $tikilib->set_user_preference($user, 'language', $localeIdentifier);
+		return $tikilib->set_user_preference($user, $prefName, $localeIdentifier);
 	} else {
 		return false;
 	}

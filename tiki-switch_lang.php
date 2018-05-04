@@ -121,5 +121,9 @@ if (strstr($orig_url, 'tiki-index.php') || strstr($orig_url, 'tiki-read_article.
 if (isset($_GET['language'])) {
 	setLanguage($_GET['language']);
 }
+
+if (isset($_GET['languageAdmin'])) {
+	setLanguage($_GET['languageAdmin'], true);
+}
 header("location: $orig_url");
 exit;

@@ -31,6 +31,7 @@
 		{/if}
 	</div>
 	{preference name=language}
+	{preference name=language_admin}
 	{preference name=wiki_page_regex}
 	{preference name=default_mail_charset}
 	<div class="adminoptionbox">

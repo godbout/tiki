@@ -8,6 +8,7 @@
 function prefs_language_list($partial = false)
 {
 	$map = [];
+	$adminMap = [];
 
 	if (! $partial) {
 		$langLib = TikiLib::lib('language');
@@ -16,7 +17,8 @@ function prefs_language_list($partial = false)
 			$map[ $lang['value'] ] = $lang['name'];
 		}
 	}
-
+	$adminMap[''] = tr('Default language');
+	$adminMap = array_merge($adminMap, $map);
 
 	return [
 		'language' => [
@@ -28,6 +30,20 @@ function prefs_language_list($partial = false)
 			'options' => $map,
 			'default' => 'en',
 			'tags' => ['basic'],
+		],
+		'language_admin' => [
+			'name' => tr('Default admin language'),
+			'description' => tr('The site language is used in admin section when no other language is specified by the user.'),
+			'filter' => 'lang',
+			'help' => 'I18n',
+			'type' => 'list',
+			'options' => $adminMap,
+			'default' => '',
+			'tags' => ['basic'],
+			'dependencies' => [
+				'feature_multilingual',
+				'change_language',
+			],
 		],
 		'language_inclusion_threshold' => [
 			'name' => tra('Language inclusion threshold'),

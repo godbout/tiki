@@ -91,6 +91,14 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 	} else {
 		$tikilib->set_user_preference($userwatch, 'language', '');
 	}
+	$smarty->assign('tiki_p_admin', $tiki_p_admin);
+	if (isset($_REQUEST['languageAdmin']) && $langLib->is_valid_language($_REQUEST['languageAdmin'])) {
+		if ($tiki_p_admin && $prefs['change_language'] == 'y') {
+			$tikilib->set_user_preference($userwatch, 'language_admin', $_REQUEST['languageAdmin']);
+		}
+	} else {
+		$tikilib->set_user_preference($userwatch, 'language_admin', '');
+	}
 	if (isset($_REQUEST['read_language'])) {
 		$list = [];
 		$tok = strtok($_REQUEST['read_language'], ' ');
