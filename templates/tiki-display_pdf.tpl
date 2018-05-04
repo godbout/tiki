@@ -5,107 +5,97 @@
     {/remarksbox}
 {else}
     <div>
-        <a class="btn btn-default btn-sm" data-role="button" id="prev">{tr}Previous{/tr}</a>
-        <a class="btn btn-default btn-sm" data-role="button" id="next">{tr}Next{/tr}</a>
-        <span class="pull-right small">{tr}Page{/tr}: <span id="page_num"></span> / <span id="page_count"></span></span>
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li id="prev" class="page-item"><a class="page-link" href="#">{tr}Previous{/tr}</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#"><span id="page_num"></span> {tr}of{/tr} <span id="page_count"></span></a></li>
+                <li id="next" class="page-item" ><a class="page-link" href="#">{tr}Next{/tr}</a></li>
+            </ul>
+        </nav>
     </div>
-    <div>
-        <canvas id="pdf-canvas" style="border:1px solid gray" class="col-12"></canvas>
+    <div id="viewerContainer" style="border: 1px solid gray; text-align: center">
+        <div id="viewer" class="pdfViewer singlePageView loadingIcon"></div>
     </div>
+    {jq}
+        /**
+         * Displays previous page.
+         */
+        function prevPage() {
+            changePage(pdfSinglePageViewer.currentPageNumber - 1);
+        }
 
-{jq}
-    // If absolute URL from the remote server is provided, configure the CORS
-    // header on that server.
-    var url = '{{$url}}';
+        /**
+         * Displays next page.
+         */
+        function nextPage() {
+            changePage(pdfSinglePageViewer.currentPageNumber + 1);
+        }
 
-    var pdfDoc = null,
-        pageNum = 1,
-        pageRendering = false,
-        pageNumPending = null,
-        scale = 1,
-        canvas = document.getElementById('pdf-canvas'),
-        ctx = canvas.getContext('2d');
+        /**
+         * Changes document to a specific page
+         */
+        function changePage(pageNum) {
+            if (pageNum < 1) {
+                return;
+            }
 
-    /**
-     * Get page info from document, resize canvas accordingly, and render page.
-     * @param num Page number.
-     */
-    function renderPage(num) {
-        pageRendering = true;
-        // Using promise to fetch the page
-        pdfDoc.getPage(num).then(function(page) {
-            var viewport = page.getViewport(scale);
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+            if (pageNum > pdfSinglePageViewer.pagesCount) {
+                return;
+            }
 
-            // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: ctx,
-                viewport: viewport
-            };
-            var renderTask = page.render(renderContext);
+            if (pageNum == 1) {
+                $('#prev').addClass('disabled');
+            }
 
-            // Wait for rendering to finish
-            renderTask.promise.then(function() {
-                pageRendering = false;
-                if (pageNumPending !== null) {
-                    // New page rendering is pending
-                    renderPage(pageNumPending);
-                    pageNumPending = null;
-                }
-            });
+            if (pageNum > 1) {
+                $('#prev').removeClass('disabled');
+            }
+
+            if (pageNum < pdfSinglePageViewer.pagesCount) {
+                $('#next').removeClass('disabled');
+            }
+
+            if (pageNum == pdfSinglePageViewer.pagesCount) {
+                $('#next').addClass('disabled');
+            }
+
+            pdfSinglePageViewer.currentPageNumber = pageNum;
+            $('#page_num').html(pageNum);
+        }
+
+        $('#prev').on('click', function() { prevPage(); });
+        $('#next').on('click', function() { nextPage(); });
+
+        var pdf = {
+            url: '{{$url}}',
+            cMapUrl: 'vendor/npm-asset/pdfjs-dist/cmaps/',
+            cMapPacked: true,
+        };
+
+        var container = document.getElementById('viewerContainer');
+
+        container.addEventListener('pagesinit', function () {
+            // Update document scale
+            pdfSinglePageViewer.currentScaleValue = 'page-width';
+
+            changePage(pdfSinglePageViewer.currentPageNumber);
+            $('#page_count').html(pdfSinglePageViewer.pagesCount);
         });
 
-        // Update page counters
-        document.getElementById('page_num').textContent = num;
-    }
+        var pdfLinkService = new pdfjsViewer.PDFLinkService();
+        var pdfSinglePageViewer = new pdfjsViewer.PDFSinglePageViewer({
+            container: container,
+            linkService: pdfLinkService,
+        });
+        pdfLinkService.setViewer(pdfSinglePageViewer);
 
-    /**
-     * If another page rendering in progress, waits until the rendering is
-     * finised. Otherwise, executes rendering immediately.
-     */
-    function queueRenderPage(num) {
-        if (pageRendering) {
-            pageNumPending = num;
-        } else {
-            renderPage(num);
-        }
-    }
-
-    /**
-     * Displays previous page.
-     */
-    function onPrevPage() {
-        if (pageNum <= 1) {
-            return;
-        }
-        pageNum--;
-        queueRenderPage(pageNum);
-    }
-    document.getElementById('prev').addEventListener('click', onPrevPage);
-
-    /**
-     * Displays next page.
-     */
-    function onNextPage() {
-        if (pageNum >= pdfDoc.numPages) {
-            return;
-        }
-        pageNum++;
-        queueRenderPage(pageNum);
-    }
-    document.getElementById('next').addEventListener('click', onNextPage);
-
-    /**
-     * Asynchronously downloads PDF.
-     */
-    pdfjsLib.getDocument(url).then(function(pdfDoc_) {
-        pdfDoc = pdfDoc_;
-        document.getElementById('page_count').textContent = pdfDoc.numPages;
-
-        // Initial/first page rendering
-        renderPage(pageNum);
-    });
-{/jq}
+        /**
+         * Asynchronously downloads PDF.
+         */
+        pdfjsLib.getDocument(pdf).then(function(pdfDocument) {
+            pdfSinglePageViewer.setDocument(pdfDocument);
+            pdfLinkService.setDocument(pdfDocument, null);
+        });
+    {/jq}
 
 {/if}

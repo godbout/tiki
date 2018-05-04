@@ -13,6 +13,8 @@ $smarty->assign('pdfJsAvailable', $pdfJsAvailable);
 
 $headerlib = TikiLib::lib('header');
 $headerlib->add_jsfile($pdfJsfile);
+$headerlib->add_jsfile('vendor/npm-asset/pdfjs-dist/web/pdf_viewer.js');
+$headerlib->add_cssfile('vendor/npm-asset/pdfjs-dist/web/pdf_viewer.css');
 
 $fileSrc = $_REQUEST['fileSrc'];
 $url = TikiLib::lib('access')->absoluteUrl($fileSrc);
