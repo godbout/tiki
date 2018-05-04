@@ -391,7 +391,7 @@ class PrefsDoc extends TWVersion
 		$preState = (object)[];
 		$files = scandir('storage/prefsdoc/');
 		foreach ($files as $file) {
-			if (preg_match('/^([\d]+)-([a-z-]+).json$/', $file, $matches)) {    // return version number and tab name, filtering out non-matching files
+			if (preg_match('/^([\d]+)-([a-z0-9-]+).json$/', $file, $matches)) {    // return version number and tab name, filtering out non-matching files
 				$preState->{$matches[2]}[] = (int)$matches[1];
 			}
 		}
