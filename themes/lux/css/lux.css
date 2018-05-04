@@ -8285,14 +8285,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #eceeef; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #919aa1;
-  background-color: #fff;
-  border-color: #919aa1; }
+  color: #55595c;
+  background-color: #f7f7f9;
+  border-color: #dadae3; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #919aa1;
-  background-color: #fff;
-  border-color: #919aa1; }
+  background-color: #4bbf73;
+  border-color: #010101;
+  color: black; }
 
 .tiki .pvtUi {
   color: #919aa1; }

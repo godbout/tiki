@@ -8455,14 +8455,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #aaa;
-  background-color: #272b30;
-  border-color: #aaa; }
+  color: #52575c;
+  background-color: #fff;
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #aaa;
-  background-color: #272b30;
-  border-color: #aaa; }
+  background-color: #62c462;
+  border-color: #232628;
+  color: black; }
 
 .tiki .pvtUi {
   color: #aaa; }

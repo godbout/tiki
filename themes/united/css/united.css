@@ -8224,14 +8224,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #333;
+  color: #495057;
   background-color: #fff;
-  border-color: #333; }
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #333;
-  background-color: #fff;
-  border-color: #333; }
+  background-color: #38b44a;
+  border-color: #c34113;
+  color: black; }
 
 .tiki .pvtUi {
   color: #333; }

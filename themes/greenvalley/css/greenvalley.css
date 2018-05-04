@@ -8617,14 +8617,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #222;
-  background-color: #addd63;
-  border-color: #222; }
+  color: #495057;
+  background-color: #fff;
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #222;
-  background-color: #addd63;
-  border-color: #222; }
+  background-color: #5cb85c;
+  border-color: #bc2375;
+  color: black; }
 
 .header_outer {
   margin-top: 24px; }

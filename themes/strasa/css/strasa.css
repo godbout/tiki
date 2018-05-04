@@ -7633,14 +7633,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #212529;
-  background-color: #fff;
-  border-color: #212529; }
+  color: #000;
+  background-color: #f3fcfe;
+  border-color: #c4f0fa; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #fff;
-  background-color: #1d9ccf;
-  border-color: #223845; }
+  background-color: #28a745;
+  border-color: #046;
+  color: white; }
 
 body {
   background: #214d68 url("../images/body-bg_fw.png") repeat-x; }

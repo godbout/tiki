@@ -8336,14 +8336,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #777;
+  color: #495057;
   background-color: #fff;
-  border-color: #777; }
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #777;
-  background-color: #fff;
-  border-color: #777; }
+  background-color: #3cb521;
+  border-color: #345578;
+  color: black; }
 
 .tiki .pvtUi {
   color: #777; }

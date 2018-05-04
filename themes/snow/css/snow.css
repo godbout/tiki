@@ -8207,14 +8207,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #212529;
-  background-color: #fff;
-  border-color: #212529; }
+  color: #495057;
+  background-color: #feffff;
+  border-color: #e5e5e5; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #fff;
-  background-color: #95a0be;
-  border-color: #818181; }
+  background-color: #28a745;
+  border-color: #7584ab;
+  color: white; }
 
 body, body.fullscreen {
   background: url("../images/flakesptn2.jpg");

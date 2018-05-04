@@ -8288,14 +8288,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #222;
+  color: #495057;
   background-color: #fff;
-  border-color: #222; }
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #222;
-  background-color: #fff;
-  border-color: #222; }
+  background-color: #28a745;
+  border-color: #000173;
+  color: white; }
 
 .topbar {
   border-radius: 0.25rem;

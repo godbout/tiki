@@ -106,7 +106,7 @@ legend {
 }
 
 .has-warning {
-	.help-block,
+	.form-text,
 	.control-label,
 	.form-control-feedback {
 		color: lighten( theme-color("warning"), 20%);
@@ -119,7 +119,7 @@ legend {
 }
 
 .has-error {
-	.help-block,
+	.form-text,
 	.control-label,
 	.form-control-feedback {
 		color: lighten( theme-color("primary"), 40%);
@@ -132,7 +132,7 @@ legend {
 }
 
 .has-success {
-	.help-block,
+	.form-text,
 	.control-label,
 	.form-control-feedback {
 		color: lighten( theme-color("success"), 20%);

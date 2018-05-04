@@ -158,7 +158,7 @@ table {
   .table-hover .table-warning:hover, .table-hover .table-warning:hover > th, .table-hover .table-warning:hover > td {
     background-color: #d08002; }
 
-label, .control-label, .help-block, .checkbox, .radio, .form-control-feedback {
+label, .control-label, .form-text, .checkbox, .radio, .form-control-feedback {
   font-size: 0.8203125rem; }
 
 .dropdown-item {
@@ -8415,14 +8415,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #222;
+  color: #495057;
   background-color: #fff;
-  border-color: #222; }
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #222;
-  background-color: #fff;
-  border-color: #222; }
+  background-color: #43ac6a;
+  border-color: #006687;
+  color: black; }
 
 .tiki .pvtUi {
   color: #222; }

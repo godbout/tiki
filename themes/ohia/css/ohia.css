@@ -8042,14 +8042,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #212529;
-  background-color: #fff;
-  border-color: #212529; }
+  color: #ededed;
+  background-color: #242424;
+  border-color: #0b0b0b; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #fd0006;
-  background-color: #2f2f2f;
-  border-color: #212529; }
+  background-color: #aad4ab;
+  border-color: #0e2132;
+  color: black; }
 
 .topbar {
   margin-bottom: 20px; }
@@ -8120,7 +8120,7 @@ footer.footer .modules {
 .popover {
   background-color: #dee2e6; }
 
-.popover-title {
+.popover-header {
   background-color: #696969;
   border-bottom: 1px solid #ebebeb; }
 

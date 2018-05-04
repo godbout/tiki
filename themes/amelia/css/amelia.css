@@ -78,17 +78,17 @@ legend {
   font-family: 'Lobster', cursive;
   color: #fff; }
 
-.has-warning .help-block, .has-warning .control-label, .has-warning .form-control-feedback {
+.has-warning .form-text, .has-warning .control-label, .has-warning .form-control-feedback {
   color: #ecd77f; }
   .has-warning .form-control, .has-warning .form-control:focus {
     border-color: #ecd77f; }
 
-.has-error .help-block, .has-error .control-label, .has-error .form-control-feedback {
+.has-error .form-text, .has-error .control-label, .has-error .form-control-feedback {
   color: #f0a6ac; }
   .has-error .form-control, .has-error .form-control:focus {
     border-color: #f0a6ac; }
 
-.has-success .help-block, .has-success .control-label, .has-success .form-control-feedback {
+.has-success .form-text, .has-success .control-label, .has-success .form-control-feedback {
   color: #93e08b; }
   .has-success .form-control, .has-success .form-control:focus {
     border-color: #93e08b; }
@@ -8801,14 +8801,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #bbb; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #111;
-  background-color: #108a93;
-  border-color: #111; }
+  color: #444;
+  background-color: #fff;
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #111;
-  background-color: #108a93;
-  border-color: #111; }
+  background-color: #48ca3b;
+  border-color: #81161e;
+  color: black; }
 
 .tiki .pvtUi {
   color: #111; }

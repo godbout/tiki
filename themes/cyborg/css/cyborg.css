@@ -8319,14 +8319,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #888;
-  background-color: #060606;
-  border-color: #888; }
+  color: #282828;
+  background-color: #fff;
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #888;
-  background-color: #060606;
-  border-color: #888; }
+  background-color: #77b300;
+  border-color: #2180ac;
+  color: black; }
 
 .tiki .pvtUi {
   color: #888; }

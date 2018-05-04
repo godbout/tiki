@@ -8213,14 +8213,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #f49ac0; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #212529;
-  background-color: #fff;
-  border-color: #212529; }
+  color: #f566b0;
+  background-color: #ff57ab;
+  border-color: #ff2492; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc; }
+  background-color: #28a745;
+  border-color: #0062cc;
+  color: white; }
 
 body > .container .topbar {
   margin-bottom: 20px; }
@@ -8277,7 +8277,7 @@ h1:after, h2:after {
   border-bottom: 0.75em solid transparent;
   border-right: 0.75em solid #fce0ec; }
 
-.help-block {
+.form-text {
   color: #f0569f; }
 
 .panel-heading {

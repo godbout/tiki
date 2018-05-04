@@ -69,7 +69,7 @@
     .table-hover .table-warning:hover, .table-hover .table-warning:hover > th, .table-hover .table-warning:hover > td {
       background-color: #eea236; }
 
-label, .radio label, .checkbox label, .help-block {
+label, .radio label, .checkbox label, .form-text {
   font-size: 0.875rem; }
 
 .input-addon, .input-group-addon {
@@ -8306,14 +8306,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #ebebeb;
-  background-color: #2b3e50;
-  border-color: #ebebeb; }
+  color: #495057;
+  background-color: #fff;
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #ebebeb;
-  background-color: #2b3e50;
-  border-color: #ebebeb; }
+  background-color: #5cb85c;
+  border-color: #b15315;
+  color: black; }
 
 .tiki .pvtUi {
   color: #ebebeb; }

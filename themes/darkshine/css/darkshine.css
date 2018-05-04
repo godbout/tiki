@@ -8206,14 +8206,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #212529;
+  color: #495057;
   background-color: #fff;
-  border-color: #212529; }
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #212529;
-  background-color: #fff;
-  border-color: #212529; }
+  background-color: #5cb85c;
+  border-color: #2d0000;
+  color: black; }
 
 body, body.fullscreen {
   background: #90140c url("../images/stripes.png") repeat-x 50% 0; }
@@ -8302,7 +8302,7 @@ h2.sitesubtitle {
   border: none;
   background: transparent; }
 
-.popover-content .table .table, .popover-content .table-hover {
+.popover-body .table .table, .popover-body .table-hover {
   background: #fff; }
 
 .table .table {

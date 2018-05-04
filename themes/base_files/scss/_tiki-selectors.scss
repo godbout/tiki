@@ -6,7 +6,6 @@ $imagePathToImgDir: "../../../img/";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss";
 
-
 // Background color for navbar collapse dropdowns (Tiki's aren't .dropdown li).
 .navbar-collapse.collapse.in {
 	background: $navbar-dark-bg;
@@ -1172,17 +1171,28 @@ input[type="checkbox"].preffilter-toggle-round + label {
 }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-	color: $btn-default-color;
-	background-color: $btn-default-bg;
-	border-color: $btn-default-border;
+	color: $input-color;
+	background-color: $input-bg;
+	border-color: darken($input-bg, 10%);
 }
 
 input[type="checkbox"].preffilter-toggle-round + label:after {
 }
 
+// Method based on https://codepen.io/davidhalford/pen/wlDxL
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-	color: $btn-primary-color;
-	background-color: $btn-primary-bg;
-	border-color: $btn-primary-border;
-}
+	background-color: $success;
+	border-color: darken($primary, 10%);
+  $n: $success;
+	$color-brightness: round((red($n) * 299) + (green($n) * 587) + (blue($n) * 114) / 1000);
+	$light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
+
+	@if abs($color-brightness) < ($light-color/2){
+	  color: white;
+	}
+
+	@else {
+	  color: black;
+	}
+  }
 

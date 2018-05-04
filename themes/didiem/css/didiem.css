@@ -7633,13 +7633,13 @@ input[type="checkbox"].preffilter-toggle-round + label {
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
   color: #212529;
-  background-color: #fff;
-  border-color: #212529; }
+  background-color: #f8f9d4;
+  border-color: #f1f3a7; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #fff;
-  background-color: #a1bb87;
-  border-color: #8fa872; }
+  background-color: #28a745;
+  border-color: #709738;
+  color: white; }
 
 #col2 .card, #col3 .card, #bottom_modules .card {
   border: none; }

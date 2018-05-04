@@ -7633,14 +7633,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #212529;
+  color: #495057;
   background-color: #fff;
-  border-color: #212529; }
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #212529;
-  background-color: #2098cd;
-  border-color: #212529; }
+  background-color: #28a745;
+  border-color: #0c5377;
+  color: white; }
 
 html, body {
   /* The html and body elements cannot have any padding or margin. */
