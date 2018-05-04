@@ -149,10 +149,10 @@ input[type="checkbox"].preffilter-toggle-round + label:before {
 	-o-transition: background 0.4s;
 	transition: background 0.4s;
 	content: "Basic";
-	font-size: 0.7em;
+	font-size: 0.8rem;
 	font-weight: normal;
 	padding-left: 40px;
-	padding-top: 8px;
+	padding-top: 0.2rem;
 }
 
 input[type="checkbox"].preffilter-toggle-round + label:after {
@@ -170,10 +170,10 @@ input[type="checkbox"].preffilter-toggle-round + label:after {
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 	background-color: #8ce196;
 	content: "Advanced";
-	font-size: 0.7em;
+	font-size: 0.8rem;
 	font-weight: normal;
 	padding-left: 10px;
-	padding-top: 8px;
+	padding-top: 0.2rem;
 }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:after {
