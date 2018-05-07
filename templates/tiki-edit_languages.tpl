@@ -87,7 +87,7 @@
 	{/if}
 	{if $action eq 'add_tran_sw'}
 		<div class="panel">
-			<div class="panel-heading">
+			<div class="card-header">
 				{tr}Add a translation{/tr}
 			</div>
 			<div class="panel-body">
@@ -111,7 +111,7 @@
 	{/if}
 	{if $action eq 'edit_tran_sw' || $action eq 'edit_rec_sw'}
 		<div class="panel">
-			<div class="panel-heading">
+			<div class="card-header">
 				{if $action eq 'edit_tran_sw'}
 					{tr}Edit translations{/tr}
 				{else}

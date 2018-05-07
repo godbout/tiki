@@ -17,7 +17,7 @@
 			{if $new_user_validation eq 'y'}
 				<input type="hidden" name="new_user_validation" value="y">
 			{/if}
-			<div class="panel-heading text-center">
+			<div class="card-header text-center">
 				{if $new_user_validation neq 'y'}
 					<h3 class="panel-title">{tr}Change password{/tr}</h3>
 				{else}

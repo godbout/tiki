@@ -94,7 +94,7 @@
 			</div>
 		{/if}
 		<div class="panel">
-			<div class="panel-heading radio">
+			<div class="card-header radio">
 				<label for="do_email" class="col-form-label col-sm-3 pull-left">
 					{icon name="admin_webmail"} {tr}Send email{/tr}
 				</label>
@@ -286,7 +286,7 @@
 		{/if}
 		{if $prefs.feature_messages eq 'y' && $report != 'y'}
 			<div class="panel">
-				<div class="panel-heading radio">
+				<div class="card-header radio">
 					{if $send_msg=='y'}
 						<label for="do_message" class="col-form-label col-sm-3">
 							{icon name="admin_messages"} {tr}Send a message{/tr}
@@ -344,7 +344,7 @@
 		{/if}
 		{if $prefs.feature_forums eq 'y' && $report != 'y'}
 			<div class="panel">
-				<div class="panel-heading radio">
+				<div class="card-header radio">
 					{if count($forums)>0}
 						<label for="do_forum" class="col-form-label col-sm-3">
 							{icon name="admin_forums"} {tr}Post on forum{/tr}

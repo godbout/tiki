@@ -24,7 +24,7 @@
 {else}
 	<div class="panel">
 		{if $tiki_p_admin ne 'y'}
-			<div class="panel-heading">
+			<div class="card-header">
 				{tr}Error{/tr}
 			</div>
 			<div class="panel-body">
@@ -32,7 +32,7 @@
 				{tr}Please register.{/tr}
 			</div>
 		{else}
-			<div class="panel-heading">
+			<div class="card-header">
 				{tr}Register this site at Tiki.org{/tr}
 			</div>
 			<div class="panel-body">

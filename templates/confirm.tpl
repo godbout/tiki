@@ -1,7 +1,7 @@
 {* $Id$ *}
 <div class="panel">
 	{if !empty($confirmation_text)}
-		<div class="panel-heading">
+		<div class="card-header">
 			{icon name='information' style="vertical-align:middle"} {$confirmation_text|escape}
 		</div>
 	{/if}

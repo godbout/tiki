@@ -4,7 +4,7 @@
 
 {if $msg}
 	<div class="panel">
-		<div class="panel-heading">
+		<div class="card-header">
 			{tr}Transmission results{/tr}
 		</div>
 		<div class="panel-body">
@@ -18,7 +18,7 @@
 
 <form method="post" action="tiki-send_objects.php">
 	<div class="panel">
-		<div class="panel-heading">
+		<div class="card-header">
 			{tr}Filter{/tr}
 		</div>
 		<div class="panel-body">
@@ -34,7 +34,7 @@
 
 	{if $tiki_p_send_pages eq 'y'}
 		<div class="panel">
-			<div class="panel-heading">
+			<div class="card-header">
 				{tr}Send Wiki Pages{/tr}
 			</div>
 			<div class="panel-body">
@@ -63,7 +63,7 @@
 
 		{if count($structures)}
 			<div class="panel">
-				<div class="panel-heading">
+				<div class="card-header">
 					{tr}Send a structure{/tr}
 				</div>
 				<div class="panel-body">
@@ -94,7 +94,7 @@
 
 	{if $tiki_p_send_articles eq 'y'}
 		<div class="panel">
-			<div class="panel-heading">
+			<div class="card-header">
 				{tr}Send Articles{/tr}
 			</div>
 			<div class="panel-body">
@@ -123,7 +123,7 @@
 	<br>
 
 	<div class="panel">
-		<div class="panel-heading">
+		<div class="card-header">
 			{tr}Send objects to this site{/tr}
 		</div>
 		<div class="panel-body">

@@ -13,7 +13,7 @@
 			{/if}
 			<div class="col-md-4 text-center">
 				<div class="panel">
-					<div class="panel-heading">
+					<div class="card-header">
 						{$row.title|escape}
 					</div>
 					<div class="panel-body">

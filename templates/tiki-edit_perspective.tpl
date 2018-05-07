@@ -112,7 +112,7 @@
 				</div>
 				<div class="col-sm-offset-2">
 					<fieldset id="preferences" class="panel dropzone">
-						<div class="panel-heading">{tr}Preference List{/tr}</div>
+						<div class="card-header">{tr}Preference List{/tr}</div>
 						<div class="panel-body">
 							{foreach from=$perspective_info.preferences key=name item=val}
 								{preference name=$name source=$perspective_info.preferences}

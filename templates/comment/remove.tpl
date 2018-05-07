@@ -8,7 +8,7 @@
 	{if $status neq 'DONE'}
 		<form method="post" action="{service controller=comment action=remove}">
 			<div class="panel panel-warning">
-				<div class="panel-heading">
+				<div class="card-header">
 					{tr}Are you sure you want to delete this comment?{/tr}
 				</div>
 				<div class="panel-body">

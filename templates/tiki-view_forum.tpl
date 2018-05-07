@@ -407,7 +407,7 @@
 {/if}
 {if $tiki_p_admin_forum eq 'y' && ($comments_coms|@count > 0 || $queued > 0 || $reported > 0)}
 	<div class="panel panel-primary">
-		<div class="panel-heading">
+		<div class="card-header">
 			{tr}Moderator actions on selected topics{/tr}
 		</div>
 		<div class="panel-body">
@@ -763,7 +763,7 @@
 	{if !$ts.enabled}
 		<div class="col-md-8" styles="padding-top:15px">
 			<div class="panel" id="filter-panel">
-				<div class="panel-heading filter-panel-heading">
+				<div class="card-header filter-card-header">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" href="#filterCollapse" class="collapsed">
 							{tr}Filter Posts{/tr}

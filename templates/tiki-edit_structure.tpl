@@ -126,7 +126,7 @@
 {if $editable == 'y'}
 	<form action="tiki-edit_structure.php" method="post" class="form-inline" role="form">
 		<div class="panel">
-			<div class="panel-heading">
+			<div class="card-header">
 				<strong>{tr}Add pages{/tr}</strong> <small>{tr}Use an existing page by dragging it into the structure above{/tr}</small>
 			</div>
 			<div class="panel-body">
@@ -166,7 +166,7 @@
 	{if $prefs.feature_categories eq 'y' && $prefs.feature_wiki_categorize_structure == 'y' && $all_editable == 'y'}
 		<form action="tiki-edit_structure.php" method="post">
 			<div class="panel">
-				<div class="panel-heading">
+				<div class="card-header">
 					<strong>{tr}Categorize all pages in structure together{/tr}</strong>
 				</div>
 				<div class="panel-body">

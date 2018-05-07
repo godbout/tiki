@@ -8,7 +8,7 @@
 	<pre id="preview_code">
 	{ldelim}menu id={$menuId} type={$preview_type} css={$preview_css} bootstrap={$preview_bootstrap}{rdelim}</pre>{* <pre> cannot have extra spaces for indenting *}
 	<div class="panel">
-		<div class="panel-heading">
+		<div class="card-header">
 			<h3 class="panel-title">{$menuInfo.name|escape}</h3>
 		</div>
 		<div class="panel-body clearfix">

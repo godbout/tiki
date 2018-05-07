@@ -2,7 +2,7 @@
 <div id="tiki-center">
 	<br>
 	<div class="panel">
-		<div class="panel-heading">
+		<div class="card-header">
 			{tr}Information{/tr}
 		</div>
 

@@ -4,7 +4,7 @@
 	</div>
 	<div id="weburls" style="display:none;position:absolute;right:-10px;top:-50px;z-index:1;"
 			class="panel">
-		<div class="panel-heading">
+		<div class="card-header">
 			<h3 class="panel-title" id="urltop">{tr}Some useful URLs{/tr}</h3>
 			<div style="text-align: right;">
 				<a href="#" class="hide_weburls" style="color:inherit; font-size: 85%" onclick="flip('weburls');return false;">{tr}Hide Quick URLs{/tr}</a>

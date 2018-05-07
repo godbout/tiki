@@ -269,7 +269,7 @@
 			{if $prefs.feature_friends eq 'y'}
 				{if $user eq $userinfo.object_id}
 				<div class="panel">
-				<div class="panel-heading">
+				<div class="card-header">
 					<h3 class="panel-title">{tr}Friendship Network{/tr}</h3>
 				</div>
 				<div class="panel-body">

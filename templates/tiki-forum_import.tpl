@@ -14,7 +14,7 @@
 	{* This part of the tool is not ready yet, so let's hide it for now...
 
 	<div class="panel">
-		<div class="panel-heading">{tr}Import Forum Contents from Tiki's DB and Server{/tr}</div>
+		<div class="card-header">{tr}Import Forum Contents from Tiki's DB and Server{/tr}</div>
 		<div class="panel-body">
 			<form action="tiki-forum_import.php" method="post" class="form-horizontal">
 				<input type="hidden" name="step1" value="true">
@@ -47,7 +47,7 @@
 	<br>
 
 	<div class="cbox">
-		<div class="panel-heading">{tr}Import from Another DB or Server{/tr}</div>
+		<div class="card-header">{tr}Import from Another DB or Server{/tr}</div>
 		<div class="panel-body">
 			<form action="tiki-forum_import.php" method="post" class="form-horizontal">
 				<input type="hidden" name="step1" value="true">
@@ -107,7 +107,7 @@
 	End hiding of unfinished section... *}
 
 	<div class="panel">
-		<div class="panel-heading">{tr}Import from a Local SQL File{/tr}</div>
+		<div class="card-header">{tr}Import from a Local SQL File{/tr}</div>
 		<div class="panel-body">
 			<form action="tiki-forum_import.php" method="post" class="form-horizontal">
 				<input type="hidden" name="step1" value="true">
@@ -151,7 +151,7 @@
 {elseif $step eq 'test'}
 
 	<div class="panel">
-		<div class="panel-heading">{tr}Verification{/tr}</div>
+		<div class="card-header">{tr}Verification{/tr}</div>
 		<div class="panel-body">
 			<form action="tiki-forum_import.php" method="post">
 				{if $passed eq 'true'}
@@ -189,7 +189,7 @@
 
 	<form action="tiki-forum_import.php" method="post">
 		<div class="panel">
-			<div class="panel-heading">{tr}Select a Forum You Wish to Move (ONE at a time!){/tr}</div>
+			<div class="card-header">{tr}Select a Forum You Wish to Move (ONE at a time!){/tr}</div>
 			<div class="panel-body">
 				<input type="hidden" name="step3" value="true">
 				<input type="hidden" name="import" value="{$iMethod}">
@@ -221,7 +221,7 @@
 		<p> </p>
 
 		<div class="panel">
-			<div class="panel-heading">{tr}Which Forum Do You Wish to Import this Into?{/tr}</div>
+			<div class="card-header">{tr}Which Forum Do You Wish to Import this Into?{/tr}</div>
 			<div class="panel-body">
 				<div class="table-responsive">
 					<table class="table">

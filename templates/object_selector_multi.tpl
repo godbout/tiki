@@ -30,7 +30,7 @@
 	</div>
 
 	<div class="panel hidden">
-		<div class="panel-heading">
+		<div class="card-header">
 			<div class="input-group">
 				<span class="input-group-addon">
 					{icon name=search}

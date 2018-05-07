@@ -8,7 +8,7 @@
 	{if $status neq 'DONE'}
 		<form method="post" action="{service controller="comment" action="archive"}">
 			<div class="panel">
-				<div class="panel-heading">	
+				<div class="card-header">
 					{if $do eq 'archive'}
 						{tr}Are you sure you want to archive this comment?{/tr}
 					{else}

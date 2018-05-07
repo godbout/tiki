@@ -7,7 +7,7 @@
 {block name="content"}
 	<form method="post" action="{service controller=comment action=edit threadId=$comment.threadId}">
 		<div class="panel">
-			<div class="panel-heading">
+			<div class="card-header">
 				{tr}Edit Comment{/tr}
 			</div>
 			<fieldset>

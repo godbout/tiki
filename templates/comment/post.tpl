@@ -18,7 +18,7 @@
 		<form method="post" action="{service controller=comment action=post}" role="form">
 			<div class="panel">
 				{if ! $user or $prefs.feature_comments_post_as_anonymous eq 'y'}
-					<div class="panel-heading">
+					<div class="card-header">
 						{if $user}
 							{remarksbox type=warning title="Anonymous posting"}
 								{tr}You are currently registered on this site. This section is optional. By filling it, you will not link this post to your account and preserve your anonymity.{/tr}

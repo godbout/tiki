@@ -12,7 +12,7 @@
 	<div class="row install-body">
 		<div class="col-md-3">
 			<div class="install-menu panel">
-				<div class="panel-heading">
+				<div class="card-header">
 					<h4>{tr}Installation{/tr}</h4>
 				</div>
 				<div class="panel-body">
@@ -75,7 +75,7 @@
 				</div>
 			</div><!-- End of install-menu -->
 			<div class="install-help panel">
-				<div class="panel-heading">
+				<div class="card-header">
 					<h4>{tr}Help{/tr}</h4>
 				</div>
 				<div class="panel-body">

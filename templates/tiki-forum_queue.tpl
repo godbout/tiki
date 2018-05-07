@@ -8,7 +8,7 @@
 {if $smarty.request.qId and $form eq 'y'}
 	<form method="post" action="tiki-forum_queue.php" role="form" class="form-horizontal">
 		<div class="card">
-			<div class="panel-heading">
+			<div class="card-header">
 				{tr}Edit queued message{/tr}
 			</div>
 			<div class="panel-body">

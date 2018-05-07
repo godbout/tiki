@@ -7,7 +7,7 @@
 {block name="content"}
 <form role="form" method="post" action="{service controller=search_stored action=select}">
 	<div class="panel panel-primary">
-		<div class="panel-heading">
+		<div class="card-header">
 			<label>
 				<input type="radio" name="queryId" value="" checked>
 				{tr}Create New{/tr}
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 	<div class="panel">
-		<div class="panel-heading">
+		<div class="card-header">
 			<h4>{tr}Use Existing{/tr}</h4>
 		</div>
 		<div class="panel-body">

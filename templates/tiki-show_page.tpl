@@ -57,7 +57,7 @@ Note: The show content block must be defined at root level to use the include. A
 	{if $prefs.feature_urgent_translation eq 'y'}
 		{section name=i loop=$translation_alert}
 			<div class="panel panel-warning">
-				<div class="panel-heading">
+				<div class="card-header">
 					{tr}Content may be out of date{/tr}
 				</div>
 				<div class="panel-body">

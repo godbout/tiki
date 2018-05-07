@@ -31,7 +31,7 @@
 				</h3>
 			{/if}
 			</div>
-			{elseif $module_notitle ne 'y'}{* means when module decorations are set to 'n' don't render the panel-heading wrapper as above *}
+			{elseif $module_notitle ne 'y'}{* means when module decorations are set to 'n' don't render the card-header wrapper as above *}
 			{if $module_flip eq 'y' and $prefs.javascript_enabled ne 'n'}
 			<h3 class="card-title"
 				ondblclick="javascript:icntoggle('mod-{$smarty.capture.name}','module.png');"{if !empty($module_params.color)} style="color:{$module_params.color};"{/if}>
