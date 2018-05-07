@@ -7,7 +7,7 @@
 
 <h2>{tr}Preview poll{/tr}</h2>
 <div align="center">
-	<div style="text-align:left;width:130px;" class="panel panel-default">
+	<div style="text-align:left;width:130px;" class="panel">
 		<div class="panel-heading">{$menu_info.name}</div>
 		<div class="panel-body">
 			{include file='tiki-poll.tpl'}

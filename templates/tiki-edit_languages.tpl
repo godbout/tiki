@@ -86,7 +86,7 @@
 		<input type="hidden" name="only_db_untranslated" value="{$only_db_untranslated}">
 	{/if}
 	{if $action eq 'add_tran_sw'}
-		<div class="panel panel-default">
+		<div class="panel">
 			<div class="panel-heading">
 				{tr}Add a translation{/tr}
 			</div>
@@ -110,7 +110,7 @@
 		</div>
 	{/if}
 	{if $action eq 'edit_tran_sw' || $action eq 'edit_rec_sw'}
-		<div class="panel panel-default">
+		<div class="panel">
 			<div class="panel-heading">
 				{if $action eq 'edit_tran_sw'}
 					{tr}Edit translations{/tr}

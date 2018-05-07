@@ -5,7 +5,7 @@
 	{tr}This feature currently searches and replaces within wiki pages only{/tr}
 {/remarksbox}
 
-<div class="panel panel-default">
+<div class="panel">
 	<div class="panel-body">
 		<form action="tiki-search_replace.php" method="post">
 			{tr}Search:{/tr} <input type="text" size="30" name="searchtext" value="{$searchtext|escape}">

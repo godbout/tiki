@@ -3,7 +3,7 @@
 {/if}
 
 <div id="tiki-mid">
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-heading">
 			{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle"} {tr}Error{/tr}
 		</div>

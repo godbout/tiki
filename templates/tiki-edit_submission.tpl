@@ -31,7 +31,7 @@
 	<input type="hidden" name="image_type" value="{$image_type|escape}">
 	<input type="hidden" name="image_name" value="{$image_name|escape}">
 	<input type="hidden" name="image_size" value="{$image_size|escape}">
-	<div class="panel panel-default"><div class="panel-body">
+	<div class="panel"><div class="panel-body">
 		{tr}Fields with <b>*</b> are optional{/tr}
 		{if $types.$type.show_topline eq 'y'}, {tr}<b>Topline</b>=small line above Title{/tr}{/if}
 		{if $types.$type.show_subtitle eq 'y'}, {tr}<b>Subtitle</b>=small line below Title{/tr}{/if}

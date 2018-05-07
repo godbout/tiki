@@ -30,7 +30,7 @@
 		</select>
 	</div>
 
-	<div class="panel panel-default hidden">
+	<div class="panel hidden">
 		<div class="panel-heading">
 			<div class="input-group">
 				<span class="input-group-append">

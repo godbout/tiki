@@ -22,7 +22,7 @@
 		</table>
 	</div>
 {else}
-	<div class="panel panel-default">
+	<div class="panel">
 		{if $tiki_p_admin ne 'y'}
 			<div class="panel-heading">
 				{tr}Error{/tr}
@@ -39,7 +39,7 @@
 				<table>
 					<tr>
 						<td>
-							<div class="panel panel-default">
+							<div class="panel">
 								<div class="panel-body">
 									<b>{tr}Read this first!{/tr}</b>
 									<br><br>

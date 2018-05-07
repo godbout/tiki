@@ -7,7 +7,7 @@
 
 <form action="tiki-edit_banner.php" method="post" enctype="multipart/form-data" class="form-horizontal margin-bottom-md">
 	<input type="hidden" name="bannerId" value="{$bannerId|escape}">
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-body">
 			<div class="form-group">
 				<label class="col-sm-3 col-form-label">{tr}URL to link the banner{/tr}</label>
@@ -94,7 +94,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-body">
 			<h4>{tr}Show the banner only between these dates:{/tr}</h4>
 			<div class="form-group">
@@ -118,7 +118,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-body">
 			<h4>{tr}Show the banner only in these hours:{/tr}</h4>
 			<div class="form-group">
@@ -136,7 +136,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-body">
 			<h4>{tr}Show the banner only on:{/tr}</h4>
 			<div class="col-sm-12">
@@ -153,7 +153,7 @@
 		</div>
 	</div>
 
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-body">
 			<h4>{tr}Select ONE method for the banner:{/tr}</h4>
 			<div class="form-group">
@@ -247,7 +247,7 @@
 </form>
 
 {if $zones}
-	<div align="left" class="panel panel-default">
+	<div align="left" class="panel">
 		<div class="panel-body">
 			<h2>{tr}Remove zones (info entered for any banner in the zones will be lost){/tr}</h2>
 			<div class="table-responsive">

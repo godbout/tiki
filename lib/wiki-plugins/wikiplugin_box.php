@@ -143,9 +143,9 @@ function wikiplugin_box($data, $params)
 	$c = (isset($clear)) ? " clear:both;" : "";
 	$style = (isset($style)) ? "$style;" : "";
 	if (empty($float)) {
-		$begin = "<div class='panel panel-default$class' $id style='$bg margin:0; $w $c $style $align'>";
+		$begin = "<div class='panel$class' $id style='$bg margin:0; $w $c $style $align'>";
 	} else {
-		$begin = "<div class='panel panel-default$class' $id style='$bg $f; margin:1em; margin-$float:0; $w $c $style $align'>";
+		$begin = "<div class='panel$class' $id style='$bg $f; margin:1em; margin-$float:0; $w $c $style $align'>";
 	}
 
 	if (isset($title)) {

@@ -6,7 +6,7 @@
 
 {block name="content"}
 	<form method="post" action="{service controller=comment action=edit threadId=$comment.threadId}">
-		<div class="panel panel-default">
+		<div class="panel">
 			<div class="panel-heading">
 				{tr}Edit Comment{/tr}
 			</div>

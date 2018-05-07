@@ -8,7 +8,7 @@
 <div class="row">
 <div class="col-md-10 col-md-push-1 clearfix">
 	<form role="form" class="form-horizontal" method="post" action="tiki-change_password.php">
-		<div class="panel panel-default">
+		<div class="panel">
 			{if !empty($oldpass) and $new_user_validation eq 'y'}
 				<input type="hidden" name="oldpass" value="{$oldpass|escape}">
 			{elseif !empty($smarty.request.actpass)}

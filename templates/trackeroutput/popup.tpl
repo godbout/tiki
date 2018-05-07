@@ -1,5 +1,5 @@
 {capture name=popup}
-	<div class="panel panel-default">
+	<div class="panel">
 		<table class="table table-bordered item">
 			{foreach from=$popupFields|default:null item=field}
 				<tr><th>{$field.name|escape}</th><td>{trackeroutput field=$field item=$popupItem showpopup=n showlinks=n}</td></tr>

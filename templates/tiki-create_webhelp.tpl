@@ -7,7 +7,7 @@
 	</div>
 {/if}
 {if $output ne ''}
-	<div class="panel panel-default"><div class="panel-body">
+	<div class="panel"><div class="panel-body">
 		{$output}
 	</div></div>
 {/if}

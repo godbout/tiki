@@ -3,7 +3,7 @@
 {title help="Communication Center"}{tr}Send objects{/tr}{/title}
 
 {if $msg}
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-heading">
 			{tr}Transmission results{/tr}
 		</div>
@@ -17,7 +17,7 @@
 <br>
 
 <form method="post" action="tiki-send_objects.php">
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-heading">
 			{tr}Filter{/tr}
 		</div>
@@ -33,12 +33,12 @@
 	<br>
 
 	{if $tiki_p_send_pages eq 'y'}
-		<div class="panel panel-default">
+		<div class="panel">
 			<div class="panel-heading">
 				{tr}Send Wiki Pages{/tr}
 			</div>
 			<div class="panel-body">
-				<div class="panel panel-default">
+				<div class="panel">
 					<div class="panel-body">
 						<b>{tr}Pages{/tr}</b>:
 						{section name=ix loop=$sendpages}
@@ -62,12 +62,12 @@
 		<br>
 
 		{if count($structures)}
-			<div class="panel panel-default">
+			<div class="panel">
 				<div class="panel-heading">
 					{tr}Send a structure{/tr}
 				</div>
 				<div class="panel-body">
-					<div class="panel panel-default">
+					<div class="panel">
 						<div class="panel-body">
 							<b>{tr}Structures{/tr}</b>:
 							{section name=ix loop=$sendstructures_names}
@@ -93,12 +93,12 @@
 	<br>
 
 	{if $tiki_p_send_articles eq 'y'}
-		<div class="panel panel-default">
+		<div class="panel">
 			<div class="panel-heading">
 				{tr}Send Articles{/tr}
 			</div>
 			<div class="panel-body">
-				<div class="panel panel-default">
+				<div class="panel">
 					<div class="panel-body">
 						<b>{tr}Articles{/tr}</b>:
 						{section name=ix loop=$sendarticles}
@@ -122,7 +122,7 @@
 	<br>
 	<br>
 
-	<div class="panel panel-default">
+	<div class="panel">
 		<div class="panel-heading">
 			{tr}Send objects to this site{/tr}
 		</div>

@@ -8,8 +8,8 @@
 {tabset name="contact_prefs"}
 	{tab name="{tr}Options{/tr}"}
 		<h2>{tr}Options{/tr}</h2>
-		<div class="panel panel-default">
-			<div class="panel-body">
+		<div class="card">
+			<div class="card-body">
 				<form method='post' action='tiki-user_contacts_prefs.php'>
 					<table class="formcolor">
 						<tr>
@@ -34,8 +34,8 @@
 
 	{tab name="{tr}Manage Fields{/tr}"}
 		<h2>{tr}Manage Fields{/tr}</h2>
-		<div class="panel panel-default">
-			<div class="panel-body">
+		<div class="card">
+			<div class="card-body">
 				<form method='post' action='tiki-user_contacts_prefs.php'>
 					<div class="table-responsive">
 						<table class="table">

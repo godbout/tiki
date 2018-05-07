@@ -39,7 +39,7 @@
 					document.getElementById('tagBox').value = '';
 				}
 		{/jq}
-		<div class="panel panel-default">
+		<div class="panel">
 			<div class="panel-body freetaglist margin-bottom-md">
 				{foreach from=$most_popular_tags item=popular_tag}
 					{capture name=tagurl}{if (strstr($popular_tag.tag, ' '))}"{$popular_tag.tag}"{else}{$popular_tag.tag}{/if}{/capture}

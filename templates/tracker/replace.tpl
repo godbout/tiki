@@ -212,7 +212,7 @@
 			</div>
 		{/accordion_group}
 	{accordion_group title="{tr}Section Format{/tr}"}
-		<div class="panel panel-default">
+		<div class="panel">
 			<div class="panel-body">
 				<div class="form-group">
 					<label for="sectionFormat">{tr}Section format{/tr}</label>

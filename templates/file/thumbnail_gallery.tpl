@@ -12,7 +12,7 @@
 				<div class="row">
 			{/if}
 			<div class="col-md-4 text-center">
-				<div class="panel panel-default">
+				<div class="panel">
 					<div class="panel-heading">
 						{$row.title|escape}
 					</div>

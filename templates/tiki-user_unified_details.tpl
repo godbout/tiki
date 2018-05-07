@@ -146,7 +146,7 @@
 					<div id="tab_wikis" class="profile-tab-content collapse">
 						<h2>{tr}Wiki Pages{/tr}</h2>
 						<p>{tr}This user has contributed to the following wiki pages{/tr}:</p>
-						<div class="panel panel-default">
+						<div class="panel">
 							<div class="panel-body">
 								{wikiplugin _name="list"}
 								{literal}
@@ -163,7 +163,7 @@
 					<div id="tab_blogs" class="profile-tab-content collapse">
 						<h2>{tr}Wiki Pages{/tr}</h2>
 						<p>{tr}This user has contributed to the following wiki pages{/tr}:</p>
-						<div class="panel panel-default">
+						<div class="panel">
 							<div class="panel-body">
 								{wikiplugin _name="list"}
 								{literal}
@@ -180,7 +180,7 @@
 					<div id="tab_galleries" class="profile-tab-content collapse">
 						<h2>{tr}Wiki Pages{/tr}</h2>
 						<p>{tr}This user has contributed to the following wiki pages{/tr}:</p>
-						<div class="panel panel-default">
+						<div class="panel">
 							<div class="panel-body">
 								{wikiplugin _name="list"}
 								{literal}
@@ -197,7 +197,7 @@
 					<div id="tab_trackers" class="profile-tab-content collapse">
 						<h2>Tracker Items</h2>
 						<p>{tr}This user has contributed to the following tracker items{/tr}:</p>
-						<div class="panel panel-default">
+						<div class="panel">
 							<div class="panel-body">
 								{wikiplugin _name="list"}
 								{literal}
@@ -214,7 +214,7 @@
 					<div id="tab_articles" class="profile-tab-content collapse">
 						<h2>{tr}Articles{/tr}</h2>
 						<p>{tr}This user has contributed to the following articles{/tr}:</p>
-						<div class="panel panel-default">
+						<div class="panel">
 							<div class="panel-body">
 								{wikiplugin _name="list"}
 								{literal}
@@ -231,7 +231,7 @@
 					<div id="tab_forums" class="profile-tab-content collapse">
 						<h2>{tr}Forum Threads{/tr}</h2>
 						<p>{tr}This user has started to the following forum threads{/tr}:</p>
-						<div class="panel panel-default">
+						<div class="panel">
 							<div class="panel-body">
 								{wikiplugin _name="list"}
 								{literal}
@@ -268,7 +268,7 @@
 
 			{if $prefs.feature_friends eq 'y'}
 				{if $user eq $userinfo.object_id}
-				<div class="panel panel-default">
+				<div class="panel">
 				<div class="panel-heading">
 					<h3 class="panel-title">{tr}Friendship Network{/tr}</h3>
 				</div>

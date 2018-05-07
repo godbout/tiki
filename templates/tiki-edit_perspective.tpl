@@ -111,7 +111,7 @@
 					<input type="hidden" name="id" value="{$perspective_info.perspectiveId|escape}">
 				</div>
 				<div class="col-sm-offset-2">
-					<fieldset id="preferences" class="panel panel-default dropzone">
+					<fieldset id="preferences" class="panel dropzone">
 						<div class="panel-heading">{tr}Preference List{/tr}</div>
 						<div class="panel-body">
 							{foreach from=$perspective_info.preferences key=name item=val}
@@ -127,7 +127,7 @@
 				{remarksbox type="info" title="{tr}Hint{/tr}"}
 					{tr}Search preferences below and drag them into the preference list above.{/tr}
 				{/remarksbox}
-				<div class="panel panel-default">
+				<div class="panel">
 					<input type="hidden" name="id" value="{$perspective_info.perspectiveId|escape}">
 					<div class="panel-body clearfix">
 						<div class="input-group">

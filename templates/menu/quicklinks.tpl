@@ -3,7 +3,7 @@
 		<a href="#" onclick="flip('weburls');return false;">{tr}Show Quick URLs{/tr}</a>
 	</div>
 	<div id="weburls" style="display:none;position:absolute;right:-10px;top:-50px;z-index:1;"
-			class="panel panel-default">
+			class="panel">
 		<div class="panel-heading">
 			<h3 class="panel-title" id="urltop">{tr}Some useful URLs{/tr}</h3>
 			<div style="text-align: right;">

@@ -16,7 +16,7 @@
 		</div>
 	{else}
 		<form method="post" action="{service controller=comment action=post}" role="form">
-			<div class="panel panel-default">
+			<div class="panel">
 				{if ! $user or $prefs.feature_comments_post_as_anonymous eq 'y'}
 					<div class="panel-heading">
 						{if $user}

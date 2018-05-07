@@ -11,7 +11,7 @@
 	</div><!-- End of install-header -->
 	<div class="row install-body">
 		<div class="col-md-3">
-			<div class="install-menu panel panel-default">
+			<div class="install-menu panel">
 				<div class="panel-heading">
 					<h4>{tr}Installation{/tr}</h4>
 				</div>
@@ -74,7 +74,7 @@
 					</form>
 				</div>
 			</div><!-- End of install-menu -->
-			<div class="install-help panel panel-default">
+			<div class="install-help panel">
 				<div class="panel-heading">
 					<h4>{tr}Help{/tr}</h4>
 				</div>
@@ -433,7 +433,7 @@
 									<input type="hidden" name="install_step" value="5">
 									{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 									{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
-									<div class="db-install col-md-6 panel panel-default panel-body">
+									<div class="db-install col-md-6 panel panel-body">
 										<h3>{tr}Install{/tr}</h3>
 										{if $tikidb_created}
 											{remarksbox type="warning" title="{tr}Warning{/tr}" close="n"}
@@ -471,7 +471,7 @@
 										</div><!-- End of install-table -->
 									</div><!-- End of db-install -->
 									{if $tikidb_created}
-										<div class="db-upgrade col-md-6 panel panel-default panel-body">
+										<div class="db-upgrade col-md-6 panel panel-body">
 											<h3>{tr}Upgrade{/tr}</h3>
 											{if $tikidb_oldPerms gt 0}
 												{remarksbox type="warning" title="{tr}Warning: Category Permissions Will Not Be Upgraded{/tr}" close="n"}

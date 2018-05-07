@@ -50,7 +50,7 @@ function smarty_block_accordion_group($params, $content, $smarty, $repeat)
 	$first = ($accordion_position == 1) ? 'in' : '';
 
 	return <<<CONTENT
-<div class="card panel-default card-accordian">
+<div class="card card-accordian">
 	<div class="card-heading">
 		<h4 class="card-title">
 			<a class="accordion-toggle" data-toggle="collapse" data-parent="#$accordion_current_group" href="#$id">
