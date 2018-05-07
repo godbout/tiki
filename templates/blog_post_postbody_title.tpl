@@ -1,8 +1,8 @@
 {* $Id$ *}
-<header class="clearfix panel-heading">
+<header class="clearfix card-header">
 	<div class="blog-postbody-title">
 		{if $blog_post_context eq 'view_blog'}
-			<h2 class="panel-title">
+			<h2 class="card-title">
 				{object_link type="blog post" id=$post_info.postId title=$post_info.title}{if $post_info.priv eq 'y'} <span class="label label-warning">{tr}private{/tr}</span>{/if}
 			</h2>
 			{include file='blog_post_actions.tpl'}

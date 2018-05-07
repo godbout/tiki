@@ -1,11 +1,11 @@
 {* $Id$ *}
-<div class="panel panel-default postbody clearfix">
+<div class="card postbody clearfix">
 	<a id="postId{$post_info.postId}"></a>
 	{include file='blog_post_postbody_title.tpl'}
 	{include file='blog_post_postbody_content.tpl'}
 	{if $blog_post_context neq 'excerpt' or $blog_post_context neq 'view_blog'}
 		{if $blog_post_context neq 'print'}
-			<footer class="postfooter panel-footer clearfix">
+			<footer class="postfooter card-footer clearfix">
 				{* Copyright display is being turned off if being called through the "BLOG" plugin with "simple" mode turned off and a max character count supplied (preview mode). If in preview mode end user most likely is wanting to conserve space with a smaller display of information *}
 				{if $blog_post_context neq 'plugin_preview'}
 					{capture name='copyright_section'}
