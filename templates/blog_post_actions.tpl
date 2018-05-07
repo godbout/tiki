@@ -14,7 +14,7 @@
 			{tr}Blog post actions{/tr}
 		</li>
 		<li class="dropdown-divider"></li>
-		<li>
+		<li class="dropdown-item">
 			<a href="tiki-print_blog_post.php?postId={$post_info.postId}">
 				{icon name="print" _menu_text='y' _menu_icon='y' alt="{tr}Print{/tr}"}
 			</a>
