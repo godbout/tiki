@@ -5,8 +5,13 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\TikiDb\SanitizeEncoding;
+
 class TikiDb_Table
 {
+	/**
+	 * @var TikiDb
+	 */
 	protected $db;
 	protected $tableName;
 	protected $autoIncrement;
@@ -17,6 +22,8 @@ class TikiDb_Table
 		$this->db = $db;
 		$this->tableName = $tableName;
 		$this->autoIncrement = $autoIncrement;
+
+		SanitizeEncoding::detectCharset($db, $tableName);
 	}
 
 	function useExceptions()
@@ -391,9 +398,10 @@ class TikiDb_Table
 			if ($value instanceof TikiDb_Expr) {
 				$query .= "$field = {$value->getQueryPart($field)}, ";
 				$bindvars = array_merge($bindvars, $value->getValues());
+				$bindvars = SanitizeEncoding::filter($bindvars);
 			} else {
 				$query .= "$field = ?, ";
-				$bindvars[] = $value;
+				$bindvars[] = SanitizeEncoding::filter($value);
 			}
 		}
 
@@ -409,7 +417,7 @@ class TikiDb_Table
 			$ignore = ' IGNORE';
 		}
 
-		$bindvars = array_merge($bindvars, array_values($values));
+		$bindvars = array_merge($bindvars, SanitizeEncoding::filter(array_values($values)));
 		return "INSERT$ignore INTO {$this->escapeIdentifier($this->tableName)} ($fieldDefinition) VALUES ($fieldPlaceholders)";
 	}
 
