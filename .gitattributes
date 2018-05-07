@@ -8373,13 +8373,6 @@ vendor_bundled/.htaccess -text
 vendor_bundled/composer.json -text
 vendor_bundled/composer.lock -text
 vendor_extra/.htaccess -text
-vendor_extra/fullcalendar-resourceviews/changelog.txt -text
-vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.css -text
-vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.js -text
-vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.min.js -text
-vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.print.css -text
-vendor_extra/fullcalendar-resourceviews/fullcalendar/gcal.js -text
-vendor_extra/fullcalendar-resourceviews/license.txt -text
 vendor_extra/index.php -text
 vendor_extra/pear/Net/LDAP2.php -text
 vendor_extra/pear/Net/LDAP2/Entry.php -text

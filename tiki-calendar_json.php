@@ -173,6 +173,12 @@ if (isset($_REQUEST['sort_mode'])) {
 $viewstart = $_REQUEST['start'];
 $viewend = $_REQUEST['end'];
 
+$viewstart = new DateTime($viewstart);
+$viewstart = $viewstart->getTimestamp();
+
+$viewend = new DateTime($viewend);
+$viewend = $viewend->getTimestamp();
+
 if ($_SESSION['CalendarViewGroups']) {
 	$listevents = $calendarlib->list_raw_items($_SESSION['CalendarViewGroups'], $user, $viewstart, $viewend, 0, -1);
 	for ($i = count($listevents) - 1; $i >= 0; --$i) {

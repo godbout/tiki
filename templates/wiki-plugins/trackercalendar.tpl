@@ -14,16 +14,16 @@
 				end = event.start;
 			}
 
-			request['fields~' + data.begin] = event.start.getTime() / 1000;
-			request['fields~' + data.end] = end.getTime() / 1000;
+			request['fields~' + data.begin] = event.start.unix();
+			request['fields~' + data.end] = end.unix();
 
 			$.post($.service('tracker', 'update_item'), request);
 		};
 
 		$(this).fullCalendar({
-			timeFormat: {
-				'': data.timeFormat
-			},
+			themeSystem: 'bootstrap4',
+			schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+			timeFormat: data.timeFormat,
 			header: {
 				left: 'prevYear,prev,next,nextYear today',
 				center: 'title',
@@ -42,9 +42,6 @@
 				filters: data.body
 			})),
 			resources: data.resourceList,
-			year: data.viewyear,
-			month: data.viewmonth-1,
-			day: data.viewday,
 			minTime: data.minHourOfDay,
 			maxTime: data.maxHourOfDay,
 			monthNames: [ "{tr}January{/tr}", "{tr}February{/tr}", "{tr}March{/tr}", "{tr}April{/tr}", "{tr}May{/tr}", "{tr}June{/tr}", "{tr}July{/tr}", "{tr}August{/tr}", "{tr}September{/tr}", "{tr}October{/tr}", "{tr}November{/tr}", "{tr}December{/tr}"],
@@ -52,9 +49,9 @@
 			dayNames: ["{tr}Sunday{/tr}", "{tr}Monday{/tr}", "{tr}Tuesday{/tr}", "{tr}Wednesday{/tr}", "{tr}Thursday{/tr}", "{tr}Friday{/tr}", "{tr}Saturday{/tr}"],
 			dayNamesShort: ["{tr}Sun{/tr}", "{tr}Mon{/tr}", "{tr}Tue{/tr}", "{tr}Wed{/tr}", "{tr}Thu{/tr}", "{tr}Fri{/tr}", "{tr}Sat{/tr}"],
 			buttonText: {
-				resourceDay: "{tr}resource day{/tr}",
-				resourceMonth: "{tr}resource month{/tr}",
-				resourceWeek: "{tr}resource week{/tr}",
+				timelineDay: "{tr}resource day{/tr}",
+				timelineMonth: "{tr}resource month{/tr}",
+				timelineWeek: "{tr}resource week{/tr}",
 				today: "{tr}today{/tr}",
 				month: "{tr}month{/tr}",
 				week: "{tr}week{/tr}",
@@ -64,9 +61,11 @@
 			firstDay: data.firstDayofWeek,
 			weekends: data.weekends,
 			slotMinutes: {{$prefs.calendar_timespan}},
+			slotDuration: '24:00:00',
 			defaultView: data.dView,
+			defaultDate: data.dDate,
 			eventAfterRender : function( event, element, view ) {
-				element.popover({trigger: 'hover focus', title: event.title, content: event.description, html: true, container: 'body'});
+				element.popover({trigger: 'hover focus', title: event.title, content: event.description, html: true, container: 'body', placement:'bottom'});
 			},
 			eventClick: function(event) {
 				if (data.url) {
@@ -135,13 +134,13 @@
 				}
 
 			},
-			dayClick: function(date, allDay, jsEvent, view) {
+			dayClick: function( date, jsEvent, view ) {
 				if (data.canInsert) {
 					var info = {
 						trackerId: data.trackerId
 					};
-					info[data.beginFieldName] = date.getTime() / 1000;
-					info[data.endFieldName] = date.getTime() / 1000 + 3600;
+					info[data.beginFieldName] = date.unix();
+					info[data.endFieldName] = date.add(1, 'h').unix();
 					if (data.url) {
 						$('<a href="#"/>').attr('href', data.url);
 					}
@@ -160,7 +159,6 @@
 			eventResize: storeEvent,
 			eventDrop: storeEvent
 		});
-		$(this).fullCalendar( 'gotoDate', data.viewyear, data.viewmonth-1, data.viewday );
 	});
 
 	function isEven(x) { return (x%2)==0; }

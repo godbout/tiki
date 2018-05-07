@@ -31,7 +31,25 @@ class Services_Tracker_CalendarController
 		}
 
 		$query = $unifiedsearchlib->buildQuery([]);
-		$query->filterRange($input->start->int(), $input->end->int(), [$start, $end]);
+
+		if (is_numeric($input->start->string())) {
+			$useTimestamp = true;
+			$from = $input->start->int();
+			$to = $input->end->int();
+		} else {
+			$useTimestamp = false;
+			preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/', $input->start->string(), $matches);
+
+			if ($input->start->string() === $matches[0]) {
+				$from = strtotime($input->start->iso8601());
+				$to = strtotime($input->end->iso8601());
+			} else {
+				$from = strtotime($input->start->isodate());
+				$to = strtotime($input->end->isodate());
+			}
+		}
+
+		$query->filterRange($from, $to, [$start, $end]);
 		$query->setRange(0, $prefs['unified_lucene_max_result']);
 
 		if ($body = $input->filters->none()) {
@@ -85,12 +103,13 @@ class Services_Tracker_CalendarController
 				'description' => $description,
 				'url' => smarty_modifier_sefurl($row['object_id'], $row['object_type']),
 				'allDay' => false,
-				'start' => $this->getTimestamp($row[$start]),
-				'end' => $this->getTimestamp($row[$end]),
+				'start' => $useTimestamp ? $this->getTimestamp($row[$start]) : $this->getISO8601($row[$start]),
+				'end' => $useTimestamp ? $this->getTimestamp($row[$end]) : $this->getISO8601($row[$end]),
 				'editable' => $item->canModify(),
 				'color' => $this->getColor(isset($row[$coloring]) ? $row[$coloring] : '', $colormap),
 				'textColor' => '#000',
-				'resource' => ($resource && isset($row[$resource])) ? strtolower($row[$resource]) : '',
+				'resourceId' => ($resource && isset($row[$resource])) ? strtolower($row[$resource]) : '',
+				'resourceEditable' => false,
 			];
 		}
 
@@ -108,6 +127,17 @@ class Services_Tracker_CalendarController
 		} else {
 			return strtotime($value);
 		}
+	}
+
+	/**
+	 * Convert date to ISO 8601
+	 *
+	 * @param $date
+	 * @return mixed
+	 */
+	private function getISO8601($date)
+	{
+		return str_replace(' ', 'T', $date);
 	}
 
 	private function getColor($value, $colormap)

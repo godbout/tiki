@@ -11,6 +11,7 @@ function wikiplugin_trackercalendar_info()
 		'name' => tr('Tracker Calendar'),
 		'description' => tr('Create and display a calendar using tracker data'),
 		'prefs' => ['wikiplugin_trackercalendar', 'calendar_fullcalendar'],
+		'packages_required' => ['fullcalendar/fullcalendar-scheduler' => 'vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js'],
 		'format' => 'html',
 		'iconname' => 'calendar',
 		'introduced' => 10,
@@ -210,9 +211,9 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('Agenda by Months'), 'value' => 'month'],
 					['text' => tra('Agenda by Weeks'), 'value' => 'agendaWeek'],
 					['text' => tra('Agenda by Days'), 'value' => 'agendaDay'],
-					['text' => tra('Resources by Months'), 'value' => 'resourceMonth'],
-					['text' => tra('Resources by Weeks'), 'value' => 'resourceWeek'],
-					['text' => tra('Resources by Days'), 'value' => 'resourceDay']
+					['text' => tra('Resources by Months'), 'value' => 'timelineMonth'],
+					['text' => tra('Resources by Weeks'), 'value' => 'timelineWeek'],
+					['text' => tra('Resources by Days'), 'value' => 'timelineDay']
 				]
 			],
 			'dYear' => [
@@ -278,8 +279,19 @@ function wikiplugin_trackercalendar($data, $params)
 {
 	static $id = 0;
 	$headerlib = TikiLib::lib('header');
-	$headerlib->add_cssfile('vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.css');
-	$headerlib->add_jsfile('vendor_extra/fullcalendar-resourceviews/fullcalendar/fullcalendar.min.js', true);
+
+	if (! file_exists('vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js')) {
+		$accesslib = TikiLib::lib('access');
+		$accesslib->display_error('', tr('To view Tracker Calendar Tiki needs the fullcalendar/fullcalendar-scheduler package. If you do not have permission to install this package, ask the site administrator.'));
+	}
+
+	$headerlib->add_cssfile('vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.css');
+	// Disable fullcalendar's force events to be one-line tall
+	$headerlib->add_css('.fc-day-grid-event > .fc-content { white-space: normal; }');
+	$headerlib->add_cssfile('vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.css');
+	$headerlib->add_jsfile('vendor/moment/moment/min/moment.min.js', true);
+	$headerlib->add_jsfile('vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.js', true);
+	$headerlib->add_jsfile('vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js', true);
 
 	$jit = new JitFilter($params);
 	$definition = Tracker_Definition::get($jit->trackerId->int());
@@ -325,19 +337,19 @@ function wikiplugin_trackercalendar($data, $params)
 			$rmonth = 'n';
 		} else {
 			$rmonth = 'y';
-			$views[] = 'resourceMonth';
+			$views[] = 'timelineMonth';
 		}
 		if (! empty($params['rweek']) and $params['rweek'] != 'y') {
 			$rweek = 'n';
 		} else {
 			$rweek = 'y';
-			$views[] = 'resourceWeek';
+			$views[] = 'timelineWeek';
 		}
 		if (! empty($params['rday']) and $params['rday'] != 'y') {
 			$rday = 'n';
 		} else {
 			$rday = 'y';
-			$views[] = 'resourceDay';
+			$views[] = 'timelineDay';
 		}
 	}
 
@@ -364,6 +376,9 @@ function wikiplugin_trackercalendar($data, $params)
 	} else {
 		$dDay = (int) date('j');
 	}
+
+	// Format the default date as Y-m-d instead of Y-n-d, required by MomentJs
+	$dDate = (new DateTime($dYear . '-' . $dMonth . '-' . $dDay))->format('Y-m-d');
 
 		global $prefs;
 
@@ -404,8 +419,9 @@ function wikiplugin_trackercalendar($data, $params)
 			'viewyear' => $dYear,
 			'viewmonth' => $dMonth,
 			'viewday' => $dDay,
-			'minHourOfDay' => 7,
-			'maxHourOfDay' => 24,
+			'dDate' => $dDate,
+			'minHourOfDay' => '07:00:00',
+			'maxHourOfDay' => '24:00:00',
 			'addTitle' => tr('Insert'),
 			'canInsert' => $itemObject->canModify(),
 			'dView' => $dView,
@@ -427,5 +443,5 @@ function wikiplugin_trackercalendar_get_resources($field)
 {
 	$db = TikiDb::get();
 
-	return $db->fetchAll('SELECT DISTINCT LOWER(value) as id, value as name FROM tiki_tracker_item_fields WHERE fieldId = ? ORDER BY  value', $field['fieldId']);
+	return $db->fetchAll('SELECT DISTINCT LOWER(value) as id, value as title FROM tiki_tracker_item_fields WHERE fieldId = ? ORDER BY  value', $field['fieldId']);
 }

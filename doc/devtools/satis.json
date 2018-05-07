@@ -1689,6 +1689,8 @@
 		"evert/sitemap-php": ">=1.2.0",
 		"ezyang/htmlpurifier": ">=4.5.0",
 		"fortawesome/font-awesome": ">=4.5.0",
+		"fullcalendar/fullcalendar": "^3.9",
+		"fullcalendar/fullcalendar-scheduler": "^1.9",
 		"google/apiclient": ">=1.1.6",
 		"h5p/h5p-core": ">=1.13.2",
 		"h5p/h5p-editor": ">=1.12.1",

@@ -78,6 +78,8 @@ class TikiFilter
 				return new TikiFilter_IsoDate;
 			case 'isodatetime':
 				return new TikiFilter_IsoDate('Y-m-d H:i:s');
+			case 'iso8601':
+				return new TikiFilter_IsoDate('Y-m-d\TH:i:s');
 			case 'username':
 			case 'groupname':
 			case 'pagename':

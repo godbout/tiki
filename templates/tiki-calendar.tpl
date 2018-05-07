@@ -184,9 +184,8 @@
 	{else}
 		{jq}
 			$('#calendar').fullCalendar({
-				timeFormat: {
-					'': '{{$timeFormat}}'
-				},
+				themeSystem: 'bootstrap4',
+				timeFormat: '{{$timeFormat}}',
 				header: {
 					left: 'prev,next today',
 					center: 'title',
@@ -197,8 +196,8 @@
 				year: {{$viewyear}},
 				month: {{$viewmonth}}-1,
 				day: {{$viewday}},
-				minTime: {{$minHourOfDay}},
-				maxTime: {{$maxHourOfDay}},
+				minTime: '{{$minHourOfDay}}',
+				maxTime: '{{$maxHourOfDay}}',
 				monthNames: [ "{tr}January{/tr}", "{tr}February{/tr}", "{tr}March{/tr}", "{tr}April{/tr}", "{tr}May{/tr}", "{tr}June{/tr}", "{tr}July{/tr}", "{tr}August{/tr}", "{tr}September{/tr}", "{tr}October{/tr}", "{tr}November{/tr}", "{tr}December{/tr}"],
 				monthNamesShort: [ "{tr}Jan.{/tr}", "{tr}Feb.{/tr}", "{tr}Mar.{/tr}", "{tr}Apr.{/tr}", "{tr}May{/tr}", "{tr}June{/tr}", "{tr}July{/tr}", "{tr}Aug.{/tr}", "{tr}Sep.{/tr}", "{tr}Oct.{/tr}", "{tr}Nov.{/tr}", "{tr}Dec.{/tr}"],
 				dayNames: ["{tr}Sunday{/tr}", "{tr}Monday{/tr}", "{tr}Tuesday{/tr}", "{tr}Wednesday{/tr}", "{tr}Thursday{/tr}", "{tr}Friday{/tr}", "{tr}Saturday{/tr}"],
@@ -216,7 +215,7 @@
 				eventAfterRender : function( event, element, view ) {
 					element.attr('title',event.title);
 					element.data('content', event.description);
-					element.popover({ trigger: 'hover', html: true, 'container': 'body' });
+					element.popover({ trigger: 'hover', html: true, 'container': 'body', placement: 'bottom'});
 				},
 				eventClick: function(event) {
 					if (event.url && event.editable) {
@@ -241,27 +240,27 @@
 				dayClick: function(date, allDay, jsEvent, view) {
 					$.ajax({
 						dataType: 'html',
-						url: 'tiki-calendar_edit_item.php?fullcalendar=y&todate=' + date.getTime()/1000 + '&tzoffset=' + (new Date()).getTimezoneOffset() + '&isModal=1',
+						url: 'tiki-calendar_edit_item.php?fullcalendar=y&todate=' + date/1000 + '&tzoffset=' + (new Date()).getTimezoneOffset() + '&isModal=1',
 						success: function(data){
 							var $dialog = $( "#calendar_dialog" ).remove()
 							$( "#calendar_dialog_content", $dialog ).html(data);
 							$( "#calendar_dialog h1, #calendar_dialog .navbar", $dialog ).remove();
-							$( "#calendar_dialog .modal-title", $dialog ).html(event.title);
+							$( "#calendar_dialog .modal-title", $dialog ).html();
 							$dialog.appendTo("body").modal({backdrop:"static"});
 						}
 					});
 					return false;
 				},
-				eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
+				eventResize: function(event, delta,revertFunc) {
 					$.post($.service('calendar', 'resize'), {
 						calitemId: event.id,
-						delta: (dayDelta*86400+minuteDelta*60)
+						delta: delta.asSeconds()
 					});
 				},
-				eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+				eventDrop: function(event, delta, revertFunc) {
 					$.post($.service('calendar', 'move'), {
 						calitemId: event.id,
-						delta: (dayDelta*86400+minuteDelta*60)
+						delta: delta.asSeconds()
 					});
 				}
 			});
