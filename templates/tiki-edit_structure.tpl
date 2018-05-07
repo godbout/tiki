@@ -173,7 +173,7 @@
 					<input type="hidden" name="page_ref_id" value="{$page_ref_id}">
 					{include file='categorize.tpl'}
 				</div>
-				<div class="panel-footer text-center">
+				<div class="card-footer text-center">
 					<input type="submit" class="btn btn-secondary btn-sm" name="recategorize" value="{tr}Update{/tr}">
 					<input type="checkbox" class="form-check-input" name="cat_override" >{tr}Remove existing categories from ALL pages before recategorizing{/tr}
 				</div>

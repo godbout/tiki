@@ -168,7 +168,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="panel-footer">
+							<div class="card-footer">
 								<input type='submit' class="btn btn-secondary" form="fgalform" name='movesel' value="{tr}Move{/tr}">
 							</div>
 						</div>
@@ -205,7 +205,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="panel-footer">
+						<div class="card-footer">
 							<input class="btn btn-secondary" type="submit" name="permsel" value="{tr}Assign{/tr}">
 						</div>
 					</div>

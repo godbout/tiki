@@ -104,7 +104,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="panel-footer text-center">
+			<div class="card-footer text-center">
 				<input type="submit" class="btn btn-secondary btn-sm" name="add_tran" value="{tr}Add{/tr}">
 			</div>
 		</div>
@@ -219,7 +219,7 @@
 					{/strip}{/pagination_links}
 				</div>
 			</div>
-			<div class="panel-footer text-center">
+			<div class="card-footer text-center">
 				<input type="hidden" name="offset" value="{$offset|escape}">
 				{if !empty($translations)}
 					<input type="submit" class="btn btn-secondary btn-sm" name="translate_all" value="{tr}Translate all{/tr}">

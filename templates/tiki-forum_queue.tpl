@@ -97,7 +97,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="panel-footer text-center">
+			<div class="card-footer text-center">
 				<input type="hidden" name="forumId" value="{$forumId|escape}">
 				<input type="hidden" name="in_reply_to" value="{$msg_info.in_reply_to|escape}">
 				<input type="hidden" name="qId" value="{$smarty.request.qId|escape}">

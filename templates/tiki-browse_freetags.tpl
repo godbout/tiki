@@ -46,7 +46,7 @@
 					<a class="freetag_{$popular_tag.size}{if $tag eq $popular_tag.tag|escape} selectedtag{/if}" href="tiki-browse_freetags.php?tag={$smarty.capture.tagurl|escape:'url'}" onclick="javascript:addTag('{$popular_tag.tag|escape:'javascript'}');return false;" ondblclick="location.href=this.href;"{if $popular_tag.color} style="color:{$popular_tag.color}"{/if}>{$popular_tag.tag|escape}</a>
 				{/foreach}
 			</div>
-			<div class="freetagsort panel-footer">
+			<div class="freetagsort card-footer">
 				<div class="text-center">
 					{if empty($maxPopular)}
 						{assign var=maxPopular value=50+$prefs.freetags_browse_amount_tags_in_cloud}

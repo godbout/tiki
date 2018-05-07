@@ -15,7 +15,7 @@
 						{tr}Are you sure you want to reject this comment?{/tr}
 					{/if}
 				</div>
-				<div class="panel-footer submit">
+				<div class="card-footer submit">
 					<input type="hidden" name="do" value="{$do|escape}"/>
 					<input type="hidden" name="threadId" value="{$threadId|escape}"/>
 					<input type="hidden" name="confirm" value="1"/>

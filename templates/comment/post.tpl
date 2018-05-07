@@ -59,7 +59,7 @@
 						</div>
 					{/if}
 				</div>
-				<div class="panel-footer">
+				<div class="card-footer">
 					{if $prefs.feature_antibot eq 'y'}
 						{assign var='showmandatory' value='y'}
 						{include file='antibot.tpl'}

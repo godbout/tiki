@@ -77,7 +77,7 @@
 								</div>
 							{/if}
 						</div>
-						<div class="panel-footer text-center">
+						<div class="card-footer text-center">
 							<input type="submit" class="btn btn-secondary btn-sm" value="{tr}Create translation{/tr}">
 						</div>
 					</div>
@@ -105,7 +105,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="panel-footer text-center">
+						<div class="card-footer text-center">
 							<input type="hidden" name="id" value="{$id}">
 							<input type="hidden" name="type" value="{$type}">
 							<input type="submit" class="btn btn-secondary btn-sm" name="switch" value="{tr}Change Language{/tr}">

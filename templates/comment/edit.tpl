@@ -22,7 +22,7 @@
 				{capture name=rows}{if $type eq 'forum'}{$prefs.default_rows_textarea_forum}{else}{$prefs.default_rows_textarea_comment}{/if}{/capture}
 				{textarea codemirror='true' syntax='tiki' name=data comments="y" _wysiwyg="n" rows=$smarty.capture.rows}{$comment.data}{/textarea}
 				</div>
-				<div class="panel-footer">
+				<div class="card-footer">
 					{if empty($comment.version)}
 						<div class="form-group comment-post">
 							<input type="submit" class="clearfix comment-editclass btn btn-secondary btn-sm" value="{tr}Save{/tr}"/>
