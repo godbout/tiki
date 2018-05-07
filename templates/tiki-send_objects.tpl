@@ -3,11 +3,11 @@
 {title help="Communication Center"}{tr}Send objects{/tr}{/title}
 
 {if $msg}
-	<div class="panel">
+	<div class="card">
 		<div class="card-header">
 			{tr}Transmission results{/tr}
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			{$msg}
 		</div>
 	</div>
@@ -17,11 +17,11 @@
 <br>
 
 <form method="post" action="tiki-send_objects.php">
-	<div class="panel">
+	<div class="card">
 		<div class="card-header">
 			{tr}Filter{/tr}
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="form-inline">
 			<label>{tr}Filter:{/tr}&nbsp;</label><input type="text" name="find" value="{$find|escape}" class="form-control">
 			<input type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}"><br>
@@ -33,13 +33,13 @@
 	<br>
 
 	{if $tiki_p_send_pages eq 'y'}
-		<div class="panel">
+		<div class="card">
 			<div class="card-header">
 				{tr}Send Wiki Pages{/tr}
 			</div>
-			<div class="panel-body">
-				<div class="panel">
-					<div class="panel-body">
+			<div class="card-body">
+				<div class="card">
+					<div class="card-body">
 						<b>{tr}Pages{/tr}</b>:
 						{section name=ix loop=$sendpages}
 							{$sendpages[ix]}&nbsp;
@@ -62,13 +62,13 @@
 		<br>
 
 		{if count($structures)}
-			<div class="panel">
+			<div class="card">
 				<div class="card-header">
 					{tr}Send a structure{/tr}
 				</div>
-				<div class="panel-body">
-					<div class="panel">
-						<div class="panel-body">
+				<div class="card-body">
+					<div class="card">
+						<div class="card-body">
 							<b>{tr}Structures{/tr}</b>:
 							{section name=ix loop=$sendstructures_names}
 								{$sendstructures_names[ix]}&nbsp;
@@ -93,13 +93,13 @@
 	<br>
 
 	{if $tiki_p_send_articles eq 'y'}
-		<div class="panel">
+		<div class="card">
 			<div class="card-header">
 				{tr}Send Articles{/tr}
 			</div>
-			<div class="panel-body">
-				<div class="panel">
-					<div class="panel-body">
+			<div class="card-body">
+				<div class="card">
+					<div class="card-body">
 						<b>{tr}Articles{/tr}</b>:
 						{section name=ix loop=$sendarticles}
 							{$sendarticles[ix]}&nbsp;
@@ -122,11 +122,11 @@
 	<br>
 	<br>
 
-	<div class="panel">
+	<div class="card">
 		<div class="card-header">
 			{tr}Send objects to this site{/tr}
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<input type="hidden" name="sendpages" value="{$form_sendpages|escape}">
 			<input type="hidden" name="sendstructures" value="{$form_sendstructures|escape}">
 			<input type="hidden" name="sendarticles" value="{$form_sendarticles|escape}">

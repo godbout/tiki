@@ -7,9 +7,9 @@
 
 <h2>{tr}Preview poll{/tr}</h2>
 <div align="center">
-	<div style="text-align:left;width:130px;" class="panel">
+	<div style="text-align:left;width:130px;" class="card">
 		<div class="card-header">{$menu_info.name}</div>
-		<div class="panel-body">
+		<div class="card-body">
 			{include file='tiki-poll.tpl'}
 		</div>
 	</div>

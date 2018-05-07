@@ -93,7 +93,7 @@
 				{/if}
 			</div>
 		{/if}
-		<div class="panel">
+		<div class="card">
 			<div class="card-header radio">
 				<label for="do_email" class="col-form-label col-sm-3 pull-left">
 					{icon name="admin_webmail"} {tr}Send email{/tr}
@@ -111,7 +111,7 @@
 					<input type="hidden" name="do_email" value="1">
 				{/if}
 			</div>
-			<div class="panel-body share-email-details">
+			<div class="card-body share-email-details">
 				{if $report!='y'}
 					<div class="form-group">
 						<label for="addresses" class="col-form-label col-sm-3">
@@ -191,7 +191,7 @@
 			</div>
 		</div>
 		{if $twitterRegistered}
-			<div class="panel">
+			<div class="card">
 				<tr>
 					<td rowspan="2">
 						{icon name='twitter' size='2'}
@@ -230,7 +230,7 @@
 			</div>
 		{/if}
 		{if $facebookRegistered}
-			<div class="panel">
+			<div class="card">
 				<tr>
 					<td rowspan="2">
 						{icon name='facebook' size='2' alt="Facebook"}
@@ -285,7 +285,7 @@
 			</div>
 		{/if}
 		{if $prefs.feature_messages eq 'y' && $report != 'y'}
-			<div class="panel">
+			<div class="card">
 				<div class="card-header radio">
 					{if $send_msg=='y'}
 						<label for="do_message" class="col-form-label col-sm-3">
@@ -305,7 +305,7 @@
 						{/remarksbox}
 					{/if}
 				</div>
-				<div class="panel-body share-message-details hidden">
+				<div class="card-body share-message-details hidden">
 				{if $send_msg}
 					<div class="form-group clearfix">
 						<label for="messageto" class="col-form-label col-sm-3">
@@ -343,7 +343,7 @@
 			</div>
 		{/if}
 		{if $prefs.feature_forums eq 'y' && $report != 'y'}
-			<div class="panel">
+			<div class="card">
 				<div class="card-header radio">
 					{if count($forums)>0}
 						<label for="do_forum" class="col-form-label col-sm-3">
@@ -363,7 +363,7 @@
 						{/remarksbox}
 					{/if}
 				</div>
-				<div class="panel-body share-forum-details hidden">
+				<div class="card-body share-forum-details hidden">
 					{if count($forums)>0}
 						<div class="form-group">
 							<label class="col-form-label col-sm-3">

@@ -1,5 +1,5 @@
 {* $Id$ *}
-<div class="panel">
+<div class="card">
 	{if !empty($confirmation_text)}
 		<div class="card-header">
 			{icon name='information' style="vertical-align:middle"} {$confirmation_text|escape}
@@ -8,7 +8,7 @@
 	{if !empty($confirm_detail)}
 		{$confirm_detail}
 	{/if}
-	<div class="panel-body">
+	<div class="card-body">
 		<form id='confirm' action="{$confirmaction|escape}" method="post">
 			<div>
 				{query _type='form_input' _keepall='y'}

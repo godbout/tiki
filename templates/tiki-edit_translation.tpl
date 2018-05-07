@@ -36,11 +36,11 @@
 			<div class="col-md-8 col-md-offset-2">
 				<a id="new_translation"></a>
 				<form method="post" action="tiki-editpage.php" onsubmit="return validate_translation_request(this)" class="form-horizontal" role="form">
-					<div class="panel">
+					<div class="card">
 						<div class="card-header">
 							{tr}Translate this page to a new language{/tr}
 						</div>
-						<div class="panel-body">
+						<div class="card-body">
 							<div class="form-group">
 								<label for="lang" class="col-form-label col-md-4">
 									{tr}Select language to translate to:{/tr}
@@ -86,11 +86,11 @@
 			<div class="col-md-8 col-md-offset-2">
 				<a id="change_language"></a>
 				<form method="post" action="tiki-edit_translation.php" class="form-horizontal" role="form">
-					<div class="panel">
+					<div class="card">
 						<div class="card-header">
 							{tr}Change language for this page{/tr}
 						</div>
-						<div class="panel-body">
+						<div class="card-body">
 							<div class="form-group">
 								<label for="langpage" class="col-form-label col-md-4">
 									{tr}Language{/tr}

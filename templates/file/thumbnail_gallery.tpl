@@ -12,11 +12,11 @@
 				<div class="row">
 			{/if}
 			<div class="col-md-4 text-center">
-				<div class="panel">
+				<div class="card">
 					<div class="card-header">
 						{$row.title|escape}
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<p>
 							<a href="{$row.object_id|sefurl:'file'}" data-type="file" data-object="{$row.object_id|escape}"><img src="{$row.object_id|sefurl:'thumbnail'}"/><span class="sr-only">{$row.title|escape}</span></a>
 						</p>

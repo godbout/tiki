@@ -406,11 +406,11 @@
 	{/if}
 {/if}
 {if $tiki_p_admin_forum eq 'y' && ($comments_coms|@count > 0 || $queued > 0 || $reported > 0)}
-	<div class="panel panel-primary">
+	<div class="card card-primary">
 		<div class="card-header">
 			{tr}Moderator actions on selected topics{/tr}
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="pull-left">
 				{if $comments_coms|@count > 1}
 					<button
@@ -762,16 +762,16 @@
 
 	{if !$ts.enabled}
 		<div class="col-md-8" styles="padding-top:15px">
-			<div class="panel" id="filter-panel">
+			<div class="card" id="filter-panel">
 				<div class="card-header filter-card-header">
-					<h4 class="panel-title">
+					<h4 class="card-title">
 						<a data-toggle="collapse" href="#filterCollapse" class="collapsed">
 							{tr}Filter Posts{/tr}
 						</a>
 					</h4>
 				</div>
 				<div id="filterCollapse" class="panel-collapse collapse">
-					<div class="panel-body">
+					<div class="card-body">
 						<form id='time_control' class="form-horizontal" method="post" action="tiki-view_forum.php">
 							{if $comments_offset neq 0}
 								<input type="hidden" name="comments_offset" value="0"><!--reset the offset when starting a new filtered search-->

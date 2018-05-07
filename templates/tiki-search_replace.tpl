@@ -5,8 +5,8 @@
 	{tr}This feature currently searches and replaces within wiki pages only{/tr}
 {/remarksbox}
 
-<div class="panel">
-	<div class="panel-body">
+<div class="card">
+	<div class="card-body">
 		<form action="tiki-search_replace.php" method="post">
 			{tr}Search:{/tr} <input type="text" size="30" name="searchtext" value="{$searchtext|escape}">
 			&nbsp;{tr}Case sensitive:{/tr} <input type="checkbox" class="form-check-input" name="casesensitive" value="y" {if $casesensitive eq 'y'}checked="checked"{/if}>

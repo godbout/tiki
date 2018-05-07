@@ -1,5 +1,5 @@
 {* $Id$ *}
-<h2 class="panel-title">Occurences of string in database</h2>
+<h2 class="card-title">Occurences of string in database</h2>
 <input type="text" id="string_in_db_search" name="string_in_db_search" size="60" value="{$searchStringAgain|escape}" /> <input type="submit" class="btn btn-primary btn-sm" value="Search" onClick="document.getElementById('redirect').value='0';"/>
 <input type="hidden" id="redirect" name="redirect" value="1">
 

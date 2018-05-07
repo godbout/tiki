@@ -51,6 +51,6 @@
 				</fieldset>
 			</div>
 		</div>
-		<em>{tr}See also{/tr} <a href="tiki-admin.php?page=search&amp;cookietab=1" target="_blank">{tr}Search admin panel{/tr}</a> & <a href="https://doc.tiki.org/Search" target="_blank">{tr}Search in doc.tiki.org{/tr}</a></em>
+		<em>{tr}See also{/tr} <a href="tiki-admin.php?page=search&amp;cookietab=1" target="_blank">{tr}Search admin card{/tr}</a> & <a href="https://doc.tiki.org/Search" target="_blank">{tr}Search in doc.tiki.org{/tr}</a></em>
 	</div>
 </div>

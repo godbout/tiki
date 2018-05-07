@@ -1,7 +1,7 @@
 <div class="tiki-install container">
 	<div class="row install-header">
 		<div class="col-md-3">
-			<div class="panel-body">
+			<div class="card-body">
 				<img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-fluid" src="img/tiki/Tiki_WCG.png">
 			</div>
 		</div>
@@ -11,11 +11,11 @@
 	</div><!-- End of install-header -->
 	<div class="row install-body">
 		<div class="col-md-3">
-			<div class="install-menu panel">
+			<div class="install-menu card">
 				<div class="card-header">
 					<h4>{tr}Installation{/tr}</h4>
 				</div>
-				<div class="panel-body">
+				<div class="card-body">
 					<ol>
 						<li>{if $install_step eq '0'}<strong>{else}<a href="#" onclick="$('#install_step0').submit();return false;" title="{tr}Welcome{/tr} / {tr}Restart the installer.{/tr}">{/if}{tr}Welcome{/tr}{if $install_step eq '0'}</strong>{else}</a>{/if}</li>
 						<li>{if $install_step eq '1'}<strong>{else}<a href="#" onclick="$('#install_step1').submit();return false;" title="{tr}License{/tr}">{/if}{tr}License{/tr}{if $install_step eq '1'}</strong>{else}</a>{/if}</li>
@@ -74,11 +74,11 @@
 					</form>
 				</div>
 			</div><!-- End of install-menu -->
-			<div class="install-help panel">
+			<div class="install-help card">
 				<div class="card-header">
 					<h4>{tr}Help{/tr}</h4>
 				</div>
-				<div class="panel-body">
+				<div class="card-body">
 					<ul class="nav nav-pills nav-stacked">
 						<li><a href="https://tiki.org" target="_blank"><img src="themes/base_files/favicons/favicon-16x16.png" alt="{tr}Tiki Icon{/tr}"> {tr}Tiki Project Web Site{/tr}</a></li>
 						<li><a href="https://doc.tiki.org" target="_blank" title="{tr}Documentation{/tr}">{icon name="documentation"} {tr}Documentation{/tr}</a></li>
@@ -433,7 +433,7 @@
 									<input type="hidden" name="install_step" value="5">
 									{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 									{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
-									<div class="db-install col-md-6 panel panel-body">
+									<div class="db-install col-md-6 card card-body">
 										<h3>{tr}Install{/tr}</h3>
 										{if $tikidb_created}
 											{remarksbox type="warning" title="{tr}Warning{/tr}" close="n"}
@@ -471,7 +471,7 @@
 										</div><!-- End of install-table -->
 									</div><!-- End of db-install -->
 									{if $tikidb_created}
-										<div class="db-upgrade col-md-6 panel panel-body">
+										<div class="db-upgrade col-md-6 card card-body">
 											<h3>{tr}Upgrade{/tr}</h3>
 											{if $tikidb_oldPerms gt 0}
 												{remarksbox type="warning" title="{tr}Warning: Category Permissions Will Not Be Upgraded{/tr}" close="n"}

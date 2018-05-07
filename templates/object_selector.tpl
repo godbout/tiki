@@ -30,7 +30,7 @@
 		</select>
 	</div>
 
-	<div class="panel hidden">
+	<div class="card hidden">
 		<div class="card-header">
 			<div class="input-group">
 				<span class="input-group-append">
@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="results">
 				<p class="too-many">{tr}Search and select what you are looking for from the options that appear.{/tr}</p>
 				<div class="radio">

@@ -114,7 +114,7 @@
 	</div>
 </form>
 {if count($topics) > 0}
-	<div class="panel"><div class="panel-body">
+	<div class="card"><div class="card-body">
 		<table>
 			<tr>
 				{section name=numloop loop=$topics}

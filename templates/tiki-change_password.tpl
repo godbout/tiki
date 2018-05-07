@@ -8,7 +8,7 @@
 <div class="row">
 <div class="col-md-10 col-md-push-1 clearfix">
 	<form role="form" class="form-horizontal" method="post" action="tiki-change_password.php">
-		<div class="panel">
+		<div class="card">
 			{if !empty($oldpass) and $new_user_validation eq 'y'}
 				<input type="hidden" name="oldpass" value="{$oldpass|escape}">
 			{elseif !empty($smarty.request.actpass)}
@@ -19,12 +19,12 @@
 			{/if}
 			<div class="card-header text-center">
 				{if $new_user_validation neq 'y'}
-					<h3 class="panel-title">{tr}Change password{/tr}</h3>
+					<h3 class="card-title">{tr}Change password{/tr}</h3>
 				{else}
-					<h3 class="panel-title">{tr}Set password{/tr}</h3>
+					<h3 class="card-title">{tr}Set password{/tr}</h3>
 				{/if}
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				<div class="clearfix">
 					{include file='password_jq.tpl'}
 					<div class="text-center" id="divRegCapson" style="display:none;">

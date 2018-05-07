@@ -22,12 +22,12 @@
 		</table>
 	</div>
 {else}
-	<div class="panel">
+	<div class="card">
 		{if $tiki_p_admin ne 'y'}
 			<div class="card-header">
 				{tr}Error{/tr}
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				{tr}You don't have permission to use this feature.{/tr}
 				{tr}Please register.{/tr}
 			</div>
@@ -35,12 +35,12 @@
 			<div class="card-header">
 				{tr}Register this site at Tiki.org{/tr}
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				<table>
 					<tr>
 						<td>
-							<div class="panel">
-								<div class="panel-body">
+							<div class="card">
+								<div class="card-body">
 									<b>{tr}Read this first!{/tr}</b>
 									<br><br>
 									{tr}On this page you can make your tiki site known to Tiki.org. It will get shown there in a list of known tiki sites.{/tr}

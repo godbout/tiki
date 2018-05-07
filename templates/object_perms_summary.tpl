@@ -1,6 +1,6 @@
 {* $Id$ *}
-<div class="panel {if $permsType eq 'object'}panel-warning{else}panel-default{/if}">
-	<div class="panel-body">
+<div class="card {if $permsType eq 'object'}card-warning{/if}">
+	<div class="card-body">
 		{capture name=permType}{$objectType}s{/capture}
 		<a title="{tr}Permissions{/tr}" class="link {if $permsType eq 'object'}btn btn-warning btn-sm{/if}" href="tiki-objectpermissions.php?objectName={$name|escape:"url"}&amp;objectType={$objectType}&amp;permType={$smarty.capture.permType}&amp;objectId={$objectId}">
 		{if $permsType eq 'category'}

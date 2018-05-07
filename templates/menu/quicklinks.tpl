@@ -3,14 +3,14 @@
 		<a href="#" onclick="flip('weburls');return false;">{tr}Show Quick URLs{/tr}</a>
 	</div>
 	<div id="weburls" style="display:none;position:absolute;right:-10px;top:-50px;z-index:1;"
-			class="panel">
+			class="card">
 		<div class="card-header">
-			<h3 class="panel-title" id="urltop">{tr}Some useful URLs{/tr}</h3>
+			<h3 class="card-title" id="urltop">{tr}Some useful URLs{/tr}</h3>
 			<div style="text-align: right;">
 				<a href="#" class="hide_weburls" style="color:inherit; font-size: 85%" onclick="flip('weburls');return false;">{tr}Hide Quick URLs{/tr}</a>
 			</div>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="form-horizontal">
 				<div class="form-group">
 					<label class="col-form-label col-md-5" for="wikilinks1">{tr}Home:{/tr}</label>

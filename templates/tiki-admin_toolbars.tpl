@@ -86,7 +86,7 @@
 			<label for="row-{$smarty.foreach.line.iteration|escape}">
 				{tr}Row{/tr}&nbsp;{$smarty.foreach.line.iteration}
 			</label>
-			<ul id="row-{$smarty.foreach.line.iteration|escape}" class="row panel">
+			<ul id="row-{$smarty.foreach.line.iteration|escape}" class="row card">
 			{foreach from=$line item=bit name=bit}
 				{foreach from=$bit item=tool name=tool}
 					{if !empty($qtelement[$tool].class)}
@@ -101,7 +101,7 @@
 				</ul>
 				<br>
 				<label for="row-{$total|escape}">{tr}Row{/tr}&nbsp;{$total}</label>
-				<ul id="row-{$total|escape}" class="row panel">
+				<ul id="row-{$total|escape}" class="row card">
 			{/if}
 			</ul>
 			<br>

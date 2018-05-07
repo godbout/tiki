@@ -1,7 +1,7 @@
 {* $Id$ *}
 <div id="tiki-center">
 	<br>
-	<div class="panel">
+	<div class="card">
 		<div class="card-header">
 			{tr}Information{/tr}
 		</div>

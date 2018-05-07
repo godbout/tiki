@@ -92,7 +92,7 @@
 						</div>
 
 					{elseif $field.type eq 'e'}{* category *}
-						<div style="display:{if $filterfield eq $fid}block{else}none{/if};" id="fid{$fid}" class="panel-body">
+						<div style="display:{if $filterfield eq $fid}block{else}none{/if};" id="fid{$fid}" class="card-body">
 							<ul class="list-inline">
 								{foreach key=ku item=iu from=$field.list name=eforeach}
 									<li>

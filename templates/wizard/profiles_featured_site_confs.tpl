@@ -128,7 +128,7 @@
 					</div>
 				</div>
 			</div>
-			<em>{tr}See also{/tr} <a href="tiki-admin.php?page=profiles&amp;alt=Profiles" target="_blank">{tr}Profiles admin panel{/tr}</a></em>
+			<em>{tr}See also{/tr} <a href="tiki-admin.php?page=profiles&amp;alt=Profiles" target="_blank">{tr}Profiles admin card{/tr}</a></em>
 		</fieldset>
 	</div>
 </div>

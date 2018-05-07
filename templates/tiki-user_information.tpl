@@ -32,8 +32,8 @@
 			<div class="row">
 				<div class="col-sm-8 col-sm-offset-1">
 
-					<div class="panel">
-						<div class="panel-body">
+					<div class="card">
+						<div class="card-body">
 							{if $avatar}
 								<div class="row margin-bottom-sm">
 									<div class="col-sm-4">{tr}Profile picture{/tr} ({tr}User Icon{/tr}):</div>
@@ -176,8 +176,8 @@
 	{if $prefs.user_tracker_infos and $infoPublic eq "y"}
 		{tab name="{tr}Additional Information{/tr}"}
 			<h2>{tr}Additional Information{/tr} – {$userinfo.login}</h2>
-			<div class="panel">
-				<div class="panel-body">
+			<div class="card">
+				<div class="card-body">
 
 					<div class="clearfix">
 						<div class="col-sm-8">
@@ -205,8 +205,8 @@
 
 	{if $prefs.feature_display_my_to_others eq 'y' and $infoPublic eq "y"}
 		{tab name="{tr}User Contribution{/tr}"}
-			<div class="panel">
-				<div class="panel-body">
+			<div class="card">
+				<div class="card-body">
 					{if ($user_pages|@count > 0) or ($user_galleries|@count > 0) or ($user_blogs|@count > 0) or ($user_blog_posts|@count > 0) or ($user_articles|@count > 0) or ($user_forum_comments|@count > 0) or ($user_forum_topics|@count > 0) or ($user_items|@count > 0)}
 						<h2 class="text-center">{tr}User{/tr} {$userinfo.login|userlink}</h2>
 						<p><em>{tr}has contributed to the following content{/tr}…</em></p>
@@ -343,8 +343,8 @@
 
 	{if $prefs.feature_actionlog eq 'y' and $prefs.user_who_viewed_my_stuff eq 'y' and !empty($user) and ($prefs.user_who_viewed_my_stuff_show_others eq 'y' or $user eq $userinfo.login or $tiki_p_admin eq "y") and $infoPublic eq "y"}
 		{tab name="{tr}Who Looks at Items?{/tr}"}
-			<div class="panel">
-				<div class="panel-body">
+			<div class="card">
+				<div class="card-body">
 					<h2 class="text-center">{if $user eq $userinfo.login}{tr}Who Looks at Your Items?{/tr}{else}{tr}Who Looks at His or Her Items?{/tr}{/if}</h2>
 
 					{section name=ix loop=$whoviewed}

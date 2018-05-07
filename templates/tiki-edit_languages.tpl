@@ -86,11 +86,11 @@
 		<input type="hidden" name="only_db_untranslated" value="{$only_db_untranslated}">
 	{/if}
 	{if $action eq 'add_tran_sw'}
-		<div class="panel">
+		<div class="card">
 			<div class="card-header">
 				{tr}Add a translation{/tr}
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				<div class="form-group">
 					<label class="col-md-4 control-label">{tr}Original:{/tr}</label>
 					<div class="col-md-8">
@@ -110,7 +110,7 @@
 		</div>
 	{/if}
 	{if $action eq 'edit_tran_sw' || $action eq 'edit_rec_sw'}
-		<div class="panel">
+		<div class="card">
 			<div class="card-header">
 				{if $action eq 'edit_tran_sw'}
 					{tr}Edit translations{/tr}
@@ -118,7 +118,7 @@
 					{tr}Untranslated strings{/tr}
 				{/if}
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				<table class="table table-condensed table-hover" id="edit_translations">
 					<thead>
 						<tr>

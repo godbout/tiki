@@ -23,7 +23,7 @@
 					<tr><td>{tr}Downloads{/tr}</td><td>{$info.hits}</td></tr>
 				{/if}
 			</table>
-			<div class="panel">
+			<div class="card">
 				<a href="#" onclick="javascript:window.close();" class="link">{tr}close{/tr}</a>
 			</div>
 		</div>

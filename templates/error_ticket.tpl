@@ -15,11 +15,11 @@
 	<div class="row row-middle" id="row-middle">
 		{if zone_is_empty('left') and zone_is_empty('right')}
 			<div class="col-md-12 col1" id="col1" style="padding-top: 15px;">
-				<div class="panel panel-danger">
+				<div class="card card-danger">
 					<div class="card-header">
 						{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle"} {$errortitle|default:"{tr}Error{/tr}"}
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<p>{$msg}</p>
 						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="margin-bottom-sm">
 							{foreach key=k item=i from=$post}
@@ -33,11 +33,11 @@
 			</div>
 		{elseif zone_is_empty('left')}
 			<div class="col-md-9 col1" id="col1" style="padding-top: 15px;">
-				<div class="panel panel-danger">
+				<div class="card card-danger">
 					<div class="card-header">
 						{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle"} {$errortitle|default:"{tr}Error{/tr}"}
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<p>{$msg}</p>
 						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="margin-bottom-sm">
 							{foreach key=k item=i from=$post}
@@ -54,11 +54,11 @@
 			</div>
 		{elseif zone_is_empty('right')}
 			<div class="col-md-9 col-md-push-3 col1" id="col1" style="padding-top: 15px;">
-				<div class="panel panel-danger">
+				<div class="card card-danger">
 					<div class="card-header">
 						{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle"} {$errortitle|default:"{tr}Error{/tr}"}
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<p>{$msg}</p>
 						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="margin-bottom-sm">
 							{foreach key=k item=i from=$post}
@@ -75,11 +75,11 @@
 			</div>
 		{else}
 			<div class="col-md-8 col-md-push-2 col1" id="col1" style="padding-top: 15px;">
-				<div class="panel panel-danger">
+				<div class="card card-danger">
 					<div class="card-header">
 						{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle"} {$errortitle|default:"{tr}Error{/tr}"}
 					</div>
-					<div class="panel-body">
+					<div class="card-body">
 						<p>{$msg}</p>
 						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="margin-bottom-sm">
 							{foreach key=k item=i from=$post}

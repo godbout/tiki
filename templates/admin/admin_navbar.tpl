@@ -142,7 +142,7 @@
 			<h3 class="card-title">{tr}Preference Search Results{/tr}<button type="button" id="pref_searchresults-close" class="close" aria-hidden="true">&times;</button></h3>
 		</div>
 		<form method="post" action="" href="tiki-admin.php" class="table" role="form">
-			<div class="pref_search_results panel-body">
+			<div class="pref_search_results card-body">
 				{foreach from=$lm_searchresults item=prefName}
 					{preference name=$prefName get_pages='y' visible='always'}
 				{/foreach}

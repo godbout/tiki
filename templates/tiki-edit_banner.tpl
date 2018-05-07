@@ -7,8 +7,8 @@
 
 <form action="tiki-edit_banner.php" method="post" enctype="multipart/form-data" class="form-horizontal margin-bottom-md">
 	<input type="hidden" name="bannerId" value="{$bannerId|escape}">
-	<div class="panel">
-		<div class="panel-body">
+	<div class="card">
+		<div class="card-body">
 			<div class="form-group">
 				<label class="col-sm-3 col-form-label">{tr}URL to link the banner{/tr}</label>
 				<div class="col-sm-7 margin-bottom-sm">
@@ -94,8 +94,8 @@
 		</div>
 	</div>
 
-	<div class="panel">
-		<div class="panel-body">
+	<div class="card">
+		<div class="card-body">
 			<h4>{tr}Show the banner only between these dates:{/tr}</h4>
 			<div class="form-group">
 				<label class="col-sm-3 col-form-label">{tr}From date:{/tr}</label>
@@ -118,7 +118,7 @@
 		</div>
 	</div>
 
-	<div class="panel">
+	<div class="card">
 		<div class="panel-body">
 			<h4>{tr}Show the banner only in these hours:{/tr}</h4>
 			<div class="form-group">
