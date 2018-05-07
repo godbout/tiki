@@ -29,11 +29,11 @@
 			{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 
 			{if $tiki_p_admin_forum eq 'y'}
-				<div class="panel panel-primary form-group">
-					<div class="panel-heading">
+				<div class="card bg--primary form-group">
+					<div class="card-header">
 						{tr}Moderator actions for selected topics{/tr}
 					</div>
-					<div class="panel-body form-inline">
+					<div class="card-body form-inline">
 						<span class="infos pull-right">
 							{if $reported > 0}
 								<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge">{$reported}</span></a>

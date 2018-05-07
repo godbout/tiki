@@ -1,5 +1,5 @@
 {* $Id$ *}
-<div class="postbody-content panel-body">
+<div class="postbody-content card-body">
 
 	<div class="clearfix author">
 

@@ -1,5 +1,5 @@
 {* $Id$ *}
-<header class="panel-heading clearfix postbody-title media-overflow-visible"> {*the panel-heading class will cut off dropdowns so need media-overflow-visible class *}
+<header class="card-header clearfix postbody-title media-overflow-visible"> {*the panel-heading class cut off dropdowns so need media-overflow-visible class in BS3. Also true for card-header in BS4? *}
 	{if $prefs.feature_comments_locking neq 'y' or
 		( $comment.locked neq 'y' and $thread_is_locked neq 'y' )}
 		{assign var='this_is_locked' value='n'}
@@ -111,7 +111,7 @@
 	{if $comment.title neq '' && $comment.title neq 'Untitled' && (!isset($page) or $comment.title neq $page)}
 	<!-- <div class="title"> -->
 	{if isset($first) and $first eq 'y'}
-	<h2 class=" panel-title">
+	<h2 class=" card-title">
 		<span>{$comment.title|escape}</span>
 		{if ($prefs.feature_sefurl eq 'y') }
 		<a class="heading-link" href="{$comments_parentId|sefurl:'forum post'}{if ($comment.threadId neq $comments_parentId)}#threadId{$comment.threadId}{/if}">{icon name="link"}</a>
