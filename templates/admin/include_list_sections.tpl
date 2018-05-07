@@ -10,9 +10,9 @@
 <div class="clearfix">
 	{foreach from=$admin_icons key=page item=info}
 			{if $info.disabled}
-				{assign var=class value="admbox advanced btn btn-secondary disabled"}
+				{assign var=class value="admbox advanced btn btn-primary disabled"}
 			{else}
-				{assign var=class value="admbox basic btn btn-secondary"}
+				{assign var=class value="admbox basic btn btn-primary"}
 			{/if}
 				{* FIXME: Buttons are forced to be squares, not fluid. Labels which exceed 2 lines will be cut. *}
 				<a href="tiki-admin.php?page={$page}" alt="{$info.title} {$info.description}" class="{$class} tips bottom slow {if $info.disabled}disabled-clickable{/if}" title="{$info.title|escape}{if $info.disabled} ({tr}Disabled{/tr}){/if}|{$info.description}">
