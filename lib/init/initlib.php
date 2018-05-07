@@ -31,7 +31,22 @@ require_once __DIR__ . '/../../vendor_bundled/vendor/autoload.php'; // vendor li
 
 // vendor libs managed by the user using composer (if any)
 if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
-	require_once __DIR__ . '/../../vendor/autoload.php';
+	// In some cases, the vendor folder may contain the files from the old vendor folder before migrating to
+	// vendor_bundled. In these cases eg. when unzipping a Tiki => 17.x on top of an existing Tiki <= 16.x instance,
+	// loading the autoload from the vendor folder will cause issues.
+	// We check for some core libraries (ZendFramework, Smarty and Adodb), if they are all present in the
+	// vendor folder we will consider that there is a old vendor folder, and skip loading the autoload.php unless
+	// there is a file called do_not_clean.txt inside the vendor folder (we will only check the file exists)
+	if (file_exists(__DIR__ . '/../../vendor/do_not_clean.txt')
+		|| ! ( // check the existence of critical files denoting a legacy vendor folder
+			(file_exists(__DIR__ . '/../../vendor/zendframework/zend-config/src/Config.php') //ZF2
+				|| file_exists(__DIR__ . '/../../vendor/bombayworks/zendframework1/library/Zend/Config.php')) //ZF1
+			&& (file_exists(__DIR__ . '/../../vendor/smarty/smarty/libs/Smarty.class.php') //Smarty
+				|| file_exists(__DIR__ . '/../../vendor/smarty/smarty/distribution/libs/Smarty.class.php')) //Smarty
+			&& file_exists(__DIR__ . '/../../vendor/adodb/adodb/adodb.inc.php') //Adodb
+		)) {
+		require_once __DIR__ . '/../../vendor/autoload.php';
+	}
 }
 
 // vendor libraries managed by the user, packaged (if any)
