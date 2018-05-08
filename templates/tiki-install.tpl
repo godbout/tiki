@@ -428,13 +428,14 @@
 					{/if}
 					{if $dbdone eq 'n'}
 						{if $logged eq 'y'}{* we are logged if no admin account is found or if the admin user is logged in*}
-							<div class="install-uprade">
-								<form method="post" action="tiki-install.php" role="form">
+							<div class="install-upgrade">
+								<form method="post" action="tiki-install.php" role="form" class="card-deck">
 									<input type="hidden" name="install_step" value="5">
 									{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 									{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
-									<div class="db-install col-md-6 card card-body">
-										<h3>{tr}Install{/tr}</h3>
+									<div class="db-install card">
+										<div class="card-body">
+										<h3 class="card-title">{tr}Install{/tr}</h3>
 										{if $tikidb_created}
 											{remarksbox type="warning" title="{tr}Warning{/tr}" close="n"}
 												{tr _0=$dbname}This will destroy your current database : %0.{/tr}
@@ -468,11 +469,13 @@
 										<p class="text-center">
 											<input type="submit" class="btn btn-warning" name="scratch" value="{if $tikidb_created}{tr}Reinstall{/tr}{else}{tr}Install{/tr}{/if}" style="margin: 32px;">
 										</p>
+										</div>
 										</div><!-- End of install-table -->
 									</div><!-- End of db-install -->
 									{if $tikidb_created}
-										<div class="db-upgrade col-md-6 card card-body">
-											<h3>{tr}Upgrade{/tr}</h3>
+										<div class="db-upgrade card">
+											<div class=" card-body">
+											<h3 class="card-title">{tr}Upgrade{/tr}</h3>
 											{if $tikidb_oldPerms gt 0}
 												{remarksbox type="warning" title="{tr}Warning: Category Permissions Will Not Be Upgraded{/tr}" close="n"}
 													{tr}Category permissions have been revamped since version 3. If you have been using category permissions, note that they may not work properly after upgrading to version 4 onwards, and it will be necessary to reconfigure them.{/tr}
@@ -483,6 +486,7 @@
 											</p>
 											<p class="text-center"><input type="submit" class="btn btn-secondary" name="update" value="{tr}Upgrade{/tr}"></p>
 										</div><!-- End of db-upgrade -->
+										</div>
 									{/if}
 								</form>
 							{else}{* we are not logged then no admin account found and user not logged *}
@@ -661,18 +665,18 @@
 										<option value="2039" {if $prefs.error_reporting_level eq 2039 or $prefs.error_reporting_level eq ''}selected="selected"{/if}>{tr}Report all errors except notices{/tr}</option>
 										<option value="1" {if $prefs.error_reporting_level eq 1039}selected="selected"{/if}>{tr}According to the PHP configuration{/tr}</option>
 									</select>
-									<div style="padding:5px;clear:both">
-										<div style="padding:5px;clear:both">
-											<label for="error_reporting_adminonly">{tr}Visible to Admin only{/tr}.</label>
-											<input type="checkbox" id="error_reporting_adminonly" name="error_reporting_adminonly"{if $prefs.error_reporting_adminonly eq 'y'} checked="checked"{/if}>
+									<div class="mt-4">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="error_reporting_adminonly" name="error_reporting_adminonly"{if $prefs.error_reporting_adminonly eq 'y'} checked="checked"{/if}>
+											<label class="form-check-label" for="error_reporting_adminonly">{tr}Visible to Admin only{/tr}</label>
 										</div>
-										<div style="padding:5px;clear:both">
-											<label for="smarty_notice_reporting">{tr}Include Smarty notices{/tr}</label>.
-											<input type="checkbox" id="smarty_notice_reporting" name="smarty_notice_reporting"{if $prefs.smarty_notice_reporting eq 'y'} checked="checked"{/if}>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="smarty_notice_reporting" name="smarty_notice_reporting"{if $prefs.smarty_notice_reporting eq 'y'} checked="checked"{/if}>
+											<label class="form-check-label" for="smarty_notice_reporting">{tr}Include Smarty notices{/tr}</label>
 										</div>
-										<div style="padding:5px;clear:both">
-											<label for="log_tpl">{tr}Add HTML comment at start and end of each Smarty template (.tpl file){/tr}.</label>
-											<input type="checkbox" id="log_tpl" name="log_tpl"{if $prefs.log_tpl eq 'y'} checked="checked"{/if}>
+										<div class="form-check">
+											<input class="form-check-input mb-2" type="checkbox" id="log_tpl" name="log_tpl"{if $prefs.log_tpl eq 'y'} checked="checked"{/if}>
+											<label class="form-check-label mb-2" for="log_tpl">{tr}Add HTML comment at start and end of each Smarty template (.tpl file){/tr}.</label>
 											{remarksbox type=warning title="{tr}Warning{/tr}" close="n"}
 												{tr}Use only for development, not in production because these warnings are added to emails as well, and visible to the users{/tr}
 											{/remarksbox}
@@ -730,7 +734,7 @@
 										<li>{tr}Add the administrator account to the group, if missing{/tr}</li>
 									</ol>
 									<p><strong>{tr}To do so enter the name of the main admin account in the field below{/tr}</strong></p>
-									<p>{tr}Administrator account (optional): <input type="text" name="admin_account"> <em>The default account is <strong>admin</strong></em>{/tr}</p>
+									<div class="form-group row"><label class="col-form-label col-sm-4" for="admin_account">{tr}Administrator account (optional):</label><div class="col-sm-4"> <input type="text" name="admin_account" class="form-control"></div><div class="col-sm-4"><em>The default account is <strong>admin</strong></em>{/tr}</div></div>
 									{if !empty($disableAccounts)}
 										<hr>
 										<label for="fix_disable_accounts">{tr}Check this box if you have a lot of disabled accounts after an upgrade to tiki4.{/tr}</label>
@@ -844,37 +848,43 @@
 						<p>{tr}If this is an upgrade, clean the Tiki caches manually (the <strong>temp/templates_c</strong> directory) or by using the <strong>Admin &gt; System</strong> option from the Admin menu.{/tr}</p>
 					{/if}
 					{if $tikidb_is20}
-						<form method="post" action="tiki-install.php" class="btn pvtVertList">
-							{if $multi}
-								<input type="hidden" name="multi" value="{$multi|escape}">
-							{/if}
-							<input type="hidden" name="install_type" value="{$install_type}">
-							<input type="hidden" name="install_step" value="9">
-							<input type="submit" value="{tr}Enter Tiki and Lock Installer{/tr} ({tr}Recommended{/tr})" class="btn btn-secondary">
-						</form>
-						<form method="post" action="tiki-install.php" class="btn pvtVertList">
-							<input type="hidden" name="nolockenter" value="1">
-							{if $multi}
-								<input type="hidden" name="multi" value="{$multi|escape}">
-							{/if}
-							<input type="hidden" name="install_type" value="{$install_type}">
-							<input type="hidden" name="install_step" value="9">
-							<input type="submit" value="{tr}Enter Tiki Without Locking Installer{/tr}" class="btn btn-warning">
-							<br><em><span class="text-warning">{icon name="warning"}</span> {tr}Not recommended due to security risk{/tr}.</em>
-						</form>
+						<div class="row">
+							<div class="col-sm-6">
+								<form method="post" action="tiki-install.php" class="">
+									{if $multi}
+										<input type="hidden" name="multi" value="{$multi|escape}">
+									{/if}
+									<input type="hidden" name="install_type" value="{$install_type}">
+									<input type="hidden" name="install_step" value="9">
+									<input type="submit" value="{tr}Enter Tiki and Lock Installer{/tr} ({tr}Recommended{/tr})" class="btn btn-secondary">
+								</form>
+							</div>
+							<div class="form-sm-6">
+								<form method="post" action="tiki-install.php" class="">
+									<input type="hidden" name="nolockenter" value="1">
+									{if $multi}
+										<input type="hidden" name="multi" value="{$multi|escape}">
+									{/if}
+									<input type="hidden" name="install_type" value="{$install_type}">
+									<input type="hidden" name="install_step" value="9">
+									<input type="submit" value="{tr}Enter Tiki Without Locking Installer{/tr}" class="btn btn-warning">
+									<br><em><span class="text-warning">{icon name="warning"}</span> {tr}Not recommended due to security risk{/tr}.</em>
+								</form>
+							</div>
+						</div>
 					{/if}
 					{if $install_type eq 'update'}
 						{if $double_encode_fix_attempted eq 'y'}
 							<p>{tr}You can now access the site normally. Report back any issues that you might find (if any) to the Tiki forums or bug tracker{/tr}</p>
 						{elseif not isset($legacy_collation)}
-							<form method="post" action="#" onsubmit="return confirm("{tr}Are you sure you want to attempt to fix the encoding of your entire database?{/tr}");" style="padding-top: 100px;">
+							<form class="form-inline" method="post" action="#" onsubmit="return confirm("{tr}Are you sure you want to attempt to fix the encoding of your entire database?{/tr}");" style="padding-top: 100px;">
 								<fieldset>
 									<legend>{tr}Upgrading and running into encoding issues?{/tr}</legend>
 									<p>{tr}We can try to fix it, but <strong>make sure you have backups, and can restore them</strong>.{/tr}</p>
 									{if $client_charset_in_file eq 'utf8'}
-										<div class="form-group">
-											<div class="input-group col-sm-8">
-												<span class="input-group-addon">{tr}Previous table encoding:{/tr}</span>
+										<div class="form-row align-items-center">
+											<div class="input-group col-auto">
+												<label for="previous_encoding" class="mr-2">{tr}Previous table encoding:{/tr}</label>
 												<select class="form-control" name="previous_encoding" id="previous_encoding">
 													<option value="">{tr}Please select{/tr}</option>
 													<option value="armscii8" title="Armenian, Binary">armscii8</option>
@@ -913,7 +923,7 @@
 													<option value="ucs2" title="Unicode (multilingual), Binary">ucs2</option>
 													<option value="ujis" title="Japanese, Binary">ujis</option>
 												</select>
-												<span class="input-group-btn"><input type="submit" class="btn btn-danger btn-sm" name="fix_double_encoding" value="{tr}Click to fix double encoding (dangerous){/tr}"></span>
+												<input type="submit" class="btn btn-danger btn-sm ml-2" name="fix_double_encoding" value="{tr}Click to fix double encoding (dangerous){/tr}">
 											</div>
 											<input type="hidden" name="install_step" value="8">
 										</div>
@@ -976,7 +986,7 @@
 				</div>
 			{/if}
 		</div>
-	</div><!-- End of install-body -->
+	{*</div><!-- End of install-body -->*}
 
 	<div class="row install-footer text-center">
 		<hr>
