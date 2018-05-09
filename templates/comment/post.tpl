@@ -25,15 +25,15 @@
 							{/remarksbox}
 						{/if}
 						<div class="form-inline">
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="clearfix" for="comment-anonymous_name">{tr}Name{/tr}</label>
 								<input type="text" name="anonymous_name" id="comment-anonymous_name" value="{$anonymous_name|escape}"/>
 							</div>
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="clearfix" for="comment-anonymous_email">{tr}Email{/tr}</label>
 								<input type="email" id="comment-anonymous_email" name="anonymous_email" value="{$anonymous_email|escape}"/>
 							</div>
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="clearfix" for="comment-anonymous_website">{tr}Website{/tr}</label>
 								<input type="url" id="comment-anonymous_website" name="anonymous_website" value="{$anonymous_website|escape}"/>
 							</div>
@@ -46,7 +46,7 @@
 					<input type="hidden" name="parentId" value="{$parentId|escape}"/>
 					<input type="hidden" name="post" value="1"/>
 					{if $prefs.comments_notitle neq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="comment-title" class="clearfix comment-title">{tr}Title{/tr}</label>
 							<input type="text" id="comment-title" name="title" value="{$title|escape}" class="form-control" placeholder="Comment title"/>
 						</div>

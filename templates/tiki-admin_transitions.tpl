@@ -41,7 +41,7 @@
 						{/foreach}
 					{/if}
 				</ul>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="transition-group-auto">{tr}Add Group{/tr}</label>
 					<input type="text" id="transition-group-auto">
 					<div class="form-text">
@@ -183,7 +183,7 @@
 				{/if}
 				<fieldset>
 					<legend>{tr}General{/tr}</legend>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label" for="new-transition-name">{tr}Label{/tr}</label>
 						<input type="text" name="label" {if $selected_transition}value="{$selected_transition.name|escape}"{/if} class="form-control">
 					</div>
@@ -270,7 +270,7 @@
 					<h2>{tr}New Guard{/tr}</h2>
 					<fieldset>
 						<legend>{tr}General{/tr}</legend>
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-form-label" for="guard-type">{tr}Type{/tr}</label>
 							<select id="guard-type" name="type" class="form-control">
 								<option value="exactly">{tr}Exactly{/tr}</option>
@@ -278,7 +278,7 @@
 								<option value="atMost">{tr}At Most{/tr}</option>
 							</select>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="guard-count" class="col-form-label">{tr}Count{/tr}</label>
 							<input type="text" name="count" class="form-control">
 						</div>

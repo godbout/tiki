@@ -12,7 +12,7 @@
 		</div>
 		<div class="card-body">
 			<div class="form-horizontal">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-5" for="wikilinks1">{tr}Home:{/tr}</label>
 
 					<div class="col-md-7">
@@ -33,7 +33,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-5" for="wikilinks2">{tr}General:{/tr} </label>
 
 					<div class="col-md-7">
@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				{if $prefs.feature_wiki eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-5" for="wikilinks3">{tr}Wiki:{/tr} </label>
 
 						<div class="col-md-7">
@@ -71,7 +71,7 @@
 				{/if}
 
 				{if $prefs.feature_galleries eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-5" for="wikilinks4">{tr}Images:{/tr} </label>
 
 						<div class="col-md-7">
@@ -88,7 +88,7 @@
 				{/if}
 
 				{if $prefs.feature_articles eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-5" for="wikilinks5">{tr}Articles:{/tr} </label>
 
 						<div class="col-md-7">
@@ -106,7 +106,7 @@
 				{/if}
 
 				{if $prefs.feature_blogs eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-5" for="wikilinks6">{tr}Blogs:{/tr}</label>
 
 						<div class="col-md-7">
@@ -123,7 +123,7 @@
 				{/if}
 
 				{if $prefs.feature_file_galleries eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-5" for="wikilinks7">{tr}Files:{/tr} </label>
 
 						<div class="col-md-7">
@@ -139,7 +139,7 @@
 				{/if}
 
 				{if $prefs.feature_forums eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-5" for="wikilinks8">{tr}Forums:{/tr} </label>
 
 						<div class="col-md-7">
@@ -156,7 +156,7 @@
 				{/if}
 
 				{if $prefs.feature_faqs eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-5" for="wikilinks9">{tr}FAQs:{/tr} </label>
 
 						<div class="col-md-7">
@@ -171,7 +171,7 @@
 				{/if}
 
 				{if $prefs.feature_quizzes eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-5" for="wikilinks10">{tr}Quizzes:{/tr} </label>
 
 						<div class="col-md-7">

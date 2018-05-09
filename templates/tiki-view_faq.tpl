@@ -1,7 +1,7 @@
 {title help="FAQs"}{tr}{$faq_info.title}{/tr}{/title}
 <div class="description form-text">{$faq_info.description|escape}</div>
 
-<div class="t_navbar btn-group form-group">
+<div class="t_navbar btn-group form-group row">
 	{self_link print='y' _icon_name='print' _menu_text='y' _menu_icon='y'}
 		{tr}Print{/tr}
 	{/self_link}

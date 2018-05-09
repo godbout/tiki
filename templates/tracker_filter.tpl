@@ -41,7 +41,7 @@
 				</select>
 			{/if}
 		</div>
-		<div style="display:inline-block" class="form-group">
+		<div style="display:inline-block" class="form-group row">
 			{assign var=cnt value=0}
 			{foreach key=fid item=field from=$listfields}
 				{if $field.isSearchable eq 'y' and $field.type ne 'f' and $field.type ne 'j' and $field.type ne 'i'}
@@ -118,7 +118,7 @@
 			{/foreach}
 		</div>
 		{if isset($filter_button) && $filter_button eq 'y'}
-			<div style="display:inline-block" class="form-group">
+			<div style="display:inline-block" class="form-group row">
 				<input id="filterbutton" type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}" style="display:{if $filterfield}inline{else}none{/if}">
 			</div>
 		{/if}

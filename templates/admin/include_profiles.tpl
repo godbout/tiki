@@ -34,12 +34,12 @@
 				<h4>{tr}Find profiles{/tr} <small>{tr}Search by name, types and repository{/tr}</small></h4>
 				<div class="row">
 					<div class="col-sm-6">
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-form-label" for="profile">{tr}Profile name{/tr} </label>
 							<input type="text" class="form-control" name="profile" placeholder="{tr}Find{/tr}..." id="profile" value="{if isset($profile)}{$profile|escape}{/if}" />
 						</div>
 						{if isset($category_list) and count($category_list) gt 0}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-form-label" for="categories">{tr}Profile types{/tr}</label>
 									<select multiple="multiple" name="categories[]" id="categories" class="form-control" style="min-height: 8em; max-height: 15em">
 										{foreach item=cat from=$category_list}
@@ -48,7 +48,7 @@
 									</select>
 							</div>
 						{/if}
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-form-label" for="repository">{tr}Profile repository{/tr}</label>
 							<select name="repository" id="repository" class="form-control">
 								<option value="">{tr}All{/tr}</option>
@@ -147,7 +147,7 @@
 				{if !empty($export_yaml)}
 					<div class="wikitext">{$export_yaml}</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2" for="export_type">{tr}Object type{/tr}</label>
 					<div class="col-sm-5">
 					<select name="export_type" id="export_type" class="form-control">
@@ -277,7 +277,7 @@
 					<em><strong>{tr}This will run the profile and make potentially unrecoverable changes in your database!{/tr}</strong></em>
 				{/remarksbox}
 				<div class="adminoptionbox">
-					<div class="adminoptionlabel form-group">
+					<div class="adminoptionlabel form-group row">
 						<label for="profile_tester_name" class="col-form-label col-sm-4">{tr}Test profile name{/tr} </label>
 						<div class="col-sm-4 margin-bottom-sm">
 						<input class="form-control" type="text" name="profile_tester_name" id="profile_tester_name" value="{if isset($profile_tester_name)}{$profile_tester_name}{else}Test{/if}" />

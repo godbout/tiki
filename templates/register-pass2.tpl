@@ -4,7 +4,7 @@
 	{if $prefs.user_register_prettytracker_hide_mandatory neq 'y'}&nbsp;<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}
 {else}
 	{if !isset($openid_associate) || $openid_associate neq 'y'}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-4 col-form-label" for="pass2">{tr}Confirm password{/tr} {if $trackerEditFormId}<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}</label>
 			<div class="col-sm-8">
 				<input
@@ -27,7 +27,7 @@
 		</div>
 		{if $prefs.generate_password eq 'y'}
 			{*if !$reg_in_module}<td>&nbsp;</td>{/if*}
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-3 col-sm-offset-4">
 					<span id="genPass">{button href="#" _text="{tr}Generate a password{/tr}"}</span>
 				</div>

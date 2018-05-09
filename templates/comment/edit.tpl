@@ -14,7 +14,7 @@
 				<input type="hidden" name="edit" value="1"/>
 				<div class="panel-body">
 				{if $prefs.comments_notitle neq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="comment-title" class="clearfix comment-title">{tr}Title{/tr}</label>
 						<input type="text" id="comment-title" name="title" value="{$comment.title|escape}" class="form-control" placeholder="Comment title"/>
 					</div>

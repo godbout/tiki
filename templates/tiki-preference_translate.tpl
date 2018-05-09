@@ -36,7 +36,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="additional_languages" class="control-lable">
 			{tr}Displayed languages:{/tr}
 		</label>

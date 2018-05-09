@@ -183,7 +183,7 @@
 		<h2>{$tabaddeditgroup_admgrp}</h2>
 
 		<form class="form-horizontal" action="tiki-admingroups.php" id="groupEdit" method="post">
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="groups_group" class="col-form-label col-md-3">{tr}Group{/tr}</label>
 				<div class="col-md-9">
 					{if $groupname neq 'Anonymous' and $groupname neq 'Registered' and $groupname neq 'Admins'}
@@ -194,13 +194,13 @@
 					{/if}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="groups_desc" class="col-form-label col-md-3">{tr}Description{/tr}</label>
 				<div class="col-md-9">
 					<textarea rows="5" name="desc" id="groups_desc" class="form-control">{$groupdesc|escape}</textarea>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="groups_inc" class="col-form-label col-md-3">{tr}Inheritance{/tr}</label>
 				<div class="col-md-9">
 					{if $inc|@count > 20 and $hasOneIncludedGroup eq "y"}
@@ -232,7 +232,7 @@
 				</div>
 			</div>
 			{if $prefs.useGroupHome eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="groups_home" class="col-form-label col-md-3">{tr}Group Home{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="home" id="groups_home" value="{$grouphome|escape}">
@@ -245,7 +245,7 @@
 				</div>
 			{/if}
 			{if $prefs.feature_categories eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="groups_defcat" class="col-form-label col-md-3">{tr}Default Category{/tr}</label>
 					<div class="col-md-9">
 						<select name="defcat" id="groups_defcat" class="form-control">
@@ -261,7 +261,7 @@
 				</div>
 			{/if}
 			{if $prefs.useGroupTheme eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="groups_theme" class="col-form-label col-md-3">{tr}Group theme{/tr}</label>
 					<div class="col-md-9">
 						<select name="theme" id="groups_theme" class="form-control">
@@ -274,7 +274,7 @@
 				</div>
 			{/if}
 			{if $prefs.feature_conditional_formatting eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="groups_color" class="col-form-label col-md-3">{tr}Group color{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="color" id="groups_color" value="{$groupcolor|escape}">
@@ -285,7 +285,7 @@
 				</div>
 			{/if}
 			{if $prefs.groupTracker eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="groupstracker" class="col-form-label col-md-3">{tr}Group Information Tracker{/tr}</label>
 					<div class="col-md-9">
 						<select name="groupstracker" id="groupstracker" class="form-control">
@@ -321,7 +321,7 @@
 				</div>
 			{/if}
 			{if $prefs.userTracker eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="userstracker" class="col-form-label col-md-3">{tr}User Registration Tracker{/tr}</label>
 					<div class="col-md-9">
 						<select name="userstracker" id="userstracker" class="form-control">
@@ -394,7 +394,7 @@
 					</div>
 				</div>
 				{if $prefs.feature_wizard_user eq 'y' and $groupname == 'Registered'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-3">{tr}User Wizard Fields{/tr}</label>
 						<div class="col-md-9">
 							{tr}By default, the same fields as in registration are used.{/tr} {tr _0="tiki-admin.php?page=login"}You can choose in the <a href="%0">Login admin panel</a> to show different fields in User Wizard than the ones asked at Registration Time{/tr}.</td>
@@ -403,7 +403,7 @@
 				{/if}
 			{/if}
 			{if $prefs.userTracker == 'y' || $prefs.useGroupTheme == 'y'}
-				<div id="registerfields" class="form-group"{if empty($userstrackerid) && empty($grouptrackerid) && $prefs.javascript_enabled == 'y' && $prefs.jquery_ui_chosen != 'y'} style="display: none;"{/if}>
+				<div id="registerfields" class="form-group row"{if empty($userstrackerid) && empty($grouptrackerid) && $prefs.javascript_enabled == 'y' && $prefs.jquery_ui_chosen != 'y'} style="display: none;"{/if}>
 					<label for="registrationUserFieldIds" class="col-form-label col-md-3">{tr}Group or User Tracker Registration Fields{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" class="form-control" name="registrationUsersFieldIds" value="{$registrationUsersFieldIds|escape}">
@@ -414,7 +414,7 @@
 				</div>
 			{/if}
 			{if $groupname neq 'Anonymous' and $groupname neq 'Registered' and $groupname neq 'Admins'}
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-md-9 col-md-offset-3">
 						<div class="form-check">
 							<label class="form-check-label">
@@ -424,7 +424,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Membership expiry{/tr}</label>
 					<div class="col-md-9">
 						<label>{tr}Anniversary{/tr}</label>
@@ -438,7 +438,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="prorateInterval" class="col-form-label col-md-3">{tr}Pro-Rate Membership{/tr}</label>
 					<div class="col-md-9">
 						<select name="prorateInterval" class="form-control">
@@ -452,7 +452,7 @@
 					</div>
 				</div>
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3">{tr}Group{/tr}</label>
 				<div class="col-md-9">
 					<input class="form-control" type="text" size="40" name="emailPattern" value="{$group_info.emailPattern|escape}">
@@ -464,7 +464,7 @@
 			</div>
 
 			{if $group ne ''and $groupname neq 'Anonymous'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Assign group <em>management</em> permissions{/tr}</label>
 					<div class="col-md-9">
 						{self_link _script="tiki-objectpermissions.php" objectType="group" objectId=$groupname objectName=$groupname permType="group"}
@@ -474,7 +474,7 @@
 				</div>
 			{/if}
 
-			<div class="submit form-group">
+			<div class="submit form-group row">
 				<div class="col-md-9 col-md-offset-3">
 					{if $group ne ''}
 						<input type="hidden" name="olgroup" value="{$group|escape}">
@@ -491,7 +491,7 @@
 			<br><br>
 
 			{if $prefs.groupTracker eq 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-md-9 col-md-offset-3">
 					{if !empty($grouptrackerid) and $groupitemid}
 						{tr}Group tracker item : {$groupitemid}{/tr}
@@ -518,7 +518,7 @@
 		{* ----------------------- tab with memberlist --------------------------------------- *}
 		{if $membersCount > 0}
 		{if !$ts.ajax}
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-7">
 						<h2>{tr}Members{/tr} <span class="badge">{$membersCount}</span></h2>
 						<form id="checkform2" method="post">
@@ -601,7 +601,7 @@
 					<em>{tr}No members{/tr}</em>
 				</div>
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-5">
 					<form id="addorban" method="post" action="tiki-admingroups.php">
 						<h2>{tr}Add or ban users{/tr}</h2>
@@ -684,7 +684,7 @@
 
 				<h2>{tr}Export group users (CSV file){/tr}</h2>
 				<br>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">{tr}Charset encoding{/tr}</label>
 					<div class="col-sm-7">
 						<select name="encoding" class="form-control">
@@ -693,7 +693,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">{tr}Fields{/tr}</label>
 					<div class="col-sm-7">
 						<div class="form-check">
@@ -713,7 +713,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7">
 						<input type="submit" class="btn btn-primary" name="export" value="{tr}Export{/tr}">
@@ -722,7 +722,7 @@
 				<br>
 				<h2>{tr}Import users to group (CSV file){/tr}</h2>
 				<br>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">
 						{tr}CSV File{/tr} <a title="{tr}Help{/tr}" {popup text='user<br>user1<br>user2'}>{icon name='help'}</a>
 					</label>
@@ -733,7 +733,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7">
 						<input type="submit" class="btn btn-primary" name="import" value="{tr}Import{/tr}">

@@ -13,7 +13,7 @@
 	<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 	{if $offset}<input type="hidden" name="offset" value="{$offset|escape}">{/if}
 	{if $numrows ne $prefs.maxRecords and $numrows}<input type="hidden" name="numrows" value="{$numrows|escape}">{/if}
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="event" class="col-form-label col-sm-3">
 			{tr}Event{/tr}
 		</label>
@@ -25,7 +25,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="destination" class="col-form-label col-sm-3">
 			{tr}Destination{/tr}
 		</label>
@@ -48,7 +48,7 @@
 			{/jq}
 		</div>
 	</div>
-	<div id="loginrow" class="form-group">
+	<div id="loginrow" class="form-group row">
 		<label for="flogin" class="col-form-label col-sm-3">
 			{tr}User{/tr}
 		</label>
@@ -60,7 +60,7 @@
 			<a href="#" onclick="javascript:document.getElementById('flogin').value='{$user}'" class="link">{tr}Myself{/tr}</a>
 		</div>
 	</div>
-	<div class="form-group" id="emailrow" style="display:none">
+	<div class="form-group row" id="emailrow" style="display:none">
 		<label for="femail" class="col-form-label col-sm-3">
 			{tr}Email{/tr}
 		</label>

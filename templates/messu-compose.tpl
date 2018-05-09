@@ -31,7 +31,7 @@
 	{/if}
 	<form action="messu-compose.php" method="post" class="form-horizontal" role="form">
 		{ticket}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-2 col-form-label" for="mess-composeto">{tr}To{/tr}
 				{help url="Inter-User+Messages#Composing_messages" desc="{tr}To: Multiple addresses can be separated with a semicolon (';') or comma (','){/tr}"}
 			</label>
@@ -41,7 +41,7 @@
 				<input type="hidden" name="reply" value="{$reply}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-2 col-form-label" for="mess-composecc">{tr}CC{/tr}
 				{help url="Inter-User+Messages#Composing_messages" desc="{tr}CC: Multiple addresses can be separated with a semicolon (';') or comma (','){/tr}"}
 			</label>
@@ -49,7 +49,7 @@
 				<input type="text" class="username form-control" name="cc" id="mess-composecc" value="{$cc|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-2 col-form-label" for="mess-composebcc">{tr}BCC{/tr}
 				{help url="Inter-User+Messages#Composing_messages" desc="{tr}BCC: Multiple addresses can be separated with a semicolon (';') or comma (','){/tr}"}
 			</label>
@@ -57,7 +57,7 @@
 				<input type="text" class="form-control username" name="bcc" id="mess-composebcc" value="{$bcc|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-2 col-form-label" for="mess-prio">{tr}Priority{/tr}</label>
 			<div class="col-sm-10">
 				<select name="priority" id="mess-prio" class="form-control">
@@ -69,19 +69,19 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-2 col-form-label" for="mess-subj">{tr}Subject{/tr}</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="subject" id="mess-subj" value="{$subject|escape}" maxlength="255">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-2 col-form-label" for="broadcast-body">{tr}Body{/tr}</label>
 			<div class="col-sm-10">
 				<textarea class="form-control" rows="20" name="body">{$body|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-10 col-sm-push-2">
 				<input type="submit" class="btn btn-secondary timeout" name="send" value="{tr}Send{/tr}">
 				<input type="checkbox" class="form-check-input" name="replytome" id="replytome">

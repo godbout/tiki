@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group row">
 	<h5>{$customMsg|escape}</h5>
 	{if isset($items) && $items|count > 0}
 		{if $items|count < 16}

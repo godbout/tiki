@@ -90,7 +90,7 @@
 
 	<h2>{tr}Check Mail-in accounts{/tr}</h2>
 	<form class="form-horizontal" action="tiki-admin_mailin.php" method="post">
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-md-offset-3 col-md-9">
 				<div class="form-check">
 					<label class="form-check-label">
@@ -100,7 +100,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="mailin_autocheckFreq" class="col-form-label col-md-3">{tr}Frequency{/tr}</label>
 			<div class="col-md-3">
 				<input type="text" name="mailin_autocheckFreq" value="{$prefs.mailin_autocheckFreq|escape}" class="form-control">

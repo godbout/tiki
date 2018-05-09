@@ -16,7 +16,7 @@
 			{if $prefs.feature_forums_search eq 'y' or $prefs.feature_forums_name_search eq 'y'}
 				{if $prefs.feature_forums_name_search eq 'y'}
 					<form method="get" class="form" role="form" action="tiki-forums.php">
-						<div class="form-group">
+						<div class="form-group row">
 							<div class="input-group">
 								<span class="input-group-addon">
 									{icon name="search"}
@@ -34,7 +34,7 @@
 					<div class="row margin-bottom-md">
 						<div class="col-md-5 col-md-offset-7">
 						<form class="form" method="get" role="form" action="{if $prefs.feature_search_fulltext neq 'y'}tiki-searchindex.php{else}tiki-searchresults.php{/if}">
-							<div class="form-group">
+							<div class="form-group row">
 								<div class="input-group">
 									<span class="input-group-addon">
 										{icon name="search"}

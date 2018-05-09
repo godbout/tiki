@@ -8,7 +8,7 @@
 {* FILTERING FORM *}
 {if $items or ($find ne '')}
 	<form action="tiki-forums_reported.php" method="post" class="form">
-		<div class="form-group">
+		<div class="form-group row">
 			<input type="hidden" name="forumId" value="{$forumId|escape}">
 			<input type="hidden" name="offset" value="{$offset|escape}">
 			<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">

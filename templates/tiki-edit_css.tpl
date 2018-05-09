@@ -6,7 +6,7 @@
 </div>
 <form method="post" action="tiki-edit_css.php" class="form">
 	{if $action eq "edit"}
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="theme" class="col-form-label">
 				{tr}Theme{/tr}
 			</label>
@@ -26,7 +26,7 @@
 				{/remarksbox}
 			{/if}
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<textarea data-syntax="css" data-codemirror="true" data-line-numbers="true" name="data" wrap="virtual" class="form-control" rows="24">{$data|escape}</textarea>
 		</div>
 	{else}

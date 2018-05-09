@@ -7,7 +7,7 @@
 {block name="content"}
 <form method="post" action="{service controller="tracker" action="remove_item"}">
 	{if $affectedCount}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label" for="replacement">{tr}Replacement{/tr}</label>
 			{object_selector _id=replacement _simplename=replacement type=trackeritem tracker_id=$trackerId}
 			<div class="form-text">

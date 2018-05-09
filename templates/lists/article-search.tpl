@@ -1,5 +1,5 @@
 {literal}
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="input-group">
 			{input _filter="content" _field="title,contents" type="text" placeholder="Search... " class="form-control clearfield"}
 			<span class="input-group-btn">

@@ -45,7 +45,7 @@
 						<input type="hidden" name="page" value="{$page|escape}" />
 						<input type="hidden" name="modcatid" value="{$modcatid}" />
 
-						<div class="form-group">
+						<div class="form-group row">
 							{if $multiple eq 'y'}
 								<select name="modcatchange[]" multiple="multiple" class="form-control">
 							{else}
@@ -73,7 +73,7 @@
 						</div>
 
 						{if $multiple eq 'y' and $add eq 'y'}
-							<div class="form-group">
+							<div class="form-group row">
 								<input type="submit" class="btn btn-primary btn-sm" name="categorize" value="{if isset($module_params.categorize)}{tr}{$module_params.categorize}{/tr}{else}{tr}Categorize{/tr}{/if}" />
 							</div>
 						{/if}

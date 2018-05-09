@@ -9,13 +9,13 @@
 		{tr}Your changes to conditions are not saved until you save the goal.{/tr}
 	{/remarksbox}
 	<form class="form-horizontal condition-form" method="post" action="{service controller=goal action=edit_condition}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-md-3">{tr}Label{/tr}</label>
 			<div class="col-md-9">
 				<input type="text" class="form-control" name="label" value="{$condition.label|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-md-3">{tr}Operator{/tr}</label>
 			<div class="col-md-9">
 				<label>
@@ -28,13 +28,13 @@
 				</label>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-md-3">{tr}Count{/tr}</label>
 			<div class="col-md-9">
 				<input type="number" class="form-control" name="count" value="{$condition.count|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-md-3">{tr}Metric{/tr}</label>
 			<div class="col-md-9">
 				<select name="metric" class="form-control">

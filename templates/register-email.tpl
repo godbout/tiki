@@ -4,7 +4,7 @@
 	{if $prefs.user_register_prettytracker_hide_mandatory neq 'y'}&nbsp;<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}
 {else}
 	{if $prefs.login_is_email ne 'y'}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-4 col-form-label" for="email">{tr}Email{/tr} {if $trackerEditFormId}<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}</label>
 			<div class="col-sm-8">
 				<input class="form-control" type="text" id="email" name="email" value="{if !empty($smarty.post.email)}{$smarty.post.email}{/if}">

@@ -55,19 +55,19 @@ var account='';
 			<input type="hidden" name="action" value="book">
 			<fieldset>
 				<legend>{tr}Post{/tr}</legend>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4">{tr}Booking Date{/tr} <span class="text-danger">*</span></label>
 					<div class="col-md-8">
 						{html_select_date prefix="stack_" time=$stackDate start_year="-10" end_year="+10" field_order=$prefs.display_field_order}
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4">{tr}Description{/tr}</label>
 					<div class="col-md-8">
 						<textarea class="form-control" name="stackDescription" id="stackDescription" rows="3">{$stackDescription}</textarea>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4">{tr}Amount{/tr} <span class="text-danger">*</span></label>
 					<div class="col-md-8">
 						<input name="totalAmount" id="totalAmount" type="number" class="form-control" value="{$totalAmount}" onchange="javascript:setAmount()">

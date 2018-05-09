@@ -104,7 +104,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 				{/foreach}
 			{/if}
 
-			<div class="form-group"{if empty($info.body)} style="display:none"{/if}>
+			<div class="form-group row"{if empty($info.body)} style="display:none"{/if}>
 				<label for="content" class="col-sm-3">{tr}Body{/tr}</label>
 				<div class="col-sm-9">
 					<textarea name="content" id="content" class="form-control" rows="12">{$bodyContent|escape}</textarea>

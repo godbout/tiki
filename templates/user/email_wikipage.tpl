@@ -6,7 +6,7 @@
 	{include file='access/include_items.tpl'}
 	<form method="post" id="confirm-action" class="confirm-action" action="{service controller=$confirmController action=$confirmAction}">
 		{include file='access/include_hidden.tpl'}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label">{tr}Email this wiki page{/tr}</label>
 			<div>
 				<input class="form-control" type="text" name="wikiTpl">
@@ -16,7 +16,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label">{tr}Bcc{/tr}</label>
 			<div>
 				<input class="form-control" type="text" name="bcc">

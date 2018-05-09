@@ -94,7 +94,7 @@
 			</div>
 		</div>
 		{if $prefs.feature_categories eq 'y'}
-			<div class="form-group" id="categ_list">
+			<div class="form-group row" id="categ_list">
 				<label class="control-label" for="langwatch_categ">{tr}Category{/tr}</label>
 
 				<div class="col-sm-9">
@@ -107,7 +107,7 @@
 			</div>
 		{/if}
 		{if $prefs.feature_multilingual eq 'y'}
-			<div class="form-group" id="lang_list">
+			<div class="form-group row" id="lang_list">
 				<label>{tr}Language{/tr}</label>
 
 				<div class="col-sm-9">
@@ -143,7 +143,7 @@
 {/if}
 	<h3>{tr}Watches{/tr}</h3>
 	<form class="form-horizontal margin-bottom-md" action="tiki-user_watches.php" method="post" id='formi'>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label" for="event">{tr}Show:{/tr}</label>
 
 			<div class="col-sm-9">

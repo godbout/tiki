@@ -72,7 +72,7 @@
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}Temporary User Accounts{/tr}</legend>
 				<div class="adminoptionbox preference clearfix advanced pref-fake all modified">
-					<div class="adminoption form-group">
+					<div class="adminoption form-group row">
 						<label class="col-sm-4 col-form-label">
 							{tr}Display more information here{/tr}
 						</label>

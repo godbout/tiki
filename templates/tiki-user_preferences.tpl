@@ -8,7 +8,7 @@
 	{include file='tiki-mytiki_bar.tpl'}
 {/if}
 {if $tiki_p_admin_users eq 'y'}
-	<div class="t_navbar btn-group form-group">
+	<div class="t_navbar btn-group form-group row">
 		{assign var=thisuser value=$userinfo.login}
 		{button href="tiki-assignuser.php?assign_user=$thisuser" _type="link" _text="{tr}Assign Group{/tr}"}
 		{button href="tiki-user_information.php?view_user=$thisuser" _type="link" _text="{tr}User Information{/tr}"}
@@ -20,7 +20,7 @@
 			<h2>{tr}Personal Information{/tr}</h2>
 			<form role="form" action="tiki-user_preferences.php" method="post" class="form-horizontal">
 				<input type="hidden" name="view_user" value="{$userwatch|escape}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="userIn">
 						{tr}User{/tr}
 					</label>
@@ -31,7 +31,7 @@
 						</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="realName">
 						{tr}Real Name{/tr}
 					</label>
@@ -40,7 +40,7 @@
 						{if $prefs.auth_ldap_nameattr eq '' || $prefs.auth_method ne 'ldap'}{else}disabled{/if}>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4">
 						{tr}Profile picture{/tr}
 					</label>
@@ -54,7 +54,7 @@
 					</div>
 				</div>
 				{if $prefs.feature_community_gender eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-4" for="gender">
 							{tr}Gender{/tr}
 						</label>
@@ -71,7 +71,7 @@
 						</div>
 					</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="country">
 						{tr}Country{/tr}
 					</label>
@@ -93,7 +93,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="location">
 						{tr}Location{/tr}
 					</label>
@@ -102,7 +102,7 @@
 					</div>
 					<input type="hidden" name="location" id="location" value="{$location|escape}">
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="homePage">
 						{tr}Homepage URL{/tr}
 					</label>
@@ -111,7 +111,7 @@
 					</div>
 				</div>
 				{if $prefs.feature_wiki eq 'y' and $prefs.feature_wiki_userpage eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-4">
 							{tr}Your Personal Wiki Page{/tr}
 						</label>
@@ -133,7 +133,7 @@
 					</div>
 				{/if}
 				{if $prefs.userTracker eq 'y' && $usertrackerId}
-					<div class="form-group">
+					<div class="form-group row">
 						{if $tiki_p_admin eq 'y' and !empty($userwatch) and $userwatch neq $user}
 							<label class="col-form-label col-md-4">{tr}User's personal tracker information{/tr}</label>
 							<div class="col-md-8">
@@ -159,7 +159,7 @@
 							value="{$customfields[ir].value}" size="{$customfields[ir].size}"></label>
 					{/if}
 				{/section}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="user_information">
 						{tr}User Information{/tr}
 					</label>
@@ -184,7 +184,7 @@
 			<legend>{tr}General settings{/tr}</legend>
 			<form role="form" action="tiki-user_preferences.php" method="post" class="form-horizontal">
 				<input type="hidden" name="view_user" value="{$userwatch|escape}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="email_isPublic">
 						{tr}Is email public?{/tr}
 					</label>
@@ -203,7 +203,7 @@
 						{/if}
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="mailCharset">
 						{tr}Email character set{/tr}
 					</label>
@@ -219,7 +219,7 @@
 					</div>
 				</div>
 				{if $prefs.change_theme eq 'y' && empty($group_theme)}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-4" for="mytheme">
 							{tr}Theme{/tr}
 						</label>
@@ -430,7 +430,7 @@
 				{/if}
 				{if $prefs.feature_tasks eq 'y' and $tiki_p_tasks eq 'y'}
 					<legend>{tr}User Tasks{/tr}</legend>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label col-md-4" for="tasks_maxRecords">
 							{tr}Tasks per page{/tr}
 						</label>
@@ -450,7 +450,7 @@
 				<legend>{tr}My Account{/tr}</legend>
 				<div class="clearfix">
 					{if $prefs.xmpp_feature eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-form-label col-md-4" for="xmpp_password">
 								{tr}XMPP account password{/tr}
 							</label>
@@ -536,7 +536,7 @@
 						</div>
 					</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 						<label class="col-form-label col-md-4" for="remember_closed_rboxes">
 							{tr}Keep closed remarksbox hidden{/tr}
 						</label>
@@ -574,7 +574,7 @@
 					{if $prefs.login_is_email eq 'y' and $userinfo.login neq 'admin'}
 						<input type="hidden" name="email" value="{$userinfo.email|escape}">
 					{else}
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-md-4 col-form-label" for="email">
 								{tr}Email address:{/tr}
 							</label>
@@ -585,7 +585,7 @@
 					{/if}
 					{if $prefs.auth_method neq 'cas' || ($prefs.cas_skip_admin eq 'y' && $user eq 'admin')}
 						{if $prefs.change_password neq 'n'}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-md-4 col-form-label" for="pass1">
 									{tr}New password:{/tr}
 								</label>
@@ -593,7 +593,7 @@
 									<input class="form-control" type="password" name="pass1" id="pass1">
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-md-4 col-form-label" for="pass2">
 									{tr}Confirm new password:{/tr}
 								</label>
@@ -603,7 +603,7 @@
 							</div>
 						{/if}
 						{if $tiki_p_admin ne 'y' or $userwatch eq $user}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-md-4 col-form-label" for="pass">
 									{tr}Current password (required):{/tr}
 								</label>

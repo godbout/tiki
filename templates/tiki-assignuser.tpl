@@ -3,7 +3,7 @@
 {assign var=escuser value=$assign_user|escape:url}
 {title}{tr _0=$assign_user}Assign User %0 to Groups{/tr}{/title}
 
-<div class="t_navbar btn-group form-group">
+<div class="t_navbar btn-group form-group row">
 	{if $tiki_p_admin eq 'y'} {* only full admins can manage groups, not tiki_p_admin_users *}
 		{button href="tiki-admingroups.php" class="btn btn-primary" _text="{tr}Admin groups{/tr}"}
 	{/if}
@@ -24,19 +24,19 @@
 
 <h2>{tr}User Information{/tr}</h2>
 	<form class="form-horizontal">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Login{/tr}</label>
 			<div class="col-sm-7">
 				{$user_info.login|escape}
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Email{/tr}</label>
 			<div class="col-sm-7">
 				{$user_info.email}
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Groups{/tr}</label>
 			<div class="col-sm-7">
 				{foreach from=$user_info.groups item=what key=grp name=groups}
@@ -51,7 +51,7 @@
 		</div>
 	</form>
 	<form method="post" action="tiki-assignuser.php{if $assign_user}?assign_user={$assign_user|escape:'url'}{/if}" class="form-horizontal">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Default Group{/tr}</label>
 			<div class="col-sm-6">
 				<select name="defaultgroup" class="form-control">

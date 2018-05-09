@@ -9,7 +9,7 @@
 		{tr}Your changes to rewards are not saved until you save the goal.{/tr}
 	{/remarksbox}
 	<form class="form-horizontal reward-form" method="post" action="{service controller=goal action=edit_reward}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-md-3">{tr}Type{/tr}</label>
 			<div class="col-md-9">
 				<select name="rewardType" class="form-control">

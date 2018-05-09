@@ -8,7 +8,7 @@
 {block name=content}
 <div class="nohighlight">
 	<form id="search-form" class="form-inline" method="get" action="tiki-searchindex.php">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="sr-only" for="filter~content">{tr}Search Query{/tr}</label>
 			<input class="form-control" type="search" name="filter~content" value="{$filter.content|escape}"/>
 

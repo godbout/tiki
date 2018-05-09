@@ -10,7 +10,7 @@
 <div class="toolbars-admin clearfix">
 	<form class="form-horizontal" name="toolbars" method="post" action="tiki-admin_toolbars.php" onsubmit="return saveRows()">
 		<div>
-			<div class="adminoptionbox form-group">
+			<div class="adminoptionbox form-group row">
 				<div class="adminoptionlabel">
 					<label for="section" class="control-label col-sm-4">
 						{tr}Section{/tr}
@@ -24,7 +24,7 @@
 				</div>
 				</div>
 			</div>
-			<div class="adminoptionbox form-group">
+			<div class="adminoptionbox form-group row">
 				<label for="comments" class="control-label col-sm-4">
 					{tr}Comments{/tr}
 				</label>
@@ -32,7 +32,7 @@
 					<input id="comments" name="comments" type="checkbox" onchange="toolbars_autoreload()" {if $comments eq 'on'}checked="checked" {/if}>
 				</div>
 			</div>
-			<div class="adminoptionbox form-group">
+			<div class="adminoptionbox form-group row">
 				<label for="view_mode" class="control-label col-sm-4">
 					{tr}View mode{/tr}
 				</label>
@@ -64,13 +64,13 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="autoreload" class="control-label col-sm-4">{tr}Auto Reloading{/tr}</label>
 				<div class="col-sm-8">
 					<input id="autoreload" name="autoreload" type="checkbox" {if $autoreload eq 'on'}checked="checked"{/if}>
 				</div>
 			</div>
-			<div class="adminoptionbox form-group">
+			<div class="adminoptionbox form-group row">
 				<div class="col-sm-offset-4 col-sm-8">
 					<input name="load" type="submit" class="btn btn-primary" value="{tr}Load{/tr}">
 					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">

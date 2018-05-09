@@ -6,7 +6,7 @@
 	$('#tagBox').tiki('autocomplete', 'tag', {multiple: true, multipleSeparator: " "} );
 {/jq}
 <form action="tiki-browse_freetags.php" method="get" class="freetagsearch form-horizontal" role="form">
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="col-sm-10">
 			<div class="input-group">
 				<span class="input-group-addon" id="basic-addon1">{icon name="tags"} {tr}Tags{/tr}</span>
@@ -126,7 +126,7 @@
 			</div>
 			<input type="hidden" name="old_type" value="{$type|escape}">
 			{if !empty($blogs)}
-				<div class="form-group">
+				<div class="form-group row">
 					<div id="blogs"{if $type ne 'blog post'} style="visibility:hidden"{/if}>
 						<select name="objectId" onchange="this.form.submit();" class="form-control">
 							<option value="">--{tr}All blogs{/tr}--</option>

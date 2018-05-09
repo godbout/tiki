@@ -186,20 +186,20 @@
 	<input type="hidden" name="view" value="{$view|escape}">
 	<input type="hidden" name="duration" value="60*60">
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Title{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="title" value="{$info.title|escape}" style="width:95%" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Start{/tr}</label>
 		<div class="col-sm-7">
 			{html_select_date time=$ev_pdate end_year="+4" field_order=$prefs.display_field_order} {tr}at{/tr}
 			{html_select_time minute_interval=5 time=$ev_pdate_h display_seconds=false use_24_hours=$use_24hr_clock}
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Duration{/tr}</label>
 		<div class="col-sm-2">
 			<select name="duration_hours" class="form-control">
@@ -218,7 +218,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Topic{/tr}</label>
 		<div class="col-sm-7">
 			<select name="topicId" class="form-control">
@@ -229,13 +229,13 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Description{/tr}</label>
 		<div class="col-sm-7">
 			<textarea name="description" rows="5" cols="80" style="width:95%" class="form-control">{$info.description|escape}</textarea>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">

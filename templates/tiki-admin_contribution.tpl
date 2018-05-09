@@ -6,13 +6,13 @@
 	<h2>{tr}Edit the contribution:{/tr} {$contribution.name|escape}</h2>
 	<form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" class="form-horizontal" role="form">
 		<input type="hidden" name="contributionId" value="{$contribution.contributionId}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr}</label>
 			<div class="col-sm-9">
 					<input type="text" name="name" class="form-control" id="name" {if $contribution.name} value="{$contribution.name|escape}"{/if}>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="description">{tr}Description{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" name="description" id="description" class="form-control" maxlength="250"{if $contribution.description} value="{$contribution.description|escape}"{/if}>
@@ -27,7 +27,7 @@
 <h2>{tr}Settings{/tr}</h2>
 <form action="tiki-admin_contribution.php?page=features" method="post" class="form-horizontal" role="form">
 
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="form-check">
 			<label class="col-sm-11 col-sm-offset-1" for=feature_contribution_mandatory">
 				<input type="checkbox" name="feature_contribution_mandatory" id="feature_contribution_mandatory" {if $prefs.feature_contribution_mandatory eq 'y'}checked="checked"{/if}>
@@ -35,7 +35,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="form-check">
 			<label class="col-sm-11 col-sm-offset-1" for="feature_contribution_mandatory_forum">
 				<input type="checkbox" name="feature_contribution_mandatory_forum" id="feature_contribution_mandatory_forum" {if $prefs.feature_contribution_mandatory_forum eq 'y'}checked="checked"{/if}>
@@ -43,7 +43,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="form-check">
 			<label class="col-sm-11 col-sm-offset-1" for="feature_contribution_mandatory_comment">
 				<input type="checkbox" name="feature_contribution_mandatory_comment" id="feature_contribution_mandatory_comment" {if $prefs.feature_contribution_mandatory_comment eq 'y'}checked="checked"{/if}>
@@ -51,7 +51,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="form-check">
 			<label class="col-sm-11 col-sm-offset-1" for="feature_contribution_mandatory_blog">
 				<input type="checkbox" name="feature_contribution_mandatory_blog" id="feature_contribution_mandatory_blog" {if $prefs.feature_contribution_mandatory_blog eq 'y'}checked="checked"{/if}>
@@ -59,7 +59,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="form-check">
 			<label class="col-sm-11 col-sm-offset-1" for="feature_contribution_display_in_comment">
 				<input type="checkbox" name="feature_contribution_display_in_comment" name="feature_contribution_display_in_comment" {if $prefs.feature_contribution_display_in_comment eq 'y'}checked="checked"{/if}>
@@ -67,7 +67,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="form-check">
 			<label class="col-sm-11 col-sm-offset-1" for="feature_contributor_wiki">
 			<input type="checkbox" name="feature_contributor_wiki" name="feature_contributor_wiki" {if $prefs.feature_contributor_wiki eq 'y'}checked="checked"{/if}>
@@ -84,13 +84,13 @@
 <h2>{tr}Create a new contribution{/tr}</h2>
 
 <form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" class="form-horizontal" role="form">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="new_contribution_name">{tr}Name{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" name="new_contribution_name" id="new_contribution_name" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="new_contribution_name">{tr}Description{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" name="description" class="form-control" maxlength="250">

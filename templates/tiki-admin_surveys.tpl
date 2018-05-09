@@ -2,7 +2,7 @@
 
 {title url='tiki-admin_surveys.php' help="Surveys"}{tr}Admin surveys{/tr}{/title}
 
-<div class="t_navbar btn-group form-group">
+<div class="t_navbar btn-group form-group row">
 	{button href="tiki-list_surveys.php" class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
 	{button href="tiki-survey_stats.php" class="btn btn-primary" _icon_name="chart" _text="{tr}Stats{/tr}"}
 	{button surveyId=0 _anchor='content_admin_surveys1-2' _auto_args="surveyId" class="btn btn-primary" _icon_name="create" _text="{tr}Create{/tr}"}
@@ -115,14 +115,14 @@
 		{/if}
 
 		<form action="tiki-admin_surveys.php" method="post" class="form-horizontal" role="form">
-			<div class="form-group">
+			<div class="form-group row">
 				<input type="hidden" name="surveyId" value="{$info.surveyId|escape}">
 				<label for="name" class="col-sm-2 col-form-label">{tr}Name{/tr}</label>
 				<div class="col-sm-10">
 					<input type="text" name="name" id="name" class="form-control" value="{$info.name|escape}">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="description" class="col-sm-2 col-form-label">{tr}Description{/tr}</label>
 				<div class="col-sm-10">
 					{textarea name="description" rows="6" id="description" class="form-control" _toolbars='y' _simple='y' comments='y'}{$info.description}{/textarea}
@@ -131,7 +131,7 @@
 			<div class="margin-bottom-md">
 				{include file='categorize.tpl' labelcol='2' inputcol='10'}
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="status" class="col-sm-2 col-form-label">{tr}Status{/tr}</label>
 				<div class="col-sm-10">
 					<select name="status" class="form-control">
@@ -140,7 +140,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-10 col-sm-offset-2">
 					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				</div>

@@ -1,7 +1,7 @@
 {* $Id$ *}
 {title help="Newsletters"}{tr}Admin newsletters{/tr}{/title}
 
-<div class="t_navbar btn-group form-group">
+<div class="t_navbar btn-group form-group row">
 	{button href="tiki-admin_newsletters.php?cookietab=2" _icon_name="create" _text="{tr}Create{/tr}"}
 	<a role="link" href="tiki-newsletters.php" class="btn btn-link" title="{tr}List{/tr}">{icon name="list"} {tr}List{/tr}</a>
 	<a role="link" href="tiki-send_newsletters.php" class="btn btn-link" title="{tr}Send{/tr}">{icon name="envelope"} {tr}Send{/tr}</a>
@@ -107,13 +107,13 @@
 		<form action="tiki-admin_newsletters.php" method="post" class="form-horizontal">
 			<input type="hidden" name="nlId" value="{$info.nlId|escape}">
 			<input type="hidden" name="author" value="{$user|escape}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-2 col-form-label"> {tr}Name:{/tr} </label>
 				<div class="col-md-10">
 						<input class="form-control" type="text" name="name" value="{$info.name|escape}">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-2 col-form-label" for="description">{tr}Description:{/tr}</label>
 				<div class="col-md-10">
 					<textarea class="form-control" name="description" id="description">{$info.description|escape}</textarea>
@@ -167,14 +167,14 @@
 					{tr}Do not send newsletter if clip is empty{/tr}
 				</label>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-5 col-form-label" for="articleClipRangeDays">
 					{tr}Clip articles published in the past number of days{/tr}</label>
 				<div class="col-md-4">
 					<input type="text" class="form-control" name="articleClipRangeDays" id="articleClipRangeDays" value="{$info.articleClipRangeDays|escape}">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-5 col-form-label" for="articleClipTypes">
 					{tr}Article types to clip{/tr}</label>
 				<div class="col-md-4">

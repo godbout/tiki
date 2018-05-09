@@ -14,7 +14,7 @@
 	{else}
 		<form class="age-validation form-horizontal" method="post" action="{service controller=user_conditions action=age_validation}">
 			<p>{tr _0=$prefs.conditions_minimum_age}You must be at least %0 years old to login into this site. Please provide your birthdate before proceed to login.{/tr}</p>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="birth_date" class="col-sm-3 col-form-label">
 					{tr}Birth date{/tr}
 				</label>

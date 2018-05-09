@@ -35,7 +35,7 @@
 	{if !isset($map_only) or $map_only ne 'y'}
 		{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager" value="{$filegals_manager|escape}">{/if}
 		{query _type='form_input' maxRecords='NULL' type='NULL' types='NULL' find='NULL' topic='NULL' lang='NULL' exact_match='NULL' categId='NULL' cat_categories='NULL' filegals_manager='NULL' save='NULL' offset=0 searchlist='NULL' searchmap='NULL'}
-		<div class="find-text form-group">
+		<div class="find-text form-group row">
 			<div class="col-xs-12">
 				<div class="input-group">
 					<span class="input-group-append">
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		{if !empty($types) and ( !isset($types_tag) or $types_tag eq 'select' )}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="control-label col-sm-4">
 					{tr}Article Type{/tr}
 				</label>
@@ -75,7 +75,7 @@
 			</div>
 		{/if}
 		{if !empty($topics)}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="control-label col-sm-4">
 					{tr}Article Topic{/tr}
 				</label>
@@ -92,7 +92,7 @@
 			</div>
 		{/if}
 		{if (isset($find_show_languages) && $find_show_languages eq 'y') and $prefs.feature_multilingual eq 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="control-label col-sm-4">
 					{tr}Language{/tr}
 				</label>
@@ -225,7 +225,7 @@
 		{/if}
 		{if !empty($find_durations)}
 			{foreach key=key item=duration from=$find_durations}
-				<div class="form-group">
+				<div class="form-group row">
 				<label class="find_duration control-label col-sm-6">
 					{tr}{$duration.label}{/tr}
 				</label>
@@ -267,7 +267,7 @@
 		{/if}
 	{/if}
 	{if isset($gmapbuttons) && $gmapbuttons}
-	<div class="find-map form-group">
+	<div class="find-map form-group row">
 		{if isset($mapview) && $mapview}
 			<input class="btn btn-primary btn-sm" type="submit" name="searchlist" value="{tr}Hide Map{/tr}">
 			<input type="hidden" name="mapview" value="y">

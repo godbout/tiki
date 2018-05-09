@@ -23,7 +23,7 @@
 
 <div id="feedback" style="height: 1.5em; margin-left: .2em"><span></span></div>
 
-<div class="t_navbar btn-group form-group">
+<div class="t_navbar btn-group form-group row">
 	{if $page}
 		{button href="tiki-index.php" page="$page" class="btn btn-primary" _text="{tr}Back to Page{/tr}"}
 	{/if}

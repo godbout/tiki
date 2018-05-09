@@ -1,6 +1,6 @@
 {title url="tiki-admin_poll_options.php?pollId=$pollId"}{tr}Admin Polls:{/tr} {$menu_info.title}{/title}
 
-<div class="t_navbar btn-group form-group">
+<div class="t_navbar btn-group form-group row">
 	{button href="tiki-admin_polls.php" class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
 	{button href="tiki-admin_polls.php?pollId=$pollId" class="btn btn-primary" _icon_name="edit" _text="{tr}Edit{/tr}"}
 </div>
@@ -22,19 +22,19 @@
 	<input type="hidden" name="optionId" value="{$optionId|escape}">
 	<input type="hidden" name="pollId" value="{$pollId|escape}">
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Option{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="title" value="{$title|escape}" maxlength="40" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="position" value="{$position|escape}" maxlength="4" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">

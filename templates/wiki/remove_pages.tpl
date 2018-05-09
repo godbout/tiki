@@ -41,7 +41,7 @@
 						</a>
 					</label>
 			</div>
-			<div id="div_redirect" class="form-group" style="display:none;">
+			<div id="div_redirect" class="form-group row" style="display:none;">
 				<div class="col-sm-2">
 					<label for="destpage" class="col-sm-2">{tr}Redirect to:{/tr}</label>
 				</div>

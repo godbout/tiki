@@ -9,19 +9,19 @@
 <form action="tiki-notepad_write.php" method="post" class="form-horizontal">
 	<input type="hidden" name="parse_mode" value="{$info.parse_mode|escape}">
 	<input type="hidden" name="noteId" value="{$noteId|escape}">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="name" size="40" value="{$info.name|escape}" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Data{/tr}</label>
 		<div class="col-sm-7">
 			{textarea rows="20" cols="80" name="data" _simple="y" class="form-control"}{$info.data}{/textarea}
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">

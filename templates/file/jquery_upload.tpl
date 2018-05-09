@@ -1,7 +1,7 @@
 {* $Id$ *}
 {* Used by smarty_function_filegal_uploader() when $prefs.file_galleries_use_jquery_upload is enabled *}
 {* The fileinput-button span is used to style the file input field as button *}
-<div class="form-group">
+<div class="form-group row">
 	<div class="col-md-12">
 		<div class="well fileupload margin-bottom-none">
 			<h3 class="text-center">{icon name="cloud-upload"} {tr}Drop files or {/tr}
@@ -14,10 +14,10 @@
 		</div>
 	</div>
 </div>
-<div class="form-group">
+<div class="form-group row">
 	<div id="files" class="files text-center col-md-12"></div>
 </div>
-<div class="form-group">
+<div class="form-group row">
 	<label for="autoupload" class="col-md-8 col-md-offset-4">{* auto-upload user pref *}
 		<input type="checkbox" id="autoupload" name="autoupload"{if $prefs.filegals_autoupload eq 'y'} checked="checked"{/if}>
 		{tr}Automatic upload{/tr}

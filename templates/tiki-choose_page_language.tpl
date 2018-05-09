@@ -12,7 +12,7 @@
 	<form method="post" action="tiki-editpage.php?page={$page|escape:'url'}" id='editpageform' name='editpageform'>
 		{* Repeat all arguments from the page creation request *}
 		{query _type='form_input' _keepall='y' need_lang='n'}
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-6 input-group">
 				<select name="lang" class="form-control">
 					<option value="">{tr}Unknown{/tr}</option>

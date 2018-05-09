@@ -14,19 +14,19 @@
 
 {block name="content"}
 	<form class="form-horizontal" method="post" action="{service controller=goal action=create}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="name" class="col-form-label col-md-3">{tr}Name{/tr}</label>
 			<div class="col-md-9">
 				<input type="text" name="name" class="form-control" value="{$name|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="description" class="col-form-label col-md-3">{tr}Description{/tr}</label>
 			<div class="col-md-9">
 				<textarea name="description" class="form-control">{$description|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-md-offset-3 col-md-9">
 				<input type="submit" class="btn btn-secondary" value="{tr}Create{/tr}">
 				<a class="btn btn-link" href="{service controller=goal action=admin}">{tr}Cancel{/tr}</a>

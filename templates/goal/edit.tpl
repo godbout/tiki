@@ -17,7 +17,7 @@
 	<form class="form-horizontal" method="post" action="{service controller=goal action=edit goalId=$goal.goalId}">
 		{tabset}
 			{tab name="{tr}General{/tr}"}
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="checkbox col-md-offset-3">
 						<label>
 							<input type="checkbox" name="enabled" value="1" {if $goal.enabled}checked{/if}>
@@ -25,13 +25,13 @@
 						</label>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="name" class="col-form-label col-md-3">{tr}Name{/tr}</label>
 					<div class="col-md-9">
 						<input type="text" name="name" class="form-control" value="{$goal.name|escape}">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="description" class="col-form-label col-md-3">{tr}Description{/tr}</label>
 					<div class="col-md-9">
 						<textarea name="description" class="form-control">{$goal.description|escape}</textarea>
@@ -39,7 +39,7 @@
 				</div>
 			{/tab}
 			{tab name="{tr}Eligibility{/tr}"}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Goal Attribution{/tr}</label>
 					<div class="col-md-9">
 						<label>
@@ -52,7 +52,7 @@
 						</label>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="eligible" class="col-form-label col-md-3">{tr}Groups{/tr}</label>
 					<div class="col-md-9">
 						<select name="eligible[]" class="form-control" multiple>
@@ -64,7 +64,7 @@
 				</div>
 			{/tab}
 			{tab name="{tr}Conditions{/tr}"}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Range Type{/tr}</label>
 					<div class="col-md-9">
 						<label>
@@ -77,7 +77,7 @@
 						</label>
 					</div>
 				</div>
-				<div class="form-group" id="date-span">
+				<div class="form-group row" id="date-span">
 					<label class="col-form-label col-md-3" for="daySpan">{tr}Time span{/tr}</label>
 					<div class="col-md-9">
 						<input class="form-control" name="daySpan" type="number" value="{$goal.daySpan|escape}">
@@ -86,13 +86,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group" id="date-from">
+				<div class="form-group row" id="date-from">
 					<label class="col-form-label col-md-3" for="from">{tr}From{/tr}</label>
 					<div class="col-md-9">
 						<input class="form-control" name="from" type="datetime" value="{$goal.from|escape}" placeholder="{tr}YYYY-MM-DD HH:MM:SS{/tr}">
 					</div>
 				</div>
-				<div class="form-group" id="date-to">
+				<div class="form-group row" id="date-to">
 					<label class="col-form-label col-md-3" for="to">{tr}To{/tr}</label>
 					<div class="col-md-9">
 						<input class="form-control" name="to" type="datetime" value="{$goal.to|escape}" placeholder="{tr}YYYY-MM-DD HH:MM:SS{/tr}">
@@ -211,7 +211,7 @@
 				}
 			});
 		{/jq}
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-md-offset-3 col-md-9">
 				<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}">
 				<a href="{service controller=goal action=admin}" class="btn btn-link">{tr}Cancel{/tr}</a>

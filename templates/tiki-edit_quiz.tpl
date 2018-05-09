@@ -90,7 +90,7 @@
 	{/if}
 		<form action="tiki-edit_quiz.php" class="form-horizontal" method="post">
 			<input type="hidden" name="quizId" value="{$quizId|escape}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-2 control-label" for="quiz-name">
 					{tr}Name{/tr}
 				</label>
@@ -98,7 +98,7 @@
 					<input type="text" class="form-control" name="name" id="quiz-name" value="{$name|escape}">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-2 control-label" for="quiz-desc">
 					{tr}Description{/tr}
 				</label>
@@ -107,7 +107,7 @@
 				</div>
 			</div>
 			{include file='categorize.tpl'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-2 control-label">
 					{tr}Publish Date{/tr}
 				</label>
@@ -122,7 +122,7 @@
 					{$siteTimeZone}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="control-label col-md-2">
 					{tr}Expiration Date{/tr}
 				</label>
@@ -181,7 +181,7 @@
 					{tr}Quiz is time-limited{/tr}
 				</label>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="control-label col-md-2" for="quiz-maxtime">
 					{tr}Maximum time{/tr}
 				</label>
@@ -194,7 +194,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-2 control-label" for="quiz-passingperct">
 					{tr}Passing Percentage{/tr}
 				</label>

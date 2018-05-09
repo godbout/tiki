@@ -1,7 +1,7 @@
 {* $Id$ *}
 {* include file for module edit form - to be called by ajax *}
 
-<div class="module_selector form-group">
+<div class="module_selector form-group row">
 	<label for="assign_name">{tr}Module Name{/tr}</label>
 	<select id="assign_name" name="assign_name" class="form-control">
 		<option value=""></option>
@@ -25,7 +25,7 @@
 		{else}
 		{/if}
 		<fieldset id="param_section_basic">
-			<div class="clearfix form-group">
+			<div class="clearfix form-group row">
 				<label for="assign_position">{tr}Position{/tr}</label>
 				<select id="assign_position" name="assign_position" class="form-control">
 					{foreach from=$module_zone_list key=code item=zone}
@@ -34,7 +34,7 @@
 				</select>
 			</div>
 
-			<div class="clearfix form-group">
+			<div class="clearfix form-group row">
 				<label for="assign_order">{tr}Order{/tr}</label>
 				<select id="assign_order" name="assign_order" class="form-control">
 					{section name=ix loop=$orders}
@@ -43,12 +43,12 @@
 				</select>
 			</div>
 
-			<div class="clearfix form-group">
+			<div class="clearfix form-group row">
 				<label for="assign_cache">{tr}Cache Time{/tr} ({tr}secs{/tr})</label>
 				<input type="text" id="assign_cache" name="assign_cache" class="form-control" value="{$assign_cache|escape}">
 			</div>
 			{if !isset($assign_info.type) or $assign_info.type neq 'function'}
-				<div class="clearfix form-group">
+				<div class="clearfix form-group row">
 					<label for="assign_rows">{tr}Rows{/tr}</label>
 					<input type="text" id="assign_rows" name="assign_rows" value="{$assign_rows|escape}" class="form-control">
 				</div>

@@ -86,7 +86,7 @@
 			<br>
 			<fieldset>
 				<legend>{tr}Remove unused images{/tr}</legend>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-4">
 						{tr}Remove unused images in the system gallery{/tr}
 					</label>
@@ -114,7 +114,7 @@
 			<input type="hidden" name="mvimg" value="{$value}">
 			<fieldset>
 				<legend>{tr}Move images{/tr}</legend>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-4">{$label}</label>
 					<div class="col-sm-8">
 						<select name="move_gallery" class="form-control">
@@ -133,7 +133,7 @@
 		</form>
 			{* Don't see a function that does this
 						{if $prefs.gal_use_db eq 'n'}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-form-label col-sm-4">
 									{tr}Move images from old filesystem store to new directory{/tr}
 								</label>
@@ -147,7 +147,7 @@
 							</div>
 						{/if}
 						{if isset($movedimgs) and $movedimgs}
-							<div class="form-group">
+							<div class="form-group row">
 								<div class="col-sm-offset-4 col-am-8">
 									<td colspan="3">{tr}Moved{/tr} {$movedimgs} {tr}Images{/tr}</td>
 								</div>

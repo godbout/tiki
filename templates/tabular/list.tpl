@@ -26,14 +26,14 @@
 {if $filters.primary.usable}
 	<form class="form-horizontal" method="get" action="{service controller=tabular action=list}">
 		{foreach $filters.primary.controls as $filter}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="{$filter.id|escape}">{$filter.label|escape}</label>
 				<div class="col-sm-9">
 					{$filter.control}
 				</div>
 			</div>
 		{/foreach}
-		<div class="submit form-group">
+		<div class="submit form-group row">
 			<div class="hidden">
 				<input type="hidden" name="tabularId" value="{$tabularId|escape}">
 				{* Include default filters to preserve them *}
@@ -81,7 +81,7 @@
 		<div class="col-md-3">
 			<form method="get" action="{service controller=tabular action=list}">
 				{foreach $filters.side.controls as $filter}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-form-label" for="{$filter.id|escape}">{$filter.label|escape}</label>
 						{$filter.control}
 					</div>

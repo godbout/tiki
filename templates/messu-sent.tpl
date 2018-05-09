@@ -17,7 +17,7 @@
 
 
 <form class="form-inline margin-bottom-md" action="messu-sent.php" method="get">
-	<div class="form-group">
+	<div class="form-group row">
 	<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
 	<select name="flags" id="mess-mailmessages" class="form-control">
 		<option value="isReplied_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Replied{/tr}</option>
@@ -25,7 +25,7 @@
 		<option value="" {if $flag eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
 	</select>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 	<label for="mess-mailprio">{tr}Priority:{/tr}</label>
 	<select name="priority" id="mess-mailprio" class="form-control">
 		<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
@@ -36,7 +36,7 @@
 		<option value="5" {if $priority eq 5}selected="selected"{/if}>{tr}5{/tr}</option>
 	</select>
 		</div>
-	<div class="form-group">
+	<div class="form-group row">
 	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
 	<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control">
 		</div>
@@ -45,7 +45,7 @@
 
 <form action="messu-sent.php" method="post" name="form_messu_sent">
 	{ticket}
-	<div class="form-group">
+	<div class="form-group row">
 	<input type="hidden" name="offset" value="{$offset|escape}">
 	<input type="hidden" name="find" value="{$find|escape}">
 	<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">

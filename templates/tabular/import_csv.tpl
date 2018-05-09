@@ -5,7 +5,7 @@
 {/block}
 
 {block name="navigation"}
-	<div class="form-group">
+	<div class="form-group row">
 		{permission name=admin_trackers}
 			<a class="btn btn-primary" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
 			<a class="btn btn-primary" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
@@ -20,7 +20,7 @@
 		{/remarksbox}
 	{else}
 		<form class="no-ajax" method="post" action="{service controller=tabular action=import_csv tabularId=$tabularId}" enctype="multipart/form-data">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label">{tr}File{/tr}</label>
 				<input type="file" name="file" accept="text/csv">
 			</div>

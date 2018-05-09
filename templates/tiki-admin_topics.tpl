@@ -8,20 +8,20 @@
 </div>
 <form enctype="multipart/form-data" action="tiki-admin_topics.php" method="post" class="form-horizontal" role="form">
 	<h2>{tr}Add topic{/tr}</h2>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-2 col-form-label" for="name">{tr}Name{/tr}</label>
 		<div class="col-sm-10">
 			<input type="text" name="name" id="name" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-2 col-form-label" for="image">{tr}Image{/tr}</label>
 		<div class="col-sm-10">
 			<input type="hidden" name="MAX_FILE_SIZE" value="1000000">
 			<input class="form-control" name="userfile1" type="file">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-2 col-form-label" for="notificationemail">{tr}Notification Email{/tr}</label>
 		<div class="col-sm-10">
 			<div class="well well-sm">
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="col-sm-10 col-sm-offset-2">
 			<input type="submit" class="btn btn-secondary btn-sm" name="addtopic" value="{tr}Add{/tr}">
 		</div>

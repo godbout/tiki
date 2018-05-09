@@ -8,30 +8,30 @@
 {accordion}
 	{accordion_group title="{tr}Export Tracker Items{/tr}"}
 	<form class="simple no-ajax" action="{service controller=tracker action=export_items trackerId=$trackerId filterfield=$filterfield filtervalue=$filtervalue}" method="post">
-		<div class="form-group">
+		<div class="form-group row">
 			<label>{tr}Filename{/tr}</label>
 			<input type="text" value="Tracker_{$trackerId|escape}.csv" disabled="disabled" class="form-control">
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="encoding">{tr}Charset encoding{/tr}</label>
 			<select name="encoding" class="form-control">
 				<option value="UTF-8" selected="selected">{tr}UTF-8{/tr}</option>
 				<option value="ISO-8859-1">{tr}ISO-8859-1 Latin{/tr}</option>
 			</select>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="separator">{tr}Separator{/tr}</label>
 			<input type="text" name="separator" value="," size="2" class="form-control">
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="delimitorL">{tr}Delimitor (left){/tr}</label>
 			<input type="text" name="delimitorL" value="&quot;" size="2" class="form-control">
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="delimitorR">{tr}Delimitor (right){/tr}</label>
 			<input type="text" name="delimitorR" value="&quot;" size="2" class="form-control">
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="CR">{tr}Carriage return inside field value{/tr}</label>
 			<input type="text" name="CR" value="%%%" size="4" class="form-control">
 		</div>
@@ -97,11 +97,11 @@
 				</div>
 			{/foreach}
 		</fieldset>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="recordsMax">{tr}Number of records{/tr}</label>
 			<input type="number" name="recordsMax" value="{$recordsMax|escape}" class="form-control">
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="recordsOffset">{tr}First record{/tr}</label>
 			<input type="number" name="recordsOffset" value="1" class="form-control">
 		</div>
@@ -124,7 +124,7 @@
 	{if isset($export)}
 	{accordion_group title="{tr}Structure{/tr}"}
 	<form class="simple" action="" method="post">
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="export">{tr}Tracker Export{/tr}</label>
 			<textarea name="export" id="export" class="form-control" rows="20">{$export|escape}</textarea>
 		</div>

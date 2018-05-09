@@ -24,7 +24,7 @@
 			{$msg}
 		{/remarksbox}
 	{/if}
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="col-sm-10">
 			<label for="newpage" class="col-sm-2 col-form-label">{tr}New name{/tr}</label>
 			<div class="col-sm-10">

@@ -181,7 +181,7 @@
 	{/if}
 
 	{if $page_bar|trim neq ''}
-		<div class="form-group" id="page-bar">
+		<div class="form-group row" id="page-bar">
 			<div class="btn-bar">
 				{$page_bar}
 			</div>

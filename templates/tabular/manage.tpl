@@ -5,7 +5,7 @@
 {/block}
 
 {block name="navigation"}
-	<div class="form-group">
+	<div class="form-group row">
 		{permission name=admin_trackers}
 			<a class="btn btn-primary" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
 		{/permission}

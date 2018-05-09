@@ -134,25 +134,25 @@
 		{/if}
 		<form action="tiki-admin_rssmodules.php" method="post" class="form-horizontal">
 			<input type="hidden" name="rssId" value="{$rssId|escape}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="name" class="col-form-label col-sm-3">{tr}Name{/tr}</label>
 				<div class="col-sm-9">
 					<input type="text" name="name" value="{$name|escape}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="url" class="col-form-label col-sm-3">{tr}URL{/tr}</label>
 				<div class="col-sm-9">
 					<input type="url" name="url" value="{$url|escape}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="description" class="col-form-label col-sm-3">{tr}Description{/tr}</label>
 				<div class="col-sm-9">
 					<textarea name="description" rows="4" class="form-control">{$description|escape}</textarea>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="refresh" class="col-form-label col-sm-3">{tr}Refresh rate{/tr}</label>
 				<div class="col-sm-9">
 					<select class="form-control" name="refresh">
@@ -162,7 +162,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-9 col-sm-offset-3">
 					<div class="form-check">
 						<label>
@@ -172,7 +172,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-9 col-sm-offset-3">
 					<div class="form-check">
 						<label>
@@ -182,7 +182,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-9 col-sm-offset-3">
 					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				</div>

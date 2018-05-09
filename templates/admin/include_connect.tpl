@@ -67,7 +67,7 @@
 				{/remarksbox}
 				{preference name="connect_feature"}
 				<div class="adminoptionboxchild" id="connect_feature_childcontainer">
-					<div class="form-group">
+					<div class="form-group row">
 						<div class="col-sm-offset-4 col-sm-8">
 							{button _script="#" class="btn btn-primary timeout" _text="{tr}Send Info{/tr}" _title="{tr}Send the data{/tr}" _id="connect_send_btn"}
 							{button _script="#" class="btn btn-primary timeout" _text="{tr}Preview info{/tr}" _title="{tr}See what is going to be sent{/tr}" _id="connect_list_btn"}
@@ -83,7 +83,7 @@
 						{preference name="connect_site_url"}
 						{preference name="connect_site_keywords"}
 						{preference name="connect_site_location"}
-						<div class="form-group">
+						<div class="form-group row">
 							<div class="col-sm-offset-4 col-sm-8">
 								{$headerlib->add_map()}
 								<div class="map-container" style="height:250px;width:400px;" data-geo-center="{defaultmapcenter}"
@@ -165,7 +165,7 @@
 			<fieldset>
 				<legend>{tr}Jitsi{/tr}{help url="Jitsi"}</legend>
 
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-4" for="jitsi-url">
 						{tr}Provision URL{/tr}
 					</label>

@@ -12,7 +12,7 @@
 		{/remarksbox}
 	{else}
 		<form method="post" action="{service controller=search_stored action=delete}">
-			<div class="form-group">{tr _0=$label}Do you really want to remove the %0 saved search?{/tr}</div>
+			<div class="form-group row">{tr _0=$label}Do you really want to remove the %0 saved search?{/tr}</div>
 			<div class="form-group submit">
 				<input type="hidden" name="queryId" value="{$queryId|escape}"/>
 				<input class="btn btn-danger" type="submit" value="{tr}Delete{/tr}"/>

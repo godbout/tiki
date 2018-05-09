@@ -13,7 +13,7 @@
 			{else}
 				<fieldset>
 					<legend>{tr}Date{/tr}</legend>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="">{tr}Start{/tr}</label>
 
 						<div class="col-sm-8">
@@ -22,7 +22,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="">{tr}End{/tr}</label>
 
 						<div class="col-sm-8">
@@ -35,7 +35,7 @@
 				<fieldset>
 					<legend>{tr}Users and Groups{/tr}</legend>
 					{if $tiki_p_list_users eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-sm-2 col-form-label" for="selectedUsers">{tr}User{/tr}</label>
 
 							<div class="col-sm-6">
@@ -56,7 +56,7 @@
 					{/if}
 
 					{if $groups|@count >= 1}
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-sm-2 col-form-label" for="selectedGroups">{tr}Group{/tr}</label>
 
 							<div class="col-sm-6">
@@ -75,7 +75,7 @@
 				</fieldset>
 				<fieldset>
 					<legend>{tr}Category{/tr}</legend>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="categId">{tr}Category{/tr}</label>
 
 						<div class="col-sm-6">
@@ -122,7 +122,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="">{tr}Search{/tr}</label>
 
 						<div class="col-sm-4">
@@ -131,7 +131,7 @@
 					</div>
 
 					{if $prefs.feature_contribution eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<input type="submit" class="btn btn-primary btn-sm" name="graph"
 								value="{tr}Graph Contributions{/tr}">
 							{if $prefs.feature_jpgraph eq 'y'}
@@ -765,7 +765,7 @@
 			<fieldset>
 				<legend>{tr}Filter{/tr}</legend>
 				<div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="action_log_type">{tr}Type{/tr}</label>
 						<select id="action_log_type" name="action_log_type" class="form-control">
 							<option value="" {if empty($action_log_type)} selected="selected" {/if}>{tr}All{/tr}</option>
@@ -774,7 +774,7 @@
 							{/foreach}
 						</select>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="action_log_action">{tr}Action{/tr}</label>
 						<select id="action_log_action" name="action_log_action" class="form-control">
 							<option value="" {if empty($action_log_action)} selected="selected" {/if}>{tr}All{/tr}</option>
@@ -794,12 +794,12 @@
 			</fieldset>
 			<br class="clearfix"/>
 
-			<div class="form-group" style="display:block;">
+			<div class="form-group row" style="display:block;">
 				<div class="col-sm-1 col-sm-offset-11">
 					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}">
 				</div>
 			</div>
-			<div class="form-group" style="display:block;">
+			<div class="form-group row" style="display:block;">
 				{*<div class="col-sm-12">*}
 				<table class="table">
 					<thead>
@@ -835,7 +835,7 @@
 				</table>
 				{*</div>*}
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-1 col-sm-offset-11">
 					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}">
 				</div>

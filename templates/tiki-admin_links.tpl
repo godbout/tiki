@@ -74,7 +74,7 @@
 	<a href="tiki-admin_links.php">{tr}Create new Featured Link{/tr}</a>
 {/if}
 <form action="tiki-admin_links.php" method="post" class="form-horizontal">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">URL</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			{if $editurl eq 'n'}
@@ -86,13 +86,13 @@
 			{/if}
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Title{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<input type="text" name="title" value="{$title|escape}" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<input type="text" size="3" name="position" value="{$position|escape}" class="form-control">
@@ -101,7 +101,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Link type{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<select name="type" class="form-control">
@@ -111,7 +111,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">

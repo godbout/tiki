@@ -1,14 +1,14 @@
 {title}{tr}Rankings{/tr}{/title}
-<div class="form-group">
+<div class="form-group row">
 	<form action="{$rpage}" method="post" class="form-inline" role="form">
-		<div class="form-group">
+		<div class="form-group row">
 			<select name="which" class="form-control">
 				{section name=ix loop=$allrankings}
 					<option value="{$allrankings[ix].value|escape}" {if $which eq $allrankings[ix].value}selected="selected"{/if}>{$allrankings[ix].name}</option>
 				{/section}
 			</select>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<select name="limit" class="form-control">
 				<option value="10" {if $limit eq 10}selected="selected"{/if}>{tr}Top 10{/tr}</option>
 				<option value="20" {if $limit eq 20}selected="selected"{/if}>{tr}Top 20{/tr}</option>

@@ -88,7 +88,7 @@
 			<fieldset>
 				<legend>{$config.name|escape} <small>(ID: {$config.ratingConfigId|escape}, Search Field: <em>adv_rating_{$config.ratingConfigId|escape}</em>)</small></legend>
 				<input type="hidden" name="config" value="{$config.ratingConfigId|escape}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-4" for="rating_name_{$config.ratingConfigId|escape}">
 						{tr}Name{/tr}
 					</label>
@@ -96,7 +96,7 @@
 						<input type="text" class="form-control" name="name" value="{$config.name|escape}" id="rating_name_{$config.ratingConfigId|escape}">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-4" for="rating_expiry_{$config.ratingConfigId|escape}">
 						{tr}Cache duration{/tr}
 					</label>
@@ -107,7 +107,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-4" for="formula">
 						{tr}Formula{/tr}
 					</label>

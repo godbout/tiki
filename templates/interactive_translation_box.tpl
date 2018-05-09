@@ -22,7 +22,7 @@
 						{tr}Interactive Translation{/tr}
 					</h4>
 				</div>
-				<div class="modal-body form-group" id="intertrans-table">
+				<div class="modal-body form-group row" id="intertrans-table">
 					<table class="table table-condensed table-hover">
 						<thead>
 							<tr>

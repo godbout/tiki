@@ -70,7 +70,7 @@
 			<h3>{tr}Parameters{/tr}</h3>
 			{if $params|@count}
 				{foreach from=$params key=name item=value}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="params[{$name|escape}]">{$name|escape}</label>
 						<div class="col-sm-8">
 							<input type="text" name="params[{$name|escape}]" id="params[{$name|escape}]" value="{$value|escape}" class="form-control">
@@ -81,7 +81,7 @@
 				<div class="col-sm-8 col-sm-offset-4">{tr _0=$storedName|escape}%0 requires no parameter.{/tr}</div>
 			{/if}
 			<div class="col-sm-8 col-sm-offset-4">
-				<div class="form-group">
+				<div class="form-group row">
 					<input type="submit" class="btn btn-primary btn-sm col-sm-2" name="test" value="{tr}Test Input{/tr}">
 					<label class="col-sm-10"> <input type="checkbox" checked="checked" name="nocache">
 						{tr}Bypass cache{/tr}

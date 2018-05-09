@@ -12,7 +12,7 @@
 		{tabset name="list_file_gallery"}
 			{tab name="{tr}Properties{/tr}"}
 				<h2>{tr}Properties{/tr}</h2><br>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="name" class="col-sm-4 control-label">{tr}Name{/tr}</label>
 					<div class="col-sm-8">
 						<p class="form-control-plaintext">
@@ -27,7 +27,7 @@
 					</div>
 				</div>
 				{if $prefs.feature_file_galleries_templates eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="fgal_template" class="col-sm-4 control-label">{tr}Template{/tr}</label>
 						<div class="col-sm-8">
 							<select name="fgal_template" id="fgal_template" class="form-control">
@@ -55,7 +55,7 @@ if ($(this).val() != '') {
 						</div>
 					</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="fgal_type" class="col-sm-4 control-label">{tr}Type{/tr}</label>
 					<div class="col-sm-8">
 						<p class="form-control-plaintext">
@@ -78,20 +78,20 @@ if ($(this).val() != '') {
 						</p>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="description" class="col-sm-4 control-label">{tr}Description{/tr}</label>
 					<div class="col-sm-8">
 						<textarea rows="3" id="description" name="description" class="form-control">{$gal_info.description|escape}</textarea>
 						<span class="form-text">{tr}Required for podcasts{/tr}.</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="visible" class="col-sm-4 control-label">{tr}Gallery is visible to non-admin users{/tr}</label>
 					<div class="col-sm-8">
 						<input type="checkbox" id="visible" name="visible" {if $gal_info.visible eq 'y'}checked="checked"{/if}>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="public" class="col-sm-4 control-label">{tr}Gallery is unlocked{/tr}</label>
 					<div class="col-sm-8">
 						<input type="checkbox" id="public" name="public" {if isset($gal_info.public) and $gal_info.public eq 'y'}checked="checked"{/if}>
@@ -99,19 +99,19 @@ if ($(this).val() != '') {
 					</div>
 				</div>
 				{if $tiki_p_admin_file_galleries eq 'y' or $gal_info.type neq 'user'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="backlinkPerms" class="col-sm-4 control-label">{tr}Respect permissions for backlinks to view a file{/tr}</label>
 						<div class="col-sm-8">
 							<input type="checkbox" id="backlinkPerms" name="backlinkPerms" {if $gal_info.backlinkPerms eq 'y'}checked="checked"{/if}>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="lockable" class="col-sm-4 control-label">{tr}Files can be locked at download{/tr}.</label>
 						<div class="col-sm-8">
 							<input type="checkbox" id="lockable" name="lockable" {if $gal_info.lockable eq 'y'}checked="checked"{/if}>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="archives" class="col-sm-4 text-right">{tr}Maximum number of archives for each file{/tr}</label>
 						<div class="col-sm-8">
 							<input type="text" id="archives" name="archives" value="{$gal_info.archives|escape}" class="form-control">
@@ -120,7 +120,7 @@ if ($(this).val() != '') {
 							{if $galleryId neq $treeRootId}
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="parentId" class="col-sm-4 control-label">{tr}Parent gallery{/tr}</label>
 						<div class="col-sm-8">
 							<select name="parentId" id="parentId" class="form-control">
@@ -139,7 +139,7 @@ if ($(this).val() != '') {
 					</div>
 				{/if}
 				{if $tiki_p_admin eq 'y' or $tiki_p_admin_file_galleries eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="user" class="col-sm-4 text-right">{tr}Owner of the gallery{/tr}</label>
 						<div class="col-sm-8">
 							{user_selector user=$creator id='user'}
@@ -147,7 +147,7 @@ if ($(this).val() != '') {
 					</div>
 
 					{if $prefs.fgal_quota_per_fgal eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="quota" class="col-sm-4 control-label">{tr}Quota{/tr}</label>
 							<div class="col-sm-8">
 								<div class="input-group col-sm-4">
@@ -169,7 +169,7 @@ if ($(this).val() != '') {
 					{/if}
 
 					{if $prefs.feature_groupalert eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="groupforAlert" class="col-sm-4 control-label">{tr}Group of users alerted when file gallery is modified{/tr}</label>
 							<div class="col-sm-8">
 								<select id="groupforAlert" name="groupforAlert" class="form-control">
@@ -180,7 +180,7 @@ if ($(this).val() != '') {
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="showeachuser" class="col-sm-4 control-label">{tr}Allows each user to be selected for small groups{/tr}</label>
 							<div class="col-sm-8">
 								<input type="checkbox" name="showeachuser" id="showeachuser" {if $showeachuser eq 'y'}checked="checked"{/if}>
@@ -188,7 +188,7 @@ if ($(this).val() != '') {
 						</div>
 					{/if}
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="image_max_size_x" class="col-sm-4 text-right">{tr}Maximum width of images in gallery{/tr}</label>
 					<div class="col-sm-8">
 						<div class="input-group col-sm-4">
@@ -198,7 +198,7 @@ if ($(this).val() != '') {
 						<span class="form-text">{tr}If an image is wider than this, it will be resized.{/tr} {tr}Attention: In this case, the original image will be lost.{/tr} (0={tr}unlimited{/tr})</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="image_max_size_y" class="col-sm-4 text-right">{tr}Maximum height of images in gallery{/tr}</label>
 					<div class="col-sm-8">
 						<div class="input-group col-sm-4">
@@ -208,7 +208,7 @@ if ($(this).val() != '') {
 						<span class="form-text">{tr}If an image is higher than this, it will be resized.{/tr} {tr}Attention: In this case, the original image will be lost.{/tr} (0={tr}unlimited{/tr})</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="wiki_syntax" class="col-sm-4 text-right">{tr}Wiki markup to enter when image selected from "file gallery manager"{/tr}</label>
 					<div class="col-sm-8">
 						<input size="80" type="text" name="wiki_syntax" id="wiki_syntax" value="{$gal_info.wiki_syntax|escape}" class="form-control">
@@ -225,7 +225,7 @@ if ($(this).val() != '') {
 <!-- display properties -->
 			{tab name="{tr}Display Settings{/tr}"}
 				<h2>{tr}Display Settings{/tr}</h2><br>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 control-label" for="fgal_default_view">
 						{tr}Default View{/tr}
 					</label>
@@ -248,7 +248,7 @@ if ($(this).val() != '') {
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="sortorder" class="col-sm-4 text-right">{tr}Default sort order{/tr}</label>
 					<div class="col-sm-8">
 						<select name="sortorder" id="sortorder" class="form-control">
@@ -274,13 +274,13 @@ if ($(this).val() != '') {
 					{include file='fgal_listing_conf.tpl'}
 				</div>
 				<hr>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="max_desc" class="col-sm-4 text-right">{tr}Max description display size{/tr}</label>
 					<div class="col-sm-8">
 						<input type="text" id="max_desc" name="max_desc" value="{$max_desc|escape}" class="form-control">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="maxRows" class="col-sm-4 text-right">{tr}Max rows per page{/tr}</label>
 					<div class="col-sm-8">
 						<input type="text" id="maxRows" name="maxRows" value="{$maxRows|escape}" class="form-control">
@@ -288,7 +288,7 @@ if ($(this).val() != '') {
 				</div>
 			{/tab}
 		{/tabset}
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="viewitem" class="col-sm-4 control-label">
 				{tr}View inserted gallery after save{/tr}
 			</label>
@@ -297,7 +297,7 @@ if ($(this).val() != '') {
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-md-8 col-md-offset-4">
 				<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}" name="edit">
 			</div>

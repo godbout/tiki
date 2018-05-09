@@ -1,5 +1,5 @@
 {* $Id$ *}
-<div class="row form-group">
+<div class="row form-group row">
 	{if $prefs.feature_bidi eq 'y'}
 		<div dir="rtl">
 			<div class="col-sm-9 form-check">
@@ -60,7 +60,7 @@
 	{/if}
 </div>
 
-<div class="row form-group">
+<div class="row form-group row">
 {if $prefs.feature_bidi eq 'y'}
 <div dir="rtl">
 	<div class="col-sm-3">

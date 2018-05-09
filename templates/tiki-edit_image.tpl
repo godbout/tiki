@@ -19,27 +19,27 @@
 		<input type="hidden" name="edit" value="{$imageId|escape}">
 		<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 		<input type="hidden" name="galleryId" value="{$galleryId|escape}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Image Name{/tr}</label>
 			<div class="col-sm-7 margin-bottom-sm">
 				<input type="text" name="name" value="{$name|escape}" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Image Description{/tr}</label>
 			<div class="col-sm-7 margin-bottom-sm">
 				<textarea rows="5" cols="40" name="description" class="form-control">{$description|escape}</textarea>
 			</div>
 		</div>
 		{include file='categorize.tpl'}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Upload from disk to change the image:{/tr}</label>
 			<div class="col-sm-7 margin-bottom-sm">
 				{$filename}
 				<input name="userfile" type="file">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label"></label>
 			<div class="col-sm-7 margin-bottom-sm">
 				<input type="submit" class="btn btn-primary btn-sm" name="editimage" value="{tr}Save{/tr}">

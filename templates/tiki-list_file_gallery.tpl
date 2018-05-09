@@ -189,7 +189,7 @@
 				class="form-inline">
 			<input type="hidden" name="galleryId" value="{$galleryId|escape}">
 			<input type="hidden" name="fileId" value="{$fileId|escape}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="comment">
 					{tr}Comment{/tr} ({tr}optional{/tr}):
 				</label>

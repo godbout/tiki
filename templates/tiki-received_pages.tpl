@@ -11,25 +11,25 @@
 	<h2>{tr}Edit Received Page{/tr}</h2>
 	<form action="tiki-received_pages.php" method="post" class="form-horizontal">
 		<input type="hidden" name="receivedPageId" value="{$receivedPageId|escape}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Name:{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" name="pageName" value="{$pageName|escape}" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Data:{/tr}</label>
 			<div class="col-sm-7">
 				<textarea name="data" rows="10" cols="60" class="form-control">{$data|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Comment:{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" name="comment" value="{$comment|escape}" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3"></label>
 			<div class="col-sm-7">
 				<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}">

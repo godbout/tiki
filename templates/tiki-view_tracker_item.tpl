@@ -257,7 +257,7 @@
 					</div>
 																	{* ------------------- *}
 						{if $tracker_info.showStatus eq 'y' or ($tracker_info.showStatusAdminOnly eq 'y' and $tiki_p_admin_trackers eq 'y')}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="control-label col-sm-3">{tr}Status{/tr}</label>
 								<div class="col-sm-9">
 									{include file='tracker_status_input.tpl' item=$item_info form_status=edstatus}
@@ -269,7 +269,7 @@
 						{if empty($editItemPretty.value)}
 
 							{foreach from=$ins_fields key=ix item=cur_field}
-								<div class="form-group">
+								<div class="form-group row">
 									<label class="col-form-label col-sm-3">
 										{$cur_field.name|tra|escape}
 										{if $cur_field.isMandatory eq 'y'}
@@ -285,7 +285,7 @@
 						{else}
 						{* we have a preset template: it could be a wiki:myPage or a tpl:MyTpl.tpl *}
 						{* Note: tracker plugin usally consumes a pagename or a tpl filename without a prefix of tpl: or wiki: as the tracker definition does *}
-							<div class="form-group">
+							<div class="form-group row">
 
 								{if $editItemPretty.type eq 'wiki'}
 									{wikiplugin _name=tracker trackerId=$trackerId itemId=$itemId view=page wiki=$editItemPretty.value formtag='n'}{/wikiplugin}
@@ -298,7 +298,7 @@
 
 						{if $groupforalert ne ''}
 
-							<div class="form-group">
+							<div class="form-group row">
 								<div class="col-sm-3">{tr}Choose users to alert{/tr}</div>
 								<div class="col-sm-9">
 									{section name=idx loop=$listusertoalert}
@@ -364,7 +364,7 @@
 										<input type="hidden" name="{$cur_field.options_array[tl]|regex_replace:"/:.*$/":""|escape}" value="{$info.$valvar|escape}">
 									{/if}
 								{/section}
-								<div class="form-group">
+								<div class="form-group row">
 										<div class="col-sm-6">
 											{$cur_field.name|tra}
 										</div>

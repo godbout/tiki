@@ -29,7 +29,7 @@
 			{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 
 			{if $tiki_p_admin_forum eq 'y'}
-				<div class="card bg--primary form-group">
+				<div class="card bg--primary form-group row">
 					<div class="card-header">
 						{tr}Moderator actions for selected topics{/tr}
 					</div>
@@ -205,13 +205,13 @@
 						{/section}
 
 						{if !$user}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-sm-2 col-form-label" for="anonymous_name">{tr}Name{/tr}</label>
 								<div class="col-sm-10">
 									<input type="text" maxlength="50" size="30" id="anonymous_name" name="anonymous_name" value="{$comment_preview_data.name|escape}">
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-sm-2 col-form-label" for="anonymous_email">{tr}If you would like to be notified when someone replies to this topic<br>please tell us your e-mail address{/tr}</label>
 								<div class="col-sm-10">
 									<input type="text" size="30" id="anonymous_email" name="anonymous_email" value="{$comment_preview_data.email|escape}">
@@ -220,7 +220,7 @@
 						{/if}
 
 						{if $prefs.forum_reply_notitle neq 'y'}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-sm-2 col-form-label" for="comments-title">{tr}Title{/tr} <span class="text-danger">*</span> </label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="comments_title" id="comments-title" value="{$comment_title|escape}">
@@ -228,7 +228,7 @@
 							</div>
 						{/if}
 
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-sm-2 col-form-label" for="editpost2">{tr}Reply{/tr}</label>
 							<div class="col-sm-10">
 								{if $prefs.feature_wysiwyg eq 'y' and $prefs.wysiwyg_htmltowiki eq 'y' and $prefs.feature_forum_parse eq 'y'}
@@ -252,7 +252,7 @@
 
 						{if ($forum_info.att eq 'att_all') or ($forum_info.att eq 'att_admin' and ($tiki_p_admin_forum eq 'y' or $forum_info.moderator == $user)) or ($forum_info.att eq 'att_perm' and $tiki_p_forum_attach eq 'y')}
 							{assign var='can_attach_file' value='y'}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-sm-2 col-form-label" for="userfile1">
 									{tr}Attach a file{/tr}
 								</label>
@@ -271,7 +271,7 @@
 							{include file='antibot.tpl' td_style="formcolor"}
 						{/if}
 
-						<div class="form-group">
+						<div class="form-group row">
 							{if isset($parent_coms) and $parent_coms}
 								<label class="col-sm-2 col-form-label" for="comments_postComment">
 									{tr}Reply to parent post{/tr}

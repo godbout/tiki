@@ -122,7 +122,7 @@
 		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
 			<li class="nav-item">
 				<form method="post" action="" class="form-inline my-2 my-md-0 ml-auto" role="form">
-					<div class="form-group">
+					<div class="form-group row">
 						<input type="hidden" name="filters">
 						<input type="text" name="lm_criteria" style="width: 170px;"value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}..." autofocus="autofocus">
 					</div>

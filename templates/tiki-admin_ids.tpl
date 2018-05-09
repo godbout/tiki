@@ -115,21 +115,21 @@
 	<form class="form form-horizontal" action="tiki-admin_ids.php" method="post"
 			enctype="multipart/form-data" name="RegForm" autocomplete="off">
 		{ticket}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="rule_id">{tr}Rule Id{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_id' class="form-control" name='rule_id'
 					value="{$ruleinfo.id|escape}" {if $ruleinfo.id && !$ruleinfo.error}readonly{/if}>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="rule_regex">{tr}Rule Regex{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_regex' class="form-control" name='rule_regex'
 					   value="{$ruleinfo.regex|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="rule_description">{tr}Description{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_description' class="form-control" name='rule_description'
@@ -137,7 +137,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="rule_tags">{tr}Tags{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_tags' class="form-control" name='rule_tags'
@@ -145,7 +145,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="rule_impact">{tr}Impact{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_impact' class="form-control" name='rule_impact'
@@ -153,7 +153,7 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-7 col-md-6 col-sm-offset-3 col-md-offset-2">
 				{if isset($ruleinfo.id) && $ruleinfo.id && !$ruleinfo.error}
 					<input type="hidden" name="rule" value="{$ruleinfo.id|escape}">

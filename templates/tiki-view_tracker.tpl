@@ -305,7 +305,7 @@
 					</div>
 
 					{if $tiki_p_admin_trackers eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<div class="input-group col-sm-6">
 								<select name="batchaction" class="form-control">
 									<option value="delete">{tr}Delete Selected{/tr}</option>
@@ -348,7 +348,7 @@
 				<div class="form-horizontal">
 
 					{if $tracker_info.showStatus eq 'y' and ($tracker_info.showStatusAdminOnly ne 'y' or $tiki_p_admin_trackers eq 'y')}
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-sm-3 col-form-label">{tr}Status{/tr}</label>
 							<div class="col-sm-8">
 								{include file='tracker_status_input.tpl' tracker=$tracker_info form_status=status}
@@ -360,7 +360,7 @@
 								($field_value.type ne 'A' or $tiki_p_attach_trackers eq 'y') and $field_value.type ne 'N' and $field_value.type ne '*' and
 								!($field_value.type eq 's' and $field_value.name eq 'Rating')
 						}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">
 										{if $field_value.isMandatory eq 'y'}
 											{$field_value.name|tra} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
@@ -381,7 +381,7 @@
 					{/if}
 
 					{if !isset($groupforalert) || $groupforalert ne ''}
-						<div class="form-group">
+						<div class="form-group row">
 							{if $showeachuser eq 'y'}
 
 								<label class="col-sm-3 col-form-label">{tr}Choose users to alert{/tr}</label>
@@ -400,7 +400,7 @@
 						</div>
 					{/if}
 
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-3 col-form-label">&nbsp;</label>
 						<div class="col-sm-8 checkbox-inline">
 						<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm = false;">

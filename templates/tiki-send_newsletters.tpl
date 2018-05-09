@@ -191,13 +191,13 @@
 			<h2>{tr}Prepare a newsletter to be sent{/tr}</h2>
 			<form class="form-horizontal" action="tiki-send_newsletters.php" method="post" id='editpageform' enctype='multipart/form-data'>
 				<input type="hidden" name="editionId" value="{$info.editionId}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Subject:{/tr}</label>
 					<div class="col-sm-10">
 						<input type="text" maxlength="250" id="subject" name="subject" value="{$info.subject|escape}" class="form-control">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Newsletter:{/tr}</label>
 					<div class="col-sm-10">
 						<select name="nlId" id="nlId" onchange="checkNewsletterTxtArea(this.selectedIndex);" class="form-control">
@@ -226,7 +226,7 @@
 				</div>
 				{/if}
 				{if $tpls}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Apply template{/tr}</label>
 					<div class="col-sm-10">
 						<select id="usedTpl"name="usedTpl" class="form-control">
@@ -238,10 +238,10 @@
 					</div>
 				</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Data HTML:{/tr}</label>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-12">
 						{textarea class="form-control" name='data' id='editwiki'}{$info.data}{/textarea}
 					</div>
@@ -253,19 +253,19 @@
 						<label><input type="checkbox" name="is_html" {if $info.is_html} checked="checked"{/if}> {tr}Is HTML{/tr}</label>
 					</div>
 				</div>
-				<div class="form-group" id="txtcol1"{if $allowTxt eq 'n'} style="display:none;"{/if}>
+				<div class="form-group row" id="txtcol1"{if $allowTxt eq 'n'} style="display:none;"{/if}>
 					<label class="col-form-label col-sm-2">{tr}Data Txt:{/tr}</label>
 					<div class="col-sm-10">
 						<textarea id='editwikitxt' name="datatxt" rows="20" cols="80" class="form-control">{$info.datatxt|escape}</textarea>
 					</div>
 				</div>
-				<div class="form-group" id="clipcol1"{if $allowArticleClip eq 'n'} style="display:none;"{/if}>
+				<div class="form-group row" id="clipcol1"{if $allowArticleClip eq 'n'} style="display:none;"{/if}>
 					<label class="col-form-label col-sm-2">{tr}Article Clip (read only):{/tr}</label>
 					<div class="col-sm-10">
 						<input type="submit" name="clipArticles" value="{tr}Clip Now{/tr}" class="wikiaction tips btn btn-primary" title="{tr}Clip Articles{/tr}" onclick="needToConfirm=false">
 					</div>
 				</div>
-				<div class="form-group" id="clipcol2"{if $allowArticleClip eq 'n'} style="display:none;"{/if}>
+				<div class="form-group row" id="clipcol2"{if $allowArticleClip eq 'n'} style="display:none;"{/if}>
 					<label class="col-form-label col-sm-2"></label>
 					<div class="col-sm-10">
 						{tr}To include the article clipping into your newsletter, cut and paste it into the contents.{/tr}
@@ -278,7 +278,7 @@
 						<textarea id='articlecliptxt' class="form-control" name="articleClip" rows="20" cols="80" readonly="readonly">{$articleClip}</textarea>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Attached Files{/tr}:</label>
 					<div class="col-sm-10">
 						<div style='display: none' id='newsletterfileshack'></div>
@@ -294,7 +294,7 @@
 						<p><a class="btn btn-primary" href="javascript:add_newsletter_file();">{tr}To add a file, click here{/tr}</a></p>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Reply To Email{/tr}</label>
 					<div class="col-sm-10">
 						<input type="text" name="replyto" id="replyto" value="{$replyto|escape}" class="form-control">
@@ -303,7 +303,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Send From Email{/tr}</label>
 					<div class="col-sm-10">
 						<input type="text" name="sendfrom" id="sendfrom" value="{$sendfrom|escape}" class="form-control">
@@ -312,7 +312,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-2"></label>
 					<div class="col-sm-10">
 						<input type="submit" name="preview" value="{tr}Preview{/tr}" class="wikiaction tips btn btn-primary" title="{tr}Send Newsletters{/tr}|{tr}Preview your changes.{/tr}" onclick="needToConfirm=false">

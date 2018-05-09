@@ -30,13 +30,13 @@
 			{/if}
 			<form action="tiki-galleries.php" method="post" id="gal-edit-form" class="form-horizontal">
 				<input type="hidden" name="galleryId" value="{$galleryId|escape}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="name">{tr}Name:{/tr}</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" name="name" id="name" value="{$name|escape}">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="gal-desc">{tr}Description:{/tr}</label>
 					<div class="col-sm-8">
 						<textarea rows="10" class="form-control" name="description"
@@ -44,7 +44,7 @@
 					</div>
 				</div>
 				{if $tiki_p_admin_galleries eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<div class="form-check col-sm-push-4">
 							<input type="checkbox" class="form-check-input" name="visible" {if $visible eq 'y'}checked="checked"{/if}>
 							{tr}Gallery is visible to non-admin users?{/tr}
@@ -55,7 +55,7 @@
 					<input type="hidden" name="visible" value="on">
 				{/if}
 				{if $prefs.preset_galleries_info ne 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="maxRows">{tr}Max Rows per page:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="maxRows" name="maxRows"{if !empty($maxRows)} value="{$maxRows|escape}"{/if}>
@@ -64,7 +64,7 @@
 							{tr}Default:{/tr} {if !empty($prefs.maxRowsGalleries)}{$prefs.maxRowsGalleries}{else}10{/if}
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="rowImages">{tr}Images per row:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" name="rowImages" id="rowImages" {if !empty($rowImages)} value="{$rowImages|escape}"{/if}>
@@ -73,7 +73,7 @@
 							{tr}Default:{/tr} {if !empty($prefs.rowImagesGalleries)}{$prefs.rowImagesGalleries}{else}6{/if}
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="thumbSizeX">{tr}Thumbnails size X:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" id="thumbSizeX" name="thumbSizeX" class="form-control" {if !empty($thumbSizeX)} value="{$thumbSizeX|escape}"{/if}>
@@ -82,7 +82,7 @@
 							{tr}Default:{/tr} {if !empty($prefs.thumbSizeXGalleries)}{$prefs.thumbSizeXGalleries}{else}80{/if}
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="thumbSizeY">{tr}Thumbnails size Y:{/tr}</label>
 						<div class="col-sm-4">
 							<input type="text" class="form-control" id="thumbSizeY" name="thumbSizeY" {if !empty($thumbSizeY)} value="{$thumbSizeY|escape}"{/if}>
@@ -92,7 +92,7 @@
 						</div>
 					</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="sortorder">{tr}Default sort order:{/tr}</label>
 					<div class="col-sm-4">
 						<select name="sortorder" id="sortorder" class="form-control">
@@ -110,7 +110,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-4">{tr}Fields to show during browsing the gallery:{/tr}</label>
 					<div class="col-sm-4">
 						<div class="form-check">
@@ -165,7 +165,7 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="galleryimage">{tr}Gallery Image:{/tr}</label>
 					<div class="col-sm-4">
 						<select id="galleryimage" class="form-control" name="galleryimage">
@@ -175,7 +175,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="parentgallery">{tr}Parent gallery{/tr}</label>
 					<div class="col-sm-4">
 						<select id="parentgallery" class="form-control" name="parentgallery">
@@ -187,7 +187,7 @@
 					</div>
 				</div>
 				{if $prefs.preset_galleries_info ne 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="parentgallery">{tr}Available scales:{/tr}</label>
 						<div class="col-sm-4">
 							<div class="radio">
@@ -220,7 +220,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="scaleSize" class="col-sm-4 col-form-label">
 							{tr}Add scaled images with bounding box of square size:{/tr}</label>
 						<div class="col-sm-4">
@@ -231,13 +231,13 @@
 						</div>
 					</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="owner">{tr}Owner of the gallery{/tr}</label>
 					<div class="col-sm-4">
 						<input type="text" id="owner" class="form-control" name="owner" value="{$owner|escape}">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="form-check col-sm-push-4">
 						<label>
 							<input type="checkbox" class="form-check-input" name="public" {if $public eq 'y'}checked="checked"{/if}>
@@ -273,7 +273,7 @@
 <div align="center">
 	{if $galleries or ($find ne '')}
 		{include file='find.tpl'}
-		<div class="form-group">
+		<div class="form-group row">
 			<form action="tiki-galleries.php" method="get">
 				<div class="input-group col-sm-4">
 					<select name="filter" class="form-control">

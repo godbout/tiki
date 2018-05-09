@@ -1,13 +1,13 @@
 {* $Id$ *}
 <form method="get" action="{$filter_action|escape}" class="filter form-horizontal">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-2 col-form-label">{tr}Content{/tr}</label>
 		<div class="col-sm-4">
 			<input type="search" name="filter~content" class="form-control" value="{$filter_content|escape}">
 		</div>
 	</div>
 	{if $prefs.search_show_sort_order eq 'y'}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">{tr}Sort By{/tr}</label>
 			<div class="col-sm-3">
 				<select name="sort_mode" class="sort_mode form-control">
@@ -27,7 +27,7 @@
 		<input type="hidden" name="sort_mode" value="{$sort_mode}">
 		{/if}
 		{if $prefs.feature_search_show_object_filter eq 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="filter-type">{tr}Type{/tr}</label>
 				<div class="col-sm-4">
 					<select name="filter~type" id="filter-type" class="form-control">
@@ -49,7 +49,7 @@
 		{/if}
 
 		{if $prefs.feature_categories eq 'y' and $tiki_p_view_category eq 'y' and $prefs.search_show_category_filter eq 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="filter-categories">{tr}Categories{/tr}</label>
 				<div class="col-sm-4">
 					<a class="category-lookup btn btn-primary margin-bottom-sm" href="#">{tr}Lookup{/tr}</a>
@@ -67,7 +67,7 @@
 			</div>
 		{/if}
 		{if $prefs.feature_freetags eq 'y' and $tiki_p_view_freetags eq 'y' and $prefs.search_show_tag_filter eq 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="filter-tags">{tr}Tags{/tr}</label>
 				<div class="col-sm-4">
 					<a class="tag-lookup btn btn-primary" href="#">{tr}Lookup{/tr}</a>
@@ -79,7 +79,7 @@
 			</div>
 		{/if}
 		{if isset($filter.tracker_id)}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="filter-tracker_id">{tr}Tracker{/tr}</label>
 				<div class="col-sm-4">
 					{object_selector type=tracker _simplevalue=$filter.tracker_id _simplename="filter~tracker_id" _simpleid="filter-tracker_id"}
@@ -88,7 +88,7 @@
 		{/if}
 		{if $prefs.feature_multilingual eq 'y'}
 			{if $prefs.search_default_interface_language neq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="filter-language">{tr}Language{/tr}</label>
 					<div class="col-sm-4">
 						<select name="filter~language" class="form-control" id="filter-language">

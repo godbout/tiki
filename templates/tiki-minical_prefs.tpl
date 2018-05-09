@@ -12,7 +12,7 @@
 
 <h2>{tr}Preferences{/tr}</h2>
 <form action="tiki-minical_prefs.php" method="post" class="form-horizontal">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Calendar Interval in daily view{/tr}</label>
 		<div class="col-sm-7">
 			<select name="minical_interval" class="form-control">
@@ -24,7 +24,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Start hour for days{/tr}</label>
 		<div class="col-sm-7">
 			<select name="minical_start_hour" class="form-control">
@@ -32,7 +32,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}End hour for days{/tr}</label>
 		<div class="col-sm-7">
 			<select name="minical_end_hour" class="form-control">
@@ -40,7 +40,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Upcoming Events{/tr}</label>
 		<div class="col-sm-7">
 			<select name="minical_upcoming" class="form-control">
@@ -48,7 +48,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Reminders{/tr}</label>
 		<div class="col-sm-7">
 			<select name="minical_reminders" class="form-control">
@@ -61,7 +61,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
@@ -71,14 +71,14 @@
 <a id="import"></a>
 <h2>{tr}Import CSV file{/tr}</h2>
 <form enctype="multipart/form-data" action="tiki-minical_prefs.php" method="post" class="form-horizontal">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Upload file{/tr}</label>
 		<div class="col-sm-7">
 			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000">
 			<input size="16" name="userfile1" type="file">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}import{/tr}">
@@ -88,25 +88,25 @@
 
 <h2>{tr}Admin Topics{/tr}</h2>
 <form enctype="multipart/form-data" action="tiki-minical_prefs.php" method="post" class="form-horizontal">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Name:{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="name" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Upload file:{/tr}</label>
 		<div class="col-sm-7">
 			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="16" name="userfile1" type="file">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Or enter path or URL:{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="path" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="addtopic" value="{tr}Add Topic{/tr}">

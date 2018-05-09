@@ -9,7 +9,7 @@
 <form action="{$myurl|escape}" method="post" name="f" id="editcalitem" class="form-horizontal">
 	<div class="modal-body">
 		{if !$smarty.get.isModal}
-			<div class="t_navbar form-group">
+			<div class="t_navbar form-group row">
 				{if $tiki_p_view_calendar eq 'y'}
 					{button href="tiki-calendar.php" _text="{tr}View Calendars{/tr}" _icon_name="view"}
 				{/if}
@@ -63,7 +63,7 @@
 			{if $prefs.calendar_addtogooglecal == 'y'}
 				{wikiplugin _name="addtogooglecal" calitemid=$id}{/wikiplugin}
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="calid" class="col-form-label col-md-3">{tr}Calendar{/tr}</label>
 				<div class="col-md-9">
 					{if $edit}
@@ -114,7 +114,7 @@
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3">{tr}Title{/tr}</label>
 				<div class="col-md-9">
 					{if $edit}
@@ -127,7 +127,7 @@
 				</div>
 
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3">{tr}Created by{/tr}</label>
 				<div class="col-md-9">
 					<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
@@ -137,7 +137,7 @@
 				</div>
 			</div>
 			{if $edit or $recurrence.id gt 0}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Recurrence{/tr}</label>
 					<div class="col-md-9">
 						{if $edit}
@@ -192,7 +192,7 @@ $("#id_recurrent").click(function () {
 									</label>
 								{/if}
 								{if $recurrence.id eq 0 or $recurrence.weekly}
-									<div class="form-group">
+									<div class="form-group row">
 										<div class="col-md-offset-1 col-md-4 input-group">
 											<span class="input-group-append">{tr}Each{/tr}</span>
 											<select name="weekday" class="form-control">
@@ -235,7 +235,7 @@ $("#id_recurrent").click(function () {
 									</label>
 								{/if}
 								{if $recurrence.id eq 0 or $recurrence.monthly}
-								<div class="form-group">
+								<div class="form-group row">
 									<div class="col-md-offset-1 col-md-4 input-group">
 										<span class="input-group-append">{tr}Each{/tr}</span>
 										<select name="dayOfMonth" class="form-control">
@@ -267,7 +267,7 @@ $("#id_recurrent").click(function () {
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								{/if}
 								{if $recurrence.id eq 0 or $recurrence.yearly}
-								<div class="form-group">
+								<div class="form-group row">
 									<div class="col-md-offset-1 col-md-4 input-group">
 										<span class="input-group-append">{tr}Each{/tr}</span>
 										<select name="dateOfYear_day" class="form-control" onChange="checkDateOfYear(this.options[this.selectedIndex].value,document.forms['f'].elements['dateOfYear_month'].options[document.forms['f'].elements['dateOfYear_month'].selectedIndex].value);">
@@ -587,7 +587,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 });
 			{/jq}
 			{if $edit or !empty($calitem.parsed)}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Description{/tr}</label>
 					<div class="col-md-9">
 						{if $edit}
@@ -605,7 +605,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 				</div>
 			{/if}
 			{if $calendar.customstatus ne 'n'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Status{/tr}</label>
 					<div class="col-md-9">
 						<div class="statusbox {if $calitem.status eq 0}status0{/if}">
@@ -665,7 +665,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 					</div>
 				</div> <!-- / .form-group -->
 			{/if}
-			<div class="form-group" style="display:{if $calendar.customcategories eq 'y'}block{else}none{/if};" id="calcat">
+			<div class="form-group row" style="display:{if $calendar.customcategories eq 'y'}block{else}none{/if};" id="calcat">
 				<label class="col-form-label col-md-3">
 					{tr}Classification{/tr}
 				</label>
@@ -691,7 +691,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 					{/if}
 				</div>
 			</div> <!-- / .form-group -->
-			<div class="form-group" style="display:{if $calendar.customlocations eq 'y'}block{else}none{/if};" id="calloc">
+			<div class="form-group row" style="display:{if $calendar.customlocations eq 'y'}block{else}none{/if};" id="calloc">
 				<label class="col-form-label col-md-3">{tr}Location{/tr}</label>
 				<div class="col-md-9">
 					{if $edit}
@@ -716,7 +716,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 				</div>
 			</div> <!-- / .form-group -->
 			{if $calendar.customurl ne 'n'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}URL{/tr}</label>
 					<div class="col-md-9">
 						{if $edit}
@@ -729,7 +729,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 					</div>
 				</div> <!-- / .form-group -->
 			{/if}
-			<div class="form-group" style="display:{if $calendar.customlanguages eq 'y'}block{else}none{/if};" id="callang">
+			<div class="form-group row" style="display:{if $calendar.customlanguages eq 'y'}block{else}none{/if};" id="callang">
 				<label class="col-form-label col-md-3">{tr}Language{/tr}</label>
 				<div class="col-md-9">
 					{if $edit}
@@ -748,7 +748,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 				</div>
 			</div> <!-- / .form-group -->
 			{if !empty($groupforalert) && $showeachuser eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Choose users to alert{/tr}</label>
 					<div class="col-md-9">
 						{section name=idx loop=$listusertoalert}
@@ -761,7 +761,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 					</div>
 				</div> <!-- / .form-group -->
 			{/if}
-			<div class="form-group" style="display:{if $calendar.customparticipants eq 'y'}block{else}none{/if};" id="calorg">
+			<div class="form-group row" style="display:{if $calendar.customparticipants eq 'y'}block{else}none{/if};" id="calorg">
 				<label class="col-form-label col-md-3">{tr}Organized by{/tr}</label>
 				<div class="col-md-9">
 					{if isset($calitem.organizers)}
@@ -788,7 +788,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 					{/if}
 				</div>
 			</div> <!-- / .form-group -->
-			<div class="form-group" style="display:{if $calendar.customparticipants eq 'y'}block{else}none{/if};" id="calpart">
+			<div class="form-group row" style="display:{if $calendar.customparticipants eq 'y'}block{else}none{/if};" id="calpart">
 				<label class="col-form-label col-md-3">{tr}Participants{/tr}</label>
 				<div class="col-md-9">
 					{if isset($calitem.participants)}

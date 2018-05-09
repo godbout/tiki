@@ -7,7 +7,7 @@
 {block name="content"}
 	{if $status neq 'DONE'}
 		<form method="post" action="{service controller=comment action=unlock}">
-			<div class="form-group">
+			<div class="form-group row">
 				{tr}Are you sure you want to unlock comments on this object?{/tr}
 			</div>
 			<div class="submit">

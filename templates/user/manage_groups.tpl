@@ -6,7 +6,7 @@
 	{include file='access/include_items.tpl'}
 	<form method="post" id="confirm-action" class="confirm-action" action="{service controller=$confirmController action=$confirmAction}">
 		{include file='access/include_hidden.tpl'}
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="add_remove" class="col-form-label">
 				{tr}Add to or remove from:{/tr}
 			</label>
@@ -21,7 +21,7 @@
 				</label>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="select_groups" class="col-form-label">
 				{tr}These groups:{/tr}
 			</label>
@@ -56,7 +56,7 @@ $("input[name=add_remove]").change(function () {
 }).change();
 			{/jq}
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="default_group" class="col-form-label">
 				{tr}Set default group:{/tr}
 			</label>

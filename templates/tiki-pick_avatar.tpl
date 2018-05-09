@@ -110,7 +110,7 @@
 	<form enctype="multipart/form-data" action="tiki-pick_avatar.php" method="post" class="form-horizontal">
 		<legend><strong>{tr}Upload your own profile picture{/tr}</strong></legend>
 		{if $user ne $userwatch}<input type="hidden" name="view_user" value="{$userwatch|escape}">{/if}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label">{tr}Select your profile picture{/tr}</label>
 			<div class="col-sm-7">
 				<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
@@ -120,7 +120,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-7">
 				<input type="submit" class="btn btn-secondary btn-sm" name="upload" value="{tr}Upload{/tr}">

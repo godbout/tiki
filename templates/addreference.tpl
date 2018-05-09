@@ -322,12 +322,12 @@ function delete_ref(ref_id){
 }
 </script>
 
-		<div class="form-group">
+		<div class="form-group row">
 				<div class="col-sm-12">
 						<a href="javascript:;" id="add_ref" class="btn btn-link" onclick="add_ref()">{tr}Add Reference{/tr}</a>
 				</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 		<div id="ref_list" style="display:{$display}">
 			{tr}References Available{/tr}:
 			<ul style="list-style-type:none; padding-left: 0;">
@@ -377,68 +377,68 @@ function delete_ref(ref_id){
 			<div>
 				<input type="hidden" name="e_ref_id" id="e_ref_id" value="">
 				<input type="hidden" name="page" value="{$page|escape}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_biblio_code">{tr}Biblio Code{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_biblio_code" id="e_ref_biblio_code" maxlength="50" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_author">{tr}Author{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_author" id="e_ref_author" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_title">{tr}Title{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_title" id="e_ref_title" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_year">{tr}Year{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_year" id="e_ref_year" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_part">{tr}Part{/tr}:</label>
 					<div class="col-sm-10">
 					<input type="text" class="form-control wikiedit" name="e_ref_part" id="e_ref_part" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_uri">{tr}URI{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_uri" id="e_ref_uri" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_biblio_code">{tr}Code{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_code" id="e_ref_code" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_publisher">{tr}Publisher{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_publisher" id="e_ref_publisher" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_location">{tr}Location{/tr}:</label>
 					<div class="col-sm-10">
 					<input type="text" class="form-control wikiedit" name="e_ref_location" id="e_ref_location" value="">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_style">{tr}Style{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_style" id="e_ref_style" value="">
 						<span class="form-text">{tr}Enter the CSS class name to be added in the 'li' tag for listing this reference.{/tr}</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-2 col-form-label" for="e_ref_template">{tr}Template{/tr}:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control wikiedit" name="e_ref_template" id="e_ref_template" value="">
@@ -450,7 +450,7 @@ function delete_ref(ref_id){
 						</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<div id="e_btns">
 						<input class="wikiaction btn btn-primary" type="submit" value="Save" id="e_submit" name="e_submit">
 						<input class="wikiaction btn btn-warning" type="reset" value="Cancel" id="e_cancel" name="e_cancel">

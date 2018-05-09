@@ -207,14 +207,14 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="is_html">{tr}HTML{/tr}</label>
 					<div class="col-sm-9">
 						<input type="checkbox" name="section_wiki_html" id="is_html" class="form=control" {if $info.section_wiki_html eq 'y'}checked="checked"{/if}>
 					</div>
 				</div>
 				{if $prefs.lock_content_templates eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-3 col-form-label">{tr}Lock{/tr}</label>
 						<div class="col-sm-9">
 							{lock type='template' object=$templateId}

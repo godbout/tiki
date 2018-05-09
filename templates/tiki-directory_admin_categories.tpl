@@ -8,7 +8,7 @@
 {* Display the path adding manually the top category id=0 *}
 <form name="path" method="post" action="tiki-directory_admin_categories.php" class="form-horizontal">
 	<br>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">
 			{tr}Parent directory category{/tr}
 		</label>
@@ -21,7 +21,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
@@ -40,19 +40,19 @@
 	<input type="hidden" name="parent" value="{$parent|escape}">
 	<input type="hidden" name="categId" value="{$categId|escape}">
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="name" value="{$info.name|escape}" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Description{/tr}</label>
 		<div class="col-sm-7">
 			<textarea rows="5" cols="60" name="description" class="form-control">{$info.description|escape}</textarea>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Child type{/tr}</label>
 		<div class="col-sm-7">
 			<select name="childrenType" class="form-control">
@@ -62,7 +62,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Maximum number of child directory categories to show{/tr}</label>
 		<div class="col-sm-7">
 			<select name="viewableChildren" class="form-control">
@@ -75,19 +75,19 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Allow sites in this directory category{/tr}</label>
 		<div class="col-sm-7">
 			<input name="allowSites" type="checkbox" {if $info.allowSites eq 'y'}checked="checked"{/if} >
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Show number of sites in this directory category{/tr}</label>
 		<div class="col-sm-7">
 			<input name="showCount" type="checkbox" {if $info.showCount eq 'y'}checked="checked"{/if}>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Editor group{/tr}</label>
 		<div class="col-sm-7">
 			<select name="editorGroup" class="form-control">
@@ -98,7 +98,7 @@
 				</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input class="btn btn-primary" type="submit" name="save" value="{tr}Save{/tr}">

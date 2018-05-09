@@ -7,13 +7,13 @@
 <h2>{tr}Create/edit DSN{/tr}</h2>
 <form action="tiki-admin_dsn.php" method="post" class="form-horizontal" role="form">
 	<input type="hidden" name="dsnId" value="{$dsnId|escape}">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" maxlength="255" name="name" id="name" class="form-control" value="{$info.name|escape}">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="dsn">{tr}DSN{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" maxlength="255" class="form-control" name="dsn" id="dsn" value="{$info.dsn|escape}">
@@ -95,7 +95,7 @@
 <form id="source-form" method="post" action="{service controller=auth_source}" class="form-horizontal" role="form">
 	<fieldset>
 		<legend>{tr}Identification{/tr}</legend>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Identifier{/tr}</label>
 			<div class="col-sm-3">
 				<select name="existing" class="form-control">
@@ -106,13 +106,13 @@
 				<input type="text" name="identifier" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="url">{tr}URL{/tr}</label>
 			<div class="col-sm-4">
 				<input type="url" name="url" id="url" class="form-control" />
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="method">{tr}Type{/tr}</label>
 			<div class="col-sm-4">
 				<select name="method" id="method">
@@ -125,13 +125,13 @@
 	</fieldset>
 	<fieldset class="method basic">
 		<legend>{tr}HTTP Basic{/tr}</legend>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="basic_username">{tr}Username{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" name="basic_username" id="basic_username" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="basic_password">{tr}Password{/tr}</label>
 			<div class="col-sm-9">
 				<input type="password" name="basic_password" id="basic_password" class="form-control">

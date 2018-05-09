@@ -1,5 +1,5 @@
 {if $status}
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="trackerinput_status" class="col-form-label">{tr}Status{/tr}</label>
 		<div id="trackerinput_status">
 			{include 'trackerinput/status.tpl' status_types=$status_types status=$status}
@@ -8,7 +8,7 @@
 {/if}
 {$jscal = 0}
 {foreach from=$fields item=field}
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="trackerinput_{$field.fieldId|escape}" class="col-form-label{if $field.type eq 'h'} h{$field.options_map.level}{/if}">
 			{$field.name|tra|escape}
 			{if $field.isMandatory eq 'y'}

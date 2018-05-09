@@ -1,6 +1,6 @@
 {title url="tiki-admin_survey_questions.php?surveyId=$surveyId"}{tr}Edit survey questions:{/tr} {$survey_info.name}{/title}
 
-<div class="t_navbar btn-group form-group">
+<div class="t_navbar btn-group form-group row">
 	{button href="tiki-admin_survey_questions.php?surveyId=$surveyId" class="btn btn-primary" _icon_name='create' _text="{tr}Add a New Question{/tr}"}
 	{button href="tiki-list_surveys.php" class="btn btn-primary" _icon_name='list' _text="{tr}List Surveys{/tr}"}
 	{button href="tiki-survey_stats.php" class="btn btn-primary" _icon_name='chart' _text="{tr}Survey Stats{/tr}"}
@@ -95,25 +95,25 @@
 			<input type="hidden" name="surveyId" value="{$surveyId|escape}">
 			<input type="hidden" name="questionId" value="{$questionId|escape}">
 			</br>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Question{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<textarea name="question" class="form-control">{$info.question|escape}</textarea>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Answer is mandatory{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<input type="checkbox" name="mandatory" {if $info.mandatory eq 'y'}checked="checked"{/if}>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<select name="position" class="form-control">{html_options values=$positions output=$positions selected=$info.position}</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Type{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<select name="type" class="form-control">
@@ -161,13 +161,13 @@
 					}).change();
 				{/jq}
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Options (if apply):{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<input type="text" name="options" value="{$info.options|escape}" maxlength="80" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1">
 					<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">

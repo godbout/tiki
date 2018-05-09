@@ -131,7 +131,7 @@
 			<input type="hidden" name="sendstructures" value="{$form_sendstructures|escape}">
 			<input type="hidden" name="sendarticles" value="{$form_sendarticles|escape}">
 			<div class="form-horizontal">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}Site:{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="site" value="{$site|escape}" class="form-control">
@@ -140,7 +140,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}Path:{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="path" value="{$path|escape}" class="form-control">
@@ -149,19 +149,19 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}Username:{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="username" value="{$username|escape}" class="form-control">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}Password:{/tr}</label>
 					<div class="col-sm-7">
 						<input type="password" name="password" value="{$password|escape}" class="form-control">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}Debug:{/tr}</label>
 					<div class="col-sm-7">
 						<div class="form-check">
@@ -171,7 +171,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-sm-3"></label>
 					<div class="col-sm-7">
 						<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}">

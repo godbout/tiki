@@ -7,7 +7,7 @@
 
 <h2>{tr}Assign themes to objects{/tr}</h2>
 <form id='objform' action="tiki-theme_control_objects.php" method="post" class="form-inline" role="form">
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="type">{tr}Type{/tr}</label>
 		<select name="type" onchange="javascript:document.getElementById('objform').submit();" class="form-control form-control-sm">
 			{section name=ix loop=$objectypes}
@@ -16,7 +16,7 @@
 		</select>
 		<!--<input type="submit" class="btn btn-primary btn-sm" name="settype" value="{tr}Set{/tr}">-->
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="objdata">{tr}Object{/tr}</label>
 		<select name="objdata" class="form-control form-control-sm">
 			{section name=ix loop=$objects}
@@ -24,7 +24,7 @@
 			{/section}
 		</select>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="theme">{tr}Theme{/tr}</label>
 		<select name="theme" class="form-control form-control-sm">
 			{foreach from=$themes key=theme item=theme_name}

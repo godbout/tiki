@@ -26,7 +26,7 @@
 			<fieldset>
 				<legend>{tr}Add an available master server{/tr}</legend>
 				{foreach $serverFields as $field}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label">{tr}Server {$field}{/tr}</label>
 						<div class="col-sm-8">
 							<input type="text" name="new[{$field}]" value="" class="form-control">
@@ -37,7 +37,7 @@
 			{if $prefs.interlist}
 				<fieldset>
 					<legend>{tr}Available master Tiki servers{/tr}</legend>
-					<div class="form-group">
+					<div class="form-group row">
 						<div class="col-sm-12">
 							<table class="table">
 								<thead>
@@ -83,7 +83,7 @@
 				</fieldset>
 				<fieldset>
 					<legend>{tr}Allowed client servers{/tr}</legend>
-					<div class="form-group">
+					<div class="form-group row">
 						<div class="col-sm-12">
 							<table class="table">
 								<thead>

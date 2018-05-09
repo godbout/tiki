@@ -155,21 +155,21 @@
 	<form class="form form-horizontal" action="tiki-admin_schedulers.php" method="post"
 			enctype="multipart/form-data" name="RegForm" autocomplete="off">
 		{ticket}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="scheduler_name">{tr}Name{/tr} *</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='scheduler_name' class="form-control" name='scheduler_name'
 					value="{$schedulerinfo.name|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="scheduler_description">{tr}Description{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='scheduler_description' class="form-control" name='scheduler_description'
 					value="{$schedulerinfo.description|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="scheduler_task">{tr}Task{/tr} *</label>
 			<div class="col-sm-7 col-md-6">
 				<select id="scheduler_task" name="scheduler_task" class="form-control">
@@ -183,14 +183,14 @@
 			{scheduler_params name=$commandName params=$schedulerinfo.params}
 		{/foreach}
 
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="scheduler_time">{tr}Run Time{/tr} *</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='scheduler_time' class="form-control" name='scheduler_time'
 					value="{$schedulerinfo.run_time|escape}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label" for="scheduler_status">{tr}Status{/tr}</label>
 			<div class="col-sm-7 col-md-6">
 				<select id="scheduler_status" name="scheduler_status" class="form-control">
@@ -200,14 +200,14 @@
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 col-form-label form-check-label" for="scheduler_catch">{tr}Run if missed{/tr}</label>
 			<div class="col-sm-7 col-md-6 form-check">
 				<input type="checkbox" class="form-check-input" id="scheduler_rerun" name="scheduler_rerun"
 					{if $schedulerinfo.re_run}checked{/if}>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-7 col-md-6 col-sm-offset-3 col-md-offset-2">
 				{if isset($schedulerinfo.id) && $schedulerinfo.id}
 					<input type="hidden" name="scheduler" value="{$schedulerinfo.id|escape}">

@@ -88,7 +88,7 @@
 			<label for="subject">{tr}Mail subject text{/tr}</label>
 			<input type="text" name="subject" class="form-control">
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="body">{tr}Mail body ressource{/tr}</label>
 			<input type="text" name="body" class="form-control">
 			<div class="form-text">

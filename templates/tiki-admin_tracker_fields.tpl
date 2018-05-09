@@ -36,7 +36,7 @@
 			<tbody>
 			</tbody>
 		</table>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="input-group col-sm-6">
 				<select name="action" class="form-control">
 					<option value="save_fields">{tr}Save All{/tr}</option>

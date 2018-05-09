@@ -7,7 +7,7 @@
 {block name="content"}
 	<form class="no-ajax inline-edit-dialog" method="post" action="{service controller=edit action=inline_dialog}">
 		{foreach $fields as $field}
-			<div class="form-group">
+			<div class="form-group row">
 				<label>{$field.label|escape}</label>
 				{$field.field}
 			</div>

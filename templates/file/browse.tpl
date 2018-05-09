@@ -8,7 +8,7 @@
 	<div class="row file-browser">
 		<div class="col-md-9">
 			<form class="form-inline no-ajax" method="get" action="{service controller=file action=$list_view plain=1}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="sr-only" for="search-field">{tr}Search{/tr}</label>
 					<input class="form-control" name="search" type="search" id="search-field" placeholder="{tr}Search...{/tr}"/>
 					<input type="hidden" name="galleryId" value="{$galleryId|escape}"/>

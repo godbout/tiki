@@ -9,7 +9,7 @@
 </div>
 
 <form method="post" action="tiki-admin_shoutbox_words.php" class="form-horizontal">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-form-label col-md-2" for="word">{tr}Word{/tr}</label>
 		<div class="col-md-9">
 			<input type="text" name="word" id="word" class="form-control">

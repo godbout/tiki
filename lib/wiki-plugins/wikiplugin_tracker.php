@@ -2041,9 +2041,9 @@ FILL;
 
 		if ($params['formtag'] == 'y') {
 			if (empty($wiki) && empty($tpl)) {
-				$back .= '<div class="form-group"><div class="input_submit_container btn-bar ' . $buttonclass . '">';
+				$back .= '<div class="form-group row"><div class="input_submit_container btn-bar ' . $buttonclass . '">';
 			} else {
-				$back .= '<div class="form-group"><div class="input_submit_container btn-bar">';
+				$back .= '<div class="form-group row"><div class="input_submit_container btn-bar">';
 			}
 
 			if (! empty($reset)) {

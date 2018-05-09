@@ -162,7 +162,7 @@ function wikiplugin_annotation($data, $params)
 		<input type="hidden" name="message" value="$message"/>
 		<textarea id="$cid-content" name="content"></textarea>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<input type="submit" class="btn btn-primary btn-sm" value="$labelSave"/>
 		<label>
 			<input type="checkbox" id="$cid-editable">
@@ -196,19 +196,19 @@ FORM;
 		<div class="editor panel">
 			<div class="panel-body">
 				<form method="post" action="#" class="form-horizontal">
-					<div class="form-group">
+					<div class="form-group row">
 						<label style="width:100%">
 							<span class="col-sm-3">$labelStr</span>
 							<span class="col-sm-9"><textarea name="label" class="form-control"></textarea></span>
 						</label>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label style="width:100%">
 							<span class="col-sm-3">$linkStr</span>
 							<span class="col-sm-9"><input type="text" name="link" class="form-control"></span>
 						</label>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<div class="col-sm-9 col-sm-offset-3">
 							<input type="submit" class="btn btn-primary btn-sm" value="$saveStr">
 							<div class="pull-right">

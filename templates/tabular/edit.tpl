@@ -16,13 +16,13 @@
 {block name="content"}
 	<div class="table-responsive">
 		<form class="form-horizontal edit-tabular" method="post" action="{service controller=tabular action=edit tabularId=$tabularId}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Name{/tr}</label>
 				<div class="col-sm-9">
 					<input class="form-control" type="text" name="name" value="{$name|escape}" required>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Fields{/tr}</label>
 				<div class="col-sm-9">
 					<table class="table fields">
@@ -131,7 +131,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Filters{/tr}</label>
 				<div class="col-sm-9">
 					<table class="table filters">
@@ -210,7 +210,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Simple headers{/tr}</label>
 				<div class="col-sm-9 form-check">
 					<input type="checkbox" class="form-check-input" name="config[simple_headers]" value="1" {if $config['simple_headers']} checked {/if}>
@@ -219,7 +219,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Import updates{/tr}</label>
 				<div class="col-sm-9 form-check">
 					<input type="checkbox" class="form-check-input" name="config[import_update]" value="1" {if $config['import_update']} checked {/if}>
@@ -228,7 +228,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Ignore blanks{/tr}</label>
 				<div class="col-sm-9 form-check">
 					<input type="checkbox" class="form-check-input" name="config[ignore_blanks]" value="1" {if $config['ignore_blanks']} checked {/if}>
@@ -237,7 +237,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Transactional import{/tr}</label>
 				<div class="col-sm-9 form-check">
 					<input type="checkbox" class="form-check-input" name="config[import_transaction]" value="1" {if $config['import_transaction']} checked {/if}>
@@ -246,7 +246,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Bulk import{/tr}</label>
 				<div class="col-sm-9 form-check">
 					<input type="checkbox" class="form-check-input" name="config[bulk_import]" value="1" {if $config['bulk_import']} checked {/if}>

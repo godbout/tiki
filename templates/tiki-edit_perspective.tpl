@@ -90,7 +90,7 @@
 		{tab name="{tr}Create{/tr}"}
 			<h2>{tr}Create{/tr}</h2>
 			<form method="post" action="tiki-edit_perspective.php" class="form-inline">
-				<div class="form-group">
+				<div class="form-group row">
 					<label>{tr}Name:{/tr} </label>
 						<input type="text" name="name" class="form-control">
 				</div>

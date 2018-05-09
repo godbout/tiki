@@ -103,7 +103,7 @@
 
 			<form action="tiki-list_faqs.php" method="post" class="form-horizontal">
 				<input type="hidden" name="faqId" value="{$faqId|escape}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">
 						{tr}Title:{/tr}
 					</label>
@@ -111,7 +111,7 @@
 							<input type="text" class="form-control" name="title" value="{$title|escape}">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3">
 						{tr}Description:{/tr}
 					</label>

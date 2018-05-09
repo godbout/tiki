@@ -6,7 +6,7 @@
 </div>
 <h2>{tr}Assign themes to categories{/tr}</h2>
 <form action="tiki-theme_control.php" method="post" class="form-inline" role="form">
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="categoryId">{tr}Category{/tr}</label>
 		<select name="categoryId" class="form-control form-control-sm">
 			{foreach from=$categories key=categoryId item=category}
@@ -16,7 +16,7 @@
 			{/foreach}
 		</select>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="theme">{tr}Theme{/tr}</label>
 		<select name="theme" class="form-control form-control-sm">
 			{foreach from=$themes key=theme item=theme_name}

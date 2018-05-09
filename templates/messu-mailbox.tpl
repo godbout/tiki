@@ -14,7 +14,7 @@
 {/if}
 
 <form class="form-inline margin-bottom-sm" action="messu-mailbox.php" method="get">
-	<div class="form-group">
+	<div class="form-group row">
 	<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
 	<select name="flags" id="mess-mailmessages" class="form-control">
 		<option value="isRead_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Read{/tr}</option>
@@ -24,7 +24,7 @@
 		<option value="" {if $flag eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
 	</select>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 	<label for="mess-mailprio">{tr}Priority:{/tr}</label>
 	<select name="priority" id="mess-mailprio" class="form-control">
 		<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
@@ -35,7 +35,7 @@
 		<option value="5" {if $priority eq 5}selected="selected"{/if}>{tr}5{/tr}</option>
 	</select>
 		</div>
-	<div class="form-group">
+	<div class="form-group row">
 	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
 	<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control">
 	<input type="submit" class="btn btn-primary btn-sm" name="filter" value="{tr}Filter{/tr}">
@@ -88,7 +88,7 @@
 		</table>
 	</div>
 	{if $items}
-		<div class="form-group">
+		<div class="form-group row">
 			{tr}Perform action with checked:{/tr}
 
 		<input type="submit" class="btn btn-warning btn-sm timeout" name="delete" value="{tr}Delete{/tr}">

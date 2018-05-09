@@ -8,14 +8,14 @@
 	{include file='templates/menu/quicklinks.tpl'}
 	<form action="{service controller=menu action=edit_option}" method="post" role="form" class="form">
 		<div class="form form-horizontal">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3" for="menu_name">{tr}Name:{/tr}</label>
 
 				<div class="col-md-9">
 					<input id="menu_name" class="form-control" type="text" name="name" value="{$info.name|escape}">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3" for="menu_url">{tr}URL:{/tr}</label>
 
 				<div class="col-md-9">
@@ -26,7 +26,7 @@
 					<div class="form-text">{tr}For wiki page, use ((PageName)).{/tr}</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3" for="type">{tr}Type{/tr}:</label>
 
 				<div class="col-md-9">
@@ -41,14 +41,14 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3" for="position">{tr}Position:{/tr}</label>
 
 				<div class="col-md-9">
 					<input type="text" name="position" id="position" value="{$info.position|escape}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3" for="menu_groupname">{tr}Group:{/tr}</label>
 
 				<div class="col-md-9">
@@ -66,7 +66,7 @@
 					{/if}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3" for="menu_section">{tr}Sections:{/tr}</label>
 
 				<div class="col-md-9">
@@ -75,7 +75,7 @@
 					<div class="form-text">{tr}Separate multiple feature/preferences with a comma ( , ) for an AND or a vertical bar ( | ) for an OR.{/tr}</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3" for="menu_perm">{tr}Permissions:{/tr}</label>
 
 				<div class="col-md-9">
@@ -84,7 +84,7 @@
 					<div class="form-text">{tr}Separate multiple permissions with a comma ( , ) for an AND or a vertical bar ( | ) for an OR.{/tr}</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label col-md-3" for="menu_class">{tr}Class:{/tr}</label>
 
 				<div class="col-md-9">
@@ -94,7 +94,7 @@
 				</div>
 			</div>
 			{if $prefs.feature_userlevels eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3" for="level">{tr}Level:{/tr}</label>
 
 					<div class="col-md-9">
@@ -108,7 +108,7 @@
 				</div>
 			{/if}
 			{if $prefs.menus_items_icons eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-form-label col-md-3" for="icon">{tr}Icon:{/tr}</label>
 
 					<div class="col-md-9">

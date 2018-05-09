@@ -12,26 +12,26 @@
 	</div></div>
 {/if}
 <form method="post" action="tiki-create_webhelp.php" class="form-horizontal">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Structure{/tr}</label>
 		<div class="col-sm-7">
 			{$struct_info.pageName|default:"{tr}No structure{/tr}."}
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Directory{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" id="dir" name="dir" value="{$struct_info.pageName}" class="form-control">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Top page{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" id="top" name="top" value="{$struct_info.pageName}" class="form-control">
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" {if !$struct_info.pageName}disabled='disabled'{/if} name="create" value="{tr}Create{/tr}">

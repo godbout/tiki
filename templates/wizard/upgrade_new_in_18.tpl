@@ -19,7 +19,7 @@
 	<div class="media-body">
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}New Features{/tr}</legend>
-			<div class="adminoption form-group">
+			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Control Panels{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-11">
 					{icon name="admin_packages" size=2 iclass="pull-left"}
@@ -33,7 +33,7 @@
 					<a href="https://doc.tiki.org/Style-Guide">{tr}More Information{/tr}...</a><br/><br/>
 				</div>
 			</div>
-			<div class="adminoption form-group">
+			<div class="adminoption form-group row">
 			</div>
 			{preference name='sitemap_enable'}
 			{preference name='feature_sefurl_routes'}
@@ -71,7 +71,7 @@
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}Other Extended Features{/tr}</legend>
-			<div class="adminoption form-group">
+			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Control Panels{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-11">
 					{icon name="admin_rtc" size=2 iclass="pull-left"}

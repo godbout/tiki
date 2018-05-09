@@ -33,7 +33,7 @@
 		<div id="wikiplugin_mail" class="">
 			<form method="post" class="form-horizontal">
 				{if $params.showuserdd eq 'y' or $params.showrealnamedd eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="mail_user_dd{$ipluginmail}">{tr}Send to users:{/tr}</label>
 				{/if}
 
@@ -46,7 +46,7 @@
 								{/foreach}
 							</select>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							{remarksbox type='tip' title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
 						</div>
 					</div>
@@ -61,14 +61,14 @@
 								{/foreach}
 							</select>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							{remarksbox type='tip' title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
 						</div>
 					</div>
 				{/if}
 
 				{if $params.showuser eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="mail_user{$ipluginmail}">{tr}Send to:{/tr}</label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control margin-bottom-sm" id="mail_user" name="mail_user" value="{$mail_user}">
@@ -77,7 +77,7 @@
 					</div>
 				{/if}
 				{if $params.showgroupdd eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="mail_group_dd{$ipluginmail}">{tr}Send to groups:{/tr}</label>
 						{foreach from=$groups key=groupname item=gps name=mailgroups}
 							<div class="wpmailgroup col-sm-8 margin-bottom-sm">
@@ -99,14 +99,14 @@
 					</div>
 				{/if}
 
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="mail_subject{$ipluginmail}">{tr}Subject:{/tr}</label>
 					<div class="col-sm-8">
 						<input class="form-control" type="text" id="mail_subject{$ipluginmail}" name="mail_subject" value="{$mail_subject}">
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="mail_mess{$ipluginmail}">{tr}Message:{/tr}</label>
 					<div class="col-sm-8">
 						<textarea class="form-control" id="mail_mess{$ipluginmail}" name="mail_mess" value="{$mail_mess}"></textarea>

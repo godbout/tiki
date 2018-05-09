@@ -379,7 +379,7 @@
 
 
 
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-sm-2 col-form-label" for="priority">{tr}Priority{/tr}</label>
 							<div class="col-sm-10">
 								<select name="priority" id="priority" class="form-control">
@@ -391,19 +391,19 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-sm-2 col-form-label" for="subject">{tr}Subject{/tr}</label>
 							<div class="col-sm-10">
 								<input type="text" name="subject" id="subject" value="" maxlength="255" class="form-control">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-sm-2 col-form-label" for="message">{tr}Message Body{/tr}</label>
 							<div class="col-sm-10">
 								<textarea rows="20" class="form-control" name="body" id="message"></textarea>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							<div class="col-sm-10 col-sm-push-2">
 								<input type="submit" class="btn btn-secondary" name="send" value="{tr}Send{/tr}">
 								<input type="checkbox" class="form-check-input" name="replytome" id="replytome">

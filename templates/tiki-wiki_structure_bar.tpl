@@ -44,7 +44,7 @@
 		{if $struct_editable eq 'a'}
 			<div class="pull-right">
 				<form action="tiki-editpage.php" method="post" role="form" class="form-inline">
-					<div class="form-group">
+					<div class="form-group row">
 						<input type="hidden" name="current_page_id" value="{$page_info.page_ref_id}">
 						<div class="input-group">
 							<span class="input-group-append">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
@@ -55,7 +55,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						{* Cannot add peers to head of structure *}
 						{if $page_info and !$parent_info}
 							<input type="hidden" name="add_child" value="checked">

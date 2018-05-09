@@ -7,7 +7,7 @@
 
 {block name="navigation"}
 	{if $tiki_p_admin_trackers eq 'y'}
-		<div class="form-group">{* Class provides 15px bottom margin. *}
+		<div class="form-group row">{* Class provides 15px bottom margin. *}
 			<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=replace}">
 				{icon name="create"} {tr}Create{/tr}
 			</a>

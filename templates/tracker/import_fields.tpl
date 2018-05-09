@@ -4,7 +4,7 @@
 
 {block name="content"}
 	<form class="form simple import-fields" action="{service controller=tracker action=import_fields}" method="post" role="form">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label">
 				{tr}Raw Fields{/tr}
 			</label>

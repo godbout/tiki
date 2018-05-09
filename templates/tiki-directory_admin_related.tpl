@@ -8,7 +8,7 @@
 {* Display the path adding manually the top category id=0 *}
 <form name="path" method="post" action="tiki-directory_admin_related.php" class="form-horizontal">
 	<br>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">
 			{tr}Parent directory category{/tr}
 		</label>
@@ -20,7 +20,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
@@ -31,7 +31,7 @@
 <form action="tiki-directory_admin_related.php" method="post" class="form-horizontal">
 	<br>
 	<input type="hidden" name="parent" value="{$parent|escape}">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Directory Category:{/tr}</label>
 		<div class="col-sm-7">
 			<select name="categId" class="form-control">
@@ -41,13 +41,13 @@
 			</select>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Mutual:{/tr}</label>
 		<div class="col-sm-7">
 			<input type="checkbox" class="form-check-input" name="mutual">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">

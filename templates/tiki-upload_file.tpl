@@ -101,7 +101,7 @@
 			<div class="fgal_file_c1">
 				{if $prefs.file_galleries_use_jquery_upload neq 'y' or $editFileId}
 					{if $simpleMode neq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="name" class="col-md-4 col-form-label">{tr}File title{/tr}</label>
 							<div class="col-md-8">
 								<input class="form-control" type="text" id="name" name="name[]"
@@ -115,7 +115,7 @@
 								{/if}
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="description" class="col-md-4 col-form-label">{tr}File description{/tr}</label>
 							<div class="col-md-8">
 								<textarea class="form-control" id="description" name="description[]">{if isset($fileInfo.description)}{$fileInfo.description|escape}{/if}</textarea>
@@ -126,7 +126,7 @@
 						</div>
 					{/if}
 					{if $prefs.file_galleries_use_jquery_upload neq 'y' || $editFileId}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="userfile" class="col-md-4 col-form-label">{if $editFileId}{tr}Re-upload from disk{/tr}{else}{tr}Upload from disk{/tr}{/if}</label>
 							<div class="col-md-8">
 								{if $editFileId}
@@ -140,12 +140,12 @@
 					{filegal_uploader}
 				{/if}
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="imagesize" class="col-md-8 col-md-offset-4">
 				<input type="checkbox" id="imagesize" name="imagesize" checked="checked" value="yes" />{tr}Use Gallery default resize settings for images <span id="imageResizeInfo">{if $gal_info["image_max_size_x"]}({$gal_info["image_max_size_x"]}px X {$gal_info["image_max_size_y"]} px){else}(No resize){/if}</span>{/tr}
 				</label>
 			</div>
-			<div id="customsize" style="display:none"><div class="form-group">
+			<div id="customsize" style="display:none"><div class="form-group row">
 					<label for="image_max_size_x" class="col-sm-4 text-right">{tr}Maximum width of images{/tr}</label>
 					<div class="col-sm-8">
 						<div class="input-group col-sm-4">
@@ -155,7 +155,7 @@
 						<span class="form-text">{tr}If an image is wider than this, it will be resized. Attention: In this case, the original image will be lost. (0=unlimited){/tr}</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="image_max_size_y" class="col-sm-4 text-right">{tr}Maximum height of images in gallery{/tr}</label>
 					<div class="col-sm-8">
 						<div class="input-group col-sm-4">
@@ -169,7 +169,7 @@
 			{if $simpleMode neq 'y'}
 				<div class="fgal_file_c2">
 					{if !$editFileId and $tiki_p_batch_upload_files eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="isbatch" class="col-md-8 col-md-offset-4">
 								<input type="checkbox" id="isbatch" name="isbatch[]">
 								{tr}Unzip zip files{/tr}
@@ -177,7 +177,7 @@
 						</div>
 					{/if}
 					{if $prefs.fgal_delete_after eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="deleteAfter" class="col-md-4 col-form-label">{tr}File can be deleted after{/tr}</label>
 							<div class="col-md-8">
 								{if $editFileId}
@@ -200,7 +200,7 @@
 								<input type="hidden" name="galleryId[]" value="{$treeRootId}">
 							{/if}
 						{elseif empty($groupforalert)}
-							<div class="form-group">
+							<div class="form-group row">
 								<label for="galleryId" class="col-md-4 col-form-label">{tr}File gallery{/tr}</label>
 								<div class="col-md-8">
 									<select id="galleryId" name="galleryId[]" class="form-control">
@@ -217,14 +217,14 @@
 							<input type="hidden" name="galleryId[]" value="{$galleryId}">
 						{/if}
 					{/if}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="user" class="col-md-4 col-form-label">{tr}Uploaded by{/tr}</label>
 						<div class="col-md-8">
 							{user_selector id='user' name='user[]' select=$fileInfo.user editable=$tiki_p_admin_file_galleries}
 						</div>
 					</div>
 					{if $prefs.feature_file_galleries_author eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="author" class="col-md-4 col-form-label">{tr}Creator{/tr}</label>
 							<div class="col-md-8">
 								<input type="text" id="author"name="author[]" value="{$fileInfo.author|escape}"><br>
@@ -234,7 +234,7 @@
 					{/if}
 					{if !empty($groupforalert)}
 						{if $showeachuser eq 'y'}
-							<div class="form-group">
+							<div class="form-group row">
 								<label class="col-md-4 col-form-label">{tr}Choose users to alert{/tr}</label>
 								<div class="col-md-8">
 									{section name=idx loop=$listusertoalert}
@@ -251,7 +251,7 @@
 						{/if}
 					{/if}
 					{if $editFileId}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="filetype" class="col-md-4 col-form-label">{tr}File Type{/tr}</label>
 							<div class="col-md-8">
 								<select id="filetype" class="form-control" name="filetype[]">
@@ -269,7 +269,7 @@
 				</div>
 				<div class="fgal_file_c3">
 					{if $prefs.fgal_limit_hits_per_file eq 'y'}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="hit_limit" class="col-md-4 form-label">{tr}Maximum number of downloads{/tr}</label>
 							<div class="col-md-8">
 								<input type="text" id="hit_limit" name="hit_limit[]" value="{$hit_limit|default:0}">
@@ -281,7 +281,7 @@
 					{/if}
 					{* We want comments only on updated files *}
 					{if $prefs.javascript_enabled neq 'y' && $editFileId}
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="comment" class="col-md-4 form-label">{tr}Comment{/tr}</label>
 							<div class="col-md-8">
 								<input type="text" id="comment" name="comment[]" value="" size="40">
@@ -320,7 +320,7 @@
 			{$upload_str}
 			{if $editFileId}
 				{include file='categorize.tpl'}<br>
-				<div id="page_bar" class="form-group">
+				<div id="page_bar" class="form-group row">
 					<div class="col-md-8 col-md-push-4">
 						<input name="upload" type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
 					</div>
@@ -330,7 +330,7 @@
 					{$upload_str}
 					{$upload_str}
 					{include file='categorize.tpl'}<br>
-					<div id="page_bar" class="form-group">
+					<div id="page_bar" class="form-group row">
 						<div class="col-md-8 col-md-offset-4">
 							<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
 						</div>
@@ -338,7 +338,7 @@
 				{/if}
 			{/if}
 			{if !$editFileId && $prefs.file_galleries_use_jquery_upload neq 'y'}
-				<div id="page_bar" class="form-group">
+				<div id="page_bar" class="form-group row">
 					<div class="col-md-8 col-md-offset-4">
 						<input type="submit" class="btn btn-secondary btn-sm"
 							onClick="upload_files(); return false"
@@ -408,7 +408,7 @@
 {if not $editFileId and $prefs.fgal_upload_from_source eq 'y' and $tiki_p_upload_files eq 'y'}
 	<form class="remote-upload form-horizontal" method="post" action="{service controller=file action=remote}">
 		<h3>{tr}Upload from URL{/tr}</h3>
-		<div class="form-group">
+		<div class="form-group row">
 			<input type="hidden" name="galleryId" value="{$galleryId|escape}">
 			<label class="col-md-4 col-form-label">{tr}URL:{/tr}</label>
 			<div class="col-md-8">

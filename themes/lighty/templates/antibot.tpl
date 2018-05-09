@@ -26,7 +26,7 @@
 			</div>
 		{elseif $captchalib->type eq 'questions'}
 			<input type="hidden" name="captcha[id]" id="captchaId" value="{$captchalib->generate()}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-4 col-sm-3 control-label">
 					{$captchalib->render()}
 				</label>
@@ -47,7 +47,7 @@
 			{* Default captcha *}
 			<input type="hidden" name="captcha[id]" id="captchaId" value="{$captchalib->generate()}">
 			<center>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="{$captchaclass}">
 					{if $captchalib->type eq 'default'}
 						<img id="captchaImg" src="{$captchalib->getPath()}" alt="{tr}Anti-Bot verification code image{/tr}" height="34">

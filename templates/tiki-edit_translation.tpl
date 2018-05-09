@@ -41,7 +41,7 @@
 							{tr}Translate this page to a new language{/tr}
 						</div>
 						<div class="card-body">
-							<div class="form-group">
+							<div class="form-group row">
 								<label for="lang" class="col-form-label col-md-4">
 									{tr}Select language to translate to:{/tr}
 								</label>
@@ -54,7 +54,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group row">
 								<label for="page" class="col-form-label col-md-4">
 									{tr}Enter the page title:{/tr}
 								</label>
@@ -91,7 +91,7 @@
 							{tr}Change language for this page{/tr}
 						</div>
 						<div class="card-body">
-							<div class="form-group">
+							<div class="form-group row">
 								<label for="langpage" class="col-form-label col-md-4">
 									{tr}Language{/tr}
 								</label>

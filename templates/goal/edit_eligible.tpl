@@ -16,7 +16,7 @@
 
 {block name="content"}
 	<form class="form-horizontal" method="post" action="{service controller=goal action=edit_eligible goalId=$goal.goalId}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="eligible" class="col-form-label col-md-3">
 				{if $goal.type eq 'group'}
 					{tr}Groups{/tr}
@@ -32,7 +32,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-md-offset-3 col-md-9">
 				<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}">
 				<a href="{service controller=goal action=show goalId=$goal.goalId}" class="btn btn-link">{tr}Cancel{/tr}</a>

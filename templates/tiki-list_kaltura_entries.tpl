@@ -1,7 +1,7 @@
 {* $Id$ *}
 {title help="Kaltura" admpage="video"}{if $entryType eq "mix"}{tr}Remix Entries{/tr}{else}{if $view ne "browse"}{tr}List Media{/tr}{else}{tr}Browse Media{/tr}{/if}{/if}{/title}
 
-<div class="row form-group">
+<div class="row form-group row">
 	<form method="post" class="col-md-12 form-inline form-horizontal" role="form">
 		<label class="col-form-label col-sm-2" for="find">{tr}Find{/tr}</label>
 		<div class="input-group col-sm-8">

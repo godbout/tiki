@@ -21,7 +21,7 @@
 <div class="row">
 	<form class="form-horizontal col-md-10" action="tiki-remind_password.php" method="post">
 		{if $prefs.login_is_email ne 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-md-2 control-label" for="name">{tr}Username{/tr}</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" placeholder="{tr}Username{/tr}" name="name" id="name">
@@ -32,7 +32,7 @@
 			</div>
 
 		{/if}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 col-md-2 control-label" for="email">{tr}Email{/tr}</label>
 			<div class="col-sm-6">
 				{if $prefs.login_is_email ne 'y'}
@@ -42,7 +42,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-offset-3 col-md-offset-2 col-sm-10">
 				<input type="submit" class="btn btn-primary" name="remind" value="{tr}Request Password Reset{/tr}">
 			</div>

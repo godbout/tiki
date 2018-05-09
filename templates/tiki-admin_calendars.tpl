@@ -165,13 +165,13 @@
 			<fieldset>
 			<input type="hidden" name="calendarId" value="{$calendarId|escape}">
 			{if $tiki_p_modify_object_categories eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-12">
 						{include file='categorize.tpl'}
 					</div>
 				</div>
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="calendarName">
 					{tr}Name{/tr}
 				</label>
@@ -185,7 +185,7 @@
 					</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="calendarDescription">
 					{tr}Description{/tr}
 				</label>
@@ -201,7 +201,7 @@
 					</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customlocations">
 					{tr}Custom location{/tr}
 				</label>
@@ -218,7 +218,7 @@
 					</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customparticipants">
 					{tr}Custom participants{/tr}
 				</label>
@@ -235,7 +235,7 @@
 					</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}Custom classification{/tr}
 				</label>
@@ -252,7 +252,7 @@
 					</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customlanguages">
 					{tr}Custom language{/tr}
 				</label>
@@ -269,7 +269,7 @@
 					</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customurl">
 					{tr}Custom URL{/tr}
 				</label>
@@ -287,7 +287,7 @@
 				</div>
 			</div>
 			{if $prefs.feature_newsletters eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="customsubscription">
 						{tr}Custom subscription list{/tr}
 					</label>
@@ -299,7 +299,7 @@
 					</div>
 				</div>
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="custompriorities">
 					{tr}Custom priority{/tr}
 				</label>
@@ -310,7 +310,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="personal">
 					{tr}Personal Calendar{/tr}
 				</label>
@@ -321,7 +321,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}Start of day{/tr}
 				</label>
@@ -329,7 +329,7 @@
 					{html_select_time prefix="startday_" time=$info.startday display_minutes=false display_seconds=false use_24_hours=$use_24hr_clock}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}End of day{/tr}
 				</label>
@@ -337,7 +337,7 @@
 					{html_select_time prefix="endday_" time=$info.endday display_minutes=false display_seconds=false use_24_hours=$use_24hr_clock}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}Days to display{/tr}
 				</label>
@@ -351,7 +351,7 @@
 					{/section}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customcategories">
 					{tr}Standard color{/tr}
 				</label>
@@ -367,7 +367,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="fgColorField">
 					{tr}Custom foreground color{/tr}
 				</label>
@@ -375,7 +375,7 @@
 					<input id="fgColorField" type="text" name="options[customfgcolor]" value="{$customfgcolor}" size="6"> <i>{tr}Example:{/tr} FFFFFF</i>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="bgColorField">
 					{tr}Custom background color{/tr}
 				</label>
@@ -383,7 +383,7 @@
 					<input id="bgColorField" type="text" name="options[custombgcolor]" value="{$custombgcolor}" size="6"> <i>{tr}Example:{/tr} 000000</i>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="customstatus">
 					{tr}Status{/tr}
 				</label>
@@ -394,7 +394,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">
 					{tr}Default event status:{/tr}
 				</label>
@@ -402,7 +402,7 @@
 					{html_options class="form-control" name='options[defaulteventstatus]' options=$eventstatus selected=$defaulteventstatus}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="checkbox col-sm-4 col-sm-offset-3">
 					<label class="col-form-label">
 						<input type="checkbox" name="show[status]" value="on"{if $info.show_status eq 'y'} checked="checked"{/if}>
@@ -410,7 +410,7 @@
 					</label>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="checkbox col-sm-4 col-sm-offset-3">
 					<label class="col-form-label">
 						<input type="checkbox" name="show[status_calview]" value="on"{if $info.show_status_calview ne 'n'} checked="checked"{/if}>
@@ -419,7 +419,7 @@
 				</div>
 			</div>
 			{if $prefs.feature_groupalert eq 'y'}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="groupforAlert">
 						{tr}Group of users alerted when calendar event is modified{/tr}
 					</label>
@@ -432,7 +432,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="showeachuser">
 						{tr}Allows each user to be selected for small groups{/tr}
 					</label>
@@ -441,7 +441,7 @@
 					</div>
 				</div>
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="allday">
 					{tr}Default length of events is all day{/tr}
 				</label>
@@ -449,7 +449,7 @@
 					<input type="checkbox" id="allday" name="allday"{if $info.allday eq 'y'} checked="checked"{/if}>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="nameoneachday">
 					{tr}Event name on each day in calendar view{/tr}
 				</label>
@@ -457,13 +457,13 @@
 					<input type="checkbox" name="nameoneachday"{if $info.nameoneachday eq 'y'} checked="checked"{/if}>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<input type="submit" class="btn btn-secondary col-sm-offset-3" name="save" value="{tr}Save{/tr}">
 			</div>
 			</fieldset>
 			<fieldset>
 				<legend>Delete old events</legend>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="days">
 						{tr}Delete events older than:{/tr}
 					</label>
@@ -474,7 +474,7 @@
 						</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<input type="submit" class="btn btn-warning col-sm-offset-3" name="clean" value="{tr}Delete{/tr}">				</div>
 			</fieldset>
 		</form>

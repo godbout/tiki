@@ -47,7 +47,7 @@
 			{/if}
 			<form action="tiki-sheets.php" method="post" class="form-horizontal" role="form">
 				<input type="hidden" name="sheetId" value="{$sheetId|escape}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="title" class="col-form-label col-sm-3">
 						{tr}Title{/tr}
 					</label>
@@ -55,7 +55,7 @@
 						<input class="form-control" type="text" name="title" value="{$title|escape}">
 					</div>
 				</div>
-				<div class="form-group">				
+				<div class="form-group row">
 					<label for="description" class="col-form-label col-sm-3">
 						{tr}Description{/tr}
 					</label>
@@ -73,7 +73,7 @@
 					</label>
 				</div>
 				{if $tiki_p_admin_sheet eq "y"}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="creator" class="col-form-label col-sm-3">
 							{tr}Creator{/tr}
 						</label>
@@ -82,7 +82,7 @@
 						</div>
 					</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="parentSheetId" class="col-form-label col-sm-3">
 						{tr}Parent Spreadsheet{/tr}
 					</label>
@@ -100,7 +100,7 @@
 						</span>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					{include file='categorize.tpl'}
 				</div>
 				<div class="form-group text-center">

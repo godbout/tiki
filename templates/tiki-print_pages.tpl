@@ -39,7 +39,7 @@
 			<form action="tiki-print_pages.php" method="post" class="form-horizontal">
 				<input type="hidden" name="find" value="{$find|escape}">
 				<input type="hidden" name="addstructure" value="y">
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-12">
 						<select name="structureId" size="5" onchange="this.form.submit()" class="form-control">
 							{section name=ix loop=$structures}
@@ -126,7 +126,7 @@
 				<input type="hidden" name="printpages" value="{$form_printpages|escape}">
 				<input type="hidden" name="find" value="{$find|escape}">
 				<h2>{tr}Add Pages from Structures:{/tr}</h2>
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-12">
 						<select name="structureId" size="5" style="width:99%" border="1" class="form-control">
 							{section name=ix loop=$structures}
@@ -139,7 +139,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-12">
 						<input type="submit" class="btn btn-primary btn-sm" name="addstructurepages" value="{tr}Add Pages from Structures{/tr}">
 					</div>

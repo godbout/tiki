@@ -41,19 +41,19 @@
 		<input type="hidden" name="created" value="{$created|escape}">
 		<input type="hidden" name="image_name" value="{$image_name|escape}">
 		<input type="hidden" name="image_size" value="{$image_size|escape}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Title:{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" name="title" value="{$title|escape}" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Author Name:{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" name="authorName" value="{$authorName|escape}" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Type{/tr}</label>
 			<div class="col-sm-7">
 				<select id='articletype' name='type' onchange='javascript:chgArtType();' class="form-control">
@@ -66,7 +66,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="form-group" id='isreview' {if $type ne 'Review'}style="display:none;"{else}style="display:block;"{/if}>
+		<div class="form-group row" id='isreview' {if $type ne 'Review'}style="display:none;"{else}style="display:block;"{/if}>
 			<label class="col-form-label col-sm-3">{tr}Rating{/tr}</label>
 			<div class="col-sm-7">
 				<select name='rating' class="form-control">
@@ -93,7 +93,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Use Image:{/tr}</label>
 			<div class="col-sm-7">
 				<select name="useImage" class="form-control">
@@ -102,64 +102,64 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Image x size:{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" name="image_x" value="{$image_x|escape}" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Image y size:{/tr}</label>
 			<div class="col-sm-7">
 				<input type="text" name="image_y" value="{$image_y|escape}" class="form-control">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Image name:{/tr}</label>
 			<div class="col-sm-7 form-static-input">
 				{$image_name}
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Image size:{/tr}</label>
 			<div class="col-sm-7 form-control-plaintext">
 				{$image_size}
 			</div>
 		</div>
 		{if $useImage eq 'y'}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Image:{/tr}</label>
 			<div class="col-sm-7">
 				<img alt="article image" width="{$image_x}" height="{$image_y}" src="received_article_image.php?id={$receivedArticleId}">
 			</div>
 		</div>
 		{/if}
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Created:{/tr}</label>
 			<div class="col-sm-7">
 				{$created|tiki_short_datetime}
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Publishing date:{/tr}</label>
 			<div class="col-sm-7">
 				{html_select_date time=$publishDate end_year="+1" field_order=$prefs.display_field_order} at
 				{html_select_time time=$publishDate display_seconds=false use_24_hours=$use_24hr_clock}
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Heading:{/tr}</label>
 			<div class="col-sm-7">
 				<textarea rows="5" cols="40" name="heading" class="form-control">{$heading|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Body:{/tr}</label>
 			<div class="col-sm-7">
 				<textarea rows="25" cols="40" name="body" class="form-control">{$body|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3"></label>
 			<div class="col-sm-7">
 				<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}">
@@ -167,7 +167,7 @@
 				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Accept Article{/tr}</label>
 			<div class="col-sm-7">
 				<select name="topic">

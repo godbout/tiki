@@ -6,19 +6,19 @@
 
 {block name="content"}
 	<form class="form-horizontal" method="post" action="{service controller=search_manifold action=create_index}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="index" class="col-form-label col-sm-3">{tr}Index{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" name="index" value="{$index|escape}"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="type" class="col-form-label col-sm-3">{tr}Type{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" name="type" value="{$type|escape}"/>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="location" class="col-form-label col-sm-3">{tr}Location{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" name="location" value="{$location|escape}"/>
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-push-3 col-sm-9">
 				<input class="btn btn-secondary" type="submit" value="{tr}Create Index{/tr}"/>
 			</div>

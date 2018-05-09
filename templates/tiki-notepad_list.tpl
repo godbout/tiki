@@ -115,14 +115,14 @@
 
 <h2>{tr}Upload file{/tr}</h2>
 <form enctype="multipart/form-data" action="tiki-notepad_list.php" method="post" class="form-horizontal">
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Upload file:{/tr}</label>
 		<div class="col-sm-7">
 			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000">
 			<input size="16" name="userfile1" type="file">
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="upload" value="{tr}Upload{/tr}">

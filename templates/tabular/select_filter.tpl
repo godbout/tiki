@@ -6,7 +6,7 @@
 
 {block name="content"}
 	<form method="post" action="{service controller=tabular action=select_filter trackerId=$trackerId permName=$permName}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label">{tr}Modes{/tr}</label>
 			<select name="mode" class="form-control">
 				{foreach $collection->getFilters() as $filter}

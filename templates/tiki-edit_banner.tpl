@@ -9,19 +9,19 @@
 	<input type="hidden" name="bannerId" value="{$bannerId|escape}">
 	<div class="card">
 		<div class="card-body">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}URL to link the banner{/tr}</label>
 				<div class="col-sm-7 margin-bottom-sm">
 					<input type="text" name="url" value="{$url|escape}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Client{/tr}</label>
 				<div class="col-sm-7 margin-bottom-sm">
 					{user_selector user=$client name='client'}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Maximum impressions{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="maxImpressions" value="{$maxImpressions|escape}" maxlength="7" class="form-control">
@@ -30,7 +30,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Maximum number of impressions for a user{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="maxUserImpressions" value="{$maxUserImpressions|escape}" maxlength="7" class="form-control">
@@ -39,7 +39,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Maximum clicks{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="maxClicks" value="{$maxClicks|escape}" maxlength="7" class="form-control">
@@ -48,7 +48,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}URIs where the banner appears only{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="onlyInURIs" value="{$onlyInURIs|escape}" class="form-control">
@@ -57,7 +57,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}URIs where the banner will not appear{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" name="exceptInURIs" value="{$exceptInURIs|escape}" class="form-control">
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Zone{/tr}</label>
 				<div class="col-sm-7">
 					<select name="zone"{if !$zones} disabled="disabled"{/if} class="form-control">
@@ -85,7 +85,7 @@
 					<input type="text" name="zoneName" maxlength="10" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7">
 					<input type="submit" class="btn btn-primary btn-sm" name="create_zone" value="{tr}Create{/tr}">
@@ -97,19 +97,19 @@
 	<div class="card">
 		<div class="card-body">
 			<h4>{tr}Show the banner only between these dates:{/tr}</h4>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}From date:{/tr}</label>
 				<div class="col-sm-7">
 					{html_select_date time=$fromDate prefix="fromDate_" end_year="+2" field_order=$prefs.display_field_order}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}To date:{/tr}</label>
 				<div class="col-sm-7">
 					{html_select_date time=$fromDate prefix="fromDate_" end_year="+2" field_order=$prefs.display_field_order}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Use dates:{/tr}</label>
 				<div class="col-sm-7">
 					<label><input type="checkbox" name="useDates" {if $useDates eq 'y'}checked='checked'{/if}>Yes</label>
@@ -121,13 +121,13 @@
 	<div class="card">
 		<div class="panel-body">
 			<h4>{tr}Show the banner only in these hours:{/tr}</h4>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}from{/tr}</label>
 				<div class="col-sm-7">
 					{html_select_time time=$fromTime display_seconds=false prefix='fromTime' use_24_hours=$use_24hr_clock}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}to{/tr}</label>
 				<div class="col-sm-7">
 					{html_select_time time=$toTime display_seconds=false prefix='toTime' use_24_hours=$use_24hr_clock}
@@ -140,7 +140,7 @@
 		<div class="panel-body">
 			<h4>{tr}Show the banner only on:{/tr}</h4>
 			<div class="col-sm-12">
-				<div class="form-group">
+				<div class="form-group row">
 					<label><input type="checkbox" name="Dmon" {if $Dmon eq 'y'}checked="checked"{/if}>{tr}Mon{/tr}</label>
 					<label><input type="checkbox" name="Dtue" {if $Dtue eq 'y'}checked="checked"{/if}>{tr}Tue{/tr}</label>
 					<label><input type="checkbox" name="Dwed" {if $Dwed eq 'y'}checked="checked"{/if}>{tr}Wed{/tr}</label>
@@ -156,7 +156,7 @@
 	<div class="panel">
 		<div class="panel-body">
 			<h4>{tr}Select ONE method for the banner:{/tr}</h4>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useHTML" {if $use eq 'useHTML'}checked="checked"{/if}>{tr}Use HTML{/tr}</label></label>
 				<div class="col-sm-7">
 					<textarea class="form-control" rows="5" name="HTMLData">{if $use ne 'useFlash'}{$HTMLData|escape}{/if}</textarea>
@@ -165,7 +165,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useImage" {if $use eq 'useImage'}checked="checked"{/if}>{tr}Use Image{/tr}</label></label>
 				<div class="col-sm-7">
 					<input type="hidden" name="imageData" value="{$imageData|escape}">
@@ -175,7 +175,7 @@
 					<input name="userfile1" type="file">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				{if $hasImage eq 'y'}
 				<label class="col-sm-3 col-form-label">{tr}Current Image{/tr}</label>
 				<div class="col-sm-7">
@@ -183,7 +183,7 @@
 				</div>
 				{/if}
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useFixedURL" {if $use eq 'useFixedURL'}checked="checked"{/if}>{tr}Use Image from URL{/tr}</label></label>
 				<div class="col-sm-7">
 					<input type="text" name="fixedURLData" value="{$fixedURLData|escape}" class="form-control">
@@ -192,7 +192,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useFlash" {if $use eq 'useFlash'}checked="checked"{/if}>{tr}Use Flash{/tr}</label></label>
 				{if $use eq 'useFlash'}
 					<div class="col-sm-7">
@@ -200,13 +200,13 @@
 					</div>
 				{/if}
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Movie URL{/tr}</label>
 				<div class="col-sm-7 margin-bottom-sm">
 					<input type="text" name="movieUrl" value="{$movie.movie|escape}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Movie Size{/tr}</label>
 				<div class="col-sm-3">
 					<input type="text" name="movieWidth" value="{$movie.width|escape}" class="form-control" placeholder="{tr}width in pixels{/tr}">
@@ -221,7 +221,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}FlashPlugin min version{/tr}</label>
 				<div class="col-sm-7 margin-bottom-sm">
 					<input type="text" name="movieVersion" value="{$movie.version|escape}" class="form-control">
@@ -235,7 +235,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useText" {if $use eq 'useText'}checked="checked"{/if}>{tr}Use Text{/tr}</label></label>
 				<div class="col-sm-7">
 					<textarea class="form-control" rows="5" name="textData">{$textData|escape}</textarea>

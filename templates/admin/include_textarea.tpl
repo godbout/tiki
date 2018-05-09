@@ -322,7 +322,7 @@
 					{tr}General information{/tr}{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle' istyle='display:none'}
 				</legend>
 
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="plugin_alias">
 							{tr}Plugin name{/tr}
@@ -337,7 +337,7 @@
 						</div>
 					</div>
 				</div><br><br>
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="implementation">
 							{tr}Base plugin{/tr}
@@ -353,7 +353,7 @@
 						</div>
 					</div>
 				</div><br>
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="plugin_name">
 							{tr}Name{/tr}
@@ -363,7 +363,7 @@
 						</div>
 					</div>
 				</div><br>
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="plugin_description">
 							{tr}Description{/tr}
@@ -373,7 +373,7 @@
 						</div>
 					</div>
 				</div><br>
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="plugin_body">
 							{tr}Body label{/tr}
@@ -383,7 +383,7 @@
 						</div>
 					</div>
 				</div><br>
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="plugin_deps">
 							{tr}Dependencies{/tr}
@@ -393,7 +393,7 @@
 						</div>
 					</div>
 				</div><br>
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="filter">
 							{tr}Filter{/tr}
@@ -403,7 +403,7 @@
 						</div>
 					</div>
 				</div><br>
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="validate">
 							{tr}Validation{/tr}
@@ -419,7 +419,7 @@
 						</div>
 					</div>
 				</div><br>
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<div class="adminoptionlabel">
 						<label class="col-form-label col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
 						<div class="col-sm-8">
@@ -455,7 +455,7 @@
 					$('#pluginalias_simple_new').hide();
 					{{/if}}
 				{/jq}
-				<div class="adminoptionbox form-group">
+				<div class="adminoptionbox form-group row">
 					<label class="col-form-label col-sm-4 col-sm-offset-4 text-left">
 						{tr}Argument{/tr}
 					</label>
@@ -466,7 +466,7 @@
 				{if !empty($plugin_admin.params)}
 					{foreach from=$plugin_admin.params key=token item=value}
 							{if ! $value|is_array}
-								<div class="adminoptionbox form-group">
+								<div class="adminoptionbox form-group row">
 									<div class="col-sm-4 col-sm-offset-4">
 										<input class="form-control" type="text" name="sparams[{$token|escape}][token]" id="sparams_{$token|escape}_token" value="{$token|escape}">
 									</div>
@@ -478,7 +478,7 @@
 						{/foreach}
 				{/if}
 				<div class="adminoptionbox hidefirst" id="pluginalias_simple_new">
-					<div class="adminoptionlabel form-group">
+					<div class="adminoptionlabel form-group row">
 						<div class="col-sm-4 col-sm-offset-4">
 							<input class="form-control" type="text" name="sparams[__NEW__][token]" id="sparams__NEW__token" value="">
 						</div>
@@ -498,8 +498,8 @@
 				{if !empty($plugin_admin.description.params)}
 					{foreach from=$plugin_admin.description.params key=token item=detail}
 						<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_doc_new{/if}">
-							<div class="adminnestedbox form-group">
-								<div class="adminoptionlabel form-group">
+							<div class="adminnestedbox form-group row">
+								<div class="adminoptionlabel form-group row">
 									<label class="col-form-label col-sm-4" for="input[{$token|escape}][token]">
 										{tr}Parameter{/tr}
 									</label>
@@ -507,7 +507,7 @@
 										<input class="form-control" type="text" name="input[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
 									</div>
 								</div>
-								<div class="adminoptionlabel form-group">
+								<div class="adminoptionlabel form-group row">
 									<label class="col-form-label col-sm-4" for="input[{$token|escape}][name]"
 											>{tr}Name{/tr}
 									</label>
@@ -515,7 +515,7 @@
 										<input class="form-control" type="text" name="input[{$token|escape}][name]" value="{$detail.name|escape}">
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group row">
 									<label class="col-form-label col-sm-4" for="input[{$token|escape}][description]">
 										{tr}Description{/tr}
 									</label>
@@ -523,7 +523,7 @@
 										<input class="form-control" type="text" name="input[{$token|escape}][description]" value="{$detail.description|escape}" class="width_30em">
 									</div>
 								</div>
-								<div class="adminoptionlabel form-group">
+								<div class="adminoptionlabel form-group row">
 									<label class="col-form-label col-sm-4" for="input[{$token|escape}][required]">
 										{tr}Required{/tr}
 									</label>
@@ -531,7 +531,7 @@
 										<input class="form-control" type="checkbox" name="input[{$token|escape}][required]" value="y"{if $detail.required} checked="checked"{/if}>
 									</div>
 								</div>
-								<div class="adminoptionlabel form-group">
+								<div class="adminoptionlabel form-group row">
 									<label class="col-form-label col-sm-4" for="input[{$token|escape}][safe]">
 										{tr}Safe{/tr}
 									</label>
@@ -539,7 +539,7 @@
 										<input class="form-control" type="checkbox" name="input[{$token|escape}][safe]" value="y"{if $detail.safe} checked="checked"{/if}>
 									</div>
 								</div>
-								<div class="adminoptionlabel form-group">
+								<div class="adminoptionlabel form-group row">
 									<label class="col-form-label col-sm-4" for="input[{$token|escape}][filter]">
 										{tr}Filter{/tr}
 									</label>
@@ -561,7 +561,7 @@
 					</legend>
 
 					<div class="adminoptionbox">
-						<div class="adminoptionlabel form-group">
+						<div class="adminoptionlabel form-group row">
 							<label class="col-form-label col-sm-4" for="ignorebody">
 								{tr}Ignore user input{/tr}
 							</label>
@@ -570,8 +570,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="adminoptionbox form-group">
-						<div class="adminoptionlabel form-group">
+					<div class="adminoptionbox form-group row">
+						<div class="adminoptionlabel form-group row">
 							<label class="col-form-label col-sm-4" for="defaultbody">{tr}Default content{/tr}</label>
 							<div class="col-sm-8">
 								<textarea class="form-control" cols="60" rows="12" id="defaultbody" name="defaultbody">{$plugin_admin.body.default|default:''|escape}</textarea>
@@ -586,7 +586,7 @@
 							{if !empty($plugin_admin.body.params)}
 								{foreach from=$plugin_admin.body.params key=token item=detail}
 									<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_body_new{/if}">
-										<div class="adminoptionlabel form-group">
+										<div class="adminoptionlabel form-group row">
 											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][token]">
 												{tr}Parameter{/tr}
 											</label>
@@ -594,7 +594,7 @@
 												<input class="form-control" type="text" name="bodyparam[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
 											</div>
 										</div>
-										<div class="adminoptionlabel form-group">
+										<div class="adminoptionlabel form-group row">
 											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][encoding]">
 												{tr}Encoding{/tr}
 											</label>
@@ -608,7 +608,7 @@
 												</select>
 											</div>
 										</div>
-										<div class="adminoptionlabel form-group">
+										<div class="adminoptionlabel form-group row">
 											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][input]">
 												{tr}Argument source (if different){/tr}
 											</label>
@@ -616,7 +616,7 @@
 												<input class="form-control" type="text" name="bodyparam[{$token|escape}][input]" value="{$detail.input|escape}">
 											</div>
 										</div>
-										<div class="adminoptionlabel form-group">
+										<div class="adminoptionlabel form-group row">
 											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][default]">
 												{tr}Default value{/tr}
 											</label>
@@ -643,7 +643,7 @@
 						{if $detail|is_array}
 							{if !isset($composed_args)}{assign var=composed_args value=true}{/if}
 							<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_composed_new{/if}">
-								<div class="adminoptionlabel form-group">
+								<div class="adminoptionlabel form-group row">
 									<label class="col-form-label col-sm-4" for="cparams[{$token|escape}][token]">
 										{tr}Parameter{/tr}
 									</label>
@@ -651,7 +651,7 @@
 										<input class="form-control" type="text" name="cparams[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
 									</div>
 								</div>
-								<div class="adminoptionlabel form-group">
+								<div class="adminoptionlabel form-group row">
 									<label class="col-form-label col-sm-4" for="cparams[{$token|escape}][pattern]">
 										{tr}Pattern{/tr}
 									</label>
@@ -668,7 +668,7 @@
 										{if !empty($detail.params)}
 											{foreach from=$detail.params key=t item=d}
 												<div class="clearfix adminoptionbox{if $t eq '__NEW__'} hidefirst" id="pluginalias_composed_newparam{/if}">
-													<div class="adminoptionlabel form-group">
+													<div class="adminoptionlabel form-group row">
 														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][token]">
 															{tr}Parameter{/tr}
 														</label>
@@ -676,7 +676,7 @@
 															<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][token]" value="{if $t neq '__NEW__'}{$t|escape}{/if}">
 														</div>
 													</div>
-													<div class="adminoptionlabel form-group">
+													<div class="adminoptionlabel form-group row">
 														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][pattern]">
 															{tr}Encoding{/tr}
 														</label>
@@ -688,7 +688,7 @@
 															</select>
 														</div>
 													</div>
-													<div class="adminoptionlabel form-group">
+													<div class="adminoptionlabel form-group row">
 														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
 															{tr}Argument source (if different):{/tr}
 														</label>
@@ -696,7 +696,7 @@
 															<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][input]" value="{$d.input|escape}"/>
 														</div>
 													</div>
-													<div class="adminoptionlabel form-group">
+													<div class="adminoptionlabel form-group row">
 														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
 															{tr}Default value{/tr}
 														</label>

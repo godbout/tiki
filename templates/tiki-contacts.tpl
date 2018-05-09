@@ -1,6 +1,6 @@
 {title}{tr}Contacts{/tr}{/title}
 
-<div class="t_navbar btn-group form-group">
+<div class="t_navbar btn-group form-group row">
 	<div style="float:right;margin:5px;">
 		{if $view eq 'list'}
 			{button href="?view=group" _class="btn btn-primary" _text="{tr}Group View{/tr}"}
@@ -18,35 +18,35 @@
 	<input type="hidden" name="locSection" value="contacts">
 	<input type="hidden" name="contactId" value="{$contactId|escape}">
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}First Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" maxlength="80" size="20" name="firstName" value="{$info.firstName|escape}" class="form-control">
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Last Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" maxlength="80" size="20" name="lastName" value="{$info.lastName|escape}" class="form-control">
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Email{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" maxlength="80" size="20" name="email" value="{$info.email|escape}" class="form-control">
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Nickname{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" maxlength="80" size="20" name="nickname" value="{$info.nickname|escape}" class="form-control">
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Publish this contact to groups{/tr}</label>
 		<div class="col-sm-7">
 			<select multiple="multiple" name="groups[]" size="6" class="form-control">
@@ -58,7 +58,7 @@
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Extra Fields{/tr}</label>
 		<div class="col-sm-7">
 			<select id='select_exts' onchange='ext_select();' class="form-control">
@@ -79,7 +79,7 @@
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">

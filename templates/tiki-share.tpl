@@ -55,7 +55,7 @@
 {if !isset($sent) && empty($errors)}
 	<div id="ajaxmsg"></div>
 	<form method="post" action="tiki-share.php?url={$url|escape:url}" id="share-form" class="form-horizontal" role="form">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-form-label col-sm-3">
 				{tr}Subject{/tr}
 			</label>
@@ -72,7 +72,7 @@
 			</div>
 		</div>
 		{if $prefs.share_display_links eq 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="url" class="col-form-label col-sm-3">
 					{tr}Link{/tr}
 				</label>
@@ -80,7 +80,7 @@
 					<a href="{$prefix}{$url}">{$prefix}{$url}</a>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				{if $report != 'y' and $shorturl neq $prefix|cat:$url}
 					<label for="url" class="col-form-label col-sm-3">
 						{tr}Short link{/tr}
@@ -113,7 +113,7 @@
 			</div>
 			<div class="card-body share-email-details">
 				{if $report!='y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="addresses" class="col-form-label col-sm-3">
 							{tr}Recipient(s){/tr}
 						</label>
@@ -133,7 +133,7 @@
 					</div>
 				{/if}
 				{if $prefs.share_display_name_and_email eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="name" class="col-form-label col-sm-3">
 							{tr}Your name{/tr}
 						</label>
@@ -141,7 +141,7 @@
 							<input class="form-control" type="text" name="name" value="{$name|username:false:true}">
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="email" class="col-form-label col-sm-3">
 							{tr}Your email{/tr}{if empty($email)} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}
 						</label>
@@ -154,7 +154,7 @@
 					<input type="hidden" value="{$email}" name="email">
 				{/if}
 				{if $prefs.share_token_notification eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<div class="col-sm-offset-3 col-sm-9">
 							<div class="form-check">
 								<label class="form-check-label">
@@ -168,7 +168,7 @@
 					</div>
 				{/if}
 				{if $prefs.share_can_choose_how_much_time_access eq 'y' && $prefs.auth_token_access eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="how_much_time_access" class="col-form-label col-sm-3">
 							{tr}Token Access Limit{/tr}
 						</label>
@@ -215,7 +215,7 @@
 					<td>
 						{if $twitter}
 							<div class="form-horizontal" id="twittertable" style="display: none;">
-								<div class="form-group">
+								<div class="form-group row">
 									<label class="col-form-label col-sm-3">{tr}Tweet{/tr}</label>
 									<div class="col-sm-7">
 										<input type="text" class="form-control" name="tweet" maxlength="140" style="width:95%;" id="tweet" value="{$subject|escape|default:"{tr}Have a look at {/tr}"} {$shorturl}">
@@ -254,7 +254,7 @@
 					<td>
 						{if $facebook}
 							<div class="form-horizontal" id="fbtable" style="display: none;">
-								<div class="form-group">
+								<div class="form-group row">
 									<label class="col-form-label col-sm-3">{tr}Link text{/tr}</label>
 									<div class="col-sm-7">
 										<input type="text" name="fblinktitle" id="fblinktitle" value="{$fblinktitle|escape}" style="width: 95%;" class="form-control">
@@ -263,7 +263,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group row">
 									<label class="col-form-label col-sm-3">{tr}Like this post{/tr}</label>
 									<div class="col-sm-7">
 										<label>
@@ -365,7 +365,7 @@
 				</div>
 				<div class="card-body share-forum-details hidden">
 					{if count($forums)>0}
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-form-label col-sm-3">
 								{tr}Forum{/tr}
 							</label>
@@ -379,7 +379,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group row">
 							<label class="col-form-label col-sm-3">
 								{tr}Password{/tr}
 							</label>

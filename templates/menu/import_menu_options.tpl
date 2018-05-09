@@ -17,7 +17,7 @@
 		{tr}Duplicate options will be ignored.{/tr}
 	{/remarksbox}
 	<form action="{service controller=menu action=import_menu_options menuId=$menuId}" method="post" enctype="multipart/form-data" role="form" class="no-ajax form">
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="csvfile" class="col-form-label">
 				{tr}File{/tr} 
 			</label>

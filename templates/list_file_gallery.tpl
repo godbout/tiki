@@ -7,7 +7,7 @@
 	&& $tiki_p_view_fgal_explorer eq 'y' )
 	or ( !empty($gallery_path) && $fgal_options.show_path.value eq 'y' && $tiki_p_view_fgal_path eq 'y' )
 }
-	<div class="fgal_top_bar form-group">
+	<div class="fgal_top_bar form-group row">
 		{if isset($tree) and count($tree) gt 0 && $tiki_p_list_file_galleries != 'n'
 			&& $fgal_options.show_explorer.value eq 'y' && $tiki_p_view_fgal_explorer eq 'y'}
 			{if $prefs.javascript_enabled eq 'y'}
@@ -150,7 +150,7 @@
 								{tr}Move selected file or gallery{/tr}
 							</div>
 							<div class="panel-body">
-								<div class="form-group">
+								<div class="form-group row">
 									<label for="moveto" class="col-sm-2">
 										{tr}Move to:{/tr}
 									</label>
@@ -180,7 +180,7 @@
 							{tr}Assign file gallery permissions to groups{/tr}
 						</div>
 						<div class="panel-body">
-							<div class="form-group">
+							<div class="form-group row">
 								<div class="col-sm-6">
 									<span class="form-text">
 										{tr}Permissions{/tr}

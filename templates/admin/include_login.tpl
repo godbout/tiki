@@ -67,7 +67,7 @@
 							</div>
 					</fieldset>
 					<legend>{tr}Group and tracker login settings{/tr}</legend>
-					<div class="adminoptionbox form-group">
+					<div class="adminoptionbox form-group row">
 						<label for="registration_choices" class="col-sm-4 col-form-label">{tr}Users can select a group to join at registration:{/tr}</label>
 						<div class="col-sm-8 adminoptionlabel">
 							<select id="registration_choices" name="registration_choices[]" multiple="multiple" size="5" class="form-control">
@@ -190,7 +190,7 @@
 				{preference name=pass_due}
 			</fieldset>
 			<fieldset>
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="col-sm-8 col-sm-offset-4">
 						{button href="?page=login&amp;refresh_email_group=y" _class="timeout" _text="{tr}Assign users to groups by matching email patterns{/tr}"}
 						<div class="form-text">{tr}An email pattern must be defined in the settings for at least one group for this to produce any results.{/tr}</div>
@@ -482,7 +482,7 @@
 
 				<legend>{tr}Password blacklist tools{/tr}</legend>
 
-				<div class="form-group">
+				<div class="form-group row">
 					<h3>Upload Word List for Processing</h3>
 					<p>Words currently indexed: {$num_indexed}</p>
 

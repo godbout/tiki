@@ -33,13 +33,13 @@
 			{if $page_ref_id}
 				<input type="hidden" name="page_ref_id" value="{$page_ref_id}">
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="attach-upload">{tr}Upload file{/tr}</label>
 				<div class="col-sm-10">
 					<input size="16" name="userfile[0]" type="file" id="attach-upload">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="attach-comment">{tr}Comment{/tr}</label>
 				<div class="col-sm-10">
 					<input type="text" name="s_f_attachments-comment" maxlength="250" id="attach-comment">

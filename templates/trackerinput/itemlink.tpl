@@ -7,7 +7,7 @@
 		{wikiplugin _name=trackerlist _compactArguments_=$data.trackerListOptions}{/wikiplugin}
 		{if $field.options_map.addItems and $data.createTrackerItems}
 			{if $data.predefined}
-				<div class="form-group">
+				<div class="form-group row">
 					<div class="input-group col-sm-6">
 						<select name="addaction" class="form-control">
 							<option value="">{$field.options_map.addItems|escape}</option>
