@@ -46,7 +46,7 @@
 </div>
 <form class="add-event no-ajax" method="post" action="{service controller=tracker_todo action=add trackerId=$trackerId}">
 	<h4>{tr}New event{/tr}</h4>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="from">{tr}From{/tr}</label>
 		<select name="from" class="form-control">
 			{foreach key=st item=stdata from=$statusTypes}
@@ -54,7 +54,7 @@
 			{/foreach}
 		</select>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="to">{tr}To{/tr}</label>
 		<select name="to" class="form-control">
 			{foreach key=st item=stdata from=$statusTypes}
@@ -62,14 +62,14 @@
 			{/foreach}
 		</select>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="event">{tr}Reference date{/tr}</label>
 		<select name="event" class="form-control">
 			<option value="creation">{tr}After creation{/tr}</option>
 			<option value="modification">{tr}After last modification{/tr}</option>
 		</select>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label>{tr}Delay{/tr}</label>
 		<div class="form-control">
 			{html_select_duration prefix='after'}
@@ -78,13 +78,13 @@
 	<fieldset>
 		<legend>{tr}Notification{/tr}</legend>
 
-		<div class="form-group">
+		<div class="form-group row">
 			<label>{tr}Delay prior to status change{/tr}</label>
 			<div class="form-control">
 				{html_select_duration prefix='notif'}
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="subject">{tr}Mail subject text{/tr}</label>
 			<input type="text" name="subject" class="form-control">
 		</div>

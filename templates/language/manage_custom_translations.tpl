@@ -20,7 +20,7 @@
 {/block}
 {block name="content"}
 	<form action="{service controller=language action=manage_custom_translations}" method="post" role="form" class="form">
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<div class="col-md-6">
 				<label class="col-form-label" for="custom_lang_select">
 					{tr}Language{/tr}
@@ -61,7 +61,7 @@
 				{icon name="file"} {$custom_file}
 			</span>
 		{/if}
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="table-responsive">
 				<table class="table" id="custom_translations_table">
 					<thead>

@@ -12,7 +12,7 @@
 				{tr}Edit queued message{/tr}
 			</div>
 			<div class="panel-body">
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="title" class="col-form-label col-sm-2">
 						{tr}Title{/tr}
 					</label>
@@ -21,7 +21,7 @@
 					</div>
 				</div>
 				{if $msg_info.parentId > 0}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="parentId" class="col-form-label col-sm-2">
 							{tr}Topic{/tr}
 						</label>
@@ -34,7 +34,7 @@
 						</div>
 					</div>
 				{else}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="parentId" class="col-form-label col-sm-2">
 							{tr}Make this a thread of{/tr}
 						</label>
@@ -49,7 +49,7 @@
 					</div>
 				{/if}
 				{if $msg_info.parentId eq 0 and $forum_info.topic_summary eq 'y'}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="summary" class="col-form-label col-sm-2">
 							{tr}summary{/tr}
 						</label>
@@ -59,7 +59,7 @@
 					</div>
 				{/if}
 				{if $msg_info.parentId eq 0}
-					<div class="form-group">
+					<div class="form-group row">
 						<label for="type" class="col-form-label col-sm-2">
 							{tr}Type{/tr}
 						</label>
@@ -88,7 +88,7 @@
 						</div>
 					</div>
 				{/if}
-				<div class="form-group">
+				<div class="form-group row">
 					<label for="data" class="col-form-label col-sm-2">
 						{tr}Body{/tr}
 					</label>
@@ -113,7 +113,7 @@
 {* FILTERING FORM *}
 {if $items or ($find ne '')}
 	<form action="tiki-forum_queue.php" method="post" class="form">
-		<div class="form-group">
+		<div class="form-group row">
 			<input type="hidden" name="forumId" value="{$forumId|escape}">
 			<input type="hidden" name="offset" value="{$offset|escape}">
 			<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">

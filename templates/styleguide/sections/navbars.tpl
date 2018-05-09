@@ -38,7 +38,7 @@
 							</li>
 						</ul>
 						<form class="navbar-form navbar-left" role="search">
-							<div class="form-group">
+							<div class="form-group row">
 								<input type="text" class="form-control" placeholder="Search">
 							</div>
 							<button type="submit" class="btn btn-primary">Submit</button>

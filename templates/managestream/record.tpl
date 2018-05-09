@@ -4,7 +4,7 @@
 {/block}
 {block name="content"}
 	<form role="form" class="form form-horizontal" method="post" action="{service controller=managestream action=record}">
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}
 			</label>
@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		{if $prefs.activity_notifications eq 'y'}
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<div class="col-md-offset-3 col-md-9">
 					<div class="form-check">
 						<label for="notification_checkbox">
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="priority-div hidden clearfix">
-				<div class="form-group col-md-push-4 col-md-8">
+				<div class="form-group row col-md-push-4 col-md-8">
 					<label for="priorityinput" class="col-form-label">{tr}Priority{/tr}</label>
 					<select id="priorityinput" name="priority" class="form-control">
 						<option value="low">Low</option>
@@ -37,13 +37,13 @@
 						<option value="critical">Critical</option>
 					</select>
 				</div>
-				<div class="form-group col-md-push-4 col-md-8">
+				<div class="form-group row col-md-push-4 col-md-8">
 					<label for="userInput" class="col-form-label">{tr}Recipient{/tr}</label>
 					<input id="userInput" name="user" class="form-control" value="user">
 				</div>
 			</div>
 		{/if}
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="notes" class="col-form-label col-md-3">
 				{tr}Description{/tr}
 			</label>
@@ -51,7 +51,7 @@
 				<textarea name="notes" class="form-control">{$rule.notes|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="rule" class="col-form-label col-md-3">
 				{tr}Rule{/tr}
 			</label>

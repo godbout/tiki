@@ -4,33 +4,33 @@
 		<div class="col-sm-8 col-md-9">
 			<form class="sg-form" method="post" action="#">
 				<fieldset>
-					<p class="form-group">
+					<p class="form-group row">
 						<label for="sg-username-example">Username</label>
 						<input id="sg-username-example" class="nocolor form-control" type="text" value="Username">
 					</p>
-					<p class="has-error form-group">
+					<p class="has-error form-group row">
 						<label for="sg-password-example">Password</label>
 						<input id="sg-password-example" class="nocolor form-control" type="password">
 						<label class="label label-warning">This field is required</label>
 					</p>
-					<p class="form-group">
+					<p class="form-group row">
 						<input id="sg-remember-example" type="checkbox"> Remember me
 					</p>
-					<p class="form-group">
+					<p class="form-group row">
 						<button class="btn btn-primary">Login</button>
 					</p>
 					<hr/>
 
-					<p class="has-error form-group">
+					<p class="has-error form-group row">
 						<label for="sg-text-example">Text field</label>
 						<input id="sg-text-example" class="nocolor form-control" type="text">
 						<label class="label label-warning">This field is required</label>
 					</p>
-					<p class="form-group">
+					<p class="form-group row">
 						<label for="sg-textarea-example">Textarea</label>
 						<textarea id="sg-textarea-example" class="nocolor form-control" rows="3">This is a textarea field</textarea>
 					</p>
-					<p class="form-group">
+					<p class="form-group row">
 						<label for="sg-select-example">Select</label> <select id="sg-select-example" class="nocolor form-control">
 							<option>Option 1</option>
 							<option>Option 2</option>
@@ -38,12 +38,12 @@
 							<option>Option 4</option>
 						</select>
 					</p>
-					<p class="form-group">
+					<p class="form-group row">
 						<label for="sg-checkbox-example">Checkbox</label>
 						<input id="sg-checkbox-example" type="checkbox">
 						This is a checkbox
 					</p>
-					<p class="form-group">
+					<p class="form-group row">
 						<label for="sg-radio-example">Radio</label>
 						<input id="sg-radio-example" name="radio" type="radio">
 						This is a radio button

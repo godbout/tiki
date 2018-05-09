@@ -9,7 +9,7 @@
 		{remarksbox title="{tr}Tip{/tr}"}
 			{tr}Cached sample data helps to view available variables for event types{/tr}
 		{/remarksbox}
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}
 			</label>
@@ -22,7 +22,7 @@
 			</div>
 			</label>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="notes" class="col-form-label col-md-3">
 				{tr}Description{/tr}
 			</label>
@@ -30,7 +30,7 @@
 				<textarea name="notes" class="form-control">{$rule.notes|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="sample" class="col-form-label col-md-3">
 				{tr}Sample{/tr}
 			</label>
@@ -38,7 +38,7 @@
 				<pre>{if $data}{$data|escape}{else}{tr}Sample currently not available{/tr}{/if}</pre>
 			</div>
 		</div>		
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="rule" class="col-form-label col-md-3">
 				{tr}Rule{/tr}
 			</label>

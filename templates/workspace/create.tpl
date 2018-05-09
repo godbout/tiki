@@ -6,7 +6,7 @@
 
 {block name="content"}
 	<form method="post" action="{service controller=workspace action=create}" role="form" class="form">
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="template" class="col-form-label">
 				{tr}Template{/tr}
 			</label>
@@ -16,7 +16,7 @@
 				{/foreach}
 			</select>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="name" class="col-form-label">
 				{tr}Workspace Name{/tr}
 			</label>

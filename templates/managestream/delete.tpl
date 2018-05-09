@@ -8,7 +8,7 @@
 	{else}
 		<form role="form" class="form form-horizontal" method="post" action="{service controller=managestream action=delete}">
 			{remarksbox type="warning" close="n" title="{tr}Are you sure you want to delete this rule?{/tr}"}{/remarksbox}
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label class="col-form-label col-md-3">
 					{tr}Description{/tr}
 				</label>
@@ -16,7 +16,7 @@
 					{$rule.notes|escape}
 				</div>
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label class="col-form-label col-md-3">
 					{tr}Rule{/tr}
 				</label>

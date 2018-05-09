@@ -18,7 +18,7 @@
 			<p>{tr}This is the simple edition interface offering a subset of the available features. You can switch to the advanced mode and get more power.{/tr}</p>
 			<a class="ajax alert-link" href="{service controller=workspace action=advanced_edit id=$id}">{tr}Advanced Mode{/tr}</a>
 		{/remarksbox}
-		<div class="form-group">
+		<div class="form-group row">
 			<label for="name" class="col-form-label">
 				{tr}Name{/tr}
 			</label>

@@ -9,7 +9,7 @@
 		{/remarksbox}
 	{/if}
 	<form role="form" class="form form-horizontal" method="post" action="{service controller=managestream action=advanced}">
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}
 			</label>
@@ -21,7 +21,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="notes" class="col-form-label col-md-3">
 				{tr}Description{/tr}
 			</label>
@@ -29,7 +29,7 @@
 				<textarea name="notes" class="form-control" rows="3">{$rule.notes|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="rule" class="col-form-label col-md-3">
 				{tr}Rule{/tr}
 			</label>

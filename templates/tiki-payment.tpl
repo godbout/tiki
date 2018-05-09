@@ -55,7 +55,7 @@
 		{permission name=payment_request}
 			{tab name="{tr}Request{/tr}"}
 				<form method="post" action=""><br>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-3 col-form-label text-right" for="description">
 							{tr}Description{/tr}
 						</label>
@@ -63,7 +63,7 @@
 							<input class="form-control" type="text" id="description" name="description">
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-3 col-form-label text-right" for="detail">
 							{tr}Detail{/tr}
 						</label>
@@ -71,7 +71,7 @@
 							<textarea class="form-control" id="detail" name="detail" style="width: 100%;" rows="6"></textarea>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-3 col-form-label text-right" for="amount">
 							{tr}Amount{/tr}
 						</label>
@@ -82,7 +82,7 @@
 							</span>
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group row">
 						<label class="col-sm-3 col-form-label text-right" for="payable">
 							{tr}Payable within{/tr}
 						</label>
@@ -96,7 +96,7 @@
 					{if $prefs.feature_categories eq 'y'}
 						{include file="categorize.tpl" labelcol=3 labelclass='text-right' inputcol=8 inputgroup=y}
 					{/if}
-					<div class="form-group">
+					<div class="form-group row">
 						<div class="col-sm-8 col-sm-offset-3 input-group">
 							<input type="submit" class="btn btn-secondary" name="request" value="{tr}Request{/tr}">
 						</div>

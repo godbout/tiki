@@ -16,7 +16,7 @@
 			{/remarksbox}
 		{else}
 			{if $tiki_p_admin eq 'y' and $langIsWritable}
-				<div class="form-group">
+				<div class="form-group row">
 					<label>
 						{tr}Translations in the database{/tr}: <span class="badge">{$db_translation_count}</span>
 					</label>
@@ -26,7 +26,7 @@
 						</label>
 					{/if}
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label>
 						{tr}File{/tr}: {$langFile}
 					</label>

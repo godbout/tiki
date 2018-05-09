@@ -4,19 +4,19 @@
 {/block}
 {block name="content"}
 	<form role="form" class="form-horizontal" method="post" action="{service controller=managestream action=tracker_filter}">
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="sourceEvent" class="col-form-label col-md-3">
 				{tr}Source Event{/tr}
 			</label>
 			<div class="col-md-9">
-				<select name="sourceEvent" class="form-group">
+				<select name="sourceEvent" class="form-group row">
 					{foreach from=$eventTypes item=eventName}
 						<option value="{$eventName|escape}"{if $rule.eventType eq $eventName} selected{/if}>{$eventName|escape}</option>
 					{/foreach}
 				</select>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="notes" class="col-form-label col-md-3">
 				{tr}Description{/tr}
 			</label>
@@ -24,7 +24,7 @@
 				<textarea name="notes" class="form-control">{$rule.notes|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="targetEvent" class="col-form-label col-md-3">
 				{tr}Target Event{/tr}
 			</label>
@@ -35,7 +35,7 @@
 				</span>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="tracker" class="col-form-label col-md-3">
 				{tr}Tracker{/tr}
 			</label>
@@ -49,7 +49,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="parameters" class="col-form-label col-md-3">
 				{tr}Parameters{/tr}
 			</label>
@@ -57,7 +57,7 @@
 				<textarea name="parameters" rows="3" class="form-control">{$parameters|escape}</textarea>
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="rule" class="col-form-label col-md-3">
 				{tr}Rule{/tr}
 			</label>
