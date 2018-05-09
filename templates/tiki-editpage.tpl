@@ -345,7 +345,7 @@
 							</div>
 						{/if}
 						{if $prefs.feature_wiki_import_page eq 'y'}
-							<div class="form-group clearfix">
+							<div class="form-group row clearfix">
 								<label for="userfile1" class="col-md-4 col-form-label">{tr}Import page{/tr}</label>
 								<div class="col-md-8 form-inline">
 									<input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
@@ -367,7 +367,7 @@
 								<input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
 								<input type="hidden" name="hasAlreadyInserted2" value="">
 								<input type="hidden" id="page2" name="page2" value="{$page}">
-								<div class="form-group clearfix">
+								<div class="form-group row clearfix">
 									<label for="attach-upload" class="col-md-4 col-form-label">{tr}Attach file{/tr}</label>
 									<div class="col-md-8 form-inline">
 										<input name="userfile2" type="file" id="attach-upload" class="form-control">
@@ -425,7 +425,7 @@
 								</div>
 							{/if}
 							{if $prefs.feature_copyright eq 'y' and $prefs.wiki_feature_copyrights eq 'y'}
-								<div class="form-group clearfix">
+								<div class="form-group row clearfix">
 									<label for="" class="col-md-4 col-form-label">{tr}Copyright{/tr}</label>
 									<div class="col-md-8">
 										<div class="form-group row">
@@ -544,7 +544,7 @@
 						{/if}
 						{if $prefs.feature_multilingual eq 'y'}
 							<fieldset>
-								<div class="form-group clearfix">
+								<div class="form-group row clearfix">
 									<label for="" class="col-md-4 col-form-label">{tr}Language{/tr}</label>
 									<div class="col-md-8">
 										<select name="lang" id="lang" class="form-control margin-bottom-sm">
@@ -592,7 +592,7 @@
 						{/if}
 						{* check if wiki_auto_toc is set - but don't understand why wiki_page_hide_title is checked - also the logic made into an 'and' since the previous 'or' made no sense *}
 						{if $prefs.wiki_auto_toc eq 'y' and $prefs.wiki_page_hide_title eq 'y'}
-							<div class="form-group clearfix">
+							<div class="form-group row clearfix">
 								<label for="pageAutoToc" class="col-md-4 col-form-label">{tr}Automatic table of contents{/tr}</label>
 								<div class="col-md-8">
 									<select name="pageAutoToc" class="form-control">
@@ -604,7 +604,7 @@
 							</div>
 						{/if}
 						{if $prefs.wiki_page_hide_title eq 'y' && ($prefs.wiki_page_name_above eq 'y' or $prefs.feature_page_title eq 'y' or $prefs.wiki_page_name_inside eq 'y')}
-							<div class="form-group clearfix">
+							<div class="form-group row clearfix">
 								<label for="page_hide_title" class="col-md-4 col-form-label">{tr}Show page title{/tr}</label>
 								<div class="col-md-8">
 									<select name="page_hide_title" class="form-control">
@@ -616,7 +616,7 @@
 							</div>
 						{/if}
 						{if $prefs.namespace_enabled eq 'y'}
-							<div class="form-group clearfix">
+							<div class="form-group row clearfix">
 								<label for="explicit_namespace" class="col-md-4 col-form-label">{tr}Namespace{/tr}</label>
 								<div class="col-md-8">
 									<input type="text" class="form-control" name="explicit_namespace" value="{$explicit_namespace|escape}" placeholder="{tr}Explicit Namespace{/tr}">

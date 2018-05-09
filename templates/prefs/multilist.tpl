@@ -1,4 +1,4 @@
-<div class="adminoptionbox preference clearfix form-group {$p.tagstring|escape}{if isset($smarty.request.highlight) and $smarty.request.highlight eq $p.preference} highlight{/if}" style="text-align: left;">
+<div class="adminoptionbox preference clearfix form-group row {$p.tagstring|escape}{if isset($smarty.request.highlight) and $smarty.request.highlight eq $p.preference} highlight{/if}" style="text-align: left;">
 	<label class="col-sm-4 col-form-label" for="{$p.id|escape}">{$p.name|escape}</label>
 	<div class="col-sm-8">
 		<select class="form-control" name="{$p.preference|escape}[]" id="{$p.id|escape}" multiple="multiple">

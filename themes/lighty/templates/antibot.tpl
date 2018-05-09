@@ -19,7 +19,7 @@
 	{/if}
 	<div class="antibot row">
 		{if $captchalib->type eq 'recaptcha' || $captchalib->type eq 'recaptcha20'}
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<div class="{$captchaclass}">
 					{$captchalib->render()}
 				</div>

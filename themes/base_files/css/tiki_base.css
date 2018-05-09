@@ -1097,7 +1097,8 @@ div.categbar {
 
 #top_modules, #topbar_modules, #pagebottom_modules, #bottom_modules {
   display: flex !important;
-  flex-direction: row !important; }
+  flex-direction: row !important;
+  justify-content: space-between; }
 
 #bottom_modules {
   align-items: flex-start; }
@@ -1613,9 +1614,6 @@ small.description {
 
 .related_posts h4, .related_articles h4 {
   margin: 0; }
-
-.postfooter .pager {
-  margin-bottom: 0; }
 
 body.tiki_forums .normal {
   margin: auto; }

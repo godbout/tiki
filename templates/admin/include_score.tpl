@@ -103,7 +103,7 @@
 			{/foreach}
 		</table>
 		<hr>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<div class="col-lg-4 col-sm-6">
 				<select id="eventSelect" name="event" class="form-control">
 					{foreach from=$eventTypes item=eventName}

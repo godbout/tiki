@@ -176,7 +176,7 @@ if (jqueryTiki.no_cookie) {
 				{else}{$error_login|escape}{/if}
 			{/remarksbox}
 		{/if}
-		<div class="user form-group clearfix">
+		<div class="user form-group row clearfix">
 			{if !isset($module_logo_instance)}{assign var=module_logo_instance value=' '}{/if}
 			<label for="login-user_{$module_logo_instance}">
 				{if $prefs.login_is_email eq 'y'}
@@ -200,7 +200,7 @@ if (jqueryTiki.no_cookie) {
 				<input class="form-control" type="hidden" name="user" id="login-user_{$module_logo_instance}" value="{$loginuser|escape}" /><b>{$loginuser|escape}</b>
 			{/if}
 		</div>
-		<div class="pass form-group clearfix">
+		<div class="pass form-group row clearfix">
 			<label for="login-pass_{$module_logo_instance}">{tr}Password:{/tr}</label>
 			<input onkeypress="capLock(event, this)" type="password" name="pass" class="form-control" id="login-pass_{$module_logo_instance}">
 			<div class="divCapson" style="display:none;">

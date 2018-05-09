@@ -96,7 +96,7 @@
 		{/tab}
 		{tab name="{tr}Classification{/tr}"}
 			<h2>{tr}Classification{/tr}</h2>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label for="topicId" class="control-label col-md-4">{tr}Topic{/tr}</label>
 				<div class="col-md-6">
 					<select name="topicId" id="topicId" class="form-control">
@@ -114,7 +114,7 @@
 					</span>
 				{/if}
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label for="articletype" class="control-label col-md-4">{tr}Type{/tr}</label>
 				<div class="col-md-6">
 					<select id='articletype' name="type" onchange='javascript:chgArtType();' class="form-control">
@@ -138,16 +138,16 @@
 					{/remarksbox}
 				</div>
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				{include file='categorize.tpl'}
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				{include file='freetag.tpl'}
 			</div>
 		{/tab}
 		{tab name="{tr}Publication{/tr}"}
 			<h2>{tr}Publication{/tr}</h2>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<div class="col-md-4 col-md-push-4">
 					<div class="form-check well well-sm">
 						<label class="form-check-label">
@@ -160,7 +160,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label for="authorName" class="control-label col-md-4">{tr}Author name (as displayed){/tr}</label>
 				<div class="col-md-4">
 					<input type="text" name="authorName" id="authorName" value="{$authorName|escape}" class="form-control">
@@ -173,7 +173,7 @@
 					{autocomplete element='#author' type='username'}
 				</div>
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label class="control-label col-md-4">{tr}Publish Date{/tr}</label>
 				<div class="col-md-8">
 					{html_select_date prefix="publish_" time=$publishDate start_year="-10" end_year="+10" field_order=$prefs.display_field_order}
@@ -182,7 +182,7 @@
 					<span dir="ltr">{$siteTimeZone}</span>
 				</div>
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label class="control-label col-md-4">{tr}Expiration Date{/tr}</label>
 				<div class="col-md-8">
 					{html_select_date prefix="expire_" time=$expireDate start_year="-10" end_year="+10" field_order=$prefs.display_field_order}
@@ -275,7 +275,7 @@
 		{tab name="{tr}Advanced{/tr}"}
 			<h2>{tr}Advanced{/tr}</h2>
 			{if $prefs.feature_multilingual eq 'y' and empty($translationOf)}
-				<div class="form-group clearfix">
+				<div class="form-group row clearfix">
 					<label for="translationOf" class="control-label col-md-4">
 						{tr}Attach existing article ID as translation{/tr}
 					</label>
@@ -337,7 +337,7 @@
 				</div>
 			</div>
 			{if $prefs.geo_locate_article eq 'y'}
-				<div class="form-group clearfix">
+				<div class="form-group row clearfix">
 					<label class="control-label col-md-4">{tr}Location{/tr}</label>
 					<div class="col-md-8">
 						<div class="map-container" data-geo-center="{defaultmapcenter}" data-target-field="geolocation"></div>
@@ -347,7 +347,7 @@
 				</div>
 			{/if}
 			{if $prefs.feature_cms_templates eq 'y' and $tiki_p_use_content_templates eq 'y' and $templates|@count ne 0}
-				<div class="form-group clearfix">
+				<div class="form-group row clearfix">
 					<label for="templateId" class="control-label col-md-4">{tr}Apply content template{/tr}</label>
 					<div class="col-md-8">
 						<select class="form-control" name="templateId" id="templateId" onchange="javascript:document.getElementById('editpageform').submit();">
@@ -396,7 +396,7 @@
 			{/if}
 		{/tab}
 	{/tabset}
-	<div class="form-group clearfix text-center">
+	<div class="form-group row clearfix text-center">
 		<input type="submit" class="wikiaction btn btn-primary" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
 		<input type="submit" class="wikiaction btn btn-secondary" name="save" value="{tr}Save{/tr}" onclick="this.form.saving=true;needToConfirm=false;">
 		{if $articleId}<input type="submit" class="wikiaction tips btn btn-primary" title="{tr}Cancel{/tr}|{tr}Cancel the edit (changes will be lost).{/tr}" name="cancel_edit" value="{tr}Cancel Edit{/tr}" onclick="needToConfirm=false;">{/if}

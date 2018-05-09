@@ -6,6 +6,7 @@
 #bottom_modules {
 	display: flex !important;
 	flex-direction: row !important;
+	justify-content: space-between;
 }
 
 #bottom_modules { align-items: flex-start; }

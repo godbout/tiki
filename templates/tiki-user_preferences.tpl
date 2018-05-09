@@ -235,7 +235,7 @@
 					</div>
 				{/if}
 				{if $prefs.change_language eq 'y'}
-					<div class="form-group clearfix">
+					<div class="form-group row clearfix">
 						<label class="col-form-label col-md-4" for="language">
 							{tr}Language{/tr}
 						</label>
@@ -254,7 +254,7 @@
 					</div>
 				{/if}
 				{if $tiki_p_admin eq 'y'}
-					<div class="form-group clearfix">
+					<div class="form-group row clearfix">
 						<label class="col-form-label col-md-4" for="languageAdmin">
 							{tr}Admin Language{/tr}
 						</label>
@@ -274,16 +274,16 @@
 				{/if}
 				{if $prefs.feature_multilingual eq 'y'}
 					{if $user_prefs.read_language}
-						<div id="read-lang-div" class="form-group clearfix">
+						<div id="read-lang-div" class="form-group row clearfix">
 					{else}
-						<div class="form-group clearfix">
+						<div class="form-group row clearfix">
 							<div class="col-md-8 col-md-push-4">
 								<a href="javascript:void(0)" onclick="document.getElementById('read-lang-div').style.display='block';this.style.display='none';">
 									{tr}Can you read more languages?{/tr}
 								</a>
 							</div>
 						</div>
-						<div id="read-lang-div" style="display: none" class="form-group clearfix">
+						<div id="read-lang-div" style="display: none" class="form-group row clearfix">
 					{/if}
 					<label class="col-form-label col-md-4" for="read-language">{tr}Other languages you can read{/tr}</label>
 					<div class="col-md-8">
@@ -302,7 +302,7 @@
 					</label>
 					</div>
 				{/if}
-				<div class="form-group clearfix">
+				<div class="form-group row clearfix">
 					<label class="col-form-label col-md-4" for="userbreadCrumb">
 						{tr}Number of visited pages to remember{/tr}
 					</label>
@@ -317,7 +317,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group clearfix">
+				<div class="form-group row clearfix">
 					<label class="col-form-label col-md-4" for="display_timezone">
 						{tr}Displayed timezone{/tr}
 					</label>
@@ -343,7 +343,7 @@
 						{/if}
 					</div>
 				</div>
-				<div class="form-group clearfix">
+				<div class="form-group row clearfix">
 					<div class="checkbox col-md-8 col-md-push-4">
 						<label>
 							<input type="checkbox" name="display_12hr_clock" {if $user_prefs.display_12hr_clock eq 'y'}checked="checked"{/if}>{tr}Use 12-hour clock in time selectors{/tr}
@@ -359,7 +359,7 @@
 				</div>
 				{if $prefs.feature_messages eq 'y' and $tiki_p_messages eq 'y'}
 					<legend>{tr}User Messages{/tr}</legend>
-					<div class="form-group clearfix">
+					<div class="form-group row clearfix">
 						<label class="col-form-label col-md-4" for="mess_maxRecords">
 							{tr}Messages per page{/tr}
 						</label>
@@ -391,7 +391,7 @@
 							</label>
 						</div>
 					</div>
-					<div class="form-group clearfix">
+					<div class="form-group row clearfix">
 						<label class="col-form-label col-md-4" for="minPrio">
 							{tr}Message priority notification{/tr}
 						</label>
@@ -407,7 +407,7 @@
 							<span class="form-text">{tr}Send me an email for messages with priority equal to or greater than{/tr}</span>
 						</div>
 					</div>
-					<div class="form-group clearfix">
+					<div class="form-group row clearfix">
 						<label class="col-form-label col-md-4" for="mess_archiveAfter" >
 							{tr}Read message auto-archiving{/tr}
 						</label>
@@ -523,7 +523,7 @@
 					{/if}
 				</div>
 				{if $prefs.feature_userlevels eq 'y'}
-					<div class="form-group clearfix">
+					<div class="form-group row clearfix">
 						<label class="col-form-label col-md-4" for="mylevel">
 							{tr}My level{/tr}
 						</label>

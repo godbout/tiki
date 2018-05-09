@@ -119,7 +119,7 @@
 					{self_link um_edit=$assign_name cookietab="2" _anchor="editcreate"}{tr}Edit custom module{/tr} {icon name="next"}{/self_link}
 				</div>
 			{/if}
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<div class="pull-right">
 				<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
 				<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}" onclick="needToConfirm=false;">

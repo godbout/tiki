@@ -14,14 +14,14 @@
 	{if $storedName and not $edit}
 		<h2>{$storedName|escape}:</h2>
 		<div class="row">
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label class="col-sm-4"> {tr}URL:{/tr}</label>
 				<div class="col-sm-8">
 					<code>{$url|escape}</code>
 				</div>
 			</div>
 			{if $postbody}
-				<div class="form-group clearfix">
+				<div class="form-group row clearfix">
 					<label class="col-sm-4"> {tr}Body of POST request:{/tr}</label>
 					<div class="col-sm-8">
 						<pre style="max-height: 40em; overflow: auto; white-space: pre-wrap">{$postbody|escape}</pre>

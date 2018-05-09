@@ -63,7 +63,7 @@
 				<input class="form-control" type="text" name="subject" value="{$subject|escape|default:"{tr}Have a look at this page{/tr}"}">
 			</div>
 		</div>
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label class="col-form-label col-sm-3">
 				{tr}Text{/tr}
 			</label>
@@ -307,7 +307,7 @@
 				</div>
 				<div class="card-body share-message-details hidden">
 				{if $send_msg}
-					<div class="form-group clearfix">
+					<div class="form-group row clearfix">
 						<label for="messageto" class="col-form-label col-sm-3">
 							{tr}User(s){/tr}
 						</label>
@@ -322,7 +322,7 @@
 							</span>
 						</div>
 					</div>
-					<div class="form-group clearfix">
+					<div class="form-group row clearfix">
 						<label for="priority" class="col-form-label col-sm-3">
 							{tr}Priority{/tr}
 						</label>

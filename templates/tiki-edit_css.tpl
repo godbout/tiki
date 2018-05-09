@@ -35,7 +35,7 @@
 				<input type="submit" class="btn btn-primary btn-sm" name="cancel_try" value="{tr}Cancel{/tr}">
 			{/remarksbox}
 		{/if}
-		<div class="form-group clearfix">
+		<div class="form-group row clearfix">
 			<label for="theme" class="col-form-label">
 				{tr}Theme{/tr}
 			</label>

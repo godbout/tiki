@@ -646,7 +646,7 @@ $("input, select, textarea", "#editcalitem").change(function () {
 				</div> <!-- / .form-group -->
 			{/if}
 			{if $calendar.custompriorities eq 'y'}
-				<div class="form-group clearfix">
+				<div class="form-group row clearfix">
 					<label class="col-form-label col-md-3">{tr}Priority{/tr}</label>
 					<div class="col-md-2">
 						{if $edit}
