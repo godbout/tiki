@@ -5,7 +5,7 @@
 			style="display:none;" class="{$prefs.cookie_consent_mode}"
 		{/if}
 	>
-		<label method="POST">
+		<form method="POST">
 			<div class="description">
 				{wiki}{tr}{$prefs.cookie_consent_description}{/tr}{/wiki}
 			</div>
@@ -13,7 +13,7 @@
 				<span class="question form-check">
 					<label class="form-check-label">{wiki}{tr}{$prefs.cookie_consent_question}{/tr}{/wiki}
 				</span>
-			<input type="checkbox" class="form-check-input" name="cookie_consent_checkbox"></label>&nbsp;
+			<input type="checkbox" class="form-check-input" name="cookie_consent_checkbox"></form>&nbsp;
 			{else}
 				<input type="hidden" name="cookie_consent_checkbox" value="1">
 			{/if}
