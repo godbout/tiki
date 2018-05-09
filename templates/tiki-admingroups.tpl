@@ -417,8 +417,8 @@
 				<div class="form-group">
 					<div class="col-md-9 col-md-offset-3">
 						<div class="form-check">
-							<label>
-								<input type="checkbox" name="userChoice"{if $userChoice eq 'y'} checked="checked"{/if}>
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="userChoice"{if $userChoice eq 'y'} checked="checked"{/if}>
 								{tr}User can assign himself or herself to the group{/tr}
 							</label>
 						</div>
@@ -697,18 +697,18 @@
 					<label class="col-sm-3 col-form-label">{tr}Fields{/tr}</label>
 					<div class="col-sm-7">
 						<div class="form-check">
-							<label>
-								<input type="checkbox" name="username" checked="checked"> {tr}Username{/tr}
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="username" checked="checked"> {tr}Username{/tr}
 							</label>
 						</div>
 						<div class="form-check">
-							<label>
-								<input type="checkbox" name="email"> {tr}Email{/tr}
+							<label class="form-check-label">
+								<input class="form-class-input" type="checkbox" name="email"> {tr}Email{/tr}
 							</label>
 						</div>
 						<div class="form-check">
-							<label>
-								<input type="checkbox" name="lastLogin"> {tr}Last login{/tr}
+							<label class="form-check-label">
+								<input class="form-class-input" type="checkbox" name="lastLogin"> {tr}Last login{/tr}
 							</label>
 						</div>
 					</div>

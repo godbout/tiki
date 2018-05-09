@@ -83,7 +83,11 @@ $('#scblink').click(function(e){
 												<input type="hidden" name="rootlang[{$group}][{$lang}]" value="{$rootlang[$group]}">
 											</div>
 										{else}
-											<div class="text-center">{$tag[$lang].tag} <input style="display: none" type="checkbox" name="clear[]" value="{$tag[$lang].tagId}"></div>
+											<div class="text-center form-check">
+												<label class="form-check-label">{$tag[$lang].tag}
+													<input class="form-check-input" style="display: none" type="checkbox" name="clear[]" value="{$tag[$lang].tagId}">
+												</label>
+											</div>
 										{/if}
 									</td>
 								{/if}

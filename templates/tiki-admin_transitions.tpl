@@ -188,8 +188,8 @@
 						<input type="text" name="label" {if $selected_transition}value="{$selected_transition.name|escape}"{/if} class="form-control">
 					</div>
 					<div class="form-check">
-						<label>
-							<input type="checkbox" name="preserve" value="y" id="new-transition-preserve" {if $selected_transition && $selected_transition.preserve}checked="checked"{/if}>
+						<label class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="preserve" value="y" id="new-transition-preserve" {if $selected_transition && $selected_transition.preserve}checked="checked"{/if}>
 							{tr}Upon trigger, preserve the initial state{/tr}
 						</label>
 					</div>
@@ -200,9 +200,8 @@
 							<legend>{tr}From{/tr}</legend>
 							{foreach from=$available_states item=label key=value}
 								<div class="form-check">
-									<label for="state-from-{$value|escape}">
+									<label class="form-check-label" for="state-from-{$value|escape}">{$label|escape}
 										<input type="radio" name="from" value="{$value|escape}" id="state-from-{$value|escape}"{if $selected_transition && $selected_transition.from eq $value} checked="checked"{/if}>
-										{$label|escape}
 									</label>
 								</div>
 							{/foreach}

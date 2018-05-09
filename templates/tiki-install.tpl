@@ -172,14 +172,15 @@
 					{if $mail_test_performed ne 'y'}
 						<p>{tr}To test your system configuration, Tiki will attempt to send a test message to you.{/tr}</p>
 						<form action="tiki-install.php#mail" method="post" role="form">
-							<div class="form-group">
-								<label for="email_test_to">{tr}Test email:{/tr}</label>
+							<div class="form-group ">
+								<label class="" for="email_test_to">{tr}Test email:{/tr}</label>
 								<input type="text" size="40" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to}{/if}" placeholder="{tr}tiki@example.com{/tr}">
 								{if isset($email_test_err)}<span class="attention"><em>{$email_test_err}</em></span>
 								{else}<em>{tr}Email address to send test to.{/tr}</em>{/if}
 								<br><br>
-								<input type="checkbox" name="email_test_cc" value="1">
-								<em>{tr}Copy test mail to {/tr} {$email_test_tw}?</em>
+								<label class="form-check-label">
+								<input type="checkbox" class="form-check-input" name="email_test_cc" value="1">
+								<em>{tr}Copy test mail to {/tr} {$email_test_tw}?</em></label>
 							</div>
 							<input type="hidden" name="install_step" value="2">
 							<input type="hidden" name="perform_mail_test" value="y">
@@ -667,16 +668,19 @@
 									</select>
 									<div class="mt-4">
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" id="error_reporting_adminonly" name="error_reporting_adminonly"{if $prefs.error_reporting_adminonly eq 'y'} checked="checked"{/if}>
-											<label class="form-check-label" for="error_reporting_adminonly">{tr}Visible to Admin only{/tr}</label>
+											<label class="form-check-label" for="error_reporting_adminonly">{tr}Visible to Admin only{/tr}
+												<input class="form-check-input" type="checkbox" id="error_reporting_adminonly" name="error_reporting_adminonly"{if $prefs.error_reporting_adminonly eq 'y'} checked="checked"{/if}>
+											</label>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" id="smarty_notice_reporting" name="smarty_notice_reporting"{if $prefs.smarty_notice_reporting eq 'y'} checked="checked"{/if}>
-											<label class="form-check-label" for="smarty_notice_reporting">{tr}Include Smarty notices{/tr}</label>
+											<label class="form-check-label" for="smarty_notice_reporting">{tr}Include Smarty notices{/tr}
+												<input class="form-check-input" type="checkbox" id="smarty_notice_reporting" name="smarty_notice_reporting"{if $prefs.smarty_notice_reporting eq 'y'} checked="checked"{/if}>
+											</label>
 										</div>
 										<div class="form-check">
-											<input class="form-check-input mb-2" type="checkbox" id="log_tpl" name="log_tpl"{if $prefs.log_tpl eq 'y'} checked="checked"{/if}>
-											<label class="form-check-label mb-2" for="log_tpl">{tr}Add HTML comment at start and end of each Smarty template (.tpl file){/tr}.</label>
+											<label class="form-check-label mb-2" for="log_tpl">{tr}Add HTML comment at start and end of each Smarty template (.tpl file){/tr}
+												<input class="form-check-input mb-2" type="checkbox" id="log_tpl" name="log_tpl"{if $prefs.log_tpl eq 'y'} checked="checked"{/if}>
+											</label>
 											{remarksbox type=warning title="{tr}Warning{/tr}" close="n"}
 												{tr}Use only for development, not in production because these warnings are added to emails as well, and visible to the users{/tr}
 											{/remarksbox}

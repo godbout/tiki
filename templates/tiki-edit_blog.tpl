@@ -56,33 +56,33 @@
 			<div class="form-group">
 				<div class="col-sm-9 col-sm-offset-3">
 					<div class="form-check">
-						<label for="blogs-allow_others">
-							<input type="checkbox" name="public" id="blogs-allow_others" {if $public eq 'y'}checked='checked'{/if}>
+						<label for="blogs-allow_others" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="public" id="blogs-allow_others" {if $public eq 'y'}checked='checked'{/if}>
 							{tr}Allow other users to post in this blog{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-always_owner">
-							<input type="checkbox" name="alwaysOwner" id="blogs-always_owner" {if isset($alwaysOwner) and $alwaysOwner eq 'y'}checked='checked'{/if}>
+						<label for="blogs-always_owner" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="alwaysOwner" id="blogs-always_owner" {if isset($alwaysOwner) and $alwaysOwner eq 'y'}checked='checked'{/if}>
 							{tr}Even if others post to the blog, the author is always its administrator{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-search">
-							<input type="checkbox" name="use_find" id="blogs-search" {if $use_find eq 'y'}checked='checked'{/if}>
+						<label for="blogs-search" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="use_find" id="blogs-search" {if $use_find eq 'y'}checked='checked'{/if}>
 							{tr}Allow search{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-comments">
-							<input type="checkbox" name="allow_comments" id="blogs-comments" {if $allow_comments eq 'y' or $allow_comments eq 'c'}checked='checked'{/if}{if $prefs.feature_blogposts_comments ne 'y'} disabled="disabled"{/if}>
+						<label for="blogs-comments" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="allow_comments" id="blogs-comments" {if $allow_comments eq 'y' or $allow_comments eq 'c'}checked='checked'{/if}{if $prefs.feature_blogposts_comments ne 'y'} disabled="disabled"{/if}>
 							{if $prefs.feature_blogposts_comments ne 'y'}Global post-level comments is disabled.{/if}
 							{tr}Allow comments{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-post-use-excerpt">
-							<input type="checkbox" name="use_excerpt" id="blogs-post-use-excerpt" {if $use_excerpt eq 'y'}checked='checked'{/if}>
+						<label for="blogs-post-use-excerpt" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="use_excerpt" id="blogs-post-use-excerpt" {if $use_excerpt eq 'y'}checked='checked'{/if}>
 							{tr}Use post excerpt{/tr}
 						</label>
 					</div>
@@ -102,50 +102,50 @@
 			<div class="form-group">
 				<div class="col-sm-offset-3 col-sm-9">
 					<div class="form-check">
-						<label for="blogs-title">
-							<input type="checkbox" name="use_title" id="blogs-title" {if $use_title eq 'y'}checked='checked'{/if}>
+						<label for="blogs-title" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="use_title" id="blogs-title" {if $use_title eq 'y'}checked='checked'{/if}>
 							{tr}Display the blog title on the posts list page{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-title-post">
-							<input type="checkbox" name="use_title_in_post" id="blogs-title-post" {if $use_title_in_post eq 'y'}checked='checked'{/if}>
+						<label for="blogs-title-post" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="use_title_in_post" id="blogs-title-post" {if $use_title_in_post eq 'y'}checked='checked'{/if}>
 							{tr}Display the blog title on the post page{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-description">
-							<input type="checkbox" name="use_description" id="blogs-description" {if $use_description eq 'y'}checked='checked'{/if}>
+						<label for="blogs-description" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="use_description" id="blogs-description" {if $use_description eq 'y'}checked='checked'{/if}>
 							{tr}Display the blog description{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-breadcrumbs">
-							<input type="checkbox" name="use_breadcrumbs" id="blogs-breadcrumbs" {if $use_breadcrumbs eq 'y'}checked='checked'{/if}>
+						<label for="blogs-breadcrumbs" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="use_breadcrumbs" id="blogs-breadcrumbs" {if $use_breadcrumbs eq 'y'}checked='checked'{/if}>
 							{tr}Display breadcrumbs{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-author">
-							<input type="checkbox" name="use_author" id="blogs-author" {if $use_author eq 'y'}checked='checked'{/if}>
+						<label for="blogs-author" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="use_author" id="blogs-author" {if $use_author eq 'y'}checked='checked'{/if}>
 							{tr}Display the author in blog posts{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-date">
-							<input type="checkbox" name="add_date" id="blogs-date" {if $add_date eq 'y'}checked='checked'{/if}>
+						<label for="blogs-date" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="add_date" id="blogs-date" {if $add_date eq 'y'}checked='checked'{/if}>
 							{tr}Display the publish date in blog posts{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-avatar">
-							<input type="checkbox" name="show_avatar" id="blogs-avatar" {if $show_avatar eq 'y'}checked='checked'{/if}>
+						<label for="blogs-avatar" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="show_avatar" id="blogs-avatar" {if $show_avatar eq 'y'}checked='checked'{/if}>
 							{tr}Show user profile picture{/tr}
 						</label>
 					</div>
 					<div class="form-check">
-						<label for="blogs-post-related">
-							<input type="checkbox" name="show_related" id="blogs-post-related" {if $show_related eq 'y'}checked='checked'{/if} {if $prefs.feature_freetags ne 'y'}disabled="disabled"{/if}>
+						<label for="blogs-post-related" class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="show_related" id="blogs-post-related" {if $show_related eq 'y'}checked='checked'{/if} {if $prefs.feature_freetags ne 'y'}disabled="disabled"{/if}>
 							{tr}Show the post's related content{/tr}
 							{if $prefs.feature_freetags neq 'y'}
 								<span class="form-text">{tr}The checkbox is disabled because the tags feature is disabled globally.{/tr}</span>

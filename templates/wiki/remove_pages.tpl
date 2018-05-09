@@ -22,8 +22,8 @@
 		{$div_checkbox_redirect_display = 'block'}
 		{if !empty($iname) && !$extra.one}
 			<div class="form-check">
-				<label>
-					<input type="checkbox" name="{$iname}" onclick="$('#div_checkbox_redirect').toggle(); if (!this.checked) $('#div_redirect').hide(); return true;"> {tr}Remove {$idesc}{/tr}
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" name="{$iname}" onclick="$('#div_checkbox_redirect').toggle(); if (!this.checked) $('#div_redirect').hide(); return true;"> {tr}Remove {$idesc}{/tr}
 				</label>
 			</div>
 			{$div_checkbox_redirect_display = 'none'}
@@ -34,8 +34,8 @@
 		{include file='access/include_hidden.tpl'}
 		{if $prefs.feature_wiki_pagealias eq 'y'}
 			<div class="form-check" id="div_checkbox_redirect" style="display:{$div_checkbox_redirect_display};">
-					<label>
-						<input type='checkbox' id='create_redirect' name='create_redirect' value='y' onclick="$('#div_redirect').toggle();return true;" > {tr}Create redirect{/tr}
+					<label class="form-check-label">
+						<input class="form-check-input" type='checkbox' id='create_redirect' name='create_redirect' value='y' onclick="$('#div_redirect').toggle();return true;" > {tr}Create redirect{/tr}
 						<a tabindex="0" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}Create a 301 Redirect (\"moved permanently\") to specified page. An SEO-friendly, automatic redirect from the page being deleted to the designated new page (ex.: for search engines or users that may have bookmarked the page being deleted){/tr}">
 							{icon name='information'}
 						</a>

@@ -226,13 +226,13 @@
 					{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group form-check">
 				<label class="col-sm-3 col-form-label">{tr}Lock the pages{/tr}</label>
 				<div class="col-sm-7">
-					<input type="checkbox" name="locked">
+					<input type="checkbox" class="form-check-input" name="locked">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group form-check">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 					<input type="submit" class="btn btn-primary btn-sm" name="addPoll" value="{tr}Add{/tr}">

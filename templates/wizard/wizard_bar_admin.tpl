@@ -4,7 +4,9 @@
 		<div dir="rtl">
 			<div class="col-sm-9 form-check">
 			{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
-				<input type="checkbox" class="form-check-input" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} /> {tr}Show on admin login{/tr}
+				<label class="form-check-label">{tr}Show on admin login{/tr}
+					<input type="checkbox" class="form-check-input" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
+				</label>
 				{assign var="showOnLoginDisplayed" value="y" scope="root"}
 			{else}
 				&nbsp;
@@ -15,8 +17,10 @@
 			</div>
 			<div class="col-sm-3 form-check">
 			{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
-					<input type="checkbox" class="form-check-input" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} /> {tr}Show on admin login{/tr}
-					{assign var="showOnLoginDisplayed" value="y" scope="root"}
+				<label class="form-check-label">{tr}Show on admin login{/tr}
+					<input type="checkbox" class="form-check-input" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
+				</label>
+				{assign var="showOnLoginDisplayed" value="y" scope="root"}
 				{else}
 					&nbsp;
 			{/if}

@@ -23,11 +23,12 @@
 				</div>
 			</div>
 		{else}
-			<div class="checkbox col-sm-8 col-sm-offset-4">
-				<label for="fgal_{$key}{if isset($fgal_ext)}{$fgal_ext}{/if}">
+			<div class="form-check col-sm-8 col-sm-offset-4">
+				<label class="form-check-label" for="fgal_{$key}{if isset($fgal_ext)}{$fgal_ext}{/if}">
 					{assign var='pref_name' value="fgal_$key"}
 					<input
 						type="checkbox"
+						class="form-check-input"
 						id="fgal_{$key}"
 						name="fgal_{$key}"
 						{if $item.value eq 'y'}

@@ -157,8 +157,8 @@
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-9">
 							<div class="form-check">
-								<label>
-									<input type="checkbox" value="y" name="share_token_notification" {if $share_token_notification eq 'y'}checked="checked" {/if}> {tr}Subscribe{/tr}
+								<label class="form-check-label">
+									<input type="checkbox" class="form-check-input" value="y" name="share_token_notification" {if $share_token_notification eq 'y'}checked="checked" {/if}> {tr}Subscribe{/tr}
 								</label>
 								<span class="form-text">
 									{tr}Recipients can subscribe to token notifications{/tr}

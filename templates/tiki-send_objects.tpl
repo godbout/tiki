@@ -165,7 +165,7 @@
 					<label class="col-form-label col-sm-3">{tr}Debug:{/tr}</label>
 					<div class="col-sm-7">
 						<div class="form-check">
-							<label>
+							<label class="form-check-label">
 								<input type="checkbox" class="form-check-input" name="dbg"{if $dbg eq 'on'} checked="checked"{/if}>{tr}Enable{/tr}
 							</label>
 						</div>

@@ -74,8 +74,10 @@
 					{tr}at {/tr}{html_select_time prefix="quiz_expire_" time=$quiz->dateExp display_seconds=false use_24_hours=$use_24hr_clock} HRS&nbsp;{$tpl.siteTimeZone}
 				</div>
 				<label class="control-label col-sm-3">{tr}Questions{/tr}</label>
-				<div class="col-sm-9">
-					<label for="nQuestion"><input type="checkbox" name=quiz.nQuestion id="nQuestion" {if $quiz->nQuestion eq 'y'}checked="checked"{/if}>{tr}Use {/tr}</label>
+				<div class="col-sm-9 form-check">
+					<label for="nQuestion" class="form-check-label">{tr}Use {/tr}
+						<input type="checkbox" class="form-check-input" name=quiz.nQuestion id="nQuestion" {if $quiz->nQuestion eq 'y'}checked="checked"{/if}>
+					</label>
 					<select name=quiz.nQuestions id="nQuestions" class="form-control">
 						{html_options values=$tpl.mins selected=$quiz->nQuestions output=$tpl.mins}
 					</select> {tr}randomly selected questions.{/tr}
@@ -105,9 +107,10 @@
 						</tr>
 						<tr>
 							<td>
-								<div class="form-inline">
-									<input type="checkbox" name=quiz.limitDisplay id="quiz-display-limit" {if $quiz->limitDisplay eq 'y'}checked="checked"{/if}>
-									<label for="quiz-display-limit">{tr}Limit questions displayed per page to {/tr}</label>
+								<div class="form-inline form-check">
+									<label class="form-check-label">{tr}Limit questions displayed per page to {/tr}
+										<input type="checkbox" class="form-check-input" name=quiz.limitDisplay id="quiz-display-limit" {if $quiz->limitDisplay eq 'y'}checked="checked"{/if}>
+									</label>
 									<select name=quiz.questionsPerPage id="quiz-perpage" class="form-control">
 									{html_options values=$tpl.qpp selected=$quiz->questionsPerPage output=$tpl.qpp}
 									</select> {tr}question(s).{/tr}
@@ -207,14 +210,16 @@
 			| <a class="link" href="javascript:hide('after-test');">{tr}Hide{/tr}</a> ]
 			<div id="after-test" style="display:none;">
 				<label class="control-label col-sm-3">{tr}Questions{/tr}</label>
-				<div class="col-sm-9">
-					<label><input type='checkbox' name='quiz.additionalQuestions' {if $quiz->additionalQuestions eq 'y'}checked="checked"{/if}> {tr}Solicit additional questions from students{/tr}</label>
+				<div class="col-sm-9 form-check">
+					<label class="form-check-label">{tr}Solicit additional questions from students{/tr}
+						<input type="checkbox" class="form-check-input" name="quiz.additionalQuestions" {if $quiz->additionalQuestions eq "y"}checked="checked"{/if}>
+					</label>
 				</div>
 				<label class="control-label col-sm-3">{tr}Link quiz to forum named: {/tr}</label>
 				<div class="col-sm-9">
-					<div class="form-inline">
-						<label>
-							<input type="checkbox" name="quiz.forum" id="forum" {if $quiz->forum eq 'y'}checked="checked"{/if}> {tr}Yes{/tr}
+					<div class="form-inline form-check">
+						<label class="form-class-label">
+							<input type="checkbox" class="form-check-input" name="quiz.forum" id="forum" {if $quiz->forum eq 'y'}checked="checked"{/if}> {tr}Yes{/tr}
 						</label>
 						<input type="text" name="quiz.forumName" value="{$quiz->nameForum|escape}" size="40" class="form-control">
 					</div>

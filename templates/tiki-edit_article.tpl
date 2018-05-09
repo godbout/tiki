@@ -49,10 +49,10 @@
 			</div>
 			{if $tiki_p_use_HTML eq 'y'}
 				{if $smarty.session.wysiwyg neq 'y'}
-					<div class="checkbox clearfix">
-						<div class="col-md-8 col-md-push-4">
-							<label>
-								<input type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
+					<div class="col-md-8 col-md-push-4">
+						<div class="form-check">
+							<label class="form-class=label">
+								<input class="form-class=input" type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
 								{tr}Allow full HTML{/tr} <em>({tr}Keep any HTML tag.{/tr})</em>
 							</label>
 							<div class="form-text">{tr}If not enabled, Tiki will retain some HTML tags (a, p, pre, img, hr, b, i){/tr}.</div>
@@ -149,9 +149,9 @@
 			<h2>{tr}Publication{/tr}</h2>
 			<div class="form-group clearfix">
 				<div class="col-md-4 col-md-push-4">
-					<div class="checkbox well well-sm">
-						<label>
-							<input type="checkbox" name="ispublished" {if $ispublished eq 'y' || !$articleId}checked="checked"{/if}>
+					<div class="form-check well well-sm">
+						<label class="form-check-label">
+							<input type="checkbox" class="form-check-input" name="ispublished" {if $ispublished eq 'y' || !$articleId}checked="checked"{/if}>
 							<strong>{tr}Published{/tr}</strong>
 						</label>
 					</div>
@@ -223,15 +223,15 @@
 					<div class="form-text">{tr}Default will use the topic name{/tr}</div>
 				</div>
 			</div>
-			<div class="checkbox {if $types.$type.show_image neq 'y'}hidden{/if} col-md-offset-4">
-				<label>
-					<input type="checkbox" name="useImage" id="useImage" {if $useImage eq 'y'}checked='checked'{/if} >
+			<div class="form-check {if $types.$type.show_image neq 'y'}hidden{/if} col-md-offset-4">
+				<label class="form-check-label">
+					<input type="checkbox" class="form-check-input" name="useImage" id="useImage" {if $useImage eq 'y'}checked='checked'{/if} >
 					{tr}Use own image{/tr}
 				</label>
 			</div>
-			<div class="checkbox {if $types.$type.show_image neq 'y'}hidden{/if} col-md-offset-4">
-				<label>
-					<input type="checkbox" name="isfloat" {if $isfloat eq 'y'}checked='checked'{/if}>
+			<div class="form-check {if $types.$type.show_image neq 'y'}hidden{/if} col-md-offset-4">
+				<label class="form-check-label">
+					<input type="checkbox" class="form-check-input" name="isfloat" {if $isfloat eq 'y'}checked='checked'{/if}>
 					{tr}Float text around image{/tr}
 				</label>
 			</div>

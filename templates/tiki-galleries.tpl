@@ -113,46 +113,54 @@
 				<div class="form-group">
 					<label class="col-form-label col-sm-4">{tr}Fields to show during browsing the gallery:{/tr}</label>
 					<div class="col-sm-4">
-
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showname" value="y" {if $showname=='y'}checked="checked"{/if}>
-							{tr}Name{/tr}
+							<label class="form-check-label">{tr}Name{/tr}
+								<input type="checkbox" class="form-check-input" name="showname" value="y" {if $showname=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showimageid" value="y" {if $showimageid=='y'}checked="checked"{/if}>
-							{tr}Image ID{/tr}
+							<label class="form-check-label">{tr}Image ID{/tr}
+								<input type="checkbox" class="form-check-input" name="showimageid" value="y" {if $showimageid=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showdescription" value="y" {if $showdescription=='y'}checked="checked"{/if}>
-							{tr}Description{/tr}
+							<label class="form-check-label">{tr}Description{/tr}
+								<input type="checkbox" class="form-check-input" name="showdescription" value="y" {if $showdescription=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showcreated" value="y" {if $showcreated=='y'}checked="checked"{/if}>
-							{tr}Creation Date{/tr}
+							<label class="form-check-label">{tr}Creation Date{/tr}
+								<input type="checkbox" class="form-check-input" name="showcreated" value="y" {if $showcreated=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showuser" value="y" {if $showuser=='y'}checked="checked"{/if}>
-							{tr}User{/tr}
+							<label class="form-check-label">{tr}User{/tr}
+								<input type="checkbox" class="form-check-input" name="showuser" value="y" {if $showuser=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input" name="showhits" value="y" {if $showhits=='y'}checked="checked"{/if}>
 							{tr}Hits{/tr}
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showxysize" value="y" {if $showxysize=='y'}checked="checked"{/if}>
-							{tr}XY-Size{/tr}
+							<label class="form-check-label">{tr}XY-Size{/tr}
+								<input type="checkbox" class="form-check-input" name="showxysize" value="y" {if $showxysize=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showfilesize" value="y" {if $showfilesize=='y'}checked="checked"{/if}>
-							{tr}Filesize{/tr}
+							<label class="form-check-label">{tr}Filesize{/tr}
+								<input type="checkbox" class="form-check-input" name="showfilesize" value="y" {if $showfilesize=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showfilename" value="y" {if $showfilename=='y'}checked="checked"{/if}>
-							{tr}Filename{/tr}
+							<label class="form-check-label">{tr}Filename{/tr}
+								<input type="checkbox" class="form-check-input" name="showfilename" value="y" {if $showfilename=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input" name="showcategories" value="y" {if $showcategories=='y'}checked="checked"{/if}>
-							{tr}Categories{/tr}
+							<label class="form-check-label">{tr}Categories{/tr}
+								<input type="checkbox" class="form-check-input" name="showcategories" value="y" {if $showcategories=='y'}checked="checked"{/if}>
+							</label>
 						</div>
 					</div>
 				</div>

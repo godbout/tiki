@@ -627,8 +627,8 @@
 					{if !empty($userwatch)}<input type="hidden" name="view_user" value="{$userwatch|escape}">{/if}
 					<p>
 						<div class="form-check">
-						<label for="deleteaccountconfirm">
-							<input type='checkbox' name='deleteaccountconfirm' id="deleteaccountconfirm" value='1'> {tr}Check this box if you really want to delete the account{/tr}
+						<label for="deleteaccountconfirm" class="form-check-label">
+							<input type='checkbox' class="form-check-input" name='deleteaccountconfirm' id="deleteaccountconfirm" value='1'> {tr}Check this box if you really want to delete the account{/tr}
 						</label>
 						</div>
 					</p>

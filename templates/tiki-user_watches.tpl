@@ -23,12 +23,13 @@
 		<form action="tiki-user_reports.php" method="post">
 			<input type="hidden" name="report_preferences" value="true">
 
-			<p>
-				<input type="checkbox" name="use_daily_reports" value="true" {if $report_preferences != false}checked{/if}>
-				{tr}Use reports{/tr}
-			</p>
+			<div class="form-check">
+				<label class="form-check-label">{tr}Use reports{/tr}
+					<input type="checkbox" class="form-check-input" name="use_daily_reports" value="true" {if $report_preferences != false}checked{/if}>
+				</label>
+			</div>
 
-			<p>
+			<div>
 				{tr}Interval in which you want to get the reports{/tr}
 				<select name="interval">
 					<option value="minute"
@@ -42,7 +43,7 @@
 					<option value="monthly"
 						{if $report_preferences.interval eq "monthly"}selected{/if}>{tr}Monthly{/tr}</option>
 				</select>
-			</p>
+			</div>
 
 			<div style="float:left; margin-right: 50px;">
 				<input type="radio" name="view" value="short"{if $report_preferences.view eq "short"} checked="checked"{/if}>
@@ -60,9 +61,10 @@
 				{tr}Plain text{/tr}
 				<br>
 			</div>
-			<div>
-				<input type="checkbox" name="always_email" value="1"{if $report_preferences.always_email eq 1 OR $report_preferences eq false} checked="checked"{/if}>
-				{tr}Send me an email also if nothing happened{/tr}
+			<div class="form-check">
+				<label class="form-check-label">{tr}Send me an email also if nothing happened{/tr}
+					<input type="checkbox" class="form-check-input" name="always_email" value="1"{if $report_preferences.always_email eq 1 OR $report_preferences eq false} checked="checked"{/if}>
+				</label>
 			</div>
 
 			<p>
@@ -264,7 +266,7 @@
 		{/if}
 		{if $prefs.feature_calendar eq 'y'}
 			<div class="form-check">
-				<labelclass="form-check-label">
+				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="user_calendar_watch_editor" value="true" {if $user_calendar_watch_editor eq 'y'}checked{/if}>
 					{tr}Calendar{/tr}
 				</label>

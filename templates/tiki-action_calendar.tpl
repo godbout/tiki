@@ -27,8 +27,8 @@
 	</div>
 {foreach from=$tikiItems key=ki item=vi}
 {if $vi.feature eq 'y' and $vi.right eq 'y'}
-<div class="calcheckbox"><input type="checkbox" name="tikicals[]" value="{$ki|escape}" id="tikical_{$ki}" {if in_array($ki,$tikicals)}checked="checked"{/if}>
-<label for="tikical_{$ki}" class="Cal{$ki}"> = {$vi.label}</label></div>
+<div class="calcheckbox form-check"><input type="checkbox" class="form-check-input" name="tikicals[]" value="{$ki|escape}" id="tikical_{$ki}" {if in_array($ki,$tikicals)}checked="checked"{/if}>
+<label for="tikical_{$ki}" class="form-check-label Cal{$ki}"> = {$vi.label}</label></div>
 {/if}
 {/foreach}
 <div class="calinput"><input type="submit" class="btn btn-primary btn-sm" name="refresh" value="{tr}Refresh{/tr}"></div>

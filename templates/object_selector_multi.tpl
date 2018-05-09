@@ -46,8 +46,8 @@
 			<div class="results">
 				{foreach $object_selector_multi.current_selection as $object}
 					<div class="form-check">
-						<label>
-							<input type="checkbox" value="{$object|escape}" checked>
+						<label class="form-check-label">
+							<input class="form-check-input" type="checkbox" value="{$object|escape}" checked>
 							{$object.title|escape}
 						</label>
 					</div>

@@ -146,7 +146,7 @@
 	</div>
 	<div class="form-group">
 		<div class="form-check">
-			<label><input type="checkbox" class="form-check-input" name="deep" {if $deep eq 'on'}checked="checked"{/if}>{tr} in the current category and its subcategories{/tr}</label>
+			<label class="form-check-label"><input type="checkbox" class="form-check-input" name="deep" {if $deep eq 'on'}checked="checked"{/if}>{tr} in the current category and its subcategories{/tr}</label>
 		</div>
 	</div>
 	<input type="hidden" name="parentId" value="{$parentId|escape}">

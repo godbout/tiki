@@ -72,10 +72,10 @@
 					</div>
 				{elseif $questions[ix].type eq 'm'}
 					{if empty($answer)}{$answer=[]}{/if}
-					<div class="quizoptions">
+					<div class="quizoptions form-check">
 						{section name=jx loop=$questions[ix].qoptions}
-							<label>
-								<input type="checkbox" value="{$questions[ix].qoptions[jx].optionId|escape}" name="{$questionId}[{$questions[ix].qoptions[jx].optionId}]"
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" value="{$questions[ix].qoptions[jx].optionId|escape}" name="{$questionId}[{$questions[ix].qoptions[jx].optionId}]"
 										{if in_array($questions[ix].qoptions[jx].optionId, $answer)}checked="checked"{/if}>
 								{$questions[ix].qoptions[jx].qoption}
 							</label>

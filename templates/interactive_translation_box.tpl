@@ -1,6 +1,6 @@
 <div class="intertrans text-center" id="intertrans-indicator">
 	<div class="form-check">
-		<label for="intertrans-active">
+		<label class="form-check-label" for="intertrans-active">
 			<input type="checkbox" id="intertrans-active"> {tr}Interactive Translation{/tr}
 		</label>
 		<a href="#" class="btn btn-link tips" title="{tr}Help{/tr}:{tr}Once checked, click on any string to translate it.{/tr}">

@@ -93,7 +93,7 @@
 		<div class="form-group">
 			<div class="col-md-offset-3 col-md-9">
 				<div class="form-check">
-					<label>
+					<label class="form-check-label">
 						<input type="checkbox" class="form-check-input" name="mailin_autocheck" value="y" {if $prefs.mailin_autocheck eq 'y'}checked{/if}>
 						{tr}Check automatically{/tr}
 					</label>
