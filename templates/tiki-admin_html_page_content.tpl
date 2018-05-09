@@ -14,13 +14,13 @@
 	<form action="tiki-admin_html_page_content.php" method="post" class="form-horizontal">
 		<input type="hidden" name="pageName" value="{$pageName|escape}">
 		<input type="hidden" name="zone" value="{$zone|escape}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label">{tr}Zone{/tr}</label>
 			<div class="col-sm-7 col-sm-offset-1">
 				<p>{$zone} Teste</p>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label">{tr}Content:{/tr}</label>
 			<div class="col-sm-7 col-sm-offset-1">
 				{if $type eq 'ta'}
@@ -30,7 +30,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
@@ -76,7 +76,7 @@
 		{/section}
 	</table>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-7 col-sm-offset-2">
 			<input type="submit" class="btn btn-primary btn-sm" name="editmany" value="{tr}Mass update{/tr}">

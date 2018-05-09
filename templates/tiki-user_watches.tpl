@@ -81,7 +81,7 @@
 {if $add_options|@count > 0}
 	<h3>{tr}Add Watch{/tr}</h3>
 	<form class="form-horizontal" action="tiki-user_watches.php" method="post">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label" for="type_selector">{tr}Event:{/tr}</label>
 
 			<div class="col-sm-9">
