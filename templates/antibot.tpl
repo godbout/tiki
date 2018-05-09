@@ -14,14 +14,14 @@
 	{/if}
 	<div class="antibot">
 		{if $captchalib->type eq 'recaptcha' || $captchalib->type eq 'recaptcha20'}
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<div class="{$captchaclass}">
 					{$captchalib->render()}
 				</div>
 			</div>
 		{elseif $captchalib->type eq 'questions'}
 			<input type="hidden" name="captcha[id]" id="captchaId" value="{$captchalib->generate()}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-md-4 col-sm-3 col-form-label">
 					{$captchalib->render()}
 				</label>
@@ -41,7 +41,7 @@
 		{else}
 			{* Default captcha *}
 			<input type="hidden" name="captcha[id]" id="captchaId" value="{$captchalib->generate()}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-form-label {$labelclass}" for="antibotcode">{tr}Enter the code below{/tr}{if $showmandatory eq 'y' && $form ne 'register'}<strong class="mandatory_star"> *</strong>{/if}</label>
 				<div class="{if !empty($inputclass)}{$inputclass}{else}col-md-8 col-sm-9{/if}">
 					<input class="form-control" type="text" maxlength="8" name="captcha[input]" id="antibotcode">
@@ -53,7 +53,7 @@
 				{/if}
 			</div>
 			<div class="clearfix visible-md-block"></div>
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="{$captchaclass}">
 					{if $captchalib->type eq 'default'}
 						<img id="captchaImg" src="{$captchalib->getPath()}" alt="{tr}Anti-Bot verification code image{/tr}" height="50">

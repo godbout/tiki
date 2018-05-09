@@ -10,32 +10,32 @@
 {else}
 	{if $save eq 'y'}
 		<h2>{tr}Site added{/tr}</h2><br>
-		<div class="form-group">
+		<div class="form-group row">
 			<div class="col-sm-12">
 				<p class="lead">{icon name='ok' alt="{tr}OK{/tr}" style="vertical-align:middle" align="left"} {tr}The following site was added, but may require validation by the admin before appearing on the lists.{/tr}</p>
 			</div>
 		</div>
 		<div class="form-horizontal">
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 text-right">{tr}Name{/tr}</label>
 				<div class="col-sm-7">
 					{$info.name}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 text-right">{tr}Description{/tr}</label>
 				<div class="col-sm-7">
 					{$info.description}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 text-right">{tr}URL{/tr}</label>
 				<div class="col-sm-7">
 					{$info.url}
 				</div>
 			</div>
 			{if $prefs.directory_country_flag eq 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 text-right">{tr}Country{/tr}</label>
 				<div class="col-sm-7">
 					{$info.country}
@@ -51,25 +51,25 @@
 			<input type="hidden" name="parent" value="{$parent|escape}">
 			<input type="hidden" name="siteId" value="{$siteId|escape}">
 
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 control-label">{tr}Name{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" id="name" name="name" value="{$info.name|escape}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 control-label">{tr}Description{/tr}</label>
 				<div class="col-sm-7">
 					<textarea rows="5" cols="60" id="description" name="description" class="form-control">{$info.description|escape}</textarea>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 control-label">{tr}URL{/tr}</label>
 				<div class="col-sm-7">
 					<input type="text" size="60" id="url" name="url" value="{if $info.url ne ""}{$info.url|escape}{else}http://{/if}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 control-label">{tr}Directory Categories{/tr}</label>
 				<div class="col-sm-7">
 					<select id="siteCats" name="siteCats[]" multiple="multiple" size="4" class="form-control">
@@ -86,7 +86,7 @@
 				</div>
 			</div>
 			{if $prefs.directory_country_flag eq 'y'}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 control-label">{tr}Country{/tr}</label>
 				<div class="col-sm-7">
 					<select id="country" name="country" class="form-control">
@@ -107,7 +107,7 @@
 			{if $prefs.feature_antibot eq 'y' && $user eq ''}
 				{include file='antibot.tpl' td_style="formcolor"}
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<label class="col-sm-3 control-label"></label>
 				<div class="col-sm-7">
 					<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">

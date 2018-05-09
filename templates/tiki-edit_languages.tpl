@@ -20,7 +20,7 @@
 	{if isset($maxRecords)}
 		<input type="hidden" name="maxRecords" value="{$maxRecords}">
 	{/if}
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="adminoptionbox">
 			<label for="edit_language" class="col-md-4 control-label">{tr}Language{/tr}</label>
 			<div class="col-md-6">
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="adminoptionbox">
 			<label for="add_tran_sw" class="col-md-4 control-label">{tr}Add a translation{/tr}</label>
 			<div class="col-md-8">
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="adminoptionbox">
 			<label for="edit_rec_sw" class="col-md-4 control-label">{tr}Untranslated strings{/tr}</label>
 			<div class="col-md-8">
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<div class="adminoptionbox">
 			<label for="edit_tran_sw" class="col-md-4 control-label">{tr}Edit translations{/tr}</label>
 			<div class="col-md-8">
@@ -91,13 +91,13 @@
 				{tr}Add a translation{/tr}
 			</div>
 			<div class="card-body">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-md-4 control-label">{tr}Original:{/tr}</label>
 					<div class="col-md-8">
 						<input name="add_tran_source" maxlength="255" class="form-control">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-md-4 control-label">{tr}Translation:{/tr}</label>
 					<div class="col-md-8">
 						<input name="add_tran_tran" maxlength="255" class="form-control">

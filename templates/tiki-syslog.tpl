@@ -9,7 +9,7 @@
 *}</div>
 
 <form method="get" action="tiki-syslog.php" class="form-inline margin-bottom-md">
-	<div class="form-group">
+	<div class="form-group row">
 		<label>{tr}Clean logs older than{/tr}&nbsp;
 		<input type="text" name="months" class="form-control"></label> {tr}months{/tr}
 	</div>

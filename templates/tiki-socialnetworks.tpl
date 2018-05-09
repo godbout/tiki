@@ -67,20 +67,20 @@
 					<p>{tr}The site admin has set up a global account which will be used for this site{/tr}.</p>
 				{/remarksbox}
 			{else}
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="control-label col-sm-3">{tr}bit.ly Login{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="bitly_login" value="{$bitly_login}" class="form-control">
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="control-label col-sm-3">{tr}bit.ly Key{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="bitly_key" value="{$bitly_key}" class="form-control">
 					</div>
 				</div>
 			{/if}
-			<div class="form-group">
+			<div class="form-group row">
 				<div class="col-sm-12">
 					<input type="submit" class="btn btn-secondary btn-sm" name="accounts" value="{tr}Save changes{/tr}">
 				</div>

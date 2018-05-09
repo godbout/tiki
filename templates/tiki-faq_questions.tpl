@@ -13,20 +13,20 @@
 	<input type="hidden" name="questionId" value="{$questionId|escape}">
 	<input type="hidden" name="faqId" value="{$faqId|escape}">
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 control-label">{tr}Question{/tr}</label>
 		<div class="col-sm-7">
 			<textarea type="text" rows="2" cols="80" name="question" class="form-control" tabindex="1">{$question|escape}</textarea>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 control-label">{tr}Answer{/tr}</label>
 		<div class="col-sm-7">
 			{toolbars area_id="faqans"}
 			<textarea id='faqans' type="text" rows="8" cols="80" name="answer" class="form-control" tabindex="2">{$answer|escape}</textarea>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}" tabindex="3">
@@ -41,7 +41,7 @@
 	<form action="tiki-faq_questions.php" method="post" class="form-horizontal">
 		<input type="hidden" name="questionId" value="{$questionId|escape}">
 		<input type="hidden" name="faqId" value="{$faqId|escape}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label">{tr}Filter{/tr}</label>
 			<div class="col-sm-7">
 				<div class="input-group">
@@ -52,7 +52,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label">{tr}Question{/tr}</label>
 			<div class="col-sm-7">
 				<select name="usequestionId" class="form-control">
@@ -63,7 +63,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-7">
 				<input type="submit" class="btn btn-primary btn-sm" name="useq" value="{tr}Use{/tr}">

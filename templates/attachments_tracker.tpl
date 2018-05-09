@@ -6,7 +6,7 @@
 			<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 			<input type="hidden" name="itemId" value="{$itemId|escape}">
 			<input type="hidden" name="attId" value="{$attId|escape|default:null}">
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="MAX_FILE_SIZE" class="col-md-4 control-label">
 					{tr}Upload file{/tr}
 				</label>
@@ -14,7 +14,7 @@
 					{if $attach_file|default:null}{tr}Edit:{/tr} {/if}<input type="hidden" name="MAX_FILE_SIZE" value="1000000000"><input name="userfile1" type="file">{if $attach_file|default:null}<br>{$attach_file|escape}{/if}
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="attach_comment" class="col-md-4 control-label">
 					{tr}Comment{/tr}
 				</label>
@@ -22,7 +22,7 @@
 					<input type="text" name="attach_comment" maxlength="250" value="{$attach_comment|escape|default:null}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<label for="attach_version" class="col-md-4 control-label">
 					{tr}Version{/tr}
 				</label>
@@ -30,7 +30,7 @@
 					<input type="text" name="attach_version" size="5" maxlength="10" value="{$attach_version|escape|default:null}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group row">
 				<label for="attach_longdesc" class="col-md-4 control-label">
 					{tr}Description{/tr}
 				</label>
@@ -38,7 +38,7 @@
 					<textarea name="attach_longdesc" rows="3" class="form-control">{$attach_longdesc|escape|default:null}</textarea>
 				</div>
 			</div>
-			<div class="form-group clearfix">
+			<div class="form-group row clearfix">
 				<div class="text-center">
 					<input type="submit" class="btn btn-primary btn-sm" name="attach" value={if $attach_file|default:null}"{tr}Edit{/tr}"{else}"{tr}Attach{/tr}"{/if}>
 				</div>

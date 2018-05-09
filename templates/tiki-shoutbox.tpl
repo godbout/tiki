@@ -32,7 +32,7 @@
 	{js_maxlength textarea=message maxlength=255}
 	<form class="form-horizontal" action="tiki-shoutbox.php" method="post" onsubmit="return verifyForm(this);">
 		<input type="hidden" name="msgId" value="{$msgId|escape}">
-		<div class="form-group">
+		<div class="form-group row">
 			<label class="control-label col-md-3" for="message">{tr}Message:{/tr}</label>
 			<div class="col-md-9">
 				<textarea class="form-control" name="message" id="message">{$message|escape}</textarea>

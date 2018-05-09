@@ -76,7 +76,7 @@
 			{button href="#" _onclick="toggle('filtercal');return false;" _text="{tr}Visible Calendars{/tr}" _icon_name="eye"}
 
 			{if count($thiscal)}
-				<div id="configlinks" class="form-group text-right">
+				<div id="configlinks" class="form-group row text-right">
 					{assign var='maxCalsForButton' value=20}
 					{if count($checkedCals) > $maxCalsForButton}<select size="5">{/if}
 					{foreach item=k from=$listcals name=listc}

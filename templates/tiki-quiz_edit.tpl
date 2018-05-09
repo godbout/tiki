@@ -16,7 +16,7 @@
 <form enctype="multipart/form-data" method="post" action="tiki-quiz_edit.php" class="form-horizontal">
 	<input type="hidden" name="quiz.id" value="{$quiz->id}">
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="control-label col-sm-2 text-left">{tr}Status{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('status');">{tr}Show{/tr}</a>
@@ -49,7 +49,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="control-label col-sm-2">{tr}General Options{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('general');">{tr}Show{/tr}</a>
@@ -85,7 +85,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="control-label col-sm-2 text-left">{tr}Test-time Options{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('test-time');">{tr}Show{/tr}</a>
@@ -149,7 +149,7 @@
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="control-label col-sm-2 text-left">{tr}Grading and Feedback{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('feedback');">{tr}Show{/tr}</a>
@@ -203,7 +203,7 @@
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group row">
 		<label class="control-label col-sm-2 text-left">{tr}Extra Options{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('after-test');">{tr}Show{/tr}</a>

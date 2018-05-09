@@ -444,7 +444,7 @@
 	</table>
 	<br>
 	<form action="tiki-webmail.php" method="post" name="mailb">
-		<div class="row form-group">
+		<div class="row form-group row">
 			<div class="col-sm-1">
 				<input type="submit" class="btn btn-warning btn-sm" name="delete" value="{tr}Delete{/tr}">
 				<input type="hidden" name="quickFlag" value="">

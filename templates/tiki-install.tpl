@@ -100,7 +100,7 @@
 						<li>{tr}For more information about Tiki, please visit{/tr} <a href="https://tiki.org" target="_blank">tiki.org</a>.</li>
 					</ul>
 					<form action="tiki-install.php" method="post" role="form">
-						<div class="form-group">
+						<div class="form-group row">
 							<label for="general-lang">{tr}Select your language{/tr}</label>
 							<select name="lang" id="general-lang" onchange="$('.install-steps').tikiModal(tr('Loading...')); $('input[name=lang]:hidden').val($(this).val()); this.form.submit();" title="{tr}Select your language{/tr}" class="form-control">
 								{section name=ix loop=$languages}
@@ -116,7 +116,7 @@
 						{/if}
 					</form>
 					<form action="tiki-install.php" method="post" role="form">
-						<div class="form-group text-center">
+						<div class="form-group row text-center">
 							{if $multi}
 								<input type="hidden" name="multi" value="{$multi}">
 							{/if}
@@ -134,7 +134,7 @@
 					<div align="center" style="margin-top:1em;">
 						<iframe src="license.txt" width="700" height="300" style="width:700px;height:300px"> </iframe>
 						<form action="tiki-install.php" method="post" role="form">
-							<div class="form-group text-center">
+							<div class="form-group row text-center">
 								{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 								{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 								<input type="hidden" name="install_step" value="2">
@@ -172,7 +172,7 @@
 					{if $mail_test_performed ne 'y'}
 						<p>{tr}To test your system configuration, Tiki will attempt to send a test message to you.{/tr}</p>
 						<form action="tiki-install.php#mail" method="post" role="form">
-							<div class="form-group ">
+							<div class="form-group row ">
 								<label class="" for="email_test_to">{tr}Test email:{/tr}</label>
 								<input type="text" size="40" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to}{/if}" placeholder="{tr}tiki@example.com{/tr}">
 								{if isset($email_test_err)}<span class="attention"><em>{$email_test_err}</em></span>
@@ -221,7 +221,7 @@
 					{/if}
 					<p>{tr}Tiki uses the GD library to process images for the Image Gallery and CAPTCHA support.{/tr}</p>
 					<form action="tiki-install.php" method="post" role="form">
-						<div class="form-group text-center">
+						<div class="form-group row text-center">
 							<input type="hidden" name="install_step" value="3">
 							<input type="submit" class="btn btn-secondary" value=" {tr}Continue{/tr} ">
 							{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
@@ -272,7 +272,7 @@
 							<fieldset>
 								<legend>{tr}Database information{/tr}</legend>
 								<p>{tr}Enter your database connection information.{/tr}</p>
-								<div class="form-group">
+								<div class="form-group row">
 									<label for="db">{tr}DBMS driver:{/tr}</label>
 									<div style="margin-left:1em">
 										<select class=form-control name="db" id="db">
@@ -291,7 +291,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group row">
 									<label for="host">{tr}Host name:{/tr}</label>
 									<div style="margin-left:1em">
 										<input type="text" class=form-control name="host" id="host" value="{if isset($smarty.request.host)}{$smarty.request.host|escape:"html"}{elseif isset($preconfighost)}{$preconfighost|escape:"html"}{else}localhost{/if}" size="40" />
@@ -305,7 +305,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group row">
 									<label for="name">{tr}Database name:{/tr}</label>
 									<div style="margin-left:1em;">
 										<input type="text" class=form-control id="name" name="name" size="40" value="{if isset($smarty.request.name)}{$smarty.request.name|escape:"html"}{elseif isset($preconfigname)}{$preconfigname|escape:"html"}{/if}" placeholder="{tr}Database name{/tr}"/>
@@ -382,7 +382,7 @@
 								<label for="force_utf8">{tr}Always force connection to use UTF-8{/tr}</label>
 								<p><a href="https://doc.tiki.org/Understanding+Encoding" onclick="window.open(this.href); return false;">{tr}More information{/tr}</a></p>
 							</fieldset>
-							<div class="form-group text-center">
+							<div class="form-group row text-center">
 								<input type="submit" class="btn btn-secondary" name="dbinfo" value="{tr}Continue{/tr}">
 							</div>
 						</form>
@@ -592,7 +592,7 @@
 								<legend>
 									{tr}General{/tr} <a href="https://doc.tiki.org/general+admin" target="_blank" title="{tr}Help{/tr}">{icon name="help"}</a>
 								</legend>
-								<div class="form-group" style="padding:5px; clear:both">
+								<div class="form-group row" style="padding:5px; clear:both">
 									<label for="browsertitle">
 										{tr}Browser title:{/tr}
 									</label>
@@ -601,7 +601,7 @@
 										{tr}This will appear in the browser title bar.{/tr}
 									</span>
 								</div>
-								<div class="form-group" style="padding:5px; clear:both">
+								<div class="form-group row" style="padding:5px; clear:both">
 									<label for="sender_email">
 										{tr}Sender email:{/tr}
 									</label>
@@ -693,7 +693,7 @@
 								<legend>
 									{tr}Administrator{/tr}
 								</legend>
-								<div class="form-group" style="padding:5px">
+								<div class="form-group row" style="padding:5px">
 									<label for="admin_email">
 										{tr}Admin email:{/tr}
 									</label>
@@ -709,7 +709,7 @@
 									<legend>
 										{tr}Set up htaccess file{/tr}
 									</legend>
-									<div class="form-group" style="padding:5px">
+									<div class="form-group row" style="padding:5px">
 										<label class="control-label" for="htaccess_process">
 											{tr}Method:{/tr}
 										</label>

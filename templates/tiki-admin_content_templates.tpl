@@ -132,7 +132,7 @@
 			{/if}
 			<form action="tiki-admin_content_templates.php" method="post" class="form-horizontal" role="form">
 				<input type="hidden" name="templateId" value="{$templateId|escape}">
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr} *</label>
 					<div class="col-sm-9">
 						<input type="text" maxlength="255" class="form-control" id="name" name="name" value="{$info.name|escape}">
@@ -141,7 +141,7 @@
 						{/if}
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="section_css">{tr}Sections{/tr}</label>
 					<div class="col-sm-9">
 						{$toolbar_section='admin'}
@@ -198,7 +198,7 @@
 						{/if}
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="type-selector">{tr}Template Type{/tr}</label>
 					<div class="col-sm-9">
 						<select name="template_type" id="type-selector" class="form-control">
