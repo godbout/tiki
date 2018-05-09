@@ -19,7 +19,6 @@ function module_switch_lang_admin_info()
 	return [
 		'name' => tra('Switch Admin Language'),
 		'description' => tra('Displays a language picker to change the language of admin site.'),
-		'prefs' => ['feature_multilingual', 'change_language'],
 		'params' => [
 			'mode' => [
 				'name' => tra('Display mode'),

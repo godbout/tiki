@@ -56,6 +56,8 @@ if ($prefs['change_language'] == 'y') {
 			$prefs['language'] = $browser_language;
 		}
 	}
+} elseif (! empty($section) && $section == 'admin' && ! empty($prefs['language_admin'])) {
+	$prefs['language'] = $prefs['language_admin'];
 } else {
 	$prefs['language'] = $prefs['site_language'];
 }

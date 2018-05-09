@@ -40,10 +40,6 @@ function prefs_language_list($partial = false)
 			'options' => $adminMap,
 			'default' => '',
 			'tags' => ['basic'],
-			'dependencies' => [
-				'feature_multilingual',
-				'change_language',
-			],
 		],
 		'language_inclusion_threshold' => [
 			'name' => tra('Language inclusion threshold'),

@@ -10,7 +10,12 @@
 
 require_once('tiki-setup.php');
 
-$access->check_feature('change_language');
+global $tiki_p_admin;
+
+// Admins are able to change language for admin panel
+if (! ($tiki_p_admin === 'y' && isset($_REQUEST['languageAdmin']))) {
+	$access->check_feature('change_language');
+}
 
 if (isset($_SERVER['HTTP_REFERER'])) {
 	$orig_url = $_SERVER['HTTP_REFERER'];
