@@ -12,9 +12,9 @@
 
 	<h2>{tr}Change shoutbox general settings{/tr}</h2>
 	<form action="tiki-shoutbox.php" method="post" class="form-horizontal">
-		<div class="checkbox">
-			<label class="control-label col-md-offset-3">
-				<input type="checkbox" name="shoutbox_autolink" value="on"{if $prefs.shoutbox_autolink eq 'y'} checked="checked"{/if}>
+		<div class="form-check">
+			<label class="form-check-label col-md-offset-3">
+				<input class="form-check-input" type="checkbox" name="shoutbox_autolink" value="on"{if $prefs.shoutbox_autolink eq 'y'} checked="checked"{/if}>
 				{tr}auto-link urls{/tr}
 			</label>
 		</div>
@@ -38,15 +38,19 @@
 				<textarea class="form-control" name="message" id="message">{$message|escape}</textarea>
 				{if $prefs.feature_socialnetworks eq 'y' && $user neq ''}
 					{if $prefs.socialnetworks_twitter_consumer_key neq ''}
-						<div class="checkbox">
-							<input type="checkbox" name="tweet" id="tweet" value='1'>
-							{tr}Tweet with Twitter{/tr}
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="tweet" id="tweet" value='1'>
+								{tr}Tweet with Twitter{/tr}
+							</label>
 						</div>
 					{/if}
 					{if $prefs.socialnetworks_facebook_application_id neq ''}
-						<div class="checkbox">
-							<input type="checkbox" name="facebook" id="facebook" value='1'>
-							{tr}Post on my Facebook wall{/tr}
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input"  type="checkbox" name="facebook" id="facebook" value='1'>
+								{tr}Post on my Facebook wall{/tr}
+							</label>
 						</div>
 					{/if}
 				{/if}

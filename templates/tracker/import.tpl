@@ -12,9 +12,9 @@
 				<textarea name="raw" rows="20" class="form-control" required="required"></textarea>
 			</div>
 			<div class="form-group">
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="preserve" value="1">
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" type="checkbox" name="preserve" value="1">
 						{tr}Preserve tracker ID{/tr}
 					</label>
 				</div>

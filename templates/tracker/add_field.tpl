@@ -48,17 +48,17 @@
 		<label for="description" class="col-form-label">{tr}Description{/tr}</label>
 		<textarea name="description" id="description" class="form-control">{$description|escape}</textarea>
 	</div>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="description_parse" value="1"
+	<div class="form-check">
+		<label class="form-check-label">
+			<input class="form-check-input" type="checkbox" name="description_parse" value="1"
 				{if $descriptionIsParsed}checked="checked"{/if}
 				>
 			{tr}Description contains wiki syntax{/tr}
 		</label>
 	</div>
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="adminOnly" value="1">
+	<div class="form-check">
+		<label class="form-check-label">
+			<input class="form-check-input" type="checkbox" name="adminOnly" value="1">
 			{tr}Restrict visibility to administrators{/tr}
 			<div class="form-text">
 				{tr}Useful if you are working on a live tracker.{/tr}
