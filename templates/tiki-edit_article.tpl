@@ -209,9 +209,9 @@
 					<label class="col-md-4 control-label">{tr}Current Image{/tr}</label>
 					<div class="thumbnail col-md-8">
 						{if $imageIsChanged eq 'y'}
-							<img alt="{tr}Article image{/tr}" src="article_image.php?image_type=preview&amp;id={$previewId}">
+							<img class="img-fluid" alt="{tr}Article image{/tr}" src="article_image.php?image_type=preview&amp;id={$previewId}">
 						{else}
-							<img alt="{tr}Article image{/tr}" src="article_image.php?image_type=article&amp;id={$articleId}">
+							<img class="img-fluid" alt="{tr}Article image{/tr}" src="article_image.php?image_type=article&amp;id={$articleId}">
 						{/if}
 					</div>
 				</div>
