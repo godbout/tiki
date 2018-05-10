@@ -2019,6 +2019,11 @@ class TrackerLib extends TikiLib
 			}
 		}
 
+		// delete empty actionlog version to prevent history date overlap
+		if ($version > 0 && $this->last_log_version($itemId)+1 == $version) {
+			$logslib->delete_action('Updated', $itemId, 'trackeritem', $version);
+		}
+
 		// get permnames
 		$permNames = [];
 		foreach ($fil as $fieldId => $value) {

@@ -1873,4 +1873,9 @@ class LogsLib extends TikiLib
 		}
 		return $csv;
 	}
+
+	function delete_action($action, $object, $objectType, $comment) {
+		$query = "delete from `tiki_actionlog` where `action` = ? and `object` = ? and `objectType` = ? and `comment` = ?";
+		$this->query($query, [$action, $object, $objectType, $comment]);
+	}
 }
