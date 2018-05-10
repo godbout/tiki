@@ -3741,13 +3741,17 @@ class TrackerLib extends TikiLib
 		return "<div>{$text}</div>";
 	}
 
-	public function status_types()
+	/**
+	 * @param string $lg The language key to translate the status labels, if different than preferences.
+	 * @return mixed
+	 */
+	public function status_types($lg = '')
 	{
-		$status['o'] = ['name' => 'open', 'label' => tra('Open'),'perm' => 'tiki_p_view_trackers',
+		$status['o'] = ['name' => 'open', 'label' => tra('Open', $lg),'perm' => 'tiki_p_view_trackers',
 			'image' => 'img/icons/status_open.gif', 'iconname' => 'status-open'];
-		$status['p'] = ['name' => 'pending', 'label' => tra('Pending'),'perm' => 'tiki_p_view_trackers_pending',
+		$status['p'] = ['name' => 'pending', 'label' => tra('Pending', $lg),'perm' => 'tiki_p_view_trackers_pending',
 			'image' => 'img/icons/status_pending.gif', 'iconname' => 'status-pending'];
-		$status['c'] = ['name' => 'closed', 'label' => tra('Closed'),'perm' => 'tiki_p_view_trackers_closed',
+		$status['c'] = ['name' => 'closed', 'label' => tra('Closed', $lg),'perm' => 'tiki_p_view_trackers_closed',
 			'image' => 'img/icons/status_closed.gif', 'iconname' => 'status-closed'];
 		return $status;
 	}
@@ -5388,14 +5392,14 @@ class TrackerLib extends TikiLib
 				 $this->log($version, $itemId, -1, $oldStatus);
 			}
 			$the_data .= '-[Status]-: ';
-			$statusTypes = $this->status_types();
+			$statusTypes = $this->status_types('en'); // Fetch in english to translate to watcher language
 			if (isset($oldStatus) && $oldStatus != $newStatus) {
-				$the_data .= isset($statusTypes[$oldStatus]['label']) ? $statusTypes[$oldStatus]['label'] . ' -> ' : '';
+				$the_data .= isset($statusTypes[$oldStatus]['label']) ? '-[' . $statusTypes[$oldStatus]['label'] . ']- -> ' : '';
 				$changed = true;
 			}
 
 			if (! empty($newStatus)) {
-				$the_data .= $statusTypes[$newStatus]['label'];
+				$the_data .= '-[' . $statusTypes[$newStatus]['label'] . ']-';
 			}
 			$the_data .= "\n----------\n";
 		}
