@@ -1,10 +1,10 @@
-<article class="article card">
+<article class="article">
 	{if $prefs.art_trailer_pos ne 'between'}{include file='article_trailer.tpl'}{/if}
 	{if $show_topline eq 'y' and $topline}
 		<div class="articletopline">{$topline|escape}</div>
 	{/if}
-	<header class="articletitle card-header">
-		<h1 class="card-title">
+	<header class="articletitle">
+		<h1>
 			{object_link type=article id=$articleId title=$arttitle}
 		</h1>
 		{if $show_subtitle eq 'y' and $subtitle}
@@ -105,9 +105,9 @@
 			{if $prefs.art_header_text_pos eq 'below' && $list_image_x > 0}
 		<div style="width: 100%; float: left;">
 			{elseif $isfloat eq 'n' and $topics[$topicId].image_size > 0}
-		<div class="card-body">
+		<div class="media-body">
 			{else}
-		<div class="articleheadingtext card-body" {if $isfloat eq 'y'}style="display: inline;"{/if}>
+		<div class="articleheadingtext media-body" {if $isfloat eq 'y'}style="display: inline;"{/if}>
 			{/if}
 			{* <div class="articleheadingtext media-body" {if $isfloat eq 'y'}style="display: inline;"{/if}> *}
 				{if $article_attributes}
@@ -124,7 +124,7 @@
 	</div>
 
 	{if $prefs.art_trailer_pos eq 'between'}{include file='article_trailer.tpl'}{/if}
-	<div class="articlebody card-body clearfix">
+	<div class="articlebody clearfix">
 		{if $tiki_p_read_article eq 'y'}
 			{$parsed_body}
 		{else}
