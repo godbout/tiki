@@ -2,7 +2,7 @@
 {title url="tiki-blog_post.php?blogId=$blogId&amp;postId=$postId"}{if $postId gt 0}{tr}Edit Post{/tr}{else}{tr}New Post{/tr}{/if}{if !empty($blog_data.title)} - {$blog_data.title}{/if}{/title}
 
 <div class="t_navbar btn-group form-group row">
-	{if $postId > 0}
+	{if $postId> 0}
 		{button href=$postId|sefurl:blogpost class="btn btn-primary" _text="{tr}View post{/tr}"} 
 	{/if}
 
@@ -127,7 +127,7 @@
 					{else}
 						{$created = ''}
 					{/if}
-					{html_select_date prefix="publish_" time=$created start_year="-5" end_year="+10" field_order=$prefs.display_field_order} {tr}at{/tr}
+					{html_select_date prefix="publish_" time=$created start_year=$prefs.display_start_year end_year=$prefs.display_end_year field_order=$prefs.display_field_order} {tr}at{/tr}
 					{html_select_time prefix="publish_" time=$created display_seconds=false use_24_hours=$use_24hr_clock}
 				</div>
 			</div>
