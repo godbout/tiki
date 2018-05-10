@@ -87,7 +87,7 @@
 				{/foreach}
 			</div>
 		{/if}
-		<article class="clearfix article {if !empty($container_class)} {$container_class}{/if} article{$smarty.section.ix.index}">
+		<article class="clearfix article card {if !empty($container_class)} {$container_class}{/if} article{$smarty.section.ix.index}">
 			{if ($listpages[ix].show_avatar eq 'y')}
 				<div class="avatar">
 					{$listpages[ix].author|avatarize}
@@ -99,8 +99,8 @@
 				</div>
 			{/if}
 
-			<header class="articletitle clearfix">
-				<h2>
+			<header class="articletitle card-header">
+				<h2 class="card-title">
 					{object_link type=article id=$listpages[ix].articleId url=$smarty.capture.href title=$listpages[ix].title}
 				</h2>
 				{if $listpages[ix].show_subtitle eq 'y' and $listpages[ix].subtitle}<div class="articlesubtitle">{$listpages[ix].subtitle|escape}</div>{/if}
@@ -156,7 +156,7 @@
 				{if $author ne $user and $listpages[ix].comment_can_rate_article eq 'y' and empty({$listpages[ix].body})
 					and !isset($preview) and $prefs.article_user_rating eq 'y' and ($tiki_p_rate_article eq 'y'
 					or $tiki_p_admin_cms eq 'y')}
-					<div class="articleheading">
+					<div class="articleheading card-body">
 						<form method="post" action="">
 							{rating type=article id=$listpages[ix].articleId}
 						</form>
@@ -164,14 +164,14 @@
 				{/if}
 				{if $listpages[ix].comment_can_rate_article eq 'y' && $prefs.article_user_rating eq 'y'
 					&& ($tiki_p_ratings_view_results eq 'y' or $tiki_p_admin eq 'y')}
-					<div class="articleheading">
+					<div class="articleheading card-body">
 						{rating_result id=$listpages[ix].articleId type=article}
 					</div>
 				{/if}
 			</header>
 
 			{if $listpages[ix].use_ratings eq 'y'}
-				<div class="articleheading">
+				<div class="articleheading card-body">
 					{tr}Rating:{/tr}
 					{repeat count=$listpages[ix].rating}
 						{icon name='star'}
@@ -183,7 +183,7 @@
 				</div>
 			{/if}
 
-			<div class="articleheading">
+			<div class="articleheading card-body">
 				<div {if $listpages[ix].isfloat eq 'n'}class="media-left"{/if}>
 					{if $listpages[ix].show_image eq 'y'}
 						{if $listpages[ix].useImage eq 'y'}
@@ -227,10 +227,10 @@
 				<div class="articleheadingtext{if $listpages[ix].isfloat eq 'n'} media-body{/if}">{$listpages[ix].parsed_heading}</div>
 			</div>
 					{if isset($fullbody) and $fullbody eq "y"}
-			<div class="articlebody">{$listpages[ix].parsed_body}</div>
+			<div class="articlebody card-body">{$listpages[ix].parsed_body}</div>
 					{/if}
 
-			<div class="articletrailer">
+			<div class="articletrailer card-footer">
 				{if ($listpages[ix].size > 0) or (($prefs.feature_article_comments eq 'y') and ($tiki_p_read_comments eq 'y'))}
 				<ul class="list-inline pull-left">
 					{if ($tiki_p_read_article eq 'y' and $listpages[ix].heading_only ne 'y' and (!isset($fullbody) or $fullbody ne "y"))}
