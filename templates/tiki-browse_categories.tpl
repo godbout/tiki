@@ -132,7 +132,7 @@
 
 <form method="post" action="tiki-browse_categories.php" class="form-inline" role="form">
 	<div class="form-group row">
-		<label class="control-label sr-only" for="find">{tr}Find{/tr}</label>
+		<label class="col-form-label sr-only" for="find">{tr}Find{/tr}</label>
 		<div class="input-group">
 			<span class="input-group-addon">
 				{icon name="search"} {if $parentId ne 0}{$p_info.name|escape} {/if}

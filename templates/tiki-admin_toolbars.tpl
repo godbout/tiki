@@ -12,7 +12,7 @@
 		<div>
 			<div class="adminoptionbox form-group row">
 				<div class="adminoptionlabel">
-					<label for="section" class="control-label col-sm-4">
+					<label for="section" class="col-form-label col-sm-4">
 						{tr}Section{/tr}
 					</label>
 				<div class="col-sm-8">
@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<div class="adminoptionbox form-group row">
-				<label for="comments" class="control-label col-sm-4">
+				<label for="comments" class="col-form-label col-sm-4">
 					{tr}Comments{/tr}
 				</label>
 				<div class="col-sm-8">
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 			<div class="adminoptionbox form-group row">
-				<label for="view_mode" class="control-label col-sm-4">
+				<label for="view_mode" class="col-form-label col-sm-4">
 					{tr}View mode{/tr}
 				</label>
 				<div class="col-sm-8">
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="autoreload" class="control-label col-sm-4">{tr}Auto Reloading{/tr}</label>
+				<label for="autoreload" class="col-form-label col-sm-4">{tr}Auto Reloading{/tr}</label>
 				<div class="col-sm-8">
 					<input id="autoreload" name="autoreload" type="checkbox" {if $autoreload eq 'on'}checked="checked"{/if}>
 				</div>

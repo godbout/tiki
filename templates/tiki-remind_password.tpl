@@ -22,7 +22,7 @@
 	<form class="form-horizontal col-md-10" action="tiki-remind_password.php" method="post">
 		{if $prefs.login_is_email ne 'y'}
 			<div class="form-group row">
-				<label class="col-sm-3 col-md-2 control-label" for="name">{tr}Username{/tr}</label>
+				<label class="col-sm-3 col-md-2 col-form-label" for="name">{tr}Username{/tr}</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" placeholder="{tr}Username{/tr}" name="name" id="name">
 				</div>
@@ -33,7 +33,7 @@
 
 		{/if}
 		<div class="form-group row">
-			<label class="col-sm-3 col-md-2 control-label" for="email">{tr}Email{/tr}</label>
+			<label class="col-sm-3 col-md-2 col-form-label" for="email">{tr}Email{/tr}</label>
 			<div class="col-sm-6">
 				{if $prefs.login_is_email ne 'y'}
 					<input type="email" class="form-control" placeholder="{tr}Email{/tr}" name="email" id="email">

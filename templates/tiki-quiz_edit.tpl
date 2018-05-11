@@ -17,7 +17,7 @@
 	<input type="hidden" name="quiz.id" value="{$quiz->id}">
 
 	<div class="form-group row">
-		<label class="control-label col-sm-2 text-left">{tr}Status{/tr}</label>
+		<label class="col-form-label col-sm-2 text-left">{tr}Status{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('status');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('status');">{tr}Hide{/tr}</a> ]
@@ -50,30 +50,30 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="control-label col-sm-2">{tr}General Options{/tr}</label>
+		<label class="col-form-label col-sm-2">{tr}General Options{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('general');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('general');">{tr}Hide{/tr}</a> ]
 			<div id="general" style="display:none;">
-				<label class="control-label col-sm-3">{tr}Name:{/tr}</label>
+				<label class="col-form-label col-sm-3">{tr}Name:{/tr}</label>
 				<div class="col-sm-9">
 					<input type="text" name=quiz.name id="quiz-name" value="{$quiz->name|escape}" size="60" class="form-control margin-bottom-sm">
 				</div>
-				<label class="control-label col-sm-3">{tr}Description:{/tr}</label>
+				<label class="col-form-label col-sm-3">{tr}Description:{/tr}</label>
 				<div class="col-sm-9">
 					<input type="text" name=quiz.description id="quiz-desc" value="{$quiz->description|escape}" size="60" class="form-control margin-bottom-sm">
 				</div>
-				<label class="control-label col-sm-3">{tr}Publication Date{/tr}</label>
+				<label class="col-form-label col-sm-3">{tr}Publication Date{/tr}</label>
 				<div class="col-sm-9 margin-bottom-sm">
 					{html_select_date prefix="quiz_publish_" time=$quiz->datePub start_year="-5" end_year="+10" field_order=$prefs.display_field_order}
 					{tr}at {/tr}{html_select_time prefix="quiz_publish_" time=$quiz->datePub display_seconds=false use_24_hours=$use_24hr_clock} HRS&nbsp;{$tpl.siteTimeZone}
 				</div>
-				<label class="control-label col-sm-3">{tr}Expiration Date{/tr}</label>
+				<label class="col-form-label col-sm-3">{tr}Expiration Date{/tr}</label>
 				<div class="col-sm-9 margin-bottom-sm">
 					{html_select_date prefix="quiz_expire_" time=$quiz->dateExp start_year="-5" end_year="+10" field_order=$prefs.display_field_order}
 					{tr}at {/tr}{html_select_time prefix="quiz_expire_" time=$quiz->dateExp display_seconds=false use_24_hours=$use_24hr_clock} HRS&nbsp;{$tpl.siteTimeZone}
 				</div>
-				<label class="control-label col-sm-3">{tr}Questions{/tr}</label>
+				<label class="col-form-label col-sm-3">{tr}Questions{/tr}</label>
 				<div class="col-sm-9 form-check">
 					<label for="nQuestion" class="form-check-label">{tr}Use {/tr}
 						<input type="checkbox" class="form-check-input" name=quiz.nQuestion id="nQuestion" {if $quiz->nQuestion eq 'y'}checked="checked"{/if}>
@@ -86,7 +86,7 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="control-label col-sm-2 text-left">{tr}Test-time Options{/tr}</label>
+		<label class="col-form-label col-sm-2 text-left">{tr}Test-time Options{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('test-time');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('test-time');">{tr}Hide{/tr}</a> ]
@@ -150,7 +150,7 @@
 	</div>
 
 	<div class="form-group row">
-		<label class="control-label col-sm-2 text-left">{tr}Grading and Feedback{/tr}</label>
+		<label class="col-form-label col-sm-2 text-left">{tr}Grading and Feedback{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('feedback');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('feedback');">{tr}Hide{/tr}</a> ]
@@ -204,18 +204,18 @@
 	</div>
 
 	<div class="form-group row">
-		<label class="control-label col-sm-2 text-left">{tr}Extra Options{/tr}</label>
+		<label class="col-form-label col-sm-2 text-left">{tr}Extra Options{/tr}</label>
 		<div class="col-sm-7 form-control-plaintext">
 			[ <a class="link" href="javascript:show('after-test');">{tr}Show{/tr}</a>
 			| <a class="link" href="javascript:hide('after-test');">{tr}Hide{/tr}</a> ]
 			<div id="after-test" style="display:none;">
-				<label class="control-label col-sm-3">{tr}Questions{/tr}</label>
+				<label class="col-form-label col-sm-3">{tr}Questions{/tr}</label>
 				<div class="col-sm-9 form-check">
 					<label class="form-check-label">{tr}Solicit additional questions from students{/tr}
 						<input type="checkbox" class="form-check-input" name="quiz.additionalQuestions" {if $quiz->additionalQuestions eq "y"}checked="checked"{/if}>
 					</label>
 				</div>
-				<label class="control-label col-sm-3">{tr}Link quiz to forum named: {/tr}</label>
+				<label class="col-form-label col-sm-3">{tr}Link quiz to forum named: {/tr}</label>
 				<div class="col-sm-9">
 					<div class="form-inline form-check">
 						<label class="form-class-label">

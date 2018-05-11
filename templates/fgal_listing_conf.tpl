@@ -5,7 +5,7 @@
 		{if $key eq 'default_view'}
 		{elseif $key eq 'icon_fileId'}
 			<div class="form-group row">
-				<label class="col-sm-4 control-label" for="fgal_{$key}">
+				<label class="col-sm-4 col-form-label" for="fgal_{$key}">
 					{$item.name}
 				</label>
 				<div class="col-sm-8">
@@ -64,7 +64,7 @@
 {if is_array($fgal_listing_conf) and count($fgal_listing_conf) gt 0}
 	{foreach key=key item=item from=$fgal_listing_conf}
 		<div class="form-group row">
-			<label class="col-sm-4 control-label margin-bottom-md" for="fgal_list_{$key}">
+			<label class="col-sm-4 col-form-label margin-bottom-md" for="fgal_list_{$key}">
 				{$item.name}
 			</label>
 			<div class="col-sm-8 margin-bottom-md">

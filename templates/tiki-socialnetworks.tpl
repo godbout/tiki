@@ -68,13 +68,13 @@
 				{/remarksbox}
 			{else}
 				<div class="form-group row">
-					<label class="control-label col-sm-3">{tr}bit.ly Login{/tr}</label>
+					<label class="col-form-label col-sm-3">{tr}bit.ly Login{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="bitly_login" value="{$bitly_login}" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="control-label col-sm-3">{tr}bit.ly Key{/tr}</label>
+					<label class="col-form-label col-sm-3">{tr}bit.ly Key{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="bitly_key" value="{$bitly_key}" class="form-control">
 					</div>

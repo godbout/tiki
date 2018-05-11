@@ -111,7 +111,7 @@
 		<legend><strong>{tr}Upload your own profile picture{/tr}</strong></legend>
 		{if $user ne $userwatch}<input type="hidden" name="view_user" value="{$userwatch|escape}">{/if}
 		<div class="form-group row">
-			<label class="col-sm-3 control-label">{tr}Select your profile picture{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Select your profile picture{/tr}</label>
 			<div class="col-sm-7">
 				<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
 				<input id="userfile1" name="userfile1" type="file">
@@ -121,7 +121,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-3 control-label"></label>
+			<label class="col-sm-3 col-form-label"></label>
 			<div class="col-sm-7">
 				<input type="submit" class="btn btn-secondary btn-sm" name="upload" value="{tr}Upload{/tr}">
 			</div>

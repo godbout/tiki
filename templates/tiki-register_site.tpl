@@ -70,25 +70,25 @@
 				<form action="http://tiki.org/tiki-directory_add_tiki_site.php" method="post" class="form-horizontal">
 					<input type="hidden" name="registertiki" value="true">
 					<div class="form-group row">
-						<label class="control-label col-sm-3">{tr}Name:{/tr}</label>
+						<label class="col-form-label col-sm-3">{tr}Name:{/tr}</label>
 						<div class="col-sm-7">
 							<input type="text" name="name" class="form-control" size="60" value="{$info.name|escape}">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="control-label col-sm-3">{tr}Description:{/tr}</label>
+						<label class="col-form-label col-sm-3">{tr}Description:{/tr}</label>
 						<div class="col-sm-7">
 							<textarea rows="5" cols="60" name="description" class="form-control">{$info.description|escape}</textarea>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="control-label col-sm-3">{tr}URL:{/tr}</label>
+						<label class="col-form-label col-sm-3">{tr}URL:{/tr}</label>
 						<div class="col-sm-7 form-control-plaintext">
 							<input type="hidden" name="url" value="{$info.url|escape}" class="form-control">{$info.url|escape}
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="control-label col-sm-3">{tr}Country:{/tr}</label>
+						<label class="col-form-label col-sm-3">{tr}Country:{/tr}</label>
 						<div class="col-sm-7">
 							<select name="country" class="form-control">
 								{section name=ux loop=$countries}
@@ -99,7 +99,7 @@
 					</div>
 					<input name="isValid" type="hidden" value="">
 					<div class="form-group row">
-						<label class="control-label col-sm-3"></label>
+						<label class="col-form-label col-sm-3"></label>
 						<div class="col-sm-7">
 							<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
 						</div>

@@ -15,13 +15,13 @@
 		<input type="hidden" name="pageName" value="{$pageName|escape}">
 		<input type="hidden" name="zone" value="{$zone|escape}">
 		<div class="form-group row">
-			<label class="col-sm-3 control-label">{tr}Zone{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Zone{/tr}</label>
 			<div class="col-sm-7 col-sm-offset-1">
 				<p>{$zone} Teste</p>
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-3 control-label">{tr}Content:{/tr}</label>
+			<label class="col-sm-3 col-form-label">{tr}Content:{/tr}</label>
 			<div class="col-sm-7 col-sm-offset-1">
 				{if $type eq 'ta'}
 					<textarea rows="5" cols="15" name="content" class="form-control">{$content|escape}</textarea>

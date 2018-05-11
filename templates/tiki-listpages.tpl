@@ -43,7 +43,7 @@
 			<div>
 				<form method="get" action="tiki-editpage.php" class="form-horizontal">
 					<div class="form-group row">
-						<label class="control-label col-sm-3">{tr}Insert name of the page you wish to create{/tr}</label>
+						<label class="col-form-label col-sm-3">{tr}Insert name of the page you wish to create{/tr}</label>
 						<div class="col-sm-9">
 							<input class="form-control" id="pagename" type="text" name="page">
 						</div>
@@ -51,14 +51,14 @@
 					{if $prefs.namespace_enabled == 'y' && $prefs.namespace_default}
 					<div class="form-group row">
 						<div class="col-sm-9 form-check">
-							<label class="control-label col-sm-3 form-check-label">{tr _0=$prefs.namespace_default}Create page within %0{/tr}
+							<label class="col-form-label col-sm-3 form-check-label">{tr _0=$prefs.namespace_default}Create page within %0{/tr}
 								<input type="checkbox" class="form-check-input" name="namespace" value="{$prefs.namespace_default|escape}" checked="checked">
 							</label>
 						</div>
 					</div>
 					{/if}
 					<div class="form-group row">
-						<label class="control-label col-sm-3"></label>
+						<label class="col-form-label col-sm-3"></label>
 						<div class="col-sm-9">
 							<input class="btn btn-secondary" type="submit" name="quickedit" value="{tr}Create Page{/tr}">
 						</div>

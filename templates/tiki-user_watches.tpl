@@ -82,7 +82,7 @@
 	<h3>{tr}Add Watch{/tr}</h3>
 	<form class="form-horizontal" action="tiki-user_watches.php" method="post">
 		<div class="form-group row">
-			<label class="col-sm-3 control-label" for="type_selector">{tr}Event:{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="type_selector">{tr}Event:{/tr}</label>
 
 			<div class="col-sm-9">
 				<select name="event" id="type_selector" class="form-control">
@@ -95,7 +95,7 @@
 		</div>
 		{if $prefs.feature_categories eq 'y'}
 			<div class="form-group row" id="categ_list">
-				<label class="control-label" for="langwatch_categ">{tr}Category{/tr}</label>
+				<label class="col-form-label" for="langwatch_categ">{tr}Category{/tr}</label>
 
 				<div class="col-sm-9">
 					<select class="categwatch-select form-control" name="categwatch" id="langwatch_categ">
@@ -144,7 +144,7 @@
 	<h3>{tr}Watches{/tr}</h3>
 	<form class="form-horizontal margin-bottom-md" action="tiki-user_watches.php" method="post" id='formi'>
 		<div class="form-group row">
-			<label class="col-sm-3 control-label" for="event">{tr}Show:{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="event">{tr}Show:{/tr}</label>
 
 			<div class="col-sm-9">
 				<select class="form-control" name="event"

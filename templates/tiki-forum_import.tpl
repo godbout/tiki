@@ -20,7 +20,7 @@
 				<input type="hidden" name="step1" value="true">
 				<input type="hidden" name="import" value="same">
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}Forum Type{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Forum Type{/tr}</label>
 					<div class="col-sm-7">
 						<select name="forum" class="form-control">
 							{section name=ftype loop=$fi_types}
@@ -30,13 +30,13 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}DB Prefix:{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}DB Prefix:{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="prefix" value="{$fi_prefixes[0]}" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label"></label>
+					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7">
 						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Get Forum List{/tr}">>
 					</div>
@@ -53,7 +53,7 @@
 				<input type="hidden" name="step1" value="true">
 				<input type="hidden" name="import" value="other">
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}Server{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Server{/tr}</label>
 					<div class="col-sm-7">
 						<select name="forum" class="form-control">
 							<input type="text" name="server" class="form-control">
@@ -61,38 +61,38 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}DB Name{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}DB Name{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="dbname" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}Forum Type{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Forum Type{/tr}</label>
 					<div class="col-sm-7">
 						<select name="forum">
 						</select>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}DB Prefix{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}DB Prefix{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="prefix" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}Username{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Username{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="username" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}Password{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Password{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="password" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label"></label>
+					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7">
 						<input type="submit" class="btn btn-primary btn-sm" value="Test Connection">
 					</div>
@@ -113,7 +113,7 @@
 				<input type="hidden" name="step1" value="true">
 				<input type="hidden" name="import" value="sql">
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}Forum Type:{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Forum Type:{/tr}</label>
 					<div class="col-sm-7">
 						<select name="ftype" class="form-control">
 							{* List all forums that are supported. *}
@@ -124,13 +124,13 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}DB Prefix:{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}DB Prefix:{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="prefix" value="{$fi_prefixes[0]}" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label">{tr}Local SQL Filename on Server (path will be stripped):{/tr}</label>
+					<label class="col-sm-3 col-form-label">{tr}Local SQL Filename on Server (path will be stripped):{/tr}</label>
 					<div class="col-sm-7">
 						<input type="text" name="server" class="form-control">
 						<div class="form-text">
@@ -139,7 +139,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-sm-3 control-label"></label>
+					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7">
 						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Get Forum List{/tr}">
 					</div>

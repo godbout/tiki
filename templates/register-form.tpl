@@ -9,7 +9,7 @@
 	{section name=ir loop=$customfields}
 		{if $customfields[ir].show}
 			<div class="form-group row">
-				<label class="col-sm-4 control-label" for="{$customfields[ir].prefName}">{tr}{$customfields[ir].label}:{/tr}</label>
+				<label class="col-sm-4 col-form-label" for="{$customfields[ir].prefName}">{tr}{$customfields[ir].label}:{/tr}</label>
 				<div class="col-sm-8">
 					<input type="{$customfields[ir].type}" name="{$customfields[ir].prefName}" value="{$customfields[ir].value}" size="{$customfields[ir].size}" id="{$customfields[ir].prefName}" class="form-control" >
 				</div>

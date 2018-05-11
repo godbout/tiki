@@ -59,7 +59,7 @@
 		</div>
 		{if !empty($types) and ( !isset($types_tag) or $types_tag eq 'select' )}
 			<div class="form-group row">
-				<label class="control-label col-sm-4">
+				<label class="col-form-label col-sm-4">
 					{tr}Article Type{/tr}
 				</label>
 				<div class="col-sm-8">
@@ -76,7 +76,7 @@
 		{/if}
 		{if !empty($topics)}
 			<div class="form-group row">
-				<label class="control-label col-sm-4">
+				<label class="col-form-label col-sm-4">
 					{tr}Article Topic{/tr}
 				</label>
 				<div class="col-sm-8">
@@ -93,7 +93,7 @@
 		{/if}
 		{if (isset($find_show_languages) && $find_show_languages eq 'y') and $prefs.feature_multilingual eq 'y'}
 			<div class="form-group row">
-				<label class="control-label col-sm-4">
+				<label class="col-form-label col-sm-4">
 					{tr}Language{/tr}
 				</label>
 				<div class="col-sm-8">
@@ -108,7 +108,7 @@
 						</select>
 						{if isset($find_show_languages_excluded) and $find_show_languages_excluded eq 'y'}
 							<span>
-								<label class="control-label">
+								<label class="col-form-label">
 									{tr}not in{/tr}
 								</label>
 							</span>
@@ -148,7 +148,7 @@
 		{if ((isset($find_show_categories) && $find_show_categories eq 'y') or (isset($find_show_categories_multi) && $find_show_categories_multi eq 'y')) and $prefs.feature_categories eq 'y' and !empty($categories)}
 			<div class="form-group category_find">
 				{if $find_show_categories_multi eq 'n' || $findSelectedCategoriesNumber <= 1}
-					<label class="col-sm-4 control-label">
+					<label class="col-sm-4 col-form-label">
 						{tr}Category{/tr}
 					</label>
 					<div id="category_singleselect_find" class="col-sm-8">
@@ -209,7 +209,7 @@
 		{if !empty($filters)}
 			<div class="form-group findfilter">
 				{foreach key=key item=item from=$filters}
-					<label class="control-label col-sm-4">
+					<label class="col-form-label col-sm-4">
 						{$filter_names.$key}
 					</label>
 					<div class="col-sm-8">
@@ -226,7 +226,7 @@
 		{if !empty($find_durations)}
 			{foreach key=key item=duration from=$find_durations}
 				<div class="form-group row">
-				<label class="find_duration control-label col-sm-6">
+				<label class="find_duration col-form-label col-sm-6">
 					{tr}{$duration.label}{/tr}
 				</label>
 				<div class="col-sm-6">
@@ -238,7 +238,7 @@
 		{if !empty($show_find_orphans) and $show_find_orphans eq 'y'}
 			<div class="form-group find-orphans" style="margin-top: -15px;">
 				<div class="form-check col-sm-push-4">
-					<label class="find_orphans control-label" style="padding-left: 0; font-weight: bold;" for="find_orphans">
+					<label class="find_orphans col-form-label" style="padding-left: 0; font-weight: bold;" for="find_orphans">
 						{tr}Orphans{/tr}
 						<input type="checkbox" style="margin-left: 30px;" name="find_orphans" id="find_orphans" {if isset($find_orphans) and $find_orphans eq 'y'}checked="checked"{/if}>
 					</label>
@@ -247,7 +247,7 @@
 		{/if}
 		{if !empty($find_other)}
 			<div class="form-group find-other">
-				<label class="find_other control-label col-sm-6" for="find_other">
+				<label class="find_other col-form-label col-sm-6" for="find_other">
 					{tr}{$find_other}{/tr}
 				</label>
 				<div class="col-sm-6">
@@ -257,7 +257,7 @@
 		{/if}
 		{if isset($find_show_num_rows) && $find_show_num_rows eq 'y'}
 			<div class="form-group findnumrows">
-				<label class="control-label col-sm-6" for="findnumrows">
+				<label class="col-form-label col-sm-6" for="findnumrows">
 					{tr}Displayed rows{/tr}
 				</label>
 				<div class="col-sm-6">

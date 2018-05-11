@@ -22,7 +22,7 @@
 	{/if}
 	<div class="form-group row">
 		<div class="adminoptionbox">
-			<label for="edit_language" class="col-md-4 control-label">{tr}Language{/tr}</label>
+			<label for="edit_language" class="col-md-4 col-form-label">{tr}Language{/tr}</label>
 			<div class="col-md-6">
 				<select id="edit_language" class="translation_action form-control" name="edit_language">
 					{section name=ix loop=$languages}
@@ -45,7 +45,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="adminoptionbox">
-			<label for="add_tran_sw" class="col-md-4 control-label">{tr}Add a translation{/tr}</label>
+			<label for="add_tran_sw" class="col-md-4 col-form-label">{tr}Add a translation{/tr}</label>
 			<div class="col-md-8">
 				<input id="add_tran_sw" class="translation_action" type="radio" name="action" value="add_tran_sw" {if $action eq 'add_tran_sw'}checked="checked"{/if}>
 			</div>
@@ -53,7 +53,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="adminoptionbox">
-			<label for="edit_rec_sw" class="col-md-4 control-label">{tr}Untranslated strings{/tr}</label>
+			<label for="edit_rec_sw" class="col-md-4 col-form-label">{tr}Untranslated strings{/tr}</label>
 			<div class="col-md-8">
 				<input id="edit_rec_sw" class="translation_action" type="radio" name="action" value="edit_rec_sw" {if $action eq 'edit_rec_sw'}checked="checked"{/if}>
 				{if $prefs.record_untranslated eq 'y'}
@@ -66,7 +66,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="adminoptionbox">
-			<label for="edit_tran_sw" class="col-md-4 control-label">{tr}Edit translations{/tr}</label>
+			<label for="edit_tran_sw" class="col-md-4 col-form-label">{tr}Edit translations{/tr}</label>
 			<div class="col-md-8">
 				<input id="edit_tran_sw" class="translation_action" type="radio" name="action" value="edit_tran_sw" {if $action eq 'edit_tran_sw'}checked="checked"{/if}>
 				<div class="adminoptionboxchild form-check">
@@ -92,13 +92,13 @@
 			</div>
 			<div class="card-body">
 				<div class="form-group row">
-					<label class="col-md-4 control-label">{tr}Original:{/tr}</label>
+					<label class="col-md-4 col-form-label">{tr}Original:{/tr}</label>
 					<div class="col-md-8">
 						<input name="add_tran_source" maxlength="255" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-md-4 control-label">{tr}Translation:{/tr}</label>
+					<label class="col-md-4 col-form-label">{tr}Translation:{/tr}</label>
 					<div class="col-md-8">
 						<input name="add_tran_tran" maxlength="255" class="form-control">
 					</div>

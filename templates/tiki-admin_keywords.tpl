@@ -13,13 +13,13 @@
 		<form action="tiki-admin_keywords.php" method="post" class="form-horizontal">
 			<input name="page" value="{$edit_keywords_page|escape}" type="hidden">
 			<div class="form-group row">
-				<label class="col-sm-3 control-label">{tr}Keywords{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Keywords{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 					<input name="new_keywords" size="65" value="{$edit_keywords|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 control-label"></label>
+				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 					<input type="submit" class="btn btn-primary btn-sm" name="save_keywords" value="{tr}Save{/tr}">
 				</div>
@@ -31,7 +31,7 @@
 <h2>{tr}Current Page Keywords{/tr}</h2>
 <form method="get" action="tiki-admin_keywords.php" class="form-horizontal">
 	<div class="form-group row">
-		<label class="col-sm-3 control-label">{tr}Search by page:{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Search by page:{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
 			<input type="text" name="q" value="{if $smarty.request.q}{$smarty.request.q|escape}{/if}" class="form-control">
 		</div>

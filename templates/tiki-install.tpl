@@ -710,7 +710,7 @@
 										{tr}Set up htaccess file{/tr}
 									</legend>
 									<div class="form-group row" style="padding:5px">
-										<label class="control-label" for="htaccess_process">
+										<label class="col-form-label" for="htaccess_process">
 											{tr}Method:{/tr}
 										</label>
 										<select class="form-control" name="htaccess_process" id="htaccess_process">

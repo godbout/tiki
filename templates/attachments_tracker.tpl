@@ -7,7 +7,7 @@
 			<input type="hidden" name="itemId" value="{$itemId|escape}">
 			<input type="hidden" name="attId" value="{$attId|escape|default:null}">
 			<div class="form-group row">
-				<label for="MAX_FILE_SIZE" class="col-md-4 control-label">
+				<label for="MAX_FILE_SIZE" class="col-md-4 col-form-label">
 					{tr}Upload file{/tr}
 				</label>
 				<div class="col-md-8">
@@ -15,7 +15,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="attach_comment" class="col-md-4 control-label">
+				<label for="attach_comment" class="col-md-4 col-form-label">
 					{tr}Comment{/tr}
 				</label>
 				<div class="col-md-8">
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 			<div class="form-group row clearfix">
-				<label for="attach_version" class="col-md-4 control-label">
+				<label for="attach_version" class="col-md-4 col-form-label">
 					{tr}Version{/tr}
 				</label>
 				<div class="col-md-1">
@@ -31,7 +31,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="attach_longdesc" class="col-md-4 control-label">
+				<label for="attach_longdesc" class="col-md-4 col-form-label">
 					{tr}Description{/tr}
 				</label>
 				<div class="col-md-8">
