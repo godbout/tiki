@@ -27,7 +27,7 @@
 		{elseif $captchalib->type eq 'questions'}
 			<input type="hidden" name="captcha[id]" id="captchaId" value="{$captchalib->generate()}">
 			<div class="form-group row">
-				<label class="col-md-4 col-sm-3 control-label">
+				<label class="col-md-4 col-sm-3 col-form-label">
 					{$captchalib->render()}
 				</label>
 				{if $showmandatory eq 'y'}
