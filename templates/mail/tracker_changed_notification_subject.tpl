@@ -1,1 +1,1 @@
-{* $Id$ *}{$prefs.mail_template_custom_text}"{tr}{$mail_trackerName}{/tr}" {tr}item{/tr} "{$mail_item_desc}" {tr}was modified at{/tr} {$server_name} {tr}by{/tr} "{if not empty($user)}{$user|username}{else}{tr}Anonymous{/tr}{/if}"
+{* $Id$ *}{$prefs.mail_template_custom_text}"{tr}{$mail_trackerName}{/tr}" {tr}item{/tr} "{$mail_item_desc}" {if $mail_action eq 'deleted'}{tr}was deleted at{/tr}{else}{tr}was modified at{/tr}{/if} {$server_name} {tr}by{/tr} "{if not empty($user)}{$user|username}{else}{tr}Anonymous{/tr}{/if}"
