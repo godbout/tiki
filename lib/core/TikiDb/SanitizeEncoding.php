@@ -27,6 +27,8 @@ class SanitizeEncoding
 	 */
 	protected static $referenceTable = 'tiki_pages';
 
+	protected static $filterExclusions = [];
+
 	/**
 	 * Detect the character encoding for the sample table
 	 * Internally adds a second table that should be on all tiki instances to assure we have results
@@ -67,8 +69,16 @@ class SanitizeEncoding
 			return $values;
 		}
 
+		// If it's a file stored in database, exclude file data from filter
+		if (isset($values['filename'], $values['filetype'], $values['data'])) {
+			self::$filterExclusions[] = 'data';
+		}
+
 		if (is_array($values)) {
-			return array_map('self::filterAllowedCharsByCharset', $values);
+			foreach ($values as $key => $value) {
+				$values[$key] = self::filterAllowedCharsByCharset($value, $key);
+			}
+			return $values;
 		} else {
 			return self::filterAllowedCharsByCharset($values);
 		}
@@ -80,8 +90,13 @@ class SanitizeEncoding
 	 * @param string $value
 	 * @return string
 	 */
-	protected static function filterAllowedCharsByCharset($value)
+	protected static function filterAllowedCharsByCharset($value, $key = null)
 	{
+
+		if (in_array($key, self::$filterExclusions)) {
+			return $value;
+		}
+
 		// if anything else that self::UTF8SUBSET, don't change the value.
 		if (self::$currentCharset === self::UTF8SUBSET && is_string($value)) {
 			// TODO: Something more fancy like replace emoji with asccii smiles when possible

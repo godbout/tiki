@@ -417,7 +417,7 @@ class TikiDb_Table
 			$ignore = ' IGNORE';
 		}
 
-		$bindvars = array_merge($bindvars, SanitizeEncoding::filter(array_values($values)));
+		$bindvars = array_merge($bindvars, array_values(SanitizeEncoding::filter($values)));
 		return "INSERT$ignore INTO {$this->escapeIdentifier($this->tableName)} ($fieldDefinition) VALUES ($fieldPlaceholders)";
 	}
 
