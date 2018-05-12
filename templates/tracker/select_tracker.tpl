@@ -10,7 +10,7 @@
 
 {block name="content"}
 	<form class="form" method="post" action="{service controller=tracker action=select_tracker}" id="selectTrackerForm" role="form">
-		<div class="form-group row">
+		<div class="form-group row mx-0">
 			<label class="col-form-label" for="trackerId">
 				{tr}Tracker{/tr}
 			</label>
