@@ -15,7 +15,7 @@
 			<input type="text" name="word" id="word" class="form-control">
 		</div>
 	</div>
-	<div class="text-center margin-bottom-lg">
+	<div class="text-center mb-5">
 		<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
 	</div>
 </form>

@@ -6,7 +6,7 @@
 
 {block name="content"}
 	{foreach from=$plugins key=plugin item=info}
-		<fieldset class="margin-bottom-lg">
+		<fieldset class="mb-5">
 			<legend>
 				{if $info.iconname}{icon name=$info.iconname}{else}{icon name='plugin'}{/if} {tr}{$info.title|escape}{/tr}
 			</legend>

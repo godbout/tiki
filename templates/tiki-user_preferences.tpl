@@ -97,7 +97,7 @@
 					<label class="col-form-label col-md-4" for="location">
 						{tr}Location{/tr}
 					</label>
-					<div class="col-md-8 margin-bottom-lg" style="height: 250px;" data-geo-center="{defaultmapcenter}" data-target-field="location">
+					<div class="col-md-8 mb-5" style="height: 250px;" data-geo-center="{defaultmapcenter}" data-target-field="location">
 						<div class="map-container" style="height: 250px;" data-geo-center="{defaultmapcenter}" data-target-field="location"></div>
 					</div>
 					<input type="hidden" name="location" id="location" value="{$location|escape}">

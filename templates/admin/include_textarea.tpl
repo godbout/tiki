@@ -159,14 +159,14 @@
 				{/remarksbox}
 			{/if}
 
-			<fieldset class="margin-bottom-lg">
+			<fieldset class="mb-5">
 				<legend>{tr}Plugin preferences{/tr}</legend>
 				{preference name=wikipluginprefs_pending_notification}
 				{preference name=image_responsive_class}
 				{preference name=wikiplugin_maximum_passes}
 			</fieldset>
 
-			<fieldset class="margin-bottom-lg">
+			<fieldset class="mb-5">
 				<legend>{tr}Edit plugin icons{/tr}</legend>
 				{preference name=wiki_edit_plugin}
 				<div class="adminoptionboxchild" id="wiki_edit_plugin_childcontainer">
@@ -176,9 +176,9 @@
 				{preference name=wikiplugin_list_convert_trackerlist}
 			</fieldset>
 
-			<fieldset class="margin-bottom-lg" id="plugins">
+			<fieldset class="mb-5" id="plugins">
 				<legend>{tr}Plugins{/tr}</legend>
-				<fieldset class="margin-bottom-lg donthide">
+				<fieldset class="mb-5 donthide">
 					{preference name='unified_search_textarea_admin'}
 					{if $prefs.unified_search_textarea_admin eq 'y'}
 						<label for="pluginfilter" class="col-sm-4 col-form-label">{tr}Filter:{/tr}</label>
@@ -199,7 +199,7 @@
 				</div>
 				{if $prefs.unified_search_textarea_admin eq 'y'}<noscript>{/if}
 					{foreach from=$plugins key=plugin item=info}
-						<fieldset class="margin-bottom-lg">
+						<fieldset class="mb-5">
 							<legend>
 								{if $info.iconname}{icon name=$info.iconname}{else}{icon name='plugin'}{/if} {$info.name|escape}
 							</legend>
