@@ -2998,10 +2998,6 @@ body:not(.fixed_width) .container {
 .row-middle {
   word-wrap: break-word; }
 
-.row.mx-0 {
-  margin-left: 0;
-  margin-right: 0; }
-
 legend + * {
   margin-top: 20px; }
 
