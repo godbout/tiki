@@ -4,17 +4,6 @@
  * Developed in part in association with http://attainable-utopias.org by jonnybradley
  * © 2003-2017 Jonny Bradley licensed under LGPL/MIT in accordance with Tiki licensing practices
  */
-.margin-bottom-xs {
-  margin-bottom: 0.375rem; }
-
-.margin-bottom-sm {
-  margin-bottom: 1rem; }
-
-.margin-bottom-md {
-  margin-bottom: 1.5rem; }
-
-.margin-bottom-lg {
-  margin-bottom: 3rem; }
 /* Todo - button variables are simpler in BS4 - need to figure it out
  //  Admin
  $admbox-border: $btn-primary-border; //#cccccc;
@@ -7637,14 +7626,14 @@ input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
 
 input[type="checkbox"].preffilter-toggle-round + label:before {
-  color: #212529;
+  color: #495057;
   background-color: #fff;
-  border-color: #212529; }
+  border-color: #e6e6e6; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
-  color: #555;
-  background-color: #eee;
-  border-color: #ccc; }
+  background-color: #28a745;
+  border-color: #919191;
+  color: white; }
 
 .container {
   background-color: #fff; }
