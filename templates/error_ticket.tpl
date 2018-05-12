@@ -101,7 +101,7 @@
 	</div>
 	<footer class="footer" id="footer">
 		<div class="footer_liner">
-			{modulelist zone=bottom class='row row-sidemargins-zero'}
+			{modulelist zone=bottom class='row mx-0'}
 		</div>
 	</footer>
 </div>

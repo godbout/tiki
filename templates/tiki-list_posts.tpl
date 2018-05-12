@@ -7,7 +7,7 @@
 	{button href="tiki-blog_post.php" _type="link" class="btn btn-link" _icon_name="create" _text="{tr}New Blog Post{/tr}"}
 	{button href="tiki-list_blogs.php" _type="link" class="btn btn-link" _icon_name="list" _text="{tr}List Blogs{/tr}"}
 	{if $posts or ($find ne '')}
-		<div class="col-md-6 row-sidemargins-zero pull-right">
+		<div class="col-md-6 mx-0 pull-right">
 			{include file='find.tpl'}
 		</div>
 	{/if}
