@@ -7,7 +7,7 @@
 	{/title}
 {/block}
 
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{if $tiki_p_admin_forum eq "y"}
 		{button href="tiki-admin_forums.php?forumId=$forumId" _class="btn btn-link" _icon_name="wrench" _text="{tr}Edit Forum{/tr}"}
 	{/if}
@@ -38,7 +38,7 @@
 </div>
 
 {block name=thread_actions}
-	<div class="text-right margin-bottom-md">
+	<div class="text-right mb-3">
 		{if empty($thread_info.topic.threadId)}
 			<span>
 				{if ($prev_topic and $prev_topic ne $comments_parentId) or $next_topic}[ {if $prev_topic and $prev_topic ne $comments_parentId}<a href="tiki-view_forum_thread.php?comments_parentId={$prev_topic}&amp;topics_offset={$topics_prev_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}prev topic{/tr}</a>{if $next_topic} | {/if}{/if}

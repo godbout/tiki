@@ -128,7 +128,7 @@
 					{textarea name="description" rows="6" id="description" class="form-control" _toolbars='y' _simple='y' comments='y'}{$info.description}{/textarea}
 				</div>
 			</div>
-			<div class="margin-bottom-md">
+			<div class="mb-3">
 				{include file='categorize.tpl' labelcol='2' inputcol='10'}
 			</div>
 			<div class="form-group row">

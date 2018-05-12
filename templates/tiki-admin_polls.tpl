@@ -1,7 +1,7 @@
 {* $Id$ *}
 {title help="Polls" admpage="polls"}{tr}Admin Polls{/tr}{/title}
 
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	<a href="tiki-admin_polls.php?setlast=1" class="btn btn-link" title="">{icon name="previous"} {tr}Set last poll as current{/tr} </a>
 	<a href="tiki-admin_polls.php?closeall=1" class="btn btn-link" title="">{icon name="disable"} {tr}Close all polls but last{/tr}</a>
 	<a href="tiki-admin_polls.php?activeall=1" class="btn btn-link" title="">{icon name="enable"} {tr}Activate all polls{/tr}</a>

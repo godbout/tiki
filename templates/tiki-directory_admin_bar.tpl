@@ -1,4 +1,4 @@
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{button href="tiki-directory_browse.php" _icon_name="binoculars" class="btn btn-link" _type="link" _text="{tr}Browse{/tr}"}
 	{button href="tiki-directory_admin.php" _icon_name="gear" class="btn btn-link" _type="link" _text="{tr}Admin{/tr}"}
 

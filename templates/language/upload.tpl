@@ -5,7 +5,7 @@
 {/block}
 {block name="navigation"}
 	{if $tiki_p_edit_languages}
-		<div class="t_navbar margin-bottom-md clearfix">
+		<div class="t_navbar mb-3 clearfix">
 			<a class="btn btn-link tips" href="{service controller=language action=manage_custom_translations}" title="{tr}Customized String Translations{/tr}:{tr}Manage custom translations{/tr}">
 				{icon name="file-code-o"} {tr}Custom Translations{/tr}
 			</a>

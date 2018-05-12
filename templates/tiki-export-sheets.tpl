@@ -5,7 +5,7 @@
 	{$description|escape}
 </div>
 
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
 		{button href="tiki-sheets.php" class="btn btn-primary" _text="{tr}List Sheets{/tr}"}
 	{/if}

@@ -1,7 +1,7 @@
 {* $Id$ *}
 <form class="form-horizontal" action="tiki-admin.php?page=community" method="post">
 	{ticket}
-	<div class="t_navbar margin-bottom-md">
+	<div class="t_navbar mb-3">
 		{button href="tiki-admingroups.php" _class="btn-link tips" _type="text" _icon_name="group" _text="{tr}Groups{/tr}" _title=":{tr}Group Administration{/tr}"}
 		{button href="tiki-adminusers.php" _class="btn-link tips" _type="text" _icon_name="user" _text="{tr}Users{/tr}" _title=":{tr}User Administration{/tr}"}
 		{permission_link addclass="btn btn-link" _type="text" mode=text label="{tr}Permissions{/tr}"}

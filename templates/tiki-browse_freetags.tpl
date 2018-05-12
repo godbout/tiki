@@ -20,7 +20,7 @@
 			{button _class="btn-link tips" _onclick="clearTags(); return false;" _text="{tr}Clear{/tr}" _title=":{tr}Clear tags{/tr}"}
 		</div>
 	</div>
-	<div class="form-inline margin-bottom-md">
+	<div class="form-inline mb-3">
 		<input type="radio" name="broaden" class="radio" id="stopb1" value="n"{if $broaden eq 'n'} checked="checked"{/if}>
 		<label for="stopb1">{tr}With all selected tags{/tr}</label>
 		<input type="radio" name="broaden" class="radio" id="stopb2" value="y"{if $broaden eq 'y'} checked="checked"{/if}>
@@ -40,7 +40,7 @@
 				}
 		{/jq}
 		<div class="panel">
-			<div class="panel-body freetaglist margin-bottom-md">
+			<div class="panel-body freetaglist mb-3">
 				{foreach from=$most_popular_tags item=popular_tag}
 					{capture name=tagurl}{if (strstr($popular_tag.tag, ' '))}"{$popular_tag.tag}"{else}{$popular_tag.tag}{/if}{/capture}
 					<a class="freetag_{$popular_tag.size}{if $tag eq $popular_tag.tag|escape} selectedtag{/if}" href="tiki-browse_freetags.php?tag={$smarty.capture.tagurl|escape:'url'}" onclick="javascript:addTag('{$popular_tag.tag|escape:'javascript'}');return false;" ondblclick="location.href=this.href;"{if $popular_tag.color} style="color:{$popular_tag.color}"{/if}>{$popular_tag.tag|escape}</a>
@@ -71,7 +71,7 @@
 		{else}
 			{assign var=thisbroaden value=''}
 		{/if}
-		<div class="btn-group margin-bottom-md">
+		<div class="btn-group mb-3">
 			{button _text="{tr}All{/tr}" _class=$thisclass href="tiki-browse_freetags.php?tag=$tagString$thisbroaden&amp;type="}
 			{foreach item=objectType from=$objects_with_freetags}
 				{foreach item=sect key=key from=$sections_enabled}
@@ -117,7 +117,7 @@
 				{/foreach}
 			{/foreach}
 		</div>
-		<div class="form-inline margin-bottom-md">
+		<div class="form-inline mb-3">
 			<div class="input-group col-sm-6">
 				<input type="text" name="find" value="{$find|escape}" class="form-control form-control-sm" placeholder="{tr}Find{/tr}...">
 				<div class="input-group-btn">

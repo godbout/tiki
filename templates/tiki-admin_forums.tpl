@@ -2,7 +2,7 @@
 {if !$ts.ajax}
 	{title help="Forums" admpage="forums" url='tiki-admin_forums.php'}{tr}Admin Forums{/tr}{/title}
 
-	<div class="t_navbar margin-bottom-md">
+	<div class="t_navbar mb-3">
 		{if $tiki_p_admin_forum eq 'y' && $forumId > 0 or (isset($dup_mode) and $dup_mode eq 'y')}
 			{button class="btn btn-primary" href="?" _icon_name="add" _text="{tr}Create Forum{/tr}"}
 		{/if}

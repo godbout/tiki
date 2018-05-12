@@ -1,4 +1,4 @@
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	<button class='btn btn-primary'>{self_link print='y'}{icon name='print' text="{tr}Print{/tr}"}{/self_link}</button>
 
 	{if $mid ne "tiki-directory_browse.tpl"}

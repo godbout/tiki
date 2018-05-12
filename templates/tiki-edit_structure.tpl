@@ -1,6 +1,6 @@
 {title url="tiki-edit_structure.php?page_ref_id=$page_ref_id"}{tr}Structure{/tr}: {$structure_name}{/title}
 
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{button href="tiki-admin_structures.php" _text="{tr}Structures{/tr}"}
 </div>
 

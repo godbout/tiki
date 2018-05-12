@@ -1,7 +1,7 @@
 {* $Id$ *}
 <form role="form" class="form-horizontal" action="tiki-admin.php?page=blogs" method="post">
 	{ticket}
-	<div class="t_navbar margin-bottom-md clearfix">
+	<div class="t_navbar mb-3 clearfix">
 		<a role="button" class="btn btn-link tips" href="tiki-list_blogs.php" title=":{tr}Blogs listing{/tr}">
 			{icon name="list"} {tr}Blogs{/tr}
 		</a>

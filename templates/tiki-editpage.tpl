@@ -260,7 +260,7 @@
 				{/if}
 				{if !empty($showPropertiesTab)}
 					{tab name="{tr}Properties{/tr}"}
-						<div class="t_navbar margin-bottom-md clearfix">
+						<div class="t_navbar mb-3 clearfix">
 							{if $tiki_p_admin_wiki eq "y"}
 								<a href="tiki-admin.php?page=wiki" class="btn btn-link">
 									{icon name="cog"} {tr}Wiki Preferences{/tr}

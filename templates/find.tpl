@@ -30,7 +30,7 @@
 	*                  {include file='find.tpl' find_show_languages='y' find_show_categories='y' find_show_num_rows='y'}
 *}
 
-<div class="find clearfix margin-bottom-md">
+<div class="find clearfix mb-3">
 	<form method="post" class="form form-horizontal" role="form">
 	{if !isset($map_only) or $map_only ne 'y'}
 		{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager" value="{$filegals_manager|escape}">{/if}

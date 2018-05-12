@@ -13,7 +13,7 @@
 <form role="form" class="form-horizontal" action="tiki-admin.php?page=i18n" method="post">
 	{ticket}
 	<input type="hidden" name="i18nsetup" />
-	<div class="t_navbar margin-bottom-md clearfix">
+	<div class="t_navbar mb-3 clearfix">
 		{if $tiki_p_edit_languages eq 'y'}
 			<a class="btn btn-link tips" href="{service controller=language action=manage_custom_translations language=$prefs["language"]}" title="{tr}Custom Translations{/tr}:{tr}Manage customized local string translations{/tr}">
 				{icon name="file-code-o"} {tr}Custom Translations{/tr}

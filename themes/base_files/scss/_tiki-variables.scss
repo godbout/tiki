@@ -34,13 +34,6 @@ $topbar_link_hover_color: $navbar-dark-hover-color;
 
 $dropdown-title-color: $dropdown-link-color;
 
-// These can be used in div class="row" or others that don't have a bottom margin but need one.
-// For Bootstrap 4, add in HTML: .mb-1, .mb-2 , .mb-3 , .mb-4 or 5 or custom; see https://v4-alpha.getbootstrap.com/utilities/spacing/
-.margin-bottom-xs {	margin-bottom: ($line-height-base/4) + 0rem; } // https://css-tricks.com/snippets/sass/correctly-adding-unit-number/
-.margin-bottom-sm { margin-bottom: ceil($line-height-base / 2) + 0rem; }
-.margin-bottom-md {	margin-bottom: ($line-height-base) + 0rem; }
-.margin-bottom-lg { margin-bottom: ceil($line-height-base * 2) + 0rem; }
-
 // Enable bringing  center column background back up to topbar when side column toggle icons are used
 $top-margin-compensation-for-side-col-toggle: -$line-height-base;
 

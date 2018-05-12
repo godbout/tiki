@@ -7,7 +7,7 @@
 	{$js = 'y'}
 {/if}
 
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	<div class="btn-group pull-right">
 		{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
@@ -101,7 +101,7 @@
 	</div>
 {/if}
 
-<div class="margin-bottom-md">
+<div class="mb-3">
 <span class="sorttitle">{tr}Sort Images by{/tr}</span>
 [ <span class="sortoption"><a class="gallink" href="{$galleryId|sefurl:gallery:with_next}offset={$offset}&amp;sort_mode={if $sort_mode eq 'name_desc'}name_asc{else}name_desc{/if}">{tr}Name{/tr}</a></span>
 | <span class="sortoption"><a class="gallink" href="{$galleryId|sefurl:gallery:with_next}offset={$offset}&amp;sort_mode={if $sort_mode eq 'created_desc'}created_asc{else}created_desc{/if}">{tr}Date{/tr}</a></span>

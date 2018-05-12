@@ -10,7 +10,7 @@
 	{$liend = ''}
 {/if}
 {title admpage="security" url="tiki-admin_ids.php"}{tr}IDS Rules{/tr}{/title}
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{if isset($ruleinfo.id)}
 		{button href="?add=1" class="btn btn-primary" _text="{tr}Add a new Rule{/tr}"}
 	{/if}

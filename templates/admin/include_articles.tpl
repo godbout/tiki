@@ -6,7 +6,7 @@
 {/if}
 <form role="form" class="form-horizontal" method="post" action="tiki-admin.php?page=articles" enctype="multipart/form-data">
 	{ticket}
-	<div class="t_navbar margin-bottom-md clearfix">
+	<div class="t_navbar mb-3 clearfix">
 		<a role="link" class="btn btn-link tips" href="tiki-list_articles.php" title=":{tr}List of articles{/tr}">
 			{icon name="list"} {tr}Articles{/tr}
 		</a>

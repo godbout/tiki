@@ -7,7 +7,7 @@
 		<div class="description form-text">{$tracker_info.description|escape|nl2br}</div>
 	{/if}
 {/if}
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{if $tiki_p_create_tracker_items eq 'y' && $prefs.tracker_legacy_insert neq 'y'}
 		<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
 			{icon name="create"} {tr}Create Item{/tr}

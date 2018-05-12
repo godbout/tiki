@@ -1,5 +1,5 @@
 {title admpage=freetags}{tr}Tag translation{/tr}{if isset($data)}: {$data.pageName}{/if}{/title}
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{if $tiki_p_admin_freetags eq 'y'}
 		{button href="tiki-browse_freetags.php" _class="btn btn-link" _icon_name="list" _text="{tr}Browse Tags{/tr}"}
 	{/if}

@@ -9,7 +9,7 @@
 		{/title}
 	{/if}
 	{if $headerLinks eq "y"}
-		<div class="t_navbar margin-bottom-md">
+		<div class="t_navbar mb-3">
 			{if $tiki_p_edit_article eq 'y' or $tiki_p_admin eq 'y' or $tiki_p_admin_cms eq 'y'}
 				{button href="tiki-edit_article.php" _type="link" class="btn btn-link" _icon_name="create" _text="{tr}New Article{/tr}"}
 			{/if}

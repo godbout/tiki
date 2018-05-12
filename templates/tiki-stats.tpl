@@ -4,7 +4,7 @@
 
 {tabset}
 	{tab name="{tr}Tiki Statistics{/tr}"}
-		<div class="t_navbar margin-bottom-md">
+		<div class="t_navbar mb-3">
 			{button href="#site_stats" _type="link" class="btn btn-link" _icon_name="home" _text="{tr}Site{/tr}"}
 			{if $wiki_stats}
 				{button href="#wiki_stats" _type="link" class="btn btn-link" _icon_name="file-text" _text="{tr}Wiki{/tr}"}

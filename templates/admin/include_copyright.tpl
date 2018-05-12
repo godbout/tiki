@@ -2,7 +2,7 @@
 {remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Allows a copyright to be determined for various objects{/tr}.{/remarksbox}
 <form role="form" class="form-horizontal" action="tiki-admin.php?page=copyright" method="post">
 	{ticket}
-	<div class="t_navbar margin-bottom-md clearfix">
+	<div class="t_navbar mb-3 clearfix">
 		{include file='admin/include_apply_top.tpl'}
 	</div>
 	<fieldset>

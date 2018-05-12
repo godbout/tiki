@@ -1,6 +1,6 @@
 {tikimodule error=$module_params.error title=$tpl_module_title name="minichat" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 	{if $tiki_p_chat eq 'y'}
-	<div id='minichatchans' class='btn-group minichatchans margin-bottom-xs'{if $module_params.nochannelbar && $module_params.nochannelbar != "n"} style="height: 0; visibility: hidden"{/if}></div>
+	<div id='minichatchans' class='btn-group minichatchans mb-2'{if $module_params.nochannelbar && $module_params.nochannelbar != "n"} style="height: 0; visibility: hidden"{/if}></div>
 
 	<div id='minichat' class='minichat well well-sm' style='overflow-x: hidden; overflow-y: auto; height: {$module_rows}em;'></div>
 

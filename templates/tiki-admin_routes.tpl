@@ -10,7 +10,7 @@
 	{$liend = ''}
 {/if}
 {title help="Custom Route" admpage="sefurl" url="tiki-admin_routes.php"}{tr}Custom Route{/tr}{/title}
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{if isset($route.id)}
 		{button href="?add=1" class="btn btn-primary" _text="{tr}Add a new Custom Route{/tr}"}
 	{/if}

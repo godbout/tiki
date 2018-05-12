@@ -1,7 +1,7 @@
 {title help="Payment" admpage="payment"}{tr}Payment{/tr}{/title}
 
 {if isset($invoice)}
-	<div class="margin-bottom-md">
+	<div class="mb-3">
 		{payment id=$invoice}
 	</div>
 {/if}

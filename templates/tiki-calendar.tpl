@@ -14,7 +14,7 @@
 {/if}
 
 <div id="calscreen">
-	<div class="t_navbar margin-bottom-md">
+	<div class="t_navbar mb-3">
 		<div class="btn-group pull-right">
 			{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">

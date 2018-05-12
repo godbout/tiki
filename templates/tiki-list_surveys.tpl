@@ -1,7 +1,7 @@
 {* $Id$ *}
 {title help="Surveys"}{tr}Surveys{/tr}{/title}
 
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{if $tiki_p_view_survey_stats eq 'y'}
 		{button href="tiki-survey_stats.php" class="btn btn-primary" _text="{tr}Survey stats{/tr}"}
 	{/if}

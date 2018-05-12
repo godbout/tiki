@@ -4,7 +4,7 @@
 	{title help="Blogs"}{tr}Create Blog{/tr}{/title}
 {/if}
 
-<div class="t_navbar margin-bottom-md">
+<div class="t_navbar mb-3">
 	{button href="tiki-list_blogs.php" _type="link" class="btn btn-link" _icon_name="list" _text="{tr}List Blogs{/tr}"}
 	{if $blogId > 0}
 		{assign var=thisblogId value=$blogId|sefurl:blog}

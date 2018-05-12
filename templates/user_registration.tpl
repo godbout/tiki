@@ -17,7 +17,7 @@
 						{if $smarty.request.invite}<input type='hidden' name='invite' value='{$smarty.request.invite|escape}'>{/if}
 						{include file="register-form.tpl"}
 						{if $merged_prefs.feature_antibot eq 'y'}{include file='antibot.tpl' form='register'}{/if}
-						<div class="row margin-bottom-md">
+						<div class="row mb-3">
 							<div class="col-sm-8 col-sm-offset-4">
 							  <input type="hidden" name="register" value="1">
 							  <button class="btn btn-secondary registerSubmit submit" name="register" type="submit">{tr}Register{/tr} <!--i class="fa fa-check"></i--></button>

@@ -3,7 +3,7 @@
 	{block name=title}
 		{title help="forums" admpage="forums"}{tr}Forums{/tr}{/title}
 	{/block}
-	<div class="t_navbar margin-bottom-md">
+	<div class="t_navbar mb-3">
 		{if $tiki_p_admin_forum eq 'y'}
 			{button href="tiki-admin_forums.php" _type="link" class="btn btn-link" _icon_name="gear" _text="{tr}Admin{/tr}"}
 		{/if}
@@ -31,7 +31,7 @@
 					</form>
 				{/if}
 				{if $prefs.feature_forums_search eq 'y' and $prefs.feature_search eq 'y'}
-					<div class="row margin-bottom-md">
+					<div class="row mb-3">
 						<div class="col-md-5 col-md-offset-7">
 						<form class="form" method="get" role="form" action="{if $prefs.feature_search_fulltext neq 'y'}tiki-searchindex.php{else}tiki-searchresults.php{/if}">
 							<div class="form-group row">

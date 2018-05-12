@@ -2,7 +2,7 @@
 {title help="Webservices" admpage="webservices"}{tr}Webservices{/tr}{/title}
 
 <form action="tiki-admin_webservices.php" method="post">
-	<div class="t_navbar margin-bottom-md">
+	<div class="t_navbar mb-3">
 		{foreach from=$webservices item=name}
 			{button href="tiki-admin_webservices.php?name=$name" class="btn btn-primary" _text=$name}
 		{/foreach}

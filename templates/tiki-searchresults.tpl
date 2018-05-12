@@ -4,7 +4,7 @@
 	{title admpage="search" help="Search"}{tr}Search{/tr}{/title}
 {/if}
 
-<div class="margin-bottom-md nohighlight">
+<div class="mb-3 nohighlight">
 	{if $searchStyle neq "menu" && $prefs.feature_search_show_object_filter eq 'y'}
 		<div class="t_navbar margin-bottom-sm">
 			{tr}Search in:{/tr}
