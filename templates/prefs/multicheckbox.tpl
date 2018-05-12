@@ -2,7 +2,7 @@
 	<label for="{$p.id|escape}" class="col-form-label col-sm-4">{$p.name|escape}</label>
 	<div class="col-sm-8">
 			{foreach from=$p.options key=value item=label}
-				<label class="col-form-label"><input style="margin-left:5px" type="checkbox" name="{$p.preference|escape}[]" value="{$value|escape}"{if in_array($value, $p.value)} checked="checked"{/if} {$p.params}>
+				<label class="col-form-label"><input class="form-check-inline mr-2" type="checkbox" name="{$p.preference|escape}[]" value="{$value|escape}"{if in_array($value, $p.value)} checked="checked"{/if} {$p.params}>
 						{$label|escape}
 				</label>
 			{/foreach}
