@@ -2578,11 +2578,11 @@ img.pref_dependency {
   font-style: italic; }
 
 .adminanchors {
-  font-size: 2rem; }
+  font-size: 1.6rem; }
   .adminanchors .navbar-nav {
     flex-direction: row; }
   .adminanchors .nav li {
-    display: inline-block; }
+    display: flex; }
 
 a.admbox.btn.btn-primary.disabled.disabled-clickable {
   pointer-events: inherit;

@@ -1,12 +1,12 @@
 // $Id$
 
 .adminanchors {
-	font-size: 2rem;
+	font-size: 1.6rem;
   	.navbar-nav {
 	  flex-direction: row;
 	}
 	.nav li {
-		display: inline-block;
+		display: flex;
 	}
 }
 
