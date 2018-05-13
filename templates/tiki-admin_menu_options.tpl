@@ -27,35 +27,43 @@
 		<h2>{tr}Menu options{/tr} <span class="badge">{$cant_pages}</span></h2>
 
 		<div class="navbar mb-3 clearfix">
-			{button _text='{tr}Save Options{/tr}' _class='save_menu text-muted btn btn-sm disabled pull-left' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
-			<ol class="new-option col-sm-5">
+			{button _text='{tr}Save Options{/tr}' _class='save_menu  btn btn-sm disabled pull-left mb-2' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
+			<ol class="new-option col-sm-12">
 				<li id="node_new" class="clearfix new">
 					<div class="col-sm-12">
 						<div class="pull-left label-group">
 							<div class="input-group input-group-sm" style="max-width: 100%">
-								<span class="input-group-append">{icon name='sort'}</span>
+								<div class="input-group-append">
+									<span class="input-group-text">{icon name='sort'}</span>
+								</div>
 								<input type="text" class="field-label form-control" value="" placeholder="{tr}New option{/tr}" readonly="readonly">
-								<span class="tips input-group-append option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
-									<input type="checkbox" class="samepos">
-									{$prevpos = $option.position}
-								</span>
-								<a href="#" class="tips input-group-append text-muted" title="{tr}New option{/tr}|{tr}Drag this on to the menu area below{/tr}">
-									{icon name='info'}
-								</a>
+								<div class="input-group-append">
+									<span class="tips input-group-text option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
+										<input type="checkbox" class="samepos">
+										{$prevpos = $option.position}
+									</span>
+									<a href="#" class="tips input-group-text " title="{tr}New option{/tr}|{tr}Drag this on to the menu area below{/tr}">
+										{icon name='info'}
+									</a>
+								</div>
 							</div>
 						</div>
 						<div class="pull-left url-group hidden">
 							<div class="input-group input-group-sm">
-								<a href="#" class="input-group-append" onclick='return false;'>
-									{icon name='link'}
-								</a>
+								<div class="input-group-prepend">
+									<a href="#" class="input-group-text" onclick='return false;'>
+										{icon name='link'}
+									</a>
+								</div>
 								<input type="text" class="field-url form-control" value="" placeholder="{tr}URL or ((page name)){/tr}">
-								<a href="#" class="input-group-append text-muted option-edit">
-									{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
-								</a>
-								<a href="#" class="input-group-append text-danger option-remove" disabled="disabled">
-									{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
-								</a>
+								<div class="input-group-append">
+									<a href="#" class="input-group-text  option-edit">
+										{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
+									</a>
+									<a href="#" class="input-group-text text-danger option-remove" disabled="disabled">
+										{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -128,31 +136,39 @@
 									{$tooltip = "|{tr}separator{/tr}"}
 								{/if}
 
-								<div class="pull-left label-group">
+								<div class="pull-left label-group mr-4">
 									<div class="input-group input-group-sm">
-										<span class="input-group-append">{icon name='sort'}</span>
+										<div class="input-group-append">
+											<span class="input-group-text">{icon name='sort'}</span>
+										</div>
 										<input type="text" class="field-label form-control" value="{$option.name|escape}" placeholder="{tr}Label{/tr}">
-										<span class="tips input-group-append option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
-											<input type="checkbox" class="samepos"{if $option.position eq $prevpos} checked="checked"{/if}>
-											{$prevpos = $option.position}
-										</span>
-										<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-append" title='{$tooltip|escape}'>
-											{icon name='info'}
-										</a>
+										<div class="input-group-append">
+											<span class="tips input-group-text option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
+												<input type="checkbox" class="samepos"{if $option.position eq $prevpos} checked="checked"{/if}>
+												{$prevpos = $option.position}
+											</span>
+											<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-text" title='{$tooltip|escape}'>
+												{icon name='info'}
+											</a>
+										</div>
 									</div>
 								</div>
 								<div class="pull-left url-group">
 									<div class="input-group input-group-sm">
-										<a href="{$option.sefurl|escape}" class="input-group-append tips confirm" title="|{tr}Test URL{/tr}">
+										<div class="input-group-append">
+										<a href="{$option.sefurl|escape}" class="input-group-text tips confirm" title="|{tr}Test URL{/tr}">
 											{icon name='link'}
 										</a>
+										</div>
 										<input type="text" class="field-url form-control" value="{$option.canonic|escape}" placeholder="{tr}URL or ((page name)){/tr}">
-										<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-append option-edit confirm" title="|{tr}Details{/tr}">
-											{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
-										</a>
-										<a href="#" class="tips input-group-append text-danger option-remove" title="|{tr}Remove Option{/tr}">
-											{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
-										</a>
+										<div class="input-group-append">
+											<a href="{bootstrap_modal controller=menu action=edit_option menuId=$menuId optionId=$option.optionId}" class="tips input-group-text option-edit confirm" title="|{tr}Details{/tr}">
+												{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
+											</a>
+											<a href="#" class="tips input-group-text text-danger option-remove" title="|{tr}Remove Option{/tr}">
+												{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
+											</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -168,39 +184,37 @@
 
 		</form>
 
-		{button _text='{tr}Save Options{/tr}' _class='save_menu text-muted btn btn-sm disabled' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
+		{button _text='{tr}Save Options{/tr}' _class='save_menu  btn btn-sm disabled' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
 
 	</div>
 {/tab}
 {tab name="{tr}Preview{/tr}"}
 	<h2>{tr}Preview menu{/tr}</h2>
-	<div class="row">
-		<div class="row">
-			<form action="{service controller='menu' action='preview'}" class="form-inline preview">
+
+
+			<form action="{service controller='menu' action='preview'}" class="form-inline preview mb-4">
 				<input type="hidden" name="menuId" value="{$menuId}">
-				<div class="form-group col-sm-3">
-					<label for="preview_type" class="col-form-label">{tr}Type{/tr}:</label>
+				<div class="form-group mr-2">
+					<label for="preview_type" class="col-form-label mr-2">{tr}Type{/tr}:</label>
 					<select id="preview_type" class="form-control" name="preview_type">
 						<option value="vert"{if $preview_type eq 'vert'} selected{/if}>{tr}Vertical{/tr}</option>
 						<option value="horiz"{if $preview_type eq 'horiz'} selected{/if}>{tr}Horizontal{/tr}</option>
 					</select>
 				</div>
-				<div class="form-group col-sm-2">
-					<label for="preview_bootstrap" class="col-form-label">
+				<div class="form-check mr-2">
+					<label for="preview_bootstrap" class="form-check-label mr-2">
 						Bootstrap
 					</label>
-					<br>
-					<input type="checkbox" id="preview_bootstrap" name="preview_bootstrap" class="form-control"{if $preview_bootstrap eq 'y'} checked="checked"{/if}>
+					<input type="checkbox" id="preview_bootstrap" name="preview_bootstrap" class="form-check-input"{if $preview_bootstrap eq 'y'} checked="checked"{/if}>
 				</div>
-				<div class="form-group col-sm-2">
-					<label for="preview_css" class="col-form-label">
+				<div class="form-check mr-4">
+					<label for="preview_css" class="form-check-label mr-2">
 						CSS
 					</label>
-					<br>
-					<input type="checkbox" id="preview_css" name="preview_css" class="form-control"{if $preview_css eq 'y'} checked="checked"{/if}>
+					<input type="checkbox" id="preview_css" name="preview_css" class="form-check-input"{if $preview_css eq 'y'} checked="checked"{/if}>
 				</div>
-				<div class="form-group col-sm-3">
-					<label for="preview_position" class="col-form-label">
+				<div class="form-group mr-2">
+					<label for="preview_position" class="form-input-label mr-2">
 						{tr}Position{/tr}
 					</label>
 					<select id="preview_position" class="form-control">
@@ -209,13 +223,12 @@
 						{/foreach}
 					</select>
 				</div>
-				<div class="form-group col-sm-2">
-					<br>
-					{button _text='{tr}Deploy{/tr}' _class='deploy_menu btn btn-sm' _type='default' _ajax='n'}
+				<div class="">
+					{button _text='{tr}Deploy{/tr}' _class='deploy_menu btn btn-primary' _type='default' _ajax='n'}
 				</div>
 			</form>
-		</div>
-	</div>
+
+
 	<div class="preview-menu">
 		&nbsp;
 	</div>
