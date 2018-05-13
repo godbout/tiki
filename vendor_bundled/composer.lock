@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "642e3b1997a348ba821d7e34d224e8be",
+    "content-hash": "ce6effecde19c062ceb673357fe93e1a",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -319,17 +319,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.9.1",
+            "version": "4.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "e0b461194197838f9ee52f11b2b469dde9e1b8f8"
+                "reference": "993eb4fba6a70545f6c50da1988d39ecd9cf47a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-e0b461194197838f9ee52f11b2b469dde9e1b8f8-zip-5b4fa4.zip",
-                "reference": "e0b461194197838f9ee52f11b2b469dde9e1b8f8",
-                "shasum": "be2185fb62f766a28afc2c764a8fd04d8e04d474"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-993eb4fba6a70545f6c50da1988d39ecd9cf47a3-zip-eee96e.zip",
+                "reference": "993eb4fba6a70545f6c50da1988d39ecd9cf47a3",
+                "shasum": "173b1fe289be30745ae53d422a43d1c396d89613"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -356,7 +356,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2018-03-26T17:19:45+00:00"
+            "time": "2018-04-18T09:04:40+00:00"
         },
         {
             "name": "ckeditor/ckeditor/skins/bootstrapck",
@@ -1128,17 +1128,17 @@
         },
         {
             "name": "itsjavi/bootstrap-colorpicker",
-            "version": "2.5.1",
+            "version": "2.5.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/itsjavi/bootstrap-colorpicker.git",
-                "reference": "db978b4d8c3436cdaed6e3a1a065f9f47bb686b1"
+                "url": "https://github.com/farbelous/bootstrap-colorpicker.git",
+                "reference": "d56d0d3d5bee59904d48bce3c47a0029741e10e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/itsjavi/bootstrap-colorpicker/itsjavi-bootstrap-colorpicker-db978b4d8c3436cdaed6e3a1a065f9f47bb686b1-zip-44a00a.zip",
-                "reference": "db978b4d8c3436cdaed6e3a1a065f9f47bb686b1",
-                "shasum": "607ade6a5049dacac07eef6d4649b6cfe63abf93"
+                "url": "https://composer.tiki.org/dist/itsjavi/bootstrap-colorpicker/itsjavi-bootstrap-colorpicker-d56d0d3d5bee59904d48bce3c47a0029741e10e6-zip-9f8d56.zip",
+                "reference": "d56d0d3d5bee59904d48bce3c47a0029741e10e6",
+                "shasum": "f8f5a8633cf381e0c42f362d302efe4f45ffc82d"
             },
             "require": {
                 "components/jquery": ">=1.10"
@@ -1155,7 +1155,7 @@
                 }
             ],
             "description": "Fancy and customizable colorpicker plugin for Twitter Bootstrap",
-            "time": "2017-02-05T18:59:49+00:00"
+            "time": "2018-03-29T04:47:33+00:00"
         },
         {
             "name": "jasig/phpcas",
@@ -1986,17 +1986,17 @@
         },
         {
             "name": "mottie/tablesorter",
-            "version": "v2.30.1",
+            "version": "v2.30.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mottie/tablesorter.git",
-                "reference": "c74a34b070002776133757faa5b8613988b42470"
+                "reference": "e5592a7101def13a74bbac9a460e5fc60706457f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-c74a34b070002776133757faa5b8613988b42470-zip-93a1af.zip",
-                "reference": "c74a34b070002776133757faa5b8613988b42470",
-                "shasum": "998e28bc6bb1f6568c604dc0313d5a08cc398fc3"
+                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-e5592a7101def13a74bbac9a460e5fc60706457f-zip-4d6320.zip",
+                "reference": "e5592a7101def13a74bbac9a460e5fc60706457f",
+                "shasum": "1127088ffb8c947bb8be3df235da1b4595c73110"
             },
             "require": {
                 "components/jquery": ">=1.2.6"
@@ -2033,7 +2033,7 @@
                 "sorting",
                 "table"
             ],
-            "time": "2018-03-19T12:17:24+00:00"
+            "time": "2018-04-30T21:54:48+00:00"
         },
         {
             "name": "nagarajanchinnasamy/subtotal",
@@ -2833,17 +2833,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.10",
+            "version": "2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "d305b780829ea4252ed9400b3f5937c2c99b51d4"
+                "reference": "7053f06f91b3de78e143d430e55a8f7889efc08b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-d305b780829ea4252ed9400b3f5937c2c99b51d4-zip-6096a7.zip",
-                "reference": "d305b780829ea4252ed9400b3f5937c2c99b51d4",
-                "shasum": "46b07d81dd89b912ab2d285bf8e43df1641b0382"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-7053f06f91b3de78e143d430e55a8f7889efc08b-zip-e6f746.zip",
+                "reference": "7053f06f91b3de78e143d430e55a8f7889efc08b",
+                "shasum": "84355bf7288c96562013139ff566886a161d4ada"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -2921,7 +2921,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2018-02-19T04:29:13+00:00"
+            "time": "2018-04-15T16:55:05+00:00"
         },
         {
             "name": "player/flv",
@@ -2947,17 +2947,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.35.2",
+            "version": "v1.37.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "cea4fd44ecdee62574b7a9dee1e95dffcf05b0ed"
+                "reference": "398eeb3e5f3ef697609235d47d7ad78cada79cac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-cea4fd44ecdee62574b7a9dee1e95dffcf05b0ed-zip-58e202.zip",
-                "reference": "cea4fd44ecdee62574b7a9dee1e95dffcf05b0ed",
-                "shasum": "b2ab020b66f8186af12ffcb6d30e631afa43d445"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-398eeb3e5f3ef697609235d47d7ad78cada79cac-zip-e0f460.zip",
+                "reference": "398eeb3e5f3ef697609235d47d7ad78cada79cac",
+                "shasum": "7940549414df9a3c09e7de26da1686cdddd1e976"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2979,7 +2979,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2018-03-09T16:31:44+00:00"
+            "time": "2018-05-02T19:47:08+00:00"
         },
         {
             "name": "psr/container",
@@ -3277,17 +3277,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.37",
+            "version": "2.1.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "a2f2bc903ccd9e60e6c4a237f92ddc813adef179"
+                "reference": "e5d1221cd876e8cca146886c590a08d721e00b4f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-a2f2bc903ccd9e60e6c4a237f92ddc813adef179-zip-f2dc3c.zip",
-                "reference": "a2f2bc903ccd9e60e6c4a237f92ddc813adef179",
-                "shasum": "d369c0ff5dbcb00317af1949fe44a35fb84e000b"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-e5d1221cd876e8cca146886c590a08d721e00b4f-zip-2bb205.zip",
+                "reference": "e5d1221cd876e8cca146886c590a08d721e00b4f",
+                "shasum": "b2a218970ae3d4f804452300a68c1e5a0006beac"
             },
             "require": {
                 "php": ">=5.2"
@@ -3331,7 +3331,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2018-03-28T05:39:24+00:00"
+            "time": "2018-05-05T04:45:26+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -3346,7 +3346,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.8",
+            "version": "v3.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -3409,17 +3409,17 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.8",
+            "version": "v3.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "d4bb70fa24d540c309d88a9d6e43fb2d339b1fbf"
+                "reference": "5b1fdfa8eb93464bcc36c34da39cedffef822cdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-d4bb70fa24d540c309d88a9d6e43fb2d339b1fbf-zip-219fcc.zip",
-                "reference": "d4bb70fa24d540c309d88a9d6e43fb2d339b1fbf",
-                "shasum": "aaae93ba0b9b758959380a23d1e5523f2a8bc9c4"
+                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-5b1fdfa8eb93464bcc36c34da39cedffef822cdf-zip-2859b6.zip",
+                "reference": "5b1fdfa8eb93464bcc36c34da39cedffef822cdf",
+                "shasum": "1e824e49877a7f5e153008d74bef7b1fe465c0cd"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3439,7 +3439,7 @@
                 "symfony/process": "~3.3|~4.0"
             },
             "suggest": {
-                "psr/log": "For using the console logger",
+                "psr/log-implementation": "For using the console logger",
                 "symfony/event-dispatcher": "",
                 "symfony/lock": "",
                 "symfony/process": ""
@@ -3474,11 +3474,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:22:50+00:00"
+            "time": "2018-04-30T01:22:56+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3531,17 +3531,17 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "5961d02d48828671f5d8a7805e06579d692f6ede"
+                "reference": "e1d57cdb357e5b10f5fdacbb0b86689c0a435e6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-5961d02d48828671f5d8a7805e06579d692f6ede-zip-6a5201.zip",
-                "reference": "5961d02d48828671f5d8a7805e06579d692f6ede",
-                "shasum": "1a5d4e4bb259a4ab2f822970324fc17442decf86"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-e1d57cdb357e5b10f5fdacbb0b86689c0a435e6e-zip-c75cf7.zip",
+                "reference": "e1d57cdb357e5b10f5fdacbb0b86689c0a435e6e",
+                "shasum": "6372b7ad2616a3ea99758fc7a1b2261b105bb80b"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3583,21 +3583,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:24:00+00:00"
+            "time": "2018-04-30T16:59:37+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.8",
+            "version": "v3.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "24a68710c6ddc1e3d159a110cef94cedfcf3c611"
+                "reference": "54ff9d78b56429f9a1ac12e60bfb6d169c0468e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-24a68710c6ddc1e3d159a110cef94cedfcf3c611-zip-93e61e.zip",
-                "reference": "24a68710c6ddc1e3d159a110cef94cedfcf3c611",
-                "shasum": "b9702b9c9009eccee6020a746d06141110bd804a"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-54ff9d78b56429f9a1ac12e60bfb6d169c0468e3-zip-2ea3ba.zip",
+                "reference": "54ff9d78b56429f9a1ac12e60bfb6d169c0468e3",
+                "shasum": "b77c02259e0bec4860d7d413104a88a488ca6334"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3654,11 +3654,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-29T11:25:31+00:00"
+            "time": "2018-04-29T14:04:08+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -3707,17 +3707,17 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.7.0",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b"
+                "reference": "3296adf6a6454a050679cde90f95350ad604b171"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-78be803ce01e55d3491c1397cf1c64beb9c1b63b-zip-93441e.zip",
-                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b",
-                "shasum": "5a5a308321addb37c4f578742843b7b45f61000f"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-3296adf6a6454a050679cde90f95350ad604b171-zip-0fdbaa.zip",
+                "reference": "3296adf6a6454a050679cde90f95350ad604b171",
+                "shasum": "18fde59ae1a9c7c83a2649c1c3c87eae439af9b6"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3728,7 +3728,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7-dev"
+                    "dev-master": "1.8-dev"
                 }
             },
             "autoload": {
@@ -3762,11 +3762,11 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-01-30T19:27:44+00:00"
+            "time": "2018-04-26T10:06:28+00:00"
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.8",
+            "version": "v3.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -3815,17 +3815,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.8",
+            "version": "v3.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0"
+                "reference": "033cfa61ef06ee0847e056e530201842b6e926c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-a42f9da85c7c38d59f5e53f076fe81a091f894d0-zip-3db612.zip",
-                "reference": "a42f9da85c7c38d59f5e53f076fe81a091f894d0",
-                "shasum": "879aa3da328b85d7fee819ed1e3963498f9cb259"
+                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-033cfa61ef06ee0847e056e530201842b6e926c3-zip-68d3c3.zip",
+                "reference": "033cfa61ef06ee0847e056e530201842b6e926c3",
+                "shasum": "13b81607c444a47377466bd4d15f0fdf4cef2416"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8"
@@ -3869,7 +3869,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:14:20+00:00"
+            "time": "2018-04-08T08:21:29+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -3920,17 +3920,17 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "8f7bd419935adfcd53c471a0202083464800619e"
+                "reference": "779ad9f174ea5ab7e755f6df0ec9e5912d67dd16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-8f7bd419935adfcd53c471a0202083464800619e-zip-53bd09.zip",
-                "reference": "8f7bd419935adfcd53c471a0202083464800619e",
-                "shasum": "c0580a46f22094a1e64d17a659e36c5453079971"
+                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-779ad9f174ea5ab7e755f6df0ec9e5912d67dd16-zip-a1e376.zip",
+                "reference": "779ad9f174ea5ab7e755f6df0ec9e5912d67dd16",
+                "shasum": "b1c536ce457ff90f195dd12564d89c4c40dba9b8"
             },
             "replace": {
                 "twitter/bootstrap": "self.version"
@@ -3967,7 +3967,7 @@
                 "sass",
                 "web"
             ],
-            "time": "2018-04-09T16:00:23+00:00"
+            "time": "2018-04-30T16:04:33+00:00"
         },
         {
             "name": "undojs/undojs",
@@ -3993,29 +3993,29 @@
         },
         {
             "name": "zendframework/zend-captcha",
-            "version": "2.7.1",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-captcha.git",
-                "reference": "2d56293a5ae3e45e7c8ee7030aa8b305768d8014"
+                "reference": "37e9b6a4f632a9399eecbf2e5e325ad89083f87b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-captcha/zendframework-zend-captcha-2d56293a5ae3e45e7c8ee7030aa8b305768d8014-zip-0fb27a.zip",
-                "reference": "2d56293a5ae3e45e7c8ee7030aa8b305768d8014",
-                "shasum": "324a68328ac3ce549dc0bebcdaa4afc4d053e071"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-captcha/zendframework-zend-captcha-37e9b6a4f632a9399eecbf2e5e325ad89083f87b-zip-234cb0.zip",
+                "reference": "37e9b6a4f632a9399eecbf2e5e325ad89083f87b",
+                "shasum": "696a152a36522e85e831bcdb09d5d6fb4834392c"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
-                "zendframework/zend-math": "^2.6 || ^3.0",
-                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+                "zendframework/zend-math": "^2.7 || ^3.0",
+                "zendframework/zend-stdlib": "^2.7.7 || ^3.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
                 "zendframework/zend-coding-standard": "~1.0.0",
-                "zendframework/zend-session": "^2.6",
+                "zendframework/zend-session": "^2.8",
                 "zendframework/zend-text": "^2.6",
-                "zendframework/zend-validator": "^2.6",
+                "zendframework/zend-validator": "^2.10.1",
                 "zendframework/zendservice-recaptcha": "^3.0"
             },
             "suggest": {
@@ -4028,8 +4028,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev",
-                    "dev-develop": "2.8-dev"
+                    "dev-master": "2.8.x-dev",
+                    "dev-develop": "2.9.x-dev"
                 }
             },
             "autoload": {
@@ -4041,12 +4041,13 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-captcha",
+            "description": "Generate and validate CAPTCHAs using Figlets, images, ReCaptcha, and more",
             "keywords": [
+                "ZendFramework",
                 "captcha",
-                "zf2"
+                "zf"
             ],
-            "time": "2017-02-23T08:09:44+00:00"
+            "time": "2018-04-24T17:24:10+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -4103,17 +4104,17 @@
         },
         {
             "name": "zendframework/zend-config",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-config.git",
-                "reference": "a12e4a592bf66d9629b84960e268f3752e53abe4"
+                "reference": "6796f5dcba52c84ef2501d7313618989b5ef3023"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-config/zendframework-zend-config-a12e4a592bf66d9629b84960e268f3752e53abe4-zip-8f8550.zip",
-                "reference": "a12e4a592bf66d9629b84960e268f3752e53abe4",
-                "shasum": "0b1d53811425b9e7b9cd52a6c6c4697176c0f102"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-config/zendframework-zend-config-6796f5dcba52c84ef2501d7313618989b5ef3023-zip-c8155a.zip",
+                "reference": "6796f5dcba52c84ef2501d7313618989b5ef3023",
+                "shasum": "e2f91dd76036fd78b9680a9f8066d00a1b05b10f"
             },
             "require": {
                 "ext-json": "*",
@@ -4125,23 +4126,23 @@
                 "container-interop/container-interop": "<1.2.0"
             },
             "require-dev": {
-                "malukenho/docheader": "^0.1.5",
-                "phpunit/phpunit": "^5.7 || ^6.0",
+                "malukenho/docheader": "^0.1.6",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
                 "zendframework/zend-coding-standard": "~1.0.0",
-                "zendframework/zend-filter": "^2.7.1",
-                "zendframework/zend-i18n": "^2.7.3",
-                "zendframework/zend-servicemanager": "^2.7.8 || ^3.2.1"
+                "zendframework/zend-filter": "^2.7.2",
+                "zendframework/zend-i18n": "^2.7.4",
+                "zendframework/zend-servicemanager": "^2.7.8 || ^3.3"
             },
             "suggest": {
-                "zendframework/zend-filter": "^2.7.1; install if you want to use the Filter processor",
-                "zendframework/zend-i18n": "^2.7.3; install if you want to use the Translator processor",
-                "zendframework/zend-servicemanager": "^2.7.8 || ^3.2.1; if you need an extensible plugin manager for use with the Config Factory"
+                "zendframework/zend-filter": "^2.7.2; install if you want to use the Filter processor",
+                "zendframework/zend-i18n": "^2.7.4; install if you want to use the Translator processor",
+                "zendframework/zend-servicemanager": "^2.7.8 || ^3.3; if you need an extensible plugin manager for use with the Config Factory"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev",
-                    "dev-develop": "3.2-dev"
+                    "dev-master": "3.2.x-dev",
+                    "dev-develop": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -4154,37 +4155,37 @@
                 "BSD-3-Clause"
             ],
             "description": "provides a nested object property based user interface for accessing this configuration data within application code",
-            "homepage": "https://github.com/zendframework/zend-config",
             "keywords": [
+                "ZendFramework",
                 "config",
-                "zf2"
+                "zf"
             ],
-            "time": "2017-02-22T14:31:10+00:00"
+            "time": "2018-04-24T19:26:44+00:00"
         },
         {
             "name": "zendframework/zend-crypt",
-            "version": "3.2.1",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-crypt.git",
-                "reference": "514cef5556bac069e36c2cbded40e529b86bb3f2"
+                "reference": "9c2916faa9b2132a0f91cdca8e95b025c352f065"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-crypt/zendframework-zend-crypt-514cef5556bac069e36c2cbded40e529b86bb3f2-zip-e82fd5.zip",
-                "reference": "514cef5556bac069e36c2cbded40e529b86bb3f2",
-                "shasum": "ac5dd7cb2d54728110b7f5206ca286634cab2bb7"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-crypt/zendframework-zend-crypt-9c2916faa9b2132a0f91cdca8e95b025c352f065-zip-b2e2f9.zip",
+                "reference": "9c2916faa9b2132a0f91cdca8e95b025c352f065",
+                "shasum": "26bd9ab92a4c89f62b59525ef96a52c37deb8c96"
             },
             "require": {
-                "container-interop/container-interop": "~1.0",
+                "container-interop/container-interop": "^1.2",
                 "ext-mbstring": "*",
                 "php": "^5.6 || ^7.0",
                 "zendframework/zend-math": "^3.0",
-                "zendframework/zend-stdlib": "^2.7 || ^3.0"
+                "zendframework/zend-stdlib": "^2.7.7 || ^3.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.6.7",
-                "squizlabs/php_codesniffer": "^2.3.1"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+                "zendframework/zend-coding-standard": "~1.0.0"
             },
             "suggest": {
                 "ext-openssl": "Required for most features of Zend\\Crypt"
@@ -4192,8 +4193,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev",
-                    "dev-develop": "3.2-dev"
+                    "dev-master": "3.3.x-dev",
+                    "dev-develop": "3.4.x-dev"
                 }
             },
             "autoload": {
@@ -4205,39 +4206,40 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-crypt",
+            "description": "Strong cryptography tools and password hashing",
             "keywords": [
+                "ZendFramework",
                 "crypt",
-                "zf2"
+                "zf"
             ],
-            "time": "2017-07-17T15:46:00+00:00"
+            "time": "2018-04-24T22:01:58+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
-            "version": "2.5.2",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-escaper.git",
-                "reference": "2dcd14b61a72d8b8e27d579c6344e12c26141d4e"
+                "reference": "31d8aafae982f9568287cb4dce987e6aff8fd074"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-escaper/zendframework-zend-escaper-2dcd14b61a72d8b8e27d579c6344e12c26141d4e-zip-0742ef.zip",
-                "reference": "2dcd14b61a72d8b8e27d579c6344e12c26141d4e",
-                "shasum": "56cb3093e9b16e1bb10a7ce2a0fb64407062fe24"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-escaper/zendframework-zend-escaper-31d8aafae982f9568287cb4dce987e6aff8fd074-zip-c44080.zip",
+                "reference": "31d8aafae982f9568287cb4dce987e6aff8fd074",
+                "shasum": "569c570ba8b9dc515327e6b360f34df6b5105e69"
             },
             "require": {
-                "php": ">=5.5"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+                "zendframework/zend-coding-standard": "~1.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev",
-                    "dev-develop": "2.6-dev"
+                    "dev-master": "2.6.x-dev",
+                    "dev-develop": "2.7.x-dev"
                 }
             },
             "autoload": {
@@ -4249,26 +4251,27 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-escaper",
+            "description": "Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs",
             "keywords": [
+                "ZendFramework",
                 "escaper",
-                "zf2"
+                "zf"
             ],
-            "time": "2016-06-30T19:48:38+00:00"
+            "time": "2018-04-25T15:48:53+00:00"
         },
         {
             "name": "zendframework/zend-eventmanager",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-eventmanager.git",
-                "reference": "9d72db10ceb6e42fb92350c0cb54460da61bd79c"
+                "reference": "a5e2583a211f73604691586b8406ff7296a946dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-eventmanager/zendframework-zend-eventmanager-9d72db10ceb6e42fb92350c0cb54460da61bd79c-zip-cfd4f7.zip",
-                "reference": "9d72db10ceb6e42fb92350c0cb54460da61bd79c",
-                "shasum": "50067ec03f675ff334faae4b35bb208f88b025f8"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-eventmanager/zendframework-zend-eventmanager-a5e2583a211f73604691586b8406ff7296a946dd-zip-f59a56.zip",
+                "reference": "a5e2583a211f73604691586b8406ff7296a946dd",
+                "shasum": "a952cfe4dbdfba6a1858322128c4223e41c9e8e8"
             },
             "require": {
                 "php": "^5.6 || ^7.0"
@@ -4276,7 +4279,7 @@
             "require-dev": {
                 "athletic/athletic": "^0.1",
                 "container-interop/container-interop": "^1.1.0",
-                "phpunit/phpunit": "^6.0.7 || ^5.7.14",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-stdlib": "^2.7.3 || ^3.0"
             },
@@ -4308,7 +4311,7 @@
                 "events",
                 "zf2"
             ],
-            "time": "2017-07-11T19:17:22+00:00"
+            "time": "2018-04-25T15:33:34+00:00"
         },
         {
             "name": "zendframework/zend-feed",
@@ -4436,17 +4439,17 @@
         },
         {
             "name": "zendframework/zend-http",
-            "version": "2.7.0",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
-                "reference": "78aa510c0ea64bfb2aa234f50c4f232c9531acfa"
+                "reference": "f48b276ffa11b48dd1ae3c6bc306d6ed7958ef51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-http/zendframework-zend-http-78aa510c0ea64bfb2aa234f50c4f232c9531acfa-zip-8e02e2.zip",
-                "reference": "78aa510c0ea64bfb2aa234f50c4f232c9531acfa",
-                "shasum": "7361561465fcea7681b2e99fe2c97314251a5278"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-http/zendframework-zend-http-f48b276ffa11b48dd1ae3c6bc306d6ed7958ef51-zip-5524c4.zip",
+                "reference": "f48b276ffa11b48dd1ae3c6bc306d6ed7958ef51",
+                "shasum": "5824fd751b6be9273535daf036ff5934194f6630"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -4456,15 +4459,18 @@
                 "zendframework/zend-validator": "^2.10.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.4.1 || ^5.7.15",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.3",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^3.1 || ^2.6"
+            },
+            "suggest": {
+                "paragonie/certainty": "For automated management of cacert.pem"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev",
-                    "dev-develop": "2.8-dev"
+                    "dev-master": "2.8.x-dev",
+                    "dev-develop": "2.9.x-dev"
                 }
             },
             "autoload": {
@@ -4476,8 +4482,7 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "provides an easy interface for performing Hyper-Text Transfer Protocol (HTTP) requests",
-            "homepage": "https://github.com/zendframework/zend-http",
+            "description": "Provides an easy interface for performing Hyper-Text Transfer Protocol (HTTP) requests",
             "keywords": [
                 "ZendFramework",
                 "http",
@@ -4485,28 +4490,28 @@
                 "zend",
                 "zf"
             ],
-            "time": "2017-10-13T12:06:24+00:00"
+            "time": "2018-04-26T21:04:50+00:00"
         },
         {
             "name": "zendframework/zend-i18n",
-            "version": "2.7.4",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-i18n.git",
-                "reference": "d3431e29cc00c2a1c6704e601d4371dbf24f6a31"
+                "reference": "cfdb658121e0d7eb969a498c2f67f1eacaab9c63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-i18n/zendframework-zend-i18n-d3431e29cc00c2a1c6704e601d4371dbf24f6a31-zip-cca4c4.zip",
-                "reference": "d3431e29cc00c2a1c6704e601d4371dbf24f6a31",
-                "shasum": "1381d672399a771c21596291083eb31fa8ffdc26"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-i18n/zendframework-zend-i18n-cfdb658121e0d7eb969a498c2f67f1eacaab9c63-zip-fcf957.zip",
+                "reference": "cfdb658121e0d7eb969a498c2f67f1eacaab9c63",
+                "shasum": "f3632146f5aaeef77b24a2eccce6ebab704f790a"
             },
             "require": {
-                "php": "^7.0 || ^5.6",
+                "php": "^5.6 || ^7.0",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0.8 || ^5.7.15",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
                 "zendframework/zend-cache": "^2.6.1",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^2.6",
@@ -4530,8 +4535,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev",
-                    "dev-develop": "2.8-dev"
+                    "dev-master": "2.8.x-dev",
+                    "dev-develop": "2.9.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\I18n",
@@ -4547,12 +4552,13 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-i18n",
+            "description": "Provide translations for your application, and filter and validate internationalized values",
             "keywords": [
+                "ZendFramework",
                 "i18n",
-                "zf2"
+                "zf"
             ],
-            "time": "2017-05-17T17:00:12+00:00"
+            "time": "2018-04-25T19:32:43+00:00"
         },
         {
             "name": "zendframework/zend-json",
@@ -4611,30 +4617,30 @@
         },
         {
             "name": "zendframework/zend-loader",
-            "version": "2.5.1",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-loader.git",
-                "reference": "c5fd2f071bde071f4363def7dea8dec7393e135c"
+                "reference": "78f11749ea340f6ca316bca5958eef80b38f9b6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-loader/zendframework-zend-loader-c5fd2f071bde071f4363def7dea8dec7393e135c-zip-6cb83f.zip",
-                "reference": "c5fd2f071bde071f4363def7dea8dec7393e135c",
-                "shasum": "04388cdc66eda80eb357fde6afa54f9afb482510"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-loader/zendframework-zend-loader-78f11749ea340f6ca316bca5958eef80b38f9b6c-zip-4aac51.zip",
+                "reference": "78f11749ea340f6ca316bca5958eef80b38f9b6c",
+                "shasum": "c6e4053e2e4b45fa7bdef5e3ba49916f69487f6b"
             },
             "require": {
-                "php": ">=5.3.23"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
+                "zendframework/zend-coding-standard": "~1.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev",
-                    "dev-develop": "2.6-dev"
+                    "dev-master": "2.6.x-dev",
+                    "dev-develop": "2.7.x-dev"
                 }
             },
             "autoload": {
@@ -4646,12 +4652,13 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-loader",
+            "description": "Autoloading and plugin loading strategies",
             "keywords": [
+                "ZendFramework",
                 "loader",
-                "zf2"
+                "zf"
             ],
-            "time": "2015-06-03T14:05:47+00:00"
+            "time": "2018-04-30T15:20:54+00:00"
         },
         {
             "name": "zendframework/zend-log",
@@ -4788,26 +4795,26 @@
         },
         {
             "name": "zendframework/zend-math",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-math.git",
-                "reference": "fda3b4e6c3bb15c35adc6db38b2eacabaa243e65"
+                "reference": "558806e338ee68575fbe69489c9dcb6d57a1dae0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-math/zendframework-zend-math-fda3b4e6c3bb15c35adc6db38b2eacabaa243e65-zip-f0efe5.zip",
-                "reference": "fda3b4e6c3bb15c35adc6db38b2eacabaa243e65",
-                "shasum": "ee6577ce2255afe9328cf037eff6624b53f69426"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-math/zendframework-zend-math-558806e338ee68575fbe69489c9dcb6d57a1dae0-zip-9c70ae.zip",
+                "reference": "558806e338ee68575fbe69489c9dcb6d57a1dae0",
+                "shasum": "816abe78da40866912049a09c512182e5cf66039"
             },
             "require": {
                 "ext-mbstring": "*",
-                "paragonie/random_compat": "^2.0.2",
-                "php": "^5.5 || ^7.0"
+                "paragonie/random_compat": "^2.0.11",
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+                "zendframework/zend-coding-standard": "~1.0.0"
             },
             "suggest": {
                 "ext-bcmath": "If using the bcmath functionality",
@@ -4816,8 +4823,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev",
-                    "dev-develop": "3.1-dev"
+                    "dev-master": "3.1.x-dev",
+                    "dev-develop": "3.2.x-dev"
                 }
             },
             "autoload": {
@@ -4829,12 +4836,13 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-math",
+            "description": "Create cryptographically secure pseudo-random numbers, and manage big integers",
             "keywords": [
+                "ZendFramework",
                 "math",
-                "zf2"
+                "zf"
             ],
-            "time": "2016-04-28T17:37:42+00:00"
+            "time": "2018-04-26T21:37:02+00:00"
         },
         {
             "name": "zendframework/zend-mime",
@@ -4889,17 +4897,17 @@
         },
         {
             "name": "zendframework/zend-server",
-            "version": "2.7.0",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-server.git",
-                "reference": "7cb617ca3e9b24579f544a244ee79ae61f480914"
+                "reference": "23a2e9a5599c83c05da831cb7c649e8a7809595e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-server/zendframework-zend-server-7cb617ca3e9b24579f544a244ee79ae61f480914-zip-c40014.zip",
-                "reference": "7cb617ca3e9b24579f544a244ee79ae61f480914",
-                "shasum": "e86411ebb1a982fb8c50140c7db68f14282d55f3"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-server/zendframework-zend-server-23a2e9a5599c83c05da831cb7c649e8a7809595e-zip-86b173.zip",
+                "reference": "23a2e9a5599c83c05da831cb7c649e8a7809595e",
+                "shasum": "5743ff0bf0cdf7474454f2598f1c6c6aeff39f42"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -4907,14 +4915,14 @@
                 "zendframework/zend-stdlib": "^2.5 || ^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "squizlabs/php_codesniffer": "^2.3.1"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
+                "zendframework/zend-coding-standard": "~1.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev",
-                    "dev-develop": "2.8-dev"
+                    "dev-master": "2.8.x-dev",
+                    "dev-develop": "2.9.x-dev"
                 }
             },
             "autoload": {
@@ -4926,12 +4934,13 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-server",
+            "description": "Create Reflection-based RPC servers",
             "keywords": [
+                "ZendFramework",
                 "server",
-                "zf2"
+                "zf"
             ],
-            "time": "2016-06-20T22:27:55+00:00"
+            "time": "2018-04-30T22:21:28+00:00"
         },
         {
             "name": "zendframework/zend-servicemanager",
@@ -5122,31 +5131,31 @@
         },
         {
             "name": "zendframework/zend-stdlib",
-            "version": "3.1.1",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-stdlib.git",
-                "reference": "10ef03144902d1955f935fff5346ed52f7d99bcc"
+                "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-stdlib/zendframework-zend-stdlib-10ef03144902d1955f935fff5346ed52f7d99bcc-zip-1f2a17.zip",
-                "reference": "10ef03144902d1955f935fff5346ed52f7d99bcc",
-                "shasum": "dfcfa4ba1ee4f03a1cc89402e59c8a42c2aaeb01"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-stdlib/zendframework-zend-stdlib-cd164b4a18b5d1aeb69be2c26db035b5ed6925ae-zip-09408a.zip",
+                "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae",
+                "shasum": "a79d329db7d2bf86a6f98e2d54f5aea8aa529448"
             },
             "require": {
                 "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "athletic/athletic": "~0.1",
-                "phpunit/phpunit": "~4.0",
+                "phpbench/phpbench": "^0.13",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
                 "zendframework/zend-coding-standard": "~1.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev",
-                    "dev-develop": "3.2-dev"
+                    "dev-master": "3.2.x-dev",
+                    "dev-develop": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -5158,35 +5167,36 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "homepage": "https://github.com/zendframework/zend-stdlib",
+            "description": "SPL extensions, array utilities, error handlers, and more",
             "keywords": [
+                "ZendFramework",
                 "stdlib",
-                "zf2"
+                "zf"
             ],
-            "time": "2018-04-12T16:05:42+00:00"
+            "time": "2018-04-30T13:50:40+00:00"
         },
         {
             "name": "zendframework/zend-tag",
-            "version": "2.6.1",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-tag.git",
-                "reference": "4429ca5016361f12eff920370170391a0f4adbff"
+                "reference": "2212dfae37dd6158a435df551186bd11b8eea011"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-tag/zendframework-zend-tag-4429ca5016361f12eff920370170391a0f4adbff-zip-0c1020.zip",
-                "reference": "4429ca5016361f12eff920370170391a0f4adbff",
-                "shasum": "8c598d33940f7aa218e1fcfc76882f5e2f00900b"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-tag/zendframework-zend-tag-2212dfae37dd6158a435df551186bd11b8eea011-zip-5d0c30.zip",
+                "reference": "2212dfae37dd6158a435df551186bd11b8eea011",
+                "shasum": "2691ebd029f7142615c2d9b612167d479ef0fb5f"
             },
             "require": {
-                "php": "^5.5 || ^7.0",
+                "php": "^5.6 || ^7.0",
                 "zendframework/zend-escaper": "^2.5",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "1.7.*",
-                "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
+                "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3"
             },
             "suggest": {
@@ -5195,8 +5205,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev",
-                    "dev-develop": "2.7-dev"
+                    "dev-master": "2.7.x-dev",
+                    "dev-develop": "2.8.x-dev"
                 }
             },
             "autoload": {
@@ -5208,35 +5218,35 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "a component suite which provides a facility to work with taggable Items",
-            "homepage": "https://github.com/zendframework/zend-tag",
+            "description": "Manipulate and weight taggable items, and create tag clouds",
             "keywords": [
+                "ZendFramework",
                 "tag",
-                "zf2"
+                "zf"
             ],
-            "time": "2016-02-04T14:32:00+00:00"
+            "time": "2018-04-30T15:01:38+00:00"
         },
         {
             "name": "zendframework/zend-uri",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-uri.git",
-                "reference": "fb998b9487ea8c5f4aaac0e536190709bdd5353b"
+                "reference": "3b6463645c6766f78ce537c70cb4fdabee1e725f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-uri/zendframework-zend-uri-fb998b9487ea8c5f4aaac0e536190709bdd5353b-zip-53545f.zip",
-                "reference": "fb998b9487ea8c5f4aaac0e536190709bdd5353b",
-                "shasum": "fe6222520a3f633d866e095da22c754c07800ac8"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-uri/zendframework-zend-uri-3b6463645c6766f78ce537c70cb4fdabee1e725f-zip-83f133.zip",
+                "reference": "3b6463645c6766f78ce537c70cb4fdabee1e725f",
+                "shasum": "a17b3a1621dac04d3e6e00dd8ef081ea21046bec"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
                 "zendframework/zend-escaper": "^2.5",
-                "zendframework/zend-validator": "^2.5"
+                "zendframework/zend-validator": "^2.10"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.2.1 || ^5.7.15",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
                 "zendframework/zend-coding-standard": "~1.0.0"
             },
             "type": "library",
@@ -5255,13 +5265,13 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "a component that aids in manipulating and validating » Uniform Resource Identifiers (URIs)",
-            "homepage": "https://github.com/zendframework/zend-uri",
+            "description": "A component that aids in manipulating and validating » Uniform Resource Identifiers (URIs)",
             "keywords": [
+                "ZendFramework",
                 "uri",
-                "zf2"
+                "zf"
             ],
-            "time": "2018-04-10T17:08:10+00:00"
+            "time": "2018-04-30T13:40:08+00:00"
         },
         {
             "name": "zendframework/zend-validator",
@@ -5534,17 +5544,17 @@
         },
         {
             "name": "zendframework/zendservice-recaptcha",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendService_ReCaptcha.git",
-                "reference": "6c6877c07c8ac73b187911ea5d264a640b234361"
+                "reference": "8caf28e3ab8c18d75534c0741ccd6949347d20e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zendservice-recaptcha/zendframework-zendservice-recaptcha-6c6877c07c8ac73b187911ea5d264a640b234361-zip-9d3c6f.zip",
-                "reference": "6c6877c07c8ac73b187911ea5d264a640b234361",
-                "shasum": "6f1e81afb14a367948a5180b50290f0362cba920"
+                "url": "https://composer.tiki.org/dist/zendframework/zendservice-recaptcha/zendframework-zendservice-recaptcha-8caf28e3ab8c18d75534c0741ccd6949347d20e8-zip-f0ec5e.zip",
+                "reference": "8caf28e3ab8c18d75534c0741ccd6949347d20e8",
+                "shasum": "934d34e4b76db73200a251b2a89b87684e72aded"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -5552,7 +5562,7 @@
                 "zendframework/zend-json": "^2.6.1 || ^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7 || ^6.0",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.5",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^2.0",
                 "zendframework/zend-validator": "^2.8.2"
@@ -5563,8 +5573,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev",
-                    "dev-develop": "3.1-dev"
+                    "dev-master": "3.1.x-dev",
+                    "dev-develop": "3.2.x-dev"
                 }
             },
             "autoload": {
@@ -5577,12 +5587,12 @@
                 "BSD-3-Clause"
             ],
             "description": "OOP wrapper for the ReCaptcha web service",
-            "homepage": "http://packages.zendframework.com/",
             "keywords": [
+                "ZendFramework",
                 "recaptcha",
-                "zf2"
+                "zf"
             ],
-            "time": "2017-02-09T21:38:25+00:00"
+            "time": "2018-05-08T17:34:06+00:00"
         },
         {
             "name": "zendframework/zendservice-twitter",
@@ -6100,23 +6110,23 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.7.5",
+            "version": "1.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpspec/prophecy/phpspec-prophecy-dfd6be44111a7c41c2e884a336cc4f461b3b2401-zip-b2cb0d.zip",
-                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
-                "shasum": "07718a219e1d22188174db0bc4a1fe920178d2f9"
+                "url": "https://composer.tiki.org/dist/phpspec/prophecy/phpspec-prophecy-33a7e3c4fda54e912ff6338c48823bd5c0f0b712-zip-d750f0.zip",
+                "reference": "33a7e3c4fda54e912ff6338c48823bd5c0f0b712",
+                "shasum": "4e933c3bf2144f1d8d3c298a2ca47c64dce0282b"
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
                 "php": "^5.3|^7.0",
                 "phpdocumentor/reflection-docblock": "^2.0|^3.0.2|^4.0",
-                "sebastian/comparator": "^1.1|^2.0",
+                "sebastian/comparator": "^1.1|^2.0|^3.0",
                 "sebastian/recursion-context": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
@@ -6159,7 +6169,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-19T10:16:54+00:00"
+            "time": "2018-04-18T13:57:24+00:00"
         },
         {
             "name": "phpunit/dbunit",
