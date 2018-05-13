@@ -520,7 +520,7 @@
 		{if !$ts.ajax}
 				<div class="form-group row">
 					<div class="col-sm-7">
-						<h2>{tr}Members{/tr} <span class="badge">{$membersCount}</span></h2>
+						<h2>{tr}Members{/tr} <span class="badge badge-secondary">{$membersCount}</span></h2>
 						<form id="checkform2" method="post">
 							<input type="hidden" name="group" value="{$group|escape}">
 							<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv">
@@ -597,7 +597,7 @@
 		{/if}
 			{else}
 				<div class="col-sm-7">
-					<h2>{tr}Members{/tr} <span class="badge">{$membersCount}</span></h2>
+					<h2>{tr}Members{/tr} <span class="badge badge-secondary">{$membersCount}</span></h2>
 					<em>{tr}No members{/tr}</em>
 				</div>
 			{/if}
@@ -624,7 +624,7 @@
 		{/tab}
 		{tab name="{tr _0="<i>{$groupname|escape}</i>"}Users banned from %0{/tr}"}
 			{* ----------------------- tab with users banned from group --------------------------------------- *}
-			<h2>{tr}Banned members{/tr} <span class="badge">{$bannedCount}</span></h2>
+			<h2>{tr}Banned members{/tr} <span class="badge badge-secondary">{$bannedCount}</span></h2>
 			{if $bannedlist|count > 0}
 				<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv"> {* table-responsive class cuts off css drop-down menus *}
 					<form id="checkform3" method="post">

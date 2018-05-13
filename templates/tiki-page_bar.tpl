@@ -125,7 +125,7 @@
 						<a class="btn btn-primary" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
 							{tr}Comments{/tr}
 							{if $count_comments}
-								&nbsp;<span class="count_comments badge">{$count_comments}</span>
+								&nbsp;<span class="count_comments badge badge-secondary">{$count_comments}</span>
 							{/if}
 						</a>
 						{jq}
@@ -155,7 +155,7 @@
 								{tr}Files{/tr}
 							{else}
 								{tr}Files{/tr}
-								&nbsp;<span class="atts_count badge">{$atts|@count}</span>
+								&nbsp;<span class="atts_count badge badge-secondary">{$atts|@count}</span>
 							{/if}
 						{/strip}
 					{/capture}

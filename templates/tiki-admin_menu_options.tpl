@@ -24,7 +24,7 @@
 {tabset name="admin_menu_options"}
 {tab name="{tr}Manage menu{/tr} {$editable_menu_info.name}"}
 	<div>
-		<h2>{tr}Menu options{/tr} <span class="badge">{$cant_pages}</span></h2>
+		<h2>{tr}Menu options{/tr} <span class="badge badge-secondary">{$cant_pages}</span></h2>
 
 		<div class="navbar mb-3 clearfix">
 			{button _text='{tr}Save Options{/tr}' _class='save_menu  btn btn-sm disabled pull-left mb-2' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}

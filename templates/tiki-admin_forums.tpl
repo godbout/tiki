@@ -82,12 +82,12 @@
 								<td>
 									<a class="link" href="{$channels[user].forumId|sefurl:'forum'}" title="{tr}View{/tr}">{$channels[user].name|escape}</a>
 								</td>
-								<td class="integer"><span class="badge">{$channels[user].threads}<span></td>
-								<td class="integer"><span class="badge">{$channels[user].comments}<span></td>
-								<td class="integer"><span class="badge">{$channels[user].users}<span></td>
-								<td class="integer"><span class="badge">{$channels[user].age}<span></td>
-								<td class="integer"><span class="badge">{$channels[user].posts_per_day|string_format:"%.2f"}<span></td>
-								<td class="integer"><span class="badge">{$channels[user].hits}<span></td>
+								<td class="integer"><span class="badge badge-secondary">{$channels[user].threads}<span></td>
+								<td class="integer"><span class="badge badge-secondary">{$channels[user].comments}<span></td>
+								<td class="integer"><span class="badge badge-secondary">{$channels[user].users}<span></td>
+								<td class="integer"><span class="badge badge-secondary">{$channels[user].age}<span></td>
+								<td class="integer"><span class="badge badge-secondary">{$channels[user].posts_per_day|string_format:"%.2f"}<span></td>
+								<td class="integer"><span class="badge badge-secondary">{$channels[user].hits}<span></td>
 								<td class="action">
 									{capture name=admin_forum_actions}
 										{strip}

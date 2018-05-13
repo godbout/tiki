@@ -54,7 +54,7 @@
 	</form>
 	<form action="{service controller=language action=manage_custom_translations}" method="post" role="form" class="form">
 		<h2>
-			{tr}Translations{/tr} <span class="badge">{$custom_translation_item_count}</span>
+			{tr}Translations{/tr} <span class="badge badge-secondary">{$custom_translation_item_count}</span>
 		</h2>
 		{if $custom_file}
 			<span class="form-text">

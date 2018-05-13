@@ -36,10 +36,10 @@
 					<div class="card-body form-inline">
 						<span class="infos pull-right">
 							{if $reported > 0}
-								<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge">{$reported}</span></a>
+								<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}</span></a>
 							{/if}
 							{if $queued > 0}
-								<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge">{$queued}</span></a>
+								<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge badge-secondary">{$queued}</span></a>
 							{/if}
 						</span>
 						{if $topics|@count > 1}

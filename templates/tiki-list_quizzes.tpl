@@ -58,7 +58,7 @@
 						{$channels[user].timeLimited} {if $channels[user].timeLimited eq 'y'}({$channels[user].timeLimit} mins){/if}
 					</td>
 					<td class="integer">
-						<span class="badge">{$channels[user].questions}</span>
+						<span class="badge badge-secondary">{$channels[user].questions}</span>
 					</td>
 					{if ($tiki_p_admin eq 'y' or $tiki_p_admin_quizzes eq 'y' or $tiki_p_view_quiz_stats eq 'y')}
 						<td class="action">

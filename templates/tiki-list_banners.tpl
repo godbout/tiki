@@ -51,10 +51,10 @@
 			<td class="date">{$listpages[changes].created|tiki_short_date}</td>
 			<td class="text">{$listpages[changes].which}</td>
 			<td class="text">{$listpages[changes].useDates}</td>
-			<td class="integer"><span class="badge">{$listpages[changes].maxImpressions}</span></td>
-			<td class="integer"><span class="badge">{$listpages[changes].impressions}</span></td>
-			<td class="integer"><span class="badge">{$listpages[changes].maxClicks}</span></td>
-			<td class="integer"><span class="badge">{$listpages[changes].clicks}</span></td>
+			<td class="integer"><span class="badge badge-secondary">{$listpages[changes].maxImpressions}</span></td>
+			<td class="integer"><span class="badge badge-secondary">{$listpages[changes].impressions}</span></td>
+			<td class="integer"><span class="badge badge-secondary">{$listpages[changes].maxClicks}</span></td>
+			<td class="integer"><span class="badge badge-secondary">{$listpages[changes].clicks}</span></td>
 			<td class="action">
 				{capture name=banner_actions}
 					{strip}

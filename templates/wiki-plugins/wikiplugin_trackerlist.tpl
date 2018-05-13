@@ -70,7 +70,7 @@
 	{if !$tsOn}
 		{if $shownbitems eq 'y'}
 			<div class="nbitems">
-			{tr}Items found:{/tr} <span class='badge'>{$count_item}</span>
+			{tr}Items found:{/tr} <span class='badge badge-secondary'>{$count_item}</span>
 			</div>
 		{/if}
 	{/if}

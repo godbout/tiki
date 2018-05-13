@@ -28,7 +28,7 @@
 			<legend>{tr}Goal, Recognition and Rewards{/tr}</legend>
 			{preference name=goal_enabled}
 			<div class="adminoptionboxchild" id="goal_enabled_childcontainer">
-				{preference name=goal_badge_tracker}
+				{preference name=goal_badge badge-secondary_tracker}
 				{preference name=goal_group_blacklist}
 			</div>
 		</fieldset>

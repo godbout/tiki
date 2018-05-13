@@ -1,7 +1,13 @@
 {* $Id$ *}
-<h2 class="card-title">Occurences of string in database</h2>
-<input type="text" id="string_in_db_search" name="string_in_db_search" size="60" value="{$searchStringAgain|escape}" /> <input type="submit" class="btn btn-primary btn-sm" value="Search" onClick="document.getElementById('redirect').value='0';"/>
-<input type="hidden" id="redirect" name="redirect" value="1">
+<h2 class="card-title">{tr}Occurrences of string in database{/tr}</h2>
+<div class="form-row align-items-center">
+	<div class="col-sm-10 mr-2">
+	<label class="sr-only" for="string_in_db_search">{tr}Occurrences of string in database{/tr}</label>
+	<input type="text" id="string_in_db_search" name="string_in_db_search" class="form-control" value="{$searchStringAgain|escape}" />
+	</div>
+	<input type="submit" class="btn btn-primary btn-sm" value="Search" onClick="document.getElementById('redirect').value='0';"/>
+	<input type="hidden" id="redirect" name="redirect" value="1">
+</div>
 
 <hr/>
 {if isset($errorMsg)}

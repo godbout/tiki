@@ -49,7 +49,7 @@
 						</div>
 					</td>
 					<td class="text">
-						<span class="badge">{$channels[user].questions}</span>
+						<span class="badge badge-secondary">{$channels[user].questions}</span>
 					</td>
 					<td class="action">
 						{capture name=list_survey_actions}

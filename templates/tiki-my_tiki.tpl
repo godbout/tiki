@@ -47,7 +47,7 @@
 				</table>
 			</div>
 				<ul class="nav nav-pills pull-right">
-					<li><a href="#">{tr}Records{/tr} <span class="badge">{$user_pages|@count}</span></a></li>
+					<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_pages|@count}</span></a></li>
 				</ul>
 		</div>
 	{/if}
@@ -79,7 +79,7 @@
 				</table>
 			</div>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge">{$user_galleries|@count}</span></a></li>
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_galleries|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
@@ -111,7 +111,7 @@
 				</table>
 			</div>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge">{$user_articles|@count}</span></a></li>
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_articles|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
@@ -143,8 +143,8 @@
 				</table>
 			</div>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge">{$user_items|@count}</span></a></li>
-				<li><a href="#">{tr}Comments{/tr} <span class="badge">{$nb_item_comments}</span></a></li>
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_items|@count}</span></a></li>
+				<li><a href="#">{tr}Comments{/tr} <span class="badge badge-secondary">{$nb_item_comments}</span></a></li>
 			</ul>
 		</div>
 	{/if}
@@ -178,7 +178,7 @@
 				</table>
 			</div>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge">{$msgs|@count}</span></a></li>
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$msgs|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
@@ -204,7 +204,7 @@
 			</table>
 			</div>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge">{$tasks|@count}</span></a></li>
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$tasks|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
@@ -234,7 +234,7 @@
 				</table>
 			</div>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge">{$user_forum_topics|@count}</span></a></li>
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_forum_topics|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
@@ -264,7 +264,7 @@
 				</table>
 			</div>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge">{$user_forum_replies|@count}</span></a></li>
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_forum_replies|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
@@ -294,7 +294,7 @@
 				</table>
 			</div>
 			<ul class="nav nav-pills pull-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge">{$user_blogs|@count}</span></a></li>
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_blogs|@count}</span></a></li>
 			</ul>
 			<div class="clearfix">
 				<h4>{if $userwatch eq $user}{tr}My blog Posts{/tr}{else}{tr}User Blog Posts{/tr}{/if}</h4>
@@ -320,7 +320,7 @@
 					</table>
 				</div>
 				<ul class="nav nav-pills pull-right">
-					<li><a href="#">{tr}Records{/tr} <span class="badge">{$user_blog_posts|@count}</span></a></li>
+					<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_blog_posts|@count}</span></a></li>
 				</ul>
 			</div>
 		</div>

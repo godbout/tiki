@@ -36,7 +36,7 @@
 		{/remarksbox}
 	{else}
 		<form method="post" class="no-ajax" action="{service controller=search action=rebuild}" onsubmit="$(this).parent().tikiModal('{tr}Rebuilding index...{/tr}')">
-			<div class="form-group row">
+			<div class="form-group row mx-2">
 				<div class="form-check">
 					<label class="form-check-label">
 						<input type="checkbox" class="form-check-input" name="loggit" value="1">
@@ -48,7 +48,7 @@
 			<div class="form-group submit">
 				<input type="submit" class="btn btn-secondary" value="{tr}Rebuild{/tr}">
 				{if $queue_count > 0}
-					<a class="btn btn-primary" href="{service controller=search action=process_queue}">{tr}Process Queue{/tr} <span class="badge">{$queue_count|escape}</span></a>
+					<a class="btn btn-primary" href="{service controller=search action=process_queue}">{tr}Process Queue{/tr} <span class="badge badge-secondary">{$queue_count|escape}</span></a>
 				{/if}
 			</div>
 		</form>

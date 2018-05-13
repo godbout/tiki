@@ -44,7 +44,7 @@
 					</span>
 				</td>
 				<td class="text">{$channels[user].type}</td>
-				<td><span class="badge">{$channels[user].options}</span></td>
+				<td><span class="badge badge-secondary">{$channels[user].options}</span></td>
 				<td class="action">
 					{capture name=menu_actions}
 						{strip}

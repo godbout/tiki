@@ -10,7 +10,7 @@
 			<option value="price:asc">Price low-high</option>
 			<option value="price:desc">Price high-low</option>
 		</select>
-		Category: <img src="img/trans.png" width="16" height="16" class="badge icon" /> {input value="" class="cs_catlabel" readonly="readonly" style="font-weight: bold;"}<a href="#" class="cs_cat_all">All</a>{input _filter="content" _field="tracker_field_category" value="" type="hidden" class="cs_category"}
+		Category: <img src="img/trans.png" width="16" height="16" class="badge badge-secondary icon" /> {input value="" class="cs_catlabel" readonly="readonly" style="font-weight: bold;"}<a href="#" class="cs_cat_all">All</a>{input _filter="content" _field="tracker_field_category" value="" type="hidden" class="cs_category"}
 		<div class="clearfix cs_catdiv">{/literal}{menu id="44" type="vert"}{literal}</div>
 	</div>
 	{JQ(notonready=true)}

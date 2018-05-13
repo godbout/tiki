@@ -58,7 +58,7 @@
 								{icon name='lock' class='tips' title=":{tr}Closed{/tr}"}
 							{/if}
 						</td>
-						<td class="integer"><span class="badge">{$channels[user].questions}</span></td>
+						<td class="integer"><span class="badge badge-secondary">{$channels[user].questions}</span></td>
 						<td class="action">
 							{capture name=survey_actions}
 								{strip}

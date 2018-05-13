@@ -387,11 +387,11 @@
 								<td>{$galleries[changes].user|userlink}</td>
 							{/if}
 							{if $prefs.gal_list_imgs eq 'y'}
-								<td style="text-align:right"><span class="badge">{$galleries[changes].images}</span>
+								<td style="text-align:right"><span class="badge badge-secondary">{$galleries[changes].images}</span>
 								</td>
 							{/if}
 							{if $prefs.gal_list_visits eq 'y'}
-								<td style="text-align:right;"><span class="badge">{$galleries[changes].hits}</span></td>
+								<td style="text-align:right;"><span class="badge badge-secondary">{$galleries[changes].hits}</span></td>
 							{/if}
 							<td nowrap="nowrap">
 								{capture name=gallery_actions}

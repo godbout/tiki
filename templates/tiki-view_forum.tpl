@@ -466,10 +466,10 @@
 			</div>
 			<div class="pull-right">
 				{if $reported > 0}
-					<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge">{$reported}<span></a>
+					<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}<span></a>
 				{/if}
 				{if $queued > 0}
-					<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge">{$queued}</span></a>
+					<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge badge-secondary">{$queued}</span></a>
 				{/if}
 			</div>
 		</div>
@@ -611,10 +611,10 @@
 							{/if}
 						</td>
 						{if $forum_info.topics_list_replies eq 'y'}
-							<td class="integer"><span class="badge">{$comments_coms[ix].replies}</span></td>
+							<td class="integer"><span class="badge badge-secondary">{$comments_coms[ix].replies}</span></td>
 						{/if}
 						{if $forum_info.topics_list_reads eq 'y'}
-							<td class="integer"><span class="badge">{$comments_coms[ix].hits}</span></td>
+							<td class="integer"><span class="badge badge-secondary">{$comments_coms[ix].hits}</span></td>
 						{/if}
 						{if $forum_info.vote_threads eq 'y' and ($tiki_p_ratings_view_results eq 'y' or $tiki_p_admin eq 'y')}
 							<td class="integer">{rating_result_avg type=comment id=$comments_coms[ix].threadId }&nbsp;&nbsp;&nbsp;</td>
@@ -623,7 +623,7 @@
 							{/if}
 						{/if}
 						{if $forum_info.topics_list_pts eq 'y'}
-							<td class="integer"><span class="badge">{$comments_coms[ix].average|string_format:"%.2f"}</span></td>
+							<td class="integer"><span class="badge badge-secondary">{$comments_coms[ix].average|string_format:"%.2f"}</span></td>
 						{/if}
 						{if $forum_info.topics_list_lastpost eq 'y'}
 							<td class="text">

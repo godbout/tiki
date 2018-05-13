@@ -71,8 +71,8 @@
 					{/if}
 				</td>
 				<td class="text">{if $topics[user].active eq 'y'}{icon name="toggle-on"}{else}{icon name="toggle-off"}{/if}</td>
-				<td><span class="badge">{$topics[user].arts}</span></td>
-				{if $prefs.feature_submissions eq 'y'}<td><span class="badge">{$topics[user].subs}</span></td>{/if}
+				<td><span class="badge badge-secondary">{$topics[user].arts}</span></td>
+				{if $prefs.feature_submissions eq 'y'}<td><span class="badge badge-secondary">{$topics[user].subs}</span></td>{/if}
 				<td class="action">
 					{capture name=topic_actions}
 						{strip}

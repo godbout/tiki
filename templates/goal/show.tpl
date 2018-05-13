@@ -36,7 +36,7 @@
 		</div>
 	{/if}
 	{foreach $goal.conditions as $condition}
-		<h4>{$condition.label|escape} <span class="badge">{$condition.metric|escape} / {$condition.count|escape}</span></h4>
+		<h4>{$condition.label|escape} <span class="badge badge-secondary">{$condition.metric|escape} / {$condition.count|escape}</span></h4>
 		<div class="progress">
 			<div class="progress-bar progress-bar-{if $condition.operator eq 'atLeast'}success{else}danger{/if}" role="progressbara" aria-valuenow="{$condition.metric|escape}" aria-valuemax="{$condition.count|escape}" style="width: {$condition.metric/max(1, $condition.count) *100}%;">
 				<span class="sr-only">{$condition.metric|escape} / {$condition.count|escape}</span>

@@ -45,10 +45,10 @@
 							</div>
 						</td>
 						<td class="integer">
-							<span class="badge">{$channels[user].hits}</span>
+							<span class="badge badge-secondary">{$channels[user].hits}</span>
 						</td>
 						<td class="integer">
-							<span class="badge">{$channels[user].questions}</span> / <span class="badge">{$channels[user].suggested}</span>
+							<span class="badge badge-secondary">{$channels[user].questions}</span> / <span class="badge badge-secondary">{$channels[user].suggested}</span>
 						</td>
 						{if $tiki_p_admin_faqs eq 'y'}
 							<td class="action">

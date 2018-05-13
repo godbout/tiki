@@ -1,7 +1,7 @@
 {title help="Forums" admpage="forums"}{$forum_info.name}{/title}
 <h4>
 	{tr}Reported messages{/tr}
-	<span class="badge">{$cant}</span>
+	<span class="badge badge-secondary">{$cant}</span>
 	{icon name="refresh" href="tiki-forums_reported.php?forumId=$forumId" class="btn btn-link tips" title=":{tr}Refresh list{/tr}"}
 </h4>
 

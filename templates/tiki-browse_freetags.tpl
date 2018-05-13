@@ -145,7 +145,7 @@
 </form>
 <div class="freetagresult">
 	{if $tagString}
-		<h4>{tr}Results{/tr} <span class="badge">{$cantobjects}</span></h4>
+		<h4>{tr}Results{/tr} <span class="badge badge-secondary">{$cantobjects}</span></h4>
 	{/if}
 	{if $cantobjects > 0}
 		<table class="table table-hover">

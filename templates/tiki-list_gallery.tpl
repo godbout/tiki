@@ -48,7 +48,7 @@
 						{/if}
 					</td>
 					<td>{$images[changes].created|tiki_short_datetime}&nbsp;</td>
-					<td><span class="badge">{$images[changes].hits}</span>&nbsp;</td>
+					<td><span class="badge badge-secondary">{$images[changes].hits}</span>&nbsp;</td>
 					<td>{$images[changes].user|userlink}&nbsp;</td>
 					<td>{$images[changes].filesize|kbsize}&nbsp;</td>
 				</tr>

@@ -137,7 +137,7 @@
 
 	{if $tiki_p_view_trackers eq 'y' or (($tracker_info.writerCanModify eq 'y' or $tracker_info.userCanSeeOwn eq 'y' or $tracker_info.writerGroupCanModify eq 'y') and $user)}
 		{tab name="{tr}Tracker Items{/tr}"}
-			<h2>{tr}Items{/tr} <span class="badge" style="vertical-align: middle">{$item_count}</span></h2>
+			<h2>{tr}Items{/tr} <span class="badge badge-secondary" style="vertical-align: middle">{$item_count}</span></h2>
 			{* -------------------------------------------------- tab with list --- *}
 
 			{if (($tracker_info.showStatus eq 'y' and $tracker_info.showStatusAdminOnly ne 'y') or $tiki_p_admin_trackers eq 'y') or $show_filters eq 'y'}

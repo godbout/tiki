@@ -18,7 +18,7 @@
 			{if $tiki_p_admin eq 'y' and $langIsWritable}
 				<div class="form-group row">
 					<label>
-						{tr}Translations in the database{/tr}: <span class="badge">{$db_translation_count}</span>
+						{tr}Translations in the database{/tr}: <span class="badge badge-secondary">{$db_translation_count}</span>
 					</label>
 					{if $prefs.lang_control_contribution eq 'y'}
 						<label>
