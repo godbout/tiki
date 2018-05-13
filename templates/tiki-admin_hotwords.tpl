@@ -21,7 +21,7 @@
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7 col-sm-offset-1">
-			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
+			<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
 		</div>
 	</div>
 </form>

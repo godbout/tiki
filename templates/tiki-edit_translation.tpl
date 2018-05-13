@@ -78,7 +78,7 @@
 							{/if}
 						</div>
 						<div class="card-footer text-center">
-							<input type="submit" class="btn btn-secondary btn-sm" value="{tr}Create translation{/tr}">
+							<input type="submit" class="btn btn-primary" value="{tr}Create translation{/tr}">
 						</div>
 					</div>
 				</form>

@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<div class="submit text-center">
-			<input type="submit" class="btn btn-secondary btn-sm" name="duplicate" value="{tr}Duplicate{/tr}">
+			<input type="submit" class="btn btn-primary" name="duplicate" value="{tr}Duplicate{/tr}">
 		</div>
 	</form>
 {/if}

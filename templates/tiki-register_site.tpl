@@ -101,7 +101,7 @@
 					<div class="form-group row">
 						<label class="col-form-label col-sm-3"></label>
 						<div class="col-sm-7">
-							<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
+							<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 						</div>
 					</div>
 				</form>

@@ -662,7 +662,7 @@
 						<option value="unban_user">{tr}Unban{/tr}</option>
 					</select>
 					<span class="input-group-btn">
-						<input type="submit" class="btn btn-secondary btn-sm confirm-submit" form="checkform3" formaction="{bootstrap_modal controller=group} "value="{tr}OK{/tr}">
+						<input type="submit" class="btn btn-primary confirm-submit" form="checkform3" formaction="{bootstrap_modal controller=group} "value="{tr}OK{/tr}">
 					</span>
 				</div>
 					</form><br>

@@ -82,7 +82,7 @@
 			{/if}
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<input type="submit" class="btn btn-secondary btn-sm" name="accounts" value="{tr}Save changes{/tr}">
+					<input type="submit" class="btn btn-primary" name="accounts" value="{tr}Save changes{/tr}">
 				</div>
 			</div>
 		</form>

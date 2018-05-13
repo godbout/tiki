@@ -32,9 +32,11 @@
 	<div class="panel hidden">
 		<div class="card-header">
 			<div class="input-group">
-				<span class="input-group-addon">
-					{icon name=search}
-				</span>
+				<div class="input-group-append">
+					<span class="input-group-text">
+						{icon name=search}
+					</span>
+				</div>
 				<input type="text" placeholder="{$object_selector_multi.placeholder|escape}..." value="" class="filter form-control" autocomplete="off">
 				<div class="input-group-btn">
 					<input type="button" class="btn btn-primary search" value="{tr}Find{/tr}">

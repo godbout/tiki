@@ -86,7 +86,7 @@ close();
 								{preference name=$pref}
 							{/foreach}
 							<div class="text-center">
-								<input type="submit" class="btn btn-secondary btn-sm" value="{tr}Apply{/tr}">
+								<input type="submit" class="btn btn-primary" value="{tr}Apply{/tr}">
 							</div>
 						</form>
 						{/remarksbox}

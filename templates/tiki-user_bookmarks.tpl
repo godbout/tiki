@@ -87,7 +87,7 @@
 					<tr>
 						<td>&nbsp;</td>
 						<td>
-							<input type="submit" class="btn btn-secondary btn-sm" name="addfolder" value="{tr}Add{/tr}"></td>
+							<input type="submit" class="btn btn-primary" name="addfolder" value="{tr}Add{/tr}"></td>
 					</tr>
 				</form>
 			</table>
@@ -112,7 +112,7 @@
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td><input type="submit" class="btn btn-secondary btn-sm" name="addurl" value="{tr}Add{/tr}"></td>
+						<td><input type="submit" class="btn btn-primary" name="addurl" value="{tr}Add{/tr}"></td>
 					</tr>
 				</form>
 			</table>

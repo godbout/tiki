@@ -34,7 +34,7 @@
 			<div class="col-sm-7">
 				<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}">
 				&nbsp;
-				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
+				<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 			</div>
 		</div>
 	</form>

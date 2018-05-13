@@ -14,7 +14,7 @@
 			<br>
 			<div class="form-group col-lg-12 clearfix">
 				<div class="pull-right">
-					<input type="submit" class="btn btn-secondary btn-sm tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply changes{/tr}" value="{tr}Apply{/tr}">
+					<input type="submit" class="btn btn-primary tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply changes{/tr}" value="{tr}Apply{/tr}">
 				</div>
 			</div>
 			<fieldset>
@@ -75,7 +75,7 @@
 			</fieldset>
 			<br>
 			<div class="form-group col-lg-12 text-center">
-				<input type="submit" class="btn btn-secondary btn-sm tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input type="submit" class="btn btn-primary tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</div>
 		</form>
 	{/tab}

@@ -120,7 +120,7 @@
 			</div>
 		{/if}
 		<div class="form-group text-center">
-			<input type="submit" class="btn btn-secondary btn-sm" name="add" value="{tr}Add{/tr}">
+			<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
 		</div>
 	</form>
 	{jq}
@@ -289,7 +289,7 @@
 
 		<div class="form-check">
 			<label class="form-check-label">
-				<input class="form-check-input" type="submit" class="btn btn-secondary btn-sm" name="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input class="form-check-input" type="submit" class="btn btn-primary" name="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</label>
 		</div>
 	</form>

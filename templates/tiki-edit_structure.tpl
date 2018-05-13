@@ -67,7 +67,7 @@
 				<div class="input-group">
 					<input type="text" class="form-control form-control-sm" name="pageAlias" id="pageAlias" value="{$topPageAlias|escape}">
 					<div class="input-group-btn">
-						<input type="submit" class="btn btn-secondary btn-sm" name="create" value="{tr}Update{/tr}">
+						<input type="submit" class="btn btn-primary" name="create" value="{tr}Update{/tr}">
 					</div>
 				</div>
 			</div>
@@ -174,7 +174,7 @@
 					{include file='categorize.tpl'}
 				</div>
 				<div class="card-footer text-center">
-					<input type="submit" class="btn btn-secondary btn-sm" name="recategorize" value="{tr}Update{/tr}">
+					<input type="submit" class="btn btn-primary" name="recategorize" value="{tr}Update{/tr}">
 					<input type="checkbox" class="form-check-input" name="cat_override" >{tr}Remove existing categories from ALL pages before recategorizing{/tr}
 				</div>
 			</div>
@@ -202,7 +202,7 @@
 			<div class="pull-left"><input type="radio" id="begin2" name="begin" value="0" {if $structures|@count eq '1'}disabled="disabled"{/if}></div>
 			<hr>
 			<div class="pull-left input_submit_container">
-				<input type="submit" class="btn btn-secondary btn-sm" name="move_to" value="{tr}Move{/tr}" {if $structures|@count eq '1'} disabled="disabled"{/if}>
+				<input type="submit" class="btn btn-primary" name="move_to" value="{tr}Move{/tr}" {if $structures|@count eq '1'} disabled="disabled"{/if}>
 			</div>
 		</form>
 	</div>
@@ -219,7 +219,7 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7">
-					<input type="submit" class="btn btn-secondary btn-sm" name="create" value="{tr}Update{/tr}">
+					<input type="submit" class="btn btn-primary" name="create" value="{tr}Update{/tr}">
 				</div>
 			</div>
 		</form>

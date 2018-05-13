@@ -67,8 +67,8 @@
 	<div class="form-group row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-			<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}">
-			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Preview{/tr}">
+			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
  </form>

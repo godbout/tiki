@@ -21,7 +21,7 @@
 			{/foreach}
 		</select>
 	</div>
-	<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
+	<input type="submit" class="btn btn-primary" name="assign" value="{tr}Assign{/tr}">
 </form>
 
 <h2>{tr}Assigned sections{/tr}</h2>

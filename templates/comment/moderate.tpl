@@ -19,7 +19,7 @@
 					<input type="hidden" name="do" value="{$do|escape}"/>
 					<input type="hidden" name="threadId" value="{$threadId|escape}"/>
 					<input type="hidden" name="confirm" value="1"/>
-					<input type="submit" class="btn btn-secondary btn-sm" value="{tr}Confirm{/tr}"/>
+					<input type="submit" class="btn btn-primary" value="{tr}Confirm{/tr}"/>
 					{object_link type=$type id=$objectId title="{tr}Cancel{/tr}"}
 				</div>
 			</div>

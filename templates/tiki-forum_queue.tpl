@@ -101,8 +101,8 @@
 				<input type="hidden" name="forumId" value="{$forumId|escape}">
 				<input type="hidden" name="in_reply_to" value="{$msg_info.in_reply_to|escape}">
 				<input type="hidden" name="qId" value="{$smarty.request.qId|escape}">
-				<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
-				<input type="submit" class="btn btn-secondary btn-sm" name="saveapp" value="{tr}Save and Approve{/tr}" onclick="needToConfirm=false">
+				<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
+				<input type="submit" class="btn btn-primary" name="saveapp" value="{tr}Save and Approve{/tr}" onclick="needToConfirm=false">
 				<input type="submit" class="btn btn-warning btn-sm" name="remove" value="{tr}Remove{/tr}" onclick="needToConfirm=false">
 				<input type="submit" class="btn btn-primary btn-sm" name="topicize" value="{tr}Convert to topic{/tr}" onclick="needToConfirm=false">
 			</div>

@@ -105,7 +105,7 @@
 				</div>
 			</div>
 			<div class="card-footer text-center">
-				<input type="submit" class="btn btn-secondary btn-sm" name="add_tran" value="{tr}Add{/tr}">
+				<input type="submit" class="btn btn-primary" name="add_tran" value="{tr}Add{/tr}">
 			</div>
 		</div>
 	{/if}
@@ -167,7 +167,7 @@
 										</label>
 									{/if}
 									<div>
-										<button type="submit" class="btn btn-secondary btn-sm tips" name="edit_tran_{$smarty.foreach.translations.index}" title=":{tr}Save translation in the database{/tr}">
+										<button type="submit" class="btn btn-primary tips" name="edit_tran_{$smarty.foreach.translations.index}" title=":{tr}Save translation in the database{/tr}">
 											{tr}Translate{/tr}
 										</button>
 										{if $action eq 'edit_tran_sw' && isset($item.changed)}
@@ -222,7 +222,7 @@
 			<div class="card-footer text-center">
 				<input type="hidden" name="offset" value="{$offset|escape}">
 				{if !empty($translations)}
-					<input type="submit" class="btn btn-secondary btn-sm" name="translate_all" value="{tr}Translate all{/tr}">
+					<input type="submit" class="btn btn-primary" name="translate_all" value="{tr}Translate all{/tr}">
 					{if $action eq 'edit_rec_sw' && $hasDbTranslations == true && $only_db_untranslated eq 'y'}
 						<input type="submit" class="btn btn-warning btn-sm" name="tran_reset" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all untranslated strings from database?{/tr}')">
 					{/if}

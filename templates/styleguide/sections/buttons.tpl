@@ -30,10 +30,10 @@
 
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			<button type="button" class="btn btn-secondary btn-sm">Primary</button>
-			<button type="button" class="btn btn-secondary">Primary</button>
-			<button type="button" class="btn btn-secondary btn-lg">Primary</button>
-			<button type="button" class="btn btn-secondary disabled">Primary</button>
+			<button type="button" class="btn btn-primary btn-sm">Primary Small</button>
+			<button type="button" class="btn btn-secondary">Secondary</button>
+			<button type="button" class="btn btn-secondary btn-lg">Secondary Large</button>
+			<button type="button" class="btn btn-secondary disabled">Secondary Disabled</button>
 		</div>
 		<div class="col-sm-4 col-md-3">
 			<div class="input">

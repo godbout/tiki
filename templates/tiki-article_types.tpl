@@ -141,7 +141,7 @@
 				</table>
 			</div>
 		{/if}
-		<input type="submit" class="btn btn-secondary btn-sm" name="update_type" value="{tr}Save{/tr}"><br>
+		<input type="submit" class="btn btn-primary" name="update_type" value="{tr}Save{/tr}"><br>
 		<hr>
 		<br>
 	{/section}

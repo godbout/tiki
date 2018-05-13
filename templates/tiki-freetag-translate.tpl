@@ -116,7 +116,7 @@ $('#scblink').click(function(e){
 				<tr>
 					<td colspan="{if in_array('',$languageList)}{($languageList|@count) - 1}{else}{$languageList|@count}{/if}">
 						<div class="text-center">
-							<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
+							<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 						</div>
 					</td>
 				</tr>

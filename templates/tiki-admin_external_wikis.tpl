@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
+		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 	</div>
 </form>
 

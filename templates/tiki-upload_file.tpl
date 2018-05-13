@@ -340,7 +340,7 @@
 			{if !$editFileId && $prefs.file_galleries_use_jquery_upload neq 'y'}
 				<div id="page_bar" class="form-group row">
 					<div class="col-md-8 col-md-offset-4">
-						<input type="submit" class="btn btn-secondary btn-sm"
+						<input type="submit" class="btn btn-primary"
 							onClick="upload_files(); return false"
 							id="btnUpload"
 							name="upload"

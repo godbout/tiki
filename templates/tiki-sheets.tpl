@@ -104,7 +104,7 @@
 					{include file='categorize.tpl'}
 				</div>
 				<div class="form-group text-center">
-					<input type="submit" class="btn btn-secondary btn-sm" value="{tr}Save{/tr}" name="edit">
+					<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}" name="edit">
 				</div>
 			</form>
 			{if $sheetId > 0}

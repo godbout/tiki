@@ -105,7 +105,7 @@
 		<div class="submit text-center">
 			<input type="hidden" name="confirm" value="1">
 			<input type="hidden" name="language" value={$language}>
-			<input type="submit" class="btn btn-secondary btn-sm" name="custom_save" value="{tr}Save{/tr}" />
+			<input type="submit" class="btn btn-primary" name="custom_save" value="{tr}Save{/tr}" />
 		</div>
 		{jq}
 			$('#add_row').click(function() {

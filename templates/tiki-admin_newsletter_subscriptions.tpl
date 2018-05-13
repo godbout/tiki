@@ -261,7 +261,7 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-secondary btn-sm" name="add" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -290,7 +290,7 @@
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-						<input type="submit" class="btn btn-secondary btn-sm" name="addbatch" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-primary" name="addbatch" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>
@@ -317,7 +317,7 @@
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-						<input type="submit" class="btn btn-secondary btn-sm" name="importPage" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-primary" name="importPage" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>
@@ -349,7 +349,7 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-secondary btn-sm" name="addgroup" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-primary" name="addgroup" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -373,7 +373,7 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-secondary btn-sm" name="addincluded" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-primary" name="addincluded" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -406,7 +406,7 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 margin-bottom-sm">
-					<input type="submit" class="btn btn-secondary btn-sm" name="addPage" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-primary" name="addPage" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -420,7 +420,7 @@
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<div class="col-sm-12 margin-bottom-sm">
-					<input type="submit" class="btn btn-secondary btn-sm" name="export" value="{tr}Export{/tr}">
+					<input type="submit" class="btn btn-primary" name="export" value="{tr}Export{/tr}">
 				</div>
 			</div>
 		</form>

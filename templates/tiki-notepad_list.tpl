@@ -125,7 +125,7 @@
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-secondary btn-sm" name="upload" value="{tr}Upload{/tr}">
+			<input type="submit" class="btn btn-primary" name="upload" value="{tr}Upload{/tr}">
 		</div>
 	</div>
 </form>

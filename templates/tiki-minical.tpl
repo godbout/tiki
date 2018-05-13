@@ -238,7 +238,7 @@
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7">
-			<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 			{if $eventId}
 				<input type="submit" class="btn btn-warning btn-sm" name="remove2" value="{tr}Delete{/tr}">
 			{/if}

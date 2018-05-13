@@ -25,7 +25,7 @@
 				<div class="card-footer">
 					{if empty($comment.version)}
 						<div class="form-group comment-post">
-							<input type="submit" class="clearfix comment-editclass btn btn-secondary btn-sm" value="{tr}Save{/tr}"/>
+							<input type="submit" class="clearfix comment-editclass btn btn-primary" value="{tr}Save{/tr}"/>
 							<div class="btn btn-link">
 								<a href="#" onclick="$(this).closest('.comment-container').reload(); $(this).closest('.ui-dialog').remove(); return false;">{tr}Cancel{/tr}</a>
 							</div>

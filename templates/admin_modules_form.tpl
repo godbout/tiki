@@ -122,7 +122,7 @@
 		<div class="form-group row clearfix">
 			<div class="pull-right">
 				<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
-				<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-primary" name="assign" value="{tr}Assign{/tr}" onclick="needToConfirm=false;">
 			</div>
 		</div>
 	{/if}
