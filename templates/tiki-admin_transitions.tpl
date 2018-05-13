@@ -41,10 +41,12 @@
 						{/foreach}
 					{/if}
 				</ul>
-				<div class="form-group row">
-					<label for="transition-group-auto">{tr}Add Group{/tr}</label>
-					<input type="text" id="transition-group-auto">
-					<div class="form-text">
+				<div class="form-row align-items-center mb-3">
+					<label class="col-auto col-form-label" for="transition-group-auto">{tr}Add Group{/tr}</label>
+					<div class="col-auto">
+						<input class="form-control" type="text" id="transition-group-auto">
+					</div>
+					<div class="form-text col-auto">
 						{tr}Press Enter for each group{/tr}
 					</div>
 				</div>

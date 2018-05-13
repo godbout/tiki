@@ -41,7 +41,7 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Options{/tr}</label>
 				<div class="col-sm-7">
-					<a href="javascript://toggle quick options" onclick="pollsToggleQuickOptions()">{tr}Toggle Quick Options{/tr}</a>
+					<a href="javascript://toggle quick options" onclick="pollsToggleQuickOptions()" class="btn btn-primary btn-sm">{tr}Toggle Quick Options{/tr}</a>
 				</div>
 			</div>
 			<div class="form-group row" id="tikiPollsQuickOptions" style="display: none">
@@ -53,9 +53,9 @@
 					</div>
 					{/section}
 					<div class="col-sm-7 col-sm-offset-3 margin-bottom-sm">
-						<input type="text" name="options[]" class="form-control">
+						<input type="text" name="options[]" class="form-control mb-2">
+						<a href="javascript://Add Option"	onclick="pollsAddOption()" class="btn btn-primary btn-sm">{tr}Add Option{/tr}</a>
 					</div>
-					<a href="javascript://Add Option"	onclick="pollsAddOption()">{tr}Add Option{/tr}</a>
 				</div>
 				<div class="col-sm-7 col-sm-offset-3">
 					{remarksbox type="tip" title="{tr}Tip{/tr}"}

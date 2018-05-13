@@ -9,9 +9,11 @@
 *}</div>
 
 <form method="get" action="tiki-syslog.php" class="form-inline mb-3">
-	<div class="form-group row">
-		<label>{tr}Clean logs older than{/tr}&nbsp;
-		<input type="text" name="months" class="form-control"></label> {tr}months{/tr}
+	<div class="form-row align-items-center">
+		<label class="col-auto" for="months">{tr}Clean logs older than{/tr}</label>
+		<div class="col-auto mr-3">
+			<input type="text" name="months" class="form-control"> {tr}months{/tr}
+		</div>
 	</div>
 	<input type="submit" class="btn btn-primary btn-sm" value="{tr}Clean{/tr}" name="clean">
 </form>

@@ -38,11 +38,13 @@
 		<div class="find-text form-group row">
 			<div class="col-xs-12">
 				<div class="input-group">
-					<span class="input-group-append">
-						{* This icon made some sense when this form was on a single line by default. Now that it spans numerous lines, the area indicated by this search icon is no longer clear. This should be removed or the scope should be clarified. 2017-09-01 *}
-						{icon name="search"}
-					</span>
 					<input class="form-control" type="text" name="find" id="find" value="{$find|escape}" placeholder="{if empty($whatlabel)}{tr}Find{/tr}...{else}{tr}{$whatlabel}{/tr}{/if}" title="{$find_in|escape}" data-html="true" data-toggle="focus">
+					<div class="input-group-append">
+						<span class="input-group-text">
+							{* This icon made some sense when this form was on a single line by default. Now that it spans numerous lines, the area indicated by this search icon is no longer clear. This should be removed or the scope should be clarified. 2017-09-01 *}
+							{icon name="search"}
+						</span>
+					</div>
 					{if isset($autocomplete)}
 						{jq}$("#find").tiki("autocomplete", "{{$autocomplete}}");{/jq}
 					{/if}

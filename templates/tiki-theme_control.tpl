@@ -6,25 +6,21 @@
 </div>
 <h2>{tr}Assign themes to categories{/tr}</h2>
 <form action="tiki-theme_control.php" method="post" class="form-inline" role="form">
-	<div class="form-group row">
-		<label for="categoryId">{tr}Category{/tr}</label>
-		<select name="categoryId" class="form-control form-control-sm">
+		<label for="categoryId" class="mr-2">{tr}Category{/tr}</label>
+		<select name="categoryId" class="form-control form-control-sm mr-2">
 			{foreach from=$categories key=categoryId item=category}
 				<option value="{$categoryId|escape}">
 					{$category.name|escape} (Id:{$categoryId})
 				</option>
 			{/foreach}
 		</select>
-	</div>
-	<div class="form-group row">
-		<label for="theme">{tr}Theme{/tr}</label>
-		<select name="theme" class="form-control form-control-sm">
+		<label for="theme" class="mr-2">{tr}Theme{/tr}</label>
+		<select name="theme" class="form-control form-control-sm mr-2">
 			{foreach from=$themes key=theme item=theme_name}
 				<option value="{$theme|escape}">{$theme_name}</option>
 			{/foreach}
 		</select>
-	</div>
-	<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
+	<input type="submit" class="btn btn-primary" name="assign" value="{tr}Assign{/tr}">
 </form>
 <h2>{tr}Assigned categories{/tr}</h2>
 {include file='find.tpl'}

@@ -90,11 +90,9 @@
 		{tab name="{tr}Create{/tr}"}
 			<h2>{tr}Create{/tr}</h2>
 			<form method="post" action="tiki-edit_perspective.php" class="form-inline">
-				<div class="form-group row">
-					<label>{tr}Name:{/tr} </label>
-						<input type="text" name="name" class="form-control">
-				</div>
-				<input type="submit" class="btn btn-primary" name="create" value="{tr}Create{/tr}">
+					<label for="name" class="control-label mr-2">{tr}Name:{/tr} </label>
+					<input type="text" name="name" class="form-control mr-2">
+				<input type="submit" class="btn btn-primary mr-2" name="create" value="{tr}Create{/tr}">
 			</form>
 		{/tab}
 	{/if}
@@ -111,30 +109,32 @@
 					<input type="hidden" name="id" value="{$perspective_info.perspectiveId|escape}">
 				</div>
 				<div class="col-sm-offset-2">
-					<fieldset id="preferences" class="panel dropzone">
+					<fieldset id="preferences" class="card dropzone mb-3">
 						<div class="card-header">{tr}Preference List{/tr}</div>
-						<div class="panel-body">
+						<div class="card-body mb-3">
 							{foreach from=$perspective_info.preferences key=name item=val}
 								{preference name=$name source=$perspective_info.preferences}
 							{/foreach}
 					</fieldset>
 				</div>
-				<div class="text-center">
-					<input type="submit" class="btn btn-secondary btn-sm" name="save" value="{tr}Save{/tr}">
+				<div class="text-center mb-3">
+					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</form>
 			<form method="post" id="searchform" action="tiki-edit_perspective.php" class="form col-sm-offset-2 clearfix" role="form">
 				{remarksbox type="info" title="{tr}Hint{/tr}"}
 					{tr}Search preferences below and drag them into the preference list above.{/tr}
 				{/remarksbox}
-				<div class="panel">
+				<div class="card">
 					<input type="hidden" name="id" value="{$perspective_info.perspectiveId|escape}">
-					<div class="panel-body clearfix">
-						<div class="input-group">
-							<span class="input-group-addon">
-								{icon name="search"}
-							</span>
-							<input id="criteria" type="text" name="criteria" class="form-control" placeholder="{tr}Search preferences{/tr}...">
+					<div class="card-body">
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text">
+									{icon name="search"}
+								</span>
+							</div>
+							<input id="criteria" type="text" name="criteria" class="form-control mr-3" placeholder="{tr}Search preferences{/tr}...">
 							<div class="input-group-btn">
 								<input type="submit" class="btn btn-primary" value="{tr}Search{/tr}">
 							</div>

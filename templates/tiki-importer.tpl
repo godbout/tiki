@@ -21,15 +21,15 @@
 	{/remarksbox}
 
 	<br>
-	<label for="importerClassName">{tr}Select the software to import from:{/tr}</label>
-	<form method="post" name="chooseSoftware" action="tiki-importer.php">
-		<select name="importerClassName" id="importerClassName">
+	<form method="post" name="chooseSoftware" action="tiki-importer.php" class="form-inline">
+		<label for="importerClassName" class="mr-2">{tr}Select the software to import from:{/tr}</label>
+		<select name="importerClassName" id="importerClassName" class="form-control mr-2">
 			<option value="">{tr}Select...{/tr}</option>
 			{foreach from=$availableSoftwares key=softwareClassName item=softwareName}
 				<option value="{$softwareClassName}">{$softwareName}</option>
 			{/foreach}
 		</select>
-		<input type="submit" class="btn btn-primary btn-sm" value="{tr}OK{/tr}">
+		<input type="submit" class="btn btn-primary" value="{tr}OK{/tr}">
 	</form>
 	<br>
 	<a href="tiki-import_xml_zip.php">Import wiki pages in an XML Zip file from another Tiki</a>

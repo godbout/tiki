@@ -7,32 +7,26 @@
 
 <h2>{tr}Assign themes to objects{/tr}</h2>
 <form id='objform' action="tiki-theme_control_objects.php" method="post" class="form-inline" role="form">
-	<div class="form-group row">
-		<label for="type">{tr}Type{/tr}</label>
-		<select name="type" onchange="javascript:document.getElementById('objform').submit();" class="form-control form-control-sm">
+		<label for="type" class="mr-2">{tr}Type{/tr}</label>
+		<select name="type" onchange="javascript:document.getElementById('objform').submit();" class="form-control mr-2 mb-2">
 			{section name=ix loop=$objectypes}
 				<option value="{$objectypes[ix]|escape}" {if $type eq $objectypes[ix]}selected="selected"{/if}>{$objectypes[ix]}</option>
 			{/section}
 		</select>
 		<!--<input type="submit" class="btn btn-primary btn-sm" name="settype" value="{tr}Set{/tr}">-->
-	</div>
-	<div class="form-group row">
-		<label for="objdata">{tr}Object{/tr}</label>
-		<select name="objdata" class="form-control form-control-sm">
+		<label for="objdata" class="mr-2 mb-2">{tr}Object{/tr}</label>
+		<select name="objdata" class="form-control mr-2 mb-2">
 			{section name=ix loop=$objects}
 				<option value="{$objects[ix].objId|escape}|{$objects[ix].objName}" {if $a_object eq $objects[ix].objId|cat:'|'|cat:$objects[ix].objName}selected="selected"{/if}>{$objects[ix].objName}</option>
 			{/section}
 		</select>
-	</div>
-	<div class="form-group row">
-		<label for="theme">{tr}Theme{/tr}</label>
-		<select name="theme" class="form-control form-control-sm">
+		<label for="theme" class="mr-2 mb-2">{tr}Theme{/tr}</label>
+		<select name="theme" class="form-control form-control mr-2 mb-2">
 			{foreach from=$themes key=theme item=theme_name}
 				<option value="{$theme|escape}">{$theme_name}</option>
 			{/foreach}
 		</select>
-	</div>
-	<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
+	<input type="submit" class="btn btn-primary mb-2" name="assign" value="{tr}Assign{/tr}">
 </form>
 
 <h2>{tr}Assigned objects{/tr}</h2>

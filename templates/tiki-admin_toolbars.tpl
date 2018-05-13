@@ -86,11 +86,11 @@
 			<label for="row-{$smarty.foreach.line.iteration|escape}">
 				{tr}Row{/tr}&nbsp;{$smarty.foreach.line.iteration}
 			</label>
-			<ul id="row-{$smarty.foreach.line.iteration|escape}" class="row card">
+			<ul id="row-{$smarty.foreach.line.iteration|escape}" class="row card d-flex flex-row">
 			{foreach from=$line item=bit name=bit}
 				{foreach from=$bit item=tool name=tool}
 					{if !empty($qtelement[$tool].class)}
-						<li class="{$qtelement[$tool].class}" {if $smarty.foreach.bit.index eq 1}style="float:right;"{/if}{if not $qtelement[$tool].visible} style="display:none"{/if}>
+						<li class="{$qtelement[$tool].class} d-flex" {if $smarty.foreach.bit.index eq 1}style="float:right;"{/if}{if not $qtelement[$tool].visible} style="display:none"{/if}>
 							{$qtelement[$tool].html}
 						</li>
 					{/if}
