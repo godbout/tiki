@@ -98,7 +98,7 @@
 					<label class="col-form-label col-md-3" for="level">{tr}Level:{/tr}</label>
 
 					<div class="col-md-9">
-						<select name="level" id="level">
+						<select name="level" id="level" class="form-control">
 							<option value="0"{if $level eq 0} selected="selected"{/if}>{tr}All{/tr}</option>
 							{foreach key=levn item=lev from=$prefs.userlevels}
 								<option value="{$levn}"{if $info.userlevel eq $levn} selected="selected"{/if}>{$lev}</option>

@@ -16,16 +16,16 @@
 		{tr}To add new options to the menu set the optionId field to 0. To remove an option set the remove field to 'y'.{/tr}
 		{tr}Duplicate options will be ignored.{/tr}
 	{/remarksbox}
-	<form action="{service controller=menu action=import_menu_options menuId=$menuId}" method="post" enctype="multipart/form-data" role="form" class="no-ajax form">
-		<div class="form-group row">
-			<label for="csvfile" class="col-form-label">
+	<form action="{service controller=menu action=import_menu_options menuId=$menuId}" method="post" enctype="multipart/form-data" role="form" class="no-ajax form-inline">
+		<div class="form-group">
+			<label for="csvfile" class="mr-2">
 				{tr}File{/tr} 
 			</label>
-			<input name="csvfile" type="file" required="required">
-		</div>
-		<div class="submit">
-			<input type="hidden" name="confirm" value="1">
-			<input type="submit" class="btn btn-secondary" name="import" value="{tr}Import{/tr}">
+			<input name="csvfile" type="file" required="required" class="form-control">
+			<div class="submit">
+				<input type="hidden" name="confirm" value="1">
+				<input type="submit" class="btn btn-primary" name="import" value="{tr}Import{/tr}">
+			</div>
 		</div>
 	</form>
 {/block}

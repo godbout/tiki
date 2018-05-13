@@ -18,19 +18,19 @@
 {block name="content"}
 	<form action="{service controller=menu action=edit}" method="post" role="form" class="form">
 		{ticket}
-		<div class="form-group row">
+		<div class="form-group row mx-2">
 			<label for="menus_name" class="col-form-label">
 				{tr}Name{/tr}
 			</label>
 			<input type="text" name="name" id="menus_name" value="{$info.name|escape}" class="form-control" required="required">
 		</div>
-		<div class="form-group row">
+		<div class="form-group row mx-2">
 			<label for="menus_desc" class="col-form-label">
 				{tr}Description{/tr}
 			</label>
 			<textarea name="description" id="menus_desc" class="form-control">{$info.description|escape}</textarea>
 		</div>
-		<div class="form-group row">
+		<div class="form-group row mx-2">
 			<label for="menus_type" class="col-form-label">
 				{tr}Type{/tr}
 			</label>
@@ -40,7 +40,7 @@
 				<option value="f" {if $info.type eq 'f'}selected="selected"{/if}>{tr}fixed{/tr} (f)</option>
 			</select>
 		</div>
-		<div class="form-group row">
+		<div class="form-group row mx-2">
 			<label for="menus_parse">
 				<input type="checkbox" name="parse" id="menus_parse"{if $info.parse eq 'y'} checked="checked"{/if} value="1">
 				{tr}Wiki Parse{/tr}
@@ -48,7 +48,7 @@
 			<div class="form-text">{tr}Labels of all options will be wiki parsed.{/tr}</div>
 		</div>
 		{if $prefs.feature_menusfolderstyle eq 'y'}
-			<div class="form-group row">
+			<div class="form-group row mx-2">
 				<label for="icon" class="col-form-label">
 					{tr}Folder Icon{/tr}
 				</label>
@@ -57,7 +57,7 @@
 			</div>
 		{/if}
 		{if $prefs.menus_items_icons eq 'y'}
-			<div class="form-group row">
+			<div class="form-group row mx-2">
 				<label for="use_items_icons">
 					<input type="checkbox" id="use_items_icons" name="use_items_icons" {if $info.use_items_icons eq 'y'} checked="checked"{/if} value="1">
 					{tr}Configure icons for menu entries{/tr}
