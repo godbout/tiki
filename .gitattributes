@@ -6650,8 +6650,8 @@ themes/amelia/icons/index.php -text
 themes/amelia/images/amelia.png -text
 themes/amelia/images/index.php -text
 themes/amelia/index.php -text
-themes/amelia/scss/_bootstrap-variables.scss -text
 themes/amelia/scss/_bootswatch.scss -text
+themes/amelia/scss/_variables.scss -text
 themes/amelia/scss/amelia.scss -text
 themes/amelia/scss/index.php -text
 themes/amelia/scss/newsletter.scss -text
@@ -6758,8 +6758,8 @@ themes/business/images/market.jpg -text
 themes/business/images/nav.gif -text
 themes/business/images/nav_h.gif -text
 themes/business/images/title_bg.png -text
-themes/business/scss/_bootstrap-variables.scss -text
 themes/business/scss/_tiki-selectors.scss -text
+themes/business/scss/_variables.scss -text
 themes/business/scss/bootstrap-variables.scss-old.txt -text
 themes/business/scss/business.scss -text
 themes/business/scss/index.php -text
@@ -6802,8 +6802,8 @@ themes/cupid/icons/index.php -text
 themes/cupid/images/cupid.png -text
 themes/cupid/images/index.php -text
 themes/cupid/index.php -text
-themes/cupid/scss/_bootstrap-variables.scss -text
 themes/cupid/scss/_tiki-selectors.scss -text
+themes/cupid/scss/_variables.scss -text
 themes/cupid/scss/cupid.scss -text
 themes/cupid/scss/index.php -text
 themes/cupid/scss/newsletter.scss -text
@@ -6849,8 +6849,8 @@ themes/darkroom/images/button.png -text
 themes/darkroom/images/darkroom.png -text
 themes/darkroom/images/index.php -text
 themes/darkroom/index.php -text
-themes/darkroom/scss/_bootstrap-variables.scss -text
 themes/darkroom/scss/_tiki-selectors.scss -text
+themes/darkroom/scss/_variables.scss -text
 themes/darkroom/scss/darkroom.scss -text
 themes/darkroom/scss/index.php -text
 themes/darkroom/scss/newsletter.scss -text
@@ -6876,8 +6876,8 @@ themes/darkshine/images/red.png -text svneol=unset#image/png
 themes/darkshine/images/stripes.png -text svneol=unset#image/png
 themes/darkshine/images/stripes_small.gif -text
 themes/darkshine/images/title_background.jpg -text svneol=unset#image/jpeg
-themes/darkshine/scss/_bootstrap-variables.scss -text
 themes/darkshine/scss/_tiki-selectors.scss -text
+themes/darkshine/scss/_variables.scss -text
 themes/darkshine/scss/darkshine.scss -text
 themes/darkshine/scss/index.php -text
 themes/darkshine/scss/newsletter.scss -text
@@ -6906,8 +6906,8 @@ themes/didiem/images/index.php -text
 themes/didiem/images/magnify.png -text
 themes/didiem/images/topbar.jpg -text
 themes/didiem/index.php -text
-themes/didiem/scss/_bootstrap-variables.scss -text
 themes/didiem/scss/_tiki-selectors.scss -text
+themes/didiem/scss/_variables.scss -text
 themes/didiem/scss/didiem.scss -text
 themes/didiem/scss/index.php -text
 themes/didiem/scss/newsletter.scss -text
@@ -6922,8 +6922,8 @@ themes/feb12/images/header.jpg -text
 themes/feb12/images/index.php -text
 themes/feb12/images/page.jpg -text
 themes/feb12/index.php -text
-themes/feb12/scss/_bootstrap-variables.scss -text
 themes/feb12/scss/_tiki-selectors.scss -text
+themes/feb12/scss/_variables.scss -text
 themes/feb12/scss/feb12.scss -text
 themes/feb12/scss/index.php -text
 themes/feb12/scss/newsletter.scss -text
@@ -7029,10 +7029,10 @@ themes/fivealive-lite/options/watermelon/scss/_bootstrap-variables.scss.txt -tex
 themes/fivealive-lite/options/watermelon/scss/_tiki-selector-variables.scss.txt -text
 themes/fivealive-lite/options/watermelon/scss/watermelon.scss.txt -text
 themes/fivealive-lite/scss/_bootstrap-scss-for-options.scss.txt -text
-themes/fivealive-lite/scss/_bootstrap-variables.scss -text
 themes/fivealive-lite/scss/_tiki-selector-variables.scss -text
 themes/fivealive-lite/scss/_tiki-selectors-for-options.scss.txt -text
 themes/fivealive-lite/scss/_tiki-selectors.scss -text
+themes/fivealive-lite/scss/_variables.scss -text
 themes/fivealive-lite/scss/fivealive-lite.scss -text
 themes/fivealive-lite/scss/index.php -text
 themes/fivealive-lite/scss/newsletter.scss -text
@@ -7362,9 +7362,9 @@ themes/fivealive/options/watermelon/scss/_tiki-selector-variables.scss -text
 themes/fivealive/options/watermelon/scss/index.php -text
 themes/fivealive/options/watermelon/scss/watermelon.scss -text
 themes/fivealive/scss/_bootstrap-scss-for-options.scss -text
-themes/fivealive/scss/_bootstrap-variables.scss -text
 themes/fivealive/scss/_tiki-selectors-for-options.scss -text
 themes/fivealive/scss/_tiki-selectors.scss -text
+themes/fivealive/scss/_variables.scss -text
 themes/fivealive/scss/fivealive.scss -text
 themes/fivealive/scss/index.php -text
 themes/fivealive/scss/newsletter.scss -text
@@ -7414,8 +7414,8 @@ themes/fivealiveHS/options/watermelon/css/index.php -text
 themes/fivealiveHS/options/watermelon/css/watermelon.css -text
 themes/fivealiveHS/options/watermelon/images/index.php -text
 themes/fivealiveHS/options/watermelon/index.php -text
-themes/fivealiveHS/scss/_bootstrap-variables.scss -text
 themes/fivealiveHS/scss/_tiki-selectors.scss -text
+themes/fivealiveHS/scss/_variables.scss -text
 themes/fivealiveHS/scss/fivealiveHS.scss -text
 themes/fivealiveHS/scss/index.php -text
 themes/fivealiveHS/scss/newsletter.scss -text
@@ -7458,8 +7458,8 @@ themes/greenvalley/images/phonebook_rtl.jpg -text
 themes/greenvalley/images/right.png -text
 themes/greenvalley/images/searchform.png -text
 themes/greenvalley/images/submenu_arrow.png -text
-themes/greenvalley/scss/_bootstrap-variables.scss -text
 themes/greenvalley/scss/_tiki-selectors.scss -text
+themes/greenvalley/scss/_variables.scss -text
 themes/greenvalley/scss/greenvalley.scss -text
 themes/greenvalley/scss/index.php -text
 themes/greenvalley/scss/newsletter.scss -text
@@ -7569,9 +7569,9 @@ themes/jqui/options/trontastic/scss/trontastic.scss -text
 themes/jqui/options/trontastic/trontastic.png -text
 themes/jqui/options/trontastic/ui-bg_diagonals-small_50_262626_40x40.png -text
 themes/jqui/options/trontastic/ui-bg_gloss-wave_55_000000_500x100.png -text
-themes/jqui/scss/_bootstrap-variables.scss -text
 themes/jqui/scss/_tiki-selectors-for-options.scss -text
 themes/jqui/scss/_tiki-selectors.scss -text
+themes/jqui/scss/_variables.scss -text
 themes/jqui/scss/index.php -text
 themes/jqui/scss/jqui.scss -text
 themes/jqui/scss/newsletter.scss -text
@@ -7583,8 +7583,8 @@ themes/lighty/css/lighty.css -text
 themes/lighty/images/index.php -text
 themes/lighty/images/lighty.png -text
 themes/lighty/images/map.jpg -text
-themes/lighty/scss/_bootstrap-variables.scss -text
 themes/lighty/scss/_tiki-selectors.scss -text
+themes/lighty/scss/_variables.scss -text
 themes/lighty/scss/index.php -text
 themes/lighty/scss/lighty.scss -text
 themes/lighty/scss/newsletter.scss -text
@@ -7662,8 +7662,8 @@ themes/ohia/images/ohia.png -text
 themes/ohia/index.php -text
 themes/ohia/need-fix-global-design-and-layout-properties.less -text
 themes/ohia/need-fix-or-merge-tiki.css -text
-themes/ohia/scss/_bootstrap-variables.scss -text
 themes/ohia/scss/_tiki-selectors.scss -text
+themes/ohia/scss/_variables.scss -text
 themes/ohia/scss/index.php -text
 themes/ohia/scss/newsletter.scss -text
 themes/ohia/scss/ohia.scss -text
@@ -7707,9 +7707,9 @@ themes/shamrock/icons/index.php -text
 themes/shamrock/images/index.php -text
 themes/shamrock/images/shamrock.png -text
 themes/shamrock/index.php -text
-themes/shamrock/scss/_bootstrap-variables.scss -text
 themes/shamrock/scss/_shamrockcss.scss -text
 themes/shamrock/scss/_tiki-selectors.scss -text
+themes/shamrock/scss/_variables.scss -text
 themes/shamrock/scss/index.php -text
 themes/shamrock/scss/newsletter.scss -text
 themes/shamrock/scss/shamrock.scss -text
@@ -7782,8 +7782,8 @@ themes/snow/options/nineties/css/tiki-selectors.css -text
 themes/snow/options/nineties/images/nineties.png -text
 themes/snow/options/nineties/scss/_tiki-selectors.scss -text
 themes/snow/options/nineties/scss/nineties.scss -text
-themes/snow/scss/_bootstrap-variables.scss -text
 themes/snow/scss/_tiki-selectors.scss -text
+themes/snow/scss/_variables.scss -text
 themes/snow/scss/index.php -text
 themes/snow/scss/newsletter.scss -text
 themes/snow/scss/snow.scss -text
@@ -7884,8 +7884,8 @@ themes/strasa/options/mono/login.jpg -text
 themes/strasa/options/mono/loginlong.jpg -text svneol=unset#image/jpeg
 themes/strasa/options/mono/mono.png -text
 themes/strasa/options/mono/register.jpg -text
-themes/strasa/scss/_bootstrap-variables.scss -text
 themes/strasa/scss/_tiki-selectors.scss -text
+themes/strasa/scss/_variables.scss -text
 themes/strasa/scss/index.php -text
 themes/strasa/scss/newsletter.scss -text
 themes/strasa/scss/strasa.scss -text
@@ -7916,8 +7916,8 @@ themes/thenews/images/arrows-005faa.png -text
 themes/thenews/images/index.php -text
 themes/thenews/images/thenews.png -text
 themes/thenews/index.php -text
-themes/thenews/scss/_bootstrap-variables.scss -text
 themes/thenews/scss/_tiki-selectors.scss -text
+themes/thenews/scss/_variables.scss -text
 themes/thenews/scss/index.php -text
 themes/thenews/scss/newsletter.scss -text
 themes/thenews/scss/thenews.scss -text
@@ -7936,8 +7936,8 @@ themes/tikinewt/index.php -text
 themes/tikinewt/options/index.php -text
 themes/tikinewt/options/shadows/css/shadows.css -text
 themes/tikinewt/options/shadows/images/index.php -text
-themes/tikinewt/scss/_bootstrap-variables.scss -text
 themes/tikinewt/scss/_tiki-selectors.scss -text
+themes/tikinewt/scss/_variables.scss -text
 themes/tikinewt/scss/index.php -text
 themes/tikinewt/scss/newsletter.scss -text
 themes/tikinewt/scss/tikinewt.scss -text
@@ -7963,8 +7963,8 @@ themes/utopias/fonts/index.php -text
 themes/utopias/icons/index.php -text
 themes/utopias/images/index.php -text
 themes/utopias/images/utopias.png -text
-themes/utopias/scss/_bootstrap-variables.scss -text
 themes/utopias/scss/_tiki-selectors.scss -text
+themes/utopias/scss/_variables.scss -text
 themes/utopias/scss/index.php -text
 themes/utopias/scss/newsletter.scss -text
 themes/utopias/scss/utopias.scss -text

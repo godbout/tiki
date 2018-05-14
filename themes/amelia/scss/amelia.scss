@@ -7,7 +7,7 @@
  * Orphaned theme Adapted for Tiki Wiki CMS Groupware
 */
 @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
-@import "_bootstrap-variables.scss"; // Needs to follow _functions.scss because of containing "lighten".
+@import "variables"; // Needs to follow _functions.scss because of containing "lighten".
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two are needed to prevent...
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // ...compiling errors.
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.

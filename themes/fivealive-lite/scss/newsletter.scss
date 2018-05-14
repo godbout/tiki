@@ -2,7 +2,7 @@
 /* FiveAlive-lite theme newsletter stylesheet */
 @import url("//fonts.googleapis.com/css?family=Lato");
 @import "../../base_files/scss/newsletter.scss";
-@import "_bootstrap-variables.scss";
+@import "variables";
 @import "_tiki-selector-variables.scss";
 $font-family-sans-serif: Lato, sans-serif;
 $font-family-base: $font-family-sans-serif;

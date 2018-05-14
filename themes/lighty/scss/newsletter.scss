@@ -8,6 +8,6 @@
 //.web-font($web-font-path);
 
 @import "../../base_files/scss/newsletter.scss";
-@import "_bootstrap-variables.scss";
+@import "variables";
 
 body { font-family: "News Cycle", "Arial Narrow Bold", sans-serif; }
