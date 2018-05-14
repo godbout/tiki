@@ -190,11 +190,25 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 				$display = 'list';
 			}
 
+			$relations = $this->getConfiguration('relations');
+			foreach ($relations as $key => $identifier) {
+				list($type, $object) = explode(':', $identifier, 2);
+				if ($type != 'trackeritem') {
+					continue;
+				}
+				$item = Tracker_Item::fromId($object);
+				if ($item && !$item->canView()) {
+					unset($relations[$key]);
+				}
+			}
+			$relations = array_values($relations);
+
 			return $this->renderTemplate(
 				'trackeroutput/relation.tpl',
 				$context,
 				[
 					'display' => $display,
+					'relations' => $relations,
 					'format' => $this->getOption('format')
 				]
 			);
