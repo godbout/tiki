@@ -43,6 +43,7 @@
 				{preference name=wiki_dynvar_style}
 				{preference name=wiki_dynvar_multilingual}
 				{preference name=wiki_make_ordered_list_items_display_unique_numbers}
+				{preference name=feature_absolute_to_relative_links}
 			</fieldset>
 
 			<fieldset>

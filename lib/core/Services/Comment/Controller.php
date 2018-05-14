@@ -93,6 +93,10 @@ class Services_Comment_Controller
 
 		$title = trim($input->title->text());
 		$data = trim($input->data->wikicontent());
+
+		$tikilib = TikiLib::lib('tiki');
+		$data = $tikilib->convertAbsoluteLinksToRelative($data);
+
 		$watch = $input->watch->text();
 		$contributions = [];
 		$anonymous_name = '';
@@ -293,6 +297,9 @@ class Services_Comment_Controller
 		if ($input->edit->int()) {
 			$title = trim($input->title->text());
 			$data = trim($input->data->wikicontent());
+
+			$tikilib = TikiLib::lib('tiki');
+			$data = $tikilib->convertAbsoluteLinksToRelative($data);
 
 			$commentslib = TikiLib::lib('comments');
 			$commentslib->update_comment($threadId, $title, $comment['comment_rating'], $data);

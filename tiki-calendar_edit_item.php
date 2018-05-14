@@ -130,6 +130,11 @@ if (isset($_REQUEST['save']) && ! isset($_REQUEST['preview']) && ! isset($_REQUE
 
 if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['changeCal'])) {
 	$save = $_POST['save'];
+
+	if (! empty($save['description'])) {
+		$save['description'] = $tikilib->convertAbsoluteLinksToRelative($save['description']);
+	}
+
 	// Take care of timestamps dates coming from jscalendar
 	if (isset($save['date_start']) || isset($save['date_end'])) {
 		if (isset($_REQUEST['tzoffset'])) {

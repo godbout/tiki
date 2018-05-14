@@ -179,6 +179,9 @@ if (isset($_REQUEST["articleId"]) and $_REQUEST["articleId"] > 0) {
 		$hasImage = 'y';
 	}
 
+	$article_data['heading'] = $tikilib->convertAbsoluteLinksToRelative($article_data['heading']);
+	$article_data['body'] = $tikilib->convertAbsoluteLinksToRelative($article_data['body']);
+
 	$smarty->assign('heading', $article_data['heading']);
 	$smarty->assign('body', $article_data['body']);
 	$smarty->assign('edit_data', 'y');
@@ -454,6 +457,8 @@ if (isset($_REQUEST['preview']) or ! empty($errors)) {
 		$heading = strip_tags($_REQUEST['heading'], '<a><pre><p><img><hr><b><i>');
 	}
 
+	$heading = $tikilib->convertAbsoluteLinksToRelative($heading);
+	$body = $tikilib->convertAbsoluteLinksToRelative($body);
 	$smarty->assign('size', strlen($body));
 
 	$parsed_body = $parserlib->parse_data($body, ['is_html' => $artlib->is_html([$body])]);
@@ -586,6 +591,10 @@ if (isset($_REQUEST['save']) && empty($errors)) {
 	// Parse $edit and eliminate image references to external URIs (make them internal)
 	$body = $imagegallib->capture_images($body);
 	$heading = $imagegallib->capture_images($heading);
+
+	// Convert absolute to relative links
+	$heading = $tikilib->convertAbsoluteLinksToRelative($heading);
+	$body = $tikilib->convertAbsoluteLinksToRelative($body);
 
 	if (! isset($_REQUEST['rating'])) {
 		$_REQUEST['rating'] = 0;

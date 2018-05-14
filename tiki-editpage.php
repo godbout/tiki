@@ -1104,6 +1104,10 @@ if (isset($_REQUEST["save"])
 	$page = $_REQUEST["page"];
 
 	$edit = $_REQUEST["edit"];
+
+	// convert absolute to relative links
+	$edit = $tikilib->convertAbsoluteLinksToRelative($edit);
+
 	// Parse $edit and eliminate image references to external URIs (make them internal)
 	$edit = $imagegallib->capture_images($edit);
 

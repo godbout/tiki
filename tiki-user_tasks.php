@@ -389,7 +389,7 @@ if ((isset($_REQUEST['save'])) || (isset($_REQUEST['preview']))) {
 		$msg_changes .= tra('Title') . ': ' . $info['title'] . ' --> ' . $save['title'] . "\n";
 	}
 	if (isset($_REQUEST['description']) and $info['description'] != $_REQUEST['description']) {
-		$save['description'] = $_REQUEST['description'];
+		$save['description'] = $tikilib->convertAbsoluteLinksToRelative($_REQUEST['description']);
 		$msg_changes .= tra('Description') . ': ' . $info['description'] . ' --> ' . $save['description'] . "\n";
 	}
 	if (isset($_REQUEST['use_start_date']) and $info['start'] != $start_date) {

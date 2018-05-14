@@ -123,6 +123,7 @@ class Services_Edit_Controller
 				$data = $editlib->partialParseWysiwygToWiki(
 					TikiLib::lib('autosave')->get_autosave($input->editor_id->text(), $input->autoSaveId->text())
 				);
+				$data = $tikilib->convertAbsoluteLinksToRelative($data);
 				TikiLib::lib('smarty')->assign('diff_style', $diffstyle);
 				if ($diffstyle) {
 					if (! empty($info['created'])) {

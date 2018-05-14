@@ -174,6 +174,7 @@ if (isset($_REQUEST["blogpriv"]) && $_REQUEST["blogpriv"] == 'on') {
 if (isset($_REQUEST["preview"])) {
 	$post_info = [];
 	$parserlib = TikiLib::lib('parser');
+	$edit_data = $tikilib->convertAbsoluteLinksToRelative($edit_data);
 	$parsed_data = TikiLib::lib('parser')->parse_data($edit_data, ['is_html' => $is_wysiwyg]);
 	$smarty->assign('data', $edit_data);
 	$post_info['parsed_data'] = $parsed_data;
@@ -208,6 +209,8 @@ if (isset($_REQUEST['save']) && ! $contribution_needed && $access->checkOrigin()
 	$smarty->assign('individual', 'n');
 
 	$edit_data = $imagegallib->capture_images($edit_data);
+	$edit_data = $tikilib->convertAbsoluteLinksToRelative($edit_data);
+
 	$title = isset($_REQUEST['title']) ? $_REQUEST['title'] : '';
 
 	if ($postId > 0) {

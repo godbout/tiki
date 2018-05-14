@@ -3073,5 +3073,12 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 			'tags' => ['advanced'],
 		],
+		'feature_absolute_to_relative_links' => [
+			'name' => tra('Convert from absolute to relative link'),
+			'description' => tra('Process wiki text and convert internal links from absolute to relative links'),
+			'type' => 'flag',
+			'default' => 'y',
+			'tags' => ['advanced'],
+		],
 	];
 }
