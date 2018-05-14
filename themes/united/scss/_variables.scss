@@ -1,6 +1,8 @@
 // United 4.0.0
 // Bootswatch
 
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+
 //
 // Color system
 //
@@ -49,3 +51,5 @@ $font-family-sans-serif:      "Ubuntu", -apple-system, BlinkMacSystemFont, "Sego
 
 $table-dark-bg:               $dark !default;
 $table-dark-border-color:     darken($dark, 5%) !default;
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //

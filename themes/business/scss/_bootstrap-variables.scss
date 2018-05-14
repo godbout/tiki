@@ -1,6 +1,8 @@
 // $Id$
 // Custom styles for the Business theme.
 
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+
 // Colors
 $theme-colors: (
 	"primary": #0082e0,
@@ -71,3 +73,5 @@ $card-heading-bg: #386dbb;
 // Badges
 // Modals
 $modal-header-border-color:   #386dbb;
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //

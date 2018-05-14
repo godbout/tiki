@@ -1,6 +1,8 @@
 // $Id$
-// Amelia for Bootstrap 4.0.0
+// Amelia for Bootstrap 4
 // Variables
+
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 
 // Colors
 $gray-900: #111111; // Are these being used?
@@ -21,7 +23,9 @@ $theme-colors: (
 	"success":         	#48ca3b,
 	"info":           	#4d3a7d,
 	"warning":         	#debb27,
-	"danger":          	#df6e1e
+	"danger":          	#df6e1e,
+	"light":			#ad1d28,
+	"dark":				#4d3a7d
 );
 
 // Options
@@ -68,3 +72,9 @@ $modal-content-bg: $body-bg;
 //$navbar-dark-bg: #ad1d28 !important;
 //body.fullscreen { background: $body-bg; }
 //.bg-dark { background: #ad1d28 !important; }
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
+
+body.fullscreen { background: $body-bg; }
+
+.bg-dark { background: #ad1d28 !important; }

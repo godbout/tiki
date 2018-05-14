@@ -18,13 +18,7 @@
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "../../base_files/scss/_external-scripts.scss";
 
-.dropdown-menu {
-	color: $dropdown-link-color;
-}
 
-body.fullscreen { background: $body-bg; }
-
-.bg-dark { background: #ad1d28 !important; }
 
 //This arrangement works, to implement colors so far, but it shouldn't be necessary to put CSS here for it to override.
 

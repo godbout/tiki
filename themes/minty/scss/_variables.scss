@@ -1,6 +1,7 @@
 // Minty 4.0.0
 // Bootswatch
 
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 //
 // Color system
 //
@@ -93,3 +94,5 @@ $pagination-disabled-border-color:  $pagination-disabled-bg !default;
 $breadcrumb-bg:                     $primary !default;
 $breadcrumb-divider-color:          $white !default;
 $breadcrumb-active-color:           $breadcrumb-divider-color !default;
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //

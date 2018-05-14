@@ -1,6 +1,7 @@
 // Spacelab 4.0.0
 // Bootswatch
 
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 //
 // Color system
 //
@@ -59,3 +60,5 @@ $navbar-dark-hover-color:           $white !default;
 $navbar-light-color:                rgba($black,.4) !default;
 $navbar-light-hover-color:          $info !default;
 $navbar-light-active-color:         $info !default;
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //

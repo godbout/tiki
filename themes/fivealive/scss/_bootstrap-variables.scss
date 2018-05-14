@@ -1,8 +1,7 @@
-// $Id$ Custom variables for the FiveAlive-lite theme
-// This file is a copy of the default bootstrap 3.3.0 variables.scss file.
+// $Id$ Custom variables for the FiveAlive theme
 
-// Variables
-// --------------------------------------------------
+
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //------------------------------------------------
 
 //== Colors
 //
@@ -838,3 +837,5 @@ $page-header-border-color: $gray-lighter;
 $dl-horizontal-offset: $component-offset-horizontal;
 //** Horizontal line color.
 $hr-border: $gray-lighter;
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
