@@ -462,6 +462,17 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 						</a>";
 					}
 
+					if ($prefs['fgal_pdfjs_feature'] == 'y' &&
+						($file['filetype'] == $mimetypes["pdf"])
+					) {
+						$smarty->loadPlugin('smarty_function_icon');
+						$viewicon = smarty_function_icon(['name' => 'view'], $smarty);
+						$ret .= " <a href='tiki-display_pdf.php?fileSrc=display" . $file['fileId']
+							. "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "'>
+							$viewicon
+						</a>";
+					}
+
 					$ret .= '</li>';
 				}
 				$ret .= '</ol>';
