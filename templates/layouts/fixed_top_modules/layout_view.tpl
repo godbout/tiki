@@ -134,7 +134,7 @@
 {/if}
 
 {if $smarty.session.fullscreen ne 'y'}
-<nav class="navbar {* navbar-inverse *}navbar-dark bg-dark fixed-top" role="navigation" id="navbar-fixed-top">
+<nav class="navbar {* navbar-inverse *}navbar-light bg-light fixed-top" role="navigation" id="navbar-fixed-top">
 	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 		<div class="navbar-header">
 			{if $module_params.navbar_toggle neq 'n'}

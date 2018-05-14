@@ -1,4 +1,4 @@
-<nav class="navbar-expand-md navbar-dark bg-dark admin-navbar" role="navigation">
+<nav class="navbar-expand-md navbar-light bg-light admin-navbar" role="navigation">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse-1" aria-controls="admin-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -132,7 +132,7 @@
 		</ul>
 	</div>
 	{if $include != "list_sections"}
-		<div class="adminanchors card-body bg-dark"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
+		<div class="adminanchors card-body bg-light"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
 	{/if}
 </nav>
 

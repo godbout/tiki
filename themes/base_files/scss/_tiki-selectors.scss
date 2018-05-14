@@ -612,17 +612,6 @@ ul.all_languages > li {
 	border: 1px solid theme-color("success");
 }
 
-// tiki-wikipages_and_plugins.less
-//.convene-ok {
-//  color: $state-success-text;
-//  background-color: $state-success-bg;
-//}
-
-//.convene-no {
-//  color: $state-danger-text;
-//  background-color: $state-danger-bg;
-//}
-
 // /* mouseover plugin */
 .plugin-mouseover {
 	background: $popover-bg;
@@ -1013,50 +1002,12 @@ div.drillshow {
 
 .tiki .chosen-container .active-result { color: $chosen-active-result; }
 
-//.tiki .row.top_modules {
-//	margin-left: $topmodules-row-sidemargins;
-//	margin-right: $topmodules-row-sidemargins;
-//}
-
-//.tiki .row.topbar {
-//	margin-left: $topbar-row-sidemargins;
-//	margin-right: $topbar-row-sidemargins;
-//	margin-bottom: $topbar-row-margin-bottom;
-//}
-
 // Breadcrumb
 .breadcrumb {
 	font-style: $breadcrumb-font-style; // italic;
 	font-size: $breadcrumb-font-size; // 90%;
 	display: $breadcrumb-display; // block;
 }
-/* Todo - button styles are simpler in BS4 - got to figure it out
-// Admin
-a.admbox {
-	&,
-	&:visited {
-		//		border: 1px solid $admbox-border; //#ccc
-		//		background-color: $admbox-bg; // #cccccc;
-		//		color: $admbox-color; // #333333;
-	}
-	&:hover,
-	&:focus,
-	&:active {
-		//		border: 1px solid $admbox-hover-border; // #333333;
-		//		background-color: $admbox-hover-bg; // #aaaaaa;
-		//		color: $admbox-hover-color; //#ffffff;
-	}
-	&.off {
-		border: 1px solid $admbox-off-border; // #a9a9a9;
-		color: $admbox-off-color; // #9f9f9f;
-		&:hover,
-		&:focus,
-		&:active {
-			border: 1px solid $admbox-off-hover-border; // #a9a9a9;
-			color: $admbox-off-hover-color; // #666666;
-		}
-	}
-}*/
 
 .tiki .ui-widget-content,
 span.plugin-mouseover  {
@@ -1181,3 +1132,8 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 	}
   }
 
+//jQuery-ui
+.tiki .ui-widget {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+}
