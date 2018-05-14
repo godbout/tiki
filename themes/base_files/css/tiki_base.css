@@ -14,6 +14,9 @@
  $admbox-off-hover-border: darken($btn-primary-border, 40%); //#a9a9a9;
  $admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
  */
+.topbar {
+  margin-bottom: 1.4rem; }
+
 .navbar-collapse.collapse.in {
   background: #343a40; }
 
@@ -113,7 +116,7 @@ a.fc-event:hover {
 
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0:hover > .sf-with-ul:after, .topbar .cssmenu_horiz.sf-arrows > .menuSection0.sfhover > .sf-with-ul:after {
   border-top-color: rgba(255, 255, 255, .75); }
-/* order of following 3 rules important for fallbacks to work */
+
 .dropdown-menu .dropdown-title, .dropdown-menu li label {
   color: #212529; }
 

@@ -6,6 +6,8 @@ $imagePathToImgDir: "../../../img/";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss";
 
+.topbar { margin-bottom: $topbar-row-margin-bottom; }
+
 // Background color for navbar collapse dropdowns (Tiki's aren't .dropdown li).
 .navbar-collapse.collapse.in {
 	background: $navbar-dark-bg;
@@ -176,23 +178,6 @@ a.fc-event:hover {
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0.sfhover > .sf-with-ul:after {
 	border-top-color: $navbar-dark-hover-color;
 }
-
-//.topbar .sf-arrows .sf-with-ul:after {
-/* order of following 3 rules important for fallbacks to work */
-//  border: 5px solid transparent;
-//  border-top-color: #ffffff; /* edit this to suit design (no rgba in IE8) */
-//  border-top-color: fade($topbar_link_color, 50%); //rgba(255,255,255,.5);
-//}
-
-// To do: maybe there's an elegant way to specify gradients and image backgrounds here, but for now
-// it can stay in theme less files. The problem is they are defined in various ways.
-//.topbar .navbar-default .navbar-nav > li,
-//.topbar .nav > li,
-//.topbar,
-//.topbar .cssmenu_horiz > li,
-//.navbar-default .navbar-collapse,
-//.topbar .navbar-default .navbar-nav > li,
-//.navbar-default .navbar-form {#gradient > .vertical($topbar-gradient-start-color; $topbar-gradient-end-color);}
 
 // Used for action icons dropdown
 .dropdown-menu .dropdown-title,
