@@ -4,13 +4,13 @@
 		{jq}$(".trackername").tiki("autocomplete", "trackername");{/jq}
 	{/if}
 	<form method="post">
-		<div class="form-group row">
+		<div class="form-group row mx-0">
 			<label class="col-sm-3 col-form-label" for="trackerhelp_name">{tr}Tracker name:{/tr}</label>
 			<div class="col-sm-9">
 				<input type="text" name="trackerhelp_name" id="trackerhelp_name" class="form-control trackername"{if isset($smarty.session.trackerhelp_name)} value="{$smarty.session.trackerhelp_name|escape}"{/if} />
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group row mx-0">
 			<div class="col-sm-9 col-sm-offset-3">
 				<input type="submit" class="btn btn-primary btn-sm" name="trackerhelp" value="{tr}Go{/tr}" />
 			</div>

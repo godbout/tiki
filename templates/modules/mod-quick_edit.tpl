@@ -18,7 +18,7 @@
 			{if $mod_quickedit_heading}
 				<div class="panel-body">{$mod_quickedit_heading|escape}</div>
 			{/if}
-			<div class="form-group row">
+			<div class="form-group row mx-0">
 				<input id="{$qefield}" class="form-control" type="text" name="page" />
 				{if $addcategId}
 					<input type="hidden" name="cat_categories[]" value="{$addcategId|escape}" />
