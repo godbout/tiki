@@ -68,7 +68,9 @@
 				<p class="picker" data-selector=".style-guide .navbar-default" data-element="background-color">
 					<label for="sg-navbar-bg-color">Background:</label>
 					<input id="sg-navbar-bg-color" data-selector=".style-guide .navbar-default" data-element="background-color" data-var="$navbar-default-bg" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p class="picker" data-selector=".style-guide .navbar-default" data-element="border-color">
 					<label for="sg-navbar-border-color">Border:</label>

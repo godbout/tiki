@@ -41,7 +41,9 @@
 							<tr class="hidden">
 								<td>
 									<div class="input-group input-group-sm">
-										<span class="input-group-addon">{icon name=sort}</span>
+										<div class="input-group-prepend">
+											<span class="input-group-text">{icon name=sort}</span>
+										</div>
 										<input type="text" class="field-label form-control" />
 										<div class="input-group-btn">
 											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -68,7 +70,9 @@
 								<tr>
 									<td>
 										<div class="input-group input-group-sm">
-											<span class="input-group-addon">{icon name=sort}</span>
+											<div class="input-group-prepend">
+												<span class="input-group-text">{icon name=sort}</span>
+											</div>
 											<input type="text" class="field-label form-control" style="width: auto" value="{$column->getLabel()|escape}" />
 											<div class="input-group-btn">
 												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -146,7 +150,9 @@
 							<tr class="hidden">
 								<td>
 									<div class="input-group input-group-sm">
-										<span class="input-group-addon">{icon name=sort}</span>
+										<div class="input-group-prepend">
+											<span class="input-group-text">{icon name=sort}</span>
+										</div>
 										<input type="text" class="filter-label form-control" value="Label" />
 										<div class="input-group-btn">
 											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -168,7 +174,9 @@
 								<tr>
 									<td>
 										<div class="input-group input-group-sm">
-											<span class="input-group-addon">{icon name=sort}</span>
+											<div class="input-group-append">
+												<span class="input-group-text">{icon name=sort}</span>
+											</div>
 											<input type="text" class="field-label form-control" value="{$filter->getLabel()|escape}" />
 											<div class="input-group-btn">
 												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">

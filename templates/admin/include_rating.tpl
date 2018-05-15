@@ -103,7 +103,9 @@
 					<div class="col-sm-8">
 						<div class="input-group">
 							<input type="text" class="form-control" name="expiry" value="{$config.expiry|escape}" id="rating_expiry_{$config.ratingConfigId|escape}">
-							<span class="input-group-addon">{tr}seconds{/tr}</span>
+							<div class="input-group-append">
+								<span class="input-group-text">{tr}seconds{/tr}</span>
+							</div>
 						</div>
 					</div>
 				</div>

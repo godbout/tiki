@@ -19,7 +19,9 @@
 			{/foreach}
 		</select>
 		{if !empty($p.units)}
-			<span class="input-group-addon">{$p.units}</span></div>
+			<div class="input-group-append">
+				<span class="input-group-text">{$p.units}</span>
+			</div>
 		{/if}
 		{include file="prefs/shared.tpl"}
 	</div>

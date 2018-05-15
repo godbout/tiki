@@ -9,7 +9,9 @@
 	<div class="form-group row">
 		<div class="col-sm-10">
 			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1">{icon name="tags"} {tr}Tags{/tr}</span>
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">{icon name="tags"} {tr}Tags{/tr}</span>
+				</div>
 				<input type="text" id="tagBox" class="form-control" name="tag" value="{$tagString|escape}">
 				<div class="input-group-btn">
 					<input type="submit" class="btn btn-primary tips" value="{tr}Go{/tr}">

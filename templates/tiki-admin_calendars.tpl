@@ -469,9 +469,11 @@
 					</label>
 					<div class="col-sm-2 input-group">
 						<input type="text" name="days" id="days" value="0" class="form-control">
-						<span class="input-group-addon">
-							{tr}days{/tr}
-						</span>
+						<div class="input-group-append">
+							<span class="input-group-text">
+								{tr}days{/tr}
+							</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group row">

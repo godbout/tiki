@@ -389,9 +389,11 @@
 			<form id="search-form" class="form" role="form" method="get" action="tiki-search{if $prefs.feature_forum_local_tiki_search eq 'y'}index{else}results{/if}.php">
 				<div class="form-group row">
 					<div class="input-group">
-						<span class="input-group-addon">
+						<div class="input-group-prepend">
+						<span class="input-group-text">
 							{icon name="search"}
 						</span>
+						</div>
 						<input name="highlight" id="findinforums" type="text" class="form-control" placeholder="{tr}Find{/tr}...">
 						<div class="input-group-btn">
 							<input type="hidden" name="where" value="forums">

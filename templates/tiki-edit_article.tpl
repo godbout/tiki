@@ -242,14 +242,18 @@
 					<label for="image_x" class="col-form-label col-md-4">{tr}Width{/tr}</label>
 					<div class="input-group col-sm-3">
 						<input type="text" class="form-control" name="image_x" id="image_x"{if $image_x > 0} value="{$image_x|escape}"{/if}>
-						<span class="input-group-addon">{tr}pixels{/tr}</span>
+						<div class="input-group-append">
+							<span class="input-group-text">{tr}pixels{/tr}</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="image_y" class="col-form-label col-md-4">{tr}Height{/tr}</label>
 					<div class="input-group col-sm-3">
 						<input type="text" class="form-control" name="image_y" id="image_y"{if $image_y > 0} value="{$image_y|escape}"{/if}>
-						<span class="input-group-addon">{tr}pixels{/tr}</span>
+						<div class="input-group-append">
+							<span class="input-group-text">{tr}pixels{/tr}</span>
+						</div>
 					</div>
 				</div>
 			</fieldset>
@@ -260,14 +264,18 @@
 					<label for="list_image_x" class="col-form-label col-sm-4">{tr}Width{/tr}</label>
 					<div class="input-group col-sm-3">
 						<input type="text" class="form-control" name="list_image_x" id="list_image_x"{if $list_image_x > 0} value="{$list_image_x|escape}"{/if}>
-						<span class="input-group-addon">{tr}pixels{/tr}</span>
+						<div class="input-group-append">
+							<span class="input-group-text">{tr}pixels{/tr}</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="list_image_y" class="col-form-label col-sm-4">{tr}Height{/tr}</label>
 					<div class="input-group col-sm-3">
 						<input type="text" class="form-control" name="list_image_y" id="list_image_y"{if $list_image_y > 0} value="{$list_image_y|escape}"{/if}>
-						<span class="input-group-addon">{tr}pixels{/tr}</span>
+						<div class="input-group-append">
+							<span class="input-group-text">{tr}pixels{/tr}</span>
+						</div>
 					</div>
 				</div>
 			</fieldset>

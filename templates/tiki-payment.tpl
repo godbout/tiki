@@ -77,9 +77,11 @@
 						</label>
 						<div class="col-sm-8 input-group">
 							<input type="text" id="amount" name="amount" class="form-control text-right">
-							<span class="input-group-addon">
-								{$prefs.payment_currency|escape}
-							</span>
+							<div class="input-group-append">
+								<span class="input-group-text">
+									{$prefs.payment_currency|escape}
+								</span>
+							</div>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -89,9 +91,11 @@
 					</div>
 					<div class="col-sm-8 input-group">
 						<input type="text" id="payable" class="text-right form-control" name="payable" value="{$prefs.payment_default_delay|escape}">
-						<span class="input-group-addon">
-							{tr}days{/tr}
-						</span>
+						<div class="input-group-append">
+							<span class="input-group-text">
+								{tr}days{/tr}
+							</span>
+						</div>
 					</div><br>
 					{if $prefs.feature_categories eq 'y'}
 						{include file="categorize.tpl" labelcol=3 labelclass='text-right' inputcol=8 inputgroup=y}

@@ -18,9 +18,11 @@
 					<form method="get" class="form" role="form" action="tiki-forums.php">
 						<div class="form-group row">
 							<div class="input-group">
-								<span class="input-group-addon">
-									{icon name="search"}
-								</span>
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										{icon name="search"}
+									</span>
+								</div>
 								<input type="text" name="find" class="form-control" value="{$find|escape}" placeholder="{tr}Find{/tr}...">
 								<div class="input-group-btn">
 									<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
@@ -36,9 +38,11 @@
 						<form class="form" method="get" role="form" action="{if $prefs.feature_search_fulltext neq 'y'}tiki-searchindex.php{else}tiki-searchresults.php{/if}">
 							<div class="form-group row">
 								<div class="input-group">
-									<span class="input-group-addon">
-										{icon name="search"}
-									</span>
+									<div class="input-group-prepend">
+										<span class="input-group-text">
+											{icon name="search"}
+										</span>
+									</div>
 									<input name="highlight" type="text" class="form-control" placeholder="{tr}Find{/tr}...">
 									<div class="input-group-btn">
 										<input type="hidden" name="where" value="forums">
