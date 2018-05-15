@@ -134,12 +134,14 @@
 	<div class="form-group row">
 		<label class="col-form-label sr-only" for="find">{tr}Find{/tr}</label>
 		<div class="input-group">
-			<span class="input-group-addon">
-				{icon name="search"} {if $parentId ne 0}{$p_info.name|escape} {/if}
-			</span>
+			<div class="input-group-append">
+				<span class="input-group-text">
+					{icon name="search"} {if $parentId ne 0}{$p_info.name|escape} {/if}
+				</span>
+			</div>
 			<input class="form-control input-sm" type="text" name="find" id="find" value="{$find|escape}">
 			<div class="input-group-btn">
-				<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
+				<input type="submit" class="btn btn-primary" value="{tr}Find{/tr}" name="search">
 			</div>
 		</div>
 		<span class="form-text" style="display:inline-block; margin: 0;">{help url="#" desc="{tr}Find in:{/tr} <ul><li>{tr}Name{/tr}</li><li>{tr}Description{/tr}</li></ul>"}</span>
