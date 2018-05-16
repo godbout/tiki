@@ -635,6 +635,31 @@ $smarty->assign('adminpage', $adminPage);
 $smarty->assign('mid', 'tiki-admin.tpl');
 $smarty->assign('trail', $crumbs);
 $smarty->assign('crumb', count($crumbs) - 1);
+
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+	if (file_exists(__DIR__ . '/vendor/do_not_clean.txt')
+		|| ! ( // check the existence of critical files denoting a legacy vendor folder
+			(file_exists(__DIR__ . '/vendor/zendframework/zend-config/src/Config.php') //ZF2
+				|| file_exists(__DIR__ . '/vendor/bombayworks/zendframework1/library/Zend/Config.php')) //ZF1
+			&& (file_exists(__DIR__ . '/vendor/smarty/smarty/libs/Smarty.class.php') //Smarty
+				|| file_exists(__DIR__ . '/vendor/smarty/smarty/distribution/libs/Smarty.class.php')) //Smarty
+			&& file_exists(__DIR__ . '/vendor/adodb/adodb/adodb.inc.php') //Adodb
+		)) {
+		$vendorAutoloadIgnored = false;
+	} else {
+		$vendorAutoloadIgnored = true;
+	}
+}
+
+if (file_exists(__DIR__ . '/vendor/autoload-disabled.php')) {
+	$vendorAutoloadDisabled = true;
+} else {
+	$vendorAutoloadDisabled = false;
+}
+
+$smarty->assign('vendor_autoload_ignored', $vendorAutoloadIgnored);
+$smarty->assign('vendor_autoload_disabled', $vendorAutoloadDisabled);
+
 include_once('installer/installlib.php');
 $installer = new Installer;
 $smarty->assign('db_requires_update', $installer->requiresUpdate());

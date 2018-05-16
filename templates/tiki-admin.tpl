@@ -28,6 +28,19 @@
 		{/remarksbox}
 	{/if}
 
+	{if $vendor_autoload_ignored or $vendor_autoload_disabled}
+		{remarksbox type="error" title="{tr}Vendor folder issues{/tr}"}
+			{tr}Your vendor folder contains multiple packages that were normally bundled with Tiki. Since version 17 those libraries were migrated from the folder <strong>vendor</strong> to the folder <strong>vendor_bundled</strong>.{/tr}<br />
+			{if $vendor_autoload_ignored}
+				{tr}To avoid issues your <strong>vendor/autoload.php</strong> was not loaded.{/tr}<br />
+				{tr}We recommend that you remove/clean the <strong>vendor/</strong> folder content unless you really want to load these libraries, that are not bundled with tiki, and in such case add a file called <strong>vendor/do_not_clean.txt</strong> to force the load of these libraries.{/tr}
+			{elseif $vendor_autoload_disabled}
+				{tr}To avoid issues your <strong>vendor/autoload.php</strong> was renamed to <strong>vendor/autoload-disabled.php</strong>.{/tr}<br />
+				{tr}For more information check <strong>vendor/autoload-disabled-README.txt</strong> file.{/tr}
+			{/if}
+		{/remarksbox}
+	{/if}
+
 	{if $installer_not_locked}
 		{remarksbox type="error" title="{tr}Installer not locked{/tr}"}
 			{tr} The installer allows a user to change or destroy the site's database through the browser so it is very important to keep it locked. {/tr}
