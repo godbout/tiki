@@ -3066,7 +3066,7 @@ body.fullscreen.tiki.navbar-padding {
     font-size: 1.8rem;
     margin-top: 10px;
     margin-bottom: 0; }
-  .layout_social h1.sitetitle, .layout_social_modules h1.sitetitle, .layout_fixed_top_modules h1.sitetitle, .layout_social .sitesubtitle, .layout_social_modules .sitesubtitle, .layout_fixed_top_modules .sitesubtitle {
+  .layout_social h1.sitetitle, .layout_social_modules h1.sitetitle, .layout_fixed_top_modules h1.sitetitle, .layout_social h2.sitesubtitle, .layout_social_modules h2.sitesubtitle, .layout_fixed_top_modules h2.sitesubtitle {
     display: inline-block; }
   .layout_social #topbar_modules, .layout_social_modules #topbar_modules, .layout_fixed_top_modules #topbar_modules {
     display: inline-block; }
