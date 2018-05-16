@@ -547,7 +547,7 @@
 								<div class="form-group row clearfix">
 									<label for="" class="col-md-4 col-form-label">{tr}Language{/tr}</label>
 									<div class="col-md-8">
-										<select name="lang" id="lang" class="form-control margin-bottom-sm">
+										<select name="lang" id="lang" class="form-control mb-1">
 											<option value=""{if empty($lang)} selected="selected"{/if}>{tr}Unknown{/tr}</option>
 											{section name=ix loop=$languages}
 												<option value="{$languages[ix].value|escape}"{if $lang eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name}</option>

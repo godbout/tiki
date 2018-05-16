@@ -100,7 +100,7 @@
 							<div class="admin2cols adminoptionbox clearfix">
 								<label for="assign_params[{$name|escape}]">{$param.name|escape}{if $param.required} <span class="attention">({tr}required{/tr})</span>{/if}</label>
 								<input type="text" id="assign_params[{$name|escape}]" name="assign_params[{$name|escape}]" value="{$param.value|escape}"{if !empty($param.filter)} class="{$param.filter} form-control"{else} class="{$param.filter} form-control"{/if}>
-								<div class="description margin-bottom-sm">
+								<div class="description mb-1">
 									{$param.description|escape}
 									{if !empty($param.default)} - {tr}Default:{/tr} {$param.default|escape}{/if}
 								</div>

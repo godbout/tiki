@@ -11,14 +11,14 @@
 			{*today*}
 			{if !isset($calendar_type) or $calendar_type neq "tiki_actions"}
 				{if $module neq 'y'}
-					{button _auto_args="viewmode,focus" _text="{tr}Today{/tr}" _class="calbuttonoff margin-bottom-sm" _type="xs btn-primary" viewmode='day' focus=$now todate=$now}
+					{button _auto_args="viewmode,focus" _text="{tr}Today{/tr}" _class="calbuttonoff mb-1" _type="xs btn-primary" viewmode='day' focus=$now todate=$now}
 					<br>
 				{else}
 					{if empty($module_params.viewmode)}
-						{button _auto_args="viewmode,focus" _keepall=y _text="{tr}Today{/tr}" _class="calbuttonoff margin-bottom-sm" _type="xs btn-primary" viewmode='day' focus=$now todate=$now}
+						{button _auto_args="viewmode,focus" _keepall=y _text="{tr}Today{/tr}" _class="calbuttonoff mb-1" _type="xs btn-primary" viewmode='day' focus=$now todate=$now}
 						<br>
 					{else}
-						{button _auto_args="focus" _keepall=y _text="{tr}Today{/tr}" _class="calbuttonoff margin-bottom-sm" _type="xs btn-primary" focus=$now todate=$now}
+						{button _auto_args="focus" _keepall=y _text="{tr}Today{/tr}" _class="calbuttonoff mb-1" _type="xs btn-primary" focus=$now todate=$now}
 						<br>
 					{/if}
 				{/if}

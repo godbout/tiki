@@ -38,7 +38,7 @@
 				{/if}
 
 				{if $params.showuserdd eq 'y'}
-						<div class="col-sm-8 margin-bottom-sm">
+						<div class="col-sm-8 mb-1">
 							<select class="form-control" name="mail_user_dd[]" id="mail_user_dd{$ipluginmail}" multiple="multiple">
 								<option value="" />
 								{foreach from=$users item=muser}
@@ -71,7 +71,7 @@
 					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="mail_user{$ipluginmail}">{tr}Send to:{/tr}</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control margin-bottom-sm" id="mail_user" name="mail_user" value="{$mail_user}">
+							<input type="text" class="form-control mb-1" id="mail_user" name="mail_user" value="{$mail_user}">
 							{remarksbox type='tip' title="{tr}Tip{/tr}"}{tr}Email address (if more than one, separated by ","){/tr}{/remarksbox}
 						</div>
 					</div>
@@ -80,7 +80,7 @@
 					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="mail_group_dd{$ipluginmail}">{tr}Send to groups:{/tr}</label>
 						{foreach from=$groups key=groupname item=gps name=mailgroups}
-							<div class="wpmailgroup col-sm-8 margin-bottom-sm">
+							<div class="wpmailgroup col-sm-8 mb-1">
 								{if !empty($groupname)}{$groupname|escape}{/if}
 								<select name="mail_group_dd[][]" class="form-control" id="mail_group_dd{$ipluginmail}" multiple="multiple">
 									<option value="" />
@@ -113,7 +113,7 @@
 					</div>
 				</div>
 
-				<div class="form-group text-center margin-bottom-sm">
+				<div class="form-group text-center mb-1">
 					{if $bypass_preview != 'y'}
 						<input type="submit" class="btn btn-primary" name="mail_preview{$ipluginmail}" value="{tr}Preview Mail{/tr}">
 					{else}

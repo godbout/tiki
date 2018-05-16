@@ -279,7 +279,7 @@
 				<div class="adminoptionbox">
 					<div class="adminoptionlabel form-group row">
 						<label for="profile_tester_name" class="col-form-label col-sm-4">{tr}Test profile name{/tr} </label>
-						<div class="col-sm-4 margin-bottom-sm">
+						<div class="col-sm-4 mb-1">
 						<input class="form-control" type="text" name="profile_tester_name" id="profile_tester_name" value="{if isset($profile_tester_name)}{$profile_tester_name}{else}Test{/if}" />
 						</div>
 						<div class="col-sm-4">

@@ -13,7 +13,7 @@
 [{$messu_mailbox_number} / {$prefs.messu_mailbox_size}] {tr}messages{/tr}. {if $messu_mailbox_number ge $prefs.messu_mailbox_size}{tr}Mailbox is full! Delete or archive some messages if you want to receive more messages.{/tr}{/if}
 {/if}
 
-<form class="form-inline margin-bottom-sm" action="messu-mailbox.php" method="get">
+<form class="form-inline mb-1" action="messu-mailbox.php" method="get">
 	<div class="form-group row">
 	<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
 	<select name="flags" id="mess-mailmessages" class="form-control">

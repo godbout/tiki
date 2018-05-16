@@ -44,7 +44,7 @@
 							<div class="card-header">
 								<h5 class="card-title">{tr}Body{/tr}</h5>
 							</div>
-							<div class="card-body margin-bottom-sm">
+							<div class="card-body mb-1">
 								<textarea rows="10" style="width: 99%">{$plugin_body}</textarea>
 							</div>
 						</div>

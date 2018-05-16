@@ -35,7 +35,7 @@
 					<div class="card">
 						<div class="card-body">
 							{if $avatar}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Profile picture{/tr} ({tr}User Icon{/tr}):</div>
 									<div class="col-sm-8">
 										<div class="col-sm-3">
@@ -55,24 +55,24 @@
 							{/if}
 
 							{if $realName}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Real Name:{/tr}</div>
 									<div class="col-sm-8">{$realName|escape}</div>
 								</div>
 							{/if}
 							{if $prefs.feature_community_gender eq 'y' and $gender neq 'Hidden' and $gender}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Gender:{/tr}</div>
 									<div class="col-sm-8">{tr}{$gender}{/tr}</div>
 								</div>
 							{/if}
 							{if $email_isPublic neq 'n' and $userinfo.email neq ''}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Email:{/tr}</div>
 									<div class="col-sm-8">{mailto address=$userinfo.email text=$scrambledEmail encode="javascript"}</div>
 								</div>
 							{elseif $email_isPublic eq 'n' and $userinfo.email neq '' and $tiki_p_admin eq 'y'}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Email:{/tr}</div>
 									<div class="col-sm-8">
 										{mailto address=$userinfo.email encode="javascript"}
@@ -81,25 +81,25 @@
 								</div>
 							{/if}
 							{if !empty($country) and $country != 'Other'}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Country:{/tr}</div>
 									<div class="col-sm-8">{$userinfo.login|countryflag} {tr}{$country|stringfix}{/tr}</div>
 								</div>
 							{/if}
 							{if $prefs.change_theme ne 'n'}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Theme:{/tr}</div>
 									<div class="col-sm-8">{$user_style}</div>
 								</div>
 							{/if}
 							{if $prefs.change_language eq 'y'}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Language:{/tr}</div>
 									<div class="col-sm-8">{$user_language}</div>
 								</div>
 							{/if}
 							{if $homePage}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Homepage:{/tr}</div>
 									<div class="col-sm-8">
 										<a href="{$homePage|escape}" class="link" title="{tr}User's homepage{/tr}">
@@ -109,13 +109,13 @@
 								</div>
 							{/if}
 							{if $prefs.feature_score eq 'y'}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Score:{/tr}</div>
 									<div class="col-sm-8">{$userinfo.score|star}{$userinfo.score}</div>
 								</div>
 							{/if}
 							{if $prefs.feature_wiki eq 'y' && $prefs.feature_wiki_userpage eq 'y' && ($userPage_exists or $user == $userinfo.login)}
-								<div class="row margin-bottom-sm">
+								<div class="row mb-1">
 									<div class="col-sm-4">{tr}Personal Wiki Page:{/tr}</div>
 									<div class="col-sm-8">
 										{if $userPage_exists}
@@ -131,7 +131,7 @@
 								</div>
 							{/if}
 
-							<div class="row margin-bottom-sm">
+							<div class="row mb-1">
 								<div class="col-sm-4">{tr}Last login:{/tr}</div>
 								<div class="col-sm-8">{$userinfo.lastLogin|tiki_short_datetime}</div>
 							</div>
@@ -140,7 +140,7 @@
 							{section name=ir loop=$customfields}
 
 								{if $customfields[ir].show}
-									<div class="row margin-bottom-sm">
+									<div class="row mb-1">
 										<div class="col-sm-4">{$customfields[ir].label}:</div>
 										<div class="col-sm-8">{$customfields[ir].value}</div>
 									</div>
