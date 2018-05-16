@@ -12,8 +12,9 @@
 				type="text" {$p.params}>
 		{/if}
 		{if !empty($p.units)}
-			<div class="input-group-append">
-				<span class="input-group-text">{$p.units}</span>
+				<div class="input-group-append">
+					<span class="input-group-text">{$p.units}</span>
+				</div>
 			</div>
 		{/if}
 
