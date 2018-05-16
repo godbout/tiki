@@ -17,13 +17,9 @@
 		{if $comment.userName ne $user and $comment.approved eq 'y' and $forum_info.vote_threads eq 'y' and ( $tiki_p_forum_vote eq 'y' or $tiki_p_admin_forum eq 'y' )}
 		<b>{tr}Vote{/tr}</b>:
 
-		{if $first eq 'y'}
 			<form method="post" action="">
 				{rating type=comment id=$comment.threadId changemandated=y}
 			</form>
-		{else}
-			{rating type=comment id=$comment.threadId changemandated=y}
-		{/if}
 
 		{/if}
 		</span>
