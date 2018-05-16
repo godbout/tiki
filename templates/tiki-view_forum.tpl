@@ -18,7 +18,7 @@
 		<div class="description form-text">{wiki}{$forum_info.description}{/wiki}</div>
 	{/if}
 
-	<div class="t_navbar mb-3">
+	<div class="t_navbar mb-4">
 		{assign var=thisforum_info value=$forum_info.forumId}
 		{if ($tiki_p_forum_post_topic eq 'y' and ($prefs.feature_wiki_discuss ne 'y' or $prefs.$forumId ne $prefs.wiki_forum_id)) or $tiki_p_admin_forum eq 'y'}
 			{if !isset($comments_threadId) or $comments_threadId eq 0}
@@ -384,7 +384,7 @@
 		</div> <!-- end forumpost -->
 	{/if}
 	{if $prefs.feature_forum_content_search eq 'y' and $prefs.feature_search eq 'y'}
-		<div class="row mb-3">
+		<div class="row mb-4">
 		<div class="col-md-5 col-md-offset-7">
 			<form id="search-form" class="form" role="form" method="get" action="tiki-search{if $prefs.feature_forum_local_tiki_search eq 'y'}index{else}results{/if}.php">
 				<div class="form-group row">

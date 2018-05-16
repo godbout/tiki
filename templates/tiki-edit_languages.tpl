@@ -1,6 +1,6 @@
 {* $Id$ *}
 {title admpage="i18n"}{tr}Edit languages{/tr}{/title}
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{if $smarty.session.interactive_translation_mode eq 'on'}
 		{button href="tiki-interactive_trans.php?interactive_translation_mode=off" _text="{tr}Turn off interactive translation{/tr}" _ajax="n"}
 	{else}

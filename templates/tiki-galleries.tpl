@@ -24,7 +24,7 @@
 				<div class="highlight"><em class='mandatory_note'>{tr}A category is mandatory{/tr}</em></div>
 			{/remarksbox}
 		{/if}
-		<div class="mb-3">
+		<div class="mb-4">
 			{if $individual eq 'y'}
 				{permission_link mode=link type="image gallery" permType="image galleries" id=$galleryId title=$name label="{tr}There are individual permissions set for this gallery{/tr}"}
 			{/if}

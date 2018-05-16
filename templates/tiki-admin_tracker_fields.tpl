@@ -7,7 +7,7 @@
 
 {block name="navigation"}
 	{assign var='title' value="{tr}Admin Tracker:{/tr} "|cat:$tracker_info.name|escape}
-	<div class="t_navbar mb-3">
+	<div class="t_navbar mb-4">
 		<div class="btn-group">
 			<a href="{service controller=tracker action=add_field trackerId=$trackerId}" class="btn btn-primary add-field">{icon name="create"} {tr}Add Field{/tr}</a>
 			<a href="{bootstrap_modal controller=tracker action=import_fields trackerId=$trackerId}" class="btn btn-primary">{icon name="import"} {tr}Import Fields{/tr}</a>

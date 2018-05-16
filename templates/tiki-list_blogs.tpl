@@ -1,7 +1,7 @@
 {* $Id$ *}
 {title help="Blogs" admpage="blogs"}{tr}Blogs{/tr}{/title}
 
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{if $tiki_p_create_blogs eq 'y' or $tiki_p_blog_admin eq 'y'}
 		<div class="pull-left">
 			{button href="tiki-edit_blog.php" _icon_name="create" _text="{tr}Create Blog{/tr}" _type="link" class="btn btn-link"}

@@ -1,7 +1,7 @@
 {* $Id$ *}
 <form class="form-horizontal" action="tiki-admin.php?page=general" class="admin" method="post">
 	{ticket}
-	<div class="t_navbar mb-3">
+	<div class="t_navbar mb-4">
 		{button _class="btn btn-link tips" _type="text" href="tiki-install.php" _icon_name="database" _text="{tr}Tiki installer{/tr}" _title=":{tr}Reset or upgrade your database{/tr}"}
 		{button _class="btn btn-link tips" _type="text" href="tiki-admin_menus.php" _icon_name="menu" _text="{tr}Menus{/tr}" _title=":{tr}Create and edit menus{/tr}"}
 		{button _class="btn btn-link tips" _type="text" href="tiki-admin.php?page=general&amp;forcecheck=1" _icon_name="search" _text="{tr}Check for updates now{/tr}" _title=":{tr}Check for updates now{/tr}"}

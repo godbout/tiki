@@ -5,7 +5,7 @@
 {/block}
 {block name="navigation"}
 	{if $tiki_p_edit_languages}
-		<div class="t_navbar mb-3 clearfix">
+		<div class="t_navbar mb-4 clearfix">
 			<a class="btn btn-link tips" href="{service controller=language action=upload language={$language}}" title="{tr}Upload Translations{/tr}:{tr}Upload a file with translations for the selected language.{/tr}">
 				{icon name="upload"} {tr}Upload Translations{/tr}
 			</a>

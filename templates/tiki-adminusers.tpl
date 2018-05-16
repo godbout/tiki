@@ -12,7 +12,7 @@
 {if !$ts.ajax}
 	{title help="Users Management" admpage="login" url="tiki-adminusers.php"}{tr}Admin Users{/tr}{/title}
 
-	<div class="t_navbar mb-3">
+	<div class="t_navbar mb-4">
 		{if $tiki_p_admin eq 'y'} {* only full admins can manage groups, not tiki_p_admin_users *}
 			{button href="tiki-admingroups.php" class="btn btn-primary" _type="link" _icon_name="group" _text="{tr}Admin Groups{/tr}"}
 		{/if}

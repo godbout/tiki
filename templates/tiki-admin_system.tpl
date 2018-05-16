@@ -6,7 +6,7 @@
 {/remarksbox}
 
 <h2>{tr}Clear cached content{/tr}</h2>
-<div class="text-center mb-3">
+<div class="text-center mb-4">
 	<a href="tiki-admin_system.php?do=all" class="btn btn-secondary" title="{tr}Empty{/tr}">{icon name="trash"} {tr}Clear all caches{/tr}</a>
 </div>
 <table class="table table-striped table-hover">

@@ -2,7 +2,7 @@
 
 {title help="Permissions"}{if $objectType eq 'global'}{tr}Assign global permissions{/tr}{else}{tr}Assign permissions to {/tr}{$objectType}: {$objectName}{/if}{/title}
 
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{if !empty($referer)}{button href="$referer" _class="btn btn-link" _type="link" _icon_name="back" _text="{tr}Back{/tr}"}{/if}
 	{if $tiki_p_admin eq 'y'} {* only full admins can manage groups, not tiki_p_admin_users *}
 		{button href="tiki-admingroups.php" class="btn btn-link" _type="link" _icon_name="group" _text="{tr}Admin Groups{/tr}"}

@@ -1,6 +1,6 @@
 {title}{tr}Stats for survey:{/tr} {$survey_info.name}{/title}
 
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{self_link print='y' _icon_name='print' hspace='1' _class='tips pull-right' _title=":{tr}Print{/tr}"}
 	{/self_link}
 	{button href="tiki-list_surveys.php" class="btn btn-primary" _icon_name='list' _text="{tr}List Surveys{/tr}"}

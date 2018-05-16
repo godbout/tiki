@@ -57,7 +57,7 @@
 				</div>
 			</fieldset>
 
-			<fieldset class="mb-3 featurelist">
+			<fieldset class="mb-4 featurelist">
 				<legend>{tr}Plugins{/tr}</legend>
 				{preference name=wikiplugin_showreference}
 				{preference name=wikiplugin_addreference}

@@ -1,6 +1,6 @@
 {* $Id$ *}
 {title admpage="articles" help="Articles"}{tr}Article Topics{/tr}{/title}
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{if $tiki_p_admin eq 'y' or $tiki_p_admin_cms eq 'y'}
 		{button href="tiki-list_articles.php" _type="link" _icon_name="list" _text="{tr}List Articles{/tr}"}
 		{button href="tiki-article_types.php" _type="link" _icon_name="structure" _text="{tr}Article Types{/tr}"}

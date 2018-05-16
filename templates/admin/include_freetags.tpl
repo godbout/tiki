@@ -1,6 +1,6 @@
 <form class="form-horizontal" action="tiki-admin.php?page=freetags" method="post">
 	{ticket}
-	<div class="t_navbar mb-3">
+	<div class="t_navbar mb-4">
 		<a role="link" class="btn btn-link tips" href="tiki-browse_freetags.php" title="{tr}Tags listing{/tr}">
 			{icon name="list"} {tr}Browse Tags{/tr}
 		</a>

@@ -142,7 +142,7 @@
 	{/jq}
 {/if}
 	<h3>{tr}Watches{/tr}</h3>
-	<form class="form-horizontal mb-3" action="tiki-user_watches.php" method="post" id='formi'>
+	<form class="form-horizontal mb-4" action="tiki-user_watches.php" method="post" id='formi'>
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="event">{tr}Show:{/tr}</label>
 

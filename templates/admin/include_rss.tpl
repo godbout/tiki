@@ -3,7 +3,7 @@
 {/remarksbox}
 <form class="form-horizontal" action="tiki-admin.php?page=rss" method="post">
 	{ticket}
-	<div class="t_navbar mb-3 clearfix">
+	<div class="t_navbar mb-4 clearfix">
 		<a role="button" class="btn btn-link" href="tiki-admin_rssmodules.php" title="{tr}List{/tr}">
 			{icon name="list"} {tr}External Feeds{/tr}
 		</a>

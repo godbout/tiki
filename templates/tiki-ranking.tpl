@@ -1,12 +1,12 @@
 {title}{tr}Rankings{/tr}{/title}
 	<form action="{$rpage}" method="post" class="form-inline" role="form">
 		<div class="form-group">
-			<select name="which" class="form-control mr-3 mb-3">
+			<select name="which" class="form-control mr-3 mb-4">
 				{section name=ix loop=$allrankings}
 					<option value="{$allrankings[ix].value|escape}" {if $which eq $allrankings[ix].value}selected="selected"{/if}>{$allrankings[ix].name}</option>
 				{/section}
 			</select>
-			<select name="limit" class="form-control mr-3 mb-3">
+			<select name="limit" class="form-control mr-3 mb-4">
 				<option value="10" {if $limit eq 10}selected="selected"{/if}>{tr}Top 10{/tr}</option>
 				<option value="20" {if $limit eq 20}selected="selected"{/if}>{tr}Top 20{/tr}</option>
 				<option value="50" {if $limit eq 50}selected="selected"{/if}>{tr}Top 50{/tr}</option>
@@ -15,7 +15,7 @@
 		</div>
 
 		{if $categIdstr}<input type="hidden" name="categId" value="{$categIdstr}">{/if}
-		<input type="submit" class="btn btn-primary mb-3" name="selrank" value="{tr}View{/tr}">
+		<input type="submit" class="btn btn-primary mb-4" name="selrank" value="{tr}View{/tr}">
 	</form>
 
 {section name=ix loop=$rankings}

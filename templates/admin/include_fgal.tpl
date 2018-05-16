@@ -33,7 +33,7 @@
 			<div class="adminoptionboxchild fgal_use_db_childcontainer n">
 				{preference name='fgal_use_dir'}
 			</div>
-			<div class="col-sm-8 col-sm-offset-4 mb-3">
+			<div class="col-sm-8 col-sm-offset-4 mb-4">
 				<button role="button" type="submit" class="btn btn-primary timeout" name="move" value="to_fs">
 					{tr}Move files from database to directory{/tr}
 				</button>

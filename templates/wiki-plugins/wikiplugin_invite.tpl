@@ -22,7 +22,7 @@
 			</select>
 		</div>
 	</div>
-	<div class="text-center mb-3">
+	<div class="text-center mb-4">
 		<input type="submit" class="btn btn-primary" name="invite" value="{tr}Invite{/tr}">
 	</div>
 </form>

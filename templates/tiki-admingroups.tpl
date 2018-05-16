@@ -2,7 +2,7 @@
 
 {title help="Groups Management" admpage="login"}{tr}Admin groups{/tr}{/title}
 {if !$ts.ajax}
-	<div class="t_navbar mb-3">
+	<div class="t_navbar mb-4">
 		{button href="tiki-adminusers.php" class="btn btn-primary" _type="link" _icon_name="user" _text="{tr}Admin Users{/tr}"}
 		{button href="tiki-admingroups.php?clean=y" class="btn btn-link" _type="link" _icon_name="trash" _text="{tr}Clear cache{/tr}"}
 		{if $groupname}

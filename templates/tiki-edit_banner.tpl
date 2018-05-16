@@ -1,11 +1,11 @@
 {* $Id$ *}
 {title help="Banners"}{tr}Create or edit banners{/tr}{/title}
 
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{button href="tiki-list_banners.php" _class="btn btn-link" _type="link" _icon_name="list" _text="{tr}List banners{/tr}"}
 </div>
 
-<form action="tiki-edit_banner.php" method="post" enctype="multipart/form-data" class="form-horizontal mb-3">
+<form action="tiki-edit_banner.php" method="post" enctype="multipart/form-data" class="form-horizontal mb-4">
 	<input type="hidden" name="bannerId" value="{$bannerId|escape}">
 	<div class="card">
 		<div class="card-body">

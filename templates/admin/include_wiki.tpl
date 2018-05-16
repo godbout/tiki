@@ -7,7 +7,7 @@
 	{ticket}
 	<div class="heading input_submit_container text-right">
 	</div>
-	<div class="t_navbar mb-3 clearfix">
+	<div class="t_navbar mb-4 clearfix">
 		{button _icon_name='admin_wiki' _text="{tr}Pages{/tr}" _type="link" _class='btn btn-link' _script='tiki-listpages.php' _title="{tr}List wiki pages{/tr}"}
 		{if $prefs.feature_wiki_structure eq "y" and $tiki_p_view eq "y"}
 			{button _icon_name='structure' _text="{tr}Structures{/tr}" _type="link" _class='btn btn-link' _script='tiki-admin_structures.php' _title="{tr}List structures{/tr}"}

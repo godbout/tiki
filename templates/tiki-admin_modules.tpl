@@ -3,7 +3,7 @@
 {strip}
 {title help="Modules" admpage="module"}{tr}Admin Modules{/tr}{/title}
 
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{button href="tiki-admin_modules.php?clear_cache=1" _icon_name="trash" _text="{tr}Clear Cache{/tr}"}&nbsp;
 	{if empty($smarty.request.show_hidden_modules)}
 		{button show_hidden_modules="y" _icon_name="ok" _text="{tr}Show hidden modules{/tr}"}
@@ -52,7 +52,7 @@
 			</legend>
 		{/if}
 		<h2>{tr}Assigned Modules{/tr}</h2>
-		<div class="mb-3">
+		<div class="mb-4">
 			{button edit_assign=0 cookietab=2 _auto_args="edit_assign,cookietab" _text="{tr}Add module{/tr}"}
 		</div>
 

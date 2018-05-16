@@ -64,10 +64,10 @@
 {if is_array($fgal_listing_conf) and count($fgal_listing_conf) gt 0}
 	{foreach key=key item=item from=$fgal_listing_conf}
 		<div class="form-group row">
-			<label class="col-sm-4 col-form-label mb-3" for="fgal_list_{$key}">
+			<label class="col-sm-4 col-form-label mb-4" for="fgal_list_{$key}">
 				{$item.name}
 			</label>
-			<div class="col-sm-8 mb-3">
+			<div class="col-sm-8 mb-4">
 				<select id="fgal_list_{$key}" name="fgal_list_{$key}" class="form-control">
 					{if $key eq 'name' or $key eq 'name_admin'}
 						<option value="a"{if isset($item.value) and $item.value eq 'a'} selected="selected"{/if}>

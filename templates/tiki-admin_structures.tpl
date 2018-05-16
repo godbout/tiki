@@ -2,7 +2,7 @@
 {title help="Structures"}{tr}Structures{/tr}{/title}
 
 {if $tiki_p_admin eq 'y'}
-	<div class="t_navbar mb-3">
+	<div class="t_navbar mb-4">
 		<a role="link" href="tiki-import_xml_zip.php" class="btn btn-link" title="{tr}XML Zip Import{/tr}">
 			{icon name="zip"} {tr}XML Zip Import{/tr}
 		</a>

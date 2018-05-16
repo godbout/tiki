@@ -1,6 +1,6 @@
 {title help="Newsletters"}{tr}Sent editions{/tr}{if $nl_info}: {$nl_info.name}{/if}{/title}
 
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{if $tiki_p_list_newsletters eq "y"}
 		{button href="tiki-newsletters.php" class="btn btn-primary" _text="{tr}List Newsletters{/tr}"}
 	{/if}

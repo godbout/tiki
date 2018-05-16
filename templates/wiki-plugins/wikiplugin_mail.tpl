@@ -10,7 +10,7 @@
 	{/remarksbox}
 {/if}
 {if $preview}
-	<form method="post" class="mb-3">
+	<form method="post" class="mb-4">
 		<h3>{tr}Message preview:{/tr}</h3>
 		<ul>
 			<li>{tr}Number of Recipients:{/tr} {$nbTo}</li>

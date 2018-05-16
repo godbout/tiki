@@ -8,7 +8,7 @@
 		{tr}Edit article{/tr}
 	{/if}
 {/title}
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{button href="tiki-list_articles.php" _type="link" class="btn btn-link" _icon_name="list" _text="{tr}List Articles{/tr}"}
 	{button href="tiki-view_articles.php" _type="link" class="btn btn-link" _icon_name="articles" _text="{tr}View Articles{/tr}"}
 </div>

@@ -9,14 +9,14 @@
 			{$percentage}%
 		</div>
 	</div>
-	<div class="mb-3">
+	<div class="mb-4">
 [{$messu_sent_number} / {$prefs.messu_sent_size}] {tr}messages{/tr}. {if $messu_sent_number ge $prefs.messu_sent_size}{tr}Sent box is full. Archive or delete some sent messages first if you want to send more messages.{/tr}{/if}
 </div>
 {/if}
 
 
 
-<form class="form-inline mb-3" action="messu-sent.php" method="get">
+<form class="form-inline mb-4" action="messu-sent.php" method="get">
 	<div class="form-group row">
 	<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
 	<select name="flags" id="mess-mailmessages" class="form-control">

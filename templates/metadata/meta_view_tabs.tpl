@@ -1,6 +1,6 @@
 {* $Id$ *}
 
-<div class="mb-3">
+<div class="mb-4">
 	<em>{tr}Read-only metadata extracted from the file.{/tr}</em>
 	{if isset($metarray.basiconly) and $metarray.basiconly}
 		<span>

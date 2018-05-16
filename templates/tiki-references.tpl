@@ -10,7 +10,7 @@
 	{$liend = ''}
 {/if}
 {title help="References" admpage="wiki" url="tiki-references.php"}{tr}References{/tr}{/title}
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	{if isset($referenceinfo.ref_id)}
 		{button href="?add=1" class="btn btn-primary" _text="{tr}Add a new library reference{/tr}"}
 	{/if}

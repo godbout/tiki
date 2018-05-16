@@ -1,6 +1,6 @@
 {title help="i18n" admpage="i18n"}{tr}Translate:{/tr} {$name}{if isset($languageName)} ({$languageName}, {$langpage}){/if}{/title}
 
-<div class="t_navbar mb-3 clearfix">
+<div class="t_navbar mb-4 clearfix">
 	{if $type eq 'wiki page'}
 		{assign var=thisname value=$name|escape:'url'}
 		{button href="tiki-index.php?page=$thisname&no_bl=y" _text="{tr}View Page{/tr}" _icon_name="view" _class="btn btn-link"}

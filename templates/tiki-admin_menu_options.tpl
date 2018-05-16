@@ -1,7 +1,7 @@
 {* $Id$ *}
 {title help="Menus" url="tiki-admin_menu_options.php?menuId=$menuId" admpage="general&amp;cookietab=3"}{tr}Menu{/tr}: {$editable_menu_info.name}{/title}
 
-<div class="t_navbar mb-3">
+<div class="t_navbar mb-4">
 	<a class="btn btn-link" href="tiki-admin_menus.php">
 		{icon name="list"} {tr}List Menus{/tr}
 	</a>
@@ -26,7 +26,7 @@
 	<div>
 		<h2>{tr}Menu options{/tr} <span class="badge badge-secondary">{$cant_pages}</span></h2>
 
-		<div class="navbar mb-3 clearfix">
+		<div class="navbar mb-4 clearfix">
 			{button _text='{tr}Save Options{/tr}' _class='save_menu  btn btn-sm disabled pull-left mb-2' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
 			<ol class="new-option col-sm-12">
 				<li id="node_new" class="clearfix new">

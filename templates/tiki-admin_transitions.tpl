@@ -41,7 +41,7 @@
 						{/foreach}
 					{/if}
 				</ul>
-				<div class="form-row align-items-center mb-3">
+				<div class="form-row align-items-center mb-4">
 					<label class="col-auto col-form-label" for="transition-group-auto">{tr}Add Group{/tr}</label>
 					<div class="col-auto">
 						<input class="form-control" type="text" id="transition-group-auto">
