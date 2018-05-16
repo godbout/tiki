@@ -58,7 +58,7 @@ if (jqueryTiki.no_cookie) {
 					<fieldset>
 						<legend>{tr}Switch User{/tr}</legend>
 						<div class="form-group row mx-0">
-							<label for="login-switchuser_{$module_logo_instance}">
+							<label class="col-form-label" for="login-switchuser_{$module_logo_instance}">
 								{if $prefs.login_is_email eq 'y'}
 									{if $prefs.login_is_email_obscure eq 'n'}
 										{tr}Email:{/tr}
