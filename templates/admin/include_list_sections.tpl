@@ -7,7 +7,7 @@
 	{tr}See <strong>more options</strong> after you enable more <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Preference+Filters'>Preference Filters</a> above ({icon name="filter"}){/tr}.
 {/remarksbox}
 
-<div class="clearfix">
+<div class="d-flex align-content-start flex-wrap">
 	{foreach from=$admin_icons key=page item=info}
 			{if $info.disabled}
 				{assign var=class value="admbox advanced btn btn-primary disabled"}
