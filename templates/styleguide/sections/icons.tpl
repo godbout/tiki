@@ -25,12 +25,16 @@
                 <p class="picker" data-selector=".style-guide .icons .fa" data-element="background-color">
                     <label for="sg-icon-bg-color">Background:</label>
                     <input id="sg-icon-bg-color" data-selector=".style-guide .icons .fa" data-element="background-color" type="text">
-					<span class="input-group-addon"><i></i></span>
+                    <div class="input-group-append">
+    					<span class="input-group-text"><i></i></span>
+                    </div>
                 </p>
                 <p class="picker" data-selector=".style-guide .icons .fa" data-element="color">
                     <label for="sg-icon-color">Foreground:</label>
                     <input id="sg-icon-color" data-selector=".style-guide .icons .fa" data-element="color" type="text">
-					<span class="input-group-addon"><i></i></span>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i></i></span>
+                    </div>
                 </p>
                 <p>
                     <label for="sg-icon-size">Font size:</label>

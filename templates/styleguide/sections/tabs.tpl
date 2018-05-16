@@ -43,7 +43,9 @@
 				<p class="picker" data-selector=".style-guide .nav-tabs > li:not(.active) > a" data-element="color">
 					<label for="sg-tab-color">Tab text color:</label>
 					<input id="sg-tab-color" data-selector=".style-guide .nav-tabs > li:not(.active) > a" data-element="color" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p>
 					<label for="sg-tab-margin">Tab margin:</label>

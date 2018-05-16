@@ -75,17 +75,23 @@
 				<p class="picker" data-selector=".style-guide .navbar-default" data-element="border-color">
 					<label for="sg-navbar-border-color">Border:</label>
 					<input id="sg-navbar-border-color" data-selector=".style-guide .navbar-default" data-element="border-color" data-var="$navbar-default-border" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p class="picker" data-selector=".style-guide .navbar-default .navbar-nav > li > a" data-element="color">
 					<label for="sg-navbar-link-color">Text color:</label>
 					<input id="sg-navbar-link-color" data-selector=".style-guide .navbar-default .navbar-nav > li > a" data-element="color" data-var="$navbar-default-link-color" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p class="picker" data-selector=".style-guide .navbar-default .navbar-nav > .active > a" data-element="background-color">
 					<label for="sg-navbar-active-link-color">Active menu:</label>
 					<input id="sg-navbar-active-link-color" data-selector=".style-guide .navbar-default .navbar-nav > .active > a" data-element="background-color" data-var="$navbar-default-link-active-bg" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p>
 					<label for="sg-navbar-border-radius">Border radius:</label>

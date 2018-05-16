@@ -58,17 +58,23 @@
 				<p class="picker" data-selector=".form-control" data-element="background-color">
 					<label for="sg-field-bg-color">Background:</label>
 					<input id="sg-field-bg-color" data-selector=".form-control" data-element="background-color" data-var="@input-bg" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p class="picker" data-selector=".form-control" data-element="border-color">
 					<label for="sg-field-border-color">Border:</label>
 					<input id="sg-field-border-color" data-selector=".form-control" data-element="border-color" data-var="@input-border" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p class="picker" data-selector=".form-control" data-element="color">
 					<label for="sg-field-text-color">Text:</label>
 					<input id="sg-field-text-color" data-selector=".form-control" data-element="color" data-var="@input-color" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p>
 					<label for="sg-field-padding">Padding:</label>

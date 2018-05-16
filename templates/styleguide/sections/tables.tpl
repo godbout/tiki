@@ -51,16 +51,23 @@
 				<p class="picker" data-selector=".table-striped > tbody > tr:nth-of-type(odd)" data-element="background-color">
 					<label for="sg-striped-bgcolor-odd">Bg (odd rows):</label>
 					<input id="sg-striped-bgcolor-odd" data-selector=".table-striped > tbody > tr:nth-of-type(odd)" data-element="background-color" data-var="@table-bg-accent" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>>
 				</p>
 				<p class="picker" data-selector=".table-striped > tbody > tr:nth-of-type(even)" data-element="background-color">
 					<label for="sg-striped-bgcolor-even">Bg (even rows):</label>
 					<input id="sg-striped-bgcolor-even" data-selector=".table-striped > tbody > tr:nth-of-type(even)" data-element="background-color" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 				<p class="picker" data-selector="table tr" data-element="color">
 					<label for="sg-table-color">Text color:</label>
-					<input id="sg-table-color" data-selector="table tr" data-element="color" type="text"><span class="input-group-addon"><i></i></span>
+					<input id="sg-table-color" data-selector="table tr" data-element="color" type="text">
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>
 				</p>
 			</div>
 		</div>
@@ -112,7 +119,9 @@
 				<p class="picker" data-selector=".table-bordered tr" data-element="background-color">
 					<label for="sg-bordered-bgcolor">Background:</label>
 					<input id="sg-bordered-bgcolor" data-selector=".table-bordered tr" data-element="background-color" data-var="@table-bg" type="text">
-					<span class="input-group-addon"><i></i></span>
+					<div class="input-group-append">
+						<span class="input-group-text"><i></i></span>
+					</div>>
 				</p>
 				<p>
 					<label for="sg-cells-border">Border:</label>
