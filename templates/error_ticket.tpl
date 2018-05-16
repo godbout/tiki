@@ -21,7 +21,7 @@
 					</div>
 					<div class="card-body">
 						<p>{$msg}</p>
-						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="mb-1">
+						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="mb-3">
 							{foreach key=k item=i from=$post}
 								<input type="hidden" name="{$k}" value="{$i|escape}">
 							{/foreach}
@@ -39,7 +39,7 @@
 					</div>
 					<div class="card-body">
 						<p>{$msg}</p>
-						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="mb-1">
+						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="mb-3">
 							{foreach key=k item=i from=$post}
 								<input type="hidden" name="{$k}" value="{$i|escape}">
 							{/foreach}
@@ -60,7 +60,7 @@
 					</div>
 					<div class="card-body">
 						<p>{$msg}</p>
-						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="mb-1">
+						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="mb-3">
 							{foreach key=k item=i from=$post}
 								<input type="hidden" name="{$k}" value="{$i|escape}">
 							{/foreach}
@@ -81,7 +81,7 @@
 					</div>
 					<div class="card-body">
 						<p>{$msg}</p>
-						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="mb-1">
+						<form action="{$self}{if $query}?{$query|escape}{/if}" method="post" class="mb-3">
 							{foreach key=k item=i from=$post}
 								<input type="hidden" name="{$k}" value="{$i|escape}">
 							{/foreach}

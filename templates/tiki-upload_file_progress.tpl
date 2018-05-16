@@ -48,7 +48,7 @@
 		{else}
 		<div>
 		{/if}
-			<div class="mb-1" style="margin-top: 1em;">
+			<div class="mb-3" style="margin-top: 1em;">
 			{button href="#" _onclick="javascript:flip('uploadinfos$fileId');flip('close_uploadinfos$fileId','inline');return false;" _text="{tr}Syntax Tips{/tr}"}
 			<span id="close_uploadinfos{$fileId}" style="display:none">
 				{button href="#" _onclick="javascript:flip('uploadinfos$fileId');flip('close_uploadinfos$fileId','inline');return false;" _text="({tr}Hide{/tr})"}

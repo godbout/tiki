@@ -134,7 +134,7 @@
 	{if $prefs.feature_freetags eq 'y' and $tiki_p_view_freetags eq 'y' and $prefs.freetags_show_middle eq 'y'
 		and !$thread_info.topic.threadId}
 		{include file='freetag_list.tpl'}
-		<div class="text-right mb-1">
+		<div class="text-right mb-3">
 			{wikiplugin _name="addfreetag" object="forum post:$comments_parentId"}{/wikiplugin}
 		</div>
 	{/if}

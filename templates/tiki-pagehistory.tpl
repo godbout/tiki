@@ -132,7 +132,7 @@
 				{/if}
 			</div>
 			{if $prefs.feature_multilingual eq 'y' and $tiki_p_edit eq 'y'}
-				<div class="col-sm-6 pull-left mb-1">
+				<div class="col-sm-6 pull-left mb-3">
 					<div class="input-group input-group-sm">
 						<span class="input-group-append">
 							{icon name='admin_i18n' class='tips' title=":{tr}Translation{/tr}"}

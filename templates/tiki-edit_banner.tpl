@@ -11,13 +11,13 @@
 		<div class="card-body">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}URL to link the banner{/tr}</label>
-				<div class="col-sm-7 mb-1">
+				<div class="col-sm-7 mb-3">
 					<input type="text" name="url" value="{$url|escape}" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Client{/tr}</label>
-				<div class="col-sm-7 mb-1">
+				<div class="col-sm-7 mb-3">
 					{user_selector user=$client name='client'}
 				</div>
 			</div>
@@ -202,7 +202,7 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Movie URL{/tr}</label>
-				<div class="col-sm-7 mb-1">
+				<div class="col-sm-7 mb-3">
 					<input type="text" name="movieUrl" value="{$movie.movie|escape}" class="form-control">
 				</div>
 			</div>
@@ -223,7 +223,7 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}FlashPlugin min version{/tr}</label>
-				<div class="col-sm-7 mb-1">
+				<div class="col-sm-7 mb-3">
 					<input type="text" name="movieVersion" value="{$movie.version|escape}" class="form-control">
 					<div class="form-text">
 						({tr}ex:{/tr}9.0.0)

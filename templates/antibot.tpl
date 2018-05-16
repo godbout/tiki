@@ -6,7 +6,7 @@
 	{else}
 		{$inputclass = 'col-md-9'}
 	{/if}
-	{$captchaclass = 'col-sm-4 col-sm-offset-3 mb-1'}
+	{$captchaclass = 'col-sm-4 col-sm-offset-3 mb-3'}
 	{if $form === 'register'}
 		{$labelclass = 'col-md-4 col-sm-3'}
 		{$inputclass = 'col-md-4 col-sm-6'}

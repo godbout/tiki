@@ -57,19 +57,19 @@
 			<div id="general" style="display:none;">
 				<label class="col-form-label col-sm-3">{tr}Name:{/tr}</label>
 				<div class="col-sm-9">
-					<input type="text" name=quiz.name id="quiz-name" value="{$quiz->name|escape}" size="60" class="form-control mb-1">
+					<input type="text" name=quiz.name id="quiz-name" value="{$quiz->name|escape}" size="60" class="form-control mb-3">
 				</div>
 				<label class="col-form-label col-sm-3">{tr}Description:{/tr}</label>
 				<div class="col-sm-9">
-					<input type="text" name=quiz.description id="quiz-desc" value="{$quiz->description|escape}" size="60" class="form-control mb-1">
+					<input type="text" name=quiz.description id="quiz-desc" value="{$quiz->description|escape}" size="60" class="form-control mb-3">
 				</div>
 				<label class="col-form-label col-sm-3">{tr}Publication Date{/tr}</label>
-				<div class="col-sm-9 mb-1">
+				<div class="col-sm-9 mb-3">
 					{html_select_date prefix="quiz_publish_" time=$quiz->datePub start_year="-5" end_year="+10" field_order=$prefs.display_field_order}
 					{tr}at {/tr}{html_select_time prefix="quiz_publish_" time=$quiz->datePub display_seconds=false use_24_hours=$use_24hr_clock} HRS&nbsp;{$tpl.siteTimeZone}
 				</div>
 				<label class="col-form-label col-sm-3">{tr}Expiration Date{/tr}</label>
-				<div class="col-sm-9 mb-1">
+				<div class="col-sm-9 mb-3">
 					{html_select_date prefix="quiz_expire_" time=$quiz->dateExp start_year="-5" end_year="+10" field_order=$prefs.display_field_order}
 					{tr}at {/tr}{html_select_time prefix="quiz_expire_" time=$quiz->dateExp display_seconds=false use_24_hours=$use_24hr_clock} HRS&nbsp;{$tpl.siteTimeZone}
 				</div>

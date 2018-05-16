@@ -52,7 +52,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="filter-categories">{tr}Categories{/tr}</label>
 				<div class="col-sm-4">
-					<a class="category-lookup btn btn-primary mb-1" href="#">{tr}Lookup{/tr}</a>
+					<a class="category-lookup btn btn-primary mb-3" href="#">{tr}Lookup{/tr}</a>
 					<input type="text" name="filter~categories" id="filter-categories" class="category-wizard form-control" value="{$filter_categories|escape}">
 				</div>
 				<div class="col-sm-5 checkbox">

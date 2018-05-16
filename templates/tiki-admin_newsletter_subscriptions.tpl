@@ -199,7 +199,7 @@
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Email{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<textarea cols="70" rows="6" wrap="soft" name="email" class="form-control"></textarea>
 					<div class="small-hint">
 						{tr}You can add several email addresses by separating them with commas.{/tr}
@@ -208,7 +208,7 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}User{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<select name="subuser" class="form-control">
 						<option value="">---</option>
 						{foreach key=id item=one from=$users}
@@ -219,23 +219,23 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Add email{/tr}</label>
-				<div class="col-sm-3 col-sm-offset-1 mb-1">
+				<div class="col-sm-3 col-sm-offset-1 mb-3">
 					<input type="radio" name="addemail" value="y">
 				</div>
 				<label class="col-sm-2 col-form-label">{tr}Add user{/tr}</label>
-				<div class="col-sm-3 mb-1">
+				<div class="col-sm-3 mb-3">
 					<input type="radio" name="addemail" value="n" checked="checked">
 				</div>
 			</div>
 			<div class="form-check">
 				<label class="col-sm-3 form-check-label">{tr}All users{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="checkbox" class="form-check-input" name="addall">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Users from group{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<select name="group" class="form-control">
 						<option value="">---</option>
 						{section name=x loop=$groups}
@@ -250,7 +250,7 @@
 			{if $nl_info.validateAddr eq "y"}
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Don't send confirmation email{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="checkbox" name="confirmEmail" checked="checked">
 					<div class="small-hint">
 						{tr}The user email will be refreshed at each newsletter sending{/tr}
@@ -260,7 +260,7 @@
 			{/if}
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
 				</div>
 			</div>
@@ -272,7 +272,7 @@
 				<input type="hidden" name="nlId" value="{$nlId|escape}">
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">{tr}File:{/tr}</label>
-					<div class="col-sm-7 col-sm-offset-1 mb-1">
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
 						<input type="file" name="batch_subscription">
 						<div class="small-hint">
 							{tr}.txt file, one email per line{/tr}
@@ -282,14 +282,14 @@
 				{if $nl_info.validateAddr eq "y"}
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">{tr}Don't send confirmation emails{/tr}</label>
-					<div class="col-sm-7 col-sm-offset-1 mb-1">
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
 						<input type="checkbox" name="confirmEmail" checked="checked">
 					</div>
 				</div>
 				{/if}
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label"></label>
-					<div class="col-sm-7 col-sm-offset-1 mb-1">
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
 						<input type="submit" class="btn btn-primary" name="addbatch" value="{tr}Add{/tr}">
 					</div>
 				</div>
@@ -299,7 +299,7 @@
 				<input type="hidden" name="nlId" value="{$nlId|escape}">
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Wiki page</label>
-					<div class="col-sm-7 col-sm-offset-1 mb-1">
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
 						<input type="text" name="wikiPageName" value="" size="60" class="form-control">
 						<div class="small-hint">
 							{tr}Wiki page, one email per line{/tr}
@@ -309,14 +309,14 @@
 				{if $nl_info.validateAddr eq "y"}
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">{tr}Don't send confirmation emails{/tr}</label>
-					<div class="col-sm-7 col-sm-offset-1 mb-1">
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
 						<input type="checkbox" name="confirmEmail" checked="checked">
 					</div>
 				</div>
 				{/if}
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label"></label>
-					<div class="col-sm-7 col-sm-offset-1 mb-1">
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
 						<input type="submit" class="btn btn-primary" name="importPage" value="{tr}Add{/tr}">
 					</div>
 				</div>
@@ -328,7 +328,7 @@
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Group{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<select name="group" class="form-control">
 						<option value="">---</option>
 						{section name=x loop=$groups}
@@ -339,7 +339,7 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Including group inheritance{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="checkbox" name="include_groups" value="y"/>
 					<div class="small-hint">
 						{tr}Including group, group users and emails will be refreshed at each newsletter sending{/tr}
@@ -348,7 +348,7 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="submit" class="btn btn-primary" name="addgroup" value="{tr}Add{/tr}">
 				</div>
 			</div>
@@ -359,7 +359,7 @@
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Newsletter:{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<select name="included" class="form-control">
 						<option value="">---</option>
 						{section name=x loop=$newsletters}
@@ -372,7 +372,7 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="submit" class="btn btn-primary" name="addincluded" value="{tr}Add{/tr}">
 				</div>
 			</div>
@@ -383,7 +383,7 @@
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Wiki page{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="text" name="wikiPageName" value="" size="60" class="form-control">
 					<div class="small-hint">
 						{tr}Emails on a wiki page which will be added at each newsletter sending, one email per line{/tr}
@@ -393,19 +393,19 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Don't send confirmation emails{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="checkbox" name="noConfirmEmail" checked="checked">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Don't subscribe emails{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="checkbox" name="noSubscribeEmail" checked="checked">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 col-sm-offset-1 mb-1">
+				<div class="col-sm-7 col-sm-offset-1 mb-3">
 					<input type="submit" class="btn btn-primary" name="addPage" value="{tr}Add{/tr}">
 				</div>
 			</div>
@@ -419,7 +419,7 @@
 		<form action="tiki-admin_newsletter_subscriptions.php" method="post" class="form-horizontal">
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
-				<div class="col-sm-12 mb-1">
+				<div class="col-sm-12 mb-3">
 					<input type="submit" class="btn btn-primary" name="export" value="{tr}Export{/tr}">
 				</div>
 			</div>

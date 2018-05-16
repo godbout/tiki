@@ -267,7 +267,7 @@
 			<div class="form-group row">
 				<label class="col-sm-4 col-form-label">{tr}Parse using{/tr}</label>
 				<div class="col-sm-6">
-					<select name="um_parse" id="um_parse" class="form-control mb-1">
+					<select name="um_parse" id="um_parse" class="form-control mb-3">
 						<option value=""{if $um_parse eq ""} selected="selected"{/if}>{tr}None{/tr}</option>
 						<option value="y"{if $um_parse eq "y"} selected="selected"{/if}>{tr}Wiki Markup{/tr}</option>
 					</select>

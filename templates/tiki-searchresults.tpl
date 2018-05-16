@@ -6,7 +6,7 @@
 
 <div class="mb-4 nohighlight">
 	{if $searchStyle neq "menu" && $prefs.feature_search_show_object_filter eq 'y'}
-		<div class="t_navbar mb-1">
+		<div class="t_navbar mb-3">
 			{tr}Search in:{/tr}
 			{foreach item=name key=k from=$where_list}
 				{button _auto_args='where,highlight' href="tiki-searchresults.php?where=$k" _selected="{if $where == $k}y{else}n{/if}" _selected_class="highlight" class="btn btn-primary" _text="$name"}

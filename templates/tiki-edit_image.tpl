@@ -21,27 +21,27 @@
 		<input type="hidden" name="galleryId" value="{$galleryId|escape}">
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Image Name{/tr}</label>
-			<div class="col-sm-7 mb-1">
+			<div class="col-sm-7 mb-3">
 				<input type="text" name="name" value="{$name|escape}" class="form-control">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Image Description{/tr}</label>
-			<div class="col-sm-7 mb-1">
+			<div class="col-sm-7 mb-3">
 				<textarea rows="5" cols="40" name="description" class="form-control">{$description|escape}</textarea>
 			</div>
 		</div>
 		{include file='categorize.tpl'}
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Upload from disk to change the image:{/tr}</label>
-			<div class="col-sm-7 mb-1">
+			<div class="col-sm-7 mb-3">
 				{$filename}
 				<input name="userfile" type="file">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label"></label>
-			<div class="col-sm-7 mb-1">
+			<div class="col-sm-7 mb-3">
 				<input type="submit" class="btn btn-primary btn-sm" name="editimage" value="{tr}Save{/tr}">
 				<input type="submit" class="btn btn-primary btn-sm" name="editimage_andgonext" value="{tr}Save and Go Next{/tr}">
 				<a class="link btn btn-primary btn-sm" href="tiki-browse_image.php?imageId={$imageId}">{tr}Cancel Edit{/tr}</a>
