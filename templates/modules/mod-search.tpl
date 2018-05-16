@@ -66,7 +66,7 @@
 
 							<div class="btn-group search_mod_buttons box" style="display:none;position:absolute;left:2.5em;top:2.5em;z-index:2;white-space:nowrap;">
 							{else}
-								<div class="input-group-btn btn-group">
+								<div class="input-group-btn btn-group mb-2">
 							{/if}
 							{foreach $smod_params.additional_filters as $key => $filter}
 								<input type="hidden" name="filter~{$key|escape}" value="{$filter|escape}"/>
@@ -93,7 +93,7 @@
 								>
 							{/if}
 							{if $smod_params.show_edit_button eq 'y' and $tiki_p_edit eq 'y'}
-								<input type = "submit" class = "btn btn-primary mb-2 tips{if $smod_params.compact eq "y"} bottom{else} btn-sm{/if}{if $smod_params.default_button eq 'edit'} btn-secondary button_default{/if}"
+								<input type = "submit" class = "btn btn-primary tips{if $smod_params.compact eq "y"} bottom{else} btn-sm{/if}{if $smod_params.default_button eq 'edit'} btn-secondary button_default{/if}"
 									name = "edit" value = "{$smod_params.edit_submit|escape}"
 									title="{tr}Edit{/tr}|{tr}Edit existing page or create a new one.{/tr}"
 									{if $smod_params.compact eq "y"}data-placement="bottom"{/if}
