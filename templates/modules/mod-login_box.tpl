@@ -39,8 +39,8 @@ if (jqueryTiki.no_cookie) {
 	{if $mode eq "header"}<div class="siteloginbar{if $user} logged-in{/if}">{/if}
 	{if $user}
 		{if empty($mode) or $mode eq "module"}
-			<div class="form-group row">{tr}Logged in as:{/tr} <span style="white-space: nowrap">{$user|userlink}</span></div>
-			<div class="text-center form-group row">
+			<div class="form-group row mx-0">{tr}Logged in as:{/tr} <span style="white-space: nowrap">&nbsp;{$user|userlink}</span></div>
+			<div class="text-center">
 				{button href="tiki-logout.php" _text="{tr}Log out{/tr}"}
 			</div>
 			{if $login_module.can_revert}
@@ -57,7 +57,7 @@ if (jqueryTiki.no_cookie) {
 					{ticket}
 					<fieldset>
 						<legend>{tr}Switch User{/tr}</legend>
-						<div class="form-group row">
+						<div class="form-group row mx-0">
 							<label for="login-switchuser_{$module_logo_instance}">
 								{if $prefs.login_is_email eq 'y'}
 									{if $prefs.login_is_email_obscure eq 'n'}
@@ -176,7 +176,7 @@ if (jqueryTiki.no_cookie) {
 				{else}{$error_login|escape}{/if}
 			{/remarksbox}
 		{/if}
-		<div class="user form-group row clearfix">
+		<div class="user form-group row mx-0 clearfix">
 			{if !isset($module_logo_instance)}{assign var=module_logo_instance value=' '}{/if}
 			<label for="login-user_{$module_logo_instance}">
 				{if $prefs.login_is_email eq 'y'}
@@ -200,7 +200,7 @@ if (jqueryTiki.no_cookie) {
 				<input class="form-control" type="hidden" name="user" id="login-user_{$module_logo_instance}" value="{$loginuser|escape}" /><b>{$loginuser|escape}</b>
 			{/if}
 		</div>
-		<div class="pass form-group row clearfix">
+		<div class="pass form-group row mx-0 clearfix">
 			<label for="login-pass_{$module_logo_instance}">{tr}Password:{/tr}</label>
 			<input onkeypress="capLock(event, this)" type="password" name="pass" class="form-control" id="login-pass_{$module_logo_instance}">
 			<div class="divCapson" style="display:none;">
@@ -211,7 +211,7 @@ if (jqueryTiki.no_cookie) {
 			{if $prefs.rememberme eq 'always'}
 				<input type="hidden" name="rme" id="login-remember-module-input_{$module_logo_instance}" value="on" />
 			{else}
-				<div class="form-group row">
+				<div class="form-group row mx-0">
 					<div class="checkbox rme">
 						<label for="login-remember-module_{$module_logo_instance}"><input type="checkbox" class="form-check-input" name="rme" id="login-remember-module_{$module_logo_instance}" value="on" />
 							{tr}Remember me{/tr}
@@ -306,7 +306,7 @@ if (jqueryTiki.no_cookie) {
 			<form method="get" action="tiki-login_openid.php">
 				<fieldset>
 					<legend>{tr}OpenID Log in{/tr}</legend>
-					<div class="form-group row">
+					<div class="form-group row mx-0">
 						<div class="input-group input-group-sm">
 							<input class="form-control" type="text" name="openid_url"/>
 							<span class="input-group-btn"><button type="submit" class="btn btn-primary" title="{tr}Go{/tr}"><img alt="{tr}OpenID Login{/tr}" class="img-circle" src="img/icons/login-OpenID-bg.gif"></button></span>
