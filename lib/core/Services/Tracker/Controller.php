@@ -36,6 +36,8 @@ class Services_Tracker_Controller
 
 		$fields = $item->prepareOutput(new JitFilter([]));
 
+		$info = TikiLib::lib('trk')->get_item_info($item->getId());
+
 		return [
 			'title' => TikiLib::lib('object')->get_title('trackeritem', $item->getId()),
 			'format' => $input->format->word(),
@@ -43,6 +45,8 @@ class Services_Tracker_Controller
 			'trackerId' => $definition->getConfiguration('trackerId'),
 			'fields' => $fields,
 			'canModify' => $item->canModify(),
+			'item_info' => $info,
+			'info' => $info,
 		];
 	}
 
