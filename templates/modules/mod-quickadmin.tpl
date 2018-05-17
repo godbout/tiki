@@ -53,7 +53,7 @@
 							{icon name="image"} {tr}Themes{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-adminusers.php">
 							{icon name="user"} {tr}Users{/tr}
 						</a>
@@ -96,7 +96,7 @@
 							{icon name="trash"} {tr}Clear all caches{/tr}
 						</a>
 					</li>
-					<li>
+					<li class="dropdown-item">
 						<a href="{bootstrap_modal controller=search action=rebuild}">
 							{icon name="index"} {tr}Rebuild search index{/tr}
 						</a>
