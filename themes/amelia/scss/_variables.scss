@@ -32,6 +32,7 @@ $theme-colors: (
 // Spacing
 // Body
 $body-bg: #108a93;
+$body-color: #fff;
 // Links
 //$link-color: lighten(theme-color("warning"), 15%);
 //$link-hover-color: $link-color;
@@ -45,6 +46,8 @@ $font-family-sans-serif: "Cabin", Arial, sans-serif;
 $headings-font-family: 'Lobster', cursive;
 
 // Tables
+$table-head-bg: #108a93;
+$table-head-color: #fff;
 // Forms
 // Dropdowns
 // Navs

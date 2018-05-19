@@ -1,6 +1,7 @@
 //  $Id$ fivealive/less/fivealive.less: compile to make
 // @import url("//fonts.googleapis.com/css?family=Lato");
 /*  The FiveAlive theme style sheet for Tiki Wiki CMS Groupware. */
+@import "variables"; // Needs to come first, to override defaults.
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/_tiki-selectors.scss";
 // Tiki non-Bootstrap CSS selectors related to color
@@ -8,4 +9,3 @@
 // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
 @import "../../base_files/scss/_external-scripts.scss";
 @import "_tiki-selectors.scss";
-@import "variables";

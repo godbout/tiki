@@ -6,6 +6,8 @@
  * Based on Bootstrap
  * Orphaned theme Adapted for Tiki Wiki CMS Groupware
 */
+
+@import "variables"; // Needs to come first, to override defaults.
 @import url('//fonts.googleapis.com/css?family=Marcellus');
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/_bootswatch_overrides.scss";
@@ -17,4 +19,3 @@
 @import "../../base_files/scss/_tiki-selectors.scss";
 @import "../../base_files/scss/_external-scripts.scss";
 @import "_tiki-selectors.scss";
-@import "variables";

@@ -58,13 +58,12 @@ $font-family-base: $font-family-sans-serif;
 $headings-font-weight: 500;
 
 //Tables
-$table-bg: #232323;
-$table-bg-accent: #292929;
+$table-bg: #4e4e4e;
+$table-bg-accent: darken(#474747,5%);
 $table-bg-hover: #555555;
 $table-bg-active: $table-bg-hover;
-
-//**Bordercolorfortableandcellborders.
-$table-border-color: #696969;
+$table-head-bg: #292929;
+$table-border-color: #292929;
 
 //Buttons
 //$btn-primary-color: #d8d8d8;
@@ -74,7 +73,7 @@ $table-border-color: #696969;
 $btn-font-weight: normal;
 
 $btn-secondary-color: #fd0006;
-$btn-secondary-bg: $btn-primary-bg;
+//$btn-secondary-bg: $btn-primary-bg;
 //$btn-secondary-border: $btn-primary-border;
 
 $btn-success-color: #ffffff;

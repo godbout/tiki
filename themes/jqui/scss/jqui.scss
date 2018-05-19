@@ -1,6 +1,7 @@
 //  $Id$ jqui/scss/jqui.scss; compile to make
 /*  jqui/css/jqui.css - the Jqui theme style sheet for Tiki Wiki CMS Groupware. */
-@import "variables";
+
+@import "variables"; // Needs to come first, to override defaults.
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two needed to prevent
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // compiling errors.
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.

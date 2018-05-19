@@ -103,17 +103,17 @@ $secondary-legend-font-size: ceil(($font-size-base * 1.35));
 
 // Plugin Pivot Table variables
 $pvt-color: $body-color;
-$pvt-bg: $body-bg;
+$pvt-bg: $table-bg;
 $pvt-font-size: $font-size-base;
 $pvt-table-bg: $table-bg;
-$pvt-table-th-bg: $panel-info-heading-bg;
-$pvt-table-th-color: $panel-info-text;
+$pvt-table-th-bg: $table-head-bg;
+$pvt-table-th-color: $table-head-color;
 $pvt-table-border-color: $table-border-color;
 $pvt-modal-content-bg: $modal-content-bg;
-$pvtAttr-color: $btn-default-color;
-$pvtFilterBox-button-color: $btn-default-color;
-$pvtFilterBox-button-bg: $btn-default-bg;
-$pvtFilterBox-button-hover-bg: adjust-hue($btn-default-bg, 10%);
+$pvtAttr-color: $btn-primary-color;
+$pvtFilterBox-button-color: $btn-primary-color;
+$pvtFilterBox-button-bg: $btn-primary-bg;
+$pvtFilterBox-button-hover-bg: adjust-hue($btn-primary-bg, 10%);
 $pvtAggregator-color: $input-color;
 $pvtAggregator-bg: $input-bg;
 $pvtAggregator-border: $input-border-color;

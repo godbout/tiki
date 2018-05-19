@@ -109,7 +109,7 @@ $legend-border-color: #e5e5e5;
 $input-group-addon-bg: $gray-900;
 $input-group-addon-border-color: $input-border-color;
 $input-focus-bg: $body-bg;
-$input-focus-border-color:              lighten(theme-color("danger"), 25%);
+//$input-focus-border-color:              lighten(theme-color("danger"), 25%); Todo: fix compile error caused by this line
 $input-focus-color:                     $input-color !default;
 $input-btn-focus-color:       rgba(theme-color("danger"), .25);
 $input-btn-focus-width:       .2rem !default;

@@ -7569,6 +7569,9 @@ button.close {
   .table-bordered th, .table-bordered td {
     border: 1px solid #dee2e6 !important; } }
 
+.topbar {
+  margin-bottom: 1.4rem; }
+
 .navbar-collapse.collapse.in {
   background: #333; }
 
@@ -7668,7 +7671,7 @@ a.fc-event:hover {
 
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0:hover > .sf-with-ul:after, .topbar .cssmenu_horiz.sf-arrows > .menuSection0.sfhover > .sf-with-ul:after {
   border-top-color: #fff; }
-/* order of following 3 rules important for fallbacks to work */
+
 .dropdown-menu .dropdown-title, .dropdown-menu li label {
   color: #2d2d2d; }
 
@@ -7720,17 +7723,17 @@ table.treetable.objectperms td.removed {
   color: #eee; }
 
 #resultzone > div:hover {
-  background: turquoise; }
+  background: #3cb521; }
 
-.searchresults blockquote em, .highlight, .btn-default.highlight a, .btn-default a.highlight {
+.searchresults blockquote em, .highlight, .btn-primary.highlight a, .btn-primary a.highlight {
   background: #cd0200;
   color: #fff;
   border-color: #9a0200; }
 
-.btn-default.highlight:hover {
+.btn-primary.highlight:hover {
   background: #810100; }
 
-.btn-default.btn-link, .btn-default.btn-link:hover {
+.btn-primary.btn-link, .btn-primary.btn-link:hover {
   background: transparent;
   border: none; }
 
@@ -7795,7 +7798,7 @@ input:-webkit-autofill {
   background-color: #fff; }
 
 #captchaImg {
-  border: 1px solid #777; }
+  border: 1px solid #dee2e6; }
 
 form.simple label.error {
   background: url("../../../img/icons/error.png") no-repeat 0 4px;
@@ -7877,14 +7880,14 @@ div.cvsup {
   color: #777; }
 
 .webmail_item {
-  border: 1px solid #777; }
+  border: 1px solid #dee2e6; }
 
 .webmail_list .odd {
   background: rgba(0, 0, 0, .05); }
 
 .webmail_list .button {
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, .125); }
+  border: 1px solid #dee2e6; }
 
 .webmail_list .webmail_read {
   background: #3399f3; }
@@ -7906,7 +7909,7 @@ div.cvsup {
   background: transparent; }
 
 .tiki_sheet table td {
-  border: 1px solid #777; }
+  border: 1px solid #dee2e6; }
 
 .odd {
   background: transparent;
@@ -7949,7 +7952,7 @@ div.cvsup {
 
 #intertrans-form {
   background-color: #fff;
-  border: 1px solid #777;
+  border: 1px solid rgba(0, 0, 0, .125);
   color: #777; }
 
 #edit_translations tr.last {
@@ -7969,7 +7972,7 @@ ul.all_languages > li {
   color: #3cb521; }
 
 .author1 {
-  color: #777; }
+  color: #3399f3; }
 
 .author2 {
   color: #3399f3; }
@@ -8002,7 +8005,7 @@ ul.all_languages > li {
   color: #42cd00; }
 
 .author12 {
-  color: #000; }
+  color: #8121b5; }
 
 .author13 {
   color: #f33359; }
@@ -8174,22 +8177,6 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
 
 .diffadded .diffchar {
   color: #4fd930; }
-
-.searchresults blockquote em.hlt1, .searchresults blockquote em.hlt6, .highlight_word_0 {
-  background: #3cb521; }
-
-.searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
-  color: #777;
-  background: #fff; }
-
-.searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
-  background: #d47500; }
-
-.searchresults blockquote em.hlt4, .searchresults blockquote em.hlt9, .highlight_word_3 {
-  background: #cd0200; }
-
-.searchresults blockquote em.hlt5, .searchresults blockquote em.hlt10, .highlight_word_4 {
-  background: #cd4600; }
 /* Structures drill-down menu */
 div.drillshow {
   border: 1px solid #dee2e6; }
@@ -8225,33 +8212,7 @@ div.drillshow {
   font-style: normal;
   font-size: 90%;
   display: block; }
-/* Todo - button styles are simpler in BS4 - got to figure it out
- // Admin
- a.admbox {
- &,
- &:visited {
- //		border: 1px solid $admbox-border; //#ccc
- //		background-color: $admbox-bg; // #cccccc;
- //		color: $admbox-color; // #333333;
- }
- &:hover,
- &:focus,
- &:active {
- //		border: 1px solid $admbox-hover-border; // #333333;
- //		background-color: $admbox-hover-bg; // #aaaaaa;
- //		color: $admbox-hover-color; //#ffffff;
- }
- &.off {
- border: 1px solid $admbox-off-border; // #a9a9a9;
- color: $admbox-off-color; // #9f9f9f;
- &:hover,
- &:focus,
- &:active {
- border: 1px solid $admbox-off-hover-border; // #a9a9a9;
- color: $admbox-off-hover-color; // #666666;
- }
- }
- }*/
+
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #fff;
   color: #777;
@@ -8283,7 +8244,7 @@ div.drillshow {
   color: #2d2d2d; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid #777; }
+  border: 1px solid rgba(0, 0, 0, .125); }
 
 .codecaption {
   display: inline-block;
@@ -8334,13 +8295,17 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   border-color: #345578;
   color: black; }
 
+.tiki .ui-widget {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem; }
+
 .tiki .pvtUi {
   color: #777; }
   .tiki table.pvtTable {
     font-size: 1rem; }
   .tiki table.pvtTable tr th {
-    background-color: #fff;
-    color: #777;
+    background-color: #eee;
+    color: #495057;
     border: 1px solid #dee2e6;
     font-size: 1rem;
     padding: 5px; }
@@ -8360,7 +8325,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     border-radius: 0.25rem; }
   .tiki .pvtAxisContainer, .tiki .pvtVals {
     border-color: #dee2e6;
-    background: #fff;
+    background: transparent;
     padding: 5px; }
   .tiki .pvtAxisContainer li.pvtPlaceholder {
     padding: 3px 15px;

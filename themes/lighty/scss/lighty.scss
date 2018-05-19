@@ -1,6 +1,7 @@
-// lighty.less
-/* Lighty theme 2017-05-16 made by BarbaraLassalle */
-@import "variables";
+// lighty.scss
+/* Lighty theme originally created by BarbaraLassalle, 2017-05-16.  */
+
+@import "variables"; // Needs to come first, to override defaults.
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two needed to prevent
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // compiling errors.
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.

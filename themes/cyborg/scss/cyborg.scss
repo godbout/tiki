@@ -8,7 +8,7 @@
  *
  * Adapted by the Tiki Community for Tiki Wiki CMS Groupware
 */
-@import "_variables.scss"; // Needs to follow _functions.scss because of containing "darken".
+@import "variables"; // Needs to come first, to override defaults.
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins.scss"; //
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two are needed to prevent...
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // ...compiling errors.

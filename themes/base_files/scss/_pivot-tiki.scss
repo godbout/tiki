@@ -74,8 +74,8 @@
 //		-webkit-border-radius: 5px;
 //		-moz-border-radius: 5px;
 //		border-radius: 5px;
-		background: $btn-default-bg;
-		border: 1px solid $btn-default-border;
+		background: $btn-primary-bg;
+		border: 1px solid $btn-primary-border;
 		border-radius: $btn-border-radius;
 		color: $pvtAttr-color;
 	}
@@ -134,7 +134,7 @@
 	}
 	.pvtFilterBox button {
 		background: $pvtFilterBox-button-bg;
-		border: 1px solid $btn-default-border;
+		border: 1px solid $btn-primary-border;
 		border-radius: $btn-border-radius;
 		color: $pvtFilterBox-button-color;
 		&:hover {

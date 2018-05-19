@@ -258,26 +258,26 @@ table.treetable.objectperms td.removed {
 }
 
 #resultzone > div:hover {
-	background: $panel-success-heading-bg;
+	background: $success;
 }
 
 // tiki-miscellaneous_global.less
 .searchresults blockquote em,
 .highlight,
-.btn-default.highlight a,
-.btn-default a.highlight {
+.btn-primary.highlight a,
+.btn-primary a.highlight {
 	background: theme-color("danger");
 	color: $white;
 	border-color: darken(theme-color("danger"), 10%);
 }
 
-.btn-default.highlight:hover {
+.btn-primary.highlight:hover {
 	background: darken(theme-color("danger"), 15%);
 }
 
 // Smarty {button} maeks .btn-default but sometimes .btn-link is added by hand. Actually Smarty {button} probably should make just .btn.
-.btn-default.btn-link,
-.btn-default.btn-link:hover {
+.btn-primary.btn-link,
+.btn-primary.btn-link:hover {
 	background: transparent;
 	border: none;
 }
@@ -367,7 +367,7 @@ input:-webkit-autofill {
 }
 
 #captchaImg {
-	border: 1px solid $panel-default-border;
+	border: 1px solid $border-color;
 }
 
 // tiki-modal_and_managestream.less
@@ -499,7 +499,7 @@ div.cvsup {
 
 // /* webmail & groupmail */
 .webmail_item {
-	border: 1px solid $panel-default-border;
+	border: 1px solid $border-color;
 }
 
 .webmail_list .odd {
@@ -508,7 +508,7 @@ div.cvsup {
 
 .webmail_list .button {
 	background: $body-bg;
-	border: 1px solid $panel-primary-border;
+	border: 1px solid $border-color;
 }
 
 .webmail_list .webmail_read {
@@ -539,7 +539,7 @@ div.cvsup {
 // tiki-sheets.less
 .tiki_sheet table td {
 	// /* override .tabcontent table td */
-	border: 1px solid $panel-default-border;
+	border: 1px solid $border-color;
 }
 
 // /* odd and even classes for tr, td, and li */
@@ -599,9 +599,9 @@ div.cvsup {
 }
 
 #intertrans-form {
-	background-color: $panel-bg;
-	border: 1px solid $panel-default-border;
-	color: $panel-default-text;
+	background-color: $card-bg;
+	border: 1px solid $card-border-color;
+	color: $body-color;
 }
 
 #edit_translations tr.last {
@@ -629,7 +629,7 @@ ul.all_languages > li {
 }
 
 .author1 {
-	color: $panel-info-text;
+	color: $info;
 }
 
 .author2 {
@@ -673,7 +673,7 @@ ul.all_languages > li {
 }
 
 .author12 {
-	color: adjust-hue($panel-success-text, 170);
+	color: adjust-hue($success, 170);
 }
 
 .author13 {
@@ -926,40 +926,40 @@ h6 a.tiki_anchor:hover {
 	color: lighten(theme-color("success"), 10%);
 }
 
-.searchresults blockquote em.hlt1,
-.searchresults blockquote em.hlt6,
-.highlight_word_0 {
+//.searchresults blockquote em.hlt1,
+//.searchresults blockquote em.hlt6,
+//.highlight_word_0 {
 //	color: theme-color("success");
-	background: theme-color("success");
-}
+//	background: theme-color("success");
+//}
 
-.searchresults blockquote em.hlt2,
-.searchresults blockquote em.hlt7,
-.highlight_word_1 {
-	color: $panel-info-text;
-	background: $panel-info-heading-bg;
-}
+//.searchresults blockquote em.hlt2,
+//.searchresults blockquote em.hlt7,
+//.highlight_word_1 {
+//	color: $info;
+//	background: $info-;
+//}
 
-.searchresults blockquote em.hlt3,
-.searchresults blockquote em.hlt8,
-.highlight_word_2 {
+//.searchresults blockquote em.hlt3,
+//.searchresults blockquote em.hlt8,
+//.highlight_word_2 {
 //	color: $panel-warning-text;
-	background: theme-color("warning");
-}
+//	background: theme-color("warning");
+//}
 
-.searchresults blockquote em.hlt4,
-.searchresults blockquote em.hlt9,
-.highlight_word_3 {
+//.searchresults blockquote em.hlt4,
+//.searchresults blockquote em.hlt9,
+//.highlight_word_3 {
 //	color: $panel-danger-text;
-	background: theme-color("danger");
-}
+//	background: theme-color("danger");
+//}
 
-.searchresults blockquote em.hlt5,
-.searchresults blockquote em.hlt10,
-.highlight_word_4 {
+//.searchresults blockquote em.hlt5,
+//.searchresults blockquote em.hlt10,
+//.highlight_word_4 {
 //	color: adjust-hue($panel-danger-text, 20);
-	background: adjust-hue(theme-color("danger"), 20);
-}
+//	background: adjust-hue(theme-color("danger"), 20);
+//}
 
 /* Structures drill-down menu */
 div.drillshow {
@@ -1035,8 +1035,8 @@ span.plugin-mouseover  {
 }
 
 .tiki .ui-widget button {
-	background: $btn-default-bg;
-	color: $btn-default-color;
+	background: $btn-primary-bg;
+	color: $btn-primary-color;
 }
 
 // Example: tracker field type "icon". Bootstrap modal with jquery-ui contents
@@ -1052,7 +1052,7 @@ span.plugin-mouseover  {
 .dropdown-menu { color: $dropdown-link-color; }
 
 .tiki .col1 .table-responsive {
-	border: 1px solid $panel-default-border;
+	border: 1px solid $card-border-color;
 }
 
 //

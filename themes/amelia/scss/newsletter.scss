@@ -2,8 +2,9 @@
 /* Amelia theme newsletter stylesheet  */
 
 @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
-@import "../../base_files/scss/newsletter.scss";
 @import "variables";
+@import "../../base_files/scss/newsletter.scss";
+
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: 'Lobster', sans-serif;

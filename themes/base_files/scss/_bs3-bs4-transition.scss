@@ -3,12 +3,6 @@
 // especially for variables that have many instances.
 
 
-//$body-bg: #fff;
-//$body-color: #000000;
-$btn-default-bg: $body-bg;
-$btn-default-border: $body-color;
-$btn-default-color: $body-color;
-
 $btn-primary-bg: $body-bg;
 $btn-primary-color: $body-color;
 $btn-primary-border: $body-color;
@@ -20,15 +14,15 @@ $btn-primary-border: $body-color;
 //$padding-x: .75rem !default;
 
 //$table-accent-bg: darken($body-bg, 2.5%);
-$panel-info-heading-bg: $body-bg; // tiki-variables.scss:123
-$panel-info-text: $body-color;
-$panel-bg: $body-bg;
-$panel-default-text: $body-color;
+//$panel-info-heading-bg: $body-bg; // tiki-variables.scss:123
+//$panel-info-text: $body-color;
+//$panel-bg: $body-bg;
+//$panel-default-text: $body-color;
 //$card-text: $body-color; // No $card-text color in BS4 - use .text-black, etc.
-$panel-success-heading-bg: turquoise; // $alert-success-bg;
+//$panel-success-heading-bg: turquoise; // $alert-success-bg;
 $alert-padding: 1.5rem; // $alert-padding-x; // Didn't see "-y"
-$navbar-dark-bg: #000; // cerulean complained
-$topbar_bg: $navbar-dark-bg;
+//$navbar-dark-bg: #000; // cerulean complained
+//$topbar_bg: $navbar-dark-bg;
 //$navbar-dark-link-color: $navbar-dark-color;
 $navbar-inverse-bg: #fff; // Should be theme specific; Cerulean didn't have one.
 $navbar-inverse-link-color: blue; // "
@@ -36,9 +30,9 @@ $navbar-inverse-border: $body-color;
 $navbar-inverse-link-active-color: red;
 $panel-default-border: $body-color;
 $navbar-dark-brand-color: #ccc;
-$panel-primary-border: $card-border-color;
-$panel-success-text: #000;
-$panel-warning-text: red;
+//$panel-primary-border: $card-border-color;
+//$panel-success-text: #000;
+//$panel-warning-text: red;
 
 $alert-success-text: #fff;
 $alert-warning-text: #fff;

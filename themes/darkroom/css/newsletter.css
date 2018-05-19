@@ -13,56 +13,37 @@
  $admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
  */
 body {
-  background: #fff;
-  color: #212529;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: #474747;
+  color: #d8d8d8;
+  font-family: "Trebuchet MS", "Bitstream Vera Sans", sans-serif;
   padding: 15px; }
 
 a, a:visited {
-  color: #007bff;
-  text-decoration: underline; }
+  color: #ababab;
+  text-decoration: none; }
 
 a:hover {
-  color: #0056b3;
-  text-decoration: underline; }
+  color: #858585;
+  text-decoration: none; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
   font-weight: 500;
   color: inherit; }
 
-.panel {
+.card {
   margin-bottom: 1.5;
-  background-color: #fff;
+  background-color: #474747;
   border: 1px solid transparent;
   border-radius: 0.25rem; }
 
-.panel-heading {
+.card-header {
   border-bottom: 1px solid transparent; }
 
-.panel-title {
+.card-title {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 2rem;
   color: inherit; }
-  .panel-title > a, .panel-title > small, .panel-title > .small, .panel-title > small > a, .panel-title > .small > a {
+  .card-title > a, .card-title > small, .card-title > .small, .card-title > small > a, .card-title > .small > a {
     color: inherit; }
-/*.panel-default {
- .panel-variant($panel-default-border; $panel-default-text; $panel-default-heading-bg; $panel-default-border);
- }
- .panel-primary {
- .panel-variant($panel-primary-border; $panel-primary-text; $panel-primary-heading-bg; $panel-primary-border);
- }
- .panel-success {
- .panel-variant($panel-success-border; $panel-success-text; $panel-success-heading-bg; $panel-success-border);
- }
- .panel-info {
- .panel-variant($panel-info-border; $panel-info-text; $panel-info-heading-bg; $panel-info-border);
- }
- .panel-warning {
- .panel-variant($panel-warning-border; $panel-warning-text; $panel-warning-heading-bg; $panel-warning-border);
- }
- .panel-danger {
- .panel-variant($panel-danger-border; $panel-danger-text; $panel-danger-heading-bg; $panel-danger-border);
- }
- */

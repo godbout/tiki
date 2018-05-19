@@ -328,7 +328,7 @@ div.tiki_plugin {
 .autotoc .nav > li > a:focus,
 .autotoc .nav > li > a:hover {
   padding-left: 19px;
-  border-left: 1px solid $btn-default-border;
+  border-left: 1px solid $btn-primary-border;
 }
 
 .autotoc > .nav > li > .nav > li {
@@ -341,7 +341,7 @@ div.tiki_plugin {
   padding-left: 18px;
   font-weight: 700;
   border: none;
-  border-left: 2px solid $btn-default-border;
+  border-left: 2px solid $btn-primary-border;
   background-color: transparent;
 }
 

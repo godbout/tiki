@@ -9,12 +9,6 @@
  * Licensed under MIT
  * Based on Bootstrap
  */
-/*!
- * Bootstrap v4.0.0-beta.2 (https://getbootstrap.com)
- * Copyright 2011-2017 The Bootstrap Authors
- * Copyright 2011-2017 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 /* Todo - button variables are simpler in BS4 - need to figure it out
  //  Admin
  $admbox-border: $btn-primary-border; //#cccccc;
@@ -7457,6 +7451,9 @@ button.close {
   .table-bordered th, .table-bordered td {
     border: 1px solid #dee2e6 !important; } }
 
+.topbar {
+  margin-bottom: 1.4rem; }
+
 .navbar-collapse.collapse.in {
   background: #772953; }
 
@@ -7556,7 +7553,7 @@ a.fc-event:hover {
 
 .topbar .cssmenu_horiz.sf-arrows > .menuSection0:hover > .sf-with-ul:after, .topbar .cssmenu_horiz.sf-arrows > .menuSection0.sfhover > .sf-with-ul:after {
   border-top-color: rgba(255, 255, 255, .75); }
-/* order of following 3 rules important for fallbacks to work */
+
 .dropdown-menu .dropdown-title, .dropdown-menu li label {
   color: #212529; }
 
@@ -7608,17 +7605,17 @@ table.treetable.objectperms td.removed {
   color: #e9ecef; }
 
 #resultzone > div:hover {
-  background: turquoise; }
+  background: #38b44a; }
 
-.searchresults blockquote em, .highlight, .btn-default.highlight a, .btn-default a.highlight {
+.searchresults blockquote em, .highlight, .btn-primary.highlight a, .btn-primary a.highlight {
   background: #df382c;
   color: #fff;
   border-color: #bc271c; }
 
-.btn-default.highlight:hover {
+.btn-primary.highlight:hover {
   background: #a52219; }
 
-.btn-default.btn-link, .btn-default.btn-link:hover {
+.btn-primary.btn-link, .btn-primary.btn-link:hover {
   background: transparent;
   border: none; }
 
@@ -7683,7 +7680,7 @@ input:-webkit-autofill {
   background-color: #fff; }
 
 #captchaImg {
-  border: 1px solid #333; }
+  border: 1px solid #dee2e6; }
 
 form.simple label.error {
   background: url("../../../img/icons/error.png") no-repeat 0 4px;
@@ -7765,14 +7762,14 @@ div.cvsup {
   color: #333; }
 
 .webmail_item {
-  border: 1px solid #333; }
+  border: 1px solid #dee2e6; }
 
 .webmail_list .odd {
   background: rgba(0, 0, 0, .05); }
 
 .webmail_list .button {
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, .125); }
+  border: 1px solid #dee2e6; }
 
 .webmail_list .webmail_read {
   background: #17a2b8; }
@@ -7794,7 +7791,7 @@ div.cvsup {
   background: transparent; }
 
 .tiki_sheet table td {
-  border: 1px solid #333; }
+  border: 1px solid #dee2e6; }
 
 .odd {
   background: transparent;
@@ -7837,7 +7834,7 @@ div.cvsup {
 
 #intertrans-form {
   background-color: #fff;
-  border: 1px solid #333;
+  border: 1px solid rgba(0, 0, 0, .125);
   color: #333; }
 
 #edit_translations tr.last {
@@ -7857,7 +7854,7 @@ ul.all_languages > li {
   color: #38b44a; }
 
 .author1 {
-  color: #333; }
+  color: #17a2b8; }
 
 .author2 {
   color: #17a2b8; }
@@ -7890,7 +7887,7 @@ ul.all_languages > li {
   color: #5cdf2c; }
 
 .author12 {
-  color: #000; }
+  color: #b138b4; }
 
 .author13 {
   color: #b8176c; }
@@ -8062,22 +8059,6 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
 
 .diffadded .diffchar {
   color: #55ca66; }
-
-.searchresults blockquote em.hlt1, .searchresults blockquote em.hlt6, .highlight_word_0 {
-  background: #38b44a; }
-
-.searchresults blockquote em.hlt2, .searchresults blockquote em.hlt7, .highlight_word_1 {
-  color: #333;
-  background: #fff; }
-
-.searchresults blockquote em.hlt3, .searchresults blockquote em.hlt8, .highlight_word_2 {
-  background: #efb73e; }
-
-.searchresults blockquote em.hlt4, .searchresults blockquote em.hlt9, .highlight_word_3 {
-  background: #df382c; }
-
-.searchresults blockquote em.hlt5, .searchresults blockquote em.hlt10, .highlight_word_4 {
-  background: #df742c; }
 /* Structures drill-down menu */
 div.drillshow {
   border: 1px solid #dee2e6; }
@@ -8113,33 +8094,7 @@ div.drillshow {
   font-style: normal;
   font-size: 90%;
   display: block; }
-/* Todo - button styles are simpler in BS4 - got to figure it out
- // Admin
- a.admbox {
- &,
- &:visited {
- //		border: 1px solid $admbox-border; //#ccc
- //		background-color: $admbox-bg; // #cccccc;
- //		color: $admbox-color; // #333333;
- }
- &:hover,
- &:focus,
- &:active {
- //		border: 1px solid $admbox-hover-border; // #333333;
- //		background-color: $admbox-hover-bg; // #aaaaaa;
- //		color: $admbox-hover-color; //#ffffff;
- }
- &.off {
- border: 1px solid $admbox-off-border; // #a9a9a9;
- color: $admbox-off-color; // #9f9f9f;
- &:hover,
- &:focus,
- &:active {
- border: 1px solid $admbox-off-hover-border; // #a9a9a9;
- color: $admbox-off-hover-color; // #666666;
- }
- }
- }*/
+
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #fff;
   color: #333;
@@ -8171,7 +8126,7 @@ div.drillshow {
   color: #212529; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid #333; }
+  border: 1px solid rgba(0, 0, 0, .125); }
 
 .codecaption {
   display: inline-block;
@@ -8222,13 +8177,17 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   border-color: #c34113;
   color: black; }
 
+.tiki .ui-widget {
+  font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem; }
+
 .tiki .pvtUi {
   color: #333; }
   .tiki table.pvtTable {
     font-size: 1rem; }
   .tiki table.pvtTable tr th {
-    background-color: #fff;
-    color: #333;
+    background-color: #e9ecef;
+    color: #495057;
     border: 1px solid #dee2e6;
     font-size: 1rem;
     padding: 5px; }
@@ -8248,7 +8207,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     border-radius: 0.25rem; }
   .tiki .pvtAxisContainer, .tiki .pvtVals {
     border-color: #dee2e6;
-    background: #fff;
+    background: transparent;
     padding: 5px; }
   .tiki .pvtAxisContainer li.pvtPlaceholder {
     padding: 3px 15px;
