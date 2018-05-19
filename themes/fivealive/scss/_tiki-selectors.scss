@@ -14,27 +14,27 @@ $imagePath: "../images/";
 	margin-bottom: 20px;
 }
 
-.topbar .navbar-default .navbar-nav > li > a,
-.topbar .navbar-default .navbar-nav > li > a:hover,
-.topbar .navbar-default .navbar-nav > li > a:focus {
+.topbar .navbar-dark .navbar-nav > li > a,
+.topbar .navbar-dark .navbar-nav > li > a:hover,
+.topbar .navbar-dark .navbar-nav > li > a:focus {
 	color: #ffffff;
 }
 
-#col2 .panel,
-#col3 .panel,
-#bottom_modules .panel {
+#col2 .card,
+#col3 .card,
+#bottom_modules .card {
 	background: none;
 	border: none;
 }
 
-#col2 h3.panel-title,
-#col3 h3.panel-title {
+#col2 h3.card-title,
+#col3 h3.card-title {
 	color: #000000;
 }
 
-#col2 .panel-heading,
-#col3 .panel-heading,
-#bottom_modules .panel-heading {
+#col2 .card-header,
+#col3 .card-header,
+#bottom_modules .card-header {
 	background: none !important;
 	border-bottom: none;
 }
@@ -68,7 +68,7 @@ $imagePath: "../images/";
 
 .siteloginbar_poppedup li > a,
 .siteloginbar_poppedup label {
-	color: $navbar-default-link-color;
+	color: $navbar-dark-color;
 }
 
 .box-quickadmin .cssmenu_horiz ul li {
@@ -120,7 +120,7 @@ textarea,
 }
 
 .footer_liner {
-	h3.panel-title {
+	h3.card-title {
 		color: #ffffff;
 		border-bottom: 1px dotted #28aae1;
 	}
@@ -172,8 +172,8 @@ header.header {
 	}
 }
 
-@media (min-width: $screen-md-min) {
-	.navbar-default .navbar-nav > li > a {
+@media (min-width: 768px) {
+	.navbar-nav > li > a {
 		border-radius: 0;
 		background: transparent !important;
 	}
