@@ -9,9 +9,9 @@ $imagePathToImgDir: "../../../img/";
 .topbar { margin-bottom: $topbar-row-margin-bottom; }
 
 // Background color for navbar collapse dropdowns (Tiki's aren't .dropdown li).
-.navbar-collapse.collapse.in {
-	background: $navbar-dark-bg;
-}
+//.navbar-collapse.collapse.in {
+//	background: $navbar-dark-bg;
+//}
 
 // tiki-boxes_and_panels.less
 .warning a,
