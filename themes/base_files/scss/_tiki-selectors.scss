@@ -146,24 +146,24 @@ a.fc-event:hover {
 	border-left-color: $dropdown-link-hover-color; // white;
 }
 
-// Rules for conforming to div.topbar (navbar) instance
-.topbar,
-	//.topbar .cssmenu_horiz ul,
-.topbar .navbar-default .navbar-nav > li,
-.topbar .nav > li {
-	background: $topbar_bg; //  $navbar-dark-bg;
-	color: $topbar_color; //  $navbar-dark-color;
-	> a {
-		color: $topbar_link_color; // $navbar-dark-link-color;
-		//    background: $navbar-dark-link-bg;
-		padding-top: $topbar_link_padding_top; //  $navbar-padding-y;
-		padding-bottom: $topbar_link_padding_bottom; // $navbar-padding-y;
-	}
-	> a:hover,
-	> a:focus {
-		color: $topbar_link_hover_color; //  $navbar-dark-hover-color;
-	}
-}
+// Rules for conforming to div.topbar (navbar) instance - Commented out pending color organization of navbar options.
+//.topbar,
+//	//.topbar .cssmenu_horiz ul,
+//.topbar .navbar-default .navbar-nav > li,
+//.topbar .nav > li {
+//	background: $topbar_bg; //  $navbar-dark-bg;
+//	color: $topbar_color; //  $navbar-dark-color;
+//	> a {
+//		color: $topbar_link_color; // $navbar-dark-link-color;
+//		//    background: $navbar-dark-link-bg;
+//		padding-top: $topbar_link_padding_top; //  $navbar-padding-y;
+//		padding-bottom: $topbar_link_padding_bottom; // $navbar-padding-y;
+//	}
+//	> a:hover,
+//	> a:focus {
+//		color: $topbar_link_hover_color; //  $navbar-dark-hover-color;
+//	}
+//}
 
 .topbar .cssmenu_horiz ul {
 	background: $dropdown-bg;
@@ -862,10 +862,10 @@ h6 a.tiki_anchor:hover {
 	border: 2px solid $pagination-active-border-color;
 }
 
-.ic_caption {
-	background: $navbar-dark-bg;
-	color: $navbar-dark-color;
-}
+//.ic_caption { Commented pending color organization of navbar options.
+//	background: $navbar-dark-bg;
+//	color: $navbar-dark-color;
+//}
 
 .wp-cookie-consent-required {
 	color: theme-color("danger");
