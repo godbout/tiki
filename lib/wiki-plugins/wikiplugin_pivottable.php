@@ -19,7 +19,7 @@ function wikiplugin_pivottable_info()
 		'params' => [
 			'data' => [
 				'name' => tr('Data source'),
-				'description' => tr('For example tracker:1'),
+				'description' => tr("For example 'tracker:1' or 'activitystream'"),
 				'required' => true,
 				'default' => 0,
 				'filter' => 'text',
@@ -283,76 +283,10 @@ function wikiplugin_pivottable($data, $params)
 	if (empty($params['data']) || ! is_array($params['data'])) {
 		return WikiParser_PluginOutput::internalError(tr('Missing data parameter with format: source:ID, e.g. tracker:1'));
 	}
-	if ($params['data'][0] === "tracker") {
-		$trackerId = $params['data'][1];
-	} else {
-		$trackerId = 0;
+	$dataType = $params['data'][0];
+	if ($dataType !== 'activitystream' && $dataType !== 'tracker') {
+		return WikiParser_PluginOutput::internalError(tr('Error data parameter'));
 	}
-
-	$definition = Tracker_Definition::get($trackerId);
-	if (! $definition) {
-		return WikiParser_PluginOutput::userError(tr('Tracker data source not found.'));
-	}
-
-	$perms = Perms::get(['type' => 'tracker', 'object' => $trackerId]);
-
-	$fields = $definition->getFields();
-
-	if (! $perms->admin_trackers && $params['overridePermissions'] !== 'y') {
-		$hasFieldPermissions = false;
-		foreach ($fields as $key => $field) {
-			$isHidden = $field['isHidden'];
-			$visibleBy = $field['visibleBy'];
-
-			if ($isHidden != 'n' || ! empty($visibleBy)) {
-				$hasFieldPermissions = true;
-			}
-
-			if ($isHidden == 'c') {
-				// creators can see their own items coming from the search index
-			} elseif ($isHidden == 'y') {
-				// Visible by administrator only
-				unset($fields[$key]);
-			} elseif (! empty($visibleBy)) {
-				// Permission based on visibleBy apply
-				$commonGroups = array_intersect($visibleBy, $perms->getGroups());
-				if (count($commonGroups) == 0) {
-					unset($fields[$key]);
-				}
-			}
-		}
-		if (! $hasFieldPermissions && ! $perms->view_trackers && ! $definition->isEnabled('userCanSeeOwn') && ! $definition->isEnabled('writerCanModify')) {
-			return WikiParser_PluginOutput::userError(tr('You do not have rights to view tracker data.'));
-		}
-	}
-
-	$fields[] = [
-		'name' => 'object_id',
-		'permName' => 'object_id',
-		'type' => 't'
-	];
-
-	$fields[] = [
-		'name' => 'object_type',
-		'permName' => 'object_type',
-		'type' => 't'
-	];
-
-	$fields[] = [
-		'name' => 'creation_date',
-		'permName' => 'creation_date',
-		'type' => 'f'
-	];
-	$fields[] = [
-		'name' => 'modification_date',
-		'permName' => 'modification_date',
-		'type' => 'f'
-	];
-	$fields[] = [
-		'name' => 'tracker_status',
-		'permName' => 'tracker_status',
-		'type' => 't'
-	];
 
 	if (! empty($params['rendererName'])) {
 		$rendererName = $params['rendererName'];
@@ -378,101 +312,269 @@ function wikiplugin_pivottable($data, $params)
 		$height = "1000px";
 	}
 
-	$heatmapParams = [];
-	if ($rendererName === 'Heatmap') {
-		$validConfig = is_array($params['heatmapDomain'])
-			&& is_array($params['heatmapColors'])
-			&& ! (empty($params['heatmapDomain']) && empty($params['heatmapColors']))
-			&& count($params['heatmapDomain']) === count($params['heatmapColors']);
-
-		if ($validConfig) {
-			$heatmapParams = [
-				'domain' => array_map(floatval, $params['heatmapDomain']),
-				'colors' => $params['heatmapColors']
-			];
+	if ($dataType === "tracker") {
+		$trackerId = $params['data'][1];
+		$definition = Tracker_Definition::get($trackerId);
+		if (! $definition) {
+			return WikiParser_PluginOutput::userError(tr('Tracker data source not found.'));
 		}
 
-		unset($validConfig);
+		$perms = Perms::get(['type' => 'tracker', 'object' => $trackerId]);
+
+		$fields = $definition->getFields();
+
+		if (! $perms->admin_trackers && $params['overridePermissions'] !== 'y') {
+			$hasFieldPermissions = false;
+			foreach ($fields as $key => $field) {
+				$isHidden = $field['isHidden'];
+				$visibleBy = $field['visibleBy'];
+
+				if ($isHidden != 'n' || ! empty($visibleBy)) {
+					$hasFieldPermissions = true;
+				}
+
+				if ($isHidden == 'c') {
+					// creators can see their own items coming from the search index
+				} elseif ($isHidden == 'y') {
+					// Visible by administrator only
+					unset($fields[$key]);
+				} elseif (! empty($visibleBy)) {
+					// Permission based on visibleBy apply
+					$commonGroups = array_intersect($visibleBy, $perms->getGroups());
+					if (count($commonGroups) == 0) {
+						unset($fields[$key]);
+					}
+				}
+			}
+			if (! $hasFieldPermissions && ! $perms->view_trackers && ! $definition->isEnabled('userCanSeeOwn') && ! $definition->isEnabled('writerCanModify')) {
+				return WikiParser_PluginOutput::userError(tr('You do not have rights to view tracker data.'));
+			}
+		}
+
+		$fields[] = [
+			'name' => 'object_id',
+			'permName' => 'object_id',
+			'type' => 't'
+		];
+
+		$fields[] = [
+			'name' => 'object_type',
+			'permName' => 'object_type',
+			'type' => 't'
+		];
+
+		$fields[] = [
+			'name' => 'creation_date',
+			'permName' => 'creation_date',
+			'type' => 'f'
+		];
+		$fields[] = [
+			'name' => 'modification_date',
+			'permName' => 'modification_date',
+			'type' => 'f'
+		];
+		$fields[] = [
+			'name' => 'tracker_status',
+			'permName' => 'tracker_status',
+			'type' => 't'
+		];
+
+		$heatmapParams = [];
+		if ($rendererName === 'Heatmap') {
+			$validConfig = is_array($params['heatmapDomain'])
+				&& is_array($params['heatmapColors'])
+				&& ! (empty($params['heatmapDomain']) && empty($params['heatmapColors']))
+				&& count($params['heatmapDomain']) === count($params['heatmapColors']);
+
+			if ($validConfig) {
+				$heatmapParams = [
+					'domain' => array_map(floatval, $params['heatmapDomain']),
+					'colors' => $params['heatmapColors']
+				];
+			}
+
+			unset($validConfig);
+		}
+
+		$query = new Search_Query;
+		$query->filterType('trackeritem');
+		$query->filterContent($trackerId, 'tracker_id');
+
+		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
+		if ($params['overridePermissions'] === 'y') {
+			$unifiedsearchlib->initQueryBase($query);
+			$unifiedsearchlib->initQueryPresentation($query);
+		} else {
+			$unifiedsearchlib->initQuery($query);
+		}
+
+		$matches = WikiParser_PluginMatcher::match($data);
+
+		$builder = new Search_Query_WikiBuilder($query);
+		$builder->apply($matches);
+
+		if (! $index = $unifiedsearchlib->getIndex()) {
+			return WikiParser_PluginOutput::userError(tr('Unified search index not found.'));
+		}
+
+		$query->setRange(0, TikiLib::lib('trk')->get_nb_items($trackerId));
+
+		$result = $query->search($index);
+		$result->setId('wppivottable-' . $id);
+
+		$resultBuilder = new Search_ResultSet_WikiBuilder($result);
+		$resultBuilder->apply($matches);
+
+		$columnsListed = false;
+		$derivedAttributes = [];
+
+		foreach ($matches as $match) {
+			if ($match->getName() == 'display' || $match->getName() == 'column') {
+				$columnsListed = true;
+			} elseif ($match->getName() == 'derivedattribute') {
+				if (preg_match('/name="([^"]+)"/', $match->getArguments(), $match_name)
+					&& preg_match('/function="([^"]+)"/', $match->getArguments(), $match_function)
+					&& preg_match('/parameters="([^"]*)"/', $match->getArguments(), $match_parameters)) {
+					$derivedattr_name = $match_name[1];
+					$function_name = $match_function[1];
+					$function_params = explode(':', $match_parameters[1]);
+
+					if (empty($function_params)) {
+						$function_params = '';
+					} else {
+						$function_params = '"' . implode('","', $function_params) . '"';
+					}
+
+					$derivedAttributes[] = sprintf('"%s": %s(%s)', $derivedattr_name, $function_name, $function_params);
+				}
+			}
+		}
+
+		if ($columnsListed) {
+			$data .= '{display name="object_id"}{display name="object_type"}';
+			$plugin = new Search_Formatter_Plugin_ArrayTemplate($data);
+			$usedFields = array_keys($plugin->getFields());
+			foreach ($fields as $key => $field) {
+				if (! in_array('tracker_field_' . $field['permName'], $usedFields)
+					&& ! in_array($field['permName'], $usedFields) ) {
+					unset($fields[$key]);
+				}
+			}
+			$fields = array_values($fields);
+			$plugin->setFieldPermNames($fields);
+		} else {
+			$plugin = new Search_Formatter_Plugin_ArrayTemplate(implode("", array_map(
+				function ($f) {
+					if (in_array($f['permName'], ['object_id', 'object_type', 'creation_date', 'modification_date', 'tracker_status'])) {
+						return '{display name="' . $f['permName'] . '" default=" "}';
+					} else {
+						return '{display name="tracker_field_' . $f['permName'] . '" default=" "}';
+					}
+				},
+				$fields
+			)));
+			$plugin->setFieldPermNames($fields);
+		}
 	}
 
-	$query = new Search_Query;
-	$query->filterType('trackeritem');
-	$query->filterContent($trackerId, 'tracker_id');
-
-	$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-	if ($params['overridePermissions'] === 'y') {
-		$unifiedsearchlib->initQueryBase($query);
-		$unifiedsearchlib->initQueryPresentation($query);
-	} else {
+	if ($dataType === "activitystream") {
+		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
+		$query = new Search_Query;
 		$unifiedsearchlib->initQuery($query);
-	}
+		$query->filterType('activity');
 
-	$matches = WikiParser_PluginMatcher::match($data);
-
-	$builder = new Search_Query_WikiBuilder($query);
-	$builder->apply($matches);
-
-	if (! $index = $unifiedsearchlib->getIndex()) {
-		return WikiParser_PluginOutput::userError(tr('Unified search index not found.'));
-	}
-
-	$query->setRange(0, TikiLib::lib('trk')->get_nb_items($trackerId));
-
-	$result = $query->search($index);
-	$result->setId('wppivottable-' . $id);
-
-	$resultBuilder = new Search_ResultSet_WikiBuilder($result);
-	$resultBuilder->apply($matches);
-
-	$columnsListed = false;
-	$derivedAttributes = [];
-
-	foreach ($matches as $match) {
-		if ($match->getName() == 'display' || $match->getName() == 'column') {
-			$columnsListed = true;
-		} elseif ($match->getName() == 'derivedattribute') {
-			if (preg_match('/name="([^"]+)"/', $match->getArguments(), $match_name)
-				&& preg_match('/function="([^"]+)"/', $match->getArguments(), $match_function)
-				&& preg_match('/parameters="([^"]*)"/', $match->getArguments(), $match_parameters)) {
-				$derivedattr_name = $match_name[1];
-				$function_name = $match_function[1];
-				$function_params = explode(':', $match_parameters[1]);
-
-				if (empty($function_params)) {
-					$function_params = '';
-				} else {
-					$function_params = '"' . implode('","', $function_params) . '"';
-				}
-
-				$derivedAttributes[] = sprintf('"%s": %s(%s)', $derivedattr_name, $function_name, $function_params);
-			}
+		if ($params['overridePermissions'] === 'y') {
+			$unifiedsearchlib->initQueryBase($query);
+			$unifiedsearchlib->initQueryPresentation($query);
+		} else {
+			$unifiedsearchlib->initQuery($query);
 		}
-	}
 
-	if ($columnsListed) {
-		$data .= '{display name="object_id"}{display name="object_type"}';
-		$plugin = new Search_Formatter_Plugin_ArrayTemplate($data);
-		$usedFields = array_keys($plugin->getFields());
-		foreach ($fields as $key => $field) {
-			if (! in_array('tracker_field_' . $field['permName'], $usedFields)
-				&& ! in_array($field['permName'], $usedFields) ) {
-				unset($fields[$key]);
-			}
+		$matches = WikiParser_PluginMatcher::match($data);
+
+		$builder = new Search_Query_WikiBuilder($query);
+		$builder->enableAggregate();
+		$builder->apply($matches);
+
+		$query->setOrder('modification_date_desc');
+
+		if (! $index = $unifiedsearchlib->getIndex()) {
+			throw new Services_Exception_NotAvailable(tr('Activity stream currently unavailable.'));
 		}
-		$fields = array_values($fields);
-		$plugin->setFieldPermNames($fields);
-	} else {
-		$plugin = new Search_Formatter_Plugin_ArrayTemplate(implode("", array_map(
-			function ($f) {
-				if (in_array($f['permName'], ['object_id', 'object_type', 'creation_date', 'modification_date', 'tracker_status'])) {
-					return '{display name="' . $f['permName'] . '" default=" "}';
-				} else {
-					return '{display name="tracker_field_' . $f['permName'] . '" default=" "}';
-				}
-			},
-			$fields
-		)));
-		$plugin->setFieldPermNames($fields);
+
+		$result = $query->search($index);
+
+		$paginationArguments = $builder->getPaginationArguments();
+
+		$resultBuilder = new Search_ResultSet_WikiBuilder($result);
+		$resultBuilder->setPaginationArguments($paginationArguments);
+		$resultBuilder->apply($matches);
+
+		$fields = [];
+		$fields[] = [
+			'name' => 'object',
+			'permName' => 'object',
+			'type' => 't'
+		];
+
+		$fields[] = [
+			'name' => 'object_id',
+			'permName' => 'object_id',
+			'type' => 't'
+		];
+
+		$fields[] = [
+			'name' => 'object_type',
+			'permName' => 'object_type',
+			'type' => 't'
+		];
+
+		$fields[] = [
+			'name' => 'modification_date',
+			'permName' => 'modification_date',
+			'type' => 'f'
+		];
+
+		$fields[] = [
+			'name' => 'user',
+			'permName' => 'user',
+			'type' => 't'
+		];
+
+		$fields[] = [
+			'name' => 'event_type',
+			'permName' => 'event_type',
+			'type' => 't'
+		];
+
+		$fields[] = [
+			'name' => 'type',
+			'permName' => 'type',
+			'type' => 't'
+		];
+
+		try {
+			$plugin = new Search_Formatter_Plugin_ArrayTemplate(implode("", array_map(
+				function ($f) {
+					$activityArray = [
+						'object',
+						'object_id',
+						'object_type',
+						'modification_date',
+						'user',
+						'event_type',
+						'type'
+					];
+					if (in_array($f['permName'], $activityArray)) {
+						return '{display name="' . $f['permName'] . '" default=" "}';
+					}
+				},
+				$fields
+			)));
+			$plugin->setFieldPermNames($fields);
+		} catch (SmartyException $e) {
+			throw new Services_Exception_NotAvailable($e->getMessage());
+		}
 	}
 
 	$builder = new Search_Formatter_Builder;
@@ -489,7 +591,7 @@ function wikiplugin_pivottable($data, $params)
 	foreach ($entries as $entry) {
 		$row = [];
 		foreach ($entry as $fieldName => $value) {
-			if ($field = $definition->getFieldFromPermName($fieldName)) {
+			if ($entry['object_type'] != 'activity' && $field = $definition->getFieldFromPermName($fieldName)) {
 				$row[$field['name']] = $value;
 			} else {
 				$row[$fieldName] = $value;
@@ -502,7 +604,7 @@ function wikiplugin_pivottable($data, $params)
 	$cols = [];
 	if (! empty($params['cols'])) {
 		foreach ($params['cols'] as $colName) {
-			if ($field = $definition->getFieldFromPermName(trim($colName))) {
+			if ($params['data'][0] !== 'activitystream' && $field = $definition->getFieldFromPermName(trim($colName))) {
 				$cols[] = $field['name'];
 			} else {
 				$cols[] = $colName;
@@ -515,7 +617,7 @@ function wikiplugin_pivottable($data, $params)
 	$rows = [];
 	if (! empty($params['rows'])) {
 		foreach ($params['rows'] as $rowName) {
-			if ($field = $definition->getFieldFromPermName(trim($rowName))) {
+			if ($params['data'][0] !== 'activitystream' && $field = $definition->getFieldFromPermName(trim($rowName))) {
 				$rows[] = $field['name'];
 			} else {
 				$rows[] = $rowName;
@@ -526,7 +628,7 @@ function wikiplugin_pivottable($data, $params)
 	$vals = [];
 	if (! empty($params['vals'])) {
 		foreach ($params['vals'] as $valName) {
-			if ($field = $definition->getFieldFromPermName(trim($valName))) {
+			if ($params['data'][0] !== 'activitystream' && $field = $definition->getFieldFromPermName(trim($valName))) {
 				$vals[] = $field['name'];
 			} else {
 				$vals[] = $valName;
@@ -560,7 +662,7 @@ function wikiplugin_pivottable($data, $params)
 	if (! empty($params['aggregateDetails']) && ! empty($params['aggregateDetails'][0])) {
 		$aggregateDetails = [];
 		foreach ($params['aggregateDetails'] as $fieldName) {
-			if ($field = $definition->getFieldFromPermName(trim($fieldName))) {
+			if ($params['data'][0] != 'activitystream' && $field = $definition->getFieldFromPermName(trim($fieldName))) {
 				$aggregateDetails[] = $field['name'];
 			} else {
 				$aggregateDetails[] = trim($fieldName);
@@ -570,21 +672,26 @@ function wikiplugin_pivottable($data, $params)
 			$title = implode(' ', array_map(function ($field) use ($row) {
 				return $row[$field];
 			}, $aggregateDetails));
-			$row['pivotLink'] = smarty_function_object_link(
-				[
-					'type' => $row['object_type'],
-					'id' => $row['object_id'],
-					'title' => $title,
-				],
-				$smarty
-			);
+			$pivotLinkParams = [
+				'type' => $row['object_type'],
+				'id' => $row['object_id'],
+				'title' => $title,    
+			];
+			if ($row['object_type'] === 'activity') {
+				$pivotLinkParams = [
+					'type' => $row['type'],
+					'id' => $row['object'],
+					'title' => $row['type'],
+				];
+			}
+			$row['pivotLink'] = smarty_function_object_link($pivotLinkParams, $smarty);
 		}
 	} else {
 		$params['aggregateDetails'] = [];
 	}
 
 	$highlight = [];
-	if (! empty($params['highlightMine']) && $params['highlightMine'] === 'y') {
+	if (! empty($params['highlightMine']) && $params['highlightMine'] === 'y' && $params['data'][0] !== 'activitystream') {
 		$ownerFields = array_map(function ($fieldId) use ($definition) {
 			return $definition->getField($fieldId);
 		}, $definition->getItemOwnerFields());
@@ -662,7 +769,7 @@ function wikiplugin_pivottable($data, $params)
 		'id' => 'pivottable' . $id,
 		'trows' => $rows,
 		'tcolumns' => $cols,
-		'trackerId' => $trackerId,
+		'dataSource' => $dataType == 'activitystream' ? $dataType : $dataType . ':' . $trackerId,
 		'data' => $pivotData,
 		'derivedAttributes' => $derivedAttributes,
 		'rendererName' => $rendererName,

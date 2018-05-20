@@ -13,7 +13,17 @@ class Search_Formatter_Plugin_ArrayTemplate extends Search_Formatter_Plugin_Abst
 	function __construct($template)
 	{
 		$this->fieldPermNames = [];
-		$this->nonTrackerFields = ['object_id', 'object_type', 'creation_date', 'modification_date', 'tracker_status'];
+		$this->nonTrackerFields = [
+			'object_id',
+			'object_type',
+			'creation_date',
+			'modification_date',
+			'tracker_status',
+			'object',
+			'user',
+			'type',
+			'event_type'
+		];
 		parent::__construct($template);
 	}
 
