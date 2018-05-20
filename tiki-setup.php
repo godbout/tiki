@@ -29,7 +29,7 @@ if (version_compare(PHP_VERSION, '7.1.0', '<')) {
 		exit;
 	}
 	// This is command-line. No 'location' command make sense here. Let admins access what works and deal with the rest.
-	echo "Warning: Tiki16 and above expects PHP 7.1.0 and above. You are running " . phpversion() . " at your own risk\n";
+	echo "Warning: Tiki19 and above expects PHP 7.1.0 and above. You are running " . phpversion() . " at your own risk\n";
 }
 
 // Be sure that the user is not already defined by PHP on hosts that still have the php.ini config "register_globals = On"
