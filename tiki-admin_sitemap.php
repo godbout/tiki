@@ -22,7 +22,7 @@ if (isset($_REQUEST['rebuild'])) {
 }
 
 $smarty->assign('title', tr('Sitemap'));
-$smarty->assign('url', $base_url . $sitemap->getSitemapPath());
+$smarty->assign('url', $base_url . 'tiki-sitemap.php?file=' . $sitemap->getSitemapFilename());
 $smarty->assign('sitemapAvailable', file_exists($sitemap->getSitemapPath(false)));
 $smarty->assign('mid', 'tiki-admin_sitemap.tpl');
 $smarty->display('tiki.tpl');

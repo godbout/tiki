@@ -67,7 +67,9 @@ class Generator
 		$perms->setGroups(['Anonymous']); // ensure that permissions are processed as Anonymous
 		$user = null;
 
-		$sitemap = new Sitemap(rtrim($baseUrl, '/'));
+		$baseUrl = rtrim($baseUrl, '/');
+
+		$sitemap = new Sitemap($baseUrl);
 		$sitemap->setPath($this->basePath . self::RELATIVE_PATH);
 		$sitemap->setFilename(self::BASE_FILE_NAME);
 
@@ -117,5 +119,15 @@ class Generator
 		}
 
 		return $path;
+	}
+
+	/**
+	 * Return the sitemap file name
+	 *
+	 * @return string
+	 */
+	public function getSitemapFilename()
+	{
+		return self::BASE_FILE_NAME . '-index.xml';
 	}
 }
