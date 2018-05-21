@@ -324,108 +324,90 @@
 				</legend>
 
 				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="plugin_alias">
-							{tr}Plugin name{/tr}
-						</label>
-						<div class="col-sm-8">
-							{if $plugin_admin}
-								<input type="hidden" class="form-control" name="plugin_alias" id="plugin_alias" value="{$plugin_admin.plugin_name|escape}">
-								<strong>{$plugin_admin.plugin_name|escape}</strong>
-							{else}
-								<input type="text" class="form-control" name="plugin_alias" id="plugin_alias">
-							{/if}
-						</div>
-					</div>
-				</div><br><br>
-				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="implementation">
-							{tr}Base plugin{/tr}
-						</label>
-						<div class="col-sm-8">
-							<select class="form-control" name="implementation" id="implementation">
-								{foreach from=$plugins_real item=base}
-									<option value="{$base|escape}" {if isset($plugin_admin.implementation) and $plugin_admin.implementation eq $base}selected="selected"{/if}>
-										{$base|escape}
-									</option>
-								{/foreach}
-							</select>
-						</div>
+					<label class="col-form-label col-sm-4" for="plugin_alias">
+						{tr}Plugin name{/tr}
+					</label>
+					<div class="col-sm-8">
+						{if $plugin_admin}
+							<input type="hidden" class="form-control" name="plugin_alias" id="plugin_alias" value="{$plugin_admin.plugin_name|escape}">
+							<strong>{$plugin_admin.plugin_name|escape}</strong>
+						{else}
+							<input type="text" class="form-control" name="plugin_alias" id="plugin_alias">
+						{/if}
 					</div>
 				</div><br>
 				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="plugin_name">
-							{tr}Name{/tr}
-						</label>
-						<div class="col-sm-8">
-							<input class="form-control" type="text" name="name" id="plugin_name" value="{$plugin_admin.description.name|default:''|escape}">
-						</div>
+					<label class="col-form-label col-sm-4" for="implementation">
+						{tr}Base plugin{/tr}
+					</label>
+					<div class="col-sm-8">
+						<select class="form-control" name="implementation" id="implementation">
+							{foreach from=$plugins_real item=base}
+								<option value="{$base|escape}" {if isset($plugin_admin.implementation) and $plugin_admin.implementation eq $base}selected="selected"{/if}>
+									{$base|escape}
+								</option>
+							{/foreach}
+						</select>
 					</div>
 				</div><br>
 				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="plugin_description">
-							{tr}Description{/tr}
-						</label>
-						<div class="col-sm-8">
-							<input class="form-control" type="text" name="description" id="plugin_description" value="{$plugin_admin.description.description|default:''|escape}" class="width_40em">
-						</div>
+					<label class="col-form-label col-sm-4" for="plugin_name">
+						{tr}Name{/tr}
+					</label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="name" id="plugin_name" value="{$plugin_admin.description.name|default:''|escape}">
 					</div>
 				</div><br>
 				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="plugin_body">
-							{tr}Body label{/tr}
-						</label>
-						<div class="col-sm-8">
-							<input class="form-control" type="text" name="body" id="plugin_body" value="{$plugin_admin.description.body|default:''|escape}">
-						</div>
+					<label class="col-form-label col-sm-4" for="plugin_description">
+						{tr}Description{/tr}
+					</label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="description" id="plugin_description" value="{$plugin_admin.description.description|default:''|escape}" class="width_40em">
 					</div>
 				</div><br>
 				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="plugin_deps">
-							{tr}Dependencies{/tr}
-						</label>
-						<div class="col-sm-8">
-							<input class="form-control" type="text" name="prefs" id="plugin_deps" value="{if !empty($plugin_admin.description.prefs)}{','|implode:$plugin_admin.description.prefs}{/if}">
-						</div>
+					<label class="col-form-label col-sm-4" for="plugin_body">
+						{tr}Body label{/tr}
+					</label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="body" id="plugin_body" value="{$plugin_admin.description.body|default:''|escape}">
 					</div>
 				</div><br>
 				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="filter">
-							{tr}Filter{/tr}
-						</label>
-						<div class="col-sm-8">
-							<input class="form-control" type="text" id="filter" name="filter" value="{$plugin_admin.description.filter|default:'xss'|escape}">
-						</div>
+					<label class="col-form-label col-sm-4" for="plugin_deps">
+						{tr}Dependencies{/tr}
+					</label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="prefs" id="plugin_deps" value="{if !empty($plugin_admin.description.prefs)}{','|implode:$plugin_admin.description.prefs}{/if}">
 					</div>
 				</div><br>
 				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="validate">
-							{tr}Validation{/tr}
-						</label>
-						<div class="col-sm-8">
-							<select class="form-control" name="validate" id="validate">
-								{foreach from=','|explode:'none,all,body,arguments' item=val}
-									<option value="{$val|escape}" {if !empty($plugin_admin.description.validate) and $plugin_admin.description.validate eq $val}selected="selected"{/if}>
-										{$val|escape}
-									</option>
-								{/foreach}
-							</select>
-						</div>
+					<label class="col-form-label col-sm-4" for="filter">
+						{tr}Filter{/tr}
+					</label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" id="filter" name="filter" value="{$plugin_admin.description.filter|default:'xss'|escape}">
 					</div>
 				</div><br>
 				<div class="adminoptionbox form-group row">
-					<div class="adminoptionlabel">
-						<label class="col-form-label col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
-						<div class="col-sm-8">
-							<input class="form-control" type="checkbox" id="inline" name="inline" value="1" {if !empty($plugin_admin.description.inline)}checked="checked"{/if}>
-						</div>
+					<label class="col-form-label col-sm-4" for="validate">
+						{tr}Validation{/tr}
+					</label>
+					<div class="col-sm-8">
+						<select class="form-control" name="validate" id="validate">
+							{foreach from=','|explode:'none,all,body,arguments' item=val}
+								<option value="{$val|escape}" {if !empty($plugin_admin.description.validate) and $plugin_admin.description.validate eq $val}selected="selected"{/if}>
+									{$val|escape}
+								</option>
+							{/foreach}
+						</select>
+					</div>
+				</div><br>
+				<div class="adminoptionbox form-group row">
+					<label class="col-form-label col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
+					<div class="col-sm-8">
+						<input class="form-control" type="checkbox" id="inline" name="inline" value="1" {if !empty($plugin_admin.description.inline)}checked="checked"{/if}>
 					</div>
 				</div><br>
 			</fieldset><br>
@@ -572,11 +554,9 @@
 						</div>
 					</div>
 					<div class="adminoptionbox form-group row">
-						<div class="adminoptionlabel form-group row">
-							<label class="col-form-label col-sm-4" for="defaultbody">{tr}Default content{/tr}</label>
-							<div class="col-sm-8">
-								<textarea class="form-control" cols="60" rows="12" id="defaultbody" name="defaultbody">{$plugin_admin.body.default|default:''|escape}</textarea>
-							</div>
+						<label class="col-form-label col-sm-4" for="defaultbody">{tr}Default content{/tr}</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" cols="60" rows="12" id="defaultbody" name="defaultbody">{$plugin_admin.body.default|default:''|escape}</textarea>
 						</div>
 					</div>
 					<div style="clear:both; margin-left:60px">
@@ -720,5 +700,3 @@
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}
 </form>
-
-
