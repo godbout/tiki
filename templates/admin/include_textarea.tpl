@@ -439,7 +439,7 @@
 					{{/if}}
 				{/jq}
 				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4 col-sm-offset-4 text-left">
+					<label class="col-form-label col-sm-4 offset-sm-4 text-left">
 						{tr}Argument{/tr}
 					</label>
 					<label class="col-form-label col-sm-4 text-left">
@@ -450,7 +450,7 @@
 					{foreach from=$plugin_admin.params key=token item=value}
 							{if ! $value|is_array}
 								<div class="adminoptionbox form-group row">
-									<div class="col-sm-4 col-sm-offset-4">
+									<div class="col-sm-4 offset-sm-4">
 										<input class="form-control" type="text" name="sparams[{$token|escape}][token]" id="sparams_{$token|escape}_token" value="{$token|escape}">
 									</div>
 									<div class="col-sm-4">
@@ -462,7 +462,7 @@
 				{/if}
 				<div class="adminoptionbox hidefirst" id="pluginalias_simple_new">
 					<div class="adminoptionlabel form-group row">
-						<div class="col-sm-4 col-sm-offset-4">
+						<div class="col-sm-4 offset-sm-4">
 							<input class="form-control" type="text" name="sparams[__NEW__][token]" id="sparams__NEW__token" value="">
 						</div>
 						<div class="col-sm-4">
