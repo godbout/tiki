@@ -550,16 +550,16 @@ class PdfGenerator
 
 		foreach ($tags as $tag) {
 			$imgSrc = $tag->getAttribute('src');
-
-			//replacing image with new temp image, all these images will be unlinked after pdf creation
-			$newFile = $this->file_get_contents_by_fget($imgSrc);
-			//replacing old protected image path with temp image
-			if ($newFile != '') {
-				$tag->setAttribute('src', $newFile);
+			//bypassing base64 encoded images
+			if(!strstr($imgSrc,';base64')) { 
+				//replacing image with new temp image, all these images will be unlinked after pdf creation
+				$newFile = $this->file_get_contents_by_fget($imgSrc);
+				//replacing old protected image path with temp image
+				if ($newFile != '') {
+					$tag->setAttribute('src', $newFile);
+				}
+				$tempImgArr[] = $newFile;
 			}
-
-
-			$tempImgArr[] = $newFile;
 		}
 
 				$html = @$doc->saveHTML();
