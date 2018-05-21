@@ -81,7 +81,7 @@ class Scheduler_Manager
 		}
 
 		foreach ($runTasks as $runTask) {
-			$schedulerTask = Scheduler_Item::fromArray($scheduler, $this->logger);
+			$schedulerTask = Scheduler_Item::fromArray($runTask, $this->logger);
 
 			$this->logger->notice(sprintf(tra('***** Running scheduler %s *****'), $schedulerTask->name));
 			$result = $schedulerTask->execute();
