@@ -64,6 +64,9 @@ class SanitizeEncoding
 	 */
 	public static function filter($values)
 	{
+		// @todo: Do not sanitize values until found a better solution
+		return $values;
+
 		// shortcut to avoid extra processing, if not needed
 		if (self::$currentCharset !== self::UTF8SUBSET) {
 			return $values;
