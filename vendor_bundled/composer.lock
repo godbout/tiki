@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce6effecde19c062ceb673357fe93e1a",
+    "content-hash": "08133835a1e0caa41c81f84b08997977",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -1986,17 +1986,17 @@
         },
         {
             "name": "mottie/tablesorter",
-            "version": "v2.30.3",
+            "version": "v2.30.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mottie/tablesorter.git",
-                "reference": "e5592a7101def13a74bbac9a460e5fc60706457f"
+                "reference": "ec0ed84277d10b13b8170748182b68851fe8def0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-e5592a7101def13a74bbac9a460e5fc60706457f-zip-4d6320.zip",
-                "reference": "e5592a7101def13a74bbac9a460e5fc60706457f",
-                "shasum": "1127088ffb8c947bb8be3df235da1b4595c73110"
+                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-ec0ed84277d10b13b8170748182b68851fe8def0-zip-551b3b.zip",
+                "reference": "ec0ed84277d10b13b8170748182b68851fe8def0",
+                "shasum": "92c570cee3221b790817a768d3d55c7dd690cabe"
             },
             "require": {
                 "components/jquery": ">=1.2.6"
@@ -2033,7 +2033,7 @@
                 "sorting",
                 "table"
             ],
-            "time": "2018-04-30T21:54:48+00:00"
+            "time": "2018-05-16T23:54:05+00:00"
         },
         {
             "name": "nagarajanchinnasamy/subtotal",
@@ -2125,6 +2125,53 @@
                 "table"
             ],
             "time": "2018-03-21T14:30:58+00:00"
+        },
+        {
+            "name": "nolimits4web/swiper",
+            "version": "v4.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nolimits4web/swiper.git",
+                "reference": "03afbf00068f8f9f974cdc126c53a4d18b528a45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/03afbf00068f8f9f974cdc126c53a4d18b528a45",
+                "reference": "03afbf00068f8f9f974cdc126c53a4d18b528a45",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Kharalmpidi",
+                    "email": "nolimits4web@gmail.com",
+                    "homepage": "https://idangero.us",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Most modern mobile touch slider and framework with hardware accelerated transitions",
+            "homepage": "http://www.idangero.us/swiper/",
+            "keywords": [
+                "app",
+                "carousel",
+                "cordova",
+                "framework",
+                "framework7",
+                "gallery",
+                "ios",
+                "mobile",
+                "phonegap",
+                "plugin",
+                "slider",
+                "swipe",
+                "swiper",
+                "touch"
+            ],
+            "time": "2018-05-01T13:39:58+00:00"
         },
         {
             "name": "npm-asset/popper.js",
@@ -3346,21 +3393,22 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.9",
+            "version": "v3.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "7c2a9d44f4433863e9bca682e7f03609234657f9"
+                "reference": "73e055cf2e6467715f187724a0347ea32079967c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-7c2a9d44f4433863e9bca682e7f03609234657f9-zip-381a04.zip",
-                "reference": "7c2a9d44f4433863e9bca682e7f03609234657f9",
-                "shasum": "02fb3828f272eb90306be7f0b983b46c4368a591"
+                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-73e055cf2e6467715f187724a0347ea32079967c-zip-be8ca9.zip",
+                "reference": "73e055cf2e6467715f187724a0347ea32079967c",
+                "shasum": "441e4219b1b5811ff17258c8bac8d7e7fea1e6fb"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
-                "symfony/filesystem": "~2.8|~3.0|~4.0"
+                "symfony/filesystem": "~2.8|~3.0|~4.0",
+                "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
                 "symfony/dependency-injection": "<3.3",
@@ -3405,21 +3453,21 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-19T22:32:39+00:00"
+            "time": "2018-05-14T16:49:53+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.9",
+            "version": "v3.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "5b1fdfa8eb93464bcc36c34da39cedffef822cdf"
+                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-5b1fdfa8eb93464bcc36c34da39cedffef822cdf-zip-2859b6.zip",
-                "reference": "5b1fdfa8eb93464bcc36c34da39cedffef822cdf",
-                "shasum": "1e824e49877a7f5e153008d74bef7b1fe465c0cd"
+                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-36f83f642443c46f3cf751d4d2ee5d047d757a27-zip-b821a4.zip",
+                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27",
+                "shasum": "6f46a96f51920c4ccd7cb85f145aea6a0010ddb0"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3474,21 +3522,21 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-30T01:22:56+00:00"
+            "time": "2018-05-16T08:49:21+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.0.9",
+            "version": "v4.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "03f965583147957f1ecbad7ea1c9d6fd5e525ec2"
+                "reference": "0383a1a4eb1ffcac28719975d3e01bfa14be8ab3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/css-selector/symfony-css-selector-03f965583147957f1ecbad7ea1c9d6fd5e525ec2-zip-282fca.zip",
-                "reference": "03f965583147957f1ecbad7ea1c9d6fd5e525ec2",
-                "shasum": "b2a509ffa8cd4dbe3e52c94031e92226fbe05772"
+                "url": "https://composer.tiki.org/dist/symfony/css-selector/symfony-css-selector-0383a1a4eb1ffcac28719975d3e01bfa14be8ab3-zip-472b8e.zip",
+                "reference": "0383a1a4eb1ffcac28719975d3e01bfa14be8ab3",
+                "shasum": "0005734f830ceeb29cc9d5a0833d2ae1140abdc8"
             },
             "require": {
                 "php": "^7.1.3"
@@ -3527,21 +3575,21 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-19T22:35:49+00:00"
+            "time": "2018-05-11T15:58:37+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v4.0.9",
+            "version": "v4.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "e1d57cdb357e5b10f5fdacbb0b86689c0a435e6e"
+                "reference": "4e7c98de67cc4171d4c986554e09a511da40f3d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-e1d57cdb357e5b10f5fdacbb0b86689c0a435e6e-zip-c75cf7.zip",
-                "reference": "e1d57cdb357e5b10f5fdacbb0b86689c0a435e6e",
-                "shasum": "6372b7ad2616a3ea99758fc7a1b2261b105bb80b"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-4e7c98de67cc4171d4c986554e09a511da40f3d8-zip-f2c0b8.zip",
+                "reference": "4e7c98de67cc4171d4c986554e09a511da40f3d8",
+                "shasum": "048b03bef5e79e8845e5373c114bb78f6c2d1c1a"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3583,21 +3631,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-30T16:59:37+00:00"
+            "time": "2018-05-16T09:05:32+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.9",
+            "version": "v3.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "54ff9d78b56429f9a1ac12e60bfb6d169c0468e3"
+                "reference": "c2741b26377804e3d70775a3ef29335685ee9b71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-54ff9d78b56429f9a1ac12e60bfb6d169c0468e3-zip-2ea3ba.zip",
-                "reference": "54ff9d78b56429f9a1ac12e60bfb6d169c0468e3",
-                "shasum": "b77c02259e0bec4860d7d413104a88a488ca6334"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-c2741b26377804e3d70775a3ef29335685ee9b71-zip-8d434c.zip",
+                "reference": "c2741b26377804e3d70775a3ef29335685ee9b71",
+                "shasum": "d73276fd0fab519edff321684889080cde2d7c89"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3654,24 +3702,25 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-29T14:04:08+00:00"
+            "time": "2018-05-18T01:58:36+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.0.9",
+            "version": "v4.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "5d2d655b2c72fc4d9bf7e9bf14f72a447b940f21"
+                "reference": "7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-5d2d655b2c72fc4d9bf7e9bf14f72a447b940f21-zip-de2b49.zip",
-                "reference": "5d2d655b2c72fc4d9bf7e9bf14f72a447b940f21",
-                "shasum": "81cc2e0a2399c4a15dd4c32288c8bebb3c3e3798"
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04-zip-8da885.zip",
+                "reference": "7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04",
+                "shasum": "b8a0c0b009cc033c83c90b0f2052c01be9a95c96"
             },
             "require": {
-                "php": "^7.1.3"
+                "php": "^7.1.3",
+                "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
             "extra": {
@@ -3703,7 +3752,62 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-22T10:50:29+00:00"
+            "time": "2018-05-16T09:05:32+00:00"
+        },
+        {
+            "name": "symfony/polyfill-ctype",
+            "version": "v1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-ctype.git",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "reference": "7cc359f1b7b80fc25ed7796be7d96adc9b354bae",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                },
+                {
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
+                }
+            ],
+            "description": "Symfony polyfill for ctype functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "ctype",
+                "polyfill",
+                "portable"
+            ],
+            "time": "2018-04-30T19:57:29+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -3766,17 +3870,17 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.9",
+            "version": "v3.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "4b7d64e852886319e93ddfdecff0d744ab87658b"
+                "reference": "4cbf2db9abcb01486a21b7a059e03a62fae63187"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-4b7d64e852886319e93ddfdecff0d744ab87658b-zip-34309f.zip",
-                "reference": "4b7d64e852886319e93ddfdecff0d744ab87658b",
-                "shasum": "ded8e040248e53140c283dc66fe58118a0181fb9"
+                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-4cbf2db9abcb01486a21b7a059e03a62fae63187-zip-7c7816.zip",
+                "reference": "4cbf2db9abcb01486a21b7a059e03a62fae63187",
+                "shasum": "3dcc95323cca983db18e37fc4591a30f3368c454"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8"
@@ -3811,24 +3915,25 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:22:50+00:00"
+            "time": "2018-05-16T08:49:21+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.9",
+            "version": "v3.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "033cfa61ef06ee0847e056e530201842b6e926c3"
+                "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-033cfa61ef06ee0847e056e530201842b6e926c3-zip-68d3c3.zip",
-                "reference": "033cfa61ef06ee0847e056e530201842b6e926c3",
-                "shasum": "13b81607c444a47377466bd4d15f0fdf4cef2416"
+                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-c5010cc1692ce1fa328b1fb666961eb3d4a85bb0-zip-c4327b.zip",
+                "reference": "c5010cc1692ce1fa328b1fb666961eb3d4a85bb0",
+                "shasum": "fc56afc873499ae74bc8ce224f0c8bb4b8f5fe72"
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8"
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
                 "symfony/console": "<3.4"
@@ -3869,7 +3974,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-08T08:21:29+00:00"
+            "time": "2018-05-03T23:18:14+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -4315,17 +4420,17 @@
         },
         {
             "name": "zendframework/zend-feed",
-            "version": "2.9.0",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-feed.git",
-                "reference": "abe88686124d492e0a2a84656f15e5482bfbe030"
+                "reference": "15a6ca78dd8f67b687e4f902657b4e420a8fd1e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-feed/zendframework-zend-feed-abe88686124d492e0a2a84656f15e5482bfbe030-zip-04c8b6.zip",
-                "reference": "abe88686124d492e0a2a84656f15e5482bfbe030",
-                "shasum": "939fa077757825393e2e61c56b7825f6a117092d"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-feed/zendframework-zend-feed-15a6ca78dd8f67b687e4f902657b4e420a8fd1e0-zip-dc1e8e.zip",
+                "reference": "15a6ca78dd8f67b687e4f902657b4e420a8fd1e0",
+                "shasum": "efa7fe6acfb48f236e4a249a56fae59581ab719c"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -4372,7 +4477,7 @@
                 "feed",
                 "zf"
             ],
-            "time": "2017-12-04T17:59:38+00:00"
+            "time": "2018-05-14T21:45:18+00:00"
         },
         {
             "name": "zendframework/zend-filter",
@@ -4494,17 +4599,17 @@
         },
         {
             "name": "zendframework/zend-i18n",
-            "version": "2.8.0",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-i18n.git",
-                "reference": "cfdb658121e0d7eb969a498c2f67f1eacaab9c63"
+                "reference": "6d69af5a04e1a4de7250043cb1322f077a0cdb7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-i18n/zendframework-zend-i18n-cfdb658121e0d7eb969a498c2f67f1eacaab9c63-zip-fcf957.zip",
-                "reference": "cfdb658121e0d7eb969a498c2f67f1eacaab9c63",
-                "shasum": "f3632146f5aaeef77b24a2eccce6ebab704f790a"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-i18n/zendframework-zend-i18n-6d69af5a04e1a4de7250043cb1322f077a0cdb7f-zip-bfb020.zip",
+                "reference": "6d69af5a04e1a4de7250043cb1322f077a0cdb7f",
+                "shasum": "95ebf3adbecd73c75916713126e4473982d17b5c"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -4535,8 +4640,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8.x-dev",
-                    "dev-develop": "2.9.x-dev"
+                    "dev-master": "2.9.x-dev",
+                    "dev-develop": "2.10.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\I18n",
@@ -4558,7 +4663,7 @@
                 "i18n",
                 "zf"
             ],
-            "time": "2018-04-25T19:32:43+00:00"
+            "time": "2018-05-16T16:39:13+00:00"
         },
         {
             "name": "zendframework/zend-json",
@@ -4846,17 +4951,17 @@
         },
         {
             "name": "zendframework/zend-mime",
-            "version": "2.7.0",
+            "version": "2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-mime.git",
-                "reference": "5db38e92f8a6c7c5e25c8afce6e2d0bd49340c5f"
+                "reference": "52ae5fa9f12845cae749271034a2d594f0e4c6f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-mime/zendframework-zend-mime-5db38e92f8a6c7c5e25c8afce6e2d0bd49340c5f-zip-7ca927.zip",
-                "reference": "5db38e92f8a6c7c5e25c8afce6e2d0bd49340c5f",
-                "shasum": "537684e82b86e21bace7ae9ba372facdb412c3bd"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-mime/zendframework-zend-mime-52ae5fa9f12845cae749271034a2d594f0e4c6f2-zip-6fa7c0.zip",
+                "reference": "52ae5fa9f12845cae749271034a2d594f0e4c6f2",
+                "shasum": "bd5f7880e31909d88a25e20868806a7a9195089c"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -4893,7 +4998,7 @@
                 "mime",
                 "zf"
             ],
-            "time": "2017-11-28T15:02:22+00:00"
+            "time": "2018-05-14T19:02:50+00:00"
         },
         {
             "name": "zendframework/zend-server",
