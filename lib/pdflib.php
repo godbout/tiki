@@ -618,7 +618,7 @@ class PdfGenerator
 
 		//defining array of plugins to be sorted
 		$pluginArr = [["class","customsearch_results","div"],["id","container_pivottable","div"],["class","dynavar","a"], ["class", "tiki_sheet", "div"]];
-		$tagsArr = [["input","tablesorter-filter","class"],["select","tablesorter-filter","class"],["select","pvtRenderer","class"],["select","pvtAggregator","class"],["td","pvtCols","class"],["td","pvtUnused","class"],["td","pvtRows","class"],["div","plot-container","class"],["a","heading-link","class"],["a","tablename","class","1"], ["div", "jSScroll", "class"], ["span", "jSTabContainer", "class"], ["a", "tiki_sheeteditbtn", "class"],["div","comment-footer","class"],["div","buttons comment-form","class"],["div","clearfix tabs","class"]];
+		$tagsArr = [["input","tablesorter-filter","class"],["select","tablesorter-filter","class"],["select","pvtRenderer","class"],["select","pvtAggregator","class"],["td","pvtCols","class"],["td","pvtUnused","class"],["td","pvtRows","class"],["div","plot-container","class"],["a","heading-link","class"],["a","tablename","class","1"], ["div", "jSScroll", "class"], ["span", "jSTabContainer", "class"], ["a", "tiki_sheeteditbtn", "class"],["div","comment-footer","class"],["div","buttons comment-form","class"],["div","clearfix tabs","class"],["a","pvtRowOrder","class"],["a","pvtColOrder","class"],["select","pvtAttrDropdown","class"]];
 
 		foreach ($pluginArr as $pluginInfo) {
 			$customdivs = $xpath->query('//*[contains(@' . $pluginInfo[0] . ', "' . $pluginInfo[1] . '")]');
