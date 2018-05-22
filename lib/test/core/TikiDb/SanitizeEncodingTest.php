@@ -12,44 +12,99 @@ use Tiki\TikiDb\SanitizeEncoding;
 class SanitizeEncodingTest extends \PHPUnit_Framework_TestCase
 {
 	/**
-	 * @param $encoding
 	 * @param $input
+	 * @param $field
 	 * @param $expected
 	 *
-	 * @dataProvider filterDataProvider
+	 * @dataProvider filterUtf8DataProvider
 	 */
-	public function testFilter($encoding, $input, $expected)
+	public function testFilterUtf8($input, $field, $expected)
 	{
-		SanitizeEncoding::setCurrentCharset($encoding);
-		$result = SanitizeEncoding::filter($input);
+		$result = SanitizeEncoding::filterMysqlUtf8($input, ['utf8' => 'utf8'], $field);
 		$this->assertEquals($expected, $result);
 	}
 
-	public function filterDataProvider()
+	public function filterUtf8DataProvider()
 	{
+		$c = SanitizeEncoding::INVALID_CHAR_REPLACEMENT;
+
 		return [
-			[SanitizeEncoding::UTF8SUBSET, '', ''],
-			[SanitizeEncoding::UTF8FULL, '', ''],
-			[SanitizeEncoding::UTF8SUBSET, 'Latin: Vitrum edere possum; mihi non nocet.', 'Latin: Vitrum edere possum; mihi non nocet.'],
-			[SanitizeEncoding::UTF8FULL, 'Latin: Vitrum edere possum; mihi non nocet.', 'Latin: Vitrum edere possum; mihi non nocet.'],
-			[SanitizeEncoding::UTF8SUBSET, 'Sanskrit: काचं शक्नोम्यत्तुम् । नोपहिनस्ति माम् ॥', 'Sanskrit: काचं शक्नोम्यत्तुम् । नोपहिनस्ति माम् ॥'],
-			[SanitizeEncoding::UTF8FULL, 'Sanskrit: काचं शक्नोम्यत्तुम् । नोपहिनस्ति माम् ॥', 'Sanskrit: काचं शक्नोम्यत्तुम् । नोपहिनस्ति माम् ॥'],
-			[SanitizeEncoding::UTF8SUBSET, 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.'],
-			[SanitizeEncoding::UTF8FULL, 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.'],
-			[SanitizeEncoding::UTF8SUBSET, 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴', 'Sample Emoji:          ️  '],
-			[SanitizeEncoding::UTF8FULL, 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴', 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴'],
-			[SanitizeEncoding::UTF8SUBSET, 0x01F600, 0x01F600], // Emoji as integer
-			[SanitizeEncoding::UTF8FULL, 0x01F600, 0x01F600], // Emoji as integer
+			['', 'utf8', ''],
+			['', 'utf8mb4', ''],
+			['Latin: Vitrum edere possum; mihi non nocet.', 'utf8', 'Latin: Vitrum edere possum; mihi non nocet.'],
+			['Latin: Vitrum edere possum; mihi non nocet.', 'utf8mb4', 'Latin: Vitrum edere possum; mihi non nocet.'],
 			[
-				SanitizeEncoding::UTF8SUBSET,
-				['Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴'],
-				['Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'Sample Emoji:          ️  '],
+				'Sanskrit: काचं शक्नोम्यत्तुम् । नोपहिनस्ति माम् ॥',
+				'utf8',
+				'Sanskrit: काचं शक्नोम्यत्तुम् । नोपहिनस्ति माम् ॥',
 			],
 			[
-				SanitizeEncoding::UTF8FULL,
-				['Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴'],
-				['Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴'],
+				'Sanskrit: काचं शक्नोम्यत्तुम् । नोपहिनस्ति माम् ॥',
+				'utf8mb4',
+				'Sanskrit: काचं शक्नोम्यत्तुम् । नोपहिनस्ति माम् ॥',
+			],
+			[
+				'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
+				'utf8',
+				'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
+			],
+			[
+				'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
+				'utf8mb4',
+				'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
+			],
+			[
+				'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴',
+				'utf8',
+				'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . '️ ' . $c,
+			],
+			['Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴', 'utf8mb4', 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴'],
+			[0x01F600, 'utf8', 0x01F600], // Emoji as integer
+			[0x01F600, 'utf8mb4', 0x01F600], // Emoji as integer
+			[
+				['a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'utf8' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴'],
+				null,
+				[
+					'a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
+					'utf8' => 'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . '️ ' . $c,
+				],
+			],
+			[
+				[
+					'a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
+					'utf8mb4' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴',
+				],
+				null,
+				[
+					'a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
+					'utf8mb4' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴',
+				],
 			],
 		];
+	}
+
+	public function testFilterUtf8EmptyFieldList()
+	{
+		$result = SanitizeEncoding::filterMysqlUtf8('Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴', [], 'xxxx');
+		$this->assertEquals('Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴', $result);
+	}
+
+	public function testTikiDbUtf8Filter()
+	{
+		$c = SanitizeEncoding::INVALID_CHAR_REPLACEMENT;
+
+		$fullUtf8String = 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴';
+		$filteredString = 'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . '️ ' . $c;
+
+		$table = \TikiLib::table('tiki_files');
+		$record = $table->insert(['name' => $fullUtf8String, 'data' => $fullUtf8String]);
+		$row = $table->fetchFullRow(['fileId' => $record]);
+
+		if (in_array('name', $table->getUtf8Fields())) { // utf8
+			$this->assertEquals($filteredString, $row['name']);
+		} else {  // utf8mb4
+			$this->assertEquals($fullUtf8String, $row['name']);
+		}
+		$this->assertEquals($fullUtf8String, $row['data']);
 	}
 }

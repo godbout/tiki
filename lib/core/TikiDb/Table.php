@@ -17,13 +17,13 @@ class TikiDb_Table
 	protected $autoIncrement;
 	protected $errorMode = TikiDb::ERR_DIRECT;
 
+	protected static $utf8FieldsCache = [];
+
 	function __construct($db, $tableName, $autoIncrement = true)
 	{
 		$this->db = $db;
 		$this->tableName = $tableName;
 		$this->autoIncrement = $autoIncrement;
-
-		SanitizeEncoding::detectCharset($db, $tableName);
 	}
 
 	function useExceptions()
@@ -397,11 +397,10 @@ class TikiDb_Table
 			$field = $this->escapeIdentifier($key);
 			if ($value instanceof TikiDb_Expr) {
 				$query .= "$field = {$value->getQueryPart($field)}, ";
-				$bindvars = array_merge($bindvars, $value->getValues());
-				$bindvars = SanitizeEncoding::filter($bindvars);
+				$bindvars = array_merge($bindvars, SanitizeEncoding::filterMysqlUtf8($value->getValues(), $this->getUtf8Fields(), $key));
 			} else {
 				$query .= "$field = ?, ";
-				$bindvars[] = SanitizeEncoding::filter($value);
+				$bindvars[] = SanitizeEncoding::filterMysqlUtf8($value, $this->getUtf8Fields(), $key);
 			}
 		}
 
@@ -417,12 +416,30 @@ class TikiDb_Table
 			$ignore = ' IGNORE';
 		}
 
-		$bindvars = array_merge($bindvars, array_values(SanitizeEncoding::filter($values)));
+		$bindvars = array_merge($bindvars, array_values(SanitizeEncoding::filterMysqlUtf8($values, $this->getUtf8Fields())));
 		return "INSERT$ignore INTO {$this->escapeIdentifier($this->tableName)} ($fieldDefinition) VALUES ($fieldPlaceholders)";
 	}
 
 	protected function escapeIdentifier($identifier)
 	{
 		return "`$identifier`";
+	}
+
+	/**
+	 * return the list of fields that have charset utf8 (vs utf8mb4) in the current table
+	 *
+	 * @return mixed
+	 */
+	public function getUtf8Fields()
+	{
+		if (! isset(self::$utf8FieldsCache[$this->tableName])) {
+			$sql = "SELECT COLUMN_NAME AS col FROM information_schema.`COLUMNS` WHERE table_schema = DATABASE()"
+				. " AND TABLE_NAME = ? AND CHARACTER_SET_NAME = 'utf8'";
+			$result = $this->db->fetchAll($sql, [$this->tableName]);
+			$shortFormat = is_array($result) ? array_column($result, 'col') : [];
+			self::$utf8FieldsCache[$this->tableName] = array_combine($shortFormat, $shortFormat);
+		}
+
+		return self::$utf8FieldsCache[$this->tableName];
 	}
 }
