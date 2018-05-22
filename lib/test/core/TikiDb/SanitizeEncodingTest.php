@@ -54,30 +54,30 @@ class SanitizeEncodingTest extends \PHPUnit_Framework_TestCase
 				'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
 			],
 			[
-				'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴',
+				'Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴',
 				'utf8',
-				'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . '️ ' . $c,
+				'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c,
 			],
-			['Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴', 'utf8mb4', 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴'],
+			['Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴', 'utf8mb4', 'Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴'],
 			[0x01F600, 'utf8', 0x01F600], // Emoji as integer
 			[0x01F600, 'utf8mb4', 0x01F600], // Emoji as integer
 			[
-				['a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'utf8' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴'],
+				['a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.', 'utf8' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴'],
 				null,
 				[
 					'a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
-					'utf8' => 'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . '️ ' . $c,
+					'utf8' => 'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c,
 				],
 			],
 			[
 				[
 					'a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
-					'utf8mb4' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴',
+					'utf8mb4' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴',
 				],
 				null,
 				[
 					'a' => 'Sanskrit: kācaṃ śaknomyattum; nopahinasti mām.',
-					'utf8mb4' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴',
+					'utf8mb4' => 'Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴',
 				],
 			],
 		];
@@ -85,26 +85,27 @@ class SanitizeEncodingTest extends \PHPUnit_Framework_TestCase
 
 	public function testFilterUtf8EmptyFieldList()
 	{
-		$result = SanitizeEncoding::filterMysqlUtf8('Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴', [], 'xxxx');
-		$this->assertEquals('Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴', $result);
+		$result = SanitizeEncoding::filterMysqlUtf8('Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴', [], 'xxxx');
+		$this->assertEquals('Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴', $result);
 	}
 
 	public function testTikiDbUtf8Filter()
 	{
 		$c = SanitizeEncoding::INVALID_CHAR_REPLACEMENT;
 
-		$fullUtf8String = 'Sample Emoji: 😀 😁 🐶 🐱 🏳️ 🏴';
-		$filteredString = 'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . '️ ' . $c;
+		$fullUtf8String = 'Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴';
+		$filteredString = 'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c;
 
-		$table = \TikiLib::table('tiki_files');
+		$tikiLib = \TikiLib::lib('tiki');
+		$table = $tikiLib->table('tiki_files');
 		$record = $table->insert(['name' => $fullUtf8String, 'data' => $fullUtf8String]);
 		$row = $table->fetchFullRow(['fileId' => $record]);
 
 		if (in_array('name', $table->getUtf8Fields())) { // utf8
-			$this->assertEquals($filteredString, $row['name']);
+			$this->assertEquals($filteredString, $row['name'], 'name should be filtered when using utf8');
 		} else {  // utf8mb4
-			$this->assertEquals($fullUtf8String, $row['name']);
+			$this->assertNotEquals($filteredString, $row['name'], 'name should be filtered when using utf8mb4');
 		}
-		$this->assertEquals($fullUtf8String, $row['data']);
+		$this->assertNotEquals($filteredString, $row['data'], 'data should not be filter since is LONGBLOB');
 	}
 }
