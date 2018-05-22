@@ -1,13 +1,5 @@
-// $Id$ - grape/tiki.less; compile to make
+// $Id$ - grape/scss/grape.scss; compile to make
 /*  The Grape theme option file for the FiveAlive-lite theme of Tiki Wiki CMS Groupware. */
-@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
-// To apply variables defined in bootstrap-variables.scss.
-@import "../../../scss/bootstrap-scss-for-options";
-// Contains relevant Bootstrap .less file sections to expose variables for the theme options to provide values for.]
-@import "../../../scss/tiki-selectors-for-options";
-// Contains CSS for styling Tiki elements not covered by Bootstrap.
-@import "_bootstrap-variables.scss";
-// A copy of the Bootstrap variables.scss file but using only color settings.
-@import "_tiki-selector-variables.scss";
 
-// Provides values for "legacy" Tiki CSS selectors (not covered by Bootstrap).
+@import "variables";
+@import "../../../scss/fivealive-lite_option_selectors";
