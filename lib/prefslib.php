@@ -1051,6 +1051,10 @@ class PreferencesLib
 				'label' => tra('Unavailable'),
 				'type' => 'negative',
 			],
+			'deprecated' => [
+				'label' => tra('Deprecated'),
+				'type' => 'negative',
+			],
 		];
 
 		foreach ($out as $key => & $info) {
