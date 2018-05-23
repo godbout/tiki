@@ -147,7 +147,7 @@ class NlLib extends TikiLib
 			} else {
 				// save a new draft
 				$query = "insert into `tiki_sent_newsletters`(`nlId`,`subject`,`data`,`sent`,`users`,`datatxt`, `wysiwyg`, `is_html`) values(?,?,?,?,?,?,?,?)";
-				$result = $this->query($query, [(int) $nlId, $subject, $data, -1, 0, $datatxt, $wysiwyg]);
+				$result = $this->query($query, [(int) $nlId, $subject, $data, -1, 0, $datatxt, $wysiwyg, $is_html]);
 				$editionId = $this->getOne('select max(`editionId`) from `tiki_sent_newsletters`');
 			}
 		}
