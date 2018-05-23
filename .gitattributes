@@ -4935,7 +4935,6 @@ lib/wiki-plugins/wikiplugin_showreference.php -text
 lib/wiki-plugins/wikiplugin_sign.php -text
 lib/wiki-plugins/wikiplugin_skype.php -text
 lib/wiki-plugins/wikiplugin_slider.php -text
-lib/wiki-plugins/wikiplugin_slideradvance.php -text
 lib/wiki-plugins/wikiplugin_slideshow.php -text
 lib/wiki-plugins/wikiplugin_smarty.php -text
 lib/wiki-plugins/wikiplugin_snarf.php -text
@@ -4949,6 +4948,7 @@ lib/wiki-plugins/wikiplugin_subscribegroups.php -text
 lib/wiki-plugins/wikiplugin_subscribenewsletter.php -text
 lib/wiki-plugins/wikiplugin_sup.php -text
 lib/wiki-plugins/wikiplugin_survey.php -text
+lib/wiki-plugins/wikiplugin_swiper.php -text
 lib/wiki-plugins/wikiplugin_tabs.php -text
 lib/wiki-plugins/wikiplugin_tag.php -text
 lib/wiki-plugins/wikiplugin_timeline.php -text
