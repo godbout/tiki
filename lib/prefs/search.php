@@ -49,6 +49,7 @@ function prefs_search_list()
 			'dependencies' => ['feature_jquery_autocomplete', 'javascript_enabled'],
 			'warning' => tra('deprecated'),
 			'default' => 'n',
+			'tags' => ['deprecated'],
 		],
 		'search_show_category_filter' => [
 			'name' => tra('Category filter'),

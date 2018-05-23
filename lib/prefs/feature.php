@@ -1554,6 +1554,7 @@ function prefs_feature_list($partial = false)
 			'help' => 'Search',
 			'default' => 'n',
 			'dbfeatures' => ['mysql_fulltext'],
+			'tags' => ['deprecated'],
 			'admin' => 'search',
 			'view' => 'tiki-searchresults.php',
 			'module' => 'search',
