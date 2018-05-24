@@ -270,6 +270,7 @@ class PdfGenerator
 			'margin_header' => $pdfSettings['margin_header'],
 			'margin_footer' => $pdfSettings['margin_footer'],
 			'orientation' => $pdfSettings['orientation'],
+			'tempDir'=> TIKI_PATH . '/temp'
 		];
 		$mpdf = new \Mpdf\Mpdf($mpdfConfig);
 
