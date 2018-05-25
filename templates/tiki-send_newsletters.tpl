@@ -297,7 +297,7 @@
 				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Reply To Email{/tr}</label>
 					<div class="col-sm-10">
-						<input type="text" name="replyto" id="replyto" value="{$replyto|escape}" class="form-control">
+						<input type="email" name="replyto" id="replyto" value="{$replyto|escape}" class="form-control">
 						<div class="form-text">
 							{tr}if not:{/tr} {$prefs.sender_email|escape|default:"<em>{tr}Sender email not set{/tr}</em>"}
 						</div>
@@ -306,7 +306,7 @@
 				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Send From Email{/tr}</label>
 					<div class="col-sm-10">
-						<input type="text" name="sendfrom" id="sendfrom" value="{$sendfrom|escape}" class="form-control">
+						<input type="email" name="sendfrom" id="sendfrom" value="{$sendfrom|escape}" class="form-control">
 						<div class="form-text">
 							{tr}if not:{/tr} {$prefs.sender_email|escape|default:"<em>{tr}Sender email not set{/tr}</em>"}
 						</div>

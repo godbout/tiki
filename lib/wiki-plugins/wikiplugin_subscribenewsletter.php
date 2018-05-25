@@ -95,7 +95,10 @@ function wikiplugin_subscribenewsletter($data, $params)
 	$wpError = '';
 	$subscribeEmail = '';
 	if (isset($_REQUEST['wpSubscribe']) && $_REQUEST['wpNlId'] == $nlId) {
-		if (! $user && empty($_REQUEST['wpEmail'])) {
+		$captchalib = TikiLib::lib('captcha');
+		if (! $user && $prefs['feature_antibot'] == 'y' && ! $captchalib->validate()) {
+			$wpError = $captchalib->getErrors();
+		} elseif (! $user && empty($_REQUEST['wpEmail'])) {
 			$wpError = tra('Invalid Email');
 		} elseif (! $user && ! validate_email($_REQUEST['wpEmail'], $prefs['validateEmail'])) {
 			$wpError = tra('Invalid Email');

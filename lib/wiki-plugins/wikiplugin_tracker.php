@@ -1148,6 +1148,14 @@ function wikiplugin_tracker($data, $params)
 				}
 			}
 
+			// Check if antibot question was submited with the form (for anonymous users)
+			if ($prefs['feature_antibot'] == 'y' && empty($user) && ($registration != 'y' || $prefs["user_register_prettytracker"] != 'y')) {
+				if (! $captchalib->validate()) {
+					Feedback::error($captchalib->getErrors());
+					$field_errors['err_antibot'] = 'y';
+				}
+			}
+
 			// check valid page name for wiki output if requested
 			if (isset($outputtowiki) && ! empty($outputwiki)) {
 				$newpagename = '';
