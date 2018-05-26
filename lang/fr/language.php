@@ -15917,7 +15917,7 @@ $lang = [
 "Translation request" => "Demande de traducation",
 "Send urgent translation request." => "Envoyer une demande de traduction urgente.",
 // "Geolocation" => "Geolocation",
-// "Show page title" => "Show page title",
+"Show page title" => "Afficher le titre de la page",
 // "Explicit Namespace" => "Explicit Namespace",
 // "The namespace for a page is guessed automatically from the page name. However, some exceptions may arise. This option allows to override the namespace" => "The namespace for a page is guessed automatically from the page name. However, some exceptions may arise. This option allows to override the namespace",
 // "Page layout" => "Page layout",
@@ -19760,4 +19760,5 @@ $lang = [
 " Control Panels" => " Panneaux de contrôle",
 "An email pattern must be defined in the settings for at least one group for this to produce any results." => "Un modèle de courrier électronique doit être défini dans les paramètres d'au moins un groupe pour que cela produise des résultats.",
 "Use Ctrl+Click to select multiple languages." => "Utilisez Ctrl + Clic pour sélectionner plusieurs langues.",
+"To translate, do not change the language and the content. Instead, <a class=\"alert-link\" href=\"%0\">create a new translation</a> in the new language." => "Pour traduire, ne changez pas la langue et le contenu. Au lieu de cela, <a class=\"alert-link\" href=\"tiki-edit_translation.php?no_bl=y&page=HomePage\"> créez une nouvelle traduction </a> dans la nouvelle langue.",
 ];
