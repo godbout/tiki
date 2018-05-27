@@ -347,4 +347,24 @@ class Item
 			'short_url' => $this->short_url,
 		];
 	}
+
+	/**
+	 * Returns the full short url link
+	 *
+	 * @return string The absolute short url link
+	 * @throws \Exception
+	 */
+	public function getShortUrlLink()
+	{
+		global $base_url;
+
+		if (! $this->short_url) {
+			throw new \Exception('This custom route is not Short URL');
+		}
+
+		$link = ! empty($prefs['sefurl_short_url_base_url']) ? $prefs['sefurl_short_url_base_url'] : $base_url;
+		$link = rtrim($link, '/') . '/' . $this->from;
+
+		return $link;
+	}
 }

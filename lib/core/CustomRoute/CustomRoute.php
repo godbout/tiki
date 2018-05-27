@@ -72,7 +72,6 @@ class CustomRoute
 	 */
 	public static function generateShortUrlHash($size = 6)
 	{
-
 		$routeLib = TikiLib::lib('custom_route');
 
 		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -88,27 +87,36 @@ class CustomRoute
 	}
 
 	/**
-	 * Check if the given object already has a short_url generated
+	 * Get a shorturl for the requested url
 	 *
-	 * @param $type
-	 * @param $objectId
-	 * @return null|String
+	 * @param string $url The url to short
+	 * @param string $description The shorturl description
+	 * @param bool $reUse
+	 * @return Item
 	 * @throws \Exception
 	 */
-	public static function getShortUrl($type, $objectId)
+	public static function getShortUrlRoute($url, $description, $reUse = true)
 	{
-
 		$routeLib = TikiLib::lib('custom_route');
 
 		$conditions = [
-			'type' => Item::TYPE_OBJECT,
-			'redirect' => json_encode(['type' => $type, 'object' => $objectId]),
+			'type' => Item::TYPE_DIRECT,
+			'redirect' => json_encode(['to' => $url]),
 			'active' => 1,
 			'short_url' => 1,
 		];
 
-		$route = $routeLib->findRoute($conditions);
+		$routeDetails = $routeLib->findRoute($conditions);
 
-		return empty($route) ? null : $route['from'];
+		if (empty($routeDetails) || ! $reUse) {
+			$hash = self::generateShortUrlHash();
+
+			$route = new Item(Item::TYPE_DIRECT, $hash, ['to' => $url], $description, 1, 1);
+			$route->save();
+		} else {
+			$route = Item::load($routeDetails['id']);
+		}
+
+		return $route;
 	}
 }

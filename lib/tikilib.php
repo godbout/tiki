@@ -2604,7 +2604,7 @@ class TikiLib extends TikiDb_Bridge
 	 *
 	 * @return string The tiki base url with the matched schema (http or https)
 	 */
-	private function getMatchBaseUrlSchema($link)
+	public function getMatchBaseUrlSchema($link)
 	{
 		global $base_url_http, $base_url_https;
 

@@ -250,8 +250,8 @@
 							</li>
 						{/if}
 						{if $prefs.sefurl_short_url eq 'y'}
-							<li>
-								<a href="tiki-short_url.php?page={$page|escape:"url"}">
+							<li class="dropdown-item">
+								<a id="short_url_link" href="#" onclick="(function() { $(document.activeElement).attr('href', 'tiki-short_url.php?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title)); })();">
 									{icon name="link"} {tr}Get a short URL{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>

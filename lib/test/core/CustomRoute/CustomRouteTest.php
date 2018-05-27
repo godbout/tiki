@@ -28,55 +28,35 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers \Tiki\CustomRoute\CustomRoute::getShortUrl()
+	 * @covers \Tiki\CustomRoute\CustomRoute::getShortUrlRoute()
 	 */
-	public function testGetEmptyShortUrl()
+	public function testGetShortUrlRoute()
 	{
-		$this->assertEmpty(CustomRoute::getShortUrl('wiki page', 'myShortUrlPage'));
+
+		$url = 'https://tiki.org/Homepage';
+
+		$route = CustomRoute::getShortUrlRoute($url, 'Test route');
+
+		self::$routes[] = $route->id;
+
+		$this->assertNotEmpty($route);
+		$this->assertEquals(Item::TYPE_DIRECT, $route->type);
+
+		$params = json_decode($route->redirect, true);
+		$this->assertEquals($url, $params['to']);
+		$this->assertTrue((bool) $route->short_url);
+		$this->assertTrue((bool) $route->active);
 	}
 
 	/**
-	 * @covers \Tiki\CustomRoute\CustomRoute::getShortUrl()
+	 * @covers \Tiki\CustomRoute\CustomRoute::getShortUrlRoute()
 	 */
 	public function testGetExistingShortUrl()
 	{
-		$hash = CustomRoute::generateShortUrlHash();
-		$objectType = 'wiki page';
-		$objectId = 'myShortUrlPage-' . $hash;
+		$url = 'https://tiki.org/Homepage';
+		$route = CustomRoute::getShortUrlRoute($url, 'Test route');
 
-		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test short url route', 1, 1);
-
-		$errors = $route->validate();
-		$this->assertEmpty($errors);
-
-		$route->save();
-
-		self::$routes[] = $route->id;
-
-		$from = CustomRoute::getShortUrl($objectType, $objectId);
-		$this->assertEquals($hash, $from);
-	}
-
-	/**
-	 * @covers \Tiki\CustomRoute\CustomRoute::getShortUrl()
-	 */
-	public function testGetInactiveShortUrl()
-	{
-		$hash = CustomRoute::generateShortUrlHash();
-		$objectType = 'wiki page';
-		$objectId = 'myShortUrlPage-' . $hash;
-
-		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test short url route', 0, 1);
-
-		$errors = $route->validate();
-		$this->assertEmpty($errors);
-
-		$route->save();
-
-		self::$routes[] = $route->id;
-
-		$from = CustomRoute::getShortUrl($objectType, $objectId);
-		$this->assertEmpty($from);
+		$this->assertTrue(in_array($route->id, self::$routes));
 	}
 
 	/**
@@ -88,7 +68,7 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$objectType = 'wiki page';
 		$objectId = 'myShortUrlPage-' . $hash;
 
-		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test short url route', 1, 1);
+		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test custom url route', 1, 1);
 
 		$errors = $route->validate();
 		$this->assertEmpty($errors);
@@ -112,7 +92,7 @@ class CustomRouteTest extends \PHPUnit_Framework_TestCase
 		$objectType = 'wiki page';
 		$objectId = 'myShortUrlPage-' . $hash;
 
-		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test short url route', 0, 1);
+		$route = new Item(Item::TYPE_OBJECT, $hash, ['type' => $objectType, 'object' => $objectId], 'Test custom url route', 0, 1);
 
 		$errors = $route->validate();
 		$this->assertEmpty($errors);
