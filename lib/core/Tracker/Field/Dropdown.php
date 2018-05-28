@@ -210,20 +210,29 @@ class Tracker_Field_Dropdown extends Tracker_Field_Abstract implements Tracker_F
 
 	private function getValuePortion($value)
 	{
-		if (false === $pos = strpos($value, '=')) {
-			return $value;
-		} else {
-			return substr($value, 0, $pos);
+		if (false !== $pos = strpos($value, '=')) {
+			$value = substr($value, 0, $pos);
 		}
+
+		// Check if option is contains quotes, ex: "apple, banana, orange"
+		if (preg_match('/^(").*\1$/', $value)) {
+			$value = substr($value, 1, sizeof($value) - 2);
+		}
+
+		return $value;
 	}
 
 	private function getLabelPortion($value)
 	{
-		if (false === $pos = strpos($value, '=')) {
-			return $value;
-		} else {
-			return substr($value, $pos + 1);
+		if (false !== $pos = strpos($value, '=')) {
+			$value = substr($value, $pos + 1);
 		}
+
+		if (preg_match('/^(").*\1$/', $value)) {
+			$value = substr($value, 1, sizeof($value) - 2);
+		}
+
+		return $value;
 	}
 
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)

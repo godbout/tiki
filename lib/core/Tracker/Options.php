@@ -84,9 +84,36 @@ class Tracker_Options
 			if (isset($info['count']) && $info['count'] === '*') {
 				$rawValue = $input->$key->none();
 				if ($rawValue !== '') {
-					$values = explode(',', $rawValue);
-					$filter = TikiFilter::get($filter);
-					$values = array_map([$filter, 'filter'], $values);
+					$commaItems = explode(',', $rawValue);
+					$optionItems = [];
+
+					if (! empty($commaItems)) {
+						$commaItem = '';
+						foreach ($commaItems as $item) {
+							// one word quoted. ex: "bananas" or option1="bananas"
+							if (preg_match('/^(").*\1$|^.*=(").*\2$/', trim($item))) {
+								array_push($optionItems, $item);
+							} else if (strpos($item, '"') !== false) {
+								if ($commaItem == '') {
+									$commaItem = $item;
+								} else {
+									$commaItem = $commaItem . ',' . $item;
+									array_push($optionItems, $commaItem);
+									$commaItem = '';
+								}
+							} elseif ($commaItem !== '') {
+								$commaItem = $commaItem . ',' . $item;
+							} else {
+								array_push($optionItems, $item);
+							}
+						}
+						$optionItems = array_map('trim', $optionItems);
+
+						$filter = TikiFilter::get($filter);
+						$values = array_map([$filter, 'filter'], $optionItems);
+					} else {
+						$values = '';
+					}
 				} else {
 					$values = '';
 				}
