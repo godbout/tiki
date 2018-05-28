@@ -3208,7 +3208,7 @@ class FileGalLib extends TikiLib
 				$g_group_by .= ", tfg.`parentId`, tfg.`name`, tfg.`description`, tfg.`created`, tfg.`name`, tfg.`type`, tfg.`user`, tfg.`hits`, tfg.`votes`, tfg.`points`, tfg.`name`, tfg.`lastModif`, tfg.`visible`, tfg.`public`, tfg.`galleryId`, tfg.`parentId`, tfg.`type`, tfg.`user`, `icon_fileId` ";
 			}
 			if ($with_files) {
-				$query = "SELECT $select FROM (($f_query $f_group_by) UNION ($g_query $g_group_by)) as tab" . $join;
+				$query = "SELECT $select FROM (($f_query $f_group_by) UNION ALL ($g_query $g_group_by)) as tab" . $join;
 				$bindvars = array_merge($f_jail_bind, $bindvars);
 			} else {
 				$query = "SELECT $select FROM ($g_query $g_group_by) as tab" . $join;
@@ -3240,7 +3240,6 @@ class FileGalLib extends TikiLib
 		$ret = [];
 		$gal_size_order = [];
 		$cant = 0;
-		$n = -1;
 		$need_everything = ( $with_subgals_size && ( $sort_mode == 'size_asc' || $sort_mode == 'filesize_asc' ) );
 		$cachelib = TikiLib::lib('cache');
 		//TODO: perms cache for file perms (now we are using cache only for file gallery perms)
@@ -3259,6 +3258,10 @@ class FileGalLib extends TikiLib
 			} else {
 				$fgal_perms = [];
 			}
+		}
+		$numResults = count($result);
+		if (! $need_everything) {
+			$result = array_slice($result, $offset == -1 ? 0 : $offset, $maxRecords == -1 ? null : $maxRecords);
 		}
 		foreach ($result as $res) {
 			$object_type = ( $res['isgal'] == 1 ? 'file gallery' : 'file');
@@ -3334,34 +3337,24 @@ class FileGalLib extends TikiLib
 				$res['name'] = $this->get_user_gallery_name($res);
 			}
 
-			$n++;
-			if (! $need_everything && $offset != -1 && $n < $offset) {
-				continue;
-			}
-
-			if ($need_everything || $maxRecords == -1 || $cant < $maxRecords) {
-				$ret[$cant] = $res;
-				if ($with_subgals_size && $res['isgal'] == 1) {
-					$ret[$cant]['size'] = (string)$this->getUsedSize($res['id']);
-					$ret[$cant]['filesize'] = $ret[$cant]['size']; /// Obsolete
-					if ($keep_subgals_together) {
-						$gal_size_order[$cant] = $ret[$cant]['size'];
-					}
-				}
-				if ($with_subgals_size && ! $keep_subgals_together) {
+			$ret[$cant] = $res;
+			if ($with_subgals_size && $res['isgal'] == 1) {
+				$ret[$cant]['size'] = (string)$this->getUsedSize($res['id']);
+				$ret[$cant]['filesize'] = $ret[$cant]['size']; /// Obsolete
+				if ($keep_subgals_together) {
 					$gal_size_order[$cant] = $ret[$cant]['size'];
 				}
-				// generate link for podcasts
-				$ret[$cant]['podcast_filename'] = $res['path'];
 			}
+			if ($with_subgals_size && ! $keep_subgals_together) {
+				$gal_size_order[$cant] = $ret[$cant]['size'];
+			}
+			// generate link for podcasts
+			$ret[$cant]['podcast_filename'] = $res['path'];
 
 			$cant++;
 		}
 		if ($galleryId > 0) {
 			$cachelib->cacheItem($cacheName, serialize($fgal_perms), $cacheType);
-		}
-		if (! $need_everything) {
-			$cant += $offset;
 		}
 
 		if (count($gal_size_order) > 0) {
@@ -3392,7 +3385,7 @@ class FileGalLib extends TikiLib
 			}
 		}
 
-		return ['data' => $ret, 'cant' => $cant];
+		return ['data' => $ret, 'cant' => $numResults];
 	}
 
 	/**
