@@ -332,6 +332,8 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 					$baseKey => $typeFactory->identifier($value),
 					"{$baseKey}_text" => $typeFactory->wikitext($info['data']),
 					"{$baseKey}_raw" => $typeFactory->identifier($info['data']),
+					"{$baseKey}_creation_date" => $typeFactory->timestamp($info['created']),
+					"{$baseKey}_modification_date" => $typeFactory->timestamp($info['lastModif']),
 				];
 			}
 		}
@@ -345,7 +347,10 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 
 		$data = [
 			$baseKey, // the page name
-			"{$baseKey}_text", // wiki text
+			"{$baseKey}_text", // wiki text (parsed)
+			"{$baseKey}_raw",  // unparsed wiki markup
+			"{$baseKey}_creation_date", // wiki page creation date
+			"{$baseKey}_modification_date", // wiki page modification date
 		];
 
 		return $data;
