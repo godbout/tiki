@@ -12,8 +12,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20171123_create_object_links_tiki($installer)
 {
-	global $tikilib;
-	require_once('lib/tikilib.php');
+	include_once('tiki-setup.php');
 
 	$create_links = function ($installer, $type, $objectId, $data) {
 		$parserlib = TikiLib::lib('parser');
