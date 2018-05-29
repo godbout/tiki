@@ -64,7 +64,7 @@ class Search_Indexer
 					'line' => $errline,
 				]);
 
-				return [$error, $errstr];
+				return true;
 			}, E_ALL);
 
 			// set smarty error muting again after declaring our handler becasue smarty is set up in tiki-setup.php
