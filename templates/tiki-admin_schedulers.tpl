@@ -18,7 +18,7 @@
 </div>
 {tabset name='tabs_admin_schedulers'}
 
-	{* ---------------------- tab with list -------------------- *}
+{* ---------------------- tab with list -------------------- *}
 {if $schedulers|count > 0}
 	{tab name="{tr}Schedulers{/tr}"}
 		<div id="admin_schedulers-div">
@@ -109,16 +109,16 @@
 									{/strip}
 								{/capture}
 								{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-										<a
-												class="tips"
-												title="{tr}Actions{/tr}" href="#"
-												{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.scheduler_actions}{/if}
-												style="padding:0; margin:0; border:0"
-										>
-											{icon name='wrench'}
-										</a>
-										{if $js === 'n'}
-										<ul class="dropdown-menu" role="menu">{$smarty.capture.scheduler_actions}</ul></li></ul>
+								<a
+									class="tips"
+									title="{tr}Actions{/tr}" href="#"
+									{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.scheduler_actions}{/if}
+									style="padding:0; margin:0; border:0"
+								>
+								{icon name='wrench'}
+								</a>
+								{if $js === 'n'}
+									<ul class="dropdown-menu" role="menu">{$smarty.capture.scheduler_actions}</ul></li></ul>
 								{/if}
 							</td>
 						</tr>
@@ -129,8 +129,9 @@
 		</div>
 	{/tab}
 {/if}
-	{* ---------------------- tab with form -------------------- *}
-	<a id="tab2"></a>
+
+{* ---------------------- tab with form -------------------- *}
+<a id="tab2"></a>
 {if isset($schedulerinfo.id) && $schedulerinfo.id}
 	{$add_edit_scheduler_tablabel = "{tr}Edit scheduler{/tr}"}
 	{$schedulename = "<i>{$schedulerinfo.name|escape}</i>"}
@@ -221,14 +222,16 @@
 
 	</form>
 {/tab}
+
 	<a id="tab3"></a>
 	{if isset($schedulerinfo.id) && $schedulerinfo.id}
 		{tab name="{tr}Scheduler logs{/tr}"}
 			<h2>{tr}Scheduler{/tr} {$schedulerinfo.name|escape} Logs</h2>
-			<h3>{tr}Last {$cant} Logs{/tr}</h3>
+			<h3>{tr}Last {$numOfLogs} Logs{/tr}</h3>
 			<table class="table normal table-striped table-hover">
 				<thead>
 				<tr>
+					<th>ID</th>
 					<th>Start Time</th>
 					<th>End Time</th>
 					<th>Status</th>
@@ -238,6 +241,7 @@
 				<tbody>
 				{section name=run loop=$schedulerruns}
 					<tr>
+						<td>{$schedulerruns[run].id}</td>
 						<td>{$schedulerruns[run].start_time|date_format:"%b %e, %Y %H:%M:%S"}</td>
 						<td>{$schedulerruns[run].end_time|date_format:"%b %e, %Y %H:%M:%S"}</td>
 						<td>{$schedulerruns[run].status}</td>
@@ -254,7 +258,7 @@
 				{/section}
 				</tbody>
 			</table>
-        {pagination_links cant=$cant step=$numrows offset=$offset}{/pagination_links}
+			{pagination_links cant=$cant step=$numrows offset=$offset}tiki-admin_schedulers.php?scheduler={$schedulerinfo.id}&cookietab=3{/pagination_links}
 		{/tab}
 	{/if}
 {/tabset}
