@@ -305,7 +305,8 @@ function wikiplugin_listpages($data, $params)
 		'showCheckbox' => 'y',
 		'showNumberOfPages' => 'n',
 		'for_list_pages' => 'y',
-		'pagination' => 'n'
+		'pagination' => 'n',
+		'exclude_pages' => '',
 	];
 	$params = array_merge($default, $params);
 	extract($params, EXTR_SKIP);
