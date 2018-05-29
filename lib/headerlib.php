@@ -637,8 +637,10 @@ class HeaderLib
 		$file = $tempDir . "min_main_" . $hash . ".js";
 		$cdnFile = $this->convert_cdn($file);
 
-		// check if we are on a user defined CDN and the file exists (if tiki_cdn_check is enabled)
-		if ($file != $cdnFile) {
+		// Check if we are on a user defined CDN and the file exists (if tiki_cdn_check is enabled).
+		// Note: cdn will only be used if the local minified file exists, this ensures that we run the minification at
+		// least once locally (covers the case where this instance is also cdn)
+		if (file_exists($file) && ($file != $cdnFile)) {
 			$cacheType = 'cdn_minify_check';
 			if ($prefs['tiki_cdn_check'] === 'y' && ! $cachelib->isCached($cdnFile, $cacheType)) {
 				$cdnHeaders = get_headers($cdnFile);
