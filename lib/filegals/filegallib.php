@@ -3460,16 +3460,19 @@ class FileGalLib extends TikiLib
 			$res = [];
 		}
 
-		// Use default values if some values are not specified
-		if ($res !== false && $defaultsFallback) {
-			foreach ($defaultValues as $k => $v) {
-				if (! isset($res[$k]) || $res[$k] === null) {
-					$res[$k] = $v;
+		if ($res !== false) {
+
+			// Use default values if some values are not specified
+			if ($defaultsFallback) {
+				foreach ($defaultValues as $k => $v) {
+					if (! isset($res[$k]) || $res[$k] === null) {
+						$res[$k] = $v;
+					}
 				}
 			}
+			$res['name'] = $this->get_user_gallery_name($res);
 		}
 
-		$res['name'] = $this->get_user_gallery_name($res);
 
 		return $res;
 	}
