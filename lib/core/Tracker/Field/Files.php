@@ -237,6 +237,10 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		}
 
 		$galinfo = $filegallib->get_file_gallery($galleryId);
+		if (!$galinfo) {
+			Feedback::error(tr('Files field: Gallery #%0 not found', $galleryId));
+			return [];
+		}
 		if ($prefs['feature_use_fgal_for_user_files'] !== 'y' || $galinfo['type'] !== 'user') {
 			$perms = Perms::get('file gallery', $galleryId);
 			$canUpload = $perms->upload_files;
