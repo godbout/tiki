@@ -1008,7 +1008,7 @@ function wikiplugin_img($data, $params)
 					$imgalthumb == true;
 				}
 				$width = $imgdata['width'];
-				if (empty($imgdata['height']) && $fwidth > 1) {
+				if (empty($imgdata['height']) && $fwidth > 1 && is_numeric($width)) {
 					$height = floor($width * $fheight / $fwidth);
 				} else {
 					$height = $imgdata['height'];
