@@ -945,6 +945,10 @@ function wikiplugin_tracker($data, $params)
 				if ($field['type'] == 'q') {
 					$auto_fieldId[] = $field['fieldId'];
 				}
+				// Wiki Page
+				if ($field['type'] == 'wiki') {
+					$auto_fieldId[] = $field['fieldId'];
+				}
 			}
 			foreach ($auto_fieldId as $k => $v) {
 				if (empty($v) || in_array($v, $outf)) {

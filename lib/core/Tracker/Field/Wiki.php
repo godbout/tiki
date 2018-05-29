@@ -194,10 +194,10 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 		$page_name = $this->getValue();
 		$insForPagenameField = 'ins_' . $this->getOption('fieldIdForPagename');
 
-		if (! $page_name && ! empty($requestData['itemId'])) {
+		if (! $page_name) {
 			if (! empty($requestData[$insForPagenameField])) {
 				$page_name = $requestData[$insForPagenameField];	// from tabular import replace
-			} else {
+			} else if (! empty($requestData['itemId'])) {
 				$itemData = $this->getItemData();					// caluculated field types like auto-increment need rendering
 				$definition = $this->getTrackerDefinition();
 				$factory = $definition->getFieldFactory();
@@ -208,9 +208,9 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 				} else {
 					Feedback::error(tr('Missing Page Name field #%0 for Wiki field #%1', $this->getOption('fieldIdForPagename'), $fieldId));
 				}
+				$itemId = $requestData['itemId'];
 			}
 			$page_name = $this->getFullPageName($page_name);	// from tabular import replace
-			$itemId = $requestData['itemId'];
 		} else {
 			$itemId = $this->getItemId();
 		}
