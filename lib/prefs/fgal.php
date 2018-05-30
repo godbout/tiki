@@ -335,7 +335,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 			'filter' => 'alpha',
 			'default' => 'n',
 			'help' => 'ViewerJS',
-			'tags' => ['experimental'],
+			'tags' => ['deprecated'],
 			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'fgal_viewerjs_uri' => [
@@ -345,7 +345,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 			'filter' => 'url',
 			'default' => 'files/viewerjs/ViewerJS/index.html',
 			'help' => 'ViewerJS',
-			'tags' => ['experimental'],
+			'tags' => ['deprecated'],
 			'dependencies' => ['fgal_viewerjs_feature'],
 			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],

@@ -2852,7 +2852,7 @@ function prefs_feature_list($partial = false)
 			'help' => 'TimeSheet',
 			'keywords' => 'timesheet time sheet project',
 			'default' => 'n',
-			'tags' => ['experimental'],
+			'tags' => ['deprecated'],
 			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'feature_htmlfeed' => [
@@ -2862,7 +2862,7 @@ function prefs_feature_list($partial = false)
 			'help' => 'HtmlFeed',
 			'keywords' => 'html feed ads ad share',
 			'default' => 'n',
-			'tags' => ['experimental'],
+			'tags' => ['deprecated'],
 			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'feature_futurelinkprotocol' => [
@@ -2872,7 +2872,7 @@ function prefs_feature_list($partial = false)
 			'help' => 'FutureLinkProtocol',
 			'keywords' => 'future link futurelink share feed',
 			'default' => 'n',
-			'tags' => ['experimental'],
+			'tags' => ['deprecated'],
 			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'feature_community_send_mail_join' => [
