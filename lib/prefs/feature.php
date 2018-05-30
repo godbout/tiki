@@ -2853,6 +2853,7 @@ function prefs_feature_list($partial = false)
 			'keywords' => 'timesheet time sheet project',
 			'default' => 'n',
 			'tags' => ['experimental'],
+			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'feature_htmlfeed' => [
 			'name' => tra('HTML feed'),
@@ -2862,6 +2863,7 @@ function prefs_feature_list($partial = false)
 			'keywords' => 'html feed ads ad share',
 			'default' => 'n',
 			'tags' => ['experimental'],
+			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'feature_futurelinkprotocol' => [
 			'name' => tra('FutureLink-Protocol'),
@@ -2871,6 +2873,7 @@ function prefs_feature_list($partial = false)
 			'keywords' => 'future link futurelink share feed',
 			'default' => 'n',
 			'tags' => ['experimental'],
+			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'feature_community_send_mail_join' => [
 			'name' => tra('Send an email notification to group leaders when a user joins'),

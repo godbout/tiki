@@ -336,6 +336,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 			'default' => 'n',
 			'help' => 'ViewerJS',
 			'tags' => ['experimental'],
+			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'fgal_viewerjs_uri' => [
 			'name' => tra('Viewer JS URI'),
@@ -346,6 +347,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 			'help' => 'ViewerJS',
 			'tags' => ['experimental'],
 			'dependencies' => ['fgal_viewerjs_feature'],
+			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
 		'fgal_pdfjs_feature' => [
 			'name' => tr('Use PDF.js'),
