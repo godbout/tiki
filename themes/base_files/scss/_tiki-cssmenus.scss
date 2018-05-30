@@ -150,8 +150,8 @@
 //  border-left-color: $dropdown-link-hover-color;
 // }
 
-.panel-body ul.cssmenu_vert,
-.panel-body ul.cssmenu_horiz,
+.card-body ul.cssmenu_vert,
+.card-body ul.cssmenu_horiz,
 .cssmenu_vert li ul,
 .cssmenu_horiz li ul {
 	overflow: visible;
@@ -201,7 +201,7 @@ a.structure-home {
 	.navbar {
 		margin-bottom: 0;
 	}
-	.navbar-default {
+	.navbar-* {
 		border: none;
 	}
 }

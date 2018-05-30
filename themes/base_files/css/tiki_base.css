@@ -2912,7 +2912,7 @@ div.olMap {
   margin-top: -5px;
   margin-right: -3px; }
 
-.panel-body ul.cssmenu_vert, .panel-body ul.cssmenu_horiz, .cssmenu_vert li ul, .cssmenu_horiz li ul {
+.card-body ul.cssmenu_vert, .card-body ul.cssmenu_horiz, .cssmenu_vert li ul, .cssmenu_horiz li ul {
   overflow: visible; }
 
 .cssmenu_vert li ul, .cssmenu_horiz li ul {
@@ -2936,7 +2936,7 @@ a.structure-home {
 
 .topbar .navbar {
   margin-bottom: 0; }
-  .topbar .navbar-default {
+  .topbar .navbar-* {
     border: none; }
 
 body:not(.fixed_width) .container {
