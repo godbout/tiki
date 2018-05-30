@@ -1,4 +1,7 @@
 {* $Id$ *}
+<div class="t_navbar text-right">
+	{button href="$url" _icon_name="reply" _class="btn btn-link" _text="{tr}Back{/tr}"}
+</div>
 
 {title}
 	{if $report eq 'y'}
@@ -7,10 +10,6 @@
 		{tr}Send a link to a friend{/tr}
 	{/if}
 {/title}
-
-<div class="t_navbar">
-	{button href="$url" class="btn btn-primary" _text="{tr}Back{/tr}"}
-</div>
 
 {if isset($sent)}
 	<div class="alert alert-warning">{icon name='ok' alt="{tr}OK{/tr}" style="vertical-align:middle" align="left"}
@@ -23,7 +22,7 @@
 	</div>
 {/if}
 
-<form method="post" action="tiki-tell_a_friend.php" id="tellafriend" class="form-horizontal">
+<form method="post" action="tiki-tell_a_friend.php" id="tellafriend" class="form">
 	<input type="hidden" name="url" value="{$url|escape:url}">
 	<div class="form-group row">
 		<label class="col-form-label col-sm-3">{tr}Link{/tr}</label>
@@ -35,7 +34,7 @@
 		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Friend's email{/tr}</label>
 			<div class="col-sm-7">
-				<input type="text" size="60" name="addresses" value="{$addresses|escape}" class="form-control">
+				<input type="text" name="addresses" value="{$addresses|escape}" class="form-control">
 				<div class="form-text">
 					{tr}Separate multiple email addresses with a comma.{/tr}
 				</div>
