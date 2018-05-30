@@ -5,7 +5,7 @@
 	{button href="tiki-index.php?page=$thispage" class="btn btn-primary btn-sm navbar-btn" _text="{tr}View page{/tr}"}
 </div>
 
-<form action="tiki-rename_page.php" method="post" class="form-horizontal" role="form">
+<form action="tiki-rename_page.php" method="post" role="form">
 	<input type="hidden" name="page" value="{$page|escape}">
 	{if isset($page_badchars_display)}
 		{if $prefs.wiki_badchar_prevent eq 'y'}

@@ -8,7 +8,7 @@
 		{if $tiki_p_freetags_tag eq 'y'}
 			{if !empty($freetag_error)}{$freetag_error}{/if}
 			<div class="col-sm-12">
-				<form name="addTags" method="post" class="form-horizontal">
+				<form name="addTags" method="post">
 					<div class="form-group row mx-0">
 						<input type="text" name="addtags" class="form-control"{if !empty($freetag_msg)} value="{$freetag_msg}"{/if} />
 						{if $prefs.feature_antibot eq 'y' && $user eq ''}

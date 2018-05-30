@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form class="form-horizontal" action="tiki-admin.php?page=general" class="admin" method="post">
+<form action="tiki-admin.php?page=general" class="admin" method="post">
 	{ticket}
 	<div class="t_navbar mb-4">
 		{button _class="btn btn-link tips" _type="text" href="tiki-install.php" _icon_name="database" _text="{tr}Tiki installer{/tr}" _title=":{tr}Reset or upgrade your database{/tr}"}

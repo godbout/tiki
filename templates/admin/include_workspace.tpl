@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form class="form-horizontal" action="tiki-admin.php?page=workspace" method="post">
+<form action="tiki-admin.php?page=workspace" method="post">
 	{ticket}
 	<div class="clearfix mb-4">
 		{if $prefs.workspace_ui eq "y"}

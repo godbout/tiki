@@ -345,7 +345,7 @@
 				<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 
 				{remarksbox type="note"}<strong class='mandatory_note'>{tr}Fields marked with an * are mandatory.{/tr}</strong>{/remarksbox}
-				<div class="form-horizontal">
+				<div>
 
 					{if $tracker_info.showStatus eq 'y' and ($tracker_info.showStatusAdminOnly ne 'y' or $tiki_p_admin_trackers eq 'y')}
 						<div class="form-group row">

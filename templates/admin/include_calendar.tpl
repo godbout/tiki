@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="tiki-admin.php?page=calendar" method="post">
+<form action="tiki-admin.php?page=calendar" method="post">
 	{ticket}
 	<div class="t_navbar mb-4 clearfix">
 		<a role="link" class="btn btn-link tips" href="tiki-admin_calendars.php" title=":{tr}Calendars listing{/tr}">

@@ -80,7 +80,7 @@
 
 {if $add_options|@count > 0}
 	<h3>{tr}Add Watch{/tr}</h3>
-	<form class="form-horizontal" action="tiki-user_watches.php" method="post">
+	<form action="tiki-user_watches.php" method="post">
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="type_selector">{tr}Event:{/tr}</label>
 
@@ -142,7 +142,7 @@
 	{/jq}
 {/if}
 	<h3>{tr}Watches{/tr}</h3>
-	<form class="form-horizontal mb-4" action="tiki-user_watches.php" method="post" id='formi'>
+	<form mb-4" action="tiki-user_watches.php" method="post" id='formi'>
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="event">{tr}Show:{/tr}</label>
 

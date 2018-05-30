@@ -119,7 +119,7 @@
 			{tr}History{/tr}
 		</h2>
 	{/if}
-	<form id="pagehistory" class="form-horizontal" action="tiki-pagehistory.php?page={$page}">
+	<form id="pagehistory" action="tiki-pagehistory.php?page={$page}">
 		<input type="hidden" name="page" value="{$page|escape}">
 		<input type="hidden" name="history_offset" value="{$history_offset}">
 		<div class="clearfix">

@@ -4,8 +4,7 @@
 
 {include file='tiki-directory_admin_bar.tpl'}
 <h2>{tr}Parent directory category:{/tr}</h2>
-<form name="path" method="post" action="tiki-directory_admin_categories.php" class="form-horizontal">
-	<br>
+<form name="path" method="post" action="tiki-directory_admin_categories.php">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">
 			{tr}Parent directory category{/tr}
@@ -29,7 +28,7 @@
 
 {* Dislay a form to add or edit a site *}
 <h2>{if $siteId}{tr}Edit a site{/tr}{else}{tr}Add a site{/tr}{/if}</h2>
-<form action="tiki-directory_admin_sites.php" method="post" class="form-horizontal">
+<form action="tiki-directory_admin_sites.php" method="post">
 	<input type="hidden" name="parent" value="{$parent|escape}">
 	<input type="hidden" name="siteId" value="{$siteId|escape}">
 

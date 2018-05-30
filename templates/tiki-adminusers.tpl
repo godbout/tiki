@@ -41,7 +41,7 @@
 		{if !$ts.ajax}
 			<h2>{tr}Users{/tr}</h2>
 			{if !$ts.enabled}
-				<form method="get" class="form-horizontal small" action="tiki-adminusers.php">
+				<form method="get" class="small" action="tiki-adminusers.php">
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4" for="find">{tr}Find{/tr}</label>
 						<div class="col-sm-8">
@@ -115,7 +115,7 @@
 			{if ($cant > $numrows or !empty($initial)) && !$ts.enabled}
 				{initials_filter_links}
 			{/if}
-			<form class="form-horizontal" name="checkform" id="checkform" method="post">
+			<form name="checkform" id="checkform" method="post">
 				<div id="{$ts.tableid}-div" {if $ts.enabled}style="visibility:hidden;"{/if}>
 					<div class="{if $js === 'y'}table-responsive{/if} user-table ts-wrapperdiv">
 		{/if}
@@ -408,7 +408,7 @@
 				<h2>{tr}Add a New User{/tr}</h2>
 			{/if}
 			{if $userinfo.editable}
-				<form class="form form-horizontal" action="tiki-adminusers.php" method="post" enctype="multipart/form-data" name="RegForm" autocomplete="off">
+				<form action="tiki-adminusers.php" method="post" enctype="multipart/form-data" name="RegForm" autocomplete="off">
 					<div class="form-group row">
 						<label class="col-sm-3 col-md-2 col-form-label" for="login">{if $prefs.login_is_email eq 'y'}{tr}Email{/tr}{else}{tr}User{/tr}{/if}</label>
 						<div class="col-sm-7 col-md-6">
@@ -627,7 +627,7 @@
 		{tab name="{tr}Import{/tr}"}
 			<h2>{tr}Batch upload (CSV file){/tr}</h2>
 
-			<form class="form-horizontal" action="tiki-adminusers.php" method="post" enctype="multipart/form-data">
+			<form action="tiki-adminusers.php" method="post" enctype="multipart/form-data">
 				{ticket}
 				<div class="form-group row">
 					<label for="csvlist" class="col-form-label col-md-3">{tr}CSV File{/tr}</label>
@@ -737,7 +737,7 @@
 				{remarksbox type="info" title="Revoking Access"}
 					{tr}To revoke access before validity expires or to review who has access, please see:{/tr} <a href="tiki-admin_tokens.php">{tr}Admin Tokens{/tr}</a>
 				{/remarksbox}
-				<form class="form-horizontal" name="tempuser" id="tempuser" method="post">
+				<form name="tempuser" id="tempuser" method="post">
 					<div class="form-group row">
 						<label class="col-sm-4 col-md-4 col-form-label" for="tempuser_emails">{tr}Email addresses (comma-separated){/tr}</label>
 						<div class="col-sm-8 col-md-8">

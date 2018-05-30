@@ -9,7 +9,7 @@
 
 <h2>{if $questionId}{tr}Edit FAQ question{/tr}{else}{tr}Add FAQ question{/tr}{/if}</h2>
 <br>
-<form action="tiki-faq_questions.php" method="post" id="editpageform" class="form-horizontal">
+<form action="tiki-faq_questions.php" method="post" id="editpageform">
 	<input type="hidden" name="questionId" value="{$questionId|escape}">
 	<input type="hidden" name="faqId" value="{$faqId|escape}">
 
@@ -38,7 +38,7 @@
 {if $allq}
 	<h2> {tr}Use a question from another FAQ{/tr}</h2>
 	<br>
-	<form action="tiki-faq_questions.php" method="post" class="form-horizontal">
+	<form action="tiki-faq_questions.php" method="post">
 		<input type="hidden" name="questionId" value="{$questionId|escape}">
 		<input type="hidden" name="faqId" value="{$faqId|escape}">
 		<div class="form-group row">

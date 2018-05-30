@@ -2,7 +2,7 @@
 
 {tikimodule error=$module_params.error title=$tpl_module_title name="google" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 
-	<form method="get" action="http://www.google.com/search" target="Google" class="form-horizontal" role="form">
+	<form method="get" action="http://www.google.com/search" target="Google" role="form">
 		<div class="form-group row mx-0">
 			<div class="col-sm-2">
 				<input type="hidden" name="hl" value="en"/>

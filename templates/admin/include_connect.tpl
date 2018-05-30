@@ -51,7 +51,7 @@
 
 	{tab name="{tr}Settings{/tr}"}
 		<br>
-		<form class="admin form-horizontal" id="connect" name="connect" action="tiki-admin.php?page=connect" method="post">
+		<form class="admin" id="connect" name="connect" action="tiki-admin.php?page=connect" method="post">
 			{ticket}
 			{include file='admin/include_apply_top.tpl'}
 			<fieldset>
@@ -114,7 +114,7 @@
 	{if $prefs.connect_server_mode eq "y"}
 		{tab name="{tr}Connections Received{/tr}"}
 			<br>
-			<form class="admin form-horizontal" name="cserver_form" action="tiki-admin.php?page=connect" method="post">
+			<form class="admin" name="cserver_form" action="tiki-admin.php?page=connect" method="post">
 				{ticket}
 				<input name="cserver_search" type="text" value="{$cserver_search_text}">
 				<input name="cserver" type="submit" class="btn btn-primary timeout" value="{tr}Search{/tr}">
@@ -159,7 +159,7 @@
 
 	{tab name="{tr}Jitsi{/tr}"}
 		<br>
-		<form class="admin form-horizontal" id="connect" name="connect" action="tiki-admin.php?page=connect" method="post">
+		<form class="admin" id="connect" name="connect" action="tiki-admin.php?page=connect" method="post">
 			{ticket}
 			{include file='admin/include_apply_top.tpl'}
 			<fieldset>

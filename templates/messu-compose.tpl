@@ -29,7 +29,7 @@
 	{else}
 		{jq}$(".username").tiki("autocomplete", "username", {multiple: true, multipleSeparator: ";"});{/jq}
 	{/if}
-	<form action="messu-compose.php" method="post" class="form-horizontal" role="form">
+	<form action="messu-compose.php" method="post" role="form">
 		{ticket}
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label" for="mess-composeto">{tr}To{/tr}

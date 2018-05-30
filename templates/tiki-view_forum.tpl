@@ -170,7 +170,7 @@
 				<input type="hidden" name="comments_threshold" value="{$comments_threshold|escape}">
 				<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
 				<input type="hidden" name="forumId" value="{$forumId|escape}">
-				<div class="form-horizontal">
+
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="comments_title">{tr}Title{/tr}</label>
 						<div class="col-sm-10">
@@ -376,7 +376,7 @@
 							<input type="submit" class="btn btn-primary btn-sm" name="comments_postCancel" value="{tr}Cancel{/tr}" {if $comment_preview neq 'y'}onclick="hide('forumpost');window.location='#header';return false;"{/if}>
 						</div>
 					</div>
-				</div>
+
 			</form>
 			{remarksbox title="{tr}Editing posts{/tr}"}
 				{tr}Use wiki syntax when editing the content of posts - HTML is not allowed. Please click on the following link for documentation on wiki syntax:{/tr} {wiki}[http://doc.tiki.org/Wiki+Syntax]{/wiki}
@@ -774,7 +774,7 @@
 				</div>
 				<div id="filterCollapse" class="panel-collapse collapse">
 					<div class="card-body">
-						<form id='time_control' class="form-horizontal" method="post" action="tiki-view_forum.php">
+						<form id='time_control' method="post" action="tiki-view_forum.php">
 							{if $comments_offset neq 0}
 								<input type="hidden" name="comments_offset" value="0"><!--reset the offset when starting a new filtered search-->
 							{/if}

@@ -6,13 +6,13 @@
 
 {block name="content"}
 	{if $birth_date}
-		<form class="age-validation form-horizontal" method="post" action="{service controller=user_conditions action=age_validation}">
+		<form class="age-validation" method="post" action="{service controller=user_conditions action=age_validation}">
 			<p>{tr _0=$prefs.conditions_minimum_age _1=$birth_date}To login to this site you must be %0 years old, which does not match the birthdate of %1 you provided.{/tr}</p>
 			<input class="btn btn-primary btn-secondary" type="submit" name="decline" value="{tr}Cancel login process{/tr}">
 			<input name="origin" value="{$origin|escape}" type="hidden">
 		</form>
 	{else}
-		<form class="age-validation form-horizontal" method="post" action="{service controller=user_conditions action=age_validation}">
+		<form class="age-validation" method="post" action="{service controller=user_conditions action=age_validation}">
 			<p>{tr _0=$prefs.conditions_minimum_age}You must be at least %0 years old to login into this site. Please provide your birthdate before proceed to login.{/tr}</p>
 			<div class="form-group row">
 				<label for="birth_date" class="col-sm-3 col-form-label">

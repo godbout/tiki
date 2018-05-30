@@ -107,7 +107,7 @@
 {/if}
 
 <div class="table normal">
-	<form enctype="multipart/form-data" action="tiki-pick_avatar.php" method="post" class="form-horizontal">
+	<form enctype="multipart/form-data" action="tiki-pick_avatar.php" method="post">
 		<legend><strong>{tr}Upload your own profile picture{/tr}</strong></legend>
 		{if $user ne $userwatch}<input type="hidden" name="view_user" value="{$userwatch|escape}">{/if}
 		<div class="form-group row">

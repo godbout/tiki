@@ -1,5 +1,5 @@
 {* $ID:$ *}
-<form method="post" action="tiki-admin.php?page=webservices" class="form-horizontal">
+<form method="post" action="tiki-admin.php?page=webservices">
 	{ticket}
 
 	<div class="row">

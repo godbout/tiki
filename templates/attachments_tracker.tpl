@@ -2,7 +2,7 @@
 {strip}
 	{if $print_page|default:null ne 'y' and $tiki_p_attach_trackers eq 'y'}
 		<h3>{tr}Attach a file to this item{/tr}</h3>
-		<form enctype="multipart/form-data" action="tiki-view_tracker_item.php" method="post" class="form-horizontal" role="form">
+		<form enctype="multipart/form-data" action="tiki-view_tracker_item.php" method="post" role="form">
 			<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 			<input type="hidden" name="itemId" value="{$itemId|escape}">
 			<input type="hidden" name="attId" value="{$attId|escape|default:null}">

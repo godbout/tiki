@@ -118,7 +118,7 @@
 {if $tiki_p_live_support_admin eq 'y'}
 	<h2>{tr}Add an operator to the system{/tr}</h2>
 	<br>
-	<form method="post" action="tiki-live_support_admin.php" class="form-horizontal">
+	<form method="post" action="tiki-live_support_admin.php">
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}User{/tr}</label>
 			<div class="col-sm-7">

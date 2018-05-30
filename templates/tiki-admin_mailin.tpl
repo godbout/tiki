@@ -89,7 +89,7 @@
 	{button _icon_name="cog" _text="{tr}Admin Mail-in Routes{/tr}" _type="link" href="tiki-admin_mailin_routes.php"}
 
 	<h2>{tr}Check Mail-in accounts{/tr}</h2>
-	<form class="form-horizontal" action="tiki-admin_mailin.php" method="post">
+	<form action="tiki-admin_mailin.php" method="post">
 		<div class="form-group row">
 			<div class="col-md-offset-3 col-md-9">
 				<div class="form-check">

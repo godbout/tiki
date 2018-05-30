@@ -13,7 +13,7 @@
 {/block}
 
 {block name="content"}
-	<form class="form-horizontal" method="post" action="{service controller=tabular action=create}">
+	<form method="post" action="{service controller=tabular action=create}">
 		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Name{/tr}</label>
 			<div class="col-sm-9">

@@ -6,7 +6,7 @@
 
 	{tab name="{tr}Report{/tr}"}
 		<h2>{tr}Report{/tr}</h2>
-		<form method="get" action="tiki-admin_actionlog.php#List" class="form-horizontal">
+		<form method="get" action="tiki-admin_actionlog.php#List">
 			<h2>{tr}Filter{/tr}</h2>
 			{if empty($nbViewedConfs)}
 				{button _text="{tr}Please select some actions to be reported.{/tr}" href="#" _onclick="showTab(2); return true;"}

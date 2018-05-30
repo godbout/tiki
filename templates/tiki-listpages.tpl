@@ -41,7 +41,7 @@
 		{tab name="{tr}Create a Wiki Page{/tr}"}
 			<h2>{tr}Create a Wiki Page{/tr}</h2><br>
 			<div>
-				<form method="get" action="tiki-editpage.php" class="form-horizontal">
+				<form method="get" action="tiki-editpage.php">
 					<div class="form-group row">
 						<label class="col-form-label col-sm-3">{tr}Insert name of the page you wish to create{/tr}</label>
 						<div class="col-sm-9">

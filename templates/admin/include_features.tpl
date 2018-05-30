@@ -4,7 +4,7 @@
 	{tr}Please see the <a class='alert-link' target='tikihelp' href='http://doc.tiki.org/Features'>evaluation of each feature</a> on Tiki's developer site.{/tr}
 {/remarksbox}
 
-<form class="admin form-horizontal" id="features" name="features" action="tiki-admin.php?page=features" method="post">
+<form class="admin" id="features" name="features" action="tiki-admin.php?page=features" method="post">
 	{ticket}
 	<div class="row">
 		<div class="form-group col-lg-12 clearfix">

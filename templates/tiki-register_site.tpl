@@ -67,7 +67,7 @@
 				<br><br>
 				<b>{tr}Information about your site:{/tr}</b>
 				<br><br>
-				<form action="http://tiki.org/tiki-directory_add_tiki_site.php" method="post" class="form-horizontal">
+				<form action="http://tiki.org/tiki-directory_add_tiki_site.php" method="post">
 					<input type="hidden" name="registertiki" value="true">
 					<div class="form-group row">
 						<label class="col-form-label col-sm-3">{tr}Name:{/tr}</label>

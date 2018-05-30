@@ -4,7 +4,7 @@
 
 {if $contribution}
 	<h2>{tr}Edit the contribution:{/tr} {$contribution.name|escape}</h2>
-	<form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" class="form-horizontal" role="form">
+	<form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" role="form">
 		<input type="hidden" name="contributionId" value="{$contribution.contributionId}">
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr}</label>
@@ -25,7 +25,7 @@
 {/if}
 
 <h2>{tr}Settings{/tr}</h2>
-<form action="tiki-admin_contribution.php?page=features" method="post" class="form-horizontal" role="form">
+<form action="tiki-admin_contribution.php?page=features" method="post" role="form">
 
 	<div class="form-group row">
 		<div class="form-check">
@@ -83,7 +83,7 @@
 
 <h2>{tr}Create a new contribution{/tr}</h2>
 
-<form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" class="form-horizontal" role="form">
+<form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" role="form">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="new_contribution_name">{tr}Name{/tr}</label>
 		<div class="col-sm-9">

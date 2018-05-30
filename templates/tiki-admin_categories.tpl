@@ -29,7 +29,7 @@
 		{else}
 			<h2>{tr}Add new category{/tr}</h2>
 		{/if}
-		<form action="tiki-admin_categories.php" method="post" class="form-horizontal" role="form">
+		<form action="tiki-admin_categories.php" method="post" role="form">
 			<input type="hidden" name="categId" value="{$categId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="parentId">{tr}Parent{/tr}</label>
@@ -77,7 +77,7 @@
 	{if $categId <= 0}
 		{tab name="{tr}Batch upload{/tr}"}
 			<h2>{tr}Batch upload{/tr}</h2>
-			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
+			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" role="form">
 				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}CSV File{/tr}</label>
 					<div class="col-sm-9">
@@ -154,7 +154,7 @@ potato,,vegetable
 		{tab name="{tr}Moving objects between categories{/tr}"}
 			<h2>{tr}Moving objects between categories{/tr}</h2>
 			<h4>{tr}Current category:{/tr} {$categ_name|escape}</h4><br>
-			<form method="get" action="tiki-admin_categories.php" name="move" class="form-horizontal" role="form">
+			<form method="get" action="tiki-admin_categories.php" name="move" role="form">
 				<fieldset>
 					<legend>{tr}Perform an action on all objects in the current category:{/tr}</legend>
 					<input type="hidden" name="parentId" value="{$parentId|escape}">
@@ -211,7 +211,7 @@ potato,,vegetable
 		{tab name="{tr}Add objects to category{/tr}"}
 			<h2>{tr}Add objects to category:{/tr} <b>{$categ_name|escape}</b></h2>
 			{if $prefs.feature_search eq 'y' and $prefs.unified_add_to_categ_search eq 'y'}
-				<form id="add_object_form" method="post" action="{service controller=category action=categorize}" class="form-horizontal" role="form">
+				<form id="add_object_form" method="post" action="{service controller=category action=categorize}" role="form">
 					<label>Types of object
 						<select id="add_object_type">
 							<option value="">{tr}All{/tr}</option>
@@ -280,7 +280,7 @@ $("#add_object_type").change(function () {
 				{/jq}
 			{else}{* feature_search=n (not unified search) *}
 
-				<form method="get" action="tiki-admin_categories.php" class="form-horizontal" role="form">
+				<form method="get" action="tiki-admin_categories.php" role="form">
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label" for="find_objects">
 							{tr}Find{/tr}
@@ -298,7 +298,7 @@ $("#add_object_type").change(function () {
 					<input type="hidden" name="find" value="{$find|escape}">
 				</form>
 				{pagination_links cant=$maximum step=$maxRecords offset=$offset}{/pagination_links}
-				<form action="tiki-admin_categories.php" method="post" class="form-horizontal" role="form">
+				<form action="tiki-admin_categories.php" method="post" role="form">
 					<input type="hidden" name="parentId" value="{$parentId|escape}">
 					<fieldset>
 						{if $prefs.feature_wiki eq 'y' and $pages}

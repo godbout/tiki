@@ -5,7 +5,7 @@
 {/block}
 
 {block name="content"}
-	<form class="form-horizontal" method="post" action="{service controller=search_manifold action=create_index}">
+	<form method="post" action="{service controller=search_manifold action=create_index}">
 		<div class="form-group row">
 			<label for="index" class="col-form-label col-sm-3">{tr}Index{/tr}</label>
 			<div class="col-sm-9">

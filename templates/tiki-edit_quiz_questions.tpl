@@ -16,7 +16,7 @@
 
 <h2>{tr}Create/edit questions for quiz:{/tr} <a href="tiki-edit_quiz.php?quizId={$quiz_info.quizId}" >{$quiz_info.name|escape}</a></h2>
 <br>
-<form action="tiki-edit_quiz_questions.php" method="post" class="form-horizontal">
+<form action="tiki-edit_quiz_questions.php" method="post">
 	<input type="hidden" name="quizId" value="{$quizId|escape}">
 	<input type="hidden" name="questionId" value="{$questionId|escape}">
 
@@ -55,7 +55,7 @@
 </h2>
 
 <!-- begin form area for importing questions -->
-<form enctype="multipart/form-data" method="post" action="tiki-edit_quiz_questions.php?quizId={$quiz_info.quizId}" class="form-horizontal">
+<form enctype="multipart/form-data" method="post" action="tiki-edit_quiz_questions.php?quizId={$quiz_info.quizId}">
 	<div class="form-text">
 		{tr}Instructions: Type, or paste your multiple choice questions below. Provide one line for the question, then provide as many answers on want on subsequent lines. Separate questions with a blank line. To indicate correct answers, you may initiate an answer with "*" (without the quotes). None, any or all the answers are possible to be marked as correct.{/tr}
 	</div>

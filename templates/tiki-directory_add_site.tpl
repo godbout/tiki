@@ -15,7 +15,7 @@
 				<p class="lead">{icon name='ok' alt="{tr}OK{/tr}" style="vertical-align:middle" align="left"} {tr}The following site was added, but may require validation by the admin before appearing on the lists.{/tr}</p>
 			</div>
 		</div>
-		<div class="form-horizontal">
+		<div>
 			<div class="form-group row">
 				<label class="col-sm-3 text-right">{tr}Name{/tr}</label>
 				<div class="col-sm-7">
@@ -47,7 +47,7 @@
 
 		{* Display a form to add or edit a site *}
 		<h2>{if $siteId}{tr}Edit a site{/tr}{else}{tr}Add a site{/tr}{/if}</h2>
-		<form action="tiki-directory_add_site.php" method="post" class="form-horizontal">
+		<form action="tiki-directory_add_site.php" method="post">
 			<input type="hidden" name="parent" value="{$parent|escape}">
 			<input type="hidden" name="siteId" value="{$siteId|escape}">
 

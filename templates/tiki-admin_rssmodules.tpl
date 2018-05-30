@@ -132,7 +132,7 @@
 		{else}
 			</h2>
 		{/if}
-		<form action="tiki-admin_rssmodules.php" method="post" class="form-horizontal">
+		<form action="tiki-admin_rssmodules.php" method="post">
 			<input type="hidden" name="rssId" value="{$rssId|escape}">
 			<div class="form-group row">
 				<label for="name" class="col-form-label col-sm-3">{tr}Name{/tr}</label>

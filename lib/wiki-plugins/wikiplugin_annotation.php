@@ -195,7 +195,7 @@ FORM;
 		$editor_form = <<<EDITORFORM
 		<div class="editor panel">
 			<div class="panel-body">
-				<form method="post" action="#" class="form-horizontal">
+				<form method="post" action="#">
 					<div class="form-group row">
 						<label style="width:100%">
 							<span class="col-sm-3">$labelStr</span>

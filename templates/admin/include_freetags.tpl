@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="tiki-admin.php?page=freetags" method="post">
+<form action="tiki-admin.php?page=freetags" method="post">
 	{ticket}
 	<div class="t_navbar mb-4">
 		<a role="link" class="btn btn-link tips" href="tiki-browse_freetags.php" title="{tr}Tags listing{/tr}">

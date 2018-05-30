@@ -139,7 +139,7 @@
 	{/tab}
 
 	{tab name="{tr}Export{/tr}"}
-		<form class="form-horizontal" action="tiki-admin.php?page=profiles" method="post" role="form">
+		<form action="tiki-admin.php?page=profiles" method="post" role="form">
 			{ticket}
 			<input type="hidden" name="redirect" value=0>
 			<fieldset id="export_to_yaml">
@@ -258,7 +258,7 @@
 					</tr>
 				{/foreach}
 			</table>
-			<form class="form-horizontal" action="tiki-admin.php?page=profiles" method="post">
+			<form action="tiki-admin.php?page=profiles" method="post">
 				{ticket}
 				{preference name=profile_unapproved}
 				{preference name=profile_sources}
@@ -269,7 +269,7 @@
 			</form>
 		</fieldset>
 		<fieldset><legend>{tr}Profile tester{/tr}</legend>
-			<form class="form-horizontal" action="tiki-admin.php?page=profiles" method="post">
+			<form action="tiki-admin.php?page=profiles" method="post">
 				{ticket}
 				<input type="hidden" name="redirect" value=0>
 				{remarksbox type="warning" title="{tr}Warning{/tr}"}

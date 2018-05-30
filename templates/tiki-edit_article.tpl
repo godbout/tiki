@@ -16,7 +16,7 @@
 	<h2>{tr}Preview{/tr}</h2>
 	{include file='article.tpl'}
 {/if}
-<form enctype="multipart/form-data" method="post" action="tiki-edit_article.php" id='editpageform' role="form" class="form form-horizontal">
+<form enctype="multipart/form-data" method="post" action="tiki-edit_article.php" id='editpageform' role="form">
 	<input type="hidden" name="articleId" value="{$articleId|escape}">
 	<input type="hidden" name="previewId" value="{$previewId|escape}">
 	<input type="hidden" name="imageIsChanged" value="{$imageIsChanged|escape}">
@@ -235,7 +235,7 @@
 					{tr}Float text around image{/tr}
 				</label>
 			</div>
-			<fieldset class="{if $types.$type.show_image neq 'y'}hidden{/if} form-horizontal">
+			<fieldset class="{if $types.$type.show_image neq 'y'}hidden{/if}">
 				<legend>{tr}Read Article{/tr}</legend>
 				<span class="form-text">{tr}Maximum dimensions of custom image in view mode{/tr}</span>
 				<div class="form-group row">
@@ -257,7 +257,7 @@
 					</div>
 				</div>
 			</fieldset>
-			<fieldset class="{if $types.$type.show_image neq 'y'}hidden{/if} form-horizontal">
+			<fieldset class="{if $types.$type.show_image neq 'y'}hidden{/if}">
 				<legend>{tr}View Articles{/tr}</legend>
 				<span class="form-text">{tr}Maximum dimensions of custom image in list mode{/tr}</span>
 				<div class="form-group row">

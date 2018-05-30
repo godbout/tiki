@@ -88,7 +88,7 @@
 		<br>
 		<br>
 	{/if}
-		<form action="tiki-edit_quiz.php" class="form-horizontal" method="post">
+		<form action="tiki-edit_quiz.php" method="post">
 			<input type="hidden" name="quizId" value="{$quizId|escape}">
 			<div class="form-group row">
 				<label class="col-md-2 col-form-label" for="quiz-name">

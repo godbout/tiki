@@ -87,7 +87,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 			<div class="description">{$param.description}</div>
 		</div>
 	{/function}
-	<div class="form-horizontal" id="plugin_params">
+	<div id="plugin_params">
 		<form action="{service controller='plugin' action='edit'}" method="post">
 			{ticket}
 			{foreach $info.params as $name => $param}

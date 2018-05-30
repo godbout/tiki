@@ -19,7 +19,7 @@
 	<h2>{tr}Edit this HTML page:{/tr} {$pageName}</h2>
 {/if}
 
-<form action="tiki-admin_html_pages.php" method="post" id='editpageform' class="form-horizontal">
+<form action="tiki-admin_html_pages.php" method="post" id="editpageform">
 	<input type="hidden" name="pageName" value="{$pageName|escape}">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Page name{/tr}</label>

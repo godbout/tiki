@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="tiki-admin.php?page=socialnetworks" method="post">
+<form action="tiki-admin.php?page=socialnetworks" method="post">
 	{ticket}
 
 	<div class="row">

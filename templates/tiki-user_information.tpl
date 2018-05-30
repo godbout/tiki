@@ -371,7 +371,7 @@
 					{$message}
 				{else}
 					<h2 class="text-center">{tr}Send me a message !{/tr}</h2>
-					<form method="post" action="tiki-user_information.php" name="f" class="form-horizontal">
+					<form method="post" action="tiki-user_information.php" name="f">
 						<input type="hidden" name="to" value="{$userwatch|escape}">
 						<input type="hidden" name="view_user" value="{$userwatch|escape}">
 

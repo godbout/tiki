@@ -8,7 +8,7 @@
 {/jq}
 
 <div class="toolbars-admin clearfix">
-	<form class="form-horizontal" name="toolbars" method="post" action="tiki-admin_toolbars.php" onsubmit="return saveRows()">
+	<form name="toolbars" method="post" action="tiki-admin_toolbars.php" onsubmit="return saveRows()">
 		<div>
 			<div class="adminoptionbox form-group row">
 				<div class="adminoptionlabel">

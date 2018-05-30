@@ -13,7 +13,7 @@
 		{icon name="upload"} {tr}Upload Translations{/tr}
 	</a>
 </div>
-<form action="tiki-edit_languages.php" id="select_action" method="post" class="form-horizontal">
+<form action="tiki-edit_languages.php" id="select_action" method="post">
 	{if isset($find)}
 		<input type="hidden" name="find" value="{$find}">
 	{/if}
@@ -76,7 +76,7 @@
 		</div>
 	</div>
 </form>
-<form action="tiki-edit_languages.php" method="post" class="form-horizontal">
+<form action="tiki-edit_languages.php" method="post">
 	<input type="hidden" name="edit_language" value="{$edit_language}">
 	<input type="hidden" name="action" value="{$action}">
 	{if $only_db_translations eq 'y'}

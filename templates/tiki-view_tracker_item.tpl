@@ -222,7 +222,7 @@
 					</form>
 				{/if}
 
-				<form class="form form-horizontal" enctype="multipart/form-data" action="{$formAction}" method="post" id="editItemForm">
+				<form enctype="multipart/form-data" action="{$formAction}" method="post" id="editItemForm">
 					{if $special}
 						<input type="hidden" name="view" value=" {$special}">
 					{else}

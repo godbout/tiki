@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form class="form-horizontal" action="tiki-admin.php?page=print" class="admin" method="post">
+<form action="tiki-admin.php?page=print" class="admin" method="post">
 	{ticket}
 	{include file='admin/include_apply_top.tpl'}
 	<fieldset>

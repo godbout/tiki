@@ -6,7 +6,7 @@
 		<h4 class="modal-title"></h4>
 	</div>
 {/if}
-<form action="{$myurl|escape}" method="post" name="f" id="editcalitem" class="form-horizontal">
+<form action="{$myurl|escape}" method="post" name="f" id="editcalitem">
 	<div class="modal-body">
 		{if !$smarty.get.isModal}
 			<div class="t_navbar form-group row">

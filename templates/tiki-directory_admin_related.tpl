@@ -6,7 +6,7 @@
 {* Navigation bar to admin, admin related, etc *}
 <h2>{tr}Parent directory category:{/tr}</h2>
 {* Display the path adding manually the top category id=0 *}
-<form name="path" method="post" action="tiki-directory_admin_related.php" class="form-horizontal">
+<form name="path" method="post" action="tiki-directory_admin_related.php">
 	<br>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">
@@ -28,7 +28,7 @@
 	</div>
 </form>
 <h2>{tr}Add a related directory category{/tr}</h2>
-<form action="tiki-directory_admin_related.php" method="post" class="form-horizontal">
+<form action="tiki-directory_admin_related.php" method="post">
 	<br>
 	<input type="hidden" name="parent" value="{$parent|escape}">
 	<div class="form-group row">

@@ -3,7 +3,7 @@
 	{title}{$title|escape}{/title}
 {/block}
 {block name="content"}
-	<form role="form" class="form form-horizontal" method="post" action="{service controller=managestream action=record}">
+	<form role="form" method="post" action="{service controller=managestream action=record}">
 		<div class="form-group row clearfix">
 			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}

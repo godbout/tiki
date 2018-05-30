@@ -13,7 +13,7 @@
 	{button href="tiki-quiz_edit.php" class="btn btn-primary" _text="{tr}Admin Quizzes{/tr}"}
 </div>
 
-<form enctype="multipart/form-data" method="post" action="tiki-quiz_edit.php" class="form-horizontal">
+<form enctype="multipart/form-data" method="post" action="tiki-quiz_edit.php">
 	<input type="hidden" name="quiz.id" value="{$quiz->id}">
 
 	<div class="form-group row">

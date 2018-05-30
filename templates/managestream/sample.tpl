@@ -5,7 +5,7 @@
 	{/title}
 {/block}
 {block name="content"}
-	<form role="form" class="form-horizontal" method="post" action="{service controller=managestream action=sample}">
+	<form role="form" method="post" action="{service controller=managestream action=sample}">
 		{remarksbox title="{tr}Tip{/tr}"}
 			{tr}Cached sample data helps to view available variables for event types{/tr}
 		{/remarksbox}

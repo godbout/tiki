@@ -6,7 +6,7 @@
 	{button href="tiki-notepad_list.php" class="btn btn-primary" _text="{tr}Notes{/tr}"}
 </div>
 
-<form action="tiki-notepad_write.php" method="post" class="form-horizontal">
+<form action="tiki-notepad_write.php" method="post">
 	<input type="hidden" name="parse_mode" value="{$info.parse_mode|escape}">
 	<input type="hidden" name="noteId" value="{$noteId|escape}">
 	<div class="form-group row">

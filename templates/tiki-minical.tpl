@@ -181,7 +181,7 @@
 <a id="add"></a>
 <h2>{if $eventId}{tr}Edit Event{/tr}{else}{tr}Add Event{/tr}{/if}</h2>
 <br>
-<form action="tiki-minical.php" method="post" class="form-horizontal">
+<form action="tiki-minical.php" method="post">
 	<input type="hidden" name="eventId" value="{$eventId|escape}">
 	<input type="hidden" name="view" value="{$view|escape}">
 	<input type="hidden" name="duration" value="60*60">

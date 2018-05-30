@@ -101,7 +101,7 @@
 				<h2>{tr}Create New FAQ:{/tr}</h2>
 			{/if}
 
-			<form action="tiki-list_faqs.php" method="post" class="form-horizontal">
+			<form action="tiki-list_faqs.php" method="post">
 				<input type="hidden" name="faqId" value="{$faqId|escape}">
 				<div class="form-group row">
 					<label class="col-form-label col-md-3">

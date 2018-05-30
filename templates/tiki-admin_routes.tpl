@@ -113,7 +113,7 @@
 
 {tab name="{$add_edit_route_tablabel} {$schedulename}"}
 	<br><br>
-	<form class="form form-horizontal" action="tiki-admin_routes.php" method="post"
+	<form action="tiki-admin_routes.php" method="post"
 		  enctype="multipart/form-data" name="RegForm" autocomplete="off">
 		{ticket}
 

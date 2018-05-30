@@ -114,7 +114,7 @@
 {/if}
 
 <h2>{tr}Upload file{/tr}</h2>
-<form enctype="multipart/form-data" action="tiki-notepad_list.php" method="post" class="form-horizontal">
+<form enctype="multipart/form-data" action="tiki-notepad_list.php" method="post">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Upload file:{/tr}</label>
 		<div class="col-sm-7">

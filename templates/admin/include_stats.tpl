@@ -2,7 +2,7 @@
 	{tr}This is a new control panel on Tiki and work is still in progress.{/tr}
 {/remarksbox}
 
-<form class="admin form-horizontal" action="tiki-admin.php?page=stats" method="post">
+<form class="admin" action="tiki-admin.php?page=stats" method="post">
 	{ticket}
 	<div class="row">
 		<div class="form-group col-lg-12 clearfix">

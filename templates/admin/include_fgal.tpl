@@ -7,7 +7,7 @@
 	{tr}To configure the directory path use UNIX like paths for example files/ or c:/foo/files or /www/files/{/tr}
 {/remarksbox}
 
-<form class="form-horizontal" action="tiki-admin.php?page=fgal" method="post">
+<form action="tiki-admin.php?page=fgal" method="post">
 	{ticket}
 
 	<div class="row">

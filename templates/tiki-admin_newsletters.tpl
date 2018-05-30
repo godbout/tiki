@@ -104,7 +104,7 @@
 			{permission_link mode=link type=newsletter permType=newsletters id=$info.nlId title=$info.name label="{tr}There are individual permissions set for this newsletter{/tr}"}
 		{/if}
 
-		<form action="tiki-admin_newsletters.php" method="post" class="form-horizontal">
+		<form action="tiki-admin_newsletters.php" method="post">
 			<input type="hidden" name="nlId" value="{$info.nlId|escape}">
 			<input type="hidden" name="author" value="{$user|escape}">
 			<div class="form-group row">

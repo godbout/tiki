@@ -1,6 +1,6 @@
 {* $Id$ *}
 
-<form class="form-horizontal" action="tiki-admin.php?page=messages" method="post" name="messages">
+<form action="tiki-admin.php?page=messages" method="post" name="messages">
 	{ticket}
 
 	<div class="row">

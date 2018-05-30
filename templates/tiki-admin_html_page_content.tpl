@@ -11,7 +11,7 @@
 
 {if $zone}
 	<h2>{tr}Edit zone{/tr}</h2>
-	<form action="tiki-admin_html_page_content.php" method="post" class="form-horizontal">
+	<form action="tiki-admin_html_page_content.php" method="post">
 		<input type="hidden" name="pageName" value="{$pageName|escape}">
 		<input type="hidden" name="zone" value="{$zone|escape}">
 		<div class="form-group row">
@@ -43,7 +43,7 @@
 
 {include file='find.tpl'}
 
-<form action="tiki-admin_html_page_content.php" method="post" class="form-horizontal">
+<form action="tiki-admin_html_page_content.php" method="post">
 	<input type="hidden" name="pageName" value="{$pageName|escape}">
 	<input type="hidden" name="zone" value="{$zone|escape}">
 	<table class="table table-striped table-hover">

@@ -9,7 +9,7 @@
 	{tr}Calendar has been updated{/tr}
 {/if}
 
-<form method="post" action="tiki-calendar_import.php" enctype="multipart/form-data" class="form-horizontal">
+<form method="post" action="tiki-calendar_import.php" enctype="multipart/form-data">
 	<br>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Calendar{/tr}</label>

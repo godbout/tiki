@@ -16,7 +16,7 @@
 	<div class="card">
 		<div class="card-header">{tr}Import Forum Contents from Tiki's DB and Server{/tr}</div>
 		<div class="card-body">
-			<form action="tiki-forum_import.php" method="post" class="form-horizontal">
+			<form action="tiki-forum_import.php" method="post">
 				<input type="hidden" name="step1" value="true">
 				<input type="hidden" name="import" value="same">
 				<div class="form-group row">
@@ -49,7 +49,7 @@
 	<div class="cbox">
 		<div class="card-header">{tr}Import from Another DB or Server{/tr}</div>
 		<div class="card-body">
-			<form action="tiki-forum_import.php" method="post" class="form-horizontal">
+			<form action="tiki-forum_import.php" method="post">
 				<input type="hidden" name="step1" value="true">
 				<input type="hidden" name="import" value="other">
 				<div class="form-group row">
@@ -109,7 +109,7 @@
 	<div class="card">
 		<div class="card-header">{tr}Import from a Local SQL File{/tr}</div>
 		<div class="card-body">
-			<form action="tiki-forum_import.php" method="post" class="form-horizontal">
+			<form action="tiki-forum_import.php" method="post">
 				<input type="hidden" name="step1" value="true">
 				<input type="hidden" name="import" value="sql">
 				<div class="form-group row">

@@ -95,7 +95,7 @@
 			<div class="t_navbar">{button href="tiki-list_contents.php" class="btn btn-primary" _text="{tr}Create New Block{/tr}"}</div>
 		{/if}
 		<br>
-		<form action="tiki-list_contents.php" method="post" class="form-horizontal">
+		<form action="tiki-list_contents.php" method="post">
 			{query _type='form_input'}
 			<input type="hidden" name="contentId" value="{$contentId|escape}">
 

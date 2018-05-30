@@ -2,7 +2,7 @@
 {remarksbox type="tip" title="{tr}Tip{/tr}"}
 	{tr}See also{/tr} <a class="alert-link" href="tiki-admin.php?page=metatags">{tr}Meta tags{/tr}</a>.
 {/remarksbox}
-<form class="admin form-horizontal" method="post" action="tiki-admin.php?page=sefurl" role="form" class="form">
+<form class="admin" method="post" action="tiki-admin.php?page=sefurl" role="form" class="form">
 	{ticket}
 	<div class="t_navbar clearfix">
 		{include file='admin/include_apply_top.tpl'}

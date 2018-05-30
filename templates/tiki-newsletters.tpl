@@ -48,7 +48,7 @@
 		{tr}Subscribe to Newsletter{/tr}
 	</h2>
 	<br>
-	<form method="post" action="tiki-newsletters.php" class="form-horizontal">
+	<form method="post" action="tiki-newsletters.php">
 		<input type="hidden" name="nlId" value="{$nlId|escape}">
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Name{/tr}</label>

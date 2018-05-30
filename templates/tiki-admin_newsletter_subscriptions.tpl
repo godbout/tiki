@@ -195,7 +195,7 @@
 	{tab name="{tr}Add subscribers{/tr}"}
 
 		<h2>{tr}Add subscribers{/tr}</h2>
-		<form action="tiki-admin_newsletter_subscriptions.php" method="post" class="form-horizontal">
+		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Email{/tr}</label>
@@ -268,7 +268,7 @@
 
 		{if $tiki_p_batch_subscribe_email eq "y" && $tiki_p_subscribe_email eq "y"}
 			<h2>{tr}Import emails from file{/tr}</h2>
-			<form action="tiki-admin_newsletter_subscriptions.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+			<form action="tiki-admin_newsletter_subscriptions.php" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="nlId" value="{$nlId|escape}">
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">{tr}File:{/tr}</label>
@@ -295,7 +295,7 @@
 				</div>
 			</form>
 			<h2>{tr}Import emails from wiki page{/tr}</h2>
-			<form action="tiki-admin_newsletter_subscriptions.php" method="post" class="form-horizontal">
+			<form action="tiki-admin_newsletter_subscriptions.php" method="post">
 				<input type="hidden" name="nlId" value="{$nlId|escape}">
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">Wiki page</label>
@@ -324,7 +324,7 @@
 		{/if}
 
 		<h2>{tr}Subscribe group{/tr}</h2>
-		<form action="tiki-admin_newsletter_subscriptions.php" method="post" class="form-horizontal">
+		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Group{/tr}</label>
@@ -355,7 +355,7 @@
 		</form>
 
 		<h2>{tr}Use subscribers of another newsletter{/tr}</h2>
-		<form action="tiki-admin_newsletter_subscriptions.php" method="post" class="form-horizontal">
+		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Newsletter:{/tr}</label>
@@ -379,7 +379,7 @@
 		</form>
 
 		<h2>{tr}Use emails from wiki page{/tr}</h2>
-		<form action="tiki-admin_newsletter_subscriptions.php" method="post" class="form-horizontal">
+		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Wiki page{/tr}</label>
@@ -416,7 +416,7 @@
 	{tab name="{tr}Export Subscriber Emails{/tr}"}
 		<h2>{tr}Export Subscriber Emails{/tr}</h2>
 		<br>
-		<form action="tiki-admin_newsletter_subscriptions.php" method="post" class="form-horizontal">
+		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row">
 				<div class="col-sm-12 mb-3">

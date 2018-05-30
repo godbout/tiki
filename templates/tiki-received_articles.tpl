@@ -36,7 +36,7 @@
 
 {if $receivedArticleId > 0}
 	<h2>{tr}Edit received article{/tr}</h2>
-	<form action="tiki-received_articles.php" method="post" class="form-horizontal"><br>
+	<form action="tiki-received_articles.php" method="post" >
 		<input type="hidden" name="receivedArticleId" value="{$receivedArticleId|escape}">
 		<input type="hidden" name="created" value="{$created|escape}">
 		<input type="hidden" name="image_name" value="{$image_name|escape}">

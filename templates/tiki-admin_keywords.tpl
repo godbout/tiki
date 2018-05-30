@@ -10,7 +10,7 @@
 {if $edit_on}
 	<div id="current_keywords" class="clearfix">
 		<h2>{tr}Edit page keywords{/tr} ({$edit_keywords_page|escape})</h2>
-		<form action="tiki-admin_keywords.php" method="post" class="form-horizontal">
+		<form action="tiki-admin_keywords.php" method="post">
 			<input name="page" value="{$edit_keywords_page|escape}" type="hidden">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Keywords{/tr}</label>
@@ -29,7 +29,7 @@
 {/if}
 
 <h2>{tr}Current Page Keywords{/tr}</h2>
-<form method="get" action="tiki-admin_keywords.php" class="form-horizontal">
+<form method="get" action="tiki-admin_keywords.php">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Search by page:{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1 mb-3">

@@ -5,7 +5,7 @@
 {/block}
 
 {block name="content"}
-	<form class="form-horizontal" action="{service controller=mailin action=replace_account}" method="post">
+	<form action="{service controller=mailin action=replace_account}" method="post">
 		<input type="hidden" name="accountId" value="{$accountId|escape}">
 		<div class="form-group row">
 			<div class="col-md-offset-3 col-md-9">

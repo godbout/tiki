@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form action="tiki-admin.php?page=look" id="look" name="look" class="form-horizontal labelColumns" class="admin" method="post">
+<form action="tiki-admin.php?page=look" id="look" name="look" class="labelColumns" class="admin" method="post">
 	{ticket}
 	<div class="clearfix mb-4">
 		{if $prefs.feature_theme_control eq y}

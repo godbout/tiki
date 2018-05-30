@@ -130,7 +130,7 @@
 			<input type="hidden" name="sendpages" value="{$form_sendpages|escape}">
 			<input type="hidden" name="sendstructures" value="{$form_sendstructures|escape}">
 			<input type="hidden" name="sendarticles" value="{$form_sendarticles|escape}">
-			<div class="form-horizontal">
+
 				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}Site:{/tr}</label>
 					<div class="col-sm-7">
@@ -180,5 +180,5 @@
 			</div>
 
 		</div>
-	</div>
+
 </form>

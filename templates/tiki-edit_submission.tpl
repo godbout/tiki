@@ -22,7 +22,7 @@
 	{tr}Use ...page... to separate pages in a multi-page post{/tr}
 {/remarksbox}
 
-<form enctype="multipart/form-data" method="post" action=" " id='editpageform' class="form-horizontal">
+<form enctype="multipart/form-data" method="post" action=" " id="editpageform">
 	<input type="hidden" name="subId" value="{$subId|escape}">
 	<input type="hidden" name="previewId" value="{$previewId|escape}">
 	<input type="hidden" name="imageIsChanged" value="{$imageIsChanged|escape}">

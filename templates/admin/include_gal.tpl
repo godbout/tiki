@@ -9,7 +9,7 @@
 {tabset name="admin_gal"}
 	{tab name="{tr}Features{/tr}"}
 		<br>
-		<form id="galfeatures" class="form-horizontal" action="tiki-admin.php?page=gal" method="post">
+		<form id="galfeatures" action="tiki-admin.php?page=gal" method="post">
 			{ticket}
 			<br>
 			<div class="form-group col-lg-12 clearfix">
@@ -81,7 +81,7 @@
 	{/tab}
 	{tab name="{tr}Manage images{/tr}"}
 		<br>
-		<form id="galremove" class="form-horizontal" action="tiki-admin.php?page=gal" method="post">
+		<form id="galremove" action="tiki-admin.php?page=gal" method="post">
 			{ticket}
 			<br>
 			<fieldset>
@@ -109,7 +109,7 @@
 				{$label = "{tr}Move images from filesystem storage to database storage{/tr}"}
 				{$value = 'to_db'}
 			{/if}
-		<form id="galmove" class="form-horizontal" action="tiki-admin.php?page=gal" method="post">
+		<form id="galmove" action="tiki-admin.php?page=gal" method="post">
 			{ticket}
 			<input type="hidden" name="mvimg" value="{$value}">
 			<fieldset>

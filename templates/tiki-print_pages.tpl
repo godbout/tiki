@@ -36,7 +36,7 @@
 			{/if}
 
 			<h2>{tr}Add Structure{/tr}</h2>
-			<form action="tiki-print_pages.php" method="post" class="form-horizontal">
+			<form action="tiki-print_pages.php" method="post">
 				<input type="hidden" name="find" value="{$find|escape}">
 				<input type="hidden" name="addstructure" value="y">
 				<div class="form-group row">
@@ -60,7 +60,7 @@
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
 		{/if}
 
-		<form action="tiki-print_pages.php" method="post" class="form-horizontal">
+		<form action="tiki-print_pages.php" method="post">
 			<input type="hidden" name="printpages" value="{$form_printpages|escape}">
 			<input type="hidden" name="find" value="{$find|escape}">
 				<table style="width:100%">
@@ -122,7 +122,7 @@
 			</div>
 		{/if}
 		{if $prefs.feature_wiki_structure eq 'y'}
-			<form action="tiki-print_pages.php" method="post" class="form-horizontal">
+			<form action="tiki-print_pages.php" method="post">
 				<input type="hidden" name="printpages" value="{$form_printpages|escape}">
 				<input type="hidden" name="find" value="{$find|escape}">
 				<h2>{tr}Add Pages from Structures:{/tr}</h2>

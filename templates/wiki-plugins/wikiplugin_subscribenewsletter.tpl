@@ -6,7 +6,7 @@
 		{$subscribeThanks|escape}
 	{/if}
 {else}
-	<form method="post" class="form-horizontal">
+	<form method="post">
 		<input type="hidden" name="wpNlId" value="{$subscribeInfo.nlId|escape}">
 		{if empty($user)}
 			{if !empty($wpError)}

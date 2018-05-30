@@ -3,7 +3,7 @@
 	<a class="alert-link" href="tiki-admin_modules.php">{tr}Admin &gt; Modules{/tr}</a> {tr}from the menu to create and edit modules{/tr}.
 {/remarksbox}
 
-<form class="form-horizontal" action="tiki-admin.php?page=module" method="post">
+<form action="tiki-admin.php?page=module" method="post">
 	{ticket}
 	<input type="hidden" name="modulesetup" />
 

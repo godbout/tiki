@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="tiki-admin.php?page=video" method="post">
+<form action="tiki-admin.php?page=video" method="post">
 	{ticket}
 
 	{tabset name="admin_video"}

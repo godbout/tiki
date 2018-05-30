@@ -20,7 +20,7 @@
 	{tr}You are editing block:{/tr} {$pId}<br>
 {/if}
 <br>
-<form action="tiki-edit_programmed_content.php" method="post" class="form-horizontal">
+<form action="tiki-edit_programmed_content.php" method="post">
 	<input type="hidden" name="contentId" value="{$contentId|escape}">
 	<input type="hidden" name="pId" value="{$pId|escape}">
 

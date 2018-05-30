@@ -5,7 +5,7 @@
 	<div id='minichat' class='minichat well well-sm' style='overflow-x: hidden; overflow-y: auto; height: {$module_rows}em;'></div>
 
 	<div class="minichatinputs">
-		<form class="form-horizontal" name='minichatinputform' action='javascript:minichatpost();'>
+		<form name='minichatinputform' action='javascript:minichatpost();'>
 			<div class="input-group input-group-sm">
 				<input class="form-control" name='minichatinput' id='minichatinput' type='text' autocomplete='off'>
 				<span class="input-group-btn"><input class="btn btn-secondary" type='submit' value="{tr}OK{/tr}"></span>

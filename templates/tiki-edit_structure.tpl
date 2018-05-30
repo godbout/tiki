@@ -207,7 +207,7 @@
 		</form>
 	</div>
 	<div id="newpage_dialog" style="display: none;">
-		<form action="tiki-edit_structure.php" method="post" class="form-horizontal">
+		<form action="tiki-edit_structure.php" method="post">
 			<input type="hidden" name="page_ref_id" value="{$page_ref_id}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Create Page{/tr}</label>

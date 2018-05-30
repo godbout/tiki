@@ -69,7 +69,7 @@
 
 {capture name=tabtitle}{if empty($info.id)}{tr}Create{/tr}{else}{tr}Edit{/tr}{/if}{/capture}
 {tab name=$smarty.capture.tabtitle}
-	<form method="post" action="tiki-discount.php" class="form-horizontal">
+	<form method="post" action="tiki-discount.php">
 		<br>
 		{if !empty($info.id)}<input type="hidden" name="id" value="{$info.id}">{/if}
 		<div class="form-group row">

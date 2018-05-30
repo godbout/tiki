@@ -15,7 +15,7 @@
 
 {block name="content"}
 	<div class="table-responsive">
-		<form class="form-horizontal edit-tabular" method="post" action="{service controller=tabular action=edit tabularId=$tabularId}">
+		<form class="edit-tabular" method="post" action="{service controller=tabular action=edit tabularId=$tabularId}">
 			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Name{/tr}</label>
 				<div class="col-sm-9">

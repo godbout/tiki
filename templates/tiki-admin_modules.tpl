@@ -251,7 +251,7 @@
 			{/remarksbox}
 		</div>
 
-		<form name='editusr' method="post" action="tiki-admin_modules.php" class="form-horizontal">
+		<form name='editusr' method="post" action="tiki-admin_modules.php">
 			<div class="form-group row">
 				<label class="col-sm-4 col-form-label">{tr}Name{/tr}</label>
 				<div class="col-sm-6">

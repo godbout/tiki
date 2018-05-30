@@ -8,7 +8,7 @@
 	{tab name="{tr}Accounts{/tr}"}
 		<h2>{tr}Accounts{/tr}</h2>
 
-		<form action="tiki-socialnetworks.php" method="post" class="form-horizontal">
+		<form action="tiki-socialnetworks.php" method="post">
 			<h2><img src="img/icons/twitter_t_logo_32.png" alt="Twitter" width="32" height="32"> Twitter</h2>
 			{if $twitterRegistered==0}
 				{remarksbox type="note" title="{tr}Note{/tr}"}

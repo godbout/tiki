@@ -16,7 +16,7 @@
 	{tr}See <a class="alert-link" href="tiki-admin_security.php" title="Security"><strong>Security Admin</strong></a> for additional security settings{/tr}.
 {/remarksbox}
 
-<form class="admin form-horizontal" id="security" name="security" action="tiki-admin.php?page=security" method="post">
+<form class="admin" id="security" name="security" action="tiki-admin.php?page=security" method="post">
 	{ticket}
 	<div class="row">
 		<div class="form-group col-lg-12 clearfix">

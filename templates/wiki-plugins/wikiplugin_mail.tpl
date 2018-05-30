@@ -31,7 +31,7 @@
 			<div style="display: none;">
 		{/if}
 		<div id="wikiplugin_mail" class="">
-			<form method="post" class="form-horizontal">
+			<form method="post">
 				{if $params.showuserdd eq 'y' or $params.showrealnamedd eq 'y'}
 					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="mail_user_dd{$ipluginmail}">{tr}Send to users:{/tr}</label>

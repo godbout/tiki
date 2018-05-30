@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="tiki-admin.php?page=webmail" method="post">
+<form action="tiki-admin.php?page=webmail" method="post">
 	{ticket}
 	<div class="row">
 		<div class="form-group col-lg-12 clearfix">

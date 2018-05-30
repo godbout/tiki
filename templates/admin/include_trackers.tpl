@@ -1,4 +1,4 @@
-<form class="form-horizontal" action="tiki-admin.php?page=trackers" method="post">
+<form action="tiki-admin.php?page=trackers" method="post">
 	{ticket}
 
 	<div class="row">

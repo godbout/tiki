@@ -5,7 +5,7 @@
 {/block}
 
 {block name="content"}
-<form role="form" class="form-horizontal" method="post" action="{service controller=search_stored action=edit queryId=$queryId}">
+<form role="form" method="post" action="{service controller=search_stored action=edit queryId=$queryId}">
 	<div class="form-group row">
 		<label for="label" class="col-md-3 col-form-label">{tr}Label{/tr}</label>
 		<div class="col-md-9">

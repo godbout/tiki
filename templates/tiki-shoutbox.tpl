@@ -11,7 +11,7 @@
 	</div>
 
 	<h2>{tr}Change shoutbox general settings{/tr}</h2>
-	<form action="tiki-shoutbox.php" method="post" class="form-horizontal">
+	<form action="tiki-shoutbox.php" method="post">
 		<div class="form-check">
 			<label class="form-check-label col-md-offset-3">
 				<input class="form-check-input" type="checkbox" name="shoutbox_autolink" value="on"{if $prefs.shoutbox_autolink eq 'y'} checked="checked"{/if}>
@@ -30,7 +30,7 @@
 		<div class="simplebox highlight">{$msg}</div>
 	{/if}
 	{js_maxlength textarea=message maxlength=255}
-	<form class="form-horizontal" action="tiki-shoutbox.php" method="post" onsubmit="return verifyForm(this);">
+	<form action="tiki-shoutbox.php" method="post" onsubmit="return verifyForm(this);">
 		<input type="hidden" name="msgId" value="{$msgId|escape}">
 		<div class="form-group row">
 			<label class="col-form-label col-md-3" for="message">{tr}Message:{/tr}</label>

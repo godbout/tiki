@@ -24,7 +24,7 @@
 
 {block name="content"}
 {if $filters.primary.usable}
-	<form class="form-horizontal" method="get" action="{service controller=tabular action=list}">
+	<form method="get" action="{service controller=tabular action=list}">
 		{foreach $filters.primary.controls as $filter}
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="{$filter.id|escape}">{$filter.label|escape}</label>

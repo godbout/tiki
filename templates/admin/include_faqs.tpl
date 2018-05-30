@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form role="form" class="form-horizontal" action="tiki-admin.php?page=faqs" method="post">
+<form role="form" action="tiki-admin.php?page=faqs" method="post">
 	{ticket}
 	<div class="t_navbar mb-4 clearfix">
 		<a role="link" class="btn btn-link tips" href="tiki-list_faqs.php" title=":{tr}FAQ listing{/tr}">

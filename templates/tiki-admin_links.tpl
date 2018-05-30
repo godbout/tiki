@@ -73,7 +73,7 @@
 	<h2>{tr}Edit this Featured Link:{/tr} {$title}</h2>
 	<a href="tiki-admin_links.php">{tr}Create new Featured Link{/tr}</a>
 {/if}
-<form action="tiki-admin_links.php" method="post" class="form-horizontal">
+<form action="tiki-admin_links.php" method="post">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">URL</label>
 		<div class="col-sm-7 col-sm-offset-1 mb-3">

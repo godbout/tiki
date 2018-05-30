@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form method="post" class="form-horizontal">
+<form method="post">
 	<div class="form-group row">
 		<label for="email" class="col-sm-4 col-form-label">{tr}Email address of invitee{/tr}</label>
 		<div class="col-sm-8">

@@ -15,7 +15,7 @@
 {if count($feedback)}<div class="alert alert-warning">{section name=i loop=$feedback}{$feedback[i]}<br>{/section}</div>{/if}
 {$totalsize = 0}
 <h2>{tr}Available Files{/tr}</h2>
-<form method="post" action="tiki-batch_upload_files.php" name="f" id="batchUploadForm" class="form-horizontal">
+<form method="post" action="tiki-batch_upload_files.php" name="f" id="batchUploadForm">
 	<table class="table table-stripped" id="filelist">
 		<tr>
 			<th>{select_all checkbox_names='files[]'}</th>
