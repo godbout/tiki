@@ -11,7 +11,7 @@ function wikiplugin_swiper_info()
 		'documentation' => 'PluginSwiper',
 		'description' => tra('Embed swiper in content, support file galleries, files id and custom content'),
 		'prefs' => 'wikiplugin_swiper',
-		'body' => tra('Enter custom slides data separated by "|".<code>title:Slide 1 title;text:Slide 1 text:img:Slide Image URL;bgcolor:#colorcode | title:Slide 2 title;text:Slide 2 text:img:Slide Image URL;bgcolor:#colorcode</code> '),
+		'body' => tra('Enter custom slides data separated by "|".<code>title:Slide 1 title;text:HTML Supported Slide 1 text :img:Slide Image URL;bgcolor:#colorcode;color: #color code for text | title:Slide 2 title;text:Slide 2 text:img:Slide Image URL;bgcolor:#colorcode</code> '),
 		'iconname' => 'tv',
 		'introduced' => 19,
 		'tags' => 'basic',
@@ -46,9 +46,9 @@ function wikiplugin_swiper_info()
 					['text' => 'Flip', 'value' => 'flip'],
 				],
 			],
-		'sliderPosition' => [
+			'sliderPosition' => [
 				'required' => false,
-				'name' => tra('Slider Type'),
+				'name' => tra('Slider Placement on Page'),
 				'description' => tra('Placement of slider, above topbar, below topbar, above menus and content or inside content'),
 				'filter' => 'word',
 				'default' => '',
@@ -71,9 +71,9 @@ function wikiplugin_swiper_info()
 				'options' => [
 					['text' => '', 'value' => ''],				
 					['text' => 'Off', 'value' => 'n'],
-					['text' => 'bullets', 'value' => 'bullets'],
-					['text' => 'fraction', 'value' => 'fraction'],
-					['text' => 'progressbar', 'value' => 'progressbar'],
+					['text' => tra('Bullets'), 'value' => 'bullets'],
+					['text' => tra('Fraction'), 'value' => 'fraction'],
+					['text' => tra('Progress bar'), 'value' => 'progressbar'],
 				],
 			],
 			'navigation' => [
@@ -102,8 +102,83 @@ function wikiplugin_swiper_info()
 			],
 			'background' => [
 				'required' => false,
-				'name' => tra('Background Color'),
+				'name' => tra('Slider Background Color'),
 				'description' => tra('Slider background color, enter color code for example #000'),
+				'since' => '19.0'
+			],
+			'parallaxBgImg' => [
+				'required' => false,
+				'name' => tra('Slider Parallax Background Image'),
+				'description' => tra('Enter image url for parallax background behind swiper'),
+				'filter' => 'text',
+				'default' => 1,
+				'advanced' => true,
+				'since' => '19.0'
+			],
+			'width' => [
+				'required' => false,
+				'name' => tra('Width'),
+				'description' => tr('Enter width of slider in px, default 100%'),
+				'filter' => 'word',
+				'default' => '100%',
+				'since' => '19.0'
+			],
+			'height' => [
+				'required' => false,
+				'name' => tra('Height'),
+				'description' => tr('Enter height of slider in px, default min height 350px, max height will adjust with content'),
+				'filter' => 'word',
+				'default' => '350px',
+				'since' => '19.0'
+			],
+			'titleColor' => [
+				'required' => false,
+				'name' => tra('Slide title color'),
+				'description' => tra('Enter text color code of slide title, for example #ccc'),
+				'filter' => 'text',
+				'default' => '',
+				'since' => '19.0'
+			],
+			'titleSize' => [
+				'required' => false,
+				'name' => tra('TItle font size'),
+				'description' => tra('For example 42px, default 32 px'),
+				'filter' => 'word',
+				'default' => '32px',
+				'advanced' => true,
+				'since' => '19.0'
+			],
+			'descriptionColor' => [
+				'required' => false,
+				'name' => tra('Slide description color'),
+				'description' => tra('Enter text color code of slide description, for example #ccc'),
+				'filter' => 'text',
+				'default' => '',
+				'since' => '19.0'
+			],
+			'descriptionSize' => [
+				'required' => false,
+				'name' => tra('Description font size'),
+				'description' => tra('For example 24px, default 16 px'),
+				'filter' => 'word',
+				'default' => '16px',
+				'advanced' => true,
+				'since' => '19.0'
+			],
+			'slideContentBg' => [
+				'required' => false,
+				'name' => tra('Slide content background'),
+				'description' => tra('Enter color code or rgba if opacity is desired value for example: #000 or rgba(00, 00, 00, 0.5)'),
+				'filter' => 'text',
+				'default' => '',
+				'since' => '19.0'
+			],
+			'slideContentPostion' => [
+				'required' => false,
+				'name' => tra('Slide content position'),
+				'description' => tra('Enter position for example top:20%;left:20% or bottom:20%;right:10%'),
+				'filter' => 'text',
+				'default' => 'top:20%;left:20%',
 				'since' => '19.0'
 			],
 			'autoPlay' => [
@@ -146,24 +221,6 @@ function wikiplugin_swiper_info()
 				'filter' => 'digits',
 				'default' => 300,
 				'advance'=>true,
-				'since' => '19.0'
-			],
-			'width' => [
-				'required' => false,
-				'name' => tra('Width'),
-				'description' => tr('Enter width of slider in px, default 100%'),
-				'filter' => 'word',
-				'default' => '100%',
-				'advanced' => true,
-				'since' => '19.0'
-			],
-			'height' => [
-				'required' => false,
-				'name' => tra('Height'),
-				'description' => tr('Enter height of slider in px, default min height 350px, max height will adjust with content'),
-				'filter' => 'word',
-				'default' => '350px',
-				'advanced' => true,
 				'since' => '19.0'
 			],
 			'autoHeight' => [
@@ -314,69 +371,6 @@ function wikiplugin_swiper_info()
 					['text' => 'No', 'value' => 'n'],
 					['text' => 'Yes', 'value' => 'y'],
 				],
-			],
-			'titleColor' => [
-				'required' => false,
-				'name' => tra('Slide title color'),
-				'description' => tra('Enter text color code of slide title, for example #ccc'),
-				'filter' => 'text',
-				'default' => '',
-				'advanced' => true,
-				'since' => '19.0'
-			],
-			'titleSize' => [
-				'required' => false,
-				'name' => tra('TItle font size'),
-				'description' => tra('For example 42px, default 32 px'),
-				'filter' => 'word',
-				'default' => '32px',
-				'advanced' => true,
-				'since' => '19.0'
-			],
-			'descriptionColor' => [
-				'required' => false,
-				'name' => tra('Slide description color'),
-				'description' => tra('Enter text color code of slide description, for example #ccc'),
-				'filter' => 'text',
-				'default' => '',
-				'advanced' => true,
-				'since' => '19.0'
-			],
-			'descriptionSize' => [
-				'required' => false,
-				'name' => tra('Description font size'),
-				'description' => tra('For example 24px, default 16 px'),
-				'filter' => 'word',
-				'default' => '16px',
-				'advanced' => true,
-				'since' => '19.0'
-			],
-			'slideContentBg' => [
-				'required' => false,
-				'name' => tra('Slide content background'),
-				'description' => tra('Enter color code or rgba if opacity is desired value for example: #000 or rgba(00, 00, 00, 0.5)'),
-				'filter' => 'text',
-				'default' => '',
-				'advanced' => true,
-				'since' => '19.0'
-			],
-			'slideContentPostion' => [
-				'required' => false,
-				'name' => tra('Slide content position'),
-				'description' => tra('Enter position for example top:20%;left:20% or bottom:20%;right:10%'),
-				'filter' => 'text',
-				'default' => 'top:20%;left:20%',
-				'advanced' => true,
-				'since' => '19.0'
-			],
-			'parallaxBgImg' => [
-				'required' => false,
-				'name' => tra('Swiper Parallax Background Image'),
-				'description' => tra('Enter image url for parallax background behind all slides'),
-				'filter' => 'text',
-				'default' => 1,
-				'advanced' => true,
-				'since' => '19.0'
 			],
 		]
 	];
