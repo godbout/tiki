@@ -52,13 +52,9 @@ function sendForumEmailNotification(
 			$foo = parse_url($_SERVER["REQUEST_URI"]);
 			$machine = $tikilib->httpPrefix(true) . dirname($foo["path"]);
 			if ($event == 'forum_post_topic') {
-				$reply_link = "$machine/tiki-view_forum_thread.php?forumId=" .
-					$forum_info['forumId'] .
-					"&comments_parentId=$threadId#form";
+				$reply_link = "$machine/tiki-view_forum_thread.php?comments_parentId=$threadId#form";
 			} else {
-				$reply_link = "$machine/tiki-view_forum_thread.php?forumId=" .
-					$forum_info['forumId'] .
-					"&comments_reply_threadId=$threadId&comments_parentId=$threadId&post_reply=1#form";
+				$reply_link = "$machine/tiki-view_forum_thread.php?comments_reply_threadId=$threadId&comments_parentId=$threadId&post_reply=1#form";
 			}
 		} else {
 			$reply_link = '';

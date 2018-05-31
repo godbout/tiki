@@ -1607,7 +1607,7 @@ class LogsLib extends TikiLib
 					if ($action['action'] == 'Removed') {
 						$action['link'] = 'tiki-view_forum.php?forumId=' . $action['object'] . '&' . $action['comment'];// threadId dded for debug info
 					} else {
-						$action['link'] = 'tiki-view_forum_thread.php?forumId=' . $action['object'] . '&' . $action['comment'];
+						$action['link'] = 'tiki-view_forum_thread.php?' . $action['comment'];
 					}
 
 					if (! isset($forumNames)) {

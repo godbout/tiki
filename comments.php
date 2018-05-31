@@ -177,7 +177,7 @@ if (isset($_REQUEST['comments_objectId']) && $_REQUEST['comments_objectId'] == $
 	$forum_info = $commentslib->get_forum($_REQUEST['forumId']);
 	$threadId = $commentslib->post_in_forum($forum_info, $_REQUEST, $feedbacks, $errors);
 	if (! empty($threadId) && empty($errors)) {
-		$url = "tiki-view_forum_thread.php?forumId=" . $_REQUEST['forumId'] . "&comments_parentId=" . $_REQUEST['comments_parentId'] . "&threadId=" . $threadId;
+		$url = "tiki-view_forum_thread.php?comments_parentId=" . $_REQUEST['comments_parentId'] . "&threadId=" . $threadId;
 		if (! empty($_REQUEST['comments_threshold'])) {
 			$url .= "&comments_threshold=" . $_REQUEST['comments_threshold'];
 		}
@@ -198,7 +198,7 @@ if (isset($_REQUEST['comments_objectId']) && $_REQUEST['comments_objectId'] == $
 		//Watches
 		if ($prefs['feature_user_watches'] == 'y') {
 			if (isset($_REQUEST['watch']) && $_REQUEST['watch'] == 'y') {
-				$tikilib->add_user_watch($user, 'forum_post_thread', $_REQUEST['comments_parentId'], 'forum topic', $forum_info['name'] . ':' . $thread_info['title'], "tiki-view_forum_thread.php?forumId=" . $_REQUEST['forumId'] . "&amp;comments_parentId=" . $_REQUEST['comments_parentId']);
+				$tikilib->add_user_watch($user, 'forum_post_thread', $_REQUEST['comments_parentId'], 'forum topic', $forum_info['name'] . ':' . $thread_info['title'], "tiki-view_forum_thread.php?comments_parentId=" . $_REQUEST['comments_parentId']);
 			} else {
 				$tikilib->remove_user_watch($user, 'forum_post_thread', $_REQUEST['comments_parentId'], 'forum topic');
 			}

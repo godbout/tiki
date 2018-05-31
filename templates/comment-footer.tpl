@@ -47,7 +47,7 @@
 		{if ($prefs.feature_sefurl eq 'y') }
 			<a href="{$comments_parentId|sefurl:'forum post'}{if ($comment.threadId neq $comments_parentId)}#threadId{$comment.threadId}{/if}">{tr}Link{/tr}</a>
 		{else}
-			<a href="?tiki-view_forum_thread.php?forumId={$forumId}&comments_parentId={$comments_parentId}#threadId{$comment.threadId}">{tr}Link{/tr}</a>
+			<a href="?tiki-view_forum_thread.php?comments_parentId={$comments_parentId}#threadId{$comment.threadId}">{tr}Link{/tr}</a>
 		{/if}
 
 		{if ( $prefs.feature_comments_locking neq 'y' or $thread_is_locked neq 'y' ) and

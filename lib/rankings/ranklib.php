@@ -220,7 +220,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 					$aux['name'] = $res['title']; // omit forum name
 				}
 				$aux['title'] = $res['title'];
-				$aux['href'] = 'tiki-view_forum_thread.php?forumId=' . $res['object'] . '&amp;comments_parentId=' . $res['threadId'];
+				$aux['href'] = 'tiki-view_forum_thread.php?comments_parentId=' . $res['threadId'];
 				if ($last_replied == false) {
 					$aux['date'] = $res['commentDate'];
 					// the following line is correct, the second column named hits shows date
@@ -293,7 +293,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 			$aux['name'] = $forumId ? $res['title'] : $res['parentTitle'] . ': ' . $res['title'];
 				$aux['title'] = $res['title'];
 				$aux['hits'] = $res['hits'];
-				$aux['href'] = 'tiki-view_forum_thread.php?forumId=' . $res['object'] . '&amp;comments_parentId=' . $res['threadId'];
+				$aux['href'] = 'tiki-view_forum_thread.php?comments_parentId=' . $res['threadId'];
 				$ret[] = $aux;
 		}
 
@@ -337,7 +337,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 			$aux['name'] = $res['name'] . ': ' . $res['title'];
 			$aux['title'] = $res['title'];
 			$aux['hits'] = $res['average'];
-			$aux['href'] = 'tiki-view_forum_thread.php?forumId=' . $res['forumId'] . '&amp;comments_parentId=' . $res['threadId'];
+			$aux['href'] = 'tiki-view_forum_thread.php?comments_parentId=' . $res['threadId'];
 			$ret[] = $aux;
 		}
 

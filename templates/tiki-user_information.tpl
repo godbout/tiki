@@ -296,7 +296,7 @@
 							{section name=ix loop=$user_forum_comments}
 								<div>
 									<div>
-										<a class="link" title="{tr}View{/tr}" href="tiki-view_forum_thread.php?comments_parentId={$user_forum_comments[ix].threadId}&amp;forumId={$user_forum_comments[ix].object}">
+										<a class="link" title="{tr}View{/tr}" href="tiki-view_forum_thread.php?comments_parentId={$user_forum_comments[ix].threadId}">
 											{$user_forum_comments[ix].title|escape}
 										</a>
 									</div>
@@ -311,7 +311,7 @@
 							{section name=ix loop=$user_forum_topics}
 								<div>
 									<div>
-										<a class="link" title="{tr}View{/tr}" href="tiki-view_forum_thread.php?comments_parentId={$user_forum_topics[ix].threadId}&amp;forumId={$user_forum_topics[ix].object}">
+										<a class="link" title="{tr}View{/tr}" href="tiki-view_forum_thread.php?comments_parentId={$user_forum_topics[ix].threadId}">
 											{$user_forum_topics[ix].title|escape}
 										</a>
 									</div>

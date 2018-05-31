@@ -116,7 +116,7 @@
 		{if ($prefs.feature_sefurl eq 'y') }
 		<a class="heading-link" href="{$comments_parentId|sefurl:'forum post'}{if ($comment.threadId neq $comments_parentId)}#threadId{$comment.threadId}{/if}">{icon name="link"}</a>
 		{else}
-		<a class="heading-link" href="?tiki-view_forum_thread.php?forumId={$forumId}&comments_parentId={$comments_parentId}#threadId{$comment.threadId}">{icon name="link"}</a>
+		<a class="heading-link" href="?tiki-view_forum_thread.php?comments_parentId={$comments_parentId}#threadId{$comment.threadId}">{icon name="link"}</a>
 		{/if}
 	</h2>
 	{/if}

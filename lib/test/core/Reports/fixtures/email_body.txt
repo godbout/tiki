@@ -13,9 +13,9 @@ Last Report sent on Sunday 15 of January, 2012.<br /><br />
 <b>Comments in tracker items:</b><br />
 &nbsp;&nbsp;&nbsp;2012-03-30 13:39: <u>admin</u> added a new comment to item id <a href='tiki-view_tracker_item.php?itemId=4&cookietab=2'>4</a> on tracker <a href='tiki-view_tracker.php?trackerId=1'></a><br>
 <b>New posts in forums:</b><br />
-&nbsp;&nbsp;&nbsp;2012-03-30 13:41: <u>admin</u> created the topic <a href="tiki-view_forum_thread.php?comments_parentId=2&forumId=1">New topic</a> at forum <a href="tiki-view_forum.php?forumId=1">Discussion forum</a>.<br>
+&nbsp;&nbsp;&nbsp;2012-03-30 13:41: <u>admin</u> created the topic <a href="tiki-view_forum_thread.php?comments_parentId=2">New topic</a> at forum <a href="tiki-view_forum.php?forumId=1">Discussion forum</a>.<br>
 <b>New replies in foruns topics:</b><br />
-&nbsp;&nbsp;&nbsp;2012-03-30 13:42: <u>admin</u> <a href="tiki-view_forum_thread.php?forumId=1&comments_parentId=2#threadId3">replied</a> to the topic <a href="tiki-view_forum_thread.php?comments_parentId=2&forumId=1"></a>.<br>
+&nbsp;&nbsp;&nbsp;2012-03-30 13:42: <u>admin</u> <a href="tiki-view_forum_thread.php?comments_parentId=2#threadId3">replied</a> to the topic <a href="tiki-view_forum_thread.php?comments_parentId=2&forumId=1"></a>.<br>
 <b>File galleries changed:</b><br />
 &nbsp;&nbsp;&nbsp;2012-03-30 13:49: <u>admin</u> uploaded the file <a href="tiki-download_file.php?fileId=2">tiki</a> onto <a href="tiki-list_file_gallery.php?galleryId=1">File Galleries</a>.<br>
 <b>New calendar events:</b><br />

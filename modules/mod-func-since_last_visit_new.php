@@ -245,7 +245,7 @@ function module_since_last_visit_new($mod_reference, $params = null)
 		while ($res = $result->fetchRow()) {
 			if ($userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], 'tiki_p_forum_read')) {
 				$ret['items']['posts']['list'][$count]['href']
-					= 'tiki-view_forum_thread.php?forumId=' . $res['object'] . '&comments_parentId=';
+					= 'tiki-view_forum_thread.php?comments_parentId=';
 				if ($res['parentId']) {
 					$ret['items']['posts']['list'][$count]['href'] .= $res['parentId'] . '#threadId=' . $res['threadId'];
 				} else {

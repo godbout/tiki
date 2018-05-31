@@ -222,7 +222,7 @@
 					{section name=ix loop=$user_forum_topics}
 						<tr>
 							<td class="text">
-								<a class="tips" title=":{tr}View{/tr}" href="tiki-view_forum_thread.php?comments_parentId={$user_forum_topics[ix].threadId}&amp;forumId={$user_forum_topics[ix].object}">
+								<a class="tips" title=":{tr}View{/tr}" href="tiki-view_forum_thread.php?comments_parentId={$user_forum_topics[ix].threadId}">
 									{$user_forum_topics[ix].title}
 								</a>
 							</td>

@@ -28,7 +28,7 @@
 		{/if}
 		{if isset($threadId) and $threadId>0}
 			<div>
-				{tr}The link was published in a{/tr} <a href="tiki-view_forum_thread.php?comments_parentId={$threadId}&forumId={$forumId}">{tr}forum{/tr}</a>
+				{tr}The link was published in a{/tr} <a href="tiki-view_forum_thread.php?comments_parentId={$threadId}>{tr}forum{/tr}</a>
 				<br>
 				{foreach from=$feedbacks item=feedback}
 					{$feedback}

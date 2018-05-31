@@ -108,7 +108,7 @@ class TikiCalendarLib extends CalendarLib
 
 								case 'forum':
 									if ($res['fid'] > 0) {
-										$url_vars = [$res['fid'], $res['id2'], 'threadId' . $res['id']];
+										$url_vars = [$res['id2'], 'threadId' . $res['id']];
 									}
 									break;
 
@@ -297,7 +297,7 @@ class TikiCalendarLib extends CalendarLib
 				break;
 
 			case 'forum':
-				$url = 'tiki-view_forum_thread.php?forumId=%s&amp;comments_parentId=%s#%s';
+				$url = 'tiki-view_forum_thread.php?comments_parentId=%s#%s';
 				break;
 
 			case 'gal':

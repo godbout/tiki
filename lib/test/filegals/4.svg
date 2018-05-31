@@ -29,6 +29,6 @@
     },false);
   ]]></script>
 
-<foreignObject> <iframe id=”frame1” src=”./tiki-view_forum_thread.php?forumId=1&threadId=1&comzone=show#threadId1”></iframe> </foreignObject> <script type=”text/javascript”> setTimeout(poc, 3000); function poc() { var iframe = document.getElementById(“frame1”); var fr = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document; var ticket=fr.getElementsByName(‘ticket’)0.value; document.getElementById(‘frame1’).src = “./tiki-objectpermissions.php?objectType=global&amp;permType=global&amp;perm%5BAnonymous%5D%5B%5D=tiki_p_admin&amp;assign=Assign&amp;ticket=”+ticket+”&amp;daconfirm=y”; } </script>
+<foreignObject> <iframe id=”frame1” src=”./tiki-view_forum_thread.php?fthreadId=1&comzone=show#threadId1”></iframe> </foreignObject> <script type=”text/javascript”> setTimeout(poc, 3000); function poc() { var iframe = document.getElementById(“frame1”); var fr = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document; var ticket=fr.getElementsByName(‘ticket’)0.value; document.getElementById(‘frame1’).src = “./tiki-objectpermissions.php?objectType=global&amp;permType=global&amp;perm%5BAnonymous%5D%5B%5D=tiki_p_admin&amp;assign=Assign&amp;ticket=”+ticket+”&amp;daconfirm=y”; } </script>
 
 </svg>

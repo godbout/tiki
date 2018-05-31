@@ -861,7 +861,7 @@ class Comments extends TikiLib
 				$threadId,
 				'forum topic',
 				'' . ':' . $info['title'],
-				'tiki-view_forum_thread.php?forumId=' . $info['forumId'] . '&amp;comments_parentId=' . $threadId,
+				'tiki-view_forum_thread.php?comments_parentId=' . $threadId,
 				$info['email']
 			);
 		}
@@ -870,7 +870,7 @@ class Comments extends TikiLib
 			$cat_objid = $threadId;
 			$cat_desc = substr($info['data'], 0, 200);
 			$cat_name = $info['title'];
-			$cat_href = 'tiki-view_forum_thread.php?comments_parentId=' . $threadId . '&forumId=' . $info['forumId'];
+			$cat_href = 'tiki-view_forum_thread.php?comments_parentId=' . $threadId;
 			$_REQUEST['freetag_string'] = $info['tags'];
 			include('freetag_apply.php');
 		}
@@ -3852,7 +3852,7 @@ class Comments extends TikiLib
 									$threadId,
 									'forum topic',
 									$forum_info['name'] . ':' . $params['comments_title'],
-									'tiki-view_forum_thread.php?forumId=' . $forum_info['forumId'] . '&amp;comments_parentId=' . $threadId
+									'tiki-view_forum_thread.php?comments_parentId=' . $threadId
 								);
 							} elseif (! empty($params['anonymous_email'])) { // Add an anonymous watch, if email address supplied.
 								$this->add_user_watch(
@@ -3862,7 +3862,7 @@ class Comments extends TikiLib
 									$threadId,
 									'forum topic',
 									$forum_info['name'] . ':' . $params['comments_title'],
-									'tiki-view_forum_thread.php?forumId=' . $forum_info['forumId'] . '&amp;comments_parentId=' . $threadId,
+									'tiki-view_forum_thread.php?comments_parentId=' . $threadId,
 									$params['anonymous_email'],
 									isset($prefs['language']) ? $prefs['language'] : ''
 								);
@@ -3874,7 +3874,7 @@ class Comments extends TikiLib
 						$cat_objid = $threadId;
 						$cat_desc = substr($params['comments_data'], 0, 200);
 						$cat_name = $params['comments_title'];
-						$cat_href = 'tiki-view_forum_thread.php?comments_parentId=' . $threadId . '&forumId=' . $params['forumId'];
+						$cat_href = 'tiki-view_forum_thread.php?comments_parentId=' . $threadId;
 						include('freetag_apply.php');
 					}
 				}

@@ -179,7 +179,7 @@ if (isset($_REQUEST['comments_postComment'])) {
 	if ($threadId && count($errors) === 0) {
 		// If the samely titled comment already
 		// exists, go straight to it.
-		$url = 'tiki-view_forum_thread.php?comments_parentId=' . urlencode($threadId) . '&forumId=' . urlencode($_REQUEST["forumId"]);
+		$url = 'tiki-view_forum_thread.php?comments_parentId=' . urlencode($threadId);
 		header('location: ' . $url);
 		exit;
 	}
