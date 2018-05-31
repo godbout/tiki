@@ -54,7 +54,19 @@ function wikiplugin_subscribenewsletter_info()
 					['text' => tra('No'), 'value' => 0]
 				]
 			],
-
+			'inmodule' => [
+				'required' => false,
+				'name' => tra('In Module'),
+				'description' => tra('Display the newsletter subscription form in module view (if included in a Tiki module)'),
+				'since' => '19.0',
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				],
+			],
 		],
 	];
 }
@@ -91,6 +103,21 @@ function wikiplugin_subscribenewsletter($data, $params)
 		}
 	}
 
+	if ($prefs['feature_jquery_validation'] === 'y') {
+		$js = '
+			$("form[name=wpSubscribeNL]").validate({
+				rules: {
+					wpEmail: {
+						required: true,
+						email: true,
+					},
+				},
+				submitHandler: function(){return process_submit(this.currentForm);}
+			});
+		';
+		TikiLib::lib('header')->add_jq_onready($js);
+	}
+
 	$wpSubscribe = '';
 	$wpError = '';
 	$subscribeEmail = '';
@@ -115,6 +142,7 @@ function wikiplugin_subscribenewsletter($data, $params)
 	$smarty->assign_by_ref('wpError', $wpError);
 	$smarty->assign('subscribeEmail', $subscribeEmail);
 	$smarty->assign('subcribeMessage', empty($button) ? $data : $button);
+	$smarty->assign('inmodule', !empty(inmodule) ? "moduleSubscribeNL" : "");
 	$smarty->assign_by_ref('subscribeInfo', $info);
 	$res = $smarty->fetch('wiki-plugins/wikiplugin_subscribenewsletter.tpl');
 	if (isset($params["wikisyntax"]) && $params["wikisyntax"] == 1) {
