@@ -14,9 +14,9 @@ function prefs_mobile_list()
 			'name' => tra('Mobile access'),
 			'description' => tra('Mobile feature pre-Tiki 13; as of Tiki 14 all it does is to allow automatic switching of the perspective according to the mobile_perspectives preference.'),
 			'help' => 'Mobile',
-			'warning' => tra('Deprecated. This feature is no longer under development following the integration of the Bootstrap CSS framework.'),
+			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19 (It is no longer under development following the integration of the Bootstrap CSS framework)'),
 			'type' => 'flag',
-			'tags' => ['experimental', 'deprecated'],
+			'tags' => ['deprecated'],
 			'dependencies' => [
 				'feature_perspective',
 			],
