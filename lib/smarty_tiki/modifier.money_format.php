@@ -47,6 +47,8 @@ function smarty_modifier_money_format($number, $local, $currency, $format = '%(#
 
 	if (! empty($currency)) {
 		$locale['int_curr_symbol'] = $currency;
+		$fmt = new NumberFormatter(locale_get_default()."@currency=$currency", NumberFormatter::CURRENCY);
+		$locale['currency_symbol'] = $fmt->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
 	}
 
 	//regex for format string
