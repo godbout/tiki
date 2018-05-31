@@ -94,6 +94,13 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 						],
 						'legacy_index' => 7,
 					],
+					'currencyTracker' => [
+						'name' => tr('Currency Tracker'),
+						'description' => tr('Tracker containing available currencies and exchange rates.'),
+						'filter' => 'int',
+						'legacy_index' => 8,
+						'profile_reference' => 'tracker',
+					],
 				],
 			],
 		];
@@ -102,11 +109,21 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 	function getFieldData(array $requestData = [])
 	{
 		$ins_id = $this->getInsertId();
+		if (isset($requestData[$ins_id])) {
+			$amount = $requestData[$ins_id];
+			$currency = $requestData[$ins_id.'_currency'] ?? '';
+		} elseif (preg_match('/^(\d*)([A-Za-z]*)?$/', $this->getValue(), $m)) {
+			$amount = $m[1];
+			$currency = $m[2];
+		} else {
+			$amount = $this->getValue();
+			$currency = '';
+		}
 
 		return [
-			'value' => (isset($requestData[$ins_id]))
-				? $requestData[$ins_id]
-				: $this->getValue(),
+			'value' => $amount.$currency,
+			'amount' => $amount,
+			'currency' => $currency,
 		];
 	}
 
@@ -117,7 +134,22 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 
 	function renderInput($context = [])
 	{
-		return $this->renderTemplate('trackerinput/numeric.tpl', $context);
+		$data = [];
+
+		$trk = TikiLib::lib('trk');
+		$currencyTracker = $this->getOption('currencyTracker');
+		
+		if ($currencyTracker) {
+			$fieldId = $trk->get_field_by_name($currencyTracker, 'Currency');
+			if ($fieldId) {
+				$data['currencies'] = $trk->list_tracker_field_values($currencyTracker, $fieldId);
+				sort($data['currencies']);
+			} else {
+				$data['error'] = 'Missing Currency field in tracker '.$currencyTracker;
+			}
+		}
+
+		return $this->renderTemplate('trackerinput/currency.tpl', $context, $data);
 	}
 
 	function importRemote($value)

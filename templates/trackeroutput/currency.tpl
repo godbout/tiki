@@ -8,7 +8,9 @@
 	{else}
 		{assign var=locale value=$field.options_array[4]}
 	{/if}
-	{if empty($field.options_array[5])}
+	{if $field.currency}
+		{assign var=currency value=$field.currency}
+	{elseif empty($field.options_array[5])}
 		{assign var=currency value='USD'}
 	{else}
 		{assign var=currency value=$field.options_array[5]}
@@ -22,10 +24,10 @@
 	{/if}
 	{if (isset($context.reloff) and $context.reloff gt 0) and ($field.options_array[7] ne 1)}
 		{assign var=format value=$part1a|cat:$field.options_array[6]}
-		{$field.value|money_format:$locale:$currency:$format:0}
+		{$field.amount|money_format:$locale:$currency:$format:0}
 	{else}
 		{assign var=format value=$part1b|cat:$field.options_array[6]}
-		{$field.value|money_format:$locale:$currency:$format:1}
+		{$field.amount|money_format:$locale:$currency:$format:1}
 	{/if}
 	{if $field.options_array[3]}
 		<span class="formunit">{$field.options_array[3]|escape}</span>
