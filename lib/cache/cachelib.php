@@ -281,6 +281,7 @@ class Cachelib
 	{
 		global $prefs, $tikidomain;
 		$smarty = TikiLib::lib('smarty');
+		$smarty->refreshLanguage();
 
 		$oldlang = $prefs['language'];
 		$prefs['language'] = $newlang;
@@ -300,16 +301,12 @@ class Cachelib
 					$prefs['language'] = $newlang;
 				} else {
 					if ($ext == "tpl") {
-						$file = substr($path . "/" . $file, 10);
-						$comppath = $smarty->_get_compile_path($file);
-						//rewrite the language thing, see lib/init/smarty.php
-						if ($smarty->use_sub_dirs) {
-							$comppath = preg_replace("#/" . $oldlang . "/#", "/" . $newlang . "/", $comppath, 1);
-						} else {
-							$comppath = preg_replace("#/" . $tikidomain . $oldlang . "#", "/" . $tikidomain . $newlang, $comppath, 1);
-						}
-						if (! $smarty->_is_compiled($file, $comppath)) {
-							$smarty->_compile_resource($file, $comppath);
+						$template_file = substr($path . "/" . $file, 10);
+						try {
+							$_tpl = $smarty->createTemplate($template_file, null, null, null, false);
+							$_tpl->compileTemplateSource();
+						} catch (Exception $e) {
+							$errors_found = true;
 						}
 					}
 				}
@@ -317,6 +314,102 @@ class Cachelib
 			closedir($dir);
 		}
 		$prefs['language'] = $oldlang;
+	}
+
+	/**
+	 * Generate caches
+	 *
+	 * @param mixed $dir_names all|templates_c|modules_cache|misc (default all)
+	 */
+	public function generateCache($dir_names = ['all'])
+	{
+		if (! is_array($dir_names)) {
+			$dir_names = [$dir_names];
+		}
+
+		if (in_array('all', $dir_names)) {
+			$this->generateTemplateCache();
+			$this->generateModuleCache();
+			$this->generateMiscCache();
+		}
+		if (in_array('templates', $dir_names)) {
+			$this->generateTemplateCache();
+		}
+		if (in_array('modules', $dir_names)) {
+			$this->generateModuleCache();
+		}
+		if (in_array('misc', $dir_names)) {
+			$this->generateMiscCache();
+		}
+	}
+
+	/**
+	 * Compile all Smarty templates
+	 * @param string $logSection Section to log the request
+	 */
+	protected function generateTemplateCache($logSection = 'system') {
+		global $prefs;
+
+		$logslib = TikiLib::lib('logs');
+
+		$inInstaller = defined('TIKI_IN_INSTALLER');
+
+		$lang = $prefs['language'];
+		$ctempl = 'templates';
+		$this->cache_templates($ctempl, $lang);
+
+		if (! $inInstaller) {
+			$logslib->add_log($logSection, 'generated templates cache, language = ' . $lang);
+		}
+	}
+
+	/**
+	 * Compile all module cache
+	 * @param string $logSection Section to log the request
+	 */
+	protected function generateModuleCache($logSection = 'system') {
+		$logslib = TikiLib::lib('logs');
+		$modlib = TikiLib::lib('mod');
+
+		$inInstaller = defined('TIKI_IN_INSTALLER');
+
+		$assigned_modules = $modlib->get_assigned_modules();
+		foreach ($assigned_modules as $zone => $modules) {
+			foreach ($modules as $pos => $module) {
+				/** Pre-execute module to cache its content */
+				$result = $modlib->execute_module($module);
+				if (! $inInstaller) {
+					$logslib->add_log($logSection, 'generated module-cache for ' . $module['name']);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Compile Misc caches like language, categories, users.
+	 * @param string $logSection Section to log the request
+	 */
+	protected function generateMiscCache($logSection = 'system') {
+		$logslib = TikiLib::lib('logs');
+
+		$inInstaller = defined('TIKI_IN_INSTALLER');
+
+		TikiLib::lib('language')->list_languages();
+		if (! $inInstaller) {
+			$logslib->add_log($logSection, 'cached language list');
+		}
+
+		TikiLib::lib('categ')->getCategories();
+		if (! $inInstaller) {
+			$logslib->add_log($logSection, 'cached category list');
+		}
+
+		TikiLib::lib('user')->list_all_users();
+		TikiLib::lib('user')->list_all_groups();
+		TikiLib::lib('user')->list_all_groupIds();
+		if (! $inInstaller) {
+			$logslib->add_log($logSection, 'cached user/group list');
+		}
 	}
 }
 

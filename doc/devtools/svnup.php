@@ -167,6 +167,7 @@ class SvnUpCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
+		$cacheLib = new \Cachelib();
 		$tikiBase = realpath(dirname(__FILE__) . '/../..');
 
 		$verbosityLevelMap = [
@@ -334,8 +335,7 @@ class SvnUpCommand extends Command
 		if (! $input->getOption('no-db')) {
 			$progress->setMessage('Clearing all caches');
 			$progress->advance();
-			$cache = new \Cachelib();
-			$cache->empty_cache();
+			$cacheLib->empty_cache();
 		}
 
 		$progress->setMessage('Updating dependencies & setting file permissions');
@@ -398,6 +398,12 @@ class SvnUpCommand extends Command
 			$logslib->add_action('svn update', "Automatic update completed, r$startRev -> r$endRev", 'system');
 			$progress->setMessage("<comment>Automatic update completed r$startRev -> r$endRev</comment>");
 		}
+
+		/** generate caches */
+		$progress->setMessage('Generating caches');
+		$progress->advance();
+		$cacheLib->generateCache();
+
 		$progress->finish();
 		echo "\n";
 	}
