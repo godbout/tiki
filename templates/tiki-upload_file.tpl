@@ -140,9 +140,9 @@
 					{filegal_uploader}
 				{/if}
 			</div>
-			<div class="form-group row">
-				<label for="imagesize" class="col-md-8 col-md-offset-4">
-				<input type="checkbox" id="imagesize" name="imagesize" checked="checked" value="yes" />{tr}Use Gallery default resize settings for images <span id="imageResizeInfo">{if $gal_info["image_max_size_x"]}({$gal_info["image_max_size_x"]}px X {$gal_info["image_max_size_y"]} px){else}(No resize){/if}</span>{/tr}
+			<div class="form-check">
+				<label for="imagesize" class="form-check-label">
+				<input class="form-check-input" type="checkbox" id="imagesize" name="imagesize" checked="checked" value="yes" />{tr}Use Gallery default resize settings for images <span id="imageResizeInfo">{if $gal_info["image_max_size_x"]}({$gal_info["image_max_size_x"]}px X {$gal_info["image_max_size_y"]} px){else}(No resize){/if}</span>{/tr}
 				</label>
 			</div>
 			<div id="customsize" style="display:none"><div class="form-group row">
@@ -173,9 +173,9 @@
 			{if $simpleMode neq 'y'}
 				<div class="fgal_file_c2">
 					{if !$editFileId and $tiki_p_batch_upload_files eq 'y'}
-						<div class="form-group row">
-							<label for="isbatch" class="col-md-8 col-md-offset-4">
-								<input type="checkbox" id="isbatch" name="isbatch[]">
+						<div class="form-check mb-3">
+							<label for="isbatch" class="form-check-label">
+								<input type="checkbox" id="isbatch" name="isbatch[]" class="form-check-input">
 								{tr}Unzip zip files{/tr}
 							</label>
 						</div>
@@ -365,7 +365,7 @@
 		<div class="col-md-8 col-md-offset-4">
 			{remarksbox type="note" title="{tr}Information{/tr}"}
 				{tr}Maximum file size is around:{/tr}
-				{if $tiki_p_admin eq 'y'}<a title="|{$max_upload_size_comment}" class="btn btn-info tips">{/if}
+				{if $tiki_p_admin eq 'y'}<a title="|{$max_upload_size_comment}" class="btn btn-link tips">{/if}
 					{$max_upload_size|kbsize:true:0}
 				{if $tiki_p_admin eq 'y'}</a>
 					{if $is_iis}<br>{tr}Note: You are running IIS{/tr}. {tr}maxAllowedContentLength also limits upload size{/tr}. {tr}Please check web.config in the Tiki root folder{/tr}{/if}
