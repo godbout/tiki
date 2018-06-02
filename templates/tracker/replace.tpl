@@ -15,7 +15,7 @@
 			</div>
 			<div class="form-group row mx-0">
 				<label for="description">{tr}Description{/tr}</label>
-				<textarea class="form-control" name="description" id="description" row mx-0s="4" cols="40">{$info.description|escape}</textarea>
+				<textarea class="form-control" name="description" id="description" cols="40">{$info.description|escape}</textarea>
 			</div>
 			<div class="form-check">
 				<label>

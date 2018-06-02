@@ -6,7 +6,7 @@
 
 {block name="content"}
 <form method="post" action="">
-	<div class="form-group row">
+	<div class="form-group row mx-0">
 		<label for="export_fields" class="col-form-label">{tr}Fields Export{/tr}</label>
 		<textarea rows="20" name="export" id="export_fields" class="form-control">{$export|escape}</textarea>
 	</div>

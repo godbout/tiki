@@ -16,7 +16,7 @@
 			{tr}Are you sure you want to remove the fields? Data will be lost.{/tr}
 		</p>
 		<div class="submit">
-			<input type="submit" class="btn btn-primary btn-sm" value="{tr}Remove Fields{/tr}">
+			<input type="submit" class="btn btn-danger" value="{tr}Remove Fields{/tr}">
 		</div>
 	</form>
 {/if}

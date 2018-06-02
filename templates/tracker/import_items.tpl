@@ -26,11 +26,11 @@
 			<li>{tr}If you are having problems, try a different line ending for your csv file that matches the server operating system{/tr}</li>
 		</ul>
 	{/remarksbox}
-	<div class="form-group row">
+	<div class="form-group row mx-0">
 		<label for="importfile">{tr}File{/tr}</label>
 		<input type="file" name="importfile" class="form-control">
 	</div>
-	<div class="form-group row">
+	<div class="form-group row mx-0">
 		<label for="dataFormat">{tr}Date format{/tr}</label>
 		<select name="dateFormat" class="form-control">
 			<option value="yyyy-mm-dd">{tr}year{/tr}-{tr}month{/tr}-{tr}day{/tr}(2008-01-31)</option>
@@ -39,14 +39,14 @@
 			<option value="">{tr}UNIX Timestamp{/tr}</option>
 		</select>
 	</div>
-	<div class="form-group row">
+	<div class="form-group row mx-0">
 		<label for=encoding">{tr}Character encoding{/tr}</label>
 		<select name="encoding" class="form-control">
 			<option value="UTF-8" selected="selected">{tr}UTF-8{/tr}</option>
 			<option value="ISO-8859-1">{tr}ISO-8859-1{/tr}</option>
 		</select>
 	</div>
-	<div class="form-group row">
+	<div class="form-group row mx-0">
 		<label for="separator">{tr}Separator{/tr}</label>
 		<input type="text" name="separator" value="," size="2" class="form-control">
 	</div>

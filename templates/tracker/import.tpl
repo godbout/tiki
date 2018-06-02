@@ -7,11 +7,11 @@
 {block name="content"}
 	{if !$success}
 		<form class="form" method="post" action="{service controller=tracker action=import}" role=form">
-			<div class="form-group row">
+			<div class="form-group row mx-0">
 				<label class="col-form-label">{tr}Raw data{/tr}</label>
 				<textarea name="raw" rows="20" class="form-control" required="required"></textarea>
 			</div>
-			<div class="form-group row">
+			<div class="form-group row mx-0">
 				<div class="form-check">
 					<label class="form-check-label">
 						<input class="form-check-input" type="checkbox" name="preserve" value="1">
