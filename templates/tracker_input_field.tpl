@@ -1,4 +1,4 @@
-<div class="form-group row">
+<div class="form-group row mx-0">
 	{if $field_type eq 'c'}
 		<div class="form-check">
 			<label class="form-check-label">

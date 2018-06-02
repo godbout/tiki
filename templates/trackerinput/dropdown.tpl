@@ -1,23 +1,23 @@
 {strip}
 	{if $field.type eq 'R'}
-		<div class="input-group">
 		{foreach from=$field.possibilities key=value item=label}
-			<label>
-				<input type="radio" name="{$field.ins_id|escape}" value="{$value|escape}" {if $field.value eq "$value"}checked="checked"{/if}>
-				{$label|tr_if|escape}
-			</label>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="{$field.ins_id|escape}" value="{$value|escape}" {if $field.value eq "$value"}checked="checked"{/if}>
+				<label class="form-check-label" for="{$field.ins_id|escape}">
+					{$label|tr_if|escape}
+				</label>
+			</div>
 		{/foreach}
-		</div>
 	{elseif $field.type eq 'M'}
 		{if empty($field.options_map.inputtype)}
-			<div class="input-group">
-				{foreach from=$field.possibilities key=value item=label}
-					<label>
-						<input type="checkbox" name="{$field.ins_id|escape}[]" value="{$value|escape}" {if in_array("$value", $field.selected)}checked="checked"{/if}>
+			{foreach from=$field.possibilities key=value item=label}
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox" name="{$field.ins_id|escape}[]" value="{$value|escape}" {if in_array("$value", $field.selected)}checked="checked"{/if}>
+					<label class="form-check-label" for="{$field.ins_id|escape}[]">
 						{$label|tr_if|escape}
 					</label>
+				</div>
 				{/foreach}
-			</div>
 		{elseif $field.options_map.inputtype eq 'm'}
 			{if $prefs.jquery_ui_chosen neq 'y'}<small>{tr}Hold "Ctrl" in order to select multiple values{/tr}</small><br>{/if}
 			<select name="{$field.ins_id}[]" multiple="multiple" class="form-control">
