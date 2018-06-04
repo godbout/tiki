@@ -198,7 +198,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 			if (! empty($requestData[$insForPagenameField])) {
 				$page_name = $requestData[$insForPagenameField];	// from tabular import replace
 			} else if (! empty($requestData['itemId'])) {
-				$itemData = $this->getItemData();					// caluculated field types like auto-increment need rendering
+				$itemData = $this->getItemData();					// calculated field types like auto-increment need rendering
 				$definition = $this->getTrackerDefinition();
 				$factory = $definition->getFieldFactory();
 				$field_info = $definition->getField($this->getOption('fieldIdForPagename'));
@@ -328,12 +328,14 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 		if (! empty($value)) {
 			$info = TikiLib::lib('tiki')->get_page_info($value, true, true);
 			if ($info) {
+				$freshness_days = floor((time() - ($info['lastModif'])) / 86400);
 				$data = [
 					$baseKey => $typeFactory->identifier($value),
 					"{$baseKey}_text" => $typeFactory->wikitext($info['data']),
 					"{$baseKey}_raw" => $typeFactory->identifier($info['data']),
 					"{$baseKey}_creation_date" => $typeFactory->timestamp($info['created']),
 					"{$baseKey}_modification_date" => $typeFactory->timestamp($info['lastModif']),
+					"{$baseKey}_freshness_days" =>  $typeFactory->numeric($freshness_days),
 				];
 			}
 		}
@@ -351,6 +353,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 			"{$baseKey}_raw",  // unparsed wiki markup
 			"{$baseKey}_creation_date", // wiki page creation date
 			"{$baseKey}_modification_date", // wiki page modification date
+			"{$baseKey}_freshness_days", // wiki page "freshness" in days
 		];
 
 		return $data;
