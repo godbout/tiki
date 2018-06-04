@@ -29,7 +29,7 @@ function prefs_ajax_list()
 		],
 		'ajax_inline_edit_trackerlist' => [
 			'name' => tr('Tracker list inline editing'),
-			'description' => tr('Enable inline editing on all fields listed in the tracker list page.'),
+			'description' => tr('Enable inline editing of all fields on the tracker list page.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'dependencies' => ['ajax_inline_edit'],

@@ -400,7 +400,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_quizzes' => [
 			'name' => tra('Quizzes'),
-			'description' => tra('Timed questionnaire with recorded scores.'),
+			'description' => tra('Sets of questions that can be presented, with the sessions timed and the scores recorded.'),
 			'help' => 'Quizzes',
 			'type' => 'flag',
 			'default' => 'n',
@@ -630,7 +630,7 @@ function prefs_feature_list($partial = false)
 
 		'feature_shadowbox' => [
 			'name' => tra('Shadowbox / ColorBox'),
-			'description' => tra('Display images in a modal popup box. Modals are Also know as shadowbox, lightbox or colorbox.'),
+			'description' => tra('Display images in a modal popup window (also referred to as shadowbox, lightbox or colorbox).'),
 			'help' => 'Shadowbox',
 			'type' => 'flag',
 			'default' => 'y',

@@ -18,7 +18,7 @@ function prefs_faq_list()
 		],
 		'faq_comments_default_ordering' => [
 			'name' => tra('Default order of comments'),
-			'description' => tra('Which order to list the comments on the page.'),
+			'description' => tra('In which order to list the comments on the page.'),
 			'type' => 'list',
 			'options' => [
 				'commentDate_desc' => tra('Newest first'),
