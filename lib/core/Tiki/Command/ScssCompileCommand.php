@@ -48,6 +48,12 @@ class ScssCompileCommand extends Command
 				't',
 				InputOption::VALUE_NONE,
 				'Compare the modification timesof the SCSS and CSS files before compiling (does not check for included SCSS files)'
+			)
+			->addOption(
+				'continue-on-error',
+				null,
+				InputOption::VALUE_NONE,
+				'Continue SCSS compiling even if it fails to compile some theme'
 			);
 	}
 
@@ -65,6 +71,7 @@ class ScssCompileCommand extends Command
 			$location = 'themes';
 		}
 
+		$continueOnError = $input->getOption('continue-on-error');
 		$checkTimestamps = $input->getOption('check-timestamps');
 
 		$cachelib = \TikiLib::lib('cache');
@@ -111,30 +118,28 @@ class ScssCompileCommand extends Command
 				}
 			}
 
-			try {
-				foreach ($files as $file) {
+			foreach ($files as $file) {
+				try {
 					$this->compile($file['scss'], $file['css'], $output);
+				} catch (ParserException $e) {
+					$output->writeln('<error>' . tr('SCSS Parse Error') . ' compiling: ' . $file['scss'] . '</error>');
+					$output->writeln('<info>' . $e->getMessage() . '</info>');
+				} catch (CompilerException $e) {
+					$output->writeln('<error>' . tr('SCSS Compiler Error') . ' compiling: ' . $file['scss'] . '</error>');
+					$output->writeln('<info>' . $e->getMessage() . '</info>');
+				} catch (RangeException $e) {
+					$output->writeln('<error>' . tr('SCSS Range Error') . ' compiling: ' . $file['scss'] . '</error>');
+					$output->writeln('<info>' . $e->getMessage() . '</info>');
+				} catch (ServerException $e) {
+					$output->writeln('<error>' . tr('SCSS Server Error') . ' compiling: ' . $file['scss'] . '</error>');
+					$output->writeln('<info>' . $e->getMessage() . '</info>');
+				} catch (\Exception $e) {
+					$output->writeln('<error>' . tr('SCSS Error') . ' compiling: ' . $file['scss'] . '</error>');
+					$output->writeln('<info>' . $e->getMessage() . '</info>');
 				}
-			} catch (ParserException $e) {
-				$output->writeln('<error>' . tr('SCSS Parse Error') . ' compiling: ' . $scss_file . '</error>');
-				$output->writeln('<info>' . $e->getMessage() . '</info>');
-				return false;
-			} catch (CompilerException $e) {
-				$output->writeln('<error>' . tr('SCSS Compiler Error') . ' compiling: ' . $scss_file . '</error>');
-				$output->writeln('<info>' . $e->getMessage() . '</info>');
-				return false;
-			} catch (RangeException $e) {
-				$output->writeln('<error>' . tr('SCSS Range Error') . ' compiling: ' . $scss_file . '</error>');
-				$output->writeln('<info>' . $e->getMessage() . '</info>');
-				return false;
-			} catch (ServerException $e) {
-				$output->writeln('<error>' . tr('SCSS Server Error') . ' compiling: ' . $scss_file . '</error>');
-				$output->writeln('<info>' . $e->getMessage() . '</info>');
-				return false;
-			} catch (\Exception $e) {
-				$output->writeln('<error>' . tr('SCSS Error') . ' compiling: ' . $scss_file . '</error>');
-				$output->writeln('<info>' . $e->getMessage() . '</info>');
-				return false;
+				if (isset($e) && !$continueOnError) {
+					break 2;
+				}
 			}
 		}
 
@@ -149,25 +154,12 @@ class ScssCompileCommand extends Command
 	 */
 	protected function compile($inputFile, $outputFile = '', $output = null)
 	{
-		$data = file_get_contents($inputFile);
-
-		$newWorkingDir = dirname(realpath($inputFile));
-		$oldWorkingDir = getcwd();
-
-		if ($oldWorkingDir !== $newWorkingDir) {
-			$changeDir = chdir($newWorkingDir);
-			$inputFile = basename($inputFile);
-		} else {
-			$changeDir = '';
-		}
+		$inputData = file_get_contents($inputFile);
+		$inputDir = dirname(realpath($inputFile));
 
 		$scss = new Compiler();
-
-		$result = $scss->compile($data, $inputFile);
-
-		if ($changeDir) {
-			chdir($oldWorkingDir);
-		}
+		$scss->setImportPaths($inputDir);
+		$result = $scss->compile($inputData);
 
 		if ($outputFile) {
 			file_put_contents($outputFile, $result);
