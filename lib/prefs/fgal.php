@@ -506,7 +506,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 		],
 		'fgal_list_backlinks' => [
 			'name' => tra('Backlinks'),
-			'description' => tra('Allows users to view a list of pages, called backlinks, that link to the current page.'),
+			'description' => tra('Presents a list of pages that link to the current page.'),
 			'type' => 'list',
 			'help' => 'Backlinks',
 			'options' => $showOptions,
@@ -629,7 +629,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 		],
 		'fgal_list_backlinks_admin' => [
 			'name' => tra('Backlinks'),
-			'description' => tra('Allows users to view a list of pages, called backlinks, that link to the current page.'),
+			'description' => tra('Presents a list of pages that link to the current page.'),
 			'help' => 'Backlinks',
 			'type' => 'list',
 			'options' => $showOptions,

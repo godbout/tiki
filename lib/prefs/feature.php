@@ -1075,7 +1075,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_urgent_translation' => [
 			'name' => tra('Urgent translation notifications'),
-			'description' => tra('Allow flagging changes as urgent, so translations are marked with a notice visible to all users.'),
+			'description' => tra('Enable changes to be flagged as urgent, so translations are marked with a notice visible to all users.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -1289,7 +1289,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_poll_revote' => [
 			'name' => tra('Allow re-voting'),
-			'description' => tra('Visitors can vote mulitiple times for a poll.'),
+			'description' => tra('Visitors can vote mulitiple times in a poll.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'details' => tr('When logged in, Tiki tracks users by username or otherwise IP address.'),
@@ -1855,8 +1855,8 @@ function prefs_feature_list($partial = false)
 			'tags' => ['experimental'],
 		],
 		'feature_custom_html_head_content' => [
-			'name' => tra('Custom HTML HEAD content'),
-			'description' => tra('This is for adding additional content such at META or LINK tags, in the HEAD section of HTML files. Smarty filters can be used here.'),
+			'name' => tra('Custom HTML head content'),
+			'description' => tra('Additional content such at meta or link tags can be added to the head section of HTML files. Smarty filters can be used here.'),
 			'hint' => tra('Example:') . " {if \$page eq 'Slideshow'}{literal}<style type=\"text/css\">.slideshow { height: 232px; width: 232px; }</style>{/literal}{/if}",
 			'type' => 'textarea',
 			'size' => '6',
@@ -1864,8 +1864,8 @@ function prefs_feature_list($partial = false)
 			'default' => '',
 		],
 		'feature_html_head_base_tag' => [
-			'name' => tra('Add BASE tag in the page HEAD'),
-			'description' => tra('The BASE tag specifies a default address for all links on a page.'),
+			'name' => tra('Add base tag in the HTML head section'),
+			'description' => tra('The base tag specifies a default address for all links on a page.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -1949,7 +1949,7 @@ function prefs_feature_list($partial = false)
 		'feature_endbody_code' => [
 			'name' => tra('Custom code just before the closing </body> tag'),
 			'type' => 'textarea',
-			'description' => tr('Anything entered here will be placed near the end of the HTML file.'),
+			'description' => tr('Enter lines here to be placed near the end of the HTML file.'),
 			'size' => '6',
 			'filter' => 'rawhtml_unsafe',
 			'default' => '',
@@ -1989,7 +1989,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_jquery_tooltips' => [
 			'name' => tra('Tooltips'),
-			'description' => tra('Make tooltips such as this appear in a custom style. Use CSS to change their appearance.'),
+			'description' => tra('Enable tooltips such as this to have a custom appearance, styled by CSS.'),
 			'type' => 'flag',
 			'help' => 'JQuery#Tooltips',
 			'default' => 'y',		// use JQuery tooltips and override Overlib
@@ -2173,7 +2173,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_sandbox' => [
 			'name' => tra('Sandbox'),
-			'description' => tra('A special wiki page for testing that can edited but not permanently saved.'),
+			'description' => tra('A special page to test the wiki feature that can edited, but the content is not saved.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -2231,7 +2231,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_history' => [
 			'name' => tra('History'),
-			'description' => tra('Users (with permission) can see the history of each Wiki page.'),
+			'description' => tra('Users (with permission) can see the history of each wiki page.'),
 			'type' => 'flag',
 			'help' => 'History',
 			'default' => 'y',
@@ -2263,7 +2263,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_discuss' => [
 			'name' => tra('Discuss pages on forums'),
-			'description' => tra('Enabling the option will add a Discuss button on every Wiki page that links to a forum thread dedicated to discussion the particular page.'),
+			'description' => tra('Enabling the option will add, on each wiki page, a Discuss button that links to a forum thread dedicated to discussion of the particular page.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_forums'
@@ -2275,7 +2275,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_source' => [
 			'name' => tra('View source'),
-			'description' => tra('Users (with permission) can see the Wiki syntax of the Wiki page.'),
+			'description' => tra('Users (with permission) can see the wiki and/or HTML syntax of the page.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['basic'],
@@ -2301,7 +2301,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_backlinks' => [
 			'name' => tra('Backlinks'),
-			'description' => tra('Allows users to view a list of pages, called backlinks, that link to the current page.'),
+			'description' => tra('Presents a list of pages that link to the current page.'),
 			'type' => 'flag',
 			'help' => 'Backlinks',
 			'default' => 'n',
@@ -2313,7 +2313,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_likePages' => [
 			'name' => tra('Similar pages'),
-			'description' => tra('Users can see a listing of pages named similarly to the current page.'),
+			'description' => tra('Display a list of pages named similarly to the current page.'),
 			'help' => 'Using+Wiki+Pages#Similar_Pages',
 			'type' => 'flag',
 			'default' => 'n',
@@ -2472,7 +2472,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_show_hide_before' => [
 			'name' => tra('Show/hide icon before headings'),
-			'description' => tra('For use with the !!- or !!+ syntax. Checking will display the showhide switch at the left of the heading, otherwise it displays below.'),
+			'description' => tra('For use with the !!- or !!+ syntax. Activating this will display the show/hide icon at the left of the heading; otherwise, it displays below.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
