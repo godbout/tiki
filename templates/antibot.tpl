@@ -67,7 +67,7 @@
 		{/if}
 	</div>
 
-	{jq}
+	{jq rank=1}
 		function antibotVerification(element, rule) {
 			if (!jqueryTiki.validate) return;
 
@@ -80,7 +80,7 @@
 	{/jq}
 
 	{if $captchalib->type eq 'recaptcha'}
-		{jq}
+		{jq rank=1}
 			var existCondition = setInterval(function() {
 				if ($('#recaptcha_response_field').length) {
 					clearInterval(existCondition);
@@ -90,7 +90,7 @@
 
 		{/jq}
 	{elseif $captchalib->type eq 'recaptcha20'}
-		{jq}
+		{jq rank=1}
 			var existCondition = setInterval(function() {
 				if ($('#g-recaptcha-response').length) {
 					clearInterval(existCondition);
@@ -99,7 +99,7 @@
 			}, 100); // wait for captcha to load
 		{/jq}
 	{else}
-		{jq}
+		{jq rank=1}
 			antibotVerification($("#antibotcode"), {
 				required: true,
 				remote: {

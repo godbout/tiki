@@ -54,11 +54,12 @@ function smarty_block_jq($params, $content, $smarty, &$repeat)
 		return isset($nojquery) ? $nojquery : tr('<!-- jq smarty plugin inactive: feature_jquery off -->');
 	}
 	$notonready = isset($notonready) ? $notonready : false;
+	$rank = isset($rank) ? $rank : 0;
 
 	if (! $notonready) {
-		$headerlib->add_jq_onready($content, 0);
+		$headerlib->add_jq_onready($content, $rank);
 	} else {
-		$headerlib->add_js($content, 0);
+		$headerlib->add_js($content, $rank);
 	}
 	return;
 }
