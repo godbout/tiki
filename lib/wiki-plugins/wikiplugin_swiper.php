@@ -11,7 +11,7 @@ function wikiplugin_swiper_info()
 		'documentation' => 'PluginSwiper',
 		'description' => tra('Embed swiper in content, support file galleries, files id and custom content'),
 		'prefs' => 'wikiplugin_swiper',
-		'body' => tra('Enter custom slides data separated by "|".<code>title:Slide 1 title;text:HTML Supported Slide 1 text :img:Slide Image URL;bgcolor:#colorcode;color: #color code for text | title:Slide 2 title;text:Slide 2 text:img:Slide Image URL;bgcolor:#colorcode</code> '),
+		'body' => tra('Enter custom slides data separated by "|". Wiki Syntax / HTML supported in slide text, to include wiki page in slide text use pluginInclude.<code>title:Slide 1 title;text:HTML/Wiki Syntax Supported Slide 1 text;image:Slide Image URL;bgcolor:#colorcode;color: #color code for text | title:Slide 2 title;text:Slide 2 text;image:Slide Image URL;bgcolor:#colorcode</code> '),
 		'iconname' => 'tv',
 		'introduced' => 19,
 		'tags' => 'basic',
@@ -473,7 +473,8 @@ function wikiplugin_swiper($data, $params)
 			else {
 				$slideArr['text']=$slideArr[0]; //single attribute slide
 			}
-			$slidesHtml .= '<div data-swiper-parallax="-300" class="swiper-slide" style="color:'.$slideArr['color'].';background-color:'.$slideArr['bgcolor'].';background-image:url('.$slideArr['img'].')"><div class="slide-content'.$uid.'"><h1>' . $slideArr['title'] . '</h1><div>'.$slideArr['text'].'</div></div></div>';
+			($slideArr['text']=='') ? '':$slideArr['text']='<div>'.TikiLib::lib('parser')->parse_data($slideArr['text'], ['is_html' => true, 'parse_wiki' => true]).'</div>';
+			$slidesHtml .= '<div data-swiper-parallax="-300" class="swiper-slide" style="color:'.$slideArr['color'].';background-color:'.$slideArr['bgcolor'].';background-image:url('.$slideArr['image'].')"><div class="slide-content'.$uid.'"><h1>' . $slideArr['title'] . '</h1>'.$slideArr['text'].'</div></div>';
 		}	
 	}
 	$swiperParams=array('direction','effect','autoHeight','speed','spaceBetween','slidesPerView','slidesPerColumn','slidesPerColumnFill','centeredSlides','slidesOffsetBefore','slidesOffsetAfter','loop','preloadImages','slideToClickedSlide','freeMode','updateOnImagesReady');
