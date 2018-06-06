@@ -3,7 +3,7 @@
 	{if $show_topline eq 'y' and $topline}
 		<div class="articletopline">{$topline|escape}</div>
 	{/if}
-	<header class="articletitle">
+	<header class="articletitle mt-0 mx-0 mb-1">
 		<h1>
 			{object_link type=article id=$articleId title=$arttitle}
 		</h1>

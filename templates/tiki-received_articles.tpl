@@ -4,7 +4,7 @@
 
 {if $preview eq 'y'}
 	<h2>{tr}Preview{/tr}</h2>
-	<header class="articletitle">
+	<header class="articletitle mt-0 mx-0 mb-1">
 		<h2>{$title}</h2>
 		<span class="titleb">{tr}By:{/tr} {$authorName} {$publishDate|tiki_short_datetime:'On:'} (0 {tr}Reads{/tr})</span>
 	</header>

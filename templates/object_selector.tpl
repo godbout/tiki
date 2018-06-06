@@ -21,7 +21,7 @@
 	data-filters="{$object_selector.filter|escape}"
 	data-threshold="{$object_selector.threshold|default:$prefs.tiki_object_selector_threshold|escape}"
 >
-	<div class="basic-selector hidden">
+	<div class="basic-selector hidden mb-3">
 		<select class="form-control">
 			<option value="" class="protected">&mdash;</option>
 			{if $object_selector.current_selection}
@@ -32,13 +32,19 @@
 
 	<div class="card hidden">
 		<div class="card-header">
-			<div class="input-group">
-				<span class="input-group-append">
-					{icon name="search"}
-				</span>
-				<input type="text" placeholder="{$object_selector.placeholder|escape}..." value="" class="filter form-control" autocomplete="off">
-				<div class="input-group-btn">
-					<input type="button" class="btn btn-primary search" value="{tr}Find{/tr}">
+			<div class="form-row align-items-center">
+				<div class="col-auto">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<div class="input-group-text">
+								{icon name="search"}
+							</div>
+						</div>
+						<input type="text" placeholder="{$object_selector.placeholder|escape}..." value="" class="filter form-control" autocomplete="off">
+						<div class="input-group-btn">
+							<input type="button" class="btn btn-primary search" value="{tr}Find{/tr}">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

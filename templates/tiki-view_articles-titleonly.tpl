@@ -11,7 +11,7 @@
 			{$listpages[ix].articleId|sefurl:article:with_next}{$urlparam}
 		{/if}
 	{/strip}{/capture}
-	<div class="articletitle">
+	<div class="articletitle mt-0 mx-0 mb-1">
 		<span class="newsitem">
 			<a href="{$smarty.capture.href}">{$listpages[ix].title|escape}</a>
 		</span>

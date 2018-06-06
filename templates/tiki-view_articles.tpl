@@ -89,7 +89,7 @@
 		{/if}
 		<article class="clearfix article {if !empty($container_class)} {$container_class}{/if} article{$smarty.section.ix.index} mt-1 mb-5">
 			{if ($listpages[ix].show_avatar eq 'y')}
-				<div class="avatar">
+				<div class="avatar float-left mr-3">
 					{$listpages[ix].author|avatarize}
 				</div>
 			{/if}
@@ -99,7 +99,7 @@
 				</div>
 			{/if}
 
-			<header class="articletitle clearfix">
+			<header class="articletitle mt-0 mx-0 mb-1">
 				<h2>
 					{object_link type=article id=$listpages[ix].articleId url=$smarty.capture.href title=$listpages[ix].title}
 				</h2>
