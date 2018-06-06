@@ -1,4 +1,4 @@
-<article class="article">
+<article class="article mt-1 mb-5">
 	{if $prefs.art_trailer_pos ne 'between'}{include file='article_trailer.tpl'}{/if}
 	{if $show_topline eq 'y' and $topline}
 		<div class="articletopline">{$topline|escape}</div>
@@ -157,7 +157,7 @@
 	</div>
 
 	{if $show_linkto eq 'y' and $linkto}
-		<div class="articlesource">
+		<div class="articlesource font-italic small mt-1">
 			{tr}Source:{/tr} <a href="{$linkto|escape}"{if $prefs.popupLinks eq 'y'} target="_blank"{/if}>{$linkto|escape}</a>
 		</div>
 	{/if}

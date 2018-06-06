@@ -1,19 +1,19 @@
-<ol class="media media-list comment-list">
+<ul class="list-unstyled">
 	{foreach from=$comments item=comment}
-		<li class="media comment{if $comment.archived eq 'y'} archived well well-sm{/if} {if $allow_moderate}{if $comment.approved eq 'n'} pending bg-warning{elseif $comment.approved eq 'r'} rejected bg-danger{/if}{/if}{if ! $parentId && $prefs.feature_wiki_paragraph_formatting eq 'y'} inline{/if}" data-comment-thread-id="{$comment.threadId|escape}">
-			<div class="media-left mr-3">
+		<li class="media comment mt-3 mb-4{if $comment.archived eq 'y'} archived{* well well-sm*}{/if} {if $allow_moderate}{if $comment.approved eq 'n'} pending bg-warning{elseif $comment.approved eq 'r'} rejected bg-danger{/if}{/if}{*{if ! $parentId && $prefs.feature_wiki_paragraph_formatting eq 'y'} inline{/if}*}" data-comment-thread-id="{$comment.threadId|escape}">
+			<div class="align-self-start mr-3">
 				<span class="avatar">{$comment.userName|avatarize:'':'img/noavatar.png'}</span>
 			</div>
 			<div class="media-body">
 				<div class="comment-item">
 					{if $prefs.comments_notitle eq 'y'}
-						<h4 class="media-heading">
+						<h4 class="{*media-heading*}mt-0">
 							<div class="comment-info">
 								{tr _0=$comment.userName|userlink}%0{/tr} <small class="date">{tr _0=$comment.commentDate|tiki_short_datetime}%0{/tr}</small>
 							</div>
 						</h4>
 					{else}
-						<h4 class="media-heading">
+						<h4 class="{*media-heading*}mt-0">
 							<div class="comment-title">
 								{$comment.title}
 							</div>
@@ -25,23 +25,23 @@
 					<div class="comment-body">
 						{$comment.parsed}
 					</div>
-					<div class="buttons comment-form comment-footer">
+					<div class="buttons comment-form comment-footer mt-2">
 						{block name="buttons"}
 							{if $allow_post && $comment.locked neq 'y'}
-								<a class='btn btn-link btn-sm' href="{service controller=comment action=post type=$type objectId=$objectId parentId=$comment.threadId}">{tr}Reply{/tr}</a>
+								<a class='btn btn-primary btn-sm' href="{service controller=comment action=post type=$type objectId=$objectId parentId=$comment.threadId}">{tr}Reply{/tr}</a>
 							{/if}
 							{if $comment.can_edit}
-								<a class='btn btn-link btn-sm' href="{service controller=comment action=edit threadId=$comment.threadId}">{tr}Edit{/tr}</a>
+								<a class='btn btn-secondary btn-sm' href="{service controller=comment action=edit threadId=$comment.threadId}">{tr}Edit{/tr}</a>
 							{/if}
 							{if $allow_remove}
-								<a class="btn btn-link btn-sm" href="{service controller=comment action=remove threadId=$comment.threadId}">{tr}Delete{/tr}</a>
+								<a class="btn btn-danger btn-sm" href="{service controller=comment action=remove threadId=$comment.threadId}">{tr}Delete{/tr}</a>
 							{/if}
 							{if $allow_archive}
 								{if $comment.archived eq 'y'}
-									<span class="label label-default">{tr}Archived{/tr}</span>
-									<a class="btn btn-link btn-sm" href="{service controller=comment action=archive do=unarchive threadId=$comment.threadId}">{tr}Unarchive{/tr}</a>
+									<span class="label label-primary">{tr}Archived{/tr}</span>
+									<a class="btn btn-info btn-sm" href="{service controller=comment action=archive do=unarchive threadId=$comment.threadId}">{tr}Unarchive{/tr}</a>
 								{else}
-									<a class="btn btn-link btn-sm" href="{service controller=comment action=archive do=archive threadId=$comment.threadId}">{tr}Archive{/tr}</a>
+									<a class="btn btn-success btn-sm" href="{service controller=comment action=archive do=archive threadId=$comment.threadId}">{tr}Archive{/tr}</a>
 								{/if}
 							{/if}
 						{/block}
@@ -54,7 +54,7 @@
 							{/if}
 							<a href="{service controller=comment action=moderate do=approve threadId=$comment.threadId}" class="btn btn-primary btn-sm tips" title="{tr}Approve{/tr}">{icon name="ok"}</a>
 							{if $comment.approved eq 'n'}
-								<a href="{service controller=comment action=moderate do=reject threadId=$comment.threadId}" class="btn btn-primary btn-sm tips" title="{tr}Reject{/tr}">{icon name="remove"}</a>
+								<a href="{service controller=comment action=moderate do=reject threadId=$comment.threadId}" class="btn btn-danger btn-sm tips" title="{tr}Reject{/tr}">{icon name="remove"}</a>
 							{/if}
 						{/if}
 						{if $comment.userName ne $user and $comment.approved eq 'y' and $allow_vote}
@@ -79,7 +79,7 @@
 							{rating_result type="comment" id=$comment.threadId}
 						{/if}
 						{if $comment.diffInfo}
-							<div class="well"><pre style="display: none;">{$comment.diffInfo|var_dump}</pre>
+							<div class="{*well*}"><pre style="display: none;">{$comment.diffInfo|var_dump}</pre>
 								<h4 class="btn btn-link" type="button" data-toggle="collapse" data-target=".version{$comment.diffInfo[0].version}" aria-expanded="false" aria-controls="collapseExample">
 									Version {$comment.diffInfo[0].version}
 									{icon name='history'}
@@ -103,4 +103,4 @@
 			</div><!-- End of media-body -->
 		</li>
 	{/foreach}
-</ol>
+</ul>

@@ -87,7 +87,7 @@
 				{/foreach}
 			</div>
 		{/if}
-		<article class="clearfix article {if !empty($container_class)} {$container_class}{/if} article{$smarty.section.ix.index}">
+		<article class="clearfix article {if !empty($container_class)} {$container_class}{/if} article{$smarty.section.ix.index} mt-1 mb-5">
 			{if ($listpages[ix].show_avatar eq 'y')}
 				<div class="avatar">
 					{$listpages[ix].author|avatarize}

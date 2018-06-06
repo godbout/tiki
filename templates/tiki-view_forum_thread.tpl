@@ -144,38 +144,39 @@
 
 {include file='comments.tpl'}
 
-<div class="form-group row">
-	<form class="form-horizontal" role="form" id='time_control' method="get" action="tiki-view_forum_thread.php">
-		<input type="hidden" name="comments_offset" value="0"><!--Reset offset to 0 when applying a new filter -->
-		<input type="hidden" name="comments_threadId" value="{$comments_threadId|escape}">
-		<input type="hidden" name="comments_parentId" value="{$comments_parentId|escape}">
-		<input type="hidden" name="comments_threshold" value="{$comments_threshold|escape}" />
-		<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
-		<input type="hidden" name="topics_offset" value="{$smarty.request.topics_offset|escape}">
-		<input type="hidden" name="topics_find" value="{$smarty.request.topics_find|escape}">
-		<input type="hidden" name="topics_sort_mode" value="{$smarty.request.topics_sort_mode|escape}">
-		<input type="hidden" name="topics_threshold" value="{$smarty.request.topics_threshold|escape}">
-		<input type="hidden" name="forumId" value="{$forumId|escape}">
+	<form role="form" id='time_control' method="get" action="tiki-view_forum_thread.php">
+		<div class="form-group row">
+			<input type="hidden" name="comments_offset" value="0"><!--Reset offset to 0 when applying a new filter -->
+			<input type="hidden" name="comments_threadId" value="{$comments_threadId|escape}">
+			<input type="hidden" name="comments_parentId" value="{$comments_parentId|escape}">
+			<input type="hidden" name="comments_threshold" value="{$comments_threshold|escape}" />
+			<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
+			<input type="hidden" name="topics_offset" value="{$smarty.request.topics_offset|escape}">
+			<input type="hidden" name="topics_find" value="{$smarty.request.topics_find|escape}">
+			<input type="hidden" name="topics_sort_mode" value="{$smarty.request.topics_sort_mode|escape}">
+			<input type="hidden" name="topics_threshold" value="{$smarty.request.topics_threshold|escape}">
+			<input type="hidden" name="forumId" value="{$forumId|escape}">
 
-		<label class="col-sm-2 col-form-label" for="userfile1">{tr}Show posts:{/tr}</label>
-		<div class="col-sm-3">
-			<select class="form-control" name="time_control" onchange="javascript:document.getElementById('time_control').submit();">
-				<option value="" {if empty($smarty.request.time_control)}selected="selected"{/if}>
-					{tr}All posts{/tr}
-				</option>
-				<option value="3600" {if isset($smarty.request.time_control) and $smarty.request.time_control eq 3600}selected="selected"{/if}>
-					{tr}Last hour{/tr}
-				</option>
-				<option value="86400" {if isset($smarty.request.time_control) and $smarty.request.time_control eq 86400}selected="selected"{/if}>
-					{tr}Last 24 hours{/tr}
-				</option>
-				<option value="172800" {if isset($smarty.request.time_control) and $smarty.request.time_control eq 172800}selected="selected"{/if}>
-					{tr}Last 48 hours{/tr}
-				</option>
-			</select>
+			<label class="col-form-label" for="userfile1">{tr}Show posts:{/tr}</label>
+			<div class="col-sm-3">
+				<select class="form-control" name="time_control" onchange="javascript:document.getElementById('time_control').submit();">
+					<option value="" {if empty($smarty.request.time_control)}selected="selected"{/if}>
+						{tr}All posts{/tr}
+					</option>
+					<option value="3600" {if isset($smarty.request.time_control) and $smarty.request.time_control eq 3600}selected="selected"{/if}>
+						{tr}Last hour{/tr}
+					</option>
+					<option value="86400" {if isset($smarty.request.time_control) and $smarty.request.time_control eq 86400}selected="selected"{/if}>
+						{tr}Last 24 hours{/tr}
+					</option>
+					<option value="172800" {if isset($smarty.request.time_control) and $smarty.request.time_control eq 172800}selected="selected"{/if}>
+						{tr}Last 48 hours{/tr}
+					</option>
+				</select>
+			</div>
 		</div>
 	</form>
-</div>
+
 
 <div class="form-group pull-right">
 	{if $prefs.feature_forum_quickjump eq 'y' && $all_forums|@count > 1}

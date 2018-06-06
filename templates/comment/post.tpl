@@ -16,7 +16,7 @@
 		</div>
 	{else}
 		<form method="post" action="{service controller=comment action=post}" role="form">
-			<div class="panel">
+			<div class="card">
 				{if ! $user or $prefs.feature_comments_post_as_anonymous eq 'y'}
 					<div class="card-header">
 						{if $user}
@@ -40,7 +40,7 @@
 						</div>
 					</div>
 				{/if}
-				<div class="panel-body">
+				<div class="card-body">
 					<input type="hidden" name="type" value="{$type|escape}"/>
 					<input type="hidden" name="objectId" value="{$objectId|escape}"/>
 					<input type="hidden" name="parentId" value="{$parentId|escape}"/>

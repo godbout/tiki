@@ -271,7 +271,7 @@
 							{include file='antibot.tpl' td_style="formcolor"}
 						{/if}
 
-						<div class="form-group row">
+						<div class="form-group row mt-3">
 							{if isset($parent_coms) and $parent_coms}
 								<label class="col-sm-2 col-form-label" for="comments_postComment">
 									{tr}Reply to parent post{/tr}
