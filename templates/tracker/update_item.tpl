@@ -47,6 +47,6 @@
 			</div>
 		</form>
 		{* Don't warn on leaving page if the modal is closed without saving *}
-		{jq}$(".modal.fade.in").one("hide.bs.modal", function () {window.needToConfirm=false;});{/jq}
+		{jq}$(".modal.fade.show").one("hide.bs.modal", function () {window.needToConfirm=false;});{/jq}
 	{/if}
 {/block}
