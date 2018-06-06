@@ -1477,17 +1477,8 @@ td.url {
 #score-table .advanced-row td {
   border-top: none; }
 
-.article {
-  margin-top: 15px;
-  margin-bottom: 40px; }
-  .article .avatar {
-    float: left;
-    margin-right: 1em; }
-  .article .actions form {
-    display: inline; }
-
-.articletitle h2 {
-  margin: 0 0 0.3em; }
+.article .actions form {
+  display: inline; }
 
 .articletrailer span {
   display: inline-block;
@@ -1495,11 +1486,6 @@ td.url {
   white-space: nowrap; }
   .articletrailer .wikitopline {
     float: left; }
-
-.articlesource {
-  margin-top: 5px;
-  font-style: italic;
-  font-size: 90%; }
 
 .blogheading {
   display: block;

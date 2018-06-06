@@ -1,19 +1,9 @@
 // $Id$
 // Articles
 .article {
-	margin-top: 15px;
-	margin-bottom: 40px;
-	.avatar {
-		float: left;
-		margin-right: 1em;
-	}
 	.actions form {
 		display: inline; // To keep language form and actions icons on one line
 	}
-}
-
-.articletitle h2 {
-	margin: 0 0 .3em;
 }
 
 .articletrailer {
@@ -25,10 +15,4 @@
 	.wikitopline {
 		float: left;
 	}
-}
-
-.articlesource {
-	margin-top: 5px;
-	font-style: italic;
-	font-size: 90%;
 }
