@@ -99,7 +99,9 @@
 			{section name=user loop=$channels}
 				<tr>
 					<td class="checkbox-cell">
-						<input type="checkbox" name="checked[]" value="{$channels[user].watchtype}{$channels[user].watchId|escape}" {if $smarty.request.checked and in_array($channels[user].watchId,$smarty.request.checked)}checked="checked"{/if}>
+						<div class="form-check">
+							<input type="checkbox" name="checked[]" value="{$channels[user].watchtype}{$channels[user].watchId|escape}" {if $smarty.request.checked and in_array($channels[user].watchId,$smarty.request.checked)}checked="checked"{/if}>
+						</div>
 					</td>
 					<td class="text">{$channels[user].event}</td>
 					<td class="text">

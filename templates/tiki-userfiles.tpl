@@ -31,7 +31,9 @@
 			{section name=user loop=$channels}
 				<tr>
 					<td class="checkbox-cell">
-						<input type="checkbox" name="userfile[{$channels[user].fileId}]">
+						<div class="form-check">
+							<input type="checkbox" name="userfile[{$channels[user].fileId}]">
+						</div>
 					</td>
 					<td class="text">{$channels[user].filename|iconify}
 						<a class="link" href="tiki-download_userfile.php?fileId={$channels[user].fileId}">

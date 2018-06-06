@@ -212,7 +212,9 @@
 									{/if}
 									{if $tiki_p_admin_trackers eq 'y'}
 										<td class="checkbox-cell">
-											<input type="checkbox" class="form-check-input" name="action[]" value='{$items[user].itemId}' style="border:1px;font-size:80%;">
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input" name="action[]" value='{$items[user].itemId}'>
+											</div>
 										</td>
 									{/if}
 

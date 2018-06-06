@@ -563,7 +563,9 @@
 					<tr>
 						{if $tiki_p_admin_forum eq 'y'}
 							<td class="checkbox-cell">
-								<input type="checkbox" class="form-check-input" name="forumtopic[]" value="{$comments_coms[ix].threadId|escape}" {if isset($smarty.request.forumtopic) and in_array($comments_coms[ix].threadId,$smarty.request.forumtopic)}checked="checked"{/if}>
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" name="forumtopic[]" value="{$comments_coms[ix].threadId|escape}" {if isset($smarty.request.forumtopic) and in_array($comments_coms[ix].threadId,$smarty.request.forumtopic)}checked="checked"{/if}>
+								</div>
 							</td>
 						{/if}
 						<td class="icon">

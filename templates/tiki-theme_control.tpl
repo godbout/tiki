@@ -47,7 +47,9 @@
 			{section name=user loop=$channels}
 				<tr>
 					<td class="checkbox-cell">
-						<input type="checkbox" name="categoryIds[{$channels[user].categId}]">
+						<div class="form-check">
+							<input type="checkbox" name="categoryIds[{$channels[user].categId}]">
+						</div>
 					</td>
 					<td class="text">
 						{$channels[user].name|escape} (Id:{$channels[user].categId})

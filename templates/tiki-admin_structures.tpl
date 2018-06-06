@@ -98,7 +98,9 @@
 						<tr>
 							{if $tiki_p_admin eq 'y'}
 								<td class="checkbox-cell">
-									<input type="checkbox" name="action[]" value='{$channels[ix].page_ref_id}' style="border:1px;font-size:80%;">
+									<div class="form-check">
+										<input type="checkbox" name="action[]" value='{$channels[ix].page_ref_id}'>
+									</div>
 								</td>
 							{/if}
 							<td class="text">

@@ -188,7 +188,9 @@
 					<tr>
 						{if $watches}
 							<td class="checkbox-cell">
-								<input type="checkbox" name="watch[{$w.watchId}]">
+								<div class="form-check">
+									<input type="checkbox" name="watch[{$w.watchId}]">
+								</div>
 							</td>
 						{/if}
 						<td class="text">

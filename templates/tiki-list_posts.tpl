@@ -55,7 +55,7 @@
 
 		{section name=changes loop=$posts}{assign var=id value=$posts[changes].postId}
 			<tr>
-				<td class="checkbox-cell"><input type="checkbox" name="checked[]" value="{$id}"></td>
+				<td class="checkbox-cell"><div class="form-check"><input type="checkbox" name="checked[]" value="{$id}"></div></td>
 				<td class="text">{object_link type="blog post" id=$posts[changes].postId title=$posts[changes].title}</td>
 				{if !isset($blogId)}
 					<td class="text">

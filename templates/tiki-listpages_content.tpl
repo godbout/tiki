@@ -193,7 +193,9 @@
 
 					{if $checkboxes_on eq 'y'}
 						<td class="checkbox-cell">
-							<input type="checkbox" name="checked[]" value="{$listpages[changes].pageName|escape}">
+							<div class="form-check">
+								<input type="checkbox" name="checked[]" value="{$listpages[changes].pageName|escape}">
+							</div>
 						</td>
 					{/if}
 

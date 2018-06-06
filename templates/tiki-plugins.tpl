@@ -36,7 +36,7 @@
 				</tr>
 				{foreach name=foo from=$plugin_list item=plugin}
 					<tr>
-						<td class="checkbox-cell"><input type="checkbox" name="clear[]" value="{$plugin.fingerprint|escape}" id="{$plugin.fingerprint|escape}"></td>
+						<td class="checkbox-cell"><div class="form-check"><input type="checkbox" name="clear[]" value="{$plugin.fingerprint|escape}" id="{$plugin.fingerprint|escape}"></div></td>
 						<td class="text"><label for="{$plugin.fingerprint|escape}"><strong>{$plugin.fingerprint|substring:0:20|escape|replace:"-":"</strong> <br>{tr}Signature:{/tr} "}...</label></td>
 						<td class="text">
 							{if $plugin.last_objectType eq 'wiki page'}

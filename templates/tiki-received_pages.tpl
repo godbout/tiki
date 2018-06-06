@@ -159,7 +159,9 @@
 						{if $structures[ix].structureName eq $structures[user].structureName}
 							<tr>
 								<td class="checkbox-cell">
-									<input type="checkbox" name="checked[]" value="{$structures[ix].pageName|escape}" >
+									<div class="form-check">
+										<input type="checkbox" name="checked[]" value="{$structures[ix].pageName|escape}" >
+									</div>
 								</td>
 								<td class="id">{$structures[ix].receivedPageId}</td>
 								<td class="text">&nbsp;</td>

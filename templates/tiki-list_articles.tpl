@@ -139,7 +139,9 @@
 				<tr>
 					{if $tiki_p_remove_article eq 'y'}
 						<td class="checkbox-cell">
-							<input type="checkbox" name="checked[]" value="{$listpages[changes].articleId|escape}" {if $listpages[changes].checked eq 'y'}checked="checked" {/if}>
+							<div class="form-check">
+								<input type="checkbox" name="checked[]" value="{$listpages[changes].articleId|escape}" {if $listpages[changes].checked eq 'y'}checked="checked" {/if}>
+							</div>
 						</td>
 					{/if}
 					{if $prefs.art_list_title eq 'y'}

@@ -498,8 +498,10 @@
 							{/if}
 							<tr class="{$class}">
 								<td class="checkbox-cell">
-									<input type="checkbox" name="msg[]" value="{$list[ix].msgid}">
-									<input type="hidden" name="realmsg[{$list[ix].msgid}]" value="{$list[ix].realmsgid|escape}">
+									<div class="form-check">
+										<input type="checkbox" name="msg[]" value="{$list[ix].msgid}">
+										<input type="hidden" name="realmsg[{$list[ix].msgid}]" value="{$list[ix].realmsgid|escape}">
+									</div>
 								</td>
 								<td class="icon">
 									{if $list[ix].isFlagged eq 'y'}
@@ -799,8 +801,10 @@
 							{section name=ix loop=$not_contacts}
 								<tr>
 									<td class="checkbox-cell">
-										<input type="checkbox" name="add[{$smarty.section.ix.index}]">
-										<input type="hidden" name="addemail[{$smarty.section.ix.index}]" value="{$not_contacts[ix]|escape}">
+										<div class="form-check">
+											<input type="checkbox" name="add[{$smarty.section.ix.index}]">
+											<input type="hidden" name="addemail[{$smarty.section.ix.index}]" value="{$not_contacts[ix]|escape}">
+										</div>
 									</td>
 									<td class="email">{$not_contacts[ix]}</td>
 									<td class="text">

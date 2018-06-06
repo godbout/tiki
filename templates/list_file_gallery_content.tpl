@@ -8,7 +8,9 @@
 			{if $gal_info.show_checked ne 'n' and ($tiki_p_admin_file_galleries eq 'y' or $tiki_p_upload_files eq 'y')}
 				{assign var=nbCols value=$nbCols+1}
 				<th class="checkbox-cell">
-					{select_all checkbox_names='file[],subgal[]'}
+					<div class="form-check">
+						{select_all checkbox_names='file[],subgal[]'}
+					</div>
 				</th>
 			{/if}
 
@@ -251,14 +253,16 @@
 
 				{if $gal_info.show_checked ne 'n' and ($tiki_p_admin_file_galleries eq 'y' or $tiki_p_upload_files eq 'y')}
 					<td class="checkbox-cell">
-						{if $files[changes].isgal eq 1}
-							{assign var='checkname' value='subgal'}
-						{else}
-							{assign var='checkname' value='file'}
-						{/if}
-						<input type="checkbox" class="form-check-input" name="{$checkname}[]" value="{$files[changes].id|escape}"
+						<div class="form-check">
+							{if $files[changes].isgal eq 1}
+								{assign var='checkname' value='subgal'}
+							{else}
+								{assign var='checkname' value='file'}
+							{/if}
+							<input type="checkbox" class="form-check-input" name="{$checkname}[]" value="{$files[changes].id|escape}"
 							{if isset($smarty.request.$checkname) and $smarty.request.$checkname
 								and in_array($files[changes].id,$smarty.request.$checkname)}checked="checked"{/if}>
+						</div>
 					</td>
 				{/if}
 

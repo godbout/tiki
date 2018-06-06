@@ -275,7 +275,9 @@
 							<tr>
 								{if $prefs.feature_banning eq 'y'}
 									<td class="checkbox-cell">
-										<input type="checkbox" class="form-check-input" name="checked[]" value="{$actionlog.actionId}">
+										<div class="form-check">
+											<input type="checkbox" class="form-check-input" name="checked[]" value="{$actionlog.actionId}">
+										</div>
 									</td>
 								{/if}
 								<td class="username">{if $actionlog.user}{$actionlog.user|username}{else}{tr}Anonymous{/tr}{/if}</td>
@@ -817,14 +819,18 @@
 							<tr>
 								{if $tiki_p_admin eq 'y'}
 									<td class="checkbox-cell">
-										<input type="checkbox" class="form-check-input" name="{$actionlog.code}"
+										<div class="form-check">
+											<input type="checkbox" class="form-check-input" name="{$actionlog.code}"
 											{if $actionlog.status eq 'y' or $actionlog.status eq 'v'}checked="checked"{/if}>
+										</div>
 									</td>
 								{/if}
 								{if $tiki_p_admin eq 'y' or $actionlog.status eq 'y' or $actionlog.status eq 'v'}
 									<td class="checkbox-cell">
-										<input type="checkbox" class="form-check-input" name="v_{$actionlog.code}"
+										<div class="form-check">
+											<input type="checkbox" class="form-check-input" name="v_{$actionlog.code}"
 											{if $actionlog.status eq 'v'}checked="checked"{/if}>
+										</div>
 									</td>
 									<td class="text text-center">{tr}{$actionlog.action}{/tr}</td>
 									<td class="text text-center">{tr}{$actionlog.objectType}{/tr}</td>

@@ -145,7 +145,9 @@
 			{section name=ix loop=$items}
 				<tr>
 					<td class="checkbox-cell">
-						<input type="checkbox" name="msg[{$items[ix].qId}]">
+						<div class="form-check">
+							<input type="checkbox" name="msg[{$items[ix].qId}]">
+						</div>
 					</td>
 
 					<td class="text">
