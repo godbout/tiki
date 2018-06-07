@@ -28,6 +28,17 @@ function wikiplugin_now_info()
 				'default' => tr('Based site long date and time setting'),
 				'filter' => 'text',
 			],
+			'when' => [
+				'required' => false,
+				'name' => tra('Date to display'),
+				'description' => tr(
+					'Date time as specified in text using strtotime, i.e. "next month" - documentation here: %0',
+					'https://secure.php.net/manual/en/function.strtotime.php'
+				),
+				'since' => '18.2',
+				'default' => tr(''),
+				'filter' => 'text',
+			],
 		],
 	];
 }
@@ -35,9 +46,10 @@ function wikiplugin_now_info()
 function wikiplugin_now($data, $params)
 {
 	global $prefs;
-	$default = TikiLib::date_format($prefs['long_date_format'] . ' ' . $prefs['long_time_format']);
+	$when = ! empty($params['when']) ? $params['when'] : false;
+	$default = TikiLib::date_format($prefs['long_date_format'] . ' ' . $prefs['long_time_format'], $when);
 	if (! empty($params['format'])) {
-		$ret = TikiLib::date_format($params['format']);
+		$ret = TikiLib::date_format($params['format'], $when);
 		//see if the user format setting results in a valid date, return default format if not
 		try {
 			$dateObj = new DateTime($ret);
