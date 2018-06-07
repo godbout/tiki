@@ -64,13 +64,13 @@ function prefs_freetags_list()
 			],
 			'freetags_show_middle' => [
 			'name' => tra('Show tags in middle column'),
-			'description' => tra('Where pages have tag content, this option enables freetag display on that page at the top. Freetags can be set in the Properties tab when editing Wiki pages for example.'),
+			'description' => tra('On pages that have content tagged, this option enables the display of the tags at the top of those pages. Tags can be set, among other places, in the properties tab when editing a wiki page..'),
 			'type' => 'flag',
 			'default' => 'y',
 			],
 			'freetags_preload_random_search' => [
 			'name' => tra('Preload random tag'),
-			'description' => tra('A random tag will be selected when displaying the freetag search page (if no tag is pre-selected).'),
+			'description' => tra('A random tag will be selected on the tag search page (if no tag is pre-selected)..'),
 			'type' => 'flag',
 			'default' => 'y',
 			],
@@ -85,7 +85,7 @@ function prefs_freetags_list()
 			],
 			'freetags_normalized_valid_chars' => [
 			'name' => tra('Valid characters pattern'),
-			'description' => tra('Click on the links below to set or clear a pattern to limit Freetag characters accepted. '),
+			'description' => tra('Click on the links below to set or clear a pattern to limit characters accepted in tags. '),
 			'type' => 'text',
 			'size' => '30',
 			'hint' => 'Useful to eliminate characters such as “,” which users can enter by mistake instead of a space.',
@@ -93,7 +93,7 @@ function prefs_freetags_list()
 			],
 			'freetags_lowercase_only' => [
 			'name' => tra('Lowercase tags only'),
-			'description' => tra('Converts all uppercase characters into lower case. Another useful feature to make Freetags slightly more user friently.'),
+			'description' => tra('Convert uppercase characters in tags to lowercase, if this is a preferred style for making tags more user-friendly..'),
 			'type' => 'flag',
 			'default' => 'y',
 			],

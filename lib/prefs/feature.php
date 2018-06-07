@@ -961,7 +961,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_messages' => [
 			'name' => tra('User messages'),
-			'description' => tra('Enables inter-user messages (for new users to make this work the feature requires tiki_p_messages permission assigned to at least the Registered group).'),
+			'description' => tra('Enables inter-user messages (for this to work for new users, the tiki_p_messages permission must be assigned to at least the Registered group)..'),
 			'help' => 'Inter-user+Messages',
 			'type' => 'flag',
 			'default' => 'n',
@@ -1120,7 +1120,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_display_my_to_others' => [
 			'name' => tra("Show user's contribution on the user information page"),
-			'description' => tra("view user's contribution on the user information page"),
+			'description' => tra("View user's contribution on the user information page."),
 			'help' => 'User+Preferences',
 			'type' => 'flag',
 			'default' => 'n',
@@ -1198,7 +1198,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_dynamic_content' => [
 			'name' => tra('Dynamic content system'),
-			'description' => tra('Bloc of content which can be reused and programmed (timed)'),
+			'description' => tra('Block of content which can be reused and programmed (timed)'),
 			'help' => 'Dynamic+Content',
 			'type' => 'flag',
 			'default' => 'n',
@@ -1213,7 +1213,7 @@ function prefs_feature_list($partial = false)
 		'feature_wiki_ext_icon' => [
 			'name' => tra('External link icon'),
 			'type' => 'flag',
-			'description' => tra('External links will be identified with an icon. To customize the icon change the "link-external" icon in the icon set.'),
+			'description' => tra('External links will be identified with an icon. To customize the icon, change the "link-external" icon in the icon set.'),
 			'default' => 'y',
 			'tags' => ['basic'],
 		],
@@ -1266,7 +1266,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_protect_email' => [
 			'name' => tra('Protect email against spam'),
-			'description' => tra('protect email against spam submissions'),
+			'description' => tra('Protect email against spam submissions.'),
 			'help' => 'Spam+protection',
 			'warning' => tra('Protect email against spam currently does not operate in pages edited in WYSIWYG mode (Tiki 6.1)'),
 			'type' => 'flag',
@@ -1373,7 +1373,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_sefurl_title_max_size' => [
 			'name' => tra('Max size of title in the search engine friendly URL (Tracker Items and Forum Threads)'),
-			'description' => tra('Limit tracker item / forum thread title in the number of character defined'),
+			'description' => tra('Limit the number of characters in the tracker item or forum thread title.'),
 			'type' => 'text',
 			'filter' => 'digits',
 			'perspective' => false,
@@ -1446,7 +1446,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_submissions' => [
 			'name' => tra('Submissions'),
-			'description' => tra('Submissions are submitted but need to be approved before they are published'),
+			'description' => tra('Articles can be submitted but need to be approved before they are published.'),
 			'help' => 'Articles',
 			'type' => 'flag',
 			'default' => 'n',
@@ -1491,7 +1491,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_cms_emails' => [
 			'name' => tra('Specify notification emails when creating articles'),
-			'description' => tra('Should a notification email be sent when creating an article? Remember that you can also predefine notification emails for article topics when you re-edit the topic after its creation'),
+			'description' => tra('Send a notification email when creating an article. Remember that notification emails for article topics can be redefined when the topic is edited after its creation.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -1533,7 +1533,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_lastChanges' => [
 			'name' => tra('Latest changes'),
-			'description' => tra('If enabled users (with permission) can see the sortable, searchable list of Wiki pages (tiki-lastchanges.php) organized by last updated date. Use the Configuration area to specify which items to display.'),
+			'description' => tra('Enable users (with permission) to see the sortable, searchable list of wiki pages (tiki-lastchanges.php) organized by last-updated date. Use the Configuration area to specify which items to display..'),
 			'type' => 'flag',
 			'view' => 'tiki-lastchanges.php',
 			'default' => 'y',
@@ -1541,7 +1541,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_listorphanPages' => [
 			'name' => tra('Orphan pages'),
-			'description' => tra('Allow listing of \"orphan pages\" (pages not linked to from another page)'),
+			'description' => tra('Allow listing of \"orphan pages\" (pages not linked to from another page).'),
 			'type' => 'flag',
 			'view' => 'tiki-orphan_pages.php',
 			'default' => 'n',
@@ -1591,7 +1591,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_search_show_object_filter' => [
 			'name' => tra('Object filter'),
-			'description' => tra('allow filtering of objects'),
+			'description' => tra('Allow filtering of objects.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
@@ -1821,7 +1821,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_theme_control' => [
 			'name' => tra('Theme Control'),
-			'description' => tra('Assign different themes to different sections, categories, and objects'),
+			'description' => tra('Assign different themes to various sections, categories, and objects.'),
 			'keywords' => tra('design themes'),
 			'type' => 'flag',
 			'dependencies' => [
@@ -1909,7 +1909,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_siteloclabel' => [
 			'name' => tra('Prefix breadcrumbs with "Location : "'),
-			'description' => tra('The word Location: will appear in the breadcrumbs'),
+			'description' => tra('Place the term "Location:" in the breadcrumbs.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],
@@ -1957,7 +1957,7 @@ function prefs_feature_list($partial = false)
 		'feature_site_report' => [
 			'name' => tra('Webmaster report'),
 			'type' => 'flag',
-			'description' => tr('This activates the feature to report a problematic page to the webmaster.'),
+			'description' => tr('Activate the feature to report a problematic page to the webmaster..'),
 			'default' => 'n',
 		],
 		'feature_site_report_email' => [
@@ -2071,7 +2071,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_jquery_carousel' => [
 			'name' => tra('jQuery infinite carousel'),
-			'description' => tra('Creates a slideshow (like an image carousel) for file galleries. Used in Plugin Carousel'),
+			'description' => tra('Create a slideshow (like an image carousel) for file galleries. Used in Plugin Carousel.'),
 			'type' => 'flag',
 			'help' => 'PluginCarousel',
 			'default' => 'n',		// slideshow/carousel for file gals etc
@@ -2092,7 +2092,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_jquery_tagcanvas' => [
 			'name' => tra('TagCanvas'),
-			'description' => tra('TagCanvas is a Javascript class which will draw and animate a HTML5 canvas based tag cloud'),
+			'description' => tra('TagCanvas is a Javascript class which will draw and animate an HTML5 canvas-based tag cloud.'),
 			'type' => 'flag',
 			'help' => 'TagCanvas',
 			'default' => 'y',
@@ -2141,7 +2141,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_warn_on_edit' => [
 			'name' => tra('Warn on edit conflict'),
-			'description' => tra('If enabled then when a user is editing a page the edit button will be colored red and the name of the user editing the page will be displayed as a tooltip. If the user saves or cancels his or her edit or if the indicated amount of time passes the edit button will be displayed normally. This feature is useful to prevent collisions when editing pages.'),
+			'description' => tra('When a user is editing a page, the edit button will be colored red and the name of the user editing the page will be displayed as a tooltip. If the user saves or cancels his or her edit or if the indicated amount of time passes the edit button will be displayed normally. This feature is useful to prevent collisions when editing pages.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['basic'],
@@ -2153,7 +2153,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_footnotes' => [
 			'name' => tra('Footnotes'),
-			'description' => tra('If enabled logged users can write personal footnotes when editing a page. The footnotes will be displayed only to the user who edited them immediately below the Wiki page. This can be used as a good way to let users make personal notes and observations about pages.'),
+			'description' => tra('Logged-in users can write personal footnotes when editing a page. The footnotes display immediately below the wiki page only to the user who edited it. This is a good way for users to make personal notes about pages..'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -2286,7 +2286,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_ratings' => [
 			'name' => tra('Rating'),
-			'description' => tra('This allows you to add a poll from polls feature to any wiki page. The poll is unique to the page, created from a “poll template” which is created in the Polls feature: set a poll’s ‘active’ drop-down to “template”.'),
+			'description' => tra('Enables adding a poll from the polls feature to a wiki page. The poll is unique to the page, created from a “poll template” which is created in the Polls feature: set a poll’s ‘active’ drop-down to “template”.'),
 			'type' => 'flag',
 			'help' => 'Rating',
 			'hint' => tr('Permissions involved: %0', 'group permissions, wiki_vote_ratings, wiki_view_ratings, ratings_view_results'),
@@ -2326,7 +2326,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_structure' => [
 			'name' => tra('Structures'),
-			'description' => tra('Structures allow grouping any number of wiki pages in a hierarchy, with a common navigation bar and the option to print them all together as a single HTML document'),
+			'description' => tra('Structures allow grouping any number of wiki pages in a hierarchy, with a common navigation bar and the option to print them all together as a single HTML document.'),
 			'type' => 'flag',
 			'help' => 'Structure',
 			'default' => 'n',
@@ -2368,13 +2368,13 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_create_webhelp' => [
 			'name' => tra('Create webhelp from structure'),
-			'description' => tra('If enabled, the Structure Admin page will include a new option for generating WebHelp (an self-contained, HTML “help” version of the Wiki structure). Use this option to distribute Wiki pages to offline users in a usable format.'),
+			'description' => tra('If enabled, the Structure Admin page will include a new option for generating WebHelp (a self-contained, HTML “help” version of the wikii structure). Use this option to distribute wiki pages to offline users in a usable format.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'feature_wiki_import_html' => [
 			'name' => tra('Import HTML'),
-			'description' => tra('allow import of HTML pages'),
+			'description' => tra('Enable import of HTML pages.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => [
@@ -2437,7 +2437,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_listorphanStructure' => [
 			'name' => tra('Pages not in structure'),
-			'description' => tra('Users (with permission) can see the sortable, searchable list of Wiki pages (tiki-listpages.php). Use the Configuration area to specify which items to display.'),
+			'description' => tra('Users (with permission) can see the sortable, searchable list of wiki pages (tiki-listpages.php). Use the Configuration area to specify which items to display.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -2496,7 +2496,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_paragraph_formatting' => [
 			'name' => tra('Wiki paragraph formatting'),
-			'description' => tra('Because the Wiki paragraph formatting feature is on, all groups of non-blank lines are collected into paragraphs.  Lines can be of any length, and will be wrapped together with the next line.  Paragraphs are separated by blank lines.') . ' ' . tra('Because the Wiki paragraph formatting feature is off, each line will be presented as you write it.  This means that if you want paragraphs to be wrapped properly, a paragraph should be all together on one line.'),
+			'description' => tra('Because the wiki paragraph formatting feature is on, all groups of non-blank lines are collected into paragraphs.  Lines can be of any length, and will be wrapped together with the next line.  Paragraphs are separated by blank lines.') . ' ' . tra('Because the Wiki paragraph formatting feature is off, each line will be presented as you write it.  This means that if you want paragraphs to be wrapped properly, a paragraph should be all together on one line.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],
@@ -2573,7 +2573,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_community_gender' => [
 			'name' => tra('Users can choose to show their gender'),
-			'description' => tra("Display a user's gender if they permit it"),
+			'description' => tra("Display a user's gender if permitted by the user."),
 			'type' => 'flag',
 			'help' => 'User+Preferences',
 			'dependencies' => [
@@ -2583,7 +2583,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_community_mouseover' => [
 			'name' => tra("Allow showing user's information on mouseover"),
-			'description' => tra("Site feature to allow showing user's information on mouseover"),
+			'description' => tra("Show users' information on mouseover."),
 			'type' => 'flag',
 			'help' => 'User+Preferences',
 			'hint' => tra("Requires user's information to be public"),
@@ -2730,7 +2730,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_invite' => [
 			'name' => tra('Invite users'),
-			'description' => tra('Allow users to invite new users by mail to register at this site.  (by sending an email)'),
+			'description' => tra('Allow users to invite new users to register at this site, by sending an email.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -2901,7 +2901,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_equal_height_rows_js' => [
 			'name' => tra('Enable JavaScript plugin for equal-height rows'),
-			'description' => tra('This allows responsive rows to be set so that each contained element has the same height '),
+			'description' => tra('Enable responsive rows, the contained elements of which have the same height.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'help' => "https://github.com/Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -2965,7 +2965,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_userWizardUsersFieldIds' => [
 			'name' => tra('Tracker fields presented in the User Wizard as User Details'),
-			'description' => tra('User\'s information tracker fields presented in the User Wizard as User Details (separate fieldIds with colons)'),
+			'description' => tra('User\'s information tracker fields presented in the User Wizard as User Details (separate field IDs with colons)'),
 			'help' => 'User+Wizard',
 			'type' => 'text',
 			'size' => '50',
@@ -3058,7 +3058,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_intertiki_sharedcookie' => [
 			'name' => tra('Intertiki shared cookie'),
-			'description' => tra('When enabled a user who logs into or out of either the client or master is automatically logged into or out of all other sites.'),
+			'description' => tra('Causes a user who logs into or out of either the slave or master site to be automatically logged into or out of all other sites.'),
 			'type' => 'flag',
 			'hint' => 'The remember me login feature must be on.',
 			'default' => 'n',

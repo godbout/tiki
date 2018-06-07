@@ -33,7 +33,7 @@ function prefs_categories_list()
 		],
 		'categories_cache_refresh_on_object_cat' => [
 			'name' => tra('Clear cache upon category change'),
-			'description' => tra('A cache is used to avoid having to fetch all categories from db every time; this clears the cache when an object is categorized to keep count up to date.'),
+			'description' => tra('A cache is used to avoid having to fetch all categories from the database every time; this clears the cache when an object is categorized to keep the count up to date.'),
 			'warning' => tra('Can slow saving objects on sites with a lot of categories. You may need to manually clear caches to update category object counts.'),
 			'type' => 'flag',
 			'dependencies' => [

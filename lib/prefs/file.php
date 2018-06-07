@@ -18,7 +18,7 @@ function prefs_file_list()
 		],
 		'file_galleries_comments_default_ordering' => [
 			'name' => tra('Default order'),
-			'description' => tra('default ordering algorithm'),
+			'description' => tra('Default order of comments.'),
 			'type' => 'list',
 			'options' => [
 				'commentDate_desc' => tra('Newest first'),

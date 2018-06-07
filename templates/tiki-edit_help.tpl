@@ -200,7 +200,7 @@
 
 {if $prefs.feature_wiki_paragraph_formatting eq 'y'}
 	{remarksbox type="info" title="{tr}Note{/tr}" close="n"}
-		{tr}Because the Wiki paragraph formatting feature is on, all groups of non-blank lines are collected into paragraphs. Lines can be of any length, and will be wrapped together with the next line. Paragraphs are separated by blank lines.{/tr}
+		{tr}Because the wiki paragraph formatting feature is on, all groups of non-blank lines are collected into paragraphs. Lines can be of any length, and will be wrapped together with the next line. Paragraphs are separated by blank lines.{/tr}
 	{/remarksbox}
 {else}
 	{remarksbox type="info" title="{tr}Note{/tr}" close="n"}

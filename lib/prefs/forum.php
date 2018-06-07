@@ -133,7 +133,7 @@ function prefs_forum_list()
 		],
 		'forum_quote_prevent_nesting' => [
 			'name' => tra('Prevent Nesting of Quote wikiplugins when replying'),
-			'description' => tra('Strips quote plugin in reply to prevent quote wikiplugin nesting'),
+			'description' => tra('Strips quote plugin in reply in order to prevent nesting of quote plugins.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => ['feature_use_quoteplugin'],

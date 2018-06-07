@@ -27,7 +27,7 @@ function prefs_alchemy_list()
 		],
 		'alchemy_imagine_driver' => [
 			'name' => tra('Alchemy Image library'),
-			'description' => tra('Select one of Image Magick or GD Graphics Library'),
+			'description' => tra('Select either Image Magick or GD Graphics Library.'),
 			'type' => 'list',
 			'options' => [
 				'imagick' => tra('Imagemagick'),

@@ -74,7 +74,7 @@ function prefs_fgal_list()
 		],
 		'fgal_display_zip_option' => [
 			'name' => tra('Display ZIP option in gallery'),
-			'description' => tra('Users can upload a ZIP (archive file). Tiki will automatically un-ZIP the archive and add each file to the gallery.'),
+			'description' => tra('Users can upload a .zip (archive file). Tiki will automatically un-zip the archive and add each file to the gallery..'),
 			'type' => 'flag',
 			'help' => 'File+Gallery+config',
 			'default' => 'n',
@@ -90,7 +90,7 @@ For example, if you want to require that uploads must have a wordprocessing file
 		],
 		'fgal_nmatch_regex' => [
 			'name' => tra('Cannot match'),
-			'description' => tra('A regular expression that if matched rejects the file, example .gif (rejects gif images note that the period must be escaped since we are using regular expressions) If you don’t know anything about regular expressions just leave the fields blank and all the files will be accepted.'),
+			'description' => tra('A regular expression that, if matched, causes the file to be rejected. For example, .gif rejects gif images. Note that the period must be escaped since a regular expression is being used. If you don’t know anything about regular expressions just leave the fields blank and all the files will be accepted.'),
 			'type' => 'text',
 			'size' => 50,
 			'default' => '',
@@ -107,7 +107,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 		],
 		'fgal_quota_per_fgal' => [
 			'name' => tra('Quota for each file gallery'),
-			'description' => tra('You can define a different quota for each file gallery.)'),
+			'description' => tra('A different quota can be defined for each file gallery.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -132,7 +132,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 		],
 		'fgal_use_db' => [
 			'name' => tra('Storage'),
-			'description' => tra('Specify if uploaded files should be stored in the Database or Directory'),
+			'description' => tra('Specify if uploaded files should be stored in the database or file directory.'),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [
@@ -281,7 +281,7 @@ As soon as the limit is reached not other files can be uploaded. The user will s
 		],
 		'fgal_allow_svg' => [
 			'name' => tra('Allow SVG file upload'),
-			'description' => tra('SVG files may contain malicious code and compromise system security. Users will require SVG uploading permission to be able to upload SVG files.'),
+			'description' => tra('Because SVG files may contain malicious code and compromise system security, specifically grant permission to upload SVG files..'),
 			'type' => 'flag',
 			'default' => 'n',
 			'help' => 'File+Gallery+config',
