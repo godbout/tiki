@@ -32,7 +32,7 @@ TIKI_COMPOSER_SELF_UPDATE_LOG=tiki-composer-self-update.log
 # ----------------------
 
 PERMISSIONCHECK_DIR="permissioncheck"
-SEARCHPATH="/bin /usr/bin /sbin /usr/sbin /usr/local/bin /usr/local/sbin /opt/bin /opt/sbin /opt/local/bin /opt/local/sbin /opt/rh/rh-php56/root/usr/bin/php"
+SEARCHPATH="/bin /usr/bin /sbin /usr/sbin /usr/local/bin /usr/local/sbin /opt/bin /opt/sbin /opt/local/bin /opt/local/sbin"
 #USE_CASES_FILE="usecases.txt"
 USE_CASES_FILE="usecases.bin"
 USE_CASES_PATH=${PERMISSIONCHECK_DIR}
@@ -661,7 +661,7 @@ composer()
 			exit 1
 		fi
 	else
-		echo "Local PHP version >= required PHP version ${REQUIRED_PHP_VERSION} - good"
+		echo "Local PHP version ${LOCAL_PHP_VERSION} >= to required PHP version ${REQUIRED_PHP_VERSION} - good"
 		composer_core
 	fi
 }
