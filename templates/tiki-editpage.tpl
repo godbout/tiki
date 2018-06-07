@@ -202,12 +202,14 @@
 							{/if}
 					{/if}
 					{if $page|lower neq 'sandbox'}
-						<fieldset class="edit-zone-footer">
+						<fieldset class="edit-zone-footer my-3">
 							<label for="comment">{tr}Describe the change you made{/tr} {help url='Editing Wiki Pages' desc="{tr}Edit comment: Enter some text to describe the changes you are currently making{/tr}"}</label>
 							<input class="form-control wikiedit" type="text" id="comment" name="comment" value="{$commentdata|escape}" maxlength="255">
 							{if isset($show_watch) && $show_watch eq 'y'}
-								<label for="watch">{tr}Monitor this page{/tr}</label>
-								<input type="checkbox" id="watch" name="watch" value="1"{if $watch_checked eq 'y'} checked="checked"{/if}>
+								<div class="form-check mt-2">
+									<input class="form-check-input" type="checkbox" id="watch" name="watch" value="1"{if $watch_checked eq 'y'} checked="checked"{/if}>
+									<label class="form-check-label" for="watch">{tr}Monitor this page{/tr}</label>
+								</div>
 							{/if}
 						</fieldset>
 						{if $prefs.feature_contribution eq 'y'}
@@ -262,26 +264,26 @@
 					{tab name="{tr}Properties{/tr}"}
 						<div class="t_navbar mb-4 clearfix">
 							{if $tiki_p_admin_wiki eq "y"}
-								<a href="tiki-admin.php?page=wiki" class="btn btn-link">
+								<a href="tiki-admin.php?page=wiki" class="btn btn-link" title="{tr}Leave page and go to....{/tr}">
 									{icon name="cog"} {tr}Wiki Preferences{/tr}
 								</a>
 								{permission_link mode=button_link permType=wiki}
 							{/if}
 							{if $tiki_p_edit_content_templates eq 'y'}
-								<a href="tiki-admin_content_templates.php" class="btn btn-link" onclick="needToConfirm = true;">
+								<a href="tiki-admin_content_templates.php" class="btn btn-link"  title="{tr}Leave page and go to....{/tr}" onclick="needToConfirm = true;">
 									{icon name="content-template"} {tr}Content Templates{/tr}
 								</a>
 							{/if}
 							{if $tiki_p_edit_structures eq 'y'}
-								<a href="tiki-admin_structures.php" class="btn btn-link">
+								<a href="tiki-admin_structures.php" class="btn btn-link" title="{tr}Leave page and go to....{/tr}">
 									{icon name="structure"} {tr}Structures{/tr}
 								</a>
 							{/if}
 							{if $prefs.feature_copyright eq 'y' and $prefs.wiki_feature_copyrights eq 'y'}
 								{if !empty($copyrights)}
-									<a href="copyrights.php?page={$page|escape}" class="btn btn-link">{icon name="copyright"} {tr}Copyright notices{/tr}</a>
+									<a href="copyrights.php?page={$page|escape}" class="btn btn-link" title="{tr}Leave page and go to....{/tr}">{icon name="copyright"} {tr}Copyright notices{/tr}</a>
 								{/if}
-								<a href="{$prefs.wikiLicensePage|sefurl}" class="btn btn-link">{icon name="wiki"} {tr}Copyright page{/tr}</a>
+								<a href="{$prefs.wikiLicensePage|sefurl}" class="btn btn-link" title="{tr}Leave page and go to....{/tr}">{icon name="wiki"} {tr}Copyright page{/tr}</a>
 							{/if}
 						</div>
 						{if $prefs.feature_wiki_templates eq 'y' and $tiki_p_use_content_templates eq 'y'}
@@ -367,13 +369,11 @@
 								<input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
 								<input type="hidden" name="hasAlreadyInserted2" value="">
 								<input type="hidden" id="page2" name="page2" value="{$page}">
-								<div class="form-group row clearfix">
-									<label for="attach-upload" class="col-md-4 col-form-label">{tr}Attach file{/tr}</label>
-									<div class="col-md-8 form-inline">
-										<input name="userfile2" type="file" id="attach-upload" class="form-control">
-										<input type="text" name="attach_comment" class="form-control" maxlength="250" id="attach-comment" placeholder="{tr}Comment{/tr}">
-										<input type="submit" class="wikiaction btn btn-primary" name="attach" value="{tr}Attach{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
-									</div>
+								<div class="form-row align-items-left">
+									<label for="attach-upload" class="col-sm-4 col-form-label">{tr}Attach file{/tr}</label>
+									<input name="userfile2" type="file" id="attach-upload" class="col-sm-3 mx-2 mb-3 form-control">
+									<input type="text" name="attach_comment" class="col-sm-3 mr-3 mb-3 form-control" maxlength="250" id="attach-comment" placeholder="{tr}Comment{/tr}">
+									<input type="submit" class="wikiaction btn btn-primary mb-3" name="attach" value="{tr}Attach{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
 								</div>
 							{/if}
 						{/if}
@@ -649,18 +649,14 @@
 				{/if}
 			{/tabset}
 		</div>
-		<div class="form-group row">
+		<div class="row d-flex justify-content-center">
 			{if $page|lower ne 'sandbox'}
 				{if $prefs.feature_antibot eq 'y' && (isset($anon_user) && $anon_user eq 'y')}
 					{include file='antibot.tpl' tr_style="formcolor"}
 				{/if}
 			{/if}{* sandbox *}
 			{if $prefs.wiki_actions_bar neq 'top'}
-				<div class="form-group row">
-					<div class="text-center">
-						{include file='wiki_edit_actions.tpl' wysiwyg=$wysiwyg page_info=$page_info}
-					</div>
-				</div>
+				{include file='wiki_edit_actions.tpl' wysiwyg=$wysiwyg page_info=$page_info}
 			{/if}
 		</div>
 	</form>
