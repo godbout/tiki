@@ -71,7 +71,10 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 						{elseif $name eq "biblio_code"}
 							{jq}$({{$inputId}}).tiki("autocomplete", "reference", {multiple: true, multipleSeparator: ":"});{/jq}
 						{elseif $param.filter eq "date"}
-							{jq}$({{$inputId}}).tiki("datepicker");{/jq}
+							{jq}
+								$({{$inputId}}).tiki("datepicker");
+								$(".ui-datepicker-trigger").remove();
+							{/jq}
 						{/if}
 					{/if}
 				{/if}
@@ -151,4 +154,3 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 		{include file="plugin/quick_add_references.tpl"}
 	</div>
 {/block}
-
