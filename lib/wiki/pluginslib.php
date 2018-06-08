@@ -324,7 +324,7 @@ class PluginsLibUtil
 		$sOutput = '<table class="table table-striped table-hover"><tr><th class="heading">'
 			. tra($aPrincipalField['name']) . '</th></tr><tr><td>';
 		$iCounter = 0;
-		// create a comma separated list of entries
+		// create a comma-separated list of entries
 		foreach ($aData as $aPage) {
 			if ($iCounter > 0) {
 				$sOutput .= ', ';

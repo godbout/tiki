@@ -95,13 +95,13 @@ function prefs_global_list($partial = false)
 		'popupLinks' => [
 			'name' => tra('Open external links in new window'),
 			'type' => 'flag',
-			'description' => tr('Links to external sites should open in a new browser window.'),
+			'description' => tr('Open links to external sites in a new browser tab or window.'),
 			'default' => 'y',
 			'tags' => ['basic'],
 		],
 		'wikiLicensePage' => [
 			'name' => tra('License page'),
-			'description' => tra('Name of the Wiki page where the licenses are stored'),
+			'description' => tra('The wiki page where the license information is written.'),
 			'type' => 'text',
 			'size' => '30',
 			'default' => '',
@@ -160,7 +160,7 @@ function prefs_global_list($partial = false)
 		'maxArticles' => [
 			'name' => tra('Maximum number of articles on the articles homepage'),
 			'type' => 'text',
-			'description' => tr('The number of articles to show on each page of the Article home.'),
+			'description' => tr('The number of articles to show on each page of the Articles homepage.'),
 			'size' => '5',
 			'filter' => 'digits',
 			'units' => tra('articles'),
@@ -189,7 +189,7 @@ function prefs_global_list($partial = false)
 		],
 		'useGroupTheme' => [
 			'name' => tra('Group theme'),
-			'description' => tra('Each group can have its own theme'),
+			'description' => tra('Enable groups to each have their own visual theme.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -205,7 +205,7 @@ function prefs_global_list($partial = false)
 		'sitesubtitle' => [
 			'name' => tra('Subtitle'),
 			'type' => 'text',
-			'description' => tr('A short descriptive phrase.'),
+			'description' => tr('A short phrase that, for example, describes the site.'),
 			'size' => '50',
 			'default' => '',
 			'tags' => ['basic'],
@@ -230,7 +230,7 @@ function prefs_global_list($partial = false)
 		],
 		'allowRegister' => [
 			'name' => tra('Users can register'),
-			'description' => tra('This will allow users to register, using the webform. The Login module will include a Register link. If disabled, the admin will have to create new users manually on the Admin Users page. '),
+			'description' => tra('Allow site visitors to register, using the registration form. The log-in module will include a "Register" link. If this is not activated, new users will have to be added manually by the admin on the Admin-Users page.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],
@@ -281,7 +281,7 @@ function prefs_global_list($partial = false)
 		'registerKey' => [
 			'name' => tra('Registration page key'),
 			'hint' => tra('Key required to be on included the URL to access the registration page (if not empty).'),
-			'description' => tra('for example, to register, users need to go to: tiki-register.php?key=yourregistrationkeyvalue'),
+			'description' => tra('To register, users need to go to, for example: tiki-register.php?key=yourregistrationkeyvalue'),
 			'type' => 'text',
 			'size' => 15,
 			'default' => '',
@@ -289,7 +289,7 @@ function prefs_global_list($partial = false)
 		],
 		'userTracker' => [
 			'name' => tra('Use a tracker to collect more user information'),
-			'description' => tra('Display a tracker (form) for the user to complete as part of the registration process. This tracker will be used to store additional information about each user.'),
+			'description' => tra('Display a tracker form for the user to complete as part of the registration process. This tracker will receive and store additional information about each user.'),
 			'type' => 'flag',
 			'help' => 'User+Tracker',
 			'dependencies' => [
@@ -310,7 +310,7 @@ function prefs_global_list($partial = false)
 		],
 		'eponymousGroups' => [
 			'name' => tra('Create a new group for each user'),
-			'description' => tra('Tiki will automatically create a group for the user.'),
+			'description' => tra('Automatically create a group for each user in order to, for example, assign permissions on the individual-user level.'),
 			'type' => 'flag',
 			'hint' => tra("The group name will be the same as the user's username"),
 			'help' => 'Groups',
@@ -331,7 +331,7 @@ function prefs_global_list($partial = false)
 		],
 		'rememberme' => [
 			'name' => tra('Remember me'),
-			'description' => tra("Use this option to have Tiki remember users. They will automatically be logged in if they leave, then return to the site."),
+			'description' => tra("After logging in, users will automatically be logged in again when they leave and return to the site."),
 			'type' => 'list',
 			'help' => 'Login-General-Preferences#Remember_Me',
 			'options' => [
@@ -344,7 +344,7 @@ function prefs_global_list($partial = false)
 		],
 		'remembertime' => [
 			'name' => tra('Duration'),
-			'description' => tra('You can define the length of time that Tiki will “remember” the user.'),
+			'description' => tra('The length of time before the user will need to log in again.'),
 			'type' => 'list',
 			'options' => [
 				'300'		=> '5 ' . tra('minutes'),

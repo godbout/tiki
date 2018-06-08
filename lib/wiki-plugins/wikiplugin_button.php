@@ -90,7 +90,7 @@ function wikiplugin_button_info()
 				'required' => false,
 				'name' => tra('Auto Arguments'),
 				'description' => tr(
-					'Comma separated list of URL arguments that will be kept from %0 (like
+					'Comma-separated list of URL arguments that will be kept from %0 (like
 					%1) in addition to those you can specify in the href parameter.',
 					'<code>_REQUEST</code>',
 					'<code>$auto_query_args</code>',

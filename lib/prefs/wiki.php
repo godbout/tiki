@@ -673,7 +673,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_prefixalias_tokens' => [
 			'name' => tra('Redirect pages using these prefix-alias semantic links'),
-			'description' => tra('Comma separated list of prefixes of which pages will be redirected to page with semantic link'),
+			'description' => tra('Comma-separated list of prefixes of which pages will be redirected to page with semantic link'),
 			'type' => 'text',
 			'help' => 'Semantic+Alias',
 			'size' => '30',

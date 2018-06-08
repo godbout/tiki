@@ -10,7 +10,7 @@ function prefs_generate_list()
 	return [
 		'generate_password' => [
 			'name' => tra('Generate password'),
-			'description' => tra('Tiki will include a button on the registration form that will automatically generate a very secure password for the user.'),
+			'description' => tra('Display a button on the registration form to automatically generate a very secure password for the user.'),
 			'type' => 'flag',
 			'hint' => tra('The generated password may not include any restrictions (such as minimum/maximum length.'),
 			'default' => 'n',

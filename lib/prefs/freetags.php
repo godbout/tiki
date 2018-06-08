@@ -50,7 +50,7 @@ function prefs_freetags_list()
 			],
 			'freetags_browse_show_cloud' => [
 			'name' => tra('Show tag cloud'),
-			'description' => tra('Visibility of the full tag cloud in the list tags screen'),
+			'description' => tra('Show the full tag cloud in the list-tags screen.'),
 			'type' => 'flag',
 			'default' => 'y',
 			],

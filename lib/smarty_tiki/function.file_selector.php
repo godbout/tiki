@@ -18,7 +18,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * Reserved parameters:
  *  - name for the field name
  *  - galleryId
- *  - value for the current value (fileId, comma separated for multiple)
+ *  - value for the current value (fileId, comma-separated for multiple)
  *  - type for the mime type filter (image/*)
  *  - limit for the maximum amount of files (defaults to 1)
  *

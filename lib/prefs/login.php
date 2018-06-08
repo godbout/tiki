@@ -38,7 +38,7 @@ function prefs_login_list()
 		],
 		'login_autogenerate' => [
 			'name' => tra('Auto-generate 6-digit username on registration'),
-			'description' => tra('This will auto-generate a 6-digit username for users who sign up (they will normally login with emails only).'),
+			'description' => tra('This will auto-generate a 6-digit username for users who sign up (they will normally log in with emails only).'),
 			'type' => 'flag',
 			'dependencies' => [
 				'user_unique_email',
@@ -111,14 +111,14 @@ function prefs_login_list()
 		],
 		'login_autologin_allowedgroups' => [
 			'name' => tr('Allowed groups from remote Tiki to autologin.'),
-			'description' => tr('Comma separated list of groups to allow autologin from remote Tiki. If empty, will allow everyone.'),
+			'description' => tr('Comma-separated list of groups to allow autologin from remote Tiki. If empty, will allow everyone.'),
 			'type' => 'text',
 			'default' => '',
 			'tags' => ['advanced'],
 		],
 		'login_autologin_syncgroups' => [
 			'name' => tr('Sync these groups from remote Tiki on autologin.'),
-			'description' => tr('Comma separated list of groups to sync from remote Tiki on autologin. Group membership will be added or removed accordingly.'),
+			'description' => tr('Comma-separated list of groups to sync from remote Tiki on autologin. Group membership will be added or removed accordingly.'),
 			'type' => 'text',
 			'default' => '',
 			'tags' => ['advanced'],

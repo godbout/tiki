@@ -253,7 +253,7 @@ class AuthTokens
 	 * @param string $url The URL where the token is valid.
 	 * @param array $groups The groups from which the person using the token will have permissions for.
 	 * @param string $email The email that the token was sent to, for recording purpose. If there are multiple
-	 * emails, it currently saves as comma separated list but exploding will need to trim spaces.
+	 * emails, it currently saves as comma-separated list but exploding will need to trim spaces.
 	 * @param int $timeout Timeout to set in seconds. If not included, will use default as set in prefs.
 	 * @param int $hits Number of hits allowed before token expires. If not included, will use default as set in prefs.
 	 * @param boolean $createUser Login token user as temporary user if set to true

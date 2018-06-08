@@ -789,7 +789,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * @param array $librariesInUse
 	 *   List of libraries the content uses. Libraries consist of associative arrays with:
 	 *   - library: Associative array containing:
-	 *     - dropLibraryCss(optional): comma separated list of machineNames
+	 *     - dropLibraryCss(optional): comma-separated list of machineNames
 	 *     - machineName: Machine name for the library
 	 *     - libraryId: Id of the library
 	 *   - type: The dependency type. Allowed values:
@@ -874,8 +874,8 @@ WHERE l.id = ?',
 	 *   - runnable: 1 if the library is a content type, 0 otherwise
 	 *   - fullscreen(optional): 1 if the library supports fullscreen, 0 otherwise
 	 *   - embedTypes(optional): list of supported embed types
-	 *   - preloadedJs(optional): comma separated string with js file paths
-	 *   - preloadedCss(optional): comma separated sting with css file paths
+	 *   - preloadedJs(optional): comma-separated string with js file paths
+	 *   - preloadedCss(optional): comma-separated sting with css file paths
 	 *   - dropLibraryCss(optional): list of associative arrays containing:
 	 *     - machineName: machine name for the librarys that are to drop their css
 	 *   - semantics(optional): Json describing the content structure for the library
@@ -1116,8 +1116,8 @@ WHERE hc.id =?',
 	 *   - majorVersion: The library's majorVersion
 	 *   - minorVersion: The library's minorVersion
 	 *   - patchVersion: The library's patchVersion
-	 *   - preloadedJs(optional): comma separated string with js file paths
-	 *   - preloadedCss(optional): comma separated sting with css file paths
+	 *   - preloadedJs(optional): comma-separated string with js file paths
+	 *   - preloadedCss(optional): comma-separated sting with css file paths
 	 *   - dropCss(optional): csv of machine names
 	 */
 	public function loadContentDependencies($id, $type = null)

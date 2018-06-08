@@ -647,7 +647,7 @@ class SurveyLib extends TikiLib
 	}
 
 	/**
-	 * @param string $options	comma separated options string (use \, to include a comma)
+	 * @param string $options	comma-separated options string (use \, to include a comma)
 	 * @return array
 	 */
 	private function parse_options($options)

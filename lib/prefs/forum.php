@@ -172,7 +172,7 @@ function prefs_forum_list()
 		],
 		'forum_strip_wiki_syntax_outgoing' => [
 			'name' => tr('Strip wiki markup from outgoing forum emails'),
-			'description' => tr('Converts outgoing emails from forum posts to plain text.'),
+			'description' => tr('Convert outgoing emails from forum posts to plain text.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => ['feature_forum_parse'],

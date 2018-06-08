@@ -86,10 +86,10 @@
 							</ul>
 						{/if}
 						{if $groupData.can_add && $defaultGroup ne 'y' and $Need_app|escape neq $execution_key|escape}
-							<p class="action">{tr}Add in group:{/tr} <input type="text" name="add[{$groupName|escape}]" class="username-input"> (comma separated)</p>
+							<p class="action">{tr}Add in group:{/tr} <input type="text" name="add[{$groupName|escape}]" class="username-input"> (comma-separated)</p>
 						{/if}
 						{if $groupData.can_add && ($defaultGroup eq 'both' || $defaultGroup eq 'y' ) }
-							<p class="action">{tr}Set as default group for users:{/tr} <input type="text" name="defgroup[{$groupName|escape}]" class="username-input"> (comma separated)</p>
+							<p class="action">{tr}Set as default group for users:{/tr} <input type="text" name="defgroup[{$groupName|escape}]" class="username-input"> (comma-separated)</p>
 						{/if}
 						{if $groupData.can_join}
 							<p class="action">

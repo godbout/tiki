@@ -2176,7 +2176,7 @@ class TrackerLib extends TikiLib
 		}
 		$max = count($header);
 		if ($max === 1 and strpos($header, "\t") !== false) {
-			Feedback::error(tr('No fields found in header, not a comma separated values file?'), 'session');
+			Feedback::error(tr('No fields found in header, not a comma-separated values file?'), 'session');
 			return 0;
 		}
 		for ($i = 0; $i < $max; $i++) {

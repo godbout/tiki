@@ -424,7 +424,7 @@ function wikiplugin_trackerlist_info()
 						%0radio%1.', '<code>', '</code>') . '<br>'
 					. '<code>Embed</code> - ' . tra('Set to %0y%1 if the trackerlist table is embedded inside an existing form.
 						ActionUrl is ignored in this case.', '<code>', '</code>') . '<br>'
-					. '<code>Checked</code> - ' . tra('comma separated list of pre-checked items') . '<br>'
+					. '<code>Checked</code> - ' . tra('comma-separated list of pre-checked items') . '<br>'
 					. tr(
 						'Format: %0checkbox="FieldId/PostName/Title/Submit/ActionUrl/Tpl/SelectType/Embed/Checked"%1',
 						'<code>',

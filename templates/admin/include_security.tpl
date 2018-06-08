@@ -95,7 +95,7 @@
 					{/if}
 					{tr}You may also want to add the Domain Password module somewhere.{/tr}<br>
 					<br>
-					{tr}Comma separated list of password domains, e.g.: Company ABC,Company XYZ{/tr}<br>
+					{tr}Comma-separated list of password domains, e.g.: Company ABC,Company XYZ{/tr}<br>
 					{tr}The user can add passwords for a registered password domain.{/tr}
 					{preference name=feature_password_domains}
 					{if $prefs.feature_user_encryption eq 'y' and $show_user_encyption_stats eq 'y'}

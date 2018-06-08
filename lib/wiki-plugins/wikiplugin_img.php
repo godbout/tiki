@@ -191,7 +191,7 @@ function wikiplugin_img_info()
 			'sizes' => [
 				'required' => false,
 				'name' => tra('Sizes'),
-				'description' => tr('Comma separated sizes (in vw, em, px) for the image in xs, sm, md, and lg layouts. Must be 4 parameters.'),
+				'description' => tr('Comma-separated sizes (in vw, em, px) for the image in xs, sm, md, and lg layouts. Must be 4 parameters.'),
 				'since' => '18.0',
 				'doctype' => 'size',
 				'filter' => 'text',

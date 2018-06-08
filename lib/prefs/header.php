@@ -22,7 +22,9 @@ function prefs_header_list()
 		],
 		'header_custom_css' => [
 			'name' => tra('Custom CSS'),
-			'description' => tra('Additional CSS rules can be entered here and will apply to all pages, or the page’s CSS id can be used to limit the scope of the rule (check the page’s HTML source to find the body tag of the particular page.)'),
+			'description' => tra('Additional CSS rules can be entered here and will apply to all pages, or the CSS ID of a page can be used to limit the scope of the rule (check the HTML source of the particular page to find its body ID tag.)
+
+'),
 			'type' => 'textarea',
 			'size' => 5,
 			'default' => '',

@@ -163,7 +163,7 @@ foreach ($remoteItemIds as $remoteItemId) {
 			$listFieldThere = array_merge($listFieldThere, $valueField);
 			$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
 			$labelField = $handler->renderOutput($context);
-			// we return all categories per itemId, without html, comma separated
+			// we return all categories per itemId, without html, comma-separated
 			$labelField = str_replace('<br/>', ', ', $labelField);
 			$json_return['response'][] = [$remoteItemId, $labelField];
 			break;

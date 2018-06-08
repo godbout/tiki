@@ -449,7 +449,7 @@ function sendMail($sender, $recipients, $subject, $tokenlist = [])
 
 /**
  * sends a message via the internal messaging to a list of recipients
- * @param string|array	$recipients	comma separated list (or array) of recipients
+ * @param string|array	$recipients	comma-separated list (or array) of recipients
  * @param string		$subject	subject of the message
  * @return bool						true on success/sent to all users successfully
  */
