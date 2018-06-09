@@ -97,8 +97,8 @@ For example, if you want to require that uploads must have a wordprocessing file
 		],
 		'fgal_quota' => [
 			'name' => tra('Quota for all files and archives'),
-			'description' => tra('It is possible to limit the volume that is uploaded to all the file galleries or a specific file gallery. A quota to a file gallery applies to this file gallery and all the file galleries under it. 
-As soon as the limit is reached not other files can be uploaded. The user will see an error message that the quota is reached. A mail can be sent via the Mail notifications feature. )'),
+			'description' => tra('The total size of files uploaded to all the file galleries or to a specific file gallery can be limited. The quota for a file gallery applies to that file gallery and all the file galleries under it. 
+When the limit is reached, no more files can be uploaded. The user will see an explanatory error message. An email can be sent via the Mail notifications feature.)'),
 			'shorthint' => tra('0 for unlimited'),
 			'type' => 'text',
 			'units' => tra('megabytes'),

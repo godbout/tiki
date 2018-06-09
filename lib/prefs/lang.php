@@ -59,7 +59,7 @@ function prefs_lang_list()
 		],
 		'lang_available_translations_dropdown' => [
 			'name' => tr('Display available translations as dropdown'),
-			'description' => tr('Rather than show a simple icon for listing available languages or translation options, show a more visible drop-down.'),
+			'description' => tr('Instead of a simple icon to list available languages or translation options, show a more visible drop-down list.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],

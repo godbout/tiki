@@ -622,7 +622,7 @@ function prefs_feature_list($partial = false)
 		// Enhanced by feature_jquery_superfish. Chealer 2017-06-04
 		'feature_cssmenus' => [
 			'name' => tra('CSS menus'),
-			'description' => tra('Tiki will use display CSS-styled (Suckerfish) vertical or horizontal menus.'),
+			'description' => tra('Use CSS-styled (Suckerfish) vertical and horizontal menus.'),
 			'help' => 'Menus',
 			'type' => 'flag',
 			'default' => 'y',
@@ -2686,7 +2686,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_fixed_width' => [
 			'name' => tra('Fixed width'),
-			'description' => tra('Sets the width of the site contents display.'),
+			'description' => tra('Restrict the width of the site content area, in contrast to a liquid (full-width) layout.'),
 			'type' => 'flag',
 			'tags' => ['basic'],
 			'default' => 'y',

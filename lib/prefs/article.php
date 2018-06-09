@@ -52,7 +52,7 @@ function prefs_article_list()
 		],
 		'article_user_rating' => [
 			'name' => tra('User ratings on articles'),
-			'description' => tra('Allows users to rate the articles.'),
+			'description' => tra('Allow users to rate articles.'),
 			'type' => 'flag',
 			'hint' => tr('Permissions involved: %0. Also, when configuring articles, "Admin Types > Comment can rate article" needs to be set.', 'rate_article, ratings_view_results'),
 			'default' => 'n',
@@ -106,8 +106,8 @@ function prefs_article_list()
 			'default' => '0',
 		],
 		'article_image_file_size_max' => [
-			'name' => tra('Image article maximum file size'),
-			'description' => tra('Maximum size for an Image Article. Article images are stored in the database so it should remain low.'),
+			'name' => tra('Article image maximum file size'),
+			'description' => tra('Maximum file size for an article image. Article images are stored in the database so it should remain low.'),
 			'type' => 'text',
 			'size' => '10',
 			'filter' => 'digits',
@@ -139,7 +139,7 @@ function prefs_article_list()
 		],
 		'article_use_new_list_articles' => [
 			'name' => tr('Use new articles'),
-			'description' => tr('Uses the new article lists using CustomSearch rather than the DB'),
+			'description' => tr('Uses the new CustomSearch-based article lists rather than database information'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['experimental'],

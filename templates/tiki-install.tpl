@@ -682,7 +682,7 @@
 												<input class="form-check-input mb-2" type="checkbox" id="log_tpl" name="log_tpl"{if $prefs.log_tpl eq 'y'} checked="checked"{/if}>
 											</label>
 											{remarksbox type=warning title="{tr}Warning{/tr}" close="n"}
-												{tr}Use only for development, not in production because these warnings are added to emails as well, and visible to the users{/tr}
+												{tr}Use only for development, not in production at a live site, because these warnings are added to emails as well, and are visible to users in the page source.{/tr}
 											{/remarksbox}
 										</div>
 									</div>

@@ -10,7 +10,7 @@ function prefs_layout_list()
 	return [
 		'layout_fixed_width' => [
 			'name' => tra('Layout width'),
-			'description' => tra('Constrains the width of the content area of the site.'),
+			'description' => tra('The width of the content area of the site, centered in the browser window.'),
 			'type' => 'text',
 			'hint' => tra('for example, 960px'),
 			'dependencies' => [

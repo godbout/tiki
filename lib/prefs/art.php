@@ -144,7 +144,7 @@ function prefs_art_list()
 			'description' => tra('Header text position') . tra('Requires a smaller image for list view'),
 			'type' => 'list',
 			'options' => [
-				'next' => tra('Next image'),
+				'next' => tra('Next to image'),
 				'below' => tra('Below image'),
 			],
 			'default' => 'next'
