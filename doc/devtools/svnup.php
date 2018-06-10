@@ -147,6 +147,8 @@ class SvnUpCommand extends Command
 	 * Calls database update command and handles verbiage.
 	 *
 	 * @param OutputInterface $output
+	 *
+	 * @throws \Exception
 	 */
 
 	protected function dbUpdate(OutputInterface $output)
@@ -167,7 +169,7 @@ class SvnUpCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$cacheLib = new \Cachelib();
+
 		$tikiBase = realpath(dirname(__FILE__) . '/../..');
 
 		$verbosityLevelMap = [
@@ -222,9 +224,12 @@ class SvnUpCommand extends Command
 			die();
 		}
 
-		$max = 7;
+
+		/** @var int The number of steps the progress bar will show */
+		$max = 8;
+		// now subtract steps depending on options elected
 		if ($input->getOption('no-db')) {
-			$max -= 4;
+			$max -= 5;
 		} else {
 			if ($input->getOption('no-secdb')) {
 				$max --;
@@ -333,6 +338,7 @@ class SvnUpCommand extends Command
 		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
 
 		if (! $input->getOption('no-db')) {
+			$cacheLib = new \Cachelib();
 			$progress->setMessage('Clearing all caches');
 			$progress->advance();
 			$cacheLib->empty_cache();
@@ -366,7 +372,12 @@ class SvnUpCommand extends Command
 			// note: running database update also clears the cache
 			$progress->setMessage('Updating database');
 			$progress->advance();
-			$this->dbUpdate($output);
+			try {
+				$this->dbUpdate($output);
+			}catch (\Exception $e) {
+				$logger->error('Database update error: ' . $e->getMessage());
+				$logslib->add_action('svn update', 'Database update error: ' . $e, 'system');
+			}
 
 
 			// rebuild tiki index. Since this could take a while, make it optional.
@@ -381,6 +392,17 @@ class SvnUpCommand extends Command
 
 				putenv('SHELL_VERBOSITY'); // Clear the environment variable, since console.php (Symfony console application) will pick this value if set
 				$this->OutputErrors($logger, shell_exec($shellCom . ' 2>&1'), 'Problem Rebuilding Index', $errors, ! $input->getOption('no-db'));   // 2>&1 suppresses all terminal output, but allows full capturing for logs & verbiage
+			}
+
+			/* generate caches */
+			$progress->setMessage('Generating caches');
+			$progress->advance();
+			try {
+				//$cacheLib->generateCache();    disable generating module cache until regression if fixed that causes premature termination.
+				$cacheLib->generateCache(['templates', 'misc']);
+			}catch (\Exception $e) {
+				$logger->error('Cache generating error: ' . $e->getMessage());
+				$logslib->add_action('svn update', 'Cache generating error: ' . $e, 'system');
 			}
 		}
 
@@ -399,10 +421,6 @@ class SvnUpCommand extends Command
 			$progress->setMessage("<comment>Automatic update completed r$startRev -> r$endRev</comment>");
 		}
 
-		/** generate caches */
-		$progress->setMessage('Generating caches');
-		$progress->advance();
-		$cacheLib->generateCache();
 
 		$progress->finish();
 		echo "\n";
@@ -413,4 +431,8 @@ class SvnUpCommand extends Command
 $console = new Application;
 $console->add(new SvnUpCommand);
 $console->setDefaultCommand('svnup');
-$console->run();
+try {
+	$console->run();
+}catch (\Exception $e){
+	echo 'Problem running svnup:' . $e->getMessage();
+}
