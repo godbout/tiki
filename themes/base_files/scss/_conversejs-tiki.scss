@@ -1,6 +1,6 @@
 .tiki {
 	#converse-embedded-chat, #conversejs {
-		font-family:$font-family-base; color:$body-color;
+		font-family: $font-family-base; color:$body-color;
 		a, a:visited { color:$link-color; }
 		input[type=text], textarea, select {
 			background-color:$input-bg; color:$input-color;
@@ -21,11 +21,11 @@
 		}
 
 		.button-primary {
-			.button-variant($btn-primary-color; $btn-primary-bg; $btn-primary-border);
+		  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 		}
 
-		.button-secondary {
-			.button-variant($btn-info-color; $btn-info-bg; $btn-info-border);
+		.button-info {
+		  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
 		}
 
 		.toggle-controlbox {
@@ -51,12 +51,17 @@
 		}
 
 		#controlbox {
-			.controlbox-head, .controlbox-panes,
-			.controlbox-pane, { background-color:inherit; }
-			.controlbox-head {
-				border-bottom:1px solid $nav-tabs-border-color;
-				.chatbox-btn { color:$body-color; }
+		  .controlbox-head, .controlbox-panes,
+		  .controlbox-pane {
+			background-color: inherit;
+		  }
+		  .controlbox-head {
+			border-bottom: 1px solid $nav-tabs-border-color;
+			.chatbox-btn {
+			  color: $body-color;
 			}
+		  }
+		}
 
 			#controlbox-tabs {
 				border-bottom:1px solid $nav-tabs-border-color;
@@ -72,7 +77,7 @@
 	//					border-bottom-color:transparent; height:48px;
 					}
 				}
-			}
+	//		}
 
 			#chatrooms dl.rooms-list {
 				dt { color:$body-color; text-shadow:none; }
@@ -86,7 +91,7 @@
 			}
 
 			#fancy-xmpp-status-select, .fancy-dropdown {
-				.button-variant($btn-info-color; $btn-info-bg; $btn-info-border);
+			  	@include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
 				.choose-xmpp-status, .toggle-xmpp-contact-form, a.change-xmpp-status-message {
 					color:inherit; text-shadow:none;
 				}
@@ -126,7 +131,7 @@
 					&:hover { color:$link-hover-color; }
 				}
 			}
-		}
+//		}
 
 
 // chatroom

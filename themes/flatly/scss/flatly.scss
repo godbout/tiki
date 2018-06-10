@@ -1,14 +1,9 @@
 // $Id$
 
 @import "variables"; // Needs to come first, to override defaults.
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins.scss"; //
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions"; // These two are needed to prevent...
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss"; // ...compiling errors.
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
 @import "_bootswatch.scss";
-
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss"; // Needed for darken function.
-
 @import "../../base_files/scss/_tiki-selectors.scss";
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "../../base_files/scss/_external-scripts.scss";

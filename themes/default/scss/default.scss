@@ -1,44 +1,8 @@
 //@import "_variables.scss";
-// Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
-//@import "../../base_files/scss/_tiki-variables.scss"; Commented out temporarily due to error in base files.
+
 // Core variables and mixins
 /* The Bootstrap default theme for Tiki Wiki CMS Groupware */
-
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/variables";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/root";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/print";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/reboot";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/type";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/images";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/code";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/grid";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/tables";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/forms";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/buttons";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/transitions";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/dropdown";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/button-group";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/input-group";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/custom-forms";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/nav";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/navbar";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/card";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/breadcrumb";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/pagination";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/badge";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/jumbotron";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/alert";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/progress";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/media";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/list-group";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/close";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/modal";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/tooltip";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/popover";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/carousel";
-@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/utilities";
-// Tiki-site-specific adjustments
-//@import "../../base_files/scss/_bootswatch_overrides.scss";
-
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap";
+@import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
+@import "../../base_files/scss/_tiki-selectors.scss";
+@import "../../base_files/scss/_external-scripts.scss";

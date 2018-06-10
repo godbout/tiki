@@ -1,17 +1,4 @@
 /* Business theme newsletter stylesheet  */
-/* Todo - button variables are simpler in BS4 - need to figure it out
- //  Admin
- $admbox-border: $btn-primary-border; //#cccccc;
- $admbox-bg: $btn-primary-bg; // #cccccc;
- $admbox-color: $btn-primary-color; // #333333;
- $admbox-hover-border: lighten($btn-primary-border, 5%); // #333333;
- $admbox-hover-bg: lighten($btn-primary-bg, 5%); // #aaaaaa;
- $admbox-hover-color: lighten($btn-primary-color, 5%); //#ffffff;
- $admbox-off-border: darken($btn-primary-border, 40%); //#a9a9a9;
- $admbox-off-color: darken($btn-primary-color, 40%); //#9f9f9f;
- $admbox-off-hover-border: darken($btn-primary-border, 40%); //#a9a9a9;
- $admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
- */
 body {
   background: #fff;
   color: #212529;
@@ -31,44 +18,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 500;
   color: inherit; }
 
-.panel {
+.card {
   margin-bottom: 1.5;
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 0.25rem; }
 
-.panel-heading {
+.card-header {
   border-bottom: 1px solid transparent; }
 
-.panel-title {
+.card-title {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 2rem;
   color: inherit; }
-  .panel-title > a, .panel-title > small, .panel-title > .small, .panel-title > small > a, .panel-title > .small > a {
+  .card-title > a, .card-title > small, .card-title > .small, .card-title > small > a, .card-title > .small > a {
     color: inherit; }
-/*.panel-default {
- .panel-variant($panel-default-border; $panel-default-text; $panel-default-heading-bg; $panel-default-border);
- }
- .panel-primary {
- .panel-variant($panel-primary-border; $panel-primary-text; $panel-primary-heading-bg; $panel-primary-border);
- }
- .panel-success {
- .panel-variant($panel-success-border; $panel-success-text; $panel-success-heading-bg; $panel-success-border);
- }
- .panel-info {
- .panel-variant($panel-info-border; $panel-info-text; $panel-info-heading-bg; $panel-info-border);
- }
- .panel-warning {
- .panel-variant($panel-warning-border; $panel-warning-text; $panel-warning-heading-bg; $panel-warning-border);
- }
- .panel-danger {
- .panel-variant($panel-danger-border; $panel-danger-text; $panel-danger-heading-bg; $panel-danger-border);
- }
- */
+
 body {
   background: #fbfbfb url("../images/image2.jpg") 100% 0 no-repeat;
-  color: #748290;
+  color: #404040;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
 
 a, a:visited {
@@ -86,4 +55,4 @@ h3.panel-title {
 .well {
   background: url("../images/market.jpg") 0 100% no-repeat;
   background-size: 100% 100%;
-  color: #748290; }
+  color: #404040; }

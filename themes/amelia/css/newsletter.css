@@ -1,77 +1,47 @@
-/* Amelia theme newsletter stylesheet  */
 @import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
+/* Amelia theme newsletter stylesheet  */
 body.fullscreen {
-  background: #108a93;
-}
+  background: #108a93; }
 
 .bg-dark {
-  background: #ad1d28 !important;
-}
+  background: #ad1d28 !important; }
 
-/* Todo - button variables are simpler in BS4 - need to figure it out
-//  Admin
-$admbox-border: $btn-primary-border; //#cccccc;
-$admbox-bg: $btn-primary-bg; // #cccccc;
-$admbox-color: $btn-primary-color; // #333333;
-$admbox-hover-border: lighten($btn-primary-border, 5%); // #333333;
-$admbox-hover-bg: lighten($btn-primary-bg, 5%); // #aaaaaa;
-$admbox-hover-color: lighten($btn-primary-color, 5%); //#ffffff;
-$admbox-off-border: darken($btn-primary-border, 40%); //#a9a9a9;
-$admbox-off-color: darken($btn-primary-color, 40%); //#9f9f9f;
-$admbox-off-hover-border: darken($btn-primary-border, 40%); //#a9a9a9;
-$admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
-*/
 body {
   background: #108a93;
   color: #fff;
   font-family: "Cabin", Arial, sans-serif;
-  padding: 15px;
-}
+  padding: 15px; }
 
-a,
-a:visited {
+a, a:visited {
   color: #ad1d28;
-  text-decoration: underline;
-}
+  text-decoration: underline; }
 
 a:hover {
   color: #6b1219;
-  text-decoration: underline;
-}
+  text-decoration: underline; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Lobster", cursive;
+  font-family: 'Lobster', cursive;
   font-weight: 500;
-  color: inherit;
-}
+  color: inherit; }
 
 .card {
   margin-bottom: 1.5;
   background-color: #fff;
   border: 1px solid transparent;
-  border-radius: 0.25rem;
-}
+  border-radius: 0.25rem; }
 
 .card-header {
-  border-bottom: 1px solid transparent;
-}
+  border-bottom: 1px solid transparent; }
 
 .card-title {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 2rem;
-  color: inherit;
-}
-
-.card-title > a,
-.card-title > small,
-.card-title > .small,
-.card-title > small > a,
-.card-title > .small > a {
-  color: inherit;
-}
+  color: inherit; }
+  .card-title > a, .card-title > small, .card-title > .small, .card-title > small > a, .card-title > .small > a {
+    color: inherit; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Lobster', sans-serif;
-  font-weight: 500;
-}
+  font-weight: 500; }

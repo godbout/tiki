@@ -1,1 +1,36 @@
-body{background:#fff;color:#212529;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";padding:15px}a,a:visited{color:#007bff;text-decoration:underline}a:hover{color:#0056b3;text-decoration:underline}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family:inherit;font-weight:500;color:inherit}.card{margin-bottom:1.5;background-color:#fff;border:1px solid transparent;border-radius:.25rem}.card-header{border-bottom:1px solid transparent}.card-title{margin-top:0;margin-bottom:0;font-size:2rem;color:inherit}.card-title>a,.card-title>small,.card-title>.small,.card-title>small>a,.card-title>.small>a{color:inherit}
+/* FiveAlive theme newsletter stylesheet */
+body {
+  background: #fff;
+  color: #212529;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  padding: 15px; }
+
+a, a:visited {
+  color: #007bff;
+  text-decoration: underline; }
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline; }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: inherit;
+  font-weight: 500;
+  color: inherit; }
+
+.card {
+  margin-bottom: 1.5;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 0.25rem; }
+
+.card-header {
+  border-bottom: 1px solid transparent; }
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 2rem;
+  color: inherit; }
+  .card-title > a, .card-title > small, .card-title > .small, .card-title > small > a, .card-title > .small > a {
+    color: inherit; }

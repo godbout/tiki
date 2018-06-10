@@ -8,7 +8,7 @@ $padding-x: .75rem;
 $topmodules-row-sidemargins: 0;
 $topbar-row-sidemargins: 0;
 $topbar-row-margin-bottom: 1.4rem;
-$panel-heading-padding: .8rem 15px;
+//$panel-heading-padding: .8rem 15px;
 $navbar-fixed-height: 3.25rem;
 $form-horizontal-sidemargins: 15px;
 
@@ -72,19 +72,18 @@ $calprio6: #dababa;
 $calprio7: #cab0b0;
 $calprio8: #daaaaa;
 $calprio9: #da9a9a;
-/* Todo - button variables are simpler in BS4 - need to figure it out
+
 //  Admin
-$admbox-border: $btn-primary-border; //#cccccc;
-$admbox-bg: $btn-primary-bg; // #cccccc;
-$admbox-color: $btn-primary-color; // #333333;
-$admbox-hover-border: lighten($btn-primary-border, 5%); // #333333;
-$admbox-hover-bg: lighten($btn-primary-bg, 5%); // #aaaaaa;
-$admbox-hover-color: lighten($btn-primary-color, 5%); //#ffffff;
-$admbox-off-border: darken($btn-primary-border, 40%); //#a9a9a9;
-$admbox-off-color: darken($btn-primary-color, 40%); //#9f9f9f;
-$admbox-off-hover-border: darken($btn-primary-border, 40%); //#a9a9a9;
-$admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
-*/
+// $admbox-border: $btn-primary-border; //#cccccc;
+// $admbox-bg: $btn-primary-bg; // #cccccc;
+// $admbox-color: $btn-primary-color; // #333333;
+// $admbox-hover-border: lighten($btn-primary-border, 5%); // #333333;
+// $admbox-hover-bg: lighten($btn-primary-bg, 5%); // #aaaaaa;
+// $admbox-hover-color: lighten($btn-primary-color, 5%); //#ffffff;
+// $admbox-off-border: darken($btn-primary-border, 40%); //#a9a9a9;
+// $admbox-off-color: darken($btn-primary-color, 40%); //#9f9f9f;
+// $admbox-off-hover-border: darken($btn-primary-border, 40%); //#a9a9a9;
+// $admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
 
 $table-column-bg-odd: darken($table-accent-bg, 5%);
 // Correction for path for sorich87/bootstrap-tour's bootstrap-tour-standalone.less

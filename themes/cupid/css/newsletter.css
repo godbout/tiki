@@ -1,17 +1,4 @@
 /* Cupid theme newsletter stylesheet  */
-/* Todo - button variables are simpler in BS4 - need to figure it out
- //  Admin
- $admbox-border: $btn-primary-border; //#cccccc;
- $admbox-bg: $btn-primary-bg; // #cccccc;
- $admbox-color: $btn-primary-color; // #333333;
- $admbox-hover-border: lighten($btn-primary-border, 5%); // #333333;
- $admbox-hover-bg: lighten($btn-primary-bg, 5%); // #aaaaaa;
- $admbox-hover-color: lighten($btn-primary-color, 5%); //#ffffff;
- $admbox-off-border: darken($btn-primary-border, 40%); //#a9a9a9;
- $admbox-off-color: darken($btn-primary-color, 40%); //#9f9f9f;
- $admbox-off-hover-border: darken($btn-primary-border, 40%); //#a9a9a9;
- $admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
- */
 body {
   background: #fff;
   color: #212529;

@@ -6,12 +6,13 @@
 // Colors
 $theme-colors: (
 	"primary": #0082e0,
+	"info": cyan
 );
 
+$gray-500: #737373; //lighten(@gray-base, 33.5%);
 $gray-800: darken($gray-500,20%);
 $gray-700: darken($gray-500, 15%);
 $gray-600: darken($gray-500, 10%);
-$gray-500: #737373; //lighten(@gray-base, 33.5%);
 $gray-300: lighten($gray-500, 10%);
 $gray-200: lighten($gray-500, 20%);
 
@@ -23,20 +24,25 @@ $body-color: $gray-800;
 
 //Links
 //Components
+$border-radius-lg: 8px;
+
 //Fonts
 $font-family-sans-serif: Verdana, Geneva, Arial, Helvetica, sans-serif;
 
 // Tables
 $table-border-color: 			  #dddddd;
 
-// Buttons
-$btn-default-color: #ffffff;
-$btn-default-bg: #3676c4;
-$btn-default-border: #3676c4;
-
+// Buttons (Primary and info need to be explicitly defined for converse.js.)
 $btn-primary-color: #ffffff;
 $btn-primary-bg: #3676c4;
+$btn-primary-border: #3676c4;
 
+$btn-secondary-color: #ffffff;
+$btn-secondary-bg: #3676c4;
+
+$btn-info-bg: #fff;
+$btn-info-color: #17a2b8;
+$btn-info-border: #17a2b8;
 // Forms
 $input-border: #dddddd;
 // Dropdowns

@@ -5,17 +5,17 @@
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 
 // Colors
-$gray-900: #111111; // Are these being used?
+$gray-900: #111111;
 $gray-700: #444444;
-//$gray-500: lighten(#000000, 33.5%); //
+$gray-500: lighten(#000000, 33.5%); //
 $gray-300: #bbbbbb;
 $gray-100: #dddddd;
 
 $primary: #ad1d28; //These aren't overriding the defaults in this position, so were added to amelia.scss at the top.
 $success: #48ca3b;
-$info: #4d3a7d;
+$info:    #4d3a7d;
 $warning: #debb27;
-$danger: #df6e1e;
+$danger:  #df6e1e;
 
 $theme-colors: (
 	"primary":        	#ad1d28,
