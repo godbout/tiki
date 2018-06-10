@@ -80,7 +80,6 @@ class Cachelib
 	{
 		global $tikidomain, $prefs;
 		$logslib = TikiLib::lib('logs');
-		$tikilib = TikiLib::lib('tiki');
 
 		$inInstaller = defined('TIKI_IN_INSTALLER');
 
@@ -279,7 +278,7 @@ class Cachelib
 
 	function cache_templates($path, $newlang)
 	{
-		global $prefs, $tikidomain;
+		global $prefs;
 		$smarty = TikiLib::lib('smarty');
 		$smarty->refreshLanguage();
 
@@ -317,9 +316,11 @@ class Cachelib
 	}
 
 	/**
-	 * Generate caches
+	 * Generates caches for templates, modules and other features.
 	 *
 	 * @param mixed $dir_names all|templates_c|modules_cache|misc (default all)
+	 *
+	 * @throws Exception
 	 */
 	public function generateCache($dir_names = ['all'])
 	{
@@ -387,7 +388,10 @@ class Cachelib
 
 	/**
 	 * Compile Misc caches like language, categories, users.
-	 * @param string $logSection Section to log the request
+	 *
+	 * @param string $logSection
+	 *
+	 * @throws Exception
 	 */
 	protected function generateMiscCache($logSection = 'system') {
 		$logslib = TikiLib::lib('logs');
