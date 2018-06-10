@@ -238,7 +238,7 @@
 
 					{remarksbox type="warning" title="{tr}Warning{/tr}"}<em class='mandatory_note'>{tr}Fields marked with an * are mandatory.{/tr}</em>{/remarksbox}
 
-					<div class="form-group margin-side-0">
+					<div class="form-group mx-0">
 								{if count($fields) >= 5}
 									<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
 									{* --------------------------- to return to tracker list after saving --------- *}
@@ -318,7 +318,7 @@
 						{if $prefs.feature_antibot eq 'y' && $user eq ''}
 							{include file='antibot.tpl'}
 						{/if}
-						<div class="form-group margin-side-0">
+						<div class="form-group mx-0">
 
 								<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
 								{* --------------------------- to return to tracker list after saving --------- *}

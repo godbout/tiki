@@ -31,11 +31,11 @@
 	{tabset}
 		{tab name="{tr}Content{/tr}"}
 			<h2>{tr}Content{/tr}</h2>
-			<div class="form-group margin-side-0">
+			<div class="form-group mx-0">
 				<label for="title">{tr}Title{/tr}</label>
 				<input type="text" name="title" id="title" value="{$arttitle|escape}" maxlength="255" class="form-control">
 			</div>
-			<div class="form-group margin-side-0">
+			<div class="form-group mx-0">
 				<label for="subheading">{tr}Heading{/tr}</label>
 				{if $types.$type.heading_only eq 'y'}
 					{textarea name="heading" rows="5" class="form-control" id="subheading"}{$heading}{/textarea}
@@ -43,7 +43,7 @@
 					{textarea _simple="y" name="heading" class="form-control" rows="5" id="subheading" comments="y"}{$heading}{/textarea}
 				{/if}
 			</div>
-			<div id='heading_only' class="form-group margin-side-0" {if $types.$type.heading_only eq 'y'}style="display: none;"{/if}>
+			<div id='heading_only' class="form-group mx-0" {if $types.$type.heading_only eq 'y'}style="display: none;"{/if}>
 				<label for="body">{tr}Body{/tr}</label>
 				{textarea name="body" id="body"}{$body}{/textarea}
 			</div>

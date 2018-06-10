@@ -2983,10 +2983,6 @@ body.fullscreen.tiki.navbar-padding {
 .tiki .media-overflow-visible, .tiki .media-overflow-visible .media-body {
   overflow: visible; }
 
-.tiki .form-horizontal .margin-side-0 {
-  margin-left: 0;
-  margin-right: 0; }
-
 .tiki .col1 .table-responsive {
   width: 100%;
   margin-bottom: 15px;

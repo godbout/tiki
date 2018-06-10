@@ -164,7 +164,7 @@
 				{include file='wiki_edit_actions.tpl' wysiwyg=$wysiwyg}
 			</div>
 		{/if}
-		<div class="form-group margin-side-0">
+		<div class="form-group mx-0">
 			{if isset($page_badchars_display)}
 				{if $prefs.wiki_badchar_prevent eq 'y'}
 					{remarksbox type=errors title="{tr}Invalid page name{/tr}"}
