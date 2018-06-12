@@ -15,7 +15,7 @@ function wikiplugin_include_info()
 		'iconname' => 'copy',
 		'introduced' => 1,
 		'tags' => [ 'basic' ],
-		'format' => 'html',
+		'format' => 'wiki',
 		'params' => [
 			'page' => [
 				'required' => true,
@@ -106,6 +106,19 @@ function wikiplugin_include_info()
 				'since' => '18.2',
 				'filter' => 'text',
 				'default' => 5,
+			],
+			'parse_included_page' => [
+				'required' => false,
+				'name' => tr('Parse Included Page'),
+				'description' => tr('Parse the page to be included before adding it to the parent page. This will help if html pages are included in wiki pages or vice versa, but will cause issues with the wiki table of contents.'),
+				'since' => '18.2',
+				'default' => 'n',
+				'filter' => 'alpha',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tr('Yes'), 'value' => 'y'],
+					['text' => tr('No'), 'value' => 'n'],
+				],
 			],
 		],
 	];
@@ -243,19 +256,30 @@ function wikiplugin_include($dataIn, $params)
 	}
 
 	$parserlib = TikiLib::lib('parser');
-	$old_options = $parserlib->option;
-	$options = [
-		'is_html' => $data[$fragmentIdentifier]['is_html'],
-		'suppress_icons' => true,
-	];
-	if (! empty($_REQUEST['page'])) {
-		$options['page'] = $_REQUEST['page'];
-	}
-	$parserlib->setOptions($options);
-	$fragment = new WikiParser_Parsable($text);
-	$text = $fragment->parse($options);
-	$parserlib->setOptions($old_options);
 
+	if ($params['parse_included_page'] === 'y') {
+
+		$old_options = $parserlib->option;
+		$options = [
+			'is_html' => $data[$fragmentIdentifier]['is_html'],
+			'suppress_icons' => true,
+		];
+		if (! empty($_REQUEST['page'])) {
+			$options['page'] = $_REQUEST['page'];
+		}
+		$parserlib->setOptions($options);
+		$fragment = new WikiParser_Parsable($text);
+		$text = $fragment->parse($options);
+		$parserlib->setOptions($old_options);
+	} else {
+		if (!empty($_REQUEST['page'])) {
+			$options['page'] = $_REQUEST['page'];
+		}
+		$parserlib->setOptions();
+		$parserlib->parse_wiki_argvariable($text);
+	}
+
+	global $smarty;
 	// append a "See full page" link at end of text if only a portion of page is being included
 	if (($prefs['wiki_plugin_include_link_original'] == 'y' && (isset($start) || isset($stop))) || (isset($linkoriginal) && $linkoriginal == 'y')) {
 		$wikilib = TikiLib::lib('wiki');
@@ -281,5 +305,9 @@ function wikiplugin_include($dataIn, $params)
 			}
 		}
 	}
-	return $text;
+	if ($params['parse_included_page'] === 'y') {
+		return "~np~$text~/np~";
+	} else {
+		return $text;
+	}
 }
