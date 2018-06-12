@@ -240,7 +240,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 			// the field value is currently null and there is input, so would need to create page.
 			if ($short_name = $requestData[$insForPagenameField]) {
 				$page_name = $this->getFullPageName($short_name);
-				if (! TikiLib::lib('tiki')->page_exists($page_name)) {
+				if ($page_name && ! TikiLib::lib('tiki')->page_exists($page_name)) {
 					$ins_fields_data[$this->getOption('fieldIdForPagename')]['value'] = $short_name;
 					if ($this->isValid($ins_fields_data) === true) {
 						$to_create_page = true;
@@ -260,6 +260,11 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 			$page_name = $this->cleanPageName($page_name);
 			$edit_comment = 'Created by Tracker Field ' . $fieldId;
 			TikiLib::lib('tiki')->create_page($page_name, 0, $page_data, TikiLib::lib('tiki')->now, $edit_comment, $user, TikiLib::lib('tiki')->get_ip_address(), '', '', $is_html, null, $this->getOption('wysiwyg'));
+		}
+
+		if (empty($page_name) && $_SERVER['REQUEST_METHOD'] === 'POST' && empty($requestData[$insForPagenameField])) {
+			// saving a new item may have the wiki page name misasing if it is an autoincrement field, so show a warning - TODO better somehow?
+			Feedback::error(tr('Missing Page Name field #%0 value for Wiki field #%1 (so page not created)', $this->getOption('fieldIdForPagename'), $fieldId), 'session');
 		}
 
 		$data = [
@@ -468,6 +473,10 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 	private function getFullPageName($short_name)
 	{
 		global $prefs;
+
+		if (empty($short_name)) {
+			return '';
+		}
 
 		$namespace = $this->getOption('namespace');
 		if ($namespace == 'none') {
