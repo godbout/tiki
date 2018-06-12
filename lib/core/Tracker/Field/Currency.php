@@ -135,9 +135,23 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 		$conversions = [];
 		if ($currencyTracker) {
 			$rates = $trk->exchange_rates($currencyTracker, time());
-			$amount = $this->getFieldData()['amount'];
+
+			$data = $this->getFieldData();
+			$amount = $data['amount'];
+			$source_currency = $data['currency'];
+			$default_currency = $this->getOption('currency');
+			if (empty($default_currency)) {
+				$default_currency = 'USD';
+			}
+			// convert amount to default currency before converting to other currencies
+			if ($source_currency != $default_currency && !empty($rates[$source_currency])) {
+				$amount = floatval($amount) / floatval($rates[$source_currency]);
+				$conversions[$default_currency] = $amount;
+			}
 			foreach ($rates as $currency => $rate) {
-				$conversions[$currency] = floatval($rate) * floatval($amount);
+				if ($currency != $source_currency) {
+					$conversions[$currency] = floatval($rate) * floatval($amount);
+				}
 			}
 		}
 
