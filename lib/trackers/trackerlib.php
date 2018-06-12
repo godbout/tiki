@@ -6263,4 +6263,55 @@ class TrackerLib extends TikiLib
 			}, str_getcsv($value))
 		);
 	}
+
+	/**
+	 * Given a currency exchange rate tracker and timestamp,
+	 * return all available currency rates valid for that time.
+	 * @param $trackerId the currency tracker
+	 * @param $timestamp
+	 * @return array of exchange rates
+	 */
+	public function exchange_rates($trackerId, $timestamp) {
+		static $rates = null;
+		if (!is_null($rates)) {
+			return $rates;
+		}
+		$rates = [];
+		$currencyField = $dateField = $rateField = null;
+		$definition = Tracker_Definition::get($trackerId);
+		$fields = $definition->getFields();
+		foreach ($fields as $field) {
+			switch ($field['type']) {
+				case 't':
+					if (!$currencyField) {
+						$currencyField = $field;
+					}
+					break;
+				case 'f':
+				case 'j':
+					if (!$dateField) {
+						$dateField = $field;
+					}
+					break;
+				case 'n':
+					if (!$rateField) {
+						$rateField = $field;
+					}
+					break;
+			}
+		}
+		if ($currencyField && $dateField && $rateField) {
+			$currencies = $this->list_tracker_field_values($trackerId, $currencyField['fieldId']);
+			foreach ($currencies as $currency) {
+				$rates[$currency] = $this->getOne('SELECT ttif3.value as rate FROM tiki_tracker_items tti
+					LEFT JOIN tiki_tracker_item_fields ttif1 ON tti.itemId = ttif1.itemId AND ttif1.fieldId = ?
+					LEFT JOIN tiki_tracker_item_fields ttif2 ON tti.itemId = ttif2.itemId AND ttif2.fieldId = ?
+					LEFT JOIN tiki_tracker_item_fields ttif3 ON tti.itemId = ttif3.itemId AND ttif3.fieldId = ?
+					WHERE tti.trackerId = ? AND ttif1.value = ? AND ttif2.value <= ?
+					ORDER BY ttif2.value DESC',
+					[$currencyField['fieldId'], $dateField['fieldId'], $rateField['fieldId'], $trackerId, $currency, $timestamp]);
+			}
+		}
+		return $rates;
+	}
 }

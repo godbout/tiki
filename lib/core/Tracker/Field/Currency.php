@@ -129,7 +129,22 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 
 	function renderInnerOutput($context = [])
 	{
-		return $this->renderTemplate('trackeroutput/currency.tpl', $context);
+		$trk = TikiLib::lib('trk');
+		$currencyTracker = $this->getOption('currencyTracker');
+		
+		$conversions = [];
+		if ($currencyTracker) {
+			$rates = $trk->exchange_rates($currencyTracker, time());
+			$amount = $this->getFieldData()['amount'];
+			foreach ($rates as $currency => $rate) {
+				$conversions[$currency] = floatval($rate) * floatval($amount);
+			}
+		}
+
+		static $id = 0;
+		$id++;
+
+		return $this->renderTemplate('trackeroutput/currency.tpl', $context, ['conversions' => $conversions, 'id' => $id]);
 	}
 
 	function renderInput($context = [])
