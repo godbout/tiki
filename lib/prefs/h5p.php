@@ -11,7 +11,7 @@ function prefs_h5p_list($partial = false)
 	return [
 		'h5p_enabled' => [
 			'name' => tra('H5P support'),
-			'description' => tra('Handle H5P package files on upload.'),
+			'description' => tra('Handle H5P package files on upload. H5P enables the creation, sharing and reusing of interactive HTML5 content.'),
 			'dependencies' => [
 				'feature_file_galleries',
 			],
@@ -19,7 +19,8 @@ function prefs_h5p_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 			'filter' => 'alpha',
-			'hint' => tr('Enable H5P content'),
+			'help' => 'H5P',
+			'keywords' => 'h5p',
 			'view' => $partial ? '' : $serviceLib->getUrl([
 				'controller' => 'h5p',
 				'action' => 'list_libraries',
