@@ -207,13 +207,28 @@ class Search_Query_WikiBuilder
 	function wpquery_filter_range($query, $value, array $arguments)
 	{
 		if (isset($arguments['from']) && ! is_numeric($arguments['from'])) {
-			$arguments['from'] = strtotime($arguments['from']);
+			$time = strtotime($arguments['from']);
+			if (! $time) {
+				Feedback::error(tr('Range filter "from" parameter not valid: "%0"', $arguments['from']));
+			} else {
+				$arguments['from'] = $time;
+			}
 		}
 		if (isset($arguments['to']) && ! is_numeric($arguments['to'])) {
-			$arguments['to'] = strtotime($arguments['to']);
+			$time = strtotime($arguments['to']);
+			if (! $time) {
+				Feedback::error(tr('Range filter "to" parameter not valid: "%0"', $arguments['to']));
+			} else {
+				$arguments['to'] = $time;
+			}
 		}
 		if (isset($arguments['gap']) && ! is_numeric($arguments['gap'])) {
-			$arguments['gap'] = strtotime($arguments['gap']) - time();
+			$time = strtotime($arguments['gap']);
+			if (! $time) {
+				Feedback::error(tr('Range filter "gap" parameter not valid: "%0"', $arguments['gap']));
+			} else {
+				$arguments['gap'] = $time - time();
+			}
 		}
 		if (! isset($arguments['from']) && isset($arguments['to'], $arguments['gap'])) {
 			$arguments['from'] = $arguments['to'] - $arguments['gap'];
