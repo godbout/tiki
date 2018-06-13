@@ -925,9 +925,11 @@ function cs_design_daterange($id, $fieldname, $fieldid, $arguments, $default, &$
 		}
 	}
 	if (isset($_gap) && ! is_numeric($_gap)) {
-		$_gap = strtotime($_gap) - time();
+		$_gap = strtotime($_gap);
 		if (! $_gap) {
 			Feedback::error(tr('_gap parameter not valid: "%0"', $arguments['_gap']));
+		} else {
+			$_gap -= time();
 		}
 	}
 
