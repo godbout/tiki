@@ -912,6 +912,25 @@ function cs_design_daterange($id, $fieldname, $fieldid, $arguments, $default, &$
 	$params_from['id'] = $fieldid_from = $fieldid . '_from';
 	$params_to['id'] = $fieldid_to = $fieldid . '_to';
 
+	if (isset($_from) && ! is_numeric($_from)) {
+		$_from = strtotime($_from);
+		if (! $_from) {
+			Feedback::error(tr('_from parameter not valid: "%0"', $arguments['_from']));
+		}
+	}
+	if (isset($_to) && ! is_numeric($_to)) {
+		$_to = strtotime($_to);
+		if (! $_to) {
+			Feedback::error(tr('_to parameter not valid: "%0"', $arguments['_to']));
+		}
+	}
+	if (isset($_gap) && ! is_numeric($_gap)) {
+		$_gap = strtotime($_gap) - time();
+		if (! $_gap) {
+			Feedback::error(tr('_gap parameter not valid: "%0"', $arguments['_gap']));
+		}
+	}
+
 	if (! empty($_from)) {
 		if ($_from == 'now') {
 			$params_from['date'] = TikiLib::lib('tiki')->now;
