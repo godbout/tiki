@@ -68,7 +68,7 @@ $smarty->assign("listgroups", $listgroups['data']);
 
 $blackL = TikiLib::lib('blacklist');
 
-// set the default prefrence values
+// set the default preference values
 if ($prefs['pass_chr_num'] === 'y') {
 	$charnum = 1;
 }

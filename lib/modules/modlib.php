@@ -1009,13 +1009,15 @@ class ModLib extends TikiLib
 
 	/**
 	 * @param $mod_reference
-	 * @return bool|mixed|string
+	 *
+	 * @return bool|mixed|null|string|string[]
+	 * @throws SmartyException
 	 */
+
 	function execute_module($mod_reference)
 	{
-		global $user, $prefs, $tiki_p_admin;
+		global $prefs, $tiki_p_admin;
 		$smarty = TikiLib::lib('smarty');
-		$tikilib = TikiLib::lib('tiki');
 
 		try {
 			$defaults = [
@@ -1026,8 +1028,6 @@ class ModLib extends TikiLib
 			$module_params = array_merge($defaults, $module_params); // not sure why style doesn't get set sometime but is used in the tpl
 
 			$mod_reference = array_merge(['moduleId' => null, 'ord' => 0, 'position' => 0, 'rows' => 10], $mod_reference);
-
-			$module_rows = $mod_reference["rows"];
 
 			$info = $this->get_module_info($mod_reference);
 			$cachefile = $this->get_cache_file($mod_reference, $info);
