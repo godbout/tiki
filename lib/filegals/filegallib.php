@@ -4783,6 +4783,24 @@ class FileGalLib extends TikiLib
 			return json_decode($metadata, true);
 		}
 	}
+
+	/**
+	 * Attempts to create the directory structure speficied, along with an empty index.php file.
+	 *
+	 * @param $directory string The directory path that files will be stored at.
+	 */
+
+	function setupDirectory($directory){
+		// if a directory structure selected is not present
+		if (!file_exists($directory)) {
+			// attempt to create directory structure
+			mkdir($directory, 0777, true);
+		}
+		// if index.php file is not present in home directory, attempt to create it
+		if (!file_exists($directory . 'index.php')){
+			file_put_contents($directory . 'index.php', '');
+		}
+	}
 }
 
 /**

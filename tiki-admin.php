@@ -129,9 +129,6 @@ function simple_set_value($feature, $pref = '', $isMultiple = false)
 	TikiLib::lib('cache')->invalidate('allperms');
 }
 
-$blackL = TikiLib::lib('blacklist');
-
-
 $crumbs[] = new Breadcrumb(tra('Control Panels'), tra('Sections'), 'tiki-admin.php', 'Admin+Home', tra('Help on Configuration Sections', '', true));
 // Default values for AdminHome
 $admintitle = tra('Control Panels');
@@ -146,13 +143,12 @@ if (isset($_REQUEST['pref_filters'])) {
 	$prefslib->setFilters($_REQUEST['pref_filters']);
 }
 
-
-/**
+/*
  * If blacklist preferences have been updated and its also not being disabled
  * Then update the database with the selection.
- **/
+ */
 
-
+$blackL = TikiLib::lib('blacklist');
 
 if (isset($_POST['pass_blacklist'])) {    // if preferences were updated and blacklist feature is enabled (or is being enabled)
 	$pass_blacklist_file = $jitPost->pass_blacklist_file->striptags();
@@ -657,6 +653,11 @@ if (file_exists(__DIR__ . '/vendor/autoload-disabled.php')) {
 	$vendorAutoloadDisabled = false;
 }
 
+$smarty->assign('fgal_web_accessible', false);
+if ($prefs['fgal_use_dir'] && $prefs['fgal_use_db'] === 'n') {
+	$smarty->assign('fgal_web_accessible', $access->isFileWebAccessable($prefs['fgal_use_dir']. 'index.php'));
+}
+$smarty->assign('vendor_autoload_ignored', $vendorAutoloadIgnored);
 $smarty->assign('vendor_autoload_ignored', $vendorAutoloadIgnored);
 $smarty->assign('vendor_autoload_disabled', $vendorAutoloadDisabled);
 

@@ -14,9 +14,13 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 $filegallib = TikiLib::lib('filegal');
 
 if ($access->ticketMatch()) {
-	// Check for last character being a / or a \
-	if (substr($_REQUEST["fgal_use_dir"], -1) != "\\" && substr($_REQUEST["fgal_use_dir"], -1) != "/" && $_REQUEST["fgal_use_dir"] != "") {
-		$_REQUEST["fgal_use_dir"] .= "/";
+
+	if (isset($_REQUEST['fgal_use_dir'])) {
+		// Check for last character being a / or a \
+		if (substr($_REQUEST["fgal_use_dir"], -1) != "\\" && substr($_REQUEST["fgal_use_dir"], -1) != "/" && $_REQUEST["fgal_use_dir"] != "") {
+			$_REQUEST["fgal_use_dir"] .= "/";
+		}
+		$filegallib->setupDirectory($_REQUEST["fgal_use_dir"]);
 	}
 	// Check for last character being a / or a \
 	if (substr($_REQUEST["fgal_podcast_dir"], -1) != "\\" && substr($_REQUEST["fgal_podcast_dir"], -1) != "/" && $_REQUEST["fgal_podcast_dir"] != "") {

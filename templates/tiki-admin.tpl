@@ -53,6 +53,11 @@
 		{tr}The search index might be outdated. It is recommended to rebuild the search index.{/tr}
 		{/remarksbox}
 	{/if}
+	{if $fgal_web_accessible}
+		{remarksbox type="warning" title="{tr}File gallery directory web accessable{/tr}"}
+		{tr}This is a potential security risk.{/tr} {tr}You may deny access to this directory with server access rules, move your gallery directory into a space outside of your web root, or transfer file gallery storage into the database.{/tr}
+		{/remarksbox}
+	{/if}
 
 	{*{tr}{$description}{/tr}*}
 </div>

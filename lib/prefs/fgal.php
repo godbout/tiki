@@ -148,7 +148,7 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'type' => 'text',
 			'size' => 50,
 			'perspective' => false,
-			'default' => '',
+			'default' => 'storage/fgal/',
 			'tags' => ['basic'],
 		],
 		'fgal_search_in_content' => [
