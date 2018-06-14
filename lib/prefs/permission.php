@@ -18,7 +18,7 @@ function prefs_permission_list()
 		],
 		'permission_denied_login_box' => [
 			'name' => tra('On permission denied, display login module'),
-			'description' => tra('If an Anonymous visitor attempts to access a page to which he does have permission, Tiki will automatically display the Login module. 
+			'description' => tra('If an anonymous visitor attempts to access a page for which permission is not granted, Tiki will automatically display the Log-in module. 
 Alternatively, use the Send to URL field to display a specific page (relative to your Tiki installation) instead.'),
 			'type' => 'flag',
 			'default' => 'n',
