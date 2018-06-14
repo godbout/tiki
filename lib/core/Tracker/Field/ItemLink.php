@@ -28,7 +28,7 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 				'prefs' => ['trackerfield_itemlink'],
 				'tags' => ['advanced'],
 				'default' => 'y',
-				'supported_changes' => ['REL'],
+				'supported_changes' => ['r', 'REL'],
 				'params' => [
 					'trackerId' => [
 						'name' => tr('Tracker ID'),
