@@ -94,6 +94,8 @@ if ($info["flag"] != 'L' && (($tiki_p_edit == 'y' && $info["user"] == $user) || 
 	$smarty->assign('canundo', 'y');
 }
 
+$smarty->assign('page_id', $info['page_id']);
+
 if ($tiki_p_admin_wiki == 'y') {
 	$smarty->assign('canundo', 'y');
 }
