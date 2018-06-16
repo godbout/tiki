@@ -443,7 +443,7 @@ if ($prefs['feature_jquery_carousel'] == 'y') {
 }
 
 if ($prefs['feature_ajax'] === 'y') {
-	$headerlib->add_jsfile('lib/jquery_tiki/tiki-ajax_services.js');
+	$headerlib->add_jsfile('lib/jquery_tiki/tiki-confirm.js');
 	if ($prefs['ajax_autosave'] === 'y') {
 		$headerlib->add_jsfile('lib/ajax/autosave.js');
 	}
@@ -517,13 +517,14 @@ if ($prefs['feature_jquery_media'] == 'y') {
 }
 if ($prefs['feature_jquery_tablesorter'] == 'y') {
 	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/jquery.tablesorter.combined.js');
-	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-pager.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/parsers/parser-input-select.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-columnSelector.js');
 	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-filter-formatter-jui.js');
 	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-grouping.js');
-	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-columnSelector.js');
-	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/parsers/parser-input-select.js');
 	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-math.js');
-	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-sort2Hash.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-pager.js');
+	//not yet working
+//	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/widgets/widget-sort2Hash.js');
 	$headerlib->add_jsfile('lib/jquery_tiki/tablesorter.js');
 }
 
