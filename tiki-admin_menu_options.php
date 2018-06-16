@@ -66,8 +66,6 @@ foreach (TikiLib::lib('mod')->module_zones as $initial => $zone) {
 }
 $smarty->assign('module_zone_list', $module_zones);
 
-$access->checkAuthenticity();
-
 $headerlib->add_jsfile('lib/menubuilder/tiki-admin_menu_options.js')
 	->add_jsfile('lib/modules/tiki-admin_modules.js')
 	->add_jsfile('vendor_bundled/vendor/jquery/plugins/nestedsortable/jquery.ui.nestedSortable.js');

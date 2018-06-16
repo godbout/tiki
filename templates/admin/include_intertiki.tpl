@@ -59,7 +59,16 @@
 										<td><input type="text" class="form-control" name="interlist[{$k}][path]" value="{$i.path}"></td>
 										<td><input type="text" class="form-control" name="interlist[{$k}][groups]" value="{foreach item=g from=$i.groups name=f}{$g}{if !$smarty.foreach.f.last},{/if}{/foreach}"></td>
 										<td>
-											<button type="submit" name="del" value="{$k}" class="btn btn-link tips timeout" title="{tr}Delete master server{/tr}:{$k}">{icon name='delete'}</button>
+											<button
+												type="submit"
+												name="del"
+												value="{$k}"
+												class="btn btn-link tips"
+												title="{tr}Delete master server{/tr}:{$k}"
+												onclick="confirmSimple(event, '{tr}Remove this server?{/tr}')"
+											>
+												{icon name='delete'}
+											</button>
 										</td>
 									</tr>
 								{/foreach}
@@ -101,7 +110,16 @@
 									{foreach key=k item=i from=$prefs.known_hosts}
 										<tr>
 											<td>
-												<button type="submit" name="delk" class="btn btn-link" value="{$k|escape}" class="tips timeout" title=":{tr}Delete{/tr}">{icon name='delete'}</button>
+												<button
+													type="submit"
+													name="delk"
+													class="btn btn-link tips"
+													value="{$k|escape:'attr'}"
+													title=":{tr}Delete{/tr}"
+													onclick="confirmSimple(event, '{tr}Remove this host?{/tr}')"
+												>
+													{icon name='delete'}
+												</button>
 											</td>
 											<td>
 												<input type="text" class="form-control" id="known_hosts_name" name="known_hosts[{$k}][name]" value="{$i.name}">

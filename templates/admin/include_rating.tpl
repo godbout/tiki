@@ -121,7 +121,13 @@
 				</div>
 				<div class="form-group text-center">
 					<div class="col-sm-12"><br>
-						<input type="submit" class="btn btn-primary btn-sm timeout" name="edit" value="{tr}Save{/tr}">
+						<input
+							type="submit"
+							class="btn btn-primary btn-sm"
+							name="edit"
+							value="{tr}Save{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
 				</div>
 			</fieldset>
@@ -138,7 +144,13 @@
 				<div class="input-group">
 					<input type="text" class="form-control" name="name" id="rating_config_new">
 					<span class="input-group-btn">
-			<input type="submit" class="btn btn-primary timeout" name="create" value="{tr}Create{/tr}">
+			<input
+				type="submit"
+				class="btn btn-primary"
+				name="create"
+				value="{tr}Create{/tr}"
+				onclick="checkTimeout()"
+			>
 				</span>
 				</div>
 			</div>

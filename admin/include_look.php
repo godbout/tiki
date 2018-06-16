@@ -16,19 +16,17 @@ $csslib = TikiLib::lib('css');
 
 //handle case when changing the themes in the Look and Feel settings panel
 $a_theme = $prefs['theme'];
-if ($access->ticketMatch()) {
-	if (isset($_REQUEST['looksetup'])) {
-		if (isset($_REQUEST['theme'])) {
-			if (! isset($_REQUEST['theme_option']) || $_REQUEST['theme_option'] = '') {
-				// theme has no options
-				$_REQUEST['theme_option'] = '';
-			}
+if (isset($_REQUEST['looksetup'])) {
+	if (isset($_REQUEST['theme'])) {
+		if (! isset($_REQUEST['theme_option']) || $_REQUEST['theme_option'] = '') {
+			// theme has no options
+			$_REQUEST['theme_option'] = '';
 		}
-	} else {
-		// just changed theme menu, so refill options
-		if (isset($_REQUEST['theme']) && $_REQUEST['theme'] != '') {
-			$a_theme = $_REQUEST['theme'];
-		}
+	}
+} else {
+	// just changed theme menu, so refill options
+	if (isset($_REQUEST['theme']) && $_REQUEST['theme'] != '') {
+		$a_theme = $_REQUEST['theme'];
 	}
 }
 

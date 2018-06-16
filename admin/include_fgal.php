@@ -13,81 +13,82 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 
 $filegallib = TikiLib::lib('filegal');
 
-if ($access->ticketMatch()) {
-
-	if (isset($_REQUEST['fgal_use_dir'])) {
-		// Check for last character being a / or a \
-		if (substr($_REQUEST["fgal_use_dir"], -1) != "\\" && substr($_REQUEST["fgal_use_dir"], -1) != "/" && $_REQUEST["fgal_use_dir"] != "") {
-			$_REQUEST["fgal_use_dir"] .= "/";
-		}
-		$filegallib->setupDirectory($_REQUEST["fgal_use_dir"]);
-	}
+if (isset($_REQUEST['fgal_use_dir'])) {
 	// Check for last character being a / or a \
-	if (substr($_REQUEST["fgal_podcast_dir"], -1) != "\\" && substr($_REQUEST["fgal_podcast_dir"], -1) != "/" && $_REQUEST["fgal_podcast_dir"] != "") {
-		$_REQUEST["fgal_podcast_dir"] .= "/";
+	if (substr($_REQUEST["fgal_use_dir"], -1) != "\\" && substr($_REQUEST["fgal_use_dir"], -1) != "/" && $_REQUEST["fgal_use_dir"] != "") {
+		$_REQUEST["fgal_use_dir"] .= "/";
 	}
-	if (substr($_REQUEST["fgal_batch_dir"], -1) != "\\" && substr($_REQUEST["fgal_batch_dir"], -1) != "/" && $_REQUEST["fgal_batch_dir"] != "") {
-		$_REQUEST["fgal_batch_dir"] .= "/";
-	}
-	simple_set_value("fgal_use_dir");
-	simple_set_value("fgal_podcast_dir");
-	simple_set_value("fgal_batch_dir");
-	if (! empty($_REQUEST['fgal_quota']) && ! empty($_REQUEST['fgal_quota_default']) && $_REQUEST['fgal_quota_default'] > $_REQUEST['fgal_quota']) {
-		$_REQUEST['fgal_quota_default'] = $_REQUEST['fgal_quota'];
-	}
-	simple_set_value('fgal_quota_default');
-	if (! empty($_REQUEST['updateMime'])) {
-		$files = $filegallib->table('tiki_files');
-		$rows = $files->fetchAll(['fileId', 'filename', 'filetype'], ['archiveId' => 0, 'filetype' => 'application/octet-stream']);
-		foreach ($rows as $row) {
-			$t = $filegallib->fixMime($row);
-			if ($t != 'application/octet-stream') {
-				$files->update(['filetype' => $t], ['fileId' => $row['fileId']]);
-			}
+	$filegallib->setupDirectory($_REQUEST["fgal_use_dir"]);
+}
+// Check for last character being a / or a \
+if (substr($_REQUEST["fgal_podcast_dir"], -1) != "\\" && substr($_REQUEST["fgal_podcast_dir"], -1) != "/" && $_REQUEST["fgal_podcast_dir"] != "") {
+	$_REQUEST["fgal_podcast_dir"] .= "/";
+}
+if (substr($_REQUEST["fgal_batch_dir"], -1) != "\\" && substr($_REQUEST["fgal_batch_dir"], -1) != "/" && $_REQUEST["fgal_batch_dir"] != "") {
+	$_REQUEST["fgal_batch_dir"] .= "/";
+}
+simple_set_value("fgal_use_dir");
+simple_set_value("fgal_podcast_dir");
+simple_set_value("fgal_batch_dir");
+if (! empty($_REQUEST['fgal_quota']) && ! empty($_REQUEST['fgal_quota_default']) && $_REQUEST['fgal_quota_default'] > $_REQUEST['fgal_quota']) {
+	$_REQUEST['fgal_quota_default'] = $_REQUEST['fgal_quota'];
+}
+simple_set_value('fgal_quota_default');
+if (! empty($_REQUEST['updateMime'])) {
+	$files = $filegallib->table('tiki_files');
+	$rows = $files->fetchAll(['fileId', 'filename', 'filetype'], ['archiveId' => 0, 'filetype' => 'application/octet-stream']);
+	foreach ($rows as $row) {
+		$t = $filegallib->fixMime($row);
+		if ($t != 'application/octet-stream') {
+			$files->update(['filetype' => $t], ['fileId' => $row['fileId']]);
 		}
 	}
+}
 
-	if (! empty($_REQUEST['move'])) {
-		if ($_REQUEST['move'] == 'to_fs') {
-			if (empty($prefs['fgal_use_dir'])) {
-				$errors[] = tra('You must specify a directory');
-			} else {
-				$feedbacks = [];
-				$errors = $filegallib->moveFiles($_REQUEST['move'], $feedbacks);
-			}
-		} elseif ($_REQUEST['move'] == 'to_db') {
+if (! empty($_POST['move']) && $access->checkCsrf()) {
+	if ($_POST['move'] == 'to_fs') {
+		if (empty($prefs['fgal_use_dir'])) {
+			$errors[] = tra('You must specify a directory');
+		} else {
 			$feedbacks = [];
-			$errors = $filegallib->moveFiles($_REQUEST['move'], $feedbacks);
+			$errors = $filegallib->moveFiles($_POST['move'], $feedbacks);
 		}
-		if (! empty($errors)) {
-			Feedback::error(['mes' => $errors], 'session');
-		}
-		if (! empty($feedbacks)) {
-			Feedback::note(['mes' => $feedbacks], 'session');
-		}
+	} elseif ($_POST['move'] == 'to_db') {
+		$feedbacks = [];
+		$errors = $filegallib->moveFiles($_REQUEST['move'], $feedbacks);
 	}
+	if (! empty($errors)) {
+		Feedback::error(['mes' => $errors], 'session');
+	}
+	if (! empty($feedbacks)) {
+		Feedback::note(['mes' => $feedbacks], 'session');
+	}
+}
 
-	if (! empty($_REQUEST['mimes'])) {
-		$mimes = $_REQUEST['mimes'];
-		foreach ($mimes as $mime => $cmd) {
-			$mime = trim($mime);
-			if (empty($cmd)) {
-				$filegallib->delete_file_handler($mime);
-			} else {
-				$filegallib->change_file_handler($mime, $cmd);
-			}
+if (! empty($_POST['mimes']) && $access->checkCsrf()) {
+	$mimes = $_POST['mimes'];
+	foreach ($mimes as $mime => $cmd) {
+		$mime = trim($mime);
+		if (empty($cmd)) {
+			$filegallib->delete_file_handler($mime);
+		} else {
+			$filegallib->change_file_handler($mime, $cmd);
 		}
 	}
-	if (! empty($_REQUEST['newMime']) && ! empty($_REQUEST['newCmd'])) {
-		$filegallib->change_file_handler($_REQUEST['newMime'], $_REQUEST['newCmd']);
-	}
-	if (isset($_REQUEST["filegalredosearch"])) {
-		$filegallib->reindex_all_files_for_search_text();
-	}
+}
 
-	if (isset($_REQUEST["filegalfixvndmsfiles"])) {
-		$filegallib->fix_vnd_ms_files();
-	}
+if (! empty($_POST['newMime']) && ! empty($_POST['newCmd']) && $access->checkCsrf()) {
+	$filegallib->change_file_handler($_POST['newMime'], $_POST['newCmd']);
+}
+
+if (isset($_REQUEST["filegalfixvndmsfiles"]) && $access->checkCsrf()) {
+	$filegallib->fix_vnd_ms_files();
+}
+
+//*** end state-changing actions
+
+if (isset($_REQUEST["filegalredosearch"])) {
+	$filegallib->reindex_all_files_for_search_text();
 }
 
 if ($prefs['fgal_viewerjs_feature'] === 'y') {

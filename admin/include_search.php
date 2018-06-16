@@ -105,7 +105,7 @@ global $tiki_p_admin;
 $unifiedsearchlib = TikiLib::lib('unifiedsearch');
 $smarty->assign('engine_info', $unifiedsearchlib->getEngineInfo());
 
-if ($tiki_p_admin == 'y' && $access->ticketMatch()) {
+if ($tiki_p_admin == 'y') {
 	if (isset($_REQUEST['rebuild']) && $_REQUEST['rebuild'] == 'now') {
 		$access->redirect(TikiLib::lib('service')->getUrl([
 			'controller' => 'search',

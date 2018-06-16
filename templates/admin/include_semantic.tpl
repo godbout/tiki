@@ -27,16 +27,28 @@
 				{foreach from=$tokens item=token}
 				<tr>
 					<td><input type="checkbox" name="select[]" value="{$token.token|escape}"/></td>
-					<td><a class="timeout" href="{$smarty.server.PHP_SELF}?page=semantic&token={$token.token|escape}">{$token.token|escape}</a></td>
+					<td><a href="{$smarty.server.PHP_SELF}?page=semantic&token={$token.token|escape}">{$token.token|escape}</a></td>
 					<td>{$token.label|escape}</td>
-					<td><a class="timeout" href="{$smarty.server.PHP_SELF}?page=semantic&token={$token.invert_token|escape}">{$tokens[$token.invert_token].label|escape}</a></td>
+					<td><a href="{$smarty.server.PHP_SELF}?page=semantic&token={$token.invert_token|escape}">{$tokens[$token.invert_token].label|escape}</a></td>
 				</tr>
 				{/foreach}
 			</table>
 			<p>
-				<input type="submit" class="btn btn-primary btn-sm timeout" name="list" value="{tr}Show Usage{/tr}">
-				<input type="submit" class="btn btn-warning btn-sm timeout" name="remove" value="{tr}Delete{/tr}">
-				<input type="submit" class="btn btn-warning btn-sm timeout" name="removeclean" value="{tr}Delete &amp; Unreference{/tr}">
+				<input type="submit" class="btn btn-primary btn-sm" name="list" value="{tr}Show Usage{/tr}">
+				<input
+					type="submit"
+					class="btn btn-warning btn-sm"
+					name="remove"
+					value="{tr}Delete{/tr}"
+					onclick="checkTimeout()"
+				>
+				<input
+					type="submit"
+					class="btn btn-warning btn-sm"
+					name="removeclean"
+					value="{tr}Delete &amp; Unreference{/tr}"
+					onclick="checkTimeout()"
+				>
 			</p>
 		</form>
 
@@ -63,7 +75,13 @@
 				</div>
 				<div>
 					<input type="hidden" name="token" value="{$selected_token|escape}">
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="save" value="{tr}Save{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="save"
+						value="{tr}Save{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</form>
 		{/if}
@@ -84,10 +102,28 @@
 							<div>
 								<input type="hidden" name="select[]" value="{$token|escape}">
 								<input type="hidden" name="token" value="{$token|escape}">
-								<input type="submit" name="list" value="{tr}Show Usage{/tr}" class="btn btn-primary timeout">
-								<input type="submit" name="create" value="{tr}Create{/tr}" class="btn btn-primary timeout">
-								<input type="submit" name="rename" value="{tr}Fix{/tr}" class="btn btn-primary timeout">
-								<input type="submit" name="clean" value="{tr}Remove{/tr}" class="btn btn-primary timeout">
+								<input type="submit" name="list" value="{tr}Show Usage{/tr}" class="btn btn-default">
+								<input
+									type="submit"
+									name="create"
+									value="{tr}Create{/tr}"
+									class="btn btn-primary"
+									onclick="checkTimeout()"
+								>
+								<input
+									type="submit"
+									name="rename"
+									value="{tr}Fix{/tr}"
+									class="btn btn-primary"
+									onclick="checkTimeout()"
+								>
+								<input
+									type="submit"
+									name="clean"
+									value="{tr}Remove{/tr}"
+									class="btn btn-primary"
+									onclick="checkTimeout()"
+								>
 							</div>
 						</form>
 					</td>
@@ -103,7 +139,13 @@
 				</div>
 				<div>
 					<input type="hidden" name="oldName" value="{$rename|escape}">
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="save" value="{tr}Fix{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="save"
+						value="{tr}Fix{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</form>
 		{/if}

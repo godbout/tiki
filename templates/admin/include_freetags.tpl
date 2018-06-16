@@ -9,7 +9,7 @@
 				{icon name="language"} {tr}Translate Tags{/tr}
 			</a>
 		{/if}
-		<button role="button" type="submit" class="btn btn-primary timeout" name="cleanup">
+		<button role="button" type="submit" class="btn btn-primary" name="cleanup" onclick="checkTimeout()">
 			{icon name="trash"} {tr}Cleanup unused tags{/tr}
 		</button>
 		{include file='admin/include_apply_top.tpl'}

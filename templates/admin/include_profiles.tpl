@@ -1,5 +1,5 @@
 {* $Id$ *}
-{assign var="baseURI" value="{$smarty.server.REQUEST_URI}&ticket={{$ticket|escape:url}}&daconfirm=y"}
+{assign var="baseURI" value="{$smarty.server.REQUEST_URI}"}
 {$headerlib->add_jsfile("lib/jquery_tiki/tiki-profile.js")}
 
 {remarksbox type="tip" title="{tr}Tip{/tr}"}
@@ -60,7 +60,7 @@
 						<input type="hidden" name="page" value="profiles">
 						<input type="hidden" name="redirect" value=0>
 						<div class="form-group text-center">
-							<input type="submit" class="btn btn-secondary timeout" name="list" value="{tr}Find{/tr}" />
+							<input type="submit" class="btn btn-secondary" name="list" value="{tr}Find{/tr}" />
 						</div>
 					</div>
 					<div class="col-sm-6">
@@ -219,7 +219,7 @@
 						{/foreach}
 					</ul>
 					<div class="text-center submit input_submit_container">
-						<input type="submit" class="btn btn-secondary timeout" name="export" value="{tr}Export{/tr}" />
+						<input type="submit" class="btn btn-secondary" name="export" value="{tr}Export{/tr}" />
 					</div>
 				</fieldset>
 			</fieldset>
@@ -264,7 +264,7 @@
 				{preference name=profile_sources}
 				{preference name=profile_channels}
 				<div class="text-center submit">
-					<input type="submit" class="btn btn-secondary timeout" name="config" value="{tr}Save{/tr}" />
+					<input type="submit" class="btn btn-secondary" name="config" value="{tr}Save{/tr}" onclick="checkTimeout()"/>
 				</div>
 			</form>
 		</fieldset>
@@ -298,7 +298,15 @@
 						<textarea data-codemirror="true" data-syntax="yaml" id="profile_tester" name="profile_tester" class="form-control">{if isset($test_source)}{$test_source}{/if}</textarea>
 					</div>
 				</div>
-				<div align="center" style="padding:1em;"><input type="submit" class="btn btn-primary timeout" name="test" value="{tr}Test{/tr}"></div>
+				<div align="center" style="padding:1em;">
+					<input
+						type="submit"
+						class="btn btn-primary"
+						name="test"
+						value="{tr}Test{/tr}"
+						onclick="checkTimeout()"
+					>
+				</div>
 			</form>
 		</fieldset>
 	{/tab}

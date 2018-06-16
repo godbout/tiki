@@ -192,7 +192,7 @@
 			<fieldset>
 				<div class="form-group row">
 					<div class="col-sm-8 col-sm-offset-4">
-						{button href="?page=login&amp;refresh_email_group=y" _class="timeout" _text="{tr}Assign users to groups by matching email patterns{/tr}"}
+						{button href="?page=login&amp;refresh_email_group=y" _onclick="confirmSimple(event, '{tr}Assign users to groups based on email patterns?{/tr}', '{ticket mode=get}')" _text="{tr}Assign users to groups by matching email patterns{/tr}"}
 						<div class="form-text">{tr}An email pattern must be defined in the settings for at least one group for this to produce any results.{/tr}</div>
 					</div>
 				</div>
@@ -473,8 +473,8 @@
 		{/tab}
 
 
-{tab name="{tr}Password Blacklist{/tr}"}
-		<br>
+		{tab name="{tr}Password Blacklist{/tr}"}
+			<br>
 			<fieldset>
 				<legend>{tr}Password{/tr}</legend>
 
@@ -494,11 +494,23 @@
 
 						<input type="file" name="passwordlist" accept="text/plain" />
 						Use 'LOAD DATA INFILE': <input type="checkbox" name="loaddata" /> {help desc="Allows much larger files to be uploaded, but requires MySQL on localhost with extra permissions."}<br>
-						<input type="submit" value="Create or Replace Word Index" name="uploadIndex" class="btn btn-secondary btn-sm timeout">
+						<input
+							type="submit"
+							value="{tr}Create or Replace Word Index{/tr}"
+							name="uploadIndex"
+							class="btn btn-secondary btn-sm"
+							onclick="checkTimeout()"
+						>
 						{help desc="Text files with one word per line accepted.
 						The word list will be converted to all lowe case. Duplicate entries will be removed.
 						Typically passwords lists should be arranged with the most commonly used passwords first."}<br>
-						<input type="submit" value="Delete Temporary Index" name="deleteIndex" class="btn btn-secondary btn-sm timeout">
+						<input
+							type="submit"
+							value="{tr}Delete Temporary Index{/tr}"
+							name="deleteIndex"
+							class="btn btn-secondary btn-sm"
+							onclick="confirmSimple(event, '{tr}Delete temporary index?{/tr}')"
+						>
 						{help desc="It is recommended that you delete indexed passwords from your database after your done generating your password lists.
 						They can take up quite a lot of space and serve no pourpose after processing is complete."}
 
@@ -511,21 +523,33 @@
 							{help desc="This sets the number of passwords that your blacklist will use. The words from the begining of of the file will be selected over the lower,
 										so if you have a list of words arranged with the most common at the top, it will select only the most common works to blacklist.
 										Typical usage ranges between 1,000 & 10,000, although many more could be used. Twitter blacklists 396."}<br>
-							Minmum Password Length: <input type="number" name="length" value="{$length}" />
+							Minimum Password Length: <input type="number" name="length" value="{$length}" />
 							{help desc="The minimum password length for your password. This will filter out any password that has an illegal length."}<br>
 							Require Numbers &amp; Letters: <input type="checkbox" name="charnum" {if $charnum}checked{/if} />
 							{help desc="If checked, will filter out any password that does not have both upper and lower case letters."}<br>
 							Require Special Characters: <input type="checkbox" name="special" {if $special}checked{/if} />
 							{help desc="If checked, will filter out any passwords that do not have special characters."}<br>
-							<input type="submit" value="Save & Set as Default" name="saveblacklist" class="btn btn-secondary btn-sm timeout">
-							<input type="submit" value="View Password List" name="viewblacklist" class="btn btn-secondary btn-sm timeout" formtarget="_blank">
+							<input
+								type="submit"
+								value="{tr}Save & Set as Default{/tr}"
+								name="saveblacklist"
+								class="btn btn-secondary btn-sm"
+								onclick="checkTimeout()"
+							>
+							<input
+								type="submit"
+								value="{tr}View Password List{/tr}"
+								name="viewblacklist"
+								class="btn btn-secondary btn-sm"
+								formtarget="_blank"
+							>
 						{/if}
 				</div>
 			</fieldset>
 		{/tab}
 	{/tabset}
 
-{include file='admin/include_apply_bottom.tpl'}
+	{include file='admin/include_apply_bottom.tpl'}
 </form>
 
 

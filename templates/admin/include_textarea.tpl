@@ -144,7 +144,7 @@
 			{tr}The edit-plugin icon is an easy way for users to edit the parameters of each plugin in wiki pages. It can be disabled for individual plugins below.{/tr}
 			{/remarksbox}
 			{if !isset($disabled)}
-				{button _class="timeout" href="?page=textarea&disabled=y" _text="{tr}Check disabled plugins used in wiki pages{/tr}"}
+				{button href="?page=textarea&disabled=y" _text="{tr}Check disabled plugins used in wiki pages{/tr}"}
 				<br><br>
 			{else}
 				{remarksbox type=errors title="{tr}Disabled used plugins{/tr}"}
@@ -307,8 +307,20 @@
 							<a href="tiki-admin.php?page=textarea&amp;plugin_alias={$name|escape}">{$name|escape}</a>
 						{/foreach}
 						<div align="center">
-							<input type="submit" class="btn btn-primary btn-sm timeout" name="enable" value="{tr}Enable Plugins{/tr}">
-							<input type="submit" class="btn btn-warning btn-sm timeout" name="delete" value="{tr}Delete Plugins{/tr}">
+							<input
+								type="submit"
+								class="btn btn-primary btn-sm"
+								name="enable"
+								value="{tr}Enable Plugins{/tr}"
+								onclick="checkTimeout()"
+							>
+							<input
+								type="submit"
+								class="btn btn-primary btn-sm"
+								name="delete"
+								value="{tr}Delete Plugins{/tr}"
+								onclick="checkTimeout()"
+							>
 						</div>
 						{remarksbox type="tip" title="{tr}Tip{/tr}"}
 							{tr}Click on the plugin name to edit it.{/tr} {tr}Click on the + icon to add a new one.{/tr}

@@ -11,8 +11,8 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 $scorelib = TikiLib::lib('score');
-if (isset($_REQUEST['events']) && is_array($_REQUEST['events']) && $access->ticketMatch()) {
-	$scorelib->update_events($_REQUEST['events']);
+if (isset($_POST['events']) && is_array($_POST['events']) && $access->checkCsrf()) {
+	$scorelib->update_events($_POST['events']);
 	Feedback::success(tra('Scoring events replaced with form data.'), 'session');
 }
 

@@ -18,28 +18,23 @@ global $tikipath;
 $composerManager = new ComposerManager($tikipath);
 $composerManagerBundled = new ComposerManager($tikipath, $tikipath . DIRECTORY_SEPARATOR . 'vendor_bundled');
 
-if ($access->ticketMatch()) {
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-		if ($_POST['auto-fix-missing-packages']) {
-			$smarty->assign('composer_output', $composerManager->fixMissing());
-		}
-		if ($_POST['auto-install-package']) {
-			$smarty->assign('composer_output', $composerManager->installPackage($_POST['auto-install-package']));
-		}
-		if ($_POST['auto-update-package']) {
-			$smarty->assign('composer_output', $composerManager->updatePackage($_POST['auto-update-package']));
-		}
-		if ($_POST['auto-remove-package']) {
-			$smarty->assign('composer_output', $composerManager->removePackage($_POST['auto-remove-package']));
-		}
-		if ($_POST['auto-run-diagnostics']) {
-			if (! $composerManager->composerIsAvailable()) {
-				$smarty->assign('diagnostic_composer_location', '');
-				$smarty->assign('diagnostic_composer_output', '');
-			} else {
-				$smarty->assign('diagnostic_composer_location', $composerManager->composerPath());
-				$smarty->assign('diagnostic_composer_output', $composerManager->getComposer()->execDiagnose());
-			}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	if ($_POST['auto-fix-missing-packages'] && $access->checkCsrf()) {
+		$smarty->assign('composer_output', $composerManager->fixMissing());
+	}
+	if ($_POST['auto-install-package'] && $access->checkCsrf()) {
+		$smarty->assign('composer_output', $composerManager->installPackage($_POST['auto-install-package']));
+	}
+	if ($_POST['auto-remove-package'] && $access->checkCsrf()) {
+		$smarty->assign('composer_output', $composerManager->removePackage($_POST['auto-remove-package']));
+	}
+	if ($_POST['auto-run-diagnostics'] && $access->checkCsrf()) {
+		if (! $composerManager->composerIsAvailable()) {
+			$smarty->assign('diagnostic_composer_location', '');
+			$smarty->assign('diagnostic_composer_output', '');
+		} else {
+			$smarty->assign('diagnostic_composer_location', $composerManager->composerPath());
+			$smarty->assign('diagnostic_composer_output', $composerManager->getComposer()->execDiagnose());
 		}
 		if ($_POST['remove-composer-locker']) {
 			$path = $tikipath . DIRECTORY_SEPARATOR . 'composer.lock';

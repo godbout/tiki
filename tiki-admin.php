@@ -17,17 +17,17 @@ $adminlib = TikiLib::lib('admin');
 $auto_query_args = ['page'];
 
 $access->check_permission('tiki_p_admin');
-$access->checkAuthenticity();
 $logslib = TikiLib::lib('logs');
 
 /**
  * Display feedback on prefs changed
  *
- * @param string $name		Name of feature
- * @param string $message	Other message
- * @param int $st		    Type of change (0=disabled, 1=enabled, 2=changed, 3=info, 4=reset)
- * @param int $num		    unknown
+ * @param string $name Name of feature
+ * @param string $message Other message
+ * @param int $st Type of change (0=disabled, 1=enabled, 2=changed, 3=info, 4=reset)
+ * @param int $num unknown
  * @return void
+ * @throws Exception
  */
 function add_feedback($name, $message, $st, $num = null)
 {
@@ -46,6 +46,7 @@ function add_feedback($name, $message, $st, $num = null)
  * @param mixed $feature
  * @access public
  * @return void
+ * @throws Exception
  */
 function simple_set_toggle($feature)
 {
@@ -80,6 +81,7 @@ function simple_set_toggle($feature)
  * @param mixed $isMultiple
  * @access public
  * @return void
+ * @throws Exception
  */
 function simple_set_value($feature, $pref = '', $isMultiple = false)
 {
@@ -87,30 +89,30 @@ function simple_set_value($feature, $pref = '', $isMultiple = false)
 	$logslib = TikiLib::lib('logs');
 	$tikilib = TikiLib::lib('tiki');
 	$old = $prefs[$feature];
-	if (isset($_REQUEST[$feature])) {
+	if (isset($_POST[$feature])) {
 		if ($pref != '') {
-			if ($tikilib->set_preference($pref, $_REQUEST[$feature])) {
-				$prefs[$feature] = $_REQUEST[$feature];
+			if ($tikilib->set_preference($pref, $_POST[$feature])) {
+				$prefs[$feature] = $_POST[$feature];
 			}
 		} else {
-			$tikilib->set_preference($feature, $_REQUEST[$feature]);
+			$tikilib->set_preference($feature, $_POST[$feature]);
 		}
 	} elseif ($isMultiple) {
 		// Multiple selection controls do not exist if no item is selected.
 		// We still want the value to be updated.
 		if ($pref != '') {
 			if ($tikilib->set_preference($pref, [])) {
-				$prefs[$feature] = $_REQUEST[$feature];
+				$prefs[$feature] = $_POST[$feature];
 			}
 		} else {
 			$tikilib->set_preference($feature, []);
 		}
 	}
-	if (isset($_REQUEST[$feature]) && $old != $_REQUEST[$feature]) {
-		add_feedback($feature, ($_REQUEST[$feature]) ? tr('%0 set', $feature) : tr('%0 unset', $feature), 2);
+	if (isset($_POST[$feature]) && $old != $_POST[$feature]) {
+		add_feedback($feature, ($_POST[$feature]) ? tr('%0 set', $feature) : tr('%0 unset', $feature), 2);
 		$msg = '';
-		if (is_array($_REQUEST[$feature]) && is_array($old)) {
-			$newCount = count($_REQUEST[$feature]);
+		if (is_array($_POST[$feature]) && is_array($old)) {
+			$newCount = count($_POST[$feature]);
 			$oldCount = count($old);
 			if ($newCount > $oldCount) {
 				$added = $newCount - $oldCount;
@@ -122,7 +124,7 @@ function simple_set_value($feature, $pref = '', $isMultiple = false)
 				$msg = $deleted . ' ' . $item;
 			}
 		} else {
-			$msg = $old . ' => ' . $_REQUEST[$feature];
+			$msg = $old . ' => ' . $_POST[$feature];
 		}
 		$logslib->add_action('feature', $feature, 'system', $msg);
 	}
@@ -139,8 +141,9 @@ $adminPage = '';
 
 $prefslib = TikiLib::lib('prefs');
 
-if (isset($_REQUEST['pref_filters'])) {
+if (isset($_REQUEST['pref_filters']) && $access->checkCsrf()) {
 	$prefslib->setFilters($_REQUEST['pref_filters']);
+	Feedback::success(tra('Default preference filters set'), 'session');
 }
 
 /*
@@ -177,37 +180,35 @@ if (isset($_POST['pass_blacklist'])) {    // if preferences were updated and bla
 $temp_filters = isset($_REQUEST['filters']) ? explode(' ', $_REQUEST['filters']) : null;
 $smarty->assign('pref_filters', $prefslib->getFilters($temp_filters));
 
-if (isset($_REQUEST['lm_preference'])) {
-	if ($access->ticketMatch()) {
-		$changes = $prefslib->applyChanges((array) $_REQUEST['lm_preference'], $_REQUEST);
-		foreach ($changes as $pref => $val) {
-			if ($val['type'] == 'reset') {
-				add_feedback($pref, tr('%0 reset', $pref), 4);
-				$logslib->add_action('feature', $pref, 'system', 'reset');
+if (isset($_POST['lm_preference'] ) && $access->checkCsrf()) {
+	$changes = $prefslib->applyChanges((array) $_POST['lm_preference'], $_POST);
+	foreach ($changes as $pref => $val) {
+		if ($val['type'] == 'reset') {
+			add_feedback($pref, tr('%0 reset', $pref), 4);
+			$logslib->add_action('feature', $pref, 'system', 'reset');
+		} else {
+			$value = $val['new'];
+			if ($value == 'y') {
+				add_feedback($pref, tr('%0 enabled', $pref), 1, 1);
+				$logslib->add_action('feature', $pref, 'system', 'enabled');
+			} elseif ($value == 'n') {
+				add_feedback($pref, tr('%0 disabled', $pref), 0, 1);
+				$logslib->add_action('feature', $pref, 'system', 'disabled');
 			} else {
-				$value = $val['new'];
-				if ($value == 'y') {
-					add_feedback($pref, tr('%0 enabled', $pref), 1, 1);
-					$logslib->add_action('feature', $pref, 'system', 'enabled');
-				} elseif ($value == 'n') {
-					add_feedback($pref, tr('%0 disabled', $pref), 0, 1);
-					$logslib->add_action('feature', $pref, 'system', 'disabled');
-				} else {
-					add_feedback($pref, tr('%0 set', $pref), 1, 1);
-					$logslib->add_action('feature', $pref, 'system', (is_array($val['old']) ? implode($val['old'], ',') : $val['old']) . '=>' . (is_array($value) ? implode($value, ',') : $value));
-				}
-				/*
-					Enable/disable addreference/showreference plugins alognwith references feature.
-				*/
-				if ($pref == 'feature_references') {
-					$tikilib->set_preference('wikiplugin_addreference', $value);
-					$tikilib->set_preference('wikiplugin_showreference', $value);
+				add_feedback($pref, tr('%0 set', $pref), 1, 1);
+				$logslib->add_action('feature', $pref, 'system', (is_array($val['old']) ? implode($val['old'], ',') : $val['old']) . '=>' . (is_array($value) ? implode($value, ',') : $value));
+			}
+			/*
+				Enable/disable addreference/showreference plugins alognwith references feature.
+			*/
+			if ($pref == 'feature_references') {
+				$tikilib->set_preference('wikiplugin_addreference', $value);
+				$tikilib->set_preference('wikiplugin_showreference', $value);
 
-					/* Add/Remove the plugin toolbars from the editor */
-					$toolbars = ['wikiplugin_addreference', 'wikiplugin_showreference'];
-					$t_action = ($value == 'y') ? 'add' : 'remove';
-					$tikilib->saveEditorToolbars($toolbars, 'global', $t_action);
-				}
+				/* Add/Remove the plugin toolbars from the editor */
+				$toolbars = ['wikiplugin_addreference', 'wikiplugin_showreference'];
+				$t_action = ($value == 'y') ? 'add' : 'remove';
+				$tikilib->saveEditorToolbars($toolbars, 'global', $t_action);
 			}
 		}
 	}
@@ -576,7 +577,9 @@ if (isset($_REQUEST['page'])) {
 	//for most admin include page forms, need to redirect as changes to one pref can affect display of others
 	//however other forms that perform actions other than changing preferences should not redirect to avoid infinite loops
 	//for these add a hidden input named redirect with a value of 0
-	if ($access->ticketMatch() && (! isset($_REQUEST['redirect']) || $_REQUEST['redirect'] === 1) && ! isset($_POST['saveblacklist']) && ! isset($_POST['viewblacklist'])) {
+	if ($access->csrfResult() && (! isset($_POST['redirect']) || $_POST['redirect'] === 1)
+		&& ! isset($_POST['saveblacklist']) && ! isset($_POST['viewblacklist']))
+	{
 		$access->redirect($_SERVER['REQUEST_URI'], '', 200);
 	}
 } else {

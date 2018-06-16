@@ -19,52 +19,47 @@ if (! isset($_REQUEST['known_hosts'])) {
 
 $smarty->assign('serverFields', ['name', 'host', 'port', 'path', 'groups']);
 
-if ($access->ticketMatch()) {
-	if (isset($_REQUEST['del'])) {
-		//TODO add service for confirm popup
-//		$access->check_authenticity(tra('Are you sure you want to remove this server?'));
-		foreach ($prefs['interlist'] as $k => $i) {
-			if ($k == $_REQUEST['del']) {
-				unset($_REQUEST['interlist'][$k]);
-			}
+//*** begin state-changing actions
+//TODO Avoid altering $_POST variable directly in this section
+if (isset($_POST['del']) && $access->checkCsrfForm(tra('Remove this server?'))) {
+	foreach ($prefs['interlist'] as $k => $i) {
+		if ($k == $_POST['del']) {
+			unset($_POST['interlist'][$k]);
 		}
-		simple_set_value('interlist');
-		//to refresh interlist dropdown - not sure if there's a better way to do this
-		$access->redirect($_SERVER['REQUEST_URI'], '', 200);
 	}
-	if (isset($_REQUEST['delk'])) {
-		//TODO add service for confirm popup
-//		$access->check_authenticity(tra('Are you sure you want to remove this host?'));
-		foreach ($prefs['known_hosts'] as $k => $i) {
-			if ($k == $_REQUEST['delk']) {
-				unset($_REQUEST['known_hosts'][$k]);
-			}
+	simple_set_value('interlist');
+	//to refresh interlist dropdown - not sure if there's a better way to do this
+	$access->redirect($_SERVER['REQUEST_URI'], '', 200);
+}
+if (isset($_POST['delk']) && $access->checkCsrfForm(tra('Remove this host?'))) {
+	foreach ($prefs['known_hosts'] as $k => $i) {
+		if ($k == $_POST['delk']) {
+			unset($_POST['known_hosts'][$k]);
 		}
-		simple_set_value('known_hosts');
 	}
-	if (isset($_REQUEST['new']) and is_array($_REQUEST['new']) and $_REQUEST['new']['name']) {
-		$new["{$_REQUEST['new']['name']}"] = $_REQUEST['new'];
-		$_REQUEST['interlist'] += $new;
-		simple_set_value('interlist');
-	}
+	simple_set_value('known_hosts');
+}
+if (isset($_POST['new']) && is_array($_POST['new']) && $_POST['new']['name'] && $access->checkCsrf()) {
+	$_POST['interlist']["{$_POST['new']['name']}"] = $_POST['new'];
+	simple_set_value('interlist');
+}
 
-	if (isset($_REQUEST['newhost']) and is_array($_REQUEST['newhost']) and $_REQUEST['newhost']['key']) {
-		$newhost["{$_REQUEST['newhost']['key']}"] = $_REQUEST['newhost'];
-		$_REQUEST['known_hosts'] += $newhost;
-		simple_set_value('known_hosts');
-	}
-	if (! empty($_REQUEST['known_hosts'])) {
-		foreach ($_REQUEST['known_hosts'] as $k => $v) {
-			if (isset($_REQUEST['known_hosts'][$k]['allowusersregister'])) {
-				$_REQUEST['known_hosts'][$k]['allowusersregister'] = 'y';
-			}
-			if (empty($_REQUEST['known_hosts'][$k]['name'])
-				&& empty($_REQUEST['known_hosts'][$k]['key'])
-				&& empty($_REQUEST['known_hosts'][$k]['ip'])
-				&& empty($_REQUEST['known_hosts'][$k]['contact'])) {
-				unset($_REQUEST['known_hosts'][$k]);
-			}
+if (isset($_POST['newhost']) && is_array($_POST['newhost']) && $_POST['newhost']['key'] && $access->checkCsrf()) {
+	$_POST['known_hosts']["{$_POST['newhost']['key']}"] = $_POST['newhost'];
+	simple_set_value('known_hosts');
+}
+if (! empty($_POST['known_hosts']) && $access->checkCsrf()) {
+	foreach ($_POST['known_hosts'] as $k => $v) {
+		if (isset($_POST['known_hosts'][$k]['allowusersregister'])) {
+			$_POST['known_hosts'][$k]['allowusersregister'] = 'y';
 		}
-		simple_set_value('known_hosts');
+		if (empty($_POST['known_hosts'][$k]['name'])
+			&& empty($_POST['known_hosts'][$k]['key'])
+			&& empty($_POST['known_hosts'][$k]['ip'])
+			&& empty($_POST['known_hosts'][$k]['contact']))
+		{
+			unset($_POST['known_hosts'][$k]);
+		}
 	}
+	simple_set_value('known_hosts');
 }

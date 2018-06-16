@@ -18,41 +18,41 @@ $find = '';
 $offset = 0;
 $sort_mode = 'created_desc';
 
-if ($access->ticketMatch()) {
-	if (isset($_REQUEST['action']) and isset($_REQUEST['attId'])) {
-		$item = $wikilib->get_item_attachment($_REQUEST['attId']);
-		if ($_REQUEST['action'] == 'move2db') {
-			$wikilib->file_to_db($prefs['w_use_dir'] . $item['path'], $_REQUEST['attId']);
-		} elseif ($_REQUEST['action'] == 'move2file') {
-			$wikilib->db_to_file($item['filename'], $_REQUEST['attId']);
-		}
+//*** begin state-changing actions
+if (isset($_POST['action']) and isset($_POST['attId'])) {
+	$item = $wikilib->get_item_attachment($_POST['attId']);
+	if ($_POST['action'] == 'move2db' && $access->checkCsrf()) {
+		$wikilib->file_to_db($prefs['w_use_dir'] . $item['path'], $_POST['attId']);
+	} elseif ($_POST['action'] == 'move2file' && $access->checkCsrf()) {
+		$wikilib->db_to_file($item['filename'], $_POST['attId']);
 	}
+}
 
-	if (isset($_REQUEST['all2db'])) {
-		$attachements = $wikilib->list_all_attachements();
-		for ($i = 0; $i < $attachements['cant']; $i++) {
-			if ($attachements['data'][$i]['path']) {
-				$wikilib->file_to_db($prefs['w_use_dir'] . $attachements['data'][$i]['path'], $attachements['data'][$i]['attId']);
-			}
-		}
-	} elseif (isset($_REQUEST['all2file'])) {
-		$attachements = $wikilib->list_all_attachements();
-		for ($i = 0; $i < $attachements['cant']; $i++) {
-			if (! $attachements['data'][$i]['path']) {
-				$wikilib->db_to_file($attachements['data'][$i]['filename'], $attachements['data'][$i]['attId']);
-			}
+if (isset($_POST['all2db']) && $access->checkCsrf()) {
+	$attachements = $wikilib->list_all_attachements();
+	for ($i = 0; $i < $attachements['cant']; $i++) {
+		if ($attachements['data'][$i]['path']) {
+			$wikilib->file_to_db($prefs['w_use_dir'] . $attachements['data'][$i]['path'], $attachements['data'][$i]['attId']);
 		}
 	}
+} elseif (isset($_POST['all2file']) && $access->checkCsrf()) {
+	$attachements = $wikilib->list_all_attachements();
+	for ($i = 0; $i < $attachements['cant']; $i++) {
+		if (! $attachements['data'][$i]['path']) {
+			$wikilib->db_to_file($attachements['data'][$i]['filename'], $attachements['data'][$i]['attId']);
+		}
+	}
+}
+//*** end state-changing actions
 
-	if (isset($_REQUEST['find'])) {
-		$find = $_REQUEST['find'];
-	}
-	if (isset($_REQUEST['offset'])) {
-		$offset = $_REQUEST['offset'];
-	}
-	if (isset($_REQUEST['sort_mode'])) {
-		$sort_mode = $_REQUEST['sort_mode'];
-	}
+if (isset($_REQUEST['find'])) {
+	$find = $_REQUEST['find'];
+}
+if (isset($_REQUEST['offset'])) {
+	$offset = $_REQUEST['offset'];
+}
+if (isset($_REQUEST['sort_mode'])) {
+	$sort_mode = $_REQUEST['sort_mode'];
 }
 
 $smarty->assign_by_ref('find', $find);

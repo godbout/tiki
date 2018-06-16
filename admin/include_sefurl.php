@@ -10,8 +10,9 @@ if (basename($_SERVER['SCRIPT_NAME']) === basename(__FILE__)) {
 }
 require_once('tiki-setup.php');
 
-if (isset($_REQUEST['feature_sefurl_paths']) && $access->ticketMatch()) {
-	$_REQUEST['feature_sefurl_paths'] = preg_split('/ *[,\/] */', $_REQUEST['feature_sefurl_paths']);
+if (isset($_POST['feature_sefurl_paths']) && $access->checkCsrf()) {
+	//TODO Don't change $_POST values directly
+	$_POST['feature_sefurl_paths'] = preg_split('/ *[,\/] */', $_POST['feature_sefurl_paths']);
 	simple_set_value('feature_sefurl_paths');
 }
 

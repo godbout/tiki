@@ -11,7 +11,8 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 	exit;
 }
 
-// The plugins tab of tiki-admin.php?page=textarea tends to take a lot of memory, so this will avoid errors (will only work on hosts that accept ini_set of memory_limit)
+// The plugins tab of tiki-admin.php?page=textarea tends to take a lot of memory, so this will avoid errors
+// (will only work on hosts that accept ini_set of memory_limit)
 @ini_set('memory_limit', -1);
 
 $parserlib = TikiLib::lib('parser');
@@ -25,8 +26,10 @@ if ($prefs['unified_search_textarea_admin'] === 'n' || $prefs['javascript_enable
 		}
 	}
 	$smarty->assign('plugins', $plugins);
-}if (isset($_REQUEST['textareasetup']) && (getCookie('admin_textarea', 'tabs') != '#contentadmin_textarea-3')
-	&& $access->ticketMatch()) {
+}
+// TODO don't see where textareasetup is used anywhere
+if (isset($_REQUEST['textareasetup']) && (getCookie('admin_textarea', 'tabs') != '#contentadmin_textarea-3')
+	&& $access->checkCsrf()) {
 	// tab=3 is plugins alias tab (TODO improve)
 	foreach (glob('temp/cache/wikiplugin_*') as $file) {
 		unlink($file);
@@ -39,7 +42,7 @@ $cookietab = 1;
 global $tikilib;
 $pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
 $pluginsReal = $parserlib->plugin_get_list(true, false);
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $access->ticketMatch()) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$cachelib = TikiLib::lib('cache');
 	$languages = TikiLib::lib('language')->list_languages();
 
@@ -47,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $access->ticketMatch()) {
 		$cachetag = 'plugindesc' . $tlang['value'] . '_js=' . $prefs['javascript_enabled'];
 		$cachelib->invalidate($cachetag);
 	}
-	if (isset($_POST['enable'])) {
+	if (isset($_POST['enable']) && $access->checkCsrf()) {
 		if (! is_array($_POST['enabled'])) {
 			$_POST['enabled'] = [];
 		}
@@ -58,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $access->ticketMatch()) {
 			unlink($file);
 		}
 	}
-	if (isset($_POST['delete'])) {
+	if (isset($_POST['delete']) && $access->checkCsrf()) {
 		if (! is_array($_POST['enabled'])) {
 			$_POST['enabled'] = [];
 		}
@@ -67,8 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $access->ticketMatch()) {
 		}
 		$pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
 	}
-	if (! empty($_REQUEST['plugin_alias']) && ! in_array($_POST['plugin_alias'], $pluginsReal)
-			&& (getCookie('admin_textarea', 'tabs') == '#contentadmin_textarea-3')
+	if (!empty($_REQUEST['plugin_alias'] && $access->checkCsrf())
+		&& !in_array($_POST['plugin_alias'], $pluginsReal)
+		&& (getCookie('admin_textarea', 'tabs') == '#contentadmin_textarea-3')
 	) {
 		// tab=3 is plugins alias tab (TODO improve)
 		$info = [
@@ -173,7 +177,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $access->ticketMatch()) {
 	}
 }
 
-if (isset($_REQUEST['plugin_alias']) && $pluginInfo = WikiPlugin_Negotiator_Wiki_Alias::info($_REQUEST['plugin_alias'])) {
+if (isset($_REQUEST['plugin_alias'])
+	&& $pluginInfo = WikiPlugin_Negotiator_Wiki_Alias::info($_REQUEST['plugin_alias'])
+) {
 	// Add an extra empty parameter to create new ones
 	$pluginInfo['description']['params']['__NEW__'] = [
 		'name' => '',
@@ -211,7 +217,7 @@ if (isset($_REQUEST['plugin_alias']) && $pluginInfo = WikiPlugin_Negotiator_Wiki
 $smarty->assign('plugins_alias', $pluginsAlias);
 $smarty->assign('plugins_real', $pluginsReal);
 
-if (isset($_REQUEST['disabled']) && $tiki_p_admin == 'y' && $access->ticketMatch()) {
+if (isset($_REQUEST['disabled']) && $tiki_p_admin == 'y') {
 	$offset = 0;
 	$disabled = [];
 	foreach ($parserlib->plugin_get_list() as $name) {

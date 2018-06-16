@@ -62,7 +62,7 @@
 				{$kcwText}
 				<div class="adminoptionbox">
 					{tr}You can manually edit these values in lib/videogals/standardTikiKcw.xml{/tr}<br>
-					{tr}Recreate KCW "uiConf"{/tr} {button _class="timeout" _text="{tr}Update{/tr}" kcw_rebuild=1 _keepall='y' _auto_args='*'}
+					{tr}Recreate KCW "uiConf"{/tr} {button _onclick="checkTimeout()" _text="{tr}Update{/tr}" kcw_rebuild=1 _keepall='y' _auto_args='*'}
 				</div>
 			</fieldset>
 

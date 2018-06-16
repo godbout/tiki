@@ -9,7 +9,6 @@
 require_once('tiki-setup.php');
 
 $access = TikiLib::lib('access');
-$access->checkAuthenticity();
 $access->check_feature('feature_sefurl_routes');
 $access->check_permission(['tiki_p_admin_routes']);
 
@@ -19,7 +18,7 @@ $cookietab = 1;
 $routeLib = TikiLib::lib('custom_route');
 $controller = new Tiki\CustomRoute\Controller();
 if ((isset($_POST['new_route']) || (isset($_POST['editroute']) && isset($_POST['route'])) && empty($_POST['load_options']))
-	&& $access->ticketMatch()) {
+	&& $access->checkCsrf()) {
 	// If route saved, it redirects to the routes page, cleaning the add/edit route form.
 	$route = $controller->saveRequest($_POST);
 	$cookietab = 2;

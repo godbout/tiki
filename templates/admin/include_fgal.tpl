@@ -33,11 +33,25 @@
 			<div class="adminoptionboxchild fgal_use_db_childcontainer n">
 				{preference name='fgal_use_dir'}
 			</div>
-			<div class="col-sm-8 col-sm-offset-4 mb-4">
-				<button role="button" type="submit" class="btn btn-primary timeout" name="move" value="to_fs">
+			<div class="col-sm-8 col-sm-offset-4 margin-bottom-md">
+				<button
+					role="button"
+					type="submit"
+					class="btn btn-primary"
+					name="move"
+					value="to_fs"
+					onclick="checkTimeout()"
+				>
 					{tr}Move files from database to directory{/tr}
 				</button>
-				<button role="button" type="submit" class="btn btn-primary timeout" name="move" value="to_db">
+				<button
+					role="button"
+					type="submit"
+					class="btn btn-primary"
+					name="move"
+					value="to_db"
+					onclick="checkTimeout()"
+				>
 					{tr}Move files from directory to database{/tr}
 				</button>
 			</div>
@@ -78,7 +92,14 @@
 
 				{preference name='fgal_fix_mime_type'}
 				<div class="adminoptionboxchild" id="fgal_fix_mime_type_childcontainer">
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="updateMime" id="updateMime" value="{tr}Update mime of all non archived octet-stream files{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="updateMime"
+						id="updateMime"
+						value="{tr}Update mime of all non archived octet-stream files{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 
 				{preference name='fgal_clean_xml_always'}
@@ -241,7 +262,13 @@
 									<p>
 										{tr}Previous versions of Tiki may have assigned alternative mime-types to Microsoft Office files, such as "application/vnd.ms-word" and these need to be changed to be "application/msword" for the default file indexing to function properly.{/tr}
 									</p>
-									<input type="submit" class="btn btn-primary btn-sm" name="filegalfixvndmsfiles" value="{tr}Fix vnd.ms-* mime type files{/tr}"/>
+									<input
+										type="submit"
+										class="btn btn-primary btn-sm"
+										name="filegalfixvndmsfiles"
+										value="{tr}Fix vnd.ms-* mime type files{/tr}"
+										onclick="checkTimeout()"
+									/>
 								{/remarksbox}
 							</div>
 						{/if}
@@ -282,7 +309,13 @@
 				<div class="adminoptionbox">
 					<div class="adminoptionlabel">
 						<div align="center">
-							<input type="submit" class="btn btn-primary btn-sm timeout" name="filegalredosearch" value="{tr}Reindex all files for search{/tr}">
+							<input
+								type="submit"
+								class="btn btn-primary btn-sm"
+								name="filegalredosearch"
+								value="{tr}Reindex all files for search{/tr}"
+								onclick="checkTimeout()"
+							>
 						</div>
 					</div>
 				</div>

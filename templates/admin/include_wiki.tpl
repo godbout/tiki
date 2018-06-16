@@ -128,7 +128,7 @@
 			</div>
 			{preference name=feature_wiki_export}
 			<div class="adminoptionboxchild col-md-8 col-sm-offset-4" id="feature_wiki_export_childcontainer">
-				{button _class="timeout" href="tiki-export_wiki_pages.php" _text="{tr}Export Wiki Pages{/tr}"}
+				{button href="tiki-export_wiki_pages.php" _text="{tr}Export Wiki Pages{/tr}"}
 			</div>
 			{preference name=feature_wikiwords}
 			<div class="adminoptionboxchild" id="feature_wikiwords_childcontainer">
@@ -204,16 +204,16 @@
 						</div>
 						{if !empty($prefs.w_use_dir)}
 							{tr}If you change storage, it is better to move all the files for easy backup...{/tr}
-							{button _class="timeout" href="tiki-admin.php?page=wikiatt&all2db=1" _text="{tr}Change all to db{/tr}"}
-							{button _class="timeout" href="tiki-admin.php?page=wikiatt&all2file=1" _text="{tr}Change all to file{/tr}"}
+							{button href="tiki-admin.php?page=wikiatt&all2db=1" _text="{tr}Change all to db{/tr}" _onclick="confirmSimple(event, '{tr}Move all attachments to database?{/tr}', '{ticket mode=get}')"}
+							{button href="tiki-admin.php?page=wikiatt&all2file=1" _text="{tr}Change all to file{/tr}" _onclick="confirmSimple(event, '{tr}Move all attachments to file system?{/tr}', '{ticket mode=get}')"}
 						{/if}
 					</div>
 					{preference name=feature_wiki_pictures}
 					<div class="adminoptionboxchild" id="feature_wiki_pictures_childcontainer">
 						{preference name=feature_filegals_manager}
 						<div class="col-sm-offset-4 col-sm-8">
-							{button _class="timeout" href="tiki-admin.php?page=wiki&amp;rmvunusedpic=1" _text="{tr}Remove unused pictures{/tr}"}
-							{button _class="timeout" href="tiki-admin.php?page=wiki&amp;moveWikiUp=1" _text="{tr}Move images from wiki_up to the home file gallery{/tr}"}
+							{button href="tiki-admin.php?page=wiki&amp;rmvunusedpic=1" _text="{tr}Remove unused pictures{/tr}" _onclick="confirmSimple(event, '{tr}Remove unused pictures?{/tr}', '{ticket mode=get}')"}
+							{button href="tiki-admin.php?page=wiki&amp;moveWikiUp=1" _text="{tr}Move images from wiki_up to the home file gallery{/tr}" _onclick="confirmSimple(event, '{tr}Move images to home gallery?{/tr}', '{ticket mode=get}')"}
 							<span class="form-text">
 								{tr}If you use these buttons please make sure to have a backup of the database and the directory wiki_up{/tr}
 							</span>
@@ -358,8 +358,13 @@
 					Create database archives of wiki pages for restoring at a later date.<br>
 					<label for="tagname">{tr}Name for dump{/tr}</label>
 					<input maxlength="20" size="20" type="text" name="newtagname" id="newtagname">
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="createtag" value="{tr}Create Database Dump{/tr}"><br>
-
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="createtag"
+						value="{tr}Create Database Dump{/tr}"
+						onclick="checkTimeout()"
+					><br>
 					<label for="databasetag">{tr}Wiki database{/tr}</label>
 					<select name="tagname" {if $tags|@count eq '0'} disabled="disabled"{/if}>
 						{section name=sel loop=$tags}
@@ -368,8 +373,20 @@
 							<option value=''>{tr}None{/tr}</option>
 						{/section}
 					</select>
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="restoretag" value="{tr}Restore{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}>
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="removetag" value="{tr}Remove{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}>
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="restoretag"
+						value="{tr}Restore{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}
+						onclick="checkTimeout()"
+					>
+					<input
+						type="submit"
+						class="btn btn-default btn-sm"
+						name="removetag"
+						value="{tr}Remove{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}
+						onclick="checkTimeout()"
+					>
 					<h4>{tr}Dump files{/tr}</h4>
 					{tr}Dump files archive wiki pages for various usages such as off-line browsing or distribution on optical disks.{/tr}
 					<h5>{tr}Warnings{/tr}</h5>
@@ -379,14 +396,14 @@
 					</ul>
 					<br><br>
 
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="createdump" value="{tr}Create Dump File{/tr}">
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="downloaddump" value="{tr}Download Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="removedump" data-target="_blank" value="{tr}Remove Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
+					<input type="submit" class="btn btn-primary btn-sm" name="createdump" value="{tr}Create Dump File{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="downloaddump" value="{tr}Download Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
+					<input type="submit" class="btn btn-primary btn-sm" name="removedump" data-target="_blank" value="{tr}Remove Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
 				</div>
 			<br>
-			<h4><a class="timeout" href="tiki-search_replace.php">{tr}Mass search and replace{/tr}</a></h4>
+			<h4><a href="tiki-search_replace.php">{tr}Mass search and replace{/tr}</a></h4>
 
-			<h4><a class="timeout" href="tiki-report_direct_object_perms.php">{tr}Report wiki pages with direct object permissions{/tr}</a></h4>
+			<h4><a href="tiki-report_direct_object_perms.php">{tr}Report wiki pages with direct object permissions{/tr}</a></h4>
 		{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}

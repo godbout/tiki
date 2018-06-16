@@ -9,6 +9,7 @@
 		<form method="post" action="" class="form form-inline my-2 my-md-0" role="form" style="width: 180px;">
 			<div class="form=check">
 				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
+				{ticket}
 				<label for="preffilter-toggle-1"></label>
 			</div>
 
@@ -30,7 +31,12 @@
 							</li>
 						{/foreach}
 						<div class="text-center">
-							<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-primary btn-sm">
+							<input
+								type="submit"
+								value="{tr}Set as my default{/tr}"
+								class="btn btn-primary btn-sm"
+								onclick="checkTimeout()"
+							>
 						</div>
 						{if $prefs.connect_feature eq "y"}
 							{capture name=likeicon}{icon name="thumbs-up"}{/capture}
@@ -148,7 +154,13 @@
 				{/foreach}
 			</div>
 			<div class="card-footer text-center">
-				<input class="btn btn-primary" type="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input
+					class="btn btn-primary"
+					type="submit"
+					title="{tr}Apply Changes{/tr}"
+					value="{tr}Apply{/tr}"
+					onclick="checkTimeout()"
+				>
 			</div>
 			<input type="hidden" name="lm_criteria" value="{$lm_criteria|escape}">
 			{ticket}

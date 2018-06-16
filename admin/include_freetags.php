@@ -11,7 +11,7 @@ if (basename($_SERVER['SCRIPT_NAME']) === basename(__FILE__)) {
 
 require_once('tiki-setup.php');
 
-if (isset($_REQUEST["cleanup"]) && $access->ticketMatch()) {
+if (isset($_POST["cleanup"]) && $access->checkCsrf()) {
 	$freetaglib = TikiLib::lib('freetag');
 	$result = $freetaglib->cleanup_tags();
 	if ($result) {

@@ -43,7 +43,8 @@
 			{preference name=site_layout_per_object}
 			{preference name=theme_iconset}
 			{if $prefs.javascript_enabled eq 'n' or $prefs.feature_jquery eq 'n'}
-				<input type="submit" class="btn btn-primary btn-sm timeout" name="changestyle" value="{tr}Go{/tr}">
+				{* TODO I don't see where this is used in in admin/include_look.php *}
+				<input type="submit" class="btn btn-primary btn-sm" name="changestyle" value="{tr}Go{/tr}">
 			{/if}
 			<div class="adminoptionbox">
 				{if $prefs.feature_jquery_ui eq 'y'}

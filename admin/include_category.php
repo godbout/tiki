@@ -10,7 +10,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	header("location: index.php");
 	exit;
 }
-if (! empty($_REQUEST['assignWikiCategories']) && $prefs['category_defaults'] && $access->ticketMatch()) {
+if (! empty($_POST['assignWikiCategories']) && $prefs['category_defaults'] && $access->checkCsrf()) {
 	$categlib = TikiLib::lib('categ');
 	$maxRecords = 100;
 	// The outer loop attempts to limit memory usage by fetching pages gradually.

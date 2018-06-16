@@ -17,50 +17,50 @@ $find = '';
 $offset = 0;
 $sort_mode = 'created_desc';
 
-
-if ($access->ticketMatch()) {
-	if (isset($_REQUEST['trkset'])) {
-		$tikilib->set_preference('t_use_db', $_REQUEST['t_use_db']);
-		if (substr($_REQUEST['t_use_dir'], -1) != '\\' && substr($_REQUEST['t_use_dir'], -1) != '/' && $_REQUEST['t_use_dir'] != '') {
-			$_REQUEST['t_use_dir'] .= '/';
-		}
-		$tikilib->set_preference('t_use_dir', $_REQUEST['t_use_dir']);
+//*** begin state-changing actions
+// TODO avoid altering $_POST variable directly
+if (isset($_POST['trkset']) && $access->checkCsrf()) {
+	$tikilib->set_preference('t_use_db', $_POST['t_use_db']);
+	if (substr($_POST['t_use_dir'], -1) != '\\' && substr($_POST['t_use_dir'], -1) != '/' && $_POST['t_use_dir'] != '') {
+		$_POST['t_use_dir'] .= '/';
 	}
+	$tikilib->set_preference('t_use_dir', $_POST['t_use_dir']);
+}
 
-	if (isset($_REQUEST['action']) and isset($_REQUEST['attId'])) {
-		$item = $trklib->get_item_attachment($_REQUEST['attId']);
-		if ($_REQUEST['action'] == 'move2db') {
-			$trklib->file_to_db($prefs['t_use_dir'] . $item['path'], $_REQUEST['attId']);
-		} elseif ($_REQUEST['action'] == 'move2file') {
-			$trklib->db_to_file($prefs['t_use_dir'] . md5($item['filename']), $_REQUEST['attId']);
-		}
+if (isset($_POST['action']) && isset($_POST['attId']) && $access->checkCsrf()) {
+	$item = $trklib->get_item_attachment($_POST['attId']);
+	if ($_POST['action'] == 'move2db') {
+		$trklib->file_to_db($prefs['t_use_dir'] . $item['path'], $_POST['attId']);
+	} elseif ($_POST['action'] == 'move2file') {
+		$trklib->db_to_file($prefs['t_use_dir'] . md5($item['filename']), $_POST['attId']);
 	}
+}
 
-	if (isset($_REQUEST['all2db'])) {
-		$attachements = $trklib->list_all_attachements();
-		for ($i = 0; $i < $attachements['cant']; $i++) {
-			if ($attachements['data'][$i]['path']) {
-				$trklib->file_to_db($prefs['t_use_dir'] . $attachements['data'][$i]['path'], $attachements['data'][$i]['attId']);
-			}
-		}
-	} elseif (isset($_REQUEST['all2file'])) {
-		$attachements = $trklib->list_all_attachements();
-		for ($i = 0; $i < $attachements['cant']; $i++) {
-			if (! $attachements['data'][$i]['path']) {
-				$trklib->db_to_file($prefs['t_use_dir'] . md5($attachements['data'][$i]['filename']), $attachements['data'][$i]['attId']);
-			}
+if (isset($_POST['all2db']) && $access->checkCsrf()) {
+	$attachements = $trklib->list_all_attachements();
+	for ($i = 0; $i < $attachements['cant']; $i++) {
+		if ($attachements['data'][$i]['path']) {
+			$trklib->file_to_db($prefs['t_use_dir'] . $attachements['data'][$i]['path'], $attachements['data'][$i]['attId']);
 		}
 	}
+} elseif (isset($_POST['all2file']) && $access->checkCsrf()) {
+	$attachements = $trklib->list_all_attachements();
+	for ($i = 0; $i < $attachements['cant']; $i++) {
+		if (! $attachements['data'][$i]['path']) {
+			$trklib->db_to_file($prefs['t_use_dir'] . md5($attachements['data'][$i]['filename']), $attachements['data'][$i]['attId']);
+		}
+	}
+}
+//*** end state-changing actions
 
-	if (! empty($_REQUEST['find'])) {
-		$find = $_REQUEST['find'];
-	}
-	if (! empty($_REQUEST['offset'])) {
-		$offset = $_REQUEST['offset'];
-	}
-	if (! empty($_REQUEST['sort_mode'])) {
-		$sort_mode = $_REQUEST['sort_mode'];
-	}
+if (! empty($_REQUEST['find'])) {
+	$find = $_REQUEST['find'];
+}
+if (! empty($_REQUEST['offset'])) {
+	$offset = $_REQUEST['offset'];
+}
+if (! empty($_REQUEST['sort_mode'])) {
+	$sort_mode = $_REQUEST['sort_mode'];
 }
 
 $smarty->assign_by_ref('find', $find);

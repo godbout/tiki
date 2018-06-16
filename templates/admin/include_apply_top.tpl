@@ -1,4 +1,17 @@
 {* $Id$ *}
+{if empty($title)}
+	{$title=":{tr}Apply changes{/tr}"}
+{/if}
+{if empty($value)}
+	{$value="{tr}Apply{/tr}"}
+{/if}
 <div class="pull-right">
-	<input type="submit" class="btn btn-primary tips timeout" title=":{tr}Apply changes{/tr}" value="{tr}Apply{/tr}">
+	<input
+		type="submit"
+		{if !empty($form)}form="{$form|escape:'attr'}"{/if}
+		class="btn btn-primary tips"
+		title="{$title|escape:'attr'}"
+		value="{$value|escape:'attr'}"
+		onclick="checkTimeout()"
+	>
 </div>

@@ -35,13 +35,12 @@ if ($_REQUEST['menuId']) {
 }
 $smarty->assign_by_ref('info', $info);
 
-if (isset($_REQUEST['remove'])) {
-	$access->check_authenticity(tra('Are you sure you want to delete menu id:') . ' ' . $_REQUEST['remove']);
+if (isset($_REQUEST['remove']) && $access->checkCsrfForm(tr('Delete menu ID %0?', $_REQUEST['remove'])))
+{
 	$menulib->remove_menu($_REQUEST['remove']);
 }
 
-if (isset($_REQUEST['save'])) {
-	$access->check_ticket();
+if (isset($_REQUEST['save']) && $access->checkCsrf()) {
 	if (! isset($_REQUEST['icon'])) {
 		$_REQUEST['icon'] = null;
 	}
@@ -63,8 +62,9 @@ if (isset($_REQUEST['save'])) {
 	);
 }
 
-if (isset($_REQUEST['reset'])) {
-	$access->check_authenticity(tra('Are you sure you want to reset the Application Menu to the current system default?'));
+if (isset($_REQUEST['reset'])
+	&& $access->checkCsrfForm(tra('Reset the Application Menu to the current system default?')))
+{
 	$menulib->reset_app_menu();
 }
 
@@ -97,8 +97,6 @@ foreach ($channels['data'] as $i => $channel) {
 }
 $smarty->assign_by_ref('cant', $channels['cant']);
 $smarty->assign_by_ref('channels', $channels['data']);
-
-ask_ticket('admin-menus');
 
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');

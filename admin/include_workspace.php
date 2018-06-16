@@ -15,7 +15,7 @@ if ($prefs['feature_areas'] === 'y') {
 	$areaslib = TikiLib::lib('areas');
 
 	// updating table tiki_areas
-	if (isset($_REQUEST['update_areas']) && $access->ticketMatch()) {
+	if (isset($_POST['update_areas']) && $access->checkCsrf()) {
 		$pass = $areaslib->update_areas();
 		if ($pass !== true) {
 			Feedback::error($pass . ' ' . tra('No update was made.'));

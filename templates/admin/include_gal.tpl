@@ -14,7 +14,15 @@
 			<br>
 			<div class="form-group col-lg-12 clearfix">
 				<div class="pull-right">
-					<input type="submit" class="btn btn-primary tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply changes{/tr}" value="{tr}Apply{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary tips"
+						form="galfeatures"
+						name="galfeatures"
+						title=":{tr}Apply changes{/tr}"
+						value="{tr}Apply{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</div>
 			<fieldset>
@@ -75,7 +83,15 @@
 			</fieldset>
 			<br>
 			<div class="form-group col-lg-12 text-center">
-				<input type="submit" class="btn btn-primary tips timeout" form="galfeatures" name="galfeatures" title=":{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input
+					type="submit"
+					class="btn btn-primary tips"
+					form="galfeatures"
+					name="galfeatures"
+					title=":{tr}Apply Changes{/tr}"
+					value="{tr}Apply{/tr}"
+					onclick="checkTimeout()"
+				>
 			</div>
 		</form>
 	{/tab}
@@ -91,7 +107,14 @@
 						{tr}Remove unused images in the system gallery{/tr}
 					</label>
 					<div class="col-sm-8">
-						<button type="submit" class="btn btn-primary btn-sm timeout" form="galremove" name="rmvorphimg" value="1">
+						<button
+							type="submit"
+							class="btn btn-primary btn-sm"
+							form="galremove"
+							name="rmvorphimg"
+							value="1"
+							onclick="confirmSimple(event, '{tr}Remove orphan images?{/tr}')"
+						>
 							{tr}Remove{/tr}
 						</button>
 						<span class="form-text">
@@ -124,7 +147,14 @@
 								<option value="{$galleries[ix].galleryId|escape}">{$galleries[ix].name|truncate:20:"...":true}</option>
 							{/section}
 						</select><br>
-						<button type="submit" class="btn btn-primary btn-sm timeout" form="galmove" name="mvimg" value="{$value}">
+						<button
+							type="submit"
+							class="btn btn-primary btn-sm"
+							form="galmove"
+							name="mvimg"
+							value="{$value}"
+							onclick="checkTimeout()"
+						>
 							{tr}Move{/tr}
 						</button>
 					</div>

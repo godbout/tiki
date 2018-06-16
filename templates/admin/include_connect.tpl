@@ -69,10 +69,10 @@
 				<div class="adminoptionboxchild" id="connect_feature_childcontainer">
 					<div class="form-group row">
 						<div class="col-sm-offset-4 col-sm-8">
-							{button _script="#" class="btn btn-primary timeout" _text="{tr}Send Info{/tr}" _title="{tr}Send the data{/tr}" _id="connect_send_btn"}
-							{button _script="#" class="btn btn-primary timeout" _text="{tr}Preview info{/tr}" _title="{tr}See what is going to be sent{/tr}" _id="connect_list_btn"}
+							{button _script="#" class="btn btn-primary" _text="{tr}Send Info{/tr}" _title="{tr}Send the data{/tr}" _id="connect_send_btn" _onclick="checkTimeout()"}
+							{button _script="#" class="btn btn-primary" _text="{tr}Preview info{/tr}" _title="{tr}See what is going to be sent{/tr}" _id="connect_list_btn"}
 							{if empty($prefs.connect_site_title)}
-								{button _text="{tr}Fill form{/tr}" class="btn btn-primary timeout" _title="{tr}Fill this form in based on other preferences{/tr}" _id="connect_defaults_btn" _script="#"}
+								{button _text="{tr}Fill form{/tr}" class="btn btn-primary" _title="{tr}Fill this form in based on other preferences{/tr}" _id="connect_defaults_btn" _script="#"}
 							{/if}
 						</div>
 					</div>
@@ -117,7 +117,7 @@
 			<form class="admin" name="cserver_form" action="tiki-admin.php?page=connect" method="post">
 				{ticket}
 				<input name="cserver_search" type="text" value="{$cserver_search_text}">
-				<input name="cserver" type="submit" class="btn btn-primary timeout" value="{tr}Search{/tr}">
+				<input name="cserver" type="submit" class="btn btn-primary" value="{tr}Search{/tr}">
 				{button cserver="rebuild" _auto_args="cserver,page" _text="{tr}Rebuild Index{/tr}" _title="{tr}Rebuild received connections index{/tr}"}
 				{if !empty($connect_stats)}
 					<span>{tr _0=$connect_stats.received _1=$connect_stats.guids}<strong>Server stats:</strong> %0 reports received from %1 Tikis{/tr}</span>

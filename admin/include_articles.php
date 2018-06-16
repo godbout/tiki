@@ -11,7 +11,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-if (isset($_REQUEST['import']) && $access->ticketMatch()) {
+if (isset($_POST['import']) && $access->checkCsrf()) {
 	$artlib = TikiLib::lib('art');
 	$fname = $_FILES['csvlist']['tmp_name'];
 	$msgs = [];

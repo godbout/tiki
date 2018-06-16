@@ -3,7 +3,7 @@
 	<form action="tiki-admin.php?page=wikiatt" method="post">
 		{ticket}
 		<input type="text" name="find" value="{$find|escape}">
-		<input type="submit" class="btn btn-primary btn-sm timeout" name="action" value="{tr}Find{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm" name="action" value="{tr}Find{/tr}">
 	</form>
 
 
@@ -22,19 +22,26 @@
 			</tr>
 
 			{section name=x loop=$attachements}
+				{if $attachements[x].path}
+					{$current = 'file'}{$move = 'move2db'}{$confirm = "{tr}Move attachment to database?{/tr}"}
+					{$tip = "{tr}Move to database{/tr}"}
+				{else}
+					{$current = 'db'}{$move = 'move2file'}{$confirm = "{tr}Move attachment to file system?{/tr}"}
+					{$tip = "{tr}Move to file system{/tr}"}
+				{/if}
 				<tr class={cycle}>
 					<td>{$attachements[x].user}</td>
-					<td><a class-"timeout" href="tiki-index.php?page={$attachements[x].page}">{$attachements[x].page}</a></td>
+					<td><a href="tiki-index.php?page={$attachements[x].page}">{$attachements[x].page}</a></td>
 					<td>
-						<a class-"timeout" href="tiki-download_wiki_attachment.php?attId={$attachements[x].attId}">{$attachements[x].filename}</a>
+						<a href="tiki-download_wiki_attachment.php?attId={$attachements[x].attId}">{$attachements[x].filename}</a>
 					</td>
 					<td>{$attachements[x].filesize|kbsize}</td>
 					<td>{$attachements[x].filetype}</td>
-					<td>{if $attachements[x].path}file{else}db{/if}</td>
+					<td>{$current}</td>
 					<td>{$attachements[x].created|tiki_short_date}</td>
 					<td>{$attachements[x].hits}</td>
 					<td>
-						<a class-"timeout" href="tiki-admin.php?page=wikiatt&amp;attId={$attachements[x].attId}&amp;action={if $attachements[x].path}move2db{else}move2file{/if}">{tr}Change{/tr}</a>
+						<a href="tiki-admin.php?page=wikiatt&amp;attId={$attachements[x].attId}&amp;action={$move}" onclick="confirmSimple(event, '{$confirm}', '{ticket mode=get}')" class="tips" title=":{$tip}">{icon name=move}</a>
 					</td>
 				</tr>
 			{sectionelse}
@@ -51,14 +58,26 @@
 				<form action="tiki-admin.php?page=wikiatt" method="post">
 					{ticket}
 					<input type="hidden" name="all2db" value="1">
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="action" value="{tr}Change all to db{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="action"
+						value="{tr}Change all to db{/tr}"
+						onclick="checkTimeout()"
+					>
 				</form>
 			</td>
 			<td>
 				<form action="tiki-admin.php?page=wikiatt" method="post">
 					{ticket}
 					<input type="hidden" name="all2file" value="1">
-					<input type="submit" class="btn btn-primary btn-sm timeout" name="action" value="{tr}Change all to file{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="action"
+						value="{tr}Change all to file{/tr}"
+						onclick="checkTimeout()"
+					>
 				</form>
 			</td>
 		</tr>

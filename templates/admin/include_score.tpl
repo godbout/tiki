@@ -77,7 +77,7 @@
 						</td>
 						<td class="text-right">
 							{if $hide_advanced}<a class="advanced" href="#">{icon name='ellipsis-h'}</a>{/if}
-							<a class="delete-row timeout" href="#">{icon name='delete'}</a>
+							<a class="delete-row" href="#">{icon name='delete'}</a>
 						</td>
 					</tr>
 					<tr class="advanced-row {if $hide_advanced eq 1}hide{/if}">
@@ -113,7 +113,7 @@
 					{/foreach}
 				</select>
 			</div>
-			<a id="addEventBtn" href="#" class="btn btn-secondary timeout">Add a Scoring Event</a>
+			<a id="addEventBtn" href="#" class="btn btn-secondary">Add a Scoring Event</a>
 		</div>
 	</fieldset>
 
@@ -125,8 +125,8 @@ $('[data-toggle="popover"]').popover();
 
 $('#addEventBtn').click(function(ev) {
 	ev.preventDefault();
-	var timeClicked = new Date();
-	if (timeClicked - now > 1000 * 60 * 15) {
+	var securityTimeout = checkTimeout();
+	if (! securityTimeout) {
 		return false;
 	}
 	var evType = $('#eventSelect').val();
@@ -156,8 +156,8 @@ $('#addEventBtn').click(function(ev) {
 });
 $('.delete-row').click(function(ev) {
 	ev.preventDefault();
-	var timeClicked = new Date();
-	if (timeClicked - now > 1000 * 60 * 15) {
+	var securityTimeout = checkTimeout();
+	if (! securityTimeout) {
 		return false;
 	}
 	var currentRow = $(this).closest('.condition-row');
@@ -170,8 +170,8 @@ $('.delete-row').click(function(ev) {
 });
 $('a.advanced').click(function(ev) {
 	ev.preventDefault();
-	var timeClicked = new Date();
-	if (timeClicked - now > 1000 * 60 * 15) {
+	var securityTimeout = checkTimeout();
+	if (! securityTimeout) {
 		return false;
 	}
 	$(this).closest('.condition-row').next('.advanced-row').removeClass('hide');
