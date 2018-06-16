@@ -43,7 +43,7 @@
 </form>
 
 
-<form class="form-inline" action="messu-mailbox.php" method="post" name="form_messu_mailbox">
+<form class="form-inline" action="messu-mailbox.php" method="post" name="form_messu_mailbox" id="form_messu_mailbox">
 	{ticket}
 	<input type="hidden" name="offset" value="{$offset|escape}">
 	<input type="hidden" name="find" value="{$find|escape}">
@@ -90,17 +90,34 @@
 	{if $items}
 		<div class="form-group row">
 			{tr}Perform action with checked:{/tr}
-
-		<input type="submit" class="btn btn-warning btn-sm timeout" name="delete" value="{tr}Delete{/tr}">
-		<input type="submit" class="btn btn-primary btn-sm timeout" name="archive" value="{tr}Archive{/tr}">
-		<input type="submit" class="btn btn-primary btn-sm timeout" name="download" value="{tr}Download{/tr}">
+		<input
+			type="submit"
+			class="btn btn-warning btn-sm"
+			name="delete"
+			value="{tr}Delete{/tr}"{if $js}
+			onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"{/if}
+		>
+		<input
+			type="submit"
+			class="btn btn-primary btn-sm"
+			name="archive"
+			value="{tr}Archive{/tr}"
+			onclick="checkTimeout()"
+		>
+		<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">
 		<select name="action" class="form-control">
 			<option value="isRead_y">{tr}Mark as read{/tr}</option>
 			<option value="isRead_n">{tr}Mark as unread{/tr}</option>
 			<option value="isFlagged_y">{tr}Mark as flagged{/tr}</option>
 			<option value="isFlagged_n">{tr}Mark as unflagged{/tr}</option>
 		</select>
-		<input type="submit" class="btn btn-primary btn-sm timeout" name="mark" value="{tr}Mark{/tr}">
+		<input
+			type="submit"
+			class="btn btn-primary btn-sm"
+			name="mark"
+			value="{tr}Mark{/tr}"
+			onclick="checkTimeout()"
+		>
 		</div>
 	{/if}
 </form>

@@ -11,14 +11,16 @@
 $section = 'user_messages';
 $inputConfiguration = [[
 	'staticKeyFilters' => [
-		'delete'	=> 'alpha',
+		'delete'	=> 'digits',
 		'download'	=> 'alpha',
 		'filter'	=> 'alpha',
 		'find'		=> 'text',
-		'flags'		=> 'alnumdash',
+		'flag'		=> 'alnumdash',
+		'flagval'	=> 'alnumdash',
 		'offset'	=> 'digits',
 		'priority'	=> 'digits',
-		'sort_mode'	=> 'alnumdash'
+		'sort_mode'	=> 'alnumdash',
+		'type'		=> 'alpha'
 	],
 	'staticKeyFiltersForArrays' => [
 		'msg'		=> 'digits',
@@ -31,7 +33,6 @@ $messulib = TikiLib::lib('message');
 $access->check_user($user);
 $access->check_feature('feature_messages');
 $access->check_permission('tiki_p_messages');
-$access->checkAuthenticity();
 $maxRecords = $messulib->get_user_preference($user, 'maxRecords', 20);
 
 //set defaults
@@ -42,32 +43,43 @@ $flag = '';
 $flagval = '';
 $priority = '';
 
-if ($access->ticketMatch()) {
-	// Delete messages if the delete button was pressed
-	if (isset($_POST["delete"]) && isset($_REQUEST["msg"])) {
-		foreach (array_keys($_REQUEST["msg"]) as $msg) {
-			$messulib->delete_message($user, $msg, 'archive');
+// Delete messages if the delete button was pressed
+if (isset($_POST["delete"])) {
+	if (isset($_POST["msg"]) && $access->checkCsrfForm(tra('Delete selected messages?'))) {
+		$i = 0;
+		foreach (array_keys($_POST["msg"]) as $msg) {
+			$result = $messulib->delete_message($user, $msg, 'archive');
+			$i = $i + $result->numRows();
 		}
-	}
-	// Download messages if the download button was pressed
-	if (isset($_POST["download"])) {
-		// if message ids are handed over, use them:
-		if (isset($_REQUEST["msg"])) {
-			foreach (array_keys($_REQUEST["msg"]) as $msg) {
-				$tmp = $messulib->get_message($user, $msg, 'archive');
-				$items[] = $tmp;
-			}
+		if ($i) {
+			$msg = $i === 1 ? tr('%0 archived message was deleted', $i) : tr('%0 archived messages were deleted', $i);
+			Feedback::success($msg);
 		} else {
-			$items = $messulib->get_messages($user, 'archive', '', '', '');
+			Feedback::error(tra('No messages were deleted'));
 		}
-		$smarty->assign_by_ref('items', $items);
-		header("Content-Disposition: attachment; filename=tiki-msg-archive-" . time("U") . ".txt ");
-		$smarty->display('messu-download.tpl', null, null, null, 'application/download');
-		die;
+	} elseif (!isset($_POST["msg"])) {
+		Feedback::error(tra('No messages were selected to delete'));
 	}
 }
 
-if (isset($_GET['filter'])) {
+// Download messages if the download button was pressed
+if (isset($_REQUEST["download"])) {
+	// if message ids are handed over, use them:
+	if (isset($_REQUEST["msg"])) {
+		foreach (array_keys($_REQUEST["msg"]) as $msg) {
+			$tmp = $messulib->get_message($user, $msg, 'archive');
+			$items[] = $tmp;
+		}
+	} else {
+		$items = $messulib->get_messages($user, 'archive', '', '', '');
+	}
+	$smarty->assign_by_ref('items', $items);
+	header("Content-Disposition: attachment; filename=tiki-msg-archive-" . time() . ".txt ");
+	$smarty->display('messu-download.tpl', null, null, null, 'application/download');
+	die;
+}
+
+if (isset($_REQUEST['filter'])) {
 	if ($_REQUEST['flags'] != '') {
 		$parts = explode('_', $_REQUEST['flags']);
 		$flag = $parts[0];

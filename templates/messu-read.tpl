@@ -10,31 +10,47 @@
 		<div class="row">
 			<div class="col-xs-4 col-sm-2">
 				{if $prev}
-					<a class="btn btn-link" title="Previous Message" href="messu-read.php?offset={$offset}&amp;msgId={$prev}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fa fa-arrow-left" aria-hidden="true"></i>{/tr}</a>
+					<a class="btn btn-link tips" title=":{tr}Previous{/tr}" href="messu-read.php?offset={$offset}&amp;msgId={$prev}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:'url'}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
 				{else}
-					<a class="btn btn-link disabled" title="Next Message" href="messu-read.php?offset={$offset}&amp;msgId={$prev}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fa fa-arrow-left" aria-hidden="true"></i>{/tr}</a>
+					<a class="btn btn-link disabled" href="messu-read.php?offset={$offset}&amp;msgId={$prev}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:'url'}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
 				{/if}
 			</div>
 			<div class="col-xs-4 col-sm-2">
 				{if $next}
-					<a class="btn btn-link" href="messu-read.php?offset={$offset}&amp;msgId={$next}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fa fa-arrow-right" aria-hidden="true"></i>{/tr}</a>
+					<a class="btn btn-link tips" title=":{tr}Next{/tr}" href="messu-read.php?offset={$offset}&amp;msgId={$next}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:'url'}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 				{else}
-					<a class="btn btn-link disabled" href="messu-read.php?offset={$offset}&amp;msgId={$next}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fa fa-arrow-right" aria-hidden="true"></i>{/tr}</a>
+					<a class="btn btn-link disabled" href="messu-read.php?offset={$offset}&amp;msgId={$next}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:'url'}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
 				{/if}
 			</div>
 			<div class="col-xs-4 col-sm-2">
-				{if $msg.isFlagged eq 'y'}
-					<a class="btn btn-link timeout" href="messu-read.php?offset={$offset}&amp;action=isFlagged&amp;actionval=n&amp;msgId={$msgId}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}{ticket mode=get}">{tr}<i class="fa fa-flag" aria-hidden="true"></i>{/tr}</a>
-				{else}
-					<a class="btn btn-link timeout" href="messu-read.php?offset={$offset}&amp;action=isFlagged&amp;actionval=y&amp;msgId={$msgId}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}{ticket mode=get}">{tr}<i class="fa fa-flag-o" aria-hidden="true"></i>{/tr}</a>
-				{/if}
+				<form method="post" action="messu-read.php">
+					{ticket}
+					<input type="hidden" name="msgId" value="{$msgId|escape}">
+					<input type="hidden" name="offset" value="{$offset|escape}">
+					<input type="hidden" name="find" value="{$find|escape:'url'}">
+					<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
+					<input type="hidden" name="flag" value="{$flag|escape}">
+					<input type="hidden" name="priority" value="{$priority|escape}">
+					<input type="hidden" name="flagval" value="{$flagval|escape}">
+					<input type="hidden" name="action" value="isFlagged">
+					{if $msg.isFlagged eq 'y'}
+						<input type="hidden" name="actionval" value="n">
+						<button type="submit" class="btn btn-link" onclick="checkTimeout()">
+							<i class="fa fa-flag tips" aria-hidden="true" title="{tr}Flagged:Click to unflag{/tr}"></i>
+						</button>
+					{else}
+						<input type="hidden" name="actionval" value="y">
+						<button type="submit" class="btn btn-link" onclick="checkTimeout()">
+							<i class="fa fa-flag-o tips" aria-hidden="true" title="{tr}Not flagged:Click to flag{/tr}"></i>
+						</button>
+					{/if}
+				</form>
 			</div>
 		</div>
 	</div>
 	<div class="col-xs-8 col-sm-7" style="padding-top: 4px;">
 		<div class="col-xs-4 col-sm-3 col-sm-offset-3 col-lg-2 col-lg-offset-6">
 				<form method="post" action="messu-compose.php">
-					{ticket}
 					<input type="hidden" name="offset" value="{$offset|escape}">
 					<input type="hidden" name="msgId" value="{$msgId|escape}">
 					<input type="hidden" name="find" value="{$find|escape}">
@@ -46,12 +62,11 @@
 					<input type="hidden" name="subject" value="{tr}Re:{/tr} {$msg.subject|escape}">
 					<input type="hidden" name="body" value="{$msg.body|quoted:$quote_format:$msg.user_from|escape}">
 					<input type="hidden" name="replyto_hash" value="{$msg.hash}">
-					<input type="submit" class="btn btn-primary btn-sm pull-right timeout" name="reply" value="{tr}Reply{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm pull-right" name="reply" value="{tr}Reply{/tr}">
 				</form>
 		</div>
 		<div class="col-xs-4 col-sm-3 col-lg-2">
 				<form method="post" action="messu-compose.php">
-					{ticket}
 					<input type="hidden" name="offset" value="{$offset|escape}">
 					<input type="hidden" name="find" value="{$find|escape}">
 					<input type="hidden" name="msgId" value="{$msgId|escape}">
@@ -68,11 +83,11 @@
 					<input type="hidden" name="subject" value="{tr}Re:{/tr} {$msg.subject|escape}">
 					<input type="hidden" name="body" value="{$msg.body|quoted:$quote_format:$msg.user_from|escape}">
 					<input type="hidden" name="replyto_hash" value="{$msg.hash}">
-					<button type="submit" class="btn btn-primary btn-sm pull-right timeout" name="replyall" value="{tr}replyall{/tr}">Reply All</button>
+					<button type="submit" class="btn btn-primary btn-sm pull-right" name="replyall" value="{tr}replyall{/tr}">{tr}Reply All{/tr}</button>
 				</form>
 		</div>
 		<div class="col-xs-4 col-sm-3 col-lg-2">
-			<form method="post" action="messu-read.php">
+			<form id="messu-read-delete" method="post" action="messu-read.php">
 				{ticket}
 				<input type="hidden" name="offset" value="{$offset|escape}">
 				<input type="hidden" name="find" value="{$find|escape}">
@@ -88,20 +103,26 @@
 				{else}
 					<input type="hidden" name="msgId" value="">
 				{/if}
-				<input type="submit" class="btn btn-warning btn-sm pull-right timeout" name="delete" value="{tr}Delete{/tr}">
+				<input
+					type="submit"
+					class="btn btn-warning btn-sm pull-right"
+					name="delete"
+					value="{tr}Delete{/tr}"
+					onclick="confirmSimple(event, '{tr}Delete message?{/tr}')"
+				>
 			</form>
 		</div>
 	</div>
 </div>
 <div class="row">
 	<div class="col-xs-12">
-	<div class="messureadhead">
+	<div>
 		<table>
-			<tr><td style="font-weight:bold;">{tr}From:{/tr}</td><td>{$msg.user_from|username}</td></tr>
-			<tr><td style="font-weight:bold;">{tr}To:{/tr}</td><td>{$msg.user_to|escape}</td></tr>
-			<tr><td style="font-weight:bold;">{tr}Cc:{/tr}</td><td>{$msg.user_cc|escape}</td></tr>
-			<tr><td style="font-weight:bold;">{tr}Subject:{/tr}</td><td>{$msg.subject|escape}</td></tr>
-			<tr><td style="font-weight:bold;">{tr}Date:{/tr}</td><td>{$msg.date|tiki_short_datetime}</td></tr><!--date_format:"%a %b %Y [%H:%I]"-->
+			<tr><td style="font-weight:bold;float: right">{tr}From:{/tr}</td><td style="padding-left: 10px">{$msg.user_from|username}</td></tr>
+			<tr><td style="font-weight:bold;float: right">{tr}To:{/tr}</td><td style="padding-left: 10px">{$msg.user_to|escape}</td></tr>
+			<tr><td style="font-weight:bold;float: right">{tr}Cc:{/tr}</td><td style="padding-left: 10px">{$msg.user_cc|escape}</td></tr>
+			<tr><td style="font-weight:bold;float: right">{tr}Subject:{/tr}</td><td style="padding-left: 10px">{$msg.subject|escape}</td></tr>
+			<tr><td style="font-weight:bold;float: right">{tr}Date:{/tr}</td><td style="padding-left: 10px">{$msg.date|tiki_short_datetime}</td></tr><!--date_format:"%a %b %Y [%H:%I]"-->
 		</table>
 	</div>
 	</div>

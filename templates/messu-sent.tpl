@@ -43,7 +43,7 @@
 	<input type="submit" class="btn btn-primary btn-sm" name="filter" value="{tr}Filter{/tr}">
 </form>
 
-<form action="messu-sent.php" method="post" name="form_messu_sent">
+<form action="messu-sent.php" method="post" id="form_messu_sent">
 	{ticket}
 	<div class="form-group row">
 	<input type="hidden" name="offset" value="{$offset|escape}">
@@ -52,9 +52,21 @@
 	<input type="hidden" name="flag" value="{$flag|escape}">
 	<input type="hidden" name="flagval" value="{$flagval|escape}">
 	<input type="hidden" name="priority" value="{$priority|escape}">
-	<input type="submit" class="btn btn-primary btn-sm timeout" name="delete" value="{tr}Delete{/tr}">
-	<input type="submit" class="btn btn-primary btn-sm timeout" name="archive" value="{tr}Move to archive{/tr}">
-	<input type="submit" class="btn btn-primary btn-sm timeout" name="download" value="{tr}Download{/tr}">
+	<input
+		type="submit"
+		class="btn btn-primary btn-sm"
+		name="delete"
+		value="{tr}Delete{/tr}"
+		onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"
+	>
+	<input
+		type="submit"
+		class="btn btn-primary btn-sm"
+		name="archive"
+		value="{tr}Move to archive{/tr}"
+		onclick="checkTimeout()"
+	>
+	<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">
 	</div>
 {jq notonready=true}
 var CHECKBOX_LIST = [{{section name=user loop=$items}'msg[{$items[user].msgId}]'{if not $smarty.section.user.last},{/if}{/section}}];

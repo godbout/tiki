@@ -14,9 +14,8 @@ $messulib = TikiLib::lib('message');
 $access->check_user($user);
 $access->check_feature('feature_messages');
 $access->check_permission('tiki_p_messages');
-$access->checkAuthenticity();
 
-if (! isset($_REQUEST['msgId']) || $_REQUEST['msgId'] == 0) {
+if ((! isset($_REQUEST['msgId']) || $_REQUEST['msgId'] == 0) && empty($_POST['msgdel'])) {
 	$smarty->assign('unread', 0);
 	$smarty->assign('legend', tra("No more messages"));
 	$smarty->assign('mid', 'messu-read.tpl');
@@ -24,13 +23,19 @@ if (! isset($_REQUEST['msgId']) || $_REQUEST['msgId'] == 0) {
 	die;
 }
 
-if ($access->ticketMatch()) {
-	if (isset($_REQUEST['action'])) {
-		$messulib->flag_message($user, $_REQUEST['msgId'], $_REQUEST['action'], $_REQUEST['actionval']);
+
+if (isset($_POST['action']) && $access->checkCsrf()) {
+	$messulib->flag_message($user, $_POST['msgId'], $_POST['action'], $_POST['actionval']);
+}
+if (isset($_POST['msgdel']) && $access->checkCsrfForm(tra('Delete message?'))) {
+	$result = $messulib->delete_message($user, $_POST['msgdel']);
+	if ($result->numRows()) {
+		Feedback::success(tr('Message deleted'), 'session');
+	} else {
+		Feedback::error(tr('Message not deleted'), 'session');
 	}
-	if (isset($_REQUEST["delete"])) {
-		$messulib->delete_message($user, $_REQUEST['msgdel']);
-	}
+	header('location: messu-mailbox.php');
+	exit;
 }
 
 $smarty->assign('sort_mode', $_REQUEST['sort_mode']);
