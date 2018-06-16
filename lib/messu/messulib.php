@@ -309,7 +309,7 @@ class Messu extends TikiLib
 		}
 
 		$query = 'update `messu_' . $dbsource . "` set `$flag`=? where `user`=? and `msgId`=?";
-		$this->query($query, [$val, $user, (int)$msgId]);
+		return $this->query($query, [$val, $user, (int)$msgId]);
 	}
 
 	/**
@@ -344,7 +344,7 @@ class Messu extends TikiLib
 		}
 
 		$query = 'delete from `messu_' . $dbsource . '` where `user`=? and `msgId`=?';
-		$this->query($query, [$user, (int)$msgId]);
+		return $this->query($query, [$user, (int)$msgId]);
 	}
 
 	/**
@@ -364,7 +364,7 @@ class Messu extends TikiLib
 		$this->query($query, [$user, (int)$msgId]);
 
 		$query = 'delete from `messu_' . $dbsource . '` where `user`=? and `msgId`=?';
-		$this->query($query, [$user, (int)$msgId]);
+		return $this->query($query, [$user, (int)$msgId]);
 	}
 
 	/**
