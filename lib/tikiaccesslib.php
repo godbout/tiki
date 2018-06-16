@@ -25,7 +25,9 @@ class TikiAccessLib extends TikiLib
 	private $noRedirect = false;
 	private $noDisplayError = false;
 	//used in CSRF protection methods
-	private $check;
+	private $ticket;
+	private $ticketMatch;
+	private $originMatch;
 	private $base;
 	private $origin;
 	private $originSource;
@@ -280,109 +282,125 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * Return session lifetime in seconds
-	 * //TODO - make into a pref once implementation of checkAuthenticity() across Tiki is complete
+	 * Return default security timeout period in seconds.
+	 * Used in setting the global securityTimeout preference used to determine the expiry period for state-changing
+	 * forms and related CSRF ticket. Add the timeout class to the submit element of the form to subject a form to
+	 * the expiration period.
 	 * @return mixed
 	 */
-	public function getTimeout()
+	public function getDefaultTimeout()
 	{
 		global $prefs;
-		$timeSetting = $prefs['session_lifetime'] > 0 ? $prefs['session_lifetime'] * 60
+		$timeSetting = isset($prefs['session_lifetime']) && $prefs['session_lifetime'] > 0 ? $prefs['session_lifetime'] * 60
 			: ini_get('session.gc_maxlifetime');
-		return min(4 * 60 * 60, $timeSetting);		//4 hours max
+		return ! empty($timeSetting) ? min(4 * 60 * 60, $timeSetting) : 4 * 60 * 60;	//4 hours max
 	}
 
 	/**
-	 * ***** Note: Intention is to use this to replace the check_authenticity function below *******
+	 * CSRF protection - set the ticket
 	 *
-	 * Use to protect against Cross-Site Request Forgery when submitting a form. Designed to work in two passes:
+	 * Called by the smarty function {ticket}, which should be placed in all forms with actions that change the
+	 * database
+	 */
+	public function setTicket()
+	{
+		$this->ticket = TikiLib::lib('tiki')->generate_unique_sequence(32, true);
+		$_SESSION['tickets'][$this->ticket] = time();
+		Tikilib::lib('smarty')->assign('ticket', $this->ticket);
+	}
+
+	/**
+	 * CSRF protection - This method performs two checks: that the origin matches the tiki site and that the ticket
+	 * is valid (i.e., the ticket submitted in the form matches a ticket on the server that has not expired).
 	 *
-	 * - First it creates the token which is placed in the $_SESSION variable and assigned to the check property and
-	 *		should be placed as a hidden input in the form using other code. The form should also include a
-	 *		hidden input named 'daconfirm' with a value of y.
-	 * - Second, upon form submission, if $_REQUEST['daconfirm'] is set, the function compares the ticket value and age
-	 *		in the $_SESSION variable against the ticket value submitted with the form and the timing of the submission.
-	 * 		It also matches the base url to the requesting site url. The check property is set to true or false
-	 * 		depending on whether the checks passed or failed.
+	 * Typically called at the point of determining whether to perform a state-changing action that does not require
+	 * confirmation, for example:
+	 * if ($_POST['create'] && $access->checkCsrf()) {
+	 * 		//create item here
+	 * }
 	 *
-	 * Other code should be designed to stop the form action if the function returns false. A common way to use the
-	 * function is to set $access->checkAuthenticity() at the beginning of a file. Then only run the relevant form
-	 * actions based on the $_REQUEST variable if $access->ticketMatch() returns true.
+	 * Call after checking the $_POST variable otherwise other $_GET requests will throw errors.
+	 * The related submit element (usually in a smarty template) should use the checkTimeout() onclick function
 	 *
-	 * @param string $error			Used in csrfError() method
+	 * @param string $error 			Used in csrfError() method
+	 * @return bool
+	 * @throws Exception
 	 * @throws Services_Exception
 	 */
-	function checkAuthenticity($error = 'session')
+	public function checkCsrf($error = 'session')
 	{
-		//check ticket
-		$ticketMatch = $this->ticketCheck();
-		if ($this->check === true) {
-			//if ticket matches, check origin
-			if ($this->check === true) {
-				//if everything checks, assign ticket in case of redirects (e.g., control panels)
-				TikiLib::lib('smarty')->assign('ticket', $ticketMatch);
+		if ($this->isActionPost()) {
+			if ($this->csrfResult()) {
+				return true;
 			}
-		}
-		//one of the checks failed - send user feedback and log message
-		if ($this->check === false) {
-			$this->csrfError($error);
-		}
-	}
-
-	/**
-	 * Perform ticket check to ensure ticket in the $_REQUEST variable matches the one stored on the server and that
-	 * the ticket has not expired.
-	 *
-	 * @return bool|null
-	 */
-	private function ticketCheck()
-	{
-		//only check ticket and origin if $_REQUEST['daconfirm'] is set
-		if (! empty($_REQUEST['daconfirm'])) {
-			$ticket = ! empty($_REQUEST['ticket']) ? $_REQUEST['ticket'] : false;
-			//just in case url decoding is needed
-			if (strpos($ticket, '%') !== false) {
-				$ticket = urldecode($ticket);
-			}
-			//check that request ticket matches server ticket
-			if ($ticket && ! empty($_SESSION['tickets'][$ticket])) {
-				//check that ticket has not expired
-				$ticketTime = $_SESSION['tickets'][$ticket];
-				$maxTime = $this->getTimeout();
-				if ($ticketTime < time() && $ticketTime > (time() - $maxTime)) {
-					$this->check = true;
-					return $ticket;
-				} else {
-					//ticket is expired
-					$this->userMsg = ' ' . tra('Reloading the page may help.');
-					$this->logMsg = ' ' . tra('Ticket matches but is expired.');
-					$this->check = false;
-					return false;
-				}
+			$this->originCheck();
+			$this->ticketCheck();
+			if ($this->csrfResult()) {
+				return true;
 			} else {
-				//ticket doesn't match or is missing
-				$this->userMsg = ' ' . tra('Reloading the page may help.');
-				$this->logMsg = ' ' . tra('Ticket does not match or is missing.');
-				$this->check = false;
+				$this->csrfError($error);
 				return false;
 			}
-		//otherwise set ticket if daconfirm not set
-		} else {
-			//sets the ticket that should be placed in a form with the daconfirm hidden input with other code
-			$tikilib = TikiLib::lib('tiki');
-			$ticket = $tikilib->generate_unique_sequence(32, true);
-			$_SESSION['tickets'][$ticket] = time();
-			$smarty = TikiLib::lib('smarty');
-			$smarty->assign('ticket', $ticket);
-			$this->check = ['ticket' => $ticket];
-			return null;
+		} else{
+			$msg = ' ' . tra('CSRF check not performed.');
+			$this->logMsg = $msg;
+			$this->userMsg = $msg;
+			$this->csrfError($error);
+			return false;
 		}
 	}
 
 	/**
-	 * Perform origin check to ensure the requesting server matches this server
+	 * Similar to above but a confirmation form for the user to acknowledge the action is shown first. Once the
+	 * confirmation form is submitted then this function will perform the origin and ticket checks.
+	 * Used when a confirmation from the user is desired before performing the action. Typically, this is for
+	 * state-changing actions that cannot be undone (like delete).
 	 *
+	 * Also, any state-changing action that can be triggered from a link should be conditioned on this function so
+	 * that the action is only performed after the confirmation form is posted.
+	 *
+	 * The related submit element (usually in a smarty template) should use the confirmSimple() onclick function which
+	 * will generate the confirmation form in a popup if javascript is enabled. If javascript is not enabled, this
+	 * function will redirect to a confirmation page.
+	 *
+	 * @param string $confirmText
+	 * @param string $error
 	 * @return bool
+	 * @throws Exception
+	 * @throws Services_Exception
+	 */
+	public function checkCsrfForm($confirmText = '', $error = 'session')
+	{
+		if (empty($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y') {
+			if ($this->checkOrigin()) {
+				if (empty($confirmText)) {
+					$confirmText = tra('Confirm action');
+				}
+				// Display the confirmation in the main tiki.tpl template
+				$smarty = TikiLib::lib('smarty');
+				if (empty($smarty->getTemplateVars('confirmaction'))) {
+					$smarty->assign('confirmaction', $_SERVER['PHP_SELF']);
+				}
+				$smarty->assign('post', $_REQUEST);
+				$smarty->assign('print_page', 'n');
+				$smarty->assign('title', tra('Please confirm action'));
+				$smarty->assign('confirmation_text', $confirmText);
+				$smarty->assign('mid', 'confirm.tpl');
+				$smarty->display('tiki.tpl');
+				die();
+			} else {
+				$this->csrfError($error);
+				return false;
+			}
+		} else {
+			return $this->checkCsrf($error);
+		}
+	}
+
+	/**
+	 * CSRF protection - Perform origin check to ensure the requesting server matches this server
+	 *
+	 * @return void
 	 */
 	private function originCheck()
 	{
@@ -396,7 +414,7 @@ class TikiAccessLib extends TikiLib
 			//HTTP_ORIGIN is usually host only without trailing slash
 			$this->origin = $_SERVER['HTTP_ORIGIN'];
 			$this->originSource = 'HTTP_ORIGIN';
-			//then check HTTP_REFERER
+		//then check HTTP_REFERER
 		} elseif (! empty($_SERVER['HTTP_REFERER'])) {
 			//HTTP_REFERER is usually the full path (host + directory + file + query)
 			$this->origin = $_SERVER['HTTP_REFERER'];
@@ -413,23 +431,9 @@ class TikiAccessLib extends TikiLib
 		$originPort = isset($origin['port']) ? ':' . $origin['port'] : '';
 		$this->origin = $originHost . $originPort;
 		//perform compare
-		$this->check = $this->base === $this->origin;
-
-		return $this->check;
-	}
-
-	/**
-	 * Check http origin/referer and provide error feedback if it doesn't match the site domain
-	 * Differs from checkAuthenticity() in that only the origin/referer is checked, not a ticket
-	 *
-	 * @param string $error			Used in csrfError() method
-	 * @return bool
-	 * @throws Services_Exception
-	 */
-	public function checkOrigin($error = 'session')
-	{
-		$check = $this->originCheck();
-		if (! $check) {
+		$this->originMatch = $this->base === $this->origin;
+		//error message
+		if (! $this->originMatch()) {
 			if ($this->originSource === 'empty') {
 				$this->userMsg .= ' ' . tra('Required headers are missing.');
 				$this->logMsg .= ' ' . tr(
@@ -446,43 +450,94 @@ class TikiAccessLib extends TikiLib
 					$this->base
 				);
 			}
-			$this->csrfError($error);
 		}
-		return $check;
+	}
+
+	/**
+	 * CSRF protection - Perform ticket check to ensure ticket in the $_POST variable matches the one stored on the
+	 * server and that the ticket has not expired.
+	 */
+	private function ticketCheck()
+	{
+		$this->ticket = !empty($_POST['ticket']) ? $_POST['ticket'] : false;
+		//just in case url decoding is needed
+		if (strpos($this->ticket, '%') !== false) {
+			$this->ticket = urldecode($this->ticket);
+		}
+		//check that request ticket matches server ticket
+		if ($this->ticket && !empty($_SESSION['tickets'][$this->ticket])) {
+			//check that ticket has not expired
+			$ticketTime = $_SESSION['tickets'][$this->ticket];
+			global $prefs;
+			$maxTime = $prefs['securityTimeout'];
+			if ($ticketTime < time() && $ticketTime > (time() - $maxTime)) {
+				$this->ticketMatch = true;
+			} else {
+				//ticket is expired
+				$this->userMsg = ' ' . tra('Reloading the page may help.');
+				$this->logMsg = ' ' . tra('Ticket matches but is expired.');
+				$this->ticketMatch = false;
+			}
+			unset($_SESSION['tickets'][$this->ticket]);
+		} else {
+			//ticket doesn't match or is missing
+			$this->userMsg = ' ' . tra('Reloading the page may help.');
+			$this->logMsg = ' ' . tra('Ticket does not match or is missing.');
+			$this->ticketMatch = false;
+		}
+	}
+
+	/**
+	 * Check http origin/referer and provide error feedback if it doesn't match the site domain
+	 * Differs from checkCsrf() in that only the origin/referer is checked, not a ticket
+	 *
+	 * @param string $error Used in csrfError() method
+	 * @return bool
+	 * @throws Exception
+	 * @throws Services_Exception
+	 */
+	public function checkOrigin($error = 'session')
+	{
+		$this->originCheck();
+		if ($this->originMatch()) {
+			return true;
+		} else {
+			$this->csrfError($error);
+			return false;
+		}
 	}
 
 	/**
 	 * Generate tiki log entry and user feedback for CSRF errors
-	 *
-	 * @param string $error			Error type: none, services to throw Services_Exception, page to display error page,
-	 * 									session to use Feedback class
+	 * @param string $error
+	 * @throws Exception
 	 * @throws Services_Exception
 	 */
 	private function csrfError($error = 'session')
 	{
-		$this->userMsg = tra('Potential cross-site request forgery (CSRF) detected. Operation blocked.')
-			. $this->userMsg;
-		$this->logMsg = tr('Request to %0 failed CSRF check.', $_SERVER['SCRIPT_NAME'])
-			. $this->logMsg;
-		//log message
-		TikiLib::lib('logs')->add_log('CSRF', $this->logMsg);
-		//user feedback
-		switch ($error) {
-			case 'none':
-				break;
-			case 'services':
-				throw new Services_Exception($this->userMsg, 400);
-				break;
-			case 'page':
-				$smarty = TikiLib::lib('smarty');
-				$smarty->assign('msg', $this->userMsg);
-				$smarty->display('error.tpl');
-				die;
-				break;
-			case 'session':
-			default:
-				Feedback::error($this->userMsg, 'session');
-				break;
+		if ($error !== 'none') {
+			$this->userMsg = tra('Potential cross-site request forgery (CSRF) detected. Operation blocked.')
+				. $this->userMsg;
+			$this->logMsg = tr('Request to %0 failed CSRF check.', $_SERVER['SCRIPT_NAME'])
+				. $this->logMsg;
+			//log message
+			TikiLib::lib('logs')->add_log('CSRF', $this->logMsg);
+			//user feedback
+			switch ($error) {
+				case 'services':
+					throw new Services_Exception($this->userMsg, 400);
+					break;
+				case 'page':
+					$smarty = TikiLib::lib('smarty');
+					$smarty->assign('msg', $this->userMsg);
+					$smarty->display('error.tpl');
+					die;
+					break;
+				case 'session':
+				default:
+					Feedback::error($this->userMsg, 'session');
+					break;
+			}
 		}
 	}
 
@@ -491,9 +546,9 @@ class TikiAccessLib extends TikiLib
 	 *
 	 * @return bool
 	 */
-	function ticketSet()
+	public function ticketSet()
 	{
-		return ! empty($this->check['ticket']);
+		return ! empty($this->ticket);
 	}
 
 	/**
@@ -503,17 +558,48 @@ class TikiAccessLib extends TikiLib
 	 */
 	public function ticketMatch()
 	{
-		return $this->check === true;
+		return $this->ticketMatch === true;
 	}
 
 	/**
-	 * CSRF ticket - Check whether the ticket match failed
+	 * CSRF origin check - Check that origin matches the server
 	 *
 	 * @return bool
 	 */
-	public function ticketNoMatch()
+	private function originMatch()
 	{
-		return $this->check === false;
+		return $this->originMatch === true;
+	}
+
+	/**
+	 * CSRF origin check - Check that origin matches the server
+	 *
+	 * @return bool
+	 */
+	function requestIsPost()
+	{
+		return $_SERVER['REQUEST_METHOD'] === 'POST';
+	}
+
+	/**
+	 * CSRF ticket - Ensure there either wasn't a ticket match performed or that such a match didn't fail
+	 *
+	 * @return bool
+	 */
+	public function csrfResult()
+	{
+		return $this->originMatch() && $this->ticketMatch();
+	}
+
+	/**
+	 * CSRF ticket - If wasn't a ticket match performed or that such a match didn't fail
+	 *
+	 * @return bool
+	 * @throws Services_Exception
+	 */
+	public function verifyOrCheckCsrf()
+	{
+		return $this->csrfResult() || $this->checkCsrf();
 	}
 
 
@@ -524,44 +610,38 @@ class TikiAccessLib extends TikiLib
 	 */
 	public function getTicket()
 	{
-		if (! empty($this->check['ticket'])) {
-			return $this->check['ticket'];
+		if (! empty($this->ticket)) {
+			return $this->ticket;
 		} else {
 			return false;
 		}
 	}
 
+	public function isActionPost()
+	{
+		return ($this->requestIsPost() && !empty($_POST['ticket']));
+	}
+
 
 	/**
-	 * ***** Note: Being replaced by checkAuthenticity method above *************
+	 * ***** Note: Being replaced by checkCsrfForm method above *************
 	 *
-	 * Similar method as checkAuthenticity() except that it optionally redirects to a confirmation page
+	 * Similar method as checkCsrfForm()
 	 *
-	 *  Warning: this mechanism does not allow passing uploaded files ($_FILES). For that, see check_ticket().
-	 * @param string $confirmation_text     Custom text to use if a confirmation page is brought up first
-	 * @param bool $returnHtml              Set to false to not use the standard confirmation page and to not use the
-	 *                                         standard error page. Suitable for popup confirmations when set to false.
-	 * @param bool $errorMsg                Set to true to have the Feedback error message sent automatically
+	 * @param string $confirmation_text Custom text to use if a confirmation page is brought up first
+	 * @param bool $returnHtml Set to false to not use the standard confirmation page and to not use the
+	 * 							standard error page. Suitable for popup confirmations when set to false.
+	 * @param bool $errorMsg Set to true to have the Feedback error message sent automatically
 	 * @return array|bool
+	 * @throws Exception
+	 * @throws Services_Exception
 	 * @deprecated. See above comment
 	 */
 	function check_authenticity($confirmation_text = '', $returnHtml = true, $errorMsg = false)
 	{
-		global $prefs;
-		if ($prefs['feature_ticketlib2'] == 'y' || $returnHtml === false) {
-			//perform checks or set ticket
-			$originMatch = '';
-			$ticketMatch = $this->ticketCheck();
-			if ($this->check === true) {
-				//if ticket matches, check origin
-				$originMatch = $this->originCheck();
-				if ($this->check === true) {
-					//if everything checks, assign ticket in case of redirects (e.g., control panels)
-					TikiLib::lib('smarty')->assign('ticket', $ticketMatch);
-					return true;
-				}
-			}
-			if (! empty($this->check['ticket'])) {
+		$check = true;
+		if (empty($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y') {
+			if ($this->checkOrigin()) {
 				if ($returnHtml) {
 					//redirect to a confirmation page
 					if (empty($confirmation_text)) {
@@ -572,7 +652,7 @@ class TikiAccessLib extends TikiLib
 					}
 					// Display the confirmation in the main tiki.tpl template
 					$smarty = TikiLib::lib('smarty');
-					$smarty->assign('post', $_POST);
+					$smarty->assign('post', $_REQUEST);
 					$smarty->assign('print_page', 'n');
 					$smarty->assign('confirmation_text', $confirmation_text);
 					$smarty->assign('confirmaction', $confirmaction);
@@ -581,53 +661,26 @@ class TikiAccessLib extends TikiLib
 					die();
 				} else {
 					//return ticket to be placed in a form with other code
-					return ['ticket' => $this->check['ticket']];
+					return ['ticket' => $this->ticket];
 				}
+			} else {
+				$check = false;
 			}
-			//one of the checks failed
-			if ($this->check === false) {
-				//log the failed CSRF check
-				$logMsg = tr('Request to %0 failed CSRF check.', $_SERVER['SCRIPT_NAME']);
-				if ($ticketMatch === false) {
-					$logMsg .= ' ' . tra('Request and server tokens did not match, were missing, or were expired.');
+		} elseif (!empty($_POST['confirmForm']) && $_POST['confirmForm'] === 'y') {
+			$check = $this->checkCsrf();
+		}
+		if (! $check) {
+			if ($returnHtml) {
+				$smarty = TikiLib::lib('smarty');
+				$smarty->assign('msg', tra('Bad request - potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - try reloading the page in this case.'));
+				$smarty->display('error.tpl');
+				exit();
+			} else {
+				if ($errorMsg) {
+					Feedback::error(tr('Bad request - potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - try reloading the page in this case.'),
+						'session');
 				}
-				if ($originMatch === false) {
-					if ($this->originSource === 'empty') {
-						$logMsg .= ' ' . tr(
-							'Requesting site could not be identified because %0 and %1 were empty.',
-							'HTTP_ORIGIN',
-							'HTTP_REFERER'
-						);
-					} else {
-						//take off query portion in case it's long
-						$url = parse_url($this->origin);
-						$url['port'] = ! empty($url['port']) ? ':' . $url['port'] : '';
-						$url = $url['scheme'] . '://' . $url['host'] . $url['port'] . $url['path'];
-						global $base_url;
-						$logMsg = ' ' . tr(
-							'The %0 url (%1) does not match this server (%2). This request used a valid CSRF ticket.',
-							$this->originSource,
-							$url,
-							$base_url
-						);
-					}
-				}
-				TikiLib::lib('logs')->add_log('CSRF', $logMsg);
-				//user message
-				if ($returnHtml) {
-					$smarty = TikiLib::lib('smarty');
-					$smarty->assign('msg', tra('Potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - reloading the page may help.'));
-					$smarty->display('error.tpl');
-					exit();
-				} else {
-					if ($errorMsg) {
-						Feedback::error(
-							tra('Potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - reloading the page may help.'),
-							'session'
-						);
-					}
-					return false;
-				}
+				return false;
 			}
 		}
 	}
@@ -740,8 +793,6 @@ class TikiAccessLib extends TikiLib
 			$smarty->assign('errortitle', $detail['errortitle']);
 			$smarty->assign('msg', $detail['message']);
 			$smarty->assign('errortype', $detail['code']);
-			$check = $this->check_authenticity(null, false);
-			$smarty->assign('ticket', $check['ticket']);
 			if (isset($detail['page'])) {
 				$smarty->assign('page', $page);
 			}
