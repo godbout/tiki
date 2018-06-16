@@ -9,22 +9,13 @@
 
 {if $comments}
 	<form name="checkboxes_on" method="post" action="tiki-list_comments.php">
+	{ticket}
 	{query _type='form_input'}
 {/if}
 
 {assign var=numbercol value=2}
 
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
-		<div class="{if $js === 'y'}table-responsive{/if} comment-table"> {*the table-responsive class cuts off dropdown menus *}
+		<div class="{if $js}table-responsive{/if} comment-table"> {*the table-responsive class cuts off dropdown menus *}
 <table class="table table-striped table-hover">
 	<tr>
 		{if $comments}
@@ -56,25 +47,26 @@
 		{capture name=over_actions}
 			{strip}
 				{$libeg}<a href="{$comments[ix].href}">
-					{icon name='view' _menu_text='y' _menu_icon='y'}
+					{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
 				</a>{$liend}
 				{$libeg}<a href="{$comments[ix].href|cat:"&amp;comments_threadId=$id&amp;edit_reply=1#form"}">
 					{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 				</a>{$liend}
 				{if $tiki_p_admin_comments eq 'y' and $prefs.comments_archive eq 'y'}
+					{* need to confirm these links to avoid allowing GET request to change the database *}
 					{if $comments[ix].archived eq 'y'}
-						{$libeg}{self_link action='unarchive' checked=$id _menu_text='y' _menu_icon='y' _icon_name='file-archive-open'}
-							{tr}Unarchive{/tr}
-						{/self_link}{$liend}
+						{$libeg}<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=unarchive" onclick="confirmSimple(event, '{tr}Unarchive comment?{/tr}', '{ticket mode=get}')">
+							{icon name='file-archive-open' _menu_text='y' _menu_icon='y' alt="{tr}Unarchive{/tr}"}
+						</a>{$liend}
 					{else}
-						{$libeg}{self_link action='archive' checked=$id _menu_text='y' _menu_icon='y' _icon_name='file-archive'}
-							{tr}Archive{/tr}
-						{/self_link}{$liend}
+						{$libeg}<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=archive" onclick="confirmSimple(event, '{tr}Archive comment?{/tr}', '{ticket mode=get}')">
+							{icon name='file-archive' _menu_text='y' _menu_icon='y' alt="{tr}Archive{/tr}"}
+						</a>{$liend}
 					{/if}
 				{/if}
-				{$libeg}{self_link action='remove' checked=$id _menu_text='y' _menu_icon='y' _icon_name='remove'}
-					{tr}Delete{/tr}
-				{/self_link}{$liend}
+				{$libeg}<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete comment?{/tr}', '{ticket mode=get}')">
+					{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+				</a>{$liend}
 			{/strip}
 		{/capture}
 
@@ -92,17 +84,17 @@
 		<tr class="{cycle}{if $prefs.feature_comments_moderation eq 'y'} post-approved-{$comments[ix].approved}{/if}">
 			<td class="checkbox-cell"><div class="form-check"><input type="checkbox" class="form-check-input" name="checked[]" value="{$id}" {if isset($rejected[$id]) }checked="checked"{/if}></div></td>
 			<td class="action">
-				{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
+				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 				<a
 					class="tips"
 					title="{tr}Actions{/tr}"
 					href="#"
-					{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.over_actions}{/if}
+					{if $js}{popup fullhtml="1" center=true text=$smarty.capture.over_actions}{/if}
 					style="padding:0; margin:0; border:0"
 				>
 					{icon name="wrench"}
 				</a>
-				{if $js === 'n'}
+				{if ! $js}
 					<ul class="dropdown-menu" role="menu">{$smarty.capture.over_actions}</ul></li></ul>
 				{/if}
 			</td>
@@ -151,19 +143,7 @@
 			{/if}
 
 			<td>
-				{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-				<a
-					class="tips"
-					title="{tr}More information{/tr}"
-					href="#"
-					{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.over_more_info}{/if}
-					style="padding:0; margin:0; border:0"
-				>
-					{icon name="information"}
-				</a>
-				{if $js === 'n'}
-					<ul class="dropdown-menu" role="menu">{$smarty.capture.over_more_info}</ul></li></ul>
-				{/if}
+				{include file="templates/includes/tiki-actions_link.tpl" capturedActions="over_more_info" title="{tr}More information{/tr}"}
 			</td>
 		</tr>
 	{sectionelse}
@@ -178,14 +158,18 @@
 			<option value="no_action" selected="selected">
 				{tr}Select action to perform with checked{/tr}...
 			</option>
-			<option value="remove">
+			<option value="remove" class="confirm-simple" data-confirm-text="{tr}Delete selected comments?{/tr}">
 				{tr}Delete{/tr}
 			</option>
 			{if $tiki_p_admin_comments eq 'y' and $prefs.feature_banning eq 'y'}
 				<option value="ban">
 					{tr}Ban{/tr}
 				</option>
-				<option value="ban_remove">
+				<option
+					value="ban_remove"
+					class="confirm-simple"
+					data-confirm-text="{tr}Delete and ban selected comments?{/tr}"
+				>
 					{tr}Delete and ban{/tr}
 				</option>
 			{/if}
@@ -198,16 +182,18 @@
 				</option>
 			{/if}
 			{if $tiki_p_admin_comments eq 'y' and $prefs.comments_archive eq 'y'}
-				<option value="archive">
+				<option value="archive" class="confirm-simple" data-confirm-text="{tr}Archive comments?{/tr}">
 					{tr}Archive{/tr}
 				</option>
-				<option value="unarchive">
+				<option value="unarchive" class="confirm-simple" data-confirm-text="{tr}Unarchive comments?{/tr}">
 					{tr}Unarchive{/tr}
 				</option>
 			{/if}
 		</select>
 		<span class="input-group-btn">
-			<button type="submit" class="btn btn-secondary">{tr}OK{/tr}</button>
+			<button type="submit" class="btn btn-secondary" onclick="confirmSimple(event)">
+				{tr}OK{/tr}
+			</button>
 		</span>
 	</div>
 	</form>

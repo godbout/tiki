@@ -94,58 +94,109 @@ $smarty->assign_by_ref('more_info_headers', $more_info_headers);
 
 // Handle actions
 if (isset($_REQUEST['checked'])) {
-	check_ticket('list_comments');
 	$checked = is_array($_REQUEST['checked']) ? $_REQUEST['checked'] : [$_REQUEST['checked']];
 	if (isset($_REQUEST['action'])) {
 		// Delete comment(s)
-		if ($_REQUEST['action'] === 'remove') {
-			$access->check_authenticity(tra('Delete comments'));
+		// Use $_REQUEST and confirmation form because a link can generate this request if js is not enabled
+		if ($_REQUEST['action'] === 'remove' && $access->checkCsrfForm(tra('Delete selected comments?'))) {
 			foreach ($checked as $id) {
 				$commentslib->remove_comment($id);
 			}
+			$msg = count($checked) === 1 ? tra('The following comment has been deleted:')
+				: tra('The following comments have been deleted:');
+			$feedback = [
+				'tpl' => 'action',
+				'mes' => $msg,
+				'items' => $checked,
+			];
+			Feedback::success($feedback, 'session');
 		}
-		// Ban IP adresses of multiple spammers
-		if ($_REQUEST['action'] === 'ban') {
-			ask_ticket('admin-banning');
+		// Ban IP addresses of multiple spammers
+		if ($_POST['action'] === 'ban') {
 			$mass_ban_ip = implode('|', $checked);
 			header('Location: tiki-admin_banning.php?mass_ban_ip=' . $mass_ban_ip);
 			exit;
 		}
-		// Ban IP adresses of multiple spammers and remove comments
-		if ($_REQUEST['action'] === 'ban_remove') {
-			ask_ticket('admin-banning');
+		// Ban IP addresses of multiple spammers and remove comments
+		if ($_POST['action'] === 'ban_remove' && $access->checkCsrfForm(tra('Delete selected comments and ban?'))) {
+			foreach ($checked as $id) {
+				$commentslib->remove_comment($id);
+			}
+			$msg = count($checked) === 1 ? tra('The following comment has been deleted:')
+				: tra('The following comments have been deleted:');
+			$feedback = [
+				'tpl' => 'action',
+				'mes' => $msg,
+				'items' => $checked,
+				'toMsg' => tr('Users have been pre-selected for banning in the highlighted section of the form below.')
+			];
+			Feedback::success($feedback, 'session');
 			$mass_ban_ip = implode('|', $checked);
-			header('Location: tiki-admin_banning.php?mass_remove=y&mass_ban_ip=' . $mass_ban_ip);
+			header('Location: tiki-admin_banning.php?mass_ban_ip=' . $mass_ban_ip);
 			exit;
 		}
 		// Approve comment(s)
-		if ($prefs['feature_comments_moderation'] == 'y' && $_REQUEST['action'] === 'approve') {
+		if ($_POST['action'] === 'approve' && $prefs['feature_comments_moderation'] == 'y' && $access->checkCsrf()) {
+			$approvedCount = 0;
 			foreach ($checked as $id) {
-				$commentslib->approve_comment($id, 'y');
+				$result = $commentslib->approve_comment($id, 'y');
+				if ($result) {
+					$approvedCount++;
+				}
+			}
+			if ($approvedCount) {
+				if ($approvedCount === 1) {
+					Feedback::success(tr('One comment approved'));
+				} else {
+					Feedback::success(tr('%0 comments approved', $approvedCount));
+				}
+			} else {
+				Feedback::error(tr('No comments approved'));
 			}
 		}
 		// Reject comment(s)
-		if ($prefs['feature_comments_moderation'] == 'y' && $_REQUEST['action'] === 'reject') {
+		if ($_POST['action'] === 'reject' && $prefs['feature_comments_moderation'] == 'y' && $access->checkCsrf()) {
+			$rejectedCount = 0;
 			foreach ($checked as $id) {
-				$commentslib->approve_comment($id, 'r');
-				$rejected[$id] = true;
+				$result = $commentslib->approve_comment($id, 'r');
+				$rejected[$id] = $result;
+				if ($result) {
+					$rejectedCount++;
+				}
 			}
 			$smarty->assign_by_ref('rejected', $rejected);
+			if ($rejectedCount) {
+				if ($rejectedCount === 1) {
+					Feedback::success(tr('One comment rejected'));
+				} else {
+					Feedback::success(tr('%0 comments rejected', $rejectedCount));
+				}
+			} else {
+				Feedback::error(tr('No comments rejected'));
+			}
 		}
 		// Archive comment(s)
-		if ($prefs['comments_archive'] == 'y' && $_REQUEST['action'] === 'archive') {
+		// Use $_REQUEST and confirmation form because a link can generate this request if js is not enabled
+		if ($_REQUEST['action'] === 'archive' && $prefs['comments_archive'] == 'y'
+			&& $access->checkCsrfForm(tra('Archive selected comments?')))
+		{
 			foreach ($checked as $id) {
 				$commentslib->archive_thread($id);
 			}
 		}
 		// Unarchive comment(s)
-		if ($prefs['comments_archive'] == 'y' && $_REQUEST['action'] === 'unarchive') {
+		if ($_REQUEST['action'] === 'unarchive' && $prefs['comments_archive'] == 'y'
+			&& $access->checkCsrfForm(tra('Unarchive selected comments?')))
+		{
 			foreach ($checked as $id) {
 				$commentslib->unarchive_thread($id);
 			}
 		}
 	}
+} elseif (!empty($_REQUEST['action'])) {
+	Feedback::error(tra('Action not performed since no comments were selected'));
 }
+
 if (isset($_REQUEST["sort_mode"])) {
 	$sort_mode = $_REQUEST["sort_mode"];
 } else {
@@ -197,6 +248,5 @@ $smarty->assign_by_ref('filters', $filters);
 $smarty->assign_by_ref('filter_names', $filter_names);
 $smarty->assign_by_ref('filter_values', $filter_values);
 $smarty->assign_by_ref('cant', $comments['cant']);
-ask_ticket('list_comments');
 $smarty->assign('mid', 'tiki-list_comments.tpl');
 $smarty->display('tiki.tpl');
