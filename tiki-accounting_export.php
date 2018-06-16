@@ -11,9 +11,6 @@
 $section = 'accounting';
 require_once('tiki-setup.php');
 
-$access->checkAuthenticity();
-
-
 // Feature available?
 if ($prefs['feature_accounting'] != 'y') {
 	$smarty->assign('msg', tra("This feature is disabled") . ": feature_accounting");
@@ -53,7 +50,7 @@ if (! isset($_REQUEST['action'])) {
 	$_REQUEST['action'] = 'settings';
 }
 
-if ($_REQUEST['action'] == 'export' && $access->ticketMatch()) {
+if ($_REQUEST['action'] == 'export') {
 	$prefs['log_tpl'] = 'n'; // Necessary to get a working css
 	$separator = (isset($_REQUEST['separator']) ? $_REQUEST['separator'] : ';');
 	$smarty->assign('separator', $separator);

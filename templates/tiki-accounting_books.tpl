@@ -1,46 +1,55 @@
 {* $Id$ *}
 {tabset}
 	{tab name="{tr}My books{/tr}"}
-		<h2>{tr}My books{/tr}</h2>
 		<div id="booklist" class="table-responsive">
-			<table class="table">
-				<tr>
-					<th>{tr}Id{/tr}</th>
-					<th>{tr}Name{/tr}</th>
-					<th>{tr}Start date{/tr}</th>
-					<th>{tr}End date{/tr}</th>
-					<th>{tr}Currency{/tr}</th>
-					<th>{tr}Tax automation{/tr}</th>
-					<th>{tr}Status{/tr}</th>
-				</tr>
-				{foreach item=element from=$books}
+				<table class="table">
 					<tr>
-						<td><a href="tiki-accounting.php?bookId={$element.bookId}">{$element.bookId}</a></td>
-						<td><a href="tiki-accounting.php?bookId={$element.bookId}">{$element.bookName}</a></td>
-						<td>{$element.bookStartDate|tiki_short_datetime}</td>
-						<td>{$element.bookEndDate|tiki_short_datetime}</td>
-						<td>{$element.bookCurrency}
-							({if $element.bookCurrencyPos==-1}{tr}before{/tr}{elseif $element.bookCurrencyPos==0}{tr}hide{/tr}{else}{tr}behind{/tr}){/if})
-						</td>
-						<td>{$element.taxAutomation}</td>
-						<td>
-							{if $element.bookClosed=='y'}{tr}closed{/tr}{else}{tr}open{/tr}
-								{if $canCreate}
-									{icon name="file-archive" class="icon timeout"
-										href="tiki-accounting_books.php?action=close&bookId={$element.bookId}{ticket mode=get}"
-										_confirm="{tr}Are you sure, you want to close this book?{/tr}" alt="{tr}Close book{/tr}"
-									}
-								{/if}
-							{/if}
-						</td>
+						<th>{tr}Id{/tr}</th>
+						<th>{tr}Name{/tr}</th>
+						<th>{tr}Start date{/tr}</th>
+						<th>{tr}End date{/tr}</th>
+						<th>{tr}Currency{/tr}</th>
+						<th>{tr}Tax automation{/tr}</th>
+						<th>{tr}Status{/tr}</th>
 					</tr>
-				{/foreach}
-			</table>
+					{foreach item=element from=$books}
+						<tr>
+							<td><a href="tiki-accounting.php?bookId={$element.bookId}">{$element.bookId}</a></td>
+							<td><a href="tiki-accounting.php?bookId={$element.bookId}">{$element.bookName}</a></td>
+							<td>{$element.bookStartDate|tiki_short_datetime}</td>
+							<td>{$element.bookEndDate|tiki_short_datetime}</td>
+							<td>{$element.bookCurrency}
+								({if $element.bookCurrencyPos==-1}{tr}before{/tr}{elseif $element.bookCurrencyPos==0}{tr}hide{/tr}{else}{tr}behind{/tr}){/if})
+							</td>
+							<td>{$element.taxAutomation}</td>
+							<td>
+								{if $element.bookClosed=='y'}
+									{tr}closed{/tr}
+								{elseif $canCreate}
+									<form method="post" class="form-inline" action="tiki-accounting_books.php">
+										{ticket}
+										<input type="hidden" name="bookId" value="{$element.bookId|escape}">
+										<input type="hidden" name="action" value="close">
+										<button
+											type="submit"
+											class="tips btn-link"
+											title=":{tr}Close book{/tr}"{if $js}
+											onclick="confirmSimple(event, '{tr}Close book? (This action cannot be undone){/tr}')"{/if}
+										>
+											{tr}open{/tr} {icon name="file-archive"}
+										</button>
+									</form>
+								{else}
+									{tr}open{/tr}
+								{/if}
+							</td>
+						</tr>
+					{/foreach}
+				</table>
 		</div>
 	{/tab}
 	{if $canCreate}
 		{tab name="{tr}Create a book{/tr}"}
-			<h2>{tr}Create a book{/tr}</h2>
 			<div id="createbookform">
 				<form action="tiki-accounting_books.php" method="post" class="form-horizontal" data-toggle="validator">
 					{ticket}
@@ -158,7 +167,7 @@
 							</div>
 						</div>
 					</fieldset>
-					<input type="submit" class="btn btn-primary btn-sm timeout col-md-offset-4" name="create" value="{tr}Create a new book{/tr}">
+					<input type="submit" class="btn btn-primary col-md-offset-4" name="create" value="{tr}Create a new book{/tr}" onclick="checkTimeout()">
 				</form>
 			</div>
 		{/tab}

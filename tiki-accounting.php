@@ -10,12 +10,11 @@
 
 $section = 'accounting';
 require_once('tiki-setup.php');
-$access->checkAuthenticity();
-
 
 // Feature available?
 if ($prefs['feature_accounting'] != 'y') {
 	$smarty->assign('msg', tra("This feature is disabled") . ": feature_accounting");
+	$smarty->assign('required_preferences', ['feature_accounting']);
 	$smarty->display("error.tpl");
 	die;
 }

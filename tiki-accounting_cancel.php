@@ -11,7 +11,6 @@
 $section = 'accounting';
 require_once('tiki-setup.php');
 
-
 // Feature available?
 if ($prefs['feature_accounting'] != 'y') {
 	$smarty->assign('msg', tra("This feature is disabled") . ": feature_accounting");
@@ -54,7 +53,15 @@ if ($entry === false) {
 	die;
 }
 $smarty->assign('entry', $entry);
-$accountinglib->cancelTransaction($bookId, $journalId);
+
+if ($access->checkCsrfForm(tr('Cancel journal %0 in book %1?', $journalId, $book['bookName']))) {
+	$accountinglib->cancelTransaction($bookId, $journalId);
+	if (!empty($errors)) {
+		Feedback::error(['mes' => $errors]);
+	} else {
+		Feedback::success(tr('Journal shown below successfully canceled'));
+	}
+}
 
 $smarty->assign('mid', 'tiki-accounting_cancel.tpl');
 $smarty->display("tiki.tpl");

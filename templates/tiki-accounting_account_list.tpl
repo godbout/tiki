@@ -10,9 +10,9 @@
 		<th>{tr}Credit{/tr}</th>
 		<th>{tr}Tax{/tr}</th>
 		{if $tiki_p_acct_manage_accounts=='y'}
-			<th style="width:64px;">{tr}Actions{/tr}</th>
+			<th></th>
 		{/if}
-	</tr>
+	</tr class="action">
 	{foreach from=$accounts item=a}{cycle values="odd,even" assign="style"}
 		<tr class="{$style}">
 			<td style="text-align:right"><a href="tiki-accounting_account.php?bookId={$bookId}&accountId={$a.accountId}">{$a.accountId}</a></td>
@@ -36,29 +36,45 @@
 			</td>
 			<td>{$a.accountTax}</td>
 			{if $tiki_p_acct_manage_accounts=='y'}
-				<td style="width:64px;">
-					<a class="icon timeout" href="tiki-accounting_account.php?bookId={$bookId}&accountId={$a.accountId}&action=edit{ticket mode=get}">
-						{icon name="edit" alt="{tr}edit account{/tr}"}
-					</a>
-					<a class="icon timeout" href="tiki-accounting_account.php?bookId={$bookId}&accountId={$a.accountId}&action=lock{ticket mode=get}">
-						{if $a.accountLocked==1}
-							{icon name="unlock" alt="{tr}unlock account{/tr}" _confirm="{tr}Are you sure you want to unlock this account?{/tr}"}
-						{else}
-							{icon name="lock" alt="{tr}lock account{/tr}" _confirm="{tr}Are you sure you want to lock this account?{/tr}"}
-						{/if}
-					</a>
-					<a class="icon timeout" href="tiki-accounting_account.php?bookId={$bookId}&accountId={$a.accountId}&action=delete{ticket mode=get}">
-						{icon name="remove" alt="{tr}delete account{/tr}" _confirm="{tr}Are you sure, you want to delete this account{/tr}"}
-					</a>
+				<td class="action">
+					{capture name=account_actions}
+						{strip}
+							{$libeg}<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=edit" class="iconmenu">
+								{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit account{/tr}"}
+							</a>{$liend}
+							{$libeg}<form action="tiki-accounting_account.php" class="form-inline" method="post">
+								<input type="hidden" name="accountId" value="{$a.accountId|escape:'attr'}">
+								<input type="hidden" name="bookId" value="{$bookId|escape:'attr'}">
+								{ticket}
+								{* doesn't need to be confirmed since action is easily undone, but need to check for ticket expiry *}
+								<button name="action" value="lock" type="submit" class="btn btn-link iconmenu" onclick="checkTimeout()">
+									{if $a.accountLocked==1}
+										{icon name="unlock"  _menu_text='y' _menu_icon='y' alt="{tr}Unlock account{/tr}"}
+									{else}
+										{icon name="lock"  _menu_text='y' _menu_icon='y' alt="{tr}Lock account{/tr}"}
+									{/if}
+								</button>{$liend}
+							</form>{$liend}
+							{$libeg}<form action="tiki-accounting_account.php" class="form-inline" method="post">
+								<input type="hidden" name="accountId" value="{$a.accountId|escape:'attr'}">
+								<input type="hidden" name="bookId" value="{$bookId|escape:'attr'}">
+								{ticket}
+								<button name="action" value="delete" type="submit" class="btn btn-link iconmenu" onclick="confirmSimple(event, '{tr _0="{$a.accountName|escape}" _1="{$book.bookName|escape}"}Delete account %0 from book %1?{/tr}')">
+									{icon name="remove"  _menu_text='y' _menu_icon='y' alt="{tr}Remove account{/tr}"}
+								</button>
+							</form>{$liend}
+						{/strip}
+					{/capture}
+					{include file="templates/includes/tiki-actions_link.tpl" capturedActions="account_actions"}
 				</td>
 			{/if}
 		</tr>
 	{/foreach}
 </table>
-{button type="submit" href="tiki-accounting_account.php?action=new&bookId={$bookId|escape}{ticket mode=get}" _text="{tr}Create a new account{/tr}"}
-<a class="icon" href="tiki-accounting_export.php?action=print&bookId={$bookId}&what=accounts" target="new">
+{button href="tiki-accounting_account.php?action=new&bookId={$bookId|escape:'attr'}" _text="{tr}Create a new account{/tr}"}
+<a class="icon" href="tiki-accounting_export.php?action=print&bookId={$bookId|escape:'attr'}&what=accounts" target="new">
 	{icon name="print" alt="{tr}printable version{/tr}"}
 </a>
-<a class="icon" href="tiki-accounting_export.php?action=settings&bookId={$bookId}&what=accounts">
+<a class="icon" href="tiki-accounting_export.php?action=settings&bookId={$bookId|escape:'attr'}&what=accounts">
 	{icon name="export" alt="{tr}export table{/tr}"}
 </a>

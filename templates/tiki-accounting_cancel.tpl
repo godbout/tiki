@@ -2,19 +2,8 @@
 {title help="accounting"}
 	{$book.bookName}
 {/title}
-{if !empty($errors)}
-	<div class="alert alert-warning">
-		{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle" align="left"}
-		{foreach from=$errors item=m name=errors}
-			{$m}
-			{if !$smarty.foreach.errors.last}<br>{/if}
-		{/foreach}
-	</div>
-{/if}
 <div id="original">
-	<div class="alert alert-success">
-		<p>{tr}The following transaction has been cancelled.{/tr}</p>
-	</div>
+	<h4>{tr}Canceled Journal{/tr}</h4>
 	<dl class="dl-horizontal">
 		<dt>{tr}ID{/tr}</dt><dd>{$entry.journalId}</dd>
 		<dt>{tr}Booking Date{/tr}</dt><dd>{$entry.journalDate|date_format:"%Y-%m-%d"}</dd>

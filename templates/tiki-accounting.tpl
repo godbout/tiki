@@ -34,17 +34,19 @@
 		<div class="box">
 			<h3 class="boxtitle">{tr}Tasks{/tr}</h3>
 			<div class="box-data col-md-12">
-				{if $canBook}{button href="tiki-accounting_entry.php?bookId={$bookId}{ticket mode=get}" _class="timeout btn" _text="{tr}Book new entries{/tr}"}
-				{button href="tiki-accounting_stack.php?bookId={$bookId}&hideform=1{ticket mode=get}" _class="timeout btn" _text="{tr}Confirm stack entries{/tr}"}{/if}
-				{if $canStack}{button href="tiki-accounting_stack.php?bookId={$bookId}{ticket mode=get}" _class="timeout btn" _text="{tr}Book into Stack{/tr}"}{/if}
+				{if $canBook}
+					{button href="tiki-accounting_entry.php?bookId={$bookId|escape:'attr'}" _text="{tr}Book new entries{/tr}"}
+					{button href="tiki-accounting_stack.php?bookId={$bookId|escape:'attr'}&hideform=1" _text="{tr}Confirm stack entries{/tr}"}
+				{/if}
+				{if $canStack}
+					{button href="tiki-accounting_stack.php?bookId={$bookId|escape:'attr'}" _text="{tr}Book into Stack{/tr}"}
+				{/if}
 			</div>
 		</div>
 	{/tab}
 	{tab name="{tr}Accounts{/tr}"}
 		<h2>{tr}Accounts{/tr}</h2>
-		<div style="max-height: 80%; overflow: scroll;">
-			{include file="tiki-accounting_account_list.tpl"}
-		</div>
+		{include file="tiki-accounting_account_list.tpl"}
 	{/tab}
 	{*{tab name="{tr}Bank accounts{/tr}"}*}
 		{*<h2>{tr}Bank accounts{/tr}</h2>*}
@@ -53,7 +55,7 @@
 		<h2>{tr}Journal{/tr}</h2>
 		<div style="max-height: 80%; overflow: scroll;">
 			{if $journalLimit!=0}
-				{button href="tiki-accounting.php?bookId={$bookId}&cookietab=4&journalLimit=0{ticket mode=get}" text="{tr}Fetch all{/tr}"}
+				{button href="tiki-accounting.php?bookId={$bookId|escape:'attr'}&cookietab=4&journalLimit=0" text="{tr}Fetch all{/tr}"}
 			{/if}
 			{include file="tiki-accounting_journal.tpl"}
 		</div>

@@ -35,17 +35,8 @@ var account='';
 	{$book.bookName}: {tr}Book a transaction into the stack{/tr}
 {/title}
 
-{if !empty($errors)}
-	<div class="alert alert-warning">
-		{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle" align="left"}
-		{foreach from=$errors item=m name=errors}
-			{$m}
-		{/foreach}
-	</div>
-{/if}
-
 <div class="row">
-	<div id="mask" class="col-md-8" style="{if $hideform==1} display: none;{/if}">
+	<div id="mask" class="col-md-12" style="{if $hideform==1} display: none;{/if}">
 		<form method="post" action="{if $req_url}{$req_url}{else}tiki-accounting_stack.php{/if}" class="form-horizontal">
 			{ticket}
 			{if $firstid}<input type="hidden" name="firstid" value="{$firstid}">{/if}
@@ -138,33 +129,21 @@ var account='';
 					</tr>
 				</table>
 			</fieldset>
-			<input type="submit" class="btn btn-secondary timeout" name="bookstack" id="bookstack" value="{tr}Book{/tr}">
+			{if $stackId == 0}
+				{$text ="{tr _0="{$book.bookName}"}Record stack entry in book %0?{/tr}"}
+			{else}
+				{$text ="{tr _0="{$book.bookName}"}Modify stack entry in book %0?{/tr}"}
+			{/if}
+			<input
+				type="submit"
+				class="btn btn-secondary"
+				name="bookstack"
+				id="bookstack"
+				value="{tr}Book{/tr}"
+				onclick="confirmSimple(event, '{$text|escape:'attr'}')"
+			>
 			{button href="tiki-accounting.php?bookId=$bookId" _text="{tr}Back to book page{/tr}"}
 		</form>
-	</div>
-	<div class="col-md-4">
-		<div id="accountlist" style="max-height=400px; overflow: scroll;{if $hideform==1} display: none;{/if}">
-			<table class="table">
-				<tr><th colspan="2">{tr}Accounts{/tr}</th></tr>
-				{if $tiki_p_account_manage=='y'}
-					<tr><td colspan="2"><a href="tiki-accounting_account.php?bookId={$bookId}&action=new">{tr}Create account{/tr}</a></td></tr>
-				{/if}
-				{foreach from=$accounts item=a}
-					<tr class="{cycle values="odd,even"} tips" {popup caption="{tr}Notes{/tr}" text=$a.accountNotes}>
-						<td class="accompactlist">
-							{if $tiki_p_account_manage=='y'}
-								<a class="timeout" href="tiki-accounting_account.php?bookId={$bookId}&action=edit&accountId={$a.accountId}{ticket mode=get}"><img src="img/icons/edit.gif" alt="edit"></a>
-								<a class="timeout" href="tiki-accounting_account.php?bookId={$bookId}&action=delete&accountId={$a.accountId}{ticket mode=get}"><img src="img/icons/del.gif" alt="delete"></a>
-							{/if}
-							<a href="javascript:setAccount({$a.accountId})">{$a.accountId}</a>
-						</td>
-						<td class="accompactlist">
-							{$a.accountName}
-						</td>
-					</tr>
-				{/foreach}
-			</table>
-		</div>
 	</div>
 </div>
 <br>

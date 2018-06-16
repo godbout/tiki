@@ -6,7 +6,7 @@
 	{icon name="export" alt="{tr}export table{/tr}"}
 </a>
 <div class="table-responsive">
-	<table class="table">
+	<table class="table normal table-striped table-hover" >
 		<tr>
 			<th rowspan="2">{tr}Id{/tr}</th>
 			<th rowspan="2">{tr}Date{/tr}</th>
@@ -40,9 +40,20 @@
 							<td rowspan="{$j.maxcount}">
 								{if $j.journalCancelled==1}&nbsp;
 								{else}
-									<a class="icon timeout" href="tiki-accounting_cancel.php?bookId={$bookId}&journalId={$j.journalId}{ticket mode=get}">
-										{icon name="remove" alt="{tr}cancel this transaction{/tr}" _confirm="{tr}Are you sure you want to cancel this transaction{/tr}"}
-									</a>
+									<form method="post" action="tiki-accounting_cancel.php">
+										<input type="hidden" name="bookId" value="{$bookId|escape:'attr'}">
+										<input type="hidden" name="journalId" value="{$j.journalId|escape:'attr'}">
+										{ticket}
+										<button
+											type="submit"
+											class="btn btn-link tips"
+											onclick="confirmSimple(event, '{tr _0="{$j.journalId|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Cancel transaction ID %0 in book %1?{/tr}')"
+											style="float:left;padding:0;border:none"
+											title=":{tr}Cancel transaction{/tr}"
+										>
+											{icon name="remove" alt="{tr}Cancel transaction{/tr}"}
+										</button>
+									</form>
 								{/if}
 							</td>
 						{/if}

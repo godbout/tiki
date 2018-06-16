@@ -51,19 +51,38 @@
 				<td class="journal">{if $i<$s.creditcount}{$s.credit[$i].stackItemText|escape}{/if}&nbsp;</td>
 				{if $smarty.section.posts.first}
 					<td rowspan="{$s.maxcount}">
-						<a class="icon timeout" href="tiki-accounting_stack.php?action=delete&bookId={$bookId}&stackId={$s.stackId}{ticket mode=get}">
-							{icon name="remove" alt="{tr}delete this transaction from the stack{/tr}" _confirm="{tr}Are you sure you want to delete this transaction from stack?{/tr}"}
-						</a><br>
-						{if $canBook}
-							<a class="icon timeout" href="tiki-accounting_stack.php?action=confirm&bookId={$bookId}&stackId={$s.stackId}{ticket mode=get}">
-								{icon name="help" alt="{tr}confirm this transaction{/tr}" _confirm="{tr}Are you sure you want to confirm this transaction?{/tr}"}
-							</a><br>
-						{/if}
+						<form action="tiki-accounting_stack.php" method="post">
+							<input type="hidden" name="bookId" value="{$bookId|escape:'attr'}">
+							<input type="hidden" name="stackId" value="{$s.stackId|escape:'attr'}">
+							{ticket}
+							<button
+								name="action"
+								value="delete"
+								type="submit"
+								class="btn btn-link"
+								style="float:left;padding:unset;border:none"
+								onclick="confirmSimple(event, '{tr _0="{$s.stackId|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Delete stack %0 from book %1?{/tr}')"
+							>
+								{icon name="remove" title=":{tr}Remove transaction{/tr}" class="tips"}
+							</button>
+							{if $canBook}
+								<button
+									name="action"
+									value="confirm"
+									type="submit"
+									class="btn btn-link"
+									style="float:left;padding:unset;border:none"
+									onclick="confirmSimple(event, '{tr _0="{$s.stackId|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Confirm stack %0 for book %1?{/tr}')"
+								>
+									{icon name="ok" title=":{tr}Confirm transaction{/tr}" class="tips"}
+								</button>
+							{/if}
+						</form>
 					</td>
 				{/if}
 			</tr>
 		{/section}
 	{foreachelse}
-		{norecords _colspan=9}
+		{norecords _colspan=10}
 	{/foreach}
 </table>

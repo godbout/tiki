@@ -33,16 +33,6 @@ var account='';
 {title help="accounting"}
 	{$book.bookName}: {tr}Book a transaction{/tr}
 {/title}
-{if !empty($errors)}
-	<div class="alert alert-warning">
-		{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle" align="left"}
-		{foreach from=$errors item=m name=errors}
-			{$m}
-			{if !$smarty.foreach.errors.last}<br>{/if}
-		{/foreach}
-	</div>
-{/if}
-
 
 <div id="accountlist" style="float:right; max-height=400px; overflow: scroll;">
 	<table class="table">
@@ -52,9 +42,9 @@ var account='';
 			{foreach from=$accounts item=a}
 				<tr class="{cycle values="odd,even"} tips" {popup caption="{tr}Notes{/tr}" text=$a.accountNotes}>
 					<td class="accompactlist">
-						{if $tiki_p_account_manage=='y'}
-							<a class="timeout" href="tiki-accounting_account.php?bookId={$bookId}&action=edit&accountId={$a.accountId}{ticket mode=get}"><img src="img/icons/edit.gif" alt="edit"></a>
-							<a class="timeout" href="tiki-accounting_account.php?bookId={$bookId}&action=delete&accountId={$a.accountId}{ticket mode=get}"><img src="img/icons/del.gif" alt="delete"></a>
+						{if $tiki_p_acct_manage_accounts =='y'}
+							<a href="tiki-accounting_account.php?bookId={$bookId}&action=edit&accountId={$a.accountId}">{icon name=edit}</a>
+							<a href="tiki-accounting_account.php?bookId={$bookId}&action=delete&accountId={$a.accountId}" onclick="confirmSimple(event, '{tr _0="{$a.accountName|escape:'attr'}"}Delete account %0?{/tr}', '{ticket mode=get}')">{icon name=delete}</a>
 						{/if}
 						<a href="javascript:setAccount({$a.accountId})">{$a.accountId}</a>
 					</td>
@@ -156,7 +146,14 @@ var account='';
 				</tr>
 			</table>
 		</fieldset>
-		<input type="submit" class="btn btn-secondary timeout" name="book" id="book" value="{tr}Book{/tr}">
+		<input
+			type="submit"
+			class="btn btn-secondary"
+			name="book"
+			id="book"
+			value="{tr}Book{/tr}"
+			onclick="confirmSimple(event, '{tr _0="{$book.bookName|escape:'attr'}"}Record entry in book %0?{/tr}')"
+		>
 		{button href="tiki-accounting.php?bookId=$bookId" _text="{tr}Back to book page{/tr}"}
 	</form>
 </div>

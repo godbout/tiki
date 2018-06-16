@@ -4,21 +4,11 @@
 	{if $action=="new"}{tr}Create new account{/tr}{else}{tr}Edit Account{/tr}{/if}
 	{$account.accountId} {$account.accountName}
 {/title}
-{if !empty($errors)}
-	<div class="alert alert-warning">
-		{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle" align="left"}
-		{foreach from=$errors item=m name=errors}
-			{$m}
-			{if !$smarty.foreach.errors.last}{/if}
-		{/foreach}
-	</div>
-{/if}
 <div id="account_form">
 	<form class="form-horizontal" method="post" action="tiki-accounting_account.php">
+		<input class="form-control" type="hidden" name="bookId" value="{$bookId|escape:'attr'}">
+		<input class="form-control" type="hidden" name="accountId" value="{$account.accountId|escape:'attr'}">
 		{ticket}
-		<input class="form-control" type="hidden" name="action" value="{$action}">
-		<input class="form-control" type="hidden" name="bookId" value="{$bookId}">
-		<input class="form-control" type="hidden" name="accountId" value="{$account.accountId}">
 		<fieldset>
 			<legend>Account properties</legend>
 			<div class="form-group row">
@@ -62,12 +52,36 @@
 					</div>
 				</div>
 			</div>
-
-			<input type="submit" class="btn btn-secondary timeout col-md-offset-4" name="submit" value="{if $action=='new'}{tr}Create account{/tr}{else}{tr}Modify account{/tr}{/if}">
-			{if $account.changeable==1 && $action=="edit"}
-				{button href="tiki-accounting_account.php?bookId={$bookId}&accountId={$accountId}&action=delete{ticket mode=get}" _class="timeout" _text="{tr}Delete this account{/tr}"}
-			{/if}
-			{button href="tiki-accounting.php?bookId=$bookId" _text="{tr}Back to book page{/tr}"}
+			<div class="form-group">
+				<div class="col-md-offset-4">
+					{if $action=='new'}
+						{$label = "{tr}Create account{/tr}"}
+					{else}
+						{$label = "{tr}Modify account{/tr}"}
+					{/if}
+					<button
+						type="submit"
+						class="btn btn-secondary"
+						name="action"
+						value="{$action|escape:'attr'}"
+						onclick="checkTimeout()"
+					>
+						{$label}
+					</button>
+					{if $account.changeable==1 && $action=="edit"}
+						<button
+							type="submit"
+							class="btn btn-warning"
+							name="action"
+							value="delete"
+							onclick="confirmSimple(event, '{tr _0="{$account.accountName|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Delete account %0 from book %1?{/tr}')"
+						>
+							{tr}Delete this account{/tr}
+						</button>
+					{/if}
+					{button href="tiki-accounting.php?bookId=$bookId" _text="{tr}Back to book page{/tr}"}
+				</div>
+			</div>
 		</fieldset>
 	</form>
 </div>

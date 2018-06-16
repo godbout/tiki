@@ -11,8 +11,6 @@
 $section = 'accounting';
 require_once('tiki-setup.php');
 
-$access->checkAuthenticity();
-
 // Feature available?
 if ($prefs['feature_accounting'] != 'y') {
 	$smarty->assign('msg', tra('This feature is disabled') . ': feature_accounting');
@@ -56,55 +54,60 @@ $smarty->assign('book', $book);
 $accounts = $accountinglib->getAccounts($bookId, $all = true);
 $smarty->assign('accounts', $accounts);
 
-if ($_REQUEST['stack_Year']) {
+if ($_POST['stack_Year']) {
 	$stackDate = new DateTime();
 	$stackDate->setDate(
-		$_REQUEST['stack_Year'],
-		$_REQUEST['stack_Month'],
-		$_REQUEST['stack_Day']
+		$_POST['stack_Year'],
+		$_POST['stack_Month'],
+		$_POST['stack_Day']
 	);
 }
 
-if (isset($_REQUEST['action']) && $access->ticketMatch()) {
-	if ($_REQUEST['action'] == 'book') {
-		if ($stackId == 0) {
+if (isset($_POST['action'])) {
+	if ($_POST['action'] == 'book') {
+		if ($stackId == 0  && $access->checkCsrfForm(tr('Record stack entry in book %0?', $book['bookName']))) {
 			// new entry
 			$result = $accountinglib->stackBook(
 				$bookId,
 				$stackDate,
-				$_REQUEST['stackDescription'],
-				$_REQUEST['debitAccount'],
-				$_REQUEST['creditAccount'],
-				$_REQUEST['debitAmount'],
-				$_REQUEST['creditAmount'],
-				$_REQUEST['debitText'],
-				$_REQUEST['creditText']
+				$_POST['stackDescription'],
+				$_POST['debitAccount'],
+				$_POST['creditAccount'],
+				$_POST['debitAmount'],
+				$_POST['creditAmount'],
+				$_POST['debitText'],
+				$_POST['creditText']
 			);
-		} else {
+		} elseif ($access->checkCsrfForm(tr('Modify stack entry in book %0?', $book['bookName']))) {
 			// modify old entry
 			$result = $accountinglib->stackUpdate(
 				$bookId,
 				$stackId,
 				$stackDate,
-				$_REQUEST['stackDescription'],
-				$_REQUEST['debitAccount'],
-				$_REQUEST['creditAccount'],
-				$_REQUEST['debitAmount'],
-				$_REQUEST['creditAmount'],
-				$_REQUEST['debitText'],
-				$_REQUEST['creditText']
+				$_POST['stackDescription'],
+				$_POST['debitAccount'],
+				$_POST['creditAccount'],
+				$_POST['debitAmount'],
+				$_POST['creditAmount'],
+				$_POST['debitText'],
+				$_POST['creditText']
 			);
 		}
 		if (is_numeric($result)) {
-			if (isset($_REQUEST['statementId'])) {
-				$accountinglib->updateStatementStack($bookId, $_REQUEST['statementId'], $result);
+			if (isset($_POST['statementId'])) {
+				$accountinglib->updateStatementStack($bookId, $_POST['statementId'], $result);
 			}
 			$stackId = 0; //success means we can create a new entry
 		}
-	} elseif ($_REQUEST['action'] == 'delete') {
+	} elseif ($_POST['action'] == 'delete'
+		&& $access->checkCsrfForm(tr(/** @lang text */
+			'Delete stack %0 from book %1?', $stackId, $book['bookName'])))
+	{
 		$result = $accountinglib->stackDelete($bookId, $stackId);
 		$stackId = 0;
-	} elseif ($_REQUEST['action'] == 'confirm') {
+	} elseif ($_POST['action'] == 'confirm'
+		&& $access->checkCsrfForm(tr('Confirm stack %0 for book %0?', $stackId, $book['bookName'])))
+	{
 		$result = $accountinglib->stackConfirm($bookId, $stackId);
 		$stackId = 0;
 	} else {
@@ -116,23 +119,23 @@ if (isset($_REQUEST['action']) && $access->ticketMatch()) {
 }
 
 if (is_array($result)) {
-	$smarty->assign('errors', $result);
+	Feedback::error(['mes' => $result]);
 	$smarty->assign('stackId', $stackId);
 	$smarty->assign('stackDate', $stackDate);
-	$smarty->assign('stackDescription', $_REQUEST['stackDescription']);
-	$smarty->assign('debitAccount', $_REQUEST['debitAccount']);
-	$smarty->assign('creditAccount', $_REQUEST['creditAccount']);
-	$smarty->assign('debitAmount', $_REQUEST['debitAmount']);
-	$smarty->assign('creditAmount', $_REQUEST['creditAmount']);
-	$smarty->assign('debitText', $_REQUEST['debitText']);
-	$smarty->assign('creditText', $_REQUEST['creditText']);
+	$smarty->assign('stackDescription', $_POST['stackDescription']);
+	$smarty->assign('debitAccount', $_POST['debitAccount']);
+	$smarty->assign('creditAccount', $_POST['creditAccount']);
+	$smarty->assign('debitAmount', $_POST['debitAmount']);
+	$smarty->assign('creditAmount', $_POST['creditAmount']);
+	$smarty->assign('debitText', $_POST['debitText']);
+	$smarty->assign('creditText', $_POST['creditText']);
 
-	if (isset($_REQUEST['statementId'])) {
-		$smarty->assign('statementId', $_REQUEST['statementId']);
+	if (isset($_POST['statementId'])) {
+		$smarty->assign('statementId', $_POST['statementId']);
 	}
 } else {
 	if ($stackId != 0) {
-		$stackEntry = $accountinglib->getStackTransaction($bookId, $_REQUEST['stackId']);
+		$stackEntry = $accountinglib->getStackTransaction($bookId, $_POST['stackId']);
 		$smarty->assign('stackId', $stackId);
 		$smarty->assign('stackDate', $stackEntry['stackDate']);
 		$smarty->assign('stackDescription', $stackEntry['stackDescription']);
@@ -162,7 +165,23 @@ if (is_array($result)) {
 		$smarty->assign('creditAmount', $creditAmount);
 		$smarty->assign('debitText', $debitText);
 		$smarty->assign('creditText', $creditText);
+		if (!empty($_POST['action'])) {
+			if ($_POST['action'] == 'book') {
+				Feedback::success(tr('Stack %0 successfully modified in book %1', $stackId, $book['bookName']));
+			} elseif ($_POST['action'] == 'delete') {
+				Feedback::success(tr('Stack %0 successfully deleted from book %1', $stackId, $book['bookName']));
+			}
+		}
 	} else {
+		if (!empty($_POST['action'])) {
+			if ($_POST['action'] == 'book') {
+				Feedback::success(tr('Stack %0 recorded in book %1', $result, $book['bookName']));
+			} elseif ($_POST['action'] == 'delete') {
+				Feedback::success(tr('Stack %0 deleted from book %1', $_POST['stackId'], $book['bookName']));
+			} elseif ($_POST['action'] == 'confirm' && $result === true) {
+				Feedback::success(tr('Stack %0 confirmed and recorded as entry in book %1', $_POST['stackId'], $book['bookName']));
+			}
+		}
 		$smarty->assign('stackId', $stackId);
 		$smarty->assign('debitAccount', ['']);
 		$smarty->assign('creditAccount', ['']);

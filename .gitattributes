@@ -6029,7 +6029,6 @@ templates/tabular/manage.tpl -text
 templates/tabular/select.tpl -text
 templates/tabular/select_filter.tpl -text
 templates/tiki-accounting.tpl -text
-templates/tiki-accounting_account_deleted.tpl -text
 templates/tiki-accounting_account_form.tpl -text
 templates/tiki-accounting_account_list.tpl -text
 templates/tiki-accounting_account_view.tpl -text
