@@ -22,7 +22,7 @@ class Services_Access_Controller
 	 * by including a ticket in the popup form. See the action_delete_topic function at
 	 * lib/core/Services/Forum/Controller.php for an example
 	 *
-	 * @param $input
+	 * @param $input JitFilter
 	 * @return array
 	 */
 	function action_confirm($input)
@@ -37,6 +37,10 @@ class Services_Access_Controller
 		return $ret;
 	}
 
+	/**
+	 * @param $input	JitFilter
+	 * @return array
+	 */
 	private function prepareReturn($input)
 	{
 		$title = ! empty($input['title']) ? $input['title'] : tra('Please confirm');
@@ -74,6 +78,7 @@ class Services_Access_Controller
 			'confirmButtonClass' => $confirmButtonClass,
 			//used in templates/layouts/internal/modal.tpl
 			'confirm' => 'y',
+			'ajax' => 1
 		];
 	}
 }

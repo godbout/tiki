@@ -10,4 +10,4 @@
 	{$encodedToList = json_encode($toList)}
 	<input type='hidden' name='toList' value="{$encodedToList|escape}">
 {/if}
-{ticket}
+{ticket mode="confirm"}

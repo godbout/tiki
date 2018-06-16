@@ -2732,7 +2732,6 @@ lib/core/Services/Edit/PluginController.php -text
 lib/core/Services/Edit/SemaphoreController.php -text
 lib/core/Services/Edit/index.php -text
 lib/core/Services/Exception.php -text
-lib/core/Services/Exception/BadRequest.php -text
 lib/core/Services/Exception/Denied.php -text
 lib/core/Services/Exception/Disabled.php -text
 lib/core/Services/Exception/DuplicateValue.php -text
@@ -5298,6 +5297,7 @@ temp/web.config -text
 templates/.htaccess -text
 templates/access/confirm.tpl -text
 templates/access/confirm_select.tpl -text
+templates/access/confirm_simple.tpl -text
 templates/access/include_footer.tpl -text
 templates/access/include_hidden.tpl -text
 templates/access/include_items.tpl -text

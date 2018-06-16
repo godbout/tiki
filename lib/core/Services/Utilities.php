@@ -16,11 +16,12 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
  */
 class Services_Utilities
 {
-	/** @var  \TikiAccessLib */
-	public $access;
 	public $items;
+	public $itemsCount;
 	public $extra;
-	private $action;
+	public $toList;
+	public $action;
+	public $confirmController;
 
 	/**
 	 * Provide referer url if javascript not enabled.
@@ -80,7 +81,7 @@ class Services_Utilities
 		//javascript
 		} else {
 			Feedback::send_headers();
-			//the js confirmAction function in tiki-ajax_services.js uses this to close the modal
+			//the js confirmAction function in tiki-confirm.js uses this to close the modal
 			return ['extra' => 'close'];
 		}
 	}
@@ -102,7 +103,7 @@ class Services_Utilities
 			TikiLib::lib('access')->redirect($referer->referer->striptags());
 		//javascript
 		} else {
-			//the js confirmAction function in tiki-ajax_services.js uses this to close the modal and refresh the page
+			//the js confirmAction function in tiki-confirm.js uses this to close the modal and refresh the page
 			return ['extra' => 'refresh'];
 		}
 	}
@@ -160,65 +161,130 @@ class Services_Utilities
 	 * CSRF ticket - Check the ticket to either set it or match to the ticket previously set
 	 *
 	 * @param string $error
+	 * @return bool
+	 * @throws Exception
+	 * @throws Services_Exception
 	 */
-	function checkTicket($error = 'services')
+	function checkCsrf($error = 'services')
 	{
-		$this->access = TikiLib::lib('access');
-		$this->access->checkAuthenticity($error);
+		return TikiLib::lib('access')->checkCsrf($error);
+	}
+
+	function isConfirmPost()
+	{
+		$return = TikiLib::lib('access')->isActionPost() && isset($_POST['confirmForm']) && $_POST['confirmForm'] === 'y';
+		if ($return) {
+			return $this->checkCsrf();
+		} else {
+			return false;
+		}
+	}
+
+	function notConfirmPost()
+	{
+		return ! TikiLib::lib('access')->isActionPost() || ! isset($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y';
+	}
+
+	function setTicket()
+	{
+		return TikiLib::lib('access')->setTicket();
+	}
+
+	function getTicket()
+	{
+		return TikiLib::lib('access')->getTicket();
 	}
 
 	/**
-	 * Set the items variable
+	 * Set the items, action and extra variables, and apply any filters
 	 *
 	 * @param JitFilter $input
-	 * @param $offset
+	 * @param array $filters
+	 * @param bool $itemsOffset
+	 * @throws Exception
 	 */
-	function setVars(JitFilter $input, $offset = false, $filter = false)
+	function setVars(JitFilter &$input, array $filters = [], $itemsOffset = false)
 	{
-		if ($offset) {
-			if ($filter) {
-				$this->items = $input->asArray($offset)->$filter();
-			} else {
-				$this->items = $input->asArray($offset);
-			}
+		if (!empty($filters)) {
+			$input->replaceFilters($filters);
 		}
+		$this->extra = $input->asArray();
 		$this->action = $input->action->word();
-		$this->extra = $input->extra;
+		$this->confirmController = $input->controller->alnumdash();
+		unset($this->extra['action'], $this->extra['controller'], $this->extra['modal']);
+		if ($itemsOffset) {
+			$this->items = $input->asArray($itemsOffset);
+			$this->itemsCount = count($this->items);
+			unset($this->extra[$itemsOffset]);
+		}
 	}
 
 
-	function setDecodedVars(JitFilter $input)
+	function setDecodedVars(JitFilter &$input, array $filters = [])
 	{
-		$this->items = json_decode($input['items'], true);
-		$this->extra = json_decode($input['extra'], true);
+		//decode standard array values
+		//no filters until after json decoding
+		$offsets = ['items', 'extra', 'toList'];
+		$tempinput = [];
+		foreach ($offsets as $offset) {
+			if ($input->offsetExists($offset)) {
+				$tempinput[$offset] = json_decode($input->{$offset}->none(), true);
+				$input->offsetUnset($offset);
+			}
+		}
+		//convert into a JitFilter object
+		$tempinput = new JitFilter($tempinput);
+		$tempinput->setDefaultFilter('xss');
+		//apply standard filters
+		$tempinput->replaceFilters(['anchor' => 'striptags', 'referer' => 'striptags']);
+		$input->replaceFilters(['anchor' => 'striptags', 'referer' => 'striptags']);
+		//apply any filters specified in the method call
+		if (!empty($filters)) {
+			$tempinput->replaceFilters($filters);
+			$input->replaceFilters($filters);
+		}
+		foreach ($offsets as $offset) {
+			if ($tempinput->offsetExists($offset)) {
+				$this->{$offset} = $tempinput[$offset]->asArray();
+			}
+			if ($offset === 'items' && isset($tempinput[$offset])) {
+				$this->itemsCount = count($this->items);
+			}
+		}
 	}
 
 	/**
 	 * Create array for standard confirmation popup
 	 *
 	 * @param $msg
-	 * @param $confirmController
 	 * @param $button
 	 * @param array $moreExtra
 	 * @return array
 	 */
-	function confirm($msg, $confirmController, $button, array $moreExtra = [])
+	function confirm($msg, $button, array $moreExtra = [])
 	{
+		$thisExtra = [];
+		if (is_array($this->extra)) {
+			$thisExtra = $this->extra;
+		} elseif ($this->extra instanceof JitFilter) {
+			$thisExtra = $this->extra->asArray();
+		} elseif (strlen($this->extra) > 0) {
+			$thisExtra = [$this->extra];
+		}
 		//provide redirect if js is not enabled
-		$extra['referer'] = Services_Utilities::noJsPath();
-		$extra = array_merge($extra, $moreExtra);
+		$extra['referer'] = ! empty($moreExtra['referer']) ? $moreExtra['referer'] : Services_Utilities::noJsPath();
+		$extra = array_merge($thisExtra, $extra, $moreExtra);
 		$ret = [
 			'FORWARD' => [
 				'modal' => '1',
 				'controller' => 'access',
 				'action' => 'confirm',
 				'confirmAction' => $this->action,
-				'confirmController' => $confirmController,
+				'confirmController' => $this->confirmController,
 				'customMsg' => $msg,
 				'confirmButton' => $button,
 				'items' => $this->items,
 				'extra' => $extra,
-				'ticket' => $this->access->getTicket(),
 			]
 		];
 		return $ret;
