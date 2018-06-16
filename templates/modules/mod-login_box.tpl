@@ -45,11 +45,21 @@ if (jqueryTiki.no_cookie) {
 			</div>
 			{if $login_module.can_revert}
 				<form action="{$login_module.login_url|escape}" method="post">
+					{ticket}
 					<fieldset>
 						<legend>{tr}Return to Main User{/tr}</legend>
 						<input type="hidden" name="su" value="revert" />
 						<input type="hidden" name="username" value="auto" />
-						<div class="text-center"><button type="submit" class="btn btn-secondary" name="actsu">{tr}Switch{/tr}</button></div>
+						<div class="text-center">
+							<button
+								type="submit"
+								class="btn btn-secondary"
+								name="actsu"
+								onclick="confirmSimple(event, '{tr}Return to main user?{/tr}')"
+							>
+								{tr}Switch{/tr}
+							</button>
+						</div>
 					</fieldset>
 				</form>
 			{elseif $tiki_p_admin eq 'y'}
@@ -83,7 +93,16 @@ if (jqueryTiki.no_cookie) {
 							{/if}
 							{user_selector groupIds=$module_params.groups id="login-switchuser_"|cat:$module_logo_instance name='username' user='' editable=$tiki_p_admin class='form-control'}
 						</div>
-						<div class="text-center"><button type="submit" class="btn btn-secondary" name="actsu">{tr}Switch{/tr}</button></div>
+						<div class="text-center">
+							<button
+								type="submit"
+								class="btn btn-secondary"
+								name="actsu"
+								onclick="confirmSimple(event, '{tr}Switch user?{/tr}')"
+							>
+								{tr}Switch{/tr}
+							</button>
+						</div>
 					</fieldset>
 				</form>
 			{/if}
@@ -161,6 +180,7 @@ if (jqueryTiki.no_cookie) {
 				method="post" 
 				{if $prefs.desactive_login_autocomplete eq 'y'} autocomplete="off"{/if}
 		>
+		{ticket}
 		{capture assign="close_tags"}</form>{$close_tags}{/capture}
 
 
