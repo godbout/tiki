@@ -30,8 +30,6 @@ class Services_Scheduler_Controller
 	 *
 	 * @param $input JitFilter
 	 * @return array
-	 * @throws Services_Exception
-	 * @throws Services_Exception_BadRequest
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_NotFound
 	 */
@@ -40,15 +38,14 @@ class Services_Scheduler_Controller
 		Services_Exception_Denied::checkGlobal('admin_users');
 
 		$schedulerId = $input->schedulerId->int();
-		$confirm = $input->confirm->int();
 
 		$scheduler = $this->lib->get_scheduler($schedulerId);
 
 		if (! $scheduler) {
 			throw new Services_Exception_NotFound;
 		}
-
-		if ($confirm) {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$this->lib->remove_scheduler($schedulerId);
 
 			return [
@@ -109,6 +106,7 @@ class Services_Scheduler_Controller
 	 * @param $input
 	 * @return array
 	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_NotFound
 	 */
 	public function action_reset($input)
 	{
@@ -117,15 +115,14 @@ class Services_Scheduler_Controller
 		Services_Exception_Denied::checkGlobal('admin_users');
 
 		$schedulerId = $input->schedulerId->int();
-		$confirm = $input->confirm->int();
 
 		$scheduler = $this->lib->get_scheduler($schedulerId);
-
 		if (! $scheduler) {
 			throw new Services_Exception_NotFound;
 		}
 
-		if ($confirm) {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$logger = new Tiki_Log('Webcron', \Psr\Log\LogLevel::ERROR);
 			$item = Scheduler_Item::fromArray($scheduler, $logger);
 			$item->heal('Reset by ' . $user, false, true);
