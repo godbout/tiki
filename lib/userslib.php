@@ -7802,8 +7802,9 @@ class UsersLib extends TikiLib
 	function reset_email_due($user)
 	{
 		$query = 'update `users_users` set `email_confirm`=?, `waiting`=? where `login`=?';
-		$this->query($query, [0, 'u', $user]);
+		$result = $this->query($query, [0, 'u', $user]);
 		TikiLib::events()->trigger('tiki.user.update', ['type' => 'user', 'object' => $user]);
+		return $result;
 	}
 
 	function confirm_email($user, $pass)
@@ -8387,13 +8388,13 @@ class UsersLib extends TikiLib
 	 * and an OpenID account
 	 *
 	 * @param int $userId
-	 * @return void
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_openid_link($userId)
 	{
 		$query = "UPDATE `users_users` SET `openid_url` = NULL WHERE `userId` = ?";
 		$bindvars = [$userId];
-		$this->query($query, $bindvars);
+		return $this->query($query, $bindvars);
 	}
 
 	function get_lost_groups()

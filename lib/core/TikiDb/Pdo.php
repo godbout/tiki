@@ -5,32 +5,48 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+/**
+ * Class TikiDb_Pdo_Result
+ *
+ * Returns result set along with affected rows
+ */
 class TikiDb_Pdo_Result
 {
+	/** @var array */
 	public $result;
+	/** @var int */
 	public $numrows;
 
-	function __construct($result)
+	/**
+	 * TikiDb_Pdo_Result constructor.
+	 * @param $result
+	 * @param $rowCount
+	 */
+	function __construct($result, $rowCount)
 	{
 		$this->result = &$result;
-		$this->numrows = count($this->result);
+		$this->numrows = is_numeric($rowCount) ? $rowCount : count($this->result);
 	}
 
+	/** @return array */
 	function fetchRow()
 	{
 		return is_array($this->result) ? array_shift($this->result) : 0;
 	}
 
+	/** @return int */
 	function numRows()
 	{
-		return $this->numrows;
+		return (int) $this->numrows;
 	}
 }
 
 class TikiDb_Pdo extends TikiDb
 {
-	/** @var PDO $db */
+	/** @var $db PDO */
 	private $db;
+	/** @var $rowCount int*/
+	private $rowCount;
 
 	/**
 	 * TikiDb_Pdo constructor.
@@ -82,9 +98,13 @@ class TikiDb_Pdo extends TikiDb
 					$values = [$values];
 				}
 				$result = $pq->execute($values);
+				$this->rowCount = $pq->rowCount();
 			}
 		} else {
 			$result = @ $this->db->query($query);
+			if (get_class($result) !== 'PDOStatement') {
+				$this->rowCount = get_class($result) === 'PDOStatement' ? $result->rowCount() : 0;
+			}
 		}
 
 		$this->stopTimer($starttime);
@@ -126,7 +146,6 @@ class TikiDb_Pdo extends TikiDb
 		if ($result === false) {
 			$this->handleQueryError($query, $values, $result, $reporterrors);
 		}
-
-		return new TikiDb_Pdo_Result($result);
+		return new TikiDb_Pdo_Result($result, $this->rowCount);
 	} // }}}
 }

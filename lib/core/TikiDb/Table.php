@@ -9,9 +9,7 @@ use Tiki\TikiDb\SanitizeEncoding;
 
 class TikiDb_Table
 {
-	/**
-	 * @var TikiDb
-	 */
+	/** @var TikiDb_Pdo|TikiDb_Adodb $db */
 	protected $db;
 	protected $tableName;
 	protected $autoIncrement;
@@ -38,17 +36,21 @@ class TikiDb_Table
 	 *
 	 * @param $values array Key-value pairs to insert.
 	 * @param $ignore boolean Insert as ignore statement
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function insert(array $values, $ignore = false)
 	{
 		$bindvars = [];
 		$query = $this->buildInsert($values, $ignore, $bindvars);
 
-		$this->db->queryException($query, $bindvars);
+		$result = $this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
-			return $this->db->lastInsertId();
+			if ($this->db->lastInsertId()) {
+				return $this->db->lastInsertId();
+			}
 		}
+		return $result;
 	}
 
 	function insertOrUpdate(array $data, array $keys)
@@ -60,16 +62,21 @@ class TikiDb_Table
 		$query .= ' ON DUPLICATE KEY UPDATE ';
 		$query .= $this->buildUpdateList($data, $bindvars);
 
-		$this->db->queryException($query, $bindvars);
+		$result = $this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
-			return $this->db->lastInsertId();
+			if ($this->db->lastInsertId()) {
+				return $this->db->lastInsertId();
+			}
 		}
+		return $result;
 	}
 
 	/**
 	 * Deletes a single record from the table matching the provided conditions.
 	 * Conditions use exact matching. Multiple conditions will result in AND matching.
+	 * @param array $conditions
+	 * @return TikiDb_Pdo_Result
 	 */
 	function delete(array $conditions)
 	{
@@ -82,6 +89,9 @@ class TikiDb_Table
 	/**
 	 * Builds and performs and SQL update query on the table defined by the instance.
 	 * This query will update a single record.
+	 * @param array $values
+	 * @param array $conditions
+	 * @return TikiDb_Pdo_Result
 	 */
 	function update(array $values, array $conditions)
 	{
@@ -107,6 +117,8 @@ class TikiDb_Table
 	 *
 	 * The method works just like delete, except that it does not have the one record
 	 * limitation.
+	 * @param array $conditions
+	 * @return TikiDb_Pdo_Result
 	 */
 	function deleteMultiple(array $conditions)
 	{

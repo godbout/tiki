@@ -1727,10 +1727,10 @@ class LogsLib extends TikiLib
 
 	function remove_action($actionId)
 	{
-		$query = 'delete from `tiki_actionlog` where `actionId`=?';
-		$this->query($query, [$actionId]);
 		$query = 'delete from `tiki_actionlog_params` where `actionId`=?';
 		$this->query($query, [$actionId]);
+		$query = 'delete from `tiki_actionlog` where `actionId`=?';
+		return $this->query($query, [$actionId]);
 	}
 
 	function get_who_viewed($mystuff, $anonymous = true)

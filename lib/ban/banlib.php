@@ -41,14 +41,14 @@ class BanLib extends TikiLib
 
 	/**
 	 * @param $banId
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_rule($banId)
 	{
-		$query = "delete from `tiki_banning` where `banId`=?";
-
-		$this->query($query, [$banId]);
 		$query = "delete from `tiki_banning_sections` where `banId`=?";
 		$this->query($query, [$banId]);
+		$query = "delete from `tiki_banning` where `banId`=?";
+		return $this->query($query, [$banId]);
 	}
 
 	/**
@@ -161,6 +161,7 @@ class BanLib extends TikiLib
 	 * @param $fname
 	 * @param $import_as_new
 	 * @return int
+	 * @throws Exception
 	 */
 	function importCSV($fname, $import_as_new)
 	{
@@ -239,6 +240,7 @@ class BanLib extends TikiLib
 	 * @param $use_dates
 	 * @param $message
 	 * @param $sections
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function replace_rule($banId, $mode, $title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $sections)
 	{
@@ -251,11 +253,11 @@ class BanLib extends TikiLib
 			$query = "update `tiki_banning` set `title`=?, `ip1`=?, `ip2`=?, `ip3`=?, `ip4`=?, `user`=?, " .
 					 "`date_from` = FROM_UNIXTIME(?), `date_to` = FROM_UNIXTIME(?), `use_dates` = ?, `message` = ? where `banId`=?";
 
-			$this->query($query, [$title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $banId]);
+			$result = $this->query($query, [$title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $banId]);
 		} else {
 			$query = "insert into `tiki_banning`(`mode`,`title`,`ip1`,`ip2`,`ip3`,`ip4`,`user`,`date_from`,`date_to`,`use_dates`,`message`,`created`) " .
 					 "values(?,?,?,?,?,?,?,FROM_UNIXTIME(?),FROM_UNIXTIME(?),?,?,?)";
-			$this->query($query, [$mode, $title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $this->now]);
+			$result = $this->query($query, [$mode, $title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $this->now]);
 			$banId = $this->getOne("select max(`banId`) from `tiki_banning` where `created`=?", [$this->now]);
 		}
 
@@ -267,6 +269,7 @@ class BanLib extends TikiLib
 
 			$this->query($query, [$banId, $section]);
 		}
+		return $result;
 	}
 }
 
