@@ -22,8 +22,6 @@ class Services_IDS_Controller
 	/**
 	 * @param $input JitFilter
 	 * @return array
-	 * @throws Services_Exception
-	 * @throws Services_Exception_BadRequest
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_NotFound
 	 */
@@ -40,7 +38,8 @@ class Services_IDS_Controller
 			throw new Services_Exception_NotFound;
 		}
 
-		if ($confirm) {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$rule->delete();
 
 			return [
