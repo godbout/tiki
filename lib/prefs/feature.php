@@ -1037,12 +1037,14 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
+			'warning' => tr('Deprecated as CSRF protection is being provided automatically'),
 		],
 		'feature_ticketlib2' => [
 			'name' => tra('Protect against CSRF with a ticket'),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'y',
+			'warning' => tr('Deprecated as CSRF protection is being provided automatically'),
 		],
 		'feature_detect_language' => [
 			'name' => tra('Detect browser language'),
