@@ -849,13 +849,12 @@ class PreferencesLib
 
 		if (isset($info['filter']) && $filter = TikiFilter::get($info['filter'])) {
 			if (is_array($value)) {
-				return array_map([ $filter, 'filter' ], $value);
+				$value =  array_map([ $filter, 'filter' ], $value);
 			} else {
-				return $filter->filter($value);
+				$value = $filter->filter($value);
 			}
-		} else {
-			return $value;
 		}
+		return $this->applyConstraints($info, $value);
 	}
 
 	private function _getPasswordValue($info, $data)
@@ -933,6 +932,39 @@ class PreferencesLib
 	private function _getMulticheckboxValue($info, $data)
 	{
 		return $this->_getMultilistValue($info, $data);
+	}
+
+	/**
+	 * Apply constraints (e.g., min or max) defined in the preference info. Currently only used in text type preference.
+	 *
+	 * @param $info		array	preference info from definition
+	 * @param $value	mixed	value submitted for the preference to be changed to
+	 * @return 			mixed	value preference will be changed to after applying constraints
+	 */
+	private function applyConstraints($info, $value)
+	{
+		if (isset($info['constraints'])) {
+			$original = $value;
+			foreach ($info['constraints'] as $type => $constraint) {
+				switch ($type) {
+					case 'min':
+						if ($value < $constraint) {
+							$value = $constraint;
+							Feedback::warning(tr('%0 set to minimum of %1 instead of submitted value of %2',
+								$info['preference'], $constraint, $original), 'session');
+						}
+						break;
+					case 'max':
+						if ($value > $constraint) {
+							$value = $constraint;
+							Feedback::warning(tr('%0 set to maximum of %1 instead of submitted value of %2',
+								$info['preference'], $constraint, $original), 'session');
+						}
+						break;
+				}
+			}
+		}
+		return $value;
 	}
 
 	// for export as yaml
