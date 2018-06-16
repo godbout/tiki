@@ -9,7 +9,6 @@ require_once('tiki-setup.php');
 
 $access->check_feature('feature_multilingual');
 $access->check_permission('tiki_p_admin');
-$access->checkAuthenticity();
 
 $multilingualLib = TikiLib::lib('multilingual');
 $languageLib     = TikiLib::lib('language');
@@ -34,9 +33,9 @@ if ($definition['translatable'] != 'y') {
 	die;
 }
 
-if (isset($_REQUEST['save'])) {
+if (isset($_POST['save']) && $access->checkCsrf()) {
 	if (! empty($preference)) {
-		foreach ($_REQUEST['new_val'] as $lang => $val) {
+		foreach ($_POST['new_val'] as $lang => $val) {
 			$prefsLib->setTranslatedPreference($preference, $lang, $val, $defaultLanguage);
 		}
 	}
@@ -52,8 +51,10 @@ foreach ($preferredLanguages as $l) {
 	}
 }
 
-if (array_key_exists('additional_languages', $_REQUEST) && is_array($_REQUEST['additional_languages'])) {
-	foreach ($_REQUEST['additional_languages'] as $lang) {
+if (array_key_exists('additional_languages', $_POST) && is_array($_POST['additional_languages'])
+	&& $access->checkCsrf())
+{
+	foreach ($_POST['additional_languages'] as $lang) {
 		if ($lang != $defaultLanguage) {
 			$usedLanguages[$lang] = true;
 			$translatedVal[$lang] = $prefsLib->getTranslatedPreference($preference, $lang);
