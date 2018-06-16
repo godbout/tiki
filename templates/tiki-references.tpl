@@ -1,14 +1,4 @@
 {* $Id$ *}
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
 {title help="References" admpage="wiki" url="tiki-references.php"}{tr}References{/tr}{/title}
 <div class="t_navbar mb-4">
 	{if isset($referenceinfo.ref_id)}
@@ -41,8 +31,7 @@
 			</div>
 		</form>
 		<div id="admin_references-div">
-			<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv">
-				{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
+			<div class="{if $js}table-responsive {/if}ts-wrapperdiv">
 				<table id="admin_references" class="table normal table-striped table-hover" data-count="{$references|count}">
 					<thead>
 					<tr>
@@ -90,24 +79,12 @@
 										{icon name="link" _menu_text='y' _menu_icon='y' alt="{tr}Reference usage{/tr}"}
 										</a>{$liend}
 										{$libeg}
-									<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id action=delete}">
+									<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id action=delete}" onclick="confirmSimple(event, '{tr}Delete reference?{/tr}', '{ticket mode=get}')">
 										{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 										</a>{$liend}
 									{/strip}
 								{/capture}
-								{if $js === 'n'}
-								<ul class="cssmenu_horiz">
-									<li>{/if}
-										<a class="tips" title="{tr}Actions{/tr}" href="#"
-												{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.reference_actions}{/if}
-										   style="padding:0; margin:0; border:0">
-											{icon name='wrench'}
-										</a>
-										{if $js === 'n'}
-										<ul class="dropdown-menu" role="menu">{$smarty.capture.reference_actions}</ul>
-									</li>
-								</ul>
-								{/if}
+								{include file="templates/includes/tiki-actions_link.tpl" capturedActions="reference_actions"}
 							</td>
 						</tr>
 					{/section}
@@ -223,9 +200,21 @@
 				{if isset($referenceinfo.ref_id) && $referenceinfo.ref_id}
 					<input type="hidden" name="referenceId" value="{$referenceinfo.ref_id|escape}">
 					<input type="hidden" name="editreference" value="1">
-					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
+					<input
+						type="submit"
+						class="btn btn-secondary"
+						name="save"
+						value="{tr}Save{/tr}"
+						onclick="checkTimeout()"
+					>
 				{else}
-					<input type="submit" class="btn btn-secondary" name="addreference" value="{tr}Add{/tr}">
+					<input
+						type="submit"
+						class="btn btn-secondary"
+						name="addreference"
+						value="{tr}Add{/tr}"
+						onclick="checkTimeout()"
+					>
 				{/if}
 			</div>
 		</div>

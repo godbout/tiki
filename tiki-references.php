@@ -12,9 +12,6 @@ require_once('tiki-setup.php');
 $access->check_feature('feature_references');
 $access->check_permission(['tiki_p_edit_references'], tra('Edit Library References'));
 
-$access = TikiLib::lib('access');
-$access->checkAuthenticity();
-
 global $dbTiki;
 $referenceslib = TikiLib::lib('references');
 
@@ -60,7 +57,7 @@ if (isset($_REQUEST['addreference'])) {
 		}
 	}
 
-	if (count($errors) < 1) {
+	if (count($errors) < 1 && $access->checkCsrf()) {
 		$id = $referenceslib->add_reference(
 			null,
 			$ref_biblio_code,
@@ -113,7 +110,7 @@ if (isset($_REQUEST['editreference'])) {
 		$linkedreferences = $referenceslib->get_reference_from_code($currentlibreference['data'][0]['biblio_code']);
 
 		foreach ($linkedreferences['data'] as $ref) {
-			if (count($errors) < 1) {
+			if (count($errors) < 1 && $access->checkCsrf()) {
 				$referenceslib->edit_reference(
 					$ref['ref_id'],
 					$ref_biblio_code,
@@ -137,7 +134,7 @@ if (isset($_REQUEST['editreference'])) {
 			}
 		}
 	} else {
-		if (count($errors) < 1) {
+		if (count($errors) < 1 && $access->checkCsrf()) {
 			$referenceslib->edit_reference(
 				$ref_id,
 				$ref_biblio_code,
@@ -169,8 +166,7 @@ if (isset($_REQUEST['action']) && isset($ref_id)) {
 		$linkedreferences = $referenceslib->get_reference_from_code($currentlibreference['data'][0]['biblio_code']);
 
 		if (count($linkedreferences['data']) === 1) {
-			if ($_REQUEST['action'] == 'delete') {
-				$access->check_authenticity();
+			if ($_REQUEST['action'] == 'delete' && $access->checkCsrfForm(tra('Delete reference?'))) {
 				$referenceslib->remove_reference($ref_id);
 			}
 		} else {
@@ -181,8 +177,7 @@ if (isset($_REQUEST['action']) && isset($ref_id)) {
 			Feedback::error(['mes' => $msg], 'session');
 		}
 	} else {
-		if ($_REQUEST['action'] == 'delete') {
-			$access->check_authenticity();
+		if ($_REQUEST['action'] == 'delete' && $access->checkCsrfForm(tra('Delete reference?'))) {
 			$referenceslib->remove_reference($ref_id);
 		}
 	}
