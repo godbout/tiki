@@ -8,6 +8,7 @@
 	<form id="send-message-form" method="post" action="{service controller=user action=send_message}" name="f">
 		<input type="hidden" name="to" value="{$userwatch|escape}">
 		<input type="hidden" name="userwatch" value="{$userwatch|escape}">
+		{ticket mode='confirm'}
 
 		<p>{tr}The following message will be sent to user{/tr} {$userwatch|username}:</p>
 		<div class="form-group row">

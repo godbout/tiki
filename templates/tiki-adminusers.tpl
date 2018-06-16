@@ -1,14 +1,4 @@
 {* $Id$ *}
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
 {if !$ts.ajax}
 	{title help="Users Management" admpage="login" url="tiki-adminusers.php"}{tr}Admin Users{/tr}{/title}
 
@@ -117,7 +107,7 @@
 			{/if}
 			<form name="checkform" id="checkform" method="post">
 				<div id="{$ts.tableid}-div" {if $ts.enabled}style="visibility:hidden;"{/if}>
-					<div class="{if $js === 'y'}table-responsive{/if} user-table ts-wrapperdiv">
+					<div class="{if $js}table-responsive{/if} user-table ts-wrapperdiv">
 		{/if}
 						{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
 						<table id="{$ts.tableid}" class="table normal table-striped table-hover" data-count="{$cant|escape}">
@@ -238,7 +228,7 @@
 														</a>{$liend}
 														{if $prefs.feature_userPreferences eq 'y' || $user eq 'admin'}
 															{$libeg}<a href="tiki-user_preferences.php?userId={$users[user].userId}">
-																{icon name="settings" _menu_text='y' _menu_icon='y' alt="{tr}Change user preferences{/tr}" }
+																{icon name="settings" _menu_text='y' _menu_icon='y' alt="{tr}Change user preferences{/tr}"}
 															</a>{$liend}
 														{/if}
 														{if $users[user].user eq $user or $users[user].user_information neq 'private' or $tiki_p_admin eq 'y'}
@@ -264,49 +254,31 @@
 																	{icon name="ok" _menu_text='y' _menu_icon='y' alt="{tr}Validate user{/tr}"}
 																</a>{$liend}
 															{/if}
+															{* Use a form for the next two actions since they change the database but can easily be undone so no confirm needed*}
 															{if $users[user].waiting eq 'u'}
-																{$libeg}<a href="tiki-confirm_user_email.php?user={$users[user].user|escape:url}&amp;pass={$users[user].provpass|md5|escape:url}" title="{tr _0=$users[user].user|username}Confirm user email: %0{/tr}">
+																{$libeg}<a href="tiki-confirm_user_email.php?user={$users[user].user|escape:url}&amp;pass={$users[user].provpass|md5|escape:url}" onclick="confirmSimple(event, '{tr}Confirm user email?{/tr}', '{ticket mode=get}')">
 																	{icon name="envelope" _menu_text='y' _menu_icon='y' alt="{tr}Confirm user email{/tr}"}
 																</a>
 															{/if}
 															{if $prefs.email_due > 0 and $users[user].waiting ne 'u' and $users[user].waiting ne 'a'}
-																{$libeg}<a href="tiki-adminusers.php?user={$users[user].user|escape:url}&amp;action=email_due">
+																{$libeg}<a href="tiki-adminusers.php?user={$users[user].user|escape:url}&amp;action=email_due" onclick="confirmSimple(event, '{tr}Invalidate user email?{/tr}', '{ticket mode=get}')">
 																	{icon name="trash" _menu_text='y' _menu_icon='y' alt="{tr}Invalidate email{/tr}"}
 																</a>{$liend}
 															{/if}
 														{/if}
+														{* Use a confirm here since action cannot easily be undone *}
 														{if !empty($users[user].openid_url)}
-															{$libeg}{self_link _menu_text='y' _menu_icon='y' userId=$users[user].userId action='remove_openid' _icon_name="trash"}
-																{tr}Remove link with OpenID account{/tr}
-															{/self_link}{$liend}
-
-															{$libeg}<a class="link" href="{self_link userId=$users[user].userId action='remove_openid' _tag="n"}{/self_link}" title="{tr _0=$users[user].user|username}User %0{/tr}:">
+															{$libeg}<a href="tiki-adminusers.php?userId={$userId=$users[user].userId|escape:url}&amp;action=remove_openid" onclick="confirmSimple(event, '{tr}Remove link with OpenID for this user?{/tr}', '{ticket mode=get}')">
 																{icon name="link" _menu_text='y' _menu_icon='y' alt="{tr}Remove link with OpenID account{/tr}"}
 															</a>{$liend}
 														{/if}
 													{/strip}
 												{/capture}
-												{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-												<a
-													class="tips"
-													title="{tr}Actions{/tr}" href="#"
-													{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.user_actions}{/if}
-													style="padding:0; margin:0; border:0"
-												>
-													{icon name='wrench'}
-												</a>
-												{if $js === 'n'}
-													<ul class="dropdown-menu" role="menu">{$smarty.capture.user_actions}</ul></li></ul>
-												{/if}
-											</td>
+												{include file="templates/includes/tiki-actions_link.tpl" capturedActions="user_actions"}											</td>
 										</tr>
 									{/if}
 								{sectionelse}
-									{if ! $ts.enabled || ($ts.enabled && $ts.ajax)}
-										{norecords _colspan=8 _text="No user records found"}
-									{else}
-										{norecords _colspan=8 _text="Retrieving user records..."}
-									{/if}
+									{norecords _colspan=8 _text="No user records found"}
 								{/section}
 							</tbody>
 						</table>
@@ -354,7 +326,8 @@
 									type="submit"
 									form="checkform"
 									formaction="{bootstrap_modal controller=user}"
-									class="btn btn-secondary confirm-submit"
+									class="btn btn-secondary"
+									onclick="confirmAjax(event)"
 								>
 									{tr}OK{/tr}
 								</button>
@@ -411,6 +384,7 @@
 			{/if}
 			{if $userinfo.editable}
 				<form action="tiki-adminusers.php" method="post" enctype="multipart/form-data" name="RegForm" autocomplete="off">
+					{ticket}
 					<div class="form-group row">
 						<label class="col-sm-3 col-md-2 col-form-label" for="login">{if $prefs.login_is_email eq 'y'}{tr}Email{/tr}{else}{tr}User{/tr}{/if}</label>
 						<div class="col-sm-7 col-md-6">
@@ -550,18 +524,14 @@
 
 							<div class="col-md-10">
 								{if $usersitemid}
-									<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$userstrackerid itemId=$usersitemid}"
-										onclick="$('[data-toggle=popover]').popover('hide');" class="btn btn-primary edit-usertracker"
-									>
+									<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$userstrackerid itemId=$usersitemid}" onclick="$('[data-toggle=popover]').popover('hide');" class="btn btn-primary edit-usertracker">
 										{tr}Edit Item{/tr}
 									</a>
 									<a href="{bootstrap_modal controller=tracker action=view id=$usersitemid}" class="btn btn-info">
 										{tr}View item{/tr}
-									<a>
+									</a>
 								{else}
-									<a href="{bootstrap_modal controller=tracker action=insert_item trackerId=$userstrackerid forced=$usersTrackerForced}"
-										onclick="$('[data-toggle=popover]').popover('hide');" class="btn btn-primary insert-usertracker"
-									>
+									<a href="{bootstrap_modal controller=tracker action=insert_item trackerId=$userstrackerid forced=$usersTrackerForced}" onclick="$('[data-toggle=popover]').popover('hide');" class="btn btn-primary insert-usertracker">
 										{tr}Create Item{/tr}
 									</a>
 								{/if}
@@ -574,9 +544,21 @@
 							{if isset($userinfo.userId) && $userinfo.userId}
 								<input type="hidden" name="user" value="{$userinfo.userId|escape}">
 								<input type="hidden" name="edituser" value="1">
-								<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
+								<input
+									type="submit"
+									class="btn btn-secondary"
+									name="save"
+									value="{tr}Save{/tr}"
+									onclick="confirmSimple(event, '{tr}Modify this user\'s data?{/tr}')"
+								>
 							{else}
-								<input type="submit" class="btn btn-secondary" name="newuser" value="{tr}Add{/tr}">
+								<input
+									type="submit"
+									class="btn btn-secondary"
+									name="newuser"
+									value="{tr}Add{/tr}"
+									onclick="confirmSimple(event, '{tr}Add this new user?{/tr}')"
+								>
 							{/if}
 						</div>
 					</div>
@@ -697,7 +679,7 @@
 				</div>
 				<div class="form-group row">
 					<div class="col-md-9 col-md-offset-3">
-						<input type="submit" class="btn btn-secondary" name="batch" value="{tr}Add{/tr}">
+						<input type="submit" class="btn btn-secondary" name="batch" value="{tr}Add{/tr}" onclick="checkTimeout()">
 					</div>
 				</div>
 			</form>
@@ -712,7 +694,7 @@
 			{if $prefs['auth_token_access'] != 'y'}
 				{remarksbox type="warning" title="{tr}Token Access Feature Dependency{/tr}"}
 					{tr}The token access feature is needed for Temporary Users to login.{/tr}
-					<a href="tiki-admin.php?page=security">{tr}Turn it on here.{/tr}</a>
+					<a href="tiki-admin.php?lm_criteria=auth_token_access&exact">{tr}Turn it on here.{/tr}</a>
 				{/remarksbox}
 				{$temp_users_enabled = false}
 			{/if}
@@ -739,7 +721,7 @@
 				{remarksbox type="info" title="Revoking Access"}
 					{tr}To revoke access before validity expires or to review who has access, please see:{/tr} <a href="tiki-admin_tokens.php">{tr}Admin Tokens{/tr}</a>
 				{/remarksbox}
-				<form name="tempuser" id="tempuser" method="post">
+				<form name="tempuser" id="tempuser" method="post" action="{service controller=user action=invite_tempuser}">
 					<div class="form-group row">
 						<label class="col-sm-4 col-md-4 col-form-label" for="tempuser_emails">{tr}Email addresses (comma-separated){/tr}</label>
 						<div class="col-sm-8 col-md-8">
@@ -775,10 +757,9 @@
 						<div class="col-sm-10 col-sm-offset-4 col-md-10 col-md-offset-4">
 							<input
 								type="submit"
-								class="btn btn-secondary service-submit"
-								form="tempuser"
-								formaction="{service controller=user action=invite_tempuser}"
+								class="btn btn-secondary"
 								value="{tr}Invite{/tr}"
+								onclick="postForm(event)"
 							>
 						</div>
 					</div>

@@ -30,9 +30,6 @@ require_once('tiki-setup.php');
 // synchronous with the cache
 $access = TikiLib::lib('access');
 $access->check_permission(['tiki_p_admin_users']);
-//so far only used for $_REQUEST['batch']
-$access->checkAuthenticity();
-
 
 if ($tiki_p_admin != 'y') {
 	$userGroups = $userlib->get_user_groups_inclusion($user);
@@ -249,13 +246,12 @@ $auto_query_args = [
 	'initial',
 	'filterGroup'
 ];
-if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']) && $access->ticketMatch()) {
+if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']) && $access->checkCsrf()) {
 	batchImportUsers();
 	// Process the form to add a user here
-} elseif (isset($_REQUEST['newuser'])) {
+} elseif (isset($_REQUEST['newuser']) && $access->checkCsrfForm(tr('Add this new user?'))) {
 	$AddUser = true;
 	;
-	$access->check_authenticity(tra('Are you sure you want to add this new user?'));
 	// if email validation set check if email addr is set
 	if ($prefs['login_is_email'] != 'y' && isset($_REQUEST['need_email_validation']) &&
 		 empty($_REQUEST['email'])) {
@@ -357,14 +353,25 @@ if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']
 
 	$cookietab = 1;
 } elseif (isset($_REQUEST['action'])) {
-	if ($_REQUEST['action'] == 'email_due' && isset($_REQUEST['user'])) {
-		$access->check_authenticity(tra('Are you sure you want to reset email due for this user?'));
-		$userlib->reset_email_due($_REQUEST['user']);
+	if ($_REQUEST['action'] == 'email_due' && isset($_REQUEST['user']) && $access->checkCsrf())
+	{
+		$result = $userlib->reset_email_due($_REQUEST['user']);
+		if ($result->numRows()) {
+			Feedback::success(tr('Email for user %0 has been unconfirmed', $_REQUEST['user']));
+		} else {
+			Feedback::error(tr('An error occurred - the email for user %0 has not been unconfirmed', $_REQUEST['user']));
+		}
 	}
 
-	if ($_REQUEST['action'] == 'remove_openid' && isset($_REQUEST['userId'])) {
-		$access->check_authenticity(tra('Are you sure you want to remove the link with OpenID for this user?'));
-		$userlib->remove_openid_link($_REQUEST['userId']);
+	if ($_REQUEST['action'] == 'remove_openid' && isset($_REQUEST['userId'])
+		&& $access->checkCsrfForm(tra('Remove link with OpenID for this user?')))
+	{
+		$result = $userlib->remove_openid_link($_REQUEST['userId']);
+		if ($result->numRows()) {
+			Feedback::success(tr('Link to OpenID for user %0 has been removed', $_REQUEST['user']));
+		} else {
+			Feedback::error(tr('An error occurred - the link to OpenID for user %0 has not been removed', $_REQUEST['user']));
+		}
 	}
 
 	$_REQUEST['user'] = '';
@@ -434,9 +441,9 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 		$_POST['email'] = $_POST['login'];
 	}
 
-	if (isset($_POST['edituser']) and isset($_POST['login']) and isset($_POST['email'])) {
-		$access->check_authenticity(tra("Are you sure you want to modify this user's data?"));
-
+	if (isset($_POST['edituser']) and isset($_POST['login']) and isset($_POST['email'])
+		&& $access->checkCsrfForm(tra('Modify this user\'s data?')))
+	{
 		if (! empty($_POST['login'])) {
 			if ($userinfo['login'] != $_POST['login'] && $userinfo['login'] != 'admin') {
 				if ($userlib->user_exists($_POST['login'])) {
@@ -446,7 +453,7 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 				} elseif ($userlib->change_login($userinfo['login'], $_POST['login'])) {
 					Feedback::success(sprintf(
 						tra('%s changed from %s to %s'),
-						tra('login'),
+						tra('Username'),
 						$userinfo['login'],
 						$_POST['login']
 					), 'session');
@@ -459,7 +466,7 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 					$userinfo['login'] = $_POST['login'];
 				} else {
 					$errors[] = sprintf(
-						tra("Impossible to change %s from %s to %s"),
+						tra("Unable to change %s from %s to %s"),
 						tra('login'),
 						$userinfo['login'],
 						$_POST['login']
@@ -499,7 +506,7 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 				if ($prefs['login_is_email'] != 'y') {
 					Feedback::success(sprintf(
 						tra('%s changed from %s to %s'),
-						tra('email'),
+						tra('Email'),
 						$userinfo['email'],
 						$_POST['email']
 					), 'session');

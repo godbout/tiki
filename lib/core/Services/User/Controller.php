@@ -14,14 +14,26 @@ class Services_User_Controller
 	private $lib;
 
 	/**
-	 * @var TikiAccessLib
+	 * Filters for $input->replaceFilters() used in the Services_Utilities()->setVars and setDecodedVars methods
+	 *
+	 * @var array
 	 */
-	private $access;
+	private $filters = [
+		'checked'			=> 'username',
+		'items'				=> 'username',
+		'remove_pages'		=> 'word',
+		'remove_items'		=> 'text',
+		'remove_files'		=> 'word',
+		'ban_users'			=> 'word',
+		'groupremove'		=> 'groupname',
+		'defaultgroup'		=> 'text',
+		'add_remove'		=> 'word',
+		'wikiTpl'			=> 'pagename'
+	];
 
 	function setUp()
 	{
 		$this->lib = TikiLib::lib('user');
-		$this->access = TikiLib::lib('access');
 	}
 
 
@@ -51,6 +63,11 @@ class Services_User_Controller
 		];
 	}
 
+	/**
+	 * @param $input JitFilter
+	 * @return array
+	 * @throws Services_Exception
+	 */
 	function action_register($input)
 	{
 		global $https_mode, $prefs;
@@ -289,8 +306,9 @@ class Services_User_Controller
 	 *
 	 * @param $input
 	 * @throws Services_Exception
+	 * @throws Exception
 	 */
-	public function action_no_action($input)
+	public function action_no_action()
 	{
 		Services_Utilities::modalException(tra('No action was selected. Please select an action before clicking OK.'));
 	}
@@ -300,62 +318,47 @@ class Services_User_Controller
 	 *
 	 * @param $input JitFilter
 	 * @return array
+	 * @throws Exception
 	 * @throws Services_Exception
-	 * @throws Services_Exception_BadRequest
 	 * @throws Services_Exception_Denied
-	 * @throws Services_Exception_NotFound
 	 */
 	function action_remove_users($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin_users');
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$items = $input->asArray('checked');
-			if (count($items) > 0) {
-				if (count($items) === 1) {
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, [],'checked');
+			if ($util->itemsCount > 0) {
+				if (count($util->items) === 1) {
 					$msg = tra('Delete the following user?');
 				} else {
 					$msg = tra('Delete the following users?');
 				}
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
-				return [
-					'modal' => '1',
-					'confirmAction' => $input->action->word(),
-					'confirmController' => 'user',
-					'customMsg' => $msg,
-					'confirmButton' => tra('Delete'),
-					'items' => $items,
-					'extra' => ['referer' => $referer],
-					'ticket' => $check['ticket'],
-					'confirm' => 'y',
-				];
+				return $util->confirm($msg, tra('Delete'));
 			} else {
 				Services_Utilities::modalException(tra('No users were selected. Please select one or more users.'));
 			}
 		//after confirm submit - perform action and return success feedback
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			//delete user
-			$items = json_decode($input['items'], true);
-
 			// maybe delete page as well?
-			$remove_pages = ! empty($input->remove_pages->word());
+			$remove_pages = ! empty($input['remove_pages']);
 
 			// check for trackers
-			$remove_items = $input->remove_items->text();
+			$remove_items = $input['remove_items'];
 			$remove_items = $remove_items ? explode(',', $remove_items) : [];
 
 			// file galleries?
-			$remove_files = ! empty($input->remove_files->word());
+			$remove_files = ! empty($input['remove_files']);
 
 			// do the deleting...
-			$extra = json_decode($input['extra'], true);
-			$del = $this->removeUsers($items, $remove_pages, $remove_items, $remove_files, $extra['referer']);
+			$del = $this->removeUsers($util->items, $remove_pages, $remove_items, $remove_files, $util->extra['referer']);
 
 			if ($del) {
 				//prepare feedback
-				if (count($items) === 1) {
+				if ($util->itemsCount === 1) {
 					$msg = tra('The following user has been deleted:');
 					$toMsg = tra('Submit form below to ban this user.');
 				} else {
@@ -365,24 +368,24 @@ class Services_User_Controller
 				$feedback = [
 					'tpl' => 'action',
 					'mes' => $msg,
-					'items' => $items,
+					'items' => $util->items,
 				];
 
 				//redirect to banning page if selected
-				if ($input->ban_users->word()) {
+				if ($input['ban_users']) {
 					$feedback['toMsg'] = $toMsg;
 					Feedback::success($feedback, 'session');
-					$url = 'tiki-admin_banning.php?mass_ban_ip_users=' . implode('|', $items);
+					$url = 'tiki-admin_banning.php?mass_ban_ip_users=' . implode('|', $util->items);
 					global $prefs;
 					if ($prefs['javascript_enabled'] !== 'y') {
-						$this->access->redirect($url);
+						TikiLib::lib('access')->redirect($url);
 					} else {
 						return ['url' => $url];
 					}
-					//refresh page
+				//refresh page
 				} else {
 					Feedback::success($feedback, 'session');
-					return Services_Utilities::refresh($extra['referer']);
+					return Services_Utilities::refresh($util->extra['referer']);
 				}
 			}
 		}
@@ -391,50 +394,38 @@ class Services_User_Controller
 	/**
 	 * Admin user "perform with checked" action to redirect to banning page with users preselected for banning
 	 *
-	 * @param $input
+	 * @param $input JitFilter
 	 * @return array
+	 * @throws Exception
 	 * @throws Services_Exception
-	 * @throws Services_Exception_BadRequest
 	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_Disabled
 	 */
 	function action_ban_ips($input)
 	{
 		Services_Exception_Disabled::check('feature_banning');
 		Services_Exception_Denied::checkGlobal('admin_banning');
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm popup
-		if (! empty($check['ticket'])) {
-			$items = $input->asArray('checked');
-			if (count($items) > 0) {
-				if (count($items) === 1) {
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			if (count($util->items) > 0) {
+				if ($util->itemsCount === 1) {
 					$msg = tra('Ban the following user\'s IP?');
 					$help = tra('Clicking Ban will redirect you to a form where this user\'s is preselected for IP banning.');
 				} else {
 					$msg = tra('Ban the following users\' IPs?');
 					$help = tra('Clicking Ban will redirect you to a form where these users\' are preselected for IP banning.');
 				}
-				return [
-					'FORWARD' => [
-						'controller' => 'access',
-						'action' => 'confirm',
-						'confirmAction' => $input->action->word(),
-						'confirmController' => 'user',
-						'customMsg' => $msg,
-						'confirmButton' => tra('Ban'),
-						'items' => $items,
-						'ticket' => $check['ticket'],
-						'help' => $help,
-						'modal' => '1',
-					]
-				];
+				return $util->confirm($msg, tra('Ban'), ['help' => $help]);
 			} else {
 				Services_Utilities::modalException(tra('No users were selected. Please select one or more users.'));
 			}
 		//after confirm submit - redirect to banning page with users preselected
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$items = json_decode($input['items'], true);
-			$url = 'tiki-admin_banning.php?mass_ban_ip_users=' . implode('|', $items);
-			$feedback = ['mes' => tr('See highlighted section in the form below for users you have selected for banning.'),];
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
+			$url = 'tiki-admin_banning.php?mass_ban_ip_users=' . implode('|', $util->items);
+			$feedback = ['mes' => tr('See highlighted section in the form below for users you have selected for banning.')];
 			Feedback::note($feedback, 'session');
 			return Services_Utilities::redirect($url);
 		}
@@ -447,17 +438,16 @@ class Services_User_Controller
 	 * @return array
 	 * @throws Exception
 	 * @throws Services_Exception
-	 * @throws Services_Exception_BadRequest
 	 * @throws Services_Exception_Denied
 	 */
 	function action_manage_groups($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin_users');
-		$check = Services_Exception_BadRequest::checkAccess();
-		//first pass - show confirm popup
-		if (! empty($check['ticket'])) {
-			$selected = $input->asArray('checked');
-			if (count($selected) > 0) {
+		$util = new Services_Utilities();
+		//first pass - show confirm modal popup
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters, 'checked');
+			if ($util->itemsCount > 0) {
 				//provide redirect if js is not enabled
 				if (! empty($input['anchor'])) {
 					$referer = $_SERVER['HTTP_REFERER'];
@@ -466,28 +456,21 @@ class Services_User_Controller
 				}
 				//remove from group icon clicked for a specific user
 				if (isset($input['groupremove'])) {
-					$items = $input->asArray('groupremove');
+					$group = $input['groupremove'];
 					return [
 						'FORWARD' => [
 							'controller' => 'access',
 							'action' => 'confirm',
 							'confirmAction' => $input->action->word(),
 							'confirmController' => 'user',
-							'customMsg' => sizeof($selected) == 1 ? tr(
-								'Remove user %0 from the following group?',
-								$selected[0]
-							) : tr(
-								'Remove users %0 from the following group?',
-								implode(', ', $selected)
-							),
-							'items' => $items,
+							'customMsg' => tr('Remove the following user from group %0?', $group),
+							'items' => $util->items,
 							'extra' => [
-								'add_remove'    => 'remove',
-								'user'          => $selected,
-								'referer'       => $referer,
-								'anchor'        => $input->anchor->striptags()
+								'add_remove'	=> 'remove',
+								'group'			=> $group,
+								'referer'		=> $referer,
+								'anchor'		=> $input->anchor->striptags()
 							],
-							'ticket' => $check['ticket'],
 							'modal' => '1',
 						]
 					];
@@ -495,24 +478,22 @@ class Services_User_Controller
 				} else {
 					$all_groups = $this->lib->list_all_groups();
 					$countgrps = count($all_groups) < 21 ? count($all_groups) : 20;
-					$users = $input->asArray('checked');
-					if (count($users) == 1) {
+					if ($util->itemsCount == 1) {
 						$customMsg = tra('For this user:');
-						$userGroups = TikiLib::lib('tiki')->get_user_groups($users[0]);
+						$userGroups = TikiLib::lib('tiki')->get_user_groups($util->items[0]);
 					} else {
 						$customMsg = tra('For these selected users:');
 						$userGroups = '';
 					}
 					return [
 						'title' => tra('Change group assignments for selected users'),
-						'confirmAction' => $input->action->word(),
+						'confirmAction' => $input['action'],
 						'confirmController' => 'user',
 						'customMsg' => $customMsg,
 						'all_groups' => $all_groups,
 						'countgrps' => $countgrps,
-						'items' => $users,
+						'items' => $util->items,
 						'extra' => ['referer' => $referer],
-						'ticket' => $check['ticket'],
 						'modal' => '1',
 						'confirm' => 'y',
 						'userGroups' => str_replace(['\'','&'], ['%39;','%26'], json_encode($userGroups)),
@@ -522,34 +503,31 @@ class Services_User_Controller
 				Services_Utilities::modalException(tra('No users were selected. Please select one or more users.'));
 			}
 		//after confirm submit - perform action and return success feedback
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$extra = json_decode($input['extra'], true);
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 
 			// default group?
-			$defaultGroup = $input->default_group->text();
+			$defaultGroup = $input['default_group'];
 
 			//selected users added or removed from selected groups
 			if (isset($input['checked_groups'])) {
 				$groups = $input->asArray('checked_groups');
-				$users = json_decode($input['items'], true);
-				$add_remove = $input->add_remove->word();
+				$add_remove = $input['add_remove'];
 			//single user removed from a particular group
-			} elseif (! empty($extra['add_remove'])) {
-				$groups = json_decode($input['items'], true);
-				$users = $extra['user'];
-				$add_remove = $extra['add_remove'];
+			} elseif (! empty($util->extra['add_remove'])) {
+				$groups[] = $util->extra['group'];
+				$add_remove = $util->extra['add_remove'];
 			} elseif ($defaultGroup) {
-				$users = json_decode($input['items'], true);
 				$groups = [];
 			}
-			if (! empty($users) && (! empty($groups) || $defaultGroup)) {
+			if (! empty($util->items) && (! empty($groups) || $defaultGroup)) {
 				global $user;
-				$logslib = TikiLib::lib('logs');
 				$userGroups = $this->lib->get_user_groups_inclusion($user);
 				$permname = 'group_' . $add_remove . '_member';
+				$logslib = TikiLib::lib('logs');
 				$groupperm = Perms::get()->$permname;
 				$userperm = Perms::get()->group_join;
-				foreach ($users as $assign_user) {
+				foreach ($util->items as $assign_user) {
 					foreach ($groups as $group) {
 						if ($groupperm || (array_key_exists($group, $userGroups) && $userperm)) {
 							if ($add_remove === 'add') {
@@ -562,7 +540,7 @@ class Services_User_Controller
 										['mes' => tra('An error occurred. The group assignment failed.')],
 										'session'
 									);
-									return Services_Utilities::closeModal($extra['referer']);
+									return Services_Utilities::closeModal($util->extra['referer']);
 								}
 							} elseif ($add_remove === 'remove') {
 								$this->lib->remove_user_from_group($assign_user, $group);
@@ -577,7 +555,7 @@ class Services_User_Controller
 							}
 						} else {
 							Feedback::error(['mes' => tra('Permission denied')], 'session');
-							return Services_Utilities::closeModal($extra['referer']);
+							return Services_Utilities::closeModal($util->extra['referer']);
 						}
 					}
 
@@ -586,7 +564,7 @@ class Services_User_Controller
 					}
 				}
 				//prepare feedback
-				if (count($users) === 1) {
+				if ($util->itemsCount === 1) {
 					$msg = tra('The following user:');
 					$helper = 'Has';
 				} else {
@@ -604,20 +582,20 @@ class Services_User_Controller
 				$feedback = [
 					'tpl' => 'action',
 					'mes' => $msg,
-					'items' => $users,
+					'items' => $util->items,
 					'toMsg' => $toMsg,
 					'toList' => $groups,
 				];
 				Feedback::success($feedback, 'session');
 				//return to page
-				if (! empty($extra['anchor'])) {
-					return Services_Utilities::redirect($extra['referer'] . $extra['anchor']);
+				if (! empty($util->extra['anchor'])) {
+					return Services_Utilities::redirect($util->extra['referer'] . $util->extra['anchor']);
 				} else {
-					return Services_Utilities::refresh($extra['referer']);
+					return Services_Utilities::refresh($util->extra['referer']);
 				}
 			} else {
 				Feedback::error(['mes' => tra('No groups were selected. Please select one or more groups.')], 'session');
-				return Services_Utilities::closeModal($extra['referer']);
+				return Services_Utilities::closeModal($util->extra['referer']);
 			}
 		}
 	}
@@ -629,35 +607,31 @@ class Services_User_Controller
 	 * @return array
 	 * @throws Exception
 	 * @throws Services_Exception
-	 * @throws Services_Exception_BadRequest
 	 * @throws Services_Exception_Denied
 	 */
 	function action_default_groups($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin_users');
 		Services_Exception_Denied::checkGlobal('group_add_member');
-		$check = Services_Exception_BadRequest::checkAccess();
-		//first pass - show confirm popup
-		if (! empty($check['ticket'])) {
-			$users = $input->asArray('checked');
-			if (count($users) > 0) {
+		$util = new Services_Utilities();
+		//first pass - show confirm modal popup
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters, 'checked');
+			if ($util->itemsCount > 0) {
 				$all_groups = $this->lib->list_all_groups();
 				$all_groups = array_combine($all_groups, $all_groups);
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
 				return [
 					'FORWARD' => [
 						'controller' => 'access',
 						'action' => 'confirm_select',
 						'title' => tra('Set default group for selected users'),
-						'confirmAction' => $input->action->word(),
+						'confirmAction' => $input['action'],
 						'confirmController' => 'user',
 						'customMsg' => tra('For these selected users:'),
 						'toList' => $all_groups,
 						'toMsg' => tra('Make this the default group:'),
-						'items' => $users,
-						'extra' => ['referer' => $referer],
-						'ticket' => $check['ticket'],
+						'items' => $util->items,
+						'extra' => ['referer' => Services_Utilities::noJsPath()],
 						'modal' => '1',
 					]
 				];
@@ -665,19 +639,18 @@ class Services_User_Controller
 				Services_Utilities::modalException(tra('No users were selected. Please select one or more users.'));
 			}
 		//after confirm submit - perform action and return success feedback
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			$groups = isset($input['checked_groups']) ? $input->asArray('checked_groups')
 				: $input->asArray('toId');
-			$users = json_decode($input['items'], true);
-			$extra = json_decode($input['extra'], true);
-			if (! empty($users) && ! empty($groups)) {
+			if (! empty($util->items) && ! empty($groups)) {
 				//perform action
 				global $user;
 				$logslib = TikiLib::lib('logs');
 				$userGroups = $this->lib->get_user_groups_inclusion($user);
 				$groupperm = Perms::get()->group_add_member;
 				$userperm = Perms::get()->group_join;
-				foreach ($users as $assign_user) {
+				foreach ($util->items as $assign_user) {
 					foreach ($groups as $group) {
 						if ($groupperm || (array_key_exists($group, $userGroups) && $userperm)) {
 							$this->lib->set_default_group($assign_user, $group);
@@ -691,21 +664,21 @@ class Services_User_Controller
 					}
 				}
 				//prepare feedback
-				$msg = count($users) === 1 ? tra('For the following user:') : tra('For the following users:');
+				$msg = $util->itemsCount === 1 ? tra('For the following user:') : tra('For the following users:');
 				$toMsg = tra('The following group has been set as the default group:');
 				$feedback = [
 					'tpl' => 'action',
 					'mes' => $msg,
-					'items' => $users,
+					'items' => $util->items,
 					'toMsg' => $toMsg,
 					'toList' => $groups,
 				];
 				Feedback::success($feedback, 'session');
 				//return to page
-				return Services_Utilities::refresh($extra['referer']);
+				return Services_Utilities::refresh($util->extra['referer']);
 			} else {
 				Feedback::error(['mes' => tra('No groups were selected. Please select one or more groups.')], 'session');
-				return Services_Utilities::closeModal($extra['referer']);
+				return Services_Utilities::closeModal($util->extra['referer']);
 			}
 		}
 	}
@@ -717,30 +690,25 @@ class Services_User_Controller
 	 * @return array
 	 * @throws Exception
 	 * @throws Services_Exception
-	 * @throws Services_Exception_BadRequest
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_Disabled
-	 * @throws Services_Exception_NotFound
 	 */
 	function action_email_wikipage($input)
 	{
 		Services_Exception_Disabled::check('feature_wiki');
 		Services_Exception_Denied::checkGlobal('admin_users');
-		$check = Services_Exception_BadRequest::checkAccess();
-		//first pass - show confirm popup
-		if (! empty($check['ticket'])) {
-			$users = $input->asArray('checked');
-			if (count($users) > 0) {
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
+		$util = new Services_Utilities();
+		//first pass - show confirm modal popup
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters, 'checked');
+			if ($util->itemsCount > 0) {
 				return [
 					'title' => tra('Send wiki page content by email to selected users'),
-					'confirmAction' => $input->action->word(),
+					'confirmAction' => $input['action'],
 					'confirmController' => 'user',
 					'customMsg' => tra('For these selected users:'),
-					'items' => $users,
-					'extra' => ['referer' => $referer],
-					'ticket' => $check['ticket'],
+					'items' => $util->items,
+					'extra' => ['referer' => Services_Utilities::noJsPath()],
 					'modal' => '1',
 					'confirm' => 'y',
 				];
@@ -748,21 +716,21 @@ class Services_User_Controller
 				Services_Utilities::modalException(tra('No users were selected. Please select one or more users.'));
 			}
 		//after confirm submit - perform action and return success feedback
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			$wikiTpl = $input['wikiTpl'];
 			$tikilib = TikiLib::lib('tiki');
 			$pageinfo = $tikilib->get_page_info($wikiTpl);
-			$extra = json_decode($input['extra'], true);
 			if (! $pageinfo) {
 				Feedback::error(tra('Page not found'), 'session');
-				return Services_Utilities::closeModal($extra['referer']);
+				return Services_Utilities::closeModal($util->extra['referer']);
 			}
 			if (empty($pageinfo['description'])) {
 				Feedback::error(
 					tra('The page does not have a description, which is mandatory to perform this action.'),
 					'session'
 				);
-				return Services_Utilities::closeModal($extra['referer']);
+				return Services_Utilities::closeModal($util->extra['referer']);
 			}
 			$bcc = $input['bcc'];
 			include_once('lib/webmail/tikimaillib.php');
@@ -770,7 +738,7 @@ class Services_User_Controller
 			if (! empty($bcc)) {
 				if (! validate_email($bcc)) {
 					Feedback::error(tra('Invalid bcc email address'), 'session');
-					return Services_Utilities::closeModal($extra['referer']);
+					return Services_Utilities::closeModal($util->extra['referer']);
 				}
 				$mail->setBcc($bcc);
 				$bccmsg = tr('and blind copied (bcc) to %0', $bcc);
@@ -782,16 +750,15 @@ class Services_User_Controller
 			$smarty = TikiLib::lib('smarty');
 			$smarty->assign_by_ref('mail_machine', $machine);
 
-			$users = json_decode($input['items'], true);
 			$logslib = TikiLib::lib('logs');
-			foreach ($users as $mail_user) {
+			foreach ($util->items as $mail_user) {
 				$smarty->assign_by_ref('user', $mail_user);
 				$mail->setUser($mail_user);
 				$mail->setSubject($pageinfo['description']);
 				$text = $smarty->fetch('wiki:' . $wikiTpl);
 				if (empty($text)) {
 					Feedback::error(tra('The template page has no text or the text cannot be extracted.'), 'session');
-					return Services_Utilities::closeModal($extra['referer']);
+					return Services_Utilities::closeModal($util->extra['referer']);
 				}
 				$mail->setHtml($text);
 				if (! $mail->send($this->lib->get_user_email($mail_user))) {
@@ -801,7 +768,7 @@ class Services_User_Controller
 						$errormsg .= $mailerrors;
 					}
 					Feedback::error($errormsg, 'session');
-					return Services_Utilities::closeModal($extra['referer']);
+					return Services_Utilities::closeModal($util->extra['referer']);
 				} else {
 					if (! empty($bcc)) {
 						$logmsg = sprintf(tra('Mail sent to user %s'), $mail_user);
@@ -814,18 +781,18 @@ class Services_User_Controller
 				$smarty->assign_by_ref('user', $user);
 			}
 			//prepare feedback
-			$msg = count($users) === 1 ? tr('The page %0 has been emailed to the following user:', $wikiTpl)
+			$msg = $util->itemsCount === 1 ? tr('The page %0 has been emailed to the following user:', $wikiTpl)
 				: tr('The page %0 has been emailed to the following users:', $wikiTpl);
 			$toMsg = ! empty($bcc) ? tr('And blind copied to %0.', $bcc) : '';
 			$feedback = [
 				'tpl' => 'action',
 				'mes' => $msg,
-				'items' => $users,
+				'items' => $util->items,
 				'toMsg' => $toMsg,
 			];
 			Feedback::success($feedback, 'session');
 			//return to page
-			return Services_Utilities::refresh($extra['referer']);
+			return Services_Utilities::refresh($util->extra['referer']);
 		}
 	}
 
@@ -845,8 +812,8 @@ class Services_User_Controller
 		} else {
 			$priority = 3;
 		}
-
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			if (empty($input->subject->text()) && empty($input->body->text())) {
 				Feedback::error(tra('Message not sent - no subject or body.'), 'session');
 			} else {
@@ -941,6 +908,12 @@ class Services_User_Controller
 		Services_Utilities::sendFeedback($referer);
 	}
 
+	/**
+	 * @param $input JitFilter
+	 * @return array|bool
+	 * @throws Services_Exception
+	 * @throws SmartyException
+	 */
 	function action_upload_avatar($input)
 	{
 		global $user;
@@ -955,16 +928,18 @@ class Services_User_Controller
 			$errormsg = tra('You do not have the permission to change the avatar.');
 			throw new Services_Exception($errormsg);
 		}
-		$this->access->check_feature('feature_userPreferences');
-		$this->access->check_user($user);
-
-		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		TikiLib::lib('access')->check_feature('feature_userPreferences');
+		TikiLib::lib('access')->check_user($user);
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			if (empty($_FILES['userfile']['name'])) {
 				$errormsg = tra('You must select an avatar to upload.');
 				throw new Services_Exception($errormsg, 400);
 			}
 			$name = $_FILES['userfile']['name'];
-
+			/**
+			 * @var $avatarlib AvatarLib
+			 */
 			$avatarlib = TikiLib::lib('avatar');
 			$avatarlib->set_avatar_from_url($_FILES['userfile']['tmp_name'], $userwatch, $name);
 			return true;
