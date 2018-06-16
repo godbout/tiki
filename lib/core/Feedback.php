@@ -33,8 +33,9 @@ class Feedback
 	 *
 	 * @param $feedback
 	 * @param string $method
+	 * @throws Exception
 	 */
-	public static function error($feedback, $method = 'tpl')
+	public static function error($feedback, $method = 'session')
 	{
 		$feedback = self::checkFeedback($feedback);
 		$feedback['type'] = 'error';
@@ -50,8 +51,9 @@ class Feedback
 	 *
 	 * @param $feedback
 	 * @param string $method
+	 * @throws Exception
 	 */
-	public static function note($feedback, $method = 'tpl')
+	public static function note($feedback, $method = 'session')
 	{
 		$feedback = self::checkFeedback($feedback);
 		$feedback['type'] = 'note';
@@ -67,8 +69,9 @@ class Feedback
 	 *
 	 * @param $feedback
 	 * @param string $method
+	 * @throws Exception
 	 */
-	public static function success($feedback, $method = 'tpl')
+	public static function success($feedback, $method = 'session')
 	{
 		$feedback = self::checkFeedback($feedback);
 		$feedback['type'] = 'feedback';
@@ -84,8 +87,9 @@ class Feedback
 	 *
 	 * @param $feedback
 	 * @param string $method
+	 * @throws Exception
 	 */
-	public static function warning($feedback, $method = 'tpl')
+	public static function warning($feedback, $method = 'session')
 	{
 		$feedback = self::checkFeedback($feedback);
 		$feedback['type'] = 'warning';
@@ -115,9 +119,10 @@ class Feedback
 	 *          - Two choices:
 	 *              - 'tpl' (default) to cause the feedback to be added to the {$tikifeedback} Smarty variable
 	 *              - 'session' to add to the PHP $_SESSION['tikifeedback'] global variable
-	 * @return array or bool
+	 * @return void or bool
+	 * @throws Exception
 	 */
-	public static function add($feedback, $method = 'tpl')
+	public static function add($feedback, $method = 'session')
 	{
 		$feedback = self::checkFeedback($feedback);
 		//add feedback to either the SESSION global variable or to smarty tpl variable
@@ -132,6 +137,7 @@ class Feedback
 				}
 				$_SESSION['tikifeedback'][] = $feedback;
 				break;
+			// TODO - just use session as it handles all cases
 			case 'tpl':
 				$smarty = TikiLib::lib('smarty');
 				$smarty->append('tikifeedback', $feedback);
