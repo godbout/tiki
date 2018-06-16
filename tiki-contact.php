@@ -33,7 +33,6 @@ if ($user) {
 } else {
 	$access->check_feature('contact_anon');
 }
-$access->checkAuthenticity();
 
 $smarty->assign('sent', 0);
 
@@ -42,7 +41,7 @@ $from = $user ? $user : '';
 $subject = '';
 $body = '';
 
-if (isset($_REQUEST['send']) && $access->ticketMatch()) {
+if (isset($_REQUEST['send']) && $access->checkCsrf()) {
 	if (isset($_REQUEST['priority'])) {
 		$priority = $_REQUEST['priority'];
 	}
