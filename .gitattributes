@@ -5531,6 +5531,7 @@ templates/h5p/list_libraries.tpl -text
 templates/h5p/list_results.tpl -text
 templates/header.tpl -text
 templates/ids/remove.tpl -text
+templates/includes/tiki-actions_link.tpl -text
 templates/index.php -text
 templates/interactive_translation_box.tpl -text
 templates/kaltura/index.php -text
