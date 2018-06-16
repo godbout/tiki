@@ -15,50 +15,108 @@ $access->check_permission('tiki_p_admin_banning');
 
 $auto_query_args = [ 'banId' ];
 
-if (isset($_REQUEST['remove'])) {
-	$access->check_authenticity();
-	$banlib->remove_rule($_REQUEST['remove']);
-	unset($_REQUEST['banId']);
-}
-if (isset($_REQUEST['del']) && isset($_REQUEST['delsec'])) {
-	check_ticket('admin-banning');
-	foreach (array_keys($_REQUEST['delsec']) as $sec) {
-		$banlib->remove_rule($sec);
+if (isset($_REQUEST['del'])) {
+	if (!isset($_REQUEST['delsec'])) {
+		Feedback::error(tra('No rule selected for deletion. No deletions were performed.'));
+	} elseif($access->checkCsrfForm(tr('Delete selected banning rules?'))) {
+		$items = array_keys($_POST['delsec']);
+		$resultRowsDeleted = 0;
+		foreach ($items as $sec) {
+			$result = $banlib->remove_rule($sec);
+			$resultRowsDeleted += $result->numRows();
+		}
+		unset($_POST['banId']);
+		if ($resultRowsDeleted) {
+			$msg = $resultRowsDeleted === 1 ? tra('The selected banning rule has been deleted')
+				: tr('%0 banning rules have been deleted', $resultRowsDeleted);
+			Feedback::success($msg);
+		} else {
+			Feedback::error(tr('No actions were deleted from the log'));
+		}
 	}
-	unset($_REQUEST['banId']);
 }
 
-if (isset($_REQUEST["import"]) && isset($_FILES["fileCSV"])) {
-	check_ticket('admin-banning');
-
+if (isset($_POST["import"]) && isset($_FILES["fileCSV"]) && $access->checkCsrf()) {
 	// import banning rules //
 	$number_imported = $banlib->importCSV($_FILES["fileCSV"]["tmp_name"], isset($_REQUEST['import_as_new']));
 	if ($number_imported > 0) {
 		$smarty->assign('updated', "y");
 		$smarty->assign('number_imported', $number_imported);
 	}
-	unset($_REQUEST['banId']);
+	unset($_POST['banId']);
 }
 
-if (isset($_REQUEST['save'])) {
-	check_ticket('admin-banning');
-	if ($_REQUEST['mode'] === 'user' && empty($_REQUEST['userreg'])) {
+if (isset($_POST['save']) && $access->checkCsrf()) {
+	if ($_POST['mode'] === 'user' && empty($_POST['userreg'])) {
 		Feedback::error(tra("Not saved:") . ' ' . tra("Username pattern empty"));
-	} elseif ($_REQUEST['mode'] === 'ip' && $_REQUEST['ip1'] == 255 && $_REQUEST['ip2'] == 255 && $_REQUEST['ip3'] == 255 && $_REQUEST['ip4'] == 255) {
+	} elseif ($_POST['mode'] === 'ip'
+		&& $_POST['ip1'] == 255
+		&& $_POST['ip2'] == 255
+		&& $_POST['ip3'] == 255
+		&& $_POST['ip4'] == 255)
+	{
 		Feedback::error(tra("Not saved:") . ' ' . tra("Default IP pattern still set"));
 	} else {
-		$_REQUEST['use_dates'] = isset($_REQUEST['use_dates']) ? 'y' : 'n';
-		$_REQUEST['date_from'] = $tikilib->make_time(0, 0, 0, $_REQUEST['date_fromMonth'], $_REQUEST['date_fromDay'], $_REQUEST['date_fromYear']);
-		$_REQUEST['date_to'] = $tikilib->make_time(0, 0, 0, $_REQUEST['date_toMonth'], $_REQUEST['date_toDay'], $_REQUEST['date_toYear']);
-		$sections = isset($_REQUEST['section']) ? array_keys($_REQUEST['section']) : [];
+		$_POST['use_dates'] = isset($_POST['use_dates']) ? 'y' : 'n';
+		$_POST['date_from'] = $tikilib->make_time(
+			0,
+			0,
+			0,
+			$_POST['date_fromMonth'],
+			$_POST['date_fromDay'],
+			$_POST['date_fromYear']
+		);
+		$_POST['date_to'] = $tikilib->make_time(
+			0,
+			0,
+			0,
+			$_POST['date_toMonth'],
+			$_POST['date_toDay'],
+			$_POST['date_toYear']
+		);
+		$sections = isset($_POST['section']) ? array_keys($_POST['section']) : [];
+		$replaced = [];
+		$resultRows = 0;
 		// Handle case when many IPs are banned
-		if ($_REQUEST['mode'] == 'mass_ban_ip') {
-			foreach ($_REQUEST['multi_banned_ip'] as $ip => $value) {
+		if ($_POST['mode'] == 'mass_ban_ip') {
+			foreach ($_POST['multi_banned_ip'] as $ip => $value) {
 				list($ip1,$ip2,$ip3,$ip4) = explode('.', $ip);
-				$banlib->replace_rule($_REQUEST['banId'], 'ip', $_REQUEST['title'], $ip1, $ip2, $ip3, $ip4, $_REQUEST['userreg'], $_REQUEST['date_from'], $_REQUEST['date_to'], $_REQUEST['use_dates'], $_REQUEST['message'], $sections);
+				$result = $banlib->replace_rule(
+					$_POST['banId'],
+					'ip',
+					$_POST['title'],
+					$ip1,
+					$ip2,
+					$ip3,
+					$ip4,
+					$_POST['userreg'],
+					$_POST['date_from'],
+					$_POST['date_to'],
+					$_POST['use_dates'],
+					$_POST['message'],
+					$sections
+				);
+				$resultRows += $result->numRows();
+				$replaced[] = $_POST['title'];
 			}
 		} else {
-			$banlib->replace_rule($_REQUEST['banId'], $_REQUEST['mode'], $_REQUEST['title'], $_REQUEST['ip1'], $_REQUEST['ip2'], $_REQUEST['ip3'], $_REQUEST['ip4'], $_REQUEST['userreg'], $_REQUEST['date_from'], $_REQUEST['date_to'], $_REQUEST['use_dates'], $_REQUEST['message'], $sections);
+			$result = $banlib->replace_rule(
+				$_POST['banId'],
+				$_POST['mode'],
+				$_POST['title'],
+				$_POST['ip1'],
+				$_POST['ip2'],
+				$_POST['ip3'],
+				$_POST['ip4'],
+				$_POST['userreg'],
+				$_POST['date_from'],
+				$_POST['date_to'],
+				$_POST['use_dates'],
+				$_POST['message'],
+				$sections
+			);
+			$resultRows += $result->numRows();
+			$replaced[] = $_POST['title'];
 		}
 		$info['sections'] = [];
 		$info['title'] = '';
@@ -73,6 +131,34 @@ if (isset($_REQUEST['save'])) {
 		$info['message'] = '';
 		$smarty->assign_by_ref('info', $info);
 		unset($_REQUEST['banId']);
+
+		$replacedCount = count($replaced);
+		if ($resultRows > 0 && $resultRows === $replacedCount) {
+			$msg = $resultRows === 1 ? tra('The following banning rule has been saved or replaced:')
+				: tr('The following %0 banning rules have been saved or replaced:', $resultRows);
+			$feedback = [
+				'tpl' => 'action',
+				'mes' => $msg,
+				'items' => $replaced,
+			];
+			Feedback::success($feedback);
+		} elseif ($replaced > 0 && $resultRows < $replacedCount) {
+			if (!$resultRows) {
+				$msg = tra('No changes were made to the following selected banning rules:');
+			} else {
+				$msg = tr('Only %0 of the selected banning rules shown below were added or changed', $resultRows);
+			}
+			if (!empty($msg)) {
+				$feedback = [
+					'tpl' => 'action',
+					'mes' => $msg,
+					'items' => $replaced,
+				];
+				Feedback::warning($feedback);
+			}
+		} elseif ($replacedCount === 0) {
+			Feedback::error(tr('No banning rules were selected'));
+		}
 	}
 }
 
@@ -104,7 +190,6 @@ if (! empty($_REQUEST['banId'])) {
 
 // Handle case when coming from tiki-list_comments with a list of IPs to ban
 if (! empty($_REQUEST['mass_ban_ip'])) {
-	check_ticket('admin-banning');
 	$commentslib = TikiLib::lib('comments');
 	$smarty->assign('mass_ban_ip', $_REQUEST['mass_ban_ip']);
 	$info['mode'] = 'mass_ban_ip';
@@ -113,23 +198,16 @@ if (! empty($_REQUEST['mass_ban_ip'])) {
 	$info['date_to'] = $tikilib->now + 365 * 24 * 3600;
 	$banId_list = explode('|', $_REQUEST['mass_ban_ip']);
 	// Handle case when coming from tiki-list_comments with a list of IPs to ban and also delete the related comments
-	if (! empty($_REQUEST['mass_remove'])) {
-		$access->check_authenticity(tra('Delete comments then set banning rules'));
-	}
 	foreach ($banId_list as $id) {
 		$ban_comment = $commentslib->get_comment($id);
 		$ban_comments_list[$ban_comment['user_ip']][$id]['userName'] = $ban_comment['userName'];
 		$ban_comments_list[$ban_comment['user_ip']][$id]['title'] = $ban_comment['title'];
-		if (! empty($_REQUEST['mass_remove'])) {
-			$commentslib->remove_comment($id);
-		}
 	}
 	$smarty->assign_by_ref('ban_comments_list', $ban_comments_list);
 }
 
 // Handle case when coming from tiki-admin_actionlog with a list of IPs to ban
 if (! empty($_REQUEST['mass_ban_ip_actionlog'])) {
-	check_ticket('admin-banning');
 	$logslib = TikiLib::lib('logs');
 	$smarty->assign('mass_ban_ip', $_REQUEST['mass_ban_ip_actionlog']);
 	$info['mode'] = 'mass_ban_ip';
@@ -146,7 +224,6 @@ if (! empty($_REQUEST['mass_ban_ip_actionlog'])) {
 
 // Handle case when coming from tiki-adminusers with a list of IPs to ban
 if (! empty($_REQUEST['mass_ban_ip_users'])) {
-	check_ticket('admin-banning');
 	$logslib = TikiLib::lib('logs');
 	$smarty->assign('mass_ban_ip', $_REQUEST['mass_ban_ip_users']);
 	$info['mode'] = 'mass_ban_ip';
@@ -203,7 +280,6 @@ $smarty->assign('cant', $items['cant']);
 $smarty->assign_by_ref('cant_pages', $items["cant"]);
 $smarty->assign_by_ref('items', $items["data"]);
 $smarty->assign('sections', $sections_enabled);
-ask_ticket('admin-banning');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 $smarty->assign('mid', 'tiki-admin_banning.tpl');

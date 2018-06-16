@@ -43,7 +43,8 @@
 
 <div class="t_navbar">
 	<form action="tiki-admin_banning.php" method="post">
-	<input type="hidden" name="export" value="y">
+		{ticket}
+		<input type="hidden" name="export" value="y">
 		<button name="csv" type="submit" class="btn btn-primary">
 			{icon name="export"} {tr}Export as CSV{/tr}
 		</button>
@@ -59,6 +60,7 @@
 
 <h2>{tr}Add or edit rules{/tr}</h2>
 <form action="tiki-admin_banning.php" name="banningform" method="post" class="form-horizontal" role="form">
+	{ticket}
 	<input type="hidden" name="banId" value="{$banId|escape}">
 	<div class="form-group row">
 		<label class="col-sm-4 col-form-label" for="banning-title">{tr}Rule title{/tr}</label>
@@ -144,7 +146,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="col-sm-8 col-sm-offset-4">
-			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
 		</div>
 	</div>
 </form>
@@ -152,6 +154,7 @@
 <h2 id="Import_rules_as_CSV">{tr}Import rules as CSV{/tr}</h2>
 
 <form method="post" action="tiki-admin_banning.php" enctype="multipart/form-data" class="form-horizontal" role="form">
+	{ticket}
 	<div class="form-group row">
 		<label class="col-sm-4 col-form-label" for="csv">{tr}CSV File{/tr}
 			{capture name=help}{tr}Column names on the first line:{/tr}<br>banId,mode,title,ip1,ip2,ip3,ip4,user,date_from,date_to,use_dates,created,created_readable,message,sections<br>{tr}Sections format:{/tr} {tr}section names are splitted by pipes (vertical bars). To see an example and use it as template, add one rule by hand, and export it as csv{/tr}<br>{tr}Date format:{/tr} {tr}See:{/tr} http://php.net/strtotime{/capture}
@@ -167,7 +170,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="col-sm-8 col-sm-offset-4">
-			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}Import{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}Import{/tr}" onclick="checkTimeout()">
 		</div>
 	</div>
  </form>
@@ -175,6 +178,7 @@
 {if $items}
 	<h2>{tr}Find{/tr}</h2>
 	<form method="post" action="tiki-admin_banning.php">
+		{ticket}
 		<input type="hidden" name="offset" value="{$offset|escape}">
 		<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 		<label for="banning-find">{tr}Find:{/tr}</label><input type="text" name="find" id="banning-find" value="{$find|escape}">
@@ -191,7 +195,8 @@
 	{$libeg = ''}
 	{$liend = ''}
 {/if}
-<form method="post" action="tiki-admin_banning.php">
+<form method="post" id="banning_rules_list" action="tiki-admin_banning.php">
+	{ticket}
 	<input type="hidden" name="offset" value="{$offset|escape}">
 	<input type="hidden" name="find" value="{$find|escape}">
 	<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
@@ -200,7 +205,13 @@
 			<tr>
 				<th>
 					{if $items|count > 0}
-						<input type="submit" class="btn btn-warning btn-sm tips" name="del" value="{tr}x{/tr}" title=":{tr}Remove{/tr}">
+						<input
+							type="submit"
+							class="btn btn-warning btn-sm tips"
+							name="del" value="{tr}x{/tr}"
+							title=":{tr}Remove{/tr}"
+							onclick="confirmSimple(event,'{tr}Delete selected banning rules?{/tr}')"
+						>
 					{/if}
 				</th>
 				<th>{tr}Title{/tr}</th>
@@ -235,8 +246,8 @@
 								{$libeg}<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;banId={$items[user].banId}">
 									{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 								</a>{$liend}
-								{$libeg}<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;remove={$items[user].banId}">
-									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+								{$libeg}<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;delsec[{$items[user].banId}]=y&amp;del=y"{if $js === 'y'} onclick="confirmSimple(event, '{tr}Delete banning rule?{/tr}', '{ticket mode=get}', );"{/if}>
+									{icon name='delete' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 								</a>{$liend}
 							{/strip}
 						{/capture}
