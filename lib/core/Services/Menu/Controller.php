@@ -28,33 +28,32 @@ class Services_Menu_Controller
 	/**
 	 * @param JitFilter $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_MissingValue
 	 * @throws Services_Exception_NotFound
 	 */
 	function action_edit($input)
 	{
-		$util = new Services_Utilities();
-		$util->checkTicket();
-
 		//get menu details
 		$menuId = $input->menuId->int();
 		$info = $this->menulib->get_menu($menuId);
 
 		if (! $info) {
-			throw new Services_Exception_NotFound(tr('Menu %0 notfound', $menuId));
+			throw new Services_Exception_NotFound(tr('Menu %0 not found', $menuId));
 		}
 
 		//check permissions
 		$perms = Perms::get('menu', $menuId);
-		if (! $perms->tiki_p_edit_menu) {
+		if (! $perms->edit_menu) {
 			throw new Services_Exception_Denied(tr("You don't have permission to edit menus (tiki_p_edit_menu)"));
 		}
 
 		$symbol = Tiki_Profile::getObjectSymbolDetails('menu', $menuId);
-
+		$util = new Services_Utilities();
 		//execute menu insert/update
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $input->confirm->int() && $util->access->ticketMatch()) {
+		if ($util->isConfirmPost()) {
 			$menuId = $input->menuId->int();
 			$name = $input->name->text();
 			$description = $input->description->text();
@@ -67,14 +66,27 @@ class Services_Menu_Controller
 				throw new Services_Exception_MissingValue('name');
 			}
 			$success = $this->menulib->replace_menu($menuId, $name, $description, $type, $icon, $use_items_icons, $parse);
+			if ($success) {
+				if ($menuId) {
+					Feedback::success(tr('The %0 menu has been edited', $name), 'session');
+				} else {
+					Feedback::success(tr('The %0 menu has been created', $name), 'session');
+				}
+			} else {
+				if ($menuId) {
+					Feedback::error(tr('An error occurred - the %0 menu may not have been edited', $name), 'session');
+				} else {
+					Feedback::error(tr('An error occurred - the %0 menu may not have been created', $name), 'session');
+				}
+			}
 		}
-
 		//information for the menu management screen
 		return [
 			'title' => $info['menuId'] ? tr('Edit Menu') : tr('Create Menu'),
 			'info' => $info,
 			'symbol' => $symbol,
 		];
+
 	}
 
 	function action_edit_icon($input)
@@ -89,22 +101,23 @@ class Services_Menu_Controller
 		$menuDetails = $this->get_menu_details($menuId);
 
 		if (! $menuDetails) {
-			throw new Services_Exception_NotFound(tr('Menu %0 notfound', $menuId));
+			throw new Services_Exception_NotFound(tr('Menu %0 not found', $menuId));
 		}
 
 		//check permissions
 		$perms = Perms::get('menu', $menuId);
 		if (! $perms->edit_menu_option) {
-			throw new Services_Exception_Denied(tr('Permission denied'));
+			throw new Services_Exception_Denied();
 		}
 
-
+		$util = new Services_Utilities();
 		//execute menu cloning
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $input->confirm->int()) {
+		if ($util->isConfirmPost()) {
 			$this->menulib->clone_menu($menuId, $input->name->text(), $input->description->text());
+			Feedback::success(tr('Menu %0 cloned as menu %1', $menuDetails['info']['name'], $input->name->text()),
+				'session');
 			return [];
 		}
-
 		//prepare basic data
 		$info = $this->menulib->get_menu($menuId);
 		$symbol = Tiki_Profile::getObjectSymbolDetails('menu', $menuId);
@@ -122,6 +135,8 @@ class Services_Menu_Controller
 	 *
 	 * @param JitFilter $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_MissingValue
 	 * @throws Services_Exception_NotFound
@@ -156,13 +171,13 @@ class Services_Menu_Controller
 		$menuDetails = $this->get_menu_details($menuId);
 
 		if (! $menuDetails) {
-			throw new Services_Exception_NotFound(tr('Menu %0 notfound', $menuId));
+			throw new Services_Exception_NotFound(tr('Menu %0 not found', $menuId));
 		}
 
 		//check permissions
 		$perms = Perms::get('menu', $menuId);
 		if (! $perms->edit_menu_option) {
-			throw new Services_Exception_Denied(tr('Permission denied'));
+			throw new Services_Exception_Denied();
 		}
 
 		//get usergroup information
@@ -200,12 +215,9 @@ class Services_Menu_Controller
 
 		//get permission information
 		$headerlib->add_js('var permNames = ' . json_encode($userLib->get_permission_names_for('all')) . ';');
-
 		$util = new Services_Utilities();
-		$util->checkTicket();
-
 		//perform insert or update
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $input->confirm->int() && $util->access->ticketMatch()) {
+		if ($util->isConfirmPost()) {
 			//check necessary permissions
 			if (! Perms::get('menu', $menuId)->edit_menu_option) {
 				throw new Services_Exception_Denied(tr("You don't have permission to edit menu options (tiki_p_edit_menu_option)"));
@@ -259,6 +271,8 @@ class Services_Menu_Controller
 	/**
 	 * @param JitFilter $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_NotFound
 	 */
@@ -269,40 +283,37 @@ class Services_Menu_Controller
 		$menuDetails = $this->get_menu_details($menuId);
 
 		if (! $menuDetails) {
-			throw new Services_Exception_NotFound(tr('Menu %0 notfound', $menuId));
+			throw new Services_Exception_NotFound(tr('Menu %0 not found', $menuId));
 		}
 
 		//check permissions
 		$perms = Perms::get('menu', $menuId);
 		if (! $perms->edit_menu_option) {
-			throw new Services_Exception_Denied(tr('Permission denied'));
+			throw new Services_Exception_Denied();
 		}
 
 
 		//perform menu export
-		$confirm = $input->confirm->int();
-		if ($confirm) {
-			$menuId = $input->menuId->int();
-			$encoding = $input->encoding->text();
-			$menuLib = $this->menulib;
-			$menuLib->export_menu_options($menuId, $encoding);
-			return [
-				'confirm' => $confirm,
-			];
-		}
+		$menuId = $input->menuId->int();
+		$encoding = $input->encoding->text();
+		$menuLib = $this->menulib;
+		$menuLib->export_menu_options($menuId, $encoding);
+		return [];
 
-		//information for the export menu screen
-		return [
+		//No confirm popup needed as there are no options that can be set currently
+/*		return [
 			'title' => tr('Export Menu Options'),
 			'menuId' => $menuId,
 			'menuInfo' => $menuDetails["info"],
 			'menuSymbol' => $menuDetails["symbol"],
-		];
+		];*/
 	}
 
 	/**
 	 * @param JitFilter $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_NotFound
 	 */
@@ -313,25 +324,25 @@ class Services_Menu_Controller
 		$menuDetails = $this->get_menu_details($menuId);
 
 		if (! $menuDetails) {
-			throw new Services_Exception_NotFound(tr('Menu %0 notfound', $menuId));
+			throw new Services_Exception_NotFound(tr('Menu %0 not found', $menuId));
 		}
 
 		//check permissions
 		$perms = Perms::get('menu', $menuId);
 		if (! $perms->edit_menu_option) {
-			throw new Services_Exception_Denied(tr('Permission denied'));
+			throw new Services_Exception_Denied();
 		}
 
 		//execute import
-		$confirm = $input->confirm->int();
 		$redirect = '';
-		if ($confirm) {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$menuId = $input->menuId->int();
 			$menuLib = $this->menulib;
 			$menuLib->import_menu_options($menuId);
 			global $base_url;
 			$redirect = $base_url . 'tiki-admin_menu_options.php?menuId=' . $menuId;
-			Feedback::success(tr('Your menu options have been imported successfully'), 'session');
+			Feedback::success(tr('Your menu options have been imported'), 'session');
 			Services_Utilities::sendFeedback($redirect);
 		}
 
@@ -359,7 +370,7 @@ class Services_Menu_Controller
 		$menuDetails = $this->get_menu_details($menuId);
 
 		if (! $menuDetails) {
-			throw new Services_Exception_NotFound(tr('Menu %0 notfound', $menuId));
+			throw new Services_Exception_NotFound(tr('Menu %0 not found', $menuId));
 		}
 
 		//check permissions
@@ -390,20 +401,20 @@ class Services_Menu_Controller
 	 *
 	 * @param JitFilter $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_NotFound
 	 */
 	function action_save($input)
 	{
-		$util = new Services_Utilities();
-		$util->checkTicket();
 
 		//get menu details
 		$menuId = $input->menuId->int();
 		$menuDetails = $this->get_menu_details($menuId);
 
 		if (! $menuDetails) {
-			throw new Services_Exception_NotFound(tr('Menu %0 notfound', $menuId));
+			throw new Services_Exception_NotFound(tr('Menu %0 not found', $menuId));
 		}
 
 		//check permissions
@@ -412,7 +423,9 @@ class Services_Menu_Controller
 			throw new Services_Exception_Denied(tr("You don't have permission to edit menu options (tiki_p_edit_menu_option)"));
 		}
 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $util->access->ticketMatch()) {
+		$util = new Services_Utilities();
+		if ($util->checkCsrf()) {
+
 			$oldOptions = $this->menulib->list_menu_options($menuId);
 			$options = json_decode($input->data->striptags(), true);
 
@@ -470,6 +483,63 @@ class Services_Menu_Controller
 
 		return ['menuId' => $menuId];
 	}
+
+	/**
+	 * @param $input jitFilter
+	 * @return array
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_NotFound
+	 */
+	function action_remove($input)
+	{
+		$input->replaceFilters(['menuId' => 'digits', 'referer' => 'url']);
+		$util = new Services_Utilities();
+		//get menu details
+		if ($input->offsetExists('menuId')) {
+			$menuId = $input['menuId'];
+		} else {
+			$util->setDecodedVars($input, ['menuId' => 'digits']);
+			$menuId = $util->extra['menuId'];
+		}
+		$menuDetails = $this->get_menu_details($menuId);
+
+		if (! $menuDetails['info']['menuId']) {
+			throw new Services_Exception_NotFound(tr('Menu %0 not found', $menuId));
+		}
+
+		//check permissions
+		$perms = Perms::get('menu', $menuId);
+		if (! $perms->edit_menu) {
+			throw new Services_Exception_Denied();
+		}
+
+		//execute deletion
+		if ($util->isConfirmPost()) {
+			$result = $this->menulib->remove_menu($menuId);
+			if ($result) {
+				Feedback::success(tr('The %0 menu has been removed', $menuDetails['info']['name']), 'session');
+			} else {
+				Feedback::error(tr('The %0 menu has not been removed', $menuDetails['info']['name']), 'session');
+			}
+			return Services_Utilities::refresh($util->extra['referer']);
+		} else {
+			return [
+				'FORWARD' => [
+					'modal' => '1',
+					'controller' => 'access',
+					'action' => 'confirm',
+					'confirmAction' => 'remove',
+					'confirmController' => 'menu',
+					'confirmClass' => 'n',
+					'customMsg' => tr('Delete the %0 menu?', $menuDetails['info']['name']),
+					'confirmButton' => tra('Delete'),
+					'extra' => ['referer' => Services_Utilities::noJsPath(), 'menuId' => $menuId],
+				]
+			];
+		}
+	}
+
 
 	private function get_menu_details($menuId)
 	{

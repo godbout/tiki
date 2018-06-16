@@ -117,11 +117,10 @@
 				</div>
 			{/if}
 			<div class="form-group text-center submit">
-				{ticket}
+				{ticket mode=confirm}
 				<input type="hidden" name="optionId" value="{$optionId|escape}">
 				<input type="hidden" name="menuId" value="{$menuId|escape}">
 				<input type="hidden" name="offset" value="{$offset|escape}">
-				<input type="hidden" name="confirm" value="1">
 				<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 			</div>
 		</div>

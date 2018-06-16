@@ -14,7 +14,8 @@
 				</span>
 			{/if}
 		{/remarksbox}
-		<div class="form-group hidden" > {* hiding enconding as it does not seem to work *}
+		{* hiding enconding as it does not seem to work - this template is therefore not being used currently *}
+		<div class="form-group hidden" >
 			<label for="encoding" class="col-form-label">
 				{tr}Encoding{/tr}
 			</label>
@@ -24,7 +25,7 @@
 			</select>
 		</div>
 		<div class="submit">
-			<input type="hidden" name="confirm" value="1">
+			{ticket mode=confirm}
 			<button type="submit" class="btn btn-secondary" name="export">{tr}Export{/tr}</button>
 		</div>
 	</form>

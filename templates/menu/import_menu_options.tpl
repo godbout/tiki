@@ -23,7 +23,7 @@
 			</label>
 			<input name="csvfile" type="file" required="required" class="form-control">
 			<div class="submit">
-				<input type="hidden" name="confirm" value="1">
+				{ticket mode=confirm}
 				<input type="submit" class="btn btn-primary" name="import" value="{tr}Import{/tr}">
 			</div>
 		</div>

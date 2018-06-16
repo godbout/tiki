@@ -34,7 +34,7 @@
 		</div>
 
 		<div class="submit">
-			<input type="hidden" name="confirm" value="1">
+			{ticket mode=confirm}
 			<input type="hidden" name="menuId" value="{$info.menuId|escape}">
 			<input type="submit" class="btn btn-secondary" name="clone" value="{tr}Clone{/tr}">
 		</div>

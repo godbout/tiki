@@ -17,7 +17,6 @@
 {/block}
 {block name="content"}
 	<form action="{service controller=menu action=edit}" method="post" role="form" class="form">
-		{ticket}
 		<div class="form-group row mx-2">
 			<label for="menus_name" class="col-form-label">
 				{tr}Name{/tr}
@@ -68,7 +67,7 @@
 			{if $prefs.menus_items_icons neq 'y'}
 				<input type="hidden" name="use_items_icons" value="{$info.use_items_icons}">
 			{/if}
-			<input type="hidden" name="confirm" value="1">
+			{ticket mode=confirm}
 			<input type="hidden" name="menuId" value="{$info.menuId|escape}">
 			<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 		</div>
