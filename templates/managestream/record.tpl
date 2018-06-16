@@ -3,7 +3,7 @@
 	{title}{$title|escape}{/title}
 {/block}
 {block name="content"}
-	<form role="form" method="post" action="{service controller=managestream action=record}">
+	<form role="form" id="confirm-action" method="post" action="{service controller=managestream action=record}">
 		<div class="form-group row clearfix">
 			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}
@@ -60,6 +60,7 @@
 			</div>
 		</div>
 		<div class="submit">
+			{ticket mode='confirm'}
 			<input type="hidden" name="ruleId" value="{$rule.ruleId|escape}"/>
 			<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}"/>
 		</div>

@@ -7,6 +7,9 @@
 
 class Services_ActivityStream_ManageController
 {
+	/**
+	 * @var ActivityLib
+	 */
 	private $lib;
 
 	/**
@@ -23,8 +26,10 @@ class Services_ActivityStream_ManageController
 
 	/**
 	 * List activity rules from tiki_activity_stream_rules table
+	 * @return array
+	 * @throws Math_Formula_Parser_Exception
 	 */
-	function action_list(JitFilter $request)
+	function action_list()
 	{
 		$rules = $this->lib->getRules();
 
@@ -42,6 +47,9 @@ class Services_ActivityStream_ManageController
 
 	/**
 	 * Delete an activity rule from tiki_activity_stream_rules table
+	 * @param JitFilter $request
+	 * @return array
+	 * @throws Math_Formula_Parser_Exception
 	 */
 	function action_delete(JitFilter $request)
 	{
@@ -49,8 +57,19 @@ class Services_ActivityStream_ManageController
 		$rule = $this->getRule($id);
 
 		$removed = false;
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$this->lib->deleteRule($id);
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
+			/** @var TikiDb_Pdo_Result|TikiDb_Adodb_Result $result */
+			$result = $this->lib->deleteRule($id);
+			if ($result->numRows()) {
+				if ($result->numRows() == 1) {
+					Feedback::success(tra('Activity rule deleted'), 'session');
+				} else {
+					Feedback::success(tra('%0 activity rules deleted', $result->numRows()));
+				}
+			} else {
+				Feedback::error(tra('No activity rules deleted'), 'session');
+			}
 			$removed = true;
 		}
 
@@ -64,17 +83,23 @@ class Services_ActivityStream_ManageController
 
 	/**
 	 * Delete a recorded activity from tiki_activity_stream table
+	 * @param JitFilter $request
+	 * @return array
+	 * @throws Exception
 	 */
 	function action_deleteactivity(JitFilter $request)
 	{
 		$id = $request->activityId->int();
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$this->lib->deleteActivity($id);
-			Feedback::success(tr('Your activity (id:' . $id . ') was successfully deleted'), 'session');
-			//return to page
-			$referer = Services_Utilities::noJsPath();
-			return Services_Utilities::refresh($referer);
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
+			/** @var TikiDb_Pdo_Result|TikiDb_Adodb_Result $result */
+			$result = $this->lib->deleteActivity($id);
+			if ($result->numRows()) {
+				Feedback::success(tr('Activity (id:' . (string) $id . ') deleted'));
+			} else {
+				Feedback::error(tra('No activities deleted'));
+			}
 		}
 
 		return [
@@ -85,14 +110,19 @@ class Services_ActivityStream_ManageController
 
 	/**
 	 * Create/update a sample activity rule. Sample rules are never recorded.
+	 * @param JitFilter $request
+	 * @return array
+	 * @throws Math_Formula_Parser_Exception
+	 * @throws Services_Exception_FieldError
 	 */
 	function action_sample(JitFilter $request)
 	{
 		$id = $request->ruleId->int();
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$event = $request->event->attribute_type();
-			$id = $this->replaceRule(
+			$result = $this->replaceRule(
 				$id,
 				[
 					'rule' => "(event-sample (str $event) event args)",
@@ -102,6 +132,16 @@ class Services_ActivityStream_ManageController
 				],
 				'event'
 			);
+			//replaceRule sends error message so no need to here
+			if ($result) {
+				if ($id && $result->numRows()) {
+					Feedback::success(tr('Sample activity rule %0 updated', $id));
+				} elseif (! $id) {
+					Feedback::success(tr('Sample activity rule %0 created', $result));
+				} elseif (! $result->numRows()) {
+					Feedback::note(tr('Sample activity rule %0 unchanged', $id));
+				}
+			}
 		}
 
 		$rule = $this->getRule($id);
@@ -125,6 +165,10 @@ class Services_ActivityStream_ManageController
 
 	/**
 	 * Create/update a basic activity rule. Basic rules are recorded by default.
+	 * @param JitFilter $request
+	 * @return array
+	 * @throws Math_Formula_Parser_Exception
+	 * @throws Services_Exception_FieldError
 	 */
 	function action_record(JitFilter $request)
 	{
@@ -138,8 +182,9 @@ class Services_ActivityStream_ManageController
 			$rule = "(event-notify event args (str $priority) (str $user))";
 		}
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$id = $this->replaceRule(
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
+			$result = $this->replaceRule(
 				$id,
 				[
 					'rule' => $rule,
@@ -149,6 +194,16 @@ class Services_ActivityStream_ManageController
 				],
 				'notes'
 			);
+			//replaceRule sends error message so no need to here
+			if ($result) {
+				if ($id && $result->numRows()) {
+					Feedback::success(tr('Basic activity rule %0 updated', $id));
+				} elseif (! $id) {
+					Feedback::success(tr('Basic activity rule %0 created', $result));
+				} elseif (! $result->numRows()) {
+					Feedback::note(tr('Basic activity rule %0 unchanged', $id));
+				}
+			}
 		}
 
 		return [
@@ -160,12 +215,18 @@ class Services_ActivityStream_ManageController
 
 	/**
 	 * Create/update a tracker_filter activity rule. Tracker rules are recorded and linked to a tracker.
+	 * @param JitFilter $request
+	 * @return array
+	 * @throws Math_Formula_Parser_Exception
+	 * @throws Services_Exception_FieldError
+	 * @throws Services_Exception_MissingValue
 	 */
 	function action_tracker_filter(JitFilter $request)
 	{
 		$id = $request->ruleId->int();
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$tracker = $request->tracker->int();
 			$targetEvent = $request->targetEvent->attribute_type();
 			$customArguments = $request->parameters->text();
@@ -174,7 +235,7 @@ class Services_ActivityStream_ManageController
 				throw new Services_Exception_MissingValue('targetEvent');
 			}
 
-			$id = $this->replaceRule(
+			$result = $this->replaceRule(
 				$id,
 				[
 					'rule' => "
@@ -188,6 +249,16 @@ $customArguments
 				],
 				'parameters'
 			);
+			//replaceRule sends error message so no need to here
+			if ($result) {
+				if ($id && $result->numRows()) {
+					Feedback::success(tr('Tracker activity rule %0 updated', $id));
+				} elseif (! $id) {
+					Feedback::success(tr('Tracker activity rule %0 created', $result));
+				} elseif (! $result->numRows()) {
+					Feedback::note(tr('Tracker activity rule %0 unchanged', $id));
+				}
+			}
 		}
 
 		$rule = $this->getRule($id);
@@ -219,13 +290,18 @@ $customArguments
 
 	/**
 	 * Create/update an advanced activity rule. Advanced rules are recorded by default.
+	 * @param JitFilter $request
+	 * @return array
+	 * @throws Math_Formula_Parser_Exception
+	 * @throws Services_Exception_FieldError
 	 */
 	function action_advanced(JitFilter $request)
 	{
 		$id = $request->ruleId->int();
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$id = $this->replaceRule(
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
+			$result = $this->replaceRule(
 				$id,
 				[
 					'rule' => $request->rule->text(),
@@ -235,6 +311,16 @@ $customArguments
 				],
 				'rule'
 			);
+			//replaceRule sends error message so no need to here
+			if ($result) {
+				if ($id && $result->numRows()) {
+					Feedback::success(tr('Advanced activity rule %0 updated', $id));
+				} elseif (! $id) {
+					Feedback::success(tr('Advanced activity rule %0 created', $result));
+				} elseif (! $result->numRows()) {
+					Feedback::note(tr('Advanced activity rule %0 unchanged', $id));
+				}
+			}
 		}
 
 		return [
@@ -246,6 +332,12 @@ $customArguments
 
 	/**
 	 * Private function to perform updating of rules
+	 * @param $id
+	 * @param array $data
+	 * @param $ruleField
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result|integer $id	For a new item, $id will be the ID integer,
+	 * 																	otherwise a result class
+	 * @throws Services_Exception_FieldError
 	 */
 	private function replaceRule($id, array $data, $ruleField)
 	{
@@ -283,6 +375,9 @@ $customArguments
 
 	/**
 	 * Private function to get details of an activity rule
+	 * @param int|Zend\Filter\ToInt $id
+	 * @return array|mixed
+	 * @throws Math_Formula_Parser_Exception
 	 */
 	private function getRule($id)
 	{
@@ -307,12 +402,16 @@ $customArguments
 
 	/**
 	 * Change rule type for an activity rule. Sample rules can be changed to basic or advanced rule. Basic rule can be changed to advanced rule. Other type changes are not supported.
+	 * @param JitFilter $input
+	 * @return array
+	 * @throws Math_Formula_Parser_Exception
+	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_FieldError
 	 */
-	function action_change_rule_type($input)
+	function action_change_rule_type(JitFilter $input)
 	{
 		$id = $input->ruleId->int();
 		$rule = $this->getRule($id);
-		$status = $this->getRuleStatus($id);
 		$ruleTypes = $this->getRuleTypes();
 		$currentRuleType = array_intersect_key($ruleTypes, array_flip(['ruleType' => $rule['ruleType']]));
 
@@ -329,8 +428,8 @@ $customArguments
 			throw new Services_Exception_Denied(tr('Invalid rule type'));
 		}
 
-		$confirm = $input->confirm->int();
-		if ($confirm) {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$currentRuleType = $rule['ruleType'];
 			$newRuleType = $input->ruleType->text();
 			//if sample is changed to basic or advanced, "event-sample" needs to be changed to "event-record" in the rule
@@ -338,7 +437,7 @@ $customArguments
 				$rule['rule'] = str_replace('event-sample', 'event-record', $rule['rule']);
 			}
 
-			$id = $this->replaceRule(
+			$result = $this->replaceRule(
 				$id,
 				[
 					'rule' => $rule['rule'],
@@ -348,6 +447,10 @@ $customArguments
 				],
 				'notes'
 			);
+			//replaceRule sends error message so no need to here
+			if ($result->numRows()) {
+				Feedback::success(tr('Type changed for activity rule %0', $id));
+			}
 		}
 
 		return [
@@ -360,15 +463,19 @@ $customArguments
 
 	/**
 	 * Enable/disable an activity rule. Can be used for basic and advanced types. Tracker type is always enabled, sample type is always disabled, so no need to manage them.
+	 * @param JitFilter $input
+	 * @return array
+	 * @throws Math_Formula_Parser_Exception
+	 * @throws Services_Exception_FieldError
 	 */
-	function action_change_rule_status($input)
+	function action_change_rule_status(JitFilter $input)
 	{
 		$id = $input->ruleId->int();
 		$rule = $this->getRule($id);
 		$status = $this->getRuleStatus($id);
-		$confirm = $input->confirm->int();
 
-		if ($confirm) {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			//to disable a rule "event-record" needs to be changed to "event-sample" in the rule
 			if (($rule['ruleType'] === 'record' || $rule['ruleType'] === 'advanced') && $status === 'enabled') {
 				$rule['rule'] = str_replace('event-record', 'event-sample', $rule['rule']);
@@ -377,7 +484,7 @@ $customArguments
 				$rule['rule'] = str_replace('event-sample', 'event-record', $rule['rule']);
 			}
 
-			$id = $this->replaceRule(
+			$result = $this->replaceRule(
 				$id,
 				[
 					'rule' => $rule['rule'],
@@ -387,6 +494,10 @@ $customArguments
 				],
 				'notes'
 			);
+			//replaceRule sends error message so no need to here
+			if ($result->numRows()) {
+				Feedback::success(tr('Status changed for activity rule %0', $id));
+			}
 		}
 
 		return [
@@ -398,6 +509,9 @@ $customArguments
 
 	/**
 	 * Private function to get the status of an activity rule
+	 * @param int|Zend\Filter\ToInt $id
+	 * @return string
+	 * @throws Math_Formula_Parser_Exception
 	 */
 	private function getRuleStatus($id)
 	{

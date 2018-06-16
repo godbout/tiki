@@ -59,17 +59,7 @@
 	{title}{tr}Activity Rules{/tr}{/title}
 {/block}
 {block name="content"}
-	{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-	{if $prefs.javascript_enabled !== 'y'}
-		{$js = 'n'}
-		{$libeg = '<li>'}
-		{$liend = '</li>'}
-	{else}
-		{$js = 'y'}
-		{$libeg = ''}
-		{$liend = ''}
-	{/if}
-	<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+	<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 		<table class="table table-hover">
 			<tr>
 				<th>{tr}ID{/tr}</th>
@@ -107,16 +97,16 @@
 							{strip}
 								{$libeg}
 									<a href="{bootstrap_modal controller=managestream action="{if $rule.ruleType eq "sample"}sample{elseif $rule.ruleType eq "record"}record{elseif $rule.ruleType eq "tracker_filter"}tracker_filter{elseif $rule.ruleType eq "advanced"}advanced{/if}" ruleId=$rule.ruleId}" data-rule-id="{$rule.ruleId|escape}">
-										{icon name="edit"} {tr}Edit{/tr}
+										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 									</a>
 								{$liend}
 								{if $rule.ruleType eq "record"}
 									{$libeg}
 										<a href="{bootstrap_modal controller=managestream action=change_rule_status ruleId=$rule.ruleId}">
 											{if $rule.status eq "disabled"}
-												{icon name="toggle-on"} {tr}Enable{/tr}
+												{icon name="toggle-on" _menu_text='y' _menu_icon='y' alt="{tr}Enable{/tr}"}
 											{elseif $rule.status eq "enabled"}
-												{icon name="toggle-off"} {tr}Disable{/tr}
+												{icon name="toggle-off" _menu_text='y' _menu_icon='y' alt="{tr}Disable{/tr}"}
 											{/if}
 										</a>
 									{$liend}
@@ -124,30 +114,18 @@
 								{if $rule.ruleType eq "sample" or $rule.ruleType eq "record"}
 									{$libeg}
 										<a href="{bootstrap_modal controller=managestream action=change_rule_type ruleId=$rule.ruleId}">
-											{icon name="exchange"} {tr}Change Rule Type{/tr}
+											{icon name="exchange" _menu_text='y' _menu_icon='y' alt="{tr}Change Rule Type{/tr}"}
 										</a>
 									{$liend}
 								{/if}
 								{$libeg}
 									<a href="{bootstrap_modal controller=managestream action=delete ruleId=$rule.ruleId}">
-										{icon name="delete"} {tr}Delete{/tr}
+										{icon name="delete" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 									</a>
 								{$liend}
 							{/strip}
 						{/capture}
-						{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-						<a
-							class="tips"
-							title="{tr}Actions{/tr}"
-							href="#"
-							{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.rule_actions}{/if}
-							style="padding:0; margin:0; border:0"
-						>
-							{icon name='wrench'}
-						</a>
-						{if $js === 'n'}
-							<ul class="dropdown-menu" role="menu">{$smarty.capture.rule_actions}</ul></li></ul>
-						{/if}
+						{include file="templates/includes/tiki-actions_link.tpl" capturedActions="rule_actions"}
 					</td>
 				</tr>
 			{/foreach}
