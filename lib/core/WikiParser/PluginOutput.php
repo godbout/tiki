@@ -79,15 +79,14 @@ class WikiParser_PluginOutput
 			$smarty = TikiLib::lib('smarty');
 			$smarty->loadPlugin('smarty_function_preference');
 			$smarty->loadPlugin('smarty_modifier_escape');
+			$smarty->loadPlugin('smarty_function_ticket');
 			$content .= '<form method="post" action="tiki-admin.php">';
 			foreach ($preferences as $pref) {
 				$content .= smarty_function_preference(['name' => $pref], $smarty);
 			}
-			$access = Tikilib::lib('access');
-			$check = $access->check_authenticity(null, false);
-			$content .= '<input type="hidden" name="ticket" value="' . $check['ticket'] . '">';
-			$content .= '<input type="hidden" name="daconfirm" value="y">';
-			$content .= '<input type="submit" class="btn btn-primary btn-sm" value="' . smarty_modifier_escape(tra('Set')) . '">';
+			$content .= smarty_function_ticket([], $smarty);
+			$content .= '<input type="submit" class="btn btn-default btn-sm" value="'
+				. smarty_modifier_escape(tra('Set')) . '">';
 			$content .= '</form>';
 		}
 		return self::error(tra('Plugin disabled'), $content);

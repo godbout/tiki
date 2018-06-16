@@ -274,10 +274,6 @@ function wikiplugin_pivottable($data, $params)
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('lang', $lang);
 
-	$access = TikiLib::lib('access');
-	$access->checkAuthenticity();
-	$ticket = $access->getTicket();
-	$smarty->assign('ticket', $ticket);
 
 	//checking data type
 	if (empty($params['data']) || ! is_array($params['data'])) {

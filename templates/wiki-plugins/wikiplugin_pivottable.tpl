@@ -113,4 +113,4 @@
 
 <div id="pivotdetails_modal"></div>
 
-<input type="hidden" name="ticket" id="ticket" value="{$ticket}">
+<input type="hidden" id="pivottable-ticket" name="ticket" value="{ticket mode=get}">

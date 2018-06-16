@@ -68,6 +68,8 @@ function wikiplugin_convene($data, $params)
 	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_function_icon');
 	$perms = Perms::get();
+	//in case there is any feedback from a previous ajax action since this plugin does not refresh the page upon edit
+	Feedback::send_headers();
 
 	static $conveneI = 0;
 	++$conveneI;
@@ -256,10 +258,13 @@ function wikiplugin_convene($data, $params)
 
 	$result .= "</tr>";
 	//end last row with auto selected date(s)
+	$smarty->loadPlugin('smarty_function_ticket');
+	$ticket = smarty_function_ticket(['mode' => 'get'], $smarty);
 
 
 	$result = <<<FORM
 			<form id='pluginConvene$i'>
+				<input type="hidden" id="convene-ticket" name="ticket" value="$ticket">
 			    <div class="table-responsive">
     				<table class="table table-bordered">$result</table>
     		    </div>
@@ -280,9 +285,6 @@ FORM;
 	$n = '\n';
 	$regexN = '/[\r\n]+/g';
 
-	$access = TikiLib::lib('access');
-	$access->checkAuthenticity();
-	$ticket = $access->getTicket();
 
 	$headerlib->add_jq_onready(
 		/** @lang JavaScript */
@@ -411,8 +413,7 @@ FORM;
 								content: content,
 								index: $i,
 								type: "convene",
-								ticket: "$ticket",
-								daconfirm: "y",
+								ticket: $('#convene-ticket').val(),
 								params: {
 									title: "$title",
 									calendarid: $calendarid,

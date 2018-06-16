@@ -131,16 +131,10 @@ function wikiplugin_report($data, $params)
 		"
 			);
 
-		$access = TikiLib::lib('access');
-		$access->checkAuthenticity();
-		$ticket = $access->getTicket();
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_function_ticket');
+		$tiki_token = smarty_function_ticket([], $smarty);
 
-		if ($ticket) {
-			$tiki_token = "<input type='hidden' name='ticket' value='" . $ticket . "' />
-				<input type='hidden' name='daconfirm' value='y'>";
-		} else {
-			$tiki_token = "";
-		}
 
 		if (! isset($label)) {
 			$label = '';

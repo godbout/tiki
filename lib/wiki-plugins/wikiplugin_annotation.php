@@ -23,7 +23,9 @@ function wikiplugin_annotation_info()
 			'src' => [
 				'required' => true,
 				'name' => tra('Location'),
-				'description' => ($prefs['feature_sefurl'] === 'y') ? tra('Absolute URL to the image, relative path from Tiki site root or an image from the file gallery <code>display1</code>.') : tra('Absolute URL to the image or relative path from Tiki site root.'),
+				'description' => ($prefs['feature_sefurl'] === 'y') ?
+					tr('Absolute URL to the image, relative path from Tiki site root or an image from the file gallery %0',
+						'<code>display1</code>') : tra('Absolute URL to the image or relative path from Tiki site root.'),
 				'filter' => 'url',
 				'default' => '',
 				'since' => '3.0',
@@ -104,6 +106,9 @@ function wikiplugin_annotation($data, $params)
 {
 	global $page, $tiki_p_edit;
 	$headerlib = TikiLib::lib('header');
+	$smarty = TikiLib::lib('smarty');
+	$smarty->loadPlugin('smarty_function_ticket');
+	$ticketHtml = smarty_function_ticket([], $smarty);
 
 	$defaults = [];
 	$plugininfo = wikiplugin_annotation_info();
@@ -147,15 +152,11 @@ function wikiplugin_annotation($data, $params)
 
 	if ($tiki_p_edit == 'y') {
 		$editableStr = tra('Editable');
-		$accesslib = TikiLib::lib('access');
-		$accesslib->checkAuthenticity();
-		$ticket = $accesslib->getTicket();
 
 		$form = <<<FORM
 <form method="post" action="tiki-wikiplugin_edit.php" class="form save-annotations">
-	<input type="hidden" name="ticket" value="$ticket"/>
-	<input type="hidden" name="daconfirm" value="y"/>
 	<div style="display:none">
+		$ticketHtml
 		<input type="hidden" name="page" value="$page"/>
 		<input type="hidden" name="type" value="annotation"/>
 		<input type="hidden" name="index" value="$uid"/>
@@ -180,7 +181,6 @@ FORM;
 
 	$headerlib->add_jq_onready('$("#' . $cid . '").imageAnnotation(' . $annotations . ', ' . $showlink . ');');
 
-	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_function_icon');
 	$close = smarty_function_icon(['name' => 'close'], $smarty);
 	$delete = smarty_function_icon(['name' => 'trash'], $smarty);
@@ -210,6 +210,7 @@ FORM;
 					</div>
 					<div class="form-group row">
 						<div class="col-sm-9 col-sm-offset-3">
+							$ticketHtml
 							<input type="submit" class="btn btn-primary btn-sm" value="$saveStr">
 							<div class="pull-right">
 								<a class="btn btn-primary btn-sm minimize" href="#" title="$closeStr">$close</a>

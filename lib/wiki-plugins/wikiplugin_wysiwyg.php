@@ -102,10 +102,11 @@ function wikiplugin_wysiwyg($data, $params)
 		}
 		$namespace = htmlspecialchars($namespace);
 
-		$access = TikiLib::lib('access');
-		$access->checkAuthenticity();
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_function_ticket');
 
-		$html = "<div id='$exec_key' class='{$class}'$style data-initial='$namespace' data-html='{$params['use_html']}' data-ticket='" . $access->getTicket() . "'>" . $html . '</div>';
+		$html = "<div id='$exec_key' class='{$class}'$style data-initial='$namespace' data-html='{$params['use_html']}' data-ticket='"
+			. smarty_function_ticket(['mode' => 'get'], $smarty) . "'>" . $html . '</div>';
 
 		$js = '$("#' . $exec_key . '").wysiwygPlugin("' . $execution . '", "' . $sourcepage . '", ' . $ckoption . ');';
 
