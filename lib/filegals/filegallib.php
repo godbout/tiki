@@ -3563,7 +3563,7 @@ class FileGalLib extends TikiLib
 
 			$backlinks = $this->getFileBacklinks($params['fileId']);
 
-			if (isset($_POST['daconfirm']) && ! empty($backlinks)) {
+			if (isset($_POST['ticket']) && ! empty($backlinks)) {
 				$smarty->assign_by_ref('backlinks', $backlinks);
 				$smarty->assign('file_backlinks_title', 'Warning: The file is used in:');//get_strings tra('Warning: The file is used in:')
 				$smarty->assign('confirm_detail', $smarty->fetch('file_backlinks.tpl')); ///FIXME
