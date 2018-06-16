@@ -7,9 +7,9 @@
 {block name="content"}
 {if $ruleId}
 	<form class="simple" method="post" action="{service controller=ids action=remove}">
+		{ticket mode='confirm'}
 		<p>{tr _0=$ruleId}Do you really want to remove the custom IDS rule with Id %0?{/tr}</p>
 		<div class="submit">
-			<input type="hidden" name="confirm" value="1">
 			<input type="hidden" name="ruleId" value="{$ruleId|escape}">
 			<input type="submit" class="btn btn-primary btn-sm" value="{tr}Remove{/tr}">
 		</div>

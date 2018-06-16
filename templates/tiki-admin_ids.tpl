@@ -1,14 +1,4 @@
 {* $Id$ *}
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
 {title admpage="security" url="tiki-admin_ids.php"}{tr}IDS Rules{/tr}{/title}
 <div class="t_navbar mb-4">
 	{if isset($ruleinfo.id)}
@@ -22,9 +12,8 @@
 {if $ids_rules|count > 0}
 	{tab name="{tr}IDS Rules{/tr}"}
 		<form class="form-horizontal" name="checkform" id="checkform" method="post">
-			{ticket}
 			<div id="admin_ids-div">
-				<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv">
+				<div class="{if $js}table-responsive {/if}ts-wrapperdiv">
 					{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
 					<table id="admin_ids" class="table normal table-striped table-hover" data-count="{$ids_rules|count}">
 						<thead>
@@ -78,19 +67,7 @@
 											</a>{$liend}
 										{/strip}
 									{/capture}
-									{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-											<a
-													class="tips"
-													title="{tr}Actions{/tr}" href="#"
-													{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.rule_actions}{/if}
-													style="padding:0; margin:0; border:0"
-											>
-												{icon name='wrench'}
-											</a>
-											{if $js === 'n'}
-											<ul class="dropdown-menu" role="menu">{$smarty.capture.rule_actions}</ul></li></ul>
-									{/if}
-								</td>
+									{include file="templates/includes/tiki-actions_link.tpl" capturedActions="rule_actions"}								</td>
 							</tr>
 						{/section}
 						</tbody>
@@ -120,6 +97,7 @@
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_id' class="form-control" name='rule_id'
 					value="{$ruleinfo.id|escape}" {if $ruleinfo.id && !$ruleinfo.error}readonly{/if}>
+				<span class="help-block">Rule Id must be numeric</span>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -158,9 +136,21 @@
 				{if isset($ruleinfo.id) && $ruleinfo.id && !$ruleinfo.error}
 					<input type="hidden" name="rule" value="{$ruleinfo.id|escape}">
 					<input type="hidden" name="editrule" value="1">
-					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
+					<input
+						type="submit"
+						class="btn btn-secondary"
+						name="save"
+						value="{tr}Save{/tr}"
+						onclick="checkTimeout()"
+					>
 				{else}
-					<input type="submit" class="btn btn-secondary" name="new_rule" value="{tr}Add{/tr}">
+					<input
+						type="submit"
+						class="btn btn-secondary"
+						name="new_rule"
+						value="{tr}Add{/tr}"
+						onclick="checkTimeout()"
+					>
 				{/if}
 			</div>
 		</div>
