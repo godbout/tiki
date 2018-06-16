@@ -23,7 +23,7 @@ class Services_Tracker_Controller
 	function action_view($input)
 	{
 		$item = Tracker_Item::fromId($input->id->int());
-
+			
 		if (! $item) {
 			throw new Services_Exception_NotFound(tr('Item not found'));
 		}
@@ -1739,6 +1739,7 @@ class Services_Tracker_Controller
 
 	function action_export_items($input)
 	{
+		@ini_set('max_execution_time', 0); // Will not work if safe_mode is on
 		TikiLib::lib('tiki')->allocate_extra(
 			'tracker_export_items',
 			function () use ($input) {
