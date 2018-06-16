@@ -1,13 +1,4 @@
 {* $Id$ *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
 {if !$ts.ajax}
 	{$forum_info.name|addonnavbar:'forum'}
 	{block name=title}
@@ -22,9 +13,9 @@
 		{assign var=thisforum_info value=$forum_info.forumId}
 		{if ($tiki_p_forum_post_topic eq 'y' and ($prefs.feature_wiki_discuss ne 'y' or $prefs.$forumId ne $prefs.wiki_forum_id)) or $tiki_p_admin_forum eq 'y'}
 			{if !isset($comments_threadId) or $comments_threadId eq 0}
-				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick="$('#forumpost').show();return false;" _icon_name="create" _type="default" class="btn btn-primary" _text="{tr}New Topic{/tr}"}
+				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick='$("#forumpost").show();return false;' _icon_name="create" _type="default" class="btn btn-primary" _text="{tr}New Topic{/tr}"}
 			{else}
-				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick="$('#forumpost').show();return false;" _icon_name="create" _type="link" class="btn btn-link" _text="{tr}New Topic{/tr}"}
+				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick='$("#forumpost").show();return false;' _icon_name="create" _type="link" class="btn btn-link" _text="{tr}New Topic{/tr}"}
 			{/if}
 		{/if}
 		{if $tiki_p_admin_forum eq 'y'}
@@ -36,7 +27,7 @@
 		{/if}
 
 		<div class="btn-group pull-right">
-			{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 				{icon name='menu-extra'}
 			</a>
@@ -112,7 +103,7 @@
 					</li>
 				{/if}
 			</ul>
-			{if $js == 'n'}</li></ul>{/if}
+			{if ! $js}</li></ul>{/if}
 		</div>
 		{if $user and $prefs.feature_user_watches eq 'y' and isset($category_watched) and $category_watched eq 'y'}
 			<div class="categbar">
@@ -420,7 +411,8 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=merge_topic}"
 						title=":{tr}Merge{/tr}"
-						class="btn btn-primary btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips"
+						onclick="confirmAjax(event)"
 					>
 						{icon name="merge"}
 					</button>
@@ -431,7 +423,8 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=move_topic}"
 						title=":{tr}Move{/tr}"
-						class="btn btn-primary btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips"
+						onclick="confirmAjax(event)"
 					>
 						{icon name="move"}
 					</button>
@@ -442,7 +435,8 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=lock_topic}"
 						title=":{tr}Lock{/tr}"
-						class="btn btn-primary btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips"
+						onclick="confirmAjax(event)"
 					>
 						{icon name="lock"}
 					</button>
@@ -451,7 +445,8 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=unlock_topic}"
 						title=":{tr}Unlock{/tr}"
-						class="btn btn-primary btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips"
+						onclick="confirmAjax(event)"
 					>
 						{icon name="unlock"}
 					</button>
@@ -460,7 +455,8 @@
 						form="view_forum"
 						formaction="{bootstrap_modal controller=forum action=delete_topic}"
 						title=":{tr}Delete{/tr}"
-						class="btn btn-primary btn-sm tips confirm-submit"
+						class="btn btn-primary btn-sm tips"
+						onclick="confirmAjax(event)"
 					>
 						{icon name="remove"}
 					</button>
@@ -484,7 +480,7 @@
 	<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
 	<input type="hidden" name="forumId" value="{$forumId|escape}">
 	{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-	<div id="{$ts.tableid}-div" class="{if $js === 'y'}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}>
+	<div id="{$ts.tableid}-div" class="{if $js}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}>
 		<table id="{$ts.tableid}" class="table normal table-striped table-hover table-forum" data-count="{$comments_cant|escape}">
 			{block name=forum-header}
 			<thead>
@@ -709,28 +705,11 @@
 									{/if}
 								{/strip}
 							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.view_forum_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.view_forum_actions}</ul></li></ul>
-							{/if}
-						</td>
+							{include file="templates/includes/tiki-actions_link.tpl" capturedActions="view_forum_actions"}						</td>
 					</tr>
 					{/block}
 				{sectionelse}
-					{if !$ts.enabled || ($ts.enabled && $ts.ajax)}
-						{norecords _colspan=$cntcol _text="{tr}No topics found{/tr}"}
-					{else}
-						{norecords _colspan=$cntcol _text="{tr}Retrieving topics...{/tr}"}
-					{/if}
+					{norecords _colspan=$cntcol _text="{tr}No topics found{/tr}"}
 				{/section}
 			</tbody>
 		</table>

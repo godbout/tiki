@@ -28,17 +28,8 @@
 		{if ($channels or ($find ne '')) && !$ts.enabled}
 			{include file='find.tpl'}
 		{/if}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
 		<form method='post' id="admin_forums">
-			<div id="{$ts.tableid}-div" class="{if $js === 'y'}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}>
+			<div id="{$ts.tableid}-div" class="{if $js}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}>
 				<table id="{$ts.tableid}" class="table table-striped table-hover" data-count="{$cant|escape}">
 					{$numbercol = 0}
 					<thead>
@@ -123,19 +114,7 @@
 											{/if}
 										{/strip}
 									{/capture}
-									{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-									<a
-										class="tips"
-										title="{tr}Actions{/tr}"
-										href="#"
-										{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.admin_forum_actions}{/if}
-										style="padding:0; margin:0; border:0"
-									>
-										{icon name='wrench'}
-									</a>
-									{if $js === 'n'}
-										<ul class="dropdown-menu" role="menu">{$smarty.capture.admin_forum_actions}</ul></li></ul>
-									{/if}
+									{include file="templates/includes/tiki-actions_link.tpl" capturedActions="admin_forum_actions"}
 								</td>
 							</tr>
 						{sectionelse}
@@ -163,7 +142,8 @@
 								type="submit"
 								form='admin_forums'
 								formaction="{bootstrap_modal controller=forum}"
-								class="btn btn-secondary confirm-submit"
+								class="btn btn-secondary"
+								onclick="confirmAjax(event)"
 							>
 								{tr}OK{/tr}
 							</button>
