@@ -7,14 +7,41 @@
 
 class Services_Group_Controller
 {
+	/**
+	 * Filters for $input->replaceFilters() used in the Services_Utilities()->setVars method
+	 *
+	 * @var array
+	 */
+	private $filters = [
+		'checked'					=> 'groupname',
+		'items'						=> 'groupname',
+		'name'						=> 'groupname',
+		'group'						=> 'groupname',
+		'desc'						=> 'striptags',
+		'home'						=> 'pagename',
+		'groupstracker'				=> 'int',
+		'userstracker'				=> 'int',
+		'registrationUsersFieldIds'	=> 'digitscolons',
+		'userChoice'				=> 'word',
+		'defcat'					=> 'int',
+		'theme'						=> 'themename',
+		'color'						=> 'striptags',
+		'usersfield'				=> 'int',
+		'groupfield'				=> 'int',
+		'expireAfter'				=> 'int',
+		'anniversary'				=> 'int',
+		'prorateInterval'			=> 'word',
+		'user'						=> 'username'
+	];
 
 	/**
 	 * Admin groups "perform with checked" but with no action selected
 	 *
 	 * @param $input
 	 * @throws Services_Exception
+	 * @throws Exception
 	 */
-	public function action_no_action($input)
+	public function action_no_action()
 	{
 		Services_Utilities::modalException(tra('No action was selected. Please select an action before clicking OK.'));
 	}
@@ -24,29 +51,30 @@ class Services_Group_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_remove_groups($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
-		$util->checkTicket();
 		//first pass - show confirm modal popup
-		if ($util->access->ticketSet()) {
-			$util->setVars($input, 'checked');
-			if (count($util->items) > 0) {
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			if ($util->itemsCount > 0) {
 				if (count($util->items) === 1) {
 					$msg = tra('Delete the following group?');
 				} else {
 					$msg = tra('Delete the following groups?');
 				}
-				return $util->confirm($msg, 'group', tra('Delete'));
+				return $util->confirm($msg, tra('Delete'));
 			} else {
 				Services_Utilities::modalException(tra('No groups were selected. Please select one or more groups.'));
 			}
 			//after confirm submit - perform action and return success feedback
-		} elseif ($util->access->ticketMatch() && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$util->setDecodedVars($input);
-			//delete user
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			//filter out Admins group so it can't be deleted. Anonymous and Registered are protected from deletion in
 			//in the remove groups function
 			$fitems = array_diff($util->items, ['Admins']);
@@ -91,7 +119,7 @@ class Services_Group_Controller
 				Feedback::success($feedback2, 'session');
 			}
 			//return to page
-			return Services_Utilities::refresh($util->extra['referer']);
+			return Services_Utilities::refresh($this->extra['referer']);
 		}
 	}
 
@@ -100,15 +128,17 @@ class Services_Group_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_new_group($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
-		$util->checkTicket('none');
 		//first pass - show confirm modal popup
-		if ($util->access->ticketSet()) {
-			$util->setVars($input);
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters);
 			if (! empty($input['name'])) {
 				$newGroupName = trim($input->name->groupname());
 				$userlib = TikiLib::lib('user');
@@ -116,17 +146,15 @@ class Services_Group_Controller
 					Services_Utilities::modalException(tra('Group already exists'));
 				} else {
 					$msg = tr('Create the group %0?', $newGroupName);
-					$input = $this->setFilters($input);
-					$extra = $input->asArray();
-					return $util->confirm($msg, 'group', tra('Create'), $extra);
+					return $util->confirm($msg, tra('Create'));
 				}
 			} else {
 				Services_Utilities::modalException(tra('Group name cannot be empty'));
 			}
 		//after confirm submit - perform action and return feedback
-		} elseif ($util->access->ticketMatch() && $_SERVER['REQUEST_METHOD'] === 'POST') {
+		} elseif ($util->checkCsrf()) {
 			//set parameters
-			$util->setDecodedVars($input);
+			$util->setDecodedVars($input, $this->filters);
 			$params = $this->prepareParameters($util->extra);
 			$userlib = TikiLib::lib('user');
 			//add group and inclusions
@@ -186,33 +214,33 @@ class Services_Group_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_modify_group($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
-		$util->checkTicket('none');
 		//first pass - show confirm modal popup
-		if ($util->access->ticketSet()) {
-			$util->setVars($input);
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters);
 			if (! empty($input['name']) && isset($input['olgroup'])) {
-				$newGroupName = trim($input->name->groupname());
+				$newGroupName = trim($input['name']);
 				$userlib = TikiLib::lib('user');
 				if ($input['olgroup'] !== $newGroupName && $userlib->group_exists($newGroupName)) {
 					Services_Utilities::modalException(tra('Group already exists'));
 				} else {
 					$msg = tr('Modify the group %0?', $newGroupName);
-					$input = $this->setFilters($input);
-					$extra = $input->asArray();
-					return $util->confirm($msg, 'group', tra('Modify'), $extra);
+					return $util->confirm($msg, tra('Modify'));
 				}
 			} else {
 				Services_Utilities::modalException(tra('Group name cannot be empty'));
 			}
 			//after confirm submit - perform action and return success feedback
-		} elseif ($util->access->ticketMatch() && $_SERVER['REQUEST_METHOD'] === 'POST') {
+		} elseif ($util->checkCsrf()) {
 			//set parameters
-			$util->setDecodedVars($input);
+			$util->setDecodedVars($input, $this->filters);
 			$params = $this->prepareParameters($util->extra);
 			$userlib = TikiLib::lib('user');
 			$success = $userlib->change_group(
@@ -273,29 +301,30 @@ class Services_Group_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_add_user($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
-		$util->checkTicket();
 		//first pass - show confirm modal popup
-		if ($util->access->ticketSet()) {
-			$util->setVars($input, 'user');
-			if (count($util->items) > 0) {
-				$group = $input->group->groupname();
-				if (count($util->items) === 1) {
-					$msg = tr('Add the following user to group %0?', $group);
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters, 'user');
+			if ($util->itemsCount > 0) {
+				if ($util->itemsCount === 1) {
+					$msg = tr('Add the following user to group %0?', $input['group']);
 				} else {
-					$msg = tr('Add the following users to group %0?', $group);
+					$msg = tr('Add the following users to group %0?', $input['group']);
 				}
-				return $util->confirm($msg, 'group', tra('Add'), ['group' => $group]);
+				return $util->confirm($msg, tra('Add'));
 			} else {
 				Services_Utilities::modalException(tra('One or more users must be selected'));
 			}
 			//after confirm submit - perform action and return success feedback
-		} elseif ($util->access->ticketMatch() && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$util->setDecodedVars($input);
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			$userlib = TikiLib::lib('user');
 			$logslib = TikiLib::lib('logs');
 			foreach ($util->items as $user) {
@@ -327,37 +356,30 @@ class Services_Group_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_ban_user($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
-		$util->checkTicket();
 		//first pass - show confirm modal popup
-		if ($util->access->ticketSet()) {
-			$util->setVars($input, 'user');
-			if (count($util->items) > 0) {
-				$group = $input->group->groupname();
-				if (count($util->items) === 1) {
-					$msg = tr('Ban the following user from group %0?', $group);
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters, 'user');
+			if ($util->itemsCount > 0) {
+				if ($util->itemsCount === 1) {
+					$msg = tr('Ban the following user from group %0?', $input['group']);
 				} else {
-					$msg = tr('Ban the following users from group %0?', $group);
+					$msg = tr('Ban the following users from group %0?', $input['group']);
 				}
-				return $util->confirm(
-					$msg,
-					'group',
-					tra('Ban'),
-					[
-						'group' => $group,
-						'anchor' => $input->anchor->striptags()
-					]
-				);
+				return $util->confirm($msg, tra('Ban'));
 			} else {
 				Services_Utilities::modalException(tra('One or more users must be selected'));
 			}
 			//after confirm submit - perform action and return success feedback
-		} elseif ($util->access->ticketMatch() && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$util->setDecodedVars($input);
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			$userlib = TikiLib::lib('user');
 			$logslib = TikiLib::lib('logs');
 			foreach ($util->items as $user) {
@@ -365,8 +387,8 @@ class Services_Group_Controller
 				$logslib->add_log('admingroups', 'banned ' . $user . ' from ' . $util->extra['group']);
 			}
 			//prepare and send feedback
-			if (count($util->items) > 0) {
-				if (count($util->items) === 1) {
+			if ($util->itemsCount > 0) {
+				if ($util->itemsCount === 1) {
 					$msg = tr('The following user was banned from group %0:', $util->extra['group']);
 				} else {
 					$msg = tr('The following users were banned from group %0:', $util->extra['group']);
@@ -379,7 +401,7 @@ class Services_Group_Controller
 				Feedback::success($feedback, 'session');
 			}
 			//return to page
-			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . $input->anchor->striptags());
+			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . $util->extra['anchor']);
 		}
 	}
 
@@ -388,37 +410,30 @@ class Services_Group_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_unban_user($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
-		$util->checkTicket();
 		//first pass - show confirm modal popup
-		if ($util->access->ticketSet()) {
-			$util->setVars($input, 'user');
-			if (count($util->items) > 0) {
-				$group = $input->group->groupname();
-				if (count($util->items) === 1) {
-					$msg = tr('Unban the following user from group %0?', $group);
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters, 'user');
+			if ($util->itemsCount > 0) {
+				if ($util->itemsCount === 1) {
+					$msg = tr('Unban the following user from group %0?', $input['group']);
 				} else {
-					$msg = tr('Unban the following users from group %0?', $group);
+					$msg = tr('Unban the following users from group %0?', $input['group']);
 				}
-				return $util->confirm(
-					$msg,
-					'group',
-					tra('Unban'),
-					[
-						'group' => $group,
-						'anchor' => $input->anchor->striptags()
-					]
-				);
+				return $util->confirm($msg, tra('Unban'));
 			} else {
 				Services_Utilities::modalException(tra('One or more users must be selected'));
 			}
 			//after confirm submit - perform action and return success feedback
-		} elseif ($util->access->ticketMatch() && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$util->setDecodedVars($input);
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			$userlib = TikiLib::lib('user');
 			$logslib = TikiLib::lib('logs');
 			foreach ($util->items as $user) {
@@ -426,7 +441,7 @@ class Services_Group_Controller
 				$logslib->add_log('admingroups', 'unbanned ' . $user . ' from ' . $util->extra['group']);
 			}
 			//prepare and send feedback
-			if (count($util->items) > 0) {
+			if ($util->itemsCount > 0) {
 				if (count($util->items) === 1) {
 					$msg = tr('The following user was unbanned from group %0:', $util->extra['group']);
 				} else {
@@ -440,7 +455,7 @@ class Services_Group_Controller
 				Feedback::success($feedback, 'session');
 			}
 			//return to page
-			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . $input->anchor->striptags());
+			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . $util->extra['anchor']);
 		}
 	}
 
@@ -449,10 +464,12 @@ class Services_Group_Controller
 	 *
 	 * @param array $extra
 	 * @return array
+	 * @throws Exception
 	 */
 	private function prepareParameters(array $extra)
 	{
-		$extra = $this->setFilters($extra);
+		$extra = new JitFilter($extra);
+		$extra->replaceFilters($this->filters);
 		$extra = $extra->asArray();
 		$extra['home'] = isset($extra['home']) ? $extra['home'] : '';
 		$extra['theme'] = isset($extra['theme']) ? $extra['theme'] : '';
@@ -495,39 +512,5 @@ class Services_Group_Controller
 		}
 		$ret = array_merge($extra, $defaults);
 		return $ret;
-	}
-
-	/**
-	 * Set filters for admin group input form
-	 *
-	 * @param $input
-	 * @return JitFilter
-	 */
-	private function setFilters($input)
-	{
-		if (! ($input instanceof JitFilter)) {
-			$input = new JitFilter($input);
-		}
-		$input->replaceFilters(
-			[
-				'name'                      => 'groupname',
-				'desc'                      => 'striptags',
-				'home'                      => 'pagename',
-				'groupstracker'             => 'int',
-				'userstracker'              => 'int',
-				'registrationUsersFieldIds' => 'digitscolons',
-				'userChoice'                => 'word',
-				'defcat'                    => 'int',
-				'theme'                     => 'themename',
-				'color'                     => 'striptags',
-				'usersfield'                => 'int',
-				'groupfield'                => 'int',
-				'expireAfter'               => 'int',
-				'anniversary'               => 'digits',	// format MMDD or DD
-				'prorateInterval'           => 'word',
-				'referer'                   => 'striptags'
-			]
-		);
-		return $input;
 	}
 }

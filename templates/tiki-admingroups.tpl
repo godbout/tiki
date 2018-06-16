@@ -22,16 +22,6 @@
 
 	{tab name="{tr}List{/tr}"}
 		{* ----------------------- tab with list --------------------------------------- *}
-		{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
 	{if !$ts.ajax}
 		<h2>{tr}List of existing groups{/tr}</h2>
 		{if !$ts.enabled}
@@ -41,7 +31,7 @@
 			{/if}
 		{/if}
 		<form id="checkform1" method="post">
-			<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv"> {* table-responsive class cuts off css drop-down menus *}
+			<div class="{if $js}table-responsive {/if}ts-wrapperdiv"> {* table-responsive class cuts off css drop-down menus *}
 	{/if}
 				<table id="{$ts.tableid}" class="table normal table-striped table-hover" data-count="{$cant_pages|escape}">
 						<thead>
@@ -114,20 +104,7 @@
 											{/if}
 										{/strip}
 									{/capture}
-									{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-											<a
-													class="tips"
-													title="{tr}Actions{/tr}"
-													href="#"
-													{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.group_actions}{/if}
-													style="padding:0; margin:0; border:0"
-											>
-												{icon name='wrench'}
-											</a>
-											{if $js === 'n'}
-											<ul class="dropdown-menu" role="menu">{$smarty.capture.group_actions}</ul></li></ul>
-									{/if}
-								</td>
+									{include file="templates/includes/tiki-actions_link.tpl" capturedActions="group_actions"}								</td>
 							</tr>
 						{/section}
 					</tbody>
@@ -141,14 +118,14 @@
 							<option value="remove_groups" >{tr}Remove{/tr}</option>
 						</select>
 					<div class="input-group-btn">
-						<button
+						<input
 							type="submit"
 							form="checkform1"
 							formaction="{bootstrap_modal controller=group}"
-							class="btn btn-secondary confirm-submit"
+							class="btn btn-secondary"
+							value="{tr}OK{/tr}"
+							onclick="confirmAjax(event)"
 						>
-							{tr}OK{/tr}
-						</button>
 					</div>
 				</div>
 		</form>
@@ -480,11 +457,23 @@
 				<div class="col-md-9 col-md-offset-3">
 					{if $group ne ''}
 						<input type="hidden" name="olgroup" value="{$group|escape}">
-						<button type="submit" class="btn btn-secondary confirm-submit" form="groupEdit" formaction="{bootstrap_modal controller=group action=modify_group}">
+						<button
+							type="submit"
+							class="btn btn-secondary"
+							form="groupEdit"
+							formaction="{bootstrap_modal controller=group action=modify_group}"
+							onclick="confirmAjax(event)"
+						>
 							{tr}Save{/tr}
 						</button>
 					{else}
-						<button type="submit" class="btn btn-secondary confirm-submit" form="groupEdit" formaction="{bootstrap_modal controller=group action=new_group}">
+						<button
+							type="submit"
+							class="btn btn-secondary"
+							form="groupEdit"
+							formaction="{bootstrap_modal controller=group action=new_group}"
+							onclick="confirmAjax(event)"
+						>
 							{tr}Add{/tr}
 						</button>
 					{/if}
@@ -525,7 +514,7 @@
 						<h2>{tr}Members{/tr} <span class="badge badge-secondary">{$membersCount}</span></h2>
 						<form id="checkform2" method="post">
 							<input type="hidden" name="group" value="{$group|escape}">
-							<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv">
+							<div class="{if $js}table-responsive {/if}ts-wrapperdiv">
 		{/if}
 								<table id="groupsMembers" class="table normal table-striped table-hover" data-count="{$membersCount}">
 									<thead>
@@ -557,19 +546,7 @@
 															{/if}
 														{/strip}
 													{/capture}
-													{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-															<a
-																	class="tips"
-																	title="{tr}Actions{/tr}" href="#"
-																	{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.members_actions}{/if}
-																	style="padding:0; margin:0; border:0"
-															>
-																{icon name='settings'}
-															</a>
-															{if $js === 'n'}
-															<ul class="dropdown-menu" role="menu">{$smarty.capture.user_actions}</ul></li></ul>
-													{/if}
-												</td>
+													{include file="templates/includes/tiki-actions_link.tpl" capturedActions="members_actions"}												</td>
 											</tr>
 										{/foreach}
 									</tbody>
@@ -586,7 +563,14 @@
 										<option value="manage_groups">{tr}Unassign{/tr}</option>
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary confirm-submit" form="checkform2" formaction="{bootstrap_modal controller=user groupremove="$groupname" anchor='#contenttabs_admingroups-3'} "value="{tr}OK{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											form="checkform2"
+											formaction="{bootstrap_modal controller=user groupremove="$groupname" anchor='#contenttabs_admingroups-3'}"
+											value="{tr}OK{/tr}"
+											onclick="confirmAjax(event)"
+										>
 									</span>
 								</div>
 							{/if}
@@ -615,8 +599,26 @@
 							</select>
 						</div>
 						<div class="col-sm-8">
-							<button type="submit" class="btn btn-link confirm-submit tips" form="addorban" formaction="{bootstrap_modal controller=group action=add_user}" title=":{tr}Add to group{/tr}">{icon name=add size=2}</button>
-							<button type="submit" class="btn btn-link confirm-submit tips" form="addorban" formaction="{bootstrap_modal controller=group action=ban_user}" title=":{tr}Ban from group{/tr}">{icon name=ban iclass="alert-danger" size=2}</button>
+							<button
+								type="submit"
+								class="btn btn-link tips"
+								form="addorban"
+								formaction="{bootstrap_modal controller=group action=add_user}"
+								title=":{tr}Add to group{/tr}"
+								onclick="confirmAjax(event)"
+							>
+								{icon name=add size=2}
+							</button>
+							<button
+								type="submit"
+								class="btn btn-link tips"
+								form="addorban"
+								formaction="{bootstrap_modal controller=group action=ban_user}"
+								title=":{tr}Ban from group{/tr}"
+								onclick="confirmAjax(event)"
+							>
+								{icon name=ban iclass="alert-danger" size=2}
+							</button>
 						</div>
 						<input type="hidden" name="group" value="{$groupname|escape}">
 						<input type="hidden" name="anchor" value="#contenttabs_admingroups-3">
@@ -628,7 +630,7 @@
 			{* ----------------------- tab with users banned from group --------------------------------------- *}
 			<h2>{tr}Banned members{/tr} <span class="badge badge-secondary">{$bannedCount}</span></h2>
 			{if $bannedlist|count > 0}
-				<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv"> {* table-responsive class cuts off css drop-down menus *}
+				<div class="{if $js}table-responsive {/if}ts-wrapperdiv"> {* table-responsive class cuts off css drop-down menus *}
 					<form id="checkform3" method="post">
 						<table id="bannedMembers" class="table normal table-striped table-hover" data-count="{$bannedCount}">
 							<thead>
@@ -664,7 +666,14 @@
 						<option value="unban_user">{tr}Unban{/tr}</option>
 					</select>
 					<span class="input-group-btn">
-						<input type="submit" class="btn btn-primary confirm-submit" form="checkform3" formaction="{bootstrap_modal controller=group} "value="{tr}OK{/tr}">
+						<input
+							type="submit"
+							class="btn btn-primary"
+							form="checkform3"
+							formaction="{bootstrap_modal controller=group}"
+							value="{tr}OK{/tr}"
+							onclick="confirmAjax(event)"
+						>
 					</span>
 				</div>
 					</form><br>
