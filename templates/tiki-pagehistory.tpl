@@ -270,17 +270,7 @@
 				</div>
 				<input type="hidden" name="show_all_versions" value="{$show_all_versions}">
 			{/if}
-			{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-			{if $prefs.javascript_enabled !== 'y'}
-				{$js = 'n'}
-				{$libeg = '<li>'}
-				{$liend = '</li>'}
-			{else}
-				{$js = 'y'}
-				{$libeg = ''}
-				{$liend = ''}
-			{/if}
-			<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+			<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 				<table class="table table-condensed table-hover table-striped">
 					<tr>
 						{if $tiki_p_remove eq 'y'}
@@ -375,19 +365,7 @@
 										{/if}
 									{/strip}
 								{/capture}
-								{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-								<a
-									class="tips"
-									title="{tr}Actions{/tr}"
-									href="#"
-									{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.current_actions}{/if}
-									style="padding:0; margin:0; border:0"
-								>
-									{icon name='settings'}
-								</a>
-								{if $js === 'n'}
-									<ul class="dropdown-menu" role="menu">{$smarty.capture.current_actions}</ul></li></ul>
-								{/if}
+								{include file="templates/includes/tiki-actions_link.tpl" capturedActions="current_actions"}
 							</td>
 							{if $prefs.default_wiki_diff_style ne "old" and $history}
 								<td class="button_container">
@@ -485,19 +463,7 @@
 										{/if}
 									{/strip}
 								{/capture}
-								{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-								<a
-									class="tips"
-									title="{tr}Actions{/tr}"
-									href="#"
-									{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.history_actions}{/if}
-									style="padding:0; margin:0; border:0"
-								>
-									{icon name='settings'}
-								</a>
-								{if $js === 'n'}
-									<ul class="dropdown-menu" role="menu">{$smarty.capture.history_actions}</ul></li></ul>
-								{/if}
+								{include file="templates/includes/tiki-actions_link.tpl" capturedActions="history_actions"}
 							</td>
 							{if $prefs.default_wiki_diff_style ne "old"}
 								<td class="button_container">
@@ -537,7 +503,9 @@
 						type="submit"
 						form="pagehistory"
 						formaction="{bootstrap_modal controller=wiki}"
-						class="btn btn-secondary confirm-submit">
+						class="btn btn-secondary"
+						onclick="confirmAjax(event)"
+					>
 						{tr}OK{/tr}
 					</button>
 				</span>

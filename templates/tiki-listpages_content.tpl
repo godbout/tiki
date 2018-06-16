@@ -1,16 +1,5 @@
 {* $Id$ *}
 
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled != 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
-
 {if !$ts.enabled && ($cant_pages > 1 or $initial or $find)}
 	{initials_filter_links}
 {/if}
@@ -35,7 +24,7 @@
 {/if}
 
 {assign var='pagefound' value='n'}
-<div id="{$ts.tableid}-div" class="{if $js === 'y'}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}> {*the table-responsive class cuts off dropdown menus *}
+<div id="{$ts.tableid}-div" class="{if $js}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}> {*the table-responsive class cuts off dropdown menus *}
 	<table id="{$ts.tableid}" class="table normal table-striped table-hover" data-count="{$cant|escape}">
 		<thead>
 			<tr>
@@ -387,19 +376,7 @@
 									{/if}
 								{/strip}
 							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.page_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.page_actions}</ul></li></ul>
-							{/if}
+							{include file="templates/includes/tiki-actions_link.tpl" capturedActions="page_actions"}
 						</td>
 					{/if}
 				</tr>
@@ -471,7 +448,8 @@
 					type="submit"
 					form="checkboxes_on"
 					formaction="{bootstrap_modal controller=wiki version=all}"
-					class="btn btn-secondary confirm-submit"
+					class="btn btn-secondary"
+					onclick="confirmAjax(event)"
 				>
 					{tr}OK{/tr}
 				</button>

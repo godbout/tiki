@@ -8,6 +8,22 @@
 class Services_Wiki_Controller
 {
 
+	/**
+	 * Filters for $input->replaceFilters() used in the Services_Utilities()->setVars method
+	 *
+	 * @var array
+	 */
+	private $filters = [
+		'checked'			=> 'pagename',
+		'page'				=> 'pagename',
+		'items'				=> 'pagename',
+		'version'			=> 'alnum',
+		'last'				=> 'alpha',
+		'all'				=> 'alpha',
+		'create_redirect'	=> 'alpha',
+		'destpage'			=> 'alpha',
+	];
+
 	function setUp()
 	{
 		Services_Exception_Disabled::check('feature_wiki');
@@ -75,8 +91,10 @@ class Services_Wiki_Controller
 	 * List pages "perform with checked" but with no action selected
 	 *
 	 * @param $input
+	 * @throws Exception
+	 * @throws Services_Exception
 	 */
-	public function action_no_action($input)
+	public function action_no_action()
 	{
 		Services_Utilities::modalException(tra('No action was selected. Please select an action before clicking OK.'));
 	}
@@ -88,25 +106,26 @@ class Services_Wiki_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
 	 */
 	function action_remove_pages($input)
 	{
 		global $user;
-
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$items = $input->asArray('checked');
-			$fitems = Perms::simpleFilter('wiki page', 'pageName', 'remove', $items);
-			if (count($fitems) > 0) {
-				$v = $input->version->text();
-				if (count($fitems) == 1) {
-					$versions = TikiLib::lib('hist')->get_nb_history($fitems[0]);
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters, 'checked');
+			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'remove', $util->items);
+			if (count($util->items) > 0) {
+				$v = $input['version'];
+				if (count($util->items) == 1) {
+					$versions = TikiLib::lib('hist')->get_nb_history($util->items[0]);
 					$one = $versions == 1;
 				} else {
 					$one = false;
 				}
-				$pdesc = count($fitems) === 1 ? 'page' : 'pages';
+				$pdesc = count($util->items) === 1 ? 'page' : 'pages';
 				if ($one) {
 					$vdesc = tr('the only version of');
 				} elseif ($v === 'all') {
@@ -115,11 +134,9 @@ class Services_Wiki_Controller
 					$vdesc = tr('the last version of');
 				}
 				$msg = tr('Delete %0 the following %1?', $vdesc, $pdesc);
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
 				$included_by = [];
 				$wikilib = TikiLib::lib('wiki');
-				foreach ($items as $page) {
+				foreach ($util->items as $page) {
 					$included_by = array_merge($included_by, $wikilib->get_external_includes($page));
 				}
 				if (sizeof($included_by) == 0) {
@@ -127,49 +144,47 @@ class Services_Wiki_Controller
 				}
 				return [
 					'title' => tra('Please confirm'),
-					'confirmAction' => $input->action->word(),
+					'confirmAction' => $input['action'],
 					'confirmController' => 'wiki',
 					'customMsg' => $msg,
 					'confirmButton' => tra('Delete'),
-					'items' => $fitems,
-					'extra' => ['referer' => $referer, 'version' => $v, 'one' => $one],
-					'ticket' => $check['ticket'],
+					'items' => $util->items,
+					'extra' => ['referer' => Services_Utilities::noJsPath(), 'version' => $v, 'one' => $one],
 					'confirm' => 'y',
 					'modal' => '1',
 					'included_by' => $included_by,
 				];
 			} else {
-				if (count($items) > 0) {
+				if (count($util->items) > 0) {
 					Services_Utilities::modalException(tra('You do not have permission to remove the selected page(s)'));
 				} else {
 					Services_Utilities::modalException(tra('No pages were selected. Please select one or more pages.'));
 				}
 			}
 			//after confirm submit - perform action and return success feedback
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
+			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'remove', $util->items);
 			//delete page
-			$items = json_decode($input['items'], true);
-			$extra = json_decode($input['extra'], true);
 			//checkbox in popup where user can change from all to last and vice versa
 			$all = ! empty($input['all']) && $input['all'] === 'on';
 			$last = ! empty($input['last']) && $input['last'] === 'on';
 			//only use default when not overriden by checkbox
-			$all = $all || ($extra['version'] === 'all' && ! $last);
-			$last = $last || ($extra['version'] === 'last' && ! $all);
+			$all = $all || ($util->extra['version'] === 'all' && ! $last);
+			$last = $last || ($util->extra['version'] === 'last' && ! $all);
 			$error = false;
-			$count = count($items);
-			foreach ($items as $page) {
+			foreach ($util->items as $page) {
 				$result = false;
 				//get page info before deletion in case this was the page the user was on
 				//used later to redirect to the tiki index page
 				$allinfo = TikiLib::lib('tiki')->get_page_info($page, false, true);
 				$history = false;
-				if ($all || $extra['one']) {
+				if ($all || $util->extra['one']) {
 					$result = TikiLib::lib('tiki')->remove_all_versions($page);
 				} elseif ($last) {
 					$result = TikiLib::lib('wiki')->remove_last_version($page);
-				} elseif (! empty($extra['version']) && is_numeric($extra['version'])) {
-					$result = TikiLib::lib('hist')->remove_version($page, $extra['version']);
+				} elseif (! empty($util->extra['version']) && is_numeric($util->extra['version'])) {
+					$result = TikiLib::lib('hist')->remove_version($page, $util->extra['version']);
 					$history = true;
 				}
 				if (! $result) {
@@ -184,7 +199,7 @@ class Services_Wiki_Controller
 			}
 			//prepare feedback
 			if (! $error) {
-				if ($all || $extra['one']) {
+				if ($all || $util->extra['one']) {
 					$vdesc = tr('All versions');
 					$verb = 'have';
 					$noversionsleft = true;
@@ -193,10 +208,10 @@ class Services_Wiki_Controller
 					$verb = 'has';
 				} else {
 					//must be a version number
-					$vdesc = tr('Version %0', $extra['version']);
+					$vdesc = tr('Version %0', $util->extra['version']);
 					$verb = 'has';
 				}
-				if ($count === 1) {
+				if (count($util->items) === 1) {
 					$msg = tr('%0 of the following page %1 been deleted:', $vdesc, $verb);
 				} else {
 					$msg = tr('%0 of the following pages %1 been deleted:', $vdesc, $verb);
@@ -204,7 +219,7 @@ class Services_Wiki_Controller
 				$feedback = [
 					'tpl' => 'action',
 					'mes' => $msg,
-					'items' => $items,
+					'items' => $util->items,
 				];
 				Feedback::success($feedback, 'session');
 				// Create a Semantic Alias (301 redirect) if this option was selected by user.
@@ -220,12 +235,12 @@ class Services_Wiki_Controller
 						Feedback::warning($feedback, 'session');
 					} else {
 						$appendString = "";
-						foreach ($items as $page) {
+						foreach ($util->items as $page) {
 							// Append on the destination page's content the following string,
 							// where $page is the name of the deleted page:
 							// "\r\n~tc~(alias($page))~/tc~"
 							// We use the ~tc~ so that it doesn't make the destination page look ugly
-							if (sizeof($items) > 1) {
+							if (count($util->items) > 1) {
 								$comment = tr('Semantic aliases (301 Redirects) to this page were created when other pages were deleted');
 							} else {
 								$comment = tr('A semantic alias (301 Redirect) to this page was created when page %0 was deleted', $page);
@@ -238,13 +253,13 @@ class Services_Wiki_Controller
 							$page_data = $infoDestinationPage['data'];
 							$page_data .= $appendString;
 							TikiLib::lib('tiki')->update_page($destinationPage, $page_data, $comment, $user, TikiLib::lib('tiki')->get_ip_address());
-							if (sizeof($items) > 1) {
+							if (count($util->items) > 1) {
 								$msg = tr('301 Redirects to the following page were created:');
 							} else {
 								$msg = tr('A 301 Redirect to the following page was created:');
 							}
 						} else {
-							if (sizeof($items) > 1) {
+							if (count($util->items) > 1) {
 								$page_data = tr("THIS PAGE WAS CREATED AUTOMATICALLY when other pages were removed. Please edit and write the definitive contents.");
 							} else {
 								$page_data = tr("THIS PAGE WAS CREATED AUTOMATICALLY when another page was removed. Please edit and write the definitive contents.");
@@ -252,7 +267,7 @@ class Services_Wiki_Controller
 							$page_data .= $appendString;
 							// Create a new page
 							TikiLib::lib('tiki')->create_page($destinationPage, 0, $page_data, TikiLib::lib('tiki')->now, $comment, $user, TikiLib::lib('tiki')->get_ip_address());
-							if (sizeof($items) > 1) {
+							if (count($util->items) > 1) {
 								$msg = tr('The following page and 301 Redirects to it were created:');
 							} else {
 								$msg = tr('The following page and a 301 Redirect to it were created:');
@@ -268,13 +283,13 @@ class Services_Wiki_Controller
 				}
 			}
 			//return to page
-			if ($count === 1 && ($all || $extra['one'])
+			if (count($util->items) === 1 && ($all || $util->extra['one'])
 				&& strpos($_SERVER['HTTP_REFERER'], $allinfo['pageName']) !== false) {
 				//go to tiki index if the page the user was on has been deleted - avoids no page found error.
 				global $prefs, $base_url;
 				return Services_Utilities::redirect($base_url . $prefs['tikiIndex']);
 			}
-			return Services_Utilities::refresh($extra['referer']);
+			return Services_Utilities::refresh($util->extra['referer']);
 		}
 	}
 
@@ -283,50 +298,37 @@ class Services_Wiki_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_remove_page_versions($input)
 	{
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$p = $input->page->text();
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			$p = $input['page'];
 			Services_Exception_Denied::checkObject('remove', 'wiki page', $p);
-			$items = $input->asArray('checked');
-			if (count($items) > 0) {
-				$vdesc = count($items) === 1 ? 'version' : 'versions';
+			if ($util->itemsCount > 0) {
+				$vdesc = count($util->items) === 1 ? 'version' : 'versions';
 				$msg = tr('Delete the following %0 of %1?', $vdesc, $p);
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
-				return [
-					'FORWARD' => [
-						'controller' => 'access',
-						'action' => 'confirm',
-						'confirmAction' => $input->action->word(),
-						'confirmController' => 'wiki',
-						'customMsg' => $msg,
-						'confirmButton' => tra('Delete'),
-						'items' => $items,  //version numbers
-						'extra' => ['referer' => $referer, 'page' => $p],
-						'ticket' => $check['ticket'],
-						'confirm' => 'y',
-						'modal' => '1',
-					]
-				];
+				return $util->confirm($msg, tra('Delete'), ['page' => $p]);
 			} else {
 				Services_Utilities::modalException(tra('No version were selected. Please select one or more versions.'));
 			}
 			//after confirm submit - perform action and return success feedback
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
+			Services_Exception_Denied::checkObject('remove', 'wiki page', $util->extra['page']);
 			//delete page
-			$items = json_decode($input['items'], true);
-			$extra = json_decode($input['extra'], true);
 			$histlib = TikiLib::lib('hist');
-			$pageinfo = TikiLib::lib('tiki')->get_page_info($extra['page']);
+			$pageinfo = TikiLib::lib('tiki')->get_page_info($util->extra['page']);
 			$error = false;
 			if ($pageinfo['flag'] != 'L') {
 				$result = false;
-				foreach ($items as $version) {
-					$result = $histlib->remove_version($extra['page'], $version);
+				foreach ($util->items as $version) {
+					$result = $histlib->remove_version($util->extra['page'], $version);
 				}
 				if (! $result) {
 					$error = true;
@@ -339,20 +341,20 @@ class Services_Wiki_Controller
 			}
 			if (! $error) {
 				//prepare feedback
-				if (count($items) === 1) {
-					$msg = tr('The following version of %0 has been deleted:', $extra['page']);
+				if ($util->itemsCount === 1) {
+					$msg = tr('The following version of %0 has been deleted:', $util->extra['page']);
 				} else {
-					$msg = tr('The following versions of %0 have been deleted:', $extra['page']);
+					$msg = tr('The following versions of %0 have been deleted:', $util->extra['page']);
 				}
 				$feedback = [
 					'tpl' => 'action',
 					'mes' => $msg,
-					'items' => $items,
+					'items' => $util->items,
 				];
 				Feedback::success($feedback, 'session');
 			}
 			//return to page
-			return Services_Utilities::refresh($extra['referer']);
+			return Services_Utilities::refresh($util->extra['referer']);
 		}
 	}
 
@@ -361,49 +363,37 @@ class Services_Wiki_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Disabled
 	 */
 	function action_print_pages($input)
 	{
 		Services_Exception_Disabled::check('feature_wiki_multiprint');
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$items = $input->asArray('checked');
-			$fitems = Perms::simpleFilter('wiki page', 'pageName', 'view', $items);
-			if (count($fitems) > 0) {
-				if (count($fitems) === 1) {
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
+			if (count($util->items) > 0) {
+				if (count($util->items) === 1) {
 					$msg = tr('Print the following page?');
 				} else {
 					$msg = tr('Print the following pages?');
 				}
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
-				return [
-					'FORWARD' => [
-						'controller' => 'access',
-						'action' => 'confirm',
-						'confirmAction' => $input->action->word(),
-						'confirmController' => 'wiki',
-						'customMsg' => $msg,
-						'confirmButton' => tra('Print'),
-						'items' => $items,
-						'extra' => ['referer' => $referer],
-						'ticket' => $check['ticket'],
-						'confirm' => 'y',
-						'modal' => '1',
-					]
-				];
+				return $util->confirm($msg, tra('Print'));
 			} else {
 				Services_Utilities::modalException(tra('No pages were selected. Please select one or more pages.'));
 			}
 		//after confirm submit - perform action and return success feedback
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			if (! empty($input['items'])) {
-				return ['url' => 'tiki-print_multi_pages.php?print=y&printpages=' . urlencode($input['items'])];
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
+			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
+			if (! empty($util->items)) {
+				return ['url' => 'tiki-print_multi_pages.php?print=y&printpages=' . urlencode(json_encode($util->items))];
 			} else {
 				Feedback::error(tr('No page specified.'));
-				$extra = json_decode($input['extra'], true);
-				return Services_Utilities::refresh($extra['referer']);
+				return Services_Utilities::refresh($util->extra['referer']);
 			}
 		}
 	}
@@ -411,58 +401,44 @@ class Services_Wiki_Controller
 	function action_export_pdf($input)
 	{
 		Services_Exception_Disabled::check('feature_wiki_multiprint');
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$items = $input->asArray('checked');
-			$fitems = Perms::simpleFilter('wiki page', 'pageName', 'view', $items);
-			if (count($fitems) > 0) {
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
+			if (count($util->items) > 0) {
 				include_once 'lib/pdflib.php';
 				$pdf = new PdfGenerator();
 				if (! empty($pdf->error)) {
 					Services_Utilities::modalException($pdf->error);
 				} else {
-					if (count($fitems) === 1) {
+					if (count($util->items) === 1) {
 						$msg = tr('Export the following page to PDF?');
 					} else {
 						$msg = tr('Export the following pages to PDF?');
 					}
-					//provide redirect if js is not enabled
-					$referer = Services_Utilities::noJsPath();
-					return [
-						'FORWARD' => [
-							'controller' => 'access',
-							'action' => 'confirm',
-							'confirmAction' => $input->action->word(),
-							'confirmController' => 'wiki',
-							'customMsg' => $msg,
-							'confirmButton' => tra('PDF'),
-							'items' => $items,
-							'extra' => ['referer' => $referer],
-							'ticket' => $check['ticket'],
-							'confirm' => 'y',
-							'modal' => '1',
-						]
-					];
+					return $util->confirm($msg, tra('PDF'));
 				}
 			} else {
 				Services_Utilities::modalException(tra('No pages were selected. Please select one or more pages.'));
 			}
 		//after confirm submit - perform action
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$extra = json_decode($input['extra'], true);
-			if (! empty($input['items'])) {
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
+			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
+			if (! empty($util->items)) {
 				include_once 'lib/pdflib.php';
 				$pdf = new PdfGenerator();
 				if (empty($pdf->error)) {
-					return ['url' => 'tiki-print_multi_pages.php?display=pdf&printpages=' . $input['items']];
+					return ['url' => 'tiki-print_multi_pages.php?display=pdf&printpages='
+						. urlencode(json_encode($util->items))];
 				} else {
 					Feedback::error($pdf->error);
 				}
 			} else {
 				Feedback::error(tr('No page specified.'));
 			}
-			return Services_Utilities::closeModal($extra['referer']);
+			return Services_Utilities::closeModal($util->extra['referer']);
 		}
 	}
 
@@ -471,66 +447,54 @@ class Services_Wiki_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Disabled
 	 */
 	function action_lock_pages($input)
 	{
 		Services_Exception_Disabled::check('feature_wiki_usrlock');
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$items = $input->asArray('checked');
-			$fitems = Perms::simpleFilter('wiki page', 'pageName', 'lock', $items);
-			foreach ($fitems as $key => $page) {
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			$countUnfiltered = count($util->items);
+			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
+			foreach ($util->items as $key => $page) {
 				if (TikiLib::lib('wiki')->is_locked($page)) {
-					unset($fitems[$key]);
+					unset($util->items[$key]);
 				}
 			}
-			if (count($fitems) > 0) {
-				if (count($fitems) === 1) {
+			if (count($util->items) > 0) {
+				if (count($util->items) === 1) {
 					$msg = tr('Lock the following page?');
 				} else {
 					$msg = tr('Lock the following pages?');
 				}
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
-				$ret = [
-					'FORWARD' => [
-						'controller' => 'access',
-						'action' => 'confirm',
-						'confirmAction' => $input->action->word(),
-						'confirmController' => 'wiki',
-						'customMsg' => $msg,
-						'confirmButton' => tra('Lock'),
-						'items' => $fitems,
-						'extra' => ['referer' => $referer],
-						'ticket' => $check['ticket'],
-						'confirm' => 'y',
-						'modal' => '1',
-					]
-				];
-				if ($items > $fitems) {
+				$ret =  $util->confirm($msg, tra('Lock'));
+				if ($countUnfiltered > count($util->items)) {
 					$ret['FORWARD']['help'] = tr('Excludes selected pages already locked or for which you lack permission to lock.');
 				}
 				return $ret;
 			} else {
-				if ($items > $fitems) {
+				if ($countUnfiltered > count($util->items)) {
 					Services_Utilities::modalException(tra('You do not have permission to lock the selected pages or they have already been locked.'));
 				} else {
 					Services_Utilities::modalException(tra('No pages were selected. Please select one or more pages.'));
 				}
 			}
-			//after confirm submit - perform action
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$items = json_decode($input['items'], true);
-			$extra = json_decode($input['extra'], true);
+		//after confirm submit - perform action
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
+			$util->items = Perms::simpleFilter('wiki page', 'pageName', 'view', $util->items);
 			$errorpages = [];
-			foreach ($items as $page) {
+			foreach ($util->items as $page) {
 				$res = TikiLib::lib('wiki')->lock_page($page);
 				if (! $res) {
 					$errorpages[] = $page;
 				}
 			}
-			$locked = array_diff($items, $errorpages);
+			$locked = array_diff($util->items, $errorpages);
 			//prepare and send feedback
 			if (count($errorpages) > 0) {
 				if (count($errorpages) === 1) {
@@ -559,79 +523,78 @@ class Services_Wiki_Controller
 				Feedback::success($feedback2, 'session');
 			}
 			//return to page
-			return Services_Utilities::refresh($extra['referer']);
+			return Services_Utilities::refresh($util->extra['referer']);
 		}
 	}
+
 	/**
 	 * Listpages "perform with checked" action to unlock pages
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Disabled
 	 */
 	function action_unlock_pages($input)
 	{
 		Services_Exception_Disabled::check('feature_wiki_usrlock');
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$items = $fitems = $input->asArray('checked');
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			$countUnfiltered = $util->itemsCount;
 			$admin = Perms::get()->admin_wiki;
 			global $user;
-			foreach ($fitems as $key => $page) {
+			foreach ($util->items as $key => $page) {
 				$pinfo = TikiLib::lib('tiki')->get_page_info($page);
 				if (! ($pinfo['flag'] == 'L' &&
 						($admin || ($user == $pinfo['lockedby']) || (! $pinfo['lockedby'] && $user == $pinfo['user']))
 					)
 				) {
-					unset($fitems[$key]);
+					unset($util->items[$key]);
 				}
 			}
-			if (count($fitems) > 0) {
-				if (count($fitems) === 1) {
+			if (count($util->items) > 0) {
+				if (count($util->items) === 1) {
 					$msg = tr('Unlock the following page?');
 				} else {
 					$msg = tr('Unlock the following pages?');
 				}
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
-				$ret = [
-					'FORWARD' => [
-						'controller' => 'access',
-						'action' => 'confirm',
-						'confirmAction' => $input->action->word(),
-						'confirmController' => 'wiki',
-						'customMsg' => $msg,
-						'confirmButton' => tra('Unlock'),
-						'items' => $fitems,
-						'extra' => ['referer' => $referer],
-						'ticket' => $check['ticket'],
-						'confirm' => 'y',
-						'modal' => '1',
-					]
-				];
-				if ($items > $fitems) {
+				$ret =  $util->confirm($msg, tra('Unlock'));
+				if ($countUnfiltered > count($util->items)) {
 					$ret['FORWARD']['help'] = tr('Excludes selected pages already unlocked or for which you lack permission to unlock.');
 				}
 				return $ret;
 			} else {
-				if ($items > $fitems) {
+				if ($countUnfiltered > count($util->items)) {
 					Services_Utilities::modalException(tra('You do not have permission to unlock the selected pages or they have already been unlocked.'));
 				} else {
 					Services_Utilities::modalException(tra('No pages were selected. Please select one or more pages.'));
 				}
 			}
 			//after confirm submit - perform action
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$items = json_decode($input['items'], true);
-			$extra = json_decode($input['extra'], true);
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
+			$admin = Perms::get()->admin_wiki;
+			global $user;
+			foreach ($util->items as $key => $page) {
+				$pinfo = TikiLib::lib('tiki')->get_page_info($page);
+				if (! ($pinfo['flag'] == 'L' &&
+					($admin || ($user == $pinfo['lockedby']) || (! $pinfo['lockedby'] && $user == $pinfo['user']))
+				)
+				) {
+					unset($util->items[$key]);
+				}
+			}
 			$errorpages = [];
-			foreach ($items as $page) {
+			foreach ($util->items as $page) {
 				$res = TikiLib::lib('wiki')->unlock_page($page);
 				if (! $res) {
 					$errorpages[] = $page;
 				}
 			}
-			$locked = array_diff($items, $errorpages);
+			$locked = array_diff($util->items, $errorpages);
 			//prepare and send feedback
 			if (count($errorpages) > 0) {
 				if (count($errorpages) === 1) {
@@ -660,57 +623,44 @@ class Services_Wiki_Controller
 				Feedback::success($feedback2, 'session');
 			}
 			//return to page
-			return Services_Utilities::refresh($extra['referer']);
+			return Services_Utilities::refresh($util->extra['referer']);
 		}
 	}
+
 	/**
 	 * Listpages "perform with checked" action to zip pages
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_zip($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$items = $input->asArray('checked');
-			if (count($items) > 0) {
-				if (count($items) === 1) {
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			if ($util->itemsCount > 0) {
+				if ($util->itemsCount === 1) {
 					$msg = tr('Download a zipped file of the following page?');
 				} else {
 					$msg = tr('Download a zipped file of the following pages?');
 				}
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
-				return [
-					'FORWARD' => [
-						'controller' => 'access',
-						'action' => 'confirm',
-						'confirmAction' => $input->action->word(),
-						'confirmController' => 'wiki',
-						'customMsg' => $msg,
-						'confirmButton' => tra('Zip'),
-						'items' => $items,
-						'extra' => ['referer' => $referer],
-						'ticket' => $check['ticket'],
-						'confirm' => 'y',
-						'modal' => '1',
-					]
-				];
+				return $util->confirm($msg, tra('Zip'));
 			} else {
 				Services_Utilities::modalException(tra('No pages were selected. Please select one or more pages.'));
 			}
 		//after confirm submit - perform action
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$items = json_decode($input['items'], true);
-			$extra = json_decode($input['extra'], true);
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			include_once('lib/wiki/xmllib.php');
 			$xmllib = new XmlLib;
 			$zipFile = 'dump/xml.zip';
 			$config['debug'] = false;
-			if ($xmllib->export_pages($items, null, $zipFile, $config)) {
+			if ($xmllib->export_pages($util->items, null, $zipFile, $config)) {
 				if (! $config['debug']) {
 					global $base_url;
 					return ['url' => $base_url . $zipFile];
@@ -719,7 +669,7 @@ class Services_Wiki_Controller
 				Feedback::error(['mes' => $xmllib->get_error()], 'session');
 			}
 			//return to page
-			return Services_Utilities::closeModal($extra['referer']);
+			return Services_Utilities::closeModal($util->extra['referer']);
 		}
 	}
 
@@ -728,46 +678,32 @@ class Services_Wiki_Controller
 	 *
 	 * @param $input
 	 * @return array
+	 * @throws Exception
+	 * @throws Services_Exception
+	 * @throws Services_Exception_Denied
 	 */
 	function action_title($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
-		$check = Services_Exception_BadRequest::checkAccess();
+		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
-		if (! empty($check['ticket'])) {
-			$items = $input->asArray('checked');
-			if (count($items) > 0) {
-				if (count($items) === 1) {
+		if ($util->notConfirmPost()) {
+			$util->setVars($input, $this->filters,'checked');
+			if ($util->itemsCount > 0) {
+				if ($util->itemsCount === 1) {
 					$msg = tr('Add page name as header of the following page?');
 				} else {
 					$msg = tr('Add page name as header of the following pages?');
 				}
-				//provide redirect if js is not enabled
-				$referer = Services_Utilities::noJsPath();
-				return [
-					'FORWARD' => [
-						'controller' => 'access',
-						'action' => 'confirm',
-						'confirmAction' => $input->action->word(),
-						'confirmController' => 'wiki',
-						'customMsg' => $msg,
-						'confirmButton' => tra('Add'),
-						'items' => $items,
-						'extra' => ['referer' => $referer],
-						'ticket' => $check['ticket'],
-						'confirm' => 'y',
-						'modal' => '1',
-					]
-				];
+				return $util->confirm($msg, tra('Add'));
 			} else {
 				Services_Utilities::modalException(tra('No pages were selected. Please select one or more pages.'));
 			}
-			//after confirm submit - perform action
-		} elseif ($check === true && $_SERVER['REQUEST_METHOD'] === 'POST') {
-			$items = json_decode($input['items'], true);
-			$extra = json_decode($input['extra'], true);
+		//after confirm submit - perform action
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
 			$errorpages = [];
-			foreach ($items as $page) {
+			foreach ($util->items as $page) {
 				$pageinfo = TikiLib::lib('tiki')->get_page_info($page);
 				if ($pageinfo) {
 					$pageinfo['data'] = "!$page\r\n" . $pageinfo['data'];
@@ -790,7 +726,7 @@ class Services_Wiki_Controller
 				];
 				Feedback::error($feedback1, 'session');
 			}
-			$fitems = array_diff($items, $errorpages);
+			$fitems = array_diff($util->items, $errorpages);
 			if (count($fitems) > 0) {
 				if (count($fitems) === 1) {
 					$msg2 = tr('The page name was added as header to the following page:');
@@ -805,7 +741,7 @@ class Services_Wiki_Controller
 				Feedback::success($feedback2, 'session');
 			}
 			//return to page
-			return Services_Utilities::refresh($extra['referer']);
+			return Services_Utilities::refresh($util->extra['referer']);
 		}
 	}
 }
