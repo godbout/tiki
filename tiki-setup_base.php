@@ -554,7 +554,15 @@ array_unshift(
 			'preview' => 'text',
 			'rbox' => 'text',
 			'ticket' => 'alnumdash',
-			'daconfirm' => 'alpha'
+			'confirmForm' => 'alpha',
+			//cookie
+			'javascript_enabled' => 'alpha',
+			'local_tz' => 'text',
+			'local_tzoffset' => 'int',
+			'PHPSESSID' => 'alnum',
+			'PHPSESSIDCV' => 'striptags',
+			'tabs' => 'striptags',
+			'XDEBUG_SESSION' => 'digits'
 		],
 		'staticKeyFiltersForArrays' => [
 			'cat_managed' => 'digits',
