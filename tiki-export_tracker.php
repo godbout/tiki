@@ -60,6 +60,11 @@ $listfields = [];
 foreach ($fields['data'] as $field) {
 	$listfields[$field['fieldId']] = $field;
 }
+// If we have a list of displayed fields, we show only those, so the export matches the online display
+if (isset($_REQUEST["displayedFields"])) {
+	$displayedFields = explode(':',$_REQUEST["displayedFields"]);
+	$listfields = array_intersect_key($listfields, array_flip($displayedFields));
+}
 
 if (! isset($_REQUEST['which'])) {
 	$_REQUEST['which'] = 'all';
