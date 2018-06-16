@@ -92,7 +92,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 	{/function}
 	<div id="plugin_params">
 		<form action="{service controller='plugin' action='edit'}" method="post">
-			{ticket}
+			{ticket mode='confirm'}
 			{foreach $info.params as $name => $param}
 				<div class="form-group{if $param.advanced} advanced{/if}" id="param_{$name|escape}">
 					{plugin_edit_row param=$param name=$name info=$info pluginArgs=$pluginArgs}

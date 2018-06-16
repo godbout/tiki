@@ -28,7 +28,7 @@ class Services_Edit_PluginController
 	}
 
 	/**
-	 * List all or some of theplugins for the textarea control panel
+	 * List all or some of the plugins for the textarea control panel
 	 *
 	 * @param JitFilter $input
 	 * @return array
@@ -85,8 +85,11 @@ class Services_Edit_PluginController
 	 *
 	 * @param JitFilter $input
 	 * @return array
-	 * @throws Services_Exception_BadRequest
+	 * @throws Exception
+	 * @throws Services_Exception
 	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_EditConflict
+	 * @throws Services_Exception_NotFound
 	 */
 	function action_edit($input)
 	{
@@ -121,8 +124,8 @@ class Services_Edit_PluginController
 		}
 
 		$util = new Services_Utilities();
-		$util->checkTicket();
-		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $util->access->ticketMatch()) {
+		if ($util->isConfirmPost()) {
+
 			$this->action_replace($input);
 
 			TikiLib::lib('service')->internal('semaphore', 'unset', ['object_id' => $page]);
@@ -130,7 +133,7 @@ class Services_Edit_PluginController
 			return [
 				'redirect' => TikiLib::lib('wiki')->sefurl($page),
 			];
-		} elseif ($util->access->ticketSet()) {        // render the form
+		} else {        // render the form
 			$info = $parserlib->plugin_info($type);
 			$info['advancedParams'] = [];
 			$validationRules = [];
@@ -228,7 +231,6 @@ class Services_Edit_PluginController
 
 				'info' => $info,
 				'title' => $info['name'],
-				'ticket' => $util->access->getTicket(),
 			];
 		}
 	}
@@ -241,9 +243,10 @@ class Services_Edit_PluginController
 	 *
 	 * @param JitFilter $input
 	 * @return array
+	 * @throws Exception
 	 * @throws Services_Exception
-	 * @throws Services_Exception_BadRequest
 	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_NotFound
 	 */
 	function action_replace($input)
 	{
@@ -259,10 +262,8 @@ class Services_Edit_PluginController
 		$params = $input->asArray('params');
 
 		$referer = $_SERVER['HTTP_REFERER'];
-		$util = new Services_Utilities();
-		$util->checkTicket();
 
-		if (! $page || ! $type || ! $referer || $_SERVER['REQUEST_METHOD'] !== 'POST' || ! $util->access->ticketMatch()) {
+		if (! $page || ! $type || ! $referer) {
 			throw new Services_Exception(tr('Missing parameters'));
 		}
 
@@ -274,7 +275,7 @@ class Services_Edit_PluginController
 
 		$info = $tikilib->get_page_info($page);
 		if (! $info) {
-			throw new Services_Exception_BadRequest(tr('Page "%0" not found', $page));
+			throw new Services_Exception_NotFound(tr('Page "%0" not found', $page));
 		}
 
 		$perms = $tikilib->get_perm_object($page, 'wiki page', $info, false);
@@ -286,6 +287,7 @@ class Services_Edit_PluginController
 
 		$matches = WikiParser_PluginMatcher::match($current);
 		$count = 0;
+		$util = new Services_Utilities();
 		foreach ($matches as $match) {
 			if ($match->getName() !== $plugin) {
 				continue;
@@ -293,7 +295,7 @@ class Services_Edit_PluginController
 
 			++$count;
 
-			if ($index === $count) {
+			if ($index === $count && $util->checkCsrf()) {
 				// by using content of "~same~", it will not replace the body that is there
 				if ($content == "~same~") {
 					$content = $match->getBody();
@@ -312,7 +314,7 @@ class Services_Edit_PluginController
 					$user,
 					$tikilib->get_ip_address()
 				);
-				Feedback::success(tr('Plugin %0 on page %1 successfully edited.', $plugin, $page), 'session');
+				Feedback::success($message, 'session');
 				return [];
 			}
 		}
@@ -348,17 +350,12 @@ class Services_Edit_PluginController
 
 		$referer = $_SERVER['HTTP_REFERER'];
 		$util = new Services_Utilities();
-		$util->checkTicket();
 
-		if (! $page || ! $type || ! $referer || $_SERVER['REQUEST_METHOD'] !== 'POST' || ! $util->access->ticketMatch()) {
+		if (! $page || ! $type || ! $referer) {
 			throw new Services_Exception(tr('Missing parameters'));
 		}
 
 		$plugin = strtolower($type);
-
-		if (! $message) {
-			$message = tr('%0 Plugin converted to list.', $plugin);
-		}
 
 		$info = $tikilib->get_page_info($page);
 		if (! $info) {
@@ -370,44 +367,50 @@ class Services_Edit_PluginController
 			throw new Services_Exception_Denied(tr('You do not have permission to edit "%0"', $page));
 		}
 
-		$current = $info['data'];
+		if ($util->checkCsrf()) {
+			$current = $info['data'];
 
-		$matches = WikiParser_PluginMatcher::match($current);
-		$count = 0;
-		foreach ($matches as $match) {
-			if ($match->getName() !== $plugin) {
-				continue;
+			if (! $message) {
+				$message = tr('%0 Plugin converted to list.', $plugin);
 			}
-
-			++$count;
-
-			if ($index === $count) {
-				if (! $params) {
-					$params = $match->getArguments();
+			$matches = WikiParser_PluginMatcher::match($current);
+			$count = 0;
+			foreach ($matches as $match) {
+				if ($match->getName() !== $plugin) {
+					continue;
 				}
 
-				$converter = new Services_Edit_ListConverter('trackerlist');
+				++$count;
 
-				$content = $converter->convert($params, $content);
+				if ($index === $count) {
+					if (! $params) {
+						$params = $match->getArguments();
+					}
 
-				$match->replaceWithPlugin('list', [], $content);
+					$converter = new Services_Edit_ListConverter('trackerlist');
 
-				$text = $matches->getText();
-				$text .= $converter->getErrorsComment();
+					$content = $converter->convert($params, $content);
 
-				$tikilib->update_page(
-					$page,
-					$text,
-					$message,
-					$user,
-					$tikilib->get_ip_address()
-				);
+					$match->replaceWithPlugin('list', [], $content);
 
-				Feedback::success(tr('Plugin %0 on page %1 converted.', $plugin, $page), 'session');
-				return [];
+					$text = $matches->getText();
+					$text .= $converter->getErrorsComment();
+
+					$tikilib->update_page(
+						$page,
+						$text,
+						$message,
+						$user,
+						$tikilib->get_ip_address()
+					);
+
+					Feedback::success(tr('Plugin %0 on page %1 converted.', $plugin, $page), 'session');
+					return [];
+				}
 			}
+			throw new Exception('Plugin convert failed');
 		}
-		throw new Exception('Plugin convert failed');
+
 	}
 
 	/**
