@@ -72,9 +72,20 @@ if ($prefs['javascript_enabled'] == 'n') {
 	$prefs['feature_wysiwyg'] = 'n';
 	$prefs['feature_ajax'] = 'n';
 	$prefs['calendar_fullcalendar'] = 'n';
+	// assign short variable for use in templates
+	$smarty->assign('js', 0);
+	//for use in setting tags for css menus as fallback for action dropdowns in case of no javascript
+	$smarty->assign('libeg', '<li>');
+	$smarty->assign('liend', '</li>');
 }
 
 if ($prefs['javascript_enabled'] == 'y') {	// we have JavaScript
+	// assign short variable for use in templates
+	$smarty->assign('js', 1);
+	//for use in setting tags for css menus as fallback for action dropdowns in case of no javascript
+	$smarty->assign('libeg', '');
+	$smarty->assign('liend', '');
+
 	$prefs['feature_jquery'] = 'y';	// just in case
 
 	// load translations lang object from /lang/xx/language.js if there
@@ -205,6 +216,9 @@ if (inArray(m, allTimeZoneCodes)) {
 	$jqueryTiki['autoToc_inline'] = $prefs['wiki_inline_auto_toc'] === 'y' ? true : false;
 	$jqueryTiki['autoToc_pos'] = $prefs['wiki_toc_pos'];
 	$jqueryTiki['autoToc_offset'] = $prefs['wiki_toc_offset'];
+	//set at 4 hours if empty
+	$jqueryTiki['securityTimeout'] = !empty($prefs['securityTimeout']) ? $prefs['securityTimeout']
+		: TikiLib::lib('access')->getDefaultTimeout();
 
 	if (empty($object)) {
 		$object = current_object();

@@ -113,6 +113,22 @@
 				<div class="adminoptionbox">
 					{tr}Use these options to protect against cross-site request forgeries (CSRF){/tr}.
 				</div>
+				{preference name=securityTimeout}
+				<div class="col-sm-8 col-sm-offset-4 margin-bottom-md">
+					<button
+							role="button"
+							type="submit"
+							class="btn btn-default"
+							name="clearTickets"
+							value="1"
+							onclick="checkTimeout()"
+					>
+						{tr}Delete security tickets on server{/tr}
+					</button>
+					<a href="#" target="tikihelp" class="tikihelp text-warning" title="{tr}Warning{/tr}: {tr}Any open forms will need to be reloaded since this action will invalidate existing security tickets{/tr}">
+						{icon name="warning"}
+					</a>
+				</div>
 				{preference name=feature_ticketlib}
 				{preference name=feature_ticketlib2}
 			</fieldset>

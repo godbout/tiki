@@ -419,22 +419,37 @@ function prefs_global_list($partial = false)
 			'default' => '6',
 		],
 		'thumbSizeXGalleries' => [
-			'name' => tra('Thumbnail width in pixels'),
+			'name' => tra('Thumbnail width'),
 			'type' => 'text',
 			'units' => tra('pixels'),
 			'default' => '80',
 		],
 		'thumbSizeYGalleries' => [
-			'name' => tra('Thumbnail height in pixels'),
+			'name' => tra('Thumbnail height'),
 			'type' => 'text',
 			'units' => tra('pixels'),
 			'default' => '80',
 		],
 		'scaleSizeGalleries' => [
-			'name' => tra('Default scale size in pixels'),
+			'name' => tra('Default scale size'),
 			'type' => 'text',
 			'units' => tra('pixels'),
 			'default' => '',
+		],
+		'securityTimeout' => [
+			'name' => tra('Security timeout'),
+			'description' => tr('Sets the expiration of CSRF tickets and related forms. The %0session_lifetime%1 
+				preference is used for the default, if set, otherwise the %0session.gc_maxlifetime%1 %0php.ini%1 setting 
+				is used, subject to a default maximum of four hours in any case.', '<code>', '</code>'),
+			'type' => 'text',
+			'filter' => 'digits',
+			'warning' => tra('Minimum value is 30 seconds to avoid blocking everyone from being able to make any changes, including to this setting'),
+			'units' => tra('seconds'),
+			'constraints' => [
+				'min' => 30
+			],
+			'tags' => ['basic'],
+			'default' => TikiLib::lib('access')->getDefaultTimeout(),
 		],
 	];
 }
@@ -445,8 +460,9 @@ function prefs_global_list($partial = false)
  *
  * @param $partial bool
  *
- * @access public
  * @return array of url's and labels of the alternate homepages
+ * @throws Exception
+ * @access public
  */
 function feature_home_pages($partial = false)
 {
