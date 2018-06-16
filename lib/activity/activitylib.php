@@ -50,12 +50,13 @@ class ActivityLib
 		$testRunner->setFormula($data['rule']);
 		$testRunner->inspect();
 
-		return $this->rulesTable()->insertOrUpdate(
+		$result =  $this->rulesTable()->insertOrUpdate(
 			$data,
 			[
 				'ruleId' => $id,
 			]
 		);
+		return $result;
 	}
 
 	function deleteRule($id)
@@ -76,6 +77,7 @@ class ActivityLib
 		);
 		require_once 'lib/search/refresh-functions.php';
 		refresh_index('activity', $id);
+		return $info;
 	}
 
 	function preserveRules(array $ids)
