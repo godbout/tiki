@@ -127,10 +127,8 @@ class Services_H5P_Controller
 		$index = $input->index->int();
 
 		$util = new Services_Utilities();
-		$util->checkTicket();
-
 		// Handle for submit
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		if ($util->isConfirmPost()) {
 			switch ($input->op->word()) {
 				case 'Save':
 					// Create new content or update existing
@@ -149,7 +147,6 @@ class Services_H5P_Controller
 									'index' => $index,
 									'edit_icon' => $index,
 									'params' => ['fileId' => $fileId],
-									'ticket' => $input->ticket->alnum(),
 								]
 							);
 
@@ -185,7 +182,6 @@ class Services_H5P_Controller
 								'index' => $index,
 								'edit_icon' => $index,
 								'params' => ['fileId' => ''],
-								'ticket' => $input->ticket->alnum(),
 							]
 						);
 

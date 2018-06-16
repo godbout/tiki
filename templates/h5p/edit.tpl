@@ -10,8 +10,7 @@
 		<input type="hidden" name="parameters" value="{$parameters|escape}">
 		<input type="hidden" name="index" value="{$index|escape}">
 		<input type="hidden" name="page" value="{$page|escape}">
-		<input type="hidden" name="daconfirm" value="y">
-		<input type="hidden" name="ticket" value="{$ticket|escape}">
+		{ticket mode='confirm'}
 		<div>
 			<div class="form-item form-type-textfield form-item-title">
 				<label for="edit-title">Title
