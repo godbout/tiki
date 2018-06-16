@@ -6,7 +6,7 @@
 {/if}
 <a
 	class="tips"
-	title="{tr}Actions{/tr}" href="#"
+	title="{if ! empty($title)}{$title}{else}{tr}Actions{/tr}{/if}" href="#"
 	{if $js}{popup fullhtml="1" center=true text=$smarty.capture.$capturedActions}{/if}
 	style="padding:0; margin:0; border:0"
 >
