@@ -22,16 +22,28 @@ $access->check_user($user);
 $access->check_feature('feature_actionlog');
 $access->check_permission_either(['tiki_p_view_actionlog', 'tiki_p_view_actionlog_owngroups']);
 
-// Handle case when users have checked a number of action logs for global actions
 if (isset($_REQUEST['checked'])) {
-	#check_ticket('list_comments');
 	$checked = is_array($_REQUEST['checked']) ? $_REQUEST['checked'] : [$_REQUEST['checked']];
 	// Ban IP adresses of multiple spammers
 	if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'ban') {
-		ask_ticket('admin-banning');
 		$mass_ban_ip = implode('|', $checked);
 		header('Location: tiki-admin_banning.php?mass_ban_ip_actionlog=' . $mass_ban_ip);
 		exit;
+	} elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'remove' && $tiki_p_admin == 'y'
+		&& $access->checkCsrfForm(tra('Remove selected actions?')))
+	{
+		$rowsDeleted = 0;
+		foreach ($checked as $action) {
+			$result = $logslib->remove_action($action);
+			$rowsDeleted += $result->numRows();
+		}
+		if ($rowsDeleted) {
+			$msg = $rowsDeleted === 1 ? tra('The selected action has been deleted from the log')
+				: tr('%0 actions have been deleted from the log', $rowsDeleted);
+			Feedback::success($msg, 'session');
+		} else {
+			Feedback::error(tr('No actions were deleted from the log'));
+		}
 	}
 }
 
@@ -92,7 +104,7 @@ if (isset($_REQUEST['max'])) {
 }
 
 if ($tiki_p_view_actionlog == 'y') {
-	if (isset($_REQUEST['save'])) {
+	if (isset($_POST['save']) && $access->checkCsrf()) {
 		foreach ($action_log_conf_selected as $index => $conf) {
 			if (isset($_REQUEST['v_' . $conf['code']]) && $_REQUEST['v_' . $conf['code']] == 'on') { //viewed and reported
 				$logslib->set_actionlog_conf($conf['action'], $conf['objectType'], 'v');
@@ -109,7 +121,7 @@ if ($tiki_p_view_actionlog == 'y') {
 		$cookietab = 1;
 	}
 } else {
-	if (isset($_REQUEST['save'])) {
+	if (isset($_POST['save']) && $access->checkCsrf()) {
 		$_prefs = 'v';
 		foreach ($action_log_conf_selected as $index => $conf) {
 			if ($conf['status'] == 'v' || $conf['status'] == 'y') { // can only change what is recorded
@@ -141,6 +153,7 @@ if ($tiki_p_view_actionlog == 'y') {
 	global $actionlogConf;
 	$actionlogConf = $confs;
 }
+
 foreach ($confs as $conf) {
 	if ($conf['status'] == 'v') {
 		++$nbViewedConfs;
@@ -156,80 +169,77 @@ $smarty->assign_by_ref('actionlogConf', $confs);
 if (! empty($_REQUEST['actionId']) && $tiki_p_admin == 'y') {
 	$action = $logslib->get_info_action($_REQUEST['actionId']);
 	if (empty($action)) {
-		$smarty->assign('msg', tra('Must specify actionId'));
-		$smarty->display("error.tpl");
-		die;
-	}
-	if (isset($_REQUEST['saveAction'])) {
-		if ($prefs['feature_contribution'] == 'y') {
-			if ($contributionlib->update($action, empty($_REQUEST['contributions']) ? '' : $_REQUEST['contributions'])) {
-				$logslib->delete_params($_REQUEST['actionId'], 'contribution');
-				if (isset($_REQUEST['contributions'])) {
-					$logslib->insert_params($_REQUEST['actionId'], 'contribution', $_REQUEST['contributions']);
+		Feedback::error( tra('Must specify actionId'));
+	} else {
+		if (isset($_POST['saveAction'])&& $access->checkCsrf()) {
+			if ($prefs['feature_contribution'] == 'y') {
+				if ($contributionlib->update($action, empty($_REQUEST['contributions']) ? '' : $_REQUEST['contributions'])) {
+					$logslib->delete_params($_REQUEST['actionId'], 'contribution');
+					if (isset($_REQUEST['contributions'])) {
+						$logslib->insert_params($_REQUEST['actionId'], 'contribution', $_REQUEST['contributions']);
+					}
+					if (isset($_REQUEST['contributors'])) {
+						$logslib->insert_params($_REQUEST['actionId'], 'contributor', $_REQUEST['contributors']);
+					}
+				} else {
+					$smarty->assign('error', 'found more than one object that can correspond');
 				}
-				if (isset($_REQUEST['contributors'])) {
-					$logslib->insert_params($_REQUEST['actionId'], 'contributor', $_REQUEST['contributors']);
+			}
+			if (empty($_REQUEST['cat_categories']) && !empty($action['categId'])) {
+				$logslib->update_category($_REQUEST['actionId'], 0);
+			} elseif (!empty($_REQUEST['cat_categories'])) {
+				$old_categ = $action['categId'];
+				if (!in_array($action['categId'], $_REQUEST['cat_categories'])) {
+					$logslib->update_category($_REQUEST['actionId'], $_REQUEST['cat_categories'][0]);
 				}
-			} else {
-				$smarty->assign('error', 'found more than one object that can correspond');
-			}
-		}
-		if (empty($_REQUEST['cat_categories']) && ! empty($action['categId'])) {
-			$logslib->update_category($_REQUEST['actionId'], 0);
-		} elseif (! empty($_REQUEST['cat_categories'])) {
-			$old_categ = $action['categId'];
-			if (! in_array($action['categId'], $_REQUEST['cat_categories'])) {
-				$logslib->update_category($_REQUEST['actionId'], $_REQUEST['cat_categories'][0]);
-			}
-			if (count($_REQUEST['cat_categories']) > 1) {
-				$action['params'] = $logslib->get_action_params($_REQUEST['actionId']);
-				$action['contributions'] = $logslib->get_action_contributions($_REQUEST['actionId']);
-				foreach ($_REQUEST['cat_categories'] as $cat) {
-					if ($cat != $old_categ) {
-						$logslib->add_action($action['action'], $action['object'], $action['objectType'], $action['comment'], $action['user'], $action['ip'], '', $action['lastModif'], '', '');
+				if (count($_REQUEST['cat_categories']) > 1) {
+					$action['params'] = $logslib->get_action_params($_REQUEST['actionId']);
+					$action['contributions'] = $logslib->get_action_contributions($_REQUEST['actionId']);
+					foreach ($_REQUEST['cat_categories'] as $cat) {
+						if ($cat != $old_categ) {
+							$logslib->add_action($action['action'], $action['object'], $action['objectType'], $action['comment'], $action['user'], $action['ip'], '', $action['lastModif'], '', '');
+						}
 					}
 				}
 			}
-		}
-	} elseif (isset($_REQUEST['remove'])) {
-		$access->check_authenticity();
-		$logslib->remove_action($_REQUEST['actionId']);
-	} else {
-		$smarty->assign_by_ref('action', $action);
-		if ($action['objectType'] == 'wiki page') {
-			$contributions = $logslib->get_action_contributions($action['actionId']);
-			$info = $tikilib->get_page_info($action['object']);
-			$contributors = $logslib->get_wiki_contributors($info);
-			$tcontributors = [];
-			foreach ($contributors as $c) {
-				$tcontributors[] = $c['userId'];
-			}
-			$smarty->assign_by_ref('contributors', $tcontributors);
-		} elseif ($id = $logslib->get_comment_action($action)) {
-			$contributions = $logslib->get_action_contributions($action['actionId']);
 		} else {
-			$contributions = $contributionlib->get_assigned_contributions($action['object'], $action['objectType']); // todo: do a left join
-		}
-		$cont = [];
-		foreach ($contributions as $contribution) {
-			$cont[] = $contribution['contributionId'];
-		}
-		$_REQUEST['contributions'] = $cont;
-		include('contribution.php');
-		$contributions['data'][] = [
-				'contributionId' => 0,
-				'name' => ''
-				];
-		if (! empty($_REQUEST['startDate'])) {
-			$smarty->assign('startDate', $_REQUEST['startDate']);
-		}
-		if (! empty($_REQUEST['endDate'])) {
-			$smarty->assign('endDate', $_REQUEST['endDate']);
-		}
-		if (! empty($action['categId'])) {
-			foreach ($categories as $i => $cat) {
-				if ($action['categId'] == $cat['categId']) {
-					$categories[$i]['incat'] = 'y';
+			$smarty->assign_by_ref('action', $action);
+			if ($action['objectType'] == 'wiki page') {
+				$contributions = $logslib->get_action_contributions($action['actionId']);
+				$info = $tikilib->get_page_info($action['object']);
+				$contributors = $logslib->get_wiki_contributors($info);
+				$tcontributors = [];
+				foreach ($contributors as $c) {
+					$tcontributors[] = $c['userId'];
+				}
+				$smarty->assign_by_ref('contributors', $tcontributors);
+			} elseif ($id = $logslib->get_comment_action($action)) {
+				$contributions = $logslib->get_action_contributions($action['actionId']);
+			} else {
+				$contributions = $contributionlib->get_assigned_contributions($action['object'], $action['objectType']); // todo: do a left join
+			}
+
+			$cont = [];
+			foreach ($contributions as $contribution) {
+				$cont[] = $contribution['contributionId'];
+			}
+			$_REQUEST['contributions'] = $cont;
+			include ('contribution.php');
+			$contributions['data'][] = [
+					'contributionId' => 0,
+					'name' => ''
+					];
+			if (! empty($_REQUEST['startDate'])) {
+				$smarty->assign('startDate', $_REQUEST['startDate']);
+			}
+			if (! empty($_REQUEST['endDate'])) {
+				$smarty->assign('endDate', $_REQUEST['endDate']);
+			}
+			if (! empty($action['categId'])) {
+				foreach ($categories as $i => $cat) {
+					if ($action['categId'] == $cat['categId']) {
+						$categories[$i]['incat'] = 'y';
+					}
 				}
 			}
 		}
@@ -239,9 +249,7 @@ if ($tiki_p_list_users == 'y') {
 	$users = $userlib->list_all_users();
 	$groups = $userlib->list_all_groups();
 } else {
-	$users = [
-					$userlib->get_user_id($user) => $user
-	];
+	$users = [$userlib->get_user_id($user) => $user];
 	$groups = $tikilib->get_user_groups($user);
 	$groups = array_diff(
 		$groups,
@@ -262,6 +270,7 @@ foreach ($categories as $categ) {
 	$categNames[$categ['categId']] = $categ['name'];
 }
 $smarty->assign_by_ref('categNames', $categNames);
+
 if (isset($_REQUEST['list']) || isset($_REQUEST['export']) || isset($_REQUEST['graph'])) {
 	@ini_set('max_execution_time', 0); //will not work in safe_mode is on
 	$url = '';
@@ -441,6 +450,7 @@ if (isset($_REQUEST['list']) || isset($_REQUEST['export']) || isset($_REQUEST['g
 		$smarty->assign_by_ref('contribTime', $_REQUEST['contribTime']);
 	}
 }
+
 if (isset($_REQUEST['graph'])) {
 	$contributions = $contributionlib->list_contributions(0, -1);
 	$legendWidth = 0;

@@ -7,6 +7,7 @@
 	{tab name="{tr}Report{/tr}"}
 		<h2>{tr}Report{/tr}</h2>
 		<form method="get" action="tiki-admin_actionlog.php#List">
+			{* no ticket needed as this form doesn't change the database *}
 			<h2>{tr}Filter{/tr}</h2>
 			{if empty($nbViewedConfs)}
 				{button _text="{tr}Please select some actions to be reported.{/tr}" href="#" _onclick="showTab(2); return true;"}
@@ -212,19 +213,10 @@
 			{if !empty($actionlogs)}
 				<a href="#Statistics">{tr}See Statistics{/tr}</a><br/>
 			{/if}
-			{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-			{if $prefs.javascript_enabled !== 'y'}
-				{$js = 'n'}
-				{$libeg = '<li>'}
-				{$liend = '</li>'}
-			{else}
-				{$js = 'y'}
-				{$libeg = ''}
-				{$liend = ''}
-			{/if}
 			<form name="checkboxes_on" method="post" action="tiki-admin_actionlog.php">
+				{ticket}
 				{query _type='form_input'}
-				<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+				<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 					<table class="table table-striped table-hover">
 						<tr>
 							{if $prefs.feature_banning eq 'y'}
@@ -321,26 +313,25 @@
 										{if $actionlog.actionId}
 											{capture name=log_actions}
 												{strip}
-													{$libeg}<a
-													href="tiki-admin_actionlog.php?actionId={$actionlog.actionId}&amp;startDate={$startDate}&amp;endDate={$endDate}#action">
-													{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+													{$libeg}<a href="tiki-admin_actionlog.php?actionId={$actionlog.actionId}&amp;startDate={$startDate}&amp;endDate={$endDate}#action">
+														{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 													</a>{$liend}
-													{$libeg}{self_link remove='y' _menu_text='y' _menu_icon='y' actionId=$actionlog.actionId _icon_name='delete'}
-												{tr}Remove{/tr}
-												{/self_link}{$liend}
+													{$libeg}<a href="tiki-admin_actionlog.php?checked={$actionlog.actionId}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete action from log?{/tr}', '{ticket mode=get}')">
+														{icon name='delete' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+													</a>{$liend}
 												{/strip}
 											{/capture}
-											{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
+											{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 											<a
 													class="tips"
 													title="{tr}Actions{/tr}"
 													href="#"
-													{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.log_actions}{/if}
+													{if $js}{popup fullhtml="1" center=true text=$smarty.capture.log_actions}{/if}
 													style="padding:0; margin:0; border:0"
 													>
 												{icon name='wrench'}
 											</a>
-											{if $js === 'n'}
+											{if ! $js}
 												<ul class="dropdown-menu" role="menu">{$smarty.capture.log_actions}</ul>
 												</li></ul>
 											{/if}
@@ -361,9 +352,22 @@
 							<option value="ban">
 								{tr}Ban{/tr}
 							</option>
+							<option
+								value="remove"
+								class="confirm-simple"
+								data-confirm-text="{tr}Delete selected actions from log?{/tr}"
+							>
+								{tr}Remove{/tr}
+							</option>
 						</select>
 						<span class="input-group-btn">
-							<button type="submit" class="btn btn-secondary">{tr}OK{/tr}</button>
+							<button
+								type="submit"
+								class="btn btn-secondary"
+								onclick="confirmSimple(event)"
+							>
+								{tr}OK{/tr}
+							</button>
 						</span>
 					</div>
 				{/if}
@@ -375,6 +379,7 @@
 			<h2>{tr}Edit Action{/tr}</h2>
 
 			<form method="post" action="tiki-admin_actionlog.php">
+				{ticket}
 				<input type="hidden" name="actionId" value="{$action.actionId}">
 				<input type="hidden" name="list" value="y">
 				{if $selectedUsers}<input type="hidden" name="selectedUsers" value="{$selectedUsers}">{/if}
@@ -394,7 +399,7 @@
 							<td>&nbsp;</td>
 							<td>
 								<input type="submit" class="btn btn-primary btn-sm" name="saveAction"
-									value="{tr}Save Action{/tr}">
+									value="{tr}Save Action{/tr}" onclick="checkTimeout()">
 							</td>
 						</tr>
 					</table>
@@ -763,6 +768,7 @@
 		{tr}You need to check out the recorded box for each action type we may be interested to have some report later. To see a report of some action types, select the reported checkboxes of these action types, goto the Report tab and select additional filters. The report will only contains the actions that occurred since the action type has been set to recorded.{/tr} {tr}Wiki page actions except viewed will always be recorded but can be not reported.{/tr}
 		{/remarksbox}
 		<form method="post" action="tiki-admin_actionlog.php" class="form-inline">
+			{ticket}
 			{if !empty($sort_mode)}<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">{/if}
 			<fieldset>
 				<legend>{tr}Filter{/tr}</legend>
@@ -798,7 +804,13 @@
 
 			<div class="form-group row" style="display:block;">
 				<div class="col-sm-1 col-sm-offset-11">
-					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="save"
+						value="{tr}Set{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</div>
 			<div class="form-group row" style="display:block;">
@@ -843,7 +855,13 @@
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-1 col-sm-offset-11">
-					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary btn-sm"
+						name="save"
+						value="{tr}Set{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</div>
 		</form>
