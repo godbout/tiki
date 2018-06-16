@@ -201,8 +201,10 @@ class CleanVendors
 				'js/parsers/parser-feet-inch-fraction.js',
 				'js/parsers/parser-file-type.js',
 				'js/parsers/parser-globalize.js',
+				'js/parsers/parser-huge-numbers.js',
 				'js/parsers/parser-ignore-articles.js',
 				'js/parsers/parser-image.js',
+				'js/parsers/parser-leading-zeros.js',
 				'js/parsers/parser-metric.js',
 				'js/parsers/parser-named-numbers.js',
 				'js/parsers/parser-network.js',
@@ -211,26 +213,31 @@ class CleanVendors
 				'js/widgets/widget-build-table.js',
 				'js/widgets/widget-chart.js',
 				'js/widgets/widget-cssStickyHeaders.js',
-				'js/widgets/widget-columns.js',      //in jquery.tablesorter.combined.js
+				'js/widgets/widget-columns.js',					//in jquery.tablesorter.combined.js
 				'js/widgets/widget-editable.js',
-				'js/widgets/widget-filter.js',      //in jquery.tablesorter.combined.js
+				'js/widgets/widget-filter.js',					//in jquery.tablesorter.combined.js
 				'js/widgets/widget-filter-formatter-html5.js',
 				'js/widgets/widget-filter-formatter-select2.js',
 				'js/widgets/widget-filter-type-insideRange.js',
 				'js/widgets/widget-formatter.js',
 				'js/widgets/widget-headerTitles.js',
+				'js/widgets/widget-lazyload.js',
+				'js/widgets/widget-mark.js',
 				'js/widgets/widget-output.js',
 				'js/widgets/widget-print.js',
 				'js/widgets/widget-reflow.js',
 				'js/widgets/widget-repeatheaders.js',
-				'js/widgets/widget-resizable.js',       //in jquery.tablesorter.combined.js
-				'js/widgets/widget-saveSort.js',        //in jquery.tablesorter.combined.js
+				'js/widgets/widget-resizable.js',				//in jquery.tablesorter.combined.js
+				'js/widgets/widget-saveSort.js',				//in jquery.tablesorter.combined.js
 				'js/widgets/widget-scroller.js',
 				'js/widgets/widget-sortTbodies.js',
 				'js/widgets/widget-staticRow.js',
-				'js/widgets/widget-stickyHeaders.js',   //in jquery.tablesorter.combined.js
-				'js/widgets/widget-storage.js',         //in jquery.tablesorter.combined.js
-				'js/widgets/widget-uitheme.js'          //in jquery.tablesorter.combined.js
+				'js/widgets/widget-stickyHeaders.js',			//in jquery.tablesorter.combined.js
+				'js/widgets/widget-storage.js',					//in jquery.tablesorter.combined.js
+				'js/widgets/widget-toggle.js',
+				'js/widgets/widget-uitheme.js',					//in jquery.tablesorter.combined.js
+				'js/widgets/widget-vertical-group.js',
+				'js/widgets/widget-view.js'
 			]
 		);
 		self::removeMultiple(
@@ -362,6 +369,8 @@ class CleanVendors
 		$fs->remove($vendors . 'alxlit/bootstrap-chosen/example.html');
 		$fs->remove($vendors . 'alxlit/bootstrap-chosen/example.png');
 		$fs->remove($vendors . 'chartjs/Chart.js/samples');
+		//duplicate with mottie/tablesorter
+		$fs->remove($vendors . 'components/tablesorter');
 
 		self::removeMultiple(
 			$vendors . 'smarty/smarty',
