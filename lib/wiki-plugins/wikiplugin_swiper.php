@@ -168,7 +168,7 @@ function wikiplugin_swiper_info()
 			'slideContentBg' => [
 				'required' => false,
 				'name' => tra('Slide content background'),
-				'description' => tra('Enter color code or rgba if opacity is desired value for example: #000 or rgba(00, 00, 00, 0.5)'),
+				'description' => tra('Enter a valid CSS color code, or an rgba value if opacity is desired; for example: #000 or rgba(00, 00, 00, 0.5).'),
 				'filter' => 'text',
 				'default' => '',
 				'since' => '19.0'

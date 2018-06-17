@@ -263,14 +263,14 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_background' => [
 			'name' => tra('PDF page background color'),
-			'description' => tra('Enter color code'),
+			'description' => tra('Enter a valid CSS color code.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => '',
 		],
 		'print_pdf_mpdf_background_image' => [
 			'name' => tra('PDF page background image'),
-			'description' => tra('Enter full URL'),
+			'description' => tra('Enter the full URL.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => '',
@@ -284,21 +284,21 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_coverpage_text_settings' => [
 			'name' => tra('CoverPage text settings'),
-			'description' => tra('Heading|Subheading|Alignment|Background color|Text color|Page border|Border color. Enter settings separated by |,leave blank for default'),
+			'description' => tra('Heading|Subheading|Alignment|Background color|Text color|Page border|Border color. Enter settings separated by |. Leave blank to use default settings.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => '',
 		],
 		'print_pdf_mpdf_coverpage_image_settings' => [
 			'name' => tra('Coverpage image URL'),
-			'description' => tra('Enter complete URL'),
+			'description' => tra('Enter the full URL.'),
 			'type' => 'text',
 			'tags' => ['advanced'],
 			'default' => '',
 		],
 		'print_wiki_authors' => [
 			'name' => tra('Print wiki authors'),
-			'description' => tra('Include wiki authors and date in wiki page print outs.'),
+			'description' => tra('Include wiki page authors and date in print versions of wiki pages.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_wiki',
@@ -307,7 +307,7 @@ function prefs_print_list()
 		],
 		'print_original_url_wiki' => [
 			'name' => tra('Print original wiki URL'),
-			'description' => tra('Include orginal wiki page URL in print outs.'),
+			'description' => tra('Include original wiki page URL in print versions of wiki pages.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_wiki',
@@ -316,7 +316,7 @@ function prefs_print_list()
 		],
 		'print_original_url_tracker' => [
 			'name' => tra('Print original tracker item URL'),
-			'description' => tra('Include orginal wiki page URL in print outs.'),
+			'description' => tra('Include original wiki page URL in print versions of wiki pages.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_trackers',
@@ -325,7 +325,7 @@ function prefs_print_list()
 		],
 		'print_original_url_forum' => [
 			'name' => tra('Print original forum post URL'),
-			'description' => tra('Include orginal forum post URL in print outs.'),
+			'description' => tra('Include original forum post URL in print version of forum posts.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_forums',

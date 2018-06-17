@@ -10,7 +10,7 @@ function prefs_rating_list()
 	return [
 		'rating_advanced' => [
 			'name' => tra('Advanced Rating'),
-			'description' => tra('Rating system allowing for options and calculation method to be configured.'),
+			'description' => tra('In an advanced rating system, the options and calculation method can be configured.'),
 			'type' => 'flag',
 			'help' => 'Advanced+Rating',
 			'default' => 'n',
@@ -50,7 +50,7 @@ function prefs_rating_list()
 		],
 		'rating_smileys' => [
 			'name' => tr('Smiley Ratings'),
-			'description' => tr('Displays smiley faces for a simple ratings system with an easy-to-use user interface, similar to emoticons. Works with 0-11 only, depending on the configuration.'),
+			'description' => tr('Displays smiley faces or emojis in a simple ratings system with an easy-to-use interface. Works with 0-11 only, depending on the configuration.'),
 			'type' => 'flag',
 			'options' => [
 				'' => tr('Disabled'),
@@ -59,7 +59,7 @@ function prefs_rating_list()
 			'default' => ''
 		],
 		'rating_results_detailed' => [
-			'name' => tr('Detailed Rating Results'),
+			'name' => tr('Detailed rating results'),
 			'description' => tr('Displays a table with the result count and percentage per rating option.'),
 			'type' => 'flag',
 			'options' => [
@@ -96,7 +96,7 @@ function prefs_rating_list()
 		],
 		'rating_allow_multi_votes' => [
 			'name' => tra('Multiple votes per user'),
-			'description' => tra('Allow the user to cast multiple votes for the same object.'),
+			'description' => tra('Allow users to vote multiple times in the same poll.'),
 			'type' => 'flag',
 			'options' => [
 				'' => tr('Disabled'),

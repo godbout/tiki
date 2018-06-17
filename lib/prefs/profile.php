@@ -10,7 +10,7 @@ function prefs_profile_list()
 	return [
 		'profile_sources' => [
 			'name' => tra('Repository URLs'),
-			'description' => tra('List of URLs for the profile repositories that will be used.'),
+			'description' => tra('List of URLs for the profile repositories that will be used'),
 			'type' => 'textarea',
 			'size' => 5,
 			'hint' => tra('Enter multiple repository URLs, one per line.'),
