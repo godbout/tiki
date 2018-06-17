@@ -1386,7 +1386,7 @@ if (isset($_REQUEST["save"])
 		$linktodiff = '';
 	}
 
-	Feedback::success(tr('Page %0 saved (version %1).', $_REQUEST["page"], $info['version']) . $linktodiff, 'session');
+	Feedback::success(tr('Page %0 saved (version %1).', $_REQUEST["page"], $info['version']) . $linktodiff);
 
 	if (! empty($_REQUEST['hdr'])) {
 		$tmp = $parserlib->parse_data($edit);			// fills $anch[] so page refreshes at the section being edited

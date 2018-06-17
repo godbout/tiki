@@ -52,7 +52,7 @@ if (isset($_POST['forget'], $_POST['pp'], $_POST['pd']) && $access->checkCsrf())
 
 			foreach ($profilefeedback as $feedback) {
 				if (strpos($feedback, tra('An error occurred: ')) === 0) {
-					Feedback::error($feedback, 'session');
+					Feedback::error($feedback);
 				}
 			}
 
@@ -102,7 +102,7 @@ if (isset($_POST['install'], $_POST['pd'], $_POST['pp']) && $access->checkCsrf()
 		$target = $wikilib->sefurl($target);
 		$profilefeedback = $installer->getFeedback();
 		if (count($profilefeedback) > 0) {
-			Feedback::note(['mes' => $profilefeedback, 'title' => tra('The following list of changes has been applied:')], 'session');
+			Feedback::note(['mes' => $profilefeedback, 'title' => tra('The following list of changes has been applied:')]);
 		}header('Location: ' . $target);
 		exit;
 	} else {

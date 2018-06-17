@@ -189,7 +189,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	{
 		if (Perms::get()->h5p_edit) {
 			// needs 'session' as the method param if the error happens asychronously
-			Feedback::error(tra($message), 'session');
+			Feedback::error(tra($message));
 		}
 	}
 
@@ -202,7 +202,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	public function setInfoMessage($message)
 	{
 		if (Perms::get()->h5p_edit) {
-			Feedback::success(tra($message), 'session');
+			Feedback::success(tra($message));
 		}
 	}
 
@@ -1384,7 +1384,7 @@ GROUP BY l.`name`, l.`major_version`, l.`minor_version`');
 
 		$exportedFile = H5P_H5PTiki::$h5p_path . '/exports/' . $filename;
 		if (! file_exists($exportedFile)) {
-			Feedback::error(tr('Exporting H5P content %0 failed', $content['id']), 'session');
+			Feedback::error(tr('Exporting H5P content %0 failed', $content['id']));
 		}
 
 		$filegallib = TikiLib::lib('filegal');
@@ -1410,7 +1410,7 @@ GROUP BY l.`name`, l.`major_version`, l.`minor_version`');
 		$this->isSaving = false;
 
 		if (! $result) {
-			Feedback::error(tr('Saving H5P content %0 (fileId %1) failed', $content['id'], $content['file_id']), 'session');
+			Feedback::error(tr('Saving H5P content %0 (fileId %1) failed', $content['id'], $content['file_id']));
 		}
 	}
 

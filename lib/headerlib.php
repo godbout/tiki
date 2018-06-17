@@ -685,7 +685,7 @@ class HeaderLib
 							// if the file does not exist MatthiasMullie\Minify takes the input to be the file content
 							// which causes js errors and can break the whole site
 							if (! file_exists($f)) {
-								Feedback::error(tr('JavaScript file "%0" cannot be found so will not be minified.', $f), 'session');
+								Feedback::error(tr('JavaScript file "%0" cannot be found so will not be minified.', $f));
 								throw new Exception('File not found');
 							}
 							$minifier = new MatthiasMullie\Minify\JS($f);
@@ -1143,7 +1143,7 @@ class HeaderLib
 					unlink($css_file);
 				}
 
-				Feedback::error(tra('Custom Less compilation failed with error:') . $e->getMessage(), 'sessiom');
+				Feedback::error(tra('Custom Less compilation failed with error:') . $e->getMessage());
 				$css_files = [
 					$themeLib->get_theme_path($themename, '', $themename . '.css'),
 					$themeLib->get_theme_path($themename, $themeoptionname, ($themeoptionname ?: $themename) . '.css'),

@@ -1033,7 +1033,7 @@ class TrackerLib extends TikiLib
 				$itemId = $res['itemId'];
 				$itemObject = Tracker_Item::fromId($itemId);
 				if (! $itemObject) {
-					Feedback::error(tr('TrackerLib::get_all_items: No item for itemId %0', $itemId), 'session');
+					Feedback::error(tr('TrackerLib::get_all_items: No item for itemId %0', $itemId));
 				} elseif ($itemObject->canView()) {
 					$ret[] = $res;
 				}
@@ -1621,7 +1621,7 @@ class TrackerLib extends TikiLib
 				$mem = TikiLib::lib('tiki')->get_memory_avail();
 				if ($mem < 1048576 * 10) {	// Less than 10MB left?
 					// post an error even though it doesn't get displayed when using export as the output goes into the output file
-					Feedback::error(tr('Tracker list_items ran out of memory after %0 items.', count($ret)), 'session');
+					Feedback::error(tr('Tracker list_items ran out of memory after %0 items.', count($ret)));
 					break;
 				}
 
@@ -2176,7 +2176,7 @@ class TrackerLib extends TikiLib
 		}
 		$max = count($header);
 		if ($max === 1 and strpos($header, "\t") !== false) {
-			Feedback::error(tr('No fields found in header, not a comma-separated values file?'), 'session');
+			Feedback::error(tr('No fields found in header, not a comma-separated values file?'));
 			return 0;
 		}
 		for ($i = 0; $i < $max; $i++) {
@@ -2311,7 +2311,7 @@ class TrackerLib extends TikiLib
 						$created,
 						$lastModif,
 						$status
-					), 'session');
+					));
 				} else {
 					// deal with autoincrement fields
 					foreach ($auto_fields as $afield) {
@@ -2398,8 +2398,7 @@ class TrackerLib extends TikiLib
 												$trackerId,
 												$field['fieldId'],
 												$itemId
-											),
-											'session'
+											)
 										);
 									}
 								}
@@ -2418,9 +2417,9 @@ class TrackerLib extends TikiLib
 									try {
 										$results = $query->search($unifiedsearchlib->getIndex());
 									} catch (Search_Elastic_TransportException $e) {
-										Feedback::error(tr('Search functionality currently unavailable.'), 'session');
+										Feedback::error(tr('Search functionality currently unavailable.'));
 									} catch (Exception $e) {
-										Feedback::error($e->getMessage(), 'session');
+										Feedback::error($e->getMessage());
 									}
 
 									if (count($results)) {
@@ -2434,8 +2433,7 @@ class TrackerLib extends TikiLib
 												$field['fieldId'],
 												$itemId,
 												$data[$i]
-											),
-											'session'
+											)
 										);
 									}
 								}
@@ -5319,7 +5317,7 @@ class TrackerLib extends TikiLib
 			} else {	// wiki template
 				$pageName = substr($template, strlen($match[0]));
 				if (! $tikilib->page_exists($pageName)) {
-					Feedback::error(tr('Missing wiki email template page "%0"', htmlspecialchars($template)), 'session');
+					Feedback::error(tr('Missing wiki email template page "%0"', htmlspecialchars($template)));
 					$template = '';
 				} else {
 					$subject_name = str_replace('tpl', 'subject tpl', $pageName);

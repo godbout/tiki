@@ -883,7 +883,7 @@ class CartLib
 		}
 		if ($user && $prefs['payment_cart_orders'] == 'y' || ! $user && $prefs['payment_cart_anonymous'] == 'y') {
 			if (! $orderprofile) {
-				Feedback::error(tra('Advanced Shopping Cart setup error: Orders profile missing.'), 'session');
+				Feedback::error(tra('Advanced Shopping Cart setup error: Orders profile missing.'));
 				return false;
 			}
 			$profileinstaller = new Tiki_Profile_Installer();

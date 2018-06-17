@@ -94,7 +94,7 @@ class ShippingLib
 				return $provider;
 			}
 		}
-		Feedback::error(tr('Problem reading custom shipping provider "%0"', $name), 'session');
+		Feedback::error(tr('Problem reading custom shipping provider "%0"', $name));
 	}
 }
 

@@ -109,7 +109,7 @@ if (isset($_REQUEST['checked'])) {
 				'mes' => $msg,
 				'items' => $checked,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 		}
 		// Ban IP addresses of multiple spammers
 		if ($_POST['action'] === 'ban') {
@@ -130,7 +130,7 @@ if (isset($_REQUEST['checked'])) {
 				'items' => $checked,
 				'toMsg' => tr('Users have been pre-selected for banning in the highlighted section of the form below.')
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			$mass_ban_ip = implode('|', $checked);
 			header('Location: tiki-admin_banning.php?mass_ban_ip=' . $mass_ban_ip);
 			exit;

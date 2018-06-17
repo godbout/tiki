@@ -219,7 +219,7 @@ class Tiki_Webservice
 							$response->data = $soaplib->performRequest($built, $this->operation, $map, $options, $fullReponse);
 						} catch (Exception $e) {
 							Feedback::error(tr('Webservice error on %0 request "%1"', $this->wstype, $this->url)
-								. '<br>' . $e->getMessage(), 'session');
+								. '<br>' . $e->getMessage());
 						}
 
 						return $response;
@@ -247,7 +247,7 @@ class Tiki_Webservice
 						$response = $ointegrate->performRequest($built, $builtBody, $clearCache);
 					} catch (Exception $e) {
 						Feedback::error(tr('Webservice error on %0 request "%1"', $this->wstype, $this->url)
-						. '<br>' . $e->getMessage(), 'session');
+						. '<br>' . $e->getMessage());
 					}
 
 					return $response;

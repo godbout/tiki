@@ -535,7 +535,7 @@ class TikiAccessLib extends TikiLib
 					break;
 				case 'session':
 				default:
-					Feedback::error($this->userMsg, 'session');
+					Feedback::error($this->userMsg);
 					break;
 			}
 		}
@@ -677,8 +677,7 @@ class TikiAccessLib extends TikiLib
 				exit();
 			} else {
 				if ($errorMsg) {
-					Feedback::error(tr('Bad request - potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - try reloading the page in this case.'),
-						'session');
+					Feedback::error(tr('Bad request - potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - try reloading the page in this case.'));
 				}
 				return false;
 			}
@@ -772,7 +771,7 @@ class TikiAccessLib extends TikiLib
 		}
 
 		if ($this->is_serializable_request()) {
-			Feedback::error($errortitle, 'session');
+			Feedback::error($errortitle);
 			Feedback::send_headers();
 
 			$this->output_serialized($detail);

@@ -307,7 +307,7 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		$options = json_decode($data['options'], true);
 
 		if (preg_match("/tracker_id=[^&]*{$trackerId}/", $options['filter']) && $options['invert'] && $options['refresh']) {
-			Feedback::warning(tr('Self-related fields with Include Invert option set to Yes should not have Force Refresh option on save.'), 'session');
+			Feedback::warning(tr('Self-related fields with Include Invert option set to Yes should not have Force Refresh option on save.'));
 		}
 	}
 

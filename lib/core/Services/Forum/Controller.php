@@ -148,7 +148,7 @@ class Services_Forum_Controller
 				'mes' => $msg,
 				'items' => $util->items,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
 		}
@@ -231,7 +231,7 @@ class Services_Forum_Controller
 				'mes' => $msg,
 				'items' => $util->items,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
 		}
@@ -286,7 +286,7 @@ class Services_Forum_Controller
 				'mes' => $msg,
 				'items' => $util->items,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
 		}
@@ -334,7 +334,7 @@ class Services_Forum_Controller
 				'mes' => $msg,
 				'items' => $util->items,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
 		}
@@ -408,7 +408,7 @@ class Services_Forum_Controller
 				'mes' => $msg,
 				'items' => $util->items,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
 		}
@@ -507,7 +507,7 @@ class Services_Forum_Controller
 				'mes' => $msg,
 				'items' => $util->items,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
 		}
@@ -568,7 +568,7 @@ class Services_Forum_Controller
 				'mes' => $msg,
 				'items' => $util->items,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
 		}

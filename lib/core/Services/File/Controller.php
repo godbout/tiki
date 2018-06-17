@@ -245,15 +245,15 @@ class Services_File_Controller
 									$errors
 								);
 							} catch (Exception $e) {
-								Feedback::error($e->getMessage(), 'session');
+								Feedback::error($e->getMessage());
 							}
 							if ($errors) {
-								Feedback::error(['mes' => $errors], 'session');
+								Feedback::error(['mes' => $errors]);
 							} else {
 								$file['syntax'] = tr('Batch file processed: "%0"', $file['name']);	// cheeky?
 							}
 						} else {
-							Feedback::error(tra('You don\'t have permission to upload zipped file packages'), 'session');
+							Feedback::error(tra('You don\'t have permission to upload zipped file packages'));
 						}
 					}
 

@@ -21,7 +21,7 @@ function smarty_function_user_registration($params, $smarty)
 	$smarty->assign('min_username_length', $registrationlib->merged_prefs['min_username_length']);
 	$smarty->assign('min_pass_length', $registrationlib->merged_prefs['min_pass_length']);
 	if (is_a($registrationlib->merged_prefs, "RegistrationError")) {
-		Feedback::error(['mes' => $registrationlib->merged_prefs->msg], 'session');
+		Feedback::error(['mes' => $registrationlib->merged_prefs->msg]);
 	}
 	$smarty->assignByRef('merged_prefs', $registrationlib->merged_prefs);
 	$smarty->assign('allowRegister', 'y'); // Used for OpenID associations
@@ -59,14 +59,14 @@ function smarty_function_user_registration($params, $smarty)
 		$cookie_name = $prefs['session_cookie_name'];
 
 		if (ini_get('session.use_cookie') && ! isset($_COOKIE[$cookie_name])) {
-			Feedback::error(tra("Cookies must be enabled to log in to this site"), 'session');
+			Feedback::error(tra("Cookies must be enabled to log in to this site"));
 			return '';
 		}
 
 		if ($registrationlib->merged_prefs['http_referer_registration_check'] === 'y') {
 			global $base_host;
 			if (! isset($_SERVER['HTTP_REFERER']) || strpos($_SERVER['HTTP_REFERER'], $base_host) === false) {
-				Feedback::error(tra('Request not from this host.'), 'session');
+				Feedback::error(tra('Request not from this host.'));
 				return '';
 			}
 		}
@@ -82,10 +82,10 @@ function smarty_function_user_registration($params, $smarty)
 			$_REQUEST['valerror'] = $result;
 			if (is_array($result)) {
 				foreach ($result as $r) {
-					Feedback::error(['mes' => $r->msg], 'session');
+					Feedback::error(['mes' => $r->msg]);
 				}
 			} elseif (is_a($result, 'RegistrationError')) {
-				Feedback::error(['mes' => $result->msg], 'session');
+				Feedback::error(['mes' => $result->msg]);
 			} elseif (is_string($result) && $registrationlib->merged_prefs['userTracker'] !== 'y') {	// more to do for usertrackers
 				return $result;
 			} elseif (! empty($result['msg']) && $registrationlib->merged_prefs['userTracker'] !== 'y') {
@@ -192,10 +192,10 @@ function smarty_function_user_registration($params, $smarty)
 				$result = $registrationlib->register_new_user($_REQUEST);
 				if (is_array($result)) {
 					foreach ($result as $r) {
-						Feedback::error(['mes' => $r->msg], 'session');
+						Feedback::error(['mes' => $r->msg]);
 					}
 				} elseif (is_a($result, 'RegistrationError')) {
-					Feedback::error(['mes' => $result->msg], 'session');
+					Feedback::error(['mes' => $result->msg]);
 				} else {
 					$user = ''; // reset $user
 					return $result;
@@ -208,10 +208,10 @@ function smarty_function_user_registration($params, $smarty)
 			$result = $registrationlib->register_new_user($_REQUEST);
 			if (is_array($result)) {
 				foreach ($result as $r) {
-					Feedback::error(['mes' => $r->msg], 'session');
+					Feedback::error(['mes' => $r->msg]);
 				}
 			} elseif (is_a($result, 'RegistrationError')) {
-				Feedback::error(['mes' => $result->msg], 'session');
+				Feedback::error(['mes' => $result->msg]);
 			} else {
 				$user = ''; // reset $user
 				return $result;

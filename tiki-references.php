@@ -92,7 +92,7 @@ if (isset($_REQUEST['addreference'])) {
 			]);
 			return;
 		}
-		Feedback::error(['mes' => $msg], 'session');
+		Feedback::error(['mes' => $msg]);
 	}
 }
 
@@ -130,7 +130,7 @@ if (isset($_REQUEST['editreference'])) {
 				foreach ($errors as $error) {
 					$msg .= tra($error);
 				}
-				Feedback::error(['mes' => $msg], 'session');
+				Feedback::error(['mes' => $msg]);
 			}
 		}
 	} else {
@@ -154,7 +154,7 @@ if (isset($_REQUEST['editreference'])) {
 			foreach ($errors as $error) {
 				$msg .= tra($error);
 			}
-			Feedback::error(['mes' => $msg], 'session');
+			Feedback::error(['mes' => $msg]);
 		}
 	}
 }
@@ -174,7 +174,7 @@ if (isset($_REQUEST['action']) && isset($ref_id)) {
 			foreach ($errors as $error) {
 				$msg .= tra($error);
 			}
-			Feedback::error(['mes' => $msg], 'session');
+			Feedback::error(['mes' => $msg]);
 		}
 	} else {
 		if ($_REQUEST['action'] == 'delete' && $access->checkCsrfForm(tra('Delete reference?'))) {

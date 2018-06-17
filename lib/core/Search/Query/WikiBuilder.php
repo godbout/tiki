@@ -180,7 +180,7 @@ class Search_Query_WikiBuilder
 	function wpquery_filter_relation($query, $value, $arguments)
 	{
 		if (! isset($arguments['qualifier'], $arguments['objecttype'])) {
-			Feedback::error(tr('Missing objectype or qualifier for relation filter.'), 'session');
+			Feedback::error(tr('Missing objectype or qualifier for relation filter.'));
 		}
 
 		/* custom mani for OR operation in relation filter */
@@ -237,7 +237,7 @@ class Search_Query_WikiBuilder
 			$arguments['to'] = $arguments['from'] + $arguments['gap'];
 		}
 		if (! isset($arguments['from'], $arguments['to'])) {
-			Feedback::error(tr('The range filter is missing \"from\" or \"to\".'), 'session');
+			Feedback::error(tr('The range filter is missing \"from\" or \"to\".'));
 		}
 		$query->filterRange($arguments['from'], $arguments['to'], $value);
 	}
@@ -245,7 +245,7 @@ class Search_Query_WikiBuilder
 	function wpquery_filter_textrange($query, $value, array $arguments)
 	{
 		if (! isset($arguments['from'], $arguments['to'])) {
-			Feedback::error(tr('The range filter is missing \"from\" or \"to\".'), 'session');
+			Feedback::error(tr('The range filter is missing \"from\" or \"to\".'));
 		}
 		$query->filterTextRange($arguments['from'], $arguments['to'], $value);
 	}
@@ -318,7 +318,7 @@ class Search_Query_WikiBuilder
 	function wpquery_filter_distance($query, $value, array $arguments)
 	{
 		if (! isset($arguments['distance'], $arguments['lat'], $arguments['lon'])) {
-			Feedback::error(tr('The distance filter is missing \"distance\", \"lat\" or \"lon\".'), 'session');
+			Feedback::error(tr('The distance filter is missing \"distance\", \"lat\" or \"lon\".'));
 		}
 		$query->filterDistance($value, $arguments['lat'], $arguments['lon']);
 	}
@@ -353,7 +353,7 @@ class Search_Query_WikiBuilder
 
 				$value = new Search_Query_Order('geo_point', 'distance', $arguments['order'], $arguments);
 			} else {
-				Feedback::error(tr('Distance sort: Missing lat or lon arguments'), 'session');
+				Feedback::error(tr('Distance sort: Missing lat or lon arguments'));
 				return;
 			}
 		}

@@ -226,9 +226,9 @@ function tiki_searchindex_get_results($filter, $postfilter, $offset, $maxRecords
 
 		return $resultset;
 	} catch (Search_Elastic_TransportException $e) {
-		Feedback::error(tr('Search functionality currently unavailable.'), 'session');
+		Feedback::error(tr('Search functionality currently unavailable.'));
 	} catch (Exception $e) {
-		Feedback::error($e->getMessage(), 'session');
+		Feedback::error($e->getMessage());
 	}
 
 	return new Search_ResultSet([], 0, 0, -1);

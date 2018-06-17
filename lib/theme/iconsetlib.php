@@ -253,7 +253,7 @@ class Iconset
 					$space = ! empty($icon_class) ? ' ' : '';
 					$icon_class .= $space . $prepend . $icon['id'] . $append . $rotate;
 				} else {
-					Feedback::error(tr('Icon set: Class not defined for icon %0', $name), 'session');
+					Feedback::error(tr('Icon set: Class not defined for icon %0', $name));
 				}
 				if ((! empty($size) && $size != 1)) {
 					$styleparams[] = 'font-size:' . ($size * 100) . '%';

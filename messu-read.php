@@ -30,9 +30,9 @@ if (isset($_POST['action']) && $access->checkCsrf()) {
 if (isset($_POST['msgdel']) && $access->checkCsrfForm(tra('Delete message?'))) {
 	$result = $messulib->delete_message($user, $_POST['msgdel']);
 	if ($result->numRows()) {
-		Feedback::success(tr('Message deleted'), 'session');
+		Feedback::success(tr('Message deleted'));
 	} else {
-		Feedback::error(tr('Message not deleted'), 'session');
+		Feedback::error(tr('Message not deleted'));
 	}
 	header('location: messu-mailbox.php');
 	exit;

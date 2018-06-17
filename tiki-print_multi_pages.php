@@ -130,7 +130,7 @@ if (isset($_REQUEST['display']) && $_REQUEST['display'] == 'pdf') {
 		header('Content-Length: ' . strlen($pdf));
 		echo $pdf;
 	} else {
-		Feedback::error($generator->error, 'session');
+		Feedback::error($generator->error);
 		$tab = '';
 		if (strpos($_SERVER['HTTP_REFERER'], 'tiki-print_pages.php') !== false && ! empty($printpages)) {
 			$tab = '#contenttabs_print_pages-2';

@@ -40,7 +40,7 @@ if (isset($_REQUEST['checked'])) {
 		if ($rowsDeleted) {
 			$msg = $rowsDeleted === 1 ? tra('The selected action has been deleted from the log')
 				: tr('%0 actions have been deleted from the log', $rowsDeleted);
-			Feedback::success($msg, 'session');
+			Feedback::success($msg);
 		} else {
 			Feedback::error(tr('No actions were deleted from the log'));
 		}

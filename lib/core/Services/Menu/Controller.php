@@ -68,15 +68,15 @@ class Services_Menu_Controller
 			$success = $this->menulib->replace_menu($menuId, $name, $description, $type, $icon, $use_items_icons, $parse);
 			if ($success) {
 				if ($menuId) {
-					Feedback::success(tr('The %0 menu has been edited', $name), 'session');
+					Feedback::success(tr('The %0 menu has been edited', $name));
 				} else {
-					Feedback::success(tr('The %0 menu has been created', $name), 'session');
+					Feedback::success(tr('The %0 menu has been created', $name));
 				}
 			} else {
 				if ($menuId) {
-					Feedback::error(tr('An error occurred - the %0 menu may not have been edited', $name), 'session');
+					Feedback::error(tr('An error occurred - the %0 menu may not have been edited', $name));
 				} else {
-					Feedback::error(tr('An error occurred - the %0 menu may not have been created', $name), 'session');
+					Feedback::error(tr('An error occurred - the %0 menu may not have been created', $name));
 				}
 			}
 		}
@@ -114,8 +114,7 @@ class Services_Menu_Controller
 		//execute menu cloning
 		if ($util->isConfirmPost()) {
 			$this->menulib->clone_menu($menuId, $input->name->text(), $input->description->text());
-			Feedback::success(tr('Menu %0 cloned as menu %1', $menuDetails['info']['name'], $input->name->text()),
-				'session');
+			Feedback::success(tr('Menu %0 cloned as menu %1', $menuDetails['info']['name'], $input->name->text()));
 			return [];
 		}
 		//prepare basic data
@@ -342,7 +341,7 @@ class Services_Menu_Controller
 			$menuLib->import_menu_options($menuId);
 			global $base_url;
 			$redirect = $base_url . 'tiki-admin_menu_options.php?menuId=' . $menuId;
-			Feedback::success(tr('Your menu options have been imported'), 'session');
+			Feedback::success(tr('Your menu options have been imported'));
 			Services_Utilities::sendFeedback($redirect);
 		}
 
@@ -518,9 +517,9 @@ class Services_Menu_Controller
 		if ($util->isConfirmPost()) {
 			$result = $this->menulib->remove_menu($menuId);
 			if ($result) {
-				Feedback::success(tr('The %0 menu has been removed', $menuDetails['info']['name']), 'session');
+				Feedback::success(tr('The %0 menu has been removed', $menuDetails['info']['name']));
 			} else {
-				Feedback::error(tr('The %0 menu has not been removed', $menuDetails['info']['name']), 'session');
+				Feedback::error(tr('The %0 menu has not been removed', $menuDetails['info']['name']));
 			}
 			return Services_Utilities::refresh($util->extra['referer']);
 		} else {

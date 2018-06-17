@@ -27,7 +27,7 @@ if (! empty($_POST['moveWikiUp']) && $access->checkCsrf()) {
 	$errorsWikiUp = [];
 	$info = $filegallib->get_file_gallery_info($prefs['home_file_gallery']);
 	if (empty($info)) {
-		Feedback::error(tr('You must set a home file gallery'), 'session');
+		Feedback::error(tr('You must set a home file gallery'));
 	} else {
 		$filegallib->moveAllWikiUpToFgal($prefs['home_file_gallery']);
 	}
@@ -37,37 +37,37 @@ if (! empty($_POST['moveWikiUp']) && $access->checkCsrf()) {
 if (isset($_POST['createtag']) && $access->checkCsrf()) {
 	// Check existence
 	if ($adminlib->tag_exists($_POST['newtagname'])) {
-		Feedback::error(tra('Tag already exists'), 'session');
+		Feedback::error(tra('Tag already exists'));
 	}
 	$adminlib->create_tag($_POST['newtagname']);
-	Feedback::success(tr('Tag %0 created.', '<em>' . $_POST['newtagname'] . '</em>'), 'session');
+	Feedback::success(tr('Tag %0 created.', '<em>' . $_POST['newtagname'] . '</em>'));
 }
 
 if (isset($_POST['restoretag'])&& $access->checkCsrf()) {
 	// Check existance
 	if (! $adminlib->tag_exists($_POST['tagname'])) {
-		Feedback::error(tr('Tag %0 not found', '<em>' . $_POST['tagname'] . '</em>'), 'session');
+		Feedback::error(tr('Tag %0 not found', '<em>' . $_POST['tagname'] . '</em>'));
 	}
 	$result = $adminlib->restore_tag($_POST['tagname']);
 	if ($result) {
-		Feedback::success(tr('Tag %0 restored.', '<em>' . $_POST['tagname'] . '</em>'), 'session');
+		Feedback::success(tr('Tag %0 restored.', '<em>' . $_POST['tagname'] . '</em>'));
 	} else {
-		Feedback::error(tr('Tag %0 not restored.', '<em>' . $_POST['tagname'] . '</em>'), 'session');
+		Feedback::error(tr('Tag %0 not restored.', '<em>' . $_POST['tagname'] . '</em>'));
 	}
 }
 
 if (isset($_POST['removetag']) && $access->checkCsrf()) {
 	$result = $adminlib->remove_tag($_POST['tagname']);
 	if ($result) {
-		Feedback::success(tr('Tag %0 removed.', '<em>' . $_POST['tagname'] . '</em>'), 'session');
+		Feedback::success(tr('Tag %0 removed.', '<em>' . $_POST['tagname'] . '</em>'));
 	} else {
-		Feedback::error(tr('Tag %0 not removed.', '<em>' . $_POST['tagname'] . '</em>'), 'session');
+		Feedback::error(tr('Tag %0 not removed.', '<em>' . $_POST['tagname'] . '</em>'));
 	}
 }
 
 if (isset($_POST['rmvunusedpic']) && $access->checkCsrf()) {
 	$adminlib->remove_unused_pictures();
-	Feedback::success(tr('Process to remove pictures has completed.'), 'session');
+	Feedback::success(tr('Process to remove pictures has completed.'));
 }
 //*** end state-changing actions
 
@@ -76,18 +76,18 @@ if (isset($_REQUEST['createdump'])) {
 	error_reporting(E_ERROR | E_WARNING);
 	$adminlib->dump();
 	if (is_file($path)) {
-		Feedback::success(tr('Dump created at %0', '<em>' . $path . '</em>'), 'session');
+		Feedback::success(tr('Dump created at %0', '<em>' . $path . '</em>'));
 	} else {
-		Feedback::error(tra('Dump was not created. Please check permissions for the storage/ directory.'), 'session');
+		Feedback::error(tra('Dump was not created. Please check permissions for the storage/ directory.'));
 	}
 }
 
 if (isset($_REQUEST['removedump'])) {
 	@unlink($path);
 	if (! is_file($path)) {
-		Feedback::success(tr('Dump file %0 removed.', '<em>' . $path . '</em>'), 'session');
+		Feedback::success(tr('Dump file %0 removed.', '<em>' . $path . '</em>'));
 	} else {
-		Feedback::error(tr('Dump file %0 was not removed.', '<em>' . $path . '</em>'), 'session');
+		Feedback::error(tr('Dump file %0 was not removed.', '<em>' . $path . '</em>'));
 	}
 }
 

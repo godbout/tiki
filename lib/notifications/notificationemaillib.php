@@ -419,7 +419,7 @@ function sendWikiEmailNotification(
 			$mail->setSubject(sprintf($mail_subject, $pageName));
 			$mail->setText($mail_data);
 			if (! $mail->send([$not['email']]) && Perms::get()->admin) {
-				Feedback::error(['mes' => $mail->errors], 'session');
+				Feedback::error(['mes' => $mail->errors]);
 			}
 		}
 	}

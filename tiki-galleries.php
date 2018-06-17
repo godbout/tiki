@@ -39,7 +39,7 @@ if (isset($_REQUEST['migrate_images_to_fgal'])) {
 	$access->check_feature('feature_file_galleries');
 	$access->check_permission('tiki_p_admin');
 	TikiLib::lib('filegal')->migrateFilesFromImageGalleries();
-	Feedback::success('All files copied', 'session');
+	Feedback::success(tra('All files copied'));
 	$access->redirect('tiki-galleries.php');
 }
 

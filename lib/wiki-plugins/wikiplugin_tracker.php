@@ -1317,7 +1317,7 @@ function wikiplugin_tracker($data, $params)
 								$tplSubject[$ieo] = str_replace('.tpl', '_subject.tpl', $emailOptions[2][$ieo]);
 							} else {	// wiki template
 								if (! $tikilib->page_exists(substr($eo, 5))) {
-									Feedback::error(tr('Missing wiki email template page "%0"', htmlspecialchars($eo)), 'session');
+									Feedback::error(tr('Missing wiki email template page "%0"', htmlspecialchars($eo)));
 									$emailOptions[2][$ieo] = 'tracker_changed_notification.tpl';
 								} else {
 									$subject_name = str_replace('tpl', 'subject tpl', $emailOptions[2][$ieo]);
@@ -1471,7 +1471,7 @@ function wikiplugin_tracker($data, $params)
 					if (empty($msg)) {
 						$msg = tr('Form saved successfully.');
 					}
-					Feedback::success($msg, 'session');
+					Feedback::success($msg);
 					TikiLib::lib('access')->redirect($url[$key]);
 					exit;
 				}

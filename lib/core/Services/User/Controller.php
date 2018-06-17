@@ -374,7 +374,7 @@ class Services_User_Controller
 				//redirect to banning page if selected
 				if ($input['ban_users']) {
 					$feedback['toMsg'] = $toMsg;
-					Feedback::success($feedback, 'session');
+					Feedback::success($feedback);
 					$url = 'tiki-admin_banning.php?mass_ban_ip_users=' . implode('|', $util->items);
 					global $prefs;
 					if ($prefs['javascript_enabled'] !== 'y') {
@@ -384,7 +384,7 @@ class Services_User_Controller
 					}
 				//refresh page
 				} else {
-					Feedback::success($feedback, 'session');
+					Feedback::success($feedback);
 					return Services_Utilities::refresh($util->extra['referer']);
 				}
 			}
@@ -426,7 +426,7 @@ class Services_User_Controller
 			$util->setDecodedVars($input, $this->filters);
 			$url = 'tiki-admin_banning.php?mass_ban_ip_users=' . implode('|', $util->items);
 			$feedback = ['mes' => tr('See highlighted section in the form below for users you have selected for banning.')];
-			Feedback::note($feedback, 'session');
+			Feedback::note($feedback);
 			return Services_Utilities::redirect($url);
 		}
 	}
@@ -536,10 +536,7 @@ class Services_User_Controller
 									$logmsg = sprintf(tra('%s %s assigned to %s %s.'), tra('user'), $assign_user, tra('group'), $group);
 									$logslib->add_log('adminusers', $logmsg, $user);
 								} else {
-									Feedback::error(
-										['mes' => tra('An error occurred. The group assignment failed.')],
-										'session'
-									);
+									Feedback::error(['mes' => tra('An error occurred. The group assignment failed.')]);
 									return Services_Utilities::closeModal($util->extra['referer']);
 								}
 							} elseif ($add_remove === 'remove') {
@@ -554,7 +551,7 @@ class Services_User_Controller
 								$logslib->add_log('adminusers', $logmsg, $user);
 							}
 						} else {
-							Feedback::error(['mes' => tra('Permission denied')], 'session');
+							Feedback::error(['mes' => tra('Permission denied')]);
 							return Services_Utilities::closeModal($util->extra['referer']);
 						}
 					}
@@ -586,7 +583,7 @@ class Services_User_Controller
 					'toMsg' => $toMsg,
 					'toList' => $groups,
 				];
-				Feedback::success($feedback, 'session');
+				Feedback::success($feedback);
 				//return to page
 				if (! empty($util->extra['anchor'])) {
 					return Services_Utilities::redirect($util->extra['referer'] . $util->extra['anchor']);
@@ -594,7 +591,7 @@ class Services_User_Controller
 					return Services_Utilities::refresh($util->extra['referer']);
 				}
 			} else {
-				Feedback::error(['mes' => tra('No groups were selected. Please select one or more groups.')], 'session');
+				Feedback::error(['mes' => tra('No groups were selected. Please select one or more groups.')]);
 				return Services_Utilities::closeModal($util->extra['referer']);
 			}
 		}
@@ -673,11 +670,11 @@ class Services_User_Controller
 					'toMsg' => $toMsg,
 					'toList' => $groups,
 				];
-				Feedback::success($feedback, 'session');
+				Feedback::success($feedback);
 				//return to page
 				return Services_Utilities::refresh($util->extra['referer']);
 			} else {
-				Feedback::error(['mes' => tra('No groups were selected. Please select one or more groups.')], 'session');
+				Feedback::error(['mes' => tra('No groups were selected. Please select one or more groups.')]);
 				return Services_Utilities::closeModal($util->extra['referer']);
 			}
 		}
@@ -722,14 +719,11 @@ class Services_User_Controller
 			$tikilib = TikiLib::lib('tiki');
 			$pageinfo = $tikilib->get_page_info($wikiTpl);
 			if (! $pageinfo) {
-				Feedback::error(tra('Page not found'), 'session');
+				Feedback::error(tra('Page not found'));
 				return Services_Utilities::closeModal($util->extra['referer']);
 			}
 			if (empty($pageinfo['description'])) {
-				Feedback::error(
-					tra('The page does not have a description, which is mandatory to perform this action.'),
-					'session'
-				);
+				Feedback::error(tra('The page does not have a description, which is mandatory to perform this action.'));
 				return Services_Utilities::closeModal($util->extra['referer']);
 			}
 			$bcc = $input['bcc'];
@@ -737,7 +731,7 @@ class Services_User_Controller
 			$mail = new TikiMail();
 			if (! empty($bcc)) {
 				if (! validate_email($bcc)) {
-					Feedback::error(tra('Invalid bcc email address'), 'session');
+					Feedback::error(tra('Invalid bcc email address'));
 					return Services_Utilities::closeModal($util->extra['referer']);
 				}
 				$mail->setBcc($bcc);
@@ -757,7 +751,7 @@ class Services_User_Controller
 				$mail->setSubject($pageinfo['description']);
 				$text = $smarty->fetch('wiki:' . $wikiTpl);
 				if (empty($text)) {
-					Feedback::error(tra('The template page has no text or the text cannot be extracted.'), 'session');
+					Feedback::error(tra('The template page has no text or the text cannot be extracted.'));
 					return Services_Utilities::closeModal($util->extra['referer']);
 				}
 				$mail->setHtml($text);
@@ -767,7 +761,7 @@ class Services_User_Controller
 						$mailerrors = print_r($mail->errors, true);
 						$errormsg .= $mailerrors;
 					}
-					Feedback::error($errormsg, 'session');
+					Feedback::error($errormsg);
 					return Services_Utilities::closeModal($util->extra['referer']);
 				} else {
 					if (! empty($bcc)) {
@@ -790,7 +784,7 @@ class Services_User_Controller
 				'items' => $util->items,
 				'toMsg' => $toMsg,
 			];
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
 		}
@@ -803,7 +797,7 @@ class Services_User_Controller
 		$referer = Services_Utilities::noJsPath();
 		//ensures a user was selected to send a message to.
 		if (empty($input->userwatch->text())) {
-			Feedback::error(tra('No user was selected.'), 'session');
+			Feedback::error(tra('No user was selected.'));
 			return Services_Utilities::closeModal($referer);
 		}
 		//sets default priority for the message to 3 if no priority was given
@@ -815,7 +809,7 @@ class Services_User_Controller
 		$util = new Services_Utilities();
 		if ($util->isConfirmPost()) {
 			if (empty($input->subject->text()) && empty($input->body->text())) {
-				Feedback::error(tra('Message not sent - no subject or body.'), 'session');
+				Feedback::error(tra('Message not sent - no subject or body.'));
 			} else {
 				//if message is successfully sent
 				if (TikiLib::lib('message')->post_message(
@@ -834,9 +828,9 @@ class Services_User_Controller
 						'Your message was successfully sent to %0,',
 						$userlib->clean_user($input->userwatch->text())
 					);
-					Feedback::success($message, 'session');
+					Feedback::success($message);
 				} else {
-					Feedback::error(tra('An error occurred, please check your mail settings and try again.'), 'session');
+					Feedback::error(tra('An error occurred, please check your mail settings and try again.'));
 				}
 			}
 			return Services_Utilities::closeModal($referer);
@@ -891,20 +885,20 @@ class Services_User_Controller
 		if ($expiry > 0) {
 			$expiry = $expiry * 3600 * 24; //translate day input to seconds
 		} elseif ($expiry != -1) {
-			Feedback::error(tra('Please specify validity period'), 'session');
+			Feedback::error(tra('Please specify validity period'));
 			Services_Utilities::sendFeedback($referer);
 		}
 
 		foreach ($groups as $grp) {
 			if (! TikiLib::lib('user')->group_exists($grp)) {
-				Feedback::error(tr('The group %0 does not exist', $grp), 'session');
+				Feedback::error(tr('The group %0 does not exist', $grp));
 				Services_Utilities::sendFeedback($referer);
 			}
 		}
 
 		TikiLib::lib('user')->invite_tempuser($emails, $groups, $expiry, $prefix, $path);
 
-		Feedback::success(tra('Your invite has been sent.'), 'session');
+		Feedback::success(tra('Your invite has been sent.'));
 		Services_Utilities::sendFeedback($referer);
 	}
 
@@ -965,7 +959,7 @@ class Services_User_Controller
 					if ($tikilib->page_exists($page)) {
 						$res = $tikilib->remove_all_versions($page);
 						if ($res !== true) {
-							Feedback::error(tr('An error occurred. User page for %0 could not be deleted', $deleteuser), 'session');
+							Feedback::error(tr('An error occurred. User page for %0 could not be deleted', $deleteuser));
 							Services_Utilities::closeModal($referer);
 							return false;
 						}
@@ -1002,7 +996,7 @@ class Services_User_Controller
 					$logslib = TikiLib::lib('logs');
 					$logslib->add_log('adminusers', sprintf(tra('Deleted account %s'), $deleteuser), $user);
 				} else {
-					Feedback::error(tr('An error occurred. User %0 could not be deleted', $deleteuser), 'session');
+					Feedback::error(tr('An error occurred. User %0 could not be deleted', $deleteuser));
 					Services_Utilities::closeModal($referer);
 					return false;
 				}

@@ -194,7 +194,7 @@ class Services_Wiki_Controller
 						'tpl' => 'action',
 						'mes' => tr('An error occurred. %0%1 could not be deleted.', $versionText, $page),
 					];
-					Feedback::error($feedback, 'session');
+					Feedback::error($feedback);
 				}
 			}
 			//prepare feedback
@@ -221,7 +221,7 @@ class Services_Wiki_Controller
 					'mes' => $msg,
 					'items' => $util->items,
 				];
-				Feedback::success($feedback, 'session');
+				Feedback::success($feedback);
 				// Create a Semantic Alias (301 redirect) if this option was selected by user.
 				$createredirect = ! empty($input['create_redirect']) && $input['create_redirect'] === 'y';
 				if ($createredirect && $noversionsleft) {
@@ -232,7 +232,7 @@ class Services_Wiki_Controller
 							'tpl' => 'action',
 							'mes' => $msg
 						];
-						Feedback::warning($feedback, 'session');
+						Feedback::warning($feedback);
 					} else {
 						$appendString = "";
 						foreach ($util->items as $page) {
@@ -278,7 +278,7 @@ class Services_Wiki_Controller
 							'mes' => $msg,
 							'items' => $destinationPage,
 						];
-						Feedback::note($feedback, 'session');
+						Feedback::note($feedback);
 					}
 				}
 			}
@@ -336,7 +336,7 @@ class Services_Wiki_Controller
 						'tpl' => 'action',
 						'mes' => tr('An error occurred. Version %0 could not be deleted.', $version),
 					];
-					Feedback::error($feedback, 'session');
+					Feedback::error($feedback);
 				}
 			}
 			if (! $error) {
@@ -351,7 +351,7 @@ class Services_Wiki_Controller
 					'mes' => $msg,
 					'items' => $util->items,
 				];
-				Feedback::success($feedback, 'session');
+				Feedback::success($feedback);
 			}
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
@@ -507,7 +507,7 @@ class Services_Wiki_Controller
 					'mes' => $msg1,
 					'items' => $errorpages,
 				];
-				Feedback::error($feedback1, 'session');
+				Feedback::error($feedback1);
 			}
 			if (count($locked) > 0) {
 				if (count($locked) === 1) {
@@ -520,7 +520,7 @@ class Services_Wiki_Controller
 					'mes' => $msg2,
 					'items' => $locked,
 				];
-				Feedback::success($feedback2, 'session');
+				Feedback::success($feedback2);
 			}
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
@@ -607,7 +607,7 @@ class Services_Wiki_Controller
 					'mes' => $msg1,
 					'items' => $errorpages,
 				];
-				Feedback::error($feedback1, 'session');
+				Feedback::error($feedback1);
 			}
 			if (count($locked) > 0) {
 				if (count($locked) === 1) {
@@ -620,7 +620,7 @@ class Services_Wiki_Controller
 					'mes' => $msg2,
 					'items' => $locked,
 				];
-				Feedback::success($feedback2, 'session');
+				Feedback::success($feedback2);
 			}
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
@@ -666,7 +666,7 @@ class Services_Wiki_Controller
 					return ['url' => $base_url . $zipFile];
 				}
 			} else {
-				Feedback::error(['mes' => $xmllib->get_error()], 'session');
+				Feedback::error(['mes' => $xmllib->get_error()]);
 			}
 			//return to page
 			return Services_Utilities::closeModal($util->extra['referer']);
@@ -724,7 +724,7 @@ class Services_Wiki_Controller
 					'mes' => $msg1,
 					'items' => $errorpages,
 				];
-				Feedback::error($feedback1, 'session');
+				Feedback::error($feedback1);
 			}
 			$fitems = array_diff($util->items, $errorpages);
 			if (count($fitems) > 0) {
@@ -738,7 +738,7 @@ class Services_Wiki_Controller
 					'mes' => $msg2,
 					'items' => $fitems,
 				];
-				Feedback::success($feedback2, 'session');
+				Feedback::success($feedback2);
 			}
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);

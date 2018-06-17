@@ -28,7 +28,7 @@ if (isset($_POST['new_rule']) && $access->checkCsrf()) {
 		$rule->save();
 		$cookietab = 1;
 	} else {
-		Feedback::error(tra('A custom rule with the same ID already exists.'), 'session');
+		Feedback::error(tra('A custom rule with the same ID already exists.'));
 		$ruleinfo = [
 			'id' => $rule->getId(),
 			'regex' => $rule->getRegex(),

@@ -246,7 +246,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 						$to_create_page = true;
 					}
 				} else {
-					Feedback::error(tr('Page "%0" already exists. Not overwriting.', $page_name), 'session');
+					Feedback::error(tr('Page "%0" already exists. Not overwriting.', $page_name));
 				}
 			}
 		}
@@ -264,7 +264,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 
 		if (empty($page_name) && $_SERVER['REQUEST_METHOD'] === 'POST' && empty($requestData[$insForPagenameField])) {
 			// saving a new item may have the wiki page name misasing if it is an autoincrement field, so show a warning - TODO better somehow?
-			Feedback::error(tr('Missing Page Name field #%0 value for Wiki field #%1 (so page not created)', $this->getOption('fieldIdForPagename'), $fieldId), 'session');
+			Feedback::error(tr('Missing Page Name field #%0 value for Wiki field #%1 (so page not created)', $this->getOption('fieldIdForPagename'), $fieldId));
 		}
 
 		$data = [

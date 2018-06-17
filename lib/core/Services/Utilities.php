@@ -142,7 +142,7 @@ class Services_Utilities
 		$referer = self::noJsPath();
 		//no javascript
 		if (! empty($referer)) {
-			Feedback::error($mes, 'session');
+			Feedback::error($mes);
 			TikiLib::lib('access')->redirect($referer);
 		//javascript
 		} else {

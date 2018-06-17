@@ -111,7 +111,7 @@ if (isset($_REQUEST['display']) && $_REQUEST['display'] == 'pdf') {
 	require_once 'lib/pdflib.php';
 	$generator = new PdfGenerator();
 	if (! empty($generator->error)) {
-		Feedback::error($generator->error, 'session');
+		Feedback::error($generator->error);
 		$access->redirect($page);
 	} else {
 		$pdf = $generator->getPdf('tiki-print.php', ['page' => $page], $pdata);

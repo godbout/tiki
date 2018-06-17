@@ -35,7 +35,7 @@ class Controller
 		if (! empty($type)) {
 			$className = 'Tiki\\CustomRoute\\Type\\' . $type;
 			if (! class_exists($className)) {
-				Feedback::error(tr('An error occurred; please contact the administrator.'), 'session');
+				Feedback::error(tr('An error occurred; please contact the administrator.'));
 				$this->redirectToAdmin();
 			}
 
@@ -64,11 +64,11 @@ class Controller
 			$item->save();
 			$feedback = $id ? tr('Route was updated.') : tr('Route was created.');
 
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			$this->redirectToAdmin();
 		}
 
-		Feedback::error(['mes' => $errors], 'session');
+		Feedback::error(['mes' => $errors]);
 
 		return $item->toArray();
 	}

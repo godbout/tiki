@@ -156,7 +156,7 @@ class Search_Formatter_Builder
 			} elseif (! file_exists($arguments['template'])) {
 				$temp = $smarty->get_filename($arguments['template']);
 				if (empty($temp)) { //if get_filename cannot find template, return error
-					Feedback::error(tr('Missing template "%0"', $arguments['template']), 'session');
+					Feedback::error(tr('Missing template "%0"', $arguments['template']));
 					return '';
 				}
 				$arguments['template'] = $temp;

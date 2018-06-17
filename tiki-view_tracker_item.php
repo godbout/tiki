@@ -865,7 +865,7 @@ try {
 		require_once 'lib/pdflib.php';
 		$generator = new PdfGenerator();
 		if (! empty($generator->error)) {
-			Feedback::error($generator->error, 'session');
+			Feedback::error($generator->error);
 			$access->redirect($page);
 		} else {
 			$pdf = $generator->getPdf('tiki-print.php', ['page' => $tracker_info['name']], str_ireplace("</dl>", "</dl><h3>Comments</h3>" . $comments . "<br />", $trackerData));

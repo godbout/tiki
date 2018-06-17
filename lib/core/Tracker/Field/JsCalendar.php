@@ -87,7 +87,7 @@ class Tracker_Field_JsCalendar extends Tracker_Field_DateTime
 
 		if (! empty($value) && ! is_int((int) $value)) {	// prevent corrupted date values getting saved (e.g. from inline edit sometimes)
 			$value = '';
-			Feedback::error(tr('Date Picker Field: "%0" is not a valid internal date value', $value), 'session');
+			Feedback::error(tr('Date Picker Field: "%0" is not a valid internal date value', $value));
 		}
 
 		// if local browser offset is submitted, convert timestamp to server-based timezone

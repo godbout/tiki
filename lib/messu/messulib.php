@@ -190,7 +190,7 @@ class Messu extends TikiLib
 						return false; //TODO echo $mail->errors;
 					}
 				} catch (Zend\Mail\Exception\ExceptionInterface $e) {
-					Feedback::error($e->getMessage(), 'session');
+					Feedback::error($e->getMessage());
 					return false;
 				}
 			}

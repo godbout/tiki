@@ -314,7 +314,7 @@ class Services_Edit_PluginController
 					$user,
 					$tikilib->get_ip_address()
 				);
-				Feedback::success($message, 'session');
+				Feedback::success($message);
 				return [];
 			}
 		}
@@ -404,7 +404,7 @@ class Services_Edit_PluginController
 						$tikilib->get_ip_address()
 					);
 
-					Feedback::success(tr('Plugin %0 on page %1 converted.', $plugin, $page), 'session');
+					Feedback::success(tr('Plugin %0 on page %1 converted.', $plugin, $page));
 					return [];
 				}
 			}

@@ -287,7 +287,7 @@ class WikiLib extends TikiLib
 			}
 
 			if (count($warnings) > 0) {
-				Feedback::warning(['mes' => $warnings], 'session');
+				Feedback::warning(['mes' => $warnings]);
 			}
 		}
 

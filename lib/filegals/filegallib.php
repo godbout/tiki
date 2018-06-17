@@ -433,7 +433,7 @@ class FileGalLib extends TikiLib
 		global $prefs, $user;
 
 		if (! $this->is_filename_valid($filename)) {
-			Feedback::error(tr('`%0` does not match acceptable naming patterns.', $filename), 'session');
+			Feedback::error(tr('`%0` does not match acceptable naming patterns.', $filename));
 			return false;
 		}
 
@@ -1262,7 +1262,7 @@ class FileGalLib extends TikiLib
 			} else {
 				$path = '';		// something wrong?
 				if (empty($file['data'])) {
-					Feedback::error(tr('Error duplicating file %0', $id), 'session');
+					Feedback::error(tr('Error duplicating file %0', $id));
 				}
 			}
 		}
@@ -1685,7 +1685,7 @@ class FileGalLib extends TikiLib
 			$content = $parseApp($wrapper);
 		} catch (Exception $e) {
 			Feedback::error(tr('Processing search text from a "%0" file in gallery #%1', $type, $galleryId) . '<br>'
-				. $e->getMessage(), 'session');
+				. $e->getMessage());
 			$content = '';
 		}
 		return $content;
@@ -4593,12 +4593,12 @@ class FileGalLib extends TikiLib
 					'error' => tr('Images could not be opened or uploaded'),
 				];
 				foreach ($fb as $type2 => $mes2) {
-					Feedback::$type2(['mes' => $mes2, 'title' => $titles[$type2]], 'session');
+					Feedback::$type2(['mes' => $mes2, 'title' => $titles[$type2]]);
 				}
 			}
 		} else {
 			Feedback::note(['mes' => tr('No changes were made since no images in wiki_up were found in Wiki pages.'),
-				'title' => tr('No images found')], 'session');
+				'title' => tr('No images found')]);
 		}
 		$this->wikiupMoved = [];
 	}

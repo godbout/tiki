@@ -87,7 +87,7 @@ if (is_array($result)) {
 	}
 } else {
 	if (is_numeric($result) && $result > 0) {
-		Feedback::success(tr('Journal %0 successfully recorded in book %1', $result, $book['bookName']), 'session');
+		Feedback::success(tr('Journal %0 successfully recorded in book %1', $result, $book['bookName']));
 	}
 	$smarty->assign('debitAccount', ['']);
 	$smarty->assign('creditAccount', ['']);

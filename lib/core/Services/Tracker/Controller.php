@@ -223,11 +223,11 @@ class Services_Tracker_Controller
 				}
 			}
 			if ($field['type'] == 'i' && $prefs['tracker_legacy_insert'] !== 'y') {
-				Feedback::error(tr('You are using the image field type, which is deprecated. It is recommended to activate \'Use legacy tracker insertion screen\' found on the <a href="%0">trackers admin configuration</a> screen.', 'tiki-admin.php?page=trackers'), 'session');
+				Feedback::error(tr('You are using the image field type, which is deprecated. It is recommended to activate \'Use legacy tracker insertion screen\' found on the <a href="%0">trackers admin configuration</a> screen.', 'tiki-admin.php?page=trackers'));
 			}
 		}
 		if (! empty($missing)) {
-			Feedback::error(tr('Warning: Required field types not enabled: %0', implode(', ', $missing)), 'session');
+			Feedback::error(tr('Warning: Required field types not enabled: %0', implode(', ', $missing)));
 		}
 
 		return [
@@ -280,11 +280,11 @@ class Services_Tracker_Controller
 		}
 
 		if (! $hasList) {
-			Feedback::error(tr('Tracker contains no listed field, no meaningful information will be provided in the default list.'), 'session');
+			Feedback::error(tr('Tracker contains no listed field, no meaningful information will be provided in the default list.'));
 		}
 
 		if (! $hasLink) {
-			Feedback::error(tr('The tracker contains no field in the title, so no link will be generated.'), 'session');
+			Feedback::error(tr('The tracker contains no field in the title, so no link will be generated.'));
 		}
 
 		Feedback::send_headers();
@@ -869,7 +869,7 @@ class Services_Tracker_Controller
 				$processedItem = $this->utilities->processValues($definition, $item);
 				$item['processedFields'] = $processedItem['fields'];
 
-				Feedback::success(tr('New tracker item %0 successfully created.', $itemId), 'session');
+				Feedback::success(tr('New tracker item %0 successfully created.', $itemId));
 
 				return $item;
 			} else {
@@ -1033,7 +1033,7 @@ class Services_Tracker_Controller
 			if ($result !== false) {
 				TikiLib::lib('unifiedsearch')->processUpdateQueue();
 				//only need feedback if success - feedback already set if there was an update error
-				Feedback::success(tr('Tracker item %0 has been updated', $itemId), 'session');
+				Feedback::success(tr('Tracker item %0 has been updated', $itemId));
 			}
 			if (isset($input['edit']) && $input['edit'] === 'inline') {
 				Feedback::send_headers();
@@ -1367,7 +1367,7 @@ class Services_Tracker_Controller
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$this->utilities->removeItemAndReferences($definition, $itemObject, $uncascaded, $input->replacement->int() ?: '');
 
-			Feedback::success(tr('Tracker item %0 has been successfully deleted.', $itemId), 'session');
+			Feedback::success(tr('Tracker item %0 has been successfully deleted.', $itemId));
 
 			TikiLib::events()->trigger('tiki.process.redirect'); // wait for indexing to complete before loading of next request to ensure updated info shown
 		}

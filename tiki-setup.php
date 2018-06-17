@@ -332,9 +332,9 @@ $smarty->assign('symbols', TikiLib::symbols());
 
 // Used by TikiAccessLib::redirect()
 if (isset($_GET['msg'])) {
-	Feedback::add(['mes' => $_GET['msg'], 'type' => $_GET['msgtype']], 'tpl');
+	Feedback::add(['mes' => $_GET['msg'], 'type' => $_GET['msgtype']]);
 } elseif (isset($_SESSION['msg'])) {
-	Feedback::add(['mes' => $_SESSION['msg'], 'type' => $_SESSION['msgtype']], 'tpl');
+	Feedback::add(['mes' => $_SESSION['msg'], 'type' => $_SESSION['msgtype']]);
 	unset($_SESSION['msg']);
 	unset($_SESSION['msgtype']);
 }

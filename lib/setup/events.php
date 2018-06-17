@@ -181,7 +181,7 @@ function tiki_setup_events()
 		try {
 			TikiLib::lib('activity')->bindCustomEvents($events);
 		} catch (Exception $e) {
-			Feedback::error($e->getMessage(), 'session');
+			Feedback::error($e->getMessage());
 		}
 	}
 

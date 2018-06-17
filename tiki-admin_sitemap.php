@@ -17,7 +17,7 @@ $sitemap = new Tiki\Sitemap\Generator();
 if (isset($_REQUEST['rebuild'])) {
 	$sitemap->generate($base_url);
 
-	Feedback::success(tr('New sitemap created!'), 'session');
+	Feedback::success(tr('New sitemap created!'));
 	$access->redirect('tiki-admin_sitemap.php');
 }
 

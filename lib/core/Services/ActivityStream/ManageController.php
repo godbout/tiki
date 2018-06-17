@@ -63,12 +63,12 @@ class Services_ActivityStream_ManageController
 			$result = $this->lib->deleteRule($id);
 			if ($result->numRows()) {
 				if ($result->numRows() == 1) {
-					Feedback::success(tra('Activity rule deleted'), 'session');
+					Feedback::success(tra('Activity rule deleted'));
 				} else {
 					Feedback::success(tra('%0 activity rules deleted', $result->numRows()));
 				}
 			} else {
-				Feedback::error(tra('No activity rules deleted'), 'session');
+				Feedback::error(tra('No activity rules deleted'));
 			}
 			$removed = true;
 		}

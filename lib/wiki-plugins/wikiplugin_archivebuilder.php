@@ -199,7 +199,7 @@ function wikiplugin_archivebuilder_pagetopdf($file, $pageName)
 	require_once 'lib/pdflib.php';
 	$generator = new PdfGenerator;
 	if (! empty($generator->error)) {
-		Feedback::error($generator->error, 'session');
+		Feedback::error($generator->error);
 		$access = Tikilib::lib('access');
 		$access->redirect($_SERVER['HTTP_REFERER']);
 	} else {

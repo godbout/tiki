@@ -38,7 +38,7 @@ function refresh_index($object_type, $object_id = null, $process = true)
 			if (empty($message)) {
 				$message = tra('Try rebuilding or optimizing the index on the search admin page');
 			}
-			Feedback::error(tr('Search index could not be updated: %0', $message), 'session');
+			Feedback::error(tr('Search index could not be updated: %0', $message));
 		}
 	}
 

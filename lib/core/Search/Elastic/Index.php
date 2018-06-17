@@ -339,7 +339,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 					],
 				]];
 			} else {
-				Feedback::error(tr('Federated index %0 not found', $indexName), 'session');
+				Feedback::error(tr('Federated index %0 not found', $indexName));
 			}
 		}
 

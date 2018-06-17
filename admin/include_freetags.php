@@ -15,8 +15,8 @@ if (isset($_POST["cleanup"]) && $access->checkCsrf()) {
 	$freetaglib = TikiLib::lib('freetag');
 	$result = $freetaglib->cleanup_tags();
 	if ($result) {
-		Feedback::success(tr('Tags successfully cleaned up.'), 'session');
+		Feedback::success(tr('Tags successfully cleaned up.'));
 	} else {
-		Feedback::error(tr('Tag cleanup failed.'), 'session');
+		Feedback::error(tr('Tag cleanup failed.'));
 	}
 }

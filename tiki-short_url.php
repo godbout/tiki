@@ -19,7 +19,7 @@ if (empty($_REQUEST['url']) || $tikilib->getMatchBaseUrlSchema($_REQUEST['url'])
 		return;
 	}
 
-	Feedback::error(tr('Unable to generate a short url for the requested resource.'), 'session');
+	Feedback::error(tr('Unable to generate a short url for the requested resource.'));
 	// Redirect to homepage
 	$access->redirect();
 	return;
@@ -35,5 +35,5 @@ if ($_REQUEST['module'] == 'y') {
 	return;
 }
 
-Feedback::success(tr('Short URL:') . " <a href='{$shortUrl}'>{$shortUrl}</a>", 'session');
+Feedback::success(tr('Short URL:') . " <a href='{$shortUrl}'>{$shortUrl}</a>");
 $access->redirect($url);

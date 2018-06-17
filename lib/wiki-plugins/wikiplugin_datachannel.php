@@ -377,7 +377,7 @@ function wikiplugin_datachannel($data, $params)
 
 						foreach ($profilefeedback as $feedback) {
 							if (strpos($feedback, tra('An error occurred: ')) === 0) {
-								Feedback::error($feedback, 'session');
+								Feedback::error($feedback);
 							}
 						}
 

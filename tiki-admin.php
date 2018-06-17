@@ -37,7 +37,7 @@ function add_feedback($name, $message, $st, $num = null)
 		'mes' => $message,
 		'st' => $st,
 		'name' => $name,
-		'tpl' => 'pref',], 'session');
+		'tpl' => 'pref',]);
 }
 
 /**
@@ -143,7 +143,7 @@ $prefslib = TikiLib::lib('prefs');
 
 if (isset($_REQUEST['pref_filters']) && $access->checkCsrf()) {
 	$prefslib->setFilters($_REQUEST['pref_filters']);
-	Feedback::success(tra('Default preference filters set'), 'session');
+	Feedback::success(tra('Default preference filters set'));
 }
 
 /*

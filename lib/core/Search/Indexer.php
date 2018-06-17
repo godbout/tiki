@@ -154,7 +154,7 @@ class Search_Indexer
 					$objectType,
 					$e->getMessage()
 				);
-				Feedback::error($msg, 'session');
+				Feedback::error($msg);
 				$this->log->err($msg);
 			}
 		}
@@ -210,7 +210,7 @@ class Search_Indexer
 						'Object %0 type %1 returned null from getDocument function',
 						$objectId,
 						$objectType
-					), 'session');
+					));
 					$data = [];
 				}
 				if (! is_int(key($data))) {

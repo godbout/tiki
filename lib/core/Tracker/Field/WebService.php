@@ -86,11 +86,11 @@ class Tracker_Field_WebService extends Tracker_Field_Abstract
 		require_once 'lib/webservicelib.php';
 
 		if (! ($webservice = Tiki_Webservice::getService($name))) {
-			Feedback::error(tr('Webservice %0 not found', $name), 'session');
+			Feedback::error(tr('Webservice %0 not found', $name));
 			return false;
 		}
 		if (! $template = $webservice->getTemplate($tpl)) {
-			Feedback::error(tr('Webservice template %0 not found', $tpl), 'session');
+			Feedback::error(tr('Webservice template %0 not found', $tpl));
 			return false;
 		}
 
@@ -180,7 +180,7 @@ class Tracker_Field_WebService extends Tracker_Field_Abstract
 				}
 			}
 			if ($error) {
-				Feedback::error($error, 'session');
+				Feedback::error($error);
 			} elseif (empty($context['search_render']) || $context['search_render'] !== 'y') {
 				if ($template->engine === 'index') {
 					$source = new Search_ContentSource_WebserviceSource();
@@ -260,7 +260,7 @@ class Tracker_Field_WebService extends Tracker_Field_Abstract
 					);
 
 					if (! $itemId) {
-						Feedback::error(tr('Error updating Webservice field %0', $this->getConfiguration('permName')), 'session');
+						Feedback::error(tr('Error updating Webservice field %0', $this->getConfiguration('permName')));
 						// try and restore previous data
 						$response->data = json_decode($this->getValue());
 					}

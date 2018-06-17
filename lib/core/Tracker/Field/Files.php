@@ -662,7 +662,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		}
 
 		if (! is_uploaded_file($file['tmp_name'])) {
-			Feedback::error(tr('Problem with uploaded file: "%0"', $file['name']), 'session');
+			Feedback::error(tr('Problem with uploaded file: "%0"', $file['name']));
 			return false;
 		}
 
@@ -670,16 +670,13 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		$gal_info = $filegallib->get_file_gallery_info($galleryId);
 
 		if (! $gal_info) {
-			Feedback::error(tr('No gallery for uploaded file, galleryId=%0', $galleryId), 'session');
+			Feedback::error(tr('No gallery for uploaded file, galleryId=%0', $galleryId));
 			return false;
 		}
 
 		$perms = Perms::get('file gallery', $galleryId);
 		if (! $perms->upload_files) {
-			Feedback::error(
-				tr('You don\'t have permission to upload a file to gallery "%0"', $gal_info['name']),
-				'session'
-			);
+			Feedback::error(tr('You don\'t have permission to upload a file to gallery "%0"', $gal_info['name']));
 			return false;
 		}
 

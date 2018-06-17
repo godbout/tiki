@@ -951,14 +951,14 @@ class PreferencesLib
 						if ($value < $constraint) {
 							$value = $constraint;
 							Feedback::warning(tr('%0 set to minimum of %1 instead of submitted value of %2',
-								$info['preference'], $constraint, $original), 'session');
+								$info['preference'], $constraint, $original));
 						}
 						break;
 					case 'max':
 						if ($value > $constraint) {
 							$value = $constraint;
 							Feedback::warning(tr('%0 set to maximum of %1 instead of submitted value of %2',
-								$info['preference'], $constraint, $original), 'session');
+								$info['preference'], $constraint, $original));
 						}
 						break;
 				}

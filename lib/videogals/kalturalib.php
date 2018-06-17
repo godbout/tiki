@@ -92,7 +92,7 @@ class KalturaLib
 					$this->storedKey($session);
 				}
 			} catch (Exception $e) {
-				Feedback::error($e->getMessage(), 'session');
+				Feedback::error($e->getMessage());
 			}
 		}
 
@@ -171,7 +171,7 @@ class KalturaLib
 			try {
 				$obj = $this->_getPlayersUiConfs()->objects;
 			} catch (Exception $e) {
-				Feedback::error($e->getMessage(), 'session');
+				Feedback::error($e->getMessage());
 				return [];
 			}
 			$configurations = [];
@@ -233,7 +233,7 @@ class KalturaLib
 						return $results->id;
 					}
 				} catch (Exception $e) {
-					Feedback::error($e->getMessage(), 'session');
+					Feedback::error($e->getMessage());
 				}
 			} else {
 				try {
@@ -246,7 +246,7 @@ class KalturaLib
 						return '';
 					}
 				} catch (Exception $e) {
-					Feedback::error($e->getMessage(), 'session');
+					Feedback::error($e->getMessage());
 				}
 			}
 		}

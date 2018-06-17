@@ -142,7 +142,7 @@ class Search_Query implements Search_Query_Interface
 			if ($from2) {
 				$from = $from2;
 			} else {
-				Feedback::error(tra('filterRange: "from" value not parsed'), 'session');
+				Feedback::error(tra('filterRange: "from" value not parsed'));
 			}
 		}
 		if (! is_numeric($to)) {
@@ -150,7 +150,7 @@ class Search_Query implements Search_Query_Interface
 			if ($to2) {
 				$to = $to2;
 			} else {
-				Feedback::error(tra('filterRange: "to" value not parsed'), 'session');
+				Feedback::error(tra('filterRange: "to" value not parsed'));
 			}
 		}
 
@@ -321,7 +321,7 @@ class Search_Query implements Search_Query_Interface
 			$this->sortOrder = null;
 			$resultset = $index->find($this, $this->start, $this->count);
 		} catch (Exception $e) {
-			Feedback::error(tra("Malformed search query"), 'session');
+			Feedback::error(tra("Malformed search query"));
 			trigger_error($e->getMessage(), E_USER_WARNING);
 			return Search_ResultSet::create([]);
 		}

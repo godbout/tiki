@@ -35,7 +35,7 @@ if (isset($_REQUEST['galfeatures'])) {
 //*** begin state-changing actions
 if (isset($_POST['rmvorphimg']) && $access->checkCsrfForm(tra('Remove orphan images?'))) {
 	$adminlib->remove_orphan_images();
-	Feedback::success(tra('Orphan images successfully removed'), 'session');
+	Feedback::success(tra('Orphan images successfully removed'));
 }
 
 if (isset($_POST['mvimg']) && isset($_POST['move_gallery']) && $access->checkCsrf()) {
@@ -47,7 +47,7 @@ if (isset($_POST['mvimg']) && isset($_POST['move_gallery']) && $access->checkCsr
 		if ($mvresult['timeout']) {
 			$mvmsg .= ' ' . tra('a timeout occurred. Hit the reload button to move the rest');
 		}
-		Feedback::note($mvmsg, 'session');
+		Feedback::note($mvmsg);
 	}
 }
 //*** end state-changing actions

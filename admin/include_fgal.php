@@ -58,10 +58,10 @@ if (! empty($_POST['move']) && $access->checkCsrf()) {
 		$errors = $filegallib->moveFiles($_REQUEST['move'], $feedbacks);
 	}
 	if (! empty($errors)) {
-		Feedback::error(['mes' => $errors], 'session');
+		Feedback::error(['mes' => $errors]);
 	}
 	if (! empty($feedbacks)) {
-		Feedback::note(['mes' => $feedbacks], 'session');
+		Feedback::note(['mes' => $feedbacks]);
 	}
 }
 

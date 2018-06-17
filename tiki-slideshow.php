@@ -45,8 +45,7 @@ if (isset($_REQUEST['pdf'])) {
 			Feedback::error(
 				tr('Exporting slideshow as PDF requires a working installation of mPDF.')
 				. "<br \>"
-				. tr('Export to PDF error: %0', $generator->getError()),
-				'session'
+				. tr('Export to PDF error: %0', $generator->getError())
 			);
 			$access = Tikilib::lib('access');
 			$access->redirect(str_replace('tiki-slideshow.php?', 'tiki-index.php?', $_SERVER['HTTP_REFERER']));

@@ -395,7 +395,7 @@ if (isset($_REQUEST['display'])) {
 		require_once 'lib/pdflib.php';
 		$generator = new PdfGenerator();
 		if (! empty($generator->error)) {
-			Feedback::error($generator->error, 'session');
+			Feedback::error($generator->error);
 			$access->redirect($_SERVER['HTTP_REFERER']);
 		} else {
 			$pdf = $generator->getPdf('tiki-view_forum_thread.php', ['display' => 'print', 'comments_parentId' => $_REQUEST['comments_parentId'], 'forumId' => $forumId]);

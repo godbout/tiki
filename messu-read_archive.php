@@ -29,9 +29,9 @@ if (isset($_POST['action'])&& $access->checkCsrf()) {
 if (isset($_POST['msgdel']) && $access->checkCsrfForm(tra('Delete archive message?'))) {
 	$result = $messulib->delete_message($user, $_POST['msgdel'], 'archive');
 	if ($result->numRows()) {
-		Feedback::success(tr('Archive message deleted'), 'session');
+		Feedback::success(tr('Archive message deleted'));
 	} else {
-		Feedback::error(tr('Archive message not deleted'), 'session');
+		Feedback::error(tr('Archive message not deleted'));
 	}
 	header('location: messu-archive.php');
 	exit;

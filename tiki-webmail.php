@@ -284,13 +284,11 @@ if ($_REQUEST['locSection'] == 'read') {
 
 			$smarty->assign('headers', $aux);
 		} catch (\Zend\Mail\Protocol\Exception\RuntimeException $e) {
-			Feedback::error(tr('Message not found with ID %0', $_REQUEST['msgid']), 'session');
+			Feedback::error(tr('Message not found with ID %0', $_REQUEST['msgid']));
 			handleWebmailRedirect('locSection=mailbox&refresh_mail=1');
 		} catch (Exception $e) {
 			Feedback::error(
-				tr('An error occurred retrieving message ID %0', $_REQUEST['msgid']) . '<br>' . $e->getMessage(),
-				'session'
-			);
+				tr('An error occurred retrieving message ID %0', $_REQUEST['msgid']) . '<br>' . $e->getMessage());
 			handleWebmailRedirect('locSection=mailbox');
 		}
 	} else {    // $_REQUEST['msgid'] unset by delete
@@ -355,7 +353,7 @@ END;
 		$webmail_list = $webmaillib->refresh_mailbox($user, $current['accountId'], $webmail_reload, $webmaillib->current_account['folder']);
 	} catch (Exception $e) {
 		$err = $e->getMessage();
-		Feedback::error(['mes' => $e->getMessage()], 'session');
+		Feedback::error(['mes' => $e->getMessage()]);
 		$urlq = http_build_query(['locSection' => 'settings'], '', '&');
 		handleWebmailRedirect($urlq);
 	}
@@ -448,7 +446,7 @@ END;
 				true
 			);    // really need a smarter way of caching the whole mailbox...
 		} catch (Exception $e) {
-			Feedback::error(['mes' => $e->getMessage()], 'session');
+			Feedback::error(['mes' => $e->getMessage()]);
 			$urlq = http_build_query(['locSection' => 'settings'], '', '&');
 			handleWebmailRedirect($urlq);
 		}

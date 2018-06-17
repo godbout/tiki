@@ -237,7 +237,7 @@ class Tracker_Field_AutoIncrement extends Tracker_Field_Abstract implements Trac
 			$tx->commit();
 
 			if ($count) {
-				Feedback::warning(tr('Note: %0 auto-increment item values updated', $count), 'session');
+				Feedback::warning(tr('Note: %0 auto-increment item values updated', $count));
 			}
 		}
 	}

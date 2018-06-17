@@ -23,7 +23,7 @@ if (! empty($_POST['testMail']) && $access->checkCsrf()) {
 			$mailerrors = print_r($mail->errors, true);
 			$msg .= '<br>' . $mailerrors;
 		}
-		Feedback::warning($msg, 'session');
+		Feedback::warning($msg);
 	} else {
 		add_feedback('testMail', tra('Test mail sent to') . ' ' . $_REQUEST['testMail'], 3);
 	}

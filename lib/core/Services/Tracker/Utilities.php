@@ -100,7 +100,7 @@ class Services_Tracker_Utilities
 		}
 
 		foreach ($errors as $err) {
-			Feedback::error($err, 'session');
+			Feedback::error($err);
 		}
 
 		return false;

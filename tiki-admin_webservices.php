@@ -130,7 +130,7 @@ if (! isset($_REQUEST['parse']) &&
 				unset($_REQUEST['edit'], $_REQUEST['old_name']);
 				$smarty->clear_assign('edit');
 			} else {
-				Feedback::error(tr('Webservice error "%0" not saved (alpha characters only)', $name), 'session');
+				Feedback::error(tr('Webservice error "%0" not saved (alpha characters only)', $name));
 				if (isset($_REQUEST['old_name'])) {    // editing
 					$webservice = Tiki_Webservice::getService($_REQUEST['old_name']);
 				} else {

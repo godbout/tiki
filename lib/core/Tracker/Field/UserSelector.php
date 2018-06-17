@@ -151,7 +151,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 							}
 						}
 						if (empty($finaluser) && $auser !== '-Blank (no data)-') {
-							Feedback::error(tr('User "%0" not found', $auser), 'session');
+							Feedback::error(tr('User "%0" not found', $auser));
 						} else {
 							$users[] = $finaluser;
 						}

@@ -103,7 +103,7 @@ class Services_Group_Controller
 					'mes' => $msg1,
 					'items' => $notDeleted,
 				];
-				Feedback::error($feedback1, 'session');
+				Feedback::error($feedback1);
 			}
 			if (count($deleted) > 0) {
 				if (count($deleted) === 1) {
@@ -116,7 +116,7 @@ class Services_Group_Controller
 					'mes' => $msg2,
 					'items' => $deleted,
 				];
-				Feedback::success($feedback2, 'session');
+				Feedback::success($feedback2);
 			}
 			//return to page
 			return Services_Utilities::refresh($this->extra['referer']);
@@ -192,13 +192,13 @@ class Services_Group_Controller
 					'tpl' => 'action',
 					'mes' => tr('Group %0 (ID %1) successfully created', $util->extra['name'], $newGroupId),
 				];
-				Feedback::success($feedback1, 'session');
+				Feedback::success($feedback1);
 			} else {
 				$feedback2 = [
 					'tpl' => 'action',
 					'mes' => tr('Group %0 not created', $util->extra['name']),
 				];
-				Feedback::error($feedback2, 'session');
+				Feedback::error($feedback2);
 			}
 			//return to page - will go back to group listing tab, which is okay
 			return Services_Utilities::refresh($util->extra['referer']);
@@ -279,13 +279,13 @@ class Services_Group_Controller
 					'tpl' => 'action',
 					'mes' => tr('Group %0 successfully modified', $params['name']),
 				];
-				Feedback::success($feedback1, 'session');
+				Feedback::success($feedback1);
 			} else {
 				$feedback2 = [
 					'tpl' => 'action',
 					'mes' => tr('Group %0 not modified', $params['name']),
 				];
-				Feedback::error($feedback2, 'session');
+				Feedback::error($feedback2);
 			}
 			//return to page
 			return Services_Utilities::refresh($util->extra['referer']);
@@ -343,7 +343,7 @@ class Services_Group_Controller
 					'mes' => $msg,
 					'items' => $util->items,
 				];
-				Feedback::success($feedback, 'session');
+				Feedback::success($feedback);
 			}
 			//return to page
 			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . '#contenttabs_admingroups-3');
@@ -398,7 +398,7 @@ class Services_Group_Controller
 					'mes' => $msg,
 					'items' => $util->items,
 				];
-				Feedback::success($feedback, 'session');
+				Feedback::success($feedback);
 			}
 			//return to page
 			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . $util->extra['anchor']);
@@ -452,7 +452,7 @@ class Services_Group_Controller
 					'mes' => $msg,
 					'items' => $util->items,
 				];
-				Feedback::success($feedback, 'session');
+				Feedback::success($feedback);
 			}
 			//return to page
 			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . $util->extra['anchor']);

@@ -1473,7 +1473,7 @@ class ModLib extends TikiLib
 
 		$content = file_get_contents($filename);
 		if (! $content) {
-			Feedback::error(tr('Module file "%0" not found.', $filename), 'session');
+			Feedback::error(tr('Module file "%0" not found.', $filename));
 			return '';
 		}
 

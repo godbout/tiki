@@ -81,7 +81,7 @@ if ($photosToSwipe.length) {$photosToSwipe.photoSwipe();}', 5)
 			} else {
 				$prefs['mobile_mode'] = 'n';
 				if (! $supported_device) {	// send error only if not on a read mobile device
-					Feedback::error(tra('Mobile mode: Permission denied, please log in.'), 'session');
+					Feedback::error(tra('Mobile mode: Permission denied, please log in.'));
 				}
 			}
 		}

@@ -141,7 +141,7 @@ class Tracker_Field_Factory
 						'Tracker Field Factory Error: Pref "%0" required for field type "%1"',
 						$pref,
 						$class
-					), 'session');
+					));
 					return null;
 				}
 			}

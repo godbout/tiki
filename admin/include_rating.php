@@ -30,8 +30,7 @@ if (isset($_REQUEST['test']) && $access->is_machine_request()) {
 //*** begin state-changing actions
 if (isset($_POST['create']) && ! empty($jitPost->name->text()) && $access->checkCsrf()) {
 	$id = $ratingconfiglib->create_configuration($jitPost->name->text());
-	Feedback::success(tr('New rating configuration %0 created', '<em>' . $jitPost->name->text() . '</em>'),
-		'session');
+	Feedback::success(tr('New rating configuration %0 created', '<em>' . $jitPost->name->text() . '</em>'));
 }
 
 if (isset($_POST['edit']) && $access->checkCsrf()) {
@@ -41,8 +40,7 @@ if (isset($_POST['edit']) && $access->checkCsrf()) {
 		$jitPost->expiry->digits(),
 		$jitPost->formula->xss()
 	);
-	Feedback::success(tr('Rating configuration updated for %0', '<em>' . $jitPost->name->text() . '</em>'),
-		'session');
+	Feedback::success(tr('Rating configuration updated for %0', '<em>' . $jitPost->name->text() . '</em>'));
 }
 //*** end state-changing actions
 

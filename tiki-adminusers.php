@@ -69,7 +69,7 @@ function batchImportUsers()
 		$errors[] = tra('The file does not have the required header:') . ' login, password, email';
 	}
 	if (! empty($errors)) {
-		Feedback::error(['mes' => $errors], 'session');
+		Feedback::error(['mes' => $errors]);
 		$access->redirect('tiki-adminusers.php');
 		die;
 	}
@@ -94,7 +94,7 @@ function batchImportUsers()
 	fclose($fhandle);
 
 	if (empty($userrecs) or ! is_array($userrecs)) {
-		Feedback::error(tra('No records were found. Check the file please!'), 'session');
+		Feedback::error(tra('No records were found. Check the file please!'));
 		$access->redirect('tiki-adminusers.php');
 		die;
 	}
@@ -286,7 +286,7 @@ if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']
 		$pass_first_login = (isset($_REQUEST['pass_first_login']) && $_REQUEST['pass_first_login'] == 'on');
 		$polerr = $userlib->check_password_policy($newPass);
 		if (strlen($polerr) > 0) {
-			Feedback::error(['mes' => $polerr], 'session');
+			Feedback::error(['mes' => $polerr]);
 			$access->redirect('tiki-adminusers.php');
 			die;
 		}
@@ -315,7 +315,7 @@ if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']
 			($send_validation_email ? 'u' : null)
 		)) {
 			$feedback = sprintf(tra('New user created with username %s.'), $_REQUEST['login']);
-			Feedback::success($feedback, 'session');
+			Feedback::success($feedback);
 			$logslib->add_log('adminusers', $feedback, $user);
 
 			if ($send_validation_email) {
@@ -456,7 +456,7 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 						tra('Username'),
 						$userinfo['login'],
 						$_POST['login']
-					), 'session');
+					));
 					$logslib->add_log(
 						'adminusers',
 						'changed login for ' . $_POST['login'] . ' from ' . $userinfo['login'] . ' to ' . $_POST['login'],
@@ -478,7 +478,7 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 		$pass_first_login = (isset($_REQUEST['pass_first_login']) && $_REQUEST['pass_first_login'] == 'on');
 		if ((isset($_POST['pass']) && $_POST["pass"]) || $pass_first_login || (isset($_POST['genepass']) && $_POST['genepass'])) {
 			if ($_POST['pass'] != $_POST['passAgain']) {
-				Feedback::error(tra('The passwords do not match'), 'session');
+				Feedback::error(tra('The passwords do not match'));
 				$access->redirect('tiki-adminusers.php');
 				die;
 			}
@@ -487,13 +487,13 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 				$newPass = $_POST['pass'] ? $_POST['pass'] : $_POST['genepass'];
 				$polerr = $userlib->check_password_policy($newPass);
 				if (strlen($polerr) > 0 && ! $pass_first_login) {
-					Feedback::error($polerr, 'session');
+					Feedback::error($polerr);
 					$access->redirect('tiki-adminusers.php');
 					die;
 				}
 
 				if ($userlib->change_user_password($userinfo['login'], $newPass, $pass_first_login)) {
-					Feedback::success(sprintf(tra('%s modified successfully.'), tra('password')), 'session');
+					Feedback::success(sprintf(tra('%s modified successfully.'), tra('password')));
 					$logslib->add_log('adminusers', 'changed password for ' . $_POST['login'], $user);
 				} else {
 					$errors[] = sprintf(tra('%s modification failed.'), tra('password'));
@@ -509,7 +509,7 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 						tra('Email'),
 						$userinfo['email'],
 						$_POST['email']
-					), 'session');
+					));
 					$logslib->add_log('adminusers', 'changed email for' . $_POST['login'] . ' from ' . $userinfo['email'] . ' to ' . $_POST['email'], $user);
 				}
 				$userinfo['email'] = $_POST['email'];
@@ -627,7 +627,7 @@ if ($ts['enabled'] && ! $ts['ajax']) {
 }
 
 if (count($errors) > 0) {
-	Feedback::error(['mes' => $errors], 'session');
+	Feedback::error(['mes' => $errors]);
 }
 
 $smarty->assign_by_ref('all_groups', $all_groups);
