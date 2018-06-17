@@ -27,7 +27,7 @@ function prefs_page_list()
 		],
 		'page_content_fetch' => [
 			'name' => tra('Fetch page content from incoming feeds'),
-			'description' => tra('Page content from the source will be fetched before sending the content to the generators'),
+			'description' => tra('Page content from the source will be fetched before sending the content to the generators.'),
 			'dependencies' => ['page_content_fetch_readability'],
 			'type' => 'flag',
 			'default' => 'n',

@@ -64,7 +64,7 @@ function prefs_activity_list()
 		],
 		'activity_notifications' => [
 			'name' => tr('Enable notifications through activities'),
-			'description' => tr('Allows users to create notifications using activities.'),
+			'description' => tr('Allow users to create notifications using activities.'),
 			'help' => 'Activity+Notifications',
 			'type' => 'flag',
 			'default' => 'n',

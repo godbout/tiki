@@ -30,7 +30,7 @@ function prefs_art_list()
 		'art_home_title' => [
 			'name' => tra('Title of articles homepage'),
 			'type' => 'list',
-			'description' => tr('Select the default title for the page, when viewing all articles.'),
+			'description' => tr('Select the default title for the page that displays all articles.'),
 			'options' => [
 				'' => '',
 				'topic' => tra('Topic'),

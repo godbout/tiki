@@ -32,14 +32,14 @@ function prefs_pass_list()
 		],
 		'pass_blacklist' => [
 			'name' => tra('Prevent common passwords'),
-			'description' => tra('For improved security, prevent passwords in your password blacklist from being used.'),
+			'description' => tra('For improved security, prevent passwords in the password blacklist from being used.'),
 			'help' => 'Password-Blacklists',
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'pass_due' => [
 			'name' => tra('Password expires after'),
-			'description' => tra('The number of days after which a password will expire. Days are counted starting with the user’s first login. When the password expires, users will be forced to select a new password when logging in. '),
+			'description' => tra('The number of days after which a password will expire. Days are counted starting with the user’s first login. When the password expires, users will be required to select a new password when logging in.'),
 			'type' => 'text',
 			'size' => 5,
 			'filter' => 'int',

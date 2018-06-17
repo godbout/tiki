@@ -10,7 +10,7 @@ function prefs_monitor_list()
 	return [
 		'monitor_enabled' => [
 			'name' => tra('Notifications'),
-			'description' => tra('Allows users to control the notifications they receive based on content changes.'),
+			'description' => tra('Allow users to control the notifications they receive based on content changes.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'help' => 'Notifications',

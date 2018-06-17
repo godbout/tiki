@@ -9,7 +9,7 @@ function prefs_blog_list()
 {
 	return [
 		'blog_comments_per_page' => [
-			'name' => tra('Default number per page'),
+			'name' => tra('Number per page'),
 			'type' => 'text',
 			'size' => '3',
 			'units' => tra('comments'),

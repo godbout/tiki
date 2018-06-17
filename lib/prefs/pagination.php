@@ -22,7 +22,7 @@ function prefs_pagination_list()
 		],
 		'pagination_hide_if_one_page' => [
 			'name' => tra('Hide pagination when there is only one page'),
-			'description' => tra('Hide pagination on single pages'),
+			'description' => tra('Don\'t display pagination on single pages.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],

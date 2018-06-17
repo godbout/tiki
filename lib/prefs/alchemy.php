@@ -10,7 +10,7 @@ function prefs_alchemy_list()
 	return [
 		'alchemy_ffmpeg_path' => [
 			'name' => tra('ffmpeg path'),
-			'description' => tra('Path to the location of the ffmpeg binary.'),
+			'description' => tra('Path to the location of the ffmpeg binary'),
 			'type' => 'text',
 			'help' => 'https://www.ffmpeg.org/',
 			'size' => '256',
@@ -19,7 +19,7 @@ function prefs_alchemy_list()
 
 		'alchemy_ffprobe_path' => [
 			'name' => tra('ffprobe path'),
-			'description' => tra('Path to the location of the ffprobe binary.'),
+			'description' => tra('Path to the location of the ffprobe binary'),
 			'type' => 'text',
 			'help' => 'https://ffmpeg.org/ffprobe.html',
 			'size' => '256',

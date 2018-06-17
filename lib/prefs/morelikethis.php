@@ -22,7 +22,7 @@ function prefs_morelikethis_list()
 		],
 		'morelikethis_basic_mincommon' => [
 			'name' => tra('Minimum number of tags in common'),
-			'description' => tra('Used with the above option to determine the minimum number of matching tags required for an item to be presented in the “More Like This” feature.'),
+			'description' => tra('The minimum number of matching tags required for an item to be presented in the "More Like This" feature.'),
 			'type' => 'list',
 			'units' => tra('tags'),
 			'options' => [

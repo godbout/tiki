@@ -9,8 +9,8 @@ function prefs_poll_list()
 {
 	return [
 		'poll_comments_per_page' => [
-			'name' => tra('Default number per page'),
-			'description' => tra('number of comments to show for poll pages'),
+			'name' => tra('Number per page'),
+			'description' => tra('Number of comments to show on poll pages'),
 			'type' => 'text',
 			'units' => tra('comments'),
 			'size' => '5',
@@ -18,7 +18,7 @@ function prefs_poll_list()
 			'default' => 10,
 		],
 		'poll_comments_default_ordering' => [
-			'name' => tra('Default Ordering'),
+			'name' => tra('Display order'),
 			'description' => tra('Poll ordering algorithm.'),
 			'type' => 'list',
 			'options' => [

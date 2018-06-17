@@ -9,7 +9,7 @@ function prefs_file_list()
 {
 	return [
 		'file_galleries_comments_per_page' => [
-			'name' => tra('Default number per page'),
+			'name' => tra('Number per page'),
 			'description' => tra('Number of comments per page'),
 			'type' => 'text',
 			'size' => '5',

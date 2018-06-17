@@ -23,8 +23,8 @@ function prefs_article_list()
 
 	return [
 		'article_comments_per_page' => [
-			'name' => tra('Default number per page'),
-			'description' => tra('Sets the number of comments per page.'),
+			'name' => tra('Number per page'),
+			'description' => tra('Set the number of comments per page.'),
 			'type' => 'text',
 			'size' => '5',
 			'filter' => 'digits',
@@ -32,8 +32,8 @@ function prefs_article_list()
 			'default' => 10,
 		],
 		'article_comments_default_ordering' => [
-			'name' => tra('Default Ordering'),
-			'description' => tra('Sets the default ordering filter for comments.'),
+			'name' => tra('Display order'),
+			'description' => tra('Set the display order of comments.'),
 			'type' => 'list',
 			'options' => $comment_sort_orders,
 			'default' => 'points_desc',
@@ -67,7 +67,7 @@ function prefs_article_list()
 		],
 		'article_image_size_x' => [
 			'name' => tra('Default maximum width for custom article images'),
-			'description' => tra('Sets the maximum width of article image'),
+			'description' => tra('Set the default maximum width of the article image'),
 			'type' => 'text',
 			'size' => 3,
 			'filter' => 'int',
@@ -77,7 +77,7 @@ function prefs_article_list()
 		],
 		'article_image_size_y' => [
 			'name' => tra('Default maximum height for custom article images'),
-			'description' => tra('Sets the maximum height of article images'),
+			'description' => tra('Set the default maximum height of article images'),
 			'type' => 'text',
 			'size' => 3,
 			'filter' => 'int',
@@ -97,7 +97,7 @@ function prefs_article_list()
 		],
 		'article_default_list_image_size_y' => [
 			'name' => tra('Default maximum height of custom article images in list mode (on View Articles page)'),
-			'description' => tra('Sets the default maximum height of custom article images in list mode (on View Articles page)'),
+			'description' => tra('Set the default maximum height of custom article images in list mode (on the View Articles page)'),
 			'type' => 'text',
 			'size' => 3,
 			'filter' => 'int',
@@ -139,7 +139,7 @@ function prefs_article_list()
 		],
 		'article_use_new_list_articles' => [
 			'name' => tr('Use new articles'),
-			'description' => tr('Uses the new CustomSearch-based article lists rather than database information'),
+			'description' => tr('Use the new CustomSearch-based article lists rather than database information'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['experimental'],

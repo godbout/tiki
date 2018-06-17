@@ -11,14 +11,14 @@ function prefs_openpgp_list()
 	return [
 		'openpgp_gpg_pgpmimemail' => [
 			'name' => tra('PGP/MIME encrypted email messaging'),
-			'description' => tra('Use OpenPGP PGP/MIME compliant encrypted email messaging. All email-messaging/notifications/newsletters are sent as PGP/MIME-encrypted messages, signed with the signer-key, and are completely 100% opaque to outsiders. All user accounts need to be properly configured into gnupg keyring with public-keys related to their tiki-account-related email-addresses.'),
+			'description' => tra('Use OpenPGP PGP/MIME-compliant encrypted email messaging. All email messaging, notifications, and newsletters are sent as PGP/MIME-encrypted messages, signed with the signer key, and are completely opaque to outsiders. All user accounts need to be properly configured in a gnupg keyring with public keys associated with their tiki-account-related email addresses.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'warning' => tra('Enable only if gpg, keyring, and tikiaccounts are properly configured for PGP/MIME functionality. NOTE: Requires that all accounts have their public-keys configured into gnupg-keyring, so do not allow non-administred registrations (or e.g. non-configured emails for newsletters etc) to site if this feature turned on.'),
 		],
 		'openpgp_gpg_home' => [
 			'name' => tra('Path to gnupg keyring'),
-			'description' => tra('Full directory path to gnupg keyring (default /home/www/.gnupg/ ). The directory, related subdirectories (e.g. a subdirectory \'signer\'), and files must have proper permissions for tiki to access/read the directories/files, and create/delete necessary temporary workfiles there.'),
+			'description' => tra('Full directory path to gnupg keyring (default /home/www/.gnupg/ ). The directory, related subdirectories (e.g., a subdirectory \'signer\'), and files must have proper permissions for tiki to access/read the directories/files, and create/delete necessary temporary workfiles there.'),
 			'type' => 'text',
 			'size' => 60,
 			'filter' => 'text',

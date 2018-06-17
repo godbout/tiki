@@ -28,7 +28,7 @@ function prefs_newsletter_list()
 		],
 		'newsletter_batch_size' => [
 			'name' => tra('Newsletter batch size'),
-			'description' => tra('Amount of emails to send in each batch.'),
+			'description' => tra('Number of emails to send in each batch'),
 			'type' => 'text',
 			'size' => 5,
 			'filter' => 'digits',

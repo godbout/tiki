@@ -312,14 +312,14 @@ function prefs_wiki_list($partial = false)
 			'default' => 'n',
 		],
 		'wiki_comments_per_page' => [
-			'name' => tra('Default number per page'),
+			'name' => tra('Number per page'),
 			'type' => 'text',
 			'size' => '5',
 			'units' => tra('comments'),
 			'default' => 10,
 		],
 		'wiki_comments_default_ordering' => [
-			'name' => tra('Default Ordering'),
+			'name' => tra('Display order'),
 			'type' => 'list',
 			'options' => $comment_sort_orders,
 			'default' => 'points_desc',
