@@ -709,6 +709,7 @@ class TikiAccessLib extends TikiLib
 	 * @param string $errortype
 	 * @param bool $enableRedirect
 	 * @param string $message
+	 * @throws Exception
 	 */
 	function display_error($page, $errortitle = "", $errortype = "", $enableRedirect = true, $message = '')
 	{
@@ -771,8 +772,7 @@ class TikiAccessLib extends TikiLib
 		}
 
 		if ($this->is_serializable_request()) {
-			Feedback::error($errortitle);
-			Feedback::send_headers();
+			Feedback::error($errortitle, true);
 
 			$this->output_serialized($detail);
 		} elseif ($this->is_xml_http_request()) {

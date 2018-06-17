@@ -156,11 +156,11 @@ class Services_Object_Controller
 	 * Generic function to allow consistently formatted errors from javascript using Feedback
 	 *
 	 * @param $input JitFilter filtered input object
+	 * @throws Exception
 	 */
 	function action_report_error($input)
 	{
-		Feedback::error($input->message->text());
-		Feedback::send_headers();
+		Feedback::error($input->message->text(), true);
 	}
 
 	/**

@@ -280,14 +280,13 @@ class Services_Tracker_Controller
 		}
 
 		if (! $hasList) {
-			Feedback::error(tr('Tracker contains no listed field, no meaningful information will be provided in the default list.'));
+			Feedback::error(tr('Tracker contains no listed field, no meaningful information will be provided in the default list.'), true);
 		}
 
 		if (! $hasLink) {
-			Feedback::error(tr('The tracker contains no field in the title, so no link will be generated.'));
+			Feedback::error(tr('The tracker contains no field in the title, so no link will be generated.'), true);
 		}
 
-		Feedback::send_headers();
 		$tx->commit();
 
 		return [
@@ -1033,11 +1032,11 @@ class Services_Tracker_Controller
 			if ($result !== false) {
 				TikiLib::lib('unifiedsearch')->processUpdateQueue();
 				//only need feedback if success - feedback already set if there was an update error
-				Feedback::success(tr('Tracker item %0 has been updated', $itemId));
 			}
 			if (isset($input['edit']) && $input['edit'] === 'inline') {
-				Feedback::send_headers();
+				Feedback::success(tr('Tracker item %0 has been updated', $itemId), true);
 			} else {
+				Feedback::success(tr('Tracker item %0 has been updated', $itemId));
 				$redirect = $input->redirect->url();
 
 				if ($input->saveAndComment->int()) {

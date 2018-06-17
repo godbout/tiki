@@ -32,16 +32,16 @@ class Feedback
 	 * This is a specific application of the add function below for errors.
 	 *
 	 * @param $feedback
-	 * @param string $method
+	 * @param bool $sendHeaders
 	 * @throws Exception
 	 */
-	public static function error($feedback, $method = 'session')
+	public static function error($feedback, $sendHeaders = false)
 	{
 		$feedback = self::checkFeedback($feedback);
 		$feedback['type'] = 'error';
 		$feedback['title'] = empty($feedback['title']) ? tr('Error') : $feedback['title'];
 		$feedback['icon'] = empty($feedback['icon']) ? 'error' : $feedback['icon'];
-		self::add($feedback, $method);
+		self::add($feedback, $sendHeaders);
 	}
 
 	/**
@@ -50,16 +50,16 @@ class Feedback
 	 * This is a specific application of the add function below for notes.
 	 *
 	 * @param $feedback
-	 * @param string $method
+	 * @param bool $sendHeaders
 	 * @throws Exception
 	 */
-	public static function note($feedback, $method = 'session')
+	public static function note($feedback, $sendHeaders = false)
 	{
 		$feedback = self::checkFeedback($feedback);
 		$feedback['type'] = 'note';
 		$feedback['title'] = empty($feedback['title']) ? tr('Note') : $feedback['title'];
 		$feedback['icon'] = empty($feedback['icon']) ? 'information' : $feedback['icon'];
-		self::add($feedback, $method);
+		self::add($feedback, $sendHeaders);
 	}
 
 	/**
@@ -68,16 +68,16 @@ class Feedback
 	 * This is a specific application of the add function below for success feedback.
 	 *
 	 * @param $feedback
-	 * @param string $method
+	 * @param bool $sendHeaders
 	 * @throws Exception
 	 */
-	public static function success($feedback, $method = 'session')
+	public static function success($feedback, $sendHeaders = false)
 	{
 		$feedback = self::checkFeedback($feedback);
 		$feedback['type'] = 'feedback';
 		$feedback['title'] = empty($feedback['title']) ? tr('Success') : $feedback['title'];
 		$feedback['icon'] = empty($feedback['icon']) ? 'success' : $feedback['icon'];
-		self::add($feedback, $method);
+		self::add($feedback, $sendHeaders);
 	}
 
 	/**
@@ -86,16 +86,16 @@ class Feedback
 	 * This is a specific application of the add function below for warnings.
 	 *
 	 * @param $feedback
-	 * @param string $method
+	 * @param bool $sendHeaders
 	 * @throws Exception
 	 */
-	public static function warning($feedback, $method = 'session')
+	public static function warning($feedback, $sendHeaders = false)
 	{
 		$feedback = self::checkFeedback($feedback);
 		$feedback['type'] = 'warning';
 		$feedback['title'] = empty($feedback['title']) ? tr('Warning') : $feedback['title'];
 		$feedback['icon'] = empty($feedback['icon']) ? 'warning' : $feedback['icon'];
-		self::add($feedback, $method);
+		self::add($feedback, $sendHeaders);
 	}
 
 	/**
@@ -115,33 +115,22 @@ class Feedback
 	 *              templates/feedback directory. E.g., including 'tpl' => 'pref' in the $feedback array would cause
 	 *              the templates/feedback/pref.tpl to be used
 	 *          - Other custom array keys can be added for use on custom templates
-	 * @param string $method
-	 *          - Two choices:
-	 *              - 'tpl' (default) to cause the feedback to be added to the {$tikifeedback} Smarty variable
-	 *              - 'session' to add to the PHP $_SESSION['tikifeedback'] global variable
+	 * @param bool $sendHeaders
 	 * @return void or bool
 	 * @throws Exception
 	 */
-	public static function add($feedback, $method = 'session')
+	public static function add($feedback, $sendHeaders = false)
 	{
 		$feedback = self::checkFeedback($feedback);
-		//add feedback to either the SESSION global variable or to smarty tpl variable
-		switch ($method) {
-			case 'session':
-				if (! isset($_SESSION['tikifeedback'])) {
-					$_SESSION['tikifeedback'] = [];
-				} else {
-					if (in_array($feedback, $_SESSION['tikifeedback'])) {
-						break;
-					}
-				}
+		if (isset($_SESSION['tikifeedback'])) {
+			if (! in_array($feedback, $_SESSION['tikifeedback'])) {
 				$_SESSION['tikifeedback'][] = $feedback;
-				break;
-			// TODO - just use session as it handles all cases
-			case 'tpl':
-				$smarty = TikiLib::lib('smarty');
-				$smarty->append('tikifeedback', $feedback);
-				break;
+			}
+		} else {
+			$_SESSION['tikifeedback'][] = $feedback;
+		}
+		if ($sendHeaders) {
+			self::send_headers();
 		}
 	}
 
@@ -183,24 +172,13 @@ class Feedback
 	public static function get()
 	{
 		$result = false;
-		$smarty = TikiLib::lib('smarty');
-		//handle tikifeedback that has either been sent to the SESSION variable or passed to smarty
-		$tpl = $smarty->getTemplateVars('tikifeedback');
-		$smarty->clearAssign('tikifeedback');
-		if (isset($_SESSION['tikifeedback']) || $tpl) {
+		if (isset($_SESSION['tikifeedback'])) {
 			//get feedback from session variable
 			if (isset($_SESSION['tikifeedback'])) {
-				$session = $_SESSION['tikifeedback'];
+				$feedback = $_SESSION['tikifeedback'];
 				unset($_SESSION['tikifeedback']);
 			} else {
-				$session = [];
-			}
-			//get feedback from smarty template variables
-			//merge the feedback arrays
-			if (! empty($tpl)) {
-				$feedback = array_merge($session, $tpl);
-			} else {
-				$feedback = $session;
+				$feedback = [];
 			}
 			//add default tpl if not set
 			foreach ($feedback as $key => $item) {
@@ -214,8 +192,6 @@ class Feedback
 				}
 				if (empty($item['tpl'])) {
 					$feedback[$key]['tpl'] = 'default';
-				}
-				if (! isset($item['type'])) {
 				}
 			}
 			//make the tpl the first level array key
