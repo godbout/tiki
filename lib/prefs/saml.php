@@ -47,7 +47,7 @@ function prefs_saml_list()
 		],
 		'saml_options_autocreate' => [
 			'name' => tra('Create user if not registered in Tiki'),
-			'description' => tra('Auto-provisioning - if the user doesn't exist, Tiki will create a new user with the data provided by the IdP.<br>Review the Mapping section.'),
+			'description' => tra('Auto-provisioning - if the user doesn\'t exist, Tiki will create a new user with the data provided by the IdP.<br>Review the Mapping section.'),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => false,
