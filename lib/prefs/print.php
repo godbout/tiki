@@ -24,7 +24,7 @@ function prefs_print_list()
 		],
 		'print_pdf_webservice_url' => [
 			'name' => tra('Webservice URL'),
-			'description' => tra('URL to a service that takes a URL as the query string and returns a PDF document.'),
+			'description' => tra('URL to a service that takes a URL as the query string and returns a PDF document'),
 			'type' => 'text',
 			'size' => 50,
 			'dependencies' => ['auth_token_access'],
@@ -32,7 +32,7 @@ function prefs_print_list()
 		],
 		'print_pdf_webkit_path' => [
 			'name' => tra('WebKit path'),
-			'description' => tra('Full path to the wkhtmltopdf executable to generate the PDF document with.'),
+			'description' => tra('Full path to the wkhtmltopdf executable to generate the PDF document with'),
 			'type' => 'text',
 			'size' => 50,
 			'help' => 'wkhtmltopdf',
@@ -41,7 +41,7 @@ function prefs_print_list()
 		],
 		'print_pdf_weasyprint_path' => [
 			'name' => tra('WeasyPrint path'),
-			'description' => tra('Full path to the weasyprint executable to generate the PDF document with.'),
+			'description' => tra('Full path to the weasyprint executable to generate the PDF document with'),
 			'type' => 'text',
 			'size' => 50,
 			'help' => 'weasyprint',
@@ -50,14 +50,14 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_printfriendly' => [
 			'name' => tra('Print Friendly PDF'),
-			'description' => tra('Useful for dark themes, Enabling this option will change theme background color to white and text / headings color to black. If turned off, theme colors will be retained in pdf'),
+			'description' => tra('Useful for dark themes, enabling this option will change the theme background color to white and the color of text to black. If not activated, theme colors will be retained in the pdf file.'),
 			'type' => 'flag',
 			'default' => 'n'
 
 		],
 		'print_pdf_mpdf_orientation' => [
 			'name' => tra('PDF Orientation'),
-			'description' => tra('Landscape or Portrait'),
+			'description' => tra('Landscape or portrait'),
 			'tags' => ['advanced'],
 			'type' => 'list',
 			'options' => [
@@ -96,21 +96,21 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_toclinks' => [
 			'name' => tra('Link TOC with content'),
-			'description' => tra('Link TOC headings with content in PDF'),
+			'description' => tra('Link table of contents headings with content in the PDF'),
 			'type' => 'flag',
 			'default' => 'n'
 
 		],
 		'print_pdf_mpdf_tocheading' => [
 			'name' => tra('TOC heading'),
-			'description' => tra('Text heading to be appeared before table of contents'),
+			'description' => tra('Heading to be displayed above the table of contents'),
 			'type' => 'text',
 			'default' => 'Table of Contents'
 
 		],
 		'print_pdf_mpdf_toclevels' => [
-			'name' => tra('PDF TOC Levels'),
-			'description' => tra('Will be autopicked from content, default will be heading 1, heading 2 and heading 3.For example:H1|H2|H3'),
+			'name' => tra('PDF TOC levels'),
+			'description' => tra('These will be automatically created from the content; the default will be heading 1, heading 2 and heading 3 - for example, H1|H2|H3.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => 'H1|H2|H3',
@@ -189,7 +189,7 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_margin_header' => [
 			'name' => tra('Header margin from top of document'),
-			'description' => tra('Only applicable if header is set. Numeric value, no need to add px. For example 10'),
+			'description' => tra('Only applicable if the header is set. Specify a numeric value, and there is no need to add "px". For example, 10.'),
 			'tags' => ['advanced'],
 			'units' => tra('pixels'),
 			'type' => 'text',
@@ -200,7 +200,7 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_margin_footer' => [
 			'name' => tra('Footer margin from bottom of document'),
-			'description' => tra('Only applicable if footer is set.Numeric value, no need to add px. For example 10'),
+			'description' => tra('Only applicable if the footer is set. Specify a numeric value, and there is no need to add "px". For example, 10.'),
 			'tags' => ['advanced'],
 			'units' => tra('pixels'),
 			'type' => 'text',
@@ -242,7 +242,7 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_password' => [
 			'name' => tra('PDF password for viewing'),
-			'description' => tra('Password protect generated PDF'),
+			'description' => tra('Password-protect the generated PDF.'),
 			'tags' => ['advanced'],
 			'type' => 'password',
 			'default' => '',
@@ -256,7 +256,7 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_watermark_image' => [
 			'name' => tra('Watermark Image URL'),
-			'description' => tra('Watermark image will appear under text,enter complete image url'),
+			'description' => tra('The watermark image will appear under the text. Enter the complete image URL.'),
 			'tags' => ['advanced'],
 			'type' => 'text',
 			'default' => '',

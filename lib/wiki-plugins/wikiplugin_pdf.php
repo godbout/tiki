@@ -31,7 +31,7 @@ function wikiplugin_pdf_info()
 					],
 					'orientation' => [
 						'name' => tra('PDF Orientation'),
-						'description' => tra('Landscape or Portrait'),
+						'description' => tra('Landscape or portrait'),
 						'type' => 'list',
 						'default' => $prefs['print_pdf_mpdf_orientation'],
 						'options' => [

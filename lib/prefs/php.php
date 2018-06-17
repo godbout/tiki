@@ -29,9 +29,7 @@ function prefs_php_list()
 			'name' => tra('PHP DateTime'),
 			'description' => tra(
 				'DateTime class (and related functions) are enabled
-				by default since PHP 5.2.0, it is possible to add experimental support into PHP
-				5.1.x by using the following flag before configure/compile:
-				CFLAGS=-DEXPERIMENTAL_DATE_SUPPORT=1'
+				by default since PHP 5.2.0.'
 			),
 			'type' => 'flag',
 			'default' => class_exists('DateTime') ? 'y' : 'n',

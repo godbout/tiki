@@ -49,13 +49,13 @@ function prefs_pass_list()
 		],
 		'pass_chr_case' => [
 			'name' => tra('Require alphabetical characters in lower and upper case'),
-			'description' => tra('Password must contain at least one lowercase alphabetical character like "a" and one uppercase character like "A". Use this option to force users to select stronger passwords.'),
+			'description' => tra('Password must contain at least one lowercase alphabetical character like "a" and one uppercase character like "A". Use this option to require users to select stronger passwords.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'pass_chr_special' => [
 			'name' => tra('Require special characters'),
-			'description' => tra('Password must contain at least one special character in lower case like <b>" / $ % ? & * ( ) _ + .</b> Use this option to force users to select stronger passwords.'),
+			'description' => tra('Password must contain at least one special character in lower case like <b>" / $ % ? & * ( ) _ + .</b> Use this option to require users to select stronger passwords.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],

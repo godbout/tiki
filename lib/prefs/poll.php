@@ -19,7 +19,7 @@ function prefs_poll_list()
 		],
 		'poll_comments_default_ordering' => [
 			'name' => tra('Display order'),
-			'description' => tra('Poll ordering algorithm.'),
+			'description' => tra('The order in which order polls are displayed'),
 			'type' => 'list',
 			'options' => [
 				'commentDate_desc' => tra('Newest first'),
@@ -30,7 +30,7 @@ function prefs_poll_list()
 		],
 		'poll_list_categories' => [
 			'name' => tra('Show categories'),
-			'description' => tra('Tiki displays the poll’s category, if applicable.'),
+			'description' => tra('For polls that are categorized, the category is displayed.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_categories',
@@ -39,6 +39,7 @@ function prefs_poll_list()
 		],
 		'poll_list_objects' => [
 			'name' => tra('Show objects'),
+			'description' => tra('List wiki pages or other site objects that the poll is attached to.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -50,13 +51,13 @@ function prefs_poll_list()
 		],
 		'poll_surveys_textarea_hidetoolbar' => [
 			'name' => tra('Disable textarea toolbar'),
-			'description' => tra('Hide toolbar for textarea fields in surveys.'),
+			'description' => tra('Don\'t display the toolbar on text inputs in surveys.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'poll_percent_decimals' => [
-			'name' => tra('Percent decimals shown in results'),
-			'description' => tra('Number of decimals after the percent in results'),
+			'name' => tra('Precision of survey results calculation'),
+			'description' => tra('Number of decimal places in the percentage figures'),
 			'type' => 'text',
 			'size' => '2',
 			'filter' => 'digits',
