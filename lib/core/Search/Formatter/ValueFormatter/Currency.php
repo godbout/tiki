@@ -68,6 +68,9 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 		if (empty($default_currency)) {
 			$default_currency = 'USD';
 		}
+		if (empty($source_currency)) {
+			$source_currency = $default_currency;
+		}
 		if (empty($target_currency)) {
 			$target_currency = $default_currency;
 		}
