@@ -35,6 +35,7 @@ table.tablesorter {
 			th.tablesorter-header {
 				background-repeat: no-repeat;
 				background-position: $arrowPosition;
+			  	background-color: $body-bg; // Added by Gary as a test.
 				cursor: pointer;
 				i {
 					font-weight: 400;

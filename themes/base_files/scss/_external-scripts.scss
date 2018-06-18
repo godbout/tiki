@@ -1,7 +1,8 @@
 // $Id$
 // Tiki overrides, adjustments, etc. for external libs and scripts that are added in vendor, etc. can be added here instead of having to be added to the theme Less file.
 
-// @import "tablesorter-custom.scss";
+@import "tablesorter-custom.scss";
+@import "tablesorter-tiki";
 @import "pivot-tiki";
 @import "jquery-ui-tiki";
 //@import "conversejs-tiki";

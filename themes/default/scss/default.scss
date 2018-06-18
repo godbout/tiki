@@ -5,5 +5,4 @@
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap";
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
 @import "../../base_files/scss/_tiki-selectors.scss";
-@import "../../base_files/scss/_external-scripts.scss";
-@import "../../base_files/scss/_tablesorter-custom.scss";
+@import "../../base_files/scss/external-scripts";

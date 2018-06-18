@@ -71,6 +71,7 @@ table.tablesorter {
 			}
 		}
 		tr.tablesorter-filter-row {
+		  background: $table-head-bg; // Added by Gary to fix transparent background.
 			td {
 				input.tablesorter-filter,
 				input.dateFrom,

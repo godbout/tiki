@@ -33,9 +33,11 @@ $theme-colors: (
 // Body
 $body-bg: #108a93;
 $body-color: #fff;
+
 // Links
-//$link-color: lighten(theme-color("warning"), 15%);
-//$link-hover-color: $link-color;
+$link-color: lighten($warning, 15%);
+$link-hover-color: $link-color;
+$link-hover-decoration: underline;
 
 //Components
 $padding-base-vertical: .5rem;
