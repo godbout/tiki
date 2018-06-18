@@ -42,8 +42,8 @@
 @import "_tiki-cssmenus";
 // @import "_tiki-external_scripts_overrides.scss";
 @import "_tiki-bootstrap_overrides.scss";
-// @import "_tablesorter-tiki.scss"; Syntax needs updating
-// @import "_tablesorter-custom.scss";
+@import "_tablesorter-tiki.scss";
+@import "_tablesorter-custom.scss";
 // @import "_tiki-bootstrap-chosen.scss";
 @import "_tiki-media-print";
 @import "_tiki-wikipages_and_plugins";

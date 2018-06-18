@@ -83,7 +83,7 @@ class Table_Code_Other extends Table_Code_Manager
 						//create dropdown
 						$divr[] = $this->iterate(
 							$xopt,
-							'<select id="' . $f['external'][$key]['id'] . '" class="form-control ts-external-select">',
+							'<select id="' . $f['external'][$key]['id'] . '" class="form-control-sm ts-external-select">',
 							'</select>',
 							'<option',
 							'</option>',
@@ -154,26 +154,24 @@ class Table_Code_Other extends Table_Code_Manager
 		if (parent::$pager) {
 			$pagerdiv = [
 				'<div class="btn-group">',
-					'<div class="btn-group">',
-					'	<label for="gotoPage" class="selectlabels">Page</label>',
-					'	<select id="gotoPage" class="gotoPage form-control"></select>',
-					'</div>',
+				'	<label for="gotoPage" class="right-margin">Page</label>',
+				'	<select id="gotoPage" class="gotoPage form-control-sm right-margin"></select>',
 				'</div>',
-				'<div class="btn-group middle">',
-				'	<span class="first">',
+				'<div class="btn-group">',
+				'	<button type="button" class="btn btn-primary btn-sm first right-margin">',
 				'		' . smarty_function_icon(['name' => 'backward_step'], $smarty),
-				'	</span>',
-				'	<span class="prev">',
+				'	</button>',
+				'	<button type="button" class="btn btn-primary btn-sm prev right-margin">',
 				'		' . smarty_function_icon(['name' => 'backward'], $smarty),
+				'	</button>',
+				'	<span class="pagedisplay right-margin">',
 				'	</span>',
-				'	<span class="pagedisplay">',
-				'	</span>',
-				'	<span class="next">',
+				'	<button type="button" class="btn btn-primary btn-sm next right-margin">',
 				'		' . smarty_function_icon(['name' => 'forward'], $smarty),
-				'	</span>',
-				'	<span class="last">',
+				'	</button>',
+				'	<button type="button" class="btn btn-primary btn-sm last right-margin">',
 				'		' . smarty_function_icon(['name' => 'forward_step'], $smarty),
-				'	</span>',
+				'	</button>',
 				'</div>',
 			];
 			foreach ($p['expand'] as $option) {
@@ -184,7 +182,7 @@ class Table_Code_Other extends Table_Code_Manager
 			if (isset($opt)) {
 				$pagerdiv[] = $this->iterate(
 					$opt,
-					'<div class="btn-group"><label for="pagesize" class="selectlabels">Rows</label><select id="pagesize" class="pagesize form-control">',
+					'<div class="btn-group"><label for="pagesize" class="right-margin">Rows</label><select id="pagesize" class="pagesize form-control-sm">',
 					'</select></div>',
 					'<option',
 					'</option>',

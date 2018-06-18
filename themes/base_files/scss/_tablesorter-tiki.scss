@@ -2,39 +2,37 @@
 //Less file for the jQuery tablesorter plugin
 //base formatting that apply to all Tiki themes and included in tiki.less
 
-$ts                 : tablesorter;
-
 $filterTransitionTime  : 0.1s;
 $filterRowHiddenHeight : 4px;
-/* becomes height using padding (so it's divided by 2) */
+// becomes height using padding (so it's divided by 2)
 
-/* url(icons/loading.gif); */
+// url(icons/loading.gif);
 $processingIcon        : url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=');
 
-/* Filter widget transition */
-.filterWidgetTransition {
+// Filter widget transition
+@mixin filterWidgetTransition {
 	-webkit-transition: line-height $filterTransitionTime ease;
 	-moz-transition: line-height $filterTransitionTime ease;
 	-o-transition: line-height $filterTransitionTime ease;
 	transition: line-height $filterTransitionTime ease;
 }
 
-/*** Arrows ***/
+// Arrows
 $arrowPosition         : center right;
 
-/* div around table */
-div.${ts}-resizable-container {
+// div around table
+div.tablesorter-resizable-container {
 	clear: both;
 	width: 100%;
 }
 
-table.${ts} {
+table.tablesorter {
 	width: 100%;
 	margin-bottom: 2px;
-	/* style header */
+	// style header
 	thead {
-		tr.${ts}-headerRow {
-			th.${ts}-header {
+		tr.tablesorter-headerRow {
+			th.tablesorter-header {
 				background-repeat: no-repeat;
 				background-position: $arrowPosition;
 				cursor: pointer;
@@ -43,7 +41,7 @@ table.${ts} {
 					position: absolute;
 					right: 2px;
 					top: 50%;
-					margin-top: -7px; /* half the icon height; older IE doesn't like this */
+					margin-top: -7px; // half the icon height; older IE doesn't like this
 					width: 14px;
 					height: 14px;
 					background-repeat: no-repeat;
@@ -51,18 +49,18 @@ table.${ts} {
 					display: inline-block;
 				}
 			}
-			th div.${ts}-header-inner span {
+			th div.tablesorter-header-inner span {
 				padding-right: 10px;
 			}
 			th.sorter-false {
 				cursor: default;
 			}
 		}
-		tr.${ts}-filter-row {
+		tr.tablesorter-filter-row {
 			td {
 				text-align: center;
 				line-height: normal;
-				.filterWidgetTransition;
+				@include filterWidgetTransition;
 				input, select {
 					width: 98%;
 					height: auto;
@@ -70,7 +68,7 @@ table.${ts} {
 					-webkit-box-sizing: border-box;
 					-moz-box-sizing: border-box;
 					box-sizing: border-box;
-					.filterWidgetTransition;
+					@include filterWidgetTransition;
 				}
 				label {
 					float: left;
@@ -80,13 +78,13 @@ table.${ts} {
 				input.dateFrom,
 				input.dateTo {
 					width: 60px;
-					padding: 0px;
+					padding: 0;
 					font-size: 70%;
 					float: right;
 				}
 				.ui-slider {
 					width: 90%;
-					margin: 13px auto 2px auto; /* add enough top margin so the tooltips will fit */
+					margin: 13px auto 2px auto; // add enough top margin so the tooltips will fit
 					font-size: 0.9em;
 				}
 				.ui-slider .ui-slider-handle {
@@ -100,7 +98,7 @@ table.${ts} {
 					font-size: smaller;
 					font-weight: normal;
 				}
-				/* Add tooltips to slider handles */
+				// Add tooltips to slider handles
 				.value-popup:after {
 					content: attr(data-value);
 					position: absolute;
@@ -139,29 +137,29 @@ table.${ts} {
 				}
 			}
 		}
-		tr.${ts}-filter-row.hideme td {
+		tr.tablesorter-filter-row.hideme td {
 			padding: $filterRowHiddenHeight / 2;
 			margin: 0;
 			line-height: 0;
 			cursor: pointer;
 		}
-		tr.${ts}-filter-row.hideme .${ts}-filter {
+		tr.tablesorter-filter-row.hideme .tablesorter-filter {
 			height: 1px;
 			min-height: 0;
 			border: 0;
 			padding: 0;
 			margin: 0;
-			/* don't use visibility: hidden because it disables tabbing */
+			// don't use visibility: hidden because it disables tabbing
 			opacity: 0;
 			filter: alpha(opacity=0);
 		}
 	}
-	/*no formatting on filter row when filter-false*/
+	// no formatting on filter row when filter-false
 	thead .disabled {
 		display: none;
 	}
 	tbody {
-		/* rows hidden by filtering (needed for child rows) */
+		// rows hidden by filtering (needed for child rows)
 		tr.filtered {
 			display: none;
 		}
@@ -172,13 +170,13 @@ table.${ts} {
 	}
 }
 
-table.${ts}-processing tbody tr td {
+table.tablesorter-processing tbody tr td {
 	opacity: .25;
 }
 
-/* pager and other controls above the table */
+// pager and other controls above the table
 div.ts-wrapperdiv {
-	span.${ts}-column-selector {
+	span.tablesorter-column-selector {
 		label {
 			margin: 0 5px;
 		}
@@ -186,54 +184,29 @@ div.ts-wrapperdiv {
 			margin-right: 6px;
 		}
 	}
-	select.form-control {
+	select {
 		width: auto;
 		display: inline;
 		option {
 			font-size: smaller;
 		}
 	}
-	select.form-control, input.form-control {
+	select, input {
 		font-size: smaller;
-		height: 22px;
-		padding: 0;
-		margin-left: 0;
+		border: none;
 	}
 	div.ts-pager {
-		margin-bottom: 15px;
-		height: 24px;
+		margin-top: 3px;
+		margin-bottom: 3px;
+		font-size: smaller;
 		float: right;
 		clear: right;
 		&.ts-pager-bottom {
 			display: none;
 		}
-		div.btn-group {
-			margin-top: 2px;
-			&.middle {
-				padding-top: 2px;
-			}
-			span {
-				font-size: small;
-				padding-top: 2px;
-				height: 24px;
-				:not(.pagedisplay) {
-					cursor: pointer;
-				}
-				&.first {
-					margin-left: 3px;
-				}
-				&.disabled {
-					opacity: .5;
-				}
-			}
-			label.selectlabels {
-				margin-top: 2px;
-				margin-right: 5px;
-				font-size: smaller;
-			}
-			select.form-control {
-				margin-top: 2px;
-			}
+		.right-margin {
+			vertical-align: bottom;
+			margin-right: 4px;
 		}
 	}
 }

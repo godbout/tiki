@@ -26,7 +26,7 @@ class Table_Code_WidgetOptionsFilter extends Table_Code_WidgetOptions
 	protected function getOptionArray()
 	{
 		if (parent::$filters) {
-			$wof[] = 'filter_cssFilter : \'form-control\'';
+			$wof[] = 'filter_cssFilter : \'form-control-sm\'';
 			//allows for different label versus value in dropdowns
 			$wof[] = 'filter_selectSourceSeparator : \'|\'';
 			//server side filtering
