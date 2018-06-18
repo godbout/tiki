@@ -2595,6 +2595,7 @@ lib/core/Search/Formatter/Transform/index.php -text
 lib/core/Search/Formatter/ValueFormatter.php -text
 lib/core/Search/Formatter/ValueFormatter/Abstract.php -text
 lib/core/Search/Formatter/ValueFormatter/Categorylist.php -text
+lib/core/Search/Formatter/ValueFormatter/Currency.php -text
 lib/core/Search/Formatter/ValueFormatter/Date.php -text
 lib/core/Search/Formatter/ValueFormatter/Datetime.php -text
 lib/core/Search/Formatter/ValueFormatter/Imagegrabber.php -text

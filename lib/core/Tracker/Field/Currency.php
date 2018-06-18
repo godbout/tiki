@@ -134,7 +134,7 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 		
 		$conversions = [];
 		if ($currencyTracker) {
-			$rates = $trk->exchange_rates($currencyTracker, time());
+			$rates = $trk->exchange_rates($currencyTracker, date('Y-m-d'));
 
 			$data = $this->getFieldData();
 			$amount = $data['amount'];

@@ -6263,18 +6263,18 @@ class TrackerLib extends TikiLib
 	}
 
 	/**
-	 * Given a currency exchange rate tracker and timestamp,
+	 * Given a currency exchange rate tracker and a date,
 	 * return all available currency rates valid for that time.
 	 * @param $trackerId the currency tracker
-	 * @param $timestamp
+	 * @param $date
 	 * @return array of exchange rates
 	 */
-	public function exchange_rates($trackerId, $timestamp) {
-		static $rates = null;
-		if (!is_null($rates)) {
-			return $rates;
+	public function exchange_rates($trackerId, $date) {
+		static $rates = [];
+		if (isset($rates[$date])) {
+			return $rates[$date];
 		}
-		$rates = [];
+		$rates[$date] = [];
 		$currencyField = $dateField = $rateField = null;
 		$definition = Tracker_Definition::get($trackerId);
 		$fields = $definition->getFields();
@@ -6301,15 +6301,15 @@ class TrackerLib extends TikiLib
 		if ($currencyField && $dateField && $rateField) {
 			$currencies = $this->list_tracker_field_values($trackerId, $currencyField['fieldId']);
 			foreach ($currencies as $currency) {
-				$rates[$currency] = $this->getOne('SELECT ttif3.value as rate FROM tiki_tracker_items tti
+				$rates[$date][$currency] = $this->getOne('SELECT ttif3.value as rate FROM tiki_tracker_items tti
 					LEFT JOIN tiki_tracker_item_fields ttif1 ON tti.itemId = ttif1.itemId AND ttif1.fieldId = ?
 					LEFT JOIN tiki_tracker_item_fields ttif2 ON tti.itemId = ttif2.itemId AND ttif2.fieldId = ?
 					LEFT JOIN tiki_tracker_item_fields ttif3 ON tti.itemId = ttif3.itemId AND ttif3.fieldId = ?
-					WHERE tti.trackerId = ? AND ttif1.value = ? AND ttif2.value <= ?
+					WHERE tti.trackerId = ? AND ttif1.value = ? AND DATE_FORMAT(FROM_UNIXTIME(ttif2.value), "%Y-%m-%d") <= ?
 					ORDER BY ttif2.value DESC',
-					[$currencyField['fieldId'], $dateField['fieldId'], $rateField['fieldId'], $trackerId, $currency, $timestamp]);
+					[$currencyField['fieldId'], $dateField['fieldId'], $rateField['fieldId'], $trackerId, $currency, $date]);
 			}
 		}
-		return $rates;
+		return $rates[$date];
 	}
 }
