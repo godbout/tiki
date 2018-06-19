@@ -38,11 +38,11 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	}
 
 
+	/**
+	* remove the external Wikis defined in the tests
+	*/
 	function tearDown()
 	{
-		/*
-		 * remove the external Wikis defined in the tests
-		 */
 		$tikilib = TikiLib::lib('tiki');
 
 		$query = 'SELECT `name`, `extwikiId` FROM `tiki_extwiki`';

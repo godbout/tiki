@@ -6,8 +6,6 @@
 // $Id$
 
 require_once('tiki-setup.php');
-// do we need it?
-$adminlib = TikiLib::lib('admin');
 $access->check_permission('tiki_p_admin');
 
 // tikiwiki preferences check

@@ -21,12 +21,11 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 		$this->el = new EditLib();
 	}
 
-
+	/**
+	 * remove the external Wikis defined in the tests
+	 */
 	function tearDown()
 	{
-		/*
-		 * remove the external Wikis defined in the tests
-		 */
 		global $tikilib;
 
 		$query = 'SELECT `name`, `extwikiId` FROM `tiki_extwiki`';

@@ -57,7 +57,6 @@ class AdminLib extends TikiLib
 	 * @param $dsnId
 	 * @param $dsn
 	 * @param $name
-	 * @return bool
 	 */
 	function replace_dsn($dsnId, $dsn, $name)
 	{
@@ -65,35 +64,29 @@ class AdminLib extends TikiLib
 		if ($dsnId) {
 			$query = "update `tiki_dsn` set `name`=?,`dsn`=? where `dsnId`=?";
 			$bindvars = [$name, $dsn, $dsnId];
-			$result = $this->query($query, $bindvars);
+			$this->query($query, $bindvars);
 		} else {
 			$query = "delete from `tiki_dsn`where `name`=? and `dsn`=?";
 			$bindvars = [$name, $dsn];
-			$result = $this->query($query, $bindvars);
+			$this->query($query, $bindvars);
 			$query = "insert into `tiki_dsn`(`name`,`dsn`)
                 		values(?,?)";
-			$result = $this->query($query, $bindvars);
+			$this->query($query, $bindvars);
 		}
-
-		return true;
 	}
 
 	/**
-	 * @param $dsnId
-	 * @return bool
+	 * @param int $dsnId
 	 */
 	function remove_dsn($dsnId)
 	{
-		$info = $this->get_dsn($dsnId);
-
 		$query = "delete from `tiki_dsn` where `dsnId`=?";
 		$this->query($query, [$dsnId]);
-		return true;
 	}
 
 	/**
-	 * @param $dsnId
-	 * @return bool
+	 * @param int $dsnId
+	 * @return array|bool returns false on failure, or an array of values upon success
 	 */
 	function get_dsn($dsnId)
 	{
@@ -111,7 +104,7 @@ class AdminLib extends TikiLib
 
 	/**
 	 * @param $dsnName
-	 * @return bool
+	 * @return array|bool returns false on failure, or an array of values upon success
 	 */
 	function get_dsn_from_name($dsnName)
 	{
@@ -150,7 +143,6 @@ class AdminLib extends TikiLib
 		$query_cant = "select count(*) from `tiki_extwiki` $mid";
 		$result = $this->fetchAll($query, $bindvars, $maxRecords, $offset);
 		$cant = $this->getOne($query_cant, $bindvars);
-		$ret = [];
 
 		$retval = [];
 		$retval["data"] = $result;
@@ -159,10 +151,12 @@ class AdminLib extends TikiLib
 	}
 
 	/**
-	 * @param $extwikiId
-	 * @param $extwiki
-	 * @param $name
-	 * @return bool
+	 * @param int    $extwikiId
+	 * @param string $extwiki
+	 * @param        $name
+	 * @param string $indexName
+	 * @param array  $groups
+	 *
 	 */
 	function replace_extwiki($extwikiId, $extwiki, $name, $indexName = '', $groups = [])
 	{
@@ -176,25 +170,21 @@ class AdminLib extends TikiLib
 		$withId = $data;
 		$withId['extwikiId'] = $extwikiId;
 		$table->insertOrUpdate($withId, $data);
-
-		return true;
 	}
 
 	/**
-	 * @param $extwikiId
-	 * @return bool
+	 * Removes a configuration option of an external wiki
+	 *
+	 * @param $extwikiId int Id of the external wiki to be removed
 	 */
 	function remove_extwiki($extwikiId)
 	{
-		$info = $this->get_extwiki($extwikiId);
-
 		$query = "delete from `tiki_extwiki` where `extwikiId`=?";
 		$this->query($query, [$extwikiId]);
-		return true;
 	}
 
 	/**
-	 * @param $extwikiId
+	 * @param int $extwikiId
 	 * @return bool
 	 */
 	function get_extwiki($extwikiId)
@@ -208,6 +198,10 @@ class AdminLib extends TikiLib
 		return $row;
 	}
 
+
+	/**
+	 * Remove unused wiki attachment pictures
+	 */
 	function remove_unused_pictures()
 	{
 		global $tikidomain;
@@ -217,7 +211,7 @@ class AdminLib extends TikiLib
 		$pictures = [];
 
 		while ($res = $result->fetchRow()) {
-			preg_match_all("/\{(picture |img )([^\}]+)\}/ixs", $res['data'], $pics); // to be fixed: pick also the picture into ~np~
+			preg_match_all("/\{(picture |img )([^\}]+)\}/ixs", $res['data'], $pics); //fixme: pick also the picture into ~np~
 
 			foreach (array_unique($pics[2]) as $pic) {
 				if (preg_match("/(src|file)=\"([^\"]+)\"/xis", $pic, $matches)) {
@@ -251,6 +245,11 @@ class AdminLib extends TikiLib
 
 		closedir($h);
 	}
+
+
+	/**
+	 * An image gallery function that removes orphaned images.
+	 */
 
 	function remove_orphan_images()
 	{
@@ -325,34 +324,39 @@ class AdminLib extends TikiLib
 			$id = $res["imageId"];
 
 			if (! in_array($id, $positives)) {
-				$this->remove_image($id);
+				TikiLib::lib('imagegal')->remove_image($id,$GLOBALS['user']);
 			}
 		}
 	}
 
 	/**
-	 * @param $tag
-	 * @return mixed
+	 * Finds if a name given to a database dump is already in use
+	 *
+	 * @param string $tag
+	 * @return bool     false on no tag existing, true on tag already present
 	 */
 	function tag_exists($tag)
 	{
 		$query = "select distinct `tagName` from `tiki_tags` where `tagName` = ?";
 
 		$result = $this->query($query, [$tag]);
-		return $result->numRows($result);
+		return (bool)$result->numRows();
 	}
 
 	/**
-	 * @param $tagname
-	 * @return bool
+	 *
+	 * Removes a database dump
+	 *
+	 * @param string $tagname
+	 * @return bool     Right now only returns true
 	 */
 	function remove_tag($tagname)
 	{
 		$query = "delete from `tiki_tags` where `tagName`=?";
 		$this->query($query, [$tagname]);
-		$logslib = TikiLib::lib('logs');
-		$logslib->add_log('dump', "removed tag: $tagname");
+		TikiLib::lib('logs')->add_log('dump', "removed tag: $tagname");
 		return true;
+		//fixme: This should return false on failure
 	}
 
 	/**
@@ -372,11 +376,11 @@ class AdminLib extends TikiLib
 		return $ret;
 	}
 
-	// This function can be used to store the set of actual pages in the "tags"
-	// table preserving the state of the wiki under a tag name.
 	/**
+	 *
+	 * This function can be used to store the set of actual pages in the "tags"
+	 * table preserving the state of the wiki under a tag name.
 	 * @param $tagname
-	 * @return bool
 	 * @see dump()
 	 */
 	function create_tag($tagname)
@@ -412,14 +416,13 @@ class AdminLib extends TikiLib
 
 		$logslib = TikiLib::lib('logs');
 		$logslib->add_log('dump', "wiki database dump created: $tagname");
-		return true;
 	}
 
-	// This funcion recovers the state of the wiki using a tagName from the
-	// tags table
 	/**
-	 * @param $tagname
-	 * @return bool
+	 * This funcion recovers the state of the wiki using a tagName from the tags table
+	 *
+	 * @param string $tagname
+	 * @return bool     currenty only returns true
 	 */
 	function restore_tag($tagname)
 	{
@@ -450,9 +453,9 @@ class AdminLib extends TikiLib
 			);
 		}
 
-		$logslib = TikiLib::lib('logs');
-		$logslib->add_log('dump', "recovered tag: $tagname");
+		TikiLib::lib('logs')->add_log('dump', "recovered tag: $tagname");
 		return true;
+		// fixme: should return false on failure
 	}
 
 	/** Dumps wiki pages to a tar file

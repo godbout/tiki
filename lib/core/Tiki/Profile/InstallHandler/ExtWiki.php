@@ -26,13 +26,11 @@ class Tiki_Profile_InstallHandler_ExtWiki extends Tiki_Profile_InstallHandler
 
 	function _install()
 	{
-		$adminlib = TikiLib::lib('admin');
-
 		$data = $this->getData();
 
 		$this->replaceReferences($data);
 
-		$adminlib->replace_extwiki(null, $data['url'], $data['name']);
+		TikiLib::lib('admin')->replace_extwiki(null, $data['url'], $data['name']);
 
 		return $data['name'];
 	}

@@ -11,7 +11,7 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 	exit;
 }
 
-$opcode_stats = TikiLib::lib('admin')->getOpcodeCacheStatus();
+$opcode_stats = $adminlib->getOpcodeCacheStatus();
 $stat_flag = $opcode_stats['stat_flag'];
 if ($stat_flag) {
 	$smarty->assign('stat_flag', $stat_flag);
