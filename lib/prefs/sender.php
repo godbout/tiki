@@ -17,8 +17,8 @@ function prefs_sender_list()
 			'tags' => ['basic'],
 		],
 		'sender_name' => [
-			'name' => tra('Sender Full Name'),
-			'description' => tra('Real name that will be used as the sender for outgoing emails.'),
+			'name' => tra('Sender full name'),
+			'description' => tra('Real name that will be used as the sender for outgoing emails'),
 			'type' => 'text',
 			'size' => 40,
 			'default' => '',

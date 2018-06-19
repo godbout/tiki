@@ -67,7 +67,7 @@ function prefs_saml_list()
 			'default' => false,
 		],
 		'saml_options_skip_admin' => [
-			'name' => tra('Use Tiki authentication for Admin login'),
+			'name' => tra('Use Tiki authentication for Admin log-in'),
 			'description' => tra('The user “admin” will be authenticated by <b>only</b> using Tiki’s user database. This option has no effect on users other than “admin”.'),
 			'type' => 'flag',
 			'perspective' => false,
@@ -83,7 +83,7 @@ function prefs_saml_list()
 		],
 		'saml_option_account_matcher' => [
 			'name' => tra('Account matcher'),
-			'description' => tra('Select what field will be used in order to find the user account. If you select the "email" fieldname take in mind that you should prevent that user changes its mail otherwise it will lose the link with the IdP account.'),
+			'description' => tra('Select the field to be used to find the user account. If the "email" field is selected, keep in mind that if users change their email address, then the link with the IdP account will be lost.'),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [
@@ -93,8 +93,8 @@ function prefs_saml_list()
 			'default' => 'email',
 		],
 		'saml_option_login_link_text' => [
-			'name' => tra('Login link text'),
-			'description' => tra('The text that appears at the login page'),
+			'name' => tra('Log-in link text'),
+			'description' => tra('The text that appears on the log-in page'),
 			'type' => 'text',
 			'perspective' => false,
 			'default' => 'Log in through SAML2 IdP',
@@ -125,7 +125,7 @@ function prefs_saml_list()
 		],
 		'saml_groupmap_admins' => [
 			'name' => tra('Admins'),
-			'description' => tra('Set here the values of the IdP related to the user group info that will be matched with the Admins group'),
+			'description' => tra('Set here the values of the IdP related to the user group info that will be matched with the Admins group.'),
 			'type' => 'text',
 			'size' => 25,
 			'perspective' => false,
@@ -133,7 +133,7 @@ function prefs_saml_list()
 		],
 		'saml_groupmap_registered' => [
 			'name' => tra('Registered'),
-			'description' => tra('Set here the values of the IdP related to the user group info that will be matched with the Registered group'),
+			'description' => tra('Set here the values of the IdP related to the user group info that will be matched with the Registered group.'),
 			'type' => 'text',
 			'size' => 25,
 			'perspective' => false,
@@ -141,22 +141,22 @@ function prefs_saml_list()
 		],
 		'saml_advanced_debug' => [
 			'name' => tra('Debug Mode'),
-			'description' => tra('Enable it when your are debugging the SAML workflow. Errors and Warnigs will be showed.'),
+			'description' => tra('Enable debug mode when your are debugging the SAML workflow. Errors and warnings will be showed..'),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => '',
 		],
 		'saml_advanced_strict' => [
 			'name' => tra('Strict Mode'),
-			'description' => tra('Enable it always on production environments!. If Strict mode is Enabled, then Tiki will reject unsigned or unencrypted messages if it expects them signed or encrypted.
-			   Also will reject the messages if not strictly follow the SAML standard: Destination, NameId, Conditions ... are validated too.'),
+			'description' => tra('Always enable strict mode on production websites. When strict mode is enabled, then Tiki will reject unsigned or unencrypted messages if it expects them to be signed or encrypted.
+			   Also Tiki will reject messages that do not strictly follow the SAML standard: Destination, NameId, Conditions . . . are also validated.'),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => false,
 		],
 		'saml_advanced_sp_entity_id' => [
-			'name' => tra('Service Provider Entity Id'),
-			'description' => tra('Set the Entity ID for the Service Provider. We recommend to set as SP EntityID the URL where its metadata is published, If not provided, toolkit will use "php-saml" as SP entityID'),
+			'name' => tra('Service Provider Entity ID'),
+			'description' => tra('Set the Entity ID for the service provider. It is recommended to set as the SP Entity ID the URL where the metadata of the service provider is published. If not provided, the toolkit will use "php-saml" as the SP entityID.'),
 			'type' => 'text',
 			'perspective' => false,
 			'default' => '',
@@ -180,7 +180,7 @@ function prefs_saml_list()
 		],
 		'saml_advanced_requestedauthncontext' => [
 			'name' => tra('Requested AuthnContext'),
-			'description' => tra('Authentication context. Unselect all to accept any type, otherwise select the valid contexts'),
+			'description' => tra('Authentication context: unselect all to accept any type, otherwise select the valid contexts.'),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [
@@ -196,7 +196,7 @@ function prefs_saml_list()
 		],
 		'saml_advanced_idp_lowercase_url_encoding' => [
 			'name' => tra('Enable Lowercase URL encoding'),
-			'description' => tra('Some IdPs like ADFS can use lowercase URL encoding, but the plugin expects uppercase URL enconding, enable it to fix incompatibility issues.'),
+			'description' => tra('Some IdPs such as ADFS can use lowercase URL encoding, but the plugin expects uppercase URL encoding, so enable it to fix incompatibility issues..'),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => false,
@@ -265,21 +265,21 @@ function prefs_saml_list()
 		],
 		'saml_advanced_sp_x509cert' => [
 			'name' => tra('Service Provider X.509 certificate'),
-			'description' => tra('Public x509 certificate of the SP.'),
+			'description' => tra('Public x509 certificate of the SP'),
 			'type' => 'textarea',
 			'perspective' => false,
 			'default' => '',
 		],
 		'saml_advanced_sp_privatekey' => [
 			'name' => tra('Service Provider Private Key'),
-			'description' => tra('Private Key of the SP.'),
+			'description' => tra('Private key of the SP'),
 			'type' => 'textarea',
 			'perspective' => false,
 			'default' => '',
 		],
 		'saml_advanced_sign_algorithm' => [
 			'name' => tra('Signature Algorithm'),
-			'description' => tra('Algorithm that the toolkit will use on signing process.'),
+			'description' => tra('Algorithm that the toolkit will use on the signing process'),
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [

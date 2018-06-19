@@ -83,7 +83,7 @@ function prefs_search_list()
 		],
 		'search_facet_default_amount' => [
 			'name' => tra('Facet result count'),
-			'description' => tra('Default number of facet results to obtain.'),
+			'description' => tra('Default number of facet results to obtain'),
 			'type' => 'text',
 			'size' => 8,
 			'filter' => 'digits',
@@ -92,7 +92,7 @@ function prefs_search_list()
 		],
 		'search_index_outdated' => [
 			'name' => tra('Search index outdated'),
-			'description' => tra('Number of days to consider the search index outdated.'),
+			'description' => tra('Number of days to consider the search index outdated'),
 			'type' => 'text',
 			'size' => 8,
 			'filter' => 'digits',
@@ -102,7 +102,7 @@ function prefs_search_list()
 		],
 		'search_error_missing_field' => [
 			'name' => tra('Show error on missing field'),
-			'description' => tra('When using LIST plugin to specify certain fields, especially tracker fields, this check helps ensure their names were entered correctly.'),
+			'description' => tra('When using List plugin to specify certain fields, especially tracker fields, this check helps ensure their names were entered correctly.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],

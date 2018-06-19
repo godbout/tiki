@@ -48,7 +48,7 @@ function prefs_session_list()
 		],
 		'session_cookie_name' => [
 			'name' => tra('Session cookie name'),
-			'description' => tra('Session cookie name used instead of the PHP default configuration.'),
+			'description' => tra('Session cookie name used instead of the PHP default configuration'),
 			'type' => 'text',
 			'perspective' => false,
 			'size' => 10,

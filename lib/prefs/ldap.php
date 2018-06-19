@@ -29,7 +29,7 @@ function prefs_ldap_list()
 			'tags' => ['experimental'],
 		],
 		'ldap_skip_admin' => [
-			'name' => tra('Use Tiki authentication for Admin login'),
+			'name' => tra('Use Tiki authentication for Admin log-in'),
 			'description' => tra('If this option is set, the user “admin” will be authenticated by only using Tiki’s user database and not via LDAP. This option has no effect on users other than “admin”.'),
 			'type' => 'flag',
 			'default' => 'y',

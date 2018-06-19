@@ -10,7 +10,7 @@ function prefs_scheduler_list($partial = false)
 	return [
 		'scheduler_stalled_timeout' => [
 			'name' => tr('Scheduler stalled after (minutes)'),
-			'description' => tr('Set a scheduler as stall if it is running for long time. Set 0 to disable stall detection.'),
+			'description' => tr('Set a scheduler to stall if the running time is long. Set 0 to disable stall detection.'),
 			'type' => 'text',
 			'filter' => 'digits',
 			'default' => 15,
@@ -18,7 +18,7 @@ function prefs_scheduler_list($partial = false)
 		],
 		'scheduler_notify_on_stalled' => [
 			'name' => tr('Notify admins on stalled schedulers'),
-			'description' => tr('Send an email notification to tiki admins when a stalled scheduler is detected'),
+			'description' => tr('Send an email notification to Tiki admins when a stalled scheduler is detected.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['advanced'],
@@ -34,7 +34,7 @@ function prefs_scheduler_list($partial = false)
 		],
 		'scheduler_notify_on_healing' => [
 			'name' => tr('Notify admins on healed schedulers'),
-			'description' => tr('Send an email notification to tiki admins when a stalled scheduler was healed.'),
+			'description' => tr('Send an email notification to Tiki admins when a stalled scheduler was healed..'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['advanced'],

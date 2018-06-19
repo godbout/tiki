@@ -21,8 +21,8 @@ function prefs_site_list()
 	return  [
 		'site_closed' => [
 			'name' => tra('Close site'),
-			'description' => tra('Use this setting to “close” your Tiki (such as for maintenance). Users attempting to access your site will see only a login box. Only users with specific permission will be allowed to log in.
-Use the Message to display to specify the message that visitors will see when attempting to access your site.'),
+			'description' => tra('Use this setting to \"close\" the Tiki site (such as for maintenance). Users attempting to access the site will see only a log-in form. Only users with specific permission will be allowed to log in.
+			Use the Message to display to specify the message that visitors will see when attempting to access your site.'),
 			'type' => 'flag',
 			'help' => 'Site-Access#Close_site',
 			'perspective' => false,

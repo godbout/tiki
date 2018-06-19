@@ -22,7 +22,7 @@ function prefs_cas_list()
 			'default' => 'n',
 			],
 		'cas_skip_admin' => [
-			'name' => tra('Use Tiki authentication for Admin login'),
+			'name' => tra('Use Tiki authentication for Admin log-in'),
 			'type' => 'flag',
 			'description' => tra('The user “admin” will be authenticated by <b>only</b> using Tiki’s user database. This option has no effect on users other than “admin”.'),
 			'perspective' => false,

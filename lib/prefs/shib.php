@@ -10,7 +10,7 @@ function prefs_shib_list()
 	return [
 		'shib_group' => [
 			'name' => tra('Default group'),
-			'description' => tr('The name of the default group.'),
+			'description' => tr('The name of the default group'),
 			'type' => 'text',
 			'size' => 40,
 			'perspective' => false,
@@ -25,7 +25,7 @@ function prefs_shib_list()
 		],
 		'shib_affiliation' => [
 			'name' => tra('Valid affiliations'),
-			'description' => tr('A list of affiliations which will allow users to log into this Wiki.'),
+			'description' => tr('A list of affiliations which will allow users to log in to this wiki'),
 			'type' => 'text',
 			'size' => 40,
 			'hint' => tra('Separate multiple affiliations with commas'),
@@ -33,7 +33,7 @@ function prefs_shib_list()
 			'default' => '',
 		],
 		'shib_skip_admin' => [
-			'name' => tra('Use Tiki authentication for Admin login'),
+			'name' => tra('Use Tiki authentication for Admin log-in'),
 			'type' => 'flag',
 			'description' => tra('The user “admin” will be authenticated by <b>only</b> using Tiki’s user database. This option has no effect on users other than “admin”.'),
 			'perspective' => false,

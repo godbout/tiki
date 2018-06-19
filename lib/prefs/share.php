@@ -15,7 +15,7 @@ function prefs_share_list()
 		],
 		'share_token_notification' => [
 			'name' => tra('Token notification'),
-			'description' => tra('Users can subscribe to the notifications of consultation of the token'),
+			'description' => tra('Users can subscribe to the notifications of consultation of the token.'),
 			'type' => 'flag',
 			'perspective' => false,
 			'dependencies' => [
@@ -25,7 +25,7 @@ function prefs_share_list()
 		],
 		'share_contact_add_non_existant_contact' => [
 			'name'	=> tra('Add contact'),
-			'description' => tra('If not already in the list, recipients are added to the list of contacts'),
+			'description' => tra('If not already in the list, recipients are added to the list of contacts.'),
 			'type' => 'flag',
 			'perspective' => false,
 			'dependencies' => [
@@ -35,13 +35,13 @@ function prefs_share_list()
 		],
 		'share_display_name_and_email' => [
 			'name' => tra('Display name and email'),
-			'description' => tra('If the user is connected, the name and email will display in the page'),
+			'description' => tra('If the user is connected, the name and email will display in the page.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],
 		'share_can_choose_how_much_time_access' => [
 			'name' => tra('Number of times accessed'),
-			'description' => tra('User can choose how many times the share page can be consulted'),
+			'description' => tra('User can choose how many times the share page can be consulted.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'auth_token_access',

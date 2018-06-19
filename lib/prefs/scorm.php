@@ -20,7 +20,7 @@ function prefs_scorm_list()
 		],
 		'scorm_tracker' => [
 			'name' => tra('SCORM Tracker'),
-			'description' => tra('The ID number of the Tracker used to store SCORM metadata'),
+			'description' => tra('The ID number of the tracker used to store SCORM metadata'),
 			'type' => 'text',
 			'filter' => 'int',
 			'default' => 0,
