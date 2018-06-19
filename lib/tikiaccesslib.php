@@ -1261,7 +1261,7 @@ class TikiAccessLib extends TikiLib
 	 *
 	 * @return bool|null Return true upon file access success, false upon failure, and null if the file does not exist.
 	 */
-	function isFileWebAccessable ($filename){
+	function isFileWebAccessable (string $filename): ?bool{
 		global $tikipath, $base_url_http, $base_url_https;
 		// if the directory is within the Tiki root, then remove the prefixed Tiki root
 		if(0 === strpos($filename, $tikipath)) {
@@ -1280,12 +1280,12 @@ class TikiAccessLib extends TikiLib
 
 		// now load try accessing the file and check for a 200 (ok) or 300 (moved)
 		// lets check http first
-		$response = get_headers($base_url_http . $filename);
+		$response = @get_headers($base_url_http . $filename);
 		$response = substr($response[0], 9, 1);
 		if ($response == '2' || $response == '3'){
 			return true;
 		}else{  // now we try https, just to be sure.
-			$response = get_headers($base_url_https . $filename);
+			$response = @get_headers($base_url_https . $filename);
 			$response = substr($response[0], 9, 1);
 			if ($response == '2' || $response == '3') {
 				return true;
