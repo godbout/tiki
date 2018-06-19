@@ -8,7 +8,7 @@
 
 {if $prefs.feature_help eq 'y'}
 	{if !empty($plugin.documentation)}
-		<a href="{$plugin.documentation|escape}" onclick="needToConfirm=false;" target="tikihelp" class="tikihelp">
+		<a href="{$plugin.documentation|escape}" onclick="needToConfirm=false;" target="tikihelp" class="tikihelp text-info">
 			{icon name='help'}
 		</a>
 	{/if}

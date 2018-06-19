@@ -58,7 +58,7 @@ function smarty_function_scheduler_params($params, $smarty)
 			$icon = smarty_function_icon(['name' => 'information'], $smarty);
 
 			$infoHtml = <<<HTML
-<a class="tikihelp" title="{$param['name']}: {$description}">
+<a class="tikihelp text-info" title="{$param['name']}: {$description}">
 	{$icon}
 </a>
 HTML;

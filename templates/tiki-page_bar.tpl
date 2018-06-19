@@ -84,7 +84,7 @@
 			{/if}
 
 			{if $prefs.feature_source eq 'y' and $tiki_p_wiki_view_source eq 'y'}
-				{button _keepall='y' href="tiki-pagehistory.php" page=$page source="0" _text="{tr}Source{/tr}"}
+				{button _keepall='y' _class="btn-info" href="tiki-pagehistory.php" page=$page source="0" _text="{tr}Source{/tr}"}
 			{/if}
 
 			{if $page|lower ne 'sandbox'}
@@ -103,7 +103,7 @@
 					{/if}
 				{/if}
 				{if $prefs.feature_history eq 'y' and $tiki_p_wiki_view_history eq 'y'}
-					{button _keepall='y' href="tiki-pagehistory.php" page=$page _text="{tr}History{/tr}"}
+					{button _keepall='y' _class="btn-info" href="tiki-pagehistory.php" page=$page _text="{tr}History{/tr}"}
 				{/if}
 			{/if}
 
@@ -122,7 +122,7 @@
 						{/jq}
 						{/if}
 
-						<a class="btn btn-primary" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
+						<a class="btn btn-info" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
 							{tr}Comments{/tr}
 							{if $count_comments}
 								&nbsp;<span class="count_comments badge badge-secondary">{$count_comments}</span>
@@ -167,7 +167,7 @@
 			{/if}
 			{if $more_section|trim neq ''}
 				<div class="btn-group dropup">
-					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{tr}More{/tr}</button>
+					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">{tr}More{/tr}</button>
 					<ul class="dropdown-menu" role="menu">
 						{$more_section}
 					</ul>

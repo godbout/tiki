@@ -31,7 +31,7 @@
 			<table class="table table-striped table-hover">
 				<tr>
 					<th style="text-align:center;">
-						<input type="submit" class="btn btn-primary btn-sm" name="delete" value="{tr}x{/tr} ">
+						<input type="submit" class="btn btn-danger btn-sm" name="delete" title="{tr}Delete{/tr}" value="{tr}x{/tr} ">
 					</th>
 					<th>
 						<a href="tiki-notepad_list.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'name_desc'}name_asc{else}name_desc{/if}">{tr}Name{/tr}</a>
@@ -54,7 +54,9 @@
 				{section name=user loop=$channels}
 					<tr>
 						<td class="id">
-							<input type="checkbox" name="note[{$channels[user].noteId}]">
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input" name="note[{$channels[user].noteId}]">
+							</div>
 						</td>
 						<td class="text">
 							<a class="link" href="tiki-notepad_read.php?noteId={$channels[user].noteId}">{$channels[user].name|escape}</a>
@@ -97,13 +99,13 @@
 					</tr>
 				{sectionelse}
 					<tr>
-						<td colspan="4">{tr}No notes yet{/tr}</td>
+						<td colspan="7">{tr}No notes yet{/tr}</td>
 					</tr>
 				{/section}
 				<tr>
-					<td colspan="4">
-						<input type="submit" class="btn btn-primary btn-sm" name="merge" value="{tr}Merge selected notes into{/tr}">
-						<input type="text" name="merge_name" size="20">
+					<td colspan="7"><div class="form-inline">
+						<input type="submit" class="btn btn-primary btn-sm mr-2" name="merge" value="{tr}Merge selected notes into{/tr}">
+							<input type="text" class="form-control" name="merge_name" size="20"></div>
 					</td>
 				</tr>
 			</table>

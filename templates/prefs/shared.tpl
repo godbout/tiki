@@ -5,7 +5,7 @@
 {/if}
 {if isset($icon)}
 	<a {if $p.helpurl} href="{$p.helpurl|escape}" target="tikihelp"{/if}
-	 	class="tikihelp" title="{$p.name|escape}: {$p.description|escape} {if $p.separator && $p.type neq 'multiselector'}<br>{tr _0=$p.separator}Use &quot;%0&quot; to separate values.{/tr}{/if}">
+	 	class="tikihelp text-info" title="{$p.name|escape}: {$p.description|escape} {if $p.separator && $p.type neq 'multiselector'}<br>{tr _0=$p.separator}Use &quot;%0&quot; to separate values.{/tr}{/if}">
 		{icon name=$icon}
 	</a>
 {/if}

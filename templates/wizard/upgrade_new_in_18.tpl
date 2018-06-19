@@ -6,7 +6,7 @@
 		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
 	</span>
 	{tr}Main new and improved features and settings in Tiki 18.{/tr}
-	<a href="https://doc.tiki.org/Tiki18" target="tikihelp" class="tikihelp" title="{tr}Tiki18:{/tr}
+	<a href="https://doc.tiki.org/Tiki18" target="tikihelp" class="tikihelp text-info" title="{tr}Tiki18:{/tr}
 			{tr}This is an LTS version.{/tr}
 			{tr}As it is a Long-Term Support (LTS) version, it will be supported for 5 years.{/tr}
 			{tr}Many libraries have been upgraded.{/tr}
