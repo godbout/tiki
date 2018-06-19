@@ -30,15 +30,15 @@
 				{* using HTML for the submit button as the smarty function does not seem to allow for type=submit *}
 				<button
 					type="submit"
-					class="btn btn-default"
+					class="btn btn-success"
 					{if isset($confirmSubmitName)}name="{$confirmSubmitName}"{/if}
 					{if isset($confirmSubmitValue)}value="{$confirmSubmitValue}"{/if}
 					{if ! empty($ajax)}onclick="confirmAction(event)"{/if}
 				>
 					{tr}Confirm action{/tr}
 				</button>
-				{button href="{$smarty.server.HTTP_REFERER}" _text="{tr}Go back{/tr}"}
-				{button href="{$prefs.tikiIndex|escape}" _text="{tr}Return to home page{/tr}"}
+				{button href="{$smarty.server.HTTP_REFERER}" _class="btn-secondary" _text="{tr}Go back{/tr}"}
+				{button href="{$prefs.tikiIndex|escape}" _class="btn-secondary" _text="{tr}Return to home page{/tr}"}
 			</form>
 		</div>
 	</div>
