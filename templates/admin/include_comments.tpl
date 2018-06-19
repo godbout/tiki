@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="form-group col-lg-12">
 			<a role="link" href="tiki-list_comments.php" class="btn btn-link tips" title=":{tr}Comments listing{/tr}">{icon name="list"} {tr}Comments{/tr}</a>
-			{permission_link mode=link addclass="btn btn-link tips" _iconname="key" textFilter=comment showDisabled=y}
+			{permission_link mode=link addclass="btn btn-link tips" _icon_name="key" textFilter=comment showDisabled=y}
 			{include file='admin/include_apply_top.tpl'}
 		</div>
 	</div>

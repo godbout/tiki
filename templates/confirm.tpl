@@ -37,8 +37,8 @@
 				>
 					{tr}Confirm action{/tr}
 				</button>
-				{button href="{$smarty.server.HTTP_REFERER}" _class="btn-secondary" _text="{tr}Go back{/tr}"}
-				{button href="{$prefs.tikiIndex|escape}" _class="btn-secondary" _text="{tr}Return to home page{/tr}"}
+				{button href="{$smarty.server.HTTP_REFERER}" _class="btn-link" _icon_name="reply" _text="{tr}Go back{/tr}"}
+				{button href="{$prefs.tikiIndex|escape}" _class="btn-link" _icon_name="home" _text="{tr}Return to home page{/tr}"}
 			</form>
 		</div>
 	</div>
