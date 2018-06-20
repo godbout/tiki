@@ -13,7 +13,7 @@ function prefs_unified_list()
 			'description' => tra('Search engine used to index the content of your Tiki. Some engines are more suitable for larger sites, but require additional software on the server.'),
 			'type' => 'list',
 			'options' => [
-				'lucene' => tra('Lucene (PHP implementation)'),
+				'lucene' => tra('Lucene (PHP implementation) - Deprecated'),
 				'mysql' => tra('MySQL full-text search'),
 				'elastic' => tra('Elasticsearch'),
 			],
