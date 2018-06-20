@@ -479,6 +479,129 @@ class Services_Tracker_TabularController
 		];
 	}
 
+	function action_create_tracker($input)
+	{
+
+		$tabularlib = TikiLib::lib('tabular');
+		Services_Exception_Denied::checkGlobal('tiki_p_tabular_admin');
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// Create a tracker
+			$trackerUtilities = new Services_Tracker_Utilities();
+			$trackerData = [
+				'name' => $input->tracker_name->text(),
+				'description' => '',
+				'descriptionIsParsed' => 'n'
+			];
+			$trackerId = $trackerUtilities->createTracker($trackerData);
+
+			$fieldDescriptor = json_decode($input->fields->none(), true);
+
+			$types = $trackerUtilities->getFieldTypes();
+
+			foreach ($fieldDescriptor as $key => $field) {
+				$fieldName = $field['label'];
+				$fieldType = $field['type'];
+				$typeInfo = $types[$fieldType];
+
+				// Populate default field options
+				$options = $trackerUtilities->parseOptions("{}", $typeInfo);
+				$options = $trackerUtilities->buildOptions($options, $fieldType);
+
+				$fieldData = [
+					'trackerId' => $trackerId,
+					'name' => $fieldName,
+					'type' => $fieldType,
+					'isMandatory' => ($field['isPrimary'] || $field['isUniqueKey']) ? true : false,
+					'description' => '',
+					'descriptionIsParsed' => '',
+					'permName' => null,
+					'options' => $options,
+				];
+
+				$fieldId = $trackerUtilities->createField($fieldData);
+
+				$fieldDescriptor[$key]['field'] = ! empty($fieldData['permName']) ? $fieldData['permName'] : 'f_' . $fieldId;
+				$fieldDescriptor[$key]['mode'] = $this->getFieldTypeDefaultMode($fieldType);
+
+				// Force reload (number of fields and existing fields in tracker)
+				if (isset(Tracker_Definition::$definitions[$trackerId])) {
+					unset(Tracker_Definition::$definitions[$trackerId]);
+				}
+			}
+
+			// Create tabular tracker
+			$tabularId = $tabularlib->create($input->name->text(), $trackerId);
+
+			$info = $tabularlib->getInfo($tabularId);
+
+			$info['format_descriptor'] = $fieldDescriptor;
+			$info['filter_descriptor'] = [];
+			$info['config'] = $input->config->none();
+			$schema = $this->getSchema($info);
+
+			$tabularlib->update($info['tabularId'], $input->name->text(), $schema->getFormatDescriptor(), $schema->getFilterDescriptor(), $info['config']);
+
+			// Import the loaded file
+
+			// Force reload schema
+			unset(Tracker_Definition::$definitions[$trackerId]);
+			$schema = $this->getSchema($info);
+			$schema->validate();
+
+			if (! $schema->getPrimaryKey()) {
+				Feedback::error(tr('Primary Key required'));
+				return [
+					'FORWARD' => [
+						'controller' => 'tabular',
+						'action' => 'edit',
+						'tabularId' => $tabularId,
+					],
+				];
+			}
+
+			$done = false;
+
+			if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+				try {
+					$source = new \Tracker\Tabular\Source\CsvSource($schema, $_FILES['file']['tmp_name']);
+					$writer = new \Tracker\Tabular\Writer\TrackerWriter;
+					$done = $writer->write($source);
+
+					unlink($_FILES['file']['tmp_name']);
+				} catch (Exception $e) {
+					Feedback::error($e->getMessage());
+
+					// Rollback changes
+					$tabularlib->remove($tabularId);
+					$trackerUtilities->removeTracker($trackerId);
+				}
+			}
+
+			if ($done) {
+				Feedback::success(tr('Your import was completed successfully.'));
+				return [
+					'FORWARD' => [
+						'controller' => 'tabular',
+						'action' => 'list',
+						'tabularId' => $info['tabularId'],
+					]
+				];
+			}
+		}
+
+		return [
+			'title' => tr('Create tabular format and tracker from file'),
+			'types' => $this->getSupportedTabularFieldTypes(),
+			'config' => [
+				'import_update' => 1,
+				'ignore_blanks' => 0,
+				'import_transaction' => 0,
+				'bulk_import' => 0,
+			],
+		];
+	}
+
 	private function getSchema(array $info)
 	{
 		$tracker = \Tracker_Definition::get($info['trackerId']);
@@ -493,5 +616,69 @@ class Services_Tracker_TabularController
 		$schema->loadConfig($info['config']);
 
 		return $schema;
+	}
+
+	/**
+	 * Get the list of supported field types by tabular
+	 * Info: Item Link and List are removed due to missing links on csv upload
+	 *
+	 * @return mixed
+	 */
+	private function getSupportedTabularFieldTypes()
+	{
+		$trackerUtilities = new Services_Tracker_Utilities();
+		$types = $trackerUtilities->getFieldTypes();
+
+		unset($types['A']); // Attachment (deprecated)
+		unset($types['w']); // Dynamic Items List
+		unset($types['g']); // Group Selector
+		unset($types['h']); // Header
+		unset($types['icon']); // Icon
+		unset($types['LANG']); // Language
+		unset($types['G']); // Location
+		unset($types['k']); // Page Selector
+		unset($types['REL']); // Relations
+		unset($types['S']); // Static Text
+		unset($types['r']); // Item Link
+		unset($types['l']); // Items List
+
+		return $types;
+	}
+
+	/**
+	 * Get the default mode for a given field type to use in Tabular display fields
+	 *
+	 * @param string $fieldType Field type
+	 * @return string The default mode to display
+	 */
+	private function getFieldTypeDefaultMode($fieldType)
+	{
+
+		switch ($fieldType) {
+			case 'c': // Checkbox
+				$mode  = 'y/n';
+				break;
+			case 'e': // Category
+				$mode = 'id';
+				break;
+			case 'd': // Dropdown
+			case 'D': // Dropdown + Other
+			case 'R': // Radio Buttons
+			case 'M': // MultiSelect
+			case 'y': // Country Selector
+				$mode = 'code';
+				break;
+			case 'f': // Datetime
+			case 'j': // Datetime + Picker
+				$mode = 'unix';
+				break;
+			case 'u': // User Selector
+				$mode = 'username';
+				break;
+			default:
+				$mode = 'default';
+		}
+
+		return $mode;
 	}
 }
