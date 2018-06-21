@@ -81,6 +81,12 @@ class SvnUpCommand extends Command
 				'Make no changes to the database. (SvnUp, dependencies and privilege checks only. Logging disabled.)'
 			)
 			->addOption(
+				'no-generate',
+				'G',
+				InputOption::VALUE_NONE,
+				"Don't re-generate the caches. Can take a long time on a large site."
+			)
+			->addOption(
 				'conflict',
 				'c',
 				InputOption::VALUE_REQUIRED,
@@ -395,14 +401,16 @@ class SvnUpCommand extends Command
 			}
 
 			/* generate caches */
-			$progress->setMessage('Generating caches');
-			$progress->advance();
-			try {
-				//$cacheLib->generateCache();    disable generating module cache until regression if fixed that causes premature termination.
-				$cacheLib->generateCache(['templates', 'misc']);
-			}catch (\Exception $e) {
-				$logger->error('Cache generating error: ' . $e->getMessage());
-				$logslib->add_action('svn update', 'Cache generating error: ' . $e, 'system');
+			if (! $input->getOption('no-generate')) {
+				$progress->setMessage('Generating caches');
+				$progress->advance();
+				try {
+					//$cacheLib->generateCache();    disable generating module cache until regression if fixed that causes premature termination.
+					$cacheLib->generateCache(['templates', 'misc']);
+				} catch (\Exception $e) {
+					$logger->error('Cache generating error: ' . $e->getMessage());
+					$logslib->add_action('svn update', 'Cache generating error: ' . $e, 'system');
+				}
 			}
 		}
 
