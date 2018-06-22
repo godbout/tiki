@@ -292,169 +292,205 @@ FORM;
 
 		var convene$i = $.extend({
 			fromBlank: function(user, date) {
-				if (!user || !date) return;
-				this.data = "dates_" + Date.parseUnix(date) + "_" + user;
-				this.save();
+				lockPage(function () {
+					if (!user || !date) return;
+					this.data = "dates_" + Date.parseUnix(date) + "_" + user;
+					this.save();
+				}, this);
 			},
 			updateUsersVotes: function() {
-				var data = [];
-				$('.conveneUserVotes$i').each(function() {
-					$('.conveneUserVote$i').each(function() {
-						data.push($(this).attr('name') + ' : ' + $(this).val());
+				lockPage(function () {
+					var data = [];
+					$('.conveneUserVotes$i').each(function() {
+						$('.conveneUserVote$i').each(function() {
+							data.push($(this).attr('name') + ' : ' + $(this).val());
+						});
 					});
-				});
-
-				this.data = data.join('$n');
-
-				this.save();
+	
+					this.data = data.join('$n');
+	
+					this.save();
+				}, this);
 			},
 			addUser: function(user) {
-				if (!user) return;
-
-				var data = [];
-
-				for(date in this.dates) {
-					data.push("dates_" + date + "_" + user);
-				}
-
-				this.data += '$n' + data.join('$n');
-
-				this.save();
+				lockPage(function (user) {
+					if (!user) return;
+	
+					var data = [];
+	
+					for(date in this.dates) {
+						data.push("dates_" + date + "_" + user);
+					}
+	
+					this.data += '$n' + data.join('$n');
+	
+					this.save();
+				}, this, [user]);
 			},
 			deleteUser: function(user) {
-				if (!user) return;
-				var data = '';
-
-				for(date in this.dates) {
-					for(i in this.users) {
-						if (this.users[i] != user) {
-							data += 'dates_' + date + '_' + this.users[i] + ' : ' + this.dates[date][this.users[i]] + '$n';
+				lockPage(function (user) {
+					if (!user) return;
+					var data = '';
+	
+					for(date in this.dates) {
+						for(i in this.users) {
+							if (this.users.hasOwnProperty(i) && this.dates.hasOwnProperty(date) && this.users[i] !== user) {
+								data += 'dates_' + date + '_' + this.users[i] + ' : ' + this.dates[date][this.users[i]] + '$n';
+							}
 						}
 					}
-				}
-
-				this.data = data;
-
-				this.save(true);
+	
+					this.data = data;
+	
+					this.save(true);
+				}, this, [user]);
 			},
 			addDate: function(date) {
-				if (!date) return;
-				date = Date.parseUnix(date);
-				var addedData = '';
-
-				if (! this.users.length) {	// add current user if it's the first
-					this.users.push(jqueryTiki.username);
-				}
-				for(var user in this.users) {
-					if (this.users.hasOwnProperty(user)) {
-						addedData += 'dates_' + date + '_' + this.users[user] + ' : 0$n';
+				lockPage(function (date) {
+					if (!date) return;
+					date = Date.parseUnix(date);
+					var addedData = '';
+	
+					if (! this.users.length) {	// add current user if it's the first
+						this.users.push(jqueryTiki.username);
 					}
-				}
-
-				this.data = (this.data + '$n' + addedData).split($regexN).sort();
-
-				//remove empty lines
-				for(var line in this.data) {
-					if (this.data.hasOwnProperty(line)) {
-						if (!this.data[line]) this.data.splice(line, 1);
-					}
-				}
-
-				this.data = this.data.join('$n');
-
-				this.save();
-			},
-			deleteDate: function(date) {
-				if (!date) return;
-				date += '';
-				var addedData = '';
-
-				for(user in this.users) {
-					addedData += 'dates_' + date + '_' + this.users[user] + ' : 0$n';
-				}
-
-				var lines = convene$i.data.split($regexN);
-				var newData = [];
-				for(var line in lines) {
-					if (lines.hasOwnProperty(line)) {
-						if (!(lines[line] + '').match(date)) {
-							 newData.push(lines[line]);
+					for(var user in this.users) {
+						if (this.users.hasOwnProperty(user)) {
+							addedData += 'dates_' + date + '_' + this.users[user] + ' : 0$n';
 						}
 					}
-				}
-
-				this.data = newData.join('$n');
-				this.save();
+	
+					this.data = (this.data + '$n' + addedData).split($regexN).sort();
+	
+					//remove empty lines
+					for(var line in this.data) {
+						if (this.data.hasOwnProperty(line)) {
+							if (!this.data[line]) this.data.splice(line, 1);
+						}
+					}
+	
+					this.data = this.data.join('$n');
+	
+					this.save();
+				}, this, [date]);
+			},
+			deleteDate: function(date) {
+				lockPage(function (date) {
+					if (! date) return;
+					date += '';
+					var addedData = '';
+	
+					for(user in this.users) {
+						if( this.users.hasOwnProperty(user)) {
+							addedData += 'dates_' + date + '_' + this.users[user] + ' : 0$n';
+						}
+					}
+	
+					var lines = convene$i.data.split($regexN);
+					var newData = [];
+					for(var line in lines) {
+						if (lines.hasOwnProperty(line)) {
+							if (!(lines[line] + '').match(date)) {
+								 newData.push(lines[line]);
+							}
+						}
+					}
+	
+					this.data = newData.join('$n');
+					this.save();
+				}, this, [date]);
 			},
 			save: function(reload) {
 				$("#page-data").tikiModal(tr("Loading..."));
 				var content = $.trim(this.data);
 				
-				// do semaphore check and set
+				var needReload = reload !== undefined;
+				var params = {
+					page: "$page",
+					content: content,
+					index: $i,
+					type: "convene",
+					ticket: $('#convene-ticket').val(),
+					params: {
+						title: "$title",
+						calendarid: $calendarid,
+						minvotes: $minvotes
+					}
+				};
+				$.post($.service("plugin", "replace"), params, function() {
+					$.get($.service("wiki", "get_page", {page: "$page"}), function (data) {
+						unlockPage();
+						
+						if (needReload) {
+							history.go(0);
+						} else {
+							if (data) {
+								var newForm = $("#pluginConvene$i", data);
+								$("#pluginConvene$i", "#page-data").replaceWith(newForm);
+							}
+							initConvene$i();
+							$("#page-data").tikiModal();
+						}
+					});
+
+				})
+				.fail(function (jqXHR) {
+					$("#tikifeedback").showError(jqXHR);
+				})
+				.always(function () {
+					unlockPage();
+					$("#page-data").tikiModal();
+				});
+			}
+		}, $conveneData);
+
+		$(window).on('beforeunload', function () {
+			unlockPage();
+		});
+		
+		window.pageLocked = false;
+		
+		// set semaphore
+		var lockPage = function (callback, context, args) {
+			args = args || [];
+			if (! window.pageLocked) {
 				$.getJSON($.service("semaphore", "is_set"), {
 						object_type: jqueryTiki.current_object.type,
 						object_id: jqueryTiki.current_object.object
-					}, function (data) {
+					},
+					function (data) {
 						if (data) {
 							$("#tikifeedback").showError(tr("This page is being edited by another user. Please reload the page and try again later."));
 							$("#page-data").tikiModal();
 						} else {
 							// no one else using it, so carry on...
-
 							$.getJSON($.service("semaphore", "set"), {
 								object_type: jqueryTiki.current_object.type,
 								object_id: jqueryTiki.current_object.object
+							}, function () {
+								window.pageLocked = true;
+								callback.apply(context);
 							});
-				
-
-							var needReload = reload != undefined;
-							var params = {
-								page: "$page",
-								content: content,
-								index: $i,
-								type: "convene",
-								ticket: $('#convene-ticket').val(),
-								params: {
-									title: "$title",
-									calendarid: $calendarid,
-									minvotes: $minvotes
-								}
-							};
-							$.post($.service("plugin", "replace"), params, function() {
-								$.get($.service("wiki", "get_page", {page: "$page"}), function (data) {
-									// unset semaphore
-									$.getJSON($.service("semaphore", "unset"), {
-										object_type: jqueryTiki.current_object.type,
-										object_id: jqueryTiki.current_object.object
-									});
-									
-									if (needReload) {
-										history.go(0);
-									} else {
-										if (data) {
-											var newForm = $("#pluginConvene$i", data);
-											$("#pluginConvene$i", "#page-data").replaceWith(newForm);
-										}
-										initConvene$i();
-										$("#page-data").tikiModal();
-									}
-								});
-			
-							})
-							.fail(function (jqXHR) {
-								$("#tikifeedback").showError(jqXHR);
-							})
-							.always(function () {
-								$.getJSON($.service("semaphore", "unset"), {
-									object_type: jqueryTiki.current_object.type,
-									object_id: jqueryTiki.current_object.object
-								});
-								$("#page-data").tikiModal();
-							});
+								
 						}
-					});
-				}
-		}, $conveneData);
+					}
+				);
+			} else {
+				callback.apply(context);
+			}			
+		};
+		
+		// unset semaphore
+		var unlockPage = function () {
+			if (window.pageLocked) {
+				$.getJSON($.service("semaphore", "unset"), {
+					object_type: jqueryTiki.current_object.type,
+					object_id: jqueryTiki.current_object.object
+				}, function () {
+					window.pageLocked = false;
+				});
+			}
+		};
 
 		var initConvene$i = function () {
 			$('.conveneAddDate$i').click(function() {
@@ -495,52 +531,57 @@ FORM;
 
 			$('.conveneUpdateUser$i').click(function() {
 				if ($('.conveneDeleteUser$i:visible').length) {
-					$(this).find(".icon").popover("hide");
-					$('.conveneUpdateUser$i').not(this).hide();
-					$('.conveneDeleteUser$i').hide();
-					$('.conveneDeleteDate$i').hide();
-					$('.conveneMain$i').hide();
-					$(this).parent().parent()
-						.addClass('ui-state-highlight')
-						.find('td').not(':first')
-						.addClass('conveneTd$i')
-						.removeClass('ui-state-default')
-						.addClass('ui-state-highlight');
-	
-					$(this).find('.icon').setIcon("save");
-					var parent = $(this).parent().parent();
-					parent.find('.vote').hide();
-					parent.find('input').each(function() {
-						$('<select>' +
-							'<option value="">' + tr('Unconfirmed') + '</option>' +
-							'<option value="-1">' + tr('Not ok') + '</option>' +
-							'<option value="1">' + tr('Ok') + '</option>' +
-						'</select>')
-							.css({
-								position: "absolute",
-								left: 0,
-								bottom: 0
-							})
-							.val($(this).val())
-							.insertAfter(this)
-							.change(function() {
-								var cl = '';
-	
-								switch($(this).val() * 1) {
-									case 1:     cl = 'convene-ok';break;
-									case -1:    cl = 'convene-no';break;
-									default:    cl = 'convene-unconfirmed';
-								}
-	
-								$(this)
-									.parent()
-									.removeClass('convene-no convene-ok convene-unconfirmed')
-									.addClass(cl);
-	
-								convene$i.updateUsers = true;
-							}).
-							parent().css({position: "relative"});
-					});
+					var updateButton = $(this);
+					lockPage(function () {
+						
+						updateButton.find(".icon").popover("hide");
+						$('.conveneUpdateUser$i').not(updateButton).hide();
+						$('.conveneDeleteUser$i').hide();
+						$('.conveneDeleteDate$i').hide();
+						$('.conveneMain$i').hide();
+						updateButton.parent().parent()
+							.addClass('ui-state-highlight')
+							.find('td').not(':first')
+							.addClass('conveneTd$i')
+							.removeClass('ui-state-default')
+							.addClass('ui-state-highlight');
+		
+						updateButton.find('.icon').setIcon("save");
+						var parent = updateButton.parent().parent();
+						parent.find('.vote').hide();
+						parent.find('input').each(function() {
+							$('<select>' +
+								'<option value="">-</option>' +
+								'<option value="-1">' + tr('Not ok') + '</option>' +
+								'<option value="1">' + tr('Ok') + '</option>' +
+							'</select>')
+								.css({
+									position: "absolute",
+									left: 0,
+									bottom: 0
+								})
+								.val($(this).val())
+								.insertAfter($(this))
+								.change(function() {
+									var cl = '';
+		
+									switch($(this).val() * 1) {
+										case 1:     cl = 'convene-ok';break;
+										case -1:    cl = 'convene-no';break;
+										default:    cl = 'convene-unconfirmed';
+									}
+		
+									$(this)
+										.parent()
+										.removeClass('convene-no convene-ok convene-unconfirmed')
+										.addClass(cl);
+		
+									convene$i.updateUsers = true;
+								})
+								.parent().css({position: "relative"});
+						});
+						
+					}, this);
 				} else {
 					$('.conveneUpdateUser$i').show();
 					$('.conveneDeleteUser$i').show();
