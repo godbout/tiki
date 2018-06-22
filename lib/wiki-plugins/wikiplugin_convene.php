@@ -452,7 +452,7 @@ FORM;
 		
 		// set semaphore
 		var lockPage = function (callback, context, args) {
-			args = args || [];
+			var theArgs = args || [];
 			if (! window.pageLocked) {
 				$.getJSON($.service("semaphore", "is_set"), {
 						object_type: jqueryTiki.current_object.type,
@@ -469,14 +469,14 @@ FORM;
 								object_id: jqueryTiki.current_object.object
 							}, function () {
 								window.pageLocked = true;
-								callback.apply(context);
+								callback.apply(context, theArgs);
 							});
 								
 						}
 					}
 				);
 			} else {
-				callback.apply(context);
+				callback.apply(context, theArgs);
 			}			
 		};
 		
