@@ -69,6 +69,19 @@ function wikiplugin_convene_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'avatars' => [
+				'required' => false,
+				'name' => tra('Show user profile pictures'),
+				'description' => tra("Show user's profile pictures next to their names."),
+				'since' => '9.0',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
 		]
 	];
 }
@@ -80,6 +93,8 @@ function wikiplugin_convene($data, $params)
 	$tikilib = TikiLib::lib('tiki');
 	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_function_icon');
+	$smarty->loadPlugin('smarty_modifier_userlink');
+	$smarty->loadPlugin('smarty_modifier_avatarize');
 	// perms for this object
 	$currentObject = current_object();
 	$perms = Perms::get($currentObject);
@@ -97,6 +112,7 @@ function wikiplugin_convene($data, $params)
 			'minvotes'   => 3,
 			"dateformat" => 'short',
 			'adminperms' => 'y',
+			'avatars' => 'y',
 		],
 		$params
 	);
@@ -217,24 +233,33 @@ function wikiplugin_convene($data, $params)
 	foreach ($rows as $user => $row) {
 		$userList .= "<tr class='conveneVotes conveneUserVotes$i'>";
 		$editThisUser = $canAdmin || $user === $GLOBALS['user'];
-		$userList .= "<td style='white-space: nowrap'>" . ($editThisUser ? "<button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
+
+		if ($params['avatars'] === 'y') {
+			$avatar = " <div class='pull-right'>" . smarty_modifier_avatarize($user) . '</div>';
+			$rightPadding = 'padding-right: 45px';
+		} else {
+			$avatar = '';
+			$rightPadding = '';
+		}
+
+		$userList .= "<td style='white-space: nowrap'>" . $avatar . ($editThisUser ? "<button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
 				. smarty_function_icon(['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
 					. tr("Edit User/Save changes")], $smarty)
 				. "</button><button data-user='$user' title='" . tr("Delete User")
 				. "' class='conveneDeleteUser$i icon btn btn-danger btn-sm'>"
-				. smarty_function_icon(['name' => 'delete'], $smarty) . "</button> " : "") . TikiLib::lib('user')->clean_user($user) . "</td>";
+				. smarty_function_icon(['name' => 'delete'], $smarty) . "</button> " : "")
+				. "<div style='display:inline-block;$rightPadding'>" . smarty_modifier_userlink($user) . "</div></td>";
+
 		foreach ($row as $stamp => $vote) {
 			if ($vote == 1) {
-				$class = "convene-ok text-center label-success";
-				$text = smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':' . tr('OK')], $smarty);
+				$class = "convene-ok text-center text-success";
+				$text = smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':' . tr('OK'), 'size' => 2], $smarty);
 			} elseif ($vote == -1) {
-				$class = "convene-no text-center label-danger";
-				$text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':'
-					. tr('Not OK')], $smarty);
+				$class = "convene-no text-center text-danger";
+				$text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':' . tr('Not OK'), 'size' => 2], $smarty);
 			} else {
-				$class = "convene-unconfirmed text-center label-default";
-				$text = smarty_function_icon(['name' => 'help', 'iclass' => 'tips', 'ititle' => ':'
-					. tr('Unconfirmed')], $smarty);
+				$class = "convene-unconfirmed text-center text-muted";
+				$text = smarty_function_icon(['name' => 'help', 'iclass' => 'tips', 'ititle' => ':' . tr('Unconfirmed'), 'size' => 2], $smarty);
 			}
 
 			$userList .= "<td class='$class'>" . $text
@@ -274,8 +299,7 @@ function wikiplugin_convene($data, $params)
 	foreach ($votes as $stamp => $total) {
 		$pic = "";
 		if ($total == $votes[$topVoteStamp]) {
-			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':'
-					. tr("Selected Date")], $smarty) : "");
+			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips text-success', 'ititle' => ':' . tr("Selected Date"), 'size' => 2], $smarty) : "");
 			if ($canEdit && $votes[$topVoteStamp] >= $minvotes) {
 				$pic .= "<a class='btn btn-primary btn-sm' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
 					. tr("Add as Calendar Event") . "'>"
@@ -587,27 +611,36 @@ FORM;
 								'<option value="-1">' + tr('Not ok') + '</option>' +
 								'<option value="1">' + tr('Ok') + '</option>' +
 							'</select>')
-								.css({
-									position: "absolute",
-									left: 0,
-									bottom: 0
-								})
 								.val($(this).val())
 								.insertAfter($(this))
 								.change(function() {
-									var cl = '';
+									var cl = '', icon = '';
 		
 									switch($(this).val() * 1) {
-										case 1:     cl = 'convene-ok';break;
-										case -1:    cl = 'convene-no';break;
-										default:    cl = 'convene-unconfirmed';
+										case 1:  
+											cl = 'convene-ok text-success';
+											icon = 'ok';
+											break;
+										case -1:
+											cl = 'convene-no text-danger';
+											icon = 'remove';
+											break;
+										default:
+											cl = 'convene-unconfirmed text-muted';
+											icon = 'help';
 									}
 		
 									$(this)
 										.parent()
-										.removeClass('convene-no convene-ok convene-unconfirmed')
-										.addClass(cl);
-		
+										.removeClass('convene-no convene-ok convene-unconfirmed text-success text-danger text-muted')
+										.addClass(cl)
+										.find (".icon")
+											.setIcon(icon);
+									$(this)
+										.parent()
+										.find (".icon")
+										.addClass("fa-2x");
+									
 									convene$i.updateUsers = true;
 								})
 								.parent().css({position: "relative"});
