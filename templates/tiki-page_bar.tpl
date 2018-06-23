@@ -83,10 +83,6 @@
 				{/if}
 			{/if}
 
-			{if $prefs.feature_source eq 'y' and $tiki_p_wiki_view_source eq 'y'}
-				{button _keepall='y' _class="btn-info" href="tiki-pagehistory.php" page=$page source="0" _text="{tr}Source{/tr}"}
-			{/if}
-
 			{if $page|lower ne 'sandbox'}
 				{if $tiki_p_rename eq 'y' && (isset($editable) and $editable)}
 					{button _keepall='y' href="tiki-rename_page.php" page=$page _text="{tr}Rename{/tr}"}
@@ -105,6 +101,10 @@
 				{if $prefs.feature_history eq 'y' and $tiki_p_wiki_view_history eq 'y'}
 					{button _keepall='y' _class="btn-info" href="tiki-pagehistory.php" page=$page _text="{tr}History{/tr}"}
 				{/if}
+			{/if}
+
+			{if $prefs.feature_source eq 'y' and $tiki_p_wiki_view_source eq 'y'}
+				{button _keepall='y' _class="btn-info" href="tiki-pagehistory.php" page=$page source="0" _text="{tr}Source{/tr}"}
 			{/if}
 
 			{if $prefs.feature_wiki_comments eq 'y'
