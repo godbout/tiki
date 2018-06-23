@@ -78,7 +78,7 @@ db/web.config -text
 doc/.htaccess -text
 doc/devtools/20160715_trim50_tracker_permanent_names_for_mysqlfts_tiki.sql -text
 doc/devtools/README.txt -text
-doc/devtools/TikiCodeStyePhpStorm2018.xml -text
+doc/devtools/TikiCodeStyleSettingsPhpStorm.xml -text
 doc/devtools/add1tiki2multi.py -text
 doc/devtools/addonrename.sh -text
 doc/devtools/backup.php -text
