@@ -68,7 +68,7 @@
 				{/if}
 				<input
 					type="submit"
-					class="btn btn-primary btn-sm pull-right"
+					class="btn btn-danger btn-sm pull-right"
 					name="delete"
 					value="{tr}Delete{/tr}"
 					onclick="confirmSimple(event, '{tr}Delete archive message?{/tr}')"

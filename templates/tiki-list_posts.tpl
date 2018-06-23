@@ -71,7 +71,7 @@
 							{$libeg}<a href="tiki-blog_post.php?blogId={$posts[changes].blogId}&postId={$posts[changes].postId}">
 								{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 							</a>{$liend}
-							{$libeg}<a href="tiki-list_posts.php?{if isset($blogId)}blogId={$blogId}&amp;{/if}offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$posts[changes].postId}" title=":{tr}Delete{/tr}">
+							{$libeg}<a href="tiki-list_posts.php?{if isset($blogId)}blogId={$blogId}&amp;{/if}offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$posts[changes].postId}" class="text-danger" title=":{tr}Delete{/tr}">
 								{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 							</a>{$liend}
 						{/strip}
@@ -101,7 +101,7 @@
 		<div class="form-group row">
 			<label for="remove" class="col-form-label">{tr}Perform action with selected{/tr}</label>
 			<div class="input-group col-sm-4">
-				<select name="remove" class="form-control">
+				<select name="remove" class="form-control text-danger">
 					<option value="y">{tr}Delete{/tr}</option>
 				</select>
 				<div class="input-group-btn">

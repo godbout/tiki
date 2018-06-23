@@ -171,7 +171,7 @@
 											{tr}Translate{/tr}
 										</button>
 										{if $action eq 'edit_tran_sw' && isset($item.changed)}
-											<button type="submit" class="btn btn-warning btn-sm tips" name="del_tran_{$smarty.foreach.translations.index}" title=":{tr}Delete translation from the database{/tr}">
+											<button type="submit" class="btn btn-danger btn-sm tips" name="del_tran_{$smarty.foreach.translations.index}" title=":{tr}Delete translation from the database{/tr}">
 												{tr}Delete{/tr}
 											</button>
 										{/if}
@@ -224,10 +224,10 @@
 				{if !empty($translations)}
 					<input type="submit" class="btn btn-primary" name="translate_all" value="{tr}Translate all{/tr}">
 					{if $action eq 'edit_rec_sw' && $hasDbTranslations == true && $only_db_untranslated eq 'y'}
-						<input type="submit" class="btn btn-warning btn-sm" name="tran_reset" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all untranslated strings from database?{/tr}')">
+						<input type="submit" class="btn btn-danger btn-sm" name="tran_reset" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all untranslated strings from database?{/tr}')">
 					{/if}
 					{if $action eq 'edit_tran_sw' && $only_db_translations eq 'y' && $tiki_p_admin eq 'y'}
-						<input type="submit" class="btn btn-warning btn-sm" name="delete_all" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all translations from database?{/tr}')">
+						<input type="submit" class="btn btn-danger btn-sm" name="delete_all" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all translations from database?{/tr}')">
 					{/if}
 				{/if}
 			</div>

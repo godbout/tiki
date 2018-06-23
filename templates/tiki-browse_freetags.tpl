@@ -170,7 +170,7 @@
 						</td>
 						{if $tiki_p_unassign_freetags eq 'y' or $tiki_p_admin eq 'y'}
 							<td>
-								<a href="tiki-browse_freetags.php?del=1&amp;tag={$tag}{if $type}&amp;type={$type|escape:'url'}{/if}&amp;typeit={$objects[ix].type|escape:'url'}&amp;itemit={$objects[ix].name|escape:'url'}" title=":{tr}Delete Tag{/tr}" class="tips">
+								<a href="tiki-browse_freetags.php?del=1&amp;tag={$tag}{if $type}&amp;type={$type|escape:'url'}{/if}&amp;typeit={$objects[ix].type|escape:'url'}&amp;itemit={$objects[ix].name|escape:'url'}" title=":{tr}Delete Tag{/tr}" class="tips text-danger">
 									{icon name="delete"}
 								</a>
 							</td>

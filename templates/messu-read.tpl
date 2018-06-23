@@ -105,7 +105,7 @@
 				{/if}
 				<input
 					type="submit"
-					class="btn btn-warning btn-sm pull-right"
+					class="btn btn-danger btn-sm pull-right"
 					name="delete"
 					value="{tr}Delete{/tr}"
 					onclick="confirmSimple(event, '{tr}Delete message?{/tr}')"

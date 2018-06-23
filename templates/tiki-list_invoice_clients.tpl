@@ -31,7 +31,7 @@
 
 						{button href="tiki-invoice_edit_client_contact.php?contact=$contactId" _text="{tr}View{/tr}"}
 						{button href="tiki-invoice_edit_client_contact.php?contact=$contactId" _text="{tr}Edit{/tr}"}
-						{button href="tiki-invoice_edit_client_contact.php?contact=$contactId" _text="{tr}Delete{/tr}"}
+						{button href="tiki-invoice_edit_client_contact.php?contact=$contactId" _text="{tr}Delete{/tr}" _class="btn btn-danger"}
 					</td>
 					<td style='width: 50%;'>
 						{button href="tiki-invoice_edit_client_contact.php" _text="{tr}New Contact{/tr}"}<br>
@@ -43,7 +43,7 @@
 								<br>
 								{button href="tiki-invoice_edit_client_contact.php?contact=$contactId" _text="{tr}View{/tr}"}
 								{button href="tiki-invoice_edit_client_contact.php?contact=$contactId" _text="{tr}Edit{/tr}"}
-								{button href="tiki-invoice_edit_client_contact.php?contact=$contactId" _text="{tr}Delete{/tr}"}
+								{button href="tiki-invoice_edit_client_contact.php?contact=$contactId" _text="{tr}Delete{/tr}" _class="btn btn-danger"}
 								<hr>
 							{/if}
 						{/foreach}

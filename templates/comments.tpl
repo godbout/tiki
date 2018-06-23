@@ -59,7 +59,7 @@
 							formaction="{bootstrap_modal controller=forum action=delete_topic}"
 							title=":{tr}Delete{/tr}"
 							form="comment-form"
-							class="btn btn-primary btn-sm tips"
+							class="btn btn-danger btn-sm tips"
 							onclick="confirmAjax(event)"
 						>
 							{icon name="remove"}

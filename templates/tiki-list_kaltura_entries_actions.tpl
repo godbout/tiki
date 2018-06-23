@@ -23,7 +23,7 @@
 		{/if}
 	{/if}
 	{if $tiki_p_delete_videos eq 'y' or $tiki_p_admin_kaltura eq 'y' or $tiki_p_admin eq 'y'}
-		<a href="tiki-kaltura_video.php?{$entryType}Id={$item->id}&action=delete" class ="iconmenu" >
+		<a href="tiki-kaltura_video.php?{$entryType}Id={$item->id}&action=delete" class ="iconmenu text-danger" >
 			{icon name="delete" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 		</a>
 	{/if}

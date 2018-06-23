@@ -176,7 +176,7 @@
 	</div>
 	{if $items}
 		{tr}Perform action with selected:{/tr}
-		<input type="submit" class="btn btn-primary btn-sm" name="groupdel" value=" {tr}Delete{/tr} ">
+		<input type="submit" class="btn btn-danger btn-sm" name="groupdel" value=" {tr}Delete{/tr} ">
 	{/if}
 </form>
 {pagination_links cant=$cant_pages step=$prefs.maxRecords offset=$offset}{/pagination_links}

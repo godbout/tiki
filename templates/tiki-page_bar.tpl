@@ -4,20 +4,20 @@
 		{if $page|lower ne 'sandbox'}
 			{if $tiki_p_remove eq 'y' && (isset($editable) and $editable)}
 				<li class="dropdown-item">
-					<a class="btn btn-link" href="{bootstrap_modal controller=wiki action=remove_pages checked=$page version='last'}">
+					<a class="btn text-danger btn-link" href="{bootstrap_modal controller=wiki action=remove_pages checked=$page version='last'}">
 						{tr}Remove{/tr}
 					</a>
 				</li>
 			{/if}
 			{if $tiki_p_admin_wiki eq 'y' or $tiki_p_assign_perm_wiki_page eq 'y'}
-				<li class="dropdown-item">{permission_link mode=link type="wiki page" id=$page permType=wiki title=$page}</li>
+				<li class="dropdown-item">{permission_link mode=link type="wiki page" _class="btn-link btn-primary" id=$page permType=wiki title=$page}</li>
 			{/if}
 			{if $prefs.feature_page_contribution eq 'y' and $tiki_p_page_contribution_view eq 'y'}
 				<li class="dropdown-item">{button _keepall='y' href="tiki-page_contribution.php" page=$page _type="link" _text="{tr}Contributions by author{/tr}"}</li>
 			{/if}
 		{/if}
 		{if $prefs.feature_likePages eq 'y' and $tiki_p_wiki_view_similar eq 'y'}
-			<li class="dropdown-item">{button _keepall='y' href="tiki-likepages.php" page=$page _type="link" _text="{tr}Similar{/tr}"}</li>
+			<li class="dropdown-item">{button _keepall='y' href="tiki-likepages.php" page=$page _type="link" _class="text-info" _text="{tr}Similar{/tr}"}</li>
 		{/if}
 
 		{if $prefs.feature_wiki_undo eq 'y' and $canundo eq 'y'}

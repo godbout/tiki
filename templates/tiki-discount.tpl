@@ -39,7 +39,7 @@
 								{$libeg}{self_link id=$discount.id cookietab=2 _icon_name='edit' _menu_text='y' _menu_icon='y'}
 									{tr}Edit{/tr}
 								{/self_link}{$liend}
-								{$libeg}{self_link del=$discount.id _icon_name='edit' _menu_text='y' _menu_icon='y'}
+								{$libeg}{self_link del=$discount.id _icon_name='edit' _menu_text='y' _menu_icon='y' _class='text-danger'}
 									{tr}Delete{/tr}
 								{/self_link}{$liend}
 							{/strip}

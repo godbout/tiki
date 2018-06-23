@@ -50,7 +50,7 @@
 				<td><input class="form-control" type="text" name="total_amount" value="" size="6"></td>
 			</tr>
 			<tr>
-				<td colspan="5"><input class="btn btn-primary" type="submit" name="save" value="{tr}Save{/tr}" style="display:none;"><input class="btn btn-primary" type="submit" name="confirm" value="{tr}Delete Checked{/tr}"></td>
+				<td colspan="5"><input class="btn btn-primary" type="submit" name="save" value="{tr}Save{/tr}" style="display:none;"><input class="btn btn-danger" type="submit" name="confirm" value="{tr}Delete Checked{/tr}"></td>
 				<td colspan="1"><input class="btn btn-primary" type="submit" name="save" value="{tr}Save{/tr}"><input type="hidden" name="userfilter" value="{$userfilter|escape}"></td>
 			</tr>
 		</table>

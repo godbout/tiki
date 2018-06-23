@@ -37,14 +37,14 @@
 				<input type="submit" class="btn btn-primary btn-sm" name="list" value="{tr}Show Usage{/tr}">
 				<input
 					type="submit"
-					class="btn btn-warning btn-sm"
+					class="btn btn-danger btn-sm"
 					name="remove"
 					value="{tr}Delete{/tr}"
 					onclick="checkTimeout()"
 				>
 				<input
 					type="submit"
-					class="btn btn-warning btn-sm"
+					class="btn btn-danger btn-sm"
 					name="removeclean"
 					value="{tr}Delete &amp; Unreference{/tr}"
 					onclick="checkTimeout()"

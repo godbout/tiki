@@ -240,7 +240,7 @@
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 			{if $eventId}
-				<input type="submit" class="btn btn-warning btn-sm" name="remove2" value="{tr}Delete{/tr}">
+				<input type="submit" class="btn btn-danger btn-sm" name="remove2" value="{tr}Delete{/tr}">
 			{/if}
 		</div>
 	</div>

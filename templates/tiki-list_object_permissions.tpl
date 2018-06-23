@@ -77,7 +77,7 @@
 										{tr}Delete{/tr}
 									</label>
 									<div class="col-lg-2">
-										<button class="btn btn-primary" name="delete" value="delete">
+										<button class="btn btn-danger" name="delete" value="delete">
 											{tr}OK{/tr}
 										</button>
 									</div>
@@ -146,7 +146,7 @@
 									{tr}Delete{/tr}
 								</label>
 								<div class="col-lg-2">
-									<button class="btn btn-primary" name="delete" value="delete">
+									<button class="btn btn-danger" name="delete" value="delete">
 										{tr}OK{/tr}
 									</button>
 								</div>

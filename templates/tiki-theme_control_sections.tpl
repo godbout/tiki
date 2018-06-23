@@ -30,7 +30,7 @@
 		<table class="table">
 			<tr>
 				<th>
-					<button type="submit" class="btn btn-warning btn-sm" name="delete" title="{tr}Delete selected{/tr}">
+					<button type="submit" class="btn btn-danger btn-sm" name="delete" title="{tr}Delete selected{/tr}">
 						{icon name="delete"}
 					</button>
 				</th>

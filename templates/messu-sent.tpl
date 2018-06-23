@@ -54,7 +54,7 @@
 	<input type="hidden" name="priority" value="{$priority|escape}">
 	<input
 		type="submit"
-		class="btn btn-primary btn-sm"
+		class="btn btn-danger btn-sm"
 		name="delete"
 		value="{tr}Delete{/tr}"
 		onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"

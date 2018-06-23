@@ -174,7 +174,7 @@
 													{$libeg}{self_link _icon_name='edit' accountId=$pubAccounts[ixp].accountId _menu_text='y' _menu_icon='y'}
 												{tr}Edit{/tr}
 												{/self_link}{$liend}
-													{$libeg}{self_link _icon_name='delete' remove=$pubAccounts[ixp].accountId _menu_text='y' _menu_icon='y'}
+													{$libeg}{self_link _icon_name='delete' _class='text-danger' remove=$pubAccounts[ixp].accountId _menu_text='y' _menu_icon='y'}
 												{tr}Delete{/tr}
 												{/self_link}{$liend}
 												{/if}
@@ -446,7 +446,7 @@
 	<form action="tiki-webmail.php" method="post" name="mailb">
 		<div class="row form-group row">
 			<div class="col-sm-1">
-				<input type="submit" class="btn btn-warning btn-sm" name="delete" value="{tr}Delete{/tr}">
+				<input type="submit" class="btn btn-danger btn-sm" name="delete" value="{tr}Delete{/tr}">
 				<input type="hidden" name="quickFlag" value="">
 				<input type="hidden" name="quickFlagMsg" value="">
 				<input type="hidden" name="locSection" value="mailbox">
@@ -545,7 +545,7 @@
 		<tr>
 			<td>
 				<form method="post" action="tiki-webmail.php">
-					<input type="submit" class="btn btn-warning btn-sm" name="delete_one" value="{tr}Delete{/tr}">
+					<input type="submit" class="btn btn-danger btn-sm" name="delete_one" value="{tr}Delete{/tr}">
 					{if $next}
 						<input type="hidden" name="locSection" value="read">
 						<input type="hidden" name="msgid" value="{$next|escape}">

@@ -50,7 +50,7 @@
 						{icon name='cog' _menu_text='y' _menu_icon='y' alt="{tr}Configure{/tr}"}
 					</a>{$liend}
 					{$libeg}<a class="gallink" href="tiki-sheets.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;removesheet=y&amp;sheetId={$sheet.sheetId}">
-						{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+						{icon name='remove' _class='text-danger' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 					</a>{$liend}
 				{/if}
 			{/strip}

@@ -34,7 +34,7 @@
 			<div class="col-sm-9 col-sm-offset-3">
 				<input type="submit" class="btn btn-primary btn-sm" name="editcopyright" value="{tr}Edit{/tr}">
 
-				<a class="tips" title=":{tr}Delete{/tr}" href="copyrights.php?page={$page|escape:"url"}&amp;action=delete&amp;copyrightId={$copyrights[i].copyrightId}" >
+				<a class="tips text-danger" title=":{tr}Delete{/tr}" href="copyrights.php?page={$page|escape:"url"}&amp;action=delete&amp;copyrightId={$copyrights[i].copyrightId}" >
 					{icon name='remove' alt="{tr}Remove{/tr}"}
 				</a>
 				<a class="tips" title=":{tr}Up{/tr}" href="copyrights.php?page={$page|escape:"url"}&amp;action=up&amp;copyrightId={$copyrights[i].copyrightId}">

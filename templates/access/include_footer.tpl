@@ -6,7 +6,7 @@
 		<input
 			type='submit'
 			form="confirm-action"
-			class="btn {if !empty($confirmButtonClass)}{$confirmButtonClass}{else}btn-secondary{/if}"
+			class="btn {if !empty($confirmButtonClass)}{$confirmButtonClass}{else}btn-warning{/if}"
 			value="{if !empty($confirmButton)}{$confirmButton}{else}{tr}OK{/tr}{/if}"
 			onclick="confirmAction(event)"
 		>

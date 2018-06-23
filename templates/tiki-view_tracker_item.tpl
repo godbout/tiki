@@ -250,7 +250,7 @@
 										{/if}
 
 										{if $canRemove}
-											<a class="btn btn-primary btn-sm" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title="{tr}Delete{/tr}">{icon name='delete' alt="{tr}Delete{/tr}"}</a>
+											<a class="btn btn-danger btn-sm" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title="{tr}Delete{/tr}">{icon name='delete' alt="{tr}Delete{/tr}"}</a>
 										{/if}
 									{/if}
 								{/if}
@@ -330,7 +330,7 @@
 								{/if}
 
 								{if $canRemove}
-									<a class="link tips" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title=":{tr}Delete{/tr}">
+									<a class="link tips text-danger" href="tiki-view_tracker.php?trackerId={$trackerId}&amp;remove={$itemId}" title=":{tr}Delete{/tr}">
 										{icon name='remove'}
 									</a>
 								{/if}

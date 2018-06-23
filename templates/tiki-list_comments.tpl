@@ -64,7 +64,7 @@
 						</a>{$liend}
 					{/if}
 				{/if}
-				{$libeg}<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete comment?{/tr}', '{ticket mode=get}')">
+				{$libeg}<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete comment?{/tr}', '{ticket mode=get}')" class="text-danger">
 					{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 				</a>{$liend}
 			{/strip}

@@ -2,7 +2,7 @@
 
 <div class="t_navbar mb-4">
 	{button href="tiki-edit_submission.php" class="btn btn-primary" _icon_name="create" _text="{tr}New Submission{/tr}"}
-	{button href="tiki-list_submissions.php?deleteexpired=y" _icon_name="delete" _text="{tr}Delete Expired Submissions{/tr}" _title="{tr}Deletes expired submissions 1000 at a time to avoid timeouts{/tr}"}
+	{button href="tiki-list_submissions.php?deleteexpired=y" _class="btn btn-danger" _icon_name="delete" _text="{tr}Delete Expired Submissions{/tr}" _title="{tr}Deletes expired submissions 1000 at a time to avoid timeouts{/tr}"}
 	{if $tiki_p_read_article eq 'y'}
 		{button href="tiki-list_articles.php" class="btn btn-primary" _icon_name="list" _text="{tr}List Articles{/tr}"}
 	{/if}

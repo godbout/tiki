@@ -174,7 +174,7 @@
 								<tr>
 									<td>
 										<input type="submit" class="btn btn-primary btn-sm" name="loadtemplate" value="{$template->name|escape}" title="{tr}Edit{/tr}">
-										{icon name='delete' title='{tr}Delete{/tr}' href='tiki-admin_webservices.php?name='|cat:($storedName|escape)|cat:'&deletetemplate='|cat:($template->name|escape)}
+										{icon name='delete' class='text-danger' title='{tr}Delete{/tr}' href='tiki-admin_webservices.php?name='|cat:($storedName|escape)|cat:'&deletetemplate='|cat:($template->name|escape)}
 									</td>
 									<td>{$template->engine|escape}</td>
 									<td>{$template->output|escape}</td>
