@@ -132,7 +132,9 @@
 									{permission_link mode=text type=calendar id=$id title=$cal.name}
 								</action>
 								<action>
-									<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;drop={$id}&amp;calendarId={$id}">
+									<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;drop={$id}&amp;calendarId={$id}"
+										onclick="confirmSimple(event, '{tr}Delete calendar?{/tr}', '{ticket mode=get}')"
+									>
 										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 									</a>
 								</action>
@@ -473,7 +475,14 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<input type="submit" class="btn btn-warning col-sm-offset-3" name="clean" value="{tr}Delete{/tr}">				</div>
+					<input
+						type="submit"
+						class="btn btn-warning col-sm-offset-3"
+						name="clean"
+						value="{tr}Delete{/tr}"
+						onclick="confirmSimple(event, '{tr}Delete old events?{/tr}', '{ticket mode=get}')"
+					>
+				</div>
 			</fieldset>
 		</form>
 	{/tab}

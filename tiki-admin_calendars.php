@@ -31,13 +31,16 @@ if (! isset($_REQUEST["calendarId"])) {
 		$access->display_error('', tra('Permission denied') . ": " . 'tiki_p_admin_calendar', '403');
 	}
 }
-if (isset($_REQUEST["drop"])) {
-	$access->check_authenticity();
-	$calendarlib->drop_calendar($_REQUEST['calendarId']);
+if (isset($_REQUEST["drop"]) && $access->checkCsrfForm(tra('Delete calendar?'))) {
+	$result = $calendarlib->drop_calendar($_REQUEST['calendarId']);
+	if ($result->numRows()) {
+		Feedback::success(tr('Calendar %0 deleted', (int) $_REQUEST['calendarId']));
+	} else {
+		Feedback::error(tr('Calendar %0 not deleted', (int) $_REQUEST['calendarId']));
+	}
 	$_REQUEST["calendarId"] = 0;
 }
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-calendars');
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	$customflags["customlanguages"] = $_REQUEST["customlanguages"];
 	$customflags["customlocations"] = $_REQUEST["customlocations"];
 	$customflags["customparticipants"] = $_REQUEST["customparticipants"];
@@ -121,9 +124,15 @@ if (isset($_REQUEST["save"])) {
 	$cookietab = 1;
 	$_REQUEST['calendarId'] = 0;
 }
-if (isset($_REQUEST['clean']) && isset($_REQUEST['days'])) {
-	check_ticket('admin-calendars');
-	$calendarlib->cleanEvents($_REQUEST['calendarId'], $_REQUEST['days']);
+if (isset($_REQUEST['clean']) && isset($_REQUEST['days']) && $access->checkCsrfForm(tra('Delete old events?'))) {
+	$result = $calendarlib->cleanEvents($_REQUEST['calendarId'], $_REQUEST['days']);
+	if ($result->numRows() === 1) {
+		Feedback::success(tra('One calendar event deleted'));
+	} elseif ($result->numRows() === 0) {
+		Feedback::note(tra('No calendar events deleted'));
+	} else {
+		Feedback::success(tr('%0 calendar events deleted', $result->numRows()));
+	}
 }
 if ($prefs['feature_categories'] == 'y') {
 	$cat_type = 'calendar';
@@ -268,7 +277,6 @@ $days_names = [
 ];
 $smarty->assign('days_names', $days_names);
 include_once('tiki-section_options.php');
-ask_ticket('admin-calendars');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

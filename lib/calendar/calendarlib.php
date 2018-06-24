@@ -228,7 +228,7 @@ class CalendarLib extends TikiLib
 		$categlib->uncategorize_object('calendar', $calendarId);
 		// now remove the calendar itself:
 		$query = "delete from `tiki_calendars` where `calendarId`=?";
-		$this->query($query, [$calendarId]);
+		$dropResult = $this->query($query, [$calendarId]);
 
 		TikiLib::events()->trigger('tiki.calendar.delete', [
 			'type' => 'calendar',
@@ -237,6 +237,7 @@ class CalendarLib extends TikiLib
 		]);
 
 		$transaction->commit();
+		return $dropResult;
 	}
 
 	/* tsart ans tstop are in user time - the data base is in server time */
@@ -1075,6 +1076,7 @@ class CalendarLib extends TikiLib
 	/**
 	 * @param $calendarId
 	 * @param $days
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function cleanEvents($calendarId, $days)
 	{
@@ -1086,7 +1088,8 @@ class CalendarLib extends TikiLib
 			$bindvars[] = $calendarId;
 		}
 		$query = "delete from `tiki_calendar_items` where " . implode(' and ', $mid);
-		$tikilib->query($query, $bindvars);
+		$result = $tikilib->query($query, $bindvars);
+		return $result;
 	}
 
 	/**
