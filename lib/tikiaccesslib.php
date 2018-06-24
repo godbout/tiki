@@ -297,7 +297,7 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * CSRF protection - set the ticket
+	 * CSRF protection - set the ticket on the server and as a smarty template variable
 	 *
 	 * Called by the smarty function {ticket}, which should be placed in all forms with actions that change the
 	 * database
@@ -313,6 +313,9 @@ class TikiAccessLib extends TikiLib
 	 * CSRF protection - This method performs two checks: that the origin matches the tiki site and that the ticket
 	 * is valid (i.e., the ticket submitted in the form matches a ticket on the server that has not expired).
 	 *
+	 * This method does not stop execution upon failure of one of the checks, instead it returns false, so the
+	 * executing code should be made conditional on the result of this method
+	 *
 	 * Typically called at the point of determining whether to perform a state-changing action that does not require
 	 * confirmation, for example:
 	 * if ($_POST['create'] && $access->checkCsrf()) {
@@ -322,8 +325,8 @@ class TikiAccessLib extends TikiLib
 	 * Call after checking the $_POST variable otherwise other $_GET requests will throw errors.
 	 * The related submit element (usually in a smarty template) should use the checkTimeout() onclick function
 	 *
-	 * @param string $error 			Used in csrfError() method
-	 * @return bool
+	 * @param string $error 	Used in csrfError() method
+	 * @return bool				Returns true if both checks match, false if either fails
 	 * @throws Exception
 	 * @throws Services_Exception
 	 */
@@ -363,9 +366,9 @@ class TikiAccessLib extends TikiLib
 	 * will generate the confirmation form in a popup if javascript is enabled. If javascript is not enabled, this
 	 * function will redirect to a confirmation page.
 	 *
-	 * @param string $confirmText
-	 * @param string $error
-	 * @return bool
+	 * @param string $confirmText		Optional confirmation text. Default is "Confirm action"
+	 * @param string $error				Used in csrfError
+	 * @return bool						Returns true if both checks match, false if either fails
 	 * @throws Exception
 	 * @throws Services_Exception
 	 */
@@ -399,6 +402,8 @@ class TikiAccessLib extends TikiLib
 
 	/**
 	 * CSRF protection - Perform origin check to ensure the requesting server matches this server
+	 *
+	 * Sets the originMatch property to true or false depending on the result of the check
 	 *
 	 * @return void
 	 */
@@ -456,6 +461,8 @@ class TikiAccessLib extends TikiLib
 	/**
 	 * CSRF protection - Perform ticket check to ensure ticket in the $_POST variable matches the one stored on the
 	 * server and that the ticket has not expired.
+	 *
+	 * Sets the ticketMatch property to true or false depending on the result of the check
 	 */
 	private function ticketCheck()
 	{
@@ -491,8 +498,8 @@ class TikiAccessLib extends TikiLib
 	 * Check http origin/referer and provide error feedback if it doesn't match the site domain
 	 * Differs from checkCsrf() in that only the origin/referer is checked, not a ticket
 	 *
-	 * @param string $error Used in csrfError() method
-	 * @return bool
+	 * @param string $error		Used in csrfError() method
+	 * @return bool				Returns true if origin check matches, false if not
 	 * @throws Exception
 	 * @throws Services_Exception
 	 */
@@ -509,7 +516,7 @@ class TikiAccessLib extends TikiLib
 
 	/**
 	 * Generate tiki log entry and user feedback for CSRF errors
-	 * @param string $error
+	 * @param string $error		Used in csrfError() method
 	 * @throws Exception
 	 * @throws Services_Exception
 	 */
@@ -544,7 +551,7 @@ class TikiAccessLib extends TikiLib
 	/**
 	 * CSRF ticket - Check that the ticket has been created
 	 *
-	 * @return bool
+	 * @return bool		Returns true if ticket has been set, false if not
 	 */
 	public function ticketSet()
 	{
@@ -554,7 +561,7 @@ class TikiAccessLib extends TikiLib
 	/**
 	 * CSRF ticket - Check that the ticket has been matched to the previous ticket set
 	 *
-	 * @return bool
+	 * @return bool		Returns true if the request ticket matches the server ticket and is not expired, false if not
 	 */
 	public function ticketMatch()
 	{
@@ -564,7 +571,7 @@ class TikiAccessLib extends TikiLib
 	/**
 	 * CSRF origin check - Check that origin matches the server
 	 *
-	 * @return bool
+	 * @return bool		Returns true if the request origin matches the origin of the server, false if not
 	 */
 	private function originMatch()
 	{
@@ -572,9 +579,9 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * CSRF origin check - Check that origin matches the server
+	 * Check that the request method is POST
 	 *
-	 * @return bool
+	 * @return bool		Returns true if the request method is POST, false if not
 	 */
 	function requestIsPost()
 	{
@@ -582,9 +589,9 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * CSRF ticket - Ensure there either wasn't a ticket match performed or that such a match didn't fail
+	 * CSRF ticket - Return results of ticket and origin match
 	 *
-	 * @return bool
+	 * @return bool		Returns true if both matches were successful, false if not
 	 */
 	public function csrfResult()
 	{
@@ -592,21 +599,9 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * CSRF ticket - If wasn't a ticket match performed or that such a match didn't fail
-	 *
-	 * @return bool
-	 * @throws Services_Exception
-	 */
-	public function verifyOrCheckCsrf()
-	{
-		return $this->csrfResult() || $this->checkCsrf();
-	}
-
-
-	/**
 	 * CSRF ticket - Get the ticket
 	 *
-	 * @return bool
+	 * @return mixed	Returns the ticket if set, false if not
 	 */
 	public function getTicket()
 	{
@@ -617,6 +612,11 @@ class TikiAccessLib extends TikiLib
 		}
 	}
 
+	/**
+	 * Check that the request is POST and includes a ticket
+	 *
+	 * @return bool		Returns true if the request is post and the request includes a ticket, false if not
+	 */
 	public function isActionPost()
 	{
 		return ($this->requestIsPost() && !empty($_POST['ticket']));
