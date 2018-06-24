@@ -11,11 +11,6 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-if (! empty($_POST['clearTickets']) && $access->checkCsrf()) {
-	$_SESSION['tickets'] = [];
-	Feedback::success(tra('Server security tickets have been deleted'));
-}
-
 TikiLib::lib('smarty')->assign('openssl_available', extension_loaded('openssl'));
 
 if ($prefs['feature_user_encryption'] == 'y') {
