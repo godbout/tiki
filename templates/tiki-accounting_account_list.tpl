@@ -37,35 +37,40 @@
 			<td>{$a.accountTax}</td>
 			{if $tiki_p_acct_manage_accounts=='y'}
 				<td class="action">
-					{capture name=account_actions}
+					{actions}
 						{strip}
-							{$libeg}<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=edit" class="iconmenu">
-								{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit account{/tr}"}
-							</a>{$liend}
-							{$libeg}<form action="tiki-accounting_account.php" class="form-inline" method="post">
-								<input type="hidden" name="accountId" value="{$a.accountId|escape:'attr'}">
-								<input type="hidden" name="bookId" value="{$bookId|escape:'attr'}">
-								{ticket}
-								{* doesn't need to be confirmed since action is easily undone, but need to check for ticket expiry *}
-								<button name="action" value="lock" type="submit" class="btn btn-link iconmenu" onclick="checkTimeout()">
-									{if $a.accountLocked==1}
-										{icon name="unlock"  _menu_text='y' _menu_icon='y' alt="{tr}Unlock account{/tr}"}
-									{else}
-										{icon name="lock"  _menu_text='y' _menu_icon='y' alt="{tr}Lock account{/tr}"}
-									{/if}
-								</button>{$liend}
-							</form>{$liend}
-							{$libeg}<form action="tiki-accounting_account.php" class="form-inline" method="post">
-								<input type="hidden" name="accountId" value="{$a.accountId|escape:'attr'}">
-								<input type="hidden" name="bookId" value="{$bookId|escape:'attr'}">
-								{ticket}
-								<button name="action" value="delete" type="submit" class="btn btn-link iconmenu" onclick="confirmSimple(event, '{tr _0="{$a.accountName|escape}" _1="{$book.bookName|escape}"}Delete account %0 from book %1?{/tr}')">
-									{icon name="remove"  _menu_text='y' _menu_icon='y' alt="{tr}Remove account{/tr}"}
-								</button>
-							</form>{$liend}
+							<action>
+								<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=edit" class="iconmenu">
+									{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit account{/tr}"}
+								</a>
+							</action>
+							<action>
+								{if $a.accountLocked==1}
+									{$iconName = 'unlock'}
+									{$iconLabel = "{tr}Unlock account{/tr}"}
+									{$confirmMsg = "{tr}Unlock account?{/tr}"}
+								{else}
+									{$iconName = 'lock'}
+									{$iconLabel = "{tr}Lock account{/tr}"}
+									{$confirmMsg = "{tr}Lock account?{/tr}"}
+								{/if}
+								<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=lock"
+									class="iconmenu"
+									onclick="confirmSimple(event, '{$confirmMsg}', '{ticket mode=get}')"
+								>
+									{icon name="$iconName"  _menu_text='y' _menu_icon='y' alt="$iconLabel"}
+								</a>
+							</action>
+							<action>
+								<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=delete"
+									class="iconmenu"
+									onclick="confirmSimple(event, '{tr}Remove account?{/tr}', '{ticket mode=get}')"
+								>
+									{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove account{/tr}"}
+								</a>
+							</action>
 						{/strip}
-					{/capture}
-					{include file="templates/includes/tiki-actions_link.tpl" capturedActions="account_actions"}
+					{/actions}
 				</td>
 			{/if}
 		</tr>

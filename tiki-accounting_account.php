@@ -134,17 +134,21 @@ if (! empty($_REQUEST['action'])) {
 			break;
 		case 'lock':
 			$account = $accountinglib->getAccount($bookId, $accountId, true);
-			if ($access->checkCsrf()) {
-				$locked = $accountinglib->changeAccountLock($bookId, $accountId);
-				if ($locked) {
-					Feedback::success(tr('Account %0 in book %1 successfully locked', $account['accountName'], $bookId)
-					);
+			if ($account['accountLocked']) {
+				$successMsg = tr('Account %0 in book %1 unlocked', $account['accountName'], $bookId);
+				$errorMsg = tr('Account %0 in book %1 not unlocked', $account['accountName'], $bookId);
+				$confirmMsg = tra('Unlock account?');
+			} else {
+				$successMsg = tr('Account %0 in book %1 locked', $account['accountName'], $bookId);
+				$errorMsg = tr('Account %0 in book %1 not locked', $account['accountName'], $bookId);
+				$confirmMsg = tra('Lock account?');
+			}
+			if ($access->checkCsrfForm($confirmMsg)) {
+				$result = $accountinglib->changeAccountLock($bookId, $accountId);
+				if ($result) {
+					Feedback::success($successMsg);
 				} else {
-					Feedback::error(tr(
-							'Account %0 in book %1 not locked',
-							$account['accountName'],
-							$bookId)
-					);
+					Feedback::error($errorMsg);
 				}
 			}
 			$smarty->assign('account', $account);
