@@ -25,17 +25,7 @@
 		<h2>{tr}Calendars{/tr}</h2>
 
 		{include file='find.tpl' find_in="<ul><li>{tr}Calendar name{/tr}</li></ul>"}
-		{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
-		<div class="table-responsive">
+		<div {if $js}class="table-responsive"{/if}>
 		<table class="table table-striped table-hover">
 			<tr>
 				<th>
@@ -58,16 +48,19 @@
 						{tr}Participants{/tr}
 					</a>
 				</th>
+{* Table is too wide, causing problems with the action popup, so eliminating some columns
 				<th>
 					<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'customcategories_desc'}customcategories_asc{else}customcategories_desc{/if}">
 						{tr}Classification{/tr}
 					</a>
 				</th>
+*}
 				<th>
 					<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'customlanguages_desc'}customlanguages_asc{else}customlanguages_desc{/if}">
 						{tr}Language{/tr}
 					</a>
 				</th>
+{*
 				<th>{tr}URL{/tr}</th>
 				<th>
 					<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'custompriorities_desc'}custompriorities_asc{else}custompriorities_desc{/if}">
@@ -79,6 +72,7 @@
 						{tr}Subscription{/tr}
 					</a>
 				</th>
+*}
 				<th>
 					<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'personal_desc'}personal_asc{else}personal_desc{/if}">
 						{tr}Personal{/tr}
@@ -100,49 +94,50 @@
 					<td class="text">
 						{$cal.customparticipants|yesno}{if $cal.show_participants eq 'y'}{icon name="list-alt" class="tips" title="{tr}Custom participants{/tr}:{tr}Field will show in popup{/tr}"}{/if}
 					</td>
+{*
 					<td class="text">
 						{$cal.customcategories|yesno}{if $cal.show_category eq 'y'}{icon name="list-alt" class="tips" title="{tr}Custom categories{/tr}:{tr}Field will show in popup{/tr}"}{/if}
 					</td>
+*}
 					<td class="text">
 						{$cal.customlanguages|yesno}{if $cal.show_language eq 'y'}{icon name="list-alt" class="tips" title="{tr}Custom languages{/tr}:{tr}Field will show in popup{/tr}"}{/if}
 					</td>
+{*
 					<td class="text">
 						{$cal.customurl|yesno}{if $cal.show_url eq 'y'}{icon name="list-alt" class="tips" title="{tr}Custom URL{/tr}:{tr}Field will show in popup{/tr}"}{/if}
 					</td>
 					<td class="text">{$cal.custompriorities|yesno}</td>
 					<td class="text">{$cal.customsubscription|yesno}</td>
+*}
 					<td class="text">{$cal.personal|yesno}</td>
 					<td class="action">
-						{capture name=admin_calendar_actions}
+						{actions}
 							{strip}
-								{$libeg}<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;calendarId={$id}&cookietab=2">
-									{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-								</a>{$liend}
-								{$libeg}<a href="tiki-calendar.php?calIds[]={$id}">
-									{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
-								</a>{$liend}
-								{$libeg}<a href="tiki-calendar_edit_item.php?calendarId={$id}">
-									{icon name='create' _menu_text='y' _menu_icon='y' alt="{tr}Add event{/tr}"}
-								</a>{$liend}
-								{$libeg}{permission_link mode=text type=calendar id=$id title=$cal.name}{$liend}
-								{$libeg}<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;drop={$id}&amp;calendarId={$id}">
-									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-								</a>{$liend}
+								<action>
+									<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;calendarId={$id}&cookietab=2">
+										{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+									</a>
+								</action>
+								<action>
+									<a href="tiki-calendar.php?calIds[]={$id}">
+										{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
+									</a>
+								</action>
+								<action>
+									<a href="tiki-calendar_edit_item.php?calendarId={$id}">
+										{icon name='create' _menu_text='y' _menu_icon='y' alt="{tr}Add event{/tr}"}
+									</a>
+								</action>
+								<action>
+									{permission_link mode=text type=calendar id=$id title=$cal.name}
+								</action>
+								<action>
+									<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;drop={$id}&amp;calendarId={$id}">
+										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+									</a>
+								</action>
 							{/strip}
-						{/capture}
-						{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-						<a
-							class="tips"
-							title="{tr}Actions{/tr}"
-							href="#"
-							{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.admin_calendar_actions}{/if}
-							style="padding:0; margin:0; border:0"
-						>
-							{icon name='wrench'}
-						</a>
-						{if $js === 'n'}
-							<ul class="dropdown-menu" role="menu">{$smarty.capture.admin_calendar_actions}</ul></li></ul>
-						{/if}
+						{/actions}
 					</td>
 				</tr>
 			{foreachelse}
@@ -162,6 +157,7 @@
 		<h2>{$edtab}</h2>
 
 		<form action="tiki-admin_calendars.php" method="post" class="form-horizontal" role="form">
+			{ticket}
 			<fieldset>
 			<input type="hidden" name="calendarId" value="{$calendarId|escape}">
 			{if $tiki_p_modify_object_categories eq 'y'}
