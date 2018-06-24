@@ -110,12 +110,7 @@
 			</fieldset>
 			<fieldset>
 				<legend>{tr}CSRF security{/tr}{help url="Security"}</legend>
-				<div class="adminoptionbox">
-					{tr}Use these options to protect against cross-site request forgeries (CSRF){/tr}.
-				</div>
 				{preference name=securityTimeout}
-				{preference name=feature_ticketlib}
-				{preference name=feature_ticketlib2}
 			</fieldset>
 			<fieldset>
 				<legend>{tr}HTTP Headers{/tr}{help url="Security"}</legend>

@@ -681,25 +681,6 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * @return bool
-	 */
-	function check_ticket()
-	{
-		global $prefs, $user;
-		$smarty = TikiLib::lib('smarty');
-
-		if ($prefs['feature_ticketlib2'] == 'y') {
-			if (empty($user) || (isset($_REQUEST['ticket']) && isset($_SESSION['ticket']) && $_SESSION['ticket'] == $_REQUEST['ticket'])) {
-				return true;
-			}
-			// TODO: Improve feedback and allow proceeding by confirming the request. $_REQUEST needs to be saved and restored.
-			$smarty->assign('msg', tra('Possible cross-site request forgery (CSRF, or \"sea surfing\") detected. Operation blocked.'));
-			$smarty->display("error.tpl");
-			exit();
-		}
-	}
-
-	/**
 	 * @param $page
 	 * @param string $errortitle
 	 * @param string $errortype
