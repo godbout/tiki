@@ -46,8 +46,8 @@ class TikiDb_Table
 		$result = $this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
-			if ($this->db->lastInsertId()) {
-				return $this->db->lastInsertId();
+			if ($insertedId = $this->db->lastInsertId()) {
+				return $insertedId;
 			}
 		}
 		return $result;
@@ -65,8 +65,8 @@ class TikiDb_Table
 		$result = $this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
-			if ($this->db->lastInsertId()) {
-				return $this->db->lastInsertId();
+			if ($insertedId = $this->db->lastInsertId()) {
+				return $insertedId;
 			}
 		}
 		return $result;
