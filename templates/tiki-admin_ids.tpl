@@ -100,7 +100,7 @@
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='rule_id' class="form-control" name='rule_id'
 					value="{$ruleinfo.id|escape}" {if $ruleinfo.id && !$ruleinfo.error}readonly{/if}>
-				<span class="help-block">Rule Id must be numeric</span>
+				<span class="form-text">{tr}Rule Id must be numeric{/tr}</span>
 			</div>
 		</div>
 		<div class="form-group row">
