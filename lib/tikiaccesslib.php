@@ -672,13 +672,9 @@ class TikiAccessLib extends TikiLib
 		if (! $check) {
 			if ($returnHtml) {
 				$smarty = TikiLib::lib('smarty');
-				$smarty->assign('msg', tra('Bad request - potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - try reloading the page in this case.'));
 				$smarty->display('error.tpl');
 				exit();
 			} else {
-				if ($errorMsg) {
-					Feedback::error(tr('Bad request - potential cross-site request forgery (CSRF) detected. Operation blocked. The security ticket may have expired - try reloading the page in this case.'));
-				}
 				return false;
 			}
 		}
