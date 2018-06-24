@@ -5,12 +5,32 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('function.popup.php');
-require_once('function.icon.php');
-
+/**
+ * Converts multiple links into a popup. Often used for the action popup in a list of items.
+ * Syntax is as follows:
+ *	{actions}
+ * 		<action>
+ * 			<a href="tiki-index.php">
+ * 				{icon name="go"}
+ * 			</a>
+ * 		</action>
+ * 		{* one or more additional links within action tags as above *}
+ * 	{/actions}
+ *
+ * @param $params		array
+ * 		title:	string title of the dropdown
+ * 		icon:	string icon name for the icon that is clicked or hovered over to display the popup
+ * @param $content		string	HTML within the {actions} block tags. Usually within {strip} tags
+ * @param $smarty		Smarty_Tiki
+ * @param bool $repeat
+ * @return mixed|string
+ * @throws SmartyException
+ */
 function smarty_block_actions($params, $content, $smarty, $repeat = false)
 {
 	global $prefs;
+	$smarty->loadPlugin('smarty_function_popup');
+	$smarty->loadPlugin('smarty_function_icon');
 
 	if ($repeat) {
 		return ('');
@@ -29,34 +49,40 @@ function smarty_block_actions($params, $content, $smarty, $repeat = false)
 	}
 
 	if ($prefs['javascript_enabled'] !== 'y') {
-		$js = 'n';
+		$js = 0;
 		$libeg = '<li>';
 		$liend = '</li>';
 	} else {
-		$js = 'y';
+		$js = 1;
 		$libeg = '';
 		$liend = '';
 	}
 
-	if ($js === 'n') {
-		$return .= '<ul class="cssmenu_horiz"><li>';
+	if (! $js) {
+		$return .= '<ul class="cssmenu_horiz pull-right"><li>';
 	}
+
+	$title = ! empty($params['title']) ? htmlspecialchars($params['title']) : tra('Actions');
+	$icon = ! empty($params['icon']) ? $params['icon'] : 'settings';
 
 	$return .= '<a
-			class="tips"
-			title="' . tra('Actions') . '"
+			class="pull-right p-0 m-0 border border-0"
+			title="' . $title . '"
 			href="#"';
 
-	if ($js === 'y') {
-		$return .= smarty_function_popup(['fullhtml' => '1', 'center' => 'true', 'text' => $content]);
+	if ($js) {
+		$return .= ' ' . smarty_function_popup(['fullhtml' => '1', 'center' => 'true', 'text' => $content], $smarty);
 	}
 
-	$return .= 'style="padding:0; margin:0; border:0">';
-	$return .= smarty_function_icon(['name' => 'wrench']);
+	$return .= '>';
+	$return .= smarty_function_icon(['name' => $icon, 'iclass' => 'pull-right'], $smarty);
 	$return .= '</a>';
 
-	if ($js === 'n') {
-		$return .= '<ul class="dropdown-menu" role="menu">' . $content . '</ul></li></ul>';
+	if (! $js) {
+		$return .= '<ul class="dropdown-menu" role="menu">';
+		$return .= '<li class="dropdown-title"><li class="dropdown-title">' . $title;
+		$return .= '</li><li class="dropdown-divider"></li>';
+		$return .= $content . '</ul></li></ul>';
 	}
 
 	$return = str_ireplace('<action>', $libeg, $return);
