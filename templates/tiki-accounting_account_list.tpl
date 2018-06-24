@@ -12,7 +12,7 @@
 		{if $tiki_p_acct_manage_accounts=='y'}
 			<th></th>
 		{/if}
-	</tr class="action">
+	</tr>
 	{foreach from=$accounts item=a}{cycle values="odd,even" assign="style"}
 		<tr class="{$style}">
 			<td style="text-align:right"><a href="tiki-accounting_account.php?bookId={$bookId}&accountId={$a.accountId}">{$a.accountId}</a></td>
