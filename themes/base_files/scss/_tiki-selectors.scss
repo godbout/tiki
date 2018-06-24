@@ -1137,3 +1137,8 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   font-family: $font-family-base;
   font-size: $font-size-base;
 }
+
+// Hack to give .btn-secondary color to the "Files" button in tiki-page_bar.tpl.
+.btn-primary.btn-files {
+  @include button-variant($secondary, $secondary, $secondary);
+}

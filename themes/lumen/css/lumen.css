@@ -6818,6 +6818,27 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 0.875rem; }
 
+.btn-primary.btn-files {
+  color: #222;
+  background-color: #f0f0f0;
+  border-color: #f0f0f0; }
+  .btn-primary.btn-files:hover {
+    color: #222;
+    background-color: #f0f0f0;
+    border-color: #d7d7d7; }
+  .btn-primary.btn-files:focus, .btn-primary.btn-files.focus {
+    box-shadow: 0 0 0 0.2rem rgba(240, 240, 240, .5); }
+  .btn-primary.btn-files.disabled, .btn-primary.btn-files:disabled {
+    color: #222;
+    background-color: #f0f0f0;
+    border-color: #f0f0f0; }
+  .btn-primary.btn-files:not(:disabled):not(.disabled):active, .btn-primary.btn-files:not(:disabled):not(.disabled).active, .show > .btn-primary.btn-files.dropdown-toggle {
+    color: #222;
+    background-color: #d7d7d7;
+    border-color: #d0d0d0; }
+  .btn-primary.btn-files:not(:disabled):not(.disabled):active:focus, .btn-primary.btn-files:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.btn-files.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(240, 240, 240, .5); }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {

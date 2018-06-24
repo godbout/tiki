@@ -714,6 +714,27 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem; }
 
+.btn-primary.btn-file {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8; }
+  .btn-primary.btn-file:hover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #117a8b; }
+  .btn-primary.btn-file:focus, .btn-primary.btn-file.focus {
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, .5); }
+  .btn-primary.btn-file.disabled, .btn-primary.btn-file:disabled {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8; }
+  .btn-primary.btn-file:not(:disabled):not(.disabled):active, .btn-primary.btn-file:not(:disabled):not(.disabled).active, .show > .btn-primary.btn-file.dropdown-toggle {
+    color: #fff;
+    background-color: #117a8b;
+    border-color: #10707f; }
+  .btn-primary.btn-file:not(:disabled):not(.disabled):active:focus, .btn-primary.btn-file:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.btn-file.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, .5); }
+
 a {
   word-wrap: break-word; }
 
@@ -3149,6 +3170,7 @@ table.tablesorter {
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-header {
     background-repeat: no-repeat;
     background-position: center right;
+    background-color: #fff;
     cursor: pointer; }
     table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-header i {
       font-weight: 400;
@@ -3294,6 +3316,8 @@ table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:n
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerDesc {
     background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
     background-color: #f7f7f7; }
+  table.tablesorter thead tr.tablesorter-filter-row {
+    background: #e9ecef; }
   table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
     background-color: #f7f7f7;
     color: #212529; }

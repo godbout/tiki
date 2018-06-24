@@ -6656,6 +6656,27 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem; }
 
+.btn-primary.btn-files {
+  color: #222;
+  background-color: #aaa;
+  border-color: #aaa; }
+  .btn-primary.btn-files:hover {
+    color: #222;
+    background-color: #aaa;
+    border-color: #919191; }
+  .btn-primary.btn-files:focus, .btn-primary.btn-files.focus {
+    box-shadow: 0 0 0 0.2rem rgba(170, 170, 170, .5); }
+  .btn-primary.btn-files.disabled, .btn-primary.btn-files:disabled {
+    color: #222;
+    background-color: #aaa;
+    border-color: #aaa; }
+  .btn-primary.btn-files:not(:disabled):not(.disabled):active, .btn-primary.btn-files:not(:disabled):not(.disabled).active, .show > .btn-primary.btn-files.dropdown-toggle {
+    color: #fff;
+    background-color: #919191;
+    border-color: #8a8a8a; }
+  .btn-primary.btn-files:not(:disabled):not(.disabled):active:focus, .btn-primary.btn-files:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.btn-files.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(170, 170, 170, .5); }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
