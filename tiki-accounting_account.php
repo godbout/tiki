@@ -89,8 +89,8 @@ if (! empty($_REQUEST['action'])) {
 				} else {
 					$smarty->assign('action', 'view');
 					$template = "tiki-accounting_account_view.tpl";
-					Feedback::success(tr('%0 account in book %1 successfully modified', $_POST['accountName'],
-						$bookId));
+					Feedback::success(tr('%0 account in book %1 modified',
+						htmlspecialchars($_POST['accountName']), $bookId));
 				}
 			}
 			$account = $accountinglib->getAccount($bookId, $accountId, true);
@@ -98,8 +98,7 @@ if (! empty($_REQUEST['action'])) {
 			break;
 		case 'new':
 			$template = "tiki-accounting_account_form.tpl";
-			if (isset($_POST['accountName']) && $access->checkCsrf())
-			{
+			if (isset($_POST['accountName']) && $access->checkCsrf()) {
 				$result = $accountinglib->createAccount(
 					$bookId,
 					$_POST['newAccountId'],
@@ -114,7 +113,7 @@ if (! empty($_REQUEST['action'])) {
 				} else {
 					$smarty->assign('action', 'view');
 					$template = "tiki-accounting_account_view.tpl";
-					Feedback::success(tr('%0 account successfully created for book %1', $_POST['accountName'],
+					Feedback::success(tr('%0 account created for book %1', $_POST['accountName'],
 						$bookId));
 				}
 				$account = [
@@ -166,7 +165,7 @@ if (! empty($_REQUEST['action'])) {
 				$result = false;
 			}
 			if ($result === true) {
-				Feedback::success(tr('%0 account successfully deleted from book %1', $account['accountName'],
+				Feedback::success(tr('%0 account deleted from book %1', $account['accountName'],
 					$bookId));
 				$template = "tiki-accounting.tpl";
 			} else {
