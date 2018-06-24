@@ -13,21 +13,10 @@
 	<small>{tr}quota{/tr}&nbsp;{$percentage}%</small>
 </div>
 
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
-
 {if count($channels) > 0 or $find ne ''}
 	{include file='find.tpl'}
 	<form action="tiki-notepad_list.php" method="post">
-		<div class="{if $js === 'y'}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
+		<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 			<table class="table table-striped table-hover">
 				<tr>
 					<th style="text-align:center;">
@@ -66,35 +55,30 @@
 						<td class="date">{$channels[user].lastModif|tiki_short_datetime}</td>
 						<td class="integer">{$channels[user].size|kbsize}</td>
 						<td class="action">
-							{capture name=notepad_actions}
+							{actions}
 								{strip}
-									{$libeg}<a href="tiki-notepad_get.php?noteId={$channels[user].noteId}">
-										{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
-									</a>{$liend}
-									{$libeg}<a href="tiki-notepad_get.php?noteId={$channels[user].noteId}&amp;save=1">
-										{icon name='floppy' _menu_text='y' _menu_icon='y' alt="{tr}Save{/tr}"}
-									</a>{$liend}
-									{$libeg}<a href="tiki-notepad_write.php?noteId={$channels[user].noteId}">
-										{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-									</a>{$liend}
-									{$libeg}<a href="tiki-notepad_read.php?noteId={$channels[user].noteId}&amp;remove=1">
-										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-notepad_get.php?noteId={$channels[user].noteId}">
+											{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a href="tiki-notepad_get.php?noteId={$channels[user].noteId}&amp;save=1">
+											{icon name='floppy' _menu_text='y' _menu_icon='y' alt="{tr}Save{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a href="tiki-notepad_write.php?noteId={$channels[user].noteId}">
+											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a href="tiki-notepad_read.php?noteId={$channels[user].noteId}&amp;remove=1">
+											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+										</a>
+									</action>
 								{/strip}
-							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.notepad_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.notepad_actions}</ul></li></ul>
-							{/if}
+							{/actions}
 						</td>
 					</tr>
 				{sectionelse}

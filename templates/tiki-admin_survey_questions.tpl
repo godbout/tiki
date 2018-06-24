@@ -14,16 +14,6 @@
 	{tab name="{tr}Questions{/tr}"}
 		{include file='find.tpl' types='0'}
 		{button _text="{tr}Save{/tr}" _style="display:none;" _class="save_list" _ajax="n" _auto_args="save_list"}
-		{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
 		<form action="tiki-admin_survey_questions.php" method="post" id="reorderForm">
 			<input type="hidden" name="surveyId" value="{$surveyId|escape}">
 			<input type="hidden" name="questionIds" value="">
@@ -56,29 +46,20 @@
 					<td class="text">{$types[$channels[user].type]}</td>
 					<td class="text">{$channels[user].options}</td>
 					<td class="action">
-						{capture name=question_actions}
+						{actions}
 							{strip}
-								{$libeg}{self_link _icon_name='edit' _menu_text='y' _menu_icon='y' questionId=$channels[user].questionId}
-									{tr}Edit{/tr}
-								{/self_link}{$liend}
-								{$libeg}{self_link _icon_name='remove' _menu_text='y' _menu_icon='y' remove=$channels[user].questionId}
-									{tr}Delete{/tr}
-								{/self_link}{$liend}
+								<action>
+									{self_link _icon_name='edit' _menu_text='y' _menu_icon='y' questionId=$channels[user].questionId}
+										{tr}Edit{/tr}
+									{/self_link}
+								</action>
+								<action>
+									{self_link _icon_name='remove' _menu_text='y' _menu_icon='y' remove=$channels[user].questionId}
+										{tr}Delete{/tr}
+									{/self_link}
+								</action>
 							{/strip}
-						{/capture}
-						{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-						<a
-							class="tips"
-							title="{tr}Actions{/tr}"
-							href="#"
-							{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.question_actions}{/if}
-							style="padding:0; margin:0; border:0"
-						>
-							{icon name='wrench'}
-						</a>
-						{if $js === 'n'}
-							<ul class="dropdown-menu" role="menu">{$smarty.capture.question_actions}</ul></li></ul>
-						{/if}
+						{/actions}
 					</td>
 				</tr>
 				{sectionelse}

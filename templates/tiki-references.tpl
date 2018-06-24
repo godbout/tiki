@@ -69,22 +69,25 @@
 								{$references[reference].title|truncate:60|escape}
 							</td>
 							<td class="action">
-								{capture name=reference_actions}
+								{actions}
 									{strip}
-										{$libeg}<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id details='1'}">
-										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-										</a>{$liend}
-										{$libeg}
-									<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id usage='1'}">
-										{icon name="link" _menu_text='y' _menu_icon='y' alt="{tr}Reference usage{/tr}"}
-										</a>{$liend}
-										{$libeg}
-									<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id action=delete}" onclick="confirmSimple(event, '{tr}Delete reference?{/tr}', '{ticket mode=get}')">
-										{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id details='1'}">
+												{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id usage='1'}">
+												{icon name="link" _menu_text='y' _menu_icon='y' alt="{tr}Reference usage{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id action=delete}" onclick="confirmSimple(event, '{tr}Delete reference?{/tr}', '{ticket mode=get}')">
+												{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+											</a>
+										</action>
 									{/strip}
-								{/capture}
-								{include file="templates/includes/tiki-actions_link.tpl" capturedActions="reference_actions"}
+								{/actions}
 							</td>
 						</tr>
 					{/section}

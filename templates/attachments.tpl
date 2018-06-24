@@ -27,18 +27,8 @@
 		{else}
 			{$offsetparam = ''}
 		{/if}
-		{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
 
-		<div class="{if $js === 'y'}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
+		<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 			<table class="table table-striped table-hover">
 				<h3>{tr}Attached files{/tr}</h3>
 				<tr>
@@ -77,34 +67,27 @@
 						<td class="integer"><small>{$atts[ix].filesize|kbsize}</small></td>
 						<td class="integer"><small>{$atts[ix].hits}</small></td>
 						<td class="action">
-							{capture name=att_actions}
+							{actions}
 								{strip}
-									{$libeg}<a href="tiki-download_wiki_attachment.php?attId={$atts[ix].attId}" target="_blank">
-										{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
-									</a>{$liend}
-									{$libeg}<a href="tiki-download_wiki_attachment.php?attId={$atts[ix].attId}&amp;download=y">
-										{icon name='floppy' _menu_text='y' _menu_icon='y' alt="{tr}Download{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-download_wiki_attachment.php?attId={$atts[ix].attId}" target="_blank">
+											{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a href="tiki-download_wiki_attachment.php?attId={$atts[ix].attId}&amp;download=y">
+											{icon name='floppy' _menu_text='y' _menu_icon='y' alt="{tr}Download{/tr}"}
+										</a>
+									</action>
 									{if ($tiki_p_wiki_admin_attachments eq 'y' or ($user and ($atts[ix].user eq $user))) and $editable}
-										{$libeg}<a href="tiki-index.php?page={$page|escape:"url"}&amp;removeattach={$atts[ix].attId}&amp;{$offsetparam}{if !empty($sort_mode)}sort_mode={$sort_mode}{/if}"{if !empty($target)} target="{$target}"{/if}>
-											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-index.php?page={$page|escape:"url"}&amp;removeattach={$atts[ix].attId}&amp;{$offsetparam}{if !empty($sort_mode)}sort_mode={$sort_mode}{/if}"{if !empty($target)} target="{$target}"{/if}>
+												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+											</a>
+										</action>
 									{/if}
 								{/strip}
-							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.att_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.att_actions}</ul></li></ul>
-							{/if}
+							{/actions}
 						</td>
 					</tr>
 				{/section}

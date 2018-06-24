@@ -90,17 +90,7 @@
 <h2>{tr}Available Repositories{/tr}</h2>
 
 {* Table with list of repositories *}
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
-<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 	<table class="table table-striped table-hover" id="integrator-repositories">
 		<tr>
 			<th rowspan="2">{tr}Name{/tr}</th>
@@ -123,29 +113,20 @@
 				<td class="text">{($repositories[rep].start_page)? $repositories[rep].start_page:'Empty'}</td>
 				<td class="text">{($repositories[rep].css_file)? $repositories[rep].css_file:'Empty'}</td>
 				<td class="action">
-					{capture name=integrator_actions}
+					{actions}
 						{strip}
-							{$libeg}<a href="tiki-admin_integrator.php?action=edit&amp;repID={$repositories[rep].repID|escape}">
-								{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-							</a>{$liend}
-							{$libeg}<a href="tiki-admin_integrator.php?action=rm&amp;repID={$repositories[rep].repID|escape}">
-								{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-							</a>{$liend}
+							<action>
+								<a href="tiki-admin_integrator.php?action=edit&amp;repID={$repositories[rep].repID|escape}">
+									{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+								</a>
+							</action>
+							<action>
+								<a href="tiki-admin_integrator.php?action=rm&amp;repID={$repositories[rep].repID|escape}">
+									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+								</a>
+							</action>
 						{/strip}
-					{/capture}
-					{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-					<a
-						class="tips"
-						title="{tr}Actions{/tr}"
-						href="#"
-						{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.integrator_actions}{/if}
-						style="padding:0; margin:0; border:0"
-					>
-						{icon name='wrench'}
-					</a>
-					{if $js === 'n'}
-						<ul class="dropdown-menu" role="menu">{$smarty.capture.integrator_actions}</ul></li></ul>
-					{/if}
+					{/actions}
 				</td>
 
 				{* Show description as colspaned row if it is not an empty *}

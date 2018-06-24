@@ -149,17 +149,7 @@
 <h2>{tr}Rules List{/tr}</h2>
 
 {* Table with list of repositories *}
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
-<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 	<table class="table table-striped table-hover" id="integrator_rules">
 		<tr>
 			<th rowspan="2"><span title="{tr}Rule order{/tr}">#</span></th>
@@ -184,29 +174,20 @@
 				<td class="text">{$rules[rule].type|escape}</td>
 				<td class="text">{$rules[rule].casesense|escape}</td>
 				<td class="action">
-					{capture name=integrator_rules_actions}
+					{actions}
 						{strip}
-							{$libeg}<a href="tiki-admin_integrator_rules.php?action=edit&amp;repID={$repID|escape}&amp;ruleID={$rules[rule].ruleID|escape}">
-								{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-							</a>{$liend}
-							{$libeg}<a href="tiki-admin_integrator_rules.php?action=rm&amp;repID={$repID|escape}&amp;ruleID={$rules[rule].ruleID|escape}">
-								{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-							</a>{$liend}
+							<action>
+								<a href="tiki-admin_integrator_rules.php?action=edit&amp;repID={$repID|escape}&amp;ruleID={$rules[rule].ruleID|escape}">
+									{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+								</a>
+							</action>
+							<action>
+								<a href="tiki-admin_integrator_rules.php?action=rm&amp;repID={$repID|escape}&amp;ruleID={$rules[rule].ruleID|escape}">
+									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+								</a>
+							</action>
 						{/strip}
-					{/capture}
-					{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-					<a
-						class="tips"
-						title="{tr}Actions{/tr}"
-						href="#"
-						{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.integrator_rules_actions}{/if}
-						style="padding:0; margin:0; border:0"
-					>
-						{icon name='wrench'}
-					</a>
-					{if $js === 'n'}
-						<ul class="dropdown-menu" role="menu">{$smarty.capture.integrator_rules_actions}</ul></li></ul>
-					{/if}
+					{/actions}
 				</td>
 
 				{* Show description as colspaned row if it is not an empty *}

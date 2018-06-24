@@ -10,18 +10,7 @@
 		{button href="tiki-admin_surveys.php?cookietab=1" class="btn btn-primary" _text="{tr}Admin Surveys{/tr}"}
 	{/if}
 </div>
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
-
-<div class="{if $js === 'y'}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
+<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 	<table class="table table-striped table-hover">
 		<tr>
 			<th>
@@ -52,40 +41,33 @@
 						<span class="badge badge-secondary">{$channels[user].questions}</span>
 					</td>
 					<td class="action">
-						{capture name=list_survey_actions}
+						{actions}
 							{strip}
 								{if ($tiki_p_admin eq 'y') or ($channels[user].individual eq 'n' and $tiki_p_admin_surveys eq 'y') or ($channels[user].individual_tiki_p_admin_surveys eq 'y')}
-									{$libeg}<a href="tiki-admin_surveys.php?surveyId={$channels[user].surveyId}">
-										{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-admin_surveys.php?surveyId={$channels[user].surveyId}">
+											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+										</a>
+									</action>
 								{/if}
 
 								{if ($tiki_p_admin_surveys eq 'y') or ($channels[user].status eq 'o' and $channels[user].taken_survey eq 'n')}
-									{$libeg}<a href="{$channels[user].surveyId|sefurl:survey}">
-										{icon name='post' _menu_text='y' _menu_icon='y' alt="{tr}Take survey{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="{$channels[user].surveyId|sefurl:survey}">
+											{icon name='post' _menu_text='y' _menu_icon='y' alt="{tr}Take survey{/tr}"}
+										</a>
+									</action>
 								{/if}
 
 								{if ($tiki_p_admin eq 'y') or ($channels[user].individual eq 'n' and $tiki_p_view_survey_stats eq 'y') or ($channels[user].individual_tiki_p_view_survey_stats eq 'y')}
-									{$libeg}<a href="tiki-survey_stats_survey.php?surveyId={$channels[user].surveyId}">
-										{icon name='chart' _menu_text='y' _menu_icon='y' alt="{tr}Stats{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-survey_stats_survey.php?surveyId={$channels[user].surveyId}">
+											{icon name='chart' _menu_text='y' _menu_icon='y' alt="{tr}Stats{/tr}"}
+										</a>
+									</action>
 								{/if}
 							{/strip}
-						{/capture}
-						{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-						<a
-							class="tips"
-							title="{tr}Actions{/tr}"
-							href="#"
-							{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.list_survey_actions}{/if}
-							style="padding:0; margin:0; border:0"
-						>
-							{icon name='wrench'}
-						</a>
-						{if $js === 'n'}
-							<ul class="dropdown-menu" role="menu">{$smarty.capture.list_survey_actions}</ul></li></ul>
-						{/if}
+						{/actions}
 					</td>
 				</tr>
 			{/if}

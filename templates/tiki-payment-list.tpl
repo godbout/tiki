@@ -1,4 +1,4 @@
-<div id="{$table_id}-div" class="{if $js === 'y'}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}>
+<div id="{$table_id}-div" class="{if $js}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}>
 	<table id="{$table_id}" class="table table-striped table-hover" data-count="{$payments.cant|escape}">
 		<thead>
 		<tr>
@@ -19,29 +19,27 @@
 					<td class="date">{if !empty($payment.request_date)}{if $prefs.jquery_timeago eq 'y'}{$payment.request_date|tiki_short_date}{else}{$payment.request_date|tiki_short_date|escape}{/if}{/if}</td>
 					{if $tiki_p_admin eq 'y'}<td class="text">{$payment.user|userlink}</td>{/if}
 					<td class="action">
-						{capture name=pmt_actions}
+						{actions}
 							{strip}
-								{$libeg}{self_link invoice=$payment.paymentRequestId _icon_name='textfile' _menu_text='y' _menu_icon='y'}{tr}View payment request{/tr}{/self_link}{$liend}
+								<action>
+									{self_link invoice=$payment.paymentRequestId _icon_name='textfile' _menu_text='y' _menu_icon='y'}
+										{tr}View payment request{/tr}
+									{/self_link}
+								</action>
 								{permission type=payment object=$payment.paymentRequestId name=payment_admin}
-									{$libeg}{permission_link type="payment" id=$payment.paymentRequestId title=$payment.description mode=text}{$liend}
+									<action>
+										{permission_link type="payment" id=$payment.paymentRequestId title=$payment.description mode=text}
+									</action>
 								{/permission}
 								{if isset($cancel) and ($payment.user eq $user or $tiki_p_payment_admin)}
-									{$libeg}{self_link _ajax=n cancel=$payment.paymentRequestId _icon_name='remove' _menu_text='y' _menu_icon='y'}{tr}Cancel this payment request{/tr}{/self_link}{$liend}
+									<action>
+										{self_link _ajax=n cancel=$payment.paymentRequestId _icon_name='remove' _menu_text='y' _menu_icon='y'}
+											{tr}Cancel this payment request{/tr}
+										{/self_link}
+									</action>
 								{/if}
 							{/strip}
-						{/capture}
-						{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-						<a
-							class="tips"
-							title="{tr}Actions{/tr}" href="#"
-							{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.pmt_actions}{/if}
-							style="padding:0; margin:0; border:0"
-						>
-							{icon name='settings'}
-						</a>
-						{if $js === 'n'}
-							<ul class="dropdown-menu" role="menu">{$smarty.capture.pmt_actions}</ul></li></ul>
-						{/if}
+						{/actions}
 					</td>
 				</tr>
 			{/foreach}

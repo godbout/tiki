@@ -75,18 +75,8 @@
 				{include file='find.tpl' find_show_languages='y' find_show_categories='y' find_show_num_rows='y'}
 			</div>
 		{/if}
-		{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
 		<form class="form" role="form">
-			<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+			<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 				<table class="table table-striped table-hover">
 					<tr>
 						{if $tiki_p_admin eq 'y'}<th width="15">{select_all checkbox_names='action[]'}</th>{/if}
@@ -116,76 +106,81 @@
 									{lock type='wiki structure' object=$channels[ix].pageName}
 								{/if}
 
-								{capture name=admin_structure_actions}
+								{actions}
 									{strip}
-										{$libeg}<a href="tiki-edit_structure.php?page_ref_id={$channels[ix].page_ref_id}">
-											{icon name="information" _menu_text='y' _menu_icon='y' alt="{tr}View structure{/tr}"}
-										</a>{$liend}
-										{$libeg}<a href='{sefurl page=$channels[ix].pageName structure=$channels[ix].pageName page_ref_id=$channels[ix].page_ref_id}'>
-											{icon name="view" _menu_text='y' _menu_icon='y' alt="{tr}View page{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-edit_structure.php?page_ref_id={$channels[ix].page_ref_id}">
+												{icon name="information" _menu_text='y' _menu_icon='y' alt="{tr}View structure{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a href='{sefurl page=$channels[ix].pageName structure=$channels[ix].pageName page_ref_id=$channels[ix].page_ref_id}'>
+												{icon name="view" _menu_text='y' _menu_icon='y' alt="{tr}View page{/tr}"}
+											</a>
+										</action>
 										{if $channels[ix].admin_structure == 'y' or $tiki_p_admin == 'y'} {* A check for object perm tiki_p_assign_perm_wiki_page if not admin is needed here for WYSIWYCA *}
-											{$libeg}
+											<action>
 												{permission_link mode=text objectType='wiki page' type='wiki structure' id=$channels[ix].pageName title=$channels[ix].pageName}
-											{$liend}
+											</action>
 										{/if}
 
 										{if $prefs.feature_wiki_export eq 'y' and $channels[ix].admin_structure eq 'y'}
-											{$libeg}<a href="tiki-admin_structures.php?export={$channels[ix].page_ref_id|escape:"url"}">
-												{icon name="export" _menu_text='y' _menu_icon='y' alt="{tr}Export pages{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="tiki-admin_structures.php?export={$channels[ix].page_ref_id|escape:"url"}">
+													{icon name="export" _menu_text='y' _menu_icon='y' alt="{tr}Export pages{/tr}"}
+												</a>
+											</action>
 										{/if}
 
 										{if $pdf_export eq 'y'}
-											{$libeg}<a href="tiki-print_multi_pages.php?printstructures=%255B%2522{$channels[ix].page_ref_id}%2522%255D&amp;display=pdf&amp;print=pdf">
-												{icon name='pdf' _menu_text='y' _menu_icon='y' alt="{tr}PDF{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="tiki-print_multi_pages.php?printstructures=%255B%2522{$channels[ix].page_ref_id}%2522%255D&amp;display=pdf&amp;print=pdf">
+													{icon name='pdf' _menu_text='y' _menu_icon='y' alt="{tr}PDF{/tr}"}
+												</a>
+											</action>
 										{/if}
 
 										{if $channels[ix].edit_structure == 'y' or $channels[ix].admin_structure == 'y'}
-											{$libeg}<a href="tiki-admin_structures.php?export_tree={$channels[ix].page_ref_id|escape:"url"}">
-												{icon name="structure" _menu_text='y' _menu_icon='y' alt="{tr}Dump tree{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="tiki-admin_structures.php?export_tree={$channels[ix].page_ref_id|escape:"url"}">
+													{icon name="structure" _menu_text='y' _menu_icon='y' alt="{tr}Dump tree{/tr}"}
+												</a>
+											</action>
 										{/if}
 
 										{if $channels[ix].admin_structure == 'y'}
-											{$libeg}<a href="tiki-admin_structures.php?remove={$channels[ix].page_ref_id|escape:"url"}">
-												{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="tiki-admin_structures.php?remove={$channels[ix].page_ref_id|escape:"url"}">
+													{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+												</a>
+											</action>
 										{/if}
 
 										{if $prefs.feature_create_webhelp == 'y' && $channels[ix].edit_structure == 'y'}
-											{$libeg}<a href="tiki-create_webhelp.php?struct={$channels[ix].page_ref_id|escape:"url"}">
-												{icon name="help" _menu_text='y' _menu_icon='y' alt="{tr}Create WebHelp{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="tiki-create_webhelp.php?struct={$channels[ix].page_ref_id|escape:"url"}">
+													{icon name="help" _menu_text='y' _menu_icon='y' alt="{tr}Create WebHelp{/tr}"}
+												</a>
+											</action>
 										{/if}
 
 										{if $prefs.feature_create_webhelp == 'y' && $channels[ix].webhelp eq 'y'}
-											{$libeg}<a href="whelp/{$channels[ix].pageName}/index.html">
-												{icon name="documentation" _menu_text='y' _menu_icon='y' alt="{tr}View WebHelp{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="whelp/{$channels[ix].pageName}/index.html">
+													{icon name="documentation" _menu_text='y' _menu_icon='y' alt="{tr}View WebHelp{/tr}"}
+												</a>
+											</action>
 										{/if}
 
 										{if $channels[ix].admin_structure eq 'y'}
-											{$libeg}<a href="tiki-admin_structures.php?zip={$channels[ix].page_ref_id|escape:"url"}">
-												{icon name="zip" _menu_text='y' _menu_icon='y' alt="{tr}XML Zip{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="tiki-admin_structures.php?zip={$channels[ix].page_ref_id|escape:"url"}">
+													{icon name="zip" _menu_text='y' _menu_icon='y' alt="{tr}XML Zip{/tr}"}
+												</a>
+											</action>
 										{/if}
 									{/strip}
-								{/capture}
-								{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-								<a
-									class="tips"
-									title="{tr}Actions{/tr}"
-									href="#"
-									{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.admin_structure_actions}{/if}
-									style="padding:0; margin:0; border:0"
-								>
-									{icon name='wrench'}
-								</a>
-								{if $js === 'n'}
-									<ul class="dropdown-menu" role="menu">{$smarty.capture.admin_structure_actions}</ul></li></ul>
-								{/if}
+								{/actions}
 							</td>
 						</tr>
 					{sectionelse}

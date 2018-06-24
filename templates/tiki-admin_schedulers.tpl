@@ -1,14 +1,4 @@
 {* $Id$ *}
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
 {title help="Scheduler" admpage="general" url="tiki-admin_schedulers.php"}{tr}Scheduler{/tr}{/title}
 <div class="t_navbar mb-4">
 	{if isset($schedulerinfo.id)}
@@ -22,7 +12,7 @@
 {if $schedulers|count > 0}
 	{tab name="{tr}Schedulers{/tr}"}
 		<div id="admin_schedulers-div">
-			<div class="{if $js === 'y'}table-responsive {/if}ts-wrapperdiv">
+			<div class="{if $js}table-responsive {/if}ts-wrapperdiv">
 				{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
 				<table id="admin_schedulers" class="table normal table-striped table-hover" data-count="{$schedulers|count}">
 					<thead>
@@ -86,40 +76,38 @@
 								{/if}
 							</td>
 							<td class="action">
-								{capture name=scheduler_actions}
+								{actions}
 									{strip}
 										{if $schedulers[scheduler].stalled}
-											{$libeg}<a href="{bootstrap_modal controller=scheduler action=reset schedulerId=$schedulers[scheduler].id}">
-											{icon name="undo" _menu_text='y' _menu_icon='y' alt="{tr}Reset{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="{bootstrap_modal controller=scheduler action=reset schedulerId=$schedulers[scheduler].id}">
+													{icon name="undo" _menu_text='y' _menu_icon='y' alt="{tr}Reset{/tr}"}
+												</a>
+											</action>
 										{else}
-											{$libeg}<a href="{bootstrap_modal controller=scheduler action=run schedulerId=$schedulers[scheduler].id}" disabled>
-											{icon name="gear" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="{bootstrap_modal controller=scheduler action=run schedulerId=$schedulers[scheduler].id}" disabled>
+													{icon name="gear" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr}"}
+												</a>
+											</action>
 										{/if}
-										{$libeg}<a href="{query _type='relative' scheduler=$schedulers[scheduler].id}">
-										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-										</a>{$liend}
-										{$libeg}<a href="{query _type='relative' scheduler=$schedulers[scheduler].id logs='1'}">
-										{icon name="log" _menu_text='y' _menu_icon='y' alt="{tr}Logs{/tr}"}
-										</a>{$liend}
-										{$libeg}<a href="{bootstrap_modal controller=scheduler action=remove schedulerId=$schedulers[scheduler].id}">
-										{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="{query _type='relative' scheduler=$schedulers[scheduler].id}">
+												{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a href="{query _type='relative' scheduler=$schedulers[scheduler].id logs='1'}">
+												{icon name="log" _menu_text='y' _menu_icon='y' alt="{tr}Logs{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a href="{bootstrap_modal controller=scheduler action=remove schedulerId=$schedulers[scheduler].id}">
+												{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+											</a>
+										</action>
 									{/strip}
-								{/capture}
-								{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-								<a
-									class="tips"
-									title="{tr}Actions{/tr}" href="#"
-									{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.scheduler_actions}{/if}
-									style="padding:0; margin:0; border:0"
-								>
-								{icon name='wrench'}
-								</a>
-								{if $js === 'n'}
-									<ul class="dropdown-menu" role="menu">{$smarty.capture.scheduler_actions}</ul></li></ul>
-								{/if}
+								{/actions}
 							</td>
 						</tr>
 					{/section}

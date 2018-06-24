@@ -4,17 +4,7 @@
 	{tab name="{tr}List{/tr}"}
 		<h2>{tr}List{/tr}</h2>
 		<a href="tiki-switch_perspective.php">{tr}Return to the default perspective{/tr}</a>
-		{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
-		<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+		<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 			<table class="table table-striped table-hover">
 				<tr>
 					<th>{tr}Perspective{/tr}</th>
@@ -45,39 +35,34 @@
 							{/foreach}
 						</td>
 						<td class="action">
-							{capture name=perspective_actions}
+							{actions}
 								{strip}
-									{$libeg}<a href="tiki-switch_perspective.php?perspective={$persp.perspectiveId|escape:url}">
-										{icon name='move' _menu_text='y' _menu_icon='y' alt="{tr}Switch to{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-switch_perspective.php?perspective={$persp.perspectiveId|escape:url}">
+											{icon name='move' _menu_text='y' _menu_icon='y' alt="{tr}Switch to{/tr}"}
+										</a>
+									</action>
 									{if $persp.can_perms}
-										{$libeg}{permission_link mode=text type="perspective" id=$persp.perspectiveId title=$persp.name}{$liend}
+										<action>
+											{permission_link mode=text type="perspective" id=$persp.perspectiveId title=$persp.name}
+										</action>
 									{/if}
-									{if $persp.can_edit}
-										{$libeg}{self_link _icon_name='edit' action=edit _ajax='y' _menu_text='y' _menu_icon='y' id=$persp.perspectiveId cookietab=3}
-											{tr}Edit{/tr}
-										{/self_link}{$liend}
+										{if $persp.can_edit}
+										<action>
+											{self_link _icon_name='edit' action=edit _ajax='y' _menu_text='y' _menu_icon='y' id=$persp.perspectiveId cookietab=3}
+												{tr}Edit{/tr}
+											{/self_link}
+										</action>
 									{/if}
 									{if $persp.can_remove}
-										{$libeg}{self_link action=remove id=$persp.perspectiveId _menu_text='y' _menu_icon='y' _icon_name='remove'}
-											{tr}Delete{/tr}
-										{/self_link}{$liend}
+										<action>
+											{self_link action=remove id=$persp.perspectiveId _menu_text='y' _menu_icon='y' _icon_name='remove'}
+												{tr}Delete{/tr}
+											{/self_link}
+										</action>
 									{/if}
-								{/strip}	
-							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.perspective_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.perspective_actions}</ul></li></ul>
-							{/if}
+								{/strip}
+							{/actions}
 						</td>
 					</tr>
 				{/foreach}

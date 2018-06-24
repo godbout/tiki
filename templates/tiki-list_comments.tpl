@@ -42,61 +42,45 @@
 		<th></th>
 	</tr>
 
-
 	{section name=ix loop=$comments}{assign var=id value=$comments[ix].threadId}
-		{capture name=over_actions}
-			{strip}
-				{$libeg}<a href="{$comments[ix].href}">
-					{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
-				</a>{$liend}
-				{$libeg}<a href="{$comments[ix].href|cat:"&amp;comments_threadId=$id&amp;edit_reply=1#form"}">
-					{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-				</a>{$liend}
-				{if $tiki_p_admin_comments eq 'y' and $prefs.comments_archive eq 'y'}
-					{* need to confirm these links to avoid allowing GET request to change the database *}
-					{if $comments[ix].archived eq 'y'}
-						{$libeg}<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=unarchive" onclick="confirmSimple(event, '{tr}Unarchive comment?{/tr}', '{ticket mode=get}')">
-							{icon name='file-archive-open' _menu_text='y' _menu_icon='y' alt="{tr}Unarchive{/tr}"}
-						</a>{$liend}
-					{else}
-						{$libeg}<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=archive" onclick="confirmSimple(event, '{tr}Archive comment?{/tr}', '{ticket mode=get}')">
-							{icon name='file-archive' _menu_text='y' _menu_icon='y' alt="{tr}Archive{/tr}"}
-						</a>{$liend}
-					{/if}
-				{/if}
-				{$libeg}<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete comment?{/tr}', '{ticket mode=get}')" class="text-danger">
-					{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-				</a>{$liend}
-			{/strip}
-		{/capture}
-
-		{capture name=over_more_info}
-			{strip}
-				{foreach from=$more_info_headers key=headerKey item=headerName}
-					{if (isset($comments[ix].$headerKey))}
-						{assign var=val value=$comments[ix].$headerKey}
-						{$libeg}<b>{tr}{$headerName}{/tr}</b>: {$val}{$liend}
-					{/if}
-				{/foreach}
-			{/strip}
-		{/capture}
-
 		<tr class="{cycle}{if $prefs.feature_comments_moderation eq 'y'} post-approved-{$comments[ix].approved}{/if}">
 			<td class="checkbox-cell"><div class="form-check"><input type="checkbox" class="form-check-input" name="checked[]" value="{$id}" {if isset($rejected[$id]) }checked="checked"{/if}></div></td>
 			<td class="action">
-				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-				<a
-					class="tips"
-					title="{tr}Actions{/tr}"
-					href="#"
-					{if $js}{popup fullhtml="1" center=true text=$smarty.capture.over_actions}{/if}
-					style="padding:0; margin:0; border:0"
-				>
-					{icon name="wrench"}
-				</a>
-				{if ! $js}
-					<ul class="dropdown-menu" role="menu">{$smarty.capture.over_actions}</ul></li></ul>
-				{/if}
+				{actions}
+					{strip}
+						<action>
+							<a href="{$comments[ix].href}">
+								{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
+							</a>
+						</action>
+						<action>
+							<a href="{$comments[ix].href|cat:"&amp;comments_threadId=$id&amp;edit_reply=1#form"}">
+								{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+							</a>
+						</action>
+						{if $tiki_p_admin_comments eq 'y' and $prefs.comments_archive eq 'y'}
+							{* need to confirm these links to avoid allowing GET request to change the database *}
+							{if $comments[ix].archived eq 'y'}
+								<action>
+									<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=unarchive" onclick="confirmSimple(event, '{tr}Unarchive comment?{/tr}', '{ticket mode=get}')">
+										{icon name='file-archive-open' _menu_text='y' _menu_icon='y' alt="{tr}Unarchive{/tr}"}
+									</a>
+								</action>
+							{else}
+								<action>
+									<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=archive" onclick="confirmSimple(event, '{tr}Archive comment?{/tr}', '{ticket mode=get}')">
+										{icon name='file-archive' _menu_text='y' _menu_icon='y' alt="{tr}Archive{/tr}"}
+									</a>
+								</action>
+							{/if}
+						{/if}
+						<action>
+							<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete comment?{/tr}', '{ticket mode=get}')">
+								{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+							</a>
+						</action>
+					{/strip}
+				{/actions}
 			</td>
 
 			{foreach key=headerKey item=headerName from=$headers}{assign var=val value=$comments[ix].$headerKey}
@@ -143,7 +127,18 @@
 			{/if}
 
 			<td>
-				{include file="templates/includes/tiki-actions_link.tpl" capturedActions="over_more_info" title="{tr}More information{/tr}"}
+				{actions title="{tr}More Information{/tr}" icon="information"}
+					{strip}
+						{foreach from=$more_info_headers key=headerKey item=headerName}
+							{if (isset($comments[ix].$headerKey))}
+								{assign var=val value=$comments[ix].$headerKey}
+								<action>
+									<b>{tr}{$headerName}{/tr}</b>: {$val}
+								</action>
+							{/if}
+						{/foreach}
+					{/strip}
+				{/actions}
 			</td>
 		</tr>
 	{sectionelse}

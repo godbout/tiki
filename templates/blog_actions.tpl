@@ -1,12 +1,7 @@
 {* $Id$ *}
 <span class="blogactions">
-	{if $prefs.javascript_enabled != 'y'}
-		{$js = 'n'}
-	{else}
-		{$js = 'y'}
-	{/if}
 	<div class="btn-group">
-		{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+		{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 			{icon name='menu-extra'}
 		</a>
@@ -74,7 +69,7 @@
 				</li>
 			{/if}
 		</ul>
-		{if $js == 'n'}</li></ul>{/if}
+		{if ! $js}</li></ul>{/if}
 		{if $user and $prefs.feature_user_watches eq 'y'}
 			{if $category_watched eq 'y'}
 				<div>

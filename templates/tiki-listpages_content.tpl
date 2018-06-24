@@ -349,34 +349,43 @@
 
 					{if $show_actions eq 'y'}
 						<td class="action">
-							{capture name=page_actions}
+							{actions}
 								{strip}
 									{if $listpages[changes].perms.tiki_p_edit eq 'y'}
-										{$libeg}<a href="tiki-editpage.php?page={$listpages[changes].pageName|escape:"url"}">
-											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-										</a>{$liend}
-										{$libeg}<a href="tiki-copypage.php?page={$listpages[changes].pageName|escape:"url"}&amp;version=last">
-											{icon name='copy' _menu_text='y' _menu_icon='y' alt="{tr}Copy{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-editpage.php?page={$listpages[changes].pageName|escape:"url"}">
+												{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a href="tiki-copypage.php?page={$listpages[changes].pageName|escape:"url"}&amp;version=last">
+												{icon name='copy' _menu_text='y' _menu_icon='y' alt="{tr}Copy{/tr}"}
+											</a>
+										</action>
 									{/if}
 									{if $prefs.feature_history eq 'y' and $listpages[changes].perms.tiki_p_wiki_view_history eq 'y'}
-										{$libeg}<a href="tiki-pagehistory.php?page={$listpages[changes].pageName|escape:"url"}">
-											{icon name='history' _menu_text='y' _menu_icon='y' alt="{tr}History{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-pagehistory.php?page={$listpages[changes].pageName|escape:"url"}">
+												{icon name='history' _menu_text='y' _menu_icon='y' alt="{tr}History{/tr}"}
+											</a>
+										</action>
 									{/if}
 
 									{if $listpages[changes].perms.tiki_p_assign_perm_wiki_page eq 'y'}
-										{$libeg}{permission_link mode=text type="wiki page" permType=wiki id=$listpages[changes].pageName}{$liend}
+										<action>
+											{permission_link mode=text type="wiki page" permType=wiki id=$listpages[changes].pageName}
+										</action>
 									{/if}
 
 									{if $listpages[changes].perms.tiki_p_remove eq 'y'}
-										{$libeg}<a href="{bootstrap_modal controller=wiki action=remove_pages checked=$listpages[changes].pageName version=last}">
-											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="{bootstrap_modal controller=wiki action=remove_pages checked=$listpages[changes].pageName version=last}">
+												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+											</a>
+										</action>
 									{/if}
 								{/strip}
-							{/capture}
-							{include file="templates/includes/tiki-actions_link.tpl" capturedActions="page_actions"}
+							{/actions}
 						</td>
 					{/if}
 				</tr>

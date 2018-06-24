@@ -311,30 +311,20 @@
 								{if $tiki_p_admin eq 'y' and ($prefs.feature_contribution eq 'y' or $prefs.feature_categories eq 'y')}
 									<td class="action">
 										{if $actionlog.actionId}
-											{capture name=log_actions}
+											{actions}
 												{strip}
-													{$libeg}<a href="tiki-admin_actionlog.php?actionId={$actionlog.actionId}&amp;startDate={$startDate}&amp;endDate={$endDate}#action">
-														{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-													</a>{$liend}
-													{$libeg}<a href="tiki-admin_actionlog.php?checked={$actionlog.actionId}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete action from log?{/tr}', '{ticket mode=get}')">
-														{icon name='delete' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-													</a>{$liend}
+													<action>
+														<a href="tiki-admin_actionlog.php?actionId={$actionlog.actionId}&amp;startDate={$startDate}&amp;endDate={$endDate}#action">
+															{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+														</a>
+													</action>
+													<action>
+														<a href="tiki-admin_actionlog.php?checked={$actionlog.actionId}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete action from log?{/tr}', '{ticket mode=get}')">
+															{icon name='delete' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+														</a>
+													</action>
 												{/strip}
-											{/capture}
-											{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-											<a
-													class="tips"
-													title="{tr}Actions{/tr}"
-													href="#"
-													{if $js}{popup fullhtml="1" center=true text=$smarty.capture.log_actions}{/if}
-													style="padding:0; margin:0; border:0"
-													>
-												{icon name='wrench'}
-											</a>
-											{if ! $js}
-												<ul class="dropdown-menu" role="menu">{$smarty.capture.log_actions}</ul>
-												</li></ul>
-											{/if}
+											{/actions}
 										{/if}
 									</td>
 								{/if}

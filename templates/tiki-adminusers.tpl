@@ -213,68 +213,84 @@
 											</td>
 
 											<td class="action">
-												{capture name=user_actions}
+												{actions}
 													{strip}
-														{$libeg}<a href="{bootstrap_modal controller=user action=manage_groups checked=$username all_groups=$all_groups offset=$offset sort_mode=$sort_mode numrows=$numrows}">
-															{icon name="group" _menu_text='y' _menu_icon='y' alt="{tr}Add or remove from a group{/tr}"}
-														</a>{$liend}
-														{$libeg}
+														<action>
+															<a href="{bootstrap_modal controller=user action=manage_groups checked=$username all_groups=$all_groups offset=$offset sort_mode=$sort_mode numrows=$numrows}">
+																{icon name="group" _menu_text='y' _menu_icon='y' alt="{tr}Add or remove from a group{/tr}"}
+															</a>
+														</action>
+														<action>
 															<a class="link" href="tiki-assignuser.php?assign_user={$users[user].user|escape:url}" title="{tr}Edit group expiry{/tr}">
 																{icon name='time' _menu_text='y' _menu_icon='y' alt='{tr}Edit group expiry{/tr}'}
 															</a>
-														{$liend}
-														{$libeg}<a href="{query _type='relative' user=$users[user].userId}">
-															{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit account settings{/tr}"}
-														</a>{$liend}
+														</action>
+														<action>
+															<a href="{query _type='relative' user=$users[user].userId}">
+																{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit account settings{/tr}"}
+															</a>
+														</action>
 														{if $prefs.feature_userPreferences eq 'y' || $user eq 'admin'}
-															{$libeg}<a href="tiki-user_preferences.php?userId={$users[user].userId}">
-																{icon name="settings" _menu_text='y' _menu_icon='y' alt="{tr}Change user preferences{/tr}"}
-															</a>{$liend}
+															<action>
+																<a href="tiki-user_preferences.php?userId={$users[user].userId}">
+																	{icon name="settings" _menu_text='y' _menu_icon='y' alt="{tr}Change user preferences{/tr}"}
+																</a>
+															</action>
 														{/if}
 														{if $users[user].user eq $user or $users[user].user_information neq 'private' or $tiki_p_admin eq 'y'}
-															{$libeg}<a href="tiki-user_information.php?userId={$users[user].userId}"{if $users[user].user_information eq 'private'}
-																style="opacity:0.5;"{/if}
-															>
-																{icon name="help" _menu_text='y' _menu_icon='y' alt="{tr}User information{/tr}"}
-															</a>{$liend}
+															<action>
+																<a href="tiki-user_information.php?userId={$users[user].userId}"{if $users[user].user_information eq 'private'}
+																	style="opacity:0.5;"{/if}
+																>
+																	{icon name="help" _menu_text='y' _menu_icon='y' alt="{tr}User information{/tr}"}
+																</a>
+															</action>
 														{/if}
 														{if $users[user].user ne 'admin' and $users[user].user ne $user and $tiki_p_admin eq 'y'}
-															{$libeg}
+															<action>
 																<a href='#' onClick="$('#login-switchuser_1').val('{$users[user].user|username|escape:javascript}'); $('#form_switch_user').submit(); return false;">
 																	{icon name="user" _menu_text='y' _menu_icon='y' alt="{tr}Switch to this user{/tr}"}
 																</a>
-															{$liend}
+															</action>
 														{/if}
 														{if $users[user].user ne 'admin'}
-															{$libeg}<a href="{bootstrap_modal controller=user action=remove_users checked=$username offset=$offset sort_mode=$sort_mode numrows=$numrows}">
-																{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-															</a>{$liend}
+															<action>
+																<a href="{bootstrap_modal controller=user action=remove_users checked=$username offset=$offset sort_mode=$sort_mode numrows=$numrows}">
+																	{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+																</a>
+															</action>
 															{if $users[user].waiting eq 'a'}
-																{$libeg}<a href="tiki-login_validate.php?user={$users[user].user|escape:url}&amp;pass={$users[user].valid|escape:url}">
-																	{icon name="ok" _menu_text='y' _menu_icon='y' alt="{tr}Validate user{/tr}"}
-																</a>{$liend}
+																<action>
+																	<a href="tiki-login_validate.php?user={$users[user].user|escape:url}&amp;pass={$users[user].valid|escape:url}">
+																		{icon name="ok" _menu_text='y' _menu_icon='y' alt="{tr}Validate user{/tr}"}
+																	</a>
+																</action>
 															{/if}
 															{* Use a form for the next two actions since they change the database but can easily be undone so no confirm needed*}
 															{if $users[user].waiting eq 'u'}
-																{$libeg}<a href="tiki-confirm_user_email.php?user={$users[user].user|escape:url}&amp;pass={$users[user].provpass|md5|escape:url}" onclick="confirmSimple(event, '{tr}Confirm user email?{/tr}', '{ticket mode=get}')">
-																	{icon name="envelope" _menu_text='y' _menu_icon='y' alt="{tr}Confirm user email{/tr}"}
-																</a>
+																<action>
+																	<a href="tiki-confirm_user_email.php?user={$users[user].user|escape:url}&amp;pass={$users[user].provpass|md5|escape:url}" onclick="confirmSimple(event, '{tr}Confirm user email?{/tr}', '{ticket mode=get}')">
+																		{icon name="envelope" _menu_text='y' _menu_icon='y' alt="{tr}Confirm user email{/tr}"}
+																	</a>
 															{/if}
 															{if $prefs.email_due > 0 and $users[user].waiting ne 'u' and $users[user].waiting ne 'a'}
-																{$libeg}<a href="tiki-adminusers.php?user={$users[user].user|escape:url}&amp;action=email_due" onclick="confirmSimple(event, '{tr}Invalidate user email?{/tr}', '{ticket mode=get}')">
-																	{icon name="trash" _menu_text='y' _menu_icon='y' alt="{tr}Invalidate email{/tr}"}
-																</a>{$liend}
+																<action>
+																	<a href="tiki-adminusers.php?user={$users[user].user|escape:url}&amp;action=email_due" onclick="confirmSimple(event, '{tr}Invalidate user email?{/tr}', '{ticket mode=get}')">
+																		{icon name="trash" _menu_text='y' _menu_icon='y' alt="{tr}Invalidate email{/tr}"}
+																	</a>
+																</action>
 															{/if}
 														{/if}
 														{* Use a confirm here since action cannot easily be undone *}
 														{if !empty($users[user].openid_url)}
-															{$libeg}<a href="tiki-adminusers.php?userId={$userId=$users[user].userId|escape:url}&amp;action=remove_openid" onclick="confirmSimple(event, '{tr}Remove link with OpenID for this user?{/tr}', '{ticket mode=get}')">
-																{icon name="link" _menu_text='y' _menu_icon='y' alt="{tr}Remove link with OpenID account{/tr}"}
-															</a>{$liend}
+															<action>
+																<a href="tiki-adminusers.php?userId={$userId=$users[user].userId|escape:url}&amp;action=remove_openid" onclick="confirmSimple(event, '{tr}Remove link with OpenID for this user?{/tr}', '{ticket mode=get}')">
+																	{icon name="link" _menu_text='y' _menu_icon='y' alt="{tr}Remove link with OpenID account{/tr}"}
+																</a>
+															</action>
 														{/if}
 													{/strip}
-												{/capture}
-												{include file="templates/includes/tiki-actions_link.tpl" capturedActions="user_actions"}											</td>
+												{/actions}
 										</tr>
 									{/if}
 								{sectionelse}

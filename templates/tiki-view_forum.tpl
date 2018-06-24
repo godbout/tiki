@@ -680,32 +680,40 @@
 						{/if}
 
 						<td class="text" nowrap="nowrap">
-							{capture name=view_forum_actions}
+							{actions}
 								{strip}
 									{if ( $tiki_p_admin_forum eq 'y' or ($comments_coms[ix].userName == $user && $tiki_p_forum_post eq 'y') ) and $forum_info.is_locked neq 'y' and $comments_coms[ix].locked neq 'y'}
-										{$libeg}<a href="tiki-view_forum.php?openpost=1&amp;comments_threadId={$comments_coms[ix].threadId}&amp;forumId={$forum_info.forumId}&amp;comments_threshold={$comments_threshold}&amp;comments_offset={$comments_offset}&amp;thread_sort_mode={$thread_sort_mode}&amp;comments_per_page={$comments_per_page}">
-											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-view_forum.php?openpost=1&amp;comments_threadId={$comments_coms[ix].threadId}&amp;forumId={$forum_info.forumId}&amp;comments_threshold={$comments_threshold}&amp;comments_offset={$comments_offset}&amp;thread_sort_mode={$thread_sort_mode}&amp;comments_per_page={$comments_per_page}">
+												{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+											</a>
+										</action>
 									{/if}
 									{if $prefs.feature_forum_topics_archiving eq 'y' && $tiki_p_admin_forum eq 'y'}
 										{if $comments_coms[ix].archived eq 'y'}
-											<a href="{bootstrap_modal controller=forum action=unarchive_topic forumId={$forum_info.forumId} comments_parentId={$comments_coms[ix].threadId} comments_offset={$comments_offset} thread_sort_mode={$thread_sort_mode} comments_per_page={$comments_per_page}}">
-												{icon name='file-archive-open' _menu_text='y' _menu_icon='y' alt="{tr}Unarchive{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="{bootstrap_modal controller=forum action=unarchive_topic forumId={$forum_info.forumId} comments_parentId={$comments_coms[ix].threadId} comments_offset={$comments_offset} thread_sort_mode={$thread_sort_mode} comments_per_page={$comments_per_page}}">
+													{icon name='file-archive-open' _menu_text='y' _menu_icon='y' alt="{tr}Unarchive{/tr}"}
+												</a>
+											</action>
 										{else}
-											<a href="{bootstrap_modal controller=forum action=archive_topic forumId={$forum_info.forumId} comments_parentId={$comments_coms[ix].threadId} comments_offset={$comments_offset} thread_sort_mode={$thread_sort_mode} comments_per_page={$comments_per_page}}">
-												{icon name='file-archive' _menu_text='y' _menu_icon='y' alt="{tr}Archive{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="{bootstrap_modal controller=forum action=archive_topic forumId={$forum_info.forumId} comments_parentId={$comments_coms[ix].threadId} comments_offset={$comments_offset} thread_sort_mode={$thread_sort_mode} comments_per_page={$comments_per_page}}">
+													{icon name='file-archive' _menu_text='y' _menu_icon='y' alt="{tr}Archive{/tr}"}
+												</a>
+											</action>
 										{/if}
 									{/if}
 									{if $tiki_p_admin_forum eq 'y'}
-										<a href="{bootstrap_modal controller=forum action=delete_topic forumId={$forum_info.forumId} forumtopic={$comments_coms[ix].threadId} comments_offset={$comments_offset} thread_sort_mode={$thread_sort_mode} comments_per_page={$comments_per_page}}">
-											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="{bootstrap_modal controller=forum action=delete_topic forumId={$forum_info.forumId} forumtopic={$comments_coms[ix].threadId} comments_offset={$comments_offset} thread_sort_mode={$thread_sort_mode} comments_per_page={$comments_per_page}}">
+												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+											</a>
+										</action>
 									{/if}
 								{/strip}
-							{/capture}
-							{include file="templates/includes/tiki-actions_link.tpl" capturedActions="view_forum_actions"}						</td>
+							{/actions}
+						</td>
 					</tr>
 					{/block}
 				{sectionelse}

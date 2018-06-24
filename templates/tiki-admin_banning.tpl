@@ -185,22 +185,12 @@
 	</form>
 {/if}
 <h2>{tr}Current rules{/tr}</h2>
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
 <form method="post" id="banning_rules_list" action="tiki-admin_banning.php">
 	{ticket}
 	<input type="hidden" name="offset" value="{$offset|escape}">
 	<input type="hidden" name="find" value="{$find|escape}">
 	<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
-	<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+	<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 		<table class="table table-striped table-hover">
 			<tr>
 				<th>
@@ -241,29 +231,20 @@
 						{/section}
 					</td>
 					<td>
-						{capture name=banning_actions}
+						{actions}
 							{strip}
-								{$libeg}<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;banId={$items[user].banId}">
-									{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-								</a>{$liend}
-								{$libeg}<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;delsec[{$items[user].banId}]=y&amp;del=y"{if $js === 'y'} onclick="confirmSimple(event, '{tr}Delete banning rule?{/tr}', '{ticket mode=get}', );"{/if}>
-									{icon name='delete' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-								</a>{$liend}
+								<action>
+									<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;banId={$items[user].banId}">
+										{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+									</a>
+								</action>
+								<action>
+									<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;delsec[{$items[user].banId}]=y&amp;del=y" onclick="confirmSimple(event, '{tr}Delete banning rule?{/tr}', '{ticket mode=get}', );">
+										{icon name='delete' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+									</a>
+								</action>
 							{/strip}
-						{/capture}
-						{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-						<a
-							class="tips"
-							title="{tr}Actions{/tr}"
-							href="#"
-							{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.banning_actions}{/if}
-							style="padding:0; margin:0; border:0"
-						>
-							{icon name='wrench'}
-						</a>
-						{if $js === 'n'}
-							<ul class="dropdown-menu" role="menu">{$smarty.capture.banning_actions}</ul></li></ul>
-						{/if}
+						{/actions}
 					</td>
 				</tr>
 			{sectionelse}

@@ -23,11 +23,6 @@
 </div> {* div.wikitopline *}
 
 {if !isset($versioned) and $print_page ne 'y' and (!isset($hide_page_header) or !$hide_page_header)}
-	{if $prefs.javascript_enabled != 'y'}
-		{$js = 'n'}
-	{else}
-		{$js = 'y'}
-	{/if}
 	<div class="wikiactions_wrapper">
 		<div class="wikiactions icons btn-group pull-right">
 			<div class="btn-group">
@@ -60,7 +55,7 @@
 
 				{if $prefs.feature_backlinks eq 'y' and $backlinks|default:null and $tiki_p_view_backlink eq 'y'}
 					<div class="btn-group backlinks">
-						{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+						{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 						<a role="button" data-toggle="dropdown" data-hover="dropdown" class="btn btn-link dropdown-toggle">
 							{icon name="backlink"}
 						</a>
@@ -77,12 +72,12 @@
 								{/section}
 							</li>
 						</ul>
-						{if $js == 'n'}</li></ul>{/if}
+						{if ! $js}</li></ul>{/if}
 					</div>
 				{/if}
 				{if $structure eq 'y' or ( $structure eq 'n' and count($showstructs) neq 0 )}
 					<div class="btn-group structures">
-						{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+						{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 						<a class="btn btn-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 							{icon name="structure"}
 						</a>
@@ -111,14 +106,14 @@
 								</li>
 							{/if}
 						</ul>
-						{if $js == 'n'}</li></ul>{/if}
+						{if ! $js}</li></ul>{/if}
 					</div>
 				{/if}
 
 				{* all single-action icons under one dropdown*}
 				{assign var="hasPageAction" value="0"}
 				{capture name="pageActions"}
-					{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+					{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 					<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 						{icon name='menu-extra'}
 					</a>
@@ -323,7 +318,7 @@
 							</li>
 						{/if}
 					</ul>
-					{if $js == 'n'}</li></ul>{/if}
+					{if ! $js}</li></ul>{/if}
 				{/capture}
 				{if $hasPageAction eq '1'}
 					<div class="btn-group page_actions">

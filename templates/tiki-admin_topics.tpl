@@ -36,17 +36,7 @@
 	</div>
 </form>
 <h2>{tr}Topics{/tr}</h2>
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
-<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 	<table class="table table-striped table-hover">
 		<tr>
 			<th>{tr}ID{/tr}</th>
@@ -74,42 +64,41 @@
 				<td><span class="badge badge-secondary">{$topics[user].arts}</span></td>
 				{if $prefs.feature_submissions eq 'y'}<td><span class="badge badge-secondary">{$topics[user].subs}</span></td>{/if}
 				<td class="action">
-					{capture name=topic_actions}
+					{actions}
 						{strip}
-							{$libeg}{permission_link mode=text type=topic permType=articles id=$topics[user].topicId title=$topics[user].name}{$liend}
+							<action>
+								{permission_link mode=text type=topic permType=articles id=$topics[user].topicId title=$topics[user].name}
+							</action>
 							{if $topics[user].active eq 'n'}
-								{$libeg}<a href="tiki-admin_topics.php?activate={$topics[user].topicId}">
-									{icon name="toggle-on" _menu_text='y' _menu_icon='y' alt="{tr}Activate{/tr}"}
-								</a>{$liend}
+								<action>
+									<a href="tiki-admin_topics.php?activate={$topics[user].topicId}">
+										{icon name="toggle-on" _menu_text='y' _menu_icon='y' alt="{tr}Activate{/tr}"}
+									</a>
+								</action>
 							{else}
-								{$libeg}<a href="tiki-admin_topics.php?deactivate={$topics[user].topicId}">
-									{icon name="toggle-off" _menu_text='y' _menu_icon='y' alt="{tr}De-activate{/tr}"}
-								</a>{$liend}
+								<action>
+									<a href="tiki-admin_topics.php?deactivate={$topics[user].topicId}">
+										{icon name="toggle-off" _menu_text='y' _menu_icon='y' alt="{tr}De-activate{/tr}"}
+									</a>
+								</action>
 							{/if}
-							{$libeg}<a href="tiki-edit_topic.php?topicid={$topics[user].topicId}">
-								{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-							</a>{$liend}
-							{$libeg}<a href="tiki-admin_topics.php?remove={$topics[user].topicId}">
-								{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-							</a>{$liend}
-							{$libeg}<a href="tiki-admin_topics.php?removeall={$topics[user].topicId}">
-								{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove with articles{/tr}"}
-							</a>{$liend}
+							<action>
+								<a href="tiki-edit_topic.php?topicid={$topics[user].topicId}">
+									{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+								</a>
+							</action>
+							<action>
+								<a href="tiki-admin_topics.php?remove={$topics[user].topicId}">
+									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+								</a>
+							</action>
+							<action>
+								<a href="tiki-admin_topics.php?removeall={$topics[user].topicId}">
+									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove with articles{/tr}"}
+								</a>
+							</action>
 						{/strip}
-					{/capture}
-					{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-					<a
-						class="tips"
-						title="{tr}Actions{/tr}"
-						href="#"
-						{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.topic_actions}{/if}
-						style="padding:0; margin:0; border:0"
-					>
-						{icon name='wrench'}
-					</a>
-					{if $js === 'n'}
-						<ul class="dropdown-menu" role="menu">{$smarty.capture.topic_actions}</ul></li></ul>
-					{/if}
+					{/actions}
 				</td>
 			</tr>
 		{sectionelse}

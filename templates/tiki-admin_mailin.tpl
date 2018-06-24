@@ -6,16 +6,6 @@
 {/block}
 
 {block name="content"}
-	{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-	{if $prefs.javascript_enabled !== 'y'}
-		{$js = 'n'}
-		{$libeg = '<li>'}
-		{$liend = '</li>'}
-	{else}
-		{$js = 'y'}
-		{$libeg = ''}
-		{$liend = ''}
-	{/if}
 	<table class="table table-striped table-hover">
 		<tr>
 			<th>{tr}Account{/tr}</th>
@@ -56,31 +46,24 @@
 				<td>{if $account.leave_email eq 'y'}{icon name="ok"}{/if}</td>
 
 				<td class="action">
-					{capture name=mailin_actions}
+					{actions}
 						{strip}
-							{$libeg}<a href="{bootstrap_modal controller=mailin action=replace_account accountId=$account.accountId}"
-									onclick="$('[data-toggle=popover]').popover('hide');">
-								{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-							</a>{$liend}
-							{$libeg}<a href="{bootstrap_modal controller=mailin action=remove_account accountId=$account.accountId}"
-									onclick="$('[data-toggle=popover]').popover('hide');">
-								{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-							</a>{$liend}
+							<action>
+								<a href="{bootstrap_modal controller=mailin action=replace_account accountId=$account.accountId}"
+									onclick="$('[data-toggle=popover]').popover('hide');"
+								>
+									{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+								</a>
+							</action>
+							<action>
+								<a href="{bootstrap_modal controller=mailin action=remove_account accountId=$account.accountId}"
+									onclick="$('[data-toggle=popover]').popover('hide');"
+								>
+									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+								</a>
+							</action>
 						{/strip}
-					{/capture}
-					{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-					<a
-						class="tips"
-						title="{tr}Actions{/tr}"
-						href="#"
-						{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.mailin_actions}{/if}
-						style="padding:0; margin:0; border:0"
-					>
-						{icon name='wrench'}
-					</a>
-					{if $js === 'n'}
-						<ul class="dropdown-menu" role="menu">{$smarty.capture.mailin_actions}</ul></li></ul>
-					{/if}
+					{/actions}
 				</td>
 			</tr>
 		{/foreach}

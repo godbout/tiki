@@ -9,14 +9,9 @@
 		{tr}{$name}{/tr}
 	{/if}
 {/title}
-{if $prefs.javascript_enabled != 'y'}
-	{$js = 'n'}
-{else}
-	{$js = 'y'}
-{/if}
 <div class="t_navbar mb-4">
 	<div class="btn-group pull-right">
-		{if $js == 'n'}<ul class="cssmenu_horiz"><li class="dropdown-item">{/if}
+		{if ! $js}<ul class="cssmenu_horiz"><li class="dropdown-item">{/if}
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 			{icon name='menu-extra'}
 		</a>
@@ -122,7 +117,7 @@
 				</li>
 			{/if}
 		</ul>
-		{if $js == 'n'}</li></ul>{/if}
+		{if ! $js}</li></ul>{/if}
 	</div>
 	{if $galleryId gt 0}
 	{* main navigation buttons under the page title *}

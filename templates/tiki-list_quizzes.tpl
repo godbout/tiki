@@ -13,18 +13,7 @@
 {if $channels or ($find ne '')}
 	{include file='find.tpl'}
 {/if}
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
-
-<div class="{if $js === 'y'}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
+<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 	<table class="table table-striped table-hover">
 		<tr>
 			{assign var=numbercol value=1}
@@ -62,33 +51,24 @@
 					</td>
 					{if ($tiki_p_admin eq 'y' or $tiki_p_admin_quizzes eq 'y' or $tiki_p_view_quiz_stats eq 'y')}
 						<td class="action">
-							{capture name=quiz_actions}
+							{actions}
 								{strip}
 									{if ($tiki_p_admin eq 'y') or ($channels[user].individual eq 'n' and $tiki_p_admin_quizzes eq 'y') or ($channels[user].individual_tiki_p_admin_quizzes eq 'y')}
-										{$libeg}<a href="tiki-edit_quiz.php?quizId={$channels[user].quizId}">
-											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-edit_quiz.php?quizId={$channels[user].quizId}">
+												{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+											</a>
+										</action>
 									{/if}
 									{if ($tiki_p_admin eq 'y') or ($channels[user].individual eq 'n' and $tiki_p_view_quiz_stats eq 'y') or ($channels[user].individual_tiki_p_view_quiz_stats eq 'y')}
-										{$libeg}<a href="tiki-quiz_stats_quiz.php?quizId={$channels[user].quizId}">
-											{icon name='chart' _menu_text='y' _menu_icon='y' alt="{tr}Stats{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-quiz_stats_quiz.php?quizId={$channels[user].quizId}">
+												{icon name='chart' _menu_text='y' _menu_icon='y' alt="{tr}Stats{/tr}"}
+											</a>
+										</action>
 									{/if}
 								{/strip}
-							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.quiz_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.quiz_actions}</ul></li></ul>
-							{/if}
+							{/actions}
 						</td>
 					{/if}
 				</tr>

@@ -8,17 +8,7 @@
 		{if $listpages or $find neq ''}
 			{include file='find.tpl'}
 		{/if}
-		{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
-		<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+		<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 			<table class="table table-striped table-hover">
 				<tr>
 					<th>{self_link _sort_arg='sort_mode' _sort_field='contentId'}{tr}Id{/tr}{/self_link}</th>
@@ -46,32 +36,25 @@
 						<td class="date">{$listpages[changes].next|tiki_short_datetime}</td>
 						<td class="text">{$listpages[changes].future}</td>
 						<td class="action">
-							{capture name=content_actions}
+							{actions}
 								{strip}
-									{$libeg}{self_link _icon_name='edit' _menu_text='y' _menu_icon='y' edit=$listpages[changes].contentId cookietab=2}
-										{tr}Edit{/tr}
-									{/self_link}{$liend}
-									{$libeg}<a href="tiki-edit_programmed_content.php?contentId={$listpages[changes].contentId}" title="{tr}Program{/tr}">
-										{icon name='cog' _menu_text='y' _menu_icon='y' alt="{tr}Program{/tr}"}
-									</a>{$liend}
-									{$libeg}{self_link _icon_name='remove' _menu_text='y' _menu_icon='y' _template='confirm.tpl' remove=$listpages[changes].contentId}
-										{tr}Remove{/tr}
-									{/self_link}{$liend}
+									<action>
+										{self_link _icon_name='edit' _menu_text='y' _menu_icon='y' edit=$listpages[changes].contentId cookietab=2}
+											{tr}Edit{/tr}
+										{/self_link}
+									</action>
+									<action>
+										<a href="tiki-edit_programmed_content.php?contentId={$listpages[changes].contentId}" title="{tr}Program{/tr}">
+											{icon name='cog' _menu_text='y' _menu_icon='y' alt="{tr}Program{/tr}"}
+										</a>
+									</action>
+									<action>
+										{self_link _icon_name='remove' _menu_text='y' _menu_icon='y' _template='confirm.tpl' remove=$listpages[changes].contentId}
+											{tr}Remove{/tr}
+										{/self_link}
+									</action>
 								{/strip}
-							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.content_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.content_actions}</ul></li></ul>
-							{/if}
+							{/actions}
 						</td>
 					</tr>
 				{sectionelse}

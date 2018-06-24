@@ -80,21 +80,27 @@
 								<td class="integer"><span class="badge badge-secondary">{$channels[user].posts_per_day|string_format:"%.2f"}<span></td>
 								<td class="integer"><span class="badge badge-secondary">{$channels[user].hits}<span></td>
 								<td class="action">
-									{capture name=admin_forum_actions}
+									{actions}
 										{strip}
-											{$libeg}<a href="{$channels[user].forumId|sefurl:'forum'}">
-												{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="{$channels[user].forumId|sefurl:'forum'}">
+													{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
+												</a>
+											</action>
 											{* the tiki_p_forum_lock permission has not been implemented *}
 											{if isset($tiki_p_forum_lock) and $tiki_p_forum_lock eq 'y'}
 												{if $channels[user].is_locked eq 'y'}
-													{$libeg}{self_link _icon_name='unlock' _menu_text='y' _menu_icon='y' lock='n' forumId=$channels[user].forumId}
-														{tr}Unlock{/tr}
-													{/self_link}{$liend}
+													<action>
+														{self_link _icon_name='unlock' _menu_text='y' _menu_icon='y' lock='n' forumId=$channels[user].forumId}
+															{tr}Unlock{/tr}
+														{/self_link}
+													</action>
 												{else}
-													{$libeg}{self_link _icon_name='lock' _menu_text='y' _menu_icon='y' lock='y' forumId=$channels[user].forumId}
-														{tr}Lock{/tr}
-													{/self_link}{$liend}
+													<action>
+														{self_link _icon_name='lock' _menu_text='y' _menu_icon='y' lock='y' forumId=$channels[user].forumId}
+															{tr}Lock{/tr}
+														{/self_link}
+													</action>
 												{/if}
 											{/if}
 
@@ -103,18 +109,23 @@
 											and ($tiki_p_admin_forum eq 'y'))
 											or ($channels[user].individual_tiki_p_admin_forum eq 'y')
 											}
-												{$libeg}{self_link _icon_name='edit' _menu_text='y' _menu_icon='y' cookietab='2' _anchor='anchor2' forumId=$channels[user].forumId}
-													{tr}Edit{/tr}
-												{/self_link}{$liend}
-												{$libeg}{permission_link mode=text type=forum permType=forums id=$channels[user].forumId title=$channels[user].name}{$liend}
-												{* go ahead and set action to delete_forum since that is the only action available in the multi selct dropdown *}
-												{$libeg}<a href="{bootstrap_modal controller=forum action=delete_forum checked={$channels[user].forumId}}">
-													{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-												</a>{$liend}
+												<action>
+													{self_link _icon_name='edit' _menu_text='y' _menu_icon='y' cookietab='2' _anchor='anchor2' forumId=$channels[user].forumId}
+														{tr}Edit{/tr}
+													{/self_link}
+												</action>
+												<action>
+													{permission_link mode=text type=forum permType=forums id=$channels[user].forumId title=$channels[user].name}
+												</action>
+												{* g	o ahead and set action to delete_forum since that is the only action available in the multi selct dropdown *}
+													<action>
+													<a href="{bootstrap_modal controller=forum action=delete_forum checked={$channels[user].forumId}}">
+														{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+													</a>
+													</action>
 											{/if}
 										{/strip}
-									{/capture}
-									{include file="templates/includes/tiki-actions_link.tpl" capturedActions="admin_forum_actions"}
+									{/actions}
 								</td>
 							</tr>
 						{sectionelse}

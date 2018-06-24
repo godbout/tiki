@@ -6,15 +6,6 @@
 	</div>
 {/if}
 {if $user}
-	{if $prefs.javascript_enabled !== 'y'}
-		{$js = 'n'}
-		{$libeg = '<li>'}
-		{$liend = '</li>'}
-	{else}
-		{$js = 'y'}
-		{$libeg = ''}
-		{$liend = ''}
-	{/if}
 	{tabset}
 		{permission name=payment_view}
 			{tab name="{tr}Outstanding{/tr}"}

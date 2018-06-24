@@ -63,7 +63,7 @@
 	<input type="hidden" name="parent" value="{$parent|escape}">
 	<input type="hidden" name="oldcategId" value="{$items[user].relatedTo|escape}">
 
-	<div class="{if $js === 'y'}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
+	<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>

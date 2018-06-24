@@ -91,20 +91,26 @@
 
 								<td class="text">{tr}{$users[user].userChoice}{/tr}</td>
 								<td class="action">
-									{capture name=group_actions}
+									{actions}
 										{strip}
-											{$libeg}<a href="tiki-admingroups.php?group={$users[user].groupName|escape:"url"}{if $prefs.feature_tabs ne 'y'}#tab2{/if}">
-											{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-											</a>{$liend}
-											{$libeg}{permission_link mode=text group=$users[user].groupName count=$users[user].permcant}{$liend}
+											<action>
+												<a href="tiki-admingroups.php?group={$users[user].groupName|escape:"url"}{if $prefs.feature_tabs ne 'y'}#tab2{/if}">
+													{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+												</a>
+											</action>
+											<action>
+												{permission_link mode=text group=$users[user].groupName count=$users[user].permcant}
+											</action>
 											{if $users[user].groupName ne 'Anonymous' and $users[user].groupName ne 'Registered' and $users[user].groupName ne 'Admins'}
-												{$libeg}<a href="{bootstrap_modal controller=group action=remove_groups checked=$users[user].groupName}">
-												{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-												</a>{$liend}
+												<action>
+													<a href="{bootstrap_modal controller=group action=remove_groups checked=$users[user].groupName}">
+														{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+													</a>
+												</action>
 											{/if}
 										{/strip}
-									{/capture}
-									{include file="templates/includes/tiki-actions_link.tpl" capturedActions="group_actions"}								</td>
+									{/actions}
+								</td>
 							</tr>
 						{/section}
 					</tbody>
@@ -534,19 +540,23 @@
 												<td class="date">{if not empty($member.created)}{$member.created|tiki_short_datetime}{/if}</td>
 												<td class="date">{if not empty($member.expire)}{$member.expire|tiki_short_datetime}{/if}</td>
 												<td class="action">
-													{capture name=members_actions}
+													{actions}
 														{strip}
-															{$libeg}<a href="tiki-adminusers.php?user={$member.userId|escape:"url"}{if $prefs.feature_tabs ne 'y'}#tab2{/if}">
-															{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit user{/tr}"}
-															</a>{$liend}
+															<action>
+																<a href="tiki-adminusers.php?user={$member.userId|escape:"url"}{if $prefs.feature_tabs ne 'y'}#tab2{/if}">
+																	{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit user{/tr}"}
+																</a>
+															</action>
 															{if $groupname neq 'Registered'}
-																{$libeg}<a href="{bootstrap_modal controller=user action=manage_groups checked=$member.login groupremove=$groupname anchor='#contenttabs_admingroups-3'}">
-																{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove from group{/tr}"}
-																</a>{$liend}
+																<action>
+																	<a href="{bootstrap_modal controller=user action=manage_groups checked=$member.login groupremove=$groupname anchor='#contenttabs_admingroups-3'}">
+																		{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove from group{/tr}"}
+																	</a>
+																</action>
 															{/if}
 														{/strip}
-													{/capture}
-													{include file="templates/includes/tiki-actions_link.tpl" capturedActions="members_actions"}												</td>
+													{/actions}
+												</td>
 											</tr>
 										{/foreach}
 									</tbody>

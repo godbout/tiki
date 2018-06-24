@@ -33,16 +33,6 @@
 			{if $channels or ($find ne '')}
 				{include file='find.tpl'}
 			{/if}
-			{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-			{if $prefs.javascript_enabled !== 'y'}
-				{$js = 'n'}
-				{$libeg = '<li>'}
-				{$liend = '</li>'}
-			{else}
-				{$js = 'y'}
-				{$libeg = ''}
-				{$liend = ''}
-			{/if}
 			<table class="table table-striped table-hover">
 				<tr>
 					<th>{self_link _sort_arg='sort_mode' _sort_field='rssId'}{tr}ID{/tr}{/self_link}</th>
@@ -70,43 +60,42 @@
 						<td class="text">{$channels[chan].showTitle|escape}</td>
 						<td class="text">{$channels[chan].showPubDate|escape}</td>
 						<td class="action">
-							{capture name=rss_actions}
+							{actions}
 								{strip}
-									{$libeg}<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;view={$channels[chan].rssId|escape}">
-										{icon name="rss" _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
-									</a>{$liend}
-									{$libeg}<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;refresh={$channels[chan].rssId|escape}">
-										{icon name="refresh" _menu_text='y' _menu_icon='y' alt="{tr}Refresh{/tr}"}
-									</a>{$liend}
-									{$libeg}<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;rssId={$channels[chan].rssId|escape}">
-										{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;view={$channels[chan].rssId|escape}">
+											{icon name="rss" _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;refresh={$channels[chan].rssId|escape}">
+											{icon name="refresh" _menu_text='y' _menu_icon='y' alt="{tr}Refresh{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;rssId={$channels[chan].rssId|escape}">
+											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+										</a>
+									</action>
 									{if $prefs.feature_articles eq 'y'}
-										{$libeg}<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;article={$channels[chan].rssId|escape}">
-											{icon name='textfile' _menu_text='y' _menu_icon='y' alt="{tr}Article generator{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;article={$channels[chan].rssId|escape}">
+												{icon name='textfile' _menu_text='y' _menu_icon='y' alt="{tr}Article generator{/tr}"}
+											</a>
+										</action>
 									{/if}
-									{$libeg}<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;clear={$channels[chan].rssId|escape}">
-										{icon name='trash' _menu_text='y' _menu_icon='y' alt="{tr}Clear Cache{/tr}"}
-									</a>{$liend}
-									{$libeg}<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;remove={$channels[chan].rssId|escape}">
-										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;clear={$channels[chan].rssId|escape}">
+											{icon name='trash' _menu_text='y' _menu_icon='y' alt="{tr}Clear Cache{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;remove={$channels[chan].rssId|escape}">
+											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+										</a>
+									</action>
 								{/strip}
-							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.rss_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.rss_actions}</ul></li></ul>
-							{/if}
+							{/actions}
 						</td>
 					</tr>
 				{sectionelse}

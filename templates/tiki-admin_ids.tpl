@@ -57,17 +57,20 @@
 								</td>
 
 								<td class="action">
-									{capture name=rule_actions}
+									{actions}
 										{strip}
-											{$libeg}<a href="{query _type='relative' rule=$ids_rules[rule].id}">
-											{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-											</a>{$liend}
-											{$libeg}<a href="{bootstrap_modal controller=ids action=remove ruleId=$ids_rules[rule].id}">
-											{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-											</a>{$liend}
+											<action>
+												<a href="{query _type='relative' rule=$ids_rules[rule].id}">
+													{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+												</a>
+											</action>
+											<action>
+												<a href="{bootstrap_modal controller=ids action=remove ruleId=$ids_rules[rule].id}">
+													{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+												</a>
+											</action>
 										{/strip}
-									{/capture}
-									{include file="templates/includes/tiki-actions_link.tpl" capturedActions="rule_actions"}								</td>
+									{/actions}
 							</tr>
 						{/section}
 						</tbody>

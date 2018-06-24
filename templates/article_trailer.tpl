@@ -1,10 +1,4 @@
 {if !isset($preview)}
-	{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-	{if $prefs.javascript_enabled != 'y'}
-		{$js = 'n'}
-	{else}
-		{$js = 'y'}
-	{/if}
 	<div class="clearfix articletrailer">
 		<span>
 			{if $show_size eq 'y'}
@@ -16,7 +10,7 @@
 				{if $prefs.feature_multilingual eq 'y' and $lang and $prefs.show_available_translations eq 'y'}
 					{include file='translated-lang.tpl' object_type='article'}
 				{/if}
-				{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
+				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name='menu-extra'}
 				</a>
@@ -89,7 +83,7 @@
 						{/if}
 					</li>
 				</ul>
-				{if $js === 'n'}</li></ul>{/if}
+				{if ! $js}</li></ul>{/if}
 			</div>
 		</div>
 	</div>

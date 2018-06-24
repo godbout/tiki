@@ -7,16 +7,10 @@
 		{tr}Calendar{/tr}
 	{/if}
 {/title}
-{if $prefs.javascript_enabled != 'y'}
-	{$js = 'n'}
-{else}
-	{$js = 'y'}
-{/if}
-
 <div id="calscreen">
 	<div class="t_navbar mb-4">
 		<div class="btn-group pull-right">
-			{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 				{icon name='menu-extra'}
 			</a>
@@ -46,7 +40,7 @@
 					</li>
 				{/if}
 			</ul>
-			{if $js == 'n'}</li></ul>{/if}
+			{if ! $js}</li></ul>{/if}
 		</div>
 		{if $tiki_p_admin_calendar eq 'y' or $tiki_p_admin eq 'y'}
 			{if $displayedcals|@count eq 1}

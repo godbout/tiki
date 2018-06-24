@@ -353,19 +353,22 @@
 								{/if}
 							</td>
 							<td class="button_container" style="white-space: nowrap">
-								{capture name='current_actions'}
+								{actions}
 									{strip}
-										{$libeg}{self_link page=$page preview=$info.version _icon_name="view" _menu_text='y' _menu_icon='y'}
-											{tr}View{/tr}
-										{/self_link}{$liend}
+										<action>
+											{self_link page=$page preview=$info.version _icon_name="view" _menu_text='y' _menu_icon='y'}
+												{tr}View{/tr}
+											{/self_link}
+										</action>
 										{if $tiki_p_wiki_view_source eq "y" and $prefs.feature_source eq "y"}
-											{$libeg}{self_link page=$page source=$info.version _icon_name="code" _menu_text='y' _menu_icon='y'}
-												{tr}Source{/tr}
-											{/self_link}{$liend}
+											<action>
+												{self_link page=$page source=$info.version _icon_name="code" _menu_text='y' _menu_icon='y'}
+													{tr}Source{/tr}
+												{/self_link}
+											</action>
 										{/if}
 									{/strip}
-								{/capture}
-								{include file="templates/includes/tiki-actions_link.tpl" capturedActions="current_actions"}
+								{/actions}
 							</td>
 							{if $prefs.default_wiki_diff_style ne "old" and $history}
 								<td class="button_container">
@@ -438,32 +441,41 @@
 								{/if}
 							</td>
 							<td class="button_container" style="white-space: nowrap">
-								{capture name='history_actions'}
+								{actions}
 									{strip}
-										{$libeg}{self_link page=$page preview=$element.version _icon_name="view" _menu_text='y' _menu_icon='y'}
-											{tr}View{/tr}
-										{/self_link}{$liend}
+										<action>
+											{self_link page=$page preview=$element.version _icon_name="view" _menu_text='y' _menu_icon='y'}
+												{tr}View{/tr}
+											{/self_link}
+										</action>
 										{if $tiki_p_wiki_view_source eq "y" and $prefs.feature_source eq "y"}
-											{$libeg}{self_link page=$page source=$element.version _icon_name="code" _menu_text='y' _menu_icon='y'}
-												{tr}Source{/tr}
-											{/self_link}{$liend}
+											<action>
+												{self_link page=$page source=$element.version _icon_name="code" _menu_text='y' _menu_icon='y'}
+													{tr}Source{/tr}
+												{/self_link}
+											</action>
 										{/if}
 										{if $prefs.default_wiki_diff_style eq "old"}
-											{$libeg}{self_link page=$page diff2=$element.version diff_style="sideview" _icon_name="copy" _menu_text='y' _menu_icon='y'}
-												{tr}Compare{/tr}
-											{/self_link}{$liend}
-											{$libeg}{self_link page=$page diff2=$element.version diff_style="unidiff" _icon_name="difference" _menu_text='y' _menu_icon='y'}
-												{tr}Difference{/tr}
-											{/self_link}{$liend}
+											<action>
+												{self_link page=$page diff2=$element.version diff_style="sideview" _icon_name="copy" _menu_text='y' _menu_icon='y'}
+													{tr}Compare{/tr}
+												{/self_link}
+											</action>
+											<action>
+												{self_link page=$page diff2=$element.version diff_style="unidiff" _icon_name="difference" _menu_text='y' _menu_icon='y'}
+													{tr}Difference{/tr}
+												{/self_link}
+											</action>
 										{/if}
 										{if $tiki_p_rollback eq 'y' && $lock neq true}
-											{$libeg}{self_link _script="tiki-rollback.php" page=$page version=$element.version _icon_name="undo" _menu_text='y' _menu_icon='y'}
-												{tr}Roll back{/tr}
-											{/self_link}
+											<action>
+												{self_link _script="tiki-rollback.php" page=$page version=$element.version _icon_name="undo" _menu_text='y' _menu_icon='y'}
+													{tr}Roll back{/tr}
+												{/self_link}
+											</action>
 										{/if}
 									{/strip}
-								{/capture}
-								{include file="templates/includes/tiki-actions_link.tpl" capturedActions="history_actions"}
+								{/actions}
 							</td>
 							{if $prefs.default_wiki_diff_style ne "old"}
 								<td class="button_container">

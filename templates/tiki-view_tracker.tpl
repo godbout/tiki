@@ -14,13 +14,8 @@
 		</a>
 	{/if}
 	{include file="tracker_actions.tpl" showitems="n"}
-	{if $prefs.javascript_enabled != 'y'}
-		{$js = 'n'}
-	{else}
-		{$js = 'y'}
-	{/if}
 	<div class="btn-group pull-right">
-		{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+		{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 			{icon name='menu-extra'}
 		</a>
@@ -114,7 +109,7 @@
 				</li>
 			{/if}
 		</ul>
-		{if $js == 'n'}</li></ul>{/if}
+		{if ! $js}</li></ul>{/if}
 	</div>
 </div>
 
@@ -147,19 +142,9 @@
 			{if (isset($cant_pages) && $cant_pages > 1) or $initial}{initials_filter_links}{/if}
 
 			{if $items|@count ge '1'}
-				{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-				{if $prefs.javascript_enabled !== 'y'}
-					{$js = 'n'}
-					{$libeg = '<li>'}
-					{$liend = '</li>'}
-				{else}
-					{$js = 'y'}
-					{$libeg = ''}
-					{$liend = ''}
-				{/if}
 				{* ------- list headings --- *}
 				<form name="checkform" method="post">
-					<div class="{if $js === 'y'}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
+					<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 						<table class="table table-striped table-hover">
 							<tr>
 								{if $tracker_info.showStatus eq 'y' or ($tracker_info.showStatusAdminOnly eq 'y' and $tiki_p_admin_trackers eq 'y')}
@@ -248,56 +233,52 @@
 									{/if}
 									{if $tiki_p_admin_trackers eq 'y' or ($tiki_p_remove_tracker_items eq 'y' and $items[user].status ne 'p' and $items[user].status ne 'c') or ($tiki_p_remove_tracker_items_pending eq 'y' and $items[user].status eq 'p') or ($tiki_p_remove_tracker_items_closed eq 'y' and $items[user].status eq 'c')}
 										<td class="action">
-											{capture name=view_tracker_actions}
+											{actions}
 												{strip}
 													{if $prefs.tracker_legacy_insert neq 'y'}
-														{$libeg}<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$items[user].itemId}"
-															onclick="$('[data-toggle=popover]').popover('hide');"
-														>
-															{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-														</a>{$liend}
+														<action>
+															<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$items[user].itemId}"
+																onclick="$('[data-toggle=popover]').popover('hide');"
+															>
+																{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+															</a>
+														</action>
 													{else}
-														{$libeg}<a href="tiki-view_tracker_item.php?itemId={$items[user].itemId}&amp;show=mod"
-															onclick="$('[data-toggle=popover]').popover('hide');"
-														>
-															{icon name="post" _menu_text='y' _menu_icon='y' alt="{tr}View/Edit{/tr}"}
-														</a>{$liend}
+														<action>
+															<a href="tiki-view_tracker_item.php?itemId={$items[user].itemId}&amp;show=mod"
+																onclick="$('[data-toggle=popover]').popover('hide');"
+															>
+																{icon name="post" _menu_text='y' _menu_icon='y' alt="{tr}View/Edit{/tr}"}
+															</a>
+														</action>
 													{/if}
 													{if $tiki_p_create_tracker_items eq 'y' and $prefs.tracker_clone_item eq 'y'}
-														{$libeg}<a href="{bootstrap_modal controller=tracker action=clone_item trackerId=$trackerId itemId=$items[user].itemId}"
-															onclick="$('[data-toggle=popover]').popover('hide');"
-														>
-															{icon name="copy" _menu_text='y' _menu_icon='y' alt="{tr}Duplicate{/tr}"}
-														</a>{$liend}
+														<action>
+															<a href="{bootstrap_modal controller=tracker action=clone_item trackerId=$trackerId itemId=$items[user].itemId}"
+																onclick="$('[data-toggle=popover]').popover('hide');"
+															>
+																{icon name="copy" _menu_text='y' _menu_icon='y' alt="{tr}Duplicate{/tr}"}
+															</a>
+														</action>
 													{/if}
-													{$libeg}<a href="{bootstrap_modal controller=tracker action=remove_item trackerId=$trackerId itemId=$items[user].itemId}"
-														onclick="$('[data-toggle=popover]').popover('hide');"
-													>
-														{icon name="delete" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-													</a>{$liend}
-													{if $tiki_p_admin_trackers eq 'y'}
-														{$libeg}<a href="tiki-tracker_view_history.php?itemId={$items[user].itemId}"
+													<action>
+														<a href="{bootstrap_modal controller=tracker action=remove_item trackerId=$trackerId itemId=$items[user].itemId}"
 															onclick="$('[data-toggle=popover]').popover('hide');"
 														>
-															{icon name="history" _menu_text='y' _menu_icon='y' alt="{tr}History{/tr}"}
-														</a>{$liend}
+															{icon name="delete" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+														</a>
+													</action>
+													{if $tiki_p_admin_trackers eq 'y'}
+														<action>
+															<a href="tiki-tracker_view_history.php?itemId={$items[user].itemId}"
+																onclick="$('[data-toggle=popover]').popover('hide');"
+															>
+																{icon name="history" _menu_text='y' _menu_icon='y' alt="{tr}History{/tr}"}
+															</a>
+														</action>
 													{/if}
 												{/strip}
-											{/capture}
-											{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-											<a
-												class="tips"
-												title="{tr}Actions{/tr}"
-												href="#"
-												{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.view_tracker_actions}{/if}
-												style="padding:0; margin:0; border:0"
-												onclick="return false;"
-											>
-												{icon name='wrench'}
-											</a>
-											{if $js === 'n'}
-												<ul class="dropdown-menu" role="menu">{$smarty.capture.view_tracker_actions}</ul></li></ul>
-											{/if}
+											{/actions}
 										</td>
 									{/if}
 								</tr>

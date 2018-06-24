@@ -96,17 +96,7 @@
 		{if $channels or ($find ne '')}
 			{include file='find.tpl'}
 		{/if}
-		{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
-		<div class="{if $js === 'y'}table-responsive{/if} poll-table"> {* table-responsive class cuts off css drop-down menus *}
+		<div class="{if $js}table-responsive{/if} poll-table"> {* table-responsive class cuts off css drop-down menus *}
 			<table class="table table-striped table-hover">
 				{assign var=numbercol value=8}
 				<tr>
@@ -154,35 +144,30 @@
 						<td class="integer">{$channels[user].voteConsiderationSpan|escape}</td>
 						<td class="integer">{$channels[user].options}</td>
 						<td class="action">
-							{capture name=admin_poll_actions}
+							{actions}
 								{strip}
-									{$libeg}<a href="tiki-admin_poll_options.php?pollId={$channels[user].pollId}">
-										{icon name='list' _menu_text='y' _menu_icon='y' alt="{tr}Options{/tr}"}
-									</a>{$liend}
-									{$libeg}<a class="link" href="tiki-poll_results.php?pollId={$channels[user].pollId}">
-										{icon name="chart" _menu_text='y' _menu_icon='y' alt="{tr}Results{/tr}"}
-									</a>{$liend}
-									{$libeg}{self_link pollId=$channels[user].pollId _menu_text='y' _menu_icon='y' _icon_name="edit"}
-										{tr}Edit{/tr}
-									{/self_link}{$liend}
-									{$libeg}<a href="tiki-admin_polls.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pollId}">
-										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-admin_poll_options.php?pollId={$channels[user].pollId}">
+											{icon name='list' _menu_text='y' _menu_icon='y' alt="{tr}Options{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a class="link" href="tiki-poll_results.php?pollId={$channels[user].pollId}">
+											{icon name="chart" _menu_text='y' _menu_icon='y' alt="{tr}Results{/tr}"}
+										</a>
+									</action>
+									<action>
+										{self_link pollId=$channels[user].pollId _menu_text='y' _menu_icon='y' _icon_name="edit"}
+											{tr}Edit{/tr}
+										{/self_link}
+									</action>
+									<action>
+										<a href="tiki-admin_polls.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pollId}">
+											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+										</a>
+									</action>
 								{/strip}
-							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.admin_poll_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.admin_poll_actions}</ul></li></ul>
-							{/if}
+							{/actions}
 						</td>
 					</tr>
 				{sectionelse}

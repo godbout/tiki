@@ -1,15 +1,9 @@
 {* $Id$ *}
 
 {title}{tr}Browsing Gallery:{/tr} {$name}{/title}
-{if $prefs.javascript_enabled != 'y'}
-	{$js = 'n'}
-{else}
-	{$js = 'y'}
-{/if}
-
 <div class="t_navbar mb-4">
 	<div class="btn-group pull-right">
-		{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+		{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 			{icon name='menu-extra'}
 		</a>
@@ -39,7 +33,7 @@
 				</li>
 			{/if}
 		</ul>
-		{if $js == 'n'}</li></ul>{/if}
+		{if ! $js}</li></ul>{/if}
 	</div>
 	{if $tiki_p_list_image_galleries eq 'y'}
 		{button href="tiki-galleries.php" class="btn btn-link" _type="text" _icon_name='list' _text="{tr}List Galleries{/tr}"}
@@ -108,16 +102,6 @@
 | <span class="sortoption"><a class="gallink" href="{$galleryId|sefurl:gallery:with_next}offset={$offset}&amp;sort_mode={if $sort_mode eq 'hits_desc'}hits_asc{else}hits_desc{/if}">{tr}Hits{/tr}</a></span>
 | <span class="sortoption"><a class="gallink" href="{$galleryId|sefurl:gallery:with_next}offset={$offset}&amp;sort_mode={if $sort_mode eq 'user_desc'}user_asc{else}user_desc{/if}">{tr}User{/tr}</a></span>
 | <span class="sortoption"><a class="gallink" href="{$galleryId|sefurl:gallery:with_next}offset={$offset}&amp;sort_mode={if $sort_mode eq 'filesize_desc'}filesize_asc{else}filesize_desc{/if}">{tr}Size{/tr}</a></span> ]
-{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-{if $prefs.javascript_enabled !== 'y'}
-	{$js = 'n'}
-	{$libeg = '<li>'}
-	{$liend = '</li>'}
-{else}
-	{$js = 'y'}
-	{$libeg = ''}
-	{$liend = ''}
-{/if}
 </div>
 
 <div class="thumbnails">
@@ -191,47 +175,46 @@
 								{if $showname=='y' and $item.name neq ''}{$item.name}{else}{$item.filename}{/if}
 							{/if}
 							<br>
-							{capture name=image_actions}
+							{actions}
 								{strip}
-									{$libeg}<a {jspopup href="tiki-browse_image.php?galleryId=$galleryId&amp;sort_mode=$sort_mode&amp;imageId="|cat:$item.imageId|cat:"&amp;scalesize=$defaultscale&amp;popup=1"} class="gallink">
-										{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}Popup{/tr}"}
-									</a>{$liend}
-									{$libeg}<a class="gallink tips" href="tiki-browse_image.php?galleryId={$galleryId}&amp;sort_mode={$sort_mode}&amp;imageId={$item.imageId}&amp;scalesize={$defaultscale}" {if $prefs.gal_image_mouseover neq 'n'}{popup fullhtml="1" text=$over_info.$key}{/if}>
-										{icon name='list' _menu_text='y' _menu_icon='y' alt="{tr}Details{/tr}"}
-									</a>{$liend}
+									<action>
+										<a {jspopup href="tiki-browse_image.php?galleryId=$galleryId&amp;sort_mode=$sort_mode&amp;imageId="|cat:$item.imageId|cat:"&amp;scalesize=$defaultscale&amp;popup=1"} class="gallink">
+											{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}Popup{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a class="gallink tips" href="tiki-browse_image.php?galleryId={$galleryId}&amp;sort_mode={$sort_mode}&amp;imageId={$item.imageId}&amp;scalesize={$defaultscale}" {if $prefs.gal_image_mouseover neq 'n'}{popup fullhtml="1" text=$over_info.$key}{/if}>
+											{icon name='list' _menu_text='y' _menu_icon='y' alt="{tr}Details{/tr}"}
+										</a>
+									</action>
 									{if $tiki_p_admin_galleries eq 'y' or ($user and $user eq $owner)}
 										{if $nextx!=0}
-											{$libeg}<a class="gallink" href="tiki-browse_image.php?galleryId={$galleryId}&amp;sort_mode={$sort_mode}&amp;imageId={$item.imageId}&amp;scalesize=0">
-												{icon name='image' _menu_text='y' _menu_icon='y' alt="{tr}Original size{/tr}"}
-											</a>{$liend}
+											<action>
+												<a class="gallink" href="tiki-browse_image.php?galleryId={$galleryId}&amp;sort_mode={$sort_mode}&amp;imageId={$item.imageId}&amp;scalesize=0">
+													{icon name='image' _menu_text='y' _menu_icon='y' alt="{tr}Original size{/tr}"}
+												</a>
+											</action>
 										{/if}
 										{if $imagerotate}
-											{$libeg}<a class="gallink" href="{$galleryId|sefurl:gallery:with_next}&amp;rotateright={$item.imageId}" title="{tr}rotate right{/tr}">
-												{icon name='repeat' _menu_text='y' _menu_icon='y' alt="{tr}Rotate{/tr}"}
-											</a>{$liend}
+											<action>
+												<a class="gallink" href="{$galleryId|sefurl:gallery:with_next}&amp;rotateright={$item.imageId}" title="{tr}rotate right{/tr}">
+													{icon name='repeat' _menu_text='y' _menu_icon='y' alt="{tr}Rotate{/tr}"}
+												</a>
+											</action>
 										{/if}
-										{$libeg}<a class="gallink" href="tiki-edit_image.php?galleryId={$galleryId}&amp;edit={$item.imageId}">
-											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-										</a>{$liend}
-										{$libeg}<a class="gallink" href="{$galleryId|sefurl:gallery:with_next}&amp;remove={$item.imageId}">
-											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-										</a>{$liend}
+										<action>
+											<a class="gallink" href="tiki-edit_image.php?galleryId={$galleryId}&amp;edit={$item.imageId}">
+												{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a class="gallink" href="{$galleryId|sefurl:gallery:with_next}&amp;remove={$item.imageId}">
+												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+											</a>
+										</action>
 									{/if}
 								{/strip}
-							{/capture}
-							{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-							<a
-								class="tips"
-								title="{tr}Actions{/tr}"
-								href="#"
-								{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.image_actions}{/if}
-								style="padding:0; margin:0; border:0"
-							>
-								{icon name='wrench'}
-							</a>
-							{if $js === 'n'}
-								<ul class="dropdown-menu" role="menu">{$smarty.capture.image_actions}</ul></li></ul>
-							{/if}
+							{/actions}
 							<br>
 						</div>
 					</div>

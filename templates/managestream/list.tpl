@@ -93,15 +93,15 @@
 						{$rule.notes|escape}
 					</td>
 					<td class="action">
-						{capture name=rule_actions}
+						{actions}
 							{strip}
-								{$libeg}
+								<action>
 									<a href="{bootstrap_modal controller=managestream action="{if $rule.ruleType eq "sample"}sample{elseif $rule.ruleType eq "record"}record{elseif $rule.ruleType eq "tracker_filter"}tracker_filter{elseif $rule.ruleType eq "advanced"}advanced{/if}" ruleId=$rule.ruleId}" data-rule-id="{$rule.ruleId|escape}">
 										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 									</a>
-								{$liend}
+								</action>
 								{if $rule.ruleType eq "record"}
-									{$libeg}
+									<action>
 										<a href="{bootstrap_modal controller=managestream action=change_rule_status ruleId=$rule.ruleId}">
 											{if $rule.status eq "disabled"}
 												{icon name="toggle-on" _menu_text='y' _menu_icon='y' alt="{tr}Enable{/tr}"}
@@ -109,23 +109,22 @@
 												{icon name="toggle-off" _menu_text='y' _menu_icon='y' alt="{tr}Disable{/tr}"}
 											{/if}
 										</a>
-									{$liend}
+									</action>
 								{/if}
 								{if $rule.ruleType eq "sample" or $rule.ruleType eq "record"}
-									{$libeg}
+									<action>
 										<a href="{bootstrap_modal controller=managestream action=change_rule_type ruleId=$rule.ruleId}">
 											{icon name="exchange" _menu_text='y' _menu_icon='y' alt="{tr}Change Rule Type{/tr}"}
 										</a>
-									{$liend}
+									</action>
 								{/if}
-								{$libeg}
+								<action>
 									<a href="{bootstrap_modal controller=managestream action=delete ruleId=$rule.ruleId}">
 										{icon name="delete" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 									</a>
-								{$liend}
+								</action>
 							{/strip}
-						{/capture}
-						{include file="templates/includes/tiki-actions_link.tpl" capturedActions="rule_actions"}
+						{/actions}
 					</td>
 				</tr>
 			{/foreach}

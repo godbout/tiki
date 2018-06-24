@@ -8,18 +8,7 @@
 			{include file='find.tpl'}
 		{/if}
 
-			{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-		{if $prefs.javascript_enabled !== 'y'}
-			{$js = 'n'}
-			{$libeg = '<li>'}
-			{$liend = '</li>'}
-		{else}
-			{$js = 'y'}
-			{$libeg = ''}
-			{$liend = ''}
-		{/if}
-
-		<div class="{if $js === 'y'}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
+		<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 			<table class="table table-striped table-hover">
 				<tr>
 					<th>
@@ -52,32 +41,25 @@
 						</td>
 						{if $tiki_p_admin_faqs eq 'y'}
 							<td class="action">
-								{capture name=faq_actions}
+								{actions}
 									{strip}
-										{$libeg}<a href="tiki-list_faqs.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;faqId={$channels[user].faqId}">
-											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-										</a>{$liend}
-										{$libeg}<a href="tiki-faq_questions.php?faqId={$channels[user].faqId}">
-											{icon name='help' _menu_text='y' _menu_icon='y' alt="{tr}Questions{/tr}"}
-										</a>{$liend}
-										{$libeg}<a href="tiki-list_faqs.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].faqId}">
-											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-										</a>{$liend}
+										<action>
+											<a href="tiki-list_faqs.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;faqId={$channels[user].faqId}">
+												{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a href="tiki-faq_questions.php?faqId={$channels[user].faqId}">
+												{icon name='help' _menu_text='y' _menu_icon='y' alt="{tr}Questions{/tr}"}
+											</a>
+										</action>
+										<action>
+											<a href="tiki-list_faqs.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].faqId}">
+												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+											</a>
+										</action>
 									{/strip}
-								{/capture}
-								{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-								<a
-									class="tips"
-									title="{tr}Actions{/tr}"
-									href="#"
-									{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.faq_actions}{/if}
-									style="padding:0; margin:0; border:0"
-								>
-									{icon name='wrench'}
-								</a>
-								{if $js === 'n'}
-									<ul class="dropdown-menu" role="menu">{$smarty.capture.faq_actions}</ul></li></ul>
-								{/if}
+								{/actions}
 							</td>
 						{/if}
 					</tr>

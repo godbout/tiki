@@ -3,17 +3,7 @@
 {tabset}
 
 {tab name="{tr}List{/tr}"}
-	{* Use css menus as fallback for item dropdown action menu if javascript is not being used *}
-	{if $prefs.javascript_enabled !== 'y'}
-		{$js = 'n'}
-		{$libeg = '<li>'}
-		{$liend = '</li>'}
-	{else}
-		{$js = 'y'}
-		{$libeg = ''}
-		{$liend = ''}
-	{/if}
-	<div class="{if $js === 'y'}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
+	<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
@@ -34,29 +24,20 @@
 					<td class="text text-center">{$discount.max|escape}</td>
 					<td class="text text-center">{$discount.comment|escape}</td>
 					<td class="action text-center">
-						{capture name=discount_actions}
+						{actions}
 							{strip}
-								{$libeg}{self_link id=$discount.id cookietab=2 _icon_name='edit' _menu_text='y' _menu_icon='y'}
-									{tr}Edit{/tr}
-								{/self_link}{$liend}
-								{$libeg}{self_link del=$discount.id _icon_name='edit' _menu_text='y' _menu_icon='y' _class='text-danger'}
-									{tr}Delete{/tr}
-								{/self_link}{$liend}
+								<action>
+									{self_link id=$discount.id cookietab=2 _icon_name='edit' _menu_text='y' _menu_icon='y'}
+										{tr}Edit{/tr}
+									{/self_link}
+								</action>
+								<action>
+									{self_link del=$discount.id _icon_name='edit' _menu_text='y' _menu_icon='y'}
+										{tr}Delete{/tr}
+									{/self_link}
+								</action>
 							{/strip}
-						{/capture}
-						{if $js === 'n'}<ul class="cssmenu_horiz"><li>{/if}
-						<a
-							class="tips"
-							title="{tr}Actions{/tr}"
-							href="#"
-							{if $js === 'y'}{popup fullhtml="1" center=true text=$smarty.capture.discount_actions}{/if}
-							style="padding:0; margin:0; border:0"
-						>
-							{icon name='wrench'}
-						</a>
-						{if $js === 'n'}
-							<ul class="dropdown-menu" role="menu">{$smarty.capture.discount_actions}</ul></li></ul>
-						{/if}
+						{/actions}
 					</td>
 				</tr>
 			{foreachelse}

@@ -1,15 +1,10 @@
 {* $Id$ *}
 
 {tikimodule error=$module_params.error title=$tpl_module_title name="quickadmin" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
-{if $prefs.javascript_enabled != 'y'}
-	{$js = 'n'}
-{else}
-	{$js = 'y'}
-{/if}
 	{if $tiki_p_admin == "y"}
 		<div id="quickadmin" class="btn-group">
 			<div class="btn-group">
-				{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name="history"}
 				</a>
@@ -26,10 +21,10 @@
 						<li>{tr}None{/tr}</li>
 					{/foreach}
 				</ul>
-				{if $js == 'n'}</li></ul>{/if}
+				{if ! $js}</li></ul>{/if}
 			</div>
 			<div class="btn-group">
-				{if $js == 'n'}<ul class="cssmenu_horiz"><li>{/if}
+				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name='menu-extra'}
 				</a>
@@ -138,7 +133,7 @@
 						</li>
 					{/if}
 				</ul>
-				{if $js == 'n'}</li></ul>{/if}
+				{if ! $js}</li></ul>{/if}
 			</div>
 		</div>
 	{/if}

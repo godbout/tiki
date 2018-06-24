@@ -36,38 +36,47 @@
 				<td class="text">{$channels[user].type}</td>
 				<td><span class="badge badge-secondary">{$channels[user].options}</span></td>
 				<td class="action">
-					{capture name=menu_actions}
+					{actions}
 						{strip}
 							{if $channels[user].menuId neq 42}
 								{if $tiki_p_edit_menu eq 'y'}
-									{$libeg}<a href="{bootstrap_modal controller=menu action=edit menuId=$channels[user].menuId}">
-										{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="{bootstrap_modal controller=menu action=edit menuId=$channels[user].menuId}">
+											{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+										</a>
+									</action>
 								{/if}
 								{if $tiki_p_edit_menu_option eq 'y'}
-									{$libeg}<a href="tiki-admin_menu_options.php?menuId={$channels[user].menuId}">
-										{icon name="list" _menu_text='y' _menu_icon='y' alt="{tr}Menu options{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="tiki-admin_menu_options.php?menuId={$channels[user].menuId}">
+											{icon name="list" _menu_text='y' _menu_icon='y' alt="{tr}Menu options{/tr}"}
+										</a>
+									</action>
 								{/if}
 								{if $tiki_p_edit_menu eq 'y'}
-									{$libeg}<a href="{bootstrap_modal controller=menu action=remove menuId=$channels[user].menuId}">
-									{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-									</a>{$liend}
+									<action>
+										<a href="{bootstrap_modal controller=menu action=remove menuId=$channels[user].menuId}">
+											{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+										</a>
+									</action>
 								{/if}
 							{else}
 								{if $tiki_p_admin eq 'y'}
-									{$libeg}{button reset="y" menuId=$channels[user].menuId _text="{tr}RESET{/tr}" _auto_args="reset,menuId" _class="btn btn-warning btn-sm"}{$liend}
+									<action>
+										{button reset="y" menuId=$channels[user].menuId _text="{tr}RESET{/tr}" _auto_args="reset,menuId" _class="btn btn-warning btn-sm"}
+									</action>
 									<hr>
 								{/if}
 							{/if}
 							{if $tiki_p_edit_menu eq 'y'}
-								{$libeg}<a href="{bootstrap_modal controller=menu action=clone menuId=$channels[user].menuId}">
-									{icon name="copy" _menu_text='y' _menu_icon='y' alt="{tr}Clone{/tr}"}
-								</a>{$liend}
+								<action>
+									<a href="{bootstrap_modal controller=menu action=clone menuId=$channels[user].menuId}">
+										{icon name="copy" _menu_text='y' _menu_icon='y' alt="{tr}Clone{/tr}"}
+									</a>
+								</action>
 							{/if}
 						{/strip}
-					{/capture}
-					{include file="templates/includes/tiki-actions_link.tpl" capturedActions="menu_actions"}
+					{/actions}
 				</td>
 			</tr>
 		{sectionelse}
