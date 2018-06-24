@@ -4,15 +4,15 @@
 
 <div class="t_navbar mb-4">
 	{assign var=thispage value=$page|escape:url}
-	{button href="tiki-index.php?page=$thispage" class="btn btn-primary" _text="{tr}View page{/tr}" _icon_name="view"}
+	{button href="tiki-index.php?page=$thispage" _class="btn-info" _text="{tr}View page{/tr}" _icon_name="view"}
 	{if $editable}
 		{button href="tiki-editpage.php?page=$thispage" class="btn btn-primary" _text="{tr}Edit page{/tr}" _icon_name="edit"}
 	{/if}
 	{if !isset($noHistory)}
 		{if $show_all_versions eq "y"}
-			{button _text="{tr}Collapse Into Edit Sessions{/tr}" href="?clear_versions=1&show_all_versions=n" _auto_args="*" class="btn btn-primary" _icon_name="expanded"}
+			{button _text="{tr}Collapse Into Edit Sessions{/tr}" href="?clear_versions=1&show_all_versions=n" _auto_args="*" _class="btn-info" _icon_name="expanded"}
 		{else}
-			{button _text="{tr}Show All Versions{/tr}" href="?clear_versions=1&show_all_versions=y" _auto_args="*" class="btn btn-primary" _icon_name="collapsed"}
+			{button _text="{tr}Show All Versions{/tr}" href="?clear_versions=1&show_all_versions=y" _auto_args="*" _class="btn-info" _icon_name="collapsed"}
 		{/if}
 	{/if}
 </div>
@@ -143,19 +143,19 @@
 							{/section}
 						</select>
 						<div class="input-group-btn">
-							<input type="submit" class="btn btn-secondary btn-sm" name="update_translation" value="{tr}Update Translation{/tr}"/>
+							<input type="submit" class="btn btn-primary btn-sm" name="update_translation" value="{tr}Update Translation{/tr}"/>
 							{if $show_translation_history}
 								<input type="hidden" name="show_translation_history" value="1">
-								{button show_translation_history=0 _text="{tr}Hide translation history{/tr}" _auto_args="*" _class="btn btn-primary btn-sm"}
+								{button show_translation_history=0 _text="{tr}Hide translation history{/tr}" _auto_args="*" _class="btn btn-info btn-sm"}
 							{else}
-								{button show_translation_history=1 _text="{tr}Show translation history{/tr}" _auto_args="*" _class="btn btn-primary btn-sm"}
+								{button show_translation_history=1 _text="{tr}Show translation history{/tr}" _auto_args="*" _class="btn btn-info btn-sm"}
 							{/if}
 						</div>
 					</div>
 				</div>
 			{/if}
 			{if ($prefs.default_wiki_diff_style ne "old") and $history}
-				<div class="input-group input-group-sm col-sm-4 pull-right" style="margin-bottom: 10px">
+				<div class="input-group input-group-sm col-sm-4 pull-right mb-4">
 					<select class="form-control" name="diff_style" id="diff_style_all"{if $prefs.javascript_enabled eq "y"} style="display: none"{/if}>
 						<option value="htmldiff" {if $diff_style == "htmldiff"}selected="selected"{/if}>
 							{tr}HTML diff{/tr}
@@ -203,7 +203,7 @@
 					{/if}
 					{if $prefs.javascript_enabled eq "y"}
 						<span class="input-group-btn">
-							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-primary btn-sm"}
+							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-secondary btn-sm ml-3"}
 						</span>
 						{jq}
 	$("form#pagehistory")
@@ -300,7 +300,7 @@
 						<th></th>
 						{if $prefs.default_wiki_diff_style != "old" and $history}
 							<th colspan="2">
-								<input type="submit" class="btn btn-primary btn-sm" name="compare" value="{tr}Compare{/tr}">
+								<input type="submit" class="btn btn-info btn-sm" name="compare" value="{tr}Compare{/tr}">
 							</th>
 						{/if}
 					</tr>
@@ -503,7 +503,7 @@
 						type="submit"
 						form="pagehistory"
 						formaction="{bootstrap_modal controller=wiki}"
-						class="btn btn-secondary"
+						class="btn btn-warning"
 						onclick="confirmAjax(event)"
 					>
 						{tr}OK{/tr}

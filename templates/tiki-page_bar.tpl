@@ -122,7 +122,7 @@
 						{/jq}
 						{/if}
 
-						<a class="btn btn-info" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
+						<a class="btn btn-secondary" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
 							{tr}Comments{/tr}
 							{if $count_comments}
 								&nbsp;<span class="count_comments badge badge-secondary">{$count_comments}</span>
@@ -144,9 +144,9 @@
 						|| $tiki_p_wiki_attach_files == 'y'
 						|| $tiki_p_wiki_admin_attachments == 'y')}
 					{if isset($atts) and $atts|@count gt 0}
-						{assign var=thisbuttonclass value='highlight'}
+						{assign var=thisbuttonclass value='btn-files active'}
 					{else}
-						{assign var=thisbuttonclass value=''}
+						{assign var=thisbuttonclass value='btn-files'}
 					{/if}
 					{capture assign=thistext}
 						{strip}
@@ -160,7 +160,7 @@
 						{/strip}
 					{/capture}
 					{if (isset($atts) and $atts|@count gt 0) || $editable}
-						{button href="#attachments" _flip_id="attzone{if isset($pagemd5)}{$pagemd5}{/if}" _class=$thisbuttonclass _text=$thistext _flip_default_open=$prefs.w_displayed_default _flip_hide_text="n"}
+						{button href="#attachments" _flip_id="attzone{if isset($pagemd5)}{$pagemd5}{/if}" _class="btn-secondary $thisbuttonclass" _text=$thistext _flip_default_open=$prefs.w_displayed_default _flip_hide_text="n"}
 					{/if}
 				{/if}{* attachments *}
 
