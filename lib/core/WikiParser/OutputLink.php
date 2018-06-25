@@ -140,7 +140,7 @@ class WikiParser_OutputLink
 				$description,
 				[
 					'href' => $this->getEditLink($pageId),
-					'title' => tra('Create page:') . ' ' . $pageId,
+					'title' => tra('Create page:') . ' ' .str_replace('"', '%22', $pageId),
 					'class' => 'wiki wikinew text-danger tips',
 				]
 			);

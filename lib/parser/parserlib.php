@@ -1578,12 +1578,14 @@ class ParserLib extends TikiDb_Bridge
 			} else {
 				$link2 = str_replace("/", "\/", preg_quote($link));
 				$link = trim($link);
+				$link = str_replace('"', '%22', $link);
 				$data = str_replace("|nocache", "", $data);
 
 				$pattern = "/(?<!\[)\[$link2\|([^\]\|]+)\|([^\]]+)\]/";
-				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\" data-box=\"$2\">$1</a>$ext_icon", $data);
+				$data = preg_replace_callback($pattern, function ($matches) use ($class, $target, $link, $rel, $ext_icon) {
+					return "<a $class $target href=\"$link\" rel=\"$rel\" data-box=\"" . str_replace('"', '%22', $matches[1]) . "\">{$matches[1]}</a>$ext_icon";
+				}, $data);
 				$pattern = "/(?<!\[)\[$link2\|([^\]\|]+)([^\]])*\]/";
-				$link = str_replace('"', '%22', $link);
 				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\">$1</a>$ext_icon", $data);
 				$pattern = "/(?<!\[)\[$link2\|?\]/";
 				$data = preg_replace($pattern, "<a $class $target href=\"$link\" rel=\"$rel\">$link</a>$ext_icon", $data);
