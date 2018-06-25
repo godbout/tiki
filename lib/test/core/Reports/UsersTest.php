@@ -65,6 +65,9 @@ class Reports_UsersTest extends TikiDatabaseTestCase
 		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/user_reports_dataset_insert.xml')
 			->getTable('tiki_user_reports');
 
+		// xml cannot properly represent null values, so set it after
+		$expectedTable->setValue(2, 'last_report', null);
+
 		$this->obj->save('newUser', 'weekly', 'detailed', 'html', 1);
 
 		$queryTable = $this->getConnection()->createQueryTable('tiki_user_reports', 'SELECT * FROM tiki_user_reports');
@@ -105,8 +108,8 @@ class Reports_UsersTest extends TikiDatabaseTestCase
 	public function testGetUsersForReport_shouldIncludeNewlyCreatedUsersWithLastReportFieldEmpty()
 	{
 		$this->db->query(
-			"INSERT INTO `tiki_user_reports` (`user`, `interval`, `view`, `type`, `always_email`, `last_report`)
-			VALUES ('newUser', 'weekly', 'detailed', 'html', 1, '')"
+			"INSERT INTO `tiki_user_reports` (`user`, `interval`, `view`, `type`, `always_email`)
+			VALUES ('newUser', 'weekly', 'detailed', 'html', 1)"
 		);
 
 		$expectedResult = ['test', 'newUser'];

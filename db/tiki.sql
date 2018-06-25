@@ -3446,7 +3446,7 @@ CREATE TABLE `tiki_user_reports` (
   `view` varchar(8) NOT NULL,
   `type` varchar(5) NOT NULL,
   `always_email` tinyint(1) NOT NULL,
-  `last_report` datetime NOT NULL,
+  `last_report` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 
@@ -3456,7 +3456,7 @@ CREATE TABLE `tiki_user_reports_cache` (
   `user` varchar(200) NOT NULL,
   `event` varchar(200) NOT NULL,
   `data` text NOT NULL,
-  `time` datetime NOT NULL,
+  `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 
