@@ -36,7 +36,7 @@ class TikiDb_Table
 	 *
 	 * @param $values array Key-value pairs to insert.
 	 * @param $ignore boolean Insert as ignore statement
-	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 * @return int|TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function insert(array $values, $ignore = false)
 	{
@@ -50,6 +50,7 @@ class TikiDb_Table
 				return $insertedId;
 			}
 		}
+		//it looks like autoIncrement is true in every use of this class so this should be unreachable
 		return $result;
 	}
 
@@ -69,6 +70,7 @@ class TikiDb_Table
 				return $insertedId;
 			}
 		}
+		//it looks like autoIncrement is true in every use of this class so this should be unreachable
 		return $result;
 	}
 
@@ -76,7 +78,7 @@ class TikiDb_Table
 	 * Deletes a single record from the table matching the provided conditions.
 	 * Conditions use exact matching. Multiple conditions will result in AND matching.
 	 * @param array $conditions
-	 * @return TikiDb_Pdo_Result
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function delete(array $conditions)
 	{
@@ -91,7 +93,7 @@ class TikiDb_Table
 	 * This query will update a single record.
 	 * @param array $values
 	 * @param array $conditions
-	 * @return TikiDb_Pdo_Result
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function update(array $values, array $conditions)
 	{
@@ -118,7 +120,7 @@ class TikiDb_Table
 	 * The method works just like delete, except that it does not have the one record
 	 * limitation.
 	 * @param array $conditions
-	 * @return TikiDb_Pdo_Result
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function deleteMultiple(array $conditions)
 	{
