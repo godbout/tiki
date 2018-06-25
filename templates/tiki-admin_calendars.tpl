@@ -456,7 +456,13 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<input type="submit" class="btn btn-secondary col-sm-offset-3" name="save" value="{tr}Save{/tr}">
+				<input
+					type="submit"
+					class="btn btn-secondary col-sm-offset-3"
+					name="save"
+					value="{tr}Save{/tr}"
+					onclick="checkTimeout()"
+				>
 			</div>
 			</fieldset>
 			<fieldset>
