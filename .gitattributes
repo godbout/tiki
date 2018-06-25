@@ -2316,17 +2316,6 @@ lib/core/Feed/Html/index.php -text
 lib/core/Feed/Item.php -text
 lib/core/Feed/index.php -text
 lib/core/Feedback.php -text
-lib/core/FutureLink/FutureUI.php -text
-lib/core/FutureLink/Metadata.php -text
-lib/core/FutureLink/MetadataAssembler.php -text
-lib/core/FutureLink/PageLookup.php -text
-lib/core/FutureLink/Pair.php -text
-lib/core/FutureLink/Pairs.php -text
-lib/core/FutureLink/PastUI.php -text
-lib/core/FutureLink/ReceiveFromPast.php -text
-lib/core/FutureLink/Search.php -text
-lib/core/FutureLink/SendToFuture.php -text
-lib/core/FutureLink/index.php -text
 lib/core/H5P/EditorTikiAjax.php -text
 lib/core/H5P/EditorTikiStorage.php -text
 lib/core/H5P/Event.php -text
@@ -3275,7 +3264,6 @@ lib/core/Tracker/Tabular/Writer/TrackerWriter.php -text
 lib/core/Tracker/Tabular/Writer/index.php -text
 lib/core/Tracker/Tabular/index.php -text
 lib/core/Tracker/index.php -text
-lib/core/Type.php -text
 lib/core/WikiParser/OutputLink.php -text
 lib/core/WikiParser/Parsable.php -text
 lib/core/WikiParser/PluginArgumentParser.php -text
@@ -4891,7 +4879,6 @@ lib/wiki-plugins/wikiplugin_objecthits.php -text
 lib/wiki-plugins/wikiplugin_objectlink.php -text
 lib/wiki-plugins/wikiplugin_pagetabs.php -text
 lib/wiki-plugins/wikiplugin_param.php -text
-lib/wiki-plugins/wikiplugin_pastlink.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
 lib/wiki-plugins/wikiplugin_paymentlist.php -text
 lib/wiki-plugins/wikiplugin_paypal.php -text

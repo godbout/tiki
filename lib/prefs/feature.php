@@ -2853,16 +2853,6 @@ function prefs_feature_list($partial = false)
 			'tags' => ['deprecated'],
 			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
-		'feature_futurelinkprotocol' => [
-			'name' => tra('FutureLink-Protocol'),
-			'description' => tra('A dynamic compendia'),
-			'type' => 'flag',
-			'help' => 'FutureLinkProtocol',
-			'keywords' => 'future link futurelink share feed',
-			'default' => 'n',
-			'tags' => ['deprecated'],
-			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
-		],
 		'feature_community_send_mail_join' => [
 			'name' => tra('Send an email notification to group leaders when a user joins'),
 			'type' => 'flag',

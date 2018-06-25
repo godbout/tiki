@@ -37,8 +37,6 @@
 	<exclude-pattern>*/lang/*/language.php</exclude-pattern>
 	<exclude-pattern>*/lang/*/language.js</exclude-pattern>
 	<exclude-pattern>*/lib/test/language/fixtures/language_*</exclude-pattern>
-	<exclude-pattern>*/lib/core/JisonParser/Phraser.js</exclude-pattern>
-	<exclude-pattern>*/lib/core/JisonParser/Phraser.php</exclude-pattern>
 
 	<!-- other directories that should not contain core code -->
 	<!-- <exclude-pattern>*/doc/*</exclude-pattern> -->

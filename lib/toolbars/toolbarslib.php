@@ -789,11 +789,6 @@ class ToolbarBlock extends ToolbarInline // Will change in the future
 	{
 		global $prefs;
 
-		$isFutureLinkProtocol = false;
-		if ($prefs['feature_futurelinkprotocol'] === 'y') {
-			$isFutureLinkProtocol = true;
-		}
-
 		$label = null;
 		$wysiwyg = null;
 		$syntax = null;
@@ -815,16 +810,6 @@ class ToolbarBlock extends ToolbarInline // Will change in the future
 				$wysiwyg = 'HorizontalRule';
 				$syntax = '---';
 				break;
-			case 'pastlink':
-				if ($isFutureLinkProtocol) {
-					$label = tra('PastLink');
-					$iconname = 'copy';
-					$wysiwyg = 'PastLink';
-					$syntax = '@FLP(clipboarddata)text@)';
-					break;
-				} else {
-					return;
-				}
 			case 'pagebreak':
 				$label = tra('Page Break');
 				$iconname = 'page-break';
