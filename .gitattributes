@@ -4924,6 +4924,7 @@ lib/wiki-plugins/wikiplugin_sign.php -text
 lib/wiki-plugins/wikiplugin_skype.php -text
 lib/wiki-plugins/wikiplugin_slider.php -text
 lib/wiki-plugins/wikiplugin_slideshow.php -text
+lib/wiki-plugins/wikiplugin_slideshowslide.php -text
 lib/wiki-plugins/wikiplugin_smarty.php -text
 lib/wiki-plugins/wikiplugin_snarf.php -text
 lib/wiki-plugins/wikiplugin_sort.php -text
