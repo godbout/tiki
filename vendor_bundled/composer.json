@@ -24,6 +24,7 @@
 		"components/jquery": "^3.1.0",
 		"components/jquery-migrate": "^3.0.0",
 		"components/jqueryui": "^1.12",
+		"components/revealjs": "^3.6",
 		"cweagans/composer-patches": "^1.6",
 		"css-tricks/anythingslider-themes": "^1.4.1",
 		"cwspear/bootstrap-hover-dropdown": "^2.2.1",

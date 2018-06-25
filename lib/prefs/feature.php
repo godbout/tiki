@@ -739,7 +739,7 @@ function prefs_feature_list($partial = false)
 			],
 		],
 		'feature_slideshow' => [
-			'name' => tra('Slideshow (jQuery.s5)'),
+			'name' => tra('Slideshow (reveal.js)'),
 			'description' => tra('Wiki-page-based slideshow'),
 			'help' => 'Slideshow',
 			'type' => 'flag',
@@ -748,7 +748,7 @@ function prefs_feature_list($partial = false)
 			'tags' => ['basic'],
 		],
 		'feature_slideshow_pdfexport' => [
-			'name' => tra('Slideshow (jQuery.s5) PDF export'),
+			'name' => tra('Slideshow (reveal.js) PDF export'),
 			'description' => tra('Wiki-page-based slideshow to pdf export'),
 			'help' => 'Slideshow',
 			'type' => 'flag',

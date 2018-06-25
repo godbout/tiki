@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08133835a1e0caa41c81f84b08997977",
+    "content-hash": "332a4dd841440d6865069f4f0a7b517b",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -36,10 +36,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Remove references to ADOdb Extension": "../installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch",
-                    "Remove the check for ADOdb Extension": "../installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-enabled.patch"
-                }
+                "patches_applied": []
             },
             "autoload": {
                 "files": [
@@ -197,17 +194,17 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.21.0",
+            "version": "v9.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "8439fc8b3cb0cb69019452eedd20f56ad7722b5f"
+                "reference": "c9a396a360f961bc05abbd61514d647590b765bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-8439fc8b3cb0cb69019452eedd20f56ad7722b5f-zip-553b38.zip",
-                "reference": "8439fc8b3cb0cb69019452eedd20f56ad7722b5f",
-                "shasum": "e0348e600f718070892361af13663521542eeafe"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-c9a396a360f961bc05abbd61514d647590b765bb-zip-3b5d7c.zip",
+                "reference": "c9a396a360f961bc05abbd61514d647590b765bb",
+                "shasum": "b0cadee24210489c7653f4241457cedcff6e0281"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -243,7 +240,7 @@
                 "upload",
                 "widget"
             ],
-            "time": "2018-02-20T06:20:24+00:00"
+            "time": "2018-06-21T08:29:55+00:00"
         },
         {
             "name": "candy-chat/xmpp-prebind-php",
@@ -637,6 +634,56 @@
             "time": "2016-09-16T05:47:55+00:00"
         },
         {
+            "name": "components/revealjs",
+            "version": "3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/revealjs.git",
+                "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "js/reveal.js"
+                    ],
+                    "styles": [
+                        "css/reveal.css"
+                    ],
+                    "files": [
+                        "css/reveal.min.css",
+                        "js/reveal.min.js",
+                        "css/theme/*.css",
+                        "css/print/*.css",
+                        "plugin/**",
+                        "lib/**"
+                    ],
+                    "shim": {
+                        "exports": "Reveal"
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hakim El Hattab",
+                    "homepage": "http://hakim.se/"
+                }
+            ],
+            "description": "The HTML Presentation Framework",
+            "homepage": "http://lab.hakim.se/reveal-js/",
+            "time": "2018-02-18T16:58:50+00:00"
+        },
+        {
             "name": "container-interop/container-interop",
             "version": "1.2.0",
             "source": {
@@ -680,17 +727,17 @@
         },
         {
             "name": "cweagans/composer-patches",
-            "version": "1.6.4",
+            "version": "1.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweagans/composer-patches.git",
-                "reference": "462e65061606dc6149349535d4322241515d1b16"
+                "reference": "2ec4f00ff5fb64de584c8c4aea53bf9053ecb0b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/cweagans/composer-patches/cweagans-composer-patches-462e65061606dc6149349535d4322241515d1b16-zip-586fd5.zip",
-                "reference": "462e65061606dc6149349535d4322241515d1b16",
-                "shasum": "a014abd8991bf2b9d4f0203e7b950b73a93259e6"
+                "url": "https://composer.tiki.org/dist/cweagans/composer-patches/cweagans-composer-patches-2ec4f00ff5fb64de584c8c4aea53bf9053ecb0b3-zip-e0d465.zip",
+                "reference": "2ec4f00ff5fb64de584c8c4aea53bf9053ecb0b3",
+                "shasum": "bfdf7349c916b62fa5fce0492ea3ad1d819350ab"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -711,7 +758,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-2-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -720,7 +767,7 @@
                 }
             ],
             "description": "Provides a way to patch Composer packages.",
-            "time": "2017-12-07T16:16:31+00:00"
+            "time": "2018-05-11T18:00:16+00:00"
         },
         {
             "name": "cwspear/bootstrap-hover-dropdown",
@@ -1312,9 +1359,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Fix visibility issues": "../installer/composer-patches/jquery-sheet_fix-visibility-issues.patch"
-                }
+                "patches_applied": []
             }
         },
         {
@@ -1671,17 +1716,17 @@
         },
         {
             "name": "leafo/scssphp",
-            "version": "v0.7.5",
+            "version": "v0.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafo/scssphp.git",
-                "reference": "8b538d828bbb75276974605c4a1a435e939da74e"
+                "reference": "585f6ae84de62ffecf69c23805f25d78d7e4b794"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/leafo/scssphp/leafo-scssphp-8b538d828bbb75276974605c4a1a435e939da74e-zip-f5e31c.zip",
-                "reference": "8b538d828bbb75276974605c4a1a435e939da74e",
-                "shasum": "ad84541dec961af5efdc0dfa8111d7e49c983a78"
+                "url": "https://composer.tiki.org/dist/leafo/scssphp/leafo-scssphp-585f6ae84de62ffecf69c23805f25d78d7e4b794-zip-479d5a.zip",
+                "reference": "585f6ae84de62ffecf69c23805f25d78d7e4b794",
+                "shasum": "e8e9c731a3259d2e0e9b95d65a62c87189302b6b"
             },
             "require": {
                 "php": ">=5.4.0"
@@ -1719,7 +1764,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2018-02-09T02:04:21+00:00"
+            "time": "2018-05-24T02:18:53+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -1921,16 +1966,16 @@
         },
         {
             "name": "moment/moment",
-            "version": "2.22.1",
+            "version": "2.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "c58511b94eba1000c1d66b23e9a9ff963ff1cc89"
+                "reference": "2e2a5b35439665d4b0200143d808a7c26d6cd30f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/c58511b94eba1000c1d66b23e9a9ff963ff1cc89",
-                "reference": "c58511b94eba1000c1d66b23e9a9ff963ff1cc89",
+                "url": "https://api.github.com/repos/moment/moment/zipball/2e2a5b35439665d4b0200143d808a7c26d6cd30f",
+                "reference": "2e2a5b35439665d4b0200143d808a7c26d6cd30f",
                 "shasum": ""
             },
             "require": {
@@ -1971,7 +2016,7 @@
                 "time",
                 "validate"
             ],
-            "time": "2018-04-15T05:53:50+00:00"
+            "time": "2018-06-01T06:45:43+00:00"
         },
         {
             "name": "morteza/bootstrap-rtl",
@@ -1986,17 +2031,17 @@
         },
         {
             "name": "mottie/tablesorter",
-            "version": "v2.30.4",
+            "version": "v2.30.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mottie/tablesorter.git",
-                "reference": "ec0ed84277d10b13b8170748182b68851fe8def0"
+                "reference": "6dbe7ed3fef295c85b3c39f91114de39aa6dc6d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-ec0ed84277d10b13b8170748182b68851fe8def0-zip-551b3b.zip",
-                "reference": "ec0ed84277d10b13b8170748182b68851fe8def0",
-                "shasum": "92c570cee3221b790817a768d3d55c7dd690cabe"
+                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-6dbe7ed3fef295c85b3c39f91114de39aa6dc6d7-zip-ddc1f3.zip",
+                "reference": "6dbe7ed3fef295c85b3c39f91114de39aa6dc6d7",
+                "shasum": "16799cab56006860525c5c84c806b29084141fcd"
             },
             "require": {
                 "components/jquery": ">=1.2.6"
@@ -2033,7 +2078,7 @@
                 "sorting",
                 "table"
             ],
-            "time": "2018-05-16T23:54:05+00:00"
+            "time": "2018-06-16T20:54:51+00:00"
         },
         {
             "name": "nagarajanchinnasamy/subtotal",
@@ -2085,17 +2130,17 @@
         },
         {
             "name": "nicolaskruchten/pivottable",
-            "version": "v2.20.0",
+            "version": "v2.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolaskruchten/pivottable.git",
-                "reference": "4a9badf2eefd5afa5c8ade879c2c390bf8a21fff"
+                "reference": "7c53d50d151d2b1a4156699866c48326644a3388"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-4a9badf2eefd5afa5c8ade879c2c390bf8a21fff-zip-88c948.zip",
-                "reference": "4a9badf2eefd5afa5c8ade879c2c390bf8a21fff",
-                "shasum": "558b84d45ea71529924d24a81f3a2eac17c8ab57"
+                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-7c53d50d151d2b1a4156699866c48326644a3388-zip-943f44.zip",
+                "reference": "7c53d50d151d2b1a4156699866c48326644a3388",
+                "shasum": "cb17d25840808e7a1fe4c3c4c4a2def399634f98"
             },
             "require": {
                 "components/jquery": ">=1.9"
@@ -2124,7 +2169,7 @@
                 "pivottable",
                 "table"
             ],
-            "time": "2018-03-21T14:30:58+00:00"
+            "time": "2018-06-18T13:53:33+00:00"
         },
         {
             "name": "nolimits4web/swiper",
@@ -2284,17 +2329,17 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.12",
+            "version": "v2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "258c89a6b97de7dfaf5b8c7607d0478e236b04fb"
+                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/paragonie/random_compat/paragonie-random_compat-258c89a6b97de7dfaf5b8c7607d0478e236b04fb-zip-10097b.zip",
-                "reference": "258c89a6b97de7dfaf5b8c7607d0478e236b04fb",
-                "shasum": "aa14948ac939d05ab0d7f880dd7a02ef02995ecc"
+                "url": "https://composer.tiki.org/dist/paragonie/random_compat/paragonie-random_compat-10bcb46e8f3d365170f6de9d05245aa066b81f09-zip-35a4b4.zip",
+                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09",
+                "shasum": "4b3332a9e0b2ab00d7b13348db0b880d7c3f0b2a"
             },
             "require": {
                 "php": ">=5.2.0"
@@ -2325,10 +2370,11 @@
             "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
             "keywords": [
                 "csprng",
+                "polyfill",
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-04-04T21:24:14+00:00"
+            "time": "2018-06-08T15:26:40+00:00"
         },
         {
             "name": "pclzip/pclzip",
@@ -2743,10 +2789,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Removed deprecated syntax in PHP7": "../installer/composer-patches/text_wiki_mediawiki__php7fixes.patch",
-                    "Renamed method to avoid collision with func from parent class": "../installer/composer-patches/text_wiki_mediawiki__func_collision.patch"
-                }
+                "patches_applied": []
             }
         },
         {
@@ -2818,9 +2861,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Add support for PHP7": "../installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch"
-                }
+                "patches_applied": []
             }
         },
         {
@@ -2994,17 +3035,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.37.1",
+            "version": "v1.38.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "398eeb3e5f3ef697609235d47d7ad78cada79cac"
+                "reference": "578ebe2d02ebcac18fc30e910e0ac89d1fab1ae7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-398eeb3e5f3ef697609235d47d7ad78cada79cac-zip-e0f460.zip",
-                "reference": "398eeb3e5f3ef697609235d47d7ad78cada79cac",
-                "shasum": "7940549414df9a3c09e7de26da1686cdddd1e976"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-578ebe2d02ebcac18fc30e910e0ac89d1fab1ae7-zip-bb7a71.zip",
+                "reference": "578ebe2d02ebcac18fc30e910e0ac89d1fab1ae7",
+                "shasum": "3d33bfb0c0788b0330d03b984ddb9aee84d6830b"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3026,7 +3067,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2018-05-02T19:47:08+00:00"
+            "time": "2018-06-11T20:14:06+00:00"
         },
         {
             "name": "psr/container",
@@ -3324,17 +3365,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.38",
+            "version": "2.1.39",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "e5d1221cd876e8cca146886c590a08d721e00b4f"
+                "reference": "f92460bdf9bb210296e2aaaf47fbe8a04c770937"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-e5d1221cd876e8cca146886c590a08d721e00b4f-zip-2bb205.zip",
-                "reference": "e5d1221cd876e8cca146886c590a08d721e00b4f",
-                "shasum": "b2a218970ae3d4f804452300a68c1e5a0006beac"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-f92460bdf9bb210296e2aaaf47fbe8a04c770937-zip-97f868.zip",
+                "reference": "f92460bdf9bb210296e2aaaf47fbe8a04c770937",
+                "shasum": "843ddec1e5ab65ef75d0c13b7ab76ab978803c30"
             },
             "require": {
                 "php": ">=5.2"
@@ -3378,7 +3419,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2018-05-05T04:45:26+00:00"
+            "time": "2018-06-05T07:36:51+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -3393,7 +3434,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.10",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -3457,7 +3498,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.10",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -3526,17 +3567,17 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.0.10",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "0383a1a4eb1ffcac28719975d3e01bfa14be8ab3"
+                "reference": "03ac71606ecb0b0ce792faa17d74cc32c2949ef4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/css-selector/symfony-css-selector-0383a1a4eb1ffcac28719975d3e01bfa14be8ab3-zip-472b8e.zip",
-                "reference": "0383a1a4eb1ffcac28719975d3e01bfa14be8ab3",
-                "shasum": "0005734f830ceeb29cc9d5a0833d2ae1140abdc8"
+                "url": "https://composer.tiki.org/dist/symfony/css-selector/symfony-css-selector-03ac71606ecb0b0ce792faa17d74cc32c2949ef4-zip-d6905b.zip",
+                "reference": "03ac71606ecb0b0ce792faa17d74cc32c2949ef4",
+                "shasum": "0b865a565a0db66cb71fde5f6288004e76b2a7ae"
             },
             "require": {
                 "php": "^7.1.3"
@@ -3544,7 +3585,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -3575,21 +3616,21 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-11T15:58:37+00:00"
+            "time": "2018-05-30T07:26:09+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v4.0.10",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "4e7c98de67cc4171d4c986554e09a511da40f3d8"
+                "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-4e7c98de67cc4171d4c986554e09a511da40f3d8-zip-f2c0b8.zip",
-                "reference": "4e7c98de67cc4171d4c986554e09a511da40f3d8",
-                "shasum": "048b03bef5e79e8845e5373c114bb78f6c2d1c1a"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-449f8b00b28ab6e6912c3e6b920406143b27193b-zip-6e3f57.zip",
+                "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b",
+                "shasum": "e7738e386d488722a1e52036b7bf9bc76cf27f2e"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3604,7 +3645,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -3631,21 +3672,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T09:05:32+00:00"
+            "time": "2018-05-16T14:33:22+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.10",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "c2741b26377804e3d70775a3ef29335685ee9b71"
+                "reference": "8a4672aca8db6d807905d695799ea7d83c8e5bba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-c2741b26377804e3d70775a3ef29335685ee9b71-zip-8d434c.zip",
-                "reference": "c2741b26377804e3d70775a3ef29335685ee9b71",
-                "shasum": "d73276fd0fab519edff321684889080cde2d7c89"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-8a4672aca8db6d807905d695799ea7d83c8e5bba-zip-befac1.zip",
+                "reference": "8a4672aca8db6d807905d695799ea7d83c8e5bba",
+                "shasum": "88f8911c53876a38c3b1cd1ddf0aa6ad27e9dc98"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3702,21 +3743,21 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-18T01:58:36+00:00"
+            "time": "2018-05-25T11:57:15+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.0.10",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04"
+                "reference": "562bf7005b55fd80d26b582d28e3e10f2dd5ae9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04-zip-8da885.zip",
-                "reference": "7a69e728e9f0044958c2fd7d72bfe5e7bd1a4d04",
-                "shasum": "b8a0c0b009cc033c83c90b0f2052c01be9a95c96"
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-562bf7005b55fd80d26b582d28e3e10f2dd5ae9c-zip-909e77.zip",
+                "reference": "562bf7005b55fd80d26b582d28e3e10f2dd5ae9c",
+                "shasum": "ef59866ebe1587bb9c0f3310da6d2d8fa3fc3909"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3725,7 +3766,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -3752,7 +3793,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T09:05:32+00:00"
+            "time": "2018-05-30T07:26:09+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3870,7 +3911,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.10",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -3919,7 +3960,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.10",
+            "version": "v3.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4022,6 +4063,52 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "true/punycode",
+            "version": "v2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/true/php-punycode.git",
+                "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
+                "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/polyfill-mbstring": "^1.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.7",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TrueBV\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renan Gonçalves",
+                    "email": "renan.saddam@gmail.com"
+                }
+            ],
+            "description": "A Bootstring encoding of Unicode for Internationalized Domain Names in Applications (IDNA)",
+            "homepage": "https://github.com/true/php-punycode",
+            "keywords": [
+                "idna",
+                "punycode"
+            ],
+            "time": "2016-11-16T10:37:54+00:00"
         },
         {
             "name": "twbs/bootstrap",
@@ -4420,17 +4507,17 @@
         },
         {
             "name": "zendframework/zend-feed",
-            "version": "2.9.1",
+            "version": "2.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-feed.git",
-                "reference": "15a6ca78dd8f67b687e4f902657b4e420a8fd1e0"
+                "reference": "5253f949f4ad999086ab9b408908b6c6776f24db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-feed/zendframework-zend-feed-15a6ca78dd8f67b687e4f902657b4e420a8fd1e0-zip-dc1e8e.zip",
-                "reference": "15a6ca78dd8f67b687e4f902657b4e420a8fd1e0",
-                "shasum": "efa7fe6acfb48f236e4a249a56fae59581ab719c"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-feed/zendframework-zend-feed-5253f949f4ad999086ab9b408908b6c6776f24db-zip-2c15e2.zip",
+                "reference": "5253f949f4ad999086ab9b408908b6c6776f24db",
+                "shasum": "b64adccae90565bec7c8ff7957a4027d833cdd36"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -4458,8 +4545,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.9-dev",
-                    "dev-develop": "2.10-dev"
+                    "dev-master": "2.10.x-dev",
+                    "dev-develop": "2.11.x-dev"
                 }
             },
             "autoload": {
@@ -4477,7 +4564,7 @@
                 "feed",
                 "zf"
             ],
-            "time": "2018-05-14T21:45:18+00:00"
+            "time": "2018-06-18T20:14:01+00:00"
         },
         {
             "name": "zendframework/zend-filter",
@@ -4838,43 +4925,43 @@
         },
         {
             "name": "zendframework/zend-mail",
-            "version": "2.9.0",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-mail.git",
-                "reference": "067248425f285dec0bdb74256a8f67f9092f115e"
+                "reference": "d7beb63d5f7144a21ac100072c453e63860cdab8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-mail/zendframework-zend-mail-067248425f285dec0bdb74256a8f67f9092f115e-zip-8c7d4c.zip",
-                "reference": "067248425f285dec0bdb74256a8f67f9092f115e",
-                "shasum": "e3d6446759ba3e8d52fb8609b6803eabe5567636"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-mail/zendframework-zend-mail-d7beb63d5f7144a21ac100072c453e63860cdab8-zip-0765d1.zip",
+                "reference": "d7beb63d5f7144a21ac100072c453e63860cdab8",
+                "shasum": "ef634944cdd6ca911f5b4531bb1afd0928390541"
             },
             "require": {
                 "ext-iconv": "*",
-                "php": "^7.1",
+                "php": "^5.6 || ^7.0",
+                "true/punycode": "^2.1",
                 "zendframework/zend-loader": "^2.5",
                 "zendframework/zend-mime": "^2.5",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0",
                 "zendframework/zend-validator": "^2.10.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0.8 || ^5.7.15",
+                "phpunit/phpunit": "^5.7.25 || ^6.4.4 || ^7.1.4",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^2.6",
-                "zendframework/zend-crypt": "^2.6",
-                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3"
+                "zendframework/zend-crypt": "^2.6 || ^3.0",
+                "zendframework/zend-servicemanager": "^2.7.10 || ^3.3.1"
             },
             "suggest": {
-                "ext-intl": "Handle IDN in AddressList hostnames",
                 "zendframework/zend-crypt": "Crammd5 support in SMTP Auth",
-                "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3 when using SMTP to deliver messages"
+                "zendframework/zend-servicemanager": "^2.7.10 || ^3.3.1 when using SMTP to deliver messages"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev",
-                    "dev-develop": "2.9-dev"
+                    "dev-master": "2.10.x-dev",
+                    "dev-develop": "2.11.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\Mail",
@@ -4890,13 +4977,13 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "provides generalized functionality to compose and send both text and MIME-compliant multipart e-mail messages",
-            "homepage": "https://github.com/zendframework/zend-mail",
+            "description": "Provides generalized functionality to compose and send both text and MIME-compliant multipart e-mail messages",
             "keywords": [
+                "ZendFramework",
                 "mail",
-                "zf2"
+                "zf"
             ],
-            "time": "2018-03-01T18:57:00+00:00"
+            "time": "2018-06-07T13:37:07+00:00"
         },
         {
             "name": "zendframework/zend-math",
@@ -6018,25 +6105,28 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.7.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e"
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/myclabs/deep-copy/myclabs-deep-copy-3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e-zip-9eba9e.zip",
-                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
-                "shasum": "17d241406beb71b37623ce5f99316f3521552e28"
+                "url": "https://composer.tiki.org/dist/myclabs/deep-copy/myclabs-deep-copy-3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8-zip-1d5827.zip",
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+                "shasum": "3009a9b8fe9d33e3317555d5666f2303355d6ff5"
             },
             "require": {
-                "php": "^5.6 || ^7.0"
+                "php": "^7.1"
+            },
+            "replace": {
+                "myclabs/deep-copy": "self.version"
             },
             "require-dev": {
                 "doctrine/collections": "^1.0",
                 "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^4.1"
+                "phpunit/phpunit": "^7.1"
             },
             "type": "library",
             "autoload": {
@@ -6059,7 +6149,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-10-19T19:58:43+00:00"
+            "time": "2018-06-11T23:09:50+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -7304,17 +7394,17 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.2.3",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4842476c434e375f9d3182ff7b89059583aa8b27"
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-4842476c434e375f9d3182ff7b89059583aa8b27-zip-e9f2be.zip",
-                "reference": "4842476c434e375f9d3182ff7b89059583aa8b27",
-                "shasum": "16aba45e41303c3a9dbbfd030fb78f8053abe1b1"
+                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-d86873af43b4aa9d1f39a3601cc0cfcf02b25266-zip-21c523.zip",
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
+                "shasum": "a3105224f2b7802ef48116bbb78e40e792765e3a"
             },
             "require": {
                 "ext-simplexml": "*",
@@ -7351,7 +7441,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-02-20T21:35:23+00:00"
+            "time": "2018-06-06T23:58:19+00:00"
         },
         {
             "name": "webmozart/assert",

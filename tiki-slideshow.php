@@ -13,21 +13,25 @@ require_once('tiki-setup.php');
 $tikilib = TikiLib::lib('tiki');
 $structlib = TikiLib::lib('struct');
 $wikilib = TikiLib::lib('wiki');
+
+$headerlib->add_js("var fragments='y';
+	var fragmentClass='grow';
+	var fragmentHighlightColor='highlight-blue';");
 include_once('lib/wiki-plugins/wikiplugin_slideshow.php');
 
 $access->check_feature('feature_wiki');
 $access->check_feature('feature_slideshow');
 
 //make the other things know we are loading a slideshow
-$tikilib->is_slideshow = true;
+$tikilib->is_slideshow = TRUE;
 $smarty->assign('is_slideshow', 'y');
 
 // Create the HomePage if it doesn't exist
-if (! $tikilib->page_exists($prefs['wikiHomePage'])) {
+if (!$tikilib->page_exists($prefs['wikiHomePage'])) {
 	$tikilib->create_page($prefs['wikiHomePage'], 0, '', date("U"), 'Tiki initialization');
 }
 
-if (! isset($_SESSION["thedate"])) {
+if (!isset($_SESSION["thedate"])) {
 	$thedate = date("U");
 } else {
 	$thedate = $_SESSION["thedate"];
@@ -41,7 +45,7 @@ if (isset($_REQUEST['pdf'])) {
 
 	if (isset($_POST["html"])) {
 		$generator = new PdfGenerator(PdfGenerator::MPDF);
-		if (! empty($generator->getError())) {
+		if (!empty($generator->getError())) {
 			Feedback::error(
 				tr('Exporting slideshow as PDF requires a working installation of mPDF.')
 				. "<br \>"
@@ -75,21 +79,23 @@ if (isset($_REQUEST['pdf'])) {
 }
 
 // Get the page from the request var or default it to HomePage
-if (! isset($_REQUEST["page"])) {
+if (!isset($_REQUEST["page"])) {
 	$_REQUEST["page"] = $wikilib->get_default_wiki_page();
 }
 $page = htmlspecialchars($_REQUEST['page']);
 $smarty->assign('page', $page);
 
 // If the page doesn't exist then display an error
-if (! ($info = $tikilib->page_exists($page))) {
+if (!($info = $tikilib->page_exists($page))) {
 	include_once('tiki-index.php');
 	die;
 }
 
 if (isset($_REQUEST['theme'])) {
-	echo json_encode($tikilib->getSlideshowTheme($_REQUEST['theme']));
-	die;
+	$theme=$_REQUEST['theme'];
+}
+else {
+	$theme="black";
 }
 
 // Now check permissions to access this page
@@ -105,11 +111,11 @@ if ($tiki_p_view != 'y') {
 // BreadCrumbNavigation here
 // Remember to reverse the array when posting the array
 
-if (! isset($_SESSION["breadCrumb"])) {
+if (!isset($_SESSION["breadCrumb"])) {
 	$_SESSION["breadCrumb"] = [];
 }
 
-if (! in_array($page, $_SESSION["breadCrumb"])) {
+if (!in_array($page, $_SESSION["breadCrumb"])) {
 	if (count($_SESSION["breadCrumb"]) > $prefs['userbreadCrumb']) {
 		array_shift($_SESSION["breadCrumb"]);
 	}
@@ -131,9 +137,13 @@ $parserlib = TikiLib::lib('parser');
 $info = $tikilib->get_page_info($page);
 $pdata = $parserlib->parse_data_raw($info["data"]);
 
-if (! isset($_REQUEST['pagenum'])) {
+if (!isset($_REQUEST['pagenum'])) {
 	$_REQUEST['pagenum'] = 1;
 }
+
+//tags need to be removed from data before data formatting
+$tagsArr = [["div","icon_edit_section","class"],["a","editplugin","class"],["a","show-errors-button","id"],["a","heading-link","class"]];
+
 
 $pages = $wikilib->get_number_of_pages($pdata);
 $pdata = $wikilib->get_page($pdata, $_REQUEST['pagenum']);
@@ -143,8 +153,13 @@ $smarty->assign('pages', $pages);
 $parserlib->replace_preparse($info["data"], $preparsed, $noparsed);
 $parserlib->replace_preparse($pdata, $preparsed, $noparsed);
 
-$smarty->assign_by_ref('parsed', $pdata);
+$pdata = formatContent($pdata, $tagsArr);
+
+
+//,'<li class="fragment fade-up highlight-current-blue"'
+//$smarty->assign_by_ref('parsed', str_replace(['<html><body></section>','</body></html>'],['','</section>'],str_replace(['<h1 ', '<h2', '<img'], ['</section><section><h1 ', '</section><section><h2', '<img'], $pdata)));
 //$smarty->assign_by_ref('lastModif',date("l d of F, Y  [H:i:s]",$info["lastModif"]));
+$smarty->assign_by_ref('parsed',$pdata);
 $smarty->assign_by_ref('lastModif', $info["lastModif"]);
 
 if (empty($info["user"])) {
@@ -155,118 +170,46 @@ $smarty->assign_by_ref('lastUser', $info["user"]);
 
 include_once('tiki-section_options.php');
 
-$headerlib->add_cssfile('vendor_bundled/vendor/jquery/jquery-s5/jquery.s5.css');
-$headerlib->add_jsfile('vendor_bundled/vendor/jquery/jquery-s5/jquery.s5.js');
+
+$headerlib->add_jsfile('vendor_bundled/vendor/components/revealjs/js/reveal.js');
+$headerlib->add_cssfile('vendor_bundled/vendor/components/revealjs/css/reveal.css');
+$headerlib->add_cssfile('vendor_bundled/vendor/components/revealjs/css/theme/'.$theme.'.css');
+$headerlib->add_css('.reveal span{
+    font-family: \'FontAwesome\';
+    font-style: normal;
+} .reveal h1 {
+    font-size: 2.8em;
+} .reveal  {
+    font-size: 1.4em;
+ 
+}
+.reveal .slides section .fragment.grow.visible {
+    transform: scale(1.06);
+}
+
+.reveal table {
+    overflow: hidden;
+}
+');
 $headerlib->add_jq_onready(
 	'
+	$("#page-bar").remove();
+	$(".icon_edit_section").remove();
+	$(".editplugin").remove();
+	$("#show-errors-button").remove();
+	$(".wikitext").remove();
+	$(".icon_edit_section").remove();
 	$("#toc").remove();
-	
-	window.s5Settings = (window.s5Settings ? window.s5Settings : {});
-	
-	window.s5Settings.basePath = "vendor_bundled/vendor/jquery/jquery-s5/";
-
-	$.s5.start($.extend(window.s5Settings, {
-		menu: function() {
-			return $("#tiki_slideshow_buttons").show();
-		},
-		noteMenu: function() {
-			var menu =  $("#tiki_slideshowNote_buttons").clone().show();
-			
-			menu.find(".tiki-slideshow-theme")
-				.s5ThemeHandler()
-				.change(function() {
-					$(".tiki-slideshow-theme").val($(this).val());
-				});
-			
-			return menu;
-		},
-		themeName: (window.s5Settings.themeName ? window.s5Settings.themeName : "default")
-	}));
-
-	if (window.s5Settings.themeName != "none") {
-		$(".s5-slide").each(function() {
-			$(this).addClass("transparent");
-		});
+	$(".heading-link").remove();
+	Reveal.initialize();
+	if(fragments=="y") {
+		$( "li" ).addClass( "fragment "+fragmentClass+" "+fragmentHighlightColor );
 	}
 	
-	$("#main").hide();
-	
-	$.fn.extend({
-		s5ThemeHandler: function(s) {
-			return this
-				.change(function() {
-					if (window.s5Busy) return;
-					window.s5Busy = true;
-					
-					var theme = $(this).val();
-					theme = (theme ? theme : "default");
-					
-					window.s5Settings.themeName = theme;
-
-					if (window.s5Settings.themeName != "none") {
-						$(".s5-slide").each(function() {
-							$(this).addClass("transparent");
-						});
-					} else {
-						$(".s5-slide").each(function() {
-							$(this).removeClass("transparent");
-						});
-					}
-
-					$.tikiModal(tr("Updating Theme..."));
-					$.get("tiki-slideshow.php", {theme: theme}, function(o) {
-						$.s5.makeTheme($.parseJSON(o));
-						
-/* Commented out: Do not modify wikiplugin when no option to opt-out!						if (window.slideshowSettings) {
-							window.slideshowSettings.theme = theme;
-							
-							$.post("tiki-wikiplugin_edit.php", {
-								index: 1,
-								page: "' . $page . '",
-								type: "slideshow",
-								label: tr("Update slideshow theme"),
-								content: "~same~",
-								params: (window.slideshowSettings ? window.slideshowSettings : {})
-							}, function() {
-								$.tikiModal();
-								window.s5Busy = false;
-							});
-						} else {*/
-							$.tikiModal();
-							window.s5Busy = false;
-/*						}*/
-					}); 
-				})
-				.val(window.s5Settings.themeName);
-		}
-	});
-	
-	$(".tiki-slideshow-theme")
-		.s5ThemeHandler()
-		.change(function() {
-			if (!$.s5.note) return;
-			if (!$.s5.note.document) return;
-			
-			$($.s5.note.document).find(".tiki-slideshow-theme").val($(this).val());
-		})
-		.change();'
+	'
 );
 // Jquery Chosen not working in slide footer.
-$headerlib->add_js(
-	'
-	if(jqueryTiki.chosen) {
-		jqueryTiki.chosen = false;
-	}
-	setTimeout(function(){
-		jQuery(".s5-slide-grid .s5-slide-left").each(function(){
-			jQuery(this).siblings(".s5-slide-right").append(jQuery(this).find("video").clone());
-		 	jQuery(this).find("video").remove();
-		 	jQuery(this).siblings(".s5-slide-right").append(jQuery(this).find("object, embed").clone());
-		 	jQuery(this).find("object, embed").remove();
-		});
-	}, 500);
-'
-);
+
 
 ask_ticket('index-raw');
 
@@ -275,3 +218,60 @@ $smarty->assign('mid', 'tiki-show_page_raw.tpl');
 
 // use tiki_full to include include CSS and JavaScript
 $smarty->display("tiki_full.tpl");
+
+
+//new function for data cleaning and foramtting
+
+function formatContent($content, $tagArr)
+{
+
+	$headingsTags=explode('<h1',$content);
+    $firstSlide=0;
+	foreach($headingsTags as $slide) {
+        if($firstSlide==0) {
+        	//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
+			$sectionCheck=strpos($slide,'</section><section');
+			if($sectionCheck==true){
+				$slidePlugin=explode("</section>",$slide);
+				$slideContent.=$slidePlugin[1].'</section>';
+			}
+            $firstSlide=1;
+        }
+        else {
+	    $slideContent.='<section><h1 '.$slide.'</section>';
+		}
+
+    }
+	$doc = new DOMDocument();
+	$doc->loadHTML('<html>' . $slideContent .'</html>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+	$xpath = new DOMXpath($doc);
+
+	foreach ($tagArr as $tag) {
+		$list = $xpath->query('//' . $tag[0] . '[contains(concat(\' \', normalize-space(@' . $tag[2] . '), \' \'), "' . $tag[1] . '")]');
+		for ($i = 0; $i < $list->length; $i++) {
+			$p = $list->item($i);
+			if ($tag[3] == 1) { //the parameter checks if content of tag has to be preserved
+				$attributes = $p->attributes;
+				while ($attributes->length) {
+					//preserving href
+
+					if ($attributes->item(0)->name == "href") {
+						$hrefValue = $attributes->item(0)->value;
+					}
+					$p->removeAttribute($attributes->item(0)->name);
+				}
+				if ($hrefValue) {
+					$p->setAttribute("href", $hrefValue);
+				}
+			} else {
+				$p->parentNode->removeChild($p);
+			}
+		}
+	}
+
+
+	$slideContent=str_replace(array('<html>','</html>') , '' , $doc->saveHTML());
+
+	//images alignment left or right
+    return $slideContent;
+}
