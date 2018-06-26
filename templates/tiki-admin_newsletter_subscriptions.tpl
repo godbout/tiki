@@ -57,7 +57,7 @@
 								{/if}
 							</td>
 							<td class="action">
-								<a class="tips" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$groups_g[ix].nlId|urlencode}&amp;group={$groups_g[ix].groupName|urlencode}">
+								<a class="tips text-danger" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$groups_g[ix].nlId|urlencode}&amp;group={$groups_g[ix].groupName|urlencode}">
 									{icon name='remove'}
 								</a>
 							</td>
@@ -85,7 +85,7 @@
 								<a href="tiki-admin_newsletter_subscriptions.php?nlId={$incId|urlencode}">{$incName|escape}</a>
 							</td>
 							<td class="action">
-								<a class="tips" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$nlId|urlencode}&amp;included={$incId|urlencode}">
+								<a class="tips text-danger" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$nlId|urlencode}&amp;included={$incId|urlencode}">
 									{icon name='remove'}
 								</a>
 							</td>
@@ -113,7 +113,7 @@
 							<td class="text">{$pages[ix].validateAddrs|escape}</td>
 							<td class="text">{$pages[ix].addToList|escape}</td>
 							<td class="action">
-								<a class="tips" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;remove={$pages[ix].nlId|urlencode}&amp;page={$pages[ix].wikiPageName|urlencode}">
+								<a class="tips text-danger" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;remove={$pages[ix].nlId|urlencode}&amp;page={$pages[ix].wikiPageName|urlencode}">
 									{icon name='remove'}
 								</a>
 							</td>
@@ -171,7 +171,7 @@
 						</td>
 						<td class="date">{$channels[user].subscribed|tiki_short_datetime}</td>
 						<td class="action">
-							<a class="tips" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$channels[user].nlId|urlencode}&amp;{if $channels[user].isUser eq "y"}subuser{else}email{/if}={$channels[user].email|escape:"url"}">
+							<a class="tips text-danger" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$channels[user].nlId|urlencode}&amp;{if $channels[user].isUser eq "y"}subuser{else}email{/if}={$channels[user].email|escape:"url"}">
 								{icon name='remove'}
 							</a>
 						</td>

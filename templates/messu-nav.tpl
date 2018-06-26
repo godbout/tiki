@@ -8,8 +8,8 @@
 		{button class="btn btn-primary" href="messu-broadcast.php" _class="btn btn-primary" _text="{tr}Broadcast{/tr}"}
 	{/if}
 
-	{button class="btn btn-primary" href="messu-sent.php" _class="btn btn-primary" _text="{tr}Sent{/tr}"}
-	{button class="btn btn-primary" href="messu-archive.php" _class="btn btn-primary" _text="{tr}Archive{/tr}"}
+	{button class="btn btn-primary" href="messu-sent.php" _class="btn btn-info" _text="{tr}Sent{/tr}"}
+	{button class="btn btn-primary" href="messu-archive.php" _class="btn btn-info" _text="{tr}Archive{/tr}"}
 
 	{if isset($mess_archiveAfter) && $mess_archiveAfter>0}
 		({tr}Auto-archive age for read messages:{/tr} {$mess_archiveAfter} {tr}days{/tr})

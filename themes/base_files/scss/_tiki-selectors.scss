@@ -440,42 +440,44 @@ div.cvsup {
 //	border: 1px solid $panel-default-border;
 }
 
-.prio1 {
-	background: inherit;
+.prio5 {
+//	background: inherit;
+  color: $body-color;
+  a { color: $body-color; }
 }
 
-.prio2 {
-	background: theme-color("success");
+.prio4 {
+//	background: theme-color("success");
 	color: theme-color("success");
-	border: theme-color("success");
+//	border: theme-color("success");
 	a {
 		color: theme-color("success");
 	}
 }
 
 .prio3 {
-	background: theme-color("info");
+//	background: theme-color("info");
 	color: theme-color("info");
-	border: theme-color("info");
+//	border: 1px solid theme-color("info");
 	a {
 		color: theme-color("info");
 	}
 }
 
-.prio4 {
-	background: theme-color("warning");
+.prio2 {
+//	background: theme-color("warning");
 	color: theme-color("warning");
-	border: theme-color("warning");
+//	border: theme-color("warning");
 	a {
 		color: theme-color("warning");
 	}
 
 }
 
-.prio5 {
-	background: theme-color("danger");
+.prio1 {
+//	background: theme-color("danger");
 	color: theme-color("danger");
-	border: theme-color("danger");
+//	border: theme-color("danger");
 	a {
 		color: theme-color("danger");
 	}

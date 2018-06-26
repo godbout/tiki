@@ -15,7 +15,7 @@
 	{/if}
 
 <form action="messu-archive.php" method="get" class="form-inline mb-4">
-	<div class="form-group row">
+	<div class="form-group">
 	<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
 	<select name="flags" id="mess-mailmessages" class="form-control">
 		<option value="isRead_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Read{/tr}</option>
@@ -25,7 +25,7 @@
 		<option value="" {if $flag eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
 	</select>
 	</div>
-	<div class="form-group row">
+	<div class="form-group">
 	<label for="mess-mailprio">{tr}Priority:{/tr}</label>
 	<select name="priority" id="mess-mailprio" class="form-control">
 		<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
@@ -36,7 +36,7 @@
 		<option value="5" {if $priority eq 5}selected="selected"{/if}>5</option>
 	</select>
 		</div>
-	<div class="form-group row">
+	<div class="form-group">
 	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
 	<input type="text" name="find" id="mess-mailcont" value="{$find|escape:"attr"}" class="form-control">
 		</div>
@@ -46,7 +46,7 @@
 
 <form action="messu-archive.php" method="post" name="form_messu_archive">
 	{ticket}
-	<div class="form-group row">
+	<div class="form-group">
 	<input type="hidden" name="offset" value="{$offset|escape:"attr"}">
 	<input type="hidden" name="find" value="{$find|escape:"attr"}">
 	<input type="hidden" name="sort_mode" value="{$sort_mode|escape:"attr"}">

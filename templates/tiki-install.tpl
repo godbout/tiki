@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<div class="col-md-9">
-			<h1>{tr}Tiki Installer{/tr} <small>{$tiki_version_name} <a title="{tr}Help{/tr}" href="https://doc.tiki.org/Installation" target="help">{icon name="help"}</a></small></h1>
+			<h1>{tr}Tiki Installer{/tr} <small>{$tiki_version_name} <a class="text-info" title="{tr}Help{/tr}" href="https://doc.tiki.org/Installation" target="help">{icon name="help"}</a></small></h1>
 		</div>
 	</div><!-- End of install-header -->
 	<div class="row install-body">

@@ -14,9 +14,9 @@
 {/if}
 
 <form class="form-inline mb-3" action="messu-mailbox.php" method="get">
-	<div class="form-group row">
+	<div class="form-group">
 	<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
-	<select name="flags" id="mess-mailmessages" class="form-control">
+	<select name="flags" id="mess-mailmessages" class="form-control mx-3">
 		<option value="isRead_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Read{/tr}</option>
 		<option value="isRead_n" {if $flag eq 'isRead' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unread{/tr}</option>
 		<option value="isFlagged_y" {if $flag eq 'isFlagged' and $flagval eq 'y'}selected="selected"{/if}>{tr}Flagged{/tr}</option>
@@ -24,9 +24,9 @@
 		<option value="" {if $flag eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
 	</select>
 	</div>
-	<div class="form-group row">
+	<div class="form-group">
 	<label for="mess-mailprio">{tr}Priority:{/tr}</label>
-	<select name="priority" id="mess-mailprio" class="form-control">
+	<select name="priority" id="mess-mailprio" class="form-control mx-3">
 		<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
 		<option value="1" {if $priority eq 1}selected="selected"{/if}>{tr}1{/tr}</option>
 		<option value="2" {if $priority eq 2}selected="selected"{/if}>{tr}2{/tr}</option>
@@ -35,9 +35,9 @@
 		<option value="5" {if $priority eq 5}selected="selected"{/if}>{tr}5{/tr}</option>
 	</select>
 		</div>
-	<div class="form-group row">
+	<div class="form-group">
 	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
-	<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control">
+	<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control ml-3">
 	<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
 		</div>
 </form>
@@ -85,6 +85,9 @@
 			{sectionelse}
 				<tr><td colspan="7" class="odd">{tr}No messages to display{/tr}</td></tr>
 			{/section}
+			<tr><td colspan="7">
+			<div class="row mx-0 mb-3 font-weight-bold"><div class="col text-center">{tr}Key:{/tr}</div><div class="col prio1 text-center">{tr}Priority{/tr} 1</div><div class="col prio2 text-center">{tr}Priority{/tr} 2</div><div class="col prio3 text-center">{tr}Priority{/tr} 3</div><div class="col prio4 text-center">{tr}Priority{/tr} 4</div><div class="col prio5 text-center">{tr}Priority{/tr} 5</div>
+			</div></td></tr>
 		</table>
 	</div>
 	{if $items}
@@ -92,7 +95,7 @@
 			{tr}Perform action with checked:{/tr}
 		<input
 			type="submit"
-			class="btn btn-warning btn-sm"
+			class="btn btn-warning btn-sm ml-2"
 			name="delete"
 			value="{tr}Delete{/tr}"{if $js}
 			onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"{/if}
@@ -105,7 +108,7 @@
 			onclick="checkTimeout()"
 		>
 		<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">
-		<select name="action" class="form-control">
+		<select name="action" class="form-control ml-4 mr-2">
 			<option value="isRead_y">{tr}Mark as read{/tr}</option>
 			<option value="isRead_n">{tr}Mark as unread{/tr}</option>
 			<option value="isFlagged_y">{tr}Mark as flagged{/tr}</option>

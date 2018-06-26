@@ -121,7 +121,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_integrator.php?action=rm&amp;repID={$repositories[rep].repID|escape}">
+								<a class="text-danger" href="tiki-admin_integrator.php?action=rm&amp;repID={$repositories[rep].repID|escape}">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

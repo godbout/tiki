@@ -6233,35 +6233,29 @@ div.cvsup {
   .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse, .layout_fixed_top_modules #top_modules .navbar-inverse {
     border-color: transparent; }
 
-.prio1 {
-  background: inherit; }
+.prio5 {
+  color: #839496; }
+  .prio5 a {
+    color: #839496; }
 
-.prio2 {
-  background: #2aa198;
-  color: #2aa198;
-  border: #2aa198; }
-  .prio2 a {
+.prio4 {
+  color: #2aa198; }
+  .prio4 a {
     color: #2aa198; }
 
 .prio3 {
-  background: #268bd2;
-  color: #268bd2;
-  border: #268bd2; }
+  color: #268bd2; }
   .prio3 a {
     color: #268bd2; }
 
-.prio4 {
-  background: #cb4b16;
-  color: #cb4b16;
-  border: #cb4b16; }
-  .prio4 a {
+.prio2 {
+  color: #cb4b16; }
+  .prio2 a {
     color: #cb4b16; }
 
-.prio5 {
-  background: #d33682;
-  color: #d33682;
-  border: #d33682; }
-  .prio5 a {
+.prio1 {
+  color: #d33682; }
+  .prio1 a {
     color: #d33682; }
 
 .messureadflag {

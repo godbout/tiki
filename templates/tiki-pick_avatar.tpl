@@ -20,7 +20,7 @@
 
 <h2>{if $user eq $userwatch}{tr}Your current profile picture{/tr}{else}{tr}Profile picture{/tr}{/if}</h2>
 {if $avatar}
-	<div>
+	<div class="d-inline-block mb-4">
 		{if isset($user_picture_id)}{tr}Thumbnail{/tr}<br>{/if}
 		{$avatar}
 	</div>
@@ -34,7 +34,7 @@
 {/if}
 
 {if sizeof($avatars) eq 0 and $avatar}
-	<a class="link tips" href="tiki-pick_avatar.php?reset=y&amp;view_user{$userwatch|escape}" title=":{tr}Reset{/tr}">
+	<a class="link tips text-danger" href="tiki-pick_avatar.php?reset=y&amp;view_user{$userwatch|escape}" title=":{tr}Reset{/tr}">
 		{icon name='remove'}
 	</a>
 {/if}
