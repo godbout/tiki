@@ -42,7 +42,7 @@
 						</div>
 						<input type="text" placeholder="{$object_selector.placeholder|escape}..." value="" class="filter form-control" autocomplete="off">
 						<div class="input-group-btn">
-							<input type="button" class="btn btn-primary search" value="{tr}Find{/tr}">
+							<input type="button" class="btn btn-info search" value="{tr}Find{/tr}">
 						</div>
 					</div>
 				</div>

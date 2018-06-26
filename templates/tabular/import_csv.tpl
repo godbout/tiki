@@ -25,7 +25,7 @@
 				<input type="file" name="file" accept="text/csv">
 			</div>
 			<div class="submit">
-				<input class="btn btn-secondary" type="submit" value="{tr}Import{/tr}">
+				<input class="btn btn-primary" type="submit" value="{tr}Import{/tr}">
 			</div>
 		</form>
 	{/if}

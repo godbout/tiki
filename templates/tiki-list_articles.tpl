@@ -41,7 +41,9 @@
 			<tr>
 				{if $listpages and $tiki_p_remove_article eq 'y'}
 					<th class="auto">
-						{select_all checkbox_names='checked[]'}
+						<div class="form-check">
+							{select_all checkbox_names='checked[]'}
+						</div>
 					</th>
 				{/if}
 				{if $prefs.art_list_title eq 'y'}
@@ -237,7 +239,7 @@
 					</select>
 				</label>
 				<span class="input-group-btn">
-				<input type="submit" class="btn btn-secondary" value="{tr}OK{/tr}">
+				<input type="submit" class="btn btn-warning" value="{tr}OK{/tr}">
 				</span>
 			</div>
 		</div>

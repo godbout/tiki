@@ -18,7 +18,7 @@
 		</div>
 		<div class="form-group submit">
 			<input type="hidden" name="trackerId" value="{$trackerId|escape}">
-			<input type="submit" class="btn btn-secondary" value="{tr}Import{/tr}">
+			<input type="submit" class="btn btn-primary" value="{tr}Import{/tr}">
 		</div>
 	</form>
 {/block}

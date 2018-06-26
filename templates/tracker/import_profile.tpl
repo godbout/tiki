@@ -17,7 +17,7 @@
 			{if !$modal}
 				<a href="tiki-list_trackers.php" class="btn btn-link">{tr}Cancel{/tr}</a>
 			{/if}
-			<input type="submit" class="btn btn-secondary" value="{tr}Import{/tr}">
+			<input type="submit" class="btn btn-primary" value="{tr}Import{/tr}">
 		</div>
 	</form>
 	{jq}

@@ -148,7 +148,7 @@
 		</div>
 		<div class="form-group submit">
 			<div class="col-sm-9 col-sm-push-3">
-				<input type="submit" class="btn btn-secondary" value="{tr}Import{/tr}">
+				<input type="submit" class="btn btn-primary" value="{tr}Import{/tr}">
 			</div>
 		</div>
 	</form>

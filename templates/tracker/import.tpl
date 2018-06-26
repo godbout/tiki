@@ -25,7 +25,7 @@
 				{if !$modal}
 					<a href="tiki-list_trackers.php" class="btn btn-link">{tr}Cancel{/tr}</a>
 				{/if}
-				<button type="submit" class="btn btn-secondary">{tr}Import{/tr}</button>
+				<button type="submit" class="btn btn-primary">{tr}Import{/tr}</button>
 			</div>
 		</form>
 	{else}
