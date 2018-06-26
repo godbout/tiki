@@ -3,8 +3,8 @@
 <div class="t_navbar mb-4">
 	{self_link print='y' _icon_name='print' hspace='1' _class='tips pull-right' _title=":{tr}Print{/tr}"}
 	{/self_link}
-	{button href="tiki-list_surveys.php" class="btn btn-primary" _icon_name='list' _text="{tr}List Surveys{/tr}"}
-	{button href="tiki-survey_stats.php" class="btn btn-primary" _icon_name='chart' _text="{tr}Survey Stats{/tr}"}
+	{button href="tiki-list_surveys.php" class="btn btn-info" _icon_name='list' _text="{tr}List Surveys{/tr}"}
+	{button href="tiki-survey_stats.php" class="btn btn-info" _icon_name='chart' _text="{tr}Survey Stats{/tr}"}
 	{if $tiki_p_admin_surveys eq 'y'}
 		{button _keepall='y' href="tiki-admin_surveys.php" surveyId=$surveyId class="btn btn-primary" _icon_name='edit' _text="{tr}Edit this Survey{/tr}"}
 		{button _keepall='y' href="tiki-survey_stats_survey.php" surveyId=$surveyId clear=$surveyId class="btn btn-primary" _icon_name='trash' _text="{tr}Clear Stats{/tr}"}

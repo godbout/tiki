@@ -140,7 +140,7 @@
 			</td>
 			<td colspan="3" style="text-align:right;">
 				<input type="submit" class="btn btn-secondary btn-sm" name="update_percentage" value="{tr}Go{/tr}" style="vertical-align:bottom;">
-				{icon name='next' class='tips' title="{tr}Go{/tr}" style="margin-bottom:8px; margin-right:8px"}
+				{icon name='next' class='tips mb-3 mr-3' title="{tr}Go{/tr}"}
 			</td>
 		</tr>
 		<tr>

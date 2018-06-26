@@ -15,7 +15,7 @@
 {/if}
 
 <div class="t_navbar">
-	{button href="tiki-list_submissions.php" _icon_name="list" _text="{tr}List submissions{/tr}"}
+	{button href="tiki-list_submissions.php" _icon_name="list" _class="btn-info" _text="{tr}List submissions{/tr}"}
 </div>
 
 {remarksbox type="tip" title="{tr}Tip{/tr}"}

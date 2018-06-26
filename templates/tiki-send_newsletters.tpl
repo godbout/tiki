@@ -10,7 +10,7 @@
 
 {if $tiki_p_admin_newsletters eq "y"}
 	<div class="t_navbar mb-4">
-		{button href="tiki-newsletters.php" class="btn btn-primary" _text="{tr}List Newsletters{/tr}"}
+		{button href="tiki-newsletters.php" class="btn btn-info" _text="{tr}List Newsletters{/tr}"}
 		{if $nlId}
 			{button href="tiki-admin_newsletters.php?nlId=$nlId" class="btn btn-primary" _text="{tr}Admin Newsletters{/tr}"}
 		{else}

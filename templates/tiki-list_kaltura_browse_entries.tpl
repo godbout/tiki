@@ -5,17 +5,17 @@
 	}
 {/jq}
 
-{if $tiki_p_upload_videos eq 'y' or $tiki_p_admin_kaltura eq 'y' or $tiki_p_admin eq 'y'}{button _text="{tr}Add New Media{/tr}" href="tiki-kaltura_upload.php"}{/if}
-
 {if $tiki_p_list_videos eq 'y'}
-{if $entryType eq "mix"}
-	{button _text="{tr}List Media{/tr}" href="tiki-list_kaltura_entries.php"}
-	{if $prefs.kaltura_legacyremix == 'y'}{button _text="{tr}List Remix Entries{/tr}" href="tiki-list_kaltura_entries.php?list=mix"}{/if}
-{else}
-	{if $prefs.kaltura_legacyremix == 'y'}{button _text="{tr}List Remix Entries{/tr}" href="tiki-list_kaltura_entries.php?list=mix"}{/if}
-	{button _text="{tr}List Media{/tr}" href="tiki-list_kaltura_entries.php"}
+	{if $entryType eq "mix"}
+		{button _text="{tr}List Media{/tr}" href="tiki-list_kaltura_entries.php" _class="btn-info"}
+		{if $prefs.kaltura_legacyremix == 'y'}{button _text="{tr}List Remix Entries{/tr}" href="tiki-list_kaltura_entries.php?list=mix" _class="btn-info"}{/if}
+	{else}
+		{if $prefs.kaltura_legacyremix == 'y'}{button _text="{tr}List Remix Entries{/tr}" href="tiki-list_kaltura_entries.php?list=mix" _class="btn-info"}{/if}
+		{button _text="{tr}List Media{/tr}" href="tiki-list_kaltura_entries.php" _class="btn-info"}
+	{/if}
 {/if}
-{/if}
+
+{if $tiki_p_upload_videos eq 'y' or $tiki_p_admin_kaltura eq 'y' or $tiki_p_admin eq 'y'}{button _text="{tr}Add New Media{/tr}" href="tiki-kaltura_upload.php"}{/if}
 
 	<div class="text-center">
 		{wikiplugin _name=kaltura id=$klist[0]->id}{/wikiplugin}

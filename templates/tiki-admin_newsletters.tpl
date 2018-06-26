@@ -5,7 +5,7 @@
 	{button href="tiki-admin_newsletters.php?cookietab=2" _icon_name="create" _text="{tr}Create{/tr}"}
 	<a role="link" href="tiki-newsletters.php" class="btn btn-link" title="{tr}List{/tr}">{icon name="list"} {tr}List{/tr}</a>
 	<a role="link" href="tiki-send_newsletters.php" class="btn btn-link" title="{tr}Send{/tr}">{icon name="envelope"} {tr}Send{/tr}</a>
-{*	{button href="tiki-newsletters.php" _class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
+{*	{button href="tiki-newsletters.php" _class="btn btn-info" _icon_name="list" _text="{tr}List{/tr}"}
 	{button href="tiki-send_newsletters.php" _class="btn btn-primary" _icon_name="envelope" _text="{tr}Send{/tr}"} *}
 </div>
 

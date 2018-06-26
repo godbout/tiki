@@ -13,7 +13,7 @@
 {/if}
 
 <div class="t_navbar btn-group form-group row">
-	{button href="tiki-list_integrator_repositories.php" class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
+	{button href="tiki-list_integrator_repositories.php" class="btn btn-info" _icon_name="list" _text="{tr}List{/tr}"}
 	{button href="tiki-admin_integrator.php" class="btn btn-primary" _icon_name="create" _text="{tr}New{/tr}"}
 	{if isset($repID) and $repID ne '0'}
 		{assign var=thisrepID value=$repID|escape}

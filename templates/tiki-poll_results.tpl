@@ -72,7 +72,7 @@
 	{if $tiki_p_view_poll_voters eq 'y' && $poll_info_arr[x].votes > 0}
 		<div class="t_navbar">
 			{assign var=thispoll_info_arr value=$poll_info_arr[x].pollId}
-			{button href="?list=y&amp;pollId=$thispoll_info_arr" class="btn btn-primary" _text="{tr}List Votes{/tr}" _auto_args="$auto_args"}
+			{button href="?list=y&amp;pollId=$thispoll_info_arr" class="btn btn-info" _text="{tr}List Votes{/tr}" _auto_args="$auto_args"}
 		</div>
 	{/if}
 

@@ -162,7 +162,7 @@
 			{$dataGrid}
 		</div>
 		{button _id="edit_button" _text="{tr}Edit Spreadsheet{/tr}" _htmlelement="role_main" _template="tiki-view_sheets.tpl" parse="edit" _auto_args="*" _class="" _onclick="document.location = 'tiki-view_sheets.php?sheetId=$sheetId&parse=edit'; return false;"}
-		{button href="tiki-sheets.php" _text="{tr}List Spreadsheets{/tr}"}
+		{button href="tiki-sheets.php" _class="btn-info" _text="{tr}List Spreadsheets{/tr}"}
 	</form>
 
 	<h2>{tr}Wiki plug-in{/tr}</h2>

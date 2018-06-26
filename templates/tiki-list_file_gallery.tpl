@@ -39,7 +39,7 @@
 				{/if}
 				{if $view neq 'list'}
 					<li class="dropdown-item">
-						{self_link _icon_name="list" _text="{tr}List{/tr}" view="list" galleryId=$galleryId}{/self_link}
+						{self_link _icon_name="list" _class="btn-info" _text="{tr}List{/tr}" view="list" galleryId=$galleryId}{/self_link}
 					</li>
 				{/if}
 				{if $view neq 'page' and $filescount gt 0}
@@ -146,7 +146,7 @@
 		{/if}
 	{else}
 		{if $treeRootId eq $prefs.fgal_root_id && ( $edit_mode eq 'y' or $dup_mode eq 'y')}
-			{button _icon_name="list" _text="{tr}List{/tr}" href='?'}
+			{button _icon_name="list" _text="{tr}List{/tr}" href='?' _class="btn-info"}
 		{/if}
 		{if $tiki_p_create_file_galleries eq 'y' and $edit_mode ne 'y'}
 			{button _icon_name="create" _keepall='y' _text="{tr}Create{/tr}" edit_mode="1" parentId="-1" galleryId="0"}
@@ -248,7 +248,7 @@
 						<div class="input-group">
 							<input name="highlight" size="30" type="text" placeholder="{tr}Search in content{/tr}..." class="form-control">
 							<div class="input-group-btn">
-								<input type="submit" class="wikiaction btn btn-primary" name="search" value="{tr}Go{/tr}">
+								<input type="submit" class="wikiaction btn btn-info" name="search" value="{tr}Go{/tr}">
 							</div>
 						</div>
 					</form>

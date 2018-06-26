@@ -2,7 +2,7 @@
 
 <div class="t_navbar mb-4">
 	{if $tiki_p_list_newsletters eq "y"}
-		{button href="tiki-newsletters.php" class="btn btn-primary" _text="{tr}List Newsletters{/tr}"}
+		{button href="tiki-newsletters.php" class="btn btn-info" _text="{tr}List Newsletters{/tr}"}
 	{/if}
 	{if $tiki_p_subscribe_newsletters eq "y"}
 		{button href="tiki-newsletters.php?nlId=$nlId&amp;info=1" class="btn btn-primary" _text="{tr}Subscribe{/tr}"}

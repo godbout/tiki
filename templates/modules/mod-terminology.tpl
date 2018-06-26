@@ -27,7 +27,7 @@
 		</div>
 		<div class="form-group row mx-0">
 			<div class="col-sm-2 col-sm-offset-2">
-				<input type="submit" class="wikiaction btn btn-primary btn-sm" name="search" value="{tr}Go{/tr}"/>
+				<input type="submit" class="wikiaction btn btn-info btn-sm" name="search" value="{tr}Go{/tr}"/>
 			</div>
 			<div class="col-sm-8 checkbox-inline">
 				<div class="form-text">{tr}If not found, you will be given a chance to create it.{/tr}</div>

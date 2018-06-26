@@ -3,7 +3,7 @@
 	{ticket}
 	<div class="clearfix mb-4">
 		{if $prefs.workspace_ui eq "y"}
-			<a class="btn btn-primary btn-sm" href="{service controller=workspace action=list_templates}" title="{tr}List{/tr}">
+			<a class="btn btn-info btn-sm" href="{service controller=workspace action=list_templates}" title="{tr}List{/tr}">
 				{icon name="list"} {tr}Workspace Templates{/tr}
 			</a>
 		{/if}

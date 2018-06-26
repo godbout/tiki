@@ -7,9 +7,9 @@
 {title help="Quiz" url="tiki-edit_quiz_questions.php?quizId=$quizId"}{tr}Edit quiz questions{/tr}{/title}
 
 <div class="t_navbar mb-4">
-	{button href="tiki-list_quizzes.php" class="btn btn-primary" _text="{tr}List Quizzes{/tr}"}
-	{button href="tiki-quiz_stats.php" class="btn btn-primary" _text="{tr}Quiz Stats{/tr}"}
-	{button href="tiki-quiz_stats_quiz.php?quizId=$quizId" class="btn btn-primary" _text="{tr}This Quiz Stats{/tr}"}
+	{button href="tiki-list_quizzes.php" class="btn btn-info" _text="{tr}List Quizzes{/tr}"}
+	{button href="tiki-quiz_stats.php" class="btn btn-info" _text="{tr}Quiz Stats{/tr}"}
+	{button href="tiki-quiz_stats_quiz.php?quizId=$quizId" class="btn btn-info" _text="{tr}This Quiz Stats{/tr}"}
 	{button href="tiki-edit_quiz.php?quizId=$quizId" class="btn btn-primary" _text="{tr}Edit this Quiz{/tr}"}
 	{button href="tiki-edit_quiz.php" class="btn btn-primary" _text="{tr}Admin Quizzes{/tr}"}
 </div>

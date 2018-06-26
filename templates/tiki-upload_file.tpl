@@ -13,9 +13,9 @@
 		{if isset($galleries) and count($galleries) > 0 and $tiki_p_list_file_galleries eq 'y'}
 			{if !empty($filegals_manager)}
 				{assign var=fgmanager value=$filegals_manager|escape}
-				{button href="tiki-list_file_gallery.php?filegals_manager=$fgmanager" class="btn btn-primary" _text="{tr}List Galleries{/tr}"}
+				{button href="tiki-list_file_gallery.php?filegals_manager=$fgmanager" class="btn btn-info" _text="{tr}List Galleries{/tr}"}
 			{else}
-				{button href="tiki-list_file_gallery.php" class="btn btn-primary" _text="{tr}List Galleries{/tr}"}
+				{button href="tiki-list_file_gallery.php" class="btn btn-info" _text="{tr}List Galleries{/tr}"}
 			{/if}
 		{/if}
 		{if isset($uploads) and count($uploads) > 0}

@@ -4,10 +4,10 @@
 
 <div class="t_navbar mb-4">
 	{button href="tiki-minical.php#add" class="btn btn-primary" _text="{tr}Add{/tr} "}
-	{button href="tiki-minical_prefs.php" class="btn btn-primary" _text="{tr}Prefs{/tr}"}
-	{button href="tiki-minical.php?view=daily" class="btn btn-primary" _text="{tr}Daily{/tr}"}
-	{button href="tiki-minical.php?view=weekly" class="btn btn-primary" _text="{tr}Weekly{/tr}"}
-	{button href="tiki-minical.php?view=list" class="btn btn-primary" _text="{tr}List{/tr}"}
+	{button href="tiki-minical_prefs.php" class="btn btn-info" _text="{tr}Prefs{/tr}"}
+	{button href="tiki-minical.php?view=daily" class="btn btn-info" _text="{tr}Daily{/tr}"}
+	{button href="tiki-minical.php?view=weekly" class="btn btn-info" _text="{tr}Weekly{/tr}"}
+	{button href="tiki-minical.php?view=list" class="btn btn-info" _text="{tr}List{/tr}"}
 </div>
 
 <h2>{tr}Preferences{/tr}</h2>

@@ -5,7 +5,7 @@
 {/title}
 <div class="navbar btn-group">
 	{if $tiki_p_list_videos eq 'y'}
-		{button class="btn btn-primary" _text="{tr}List Media{/tr}" href="tiki-list_kaltura_entries.php"}
+		{button class="btn btn-info" _text="{tr}List Media{/tr}" href="tiki-list_kaltura_entries.php"}
 	{/if}
 	{if $kmode ne ''}
 		{if $kmode ne 'edit' and ($tiki_p_edit_videos eq 'y' or $tiki_p_admin_kaltura eq 'y' or $tiki_p_admin eq 'y')}

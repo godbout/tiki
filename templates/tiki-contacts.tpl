@@ -5,7 +5,7 @@
 		{if $view eq 'list'}
 			{button href="?view=group" _class="btn btn-primary" _text="{tr}Group View{/tr}"}
 		{else}
-			{button href="?view=list" _class="btn btn-primary" _text="{tr}List View{/tr}"}
+			{button href="?view=list" _class="btn btn-info" _text="{tr}List View{/tr}"}
 		{/if}
 	</div>
 	<div style="float:left;margin:5px;">

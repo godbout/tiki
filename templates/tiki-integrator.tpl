@@ -15,7 +15,7 @@
 		{/if}
 	{/if}
 
-	{button href="tiki-list_integrator_repositories.php" _text="{tr}List Repositories{/tr}"}
+	{button href="tiki-list_integrator_repositories.php" _text="{tr}List Repositories{/tr}" _class="btn-info"}
 
 	{* Show config buttons only for admins *}
 	{if $tiki_p_admin eq 'y' or $tiki_p_admin_integrator eq 'y'}

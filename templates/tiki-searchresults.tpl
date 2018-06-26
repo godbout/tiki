@@ -155,7 +155,7 @@
 				{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 			{/if}
 			<label class="findsubmit">
-				<input type="submit" class="btn btn-primary" name="search" value="{tr}Go{/tr}">
+				<input type="submit" class="btn btn-info" name="search" value="{tr}Go{/tr}">
 			</label>
 			{if !$searchNoResults}
 				{button _auto_args='highlight' href="tiki-searchresults.php?highlight=" _text="{tr}Clear Filter{/tr}"}

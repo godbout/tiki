@@ -7,7 +7,7 @@
 		<div class="input-group">
 			<input name="find" size="14" type="text" accesskey="s" class="pagename form-control"{if isset($find)} value="{$find|escape}"{/if} />
 			<span class="input-group-btn">
-				<button type="submit" class="wikiaction btn btn-primary" name="search" value="{tr}Go{/tr}">{tr}Go{/tr}</button>
+				<button type="submit" class="wikiaction btn btn-info" name="search" value="{tr}Go{/tr}">{tr}Go{/tr}</button>
 			</span>
 		</div>
 		<input type="checkbox" class="form-check-input" name="exact_match"{if $exact eq 'y'} checked="checked"{/if}>

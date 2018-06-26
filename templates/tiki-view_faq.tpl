@@ -5,7 +5,7 @@
 	{self_link print='y' _icon_name='print' _menu_text='y' _menu_icon='y'}
 		{tr}Print{/tr}
 	{/self_link}
-	{button href="tiki-list_faqs.php" class="btn btn-primary" _text="{tr}List FAQs{/tr}"}
+	{button href="tiki-list_faqs.php" class="btn btn-info" _text="{tr}List FAQs{/tr}"}
 
 	{if $tiki_p_admin_faqs eq 'y'}
 		{button href="tiki-list_faqs.php?faqId=$faqId" class="btn btn-primary" _text="{tr}Edit this FAQ{/tr}"}

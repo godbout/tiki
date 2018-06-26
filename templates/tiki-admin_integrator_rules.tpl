@@ -4,7 +4,7 @@
 
 <div class="t_navbar mb-4">
 	{button href="tiki-admin_integrator.php" class="btn btn-primary" _icon_name="cog" _text="{tr}Configure Repositories{/tr}"}
-	{button href="tiki-list_integrator_repositories.php" class="btn btn-primary" _icon_name="list" _text="{tr}List Repositories{/tr}"}
+	{button href="tiki-list_integrator_repositories.php" class="btn btn-info" _icon_name="list" _text="{tr}List Repositories{/tr}"}
 	{assign var=thisrepID value=$repID|escape}
 	{button href="tiki-admin_integrator.php?action=edit&amp;repID=$thisrepID" class="btn btn-primary" _icon_name="wrench" _text="{tr}Configure this Repository{/tr}"}
 	{button href="tiki-integrator.php?repID=$thisrepID" _text="{tr}View this Repository{/tr}" _icon_name="view" class="btn btn-primary"}

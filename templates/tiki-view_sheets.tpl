@@ -29,7 +29,7 @@
 	{/if}
 
 	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-sheets.php" class="btn btn-primary" _text="{tr}List Spreadsheets{/tr}"}
+		{button href="tiki-sheets.php" class="btn btn-info" _text="{tr}List Spreadsheets{/tr}"}
 	{/if}
 
 	{if $objectperms->edit_sheet}

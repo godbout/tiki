@@ -63,7 +63,7 @@
 			{button href=$smarty.capture.href _text="{tr}Calendar View{/tr}" _icon_name="calendar"}
 		{else}
 			{capture name=href}?viewlist=list{if $smarty.request.todate}&amp;todate={$smarty.request.todate}{/if}{/capture}
-			{button href=$smarty.capture.href _text="{tr}List View{/tr}" _icon_name="list"}
+			{button href=$smarty.capture.href _text="{tr}List View{/tr}" _icon_name="list" _class="btn-info"}
 		{/if}
 
 		{if count($listcals) >= 1}
