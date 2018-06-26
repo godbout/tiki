@@ -2,7 +2,8 @@
 	"minimum-stability": "stable",
 	"config": {
 		"process-timeout": 5000,
-		"bin-dir": "bin"
+		"bin-dir": "bin",
+		"component-dir": "vendor/components"
 	},
 	"repositories": [
 		{

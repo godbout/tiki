@@ -30,7 +30,7 @@
 				right: data.views
 			},
 			editable: true,
-			timezone: '{{$prefs.server_timezone}}',
+			timezone: '{{$prefs.display_timezone}}',
 			//theme: true, TODO: add support of jQuery UI theme to the plugin's PHP
 			events: $.service('tracker_calendar', 'list', $.extend(data.filterValues, {
 				trackerId: data.trackerId,

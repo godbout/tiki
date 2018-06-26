@@ -180,6 +180,7 @@
 			$('#calendar').fullCalendar({
 				themeSystem: 'bootstrap4',
 				timeFormat: '{{$timeFormat}}',
+				timezone: '{{$prefs.display_timezone}}',
 				header: {
 					left: 'prev,next today',
 					center: 'title',

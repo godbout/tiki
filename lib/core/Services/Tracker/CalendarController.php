@@ -14,7 +14,7 @@ class Services_Tracker_CalendarController
 
 	function action_list($input)
 	{
-		global $prefs;
+		global $prefs, $user, $tikilib;
 
 		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
 		$index = $unifiedsearchlib->getIndex();
@@ -38,11 +38,12 @@ class Services_Tracker_CalendarController
 			$to = $input->end->int();
 		} else {
 			$useTimestamp = false;
+			$timezone = $input->timezone->string();
 			preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/', $input->start->string(), $matches);
 
 			if ($input->start->string() === $matches[0]) {
-				$from = strtotime($input->start->iso8601());
-				$to = strtotime($input->end->iso8601());
+				$from = strtotime($input->start->iso8601() . ' ' . $timezone);
+				$to = strtotime($input->end->iso8601() . ' ' . $timezone);
 			} else {
 				$from = strtotime($input->start->isodate());
 				$to = strtotime($input->end->isodate());
@@ -96,6 +97,9 @@ class Services_Tracker_CalendarController
 
 			$colormap = base64_decode($input->colormap->word());
 
+			$dtStart = $this->getTimestamp($row[$start]);
+			$dtEnd = $this->getTimestamp($row[$end]);
+
 			$response[] = [
 				'id' => $row['object_id'],
 				'trackerId' => isset($row['tracker_id']) ? $row['tracker_id'] : null,
@@ -103,8 +107,8 @@ class Services_Tracker_CalendarController
 				'description' => $description,
 				'url' => smarty_modifier_sefurl($row['object_id'], $row['object_type']),
 				'allDay' => false,
-				'start' => $useTimestamp ? $this->getTimestamp($row[$start]) : $this->getISO8601($row[$start]),
-				'end' => $useTimestamp ? $this->getTimestamp($row[$end]) : $this->getISO8601($row[$end]),
+				'start' => $useTimestamp ? $dtStart : $tikilib->get_iso8601_datetime($dtStart, $user),
+				'end' => $useTimestamp ? $dtEnd : $tikilib->get_iso8601_datetime($dtEnd, $user),
 				'editable' => $item->canModify(),
 				'color' => $this->getColor(isset($row[$coloring]) ? $row[$coloring] : '', $colormap),
 				'textColor' => '#000',
@@ -125,19 +129,8 @@ class Services_Tracker_CalendarController
 		} elseif (is_numeric($value)) {
 			return $value;
 		} else {
-			return strtotime($value);
+			return strtotime($value . ' UTC');
 		}
-	}
-
-	/**
-	 * Convert date to ISO 8601
-	 *
-	 * @param $date
-	 * @return mixed
-	 */
-	private function getISO8601($date)
-	{
-		return str_replace(' ', 'T', $date);
 	}
 
 	private function getColor($value, $colormap)

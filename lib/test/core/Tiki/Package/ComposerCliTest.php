@@ -25,7 +25,8 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 	},
 	"config": {
 		"process-timeout": 5000,
-		"bin-dir": "bin"
+		"bin-dir": "bin",
+		"component-dir": "vendor/components"
 	}
 }';
 
@@ -37,7 +38,8 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
     "minimum-stability": "stable",
     "config": {
         "process-timeout": 5000,
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "component-dir": "vendor/components"
     },
     "require": {
         "psr/log": "^1.0"
@@ -56,7 +58,8 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
   },
   "config": {
     "process-timeout": 5000,
-    "bin-dir": "bin"
+    "bin-dir": "bin",
+    "component-dir": "vendor/components"
   }
 }';
 
