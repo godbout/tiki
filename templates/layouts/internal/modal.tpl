@@ -23,7 +23,7 @@
 </div>
 <div class="modal-footer">
 	{block name=buttons}
-		<button type="button" class="btn btn-primary btn-dismiss" data-dismiss="modal">{tr}Close{/tr}</button>
+		<button type="button" class="btn btn-secondary btn-dismiss" data-dismiss="modal">{tr}Close{/tr}</button>
 		{if $confirm}
 			<input
 				type='submit'

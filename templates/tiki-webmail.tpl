@@ -367,8 +367,8 @@
 							<tr>
 								<td>&nbsp;</td>
 								<td colspan="3">
-									<input type="submit" class="btn btn-secondary" name="new_acc" value="{if $accountId eq ''}{tr}Add{/tr}{else}{tr}Update{/tr}{/if}">
-									<input type="submit" class="btn btn-primary" name="cancel_acc" value="{tr}Cancel{/tr}">
+									<input type="submit" class="btn btn-primary" name="new_acc" value="{if $accountId eq ''}{tr}Add{/tr}{else}{tr}Update{/tr}{/if}">
+									<input type="submit" class="btn btn-secondary" name="cancel_acc" value="{tr}Cancel{/tr}">
 								</td>
 							</tr>
 						</table>
@@ -747,7 +747,7 @@
 							<input type="hidden" name="attach2type" value="{$attach2type|escape}">
 							<input type="hidden" name="attach3type" value="{$attach3type|escape}">
 							<input type="hidden" name="fattId" value="{$fattId|escape}">
-							<input type="submit" class="btn btn-secondary" name="send" value="{tr}Send{/tr}" onclick="needToConfirm=false;">
+							<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}" onclick="needToConfirm=false;">
 						</td>
 					</tr>
 				</table>

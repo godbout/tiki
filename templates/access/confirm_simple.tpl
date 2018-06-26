@@ -10,8 +10,8 @@
 	</form>
 {/block}
 {block name=buttons}
-	<button type="button" class="btn btn-default btn-dismiss bogus" data-dismiss="modal">{tr}Close{/tr}</button>
-	<button type='submit' form="confirm-simple" class="btn btn-primary">
+	<button type="button" class="btn btn-secondary btn-dismiss bogus" data-dismiss="modal">{tr}Close{/tr}</button>
+	<button type='submit' form="confirm-simple" class="btn btn-success">
 		{tr}OK{/tr}
 	</button>
 {/block}

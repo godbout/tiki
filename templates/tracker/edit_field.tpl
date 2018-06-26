@@ -215,7 +215,7 @@ $('select[name=type]').change(function () {
 	{/accordion}
 
 	<div class="submit">
-		<input type="submit" class="btn btn-secondary" name="submit" value="{tr}Save{/tr}">
+		<input type="submit" class="btn btn-primary" name="submit" value="{tr}Save{/tr}">
 		<input type="hidden" name="trackerId" value="{$field.trackerId|escape}">
 		<input type="hidden" name="fieldId" value="{$field.fieldId|escape}">
 	</div>

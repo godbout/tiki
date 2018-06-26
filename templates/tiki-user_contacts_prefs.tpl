@@ -2,7 +2,7 @@
 
 {include file='tiki-mytiki_bar.tpl'}
 <div class="t_navbar">
-	{button href="tiki-contacts.php" class="btn btn-primary" _text="{tr}Contacts{/tr}"}
+	{button href="tiki-contacts.php" class="btn btn-info" _text="{tr}Contacts{/tr}"}
 </div>
 
 {tabset name="contact_prefs"}

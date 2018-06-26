@@ -38,7 +38,7 @@
 	<div class="form-group row">
 	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
 	<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control">
-	<input type="submit" class="btn btn-primary btn-sm" name="filter" value="{tr}Filter{/tr}">
+	<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
 		</div>
 </form>
 

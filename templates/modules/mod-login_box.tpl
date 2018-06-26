@@ -140,7 +140,7 @@ if (jqueryTiki.no_cookie) {
 					{/foreach}
 					</select>
 					<input type="hidden" name="action" value="select"/>
-					<input type="submit" class="btn btn-secondary" value="{tr}Go{/tr}"/>
+					<input type="submit" class="btn btn-primary" value="{tr}Go{/tr}"/>
 				</fieldset>
 			</form>
 		{/if}

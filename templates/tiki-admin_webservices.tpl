@@ -30,7 +30,7 @@
 			{/if}
 			<div class="col-sm-8 col-sm-offset-4 clearfix">
 				<input type="hidden" name="name" value="{$storedName|escape}">
-				{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-secondary btn-sm'}
+				{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-primary btn-sm'}
 				{button _icon_name='delete' _text="{tr}Delete{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&delete" _class='btn btn-danger btn-sm'}
 			</div>
 		</div>

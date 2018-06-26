@@ -68,7 +68,7 @@
 			</div>
 
 			<p>
-				<input type="submit" name="submit" class="btn btn-secondary" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
+				<input type="submit" name="submit" class="btn btn-primary" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</p>
 		</form>
 	{/tab}

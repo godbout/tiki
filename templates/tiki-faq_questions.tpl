@@ -1,8 +1,8 @@
 {title}{tr}Admin FAQ:{/tr} {$faq_info.title}{/title}
 
 <div class="t_navbar mb-4">
-	{button href="tiki-list_faqs.php" class="btn btn-primary" _text="{tr}List FAQs{/tr}"}
-	{button href="tiki-view_faq.php?faqId=$faqId" class="btn btn-primary" _text="{tr}View FAQ{/tr}"}
+	{button href="tiki-list_faqs.php" class="btn btn-info" _text="{tr}List FAQs{/tr}"}
+	{button href="tiki-view_faq.php?faqId=$faqId" class="btn btn-info" _text="{tr}View FAQ{/tr}"}
 	{button href="tiki-list_faqs.php?faqId=$faqId" class="btn btn-primary" _text="{tr}Edit this FAQ{/tr}"}
 	{button href="tiki-faq_questions.php?faqId=$faqId" class="btn btn-primary" _text="{tr}New Question{/tr}"}
 </div>
@@ -47,7 +47,7 @@
 				<div class="input-group">
 					<input type="text" name="filter" id="filter" value="{$filter|escape}" class="form-control input-sm">
 					<div class="input-group-btn">
-						<input type="submit" class="btn btn-primary btn-sm" name="filteruseq" value="{tr}Filter{/tr}">
+						<input type="submit" class="btn btn-info btn-sm" name="filteruseq" value="{tr}Filter{/tr}">
 					</div>
 				</div>
 			</div>

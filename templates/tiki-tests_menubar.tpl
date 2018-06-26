@@ -12,7 +12,7 @@
 {/if}
 <div class="t_navbar">
 	{if $tiki_p_admin_tikitests eq 'y' or $tiki_p_play_tikitests eq 'y'}
-		{button href="tiki_tests/tiki-tests_list.php" class="btn btn-primary" _text="{tr}List TikiTests{/tr}"}
+		{button href="tiki_tests/tiki-tests_list.php" class="btn btn-info" _text="{tr}List TikiTests{/tr}"}
 	{/if}
 
 	{if $tiki_p_admin_tikitests eq 'y' or $tiki_p_edit_tikitests eq 'y'}

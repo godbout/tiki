@@ -1,7 +1,7 @@
 {title help="Edit CSS"}{tr}Edit CSS{/tr}{/title}
 <div class="t_navbar">
 	{if ($prefs.feature_view_tpl eq 'y' || $prefs.feature_edit_templates eq 'y') && $tiki_p_edit_templates == 'y'}
-		{button href="tiki-edit_templates.php" class="btn btn-primary" _text="{tr}View Templates{/tr}"}
+		{button href="tiki-edit_templates.php" class="btn btn-info" _text="{tr}View Templates{/tr}"}
 	{/if}
 </div>
 <form method="post" action="tiki-edit_css.php" class="form">
@@ -32,7 +32,7 @@
 	{else}
 		{if $try_active}
 			{remarksbox type="tip" title="{tr}Currently trying{/tr}: {$try_theme}{if $try_theme_option}/{$try_theme_option}{/if}" close="n"}
-				<input type="submit" class="btn btn-primary btn-sm" name="cancel_try" value="{tr}Cancel{/tr}">
+				<input type="submit" class="btn btn-secondary btn-sm" name="cancel_try" value="{tr}Cancel{/tr}">
 			{/remarksbox}
 		{/if}
 		<div class="form-group row clearfix">
@@ -49,8 +49,8 @@
 				<small class="form-text">CSS {tr}file{/tr}: {$file}</small>
 			{/if}
 			<div class="input-group">
-				<input type="submit" class="btn btn-primary btn-sm" name="try" value="{tr}Try{/tr}">
-				<input type="submit" class="btn btn-primary btn-sm" name="view" value="{tr}View{/tr}">
+				<input type="submit" class="btn btn-info btn-sm" name="try" value="{tr}Try{/tr}">
+				<input type="submit" class="btn btn-info btn-sm" name="view" value="{tr}View{/tr}">
 				<input type="submit" class="btn btn-primary btn-sm" name="edit" value="{tr}Edit{/tr}">
 			</div>
 		</div>

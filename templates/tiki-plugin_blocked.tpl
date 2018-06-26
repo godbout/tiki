@@ -54,10 +54,10 @@
 					<form method="post" action="{$smarty.server.REQUEST_URI|escape}">
 							<input type="hidden" name="plugin_fingerprint" value="{$plugin_fingerprint|escape}">
 							{if $plugin_preview}
-								<input type="submit" class="btn btn-primary btn-sm" name="plugin_preview" value="{tr}Preview{/tr}">
+								<input type="submit" class="btn btn-info btn-sm" name="plugin_preview" value="{tr}Preview{/tr}">
 							{/if}
 							{if $plugin_approve}
-								<input type="submit" class="btn btn-secondary btn-sm" name="plugin_accept" value="{tr}Approve{/tr}">
+								<input type="submit" class="btn btn-primary btn-sm" name="plugin_accept" value="{tr}Approve{/tr}">
 								<input type="submit" class="btn btn-warning btn-sm" name="plugin_reject" value="{tr}Reject{/tr}">
 							{/if}
 					</form>

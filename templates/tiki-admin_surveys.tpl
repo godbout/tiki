@@ -3,8 +3,8 @@
 {title url='tiki-admin_surveys.php' help="Surveys"}{tr}Admin surveys{/tr}{/title}
 
 <div class="t_navbar btn-group form-group row">
-	{button href="tiki-list_surveys.php" class="btn btn-primary" _icon_name="list" _text="{tr}List{/tr}"}
-	{button href="tiki-survey_stats.php" class="btn btn-primary" _icon_name="chart" _text="{tr}Stats{/tr}"}
+	{button href="tiki-list_surveys.php" class="btn btn-info" _icon_name="list" _text="{tr}List{/tr}"}
+	{button href="tiki-survey_stats.php" class="btn btn-info" _icon_name="chart" _text="{tr}Stats{/tr}"}
 	{button surveyId=0 _anchor='content_admin_surveys1-2' _auto_args="surveyId" class="btn btn-primary" _icon_name="create" _text="{tr}Create{/tr}"}
 </div>
 

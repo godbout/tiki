@@ -32,7 +32,7 @@
 					{/section}
 				</select>
 			</td>
-			<td><input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="filter"></td>
+			<td><input type="submit" class="btn btn-info btn-sm" value="{tr}Find{/tr}" name="filter"></td>
 		</tr>
 	</table>
 </form>

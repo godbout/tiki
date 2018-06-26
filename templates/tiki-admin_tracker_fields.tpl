@@ -46,7 +46,7 @@
 				<span class="input-group-btn">
 					<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 					<input type="hidden" name="confirm" value="0">
-					<button type="submit" class="btn btn-secondary" name="submit">{tr}Go{/tr}</button>
+					<button type="submit" class="btn btn-primary" name="submit">{tr}Go{/tr}</button>
 				</span>
 			</div>
 		</div>

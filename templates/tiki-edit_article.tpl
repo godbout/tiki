@@ -405,9 +405,9 @@
 		{/tab}
 	{/tabset}
 	<div class="form-group row clearfix text-center">
-		<input type="submit" class="wikiaction btn btn-primary" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
-		<input type="submit" class="wikiaction btn btn-secondary" name="save" value="{tr}Save{/tr}" onclick="this.form.saving=true;needToConfirm=false;">
-		{if $articleId}<input type="submit" class="wikiaction tips btn btn-primary" title="{tr}Cancel{/tr}|{tr}Cancel the edit (changes will be lost).{/tr}" name="cancel_edit" value="{tr}Cancel Edit{/tr}" onclick="needToConfirm=false;">{/if}
+		<input type="submit" class="wikiaction btn btn-info" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
+		<input type="submit" class="wikiaction btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="this.form.saving=true;needToConfirm=false;">
+		{if $articleId}<input type="submit" class="wikiaction tips btn btn-secondary" title="{tr}Cancel{/tr}|{tr}Cancel the edit (changes will be lost).{/tr}" name="cancel_edit" value="{tr}Cancel Edit{/tr}" onclick="needToConfirm=false;">{/if}
 	</div>
 	{if $smarty.session.wysiwyg neq 'y'}
 		{jq}

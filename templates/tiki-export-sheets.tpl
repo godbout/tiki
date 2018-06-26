@@ -6,28 +6,23 @@
 </div>
 
 <div class="t_navbar mb-4">
-	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-sheets.php" class="btn btn-primary" _text="{tr}List Sheets{/tr}"}
-	{/if}
-
-	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-view_sheets.php?sheetId=$sheetId" class="btn btn-primary" _text="{tr}View{/tr}"}
-	{/if}
-
 	{if $tiki_p_edit_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
 		{button href="tiki-view_sheets.php?sheetId=$sheetId&amp;readdate=$read_date&amp;parse=edit" class="btn btn-primary" _text="{tr}Edit{/tr}"}
 	{/if}
-
-	{if $tiki_p_view_sheet_history eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-history_sheets.php?sheetId=$sheetId" class="btn btn-primary" _text="{tr}History{/tr}"}
-	{/if}
-
 	{if $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
 		{button href="tiki-import_sheet.php?sheetId=$sheetId" class="btn btn-primary" _text="{tr}Import{/tr}"}
 	{/if}
-
+	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
+		{button href="tiki-sheets.php" class="btn btn-info" _text="{tr}List Sheets{/tr}"}
+	{/if}
+	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
+		{button href="tiki-view_sheets.php?sheetId=$sheetId" class="btn btn-info" _text="{tr}View{/tr}"}
+	{/if}
 	{if $chart_enabled eq 'y'}
 		{button href="tiki-graph_sheet.php?sheetId=$sheetId" class="btn btn-primary" _text="{tr}Graph{/tr}"}
+	{/if}
+	{if $tiki_p_view_sheet_history eq 'y' || $tiki_p_admin_sheet eq 'y' || $tiki_p_admin eq 'y'}
+		{button href="tiki-history_sheets.php?sheetId=$sheetId" class="btn btn-info" _text="{tr}History{/tr}"}
 	{/if}
 </div>
 
