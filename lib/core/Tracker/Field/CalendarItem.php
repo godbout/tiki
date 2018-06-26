@@ -65,14 +65,14 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 	function handleSave($value, $oldValue)
 	{
 		$calendarId = $this->getOption('calendarId');
+		/** @var CalendarLib $calendarlib */
+		$calendarlib = TikiLib::lib('calendar');
+		/** @var AttributeLib $attributelib */
+		$attributelib = TikiLib::lib('attribute');
 
-		if ($calendarId) {
+		if ($calendarId && $value) {
 			global $user, $language;
 
-			/** @var CalendarLib $calendarlib */
-			$calendarlib = TikiLib::lib('calendar');
-			/** @var AttributeLib $attributelib */
-			$attributelib = TikiLib::lib('attribute');
 			/** @var TrackerLib $trklib */
 			$trklib = TikiLib::lib('trk');
 
@@ -110,6 +110,14 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 				$attributelib->set_attribute('tracker_item', $itemId, 'tiki.calendar.item', $calitemId);
 			}
 			//$itemInfo = $calendarlib->get_item($calitemId);
+		} else if (! $value && $oldValue && $itemId = $this->getItemId()) {
+			// delete an item?
+			$calitemId = $attributelib->get_attribute('tracker_item', $itemId, 'tiki.calendar.item');
+			if ($calitemId) {
+				$calendarlib->drop_item($GLOBALS['user'], $calitemId);
+				// also remove attribute
+				$attributelib->set_attribute('tracker_item', $itemId, 'tiki.calendar.item', '');
+			}
 		}
 
 		return [
