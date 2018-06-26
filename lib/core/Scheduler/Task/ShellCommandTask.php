@@ -51,7 +51,7 @@ class Scheduler_Task_ShellCommandTask extends Scheduler_Task_CommandTask
 				'required' => true,
 			],
 			'timeout' => [
-				'name' => tra('Run timeout'),
+				'name' => tra('Run timeout') . '<br>(' . tra('in seconds') . ')',
 				'type' => 'text',
 				'required' => false,
 			],
