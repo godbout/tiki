@@ -55,14 +55,40 @@ require_once('lib/tikiticketlib.php');
 require_once('db/tiki-db.php');
 require_once('lib/tikilib.php');
 $tikilib = new TikiLib;
-// check that tiki_preferences is there
+// Get tiki-setup_base needed preferences in one query
+$prefs = [];
+$needed_prefs = [
+	'session_lifetime' => '0',
+	'session_storage' => 'default',
+	'session_silent' => 'n',
+	'session_cookie_name' => session_name(),
+	'session_protected' => 'n',
+	'tiki_cdn' => '',
+	'tiki_cdn_ssl' => '',
+	'language' => 'en',
+	'lang_use_db' => 'n',
+	'feature_fullscreen' => 'n',
+	'error_reporting_level' => 0,
+	'memcache_enabled' => 'n',
+	'memcache_expiration' => 3600,
+	'memcache_prefix' => 'tiki_',
+	'memcache_compress' => 'y',
+	'memcache_servers' => false,
+	'min_pass_length' => 5,
+	'pass_chr_special' => 'n',
+	'cookie_consent_feature' => 'n',
+	'cookie_consent_disable' => 'n',
+	'cookie_consent_name' => 'tiki_cookies_accepted',
+
+];
+
+/// check that tiki_preferences is there
 if ($tikilib->query("SHOW TABLES LIKE 'tiki_preferences'")->numRows() == 0) {
 	// smarty not initialised at this point to do a polite message, sadly
 	header('location: tiki-install.php');
 	exit;
 }
-// Retrieve all preferences
-require_once('lib/setup/prefs.php');
+$tikilib->get_preferences($needed_prefs, true, true);
 global $systemConfiguration;
 $prefs = $systemConfiguration->preference->toArray() + $prefs;
 
@@ -213,6 +239,8 @@ if (isset($prefs['feature_fullscreen']) && $prefs['feature_fullscreen'] == 'y') 
 // Retrieve Tiki addons
 TikiAddons::refresh();
 
+// Retrieve all preferences
+require_once('lib/setup/prefs.php');
 
 if ($prefs['ids_enabled'] == 'y') {
 	require_once 'lib/setup/ids.php';
