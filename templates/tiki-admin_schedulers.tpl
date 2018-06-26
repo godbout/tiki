@@ -173,7 +173,7 @@
 		{/foreach}
 
 		<div class="form-group row">
-			<label class="col-sm-3 col-md-2 col-form-label" for="scheduler_time">{tr}Run Time{/tr} *<br>{tr}(in seconds){/tr}</label>
+			<label class="col-sm-3 col-md-2 col-form-label" for="scheduler_time">{tr}Run Time{/tr} *</label>
 			<div class="col-sm-7 col-md-6">
 				<input type="text" id='scheduler_time' class="form-control" name='scheduler_time'
 					value="{$schedulerinfo.run_time|escape}">
