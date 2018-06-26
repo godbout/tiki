@@ -3,7 +3,7 @@
 	{ticket}
 	<div class="clearfix mb-4">
 		{if $prefs.feature_theme_control eq y}
-			{button _text="{tr}Theme Control{/tr}" href="tiki-theme_control.php" _class="btn-sm tikihelp" }
+			{button _text="{tr}Theme Control{/tr}" href="tiki-theme_control.php" _class="btn-sm btn-link tikihelp" _icon_name="file-image-o"}
 		{/if}
 		{if $prefs.feature_editcss eq 'y' and $tiki_p_create_css eq 'y'}
 			{button _text="{tr}Edit CSS{/tr}" _class="btn-sm" href="tiki-edit_css.php"}
