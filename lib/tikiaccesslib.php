@@ -476,7 +476,7 @@ class TikiAccessLib extends TikiLib
 			//check that ticket has not expired
 			$ticketTime = $_SESSION['tickets'][$this->ticket];
 			global $prefs;
-			$maxTime = $prefs['securityTimeout'];
+			$maxTime = $prefs['site_security_timeout'];
 			if ($ticketTime < time() && $ticketTime > (time() - $maxTime)) {
 				$this->ticketMatch = true;
 			} else {

@@ -110,7 +110,7 @@
 			</fieldset>
 			<fieldset>
 				<legend>{tr}CSRF security{/tr}{help url="Security"}</legend>
-				{preference name=securityTimeout}
+				{preference name=site_security_timeout}
 			</fieldset>
 			<fieldset>
 				<legend>{tr}HTTP Headers{/tr}{help url="Security"}</legend>

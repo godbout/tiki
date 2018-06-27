@@ -217,7 +217,7 @@ if (inArray(m, allTimeZoneCodes)) {
 	$jqueryTiki['autoToc_pos'] = $prefs['wiki_toc_pos'];
 	$jqueryTiki['autoToc_offset'] = $prefs['wiki_toc_offset'];
 	//set at 4 hours if empty
-	$jqueryTiki['securityTimeout'] = !empty($prefs['securityTimeout']) ? $prefs['securityTimeout']
+	$jqueryTiki['securityTimeout'] = !empty($prefs['site_security_timeout']) ? $prefs['site_security_timeout']
 		: TikiLib::lib('access')->getDefaultTimeout();
 
 	if (empty($object)) {
