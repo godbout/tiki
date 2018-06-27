@@ -2,23 +2,26 @@
 //Less file for the jQuery tablesorter plugin
 //custom formatting for individual themes
 
-// set background and text color
-@if(type_of($body-bg) == color and $body-bg != transparent) {
-	$ts-bg		: $body-bg;
-	$ts-color	: $body-color;
-} @else if(type_of($input-bg) == color and $input-bg != transparent) {
-	$ts-bg		: $input-color;
-	$ts-color	: $body-color;
-} @else if(type_of($table-bg) == color and $table-bg != transparent) {
-	$ts-bg		: $table-color;
-	$ts-color	: $body-color;
-} @else if(type_of($table-head-bg) == color and $table-head-bg != transparent) {
-	$ts-bg		: $table-head-color;
-	$ts-color	: $body-color;
-} @else {
-	$ts-bg		: white;
-	$ts-color	: black;
-}
+// // set background and text color
+// @if(type-of($body-bg) == color and $body-bg != transparent) {
+// 	$ts-bg		: $body-bg;
+// 	$ts-color	: $body-color;
+// } @else if(type-of($input-bg) == color and $input-bg != transparent) {
+// 	$ts-bg		: $input-color;
+// 	$ts-color	: $body-color;
+// } @else if(type-of($table-bg) == color and $table-bg != transparent) {
+// 	$ts-bg		: $table-head-color;
+// 	$ts-color	: $body-color;
+// } @else if(type-of($table-head-bg) == color and $table-head-bg != transparent) {
+// 	$ts-bg		: $table-head-color;
+// 	$ts-color	: $body-color;
+// } @else {
+// 	$ts-bg		: white;
+// 	$ts-color	: black;
+// }
+
+$ts-color: $body-color;
+$ts-bg: $table-bg;
 
 // dark icons and colors for light background
 $unsortedDark		: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
