@@ -8,14 +8,14 @@
 {block name="navigation"}
 	{if $tiki_p_admin_trackers eq 'y'}
 		<div class="form-group row">{* Class provides 15px bottom margin. *}
-			<a class="btn btn-primary mr-2" href="{bootstrap_modal controller=tracker action=replace}">
+			<a class="btn btn-link mr-2" href="{bootstrap_modal controller=tracker action=replace}">
 				{icon name="create"} {tr}Create{/tr}
 			</a>
-			<a class="btn btn-primary mr-2" href="{bootstrap_modal controller=tracker action=duplicate}">
+			<a class="btn btn-link mr-2" href="{bootstrap_modal controller=tracker action=duplicate}">
 				{icon name="copy"} {tr}Duplicate{/tr}
 			</a>
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+				<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
 					{icon name="import"} {tr}Import{/tr}
 				</button>
 				<ul class="dropdown-menu">
