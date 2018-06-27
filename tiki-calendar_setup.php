@@ -393,7 +393,13 @@ if (! function_exists('correct_start_day')) {
 	{
 		global $prefs;
 
-		$tmp = $d - $prefs['calendar_firstDayofWeek'];
+		if ($prefs['calendar_firstDayofWeek'] !== 'user') {
+			$firstDayofWeek = $prefs['calendar_firstDayofWeek'];
+		} else {
+			$firstDayofWeek = 0;	// supposed to be set by a translation?
+		}
+
+		$tmp = $d - $firstDayofWeek;
 		if ($tmp < 0) {
 			$tmp += 7;
 		}

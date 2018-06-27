@@ -191,7 +191,7 @@ class CalRecurrence extends TikiLib
 		$query = "INSERT INTO tiki_calendar_recurrence (calendarId, start, end, allday, locationId, categoryId, nlId, priority, status, url, lang, name, description, "
 			   . "weekly, weekday, monthly, dayOfMonth,yearly, dateOfYear, nbRecurrences, startPeriod, endPeriod, user, created, lastModif) "
 			   . "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		$now = time();
+		$now = $this->now;
 		$bindvars = [
 						$this->getCalendarId(),
 						$this->getStart(),
@@ -1051,7 +1051,7 @@ class CalRecurrence extends TikiLib
 	 */
 	public function setStartPeriod($value)
 	{
-		$this->startPeriod = $value;
+		$this->startPeriod = $value ? $value : $this->now;
 	}
 
 	public function getEndPeriod()

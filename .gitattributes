@@ -3434,6 +3434,7 @@ lib/init/typography.php -text
 lib/integrator/index.php -text
 lib/integrator/integrator.php -text
 lib/jquery_tiki/autoToc.js -text
+lib/jquery_tiki/calendar_edit_item.js -text
 lib/jquery_tiki/customsearch.js -text
 lib/jquery_tiki/elfinder/elFinderVolumeTikiFiles.class.php -text
 lib/jquery_tiki/elfinder/index.php -text

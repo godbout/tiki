@@ -255,7 +255,7 @@ if (isset($_POST['act'])) {
 				$impossibleDates = false;
 			}
 			if (! $impossibleDates) {
-				$calRecurrence = new CalRecurrence($_POST['recurrenceId'] ? $_POST['recurrenceId'] : -1);
+				$calRecurrence = new CalRecurrence(! empty($_POST['recurrenceId']) ? $_POST['recurrenceId'] : -1);
 				$calRecurrence->setCalendarId($save['calendarId']);
 				$calRecurrence->setStart($_POST['start_Hour'] . str_pad($_POST['start_Minute'], 2, '0', STR_PAD_LEFT));
 				$calRecurrence->setEnd($_POST['end_Hour'] . str_pad($_POST['end_Minute'], 2, '0', STR_PAD_LEFT));
@@ -296,7 +296,7 @@ if (isset($_POST['act'])) {
 					$calRecurrence->setNbRecurrences($_POST['nbRecurrences']);
 				}
 				$calRecurrence->setUser($save['user']);
-				$calRecurrence->save($_POST['affect'] == 'all');
+				$calRecurrence->save(! empty($_POST['affect']) && $_POST['affect'] === 'all');
 				// Save the ip at the log for the addition of new calendar items
 				if ($prefs['feature_actionlog'] == 'y' && empty($save['calitemId']) && $caladd["$newcalid"]['tiki_p_add_events']) {
 					$logslib->add_action('Created', 'recurrent event starting on ' . $_POST['startPeriod'] . ' in calendar ' . $save['calendarId'], 'calendar event');
@@ -577,23 +577,8 @@ if (isset($calitem['recurrenceId']) && $calitem['recurrenceId'] > 0) {
 	$cr = new CalRecurrence($calitem['recurrenceId']);
 	$smarty->assign('recurrence', $cr->toArray());
 }
-$headerlib->add_js(
-	'function checkDateOfYear(day,month) {
-		var mName = new Array("-","' . tra('January') . '","' . tra('February') . '","' . tra('March') . '","' . tra('April') . '","' . tra('May') . '","' . tra('June') . '","' . tra('July') . '","' . tra('August') . '","' . tra('September') . '","' . tra('October') . '","' . tra('November') . '","' . tra('December') . '}");
-		var error = false;
-		if (month == 4 || month == 6 || month == 9 || month == 11)
-			if (day == 31)
-				error = true;
-			if (month == 2)
-				if (day > 29)
-					error = true;
-			if (error) {
-				document.getElementById("errorDateOfYear").innerHTML = "<em>' . tra('There\'s no such date as') . ' " + day + " ' . tra('of') . ' " + mName[month] + "</em>";
-			} else {
-				document.getElementById("errorDateOfYear").innerHTML = "";
-			}
-		}'
-);
+$headerlib->add_jsfile('lib/jquery_tiki/calendar_edit_item.js');
+
 $smarty->assign('calitem', $calitem);
 $smarty->assign('calendar', $calendar);
 $smarty->assign('calendarId', $calID);

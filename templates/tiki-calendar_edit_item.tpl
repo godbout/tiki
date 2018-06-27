@@ -149,17 +149,6 @@
 									<label class="form-check-label">
 										<input type="checkbox" class="form-check-input" id="id_recurrent" name="recurrent" value="1"{if $calitem.recurrenceId gt 0 or $recurrent eq 1} checked="checked" {/if}>
 										{tr}This event depends on a recurrence rule{/tr}
-										{jq}
-$("#id_recurrent").click(function () {
-	if ($(this).prop("checked")) {
-		$("#recurrenceRules").show();
-		$(".date").hide();
-	} else {
-		$("#recurrenceRules").hide();
-		$(".date").show();
-	}
-});
-										{/jq}
 									</label>
 								</div>
 							{/if}
@@ -258,13 +247,12 @@ $("#id_recurrent").click(function () {
 										<input type="hidden" name="recurrenceType" value="yearly">{tr}On a yearly basis{/tr}<br>
 									{/if}
 								{else}
-									<input type="radio" id="id_recurrenceTypeY" name="recurrenceType" value="yearly" {if $recurrence.yearly} checked="checked" {/if}
-									>
+									{* new recurrences default to yearly for now *}
+									<input type="radio" id="id_recurrenceTypeY" name="recurrenceType" value="yearly" checked="checked">
 									<label for="id_recurrenceTypeY">
 										{tr}On a yearly basis{/tr}
 									</label>
 									<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								{/if}
 								{if $recurrence.id eq 0 or $recurrence.yearly}
 								<div class="form-group row">
@@ -320,7 +308,7 @@ $("#id_recurrent").click(function () {
 										</select>
 									</div>
 								</div>
-								<span id="errorDateOfYear"></span>
+								<div id="errorDateOfYear" class="text-danger col-sm-offset-1"></div>
 								<hr>
 								{/if}
 								{if $recurrence.id gt 0}
@@ -336,33 +324,25 @@ $("#id_recurrent").click(function () {
 								{else}
 									{tr}Start period{/tr}<br>
 									{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-										<div class="col-md-offset-1 col-md-5">
-											{jscalendar id="startPeriod" date=$recurrence.startPeriod fieldname="startPeriod" align="Bc" showtime='n'}
+										<div class="col-sm-offset-1 col-sm-6 input-group">
+											{if empty($recurrence.startPeriod)}{$startPeriod = $now}{else}{$startPeriod = $recurrence.startPeriod}{/if}
+											{jscalendar id="startPeriod" date=$startPeriod fieldname="startPeriod" align="Bc" showtime='n'}
 										</div>
 									{else}
-									<div class="col-md-offset-1">
-										{html_select_date prefix="startPeriod_" time=$recurrence.startPeriod field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
-									</div>
+										<div class="col-sm-offset-1">
+											{html_select_date prefix="startPeriod_" time=$recurrence.startPeriod field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
+										</div>
 									{/if}
 									<br><br><hr/>
 									{tr}End Period{/tr}<br><br>
-									<input type="radio" id="id_endTypeNb" name="endType" value="nb" {if $recurrence.nbRecurrences or $calitem.calitemId eq 0} checked="checked" {/if} >
+									<input type="radio" id="id_endTypeNb" name="endType" value="nb" {if $recurrence.nbRecurrences or $calitem.calitemId eq 0 or empty($recurrence.id)} checked="checked" {/if} >
 									<label for="id_endTypeNb">
 										&nbsp;{tr}End after{/tr}
 									</label>
-									<div class="col-md-offset-1 col-md-3 input-group">
-										<input type="text" name="nbRecurrences" size="3" class="form-control" style="z-index: 0" value="
-										{if $recurrence.nbRecurrences gt 0}
-											{$recurrence.nbRecurrences}
-											{assign var='occurnumber' value="{tr}occurrences{/tr}"}
-										{elseif $calitem.calitemId eq 0 or $recurrence.nbRecurrences eq 0}
-											1
-											{assign var='occurnumber' value="{tr}occurrence{/tr}"}
-										{else}
-											{assign var='occurnumber' value="{tr}occurrences{/tr}"}
-										{/if}
-										">
-										<span class="input-group-append">{$occurnumber}</span>
+									<div class="col-sm-offset-1 col-sm-6 input-group">
+										<input type="text" name="nbRecurrences" size="3" class="form-control" style="z-index: 0"
+											   value="{if $recurrence.nbRecurrences gt 0}{$recurrence.nbRecurrences}{else}1{/if}">
+										<span class="input-group-addon">{if $recurrence.nbRecurrences gt 1}{tr}occurrences{/tr}{else}{tr}occurrence{/tr}{/if}</span>
 									</div>
 									<br>
 									<input type="radio" id="id_endTypeDt" name="endType" value="dt" {if $recurrence.endPeriod gt 0} checked="checked" {/if} >
@@ -370,13 +350,13 @@ $("#id_recurrent").click(function () {
 										&nbsp;{tr}End before{/tr}
 									</label><br>
 									{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-										<div class="col-md-offset-1 col-md-5">
+										<div class="col-sm-offset-1 col-sm-6 input-group">
 											{jscalendar id="endPeriod" date=$recurrence.endPeriod fieldname="endPeriod" align="Bc" showtime='n'}
 										</div>
 									{else}
-									<div class="col-md-offset-1">
-										{html_select_date prefix="endPeriod_" time=$recurrence.endPeriod field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
-									</div>
+										<div class="col-md-offset-1">
+											{html_select_date prefix="endPeriod_" time=$recurrence.endPeriod field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
+										</div>
 									{/if}
 									<br><br><hr>
 								{/if}
@@ -495,96 +475,6 @@ $("#id_recurrent").click(function () {
 				{/if}
 			</div> <!-- / .form-group -->
 			{jq}
-$("#allday").click(function () {
-	if ($(this).prop("checked")) {
-		$(".time").css("visibility", "hidden");
-	} else {
-		$(".time").css("visibility", "visible");
-	}
-});
-$("#durationBtn").click(function () {
-	if ($(".duration.time:visible").length) {
-		$(".duration.time").hide();
-		$(".end.time").show();
-		$(this).text("{tr}Show duration{/tr}");
-		$("#end_or_duration").val("end");
-	} else {
-		$(".duration.time").show();
-		$(".end.time").hide();
-		$(this).text("{tr}Show end time{/tr}");
-		$("#end_or_duration").val("duration");
-	}
-	return false;
-});
-
-var getEventTimes = function() {
-	var out = {},
-		start = parseInt($("#start").val()),
-		end = parseInt($("#end").val());
-	if (start) {
-		out.start = new Date(start * 1000);
-		out.start.setHours($("select[name=start_Hour]").val());
-		out.start.setMinutes($("select[name=start_Minute]").val());
-	} else {
-		out.start = null;
-	}
-	if (end) {
-		out.end = new Date(end * 1000);
-		out.end.setHours($("select[name=end_Hour]").val());
-		out.end.setMinutes($("select[name=end_Minute]").val());
-	} else {
-		out.end = null;
-	}
-	if (start && end) {
-		out.duration = new Date(0);
-		out.duration.setHours($("select[name=duration_Hour]").val());
-		out.duration.setMinutes($("select[name=duration_Minute]").val());
-	} else {
-		out.duration = null;
-	}
-
-	return out;
-};
-var fNum = function (num) {
-	var str = "0" + num;
-	return str.substring(str.length - 2);
-};
-
-$(".start.time select, .duration.time select, #start").change(function () {
-	var times = getEventTimes();
-	times.end = new Date(times.start.getTime() + times.duration.getTime());
-	$("select[name=end_Hour]").val(fNum(times.end.getHours())).trigger("chosen:updated");
-	$("select[name=end_Minute]").val(fNum(times.end.getMinutes())).trigger("chosen:updated");
-	$("#end").nextAll("input[type=text]")
-		.datepicker("setDate", $.datepicker.formatDate($("#end").nextAll("input[type=text]").datepicker("option", "dateFormat"), times.end))
-		.datepicker("refresh");
-	$("#end").val(times.end.getTime() / 1000);
-	$("#start").val(times.start.getTime() / 1000);
-});
-$(".end.time select, #end").change(function () {
-	var times = getEventTimes(),
-		s = times.start ? times.start.getTime() : null,
-		e = times.end ? times.end.getTime() : null;
-	if (e && e <= s) {
-		$("select[name=start_Hour]").val(fNum(times.end.getHours())).trigger("chosen:updated");
-		$("select[name=start_Minute]").val(fNum(times.end.getMinutes())).trigger("chosen:updated");
-		$("#start").nextAll("input[type=text]")
-			.datepicker("setDate", $.datepicker.formatDate($("#start").nextAll("input[type=text]").datepicker("option", "dateFormat"), times.end))
-			.datepicker( "refresh" );
-		$("#start").val(times.end.getTime() / 1000);
-		s = e;
-	}
-	if (e) {
-		times.duration = new Date(e - s);
-		$("select[name=duration_Hour]").val(fNum(times.duration.getHours())).trigger("chosen:updated");
-		$("select[name=duration_Minute]").val(fNum(times.duration.getMinutes())).trigger("chosen:updated");
-	}
-}).change();	// set duration on load
-// reset confirm
-window.needToConfirm = false;
-$("input, select, textarea", "#editcalitem").change(function () {
-	window.needToConfirm = true;
-});
 			{/jq}
 			{if $edit or !empty($calitem.parsed)}
 				<div class="form-group row">
