@@ -7,9 +7,12 @@
 
 class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 {
-	/**
-	 * @return array field definition
-	 */
+	/** @var AttributeLib $attributeLib */
+	private $attributeLib;
+
+	/** @var CalendarLib $calendarLib */
+	private $calendarLib;
+
 	public static function getTypes()
 	{
 		$def = [
@@ -48,6 +51,10 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 	 */
 	function __construct($fieldInfo, $itemData, $trackerDefinition)
 	{
+
+		$this->attributeLib = TikiLib::lib('attribute');
+		$this->calendarLib = TikiLib::lib('calendar');
+
 		if ($fieldInfo['options_map']['calendarId']) {
 			TikiLib::lib('relation')->add_relation(
 				'tiki.calendar.attach',
@@ -65,10 +72,6 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 	function handleSave($value, $oldValue)
 	{
 		$calendarId = $this->getOption('calendarId');
-		/** @var CalendarLib $calendarlib */
-		$calendarlib = TikiLib::lib('calendar');
-		/** @var AttributeLib $attributelib */
-		$attributelib = TikiLib::lib('attribute');
 
 		if ($calendarId && $value) {
 			global $user, $language;
@@ -85,7 +88,7 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			$new = ! $calitemId;
 
 			// save the event whether new or not as start time or the title/name might have changed
-			$calitemId = $calendarlib->set_item($user, $calitemId, [
+			$calitemId = $this->calendarLib->set_item($user, $calitemId, [
 				'calendarId' => $calendarId,
 				'start' => $value,
 //					'end',
@@ -107,16 +110,16 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			]);
 
 			if ($new) {	// added a new one?
-				$attributelib->set_attribute('tracker_item', $itemId, 'tiki.calendar.item', $calitemId);
+				$this->attributeLib->set_attribute('tracker_item', $itemId, 'tiki.calendar.item', $calitemId);
 			}
 			//$itemInfo = $calendarlib->get_item($calitemId);
 		} else if (! $value && $oldValue && $itemId = $this->getItemId()) {
 			// delete an item?
-			$calitemId = $attributelib->get_attribute('tracker_item', $itemId, 'tiki.calendar.item');
+			$calitemId = $this->attributeLib->get_attribute('tracker_item', $itemId, 'tiki.calendar.item');
 			if ($calitemId) {
-				$calendarlib->drop_item($GLOBALS['user'], $calitemId);
+				$this->calendarLib->drop_item($GLOBALS['user'], $calitemId);
 				// also remove attribute
-				$attributelib->set_attribute('tracker_item', $itemId, 'tiki.calendar.item', '');
+				$this->attributeLib->set_attribute('tracker_item', $itemId, 'tiki.calendar.item', '');
 			}
 		}
 
@@ -153,12 +156,10 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 
 		/** @var Smarty_Tiki $smarty */
 		$smarty = TikiLib::lib('smarty');
-		/** @var CalendarLib $calendarlib */
-		$calendarlib = TikiLib::lib('calendar');
 
 		$smarty->assign('datePickerHtml', parent::renderInput($context));
 
-		$event = $calendarlib->get_item($this->getCalendarItemId());
+		$event = $this->calendarLib->get_item($this->getCalendarItemId());
 		$perms = Perms::get([ 'type' => 'calendar', 'object' => $event['calendarId']]);
 
 		if ($perms->change_events) {
@@ -168,9 +169,8 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			$headerlib->add_js_config('window.CKEDITOR_BASEPATH = "' . $tikiroot . 'vendor_bundled/vendor/ckeditor/ckeditor/";')
 				->add_jsfile('vendor_bundled/vendor/ckeditor/ckeditor/ckeditor.js', true)
 				->add_js('window.dialogData = [];', 1);
-				// ->add_js('window.CKEDITOR.config._TikiRoot = "' . $tikiroot . '";', 1);
-			TikiLib::lib('header')->add_jq_onready('$.validator.classRuleSettings.date = false;
-	');
+			// ->add_js('window.CKEDITOR.config._TikiRoot = "' . $tikiroot . '";', 1);
+			TikiLib::lib('header')->add_jq_onready("\$.validator.classRuleSettings.date = false;\n");
 		} else {
 			$editUrl = '';
 		}
@@ -186,11 +186,10 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 
 	/**
 	 * @return bool|string
-	 * @throws Exception
 	 */
 	private function getCalendarItemId()
 	{
-		$calitemId = TikiLib::lib('attribute')->get_attribute('tracker_item', $this->getItemId(), 'tiki.calendar.item');
+		$calitemId = $this->attributeLib->get_attribute('tracker_item', $this->getItemId(), 'tiki.calendar.item');
 		return $calitemId;
 	}
 }
