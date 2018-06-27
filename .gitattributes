@@ -7693,7 +7693,6 @@ themes/shamrock/icons/index.php -text
 themes/shamrock/images/index.php -text
 themes/shamrock/images/shamrock.png -text
 themes/shamrock/index.php -text
-themes/shamrock/scss/_shamrockcss.scss -text
 themes/shamrock/scss/_tiki-selectors.scss -text
 themes/shamrock/scss/_variables.scss -text
 themes/shamrock/scss/index.php -text

@@ -8,10 +8,9 @@
 */
 
 @import "variables"; // Needs to come first, to override defaults.
-@import url('//fonts.googleapis.com/css?family=Marcellus');
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
-@import "../../base_files/scss/_bootswatch_overrides.scss";
-@import "../../base_files/scss/_tiki-variables.scss";
+@import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
 @import "../../base_files/scss/_tiki-selectors.scss";
-@import "../../base_files/scss/_external-scripts.scss";
+@import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "_tiki-selectors.scss";
+@import "../../base_files/scss/_external-scripts.scss";
