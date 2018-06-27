@@ -144,7 +144,7 @@
 						|| $tiki_p_wiki_attach_files == 'y'
 						|| $tiki_p_wiki_admin_attachments == 'y')}
 					{if isset($atts) and $atts|@count gt 0}
-						{assign var=thisbuttonclass value='btn-files active'}
+						{assign var=thisbuttonclass value='btn-files'}
 					{else}
 						{assign var=thisbuttonclass value='btn-files'}
 					{/if}
@@ -155,7 +155,7 @@
 								{tr}Files{/tr}
 							{else}
 								{tr}Files{/tr}
-								&nbsp;<span class="atts_count badge badge-secondary">{$atts|@count}</span>
+								&nbsp;<span class="atts_count badge badge-info">{$atts|@count}</span>
 							{/if}
 						{/strip}
 					{/capture}
