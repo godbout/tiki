@@ -143,11 +143,7 @@
 						&& (isset($atts) && $atts|@count gt 0)
 						|| $tiki_p_wiki_attach_files == 'y'
 						|| $tiki_p_wiki_admin_attachments == 'y')}
-					{if isset($atts) and $atts|@count gt 0}
-						{assign var=thisbuttonclass value='btn-files'}
-					{else}
-						{assign var=thisbuttonclass value='btn-files'}
-					{/if}
+
 					{capture assign=thistext}
 						{strip}
 							{if (!isset($atts) or $atts|@count == 0) || $tiki_p_wiki_attach_files == 'y'
@@ -159,7 +155,10 @@
 							{/if}
 						{/strip}
 					{/capture}
-					{button href="#attachments" _flip_id="attzone{if isset($pagemd5)}{$pagemd5}{/if}" _class="$thisbuttonclass" _text=$thistext _flip_default_open=$prefs.w_displayed_default _flip_hide_text="n"}
+
+					{if (isset($atts) and $atts|@count gt 0) || $editable}
+						{button href="#attachments" _flip_id="attzone{if isset($pagemd5)}{$pagemd5}{/if}" _class="btn-files" _text=$thistext _flip_default_open=$prefs.w_displayed_default _flip_hide_text="n"}
+					{/if}
 				{/if}{* attachments *}
 
 			{/if}
