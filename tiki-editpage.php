@@ -342,7 +342,8 @@ if ($prefs['feature_warn_on_edit'] === 'y') {
 	if (! empty($page) && ($page !== 'sandbox' || $page === 'sandbox' && $tiki_p_admin === 'y')) {
 		if (! isset($_REQUEST['save'])) {
 			if ($serviceLib->internal('semaphore', 'is_set', ['object_id' => $page]) &&
-				$serviceLib->internal('semaphore', 'get_user', ['object_id' => $page]) !== $u
+				$serviceLib->internal('semaphore', 'get_user', ['object_id' => $page]) !== $u &&
+				! $serviceLib->internal('semaphore', 'is_set', ['object_id' => 'togetherjs '.$page])
 			) {
 				$editpageconflict = 'y';
 			} elseif ($tiki_p_edit === 'y') {
@@ -352,6 +353,7 @@ if ($prefs['feature_warn_on_edit'] === 'y') {
 			$beingedited = 'y';
 		} else {
 			$serviceLib->internal('semaphore', 'unset', ['object_id' => $page]);
+			$serviceLib->internal('semaphore', 'unset', ['object_id' => 'togetherjs '.$page]);
 		}
 	}
 	if ($editpageconflict === 'y' && ! isset($_REQUEST["conflictoverride"])) {

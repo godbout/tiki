@@ -40,13 +40,6 @@ function wikiplugin_together($data, $params)
 	}
 	TikiLib::lib('header')->add_jsfile('https://togetherjs.com/togetherjs-min.js', true)
 		->add_jq_onready('
-TogetherJS.on("ready", function () {
-	$(".page_actions a[href*=\'tiki-editpage.php?page=\'], #page-bar a[href*=\'tiki-editpage.php?page=\']").each(function () {
-		var href = $(this).attr("href");
-		$(this).attr("href", href + "&conflictoverride=y");	// add the conflictoverride param so the second user doesnt get the usual warning
-	});
-});
-
 TogetherJS.config("getUserName", function () {
 	return jqueryTiki.userRealName || jqueryTiki.username;
 });
@@ -54,7 +47,41 @@ TogetherJS.config("getUserName", function () {
 TogetherJS.config("getUserAvatar", function () {
 	return jqueryTiki.userAvatar;
 });
+
+if(! window.startTogetherJS) {
+	window.startTogetherJS = function() {
+		TogetherJS();
+		if(m = window.location.href.match(/tiki-editpage.php\?page=([^&]+)/)) {
+			$.ajax({
+				url: "tiki-ajax_services.php",
+				dataType: "json",
+				data: {
+					controller: "edit_semaphore",
+					action: "set",
+					object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
+				}
+			});
+		}
+	}
+}
+
+if(m = window.location.href.match(/tiki-editpage.php\?page=([^&]+)/)) {
+	$.ajax({
+		url: "tiki-ajax_services.php",
+		dataType: "json",
+		data: {
+			controller: "edit_semaphore",
+			action: "is_set",
+			object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
+		},
+		success: function(data) {
+			if(data) {
+				TogetherJS();
+			}
+		}
+	});
+}
 		');
 
-	return '<button onclick="TogetherJS(this); return false;" class="btn btn-primary">' . $params['buttonname'] . '</button>';
+	return '<button onclick="window.startTogetherJS(this); return false;" class="btn btn-primary">' . $params['buttonname'] . '</button>';
 }
