@@ -52,6 +52,8 @@ class Tiki_Security_Policy extends Smarty_Security
 	{
 		if (class_exists("TikiLib")) {
 			$tikilib = TikiLib::lib('tiki');
+			// modlib defines zone_is_empty which must exist before smarty initializes to fix bug with smarty autoloader after version 3.1.21
+			TikiLib::lib('mod');
 		}
 
 		parent::__construct($smarty);
@@ -276,64 +278,15 @@ class Smarty_Tiki extends Smarty
 		$this->muteExpectedErrors();
 		$this->refreshLanguage();
 
-		if (($tpl = $this->getTemplateVars('mid')) && ( $_smarty_tpl_file == 'tiki.tpl' || $_smarty_tpl_file == 'tiki-print.tpl' || $_smarty_tpl_file == 'tiki_full.tpl' )) {
-			// Set the last mid template to be used by AJAX to simulate a 'BACK' action
-			if (isset($_SESSION['last_mid_template'])) {
-				$this->assign('last_mid_template', $_SESSION['last_mid_template']);
-				$this->assign('last_mid_php', $_SESSION['last_mid_php']);
-			}
-			$_SESSION['last_mid_template'] = $tpl;
-			$_SESSION['last_mid_php'] = $_SERVER['REQUEST_URI'];
-
-			// set the first part of the browser title for admin pages
-			if (null === $this->getTemplateVars('headtitle')) {
-				$script_name = basename($_SERVER['SCRIPT_NAME']);
-				if ($script_name === 'route.php' && ! empty($inclusion)) {
-					$script_name = $inclusion;
-				}
-				if ($script_name != 'tiki-admin.php' && strpos($script_name, 'tiki-admin') === 0) {
-					$str = substr($script_name, 10, strpos($script_name, '.php') - 10);
-					$str = ucwords(trim(str_replace('_', ' ', $str)));
-					$this->assign('headtitle', 'Admin ' . $str);
-				} elseif (strpos($script_name, 'tiki-list') === 0) {
-					$str = substr($script_name, 9, strpos($script_name, '.php') - 9);
-					$str = ucwords(trim(str_replace('_', ' ', $str)));
-					$this->assign('headtitle', 'List ' . $str);
-				} elseif (strpos($script_name, 'tiki-view') === 0) {
-					$str = substr($script_name, 9, strpos($script_name, '.php') - 9);
-					$str = ucwords(trim(str_replace('_', ' ', $str)));
-					$this->assign('headtitle', 'View ' . $str);
-				} elseif ($prefs['urlIndex'] && strpos($script_name, $prefs['urlIndex']) === 0) {
-					$this->assign('headtitle', tra($prefs['urlIndexBrowserTitle']));	// Viewing Custom Homepage
-				} else { // still not set? guess...
-					$str = str_replace(['tiki-', '.php', '_'], ['', '', ' '], $script_name);
-					$str = ucwords($str);
-					$this->assign('headtitle', tra($str));	// for files where no title has been set or can be reliably calculated - translators: please add comments here as you find them
-				}
-			}
-
-			if ($_smarty_tpl_file == 'tiki-print.tpl') {
-				$this->assign('print_page', 'y');
-			}
-			$data = $this->fetch($tpl, $_smarty_cache_id, $_smarty_compile_id, $parent);//must get the mid because the modules can overwrite smarty variables
-
-			$this->assign('mid_data', $data);
-		} elseif ($_smarty_tpl_file == 'confirm.tpl' || $_smarty_tpl_file == 'error.tpl' || $_smarty_tpl_file == 'error_ticket.tpl' || $_smarty_tpl_file == 'error_simple.tpl') {
-			if (! empty(ob_get_status())) {
-				ob_end_clean(); // Empty existing Output Buffer that may have been created in smarty before the call of this confirm / error* template
-			}
-			if ($prefs['feature_obzip'] == 'y') {
-				ob_start('ob_gzhandler');
-			}
-		}
-
-		if (! defined('TIKI_IN_INSTALLER') && ! defined('TIKI_IN_TEST')) {
-			require_once 'tiki-modules.php';
-		}
+		$this->assign_layout_sections($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent);
 
 		$_smarty_tpl_file = $this->get_filename($_smarty_tpl_file);
 
-		return parent::fetch($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent, $_smarty_display);
+		if ($_smarty_display) {
+			return parent::display($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent);
+		} else {
+			return parent::fetch($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent);
+		}
 	}
 
 	/**
@@ -495,12 +448,78 @@ class Smarty_Tiki extends Smarty
 
 		TikiLib::events()->trigger('tiki.process.render', []);
 
+		$this->assign_layout_sections($resource_name, $cache_id, $compile_id, $parent);
+
 		if (! empty($prefs['feature_htmlpurifier_output']) and $prefs['feature_htmlpurifier_output'] == 'y') {
 			return $purifier->purify(parent::display($resource_name, $cache_id, $compile_id));
 		} else {
 			return parent::display($resource_name, $cache_id, $compile_id);
 		}
 	}
+
+	/**
+	 * Since Smarty 3.1.23, display no longer calls fetch function, so we need to have this Tiki layout section assignment
+	 * and modules loading called in both places
+	 */
+	private function assign_layout_sections($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent) {
+		global $prefs;
+
+		if (($tpl = $this->getTemplateVars('mid')) && ( $_smarty_tpl_file == 'tiki.tpl' || $_smarty_tpl_file == 'tiki-print.tpl' || $_smarty_tpl_file == 'tiki_full.tpl' )) {
+			// Set the last mid template to be used by AJAX to simulate a 'BACK' action
+			if (isset($_SESSION['last_mid_template'])) {
+				$this->assign('last_mid_template', $_SESSION['last_mid_template']);
+				$this->assign('last_mid_php', $_SESSION['last_mid_php']);
+			}
+			$_SESSION['last_mid_template'] = $tpl;
+			$_SESSION['last_mid_php'] = $_SERVER['REQUEST_URI'];
+
+			// set the first part of the browser title for admin pages
+			if (null === $this->getTemplateVars('headtitle')) {
+				$script_name = basename($_SERVER['SCRIPT_NAME']);
+				if ($script_name === 'route.php' && ! empty($inclusion)) {
+					$script_name = $inclusion;
+				}
+				if ($script_name != 'tiki-admin.php' && strpos($script_name, 'tiki-admin') === 0) {
+					$str = substr($script_name, 10, strpos($script_name, '.php') - 10);
+					$str = ucwords(trim(str_replace('_', ' ', $str)));
+					$this->assign('headtitle', 'Admin ' . $str);
+				} elseif (strpos($script_name, 'tiki-list') === 0) {
+					$str = substr($script_name, 9, strpos($script_name, '.php') - 9);
+					$str = ucwords(trim(str_replace('_', ' ', $str)));
+					$this->assign('headtitle', 'List ' . $str);
+				} elseif (strpos($script_name, 'tiki-view') === 0) {
+					$str = substr($script_name, 9, strpos($script_name, '.php') - 9);
+					$str = ucwords(trim(str_replace('_', ' ', $str)));
+					$this->assign('headtitle', 'View ' . $str);
+				} elseif ($prefs['urlIndex'] && strpos($script_name, $prefs['urlIndex']) === 0) {
+					$this->assign('headtitle', tra($prefs['urlIndexBrowserTitle']));	// Viewing Custom Homepage
+				} else { // still not set? guess...
+					$str = str_replace(['tiki-', '.php', '_'], ['', '', ' '], $script_name);
+					$str = ucwords($str);
+					$this->assign('headtitle', tra($str));	// for files where no title has been set or can be reliably calculated - translators: please add comments here as you find them
+				}
+			}
+
+			if ($_smarty_tpl_file == 'tiki-print.tpl') {
+				$this->assign('print_page', 'y');
+			}
+			$data = $this->fetch($tpl, $_smarty_cache_id, $_smarty_compile_id, $parent);//must get the mid because the modules can overwrite smarty variables
+
+			$this->assign('mid_data', $data);
+		} elseif ($_smarty_tpl_file == 'confirm.tpl' || $_smarty_tpl_file == 'error.tpl' || $_smarty_tpl_file == 'error_ticket.tpl' || $_smarty_tpl_file == 'error_simple.tpl') {
+			if (! empty(ob_get_status())) {
+				ob_end_clean(); // Empty existing Output Buffer that may have been created in smarty before the call of this confirm / error* template
+			}
+			if ($prefs['feature_obzip'] == 'y') {
+				ob_start('ob_gzhandler');
+			}
+		}
+
+		if (! defined('TIKI_IN_INSTALLER') && ! defined('TIKI_IN_TEST')) {
+			require_once 'tiki-modules.php';
+		}
+	}
+
 	/**
 	 * Returns the file path associated to the template name
 	 * @param $template

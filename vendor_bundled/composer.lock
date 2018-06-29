@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "332a4dd841440d6865069f4f0a7b517b",
+    "content-hash": "3d49abb1f39bbbd97d6ab10bd50f30cf",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -36,7 +36,10 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Remove references to ADOdb Extension": "../installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch",
+                    "Remove the check for ADOdb Extension": "../installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-enabled.patch"
+                }
             },
             "autoload": {
                 "files": [
@@ -1359,7 +1362,9 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Fix visibility issues": "../installer/composer-patches/jquery-sheet_fix-visibility-issues.patch"
+                }
             }
         },
         {
@@ -1974,9 +1979,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/2e2a5b35439665d4b0200143d808a7c26d6cd30f",
+                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-2e2a5b35439665d4b0200143d808a7c26d6cd30f-zip-11c7ce.zip",
                 "reference": "2e2a5b35439665d4b0200143d808a7c26d6cd30f",
-                "shasum": ""
+                "shasum": "27e3a0e6ea3b88e802ebe8743d8e890750b38938"
             },
             "require": {
                 "robloach/component-installer": "*"
@@ -2789,7 +2794,10 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Removed deprecated syntax in PHP7": "../installer/composer-patches/text_wiki_mediawiki__php7fixes.patch",
+                    "Renamed method to avoid collision with func from parent class": "../installer/composer-patches/text_wiki_mediawiki__func_collision.patch"
+                }
             }
         },
         {
@@ -2861,7 +2869,9 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Add support for PHP7": "../installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch"
+                }
             }
         },
         {
@@ -3283,17 +3293,17 @@
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.21",
+            "version": "v3.1.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a"
+                "reference": "ac9d4b587e5bf53381e21881820a9830765cb459"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/smarty/smarty/smarty-smarty-1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a-zip-13a9f0.zip",
-                "reference": "1f878e6d746ecc8ec8d00d9c75044cf7d23ad94a",
-                "shasum": "faa114f47ad5a30ef6b68e10bc3a59a2b1238d03"
+                "url": "https://composer.tiki.org/dist/smarty/smarty/smarty-smarty-ac9d4b587e5bf53381e21881820a9830765cb459-zip-43cf57.zip",
+                "reference": "ac9d4b587e5bf53381e21881820a9830765cb459",
+                "shasum": "4906f34eb83f3dc802df920b4f9fadfb21ed2a57"
             },
             "require": {
                 "php": ">=5.2"
@@ -3305,10 +3315,8 @@
                 }
             },
             "autoload": {
-                "classmap": [
-                    "libs/Smarty.class.php",
-                    "libs/SmartyBC.class.php",
-                    "libs/sysplugins/smarty_security.php"
+                "files": [
+                    "libs/bootstrap.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3334,7 +3342,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-31T04:22:20+00:00"
+            "time": "2018-04-24T14:53:33+00:00"
         },
         {
             "name": "sorich87/bootstrap-tour",
@@ -3434,17 +3442,17 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "73e055cf2e6467715f187724a0347ea32079967c"
+                "reference": "1fffdeb349ff36a25184e5564c25289b1dbfc402"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-73e055cf2e6467715f187724a0347ea32079967c-zip-be8ca9.zip",
-                "reference": "73e055cf2e6467715f187724a0347ea32079967c",
-                "shasum": "441e4219b1b5811ff17258c8bac8d7e7fea1e6fb"
+                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-1fffdeb349ff36a25184e5564c25289b1dbfc402-zip-a52441.zip",
+                "reference": "1fffdeb349ff36a25184e5564c25289b1dbfc402",
+                "shasum": "d45b58191c56e3995405a170a21967c0d9008ed0"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3494,21 +3502,21 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-14T16:49:53+00:00"
+            "time": "2018-06-19T14:02:58+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27"
+                "reference": "1b97071a26d028c9bd4588264e101e14f6e7cd00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-36f83f642443c46f3cf751d4d2ee5d047d757a27-zip-b821a4.zip",
-                "reference": "36f83f642443c46f3cf751d4d2ee5d047d757a27",
-                "shasum": "6f46a96f51920c4ccd7cb85f145aea6a0010ddb0"
+                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-1b97071a26d028c9bd4588264e101e14f6e7cd00-zip-c763b8.zip",
+                "reference": "1b97071a26d028c9bd4588264e101e14f6e7cd00",
+                "shasum": "729ba10d707b4b31129561f851c30a08b5df62e6"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3563,11 +3571,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T08:49:21+00:00"
+            "time": "2018-05-23T05:02:55+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3620,17 +3628,17 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b"
+                "reference": "dbe0fad88046a755dcf9379f2964c61a02f5ae3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-449f8b00b28ab6e6912c3e6b920406143b27193b-zip-6e3f57.zip",
-                "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b",
-                "shasum": "e7738e386d488722a1e52036b7bf9bc76cf27f2e"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-dbe0fad88046a755dcf9379f2964c61a02f5ae3d-zip-e20dd2.zip",
+                "reference": "dbe0fad88046a755dcf9379f2964c61a02f5ae3d",
+                "shasum": "cd4413390b03bc7bf6a03aa3be0204e53cf05ca0"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3672,21 +3680,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T14:33:22+00:00"
+            "time": "2018-06-08T09:39:36+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "8a4672aca8db6d807905d695799ea7d83c8e5bba"
+                "reference": "a0be80e3f8c11aca506e250c00bb100c04c35d10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-8a4672aca8db6d807905d695799ea7d83c8e5bba-zip-befac1.zip",
-                "reference": "8a4672aca8db6d807905d695799ea7d83c8e5bba",
-                "shasum": "88f8911c53876a38c3b1cd1ddf0aa6ad27e9dc98"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-a0be80e3f8c11aca506e250c00bb100c04c35d10-zip-307ac5.zip",
+                "reference": "a0be80e3f8c11aca506e250c00bb100c04c35d10",
+                "shasum": "ec32a98ebc6eb3938768e7ecc1f49337e8dff2b9"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3743,11 +3751,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-25T11:57:15+00:00"
+            "time": "2018-06-25T08:36:56+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.1.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -3911,17 +3919,17 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "4cbf2db9abcb01486a21b7a059e03a62fae63187"
+                "reference": "acc5a37c706ace827962851b69705b24e71ca17c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-4cbf2db9abcb01486a21b7a059e03a62fae63187-zip-7c7816.zip",
-                "reference": "4cbf2db9abcb01486a21b7a059e03a62fae63187",
-                "shasum": "3dcc95323cca983db18e37fc4591a30f3368c454"
+                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-acc5a37c706ace827962851b69705b24e71ca17c-zip-04f461.zip",
+                "reference": "acc5a37c706ace827962851b69705b24e71ca17c",
+                "shasum": "c1f91d899ae42550dae61e1811595413d5a9013d"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8"
@@ -3956,11 +3964,11 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T08:49:21+00:00"
+            "time": "2018-05-30T04:24:30+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.11",
+            "version": "v3.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
