@@ -101,20 +101,7 @@
 	{else}
 		{jq rank=1}
 			antibotVerification($("#antibotcode"), {
-				required: true,
-				remote: {
-					url: "validate-ajax.php",
-					type: "post",
-					data: {
-						validator: "captcha",
-						parameter: function() {
-							return $("#captchaId").val();
-						},
-						input: function() {
-							return $("#antibotcode").val();
-						}
-					}
-				}
+				required: true
 			});
 		{/jq}
 	{/if}
