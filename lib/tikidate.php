@@ -256,12 +256,12 @@ class TikiDate
 	/**
 	 * @param $date
 	 */
-	function setDate($date)
+	function setDate($date, $tz_id = null)
 	{
 		if (is_numeric($date)) {
-			$this->date = new DateTime(date('Y-m-d H:i:s', $date));
+			$this->date = new DateTime('@'.$date);
 		} else {
-			$this->date = new DateTime($date);
+			$this->date = new DateTime($date, $tz_id ? $this->getTZByID($tz_id) : null);
 		}
 	}
 
@@ -280,11 +280,7 @@ class TikiDate
 		$this->date->setTime($hour, $minute, $second);
 	}
 
-	/**
-	 * @param $tz_id
-	 */
-	function setTZbyID($tz_id)
-	{
+	function getTZByID($tz_id) {
 		global $prefs;
 		if (! self::TimezoneIsValidId($tz_id) && (! empty($prefs['timezone_offset']) || $prefs['timezone_offset'] == 0)) {	// timezone_offset in seconds
 			$tz_id = timezone_name_from_abbr($tz_id, $prefs['timezone_offset']);
@@ -297,7 +293,15 @@ class TikiDate
 				$tz_id = $this->convertMissingTimezone($tz_id);
 			}
 		}
-		$this->date->setTimezone($dtz);
+		return $dtz;
+	}
+
+	/**
+	 * @param $tz_id
+	 */
+	function setTZbyID($tz_id)
+	{
+		$this->date->setTimezone($this->getTZByID($tz_id));
 	}
 
 	/**
