@@ -1225,7 +1225,13 @@ if ($s) {
 
 
 $s = extension_loaded('mcrypt');
-$msg = tra('MCrypt is abandonware and is being phased out. Starting in version 18, Tiki uses OpenSSL where it previously used MCrypt, except perhaps via third-party libraries.') . ' ' . tra('Tiki still uses MCrypt to decrypt user data encrypted with MCrypt, when converting that data to OpenSSL.');
+$msg = tra('MCrypt is abandonware and is being phased out. Starting in version 18, Tiki uses OpenSSL where it previously used MCrypt, except perhaps via third-party libraries.');
+if (!$standalone) {
+	$msg .= ' ' . tra('Tiki still uses MCrypt to decrypt user data encrypted with MCrypt, when converting that data to OpenSSL.') . ' ' . tra('Please check the \'User Data Encryption\' section to see if there is user data encrypted with MCrypt.');
+
+	//User Data Encryption MCrypt
+	$usersWithMCrypt = check_userPreferencesMCrypt();
+}
 if ($s) {
 	$php_properties['mcrypt'] = array(
 		'fitness' => tra('info'),
@@ -2350,7 +2356,6 @@ if ($standalone && ! $nagios) {
 		$render .= '<p>Apparently Tiki is running on a Windows based server. This feature is not supported natively.</p>';
 	}
 
-
 	createPage('Tiki Server Compatibility', $render);
 } elseif ($nagios) {
 //  0	OK
@@ -2503,6 +2508,7 @@ if ($standalone && ! $nagios) {
 	$smarty->assign('sensitive_data_detected_files', $sensitiveDataDetectedFiles);
 
 	$smarty->assign('benchmark', $benchmark);
+	$smarty->assign('users_with_mcrypt_data', $usersWithMCrypt);
 	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	$smarty->assign('mid', 'tiki-check.tpl');
 	$smarty->display('tiki.tpl');
@@ -2817,6 +2823,18 @@ function check_isIIS()
 function check_hasIIS_UrlRewriteModule()
 {
 	return isset($_SERVER['IIS_UrlRewriteModule']) == true;
+}
+
+/**
+ * Returns the number of users with data preferences encrypted with mcrypt
+ * @return bool|int|mixed
+ */
+function check_userPreferencesMCrypt()
+{
+	global $tikilib;
+
+	$query = 'SELECT count(DISTINCT user) FROM `tiki_user_preferences` WHERE `prefName` like \'dp.%\'';
+	return $tikilib->getOne($query);
 }
 
 function get_content_from_url($url)

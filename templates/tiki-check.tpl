@@ -455,3 +455,14 @@
 		<p>{tr}Apparently tiki is running on a Windows based server. This feature is not supported natively.{/tr}</p>
 	{/remarksbox}
 {/if}
+
+<h2>{tr}User Data Encryption{/tr}</h2>
+{if users_with_mcrypt_data > 0}
+	{remarksbox type='error' title='{tr}MCrypt encryption found in users data preferences{/tr}' close='n'}
+		<p>{tr _0=$users_with_mcrypt_data}Found %0 user(s) with data preferences encrypted with MCrypt.{/tr}</p>
+		<p>If MCrypt library gets removed, non-converted user encrypted data can no longer be decrypted. The data is
+			thus lost and must be re-entered.</p>
+	{/remarksbox}
+{else}
+	<p>{tr}No user preferences were found with data encrypted with MCrypt.{/tr}</p>
+{/if}
