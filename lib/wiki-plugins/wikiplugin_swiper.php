@@ -7,34 +7,34 @@
 function wikiplugin_swiper_info()
 {
 	return [
-		'name' => tra('Swiper'),
+		'name' => tr('Swiper'),
 		'documentation' => 'PluginSwiper',
-		'description' => tra('Embed swiper in content, support file galleries, files id and custom content'),
-		'prefs' => 'wikiplugin_swiper',
-		'body' => tra('Enter custom slides data separated by "|". Wiki Syntax / HTML supported in slide text, to include wiki page in slide text use pluginInclude.<code>title:Slide 1 title;text:HTML/Wiki Syntax Supported Slide 1 text;image:Slide Image URL;bgcolor:#colorcode;color: #color code for text | title:Slide 2 title;text:Slide 2 text;image:Slide Image URL;bgcolor:#colorcode</code> '),
+		'description' => tr('Embed swiper in content, support file galleries, files id and custom content'),
+		'prefs' => ['wikiplugin_swiper'],
+		'body' => tr('Enter custom slides data separated by "|". Wiki Syntax / HTML supported in slide text, to include wiki page in slide text use pluginInclude.<code>title:Slide 1 title;text:HTML/Wiki Syntax Supported Slide 1 text;image:Slide Image URL;bgcolor:#colorcode;color: #color code for text | title:Slide 2 title;text:Slide 2 text;image:Slide Image URL;bgcolor:#colorcode</code> '),
 		'iconname' => 'tv',
 		'introduced' => 19,
 		'tags' => 'basic',
 		'params' => [
 			'fgalId' => [
 				'required' => false,
-				'name' => tra('File Gallery ID'),
-				'description' => tra('Enter file gallery id for slider'),
+				'name' => tr('File Gallery ID'),
+				'description' => tr('Enter file gallery id for slider'),
 				'since' => '19',
 				'separator' => ':',
 				'profile_reference' => 'file_gallery',
 			],
 			'fileIds' => [
 				'required' => false,
-				'name' => tra('File IDs'),
-				'description' => tra('List of IDs of images from the File Galleries separated by commas.'),
+				'name' => tr('File IDs'),
+				'description' => tr('List of IDs of images from the File Galleries separated by commas.'),
 				'filter' => 'striptags',
 				'default' => '',
 			],
 			'effect' => [
 				'required' => false,
-				'name' => tra('Transition Effect'),
-				'description' => tra('Tranisition effect. Could be "slide", "fade", "cube", "coverflow" or "flip"'),
+				'name' => tr('Transition Effect'),
+				'description' => tr('Tranisition effect. Could be "slide", "fade", "cube", "coverflow" or "flip"'),
 				'filter' => 'word',
 				'default' => 'slide',
 				'since' => '19.0',
@@ -48,22 +48,22 @@ function wikiplugin_swiper_info()
 			],
 			'sliderPosition' => [
 				'required' => false,
-				'name' => tra('Slider Placement on Page'),
-				'description' => tra('Placement of slider, above topbar, below topbar, above menus and content or inside content'),
+				'name' => tr('Slider Placement on Page'),
+				'description' => tr('Placement of slider, above topbar, below topbar, above menus and content or inside content'),
 				'filter' => 'word',
 				'default' => '',
 				'since' => '19.0',
 				'options' => [
-					['text' => tra(''), 'value' => ''],				
-					['text' => tra('Inside Content'), 'value' => ''],
-					['text' => tra('Above top bar / Top of page'), 'value' => 'abovetopbar'],
-					['text' => tra('Above Content/Under top bar'), 'value' => 'undertopbar']
+					['text' => tr(''), 'value' => ''],				
+					['text' => tr('Inside Content'), 'value' => ''],
+					['text' => tr('Above top bar / Top of page'), 'value' => 'abovetopbar'],
+					['text' => tr('Above Content/Under top bar'), 'value' => 'undertopbar']
 				],
 			],
 			'pagination' => [
 				'required' => false,
-				'name' => tra('Pagination'),
-				'description' => tra('Slider pagniation, default bullets'),
+				'name' => tr('Pagination'),
+				'description' => tr('Slider pagniation, default bullets'),
 				'filter' => 'word',
 				'default' => 'bullets',
 				'since' => '19.0',
@@ -71,15 +71,15 @@ function wikiplugin_swiper_info()
 				'options' => [
 					['text' => '', 'value' => ''],				
 					['text' => 'Off', 'value' => 'n'],
-					['text' => tra('Bullets'), 'value' => 'bullets'],
-					['text' => tra('Fraction'), 'value' => 'fraction'],
-					['text' => tra('Progress bar'), 'value' => 'progressbar'],
+					['text' => tr('Bullets'), 'value' => 'bullets'],
+					['text' => tr('Fraction'), 'value' => 'fraction'],
+					['text' => tr('Progress bar'), 'value' => 'progressbar'],
 				],
 			],
 			'navigation' => [
 				'required' => false,
-				'name' => tra('Navigation'),
-				'description' => tra('Display navigation arrows'),
+				'name' => tr('Navigation'),
+				'description' => tr('Display navigation arrows'),
 				'filter' => 'alpha',
 				'default' => 'y',
 				'since' => '19.0',
@@ -90,8 +90,8 @@ function wikiplugin_swiper_info()
 			],
 			'direction' => [
 				'required' => false,
-				'name' => tra('Direction'),
-				'description' => tra('Could be \'horizontal\' or \'vertical\' (for vertical slider).'),
+				'name' => tr('Direction'),
+				'description' => tr('Could be \'horizontal\' or \'vertical\' (for vertical slider).'),
 				'filter' => 'word',
 				'default' => 'horizontal',
 				'since' => '19.0',
@@ -102,14 +102,14 @@ function wikiplugin_swiper_info()
 			],
 			'background' => [
 				'required' => false,
-				'name' => tra('Slider Background Color'),
-				'description' => tra('Slider background color, enter color code for example #000'),
+				'name' => tr('Slider Background Color'),
+				'description' => tr('Slider background color, enter color code for example #000'),
 				'since' => '19.0'
 			],
 			'parallaxBgImg' => [
 				'required' => false,
-				'name' => tra('Slider Parallax Background Image'),
-				'description' => tra('Enter image url for parallax background behind swiper'),
+				'name' => tr('Slider Parallax Background Image'),
+				'description' => tr('Enter image url for parallax background behind swiper'),
 				'filter' => 'text',
 				'default' => 1,
 				'advanced' => true,
@@ -117,7 +117,7 @@ function wikiplugin_swiper_info()
 			],
 			'width' => [
 				'required' => false,
-				'name' => tra('Width'),
+				'name' => tr('Width'),
 				'description' => tr('Enter width of slider in px, default 100%'),
 				'filter' => 'word',
 				'default' => '100%',
@@ -125,7 +125,7 @@ function wikiplugin_swiper_info()
 			],
 			'height' => [
 				'required' => false,
-				'name' => tra('Height'),
+				'name' => tr('Height'),
 				'description' => tr('Enter height of slider in px, default min height 350px, max height will adjust with content'),
 				'filter' => 'word',
 				'default' => '350px',
@@ -133,16 +133,16 @@ function wikiplugin_swiper_info()
 			],
 			'titleColor' => [
 				'required' => false,
-				'name' => tra('Slide title color'),
-				'description' => tra('Enter text color code of slide title, for example #ccc'),
+				'name' => tr('Slide title color'),
+				'description' => tr('Enter text color code of slide title, for example #ccc'),
 				'filter' => 'text',
 				'default' => '',
 				'since' => '19.0'
 			],
 			'titleSize' => [
 				'required' => false,
-				'name' => tra('TItle font size'),
-				'description' => tra('For example 42px, default 32 px'),
+				'name' => tr('Title font size'),
+				'description' => tr('For example 42px, default 32 px'),
 				'filter' => 'word',
 				'default' => '32px',
 				'advanced' => true,
@@ -150,16 +150,16 @@ function wikiplugin_swiper_info()
 			],
 			'descriptionColor' => [
 				'required' => false,
-				'name' => tra('Slide description color'),
-				'description' => tra('Enter text color code of slide description, for example #ccc'),
+				'name' => tr('Slide description color'),
+				'description' => tr('Enter text color code of slide description, for example #ccc'),
 				'filter' => 'text',
 				'default' => '',
 				'since' => '19.0'
 			],
 			'descriptionSize' => [
 				'required' => false,
-				'name' => tra('Description font size'),
-				'description' => tra('For example 24px, default 16 px'),
+				'name' => tr('Description font size'),
+				'description' => tr('For example 24px, default 16 px'),
 				'filter' => 'word',
 				'default' => '16px',
 				'advanced' => true,
@@ -167,24 +167,24 @@ function wikiplugin_swiper_info()
 			],
 			'slideContentBg' => [
 				'required' => false,
-				'name' => tra('Slide content background'),
-				'description' => tra('Enter a valid CSS color code, or an rgba value if opacity is desired; for example: #000 or rgba(00, 00, 00, 0.5).'),
+				'name' => tr('Slide content background'),
+				'description' => tr('Enter a valid CSS color code, or an rgba value if opacity is desired; for example: #000 or rgba(00, 00, 00, 0.5).'),
 				'filter' => 'text',
 				'default' => '',
 				'since' => '19.0'
 			],
 			'slideContentPostion' => [
 				'required' => false,
-				'name' => tra('Slide content position'),
-				'description' => tra('Enter position for example top:20%;left:20% or bottom:20%;right:10%'),
+				'name' => tr('Slide content position'),
+				'description' => tr('Enter position for example top:20%;left:20% or bottom:20%;right:10%'),
 				'filter' => 'text',
 				'default' => 'top:20%;left:20%',
 				'since' => '19.0'
 			],
 			'autoPlay' => [
 				'required' => false,
-				'name' => tra('Auto Play'),
-				'description' => tra('Autoplay slider, on by default'),
+				'name' => tr('Auto Play'),
+				'description' => tr('Autoplay slider, on by default'),
 				'filter' => 'alpha',
 				'default' => 'y',
 				'since' => '19.0',
@@ -196,16 +196,16 @@ function wikiplugin_swiper_info()
 			],
 			'autoPlayDelay' => [
 				'required' => false,
-				'name' => tra('Auto Play Delay'),
-				'description' => tra('Time interval to pause before moving to next slide in seconds.'),
+				'name' => tr('Auto Play Delay'),
+				'description' => tr('Time interval to pause before moving to next slide in seconds.'),
 				'filter' => 'digits',
 				'default' => '5',
 				'since' => '19.0'
 			],
 			'displayThumbnails' => [
 				'required' => false,
-				'name' => tra('Display Thumbnails'),
-				'description' => tra('Show thumbnails under main slider'),
+				'name' => tr('Display Thumbnails'),
+				'description' => tr('Show thumbnails under main slider'),
 				'filter' => 'alpha',
 				'default' => 'n',
 				'since' => '19.0',
@@ -216,8 +216,8 @@ function wikiplugin_swiper_info()
 			],
 			'speed' => [
 				'required' => false,
-				'name' => tra('Speed'),
-				'description' => tra('Duration of transition between slides (in seconds)'),
+				'name' => tr('Speed'),
+				'description' => tr('Duration of transition between slides (in seconds)'),
 				'filter' => 'digits',
 				'default' => 300,
 				'advance'=>true,
@@ -225,8 +225,8 @@ function wikiplugin_swiper_info()
 			],
 			'autoHeight' => [
 				'required' => false,
-				'name' => tra('Auto Height'),
-				'description' => tra('Set to true and slider wrapper will adopt its height to the height of the currently active slide'),
+				'name' => tr('Auto Height'),
+				'description' => tr('Set to true and slider wrapper will adopt its height to the height of the currently active slide'),
 				'filter' => 'alpha',
 				'default' => 'n',
 				'since' => '19.0',
@@ -239,8 +239,8 @@ function wikiplugin_swiper_info()
 			//Slides grid
 			'spaceBetween' => [
 				'required' => false,
-				'name' => tra('Space Between'),
-				'description' => tra('Distance between slides in px.'),
+				'name' => tr('Space Between'),
+				'description' => tr('Distance between slides in px.'),
 				'filter' => 'digits',
 				'default' => 0,
 				'advanced' => true,
@@ -248,16 +248,16 @@ function wikiplugin_swiper_info()
 			],
 			'slidesPerView' => [
 				'required' => false,
-				'name' => tra('Slides Per View'),
-				'description' => tra('Slides visible at the same time on slider\'s container. Coverflow transition works best with 3 slides per view'),
+				'name' => tr('Slides Per View'),
+				'description' => tr('Slides visible at the same time on slider\'s container. Coverflow transition works best with 3 slides per view'),
 				'filter' => 'digits',
 				'default' => 1,
 				'since' => '19.0'
 			],
 			'slidesPerColumn' => [
 				'required' => false,
-				'name' => tra('Slides Per Column'),
-				'description' => tra('Number of slides per column, for multirow layout'),
+				'name' => tr('Slides Per Column'),
+				'description' => tr('Number of slides per column, for multirow layout'),
 				'filter' => 'digits',
 				'default' => 1,
 				'advanced'=>true,
@@ -265,8 +265,8 @@ function wikiplugin_swiper_info()
 			],
 			'slidesPerColumnFill' => [
 				'required' => false,
-				'name' => tra('Slides Per Column Fill'),
-				'description' => tra('Could be \'column\' or \'row\'. Defines how slides should fill rows, by column or by row'),
+				'name' => tr('Slides Per Column Fill'),
+				'description' => tr('Could be \'column\' or \'row\'. Defines how slides should fill rows, by column or by row'),
 				'filter' => 'word',
 				'default' => 'column',
 				'since' => '19.0',
@@ -278,8 +278,8 @@ function wikiplugin_swiper_info()
 			],
 			'centeredSlides' => [
 				'required' => false,
-				'name' => tra('Centered Slides'),
-				'description' => tra('If true, then active slide will be centered, not always on the left side.'),
+				'name' => tr('Centered Slides'),
+				'description' => tr('If true, then active slide will be centered, not always on the left side.'),
 				'filter' => 'alpha',
 				'default' => 'y',
 				'since' => '19.0',
@@ -290,8 +290,8 @@ function wikiplugin_swiper_info()
 			],
 			'slidesOffsetBefore' => [
 				'required' => false,
-				'name' => tra('Slides Offset Before'),
-				'description' => tra('Add (in px) additional slide offset in the beginning of the container (before all slides)'),
+				'name' => tr('Slides Offset Before'),
+				'description' => tr('Add (in px) additional slide offset in the beginning of the container (before all slides)'),
 				'filter' => 'digits',
 				'default' => 0,
 				'advanced' => true,
@@ -299,8 +299,8 @@ function wikiplugin_swiper_info()
 			],
 			'slidesOffsetAfter' => [
 				'required' => false,
-				'name' => tra('Slides Offset After'),
-				'description' => tra('Add (in px) additional slide offset in the end of the container (after all slides)'),
+				'name' => tr('Slides Offset After'),
+				'description' => tr('Add (in px) additional slide offset in the end of the container (after all slides)'),
 				'filter' => 'digits',
 				'default' => 0,
 				'advanced' => true,
@@ -308,8 +308,8 @@ function wikiplugin_swiper_info()
 			],
 			'slideToClickedSlide' => [
 				'required' => false,
-				'name' => tra('Slide To Clicked Slide'),
-				'description' => tra('Set to true and click on any slide will produce transition to this slide.'),
+				'name' => tr('Slide To Clicked Slide'),
+				'description' => tr('Set to true and click on any slide will produce transition to this slide.'),
 				'filter' => 'word',
 				'default' => 'n',
 				'since' => '19.0',
@@ -322,8 +322,8 @@ function wikiplugin_swiper_info()
 			//freemode
 			'freeMode' => [
 				'required' => false,
-				'name' => tra('Free Mode'),
-				'description' => tra('If true then slides will not have fixed positions.'),
+				'name' => tr('Free Mode'),
+				'description' => tr('If true then slides will not have fixed positions.'),
 				'filter' => 'word',
 				'default' => 'n',
 				'since' => '19.0',
@@ -336,8 +336,8 @@ function wikiplugin_swiper_info()
 			//Images
 			'preloadImages' => [
 				'required' => false,
-				'name' => tra('Preload Images'),
-				'description' => tra('When enabled Swiper will force to load all images.'),
+				'name' => tr('Preload Images'),
+				'description' => tr('When enabled Swiper will force to load all images.'),
 				'filter' => 'word',
 				'default' => 'y',
 				'since' => '19.0',
@@ -348,8 +348,8 @@ function wikiplugin_swiper_info()
 			],
 			'updateOnImagesReady' => [
 				'required' => false,
-				'name' => tra('Update On Images Ready'),
-				'description' => tra('When enabled Swiper will be reinitialized after all inner images (<img> tags) are loaded. Required preloadimages: true.'),
+				'name' => tr('Update On Images Ready'),
+				'description' => tr('When enabled Swiper will be reinitialized after all inner images (<img> tags) are loaded. Required preloadimages: true.'),
 				'filter' => 'word',
 				'default' => 'y',
 				'since' => '19.0',
@@ -362,8 +362,8 @@ function wikiplugin_swiper_info()
 			//Loop
 			'loop' => [
 				'required' => false,
-				'name' => tra('Loop Slider'),
-				'description' => tra('Set to true to enable continuous loop mode (If you use it along with slidesperView: \'auto\' then you need to specify loopedslides parameter with amount of slides to loop (duplicate)).'),
+				'name' => tr('Loop Slider'),
+				'description' => tr('Set to true to enable continuous loop mode (If you use it along with slidesperView: \'auto\' then you need to specify loopedslides parameter with amount of slides to loop (duplicate)).'),
 				'filter' => 'word',
 				'default' => 'n',
 				'since' => '19.0',
@@ -380,11 +380,11 @@ function wikiplugin_swiper($data, $params)
 {
 	//checking for swiper existance
 	if(!file_exists("vendor_bundled/vendor/nolimits4web/swiper/dist/js/swiper.min.js")) {
-		Feedback::error(tra(' Please update composer to install required files'));
+		Feedback::error(tr(' Please update composer to install required files'));
 		return;
 	}
 	if(!$params['fileIds'] && !$params['fgalId'] && !$data) {
-		Feedback::error(tra('Paramaters missing: Please either select file gallery, give file ids or custom slide code in body.'));
+		Feedback::error(tr('Paramaters missing: Please either select file gallery, give file ids or custom slide code in body.'));
 		return;
 	}
 	static $uid = 0;
