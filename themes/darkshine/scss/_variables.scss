@@ -5,18 +5,19 @@
 // Colors
 $gray-900: #212529;
 
-$primary: #600000;
+$primary: #fd7931;
+$secondary: #feb768;
 $success: #5cb85c;
 $info: #5bc0de;
-$warning: #f0ad4e;
+$warning: #d0d024;
 $danger: #d9534f;
 
 $theme-colors: (
- 	"primary":        	#600000,
- 	"secondary": 		#dddddd,
+ 	"primary":        	#fd7931,
+ 	"secondary": 		#feb768,
  	"success":         	#5cb85c,
  	"info":           	#5bc0de,
- 	"warning":         	#f0ad4e,
+ 	"warning":         	#d0d024,
  	"danger":          	#d9534f,
 	"light":			#ffffff,
  	"dark":				#000000
@@ -42,7 +43,7 @@ $headings-color: #8a0700;
 
 // Components
 $component-active-color: #ffffff;
-$component-active-bg: $primary;
+$component-active-bg: #fd7c32;
 
 // Forms
 // Dropdowns
@@ -53,9 +54,9 @@ $navbar-light-color: #ffffff;
 $navbar-light-bg: #000000;
 
 // Tabs
-$nav-tabs-border-color: lighten( $body-bg, 90% );
-$nav-tabs-link-hover-border-color: lighten( $nav-tabs-border-color, 10% );
-$nav-tabs-active-link-hover-bg: darken( $nav-tabs-border-color, 10% );
+//$nav-tabs-border-color: lighten( $body-bg, 90% );
+//$nav-tabs-link-hover-border-color: lighten( $nav-tabs-border-color, 10% );
+//$nav-tabs-active-link-hover-bg: darken( $nav-tabs-border-color, 10% );
 
 // Pagination
 // Jumbotron
