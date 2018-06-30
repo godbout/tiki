@@ -63,6 +63,18 @@ class EnglishUpdateCommand extends Command
 				'e',
 				InputOption::VALUE_REQUIRED,
 				'Email address to send a message to if untranslated strings are found. Must be used in conjunction with "audit".'
+			)
+			->addOption(
+				'diff-command',
+				null,
+				InputOption::VALUE_REQUIRED,
+				'Set a shell command to return the diff (ex. in case of a based git repository) override svn default diff. Options revision and lag will be ignored.'
+			)
+			->addOption(
+				'git',
+				null,
+				InputOption::VALUE_NONE,
+				'Set thi if diff-command is based on git'
 			);
 	}
 
@@ -89,17 +101,23 @@ class EnglishUpdateCommand extends Command
 	 * Seperates svn diff output into changes made in PHP and TPL files
 	 *
 	 * @param $content string raw svn diff output
+	 * @param string $diff git or svn depending on the version control used to generate the diff.
 	 *
 	 * @return array with [0] containing PHP and [1] containing TPL strings
 	 */
 
-	private function separatePhpTpl($content)
+	private function separatePhpTpl($content, $diff = 'svn')
 	{
 
-		$content .= "\nIndex:  \n=";                            // used as a dummy to match the last entry
+		if ($diff == 'git') {
+			preg_match_all('/^diff --git .+(php|tpl)$\nindex .+\n([\w\W]+?)(?=\n^diff --git.+\n|\n$)/m', $content, $phpTpl);
+		} else {
+			$content .= "\nIndex:  \n=";                            // used as a dummy to match the last entry
 
-		// Separate php and tpl content
-		preg_match_all('/^Index:\s.+(php|tpl)$\n={10}([\w\W]+?)(?=^Index:.+\n=)/m', $content, $phpTpl);
+			// Separate php and tpl content
+			preg_match_all('/^Index:\s.+(php|tpl)$\n={10}([\w\W]+?)(?=^Index:.+\n=)/m', $content, $phpTpl);
+		}
+
 
 		$changes['php'] = '';
 		$changes['tpl'] = '';
@@ -339,7 +357,11 @@ class EnglishUpdateCommand extends Command
 		$progress->setMessage('Getting String Changes');
 		$progress->advance();
 
-		$raw = shell_exec("svn diff $rev 2>&1");
+		if ($customCommand = $input->getOption('diff-command')) {
+			$raw = shell_exec($customCommand);
+		} else {
+			$raw = shell_exec("svn diff $rev 2>&1");
+		}
 
 		$progress->setMessage('Finding Updated Strings');
 		$progress->advance();
@@ -349,7 +371,7 @@ class EnglishUpdateCommand extends Command
 
 //		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
 
-		$diffs = $this->separatePhpTpl($raw);
+		$diffs = $this->separatePhpTpl($raw, $input->getOption('git') ? 'git' : 'svn');
 
 //		$output->writeln(var_export($diffs, true), OutputInterface::VERBOSITY_DEBUG);
 
@@ -472,6 +494,7 @@ class EnglishUpdateCommand extends Command
 				if ($input->getOption('email')) {
 					mail($input->getOption('email'), 'Updated Strings not found in Language Files', wordwrap($tikiBase . "\n" . $syncMessage, 70, "\r\n"));
 				}
+				exit(1);
 			} else {
 				$output->writeln("\n\n<info>English and Translations are in Sync</info>\n");
 			}
@@ -488,7 +511,7 @@ class EnglishUpdateCommand extends Command
 			$output->writeln("\n\nOptionally run php get_strings.php to remove any unused translation strings.");
 			$output->writeln("Verify before committing.\n");
 		}
-		return true;
+		exit(0);
 	}
 }
 
