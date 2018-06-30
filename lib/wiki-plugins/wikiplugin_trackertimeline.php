@@ -32,6 +32,9 @@ function wikiplugin_trackertimeline_info()
 				'since' => '3.0',
 				'filter' => 'digits',
 				'default' => '',
+				'profile_reference' => 'tracker_field',
+				'parent' => 'input[name="params[tracker]"]',
+				'parentkey' => 'tracker_id',
 			],
 			'summary' => [
 				'required' => true,
@@ -41,6 +44,9 @@ function wikiplugin_trackertimeline_info()
 				'since' => '3.0',
 				'filter' => 'digits',
 				'default' => '',
+				'profile_reference' => 'tracker_field',
+				'parent' => 'input[name="params[tracker]"]',
+				'parentkey' => 'tracker_id',
 			],
 			'start' => [
 				'required' => true,
@@ -51,6 +57,8 @@ function wikiplugin_trackertimeline_info()
 				'filter' => 'digits',
 				'default' => '',
 				'profile_reference' => 'tracker_field',
+				'parent' => 'input[name="params[tracker]"]',
+				'parentkey' => 'tracker_id',
 			],
 			'end' => [
 				'required' => true,
@@ -61,6 +69,8 @@ function wikiplugin_trackertimeline_info()
 				'filter' => 'digits',
 				'default' => '',
 				'profile_reference' => 'tracker_field',
+				'parent' => 'input[name="params[tracker]"]',
+				'parentkey' => 'tracker_id',
 			],
 			'group' => [
 				'required' => true,
@@ -71,6 +81,8 @@ function wikiplugin_trackertimeline_info()
 				'filter' => 'digits',
 				'default' => '',
 				'profile_reference' => 'tracker_field',
+				'parent' => 'input[name="params[tracker]"]',
+				'parentkey' => 'tracker_id',
 			],
 			'lower' => [
 				'required' => true,
@@ -171,6 +183,8 @@ function wikiplugin_trackertimeline_info()
 				'filter' => 'digits',
 				'default' => '',
 				'profile_reference' => 'tracker_field',
+				'parent' => 'input[name="params[tracker]"]',
+				'parentkey' => 'tracker_id',
 			],
 			'simile_timeline' => [
 				'required' => false,
@@ -192,6 +206,8 @@ function wikiplugin_trackertimeline_info()
 				'filter' => 'digits',
 				'default' => '',
 				'profile_reference' => 'tracker_field',
+				'parent' => 'input[name="params[tracker]"]',
+				'parentkey' => 'tracker_id',
 			],
 		]
 	];
@@ -305,6 +321,7 @@ function wikiplugin_trackertimeline($data, $params)
 		return $smarty->fetch('wiki-plugins/wikiplugin_trackertimeline.tpl');
 	} else {	// SIMILE Timeline Widget setup
 		$headerlib = TikiLib::lib('header');
+		$smarty->loadPlugin('smarty_modifier_sefurl');
 
 		// static js moved to lib
 		$headerlib->add_jsfile('lib/simile_tiki/tiki-timeline.js');
@@ -326,8 +343,18 @@ function wikiplugin_trackertimeline($data, $params)
 				if (! empty($item['link'])) {
 					$event['link'] = $item['link'];
 				}
-				if (! empty($item['image'])) {
-					$event['image'] = $item['image'];
+				$image = $item['image'];
+				if (! empty($image)) {
+					if (strpos($image, ',') !== false) {
+						// just the first one
+						$image = substr($image, 0, strpos($image, ','));
+					}
+					if (is_numeric($image)) {
+						// a fileId
+						$image = smarty_modifier_sefurl($image, 'thumbnail');
+
+					}
+					$event['image'] = $image;
 				}
 				$events[] = $event;
 			}
