@@ -11,6 +11,13 @@ body.fullscreen {
 	background-image: url('#{$imagePath}474747_5e5e5e_40.png');
 }
 
+.btn-success,
+.btn-danger,
+.btn-success.disabled, .btn-success:disabled,
+.btn-danger.disabled, .btn-danger:disabled {
+  color: #f8f9fa;
+}
+
 .container {
 	background: #0c0c0c;
 }
@@ -171,10 +178,10 @@ input {
 }
 
 // Hover/Focus state
-.cssmenu_horiz > li > a,
-.cssmenu_vert > li > a,
-.cssmenu_horiz ul > li > a,
-.cssmenu_vert ul > li > a {
+.cssmenu_horiz li a,
+.cssmenu_vert li a,
+.cssmenu_horiz ul li a,
+.cssmenu_vert ul li a {
 	&:hover,
 	&:focus {
 		text-decoration: none;

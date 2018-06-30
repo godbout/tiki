@@ -16,6 +16,7 @@ $gray-100: #212529;
 $white: #000;
 
 $primary: #ababab;//#193c5a
+$secondary: #dddddd;
 $success: #5cb85c;//#3d6c2a
 $info: #5bc0de;//#1b6083
 $warning: #f0ad4e;//darken(#f0ad4e,30%)
@@ -111,7 +112,7 @@ $dropdown-bg: #242424;
 $dropdown-border-color: rgba(0,0,0,.15);
 $dropdown-divider-bg: #e5e5e5;
 
-$dropdown-link-color: #fd0006;
+$dropdown-link-color: $link-color;
 $dropdown-link-hover-color: $gray-800;
 $dropdown-link-hover-bg: transparent;
 
@@ -265,22 +266,12 @@ $pre-border-color: #cccccc;
 $nav-pills-active-link-hover-bg: $component-active-bg;
 $nav-pills-active-link-hover-color: $component-active-color;
 
-//**Textmutedcolor
-$text-muted: $gray-200;
-//**Abbreviationsandacronymsbordercolor
+$text-muted: #b9b9b9;
 $abbr-border-color: $gray-200;
-//**Headingssmallcolor
 $headings-small-color: $gray-200;
-//**Blockquotesmallcolor
 $blockquote-small-color: $gray-200;
-
-//**Blockquotebordercolor
 $blockquote-border-color: $gray-400;
-//**Pageheaderbordercolor
 $page-header-border-color: $gray-500;
-
-
-//**Horizontallinecolor.
 $hr-border: $gray-500;
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //

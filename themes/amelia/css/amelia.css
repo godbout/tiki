@@ -7326,6 +7326,9 @@ legend {
   background-color: #18cbd8 !important;
   border-color: #0d747c !important; }
 
+.card-title a, .card-title small, .card-title .small, .card-title small a, .card-title .small a {
+  color: inherit; }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
