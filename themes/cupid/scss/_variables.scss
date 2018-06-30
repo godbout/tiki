@@ -14,6 +14,14 @@ $gray-500: #f566b0;
 $gray-300: #f49ac0;
 $gray-200: #f4bad6;
 
+$primary:       #ffffff;
+$secondary: 	#80d3cc; // $gray-600 !default;
+$success:       #b8eaae;
+$info:          #c1d7ee;
+$warning:       #fffe84;
+$danger:        #e1bfda;
+
+
 $theme-colors: (
 	"primary":        	#ffffff,
 	"secondary": 		#8deae3,
@@ -21,7 +29,7 @@ $theme-colors: (
 	"info":           	#c1d7ee,
 	"warning":         	#fffe84,
 	"danger":          	#e1bfda,
-	"light":			#56caef,
+	"light":			#cfeff7,
 	"dark":				#a11b27
 );
 
@@ -56,16 +64,16 @@ $btn-secondary-bg:                 #f0569f;
 $btn-link-disabled-color:        $gray-200;
 
 // Forms
-$input-bg: #ff57ab;
-$input-bg-disabled:              #ffffff;
-$input-color:                    $gray-500;
-$input-border:                   $input-color;
+$input-bg: #fce3ef;
+$input-bg-disabled:              $gray-700;
+$input-color:                    #f0569f;
+$input-border:                   #f0569f;
 $input-focus-border-color:       #66afe9;
 $input-color-placeholder:        #999999;
 
 // Dropdowns
 $dropdown-bg:                    #ffffff;
-$dropdown-border-color:                rgba(0,0,0,.15);
+$dropdown-border-color:          rgba(0,0,0,.15);
 $dropdown-fallback-border:       #cccccc;
 $dropdown-divider-bg:            #e5e5e5;
 $dropdown-link-color:            $gray-900;
@@ -118,9 +126,7 @@ $jumbotron-bg:                   #ffd1e7;
 $jumbotron-heading-color:        inherit;
 
 
-//** Background color of the whole progress component
 $progress-bg:                 #ffd1e7;
-//** Progress bar text color
 $progress-bar-color:          #ffffff;
 
 //** Default progress bar color
@@ -132,7 +138,6 @@ $list-group-link-color:         #f0569f;
 $list-group-link-hover-color:   $list-group-link-color;
 $list-group-link-heading-color: #333333;
 
-
 // Cards
 $card-bg:                    #ffffff;
 $card-body-padding:          1rem 15px;
@@ -140,9 +145,9 @@ $card-heading-padding:       10/16rem 15px;
 $card-footer-padding:        $card-heading-padding;
 $card-inner-border:          transparent;
 $card-footer-bg:             #f5f5f5;
-$card-default-text:          $body-color;
-$card-default-border:        transparent;
-$card-default-heading-bg:    #f49ac0;
+$card-text:          $body-color;
+$card-border:        transparent;
+$card-heading-bg:    #f49ac0;
 
 // Tooltips
 // Popovers
@@ -151,18 +156,6 @@ $card-default-heading-bg:    #f49ac0;
 // Alerts
 // Progress bars
 // List group
-
-// Image thumbnails
-//** Padding around the thumbnail image
-$thumbnail-padding:           4px;
-//** Thumbnail background color
-$thumbnail-bg:                #fce0ec;
-//** Thumbnail border color
-$thumbnail-border:            #dddddd;
-//** Custom text color for thumbnail captions
-$thumbnail-caption-color:     #f0569f;
-//** Padding around the thumbnail caption
-$thumbnail-caption-padding:   9px;
 // Figures
 // Breadcrumbs
 $breadcrumb-padding-vertical:   8px;
@@ -175,24 +168,25 @@ $breadcrumb-separator:          "/";
 // Carousel
 
 // Close
-$close-font-weight:           bold;
-$close-color:                 #000000;
-$close-text-shadow:           0 1px 0 #ffffff;
+//$close-font-weight:           bold;
+//$close-color:                 #000000;
+//$close-text-shadow:           0 1px 0 #ffffff;
 
 // Code
 $code-color:                  #c7254e;
 $code-bg:                     #f9f2f4;
 
-$kbd-color:                   #ffffff;
-$kbd-bg:                      #333333;
+//$kbd-color:                   #ffffff;
+//$kbd-bg:                      #333333;
 
-$pre-bg:                      #f5f5f5;
-$pre-color:                   #c1d7ee;
-$pre-border-color:            #cccccc;
-$pre-scrollable-max-height:   340px;
+//$pre-bg:                      #f5f5f5;
+//$pre-color:                   #c1d7ee;
+//$pre-border-color:            #cccccc;
+//$pre-scrollable-max-height:   340px;
 
 // Wells (deprecated)
-$well-bg:                     #ffd1e7;
-$well-border:                 darken($well-bg, 7%);
+//$well-bg:                     #ffd1e7;
+//$well-border:                 darken($well-bg, 7%);
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
+

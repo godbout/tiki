@@ -12,6 +12,7 @@ $gray-300: #bbbbbb;
 $gray-100: #dddddd;
 
 $primary: #ad1d28; //These aren't overriding the defaults in this position, so were added to amelia.scss at the top.
+$secondary: #82241b;
 $success: #48ca3b;
 $info:    #4d3a7d;
 $warning: #debb27;
@@ -19,7 +20,7 @@ $danger:  #df6e1e;
 
 $theme-colors: (
 	"primary":        	#ad1d28,
-	"secondary": 		#dddddd,
+	"secondary": 		#82241b,
 	"success":         	#48ca3b,
 	"info":           	#4d3a7d,
 	"warning":         	#debb27,
@@ -52,6 +53,13 @@ $table-head-bg: #108a93;
 $table-head-color: #fff;
 // Forms
 // Dropdowns
+$dropdown-link-color: 				#fff;
+$dropdown-bg:                      #fff;
+$dropdown-border-color:            #444;
+$dropdown-link-color:              #444;
+$dropdown-link-hover-color:        #fff;
+$dropdown-link-hover-bg:           #15b5c1;
+
 // Navs
 // Navbar
 // Navbarlinks
@@ -60,6 +68,11 @@ $table-head-color: #fff;
 // Cards
 // Tooltips
 // Popovers
+$popover-bg: #13a0aa;
+$popover-body-color: #fff;
+$popover-header-bg: #18cbd8;
+$popover-header-color: #fff;
+
 // Badges
 // Modals
 $modal-content-bg: $body-bg;
@@ -83,3 +96,11 @@ $modal-content-bg: $body-bg;
 body.fullscreen { background: $body-bg; }
 
 .bg-dark { background: #ad1d28 !important; }
+
+$link-color: lighten($warning, 15%);
+$gray-500: lighten(#000000, 33.5%); //
+$link-hover-color: $link-color; // This has to be here because #link-color is defined by bs default, not be amelia.
+$body-bg: #108a93; // These work here, but not in amelia/bootstrap-variables, for some reason.
+$body-color: #ffffff; // "
+body.fullscreen { background-color: $body-bg; } // Moved here because it needs $body-bg
+

@@ -7450,14 +7450,14 @@ table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:n
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
     background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
-    background-color: #a8170e; }
+    background-color: rgba(13, 13, 13, 0); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerDesc {
     background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
-    background-color: #a8170e; }
+    background-color: rgba(13, 13, 13, 0); }
   table.tablesorter thead tr.tablesorter-filter-row {
     background: #e9ecef; }
   table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
-    background-color: #a8170e;
+    background-color: rgba(13, 13, 13, 0);
     color: #212529; }
 
 div.tablesorter-resizable-container {

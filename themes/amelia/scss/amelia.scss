@@ -11,7 +11,19 @@
 @import "variables"; // Needs to come first, to override defaults.
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
-@import "_bootswatch.scss";
 @import "../../base_files/scss/_tiki-selectors.scss";
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
+@import "_tiki-selectors.scss";
 @import "../../base_files/scss/_external-scripts.scss";
+
+// Hack to give .btn-secondary color to the "Files" button in tiki-page_bar.tpl.
+// Why does this work only here and not in variables or tiki-selectors?
+.btn-primary.btn-files {
+  color: #fff;
+  background-color: #82241b;
+  border-color: #82241b;
+  &:hover {
+	background-color: #621b14;
+	border-color: #581812;
+  }
+}

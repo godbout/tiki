@@ -6643,7 +6643,7 @@ themes/amelia/icons/index.php -text
 themes/amelia/images/amelia.png -text
 themes/amelia/images/index.php -text
 themes/amelia/index.php -text
-themes/amelia/scss/_bootswatch.scss -text
+themes/amelia/scss/_tiki-selectors.scss -text
 themes/amelia/scss/_variables.scss -text
 themes/amelia/scss/amelia.scss -text
 themes/amelia/scss/index.php -text

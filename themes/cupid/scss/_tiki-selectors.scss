@@ -6,10 +6,11 @@ $imagePath: "../images/";
 //	background-image: url('#{$imagePath}bg.jpg');
 //}
 
-body > .container {
-	.topbar {
-		margin-bottom: 20px;
-	}
+// Hack to give .btn-secondary color to the "Files" button in tiki-page_bar.tpl.
+.btn-primary.btn-files {
+  color: #a11b27;
+  background-color: #80d3cc;
+  border-color: #80d3cc;
 }
 
 a:focus {
@@ -81,13 +82,18 @@ h1:after, h2:after {
 	color: #f0569f;
 }
 
-.panel-heading {
+.card-header {
+	background-color: #f49ac0;
+	border-color: transparent;
 	border-top-right-radius: -1px;
 	border-top-left-radius: -1px;
 }
 
-.panel-default > .panel-heading * {
+h3.card-title {
 	color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
 }
 
 body.fullscreen { background: $body-bg; }

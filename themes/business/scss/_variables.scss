@@ -4,9 +4,21 @@
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 
 // Colors
+
+$primary:       #0082e0;
+$secondary:     #7400c3; // $gray-600 !default;
+$success:       #5cb85c;
+$info:          #5bc0de;
+$warning:       #f0ad4e;
+$danger:        #d9534f;
+
 $theme-colors: (
 	"primary": #0082e0,
-	"info": cyan
+	"secondary": #7400c3,
+	"success": #5cb85c,
+	"info": #5bc0de,
+	"warning": #f0ad4e,
+	"danger": #d9534f
 );
 
 $gray-500: #737373; //lighten(@gray-base, 33.5%);

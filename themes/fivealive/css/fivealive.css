@@ -6657,35 +6657,29 @@ div.cvsup {
   .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse, .layout_fixed_top_modules #top_modules .navbar-inverse {
     border-color: transparent; }
 
-.prio1 {
-  background: inherit; }
+.prio5 {
+  color: #212529; }
+  .prio5 a {
+    color: #212529; }
 
-.prio2 {
-  background: #5cb85c;
-  color: #5cb85c;
-  border: #5cb85c; }
-  .prio2 a {
+.prio4 {
+  color: #5cb85c; }
+  .prio4 a {
     color: #5cb85c; }
 
 .prio3 {
-  background: #5bc0de;
-  color: #5bc0de;
-  border: #5bc0de; }
+  color: #5bc0de; }
   .prio3 a {
     color: #5bc0de; }
 
-.prio4 {
-  background: #f0ad4e;
-  color: #f0ad4e;
-  border: #f0ad4e; }
-  .prio4 a {
+.prio2 {
+  color: #f0ad4e; }
+  .prio2 a {
     color: #f0ad4e; }
 
-.prio5 {
-  background: #d9534f;
-  color: #d9534f;
-  border: #d9534f; }
-  .prio5 a {
+.prio1 {
+  color: #d9534f; }
+  .prio1 a {
     color: #d9534f; }
 
 .messureadflag {
@@ -7116,6 +7110,27 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   font-family: Arial, Verdana, Geneva, Helvetica, sans-serif;
   font-size: 1rem; }
 
+.btn-primary.btn-files {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d; }
+  .btn-primary.btn-files:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #545b62; }
+  .btn-primary.btn-files:focus, .btn-primary.btn-files.focus {
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, .5); }
+  .btn-primary.btn-files.disabled, .btn-primary.btn-files:disabled {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d; }
+  .btn-primary.btn-files:not(:disabled):not(.disabled):active, .btn-primary.btn-files:not(:disabled):not(.disabled).active, .show > .btn-primary.btn-files.dropdown-toggle {
+    color: #fff;
+    background-color: #545b62;
+    border-color: #4e555b; }
+  .btn-primary.btn-files:not(:disabled):not(.disabled):active:focus, .btn-primary.btn-files:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.btn-files.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, .5); }
+
 .topbar {
   margin-bottom: 20px; }
 
@@ -7230,17 +7245,17 @@ header.header .sitetitles {
   font-size: 15px; }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
-  background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
+  background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
-    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
-    background-color: #f7f7f7; }
+    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+    background-color: rgba(13, 13, 13, 0); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerDesc {
-    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
-    background-color: #f7f7f7; }
+    background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+    background-color: rgba(13, 13, 13, 0); }
   table.tablesorter thead tr.tablesorter-filter-row {
     background: #e9ecef; }
   table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
-    background-color: #f7f7f7;
+    background-color: rgba(13, 13, 13, 0);
     color: #212529; }
 
 div.tablesorter-resizable-container {
