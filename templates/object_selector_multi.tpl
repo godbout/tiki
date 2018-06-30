@@ -21,7 +21,7 @@
 	data-filters="{$object_selector_multi.filter|escape}"
 	data-threshold="{$object_selector_multi.threshold|default:$prefs.tiki_object_selector_threshold|escape}"
 >{"\n"|implode:$object_selector_multi.current_selection}</textarea>
-	<div class="basic-selector hidden">
+	<div class="basic-selector d-none">
 		<select class="form-control" multiple>
 			{foreach $object_selector_multi.current_selection as $object}
 				<option value="{$object|escape}" selected="selected">{$object.title|escape}</option>
@@ -29,7 +29,7 @@
 		</select>
 	</div>
 
-	<div class="panel hidden">
+	<div class="panel d-none">
 		<div class="card-header">
 			<div class="input-group">
 				<div class="input-group-append">
@@ -55,7 +55,7 @@
 					</div>
 				{/foreach}
 			</div>
-			<p class="no-results hidden">
+			<p class="no-results d-none">
 				{tr}No matching results.{/tr}
 			</p>
 		</div>
