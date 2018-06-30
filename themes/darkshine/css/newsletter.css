@@ -6,11 +6,11 @@ body {
   padding: 15px; }
 
 a, a:visited {
-  color: #fd7931;
+  color: #600000;
   text-decoration: underline; }
 
 a:hover {
-  color: #df5002;
+  color: #140000;
   text-decoration: underline; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {

@@ -135,12 +135,12 @@ sup {
   top: -0.5em; }
 
 a {
-  color: #fd7931;
+  color: #600000;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects; }
   a:hover {
-    color: #df5002;
+    color: #140000;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -2289,10 +2289,10 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 
 .btn-link {
   font-weight: 400;
-  color: #fd7931;
+  color: #600000;
   background-color: transparent; }
   .btn-link:hover {
-    color: #df5002;
+    color: #140000;
     text-decoration: underline;
     background-color: transparent;
     border-color: transparent; }
@@ -3382,12 +3382,12 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #fd7931;
+  color: #600000;
   background-color: #fff;
   border: 1px solid #dee2e6; }
   .page-link:hover {
     z-index: 2;
-    color: #df5002;
+    color: #140000;
     text-decoration: none;
     background-color: #e9ecef;
     border-color: #dee2e6; }
@@ -6627,11 +6627,11 @@ a.fc-event:hover {
 
 .sf-arrows .sf-with-ul:after {
   border: 5px solid transparent;
-  border-top-color: #fd7931; }
+  border-top-color: #600000; }
 
 .cssmenu_vert.sf-arrows li > .sf-with-ul:after {
   border-color: transparent;
-  border-left-color: #fd7931;
+  border-left-color: #600000;
   /* edit this to suit design (no rgba in IE8) */ }
 
 .sf-arrows ul .sf-with-ul:after, .cssmenu_vert.sf-arrows ul > li > .sf-with-ul:after {
@@ -7019,10 +7019,10 @@ ul.all_languages > li {
   border-radius: 0.25rem; }
 
 .autotoc * {
-  color: #fd7931; }
+  color: #600000; }
 
 .autotoc .nav > li > a:hover, .autotoc .nav .nav > li > a:hover {
-  color: #df5002; }
+  color: #140000; }
 
 .plugin-form-float {
   background: #90140c;
@@ -7210,10 +7210,10 @@ div.drillshow {
   color: #212529; }
 
 .tiki .modal-content .ui-state-default {
-  color: #fd7931; }
+  color: #600000; }
 
 .tiki .modal-content .ui-state-hover:hover {
-  color: #df5002; }
+  color: #140000; }
 
 .dropdown-menu {
   color: #212529; }
@@ -7464,7 +7464,7 @@ h2.sitesubtitle {
   background: #f3f3f3; }
 
 .cssmenu_horiz a, .cssmenu_vert a {
-  color: #fd7931; }
+  color: #600000; }
 
 .topbar .cssmenu_horiz > li > a {
   color: #fff; }
@@ -7790,4 +7790,4 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     font-weight: normal;
     color: #212529; }
   .tiki .ui-widget-header a {
-    color: #fd7931; }
+    color: #600000; }
