@@ -274,7 +274,13 @@ class Smarty_Tiki extends Smarty
 	 */
 	public function fetch($_smarty_tpl_file = null, $_smarty_cache_id = null, $_smarty_compile_id = null, $parent = null, $_smarty_display = false, $merge_tpl_vars = true, $no_output_filter = false)
 	{
-		global $prefs, $inclusion;
+		if (strpos($_smarty_tpl_file, 'extends:') === 0) {
+
+			// temporarily disable extends_recursion which restores smarty < 3.1.28 behaviour
+			// see note at vendor_bundled/vendor/smarty/smarty/libs/Smarty.class.php:296 for more
+
+			$this->extends_recursion = false;
+		}
 		$this->muteExpectedErrors();
 		$this->refreshLanguage();
 
@@ -283,10 +289,16 @@ class Smarty_Tiki extends Smarty
 		$_smarty_tpl_file = $this->get_filename($_smarty_tpl_file);
 
 		if ($_smarty_display) {
-			return parent::display($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent);
+			$html = parent::display($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent);
 		} else {
-			return parent::fetch($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent);
+			$html = parent::fetch($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, $parent);
 		}
+
+		if (! $this->extends_recursion) {
+			$this->extends_recursion = true;
+		}
+
+		return $html;
 	}
 
 	/**
