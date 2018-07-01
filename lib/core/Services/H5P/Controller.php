@@ -317,7 +317,7 @@ class Services_H5P_Controller
 			);
 		} else {
 			$results = $editor->getLibraries();
-			$results = json_decode($results, true);
+			$results = json_decode(json_encode($results), true);
 		}
 
 		return [
