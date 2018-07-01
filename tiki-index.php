@@ -263,7 +263,7 @@ if (empty($info)) {
 	// right page to display in this case is one where applying a different slug degeneration to the requested page
 	// will result in a existing page. This will also help search engines to update the right location of a page.
 	$slugManager = TikiLib::lib('slugmanager');
-	foreach( TikiLib::lib('slugmanager')->getOptions() as $slugger => $desc) {
+	foreach( $slugManager->getOptions() as $slugger => $desc) {
 		$infoForSlug = $tikilib->get_page_info($slugManager->degenerate($slugger, $originalPageRequested));
 		if ($infoForSlug) {
 			$access->redirect($infoForSlug['pageSlug'], '', 301);
