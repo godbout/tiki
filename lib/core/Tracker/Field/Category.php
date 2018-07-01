@@ -516,7 +516,7 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 			->setRenderTransform(function ($value, $extra) use ($smarty, $matching, $categId) {
 				$categories = $matching($extra);
 
-				return in_array($categId, $categories) ? smarty_function_icon(['name' => 'success'], $smarty) : '';
+				return in_array($categId, $categories) ? smarty_function_icon(['name' => 'success'], $smarty->getEmptyInternalTemplate()) : '';
 			})
 			;
 		$schema->addNew($permName, 'check-' . $categId)

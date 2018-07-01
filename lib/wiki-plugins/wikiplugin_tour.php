@@ -229,7 +229,7 @@ if (tour) {
 					'_text' => tra($params['show_restart_button']),
 					'_id' => $unique . '_restart',
 					'href' => '#',
-				], $smarty);
+				], $smarty->getEmptyInternalTemplate());
 			$headerlib->add_jq_onready('$("#' . $unique . '_restart").click(function() {
 	tour.goTo(0);
 	tour.restart();

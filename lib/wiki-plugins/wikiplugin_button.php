@@ -191,6 +191,6 @@ function wikiplugin_button($data, $params)
 	$parserlib->parse_wiki_argvariable($params['href']);
 
 	include_once($path);
-	$content = smarty_function_button($params, $smarty);
+	$content = smarty_function_button($params, $smarty->getEmptyInternalTemplate());
 	return '~np~' . $content . '~/np~';
 }

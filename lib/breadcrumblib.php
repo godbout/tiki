@@ -219,7 +219,7 @@ function breadcrumb_buildStructureTrail($structure_path, $cnt, $loclass, $showLi
 		if ($len != $cnt) {
 			$ret = '';
 			if ($showLinks && ($crumb['pageName'] != $page || $crumb['page_alias'] != $page)) {
-				$url = smarty_function_sefurl(['page' => $crumb['pageName'], 'structure' => $structure_path[0]['pageName']], TikiLib::lib('smarty'));
+				$url = smarty_function_sefurl(['page' => $crumb['pageName'], 'structure' => $structure_path[0]['pageName']], TikiLib::lib('smarty')->getEmptyInternalTemplate());
 				$ret .= '<a class="' . $loclass . '" accesskey="' . ($cnt) . '" href="' . $url . '">';
 			}
 			if ($crumb['page_alias']) {
@@ -373,7 +373,7 @@ function _breadcrumb_getTitle($crumbs, $loc)
 	if (isset($info['flag']) && $info['flag'] == 'L' && $print_page != 'y') {
 		$smarty->loadPlugin('smarty_function_icon');
 		$ret .= smarty_function_icon(['name' => 'lock', 'iclass' => 'tips', 'ititle' => ':' . tra('Locked by')
-			. $info['user']], $smarty);
+			. $info['user']], $smarty->getEmptyInternalTemplate());
 	}
 	return $ret;
 }

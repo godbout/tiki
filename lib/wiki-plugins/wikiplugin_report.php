@@ -133,7 +133,7 @@ function wikiplugin_report($data, $params)
 
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_function_ticket');
-		$tiki_token = smarty_function_ticket([], $smarty);
+		$tiki_token = smarty_function_ticket([], $smarty->getEmptyInternalTemplate());
 
 
 		if (! isset($label)) {

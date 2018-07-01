@@ -680,7 +680,7 @@ function wikiplugin_pivottable($data, $params)
 					'title' => $row['type'],
 				];
 			}
-			$row['pivotLink'] = smarty_function_object_link($pivotLinkParams, $smarty);
+			$row['pivotLink'] = smarty_function_object_link($pivotLinkParams, $smarty->getEmptyInternalTemplate());
 		}
 	} else {
 		$params['aggregateDetails'] = [];

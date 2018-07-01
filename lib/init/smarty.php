@@ -691,4 +691,16 @@ class Smarty_Tiki extends Smarty
 		$this->addTemplateDir($this->main_template_dir . '/layouts/');
 		$this->addTemplateDir($this->main_template_dir);
 	}
+
+	/**
+	 * When calling directly smarty functions, from PHP, you need to provide a object of type Smarty_Internal_Template
+	 * The method signature for smarty functions is: smarty_function_xxxx($params, Smarty_Internal_Template $template)
+	 *
+	 * @return Smarty_Internal_Template
+	 */
+	public function getEmptyInternalTemplate()
+	{
+		$tpl = new Smarty_Internal_Template('empty', $this);
+		return $tpl;
+	}
 }

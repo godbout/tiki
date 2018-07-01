@@ -32,7 +32,7 @@ class Table_Code_Other extends Table_Code_Manager
 		if (parent::$s['colselect']['type'] === true) {
 			$buttons[] = '<button id="' . parent::$s['colselect']['button']['id']
 				. '" type="button" class="btn btn-primary btn-sm" title="' . parent::$s['colselect']['button']['text']
-				. '" style="margin-right:3px">' . smarty_function_icon(['name' => 'columns'], $smarty) . '</button>';
+				. '" style="margin-right:3px">' . smarty_function_icon(['name' => 'columns'], $smarty->getEmptyInternalTemplate()) . '</button>';
 			$jq[] = '$(\'button#' . parent::$s['colselect']['button']['id'] . '\').popover({'
 				. $this->nt2 . 'placement: \'right\','
 				. $this->nt2 . 'html: true,'
@@ -56,7 +56,7 @@ class Table_Code_Other extends Table_Code_Manager
 				. '\').trigger(\'sortReset\')' . $sr . ';});';
 			$buttons[] = '<button id="' . $s['reset']['id']
 				. '" type="button" class="btn btn-primary btn-sm tips" title=":' . $s['reset']['text']
-				. '" style="margin-right:3px">' . smarty_function_icon(['name' => 'sort'], $smarty) . '</button>';
+				. '" style="margin-right:3px">' . smarty_function_icon(['name' => 'sort'], $smarty->getEmptyInternalTemplate()) . '</button>';
 		}
 
 		//filters
@@ -66,7 +66,7 @@ class Table_Code_Other extends Table_Code_Manager
 			if ($f['type'] === 'reset') {
 				$buttons[] = '<button id="' . $f['reset']['id']
 					. '" type="button" class="btn btn-primary btn-sm tips" title=":' . $f['reset']['text'] . '">'
-					. smarty_function_icon(['name' => 'filter'], $smarty) . '</button>';
+					. smarty_function_icon(['name' => 'filter'], $smarty->getEmptyInternalTemplate()) . '</button>';
 			}
 			if (isset($buttons) && count($buttons) > 0) {
 				$htmlbefore[] = $this->iterate($buttons, '<div style="float:left">', '</div>', '', '', '');
@@ -159,18 +159,18 @@ class Table_Code_Other extends Table_Code_Manager
 				'</div>',
 				'<div class="btn-group">',
 				'	<button type="button" class="btn btn-primary btn-sm first right-margin">',
-				'		' . smarty_function_icon(['name' => 'backward_step'], $smarty),
+				'		' . smarty_function_icon(['name' => 'backward_step'], $smarty->getEmptyInternalTemplate()),
 				'	</button>',
 				'	<button type="button" class="btn btn-primary btn-sm prev right-margin">',
-				'		' . smarty_function_icon(['name' => 'backward'], $smarty),
+				'		' . smarty_function_icon(['name' => 'backward'], $smarty->getEmptyInternalTemplate()),
 				'	</button>',
 				'	<span class="pagedisplay right-margin">',
 				'	</span>',
 				'	<button type="button" class="btn btn-primary btn-sm next right-margin">',
-				'		' . smarty_function_icon(['name' => 'forward'], $smarty),
+				'		' . smarty_function_icon(['name' => 'forward'], $smarty->getEmptyInternalTemplate()),
 				'	</button>',
 				'	<button type="button" class="btn btn-primary btn-sm last right-margin">',
-				'		' . smarty_function_icon(['name' => 'forward_step'], $smarty),
+				'		' . smarty_function_icon(['name' => 'forward_step'], $smarty->getEmptyInternalTemplate()),
 				'	</button>',
 				'</div>',
 			];

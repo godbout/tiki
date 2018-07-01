@@ -485,7 +485,7 @@ class H5PLib
 			'controller' => 'h5p',
 			'action' => 'embed',
 			'fileId' => $content['file_id'],
-		], $smarty);
+		], $smarty->getEmptyInternalTemplate());
 
 
 		// Add JavaScript settings for this content

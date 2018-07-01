@@ -182,7 +182,7 @@ REG
 						]
 					),
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 		} elseif (! empty($user)) {
 			$html = '<span class="alert-warning">' . tra('Media ID or permission to upload video is required') . '</span>';

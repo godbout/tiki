@@ -204,7 +204,7 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 					'type' => 'file gallery',
 					'title' => $info['name'],
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 			$perms = TikiLib::lib('tiki')->get_perm_object($id, 'file gallery', $info);
 		} else {
@@ -226,7 +226,7 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 					'type' => $type,
 					'title' => $info['name'],
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 			$perms = TikiLib::lib('tiki')->get_perm_object($id, 'file', $info);
 		}

@@ -108,7 +108,7 @@ if ((isset($_REQUEST['reset']) && $section != 'global') || (isset($_REQUEST['res
 	$tikilib->delete_preference($prefName);
 	$tikilib->set_preference($prefName . 'modified', 'n');
 	$smarty->loadPlugin('smarty_function_query');
-	header('location: ?' . smarty_function_query(['_urlencode' => 'n'], $smarty));
+	header('location: ?' . smarty_function_query(['_urlencode' => 'n'], $smarty->getEmptyInternalTemplate()));
 }
 
 if (! empty($_REQUEST['save_tool']) && ! empty($_REQUEST['tool_name'])) {	// input from the tool edit form
@@ -123,7 +123,7 @@ if (! empty($_REQUEST['save_tool']) && ! empty($_REQUEST['tool_name'])) {	// inp
 	);
 
 	$smarty->loadPlugin('smarty_function_query');
-	header('location: ?' . smarty_function_query(['_urlencode' => 'n'], $smarty));
+	header('location: ?' . smarty_function_query(['_urlencode' => 'n'], $smarty->getEmptyInternalTemplate()));
 }
 
 $current = $tikilib->get_preference('toolbar_' . $section . ($comments ? '_comments' : ''));

@@ -264,7 +264,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 						'groupIds' => $groupIds,
 						'realnames' => $realnames,
 					],
-					$smarty
+					$smarty->getEmptyInternalTemplate()
 				);
 			}
 		} else {
@@ -485,7 +485,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 							'type' => 'trackeritem',
 							'id' => $extra['itemId'],
 							'title' => $v,
-						], $smarty);
+						], $smarty->getEmptyInternalTemplate());
 					}
 					return implode(', ', $value);
 				}
@@ -508,7 +508,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 							'type' => 'trackeritem',
 							'id' => $extra['itemId'],
 							'title' => smarty_modifier_username($v, true, false, false),
-						], $smarty);
+						], $smarty->getEmptyInternalTemplate());
 					}
 					return implode(', ', $value);
 				}

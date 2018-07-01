@@ -292,7 +292,7 @@ function add_watch_icons($descendants, $usercatwatches, $requestid, $categid, $d
 				'_menu_icon' => 'y',
 				'alt' => $tip_rem_desc,
 			],
-			$smarty
+			$smarty->getEmptyInternalTemplate()
 		) . '</a>';
 
 	$eye_rem = '<a href="tiki-browse_categories.php?' . 'parentId=' . $requestid
@@ -305,7 +305,7 @@ function add_watch_icons($descendants, $usercatwatches, $requestid, $categid, $d
 				'_menu_icon' => 'y',
 				'alt' => tra('Stop watching this category'),
 			],
-			$smarty
+			$smarty->getEmptyInternalTemplate()
 		) . '</a>';
 
 	$eye_add_desc = '<a href="tiki-browse_categories.php?' . 'parentId=' . $requestid
@@ -317,7 +317,7 @@ function add_watch_icons($descendants, $usercatwatches, $requestid, $categid, $d
 				'_menu_icon' => 'y',
 				'alt' => $tip_add_desc,
 			],
-			$smarty
+			$smarty->getEmptyInternalTemplate()
 		) . '</a>';
 
 	$eye_add = '<a href="tiki-browse_categories.php?' . 'parentId=' . $requestid
@@ -329,7 +329,7 @@ function add_watch_icons($descendants, $usercatwatches, $requestid, $categid, $d
 				'_menu_icon' => 'y',
 				'alt' => tra('Watch this category'),
 			],
-			$smarty
+			$smarty->getEmptyInternalTemplate()
 		) . '</a>';
 
 	foreach ($descendants as $descendant) {
@@ -385,13 +385,13 @@ function add_watch_icons($descendants, $usercatwatches, $requestid, $categid, $d
 					'_menu_icon' => 'y',
 					'alt' => $tip_group,
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			) . '</a>';
 	}
 	$alleyes = $eyes . $eyesgroup;
 	$popupparams = ['trigger' => 'click', 'fullhtml' => true, 'center' => true, 'text' => $alleyes];
-	return '<a class="tips" title="' . tra('Monitoring') . '" href="#" ' . smarty_function_popup($popupparams, $smarty)
-		. 'style="padding:0; margin:0; border:0">' . smarty_function_icon(['name' => 'wrench'], $smarty) . '</a>';
+	return '<a class="tips" title="' . tra('Monitoring') . '" href="#" ' . smarty_function_popup($popupparams, $smarty->getEmptyInternalTemplate())
+		. 'style="padding:0; margin:0; border:0">' . smarty_function_icon(['name' => 'wrench'], $smarty->getEmptyInternalTemplate()) . '</a>';
 
 
 //	return $eyes . $eyesgroup;

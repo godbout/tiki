@@ -282,7 +282,7 @@ $(window).on("load", function(){
 
 		$display = [];
 		foreach ($input->fields as $field) {
-			$html = smarty_function_service_inline($field->fetch->text(), $smarty);
+			$html = smarty_function_service_inline($field->fetch->text(), $smarty->getEmptyInternalTemplate());
 			$display[] = [
 				'label' => $field->label->text(),
 				'field' => new Tiki_Render_Editable($html, [

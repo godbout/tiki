@@ -100,7 +100,7 @@ function wikiplugin_survey($data, $params)
 	$smarty->assign('show_name', 'n');
 
 	include_once('lib/smarty_tiki/function.query.php');
-	$smarty->assign('form_action', smarty_function_query(['_type' => 'absolute_path'], $smarty));
+	$smarty->assign('form_action', smarty_function_query(['_type' => 'absolute_path'], $smarty->getEmptyInternalTemplate()));
 
 	if (! empty($params['lang'])) {
 		$result .= $smarty->fetchLang($params['lang'], 'tiki-take_survey.tpl');

@@ -59,7 +59,7 @@ function help_doclink($params)
 
 		$ret = '<a title="' . $url . '|' . htmlentities($desc, ENT_COMPAT, 'UTF-8') . '" href="'
 			. $prefs['helpurl'] . $url . '" target="tikihelp" class="tikihelp btn btn-link">'
-			. smarty_function_icon(['name' => 'help'], $smarty)
+			. smarty_function_icon(['name' => 'help'], $smarty->getEmptyInternalTemplate())
 			. '</a>';
 	}
 

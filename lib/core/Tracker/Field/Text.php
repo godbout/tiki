@@ -368,7 +368,7 @@ class Tracker_Field_Text extends Tracker_Field_Abstract implements Tracker_Field
 						'type' => 'trackeritem',
 						'id' => $extra['itemId'],
 						'title' => $value,
-					], $smarty);
+					], $smarty->getEmptyInternalTemplate());
 				} else {
 					return '';
 				}

@@ -428,7 +428,7 @@ abstract class Toolbar
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_function_icon');
 		return smarty_function_icon(['name' => $iname, 'ititle' => ':'
-				. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8'), 'iclass' => 'tips'], $smarty);
+				. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8'), 'iclass' => 'tips'], $smarty->getEmptyInternalTemplate());
 	} // }}}
 
 	function getSelfLink($click, $title, $class)
@@ -665,7 +665,7 @@ class ToolbarCkOnly extends Toolbar
 			$smarty = TikiLib::lib('smarty');
 			$smarty->loadPlugin('smarty_function_icon');
 			return smarty_function_icon(['name' => $this->iconname, 'ititle' => ':'
-					. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8'), 'iclass' => 'tips'], $smarty);
+					. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8'), 'iclass' => 'tips'], $smarty->getEmptyInternalTemplate());
 		}
 		if ((! empty($this->icon) && $this->icon !== 'img/icons/shading.png') || in_array($this->label, ['Autosave'])) {
 			return parent::getIconHtml();
@@ -1179,7 +1179,7 @@ class ToolbarDialog extends Toolbar
 				'_filter' => ['type' => ''],
 				'_parent' => 'tbOLinkObjectType',
 				'_parentkey' => 'type',
-				], $smarty);
+				], $smarty->getEmptyInternalTemplate());
 
 				$list = [tra('Object Link'),
 						'<label for="tbOLinkDesc">' . tra("Show this text") . '</label>',
@@ -1424,7 +1424,7 @@ class ToolbarHelptool extends Toolbar
 		}
 
 		$smarty->loadPlugin('smarty_function_icon');
-		$icon = smarty_function_icon(['name' => 'help'], $smarty);
+		$icon = smarty_function_icon(['name' => 'help'], $smarty->getEmptyInternalTemplate());
 		$url = $servicelib->getUrl($params);
 		$help = tra('Help');
 
@@ -1485,7 +1485,7 @@ class ToolbarFileGallery extends Toolbar
 		if ($prefs['fgal_elfinder_feature'] !== 'y') {
 			$smarty = TikiLib::lib('smarty');
 			$smarty->loadPlugin('smarty_function_filegal_manager_url');
-			return 'openFgalsWindow(\'' . htmlentities(smarty_function_filegal_manager_url(['area_id' => $areaId], $smarty)) . '\', true);';
+			return 'openFgalsWindow(\'' . htmlentities(smarty_function_filegal_manager_url(['area_id' => $areaId], $smarty->getEmptyInternalTemplate())) . '\', true);';
 		} else {
 			TikiLib::lib('header')->add_jq_onready(
 				'window.handleFinderInsertAt = function (file, elfinder, area_id) {
@@ -1564,7 +1564,7 @@ class ToolbarFileGalleryFile extends ToolbarFileGallery
 	{
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_function_filegal_manager_url');
-		return 'openFgalsWindow(\'' . htmlentities(smarty_function_filegal_manager_url(['area_id' => $areaId], $smarty))
+		return 'openFgalsWindow(\'' . htmlentities(smarty_function_filegal_manager_url(['area_id' => $areaId], $smarty->getEmptyInternalTemplate()))
 			. '&insertion_syntax=file\', true);';
 	}
 }

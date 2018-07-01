@@ -325,7 +325,7 @@ function wikiplugin_datachannel($data, $params)
 				$paymentlib->register_behavior($id, 'complete', 'execute_datachannel', [ $data, $params, $posts, $executionId ]);
 				require_once 'lib/smarty_tiki/function.payment.php';
 
-				return '^~np~' . smarty_function_payment([ 'id' => $id ], $smarty) . '~/np~^';
+				return '^~np~' . smarty_function_payment([ 'id' => $id ], $smarty->getEmptyInternalTemplate()) . '~/np~^';
 			}
 
 			$success = true;

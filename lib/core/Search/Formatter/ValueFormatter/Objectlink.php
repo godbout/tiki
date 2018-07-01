@@ -22,6 +22,6 @@ class Search_Formatter_ValueFormatter_Objectlink extends Search_Formatter_ValueF
 			$params['url'] = $entry['url'];
 		}
 
-		return '~np~' . smarty_function_object_link($params, $smarty) . '~/np~';
+		return '~np~' . smarty_function_object_link($params, $smarty->getEmptyInternalTemplate()) . '~/np~';
 	}
 }

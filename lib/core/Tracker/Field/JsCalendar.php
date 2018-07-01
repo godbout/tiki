@@ -134,7 +134,7 @@ class Tracker_Field_JsCalendar extends Tracker_Field_DateTime
 			$params['isutc'] = true;
 		}
 
-		return smarty_function_jscalendar($params, $smarty);
+		return smarty_function_jscalendar($params, $smarty->getEmptyInternalTemplate());
 	}
 
 	function isValid($ins_fields_data)

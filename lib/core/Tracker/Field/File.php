@@ -92,7 +92,7 @@ class Tracker_Field_File extends Tracker_Field_Abstract
 				'_script' => 'tiki-download_item_attachment.php',
 				'attId' => $att_id,
 			],
-			smarty_function_icon(['_id' => 'disk', 'alt' => tra('Download')], $smarty) . ' ' .
+			smarty_function_icon(['_id' => 'disk', 'alt' => tra('Download')], $smarty->getEmptyInternalTemplate()) . ' ' .
 			$attachment['filename'],
 			$smarty
 		);

@@ -154,7 +154,7 @@ function wikiplugin_sheet($data, $params)
 				$content = htmlentities($data);
 				$formId = "form$index";
 				$smarty->loadPlugin('smarty_function_ticket');
-				$ticket = smarty_function_ticket([], $smarty);
+				$ticket = smarty_function_ticket([], $smarty->getEmptyInternalTemplate());
 				return <<<EOF
 				~np~
 				<form id="$formId" method="post" action="tiki-wikiplugin_edit.php">
@@ -268,7 +268,7 @@ EOF;
 			$button_params = ['_text' => tra("Edit Sheet"), '_script' => "tiki-view_sheets.php?sheetId=$id&parse=edit$urlHeight&page=$page", '_class' => "tiki_sheeteditbtn"];
 		}
 
-		$ret .= smarty_function_button($button_params, $smarty);
+		$ret .= smarty_function_button($button_params, $smarty->getEmptyInternalTemplate());
 	}
 	return '~np~' . $ret . '~/np~';
 }

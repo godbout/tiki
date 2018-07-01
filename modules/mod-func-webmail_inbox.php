@@ -192,7 +192,7 @@ function webmail_refresh() 	// called in ajax mode
 			'error',
 			tra('No accounts set up (or no current account set)') . '&nbsp;' .
 			'<a href="tiki-webmail.php?locSection=settings">' .
-			smarty_function_icon(['_id' => 'arrow_right'], $smarty)
+			smarty_function_icon(['_id' => 'arrow_right'], $smarty->getEmptyInternalTemplate())
 		) . '</a>';
 		return;
 	}

@@ -1412,7 +1412,7 @@ class TikiLib extends TikiDb_Bridge
 				$smarty = TikiLib::lib('smarty');
 				$smarty->loadPlugin('smarty_function_icon');
 				$star = smarty_function_icon(['name' => 'star', 'istyle' => 'color:' . $color, 'iclass' => 'tips',
-					'ititle' => ':' . $alt], $smarty) . "&nbsp;";
+					'ititle' => ':' . $alt], $smarty->getEmptyInternalTemplate()) . "&nbsp;";
 			}
 		}
 		return $star;

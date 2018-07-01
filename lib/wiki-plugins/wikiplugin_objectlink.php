@@ -48,6 +48,6 @@ function wikiplugin_objectlink($data, $params)
 			'type' => $params['type'],
 			'id' => $params['id'],
 		],
-		$smarty
+		$smarty->getEmptyInternalTemplate()
 	);
 }

@@ -79,7 +79,7 @@ class Search_Formatter_ValueFormatter_Categorylist extends Search_Formatter_Valu
 						foreach ($p_info['tepath'] as $key => $value) {
 							if ($foundRoot || $this->requiredParents == "all") {
 								$params = ['type' => 'category', 'id' => $key];
-								$link = smarty_function_object_link($params, $smarty);
+								$link = smarty_function_object_link($params, $smarty->getEmptyInternalTemplate());
 								if (empty($printedPath)) {
 									$printedPath = $link;
 								} else {
@@ -131,7 +131,7 @@ class Search_Formatter_ValueFormatter_Categorylist extends Search_Formatter_Valu
 					$list .= "<h5>{$myArr[$k]['name']}</h5><ul class=\"categoryLinks\">";
 					foreach ($v as $t) {
 						$params = ['type' => 'category', 'id' => $t];
-						$link = smarty_function_object_link($params, $smarty);
+						$link = smarty_function_object_link($params, $smarty->getEmptyInternalTemplate());
 						$list .= "<li>" . $link . "</li>";
 					}
 					$list .= "</ul>";
@@ -139,7 +139,7 @@ class Search_Formatter_ValueFormatter_Categorylist extends Search_Formatter_Valu
 					$list .= "{$myArr[$k]['name']}: ";
 					foreach ($v as $t) {
 						$params = ['type' => 'category', 'id' => $t];
-						$link = smarty_function_object_link($params, $smarty);
+						$link = smarty_function_object_link($params, $smarty->getEmptyInternalTemplate());
 						$list .= $link . $this->separator;
 					}
 				}

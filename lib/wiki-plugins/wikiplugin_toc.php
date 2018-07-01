@@ -159,7 +159,7 @@ function wikiplugin_toc($data, $params)
 				'_ajax'		=> 'n',
 				'_auto_args' => 'save_structure,page_ref_id',
 			],
-			$smarty
+			$smarty->getEmptyInternalTemplate()
 		);
 	} else {
 		$button = '';

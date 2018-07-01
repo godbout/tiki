@@ -189,7 +189,7 @@ function wikiplugin_convene($data, $params)
 
 	//start date header
 	$dateHeader = "";
-	$deleteicon = smarty_function_icon(['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':' . tr('Delete Date')], $smarty);
+	$deleteicon = smarty_function_icon(['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':' . tr('Delete Date')], $smarty->getEmptyInternalTemplate());
 	$tikiDate = new TikiDate();
 	$gmformat = str_replace($tikiDate->search, $tikiDate->replace, $tikilib->get_short_datetime_format());
 
@@ -244,22 +244,22 @@ function wikiplugin_convene($data, $params)
 
 		$userList .= "<td style='white-space: nowrap'>" . $avatar . ($editThisUser ? "<button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
 				. smarty_function_icon(['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
-					. tr("Edit User/Save changes")], $smarty)
+					. tr("Edit User/Save changes")], $smarty->getEmptyInternalTemplate())
 				. "</button><button data-user='$user' title='" . tr("Delete User")
 				. "' class='conveneDeleteUser$i icon btn btn-danger btn-sm'>"
-				. smarty_function_icon(['name' => 'delete'], $smarty) . "</button> " : "")
+				. smarty_function_icon(['name' => 'delete'], $smarty->getEmptyInternalTemplate()) . "</button> " : "")
 				. "<div style='display:inline-block;$rightPadding'>" . smarty_modifier_userlink($user) . "</div></td>";
 
 		foreach ($row as $stamp => $vote) {
 			if ($vote == 1) {
 				$class = "convene-ok text-center text-success";
-				$text = smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':' . tr('OK'), 'size' => 2], $smarty);
+				$text = smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':' . tr('OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			} elseif ($vote == -1) {
 				$class = "convene-no text-center text-danger";
-				$text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':' . tr('Not OK'), 'size' => 2], $smarty);
+				$text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':' . tr('Not OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			} else {
 				$class = "convene-unconfirmed text-center text-muted";
-				$text = smarty_function_icon(['name' => 'help', 'iclass' => 'tips', 'ititle' => ':' . tr('Unconfirmed'), 'size' => 2], $smarty);
+				$text = smarty_function_icon(['name' => 'help', 'iclass' => 'tips', 'ititle' => ':' . tr('Unconfirmed'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			}
 
 			$userList .= "<td class='$class'>" . $text
@@ -299,11 +299,11 @@ function wikiplugin_convene($data, $params)
 	foreach ($votes as $stamp => $total) {
 		$pic = "";
 		if ($total == $votes[$topVoteStamp]) {
-			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips text-success', 'ititle' => ':' . tr("Selected Date"), 'size' => 2], $smarty) : "");
+			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips text-success', 'ititle' => ':' . tr("Selected Date"), 'size' => 2], $smarty->getEmptyInternalTemplate()) : "");
 			if ($canEdit && $votes[$topVoteStamp] >= $minvotes) {
 				$pic .= "<a class='btn btn-primary btn-sm' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
 					. tr("Add as Calendar Event") . "'>"
-					. smarty_function_icon(['name' => 'calendar'], $smarty)
+					. smarty_function_icon(['name' => 'calendar'], $smarty->getEmptyInternalTemplate())
 					. "</a>";
 			}
 		}
@@ -315,7 +315,7 @@ function wikiplugin_convene($data, $params)
 	$result .= "</tr>";
 	//end last row with auto selected date(s)
 	$smarty->loadPlugin('smarty_function_ticket');
-	$ticket = smarty_function_ticket(['mode' => 'get'], $smarty);
+	$ticket = smarty_function_ticket(['mode' => 'get'], $smarty->getEmptyInternalTemplate());
 
 
 	$result = <<<FORM

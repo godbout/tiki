@@ -1400,9 +1400,9 @@ class StructLib extends TikiLib
 			}
 			$option['name'] = empty($channel['page_alias']) ? $pageName : $channel['page_alias'];
 			$option['type'] = empty($channel['sub']) ? 'o' : ($sectionLevel ? $sectionLevel : 's');
-			$option['url'] = smarty_function_sefurl(['page' => $channel['pageName'], 'structure' => $structure, 'page_ref_id' => $channel['page_ref_id'], 'sefurl' => 'n'], $smarty);
+			$option['url'] = smarty_function_sefurl(['page' => $channel['pageName'], 'structure' => $structure, 'page_ref_id' => $channel['page_ref_id'], 'sefurl' => 'n'], $smarty->getEmptyInternalTemplate());
 			$option['canonic'] = '((' . $channel['pageName'] . '))';
-			$option['sefurl'] = smarty_function_sefurl(['page' => $channel['pageName'], 'structure' => $structure, 'page_ref_id' => $channel['page_ref_id']], $smarty);
+			$option['sefurl'] = smarty_function_sefurl(['page' => $channel['pageName'], 'structure' => $structure, 'page_ref_id' => $channel['page_ref_id']], $smarty->getEmptyInternalTemplate());
 			$option['position'] = $cant + $cumul;
 			$option['sectionLevel'] = $sectionLevel;
 

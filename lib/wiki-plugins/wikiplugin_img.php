@@ -1359,7 +1359,7 @@ function wikiplugin_img($data, $params)
 
 			$smarty->loadPlugin('smarty_function_popup');
 
-			$mouseover = ' ' . smarty_function_popup($popup_params, $smarty);
+			$mouseover = ' ' . smarty_function_popup($popup_params, $smarty->getEmptyInternalTemplate());
 		} else {
 			if (! empty($imgdata['fileId']) && $imgdata['thumb'] != 'download' && empty($urldisp)) {
 				$link = $browse_full_image . '&display';
@@ -1541,12 +1541,12 @@ function wikiplugin_img($data, $params)
 				$repl .= ' title="' . $titleonly . '"';
 			}
 			$repl .= ">\r\t\t\t\t" . smarty_function_icon(['name' => 'view', 'iclass' => 'tips',
-					'ititle' => ':' . tra('Enlarge')], $smarty) . '</a>' . "\r\t\t\t</div>";
+					'ititle' => ':' . tra('Enlarge')], $smarty->getEmptyInternalTemplate()) . '</a>' . "\r\t\t\t</div>";
 		}
 		//Add metadata icon
 		if ($imgdata['metadata'] == 'view') {
 			$repl .= '<div style="float:right; margin-right:2px"><a href="#" id="' . $id_link
-				. '" class="tips" title=":' . tra('Metadata') . '">' . smarty_function_icon(['name' => 'tag'], $smarty)
+				. '" class="tips" title=":' . tra('Metadata') . '">' . smarty_function_icon(['name' => 'tag'], $smarty->getEmptyInternalTemplate())
 				. '</a></div>';
 		}
 		//Add description based on user setting (use $desconly from above) and close divs
@@ -1664,7 +1664,7 @@ function wikiplugin_img($data, $params)
 				. tr("Draw on the Image") . "\"" .
 				" class=\"editplugin pluginImgEdit{$imgdata['fileId']}\" data-fileid=\"{$imgdata['fileId']}\" " .
 				"data-galleryid=\"{$dbinfo['galleryId']}\"{$iconDisplayStyle} data-imgparams='$jsonParams'>" .
-				smarty_function_icon(['name' => 'edit', 'iclass' => 'tips', 'ititle' => ':' . tra('Edit')], $smarty)
+				smarty_function_icon(['name' => 'edit', 'iclass' => 'tips', 'ititle' => ':' . tra('Edit')], $smarty->getEmptyInternalTemplate())
 				. '</a>';
 		}
 	}

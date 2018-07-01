@@ -492,7 +492,7 @@ window.customsearch_$id = customsearch;
 	if ($dr) {
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_function_js_insert_icon');
-		$iconinsert = smarty_function_js_insert_icon(['type' => 'jscalendar', 'return' => 'y'], $smarty);
+		$iconinsert = smarty_function_js_insert_icon(['type' => 'jscalendar', 'return' => 'y'], $smarty->getEmptyInternalTemplate());
 	} else {
 		$iconinsert = '';
 	}
@@ -965,8 +965,8 @@ function cs_design_daterange($id, $fieldname, $fieldid, $arguments, $default, &$
 	}
 
 	$picker = '';
-	$picker .= smarty_function_jscalendar($params_from, $smarty);
-	$picker .= smarty_function_jscalendar($params_to, $smarty);
+	$picker .= smarty_function_jscalendar($params_from, $smarty->getEmptyInternalTemplate());
+	$picker .= smarty_function_jscalendar($params_to, $smarty->getEmptyInternalTemplate());
 
 	$script .= "
 $('#{$fieldid_from}_dptxt,#{$fieldid_to}_dptxt').change(function() {

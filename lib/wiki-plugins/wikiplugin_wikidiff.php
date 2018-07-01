@@ -159,6 +159,6 @@ function wikiplugin_wikidiff($data, $params)
 	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_function_wikidiff');
 
-	$ret = smarty_function_wikidiff($params, $smarty);
+	$ret = smarty_function_wikidiff($params, $smarty->getEmptyInternalTemplate());
 	return $ret;
 }

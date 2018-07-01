@@ -2058,7 +2058,7 @@ class FileGalLib extends TikiLib
 		$subGalleries = $this->getSubGalleries($galleryIdentifier);
 
 		$smarty->loadPlugin('smarty_function_icon');
-		$icon = '&nbsp;' . smarty_function_icon(['name' => 'file-archive-open'], $smarty) . '&nbsp;';
+		$icon = '&nbsp;' . smarty_function_icon(['name' => 'file-archive-open'], $smarty->getEmptyInternalTemplate()) . '&nbsp;';
 
 		$smarty->loadPlugin('smarty_block_self_link');
 		$linkParameters = ['_script' => 'tiki-list_file_gallery.php', '_class' => 'fgalname'];

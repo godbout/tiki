@@ -308,11 +308,11 @@ function wikiplugin_vimeo($data, $params)
 						'controller' => 'vimeo',
 						'action' => 'upload',
 					],
-					$smarty
+					$smarty->getEmptyInternalTemplate()
 				),
 				'_text' => tra('Upload Video'),
 			],
-			$smarty
+			$smarty->getEmptyInternalTemplate()
 		);
 
 		$js = '

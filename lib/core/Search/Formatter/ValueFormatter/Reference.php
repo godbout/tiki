@@ -31,7 +31,7 @@ class Search_Formatter_ValueFormatter_Reference extends Search_Formatter_ValueFo
 				'type' => $this->type,
 				'id' => $id,
 			];
-			$links[] = smarty_function_object_link($params, $smarty);
+			$links[] = smarty_function_object_link($params, $smarty->getEmptyInternalTemplate());
 		}
 
 		return '~np~' . implode($this->separator, $links) . '~/np~';

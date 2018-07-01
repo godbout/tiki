@@ -97,7 +97,7 @@ class Tracker_Field_PageSelector extends Tracker_Field_Abstract
 						'type' => 'wikipage',
 						'id' => $value,
 					],
-					$smarty
+					$smarty->getEmptyInternalTemplate()
 				);
 			}
 		}

@@ -183,7 +183,7 @@ class Tracker_field_Image extends Tracker_Field_File
 			}
 		}
 		$smarty->loadPlugin('smarty_function_html_image');
-		$ret = smarty_function_html_image($params, $smarty);
+		$ret = smarty_function_html_image($params, $smarty->getEmptyInternalTemplate());
 		if (! empty($pre)) {
 			$ret = $pre . $ret . '</a>';
 		}

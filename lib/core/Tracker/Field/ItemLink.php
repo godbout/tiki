@@ -507,7 +507,7 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 						'id' => $this->getOption('linkPage') . '&itemId=' . $item,	// add itemId param TODO properly
 						'title' => $label,
 					],
-					$smarty
+					$smarty->getEmptyInternalTemplate()
 				);
 				// decode & and = chars
 				return str_replace(['%26','%3D'], ['&','='], $link);

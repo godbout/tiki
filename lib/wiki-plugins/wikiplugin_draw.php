@@ -178,7 +178,7 @@ EOF;
 
 		if ($globalperms->upload_files == 'y') {
 			$smarty->loadPlugin('smarty_function_icon');
-			$editicon = smarty_function_icon(['name' => 'edit'], $smarty);
+			$editicon = smarty_function_icon(['name' => 'edit'], $smarty->getEmptyInternalTemplate());
 			$ret .= "<a href='tiki-edit_draw.php?fileId=$id&page=$page&index=$drawIndex&label=$label" .
 				(isset($width) ? "&width=$width" : "") . (isset($height) ? "&height=$height" : "") .
 				"' onclick='return $(this).ajaxEditDraw();'  title='Edit: " . $fileInfo['filename'] .

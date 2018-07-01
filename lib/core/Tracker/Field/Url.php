@@ -75,7 +75,7 @@ class Tracker_Field_Url extends Tracker_Field_Abstract implements Tracker_Field_
 					'type' => 'external',
 					'id' => $url,
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 		} elseif ($this->getOption('linkToURL') == 0) { // URL as link
 			$parsedUrl = trim(str_replace('<br />', '', TikiLib::lib('parser')->parse_data($url)));
@@ -89,7 +89,7 @@ class Tracker_Field_Url extends Tracker_Field_Abstract implements Tracker_Field_
 					'id' => $url,
 					'title' => $url,
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 		} elseif ($this->getOption('linkToURL') == 3) { // URL + site title
 			$smarty->loadPlugin('smarty_function_object_link');
@@ -98,7 +98,7 @@ class Tracker_Field_Url extends Tracker_Field_Abstract implements Tracker_Field_
 					'type' => 'external_extended',
 					'id' => $url,
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 		} elseif ($this->getOption('linkToURL') == 4) { // URL as link
 			$smarty->loadPlugin('smarty_function_object_link');
@@ -108,7 +108,7 @@ class Tracker_Field_Url extends Tracker_Field_Abstract implements Tracker_Field_
 					'id' => $url,
 					'title' => tr($this->getOption('other')),
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 		} else {
 			return $url;

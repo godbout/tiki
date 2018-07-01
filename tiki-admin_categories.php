@@ -321,7 +321,7 @@ foreach ($categories as $category) {
 					'_menu_icon' => 'y',
 					'alt' => tra('Edit'),
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			)
 			. '</a>';
 		$data .= '<a href="tiki-admin_categories.php?parentId='
@@ -336,7 +336,7 @@ foreach ($categories as $category) {
 					'_menu_icon' => 'y',
 					'alt' => tra('Delete'),
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			)
 			. '</a>';
 
@@ -351,7 +351,7 @@ foreach ($categories as $category) {
 				'type' => 'category',
 				'mode' => 'text',
 			],
-			$smarty
+			$smarty->getEmptyInternalTemplate()
 		);
 		$popupparams = ['trigger' => 'click', 'fullhtml' => 1, 'center' => true, 'text' => $data];
 		$newdata = '<a class="tips" title="'
@@ -359,9 +359,9 @@ foreach ($categories as $category) {
 			. '" href="#" '
 			. smarty_function_popup(
 				$popupparams,
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			)
-			. 'style="padding:0; margin:0; border:0">' . smarty_function_icon(['name' => 'wrench'], $smarty) . '</a>';
+			. 'style="padding:0; margin:0; border:0">' . smarty_function_icon(['name' => 'wrench'], $smarty->getEmptyInternalTemplate()) . '</a>';
 
 		$catlink = '<a class="catname" href="tiki-admin_categories.php?parentId=' . $category["categId"] .
 			'" style="margin-left:5px">' . htmlspecialchars($category['name']) . '</a> ';

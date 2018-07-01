@@ -69,7 +69,7 @@ if (count($filter) || count($postfilter)) {
 					'id' => $res['object_id'],
 					'title' => $res['title'],
 				],
-				$smarty
+				$smarty->getEmptyInternalTemplate()
 			);
 			$res = array_filter(
 				$res,

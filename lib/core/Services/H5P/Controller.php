@@ -49,7 +49,7 @@ class Services_H5P_Controller
 						]),
 						'_text' => tra('Create H5P content'),
 						'_class' => 'create-h5p-content btn-sm',
-					], $smarty),
+					], $smarty->getEmptyInternalTemplate()),
 				];
 			} else {
 				throw new Services_Exception_NotAvailable(tr('H5P Embed:') . ' ' . tr('No fileID provided.'));
@@ -95,7 +95,7 @@ class Services_H5P_Controller
 				]),
 				'_text' => tra('Edit'),
 				'_class' => 'edit-h5p-content btn-sm',
-			], $smarty);
+			], $smarty->getEmptyInternalTemplate());
 		}
 		return [
 			'html' => $html,

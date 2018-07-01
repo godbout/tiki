@@ -613,7 +613,7 @@ class WikiPlugin_Negotiator_Wiki
 
 			$button = '<a id="' . $id . '" class="editplugin tips"' . $iconDisplayStyle . '>' .
 						smarty_function_icon(['name' => 'plugin', 'iclass' => 'tips',
-						'ititle' => tra('Edit Plugin') . ':' . $this->name], $smarty) . '</a>'
+						'ititle' => tra('Edit Plugin') . ':' . $this->name], $smarty->getEmptyInternalTemplate()) . '</a>'
 			;
 
 			if ($wrapInNp == false) {

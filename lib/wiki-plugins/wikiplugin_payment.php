@@ -32,5 +32,5 @@ function wikiplugin_payment($data, $params)
 	$smarty = TikiLib::lib('smarty');
 
 	require_once 'lib/smarty_tiki/function.payment.php';
-	return '^~np~' . smarty_function_payment($params, $smarty) . '~/np~^';
+	return '^~np~' . smarty_function_payment($params, $smarty->getEmptyInternalTemplate()) . '~/np~^';
 }

@@ -99,7 +99,7 @@ if ($selectedId && $selectedPerspectiveInfo) {
 		$results = array_diff($results, array_keys($selectedPerspectiveInfo['preferences']));
 
 		foreach ($results as $name) {
-			echo smarty_function_preference(['name' => $name], $smarty);
+			echo smarty_function_preference(['name' => $name], $smarty->getEmptyInternalTemplate());
 		}
 
 		exit;

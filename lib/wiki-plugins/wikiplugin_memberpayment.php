@@ -405,10 +405,10 @@ function wikiplugin_memberpayment($data, $params, $offset)
 				$smarty->assign('wp_member_title', $params['howtitle']);
 				$smarty->assign('wp_member_titleonly', $params['howtitleonly']);
 			require_once 'lib/smarty_tiki/function.payment.php';
-			return '^~np~' . smarty_function_payment([ 'id' => $id ], $smarty) . '~/np~^';
+			return '^~np~' . smarty_function_payment([ 'id' => $id ], $smarty->getEmptyInternalTemplate()) . '~/np~^';
 		} elseif ($prefs['payment_system'] == 'cclite' && isset($_POST['cclite_payment_amount']) && isset($_POST['invoice'])) {
 			require_once 'lib/smarty_tiki/function.payment.php';
-			return '^~np~' . smarty_function_payment([ 'id' => $_POST['invoice'] ], $smarty) . '~/np~^';
+			return '^~np~' . smarty_function_payment([ 'id' => $_POST['invoice'] ], $smarty->getEmptyInternalTemplate()) . '~/np~^';
 		}
 
 		return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_memberpayment.tpl') . '~/np~';

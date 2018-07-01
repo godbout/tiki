@@ -57,6 +57,6 @@ function wikiplugin_modulelist($data, $params)
 			'zone' => $params['zone'],
 			'id' => $params['zone'] . '_plugin_modules',
 		],
-		$smarty
+		$smarty->getEmptyInternalTemplate()
 	);
 }

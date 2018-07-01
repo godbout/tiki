@@ -82,9 +82,9 @@ class WikiParser_PluginOutput
 			$smarty->loadPlugin('smarty_function_ticket');
 			$content .= '<form method="post" action="tiki-admin.php">';
 			foreach ($preferences as $pref) {
-				$content .= smarty_function_preference(['name' => $pref], $smarty);
+				$content .= smarty_function_preference(['name' => $pref], $smarty->getEmptyInternalTemplate());
 			}
-			$content .= smarty_function_ticket([], $smarty);
+			$content .= smarty_function_ticket([], $smarty->getEmptyInternalTemplate());
 			$content .= '<input type="submit" class="btn btn-default btn-sm" value="'
 				. smarty_modifier_escape(tra('Set')) . '">';
 			$content .= '</form>';

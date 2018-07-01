@@ -135,7 +135,7 @@ class Tracker_Field_Checkbox extends Tracker_Field_Abstract implements Tracker_F
 			->setLabel($name)
 			->setPlainReplacement('X')
 			->setRenderTransform(function ($value) use ($smarty) {
-				return ('y' === $value) ? smarty_function_icon(['name' => 'success'], $smarty) : '';
+				return ('y' === $value) ? smarty_function_icon(['name' => 'success'], $smarty->getEmptyInternalTemplate()) : '';
 			})
 			;
 
