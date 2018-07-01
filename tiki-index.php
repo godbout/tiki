@@ -178,7 +178,7 @@ if (! empty($page_ref_id)) {
 	$smarty->assign('page_ref_id', $page_ref_id);
 }
 
-$page = $_REQUEST['page'];
+$originalPageRequested = $page = $_REQUEST['page'];
 if ($prefs['wiki_url_scheme'] !== 'urlencode') {
 	$page = TikiLib::lib('wiki')->get_page_by_slug($page);
 }
@@ -255,6 +255,19 @@ if (! $info || isset($_REQUEST['date']) || isset($_REQUEST['version'])) {
 		}
 	} else {
 		$info = $tikilib->get_page_info($page);
+	}
+}
+
+if (empty($info)) {
+	// If not found maybe was because of old wiki url encode strategy, and the slugs not being regenerated after. The
+	// right page to display in this case is one where applying a different slug degeneration to the requested page
+	// will result in a existing page. This will also help search engines to update the right location of a page.
+	$slugManager = TikiLib::lib('slugmanager');
+	foreach( TikiLib::lib('slugmanager')->getOptions() as $slugger => $desc) {
+		$infoForSlug = $tikilib->get_page_info($slugManager->degenerate($slugger, $originalPageRequested));
+		if ($infoForSlug) {
+			$access->redirect($infoForSlug['pageSlug'], '', 301);
+		}
 	}
 }
 
