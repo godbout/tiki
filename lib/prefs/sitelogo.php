@@ -43,7 +43,7 @@ function prefs_sitelogo_list()
 		],
 		'sitelogo_icon' => [
 			'name' => tra('Site icon'),
-			'description' => tr('This is to be used in narrow (top to bottom) page headers. In some layouts, the site logo is scaled down to fit.'),
+			'description' => tr('This is used in narrow (top to bottom) page headers. In some layouts, the image is scaled down to fit in the available space.'),
 			'hint' => tra('Recommended image height: 32 pixel'),
 			'type' => 'text',
 			'default' => 'img/tiki/tikilogo_icon.png',

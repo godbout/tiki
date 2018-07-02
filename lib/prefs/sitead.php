@@ -11,7 +11,7 @@ function prefs_sitead_list()
 		'sitead_publish' => [
 			'name' => tra('Publish'),
 			'type' => 'flag',
-			'description' => tra('Make the Banner visible to all site visitors.'),
+			'description' => tra('Make the banner visible to all site visitors.'),
 			'dependencies' => [
 				'feature_sitead',
 			],

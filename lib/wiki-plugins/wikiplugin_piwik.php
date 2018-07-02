@@ -22,7 +22,7 @@ function wikiplugin_piwik_info()
 				'required' => false,
 				'name' => tra('Piwik server url'),
 				'description' => tr('The url to your Piwik Server, where data for the report are collected and available.') . ' <code>http(s)://yourpiwik.tld/index.php?</code> ' . '<br />'
-					. tr('In your Piwik, your selected site (Site Id) MUST have view permission for anonymous OR you can insert in your Piwik server url a token authentification parameter.') . '<br />'
+					. tr('In Piwik, the selected site (Site Id) must have view permission set for anonymous, or a token authentication parameter can be inserted in the Piwik server URL..') . '<br />'
 					. '<code>http(s)://yourpiwik.tld/index.php&token_auth=yourtokencode</code> ' . tr('Important : token_auth is visible in the html code and must be used in private page accessible to trusted users.'),
 				'since' => '15',
 				'default' => '',
