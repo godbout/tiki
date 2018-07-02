@@ -34,7 +34,7 @@ function prefs_theme_list($partial = false)
 	return [
 		'theme' => [
 			'name' => tr('Site theme'),
-			'description' => tr('The default theme for the site. Themes are bootstrap.css variants, including updated legacy Tiki themes as well as themes from Bootswatch.com. For more information about Bootstrap, see getbootstrap.com.'),
+			'description' => tr('The default theme for the site. Themes are bootstrap.css variants, including original Tiki themes as well as implementations of themes from Bootswatch.com. For more information about Bootstrap, see getbootstrap.com.'),
 			'type' => 'list',
 			'default' => 'default',
 			'options' => $themes,
@@ -63,7 +63,7 @@ function prefs_theme_list($partial = false)
 			'name' => tra('Admin theme'),
 			'type' => 'list',
 			'help' => 'Themes',
-			'description' => tra('Theme for the settings panels.'),
+			'description' => tra('Theme for the settings panels and other administration pages'),
 			'options' => $admin_themes,
 			'default' => '',
 			'tags' => ['basic'],
@@ -78,10 +78,10 @@ function prefs_theme_list($partial = false)
 			'tags' => ['basic'],
 		],
 		'theme_option_includes_main' => [
-			'name' => tra('Option theme includes main theme css'),
+			'name' => tra('Option theme includes main theme CSS'),
 			'type' => 'flag',
 			'help' => 'Themes',
-			'description' => tra('Don\'t include the main theme css file because its contents are included in the options\'s css'),
+			'description' => tra('Don\'t include the main theme stylesheet because its contents are included in the option stylesheet.'),
 			'default' => 'n',
 		],
 		'theme_iconset' => [
@@ -94,8 +94,8 @@ function prefs_theme_list($partial = false)
 			'tags' => ['basic'],
 		],
 		'theme_styleguide' => [
-			'name' => tra('Style Guide Tool'),
-			'description' => tra('Add a style guide tool to enable easy theme customisation.'),
+			'name' => tra('Style guide tool'),
+			'description' => tra('Activate the style guide tool to enable easy theme customization.'),
 			'type' => 'flag',
 			'help' => 'Themes',
 			'default' => 'n',

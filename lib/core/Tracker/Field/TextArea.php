@@ -18,7 +18,7 @@ class Tracker_Field_TextArea extends Tracker_Field_Text
 		return [
 			'a' => [
 				'name' => tr('Text Area'),
-				'description' => tr('Multi-line text input.'),
+				'description' => tr('Multi-line text input'),
 				'help' => 'Textarea Tracker Field',
 				'prefs' => ['trackerfield_textarea'],
 				'tags' => ['basic'],

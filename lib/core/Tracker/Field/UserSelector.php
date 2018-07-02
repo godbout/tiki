@@ -18,7 +18,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 		return [
 			'u' => [
 				'name' => tr('User Selector'),
-				'description' => tr('Allows the selection of a user or users from a list.'),
+				'description' => tr('Allow the selection of a user or users from a list.'),
 				'help' => 'User selector',
 				'prefs' => ['trackerfield_userselector'],
 				'tags' => ['basic'],

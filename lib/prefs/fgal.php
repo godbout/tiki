@@ -144,7 +144,7 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 		],
 		'fgal_use_dir' => [
 			'name' => tra('Path to the directory to store file gallery files'),
-			'description' => tra("Specify a directory on your server, for example: /var/www/  It's recommended that this directory not be web accessible. PHP must be able to read/write to the directory."),
+			'description' => tra("Specify a directory on this server, for example: /var/www/  It's recommended that this directory not be web-accessible. PHP must be able to read/write to the directory."),
 			'type' => 'text',
 			'size' => 50,
 			'perspective' => false,

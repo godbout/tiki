@@ -18,7 +18,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 		return [
 			'wiki' => [
 				'name' => tr('Wiki Page'),
-				'description' => tr('Embeds an associated wiki page'),
+				'description' => tr('Embed an associated wiki page'),
 				'help' => 'Wiki page Tracker Field',
 				'prefs' => ['trackerfield_wiki'],
 				'tags' => ['basic'],

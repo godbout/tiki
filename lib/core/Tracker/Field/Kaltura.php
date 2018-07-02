@@ -18,7 +18,7 @@ class Tracker_Field_Kaltura extends Tracker_Field_Abstract implements Tracker_Fi
 		return [
 			'kaltura' => [
 				'name' => tr('Kaltura Video'),
-				'description' => tr('Displays a series of attached Kaltura videos.'),
+				'description' => tr('Display a series of attached Kaltura videos.'),
 				'help' => 'Kaltura',
 				'prefs' => ['trackerfield_kaltura', 'feature_kaltura', 'wikiplugin_kaltura'],
 				'tags' => ['advanced'],

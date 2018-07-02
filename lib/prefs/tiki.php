@@ -10,7 +10,7 @@ function prefs_tiki_list()
 	return [
 		'tiki_version_check_frequency' => [
 			'name' => tra('Check frequency'),
-			'description' => tra('How often Tiki should check for updates. This field applies only if Check for updates automatically is enabled. '),
+			'description' => tra('How often Tiki should check for updates. This field applies only if "Check for updates automatically" is enabled. '),
 			'hint' => tra('Click "Check for Updates Now" to perform an update check.'),
 			'type' => 'list',
 			'perspective' => false,
@@ -27,7 +27,7 @@ function prefs_tiki_list()
 		],
 		'tiki_release_cycle' => [
 			'name' => tr('Upgrade cycle'),
-			'description' => tra('Upgrade frequency for Tiki to check against.'),
+			'description' => tra('Tiki upgrade frequency for this site to check against.'),
 			'type' => 'list',
 			'default' => 'regular',
 			'dependencies' => [
@@ -56,7 +56,7 @@ function prefs_tiki_list()
 		],
 		'tiki_minify_css' => [
 			'name' => tra('Minify CSS'),
-			'description' => tra('Compress CSS files (notably by removing whitespace). Changes to CSS files will require cache to be cleared.') . ' ' . tra('Uses http://code.google.com/p/minify/'),
+			'description' => tra('Compress CSS files (notably by removing white space). Changes to CSS files will require cache to be cleared.') . ' ' . tra('Uses http://code.google.com/p/minify/'),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',
@@ -64,7 +64,7 @@ function prefs_tiki_list()
 		],
 		'tiki_minify_css_single_file' => [
 			'name' => tra('Minify CSS into a single file'),
-			'description' => tra('In addition to reducing the size of the CSS, reduce the number of included files.'),
+			'description' => tra('In addition to reducing the size of the CSS files, reduce the number of files by consolidating them.'),
 			'type' => 'flag',
 			'perspective' => false,
 			'warning' => tra('This setting may not work out of the box for all styles. Import needs to use @import url("...") and not @import "..."'),
@@ -80,7 +80,7 @@ function prefs_tiki_list()
 		],
 		'tiki_cachecontrol_session' => [
 			'name' => tra('Cache-control header'),
-			'description' => tra('Custom HTTP header to use when a session is active.'),
+			'description' => tra('Custom HTTP header to use when a session is active'),
 			'type' => 'text',
 			'filter' => 'striptags',
 			'hint' => tra('Example: no-cache, pre-check=0, post-check=0'),
@@ -88,7 +88,7 @@ function prefs_tiki_list()
 		],
 		'tiki_cachecontrol_nosession' => [
 			'name' => tra('Cache-control header (no session)'),
-			'description' => tra('Custom HTTP header to use when no session is active.'),
+			'description' => tra('Custom HTTP header to use when no session is active'),
 			'type' => 'text',
 			'filter' => 'striptags',
 			'dependencies' => [ 'session_silent' ],
@@ -151,7 +151,7 @@ function prefs_tiki_list()
 		],
 		'tiki_allow_trust_input' => [
 			'name' => tra('Allow the tiki_p_trust_input permission.'),
-			'description' => tra('Bypasses user input filtering'),
+			'description' => tra('Bypass user input filtering.'),
 			'warning' => tra('Note: all permissions are granted to the Admins group including this one, so if you enable this you may expose your site to XSS (Cross Site Scripting) attacks for admin users.'),
 			'type' => 'flag',
 			'default' => 'n',

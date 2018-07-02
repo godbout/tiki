@@ -36,7 +36,7 @@ function prefs_sitelogo_list()
 			'name' => tra('HTML "alt" tag description'),
 			'type' => 'text',
 			'size' => '50',
-			'description' => tr('Normally a description of the image, such as “Example.com logo”.'),
+			'description' => tr('Normally a description of the image, such as "Example.com logo"'),
 			'default' => 'Site Logo',
 			'tags' => ['basic'],
 			'hint' => tr('Used by text browsers, screen readers, etc.'),

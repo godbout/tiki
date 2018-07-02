@@ -18,7 +18,7 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 		return [
 			'g' => [
 				'name' => tr('Group Selector'),
-				'description' => tr('Allows a selection from a specified list of user groups.'),
+				'description' => tr('Allow a selection from a specified list of user groups.'),
 				'help' => 'Group selector',
 				'prefs' => ['trackerfield_groupselector'],
 				'tags' => ['advanced'],

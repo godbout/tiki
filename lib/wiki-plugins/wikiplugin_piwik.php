@@ -22,7 +22,7 @@ function wikiplugin_piwik_info()
 				'required' => false,
 				'name' => tra('Piwik server url'),
 				'description' => tr('The url to your Piwik Server, where data for the report are collected and available.') . ' <code>http(s)://yourpiwik.tld/index.php?</code> ' . '<br />'
-					. tr('In Piwik, the selected site (Site Id) must have view permission set for anonymous, or a token authentication parameter can be inserted in the Piwik server URL..') . '<br />'
+					. tr('In Piwik, the selected site (Site Id) must have view permission set for anonymous, or a token authentication parameter can be inserted in the Piwik server URL.') . '<br />'
 					. '<code>http(s)://yourpiwik.tld/index.php&token_auth=yourtokencode</code> ' . tr('Important : token_auth is visible in the html code and must be used in private page accessible to trusted users.'),
 				'since' => '15',
 				'default' => '',
@@ -31,7 +31,7 @@ function wikiplugin_piwik_info()
 			'idSite' => [
 				'required' => false,
 				'name' => tra('Site Id'),
-				'description' => tr('The ID of your website in Piwik. To be improved.'),
+				'description' => tr('The ID of this website in Piwik To be improved.'),
 				'since' => '15',
 				'filter' => 'digits',
 				'default' => '',

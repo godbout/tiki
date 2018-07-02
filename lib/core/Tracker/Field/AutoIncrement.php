@@ -18,7 +18,7 @@ class Tracker_Field_AutoIncrement extends Tracker_Field_Abstract implements Trac
 		return [
 			'q' => [
 				'name' => tr('Auto-Increment'),
-				'description' => tr('Allows an incrementing value field, or itemId field.'),
+				'description' => tr('Enable an incrementing value field, or itemId field.'),
 				'readonly' => true,
 				'help' => 'Auto-Increment Field',
 				'prefs' => ['trackerfield_autoincrement'],

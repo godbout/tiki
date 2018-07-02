@@ -26,7 +26,7 @@
 					{tr}Composer Web Install (<b>Packages</b>).{/tr}
 					<a href="https://doc.tiki.org/Packages">{tr}More Information{/tr}...</a><br/><br/>
 				</div>
-				<label class="col-sm-3 col-form-label"><b>{tr}Style Guide Tool{/tr}</b>:</label>
+				<label class="col-sm-3 col-form-label"><b>{tr}Style guide tool{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-9">
 					{icon name="admin_look" size=2 iclass="pull-left"}
 					{tr}Look and feel colors can be customized with a style guide tool.{/tr}

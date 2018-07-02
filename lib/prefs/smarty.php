@@ -25,7 +25,7 @@ function prefs_smarty_list()
 		],
 		'smarty_security_modifiers' => [
 			'name' => tr('Extra Smarty modifiers'),
-			'description' => tr('Make additional PHP functions available as smarty modifiers. May be needed for custom templates.'),
+			'description' => tr('Make additional PHP functions available as Smarty modifiers. This may be needed for custom templates.'),
 			'warning' => tr('There may be security implications. Make sure you know what you are doing.'),
 			'type' => 'text',
 			'separator' => ',',
@@ -37,7 +37,7 @@ function prefs_smarty_list()
 		],
 		'smarty_security_functions' => [
 			'name' => tr('Extra Smarty functions'),
-			'description' => tr('Make additional PHP functions available as smarty functions. May be needed for custom templates.'),
+			'description' => tr('Make additional PHP functions available as Smarty functions. This may be needed for custom templates.'),
 			'warning' => tr('There may be security implications. Make sure you know what you are doing.'),
 			'type' => 'text',
 			'separator' => ',',
@@ -49,7 +49,7 @@ function prefs_smarty_list()
 		],
 		'smarty_security_dirs' => [
 			'name' => tr('Extra Smarty directories'),
-			'description' => tr('Make additional dirs available as smarty dirs. May be needed for custom icons (clear temp/cache after changing).'),
+			'description' => tr('Make additional directories available as Smarty directories. This may be needed for custom icons (clear temp/cache after changing).'),
 			'warning' => tr('There may be security implications. Make sure you know what you are doing.'),
 			'type' => 'text',
 			'separator' => ',',

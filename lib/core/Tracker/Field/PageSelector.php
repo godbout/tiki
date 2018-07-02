@@ -19,7 +19,7 @@ class Tracker_Field_PageSelector extends Tracker_Field_Abstract
 		return [
 			'k' => [
 				'name' => tr('Page Selector'),
-				'description' => tr('Allows a selection from the list of pages.'),
+				'description' => tr('Allow a selection from the list of pages.'),
 				'help' => 'Page selector',
 				'prefs' => ['trackerfield_pageselector', 'feature_wiki'],
 				'tags' => ['advanced'],

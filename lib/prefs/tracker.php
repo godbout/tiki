@@ -10,7 +10,7 @@ function prefs_tracker_list()
 	return [
 		'tracker_remote_sync' => [
 			'name' => tr('Synchronize remote tracker'),
-			'description' => tr('Allows a tracker to be cloned on a remote host and synchronize the data locally on demand.'),
+			'description' => tr('Enable a tracker to be cloned on a remote host, and synchronize the data locally on demand.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -22,7 +22,7 @@ function prefs_tracker_list()
 		],
 		'tracker_refresh_itemslist_detail' => [
 			'name' => tr('Refresh items list items when related items are created or modified'),
-			'description' => tr('Use this when you want the ItemsList fields to refresh their content in the search index when related tracker items are created or modified.'),
+			'description' => tr('Use this to enable the ItemsList fields to refresh their content in the search index when related tracker items are created or modified.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -42,7 +42,7 @@ function prefs_tracker_list()
 			'profile_reference' => 'tracker',
 		],
 		'tracker_change_field_type' => [
-			'name' => tr('Change Field Types'),
+			'name' => tr('Change field types'),
 			'description' => tr('Allow field type to be changed after creation.'),
 			'type' => 'flag',
 			'default' => 'n',
@@ -58,13 +58,13 @@ function prefs_tracker_list()
 			'name' => tr('Use legacy tracker insertion screen'),
 			'description' => tr('Use the legacy tracker insertion screen (a tab) instead of a popup dialog.') .
 				'<br>' .
-				tr('Useful for older trackers using deprecated fields such as Image and File'),
+				tr('Useful for older trackers using deprecated fields such as Image and File or when more insertion space is useful'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'tracker_status_in_objectlink' => [
 			'name' => tr('Show tracker status in objectlink'),
-			'description' => tr('Sets whether we want to show the status when doing an objectlink. This can be used if you want the status to show in tracker screens but not in outputs.'),
+			'description' => tr('Show the status when doing an objectlink. This can be used to show the status in tracker screens but not in outputs.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],
@@ -93,7 +93,7 @@ function prefs_tracker_list()
 		 ],
 		 'tracker_article_trackerId' => [
 			 'name' => tr('Tracker ID of tracker for articles'),
-			 'description' => tr('The tracker that is for articles must contain an "Articles" field'),
+			 'description' => tr('A tracker for articles must contain an "Articles" field'),
 			 'type' => 'text',
 			'tags' => ['advanced'],
 			 'size' => '3',
@@ -126,8 +126,8 @@ function prefs_tracker_list()
 			'dependencies' => ['feature_trackers'],
 		],
 		'tracker_force_fill' => [
-			'name' => tr('Force users to fill tracker information.'),
-			'description' => tr("Forces a user to fill in a tracker form if they haven't already by prompting them with a module  "),
+			'name' => tr('Require users to fill in tracker information'),
+			'description' => tr("Require users to fill in a tracker form if not done already by prompting them with a modal dialog."),
 			'help' => 'Force+Fill+Tracker',
 			'type' => 'flag',
 			'tags' => ['advanced'],
@@ -135,8 +135,8 @@ function prefs_tracker_list()
 			'dependencies' => ['feature_trackers'],
 		],
 		'tracker_force_tracker_id' => [
-			'name' => tr('Tracker ID of tracker for force-filling'),
-			'description' => tr('The tracker that is for articles must contain an "Articles" field'),
+			'name' => tr('Tracker ID of tracker required to be filled in'),
+			'description' => tr('A tracker for articles must contain an "Articles" field'),
 			'type' => 'text',
 			'tags' => ['advanced'],
 			'size' => '3',
@@ -145,7 +145,7 @@ function prefs_tracker_list()
 			'dependencies' => ['tracker_force_fill'],
 		],
 		'tracker_force_mandatory_field' => [
-			'name' => tr('Mandatory tracker field to check for force-filling'),
+			'name' => tr('Mandatory tracker field to check for required filling in'),
 			'description' => tr('The permname of field that is checked to see if user has completed the form. If field is empty, user has not completed it.'),
 			'type' => 'text',
 			'tags' => ['advanced'],
@@ -154,7 +154,7 @@ function prefs_tracker_list()
 		],
 		'tracker_force_tracker_fields' => [
 			'name' => tr('Fields that are asked for in the modal for force-filling'),
-			'description' => tr('Comma-separated permnames of fields that are asked for in the modal for force-filling. If empty, all fields are asked for'),
+			'description' => tr('Comma-separated permanent names of fields that are requested in the modal for required filling in. If empty, all fields are requested'),
 			'type' => 'text',
 			'tags' => ['advanced'],
 			'default' => '',
@@ -169,7 +169,7 @@ function prefs_tracker_list()
 		],
 		'tracker_report_resize_button' => [
 			'name' => tr('Tracker report resize button'),
-			'description' => tr('Adds a button to resize long tracker reports'),
+			'description' => tr('Add a button to resize long tracker reports.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],

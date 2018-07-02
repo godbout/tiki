@@ -48,7 +48,7 @@ class Tracker_Field_Rating extends Tracker_Field_Abstract
 			],
 			'*' => [
 				'name' => tr('Stars (deprecated)'),
-				'description' => tr('Displays a star rating'),
+				'description' => tr('Display a star rating'),
 				'readonly' => true,
 				'deprecated' => true,
 				'prefs' => ['trackerfield_stars'],
@@ -66,7 +66,7 @@ class Tracker_Field_Rating extends Tracker_Field_Abstract
 			],
 			's' => [
 				'name' => tr('Stars (system - deprecated)'),
-				'description' => tr('Displays a star rating'),
+				'description' => tr('Display a star rating'),
 				'readonly' => true,
 				'deprecated' => true,
 				'prefs' => ['trackerfield_starsystem'],

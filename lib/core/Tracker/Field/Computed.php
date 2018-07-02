@@ -18,7 +18,7 @@ class Tracker_Field_Computed extends Tracker_Field_Abstract
 		return [
 			'C' => [
 				'name' => tr('Computed Field'),
-				'description' => tr('Provides a computed value based on numeric field values. Consider using webservices or JavaScript to perform the task instead of using this type.'),
+				'description' => tr('Provide a computed value based on numeric field values. Consider using webservices or JavaScript to perform the task instead of using this field type.'),
 				'help' => 'Computed Tracker Field',
 				'prefs' => ['trackerfield_computed'],
 				'tags' => ['advanced'],

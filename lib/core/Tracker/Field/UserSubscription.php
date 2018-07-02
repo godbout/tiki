@@ -18,7 +18,7 @@ class Tracker_Field_UserSubscription extends Tracker_Field_Abstract
 		return [
 			'U' => [
 				'name' => tr('User Subscription'),
-				'description' => tr('Allows registered users to subscribe themselves to a tracker item. Ideally, the item should only be editable by the creator or by administrators. Prepend the maximum amount of subscribers to the field value followed by # if such a limit is desired. For example, 50# means that 50 subscribers will be allowed for this item.'),
+				'description' => tr('Allow registered users to subscribe to a tracker item. Ideally, the item should only be editable by the creator or by administrators. Prepend the maximum amount of subscribers to the field value followed by # if such a limit is desired. For example, 50# means that 50 subscribers will be allowed for this item.'),
 				'help' => 'Subscription Tracker Field',
 				'prefs' => ['trackerfield_subscription'],
 				'default' => 'n',

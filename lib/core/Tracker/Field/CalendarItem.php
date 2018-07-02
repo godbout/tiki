@@ -18,7 +18,7 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 		$def = [
 			'CAL' => [
 				'name' => tr('Date and Time (Calendar Item)'),
-				'description' => tr('Associates calendar items to tracker items.'),
+				'description' => tr('Associate calendar items with tracker items.'),
 				'prefs' => ['trackerfield_calendaritem'],
 				'tags' => ['advanced', 'experimental'],
 				'warning' => tra('Experimental: (work in progress, use with care)'),

@@ -12,7 +12,7 @@ class Tracker_Field_Icon extends Tracker_Field_Abstract
 		return [
 			'icon' => [
 				'name' => tr('Icon'),
-				'description' => tr('Provides ability to select an image as an icon attached to the tracker item from file galleries.'),
+				'description' => tr('Provide the ability to select an image as an icon attached to the tracker item from the file galleries.'),
 				'prefs' => ['trackerfield_icon', 'feature_file_galleries', 'feature_search'],
 				'tags' => ['advanced'],
 				'help' => 'Icon Tracker Field',

@@ -10,7 +10,7 @@ function prefs_unified_list()
 	return [
 		'unified_engine' => [
 			'name' => tra('Unified search engine'),
-			'description' => tra('Search engine used to index the content of your Tiki. Some engines are more suitable for larger sites, but require additional software on the server.'),
+			'description' => tra('Search engine used to index the content of this Tiki site. Some engines are more suitable for larger sites, but require additional software on the server.'),
 			'type' => 'list',
 			'options' => [
 				'lucene' => tra('Lucene (PHP implementation) - Deprecated'),
@@ -46,7 +46,7 @@ function prefs_unified_list()
 		'unified_lucene_max_resultset_limit' => [
 			'name' => tra('Lucene maximum result-set limit'),
 			'hint' => tra('Maximum size of result set to consider.'),
-			'description' => tra('This is used when calculating result scores and sort order which can lead to out of memory errors on large data sets. The default of 1000 is safe with the PHP memory_limit set to 128M'),
+			'description' => tra('This is used when calculating result scores and sort order which can lead to "out of memory" errors on large data sets. The default of 1000 is safe with the PHP memory_limit set to 128M'),
 			'type' => 'text',
 			'filter' => 'int',
 			'shorthint' => tr('0 for unlimited'),
@@ -56,7 +56,7 @@ function prefs_unified_list()
 		],
 		'unified_lucene_terms_limit' => [
 			'name' => tra('Lucene terms per query limit'),
-			'description' => tra('Maximum number of terms to be generated. Try increasing this value if you get errors saying "Terms per query limit is reached" espescially with wildcard, range and fuzzy searches.'),
+			'description' => tra('Maximum number of terms to be generated. This value may need to be increased in the case of "Terms per query limit is reached" espescially with wildcard, range and fuzzy searches.'),
 			'type' => 'text',
 			'filter' => 'int',
 			'units' => tra('terms'),

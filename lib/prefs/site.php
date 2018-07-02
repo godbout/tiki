@@ -204,7 +204,7 @@ function prefs_site_list()
 		],
 		'site_piwik_site_id' => [
 			'name' => tra('Site Id'),
-			'description' => tr('The ID of your website in Piwik.'),
+			'description' => tr('The ID of this website in Piwik'),
 			'type' => 'text',
 			'size' => '5',
 			'default' => '',
@@ -214,7 +214,7 @@ function prefs_site_list()
 		],
 		'site_piwik_code' => [
 			'name' => tra('Piwik JavaScript tracking code'),
-			'description' => tra("Code placed on every page of your website before the </body> tag"),
+			'description' => tra("Code to be placed on every page of this website just before the </body> tag"),
 			'type' => 'textarea',
 			'size' => '6',
 			'filter' => 'rawhtml_unsafe',

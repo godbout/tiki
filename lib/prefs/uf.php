@@ -21,7 +21,7 @@ function prefs_uf_list()
 		],
 		'uf_use_dir' => [
 			'name' => tra('Directory path'),
-			'description' => tra("Specify a directory on your server, for example: /var/www/  It's recommended that this directory not be web accessible. PHP must be able to read/write to the directory."),
+			'description' => tra("Specify a directory on this server, for example: /var/www/  It's recommended that this directory not be web-accessible. PHP must be able to read/write to the directory."),
 			'type' => 'text',
 			'size' => 50,
 			'default' => '',

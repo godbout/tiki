@@ -18,7 +18,7 @@ class Tracker_Field_ItemsList extends Tracker_Field_Abstract implements Tracker_
 		return [
 			'l' => [
 				'name' => tr('Items List'),
-				'description' => tr('Displays a list of field values from another tracker that has a relation with this tracker.'),
+				'description' => tr('Display a list of field values from another tracker that has a relation with this tracker.'),
 				'readonly' => true,
 				'help' => 'Items List and Item Link Tracker Fields',
 				'prefs' => ['trackerfield_itemslist'],
