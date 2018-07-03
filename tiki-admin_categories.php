@@ -17,9 +17,7 @@ $categlib = TikiLib::lib('categ');
 $access->check_feature('feature_categories');
 // Check for parent category or set to 0 if not present
 if (! empty($_REQUEST['parentId']) && ! ($info = $categlib->get_category($_REQUEST['parentId']))) {
-	$smarty->assign('msg', 'Incorrect param' . ' parentId');
-	$smarty->display('error.tpl');
-	die;
+	Feedback::error(tr('No such category with parentID %0'), (int) $_REQUEST['parentId']);
 }
 
 if (! isset($_REQUEST['parentId'])) {
@@ -30,38 +28,55 @@ $smarty->assign('parentId', $_REQUEST['parentId']);
 
 $access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['parentId']);
 
-if (! empty($_REQUEST['unassign'])) {
-	$access->check_authenticity(
-		tra('Are you sure you want to unassign the objects of this category: ') . $info['name']
-	);
-	$categlib->unassign_all_objects($_REQUEST['parentId']);
+if (! empty($_REQUEST['unassign']) && $access->checkCsrfForm(tra('Unassign objects from category?'))) {
+	$result = $categlib->unassign_all_objects($_REQUEST['parentId']);
+	if ($result->numrows()) {
+		$msg = $result->numrows() === 1 ? tr('One object unassigned from category')
+			: tr('%0 objects unassigned from category', $result->numrows());
+		Feedback::success($msg);
+	} else {
+		Feedback::error(tra('No objects unassigned'));
+	}
 }
-if (! empty($_REQUEST['move_to']) && ! empty($_REQUEST['toId'])) {
-	check_ticket('admin-categories');
+if (! empty($_REQUEST['move_to']) && ! empty($_REQUEST['toId']) && $access->checkCsrf()) {
 	if (! $categlib->get_category($_REQUEST['toId'])) {
-		$smarty->assign('msg', 'Incorrect param' . ' toId');
-		$smarty->display('error.tpl');
-		die;
+		Feedback::error(tr('Incorrect category ID %0 - objects not moved.', (int) $_REQUEST['toId']));
+	} else {
+		$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['toId']);
+		$result = $categlib->move_all_objects($_REQUEST['parentId'], $_REQUEST['toId']);
+		if ($result->numRows()) {
+			$msg = $result->numrows() === 1 ? tr('One object moved to selected category')
+				: tr('%0 objects moved to selected category', $result->numrows());
+			Feedback::success($msg);
+		} else {
+			Feedback::error(tr('No objects moved'));
+		}
 	}
-	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['toId']);
-	$categlib->move_all_objects($_REQUEST['parentId'], $_REQUEST['toId']);
 }
-if (! empty($_REQUEST['copy_from']) && ! empty($_REQUEST['to'])) {
-	check_ticket('admin-categories');
+if (! empty($_REQUEST['copy_from']) && ! empty($_REQUEST['to']) && $access->checkCsrf()) {
 	if (! $categlib->get_category($_REQUEST['to'])) {
-		$smarty->assign('msg', 'Incorrect param' . ' fromId');
-		$smarty->display('error.tpl');
-		die;
+		Feedback::error(tr('Incorrect category ID %0 - objects not copied.', (int) $_REQUEST['to']));
+	} else {
+		$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['to']);
+		$result = $categlib->assign_all_objects($_REQUEST['parentId'], $_REQUEST['to']);
+		if ($result->numRows()) {
+			$msg = $result->numrows() === 1 ? tr('One object copied to selected category')
+				: tr('%0 objects copied to selected category', $result->numrows());
+			Feedback::success($msg);
+		} else {
+			Feedback::error(tr('No objects copied'));
+		}
 	}
-	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['to']);
-	$categlib->assign_all_objects($_REQUEST['parentId'], $_REQUEST['to']);
 }
-if (isset($_REQUEST["addpage"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addpage"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a page
 	// add multiple pages at once
+	$totalRows = 0;
 	foreach ($_REQUEST['pageName'] as $value) {
-		$categlib->categorize_any('wiki page', $value, $_REQUEST["parentId"]);
+		$result = $categlib->categorize_any('wiki page', $value, $_REQUEST["parentId"]);
+		if ($result) {
+			$totalRows++;
+		}
 		$category = $categlib->get_category($_REQUEST["parentId"]);
 		$categorizedObject = $categlib->get_categorized_object('wiki page', $value);
 		// Notify the users watching this category.
@@ -79,63 +94,60 @@ if (isset($_REQUEST["addpage"]) && $_REQUEST["parentId"] != 0) {
 		];
 		$categlib->notify($values);
 	}
+	if ($totalRows) {
+		$msg = $totalRows === 1 ? tr('One page added to category')
+			: tr('%0 pages added to category', $totalRows);
+		Feedback::success($msg);
+	} else {
+		Feedback::error(tr('No pages added to category'));
+	}
 }
-if (isset($_REQUEST["addpoll"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addpoll"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a poll
 	$categlib->categorize_any('poll', $_REQUEST["pollId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('poll', $_REQUEST["pollId"]);
 }
-if (isset($_REQUEST["addfaq"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addfaq"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a faq
 	$categlib->categorize_any('faq', $_REQUEST["faqId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('faq', $_REQUEST["faqId"]);
 }
-if (isset($_REQUEST["addtracker"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addtracker"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a tracker
 	$categlib->categorize_any('tracker', $_REQUEST["trackerId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('tracker', $_REQUEST["trackerId"]);
 }
-if (isset($_REQUEST["addquiz"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addquiz"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a quiz
 	$categlib->categorize_any('quiz', $_REQUEST["quizId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('quiz', $_REQUEST["quizId"]);
 }
-if (isset($_REQUEST["addforum"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addforum"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a forum
 	$categlib->categorize_any('forum', $_REQUEST["forumId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('forum', $_REQUEST["forumId"]);
 }
-if (isset($_REQUEST["addgallery"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addgallery"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize an image gallery
 	$categlib->categorize_any('image gallery', $_REQUEST["galleryId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('image gallery', $_REQUEST["galleryId"]);
 }
-if (isset($_REQUEST["addfilegallery"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addfilegallery"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a file gallery
 	$categlib->categorize_any('file gallery', $_REQUEST["file_galleryId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('file gallery', $_REQUEST["file_galleryId"]);
 }
-if (isset($_REQUEST["addarticle"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addarticle"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize an article
 	$categlib->categorize_any('article', $_REQUEST["articleId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('article', $_REQUEST["articleId"]);
 }
-if (isset($_REQUEST["addblog"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["addblog"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a blog
 	$categlib->categorize_any('blog', $_REQUEST["blogId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('blog', $_REQUEST["blogId"]);
 }
-if (isset($_REQUEST["adddirectory"]) && $_REQUEST["parentId"] != 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["adddirectory"]) && $_REQUEST["parentId"] != 0 && $access->checkCsrf()) {
 	// Here we categorize a directory category
 	$categlib->categorize_any('directory', $_REQUEST["directoryId"], $_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object('directory', $_REQUEST["directoryId"]);
@@ -165,58 +177,69 @@ if (! empty($_REQUEST["categId"])) {
 	$info["name"] = '';
 	$info["description"] = '';
 }
-if (isset($_REQUEST["removeObject"])) {
-	$access->check_authenticity();
+if (isset($_REQUEST["removeObject"]) && $access->checkCsrfForm(tr('Remove object from category?'))) {
 	$category = $categlib->get_category($_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object_via_category_object_id($_REQUEST["removeObject"]);
-	$categlib->remove_object_from_category($_REQUEST["removeObject"], $_REQUEST["parentId"]);
-	// Notify the users watching this category.
-	$values = [
-		"categoryId" => $_REQUEST["parentId"],
-		"categoryName" => $category['name'],
-		"categoryPath" => $categlib->get_category_path_string_with_root($_REQUEST["parentId"]),
-		"description" => $category['description'],
-		"parentId" => $category['parentId'],
-		"parentName" => $categlib->get_category_name($category['parentId']),
-		"action" => "object leaved category",
-		"objectName" => $categorizedObject['name'],
-		"objectType" => $categorizedObject['type'],
-		"objectUrl" => $categorizedObject['href'],
-	];
-	$categlib->notify($values);
+	$result = $categlib->remove_object_from_category($_REQUEST["removeObject"], $_REQUEST["parentId"]);
 
-	// update search index if required
-	require_once 'lib/search/refresh-functions.php';
-	refresh_index($categorizedObject['type'], $categorizedObject['itemId']);
+	if (! empty($result) && $result->numRows()) {
+		// Notify the users watching this category.
+		$values = [
+			"categoryId" => $_REQUEST["parentId"],
+			"categoryName" => $category['name'],
+			"categoryPath" => $categlib->get_category_path_string_with_root($_REQUEST["parentId"]),
+			"description" => $category['description'],
+			"parentId" => $category['parentId'],
+			"parentName" => $categlib->get_category_name($category['parentId']),
+			"action" => "object leaved category",
+			"objectName" => $categorizedObject['name'],
+			"objectType" => $categorizedObject['type'],
+			"objectUrl" => $categorizedObject['href'],
+		];
+		$categlib->notify($values);// update search index if required
+		require_once 'lib/search/refresh-functions.php';
+		refresh_index($categorizedObject['type'], $categorizedObject['itemId']);
+		$ucfirstType = ucfirst($categorizedObject['type']);
+		Feedback::success(tr('%0 %1 removed from category %2', $ucfirstType, $categorizedObject['name'],
+			$category['name']));
+	} else {
+		$ucfirstType = ucfirst($categorizedObject['type']);
+		Feedback::error(tr('%0 %1 not removed from category %2', $ucfirstType, $categorizedObject['name'],
+			$category['name']));
+	}
 }
-if (isset($_REQUEST["removeCat"]) && ($info = $categlib->get_category($_REQUEST['removeCat']))) {
+if (isset($_REQUEST["removeCat"]) && $info = $categlib->get_category($_REQUEST['removeCat'])
+		&& $access->checkCsrfForm(tr('Delete category?')))
+{
 	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['removeCat']);
-	$access->check_authenticity(tra('Click here to delete the category:') . ' ' . $info['name']);
-	$categlib->remove_category($_REQUEST["removeCat"]);
+	$result = $categlib->remove_category($_REQUEST["removeCat"]);
+	if (! empty($result) && $result->numRows()) {
+		Feedback::success(tr('Category ID %0 and descendants deleted', (int) $_REQUEST['removeCat']));
+	} else {
+		Feedback::error(tr('Category ID %0 not deleted', (int) $_REQUEST['removeCat']));
+	}
 }
-if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["name"]) > 0) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["name"]) > 0 && $access->checkCsrf()) {
 	// Save
 	if ($_REQUEST["categId"]) {
 		if ($_REQUEST['parentId'] == $_REQUEST['categId']) {
-			$smarty->assign('msg', tra("Category can`t be parent of itself"));
-			$smarty->display("error.tpl");
-			die;
-		}
-
-		try {
-			$categlib->update_category(
-				$_REQUEST["categId"],
-				$_REQUEST["name"],
-				$_REQUEST["description"],
-				$_REQUEST["parentId"]
-			);
-			if ($tiki_p_admin_categories == 'y' && ! empty($_REQUEST['parentPerms'])) {
-				$userlib->remove_object_permission('', $_REQUEST['categId'], 'category', '');
-				$userlib->copy_object_permissions($_REQUEST['parentId'], $_REQUEST['categId'], 'category');
+			Feedback::error(tra('Category cannot be parent of itself - no changes made'));
+		} else {
+			try {
+				$categlib->update_category(
+					$_REQUEST["categId"],
+					$_REQUEST["name"],
+					$_REQUEST["description"],
+					$_REQUEST["parentId"]
+				);
+				if ($tiki_p_admin_categories == 'y' && ! empty($_REQUEST['parentPerms'])) {
+					$userlib->remove_object_permission('', $_REQUEST['categId'], 'category', '');
+					$userlib->copy_object_permissions($_REQUEST['parentId'], $_REQUEST['categId'], 'category');
+				}
+				Feedback::success(tr('Category %0 updated', htmlspecialchars($_REQUEST["name"])));
+			} catch (Exception $e) {
+				$errors['mes'] = $e->getMessage();
 			}
-		} catch (Exception $e) {
-			$errors['mes'] = $e->getMessage();
 		}
 	} else {
 		try {
@@ -224,6 +247,7 @@ if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["na
 			if ($tiki_p_admin_categories != 'y' || ! empty($_REQUEST['parentPerms'])) {
 				$userlib->copy_object_permissions($_REQUEST['parentId'], $newcategId, 'category');
 			}
+			Feedback::success(tr('Category %0 created', htmlspecialchars($_REQUEST["name"])));
 		} catch (Exception $e) {
 			$errors['mes'] = $e->getMessage();
 		}
@@ -232,50 +256,53 @@ if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["na
 	$info["description"] = '';
 	$_REQUEST["categId"] = 0;
 }
-if (isset($_REQUEST['import']) && isset($_FILES['csvlist']['tmp_name'])) {
-	check_ticket('admin-categories');
+if (isset($_REQUEST['import']) && isset($_FILES['csvlist']['tmp_name']) && $access->checkCsrf()) {
 	$fhandle = fopen($_FILES['csvlist']['tmp_name'], 'r');
 	if (! $fhandle) {
-		$smarty->assign('msg', tra("The file has incorrect syntax or is not a CSV file"));
-		$smarty->display("error.tpl");
-		die;
-	}
-	$fields = fgetcsv($fhandle, 1000);
-	if (! $fields[0]) {
-		$smarty->assign('msg', tra('The file has incorrect syntax or is not a CSV file'));
-		$smarty->display('error.tpl');
-		die;
-	}
-	if ($fields[0] != 'category' || $fields[1] != 'description' || $fields[2] != 'parent') {
-		$smarty->assign('msg', tra('The file does not have the required header:') . ' category, description, parent');
-		$smarty->display('error.tpl');
-		die;
-	}
-	while (! feof($fhandle)) {
-		$data = fgetcsv($fhandle, 1000);
-		if (! empty($data)) {
-			$temp_max = count($fields);
-			if ($temp_max > 1 && strtolower($data[2]) != 'top' && ! empty($data[2])) {
-				$parentId = $categlib->get_category_id($data[2]);
-				if (empty($parentId)) {
-					$smarty->assign('msg', tra('Incorrect param') . ' ' . $data[2]);
-					$smarty->display('error.tpl');
-					die;
-				}
-				$access->check_permission('tiki_p_admin_categories', '', 'category', $parentId);
+		Feedback::error(tr("The file has incorrect syntax or is not a CSV file"));
+	} else {
+		$fields = fgetcsv($fhandle, 1000);
+		if (! $fields[0]) {
+			Feedback::error(tr("The file has incorrect syntax or is not a CSV file"));
+		} else {
+			if ($fields[0] != 'category' || $fields[1] != 'description' || $fields[2] != 'parent') {
+				Feedback::error(tr('The file does not have the required header:') . ' category, description, parent');
 			} else {
-				$access->check_permission('tiki_p_admin_categories');
-				$parentId = 0;
-			}
-			if (! $categlib->exist_child_category($parentId, $data[0])) {
-				$newcategId = $categlib->add_category($parentId, $data[0], $data[1]);
-				if (empty($newcategId)) {
-					$smarty->assign('msg', tra('Incorrect param') . ' ' . $data[0]);
-					$smarty->display('error.tpl');
-					die;
+				while (! feof($fhandle)) {
+					$success = false;
+					$data = fgetcsv($fhandle, 1000);
+					if (! empty($data)) {
+						$temp_max = count($fields);
+						$getCategory = true;
+						if ($temp_max > 1 && strtolower($data[2]) != 'top' && ! empty($data[2])) {
+							$parentId = $categlib->get_category_id($data[2]);
+							if (empty($parentId)) {
+								Feedback::error(tr('Incorrect parameter %0', $data[2]));
+								$getCategory = false;
+							} else {
+								$access->check_permission('tiki_p_admin_categories', '', 'category', $parentId);
+							}
+						} else {
+							$access->check_permission('tiki_p_admin_categories');
+							$parentId = 0;
+						}
+						if (! empty($getCategory)) {
+							if (! $categlib->exist_child_category($parentId, $data[0])) {
+								$newcategId = $categlib->add_category($parentId, $data[0], $data[1]);
+								if (empty($newcategId)) {
+									Feedback::error(tr('Incorrect parameter %0', $data[0]));
+								} else {
+									$success = true;
+									if ($tiki_p_admin_categories != 'y') {
+										$userlib->copy_object_permissions($parentId, $newcategId, 'category');
+									}
+								}
+							}
+						}
+					}
 				}
-				if ($tiki_p_admin_categories != 'y') {
-					$userlib->copy_object_permissions($parentId, $newcategId, 'category');
+				if ($success) {
+					Feedback::success(tr('Categories imported'));
 				}
 			}
 		}
@@ -307,6 +334,7 @@ $treeNodes = [];
 $smarty->loadPlugin('smarty_function_icon');
 $smarty->loadPlugin('smarty_function_popup');
 $smarty->loadPlugin('smarty_function_permission_link');
+$smarty->loadPlugin('smarty_function_ticket');
 foreach ($categories as $category) {
 	$perms = Perms::get(['type' => 'category', 'object' => $category['categId']]);
 	if ($perms->admin_categories == 'y') {
@@ -328,7 +356,8 @@ foreach ($categories as $category) {
 			. $category['parentId']
 			. '&amp;removeCat='
 			. $category['categId']
-			. '">'
+			. '" onclick="confirmSimple(event, \'' . tr('Delete category?') . '\', \''
+			. smarty_function_ticket(['mode' => 'get'], $smarty) . '\')">'
 			. smarty_function_icon(
 				[
 					'name' => 'remove',
@@ -557,7 +586,6 @@ if ($prefs['feature_search'] !== 'y' || $prefs['unified_add_to_categ_search'] !=
 	$smarty->assign('types', $supportedTypes);
 }
 
-ask_ticket('admin-categories');
 if (! empty($errors)) {
 	Feedback::warning($errors);
 }

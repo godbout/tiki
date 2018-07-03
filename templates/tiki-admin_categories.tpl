@@ -30,6 +30,7 @@
 			<h2>{tr}Add new category{/tr}</h2>
 		{/if}
 		<form action="tiki-admin_categories.php" method="post" role="form">
+			{ticket}
 			<input type="hidden" name="categId" value="{$categId|escape}">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="parentId">{tr}Parent{/tr}</label>
@@ -68,7 +69,13 @@
 			{/if}
 			<div class="form-group row">
 				<div class="col-sm-9 col-sm-offset-3">
-					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
+					<input
+						type="submit"
+						class="btn btn-secondary"
+						name="save"
+						value="{tr}Save{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</div>
 		</form>
@@ -78,6 +85,7 @@
 		{tab name="{tr}Batch upload{/tr}"}
 			<h2>{tr}Batch upload{/tr}</h2>
 			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" role="form">
+				{ticket}
 				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}CSV File{/tr}</label>
 					<div class="col-sm-9">
@@ -94,7 +102,13 @@ potato,,vegetable
 				</div>
 				<div class="form-group row">
 					<div class="col-sm-3 col-sm-offset-3">
-						<input type="submit" class="btn btn-secondary" name="import" value="{tr}Upload{/tr}">
+						<input
+							type="submit"
+							class="btn btn-secondary"
+							name="import"
+							value="{tr}Upload{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
 				</div>
 			</form>
@@ -131,7 +145,7 @@ potato,,vegetable
 					{section name=ix loop=$objects}
 						<tr>
 							<td class="icon">
-								<a href="tiki-admin_categories.php?parentId={$parentId}&amp;removeObject={$objects[ix].catObjectId}&amp;fromCateg={$parentId}" class="tips" title=":{tr}Remove from this category{/tr}">
+								<a href="tiki-admin_categories.php?parentId={$parentId}&amp;removeObject={$objects[ix].catObjectId}&amp;fromCateg={$parentId}" class="tips" title=":{tr}Remove from this category{/tr}" onclick="confirmSimple(event, '{tr}Remove object from category?{/tr}', '{ticket mode=get}')">
 									{icon name='remove'}
 								</a>
 							</td>
@@ -154,7 +168,8 @@ potato,,vegetable
 		{tab name="{tr}Moving objects between categories{/tr}"}
 			<h2>{tr}Moving objects between categories{/tr}</h2>
 			<h4>{tr}Current category:{/tr} {$categ_name|escape}</h4><br>
-			<form method="get" action="tiki-admin_categories.php" name="move" role="form">
+			<form method="post" action="tiki-admin_categories.php" name="move" role="form">
+				{ticket}
 				<fieldset>
 					<legend>{tr}Perform an action on all objects in the current category:{/tr}</legend>
 					<input type="hidden" name="parentId" value="{$parentId|escape}">
@@ -163,7 +178,13 @@ potato,,vegetable
 							{tr}Unassign{/tr}
 						</label>
 						<div class="col-sm-6 input-group">
-							<input type="submit" class="btn btn-primary btn-sm" name="unassign" value="{tr}OK{/tr}">
+							<input
+								type="submit"
+								class="btn btn-primary btn-sm"
+								name="unassign"
+								value="{tr}OK{/tr}"
+								onclick="confirmSimple(event, '{tr}Unassign objects from category?{/tr}')"
+							>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -181,7 +202,13 @@ potato,,vegetable
 								{/foreach}
 							</select>
 							<span class="input-group-btn">
-								<input type="submit" class="btn btn-primary" name="move_to" value="{tr}OK{/tr}">
+								<input
+									type="submit"
+									class="btn btn-primary"
+									name="move_to"
+									value="{tr}OK{/tr}"
+									onclick="checkTimeout()"
+								>
 							</span>
 						</div>
 					</div>
@@ -200,7 +227,13 @@ potato,,vegetable
 								{/foreach}
 							</select>
 							<span class="input-group-btn">
-								<input type="submit" class="btn btn-primary" name="copy_from" value="{tr}OK{/tr}">
+								<input
+									type="submit"
+									class="btn btn-primary"
+									name="copy_from"
+									value="{tr}OK{/tr}"
+									onclick="checkTimeout()"
+								>
 							</span>
 						</div>
 					</div>
@@ -211,6 +244,7 @@ potato,,vegetable
 		{tab name="{tr}Add objects to category{/tr}"}
 			<h2>{tr}Add objects to category:{/tr} <b>{$categ_name|escape}</b></h2>
 			{if $prefs.feature_search eq 'y' and $prefs.unified_add_to_categ_search eq 'y'}
+				{object_selector}
 				<form id="add_object_form" method="post" action="{service controller=category action=categorize}" role="form">
 					<label>Types of object
 						<select id="add_object_type">
@@ -227,29 +261,32 @@ potato,,vegetable
 						<input type="text" id="add_object_selector" name="objects">
 					</label>
 					<div>
+						{ticket}
 						<input type="hidden" name="categId" value="{$parentId|escape}">
-						<input type="hidden" name="confirm" value="1">
 						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
 						<span id="add_object_message" style="display: none;"></span>
 					</div>
 				</form>
 				{jq}
 $("#add_object_form").unbind("submit").submit(function (e) {
-	var form = this;
+	var form = this,
+		formdata = $(form).serialize();
 	$.ajax($(form).attr('action'), {
 		type: 'POST',
 		dataType: 'json',
 		data: $(form).serialize(),
 		success: function (data) {
 			data = (data ? data : {});
+			form.append($('<input />', {type: 'hidden', name: 'ticket', value: data.ticket}));
 			$("option:selected", "#add_object_selector ~ select").remove();
 			var $table = $("input[name=sort_mode]").parents("form").next("table");
 			oddeven = $("tr:last", $table).hasClass("odd") ? "even" : "odd";
 			var $row = $("<tr />").addClass(oddeven);
 			$row.append("<td class=\"icon\">" +
 						"<a href=\"tiki-admin_categories.php?parentId=" + data.categId +
-								"&amp;removeObject=" + data.objects[0].catObjectId + "&amp;fromCateg=" + data.categId + "\">"+
-							'{{icon name="remove"}}'+
+							"&amp;removeObject=" + data.objects[0].catObjectId + "&amp;fromCateg=" + data.categId
+							+ "\" onclick=\"confirmSimple(event, \'" + tr('Remove object from category?') + "\', \'"
+							+ data.ticket + "\')\">" + '{{icon name="remove"}}'+
 						"</a></td>" +
 						"<td class=\"text\">"+
 							"<a href=\"#\">" + data.objects[0].id + "</a></td>" +
@@ -299,6 +336,7 @@ $("#add_object_type").change(function () {
 				</form>
 				{pagination_links cant=$maximum step=$maxRecords offset=$offset}{/pagination_links}
 				<form action="tiki-admin_categories.php" method="post" role="form">
+					{ticket}
 					<input type="hidden" name="parentId" value="{$parentId|escape}">
 					<fieldset>
 						{if $prefs.feature_wiki eq 'y' and $pages}
@@ -315,7 +353,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<div>
-										<input type="submit" class="btn btn-primary" name="addpage" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addpage"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</div>
 								</div>
 							</div>
@@ -335,7 +379,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addarticle" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addarticle"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
@@ -355,13 +405,19 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addblog" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addblog"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
 						{/if}
 
-						{if $prefs.feature_directory eq 'y'and $directories}
+						{if $prefs.feature_directory === 'y'&& $directories}
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label" for="directoryId">
 									{tr}Directory{/tr}
@@ -375,7 +431,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="adddirectory" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="adddirectory"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
@@ -395,7 +457,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addgallery" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addgallery"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
@@ -415,7 +483,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addfilegallery" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addfilegallery"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
@@ -435,7 +509,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addforum" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addforum"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
@@ -455,7 +535,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addpoll" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addpoll"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
@@ -475,7 +561,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addfaq" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addfaq"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
@@ -495,7 +587,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addtracker" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addtracker"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
@@ -515,7 +613,13 @@ $("#add_object_type").change(function () {
 										{/section}
 									</select>
 									<span class="input-group-btn">
-										<input type="submit" class="btn btn-primary" name="addquiz" value="{tr}Add{/tr}">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											name="addquiz"
+											value="{tr}Add{/tr}"
+											onclick="checkTimeout()"
+										>
 									</span>
 								</div>
 							</div>
