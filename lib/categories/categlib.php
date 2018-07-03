@@ -102,7 +102,7 @@ class CategLib extends ObjectLib
 		$description = $this->get_category_description($categId);
 
 		$query = "delete from `tiki_categories` where `categId`=?";
-		$result = $this->query($query, [(int) $categId]);
+		$ret = $this->query($query, [(int) $categId]);
 		$query = "select `catObjectId` from `tiki_category_objects` where `categId`=?";
 		$result = $this->query($query, [(int) $categId]);
 
@@ -158,8 +158,7 @@ class CategLib extends ObjectLib
 			'object' => $categId,
 			'user' => $GLOBALS['user'],
 		]);
-
-		return true;
+		return $ret;
 	}
 
 	// Throws an Exception if the category name conflicts
@@ -362,7 +361,7 @@ class CategLib extends ObjectLib
 			return;
 		}
 		$query = "delete from `tiki_category_objects` where `catObjectId`=? and `categId`=?";
-		$result = $this->query($query, [(int) $catObjectId,(int) $categId], -1, -1, false);
+		$this->query($query, [(int) $catObjectId,(int) $categId], -1, -1, false);
 
 		$query = "insert into `tiki_category_objects`(`catObjectId`,`categId`) values(?,?)";
 		$result = $this->query($query, [(int) $catObjectId,(int) $categId]);
@@ -384,6 +383,7 @@ class CategLib extends ObjectLib
 		]);
 		require_once 'lib/search/refresh-functions.php';
 		refresh_index($info['type'], $info['itemId']);
+		return $result;
 	}
 
 	function uncategorize($catObjectId, $categId)
@@ -409,6 +409,7 @@ class CategLib extends ObjectLib
 		]);
 		require_once 'lib/search/refresh-functions.php';
 		refresh_index($info['type'], $info['itemId']);
+		return $result;
 	}
 
 	// WARNING: This may not do what you would think from the name.
@@ -775,13 +776,25 @@ class CategLib extends ObjectLib
 		return $this->fetchAll($query, $bindVars);
 	}
 
-	// Removes the object with the given identifer from the category with the given identifier
+	/**
+	 * Removes the object with the given identifer from the category with the given identifier
+	 * @param $catObjectId
+	 * @param $categId
+	 * @return bool|TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 * @throws Exception
+	 */
 	function remove_object_from_category($catObjectId, $categId)
 	{
-		$this->remove_object_from_categories($catObjectId, [$categId]);
+		return $this->remove_object_from_categories($catObjectId, [$categId]);
 	}
 
-	// Removes the object with the given identifer from the categories specified in the $categIds array. The array contains category identifiers.
+	/**
+	 * Removes the object with the given identifier from the categories specified in the $categIds array. The array contains category identifiers.
+	 * @param $catObjectId
+	 * @param $categIds
+	 * @return bool|TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 * @throws Exception
+	 */
 	function remove_object_from_categories($catObjectId, $categIds)
 	{
 		global $prefs;
@@ -799,6 +812,9 @@ class CategLib extends ObjectLib
 				$cachelib->empty_type_cache("allcategs");
 			}
 			$cachelib->empty_type_cache('fgals_perms');
+			return $result;
+		} else {
+			return false;
 		}
 	}
 
@@ -806,6 +822,12 @@ class CategLib extends ObjectLib
 	// $categIds can be a category OID or an array of category OIDs.
 	// $type The object's type, which has to be one of those handled by ObjectLib's add_object().
 	// Returns the object OID, or FALSE if the given type is not handled.
+	/**
+	 * @param $type
+	 * @param $identifier
+	 * @param $categIds
+	 * @return array|bool|mixed
+	 */
 	function categorize_any($type, $identifier, $categIds)
 	{
 		$catObjectId = $this->add_categorized_object($type, $identifier, null, null, null, true);
@@ -1909,19 +1931,35 @@ class CategLib extends ObjectLib
 	function unassign_all_objects($categId)
 	{
 		$query = 'delete from  `tiki_category_objects` where `categId`=?';
-		$this->query($query, [(int)$categId]);
+		return $this->query($query, [(int)$categId]);
 	}
-	//move all objects from a categ to anotehr one
+	//
+
+	/**
+	 * Move all objects from one category to another
+	 *
+	 * @param $from
+	 * @param $to
+	 * @return TikiDb_Pdo_Result
+	 */
 	function move_all_objects($from, $to)
 	{
 		$query = 'update ignore `tiki_category_objects` set `categId`=? where `categId`=?';
-		$this->query($query, [(int)$to, (int)$from]);
+		return $this->query($query, [(int)$to, (int)$from]);
 	}
-	//assign all objects of a categ to another one
+
+
+	/**
+	 * Assign all objects in a category to another category
+	 *
+	 * @param $from
+	 * @param $to
+	 * @return TikiDb_Pdo_Result
+	 */
 	function assign_all_objects($from, $to)
 	{
 		$query = 'insert ignore `tiki_category_objects` (`catObjectId`, `categId`) select `catObjectId`, ? from `tiki_category_objects` where `categId`=?';
-		$this->query($query, [(int)$to, (int)$from]);
+		return $this->query($query, [(int)$to, (int)$from]);
 	}
 	// generate category tree for use in various places (like categorize_list.php)
 	function generate_cat_tree($categories, $canchangeall = false, $forceincat = null)
