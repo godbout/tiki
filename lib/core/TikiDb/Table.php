@@ -36,24 +36,27 @@ class TikiDb_Table
 	 *
 	 * @param $values array Key-value pairs to insert.
 	 * @param $ignore boolean Insert as ignore statement
-	 * @return int|TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 * @return array|bool|mixed
 	 */
 	function insert(array $values, $ignore = false)
 	{
 		$bindvars = [];
 		$query = $this->buildInsert($values, $ignore, $bindvars);
 
-		$result = $this->db->queryException($query, $bindvars);
+		$this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
 			if ($insertedId = $this->db->lastInsertId()) {
 				return $insertedId;
 			}
 		}
-		//it looks like autoIncrement is true in every use of this class so this should be unreachable
-		return $result;
 	}
 
+	/**
+	 * @param array $data
+	 * @param array $keys
+	 * @return array|bool|mixed
+	 */
 	function insertOrUpdate(array $data, array $keys)
 	{
 		$insertData = array_merge($data, $keys);
@@ -63,15 +66,13 @@ class TikiDb_Table
 		$query .= ' ON DUPLICATE KEY UPDATE ';
 		$query .= $this->buildUpdateList($data, $bindvars);
 
-		$result = $this->db->queryException($query, $bindvars);
+		$this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
 			if ($insertedId = $this->db->lastInsertId()) {
 				return $insertedId;
 			}
 		}
-		//it looks like autoIncrement is true in every use of this class so this should be unreachable
-		return $result;
 	}
 
 	/**
