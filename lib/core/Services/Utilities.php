@@ -174,7 +174,7 @@ class Services_Utilities
 	{
 		$return = TikiLib::lib('access')->isActionPost() && isset($_POST['confirmForm']) && $_POST['confirmForm'] === 'y';
 		if ($return) {
-			return $this->checkCsrf();
+			return $this->checkCsrf('services');
 		} else {
 			return false;
 		}
@@ -183,6 +183,12 @@ class Services_Utilities
 	function notConfirmPost()
 	{
 		return ! TikiLib::lib('access')->isActionPost() || ! isset($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y';
+	}
+
+	function isActionPost()
+	{
+		$access = TikiLib::lib('access');
+		return $access->isActionPost() && $access->checkCsrf('services');
 	}
 
 	function setTicket()
