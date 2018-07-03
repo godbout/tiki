@@ -17,12 +17,21 @@
 	{$tree}
 </div>
 {filter action="tiki-edit_categories.php" filter=$filter}{/filter}
+<hr>
 <div class="object-list">
+	<span class="h3">{tr}Object list result{/tr}</span>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label col-form-label-sm">Filters applied</label>
+		<div class="col-sm-8">
+			<input class="form-control form-control-sm" disabled="disabled" value="{$filterString}">
+		</div>
+	</div>
 	{if $result && count($result)}
+		<span class="mb-auto">{tr}Select objects to change categorization:{/tr}</span>
 		<ol>
 			{foreach from=$result item=object}
 				<li{permission type=$object.type object=$object.object_id name="modify_object_categories"} class="available"{/permission}>
-					<input type="checkbox" class="form-check-input" name="object[]" value="{$object.object_type|escape}:{$object.object_id|escape}">
+					<input class="ml-20" type="checkbox" name="object[]" value="{$object.object_type|escape}:{$object.object_id|escape}">
 					{object_link type=$object.object_type id=$object.object_id}
 				</li>
 			{/foreach}
@@ -34,18 +43,18 @@
 			<a class="select-all" href="#selectall">{tr}Select all{/tr}</a>
 			<a class="unselect-all" href="#unselectall">{tr}Unselect all{/tr}</a>
 		</p>
+	{else}
+		<span class="font-weight-bold">{tr}No results{/tr}</span>
 	{/if}
 </div>
 {jq}
 function perform_selection_action(action, row) {
-	var objects = [], categId = $(row).find('a').data('categ');
-
+	var objects = [], categId = $(row).find('a').data('categ'),
+		clicked = action === 'categorize' ? '.categ-add' : '.categ-remove';
 	$('.object-list :checked').each(function () {
 		objects.push($(this).val());
 	});
-
-	$('.control', row).fadeTo(10, .20);
-
+	$('.control' + clicked, row).first().fadeTo(10, .20);
 	$.ajax({
 		type: 'POST',
 		url: $.service('category', action),
@@ -53,13 +62,10 @@ function perform_selection_action(action, row) {
 		data: {
 			categId: categId,
 			objects: objects,
-			confirm: 1
+			ticket: $(row).find('span.control:first').data('ticket')
 		},
-		success: function (data) {
-			$('.object-count', row).text(data.count);
-		},
-		complete: function () {
-			$('.control', row).fadeTo(10, 1);
+		complete: function (data) {
+			location.href = location.href.replace(/#.*$/, "");
 		}
 	});
 }
@@ -78,10 +84,7 @@ $('.categ-remove')
 	.addClass('ui-icon')
 	.addClass('ui-icon-circle-minus');
 
-$('.control')
-	.css('float', 'right')
-	.css('cursor', 'pointer')
-	.hide();
+$('.control').hide();
 
 $('.object-list :checkbox').change(function () {
 	$('.control').toggle($('.object-list :checkbox:checked').length > 0);

@@ -42,14 +42,49 @@ class Services_Category_Controller
 			throw new Services_Exception(tr('Permission denied'), 403);
 		}
 
-		$objects = $this->convertObjects($objects);
-		if (count($objects) && $input->confirm->int()) {
-			return $this->processObjects('doCategorize', $categId, $objects);
+		$filteredObjects = $originalObjects = $this->convertObjects($objects);
+		$util =new Services_Utilities();
+		if (count($originalObjects) && $util->isActionPost()) {
+			//first determine if objects are already in the category
+			$categlib = TikiLib::lib('categ');
+			$inCategory = [];
+			foreach ($originalObjects as $key => $object) {
+				$objCategories = $categlib->get_object_categories($object['type'], $object['id']);
+				if (in_array($categId, $objCategories)) {
+					$inCategory[] = $object;
+					unset($filteredObjects[$key]);
+				}
+			}
+			//provide appropriate feedback for objects already in category
+			if ($inCount = count($inCategory)) {
+				$msg = $inCount === 1 ? tr('No change made for one object already in the category')
+					: tr('No change made for %0 objects already in the category', $inCount);
+				Feedback::note($msg);
+			}
+			//now add objects to the category
+			if (count($filteredObjects)) {
+				$return = $this->processObjects('doCategorize', $categId, $filteredObjects);
+				$count = isset($return['objects']) ? count($return['objects']) : 0;
+				if ($count) {
+					$msg = $count === 1 ? tr('One object added to category')
+						: tr('%0 objects added to category', $count);
+					Feedback::success($msg);
+				} else {
+					Feedback::error(tr('No objects added to category'));
+				}
+				return $return;
+			} else {
+				//this code is reached when all objects selected were already in the category
+				return [
+					'categId'	=> $categId,
+					'objects'	=> $objects,
+					'count'		=> 'unchanged'
+				];
+			}
 		} else {
 			return [
 				'categId' => $categId,
 				'objects' => $objects,
-				'confirm' => 0,
 			];
 		}
 	}
@@ -65,15 +100,49 @@ class Services_Category_Controller
 			throw new Services_Exception(tr('Permission denied'), 403);
 		}
 
-		$objects = $this->convertObjects($objects);
-
-		if (count($objects) && $input->confirm->int()) {
-			return $this->processObjects('doUncategorize', $categId, $objects);
+		$filteredObjects = $originalObjects = $this->convertObjects($objects);
+		$util =new Services_Utilities();
+		if (count($originalObjects) && $util->isActionPost()) {
+			//first determine if objects are already not in the category
+			$categlib = TikiLib::lib('categ');
+			$notInCategory = [];
+			foreach ($originalObjects as $key => $object) {
+				$objCategories = $categlib->get_object_categories($object['type'], $object['id']);
+				if (! in_array($categId, $objCategories)) {
+					$notInCategory[] = $object;
+					unset($filteredObjects[$key]);
+				}
+			}
+			//provide appropriate feedback for objects already not in category
+			if ($notCount = count($notInCategory)) {
+				$msg = $notCount === 1 ? tr('No change made for one object not in the category')
+					: tr('No change made for %0 objects not in the category', $notCount);
+				Feedback::note($msg);
+			}
+			//now uncategorize objects that are in the category
+			if (count($filteredObjects)) {
+				$return = $this->processObjects('doUncategorize', $categId, $filteredObjects);
+				$count = isset($return['objects']) ? count($return['objects']) : 0;
+				if ($count) {
+					$msg = $count === 1 ? tr('One object removed from category')
+						: tr('%0 objects removed from category', $count);
+					Feedback::success($msg);
+				} else {
+					Feedback::error(tr('No objects removed from category'));
+				}
+				return $return;
+			} else {
+				//this code is reached when all objects selected were already not in the category
+				return [
+					'categId'	=> $categId,
+					'objects'	=> $objects,
+					'count'		=> 'unchanged'
+				];
+			}
 		} else {
 			return [
 				'categId' => $categId,
 				'objects' => $objects,
-				'confirm' => 0,
 			];
 		}
 	}
@@ -123,8 +192,6 @@ class Services_Category_Controller
 
 	private function processObjects($function, $categId, $objects)
 	{
-		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-
 		$tx = TikiDb::get()->begin();
 
 		foreach ($objects as & $object) {
@@ -136,16 +203,13 @@ class Services_Category_Controller
 
 		$tx->commit();
 
-		$query = $unifiedsearchlib->buildQuery([]);
-		$query->filterCategory((string) $categId);
-		$query->setRange(0, 1);
-		$result = $query->search($unifiedsearchlib->getIndex());
+		$categlib = TikiLib::lib('categ');
+		$category = $categlib->get_category((int) $categId);
 
 		return [
 			'categId' => $categId,
-			'count' => count($result),
+			'count' => $category['objects'],
 			'objects' => $objects,
-			'confirm' => 1,
 		];
 	}
 
@@ -159,7 +223,7 @@ class Services_Category_Controller
 	{
 		$categlib = TikiLib::lib('categ');
 		if ($oId = $categlib->is_categorized($type, $id)) {
-			$categlib->uncategorize($oId, $categId);
+			$result = $categlib->uncategorize($oId, $categId);
 			return $oId;
 		}
 		return 0;

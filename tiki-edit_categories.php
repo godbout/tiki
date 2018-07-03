@@ -18,6 +18,8 @@ $inputConfiguration = [[
 
 require_once 'tiki-setup.php';
 $categlib = TikiLib::lib('categ');
+$smarty = TikiLib::lib('smarty');
+$smarty->loadPlugin('smarty_function_ticket');
 require_once 'lib/tree/BrowseTreeMaker.php';
 
 $access->check_feature('feature_categories');
@@ -39,8 +41,10 @@ foreach ($ctall as $c) {
 	$name = htmlentities($c['name'], ENT_QUOTES, 'UTF-8');
 	$perms = Perms::get('category', $c['categId']);
 
-	$add = $perms->add_object ? '<span class="control categ-add"></span>' : '';
-	$remove = $perms->remove_object ? '<span class="control categ-remove"></span>' : '';
+	$add = $perms->add_object ? '<span class="control categ-add pull-right" style="cursor: pointer" data-ticket="'
+		. smarty_function_ticket(['mode' => 'get'], $smarty) . '"></span>' : '';
+	$remove = $perms->remove_object ? '<span class="control categ-remove pull-right" style="cursor: pointer" data-ticket="'
+		. smarty_function_ticket(['mode' => 'get'], $smarty) . '"></span>' : '';
 
 	$body = <<<BODY
 $add
@@ -59,7 +63,7 @@ BODY;
 $tree_nodes[] = [
 	'id' => 'orphan',
 	'parent' => '0',
-	'data' => '<span class="object-count">' . $orphans['cant'] . '</span><a class="catname" href="tiki-edit_categories.php?filter~categories=orphan"><em>' . tr('Orphans') . '</em></a>',
+	'data' => '<a class="catname" href="tiki-edit_categories.php?filter~categories=orphan"><em>' . tr('Orphans') . '</em></a>',
 ];
 
 $tm = new BrowseTreeMaker('categ');
@@ -77,7 +81,47 @@ if (count($filter)) {
 		$query->setOrder($order);
 	}
 	$result = $query->search($unifiedsearchlib->getIndex());
+	//do not list category objects since they cannot be recategorized on this page
+	$resultArray = $result->getArrayCopy();
+	$objectlib = TikiLib::lib('object');
+	foreach($resultArray as $key => $objectInfo) {
+		if ($objectInfo['object_type'] === 'category' || ! in_array($objectInfo['object_type'],
+				TikiLib::lib('object')::get_supported_types()))
+		{
+			unset($resultArray[$key]);
+		}
+	}
+	if (count($resultArray) < $result->count()) {
+		//need to recreate Search_ResultSet object so that count, etc. are accurate
+		$result = $result::create($resultArray);
+	}
 	$smarty->assign('result', $result);
+	//display what filters have been applied
+	$filtersApplied = $filter;
+	foreach ($filtersApplied as $type => $value) {
+		if (empty($value)) {
+			unset($filtersApplied[$type]);
+		}
+	}
+	$filterString = '';
+	$i = 1;
+	$appliedCount = count($filtersApplied);
+	if ($appliedCount) {
+		foreach ($filtersApplied as $type => $value) {
+			if ($i) {
+				$filterString .= ' ';
+			}
+			$filterString .= htmlspecialchars($type) . ' = ' . htmlspecialchars($value);
+			if ($i < $appliedCount) {
+				$filterString .= ' AND';
+			}
+			$i++;
+		}
+	} else {
+		$filterString .= tr('No filters applied');
+	}
+	$smarty->assign('filterString', $filterString);
+	$smarty->assign('filterCount', $appliedCount);
 }
 // }}}
 
