@@ -159,7 +159,7 @@ class Tiki_Profile_InstallHandler_Category extends Tiki_Profile_InstallHandler
 		if (! empty($category)) {
 			$categlib = TikiLib::lib('categ');
 			$categoryId = $categlib->get_category_id($category);
-			if (! empty($categoryId) && $categlib->remove_category($categoryId)) {
+			if (! empty($categoryId) && $categlib->remove_category($categoryId)->numRows()) {
 				return true;
 			}
 		}
