@@ -109,7 +109,7 @@
 					</p>
 				{/if}
 				{if $opcode_stats.warning_check}
-					<p>{tr}Clear all APC caches:{/tr} {self_link apc_clear=true}{tr}Clear Caches{/tr}{/self_link}</p>
+					<p>{tr}Clear all APC caches:{/tr} {self_link apc_clear=true _onclick="confirmSimple(event,'{tr}Clear APC caches?{/tr}', '{ticket mode=get}')"}{tr}Clear Caches{/tr}{/self_link}</p>
 				{/if}
 			{else}
 				{tr}Bytecode cache is not used. Using a bytecode cache (OPcache, APC, XCache, WinCache) is highly recommended for production environments.{/tr}

@@ -530,11 +530,21 @@ class AdminLib extends TikiLib
 		];
 
 		if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
-			if ($_REQUEST['apc_clear']) {
-				check_ticket('admin-inc-performance');
-				apc_clear_cache();
-				apc_clear_cache('user');
-				apc_clear_cache('opcode');
+			if ($_REQUEST['apc_clear'] && TikiLib::lib('access')->checkCsrf()) {
+				$results['system'] = apc_clear_cache();
+				$results['user'] = apc_clear_cache('user');
+				$results['opcode'] = apc_clear_cache('opcode');
+				if (! in_array(false, $results, true)) {
+					Feedback::success(tr('APC system, user and opcode caches cleared'));
+				} else {
+					foreach ($results as $resultType => $result) {
+						if ($result === true) {
+							Feedback::success(tr('APC %0 cache cleared', $resultType));
+						} elseif ($result === false) {
+							Feedback::error(tr('APC %0 cache not cleared', $resultType));
+						}
+					}
+				}
 			}
 
 			$sma = apc_sma_info();
