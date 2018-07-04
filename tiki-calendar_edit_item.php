@@ -244,6 +244,12 @@ if (isset($_POST['act'])) {
 				$save['status'] = $calendar['defaulteventstatus'];
 			}
 		}
+		if (empty($save['trackerItemId'])) {
+			$redirectUrl = 'tiki-calendar.php?todate=' . $save['start'];
+		} else {
+			$smarty->loadPlugin('smarty_modifier_sefurl');
+			$redirectUrl = smarty_modifier_sefurl($save['trackerItemId'], 'trackeritem');
+		}
 
 		if (array_key_exists('recurrent', $_POST) && ($_POST['recurrent'] == 1) && $_POST['affect'] != 'event') {
 			$impossibleDates = false;
@@ -293,7 +299,7 @@ if (isset($_POST['act'])) {
 				if ($_POST['endType'] == "dt") {
 					$calRecurrence->setEndPeriod($_POST['endPeriod']);
 				} else {
-					$calRecurrence->setNbRecurrences($_POST['nbRecurrences']);
+					$calRecurrence->setNbRecurrences(empty($_POST['nbRecurrences']) ? null : $_POST['nbRecurrences']);
 				}
 				$calRecurrence->setUser($save['user']);
 				$calRecurrence->save(! empty($_POST['affect']) && $_POST['affect'] === 'all');
@@ -304,7 +310,7 @@ if (isset($_POST['act'])) {
 				if ($prefs['feature_actionlog'] == 'y' && ! empty($save['calitemId']) and $caladd["$newcalid"]['tiki_p_change_events']) {
 					$logslib->add_action('Updated', 'recurrent event starting on ' . $_POST['startPeriod'] . ' in calendar ' . $save['calendarId'], 'calendar event');
 				}
-				header('Location: tiki-calendar.php?todate=' . $save['start']);
+				$access->redirect($redirectUrl);
 				die;
 			}
 		} else {
@@ -324,7 +330,7 @@ if (isset($_POST['act'])) {
 				if ($prefs['feature_groupalert'] == 'y') {
 					$groupalertlib->Notify($_REQUEST['listtoalert'], "tiki-calendar_edit_item.php?viewcalitemId=" . $calitemId);
 				}
-				header('Location: tiki-calendar.php?todate=' . $save['start']);
+				$access->redirect($redirectUrl);
 				die;
 			}
 		}
@@ -360,6 +366,7 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 	exit;
 } elseif (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["recurrenceId"]) and $tiki_p_change_events == 'y') {
 	// There is no check for valid antibot code if anonymous allowed to delete events since this comes from a JS button at the tpl and bots are not know to use JS
+	$access->check_authenticity();
 	$calRec = new CalRecurrence($_REQUEST['recurrenceId']);
 	$calRec->delete();
 	if ($prefs['feature_actionlog'] == 'y') {

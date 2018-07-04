@@ -6,7 +6,7 @@
 		<h4 class="modal-title"></h4>
 	</div>
 {/if}
-<form action="{$myurl|escape}" method="post" name="f" id="editcalitem">
+<form action="{$myurl|escape}" method="post" name="f" id="editcalitem" class="no-ajax">
 	<div class="modal-body">
 		{if !$smarty.get.isModal}
 			<div class="t_navbar form-group row">
@@ -58,6 +58,9 @@
 				<input type="hidden" name="save[user]" value="{$calitem.user|escape}">
 				{if $id}
 					<input type="hidden" name="save[calitemId]" value="{$id|escape}">
+				{/if}
+				{if not empty($smarty.request.trackerItemId)}
+					<input type="hidden" name="save[trackerItemId]" value="{$smarty.request.trackerItemId|escape}">
 				{/if}
 			{/if}
 			{if $prefs.calendar_addtogooglecal == 'y'}
