@@ -4784,7 +4784,7 @@ class TikiLib extends TikiDb_Bridge
 			'is_html' => $html,
 			'wysiwyg' => $wysiwyg,
 			'wiki_authors_style' => $wiki_authors_style,
-			'lang' => $lang,
+			//'lang' => $lang,
 		];
 
 		if ($hash !== null) {
