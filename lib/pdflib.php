@@ -305,7 +305,7 @@ class PdfGenerator
 		//getting theme css
 		$themeLib = TikiLib::lib('theme');
 		$themecss = $themeLib->get_theme_path($prefs['theme'], '', $prefs['theme'] . '.css');
-		$themecss = file_get_contents($themecss); // external css
+		$themecss = str_replace('rem','em',file_get_contents($themecss)); // external css
 		$extcss = file_get_contents('vendor/jquery/jquery-sheet/jquery.sheet.css');
 
 		//checking if print friendly option is enabled, then attach print css otherwise theme styles will be retained by theme css
