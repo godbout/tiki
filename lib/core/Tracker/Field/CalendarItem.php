@@ -80,37 +80,46 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			$trklib = TikiLib::lib('trk');
 
 			$itemId = $this->getItemId();
-			$trackerId = $this->getConfiguration('trackerId');
-			$name = $trklib->get_isMain_value($trackerId, $itemId);
-			;
 
-			$calitemId = $this->getCalendarItemId();
-			$new = ! $calitemId;
 
-			// save the event whether new or not as start time or the title/name might have changed
-			$calitemId = $this->calendarLib->set_item($user, $calitemId, [
-				'calendarId' => $calendarId,
-				'start' => $value,
-//					'end',
-//					'locationId',
-//					'categoryId',
-//					'nlId',
-//					'priority',
-//					'status',
-//					'url',
-				'lang' => $language,
-				'name' => $name,
-//					'description',
-//					'user',
-//					'created',
-//					'lastmodif',
-//					'allday',
-//					'recurrenceId',
-//					'changed'
-			]);
+			if ($itemId) {
+				$trackerId = $this->getConfiguration('trackerId');
+				$name = $trklib->get_isMain_value($trackerId, $itemId);
+				$calitemId = $this->getCalendarItemId();// check it really exists
 
-			if ($new) {	// added a new one?
-				$this->attributeLib->set_attribute('tracker_item', $itemId, 'tiki.calendar.item', $calitemId);
+				if (! $this->calendarLib->get_calendarid($calitemId)) {
+					$new = true;
+					$calitemId = 0;
+				}
+				// save the event whether new or not as start time or the title/name might have changed
+				$calitemId = $this->calendarLib->set_item(
+					$user, $calitemId, [
+					'calendarId' => $calendarId,
+					'start'      => $value,
+					'end'        => $new ? ($value + 3600) : null,
+					//					'locationId',
+					//					'categoryId',
+					//					'nlId',
+					//					'priority',
+					//					'status',
+					//					'url',
+					'lang'       => $language,
+					'name'       => $name,
+					//					'description',
+					//					'user',
+					//					'created',
+					//					'lastmodif',
+					//					'allday',
+					//					'recurrenceId',
+					//					'changed'
+				]
+				);
+				if ($new) {    // added a new one?
+					$this->attributeLib->set_attribute(
+						'tracker_item', $itemId, 'tiki.calendar.item',
+						$calitemId
+					);
+				}
 			}
 			//$itemInfo = $calendarlib->get_item($calitemId);
 		} else if (! $value && $oldValue && $itemId = $this->getItemId()) {
@@ -142,7 +151,14 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 
 	function getFieldData(array $requestData = [])
 	{
-		return parent::getFieldData($requestData);
+		$data = parent::getFieldData($requestData);
+
+		if (! empty($data['value']) && ! $this->getCalendarItemId()) {
+			// corresponding calendar irtem missing, so create a new one
+			$this->handleSave($data['value'], '');
+		}
+
+		return $data;
 	}
 
 	/**
@@ -163,20 +179,18 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 		$perms = Perms::get([ 'type' => 'calendar', 'object' => $event['calendarId']]);
 
 		if ($perms->change_events) {
-			$editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&calitemId=' . $event['calitemId'];
+			$editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&trackerItemId='. $this->getItemId() . '&calitemId=' . $event['calitemId'];
 			$headerlib = TikiLib::lib('header');
 
 			$headerlib->add_js_config('window.CKEDITOR_BASEPATH = "' . $tikiroot . 'vendor_bundled/vendor/ckeditor/ckeditor/";')
 				->add_jsfile('vendor_bundled/vendor/ckeditor/ckeditor/ckeditor.js', true)
 				->add_js('window.dialogData = [];', 1);
 			// ->add_js('window.CKEDITOR.config._TikiRoot = "' . $tikiroot . '";', 1);
-			TikiLib::lib('header')->add_jq_onready("\$.validator.classRuleSettings.date = false;\n");
 		} else {
 			$editUrl = '';
 		}
-		$smarty->assign('editUrl', $editUrl);
 
-		return $this->renderTemplate('trackerinput/calendaritem.tpl', $context);
+		return $this->renderTemplate('trackerinput/calendaritem.tpl', $context, ['editUrl' => $editUrl]);
 	}
 
 	function isValid($ins_fields_data)
