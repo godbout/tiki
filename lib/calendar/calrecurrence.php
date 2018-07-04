@@ -49,6 +49,7 @@ class CalRecurrence extends TikiLib
 	private $user;
 	private $created;
 	private $lastModif;
+	private $initialItem;
 
 	/**
 	 * @param $param
@@ -395,6 +396,9 @@ class CalRecurrence extends TikiLib
 			$endOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60;
 		}
 
+		$calendarlib = TikiLib::lib('calendar');
+		global $user;
+
 		foreach ($dates as $aDate) {
 			$data = [
 							'calendarId' => $this->getCalendarId(),
@@ -417,9 +421,21 @@ class CalRecurrence extends TikiLib
 							'changed' => 0
 						 ];
 
-			$calendarlib = new calendarlib($this->db);
-			global $user;
-			$calendarlib->set_item($user, null, $data);
+			$initial = $this->getInitialItem();
+			$diff = array_diff($data, $initial);
+			unset($diff['recurrenceId']);
+			if (empty($initial['lang'])) {	// manually created items seem to have lang == ''
+				unset($diff['lang']);
+			}
+
+			if (! empty($diff)) {
+				// different event, add a new one
+				$calendarlib->set_item($user, null, $data);
+			} else {
+				// original event, update the recurrence id
+				$initial['recurrenceId'] = $this->getId();
+				$calendarlib->set_item($user, $initial['calitemId'], $initial);
+			}
 		}
 	}
 
@@ -1104,5 +1120,23 @@ class CalRecurrence extends TikiLib
 	public function setLastModif($value)
 	{
 		$this->lastModif = $value;
+	}
+
+	/**
+	 * Calendar item to create recurrences from
+	 *
+	 * @return array
+	 */
+	public function getInitialItem()
+	{
+		return $this->initialItem;
+	}
+
+	/**
+	 * @param array $value
+	 */
+	public function setInitialItem($value)
+	{
+		$this->initialItem = $value;
 	}
 }

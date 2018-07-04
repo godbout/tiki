@@ -302,6 +302,10 @@ if (isset($_POST['act'])) {
 					$calRecurrence->setNbRecurrences(empty($_POST['nbRecurrences']) ? null : $_POST['nbRecurrences']);
 				}
 				$calRecurrence->setUser($save['user']);
+				if (! empty($save['calitemId'])) {
+					// store the initial event if it was already created
+					$calRecurrence->setInitialItem($save);
+				}
 				$calRecurrence->save(! empty($_POST['affect']) && $_POST['affect'] === 'all');
 				// Save the ip at the log for the addition of new calendar items
 				if ($prefs['feature_actionlog'] == 'y' && empty($save['calitemId']) && $caladd["$newcalid"]['tiki_p_add_events']) {
