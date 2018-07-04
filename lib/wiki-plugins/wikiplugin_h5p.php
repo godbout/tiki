@@ -10,7 +10,7 @@ function wikiplugin_h5p_info()
 	return [
 		'name' => tra('H5P'),
 		'documentation' => 'PluginH5P',
-		'description' => tra(''),
+		'description' => tra('Enable the creation, sharing and reuse of interactive HTML5 content.'),
 		'prefs' => ['wikiplugin_h5p', 'h5p_enabled'],
 		'iconname' => 'html',
 		'format' => 'html',
