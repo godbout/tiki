@@ -492,10 +492,27 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 		TikiLib::date_format('%d', $now),
 		TikiLib::date_format('%Y', $now)
 	);
-	$now_start = ($now_start <= $now && ($now_start + (60 * 60)) < $now_end) ? $now : $now_start;
+	if ($now_start < $now && ($now_start + (60 * 60)) < $now_end) {
+		$now_start = $now;
+	} else if ($now_start === $now && isset($_REQUEST['todate'])) {
+		// if the now_start ($_REQUEST['todate']) is the day start then make the start hour of the event "now"
+		// as it will have been a whole day that was clicked on
+		$now_start = $tikilib->make_time(
+			TikiLib::date_format('%H', $tikilib->now),
+			TikiLib::date_format('%M', $now),
+			TikiLib::date_format('%S', $now),
+			TikiLib::date_format('%m', $now),
+			TikiLib::date_format('%d', $now),
+			TikiLib::date_format('%Y', $now)
+		);
+	}
 
 	//if $now_end is midnight, make it one second before
-	$now_end = TikiLib::date_format('%H%M%s', $now_start + (60 * 60)) == '000000' ? $now_start + (60 * 60) - 1 : $now_start + (60 * 60);
+	if (TikiLib::date_format('%H%M%s', $now_start + (60 * 60)) == '000000') {
+		$now_end = $now_start + (60 * 60) - 1;
+	} else {
+		$now_end = $now_start + (60 * 60);
+	}
 
 	$calitem = [
 		'calitemId' => 0,
