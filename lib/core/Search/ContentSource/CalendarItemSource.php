@@ -76,6 +76,11 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 			'parent_object_type' => $typeFactory->identifier('calendar'),
 			'parent_object_id' => $typeFactory->identifier($item['calendarId']),
 			'parent_view_permission' => $typeFactory->identifier('tiki_p_view_calendar'),
+
+			'trackeritems' => $typeFactory->multivalue(
+				TikiLib::lib('attribute')->find_objects_with('tiki.calendar.item', $objectId)
+			),
+
 		];
 
 		return $data;
@@ -94,13 +99,21 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 			'filetype',
 			'filesize',
 
-			'gallery_id',
-			'file_comment',
-			'file_content',
+			'calendar_id',
+			'start_date',
+			'end_date',
+			'priority',
+			'status',
+			'status_text',
+			'url',
+			'recurrence_id',
 
+			'view_permission',
 			'parent_view_permission',
 			'parent_object_id',
 			'parent_object_type',
+
+			'trackeritems',
 		];
 	}
 

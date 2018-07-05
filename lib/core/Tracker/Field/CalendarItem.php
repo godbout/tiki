@@ -142,10 +142,32 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 		$baseKey = $this->getBaseKey();
 
 		$calitemId = $this->getCalendarItemId();
+		$recurranceId = null;
+
+		if ($calitemId) {
+			$calItem = TikiLib::lib('calendar')->get_item($calitemId);
+			if ($calItem) {
+				$recurranceId = $calItem['recurrenceId'];
+			} else {
+				Feedback::error(tr('CalendarItem Tracker Field %0 item not found %1', $this->getFieldId(), $calitemId), 'session');
+				$calitemId = null;
+			}
+		}
 
 		return [
 			$baseKey => $typeFactory->timestamp($this->getValue(), $this->getOption('datetime') == 'd'),
 			"{$baseKey}_calitemid" => $typeFactory->numeric($calitemId),
+			"{$baseKey}_recurranceId" => $typeFactory->numeric($recurranceId),
+		];
+	}
+
+	function getProvidedFields()
+	{
+		$baseKey = $this->getBaseKey();
+		return [
+			$baseKey,
+			"{$baseKey}_calitemid",
+			"{$baseKey}_recurranceId",
 		];
 	}
 
