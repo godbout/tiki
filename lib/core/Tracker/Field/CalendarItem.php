@@ -116,7 +116,7 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 				);
 				if ($new) {    // added a new one?
 					$this->attributeLib->set_attribute(
-						'tracker_item', $itemId, 'tiki.calendar.item',
+						'trackeritem', $itemId, 'tiki.calendar.item',
 						$calitemId
 					);
 				}
@@ -124,11 +124,11 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			//$itemInfo = $calendarlib->get_item($calitemId);
 		} else if (! $value && $oldValue && $itemId = $this->getItemId()) {
 			// delete an item?
-			$calitemId = $this->attributeLib->get_attribute('tracker_item', $itemId, 'tiki.calendar.item');
+			$calitemId = $this->attributeLib->get_attribute('trackeritem', $itemId, 'tiki.calendar.item');
 			if ($calitemId) {
 				$this->calendarLib->drop_item($GLOBALS['user'], $calitemId);
 				// also remove attribute
-				$this->attributeLib->set_attribute('tracker_item', $itemId, 'tiki.calendar.item', '');
+				$this->attributeLib->set_attribute('trackeritem', $itemId, 'tiki.calendar.item', '');
 			}
 		}
 
@@ -203,7 +203,7 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 	 */
 	private function getCalendarItemId()
 	{
-		$calitemId = $this->attributeLib->get_attribute('tracker_item', $this->getItemId(), 'tiki.calendar.item');
+		$calitemId = $this->attributeLib->get_attribute('trackeritem', $this->getItemId(), 'tiki.calendar.item');
 		return $calitemId;
 	}
 }
