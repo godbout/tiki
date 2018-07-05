@@ -455,29 +455,33 @@ class CalendarLib extends TikiLib
 		$query .= "left join `tiki_calendar_categories` as c on i.`categoryId`=c.`calcatId` left join `tiki_calendars` as t on i.`calendarId`=t.`calendarId` where `calitemId`=?";
 		$result = $this->query($query, [(int)$calitemId]);
 		$res = $result->fetchRow();
-		$query = "select `username`, `role` from `tiki_calendar_roles` where `calitemId`=? order by `role`";
-		$rezult = $this->query($query, [(int)$calitemId]);
-		$ppl = [];
-		$org = [];
 
-		while ($rez = $rezult->fetchRow()) {
-			if ($rez["role"] == ROLE_ORGANIZER) {
-				$org[] = $rez["username"];
-			} elseif ($rez["username"]) {
-				$ppl[] = ['name' => $rez["username"],'role' => $rez["role"]];
+		if ($res) {
+			$query
+				= "select `username`, `role` from `tiki_calendar_roles` where `calitemId`=? order by `role`";
+			$rezult = $this->query($query, [(int)$calitemId]);
+			$ppl = [];
+			$org = [];
+			while ($rez = $rezult->fetchRow()) {
+				if ($rez["role"] == ROLE_ORGANIZER) {
+					$org[] = $rez["username"];
+				} elseif ($rez["username"]) {
+					$ppl[] = ['name' => $rez["username"],
+							  'role' => $rez["role"]];
+				}
 			}
+			$res["participants"] = $ppl;
+			$res["organizers"] = $org;
+			$res['date_start'] = (int)$res['start'];
+			$res['date_end'] = (int)$res['end'];
+			$res['duration'] = $res['end'] - $res['start'];
+			$parserlib = TikiLib::lib('parser');
+			$res['parsed'] = $parserlib->parse_data(
+				$res['description'],
+				['is_html' => $prefs['calendar_description_is_html'] === 'y']
+			);
+			$res['parsedName'] = $parserlib->parse_data($res['name']);
 		}
-
-		$res["participants"] = $ppl;
-		$res["organizers"] = $org;
-
-		$res['date_start'] = (int)$res['start'];
-		$res['date_end'] = (int)$res['end'];
-
-		$res['duration'] = $res['end'] - $res['start'];
-		$parserlib = TikiLib::lib('parser');
-		$res['parsed'] = $parserlib->parse_data($res['description'], ['is_html' => $prefs['calendar_description_is_html'] === 'y']);
-		$res['parsedName'] = $parserlib->parse_data($res['name']);
 		return $res;
 	}
 
