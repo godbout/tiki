@@ -22,6 +22,10 @@ class Tiki_Render_Lazy
 				$this->data = call_user_func($this->callback);
 			} catch (Exception $e) {
 				$this->data = $e->getMessage();
+			} catch (Error $e) {
+				$this->data = $e->getMessage();
+			} catch (Throwable $e) {
+				$this->data = $e->getMessage();
 			}
 			$this->callback = null;
 		}
