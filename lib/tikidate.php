@@ -105,7 +105,9 @@ class TikiDate
 		'Turkey',
 		'Universal',
 		'W-SU',
-		'Zulu'
+		'Zulu',
+		'tzdata.zi',
+		'leapseconds'
 	];
 
 	/**
@@ -138,17 +140,16 @@ class TikiDate
 	static function getTimeZoneList()
 	{
 		$tz = [];
-		$now = new DateTime('now', new DateTimeZone('GMT'));
+		$now = new DateTime('now', new DateTimeZone('UTC'));
 		$tz_list = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
 		ksort($tz_list);
 
 		foreach ($tz_list as $tz_id) {
-			if (in_array($tz_id, TikiDate::$deprecated_tz)) {
-				continue; // Workaround PHP5.5 no more this timezone https://bugs.php.net/bug.php?id=66985
+			if (self::isKnownTimezoneID($tz_id)) {
+				$tmp_now = new DateTime('now', new DateTimeZone($tz_id));
+				$tmp = $tmp_now->getOffset() - 3600 * $tmp_now->format('I');
+				$tz[$tz_id]['offset'] = $tmp * 1000;
 			}
-			$tmp_now = new DateTime('now', new DateTimeZone($tz_id));
-			$tmp = $tmp_now->getOffset() - 3600 * $tmp_now->format('I');
-			$tz[$tz_id]['offset'] = $tmp * 1000;
 		}
 		return $tz;
 	}
@@ -413,6 +414,25 @@ class TikiDate
 	static function TimezoneIsValidId($id)
 	{
 		return in_array($id, self::getTimezoneIdentifiers());
+	}
+
+	/**
+	 * Checks that the string timezone identifier is recognized as a timezone.
+	 * This does not rely on an ever-expanding blacklist TikiDate::$deprecated_tz
+	 * Therefore it should not break every time the OS updates the TZ list
+	 */
+	static function isKnownTimezoneID($tzid) {
+		if (empty($tzid)) {
+			return false;
+		}
+		foreach (timezone_abbreviations_list() as $zone) {
+			foreach ($zone as $item) {
+				if ($item["timezone_id"] == $tzid) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	static function getTimezoneAbbreviations()
