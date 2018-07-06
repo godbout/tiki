@@ -21,9 +21,7 @@
 	{if $cant gt 0}
 		{include file="comment/list_inner.tpl"}
 	{else}
-		{remarksbox type=info title="{tr}No comments{/tr}"}
-			{tr}There are no comments at this time.{/tr}
-		{/remarksbox}
+		{remarksbox type=info close=n title="{tr}There are no comments at this time.{/tr}"}{/remarksbox}
 	{/if}
 
 	{if $allow_post}
