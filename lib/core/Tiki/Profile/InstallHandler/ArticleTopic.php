@@ -75,4 +75,24 @@ class Tiki_Profile_InstallHandler_ArticleTopic extends Tiki_Profile_InstallHandl
 		}
 		return false;
 	}
+
+	/**
+	 * Get current article topic data
+	 *
+	 * @param array $article
+	 * @return mixed
+	 */
+	public function getCurrentData($articleTopic)
+	{
+		$articleTopicName = ! empty($articleTopic['name']) ? $articleTopic['name'] : '';
+		if (! empty($articleTopicName)) {
+			$artlib = TikiLib::lib('art');
+			$articleTopicId = $artlib->get_topicId($articleTopicName);
+			if (! empty($articleTopicId)) {
+				$articleTopicData = $artlib->get_topic($articleTopicId);
+				return $articleTopicData;
+			}
+		}
+		return false;
+	}
 }

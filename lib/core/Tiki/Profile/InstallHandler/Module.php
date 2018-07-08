@@ -139,9 +139,74 @@ class Tiki_Profile_InstallHandler_Module extends Tiki_Profile_InstallHandler
 	{
 		if (! empty($module)) {
 			$modlib = TikiLib::lib('mod');
-			if ($modlib->remove_user_module($module)) {
+			$query = "select `moduleId` from `tiki_modules` where `name`=? order by `moduleId` desc";
+			$moduleId = $modlib->getOne($query, $module);
+			if ($modlib->unassign_module($moduleId)) {
 				return true;
 			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get current module data
+	 *
+	 * @param array $module
+	 * @return mixed
+	 */
+	public function getCurrentData($module)
+	{
+		$moduleName = ! empty($module['name']) ? $module['name'] : '';
+		$modlib = TikiLib::lib('mod');
+		$userModuleInfo = $modlib->get_user_module($moduleName);
+		$query = "select `moduleId` from `tiki_modules` where `name`=? order by `moduleId` desc";
+		$moduleId = $modlib->getOne($query, $moduleName);
+		if (! empty($moduleId)) {
+			$module = $modlib->get_assigned_module($moduleId);
+			$userModuleInfo = ! empty($userModuleInfo) ? $userModuleInfo : [];
+			$moduleData = array_merge($module, $userModuleInfo);
+			return $moduleData;
+		}
+		return false;
+	}
+
+	/**
+	 * Get wiki page changes
+	 *
+	 * @param array $before
+	 * @param array $after
+	 * @return mixed
+	 */
+	public function getChanges($before, $after)
+	{
+		if (! empty($before['moduleId']) && ! empty($after['moduleId']) && $before['moduleId'] === $after['moduleId']) {
+			return $before;
+		}
+		return false;
+	}
+
+	/**
+	 * Revert module data
+	 *
+	 * @param array $moduleData
+	 * @return bool
+	 */
+	public function revert($moduleData)
+	{
+		if (! empty($moduleData)) {
+			$modlib = TikiLib::lib('mod');
+			$modlib->assign_module(
+				$moduleData['moduleId'],
+				$moduleData['name'],
+				$moduleData['title'],
+				$moduleData['position'],
+				$moduleData['ord'],
+				$moduleData['cache_time'],
+				$moduleData['rows'],
+				$moduleData['groups'],
+				$moduleData['params']
+			);
+			return true;
 		}
 		return false;
 	}

@@ -335,4 +335,26 @@ class Tiki_Profile_InstallHandler_FileGallery extends Tiki_Profile_InstallHandle
 		}
 		return false;
 	}
+
+	/**
+	 * Get current file gallery data
+	 *
+	 * @param array $fileGallery
+	 * @return mixed
+	 */
+	public function getCurrentData($fileGallery)
+	{
+		$fileGalleryName = ! empty($fileGallery['name']) ? $fileGallery['name'] : '';
+		if (! empty($fileGalleryName)) {
+			$filegallib = TikiLib::lib('filegal');
+			$fileGalleryData = $filegallib->table('tiki_file_galleries')->fetchFullRow(['name' => $fileGalleryName]);
+			$fileGalleryId = ! empty($fileGalleryData['galleryId']) ? $fileGalleryData['galleryId'] : 0;
+			$filesInfo = $filegallib->get_files_info_from_gallery_id($fileGalleryId);
+			if (! empty($filesInfo)) {
+				$fileGalleryData['files'] = $filesInfo;
+			}
+			return $fileGalleryData;
+		}
+		return false;
+	}
 }

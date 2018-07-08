@@ -1874,8 +1874,31 @@ class LogsLib extends TikiLib
 		return $csv;
 	}
 
-	function delete_action($action, $object, $objectType, $comment) {
+	function delete_action($action, $object, $objectType, $comment)
+	{
 		$query = "delete from `tiki_actionlog` where `action` = ? and `object` = ? and `objectType` = ? and `comment` = ?";
 		$this->query($query, [$action, $object, $objectType, $comment]);
+	}
+
+	/**
+	 * Log a revert action from another log
+	 *
+	 * @param int $actionId
+	 * @param string $object
+	 * @param string $page
+	 * @param array $logInfo
+	 * return null
+	 */
+	function revert_action($actionId, $object, $page, $logInfo)
+	{
+		if (! isset($logInfo['reverted'])) {
+			$logInfoReverted = array_merge(['reverted' => true], $logInfo);
+			$logInfoReverted = serialize($logInfoReverted);
+			$query = "update `tiki_actionlog` set `log`= ? where `actionId`=?";
+			$this->query($query, [$logInfoReverted, $actionId]);
+			$type = $page . ' apply reverted';
+			$message = $page . ' ' . tra('reverted');
+			$this->add_action($type, $object, 'system', $message, '', '', '', '', '', '', $logInfo);
+		}
 	}
 }

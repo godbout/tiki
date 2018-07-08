@@ -504,12 +504,34 @@ class Tiki_Profile_Installer
 				$this->setTrackProfileChanges('user', $object, false, $description);
 				continue;
 			} else {
-				$this->setTrackProfileChanges('installer', false, false, $description);
+				$installedOldValue = false;
+				$type = $object->getType();
+				$class = ! empty($this->handlers[$type]) ? $this->handlers[$type] : null;
+				if (! $dryRun && $class && class_exists($class) && ! empty($this->userData)) {
+					$classHandler = new $class($object, $this->userData);
+					if (is_callable([$classHandler, 'getData'])) {
+						$handlerData = $classHandler->getData();
+						if (! empty($handlerData) && is_callable([$classHandler, 'getCurrentData'])) {
+							$installedOldValue = $classHandler->getCurrentData($handlerData);
+						}
+					}
+				}
+				if ($dryRun) {
+					$this->setTrackProfileChanges('installer', $object, false, $description);
+				}
 			}
 
 			if (! $dryRun) {
 				$installer->install();
 				$installer->replaceReferences($description);
+				$logOldValue = false;
+				if (! $installer instanceof Tiki_Profile_InstallHandler_User) {
+					if (! empty($installedOldValue) && is_callable([$classHandler, 'getChanges'])) {
+						$oldValue = $classHandler->getCurrentData($handlerData);
+						$logOldValue = $classHandler->getChanges($installedOldValue, $oldValue);
+					}
+				}
+				$this->setTrackProfileChanges('installer', $object, $logOldValue, $description);
 				$this->setFeedback(tra('Added (or modified)') . ': ' . $description);
 			}
 		}
@@ -560,13 +582,19 @@ class Tiki_Profile_Installer
 							$handlersName = str_replace('"', "", trim($handlersName));
 						}
 						$handle = $this->handlers[$description[0]];
-						if (method_exists($handle, 'remove')) {
+						$installerType = $description[0];
+						if (! empty($change['old']) && method_exists($handle, 'revert')) {
+							$handle::revert($change['old']);
+							$this->setFeedback(tra('Installer reverted') . ': ' . $installerType . ' ' . $change['old']);
+						} elseif (method_exists($handle, 'remove')) {
 							$handle::remove($handlersName);
+							$this->setFeedback(tra('Installer removed') . ': ' . $installerType . ' ' . $handlersName);
 						}
 					}
 				} elseif ($change['type'] == 'group') {
 					if (empty($change['old']) && ! empty($change['new'])) {
 						$userlib->remove_group($change['description']);
+						$this->setFeedback(tra('Group removed') . ': ' . $change['description']);
 					} else {
 						$info = $change['old'];
 						$userlib->change_group(
@@ -589,13 +617,14 @@ class Tiki_Profile_Installer
 							$info['prorateInterval'],
 							$info['groupColor']
 						);
+						$this->setFeedback(tra('Group modified') . ': ' . $info['groupName']);
 					}
 				} elseif ($change['type'] == 'permission' && ! empty($change['description'][0]) && ! empty($change['description'][1])) {
 					$permission = $change['description'][0];
 					$groupName = $change['description'][1];
 
 					if ($groupName == 'Admins' && $permission == 'tiki_p_admin') {
-						return false;
+						continue;
 					}
 
 					if (empty($change['old'])) {
@@ -605,6 +634,7 @@ class Tiki_Profile_Installer
 						} else {
 							$userlib->remove_permission_from_group($permission, $groupName);
 						}
+						$this->setFeedback(tra('Permission removed') . ': ' . $permission);
 					} else {
 						if (! empty($change['description'][2])) {
 							$data = $change['description'][2];
@@ -612,6 +642,7 @@ class Tiki_Profile_Installer
 						} else {
 							$userlib->assign_permission_to_group($permission, $groupName);
 						}
+						$this->setFeedback(tra('Permission assign') . ': ' . $permission);
 					}
 				}
 			}

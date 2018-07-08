@@ -100,4 +100,32 @@ class Tiki_Profile_InstallHandler_Sheet extends Tiki_Profile_InstallHandler
 			return $parentSheetId;
 		}
 	}
+
+	/**
+	 * Get current spreadsheet data
+	 *
+	 * @param array $spreadsheets
+	 * @return mixed
+	 */
+	public function getCurrentData($spreadsheets)
+	{
+		if (! empty($spreadsheets)) {
+			$sheetlib = TikiLib::lib('sheet');
+			$spreadsheetsData = [];
+			foreach ($spreadsheets as $sheet) {
+				if (! empty($sheet['title'])) {
+					$sheetData = $sheetlib->list_sheets(0, 1, 'sheetId_desc', $sheet['title']);
+					$sheetId = ! empty($sheetData['data']) ? key($sheetData['data']) : 0;
+					if (! empty($sheetId)) {
+						$sheetData = $sheetData['data'][$sheetId];
+						$sheetData['layout'] = $sheetlib->get_sheet_layout($sheetId);
+						$sheetData['rows'] = $sheetlib->getSheetValue($sheetId);
+						$spreadsheetsData[] = $sheetData;
+					}
+				}
+			}
+			return $spreadsheets;
+		}
+		return false;
+	}
 }

@@ -287,4 +287,22 @@ class Tiki_Profile_InstallHandler_Forum extends Tiki_Profile_InstallHandler
 
 		return false;
 	}
+
+	/**
+	 * Get current forum data
+	 *
+	 * @param array $forum
+	 * @return mixed
+	 */
+	public function getCurrentData($forum)
+	{
+		$forumName = ! empty($forum['name']) ? $forum['name'] : '';
+		if (! empty($forumName)) {
+			$comments = TikiLib::lib('comments');
+			$forum = $comments->list_forums(0, 1, 'forumId_desc', $forumName);
+			$forumData = ! empty($forum['data'][0]) ? $forum['data'][0] : false;
+			return $forumData;
+		}
+		return false;
+	}
 }

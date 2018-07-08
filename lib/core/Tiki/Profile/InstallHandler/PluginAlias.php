@@ -75,4 +75,23 @@ class Tiki_Profile_InstallHandler_PluginAlias extends Tiki_Profile_InstallHandle
 		}
 		return false;
 	}
+
+	/**
+	 * Get current plugin alias data
+	 *
+	 * @param array $pluginAlias
+	 * @return mixed
+	 */
+	public function getCurrentData($pluginAlias)
+	{
+		$pluginAliasName = ! empty($pluginAlias['name']) ? $pluginAlias['name'] : '';
+		if (! empty($pluginAliasName)) {
+			$parserlib = TikiLib::lib('parser');
+			$pluginNameData = $parserlib->plugin_alias_info($pluginAliasName);
+			if (! empty($pluginNameData)) {
+				return $pluginNameData;
+			}
+		}
+		return false;
+	}
 }

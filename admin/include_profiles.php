@@ -153,8 +153,10 @@ if (! empty($_POST['pp']) && ! empty($_POST["revertInfo"]) && $access->checkCsrf
 	if (! empty($domain)) {
 		$transaction = $tikilib->begin();
 		$profile = Tiki_Profile::fromNames($domain, $_POST['pp']);
+		$installer->setFeedback(tra('Profile forgotten') . ': ' . $_POST['pp']);
 		$installer->revert($profile, $_POST["revertInfo"]);
 		$installer->forget($profile);
+		$revertedActions = $installer->getFeedback();
 		$transaction->commit();
 	}
 }

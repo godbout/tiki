@@ -52,6 +52,19 @@ class SheetLib extends TikiLib
 		return $result->fetchRow();
 	}
 
+	/**
+	 * Get sheet values
+	 *
+	 * @param int $sheetId
+	 * @return array
+	 */
+	public function getSheetValue($sheetId) // {{{2
+	{
+		$result = $this->fetchAll("SELECT `sheetId`, `begin`, `end`, `rowIndex`, `columnIndex`, `value`, `calculation`, `width`, `height`, `format`, `user`, `style`, `class`, `clonedSheetId` FROM `tiki_sheet_values` WHERE `sheetId` = ?", [ $sheetId ]);
+
+		return $result;
+	}
+
 	//general relationships management
 	function add_relate($type, $sheetId, $childId)
 	{
@@ -223,6 +236,12 @@ class SheetLib extends TikiLib
 				break;
 			case "title_desc":
 				$sort = "`title` DESC";
+				break;
+			case "sheetId_asc":
+				$sort = "`sheetId` ASC";
+				break;
+			case "sheetId_desc":
+				$sort = "`sheetId` DESC";
 				break;
 			default:
 				$sort = "`title` ASC";

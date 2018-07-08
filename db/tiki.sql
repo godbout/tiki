@@ -88,7 +88,7 @@ CREATE TABLE `tiki_actionlog` (
   `comment` text default NULL,
   `categId` int(12) NOT NULL default '0',
   `client` VARCHAR( 200 ) NULL DEFAULT NULL,
-  `log` TEXT NULL DEFAULT NULL,
+  `log` LONGTEXT NULL DEFAULT NULL,
   PRIMARY KEY (`actionId`),
   KEY `lastModif` (`lastModif`),
   KEY `object` (`object`(100), `objectType`, `action`(100))

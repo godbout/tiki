@@ -19,10 +19,20 @@ if (isset($_POST["actionId"]) && ! empty($_POST["page"])) {
 	$adminPage = $_POST["page"];
 	$logResult = $logslib->get_info_action($_POST["actionId"]);
 	if (! empty($logResult['log']) && ! empty($logResult['object'])) {
-		$_POST['pp'] = $logResult['object'];
-		$_POST["revertInfo"] = unserialize($logResult['log']);
-		if (file_exists("admin/include_$adminPage.php")) {
-			include_once("admin/include_$adminPage.php");
+		$logObject = $logResult['object'];
+		$_POST['pp'] = $logObject;
+		$revertInfo = unserialize($logResult['log']);
+		if (! isset($revertInfo['reverted'])) {
+			$_POST["revertInfo"] = $revertInfo;
+			$logslib->revert_action($_POST["actionId"], $logObject, $adminPage, $revertInfo);
+			if (file_exists("admin/include_$adminPage.php")) {
+				include_once("admin/include_$adminPage.php");
+			}
+			if (! empty($revertedActions)) {
+				Feedback::note(['mes' => $revertedActions, 'title' => tra('The following list of changes has been reverted:')]);
+			}
+		} else {
+			Feedback::error(['mes' => tr('Log already reverted')]);
 		}
 	} else {
 		Feedback::error(['mes' => tr('Invalid System Log ID')]);

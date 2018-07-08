@@ -181,4 +181,25 @@ class Tiki_Profile_InstallHandler_Article extends Tiki_Profile_InstallHandler
 		}
 		return false;
 	}
+
+	/**
+	 * Get current article data
+	 *
+	 * @param array $article
+	 * @return mixed
+	 */
+	public function getCurrentData($article)
+	{
+		$articleName = ! empty($article['title']) ? $article['title'] : '';
+		if (! empty($articleName)) {
+			$artlib = TikiLib::lib('art');
+			$article = $artlib->list_articles(0, 1, 'articleId_desc', $articleName);
+			$articleId = ! empty($article['data'][0]['articleId']) ? $article['data'][0]['articleId'] : 0;
+			if (! empty($articleId)) {
+				$articleData = $article['data'][0];
+				return $articleData;
+			}
+		}
+		return false;
+	}
 }

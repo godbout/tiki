@@ -349,4 +349,78 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 
 		return false;
 	}
+
+	/**
+	 * Return wiki page object data
+	 *
+	 * @return array
+	 */
+	public function getData()
+	{
+		return $this->obj->getData();
+	}
+
+	/**
+	 * Get current wiki page data
+	 *
+	 * @param array $wikiPage
+	 * @return mixed
+	 */
+	public function getCurrentData($wikiPage)
+	{
+		$wikiPageName = ! empty($wikiPage['name']) ? $wikiPage['name'] : '';
+		if (! empty($wikiPage)) {
+			$tikilib = \TikiLib::lib('tiki');
+			$pageData = $tikilib->get_page_info($wikiPageName);
+			if (! empty($pageData)) {
+				return $pageData;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get wiki page changes
+	 *
+	 * @param array $before
+	 * @param array $after
+	 * @return mixed
+	 */
+	public function getChanges($before, $after)
+	{
+		if (! empty($before['page_id']) && ! empty($after['page_id']) && $before['page_id'] === $after['page_id']) {
+			return $before;
+		}
+		return false;
+	}
+
+	/**
+	 * Revert wiki page data
+	 *
+	 * @param array $pageData
+	 * @return bool
+	 */
+	public function revert($pageData)
+	{
+		if (! empty($pageData)) {
+			$tikilib = \TikiLib::lib('tiki');
+			$tikilib->update_page(
+				$pageData['pageName'],
+				$pageData['data'],
+				$pageData['comment'],
+				$pageData['user'],
+				$pageData['ip'],
+				$pageData['description'],
+				$pageData['version_minor'],
+				$pageData['lang'],
+				$pageData['is_html'],
+				'',
+				null,
+				$pageData['wysiwyg'],
+				$pageData['wiki_authors_style']
+			);
+			return true;
+		}
+		return false;
+	}
 }

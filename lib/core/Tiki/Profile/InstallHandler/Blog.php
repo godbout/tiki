@@ -94,4 +94,32 @@ class Tiki_Profile_InstallHandler_Blog extends Tiki_Profile_InstallHandler
 		}
 		return false;
 	}
+
+	/**
+	 * Get current blog data
+	 *
+	 * @param array $blog
+	 * @return mixed
+	 */
+	public function getCurrentData($blog)
+	{
+		$blogName = ! empty($blog['title']) ? $blog['title'] : '';
+		$blog = explode('$', $blogName);
+		$blogName = ! empty($blog[2]) ? $blog[2] : $blogName;
+		if (! empty($blogName)) {
+			$bloglib = TikiLib::lib('blog');
+			$blogData = $bloglib->get_blog_by_title($blogName);
+			$blogId = ! empty($blogData['blogId']) ? $blogData['blogId'] : 0;
+			if (! empty($blogId)) {
+				$blogPost = $bloglib->list_blog_posts($blogId);
+				$blogPostData = ! empty($blogPost['data']) ? $blogPost['data'] : [];
+				foreach ($blogPostData as $key => $post) {
+					$blogPostData[$key]['images'] = $bloglib->get_post_images($post['postId']);
+				}
+				$blogData['posts'] = $blogPostData;
+				return $blogData;
+			}
+		}
+		return false;
+	}
 }

@@ -44,7 +44,7 @@
 				<td class="text">{$list[ix].ip|escape:"html"}</td>
 				<td class="text"><span title="{$list[ix].client|escape:'html'}">{$list[ix].client|truncate:30:"..."|escape:'html'}</span></td>
 				<td>
-					{if $list[ix].object == 'profile apply'}
+					{if $list[ix].object == 'profile apply' && strpos($list[ix].log, 'reverted') === false}
 						<form method="post" action="tiki-syslog.php" onsubmit="return confirm('{tr}Are you sure you want to revert{/tr} &QUOT;{$list[ix].action|escape}&QUOT;?');">
 							{ticket}
 							<input type="hidden" name="page" value="profiles">

@@ -110,4 +110,28 @@ class Tiki_Profile_InstallHandler_Rss extends Tiki_Profile_InstallHandler
 		}
 		return false;
 	}
+
+	/**
+	 * Get current rss data
+	 *
+	 * @param array $rss
+	 * @return mixed
+	 */
+	public function getCurrentData($rss)
+	{
+		$rssName = ! empty($rss['name']) ? $rss['name'] : '';
+		if (! empty($rssName)) {
+			$rsslib = TikiLib::lib('rss');
+			$rssModuleId = $rsslib->get_rss_module_id($rssName);
+			$rssModule = $rsslib->get_rss_module($rssModuleId);
+			if (! empty($rssModule)) {
+				$rssItemsTable = $rsslib->table('tiki_rss_items');
+				$rssItemsAll = $rssItemsTable->all();
+				$rssModuleItems = $rssItemsTable->fetchAll($rssItemsAll, ['rssId' => $rssModuleId]);
+				$rssModule['items'] = $rssModuleItems;
+				return $rssModule;
+			}
+		}
+		return false;
+	}
 }

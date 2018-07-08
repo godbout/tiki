@@ -7,7 +7,7 @@
 
 class Tiki_Profile_InstallHandler_Tracker extends Tiki_Profile_InstallHandler
 {
-	private function getData() // {{{
+	public function getData() // {{{
 	{
 		if ($this->data) {
 			return $this->data;
@@ -295,6 +295,38 @@ class Tiki_Profile_InstallHandler_Tracker extends Tiki_Profile_InstallHandler
 			}
 		}
 
+		return false;
+	}
+
+	/**
+	 * Get current tracker data
+	 *
+	 * @param array $tracker
+	 * @return mixed
+	 */
+	public function getCurrentData($tracker)
+	{
+		$trackerName = ! empty($tracker['name']) ? $tracker['name'] : '';
+		$trklib = TikiLib::lib('trk');
+		$trackerId = $trklib->get_tracker_by_name($trackerName);
+		if (! empty($trackerId)) {
+			$trackerData = $trklib->get_tracker($trackerId);
+			$trackerOptions = $trklib->get_trackers_options($trackerId);
+			$currentOptions = [];
+			if (! empty($trackerOptions)) {
+				foreach ($trackerOptions as $key => $value) {
+					if (! empty($value['name']) && ! empty($value['value'])) {
+						$currentOptions[$value['name']] = $value['value'];
+					}
+				}
+			}
+			$trackerFields = $trklib->list_tracker_fields($trackerId);
+			if (! empty($trackerData)) {
+				$trackerData['options'] = $currentOptions;
+				$trackerData['fields'] = ! empty($trackerFields['data']) ? $trackerFields['data'] : [];
+				return $trackerData;
+			}
+		}
 		return false;
 	}
 }

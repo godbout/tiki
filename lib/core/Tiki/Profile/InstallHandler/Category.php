@@ -165,4 +165,36 @@ class Tiki_Profile_InstallHandler_Category extends Tiki_Profile_InstallHandler
 		}
 		return false;
 	}
+
+	/**
+	 * Return category object data
+	 *
+	 * @return array
+	 */
+	public function getData()
+	{
+		return $this->obj->getData();
+	}
+
+	/**
+	 * Get current category data
+	 *
+	 * @param array $category
+	 * @return mixed
+	 */
+	public function getCurrentData($category)
+	{
+		$categoryName = ! empty($category['name']) ? $category['name'] : '';
+		if (! empty($categoryName)) {
+			$categlib = TikiLib::lib('categ');
+			$categId = $categlib->get_category_id($categoryName);
+			if (isset($categId)) {
+				$categData = $categlib->get_category($categId);
+				if (! empty($categData)) {
+					return $categData;
+				}
+			}
+		}
+		return false;
+	}
 }

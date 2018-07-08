@@ -250,9 +250,66 @@ class Tiki_Profile_InstallHandler_Menu extends Tiki_Profile_InstallHandler
 			$menus = $menulib->list_menus(0, -1, 'menuId_desc', $menu);
 			$menuId = ! empty($menus['data'][0]['menuId']) ? $menus['data'][0]['menuId'] : null;
 
-			if ($menuId && $menulib->remove_menu($menuId)) {
+			// The system menu has a value hardcoded of 42
+			if ($menuId && $menuId != 42 && $menulib->remove_menu($menuId)) {
 				return true;
 			}
+		}
+		return false;
+	}
+
+	/**
+	 * Get current menu data
+	 *
+	 * @param array $menu
+	 * @return mixed
+	 */
+	public function getCurrentData($menu)
+	{
+		$menuName = ! empty($menu['name']) ? $menu['name'] : '';
+		$menulib = TikiLib::lib('menu');
+		$menus = $menulib->list_menus(0, -1, 'menuId_desc', $menuName);
+		if (! empty($menus['data'][0])) {
+			$data = $menus['data'][0];
+			$menuId = ! empty($data['menuId']) ? $data['menuId'] : 0;
+			$menuOptions = $menulib->list_menu_options($menuId);
+			if (! empty($menuOptions['data'])) {
+				$data['items'] = $menuOptions['data'];
+			}
+			$defaults = [
+				'menuId' => 0,
+				'description' => '',
+				'collapse' => 'collapsed',
+				'icon' => '',
+				'groups' => [],
+				'items' => [],
+				'cache' => 0,
+			];
+			$data = array_merge($defaults, $data);
+			$data['groups'] = serialize($data['groups']);
+			$position = 0;
+			foreach ($data['items'] as &$item) {
+				$this->fixItem($item, $position);
+			}
+			$items = [];
+			$this->flatten($data['items'], $items);
+			$data['items'] = $items;
+			return $data;
+		}
+		return false;
+	}
+
+	/**
+	 * Get menu changes
+	 *
+	 * @param array $before
+	 * @param array $after
+	 * @return mixed
+	 */
+	public function getChanges($before, $after)
+	{
+		if (! empty($before['menuId']) && ! empty($after['menuId']) && $before['menuId'] === $after['menuId']) {
+			return $before;
 		}
 		return false;
 	}
