@@ -94,7 +94,7 @@ function wikiplugin_pagelayout_info()
 				'default' => '',
 				'since' => '19.0'
 			],
-			'fgallId' => [
+			'fgalId' => [
 				'required' => false,
 				'name' => tra('Page Background Sliding Images'),
 				'description' => tra('Enter file gallery id for fading background'),
@@ -221,10 +221,10 @@ function wikiplugin_pagelayout($data, $params)
 	if(isset($params['pageFooterWidth'])) {
 		$headerlib->add_css("#footer{width:".$params["pageFooterWidth"].";margin:auto}");
 	}
-	if(isset($params['fgallId']) ||  $params['fileIds']) {
+	if(isset($params['fgalId']) ||  $params['fileIds']) {
 		//checking if gallery is choosen
 		$filegallib = TikiLib::lib('filegal');
-		if ($params['fgallId']) {
+		if ($params['fgalId']) {
 			$files = $filegallib->get_files(0, -1, '', '', $params['fgalId']);
 		}
 		if ( $params['fileIds']) {
