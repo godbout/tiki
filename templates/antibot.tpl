@@ -2,7 +2,7 @@
 {if empty($user) || $user eq 'anonymous' || !empty($showantibot)}
 	{$labelclass = 'col-md-3'}
 	{$inputclass = 'col-md-9'}
-	{$captchaclass = 'col-sm-4 col-sm-offset-3 mb-3'}
+	{$captchaclass = 'col-md-4 offset-md-3 mb-3'}
 	{if $form === 'register'}
 		{$labelclass = 'col-md-4 col-sm-3'}
 		{$inputclass = 'col-md-4 col-sm-6'}
@@ -11,7 +11,7 @@
 	{if $form === 'moduleSubscribeNL'}
 		{$labelclass = 'col-md-12'}
 		{$inputclass = 'col-md-12'}
-		{$captchaclass = 'col-md-12'}
+		{$captchaclass = 'col-md-12 mb-3'}
 	{/if}
 	<div class="antibot">
 		{if $captchalib->type eq 'recaptcha' || $captchalib->type eq 'recaptcha20'}

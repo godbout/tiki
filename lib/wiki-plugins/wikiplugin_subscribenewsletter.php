@@ -142,7 +142,7 @@ function wikiplugin_subscribenewsletter($data, $params)
 	$smarty->assign_by_ref('wpError', $wpError);
 	$smarty->assign('subscribeEmail', $subscribeEmail);
 	$smarty->assign('subcribeMessage', empty($button) ? $data : $button);
-	$smarty->assign('inmodule', !empty(inmodule) ? "moduleSubscribeNL" : "");
+	$smarty->assign('inmodule', !empty($inmodule) ? "moduleSubscribeNL" : "");
 	$smarty->assign_by_ref('subscribeInfo', $info);
 	$res = $smarty->fetch('wiki-plugins/wikiplugin_subscribenewsletter.tpl');
 	if (isset($params["wikisyntax"]) && $params["wikisyntax"] == 1) {
