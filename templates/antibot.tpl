@@ -4,9 +4,9 @@
 	{$inputclass = 'col-md-9'}
 	{$captchaclass = 'col-md-4 offset-md-3 mb-3'}
 	{if $form === 'register'}
-		{$labelclass = 'col-md-4 col-sm-3'}
-		{$inputclass = 'col-md-4 col-sm-6'}
-		{$captchaclass = 'col-md-5 col-sm-6 col-md-offset-4 col-sm-offset-3'}
+		{$labelclass = 'col-sm-4'}
+		{$inputclass = 'col-sm-8'}
+		{$captchaclass = 'col-md-4 offset-md-4 mb-3'}
 	{/if}
 	{if $form === 'moduleSubscribeNL'}
 		{$labelclass = 'col-md-12'}
@@ -23,21 +23,13 @@
 		{elseif $captchalib->type eq 'questions'}
 			<input type="hidden" name="captcha[id]" id="captchaId" value="{$captchalib->generate()}">
 			<div class="form-group row">
-				<label class="col-md-4 col-sm-3 col-form-label">
+				<label class="{$labelclass} col-form-label">
 					{$captchalib->render()}
+					{if $showmandatory eq 'y' && $form ne 'register'} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}
 				</label>
-				{if $showmandatory eq 'y'}
-					<div class="{if $form === 'register' && !empty($inputclass)}{$inputclass}{else}col-md-7 col-sm-8 col-xs-11{/if}">
-						<input class="form-control" type="text" maxlength="8" size="22" name="captcha[input]" id="antibotcode">
-					</div>
-					<div class="col-md-1 col-sm-1">
-						<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
-					</div>
-				{else}
-					<div class="{if $form === 'register' && !empty($inputclass)}{$inputclass}{else}col-md-8 col-sm-9 col-xs-12{/if}">
-						<input class="form-control" type="text" maxlength="8" size="22" name="captcha[input]" id="antibotcode">
-					</div>
-				{/if}
+				<div class="{if !empty($inputclass)}{$inputclass}{else}col-md-8 col-sm-9{/if}">
+					<input class="form-control" type="text" maxlength="8" name="captcha[input]" id="antibotcode">
+				</div>
 			</div>
 		{else}
 			{* Default captcha *}
