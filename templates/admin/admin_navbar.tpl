@@ -8,8 +8,8 @@
 	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		<form method="post" action="" class="form form-inline my-2 my-md-0" role="form" style="width: 180px;">
 			<div class="form=check">
-				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
 				{ticket}
+				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
 				<label for="preffilter-toggle-1"></label>
 			</div>
 
