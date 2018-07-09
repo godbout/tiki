@@ -10,6 +10,33 @@
 	}
 }
 
+a.admbox,
+a.admbox:visited {
+  width: 120px;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  margin: .4em;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 15px 6px;
+  text-decoration: none;
+}
+
+a.admbox .icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+a.admbox span.title {
+  display: block;
+  font-size: 1.1rem;
+  text-align: center;
+  margin: .1em;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
 // Make disabled feature icons clickable for navigation to feature activation page.
 a.admbox.btn.btn-primary.disabled.disabled-clickable {
 	pointer-events: inherit;

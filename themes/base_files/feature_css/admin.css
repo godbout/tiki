@@ -1,39 +1,6 @@
 /* $Id$ */
 
-a.admbox,
-a.admbox:visited {
-	height: 92px;
-	width: 92px;
-	text-align: center;
-	vertical-align: middle;
-	overflow: hidden;
-	margin: .4em;
-	background-repeat: no-repeat;
-	background-position: center;
-	padding: 0;
-	position: relative;
-	text-decoration: none;
-}
 
-a.admbox .icon {
-	font-size: 30px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-a.admbox span.title {
-	position: absolute;
-	top: 47px;
-	left: 0;
-	text-align: center;
-	width: 100%;
-	margin: .1em;
-	white-space: normal;
-}
-
-/*a.admbox.disabled img {
-	border: none;
-	background-image: url('../../../img/overlay-disabled_item.png');
-}*/
 /* Look & feel thumbnail */
 
 #style_thumb_div {
