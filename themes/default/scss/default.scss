@@ -3,6 +3,7 @@
 // Core variables and mixins
 /* The Bootstrap default theme for Tiki Wiki CMS Groupware */
 $secondary:      #6d35a6;
+
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "variables"; // Needs to come first, to override defaults.
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.

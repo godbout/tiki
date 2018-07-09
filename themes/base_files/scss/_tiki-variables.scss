@@ -4,6 +4,7 @@
 @import "../../default/scss/variables";
 $padding-y: .5rem; // Not sure where this is used besides buttons and pagination; not sure where it's defined in BS4
 $padding-x: .75rem;
+$module-h3-card-title-font-size: $h3-font-size !default;
 // Older
 $topmodules-row-sidemargins: 0;
 $topbar-row-sidemargins: 0;
@@ -90,8 +91,8 @@ $table-column-bg-odd: darken($table-accent-bg, 5%);
 $bootstrap-path: "../../../twbs/bootstrap/scss/";
 
 // inline code
-$code-color: #444444;
-$code-bg: #f8f8f8;
+$code-color: #444444 !default;
+$code-bg: #f8f8f8 !default;
 
 // Tracker
 $modal-link-color: $link-color;
@@ -126,5 +127,5 @@ $tiki-sheet-font-size: $font-size-base;
 $tiki-sheet-border-color: $table-border-color;
 
 // CKEditor colors
-$editor-bg: $body-bg;
-$editor-text-color: $body-color;
+$editor-bg: $body-bg !default;
+$editor-text-color: $body-color !default;

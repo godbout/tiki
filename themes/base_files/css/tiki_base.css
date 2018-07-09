@@ -7,6 +7,9 @@
 .warning a, .warning a:link, .warning a:visited {
   color: #ffc107; }
 
+.module h3.card-title {
+  font-size: 1.75rem; }
+
 .calhighlight {
   color: #fff;
   background: #17a2b8; }
@@ -1354,7 +1357,8 @@ a.cke_button span.cke_icon {
 h3.card-title {
   display: block;
   padding-top: 0;
-  position: relative; }
+  position: relative;
+  margin: 0; }
 
 .moduleflip, .moduleflip img {
   display: none;

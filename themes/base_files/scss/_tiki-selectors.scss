@@ -20,6 +20,9 @@ $imagePathToImgDir: "../../../img/";
 	color: $yellow; // $alert-warning-text; // #b93c2e
 }
 
+// h3 heading in modules
+.module h3.card-title { font-size: $module-h3-card-title-font-size; }
+
 // tiki-calendar.less - tiki-calendar_calmode.tpl, mod-calendar_new.tpl
 .calhighlight {
 	color: $white; // Todo $state-info-text;
