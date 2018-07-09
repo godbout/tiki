@@ -75,7 +75,7 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 						'class' => '',
 						'size' => $size
 					],
-					$smarty
+					$smarty->getEmptyInternalTemplate()
 				);
 			}
 		//iconsets introduced with Tiki14
@@ -157,7 +157,7 @@ function smarty_modifier_iconify($string, $filetype = null, $fileId = null, $siz
 			if ($return === 'filetype') {
 				return $type;
 			} else {
-				return smarty_function_icon(['name' => $iconname, 'size' => $size], $smarty);
+				return smarty_function_icon(['name' => $iconname, 'size' => $size], $smarty->getEmptyInternalTemplate());
 			}
 		}
 	}
