@@ -214,7 +214,8 @@ function wikiplugin_pagelayout($data, $params)
 		$headerlib->add_js('$(".container").addClass("container-fluid").removeClass("container");');
 	}
 	if (isset($params['pageContentWidth']) || isset($params['pageContentPadding'])) {
-		$headerlib->add_css("#row-middle{width:" . $params["pageContentWidth"] . ";margin:auto;margin-top:" . $params['pageContentPadding'] . "}");
+		$headerlib->add_css("#row-middle{width:" . $params["pageContentWidth"] . ";margin:auto;margin-top:" . $params['pageContentPadding'] . ";min-width:380px} #col2{min-width:380px}");
+
 	}
 	if (isset($params['pageHeaderWidth'])) {
 		$headerlib->add_css("#page-header{width:" . $params["pageHeaderWidth"] . ";margin:auto}");
@@ -286,4 +287,3 @@ function wikiplugin_pagelayout($data, $params)
 	}
 
 }
-
