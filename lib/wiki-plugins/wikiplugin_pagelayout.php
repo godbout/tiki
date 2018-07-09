@@ -199,9 +199,11 @@ function wikiplugin_pagelayout($data, $params)
 	}
 	if ($params['pageLeftBar'] == 'n') {
 		$headerlib->add_css("#col2{display:none}");
+		$headerlib->add_js('if ($( "#col1" ).hasClass( "col-lg-8" )) {$("#col1").removeClass("col-lg-8").addClass("col-lg-10");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}');
 	}
 	if ($params['pageRightBar'] == 'n') {
 		$headerlib->add_css("#col3{display:none}");
+		$headerlib->add_js('if ($( "#col1" ).hasClass( "col-lg-10" )) {$("#col1").removeClass("col-lg-10").addClass("col-lg-12");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}');
 	}
 	if ($params['pageActionButtons'] == 'n') {
 		$headerlib->add_css("#page-bar{display:none}");
@@ -214,7 +216,7 @@ function wikiplugin_pagelayout($data, $params)
 		$headerlib->add_js('$(".container").addClass("container-fluid").removeClass("container");');
 	}
 	if (isset($params['pageContentWidth']) || isset($params['pageContentPadding'])) {
-		$headerlib->add_css("#row-middle{width:" . $params["pageContentWidth"] . ";margin:auto;margin-top:" . $params['pageContentPadding'] . ";min-width:380px} #col2{min-width:380px}");
+		$headerlib->add_css("#row-middle{width:" . $params["pageContentWidth"] . ";margin:auto;margin-top:" . $params['pageContentPadding'] . ";min-width:380px} #col1{min-width:380px;margin:auto}");
 
 	}
 	if (isset($params['pageHeaderWidth'])) {
