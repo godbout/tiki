@@ -10,7 +10,7 @@ function prefs_url_list()
 	return [
 		'url_after_validation' => [
 			'name' => tra('URL the user is redirected to after account validation'),
-			'description' => tra('The default page a Registered user sees after account validation is tiki-information.php?msg=Account validated successfully.'),
+			'description' => tra('The default page a Registered user sees after account validation is "tiki-information.php?msg=Account validated successfully".'),
 			'hint' => tra('Default') . ': tiki-information.php?msg=' . tra('Account validated successfully.'),
 			'type' => 'text',
 			'dependencies' => [
@@ -25,7 +25,7 @@ function prefs_url_list()
 		],
 		'url_only_ascii' => [
 			'name' => tra('Use Only ASCII in SEFURLs'),
-			'description' => tra('Do not use accented characters in short (search engine friendly) URLs'),
+			'description' => tra('Do not use accented characters in short (search engine friendly) URLs.'),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',

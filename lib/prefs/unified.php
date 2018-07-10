@@ -112,7 +112,7 @@ function prefs_unified_list()
 		],
 		'unified_field_weight' => [
 			'name' => tra('Field weights'),
-			'description' => tra('Allows the field weights to be set that apply when ranking the pages for search listing. The weight only applies when the field is in the query. To nullify the value of a field, use an insignificant amount, not 0, which may lead to unexpected behaviors, such as stripping results.'),
+			'description' => tra('Allow the field weights to be set that apply when ranking pages in the search results. The weight is applied only when the field is in the query. To nullify the value of a field, use an insignificant amount, but not 0, which may lead to unexpected behaviors such as stripping of results.'),
 			'hint' => tra('One field per line, field_name__:__5.3'),
 			'type' => 'textarea',
 			'size' => 5,
@@ -130,7 +130,7 @@ function prefs_unified_list()
 		],
 		'unified_tokenize_version_numbers' => [
 			'name' => tra('Tokenize version numbers'),
-			'description' => tra('Tokenize version number strings so that major versions are found when sub-versions are mentionned. For example, searching for 2.7 would return documents containing 2.7.4, but not 1.2.7.'),
+			'description' => tra('Tokenize version number strings so that major versions are found when sub-versions are mentioned. For example, searching for 2.7 would return documents containing 2.7.4, but not 1.2.7.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -146,7 +146,7 @@ function prefs_unified_list()
 		],
 		'unified_forum_deepindexing' => [
 			'name' => tra('Index forum replies together with initial post'),
-			'description' => tra('Forum replies will be indexed together with the initial post as a single document instead of being indexed separately'),
+			'description' => tra('Forum replies will be indexed together with the initial post as a single document instead of being indexed separately.'),
 			'type' => 'flag',
 			'default' => 'y',
 		],
@@ -162,7 +162,7 @@ function prefs_unified_list()
 		],
 		'unified_cached_formatters' => [
 			'name' => tra('Search formatters to cache'),
-			'description' => tra('Search formatters to cache the output of'),
+			'description' => tra('Search formatters whose output will be cached'),
 			'type' => 'text',
 			'separator' => ',',
 			'default' => ['categorylist'],
@@ -179,14 +179,14 @@ function prefs_unified_list()
 		],
 		'unified_cache_formatted_result' => [
 			'name' => tra('Cache formatted results'),
-			'description' => tr('If enabled, formatted search results like the ones used in the LIST plugin will be cached to prevent costly reformatting on each page load.'),
+			'description' => tr('Formatted search results such as the ones used in the List plugin will be cached to prevent process-intensive reformatting on each page load.'),
 			'warning' => tr('This could quickly build up a large cache directory. It is recommended to clear Tiki caches often (e.g. once per week) via an automated job if you use this feature.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'unified_excluded_categories' => [
 			'name' => tra('Excluded categories'),
-			'description' => tra('List of category IDs to exclude from the search index.'),
+			'description' => tra('List of category IDs to exclude from the search index'),
 			'type' => 'text',
 			'separator' => ',',
 			'default' => [],
@@ -194,7 +194,7 @@ function prefs_unified_list()
 		],
 		'unified_excluded_plugins' => [
 			'name' => tra('Excluded plugins'),
-			'description' => tra('List of plugin names to exclude while indexing.'),
+			'description' => tra('List of plugin names to exclude while indexing'),
 			'type' => 'text',
 			'filter' => 'word',
 			'separator' => ',',
@@ -219,7 +219,7 @@ function prefs_unified_list()
 		],
 		'unified_elastic_url' => [
 			'name' => tra('Elasticsearch URL'),
-			'description' => tra('URL of any node in the cluster.'),
+			'description' => tra('URL of any node in the cluster'),
 			'type' => 'text',
 			'filter' => 'url',
 			'default' => 'http://localhost:9200',
@@ -227,7 +227,7 @@ function prefs_unified_list()
 		],
 		'unified_elastic_index_prefix' => [
 			'name' => tra('Elasticsearch index prefix'),
-			'description' => tra('Prefix used for all indexes for this installation in Elasticsearch.'),
+			'description' => tra('The prefix that is used for all indexes for this installation in Elasticsearch'),
 			'type' => 'text',
 			'filter' => 'word',
 			'default' => 'tiki_',
@@ -235,7 +235,7 @@ function prefs_unified_list()
 		],
 		'unified_elastic_index_current' => [
 			'name' => tra('Elasticsearch current index'),
-			'description' => tra('A new index is created upon rebuild and the old one is then destroyed. This setting allows you to see the currently active one.'),
+			'description' => tra('A new index is created upon rebuilding, and the old one is then destroyed. This setting enables seeing the currently active index.'),
 			'hint' => tra('Do not change this value unless you know what you are doing.'),
 			'type' => 'text',
 			'filter' => 'word',
@@ -255,12 +255,12 @@ function prefs_unified_list()
 			'type' => 'text',
 			'size' => '5',
 			'filter' => 'digits',
-			'description' => tra('Maximum number of fields per search index in Elasticsearch version 5.x and above.'),
+			'description' => tra('The maximum number of fields per search index in Elasticsearch version 5.x and above'),
 			'default' => '1000',
 		],
 		'unified_mysql_index_current' => [
 			'name' => tra('MySQL full-text search current index'),
-			'description' => tra('A new index is created upon rebuild and the old one is then destroyed. This setting allows you to see the currently active one.'),
+			'description' => tra('A new index is created upon rebuilding, and the old one is then destroyed. This setting enables seeing the currently active index.'),
 			'hint' => tra('Do not change this value unless you know what you are doing.'),
 			'type' => 'text',
 			'filter' => 'word',
@@ -269,7 +269,7 @@ function prefs_unified_list()
 		],
 		'unified_identifier_fields' => [
 			'name' => tr('Unified index identifier fields (Internal)'),
-			'description' => tr('Used to store the fields to be considered as identifiers. Overwritten after each index rebuild.'),
+			'description' => tr('Used to store the fields to be considered as identifiers. This is overwritten after each index rebuilding.'),
 			'type' => 'text',
 			'hint' => tra('Do not change this value unless you know what you are doing.'),
 			'separator' => ',',
@@ -278,7 +278,7 @@ function prefs_unified_list()
 		],
 		'unified_add_to_categ_search' => [
 			'name' => tra('Use unified search in category admin'),
-			'description' => tra('Use unfied search to find objects to add to categories. Limits types of objects available to those included in the unified index.'),
+			'description' => tra('Use unified search to find objects to add to categories. This limits the types of objects available to those included in the unified index.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => [
@@ -287,7 +287,7 @@ function prefs_unified_list()
 		],
 		'unified_stopwords' => [
 			'name' => tr('Stop Word List'),
-			'description' => tr('Words excluded from the search index as they can be too frequent and cause noise.'),
+			'description' => tr('Words excluded from the search index, because they can be too frequent and produce unwanted results.'),
 			'type' => 'text',
 			'default' => ["a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "if", "in", "into", "is", "it", "not", "of", "on", "or", "s", "such", "t", "that", "the", "their", "then", "there", "these", "they", "this", "to", "was", "will", "with"],
 			'separator' => ',',
@@ -295,7 +295,7 @@ function prefs_unified_list()
 		],
 		'unified_trim_sorted_search' => [
 			'name' => tra('Automatically trim Elasticsearch results on date-sorted query'),
-			'description' => tra('Automatically trim Elastic Search results in unified search if the query is sorted by modification or creation date.'),
+			'description' => tra('Automatically trim Elasticsearch results in unified search if the query is sorted by modification or creation date.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => [
@@ -311,7 +311,7 @@ function prefs_unified_list()
 		],
 		'unified_search_textarea_admin' => [
 			'name' => tra('Plugins tab of the textarea control panel loads with an empty list'),
-			'description' => tra('Increase performance of the textarea control panel by avoiding to load all plugins initially'),
+			'description' => tra('Improve the performance of the textarea control panel by avoiding the loading of all plugins initially'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => [
@@ -322,7 +322,7 @@ function prefs_unified_list()
 		],
 		'unified_elastic_possessive_stemmer' => [
 			'name' => tr('Possessive Stemmer'),
-			'description' => tr("The possessive stemmer removes 's from any words before indexing"),
+			'description' => tr("The possessive stemmer removes possessives (trailing \"'s\") from words before indexing them."),
 			'type' => 'flag',
 			'default' => 'y',
 		],

@@ -38,8 +38,7 @@
 		<div class="find-text form-group row">
 			<div class="col-xs-12">
 				<div class="input-group">
-					<input class="form-control" type="text" name="find" id="find" value="{$find|escape}" placeholder="{if empty($whatlabel)}{tr}Find{/tr}...{else}{tr}{$whatlabel}{/tr}{/if}" title="{$find_in|escape}" data-html="true" data-toggle="focus">
-					<div class="input-group-append">
+					<div class="input-group-prepend">
 						<span class="input-group-text text-info">
 							{* This icon made some sense when this form was on a single line by default. Now that it spans numerous lines, the area indicated by this search icon is no longer clear. This should be removed or the scope should be clarified. 2017-09-01 *}
 							{icon name="search"}

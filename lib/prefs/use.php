@@ -10,7 +10,7 @@ function prefs_use_list()
 	return  [
 		'use_load_threshold' => [
 			'name' => tra('Close site when server load is above the threshold'),
-			'description' => tra('Use this option to “close” your Tiki when the server load exceeds a specific threshold. Only users with specific permission will be allowed to log in. Use Maximum average server load threshold in the last minute to define the maximum server load. Use the Message to display to specify the message that visitors will see when attempting to access your site.'),
+			'description' => tra('Use this option to "close" the Tiki site when the server load exceeds a specific threshold. Only users with specific permission will be allowed to log in. Use "Maximum average server load threshold in the last minute" to define the maximum server load. Use the "Message to display" to specify the message that visitors will see when attempting to access the site.'),
 			'type' => 'flag',
 			'help' => 'Site-Access#Close_site',
 			'perspective' => false,
@@ -18,7 +18,7 @@ function prefs_use_list()
 		],
 		'use_proxy' => [
 			'name' => tra('Use proxy'),
-			'description' => tra('Specify if Tiki requires a proxy to access the internet. If enabled, you can specify your proxy Host name (either with or without the http:// prefix), Port settings, Username, and Password.'),
+			'description' => tra('Specify if this Tiki site requires a proxy to access the internet. If enabled, the proxy Host name (either with or without the http:// prefix), Port settings, Username, and Password can be specified.'),
 			'type' => 'flag',
 			'perspective' => false,
 			'default' => 'n',

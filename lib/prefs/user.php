@@ -14,7 +14,7 @@ function prefs_user_list($partial = false)
 	return [
 		'user_show_realnames' => [
 			'name' => tra('Show user\'s real name'),
-			'description' => tra('Show user\'s real name instead of username (log-in name), when possible'),
+			'description' => tra('Show the user\'s real name instead of username (log-in name), when possible.'),
 			'help' => 'User+Preferences',
 			'type' => 'flag',
 			'default' => 'n',
@@ -23,7 +23,7 @@ function prefs_user_list($partial = false)
 		'user_unique_email' => [
 			'name' => tra('User emails must be unique'),
 			'help' => 'User+Preferences',
-			'description' => tra('User e-mails must be unique'),
+			'description' => tra('The email address of each user must be unique.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -43,7 +43,7 @@ function prefs_user_list($partial = false)
 		'user_assigned_modules' => [
 			'name' => tra('Users can configure modules'),
 			'help' => 'Users+Configure+Modules',
-			'description' => tr('Modules won’t be reflected in the screen until you configure them from MyTiki->Modules, including the admin user'),
+			'description' => tr('Modules aren\'t reflected in the screen until they are configured on MyAccount->Modules, including for the admin user'),
 			'tags' => ['experimental'],	// This feature seems broken and will mess the display of the adventurous user. See https://dev.tiki.org/item5871
 			'type' => 'flag',
 			'default' => 'n',
@@ -84,7 +84,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_picture_gallery_id' => [
 			'name' => tra('File gallery in which to store full-size profile picture'),
-			'description' => tra('Enter the gallery ID here. Please create a dedicated gallery that is admin-only for security, or make sure gallery permissions are set so that only admins can edit.'),
+			'description' => tra('Enter the gallery ID here. Create a dedicated gallery that is admin-only for security, or make sure gallery permissions are set so that only admins can edit.'),
 			'help' => 'User+Preferences',
 			'keywords' => 'avatar',
 			'type' => 'text',
@@ -151,7 +151,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_register_prettytracker_tpl' => [
 			'name' => tra('Registration pretty tracker template'),
-			'description' => tra('Use wiki page name or template file with .tpl extension'),
+			'description' => tra('Use a wiki page name or Smarty template file with a .tpl extension.'),
 			'type' => 'text',
 			'size' => '20',
 			'dependencies' => [
@@ -192,7 +192,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_register_prettytracker_outputtowiki' => [
 			'name' => tra('Page name field ID'),
-			'description' => tra("User tracker's field ID whose value is used as output page name"),
+			'description' => tra("User the tracker's field ID whose value is used as the output page name."),
 			'type' => 'text',
 			'size' => '20',
 			'default' => '',
@@ -204,7 +204,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_trackersync_trackers' => [
 			'name' => tra('User tracker IDs to sync prefs from'),
-			'description' => tra('Enter the IDs separated by commas of trackers to sync user prefs from'),
+			'description' => tra('Enter the comma-separated IDs of trackers to sync user preferences from.'),
 			'type' => 'text',
 			'size' => '10',
 			'dependencies' => [
@@ -216,7 +216,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_trackersync_realname' => [
 			'name' => tra('Tracker field IDs to sync the "real name" pref from'),
-			'description' => tra('Enter the IDs separated by commas in priority of being chosen, each item can concatenate multiple fields using +, e.g. 2+3,4'),
+			'description' => tra('Enter the comma-separated IDs in order of priority to be chosen; each item can concatenate multiple fields using "+", for example "2+3,4".'),
 			'type' => 'text',
 			'size' => '10',
 			'dependencies' => [
@@ -228,7 +228,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_trackersync_groups' => [
 			'name' => tra('Tracker field IDs to sync user groups'),
-			'description' => tra('Enter the IDs separated by commas of all fields that contain group names to sync user groups to'),
+			'description' => tra('Enter the comma-separated IDs of all fields that contain group names to which to sync user groups.'),
 			'type' => 'text',
 			'size' => '10',
 			'dependencies' => [
@@ -239,7 +239,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_trackersync_geo' => [
 			'name' => tra('Synchronize long/lat/zoom to location field'),
-			'description' => tra('Synchronize user geolocation prefs to main location field'),
+			'description' => tra('Synchronize user geolocation preferences with the main location field.'),
 			'type' => 'flag',
 			'dependencies' => [
 				'userTracker',
@@ -269,7 +269,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_selector_threshold' => [
 			'name' => tra('Maximum users in drop-down lists'),
-			'description' => tra('Prevents out-of-memory and performance issues when the user list is very large, by using a jQuery autocomplete text input box.'),
+			'description' => tra('Use jQuery autocomplete text input to prevent out-of-memory errors and performance issues when the user list is very large.'),
 			'type' => 'text',
 			'size' => '5',
 			'units' => tra('users'),
@@ -278,7 +278,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_selector_realnames_tracker' => [
 			'name' => tra('Show user\'s real name'),
-			'description' => tra('Use user\'s real name instead of log-in name in the autocomplete selector in trackers'),
+			'description' => tra('Use the user\'s real name instead of log-in name in the autocomplete selector in trackers'),
 			'type' => 'flag',
 			'dependencies' => ['feature_jquery_autocomplete', 'user_show_realnames', 'feature_trackers'],
 			'default' => 'n',
@@ -286,20 +286,20 @@ function prefs_user_list($partial = false)
 		],
 		'user_selector_realnames_messu' => [
 			'name' => tra('Show user\'s real name'),
-			'description' => tra('Use user\'s real name instead of log-in name in the autocomplete selector in the messaging feature'),
+			'description' => tra('Use the user\'s real name instead of log-in name in the autocomplete selector in the messaging feature.'),
 			'type' => 'flag',
 			'dependencies' => ['feature_jquery_autocomplete', 'user_show_realnames', 'feature_messages'],
 			'default' => 'n',
 		],
 		'user_favorites' => [
 			'name' => tra('User favorites'),
-			'description' => tra('Allows users to flag content as their favorite.'),
+			'description' => tra('Enable users to flag content as their favorite.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'user_likes' => [
 			'name' => tra('User likes'),
-			'description' => tra('Allows for users to "like" content.'),
+			'description' => tra('Enable users to "like" content.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -330,7 +330,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_multilike_config' => [
 			'name' => tr('Configuration for multilike'),
-			'description' => tr('Separate configurations by a blank line. E.g. relation_prefix=tiki.multilike ids=1,2,3 values=1,3,5 labels=Good,Great,Excellent)'),
+			'description' => tr('Separate configurations by a blank line; for example, relation_prefix=tiki.multilike ids=1,2,3 values=1,3,5 labels=Good,Great,Excellent)'),
 			'help' => 'Multilike',
 			'type' => 'textarea',
 			'size' => 5,
@@ -338,7 +338,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_force_avatar_upload' => [
 			'name' => tr('Force users to upload an avatar.'),
-			'description' => tr("Forces a user to upload an avatar if they haven't already by prompting them with a modal"),
+			'description' => tr("Require the user to upload a profile picture if they haven't done so already by prompting them with a modal popup."),
 			'type' => 'flag',
 			'tags' => ['advanced'],
 			'default' => 'n',

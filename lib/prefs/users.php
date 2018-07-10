@@ -43,7 +43,7 @@ function prefs_users_list()
 		'users_prefs_user_information' => [
 			'name' => tra('User information'),
 			'type' => 'list',
-			'description' => tr('Specify if users’ information is Public or Private.'),
+			'description' => tr('Specify if the user\'s information is public or private.'),
 			'options' => [
 				'private' => tra('Private'),
 				'public' => tra('Public'),
@@ -68,7 +68,7 @@ function prefs_users_list()
 		],
 		'users_prefs_show_mouseover_user_info' => [
 			'name' => tra("Pre-set show user's info on mouseover"),
-			'description' => tra("Set new users to show their user's info on mouseover"),
+			'description' => tra("Set new users' info to display in a popup when their name is hovered over."),
 			'type' => 'flag',
 			'dependencies' => [
 				'feature_community_mouseover',
@@ -148,7 +148,7 @@ function prefs_users_list()
 		'users_prefs_mess_archiveAfter' => [
 			'name' => tra('Auto-archive read messages after'),
 			'type' => 'list',
-			'description' => tr('Number of days after which Tiki will archive users’ read messages.'),
+			'description' => tr('The number of days after which Tiki will archive the messages that have been read by the user.'),
 			'dependencies' => [
 				'feature_messages',
 			],
@@ -259,7 +259,7 @@ function prefs_users_list()
 		],
 		'users_prefs_remember_closed_rboxes' => [
 			'name' => tra('Keep closed remarksbox hidden'),
-			'description' => tra("Remember which remarksbox (alert box) users have closed and don't show them again."),
+			'description' => tra("Remember the alert boxes that users have closed and don't display them again."),
 			'type' => 'flag',
 			'default' => 'n',
 		],
