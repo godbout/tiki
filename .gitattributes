@@ -2010,6 +2010,7 @@ installer/schema/20180410_install_piwik_plugin_tiki.php -text
 installer/schema/20180411_schedulers_change_column_to_text_tiki.sql -text
 installer/schema/20180419_scheduler_run_stalled_column_tiki.sql -text
 installer/schema/20180503_fix_throttled_newsletters_tiki.sql -text
+installer/schema/20180609_change_log_column_type_tiki.sql -text
 installer/schema/20180625_user_reports_null_last_reports_tiki.sql -text
 installer/schema/20180705_fix_calendaritem_tracker_attributes_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text

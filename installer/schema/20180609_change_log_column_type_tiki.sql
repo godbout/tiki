@@ -1,0 +1,1 @@
+ALTER TABLE `tiki_actionlog` CHANGE COLUMN `log` `log` LONGTEXT NULL DEFAULT NULL;
