@@ -1427,6 +1427,11 @@ class TrackerLib extends TikiLib
 						$mid .= " AND ttif{$i}_remote.`value` LIKE ? ";
 						$bindvars[] = $ev ? $ev : "%$fv%";
 					}
+				} elseif ($filter['type'] == 'REL' && ($fv || $ev)) {
+					$rv = $ev ?: $fv;
+					$mid .= " AND (ttif$i.`value` LIKE ? OR ttif$i.`value` LIKE ?)";
+					$bindvars[] = "%$rv";
+					$bindvars[] = "%$rv\n%";
 				} elseif ($ev > '') {
 					if (is_array($ev)) {
 						$keys = array_keys($ev);
