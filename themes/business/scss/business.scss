@@ -1,6 +1,7 @@
 //  $Id$
 /* The Business theme for Tiki Wiki CMS Groupware */
 
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700');
 @import "variables"; // Needs to come first, to override defaults.
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "../../base_files/scss/_tiki-variables.scss"; // Values/definitions for Tiki variables (outside of Bootstrap variables) such as _tiki-selectors.scss.
