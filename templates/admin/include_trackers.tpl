@@ -20,7 +20,6 @@
 			</fieldset>
 			<fieldset class="table">
 				<legend>{tr}Tracker settings{/tr}</legend>
-				{preference name=feature_reports}
 				{preference name="tracker_remote_sync"}
 				{preference name="tracker_tabular_enabled"}
 				{preference name="tracker_clone_item"}

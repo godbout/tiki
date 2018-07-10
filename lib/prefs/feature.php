@@ -151,16 +151,6 @@ function prefs_feature_list($partial = false)
 				'permType' => 'trackers',
 			],
 		],
-		'feature_reports' => [
-			'name' => tra('Reports'),
-			'description' => tra('Reports generator is based on data from Tiki Trackers or from the Tiki Action Log. The design of the report is controlled through a simple user interface that is generated from a set of definitions'),
-			'help' => 'Reports',
-			'type' => 'flag',
-			'keywords' => 'report trackers logs builder',
-			'default' => 'n',
-			'view' => 'tiki-edit_report.php',
-			'tags' => ['experimental'],
-		],
 		'feature_forums' => [
 			'name' => tra('Forums'),
 			'description' => tra('Threaded or flat discussions.'),

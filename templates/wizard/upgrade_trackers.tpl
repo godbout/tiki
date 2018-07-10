@@ -20,7 +20,6 @@
 				{preference name=tracker_show_comments_below}
 				{preference name=tracker_refresh_itemlink_detail}
 				{preference name=tracker_refresh_itemslist_detail}
-				{preference name=feature_reports}
 				{preference name=ajax_inline_edit}
 				<div class="adminoptionboxchild" id="ajax_inline_edit_childcontainer">
 					{preference name=ajax_inline_edit_trackerlist}

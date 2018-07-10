@@ -21,6 +21,9 @@ class CheckSchemaUpgrade
 {
 	const DB_URL_TEMPLATE = 'http://tiki.org/ci_%d.sql';
 
+	const DB_OLD = 'OLD';
+	const DB_NEW = 'NEW';
+
 	/**
 	 * @var string Tiki root folder
 	 */
@@ -117,7 +120,7 @@ class CheckSchemaUpgrade
 			$this->printMessage('Updating database 1 from previous major to version ' . $tikiVersion->getVersion());
 			$this->runDatabaseUpdate();
 
-			$this->scrubDbCleanThingsThatShouldChange($dbConnectionOld, $this->oldDb);
+			$this->scrubDbCleanThingsThatShouldChange($dbConnectionOld, $this->oldDb, self::DB_OLD);
 
 			//
 			// Run clean db install
@@ -127,7 +130,7 @@ class CheckSchemaUpgrade
 			$dbConnectionNew = $this->prepareDb($this->newDb);
 			$this->runDatabaseInstall();
 
-			$this->scrubDbCleanThingsThatShouldChange($dbConnectionNew, $this->newDb);
+			$this->scrubDbCleanThingsThatShouldChange($dbConnectionNew, $this->newDb, self::DB_NEW);
 
 			//
 			// Compare the DBS
@@ -523,8 +526,9 @@ class CheckSchemaUpgrade
 	 *
 	 * @param PDO $dbConnection
 	 * @param array $dbConfig
+	 * @param string $whatDb OLD|NEW
 	 */
-	protected function scrubDbCleanThingsThatShouldChange($dbConnection, $dbConfig)
+	protected function scrubDbCleanThingsThatShouldChange($dbConnection, $dbConfig, $whatDb)
 	{
 		// clean index rebuild related tables
 		$statement = $dbConnection->prepare(
@@ -548,6 +552,17 @@ class CheckSchemaUpgrade
 
 		// remove messages from action log (are not part of the schema)
 		$dbConnection->exec("DELETE FROM `tiki_actionlog`");
+
+		if ($whatDb == self::DB_OLD) {
+			// reload tiki_menu_options in the upgraded tiki to account for the case where an old entry is removed
+			$dbConnection->exec("CREATE TABLE  `tiki_menu_options_tmp` AS SELECT * FROM `tiki_menu_options` ORDER BY optionId ASC");
+			$dbConnection->exec("ALTER TABLE `tiki_menu_options_tmp` CHANGE COLUMN optionId optionId int NULL");
+			$dbConnection->exec("UPDATE  `tiki_menu_options_tmp` SET optionId=NULL");
+			$dbConnection->exec("DELETE FROM `tiki_menu_options`");
+			$dbConnection->exec("ALTER TABLE `tiki_menu_options` AUTO_INCREMENT = 1");
+			$dbConnection->exec("INSERT INTO `tiki_menu_options` SELECT * FROM `tiki_menu_options_tmp`");
+			$dbConnection->exec("DROP TABLE `tiki_menu_options_tmp`");
+		}
 	}
 
 	/**

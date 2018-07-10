@@ -123,7 +123,6 @@
 					{preference name=feature_time_sheet}
 					{preference name=feature_faqs}
 					{preference name=feature_galleries}
-					{preference name=feature_reports}
 				</div>
 			</fieldset>
 

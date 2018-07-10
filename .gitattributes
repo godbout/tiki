@@ -2437,12 +2437,6 @@ lib/core/Perms/ResolverFactory/StaticFactory.php -text
 lib/core/Perms/ResolverFactory/TestFactory.php -text
 lib/core/Perms/ResolverFactory/index.php -text
 lib/core/Perms/index.php -text
-lib/core/Report/Builder.js -text
-lib/core/Report/Builder.php -text
-lib/core/Report/Definition/Logs.php -text
-lib/core/Report/Definition/Tracker.php -text
-lib/core/Report/Definition/index.php -text
-lib/core/Report/index.php -text
 lib/core/Reports/Cache.php -text
 lib/core/Reports/Factory.php -text
 lib/core/Reports/Manager.php -text
@@ -2777,8 +2771,6 @@ lib/core/Services/Recommendation/index.php -text
 lib/core/Services/Relation/Controller.php -text
 lib/core/Services/Relation/index.php -text
 lib/core/Services/RemoteController.php -text
-lib/core/Services/Report/Controller.php -text
-lib/core/Services/Report/index.php -text
 lib/core/Services/ResultLoader.php -text
 lib/core/Services/ResultLoader/WebService.php -text
 lib/core/Services/ResultLoader/index.php -text
@@ -4912,7 +4904,6 @@ lib/wiki-plugins/wikiplugin_regex.php -text
 lib/wiki-plugins/wikiplugin_registermemberpayment.php -text
 lib/wiki-plugins/wikiplugin_relations.php -text
 lib/wiki-plugins/wikiplugin_remarksbox.php -text
-lib/wiki-plugins/wikiplugin_report.php -text
 lib/wiki-plugins/wikiplugin_rr.php -text
 lib/wiki-plugins/wikiplugin_rss.php -text
 lib/wiki-plugins/wikiplugin_scroll.php -text
@@ -8099,7 +8090,6 @@ themes/yeti/templates/index.php -text
 /tiki-edit_quiz.php -text
 /tiki-edit_quiz_questions.php -text
 /tiki-edit_quiz_results.php -text
-/tiki-edit_report.php -text
 /tiki-edit_structure.php -text
 /tiki-edit_submission.php -text
 /tiki-edit_templates.php -text
