@@ -123,11 +123,17 @@ if ($report != 'y') {
 	if (isset($_REQUEST['shorturl'])) {
 		$shorturl = $_REQUEST['shorturl'];
 	} else {
+		$shorturl = false;
+
 		if (isset($prefs['feature_socialnetworks']) and $prefs['feature_socialnetworks'] == 'y') {
 			$shorturl = $socialnetworkslib->bitlyShorten($user, $url_for_friend);
-		} else {
-			$shorturl = false;
 		}
+
+		if ($shorturl == false && $prefs['feature_sefurl_routes'] == 'y' && $prefs['sefurl_short_url'] == 'y') {
+			 $route = \Tiki\CustomRoute\CustomRoute::getShortUrlRoute($url_for_friend, null);
+			 $shorturl = $route->getShortUrlLink();
+		}
+
 		if ($shorturl == false) {
 			$shorturl = $url_for_friend;
 		}
