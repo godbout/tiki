@@ -5207,6 +5207,7 @@ modules/mod-func-users_list.php -text
 modules/mod-func-users_own_rank.php -text
 modules/mod-func-users_rank.php -text
 modules/mod-func-webmail_inbox.php -text
+modules/mod-func-websearch.php -text
 modules/mod-func-whats_related.php -text
 modules/mod-func-who_is_there.php -text
 modules/mod-func-wiki_last_comments.php -text
@@ -5870,6 +5871,7 @@ templates/modules/mod-youtube.tpl -text
 templates/modules/mod-zone.tpl -text
 templates/modules/mod-zotero.tpl -text
 templates/modules/user_module.tpl -text
+templates/modules/websearch.tpl -text
 templates/monitor/clearall.tpl -text
 templates/monitor/index.php -text
 templates/monitor/link.tpl -text

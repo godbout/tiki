@@ -1,6 +1,6 @@
 <?php
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 
@@ -19763,4 +19763,6 @@ $lang = [
 "To translate, do not change the language and the content. Instead, <a class=\"alert-link\" href=\"%0\">create a new translation</a> in the new language." => "Pour traduire, ne changez pas la langue et le contenu. Au lieu de cela, <a class=\"alert-link\" href=\"tiki-edit_translation.php?no_bl=y&page=HomePage\"> créez une nouvelle traduction </a> dans la nouvelle langue.",
 "The token access feature is needed for Temporary Users to login." => "La fonction d'accès aux jetons est requise pour les utilisateurs temporaires pour se connecter.",
 "Turn it on here." => "Activez-le ici.",
+"Search on the web" => "Recherche sur le web",
+"Displays a simple form to perform a web search with choice on multiple search engines." => "Affiche un formulaire simple pour effectuer une recherche web avec choix sur plusieurs moteurs de recherche.",
 ];
