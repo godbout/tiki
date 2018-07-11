@@ -10,7 +10,7 @@ function wikiplugin_addtogooglecal_info()
 	return [
 		'name' => tra('Add to Google Calendar'),
 		'documentation' => 'PluginAddToGoogleCal',
-		'description' => tra('Add a calendar item to a Google calendar'),
+		'description' => tra('Add a calendar item to a Google calendar.'),
 		'prefs' => ['wikiplugin_addtogooglecal'],
 		'introduced' => 6,
 		'iconname' => 'calendar',

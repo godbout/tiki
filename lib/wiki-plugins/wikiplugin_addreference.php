@@ -11,7 +11,7 @@ function wikiplugin_addreference_info()
 {
 	return [
 		'name' => tra('Add Reference'),
-		'description' => tra('Add a bibliography reference'),
+		'description' => tra('Add a bibliography reference.'),
 		'format' => 'html',
 		'introduced' => 10,
 		'prefs' => ['wikiplugin_addreference', 'feature_references'],

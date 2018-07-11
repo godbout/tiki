@@ -11,7 +11,7 @@ function wikiplugin_files_info()
 	return [
 		'name' => tra('Files'),
 		'documentation' => 'PluginFiles',
-		'description' => tra('List files by ID, gallery or category, or show a slideshow of image files'),
+		'description' => tra('List files by ID, gallery or category, or show a slideshow of image files.'),
 		'prefs' => [ 'feature_file_galleries', 'wikiplugin_files' ],
 		'body' => tr('Title for the file listing, or the link text when %0', '<code>slideshow="y"</code>'),
 		'iconname' => 'copy',

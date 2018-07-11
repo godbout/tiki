@@ -9,7 +9,7 @@ function wikiplugin_insert_info()
 {
 	return [
 		'name' => tr('Insert Tracker Item'),
-		'description' => tr('Creates a tracker item when the plugin is inserted in the page. The plugin is removed and replaced by a link to the newly created item.'),
+		'description' => tr('Create a tracker item when the plugin is inserted in the page. The plugin code is removed and replaced by a link to the newly created item.'),
 		'prefs' => ['wikiplugin_insert', 'feature_trackers', 'wikiplugin_objectlink'],
 		'tags' => ['basic'],
 		'iconname' => 'add',

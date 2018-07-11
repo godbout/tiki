@@ -13,7 +13,7 @@ function wikiplugin_img_info()
 	$info = [
 		'name' => tra('Image'),
 		'documentation' => 'PluginImg',
-		'description' => tra('Display one or more custom formatted images'),
+		'description' => tra('Display one or more custom-formatted images.'),
 		'prefs' => [ 'wikiplugin_img'],
 		'iconname' => 'image',
 		'tags' => [ 'basic' ],

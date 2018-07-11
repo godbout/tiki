@@ -12,7 +12,7 @@ function wikiplugin_cclite_info()
 	return [
 		'name' => tra('Cclite'),
 		'documentation' => 'PluginCclite',
-		'description' => tra('Access and use your cclite social credit and alternative currency account'),
+		'description' => tra('Access and use a cclite social credit and alternative currency account'),
 //		'validate' => '',
 		'prefs' => [ 'wikiplugin_cclite', 'payment_feature' ],
 		'iconname' => 'money',

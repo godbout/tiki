@@ -10,7 +10,7 @@ function wikiplugin_redirect_info()
 	return [
 		'name' => tra('Redirect'),
 		'documentation' => 'PluginRedirect',
-		'description' => tra('Redirect to another page'),
+		'description' => tra('Redirect to another page.'),
 		'prefs' => [ 'wikiplugin_redirect' ],
 		'validate' => 'arguments',
 		'iconname' => 'next',

@@ -30,7 +30,7 @@ function wikiplugin_font_getfontoptions()
 function wikiplugin_font_info()
 {
 	return [
-		'name' => tra('FONT'),
+		'name' => tra('Font'),
 		'format' => 'wiki',
 		'documentation' => 'PluginFont',
 		'description' => tra('Format the font type and size of text'),

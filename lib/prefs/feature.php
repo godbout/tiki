@@ -2279,7 +2279,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_backlinks' => [
 			'name' => tra('Backlinks'),
-			'description' => tra('Presents a list of pages that link to the current page.'),
+			'description' => tra('Present a list of pages that link to the current page.'),
 			'type' => 'flag',
 			'help' => 'Backlinks',
 			'default' => 'n',

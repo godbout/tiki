@@ -10,7 +10,7 @@ function wikiplugin_convene_info()
 	return [
 		'name' => tra('Convene'),
 		'documentation' => 'PluginConvene',
-		'description' => tra('Agree a date from a list of alternatives'),
+		'description' => tra('Suggest meeting dates and times and vote to select one.'),
 		'introduced' => 9,
 		'prefs' => ['wikiplugin_convene','feature_calendar'],
 		'body' => tra('Convene data generated from user input'),

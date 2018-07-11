@@ -10,7 +10,7 @@ function wikiplugin_localfiles_info()
 	return [
 		'name' => tra('Local Files'),
 		'documentation' => 'PluginLocalFiles',
-		'description' => tra('Show link to local or shared files and directories'),
+		'description' => tra('Show a link to local or shared files and directories.'),
 		'prefs' => ['wikiplugin_localfiles'],
 		'iconname' => 'file',
 		'introduced' => 12,

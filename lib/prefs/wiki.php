@@ -83,26 +83,26 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_page_name_above' => [
 			'name' => tra('Display page name above page'),
-			'description' => tra('Tiki will display the page name in small text at the top of each page (above the page’s content).'),
+			'description' => tra('Display the page name in small text at the top of each page (above the page\'s content).'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'wiki_page_name_inside' => [
 			'name' => tra('Display page name inside page'),
-			'description' => tra('Display page name inside page content.'),
+			'description' => tra('Display the page name inside the page content.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'wiki_pagename_strip' => [
 			'name' => tra('Page name display stripper'),
-			'description' => tra('Character to use as a delimiter in the page name. The portion of the name after this character will not be displayed. If the page name display stripper conflicts with the namespace separator, the namespace is used and the page name display is not stripped'),
+			'description' => tra('The character(s) to use as a delimiter in the page name. The portion of the name after the character(s) will not be displayed. If the page name display stripper conflicts with the namespace separator, the namespace is used and the page name display is not stripped.'),
 			'type' => 'text',
 			'size' => 5,
 			'default' => '',
 		],
 		'wiki_authors_style' => [
 			'name' => tra('Wiki author list style'),
-			'description' => tra('Changes the list format used to display the authors of the page.'),
+			'description' => tra('Change the list format that is used to display the authors of the page.'),
 			'type' => 'list',
 			'options' => [
 				'classic' => tra('Creator and Author'),
@@ -116,13 +116,13 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_authors_style_by_page' => [
 			'name' => tra('Specify wiki author list style per page'),
-			'description' => tra('Allows the style in which the author list is displayed to be modified on a per-page basis.'),
+			'description' => tra('Enable the style in which the author list is displayed to be modified on a per-page basis.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'wiki_actions_bar' => [
-			'name' => tra('Wiki action bar location'),
-			'description' => tra('Specify the location of the edit buttons (such as Save, Preview, and Cancel) when editing wiki pages.'),
+			'name' => tra('Wiki page edit buttons location'),
+			'description' => tra('Specify the location of the Save, Preview, and Cancel buttons on the wiki edit page.'),
 			'type' => 'list',
 			'options' => [
 				'top' => tra('Top'),
@@ -156,7 +156,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_sharethis_encourage' => [
 			'name' => tra('Display ShareThis icon prominently'),
-			'description' => tra('Encourage sharing by showing the ShareThis icon (default is hiding icon in drop-down)'),
+			'description' => tra('Encourage sharing by displaying the ShareThis icon (the default is placing the icon in a drop-down list that requires a click to view).'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -179,7 +179,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_comments_allow_per_page' => [
 			'name' => tra('Allow comments per wiki page'),
-			'description' => tra('Enable control for comments on wiki pages individually.'),
+			'description' => tra('Enable control of comments on wiki pages on a per-page basis.'),
 			'type' => 'list',
 			'options' => [
 				'n' => tra('Disable'),
@@ -199,7 +199,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_badchar_prevent' => [
 			'name' => tra('Prevent special characters in page names'),
-			'description' => tra('Some characters may prevent the pages from being easily accessible from the URL or through wiki links. This option prevents from creating pages with such characters.'),
+			'description' => tra('Some characters in a wiki page name may prevent the page from being easily accessible via the URL or wiki links. This option prevents the creation of page names with such characters.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['basic'],
@@ -214,7 +214,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_encourage_contribution' => [
 			'name' => tra('Encourage contribution to wiki pages by anonymous'),
-			'description' => tra('When a page is not editable and the user is anonymous, display the edit links anyway. The visitor will be prompted with a login screen and be encouraged to register.'),
+			'description' => tra('When a page is not editable because the user is anonymous, display the edit buttons anyway. The visitor will be prompted with a log-in screen and will be encouraged to register in order to be able to edit the page.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -226,9 +226,9 @@ function prefs_wiki_list($partial = false)
 			'tags' => ['basic'],
 		],
 		'wiki_plugindiv_approvable' => [
-			'name' => tra('DIV plugin accepts unsafe parameters such as "style"'),
-			'description' => tra('If set, more parameters are available but modifying them will require approval. If unset, DIV plugin is safe and never requires approval.'),
-			'hint' => tra('If changed, you need to clear caches.'),
+			'name' => tra('Allow the Div plugin to use unsafe parameters such as "style"'),
+			'description' => tra('Make available more parameters that will require admin approval. If not set, the Div plugin is safe by default and using it doesn\'t require approval.'),
+			'hint' => tra('Caches must be cleared after this activation/deactivation.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['advanced'],
@@ -257,7 +257,7 @@ function prefs_wiki_list($partial = false)
 		'wiki_edit_plugin' => [
 			'name' => tra('Allow plugin-specific edits'),
 			'description' =>
-				tra('Adds an icon next to each plugin usage which enables to edit that plugin call via a popup form, without needing to edit its whole container.')
+				tra('Add an icon next to each plugin usage to enable editing the plugin in a popup form, without needing to edit the whole page.')
 				. ' ' . tra('This feature is unavailable outside wiki pages, whether or not this preference is enabled.') // This may be by design, or just because it was faster to implement.
 				,
 			'type' => 'flag',
@@ -265,14 +265,14 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_edit_section' => [
 			'name' => tra('Allow section-specific edits'),
-			'description' => tra('Adds an edit icon above each section (up to a configurable maximum level) to accelerate modifications of a single section.'),
+			'description' => tra('Add an edit icon at the top of each heading-demarcated wiki page section (up to a configurable maximum level) to ease the editing of a single section.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['basic'],
 		],
 		'wiki_edit_section_level' => [
 			'name' => tra('Section-specific edits maximum level'),
-			'description' => tra('Allows preventing a proliferation of edit icons for small sections. For example, when set to 2, no edit icons will show for third-level sections.'),
+			'description' => tra('Prevent a proliferation of edit icons for low-level sections. For example, when set to 2, no edit icons will show for third-level (HTML h3) sections.'),
 			'type' => 'list',
 			'options' => [
 				'0' => tra('All'),
@@ -287,7 +287,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_edit_icons_toggle' => [
 			'name' => tra('Only display focused edit icons (for sections and/or plugins) on request'),
-			'description' => tra('If enabled, focused edit icons will only display after a per-session "Edit icons" preference is enabled. This preference is defined directly from any wiki page.'),
+			'description' => tra('Focused edit icons will only display after a per-session "Edit icons" preference is enabled. This preference is defined directly from any wiki page.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'tags' => ['basic'],
@@ -295,7 +295,7 @@ function prefs_wiki_list($partial = false)
 		'wiki_edit_minor' => [
 			'name' => tra('Allow minor edits of wiki pages'),
 			'type' => 'flag',
-			'description' => tra('Minor edits do not flag new content for translation and do not send watch notifications (unless "Watch minor edits" is enabled).'),
+			'description' => tra('Minor edits don\'t flag new content for translation and don\'t cause watch notifications to be sent (unless "Watch minor edits" is enabled).'),
 			'permission' => [
 				'textFilter' => 'tiki_p_minor',
 			],
@@ -468,7 +468,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_list_backlinks' => [
 			'name' => tra('Backlinks'),
-			'description' => tra('Presents a list of pages that link to the current page.'),
+			'description' => tra('Present a list of pages that link to the current page.'),
 			'help' => 'Backlinks',
 			'type' => 'flag',
 			'default' => 'n',
@@ -551,7 +551,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_likepages_samelang_only' => [
 			'name' => tra('Similar pages only listed in same language'),
-			'description' => tra('When listing similar pages, such as in missing page 404, only display pages in the same language as the request.'),
+			'description' => tra('When listing similar pages, such as on a "page not found" page, only display pages in the same language as the request page.'),
 			'type' => 'flag',
 			'dependencies' => [ 'feature_multilingual' ],
 			'default' => 'n',
@@ -564,7 +564,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_freetags_edit_position' => [
 			'name' => tra('Position of tags selection'),
-			'description' => tra('To place tags selection more prominently than in the properties tab.'),
+			'description' => tra('Place the tags selection more prominently than under the "Properties" tab.'),
 			'type' => 'list',
 			'options' => [
 				'properties' => tra('Properties tab'),
@@ -575,7 +575,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_structure_bar_position' => [
 			'name' => tra('Structure navigation bar location'),
-			'description' => tra('Displays Next/Back buttons, breadcrumbs, and form to add a new page.'),
+			'description' => tra('Display Next and Back buttons, breadcrumbs, and a form to add a new page.'),
 			'type' => 'list',
 			'options' => [
 				'top' => tra('Top'),
@@ -597,56 +597,56 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_backlinks_show_post' => [
 			'name' => tra('Show blog posts'),
-			'description' => tra('Blog posts linking to a wiki page are shown as backlinks'),
+			'description' => tra('Blog posts linking to a wiki page are shown as backlinks.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'dependencies' => ['feature_backlinks'],
 		],
 		'wiki_backlinks_show_forum_post' => [
 			'name' => tra('Show forum posts'),
-			'description' => tra('Forum posts linking to a wiki page are shown as backlinks'),
+			'description' => tra('Forum posts linking to a wiki page are shown as backlinks.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'dependencies' => ['feature_backlinks'],
 		],
 		'wiki_backlinks_show_comment' => [
 			'name' => tra('Show comments'),
-			'description' => tra('Comments linking to a wiki page are shown as backlinks'),
+			'description' => tra('Comments linking to a wiki page are shown as backlinks.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'dependencies' => ['feature_backlinks'],
 		],
 		'wiki_backlinks_show_article' => [
 			'name' => tra('Show articles'),
-			'description' => tra('Articles linking to a wiki page are shown as backlinks'),
+			'description' => tra('Articles linking to a wiki page are shown as backlinks.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'dependencies' => ['feature_backlinks'],
 		],
 		'wiki_backlinks_show_trackeritem' => [
 			'name' => tra('Show tracker items'),
-			'description' => tra('Tracker items linking to a wiki page are shown as backlinks'),
+			'description' => tra('Tracker items linking to a wiki page are shown as backlinks.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'dependencies' => ['feature_backlinks'],
 		],
 		'wiki_backlinks_show_tracker' => [
 			'name' => tra('Show trackers'),
-			'description' => tra('Trackers with a description linking to a wiki page are shown as backlinks'),
+			'description' => tra('Trackers with a description linking to a wiki page are shown as backlinks.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => ['feature_backlinks'],
 		],
 		'wiki_backlinks_show_trackerfield' => [
 			'name' => tra('Show tracker fields'),
-			'description' => tra('Tracker fields with a description linking to a wiki page are shown as backlinks'),
+			'description' => tra('Tracker fields with a description linking to a wiki page are shown as backlinks.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => ['feature_backlinks'],
 		],
 		'wiki_backlinks_show_calendar_event' => [
 			'name' => tra('Show calendar events'),
-			'description' => tra('Calendar events with a description linking to a wiki page are shown as backlinks'),
+			'description' => tra('Calendar events with a description linking to a wiki page are shown as backlinks..'),
 			'type' => 'flag',
 			'default' => 'y',
 			'dependencies' => ['feature_backlinks'],
@@ -660,7 +660,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_simple_ratings_options' => [
 			'name' => tra('Wiki rating options'),
-			'description' => tra('List of options available for the rating of wiki pages.'),
+			'description' => tra('List of options available for the rating of wiki pages'),
 			'type' => 'text',
 			'default' => "0,1,2,3,4,5",
 		],
@@ -673,7 +673,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_prefixalias_tokens' => [
 			'name' => tra('Redirect pages using these prefix-alias semantic links'),
-			'description' => tra('Comma-separated list of prefixes of which pages will be redirected to page with semantic link'),
+			'description' => tra('Comma-separated list of page name prefixes for pages that will be redirected to other pages with a semantic link'),
 			'type' => 'text',
 			'help' => 'Semantic+Alias',
 			'size' => '30',
@@ -685,13 +685,13 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_pagination' => [
 			'name' => tr('Wiki page pagination'),
-			'description' => tr('Enables the sectioning of a wiki page\'s content into two or more paginated pages.'),
+			'description' => tr('Enable the separation of a wiki page\'s content into a set of two or more paginated pages.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'wiki_page_separator' => [
 			'name' => tr('Wiki page separator'),
-			'description' => tr('Separator to use in the content of a wiki page to divide the content into multiple pages.'),
+			'description' => tr('The separator to use in wiki page content to mark the end of each page section'),
 			'type' => 'text',
 			'default' => '...page...',
 		],
@@ -713,7 +713,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_toc_pos' => [
 			'name' => tr('Table of contents position'),
-			'description' => tr('Position for table of contents. One of top, left, right (right is the default)'),
+			'description' => tr('Position of the table of contents, either top, left, right (right is the default)'),
 			'type' => 'list',
 			'options' => [
 				'right' => tra('Right'),
@@ -738,14 +738,14 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_page_hide_title' => [
 			'name' => tr('Hide title per wiki page'),
-			'description' => tr('Allow the title to be hidden for individual wiki pages'),
+			'description' => tr('Enable the page title to not be displayed, on a per-page basis.'),
 			'type' => 'flag',
 			'default' => 'y',
 			'dependencies' => [],
 		],
 		'wiki_heading_links' => [
 			'name' => tr('Anchor links on headings'),
-			'description' => tr('Add links that appear on hover for each heading, useful for sharing the URL to an exact location on a page'),
+			'description' => tr('Cause a link icon to appear on hover over each heading, useful for sharing the URL to an exact location on a page.'),
 			'keywords' => 'Display hidden anchor on mouseover of headings',
 			'type' => 'flag',
 			'default' => 'y',
@@ -761,7 +761,7 @@ function prefs_wiki_list($partial = false)
 		],
 		'wiki_plugin_include_link_original' => [
 			'name' => tr('Force link to included page'),
-			'description' => tr('When only a portion of page is included, create a "See full page" link to included page. It has the same effect of putting "linkoriginal=y" parameter everytime Plugin Include is used.'),
+			'description' => tr('When only a portion of page is included, create a "See full page" link to the included page. It has the same effect of setting "linkoriginal=y" parameter every time Plugin Include is used.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'dependencies' => ['wikiplugin_include'],

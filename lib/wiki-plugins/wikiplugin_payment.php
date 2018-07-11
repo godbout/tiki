@@ -10,7 +10,7 @@ function wikiplugin_payment_info()
 	return [
 		'name' => tra('Payment'),
 		'documentaion' => 'PluginPayment',
-		'description' => tra('Show details of a payment request or invoice'),
+		'description' => tra('Show the details of a payment request or invoice.'),
 		'prefs' => [ 'wikiplugin_payment', 'payment_feature' ],
 		'iconname' => 'money',
 		'introduced' => 5,

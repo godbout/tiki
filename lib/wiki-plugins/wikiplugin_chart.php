@@ -10,7 +10,7 @@ function wikiplugin_chart_info()
 	return [
 		'name' => tra('Chart'),
 		'documentation' => 'PluginChart',
-		'description' => tra('Display a chart from TikiSheet'),
+		'description' => tra('Display a chart from TikiSheet.'),
 		'prefs' => [ 'feature_sheet', 'wikiplugin_chart' ],
 		'iconname' => 'chart',
 		'body' => tra('Chart caption.'),

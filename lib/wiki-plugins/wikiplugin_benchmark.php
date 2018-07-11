@@ -10,7 +10,7 @@ function wikiplugin_benchmark_info()
 	return [
 		'name' => tra('Benchmark'),
 		//'documentation' => tra('PluginTransclude'),
-		'description' => tra('Performance test wiki content. Used by tiki developers to optimize plugins. '),
+		'description' => tra('Performance-test wiki content (used by developers to optimize plugins).'),
 		'prefs' => ['wikiplugin_benchmark'],
 		//'extraparams' => true,
 		'defaultfilter' => 'text',

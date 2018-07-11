@@ -11,7 +11,7 @@ function wikiplugin_cookieconsent_info()
 	return [
 		'name' => tra('Cookie Consent'),
 		'documentation' => 'PluginCookieConsent',
-		'description' => tra('Display content based on whether cookie consent has been granted by the user'),
+		'description' => tra('Display content based on whether cookie consent has been granted by the user.'),
 		'prefs' => ['wikiplugin_cookieconsent', 'cookie_consent_feature'],
 		'body' => tra('Wiki syntax containing the content that can be hidden or shown.'),
 		'filter' => 'wikicontent',

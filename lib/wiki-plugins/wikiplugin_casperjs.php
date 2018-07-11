@@ -10,7 +10,7 @@ function wikiplugin_casperjs_info()
 	return [
 		'name' => tra('CasperJS'),
 		'documentation' => 'CasperJS',
-		'description' => tra('Enables to run CasperJS scripts from tiki'),
+		'description' => tra('Enable running CasperJS scripts from this Tiki site.'),
 		'prefs' => ['wikiplugin_casperjs'],
 		'packages_required' => ['jerome-breton/casperjs-installer' => 'CasperJsInstaller\Installer'],
 		'body' => tra('text'),

@@ -1581,7 +1581,7 @@ class WikiLib extends TikiLib
 
 	/*
 	*	get_page_hide_title
-	*	Allow the title to be hidden for individual wiki pages
+	*	Enable the page title to not be displayed, on a per-page basis.
 	*	@return
 	*		+1 page_hide_title is explicitly set to true
 	*		0  page_hide_title is not set for page. Use global setting

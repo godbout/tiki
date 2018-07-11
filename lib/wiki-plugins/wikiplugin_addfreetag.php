@@ -9,7 +9,7 @@ function wikiplugin_addfreetag_info()
 {
 	return [
 		'name' => tra('Add Tag'),
-		'description' => tra('Provide an input field for adding a freetag to an object'),
+		'description' => tra('Provide an input field for adding a tag to an object'),
 		'format' => 'html',
 		'prefs' => ['feature_freetags', 'wikiplugin_addfreetag'],
 		'introduced' => 8,

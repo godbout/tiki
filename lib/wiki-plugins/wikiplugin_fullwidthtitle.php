@@ -9,7 +9,7 @@ function wikiplugin_fullwidthtitle_info()
 {
 	return [
 		'name' => tra('Set a Full-Width Page Title'),
-		'description' => tra('Create a full page width title '),
+		'description' => tra('Display the page title the full width of the site content container. '),
 		'documentation' => tra('PluginFullWidthTitle'),
 		'default' => 'y',
 		'format' => 'html',

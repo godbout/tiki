@@ -10,7 +10,7 @@ function wikiplugin_like_info()
 	return [
 		'name' => tra('Like'),
 		'documentation' => 'PluginLike',
-		'description' => tra('Create a like button'),
+		'description' => tra('Create a "Like" button.'),
 		'prefs' => [ 'wikiplugin_like', 'user_likes' ],
 		'introduced' => 15,
 		'iconname' => 'thumbs-up',

@@ -11,7 +11,7 @@ function wikiplugin_pdf_info()
 	 return [
 				'name' => 'PluginPDF',
 				'documentation' => 'PluginPDF',
-				'description' => tra('For customized pdf generation, to override global pdf settings.'),
+				'description' => tra('For customized PDF generation, to override global PDF settings.'),
 				'tags' => [ 'basic' ],
 				'prefs' => [ 'wikiplugin_pdf' ],
 				'format' => 'html',

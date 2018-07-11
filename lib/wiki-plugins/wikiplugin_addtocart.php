@@ -10,7 +10,7 @@ function wikiplugin_addtocart_info()
 	return [
 		'name' => tra('Add to cart'),
 		'documentation' => tra('PluginAddToCart'),
-		'description' => tra('Add a product to the virtual cart'),
+		'description' => tra('Add a product to the shopping cart.'),
 		'prefs' => [ 'wikiplugin_addtocart', 'payment_feature' ],
 		'filter' => 'wikicontent',
 		'format' => 'html',

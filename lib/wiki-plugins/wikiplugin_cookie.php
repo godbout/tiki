@@ -10,7 +10,7 @@ function wikiplugin_cookie_info()
 	return [
 		'name' => tra('Cookie'),
 		'documentation' => 'PluginCookie',
-		'description' => tra('Display a tagline or cookie'),
+		'description' => tra('Display a random tagline or "cookie" (in the "fortune cookie" sense).'),
 		'prefs' => [ 'wikiplugin_cookie' ],
 		'iconname' => 'quotes',
 		'introduced' => 3,

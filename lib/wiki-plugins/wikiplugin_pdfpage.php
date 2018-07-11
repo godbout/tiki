@@ -11,7 +11,7 @@ function wikiplugin_pdfpage_info()
 	 return [
 				'name' => 'PDFPage',
 				'documentation' => 'PDFPage',
-				'description' => tra('Insert page with new settings in pdf'),
+				'description' => tra('Insert page with new settings in PDF'),
 				'tags' => [ 'advanced' ],
 				'body' => tra('Page Content'),
 				'prefs' => [ 'wikiplugin_pdf' ],

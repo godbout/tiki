@@ -10,7 +10,7 @@ function wikiplugin_prefdoc_info()
 	return [
 		'name' => tra('Document Preferences'),
 		'documentation' => 'PluginPrefDoc',
-		'description' => tra('Generates documentation for Tiki preference tabs, mostly for use on Tiki’s documentation website.'),
+		'description' => tra('Generate documentation for Tiki preference tabs, mostly for use on the Tiki documentation website (doc.tiki.org).'),
 		'prefs' => [ 'wikiplugin_prefdoc' ],
 		'validate' => 'all',
 		'introduced' => 17,

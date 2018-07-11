@@ -10,7 +10,7 @@ function wikiplugin_galleriffic_info()
 	return [
 		'name' => tra('Galleriffic'),
 		'documentation' => 'PluginGalleriffic',
-		'description' => tra('Display a slideshow of images on a page'),
+		'description' => tra('Display a slideshow of images on a page using the Galleriffic script.'),
 		'iconname' => 'image',
 		'prefs' => ['wikiplugin_galleriffic', 'feature_file_galleries'],
 		'introduced' => 8,

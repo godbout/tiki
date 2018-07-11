@@ -20,7 +20,7 @@ function wikiplugin_pagetabs_info()
 	return [
 		'name' => tra('Page Tabs'),
 		'documentation' => tra('PluginPageTabs'),
-		'description' => tra('Display content of wiki pages in a set of tabs'),
+		'description' => tra('Display the content of a wiki page in a set of tabs.'),
 		'prefs' => [ 'wikiplugin_pagetabs' ],
 		'iconname' => 'copy',
 		'introduced' => 9,

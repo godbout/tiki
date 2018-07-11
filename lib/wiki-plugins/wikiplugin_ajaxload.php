@@ -11,7 +11,7 @@ function wikiplugin_ajaxload_info()
 	return [
 		'name' => tra('Ajax Load'),
 		'documentation' => 'PluginAJAXLoad',
-		'description' => tra('Load data into an HTML div using Ajax or in an iframe'),
+		'description' => tra('Load data into an HTML div using Ajax or in an iframe.'),
 		'prefs' => ['wikiplugin_ajaxload'],
 		'format' => 'html',
 		'iconname' => 'code_file',

@@ -35,7 +35,7 @@ function wikiplugin_r_info()
 		'name' => tra('R syntax'),
 		'documentation' => 'PluginR',
 		'prefs' => [ 'wikiplugin_r' ],
-		'description' => tra('Parses R syntax and shows the output either from the code introduced between the plugin tags or from the file attached to a tracker item sent through PluginTracker. It can also be combined with Pretty Trackers to edit params from the script through web forms.'),
+		'description' => tra('Parse R syntax and show the output either from the code introduced between the plugin tags or from the file attached to a tracker item sent through PluginTracker. It can also be combined with Pretty Trackers to edit parameters from the script through web forms.'),
 	];
 
 	$info = array_merge(wikiplugin_rr_info(), $info);

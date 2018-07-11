@@ -10,7 +10,7 @@ function wikiplugin_metatag_info()
 	return [
 		'name' => tr('MetaTag'),
 		'documentation' => 'PluginMetaTag',
-		'description' => tr('Add custom meta tags to HTML head on page where the plugin is used'),
+		'description' => tr('Add custom meta tags to the HTML head section of the page where the plugin is used.'),
 		'prefs' => [ 'wikiplugin_metatag' ],
 		'body' => tr('Meta tags attributes for the HTML head where each meta goes on one line and name of the meta tag and the content is separated by a pipe (%0) character. Or just copy paste the raw HTML tags here.', '<code>|</code>'),
 		'validate' => 'all',

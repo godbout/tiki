@@ -9,7 +9,7 @@ function wikiplugin_addrelation_info()
 {
 	return [
 		'name' => tra('Add Relation'),
-		'description' => tra('Provide a button to toggle a pre-specified relation'),
+		'description' => tra('Provide a button to toggle a pre-specified relation.'),
 		'filter' => 'int',
 		'format' => 'html',
 		'validate' => 'all',

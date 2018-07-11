@@ -10,7 +10,7 @@ function wikiplugin_googlechart_info()
 
 	return [
 		'name' => tra('Google Analytics Chart'),
-		'description' => tra('Draws charts from Google Analytics Data.'),
+		'description' => tra('Draw charts from Google Analytics data.'),
 		'prefs' => ['wikiplugin_googlechart'],
 		'iconname' => 'bookmark',
 		'format' => 'html',

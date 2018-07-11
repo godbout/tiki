@@ -17,7 +17,7 @@ function prefs_webmail_list()
 		'webmail_max_attachment' => [
 			'name' => tra('Maximum attachment size'),
 			'type' => 'list',
-			'description' => tra('Maximum size for each attachment.'),
+			'description' => tra('Maximum size of each attachment'),
 			'options' => [
 				'500000' => tra('500Kb'),
 				'1000000' => tra('1Mb'),
@@ -32,7 +32,7 @@ function prefs_webmail_list()
 		'webmail_quick_flags' => [
 			'name' => tra('Checkbox per email'),
 			'type' => 'flag',
-			'description' => tra('Enable easy selecting multiple mails for common actions.'),
+			'description' => tra('Enable easy selection of multiple email messages for collective actions.'),
 			'default' => 'n',
 		],
 	];

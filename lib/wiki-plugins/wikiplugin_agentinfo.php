@@ -10,7 +10,7 @@ function wikiplugin_agentinfo_info()
 	return [
 		'name' => tra('User Agent Info'),
 		'documentation' => 'PluginAgentinfo',
-		'description' => tra('Show user\'s browser and server information'),
+		'description' => tra('Show the user\'s browser and server information.'),
 		'prefs' => ['wikiplugin_agentinfo'],
 		'introduced' => 1,
 		'iconname' => 'computer',

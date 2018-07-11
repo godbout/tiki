@@ -12,7 +12,7 @@ function wikiplugin_list_info()
 	return [
 		'name' => tra('List'),
 		'documentation' => 'PluginList',
-		'description' => tra('Search for, list, and filter all types of items and display custom formatted results'),
+		'description' => tra('Search for, list, and filter all types of items and display custom-formatted results.'),
 		'prefs' => ['wikiplugin_list', 'feature_search'],
 		'body' => tra('List configuration information'),
 		'filter' => 'wikicontent',

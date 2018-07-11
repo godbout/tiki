@@ -10,7 +10,7 @@ function wikiplugin_bigbluebutton_info()
 	return [
 		'name' => tra('BigBlueButton'),
 		'documentation' => 'PluginBigBlueButton',
-		'description' => tra('Hold a video/audio/chat/presentation session using BigBlueButton'),
+		'description' => tra('Hold a video/audio/chat/presentation session using the BigBlueButton web conferencing system.'),
 		'format' => 'html',
 		'prefs' => [ 'wikiplugin_bigbluebutton', 'bigbluebutton_feature' ],
 		'iconname' => 'video',

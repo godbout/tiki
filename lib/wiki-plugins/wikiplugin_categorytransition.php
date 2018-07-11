@@ -9,7 +9,7 @@ function wikiplugin_categorytransition_info()
 {
 	return [
 		'name' => tra('PluginCategoryTransition'),
-		'description' => tra('Displays controls to trigger category transitions for any object.'),
+		'description' => tra('Display controls to trigger category transitions for any object.'),
 		'prefs' => [ 'feature_category_transition', 'wikiplugin_categorytransition' ],
 		'iconname' => 'move',
 		'introduced' => 9,

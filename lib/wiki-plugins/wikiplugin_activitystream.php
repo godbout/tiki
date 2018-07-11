@@ -10,7 +10,7 @@ function wikiplugin_activitystream_info()
 	return [
 		'name' => tra('Activity Stream'),
 		'documentation' => 'PluginActivityStream',
-		'description' => tra('Create a social network activity stream'),
+		'description' => tra('Create a social network activity stream.'),
 		'prefs' => ['wikiplugin_activitystream', 'feature_search'],
 		'default' => 'y',
 		'introduced' => 12,

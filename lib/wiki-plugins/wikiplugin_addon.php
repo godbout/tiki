@@ -10,7 +10,7 @@ function wikiplugin_addon_info()
 	return [
 		'name' => tra('Tiki Addon View'),
 		'documentation' => 'PluginAddon',
-		'description' => tra('Display output of a Tiki Addon View'),
+		'description' => tra('Display the output of a Tiki Addon View.'),
 		'prefs' => ['wikiplugin_addon'],
 		'body' => '',
 		'introduced' => 14,
