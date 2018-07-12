@@ -2344,6 +2344,7 @@ lib/core/Math/Formula/Function/Add.php -text
 lib/core/Math/Formula/Function/And.php -text
 lib/core/Math/Formula/Function/Avg.php -text
 lib/core/Math/Formula/Function/Ceil.php -text
+lib/core/Math/Formula/Function/Clean.php -text
 lib/core/Math/Formula/Function/Coalesce.php -text
 lib/core/Math/Formula/Function/Concat.php -text
 lib/core/Math/Formula/Function/Contains.php -text
