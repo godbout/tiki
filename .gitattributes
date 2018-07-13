@@ -5862,6 +5862,7 @@ templates/modules/mod-users_list.tpl -text
 templates/modules/mod-users_own_rank.tpl -text
 templates/modules/mod-users_rank.tpl -text
 templates/modules/mod-webmail_inbox.tpl -text
+templates/modules/mod-websearch.tpl -text
 templates/modules/mod-whats_related.tpl -text
 templates/modules/mod-who_is_there.tpl -text
 templates/modules/mod-who_is_there.tpl.nocache -text
