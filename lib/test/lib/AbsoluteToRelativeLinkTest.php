@@ -16,6 +16,9 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 	const BASE_URL = 'https://tiki.org/';
 	const BASE_URL_HTTP = 'http://tiki.org/';
 
+	const DEMO_TEXT = 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,' .
+	' ut fermentum massa justo sit amet risus ##### Fermentum Fringilla Dapibus.';
+
 	public function setUp()
 	{
 		global $base_url, $base_url_http, $base_url_https, $prefs, $page_regex;
@@ -39,13 +42,7 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 		$data .= '{HTML}';
 
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
-
-		$dataResult = '{HTML()}<span class="button"><a href="tiki-index.php">Save changes</a></span> with my custom buttom to the page PluginHTML';
-		$dataResult .= '<a href="tiki-index.php">tiki-index.php</a>';
-		$dataResult .= $baseUrl . 'tiki-index.php';
-		$dataResult .= '{HTML}';
-
-		$this->assertEquals($dataResult, $dataConverted);
+		$this->assertEquals($data, $dataConverted);
 	}
 
 	/**
@@ -54,10 +51,10 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 	public function testTextLink($baseUrl)
 	{
 		$tikilib = TikiLib::lib('tiki');
-		$data = $baseUrl . 'tiki-index.php';
+		$link = $baseUrl . 'tiki-index.php';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
-		$dataResult = '[tiki-index.php]';
-		$this->assertEquals($dataResult, $dataConverted);
+		$this->assertEquals($data, $dataConverted);
 	}
 
 	/**
@@ -71,11 +68,13 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 		$base_url_https .= "xxxx/";
 		$baseUrl .= "xxxx/";
 
-		$tikilib = TikiLib::lib('tiki');
-		$data = $baseUrl . 'tiki-index.php';
-		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
-		$dataResult = '[tiki-index.php]';
-		$this->assertEquals($dataResult, $dataConverted);
+		$this->testPluginHtml($baseUrl);
+		$this->testTextLink($baseUrl);
+		$this->testWikiLink($baseUrl);
+		$this->testExternalLink($baseUrl);
+		$this->testReplaceInsidePlugins($baseUrl);
+		$this->testOtherMarkups($baseUrl);
+		$this->testMixMultipleLinks($baseUrl);
 	}
 
 	/**
@@ -84,9 +83,67 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 	public function testWikiLink($baseUrl)
 	{
 		$tikilib = TikiLib::lib('tiki');
-		$data = '((HomePage|#' . $baseUrl . 'tiki-index.php))';
+		$link = '((' . $baseUrl . 'tiki-index.php|Homepage))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
-		$dataResult = '((HomePage|#tiki-index.php))';
+		$expectedLink = '((tiki-index.php|Homepage))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$link = '((' . $baseUrl . '|Homepage))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '((Homepage|Homepage))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$link = '((' . rtrim($baseUrl, '/') . '|Homepage))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '((Homepage|Homepage))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$link = '((' . $baseUrl . 'tiki-index.php))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '((tiki-index.php))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$link = '((' . $baseUrl . '))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '((Homepage))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$link = '((' . rtrim($baseUrl, '/') . '))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '((Homepage))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$link = '((' . rtrim($baseUrl, '/') . '|Homepage))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '((Homepage|Homepage))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$link = '((' . $baseUrl . 'tiki-index.php?page=Dummy|Dummy))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '((tiki-index.php?page=Dummy|Dummy))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$link = '((' . $baseUrl . 'tiki-index.php?page=Dummy))';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '((tiki-index.php?page=Dummy))';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
 		$this->assertEquals($dataResult, $dataConverted);
 	}
 
@@ -96,11 +153,19 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 	public function testExternalLink($baseUrl)
 	{
 		$tikilib = TikiLib::lib('tiki');
-		$data = '[' . $baseUrl . 'tiki-index.php|' . $baseUrl . 'tiki-index.php]';
+		$link = '[https://doc.tiki.org/Documentation|Tiki Documentation]';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
-		$dataResult = '[tiki-index.php|tiki-index.php]';
+		$this->assertEquals($data, $dataConverted);
+
+		$link = '[' . $baseUrl . 'Documentation|Tiki Documentation]';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$expectedLink = '[Documentation|Tiki Documentation]';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
 		$this->assertEquals($dataResult, $dataConverted);
 	}
+
 
 	/**
 	 * @dataProvider urlBases
@@ -110,9 +175,92 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 		global $prefs;
 		$tikilib = TikiLib::lib('tiki');
 		$prefs['feature_absolute_to_relative_links'] = 'n';
-		$data = '[' . $baseUrl . 'tiki-index.php|' . $baseUrl . 'tiki-index.php]';
+		$link = '[' . $baseUrl . 'tiki-index.php|' . $baseUrl . 'tiki-index.php]';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 		$this->assertEquals($data, $dataConverted);
+	}
+
+	/**
+	 * @dataProvider urlBases
+	 */
+	public function testReplaceInsidePlugins($baseUrl)
+	{
+		$tikilib = TikiLib::lib('tiki');
+		$link = '{CODE()}' . $baseUrl . 'HomePage{CODE}';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		// Should not replace
+		$this->assertEquals($data, $dataConverted);
+	}
+
+	/**
+	 * @dataProvider urlBases
+	 */
+	public function testOtherMarkups($baseUrl)
+	{
+
+		$tikilib = TikiLib::lib('tiki');
+		$link = '-+' . $baseUrl . 'HomePage+-';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		// Should not replace
+		$this->assertEquals($data, $dataConverted);
+
+		$tikilib = TikiLib::lib('tiki');
+		$link = '[' . $baseUrl . 'HomePage|Home Page]';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		$expectedLink = '[HomePage|Home Page]';
+		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
+		$this->assertEquals($dataResult, $dataConverted);
+
+		$tikilib = TikiLib::lib('tiki');
+		$link = '~np~' . $baseUrl . 'HomePage~/np~';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		// Should not replace
+		$this->assertEquals($data, $dataConverted);
+
+		$tikilib = TikiLib::lib('tiki');
+		$link = '{webdocviewer url="' . $baseUrl . 'dl178" width="750" height="780"}';
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		// Should not replace
+		$this->assertEquals($data, $dataConverted);
+	}
+
+	/**
+	 * @dataProvider urlBases
+	 */
+	public function testMixMultipleLinks($baseUrl)
+	{
+		$tikilib = TikiLib::lib('tiki');
+		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1' .
+			' Praesent commodo cursus magna, vel scelerisque nisl consectetur et. #2' .
+			' Aenean lacinia bibendum nulla sed consectetur. #3';
+
+		$link1 = '((' . $baseUrl . 'tiki-index.php|Homepage))';
+		$link2 = '[' . $baseUrl . 'tiki-index.php|Homepage]';
+		$link3 = '[https://doc.tiki.org/Documentation]';
+		$data = str_replace('#1', $link1, $text);
+		$data = str_replace('#2', $link2, $data);
+		$data = str_replace('#3', $link3, $data);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		$expectedLink1 = '((tiki-index.php|Homepage))';
+		$expectedLink2 = '[tiki-index.php|Homepage]';
+		$expectedLink3 = '[https://doc.tiki.org/Documentation]';
+		$dataResult = str_replace('#1', $expectedLink1, $text);
+		$dataResult = str_replace('#2', $expectedLink2, $dataResult);
+		$dataResult = str_replace('#3', $expectedLink3, $dataResult);
+
+		$this->assertEquals($dataResult, $dataConverted);
 	}
 
 	public function urlBases()

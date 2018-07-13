@@ -2486,113 +2486,49 @@ class TikiLib extends TikiDb_Bridge
 	 */
 	public function convertAbsoluteLinksToRelative($data)
 	{
-		global $page_regex, $prefs;
+		global $prefs;
 
 		if ($prefs['feature_absolute_to_relative_links'] != 'y' || $this->getMatchBaseUrlSchema($data) === null) {
 			return $data;
 		}
 
-		// convert to relative html links
-		$htmlConverted = [];
-		preg_match_all('/{HTML(.*)?{HTML}/s', $data, $html);
-		$countHtml = isset($html[1]) ? count($html[1]) : 0;
-		for ($i = 0; $i < $countHtml; $i++) {
-			$htmlMatch = $html[1][$i];
-			$htmlOrigMatch = $htmlMatch;
-			// convert href anchor
-			preg_match_all('/<a(.*?href="(.*?"))/s', $htmlMatch, $anchorHrefMatch);
-			$countAnchorHrefMatch = isset($anchorHrefMatch[2]) ? count($anchorHrefMatch[2]) : 0;
-			for ($y = 0; $y < $countAnchorHrefMatch; $y++) {
-				$fullAnchor = $anchorHrefMatch[1][$y];
-				$href = $anchorHrefMatch[2][$y];
-				$href = str_replace('"', '', $href);
-				$url = $this->getMatchBaseUrlSchema($href);
-				if (strpos($href, $url) !== false) {
-					$relativeHref = str_replace($url, '', $href);
-					$fullAnchorRelative = str_replace($href, $relativeHref, $fullAnchor);
-					$htmlMatch = str_replace($fullAnchor, $fullAnchorRelative, $htmlMatch);
-				}
-			}
-			// convert text inside anchor tag
-			preg_match_all('/<a(.*?>(.*?<\/a>))/s', $htmlMatch, $anchorMatch);
-			$countAnchorMatch = isset($anchorMatch[2]) ? count($anchorMatch[2]) : 0;
-			for ($y = 0; $y < $countAnchorMatch; $y++) {
-				$fullAnchor = $anchorMatch[0][$y];
-				$anchorValue = $anchorMatch[2][$y];
-				$anchorValue = str_replace('</a>', '', $anchorValue);
-				$url = $this->getMatchBaseUrlSchema($anchorValue);
-				if (strpos($anchorValue, $url) !== false) {
-					$relativeAnchorValue = str_replace($url, '', $anchorValue);
-					$fullAnchorRelative = str_replace($anchorValue, $relativeAnchorValue, $fullAnchor);
-					$htmlMatch = str_replace($fullAnchor, $fullAnchorRelative, $htmlMatch);
-				}
-			}
-			$htmlConverted[$i] = $htmlMatch;
-			$data = str_replace($htmlOrigMatch, $htmlMatch, $data);
-		}
+		// Detect tiki internal links
+		preg_match_all('/\(\((([^|)]+)(\|([^|)]+))?)\)\)/', $data, $matches);
 
-		// convert to relative wiki links
-		preg_match_all('/\(([a-z0-9-]+)?\((' . $page_regex . ')\|([^\)]*?)\)\)/', $data, $wikiLinks);
-		$countWikiLinks = isset($wikiLinks[0]) ? count($wikiLinks[0]) : 0;
-		for ($i = 0; $i < $countWikiLinks; $i++) {
-			$exactMatch = $wikiLinks[0][$i];
-			$description = $wikiLinks[6][$i];
-			$pageLinkTo = $wikiLinks[2][$i];
-			$isLink = str_replace('#', '', $pageLinkTo);
-			if (filter_var($isLink, FILTER_VALIDATE_URL)) {
-				$description = $pageLinkTo;
+		$counter = count($matches[0]);
+		for ($i = 0; $i < $counter; $i++) {
+			// Check if link part is valid url
+			if (filter_var($matches[2][$i], FILTER_VALIDATE_URL) === false) {
+				continue;
 			}
-			if ($description[0] == '#') {
-				$temp = $description;
-				$link = strtok($temp, '|');
-				$url = $this->getMatchBaseUrlSchema($link);
-				if (! empty($link) && strpos($link, $url) !== false) {
-					$relativeLink = str_replace($url, '', $link);
-					$data = str_replace($link, $relativeLink, $data);
+
+			// Check if url matches tiki instance links
+			if ($url = $this->getMatchBaseUrlSchema($matches[2][$i])) {
+				$newPath = str_replace($url, '', $matches[2][$i]);
+				// In case of a tikibase instance point link to Homepage
+				if (empty($newPath) || $newPath == '/') {
+					$newPath = 'Homepage';
 				}
-			} else {
-				$url = $this->getMatchBaseUrlSchema($description);
-				if (! empty($description) && strpos($description, $url) !== false) {
-					$relativeLink = str_replace($url, '', $exactMatch);
-					$data = str_replace($exactMatch, $relativeLink, $data);
-				}
+				$newLink = '((' . $newPath . $matches[3][$i] . '))';
+				$data = str_replace($matches[0][$i], $newLink, $data);
 			}
 		}
 
-		// convert relative external links
-		preg_match_all('/(?<!\[)\[([^\[\|\]]+)(?:\|?[^\[\|\]]+){0,2}\]/', $data, $matchExtLinks);
-		$countExtLinks = isset($matchExtLinks[0]) ? count($matchExtLinks[0]) : 0;
-		for ($i = 0; $i < $countExtLinks; $i++) {
-			$exactMatch = $matchExtLinks[0][$i];
-			$url = $this->getMatchBaseUrlSchema($exactMatch);
-			if (! empty($exactMatch) && strpos($exactMatch, $url) !== false) {
-				$relativeLink = str_replace($url, '', $exactMatch);
-				$data = str_replace($exactMatch, $relativeLink, $data);
-			}
-		}
+		// Detect external links
+		preg_match_all('/\[(([^|\]]+)(\|([^|\]]+))?)\]/', $data, $matches);
 
-		// convert to relative string links (without wiki or external format)
-		preg_match_all('/(\[|(\(\())?([a-zA-Z0-9 \"\!\%\'\(\)\*\,\-\.\:\\\^\_\`\{\|\}\~]+((\|#)|#|\||))?(https|http)?:\/\/(www\.)?[-a-zA-Z0-9@:\%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:\%_\+.~#?\/\/&=]*)?/', $data, $stringLinks);
-		$countStringLinks = isset($stringLinks[0]) ? count($stringLinks[0]) : 0;
-		for ($i = 0; $i < $countStringLinks; $i++) {
-			$exactMatch = $stringLinks[0][$i];
-			$firstChars = substr($exactMatch, 0, 2);
-			$url = $this->getMatchBaseUrlSchema($exactMatch);
-			if (strpos($exactMatch, $url) !== false && $firstChars != '((' && $firstChars[0] != '[') {
-				$relativeLink = str_replace($url, '', $exactMatch);
-				$relativeLink = '[' . $relativeLink . ']';
-				$data = str_replace($exactMatch, $relativeLink, $data);
+		$counter = count($matches[0]);
+		for ($i = 0; $i < $counter; $i++) {
+			// Check if link part is valid url
+			if (filter_var($matches[2][$i], FILTER_VALIDATE_URL) === false) {
+				continue;
 			}
-		}
 
-		// make sure that links inside HTML are not treated as wiki links
-		if (! empty($htmlConverted)) {
-			preg_match_all('/{HTML(.*)?{HTML}/s', $data, $html);
-			$countHtml = isset($html[1]) ? count($html[1]) : 0;
-			for ($i = 0; $i < $countHtml; $i++) {
-				$htmlMatch = $html[1][$i];
-				$htmlReplace = $htmlConverted[$i];
-				$data = str_replace($htmlMatch, $htmlReplace, $data);
+			// Check if url matches tiki instance links
+			if ($url = $this->getMatchBaseUrlSchema($matches[2][$i])) {
+				$newPath = str_replace($url, '', $matches[2][$i]);
+				$newLink = '[' . $newPath . $matches[3][$i] . ']';
+				$data = str_replace($matches[0][$i], $newLink, $data);
 			}
 		}
 
@@ -2602,7 +2538,7 @@ class TikiLib extends TikiDb_Bridge
 	/**
 	 * Return the base url in the matched link protocol (http or https)
 	 *
-	 * @param string $url The link to check
+	 * @param string $link The link to check
 	 *
 	 * @return string The tiki base url with the matched schema (http or https)
 	 */
@@ -2612,8 +2548,12 @@ class TikiLib extends TikiDb_Bridge
 
 		if (strpos($link, $base_url_http) !== false) {
 			return $base_url_http;
+		} elseif (strpos($link, rtrim($base_url_http, '/')) !== false) {
+			return rtrim($base_url_http, '/');
 		} elseif (strpos($link, $base_url_https) !== false) {
 			return $base_url_https;
+		} elseif (strpos($link, rtrim($base_url_https, '/')) !== false) {
+			return rtrim($base_url_https, '/');
 		} else {
 			return null;
 		}
