@@ -43,11 +43,11 @@ function module_websearch($mod_reference, $module_params){
   	$url_page_info_engines = "https://doc.tiki.org/web_search_engines";
     $engines = [
         "Google" => "https://www.google.com/search?q=",
-        "Google_Images" => "https://www.google.com/images?q=",
+        "Google Images" => "https://www.google.com/images?q=",
         "Bing" => "https://www.bing.com/search?q=",
-        "Bing_Images" => "https://www.bing.com/images?q=",
-        "Yahoo" => "https://ca.search.yahoo.com/web?q=",
-        "Yahoo_Images" => "https://ca.images.search.yahoo.com/images?q=",
+        "Bing Images" => "https://www.bing.com/images?q=",
+        "Yahoo" => "https://search.yahoo.com/search?p=",
+        "Yahoo Images" => "https://images.search.yahoo.com/search/images?p=",
         "Searx" => "https://searx.me/?q=",
         "Qwant" => "https://www.qwant.com/?q=",
         "Startpage" => "https://www.startpage.com/",
