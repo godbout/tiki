@@ -3091,19 +3091,26 @@ body.fullscreen.tiki.navbar-padding {
 .hide_zone_left #col2, .hide_zone_right #col3 {
   display: none; }
 
-.hide_zone_left .col-md-8.col-md-push-2.col1 {
+.hide_zone_left .col-lg-8.col1 {
   left: 0;
-  width: 83.3334%; }
+  width: 83.3334%;
+  flex: 0 0 83.3334%;
+  max-width: 83.3334%; }
 
-.hide_zone_right .col-md-8.col-md-push-2.col1 {
-  width: 83.3334%; }
+.hide_zone_right .col-lg-8.col1 {
+  width: 83.3334%;
+  flex: 0 0 83.3334%;
+  max-width: 83.3334%; }
 
-.hide_zone_left.hide_zone_right .col-md-8.col-md-push-2.col1 {
-  width: 100%; }
-
-.hide_zone_right #col2 {
-  right: 83.3334%; }
-
+.hide_zone_left.hide_zone_right .col-lg-8.col1 {
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%; }
+/*
+ .hide_zone_right #col2 {
+ right: 83.3334%; // TODO: make it computed less variable?
+ }
+ */
 .hide_zone_left .col-md-9.col-md-push-3.col1 {
   left: 0;
   width: 100%; }
