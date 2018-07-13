@@ -49,11 +49,19 @@ function module_websearch($mod_reference, $module_params){
         "Yahoo" => "https://search.yahoo.com/search?p=",
         "Yahoo Images" => "https://images.search.yahoo.com/search/images?p=",
         "Searx" => "https://searx.me/?q=",
+				"Searx Images" => "https://searx.me/?&category_images=on&q=",
         "Qwant" => "https://www.qwant.com/?q=",
-        "Startpage" => "https://www.startpage.com/",
+				"Qwant Images" => "https://www.qwant.com/?t=images&q=",
+        "Startpage" => "https://www.startpage.com/do/asearch?&query=",
+				"Startpage Images" => "https://www.startpage.com/do/asearch?cat=pics&query=",
         "Ask" => "https://www.ask.com/web?q=",
+				"Ask Videos" => "https://www.ask.com/youtube?q=",
         "Duckduckgo" => "https://duckduckgo.com/?q=",
+				"Duckduckgo Images" => "https://duckduckgo.com/?iax=images&ia=images&q=",
         "Pickanews" => "https://www.pickanews.com/find?q=",
+				"SearchEncrypt" => "https://www.searchencrypt.com/search?eq=",
+				"Swisscows" => "https://swisscows.ch/?query=",
+				"Gigablast" => "http://www.gigablast.com/search?q=",
     ];
 		$smarty = TikiLib::lib('smarty');
 		$smarty->assign('url_page_info_engines', $url_page_info_engines);
