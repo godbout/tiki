@@ -122,14 +122,15 @@
 		</footer>
 
 		<nav class="navbar navbar-expand-md navbar-light {*navbar=dark*}{*navbar-primary*} bg-light {*bg-dark*} fixed-top" {*style="background: mycustomcolorcode;"*}>
-			<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
+			<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} d-flex justify-content-between">
 				<a class="navbar-brand" href="./">{if $prefs.sitelogo_icon}<img src="{$prefs.sitelogo_icon}">{/if} {$prefs.sitetitle|escape}</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarCollapse">
-					{modulelist zone="topbar" id="topbar_modules_social"}
-					<ul class="navbar-nav ml-auto">
+					{modulelist zone="topbar" id="topbar_modules_social" class="d-flex flex-fill justify-content-between"}
+					<div class="flex">
+					<ul class="navbar-nav">
 						{if $user}
 							<li class="nav-item">
 								<a class="nav-link" href="{if $prefs.feature_sefurl eq 'y'}logout{else}tiki-logout.php{/if}">{tr}Log out{/tr}</a>
@@ -163,6 +164,7 @@
 		{/if}
 	{/if}
 						</ul>
+					</div>
 				</div> {* navbar-collapse-social *}
 			</div> {* container *}
 

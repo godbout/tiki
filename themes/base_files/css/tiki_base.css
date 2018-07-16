@@ -42,6 +42,9 @@ a.fc-event:hover {
 .dropdown-menu {
   color: #6c757d; }
 
+#topbar_modules_social .form-control {
+  margin-top: 0.5rem; }
+
 .cssmenu_horiz > li:hover, .cssmenu_horiz > li.sfHover, .cssmenu_vert > li:hover, .cssmenu_vert > li.sfHover {
   -webkit-transition: none;
   -moz-transition: none;
