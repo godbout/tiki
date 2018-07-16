@@ -749,9 +749,11 @@ body.wikitext {
 }
 
 .editable-inline {
-	background: transparent url('#{$imagePathToImgDir}icons/database_lightning.png') no-repeat top right;
 	padding-right: 20px;
 	display: inline-block;
+	.icon {
+		font-size: small;
+	}
 }
 
 .editable-inline.loaded {
@@ -763,7 +765,9 @@ body.wikitext {
 }
 
 .editable-inline.failure {
-	background: transparent url('#{$imagePathToImgDir}icons/lock_gray.png') no-repeat top right;
+	.icon {
+		opacity: 50%;
+	}
 }
 
 .editable-inline.modified {

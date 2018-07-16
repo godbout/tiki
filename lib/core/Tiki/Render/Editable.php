@@ -75,6 +75,8 @@ class Tiki_Render_Editable
 		}
 
 		$group = smarty_modifier_escape($this->group);
-		return "<$tag class=\"$class\" data-field-fetch-url=\"$fieldFetch\" data-object-store-url=\"$objectStore\" data-group=\"$group\" data-label=\"$label\">$value</$tag>";
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_function_icon');
+		return "<$tag class=\"$class\" data-field-fetch-url=\"$fieldFetch\" data-object-store-url=\"$objectStore\" data-group=\"$group\" data-label=\"$label\">$value" . smarty_function_icon(['name' => 'edit', 'iclass' => 'ml-2'], $smarty) . "</$tag>";
 	}
 }

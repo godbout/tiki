@@ -471,9 +471,10 @@ body.wikitext {
   color: #212529; }
 
 .editable-inline {
-  background: transparent url("../../../img/icons/database_lightning.png") no-repeat top right;
   padding-right: 20px;
   display: inline-block; }
+  .editable-inline .icon {
+    font-size: small; }
 
 .editable-inline.loaded {
   background: #fff;
@@ -482,8 +483,8 @@ body.wikitext {
   border-radius: 4px;
   z-index: 2; }
 
-.editable-inline.failure {
-  background: transparent url("../../../img/icons/lock_gray.png") no-repeat top right; }
+.editable-inline.failure .icon {
+  opacity: 50%; }
 
 .editable-inline.modified {
   border: solid 2px #dc3545;
