@@ -1,4 +1,4 @@
-<ul class="{if $bs_menu_class}{$bs_menu_class}{else}nav{/if} flex-column sm sm-vertical">
+<ul class="{if $bs_menu_class}{$bs_menu_class}{else}nav{/if} flex-column">
 	{foreach from=$list item=item}
 		{if !empty($item.children)}
 			<li class="nav-item {$item.class|escape|default:null}{if !empty($item.selected)} active{/if}">
