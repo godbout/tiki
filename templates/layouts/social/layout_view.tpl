@@ -137,11 +137,10 @@
 							</li>
 						{else}
 							<li class="dropdown">
-								<a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Log in{/tr} <span
-								class="caret"></span></a>
-								<ul class="dropdown-menu dropdown-login card-body">
-									<li class="dropdown-item">
-										<div>
+								<a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown">{tr}Log in{/tr}</a>
+								<div class="dropdown-menu dropdown-login card-body">
+									<div class="dropdown-item">
+
 		{module
 			module=login_box
 			mode="module"
@@ -153,9 +152,9 @@
 			nobox="y"
 			notitle="y"
 		}
-										</div>
-									</li>
-								</ul>
+
+									</div>
+								</div>
 							</li>
 		{if $prefs.allowRegister eq 'y'}
 							<li class="nav-item">
