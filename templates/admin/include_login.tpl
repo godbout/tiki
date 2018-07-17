@@ -237,7 +237,6 @@
 				{preference name=auth_ldap_starttls}
 				{preference name=auth_ldap_type}
 				{preference name=auth_ldap_scope}
-				{preference name=auth_ldap_version}
 				{preference name=auth_ldap_basedn}
 			</fieldset>
 			<fieldset>
@@ -273,7 +272,6 @@
 				{preference name=auth_ldap_group_starttls}
 				{preference name=auth_ldap_group_type}
 				{preference name=auth_ldap_group_scope}
-				{preference name=auth_ldap_group_version}
 				{preference name=auth_ldap_group_basedn}
 			</fieldset>
 			<fieldset>

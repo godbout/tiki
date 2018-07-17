@@ -228,13 +228,6 @@ function prefs_auth_list()
 			],
 			'default' => "sub",
 		],
-		'auth_ldap_version' => [
-			'name' => tra('LDAP version'),
-			'type' => 'text',
-			'size' => 5,
-			'perspective' => false,
-			'default' => 3,
-		],
 		'auth_ldap_basedn' => [
 			'name' => tra('Base DN'),
 			'type' => 'text',
@@ -428,13 +421,6 @@ function prefs_auth_list()
 				'base' => tra('Base object'),
 			],
 			'default' => 'sub',
-		],
-		'auth_ldap_group_version' => [
-			'name' => tra('LDAP version'),
-			'type' => 'text',
-			'size' => 5,
-			'perspective' => false,
-			'default' => '3',
 		],
 		'auth_ldap_group_basedn' => [
 			'name' => tra('Base DN'),

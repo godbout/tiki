@@ -34,6 +34,7 @@ define('AUTH_LOGIN_OK', 0);
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
+use Zend\Ldap\Exception\LdapException;
 
 class UsersLib extends TikiLib
 {
@@ -1311,10 +1312,9 @@ class UsersLib extends TikiLib
 			$ldap_options = [
 					'host' => $prefs['auth_ldap_host'],
 					'port' => $prefs['auth_ldap_port'],
-					'version' => $prefs['auth_ldap_version'],
-					'starttls' => $prefs['auth_ldap_starttls'],
-					'ssl' => $prefs['auth_ldap_ssl'],
-					'basedn' => $prefs['auth_ldap_basedn'],
+					'useStartTls' => $prefs['auth_ldap_starttls'],
+					'useSsl' => $prefs['auth_ldap_ssl'],
+					'baseDn' => $prefs['auth_ldap_basedn'],
 					'scope' => $prefs['auth_ldap_scope'],
 					'bind_type' => $prefs['auth_ldap_type'],
 					'username' => $user,
@@ -1365,9 +1365,6 @@ class UsersLib extends TikiLib
 		$this->init_ldap($user, $pass);
 
 		$err = $this->ldap->bind();
-		if (is_int($err)) {
-			$err = Net_LDAP2::errorMessage($err);
-		}
 
 		// Change the default bind_type to use the full, call get_user_attributes function to use the realname (dn) in the credentials test
 		$this->ldap->setOption('bind_type', 'full');
@@ -1375,32 +1372,23 @@ class UsersLib extends TikiLib
 
 		// Credentials test! To test it we force the reconnection.
 		$err = $this->ldap->bind(true);
-		if (is_int($err)) {
-				$err = Net_LDAP2::errorMessage($err);
-		}
 
 		switch ($err) {
-			case 'LDAP_INVALID_CREDENTIALS':
+			case LdapException::LDAP_INVALID_CREDENTIALS:
 				return PASSWORD_INCORRECT;
 
-			case 'LDAP_INVALID_SYNTAX':
-			case 'LDAP_NO_SUCH_OBJECT':
-			case 'LDAP_INVALID_DN_SYNTAX':
-				if ($prefs['auth_ldap_debug'] == 'y') {
-					$logslib->add_log('ldap', 'Error' . $err);
-				}
+			case LdapException::LDAP_INVALID_SYNTAX:
+			case LdapException::LDAP_NO_SUCH_OBJECT:
+			case LdapException::LDAP_INVALID_DN_SYNTAX:
 				return USER_NOT_FOUND;
 
-			case 'LDAP_SUCCESS':
+			case LdapException::LDAP_SUCCESS:
 				if ($prefs['auth_ldap_debug'] == 'y') {
 					$logslib->add_log('ldap', 'Bind successful.');
 				}
 				return USER_VALID;
 
 			default:
-				if ($prefs['auth_ldap_debug'] == 'y') {
-					$logslib->add_log('ldap', 'Error' . $err);
-				}
 				return SERVER_ERROR;
 		}
 
@@ -1492,10 +1480,9 @@ class UsersLib extends TikiLib
 		$ldap_options = [
 					'host' => $prefs['auth_ldap_host'],
 					'port' => $prefs['auth_ldap_port'],
-					'version' => $prefs['auth_ldap_version'],
-					'starttls' => $prefs['auth_ldap_starttls'],
-					'ssl' => $prefs['auth_ldap_ssl'],
-					'basedn' => $prefs['auth_ldap_basedn'],
+					'useStartTls' => $prefs['auth_ldap_starttls'],
+					'useSsl' => $prefs['auth_ldap_ssl'],
+					'baseDn' => $prefs['auth_ldap_basedn'],
 					'scope' => $prefs['auth_ldap_scope'],
 					'bind_type' => $bind_type,
 					'binddn' => $prefs['auth_ldap_adminuser'],
@@ -1693,10 +1680,9 @@ class UsersLib extends TikiLib
 					$ldap_group_options = [
 							'host' => $prefs['auth_ldap_group_host'],
 							'port' => $prefs['auth_ldap_group_port'],
-							'version' => $prefs['auth_ldap_group_version'],
-							'starttls' => $prefs['auth_ldap_group_starttls'],
-							'ssl' => $prefs['auth_ldap_group_ssl'],
-							'basedn' => $prefs['auth_ldap_group_basedn'],
+							'useStartTls' => $prefs['auth_ldap_group_starttls'],
+							'useSsl' => $prefs['auth_ldap_group_ssl'],
+							'baseDn' => $prefs['auth_ldap_group_basedn'],
 							'scope' => $prefs['auth_ldap_group_scope'],
 							'userdn' => $prefs['auth_ldap_group_userdn'],
 							'useroc' => $prefs['auth_ldap_group_useroc'],
@@ -2058,7 +2044,7 @@ class UsersLib extends TikiLib
 		$options['host'] = $prefs['auth_ldap_host'];
 		$options['port'] = $prefs['auth_ldap_port'];
 		$options['scope'] = $prefs['auth_ldap_scope'];
-		$options['basedn'] = $prefs['auth_ldap_basedn'];
+		$options['baseDn'] = $prefs['auth_ldap_basedn'];
 		$options['userdn'] = $prefs['auth_ldap_userdn'];
 		$options['userattr'] = $prefs['auth_ldap_userattr'];
 		$options['useroc'] = $prefs['auth_ldap_useroc'];
