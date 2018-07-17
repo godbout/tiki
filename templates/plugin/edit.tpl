@@ -40,7 +40,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 				{/if}
 			{/if}
 		</div>
-		<div class="col-sm-9">
+		<div class="col-sm-12">
 			{if not empty($param.parentparam.name)}
 				{$groupClass = " group-`$param.parentparam.name`"}
 				{$dataAttribute = " data-parent_name='`$param.parentparam.name`' data-parent_value='`$param.parentparam.value`'"}
@@ -107,9 +107,9 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 				{/foreach}
 			{/if}
 
-			<div class="form-group row"{if empty($info.body)} style="display:none"{/if}>
-				<label for="content" class="col-sm-3">{tr}Body{/tr}</label>
-				<div class="col-sm-9">
+			<div class="form-group"{if empty($info.body)} style="display:none"{/if}>
+				<label for="content" class="col-sm-12">{tr}Body{/tr}</label>
+				<div class="col-sm-12">
 					<textarea name="content" id="content" class="form-control" rows="12">{$bodyContent|escape}</textarea>
 					<div class="description">{$info.body}</div>
 				</div>
