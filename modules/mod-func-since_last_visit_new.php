@@ -438,19 +438,16 @@ function module_since_last_visit_new($mod_reference, $params = null)
 		// files
 		$ret['items']['files']['label'] = tra('new files');//get_strings tra('new files');
 		$ret['items']['files']['cname'] = 'slvn_files_menu';
-		$query = 'select `fileId`, `galleryId`,`name`,`filename`,`created`,`user` from `tiki_files` where `created`>? order by `created` desc';
-		$result = $tikilib->query($query, [(int) $last], $resultCount);
 
-		$count = 0;
-		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['galleryId'], 'file gallery', 'tiki_p_view_file_gallery')) {
-				$ret['items']['files']['list'][$count]['href']  = filter_out_sefurl('tiki-list_file_gallery.php?galleryId=' . $res['galleryId'] . '&fileId=' . $res['fileId'] . '&view=page', 'file gallery');
-				$ret['items']['files']['list'][$count]['title'] = $tikilib->get_short_datetime($res['created']) . ' ' . tra('by') . ' ' . smarty_modifier_username($res['user']);
-				$ret['items']['files']['list'][$count]['label'] = $res['name'] . ' (' . $res['filename'] . ')';
-				$count++;
-			}
+		$files = TikiLib::lib('filegal')->get_files(-1, -1, 'created_desc', null, -2, false, false, true, true, false, false, true, false, '', true, false, false, ['created' => (int) $last]);
+		foreach ($files['data'] as $res) {
+			$ret['items']['files']['list'][] = [
+				'href' => filter_out_sefurl('tiki-list_file_gallery.php?galleryId=' . $res['galleryId'] . '&fileId=' . $res['fileId'] . '&view=page', 'file gallery'),
+				'title' => $tikilib->get_short_datetime($res['created']) . ' ' . tra('by') . ' ' . smarty_modifier_username($res['user']),
+				'label' => $res['name'] . ' (' . $res['filename'] . ')'
+			];
 		}
-		$ret['items']['files']['count'] = $count;
+		$ret['items']['files']['count'] = $files['cant'];
 	}
 
 

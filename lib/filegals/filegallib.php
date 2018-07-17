@@ -2947,7 +2947,7 @@ class FileGalLib extends TikiLib
 	 * @param string $my_user use another user than the current one
 	 * @param bool $keep_subgals_together do not mix files and subgals when sorting (if true, subgals will always be at the top)
 	 * @param bool $parent_is_file use $galleryId param as $fileId (to return only archives of the file)
-	 * @param array filter: creator, categId, lastModif, lastDownload, fileId
+	 * @param array filter: creator, categId, lastModif, lastDownload, fileId, created
 	 * @param string wiki_syntax: text to be inserted in editor onclick (from fgal manager)
 	 * @return array of found files and subgals
 	 */
@@ -3135,6 +3135,10 @@ class FileGalLib extends TikiLib
 			$f_query .= ' AND (tf.`filetype` = ?)';
 			$bindvars[] = $filter['fileType'];
 		}
+		if (! empty($filter['created'])) {
+			$f_query .= ' AND tf.`created` > ? ';
+			$bindvars[] = $filter['created'];
+		}
 		if ($with_files && $prefs['feature_file_galleries_save_draft'] == 'y') {
 			$bindvars[] = $user;
 		}
@@ -3298,6 +3302,7 @@ class FileGalLib extends TikiLib
 			if (( $res['perms']['tiki_p_view_file_gallery'] != 'y' && ! $this->user_has_perm_on_object($user, $res['id'], $object_type, 'tiki_p_view_file_gallery') )
 					&& ( $res['isgal'] == 0 || ( $res['perms']['tiki_p_list_file_galleries'] != 'y' && ! $this->user_has_perm_on_object($user, $res['id'], $object_type, 'tiki_p_list_file_galleries') ) )
 				) {
+				$numResults--;
 				continue;
 			}
 			if (empty($backlinkPerms[$res['galleryId']])) {
@@ -3305,6 +3310,7 @@ class FileGalLib extends TikiLib
 				$backlinkPerms[$res['galleryId']] = $info['backlinkPerms'];
 			}
 			if ($backlinkPerms[$res['galleryId']] == 'y' && $this->hasOnlyPrivateBacklinks($res['id'])) {
+				$numResults--;
 				continue;
 			}
 			// add markup to be inserted onclick
