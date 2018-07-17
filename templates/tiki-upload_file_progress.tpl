@@ -12,7 +12,7 @@
 <div class="media">
 	{if $view neq 'page'}
 	{$type = $name|iconify:null:null:null:'filetype'}
-	{if $type eq 'image/png' or $type eq 'image/jpeg'or $type eq 'image/jpg'
+	{if $type eq 'image/png' or $type eq 'image/jpeg' or $type eq 'image/jpg'
 	or $type eq 'image/gif' or $type eq 'image/x-ms-bmp'}
 		{$imagetypes = 'y'}
 	{else}
