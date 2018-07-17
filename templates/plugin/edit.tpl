@@ -11,7 +11,7 @@
 {block name="content"}
 	{function plugin_edit_row}{* needs to be in the same block it seems? *}
 		{if $param.area}{$inputId=$param.area|escape}{else}{$inputId="param_{$name|escape}_input"}{/if}
-		<div class="col-sm-12">
+		<div class="col-sm-3">
 			<label for="{$inputId}">{$param.name|escape}</label>
 			{if not empty($param.type)}
 				{$onclick = "openFgalsWindow('{$prefs.home_file_gallery|sefurl:'file gallery':true}filegals_manager={$param.area|escape}&id=1', true);return false;"}
@@ -40,7 +40,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 				{/if}
 			{/if}
 		</div>
-		<div class="col-sm-12">
+		<div class="col-sm-9">
 			{if not empty($param.parentparam.name)}
 				{$groupClass = " group-`$param.parentparam.name`"}
 				{$dataAttribute = " data-parent_name='`$param.parentparam.name`' data-parent_value='`$param.parentparam.value`'"}
@@ -94,7 +94,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 		<form action="{service controller='plugin' action='edit'}" method="post">
 			{ticket mode='confirm'}
 			{foreach $info.params as $name => $param}
-				<div class="form-group{if $param.advanced} advanced{/if}" id="param_{$name|escape}">
+				<div class="form-group row {if $param.advanced} advanced{/if}" id="param_{$name|escape}">
 					{plugin_edit_row param=$param name=$name info=$info pluginArgs=$pluginArgs}
 				</div>
 			{/foreach}
@@ -107,9 +107,9 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 				{/foreach}
 			{/if}
 
-			<div class="form-group"{if empty($info.body)} style="display:none"{/if}>
-				<label for="content" class="col-sm-12">{tr}Body{/tr}</label>
-				<div class="col-sm-12">
+			<div class="form-group row"{if empty($info.body)} style="display:none"{/if}>
+				<label for="content" class="col-sm-3">{tr}Body{/tr}</label>
+				<div class="col-sm-9">
 					<textarea name="content" id="content" class="form-control" rows="12">{$bodyContent|escape}</textarea>
 					<div class="description">{$info.body}</div>
 				</div>
