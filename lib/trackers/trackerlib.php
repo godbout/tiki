@@ -883,27 +883,35 @@ class TrackerLib extends TikiLib
 			$fieldsId = preg_split('/\|/', $fieldsId, -1, PREG_SPLIT_NO_EMPTY);
 		}
 		$definition = Tracker_Definition::get($trackerId);
-		foreach ($fieldsId as $k => $field) {
-			$myfield = $definition->getField($field);
+		if ($definition) {
+			foreach ($fieldsId as $k => $field) {
+				$myfield = $definition->getField($field);
 
-			$myfield['value'] = $this->get_item_value($trackerId, $itemId, $field);
-			$value = trim($this->field_render_value(['field' => $myfield, 'process' => 'y', 'list_mode' => $list_mode, 'item' => $item]));
+				$myfield['value'] = $this->get_item_value(
+					$trackerId, $itemId, $field
+				);
+				$value = trim($this->field_render_value(
+					['field' => $myfield, 'process' => 'y', 'list_mode' => $list_mode, 'item' => $item])
+				);
 
-			if ($format) {
-				$values[] = $value;
-			} else {
-				if ($k > 0) {
-					$res .= $separator;
+				if ($format) {
+					$values[] = $value;
+				} else {
+					if ($k > 0) {
+						$res .= $separator;
+					}
+					$res .= $value;
 				}
-				$res .= $value;
 			}
-		}
-		if ($format) {
-			// use the underlying translation function to replace the %0 etc placeholders (and translate if necessary)
-			$res = tra($format, '', false, $values);
-		}
-		if ($strip_tags) {
-			$res = strip_tags($res);
+			if ($format) {
+				// use the underlying translation function to replace the %0 etc placeholders (and translate if necessary)
+				$res = tra($format, '', false, $values);
+			}
+			if ($strip_tags) {
+				$res = strip_tags($res);
+			}
+		} else {
+			Feedback::error(tr('Tracker %0 not found for Field %1', $trackerId, implode(',', $fieldsId)));
 		}
 		return $res;
 	}
