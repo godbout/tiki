@@ -16,7 +16,7 @@
 <div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	<div class="page-header" id="page-header">
-		{modulelist zone=top class='row top_modules'}
+		{modulelist zone=top class='row top_modules d-flex justify-content-between'}
 		<div class="topbar row" id="topbar">
 			{modulelist zone=topbar}
 		</div>
