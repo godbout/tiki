@@ -1239,8 +1239,9 @@ footer.footer .modules > .module:not(.card) {
   margin-left: auto;
   margin-right: auto; }
 
-#page-header .box-login_box {
-  margin-left: auto; }
+.page-header .box-login_box {
+  position: absolute;
+  right: 0; }
 
 div.cvsup {
   font-size: x-small;
