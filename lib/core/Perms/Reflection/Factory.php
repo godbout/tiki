@@ -20,14 +20,14 @@ class Perms_Reflection_Factory
 		$this->fallback = $class;
 	}
 
-	function get($type, $object)
+	function get($type, $object, $parentId = null)
 	{
 		if (! $class = $this->getRegistered($type)) {
 			$class = $this->fallback;
 		}
 
 		if ($class) {
-			return new $class($this, $type, $object);
+			return new $class($this, $type, $object, $parentId);
 		}
 	}
 

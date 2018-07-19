@@ -10,12 +10,14 @@ class Perms_Reflection_Object implements Perms_Reflection_Container
 	protected $factory;
 	protected $type;
 	protected $object;
+	protected $parentId;
 
-	function __construct($factory, $type, $object)
+	function __construct($factory, $type, $object, $parentId = null)
 	{
 		$this->factory = $factory;
 		$this->type = $type;
 		$this->object = $object;
+		$this->parentId = $parentId;
 	}
 
 	function add($group, $permission)
@@ -46,6 +48,14 @@ class Perms_Reflection_Object implements Perms_Reflection_Container
 	function getParentPermissions()
 	{
 		if ($permissions = $this->getCategoryPermissions()) {
+			return $permissions;
+		} elseif ($this->parentId) {
+			$parentType = Perms::parentType($this->type);
+			$parentObject = $this->factory->get($parentType, $this->parentId);
+			$permissions = $parentObject->getDirectPermissions();
+			if (! $permissions->getPermissionArray()) {
+				$permissions = $parentObject->getParentPermissions();
+			}
 			return $permissions;
 		} else {
 			return $this->factory->get('global', null)->getDirectPermissions();

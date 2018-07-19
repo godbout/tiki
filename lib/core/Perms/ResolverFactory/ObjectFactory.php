@@ -10,8 +10,13 @@
  * loading for multiple objects in a single query.
  *
  * Parent parameter can be passed during initialization to configure
- * Factory to return parent object permissions. Currently only supports
- * TrackerItem parents (i.e. Trackers) object permissions.
+ * Factory to return parent object permissions. Currently supported parents are:
+ * tracker item -> tracker
+ * file -> file gallery
+ * article -> topic
+ * blog post -> blog
+ * thread -> forum
+ * event -> calendar
  */
 class Perms_ResolverFactory_ObjectFactory implements Perms_ResolverFactory
 {
@@ -26,10 +31,10 @@ class Perms_ResolverFactory_ObjectFactory implements Perms_ResolverFactory
 	function getHash(array $context)
 	{
 		if (isset($context['type'], $context['object'])) {
-			// parent permissions of trackeritems should all go in one hash key, so they share the cache
-			// they are essentially the same for all trackeritems since they are tracker permissions
-			if ($context['type'] === 'trackeritem' && $this->parent && isset($context['parentId'])) {
-				return 'object:tracker:' . $this->cleanObject($context['parentId']);
+			// parent permissions should all go in one hash key, so they share the cache
+			// they are essentially the same for all children
+			if ($this->parent && isset($context['parentId']) && ($parentType = Perms::parentType($context['type']))) {
+				return 'object:' . $parentType . ':' . $this->cleanObject($context['parentId']);
 			} else {
 				return 'object:' . $context['type'] . $this->parent . ':' . $this->cleanObject($context['object']);
 			}
@@ -44,8 +49,7 @@ class Perms_ResolverFactory_ObjectFactory implements Perms_ResolverFactory
 			return $values;
 		}
 
-		// only trackeritem parents supported for now
-		if ($this->parent && $baseContext['type'] !== 'trackeritem') {
+		if ($this->parent && !Perms::parentType($baseContext['type'])) {
 			return $values;
 		}
 
@@ -80,6 +84,51 @@ class Perms_ResolverFactory_ObjectFactory implements Perms_ResolverFactory
 				FROM `tiki_tracker_items` tti, `users_objectpermissions` op
 				WHERE op.`objectType` = 'tracker' AND op.`objectId` = md5(concat('tracker', LOWER(tti.`trackerId`))) AND " .
 				$db->in('tti.itemId', array_values($objects), $bindvars),
+				$bindvars
+			);
+		} elseif ($baseContext['type'] === 'file' && $this->parent) {
+			$bindvars = [];
+			$result = $db->fetchAll(
+				"SELECT md5(concat('file', LOWER(tf.`fileId`))) as `objectId`, op.`groupName`, op.`permName`
+				FROM `tiki_files` tf, `users_objectpermissions` op
+				WHERE op.`objectType` = 'file gallery' AND op.`objectId` = md5(concat('file gallery', LOWER(tf.`galleryId`))) AND " .
+				$db->in('tf.fileId', array_values($objects), $bindvars),
+				$bindvars
+			);
+		} elseif ($baseContext['type'] === 'article' && $this->parent) {
+			$bindvars = [];
+			$result = $db->fetchAll(
+				"SELECT md5(concat('article', LOWER(ta.`articleId`))) as `objectId`, op.`groupName`, op.`permName`
+				FROM `tiki_articles` ta, `users_objectpermissions` op
+				WHERE op.`objectType` = 'topic' AND op.`objectId` = md5(concat('topic', LOWER(ta.`topicId`))) AND " .
+				$db->in('ta.articleId', array_values($objects), $bindvars),
+				$bindvars
+			);
+		} elseif ($baseContext['type'] === 'blog post' && $this->parent) {
+			$bindvars = [];
+			$result = $db->fetchAll(
+				"SELECT md5(concat('blog post', LOWER(tbp.`postId`))) as `objectId`, op.`groupName`, op.`permName`
+				FROM `tiki_blog_posts` tbp, `users_objectpermissions` op
+				WHERE op.`objectType` = 'blog' AND op.`objectId` = md5(concat('blog', LOWER(tbp.`blogId`))) AND " .
+				$db->in('tbp.postId', array_values($objects), $bindvars),
+				$bindvars
+			);
+		} elseif ($baseContext['type'] === 'thread' && $this->parent) {
+			$bindvars = [];
+			$result = $db->fetchAll(
+				"SELECT md5(concat('thread', LOWER(tc.`threadId`))) as `objectId`, op.`groupName`, op.`permName`
+				FROM `tiki_comments` tc, `users_objectpermissions` op
+				WHERE op.`objectType` = 'forum' AND op.`objectId` = md5(concat('forum', LOWER(tc.`object`))) AND tc.`objectType` = 'forum' AND " .
+				$db->in('tc.threadId', array_values($objects), $bindvars),
+				$bindvars
+			);
+		} elseif ($baseContext['type'] === 'event' && $this->parent) {
+			$bindvars = [];
+			$result = $db->fetchAll(
+				"SELECT md5(concat('event', LOWER(tci.`calitemId`))) as `objectId`, op.`groupName`, op.`permName`
+				FROM `tiki_calendar_items` tci, `users_objectpermissions` op
+				WHERE op.`objectType` = 'calendar' AND op.`objectId` = md5(concat('calendar', LOWER(tci.`calendarId`))) AND " .
+				$db->in('tci.calitemId', array_values($objects), $bindvars),
 				$bindvars
 			);
 		} else {
@@ -128,7 +177,7 @@ class Perms_ResolverFactory_ObjectFactory implements Perms_ResolverFactory
 		if (count($perms) == 0) {
 			return null;
 		} else {
-			return new Perms_Resolver_Static($perms, 'object');
+			return new Perms_Resolver_Static($perms, $this->parent ? 'parent' : 'object');
 		}
 	}
 

@@ -71,6 +71,10 @@ function smarty_function_permission_link($params, $smarty)
 		$arguments['show_disabled_features'] = 'y';
 	}
 
+	if ($params->parentId->text()) {
+		$arguments['parentId'] = $params->parentId->text();
+	}
+
 	if (! empty($arguments)) {
 		$link = 'tiki-objectpermissions.php?' . http_build_query($arguments, '', '&');
 	} else {

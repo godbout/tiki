@@ -270,6 +270,9 @@
 													</action>
 													{if $tiki_p_admin_trackers eq 'y'}
 														<action>
+															{permission_link mode=text type=trackeritem id=$items[user].itemId permType=trackers parentId=$trackerId}
+														</action>
+														<action>
 															<a href="tiki-tracker_view_history.php?itemId={$items[user].itemId}"
 																onclick="$('[data-toggle=popover]').popover('hide');"
 															>

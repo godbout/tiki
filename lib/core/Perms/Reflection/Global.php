@@ -10,7 +10,7 @@ class Perms_Reflection_Global implements Perms_Reflection_Container
 	private $permissions;
 	private $factory;
 
-	function __construct($factory, $type, $object)
+	function __construct($factory, $type, $object, $parentId = null)
 	{
 		$this->factory = $factory;
 

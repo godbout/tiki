@@ -78,6 +78,7 @@ if (isset($_REQUEST['referer'])) {
 
 $_REQUEST['objectId'] = urldecode($_REQUEST['objectId']);
 $_REQUEST['objectType'] = urldecode($_REQUEST['objectType']);
+$_REQUEST['parentId'] = ! empty($_REQUEST['parentId']) ? urldecode($_REQUEST['parentId']) : null;
 $_REQUEST['permType'] = ! empty($_REQUEST['permType']) ? urldecode($_REQUEST['permType']) : 'global';
 $smarty->assign('objectName', $_REQUEST['objectName']);
 $smarty->assign('objectId', $_REQUEST['objectId']);
@@ -89,7 +90,7 @@ if ($_REQUEST['objectType'] == 'wiki') {
 }
 
 $objectFactory = Perms_Reflection_Factory::getDefaultFactory();
-$currentObject = $objectFactory->get($_REQUEST['objectType'], $_REQUEST['objectId']);
+$currentObject = $objectFactory->get($_REQUEST['objectType'], $_REQUEST['objectId'], $_REQUEST['parentId']);
 
 $permissionApplier = new Perms_Applier;
 $permissionApplier->addObject($currentObject);
@@ -122,7 +123,7 @@ if ($_REQUEST['objectType'] == 'category' && isset($_REQUEST['propagate_category
 	$descendants = $categlib->get_category_descendants($_REQUEST['objectId']);
 
 	foreach ($descendants as $child) {
-		$o = $objectFactory->get($_REQUEST['objectType'], $child);
+		$o = $objectFactory->get($_REQUEST['objectType'], $child, $_REQUEST['objectId']);
 		$permissionApplier->addObject($o);
 	}
 }
@@ -628,7 +629,7 @@ function get_assign_permissions()
 	global $objectFactory;
 
 	// get existing perms
-	$currentObject = $objectFactory->get($_REQUEST['objectType'], $_REQUEST['objectId']);
+	$currentObject = $objectFactory->get($_REQUEST['objectType'], $_REQUEST['objectId'], $_REQUEST['parentId']);
 	$currentPermissions = $currentObject->getDirectPermissions();
 	if (count($currentPermissions->getPermissionArray()) === 0) {
 		// get "default" perms so disabled feature perms don't get removed
@@ -824,7 +825,7 @@ function get_displayed_permissions()
 	global $objectFactory;
 	$smarty = TikiLib::lib('smarty');
 
-	$currentObject = $objectFactory->get($_REQUEST['objectType'], $_REQUEST['objectId']);
+	$currentObject = $objectFactory->get($_REQUEST['objectType'], $_REQUEST['objectId'], $_REQUEST['parentId']);
 	$displayedPermissions = $currentObject->getDirectPermissions();
 	$globPerms = $objectFactory->get('global', null)->getDirectPermissions();	// global perms
 
@@ -835,10 +836,21 @@ function get_displayed_permissions()
 		$parent = $currentObject->getParentPermissions();							// inherited perms (could be category ones)
 		$comparator = new Perms_Reflection_PermissionComparator($globPerms, $parent);
 
-		if ($comparator->equal()) {												// parent == globals
-			$smarty->assign('permissions_displayed', 'parent');
-		} else {																	// parent not globals, so must be category
-			$smarty->assign('permissions_displayed', 'category');
+		if ($comparator->equal()) {
+			$smarty->assign('permissions_displayed', 'global');
+		} else {																	// parent not globals, check parent object or category
+			$parentType = Perms::parentType($_REQUEST['objectType']);
+			$parentObject = $objectFactory->get($parentType, $_REQUEST['parentId']);
+			$parentPerms = $parentObject->getDirectPermissions();
+			$comparator = new Perms_Reflection_PermissionComparator($parentPerms, $parent);
+			if ($comparator->equal()) {
+				$smarty->assign('permissions_displayed', 'parent');
+				$smarty->assign('permissions_parent_id', $_REQUEST['parentId']);
+				$smarty->assign('permissions_parent_type', $parentType);
+				$smarty->assign('permissions_parent_name', TikiLib::lib('object')->get_title($parentType, $_REQUEST['parentId']));
+			} else {
+				$smarty->assign('permissions_displayed', 'category');
+			}
 		}
 		$displayedPermissions = $parent;
 	} else {																		// direct object perms

@@ -379,4 +379,23 @@ class Perms
 			}
 		}
 	}
+
+	public static function parentType($type) {
+		switch($type) {
+			case 'trackeritem':
+				return 'tracker';
+			case 'file':
+				return 'file gallery';
+			case 'article':
+				return 'topic';
+			case 'blog post':
+				return 'blog';
+			case 'thread':
+				return 'forum';
+			case 'event':
+				return 'calendar';
+			default:
+				return '';
+		}
+	}
 }

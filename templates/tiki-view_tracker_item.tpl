@@ -82,6 +82,11 @@
 						</a>
 					</li>
 				{/if}
+				{if $tiki_p_admin_trackers eq "y"}
+					<li>
+						{permission_link mode=text type=trackeritem id=$itemId permType=trackers parentId=$trackerId}
+					</li>
+				{/if}
 			</ul>
 			{if ! $js}</li></ul>{/if}
 		</div>
