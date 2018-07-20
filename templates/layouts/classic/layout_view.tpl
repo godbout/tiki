@@ -16,7 +16,7 @@
 {if $prefs.feature_layoutshadows eq 'y'}
 <div id="main-shadow">{eval var=$prefs.main_shadow_start}{/if}
 
-{if $smarty.session.fullscreen ne 'y'}
+	{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	{if $prefs.feature_layoutshadows eq 'y'}
 	<div id="header-shadow">{eval var=$prefs.header_shadow_start}{/if}
 		<div class="header_outer" id="header_outer">
@@ -137,10 +137,10 @@
 							{/if}
 							{if $prefs.feature_layoutshadows eq 'y'}{eval var=$prefs.center_shadow_end}</div>{/if}
 					</div>
-					<div class="col2 col-sm-6 col-lg-2 order-md-2 order-lg-1" id="col2">
+					<div class="col col2 col-sm-6 col-lg-2 order-md-2 order-lg-1" id="col2">
 						{modulelist zone=left}
 					</div>
-					<div class="col3 col-sm-6 col-lg-2 order-md-3" id="col3">
+					<div class="col col3 col-sm-6 col-lg-2 order-md-3" id="col3">
 						{modulelist zone=right}
 					</div>
 				{/if}
@@ -148,7 +148,7 @@
 		</div>
 	</div>
 
-{if $smarty.session.fullscreen ne 'y'}
+	{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	{if $prefs.feature_layoutshadows eq 'y'}
 	<div id="footer-shadow">{eval var=$prefs.footer_shadow_start}{/if}
 		<footer class="footer" id="footer">
