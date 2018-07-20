@@ -412,7 +412,7 @@
 								{assign var=share_nb value=$files[changes].share.nb}
 								{capture assign=share_capture}
 									{strip}
-										<a class='fgalname tips' title="{tr}Share{/tr}" href='#' {popup fullhtml=1 text=$over_share left=true" trigger="click"} style='cursor:help'>
+										<a class='fgalname tips' title="{tr}Share{/tr}" href='#' {popup fullhtml=1 text=$over_share left=true trigger="click"} style='cursor:help'>
 											{icon name='group' alt=''}
 										</a> ({$share_nb}) {$share_string}
 									{/strip}
