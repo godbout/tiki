@@ -218,10 +218,16 @@
 			<br>
 			<fieldset>
 				<legend>LDAP {help url="Login+Authentication+Methods"}</legend>
-				{if $prefs.auth_method ne 'ldap'}
+				{if ! $ldap_extension_loaded}
 					{remarksbox type="warning" title="{tr}Warning{/tr}" close="n"}
-						{tr}You must change the Authentication Method to LDAP for these changes to take effect{/tr}
+						{tr}You must install PHP extension LDAP{/tr}
 					{/remarksbox}
+				{else}
+					{if $prefs.auth_method ne 'ldap'}
+						{remarksbox type="warning" title="{tr}Warning{/tr}" close="n"}
+						{tr}You must change the Authentication Method to LDAP for these changes to take effect{/tr}
+						{/remarksbox}
+					{/if}
 				{/if}
 				{preference name=ldap_create_user_tiki}
 				{preference name=ldap_create_user_ldap}

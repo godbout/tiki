@@ -145,7 +145,10 @@
 	"config": {
 		"process-timeout": 5000,
 		"bin-dir": "../bin",
-		"component-dir": "vendor/components"
+		"component-dir": "vendor/components",
+		"platform": {
+			"ext-ldap": "0"
+		}
 	},
 	"autoload": {
 		"psr-0": {

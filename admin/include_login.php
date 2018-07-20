@@ -126,3 +126,5 @@ $smarty->assign('special', $special);
 $smarty->assign('limit', $blackL->limit);
 
 $smarty->assign('num_indexed', $blackL->passIndexNum());
+
+$smarty->assign('ldap_extension_loaded', extension_loaded('ldap'));

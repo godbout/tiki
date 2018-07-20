@@ -482,6 +482,11 @@ function prefs_auth_list()
 
 	global $prefs;
 
+	// Check if ldap extension is loaded, if not disable ldap
+	if (! extension_loaded('ldap')) {
+		unset($list['auth_method']['options']['ldap']);
+	}
+
 	// Check if package onelogin/php-saml is installed and enabled
 	if (! class_exists('OneLogin_Saml2_Auth') || (! isset($prefs['saml_auth_enabled']) || $prefs['saml_auth_enabled'] != 'y')) {
 		unset($list['auth_method']['options']['saml']);
