@@ -133,7 +133,7 @@
 				{assign var=nbCols value=$nbCols+1}
 				<th style="width:1%">
 					{if !empty($other_columns)}
-						<a href='#' {popup fullhtml="1" text=$smarty.capture.over_other_columns} title="{tr}Other Sorts{/tr}">
+						<a href='#' {popup fullhtml="1" text=$smarty.capture.over_other_columns trigger="click"} title="{tr}Other Sorts{/tr}">
 					{/if}
 					{icon name='ranking' alt="{tr}Other Sorts{/tr}" title=''}
 					{if !empty($other_columns)}
@@ -269,7 +269,7 @@
 				{if ( $prefs.use_context_menu_icon eq 'y' or $prefs.use_context_menu_text eq 'y' )
 					and (!isset($gal_info.show_action) or $gal_info.show_action neq 'n') and $prefs.javascript_enabled eq 'y'}
 					<td style="white-space: nowrap">
-						<a class="fgalname tips" title="{tr}Actions{/tr}" href="#" onclick="return false;" {popup fullhtml="1" center=true text=$smarty.capture.over_actions} style="padding:0; margin:0; border:0">
+						<a class="fgalname tips" title="{tr}Actions{/tr}" href="#" {popup fullhtml="1" center=true text=$smarty.capture.over_actions trigger="click"} style="padding:0; margin:0; border:0">
 							{icon name='wrench' alt="{tr}Actions{/tr}"}
 						</a>
 					</td>
@@ -412,7 +412,7 @@
 								{assign var=share_nb value=$files[changes].share.nb}
 								{capture assign=share_capture}
 									{strip}
-										<a class='fgalname tips' title="{tr}Share{/tr}" href='#' onclick="return false;" {popup fullhtml=1 text=$over_share left=true} style='cursor:help'>
+										<a class='fgalname tips' title="{tr}Share{/tr}" href='#' {popup fullhtml=1 text=$over_share left=true" trigger="click"} style='cursor:help'>
 											{icon name='group' alt=''}
 										</a> ({$share_nb}) {$share_string}
 									{/strip}
