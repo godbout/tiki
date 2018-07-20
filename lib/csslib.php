@@ -95,12 +95,8 @@ class cssLib extends TikiLib
 				$selectable_layouts[$layoutName] = tra('Basic Bootstrap');
 			} elseif ($layoutName == 'classic') {
 				$selectable_layouts[$layoutName] = tra('Classic Tiki (3 containers - header, middle, footer)');
-			} elseif ($layoutName == 'header_middle_footer_containers_3-6-3') {
-				$selectable_layouts[$layoutName] = tra('Wider side columns (3 containers - header, middle, footer)');
 			} elseif ($layoutName == 'social') {
 				$selectable_layouts[$layoutName] = tra('Fixed top navbar 2 (uses site icon + "topbar" module zone)');
-			} elseif ($layoutName == 'fixed_top_modules') {
-				$selectable_layouts[$layoutName] = tra('Fixed top navbar 1 (uses "top" module zone)');
 			} else {
 				$selectable_layouts[$layoutName] = $layoutLabel;
 			}

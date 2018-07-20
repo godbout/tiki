@@ -5536,12 +5536,6 @@ templates/layouts/classic/index.php -text
 templates/layouts/classic/layout_edit.tpl -text
 templates/layouts/classic/layout_view.tpl -text
 templates/layouts/classic/module.tpl -text
-templates/layouts/fixed_top_modules/index.php -text
-templates/layouts/fixed_top_modules/layout_edit.tpl -text
-templates/layouts/fixed_top_modules/layout_view.tpl -text
-templates/layouts/header_middle_footer_containers_3-6-3/index.php -text
-templates/layouts/header_middle_footer_containers_3-6-3/layout_edit.tpl -text
-templates/layouts/header_middle_footer_containers_3-6-3/layout_view.tpl -text
 templates/layouts/index.php -text
 templates/layouts/internal/ajax.tpl -text
 templates/layouts/internal/index.php -text
