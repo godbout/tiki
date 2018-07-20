@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d1cbf1acfc609c84b6a76d029a32219",
+    "content-hash": "8993ce437335f7541c01924664895461",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -36,10 +36,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Remove references to ADOdb Extension": "../installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch",
-                    "Remove the check for ADOdb Extension": "../installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-enabled.patch"
-                }
+                "patches_applied": []
             },
             "autoload": {
                 "files": [
@@ -319,17 +316,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.9.2",
+            "version": "4.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "993eb4fba6a70545f6c50da1988d39ecd9cf47a3"
+                "reference": "485918a01ecac5bd286f169e831eddcc895f5132"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-993eb4fba6a70545f6c50da1988d39ecd9cf47a3-zip-eee96e.zip",
-                "reference": "993eb4fba6a70545f6c50da1988d39ecd9cf47a3",
-                "shasum": "173b1fe289be30745ae53d422a43d1c396d89613"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-485918a01ecac5bd286f169e831eddcc895f5132-zip-64a91f.zip",
+                "reference": "485918a01ecac5bd286f169e831eddcc895f5132",
+                "shasum": "e2557830dc694c6ee5283bf15748f900ddcd7f53"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -356,7 +353,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2018-04-18T09:04:40+00:00"
+            "time": "2018-07-03T13:41:31+00:00"
         },
         {
             "name": "ckeditor/ckeditor/skins/bootstrapck",
@@ -1341,17 +1338,6 @@
             "time": "2014-09-03T01:10:13+00:00"
         },
         {
-            "name": "jquery/jquery-s5",
-            "version": "1.0.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/jquery/jquery-s5/jquery-jquery-s5-1.0.1.zip",
-                "reference": null,
-                "shasum": "436f095723c4d7079caa631223e91e27be6c0e3f"
-            },
-            "type": "library"
-        },
-        {
             "name": "jquery/jquery-sheet",
             "version": "3.1",
             "dist": {
@@ -1362,9 +1348,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Fix visibility issues": "../installer/composer-patches/jquery-sheet_fix-visibility-issues.patch"
-                }
+                "patches_applied": []
             }
         },
         {
@@ -2036,17 +2020,17 @@
         },
         {
             "name": "mottie/tablesorter",
-            "version": "v2.30.6",
+            "version": "v2.30.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mottie/tablesorter.git",
-                "reference": "6dbe7ed3fef295c85b3c39f91114de39aa6dc6d7"
+                "reference": "90f7326819c573ee5ab333f4a0672623d7c52e1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-6dbe7ed3fef295c85b3c39f91114de39aa6dc6d7-zip-ddc1f3.zip",
-                "reference": "6dbe7ed3fef295c85b3c39f91114de39aa6dc6d7",
-                "shasum": "16799cab56006860525c5c84c806b29084141fcd"
+                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-90f7326819c573ee5ab333f4a0672623d7c52e1e-zip-aebd33.zip",
+                "reference": "90f7326819c573ee5ab333f4a0672623d7c52e1e",
+                "shasum": "caa55b8f6b845298d005c870974d583e991ff8aa"
             },
             "require": {
                 "components/jquery": ">=1.2.6"
@@ -2083,7 +2067,7 @@
                 "sorting",
                 "table"
             ],
-            "time": "2018-06-16T20:54:51+00:00"
+            "time": "2018-07-10T13:32:19+00:00"
         },
         {
             "name": "nagarajanchinnasamy/subtotal",
@@ -2178,16 +2162,16 @@
         },
         {
             "name": "nolimits4web/swiper",
-            "version": "v4.2.6",
+            "version": "v4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nolimits4web/swiper.git",
-                "reference": "03afbf00068f8f9f974cdc126c53a4d18b528a45"
+                "reference": "0dcd6cabf4b356dd3126185f288f729913e81aad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/03afbf00068f8f9f974cdc126c53a4d18b528a45",
-                "reference": "03afbf00068f8f9f974cdc126c53a4d18b528a45",
+                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/0dcd6cabf4b356dd3126185f288f729913e81aad",
+                "reference": "0dcd6cabf4b356dd3126185f288f729913e81aad",
                 "shasum": ""
             },
             "type": "library",
@@ -2221,7 +2205,7 @@
                 "swiper",
                 "touch"
             ],
-            "time": "2018-05-01T13:39:58+00:00"
+            "time": "2018-06-05T14:18:43+00:00"
         },
         {
             "name": "npm-asset/popper.js",
@@ -2334,17 +2318,17 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.15",
+            "version": "v2.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09"
+                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/paragonie/random_compat/paragonie-random_compat-10bcb46e8f3d365170f6de9d05245aa066b81f09-zip-35a4b4.zip",
-                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09",
-                "shasum": "4b3332a9e0b2ab00d7b13348db0b880d7c3f0b2a"
+                "url": "https://composer.tiki.org/dist/paragonie/random_compat/paragonie-random_compat-29af24f25bab834fcbb38ad2a69fa93b867e070d-zip-cecb71.zip",
+                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
+                "shasum": "bc673b65157d1c350a1d927cfdb16776304bd827"
             },
             "require": {
                 "php": ">=5.2.0"
@@ -2379,7 +2363,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-06-08T15:26:40+00:00"
+            "time": "2018-07-04T16:31:37+00:00"
         },
         {
             "name": "pclzip/pclzip",
@@ -2794,10 +2778,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Removed deprecated syntax in PHP7": "../installer/composer-patches/text_wiki_mediawiki__php7fixes.patch",
-                    "Renamed method to avoid collision with func from parent class": "../installer/composer-patches/text_wiki_mediawiki__func_collision.patch"
-                }
+                "patches_applied": []
             }
         },
         {
@@ -2869,9 +2850,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Add support for PHP7": "../installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch"
-                }
+                "patches_applied": []
             }
         },
         {
@@ -3045,17 +3024,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.38.3",
+            "version": "v1.39.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "578ebe2d02ebcac18fc30e910e0ac89d1fab1ae7"
+                "reference": "32e6984a46f5c295ca0814aa33d7f066c64ce5d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-578ebe2d02ebcac18fc30e910e0ac89d1fab1ae7-zip-bb7a71.zip",
-                "reference": "578ebe2d02ebcac18fc30e910e0ac89d1fab1ae7",
-                "shasum": "3d33bfb0c0788b0330d03b984ddb9aee84d6830b"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-32e6984a46f5c295ca0814aa33d7f066c64ce5d5-zip-41bfaa.zip",
+                "reference": "32e6984a46f5c295ca0814aa33d7f066c64ce5d5",
+                "shasum": "0ad22983078a75690d5f6487c1fe8483ffe7daa0"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3077,7 +3056,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2018-06-11T20:14:06+00:00"
+            "time": "2018-07-09T13:29:45+00:00"
         },
         {
             "name": "psr/container",
@@ -3373,17 +3352,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.39",
+            "version": "2.1.40",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "f92460bdf9bb210296e2aaaf47fbe8a04c770937"
+                "reference": "e27196c574118248c83777725fa007182dcc47c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-f92460bdf9bb210296e2aaaf47fbe8a04c770937-zip-97f868.zip",
-                "reference": "f92460bdf9bb210296e2aaaf47fbe8a04c770937",
-                "shasum": "843ddec1e5ab65ef75d0c13b7ab76ab978803c30"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-e27196c574118248c83777725fa007182dcc47c3-zip-22002e.zip",
+                "reference": "e27196c574118248c83777725fa007182dcc47c3",
+                "shasum": "671b79dbf1b35c61d751206af11dceebdc692d39"
             },
             "require": {
                 "php": ">=5.2"
@@ -3427,7 +3406,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2018-06-05T07:36:51+00:00"
+            "time": "2018-07-14T06:35:49+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -4120,17 +4099,17 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "779ad9f174ea5ab7e755f6df0ec9e5912d67dd16"
+                "reference": "1f46337a89ed21c94a7c37bc0c0e14a71fef7d97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-779ad9f174ea5ab7e755f6df0ec9e5912d67dd16-zip-a1e376.zip",
-                "reference": "779ad9f174ea5ab7e755f6df0ec9e5912d67dd16",
-                "shasum": "b1c536ce457ff90f195dd12564d89c4c40dba9b8"
+                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-1f46337a89ed21c94a7c37bc0c0e14a71fef7d97-zip-253a9f.zip",
+                "reference": "1f46337a89ed21c94a7c37bc0c0e14a71fef7d97",
+                "shasum": "85a770f4edc92b7651d4c65ce133f3561a0d5b6d"
             },
             "replace": {
                 "twitter/bootstrap": "self.version"
@@ -4167,7 +4146,7 @@
                 "sass",
                 "web"
             ],
-            "time": "2018-04-30T16:04:33+00:00"
+            "time": "2018-07-12T16:27:14+00:00"
         },
         {
             "name": "undojs/undojs",
@@ -4825,9 +4804,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
+                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": ""
+                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
             },
             "require": {
                 "ext-ldap": "*",
@@ -5048,17 +5027,17 @@
         },
         {
             "name": "zendframework/zend-math",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-math.git",
-                "reference": "558806e338ee68575fbe69489c9dcb6d57a1dae0"
+                "reference": "0aa5ec1b3132dd7d749d4673d7bdc7ab6b2d202a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-math/zendframework-zend-math-558806e338ee68575fbe69489c9dcb6d57a1dae0-zip-9c70ae.zip",
-                "reference": "558806e338ee68575fbe69489c9dcb6d57a1dae0",
-                "shasum": "816abe78da40866912049a09c512182e5cf66039"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-math/zendframework-zend-math-0aa5ec1b3132dd7d749d4673d7bdc7ab6b2d202a-zip-b39e43.zip",
+                "reference": "0aa5ec1b3132dd7d749d4673d7bdc7ab6b2d202a",
+                "shasum": "5a2b86082fafb93b2243ba9041b63149916745e5"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -5095,7 +5074,7 @@
                 "math",
                 "zf"
             ],
-            "time": "2018-04-26T21:37:02+00:00"
+            "time": "2018-07-10T19:00:33+00:00"
         },
         {
             "name": "zendframework/zend-mime",
@@ -7556,30 +7535,31 @@
         },
         {
             "name": "wimg/php-compatibility",
-            "version": "8.1.0",
+            "version": "8.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/wimg/PHPCompatibility.git",
-                "reference": "4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e"
+                "url": "https://github.com/PHPCompatibility/PHPCompatibility.git",
+                "reference": "eaf613c1a8265bcfd7b0ab690783f2aef519f78a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e-zip-3ccb54.zip",
-                "reference": "4ac01e4fe8faaa4f8d3b3cd06ea92e5418ce472e",
-                "shasum": "ccce91b7992ffe4b412e98d196d787e55d788149"
+                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-eaf613c1a8265bcfd7b0ab690783f2aef519f78a-zip-877e66.zip",
+                "reference": "eaf613c1a8265bcfd7b0ab690783f2aef519f78a",
+                "shasum": "e28609a65fe26093de7df36c8a6ef8b0ce3b774e"
             },
             "require": {
                 "php": ">=5.3",
-                "squizlabs/php_codesniffer": "^2.2 || ^3.0.2"
+                "squizlabs/php_codesniffer": "^2.3 || ^3.0.2"
             },
             "conflict": {
                 "squizlabs/php_codesniffer": "2.6.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
+                "phpunit/phpunit": "~4.5 || ^5.0 || ^6.0 || ^7.0"
             },
             "suggest": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3 || This Composer plugin will sort out the PHPCS 'installed_paths' automatically.",
+                "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
             },
             "type": "phpcodesniffer-standard",
             "autoload": {
@@ -7589,7 +7569,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.0"
+                "LGPL-3.0-or-later"
             ],
             "authors": [
                 {
@@ -7604,7 +7584,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-12-27T21:58:38+00:00"
+            "time": "2018-07-17T13:42:26+00:00"
         }
     ],
     "aliases": [],
