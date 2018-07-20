@@ -56,9 +56,11 @@ function wikiplugin_webdocviewer($data, $params)
 	global $tikilib;
 	global $tikipath, $tikiroot;
 
-	 $plugininfo = wikiplugin_webdocviewer_info();
+	$plugininfo = wikiplugin_webdocviewer_info();
 	foreach ($plugininfo['params'] as $key => $param) {
-		$default["$key"] = $param['default'];
+		if (isset($param['default'])) {
+			$default["$key"] = $param['default'];
+		}
 	}
 	$params = array_merge($default, $params);
 
