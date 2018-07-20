@@ -214,7 +214,7 @@
 										</action>
 									{/if}
 									<action>
-										<a href="{service controller=tracker action=remove trackerId=$tracker.trackerId}"
+										<a onclick="$('[data-toggle=popover]').popover('hide');" href="{service controller=tracker action=remove trackerId=$tracker.trackerId}"
 											class="remove confirm-prompt"
 										>
 											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
