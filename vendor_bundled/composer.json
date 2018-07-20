@@ -75,7 +75,6 @@
 		"openannotation/annotator": ">=1.2.10",
 		"openid/php-openid": "2.2.2",
 		"openlayers/ol3": ">=3.6.0",
-		"oyejorge/less.php": "^1.7.0.10",
 		"paragonie/random_compat": "^2.0",
 		"pclzip/pclzip": "^2.8",
 		"pear/db": "1.7.13",
