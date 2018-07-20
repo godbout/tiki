@@ -81,25 +81,18 @@ class Search_Elastic_Connection
 	{
 		$index = $index ? '/' . $index : '';
 		try {
-			return $this->get("$index/_status");
+			if ($this->getVersion() < 2) {
+				return $this->get("$index/_status");
+			} else {
+				return $this->get("$index/_stats");	// v2 "Indices Stats" API result
+			}
 		} catch (Exception $e) {
 			$message = $e->getMessage();
 
-			// in elastic v2 _status has been replaced by _stats so try that next...
-			if (strpos($message, '[_status]') === false) {	// another error
+			if (strpos($message, '[_status]') === false && strpos($message, 'no such index') === false) {	// another error
 				Feedback::error($message . ' for index ' . $index);
 				return null;
 			}
-		}
-		try {
-			return $this->get("$index/_stats");	// v2 "Indices Stats" API result
-		} catch (Exception $e) {
-			$message = $e->getMessage();
-
-			if (strpos($message, 'no such index') === false) {	// suppress no such index "errors"
-				Feedback::error($message . ' for index ' . $index);
-			}
-			return null;
 		}
 	}
 

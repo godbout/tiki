@@ -306,8 +306,12 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		$builder = new Search_Elastic_FacetBuilder($this->facetCount, $this->connection->getVersion() >= 2.0);
 		$facetPart = $builder->build($query->getFacets());
 
-		$builder = new Search_Elastic_RescoreQueryBuilder;
-		$rescorePart = $builder->build($query->getExpr());
+		if ($this->connection->getVersion() >= 6.0 && $query->getSortOrder()->getField() === Search_Query_Order::FIELD_SCORE) {
+			$builder = new Search_Elastic_RescoreQueryBuilder;
+			$rescorePart = $builder->build($query->getExpr());
+		} else {
+			$rescorePart = [];
+		}
 
 		$builder = new Search_Elastic_QueryBuilder($this);
 		$builder->setDocumentReader($this->createDocumentReader());
