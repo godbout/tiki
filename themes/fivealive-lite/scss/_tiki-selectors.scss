@@ -24,8 +24,6 @@ $imagePath: "../images/";
 }
 
 body.tiki.navbar-padding,
-	//.layout_fixed_top_modules .navbar-fixed-top,
-.layout_fixed_top_modules,
 .layout_social_modules {
 	padding-top: $navbar-fixed-height;
 	h1.sitetitle {
@@ -37,8 +35,7 @@ body.fullscreen.tiki.navbar-padding {
 }
 
 .layout_social .topbar_modules h1.sitetitle,
-.layout_social_modules .topbar_modules h1.sitetitle,
-.layout_fixed_top_modules #top_modules h1.sitetitle {
+.layout_social_modules .topbar_modules h1.sitetitle {
 	float: left;
 	font-size: 1.8rem;
 	line-height: $navbar-fixed-height;

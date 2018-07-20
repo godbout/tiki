@@ -6117,6 +6117,9 @@ a.fc-event:hover {
 .dropdown-menu {
   color: #868e96; }
 
+#topbar_modules_social .form-control {
+  margin-top: 0.5rem; }
+
 .cssmenu_horiz > li:hover, .cssmenu_horiz > li.sfHover, .cssmenu_vert > li:hover, .cssmenu_vert > li.sfHover {
   -webkit-transition: none;
   -moz-transition: none;
@@ -6328,9 +6331,9 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle, .layout_fixed_top_modules #top_modules h1.sitetitle {
+.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle {
   color: rgba(0, 0, 0, 0.5); }
-  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse, .layout_fixed_top_modules #top_modules .navbar-inverse {
+  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
     border-color: transparent; }
 
 .prio5 {
@@ -6546,9 +6549,10 @@ body.wikitext {
   color: #343a40; }
 
 .editable-inline {
-  background: transparent url("../../../img/icons/database_lightning.png") no-repeat top right;
   padding-right: 20px;
   display: inline-block; }
+  .editable-inline .icon {
+    font-size: small; }
 
 .editable-inline.loaded {
   background: #fff;
@@ -6557,8 +6561,8 @@ body.wikitext {
   border-radius: 4px;
   z-index: 2; }
 
-.editable-inline.failure {
-  background: transparent url("../../../img/icons/lock_gray.png") no-repeat top right; }
+.editable-inline.failure .icon {
+  opacity: 50%; }
 
 .editable-inline.modified {
   border: solid 2px #df6e1e;
@@ -6834,7 +6838,7 @@ body.fullscreen.tiki.navbar-padding {
 .topbar {
   margin-bottom: 20px; }
 
-.navbar-light, .topbar, .layout_fixed_top_modules #top_modules, .topbar .navbar-light .navbar-nav > li, .topbar .nav > li, .siteloginbar_popup .dropdown-menu {
+.navbar-light, .topbar, .topbar .navbar-light .navbar-nav > li, .topbar .nav > li, .siteloginbar_popup .dropdown-menu {
   background: #2498c7;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2498c7), color-stop(4%, #047aa8), color-stop(39%, #1b98c6), color-stop(65%, #32b5e1), color-stop(70%, #32bbe9), color-stop(100%, #44d1fe));
   background: -webkit-linear-gradient(top, #2498c7 0%, #047aa8 4%, #1b98c6 39%, #32b5e1 65%, #32bbe9 70%, #44d1fe 100%);

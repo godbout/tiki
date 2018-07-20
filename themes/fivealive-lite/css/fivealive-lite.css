@@ -8929,27 +8929,6 @@ body.fullscreen.tiki.navbar-padding {
   font-size: 1.8rem;
   line-height: 46px; }
 
-.layout_fixed_top_modules .top_modules, .navbar-fixed-top {
-  height: 46px; }
-  .layout_fixed_top_modules .top_modules .sitelogo img, .navbar-fixed-top .sitelogo img {
-    width: auto !important;
-    margin-right: 1.5em; }
-  .layout_fixed_top_modules .top_modules h1.sitetitle, .navbar-fixed-top h1.sitetitle {
-    font-size: 2em;
-    margin: 0 0 0 1rem;
-    float: left; }
-  .layout_fixed_top_modules .top_modules h1.sitetitle a, .navbar-fixed-top h1.sitetitle a {
-    color: #fff; }
-  .layout_fixed_top_modules .top_modules h1.sitetitle a:hover, .navbar-fixed-top h1.sitetitle a:hover {
-    text-decoration: none; }
-  .layout_fixed_top_modules .top_modules h2.sitesubtitle, .navbar-fixed-top h2.sitesubtitle {
-    float: left;
-    font-size: 1.5em;
-    margin: 0 0 0 1.5em;
-    line-height: 46px;
-    height: 46px;
-    color: #fff; }
-
 .topbar_container, .layout_basic .page-header > .topbar {
   background: #28aae1; }
 
@@ -8957,8 +8936,6 @@ header.header .sitetitle, header.header .sitesubtitle {
   color: #fff;
   text-shadow: none; }
 
-.layout_fixed_top_modules .navbar-fixed-top .navbar {
-  margin-bottom: 0; }
 
 .topbar, .topbar .navbar-default .navbar-nav > li, .topbar .nav > li, .topbar .navbar, .topbar .navbar-default .navbar-collapse, .topbar .navbar-default .navbar-form {
   border: none;

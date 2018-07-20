@@ -6362,6 +6362,9 @@ a.fc-event:hover {
 .dropdown-menu {
   color: #6c757d; }
 
+#topbar_modules_social .form-control {
+  margin-top: 0.5rem; }
+
 .cssmenu_horiz > li:hover, .cssmenu_horiz > li.sfHover, .cssmenu_vert > li:hover, .cssmenu_vert > li.sfHover {
   -webkit-transition: none;
   -moz-transition: none;
@@ -6573,9 +6576,9 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle, .layout_fixed_top_modules #top_modules h1.sitetitle {
+.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle {
   color: #212529; }
-  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse, .layout_fixed_top_modules #top_modules .navbar-inverse {
+  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
     border-color: transparent; }
 
 .prio5 {
@@ -7070,7 +7073,7 @@ header.container {
 .navbar-fixed-top .container {
   border: none; }
 
-.layout_social .navbar-light a, .layout_social_modules .navbar-light a, .layout_fixed_top_modules .navbar-light a {
+.layout_social .navbar-light a, .layout_social_modules .navbar-light a {
   color: #f5f5f5; }
 
 .navbar-dark, .topbar, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li, .navbar-light.navbar-fixed-top, .navbar-light.navbar-fixed-top .navbar-collapse, .navbar-light.navbar-fixed-top .navbar-form, .navbar-light.navbar-fixed-top .container, .navbar-dark .navbar-collapse, .navbar-dark .navbar-form, #topbar_modules {
@@ -7100,7 +7103,7 @@ header.container {
   font-size: 10px;
   margin-top: 4px; }
 
-.layout_social .navbar-light .cssmenu_horiz > li > a:hover, .layout_social_modules .navbar-light > a:hover, .layout_fixed_top_modules .navbar-light > a:hover, .topbar .nav > li > a:hover, .topbar .nav > li > a:focus, .topbar .cssmenu_horiz > li > a:hover, .topbar .cssmenu_horiz > li:hover, .topbar .cssmenu_horiz li.sfHover:hover, .topbar .cssmenu_horiz li.selected > a, .navbar-dark .navbar-nav > li > a:hover, .navbar-dark .navbar-nav > li > a:focus, #topbar_modules .navbar-dark .navbar-nav > .active > a, #topbar_modules .navbar-dark .navbar-nav > .active > a:hover, #topbar_modules .navbar-dark .navbar-nav > .active > a:focus {
+.layout_social .navbar-light .cssmenu_horiz > li > a:hover, .layout_social_modules .navbar-light > a:hover, .topbar .nav > li > a:hover, .topbar .nav > li > a:focus, .topbar .cssmenu_horiz > li > a:hover, .topbar .cssmenu_horiz > li:hover, .topbar .cssmenu_horiz li.sfHover:hover, .topbar .cssmenu_horiz li.selected > a, .navbar-dark .navbar-nav > li > a:hover, .navbar-dark .navbar-nav > li > a:focus, #topbar_modules .navbar-dark .navbar-nav > .active > a, #topbar_modules .navbar-dark .navbar-nav > .active > a:hover, #topbar_modules .navbar-dark .navbar-nav > .active > a:focus {
   color: #3e7ca1 !important;
   background: #dbdbdb;
   /* Old browsers */

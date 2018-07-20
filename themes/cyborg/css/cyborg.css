@@ -6082,6 +6082,9 @@ a.fc-event:hover {
 .dropdown-menu {
   color: #555; }
 
+#topbar_modules_social .form-control {
+  margin-top: 0.5rem; }
+
 .cssmenu_horiz > li:hover, .cssmenu_horiz > li.sfHover, .cssmenu_vert > li:hover, .cssmenu_vert > li.sfHover {
   -webkit-transition: none;
   -moz-transition: none;
@@ -6293,9 +6296,9 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle, .layout_fixed_top_modules #top_modules h1.sitetitle {
+.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle {
   color: rgba(0, 0, 0, 0.5); }
-  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse, .layout_fixed_top_modules #top_modules .navbar-inverse {
+  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
     border-color: transparent; }
 
 .prio5 {

@@ -256,9 +256,9 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle, .layout_fixed_top_modules #top_modules h1.sitetitle {
+.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle {
   color: rgba(0, 0, 0, 0.5); }
-  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_fixed_top_modules #top_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse, .layout_fixed_top_modules #top_modules .navbar-inverse {
+  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
     border-color: transparent; }
 
 .prio5 {
@@ -1248,29 +1248,29 @@ div.cvsup {
 .topbar .form-group {
   margin-bottom: 0; }
 
-.navbar-fixed-top .sitelogo a img, .layout_social .topbar_modules .sitelogo a img, .layout_social_modules .topbar_modules .sitelogo a img, .layout_fixed_top_modules #top_modules .sitelogo a img {
+.navbar-fixed-top .sitelogo a img, .layout_social .topbar_modules .sitelogo a img, .layout_social_modules .topbar_modules .sitelogo a img {
   display: inline;
   margin-top: 0.325rem;
   margin-bottom: 0.325rem;
   max-height: 2.6rem;
   width: auto !important; }
-  .navbar-fixed-top h1.sitetitle, .layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle, .layout_fixed_top_modules #top_modules h1.sitetitle {
+  .navbar-fixed-top h1.sitetitle, .layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle {
     float: left;
     font-size: 1.8rem;
     line-height: 2;
     margin-bottom: 0;
     margin-left: 1rem; }
-  .navbar-fixed-top .sitesubtitle, .layout_social .topbar_modules .sitesubtitle, .layout_social_modules .topbar_modules .sitesubtitle, .layout_fixed_top_modules #top_modules .sitesubtitle {
+  .navbar-fixed-top .sitesubtitle, .layout_social .topbar_modules .sitesubtitle, .layout_social_modules .topbar_modules .sitesubtitle {
     float: left;
     font-size: 1.4rem;
     margin-left: 1.5rem; }
-  .navbar-fixed-top #topbar_modules, .layout_social .topbar_modules #topbar_modules, .layout_social_modules .topbar_modules #topbar_modules, .layout_fixed_top_modules #top_modules #topbar_modules {
+  .navbar-fixed-top #topbar_modules, .layout_social .topbar_modules #topbar_modules, .layout_social_modules .topbar_modules #topbar_modules {
     display: inline-block; }
-  .navbar-fixed-top select.form-control, .layout_social .topbar_modules select.form-control, .layout_social_modules .topbar_modules select.form-control, .layout_fixed_top_modules #top_modules select.form-control {
+  .navbar-fixed-top select.form-control, .layout_social .topbar_modules select.form-control, .layout_social_modules .topbar_modules select.form-control {
     margin-top: 0.5416666667rem;
     padding-top: 4px;
     padding-bottom: 4px; }
-  .navbar-fixed-top .btn, .layout_social .topbar_modules .btn, .layout_social_modules .topbar_modules .btn, .layout_fixed_top_modules #top_modules .btn, .navbar-fixed-top .btn-link, .layout_social .topbar_modules .btn-link, .layout_social_modules .topbar_modules .btn-link, .layout_fixed_top_modules #top_modules .btn-link {
+  .navbar-fixed-top .btn, .layout_social .topbar_modules .btn, .layout_social_modules .topbar_modules .btn, .navbar-fixed-top .btn-link, .layout_social .topbar_modules .btn-link, .layout_social_modules .topbar_modules .btn-link {
     margin-top: 0.4642857143rem; }
 
 .layout_social_modules #topbar_modules {
@@ -3034,28 +3034,28 @@ body.fullscreen.tiki.navbar-padding {
 .tiki .table-responsive > .table td.action {
   white-space: nowrap; }
 
-.layout_social a.navbar-brand img, .layout_social_modules a.navbar-brand img, .layout_fixed_top_modules a.navbar-brand img {
+.layout_social a.navbar-brand img, .layout_social_modules a.navbar-brand img {
   display: inline; }
-  .layout_social .navbar-inverse a, .layout_social_modules .navbar-inverse a, .layout_fixed_top_modules .navbar-inverse a {
+  .layout_social .navbar-inverse a, .layout_social_modules .navbar-inverse a {
     color: rgba(255, 255, 255, 0.5); }
-  .layout_social .navbar-inverse a:hover, .layout_social_modules .navbar-inverse a:hover, .layout_fixed_top_modules .navbar-inverse a:hover {
+  .layout_social .navbar-inverse a:hover, .layout_social_modules .navbar-inverse a:hover {
     color: rgba(255, 255, 255, 0.75);
     text-decoration: none; }
-  .layout_social .navbar-inverse .sitetitle a, .layout_social_modules .navbar-inverse .sitetitle a, .layout_fixed_top_modules .navbar-inverse .sitetitle a {
+  .layout_social .navbar-inverse .sitetitle a, .layout_social_modules .navbar-inverse .sitetitle a {
     color: #ccc; }
-  .layout_social .navbar-inverse .sitetitle a:hover, .layout_social_modules .navbar-inverse .sitetitle a:hover, .layout_fixed_top_modules .navbar-inverse .sitetitle a:hover {
+  .layout_social .navbar-inverse .sitetitle a:hover, .layout_social_modules .navbar-inverse .sitetitle a:hover {
     color: rgba(255, 255, 255, 0.75);
     text-decoration: none; }
-  .layout_social h1.sitetitle, .layout_social_modules h1.sitetitle, .layout_fixed_top_modules h1.sitetitle {
+  .layout_social h1.sitetitle, .layout_social_modules h1.sitetitle {
     font-size: 1.8rem;
     margin-top: 10px;
     margin-bottom: 0; }
-  .layout_social h1.sitetitle, .layout_social_modules h1.sitetitle, .layout_fixed_top_modules h1.sitetitle, .layout_social h2.sitesubtitle, .layout_social_modules h2.sitesubtitle, .layout_fixed_top_modules h2.sitesubtitle {
+  .layout_social h1.sitetitle, .layout_social_modules h1.sitetitle, .layout_social h2.sitesubtitle, .layout_social_modules h2.sitesubtitle {
     display: inline-block; }
-  .layout_social #topbar_modules, .layout_social_modules #topbar_modules, .layout_fixed_top_modules #topbar_modules {
+  .layout_social #topbar_modules, .layout_social_modules #topbar_modules {
     display: inline-block; }
 
-.layout_social_modules #topbar_modules, .layout_fixed_top_modules #topbar_modules {
+.layout_social_modules #topbar_modules {
   display: block; }
 
 .header_outer.navbar {
