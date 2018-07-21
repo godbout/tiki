@@ -33,7 +33,7 @@
 
 	<div class="middle_outer" id="middle_outer" >
 		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} clearfix middle" id="middle">
-			<div class="row topbar" id="topbar">
+			<div class="topbar" id="topbar">
 				{modulelist zone=topbar}
 			</div>
 			<div class="row" id="row-middle">

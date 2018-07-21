@@ -16,9 +16,9 @@
 
 	{if $prefs.feature_search_show_search_box eq 'y' or $searchStyle eq "menu"}
 		<form action="tiki-searchresults.php" method="get" id="search-form" class="form-inline" role="form">
-			<div class="form-group row">
+			<div class="form-group">
 				<label class="sr-only">{tr}Search{/tr}</label>
-				<input id="highlight{$iSearch}" name="highlight" class="form-control" type="text" accesskey="s" placeholder="{tr}Search{/tr}" value="{$words|escape}">
+				<input id="highlight{$iSearch}" name="highlight" class="form-control mr-3" type="text" accesskey="s" placeholder="{tr}Search{/tr}" value="{$words|escape}">
 				<!--/div-->
 				{if $prefs.search_autocomplete eq 'y'}
 					{autocomplete element="#highlight$iSearch" type='pagename'}
@@ -104,7 +104,7 @@
 				{if $searchStyle eq "menu"}
 					<span class='searchMenu'>
 						{tr}in{/tr}
-						<select name="where">
+						<select name="where" class="form-control mx-3">
 							{if empty($where_list)} {* Required when file included outside tiki-searchindex.php. eg. error.rpl *}
 								<option value="pages">{tr}Entire Site{/tr}</option>
 								{if $prefs.feature_wiki eq 'y'}

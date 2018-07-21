@@ -17,7 +17,7 @@
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	<header class="page-header" id="page-header">
 		{modulelist zone=top class='row top_modules d-flex justify-content-between'}
-		<div class="topbar row" id="topbar">
+		<div class="topbar" id="topbar">
 			{modulelist zone=topbar class='row topbar_modules d-flex justify-content-between'}
 		</div>
 	</header>
