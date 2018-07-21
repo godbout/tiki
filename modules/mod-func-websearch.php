@@ -63,6 +63,7 @@ function module_websearch($mod_reference, $module_params){
 				"Swisscows" => "https://swisscows.ch/?query=",
 				"Gigablast" => "http://www.gigablast.com/search?q=",
     ];
+		ksort($engines);
 		$smarty = TikiLib::lib('smarty');
 		$smarty->assign('url_page_info_engines', $url_page_info_engines);
   	$smarty->assign('engines', $engines);
