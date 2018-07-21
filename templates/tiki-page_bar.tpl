@@ -99,12 +99,12 @@
 					{/if}
 				{/if}
 				{if $prefs.feature_history eq 'y' and $tiki_p_wiki_view_history eq 'y'}
-					{button _keepall='y' _class="btn-info" href="tiki-pagehistory.php" page=$page _text="{tr}History{/tr}"}
+					{button _keepall='y' _type="info" href="tiki-pagehistory.php" page=$page _text="{tr}History{/tr}"}
 				{/if}
 			{/if}
 
 			{if $prefs.feature_source eq 'y' and $tiki_p_wiki_view_source eq 'y'}
-				{button _keepall='y' _class="btn-info" href="tiki-pagehistory.php" page=$page source="0" _text="{tr}Source{/tr}"}
+				{button _keepall='y' _type="info" href="tiki-pagehistory.php" page=$page source="0" _text="{tr}Source{/tr}"}
 			{/if}
 
 			{if $prefs.feature_wiki_comments eq 'y'
@@ -157,7 +157,7 @@
 					{/capture}
 
 					{if (isset($atts) and $atts|@count gt 0) || $editable}
-						{button href="#attachments" _flip_id="attzone{if isset($pagemd5)}{$pagemd5}{/if}" _class="btn-files" _text=$thistext _flip_default_open=$prefs.w_displayed_default _flip_hide_text="n"}
+						{button href="#attachments" _flip_id="attzone{if isset($pagemd5)}{$pagemd5}{/if}" _type="secondary" _text=$thistext _flip_default_open=$prefs.w_displayed_default _flip_hide_text="n"}
 					{/if}
 				{/if}{* attachments *}
 
