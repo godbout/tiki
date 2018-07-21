@@ -85,8 +85,8 @@ function smarty_block_actions($params, $content, $smarty, $repeat = false)
 		$return .= $content . '</ul></li></ul>';
 	}
 
-	$return = str_ireplace('<action>', $libeg, $return);
-	$return = str_ireplace('</action>', $liend, $return);
+	$return = str_ireplace(['&lt;action&gt;', '<action>'], $libeg, $return);
+	$return = str_ireplace(['&lt;&#x2F;action&gt;', '</action>'], $liend, $return);
 
 	return ($return);
 }
