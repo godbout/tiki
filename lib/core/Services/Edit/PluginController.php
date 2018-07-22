@@ -191,7 +191,7 @@ class Services_Edit_PluginController
 				TikiLib::lib('header')->add_jq_onready('$("#plugin_params > form").validate(' . $rules . ');');
 			}
 
-			if ($type === 'module' && isset($pluginArgs['module'])) {
+			if ($type === 'module' && (isset($pluginArgs['module']) || $selectedMod)) {
 				if ($selectedMod) {
 					$pluginArgs['module'] = $selectedMod;
 				}
