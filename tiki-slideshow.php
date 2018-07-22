@@ -14,95 +14,59 @@ $tikilib = TikiLib::lib('tiki');
 $structlib = TikiLib::lib('struct');
 $wikilib = TikiLib::lib('wiki');
 
-$headerlib->add_js("var fragments='y';
+$headerlib->add_js(
+	"var fragments='y';
 	var fragmentClass='grow';
-	var fragmentHighlightColor='highlight-blue';");
+	var fragmentHighlightColor='highlight-blue';"
+);
 include_once('lib/wiki-plugins/wikiplugin_slideshow.php');
 
 $access->check_feature('feature_wiki');
 $access->check_feature('feature_slideshow');
 
 //make the other things know we are loading a slideshow
-$tikilib->is_slideshow = TRUE;
+$tikilib->is_slideshow = true;
 $smarty->assign('is_slideshow', 'y');
 
 // Create the HomePage if it doesn't exist
-if (!$tikilib->page_exists($prefs['wikiHomePage'])) {
-	$tikilib->create_page($prefs['wikiHomePage'], 0, '', date("U"), 'Tiki initialization');
+if (! $tikilib->page_exists($prefs['wikiHomePage'])) {
+	$tikilib->create_page(
+		$prefs['wikiHomePage'], 0, '', date("U"), 'Tiki initialization'
+	);
 }
 
-if (!isset($_SESSION["thedate"])) {
+if (! isset($_SESSION["thedate"])) {
 	$thedate = date("U");
 } else {
 	$thedate = $_SESSION["thedate"];
 }
 
-if (isset($_REQUEST['pdf'])) {
-	$access->check_feature("feature_slideshow_pdfexport");
-	set_time_limit(777);
-
-	$_POST["html"] = urldecode($_POST["html"]);
-
-	if (isset($_POST["html"])) {
-		$generator = new PdfGenerator(PdfGenerator::MPDF);
-		if (!empty($generator->getError())) {
-			Feedback::error(
-				tr('Exporting slideshow as PDF requires a working installation of mPDF.')
-				. "<br \>"
-				. tr('Export to PDF error: %0', $generator->getError())
-			);
-			$access = Tikilib::lib('access');
-			$access->redirect(str_replace('tiki-slideshow.php?', 'tiki-index.php?', $_SERVER['HTTP_REFERER']));
-		}
-
-		$params = [
-			'orientation' => isset($_REQUEST['landscape']) ? 'L' : 'P',
-		];
-		$filename = TikiLib::lib('tiki')->remove_non_word_characters_and_accents($_REQUEST['page']);
-		if ($_REQUEST['pdfSettings']) {
-			$_POST['html'] = '<' . $_REQUEST['pdfSettings'] . ' />' . $_POST['html'];
-		}
-		$pdf = $generator->getPdf($filename, $params, preg_replace('/%u([a-fA-F0-9]{4})/', '&#x\\1;', $_POST['html']));
-
-		$length = strlen($pdf);
-		header('Cache-Control: private, must-revalidate');
-		header('Pragma: private');
-		header('Content-disposition: inline; filename="' . $filename . '.pdf"');
-		header("Content-Type: application/pdf");
-		header("Content-Transfer-Encoding: binary");
-		header('Content-Length: ' . $length);
-		echo $pdf;
-
-		exit(0);
-	}
-	die;
-}
-
 // Get the page from the request var or default it to HomePage
-if (!isset($_REQUEST["page"])) {
+if (! isset($_REQUEST["page"])) {
 	$_REQUEST["page"] = $wikilib->get_default_wiki_page();
 }
 $page = htmlspecialchars($_REQUEST['page']);
 $smarty->assign('page', $page);
 
 // If the page doesn't exist then display an error
-if (!($info = $tikilib->page_exists($page))) {
+if (! ($info = $tikilib->page_exists($page))) {
 	include_once('tiki-index.php');
 	die;
 }
 
 if (isset($_REQUEST['theme'])) {
-	$theme=$_REQUEST['theme'];
-}
-else {
-	$theme="black";
+	$theme = $_REQUEST['theme'];
+} else {
+	$theme = "black";
 }
 
 // Now check permissions to access this page
 $tikilib->get_perm_object($page, 'wiki page', $info);
 if ($tiki_p_view != 'y') {
 	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("Permission denied. You cannot view this page."));
+	$smarty->assign(
+		'msg', tra("Permission denied. You cannot view this page.")
+	);
 
 	$smarty->display("error_raw.tpl");
 	die;
@@ -111,11 +75,11 @@ if ($tiki_p_view != 'y') {
 // BreadCrumbNavigation here
 // Remember to reverse the array when posting the array
 
-if (!isset($_SESSION["breadCrumb"])) {
+if (! isset($_SESSION["breadCrumb"])) {
 	$_SESSION["breadCrumb"] = [];
 }
 
-if (!in_array($page, $_SESSION["breadCrumb"])) {
+if (! in_array($page, $_SESSION["breadCrumb"])) {
 	if (count($_SESSION["breadCrumb"]) > $prefs['userbreadCrumb']) {
 		array_shift($_SESSION["breadCrumb"]);
 	}
@@ -137,29 +101,90 @@ $parserlib = TikiLib::lib('parser');
 $info = $tikilib->get_page_info($page);
 $pdata = $parserlib->parse_data_raw($info["data"]);
 
-if (!isset($_REQUEST['pagenum'])) {
+if (! isset($_REQUEST['pagenum'])) {
 	$_REQUEST['pagenum'] = 1;
 }
 
 //tags need to be removed from data before data formatting
-$tagsArr = [["div","icon_edit_section","class"],["a","editplugin","class"],["a","show-errors-button","id"],["a","heading-link","class"]];
+$tagsArr = [["div", "icon_edit_section", "class"], ["a", "editplugin", "class"],
+			["a", "show-errors-button", "id"], ["a", "heading-link", "class"]];
 
 
 $pages = $wikilib->get_number_of_pages($pdata);
 $pdata = $wikilib->get_page($pdata, $_REQUEST['pagenum']);
-$smarty->assign('pages', $pages);
-
 // Put ~pp~, ~np~ and <pre> back. --rlpowell, 24 May 2004
 $parserlib->replace_preparse($info["data"], $preparsed, $noparsed);
 $parserlib->replace_preparse($pdata, $preparsed, $noparsed);
 
 $pdata = formatContent($pdata, $tagsArr);
 
+if (isset($_REQUEST['pdf'])) {
+	$access->check_feature("feature_slideshow_pdfexport");
+	set_time_limit(777);
 
-//,'<li class="fragment fade-up highlight-current-blue"'
-//$smarty->assign_by_ref('parsed', str_replace(['<html><body></section>','</body></html>'],['','</section>'],str_replace(['<h1 ', '<h2', '<img'], ['</section><section><h1 ', '</section><section><h2', '<img'], $pdata)));
-//$smarty->assign_by_ref('lastModif',date("l d of F, Y  [H:i:s]",$info["lastModif"]));
-$smarty->assign_by_ref('parsed',$pdata);
+	$_POST["html"] = urldecode($_POST["html"]);
+
+	if (isset($_POST["html"])) {
+		$generator = new PdfGenerator(PdfGenerator::MPDF);
+		if (! empty($generator->getError())) {
+			Feedback::error(
+				tr(
+					'Exporting slideshow as PDF requires a working installation of mPDF.'
+				)
+				. "<br \>"
+				. tr('Export to PDF error: %0', $generator->getError())
+			);
+			$access = Tikilib::lib('access');
+			$access->redirect(
+				str_replace(
+					'tiki-slideshow.php?', 'tiki-index.php?',
+					$_SERVER['HTTP_REFERER']
+				)
+			);
+		}
+
+		$params = [
+			'orientation' => isset($_REQUEST['landscape']) ? 'L' : 'P',
+		];
+		$filename = TikiLib::lib('tiki')
+			->remove_non_word_characters_and_accents($_REQUEST['page']);
+		if ($_REQUEST['pdfSettings']) {
+			$_POST['html'] = '<' . $_REQUEST['pdfSettings'] . ' />'
+				. $_POST['html'];
+		}
+		//checking if to export slideshow
+		if ($_REQUEST['printslides']) {
+			$customCSS
+				= "<style type='text/css'>img{max-width:300px;height:auto} body{font-size:1em} h1{font-size:1.5em}</style> ";
+			$pdata = $customCSS.str_replace(
+				array("<section>", "</section>"),
+				array("<div class='slide' style=\"width:45%;border:1px solid #000;height:320px;float:left;margin-bottom:1%;margin-left:5px;padding:1%;\">",
+					  "</div>"), $pdata
+			);
+		} else {
+			$pdata = str_replace(
+				"</section><section", "</section><pagebreak /><section",
+				$customCSS . $pdata
+			);
+		}
+		$pdf = $generator->getPdf(
+			$filename, $params,
+			preg_replace('/%u([a-fA-F0-9]{4})/', '&#x\\1;', $pdata)
+		);
+		$length = strlen($pdf);
+		header('Cache-Control: private, must-revalidate');
+		header('Pragma: private');
+		header('Content-disposition: inline; filename="' . $filename . '.pdf"');
+		header("Content-Type: application/pdf");
+		header("Content-Transfer-Encoding: binary");
+		header('Content-Length: ' . $length);
+		echo $pdf;
+		exit(0);
+	}
+	die;
+}
+$smarty->assign('pages', $pages);
+$smarty->assign_by_ref('parsed', $pdata);
 $smarty->assign_by_ref('lastModif', $info["lastModif"]);
 
 if (empty($info["user"])) {
@@ -171,28 +196,23 @@ $smarty->assign_by_ref('lastUser', $info["user"]);
 include_once('tiki-section_options.php');
 
 
-$headerlib->add_jsfile('vendor_bundled/vendor/components/revealjs/js/reveal.js');
-$headerlib->add_cssfile('vendor_bundled/vendor/components/revealjs/css/reveal.css');
-$headerlib->add_cssfile('vendor_bundled/vendor/components/revealjs/css/theme/'.$theme.'.css');
-$headerlib->add_css('.reveal span{
-    font-family: \'FontAwesome\';
-    font-style: normal;
-} .reveal h1 {
-    font-size: 2.8em;
-} .reveal  {
-    font-size: 1.4em;
- 
-}
-.reveal .slides section .fragment.grow.visible {
-    transform: scale(1.06);
-}
+$headerlib->add_jsfile(
+	'vendor_bundled/vendor/components/revealjs/js/reveal.js'
+);
+$headerlib->add_cssfile(
+	'vendor_bundled/vendor/components/revealjs/css/reveal.css'
+);
+$headerlib->add_cssfile(
+	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
+);
+$headerlib->add_css(
+	'.reveal span{font-family: "FontAwesome";font-style: normal;} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;bottom:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;bottom:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.6);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;}'
+);
 
-.reveal table {
-    overflow: hidden;
-}
-');
 $headerlib->add_jq_onready(
-	'
+	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "vendor_bundled/vendor/components/revealjs/css/theme/'
+	. $theme . '.css", id:"themeCSS"}).appendTo("head");
+	$("body").append("<style type=\"text/css\">.reveal h1 {font-size: 2.8em;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.06);}.reveal table {overflow: hidden;} </style>");
 	$("#page-bar").remove();
 	$(".icon_edit_section").remove();
 	$(".editplugin").remove();
@@ -205,11 +225,30 @@ $headerlib->add_jq_onready(
 	if(fragments=="y") {
 		$( "li" ).addClass( "fragment "+fragmentClass+" "+fragmentHighlightColor );
 	}
-	
-	'
-);
-// Jquery Chosen not working in slide footer.
 
+	$("#ss-settings").click(function () {
+		var position = $("#ss-options").position();
+		if(position.left==0){
+			$("#ss-options").animate({left: \'-2000px\'});
+		}
+		else {
+			$("#ss-options").animate({left: \'0px\'});}
+		});
+		Reveal.addEventListener( \'slidechanged\', function( event ) {
+			var position = $("#ss-options").position();
+			if(position.left==0){
+				$("#ss-options").animate({left: \'-2000px\'});
+			}
+		});
+		$( "#showtheme" ).change(function() {
+			var selectedCSS=$("#showtheme" ).val();
+			$("#themeCSS").attr("href","vendor_bundled/vendor/components/revealjs/css/theme/"+selectedCSS+".css");
+		});
+		$( "#showtransition" ).change(function() {
+			var selectedTransition=$("#showtransition" ).val();
+			Reveal.configure({ transition: selectedTransition });
+		});'
+);
 
 ask_ticket('index-raw');
 
@@ -224,33 +263,39 @@ $smarty->display("tiki_full.tpl");
 
 function formatContent($content, $tagArr)
 {
-
-	$headingsTags=explode('<h1',$content);
-    $firstSlide=0;
-	foreach($headingsTags as $slide) {
-        if($firstSlide==0) {
-        	//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
-			$sectionCheck=strpos($slide,'</section><section');
-			if($sectionCheck==true){
-				$slidePlugin=explode("</section>",$slide);
-				$slideContent.=$slidePlugin[1].'</section>';
+	$headingsTags = explode('<h1', $content);
+	$firstSlide = 0;
+	foreach ($headingsTags as $slide) {
+		if ($firstSlide == 0) {
+			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
+			$sectionCheck = strpos($slide, '</section><section');
+			if ($sectionCheck == true) {
+				$slidePlugin = explode("</section>", $slide);
+				$slideContent .= $slidePlugin[1] . '</section>';
 			}
-            $firstSlide=1;
-        }
-        else {
-	    $slideContent.='<section><h1 '.$slide.'</section>';
+			$firstSlide = 1;
+		} else {
+			$slideContent .= '<section><h1 ' . $slide . '</section>';
 		}
 
-    }
+	}
 	$doc = new DOMDocument();
-	$doc->loadHTML('<html>' . $slideContent .'</html>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+	$doc->loadHTML(
+		'<html>' . $slideContent . '</html>',
+		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+	);
 	$xpath = new DOMXpath($doc);
 
 	foreach ($tagArr as $tag) {
-		$list = $xpath->query('//' . $tag[0] . '[contains(concat(\' \', normalize-space(@' . $tag[2] . '), \' \'), "' . $tag[1] . '")]');
+		$list = $xpath->query(
+			'//' . $tag[0] . '[contains(concat(\' \', normalize-space(@'
+			. $tag[2] . '), \' \'), "' . $tag[1] . '")]'
+		);
 		for ($i = 0; $i < $list->length; $i++) {
 			$p = $list->item($i);
-			if ($tag[3] == 1) { //the parameter checks if content of tag has to be preserved
+			if ($tag[3]
+				== 1
+			) { //the parameter checks if content of tag has to be preserved
 				$attributes = $p->attributes;
 				while ($attributes->length) {
 					//preserving href
@@ -270,8 +315,8 @@ function formatContent($content, $tagArr)
 	}
 
 
-	$slideContent=str_replace(array('<html>','</html>') , '' , $doc->saveHTML());
+	$slideContent = str_replace(['<html>', '</html>'], '', $doc->saveHTML());
 
 	//images alignment left or right
-    return $slideContent;
+	return $slideContent;
 }
