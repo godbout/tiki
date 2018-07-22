@@ -61,9 +61,9 @@ function module_menu_info()
 				'default' => '',
 			],
 			'navbar_class' => [
-				'name' => tra('CSS class for the menu nav element'),
-				'description' => tra(''),
-				'default' => 'navbar navbar-default',
+				'name' => tra('CSS class(es) for the menu nav element'),
+				'description' => tra('If nothing is specified here, "navbar navbar-expand-lg navbar-light bg-light" is used. Replace "navbar-light bg-light" with "navbar-dark bg-dark" for a dark navbar.'),
+				'default' => '',
 			],
 			'menu_id' => [
 				'name' => tra('DOM #id'),

@@ -7,7 +7,7 @@
 				</a>
 				<ul class="dropdown-menu">
 					{foreach from=$item.children item=sub}
-						<li class="dropdown-item{$sub.class|escape}{if $sub.selected|default:null} active{/if}"><a href="{$sub.sefurl|escape}">{tr}{$sub.name}{/tr}</a></li>
+						<li><a class="dropdown-item{$sub.class|escape}{if $sub.selected|default:null} active{/if}" href="{$sub.sefurl|escape}">{tr}{$sub.name}{/tr}</a></li>
 					{/foreach}
 				</ul>
 			</li>
