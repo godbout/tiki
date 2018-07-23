@@ -40,7 +40,9 @@ if (! empty($_SERVER['HTTP_PROXY'])) {
 	$_SERVER['HTTP_PROXY_RENAMED'] = $_SERVER['HTTP_PROXY'];
 	unset($_SERVER['HTTP_PROXY']);
 	putenv('HTTP_PROXY');
-	putenv('PHP_PEAR_HTTP_PROXY=');
+	if (!getenv('PHP_PEAR_HTTP_PROXY')) {
+		putenv('PHP_PEAR_HTTP_PROXY=http://127.0.0.1'); // fake proxy setting to avoid PEAR to use HTTP_PROXY
+	}
 }
 
 require_once 'lib/setup/third_party.php';

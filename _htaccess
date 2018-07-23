@@ -66,6 +66,9 @@
 FileETag none
 
 <IfModule mod_headers.c>
+    # -- httpoxy mitigation -- #
+    RequestHeader unset Proxy early
+
     # Option 2:
     #Header unset ETag
 
