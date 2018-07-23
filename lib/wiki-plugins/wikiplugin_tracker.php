@@ -1216,8 +1216,22 @@ function wikiplugin_tracker($data, $params)
 					if ($transactionFinalStep == 'y') {
 						//-- final step: commit the transaction of registrations and tracker changes of all the transaction steps
 						foreach ($_SESSION[$transactionName] as $saveStep) {
-							$rid = wikiplugin_tracker_save_item($saveStep);
+							if (is_array($saveStep)) {
+								$done = false;
+								foreach ($saveStep['ins_fields']['data'] as $txField) {	// sadly these are non-assoc arrays
+									foreach ($saveThis['ins_fields']['data'] as $saveThisField) {
+										if ($saveThisField['fieldId'] == $txField['fieldId']) {
+											$saveThisField['value'] = $txField['value'];
+											$done = true;
+										}
+									}
+									if (! $done) {
+										$saveThis['ins_fields']['data'][] = $txField;
+									}
+								}
+							}
 						}
+						$rid = wikiplugin_tracker_save_item($saveThis);
 						unset($_SESSION[$transactionName]); // the tracker transaction can be closed
 					} else {
 						$_SESSION[$transactionName]['transactionStep'] = $transactionStep + 1; // switch to the next step
