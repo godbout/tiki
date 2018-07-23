@@ -202,7 +202,7 @@ $headerlib->add_cssfile(
 	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
-	'.reveal span{font-family: "FontAwesome";font-style: normal;} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;bottom:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;bottom:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.6);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none}'
+	'.reveal span{font-family: "FontAwesome";font-style: normal;} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;bottom:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;bottom:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none}'
 );
 
 $headerlib->add_jq_onready(
