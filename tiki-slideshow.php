@@ -155,12 +155,8 @@ if (isset($_REQUEST['pdf'])) {
 		//checking if to export slideshow
 		if ($_REQUEST['printslides']) {
 			$customCSS
-				= "<style type='text/css'>img{max-width:300px;height:auto} body{font-size:1em} h1{font-size:1.5em}</style> ";
-			$pdata = $customCSS.str_replace(
-				array("<section>", "</section>"),
-				array("<div class='slide' style=\"width:45%;border:1px solid #000;height:320px;float:left;margin-bottom:1%;margin-left:5px;padding:1%;\">",
-					  "</div>"), $pdata
-			);
+				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em} section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
+			$pdata = $customCSS. $pdata;
 		} else {
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
@@ -206,7 +202,7 @@ $headerlib->add_cssfile(
 	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
-	'.reveal span{font-family: "FontAwesome";font-style: normal;} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;bottom:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;bottom:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.6);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;}'
+	'.reveal span{font-family: "FontAwesome";font-style: normal;} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;bottom:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;bottom:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.6);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none}'
 );
 
 $headerlib->add_jq_onready(
