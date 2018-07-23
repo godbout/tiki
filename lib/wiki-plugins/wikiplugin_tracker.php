@@ -694,7 +694,8 @@ function wikiplugin_tracker($data, $params)
 			$_SESSION[$transactionName]['transactionStep'] = 0;
 		}
 		if ($_SESSION[$transactionName]['transactionStep'] != $transactionStep) {
-			return;
+			// in the middle of a transaction but on a different (earlier?) page
+			// currently nothing needed here
 		}
 	}
 
@@ -1219,7 +1220,7 @@ function wikiplugin_tracker($data, $params)
 						}
 						unset($_SESSION[$transactionName]); // the tracker transaction can be closed
 					} else {
-						$_SESSION[$transactionName]['transactionStep'] += 1; // switch to the next step
+						$_SESSION[$transactionName]['transactionStep'] = $transactionStep + 1; // switch to the next step
 					}
 				} else {
 					// no transaction is used
@@ -1806,7 +1807,19 @@ function wikiplugin_tracker($data, $params)
 				if (($f['isHidden'] == 'c' || $f['isHidden'] == 'p' || $f['isHidden'] == 'a') && ! empty($itemId) && ! isset($item['creators'])) {
 					$item['creators'] = $trklib->get_item_creators($trackerId, $itemId);
 				}
-				$item[$f['fieldId']] = $f['value'];
+
+				// if we are doing a transaction then pick up values "saved" so far
+				if ($transactionName && isset($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'])) {
+					foreach ($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'] as $txField) {
+						if ($txField['fieldId'] == $f['fieldId']) {
+							$item[$f['fieldId']] = $txField['value'];
+						}
+					}
+
+				} else {
+					$item[$f['fieldId']] = $f['value'];
+				}
+
 			}
 		}
 		if (! empty($showstatus) && $showstatus == 'y') {
