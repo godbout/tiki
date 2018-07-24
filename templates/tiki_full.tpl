@@ -52,7 +52,7 @@
 					<option value="">off</option>
 				</select>
 			</div>
-			<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&landscape=1" target="_blank"><span class="fa fa-file-pdf-o"></span> Export PDF</a></div>				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&printslides=1" target="_blank"><span class="fa fa-print"></span> Handouts</a></div>
+			<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&landscape=1" target="_blank" id="exportPDF"><span class="fa fa-file-pdf-o"></span> Export PDF</a></div>				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&printslides=1" target="_blank"><span class="fa fa-print"></span> Handouts</a></div>
 			<div class="p-2"><a href="tiki-index.php?page={$page}"><span class="fa fa-sign-out"></span>&nbsp;Exit</a></div>
 		</div>
 {else}

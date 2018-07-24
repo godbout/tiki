@@ -155,14 +155,21 @@ if (isset($_REQUEST['pdf'])) {
 		//checking if to export slideshow
 		if ($_REQUEST['printslides']) {
 			$customCSS
-				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em} section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
+				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
 			$pdata = $customCSS. $pdata;
 		} else {
+			//getting css
+			$customCSS.=file_get_contents('vendor_bundled/vendor/components/revealjs/css/reveal.scss');
+			$customCSS.=file_get_contents('vendor_bundled/vendor/components/revealjs/css/theme/'.$theme.'.css');
+			$customCSS.='.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}';
+			$pdata='<div class="reveal">'.$pdata.'</div>';
+
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				$customCSS . $pdata
+				'<style>'.$customCSS.'</style>' . $pdata
 			);
 		}
+
 		$pdf = $generator->getPdf(
 			$filename, $params,
 			preg_replace('/%u([a-fA-F0-9]{4})/', '&#x\\1;', $pdata)
@@ -243,7 +250,14 @@ $headerlib->add_jq_onready(
 		$( "#showtransition" ).change(function() {
 			var selectedTransition=$("#showtransition" ).val();
 			Reveal.configure({ transition: selectedTransition });
-		});'
+		});
+		$("body").delegate("#exportPDF","click", function () {
+			if($("#showtheme" ).val()!="") {
+				var pdfURL= $( "#exportPDF" ).attr("href")+"&theme="+$("#showtheme" ).val();
+				$( "#exportPDF" ).attr("href",pdfURL);
+			}
+		});
+		'
 );
 
 ask_ticket('index-raw');
