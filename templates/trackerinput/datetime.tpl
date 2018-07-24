@@ -39,7 +39,7 @@
 	{tr}at{/tr}
 {/if}
 {if $field.options_array[0] ne 'd'}
-	{if (isset($field.options_array[3]) and ($field.options_array[3] eq 'blank' or $field.options_array[3] eq 'empty'))or (isset($context.inForm) and $context.inForm eq 'y')}
+	{if (isset($field.options_array[3]) and ($field.options_array[3] eq 'blank' or $field.options_array[3] eq 'empty')) or (isset($context.inForm) and $context.inForm eq 'y')}
 		{html_select_time prefix=$field.ins_id time=$time display_seconds=false all_empty=" " use_24_hours=$use_24hr_clock}
 	{else}
 		{html_select_time prefix=$field.ins_id time=$time display_seconds=false use_24_hours=$use_24hr_clock}
