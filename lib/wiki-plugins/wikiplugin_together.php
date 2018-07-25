@@ -48,20 +48,23 @@ TogetherJS.config("getUserAvatar", function () {
 	return jqueryTiki.userAvatar;
 });
 
+TogetherJS.on("ready", function () {
+	if(m = window.location.href.match(/tiki-editpage.php\?page=([^&]+)/)) {
+		$.ajax({
+			url: "tiki-ajax_services.php",
+			dataType: "json",
+			data: {
+				controller: "edit_semaphore",
+				action: "set",
+				object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
+			}
+		});
+	}
+});
+
 if(! window.startTogetherJS) {
 	window.startTogetherJS = function() {
 		TogetherJS();
-		if(m = window.location.href.match(/tiki-editpage.php\?page=([^&]+)/)) {
-			$.ajax({
-				url: "tiki-ajax_services.php",
-				dataType: "json",
-				data: {
-					controller: "edit_semaphore",
-					action: "set",
-					object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
-				}
-			});
-		}
 	}
 }
 
