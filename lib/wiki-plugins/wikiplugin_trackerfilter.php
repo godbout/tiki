@@ -883,6 +883,7 @@ function wikiplugin_trackerFilter_get_filters($trackerId = 0, array $listfields 
 						}
 						$opts[] = $opt;
 					}
+					$opts[] = wikiplugin_trackerFilter_add_empty_option($fieldId);
 					break;
 				case 'w': //dynamic item lists
 				case 'r': // item link
