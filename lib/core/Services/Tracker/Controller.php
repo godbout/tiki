@@ -779,10 +779,10 @@ class Services_Tracker_Controller
 
 		$fields = $input->fields->none();
 		$forced = $input->forced->none();
+		$processedFields = $itemObject->prepareInput($input);
+		$toRemove = [];
 
 		if (empty($fields)) {
-			$toRemove = [];
-			$processedFields = $itemObject->prepareInput($input);
 
 			$fields = [];
 			foreach ($processedFields as $k => $f) {
@@ -806,6 +806,21 @@ class Services_Tracker_Controller
 				}
 			}
 			$fields = $out;
+
+			// if fields are specified in the form creation url then use only those ones
+			if (! empty($fields) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
+				foreach ($processedFields as $k => $f) {
+					$permName = $f['permName'];
+
+					if (! isset($fields[$permName])) {
+						$toRemove[$permName] = $k;
+					}
+				}
+
+				foreach ($toRemove as $permName => $key) {
+					unset($processedFields[$key]);
+				}
+			}
 		}
 
 		global $prefs;
