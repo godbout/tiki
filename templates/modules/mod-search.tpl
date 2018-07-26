@@ -62,7 +62,7 @@
 								<button type="submit" class="btn btn-info mb-2 search_mod_magnifier">
 									{icon name="search"}
 								</button>
-							{*</div>*}
+							</div>
 
 							<div class="btn-group search_mod_buttons box" style="display:none;position:absolute;left:2.5em;top:2.5em;z-index:2;white-space:nowrap;">
 							{else}
@@ -103,7 +103,8 @@
 									"
 								>
 							{/if}
-						</div>
+					{*	</div>*}
+					</div>
 
 
 					{if $smod_params.tiki_search neq 'y'}
