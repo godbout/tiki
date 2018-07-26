@@ -486,13 +486,16 @@ class CalendarLib extends TikiLib
 	}
 
 	/**
-	 * @param $user
-	 * @param $calitemId
-	 * @param $data
+	 * @param       $user
+	 * @param       $calitemId
+	 * @param       $data
 	 * @param array $customs
+	 * @param bool  $isBulk
+	 *
 	 * @return bool
+	 * @throws Exception
 	 */
-	function set_item($user, $calitemId, $data, $customs = [])
+	function set_item($user, $calitemId, $data, $customs = [], $isBulk = false)
 	{
 		global $prefs;
 		if (! isset($data['calendarId'])) {
@@ -634,7 +637,7 @@ class CalendarLib extends TikiLib
 
 			$query = 'INSERT INTO `tiki_calendar_items` (' . implode(',', $l) . ') VALUES (' . implode(',', $z) . ')';
 			$result = $this->query($query, $r);
-			$calitemId = $this->GetOne("select `calitemId` from `tiki_calendar_items` where `calendarId`=? and `created`=?", [$data["calendarId"],$this->now]);
+			$calitemId = $this->GetOne("SELECT MAX(`calitemId`) FROM `tiki_calendar_items` where `calendarId`=?", [$data["calendarId"]]);
 		}
 
 		if ($calitemId) {
@@ -660,6 +663,7 @@ class CalendarLib extends TikiLib
 			'type' => 'calendaritem',
 			'object' => $calitemId,
 			'user' => $GLOBALS['user'],
+			'bulk_import' => $isBulk,
 		]);
 
 		return $calitemId;
@@ -716,7 +720,7 @@ class CalendarLib extends TikiLib
 	 * @param $user
 	 * @param $calitemId
 	 */
-	function drop_item($user, $calitemId)
+	function drop_item($user, $calitemId, $isBulk = false)
 	{
 		if ($calitemId) {
 			$query = "delete from `tiki_calendar_items` where `calitemId`=?";
@@ -727,6 +731,7 @@ class CalendarLib extends TikiLib
 				'type' => 'calendaritem',
 				'object' => $calitemId,
 				'user' => $user,
+				'bulk_import' => $isBulk,
 			]);
 		}
 	}

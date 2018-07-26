@@ -170,18 +170,35 @@ class CalRecurrence extends TikiLib
 	 */
 	public function delete($fromTime = null)
 	{
+		global $user;
+		$tx = TikiDb::get()->begin();
+
 		if (is_null($fromTime)) {
 			$fromTime = time();
 		}
-		$query = "DELETE FROM tiki_calendar_items WHERE recurrenceId = ? AND start > ?";
-		$bindvars = [(int)$this->getId(),$fromTime];
-		$this->query($query, $bindvars);
+
+		$calendarlib = TikiLib::lib('calendar');
+		$tiki_calendar_items = TikiDb::get()->table('tiki_calendar_items');
+
+		$calItemIds = $tiki_calendar_items->fetchColumn('calItemId', [
+			'start' => $tiki_calendar_items->greaterThan($fromTime),
+		]);
+
+		foreach ($calItemIds as $calItemId) {
+			$calendarlib->drop_item($user, $calItemId, true);
+		}
+
+		// this seems to leave ones in the past alone by default but detatches them from the recurrence rule (odd)
 		$query = "UPDATE tiki_calendar_items SET recurrenceId = NULL WHERE recurrenceId = ?";
 		$bindvars = [(int)$this->getId()];
 		$this->query($query, $bindvars);
 		$query = "DELETE FROM tiki_calendar_recurrence WHERE recurrenceId = ?";
 		$bindvars = [(int)$this->getId()];
-		return $this->query($query, $bindvars);
+		$ret = $this->query($query, $bindvars);
+
+		$tx->commit();
+
+		return $ret;
 	}
 
 	/**
@@ -396,6 +413,7 @@ class CalRecurrence extends TikiLib
 			$endOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60;
 		}
 
+		$tx = TikiDb::get()->begin();
 		$calendarlib = TikiLib::lib('calendar');
 		global $user;
 
@@ -437,13 +455,14 @@ class CalRecurrence extends TikiLib
 				$calendarlib->set_item($user, $initial['calitemId'], $initial);
 			}
 		}
+		$tx->commit();
 	}
 
 	/**
 	 * @param bool $updateManuallyChangedEvents
 	 * @param $oldRec
 	 */
-	public function updateEvents($updateManuallyChangedEvents = false, $oldRec)
+	public function updateEvents($updateManuallyChangedEvents, $oldRec)
 	{
 			// retrieve the yet-to-happen events of the recurrence rule (only the relevant fields)
 			$query = "SELECT calitemId,calendarId, start, end, allday, locationId, categoryId, nlId, priority, status, url, lang, name, description, "
@@ -485,14 +504,19 @@ class CalRecurrence extends TikiLib
 		}
 			// we now update the events
 			$advanced = null;
-			$ChangeDateInSeconds; //will be needed if dates have been changed
+			$ChangeDateInSeconds = null; //will be needed if dates have been changed
+
+		$calendarlib = TikiLib::lib('calendar');
+		$tx = TikiDb::get()->begin();
+		global $user;
+
 		foreach ($theEventsToBeChanged as $anEvtId) {
 			$anEvt = $theEvents[$anEvtId];
-			$tmp = [];
+			$tmp = $anEvt;
 			$doWeChangeTimeIfNeeded = true;
 			foreach ($changedFields as $aField) {
 				if (substr($aField, 0, 1) != "_") {
-					$tmp[] = $aField . " = '" . $this->$aField . "'";
+					$tmp[$aField] =  $this->$aField;
 				} else {
 					$anEvtStart = TikiLib::date_format2('Y/m/d', $anEvt['start']);
 					$anEvtStart = explode('/', $anEvtStart);
@@ -526,8 +550,8 @@ class CalRecurrence extends TikiLib
 						}
 						if (! is_null($advanced)) {
 							$daysOffsetEvent = $this->getWeekday() - TikiLib::date_format2('w', TikiLib::make_time(0, 0, 0, $anEvtStart[1], $anEvtStart[2], $anEvtStart[0]));
-							$tmp[] = "start='" . TikiLib::make_time($newStartHour, $newStartMin, 0, $anEvtStart[1], $anEvtStart[2] + $daysOffsetEvent, $anEvtStart[0]) . "'";
-							$tmp[] = "end='" . TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1], $anEvtStart[2] + $daysOffsetEvent, $anEvtStart[0]) . "'";
+							$tmp['start'] =  TikiLib::make_time($newStartHour, $newStartMin, 0, $anEvtStart[1], $anEvtStart[2] + $daysOffsetEvent, $anEvtStart[0]);
+							$tmp['end'] =  TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1], $anEvtStart[2] + $daysOffsetEvent, $anEvtStart[0]);
 						}
 						// - for monthly events :
 						// if the new day of month is before (less than) the old day of month
@@ -554,16 +578,16 @@ class CalRecurrence extends TikiLib
 
 						if ($advanced) {
 							// we are on the same month
-							$tmp[] = "start='" . TikiLib::make_time($newStartHour, $newStartMin, 0, $anEvtStart[1], $this->getDayOfMonth(), $anEvtStart[0]) . "'";
-							$tmp[] = "end='" . TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1], $this->getDayOfMonth(), $anEvtStart[0]) . "'";
+							$tmp['start'] = TikiLib::make_time($newStartHour, $newStartMin, 0, $anEvtStart[1], $this->getDayOfMonth(), $anEvtStart[0]);
+							$tmp['end'] = TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1], $this->getDayOfMonth(), $anEvtStart[0]);
 						} else {
 							// if the new day is after the old one, we are on the same month; instead, we are on the next month.
 							$offsetMonth = 0;
 							if ($this->getDayOfMonth() < ($oldRec->getDayOfMonth())) {
 								$offsetMonth = 1;
 							}
-							$tmp[] = "start='" . TikiLib::make_time($newStartHour, $newStartMin, 0, $anEvtStart[1] + $offsetMonth, $this->getDayOfMonth(), $anEvtStart[0]) . "'";
-							$tmp[] = "end='" . TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1] + $offsetMonth, $this->getDayOfMonth(), $anEvtStart[0]) . "'";
+							$tmp['start'] = TikiLib::make_time($newStartHour, $newStartMin, 0, $anEvtStart[1] + $offsetMonth, $this->getDayOfMonth(), $anEvtStart[0]);
+							$tmp['end'] = TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1] + $offsetMonth, $this->getDayOfMonth(), $anEvtStart[0]);
 						}
 						// - for yearly events :
 						// if the new day of year is before (less than) the old day of year
@@ -590,15 +614,15 @@ class CalRecurrence extends TikiLib
 							$advanced = false;
 						}
 						if ($advanced) {
-							$tmp[] = "start='" . TikiLib::make_time($newStartHour, $newStartMin, 0, substr($thisdate, 0, 2), substr($thisdate, -2), $anEvtStart[0]) . "'";
-							$tmp[] = "end='" . TikiLib::make_time($newEndHour, $newEndMin, 0, substr($thisdate, 0, 2), substr($thisdate, -2), $anEvtStart[0]) . "'";
+							$tmp['start'] = TikiLib::make_time($newStartHour, $newStartMin, 0, substr($thisdate, 0, 2), substr($thisdate, -2), $anEvtStart[0]);
+							$tmp['end'] = TikiLib::make_time($newEndHour, $newEndMin, 0, substr($thisdate, 0, 2), substr($thisdate, -2), $anEvtStart[0]);
 						} else {
 							$offsetYear = 0;
 							if ($this->getDateOfYear() < $oldRec->getDateOfYear()) {
 								$offsetYear = 1;
 							}
-							$tmp[] = "start='" . TikiLib::make_time($newStartHour, $newStartMin, 0, substr($thisdate, 0, 2), substr($thisdate, -2), $anEvtStart[0] + $offsetYear) . "'";
-							$tmp[] = "end='" . TikiLib::make_time($newEndHour, $newEndMin, 0, substr($thisdate, 0, 2), substr($thisdate, -2), $anEvtStart[0] + $offsetYear) . "'";
+							$tmp['start'] = TikiLib::make_time($newStartHour, $newStartMin, 0, substr($thisdate, 0, 2), substr($thisdate, -2), $anEvtStart[0] + $offsetYear);
+							$tmp['end'] = TikiLib::make_time($newEndHour, $newEndMin, 0, substr($thisdate, 0, 2), substr($thisdate, -2), $anEvtStart[0] + $offsetYear);
 						}
 					}
 
@@ -615,21 +639,21 @@ class CalRecurrence extends TikiLib
 				$anEvtStart = explode('/', $anEvtStart);
 				$newStartHour = floor($this->getStart() / 100);
 				$newStartMin = $this->getStart() - 100 * $newStartHour;
-				$tmp[] = "start='" . TikiLib::make_time($newStartHour, $newStartMin, 0, $anEvtStart[1], $anEvtStart[2], $anEvtStart[0]) . "'";
+				$tmp['start'] =TikiLib::make_time($newStartHour, $newStartMin, 0, $anEvtStart[1], $anEvtStart[2], $anEvtStart[0]);
 			}
 			if (in_array("_end", $changedFields) && $doWeChangeTimeIfNeeded) {
 				$anEvtStart = TikiLib::date_format2('Y/m/d', $anEvt['start']);
 				$anEvtStart = explode('/', $anEvtStart);
 				$newEndHour = floor($this->getEnd() / 100);
 				$newEndMin = $this->getEnd() - 100 * $newEndHour;
-				$tmp[] = "end='" . TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1], $anEvtStart[2], $anEvtStart[0]) . "'";
+				$tmp['end'] = TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1], $anEvtStart[2], $anEvtStart[0]);
 			}
 			if (count($tmp) > 0) {
-				$query = "UPDATE tiki_calendar_items SET " . implode(',', $tmp) . " WHERE calitemId = ?";
-				$bindvars = [(int)$anEvt['calitemId']];
-				$this->query($query, $bindvars);
+				$tmp['recurrenceId'] = $this->getId();
+				$calendarlib->set_item($user, $anEvt['calitemId'], $tmp, [], true);
 			}
 		}
+		$tx->commit();
 	}
 
 	/**
