@@ -252,10 +252,10 @@ function wikiplugin_convene($data, $params)
 
 		foreach ($row as $stamp => $vote) {
 			if ($vote == 1) {
-				$class = "convene-ok text-center text-success";
+				$class = "convene-ok text-center alert-success";
 				$text = smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':' . tr('OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			} elseif ($vote == -1) {
-				$class = "convene-no text-center text-danger";
+				$class = "convene-no text-center alert-danger";
 				$text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':' . tr('Not OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			} else {
 				$class = "convene-unconfirmed text-center text-muted";
