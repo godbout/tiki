@@ -236,7 +236,7 @@ function wikiplugin_convene($data, $params)
 
 		if ($params['avatars'] === 'y') {
 			$avatar = " <div class='pull-right'>" . smarty_modifier_avatarize($user) . '</div>';
-			$rightPadding = 'padding-right: 45px';
+			$rightPadding = 'padding-right: 45px; max-width: 10em; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;';
 		} else {
 			$avatar = '';
 			$rightPadding = '';
@@ -299,7 +299,7 @@ function wikiplugin_convene($data, $params)
 	foreach ($votes as $stamp => $total) {
 		$pic = "";
 		if ($total == $votes[$topVoteStamp]) {
-			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips text-success', 'ititle' => ':' . tr("Selected Date"), 'size' => 2], $smarty->getEmptyInternalTemplate()) : "");
+			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips alert-success', 'ititle' => ':' . tr("Selected Date"), 'size' => 2], $smarty->getEmptyInternalTemplate()) : "");
 			if ($canEdit && $votes[$topVoteStamp] >= $minvotes) {
 				$pic .= "<a class='btn btn-primary btn-sm' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
 					. tr("Add as Calendar Event") . "'>"
@@ -596,11 +596,10 @@ FORM;
 						$('.conveneDeleteDate$i').hide();
 						$('.conveneMain$i').hide();
 						updateButton.parent().parent()
-							.addClass('ui-state-highlight')
+							.addClass('convene-highlight')
 							.find('td').not(':first')
 							.addClass('conveneTd$i')
-							.removeClass('ui-state-default')
-							.addClass('ui-state-highlight');
+							.addClass('convene-highlight');
 		
 						updateButton.find('.icon').setIcon("save");
 						var parent = updateButton.parent().parent();
@@ -618,21 +617,21 @@ FORM;
 		
 									switch($(this).val() * 1) {
 										case 1:  
-											cl = 'convene-ok text-success';
+											cl = 'convene-ok alert-success';
 											icon = 'ok';
 											break;
 										case -1:
-											cl = 'convene-no text-danger';
+											cl = 'convene-no alert-danger';
 											icon = 'remove';
 											break;
 										default:
-											cl = 'convene-unconfirmed text-muted';
+											cl = 'convene-unconfirmed alert-muted';
 											icon = 'help';
 									}
 		
 									$(this)
 										.parent()
-										.removeClass('convene-no convene-ok convene-unconfirmed text-success text-danger text-muted')
+										.removeClass('convene-no convene-ok convene-unconfirmed alert-success alert-danger alert-muted')
 										.addClass(cl)
 										.find (".icon")
 											.setIcon(icon);
@@ -652,10 +651,9 @@ FORM;
 					$('.conveneDeleteUser$i').show();
 					$('.conveneDeleteDate$i').show();
 					$(this).parent().parent()
-						.removeClass('ui-state-highlight')
+						.removeClass('convene-highlight')
 						.find('.conveneTd$i')
-						.removeClass('ui-state-highlight')
-						.addClass('ui-state-default');
+						.removeClass('convene-highlight');
 	
 					$('.conveneMain$i').show();
 					$(this).find('span.icon-pencil');
