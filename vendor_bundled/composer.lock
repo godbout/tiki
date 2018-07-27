@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8993ce437335f7541c01924664895461",
+    "content-hash": "99fcfe2f445ece48bc1c71e055700edc",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -36,7 +36,10 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Remove references to ADOdb Extension": "../installer/composer-patches/adodb-php__remove_references_to_adodb_extension.patch",
+                    "Remove the check for ADOdb Extension": "../installer/composer-patches/adodb-php__remove-the-check-if-the-adodb-php_ext-is-enabled.patch"
+                }
             },
             "autoload": {
                 "files": [
@@ -1175,17 +1178,17 @@
         },
         {
             "name": "itsjavi/bootstrap-colorpicker",
-            "version": "2.5.2",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/farbelous/bootstrap-colorpicker.git",
-                "reference": "d56d0d3d5bee59904d48bce3c47a0029741e10e6"
+                "reference": "525cd6a0aa26ae95803bbf34d231c4163136a314"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/itsjavi/bootstrap-colorpicker/itsjavi-bootstrap-colorpicker-d56d0d3d5bee59904d48bce3c47a0029741e10e6-zip-9f8d56.zip",
-                "reference": "d56d0d3d5bee59904d48bce3c47a0029741e10e6",
-                "shasum": "f8f5a8633cf381e0c42f362d302efe4f45ffc82d"
+                "url": "https://composer.tiki.org/dist/itsjavi/bootstrap-colorpicker/itsjavi-bootstrap-colorpicker-525cd6a0aa26ae95803bbf34d231c4163136a314-zip-5943c5.zip",
+                "reference": "525cd6a0aa26ae95803bbf34d231c4163136a314",
+                "shasum": "5be1f472056661d544c2a970500dabb31575a0c5"
             },
             "require": {
                 "components/jquery": ">=1.10"
@@ -1202,7 +1205,7 @@
                 }
             ],
             "description": "Fancy and customizable colorpicker plugin for Twitter Bootstrap",
-            "time": "2018-03-29T04:47:33+00:00"
+            "time": "2018-07-21T17:06:22+00:00"
         },
         {
             "name": "jasig/phpcas",
@@ -1348,7 +1351,9 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Fix visibility issues": "../installer/composer-patches/jquery-sheet_fix-visibility-issues.patch"
+                }
             }
         },
         {
@@ -1705,17 +1710,17 @@
         },
         {
             "name": "leafo/scssphp",
-            "version": "v0.7.6",
+            "version": "v0.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafo/scssphp.git",
-                "reference": "585f6ae84de62ffecf69c23805f25d78d7e4b794"
+                "reference": "1d656f8c02a3a69404bba6b28ec4e06edddf0f49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/leafo/scssphp/leafo-scssphp-585f6ae84de62ffecf69c23805f25d78d7e4b794-zip-479d5a.zip",
-                "reference": "585f6ae84de62ffecf69c23805f25d78d7e4b794",
-                "shasum": "e8e9c731a3259d2e0e9b95d65a62c87189302b6b"
+                "url": "https://composer.tiki.org/dist/leafo/scssphp/leafo-scssphp-1d656f8c02a3a69404bba6b28ec4e06edddf0f49-zip-0d2346.zip",
+                "reference": "1d656f8c02a3a69404bba6b28ec4e06edddf0f49",
+                "shasum": "902a172315fc6dafe05b53640aee3158f6b7bc4a"
             },
             "require": {
                 "php": ">=5.4.0"
@@ -1753,7 +1758,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2018-05-24T02:18:53+00:00"
+            "time": "2018-07-22T01:22:08+00:00"
         },
         {
             "name": "matthiasmullie/minify",
@@ -2716,7 +2721,10 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Removed deprecated syntax in PHP7": "../installer/composer-patches/text_wiki_mediawiki__php7fixes.patch",
+                    "Renamed method to avoid collision with func from parent class": "../installer/composer-patches/text_wiki_mediawiki__func_collision.patch"
+                }
             }
         },
         {
@@ -2788,7 +2796,9 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Add support for PHP7": "../installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch"
+                }
             }
         },
         {
@@ -2962,17 +2972,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.39.1",
+            "version": "v1.39.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "32e6984a46f5c295ca0814aa33d7f066c64ce5d5"
+                "reference": "0de19be151be79fa55283fc6f478a1b90f45609e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-32e6984a46f5c295ca0814aa33d7f066c64ce5d5-zip-41bfaa.zip",
-                "reference": "32e6984a46f5c295ca0814aa33d7f066c64ce5d5",
-                "shasum": "0ad22983078a75690d5f6487c1fe8483ffe7daa0"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-0de19be151be79fa55283fc6f478a1b90f45609e-zip-a4f4f4.zip",
+                "reference": "0de19be151be79fa55283fc6f478a1b90f45609e",
+                "shasum": "2bb53d20508ecdc325300da4e604de0540d992d2"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2994,7 +3004,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2018-07-09T13:29:45+00:00"
+            "time": "2018-07-16T14:45:16+00:00"
         },
         {
             "name": "psr/container",
@@ -3359,7 +3369,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -3423,17 +3433,17 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1b97071a26d028c9bd4588264e101e14f6e7cd00"
+                "reference": "e54f84c50e3b12972e7750edfc5ca84b2284c44e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-1b97071a26d028c9bd4588264e101e14f6e7cd00-zip-c763b8.zip",
-                "reference": "1b97071a26d028c9bd4588264e101e14f6e7cd00",
-                "shasum": "729ba10d707b4b31129561f851c30a08b5df62e6"
+                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-e54f84c50e3b12972e7750edfc5ca84b2284c44e-zip-f9b046.zip",
+                "reference": "e54f84c50e3b12972e7750edfc5ca84b2284c44e",
+                "shasum": "7a7c5565e29e433d2fa7346f6af9137ae275d3e2"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3488,11 +3498,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-23T05:02:55+00:00"
+            "time": "2018-07-10T14:02:11+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3545,17 +3555,17 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "dbe0fad88046a755dcf9379f2964c61a02f5ae3d"
+                "reference": "a1f2118cedb8731c45e945cdd2b808ca82abc4b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-dbe0fad88046a755dcf9379f2964c61a02f5ae3d-zip-e20dd2.zip",
-                "reference": "dbe0fad88046a755dcf9379f2964c61a02f5ae3d",
-                "shasum": "cd4413390b03bc7bf6a03aa3be0204e53cf05ca0"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-a1f2118cedb8731c45e945cdd2b808ca82abc4b5-zip-634076.zip",
+                "reference": "a1f2118cedb8731c45e945cdd2b808ca82abc4b5",
+                "shasum": "b92943070fbc1a8643b331fa7cd41eae7432afd9"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3597,21 +3607,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-06-08T09:39:36+00:00"
+            "time": "2018-07-06T14:52:28+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "a0be80e3f8c11aca506e250c00bb100c04c35d10"
+                "reference": "3f115cc3aae4d320b26db05e9531f4e32da29b89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-a0be80e3f8c11aca506e250c00bb100c04c35d10-zip-307ac5.zip",
-                "reference": "a0be80e3f8c11aca506e250c00bb100c04c35d10",
-                "shasum": "ec32a98ebc6eb3938768e7ecc1f49337e8dff2b9"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-3f115cc3aae4d320b26db05e9531f4e32da29b89-zip-d55687.zip",
+                "reference": "3f115cc3aae4d320b26db05e9531f4e32da29b89",
+                "shasum": "a781b307ed808dfee74d54809ab0c6847ca9501f"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3668,11 +3678,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-06-25T08:36:56+00:00"
+            "time": "2018-07-16T13:57:19+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.1.1",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -3836,17 +3846,17 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "acc5a37c706ace827962851b69705b24e71ca17c"
+                "reference": "f741672edfcfe3a2ea77569d419006f23281d909"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-acc5a37c706ace827962851b69705b24e71ca17c-zip-04f461.zip",
-                "reference": "acc5a37c706ace827962851b69705b24e71ca17c",
-                "shasum": "c1f91d899ae42550dae61e1811595413d5a9013d"
+                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-f741672edfcfe3a2ea77569d419006f23281d909-zip-fbd597.zip",
+                "reference": "f741672edfcfe3a2ea77569d419006f23281d909",
+                "shasum": "1fba5dfb2e33aaadf923991e72298b6cd3748faf"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8"
@@ -3881,11 +3891,11 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-30T04:24:30+00:00"
+            "time": "2018-07-09T09:01:07+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.12",
+            "version": "v3.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4037,17 +4047,17 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v4.1.2",
+            "version": "v4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "1f46337a89ed21c94a7c37bc0c0e14a71fef7d97"
+                "reference": "3b558734382ce58b51e5fc676453bfd53bba9201"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-1f46337a89ed21c94a7c37bc0c0e14a71fef7d97-zip-253a9f.zip",
-                "reference": "1f46337a89ed21c94a7c37bc0c0e14a71fef7d97",
-                "shasum": "85a770f4edc92b7651d4c65ce133f3561a0d5b6d"
+                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-3b558734382ce58b51e5fc676453bfd53bba9201-zip-ae9408.zip",
+                "reference": "3b558734382ce58b51e5fc676453bfd53bba9201",
+                "shasum": "9a2e2536adcb04d8b20da9ac0f37f932302421ff"
             },
             "replace": {
                 "twitter/bootstrap": "self.version"
@@ -4084,7 +4094,7 @@
                 "sass",
                 "web"
             ],
-            "time": "2018-07-12T16:27:14+00:00"
+            "time": "2018-07-24T15:54:34+00:00"
         },
         {
             "name": "undojs/undojs",
@@ -7372,17 +7382,17 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266"
+                "reference": "628a481780561150481a9ec74709092b9759b3ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-d86873af43b4aa9d1f39a3601cc0cfcf02b25266-zip-21c523.zip",
-                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
-                "shasum": "a3105224f2b7802ef48116bbb78e40e792765e3a"
+                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-628a481780561150481a9ec74709092b9759b3ec-zip-2aa541.zip",
+                "reference": "628a481780561150481a9ec74709092b9759b3ec",
+                "shasum": "d1e5073b65a339236eb7e38e1d1dddab8e3336fa"
             },
             "require": {
                 "ext-simplexml": "*",
@@ -7419,7 +7429,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-06-06T23:58:19+00:00"
+            "time": "2018-07-26T23:47:18+00:00"
         },
         {
             "name": "webmozart/assert",
