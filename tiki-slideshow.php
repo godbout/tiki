@@ -273,7 +273,7 @@ $smarty->display("tiki_full.tpl");
 
 function formatContent($content, $tagArr)
 {
-	$headingsTags = explode('<h1', $content);
+	$headingsTags = preg_split('/<h[123]/', $content);
 	$firstSlide = 0;
 	foreach ($headingsTags as $slide) {
 		if ($firstSlide == 0) {
@@ -285,7 +285,7 @@ function formatContent($content, $tagArr)
 			}
 			$firstSlide = 1;
 		} else {
-			$slideContent .= '<section><h1 ' . $slide . '</section>';
+			$slideContent .= '<section><h1' . str_replace(array('</h2>','</h3>'),'</h1>',$slide) . '</section>';
 		}
 
 	}
