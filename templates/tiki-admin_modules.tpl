@@ -376,12 +376,14 @@
 
 	{tab name="{tr}All Modules{/tr}"}
 		<h2>{tr}All Modules{/tr}</h2>
-		<form method="post" action="tiki-admin_modules.php">
+		<form method="post" action="tiki-admin_modules.php" class="">
 			<div style="height:400px;overflow:auto;">
-				<div class="navbar">
+				<div class="was-navbar">
 					{listfilter selectors='#module_list li'}
-					<input type="checkbox" class="form-check-input" name="module_list_show_all" id="module_list_show_all"{if $module_list_show_all} checked="checked"{/if}>
-					<label for="module_list_show_all">{tr}Show all modules{/tr}</label>
+					<div class="form-check mb-3">
+						<input type="checkbox" class="form-check-input" name="module_list_show_all" id="module_list_show_all"{if $module_list_show_all} checked="checked"{/if}>
+						<label for="module_list_show_all" class="form-check-lable">{tr}Show all modules{/tr}</label>
+					</div>
 				</div>
 				<ul id="module_list">
 					{foreach key=name item=info from=$all_modules_info}
