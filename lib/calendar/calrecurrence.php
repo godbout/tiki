@@ -181,6 +181,7 @@ class CalRecurrence extends TikiLib
 		$tiki_calendar_items = TikiDb::get()->table('tiki_calendar_items');
 
 		$calItemIds = $tiki_calendar_items->fetchColumn('calItemId', [
+			'recurrenceId' => $this->getId(),
 			'start' => $tiki_calendar_items->greaterThan($fromTime),
 		]);
 
