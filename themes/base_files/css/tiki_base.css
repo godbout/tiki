@@ -1045,6 +1045,9 @@ div.categbar {
   flex-direction: row !important;
   justify-content: space-between; }
 
+.topbar .navbar {
+  padding: 0; }
+
 #bottom_modules {
   align-items: flex-start; }
 
@@ -3002,9 +3005,6 @@ body.fullscreen.tiki.navbar-padding {
 .panel.panel-nocolor, .panel-nocolor, .panel-nocolor > .panel-heading, .panel-nocolor > .panel-body, .panel-nocolor > .panel-footer {
   border: none;
   background: transparent; }
-
-.tiki .popover {
-  max-width: inherit; }
 
 .tiki.tiki-list_file_gallery .popover, .tiki.tiki_file_galleries .popover {
   max-width: 50vw; }
