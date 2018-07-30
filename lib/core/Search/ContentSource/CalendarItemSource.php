@@ -53,6 +53,13 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 			$status_text = tr('Cancelled');
 		}
 
+		$trackerItems = [];
+		$attributes = TikiLib::lib('attribute')->find_objects_with('tiki.calendar.item', $objectId);
+
+		foreach ($attributes as $attribute) {
+			$trackerItems[] = (int) $attribute['itemId'];
+		}
+
 		$data = [
 			'title' => $typeFactory->sortable($item['name']),
 			'language' => $typeFactory->identifier(empty($item['lang']) ? 'unknown' : $item['lang']),
@@ -77,9 +84,7 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 			'parent_object_id' => $typeFactory->identifier($item['calendarId']),
 			'parent_view_permission' => $typeFactory->identifier('tiki_p_view_calendar'),
 
-			'trackeritems' => $typeFactory->multivalue(
-				TikiLib::lib('attribute')->find_objects_with('tiki.calendar.item', $objectId)
-			),
+			'trackeritems' => $typeFactory->multivalue($trackerItems),
 
 		];
 
