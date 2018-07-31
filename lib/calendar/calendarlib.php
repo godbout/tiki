@@ -584,10 +584,6 @@ class CalendarLib extends TikiLib
 			$data['nlId'] = 0;
 		}
 
-		if (! isset($data['recurrenceId']) || ! ($data['recurrenceId'] > 0)) {
-			$data['recurrenceId'] = null;
-		}
-
 		$data['user'] = $user;
 
 		$realcolumns = ['calitemId', 'calendarId', 'start', 'end', 'locationId', 'categoryId', 'nlId','priority',
@@ -598,7 +594,9 @@ class CalendarLib extends TikiLib
 
 		if ($calitemId) {
 			$finalEvent = 'tiki.calendaritem.update';
-			$new = false;
+
+			$oldData = TikiDb::get()->table('tiki_calendar_items')->fetchFullRow(['calitemId' => $calitemId]);
+			$data = array_merge($oldData, $data);
 			$data['lastmodif'] = $this->now;
 
 			$l = [];
