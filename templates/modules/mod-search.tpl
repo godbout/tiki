@@ -3,8 +3,8 @@
 	{if $tiki_p_search eq 'y'}
 		{tikimodule error=$module_error title=$smod_params.title name="search" flip=$smod_params.flip decorations=$smod_params.decorations nobox=$smod_params.nobox notitle=$smod_params.notitle}
 			{if $smod_params.tiki_search neq 'none'}
-				<form id="search-module-form{$search_mod_usage_counter}" method="get" action="{$smod_params.search_action}"{if $smod_params.use_autocomplete eq 'y'} onsubmit="return submitSearch{$search_mod_usage_counter}()"{/if}>
-					<div class="form-row align-items-center" style="position: relative;">
+				<form id="search-module-form{$search_mod_usage_counter}" method="get" action="{$smod_params.search_action}"{if $smod_params.use_autocomplete eq 'y'} onsubmit="return submitSearch{$search_mod_usage_counter}()"{/if} style="position: relative;">
+					<div class="form-row align-items-center">
 						<div class="col-auto">
 							<label class="sr-only" for="search_mod_input_{$search_mod_usage_counter}">Find</label>
 							<input style="{if $smod_params.compact eq "y"}{*width:72%;border-bottom-right-radius:0;border-top-right-radius: 0;*}{/if}" placeholder="{tr}Find{/tr}" class="form-control mb-2" id="search_mod_input_{$search_mod_usage_counter}" name="{if $smod_params.search_action eq 'tiki-searchindex.php'}filter~content{else}find{/if}" {if !empty($smod_params.input_size)}size="{$smod_params.input_size}" style="width: auto"{/if} type="text" accesskey="s" value="{$smod_params.input_value|escape}">

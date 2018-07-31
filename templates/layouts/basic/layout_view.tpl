@@ -16,9 +16,9 @@
 <div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	<header class="page-header" id="page-header">
-		{modulelist zone=top class='row top_modules d-flex justify-content-between'}
+		{modulelist zone=top class='top_modules d-flex justify-content-between'}
 		<div class="topbar" id="topbar">
-			{modulelist zone=topbar class='row topbar_modules d-flex justify-content-between'}
+			{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 		</div>
 	</header>
 {/if}
@@ -121,7 +121,7 @@
 	</div>
 
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
-	<footer class="footer" id="footer">
+	<footer class="footer main-footer" id="footer">
 		<div class="footer_liner">
 			{modulelist zone=bottom class='row mx-0'}
 		</div>

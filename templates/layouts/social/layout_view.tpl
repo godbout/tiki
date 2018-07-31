@@ -127,8 +127,8 @@
 
 	{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 		<footer class="footer main-footer" id="footer">
-			<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
-				<div class="footer_liner">
+			<div class="footer_liner">
+				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 					{modulelist zone=bottom class='row mx-0'} <!-- div.modules -->
 				</div>
 			</div>

@@ -870,6 +870,9 @@ a .icon {
 span.btn-link {
   cursor: pointer; }
 
+.t_navbar.mb-3 > .btn {
+  margin-bottom: 6px; }
+
 .magnify {
   float: right;
   padding-top: 2px; }

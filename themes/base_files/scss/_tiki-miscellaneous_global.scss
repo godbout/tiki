@@ -278,6 +278,11 @@ span.btn-link {
 	cursor: pointer;
 }
 
+// Create whitespace below buttons when the row wraps added by Gary on July 31, 2018.
+.t_navbar.mb-3 > .btn {
+  margin-bottom: 6px;
+}
+
 // div #metadata fieldset.tabcontent, div #metadata div.tabs {
 //  background-color: transparent;
 // }

@@ -151,7 +151,7 @@
 	{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	{if $prefs.feature_layoutshadows eq 'y'}
 	<div id="footer-shadow">{eval var=$prefs.footer_shadow_start}{/if}
-		<footer class="footer" id="footer">
+		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
 				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}" style="padding-left: 0; padding-right: 0;">
 					{modulelist zone=bottom class='mx-0'}
