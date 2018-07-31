@@ -601,7 +601,7 @@ function build_packages($releaseVersion)
 	}
 
 	echo color("\nTo upload the 'tarballs', copy-paste and execute the following line (and change '\$SF_LOGIN' by your SF.net login):\n", 'yellow');
-	echo color("    cd $relDir; scp $fileName.* \$SF_LOGIN@frs.sourceforge.net:/home/pfs/project/t/ti/tikiwiki/$RELEASEFOLDER$\n", 'yellow');
+	echo color("    cd $relDir; scp $fileName.* \$SF_LOGIN@frs.sourceforge.net:/home/pfs/project/t/ti/tikiwiki/\$RELEASEFOLDER\$\n", 'yellow');
 
 	info(">> Packages files have been built in ~/tikipack/$releaseVersion\n");
 }
