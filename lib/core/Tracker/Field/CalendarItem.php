@@ -74,46 +74,50 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 		$calendarId = $this->getOption('calendarId');
 
 		if ($calendarId && $value) {
-			global $user, $language;
+			global $user;
 
 			/** @var TrackerLib $trklib */
 			$trklib = TikiLib::lib('trk');
 
 			$itemId = $this->getItemId();
 
-
 			if ($itemId) {
 				$trackerId = $this->getConfiguration('trackerId');
 				$name = $trklib->get_isMain_value($trackerId, $itemId);
 				$calitemId = $this->getCalendarItemId();// check it really exists
 
+				$data = [
+					'calendarId' => $calendarId,
+					'start'      => $value,
+					//		'end'
+					//		'locationId',
+					//		'categoryId',
+					//		'nlId',
+					//		'priority',
+					//		'status',
+					//		'url',
+					//		'lang'
+					'name'       => $name,
+					//		'description',
+					//		'user',
+					//		'created',
+					//		'lastmodif',
+					//		'allday',
+					//		'recurrenceId',
+					//		'changed'
+				];
+
 				if (! $this->calendarLib->get_calendarid($calitemId)) {
 					$new = true;
 					$calitemId = 0;
+					$data['end'] = $value + 3600;
+				} else {
+					$new = false;
 				}
 				// save the event whether new or not as start time or the title/name might have changed
-				$calitemId = $this->calendarLib->set_item(
-					$user, $calitemId, [
-					'calendarId' => $calendarId,
-					'start'      => $value,
-					'end'        => $new ? ($value + 3600) : null,
-					//					'locationId',
-					//					'categoryId',
-					//					'nlId',
-					//					'priority',
-					//					'status',
-					//					'url',
-					'lang'       => $language,
-					'name'       => $name,
-					//					'description',
-					//					'user',
-					//					'created',
-					//					'lastmodif',
-					//					'allday',
-					//					'recurrenceId',
-					//					'changed'
-				]
-				);
+
+				$calitemId = $this->calendarLib->set_item($user, $calitemId, $data);
+
 				if ($new) {    // added a new one?
 					$this->attributeLib->set_attribute(
 						'trackeritem', $itemId, 'tiki.calendar.item',
