@@ -113,7 +113,7 @@ class Tracker_Field_DateTime extends Tracker_Field_Abstract implements Tracker_F
 		$value = $this->getConfiguration('value');
 
 		if ($value) {
-			if ($context['list_mode'] == 'csv') {
+			if (isset($context['list_mode']) && $context['list_mode'] == 'csv') {
 				return $tikilib->get_short_datetime($value);
 			}
 

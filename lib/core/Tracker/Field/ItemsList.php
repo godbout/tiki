@@ -316,7 +316,12 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 		$filterFieldHere = $this->getTrackerDefinition()->getField($filterFieldIdHere);
 		$filterFieldThere = $trklib->get_tracker_field($filterFieldIdThere);
 
-		$sortFieldIds = array_filter($this->getOption('sortField'));
+		$sortFieldIds = $this->getOption('sortField');
+		if (is_array($sortFieldIds)) {
+			$sortFieldIds = array_filter($sortFieldIds);
+		} else {
+			$sortFieldIds = [];
+		}
 		$status = $this->getOption('status', 'opc');
 		$tracker = Tracker_Definition::get($trackerId);
 
