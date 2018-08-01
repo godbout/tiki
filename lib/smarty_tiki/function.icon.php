@@ -293,7 +293,7 @@ function smarty_function_icon($params, $smarty)
 			case 'img':
 			default:
 				try {
-					$html = smarty_function_html_image($params, $smarty);
+					$html = smarty_function_html_image($params, $smarty->getEmptyInternalTemplate());
 				} catch (Exception $e) {
 					$html = '<span class="icon error" title="' . tra('Error:') . ' ' . $e->getMessage() . '">?</span>';
 				}
