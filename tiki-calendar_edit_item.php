@@ -420,11 +420,11 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 	$save['parsed'] = TikiLib::lib('parser')->parse_data($save['description'], ['is_html' => $prefs['calendar_description_is_html'] === 'y']);
 	$save['parsedName'] = TikiLib::lib('parser')->parse_data($save['name']);
 	$id = isset($save['calitemId']) ? isset($save['calitemId']) : '';
+	$save['recurrenceId'] =  isset($_POST['recurrenceId']) ? $_POST['recurrenceId'] : '';
 	$calitem = $save;
-	$calitem['recurrenceId'] = '';
 
 	$recurrence = [
-		'id'	=> '',
+		'id'	=> $calitem['recurrenceId'],
 		'weekly' => isset($_POST['recurrenceType']) && $_POST['recurrenceType'] == 'weekly',
 		'weekday' => isset($_POST['weekday']) ? $_POST['weekday'] : '',
 		'monthly' => isset($_POST['recurrenceType']) && $_POST['recurrenceType'] == 'monthly',
