@@ -53,12 +53,7 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 			$status_text = tr('Cancelled');
 		}
 
-		$trackerItems = [];
-		$attributes = TikiLib::lib('attribute')->find_objects_with('tiki.calendar.item', $objectId);
-
-		foreach ($attributes as $attribute) {
-			$trackerItems[] = (int) $attribute['itemId'];
-		}
+		$trackerItems =$lib->getAttachedTrackerItems($objectId);
 
 		$data = [
 			'title' => $typeFactory->sortable($item['name']),
