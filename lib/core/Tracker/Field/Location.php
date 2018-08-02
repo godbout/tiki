@@ -11,7 +11,7 @@
  * Letter key: ~G~
  *
  */
-class Tracker_Field_Location extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable
+class Tracker_Field_Location extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable
 {
 	public static function getTypes()
 	{
@@ -255,5 +255,24 @@ class Tracker_Field_Location extends Tracker_Field_Abstract implements Tracker_F
 		return [
 			$baseKey => $typeFactory->sortable($value),	// TODO add geo_point type for elastic
 		];
+	}
+
+	function getTabularSchema()
+	{
+		$schema = new Tracker\Tabular\Schema($this->getTrackerDefinition());
+
+		$permName = $this->getConfiguration('permName');
+		$name = $this->getConfiguration('name');
+
+		$schema->addNew($permName, 'default')
+			->setLabel($name)
+			->setRenderTransform(function ($value) {
+				return $value;
+			})
+			->setParseIntoTransform(function (& $info, $value) use ($permName) {
+				$info['fields'][$permName] = $value;
+			});
+
+		return $schema;
 	}
 }
