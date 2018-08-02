@@ -1,6 +1,24 @@
 {if $data.editUrl}
 	{if not empty($item.itemId)}
-		{button _href=$data.editUrl _text="{tr}Edit Event{/tr}" _id='calitem_'|cat:$field.fieldId _class='btn btn-default btn-sm'}
+		{if not empty($data.event.calitemId)}
+			{$label = '{tr}Edit Event{/tr}'}
+		{else}
+			{$label = '{tr}Add Event{/tr}'}
+		{/if}
+		<div class="col-sm-3">
+			{button href=$data.editUrl _text=$label _id='calitem_'|cat:$field.fieldId _class='btn btn-default btn-sm'}
+		</div>
+		{if $field.options_map.showEventIdInput}
+			{$id = 'calitemId_'|cat:$field.fieldId}
+			<div class="col-sm-3 text-right">
+				<label class="control-label" for="{$id}">
+					{tr}Change Event{/tr}
+				</label>
+			</div>
+			<div class="col-sm-6">
+				{object_selector _format='{title} ({start_date})' _simplevalue=$data.event.calitemId _simplename=$id _simpleid=$id type='calendaritem' calendar_id=$field.options_map.calendarId}
+			</div>
+		{/if}
 	{/if}
 	{jq}
 		$('#calitem_{{$field.fieldId}}').click($.clickModal(

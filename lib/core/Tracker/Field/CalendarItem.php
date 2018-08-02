@@ -32,6 +32,15 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 						'profile_reference' => 'calendar',
 
 					],
+					'showEventIdInput' => [
+						'name' => tr('Show Event Id'),
+						'description' => tr('Show an input for the event id when editing the field, allow lost events to be reattached.'),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+					],
 				],
 			],
 		];
@@ -73,6 +82,23 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 	{
 		$calendarId = $this->getOption('calendarId');
 
+		$event = [];
+
+		if ($this->getOption('showEventIdInput')) {
+			$setCalitemId = isset($_POST['calitemId_' . $this->getFieldId()]) ? $_POST['calitemId_' . $this->getFieldId()] : 0;
+			if ($setCalitemId) {
+				$event = $this->calendarLib->get_item($setCalitemId);
+				if ($event) {
+					$value = $event['start'];
+				}
+			} else if ($setCalitemId === '') {		// event detached
+				$this->removeCalendarItemId();
+				return [
+					'value' => $value,
+				];
+			}
+		}
+
 		if ($calendarId && $value) {
 			global $user;
 
@@ -83,8 +109,19 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 
 			if ($itemId) {
 				$trackerId = $this->getConfiguration('trackerId');
-				$name = $trklib->get_isMain_value($trackerId, $itemId);
-				$calitemId = $this->getCalendarItemId();// check it really exists
+				if ($event['calitemId']) {
+					$calitemId = $event['calitemId'];
+					$name = $event['name'];
+				} else {
+					$calitemId = $this->getCalendarItemId();
+					$event = $this->calendarLib->get_item($setCalitemId);
+
+					if ($event) {
+						$name = $event['name'];
+					} else {
+						$name = $trklib->get_isMain_value($trackerId, $itemId);	// use the item title for new events
+					}
+				}
 
 				$data = [
 					'calendarId' => $calendarId,
@@ -118,21 +155,18 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 
 				$calitemId = $this->calendarLib->set_item($user, $calitemId, $data);
 
-				if ($new) {    // added a new one?
-					$this->attributeLib->set_attribute(
-						'trackeritem', $itemId, 'tiki.calendar.item',
-						$calitemId
-					);
+				if ($new || ($calitemId != $this->getCalendarItemId())) {    // added a new one or changed event id?
+					$this->setCalendarItemId($calitemId);
 				}
 			}
 			//$itemInfo = $calendarlib->get_item($calitemId);
 		} else if (! $value && $oldValue && $itemId = $this->getItemId()) {
 			// delete an item?
-			$calitemId = $this->attributeLib->get_attribute('trackeritem', $itemId, 'tiki.calendar.item');
+			$calitemId = $this->getCalendarItemId();
 			if ($calitemId) {
 				$this->calendarLib->drop_item($GLOBALS['user'], $calitemId);
 				// also remove attribute
-				$this->attributeLib->set_attribute('trackeritem', $itemId, 'tiki.calendar.item', '');
+				$this->removeCalendarItemId();
 			}
 		}
 
@@ -216,7 +250,7 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			$editUrl = '';
 		}
 
-		return $this->renderTemplate('trackerinput/calendaritem.tpl', $context, ['editUrl' => $editUrl]);
+		return $this->renderTemplate('trackerinput/calendaritem.tpl', $context, ['editUrl' => $editUrl, 'event' => $event]);
 	}
 
 	function isValid($ins_fields_data)
@@ -231,5 +265,24 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 	{
 		$calitemId = $this->attributeLib->get_attribute('trackeritem', $this->getItemId(), 'tiki.calendar.item');
 		return $calitemId;
+	}
+
+	/**
+	 * @param $itemId
+	 */
+	private function removeCalendarItemId()
+	{
+		$this->attributeLib->set_attribute('trackeritem', $this->getItemId(), 'tiki.calendar.item', '');
+	}
+
+	/**
+	 * @param $calitemId
+	 */
+	private function setCalendarItemId($calitemId)
+	{
+		$this->attributeLib->set_attribute(
+			'trackeritem', $this->getItemId(), 'tiki.calendar.item',
+			$calitemId
+		);
 	}
 }
