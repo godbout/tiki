@@ -454,7 +454,8 @@ abstract class Toolbar
 			$params['_menu_text'] = 'y';
 			$params['_menu_icon'] = 'y';
 		}
-		return smarty_block_self_link($params, $content, $smarty);
+		$smarty->loadPlugin('smarty_block_self_link');
+		return smarty_block_self_link($params, $content, $smarty->getEmptyInternalTemplate());
 	} // }}}
 
 	protected function setupCKEditorTool($js, $name, $label = '', $icon = '')
