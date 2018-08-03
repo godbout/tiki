@@ -39,6 +39,8 @@ class Services_Edit_SemaphoreController
 		$object_id = $input->object_id->pagename();
 		$object_type = $input->object_type->pagename();
 		$object_type = $object_type ? $object_type : 'wiki page';
+		$value = $input->value->string();
+		$value = $value ? $value : null;
 
 		$now = TikiLib::lib('tiki')->now;
 
@@ -49,6 +51,7 @@ class Services_Edit_SemaphoreController
 				'objectType' => $object_type,
 				'timestamp' => $now,
 				'user' => $user,
+				'value' => $value
 			]
 		);
 
@@ -87,21 +90,11 @@ class Services_Edit_SemaphoreController
 	 */
 	function action_is_set($input)
 	{
-		global $prefs;
-
 		$object_id = $input->object_id->pagename();
 		$object_type = $input->object_type->pagename();
 		$object_type = $object_type ? $object_type : 'wiki page';
-		$limit = $input->limit->int();
 
-		if (! $limit) {
-			$limit = (int)$prefs['warn_on_edit_time'] * 60;
-		}
-
-		$lim = TikiLib::lib('tiki')->now - $limit;
-
-		// remove expired ones
-		$this->table->deleteMultiple(['timestamp' => $this->table->lesserThan((int)$lim)]);
+		$this->removeExpired($input->limit->int());
 
 		return (
 			$this->table->fetchCount([
@@ -109,6 +102,29 @@ class Services_Edit_SemaphoreController
 				'objectType' => $object_type,
 			]) > 0
 		);
+	}
+
+	/**
+	 * @param JitFilter $input
+	 * @return mixed
+	 */
+	function action_get_value($input)
+	{
+		$object_id = $input->object_id->pagename();
+		$object_type = $input->object_type->pagename();
+		$object_type = $object_type ? $object_type : 'wiki page';
+
+		$this->removeExpired($input->limit->int());
+
+		$value = $this->table->fetchOne(
+			'value',
+			[
+				'semName' => $object_id,
+				'objectType' => $object_type,
+			]
+		);
+
+		return $value;
 	}
 
 	/**
@@ -153,5 +169,18 @@ class Services_Edit_SemaphoreController
 		return 'semaphore_' .
 			str_replace(' ', '_', TikiLib::remove_non_word_characters_and_accents($object_id)) . '_ ' .
 			str_replace(' ', '_', $object_type);
+	}
+
+	private function removeExpired($limit) {
+		global $prefs;
+
+		if (! $limit) {
+			$limit = (int)$prefs['warn_on_edit_time'] * 60;
+		}
+
+		$lim = TikiLib::lib('tiki')->now - $limit;
+
+		// remove expired ones
+		$this->table->deleteMultiple(['timestamp' => $this->table->lesserThan((int)$lim)]);
 	}
 }

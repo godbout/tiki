@@ -38,48 +38,63 @@ function wikiplugin_together($data, $params)
 	if (! isset($params['buttonname'])) {
 		$params['buttonname'] = tra('CoWrite with TogetherJS');
 	}
-	TikiLib::lib('header')->add_jsfile('https://togetherjs.com/togetherjs-min.js', true)
-		->add_jq_onready('
-TogetherJS.config("getUserName", function () {
-	return jqueryTiki.userRealName || jqueryTiki.username;
-});
-
-TogetherJS.config("getUserAvatar", function () {
-	return jqueryTiki.userAvatar;
-});
-
-TogetherJS.on("ready", function () {
-	if(m = window.location.href.match(/tiki-editpage.php\?page=([^&]+)/)) {
-		$.ajax({
-			url: "tiki-ajax_services.php",
-			dataType: "json",
-			data: {
-				controller: "edit_semaphore",
-				action: "set",
-				object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
-			}
-		});
-	}
-});
-
+	TikiLib::lib('header')->add_jq_onready('
 if(! window.startTogetherJS) {
 	window.startTogetherJS = function() {
-		TogetherJS();
+		var script = document.createElement("script");
+		script.src = "https://togetherjs.com/togetherjs-min.js";
+		script.async = false;
+		document.getElementsByTagName("head")[0].appendChild(script);
+		window.waitForTogetherJS();
+	}
+	window.waitForTogetherJS = function() {
+		if(typeof TogetherJS === "undefined") {
+			setTimeout(window.waitForTogetherJS, 300);
+		} else {
+			TogetherJS.config("getUserName", function () {
+				return jqueryTiki.userRealName || jqueryTiki.username;
+			});
+			TogetherJS.config("getUserAvatar", function () {
+				return jqueryTiki.userAvatar;
+			});
+			TogetherJS();
+			waitForTogetherJSsession();
+		}
+	}
+	window.waitForTogetherJSsession = function() {
+		if(!TogetherJS.require || !(session = TogetherJS.require("session")) || !session.shareId) {
+			setTimeout(window.waitForTogetherJSsession, 300);
+		} else {
+			if(m = window.location.href.match(/tiki-editpage.php\?page=([^&#]+)/)) {
+				$.ajax({
+					url: "tiki-ajax_services.php",
+					dataType: "json",
+					data: {
+						controller: "edit_semaphore",
+						action: "set",
+						object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
+						value: session.shareId
+					}
+				});
+			}
+		}
 	}
 }
 
-if(m = window.location.href.match(/tiki-editpage.php\?page=([^&]+)/)) {
+if(m = window.location.href.match(/tiki-editpage.php\?page=([^&#]+)/)) {
 	$.ajax({
 		url: "tiki-ajax_services.php",
 		dataType: "json",
 		data: {
 			controller: "edit_semaphore",
-			action: "is_set",
+			action: "get_value",
 			object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
 		},
 		success: function(data) {
 			if(data) {
-				TogetherJS();
+				sessionStorage.removeItem("togetherjs-session.status");
+				window.location.hash = "&togetherjs="+data;
+				startTogetherJS();
 			}
 		}
 	});
