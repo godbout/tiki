@@ -2,8 +2,8 @@
 
 #top_modules,
 #topbar_modules,
-#pagebottom_modules,
-#bottom_modules {
+#pagebottom_modules/*,
+#bottom_modules*/ {
 	display: flex !important;
 	flex-direction: row !important;
 	justify-content: space-between;
@@ -11,7 +11,14 @@
 
 .topbar .navbar { padding: 0; }
 
-#bottom_modules { align-items: flex-start; }
+/*#bottom_modules { align-items: flex-start; }*/
+
+.bottom_modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(273px, 1fr));
+  grid-gap: 30px;
+  grid-row-gap: 30px;
+}
 
 //***** Site Header & Identity *****/
 .box-quickadmin li {

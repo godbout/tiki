@@ -129,7 +129,7 @@
 		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
 				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
-					{modulelist zone=bottom class='row mx-0'} <!-- div.modules -->
+					{modulelist zone=bottom class='bottom_modules px-3'} <!-- div.modules -->
 				</div>
 			</div>
 		</footer>
