@@ -393,6 +393,7 @@ function wikiplugin_trackercalendar($data, $params)
 	$params['addAllFields'] = empty($params['addAllFields']) ? 'y' : $params['addAllFields'];
 	$params['useSessionStorage'] = empty($params['useSessionStorage']) ? 'y' : $params['useSessionStorage'];
 	$params['weekends'] = empty($params['weekends']) ? 'y' : $params['weekends'];
+	$params['external'] = $params['external'] ?? 'n';
 
 	$matches = WikiParser_PluginMatcher::match($data);
 	$builder = new Search_Formatter_Builder;

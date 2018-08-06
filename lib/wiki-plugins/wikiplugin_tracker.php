@@ -1823,7 +1823,7 @@ function wikiplugin_tracker($data, $params)
 				}
 
 				// if we are doing a transaction then pick up values "saved" so far
-				if ($transactionName && isset($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'])) {
+				if (!empty($transactionName) && isset($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'])) {
 					foreach ($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'] as $txField) {
 						if ($txField['fieldId'] == $f['fieldId']) {
 							$item[$f['fieldId']] = $txField['value'];

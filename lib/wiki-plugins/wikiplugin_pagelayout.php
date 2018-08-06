@@ -12,7 +12,7 @@ function wikiplugin_pagelayout_info()
 		'description'   => tra(
 			'Plugin to control width/background/header and footer of individual page, helpful in creating landing pages for projects'
 		),
-		'prefs'         => 'wikiplugin_pagelayout',
+		'prefs'         => ['wikiplugin_pagelayout'],
 		'iconname'      => 'tv',
 		'introduced'    => 19,
 		'tags'          => 'basic',

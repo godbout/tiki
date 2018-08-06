@@ -18,7 +18,7 @@ function smarty_function_trackerinput($params, $smarty)
 	$field = $params['field'];
 	if (isset($params['item'])) {
 		$item = $params['item'];
-	} elseif ($params['itemId']) {
+	} elseif (!empty($params['itemId'])) {
 		$item = $trklib->get_item_info($params['itemId']);
 	} else {
 		$item = [];

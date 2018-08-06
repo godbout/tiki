@@ -283,7 +283,7 @@ function wikiplugin_pivottable($data, $params)
 		$headerlib->add_jsfile('vendor_bundled/vendor/nicolaskruchten/pivottable/dist/pivot.' . $lang . '.js', true);
 	}
 
-	$translate = ( $params['translate'] == 'y' )?true:false;
+	$translate = (! empty($params['translate']) && $params['translate'] == 'y') ? true : false;
 
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('lang', $lang);
@@ -391,9 +391,9 @@ function wikiplugin_pivottable($data, $params)
 
 		$heatmapParams = [];
 		if ($rendererName === 'Heatmap') {
-			$validConfig = is_array($params['heatmapDomain'])
+			$validConfig = ! (empty($params['heatmapDomain']) && empty($params['heatmapColors']))
+				&& is_array($params['heatmapDomain'])
 				&& is_array($params['heatmapColors'])
-				&& ! (empty($params['heatmapDomain']) && empty($params['heatmapColors']))
 				&& count($params['heatmapDomain']) === count($params['heatmapColors']);
 
 			if ($validConfig) {
@@ -411,7 +411,7 @@ function wikiplugin_pivottable($data, $params)
 		$query->filterContent($trackerId, 'tracker_id');
 
 		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-		if ($params['overridePermissions'] === 'y') {
+		if (!empty($params['overridePermissions']) && $params['overridePermissions'] === 'y') {
 			$unifiedsearchlib->initQueryBase($query);
 			$unifiedsearchlib->initQueryPresentation($query);
 		} else {
@@ -756,9 +756,11 @@ function wikiplugin_pivottable($data, $params)
 			}
 			if ($groupColors) {
 				foreach ($highlight as &$row) {
-					$group = $row['group'];
-					if ($group && ! empty($groupColors[$group])) {
-						$row['color'] = $groupColors[$group];
+					if (! empty($row['group'])) {
+						$group = $row['group'];
+						if ($group && ! empty($groupColors[$group])) {
+							$row['color'] = $groupColors[$group];
+						}
 					}
 				}
 			}

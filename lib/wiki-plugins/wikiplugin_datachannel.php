@@ -241,8 +241,7 @@ function wikiplugin_datachannel($data, $params)
 	$config = Tiki_Profile_ChannelList::fromConfiguration($prefs['profile_channels']);
 	if ($config->canExecuteChannels([ $params['channel'] ], $groups, true)) {
 		$smarty->assign('datachannel_execution', $executionId);
-		if ($_SERVER['REQUEST_METHOD'] == 'POST'
-			&& isset($_POST['datachannel_execution'])
+		if (isset($_POST['datachannel_execution'])
 			&& $_POST['datachannel_execution'] == $executionId
 			&& $config->canExecuteChannels([ $params['channel'] ], $groups) ) {
 			$input = array_intersect_key($_POST, $inputfields);

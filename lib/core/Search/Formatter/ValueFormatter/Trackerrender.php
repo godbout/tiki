@@ -79,7 +79,7 @@ class Search_Formatter_ValueFormatter_Trackerrender extends Search_Formatter_Val
 		}
 		$field['value'] = $value;
 
-		$this->cancache = ! in_array($field['type'], ['STARS', 's']);	// don't cache ratings fields
+		$this->cancache = ! in_array($field['type'] ?? '', ['STARS', 's']);	// don't cache ratings fields
 
 		if ($this->editable) {
 			// Caching breaks inline editing
@@ -101,7 +101,7 @@ class Search_Formatter_ValueFormatter_Trackerrender extends Search_Formatter_Val
 				'list_mode' => $this->list_mode,
 				'editable' => $this->editable,
 				'editgroup' => $this->group,
-				'showpopup' => $field['isMain'],
+				'showpopup' => $field['isMain'] ?? false,
 			]
 		);
 		return '~np~' . $rendered . '~/np~';

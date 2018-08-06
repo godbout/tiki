@@ -314,7 +314,7 @@ function wikiplugin_trackerfilter($data, $params)
 			return $filters;
 		}
 	}
-	if (($displayList == 'y' || isset($_REQUEST['filter']) || isset($_REQUEST["tr_offset$iTRACKERLIST"]) || isset($_REQUEST['tr_sort_mode'])) &&
+	if (($displayList == 'y' || isset($_REQUEST['filter']) || isset($_REQUEST["tr_offset$iTrackerFilter"]) || isset($_REQUEST['tr_sort_mode'])) &&
 				(! isset($_REQUEST['iTrackerFilter']) || $_REQUEST['iTrackerFilter'] == $iTrackerFilter)) {
 		$ffs = [];
 		$values = [];
@@ -983,9 +983,9 @@ function wikiplugin_trackerfilter_get_categories($field)
 function wikiplugin_trackerFilter_build_urlquery($params)
 {
 	if (empty($params['filterfield'])) {
-		return '';
+		return [];
 	}
-	$urlquery = '';
+	$urlquery = [];
 	foreach ($params['filterfield'] as $key => $filter) {
 		$filterfield[] = $filter;
 		if (! empty($params['exactvalue'][$key]) && empty($params['filtervalue'][$key])) {

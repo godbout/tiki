@@ -139,6 +139,7 @@ function wikiplugin_include($dataIn, $params)
 		'nopage_text' => '',
 		'pagedenied_text' => '',
 		'page_edit_icon' => 'y',
+		'parse_included_page' => 'n',
 		'pagenotapproved_text' => tr('There are no approved versions of this page.'),
 	], $params);
 	extract($params, EXTR_SKIP);

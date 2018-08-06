@@ -82,7 +82,7 @@ class Search_Formatter_Plugin_SmartyTemplate implements Search_Formatter_Plugin_
 		$smarty->assign('id', $entries->getId());
 		$smarty->assign('tsOn', $entries->getTsOn());
 		$tsettings = $entries->getTsSettings();
-		if (is_array($tsettings)) {
+		if (is_array($tsettings) && isset($tsettings['math'])) {
 			$smarty->assign('tstotals', $tsettings['math']['totals']);
 			$smarty->assign('tscols', $tsettings['columns']);
 		}

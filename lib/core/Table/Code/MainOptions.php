@@ -36,7 +36,9 @@ class Table_Code_MainOptions extends Table_Code_Manager
 		/***  onRenderHeader option - change html elements before table renders. Repeated for each column. ***/
 		$orh = [];
 		/* First handle column-specific code since the array index is used for the column number */
-		foreach (parent::$s['columns'] as $col => $info) {
+		$columns = empty(parent::$s['columns']) ? [] : parent::$s['columns'];
+		$allcols = [];
+		foreach ($columns as $col => $info) {
 			//turn off column resizing per settings
 			if (isset($info['resizable']) && $info['resizable'] === false) {
 				$allcols[$col]['addClass'][] = 'resizable-false';

@@ -5916,14 +5916,16 @@ class TrackerLib extends TikiLib
 		// check wether we have a value assigned to $fields.
 		// This might be the case if $fields was passed through $params and not from the tracker definition.
 		// Build the $items['fieldId'] = value structure
-		if (isset($field['value'])) {
-			$item[$field['fieldId']] = $field['value'];
-		} elseif (isset($item['itemId'])) {
-			$item[$field['fieldId']] = $this->get_item_value(null, $item['itemId'], $field['fieldId']);
-		} elseif (isset($params['value'])) {
-			$field['value'] = $params['value'];
-			$field['ins_' . $field['fieldId']] = $field['value'];
-			$item[$field['fieldId']] = $field['value'];
+		if (isset($field['fieldId'])) {
+			if (isset($field['value'])) {
+				$item[$field['fieldId']] = $field['value'];
+			} elseif (isset($item['itemId'])) {
+				$item[$field['fieldId']] = $this->get_item_value(null, $item['itemId'], $field['fieldId']);
+			} elseif (isset($params['value'])) {
+				$field['value'] = $params['value'];
+				$field['ins_' . $field['fieldId']] = $field['value'];
+				$item[$field['fieldId']] = $field['value'];
+			}
 		}
 
 		// get the handler for the specific fieldtype.
@@ -6271,7 +6273,7 @@ class TrackerLib extends TikiLib
 		return array_filter(
 			array_map(function ($user) {
 				return trim($user);
-			}, str_getcsv($value))
+			}, is_array($value) ? $value : str_getcsv($value))
 		);
 	}
 
