@@ -35,8 +35,8 @@ class Search_Elastic_BulkOperation
 			[
 				['index' => [
 						'_index' => $index,
-						'_type' => $type,
-						'_id' => $id,
+						'_type' => '_doc',
+						'_id' => $type.'-'.$id,
 					]
 				],
 				$data,
@@ -50,8 +50,8 @@ class Search_Elastic_BulkOperation
 			[
 				['delete' => [
 						'_index' => $index,
-						'_type' => $type,
-						'_id' => $id,
+						'_type' => '_doc',
+						'_id' => $type.'-'.$id,
 					]
 				],
 			]

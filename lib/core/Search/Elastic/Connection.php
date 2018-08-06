@@ -128,10 +128,15 @@ class Search_Elastic_Connection
 	{
 		$result = $this->get("/$index/_validate/query?explain=true", json_encode(['query' => $query['query']]));
 		if (isset($result->valid) && $result->valid === false) {
-			foreach ($result->explanations as $explanation) {
-				if ($explanation->valid === false) {
-					throw new Search_Elastic_QueryParsingException($explanation->error);
+			if (! empty($result->explanations)) {
+				foreach ($result->explanations as $explanation) {
+					if ($explanation->valid === false) {
+						throw new Search_Elastic_QueryParsingException($explanation->error);
+					}
 				}
+			}
+			if (! empty($result->error)) {
+				throw new Search_Elastic_QueryParsingException($result->error);
 			}
 		}
 	}
@@ -158,7 +163,7 @@ class Search_Elastic_Connection
 	function unstoreQuery($index, $name)
 	{
 		if ($this->getVersion() >= 5) {
-			return $this->delete("/$index/percolator/$name");
+			return $this->delete("/$index/_doc/percolator-$name");
 		} else {
 			return $this->delete("/$index/.percolator/$name");
 		}
@@ -171,7 +176,19 @@ class Search_Elastic_Connection
 		}
 
 		$type = $this->simplifyType($type);
-		if ($this->getVersion() >= 5) {
+		if ($this->getVersion() >= 6) {
+			$result = $this->search($index, [
+				'query' => [
+					'percolate' => [
+						'field' => 'query',
+						'document' => $document
+					],
+				],
+			]);
+			return array_map(function ($item) {
+				return preg_replace('/^percolator-/', '', $item->_id);
+			}, $result->hits->hits);
+		} elseif ($this->getVersion() >= 5) {
 			$result = $this->search($index, [
 				'query' => [
 					'percolate' => [
@@ -182,7 +199,7 @@ class Search_Elastic_Connection
 				],
 			]);
 			return array_map(function ($item) {
-				return $item->_id;
+				return preg_replace('/^percolator-/', '', $item->_id);
 			}, $result->hits->hits);
 		} else {
 			$result = $this->get("/$index/$type/_percolate", json_encode([
@@ -259,6 +276,18 @@ class Search_Elastic_Connection
 		return false;
 	}
 
+	public function resolveAlias($aliasOrIndexName) {
+		try {
+			$current = $this->rawApi('/'.$aliasOrIndexName);
+		} catch (Search_Elastic_Exception $e) {
+			$current = [];
+		}
+		foreach ($current as $indexName => $_) {
+			return $indexName;
+		}
+		return $aliasOrIndexName;
+	}
+
 	private function rawIndex($index, $type, $id, $data)
 	{
 		$this->dirty[$index] = true;
@@ -268,7 +297,7 @@ class Search_Elastic_Connection
 		} else {
 			$id = rawurlencode($id);
 
-			return $this->put("/$index/$type/$id", json_encode($data));
+			return $this->put("/$index/_doc/$type-$id", json_encode($data));
 		}
 	}
 
@@ -282,7 +311,7 @@ class Search_Elastic_Connection
 		} else {
 			$id = rawurlencode($id);
 
-			return $this->delete("/$index/$type/$id");
+			return $this->delete("/$index/_doc/$type-$id");
 		}
 	}
 
@@ -310,26 +339,23 @@ class Search_Elastic_Connection
 		$type = $this->simplifyType($type);
 		$id = rawurlencode($id);
 
-		$document = $this->get("/$index/$type/$id");
+		$document = $this->get("/$index/_doc/$type-$id");
 
 		if (isset($document->_source)) {
 			return $document->_source;
 		}
 	}
 
-	function mapping($index, $type, array $mapping, callable $getIndex)
+	function mapping($index, array $mapping, callable $getIndex)
 	{
-		$type = $this->simplifyType($type);
-		$data = [$type => [
-			"properties" => $mapping,
-		]];
+		$data = ["properties" => $mapping];
 
 		if (empty($this->indices[$index])) {
 			$this->createIndex($index, $getIndex);
 			$this->indices[$index] = true;
 		}
 
-		$result = $this->put("/$index/$type/_mapping", json_encode($data));
+		$result = $this->put("/$index/_mapping/_doc", json_encode($data));
 
 		return $result;
 	}
@@ -375,7 +401,7 @@ class Search_Elastic_Connection
 		}
 
 		if ($this->getVersion() >= 5) {
-			$this->put("/$index/percolator/_mapping", json_encode([
+			$this->put("/$index/_mapping/_doc", json_encode([
 				'properties' => [
 					'query' => [
 						'type' => 'percolator'
