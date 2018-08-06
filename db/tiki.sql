@@ -2117,6 +2117,7 @@ CREATE TABLE `tiki_semaphores` (
   `objectType` varchar(20) default 'wiki page',
   `user` varchar(200) NOT NULL default '',
   `timestamp` int(14) default NULL,
+  `value` VARCHAR(255) NULL,
   PRIMARY KEY (`semName`)
 ) ENGINE=MyISAM;
 
