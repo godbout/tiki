@@ -3098,55 +3098,46 @@ body.fullscreen.tiki.navbar-padding {
 .col-sm-2 .form-inline .form-control, .col-md-2 .form-inline .form-control {
   width: 100%; }
 
-.hide_zone_left #col2, .hide_zone_right #col3 {
+.hide_zone_left .col2, .hide_zone_right .col3 {
   display: none; }
 
-.hide_zone_left .col-lg-8.col1 {
-  left: 0;
+.hide_zone_left .col1.col-lg-8 {
   width: 83.3334%;
   flex: 0 0 83.3334%;
   max-width: 83.3334%; }
 
-.hide_zone_right .col-lg-8.col1 {
+.hide_zone_right .col1.col-lg-8 {
   width: 83.3334%;
   flex: 0 0 83.3334%;
   max-width: 83.3334%; }
 
-.hide_zone_left.hide_zone_right .col-lg-8.col1 {
+.hide_zone_left .col1.col-lg-9, .hide_zone_right .col1.col-lg-9 {
+  width: 100%; }
+
+.hide_zone_left .col1.col-lg-9 {
+  width: 75%;
+  flex: 0 0 75%;
+  max-width: 75%; }
+
+.hide_zone_right .col1.col-lg-9 {
   width: 100%;
   flex: 0 0 100%;
   max-width: 100%; }
-/*
- .hide_zone_right #col2 {
- right: 83.3334%; // TODO: make it computed less variable?
- }
- */
-.hide_zone_left .col-md-9.col-md-push-3.col1 {
-  left: 0;
-  width: 100%; }
 
-.hide_zone_right .col-md-9.col1 {
-  width: 100%; }
+.hide_zone_right .side-col-toggle + .col1.col-lg-9 {
+  width: 75%;
+  flex: 0 0 75%;
+  max-width: 75%; }
 
-.hide_zone_left .col-md-6.col-md-push-3.col1 {
-  left: 0;
-  width: 75%; }
+.hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2 {
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%; }
 
-.hide_zone_right .col-md-6.col-md-push-3.col1 {
-  width: 75%; }
-
-.hide_zone_left.hide_zone_right .col-md-6.col-md-push-3.col1 {
-  width: 100%; }
-
-.hide_zone_right #col2.col-md-3.col-md-pull-6 {
-  right: 75%; }
-
-.hide_zone_left .col-md-9.col-md-push-3.col1 {
-  left: 0;
-  width: 100%; }
-
-.hide_zone_right .col-md-9.col1 {
-  width: 100%; }
+.hide_zone_left.hide_zone_right .col1.col-lg-8, .hide_zone_left.hide_zone_right .col1.col-lg-9 {
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%; }
 
 @media (max-width: 767.98px) {
   #col1 {

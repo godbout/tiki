@@ -205,74 +205,62 @@ body.fullscreen.tiki.navbar-padding {
 ///// User layout columns (module zones) switching / toggling (resurrected feature)
 
 // When hidden we simply do not display the columns
-.hide_zone_left #col2,
-.hide_zone_right #col3 {
+.hide_zone_left .col2,
+.hide_zone_right .col3 {
 	display: none;
 }
 
-// percentage(( (100 * 10) / $grid-columns )); // why 83.3334% values below? when one col of md-2 of 12 grid is hidden it shows 10 grid-columns which is 83.33333333% - it will be different number if $grid-columns variable changes or #col2 and #col3 will span to more than 2 grid columns
-
 // Overrides in case of 3-col layout
-.hide_zone_left .col-lg-8.col1 { // when left col is hidden
-	left: 0;
-	width: 83.3334%; // TODO: make it computed less variable?
+.hide_zone_left .col1.col-lg-8 { // when left col is hidden
+	width: 83.3334%; // TODO: make it computed scss variable?
 	flex: 0 0 83.3334%;
 	max-width: 83.3334%;
 }
-.hide_zone_right .col-lg-8.col1 { // when right col is hidden
-	width: 83.3334%; // TODO: make it computed less variable?
+.hide_zone_right .col1.col-lg-8 { // when right col is hidden
+	width: 83.3334%; // TODO: make it computed scss variable?
 	flex: 0 0 83.3334%;
 	max-width: 83.3334%;
 }
-.hide_zone_left.hide_zone_right .col-lg-8.col1 { // when both are hidden
+
+// Overrides in case of 2-col layout with no right column or no left column, respectively
+.hide_zone_left .col1.col-lg-9,
+.hide_zone_right .col1.col-lg-9{
+	width: 100%;
+}
+
+// Overrides in case of 2-col layout with no right column
+.hide_zone_left .col1.col-lg-9 {
+	width: 75%;
+	flex: 0 0 75%;
+	max-width: 75%;
+}
+
+// Overrides in case of 2-col layout with no left column
+.hide_zone_right .col1.col-lg-9 {
 	width: 100%;
 	flex: 0 0 100%;
 	max-width: 100%;
 }
 
-/*
-.hide_zone_right #col2 {
-	right: 83.3334%; // TODO: make it computed less variable?
-}
-*/
-
-// Overrides in case of 2-col layout with no right column
-.hide_zone_left .col-md-9.col-md-push-3.col1 {
-	left: 0;
-	width: 100%;
+// Left col on, right col off
+.hide_zone_right .side-col-toggle + .col1.col-lg-9 {
+  width: 75%;
+  flex: 0 0 75%;
+  max-width: 75%;
 }
 
-// Overrides in case of 2-col layout with no left colum
-.hide_zone_right .col-md-9.col1 {
-	width: 100%;
+// Right col assigned off, left col toggled off
+.hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2 {
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 
-// Start overrides for wide side columns layout
-// Overrides in case of 3-col layout
-.hide_zone_left .col-md-6.col-md-push-3.col1 { // when left col is hidden
-	left: 0;
-	width: 75%; // 83.3334%; // TODO: make it computed less variable?
-}
-.hide_zone_right .col-md-6.col-md-push-3.col1 { // when right col is hidden
-	width: 75%; // 83.3334%; // TODO: make it computed less variable?
-}
-.hide_zone_left.hide_zone_right .col-md-6.col-md-push-3.col1 { // when both are hidden
-	width: 100%;
-}
-
-.hide_zone_right #col2.col-md-3.col-md-pull-6 {
-	right: 75%; // TODO: make it computed less variable?
-}
-
-// Overrides in case of 2-col layout with no right column
-.hide_zone_left .col-md-9.col-md-push-3.col1 {
-	left: 0;
-	width: 100%;
-}
-
-// Overrides in case of 2-col layout with no left column
-.hide_zone_right .col-md-9.col1 {
-	width: 100%;
+.hide_zone_left.hide_zone_right .col1.col-lg-8,
+.hide_zone_left.hide_zone_right .col1.col-lg-9 { // when both are hidden, in 3-col and 2-col cases
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 // End overrides for wide side column layout
 
