@@ -146,7 +146,19 @@
 						{if $edit}
 							{if $recurrence.id gt 0}
 								<input type="hidden" name="recurrent" value="1">
-								{tr}This event depends on a recurrence rule{/tr}
+								{tr}This event depends on a recurrence rule,{/tr}
+								{tr}starting on{/tr} {$recurrence.startPeriod|tiki_long_date},&nbsp;
+								{if $recurrence.endPeriod gt 0}
+									{tr}ending by{/tr} {$recurrence.endPeriod|tiki_long_date}
+								{else}
+									{tr}ending after{/tr} {$recurrence.nbRecurrences} {tr}events{/tr}
+								{/if}
+								{if $recurranceNumChangedEvents gt 1}
+									{tr _0=$recurranceNumChangedEvents}(%0 events have been manually modified){/tr}
+								{elseif $recurranceNumChangedEvents gt 0}
+									{tr _0=$recurranceNumChangedEvents}(%0 event has been manually modified){/tr}
+								{/if}
+								<br>
 							{else}
 								<div class="form-check">
 									<label class="form-check-label">
@@ -328,7 +340,7 @@
 									{tr}Start period{/tr}<br>
 									{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
 										<div class="col-sm-offset-1 col-sm-6 input-group">
-											{if empty($recurrence.startPeriod)}{$startPeriod = $now}{else}{$startPeriod = $recurrence.startPeriod}{/if}
+											{if empty($recurrence.startPeriod)}{$startPeriod = $calitem.start}{else}{$startPeriod = $recurrence.startPeriod}{/if}
 											{jscalendar id="startPeriod" date=$startPeriod fieldname="startPeriod" align="Bc" showtime='n'}
 										</div>
 									{else}
@@ -403,7 +415,7 @@
 						{/if}
 					</div>
 					<div class="col-md-3 start time">
-						{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock class='form-control date nochosen'}
+						{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 					</div>
 					<label class="col-md-2">
 						<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
@@ -437,10 +449,10 @@
 							{/if}
 					</div>
 					<div class="col-md-3 end time">
-						{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_timespan use_24_hours=$use_24hr_clock class='form-control date nochosen'}
+						{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 					</div>
 					<div class="col-md-3 duration time" style="display:none;">
-						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_timespan class='form-control date nochosen'}
+						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_minute_interval class='form-control date nochosen'}
 					</div>
 					<div class="col-md-2 time">
 						<a href="#" id="durationBtn" class="btn btn-sm btn-primary">
@@ -764,10 +776,12 @@
 							<label for="id_affectEvt">
 								{tr}Update this event only{/tr}
 							</label><br>
-							<input type="radio" id="id_affectMan" name="affect" value="manually">
-							<label for="id_affectMan">
-								{tr}Update every unchanged event in this recurrence series{/tr}
-							</label><br>
+							{if $recurranceNumChangedEvents}
+								<input type="radio" id="id_affectMan" name="affect" value="manually">
+								<label for="id_affectMan">
+									{tr}Update every unchanged event in this recurrence series{/tr}
+								</label><br>
+							{/if}
 							<input type="radio" id="id_affectAll" name="affect" value="all">
 							<label for="id_affectAll">
 								{tr}Update every event in this recurrence series{/tr}

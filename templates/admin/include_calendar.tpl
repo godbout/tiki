@@ -27,6 +27,7 @@
 		{preference name=calendar_list_begins_focus}
 		{preference name=calendar_firstDayofWeek}
 		{preference name=calendar_timespan}
+		{preference name=calendar_minute_interval}
 		{preference name=feature_cal_manual_time}
 		{preference name=calendar_export}
 		{preference name=calendar_export_item}

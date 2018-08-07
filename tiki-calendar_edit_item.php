@@ -323,7 +323,7 @@ if (isset($_POST['act'])) {
 			if (! $impossibleDates) {
 				if (array_key_exists('recurrenceId', $_POST)) {
 					$save['recurrenceId'] = $_POST['recurrenceId'];
-					$save['changed'] = true;
+					$save['changed'] = 1;
 				}
 				$calitemId = $calendarlib->set_item($user, $save['calitemId'], $save);
 				// Save the ip at the log for the addition of new calendar items
@@ -606,6 +606,11 @@ $smarty->assign('hour_minmax', $hour_minmax);
 if (isset($calitem['recurrenceId']) && $calitem['recurrenceId'] > 0) {
 	$cr = new CalRecurrence($calitem['recurrenceId']);
 	$smarty->assign('recurrence', $cr->toArray());
+	$recurranceNumChangedEvents = TikiDb::get()->table('tiki_calendar_items')->fetchCount([
+		'recurrenceId' => $calitem['recurrenceId'],
+		'changed' => 1,
+	]);
+	$smarty->assign('recurranceNumChangedEvents', (int) $recurranceNumChangedEvents);
 }
 $headerlib->add_jsfile('lib/jquery_tiki/calendar_edit_item.js');
 

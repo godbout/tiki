@@ -287,9 +287,9 @@ class CalRecurrence extends TikiLib
 						$now,
 						$this->getId()
 					 ];
-		$oldRec = new CalRecurrence($this->getId()); // we'll need old version to compare fields.
 		$result = $this->query($query, $bindvars);
 		if ($result) {
+			$oldRec = new CalRecurrence($this->getId()); // we'll need old version to compare fields.
 			// update the recurrent events, according to the way to handle the already changed events
 			$this->updateEvents($updateManuallyChangedEvents, $oldRec);
 			return true;
@@ -648,6 +648,9 @@ class CalRecurrence extends TikiLib
 				$newEndHour = floor($this->getEnd() / 100);
 				$newEndMin = $this->getEnd() - 100 * $newEndHour;
 				$tmp['end'] = TikiLib::make_time($newEndHour, $newEndMin, 0, $anEvtStart[1], $anEvtStart[2], $anEvtStart[0]);
+			}
+			if ($updateManuallyChangedEvents) {
+				$tmp['changed'] = 0;
 			}
 			if (count($tmp) > 0) {
 				$tmp['recurrenceId'] = $this->getId();
