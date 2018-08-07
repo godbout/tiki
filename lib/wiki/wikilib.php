@@ -698,7 +698,7 @@ class WikiLib extends TikiLib
 			foreach ($matches as $match) {
 				$arguments = $argParser->parse($match->getArguments());
 				if ($match->getName() == 'include') {
-					$result[] = [
+					$result[$relation['type'] . ':' . $relation['itemId']] = [
 						'type' => $relation['type'],
 						'itemId' => $relation['itemId'],
 						'start' => $arguments['start'],
@@ -708,7 +708,7 @@ class WikiLib extends TikiLib
 			}
 		}
 
-		return $result;
+		return array_values($result);
 	}
 
 	public function set_page_cache($page, $cache)
