@@ -1,22 +1,22 @@
 {* $Id$ *}
 
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Wizard{/tr}" title="Configuration Wizard">
-		<i class="fa fa-gear fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	{tr}Configure general user & community features and settings related to sharing and social networks{/tr}.
-	</br></br></br>
-	<div class="media-body">
-		{icon name="user" size=3 iclass="pull-right"}
-		<fieldset>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
+			<i class="fa fa-gear fa-stack-2x"></i>
+			<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
+		<div class="media-body">
+			{icon name="user" size=3 iclass="pull-right"}
+			<h4 class="mt-0 mb-4">{tr}Configure general user & community features and settings related to sharing and social networks{/tr}.</h4>
+			<fieldset>
 			<legend>{tr}User Features{/tr}</legend>
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					{preference name=feature_mytiki}
 					{preference name=feature_messages}
-				</div>
-				<div class="col-lg-6">
+
 					{preference name=feature_userPreferences}
 					{preference name=feature_wizard_user}
 				</div>
@@ -45,7 +45,7 @@
 		<fieldset>
 			<legend>{tr}Community General Settings{/tr}</legend>
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					{preference name=users_prefs_allowMsgs}
 					{preference name=feature_community_mouseover}
 					<div class="adminoptionboxchild" id="feature_community_mouseover_childcontainer">
@@ -64,8 +64,7 @@
 						{preference name=contact_anon}
 						{preference name=contact_priority_onoff}
 					</div>
-				</div>
-				<div class="col-lg-6">
+
 					{preference name=users_prefs_user_information}
 					{preference name=users_prefs_mailCharset}
 					<div class="adminoptionbox preference clearfix all"></div>
@@ -83,22 +82,20 @@
 		<fieldset>
 			<legend>{tr}Sharing & Networking{/tr}</legend>
 			<div class="row">
-				<div class="col-lg-3">
+				<div class="col-lg-12">
 					{preference name=feature_share}
-					<br>
+
 					<em>{tr}See also{/tr} {tr}Share{/tr} <a href="tiki-admin.php?page=share" target="_blank">{tr}admin panel{/tr}</a> &amp; <a href="https://doc.tiki.org/Share" target="_blank">{tr}in doc.tiki.org{/tr}</a></em>.
-				</div>
-				<div class="col-lg-6">
+					<br><br>
 					{preference name=feature_friends}
 					<div class="adminoptionboxchild" id="feature_friends_childcontainer">
 						{preference name=social_network_type}
 					</div>
-					<br>
+
 					<em>{tr}See also{/tr} "{tr}Community{/tr} <a href="tiki-admin.php?page=community&cookietab=2" target="_blank">{tr}admin panel{/tr}</a> > {tr}Social Network{/tr} > {tr}Friendship and Followers{/tr}" &amp; <a href="https://doc.tiki.org/Friendship+Network" target="_blank">{tr}in doc.tiki.org{/tr}</a></em>.
-				</div>
-				<div class="col-lg-3">
+<br><br>
 					{preference name=feature_socialnetworks}
-					<br>
+
 					<em>{tr}See also{/tr} {tr}Social networks{/tr} <a href="tiki-admin.php?page=socialnetworks&amp;cookietab=1" target="_blank">{tr}admin panel{/tr}</a> &amp; <a href="https://doc.tiki.org/Social+Networks" target="_blank">{tr}in doc.tiki.org{/tr}</a></em>
 				</div>
 			</div>

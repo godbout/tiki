@@ -1,15 +1,16 @@
 {* $Id$ *}
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Wizard{/tr}" title="Configuration Wizard">
-		<i class="fa fa-gear fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	<div class="media-content">
-		{tr}Set up the Wiki environment{/tr}</br></br></br>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
+			<i class="fa fa-gear fa-stack-2x"></i>
+			<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
+	<div class="media-body">
 		{icon name="file-text-o" size=3 iclass="adminWizardIconright"}
+		<h4 class="mt-0 mb-4">{tr}Set up the Wiki environment{/tr}</h4>
 		<fieldset>
 			<legend>{tr}Wiki environment{/tr}</legend>
-
 			<div class="admin clearfix featurelist">
 				{preference name=feature_categories}
 				{preference name=wiki_auto_toc}
@@ -35,7 +36,6 @@
 			</div>
 			<br><br>
 			<em>{tr}See also{/tr} <a href="tiki-admin.php?page=wiki&amp;alt=Wiki#content1" target="_blank">{tr}Wiki admin panel{/tr}</a></em>
-
 		</fieldset>
 	</div>
 </div>

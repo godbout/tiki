@@ -1,16 +1,19 @@
 {* $Id$ *}
-
-<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Wizard{/tr}" title="Configuration Wizard">
-	<i class="fa fa-gear fa-stack-2x"></i>
-	<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-</span>
-{tr}Select editor type{/tr}.</br></br></br>
-<div class="adminWizardContent">
-	{icon name="admin_textarea" size=3 iclass="adminWizardIconright"}
-	<fieldset>
-		<legend>{tr}Editor{/tr}</legend>
-		<br>
-		<table style="border:0px;padding-left:20px">
+<div class="media">
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
+			<i class="fa fa-gear fa-stack-2x"></i>
+			<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
+	<div class="media-body">
+		{icon name="admin_textarea" size=3 iclass="adminWizardIconright pull-right"}
+		<h4 class="mt-0 mb-4">{tr}Select editor type{/tr}</h4>
+		<div class="adminWizardContent">
+		<fieldset>
+			<legend>{tr}Editor{/tr}</legend>
+			<br>
+			<table style="border:0px;padding-left:20px">
 			<tr>
 				<td>
 					<input type="radio" name="editorType" value="text" {if empty($editorType) || $editorType eq 'text'}checked="checked"{/if} /> {tr}Only Plain Text Editor (Disable Wysiwyg){/tr}

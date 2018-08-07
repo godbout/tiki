@@ -28,7 +28,7 @@
 		<div class="media mb-5">
 			<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Profiles Wizard{/tr}" title="{tr}Configuration Profiles Wizard{/tr}" >
 				<i class="fa fa-cubes fa-stack-2x"></i>
-				<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
+				<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
 			<div class="media-body">
 				<p>{tr}You may start by applying some of our configuration templates through the <b>Configuration Profiles Wizard</b>{/tr}. {tr}They are like the <b>Macros</b> from many computer languages{/tr}.
@@ -47,7 +47,7 @@
 		<div class="media mb-5">
 			<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Walkthrough{/tr}" title="Configuration Walkthrough">
 				<i class="fa fa-gear fa-stack-2x"></i>
-				<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
+				<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
 			<div class="media-body">
 				<p>
@@ -65,7 +65,7 @@
 		<div class="media mb-5">
 			<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 				<i class="fa fa-arrow-circle-up fa-stack-2x"></i>
-				<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
+				<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
 			<div class="media-body">
 				<p>

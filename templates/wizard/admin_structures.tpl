@@ -1,14 +1,17 @@
 {* $Id$ *}
 
 <div class="media">
-<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Wizard{/tr}" title="Configuration Wizard">
-	<i class="fa fa-gear fa-stack-2x"></i>
-	<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-</span>
-	{tr}Structures organize a group of wiki pages into a tree or book that can be easily navigated by users. Creating a structure is the fastest method for creating multiple pages at once. It's a great way to make a book, as well as to allow users to create new pages that will be automatically found in a common table of contents. New pages can inherit permissions from the structure homepage{/tr}.
-	</br></br>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
+			<i class="fa fa-gear fa-stack-2x"></i>
+			<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
 	<div class="media-body">
 		{icon name="structure" size=3 iclass="pull-right"}
+		<h4 class="">{tr}Hierarchical organization of wiki pages{/tr}</h4>
+		{tr}Structures organize a group of wiki pages into a tree or book that can be easily navigated by users. Creating a structure is the fastest method for creating multiple pages at once. It's a great way to make a book, as well as to allow users to create new pages that will be automatically found in a common table of contents. New pages can inherit permissions from the structure homepage{/tr}.
+		<br><br>
 		<fieldset>
 			<legend>{tr}Structures options{/tr}</legend>
 			<div class="admin clearfix featurelist">

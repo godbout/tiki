@@ -1,20 +1,22 @@
 {* $Id$ *}
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Wizard{/tr}" title="Configuration Wizard">
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
 		<i class="fa fa-gear fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
+		<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
-	{icon name="wrench" size=3 iclass="pull-right"}
-	<div class="row">
-		<div class="col-lg-9">
-			{tr}The namespace separator should not{/tr}
-			<ul>
-				<li>{tr}contain any of the characters not allowed in wiki page names, typically{/tr} /?#[]@$&amp;+;=&lt;&gt;</li>
-				<li>{tr}conflict with wiki syntax tagging{/tr}</li>
-			</ul>
-		</div>
 	</div>
 	<div class="media-body">
+		{icon name="wrench" size=3 iclass="pull-right"}
+		<div class="row">
+			<div class="col-lg-9">
+				{tr}The namespace separator should not{/tr}
+				<ul>
+					<li>{tr}contain any of the characters not allowed in wiki page names, typically{/tr} /?#[]@$&amp;+;=&lt;&gt;</li>
+					<li>{tr}conflict with wiki syntax tagging{/tr}</li>
+				</ul>
+			</div>
+		</div>
 		<fieldset>
 			<legend>{tr}Namespace settings{/tr}{help url="Namespaces"}</legend>
 			{preference name=namespace_separator}

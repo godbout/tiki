@@ -1,12 +1,14 @@
 {* $Id$ *}
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Wizard{/tr}" title="Configuration Wizard">
-		<i class="fa fa-gear fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	{tr}Configure the Tiki theme and other look & feel preferences{/tr}.</br></br></br>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
+			<i class="fa fa-gear fa-stack-2x"></i>
+			<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
 	<div class="media-body">
 		{icon name="admin_look" size=3 iclass="adminWizardIconright"}
+		<h4 class="mt-0 mb-4">{tr}Configure the Tiki theme and other look & feel preferences{/tr}</h4>
 		<fieldset>
 			<legend>{tr}Look & Feel options{/tr}</legend>
 				<div class="row">

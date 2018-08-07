@@ -1,13 +1,15 @@
 {* $Id$ *}
 
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Wizard{/tr}" title="Configuration Wizard">
-		<i class="fa fa-gear fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	{tr}Set up the main Tiki features. The wiki and file gallery features are always enabled.{/tr}</br></br></br>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
+			<i class="fa fa-gear fa-stack-2x"></i>
+			<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
 	<div class="media-body">
 		{icon name="admin_features" size=3 iclass="pull-right"}
+		<h4 class="mt-0 mb-4">{tr}Set up the main Tiki features. The wiki and file gallery features are always enabled.{/tr}</h4>
 		<fieldset>
 			<legend>{tr}Main Tiki features{/tr}</legend>
 			{* preference name=feature_wiki *}
