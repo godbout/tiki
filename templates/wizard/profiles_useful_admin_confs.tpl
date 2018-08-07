@@ -1,14 +1,15 @@
 {* $Id$ *}
 
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Profiles Wizard{/tr}" title="{tr}Configuration Profiles Wizard{/tr}" >
-		<i class="fa fa-cubes fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	{tr}Check out some useful changes in the configuration for site administrators to ease debugging{/tr}. </br></br></br>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="{tr}Configuration Profiles Wizard{/tr}" >
+			<i class="fa fa-cubes fa-stack-2x"></i>
+			<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
 	<div class="media-body">
-		<fieldset>
-			<legend>{tr}Profiles:{/tr}</legend>
+		<h4 class="mt-0 mb-4">{tr}Check out some useful changes in the configuration for site administrators to ease debugging{/tr}.</h4>
+		<h3>{tr}Profiles:{/tr}</h3>
 			<div class="row">
 				<div class="col-md-{*6 commented out until second column, below, is used. *}12">
 					<div class="row">
@@ -42,7 +43,5 @@
 					&nbsp;
 				</div> *}
 			</div>
-		</fieldset>
-		<br>
 	</div>
 </div>
