@@ -33,7 +33,7 @@ if ($cat_objId) {
 } elseif (false&&$tiki_p_admin_freetags != 'y') {
 	// Global tag edit only available to admins
 	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have permission to use this feature"));
+	$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
 	$smarty->display("error.tpl");
 	die;
 }

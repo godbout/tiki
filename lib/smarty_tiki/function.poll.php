@@ -36,7 +36,7 @@ function smarty_function_poll($params, $smarty)
 	}
 
 	if ($tiki_p_view_poll_results != 'y' && $tiki_p_vote_poll != 'y') {
-		return tra('You do not have permission to use this feature');
+		return tra('You do not have the permission that is needed to use this feature');
 	}
 
 	if ($id) {

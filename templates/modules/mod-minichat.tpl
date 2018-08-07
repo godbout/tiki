@@ -13,7 +13,7 @@
 		</form>
 	</div>
 	{else}
-	{tr}You do not have permission to use this feature.{/tr}
+	{tr}You do not have the permission that is needed to use this feature.{/tr}
 	{/if}
 {/tikimodule}
 

@@ -15,7 +15,7 @@ global $tiki_p_configure_modules, $prefs, $user;
 $check_req = (isset($_REQUEST["mc_unassign"]) || isset($_REQUEST["mc_up"]) || isset($_REQUEST["mc_down"]) || isset($_REQUEST["mc_move"]));
 if ($tiki_p_configure_modules != 'y' && $check_req) {
 	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have permission to use this feature"));
+	$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
 	$smarty->display("error.tpl");
 	die;
 }

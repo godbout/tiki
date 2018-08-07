@@ -62,7 +62,7 @@ class TikiAccessLib extends TikiLib
 		$this->check_user($user);
 
 		if (($user != 'admin') && ($tiki_p_admin != 'y')) {
-			$msg = tra("You do not have permission to use this feature");
+			$msg = tra("You do not have the permission that is needed to use this feature");
 			if ($feature_name) {
 				$msg = $msg . ": " . $feature_name;
 			}
@@ -199,7 +199,7 @@ class TikiAccessLib extends TikiLib
 			if ($permission_name) {
 				$permission = $permission_name;
 			}
-			$this->display_error('', tra("You do not have permission to use this feature:") . " " . $permission, '403', false);
+			$this->display_error('', tra("You do not have the permission that is needed to use this feature:") . " " . $permission, '403', false);
 			if (empty($GLOBALS['user'])) {
 				$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
 			}
@@ -246,7 +246,7 @@ class TikiAccessLib extends TikiLib
 				$permission = implode(', ', $permissions);
 			}
 
-			$this->display_error('', tra("You do not have permission to use this feature") . ": " . $permission, '403', false);
+			$this->display_error('', tra("You do not have the permission that is needed to use this feature") . ": " . $permission, '403', false);
 		}
 	}
 
@@ -264,7 +264,7 @@ class TikiAccessLib extends TikiLib
 				if ($permission_name) {
 					$permission = $permission_name;
 				}
-				$this->display_error('', tra("You do not have permission to use this feature") . ": " . $permission, '403', false);
+				$this->display_error('', tra("You do not have the permission that is needed to use this feature") . ": " . $permission, '403', false);
 			}
 		}
 	}
