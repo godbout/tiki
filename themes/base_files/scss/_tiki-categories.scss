@@ -103,3 +103,8 @@ a.categpath {
 ul.tree {
 	padding-left: 3px;
 }
+
+// show the flipper icons on category treenodes
+.tree.root .form-check {
+	padding-left: 2.5rem;
+}
