@@ -347,6 +347,9 @@ class Services_Edit_ListPluginHelper
 					'wiki' => [
 						'type' => 'pagename',
 					],
+					'tplwiki' => [
+						'type' => 'pagename',
+					],
 				],
 			],
 			'format' => [
