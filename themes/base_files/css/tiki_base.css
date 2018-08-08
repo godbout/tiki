@@ -2093,7 +2093,7 @@ ul.tree {
   padding-left: 3px; }
 
 .tree.root .form-check {
-  padding-left: 2.5rem; }
+  margin-left: 1rem; }
 
 .searchresults {
   list-style: none;
