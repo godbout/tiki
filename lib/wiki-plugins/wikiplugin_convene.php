@@ -58,7 +58,7 @@ function wikiplugin_convene_info()
 			],
 			'adminperms' => [
 				'required' => false,
-				'name' => tra('Ovserve Admin Permissions'),
+				'name' => tra('Observe Admin Permissions'),
 				'description' => tra("Only admins can edit or delete other users' votes and dates. N.B. This is a guide only as if a user can edit the page they can change this setting, it is intended to make the plugin esier to use for most users."),
 				'since' => '9.0',
 				'filter' => 'alpha',
