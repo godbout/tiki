@@ -138,6 +138,11 @@ class Search_Formatter_Builder
 		$this->alternateOutput = $match->getBody();
 	}
 
+	/**
+	 * @param WikiParser_PluginMatcher_Match $output
+	 *
+	 * @throws Exception
+	 */
 	private function handleOutput($output)
 	{
 		$smarty = TikiLib::lib('smarty');
@@ -183,10 +188,14 @@ class Search_Formatter_Builder
 			$plugin = new Search_Formatter_Plugin_SmartyTemplate($arguments['template']);
 			$plugin->setData($outputData);
 			$plugin->setFields($this->findFields($outputData, $templateData));
-		} elseif (isset($arguments['wiki']) && TikiLib::lib('tiki')->page_exists($arguments['wiki'])) {
-			$wikitpl = "tplwiki:" . $arguments['wiki'];
-			$wikicontent = $smarty->fetch($wikitpl);
-			$plugin = new Search_Formatter_Plugin_WikiTemplate($wikicontent);
+		} elseif (isset($arguments['wiki'])) {
+			if (TikiLib::lib('tiki')->page_exists($arguments['wiki'])) {
+				$wikitpl = "tplwiki:" . $arguments['wiki'];
+				$wikicontent = $smarty->fetch($wikitpl);
+				$plugin = new Search_Formatter_Plugin_WikiTemplate($wikicontent);
+			} else {
+				Feedback::error(tr('Template wiki page "%0" not found', $arguments['wiki']));
+			}
 		} else {
 			$plugin = new Search_Formatter_Plugin_WikiTemplate($output->getBody());
 		}
