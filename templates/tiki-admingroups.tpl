@@ -448,7 +448,7 @@
 				</div>
 			</div>
 
-			{if $group ne ''and $groupname neq 'Anonymous'}
+			{if $group ne '' and $groupname neq 'Anonymous'}
 				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Assign group <em>management</em> permissions{/tr}</label>
 					<div class="col-md-9">
