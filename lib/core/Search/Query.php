@@ -360,16 +360,20 @@ class Search_Query implements Search_Query_Interface
 	function scroll($index)
 	{
 		$this->finalize();
-		$res = $index->scroll($this);
 
-		foreach ($res as $row) {
-			foreach ($this->transformations as $trans) {
-				if (is_callable($trans)) {
-					$row = $trans($row);
+		try {
+			$res = $index->scroll($this);
+			foreach ($res as $row) {
+				foreach ($this->transformations as $trans) {
+					if (is_callable($trans)) {
+						$row = $trans($row);
+					}
 				}
+				yield $row;
 			}
-
-			yield $row;
+		} catch (Exception $e) {
+			Feedback::error(tra("Malformed search query"));
+			trigger_error($e->getMessage(), E_USER_WARNING);
 		}
 	}
 
