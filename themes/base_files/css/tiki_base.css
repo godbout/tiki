@@ -1287,6 +1287,10 @@ div.cvsup {
   margin-bottom: 0;
   min-height: 32px; }
 
+.box-menu .nav .nav-link {
+  padding-left: 0;
+  padding-right: 0; }
+
 @media (min-width: 576px) {
   .layout_social_modules .navbar-header {
     margin-top: -34px; } }

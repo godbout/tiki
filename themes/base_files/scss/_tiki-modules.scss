@@ -394,6 +394,11 @@ div.cvsup {
 	}
 }
 
+.box-menu .nav .nav-link {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 @include media-breakpoint-up(sm) {
 	.layout_social_modules .navbar-header {
 		margin-top: -34px;
