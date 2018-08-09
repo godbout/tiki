@@ -9,6 +9,7 @@ class Search_Elastic_Connection
 {
 	private $dsn;
 	private $version;
+	private $mapping_type;
 	private $dirty = [];
 
 	private $indices = [];
@@ -19,6 +20,11 @@ class Search_Elastic_Connection
 	{
 		$this->dsn = rtrim($dsn, '/');
 		$this->version = null;
+		if ($this->getVersion() >= 6.2) {
+			$this->mapping_type = '_doc'; // compatible with 7+ but not supported before 6.2
+		} else {
+			$this->mapping_type = 'doc';
+		}
 	}
 
 	function __destruct()
@@ -32,7 +38,8 @@ class Search_Elastic_Connection
 			$size,
 			function ($data) {
 				$this->postBulk($data);
-			}
+			},
+			$this->mapping_type
 		);
 	}
 
@@ -163,7 +170,7 @@ class Search_Elastic_Connection
 	function unstoreQuery($index, $name)
 	{
 		if ($this->getVersion() >= 5) {
-			return $this->delete("/$index/_doc/percolator-$name");
+			return $this->delete("/$index/{$this->mapping_type}/percolator-$name");
 		} else {
 			return $this->delete("/$index/.percolator/$name");
 		}
@@ -296,8 +303,11 @@ class Search_Elastic_Connection
 			$this->bulk->index($index, $type, $id, $data);
 		} else {
 			$id = rawurlencode($id);
-
-			return $this->put("/$index/_doc/$type-$id", json_encode($data));
+			if ($type === '.percolator') {
+				return $this->put("/$index/$type/$id", json_encode($data));
+			} else {
+				return $this->put("/$index/{$this->mapping_type}/$type-$id", json_encode($data));
+			}
 		}
 	}
 
@@ -310,8 +320,11 @@ class Search_Elastic_Connection
 			$this->bulk->unindex($index, $type, $id);
 		} else {
 			$id = rawurlencode($id);
-
-			return $this->delete("/$index/_doc/$type-$id");
+			if ($type === '.percolator') {
+				return $this->delete("/$index/$type/$id");
+			} else {
+				return $this->delete("/$index/{$this->mapping_type}/$type-$id");
+			}
 		}
 	}
 
@@ -339,7 +352,7 @@ class Search_Elastic_Connection
 		$type = $this->simplifyType($type);
 		$id = rawurlencode($id);
 
-		$document = $this->get("/$index/_doc/$type-$id");
+		$document = $this->get("/$index/{$this->mapping_type}/$type-$id");
 
 		if (isset($document->_source)) {
 			return $document->_source;
@@ -355,7 +368,7 @@ class Search_Elastic_Connection
 			$this->indices[$index] = true;
 		}
 
-		$result = $this->put("/$index/_mapping/_doc", json_encode($data));
+		$result = $this->put("/$index/_mapping/{$this->mapping_type}", json_encode($data));
 
 		return $result;
 	}
@@ -401,7 +414,7 @@ class Search_Elastic_Connection
 		}
 
 		if ($this->getVersion() >= 5) {
-			$this->put("/$index/_mapping/_doc", json_encode([
+			$this->put("/$index/_mapping/{$this->mapping_type}", json_encode([
 				'properties' => [
 					'query' => [
 						'type' => 'percolator'

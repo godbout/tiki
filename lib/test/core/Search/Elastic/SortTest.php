@@ -7,8 +7,14 @@
 
 class Search_Elastic_SortTest extends Search_Index_SortTest
 {
+	private $unified_stopwords;
+
 	function setUp()
 	{
+		global $prefs;
+		$this->unified_stopwords = $prefs['unified_stopwords'];
+		$prefs['unified_stopwords'] = '';
+
 		static $count = 0;
 
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
@@ -27,6 +33,9 @@ class Search_Elastic_SortTest extends Search_Index_SortTest
 
 	function tearDown()
 	{
+		global $prefs;
+		$prefs['unified_stopwords'] = $this->unified_stopwords;
+
 		if ($this->index) {
 			$this->index->destroy();
 		}

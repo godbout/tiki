@@ -10,12 +10,14 @@ class Search_Elastic_BulkOperation
 	private $count = 0;
 	private $limit;
 	private $callback;
+	private $mapping_type;
 	private $buffer = '';
 
-	function __construct($limit, $callback)
+	function __construct($limit, $callback, $mapping_type)
 	{
 		$this->limit = max(10, (int) $limit);
 		$this->callback = $callback;
+		$this->mapping_type = $mapping_type;
 	}
 
 	function flush()
@@ -35,7 +37,7 @@ class Search_Elastic_BulkOperation
 			[
 				['index' => [
 						'_index' => $index,
-						'_type' => '_doc',
+						'_type' => $this->mapping_type,
 						'_id' => $type.'-'.$id,
 					]
 				],
@@ -50,7 +52,7 @@ class Search_Elastic_BulkOperation
 			[
 				['delete' => [
 						'_index' => $index,
-						'_type' => '_doc',
+						'_type' => $this->mapping_type,
 						'_id' => $type.'-'.$id,
 					]
 				],
