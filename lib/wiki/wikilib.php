@@ -1312,7 +1312,7 @@ class WikiLib extends TikiLib
 	// Returns backlinks for a given page
 	public function get_backlinks($page)
 	{
-		global $user, $prefs;
+		global $prefs;
 		$query = "select `fromPage` from `tiki_links` where `toPage` = ?";
 		$result = $this->query($query, [ $page ]);
 		$ret = [];
@@ -1337,11 +1337,21 @@ class WikiLib extends TikiLib
 					continue;
 				}
 			}
-			if ($this->user_has_perm_on_object($user, $objectId, $type, 'tiki_p_view')) {
-				$aux["type"] = $type;
-				$aux["objectId"] = $objectId;
-				$ret[] = $aux;
+			if ($type == 'trackeritemfield') {
+				list($itemId, $fieldId) = explode(':', $objectId);
+				$itemObject = Tracker_Item::fromId($itemId);
+				if (! $itemObject->canView() || ! $itemObject->canViewField($fieldId)) {
+					continue;
+				}
+			} else {
+				$objectperms = Perms::get(['type' => $type, 'object' => $objectId]);
+				if (! $objectperms->view) {
+					continue;
+				}
 			}
+			$aux["type"] = $type;
+			$aux["objectId"] = $objectId;
+			$ret[] = $aux;
 		}
 
 		return $ret;
