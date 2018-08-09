@@ -57,6 +57,10 @@ function wikiplugin_param($data, $params)
 	$dataelse = '';
 	$test = true;
 
+	$parserlib = TikiLib::lib('parser');
+	$noparsed = [];
+	$parserlib->plugins_remove($data, $noparsed);
+
 	if (strpos($data, '{ELSE}')) {
 		$dataelse = substr($data, strpos($data, '{ELSE}') + 6);
 		$data = substr($data, 0, strpos($data, '{ELSE}'));
@@ -93,5 +97,11 @@ function wikiplugin_param($data, $params)
 		}
 	}
 
-	return $test ? $data : $dataelse;
+	if ($test) {
+		$parserlib->plugins_replace($data, $noparsed);
+		return $data;
+	} else {
+		$parserlib->plugins_replace($dataelse, $noparsed);
+		return $dataelse;
+	}
 }
