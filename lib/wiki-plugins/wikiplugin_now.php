@@ -12,7 +12,6 @@ function wikiplugin_now_info()
 		'documentation' => 'PluginNow',
 		'description' => tra('Show the current date and time.'),
 		'prefs' => ['wikiplugin_now'],
-		'body' => tra('text'),
 		'iconname' => 'history',
 		'introduced' => 9,
 		'tags' => [ 'basic' ],
@@ -39,6 +38,19 @@ function wikiplugin_now_info()
 				'default' => tr(''),
 				'filter' => 'text',
 			],
+			'allowinvalid' => [
+				'required' => false,
+				'name' => tra('Allow Invalid Dates'),
+				'description' => tr('Allow return values that are not a valid date, such as the day of the month'),
+				'since' => '18.3',
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('No'), 'value' => 'n'],
+					['text' => tra('Yes'), 'value' => 'y'],
+				],
+			],
 		],
 	];
 }
@@ -50,11 +62,13 @@ function wikiplugin_now($data, $params)
 	$default = TikiLib::date_format($prefs['long_date_format'] . ' ' . $prefs['long_time_format'], $when);
 	if (! empty($params['format'])) {
 		$ret = TikiLib::date_format($params['format'], $when);
-		//see if the user format setting results in a valid date, return default format if not
-		try {
-			$dateObj = new DateTime($ret);
-		} catch (Exception $e) {
-			return $default;
+		if (empty($params['allowinvalid']) || $params['allowinvalid'] === 'n') {
+			//see if the user format setting results in a valid date, return default format if not
+			try {
+				$dateObj = new DateTime($ret);
+			} catch (Exception $e) {
+				return $default;
+			}
 		}
 		return $ret;
 	} else {
