@@ -64,13 +64,14 @@
 								{tr}Backlinks{/tr}
 							</li>
 							<li class="dropdown-divider"></li>
-							<li role="presentation" class="dropdown-item">
-								{section name=back loop=$backlinks}
-									<a role="menuitem" tabindex="-1" href="{$backlinks[back].objectId|sefurl:$backlinks[back].type}" title="{object_title id=$backlinks[back].objectId type=$backlinks[back].type|escape}">
-									  {if $prefs.wiki_backlinks_name_len ge '1'}{object_title id=$backlinks[back].objectId type=$backlinks[back].type|truncate:$prefs.wiki_backlinks_name_len:"...":true|escape}{else}{object_title id=$backlinks[back].objectId type=$backlinks[back].type|escape}{/if}
+							{section name=back loop=$backlinks}
+								{capture name=backlink_title}{object_title id=$backlinks[back].objectId type=$backlinks[back].type}{/capture}
+								<li role="presentation" class="dropdown-item">
+									<a role="menuitem" tabindex="-1" href="{$backlinks[back].objectId|sefurl:$backlinks[back].type}" title="{$smarty.capture.backlink_title|escape}">
+									  {if $prefs.wiki_backlinks_name_len ge '1'}{$smarty.capture.backlink_title|truncate:$prefs.wiki_backlinks_name_len:"...":true|escape}{else}{$smarty.capture.backlink_title|escape}{/if}
 									</a>
-								{/section}
-							</li>
+								</li>
+							{/section}
 						</ul>
 						{if ! $js}</li></ul>{/if}
 					</div>
