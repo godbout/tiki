@@ -23,7 +23,7 @@
  * Note: the difference is invisible but " :" has an UTF-8 non-breaking-space, not a regular space, but the UTF-8 equivalent of the HTML &nbsp;.
  * This allows correctly displaying emails and JavaScript messages, not only web pages as would happen with &nbsp;.
  */
-$lang = [
+$lang = array(
 "Welsh" => "웨일스어",
 "Slovene" => "슬로베니아어",
 "Arabic" => "아라빅",
@@ -870,6 +870,8 @@ $lang = [
 // "Sort field %0 not found in index" => "Sort field %0 not found in index",
 "No results for query" => "질의에 대한 결과 없음",
 "Missing template \"%0\"" => "템플릿 \"%0\" 누락 ",
+// "Template tplwiki page \"%0\" not found" => "Template tplwiki page \"%0\" not found",
+// "Template wiki page \"%0\" not found" => "Template wiki page \"%0\" not found",
 "No value for '%0'" => "'%0' 에 대한 값 없음",
 "Unknown formatting rule '%0' for '%1'" => "알 수 없는 서식 규칙 '%1' 에 대한 '%0'",
 // "Category Tree" => "Category Tree",
@@ -9020,6 +9022,8 @@ $lang = [
 // "Based site long date and time setting" => "Based site long date and time setting",
 // "Date to display" => "Date to display",
 // "Date time as specified in text using strtotime, i.e. \"next month\" - documentation here: %0" => "Date time as specified in text using strtotime, i.e. \"next month\" - documentation here: %0",
+// "Allow Invalid Dates" => "Allow Invalid Dates",
+// "Allow return values that are not a valid date, such as the day of the month" => "Allow return values that are not a valid date, such as the day of the month",
 "Object Hits" => "개체 방문수",
 "Display the number of hits for certain objects" => "특정 개체에 대한 방문 수 표시",
 // "For a wiki page, the page name, for other object types: ID number + ? +\n\t\t\t\t\tobject title" => "For a wiki page, the page name, for other object types: ID number + ? +\n\t\t\t\t\tobject title",
@@ -20078,4 +20082,4 @@ $lang = [
 "Last pages" => "최근 페이지",
 // "Note, deprecated file tiki-wikiplugin_edit.php, code moved to service plugin->replace" => "Note, deprecated file tiki-wikiplugin_edit.php, code moved to service plugin->replace",
 // "New in Tiki 12 (LTS)" => "New in Tiki 12 (LTS)",
-];
+);

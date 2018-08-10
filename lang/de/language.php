@@ -23,7 +23,7 @@
  * Note: the difference is invisible but " :" has an UTF-8 non-breaking-space, not a regular space, but the UTF-8 equivalent of the HTML &nbsp;.
  * This allows correctly displaying emails and JavaScript messages, not only web pages as would happen with &nbsp;.
  */
-$lang = [
+$lang = array(
 "Welsh" => "Walisisch",
 "Slovene" => "Slovenisch",
 "Arabic" => "Arabisch",
@@ -870,6 +870,8 @@ $lang = [
 // "Sort field %0 not found in index" => "Sort field %0 not found in index",
 "No results for query" => "Keine Ergebnisse für Abfrage",
 "Missing template \"%0\"" => "Fehlende Vorlage \"%0\"",
+// "Template tplwiki page \"%0\" not found" => "Template tplwiki page \"%0\" not found",
+// "Template wiki page \"%0\" not found" => "Template wiki page \"%0\" not found",
 "No value for '%0'" => "Kein Wert für '%0'",
 "Unknown formatting rule '%0' for '%1'" => "Unbekannte Formatierungsregel '%0' für '%1'",
 // "Category Tree" => "Category Tree",
@@ -9021,6 +9023,8 @@ $lang = [
 // "Based site long date and time setting" => "Based site long date and time setting",
 // "Date to display" => "Date to display",
 // "Date time as specified in text using strtotime, i.e. \"next month\" - documentation here: %0" => "Date time as specified in text using strtotime, i.e. \"next month\" - documentation here: %0",
+// "Allow Invalid Dates" => "Allow Invalid Dates",
+// "Allow return values that are not a valid date, such as the day of the month" => "Allow return values that are not a valid date, such as the day of the month",
 "Object Hits" => "Objekttreffer",
 "Display the number of hits for certain objects" => "Zeige die Anzahl der Treffer für ein bestimmtes Objekt",
 // "For a wiki page, the page name, for other object types: ID number + ? +\n\t\t\t\t\tobject title" => "For a wiki page, the page name, for other object types: ID number + ? +\n\t\t\t\t\tobject title",
@@ -20088,4 +20092,4 @@ $lang = [
 "Last pages" => "Letzte Seiten",
 // "Note, deprecated file tiki-wikiplugin_edit.php, code moved to service plugin->replace" => "Note, deprecated file tiki-wikiplugin_edit.php, code moved to service plugin->replace",
 // "New in Tiki 12 (LTS)" => "New in Tiki 12 (LTS)",
-];
+);

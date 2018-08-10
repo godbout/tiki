@@ -23,7 +23,7 @@
  * Note: the difference is invisible but " :" has an UTF-8 non-breaking-space, not a regular space, but the UTF-8 equivalent of the HTML &nbsp;.
  * This allows correctly displaying emails and JavaScript messages, not only web pages as would happen with &nbsp;.
  */
-$lang = [
+$lang = array(
 "Welsh" => "Gal·lès",
 "Slovene" => "Eslovè",
 "Arabic" => "Àrab",
@@ -870,6 +870,8 @@ $lang = [
 // "Sort field %0 not found in index" => "Sort field %0 not found in index",
 "No results for query" => "No hi ha resultats per a la cerca",
 "Missing template \"%0\"" => "Plantilla Missing \"%0\"",
+// "Template tplwiki page \"%0\" not found" => "Template tplwiki page \"%0\" not found",
+// "Template wiki page \"%0\" not found" => "Template wiki page \"%0\" not found",
 "No value for '%0'" => "Cap valor per a '%0'",
 "Unknown formatting rule '%0' for '%1'" => "Desconegut regla de format ' %0' per a ' %1'",
 "Category Tree" => "Arbre de Categories",
@@ -9019,6 +9021,8 @@ $lang = [
 // "Based site long date and time setting" => "Based site long date and time setting",
 // "Date to display" => "Date to display",
 // "Date time as specified in text using strtotime, i.e. \"next month\" - documentation here: %0" => "Date time as specified in text using strtotime, i.e. \"next month\" - documentation here: %0",
+// "Allow Invalid Dates" => "Allow Invalid Dates",
+// "Allow return values that are not a valid date, such as the day of the month" => "Allow return values that are not a valid date, such as the day of the month",
 "Object Hits" => "Impactes d'objectes",
 "Display the number of hits for certain objects" => "Mostra el nombre de visites per a certs objectes",
 // "For a wiki page, the page name, for other object types: ID number + ? +\n\t\t\t\t\tobject title" => "For a wiki page, the page name, for other object types: ID number + ? +\n\t\t\t\t\tobject title",
@@ -20099,4 +20103,4 @@ $lang = [
 "Last pages" => "Les últimes pàgines",
 // "Note, deprecated file tiki-wikiplugin_edit.php, code moved to service plugin->replace" => "Note, deprecated file tiki-wikiplugin_edit.php, code moved to service plugin->replace",
 "New in Tiki 12 (LTS)" => "Nou a Tiki 12 (LTS)",
-];
+);
