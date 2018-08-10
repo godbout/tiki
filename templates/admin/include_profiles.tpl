@@ -65,9 +65,10 @@
 					</div>
 					<div class="col-sm-6">
 							{remarksbox type="info" title="{tr}Suggested Profiles{/tr}" close="n"}
-								{assign var=profilesFilterUrlStart value='tiki-admin.php?profile=&categories%5B%5D='}
+								{capture assign=ticket}{ticket mode=get}{/capture}
+								{assign var=profilesFilterUrlStart value="tiki-admin.php?ticket=$ticket&categories%5B%5D="}
 								{assign var=profilesFilterUrlMid value='.x&categories%5B%5D='}
-								{assign var=profilesFilterUrlEnd value='&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2'}
+								{assign var=profilesFilterUrlEnd value='&repository=http%3A%2F%2Fprofiles.tiki.org%2Fprofiles&page=profiles&redirect=0&list=Find'}
 
 								<p>
 									{assign var=profilesFilterUrlFeaturedProfiles value='Featured+profiles'}
