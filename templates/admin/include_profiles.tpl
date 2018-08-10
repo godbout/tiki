@@ -68,7 +68,7 @@
 								{capture assign=ticket}{ticket mode=get}{/capture}
 								{assign var=profilesFilterUrlStart value="tiki-admin.php?ticket=$ticket&categories%5B%5D="}
 								{assign var=profilesFilterUrlMid value='.x&categories%5B%5D='}
-								{assign var=profilesFilterUrlEnd value='&repository=http%3A%2F%2Fprofiles.tiki.org%2Fprofiles&page=profiles&redirect=0&list=Find'}
+								{assign var=profilesFilterUrlEnd value='&repository=http%3A%2F%2Fprofiles.tiki.org%2Fprofiles&page=profiles&preloadlist=y&list=List#step2'}
 
 								<p>
 									{assign var=profilesFilterUrlFeaturedProfiles value='Featured+profiles'}
