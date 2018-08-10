@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Slideshow demo{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Slideshow_demo&show_details_for=Slideshow_demo&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Slideshow_demo&show_details_for=Slideshow_demo&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile sets up a slideshow from a simple wiki page, which you can use to learn the basics of how easily the JqueryS5 slideshow system in Tiki works.{/tr}
 					<br/>
@@ -43,7 +43,7 @@
 				<div class="col-md-6">
 
 					<h4>{tr}Hide Fixed Top Navigation Bar on scroll{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Hide+Fixed+Top+Nav+Bar+on+Scroll&show_details_for=Hide+Fixed+Top+Nav+Bar+on+Scroll&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Hide+Fixed+Top+Nav+Bar+on+Scroll&show_details_for=Hide+Fixed+Top+Nav+Bar+on+Scroll&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile hides the fixed top navigation bar (in the top section of modules) on page scroll, while displaying the topbar module in a sticky position at the top afterwards.{/tr}
 					<br/>

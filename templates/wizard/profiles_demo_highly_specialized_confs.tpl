@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}CartoGraf{/tr}</h4>
-					(<a href="tiki-admin.php?profile=CartoGraf_15&show_details_for=CartoGraf_15&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=CartoGraf_15&show_details_for=CartoGraf_15&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}CartoGraf is an interactive web-based mapping application to enhance learning in history and geography classes in high schools.{/tr}
 					{tr}CartoGraf is a great example of how to use profiles in a general purpose app (Tiki) to make a very specific application.{/tr}
@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<h4>{tr}R demo{/tr}</h4> (<a href="tiki-admin.php?profile=R_demo&show_details_for=R_demo&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					<h4>{tr}R demo{/tr}</h4> (<a href="tiki-admin.php?ticket={ticket mode=get}&profile=R_demo&show_details_for=R_demo&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile demonstrates common uses of R language for statistics to produce advanced and/or interactive graphs and reports in web 2.0 pages.{/tr}
 					<br/>
@@ -92,7 +92,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<h4>{tr}R Heatmaps{/tr}</h4>
-					(<a href="tiki-admin.php?profile=R_Heatmaps&show_details_for=R_Heatmaps&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=R_Heatmaps&show_details_for=R_Heatmaps&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile adds a web interface for an R package called EasyHeatMap (link to package provided in the instructions page once the profile is applied).{/tr}
 					{tr}This R package allows the creation and edition of HeatMap graphics (as used in Bioinformatics).{/tr}

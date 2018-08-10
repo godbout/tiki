@@ -67,7 +67,7 @@
 					">
 						{icon name="help" size=1}
 					</a> :
-					<a href="tiki-admin.php?profile=User_Trackers&show_details_for=User_Trackers&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a> ({tr}new window{/tr})
+					<a href="tiki-admin.php?ticket={ticket mode=get}&profile=User_Trackers&show_details_for=User_Trackers&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a> ({tr}new window{/tr})
 				</li>
 				<li>
 					{tr}Display last comment author and date{/tr}

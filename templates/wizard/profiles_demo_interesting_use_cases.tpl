@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Bug Tracker{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Bug_Tracker_16&show_details_for=Bug_Tracker_16&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Bug_Tracker_16&show_details_for=Bug_Tracker_16&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile allows you to see a tracker in action with some demo data, and a custom interface in a wiki page to add new items, as well as having them listed for you below.{/tr}
 					<br/>
@@ -51,7 +51,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Timesheet{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Time_Sheet&show_details_for=Time_Sheet&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Time_Sheet&show_details_for=Time_Sheet&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile allows recording time spent on projects. It creates two trackers: one to hold the time spent, and the other with the project names{/tr}.
 					<br/>
@@ -87,7 +87,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h4>{tr}Tracker as Calendar{/tr}</h4>
-				(<a href="tiki-admin.php?profile=Tracker_as_Calendar_12&show_details_for=Tracker_as_Calendar_12&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+				(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Tracker_as_Calendar_12&show_details_for=Tracker_as_Calendar_12&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 				<br>
 				{tr}This profile creates a tracker with some demo data and wiki interface that will be used to display and manage a Calendar of events in a fancy visual way.{/tr}
 				<br/>
@@ -116,7 +116,7 @@
 			</div>
 			<div class="col-md-6">
 				<h4>{tr}Voting System{/tr}</h4>
-				(<a href="tiki-admin.php?profile=Voting_System&show_details_for=Voting_System&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+				(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Voting_System&show_details_for=Voting_System&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 				<br>
 				{tr}This profile sets up a Voting system in which only members of a group will be able to vote. It creates a tracker, 2 groups of users, one user in each group and a custom wiki page as interface to vote{/tr}.
 				<br/>

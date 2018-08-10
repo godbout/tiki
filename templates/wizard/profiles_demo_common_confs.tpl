@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}User & Registration Tracker{/tr}</h4>
-					(<a href="tiki-admin.php?profile=User_Trackers&show_details_for=User_Trackers&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=User_Trackers&show_details_for=User_Trackers&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile allows you to request more details in the registration process or in the User Wizard, as well as to provide more custom information to your users{/tr}.
 					<br/>
@@ -41,7 +41,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Custom Contact Form{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Custom_Contact_Form_12x&show_details_for=Custom_Contact_Form_12x&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Custom_Contact_Form_12x&show_details_for=Custom_Contact_Form_12x&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile eases the task to create a custom contact form adapted to the specific case of that site.{/tr}
 					<br/>
@@ -71,7 +71,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Dynamic Items List{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Dynamic_items_list_demo&show_details_for=Dynamic_items_list_demo&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Dynamic_items_list_demo&show_details_for=Dynamic_items_list_demo&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile creates two linked trackers. One that allow pre-selecting the items in a drop down list based on the items in a previous drop down field. And a second tracker that holds the options displayed in the drop down fields.{/tr}
 					<br/>
@@ -100,7 +100,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Sortable Tables{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Sortable+Tables&show_details_for=Sortable+Tables&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Sortable+Tables&show_details_for=Sortable+Tables&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile creates a few examples of tables with data that can be sorted and filtered interactively in real time, using the JQuery Sortable Tables feature{/tr}.
 					<br/>

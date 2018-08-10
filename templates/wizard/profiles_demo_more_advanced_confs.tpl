@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Shopping Cart{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Shopping_Cart&show_details_for=Shopping_Cart&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Shopping_Cart&show_details_for=Shopping_Cart&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile provides a Shopping Cart and the corresponding basic payment system.{/tr}
 					{tr}It currently uses the PayPal shopping cart rather than the built in Tiki{/tr}.
@@ -53,7 +53,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Easy GeoBlog{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Easy+GeoBlog&show_details_for=Easy+GeoBlog&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Easy+GeoBlog&show_details_for=Easy+GeoBlog&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile demonstrates the geolocation of Blog posts, in conjunction with other associated features{/tr}
 					<br/>
@@ -86,7 +86,7 @@
 			<div class="row">
 				<div class="col-md-6">
 							<h4>{tr}Profile Conditional_Display_in_Forms{/tr}</h4>
-							(<a href="tiki-admin.php?profile=Conditional_Display_in_Forms_14&show_details_for=Conditional_Display_in_Forms_14&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+							(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Conditional_Display_in_Forms_14&show_details_for=Conditional_Display_in_Forms_14&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 							<br>
 							{tr}This profile demonstrates the setup to conditionally hide or display some fields in a form{/tr}.
 					<br/>
@@ -115,7 +115,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Profile Execute_on_list{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Execute+on+list&show_details_for=Execute+on+list&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Execute+on+list&show_details_for=Execute+on+list&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile demonstrates how to perform actions on several items from a list using Plugin ListExecute{/tr}.
 					<br/>

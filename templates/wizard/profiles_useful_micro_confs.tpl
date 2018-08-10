@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Menu on Wiki page{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Collaborative_Community_Wiki_menupage&show_details_for=Collaborative_Community_Wiki_menupage&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Collaborative_Community_Wiki_menupage&show_details_for=Collaborative_Community_Wiki_menupage&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile sets up a side module with a menu based on a wiki page in the right hand-side column.{/tr}
 					<br/>
@@ -41,7 +41,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Random header images{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Random_header_images_14&show_details_for=Random_header_images_14&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Random_header_images_14&show_details_for=Random_header_images_14&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile adds a module in the top zone that displays a random image from a File Gallery{/tr}.
 					<br/>
@@ -72,7 +72,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Multilingual Wiki{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Multilingual_Wiki_12x&show_details_for=Multilingual_Wiki_12x&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Multilingual_Wiki_12x&show_details_for=Multilingual_Wiki_12x&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile allows Tiki content translation, and sets up modules to change language and to display links to page translations with their percentage of completion.{/tr}
 					<br/>
@@ -100,7 +100,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Countries By Region{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Countries_By_Region&show_details_for=Countries_By_Region&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Countries_By_Region&show_details_for=Countries_By_Region&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile will create a set of categories and subcategories in your site with the names of countries grouped by regions{/tr}.
 					<br/>
