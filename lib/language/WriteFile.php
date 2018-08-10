@@ -96,13 +96,13 @@ class Language_WriteFile
 		if ($handle) {
 			fwrite($handle, "<?php\n");
 			fwrite($handle, $this->fileHeader());
-			fwrite($handle, "\$lang = [\n");
+			fwrite($handle, "\$lang = array(\n"); // do not use short array syntax here yet for Transifex.com translation resource import (till they add support for the PHP short array syntax)
 
 			foreach ($entries as $entry) {
 				fwrite($handle, $this->formatString($entry, $outputFiles));
 			}
 
-			fwrite($handle, "];\n");
+			fwrite($handle, ");\n");
 			fclose($handle);
 		}
 
