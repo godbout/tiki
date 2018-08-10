@@ -130,7 +130,7 @@
 				<form method="post" action="" class="form-inline my-2 my-md-0 ml-auto" role="form">
 					<div class="form-group row">
 						<input type="hidden" name="filters">
-						<input type="text" name="lm_criteria" style="width: 170px;"value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}..." autofocus="autofocus">
+						<input type="text" name="lm_criteria" style="width: 170px;"value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}...">
 					</div>
 					<button type="submit" class="btn btn-primary" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 				</form>
