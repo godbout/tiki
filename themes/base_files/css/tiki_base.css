@@ -712,7 +712,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   color: white; }
 
 .tiki .ui-widget {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem; }
 
 .btn-primary.btn-files {
@@ -3131,10 +3131,15 @@ body.fullscreen.tiki.navbar-padding {
   flex: 0 0 100%;
   max-width: 100%; }
 
-.hide_zone_right .side-col-toggle + .col1.col-lg-9 {
+.hide_zone_right .col1.col-lg-9.order-lg-2 {
   width: 75%;
   flex: 0 0 75%;
   max-width: 75%; }
+
+.hide_zone_right .col1.col-lg-9:not(.order-lg-2) {
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%; }
 
 .hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2 {
   width: 100%;

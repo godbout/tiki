@@ -242,11 +242,18 @@ body.fullscreen.tiki.navbar-padding {
 	max-width: 100%;
 }
 
-// Left col on, right col off
-.hide_zone_right .side-col-toggle + .col1.col-lg-9 {
+// Left col toggled on, right col assigned off
+.hide_zone_right .col1.col-lg-9.order-lg-2 {
   width: 75%;
   flex: 0 0 75%;
   max-width: 75%;
+}
+
+// Left col assigned off, right col toggled off
+.hide_zone_right .col1.col-lg-9:not(.order-lg-2) {
+  width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 
 // Right col assigned off, left col toggled off
