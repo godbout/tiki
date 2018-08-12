@@ -39,7 +39,7 @@ function smarty_block_accordion_group($params, $content, $smarty, $repeat)
 	global $accordion_current_group, $accordion_position;
 
 	if (empty($accordion_current_group)) {
-		$accordion_current_group = uniqid();
+		$accordion_current_group = 'a' . uniqid();
 		$accordion_position = 0;
 	}
 
@@ -47,18 +47,19 @@ function smarty_block_accordion_group($params, $content, $smarty, $repeat)
 	$title = smarty_modifier_escape($params['title']);
 	$id = $accordion_current_group . '-' . ++$accordion_position;
 
-	$first = ($accordion_position == 1) ? 'in' : '';
+	$first = ($accordion_position == 1) ? 'show' : '';
+	$expanded = ($accordion_position == 1) ? 'true' : 'false';
 
 	return <<<CONTENT
 <div class="card card-accordian">
-	<div class="card-heading">
+	<div class="card-header">
 		<h4 class="card-title">
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#$accordion_current_group" href="#$id">
+			<a class="accordion-toggle" data-toggle="collapse" href="#$id" aria-expanded="$expanded" aria-controls="$id">
 				$title
 			</a>
 		</h4>
 	</div>
-	<div id="$id" class="card-collapse collapse $first">
+	<div id="$id" class="collapse $first" data-parent="#$accordion_current_group"" aria-labelledby="$id">
 		<div class="card-body">
 			$content
 		</div>
