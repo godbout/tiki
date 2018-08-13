@@ -343,6 +343,11 @@ class Services_Edit_ListPluginHelper
 							'count' => [
 							],
 						],
+						'params' => [
+							'downloadable' => [
+								'type' => 'text',
+							],
+						],
 					],
 					'wiki' => [
 						'type' => 'pagename',
