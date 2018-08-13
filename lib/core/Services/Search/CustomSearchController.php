@@ -339,10 +339,14 @@ class Services_Search_CustomSearchController
 
 	private function cs_dataappend_daterange(Search_Query $query, $config, $value)
 	{
-		if ($vals = preg_split('/,/', $value)) {
+		if ($vals = explode(',', $value)) {
 			if (count($vals) == 2) {
 				$from = $vals[0];
 				$to = $vals[1];
+				if ((empty($config['_showtime']) || $config['_showtime'] === 'n') &&
+						(empty($config['_toendofday']) || $config['_toendofday'] === 'y')) {
+					$to += (24 * 60 * 3600) - 1;	// end date should be the end of the day, not the beginning
+				}
 				if (! empty($config['_field'])) {
 					$field = $config['_field'];
 				} else {
