@@ -156,17 +156,22 @@ if (isset($_REQUEST['pdf'])) {
 		if ($_REQUEST['printslides']) {
 			$customCSS
 				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
-			$pdata = $customCSS. $pdata;
+			$pdata = $customCSS . $pdata;
 		} else {
 			//getting css
-			$customCSS.=file_get_contents('vendor_bundled/vendor/components/revealjs/css/reveal.scss');
-			$customCSS.=file_get_contents('vendor_bundled/vendor/components/revealjs/css/theme/'.$theme.'.css');
-			$customCSS.='.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}';
-			$pdata='<div class="reveal">'.$pdata.'</div>';
+			$customCSS .= file_get_contents(
+				'vendor_bundled/vendor/components/revealjs/css/reveal.scss'
+			);
+			$customCSS .= file_get_contents(
+				'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme
+				. '.css'
+			);
+			$customCSS .= '.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}';
+			$pdata = '<div class="reveal">' . $pdata . '</div>';
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				'<style>'.$customCSS.'</style>' . $pdata
+				'<style>' . $customCSS . '</style>' . $pdata
 			);
 		}
 
@@ -273,28 +278,19 @@ $smarty->display("tiki_full.tpl");
 
 function formatContent($content, $tagArr)
 {
-	$headingsTags = preg_split('/<h[123]/', $content);
-	$firstSlide = 0;
-	foreach ($headingsTags as $slide) {
-		if ($firstSlide == 0) {
-			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
-			$sectionCheck = strpos($slide, '</section><section');
-			if ($sectionCheck == true) {
-				$slidePlugin = explode("</section>", $slide);
-				$slideContent .= $slidePlugin[1] . '</section>';
-			}
-			$firstSlide = 1;
-		} else {
-			$slideContent .= '<section><h1' . str_replace(array('</h2>','</h3>'),'</h1>',$slide) . '</section>';
-		}
 
-	}
 	$doc = new DOMDocument();
 	$doc->loadHTML(
-		'<html>' . $slideContent . '</html>',
+		'<html>' . $content . '</html>',
 		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
 	);
 	$xpath = new DOMXpath($doc);
+	$expression = '(//sslide//h1|//sslide//h2|//sslide//h3)';
+	$elements = $xpath->query($expression);
+
+	foreach ($elements as $index => $element) {
+		dom_rename_element($element, 'sheading');
+	}
 
 	foreach ($tagArr as $tag) {
 		$list = $xpath->query(
@@ -325,8 +321,47 @@ function formatContent($content, $tagArr)
 	}
 
 
-	$slideContent = str_replace(['<html>', '</html>'], '', $doc->saveHTML());
+	$content = str_replace(['<html>', '</html>'], '', $doc->saveHTML());
 
+
+	$headingsTags = preg_split('/<h[123]/', $content);
+	$firstSlide = 0;
+	foreach ($headingsTags as $slide) {
+		if ($firstSlide == 0) {
+			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
+			$sectionCheck = strpos($slide, '</section><section');
+			if ($sectionCheck == true) {
+				$slidePlugin = explode("</section>", $slide);
+				$slideContent .= $slidePlugin[1] . '</section>';
+			}
+			$firstSlide = 1;
+		} else {
+			$slideContent .= '<section><h1' . str_replace(
+					array('</h2>', '</h3>'), '</h1>', $slide
+				) . '</section>';
+		}
+
+	}
 	//images alignment left or right
-	return $slideContent;
+	//replacment for slideshowslide
+
+	return str_replace(
+		array('<sslide', 'sheading'), array('</section><section', 'h1'),
+		$slideContent
+	);
+}
+
+function dom_rename_element(DOMElement $node, $name)
+{
+	$renamed = $node->ownerDocument->createElement($name);
+
+	foreach ($node->attributes as $attribute) {
+		$renamed->setAttribute($attribute->nodeName, $attribute->nodeValue);
+	}
+
+	while ($node->firstChild) {
+		$renamed->appendChild($node->firstChild);
+	}
+
+	return $node->parentNode->replaceChild($renamed, $node);
 }

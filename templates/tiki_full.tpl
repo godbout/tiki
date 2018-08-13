@@ -28,36 +28,36 @@
 		<div id="ss-options" class="d-flex flex-row justify-content-around align-content-end flex-wrap">
 			<div class="p-2">
 				<select id="showtheme" class="form-control">
-					<option value="">Change Theme</option>
-					<option value="black">Black: Black background, white text, blue links</option>
-					<option value="blood">Blood: Dark gray background, dark text, maroon links</option>
-					<option value="beige">Beige: Beige background, dark text, brown links</option>
-					<option value="league">League: Gray background, white text, blue links</option>
-					<option value="moon">Moon: Navy blue background, blue links</option>
-					<option value="night">Night: Black background, thick white text, orange links</option>
-					<option value="serif">Serif: Cappuccino background, gray text, brown links</option>
-					<option value="simple">Simple: White background, black text, blue links</option>
-					<option value="sky">Sky: Blue background, thin dark text, blue links</option>
-					<option value="solarized">Solarized: Cream-colored background, dark green text, blue links</option>
+					<option value="">{tr}Change Theme{/tr}</option>
+					<option value="black">{tr}Black: Black background, white text, blue links{/tr}</option>
+					<option value="blood">{tr}Blood: Dark gray background, dark text, maroon links{/tr}</option>
+					<option value="beige">{tr}Beige: Beige background, dark text, brown links{/tr}</option>
+					<option value="league">{tr}League: Gray background, white text, blue links{/tr}</option>
+					<option value="moon">{tr}Moon: Navy blue background, blue links{/tr}</option>
+					<option value="night">{tr}Night: Black background, thick white text, orange links{/tr}</option>
+					<option value="serif">{tr}Serif: Cappuccino background, gray text, brown links{/tr}</option>
+					<option value="simple">{tr}Simple: White background, black text, blue links{/tr}</option>
+					<option value="sky">{tr}Sky: Blue background, thin dark text, blue links{/tr}</option>
+					<option value="solarized">{tr}Solarized: Cream-colored background, dark green text, blue links{/tr}</option>
 				</select>
 			</div>
 			<div class="p-2">
 				<select id="showtransition" class="form-control">
-					<option value="">Change Transition</option>
-					<option value="zoom">Zoom</option>
-					<option value="fade">Fade</option>
-					<option value="slide">Slide</option>
-					<option value="convex">Convex</option>
-					<option value="concave">Concave</option>
-					<option value="">off</option>
+					<option value="">{tr}Change Transition{/tr}</option>
+					<option value="zoom">{tr}Zoom{/tr}</option>
+					<option value="fade">{tr}Fade{/tr}</option>
+					<option value="slide">{tr}Slide{/tr}</option>
+					<option value="convex">{tr}Convex{/tr}</option>
+					<option value="concave">{tr}Concave{/tr}</option>
+					<option value="">{tr}Off{/tr}</option>
 				</select>
 			</div>
 			{if $prefs.feature_slideshow_pdfexport eq 'y'}
-				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&landscape=1" target="_blank" id="exportPDF"><span class="fa fa-file-pdf-o"></span> Export PDF</a></div>
-				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&printslides=1" target="_blank"><span class="fa fa-print"></span> Handouts</a></div>
+				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&landscape=1" target="_blank" id="exportPDF"><span class="fa fa-file-pdf-o"></span> {tr}Export PDF{/tr}</a></div>
+				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&printslides=1" target="_blank"><span class="fa fa-print"></span> {tr}Handouts{/tr}</a></div>
 			{/if}
 
-			<div class="p-2"><a href="tiki-index.php?page={$page}"><span class="fa fa-sign-out"></span>&nbsp;Exit</a></div>
+			<div class="p-2"><a href="tiki-index.php?page={$page}"><span class="fa fa-sign-out"></span> {tr}Exit{/tr}</a></div>
 		</div>
 {else}
 			</div>
