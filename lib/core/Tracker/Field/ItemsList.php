@@ -414,7 +414,8 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 					' ',
 					isset($context['list_mode']) ? $context['list_mode'] : '',
 					$this->getOption('linkToItems'),
-					$this->getOption('displayFieldIdThereFormat')
+					$this->getOption('displayFieldIdThereFormat'),
+					$this->getItemData()
 				);
 			} else {
 				$list[$itemId] = $trklib->get_isMain_value($trackerId, $itemId);
