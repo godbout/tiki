@@ -1358,7 +1358,15 @@ if (isset($_REQUEST["save"])
 			$url = $wikilib->sefurl($_REQUEST['returnto']);
 		}
 	} elseif ($page_ref_id) {
-		$url = "tiki-index.php?page_ref_id=$page_ref_id";
+		//$url = "tiki-index.php?page_ref_id=$page_ref_id";
+		$structure_info = $structlib->s_get_page_info($page_ref_id);
+		$structure_info = $structlib->s_get_page_info($structure_info['parent_id']);
+		$smarty->loadPlugin('smarty_function_sefurl');
+		$url = smarty_function_sefurl([
+			'page' => $page,
+			'structure' => $structure_info['pageName'],
+			'page_ref_id' => $page_ref_id,
+		], $smarty);
 	} else {
 		$url = $wikilib->sefurl($page);
 	}
