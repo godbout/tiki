@@ -405,10 +405,6 @@ class TrackerLib extends TikiLib
 			$bindvars[] = $trackerId;
 			$query_cant = "select count(*) from `tiki_comments` t left join `tiki_tracker_items` a on t.`object`=a.`itemId` where $mid and a.`trackerId`=? AND t.`objectType` = 'trackeritem' order by t.`commentDate` desc";
 		} else {
-			if (! $this->user_has_perm_on_object($user, $trackerId, 'tracker', 'tiki_p_view_trackers')) {
-				return ['cant' => 0];
-			}
-
 			$query = "select t.*, t.object itemId, a.`trackerId` from `tiki_comments` t left join `tiki_tracker_items` a on t.`object`=a.`itemId` where $mid AND t.`objectType` = 'trackeritem' order by `commentDate` desc";
 			$query_cant = "select count(*) from `tiki_comments` where $mid AND `objectType` = 'trackeritem'";
 		}
@@ -416,16 +412,18 @@ class TrackerLib extends TikiLib
 		$ret = $this->fetchAll($query, $bindvars, $maxRecords, $offset);
 		$cant = $this->getOne($query_cant, $bindvars);
 
-		foreach ($ret as &$res) {
-			if (! $trackerId && ! $this->user_has_perm_on_object($user, $res['trackerId'], 'tracker', 'tiki_p_view_trackers')) {
+		foreach ($ret as $key => &$res) {
+			$itemObject = Tracker_Item::fromId($res['itemId']);
+			if (! $itemObject->canView()) {
 				--$cant;
+				unset($ret[$key]);
 				continue;
 			}
 			$res["parsed"] = $this->parse_comment($res["data"]);
 		}
 
 		return [
-			'data' => $ret,
+			'data' => array_values($ret),
 			'cant' => $cant,
 		];
 	}
@@ -641,7 +639,8 @@ class TrackerLib extends TikiLib
 		$trackerItemFields = $this->table('tiki_tracker_item_fields');
 		//FIXME Perm:filter ?
 		foreach ($result as $res) {
-			if (! $this->user_has_perm_on_object($user, $res['trackerId'], 'tracker', 'tiki_p_view_trackers')) {
+			$itemObject = Tracker_Item::fromId($res['itemId']);
+			if (! $itemObject->canView()) {
 				continue;
 			}
 			$itemId = $res["itemId"];

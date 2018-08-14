@@ -1849,8 +1849,8 @@ class ParserLib extends TikiDb_Bridge
 							$auto_query_args = ['itemId'];
 							if (! empty($_REQUEST['itemId'])) {
 								$item_info = $trklib->get_item_info($_REQUEST['itemId']);
-								$perms = Perms::get(['type' => 'tracker', 'object' => $item_info['trackerId']]);
-								if (! $perms->view_trackers) {
+								$itemObject = Tracker_Item::fromInfo($item_info);
+								if (! $itemObject->canView()) {
 									$smarty->assign('errortype', 401);
 									$smarty->assign('msg', tra('You do not have permission to view this information from this tracker.'));
 									$smarty->display('error.tpl');
@@ -1875,8 +1875,8 @@ class ParserLib extends TikiDb_Bridge
 							$auto_query_args = ['itemId'];
 							if (! empty($_REQUEST['itemId'])) {
 								$item_info = $trklib->get_item_info($_REQUEST['itemId']);
-								$perms = Perms::get(['type' => 'tracker', 'object' => $item_info['trackerId']]);
-								if (! $perms->view_trackers) {
+								$itemObject = Tracker_Item::fromInfo($item_info);
+								if (! $itemObject->canView()) {
 									$smarty->assign('errortype', 401);
 									$smarty->assign('msg', tra('You do not have permission to view this information from this tracker.'));
 									$smarty->display('error.tpl');
@@ -1901,8 +1901,8 @@ class ParserLib extends TikiDb_Bridge
 							$auto_query_args = ['itemId'];
 							if (! empty($_REQUEST['itemId'])) {
 								$item_info = $trklib->get_item_info($_REQUEST['itemId']);
-								$perms = Perms::get(['type' => 'tracker', 'object' => $item_info['trackerId']]);
-								if (! $perms->view_trackers) {
+								$itemObject = Tracker_Item::fromInfo($item_info);
+								if (! $itemObject->canView()) {
 									$smarty->assign('errortype', 401);
 									$smarty->assign('msg', tra('You do not have permission to view this information from this tracker.'));
 									$smarty->display('error.tpl');

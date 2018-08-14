@@ -506,7 +506,8 @@ function module_since_last_visit_new($mod_reference, $params = null)
 		$tracker_name = [];
 		$cachelib = TikiLib::lib('cache');
 		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['trackerId'], 'tracker', 'tiki_p_view_trackers')) {
+			$itemObject = Tracker_Item::fromId($res['itemId']);
+			if ($itemObject->canView()) {
 				// Initialize tracker counter if needed.
 				if (! isset($counta[$res['trackerId']])) {
 					$counta[$res['trackerId']] = 0;
@@ -565,7 +566,8 @@ function module_since_last_visit_new($mod_reference, $params = null)
 		$cachelib = TikiLib::lib('cache');
 
 		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['trackerId'], 'tracker', 'tiki_p_view_trackers')) {
+			$itemObject = Tracker_Item::fromId($res['itemId']);
+			if ($itemObject->canView()) {
 				// Initialize tracker counter if needed.
 				if (! isset($countb[$res['trackerId']])) {
 					$countb[$res['trackerId']] = 0;
