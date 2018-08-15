@@ -493,7 +493,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['galleryId'], 'file gallery', 'tiki_p_view_file_gallery')) {
+			if ($this->user_has_perm_on_object($user, $res['fileId'], 'file', 'tiki_p_view_file_gallery')) {
 				$aux["name"] = $res["filename"];
 				$aux["hits"] = $res["hits"];
 				$aux["href"] = 'tiki-download_file.php?fileId=' . $res["fileId"];
@@ -549,7 +549,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['galleryId'], 'file gallery', 'tiki_p_view_file_gallery')) {
+			if ($this->user_has_perm_on_object($user, $res['fileId'], 'file', 'tiki_p_view_file_gallery')) {
 				$aux["name"] = $res["filename"];
 				$aux["hits"] = $res["created"];
 				$aux["href"] = 'tiki-download_file.php?fileId=' . $res["fileId"];

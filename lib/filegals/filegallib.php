@@ -1775,9 +1775,10 @@ class FileGalLib extends TikiLib
 			return false;
 		}
 		$fileIds = array_unique($fileIds);
+		Perms::bulk(['type' => 'file'], 'object', $fileIds);
 		foreach ($fileIds as $fileId) {
 			$info = $this->get_file($fileId);
-			if ($tiki_p_admin_file_galleries == 'y' || $userlib->user_has_perm_on_object($user, $info['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+			if ($tiki_p_admin_file_galleries == 'y' || $userlib->user_has_perm_on_object($user, $info['fileId'], 'file', 'tiki_p_download_files')) {
 				if (empty($zipName)) {
 					$zipName = $info['galleryId'];
 				}
@@ -3245,28 +3246,28 @@ class FileGalLib extends TikiLib
 		$gal_size_order = [];
 		$cant = 0;
 		$need_everything = ( $with_subgals_size && ( $sort_mode == 'size_asc' || $sort_mode == 'filesize_asc' ) );
-		$cachelib = TikiLib::lib('cache');
-		//TODO: perms cache for file perms (now we are using cache only for file gallery perms)
-		$cacheName = md5("group:" . implode("\n", $this->get_user_groups($user)));
-		if (! is_array($galleryId)) {
-			$cacheType = 'fgals_perms_' . $galleryId . "_";
-			if ($galleryId > 0 && $cachelib->isCached($cacheName, $cacheType)) {
-				$fgal_perms = unserialize($cachelib->getCached($cacheName, $cacheType));
-			} else {
-				$fgal_perms = [];
-			}
-		} else {
-			$cacheType = 'fgals_perms_' . implode('_', $galleryId) . "_";
-			if ($cachelib->isCached($cacheName, $cacheType)) {
-				$fgal_perms = unserialize($cachelib->getCached($cacheName, $cacheType));
-			} else {
-				$fgal_perms = [];
-			}
-		}
 		$numResults = count($result);
 		if (! $need_everything) {
 			$result = array_slice($result, $offset == -1 ? 0 : $offset, $maxRecords == -1 ? null : $maxRecords);
 		}
+		$galleryIds = array_map(
+			function($res){
+				return $res['id'];
+			},
+			array_filter($result, function($res) {
+				return $res['isgal'] == 1;
+			})
+		);
+		$fileIds = array_map(
+			function($res){
+				return $res['id'];
+			},
+			array_filter($result, function($res) {
+				return $res['isgal'] != 1;
+			})
+		);
+		Perms::bulk(['type' => 'file gallery'], 'object', $galleryIds);
+		Perms::bulk(['type' => 'file'], 'object', $fileIds);
 		foreach ($result as $res) {
 			$object_type = ( $res['isgal'] == 1 ? 'file gallery' : 'file');
 			$galleryId = $res['isgal'] == 1 ? $res['id'] : $res['galleryId'];
@@ -3278,19 +3279,8 @@ class FileGalLib extends TikiLib
 				}
 			}
 
-			// if file is categorized uses category permisions, otherwise uses parent file gallery permissions
-			// note that the file will not be displayed if categorized but its categories has no file gallery related permissions
-			if ($object_type == 'file' && $categlib->is_categorized($object_type, $res['id'])) {
-				$res['perms'] = $this->get_perm_object($res['id'], 'file', [], false);
-			} elseif (isset($fgal_perms[$galleryId])) {
-				$res['perms'] = $fgal_perms[$galleryId];
-			} else {
-				$fgal_perms[$galleryId] = $res['perms'] = $this->get_perm_object($galleryId, 'file gallery', [], false);
-			}
-
-			if ($galleryId <= 0) {
-				$cachelib->cacheItem($cacheName, serialize($fgal_perms), 'fgals_perms_' . $galleryId . '_');
-			}
+			// use permission subsystem to figure out if this file has its own permissions, category permisisons or file gallery permissions attached
+			$res['perms'] = $this->get_perm_object($res['id'], $object_type, [], false);
 
 			// If the current user is the file owner, then list the file (fix for the userfiles - wasn't listing even if trying to list own files)
 			if ($my_user == $res['creator']) {
@@ -3299,9 +3289,7 @@ class FileGalLib extends TikiLib
 
 			// Don't return the current item, if :
 			//  the user has no rights to view the file gallery AND no rights to list all galleries (in case it's a gallery)
-			if (( $res['perms']['tiki_p_view_file_gallery'] != 'y' && ! $this->user_has_perm_on_object($user, $res['id'], $object_type, 'tiki_p_view_file_gallery') )
-					&& ( $res['isgal'] == 0 || ( $res['perms']['tiki_p_list_file_galleries'] != 'y' && ! $this->user_has_perm_on_object($user, $res['id'], $object_type, 'tiki_p_list_file_galleries') ) )
-				) {
+			if ($res['perms']['tiki_p_view_file_gallery'] != 'y' && $res['perms']['tiki_p_list_file_galleries'] != 'y') {
 				$numResults--;
 				continue;
 			}
@@ -3358,9 +3346,6 @@ class FileGalLib extends TikiLib
 			$ret[$cant]['podcast_filename'] = $res['path'];
 
 			$cant++;
-		}
-		if ($galleryId > 0) {
-			$cachelib->cacheItem($cacheName, serialize($fgal_perms), $cacheType);
 		}
 
 		if (count($gal_size_order) > 0) {

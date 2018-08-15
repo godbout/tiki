@@ -63,7 +63,7 @@ if (! in_array($extension, $supportedExtensions) && ! in_array($fileType, $suppo
 	die;
 }
 
-$globalperms = Perms::get([ 'type' => 'file galleries', 'object' => $fileInfo['galleryId'] ]);
+$globalperms = Perms::get([ 'type' => 'file', 'object' => $fileInfo['fileId'] ]);
 
 //check permissions
 if (! ($globalperms->admin_file_galleries == 'y' || $globalperms->view_file_gallery == 'y')) {

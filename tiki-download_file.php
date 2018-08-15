@@ -89,7 +89,7 @@ if (! $skip) {
 			$access->display_error('', tra('Permission denied'), 401);
 		}
 
-		if (! $zip && $tiki_p_admin_file_galleries != 'y' && ! $userlib->user_has_perm_on_object($user, $info['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+		if (! $zip && $tiki_p_admin_file_galleries != 'y' && ! $userlib->user_has_perm_on_object($user, $info['fileId'], 'file', 'tiki_p_download_files')) {
 			if (! $user) {
 				$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
 			}
@@ -97,7 +97,7 @@ if (! $skip) {
 		}
 		if (isset($_GET['thumbnail']) && is_numeric($_GET['thumbnail'])) { //check also perms on thumb
 			$info_thumb = $filegallib->get_file($_GET['thumbnail']);
-			if (! $zip && $tiki_p_admin_file_galleries != 'y' && ! $userlib->user_has_perm_on_object($user, $info_thumb['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+			if (! $zip && $tiki_p_admin_file_galleries != 'y' && ! $userlib->user_has_perm_on_object($user, $info_thumb['fileId'], 'file', 'tiki_p_download_files')) {
 				if (! $user) {
 					$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
 				}

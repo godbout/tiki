@@ -179,6 +179,12 @@
 					{/if}
 				{/if}
 
+				{if $file.perms.tiki_p_assign_perm_file_gallery eq 'y'}
+					<div class="iconmenu">
+						{permission_link mode=text type="file" permType="file galleries" id=$file.id title=$file.name parentId=$file.galleryId}
+					</div>
+				{/if}
+
 				{if $gal_info.lockable eq 'y' and $file.isgal neq 1}
 					{if $file.lockedby}
 						{self_link _icon_name='unlock' _menu_text=$menu_text _menu_icon=$menu_icon lock='n' fileId=$file.fileId galleryId=$file.galleryId}

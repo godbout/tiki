@@ -821,7 +821,7 @@ function wikiplugin_img($data, $params)
 				} elseif (! Image::isAvailable()) {
 					return '^' . tra('Server does not support image manipulation.') . '^';
 				} elseif (! empty($imgdata['fileId'])) {
-					if (! $userlib->user_has_perm_on_object($user, $dbinfo['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+					if (! $userlib->user_has_perm_on_object($user, $imgdata['fileId'], 'file', 'tiki_p_download_files')) {
 						return $notice;
 					}
 				} elseif (! empty($imgdata['id'])) {

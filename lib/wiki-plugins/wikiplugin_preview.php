@@ -82,7 +82,7 @@ function wikiplugin_preview($data, $params)
 	$fileGalleryLib = TikiLib::lib('filegal');
 	$userLib = TikiLib::lib('user');
 	$info = $fileGalleryLib->get_file($fileId);
-	if (! $userLib->user_has_perm_on_object($user, $info['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+	if (! $info || ! $userLib->user_has_perm_on_object($user, $info['fileId'], 'file', 'tiki_p_download_files')) {
 		return;
 	}
 
