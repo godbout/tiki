@@ -1079,14 +1079,18 @@ class TikiLib extends TikiDb_Bridge
 								$this->user_has_perm_on_object($res['user'], $object, 'file gallery', 'tiki_p_download_files'));
 						break;
 					case 'article_submitted':
-					case 'topic_article_created':
 					case 'article_edited':
-					case 'topic_article_edited':
 					case 'article_deleted':
+						$userlib = TikiLib::lib('user');
+						$res['perm'] = (empty($object) && $userlib->user_has_permission($res['user'], 'tiki_p_read_article'))
+							|| $this->user_has_perm_on_object($res['user'], $object, 'article', 'tiki_p_read_article');
+						break;
+					case 'topic_article_created':
+					case 'topic_article_edited':
 					case 'topic_article_deleted':
 						$userlib = TikiLib::lib('user');
-						$res['perm'] = ($userlib->user_has_permission($res['user'], 'tiki_p_read_article') &&
-								(empty($object) || $this->user_has_perm_on_object($res['user'], $object, 'topic', 'tiki_p_topic_read')));
+						$res['perm'] = (empty($object) && $userlib->user_has_permission($res['user'], 'tiki_p_read_article'))
+							|| $this->user_has_perm_on_object($res['user'], $object, 'topic', 'tiki_p_read_article');
 						break;
 					case 'calendar_changed':
 						$res['perm'] = $this->user_has_perm_on_object($res['user'], $object, 'calendar', 'tiki_p_view_calendar');

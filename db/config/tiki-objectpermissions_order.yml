@@ -62,7 +62,6 @@ blogs:
 articles:
     - admin_cms
     - read_article
-    - topic_read
     - edit_article
     - edit_article_user
     - remove_article

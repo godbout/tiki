@@ -396,7 +396,7 @@ class ArtLib extends TikiLib
 			$this->delete_image_cache('article', $articleId);
 
 			$event = 'article_edited';
-			$nots = $tikilib->get_event_watches('article_edited', '*');
+			$nots = $tikilib->get_event_watches('article_edited', $articleId);
 			$nots2 = $tikilib->get_event_watches('topic_article_edited', $topicId);
 			$smarty->assign('mail_action', 'Edit');
 			$smarty->assign('mail_old_title', $oldArticle['title']);
@@ -421,7 +421,7 @@ class ArtLib extends TikiLib
 				]
 			);
 			$event = 'article_submitted';
-			$nots = $tikilib->get_event_watches('article_submitted', '*');
+			$nots = $tikilib->get_event_watches('article_submitted', $articleId);
 			$nots2 = $tikilib->get_event_watches('topic_article_created', $topicId);
 			$smarty->assign('mail_action', 'New');
 
@@ -861,16 +861,9 @@ class ArtLib extends TikiLib
 	{
 		$query = 'select `articleId` ,`title` from `tiki_articles` where `author`=? order by `publishDate` desc';
 
-		$result = $this->query($query, [$user], $max);
-		$ret = [];
+		$articles = $this->fetchAll($query, [$user], $max);
 
-		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['articleId'], 'article', 'tiki_p_read_article')) {
-				$ret[] = $res;
-			}
-		}
-
-		return $ret;
+		return Perms::filter(['type' => 'article'], 'object', $articles, ['object' => 'articleId'], 'read_article');
 	}
 
 	function import_csv($fileName, &$msgs, $csvDelimiter = ',')
@@ -1359,24 +1352,24 @@ class ArtLib extends TikiLib
 				]
 			);
 
-		$result = $this->query($query, $bindvars, $maxRecords, $offset);
+		$result = $this->fetchAll($query, $bindvars, $maxRecords, $offset);
 		$query_cant = "select distinct count(*) from `tiki_articles` $fromSql $join $mid $mid2";
 		$cant = $this->getOne($query_cant, $bindvars);
 		$ret = [];
-		while ($res = $result->fetchRow()) {
+		$articleIds = array_map(
+			function($res){
+				return $res['articleId'];
+			}, $result
+		);
+		Perms::bulk(['type' => 'article'], 'object', $articleIds);
+		foreach ($result as $res) {
+			$res['perms'] = $this->get_perm_object($res['articleId'], 'article', [], false);
 			// Determine if unpublished article should be listed
-			$add3 = $this->user_has_perm_on_object($user, $res['articleId'], 'article', 'tiki_p_edit_article');
-			if ($res['ispublished'] != 'y' && ! $add3) {
+			if ($res['ispublished'] != 'y' && $res['perms']['tiki_p_edit_article'] != 'y') {
 				$res['disp_article'] = 'n';
 			} else {
-				if ($res['topicId'] != 0 && $userlib->object_has_one_permission($res['topicId'], 'topic')) {// if no topic or if topic has no special perm don't have to check for topic perm
-					$add1 = $this->user_has_perm_on_object($user, $res['topicId'], 'topic', 'tiki_p_topic_read');
-				} else {
-					$add1 = $this->user_has_perm_on_object($user, $res['articleId'], 'article', 'tiki_p_read_article');
-				}
-				$add2 = $this->user_has_perm_on_object($user, $res['articleId'], 'article', 'tiki_p_articles_read_heading');
 				// no need to do all of the following if we are not adding this article to the array
-				if ($add1 || $add2) {
+				if ($res['perms']['tiki_p_read_article'] == 'y' || $res['perms']['tiki_p_articles_read_heading'] == 'y') {
 					$res['entrating'] = floor($res['rating']);
 					if (empty($res['body'])) {
 						$res['isEmpty'] = 'y';
@@ -1535,9 +1528,6 @@ class ArtLib extends TikiLib
 			$perms = Perms::get('article', $articleId);
 
 			$permsok = $perms->admin_cms || $perms->read_article || $perms->articles_read_heading;
-
-			// If not allowed to view article, check if allowed to view topic
-			$permsok = $permsok || ( $res['topicId'] && Perms::get('topic', $res['topicId'])->read_topic );
 
 			if (! $permsok) {
 				return false;

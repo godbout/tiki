@@ -297,12 +297,19 @@ function module_since_last_visit_new($mod_reference, $params = null)
 			$bindvars = [(int) $last, time()];
 		} else {
 			$query = 'select `articleId`,`title`,`publishDate`,`authorName` from `tiki_articles` where `publishDate`>? and `publishDate`<=? and `expireDate`>? order by `articleId` desc';
-			$bindvars = [(int) $last,time(),time()];
+      $bindvars = [(int) $last,time(),time()];
 		}
-		$result = $tikilib->query($query, $bindvars, $resultCount);
+		$result = $tikilib->fetchAll($query, $bindvars, $resultCount);
+
+		$articleIds = array_map(
+			function($res) {
+				return $res['articleId'];
+			}, $result
+		);
+		Perms::bulk(['type' => 'article'], 'object', $articleIds);
 
 		$count = 0;
-		while ($res = $result->fetchRow()) {
+		foreach ($result as $res) {
 			if ($userlib->user_has_perm_on_object($user, $res['articleId'], 'article', 'tiki_p_read_article')) {
 				$ret['items']['articles']['list'][$count]['href']  = filter_out_sefurl('tiki-read_article.php?articleId=' . $res['articleId'], 'article', $res['title']);
 				$ret['items']['articles']['list'][$count]['title'] = $tikilib->get_short_datetime($res['publishDate']) . ' ' . tra('by') . ' ' . $res['authorName'];

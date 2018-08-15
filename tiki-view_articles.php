@@ -28,7 +28,13 @@ if ($prefs['feature_categories'] == 'y') {
 $access->check_feature('feature_articles');
 
 if (isset($_REQUEST["remove"])) {
-	$access->check_permission('tiki_p_remove_article');
+	$artperms = Perms::get([ 'type' => 'article', 'object' => $_REQUEST['remove'] ]);
+	if ($artperms->remove_article != 'y') {
+		$smarty->assign('errortype', 401);
+		$smarty->assign('msg', tra("You do not have permission to remove articles"));
+		$smarty->display("error.tpl");
+		die;
+	}
 	$access->check_authenticity();
 	$artlib->remove_article($_REQUEST["remove"]);
 }

@@ -128,7 +128,7 @@
 				{/if}
 
 				<tr>
-					{if $tiki_p_remove_article eq 'y'}
+					{if $listpages[changes].perms.tiki_p_remove_article eq 'y'}
 						<td class="checkbox-cell">
 							<div class="form-check">
 								<input type="checkbox" name="checked[]" value="{$listpages[changes].articleId|escape}" {if $listpages[changes].checked eq 'y'}checked="checked" {/if}>
@@ -137,7 +137,7 @@
 					{/if}
 					{if $prefs.art_list_title eq 'y'}
 						<td class="text">
-							{if $tiki_p_read_article eq 'y'}
+							{if $listpages[changes].perms.tiki_p_read_article eq 'y'}
 								{object_link type=article id=$listpages[changes].articleId title=$listpages[changes].title|truncate:$prefs.art_list_title_len:"...":true}
 							{else}
 								{$listpages[changes].title|truncate:$prefs.art_list_title_len:"...":true|escape}
@@ -186,32 +186,32 @@
 					{if $prefs.art_list_img eq 'y'}
 						<td class="text">{tr}{$listpages[changes].hasImage}{/tr}/{tr}{$listpages[changes].useImage}{/tr}</td>
 					{/if}
-					{if $prefs.art_list_ispublished eq 'y' and $tiki_p_edit_article eq 'y'}
+					{if $prefs.art_list_ispublished eq 'y' and $listpages[changes].perms.tiki_p_edit_article eq 'y'}
 						<td style="text-align:center;">{$listpages[changes].ispublished}</td>
 					{/if}
 					<td class="action">
 						{actions}
 							{strip}
-								{if $tiki_p_read_article eq 'y'}
+								{if $listpages[changes].perms.tiki_p_read_article eq 'y'}
 									<action>
 										<a href="{$listpages[changes].articleId|sefurl:article}">
 											{icon name="view" _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
 										</a>
 									</action>
 								{/if}
-								{if $tiki_p_edit_article eq 'y' or (!empty($user) and $listpages[changes].author eq $user and $listpages[changes].creator_edit eq 'y')}
+								{if $listpages[changes].perms.tiki_p_edit_article eq 'y' or (!empty($user) and $listpages[changes].author eq $user and $listpages[changes].creator_edit eq 'y')}
 									<action>
 										<a href="tiki-edit_article.php?articleId={$listpages[changes].articleId}">
 											{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 										</a>
 									</action>
 								{/if}
-								{if $tiki_p_admin_cms eq 'y' or $tiki_p_assign_perm_cms eq 'y'}
+								{if $listpages[changes].perms.tiki_p_admin_cms eq 'y' or $listpages[changes].perms.tiki_p_assign_perm_cms eq 'y'}
 									<action>
 										{permission_link mode=text type=article permType=articles id=$listpages[changes].articleId}
 									</action>
 								{/if}
-								{if $tiki_p_remove_article eq 'y'}
+								{if $listpages[changes].perms.tiki_p_remove_article eq 'y'}
 									<action>
 										{self_link _menu_text='y' _menu_icon='y' remove=$listpages[changes].articleId _icon_name="remove"}
 											{tr}Remove{/tr}

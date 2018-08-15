@@ -63,22 +63,6 @@ $topics = $artlib->list_topics();
  * that start with other keys in a section loop, which this variable is used in
  */
 $topics = array_values($topics);
-$temp_max = count($topics);
-for ($i = 0; $i < $temp_max; $i++) {
-	if ($userlib->object_has_one_permission($topics[$i]["topicId"], 'topic')) {
-		$topics[$i]["individual"] = 'y';
-		if ($userlib->object_has_permission($user, $topics[$i]["topicId"], 'topic', 'tiki_p_topic_read')) {
-			$topics[$i]["individual_tiki_p_topic_read"] = 'y';
-		} else {
-			$topics[$i]["individual_tiki_p_topic_read"] = 'n';
-		}
-		if ($tiki_p_admin == 'y' || $userlib->object_has_permission($user, $topics[$i]["topicId"], 'topic', 'tiki_p_admin_cms')) {
-			$topics[$i]["individual_tiki_p_topic_read"] = 'y';
-		}
-	} else {
-		$topics[$i]["individual"] = 'n';
-	}
-}
 $smarty->assign('topics', $topics);
 ask_ticket('admin-topics');
 include_once('tiki-section_options.php');

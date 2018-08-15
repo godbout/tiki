@@ -28,7 +28,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit_Framework_TestCas
 					new Perms_Resolver_Static(
 						[
 							'Anonymous' => ['tiki_p_view'],
-							'Registered' => ['tiki_p_view', 'tiki_p_topic_read'],
+							'Registered' => ['tiki_p_view', 'tiki_p_read_article'],
 						]
 					)
 				),
@@ -47,7 +47,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit_Framework_TestCas
 	{
 		$contentSource = new Search_ContentSource_Static(
 			[
-				'HomePage' => ['view_permission' => 'tiki_p_topic_read'],
+				'HomePage' => ['view_permission' => 'tiki_p_read_article'],
 			],
 			['view_permission' => 'identifier']
 		);
@@ -120,7 +120,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit_Framework_TestCas
 		$contentSource = new Search_ContentSource_Static(
 			[
 				'10' => [
-					'parent_view_permission' => 'tiki_p_topic_read',
+					'parent_view_permission' => 'tiki_p_read_article',
 					'parent_object_id' => '1',
 					'parent_object_type' => 'forum'
 				],
@@ -147,7 +147,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit_Framework_TestCas
 		$contentSource = new Search_ContentSource_Static(
 			[
 				'10' => [
-					'parent_view_permission' => 'tiki_p_topic_read',
+					'parent_view_permission' => 'tiki_p_read_article',
 					'parent_object_id' => '1',
 					'parent_object_type' => 'forum',
 					'view_permission' => 'tiki_p_article_read'

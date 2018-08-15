@@ -807,7 +807,7 @@ class SearchLib extends TikiLib
 
 		foreach ($res['data'] as $r) {
 			$objperm = $this->get_perm_object($r['name'], 'article', '', false);
-			if (empty($r['name']) || $objperm['tiki_p_topic_read'] == 'y') {
+			if (empty($r['name']) || $objperm['tiki_p_read_article'] == 'y') {
 				$r['name'] = $r['pageName'];
 				$r['href'] = filter_out_sefurl($r['href'], 'article', $r['pageName']);
 				$ret['data'][] = $r;

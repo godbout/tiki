@@ -141,7 +141,7 @@
 							</span>
 						{/if}
 						{if $listpages[ix].comment_can_rate_article eq 'y' && $prefs.article_user_rating eq 'y'
-							&& ($tiki_p_ratings_view_results eq 'y' or $tiki_p_admin eq 'y')}
+							&& ($listpages[ix].perms.tiki_p_ratings_view_results eq 'y' or $tiki_p_admin eq 'y')}
 							- <span class="ratingResultAvg">
 								{tr}Users rating: {/tr}
 							</span>{rating_result_avg id=$listpages[ix].articleId type=article}
@@ -149,8 +149,8 @@
 					</span><br>
 				{/if}
 				{if $author ne $user and $listpages[ix].comment_can_rate_article eq 'y' and empty({$listpages[ix].body})
-					and !isset($preview) and $prefs.article_user_rating eq 'y' and ($tiki_p_rate_article eq 'y'
-					or $tiki_p_admin_cms eq 'y')}
+					and !isset($preview) and $prefs.article_user_rating eq 'y' and ($listpages[ix].perms.tiki_p_rate_article eq 'y'
+					or $listpages[ix].perms.tiki_p_admin_cms eq 'y')}
 					<div class="articleheading">
 						<form method="post" action="">
 							{rating type=article id=$listpages[ix].articleId}
@@ -158,7 +158,7 @@
 					</div>
 				{/if}
 				{if $listpages[ix].comment_can_rate_article eq 'y' && $prefs.article_user_rating eq 'y'
-					&& ($tiki_p_ratings_view_results eq 'y' or $tiki_p_admin eq 'y')}
+					&& ($listpages[ix].perms.tiki_p_ratings_view_results eq 'y' or $tiki_p_admin eq 'y')}
 					<div class="articleheading">
 						{rating_result id=$listpages[ix].articleId type=article}
 					</div>
@@ -226,9 +226,9 @@
 					{/if}
 
 			<div class="articletrailer">
-				{if ($listpages[ix].size > 0) or (($prefs.feature_article_comments eq 'y') and ($tiki_p_read_comments eq 'y'))}
+				{if ($listpages[ix].size > 0) or (($prefs.feature_article_comments eq 'y') and ($listpages[ix].perms.tiki_p_read_comments eq 'y'))}
 				<ul class="list-inline pull-left">
-					{if ($tiki_p_read_article eq 'y' and $listpages[ix].heading_only ne 'y' and (!isset($fullbody) or $fullbody ne "y"))}
+					{if ($listpages[ix].perms.tiki_p_read_article eq 'y' and $listpages[ix].heading_only ne 'y' and (!isset($fullbody) or $fullbody ne "y"))}
 						{if ($listpages[ix].size > 0 and !empty($listpages[ix].body))}
 
 							<li class="status"> {* named to be similar to for<um/blog item *}
@@ -241,14 +241,14 @@
 							{/if}
 						{/if}
 					{/if}
-					{if ($prefs.feature_article_comments eq 'y') and ($tiki_p_read_comments eq 'y') and ($listpages[ix].allow_comments eq 'y')}
+					{if ($prefs.feature_article_comments eq 'y') and ($listpages[ix].perms.tiki_p_read_comments eq 'y') and ($listpages[ix].allow_comments eq 'y')}
 						<li>
 							<a href="{$listpages[ix].articleId|sefurl:article:with_next}{if $prefs.feature_sefurl neq 'y'}&amp;{/if}show_comzone=y{if !empty($urlparam)}&amp;{$urlparam}{/if}#comments"{if $listpages[ix].comments_cant > 0} class="highlight"{/if}>
-								{if $listpages[ix].comments_cant == 0 and $tiki_p_post_comments == 'y'}
+								{if $listpages[ix].comments_cant == 0 and $listpages[ix].perms.tiki_p_post_comments == 'y'}
 									{if !isset($actions) or $actions eq "y"}
 										{tr}Add Comment{/tr}
 									{/if}
-								{elseif $tiki_p_read_comments eq 'y'}
+								{elseif $listpages[ix].perms.tiki_p_read_comments eq 'y'}
 									{if $listpages[ix].comments_cant == 1}
 										{tr}1 comment{/tr}
 									{else}
@@ -262,7 +262,7 @@
 				{/if}
 				{if !isset($actions) or $actions eq "y"}
 					<div class="btn-group actions pull-right dropup">
-						{if $prefs.feature_multilingual eq 'y' and $tiki_p_edit_article eq 'y'}
+						{if $prefs.feature_multilingual eq 'y' and $listpages[ix].perms.tiki_p_edit_article eq 'y'}
 							{include file='translated-lang.tpl' object_type='article' trads=$listpages[ix].translations articleId=$listpages[ix].articleId}
 						{/if}
 						<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
@@ -273,7 +273,7 @@
 								{tr _0="{$listpages[ix].title}"}Actions for %0{/tr}
 							</li>
 							<li class="dropdown-divider"></li>
-							{if $tiki_p_edit_article eq 'y' or (!empty($user) and $listpages[ix].author eq $user
+							{if $listpages[ix].perms.tiki_p_edit_article eq 'y' or (!empty($user) and $listpages[ix].author eq $user
 							and $listpages[ix].creator_edit eq 'y')}
 								<li class="dropdown-item">
 									<a href="tiki-edit_article.php?articleId={$listpages[ix].articleId}">
@@ -288,7 +288,7 @@
 									</a>
 								</li>
 							{/if}
-							{if $tiki_p_remove_article eq 'y'}
+							{if $listpages[ix].perms.tiki_p_remove_article eq 'y'}
 								<li class="dropdown-item">
 									<a href="tiki-list_articles.php?remove={$listpages[ix].articleId}">
 										{icon name='remove'} {tr}Remove{/tr}
