@@ -455,4 +455,58 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 			}
 		}
 	}
+
+	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
+	{
+		$baseKey = $this->getBaseKey();
+
+		$data = $this->getFieldData();
+		$value = $this->getValue();
+
+		// we don't have all the data in the field definition at this point, so just render the labels here
+		$objectLib = TikiLib::lib('object');
+		$format = $this->getOption('format');
+		$labels = [];
+		foreach ($data['relations'] as $identifier) {
+			list($type, $object) = explode(':', $identifier);
+			$labels[] = $objectLib->get_title($type, $object,$format);
+		}
+
+		$plain = implode(', ', $labels);
+
+		$text = '';
+		$count = count($labels);
+		for ($i = 0; $i < $count; $i++) {
+			$text .= $labels[$i];
+			if ($i === $count - 2) {
+				$text .= ' ' . tr('and') . ' ';
+			} else if ($i < $count - 1) {
+				$text .= ', ';
+			}
+		}
+		return [
+			$baseKey => $typeFactory->sortable($value),
+			"{$baseKey}_multi" => $typeFactory->multivalue(explode("\n", $value)),
+			"{$baseKey}_plain" => $typeFactory->plaintext($plain),
+			"{$baseKey}_text" => $typeFactory->plaintext($text),
+		];
+	}
+
+	function getProvidedFields()
+	{
+		$baseKey = $this->getBaseKey();
+		return [
+			$baseKey,				// comma separated object_type:object_id
+			"{$baseKey}_multi",		// array [object_type:object_id]
+			"{$baseKey}_plain",		// comma separated formatted object titles
+			"{$baseKey}_text",		// comma separated formatted object titles with "and" before the last one
+		];
+	}
+
+	function getGlobalFields()
+	{
+		$baseKey = $this->getBaseKey();
+		return ["{$baseKey}_plain" => true];	// index contents with the object titles
+	}
+
 }
