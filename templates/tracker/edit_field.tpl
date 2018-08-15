@@ -53,9 +53,13 @@
 						</select>
 					{elseif $def.selector_type}
 						{if $def.separator}
-							{object_selector_multi type=$def.selector_type _separator=$def.separator _simplename="option~`$param`" _simplevalue=$options[$param] _simpleid="option-`$param`" _parent=$def.parent _parentkey=$def.parentkey _sort=$def.sort_order}
+							<div class="col-12">
+								{object_selector_multi type=$def.selector_type _separator=$def.separator _simplename="option~`$param`" _simplevalue=$options[$param] _simpleid="option-`$param`" _parent=$def.parent _parentkey=$def.parentkey _sort=$def.sort_order}
+							</div>
 						{else}
-							{object_selector type=$def.selector_type _simplename="option~`$param`" _simplevalue=$options[$param] _simpleid="option-`$param`" _parent=$def.parent _parentkey=$def.parentkey}
+							<div class="col-12">
+								{object_selector type=$def.selector_type _simplename="option~`$param`" _simplevalue=$options[$param] _simpleid="option-`$param`" _parent=$def.parent _parentkey=$def.parentkey}
+							</div>
 						{/if}
 					{elseif $def.separator}
 						<input type="text" name="option~{$param|escape}" value="{$options[$param]|implode:$def.separator|escape}" class="form-control">
