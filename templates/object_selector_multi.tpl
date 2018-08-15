@@ -29,7 +29,7 @@
 		</select>
 	</div>
 
-	<div class="panel d-none">
+	<div class="card d-none">
 		<div class="card-header">
 			<div class="input-group">
 				<div class="input-group-append">
@@ -43,7 +43,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<p class="too-many">{tr}Search and select what you are looking for from the options that appear..{/tr}</p>
 			<div class="results">
 				{foreach $object_selector_multi.current_selection as $object}
