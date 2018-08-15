@@ -83,6 +83,16 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 							'save' => tr('On Save'),
 						],
 					],
+					'parentFilter' => [
+						'name' => tr('Extra Filter Field'),
+						'description' => tr('Filter objects by value of another field. Use a jQuery seletor to target the element in the page.'),
+						'filter' => 'text',
+					],
+					'parentFilterKey' => [
+						'name' => tr('Extra Filter Key'),
+						'description' => tr('Key to filter objects by using the value from the Extra Filter Field above.'),
+						'filter' => 'text',
+					],
 				],
 			],
 		];
@@ -144,7 +154,9 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 			[
 				'labels' => $labels,
 				'filter' => $filter,
-				'format' => $this->getOption('format')
+				'format' => $this->getOption('format'),
+				'parent' => $this->getOption('parentFilter'),
+				'parentkey' => $this->getOption('parentFilterKey'),
 			]
 		);
 	}
