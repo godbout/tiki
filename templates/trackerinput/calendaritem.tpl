@@ -16,7 +16,7 @@
 				</label>
 			</div>
 			<div class="col-sm-6">
-				{object_selector _format='{title} ({start_date})' _simplevalue=$data.event.calitemId _simplename=$id _simpleid=$id type='calendaritem' calendar_id=$field.options_map.calendarId}
+				{object_selector _format='{title} id#:{object_id}' _simplevalue=$data.event.calitemId _simplename=$id _simpleid=$id object_type='calendaritem' calendar_id=$field.options_map.calendarId}
 			</div>
 		{/if}
 	{/if}
