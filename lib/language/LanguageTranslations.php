@@ -189,7 +189,7 @@ class LanguageTranslations extends TikiDb_Bridge
 			$stats = ['modif' => 0, 'new' => 0];
 
 			// add new strings to the language.php
-			$lastStr = array_search("];\n", $langFile);
+			$lastStr = array_search(");\n", $langFile);
 
 			if ($lastStr === false) {
 				// file has no line with "###end###\"=>\"###end###\") marking the end of the array
