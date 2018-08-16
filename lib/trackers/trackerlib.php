@@ -3775,7 +3775,7 @@ class TrackerLib extends TikiLib
 
 		$main_field_type = $this->get_main_field_type($trackerId);
 
-		if (in_array($main_field_type, ['r','q'])) {	// for ItemLink and AutoIncrement fields use the proper output method
+		if (in_array($main_field_type, ['r','q', 'p'])) {	// for ItemLink, AutoIncrement and UserPref fields use the proper output method
 			$definition = Tracker_Definition::get($trackerId);
 			$field = $definition->getField($this->get_main_field($trackerId));
 			$item = $this->get_tracker_item($itemId);
