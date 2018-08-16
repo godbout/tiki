@@ -156,6 +156,7 @@
 			<fieldset>
 				<legend>{tr}Features{/tr}</legend>
 				{preference name=search_autocomplete}
+				{preference name=search_file_thumbnail_preview}
 			</fieldset>
 
 			<fieldset>

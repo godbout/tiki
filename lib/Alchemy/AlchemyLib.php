@@ -20,7 +20,7 @@ use Neutron\TemporaryFilesystem\Manager as FsManager;
  */
 class AlchemyLib
 {
-	const TYPE_IMAGE = 'image/jpeg';
+	const TYPE_IMAGE = 'image/png';
 	const TYPE_IMAGE_ANIMATION = 'image/gif';
 
 	/** @var Alchemyst */
@@ -36,8 +36,8 @@ class AlchemyLib
 	{
 		global $prefs;
 
-		if (! static::isLibraryAvailable()) {
-			return;
+		if (! self::isLibraryAvailable()) {
+			\Feedback::error(tr('To use AlchemyLib Tiki needs the media-alchemyst/media-alchemyst package. If you do not have permission to install this package, ask the site administrator.'), true);
 		}
 
 		$drivers = new DriversContainer();
@@ -48,6 +48,10 @@ class AlchemyLib
 			'ffmpeg.ffmpeg.binaries' => $prefs['alchemy_ffmpeg_path'],
 			'ffmpeg.ffprobe.binaries' => $prefs['alchemy_ffprobe_path'],
 			'imagine.driver' => $prefs['alchemy_imagine_driver'],
+			'unoconv.binaries' => $prefs['alchemy_unoconv_path'],
+			'unoconv.timeout' => 60,
+			'gs.binaries' => $prefs['alchemy_gs_path'],
+			'gs.timeout' => 60,
 		];
 
 		$this->alchemyst = new Alchemyst($drivers, FsManager::create());
@@ -98,7 +102,7 @@ class AlchemyLib
 
 			return $targetImageType;
 		} catch (\Exception $e) {
-			// empty
+			\Feedback::error(tr('Failed to convert document into image.'), true);
 		}
 
 		return null;

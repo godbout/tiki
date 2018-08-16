@@ -134,6 +134,15 @@
 				{preference name='fgal_match_regex'}
 				{preference name='fgal_nmatch_regex'}
 			</fieldset>
+
+			<fieldset>
+				<legend> {tr}Settings for Media Alchemyst{/tr}{help url="Media-Alchemyst"}</legend>
+				{preference name=alchemy_ffmpeg_path}
+				{preference name=alchemy_ffprobe_path}
+				{preference name=alchemy_unoconv_path}
+				{preference name=alchemy_gs_path}
+				{preference name=alchemy_imagine_driver}
+			</fieldset>
 		{/tab}
 
 		{tab name="{tr}Plugins{/tr}"}

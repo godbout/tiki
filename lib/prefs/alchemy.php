@@ -35,6 +35,19 @@ function prefs_alchemy_list()
 			],
 			'default' => 'imagick',
 		],
-
+		'alchemy_unoconv_path' => [
+			'name' => tra('unoconv path'),
+			'description' => tra('Path to the location of the unoconv binary.'),
+			'type' => 'text',
+			'size' => '256',
+			'default' => '/usr/bin/unoconv',
+		],
+		'alchemy_gs_path' => [
+			'name' => tra('ghostscript path'),
+			'description' => tra('Path to the location of the ghostscript binary.'),
+			'type' => 'text',
+			'size' => '256',
+			'default' => '/usr/bin/gs',
+		],
 	];
 }

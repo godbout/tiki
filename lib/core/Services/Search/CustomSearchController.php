@@ -192,7 +192,9 @@ class Services_Search_CustomSearchController
 		$formatter = $builder->getFormatter();
 		$results = $formatter->format($resultSet);
 
-		$results = TikiLib::lib('parser')->parse_data($results, ['is_html' => true, 'skipvalidation' => true]);
+		$parserLib = TikiLib::lib('parser');
+		$results = $parserLib->searchFilePreview($results, true);
+		$results = $parserLib->parse_data($results, ['is_html' => true, 'skipvalidation' => true]);
 
 		return ['html' => $results];
 	}

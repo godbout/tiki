@@ -3365,4 +3365,92 @@ class ParserLib extends TikiDb_Bridge
 		$headerLib = unserialize($tempHeaderLib);
 		unset($tempHeaderLib);
 	}
+
+	/**
+	 * Create a popup with thumbnail file preview
+	 *
+	 * @param $content
+	 * @return string
+	 */
+	public function searchFilePreview($content)
+	{
+		global $prefs;
+		if ($prefs['search_file_thumbnail_preview'] !== 'y') {
+			return $content;
+		}
+
+		preg_match_all('/data-type="file" data-object="(\d+)/', $content, $matchFiles);
+		if (! empty($matchFiles[1])) {
+			$fileIds = $matchFiles[1];
+			$fileGalleryLib = TikiLib::lib('filegal');
+			$userLib = TikiLib::lib('user');
+			foreach ($fileIds as $fileId) {
+				$info = $fileGalleryLib->get_file($fileId);
+				if (empty($info)) {
+					continue;
+				}
+				if (! $userLib->user_has_perm_on_object($user, $info['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+					continue;
+				}
+				$search = 'data-type="file" data-object="' . $fileId . '"';
+				if (strpos($info['filetype'], 'image') !== false) {
+					$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;thumbnail\'>" data-html="1"';
+					$content = str_replace($search, $popup, $content);
+				} else {
+					$filePath = '';
+					$fileMd5 = '';
+					if (! empty($info['path'])) {
+						$filePath = $prefs['fgal_use_dir'] . $info['path'];
+						if ($fileGalleryLib->isPodCastGallery($info['galleryId'])) {
+							$filePath = $prefs['fgal_podcast_dir'] . $info['path'];
+						}
+						if (is_readable($filePath)) {
+							$fileStats = stat($filePath);
+							$lastModified = $fileStats['mtime'];
+							$fileMd5 = empty($info['hash']) ?
+								md5($fileStats['mtime'] . '=' . $fileStats['ino'] . '=' . $fileStats['size'])
+								: md5($info['hash'] . $lastModified);
+						} else {
+							// File missing or not readable
+							continue;
+						}
+					} elseif (! empty($info['data'])) {
+						$lastModified = $info['lastModif'];
+						$fileMd5 = empty($info['hash']) ? md5($info['data']) : md5($info['hash'] . $lastModified);
+					} else {
+						// Empty content
+						continue;
+					}
+
+					$cacheLib = TikiLib::lib('cache');
+					$cacheName = $fileMd5;
+					$cacheType = 'preview_' . $fileId . '_';
+
+					if (! $cacheLib->isCached($cacheName, $cacheType) && Tiki\Lib\Alchemy\AlchemyLib::isLibraryAvailable()) {
+						$sourceFile = 'temp/source_' . $fileId;
+						$targetFile = 'temp/target_' . $fileId . '.png';
+						file_put_contents($sourceFile, $info['data']);
+
+						$alchemy = new Tiki\Lib\Alchemy\AlchemyLib();
+						$alchemy->convertToImage($sourceFile, $targetFile, '200px', '400px', false);
+
+						if (file_exists($targetFile)) {
+							$cacheContent = file_get_contents($targetFile);
+							$cacheLib->empty_type_cache($cacheType);
+							$cacheLib->cacheItem($cacheName, $cacheContent, $cacheType);
+							unlink($targetFile);
+						}
+						unlink($sourceFile);
+					}
+
+					if ($cacheLib->isCached($cacheName, $cacheType)) {
+						$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;preview\'>" data-html="1"';
+						$content = str_replace($search, $popup, $content);
+					}
+				}
+			}
+		}
+
+		return $content;
+	}
 }
