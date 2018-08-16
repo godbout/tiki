@@ -661,7 +661,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['blogId'], 'blog', 'tiki_p_read_blog')) {
+			if ($this->user_has_perm_on_object($user, $res['postId'], 'blog post', 'tiki_p_read_blog')) {
 				$q = "select `title` from `tiki_blogs` where `blogId`=?";
 
 				$name = $this->getOne($q, [$res["blogId"]]);

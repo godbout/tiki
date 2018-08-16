@@ -201,10 +201,7 @@ function module_since_last_visit_new($mod_reference, $params = null)
 			$visible = false;
 			// Only show new comments related to posts the user is allowed to see
 			if ($userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], 'tiki_p_read_comments')) {
-				// Only show new comments related to posts in blogs the user is allowed to see
-				$query = 'select `blogId` from `tiki_blog_posts` where `postId`=? ';
-				$blogId = $tikilib->getOne($query, (int) $res['object']);
-				$visible = $userlib->user_has_perm_on_object($user, $blogId, 'blog', 'tiki_p_read_blog');
+				$visible = $userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], $perm);
 			}
 		} else {
 			$visible = ! isset($perm) || $userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], $perm);
@@ -372,7 +369,7 @@ function module_since_last_visit_new($mod_reference, $params = null)
 
 		$count = 0;
 		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['blogId'], 'blog', 'tiki_p_read_blog')) {
+			if ($userlib->user_has_perm_on_object($user, $res['postId'], 'blog post', 'tiki_p_read_blog')) {
 				$ret['items']['blogPosts']['list'][$count]['href']  = filter_out_sefurl('tiki-view_blog_post.php?postId=' . $res['postId'], 'blogpost', $res['title']);
 				$ret['items']['blogPosts']['list'][$count]['title'] = $tikilib->get_short_datetime($res['created']) . ' ' . tra('by') . ' ' . smarty_modifier_username($res['user']);
 				$ret['items']['blogPosts']['list'][$count]['label'] = $res['title'];

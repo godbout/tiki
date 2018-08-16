@@ -20,8 +20,8 @@ $postId = $_REQUEST["postId"];
 $post_info = $bloglib->get_post($postId);
 
 $blogId = $post_info["blogId"];
-$tikilib->get_perm_object($blogId, 'blog');
-$access->check_permission('tiki_p_read_blog', '', 'blog', $blogId);
+$tikilib->get_perm_object($postId, 'blog post');
+$access->check_permission('tiki_p_read_blog', '', 'blog post', $postId);
 
 
 $blog_data = $bloglib->get_blog($blogId);

@@ -63,6 +63,11 @@
 									{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 								</a>
 							</action>
+							{if $tiki_p_admin eq 'y' || $tiki_p_assign_perm_blog eq 'y'}
+								<action>
+									{permission_link mode=text type="blog post" permType="blogs" id=$posts[changes].postId}
+								</action>
+							{/if}
 							<action>
 								<a href="tiki-list_posts.php?{if isset($blogId)}blogId={$blogId}&amp;{/if}offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$posts[changes].postId}" title=":{tr}Delete{/tr}">
 									{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
