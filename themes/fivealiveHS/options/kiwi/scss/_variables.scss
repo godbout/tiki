@@ -1,0 +1,133 @@
+// $Id$
+//Custom styles for the FiveAliveHS Kiwi option theme.
+
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$light: #baba25;
+
+$bg-light: #baba25 !important;
+
+$link-color: #638637;
+$link-hover-color: #baba25;
+
+// $btn-primary-bg: #baba25;
+// $btn-primary-border: #dacc1b;
+// $btn-primary-focus-bg: #918f1b;
+// $btn-primary-focus-border: #dacc1b;
+// $btn-primary-hover-bg: #918f1b;
+// $btn-primary-hover-border: #44c7db;
+// $btn-primary-active-bg: #918f1b;
+// $btn-primary-active-border: #44c7db;
+// $btn-primary-active-hover-bg: #0e606e;
+// $btn-primary-active-hover-border: #dacc1b;
+// $btn-primary-disabled-bg: #baba25;
+// $btn-primary-disabled-border: #dacc1b;
+// $btn-primary-badge-color: #baba25;
+// $btn-primary-badge-bg: #ffffff;
+
+// $btn-secondary-bg: #baba25;
+// $btn-secondary-border: #dacc1b;
+// $btn-secondary-focus-bg: #918f1b;
+// $btn-secondary-focus-border: #dacc1b;
+// $btn-secondary-hover-bg: #918f1b;
+// $btn-secondary-border: #44c7db;
+// $btn-secondary-active-bg: #918f1b;
+// $btn-secondary-border: #44c7db;
+// $btn-secondary-active-hover-bg: #0e606e;
+// $btn-secondary-active-hover-border: #dacc1b;
+// $btn-secondary-disabled-hover-color: #baba25;
+// $btn-secondary-disabled-hover-border: #dacc1b;
+// $btn-secondary-badge-color: #baba25;
+// $btn-secondary-bg-color: #ffffff;
+
+$navbar-dark-color: #fff;
+
+// navbar link hover colors
+$bg-dark-link-hover-color: #f2f2f2;
+$bg-dark-link-hover-bg: #003c4a;
+
+
+$hr-border-color: #baba25;
+
+$bg-dark: #005064;
+$bg-light: #baba25;
+$card-border-color: #cdbe23;
+$table-border-color: #dbd11a;
+$table-accent-bg: #f9f9f9;
+$table-hover-bg: #dbd11a; // Maybe can be improved.
+
+$input-color: #343a40;
+$input-bg: #f8f9d4;
+$input-border: #f8f9d4;
+$input-border-top-color: #f5fb86;
+$input-border-right-color: #fff;
+$input-border-bottom-color: #fff;
+$input-border-left-color: #f5fb86;
+
+$dropdown-bg: #baba25;
+$dropdown-border-color: rgba(0, 0, 0, 0.15);
+
+$dropdown-link-color: #ffffff;
+$dropdown-link-hover-color: #f2f2f2;
+$dropdown-link-hover-bg: #003c4a;
+$dropdown-link-active-color: red;
+$dropdown-link-active-bg: #638637;
+$dropdown-link-disabled-color: #f2f2f2;
+$dropdown-header-color: #ffffff;
+$dropdown-divider-bg: $dropdown-bg;
+
+$nav-tabs-link-color: #000;
+$nav-tabs-link-bg: $input-bg;
+$nav-tabs-link-active-color: #fff;
+$nav-tabs-link-active-bg: $dropdown-link-hover-bg;
+
+
+$nav-pills-link-active-bg: #638637;
+$pagination-color: #638637;
+$pagination-bg: #ffffff;
+$pagination-border-color: #dddddd;
+$pagination-hover-color: #baba25;
+$pagination-hover-bg: #eeeeee;
+$pagination-hover-border-color: #dddddd;
+$pagination-active-bg: #638637;
+$pagination-active-border-color: #638637;
+$pagination-disabled-color: #999999;
+$pagination-disabled-bg: #ffffff;
+$pagination-disabled-border-color: #dddddd;
+
+$theme-colors: (
+	"light":			#ffffff,
+ 	"dark":				#313109
+);
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
+$bg-light-alt: #117485 !important;
+
+$side-column-heading-color: #cdbe23;
+
+$middle_outer-inset-shadow-bg: #313109;
+$footer_liner-card-inner-border: #ebdc14;
+
+$footer-accent-color: #ebdc14;
+$footer-btn-secondary-color: #f4f4f4;
+$footer_liner-border-color: $footer-accent-color;
+
+$autotoc-nav-bg: #658838; //#baba25;
+$autotoc-color: #ffffff;
+$autotoc-nav-link-hover-color: #f2f2f2;
+$autotoc-nav-link-hover-bg: #587631;
+
+// - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
+
+.header_outer,
+.layout_basic #top_modules,
+.postbody-title,
+.tiki > .navbar.fixed-top.bg-light/*,
+.tiki > .fixed-top.bg-light*/ {
+  background: #797922;
+  background: -moz-linear-gradient(left, #797922 0%, #b1b129 100%);
+  background: -webkit-linear-gradient(left, #797922 0%,#b1b129 100%);
+  background: linear-gradient(to right, #797922 0%,#b1b129 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#797922', endColorstr='#b1b129',GradientType=1 );
+}
+
+.bg-dark {background: #313109 !important; }

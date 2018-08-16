@@ -3,7 +3,7 @@
 <div class="media">
 	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 		<i class="fa fa-arrow-circle-up fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
+		<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
 	<img class="pull-right" src="img/icons/large/doc_site_logo.png" width="70" alt="{tr}Documentation site{/tr}" title="{tr}Documentation site{/tr}"/>
 	{tr}Related pages from the Official Documentation site <em>https://doc.tiki.org</em>{/tr}.

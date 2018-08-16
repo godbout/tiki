@@ -417,10 +417,10 @@ hr {
 .card {
   background-color: #ffffff;
 }
-.card-heading {
+.card-header {
   border-bottom: 1px solid transparent;
 }
-.card-heading > .dropdown .dropdown-toggle {
+.card-header > .dropdown .dropdown-toggle {
   color: inherit;
 }
 .card-title {
@@ -436,15 +436,15 @@ hr {
 .card-primary {
   border-color: #dddddd;
 }
-.card-primary > .card-heading {
+.card-primary > .card-header {
   color: #ffffff;
   background-color: #8e286a;
   border-color: #dddddd;
 }
-.card-primary > .card-heading + .card-collapse > .card-body {
+.card-primary > .card-header + .card-collapse > .card-body {
   border-top-color: #dddddd;
 }
-.card-primary > .card-heading .badge {
+.card-primary > .card-header .badge {
   color: #8e286a;
   background-color: #ffffff;
 }
@@ -454,15 +454,15 @@ hr {
 .card-secondary {
   border-color: #8e286a;
 }
-.card-secondary > .card-heading {
+.card-secondary > .card-header {
   color: #ffffff;
   background-color: #8e286a;
   border-color: #8e286a;
 }
-.card-secondary > .card-heading + .card-collapse > .card-body {
+.card-secondary > .card-header + .card-collapse > .card-body {
   border-top-color: #8e286a;
 }
-.card-secondary > .card-heading .badge {
+.card-secondary > .card-header .badge {
   color: #8e286a;
   background-color: #ffffff;
 }
@@ -472,15 +472,15 @@ hr {
 .card-success {
   border-color: #d6e9c6;
 }
-.card-success > .card-heading {
+.card-success > .card-header {
   color: #3c763d;
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
-.card-success > .card-heading + .card-collapse > .card-body {
+.card-success > .card-header + .card-collapse > .card-body {
   border-top-color: #d6e9c6;
 }
-.card-success > .card-heading .badge {
+.card-success > .card-header .badge {
   color: #dff0d8;
   background-color: #3c763d;
 }
@@ -490,15 +490,15 @@ hr {
 .card-info {
   border-color: #bce8f1;
 }
-.card-info > .card-heading {
+.card-info > .card-header {
   color: #31708f;
   background-color: #d9edf7;
   border-color: #bce8f1;
 }
-.card-info > .card-heading + .card-collapse > .card-body {
+.card-info > .card-header + .card-collapse > .card-body {
   border-top-color: #bce8f1;
 }
-.card-info > .card-heading .badge {
+.card-info > .card-header .badge {
   color: #d9edf7;
   background-color: #31708f;
 }
@@ -508,7 +508,7 @@ hr {
 .card-warning {
   border-color: #faebcc;
 }
-.card-warning > .card-heading {
+.card-warning > .card-header {
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;

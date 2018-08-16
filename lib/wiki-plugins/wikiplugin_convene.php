@@ -720,11 +720,11 @@ JQ
 	return
 	<<<RETURN
 ~np~
-	<div class="panel">
-		<div class="panel-heading">
-			<h3 class="panel-title">$title</h3>
+	<div class="card">
+		<div class="card-header">
+			<h3 class="card-title">$title</h3>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 		    $result
 		</div>
 	</div>

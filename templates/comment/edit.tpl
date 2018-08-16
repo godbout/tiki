@@ -6,13 +6,13 @@
 
 {block name="content"}
 	<form method="post" action="{service controller=comment action=edit threadId=$comment.threadId}">
-		<div class="panel">
+		<div class="card">
 			<div class="card-header">
 				{tr}Edit Comment{/tr}
 			</div>
 			<fieldset>
 				<input type="hidden" name="edit" value="1"/>
-				<div class="panel-body">
+				<div class="card-body">
 				{if $prefs.comments_notitle neq 'y'}
 					<div class="form-group row">
 						<label for="comment-title" class="clearfix comment-title">{tr}Title{/tr}</label>

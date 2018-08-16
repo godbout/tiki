@@ -712,7 +712,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   color: white; }
 
 .tiki .ui-widget {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem; }
 
 .btn-primary.btn-files {
@@ -1982,12 +1982,12 @@ table.treetable tr.expanded span.indenter a {
 .tracker-form-text {
   margin-top: -15px; }
 
-.card-accordian .card-heading {
+.card-accordian .card-header {
   padding: 0; }
-  .card-accordian .card-heading h4.card-title {
+  .card-accordian .card-header h4.card-title {
     padding: 0;
     margin: 0; }
-    .card-accordian .card-heading h4.card-title a {
+    .card-accordian .card-header h4.card-title a {
       display: block;
       padding: 0.75rem 1.25rem; }
 

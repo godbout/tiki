@@ -194,7 +194,7 @@ FORM;
 	if ($tiki_p_edit == 'y') {
 		$editor_form = <<<EDITORFORM
 		<div class="editor panel">
-			<div class="panel-body">
+			<div class="card-body">
 				<form method="post" action="#">
 					<div class="form-group row">
 						<label style="width:100%">

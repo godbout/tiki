@@ -308,7 +308,7 @@ the section loop so that the vars are not replaced by nested pretty tracker exec
 {* This popup code does not seem to be used/working except to create the showpopup parameter to enable/disable the popup. the popup is entirely created in tracker/field/abstract.php *}
 		{if !empty($popupfields)}
 			{capture name=popup}
-				<div class="panel">
+				<div class="card">
 					<table style="width:100%">
 
 						{foreach from=$items[user].field_values item=f}

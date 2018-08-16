@@ -308,7 +308,7 @@ hr {
   background-color: #dff0d8;
   border-color: #d6e9c6; }
 
-.card.bg-success .card-heading + .card-collapse .card-body {
+.card.bg-success .card-header + .card-collapse .card-body {
   border-top-color: #d6e9c6; }
 
 .panel-success > .panel-heading .badge {

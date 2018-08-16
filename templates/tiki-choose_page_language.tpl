@@ -5,7 +5,7 @@
 {/block}
 
 {block name=content}
-<div class="panel-body" style="overflow: visible;">
+<div class="card-body" style="overflow: visible;">
 	<p>
 		<strong>{tr}Page:{/tr} "{$page|escape}"</strong>
 	</p>

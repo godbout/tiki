@@ -3,7 +3,7 @@
 <div class="media">
 	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 		<i class="fa fa-arrow-circle-up fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
+		<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
 	{tr}You are reaching the end of the <em>Upgrade Wizard</em>{/tr}.
 	{tr}Since you are upgrading, you probably had a previous installation of Tiki for a while, and you may already have some experience using a few Tiki features, at least{/tr}.

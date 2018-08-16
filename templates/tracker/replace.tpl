@@ -212,8 +212,8 @@
 			</div>
 		{/accordion_group}
 	{accordion_group title="{tr}Section Format{/tr}"}
-		<div class="panel">
-			<div class="panel-body">
+		<div class="card">
+			<div class="card-body">
 				<div class="form-group row mx-0">
 					<label for="sectionFormat">{tr}Section format{/tr}</label>
 					<select name="sectionFormat" id="sectionFormat" class="form-control">

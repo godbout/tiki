@@ -761,7 +761,7 @@
 						</a>
 					</h4>
 				</div>
-				<div id="filterCollapse" class="panel-collapse collapse">
+				<div id="filterCollapse" class="card-collapse collapse">
 					<div class="card-body">
 						<form id='time_control' method="post" action="tiki-view_forum.php">
 							{if $comments_offset neq 0}

@@ -10,8 +10,8 @@
 
 <h2>{tr}Banner Information{/tr}</h2>
 
-<div class="panel">
-	<div class="panel-body">
+<div class="card">
+	<div class="card-body">
 		<table>
 			<tr>
 				<td>{tr}Client:{/tr}</td>
@@ -82,8 +82,8 @@
 </div>
 
 <h2>{tr}Banner raw data{/tr}</h2>
-<div class="panel">
-	<div class="panel-body">
+<div class="card">
+	<div class="card-body">
 		<div align="center">
 			{$raw}
 		</div>

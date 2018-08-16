@@ -141,13 +141,13 @@ $list-group-link-heading-color: #333333;
 // Cards
 $card-bg:                    #ffffff;
 $card-body-padding:          1rem 15px;
-$card-heading-padding:       10/16rem 15px;
-$card-footer-padding:        $card-heading-padding;
+$card-header-padding:       10/16rem 15px;
+$card-footer-padding:        $card-header-padding;
 $card-inner-border:          transparent;
 $card-footer-bg:             #f5f5f5;
 $card-text:          $body-color;
 $card-border:        transparent;
-$card-heading-bg:    #f49ac0;
+$card-header-bg:    #f49ac0;
 
 // Tooltips
 // Popovers

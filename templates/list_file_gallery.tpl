@@ -145,11 +145,11 @@
 						</div>
 					{/if}
 					{if !empty($movesel_x) and !isset($file_info)}
-						<div class="panel panel-primary">
+						<div class="card">
 							<div class="card-header">
 								{tr}Move selected file or gallery{/tr}
 							</div>
-							<div class="panel-body">
+							<div class="card-body">
 								<div class="form-group row">
 									<label for="moveto" class="col-sm-2">
 										{tr}Move to:{/tr}
@@ -175,11 +175,11 @@
 					{/if}
 				</div>
 				{if !empty($perms)}
-					<div class="panel panel-primary">
+					<div class="card">
 						<div class="card-header">
 							{tr}Assign file gallery permissions to groups{/tr}
 						</div>
-						<div class="panel-body">
+						<div class="card-body">
 							<div class="form-group row">
 								<div class="col-sm-6">
 									<span class="form-text">

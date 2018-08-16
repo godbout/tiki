@@ -8,9 +8,9 @@
 			<table dir="rtl" ><tr><td>
 		{/if}
 		<div id="tiki-mid">
-			<div class="panel">
+			<div class="card">
 				<div class="card-header">{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle"}{tr}Error{/tr}</div>
-				<div class="panel-body">
+				<div class="card-body">
 					{$msg}
 					<a href="javascript:window.close()" class="linkmenu">{tr}Close Window{/tr}</a><br><br>
 				</div>
