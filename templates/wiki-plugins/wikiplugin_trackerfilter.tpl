@@ -98,6 +98,46 @@
 									<option value="{$option.id|escape}"{if $option.selected eq 'y'} selected="selected"{/if}>{$option.name|escape}</option>
 								{/foreach}
 							</select>
+	{*------relation *}
+						{elseif $filter.format eq 'REL'}
+							<textarea name="f_{$filter.fieldId}" class="d-none">
+								{$filter.opts.selection}
+							</textarea>
+							{object_selector_multi _id="object_filter_{$filter.fieldId}" _name="object_filter_{$filter.fieldId}" _filter=$filter.opts.field_filter _value=$filter.opts.field_selection _format=$filter.opts.field_format }
+							<div class="text-center mt-3 mb-3">{tr}Or{/tr}</div>
+							<select name="other_filter_{$filter.fieldId}" class="form-control">
+								<option value=''>{tr}-- Choose an option --{/tr}</option>
+								{foreach from=$filter.opts.other_options item=option}
+									<option value="{$option.id|escape}"{if $option.selected eq 'y'} selected="selected"{/if}>{$option.name|escape}</option>
+								{/foreach}
+							</select>
+							{jq}
+								$('select[name="other_filter_{{$filter.fieldId}}"]').on('change', function() {
+
+									var $container = $('#object_filter_{{$filter.fieldId}}').parent();
+									// Reset Object Selector values
+									$('textarea[name^="object_filter_{{$filter.fieldId}}"]').val('');
+									$container.find('.results :checked').each(function(){
+										$(this).prop('checked', false);
+									});
+									$container.find('option:selected').each(function(){
+										$(this).prop('selected', false);
+									});
+									$container.find('select').trigger('chosen:updated');
+
+									var val = $(this).val();
+									$target = $('[name="f_{{$filter.fieldId}}"]').val(val);
+								});
+
+
+								$('textarea[name="object_filter_{{$filter.fieldId}}"]').on('change', function() {
+									// Reset other values
+									$('select[name="other_filter_{{$filter.fieldId}}"]').val('');
+
+									var val = $(this).val();
+									$target = $('[name="f_{{$filter.fieldId}}"]').val(val);
+								});
+							{/jq}
 	{*------checkbox, radio *}
 						{else}
 							<label>

@@ -1436,9 +1436,13 @@ class TrackerLib extends TikiLib
 					}
 				} elseif ($filter['type'] == 'REL' && ($fv || $ev)) {
 					$rv = $ev ?: $fv;
-					$mid .= " AND (ttif$i.`value` LIKE ? OR ttif$i.`value` LIKE ?)";
-					$bindvars[] = "%$rv";
-					$bindvars[] = "%$rv\n%";
+					$options = explode("\n", $rv);
+					foreach ($options as $option) {
+						$mid .= " AND (ttif$i.`value` LIKE ? OR ttif$i.`value` LIKE ?)";
+						$option = trim($option);
+						$bindvars[] = "%$option";
+						$bindvars[] = "%$option\n%";
+					}
 				} elseif ($ev > '') {
 					if (is_array($ev)) {
 						$keys = array_keys($ev);

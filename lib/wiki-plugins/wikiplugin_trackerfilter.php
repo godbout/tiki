@@ -653,8 +653,10 @@ function wikiplugin_trackerFilter_get_filters($trackerId = 0, array $listfields 
 				case 'y': // country
 				case 'g': // group selector
 				case 'M': // Multiple Values
-				case 'REL':
 					$formats[$fieldId] = 'd';
+					break;
+				case 'REL':
+					$formats[$fieldId] = 'REL';
 					break;
 				case 'R': // radio
 					$formats[$fieldId] = 'r';
@@ -827,63 +829,13 @@ function wikiplugin_trackerFilter_get_filters($trackerId = 0, array $listfields 
 						$filter = [];
 					}
 					$format = '{title}';
-					$lib = TikiLib::lib('unifiedsearch');
 
-					if (! empty($filter['title']) && preg_match_all('/\{(\w+)\}/', $format, $matches)) {
-						// formatted object_selector search results should also search in formatted fields besides the title
-						$titleFilter = $filter['title'];
-						unset($filter['title']);
-						$query = $lib->buildQuery($filter);
-						$query->filterContent($titleFilter, $matches[1]);
-					} else {
-						$query = $lib->buildQuery($filter);
-					}
+					$opts = [];
+					$opts['field_filter'] = $filter;
+					$opts['field_selection'] = isset($_REQUEST['f_'.$fieldId]) ? $_REQUEST['f_'.$fieldId] : '';
+					$opts['field_format'] = $format;
+					$opts['other_options'][] = wikiplugin_trackerFilter_add_empty_option($fieldId);
 
-					$maxRecords = 250;
-					$query->setOrder('title_asc');
-					$query->setRange(0, $maxRecords);
-
-					$result = $query->search($lib->getIndex());
-
-					$result->applyTransform(function ($item) use ($format) {
-						return [
-							'object_type' => $item['object_type'],
-							'object_id' => $item['object_id'],
-							'title' => preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item, $format) {
-								$key = $matches[1];
-								if (isset($item[$key])) {
-									// if this is a trackeritem we do not want only the name but also the trackerid listed when setting up a field
-									// otherwise its hard to distingish which field that is if multiple tracker use the same fieldname
-									// example: setup of trackerfield item-link: choose some fields from a list. currently this list show all fields of all trackers
-									if ($item['object_type'] == 'trackerfield') {
-										return $item[$key] . ' (Tracker-' . $item['tracker_id'] . ')';
-									} else {
-										return $item[$key];
-									}
-								} elseif ($format == '{title}') {
-									return tr('empty');
-								} else {
-									return '';
-								}
-							}, $format),
-						];
-					});
-
-
-					foreach ($result as $val) {
-						$displayValue = strip_tags(TikiLib::lib('parser')->parse_data($val["title"], ['parsetoc' => false]));
-						$opt['id'] = $val["object_type"] . ":" . $val["object_id"];
-						$opt['name'] = $displayValue;
-
-						if (! empty($_REQUEST['f_' . $fieldId]) && ((! is_array($_REQUEST['f_' . $fieldId]) && urldecode($_REQUEST['f_' . $fieldId]) == $opt['id'] ) || (is_array($_REQUEST['f_' . $fieldId]) && in_array($opt['id'], $_REQUEST['f_' . $fieldId])))) {
-							$opt['selected'] = 'y';
-							$selected = true;
-						} else {
-							$opt['selected'] = 'n';
-						}
-						$opts[] = $opt;
-					}
-					$opts[] = wikiplugin_trackerFilter_add_empty_option($fieldId);
 					break;
 				case 'w': //dynamic item lists
 				case 'r': // item link
