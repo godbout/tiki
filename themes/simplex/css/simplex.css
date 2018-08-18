@@ -6664,17 +6664,19 @@ div.drillshow {
   background-color: #fff;
   color: #444;
   border: 1px solid #bbb; }
+  .chosen-container-single .chosen-single div, .chosen-container-active.chosen-with-drop .chosen-single div, .chosen-container .chosen-drop div, .chosen-container-multi .chosen-choices .search-choice div {
+    background-color: #fff; }
 
 .chosen-container-single .chosen-search input[type="text"] {
   background-color: #fff;
   border: 1px solid #bbb; }
 
-.chosen-container .chosen-results li.highlighted {
-  background-color: #d9230f;
-  color: #fff; }
-
-.tiki .chosen-container .active-result {
-  color: #444; }
+.chosen-container .chosen-results li.active-result {
+  color: #444;
+  background-color: #fff; }
+  .chosen-container .chosen-results li.active-result.highlighted {
+    background-color: #d9230f;
+    color: white; }
 
 .breadcrumb {
   font-style: normal;

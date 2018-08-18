@@ -7377,17 +7377,19 @@ div.drillshow {
   background-color: transparent;
   color: #666;
   border: 1px solid transparent; }
+  .chosen-container-single .chosen-single div, .chosen-container-active.chosen-with-drop .chosen-single div, .chosen-container .chosen-drop div, .chosen-container-multi .chosen-choices .search-choice div {
+    background-color: transparent; }
 
 .chosen-container-single .chosen-search input[type="text"] {
   background-color: transparent;
   border: 1px solid transparent; }
 
-.chosen-container .chosen-results li.highlighted {
-  background-color: #f8f9fa;
-  color: #141414; }
-
-.tiki .chosen-container .active-result {
-  color: #666; }
+.chosen-container .chosen-results li.active-result {
+  color: #666;
+  background-color: transparent; }
+  .chosen-container .chosen-results li.active-result.highlighted {
+    background-color: #2196f3;
+    color: white; }
 
 .breadcrumb {
   font-style: normal;

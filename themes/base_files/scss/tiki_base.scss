@@ -5,6 +5,11 @@
 //@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/functions";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss";
+
+// Load bootstrap4c-chosen variables and svn to uri converter
+@import "../../../vendor_bundled/vendor/npm-asset/sass-svg-uri/_svg-uri.scss";
+@import "../../../vendor_bundled/vendor/haubek/bootstrap4c-chosen/src/scss/_component-variables.scss";
+
 //@import "../../default/scss/_variables.scss";
 @import "_bs3-bs4-transition.scss";
 @import "_tiki-variables.scss";
@@ -44,12 +49,12 @@
 @import "_tiki-bootstrap_overrides.scss";
 @import "_tablesorter-tiki.scss";
 @import "_tablesorter-custom.scss";
-// @import "_tiki-bootstrap-chosen.scss";
 @import "_tiki-media-print";
 @import "_tiki-wikipages_and_plugins";
 @import "_tiki-multilike";
 @import "_pivot-tiki.scss";
 // @import "_conversejs-tiki.scss"; commmented out to find undefined $btn-primary-border
+@import "../../../vendor_bundled/vendor/haubek/bootstrap4c-chosen/src/scss/_component-chosen.scss";
 
 
 /* End of file */

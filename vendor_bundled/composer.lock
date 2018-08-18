@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "99fcfe2f445ece48bc1c71e055700edc",
+    "content-hash": "388f0e6bd581b0f77db089c3e4dc1dfe",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -161,17 +161,6 @@
                 "useragent"
             ],
             "time": "2017-06-06T22:20:56+00:00"
-        },
-        {
-            "name": "alxlit/bootstrap-chosen",
-            "version": "1.0.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/alxlit/bootstrap-chosen/alxlit-bootstrap-chosen-1.0.1.zip",
-                "reference": null,
-                "shasum": "86a38a4832326c979e093787fb7af0f7d81d3405"
-            },
-            "type": "library"
         },
         {
             "name": "blueimp/javascript-canvas-to-blob",
@@ -1177,6 +1166,91 @@
             "time": "2018-01-22T12:39:38+00:00"
         },
         {
+            "name": "harvesthq/chosen",
+            "version": "v1.8.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/harvesthq/chosen-package.git",
+                "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Koen Punt",
+                    "homepage": "https://github.com/koenpunt"
+                },
+                {
+                    "name": "Patrick Filler",
+                    "homepage": "https://github.com/pfiller"
+                },
+                {
+                    "name": "Christophe Coevoet",
+                    "homepage": "https://github.com/stof"
+                },
+                {
+                    "name": "Ken Earley",
+                    "homepage": "https://github.com/kenearley"
+                }
+            ],
+            "description": "Chosen is a JavaScript plugin that makes select boxes user-friendly. It is currently available in both jQuery and Prototype flavors.",
+            "homepage": "https://harvesthq.github.io/chosen/",
+            "keywords": [
+                "dropdown",
+                "form",
+                "input",
+                "multiselect",
+                "select",
+                "ui"
+            ],
+            "time": "2018-06-28T20:32:51+00:00"
+        },
+        {
+            "name": "haubek/bootstrap4c-chosen",
+            "version": "1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/haubek/bootstrap4c-chosen.git",
+                "reference": "f529d22c4a3ea262aacbc7a2d83bc67ed8ada2a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/haubek/bootstrap4c-chosen/zipball/f529d22c4a3ea262aacbc7a2d83bc67ed8ada2a2",
+                "reference": "f529d22c4a3ea262aacbc7a2d83bc67ed8ada2a2",
+                "shasum": ""
+            },
+            "require": {
+                "harvesthq/chosen": "^1.8.3",
+                "twbs/bootstrap": "^4.1.1"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Bootstrap 4 Component - Chosen",
+            "homepage": "https://haubek.github.io",
+            "keywords": [
+                "bootstrap",
+                "chosen",
+                "component",
+                "css",
+                "custom",
+                "sass",
+                "scss"
+            ],
+            "time": "2018-08-07T01:25:17+00:00"
+        },
+        {
             "name": "itsjavi/bootstrap-colorpicker",
             "version": "2.5.3",
             "source": {
@@ -1430,17 +1504,6 @@
                 "url": "https://composer.tiki.org/dist/jquery/plugins/async/jquery-plugins-async-1.0.zip",
                 "reference": null,
                 "shasum": "749bc7002dab7d43241ea773cb9400a650e728da"
-            },
-            "type": "library"
-        },
-        {
-            "name": "jquery/plugins/chosen",
-            "version": "1.6.2",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/jquery/plugins/chosen/jquery-plugins-chosen-1.6.2.zip",
-                "reference": null,
-                "shasum": "5446b99353530ffeb4388a154908d4cecbca7dc1"
             },
             "type": "library"
         },
@@ -2224,6 +2287,20 @@
             "type": "npm-asset",
             "license": [
                 "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/sass-svg-uri",
+            "version": "1.0.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "npm-asset",
+            "license": [
+                "ISC"
             ]
         },
         {
@@ -4752,9 +4829,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
+                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
+                "shasum": ""
             },
             "require": {
                 "ext-ldap": "*",

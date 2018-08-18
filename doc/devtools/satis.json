@@ -1692,6 +1692,8 @@
 		"fullcalendar/fullcalendar": "^3.9",
 		"fullcalendar/fullcalendar-scheduler": "^1.9",
 		"google/apiclient": ">=1.1.6",
+		"haubek/bootstrap4c-chosen": "^1.0",
+		"harvesthq/chosen": "^1.8",
 		"h5p/h5p-core": ">=1.13.2",
 		"h5p/h5p-editor": ">=1.12.1",
 		"itsjavi/bootstrap-colorpicker": ">=2.5.1",

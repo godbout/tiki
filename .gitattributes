@@ -6691,7 +6691,6 @@ themes/base_files/scss/_tablesorter-tiki.scss -text
 themes/base_files/scss/_tiki-admin.scss -text
 themes/base_files/scss/_tiki-articles.scss -text
 themes/base_files/scss/_tiki-blogs.scss -text
-themes/base_files/scss/_tiki-bootstrap-chosen.scss -text
 themes/base_files/scss/_tiki-bootstrap_overrides.scss -text
 themes/base_files/scss/_tiki-boxes_and_cards.scss -text
 themes/base_files/scss/_tiki-calendar.scss -text
