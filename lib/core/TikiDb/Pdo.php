@@ -102,9 +102,7 @@ class TikiDb_Pdo extends TikiDb
 			}
 		} else {
 			$result = @ $this->db->query($query);
-			if (is_object($result) && get_class($result) !== 'PDOStatement') {
-				$this->rowCount = get_class($result) === 'PDOStatement' ? $result->rowCount() : 0;
-			}
+			$this->rowCount = is_object($result) && get_class($result) === 'PDOStatement' ? $result->rowCount() : 0;
 		}
 
 		$this->stopTimer($starttime);
