@@ -814,28 +814,49 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 
 		for ($i = 0,$linkCnt = 1; $i < $len; $i++) {
 			$anchor = $anchors->item(0);
-			$link = $doc->createElement('span', $anchor->nodeValue);
-			$link->setAttribute('class', $anchor->getAttribute('class'));
+			if(!is_null($anchor)) {
+				$link = $doc->createElement('span', $anchor->nodeValue);
+				$link->setAttribute('class', $anchor->getAttribute('class'));
 
-			//checking if links to be added as footnote
-			if ($hyperlinkSetting != "off") {
-				// Check if there is a url in the text
-				$linkSup = $doc->createElement("sup");
-				if (preg_match("/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/", $anchor->getAttribute('href'), $url)) {
-					$linkAn = $doc->createElement("hyperanchor", "[" . $linkCnt . "]");
-					$linkAn->setAttribute("href", "#" . $pageCounter . "lnk" . $linkCnt);
-					$linkSup->appendChild($linkAn);
-					$link->appendChild($linkSup);
-					$hrefData = $doc->createElement("a", $anchor->getAttribute('href'));
-					$hrefData->setAttribute("name", $pageCounter . "lnk" . $linkCnt);
-					$hrefDiv->setAttribute("style", "border-top:1px solid #ccc;line-height:1.2em");
-					$hrefDiv->appendChild($doc->createElement("sup", "&nbsp;[" . $linkCnt . "]&nbsp;"));
-					$hrefDiv->appendChild($hrefData);
-					$hrefDiv->appendChild($doc->createElement("br"));
-					$linkCnt++;
+				//checking if links to be added as footnote
+				if ($hyperlinkSetting != "off") {
+					// Check if there is a url in the text
+					$linkSup = $doc->createElement("sup");
+					if (preg_match(
+						"/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/",
+						$anchor->getAttribute('href'), $url
+					)
+					) {
+						$linkAn = $doc->createElement(
+							"hyperanchor", "[" . $linkCnt . "]"
+						);
+						$linkAn->setAttribute(
+							"href", "#" . $pageCounter . "lnk" . $linkCnt
+						);
+						$linkSup->appendChild($linkAn);
+						$link->appendChild($linkSup);
+						$hrefData = $doc->createElement(
+							"a", $anchor->getAttribute('href')
+						);
+						$hrefData->setAttribute(
+							"name", $pageCounter . "lnk" . $linkCnt
+						);
+						$hrefDiv->setAttribute(
+							"style",
+							"border-top:1px solid #ccc;line-height:1.2em"
+						);
+						$hrefDiv->appendChild(
+							$doc->createElement(
+								"sup", "&nbsp;[" . $linkCnt . "]&nbsp;"
+							)
+						);
+						$hrefDiv->appendChild($hrefData);
+						$hrefDiv->appendChild($doc->createElement("br"));
+						$linkCnt++;
+					}
 				}
+				$anchor->parentNode->replaceChild($link, $anchor);
 			}
-			$anchor->parentNode->replaceChild($link, $anchor);
 		}
 
 		$hrefDiv->setAttribute('class', "footnotearea");
