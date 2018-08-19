@@ -11,17 +11,15 @@
 	<form name="toolbars" method="post" action="tiki-admin_toolbars.php" onsubmit="return saveRows()">
 		<div>
 			<div class="adminoptionbox form-group row">
-				<div class="adminoptionlabel">
-					<label for="section" class="col-form-label col-sm-4">
-						{tr}Section{/tr}
-					</label>
+				<label for="section" class="col-form-label col-sm-4">
+					{tr}Section{/tr}
+				</label>
 				<div class="col-sm-8">
 					<select id="section" name="section" onchange="toolbars_autoreload()" class="form-control">
 						{foreach from=$sections item=name key=skey}
 							<option value="{$skey}"{if $skey eq $loaded} selected="selected"{/if}>{$name|escape}</option>
 						{/foreach}
 					</select>
-				</div>
 				</div>
 			</div>
 			<div class="adminoptionbox form-group row">
