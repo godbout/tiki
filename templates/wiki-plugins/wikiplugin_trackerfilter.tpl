@@ -101,7 +101,7 @@
 	{*------relation *}
 						{elseif $filter.format eq 'REL'}
 							<textarea name="f_{$filter.fieldId}" class="d-none">
-								{$filter.opts.selection}
+								{$filter.opts.field_selection}
 							</textarea>
 							{object_selector_multi _id="object_filter_{$filter.fieldId}" _name="object_filter_{$filter.fieldId}" _filter=$filter.opts.field_filter _value=$filter.opts.field_selection _format=$filter.opts.field_format }
 							<div class="text-center mt-3 mb-3">{tr}Or{/tr}</div>
@@ -132,7 +132,9 @@
 
 								$('textarea[name="object_filter_{{$filter.fieldId}}"]').on('change', function() {
 									// Reset other values
-									$('select[name="other_filter_{{$filter.fieldId}}"]').val('');
+									var $select = $('select[name="other_filter_{{$filter.fieldId}}"]')
+									$select.val('');
+									$select.trigger('chosen:updated');
 
 									var val = $(this).val();
 									$target = $('[name="f_{{$filter.fieldId}}"]').val(val);
