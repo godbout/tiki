@@ -83,6 +83,10 @@ body.fullscreen.tiki.navbar-padding {
 	margin-bottom: 0;
 }
 
+.tiki .popover-content {
+  word-wrap: break-word;
+}
+
 .tiki .media-overflow-visible,
 .tiki .media-overflow-visible .media-body {
 	overflow: visible;
