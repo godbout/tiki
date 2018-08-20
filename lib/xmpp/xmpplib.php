@@ -206,7 +206,7 @@ class XMPPLib extends TikiLib
 			'whitelisted_plugins' => ['tiki'],
 			'view_mode' => $params['view_mode'],
 			'debug' => $prefs['xmpp_conversejs_debug'] === 'y',
-
+			'use_emojione' => false
 		];
 
 		if ($params['room']) {
