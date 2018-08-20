@@ -213,7 +213,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 		$ret = [];
 		$count = 0;
 		while (($res = $result->fetchRow()) && $count < $limit) {
-			if ($this->user_has_perm_on_object($user, $res['object'], 'forum', 'tiki_p_forum_read')) {
+			if ($this->user_has_perm_on_object($user, $res['threadId'], 'thread', 'tiki_p_forum_read')) {
 				if ($mid == '') { // no forumId selected
 					$aux['name'] = $res['name'] . ': ' . $res['title']; //forum name plus topic
 				} else { // forumId selected

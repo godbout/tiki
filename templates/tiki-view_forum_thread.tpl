@@ -11,10 +11,12 @@
 	{if $tiki_p_admin_forum eq "y"}
 		{button href="tiki-admin_forums.php?forumId=$forumId" _class="btn btn-link" _icon_name="wrench" _text="{tr}Edit Forum{/tr}"}
 	{/if}
-	{if $tiki_p_admin_forum eq 'y' or !isset($all_forums) or $all_forums|@count > 1}
+	{if $tiki_p_admin_forum eq 'y' or (!isset($all_forums) and $tiki_p_forum_read eq "y") or $all_forums|@count > 1}
 		{button href="tiki-forums.php" _class="btn btn-link" _icon_name="list" _text="{tr}Forum List{/tr}"}
 	{/if}
-	{button href="tiki-view_forum.php?forumId=$forumId" _class="btn btn-link" _icon_name="list" _text="{tr}Topic List{/tr}"}
+	{if $tiki_p_forum_read eq "y"}
+		{button href="tiki-view_forum.php?forumId=$forumId" _class="btn btn-link" _icon_name="list" _text="{tr}Topic List{/tr}"}
+	{/if}
 </div>
 {if $post_reported eq 'y'}
 	{remarksbox type=warning title="{tr}The post has been reported and will be reviewed by a moderator.{/tr}"}{/remarksbox}

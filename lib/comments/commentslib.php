@@ -118,10 +118,10 @@ class Comments extends TikiLib
 	/* Add an attachment to a post in a forum */
 	function add_thread_attachment($forum_info, $threadId, &$errors, $name, $type, $size, $inbound_mail = 0, $qId = 0, $fp = '', $data = '')
 	{
-		global $tiki_p_admin_forum, $tiki_p_forum_attach;
+		$perms = Perm::get(['type' => 'thread', 'object' => $threadId]);
 		if (! ($forum_info['att'] == 'att_all'
-				|| ($forum_info['att'] == 'att_admin' && $tiki_p_admin_forum == 'y')
-				|| ($forum_info['att'] == 'att_perm' && $tiki_p_forum_attach == 'y'))) {
+				|| ($forum_info['att'] == 'att_admin' && $perms->admin_forum == 'y')
+				|| ($forum_info['att'] == 'att_perm' && $perms->forum_attach == 'y'))) {
 			$smarty = TikiLib::lib('smarty');
 			$smarty->assign('errortype', 401);
 			$smarty->assign('msg', tra('Permission denied'));
@@ -902,6 +902,7 @@ class Comments extends TikiLib
 		$query .= $info['query'];
 
 		$ret = $this->fetchAll($query, $info['bindvars'], $max, $offset);
+		$ret = $this->filter_topic_perms($ret);
 
 		foreach ($ret as &$res) {
 			$tid = $res['threadId'];
@@ -938,6 +939,25 @@ class Comments extends TikiLib
 		$query = "SELECT COUNT(*) FROM (SELECT `a`.`threadId`, {$info['query']}) a";
 
 		return $this->getOne($query, $info['bindvars']);
+	}
+
+	private function filter_topic_perms($topics) {
+		$topic_ids = array_map(function($row){
+			return $row['parentId'] > 0 ? $row['parentId'] : $row['threadId'];
+		}, $topics);
+		$topic_ids = array_unique($topic_ids);
+
+		Perms::bulk(['type' => 'thread'], 'object', $topic_ids);
+		$ret = [];
+		foreach ($topics as $row) {
+			$topic_id = $row['parentId'] > 0 ? $row['parentId'] : $row['threadId'];
+			$perms = Perms::get(['type' => 'thread', 'object' => $topic_id]);
+			if ($perms->forum_read) {
+				$ret[] = $row;
+			}
+		}
+
+		return $ret;
 	}
 
 	private function build_forum_query(
@@ -1745,7 +1765,13 @@ class Comments extends TikiLib
 		$query = "select a.`threadId`, a.`object`, a.`title`, a.`parentId`, a.`commentDate` $parentinfo, a.`userName` from `tiki_comments` a $mid ORDER BY a.`commentDate` desc";
 
 		$result = $this->fetchAll($query, [$user], $max);
-		$ret = Perms::filter(['type' => 'forum'], 'object', $result, ['object' => 'object', 'creator' => 'userName'], 'forum_read');
+		if ($type == 'topics') {
+			$ret = Perms::filter(['type' => 'thread'], 'object', $result, ['object' => 'threadId', 'creator' => 'userName'], 'forum_read');
+		} elseif ($type == 'replies') {
+			$ret = Perms::filter(['type' => 'thread'], 'object', $result, ['object' => 'parentId', 'creator' => 'userName'], 'forum_read');
+		} else {
+			$ret = Perms::filter(['type' => 'forum'], 'object', $result, ['object' => 'object', 'creator' => 'userName'], 'forum_read');
+		}
 
 		return $ret;
 	}

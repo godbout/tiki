@@ -159,6 +159,9 @@
 											{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 										</a>
 									</action>
+									<action>
+										{permission_link mode=text type="forum" permType="forums" id=$channels[user].forumId}
+									</action>
 								{/if}
 							{/strip}
 						{/actions}

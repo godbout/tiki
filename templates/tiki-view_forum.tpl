@@ -710,6 +710,9 @@
 												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 											</a>
 										</action>
+										<action>
+											{permission_link mode=text type="thread" permType="forums" id=$comments_coms[ix].threadId title=$comments_coms[ix].title}
+										</action>
 									{/if}
 								{/strip}
 							{/actions}

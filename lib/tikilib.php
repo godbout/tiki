@@ -1071,7 +1071,7 @@ class TikiLib extends TikiDb_Bridge
 								$this->user_has_perm_on_object($res['user'], $object, 'forum', 'tiki_p_admin_forum'));
 						break;
 					case 'forum_post_thread':
-						$res['perm'] = ($this->user_has_perm_on_object($res['user'], $forumId, 'forum', 'tiki_p_forum_read') ||
+						$res['perm'] = ($this->user_has_perm_on_object($res['user'], $object, 'thread', 'tiki_p_forum_read') ||
 								$this->user_has_perm_on_object($res['user'], $object, 'forum', 'tiki_p_admin_forum'));
 						break;
 					case 'file_gallery_changed':
@@ -1924,7 +1924,7 @@ class TikiLib extends TikiDb_Bridge
 		$n = 0;
 
 		foreach ($result as $res) {
-			$objperm = $this->get_perm_object($res['forumId'], 'forums', '', false);
+			$objperm = $this->get_perm_object($res['threadId'], 'thread', '', false);
 			if ($objperm['tiki_p_forum_read'] == 'y') {
 				$retids[] = $res['threadId'];
 
@@ -3505,6 +3505,7 @@ class TikiLib extends TikiDb_Bridge
 
 		switch ($objectType) {
 			case 'tracker':
+			case 'trackeritem':
 				return 'trackers';
 			case 'image gallery':
 			case 'image':
@@ -3514,8 +3515,10 @@ class TikiLib extends TikiDb_Bridge
 				return 'file galleries';
 			case 'article':
 			case 'submission':
+			case 'topic':
 				return 'cms';
 			case 'forum':
+			case 'thread':
 				return 'forums';
 			case 'blog':
 			case 'blog post':

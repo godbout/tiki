@@ -240,7 +240,7 @@ function module_since_last_visit_new($mod_reference, $params = null)
 
 		$count = 0;
 		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], 'tiki_p_forum_read')) {
+			if ($userlib->user_has_perm_on_object($user, $res['parentId'], 'thread', 'tiki_p_forum_read')) {
 				$ret['items']['posts']['list'][$count]['href']
 					= 'tiki-view_forum_thread.php?comments_parentId=';
 				if ($res['parentId']) {

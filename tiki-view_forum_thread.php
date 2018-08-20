@@ -145,7 +145,7 @@ if (isset($_REQUEST['lock'])) {
 $commentslib->comment_add_hit($_REQUEST["comments_parentId"]);
 $commentslib->mark_comment($user, $forumId, $_REQUEST["comments_parentId"]);
 
-$tikilib->get_perm_object($forumId, 'forum');
+$tikilib->get_perm_object($_REQUEST['comments_parentId'], 'thread');
 
 if ($user) {
 	if ($forum_info["moderator"] == $user) {
@@ -167,7 +167,7 @@ if ($tiki_p_admin_forum == 'y') {
 	$smarty->assign('tiki_p_forum_post_topic', 'y');
 }
 
-$access->check_permission(['tiki_p_forum_read'], '', 'forum', $forum_info['forumId']);
+$access->check_permission(['tiki_p_forum_read'], '', 'thread', $_REQUEST['comments_parentId']);
 
 $smarty->assign('topics_next_offset', $_REQUEST['topics_offset'] + 1);
 $smarty->assign('topics_prev_offset', $_REQUEST['topics_offset'] - 1);

@@ -204,6 +204,7 @@
 						<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
 						<input type="hidden" name="comments_objectId" value="{$comments_objectId|escape}">
 						<input type="hidden" name="comments_title" value="{if isset($page) and $page}{$page|escape}{/if}">
+						{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 
 						{* Traverse request variables that were set to this page adding them as hidden data *}
 						{section name=i loop=$comments_request_data}
