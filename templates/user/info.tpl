@@ -11,7 +11,7 @@
 		<span>{$error}</span>
 	</div>
 {else}
-	<div class="user-info friend-container table-responsive" data-controller="user" data-action="info" data-params='{ldelim}"username":"{$other_user}"{rdelim}'>
+	<div class="user-info friend-container" data-controller="user" data-action="info" data-params='{ldelim}"username":"{$other_user}"{rdelim}'>
 		<table class="table table-condensed table-hover">
 			<thead>
 				<tr>

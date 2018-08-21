@@ -3019,8 +3019,14 @@ body.fullscreen.tiki.navbar-padding {
   border: none;
   background: transparent; }
 
+.tiki .popover {
+  word-wrap: break-word;
+  word-break: break-all; }
+
 .tiki.tiki-list_file_gallery .col1 .popover, .tiki.tiki_file_galleries .col1 .popover, .tiki.tiki_trackers .col1 .popover, .tiki .wikiplugin-trackerlist .popover {
-  max-width: 50vw; }
+  max-width: 50vw;
+  word-wrap: normal;
+  word-break: normal; }
 
 .tiki .popover p:last-child {
   margin-bottom: 0; }
