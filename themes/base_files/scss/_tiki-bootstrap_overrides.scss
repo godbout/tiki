@@ -73,19 +73,30 @@ body.fullscreen.tiki.navbar-padding {
 //	max-width: inherit;
 //}
 
-// limit width of popups for file galleries
-.tiki.tiki-list_file_gallery .popover,
-.tiki.tiki_file_galleries .popover { max-width: 50vw; }
+.tiki .popover {
+  word-wrap: break-word;
+  word-break: break-all;
+}
 
-.tiki .popover.tour-tour { max-width: 276px; }
+// .tiki .popover.tour-tour { max-width: 276px; } Not needed since default is now this width.
+
+// limit width of popups for file galleries
+.tiki.tiki-list_file_gallery .col1 .popover,
+.tiki.tiki_file_galleries .col1 .popover,
+.tiki.tiki_trackers .col1 .popover,
+.tiki .wikiplugin-trackerlist .popover {
+	max-width: 50vw;
+	word-wrap: normal;
+	word-break: normal;
+}
+
+
 
 .tiki .popover p:last-child {
 	margin-bottom: 0;
 }
 
-.tiki .popover-content {
-  word-wrap: break-word;
-}
+
 
 .tiki .media-overflow-visible,
 .tiki .media-overflow-visible .media-body {
