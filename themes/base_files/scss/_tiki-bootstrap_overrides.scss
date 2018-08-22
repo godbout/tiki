@@ -73,10 +73,10 @@ body.fullscreen.tiki.navbar-padding {
 //	max-width: inherit;
 //}
 
-.tiki .popover {
-  word-wrap: break-word;
-  word-break: break-all;
-}
+//.tiki .popover {
+// word-wrap: break-word;
+//  word-break: break-all;
+//}
 
 // .tiki .popover.tour-tour { max-width: 276px; } Not needed since default is now this width.
 
@@ -86,8 +86,8 @@ body.fullscreen.tiki.navbar-padding {
 .tiki.tiki_trackers .col1 .popover,
 .tiki .wikiplugin-trackerlist .popover {
 	max-width: 50vw;
-	word-wrap: normal;
-	word-break: normal;
+//	word-wrap: normal;
+//	word-break: normal;
 }
 
 
