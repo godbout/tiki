@@ -6730,7 +6730,7 @@ header.container {
 .blog-postbody-title h2.card-title {
   font-size: 1.3rem; }
 
-#col2 .card, #col3 .card, #col2 .card-primary, #col3 .card-primary {
+#col2 .card, #col3 .card {
   background: none;
   border: none; }
   #col2 .card-footer, #col3 .card-footer {

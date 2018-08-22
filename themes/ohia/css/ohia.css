@@ -6708,12 +6708,9 @@ button, input, optgroup, select, textarea {
   border: none;
   margin-bottom: 0; }
 
-header.container, .middle_outer > .container {
-  margin-bottom: 0; }
-
-.top_modules, .navbar-light.navbar-fixed-top {
+.header-container .container, .navbar-light.navbar-fixed-top {
   background: url("../images/header.png"); }
-  .top_modules a, .navbar-light.navbar-fixed-top a, .top_modules a:visited, .navbar-light.navbar-fixed-top a:visited, .top_modules .btn-link, .navbar-light.navbar-fixed-top .btn-link {
+  .header-container .container a, .navbar-light.navbar-fixed-top a, .header-container .container a:visited, .navbar-light.navbar-fixed-top a:visited, .header-container .container .btn-link, .navbar-light.navbar-fixed-top .btn-link {
     color: #f4f4f4; }
 
 .box-quickadmin .cssmenu_horiz ul li {

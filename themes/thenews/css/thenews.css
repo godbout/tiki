@@ -6729,10 +6729,10 @@ h3.card-title {
    padding: 0px;*/
   text-transform: uppercase; }
 
-#col2 card-primary, #col3 card-primary, #col2 card-primary > card-header, #col3 card-primary > card-header {
+#col2 .card, #col3 .card, #col2 .card .card-header, #col3 .card .card-header {
   border: none; }
 
-#col2 card-header, #col3 card-header {
+#col2 .card-header, #col3 .card-header {
   padding: 10px 15px 0 10px; }
 
 body.fullscreen .container, body.fullscreen #col1 {

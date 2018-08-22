@@ -6830,9 +6830,6 @@ h3.card-title {
 .sf-arrows ul li > .sf-with-ul:focus:after, .sf-arrows ul li:hover > .sf-with-ul:after, .sf-arrows ul .sfHover > .sf-with-ul:after {
   border-left-color: #fff; }
 
-.postbody-title .title > .card-title a.link, .card > .card-header a {
-  color: #fff; }
-
 .popover {
   color: #404040; }
 

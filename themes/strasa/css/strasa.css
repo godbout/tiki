@@ -6808,7 +6808,7 @@ h3.card-title {
   #bottom_modules a:hover, #bottom_modules a:focus {
     color: #024c7b; }
 
-.card-primary.module, .card-primary.module > .card-header, .card-primary.module > .card-body, .card-primary.module > .card-footer {
+.card.module, .card.module > .card-header, .card.module > .card-body, .card.module > .card-footer {
   border: none;
   background: transparent; }
 
