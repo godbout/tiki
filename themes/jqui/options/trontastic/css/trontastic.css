@@ -132,7 +132,7 @@ body.fullscreen .topbar {
   border: none;
 }
 .btn-primary,
-.btn-primary,
+.btn-secondary,
 .btn-success,
 .btn-info,
 .btn-warning,
@@ -145,7 +145,7 @@ body.fullscreen .topbar {
   color: #b8ec79;
 }
 .btn-primary:hover,
-.btn-primary:hover,
+.btn-secondary:hover,
 .btn-success:hover,
 .btn-info:hover,
 .btn-warning:hover,
@@ -156,9 +156,9 @@ body.fullscreen .topbar {
   color: #b8ec79;
   border-color: #6f6f6f;
 }
-.btn-primary {
-  color: #b8ec79;
-  border-color: #b8ec79;
+.btn-secondary {
+  color: #c897ec;
+  border-color: #c897ec;
 }
 .btn-success {
   color: #b5dfb5;
