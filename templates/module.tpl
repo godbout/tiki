@@ -9,7 +9,7 @@
 {if $module_nobox neq 'y'}
 {if !isset($moduleId)}{assign var=moduleId value=' '}{/if}
 <div id="module_{$moduleId}"
-	class="card card-primary box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
+	class="card box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
 	{if $module_decorations ne 'n'}
 		<div class="card-header" {if !empty($module_params.bgcolor)} style="background-color:{$module_params.bgcolor};"{/if}>
 			{if ($module_notitle ne 'y' && !empty($module_title)) || ($module_flip eq 'y' and $prefs.javascript_enabled ne 'n') || $prefs.menus_items_icons eq 'y'}

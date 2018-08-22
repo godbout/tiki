@@ -31,19 +31,12 @@
 *}
 
 <div class="find clearfix mb-4">
-	<form method="post" role="form">
+	<form method="post" role="form" class="form-inline">
 	{if !isset($map_only) or $map_only ne 'y'}
 		{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager" value="{$filegals_manager|escape}">{/if}
 		{query _type='form_input' maxRecords='NULL' type='NULL' types='NULL' find='NULL' topic='NULL' lang='NULL' exact_match='NULL' categId='NULL' cat_categories='NULL' filegals_manager='NULL' save='NULL' offset=0 searchlist='NULL' searchmap='NULL'}
-		<div class="find-text form-group row">
-			<div class="col-xs-12">
+		<div class="find-text form-group">
 				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text text-info">
-							{* This icon made some sense when this form was on a single line by default. Now that it spans numerous lines, the area indicated by this search icon is no longer clear. This should be removed or the scope should be clarified. 2017-09-01 *}
-							{icon name="search"}
-						</span>
-					</div>
 					{if isset($autocomplete)}
 						{jq}$("#find").tiki("autocomplete", "{{$autocomplete}}");{/jq}
 					{/if}
@@ -56,7 +49,6 @@
 						<a href="{$smarty.server.PHP_SELF|escape}?{query find='' type='' types='' topic='' lang='' langOrphan='' categId='' maxRecords=$prefs.maxRecords find_from_Month='' find_from_Day='' find_from_Year='' find_to_Month='' find_to_Day='' find_to_Year=''}" title="{tr}Clear Filter{/tr}" class="btn btn-link">{tr}Clear Filter{/tr}</a>
 					</div>
 				{/if}
-			</div>
 		</div>
 		{if !empty($types) and ( !isset($types_tag) or $types_tag eq 'select' )}
 			<div class="form-group row">
@@ -259,14 +251,10 @@
 			</div>
 		{/if}
 		{if isset($find_show_num_rows) && $find_show_num_rows eq 'y'}
-			<div class="form-group findnumrows">
-				<label class="col-form-label col-sm-6" for="findnumrows">
-					{tr}Displayed rows{/tr}
-				</label>
-				<div class="col-sm-6">
-					<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}" size="3" class="form-control form-control-sm">
-				</div>
-			</div>
+			<label class="mr-2" for="findnumrows">
+				{tr}Displayed rows{/tr}
+			</label>
+			<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}" class="form-control">
 		{/if}
 	{/if}
 	{if isset($gmapbuttons) && $gmapbuttons}
@@ -280,7 +268,7 @@
 		{/if}
 	</div>
 	{/if}
-		<button type="submit" class="btn btn-info" name="search">{tr}Find{/tr}</button>
+		<button type="submit" class="btn btn-info ml-3" name="search">{tr}Find{/tr}</button>
 	</form>
 </div>
 <!-- End of find -->

@@ -36,7 +36,7 @@
 				<table id="{$ts.tableid}" class="table normal table-striped table-hover" data-count="{$cant_pages|escape}">
 						<thead>
 							<tr>
-								<th id="checkbox" style="width: 20px;">{select_all checkbox_names='checked[]'}</th>
+								<th id="checkbox">{select_all checkbox_names='checked[]'}</th>
 								<th id="id">{self_link _sort_arg='sort_mode' _sort_field='id'}{tr}ID{/tr}{/self_link}</th>
 								<th id="group">{self_link _sort_arg='sort_mode' _sort_field='groupName'}{tr}Name{/tr}{/self_link}</th>
 								<th id="inherits">{tr}Inherits Permissions from{/tr}</th>

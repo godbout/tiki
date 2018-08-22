@@ -110,11 +110,11 @@
 					{if $smod_params.tiki_search neq 'y'}
 						{if $smod_params.advanced_search_option eq 'y'}
 							<div class="form-check"{* style="padding-left: 6px; padding-right: 6px; display: inline-block;"*}>
-								<label for="boolean"><input type="checkbox" class="form-check-input" name="boolean" id="boolean"{if $smod_params.advanced_search eq "y"} checked="checked"{/if} /> {tr}Advanced{/tr}
+								<input type="checkbox" class="form-check-input" name="boolean" id="boolean"{if $smod_params.advanced_search eq "y"} checked="checked"{/if} />
+								<label for="boolean" class="form-check-label">{tr}Advanced{/tr}
 									{if $smod_params.advanced_search_help eq 'y'}
 										<a href="{bootstrap_modal controller=search action=help}" class="text-info">{icon name='help'} {tr}Search Help{/tr}</a>
 									{/if}
-
 								</label>
 							</div>
 						{else}

@@ -172,8 +172,10 @@
 
 {if !empty($filegals_manager)}
 	{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Be careful to set the right permissions on the files you link to{/tr}.{/remarksbox}
-	<label for="keepOpenCbx">{tr}Keep gallery window open{/tr}</label>
-	<input type="checkbox" id="keepOpenCbx" checked="checked">
+	<div class="form-check">
+		<input type="checkbox" class="form-check-input" id="keepOpenCbx" checked="checked">
+		<label for="keepOpenCbx" class="form-check-label">{tr}Keep gallery window open{/tr}</label>
+	</div>
 {/if}
 
 {if isset($fileChangedMessage) and $fileChangedMessage neq ''}
@@ -224,16 +226,16 @@
 				<div class="col-sm-6">
 					{include file='find.tpl' find_show_num_rows = 'y' find_show_categories_multi='y' find_durations=$find_durations find_show_sub='y' find_in="<ul><li>{tr}Name{/tr}</li><li>{tr}Filename{/tr}</li><li>{tr}Description{/tr}</li></ul>"}
 					<form id="search-by-id" class="form" role="form" method="get" action="tiki-list_file_gallery.php">
-						<div class="input-group" style="margin-top: 10px; margin-bottom: 10px">
-							<span class="input-group-append">
-								{icon name="search"}
-							</span>
+						<div class="input-group my-3">
+							<div class="input-group-prepend">
+								<div class="input-group-text">{icon name="search"}</div>
+							</div>
 							<input class="form-control" type="text" name="fileId" id="fileId" {if isset($fileId)} value="{$fileId}"{/if} placeholder="1234" title="{tr}Search for the file with this number, in all galleries{/tr}">
 							{jq}
 								jQuery("#fileId").tooltip();
 							{/jq}
 							<div class="input-group-btn">
-								<button type="submit" class="btn btn-primary" style="text-align: right">{tr}Search by identifier{/tr}</button>
+								<button type="submit" class="btn btn-info">{tr}Search by identifier{/tr}</button>
 							</div>
 						</div>
 					</form>
