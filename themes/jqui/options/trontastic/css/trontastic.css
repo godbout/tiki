@@ -182,6 +182,9 @@ body.fullscreen .topbar {
 .btn-link:hover {
   color: #a0e64c;
 }
+
+.text-info { color: #c5e9f3 !important; }
+
 .top_modules div:not(.card) .btn-link {
   color: #000000;
 }
@@ -328,7 +331,8 @@ blockquote.pull-right {
   background-color: #222222;
   border-top: 1px solid #4a4a4a;
 }
-.card-heading,
+.card-header,
+.popover-header,
 th,
 td.heading,
 tr.diffheader,
@@ -356,6 +360,11 @@ tr.diffheader,
   background: #9fda58 url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/trontastic/images/ui-bg_gloss-wave_85_9fda58_500x100.png') 50% 50% repeat-x;
   color: #222;
   font-weight: bold;
+}
+
+.popover-body .list-group-item {
+	background: transparent;
+	color: #f3fce8;
 }
 
 a.toggle_zone {
@@ -418,7 +427,7 @@ tr.diffheader {
 .help-block {
   color: #8d8d8d;
 }
-.alert,
+
 .jumbotron,
 textarea,
 .form-control,
