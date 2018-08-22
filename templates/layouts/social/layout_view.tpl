@@ -18,13 +18,10 @@
 {/if}
 	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} clearfix middle" id="middle">
 {if $smarty.session.fullscreen ne 'y'}
-		<div class="topbar_wrapper">
-			<div class="topbar" id="topbar">
-				{modulelist zone=topbar class='row topbar_modules d-flex justify-content-between'}
-			</div>
-		</div>
+	<div class="topbar" id="topbar">
+		{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
+	</div>
 {/if}
-
 		{*<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">*}
 
 			<div class="row row-middle" id="row-middle">

@@ -1045,6 +1045,13 @@ div.categbar {
   text-align: right;
   clear: both; }
 
+header.container, .middle_outer > .container {
+  margin-bottom: 0; }
+
+.layout_social .container.middle .topbar, .layout_basic .container .page-header, .layout_classic .container .page-header, .layout_classic .container .topbar {
+  margin-left: -15px;
+  margin-right: -15px; }
+
 #top_modules, #topbar_modules, #pagebottom_modules, .bottom_modules {
   display: flex;
   flex-direction: row;
@@ -1257,33 +1264,30 @@ div.cvsup {
 .topbar .form-group {
   margin-bottom: 0; }
 
-.navbar-fixed-top .sitelogo a img, .layout_social .topbar_modules .sitelogo a img, .layout_social_modules .topbar_modules .sitelogo a img {
+.navbar-fixed-top .sitelogo a img, .layout_social .topbar_modules .sitelogo a img {
   display: inline;
   margin-top: 0.325rem;
   margin-bottom: 0.325rem;
   max-height: 2.6rem;
   width: auto !important; }
-  .navbar-fixed-top h1.sitetitle, .layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle {
+  .navbar-fixed-top h1.sitetitle, .layout_social .topbar_modules h1.sitetitle {
     float: left;
     font-size: 1.8rem;
     line-height: 2;
     margin-bottom: 0;
     margin-left: 1rem; }
-  .navbar-fixed-top .sitesubtitle, .layout_social .topbar_modules .sitesubtitle, .layout_social_modules .topbar_modules .sitesubtitle {
+  .navbar-fixed-top .sitesubtitle, .layout_social .topbar_modules .sitesubtitle {
     float: left;
     font-size: 1.4rem;
     margin-left: 1.5rem; }
-  .navbar-fixed-top #topbar_modules, .layout_social .topbar_modules #topbar_modules, .layout_social_modules .topbar_modules #topbar_modules {
+  .navbar-fixed-top #topbar_modules, .layout_social .topbar_modules #topbar_modules {
     display: inline-block; }
-  .navbar-fixed-top select.form-control, .layout_social .topbar_modules select.form-control, .layout_social_modules .topbar_modules select.form-control {
+  .navbar-fixed-top select.form-control, .layout_social .topbar_modules select.form-control {
     margin-top: 0.5416666667rem;
     padding-top: 4px;
     padding-bottom: 4px; }
-  .navbar-fixed-top .btn, .layout_social .topbar_modules .btn, .layout_social_modules .topbar_modules .btn, .navbar-fixed-top .btn-link, .layout_social .topbar_modules .btn-link, .layout_social_modules .topbar_modules .btn-link {
+  .navbar-fixed-top .btn, .layout_social .topbar_modules .btn, .navbar-fixed-top .btn-link, .layout_social .topbar_modules .btn-link {
     margin-top: 0.4642857143rem; }
-
-.layout_social_modules #topbar_modules {
-  display: block; }
 
 .navbar-fixed-top .navbar, #navbar-collapse-social .navbar {
   margin-bottom: 0;

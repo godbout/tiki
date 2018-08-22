@@ -23,7 +23,7 @@
 			<div class="header_container">
 				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 					<header class="header page-header" id="page-header">
-						{modulelist zone=top class='row top_modules'}
+						{modulelist zone=top class='top_modules d-flex justify-content-between'}
 					</header>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 	<div class="middle_outer" id="middle_outer" >
 		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} clearfix middle" id="middle">
 			<div class="topbar" id="topbar">
-				{modulelist zone=topbar}
+				{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 			</div>
 			<div class="row" id="row-middle">
 				{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}

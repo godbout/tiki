@@ -1,5 +1,20 @@
 // $Id$
 
+header.container,
+.middle_outer > .container {
+  margin-bottom: 0;
+}
+
+// Enable topbar backgrounds to extend left and right to contain margins.
+//.topbar,
+.layout_social .container.middle .topbar, // layout_social
+.layout_basic .container .page-header,
+.layout_classic .container .page-header,
+.layout_classic .container .topbar {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
 #top_modules,
 #topbar_modules,
 #pagebottom_modules,
@@ -319,6 +334,8 @@ div.cvsup {
 	//	color: $gray-light; (moved to _tiki-selectors.scss)
 }
 
+
+
 .topbar .form-group {
 	margin-bottom: 0;
 }
@@ -338,8 +355,7 @@ div.cvsup {
 //}
 
 .navbar-fixed-top,
-.layout_social .topbar_modules,
-.layout_social_modules .topbar_modules {
+.layout_social .topbar_modules {
 	.sitelogo a img {
 		display: inline;
 		margin-top: $navbar-fixed-height / 10;
@@ -377,12 +393,6 @@ div.cvsup {
 	//  .navbar-inverse {
 	//    border-color: transparent;
 	//  }
-}
-
-.layout_social_modules {
-	#topbar_modules {
-		display: block;
-	}
 }
 
 .navbar-fixed-top,
