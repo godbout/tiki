@@ -324,14 +324,16 @@ class PdfGenerator
 			$coverImage = $pdfSettings['coverpage_image_settings'] != 'off' ? $pdfSettings['coverpage_image_settings'] : '';
 			$mpdf->SetHeader();		//resetting header footer for cover page
 			$mpdf->SetFooter();
-			$mpdf->AddPage($pdfPage['orientation'], '', '', '', '', 0, 0, 0, 0, 0, 0); //adding new page with 0 margins
+			$mpdf->AddPage($pdfSettings['orientation'], '', '', '', '', 0, 0, 0, 0, 0, 0); //adding new page with 0 margins
 			$coverPage[2] = $coverPage[2] == '' ? 'center' : $coverPage[2];
 			//getting border settings
 			if (count($coverPage) > 5) {
 				$borderWidth = $coverPage[5] == '' ? 1 : $coverPage[5];
 				$coverPageTextStyles = 'border:' . $borderWidth . ' solid ' . $coverPage[6] . ';';
+			} else {
+				$coverPageTextStyles = '';
 			}
-			$bgColor = $cover[3] == '' ? 'background-color:' . $coverPage[3] : '';
+			$bgColor = $coverPage[3] == '' ? 'background-color:' . $coverPage[3] : '';
 			$mpdf->WriteHTML('<body style="' . $bgColor . ';margin:0px;padding:0px"><div style="height:100%;background-image:url(' . $coverImage . ');padding:20px;background-repeat: no-repeat;background-position: center; "><div style="' . $coverPageTextStyles . 'height:95%;">
 <div style="text-align:' . $coverPage[2] . ';margin-top:30%;color:' . $coverPage[4] . '"><div style=margin-bottom:10px;font-size:50px>' . $coverPage[0] . '</div>' . $coverPage[1] . '</div></div></body>');
 		}
