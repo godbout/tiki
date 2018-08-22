@@ -189,11 +189,10 @@ $jumbotron-heading-color:inherit;
 
 // Cards
 $card-bg: #030511;
-$card-inner-border: #5e0000;
+$card-inner-border: #900;
 $card-footer-bg:darken(#5e0000,10%);
-$card-primary-text: #f4f4f4;
-$card-primary-border: #333333;
-$card-primary-heading-bg: #5e0000;
+$card-border-color: #333333;
+
 
 // Tooltips
 $tooltip-color: #ffffff;
@@ -225,8 +224,9 @@ $modal-footer-border-color: $modal-header-border-color;
 // Progress bars
 
 // List group
+$list-group-bg: $body-bg;
 $list-group-disabled-color: $gray-700;
-$list-group-disabled-bg: $gray-800;
+$list-group-disabled-bg: $body-bg;
 $list-group-disabled-text-color: $list-group-disabled-color;
 $list-group-link-color: $body-color;
 $list-group-link-hover-color: $list-group-link-color;
@@ -281,3 +281,5 @@ $hr-border: $gray-500;
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 
+$card-header-bg: #5e0000;
+$card-text: #f4f4f4;

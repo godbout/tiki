@@ -8,19 +8,6 @@ $imagePath: "../images/";
 	margin-bottom: 20px;
 }
 
-$topmodules-row-sidemargins: -15px;
-$topbar-row-sidemargins: -15px;
-
-.tiki .row.top_modules {
-	margin-left: $topmodules-row-sidemargins;
-	margin-right: $topmodules-row-sidemargins;
-}
-
-.tiki .row.topbar {
-	margin-left: $topbar-row-sidemargins;
-	margin-right: $topbar-row-sidemargins;
-}
-
 button, input, optgroup, select, textarea {
 	background: #242424;
 	color: #cfcfcf;
@@ -32,11 +19,12 @@ button, input, optgroup, select, textarea {
 	//  margin-top: 18px;
 }
 
-.layout_social .navbar-dark,
-.layout_social .navbar-dark .navbar-collapse,
-.layout_social .navbar-dark .navbar-form,
-.layout_social .navbar-dark .container {
-	background: #5e0000;
+.topbar,
+.navbar-dark,
+.navbar-dark .navbar-collapse,
+.navbar-dark .navbar-form,
+.navbar-dark .container {
+	background: #7a0101;
 	border-color: transparent;
 }
 
@@ -45,16 +33,7 @@ button, input, optgroup, select, textarea {
 	margin-bottom: 0;
 }
 
-header.container,
-.middle_outer > .container {
-	margin-bottom: 0;
-}
-
-.navbar-collapse {
-	background: green; // $navbar-light-bg;
-}
-
-.top_modules,
+.header-container .container,
 .navbar-light.navbar-fixed-top {
 	background: url('#{$imagePath}header.png');
 //	background-size: cover;
@@ -89,6 +68,11 @@ header.container,
 	font-weight: bold;
 }
 
+.card-header {
+	background: $card-header-bg;
+	border: 1px solid $card-inner-border;
+}
+
 $nav-tabs-active-link-hover-color: #ffffff;
 
 .nav-tabs > li > a {
@@ -97,8 +81,9 @@ $nav-tabs-active-link-hover-color: #ffffff;
 }
 
 footer.footer .modules {
-	background-image: url('#{$imagePath}header.png');
-	color: #f4f4f4;
+	background: url('#{$imagePath}header.png');
+  background-size: contain;
+  	color: #f4f4f4;
 	font-size: 0.9em;
 	min-height: 90px;
 	a, a:visited {
