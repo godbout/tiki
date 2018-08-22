@@ -7,119 +7,134 @@ a:hover,
 a:focus {
   color: #9a6500;
 }
-.btn-default {
-  color: #ffffff;
-  background-color: #2293f7;
-  border-color: #2293f7;
-}
-.btn-default:focus,
-.btn-default.focus {
-  color: #ffffff;
-  background-color: #087ade;
-  border-color: #055194;
-}
-.btn-default:hover {
-  color: #ffffff;
-  background-color: #087ade;
-  border-color: #0874d4;
-}
-.btn-default:active,
-.btn-default.active,
-.open > .dropdown-toggle.btn-default {
-  color: #ffffff;
-  background-color: #087ade;
-  border-color: #0874d4;
-}
-.btn-default:active:hover,
-.btn-default.active:hover,
-.open > .dropdown-toggle.btn-default:hover,
-.btn-default:active:focus,
-.btn-default.active:focus,
-.open > .dropdown-toggle.btn-default:focus,
-.btn-default:active.focus,
-.btn-default.active.focus,
-.open > .dropdown-toggle.btn-default.focus {
-  color: #ffffff;
-  background-color: #0767bc;
-  border-color: #055194;
-}
-.btn-default:active,
-.btn-default.active,
-.open > .dropdown-toggle.btn-default {
-  background-image: none;
-}
-.btn-default.disabled:hover,
-.btn-default[disabled]:hover,
-fieldset[disabled] .btn-default:hover,
-.btn-default.disabled:focus,
-.btn-default[disabled]:focus,
-fieldset[disabled] .btn-default:focus,
-.btn-default.disabled.focus,
-.btn-default[disabled].focus,
-fieldset[disabled] .btn-default.focus {
-  background-color: #2293f7;
-  border-color: #2293f7;
-}
-.btn-default .badge {
-  color: #2293f7;
-  background-color: #ffffff;
-}
-.navbar-default {
-  background-color: #e69700;
-  border-color: #e69700;
-}
-.navbar-default .navbar-text {
-  color: #ffffff;
-}
-.navbar-default .navbar-nav > li > a {
-  color: #ffffff;
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  color: #e6e6e6;
-  background-color: transparent;
-}
-.navbar-default .navbar-link {
-  color: #ffffff;
-}
-.navbar-default .navbar-link:hover {
-  color: #e6e6e6;
-}
 .btn,
 button,
 input[type="reset"],
 input[type="submit"],
 .button input {
-  background: url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_26_2293f7_40x40.png') 50% 50%;
+	background: url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_26_2293f7_40x40.png') 50% 50%;
 }
-.btn-default,
-.panel .btn-default {
-  color: #ffffff;
+.btn:not(.btn-link) {
+	color: #ffffff;
 }
+
 .btn:hover,
 button:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
 .button input:hover {
-  background: url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_22_1484e6_40x40.png') repeat-x 50% 50%;
+	background: url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_22_1484e6_40x40.png') repeat-x 50% 50%;
 }
 .btn-link,
 .btn-link:hover {
-  background: none;
-  border: none;
+	background: none;
+	border: none;
+}
+.btn-secondary {
+	border: 3px solid #b5dfb5;
 }
 .btn-success {
-  color: #b5dfb5;
+	border: 3px solid #b5dfb5;
 }
 .btn-info {
-  color: #c5e9f3;
+	border: 3px solid #c5e9f3;
 }
 .btn-warning {
-  color: #f6ce95;
+	border: 3px solid #f6ce95;
 }
 .btn-danger {
-  color: #d9534f;
+	border: 3px solid #d9534f;
 }
+.btn-primary {
+  color: #ffffff;
+  background-color: #2293f7;
+  border: 3px solid #2293f7;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #ffffff;
+  background-color: #087ade;
+  border-color: #055194;
+}
+.btn-primary:hover {
+  color: #ffffff;
+  background-color: #087ade;
+  border-color: #0874d4;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #087ade;
+  border-color: #0874d4;
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #ffffff;
+  background-color: #0767bc;
+  border-color: #055194;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus {
+  background-color: #2293f7;
+  border-color: #2293f7;
+}
+.btn-primary .badge {
+  color: #2293f7;
+  background-color: #ffffff;
+}
+.navbar-dark {
+  background-color: #e69700;
+  border-color: #e69700;
+}
+.navbar-dark .navbar-text {
+  color: #ffffff;
+}
+.navbar-dark .navbar-nav > li > a {
+  color: #ffffff;
+}
+.navbar-dark .navbar-nav > li > a:hover,
+.navbar-dark .navbar-nav > li > a:focus {
+  color: #e6e6e6;
+  background-color: transparent;
+}
+.navbar-dark .navbar-link {
+  color: #ffffff;
+}
+.navbar-dark .navbar-link:hover {
+  color: #e6e6e6;
+}
+
+.dropdown-menu {
+	background: #e8a119;
+}
+.dropdown-item:hover,
+.dropdown-item:focus,
+.topbar .cssmenu_horiz li ul li > a:hover {
+	background: #e69700;
+	color: #ffffff;
+	text-decoration: none;
+}
+
 input[type="text"],
 input[type="password"],
 select,
@@ -129,48 +144,49 @@ body.cke_show_borders {
   color: #000000;
 }
 .topbar,
-.panel-heading,
-.panel-primary > .panel-heading,
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-collapse,
+.tiki .bg-dark {
   border: 1px solid #e69700;
   font-weight: bold;
   color: #ffffff;
   outline: none;
   background: #e69700 url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_20_e69700_40x40.png') repeat 50% 50%;
 }
-.panel-primary .panel-title {
-  color: #ffffff;
+.card-title {
+	color: #E69700;
+	font-weight: bold;
+	text-align: center;
 }
-.panel-default > .panel-heading {
-  color: #e69700;
-}
-.topbar .panel-heading,
-.topbar .navbar-default .navbar-collapse,
-.topbar .navbar-default .navbar-form {
+
+.topbar .card-heading,
+.topbar .navbar-dark .navbar-collapse,
+.topbar .navbar-dark .navbar-form {
   border: none;
   background-color: transparent !important;
 }
 .topbar a,
 .topbar > a,
-.topbar .navbar-default .navbar-nav > li > a,
+.topbar .navbar-dark .navbar-nav > li > a,
 .topbar .nav > li > a,
 .topbar > a:hover,
-.topbar .navbar-default .navbar-nav > li:hover > a,
+.topbar .navbar-dark .navbar-nav > li:hover > a,
 .topbar .nav > li > a:hover,
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
+.navbar-dark .navbar-nav > .open > a,
+.navbar-dark .navbar-nav > .open > a:hover,
+.navbar-dark .navbar-nav > .open > a:focus {
   color: #ffffff;
   background: transparent;
 }
 .topbar > a:hover,
-.topbar .navbar-default .navbar-nav > li > a:hover,
+.topbar .navbar-dark .navbar-nav > li > a:hover,
 .topbar .nav > li > a:hover,
 .topbar > a:focus,
-.topbar .navbar-default .navbar-nav > li > a:focus,
+.topbar .navbar-dark .navbar-nav > li > a:focus,
 .topbar .nav > li > a:focus,
-.topbar .navbar-default .navbar-nav > li,
+.topbar .navbar-dark .navbar-nav > li,
 .topbar .nav > li {
   background: transparent;
 }
@@ -181,9 +197,9 @@ body.cke_show_borders {
   color: #ffffff;
   text-decoration: none;
 }
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
+.navbar-dark .navbar-nav > .active > a,
+.navbar-dark .navbar-nav > .active > a:hover,
+.navbar-dark .navbar-nav > .active > a:focus {
   background-color: #e69700;
 }
 .cssmenu_horiz a,
@@ -249,77 +265,64 @@ h1.pagetitle > a:hover {
   color: #d1e7fa;
   text-decoration: none;
 }
-.panel {
+.card {
   border: 1px solid #aaaaaa;
   color: #222222;
   background: #eeeeee url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_inset-hard_100_eeeeee_1x100.png') 50% bottom repeat-x;
 }
-.panel a {
+.card a {
   color: #e69700;
 }
-.panel-title {
+.card-title {
   font-weight: bold;
 }
-.panel-heading {
+.card-header {
   background: #f9f9f9 url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_highlight-soft_100_f9f9f9_1x100.png') repeat-x 50% 50%;
   border: 1px solid #cccccc;
   text-align: center;
 }
-.panel-success > .panel-heading {
+.card-success > .card-header {
   background: #b5dfb5;
 }
-.panel-info > .panel-heading {
+.card-info > .card-header {
   background: #c5e9f3;
 }
-.panel-warning > .panel-heading {
+.card-warning > .card-header {
   background: #f6ce95;
 }
-.panel-danger > .panel-heading {
+.card-danger > .card-header {
   background: #d9534f;
   color: #ffffff;
 }
-.panel-default.panel-accordian > .panel-heading {
+.card.card-accordian > .card-header {
   background: #e69700 url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_20_e69700_40x40.png') 50% 50%;
   border: 1px solid #e69700;
 }
-.panel-default.panel-accordian > .panel-heading .panel-title > a {
+.card-default.card-accordian > .card-header .card-title > a {
   color: #ffffff;
 }
-.rbox-title,
-.rbox-data,
+
+h3.card-heading {
+	color: #E69700;
+	font-weight: bold;
+	text-align: center;
+}
+
 .alert-box {
   background: url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-small_25_c5ddfc_40x40.png') repeat scroll 50% 50%;
   border: 1px solid #e69700;
   color: #0086e4;
 }
-.rbox-title a,
-.rbox-data a {
-  color: #003564;
-}
-.rbox-title {
-  border-bottom: none !important;
-  color: #003564;
-}
-.errors .rbox-title,
-.errors .rbox-data,
-.warning .rbox-title,
-.warning .rbox-data {
-  border: 1px solid #e69700;
-  font-weight: bold;
-  color: #ffffff;
-  outline: none;
-  background: #e69700 url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_20_e69700_40x40.png') 50% 50%;
-}
+
+/*
 .errors a,
 .errors a:visited,
 .warning a,
 .warning a:visited {
   color: #ffffff;
   text-decoration: underline;
-}
-.normal {
-  border: 1px solid #aaaaaa;
-}
+}*/
+
 th,
 td.heading,
 tr.diffheader {
@@ -354,30 +357,23 @@ li.even {
   font-weight: bold;
   padding: 4px 4px 0 4px;
 }
-.nav-tabs > li > a {
+
+.nav-tabs .nav-link {
   border: 1px solid #1484e6;
   font-weight: bold;
   color: #b8ec79;
   background: url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_22_1484e6_40x40.png') repeat-x 50% 50%;
 }
-.tabmark a {
-  color: #ffffff;
-  padding: 0.5em 1em;
-  font-size: 10px;
-  font-weight: bold;
-}
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
   border: 1px solid #e69700;
   font-weight: bold;
   color: #ffffff !important;
   outline: none;
   background: #e69700 url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_diagonals-thick_20_e69700_40x40.png') 50% 50%;
 }
-.tabactive a {
-  color: #ffffff;
-}
+
 .tab-pane {
   border: 1px solid #aaaaaa;
   padding: 1em;
@@ -386,7 +382,7 @@ li.even {
   background: #eeeeee url('../../../../../vendor_bundled/vendor/components/jqueryui/themes/excite-bike/images/ui-bg_inset-hard_100_eeeeee_1x100.png') 50% bottom repeat-x;
 }
 .post .postbody-title .title a.link,
-.postbody-title .panel-title {
+.postbody-title .card-title {
   color: #ffffff;
 }
 .post .postbody {

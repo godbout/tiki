@@ -54,7 +54,7 @@ h1,h2,h3,h4,h5,h6, #top .pagetitle a {
 	bottom: -6px;
 }
 
-.btn-default,
+.btn-primary,
 button,
 input[type="reset"],
 input[type="submit"],
@@ -65,7 +65,7 @@ input[type="submit"],
 }
 
 
-.btn-default:hover,
+.btn-primary:hover,
 .button a:hover,
 button:hover,
 input[type="reset"]:hover,
@@ -88,9 +88,11 @@ input[type="submit"]:hover,
 	color: #212121;
 }
 
-.navbar-default .navbar-nav > li > a,
+.navbar-light .navbar-nav > li > a,
+.navbar-dark .navbar-nav > li > a,
 .topbar > a,
-.topbar .navbar-default .navbar-nav > li > a,
+.topbar .navbar-light .navbar-nav > li > a,
+.topbar .navbar-dark .navbar-nav > li > a,
 .topbar .nav > li > a {
   color: #666;
 }

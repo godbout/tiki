@@ -4,7 +4,7 @@
 
 // Colors
 $primary: #0001a6;
-
+$dark: #ccc;
 $theme-colors: (
  	"primary": #0001a6,
 );
@@ -45,7 +45,7 @@ $headings-font-weight: 700;
 $navbar-default-border: #aaaaaa;
 
 // Navbarlinks ??
-$navbar-default-link-color: $primary;
+$navbar-dark-color: $primary;
 
 // Pagination
 $pagination-active-bg: #aaaaaa;
@@ -53,6 +53,8 @@ $pagination-active-border: darken(#aaa, 10%);
 
 // Jumbotron
 // Cards
+$card-border-color: #999999;
+
 // Tooltips
 // Popovers
 // Badges
@@ -69,6 +71,8 @@ $pagination-active-border: darken(#aaa, 10%);
 // Code
 $code-color: $body-color;
 $code-bg: #eee;
+
+$enable-gradients: true;
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 
