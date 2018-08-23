@@ -99,7 +99,7 @@
 				</div>
 			</form>
 			<a id="step2"></a>
-			{if isset($result) && $result|@count != '0'}
+			{if isset($result)}
 				<h4>{tr}Select and apply profile <small>Click on a configuration profile name below to review it and apply it on your site</small>{/tr}</h4>
 				<div class="table-responsive">
 					<table class="table table-condensed table-hover table-striped">
@@ -124,7 +124,7 @@
 							</tr>
 						{/foreach}
 						{if $result|@count eq '0'}
-							<tr><td colspan="3" class="odd">{tr}None{/tr}</td></tr>
+							<tr><td colspan="3" class="odd">{tr}No results{/tr}</td></tr>
 						{/if}
 					</table>
 					{if isset($show_details_for_profile_num) && $show_details_for_profile_num != ""}
