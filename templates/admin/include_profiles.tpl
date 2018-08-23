@@ -128,7 +128,7 @@
 						{/if}
 					</table>
 					{if isset($show_details_for_profile_num) && $show_details_for_profile_num != ""}
-						{jq}$.profilesShowDetails('profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}', '{ticket mode=get}');{/jq}
+						{jq}$.profilesShowDetails('{{$baseURI}}', 'profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}', '{ticket mode=get}');{/jq}
 					{/if}
 				</div>
 			{/if}
