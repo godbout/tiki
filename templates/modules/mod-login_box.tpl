@@ -293,9 +293,9 @@ if (jqueryTiki.no_cookie) {
 			</div>
 		{/if}
 		{if $prefs.feature_show_stay_in_ssl_mode eq 'y' && $show_stay_in_ssl_mode eq 'y'}
-			<div>
-				<label for="login-stayssl_{$module_logo_instance}">{tr}Stay in SSL mode:{/tr}</label>?
+			<div class="form-check">
 				<input type="checkbox" class="form-check-input" name="stay_in_ssl_mode" id="login-stayssl_{$module_logo_instance}" {if $stay_in_ssl_mode eq 'y'}checked="checked"{/if} />
+				<label class="form-check-label" for="login-stayssl_{$module_logo_instance}">{tr}Stay in SSL mode:{/tr}</label>
 			</div>
 		{/if}
 		{* This is needed as unchecked checkboxes are not sent. The other way of setting hidden field with same name is potentially non-standard *}
