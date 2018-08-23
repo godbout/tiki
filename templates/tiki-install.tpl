@@ -100,8 +100,8 @@
 						<li>{tr}For more information about Tiki, please visit{/tr} <a href="https://tiki.org" target="_blank">tiki.org</a>.</li>
 					</ul>
 					<form action="tiki-install.php" method="post" role="form">
-						<div class="form-group row">
-							<label for="general-lang">{tr}Select your language{/tr}</label>
+						<div class="form-inline mb-3">
+							<label for="general-lang" class="mr-2">{tr}Select your language{/tr}</label>
 							<select name="lang" id="general-lang" onchange="$('.install-steps').tikiModal(tr('Loading...')); $('input[name=lang]:hidden').val($(this).val()); this.form.submit();" title="{tr}Select your language{/tr}" class="form-control">
 								{section name=ix loop=$languages}
 									<option value="{$languages[ix].value|escape}"
@@ -116,13 +116,13 @@
 						{/if}
 					</form>
 					<form action="tiki-install.php" method="post" role="form">
-						<div class="form-group row text-center">
+						<div class="form-group text-center">
 							{if $multi}
 								<input type="hidden" name="multi" value="{$multi}">
 							{/if}
 							<input type="hidden" name="lang" value="{if $lang}{$lang}{/if}">
 							<input type="hidden" name="install_step" value="1">
-							<input type="submit" class="btn btn-info" value="{tr}Continue{/tr}">
+							<input type="submit" class="btn btn-primary" value="{tr}Continue{/tr}">
 						</div>
 					</form>
 				</div><!-- End of install-step0 -->
@@ -131,17 +131,18 @@
 				<div class="install-step1">
 					<h1>{tr}License{/tr}</h1>
 					<p>{tr}Tiki is software distributed under the LGPL license.{/tr} </p>
-					<div align="center" style="margin-top:1em;">
-						<iframe src="license.txt" width="700" height="300" style="width:700px;height:300px"> </iframe>
+					<div class="embed-responsive  embed-responsive-21by9 mb-3 card">
+						<iframe src="license.txt" class="embed-responsive-item"> </iframe>
+					</div>
 						<form action="tiki-install.php" method="post" role="form">
-							<div class="form-group row text-center">
+							<div class="form-group text-center">
 								{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 								{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 								<input type="hidden" name="install_step" value="2">
-								<input type="submit" class="btn btn-info" value="{tr}Continue{/tr}" >
+								<input type="submit" class="btn btn-primary" value="{tr}Continue{/tr}" >
 							</div>
 						</form>
-					</div>
+
 				</div><!-- End of install-step1 -->
 
 			{elseif $install_step eq '2'}
@@ -172,20 +173,27 @@
 					{if $mail_test_performed ne 'y'}
 						<p>{tr}To test your system configuration, Tiki will attempt to send a test message to you.{/tr}</p>
 						<form action="tiki-install.php#mail" method="post" role="form">
-							<div class="form-group row ">
-								<label class="" for="email_test_to">{tr}Test email:{/tr}</label>
-								<input type="text" size="40" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to}{/if}" placeholder="{tr}tiki@example.com{/tr}">
-								{if isset($email_test_err)}<span class="attention"><em>{$email_test_err}</em></span>
-								{else}<em>{tr}Email address to send test to.{/tr}</em>{/if}
-								<br><br>
-								<label class="form-check-label">
-								<input type="checkbox" class="form-check-input" name="email_test_cc" value="1">
-								<em>{tr}Copy test mail to {/tr} {$email_test_tw}?</em></label>
+							<div class="form-group row mt-4">
+								<label class="col-sm-2" for="email_test_to">{tr}Test email:{/tr}</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to}{/if}" placeholder="{tr}tiki@example.com{/tr}">
+								</div>
+								{if isset($email_test_err)}
+									<span class="attention"><em>{$email_test_err}</em></span>
+								{else}
+									<div class="col-sm-4 mb-3"><i>{tr}Email address to send test to.{/tr}</i></div>
+								{/if}
+							</div>
+							<div class="form-group-row mb-3">
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" name="email_test_cc" id="email_test_cc" value="1">
+									<label class="form-check-label" for="email_test_cc">{tr}Copy test mail to {/tr} {$email_test_tw}</label>
+								</div>
 							</div>
 							<input type="hidden" name="install_step" value="2">
 							<input type="hidden" name="perform_mail_test" value="y">
-							<div align="center">
-								<input type="submit" class="btn btn-warning btn-sm" value="{tr}Send Test Message{/tr}">
+							<div class="text-center">
+								<input type="submit" class="btn btn-primary" value="{tr}Send Test Message{/tr}">
 							</div>
 							{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 							{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
@@ -221,9 +229,9 @@
 					{/if}
 					<p>{tr}Tiki uses the GD library to process images for the Image Gallery and CAPTCHA support.{/tr}</p>
 					<form action="tiki-install.php" method="post" role="form">
-						<div class="form-group row text-center">
+						<div class="form-group text-center">
 							<input type="hidden" name="install_step" value="3">
-							<input type="submit" class="btn btn-info" value=" {tr}Continue{/tr} ">
+							<input type="submit" class="btn btn-primary" value=" {tr}Continue{/tr} ">
 							{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 							{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 						</div>
@@ -436,10 +444,10 @@
 									{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 									<div class="db-install card">
 										<div class="card-body">
-										<h3 class="card-title">{tr}Install{/tr}</h3>
+										<h3 class="card-title mb-3">{tr}Install{/tr}</h3>
 										{if $tikidb_created}
-											{remarksbox type="warning" title="{tr}Warning{/tr}" close="n"}
-												{tr _0=$dbname}This will destroy your current database : %0.{/tr}
+											{remarksbox type="danger" title="{tr}Warning{/tr}" close="n"}
+												{tr _0=$dbname}This will destroy your current database: %0.{/tr}
 											{/remarksbox}
 										{/if}
 										{if $tikidb_created}
@@ -452,7 +460,7 @@
 											{/literal}
 											//--><!]]></script>
 											<div id="install-link">
-												<p class="text-center"><a class="btn btn-warning" href="javascript:install()">{tr}Reinstall the database{/tr}</a></p>
+												<p class="text-center"><a class="btn btn-danger" href="javascript:install()">{tr}Reinstall the database{/tr}</a></p>
 											</div>
 											<div id="install-table" style="visibility:hidden">
 										{else}
@@ -476,15 +484,15 @@
 									{if $tikidb_created}
 										<div class="db-upgrade card">
 											<div class=" card-body">
-											<h3 class="card-title">{tr}Upgrade{/tr}</h3>
+											<h3 class="card-title mb-3">{tr}Upgrade{/tr}</h3>
 											{if $tikidb_oldPerms gt 0}
 												{remarksbox type="warning" title="{tr}Warning: Category Permissions Will Not Be Upgraded{/tr}" close="n"}
 													{tr}Category permissions have been revamped since version 3. If you have been using category permissions, note that they may not work properly after upgrading to version 4 onwards, and it will be necessary to reconfigure them.{/tr}
 												{/remarksbox}
 											{/if}
-											<p>{tr}Automatically upgrade your existing database to version{/tr}
+											{remarksbox type="info" title="{tr}OK{/tr}" close="n"}{tr}Automatically upgrade your existing database to version{/tr}
 												<strong>{$tiki_version_name}</strong>.
-											</p>
+											{/remarksbox}
 											<p class="text-center"><input type="submit" class="btn btn-primary" name="update" value="{tr}Upgrade{/tr}"></p>
 										</div><!-- End of db-upgrade -->
 										</div>
@@ -568,10 +576,10 @@
 						{/if}
 
 						<p>&nbsp;</p>
-						<div align="center">
+						<div class="text-center">
 							<input type="hidden" name="install_step" value="6">
 							<input type="hidden" name="install_type" value="{$install_type}">
-							<input type="submit" class="btn btn-info" value=" {tr}Continue{/tr} ">
+							<input type="submit" class="btn btn-primary" value=" {tr}Continue{/tr} ">
 							{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 							{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 						</div>
@@ -592,7 +600,7 @@
 								<legend>
 									{tr}General{/tr} <a href="https://doc.tiki.org/general+admin" target="_blank" title="{tr}Help{/tr}">{icon name="help"}</a>
 								</legend>
-								<div class="form-group row" style="padding:5px; clear:both">
+								<div class="form-group row mx-0">
 									<label for="browsertitle">
 										{tr}Browser title:{/tr}
 									</label>
@@ -601,7 +609,7 @@
 										{tr}This will appear in the browser title bar.{/tr}
 									</span>
 								</div>
-								<div class="form-group row" style="padding:5px; clear:both">
+								<div class="form-group row mx-0">
 									<label for="sender_email">
 										{tr}Sender email:{/tr}
 									</label>
@@ -610,7 +618,7 @@
 										{tr}Email sent by your site will use this address.{/tr}
 									</span>
 								</div>
-								<div style="padding:5px; clear:both">
+								<div class="p-3">
 									<details>
 											<summary><label>{tr}Network Proxy?{/tr}</label> {tr}Toggle section display{/tr}</summary>
 											<div style="margin-left:1em"><label for="use_proxy">{tr}Use proxy{/tr}</label> <input type="checkbox" name="use_proxy" id="use_proxy"{if $prefs.use_proxy eq 'y'} checked="checked"{/if}><a href="https://doc.tiki.org/General+Settings" target="_blank" title="{tr}Help{/tr}">{icon name="help"}</a></div>
@@ -668,19 +676,16 @@
 									</select>
 									<div class="mt-4">
 										<div class="form-check">
-											<label class="form-check-label" for="error_reporting_adminonly">{tr}Visible to Admin only{/tr}
-												<input class="form-check-input" type="checkbox" id="error_reporting_adminonly" name="error_reporting_adminonly"{if $prefs.error_reporting_adminonly eq 'y'} checked="checked"{/if}>
-											</label>
+											<input class="form-check-input" type="checkbox" id="error_reporting_adminonly" name="error_reporting_adminonly"{if $prefs.error_reporting_adminonly eq 'y'} checked="checked"{/if}>
+											<label class="form-check-label" for="error_reporting_adminonly">{tr}Visible to Admin only{/tr}</label>
 										</div>
 										<div class="form-check">
-											<label class="form-check-label" for="smarty_notice_reporting">{tr}Include Smarty notices{/tr}
-												<input class="form-check-input" type="checkbox" id="smarty_notice_reporting" name="smarty_notice_reporting"{if $prefs.smarty_notice_reporting eq 'y'} checked="checked"{/if}>
-											</label>
+											<input class="form-check-input" type="checkbox" id="smarty_notice_reporting" name="smarty_notice_reporting"{if $prefs.smarty_notice_reporting eq 'y'} checked="checked"{/if}>
+											<label class="form-check-label" for="smarty_notice_reporting">{tr}Include Smarty notices{/tr}</label>
 										</div>
 										<div class="form-check">
-											<label class="form-check-label mb-2" for="log_tpl">{tr}Add HTML comment at start and end of each Smarty template (.tpl file){/tr}
-												<input class="form-check-input mb-2" type="checkbox" id="log_tpl" name="log_tpl"{if $prefs.log_tpl eq 'y'} checked="checked"{/if}>
-											</label>
+											<input class="form-check-input mb-2" type="checkbox" id="log_tpl" name="log_tpl"{if $prefs.log_tpl eq 'y'} checked="checked"{/if}>
+											<label class="form-check-label mb-2" for="log_tpl">{tr}Add HTML comment at start and end of each Smarty template (.tpl file){/tr}</label>
 											{remarksbox type=warning title="{tr}Warning{/tr}" close="n"}
 												{tr}Use only for development, not in production at a live site, because these warnings are added to emails as well, and are visible to users in the page source.{/tr}
 											{/remarksbox}
@@ -693,7 +698,7 @@
 								<legend>
 									{tr}Administrator{/tr}
 								</legend>
-								<div class="form-group row" style="padding:5px">
+								<div class="form-group row mx-0">
 									<label for="admin_email">
 										{tr}Admin email:{/tr}
 									</label>
@@ -709,7 +714,7 @@
 									<legend>
 										{tr}Set up htaccess file{/tr}
 									</legend>
-									<div class="form-group row" style="padding:5px">
+									<div class="form-group row mx-0">
 										<label class="col-form-label" for="htaccess_process">
 											{tr}Method:{/tr}
 										</label>
@@ -755,13 +760,13 @@
 							{/if}
 						</div>
 
-						<div align="center" style="margin-top:1em;">
+						<div class="text-center mt-3">
 							{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 							{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 							<input type="hidden" name="install_step" value="7">
 							<input type="hidden" name="install_type" value="{$install_type}">
 							<input type="hidden" name="general_settings" value="y">
-							<input type="submit" class="btn btn-info" value="{tr}Continue{/tr}">
+							<input type="submit" class="btn btn-primary" value="{tr}Continue{/tr}">
 						</div>
 					</form>
 				</div><!-- End of install-step6 -->
@@ -774,55 +779,40 @@
 				{/remarksbox}
 				<form action="tiki-install.php" method="post">
 					<div class="clearfix">
-						<fieldset>
-							<legend>
-								{icon name="shield"} {tr}Subscribe to Tiki Releases newsletter{/tr} - {tr}Critical & Security update{/tr}
-							</legend>
-							{tr}It is highly recommended that you subscribe to the Tiki Releases newsletter, so that you receive important notices about new releases and critical security updates.{/tr}
-							{tr}We don't share subscribed emails and we send very few of these newsletters per year.{/tr}<br /><br />
-							{tr}Please use the following link and subscribe:{/tr} <a href="https://tiki.org/tiki-newsletters.php?nlId=8&info=1" title="Subscribe" target="_blank" class="text-danger">{tr}Tiki Releases newsletter{/tr}</a>
-						</fieldset>
-						</br>
-						<fieldset>
-							<legend>
-								{icon name="magic"}{icon name="filter"} {tr}First Wizards, then Control Panels with Preference Filter{/tr}
-							</legend>
-							{tr}Tiki contains thousands of options and parameters (what we call "preferences"), which can be overwhelming for a new site administrator.{/tr}
-							{tr}That's why we suggest you to start by using our <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Wizards'>Wizards</a> ({icon name='magic'}).{/tr}
-							{tr}Once basic parameters will be set, you will always be able to gain full control of the options using the Control Panels. Note: basic preferences will be displayed by default after a new install.{/tr}<br /><br />
-							{tr}You can modify the default filter choice at your own convenience to also display Advanced, Experimental or Unavailable preferences in Control Panels.{/tr}
+						<h4>{icon name="shield"} {tr}Subscribe to Tiki Releases newsletter{/tr} - {tr}Critical & Security update{/tr}</h4>
+						<p>{tr}It is highly recommended that you subscribe to the Tiki Releases newsletter, so that you receive important notices about new releases and critical security updates.{/tr}
+						{tr}We don't share subscribed emails and we send very few of these newsletters per year.{/tr}</p>
+						<p class="mb-4">{tr}Please use the following link and subscribe:{/tr} <a href="https://tiki.org/tiki-newsletters.php?nlId=8&info=1" title="Subscribe" target="_blank" class="text-danger">{tr}Tiki Releases newsletter{/tr}</a></p>
+
+						<h4>{icon name="magic"}{icon name="filter"} {tr}First Wizards, then Control Panels with Preference Filter{/tr}</h4>
+						<p>{tr}Tiki contains thousands of options and parameters (what we call "preferences"), which can be overwhelming for a new site administrator.{/tr}
+						{tr}That's why we suggest you to start by using our <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Wizards'>Wizards</a> ({icon name='magic'}).{/tr}
+						{tr}Once basic parameters will be set, you will always be able to gain full control of the options using the Control Panels. Note: basic preferences will be displayed by default after a new install.{/tr}</p>
+
+						<p class="mb-4">{tr}You can modify the default filter choice at your own convenience to also display Advanced, Experimental or Unavailable preferences in Control Panels.{/tr}
 							{tr}You'll find the <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Preference+Filters'>Preference Filter</a> at the top of the Navigation Bar in the <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Control+Panels'>Control Panels</a> by clicking on the funnel icon ({icon name='filter'}) or use the search box provided.{/tr}<br />
-						</fieldset>
-						</br>
-						<fieldset>
-							<legend>
-								{icon name="floppy-o"} {tr}Storing your uploaded files{/tr}
-							</legend>
-							{tr}To ease the install process and first access, Tiki saves your uploaded files (office documents, images, pdf, etc. attached to wiki pages, forum posts, tracker items, file galleries, ...) by default in its database.{/tr}
-							{tr}This works perfectly in most cases but it is not the recommended setup if you need to save many thousands of files or more.{/tr} <br /><br />{tr}In that case, consider switching from "<strong>Store to database</strong>" to "<strong>Store to directory</strong>", which you will find in the <em>Configuration Wizard - Set up File Gallery & Attachments</em> or in the <em>Control Panels - File Galleries</em> where you will be able to migrate your currently uploaded files from one to the other.{/tr}<br />
-							<br />
-						</fieldset>
-						</br>
-						<fieldset>
-							<legend>
-								{icon name="group"} {tr}Tiki Community{/tr}
-							</legend>
-							{tr}The Tiki Community is a global network of developers, site operators, <a href='https://tiki.org/Consultants' target='_blank'>consultants</a> and end users.{/tr}<br />
+
+						<h4>{icon name="floppy-o"} {tr}Storing your uploaded files{/tr}</h4>
+						<p>{tr}To ease the install process and first access, Tiki saves your uploaded files (office documents, images, pdf, etc. attached to wiki pages, forum posts, tracker items, file galleries, ...) by default in its database.{/tr}
+						{tr}This works perfectly in most cases but it is not the recommended setup if you need to save many thousands of files or more.{/tr}
+						<p class="mb-4">{tr}In that case, consider switching from "<strong>Store to database</strong>" to "<strong>Store to directory</strong>", which you will find in the <em>Configuration Wizard - Set up File Gallery & Attachments</em> or in the <em>Control Panels - File Galleries</em> where you will be able to migrate your currently uploaded files from one to the other.{/tr}</p>
+
+						<h4>{icon name="group"} {tr}Tiki Community{/tr}</h4>
+						<p>{tr}The Tiki Community is a global network of developers, site operators, <a href='https://tiki.org/Consultants' target='_blank'>consultants</a> and end users.{/tr}</p>
 							<ul>
 								<li><a href='https://tiki.org/Join' target='_blank'>{tr}Join the Community{/tr}</a></li>
 								<li><a href='https://tiki.org/Help' target='_blank'>{tr}Get Help with Tiki{/tr}</a></li>
 								<li><a href='https://tiki.org/Consultants' target='_blank'>{tr}Hire a Tiki Service Provider{/tr}</a></li>
 								<li>{tr}Help to improve the <a href='https://dev.tiki.org/' target='_blank'>Code</a> and the <a href='https://doc.tiki.org/' target='_blank'>Documentation</a>{/tr}</li>
 							</ul>
-						</fieldset>
 					</div>
 
-					<div align="center" style="margin-top:1em;">
+					<div class="text-center mt-3">
 						{if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
 						{if $lang}<input type="hidden" name="lang" value="{$lang}">{/if}
 						<input type="hidden" name="install_step" value="8">
 						<input type="hidden" name="install_type" value="{$install_type}">
-						<input type="submit" class="btn btn-info" value="{tr}Continue{/tr}">
+						<input type="submit" class="btn btn-primary" value="{tr}Continue{/tr}">
 					</div>
 				</form>
 			</div><!-- End of install-step7 -->
@@ -852,7 +842,7 @@
 						<p>{tr}If this is an upgrade, clean the Tiki caches manually (the <strong>temp/templates_c</strong> directory) or by using the <strong>Admin &gt; System</strong> option from the Admin menu.{/tr}</p>
 					{/if}
 					{if $tikidb_is20}
-						<div class="row">
+						<div class="row mx=0">
 							<div class="col-sm-6">
 								<form method="post" action="tiki-install.php" class="">
 									{if $multi}
