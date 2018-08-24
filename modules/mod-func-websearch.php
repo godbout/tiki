@@ -17,7 +17,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 function module_websearch_info()
 {
 	return [
-		'name' => tra('Search on the web'),
+		'name' => tra('websearch'),
 		'description' => tra('Displays a simple form to perform a web search with choice on multiple search engines.'),
 		'prefs' => [],
 		'params' => [
