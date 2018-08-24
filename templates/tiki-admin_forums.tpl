@@ -281,23 +281,34 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-4 col-form-label" for="useMail"><input type="checkbox" class="form-check-input" name="useMail" id="useMail" {if $useMail eq 'y'}checked="checked"{/if}> {tr}Send the posts of this forum to this email address{/tr} </label>
+							<div class="col-sm-4">
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" name="useMail" id="useMail" {if $useMail eq 'y'}checked="checked"{/if}>
+									<label class="form-check-label" for="useMail"> {tr}Send the posts of this forum to this email address{/tr} </label>
+								</div>
+							</div>
 							<div class="col-sm-8">
 								<input type="text" class="form-control" name="mail" value="{$mail|escape}">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-4 col-form-label" for="usePruneUnreplied">
-								<input type="checkbox" class="form-check-input" name="usePruneUnreplied" id="usePruneUnreplied" {if $usePruneUnreplied eq 'y'}checked="checked"{/if}> {tr}Prune unreplied-to messages after{/tr}
-							</label>
-							<div class="col-sm-4 checkbox-inline">
+							<div class="col-sm-4">
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" name="usePruneUnreplied" id="usePruneUnreplied" {if $usePruneUnreplied eq 'y'}checked="checked"{/if}>
+									<label class="form-check-label" for="usePruneUnreplied">{tr}Prune unreplied-to messages after{/tr}</label>
+								</div>
+							</div>
+							<div class="col-sm-4">
 								{html_options name=pruneUnrepliedAge options=$pruneUnrepliedAge_options selected=$pruneUnrepliedAge}
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-4 col-form-label" for="usePruneOld">
-								<input type="checkbox" class="form-check-input" name="usePruneOld" id="usePruneOld" {if $usePruneOld eq 'y'}checked="checked"{/if}> {tr}Prune old messages after{/tr}
-							</label>
+							<div class="col-sm-4">
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" name="usePruneOld" id="usePruneOld" {if $usePruneOld eq 'y'}checked="checked"{/if}>
+									<label class="form-check-label" for="usePruneOld">{tr}Prune old messages after{/tr}</label>
+								</div>
+							</div>
 							<div class="col-sm-4 checkbox-inline">
 								{html_options name=pruneMaxAge options=$pruneMaxAge_options selected=$pruneMaxAge}
 							</div>
@@ -305,7 +316,7 @@
 					</fieldset>
 
 					<fieldset>
-						<legend>{tr}Forum-Mailing list synchronization{/tr}</legend>
+						<legend>{tr}Forum-mailing list synchronization{/tr}</legend>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="outbound_address">{tr}Forward messages to this forum to this email address, in a format that can be used for sending back to the inbound forum email address{/tr}</label>
 							<div class="col-sm-8">

@@ -45,9 +45,9 @@
 				</div>
 			</div>
 		{/if}
-		<div class="checkbox col-md-offset-3">
-			<label>
-				<input type="checkbox" name="hidden" value="1" {if $reward.hidden}checked{/if}>
+		<div class="form-check col-md-offset-3">
+			<input class="form-check-input" type="checkbox" name="hidden"  id="hidden" value="1" {if $reward.hidden}checked{/if}>
+			<label class="form-check-label" for="hidden">
 				{tr}Hide reward from users{/tr}
 			</label>
 		</div>
