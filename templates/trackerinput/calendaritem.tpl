@@ -11,7 +11,7 @@
 		{if $field.options_map.showEventIdInput}
 			{$id = 'calitemId_'|cat:$field.fieldId}
 			<div class="col-sm-3 text-right">
-				<label class="control-label" for="{$id}">
+				<label class="col-form-label" for="{$id}">
 					{tr}Change Event{/tr}
 				</label>
 			</div>

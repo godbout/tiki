@@ -184,7 +184,7 @@
 									<div class="col-sm-4 mb-3"><i>{tr}Email address to send test to.{/tr}</i></div>
 								{/if}
 							</div>
-							<div class="form-group-row mb-3">
+							<div class="form-group row mb-3">
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" name="email_test_cc" id="email_test_cc" value="1">
 									<label class="form-check-label" for="email_test_cc">{tr}Copy test mail to {/tr} {$email_test_tw}</label>
