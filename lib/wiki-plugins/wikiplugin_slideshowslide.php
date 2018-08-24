@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id:$
+// $Id$
 
 function wikiplugin_slideshowslide_info()
 {
@@ -222,5 +222,5 @@ function wikiplugin_slideshowslide($data, $params)
 	if($params['videoMuted']=='y') {
 		$slideSettings.=" data-background-video-muted";
 	}
-	return "<sslide data-plugin-slide ".$slideSettings.">".TikiLib::lib('parser')->parse_data($data, ['is_html' => true, 'parse_wiki' => true]).'</sslide>';
+	return "<sslide data-plugin-slide ".$slideSettings.">".html_entity_decode(TikiLib::lib('parser')->parse_data(trim($data), ['is_html' => true, 'parse_wiki' => true])).'</sslide>';
 }
