@@ -29,10 +29,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group row">
-		<div class="col-sm-10 col-sm-offset-2">
-			<input type="submit" class="btn btn-primary" name="addtopic" value="{tr}Add{/tr}">
-		</div>
+	<div class="text-center">
+		<input type="submit" class="btn btn-primary" name="addtopic" value="{tr}Add{/tr}">
 	</div>
 </form>
 <h2>{tr}Topics{/tr}</h2>

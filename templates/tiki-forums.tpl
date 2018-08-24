@@ -33,7 +33,7 @@
 					</form>
 				{/if}
 				{if $prefs.feature_forums_search eq 'y' and $prefs.feature_search eq 'y'}
-					<div class="row mb-4">
+					<div class="row mb-4 mx-0">
 						<div class="col-md-5 col-md-offset-7">
 						<form class="form" method="get" role="form" action="{if $prefs.feature_search_fulltext neq 'y'}tiki-searchindex.php{else}tiki-searchresults.php{/if}">
 							<div class="form-group row">

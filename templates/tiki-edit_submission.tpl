@@ -165,7 +165,9 @@
 	<div class="form-group row" id='show_image_2' {if $types.$type.show_image eq 'y'}style="display:;"{else}style="display:none;"{/if}>
 		<label class="col-sm-3 col-form-label">{tr}Use own image{/tr} *</label>
 		<div class="col-sm-7">
-			<input type="checkbox" name="useImage" id="useImage" {if $useImage eq 'y'}checked='checked'{/if}>
+			<div class="form-check">
+			<input type="checkbox" name="useImage" id="useImage" class="form-check-input position-static" {if $useImage eq 'y'}checked='checked'{/if}>
+			</div>
 		</div>
 	</div>
 	<div class="form-group row" id='show_image_3' {if $types.$type.show_image eq 'y'}style="display:;"{else}style="display:none;"{/if}>
