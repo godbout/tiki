@@ -45,7 +45,7 @@ if (! isset($_SESSION["thedate"])) {
 if (! isset($_REQUEST["page"])) {
 	$_REQUEST["page"] = $wikilib->get_default_wiki_page();
 }
-$page = htmlspecialchars($_REQUEST['page']);
+$page = htmlspecialchars(str_replace('-',' ',$_REQUEST['page']));
 $smarty->assign('page', $page);
 
 // If the page doesn't exist then display an error
@@ -280,7 +280,7 @@ function formatContent($content, $tagArr)
 
 	$doc = new DOMDocument();
 	$doc->loadHTML(
-		'<html>' . $content . '</html>',
+		mb_convert_encoding('<html>' . $content . '</html>', 'HTML-ENTITIES', 'UTF-8'),
 		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
 	);
 	$xpath = new DOMXpath($doc);
@@ -344,10 +344,10 @@ function formatContent($content, $tagArr)
 	//images alignment left or right
 	//replacment for slideshowslide
 
-	return str_replace(
+	return html_entity_decode(str_replace(
 		array('<sslide', 'sheading'), array('</section><section', 'h1'),
 		$slideContent
-	);
+	));
 }
 
 function dom_rename_element(DOMElement $node, $name)
