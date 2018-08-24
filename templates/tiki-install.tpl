@@ -842,7 +842,7 @@
 						<p>{tr}If this is an upgrade, clean the Tiki caches manually (the <strong>temp/templates_c</strong> directory) or by using the <strong>Admin &gt; System</strong> option from the Admin menu.{/tr}</p>
 					{/if}
 					{if $tikidb_is20}
-						<div class="row mx=0">
+						<div class="row mx-0">
 							<div class="col-sm-6">
 								<form method="post" action="tiki-install.php" class="">
 									{if $multi}
