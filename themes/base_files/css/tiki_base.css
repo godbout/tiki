@@ -2734,6 +2734,9 @@ table.objectperms > tbody .checkBoxCell {
   padding-left: 10px;
   padding-right: 5px; }
 
+table.objectperms thead th {
+  display: none; }
+
 form.simple label.error {
   padding: 4px 0 0 20px;
   margin-left: 0.5em; }
