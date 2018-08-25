@@ -219,7 +219,7 @@ $headerlib->add_css(
 
 $headerlib->add_jq_onready(
 	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
-	$("body").append("<style type=\"text/css\">.reveal h1 {font-size: 2.8em;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.06);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:0px}</style>");
+	$("body").append("<style type=\"text/css\">.reveal h1 {font-size: 2.8em;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.06);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none}</style>");
 	$("#page-bar").remove();
 	$(".icon_edit_section").remove();
 	$(".editplugin").remove();
