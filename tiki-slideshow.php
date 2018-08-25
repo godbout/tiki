@@ -45,7 +45,7 @@ if (! isset($_SESSION["thedate"])) {
 if (! isset($_REQUEST["page"])) {
 	$_REQUEST["page"] = $wikilib->get_default_wiki_page();
 }
-$page = htmlspecialchars(str_replace('-',' ',$_REQUEST['page']));
+$page = $wikilib->get_page_by_slug($_REQUEST['page']);
 $smarty->assign('page', $page);
 
 // If the page doesn't exist then display an error
