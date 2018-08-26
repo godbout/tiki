@@ -45,6 +45,29 @@ class Feedback
 	}
 
 	/**
+	 * Redirect to a page with error feedback
+	 *
+	 * @param $feedback
+	 *
+	 * @throws Exception
+	 */
+	public static function errorPage($feedback)
+	{
+		$feedback = self::checkFeedback($feedback);
+		//only one feedback expected for errorPage
+		if (is_array($feedback['mes'])) {
+			$feedback['mes'] = $feedback['mes'][0];
+		}
+		$smarty = TikiLib::lib('smarty');
+		$smarty->assign('msg', $feedback['mes']);
+		if (! empty($feedback['errortype'])) {
+			$smarty->assign('errortype', $feedback['errortype']);
+		}
+		$smarty->display(!empty($feedback['tpl']) ? $feedback['tpl'] : 'error.tpl');
+		die;
+	}
+
+	/**
 	 * Add note feedback
 	 *
 	 * This is a specific application of the add function below for notes.

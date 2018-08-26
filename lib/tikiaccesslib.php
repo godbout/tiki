@@ -535,10 +535,7 @@ class TikiAccessLib extends TikiLib
 					throw new Services_Exception($this->userMsg, 400);
 					break;
 				case 'page':
-					$smarty = TikiLib::lib('smarty');
-					$smarty->assign('msg', $this->userMsg);
-					$smarty->display('error.tpl');
-					die;
+					Feedback::errorPage(['mes' => $this->userMsg, 'errortype' => 400]);
 					break;
 				case 'session':
 				default:
