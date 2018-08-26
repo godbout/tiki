@@ -45,7 +45,7 @@ function wikiplugin_include_info()
 			'linkoriginal' => [
 				'required' => false,
 				'name' => tr('Read more button'),
-				'description' => tr('Add a "Read more" link at the end of included content, linking to the original page. (shows \"Read More\" by default)'),
+				'description' => tr('Add a "Read more" link at the end of included content, linking to the original page. (shows "Read More" by default)'),
 				'since' => '18.0',
 				'default' => 'n',
 				'options' => [
@@ -89,7 +89,7 @@ function wikiplugin_include_info()
 			'page_edit_icon' => [
 				'required' => false,
 				'name' => tr('Edit Icon'),
-				'description' => tr('Option to show the edit icon for the included page (shown by default). Depends on the \"edit icons\" settings.'),
+				'description' => tr('Option to show the edit icon for the included page (shown by default). Depends on the "edit icons" settings.'),
 				'since' => '12.1',
 				'default' => 'y',
 				'filter' => 'alpha',
