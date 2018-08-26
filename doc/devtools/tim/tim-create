@@ -93,6 +93,12 @@ create()
 	# we set it manually here to be shown in logs
 	COMMAND="create"
 
+	if [ ! -w "${LOCKSDIR}" ] ;
+	then
+		echo "FAIL: Lock files directory '${LOCKSDIR}' is not writable"
+		exit 1
+	fi
+
 	if [[ -e $INSTANCE_LOCK ]] ; then echo "FAIL: Lock file already exists. Reason: $INSTANCE_LOCK_REASON."; exit 1; fi
 	#TODO: remove stale locks
 
