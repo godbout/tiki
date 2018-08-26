@@ -11,17 +11,17 @@ setup()
 #--- onexit() -----------------------------------------------------
 #  @param $1 integer  (optional) Exit status.  If not set, use `$?'
 function onexit() {
-    local exit_status=${1:-$?}
-    if [ $exit_status != 0 ];
-    then
-	log "FAILED INSTALL"
-	echo "FAILED INSTALL" > ${INSTANCE_LOCK}
-    else
-	log "FINISHED SUCCESSFULLY"
-	rm ${INSTANCE_LOCK}
-    fi
-    echo Exiting $0 with exit status: $exit_status
-    exit $exit_status
+	local exit_status=${1:-$?}
+	if [ $exit_status != 0 ];
+	then
+		log "FAILED INSTALL"
+		echo "FAILED INSTALL" > ${INSTANCE_LOCK}
+	else
+		log "FINISHED SUCCESSFULLY"
+		rm ${INSTANCE_LOCK}
+	fi
+	echo Exiting $0 with exit status: $exit_status
+	exit $exit_status
 }
 
 trap onexit 1 2 3 15 ERR
