@@ -13,9 +13,7 @@ $categlib = TikiLib::lib('categ');
 $access->check_feature('feature_group_watches');
 $access->check_permission(['tiki_p_admin_users']);
 if (! isset($_REQUEST['objectId']) || ! isset($_REQUEST['watch_event'])) {
-	$smarty->assign('msg', tra('Not enough information to display this page'));
-	$smarty->display('error.tpl');
-	die;
+	Feedback::errorPage(tr('Not enough information to display this page'));
 }
 
 $objectType = isset($_REQUEST['objectType']) ? $_REQUEST['objectType'] : null;
@@ -46,7 +44,7 @@ if (isset($_REQUEST['referer'])) {
 	$smarty->assign('referer', $_REQUEST['referer']);
 }
 
-if (isset($_REQUEST['assign'])) {
+if (isset($_REQUEST['assign']) && $access->checkCsrf()) {
 	$objectName = isset($_REQUEST['objectName']) ? $_REQUEST['objectName'] : null;
 	$objectHref = isset($_REQUEST['objectHref']) ? $_REQUEST['objectHref'] : null;
 	$addedGroups = [];
@@ -55,7 +53,6 @@ if (isset($_REQUEST['assign'])) {
 		$_REQUEST['checked'] = [];
 	}
 	$old_watches = $tikilib->get_groups_watching($_REQUEST['objectId'], $_REQUEST['watch_event'], $objectType);
-	check_ticket('object_watches');
 	foreach ($all_groups as $g) {
 		if (in_array($g, $_REQUEST['checked']) && ! in_array($g, $old_watches)) {
 			$tikilib->add_group_watch($g, $_REQUEST['watch_event'], $_REQUEST['objectId'], $objectType, $objectName, $objectHref);
@@ -109,6 +106,5 @@ if (isset($_REQUEST['assign'])) {
 }
 
 $smarty->assign_by_ref('group_watches', $group_watches);
-ask_ticket('object_watches');
 $smarty->assign('mid', 'tiki-object_watches.tpl');
 $smarty->display('tiki.tpl');
