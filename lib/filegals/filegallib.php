@@ -869,7 +869,7 @@ class FileGalLib extends TikiLib
 		$fileGalleries = $this->table('tiki_file_galleries');
 		$id = (int)$id;
 
-		if ($id == $prefs['fgal_root_id'] || $galleryId == $prefs['fgal_root_id']) {
+		if ($id == $prefs['fgal_root_id']) {
 			return false;
 		}
 		if (empty($galleryId)) {
