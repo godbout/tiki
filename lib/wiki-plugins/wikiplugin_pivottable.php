@@ -243,12 +243,13 @@ function wikiplugin_pivottable_info()
 			],
 			'translate' => [
 				'name' => tr('Translate displayed data'),
-				'description' => tr('Use translated data values for calculations and display.'),
+				'description' => tr('Use translated data values for calculations and display.') . ' ' . tr('Default value: No'),
 				'since' => '18.3',
 				'required' => false,
 				'filter' => 'alpha',
 				'default' => 'n',
 				'options' => [
+					['text' => '', 'value' => ''],
 					['text' => tra('No'), 'value' => 'n'],
 					['text' => tra('Yes'), 'value' => 'y']
 				]
@@ -817,7 +818,7 @@ function wikiplugin_pivottable($data, $params)
 		'yAxisLabel' => empty($params['yAxisLabel']) ? null : $params['yAxisLabel'],
 		'chartTitle' => empty($params['chartTitle']) ? null : $params['chartTitle'],
 		'chartHoverBar' => empty($params['chartHoverBar']) ? null : $params['chartHoverBar'],
-		'translate' => empty($params['translate']) ? 'n' : $params['translate'],
+		'translate' => empty($params['translate']) ? null : $params['translate'],
 		'index' => $id
 	]);
 
