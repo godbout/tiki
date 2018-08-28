@@ -997,11 +997,11 @@ class HeaderLib
 		$out = [];
 		$publicDirectory = 'temp/public/' . $tikidomainslash;
 
-		foreach ($files as $file) {
-			$hash = md5($file);
+		foreach ($files as $originalFile) {
+			$hash = md5($originalFile);
 			$minimalFilePath = $publicDirectory . "minified_$hash.css";
 
-			$minifier = new MatthiasMullie\Minify\CSS($file);
+			$minifier = new MatthiasMullie\Minify\CSS($originalFile);
 
 			if (! file_exists($minimalFilePath)) {
 				$minifier->minify($minimalFilePath);
@@ -1023,8 +1023,8 @@ class HeaderLib
 		if (! file_exists($minimalFilePath)) {
 			$minifier = new MatthiasMullie\Minify\CSS();
 
-			foreach ($files as $f) {
-				$minifier->add($f);
+			foreach ($files as $originalFile) {
+				$minifier->add($originalFile);
 			}
 
 			$minifier->minify($minimalFilePath);
