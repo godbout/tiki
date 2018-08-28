@@ -963,6 +963,7 @@ if (! isset($_REQUEST['preview']) && ! isset($_REQUEST['save'])) {
 			);
 		}
 	}
+	$tikilib->check_duplicate_alias($edit_data, $info['pageName']);
 }
 
 if (empty($parsed)) {

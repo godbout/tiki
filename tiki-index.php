@@ -414,6 +414,11 @@ if (isset($_REQUEST['switchlang'])
 
 $page = $info['pageName'];
 
+if (! empty($info) && isset($info['data']) &&
+	($tikilib->user_has_perm_on_object($user, $page, 'wiki page', 'edit') ||
+	$tikilib->user_has_perm_on_object($user, $page, 'wiki page', 'edit_inline'))) {
+	$tikilib->check_duplicate_alias($info['data'], $page);
+}
 //Uncomment if we decide to translate wiki markup. For now we are going
 //with translating rendered html content
 //$translatedWikiMarkup = '';

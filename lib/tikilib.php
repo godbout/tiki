@@ -4181,7 +4181,7 @@ class TikiLib extends TikiDb_Bridge
 		}
 		// Collect pages before modifying data
 		$pointedPages = $parserlib->get_pages($data, true);
-		$this->check_alias($data, $name);
+
 		if (! isset($_SERVER["SERVER_NAME"])) {
 			$_SERVER["SERVER_NAME"] = $_SERVER["HTTP_HOST"];
 		}
@@ -4665,7 +4665,7 @@ class TikiLib extends TikiDb_Bridge
 		$this->invalidate_cache($pageName);
 		// Collect pages before modifying edit_data (see update of links below)
 		$pages = $parserlib->get_pages($edit_data, true);
-		$this->check_alias($edit_data, $pageName);
+
 		if (! $this->page_exists($pageName)) {
 			return false;
 		}
@@ -6755,24 +6755,47 @@ JS;
 		return (substr($haystack, $start) === $needle);
 	}
 
-	function check_alias($edit, $page)
+	/**
+	 * Checks if all link aliases contained in a page are valid, it automatically flashes the error in case there are invalid aliases
+	 * @param String $edit  Contains page edit content
+	 * @param String $page  Page name
+	 * @return bool returns false if there is at least one invalid alias
+	 * @throws Exception
+	 */
+	function check_duplicate_alias($edit, $page)
 	{
-		$smarty = TikiLib::lib('smarty');
+		$errors = [];
+
 		$parserlib = TikiLib::lib('parser');
+		$table = $this->table('tiki_object_relations');
+
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_modifier_sefurl');
+
 		foreach ($parserlib->get_pages($edit, true) as $pointedPage => $types) {
-			if (isset($types[0]) && $types[0] == 'alias') {
-				$alias = $this->table('tiki_object_relations')->fetchColumn('source_itemId', ['target_itemId' => $pointedPage]);
-				if (($key = array_search($page, $alias)) !== false) {
-					unset($alias[$key]);
-				}
-				if (isset($alias) && count($alias) > 0) {
-					$aliasmsg = "Can't duplicate alias link, <b>" . $pointedPage . "</b> link already present in <b>" . implode(',', $alias) . "</b> page";
-					$smarty->assign('msg', $aliasmsg);
-					$smarty->display("error.tpl");
-					return false;
-				}
+			if (empty($types[0]) || $types[0] != 'alias') {
+				continue;
 			}
+
+			$conflictPages = $table->fetchColumn('source_itemId', ['target_itemId' => $pointedPage, 'source_itemId' => $table->not($page)]);
+
+			if (empty($conflictPages)) {
+				continue;
+			}
+
+			$url = [];
+			foreach ($conflictPages as $pageName) {
+				$url[] = sprintf('<a href="%s">%s</a>', smarty_modifier_sefurl($pageName, 'wiki'), $pageName);
+			}
+
+			$errors[] = tr('Alias <b>%0</b> link already present in %1 page(s)', $pointedPage, implode(', ', $url));
 		}
+
+		if (! empty($errors)) {
+			Feedback::error(implode('<br>', $errors));
+		}
+
+		return empty($errors);
 	}
 
 	/**
