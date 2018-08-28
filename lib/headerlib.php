@@ -1000,11 +1000,8 @@ class HeaderLib
 		foreach ($files as $originalFile) {
 			$hash = md5($originalFile);
 			$minimalFilePath = $publicDirectory . "minified_$hash.css";
-
-			$minifier = new MatthiasMullie\Minify\CSS($originalFile);
-
 			if (! file_exists($minimalFilePath)) {
-				$minifier->minify($minimalFilePath);
+				(new MatthiasMullie\Minify\CSS($originalFile))->minify($minimalFilePath);
 				chmod($minimalFilePath, 0644);
 			}
 
