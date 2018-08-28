@@ -995,20 +995,20 @@ class HeaderLib
 	{
 		global $tikidomainslash;
 		$out = [];
-			$target = 'temp/public/' . $tikidomainslash;
+		$publicDirectory = 'temp/public/' . $tikidomainslash;
 
 		foreach ($files as $file) {
 			$hash = md5($file);
-			$min = $target . "minified_$hash.css";
+			$minimalFilePath = $publicDirectory . "minified_$hash.css";
 
 			$minifier = new MatthiasMullie\Minify\CSS($file);
 
-			if (! file_exists($min)) {
-				$minifier->minify($min);
-				chmod($min, 0644);
+			if (! file_exists($minimalFilePath)) {
+				$minifier->minify($minimalFilePath);
+				chmod($minimalFilePath, 0644);
 			}
 
-			$out[] = $min;
+			$out[] = $minimalFilePath;
 		}
 
 		return $out;
@@ -1018,21 +1018,20 @@ class HeaderLib
 	{
 		global $tikidomainslash;
 		$hash = md5(serialize($files));
-		$target = 'temp/public/' . $tikidomainslash;
-		$file = $target . "minified_$hash.css";
+		$minimalFilePath = 'temp/public/' . $tikidomainslash . "minified_$hash.css";
 
-		if (! file_exists($file)) {
+		if (! file_exists($minimalFilePath)) {
 			$minifier = new MatthiasMullie\Minify\CSS();
 
 			foreach ($files as $f) {
 				$minifier->add($f);
 			}
 
-			$minifier->minify($file);
-			chmod($file, 0644);
+			$minifier->minify($minimalFilePath);
+			chmod($minimalFilePath, 0644);
 		}
 
-		return [ $file ];
+		return [ $minimalFilePath ];
 	}
 
 	public function minify_css($file)
