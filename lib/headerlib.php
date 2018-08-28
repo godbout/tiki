@@ -998,7 +998,7 @@ class HeaderLib
 		$publicDirectory = 'temp/public/' . $tikidomainslash;
 
 		foreach ($files as $originalFile) {
-			$hash = md5($originalFile);
+			$hash = md5_file($originalFile);
 			$minimalFilePath = $publicDirectory . "minified_$hash.css";
 			if (! file_exists($minimalFilePath)) {
 				(new MatthiasMullie\Minify\CSS($originalFile))->minify($minimalFilePath);
@@ -1014,7 +1014,7 @@ class HeaderLib
 	private function get_minified_css_single($files)
 	{
 		global $tikidomainslash;
-		$hash = md5(serialize($files));
+		$hash = $this->getFilesContentsHash($files);
 		$minimalFilePath = 'temp/public/' . $tikidomainslash . "minified_$hash.css";
 
 		if (! file_exists($minimalFilePath)) {
