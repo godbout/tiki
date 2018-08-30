@@ -15,6 +15,8 @@ tiki-check.php is designed to run in 2 modes
 tiki-check.php should not crash but rather avoid running tests which lead to tiki-check crashes.
 */
 
+use Tiki\Package\ComposerManager;
+
 // TODO : Create sane 3rd mode for Monitoring Software like Nagios, Icinga, Shinken
 // * needs authentication, if not standalone
 isset($_REQUEST['nagios']) ? $nagios = true : $nagios = false;
@@ -1752,7 +1754,53 @@ if (check_isIIS()) {
 	}
 }
 
+// Check Tiki Packages
+if (! $standalone) {
+	global $tikipath;
 
+	$composerManager = new ComposerManager($tikipath);
+	$installedLibs = $composerManager->getInstalled();
+
+	$packagesToCheck = array(
+		array(
+			'name' => 'media-alchemyst/media-alchemyst',
+			'preferences' => array(
+				'alchemy_ffmpeg_path' => tr('ffmpeg path'),
+				'alchemy_ffprobe_path' => tr('ffprobe path'),
+				'alchemy_unoconv_path' => tr('unoconv path'),
+				'alchemy_gs_path' => tr('ghostscript path')
+			)
+		),
+		array(
+			'name' => 'php-unoconv/php-unoconv',
+			'preferences' => array(
+				'alchemy_unoconv_path' => tr('unoconv path')
+			)
+		)
+	);
+
+	$packagesToDisplay = array();
+	foreach ($installedLibs as $instaledPackage) {
+		$key = array_search($instaledPackage['name'], array_column($packagesToCheck, 'name'));
+		if ($key !== false) {
+			$warnings = checkPreferencesPaths($packagesToCheck[$key]['preferences']);
+			$packageInfo = array(
+				'name' => $instaledPackage['name'],
+				'version' => $instaledPackage['installed'],
+				'status' => count($warnings) > 0 ? tr('ugly') : tr('good'),
+				'message' => $warnings
+			);
+		} else {
+			$packageInfo = array(
+				'name' => $instaledPackage['name'],
+				'version' => $instaledPackage['installed'],
+				'status' => tr('good'),
+				'message' => array()
+			);
+		}
+		$packagesToDisplay[] = $packageInfo;
+	}
+}
 
 // Security Checks
 // get all dangerous php settings and check them
@@ -2098,6 +2146,9 @@ if (! $standalone) {
 	} else {
 		$smarty->assign('engineTypeNote', false);
 	}
+
+	$smarty->assign('composer_available', $composerManager->composerIsAvailable());
+	$smarty->assign('packages', $packagesToDisplay);
 }
 
 $sensitiveDataDetectedFiles = array();
@@ -2512,6 +2563,28 @@ if ($standalone && ! $nagios) {
 	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	$smarty->assign('mid', 'tiki-check.tpl');
 	$smarty->display('tiki.tpl');
+}
+
+/**
+ * Check if paths set in preferences exist in the system
+ *
+ * @param array $preferences An array with preference_key and preference_name
+ *
+ * @return array An array with warning messages.
+ */
+function checkPreferencesPaths(array $preferences)
+{
+	global $prefs;
+
+	$warnings = array();
+
+	foreach ($preferences as $prefKey => $prefName) {
+		if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
+			$warnings[] = tr("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $prefName);
+		}
+	}
+
+	return $warnings;
 }
 
 /**
