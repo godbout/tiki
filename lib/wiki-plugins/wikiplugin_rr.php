@@ -473,12 +473,6 @@ function wikiplugin_rr($data, $params)
 	// Only insert user identification in filenames when "per user" caching strategy is chosen
 	$userinfilename = userInFilename($user, $cachestrategy);
 
-	if ($convertPath = getCommandPath('convert')) {
-		define('convert', $convertPath);
-	} else {
-		return displayRrErrorBox("errors", "…convert… " . tra("command unavailable"), tra("You need to ensure that you have __imagemagick__ installed successfully on the server.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
-	}
-
 	if (isset($params["loadandsave"])) {
 		$loadandsave = $params["loadandsave"];
 		if ($loadandsave == "TRUE" or $loadandsave == "1") {
@@ -506,6 +500,19 @@ function wikiplugin_rr($data, $params)
 	if (! $r_path = getCommandPath('R')) {
 		return displayRrErrorBox("errors", "…R… " . tra("command unavailable"), tra("The __R__ package needs to be installed on the server.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
 	}
+	if ($r_path == 'NO_ACCESS') {
+		return displayRrErrorBox("errors", "…R… " . tra("command unavailable"), tra("The path to the __R__ command could not be found on your system.") . ' ' . tra("Maybe this file is inaccessible due to safe mode restrictions.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
+	}
+
+	if ($convertPath = getCommandPath('convert')) {
+		if ($convertPath == 'NO_ACCESS') {
+			return displayRrErrorBox("errors", "…R… " . tra("command unavailable"), tra("The path to the __convert__ command could not be found on your system.") . ' ' . tra("Maybe this file is inaccessible due to safe mode restrictions.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
+		}
+		define('convert', $convertPath);
+	} else {
+		return displayRrErrorBox("errors", "…convert… " . tra("command unavailable"), tra("You need to ensure that you have __imagemagick__ installed successfully on the server.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
+	}
+
 	if ($loadandsave == 1 && isset($_REQUEST['itemId'])  && $_REQUEST['itemId'] > 0) {
 		// --save : data sets are saved at the end of the R session
 		// --quiet : Do not print out the initial copyright and welcome messages from R
@@ -1225,7 +1232,7 @@ function displayRrErrorBox($type = 'errors', $title, $body)
 	return $error_text;
 }
 
-/* Either returns the full path to the command, of FALSE if not found.
+/* Either returns the full path to the command, of FALSE if not found, or NO_ACCESS if found but not accessible..
  * Works on flavors of UNIX
  */
 function getCommandPath($command, $options = '')
@@ -1240,6 +1247,10 @@ function getCommandPath($command, $options = '')
 	if (empty($commandPath)) {
 		return false;
 	} else {
+		if (! file_exists($commandPath)) {
+			// In this last case, usually the file is present but the server's access restrictions prevent it from being executed.
+			return 'NO_ACCESS';
+		}
 		return $commandPath . $options;
 	}
 }
