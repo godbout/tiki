@@ -996,10 +996,11 @@ class HeaderLib
 		global $tikidomainslash;
 		$out = [];
 		$publicDirectory = 'temp/public/' . $tikidomainslash;
-
 		foreach ($files as $originalFile) {
-			$hash = md5_file($originalFile);
-			$minimalFilePath = $publicDirectory . "minified_$hash.css";
+			/* This does not use the same cachelib-based caching strategy as get_minified_css_single() since I could not see any improvement.
+			I tested on Windows 8 with an HDD and a filesystem-based CacheLib. CacheLibFileSystem::getCached() may be inefficient. The strategy may still improve performance for other setups, such as those using CacheLibMemcache. Chealer 2018-08-31 */
+			$fileContentsHash = md5_file($originalFile);
+			$minimalFilePath = $publicDirectory . "minified_$fileContentsHash.css";
 			if (! file_exists($minimalFilePath)) {
 				(new MatthiasMullie\Minify\CSS($originalFile))->minify($minimalFilePath);
 				chmod($minimalFilePath, 0644);
@@ -1014,8 +1015,18 @@ class HeaderLib
 	private function get_minified_css_single($files)
 	{
 		global $tikidomainslash;
-		$hash = $this->getFilesContentsHash($files);
-		$minimalFilePath = 'temp/public/' . $tikidomainslash . "minified_$hash.css";
+		$cachelib = TikiLib::lib('cache');
+
+		$fileSetHash = md5(serialize($files));
+		
+		/* The minimal file's name contains a hash based on the file contents, so that browsers will automatically load changes when files are modified.
+		However, since that hash is itself costly to create, it is cached server-side. Therefore, client caches will be refreshed when the server-side cache is cleared, after an upgrade for instance. */
+		$fileSetContentsHash = $cachelib->getCached($fileSetHash, 'minify_css_contents_by_paths');
+		if (! $fileSetContentsHash) {
+			$fileSetContentsHash = $this->getFilesContentsHash($files);
+			$cachelib->cacheItem($fileSetHash, $fileSetContentsHash, 'minify_css_contents_by_paths');
+		}
+		$minimalFilePath = 'temp/public/' . $tikidomainslash . "minified_$fileSetContentsHash.css";
 
 		if (! file_exists($minimalFilePath)) {
 			$minifier = new MatthiasMullie\Minify\CSS();
