@@ -39,6 +39,13 @@ Mpdf:
   requiredBy:
     - "Tiki Print"
   requiredVersion: ^7.0
+mxGraph:
+  licence: Apache-2.0
+  licenceUrl: "https://github.com/jgraph/mxgraph/blob/master/README.md"
+  name: xorti/mxgraph-editor
+  requiredBy:
+  - "wikiplugin_diagram"
+  requiredVersion: ^3.9
 PHPSaml:
   licence: MIT
   licenceUrl: "https://github.com/onelogin/php-saml/blob/master/LICENSE"

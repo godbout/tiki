@@ -1851,6 +1851,7 @@
 		"vimeo/froogaloop": "1.0",
 		"webmozart/assert": ">=1.0.2",
 		"wimg/php-compatibility": ">=8.1",
+		"xorti/mxgraph-editor": "^3.9",
 		"zendframework/zend-captcha": ">=2.4",
 		"zendframework/zend-code": ">=2.4",
 		"zendframework/zend-config": ">=2.4",
