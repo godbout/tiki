@@ -481,6 +481,7 @@ class Services_Tracker_TabularController
 
 	function action_create_tracker($input)
 	{
+		global $tikilib;
 
 		$tabularlib = TikiLib::lib('tabular');
 		Services_Exception_Denied::checkGlobal('tiki_p_tabular_admin');
@@ -564,7 +565,8 @@ class Services_Tracker_TabularController
 
 			if (is_uploaded_file($_FILES['file']['tmp_name'])) {
 				try {
-					$source = new \Tracker\Tabular\Source\CsvSource($schema, $_FILES['file']['tmp_name']);
+					$delimiter = $input->delimiter->text() == 'comma' ? ',' : ';';
+					$source = new \Tracker\Tabular\Source\CsvSource($schema, $_FILES['file']['tmp_name'], $delimiter);
 					$writer = new \Tracker\Tabular\Writer\TrackerWriter;
 					$done = $writer->write($source);
 
@@ -590,6 +592,8 @@ class Services_Tracker_TabularController
 			}
 		}
 
+		$uploadMaxFileSize = $tikilib->return_bytes(ini_get('upload_max_filesize'));
+
 		return [
 			'title' => tr('Create tabular format and tracker from file'),
 			'types' => $this->getSupportedTabularFieldTypes(),
@@ -598,6 +602,7 @@ class Services_Tracker_TabularController
 				'ignore_blanks' => 0,
 				'import_transaction' => 0,
 				'bulk_import' => 0,
+				'upload_max_filesize' => $uploadMaxFileSize
 			],
 		];
 	}
