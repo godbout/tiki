@@ -70,6 +70,9 @@
                                 {/if}
                                 <button name="auto-remove-package" value="{$entry.key}">{tr}Remove{/tr}</button>
                             </form>
+                        {else}
+                            {tr}Removal not available{/tr}
+                            {icon name='info' iclass='tips' ititle="{tr}Removal not available{/tr}:{tr}This package is not managed by Tiki and likely was installed manually.{/tr}"}
                         {/if}
                     </td>
                 </tr>
