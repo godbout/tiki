@@ -62,6 +62,7 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 			'modification_date' => $typeFactory->timestamp($item['lastModif']),
 			'contributors' => $typeFactory->multivalue([$item['user']]),
 			'description' => $typeFactory->plaintext($item['description']),
+			'date' => $typeFactory->timestamp($item['start'], $allday),
 
 			'calendar_id' => $typeFactory->identifier($item['calendarId']),
 			'start_date' => $typeFactory->timestamp($item['start'], $allday),
@@ -93,11 +94,9 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 			'language',
 			'creation_date',
 			'modification_date',
+			'date',
 			'contributors',
 			'description',
-			'filename',
-			'filetype',
-			'filesize',
 
 			'calendar_id',
 			'start_date',
@@ -122,10 +121,7 @@ class Search_ContentSource_CalendarItemSource implements Search_ContentSource_In
 		return [
 			'title' => true,
 			'description' => true,
-			'filename' => true,
-
-			'file_comment' => false,
-			'file_content' => false,
+			'date' => true,
 		];
 	}
 }

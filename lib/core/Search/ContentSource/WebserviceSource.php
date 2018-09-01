@@ -105,6 +105,7 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 			'title' => $typeFactory->sortable($templateName),
 			'description' => $typeFactory->sortable(''),
 			'modification_date' => $typeFactory->timestamp(TikiLib::lib('tiki')->now),
+			'date' => $typeFactory->timestamp(TikiLib::lib('tiki')->now),
 
 			'view_permission' => $typeFactory->identifier('tiki_p_view_webservices'),
 		];
@@ -212,6 +213,7 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 			'title',
 			'description',
 			'modification_date',
+			'date',
 
 			'view_permission',
 			// TODO more
@@ -223,6 +225,7 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 		return [
 			'title' => true,
 			'description' => true,
+			'date' => true,
 		];
 	}
 }

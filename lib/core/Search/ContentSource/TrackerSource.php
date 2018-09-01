@@ -33,6 +33,7 @@ class Search_ContentSource_TrackerSource implements Search_ContentSource_Interfa
 			'title' => $typeFactory->sortable($tracker['name']),
 			'modification_date' => $typeFactory->timestamp($tracker['lastModif']),
 			'creation_date' => $typeFactory->timestamp($tracker['created']),
+			'date' => $typeFactory->timestamp($tracker['created']),
 			'description' => $typeFactory->plaintext($tracker['description']),
 
 			'searchable' => $typeFactory->identifier('n'),
@@ -49,6 +50,7 @@ class Search_ContentSource_TrackerSource implements Search_ContentSource_Interfa
 			'title',
 			'modification_date',
 			'creation_date',
+			'date',
 			'description',
 
 			'searchable',
@@ -62,6 +64,7 @@ class Search_ContentSource_TrackerSource implements Search_ContentSource_Interfa
 		return [
 			'title' => true,
 			'description' => true,
+			'date' => true,
 		];
 	}
 }

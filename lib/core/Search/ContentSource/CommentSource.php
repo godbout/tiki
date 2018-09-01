@@ -49,6 +49,7 @@ class Search_ContentSource_CommentSource implements Search_ContentSource_Interfa
 			'language' => $typeFactory->identifier('unknown'),
 			'creation_date' => $typeFactory->timestamp($comment['commentDate']),
 			'modification_date' => $typeFactory->timestamp($comment['commentDate']),
+			'date' => $typeFactory->timestamp($comment['commentDate']),
 			'contributors' => $typeFactory->multivalue([$comment['userName']]),
 
 			'comment_content' => $typeFactory->wikitext($comment['data']),
@@ -73,6 +74,7 @@ class Search_ContentSource_CommentSource implements Search_ContentSource_Interfa
 			'language',
 			'creation_date',
 			'modification_date',
+			'date',
 			'contributors',
 			'url',
 
@@ -91,6 +93,7 @@ class Search_ContentSource_CommentSource implements Search_ContentSource_Interfa
 	{
 		return [
 			'title' => true,
+			'date' => true,
 
 			'comment_content' => false,
 		];

@@ -79,6 +79,7 @@ class Search_ContentSource_ForumPostSource implements Search_ContentSource_Inter
 			'language' => $typeFactory->identifier($forum_language),
 			'creation_date' => $typeFactory->timestamp($comment['commentDate']),
 			'modification_date' => $typeFactory->timestamp($lastModification),
+			'date' => $typeFactory->timestamp($comment['commentDate']),
 			'contributors' => $typeFactory->multivalue(array_unique($author)),
 
 			'forum_id' => $typeFactory->identifier($comment['object']),
@@ -149,6 +150,7 @@ class Search_ContentSource_ForumPostSource implements Search_ContentSource_Inter
 			'language',
 			'creation_date',
 			'modification_date',
+			'date',
 			'contributors',
 
 			'post_content',
@@ -184,6 +186,7 @@ class Search_ContentSource_ForumPostSource implements Search_ContentSource_Inter
 	{
 		return [
 			'title' => true,
+			'date' => true,
 
 			'post_content' => false,
 		];

@@ -41,6 +41,7 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 		$document = [
 			'event_type' => $typeFactory->identifier($info['eventType']),
 			'modification_date' => $typeFactory->timestamp($info['eventDate']),
+			'date' => $typeFactory->timestamp($info['eventDate']),
 
 			'searchable' => $typeFactory->identifier('n'),
 		];
@@ -88,12 +89,13 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 	function getProvidedFields()
 	{
 		$mapping = $this->lib->getMapping();
-		return array_merge(['event_type', 'modification_date', 'like_list', 'clear_list'], array_keys($mapping));
+		return array_merge(['event_type', 'modification_date', 'like_list', 'clear_list', 'date'], array_keys($mapping));
 	}
 
 	function getGlobalFields()
 	{
 		return [
+			'date' => true,
 		];
 	}
 

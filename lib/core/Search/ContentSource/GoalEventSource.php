@@ -34,6 +34,7 @@ class Search_ContentSource_GoalEventSource implements Search_ContentSource_Inter
 			}
 			return [
 				'modification_date' => $typeFactory->timestamp($event['eventDate']),
+				'date' => $typeFactory->timestamp($event['eventDate']),
 				'event_type' => $typeFactory->identifier($event['eventType']),
 				'user' => $typeFactory->identifier($event['user']),
 				'goal_groups' => $typeFactory->multivalue(json_decode($event['groups'], true)),
@@ -46,12 +47,13 @@ class Search_ContentSource_GoalEventSource implements Search_ContentSource_Inter
 
 	function getProvidedFields()
 	{
-		return ['event_type', 'modification_date', 'user', 'goal_groups', 'target'];
+		return ['event_type', 'modification_date', 'user', 'goal_groups', 'target', 'date'];
 	}
 
 	function getGlobalFields()
 	{
 		return [
+			'date' => true,
 		];
 	}
 }

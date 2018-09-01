@@ -94,6 +94,7 @@ class Search_ContentSource_UserSource implements Search_ContentSource_Interface
 		$data = [
 			'title' => $typeFactory->sortable($name),
 			'creation_date' => $typeFactory->timestamp($detail['info']['created']),
+			'date' => $typeFactory->timestamp($detail['info']['created']),
 			'wiki_content' => $typeFactory->wikitext($content),
 
 			'user_country' => $typeFactory->sortable($country),
@@ -142,6 +143,7 @@ class Search_ContentSource_UserSource implements Search_ContentSource_Interface
 		$data = [
 			'title',
 			'creation_date',
+			'date',
 			'wiki_content',
 
 			'user_country',
@@ -178,6 +180,7 @@ class Search_ContentSource_UserSource implements Search_ContentSource_Interface
 
 		$data = [
 			'title' => true,
+			'date' => true,
 
 			'wiki_content' => false,
 			'user_country' => true,
