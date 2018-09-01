@@ -31,7 +31,7 @@
 		"ezyang/htmlpurifier": "^4.8.0",
 		"fortawesome/font-awesome": "^4.6.3",
 		"fullcalendar/fullcalendar": "^3.9",
-		"google/apiclient": "1.1.6",
+		"google/apiclient": "^2.2.2",
 		"haubek/bootstrap4c-chosen": "^1.0",
 		"harvesthq/chosen": "^1.8",
 		"h5p/h5p-core": "~1.17.0",
