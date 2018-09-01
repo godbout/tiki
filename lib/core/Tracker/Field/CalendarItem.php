@@ -177,8 +177,9 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
 	{
-		$baseKey = $this->getBaseKey();
+		$data = parent::getDocumentPart($typeFactory);
 
+		$baseKey = $this->getBaseKey();
 		$calitemId = $this->getCalendarItemId();
 		$recurrenceId = null;
 
@@ -192,21 +193,32 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			}
 		}
 
-		return [
-			$baseKey => $typeFactory->timestamp($this->getValue(), $this->getOption('datetime') == 'd'),
-			"{$baseKey}_calitemid" => $typeFactory->numeric($calitemId),
-			"{$baseKey}_recurrenceId" => $typeFactory->numeric($recurrenceId),
-		];
+		$data = array_merge(
+			$data,
+			[
+				"{$baseKey}_calitemid"    => $typeFactory->numeric($calitemId),
+				"{$baseKey}_recurrenceId" => $typeFactory->numeric($recurrenceId),
+			]
+		);
+
+		return $data;
 	}
 
 	function getProvidedFields()
 	{
+		$data = parent::getProvidedFields();
+
 		$baseKey = $this->getBaseKey();
-		return [
-			$baseKey,
-			"{$baseKey}_calitemid",
-			"{$baseKey}_recurrenceId",
-		];
+
+		$data = array_merge(
+			$data,
+			[
+				"{$baseKey}_calitemid",
+				"{$baseKey}_recurrenceId",
+			]
+		);
+
+		return $data;
 	}
 
 	function getFieldData(array $requestData = [])
@@ -239,7 +251,11 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 		$perms = Perms::get([ 'type' => 'calendar', 'object' => $event['calendarId']]);
 
 		if ($perms->change_events) {
-			$editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&trackerItemId='. $this->getItemId() . '&calitemId=' . $event['calitemId'];
+			if ($event) {
+				$editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&trackerItemId=' . $this->getItemId() . '&calitemId=' . $event['calitemId'];
+			} else {
+				$editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&trackerItemId=' . $this->getItemId() . '&calendarId=' . $this->getOption('calendarId');
+			}
 			$headerlib = TikiLib::lib('header');
 
 			$headerlib->add_js_config('window.CKEDITOR_BASEPATH = "' . $tikiroot . 'vendor_bundled/vendor/ckeditor/ckeditor/";')
