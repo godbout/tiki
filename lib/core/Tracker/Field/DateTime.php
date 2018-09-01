@@ -68,6 +68,15 @@ class Tracker_Field_DateTime extends Tracker_Field_Abstract implements Tracker_F
 							1 => tr('Yes'),
 						],
 					],
+					'isItemDateField' => [
+						'name' => tr('Item Date Field'),
+						'description' => tr("Use this date as the item's global date in the search index."),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+					],
 				],
 			],
 		];
@@ -173,9 +182,39 @@ class Tracker_Field_DateTime extends Tracker_Field_Abstract implements Tracker_F
 			trigger_error("Possibly incorrect timestamp value found when trying to send to search index. Tracker item " . $this->getItemId() . ", field " . $this->getConfiguration('permName') . ", value " . $this->getValue(), E_USER_WARNING);
 		}
 		$baseKey = $this->getBaseKey();
-		return [
-			$baseKey => $typeFactory->timestamp($this->getValue(), $this->getOption('datetime') == 'd'),
+		$timestamp = $typeFactory->timestamp($this->getValue(), $this->getOption('datetime') == 'd');
+
+		$data = [
+			$baseKey => $timestamp,
 		];
+
+		if ($this->getOption('isItemDateField')) {
+			$data['date'] = $timestamp;
+		}
+
+		return $data;
+	}
+
+	function getProvidedFields()
+	{
+		$data = parent::getProvidedFields();
+
+		if ($this->getOption('isItemDateField')) {
+			$data[] = 'date';
+		}
+
+		return $data;
+	}
+
+	function getGlobalFields()
+	{
+		$data = parent::getGlobalFields();
+
+		if ($this->getOption('isItemDateField')) {
+			$data['date'] = true;
+		}
+
+		return $data;
 	}
 
 	function getTabularSchema()

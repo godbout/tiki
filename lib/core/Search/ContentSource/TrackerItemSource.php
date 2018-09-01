@@ -68,7 +68,6 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 
 		$ownerGroup = $itemObject->getOwnerGroup();
 		$data = array_merge(
-			$data,
 			[
 				'title' => $typeFactory->sortable($this->trklib->get_isMain_value($item['trackerId'], $objectId)),
 				'modification_date' => $typeFactory->timestamp($item['lastModif']),
@@ -85,7 +84,8 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 				'_extra_users' => $specialUsers,
 				'_permission_accessor' => $itemObject->getPerms(),
 				'_extra_groups' => $ownerGroup ? [$ownerGroup] : null,
-			]
+			],
+			$data
 		);
 
 		return $data;
