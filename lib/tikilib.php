@@ -805,7 +805,7 @@ class TikiLib extends TikiDb_Bridge
 			$conditions['email'] = $email;
 		}
 
-		$this->table('tiki_user_watches')->deleteMultiple($conditions);
+		return $this->table('tiki_user_watches')->deleteMultiple($conditions);
 	}
 
 	/*token notification*/
