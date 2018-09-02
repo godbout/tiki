@@ -105,5 +105,16 @@
 			{/foreach}
 		</table>
 	</div>
-	<p><div style="float: left; margin-right: 10px;"><input type="submit" class="btn btn-primary btn-sm" name="assign" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}"></div></p>
+	<p>
+		<div style="float: left; margin-right: 10px;">
+			<input 
+				type="submit"
+				class="btn btn-primary btn-sm"
+				name="assign"
+				title="{tr}Apply Changes{/tr}"
+				value="{tr}Apply{/tr}"
+				onclick="checkTimeout()"
+			>
+		</div>
+	</p>
 </form>
