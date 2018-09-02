@@ -837,7 +837,8 @@ class Services_Tracker_Controller
 		}
 
 		$itemId = 0;
-		if (! empty($fields) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+		$util = new Services_Utilities();
+		if (! empty($fields) && $util->isActionPost()) {
 			foreach ($forced as $key => $value) {
 				if ($itemObject->canModifyField($key)) {
 					$fields[$key] = $value;

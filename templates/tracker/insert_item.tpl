@@ -17,6 +17,7 @@
 			</div>
 		{/if}
 		<form method="post" action="{service controller=tracker action=insert_item format=$format editItemPretty=$editItemPretty}" id="insertItemForm{$trackerId|escape}" {if ! $trackerId}display="hidden"{/if}>
+			{ticket}
 			{trackerfields trackerId=$trackerId fields=$fields status=$status format=$format editItemPretty=$editItemPretty}
 			{if ! $modal}
 				<div class="form-check">
@@ -32,7 +33,12 @@
 			{/if}
 			<div class="submit">
 				<input type="hidden" name="trackerId" value="{$trackerId|escape}">
-				<input type="submit" class="btn btn-secondary" value="{tr}Create{/tr}" onclick="needToConfirm=false;">
+				<input
+					type="submit"
+					class="btn btn-secondary"
+					value="{tr}Create{/tr}"
+					onclick="checkTimeout()"
+				>
 				{foreach from=$forced key=permName item=value}
 					<input type="hidden" name="forced~{$permName|escape}" value="{$value|escape}">
 				{/foreach}
