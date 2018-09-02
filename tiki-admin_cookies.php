@@ -24,38 +24,59 @@ if ($_REQUEST["cookieId"]) {
 	$info["cookie"] = '';
 }
 $smarty->assign('cookie', $info["cookie"]);
-if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$taglinelib->remove_cookie($_REQUEST["remove"]);
+if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove cookie?'))) {
+	$result = $taglinelib->remove_cookie($_REQUEST["remove"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Cookie removed'));
+	} else {
+		Feedback::error(tr('Cookie not removed'));
+	}
 }
-if (isset($_REQUEST["removeall"])) {
-	$access->check_authenticity();
-	$taglinelib->remove_all_cookies();
+if (isset($_REQUEST["removeall"]) && $access->checkCsrfForm(tr('Remove all cookies?'))) {
+	$result = $taglinelib->remove_all_cookies();
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('All cookies removed'));
+	} else {
+		Feedback::error(tr('No cookies removed'));
+	}
 }
-if (isset($_REQUEST["upload"])) {
-	check_ticket('admin-cookies');
+if (isset($_REQUEST["upload"]) && $access->checkCsrf()) {
 	if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
 		$fp = fopen($_FILES['userfile1']['tmp_name'], "r");
+		$result = false;
+		$resultCount = 0;
 		while (! feof($fp)) {
 			$data = fgets($fp, 65535);
 			if (! empty($data)) {
 				$data = str_replace("\n", "", $data);
-				$taglinelib->replace_cookie(0, $data);
+				$result = $taglinelib->replace_cookie(0, $data);
+				if ($result && $result->numRows()) {
+					$resultCount = $resultCount + $result->numRows();
+				}
 			}
 		}
 		fclose($fp);
 		$size = $_FILES['userfile1']['size'];
 		$name = $_FILES['userfile1']['name'];
 		$type = $_FILES['userfile1']['type'];
+		if ($resultCount) {
+			$msg = $resultCount === 1 ? tr('File uploaded and one cookie created or replaced')
+				: tr('File uploaded and %0 cookies created or replaced', $resultCount);
+			Feedback::success($msg);
+		} else {
+			Feedback::error(tr('Upload failed - no cookies created'));
+		}
 	} else {
-		$smarty->assign('msg', tra("Upload failed"));
-		$smarty->display("error.tpl");
-		die;
+		Feedback::error(tr('Upload failed'));
 	}
 }
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-cookies');
-	$taglinelib->replace_cookie($_REQUEST["cookieId"], $_REQUEST["cookie"]);
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
+	$result = $taglinelib->replace_cookie($_REQUEST["cookieId"], $_REQUEST["cookie"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Cookie saved'));
+	} else {
+		Feedback::error(tr('Cookie not saved'));
+	}
 	$smarty->assign("cookieId", '0');
 	$smarty->assign('cookie', '');
 }
@@ -80,7 +101,6 @@ $smarty->assign_by_ref('sort_mode', $sort_mode);
 $channels = $taglinelib->list_cookies($offset, $maxRecords, $sort_mode, $find);
 $smarty->assign_by_ref('cant_pages', $channels["cant"]);
 $smarty->assign_by_ref('channels', $channels["data"]);
-ask_ticket('admin-cookies');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

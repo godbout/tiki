@@ -50,7 +50,8 @@ class TagLineLib extends TikiLib
 	/**
 	 * @param $cookieId
 	 * @param $cookie
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	public function replace_cookie($cookieId, $cookie)
 	{
@@ -66,18 +67,19 @@ class TagLineLib extends TikiLib
 			$query = "insert into `tiki_cookies`(`cookie`) values(?)";
 		}
 		$result = $this->query($query, $bindvars);
-		return true;
+		return $result;
 	}
 
 	/**
 	 * @param $cookieId
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	public function remove_cookie($cookieId)
 	{
 		$query = "delete from `tiki_cookies` where `cookieId`=?";
 		$result = $this->query($query, [(int) $cookieId]);
-		return true;
+		return $result;
 	}
 
 	/**
@@ -96,10 +98,14 @@ class TagLineLib extends TikiLib
 		return $res;
 	}
 
+	/**
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function remove_all_cookies()
 	{
 		$query = "delete from `tiki_cookies`";
 		$result = $this->query($query, []);
+		return $result;
 	}
 }
 $taglinelib = new TagLineLib;
