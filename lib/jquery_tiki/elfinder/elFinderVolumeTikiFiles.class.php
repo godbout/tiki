@@ -857,9 +857,10 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 	/**
 	 * Remove file
 	 *
-	 * @param  string  $path  file path
+	 * @param  string $path file path
 	 * @return bool
-	 **/
+	 * @throws Exception
+	 */
 	protected function _unlink($path)
 	{
 		$fileId = $this->pathToId($path);
@@ -876,9 +877,10 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 	/**
 	 * Remove dir
 	 *
-	 * @param  string  $path  dir path
+	 * @param  string $path dir path
 	 * @return bool
-	 **/
+	 * @throws Exception
+	 */
 	protected function _rmdir($path)
 	{
 		$galleryId = $this->pathToId($path);
@@ -886,7 +888,8 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 		$perms = TikiLib::lib('tiki')->get_perm_object($galleryId, 'file gallery', $gal_info);
 		if ($perms['tiki_p_admin_file_galleries'] === 'y' ||
 				($gal_info['type'] === 'user' && $perms['tiki_p_create_file_galleries'])) {		// users can create and remove their own gals only
-			return $this->filegallib->remove_file_gallery($this->pathToId($path), $this->pathToId($path));
+			$result = $this->filegallib->remove_file_gallery($this->pathToId($path), $this->pathToId($path));
+			return $result && $result->numRows();
 		} else {
 			return false;
 		}

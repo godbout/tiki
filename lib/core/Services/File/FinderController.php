@@ -42,8 +42,9 @@ class Services_File_FinderController
 	 * Main "connector" to handle all requests from elfinder
 	 *
 	 * @param $input
+	 *
 	 * @return array
-	 * @throws Services_Exception_Disabled
+	 * @throws Exception
 	 */
 
 	public function action_finder($input)
@@ -71,6 +72,12 @@ class Services_File_FinderController
 		$opts = [
 			'debug' => true,
 			'roots' => [],
+			'bind'  => [
+				//check csrf prior to executing state-changing actions
+				'duplicate.pre mkdir.pre paste.pre rename.pre rm.pre upload.pre' => [
+					[$this, 'csrfCheck']
+				]
+			]
 		];
 
 		$rootDefaults = [
@@ -225,11 +232,13 @@ class Services_File_FinderController
 	/**
 	 * elFinderAccess "accessControl" callback.
 	 *
-	 * @param  string  $attr  attribute name (read|write|locked|hidden)
-	 * @param  string  $path  file path relative to volume root directory started with directory separator
-	 * @param $data
-	 * @param $volume
+	 * @param  string $attr attribute name (read|write|locked|hidden)
+	 * @param  string $path file path relative to volume root directory started with directory separator
+	 * @param         $data
+	 * @param         $volume
+	 *
 	 * @return bool|null
+	 * @throws Exception
 	 */
 	function elFinderAccess($attr, $path, $data, $volume)
 	{
@@ -325,6 +334,33 @@ class Services_File_FinderController
 			return true;
 		} else {
 			return $this->isParentOf($child, $parentIds[$child], $parentIds);
+		}
+	}
+
+	/**
+	 * Anti-CSRF check. To be run pre-execution of commands that change the database
+	 *
+	 * @param $cmd
+	 * @param $args
+	 * @param $elfinder tikiElFinder
+	 * @param $volume   elFinderVolumeTikiFiles
+	 *
+	 * @return mixed $results array
+	 * @throws Services_Exception
+	 */
+	public function csrfCheck($cmd, &$args, $elfinder, $volume)
+	{
+		$access = TikiLib::lib('access');
+		if ($access->checkCsrf('none') && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
+			$access->setTicket();
+			$elfinder->setCustomData('ticket', $access->getTicket());
+		} else {
+			return  [
+				'preventexec' => true,
+				'results' => [
+					'error' => tr('Potential cross-site request forgery (CSRF) detected. Operation blocked. Reloading the page may help.')
+				]
+			];
 		}
 	}
 }
