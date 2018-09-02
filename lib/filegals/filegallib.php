@@ -338,7 +338,6 @@ class FileGalLib extends TikiLib
 	 * @param $galleryId	gallery id to check and change if necessary
 	 * @return int			user's gallery id if applicable
 	 */
-
 	function check_user_file_gallery($galleryId)
 	{
 		global $prefs;
@@ -350,6 +349,13 @@ class FileGalLib extends TikiLib
 		return (int) $galleryId;
 	}
 
+	/**
+	 * @param $fileInfo
+	 * @param string $galInfo
+	 * @param bool $disable_notifications
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 * @throws Exception
+	 */
 	function remove_file($fileInfo, $galInfo = '', $disable_notifications = false)
 	{
 		global $prefs, $user;
@@ -363,7 +369,7 @@ class FileGalLib extends TikiLib
 			$attributes = TikiLib::lib('attribute')->get_attributes('file', $fileId);
 			if ($url = $attributes['tiki.content.url']) {
 				$video_id = substr($url, strrpos($url, '/') + 1);	// not ideal, but video_id not stored elsewhere (yet)
-				$result = TikiLib::lib('vimeo')->deleteVideo($video_id);
+				TikiLib::lib('vimeo')->deleteVideo($video_id);
 			}
 		}
 
@@ -379,7 +385,7 @@ class FileGalLib extends TikiLib
 		}
 
 		$files = $this->table('tiki_files');
-		$files->delete(['fileId' => $fileId]);
+		$result = $files->delete(['fileId' => $fileId]);
 		$files->deleteMultiple(['archiveId' => $fileId]);
 
 		$this->remove_draft($fileId);
@@ -406,7 +412,7 @@ class FileGalLib extends TikiLib
 			]
 		);
 
-		return true;
+		return $result;
 	}
 
 	function insert_file(
@@ -568,6 +574,7 @@ class FileGalLib extends TikiLib
 	 * @param string $path
 	 * @param string $checksum
 	 * @param string $lockedby
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
 	function insert_draft($fileId, $filename, $size, $type, $data, $creator, $path, $checksum, $lockedby, $metadata = null)
 	{
@@ -636,6 +643,7 @@ class FileGalLib extends TikiLib
 	 *
 	 * @param int $fileId
 	 * @param string $user
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
 	function remove_draft($fileId, $user = null)
 	{
@@ -651,8 +659,10 @@ class FileGalLib extends TikiLib
 	/**
 	 * Validate draft and replace real file
 	 *
-	 * @global string $user
 	 * @param int $fileId
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 * @throws Exception
+	 * @global string $user
 	 */
 	function validate_draft($fileId)
 	{
@@ -738,7 +748,7 @@ class FileGalLib extends TikiLib
 				);
 			}
 
-			$this->remove_draft($fileId, $user);
+			return $this->remove_draft($fileId, $user);
 		}
 	}
 
@@ -849,10 +859,15 @@ class FileGalLib extends TikiLib
 		return $idNew;
 	}
 
+	/**
+	 * @param $file
+	 * @param $gallery
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function set_file_gallery($file, $gallery)
 	{
 		$files = $this->table('tiki_files');
-		$files->updateMultiple(
+		$result = $files->updateMultiple(
 			['galleryId' => $gallery],
 			['anyOf' => $files->expr('(`fileId` = ? OR `archiveId` = ?)', [$file, $file])]
 		);
@@ -860,9 +875,16 @@ class FileGalLib extends TikiLib
 		require_once('lib/search/refresh-functions.php');
 		refresh_index('files', $file);
 
-		return true;
+		return $result;
 	}
 
+	/**
+	 * @param int  $id        ID of gallery to be removed or file in the gallery to be removed
+	 * @param int  $galleryId The parent gallery of the gallery to be removed
+	 * @param bool $recurse
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 * @throws Exception
+	 */
 	function remove_file_gallery($id, $galleryId = 0, $recurse = true)
 	{
 		global $prefs;
@@ -884,7 +906,7 @@ class FileGalLib extends TikiLib
 		}
 		$cachelib->empty_type_cache($this->get_all_galleries_cache_type());
 
-		$fileGalleries->delete(['galleryId' => $id]);
+		$result = $fileGalleries->delete(['galleryId' => $id]);
 
 		$this->remove_object('file gallery', $id);
 
@@ -912,7 +934,7 @@ class FileGalLib extends TikiLib
 			}
 		}
 
-		return true;
+		return $result;
 	}
 
 	function get_file_gallery_info($id)
@@ -920,6 +942,12 @@ class FileGalLib extends TikiLib
 		return $this->table('tiki_file_galleries')->fetchFullRow(['galleryId' => (int) $id]);
 	}
 
+	/**
+	 * @param $galleryId
+	 * @param $new_parent_id
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 * @throws Exception
+	 */
 	function move_file_gallery($galleryId, $new_parent_id)
 	{
 		if ((int)$galleryId <= 0 || (int)$new_parent_id == 0 || $galleryId == $new_parent_id) {
@@ -1209,6 +1237,15 @@ class FileGalLib extends TikiLib
 		return $files->fetchAll($fields, $conditions, $numrows);
 	}
 
+	/**
+	 * @param $id
+	 * @param $name
+	 * @param $description
+	 * @param $user
+	 * @param null $comment
+	 * @param null $filename
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function update_file($id, $name, $description, $user, $comment = null, $filename = null)
 	{
 
@@ -1723,15 +1760,27 @@ class FileGalLib extends TikiLib
 			sendFileGalleryEmailNotification('file_gallery_changed', $galleryId, $galleryName, $name, $filename, $description, $action, $user, $fileId);
 		}
 	}
-	/* lock a file */
+	/**
+	 * Lock a file
+	 *
+	 * @param $fileId
+	 * @param $user
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function lock_file($fileId, $user)
 	{
-		$this->table('tiki_files')->update(['lockedby' => $user], ['fileId' => $fileId]);
+		$result = $this->table('tiki_files')->update(['lockedby' => $user], ['fileId' => $fileId]);
+		return $result;
 	}
-	/* unlock a file */
+	/**
+	 * Unlock a file
+	 *
+	 * @param $fileId
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function unlock_file($fileId)
 	{
-		$this->lock_file($fileId, null);
+		return $this->lock_file($fileId, null);
 	}
 	/* get archives of a file */
 	function get_archives($fileId, $offset = 0, $maxRecords = -1, $sort_mode = 'created_desc', $find = '')
@@ -2683,6 +2732,11 @@ class FileGalLib extends TikiLib
 		}
 		return $ret;
 	}
+
+	/**
+	 * @param $fgalIds
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function setDefault($fgalIds)
 	{
 		global $prefs;
@@ -2711,12 +2765,12 @@ class FileGalLib extends TikiLib
 			'show_path' => $prefs['fgal_show_path'],
 			'show_slideshow' => $prefs['fgal_show_slideshow'],
 			'default_view' => $prefs['fgal_default_view'],
-			'icon_fileId' => ! empty($prefs['fgal_icon_fileId']) ? $prefs['fgal_icon_fileId'] : '',
+			'icon_fileId' => ! empty($prefs['fgal_icon_fileId']) ? $prefs['fgal_icon_fileId'] : null,
 			'show_source' => $prefs['fgal_list_source'],
 		];
 
 		$galleries = $this->table('tiki_file_galleries');
-		$galleries->updateMultiple($defaults, ['galleryId' => $galleries->in($fgalIds)]);
+		return $galleries->updateMultiple($defaults, ['galleryId' => $galleries->in($fgalIds)]);
 	}
 	function getGalleryId($name, $parentId)
 	{
@@ -3516,6 +3570,11 @@ class FileGalLib extends TikiLib
 		return call_user_func([ $this, $method_name ], $params);
 	}
 
+	/**
+	 * @param $params
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 * @throws Exception
+	 */
 	private function _actionHandler_removeFile($params)
 	{
 		// mandatory params: int fileId
@@ -3560,14 +3619,10 @@ class FileGalLib extends TikiLib
 				$smarty->assign('confirm_detail', $smarty->fetch('file_backlinks.tpl')); ///FIXME
 			}
 
-			$access = TikiLib::lib('access');
-			$confirmationText = ( empty($info['name']) ? '' : htmlspecialchars($info['name']) . ' - ') . htmlspecialchars($info['filename']);
 			if ($params['draft']) {
-				$access->check_authenticity(tra('Remove file draft: ') . $confirmationText);
-				$this->remove_draft($info['fileId'], $user);
+				return $this->remove_draft($info['fileId'], $user);
 			} else {
-				$access->check_authenticity(tra('Remove file: ') . $confirmationText);
-				$this->remove_file($info, $params['gal_info']);
+				return $this->remove_file($info, $params['gal_info']);
 			}
 		}
 	}
@@ -3965,6 +4020,7 @@ class FileGalLib extends TikiLib
 			}
 			include_once('categorize.php');
 			if (count($errors) == 0) {
+				Feedback::success('Upload or modification made');
 				header("location: tiki-list_file_gallery.php?galleryId=" . $params["galleryId"][0]);
 				die;
 			}
@@ -4734,9 +4790,10 @@ class FileGalLib extends TikiLib
 	 * 		'get_array'			Get file metadata from database column or, if that is empty, extract metadata from the
 	 * 							file, update the database and return an array of the data.
 	 *
-	 * 		'refresh'			Extract metadata from the file and update database - nothing is returned
+	 * 		'refresh'			Extract metadata from the file and update database
 	 *
-	 * @return 		array		$metadata				array of metadata is returned is action is 'get_array'
+	 * @return 		array|TikiDb_Pdo_Result|TikiDb_Adodb_Result		$metadata	array of metadata is returned if
+	 * 		action is 'get_array', otherwise result class
 	 */
 	function metadataAction($fileId, $action = 'get_array')
 	{
@@ -4762,7 +4819,7 @@ class FileGalLib extends TikiLib
 			//extract metadata
 			$metadata = $this->extractMetadataJson($file, $ispath);
 			//update database for newly extracted metadata
-			$filesTable->update(['metadata' => $metadata], ['fileId' => $fileId]);
+			$result = $filesTable->update(['metadata' => $metadata], ['fileId' => $fileId]);
 			// update search index
 			require_once('lib/search/refresh-functions.php');
 			refresh_index('files', $fileId);
@@ -4772,6 +4829,8 @@ class FileGalLib extends TikiLib
 		if ($action == 'get_array') {
 			//return metadata as an array
 			return json_decode($metadata, true);
+		} else {
+			return $result;
 		}
 	}
 

@@ -72,6 +72,7 @@
 			{/if}
 			{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
 				<li class="dropdown-item">
+					{* links to a form so no confirm popup needed *}
 					<a href="tiki-object_watches.php?objectId={$galleryId|escape:"url"}&amp;watch_event=file_gallery_changed&amp;objectType=File+Gallery&amp;objectName={$gal_info.name|escape:"url"}&amp;objectHref={'tiki-list_file_gallery.php?galleryId='|cat:$galleryId|escape:"url"}" class="icon">
 						{icon name='watch-group'} {tr}Group monitor{/tr}
 					</a>
@@ -80,11 +81,11 @@
 			{if $user and $prefs.feature_user_watches eq 'y'}
 				<li class="dropdown-item">
 					{if !isset($user_watching_file_gallery) or $user_watching_file_gallery eq 'n'}
-						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='add'}" title="{tr}Monitor this gallery{/tr}">
+						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='add'}" title="{tr}Monitor this gallery{/tr}" onclick="confirmSimple(event, '{tr}Monitor gallery?{/tr}', '{ticket mode=get}')">
 							{icon name='watch'} {tr}Monitor{/tr}
 						</a>
 					{else}
-						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='remove'}" title="{tr}Stop monitoring this gallery{/tr}">
+						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='remove'}" title="{tr}Stop monitoring this gallery{/tr}" onclick="confirmSimple(event, '{tr}Stop monitoring gallery?{/tr}', '{ticket mode=get}')">
 							{icon name='stop-watching'} {tr}Stop monitoring{/tr}
 						</a>
 					{/if}
@@ -186,13 +187,20 @@
 				class="form-inline">
 			<input type="hidden" name="galleryId" value="{$galleryId|escape}">
 			<input type="hidden" name="fileId" value="{$fileId|escape}">
+			{ticket}
 			<div class="form-group row">
 				<label for="comment">
 					{tr}Comment{/tr} ({tr}optional{/tr}):
 				</label>
 					<input type="text" name="comment" id="comment" class="form-control">
 			</div>
-				<button type="submit" class="btn btn-primary btn-sm">{icon name='ok'} {tr}Save{/tr}</button>
+				<button
+					type="submit"
+					class="btn btn-primary btn-sm"
+					onclick="checkTimeout()"
+				>
+					{icon name='ok'} {tr}Save{/tr}
+				</button>
 		</form>
 	{/remarksbox}
 {/if}
@@ -261,6 +269,7 @@
 	{else}
 		<div class="pageview">
 			<form id="size-form" class="form form-inline" role="form" action="tiki-list_file_gallery.php">
+				{ticket}
 				<input type="hidden" name="view" value="page">
 				<input type="hidden" name="galleryId" value="{$galleryId}">
 				<input type="hidden" name="maxRecords" value=1>
@@ -268,7 +277,13 @@
 				<label for="maxWidth">
 					{tr}Maximum width{/tr}&nbsp;<input id="maxWidth" class="form-control" type="text" name="maxWidth" value="{$maxWidth}">
 				</label>
-				<input type="submit" class="wikiaction btn btn-primary" name="setSize" value="{tr}Submit{/tr}">
+				<input
+					type="submit"
+					class="wikiaction btn btn-primary"
+					name="setSize"
+					onclick="checkTimeout()"
+					value="{tr}Submit{/tr}"
+				>
 			</form>
 		</div><br>
 		{pagination_links cant=$cant step=$maxRecords offset=$offset}
@@ -318,17 +333,19 @@
 		</div>
 	{/if}
 	{if $prefs.fgal_elfinder_feature eq 'y' and $view eq 'finder'}<br>
-		<div class="elFinderDialog" style="height: 100%"></div>
+		<div class="elFinderDialog" style="height: 100%" data-ticket="{ticket mode=get}"></div>
 		{jq}
 
 var elfoptions = initElFinder({
 	defaultGalleryId: {{$galleryId}},
 	deepGallerySearch:1,
+	requestType: 'post',
 	getFileCallback: function(file,elfinder) { window.handleFinderFile(file,elfinder); },
 	height: 600
 });
 
 var elFinderInstnce = $(".elFinderDialog").elfinder(elfoptions).elfinder('instance');
+elFinderInstnce.customData['ticket'] = $(".elFinderDialog").data('ticket');
 // when changing folders update the buttons in the navebar above
 elFinderInstnce.bind("open", function (data) {
 	$.getJSON($.service('file_finder', 'finder'), {
@@ -358,7 +375,7 @@ window.handleFinderFile = function (file, elfinder) {
 		hash = file.hash;
 	}
 	$.ajax({
-		type: 'GET',
+		type: 'POST',
 		url: $.service('file_finder', 'finder'),
 		dataType: 'json',
 		data: {

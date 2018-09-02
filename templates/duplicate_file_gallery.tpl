@@ -2,6 +2,7 @@
 {if $tiki_p_create_file_galleries eq 'y' and $gal_info.type neq 'user'}
 	<h2>{tr}Duplicate File Gallery{/tr}</h2>
 	<form role="form" action="tiki-list_file_gallery.php{if isset($filegals_manager) and $filegals_manager neq ''}?filegals_manager={$filegals_manager}{/if}" method="post">
+		{ticket}
 		<div class="form-group row">
 			<label for="name" class="col-sm-4 col-form-label">{tr}Name{/tr}</label>
 			<div class="col-sm-8">
@@ -43,7 +44,13 @@
 			</div>
 		</div>
 		<div class="submit text-center">
-			<input type="submit" class="btn btn-primary" name="duplicate" value="{tr}Duplicate{/tr}">
+			<input
+				type="submit"
+				class="btn btn-primary"
+				name="duplicate"
+				onclick="checkTimeout()"
+				value="{tr}Duplicate{/tr}"
+			>
 		</div>
 	</form>
 {/if}

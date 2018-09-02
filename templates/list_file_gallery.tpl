@@ -1,14 +1,13 @@
 {* $Id$ *}
 
-{if (isset($tree)
-	and count($tree) gt 0
+{if (! empty($tree)
 	&& $tiki_p_list_file_galleries != 'n'
 	&& $fgal_options.show_explorer.value eq 'y'
 	&& $tiki_p_view_fgal_explorer eq 'y' )
 	or ( !empty($gallery_path) && $fgal_options.show_path.value eq 'y' && $tiki_p_view_fgal_path eq 'y' )
 }
 	<div class="fgal_top_bar form-group row">
-		{if isset($tree) and count($tree) gt 0 && $tiki_p_list_file_galleries != 'n'
+		{if ! empty($tree) && $tiki_p_list_file_galleries != 'n'
 			&& $fgal_options.show_explorer.value eq 'y' && $tiki_p_view_fgal_explorer eq 'y'}
 			{if $prefs.javascript_enabled eq 'y'}
 				<div id="fgalexplorer_close" style="float:left; vertical-align:middle; display:{if ! isset($smarty.session.tiki_cookie_jar.show_fgalexplorer) or $smarty.session.tiki_cookie_jar.show_fgalexplorer eq 'y'}none{else}inline{/if};">
@@ -45,7 +44,7 @@
 	</div>
 {/if}
 <div class="row">
-	{if isset($tree) && count($tree) gt 0 && $tiki_p_list_file_galleries != 'n'
+	{if ! empty($tree) && $tiki_p_list_file_galleries != 'n'
 		&& $fgal_options.show_explorer.value eq 'y' && $tiki_p_view_fgal_explorer eq 'y' && $view neq 'page'}
 		<div class="col-sm-3 fgalexplorer" id="fgalexplorer" style="{if ( isset($smarty.session.tiki_cookie_jar.show_fgalexplorer) and $smarty.session.tiki_cookie_jar.show_fgalexplorer neq 'y') and ( ! isset($smarty.request.show_fgalexplorer) or $smarty.request.show_fgalexplorer neq 'y' )}display:none;{/if}">
 			{$tree}
@@ -61,6 +60,7 @@
 			</div>
 		{/if}
 		<form name="fgalformid" id="fgalform" method="post" action="{if !empty($filegals_manager)}{query _type='relative' filegals_manager=$filegals_manager|escape}{else}{query _type='relative'}{/if}" enctype="multipart/form-data">
+			{ticket}
 			<input type="hidden" name="galleryId" value="{$gal_info.galleryId|escape}">
 			<input type="hidden" name="find" value="{$find|escape}">
 			{if !empty($show_details)}<input type="hidden" name="show_details" value="{$show_details}">{/if}
@@ -109,7 +109,11 @@
 									</option>
 								{/if}
 								{if $tiki_p_admin_file_galleries eq 'y' or $tiki_p_remove_files eq 'y'}
-									<option value="delsel_x">
+									<option
+										value="delsel_x"
+										class="confirm-simple"
+										data-confirm-text="{tr}Delete selected items?{/tr}"
+									>
 										{tr}Delete{/tr}
 									</option>
 								{/if}
@@ -128,7 +132,11 @@
 										{tr}Refresh metadata{/tr}
 									</option>
 									{if $tiki_p_admin_file_galleries eq 'y'}
-										<option value="defaultsel_x">
+										<option
+											value="defaultsel_x"
+											class="confirm-simple"
+											data-confirm-text="{tr}Reset to default list view settings?{/tr}"
+										>
 											{tr}Reset to default list view settings{/tr}
 										</option>
 									{/if}
@@ -138,7 +146,12 @@
 								{/if}
 							</select>
 							<span class="input-group-btn">
-								<button class="btn btn-secondary" form="fgalform" type="submit">
+								<button
+									class="btn btn-secondary"
+									form="fgalform"
+									type="submit"
+									onclick="confirmSimple(event)"
+								>
 									{tr}OK{/tr}
 								</button>
 							</span>
@@ -169,7 +182,14 @@
 								</div>
 							</div>
 							<div class="card-footer">
-								<input type='submit' class="btn btn-secondary" form="fgalform" name='movesel' value="{tr}Move{/tr}">
+								<input
+									type='submit'
+									class="btn btn-secondary"
+									form="fgalform"
+									name='movesel'
+									value="{tr}Move{/tr}"
+									onclick="checkTimeout()"
+								>
 							</div>
 						</div>
 					{/if}
@@ -206,7 +226,13 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<input class="btn btn-secondary" type="submit" name="permsel" value="{tr}Assign{/tr}">
+							<input
+								class="btn btn-secondary"
+								type="submit"
+								name="permsel"
+								value="{tr}Assign{/tr}"
+								onclick="checkTimeout()"
+							>
 						</div>
 					</div>
 				{/if}

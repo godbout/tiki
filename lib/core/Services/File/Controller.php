@@ -8,6 +8,9 @@
 class Services_File_Controller
 {
 	private $defaultGalleryId = 1;
+	/**
+	 * @var Services_File_Utilities $utilities
+	 */
 	private $utilities;
 
 	function setUp()
@@ -22,7 +25,7 @@ class Services_File_Controller
 	}
 
 	/**
-	 * Call to prepare the upload in modal dialg, and then after the upload has happened
+	 * Call to prepare the upload in modal dialog, and then after the upload has happened
 	 * Here we add a description if that's enabled
 	 *
 	 * @param JitFilter $input
@@ -35,7 +38,8 @@ class Services_File_Controller
 		$filegallib = TikiLib::lib('filegal');
 
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$util = new Services_Utilities();
+		if ($util->isActionPost()) {
 			if ($input->offsetExists('description')) {
 				$files = $input->asArray('file');
 				$descriptions = $input->asArray('description');
@@ -146,15 +150,19 @@ class Services_File_Controller
 			}
 			throw new Services_Exception(tr($message), 406);
 		}
-
-		if ($fileId) {
-			$this->utilities->updateFile($gal_info, $name, $size, $type, $data, $fileId, $asuser);
+		$util = new Services_Utilities();
+		if ($util->isActionPost()) {
+			if ($fileId) {
+				$this->utilities->updateFile($gal_info, $name, $size, $type, $data, $fileId, $asuser);
+			} else {
+				$fileId = $this->utilities->uploadFile($gal_info, $name, $size, $type, $data, $asuser, $image_x, $image_y);
+			}
 		} else {
-			$fileId = $this->utilities->uploadFile($gal_info, $name, $size, $type, $data, $asuser, $image_x, $image_y);
+			$fileId = false;
 		}
 
 		if ($fileId === false) {
-			throw new Services_Exception(tr('File could not be uploaded. Restrictions apply.'), 406);
+			throw new Services_Exception(tr('File could not be uploaded'), 406);
 		}
 
 		$cat_type = 'file';
@@ -164,6 +172,7 @@ class Services_File_Controller
 		$cat_href = "tiki-download_file.php?fileId=$fileId";
 		include('categorize.php');
 
+		$util->setTicket();
 		return [
 			'size' => $size,
 			'name' => $name,
@@ -171,6 +180,7 @@ class Services_File_Controller
 			'fileId' => $fileId,
 			'galleryId' => $gal_info['galleryId'],
 			'md5sum' => md5($data),
+			'ticket' => $util->getTicket()
 		];
 	}
 
@@ -187,8 +197,9 @@ class Services_File_Controller
 		global $user;
 		$filegallib = TikiLib::lib('filegal');
 		$output = ['files' => []];
+		$util = new Services_Utilities();
 
-		if (isset($_FILES['files']) && is_array($_FILES['files']['tmp_name'])) {
+		if (isset($_FILES['files']) && is_array($_FILES['files']['tmp_name']) && $util->checkCsrf()) {
 			// a few other params that are still arrays but shouldn't be (mostly)
 			if (is_array($input->galleryId->asArray())) {
 				$input->offsetSet('galleryId', $input->asArray('galleryId')[0]);
@@ -295,6 +306,8 @@ class Services_File_Controller
 		} else {
 			throw new Services_Exception_NotAvailable(tr('File could not be uploaded.'));
 		}
+		$util->setTicket();
+		$output['ticket'] = $util->getTicket();
 
 		return $output;
 	}

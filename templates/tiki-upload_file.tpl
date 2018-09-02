@@ -311,6 +311,7 @@
 			class="form-horizontal"
 			id="file_0"
 		>
+			{ticket}
 			<input type="hidden" name="simpleMode" value="{$simpleMode}">
 			{if !empty($filegals_manager)}
 				<input type="hidden" name="filegals_manager" value="{$filegals_manager}">
@@ -326,7 +327,13 @@
 				{include file='categorize.tpl'}<br>
 				<div id="page_bar" class="form-group row">
 					<div class="col-md-8 col-md-push-4">
-						<input name="upload" type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
+						<input
+							name="upload"
+							type="submit"
+							class="btn btn-primary"
+							value="{tr}Save{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
 				</div>
 			{elseif $prefs.javascript_enabled neq 'y'}
@@ -336,7 +343,13 @@
 					{include file='categorize.tpl'}<br>
 					<div id="page_bar" class="form-group row">
 						<div class="col-md-8 col-md-offset-4">
-							<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
+							<input
+								type="submit"
+								class="btn btn-primary btn-sm"
+								name="upload"
+								value="{tr}Upload{/tr}"
+								onclick="checkTimeout()"
+							>
 						</div>
 					</div>
 				{/if}

@@ -143,11 +143,16 @@ if (! isset($_GET['thumbnail']) && ! isset($_GET['icon'])) {
 		$logslib->add_action('Downloaded', $info['galleryId'], 'file gallery', 'fileId=' . $info['fileId']);
 	}
 
-	if (! empty($_REQUEST['lock'])) {
+	if (! empty($_REQUEST['lock']) && $access->checkCsrfForm(tr('Lock file?'))) {
 		if (! empty($info['lockedby']) && $info['lockedby'] != $user) {
-			$access->display_error('', tra(sprintf('The file has been locked by %s', $info['lockedby'])), 401);
+			Feedback::error(tr(sprintf('The file has been locked by %s', $info['lockedby'])));
 		}
-		$filegallib->lock_file($info['fileId'], $user);
+		$result = $filegallib->lock_file($info['fileId'], $user);
+		if ($result && $result->numRows()) {
+			Feedback::success(tr('File locked'));
+		} else {
+			Feedback::error(tr('File not locked'));
+		}
 	}
 }
 
