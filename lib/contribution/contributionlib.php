@@ -25,8 +25,7 @@ class ContributionLib extends TikiLib
 	function add_contribution($name, $description = '')
 	{
 		$query = 'insert into `tiki_contributions`(`name`, `description`) values(?, ?)';
-		$result = $this->query($query, [$name, $description]);
-		return $result;
+		return $this->query($query, [$name, $description]);
 	}
 
 	/**
@@ -37,8 +36,7 @@ class ContributionLib extends TikiLib
 	{
 		$query = 'select * from `tiki_contributions` where `contributionId`=?';
 		$result = $this->query($query, [(int)$contributionId]);
-		$ret = $result->fetchRow();
-		return $ret;
+		return $result->fetchRow();
 	}
 
 	/**
@@ -51,8 +49,7 @@ class ContributionLib extends TikiLib
 	function replace_contribution($contributionId, $name, $description = '')
 	{
 		$query = 'update `tiki_contributions` set `name`= ?, `description`=? where `contributionId`=?';
-		$result = $this->query($query, [$name, $description, (int)$contributionId]);
-		return $result;
+		return $this->query($query, [$name, $description, (int)$contributionId]);
 	}
 
 	/**
@@ -63,8 +60,7 @@ class ContributionLib extends TikiLib
 	function remove_contribution($contributionId)
 	{
 		$query = 'delete from `tiki_contributions`where `contributionId`=?';
-		$result = $this->query($query, [$contributionId]);
-		return $result;
+		return $this->query($query, [$contributionId]);
 	}
 
 	/**
