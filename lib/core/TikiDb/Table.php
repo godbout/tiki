@@ -101,6 +101,12 @@ class TikiDb_Table
 		return $this->updateMultiple($values, $conditions, 1);
 	}
 
+	/**
+	 * @param array $values
+	 * @param array $conditions
+	 * @param null $limit
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function updateMultiple(array $values, array $conditions, $limit = null)
 	{
 		$bindvars = [];
