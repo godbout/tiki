@@ -192,7 +192,7 @@
 									{if empty($propval)}
 										{assign var=propval value=''}
 									{else}
-										{if $gal_info.show_modtimedate eq 'y'}
+										{if isset($gal_info.show_modtimedate) && $gal_info.show_modtimedate eq 'y'}
 											{assign var=propval value=$propval|tiki_long_datetime}
 										{else}
 											{assign var=propval value=$propval|tiki_long_date}
@@ -202,7 +202,7 @@
 									{assign var=propval value=$propval|username}
 								{elseif $propname eq 'size'}
 									{assign var=propval value=$propval|kbsize:true}
-								{elseif $propname eq 'backlinks' and isset($files[changes].nbBacklinks)}
+								{elseif $propname eq 'backlinks' and ! empty($files[changes].nbBacklinks)}
 									{assign var=propval value=$files[changes].nbBacklinks}
 								{elseif $propname eq 'description'}
 									{assign var=propval value=$propval|nl2br}
@@ -233,7 +233,7 @@
 				{assign var=nb_over_share value=0}
 				{capture name=over_share}
 					{strip}
-						{if isset($files[changes].share.data)}
+						{if ! empty($files[changes].share.data)}
 							{foreach item=prop key=propname from=$files[changes].share.data}
 								<b>{$prop.email}</b>: {$prop.visit} / {$prop.maxhits}<br>
 								{assign var=nb_over_share value=$nb_over_share+1}
@@ -364,7 +364,7 @@
 							{if empty($propval)}
 								{assign var=propval value=''}
 							{else}
-								{if $gal_info.show_modtimedate eq 'y'}
+								{if isset($gal_info.show_modtimedate) && $gal_info.show_modtimedate eq 'y'}
 									{assign var=propval value=$propval|tiki_short_datetime}
 								{else}
 									{assign var=propval value=$propval|tiki_short_date}
