@@ -17,13 +17,16 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 class ContributionLib extends TikiLib
 {
 	/**
-	 * @param $name
+	 * @param        $name
 	 * @param string $description
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function add_contribution($name, $description = '')
 	{
 		$query = 'insert into `tiki_contributions`(`name`, `description`) values(?, ?)';
-		$this->query($query, [$name, $description]);
+		$result = $this->query($query, [$name, $description]);
+		return $result;
 	}
 
 	/**
@@ -39,23 +42,29 @@ class ContributionLib extends TikiLib
 	}
 
 	/**
-	 * @param $contributionId
-	 * @param $name
+	 * @param        $contributionId
+	 * @param        $name
 	 * @param string $description
+	 *
+	 * @return TikiDb_Pdo_Result
 	 */
 	function replace_contribution($contributionId, $name, $description = '')
 	{
 		$query = 'update `tiki_contributions` set `name`= ?, `description`=? where `contributionId`=?';
-		$this->query($query, [$name, $description, (int)$contributionId]);
+		$result = $this->query($query, [$name, $description, (int)$contributionId]);
+		return $result;
 	}
 
 	/**
 	 * @param $contributionId
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_contribution($contributionId)
 	{
 		$query = 'delete from `tiki_contributions`where `contributionId`=?';
-		$this->query($query, [$contributionId]);
+		$result = $this->query($query, [$contributionId]);
+		return $result;
 	}
 
 	/**

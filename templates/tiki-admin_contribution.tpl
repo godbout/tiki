@@ -2,9 +2,10 @@
 
 {title help="Contribution"}{tr}Admin Contributions{/tr}{/title}
 
-{if $contribution}
+{if ! empty($contribution)}
 	<h2>{tr}Edit the contribution:{/tr} {$contribution.name|escape}</h2>
 	<form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" role="form">
+		{ticket}
 		<input type="hidden" name="contributionId" value="{$contribution.contributionId}">
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr}</label>
@@ -19,14 +20,14 @@
 			</div>
 		</div>
 		<div class="form-group text-center">
-			<input type="submit" class="btn btn-primary btn-sm" name="replace" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-primary btn-sm" name="replace" value="{tr}Save{/tr}" onclick="checkTimeout()">
 		</div>
 	</form>
 {/if}
 
 <h2>{tr}Settings{/tr}</h2>
 <form action="tiki-admin_contribution.php?page=features" method="post" role="form">
-
+	{ticket}
 	<div class="form-group row">
 		<div class="form-check">
 			<label class="col-sm-11 col-sm-offset-1 form-check-label" for=feature_contribution_mandatory">
@@ -76,7 +77,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary" name="setting" value="{tr}Save{/tr}">
+		<input type="submit" class="btn btn-primary" name="setting" value="{tr}Save{/tr}" onclick="checkTimeout()">
 	</div>
 </form>
 
@@ -84,6 +85,7 @@
 <h2>{tr}Create a new contribution{/tr}</h2>
 
 <form enctype="multipart/form-data" action="tiki-admin_contribution.php" method="post" role="form">
+	{ticket}
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="new_contribution_name">{tr}Name{/tr}</label>
 		<div class="col-sm-9">
@@ -97,7 +99,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
+		<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}" onclick="checkTimeout()">
 	</div>
 </form>
 <h2>{tr}List of contributions{/tr}</h2>
@@ -122,7 +124,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_contribution.php?remove={$contributions[ix].contributionId}">
+								<a href="tiki-admin_contribution.php?remove={$contributions[ix].contributionId}" onclick="confirmSimple(event, '{tr}Remove contribution?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>
