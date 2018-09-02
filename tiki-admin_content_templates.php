@@ -82,13 +82,21 @@ $cat_objid = $_REQUEST['templateId'];
 include_once("categorize_list.php");
 
 $smarty->assign_by_ref('info', $info);
-if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$templateslib->remove_template($_REQUEST["remove"]);
+if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove template?'))) {
+	$result = $templateslib->remove_template($_REQUEST["remove"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Template removed'));
+	} else {
+		Feedback::error(tr('Template not removed'));
+	}
 }
-if (isset($_REQUEST["removesection"])) {
-	$access->check_authenticity();
-	$templateslib->remove_template_from_section($_REQUEST["rtemplateId"], $_REQUEST["removesection"]);
+if (isset($_REQUEST["removesection"]) && $access->checkCsrfForm(tr('Remove section?'))) {
+	$result = $templateslib->remove_template_from_section($_REQUEST["rtemplateId"], $_REQUEST["removesection"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Section removed'));
+	} else {
+		Feedback::error(tr('Section not removed'));
+	}
 }
 $smarty->assign('preview', 'n');
 if (isset($_REQUEST["preview"])) {
@@ -136,8 +144,7 @@ if (isset($_REQUEST["preview"])) {
 
 	$cookietab = 2;
 }
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-content-templates');
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	$type = $_REQUEST['template_type'];
 
 	if ($type == 'page') {
@@ -158,6 +165,12 @@ if (isset($_REQUEST["save"])) {
 		$info["section_events"] = 'n';
 		$info["section_html"] = 'n';
 		$smarty->assign('info', $info);
+		if ($tid) {
+			Feedback::success(tr('Template %0 created or modified', htmlspecialchars($_REQUEST["name"])));
+		} else {
+			Feedback::error(tr('Template %0 not created or modified', htmlspecialchars($_REQUEST["name"])));
+		}
+
 		if (isset($_REQUEST["section_cms"]) && $_REQUEST["section_cms"] == 'on') {
 			$templateslib->add_template_to_section($tid, 'cms');
 		} else {
@@ -287,7 +300,6 @@ if ($_REQUEST['templateId']) {
 $smarty->assign('canEdit', $canEdit);
 
 $smarty->assign_by_ref('channels', $channels["data"]);
-ask_ticket('admin-content-templates');
 $wikilib = TikiLib::lib('wiki');
 
 // disallow robots to index page:
