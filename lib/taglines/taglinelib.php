@@ -66,8 +66,7 @@ class TagLineLib extends TikiLib
 			$result = $this->query($query, $bindvars);
 			$query = "insert into `tiki_cookies`(`cookie`) values(?)";
 		}
-		$result = $this->query($query, $bindvars);
-		return $result;
+		return $this->query($query, $bindvars);
 	}
 
 	/**
@@ -78,13 +77,13 @@ class TagLineLib extends TikiLib
 	public function remove_cookie($cookieId)
 	{
 		$query = "delete from `tiki_cookies` where `cookieId`=?";
-		$result = $this->query($query, [(int) $cookieId]);
-		return $result;
+		return $this->query($query, [(int) $cookieId]);
 	}
 
 	/**
 	 * @param $cookieId
-	 * @return bool
+	 *
+	 * @return array|bool
 	 */
 	public function get_cookie($cookieId)
 	{
@@ -94,8 +93,7 @@ class TagLineLib extends TikiLib
 			return false;
 		}
 
-		$res = $result->fetchRow();
-		return $res;
+		return $result->fetchRow();
 	}
 
 	/**
@@ -104,8 +102,7 @@ class TagLineLib extends TikiLib
 	public function remove_all_cookies()
 	{
 		$query = "delete from `tiki_cookies`";
-		$result = $this->query($query, []);
-		return $result;
+		return $this->query($query, []);
 	}
 }
 $taglinelib = new TagLineLib;
