@@ -11,7 +11,7 @@
 {/if}
 
 {if !empty($addedGroups) || !empty($deletedGroups) || !empty($addedGroupsDesc) || !empty($deletedGroupsDesc)}
-	{remarksbox type="feedback"}
+	{remarksbox type="feedback" title="{tr}Success{/tr}"}
 		<div class="clearfix">
 			{if !empty($addedGroups) || !empty($deletedGroups)}
 				<div style="float:left;clear:both;">
