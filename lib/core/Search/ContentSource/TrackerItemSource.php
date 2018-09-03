@@ -1,5 +1,5 @@
 <?php
-// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright 2002-2016 by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -36,10 +36,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 			required semantics.
 		*/
 
-		$data = [
-			'title' => $typeFactory->sortable(tr('Unknown')),
-			'language' => $typeFactory->identifier('unknown'),
-		];
+		$data = [];
 
 		$item = $this->trklib->get_tracker_item($objectId);
 
@@ -87,6 +84,13 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 			],
 			$data
 		);
+
+		if (empty($data['title'])) {
+			$data['title'] = $typeFactory->sortable(tr('Unknown'));
+		}
+		if (empty($data['language'])) {
+			$data['language'] = $typeFactory->identifier('unknown');
+		}
 
 		return $data;
 	}
