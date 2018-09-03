@@ -2,6 +2,7 @@
 
 <h2>{tr}Create/Edit External Wiki{/tr}</h2>
 <form action="tiki-admin_external_wikis.php" method="post" class="form-horizontal" role="form">
+	{ticket}
 	<input type="hidden" name="extwikiId" value="{$extwikiId|escape}">
 	<div class="form-group row">
 		<label for="name" class="col-sm-3 col-form-label">{tr}Name{/tr}</label>
@@ -31,7 +32,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
 	</div>
 </form>
 
@@ -61,7 +62,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].extwikiId}">
+								<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].extwikiId}" onclick="confirmSimple(event, '{tr}Remove external wiki?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

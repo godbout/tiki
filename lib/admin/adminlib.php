@@ -161,6 +161,7 @@ class AdminLib extends TikiLib
 	 * @param string $indexName
 	 * @param array  $groups
 	 *
+	 * @return array|bool|mixed
 	 */
 	function replace_extwiki($extwikiId, $extwiki, $name, $indexName = '', $groups = [])
 	{
@@ -173,18 +174,20 @@ class AdminLib extends TikiLib
 		];
 		$withId = $data;
 		$withId['extwikiId'] = $extwikiId;
-		$table->insertOrUpdate($withId, $data);
+		return $table->insertOrUpdate($withId, $data);
 	}
 
 	/**
 	 * Removes a configuration option of an external wiki
 	 *
 	 * @param $extwikiId int Id of the external wiki to be removed
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_extwiki($extwikiId)
 	{
 		$query = "delete from `tiki_extwiki` where `extwikiId`=?";
-		$this->query($query, [$extwikiId]);
+		return $this->query($query, [$extwikiId]);
 	}
 
 	/**
