@@ -75,6 +75,9 @@ class TikiDb_Table
 		if ($this->autoIncrement) {
 			if ($insertedId = $this->db->lastInsertId()) {
 				return $insertedId;
+			//Multiple actions in a query (e.g., INSERT + UPDATE) returns result class instead of the id number
+			} elseif (is_object($result)) {
+				return $result;
 			} else {
 				return false;
 			}
