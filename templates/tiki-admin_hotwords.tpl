@@ -5,7 +5,7 @@
 <h2>{tr}Add Hotword{/tr}</h2>
 
 <form method="post" action="tiki-admin_hotwords.php" class="form-horizontal">
-
+	{ticket}
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Word{/tr}</label>
 		<div class="col-sm-7 col-sm-offset-1">
@@ -21,7 +21,7 @@
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7 col-sm-offset-1">
-			<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
+			<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}" onclick="checkTimeout()">
 		</div>
 	</div>
 </form>
@@ -47,7 +47,7 @@
 			<td class="text">{$words[user].word}</td>
 			<td class="text">{$words[user].url}</td>
 			<td class="action">
-				<a class="tips" href="tiki-admin_hotwords.php?remove={$words[user].word|escape:"url"}{if $offset}&amp;offset={$offset}{/if}&amp;sort_mode={$sort_mode}" title=":{tr}Delete{/tr}">
+				<a class="tips" href="tiki-admin_hotwords.php?remove={$words[user].word|escape:"url"}{if $offset}&amp;offset={$offset}{/if}&amp;sort_mode={$sort_mode}" title=":{tr}Delete{/tr}" onclick="confirmSimple(event, '{tr}Delete hotword?{/tr}', '{ticket mode=get}')">
 					{icon name='remove'}
 				</a>
 			</td>
