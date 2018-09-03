@@ -43,12 +43,16 @@ class TikiDb_Table
 		$bindvars = [];
 		$query = $this->buildInsert($values, $ignore, $bindvars);
 
-		$this->db->queryException($query, $bindvars);
+		$result = $this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
 			if ($insertedId = $this->db->lastInsertId()) {
 				return $insertedId;
+			} else {
+				return false;
 			}
+		} else {
+			return $result;
 		}
 	}
 
@@ -66,12 +70,16 @@ class TikiDb_Table
 		$query .= ' ON DUPLICATE KEY UPDATE ';
 		$query .= $this->buildUpdateList($data, $bindvars);
 
-		$this->db->queryException($query, $bindvars);
+		$result = $this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
 			if ($insertedId = $this->db->lastInsertId()) {
 				return $insertedId;
+			} else {
+				return false;
 			}
+		} else {
+			return $result;
 		}
 	}
 
