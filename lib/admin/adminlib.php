@@ -57,6 +57,8 @@ class AdminLib extends TikiLib
 	 * @param $dsnId
 	 * @param $dsn
 	 * @param $name
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function replace_dsn($dsnId, $dsn, $name)
 	{
@@ -64,24 +66,26 @@ class AdminLib extends TikiLib
 		if ($dsnId) {
 			$query = "update `tiki_dsn` set `name`=?,`dsn`=? where `dsnId`=?";
 			$bindvars = [$name, $dsn, $dsnId];
-			$this->query($query, $bindvars);
+			return $this->query($query, $bindvars);
 		} else {
 			$query = "delete from `tiki_dsn`where `name`=? and `dsn`=?";
 			$bindvars = [$name, $dsn];
 			$this->query($query, $bindvars);
 			$query = "insert into `tiki_dsn`(`name`,`dsn`)
                 		values(?,?)";
-			$this->query($query, $bindvars);
+			return $this->query($query, $bindvars);
 		}
 	}
 
 	/**
 	 * @param int $dsnId
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_dsn($dsnId)
 	{
 		$query = "delete from `tiki_dsn` where `dsnId`=?";
-		$this->query($query, [$dsnId]);
+		return $this->query($query, [$dsnId]);
 	}
 
 	/**

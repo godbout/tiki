@@ -25,13 +25,21 @@ if ($_REQUEST["dsnId"]) {
 	$info['name'] = '';
 }
 $smarty->assign('info', $info);
-if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$adminlib->remove_dsn($_REQUEST["remove"]);
+if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove DSN?'))) {
+	$result = $adminlib->remove_dsn($_REQUEST["remove"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('DSN removed'));
+	} else {
+		Feedback::error(tr('DSN not removed'));
+	}
 }
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-dsn');
-	$adminlib->replace_dsn($_REQUEST["dsnId"], $_REQUEST["dsn"], $_REQUEST['name']);
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
+	$result = $adminlib->replace_dsn($_REQUEST["dsnId"], $_REQUEST["dsn"], $_REQUEST['name']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('DSN created or modified'));
+	} else {
+		Feedback::error(tr('DSN not created or modified'));
+	}
 	$info = [];
 	$info["dsn"] = '';
 	$info['name'] = '';
@@ -60,7 +68,6 @@ $smarty->assign_by_ref('sort_mode', $sort_mode);
 $channels = $adminlib->list_dsn($offset, $maxRecords, $sort_mode, $find);
 $smarty->assign_by_ref('cant_pages', $channels["cant"]);
 $smarty->assign_by_ref('channels', $channels["data"]);
-ask_ticket('admin-dsn');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

@@ -6,6 +6,7 @@
 
 <h2>{tr}Create/edit DSN{/tr}</h2>
 <form action="tiki-admin_dsn.php" method="post" class="form-horizontal" role="form">
+	{ticket}
 	<input type="hidden" name="dsnId" value="{$dsnId|escape}">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr}</label>
@@ -20,7 +21,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
 	</div>
 </form>
 <h2>{tr}DSN{/tr}</h2>
@@ -59,7 +60,7 @@
 								{permission_link mode=text type=dsn id=$channels[user].name title=$channels[user].name}
 							</action>
 							<action>
-								<a href="tiki-admin_dsn.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].dsnId}">
+								<a id="delete-link" href="tiki-admin_dsn.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].dsnId}" onclick="confirmSimple(event, '{tr}Remove DSN?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>
@@ -75,6 +76,7 @@
 
 <h2>{tr}Content Authentication{/tr}</h2>
 <form id="source-form" method="post" action="{service controller=auth_source}" class="form-horizontal" role="form">
+	{ticket}
 	<fieldset>
 		<legend>{tr}Identification{/tr}</legend>
 		<div class="form-group row">
@@ -97,7 +99,7 @@
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="method">{tr}Type{/tr}</label>
 			<div class="col-sm-4">
-				<select name="method" id="method">
+				<select name="method" id="method" class="form-control">
 					<option value="basic">{tr}HTTP Basic{/tr}</option>
 					<option value="post">{tr}HTTP Session / Login{/tr}</option>
 					<option value="get">{tr}HTTP Session / Visit{/tr}</option>
@@ -122,30 +124,47 @@
 	</fieldset>
 	<fieldset class="method post">
 		<legend>{tr}HTTP Session / Login{/tr}</legend>
-		<label>{tr}URL{/tr} <input type="url" name="post_url"></label>
-		<table>
-			<thead>
-				<tr><th>{tr}Name{/tr}</th><th>{tr}Value{/tr}</th></tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td><input type="text" name="post_new_field"></td>
-					<td><input type="text" name="post_new_value"></td>
-					<td><input type="submit" class="btn btn-primary btn-sm" name="post_new_add" value="{tr}Add{/tr}"></td>
-				</tr>
-			</tfoot>
-			<tbody>
-			</tbody>
-		</table>
+		<div class="form-group row">
+			<label class="col-sm-3 col-form-label" for="post_url">{tr}URL{/tr}</label>
+			<div class="col-sm-9">
+				<input type="url" name="post_url" id="post_url" class="form-control">
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-9 col-sm-offset-3">
+				<table class="col-sm-9 col-sm-offset-3">
+					<thead>
+					<tr><th>{tr}Name{/tr}</th><th>{tr}Value{/tr}</th></tr>
+					</thead>
+					<tfoot>
+					<tr>
+						<td><input type="text" name="post_new_field"></td>
+						<td><input type="text" name="post_new_value"></td>
+						<td><input type="submit" class="btn btn-primary btn-sm" name="post_new_add" value="{tr}Add{/tr}"></td>
+					</tr>
+					</tfoot>
+					<tbody>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
 	</fieldset>
 	<fieldset class="method get">
 		<legend>{tr}HTTP Session / Visit{/tr}</legend>
-		<label>{tr}URL{/tr} <input type="url" name="get_url"></label>
+		<div class="form-group row">
+			<label class="col-sm-3 col-form-label" for="get_url">{tr}URL{/tr}</label>
+			<div class="col-sm-9">
+				<input type="url" name="get_url" id="get_url" class="form-control">
+			</div>
+		</div>
 	</fieldset>
 	<fieldset>
 		<div class="form-group text-center">
+			{* checkTimeout() onclick function applied in JQuery code below *}
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
-			<input type="submit" class="btn btn-primary btn-sm" name="delete" value="{tr}Delete{/tr}">
+			<input type="submit" class="btn btn-primary" name="delete" value="{tr}Delete{/tr}">
 		</div>
 	</fieldset>
 </form>
@@ -171,21 +190,15 @@ $('#source-form').each(function () {
 				return false;
 			}));
 			$('fieldset.method.post tbody', form).append(row);
-		};
-
-	$(form).submit(function () {
-		return false;
-	});
-
-	$(form.existing).change(function () {
-		var val = $(this).val();
-
-		if (val.length) {
-			$(form.identifier).hide().val(val);
+		},
+		fetchAuthentication = function(identifier) {
+			$(form.identifier).hide();
 
 			$.getJSON($.service('auth_source', 'fetch'), {
-				identifier: $(form.existing).val()
+				identifier: identifier
 			}, function (data) {
+				var id = data.identifier;
+				$(form.existing).val(id);
 				$(form.method).val(data.method).change();
 				$(form.url).val(data.url);
 
@@ -207,9 +220,20 @@ $('#source-form').each(function () {
 					break;
 				}
 			});
+		};
+
+	$(form).submit(function () {
+		return false;
+	});
+
+	$(form.existing).change(function () {
+		var val = $(this).val();
+
+		if (val.length) {
+			fetchAuthentication($(form.existing).val());
 		} else {
 			$(form.identifier).show().val('').focus();
-			$('input:not(:submit)', form).val('');
+			$('input:not(:submit):not([name=ticket])', form).val('');
 			$('fieldset.method.post tbody').empty();
 		}
 	});
@@ -222,11 +246,13 @@ $('#source-form').each(function () {
 	reload();
 
 	$(form.save).click(function () {
+		checkTimeout();
 		var data = {
 			action: 'save',
 			identifier: $(form.identifier).val(),
 			url: $(form.url).val(),
-			method: $(form.method).val()
+			method: $(form.method).val(),
+			ticket: $(form.ticket).val()
 		}, isNew = $(form.existing).val() === '';
 
 		switch (data.method) {
@@ -255,27 +281,46 @@ $('#source-form').each(function () {
 
 			$(form.existing).val(data.identifier).change();
 			$(form.existing).trigger('chosen:updated');
+		}, 'json')
+		.done(function (data) {
+			location.href = location.href.replace(/\?.*$/, "") + '?identifier=' + encodeURIComponent(data.identifier);
 		});
 		return false;
 	});
 
 	$(form.delete).click(function () {
-		$.post($(form).attr('action'), {
-			action: 'delete',
-			identifier: $(form.existing).val()
-		}, function () {
-			$(form.existing).val('').change();
-			reload();
-		});
-		return false;
+		checkTimeout();
+		if (confirm(tr('Delete authentication?'))) {
+			$.post($(form).attr('action'), {
+				action: 'delete',
+				identifier: $(form.existing).val(),
+				ticket: $(form.ticket).val()
+			}, function () {
+				$(form.existing).val('').change();
+				reload();
+			}, 'json')
+			.done(function (data) {
+				location.href = location.href.replace(/\?.*$/, "");
+			});
+			return false;
+		}
 	});
 
 	$(form.post_new_add).click(function () {
 		addPostRow($(form.post_new_field).val(), $(form.post_new_value).val());
-
 		$(form.post_new_field).val('').focus();
 		$(form.post_new_value).val('');
 		return false;
 	});
+
+	if (location.href.indexOf('identifier=') > -1) {
+		var oneparam = [], paramarray = {}, urlparams = location.href.slice(location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < urlparams.length; i++) {
+			oneparam = urlparams[i].split('=');
+			paramarray[oneparam[0]] = decodeURIComponent(oneparam[1]);
+		}
+		fetchAuthentication(paramarray['identifier']);
+	}
+
 });
 {/jq}
