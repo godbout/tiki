@@ -91,13 +91,13 @@
 											{if isset($tiki_p_forum_lock) and $tiki_p_forum_lock eq 'y'}
 												{if $channels[user].is_locked eq 'y'}
 													<action>
-														{self_link _icon_name='unlock' _menu_text='y' _menu_icon='y' lock='n' forumId=$channels[user].forumId}
+														{self_link _icon_name='unlock' _menu_text='y' _menu_icon='y' lock='n' forumId=$channels[user].forumId _onclick="confirmSimple(event, '{tr}Unlock forum?{/tr}', '{ticket mode=get}')"}
 															{tr}Unlock{/tr}
 														{/self_link}
 													</action>
 												{else}
 													<action>
-														{self_link _icon_name='lock' _menu_text='y' _menu_icon='y' lock='y' forumId=$channels[user].forumId}
+														{self_link _icon_name='lock' _menu_text='y' _menu_icon='y' lock='y' forumId=$channels[user].forumId _onclick="confirmSimple(event, '{tr}Lock forum?{/tr}', '{ticket mode=get}')"}
 															{tr}Lock{/tr}
 														{/self_link}
 													</action>
@@ -180,6 +180,7 @@
 				{/if}
 
 				<form action="tiki-admin_forums.php" method="post" role="form">
+					{ticket}
 					<input type="hidden" name="forumId" value="{$forumId|escape}">
 					<fieldset>
 						<legend>{tr}Main details{/tr}</legend>
@@ -583,13 +584,20 @@
 					</fieldset>
 
 					<div class="text-center">
-						<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
+						<input
+							type="submit"
+							class="btn btn-secondary"
+							name="save"
+							value="{tr}Save{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
 				</form>
 
 			{else}{*duplicate*}
 				<h2>{tr}Duplicate Forum{/tr}</h2>
 				<form action="tiki-admin_forums.php" method="post" role="form">
+					{ticket}
 					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="duplicate_name">{tr}Name{/tr}</label>
 						<div class="col-sm-8">
@@ -625,7 +633,13 @@
 						</div>
 					</div>
 					<div class="text-center">
-						<input type="submit" class="btn btn-primary" name="duplicate" value="{tr}Duplicate{/tr}">
+						<input
+							type="submit"
+							class="btn btn-primary"
+							name="duplicate"
+							value="{tr}Duplicate{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
 				</form>
 			{/if}
