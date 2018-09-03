@@ -26,9 +26,13 @@ if ($_REQUEST["pageName"]) {
 	$info["type"] = 's';
 }
 $smarty->assign('info', $info);
-if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$htmlpageslib->remove_html_page($_REQUEST["remove"]);
+if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove HTML page?'))) {
+	$result = $htmlpageslib->remove_html_page($_REQUEST["remove"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('HTML page removed'));
+	} else {
+		Feedback::error(tr('HTML page not removed'));
+	}
 }
 if (isset($_REQUEST["templateId"]) && $_REQUEST["templateId"] > 0) {
 	$template_data = TikiLib::lib('template')->get_template($_REQUEST["templateId"]);
@@ -47,9 +51,13 @@ if (isset($_REQUEST["preview"])) {
 	$info["type"] = $_REQUEST["type"];
 	$smarty->assign('info', $info);
 }
-if (isset($_REQUEST["save"]) && ! empty($_REQUEST["pageName"])) {
-	check_ticket('admin-html-pages');
+if (isset($_REQUEST["save"]) && ! empty($_REQUEST["pageName"]) && $access->checkCsrf()) {
 	$tid = $htmlpageslib->replace_html_page($_REQUEST["pageName"], $_REQUEST["type"], $_REQUEST["content"], $_REQUEST["refresh"]);
+	if ($tid) {
+		Feedback::success(tr('HTML page saved'));
+	} else {
+		Feedback::error(tr('HTML page not saved'));
+	}
 	$smarty->assign("pageName", '');
 	$info["pageName"] = '';
 	$info["content"] = '';
@@ -81,7 +89,6 @@ $smarty->assign_by_ref('channels', $channels["data"]);
 $templates = TikiLib::lib('template')->list_templates('html', 0, -1, 'name_asc', '');
 
 $smarty->assign_by_ref('templates', $templates["data"]);
-ask_ticket('admin-html-pages');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

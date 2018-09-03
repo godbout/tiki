@@ -18,14 +18,13 @@ class HtmlPagesLib extends TikiLib
 {
 	/**
 	 * @param $pageName
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_html_page($pageName)
 	{
 		$query = 'delete from `tiki_html_pages` where binary `pageName`=?';
-		$result = $this->query($query, [$pageName]);
-
-		return true;
+		return $this->query($query, [$pageName]);
 	}
 
 	/**
@@ -179,27 +178,25 @@ class HtmlPagesLib extends TikiLib
 	 * @param $pageName
 	 * @param $zone
 	 * @param $content
-	 * @return mixed
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function replace_html_page_content($pageName, $zone, $content)
 	{
 		$query = 'update `tiki_html_pages_dynamic_zones` set `content`=? where binary `pageName`=? and `zone`=?';
-		$result = $this->query($query, [$content, $pageName, $zone]);
-
-		return $zone;
+		return $this->query($query, [$content, $pageName, $zone]);
 	}
 
 	/**
 	 * @param $pageName
 	 * @param $zone
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_html_page_content($pageName, $zone)
 	{
 		$query = 'delete from `tiki_html_pages_dynamic_zones` where binary `pageName`=? and `zone`=?';
-		$result = $this->query($query, [$pageName, $zone]);
-
-		return true;
+		return $this->query($query, [$pageName, $zone]);
 	}
 
 	/**
