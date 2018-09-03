@@ -311,11 +311,10 @@ class TemplatesLib extends TikiLib
 	{
 		TikiLib::lib('access')->check_permission('edit_content_templates', 'Edit template', 'template', $templateId);
 
-		$result = $this->query(
+		return $this->query(
 			"delete from `tiki_content_templates_sections` where `templateId`=? and `section`=?",
 			array((int) $templateId, $section)
 		);
-		return $result;
 	}
 
     /**
