@@ -14,31 +14,20 @@ $force_no_compression = true;
 $skip = false;
 $thumbnail_format = 'jpeg';
 
-if (isset($_GET['fileId']) && isset($_GET['thumbnail']) && isset($_COOKIE[ session_name() ]) && count($_GET) == 2) {
-	$tikiroot = dirname($_SERVER['PHP_SELF']);
-	$session_params = session_get_cookie_params();
-	session_set_cookie_params($session_params['lifetime'], $tikiroot);
-	unset($session_params);
-	session_start();
+require_once('tiki-setup.php');
 
-	if (isset($_SESSION['allowed'][$_GET['fileId']])) {
-		require_once 'tiki-setup_base.php';
-
-		$query = "select * from `tiki_files` where `fileId`=?";
-		$result = $tikilib->query($query, [(int)$_GET['fileId']]);
-		if ($result) {
-			$info = $result->fetchRow();
-			$skip = true;
-		} else {
-			$info = [];
-		}
+if (isset($_GET['fileId']) && isset($_GET['thumbnail']) && isset($_COOKIE[ session_name() ]) && count($_GET) == 2 && isset($_SESSION['allowed'][$_GET['fileId']])) {
+	$query = "select * from `tiki_files` where `fileId`=?";
+	$result = $tikilib->query($query, [(int)$_GET['fileId']]);
+	if ($result) {
+		$info = $result->fetchRow();
+		$skip = true;
 	} else {
-		session_write_close();
+		$info = [];
 	}
 }
 
 if (! $skip) {
-	require_once('tiki-setup.php');
 	$filegallib = TikiLib::lib('filegal');
 	$access->check_feature('feature_file_galleries');
 }
