@@ -41,7 +41,12 @@
 					<td>{$attachements[x].created|tiki_short_date}</td>
 					<td>{$attachements[x].hits}</td>
 					<td>
-						<a href="tiki-admin.php?page=wikiatt&amp;attId={$attachements[x].attId}&amp;action={$move}" onclick="confirmSimple(event, '{$confirm}', '{ticket mode=get}')" class="tips" title=":{$tip}">{icon name=move}</a>
+						<form action="tiki-admin.php?page=wikiatt" method="post">
+							{ticket}
+							<input type="hidden" name="attId" value="{$attachements[x].attId}&amp;action={$move}">
+							<input type="hidden" name="action" value="{$move}">
+							<button  class="btn btn-link tips" title=":{$tip}" onclick="confirmSimple(event, '{$confirm}')">{icon name=move}</button>
+						</form>
 					</td>
 				</tr>
 			{sectionelse}
