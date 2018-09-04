@@ -146,6 +146,7 @@ class Search_Formatter_Builder
 	private function handleOutput($output)
 	{
 		$smarty = TikiLib::lib('smarty');
+		$tikilib = TikiLib::lib('tiki');
 		$arguments = $this->parser->parse($output->getArguments());
 
 		if (isset($arguments['template'])) {
@@ -189,14 +190,15 @@ class Search_Formatter_Builder
 			$plugin->setData($outputData);
 			$plugin->setFields($this->findFields($outputData, $templateData));
 		} elseif (isset($arguments['tplwiki'])) {
-			if (TikiLib::lib('tiki')->page_exists($arguments['tplwiki'])) {
+			if ($tikilib->page_exists($arguments['tplwiki'])) {
 				$wikitpl = "tplwiki:" . $arguments['tplwiki'];
 				$abuilder = new Search_Formatter_ArrayBuilder;
 				$outputData = $abuilder->getData($output->getBody());
 				foreach ($this->paginationArguments as $k => $v) {
 					$outputData[$k] = $this->paginationArguments[$k];
 				}
-				$wikicontent = $smarty->fetch($wikitpl);
+				$data = $tikilib->get_page_info($arguments['tplwiki']);
+				$wikicontent = $data['data'];
 				$plugin = new Search_Formatter_Plugin_SmartyTemplate($wikitpl);
 				$plugin->setData($outputData);
 				$plugin->setFields($this->findFields($outputData, $wikicontent));
@@ -204,7 +206,7 @@ class Search_Formatter_Builder
 				Feedback::error(tr('Template tplwiki page "%0" not found', $arguments['tplwiki']));
 			}
 		} elseif (isset($arguments['wiki'])) {
-			if (TikiLib::lib('tiki')->page_exists($arguments['wiki'])) {
+			if ($tikilib->page_exists($arguments['wiki'])) {
 				$wikitpl = "tplwiki:" . $arguments['wiki'];
 				$wikicontent = $smarty->fetch($wikitpl);
 				$plugin = new Search_Formatter_Plugin_WikiTemplate($wikicontent);
