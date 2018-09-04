@@ -1852,8 +1852,8 @@ if (isset($prefs) && $prefs['feature_blogs'] == 'y') {
 $fcts = array(
 		 array(
 			'function' => 'exec',
-			'risky' => tra('Exec can potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled.'),
-			'safe' => tra('Exec can be potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; it is good that it is disabled.')
+			'risky' => tra('Exec can potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled.') . ' ' . tra('However, the Plugins R/RR need it. If you use the Plugins R/RR and the other PHP software on the server can be trusted, this should be enabled.'),
+			'safe' => tra('Exec can be potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki needs it to run the Plugins R/RR.') . tra('If this is needed and the other PHP software on the server can be trusted, this should be enabled.')
 		 ),
 		 array(
 			'function' => 'passthru',

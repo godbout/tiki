@@ -975,6 +975,11 @@ function runR($output, $convert, $sha1, $input, $r_echo, $ws, $params, $user, $r
 		if (strncmp(PHP_OS, 'WIN', 3) == 0) {
 			$cmd = str_replace('/', '\\', $cmd);
 		}
+		// function_exists('exec') doe not seem to cover all restrictions. Ref: https://stackoverflow.com/questions/2749591/php-exec-check-if-enabled-or-disabled
+		if (! exec('echo EXEC') == 'EXEC') {
+			$runR_errors = ['error' => true, 'type' => 'error', 'title' => 'command unavailable', 'body' => 'Function "exec" is required for Plugin R/RR. It is probably disabled.'];
+			return;
+		}
 		$stdout = "";
 		exec($cmd, $stdout);
 		if (is_array($stdout)) {
