@@ -18,45 +18,52 @@ class FlinksLib extends TikiLib
 {
 
 	/**
-	 * @param $url
-	 * @param $title
+	 * @param        $url
+	 * @param        $title
 	 * @param string $description
-	 * @param int $position
+	 * @param int    $position
 	 * @param string $type
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function add_featured_link($url, $title, $description = '', $position = 0, $type = 'f')
 	{
 		$query = "delete from `tiki_featured_links` where `url`=?";
-		$result = $this->query($query, [$url], -1, -1, false);
+		$this->query($query, [$url], -1, -1, false);
 		$query = "insert into `tiki_featured_links`(`url`,`title`,`description`,`position`,`hits`,`type`) values(?,?,?,?,?,?)";
-		$result = $this->query($query, [$url,$title,$description,$position,0,$type]);
+		return $this->query($query, [$url,$title,$description,$position,0,$type]);
 	}
 
 	/**
 	 * @param $url
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_featured_link($url)
 	{
 		$query = "delete from `tiki_featured_links` where `url`=?";
-		$result = $this->query($query, [$url]);
+		return $this->query($query, [$url]);
 	}
 
 	/**
-	 * @param $url
-	 * @param $title
-	 * @param $description
-	 * @param int $position
+	 * @param        $url
+	 * @param        $title
+	 * @param        $description
+	 * @param int    $position
 	 * @param string $type
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function update_featured_link($url, $title, $description, $position = 0, $type = 'f')
 	{
 		$query = "update `tiki_featured_links` set `title`=?, `type`=?, `description`=?, `position`=? where `url`=?";
-
-		$result = $this->query($query, [$title,$type,$description,$position,$url]);
+		return $this->query($query, [$title,$type,$description,$position,$url]);
 	}
 
 	/**
 	 * @param $url
+	 *
+	 * @return bool|TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function add_featured_link_hit($url)
 	{
@@ -64,13 +71,16 @@ class FlinksLib extends TikiLib
 
 		if (StatsLib::is_stats_hit()) {
 			$query = "update `tiki_featured_links` set `hits` = `hits` + 1 where `url` = ?";
-			$result = $this->query($query, [$url]);
+			return $this->query($query, [$url]);
+		} else {
+			return false;
 		}
 	}
 
 	/**
 	 * @param $url
-	 * @return bool
+	 *
+	 * @return array|bool
 	 */
 	function get_featured_link($url)
 	{
@@ -82,8 +92,7 @@ class FlinksLib extends TikiLib
 			return false;
 		}
 
-		$res = $result->fetchRow();
-		return $res;
+		return $result->fetchRow();
 	}
 
 	/**

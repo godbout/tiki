@@ -34,7 +34,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_links.php?remove={$links[user].url|escape:"url"}">
+								<a href="tiki-admin_links.php?remove={$links[user].url|escape:"url"}" onclick="confirmSimple(event, '{tr}Remove featured link?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>
@@ -55,6 +55,7 @@
 	<a href="tiki-admin_links.php">{tr}Create new Featured Link{/tr}</a>
 {/if}
 <form action="tiki-admin_links.php" method="post">
+	{ticket}
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">URL</label>
 		<div class="col-sm-7 col-sm-offset-1 mb-3">
@@ -95,7 +96,13 @@
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7 col-sm-offset-1 mb-3">
-			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">
+			<input
+				type="submit"
+				class="btn btn-primary btn-sm"
+				name="add"
+				value="{tr}Save{/tr}"
+				onclick="checkTimeout()"
+			>
 		</div>
 	</div>
 </form>
