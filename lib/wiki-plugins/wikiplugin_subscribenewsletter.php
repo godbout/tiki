@@ -112,7 +112,7 @@ function wikiplugin_subscribenewsletter($data, $params)
 						email: true,
 					},
 				},
-				submitHandler: function(){return process_submit(this.currentForm);}
+				submitHandler: function(form, event){return process_submit(form, event);}
 			});
 		';
 		TikiLib::lib('header')->add_jq_onready($js);

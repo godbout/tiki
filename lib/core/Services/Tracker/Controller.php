@@ -723,7 +723,7 @@ class Services_Tracker_Controller
 				'',
 				'',
 				// not custom submit handler that is only needed when called by this service
-				'submitHandler: function(form, event){return process_submit(form);}'
+				'submitHandler: function(form, event){return process_submit(form, event);}'
 			);
 			TikiLib::lib('header')->add_jq_onready('$("#cloneItemForm' . $trackerId . '").validate({' . $validationjs . $this->get_validation_options());
 		}
@@ -831,7 +831,7 @@ class Services_Tracker_Controller
 				'',
 				'',
 				// not custom submit handler that is only needed when called by this service
-				'submitHandler: function(form, event){return process_submit(form);}'
+				'submitHandler: function(form, event){return process_submit(form, event);}'
 			);
 			TikiLib::lib('header')->add_jq_onready('$("#insertItemForm' . $trackerId . '").validate({' . $validationjs . $this->get_validation_options('#insertItemForm' . $trackerId));
 		}
@@ -1004,7 +1004,7 @@ class Services_Tracker_Controller
 				'',
 				'',
 				// not custom submit handler that is only needed when called by this service
-				'submitHandler: function(form, event){return process_submit(form);}'
+				'submitHandler: function(form, event){return process_submit(form, event);}'
 			);
 			TikiLib::lib('header')->add_jq_onready('$("#updateItemForm' . $trackerId . '").validate({' . $validationjs . $this->get_validation_options());
 		}
