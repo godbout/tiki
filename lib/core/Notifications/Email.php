@@ -58,13 +58,15 @@ class Email
 	/**
 	 * Send email notification to tiki admins regarding scheduler run status (stalled/healed)
 	 *
-	 * @param string 			$subjectTpl	Email subject template file path
-	 * @param string 			$txtTpl		Email body template file path
-	 * @param \Scheduler_Item	$scheduler	The scheduler that if being notified about.
+	 * @param string 			$subjectTpl		Email subject template file path
+	 * @param string 			$txtTpl			Email body template file path
+	 * @param \Scheduler_Item	$scheduler		The scheduler that if being notified about.
+	 * @param array				$usersToNotify	An array of users to be notified
 	 *
 	 * @return int The number of sent emails
+	 * @throws \Exception
 	 */
-	public static function sendSchedulerNotification($subjectTpl, $txtTpl, $scheduler)
+	public static function sendSchedulerNotification($subjectTpl, $txtTpl, $scheduler, $usersToNotify = [])
 	{
 		global $prefs;
 
@@ -72,10 +74,6 @@ class Email
 		$smarty->assign('schedulerName', $scheduler->name);
 		$smarty->assign('stalledTimeout', $prefs['scheduler_stalled_timeout']);
 
-		// Need to fetch users with email address listed
-		$userlib = \TikiLib::lib('user');
-		$adminUsers = $userlib->get_group_users('Admins', 0, -1, '*');
-
-		return sendEmailNotification($adminUsers, null, $subjectTpl, null, $txtTpl);
+		return sendEmailNotification($usersToNotify, null, $subjectTpl, null, $txtTpl);
 	}
 }

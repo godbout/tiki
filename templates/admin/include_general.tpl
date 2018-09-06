@@ -122,8 +122,14 @@
 				{preference name=feature_scheduler}
 				{preference name=scheduler_stalled_timeout}
 				{preference name=scheduler_notify_on_stalled}
+				<div class="adminoptionboxchild" id="scheduler_notify_on_stalled_childcontainer">
+					{preference name=scheduler_users_to_notify_on_stalled}
+				</div>
 				{preference name=scheduler_healing_timeout}
 				{preference name=scheduler_notify_on_healing}
+				<div class="adminoptionboxchild" id="scheduler_notify_on_healing_childcontainer">
+					{preference name=scheduler_users_to_notify_on_healed}
+				</div>
 				{preference name=scheduler_keep_logs}
 			</fieldset>
 		{/tab}
