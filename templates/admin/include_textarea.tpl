@@ -134,6 +134,7 @@
 				{remarksbox type='tip' title="{tr}Tip{/tr}"}
 					{tr}External links will be identified with:{/tr} {icon name="link-external"}
 				{/remarksbox}
+				{preference name=allowImageLazyLoad}
 			</fieldset>
 		{/tab}
 

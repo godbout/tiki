@@ -1767,6 +1767,7 @@
 		"npm-asset/json-schema-traverse": ">=0.3.1",
 		"npm-asset/json5": ">=0.5.1",
 		"npm-asset/loader-utils": ">=1.1.0",
+		"npm-asset/lozad": ">=1.6.0",
 		"npm-asset/node-ensure": ">=0.0.0",
 		"npm-asset/pdfjs-dist": ">=2.0.487",
 		"npm-asset/popper.js": ">=1.14.3",

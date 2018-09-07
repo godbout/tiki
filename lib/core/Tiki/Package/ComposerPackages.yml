@@ -40,6 +40,14 @@ GoogleApiClient:
     - wikiplugin_googlechart
     - wikiplugin_youtube
   requiredVersion: ^2.2.2
+Lozad:
+  licence: MIT
+  licenceUrl: "https://github.com/ApoorvSaxena/lozad.js/blob/master/LICENSE"
+  name: npm-asset/lozad
+  link: 'https://asset-packagist.org/package/npm-asset/lozad'
+  requiredBy:
+    - wikiplugin_img
+  requiredVersion: ^1.6.0
 Mpdf:
   licence: GPL
   licenceUrl: "https://github.com/mpdf/mpdf/blob/master/LICENSE.txt"

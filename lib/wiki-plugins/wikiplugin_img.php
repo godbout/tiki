@@ -619,7 +619,9 @@ function wikiplugin_img($data, $params)
 	$imgdata['sizes']  = '';
 	$imgdata['featured']  = 'n';
 
-	$params = array_map(function ($param) {return  str_replace('"', '%22', $param);}, $params);
+	$params = array_map(function ($param) {
+		return str_replace('"', '%22', $param);
+	}, $params);
 
 	$imgdata = array_merge($imgdata, $params);
 
@@ -1144,6 +1146,15 @@ function wikiplugin_img($data, $params)
 		$smarty->assign('header_featured_images', $header_featured_images);
 	}
 
+	$lozardImg = false;
+	if ($prefs['allowImageLazyLoad'] === 'y') {
+		if (! file_exists('vendor/npm-asset/lozad/dist/lozad.js')) {
+			Feedback::error(tr('Image lazy loading is enabled but Tiki requires package npm-asset/lozad. If you do not have permission to install this package, ask the site administrator.'));
+		} else {
+			$lozardImg = true;
+		}
+	}
+
 	$tagName = '';
 	if (! empty($dbinfo['filetype'])  && ! empty($mimetypes['svg']) && $dbinfo['filetype'] == $mimetypes['svg']) {
 		$tagName = 'div';
@@ -1166,6 +1177,9 @@ function wikiplugin_img($data, $params)
 	} else {
 		$tagName = 'img';
 		$replimg = '<img src="' . $src . '" ';
+		if ($lozardImg) {
+			$replimg = '<img';
+		}
 		if ($srcset) {
 			$replimg .= 'srcset="' . $srcset . '" ';
 		}
@@ -1180,6 +1194,37 @@ function wikiplugin_img($data, $params)
 			$imgdata['class'] .= ' featured';
 		}
 		$imgdata['class'] = trim($imgdata['class']);
+	}
+
+	if ($lozardImg) {
+		$imgdata['class'] .= ' lozad';
+		$imgdata['data-src'] = true;
+		TikiLib::lib('header')->add_css('
+			.lozadFade {
+				animation-name: lozadFade;
+				animation-duration: 1s;
+			}
+			@keyframes lozadFade {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+		');
+		TikiLib::lib('header')->add_jsfile('vendor/npm-asset/lozad/dist/lozad.js');
+		$lozadScript = "
+			lozad('.lozad', {
+				load: function(el) {
+					el.src = el.dataset.src;
+					el.onload = function() {
+						el.classList.add('lozadFade');
+					}
+				}
+			}).observe();
+		";
+		TikiLib::lib('header')->add_jq_onready($lozadScript);
 	}
 
 	if (! empty($imgdata_dim)) {
@@ -1259,6 +1304,10 @@ function wikiplugin_img($data, $params)
 	//class
 	if (! empty($imgdata['class'])) {
 		$replimg .= ' class="' . $imgdata['class'] . '"';
+	}
+	//data-src
+	if (! empty($imgdata['data-src'])) {
+		$replimg .= ' data-src="' . $src . '"';
 	}
 
 	//title (also used for description and link title below)
