@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b513644d2696c66af95479bd0632dca1",
+    "content-hash": "825afa9de9d355d1cb9c498a8da1f752",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -901,52 +901,6 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
-            "name": "firebase/php-jwt",
-            "version": "v5.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
-                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": " 4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Firebase\\JWT\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Neuman Vong",
-                    "email": "neuman+pear@twilio.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Anant Narayanan",
-                    "email": "anant@php.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
-            "homepage": "https://github.com/firebase/php-jwt",
-            "time": "2017-06-27T22:17:23+00:00"
-        },
-        {
             "name": "fortawesome/font-awesome",
             "version": "v4.7.0",
             "source": {
@@ -1054,330 +1008,6 @@
                 "jquery-plugin"
             ],
             "time": "2018-03-05T03:08:31+00:00"
-        },
-        {
-            "name": "google/apiclient",
-            "version": "v2.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/google/google-api-php-client.git",
-                "reference": "4e0fd83510e579043e10e565528b323b7c2b3c81"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/google/apiclient/google-apiclient-4e0fd83510e579043e10e565528b323b7c2b3c81-zip-36afc6.zip",
-                "reference": "4e0fd83510e579043e10e565528b323b7c2b3c81",
-                "shasum": "14e627e7e329ef7cb8dff63a3cde84651c3fcfdb"
-            },
-            "require": {
-                "firebase/php-jwt": "~2.0|~3.0|~4.0|~5.0",
-                "google/apiclient-services": "~0.13",
-                "google/auth": "^1.0",
-                "guzzlehttp/guzzle": "~5.3.1|~6.0",
-                "guzzlehttp/psr7": "^1.2",
-                "monolog/monolog": "^1.17",
-                "php": ">=5.4",
-                "phpseclib/phpseclib": "~0.3.10|~2.0"
-            },
-            "require-dev": {
-                "cache/filesystem-adapter": "^0.3.2",
-                "phpunit/phpunit": "~4.8.36",
-                "squizlabs/php_codesniffer": "~2.3",
-                "symfony/css-selector": "~2.1",
-                "symfony/dom-crawler": "~2.1"
-            },
-            "suggest": {
-                "cache/filesystem-adapter": "For caching certs and tokens (using Google_Client::setCache)"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Google_": "src/"
-                },
-                "classmap": [
-                    "src/Google/Service/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Client library for Google APIs",
-            "homepage": "http://developers.google.com/api-client-library/php",
-            "keywords": [
-                "google"
-            ],
-            "time": "2018-06-20T15:52:20+00:00"
-        },
-        {
-            "name": "google/apiclient-services",
-            "version": "v0.67",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/google/google-api-php-client-services.git",
-                "reference": "32f65995935033e40cc94d4f484905b38eb039f8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/google/google-api-php-client-services/zipball/32f65995935033e40cc94d4f484905b38eb039f8",
-                "reference": "32f65995935033e40cc94d4f484905b38eb039f8",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Google_Service_": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Client library for Google APIs",
-            "homepage": "http://developers.google.com/api-client-library/php",
-            "keywords": [
-                "google"
-            ],
-            "time": "2018-08-25T00:23:06+00:00"
-        },
-        {
-            "name": "google/auth",
-            "version": "v1.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/google/google-auth-library-php.git",
-                "reference": "af72b3f50420c801dc35cc07b1fa429ae027b847"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/google/google-auth-library-php/zipball/af72b3f50420c801dc35cc07b1fa429ae027b847",
-                "reference": "af72b3f50420c801dc35cc07b1fa429ae027b847",
-                "shasum": ""
-            },
-            "require": {
-                "firebase/php-jwt": "~2.0|~3.0|~4.0|~5.0",
-                "guzzlehttp/guzzle": "~5.3.1|~6.0",
-                "guzzlehttp/psr7": "^1.2",
-                "php": ">=5.4",
-                "psr/cache": "^1.0",
-                "psr/http-message": "^1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^1.11",
-                "guzzlehttp/promises": "0.1.1|^1.3",
-                "phpunit/phpunit": "^4.8.36|^5.7",
-                "sebastian/comparator": ">=1.2.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Google\\Auth\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Google Auth Library for PHP",
-            "homepage": "http://github.com/google/google-auth-library-php",
-            "keywords": [
-                "Authentication",
-                "google",
-                "oauth2"
-            ],
-            "time": "2018-08-27T19:47:35+00:00"
-        },
-        {
-            "name": "guzzlehttp/guzzle",
-            "version": "6.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/407b0cb880ace85c9b63c5f9551db498cb2d50ba",
-                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.4",
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
-                "psr/log": "^1.0"
-            },
-            "suggest": {
-                "psr/log": "Required for using the Log middleware"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "6.3-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/functions_include.php"
-                ],
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "rest",
-                "web service"
-            ],
-            "time": "2018-04-22T15:46:56+00:00"
-        },
-        {
-            "name": "guzzlehttp/promises",
-            "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/promises.git",
-                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
-                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Promise\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle promises library",
-            "keywords": [
-                "promise"
-            ],
-            "time": "2016-12-20T10:07:11+00:00"
-        },
-        {
-            "name": "guzzlehttp/psr7",
-            "version": "1.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/psr7.git",
-                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
-                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "psr/http-message": "~1.0"
-            },
-            "provide": {
-                "psr/http-message-implementation": "1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                },
-                {
-                    "name": "Tobias Schultze",
-                    "homepage": "https://github.com/Tobion"
-                }
-            ],
-            "description": "PSR-7 message implementation that also provides common utility methods",
-            "keywords": [
-                "http",
-                "message",
-                "request",
-                "response",
-                "stream",
-                "uri",
-                "url"
-            ],
-            "time": "2017-03-20T17:10:46+00:00"
         },
         {
             "name": "h5p/h5p-core",
@@ -2403,84 +2033,6 @@
             "time": "2018-06-01T06:45:43+00:00"
         },
         {
-            "name": "monolog/monolog",
-            "version": "1.23.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/monolog/monolog/monolog-monolog-fd8c787753b3a2ad11bc60c063cff1358a32a3b4-zip-88ebdd.zip",
-                "reference": "fd8c787753b3a2ad11bc60c063cff1358a32a3b4",
-                "shasum": "e350f05fcd042881c8f8d1abb720f1454205c201"
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "psr/log": "~1.0"
-            },
-            "provide": {
-                "psr/log-implementation": "1.0.0"
-            },
-            "require-dev": {
-                "aws/aws-sdk-php": "^2.4.9 || ^3.0",
-                "doctrine/couchdb": "~1.0@dev",
-                "graylog2/gelf-php": "~1.0",
-                "jakub-onderka/php-parallel-lint": "0.9",
-                "php-amqplib/php-amqplib": "~2.4",
-                "php-console/php-console": "^3.1.3",
-                "phpunit/phpunit": "~4.5",
-                "phpunit/phpunit-mock-objects": "2.3.0",
-                "ruflin/elastica": ">=0.90 <3.0",
-                "sentry/sentry": "^0.13",
-                "swiftmailer/swiftmailer": "^5.3|^6.0"
-            },
-            "suggest": {
-                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
-                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
-                "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-                "ext-mongo": "Allow sending log messages to a MongoDB server",
-                "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
-                "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
-                "php-console/php-console": "Allow sending log messages to Google Chrome",
-                "rollbar/rollbar": "Allow sending log messages to Rollbar",
-                "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
-                "sentry/sentry": "Allow sending log messages to a Sentry server"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Monolog\\": "src/Monolog"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jordi Boggiano",
-                    "email": "j.boggiano@seld.be",
-                    "homepage": "http://seld.be"
-                }
-            ],
-            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
-            "homepage": "http://github.com/Seldaek/monolog",
-            "keywords": [
-                "log",
-                "logging",
-                "psr-3"
-            ],
-            "time": "2017-06-19T01:22:40+00:00"
-        },
-        {
             "name": "morteza/bootstrap-rtl",
             "version": "3.3.2",
             "dist": {
@@ -2493,17 +2045,17 @@
         },
         {
             "name": "mottie/tablesorter",
-            "version": "v2.30.7",
+            "version": "v2.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mottie/tablesorter.git",
-                "reference": "90f7326819c573ee5ab333f4a0672623d7c52e1e"
+                "reference": "9d53e3b35b494dc1c2e7d7266cec437fc9f26e39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-90f7326819c573ee5ab333f4a0672623d7c52e1e-zip-aebd33.zip",
-                "reference": "90f7326819c573ee5ab333f4a0672623d7c52e1e",
-                "shasum": "caa55b8f6b845298d005c870974d583e991ff8aa"
+                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-9d53e3b35b494dc1c2e7d7266cec437fc9f26e39-zip-8506a7.zip",
+                "reference": "9d53e3b35b494dc1c2e7d7266cec437fc9f26e39",
+                "shasum": "95d96ce8699634d5f881c635252d4b4d313a2d7a"
             },
             "require": {
                 "components/jquery": ">=1.2.6"
@@ -2540,7 +2092,7 @@
                 "sorting",
                 "table"
             ],
-            "time": "2018-07-10T13:32:19+00:00"
+            "time": "2018-08-27T16:34:23+00:00"
         },
         {
             "name": "nagarajanchinnasamy/subtotal",
@@ -3454,17 +3006,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.40.0",
+            "version": "v1.40.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "f9964468d77e6738e9ff88e20f767c52c0c58dce"
+                "reference": "06d1fc5eb5582db1f5d5365741659df57e4a3468"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-f9964468d77e6738e9ff88e20f767c52c0c58dce-zip-bfdb17.zip",
-                "reference": "f9964468d77e6738e9ff88e20f767c52c0c58dce",
-                "shasum": "02f95370a789645bd35af1ce7927e21983b2c66e"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-06d1fc5eb5582db1f5d5365741659df57e4a3468-zip-461094.zip",
+                "reference": "06d1fc5eb5582db1f5d5365741659df57e4a3468",
+                "shasum": "b9f187a37c5cfbf6bb3b40753c721bd4b1d4082b"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3486,53 +3038,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2018-08-16T19:37:47+00:00"
-        },
-        {
-            "name": "psr/cache",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/cache.git",
-                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/cache/zipball/d11b50ad223250cf17b86e38383413f5a6764bf8",
-                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for caching libraries",
-            "keywords": [
-                "cache",
-                "psr",
-                "psr-6"
-            ],
-            "time": "2016-08-06T20:24:11+00:00"
+            "time": "2018-08-22T21:03:03+00:00"
         },
         {
             "name": "psr/container",
@@ -3582,56 +3088,6 @@
                 "psr"
             ],
             "time": "2017-02-14T16:28:37+00:00"
-        },
-        {
-            "name": "psr/http-message",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Http\\Message\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for HTTP messages",
-            "homepage": "https://github.com/php-fig/http-message",
-            "keywords": [
-                "http",
-                "http-message",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "psr/log",
@@ -3878,17 +3334,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.41",
+            "version": "2.1.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "8a4000573d1bba41001b996b891d43de3768d610"
+                "reference": "83f4b3102bafd4393cb51ff41af4edd34f8132f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-8a4000573d1bba41001b996b891d43de3768d610-zip-7340bd.zip",
-                "reference": "8a4000573d1bba41001b996b891d43de3768d610",
-                "shasum": "a95e39fe01edf39ca45981afd459b023a193ffbd"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-83f4b3102bafd4393cb51ff41af4edd34f8132f4-zip-471d9e.zip",
+                "reference": "83f4b3102bafd4393cb51ff41af4edd34f8132f4",
+                "shasum": "50baf16c146119309750c053b1c7bc18b59e3a5f"
             },
             "require": {
                 "php": ">=5.2"
@@ -3932,7 +3388,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2018-08-19T07:28:57+00:00"
+            "time": "2018-08-29T06:44:30+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -3947,7 +3403,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -4011,7 +3467,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -4080,7 +3536,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -4133,17 +3589,17 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "9316545571f079c4dd183e674721d9dc783ce196"
+                "reference": "47ead688f1f2877f3f14219670f52e4722ee7052"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-9316545571f079c4dd183e674721d9dc783ce196-zip-c69c70.zip",
-                "reference": "9316545571f079c4dd183e674721d9dc783ce196",
-                "shasum": "44ab472399504541e28ed483768288ac3aefe797"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-47ead688f1f2877f3f14219670f52e4722ee7052-zip-3d4f97.zip",
+                "reference": "47ead688f1f2877f3f14219670f52e4722ee7052",
+                "shasum": "6de9d9a3a29ed9e759b19af8e1cd7fdb01f47c43"
             },
             "require": {
                 "php": "^7.1.3",
@@ -4185,21 +3641,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:24:31+00:00"
+            "time": "2018-08-03T11:13:38+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "1c0e679e522591fd744fdf242fec41a43d62b2b1"
+                "reference": "09d7df7bf06c1393b6afc85875993cbdbdf897a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-1c0e679e522591fd744fdf242fec41a43d62b2b1-zip-668edb.zip",
-                "reference": "1c0e679e522591fd744fdf242fec41a43d62b2b1",
-                "shasum": "9416eee4f5a4dfc1d5275d12633a4a554485c171"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-09d7df7bf06c1393b6afc85875993cbdbdf897a0-zip-dc633f.zip",
+                "reference": "09d7df7bf06c1393b6afc85875993cbdbdf897a0",
+                "shasum": "1acb035fbaf38f9ae168dfacff8ef4721c7503a5"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -4256,21 +3712,21 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-29T15:19:31+00:00"
+            "time": "2018-08-08T11:42:34+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.1.3",
+            "version": "v4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "2e30335e0aafeaa86645555959572fe7cea22b43"
+                "reference": "c0f5f62db218fa72195b8b8700e4b9b9cf52eb5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-2e30335e0aafeaa86645555959572fe7cea22b43-zip-2078a0.zip",
-                "reference": "2e30335e0aafeaa86645555959572fe7cea22b43",
-                "shasum": "52610dba654e2c69d5dee2051b0a606b35347f08"
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-c0f5f62db218fa72195b8b8700e4b9b9cf52eb5e-zip-fd57b1.zip",
+                "reference": "c0f5f62db218fa72195b8b8700e4b9b9cf52eb5e",
+                "shasum": "604b1b782ffb1e0b067fcd41615d904511f2fe2e"
             },
             "require": {
                 "php": "^7.1.3",
@@ -4306,7 +3762,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:24:31+00:00"
+            "time": "2018-08-18T16:52:46+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -4427,17 +3883,17 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "0414db29bd770ec5a4152683e655f55efd4fa60f"
+                "reference": "4d6b125d5293cbceedc2aa10f2c71617e76262e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-0414db29bd770ec5a4152683e655f55efd4fa60f-zip-8002dd.zip",
-                "reference": "0414db29bd770ec5a4152683e655f55efd4fa60f",
-                "shasum": "3728558206058c76c6d30503115aa9f18602567e"
+                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-4d6b125d5293cbceedc2aa10f2c71617e76262e7-zip-15d902.zip",
+                "reference": "4d6b125d5293cbceedc2aa10f2c71617e76262e7",
+                "shasum": "aa3dd7a4d80f536d2d56c2275544badc8788680f"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8"
@@ -4472,21 +3928,21 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:19:56+00:00"
+            "time": "2018-08-03T10:42:44+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "810af2d35fc72b6cf5c01116806d2b65ccaaf2e2"
+                "reference": "c2f4812ead9f847cb69e90917ca7502e6892d6b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-810af2d35fc72b6cf5c01116806d2b65ccaaf2e2-zip-ce1b62.zip",
-                "reference": "810af2d35fc72b6cf5c01116806d2b65ccaaf2e2",
-                "shasum": "2ef3e674b816460981c53cdd7e1bfc5ca493d79c"
+                "url": "https://composer.tiki.org/dist/symfony/yaml/symfony-yaml-c2f4812ead9f847cb69e90917ca7502e6892d6b8-zip-feadd6.zip",
+                "reference": "c2f4812ead9f847cb69e90917ca7502e6892d6b8",
+                "shasum": "1fe310d19ae6413f8c56d1d39475f389c804d19f"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -4531,7 +3987,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-07-26T11:19:56+00:00"
+            "time": "2018-08-10T07:34:36+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5840,27 +5296,28 @@
         },
         {
             "name": "zendframework/zend-soap",
-            "version": "2.6.0",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-soap.git",
-                "reference": "2d6012e7231cce550219eccfc80836a028d20bf1"
+                "reference": "af03c32f0db2b899b3df8cfe29aeb2b49857d284"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-soap/zendframework-zend-soap-2d6012e7231cce550219eccfc80836a028d20bf1-zip-a7e97a.zip",
-                "reference": "2d6012e7231cce550219eccfc80836a028d20bf1",
-                "shasum": "5187f6f3a6982281505ce2c5e440364807fcf0af"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-soap/zendframework-zend-soap-af03c32f0db2b899b3df8cfe29aeb2b49857d284-zip-d29f46.zip",
+                "reference": "af03c32f0db2b899b3df8cfe29aeb2b49857d284",
+                "shasum": "b4cc09cd35272daa1498c07eaed7b9ee6b2c22ea"
             },
             "require": {
-                "php": "^5.5 || ^7.0",
+                "ext-soap": "*",
+                "php": "^5.6 || ^7.0",
                 "zendframework/zend-server": "^2.6.1",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0",
                 "zendframework/zend-uri": "^2.5.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "squizlabs/php_codesniffer": "^2.3.1",
+                "phpunit/phpunit": "^5.7.21 || ^6.3",
+                "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-config": "^2.6",
                 "zendframework/zend-http": "^2.5.4"
             },
@@ -5870,8 +5327,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev",
-                    "dev-develop": "2.7-dev"
+                    "dev-master": "2.7.x-dev",
+                    "dev-develop": "2.8.x-dev"
                 }
             },
             "autoload": {
@@ -5888,21 +5345,21 @@
                 "soap",
                 "zf2"
             ],
-            "time": "2016-04-21T16:06:27+00:00"
+            "time": "2018-01-29T17:51:26+00:00"
         },
         {
             "name": "zendframework/zend-stdlib",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-stdlib.git",
-                "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae"
+                "reference": "66536006722aff9e62d1b331025089b7ec71c065"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-stdlib/zendframework-zend-stdlib-cd164b4a18b5d1aeb69be2c26db035b5ed6925ae-zip-09408a.zip",
-                "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae",
-                "shasum": "a79d329db7d2bf86a6f98e2d54f5aea8aa529448"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-stdlib/zendframework-zend-stdlib-66536006722aff9e62d1b331025089b7ec71c065-zip-cda992.zip",
+                "reference": "66536006722aff9e62d1b331025089b7ec71c065",
+                "shasum": "cb94d9cb515683b34bc9b52a9f01eca25f60f55d"
             },
             "require": {
                 "php": "^5.6 || ^7.0"
@@ -5934,7 +5391,7 @@
                 "stdlib",
                 "zf"
             ],
-            "time": "2018-04-30T13:50:40+00:00"
+            "time": "2018-08-28T21:34:05+00:00"
         },
         {
             "name": "zendframework/zend-tag",
@@ -8130,6 +7587,7 @@
     "platform": [],
     "platform-dev": [],
     "platform-overrides": {
-        "ext-ldap": "0"
+        "ext-ldap": "0",
+        "ext-soap": "0"
     }
 }

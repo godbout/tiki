@@ -12,6 +12,7 @@ function wikiplugin_googlechart_info()
 		'name' => tra('Google Analytics Chart'),
 		'description' => tra('Draw charts from Google Analytics data.'),
 		'prefs' => ['wikiplugin_googlechart'],
+		'packages_required' => ['google/apiclient' => 'Google_Client'],
 		'iconname' => 'bookmark',
 		'format' => 'html',
 		'introduced' => 15,
@@ -161,6 +162,10 @@ function wikiplugin_googlechart_info()
 
 function wikiplugin_googlechart($data, $params)
 {
+	if (! class_exists('Google_Client')) {
+		Feedback::error(tr('To draw charts from Google Analytics, Tiki needs the google/apiclient package. If you do not have permission to install this package, ask the site administrator.'));
+		return;
+	}
 
 	static $id = 0;
 	$unique = 'wpdialog_' . ++$id;

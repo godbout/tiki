@@ -32,6 +32,14 @@ Faker:
   requiredBy:
     - "Trackers"
   requiredVersion: dev-master
+GoogleApiClient:
+  licence: Apache-2.0
+  licenceUrl: "https://github.com/google/google-api-php-client/blob/master/LICENSE"
+  name: google/apiclient
+  requiredBy:
+    - wikiplugin_googlechart
+    - wikiplugin_youtube
+  requiredVersion: ^2.2.2
 Mpdf:
   licence: GPL
   licenceUrl: "https://github.com/mpdf/mpdf/blob/master/LICENSE.txt"
