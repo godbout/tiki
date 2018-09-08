@@ -897,13 +897,9 @@ span.btn-link {
   opacity: 0.75; }
 
 .jscal input[type=text] {
-  width: 90%;
+  width: calc(100% - 26px);
   display: inline-block;
   margin-right: 2px; }
-
-.jscal.datetime input[type=text] {
-  /* shows the timezone too */
-  width: 50%; }
 
 select.form-control.date {
   padding: 0;
