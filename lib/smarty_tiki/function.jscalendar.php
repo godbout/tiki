@@ -153,7 +153,7 @@ function smarty_function_jscalendar($params, $smarty)
 		$timeclass = '';
 	} else {
 		// add timezone info if showing the time
-		$html .= '<br><span class="description text-muted">' . tra('Time zone') . ': ' . $display_tz . '</span>';
+		$html .= '<div class="description text-muted">' . tra('Time zone') . ': ' . $display_tz . '</div>';
 		// datetime picker
 
 		$command = 'datetimepicker';
