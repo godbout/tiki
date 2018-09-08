@@ -324,7 +324,8 @@ footer.footer .modules > .module:not(.card) {
 	margin-right: auto;
 }
 
-.page-header .box-login_box {
+// make all top zone modules "right justified" apart from the first one which usually is the logo
+.top_modules .module:nth-child(2) {
 	margin-left: auto;
 }
 
