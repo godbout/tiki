@@ -1048,6 +1048,12 @@ div.categbar {
 .opacity100, .opacity50:hover, .opacity50:focus {
   opacity: 1; }
 
+.sitelogo .btn {
+  display: none; }
+
+.sitelogo:hover .btn {
+  display: block; }
+
 header.container, .middle_outer > .container {
   margin-bottom: 0; }
 

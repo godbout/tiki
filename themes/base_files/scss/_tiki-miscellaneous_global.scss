@@ -440,3 +440,6 @@ div.categbar {
 .opacity50 {opacity: .5; transition: opacity 1s !important}
 .opacity100, .opacity50:hover, .opacity50:focus {opacity: 1}
 
+.sitelogo .btn {display: none}
+.sitelogo:hover .btn {display: block}
+
