@@ -435,3 +435,8 @@ div.categbar {
 	text-align: right;
 	clear: both;
 }
+
+// Special class to make semi-transparent elements and make them opaque on mouse over
+.opacity50 {opacity: .5}
+.opacity100, .opacity50:hover, .opacity50:focus {opacity: 1}
+

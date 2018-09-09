@@ -1041,6 +1041,12 @@ div.categbar {
   text-align: right;
   clear: both; }
 
+.opacity50 {
+  opacity: 0.5; }
+
+.opacity100, .opacity50:hover, .opacity50:focus {
+  opacity: 1; }
+
 header.container, .middle_outer > .container {
   margin-bottom: 0; }
 
