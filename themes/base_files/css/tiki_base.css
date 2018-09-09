@@ -1042,7 +1042,8 @@ div.categbar {
   clear: both; }
 
 .opacity50 {
-  opacity: 0.5; }
+  opacity: 0.5;
+  transition: opacity 1s !important; }
 
 .opacity100, .opacity50:hover, .opacity50:focus {
   opacity: 1; }
