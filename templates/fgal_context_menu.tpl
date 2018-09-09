@@ -119,6 +119,10 @@
 			</a>
 		{/if}
 
+		<a href="{$file.id|sefurl:file}&display=true">
+			{icon name='eye' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Plain display{/tr}"}
+		</a>
+
 		{if $gal_info.archives gt -1}
 			{if isset($file.nbArchives) and $file.nbArchives gt 0}
 				{assign var=nb_archives value=$file.nbArchives}
