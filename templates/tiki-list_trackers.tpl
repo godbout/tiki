@@ -64,7 +64,7 @@
 	<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 		<table class="table table-condensed table-hover table-striped">
 			<tr>
-				<th>{self_link _sort_arg='sort_mode' _sort_field='trackerId'}{tr}Id{/tr}{/self_link}</th>
+				<th class="id text-center">{self_link _sort_arg='sort_mode' _sort_field='trackerId'}{tr}Id{/tr}{/self_link}</th>
 				<th>{self_link _sort_arg='sort_mode' _sort_field='name'}{tr}Name{/tr}{/self_link}</th>
 				<th>{self_link _sort_arg='sort_mode' _sort_field='created'}{tr}Created{/tr}{/self_link}</th>
 				<th>{self_link _sort_arg='sort_mode' _sort_field='lastModif'}{tr}Last modified{/tr}{/self_link}</th>
@@ -74,8 +74,14 @@
 
 			{foreach from=$trackers item=tracker}
 				<tr>
-					<td class="id">
-						{$tracker.trackerId|escape}
+					<td class="id text-center">
+						<a
+							class="tips"
+							title="{$tracker.name|escape}:{tr}View{/tr}"
+							href="{$tracker.trackerId|sefurl:'tracker'}"
+						>
+							{$tracker.trackerId|escape}
+						</a>
 					</td>
 					<td class="text">
 						<a
