@@ -23,7 +23,7 @@ body {
 
 .footer_liner {
   color: #333333;
-  font-size: 12px;
+  font-size: .9rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #page-bar {
   position: absolute;
-  top: -33px;
+  top: -36px;
   right: 15px;
   .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
 	top: 100%;
@@ -87,7 +87,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-#page-bar .btn.btn-default,
+#page-bar .btn.btn-primary,
+#page-bar .btn.btn-info,
+#page-bar .btn.btn-secondary,
 .topbar .navbar-default .navbar-nav > li,
 .topbar .nav > li {
   background-color: #f3f3f3;
@@ -172,7 +174,6 @@ body.fullscreen #col1 {
 
 .manage #col1,
 .tiki_admin #col1,
-#editpageform,
 #admin_forums,
 .modal-content,
 .tiki .ui-widget-content.div:not(.elFinderDialog),
@@ -196,17 +197,18 @@ body.fullscreen #col1 {
 @media (min-width: 992px) {
   #topbar_modules,
   #topbar_modules_social, // Fixed top navbar 2
-  #col1.col-md-9 {
-	width: 88.4210526%; // 83.33333333%; Actually col-md-11 width
-	left: 11.5789474%; // 16.66666667%;
+  #col1.col-lg-9 {
+	max-width: 88.4210526%; // 83.33333333%; Actually col-md-11 width
+	flex: 0 0 88.4210526%;
+//	left: 11.5789474%; // 16.66666667%;
   }
 
   //#col2 {
   //	background: transparent url('#{$imagePath}border.png') 100% 0 repeat-y;
   //}
-  #col2.col-md-3 {
-	width: 11.5789474%; // 16.66666667%; Actually col-md-1 width
-	right: 88.4210526%; // 83.33333333%;
+  #col2.col-lg-3 {
+	flex: 0 0 11.5789474%;
+	max-width: 11.5789474%;
 
   }
 
@@ -294,13 +296,13 @@ h3.card-title {
   .card-title {
 	color: #4d4d4d;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 1rem;
 	padding: 0.25em 0 0.25em 0.25em;
 	border-bottom: none;
   }
   .card {
 	background: url('#{$imagePath}portal-break.png') no-repeat;
-	font-size: 12px;
+	font-size: .8rem;
 	line-height: 1.125;
   }
 }

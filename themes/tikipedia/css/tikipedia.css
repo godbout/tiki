@@ -6702,7 +6702,7 @@ body {
 
 .footer_liner {
   color: #333;
-  font-size: 12px; }
+  font-size: 0.9rem; }
 
 h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid #aaa;
@@ -6713,7 +6713,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #page-bar {
   position: absolute;
-  top: -33px;
+  top: -36px;
   right: 15px; }
   #page-bar .dropup .dropdown-menu, #page-bar .navbar-fixed-bottom .dropdown .dropdown-menu {
     top: 100%;
@@ -6744,7 +6744,7 @@ h1, h2, h3, h4, h5, h6 {
 .topbar .navbar {
   min-height: inherit; }
 
-#page-bar .btn.btn-default, .topbar .navbar-default .navbar-nav > li, .topbar .nav > li {
+#page-bar .btn.btn-primary, #page-bar .btn.btn-info, #page-bar .btn.btn-secondary, .topbar .navbar-default .navbar-nav > li, .topbar .nav > li {
   background-color: #f3f3f3;
   background-position: bottom left;
   background-repeat: repeat-x;
@@ -6803,7 +6803,7 @@ body.fullscreen #col1 {
   border: solid #a7d7f9;
   border-width: 1px 0 0 0; }
 
-.manage #col1, .tiki_admin #col1, #editpageform, #admin_forums, .modal-content, .tiki .ui-widget-content.div:not(.elFinderDialog), .tiki .ui-widget-content.div:not(.elfinder-buttonset), .ui-widget-header.div:not(.elfinder-statusbar), .tiki .ui-widget-header.div:not(.elfinder-toolbar), .tiki .ui-widget-content.elfinder-dialog, .tiki .ui-widget-content.elfinder-dialog .ui-dialog-titlebar, .tiki .ui-widget-content.elfinder-dialog .ui-widget-content, .tiki .ui-widget-content.elfinder-dialog .ui-widget-header {
+.manage #col1, .tiki_admin #col1, #admin_forums, .modal-content, .tiki .ui-widget-content.div:not(.elFinderDialog), .tiki .ui-widget-content.div:not(.elfinder-buttonset), .ui-widget-header.div:not(.elfinder-statusbar), .tiki .ui-widget-header.div:not(.elfinder-toolbar), .tiki .ui-widget-content.elfinder-dialog, .tiki .ui-widget-content.elfinder-dialog .ui-dialog-titlebar, .tiki .ui-widget-content.elfinder-dialog .ui-widget-content, .tiki .ui-widget-content.elfinder-dialog .ui-widget-header {
   background: #f8eaba;
   border: 2px solid #f4c430; }
 
@@ -6811,13 +6811,13 @@ body.fullscreen #col1 {
   background: #f8eaba; }
 
 @media (min-width: 992px) {
-  #topbar_modules, #topbar_modules_social, #col1.col-md-9 {
-    width: 88.4210526%;
-    left: 11.5789474%; }
+  #topbar_modules, #topbar_modules_social, #col1.col-lg-9 {
+    max-width: 88.4210526%;
+    flex: 0 0 88.4210526%; }
 
-  #col2.col-md-3 {
-    width: 11.5789474%;
-    right: 88.4210526%; }
+  #col2.col-lg-3 {
+    flex: 0 0 11.5789474%;
+    max-width: 11.5789474%; }
 
   body:not(.layout_social) #left_modules {
     margin-top: -60px; } }
@@ -6873,12 +6873,12 @@ h3.card-title {
   #col2 .card-title {
     color: #4d4d4d;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 1rem;
     padding: 0.25em 0 0.25em 0.25em;
     border-bottom: none; }
   #col2 .card {
     background: url("../images/portal-break.png") no-repeat;
-    font-size: 12px;
+    font-size: 0.8rem;
     line-height: 1.125; }
 
 #toc, .autotoc > .nav {
