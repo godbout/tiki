@@ -125,6 +125,11 @@ header.container {
 	background: #ffffff url('#{$imagePath}page.jpg') repeat-x;
 }
 
+.side-col-toggle + .col1,
+.side-col-toggle + .col1 + .col3 {
+  background-position: 0 -30px;
+}
+
 body.fullscreen {
 	background: #ffffff url('#{$imagePath}page.jpg') repeat-x;
 	.container { border: none; }
@@ -133,6 +138,8 @@ body.fullscreen {
 .col2 {
 	background: #a8cce2 url('#{$imagePath}columnbg.jpg') repeat-x;
 }
+
+.side-col-toggle + .col + .col2 { background-position: 0 -30px; }
 
 .card.module {
 	border: none;
@@ -152,6 +159,8 @@ body.fullscreen {
 }
 
 .module legend { font-size: 15px; }
+
+.topbar { margin-bottom: 0; }
 
 .topbar + .row,
 .layout_social > .container {

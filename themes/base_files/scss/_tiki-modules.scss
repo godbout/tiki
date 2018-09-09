@@ -8,8 +8,8 @@ header.container,
 // Enable topbar backgrounds to extend left and right to contain margins.
 //.topbar,
 .layout_social .container.middle .topbar, // layout_social
-.layout_basic .container .page-header,
-.layout_classic .container .page-header,
+.layout_basic .header_container .page-header,
+.layout_classic .header_container .page-header,
 .layout_classic .container .topbar {
   margin-left: -15px;
   margin-right: -15px;

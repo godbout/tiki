@@ -1057,7 +1057,7 @@ div.categbar {
 header.container, .middle_outer > .container {
   margin-bottom: 0; }
 
-.layout_social .container.middle .topbar, .layout_basic .container .page-header, .layout_classic .container .page-header, .layout_classic .container .topbar {
+.layout_social .container.middle .topbar, .layout_basic .header_container .page-header, .layout_classic .header_container .page-header, .layout_classic .container .topbar {
   margin-left: -15px;
   margin-right: -15px; }
 
