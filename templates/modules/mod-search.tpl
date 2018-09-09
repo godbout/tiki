@@ -4,11 +4,11 @@
 		{tikimodule error=$module_error title=$smod_params.title name="search" flip=$smod_params.flip decorations=$smod_params.decorations nobox=$smod_params.nobox notitle=$smod_params.notitle}
 			{if $smod_params.tiki_search neq 'none'}
 				<form id="search-module-form{$search_mod_usage_counter}" method="get" action="{$smod_params.search_action}"{if $smod_params.use_autocomplete eq 'y'} onsubmit="return submitSearch{$search_mod_usage_counter}()"{/if} style="position: relative;">
-					<div class="form-row align-items-center">
-						<div class="{*col-auto*}mr-2">
+					<div class="input-group{*form-row align-items-center*}">
+					{*	<div class="{*col-auto*}{*mr-2"> *}
 							<label class="sr-only" for="search_mod_input_{$search_mod_usage_counter}">Find</label>
 							<input style="{if $smod_params.compact eq "y"}{*width:72%;border-bottom-right-radius:0;border-top-right-radius: 0;*}{/if}" placeholder="{tr}Find{/tr}" class="form-control mb-2" id="search_mod_input_{$search_mod_usage_counter}" name="{if $smod_params.search_action eq 'tiki-searchindex.php'}filter~content{else}find{/if}" {if !empty($smod_params.input_size)}size="{$smod_params.input_size}" style="width: auto"{/if} type="text" accesskey="s" value="{$smod_params.input_value|escape}">
-						</div>
+					{*	</div>*}
 							{if $smod_params.show_object_filter eq 'y'}
 								<label class="col-form-label" for="filterType">
 									{tr}in{/tr}&nbsp;
@@ -58,10 +58,12 @@
 							{/if}
 
 							{if $smod_params.compact eq "y"}
+						<div class="input-group-append">
 
 								<button type="submit" class="btn btn-info mb-2 search_mod_magnifier">
 									{icon name="search"}
 								</button>
+						</div>
 							</div>
 
 							<div class="btn-group search_mod_buttons box" style="display:none;position:absolute;left:2.5em;top:2.5em;z-index:2;white-space:nowrap;">
