@@ -2829,6 +2829,8 @@ class FileGalLib extends TikiLib
 				include_once('tiki-sefurl.php');
 				$href = filter_out_sefurl($href);
 				$syntax = str_replace('123', '%fileId%', $href);
+			} else if (! empty($params['insertion_syntax'])) {            // for use in prefs
+				$syntax = $params['insertion_syntax'];
 			}
 		}
 

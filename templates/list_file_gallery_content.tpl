@@ -321,7 +321,7 @@
 								{else}
 
 									{if !empty($filegals_manager)}
-										href="#" onclick="window.opener.insertAt('{$filegals_manager}','{$files[changes].wiki_syntax|escape}');checkClose();return false;" title="{tr}Click here to use the file{/tr}"
+										href="#" onclick="window.opener.insertAt('{$filegals_manager}',processFgalSyntax('{$files[changes]|json_encode|replace:'"':'&quot;'}'), false, false, true);checkClose();return false;" title="{tr}Click here to use the file{/tr}"
 
 									{elseif (isset($files[changes].p_download_files) and $files[changes].p_download_files eq 'y')
 									or (!isset($files[changes].p_download_files) and $files[changes].perms.tiki_p_download_files eq 'y')}

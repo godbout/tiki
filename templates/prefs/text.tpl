@@ -1,7 +1,7 @@
 <div class="adminoptionbox preference clearfix form-group row {$p.tagstring|escape}{if isset($smarty.request.highlight) and $smarty.request.highlight eq $p.preference} highlight{/if}">
 	<label class="col-form-label col-sm-4" for="{$p.id|escape}">{$p.name|escape}</label>
 	<div class="col-sm-8">
-		{if !empty($p.units)}
+		{if not empty($p.units) or not empty($p.fgal_picker)}
 			<div class="input-group">
 		{/if}
 		{if is_array( $p.value )}
@@ -15,6 +15,14 @@
 				<div class="input-group-append">
 					<span class="input-group-text">{$p.units}</span>
 				</div>
+			</div>
+		{/if}
+		{if !empty($p.fgal_picker)}
+			{$fileId = {ldelim}|cat:'fileId'|cat:{rdelim}}
+				<a class="input-group-append btn btn-sm btn-primary" title="{tr}Upload image{/tr}" href="#"
+						onclick="$('#{$p.id|escape}').select(); openFgalsWindow('tiki-upload_file.php?filegals_manager={$p.id|escape}&insertion_syntax={$fileId|sefurl:display}', true);return false;">
+					{icon name='image'} {tr}Upload image{/tr}
+				</a>
 			</div>
 		{/if}
 
