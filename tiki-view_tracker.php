@@ -526,6 +526,7 @@ $smarty->assign('ins_fields', $ins_fields['data']);
 $smarty->assign_by_ref('items', $items["data"]);
 $smarty->assign_by_ref('item_count', $items['cant']);
 $smarty->assign_by_ref('listfields', $listfields);
+$smarty->assign_by_ref('fields_count', count($xfields['data']));
 $users = $userlib->list_all_users();
 $smarty->assign_by_ref('users', $users);
 if ($tiki_p_export_tracker == 'y') {
