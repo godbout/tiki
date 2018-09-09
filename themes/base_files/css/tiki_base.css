@@ -1317,6 +1317,12 @@ div.cvsup {
     .box-search .panel-body .form-inline .input-group .input-group-addon, .box-search .panel-body .form-inline .input-group .input-group-btn, .box-search .panel-body .form-inline .input-group .form-control {
       width: 100%; } }
 
+.card-body ol {
+  padding-left: 2rem; }
+
+.card-body ul {
+  padding-left: 2rem; }
+
 .textarea-toolbar img.icon {
   vertical-align: middle;
   margin: 1px 3px; }
