@@ -1867,7 +1867,7 @@ function prefs_feature_list($partial = false)
 				'user' => tra('User decides'),
 				'n' => tra('Never'),
 			],
-			'default' => 'y',
+			'default' => 'user',
 			'tags' => ['basic'],
 		],
 		'feature_right_column' => [
@@ -1882,7 +1882,7 @@ function prefs_feature_list($partial = false)
 				'user' => tra('User decides'),
 				'n' => tra('Never'),
 			],
-			'default' => 'y',
+			'default' => 'user',
 			'tags' => ['basic'],
 		],
 		'feature_siteloclabel' => [
