@@ -1,4 +1,5 @@
 -- --------------------------------------------------------
+-- --------------------------------------------------------
 -- Database : Tiki
 -- --------------------------------------------------------
 
@@ -1732,7 +1733,6 @@ INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,groups) VALUES
     ('menu','left',1,7200,'id=42&flip=y','a:1:{i:0;s:10:"Registered";}'),
     ('logo','top',1,7200,'nobox=y','a:0:{}'),
     ('login_box','top',2,0,'mode=popup&nobox=y','a:0:{}'),
-    ('quickadmin','top',3,7200,'nobox=y','a:1:{i:0;s:6:"Admins";}'),
     ('rsslist','bottom',1,7200,'nobox=y','a:0:{}'),
     ('poweredby','bottom',2,7200,'nobox=y&icons=n&version=n','a:0:{}');
 
