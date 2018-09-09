@@ -30,7 +30,7 @@ $smarty->assign_by_ref('blogs', $blogs);
 
 // If user doesn't have permission to post in any blog display error message
 if (count($blogs) == 0) {
-	$smarty->assign('msg', tra("It isn't possible to post in any blog. You may need to create a blog first."));
+	$smarty->assign('msg', tra("It isn't possible to post in any blog.") . ' <a href="tiki-edit_blog.php" >' . tra("You may need to create a blog first.") . '</a>');
 	$smarty->display("error.tpl");
 	die;
 } elseif ($blogId == 0 && count($blogs) == 1) {
