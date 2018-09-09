@@ -123,7 +123,7 @@
 									</option>
 								{/if}
 								{if !isset($file_info)}
-									{if $tiki_p_admin_file_galleries eq 'y' or $tiki_p_remove_files eq 'y'}
+									{if $all_galleries|@count gt 0 and ($tiki_p_admin_file_galleries eq 'y' or $tiki_p_remove_files eq 'y')}
 										<option value="movesel_x">
 											{tr}Move{/tr}
 										</option>
