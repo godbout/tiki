@@ -34,12 +34,12 @@
 					</li>
 					<li class="dropdown-item mb-2 mt-4">
 						<form method="post" action="tiki-admin.php" class="form-inline my-2 my-md-0 ml-auto" role="form">
-							<div class="form-group row">
-								<input type="text" name="lm_criteria" style="width: 195px;" value="{$smarty.request.lm_criteria|escape}" class="form-control-sm" placeholder="Search preferences...">
+							<div class="input-group">
+								<input type="text" name="lm_criteria" value="{$smarty.request.lm_criteria|escape}" class="form-control form-control-sm" placeholder="Search preferences...">
+								<button type="submit" class="btn btn-primary btn-sm input-group-append">
+									<span class="icon icon-search fa fa-search fa-fw "></span>
+								</button>
 							</div>
-							<button type="submit" class="btn btn-primary btn-sm">
-								<span class="icon icon-search fa fa-search fa-fw "></span>
-							</button>
 						</form>
 					</li>
 					<li class="dropdown-divider"></li>
