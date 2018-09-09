@@ -229,27 +229,29 @@ class Services_File_Controller
 			for ($i = 0; $i < count($_FILES['files']['tmp_name']); $i++) {
 			    //if the file is an image and it contains a header 'Orientation'
                 // we check that it has a good orientation otherwise we rotate the image
-			    if(strtolower(substr($_FILES['files']['type'][$i],0,5)) == 'image') {
-                    $filePath = $_FILES['files']['tmp_name'][$i];
-                    $exif = exif_read_data($_FILES['files']['tmp_name'][$i]);
-                    if (!empty($exif['Orientation'])) {
-                        $imageResource = imagecreatefromjpeg($filePath);
-                        switch ($exif['Orientation']) {
-                            case 3:
-                                $image = imagerotate($imageResource, 180, 0);
-                                break;
-                            case 6:
-                                $image = imagerotate($imageResource, -90, 0);
-                                break;
-                            case 8:
-                                $image = imagerotate($imageResource, 90, 0);
-                                break;
-                            default:
-                                $image = $imageResource;
-                        }
-                        imagejpeg($image, $filePath, 90);
-                    }
-                }
+				if (extension_loaded('exif') && extension_loaded('gd')) {
+					if (strtolower(substr($_FILES['files']['type'][$i], 0, 5)) == 'image') {
+						$filePath = $_FILES['files']['tmp_name'][$i];
+						$exif = exif_read_data($_FILES['files']['tmp_name'][$i]);
+						if (! empty($exif['Orientation'])) {
+							$imageResource = imagecreatefromjpeg($filePath);
+							switch ($exif['Orientation']) {
+								case 3:
+									$image = imagerotate($imageResource, 180, 0);
+									break;
+								case 6:
+									$image = imagerotate($imageResource, -90, 0);
+									break;
+								case 8:
+									$image = imagerotate($imageResource, 90, 0);
+									break;
+								default:
+									$image = $imageResource;
+							}
+							imagejpeg($image, $filePath, 90);
+						}
+					}
+				}
 				if (is_uploaded_file($_FILES['files']['tmp_name'][$i])) {
 					$_FILES['data']['name'] = $_FILES['files']['name'][$i];
 					$_FILES['data']['size'] = $_FILES['files']['size'][$i];
