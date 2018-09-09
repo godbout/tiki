@@ -176,7 +176,7 @@
 {/if}
 
 {if ! $searchNoResults}
-	<ul class="searchresults">
+	<ul class="searchresults mb-4">
 		{section name=search loop=$results}
 			<li>
 				{if $prefs.feature_search_show_object_type eq 'y' && $results[search].type > ''}
