@@ -51,7 +51,7 @@
 			 class="clearfix card-body{if !empty($module_params.class)} {$module_params.class}{/if}">
 			{else}{* $module_nobox eq 'y' *}
 			<div id="module_{$moduleId}" style="{$module_params.style}{$tpl_module_style}"
-				 class="w-100 module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name}">
+				 class="module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name}">
 				<div id="mod-{$smarty.capture.name}" class="">
 					{/if}{* close $module_nobox *}
 					{$module_content}

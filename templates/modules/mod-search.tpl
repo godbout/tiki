@@ -7,7 +7,7 @@
 					<div class="input-group{*form-row align-items-center*}">
 					{*	<div class="{*col-auto*}{*mr-2"> *}
 							<label class="sr-only" for="search_mod_input_{$search_mod_usage_counter}">Find</label>
-							<input style="{if $smod_params.compact eq "y"}{*width:72%;border-bottom-right-radius:0;border-top-right-radius: 0;*}{/if}" placeholder="{tr}Find{/tr}" class="form-control mb-2" id="search_mod_input_{$search_mod_usage_counter}" name="{if $smod_params.search_action eq 'tiki-searchindex.php'}filter~content{else}find{/if}" {if !empty($smod_params.input_size)}size="{$smod_params.input_size}" style="width: auto"{/if} type="text" accesskey="s" value="{$smod_params.input_value|escape}">
+							<input style="{if $smod_params.compact eq "y"}{*width:72%;border-bottom-right-radius:0;border-top-right-radius: 0;*}{/if}" placeholder="{tr}Find{/tr}" class="form-control my-1" id="search_mod_input_{$search_mod_usage_counter}" name="{if $smod_params.search_action eq 'tiki-searchindex.php'}filter~content{else}find{/if}" {if !empty($smod_params.input_size)}size="{$smod_params.input_size}" style="width: auto"{/if} type="text" accesskey="s" value="{$smod_params.input_value|escape}">
 					{*	</div>*}
 							{if $smod_params.show_object_filter eq 'y'}
 								<label class="col-form-label" for="filterType">
@@ -15,7 +15,7 @@
 								</label>
 								<div class="col-auto">
 									{if $smod_params.search_action eq 'tiki-searchindex.php'}
-										<select id="filterType" name="filter~type" class="form-control mb-2" {*style="width:{$smod_params.select_size}em;"*}>
+										<select id="filterType" name="filter~type" class="form-control my-1" {*style="width:{$smod_params.select_size}em;"*}>
 											<option value="">{tr}Entire Site{/tr}</option>
 											{if $prefs.feature_wiki eq 'y'}<option value="wiki page"{if $smod_params.where eq "wiki page"} selected="selected"{/if}>{tr}Wiki Pages{/tr}</option>{/if}
 											{if $prefs.feature_blogs eq 'y'}<option value="blog post"{if $smod_params.where eq "blog post"} selected="selected"{/if}>{tr}Blog Posts{/tr}</option>{/if}
@@ -26,7 +26,7 @@
 											{if $prefs.feature_sheet eq 'y'}<option value="sheet"{if $smod_params.where eq "sheet"} selected="selected"{/if}>{tr}Spreadsheets{/tr}</option>{/if}
 										</select>
 									{else}
-										<select class="form-control mb-2" name="where" {*style="width:{$smod_params.select_size}em;"*}>
+										<select class="form-control my-1" name="where" {*style="width:{$smod_params.select_size}em;"*}>
 											<option value="pages">{tr}Entire Site{/tr}</option>
 											{if $prefs.feature_wiki eq 'y'}<option value="wikis"{if $smod_params.where eq "wikis"} selected="selected"{/if}>{tr}Wiki Pages{/tr}</option>{/if}
 											{if $prefs.feature_directory eq 'y'}<option value="directory"{if $smod_params.where eq "directory"} selected="selected"{/if}>{tr}Directory{/tr}</option>{/if}
@@ -58,14 +58,14 @@
 							{/if}
 
 							{if $smod_params.compact eq "y"}
-								<button type="submit" class="btn btn-info mb-2 search_mod_magnifier input-group-append">
+								<button type="submit" class="btn btn-info my-1 search_mod_magnifier input-group-append">
 									{icon name="search"}
 								</button>
 							</div>
 
 							<div class="btn-group search_mod_buttons box" style="display:none;position:absolute;left:2.5em;top:2.5em;z-index:2;white-space:nowrap;">
 							{else}
-								<div class="input-group-btn btn-group mb-2">
+								<div class="input-group-btn btn-group my-1">
 							{/if}
 							{foreach $smod_params.additional_filters as $key => $filter}
 								<input type="hidden" name="filter~{$key|escape}" value="{$filter|escape}"/>
