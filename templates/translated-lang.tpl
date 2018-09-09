@@ -6,7 +6,7 @@
 		{if $prefs.lang_available_translations_dropdown neq 'y' }
 			{* For all object types: First show the translate icon and on hover the language of the current object *}
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-			<a class="btn btn-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+			<a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 				{icon name="translate"}
 			</a>
 		{else}
