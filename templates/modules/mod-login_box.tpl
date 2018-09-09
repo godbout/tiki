@@ -39,7 +39,7 @@ if (jqueryTiki.no_cookie) {
 	{if $mode eq "header"}<div class="siteloginbar{if $user} logged-in{/if}">{/if}
 	{if $user}
 		{if empty($mode) or $mode eq "module"}
-			<div class="form-group row mx-0">{tr}Logged in as:{/tr} <span style="white-space: nowrap">&nbsp;{$user|userlink}</span></div>
+			<div class="form-group row mx-0">{tr}Logged in as:{/tr} <span class="d-inline-block col-12 text-truncate">&nbsp;{$user|userlink}</span></div>
 			<div class="text-center">
 				{button href="tiki-logout.php" _text="{tr}Log out{/tr}"}
 			</div>
