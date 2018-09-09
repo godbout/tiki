@@ -58,12 +58,9 @@
 							{/if}
 
 							{if $smod_params.compact eq "y"}
-						<div class="input-group-append">
-
-								<button type="submit" class="btn btn-info mb-2 search_mod_magnifier">
+								<button type="submit" class="btn btn-info mb-2 search_mod_magnifier input-group-append">
 									{icon name="search"}
 								</button>
-						</div>
 							</div>
 
 							<div class="btn-group search_mod_buttons box" style="display:none;position:absolute;left:2.5em;top:2.5em;z-index:2;white-space:nowrap;">
