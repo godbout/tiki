@@ -60,7 +60,7 @@
 					</li>
 				{/if}
 			{/if}
-			{if $tiki_p_create_file_galleries eq 'y' and $dup_mode ne 'y' and $gal_info.type neq 'user'}
+			{if $tiki_p_create_file_galleries eq 'y' and $dup_mode ne 'y' and $gal_info.type neq 'user' and $all_galleries|@count gt 0}
 				<li class="dropdown-item">
 					<a href="tiki-list_file_gallery.php?dup_mode=1&galleryId={$galleryId}">{icon name="copy"} {tr}Duplicate{/tr}</a>
 				</li>
