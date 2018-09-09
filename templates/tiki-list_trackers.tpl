@@ -11,9 +11,11 @@
 			<a class="btn btn-link mr-2" href="{bootstrap_modal controller=tracker action=replace}">
 				{icon name="create"} {tr}Create{/tr}
 			</a>
-			<a class="btn btn-link mr-2" href="{bootstrap_modal controller=tracker action=duplicate}">
-				{icon name="copy"} {tr}Duplicate{/tr}
-			</a>
+			{if $trackers|count gt 0}
+				<a class="btn btn-link mr-2" href="{bootstrap_modal controller=tracker action=duplicate}">
+					{icon name="copy"} {tr}Duplicate{/tr}
+				</a>
+			{/if}
 			<div class="btn-group">
 				<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
 					{icon name="import"} {tr}Import{/tr}
