@@ -3077,51 +3077,52 @@ body.fullscreen.tiki.navbar-padding {
 .col-sm-2 .form-inline .form-control, .col-md-2 .form-inline .form-control {
   width: 100%; }
 
-.hide_zone_left .col2, .hide_zone_right .col3 {
-  display: none; }
+@media (min-width: 992px) {
+  .hide_zone_left .col2, .hide_zone_right .col3 {
+    display: none; }
 
-.hide_zone_left .col1.col-lg-8 {
-  width: 83.3334%;
-  flex: 0 0 83.3334%;
-  max-width: 83.3334%; }
+  .hide_zone_left .col1.col-lg-8 {
+    width: 83.3334%;
+    flex: 0 0 83.3334%;
+    max-width: 83.3334%; }
 
-.hide_zone_right .col1.col-lg-8 {
-  width: 83.3334%;
-  flex: 0 0 83.3334%;
-  max-width: 83.3334%; }
+  .hide_zone_right .col1.col-lg-8 {
+    width: 83.3334%;
+    flex: 0 0 83.3334%;
+    max-width: 83.3334%; }
 
-.hide_zone_left .col1.col-lg-9, .hide_zone_right .col1.col-lg-9 {
-  width: 100%; }
+  .hide_zone_left .col1.col-lg-9, .hide_zone_right .col1.col-lg-9 {
+    width: 100%; }
 
-.hide_zone_left .col1.col-lg-9 {
-  width: 75%;
-  flex: 0 0 75%;
-  max-width: 75%; }
+  .hide_zone_left .col1.col-lg-9 {
+    width: 75%;
+    flex: 0 0 75%;
+    max-width: 75%; }
 
-.hide_zone_right .col1.col-lg-9 {
-  width: 100%;
-  flex: 0 0 100%;
-  max-width: 100%; }
+  .hide_zone_right .col1.col-lg-9 {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%; }
 
-.hide_zone_right .col1.col-lg-9.order-lg-2 {
-  width: 75%;
-  flex: 0 0 75%;
-  max-width: 75%; }
+  .hide_zone_right .col1.col-lg-9.order-lg-2 {
+    width: 75%;
+    flex: 0 0 75%;
+    max-width: 75%; }
 
-.hide_zone_right .col1.col-lg-9:not(.order-lg-2) {
-  width: 100%;
-  flex: 0 0 100%;
-  max-width: 100%; }
+  .hide_zone_right .col1.col-lg-9:not(.order-lg-2) {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%; }
 
-.hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2, .hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2 {
-  width: 100%;
-  flex: 0 0 100%;
-  max-width: 100%; }
+  .hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2, .hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2 {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%; }
 
-.hide_zone_left.hide_zone_right .col1.col-lg-8, .hide_zone_left.hide_zone_right .col1.col-lg-9 {
-  width: 100%;
-  flex: 0 0 100%;
-  max-width: 100%; }
+  .hide_zone_left.hide_zone_right .col1.col-lg-8, .hide_zone_left.hide_zone_right .col1.col-lg-9 {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%; } }
 
 @media (max-width: 767.98px) {
   #col1 {

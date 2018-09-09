@@ -218,8 +218,8 @@ body.fullscreen.tiki.navbar-padding {
 
 
 ///// User layout columns (module zones) switching / toggling (resurrected feature)
-
-// When hidden we simply do not display the columns
+@media (min-width: 992px) {
+  // When hidden we simply do not display the columns
 .hide_zone_left .col2,
 .hide_zone_right .col3 {
 	display: none;
@@ -284,6 +284,7 @@ body.fullscreen.tiki.navbar-padding {
   width: 100%;
   flex: 0 0 100%;
   max-width: 100%;
+}
 }
 // End overrides for wide side column layout
 
