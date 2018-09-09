@@ -26,7 +26,7 @@
 			{button href="tiki-forums.php" _icon_name="list" _type="link" class="btn btn-link" _text="{tr}Forum List{/tr}"}
 		{/if}
 
-		<div class="btn-group pull-right">
+		<div class="btn-group float-sm-right">
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 				{icon name='menu-extra'}
@@ -56,7 +56,7 @@
 								{icon name="watch"} {tr}Monitor topics and threads{/tr}
 							</a>
 						{else}
-							<a class="pull-right tips" href="tiki-view_forum.php?forumId={$forumId}&amp;watch_event=forum_post_topic_and_thread&amp;watch_object={$forumId}&amp;watch_action=remove">
+							<a class="float-sm-right tips" href="tiki-view_forum.php?forumId={$forumId}&amp;watch_event=forum_post_topic_and_thread&amp;watch_object={$forumId}&amp;watch_action=remove">
 								{icon name="stop-watching"} {tr}Stop monitoring topics and threads{/tr}
 							</a>
 						{/if}
@@ -462,7 +462,7 @@
 					</button>
 				{/if}
 			</div>
-			<div class="pull-right">
+			<div class="float-sm-right">
 				{if $reported > 0}
 					<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}<span></a>
 				{/if}

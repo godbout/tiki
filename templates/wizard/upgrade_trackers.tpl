@@ -9,7 +9,7 @@
 		{tr}Here you can set up a few options and features related to Trackers which were added across several versions of Tiki{/tr}.
 		{tr}You might have not specially noticed when they appeared but you should know about these enhancements since you might be interested in using some of them in your site{/tr}.
 	</p>
-	{icon name="admin_trackers" size=3 iclass="pull-right"}
+	{icon name="admin_trackers" size=3 iclass="float-sm-right"}
 	</br>
 	<div class="media-body">
 		<fieldset>

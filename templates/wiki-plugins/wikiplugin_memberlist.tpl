@@ -9,7 +9,7 @@
 				{tab name="{$groupName|addongroupname|escape}"}
 					<div class="group">
 						{if !empty($user) and $prefs.feature_user_watches eq 'y'}
-							<div class="pull-right">
+							<div class="float-sm-right">
 								{if not $groupData.isWatching}
 									{self_link watch=$groupName}
 										{icon name='watch' class='tips' title=":{tr}Group is NOT being monitored. Click icon to START monitoring.{/tr}"}

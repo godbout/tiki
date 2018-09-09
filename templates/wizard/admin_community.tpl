@@ -8,7 +8,7 @@
 		</span>
 	</div>
 		<div class="media-body">
-			{icon name="user" size=3 iclass="pull-right"}
+			{icon name="user" size=3 iclass="float-sm-right"}
 			<h4 class="mt-0 mb-4">{tr}Configure general user & community features and settings related to sharing and social networks{/tr}.</h4>
 			<fieldset>
 			<legend>{tr}User Features{/tr}</legend>
@@ -41,7 +41,7 @@
 			<em>{tr}To set up the <strong>User Watches</strong> and their associated settings, visit the page to {/tr} <a href="tiki-wizard_admin.php?&stepNr=15&url={$homepageUrl}">{tr}Set up Main features{/tr}</a></em>
 			</br></br>
 		</fieldset>
-		{icon name="users" size=3 iclass="pull-right"}
+		{icon name="users" size=3 iclass="float-sm-right"}
 		<fieldset>
 			<legend>{tr}Community General Settings{/tr}</legend>
 			<div class="row">
@@ -78,7 +78,7 @@
 				<em>{tr}See also{/tr} {tr}Community{/tr} <a href="tiki-admin.php?page=community&amp;cookietab=1" target="_blank">{tr}admin panel{/tr}</a> &amp; <a href="https://doc.tiki.org/Community" target="_blank">{tr}in doc.tiki.org{/tr}</a></em>
 			</div>
 		</fieldset>
-		{icon name="admin_share" size=3 iclass="pull-right"}
+		{icon name="admin_share" size=3 iclass="float-sm-right"}
 		<fieldset>
 			<legend>{tr}Sharing & Networking{/tr}</legend>
 			<div class="row">

@@ -45,7 +45,7 @@
 					<input type="text" name="s_f_attachments-comment" maxlength="250" id="attach-comment">
 				</div>
 			</div>
-			<div class="form-group pull-right">
+			<div class="form-group float-sm-right">
 				<input
 					type="submit"
 					class="btn btn-primary btn-sm"

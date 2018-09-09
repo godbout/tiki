@@ -10,7 +10,7 @@
 	<div class="media-body">
 		<fieldset>
 			<legend>{tr}Ratings in Forums{/tr}</legend>
-			{icon name="admin_rating" size=3 iclass="pull-right"}
+			{icon name="admin_rating" size=3 iclass="float-sm-right"}
 			<ul>
 				<li>
 					{tr}New option per forum: "User information display > <strong>Topic Rating</strong>" by each user{/tr}
@@ -28,7 +28,7 @@
 		</fieldset>
 		<fieldset>
 			<legend>{tr}Sysadmin Tasks{/tr}</legend>
-			{icon name="admin_search" size=3 iclass="pull-right"}
+			{icon name="admin_search" size=3 iclass="float-sm-right"}
 			<b>{tr}Search Index{/tr}</b>:
 			<ul>
 				<li>
@@ -45,7 +45,7 @@
 					</a>
 				</li>
 			</ul>
-			{icon name="terminal" size=3 iclass="pull-right"}
+			{icon name="terminal" size=3 iclass="float-sm-right"}
 			<b>{tr}Console{/tr}</b>:
 			<ul>
 				<li>
@@ -67,8 +67,8 @@
 					</a>
 				</li>
 			</ul>
-			{icon name="envelope-o" size=2 iclass="pull-right"}
-			{icon name="clock-o" size=2 iclass="pull-right"}
+			{icon name="envelope-o" size=2 iclass="float-sm-right"}
+			{icon name="clock-o" size=2 iclass="float-sm-right"}
 			<b>{tr}Mail Queue{/tr}</b> & <b>{tr}Daily Reports for User Watches{/tr}</b>:
 			<ul>
 				<li>

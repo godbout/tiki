@@ -7,7 +7,7 @@
 	</span>
 	</div>
 	<div class="media-body">
-		{icon name="wrench" size=3 iclass="pull-right"}
+		{icon name="wrench" size=3 iclass="float-sm-right"}
 		<div class="row">
 			<div class="col-lg-9">
 				{tr}The namespace separator should not{/tr}
@@ -25,7 +25,7 @@
 			{/if}
 			<br/>
 			<b>{tr}Settings that may be affected by the namespace separator{/tr}:</b><br/>
-			{icon name="file-text-o" size=2 iclass="pull-right"}
+			{icon name="file-text-o" size=2 iclass="float-sm-right"}
 
 			{tr}To use :: as a separator, you should also use ::: as the wiki center tag syntax{/tr}.<br/>
 			{tr}Note: a conversion of :: to ::: for existing pages must be done manually{/tr}

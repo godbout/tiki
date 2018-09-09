@@ -2,7 +2,7 @@
 
 {title}{tr}Browsing Gallery:{/tr} {$name}{/title}
 <div class="t_navbar mb-4">
-	<div class="btn-group pull-right">
+	<div class="btn-group float-sm-right">
 		{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 			{icon name='menu-extra'}

@@ -3,7 +3,7 @@
 {/if}
 {if $infoPublic eq 'y' || true}
 	<div class="clearfix">
-		<div class="pull-right">
+		<div class="float-sm-right">
 			{if $tiki_p_admin eq 'y' or $userinfo.object_id eq $user}
 				{if $tiki_p_admin eq 'y'}
 					<a class="link tips" href="tiki-assignuser.php?assign_user={$userwatch|escape:"url"}" title=":{tr}Assign group{/tr}">

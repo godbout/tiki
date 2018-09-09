@@ -168,7 +168,7 @@
 							{$cat_tree}
 							<div class="clearfix">
 								{if $tiki_p_admin_categories eq 'y'}
-									<div class="pull-right">
+									<div class="float-sm-right">
 										<a href="tiki-admin_categories.php" class="link">
 											{tr}Admin Categories{/tr} {icon name='wrench'}
 										</a>
@@ -178,7 +178,7 @@
 						{else}
 							<div class="clearfix">
 								{if $tiki_p_admin_categories eq 'y'}
-									<div class="pull-right">
+									<div class="float-sm-right">
 										<a href="tiki-admin_categories.php" class="link">
 											{tr}Admin Categories{/tr} {icon name='wrench'}
 										</a>

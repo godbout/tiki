@@ -62,7 +62,7 @@
 					<input type="hidden" name="subject" value="{tr}Re:{/tr} {$msg.subject|escape}">
 					<input type="hidden" name="body" value="{$msg.body|quoted:$quote_format:$msg.user_from|escape}">
 					<input type="hidden" name="replyto_hash" value="{$msg.hash}">
-					<input type="submit" class="btn btn-primary btn-sm pull-right" name="reply" value="{tr}Reply{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm float-sm-right" name="reply" value="{tr}Reply{/tr}">
 				</form>
 		</div>
 		<div class="col-xs-4 col-sm-3 col-lg-2">
@@ -83,7 +83,7 @@
 					<input type="hidden" name="subject" value="{tr}Re:{/tr} {$msg.subject|escape}">
 					<input type="hidden" name="body" value="{$msg.body|quoted:$quote_format:$msg.user_from|escape}">
 					<input type="hidden" name="replyto_hash" value="{$msg.hash}">
-					<button type="submit" class="btn btn-primary btn-sm pull-right" name="replyall" value="{tr}replyall{/tr}">{tr}Reply All{/tr}</button>
+					<button type="submit" class="btn btn-primary btn-sm float-sm-right" name="replyall" value="{tr}replyall{/tr}">{tr}Reply All{/tr}</button>
 				</form>
 		</div>
 		<div class="col-xs-4 col-sm-3 col-lg-2">
@@ -105,7 +105,7 @@
 				{/if}
 				<input
 					type="submit"
-					class="btn btn-danger btn-sm pull-right"
+					class="btn btn-danger btn-sm float-sm-right"
 					name="delete"
 					value="{tr}Delete{/tr}"
 					onclick="confirmSimple(event, '{tr}Delete message?{/tr}')"

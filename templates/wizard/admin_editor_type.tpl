@@ -7,7 +7,7 @@
 		</span>
 	</div>
 	<div class="media-body">
-		{icon name="admin_textarea" size=3 iclass="adminWizardIconright pull-right"}
+		{icon name="admin_textarea" size=3 iclass="adminWizardIconright float-sm-right"}
 		<h4 class="mt-0 mb-4">{tr}Select editor type{/tr}</h4>
 		<div class="adminWizardContent">
 		<fieldset>

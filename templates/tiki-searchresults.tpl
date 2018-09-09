@@ -82,14 +82,14 @@
 								{$cat_tree}
 								<div class="clearfix">
 									{if $tiki_p_admin_categories eq 'y'}
-										<div class="pull-right"><a href="tiki-admin_categories.php" class="link">{tr}Admin Categories{/tr} {icon name='wrench'}</a></div>
+										<div class="float-sm-right"><a href="tiki-admin_categories.php" class="link">{tr}Admin Categories{/tr} {icon name='wrench'}</a></div>
 									{/if}
 									{select_all checkbox_names='cat_categories[]' label="{tr}Select/deselect all categories{/tr}"}
 								</div>
 							{else}
 								<div class="clearfix">
 									{if $tiki_p_admin_categories eq 'y'}
-										<div class="pull-right"><a href="tiki-admin_categories.php" class="link">{tr}Admin Categories{/tr} {icon name='wrench'}</a></div>
+										<div class="float-sm-right"><a href="tiki-admin_categories.php" class="link">{tr}Admin Categories{/tr} {icon name='wrench'}</a></div>
 									{/if}
 									{tr}No categories defined{/tr}
 								</div>

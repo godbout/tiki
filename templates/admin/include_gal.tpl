@@ -13,7 +13,7 @@
 			{ticket}
 			<br>
 			<div class="form-group col-lg-12 clearfix">
-				<div class="pull-right">
+				<div class="float-sm-right">
 					<input
 						type="submit"
 						class="btn btn-primary tips"

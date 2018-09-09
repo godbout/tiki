@@ -24,7 +24,7 @@
 
 {if !isset($versioned) and $print_page ne 'y' and (!isset($hide_page_header) or !$hide_page_header)}
 	<div class="wikiactions_wrapper">
-		<div class="wikiactions icons btn-group pull-right">
+		<div class="wikiactions icons btn-group float-sm-right">
 			<div class="btn-group">
 				{* Show language dropdown only if there is more than 1 language or user has right to edit *}
 				{if ($tiki_p_admin eq 'y' or $tiki_p_admin_wiki eq 'y' or $tiki_p_edit eq 'y' or $tiki_p_edit eq 'y' or $tiki_p_edit_inline eq 'y') or $translationsCount gt 1}

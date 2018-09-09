@@ -5,7 +5,7 @@
 {if empty($value)}
 	{$value="{tr}Apply{/tr}"}
 {/if}
-<div class="pull-right">
+<div class="float-sm-right">
 	<input
 		type="submit"
 		{if !empty($form)}form="{$form|escape:'attr'}"{/if}

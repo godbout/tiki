@@ -34,7 +34,7 @@
 					{/section}
 				</select>
 			</div>
-			<div class="col-md-6 pull-right">
+			<div class="col-md-6 float-sm-right">
 				{if $custom_file}
 					{remarksbox type="info" title="{tr}Download{/tr}" close="n"}
 						<a class="btn btn-link tips" href="{service controller=language action=download language={$language} file_type="custom_php"}" title="{tr}custom.php{/tr}:{tr}Download custom.php file for the selected language.{/tr}">

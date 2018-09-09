@@ -74,20 +74,20 @@
 							{/if}
 						<li>
 							{icon name=$icon}<span class="small"> {$relation.label|escape}</span>
-							<div class="friendship-actions pull-right">
+							<div class="friendship-actions float-sm-right">
 								{if !empty($relation.remove)}
-									<a class="pull-right remove-friend btn btn-primary" href="{service controller=social action=remove_friend friend=$other_user}"
+									<a class="float-sm-right remove-friend btn btn-primary" href="{service controller=social action=remove_friend friend=$other_user}"
 										title="{$relation.remove}" data-confirm="{tr _0=$other_user}Do you really want to remove %0?{/tr}">
 										{icon name='delete'}
 									</a>
 								{/if}
 								{if !empty($relation.add)}
-									<a class="pull-right add-friend btn btn-primary" title="{$relation.add}" href="{service controller=social action=add_friend username=$other_user}">
+									<a class="float-sm-right add-friend btn btn-primary" title="{$relation.add}" href="{service controller=social action=add_friend username=$other_user}">
 										{icon name='add'}
 									</a>
 								{/if}
 								{if !empty($relation.approve)}
-									<a class="pull-right approve-friend btn btn-primary" title="{$relation.approve}" href="{service controller=social action=approve_friend friend=$other_user}">
+									<a class="float-sm-right approve-friend btn btn-primary" title="{$relation.approve}" href="{service controller=social action=approve_friend friend=$other_user}">
 										{icon name='ok'}
 									</a>
 								{/if}

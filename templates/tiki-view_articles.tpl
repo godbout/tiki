@@ -24,7 +24,7 @@
 			|| $tiki_p_remove_submission == "y" || $tiki_p_edit_submission == "y")}
 				{button href="tiki-list_submissions.php" _type="link" class="btn btn-link" _icon_name="view" _text="{tr}View Submissions{/tr}"}
 			{/if}
-			<div class="btn-group pull-right">
+			<div class="btn-group float-sm-right">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name='menu-extra'}
@@ -261,7 +261,7 @@
 					</ul>
 				{/if}
 				{if !isset($actions) or $actions eq "y"}
-					<div class="btn-group actions pull-right dropup">
+					<div class="btn-group actions float-sm-right dropup">
 						{if $prefs.feature_multilingual eq 'y' and $listpages[ix].perms.tiki_p_edit_article eq 'y'}
 							{include file='translated-lang.tpl' object_type='article' trads=$listpages[ix].translations articleId=$listpages[ix].articleId}
 						{/if}

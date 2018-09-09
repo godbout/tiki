@@ -155,7 +155,7 @@
 				</div>
 			{/if}
 			{if ($prefs.default_wiki_diff_style ne "old") and $history}
-				<div class="input-group input-group-sm col-sm-4 pull-right mb-4">
+				<div class="input-group input-group-sm col-sm-4 float-sm-right mb-4">
 					<select class="form-control" name="diff_style" id="diff_style_all"{if $prefs.javascript_enabled eq "y"} style="display: none"{/if}>
 						<option value="htmldiff" {if $diff_style == "htmldiff"}selected="selected"{/if}>
 							{tr}HTML diff{/tr}

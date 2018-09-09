@@ -11,7 +11,7 @@
 		</div>
 	{/if}
 	{if $listpages or ($find ne '')}
-		<div class="col-sm-5 pull-right">
+		<div class="col-sm-5 float-sm-right">
 			{include file='find.tpl'}
 		</div>
 	{/if}

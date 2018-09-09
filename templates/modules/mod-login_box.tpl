@@ -109,7 +109,7 @@ if (jqueryTiki.no_cookie) {
 		{elseif $mode eq "header"}
 			<span style="white-space: nowrap">{$user|userlink}</span> <a href="tiki-logout.php" title="{tr}Log out{/tr}">{tr}Log out{/tr}</a>
 		{elseif $mode eq "popup"}
-			<div class="siteloginbar_popup dropdown pull-right" role="group">
+			<div class="siteloginbar_popup dropdown float-sm-right mr-auto" role="group">
 				<button type="button" class="dropdown-toggle login_link btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{if isset($module_params.show_user_avatar) && $module_params.show_user_avatar eq 'y'}{$user|avatarize:n:n:n:n}{/if}
 					{if isset($module_params.show_user_name) && $module_params.show_user_name eq 'y'}{$user|username:n:n:n}{/if}
@@ -168,11 +168,11 @@ if (jqueryTiki.no_cookie) {
 	{else}
 		{assign var='close_tags' value=''}
 		{if $mode eq "popup"}
-			<div class="siteloginbar_popup dropdown btn-group pull-right">
+			<div class="siteloginbar_popup dropdown btn-group float-sm-right drop-left">
 				<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
 					{tr}Log in{/tr}
 				</button>
-				<div class="siteloginbar_poppedup dropdown-menu pull-right modal-sm"><div class="card-body">
+				<div class="siteloginbar_poppedup dropdown-menu float-sm-right modal-sm"><div class="card-body">
 					{capture assign="close_tags"}</div></div></div>{$close_tags}{/capture}
 		{/if}
 

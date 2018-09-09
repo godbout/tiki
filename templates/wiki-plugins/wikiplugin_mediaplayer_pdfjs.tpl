@@ -8,7 +8,7 @@
     <div>
         <a class="btn btn-default btn-sm" data-role="button" id="prev">{tr}Previous{/tr}</a>
         <a class="btn btn-default btn-sm" data-role="button" id="next">{tr}Next{/tr}</a>
-        <span class="pull-right small">{tr}Page{/tr}: <span id="page_num"></span> / <span id="page_count"></span></span>
+        <span class="float-sm-right small">{tr}Page{/tr}: <span id="page_num"></span> / <span id="page_count"></span></span>
     </div>
     <div>
         <canvas id="pdf-canvas" style="border:1px solid gray" class="col-12"></canvas>

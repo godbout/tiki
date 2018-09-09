@@ -40,7 +40,7 @@
 		<tr>
 			<td class="text">{tr}Local (Tiki database){/tr}</td>
 			<td class="text">{tr}See db/local.php{/tr}</td>
-			<td class="action pull-right">
+			<td class="action float-sm-right">
 				{permission_link mode=icon type=dsn id=local title=local}
 			</td>
 		</tr>

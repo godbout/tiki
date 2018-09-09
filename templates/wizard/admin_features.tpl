@@ -8,7 +8,7 @@
 		</span>
 	</div>
 	<div class="media-body">
-		{icon name="admin_features" size=3 iclass="pull-right"}
+		{icon name="admin_features" size=3 iclass="float-sm-right"}
 		<h4 class="mt-0 mb-4">{tr}Set up the main Tiki features. The wiki and file gallery features are always enabled.{/tr}</h4>
 		<fieldset>
 			<legend>{tr}Main Tiki features{/tr}</legend>
@@ -32,7 +32,7 @@
 		</fieldset>
 		<fieldset>
 			<legend>{tr}Watches{/tr}</legend>
-			{icon name="envelope-o" size=2 iclass="pull-right"}
+			{icon name="envelope-o" size=2 iclass="float-sm-right"}
 			{tr}Enable email notifications to users when changes in the content of specific items (pages, posts, trackers, etc.) are made{/tr}.
 			<div class="admin clearfix featurelist">
 				{preference name=feature_user_watches}

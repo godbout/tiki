@@ -8,7 +8,7 @@
 		</span>
 	</div>
 	<div class="media-body">
-		{icon name="admin_fgal" size=3 iclass="pull-right"}
+		{icon name="admin_fgal" size=3 iclass="float-sm-right"}
 		<h4 class="mt-0 mb-4">{tr}Set up the file gallery and attachments{/tr}. {tr}Choose to store them either in the database or in files on disk, among other options{/tr}.</h4>
 
 				<fieldset class="mb-4">

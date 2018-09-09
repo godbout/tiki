@@ -153,7 +153,7 @@
 		{* ----------------------- tab with form --------------------------------------- *}
 	{if !$ts.ajax}
 		{if !empty($user) and $prefs.feature_user_watches eq 'y' && !empty($groupname)}
-			<div class="pull-right">
+			<div class="float-sm-right">
 				{if not $group_info.isWatching}
 					{self_link watch=$groupname _class="tips" _title="{$groupname}:{tr}Group is NOT being monitored. Click icon to START monitoring.{/tr}"}
 						{icon name='watch' alt="{tr}Group is NOT being monitored. Click icon to START monitoring.{/tr}"}

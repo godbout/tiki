@@ -68,7 +68,7 @@
 			{/if}
 			<input
 				type="submit"
-				class="btn btn-primary btn-sm pull-right"
+				class="btn btn-primary btn-sm float-sm-right"
 				name="delete"
 				value="{tr}Delete{/tr}"
 				onclick="confirmSimple(event, '{tr}Delete sent message?{/tr}')"

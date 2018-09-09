@@ -9,7 +9,7 @@
 		{foreach $result as $activity}
 			<div>
 				{if $prefs.monitor_individual_clear eq 'y'}
-					<a class="clearone pull-right close" href="{service controller=monitor action=clearone activity=$activity.object_id}">&times;</a>
+					<a class="clearone float-sm-right close" href="{service controller=monitor action=clearone activity=$activity.object_id}">&times;</a>
 				{/if}
 				{activity info=$activity format="summary"}
 			</div>

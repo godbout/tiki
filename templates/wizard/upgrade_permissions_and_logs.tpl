@@ -8,7 +8,7 @@
 	{tr}New permissions and action log settings{/tr}.
 	<br/><br/><br/>
 	<div class="media-body">
-		{icon name="key" size=3 iclass="pull-right"}
+		{icon name="key" size=3 iclass="float-sm-right"}
 		<fieldset>
 			<legend>{tr}Permissions{/tr}</legend>
 			<b>{tr}Wiki{/tr}</b>:
@@ -61,7 +61,7 @@
 			</ul>
 		</fieldset>
 		<br/>
-		{icon name="book" size=3 iclass="pull-right"}
+		{icon name="book" size=3 iclass="float-sm-right"}
 		<fieldset>
 			<legend>{tr}Action log settings{/tr}</legend>
 			<b>{tr}BigBlueButton{/tr}</b>:

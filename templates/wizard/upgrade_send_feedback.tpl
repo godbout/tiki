@@ -26,7 +26,7 @@
 	<div class="media-body">
 		<fieldset>
 			<legend>{tr}Connect{/tr}</legend>
-			{icon name="admin_connect" size=3 iclass="pull-right"}
+			{icon name="admin_connect" size=3 iclass="float-sm-right"}
 			{preference name="connect_feature"}
 			<div class="adminoptionboxchild" id="connect_feature_childcontainer">
 				<div class="t_navbar btn-group form-group row">

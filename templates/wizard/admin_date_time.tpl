@@ -7,7 +7,7 @@
 		</span>
 	</div>
 	<div class="media-body">
-		{icon name="clock-o" size=3 iclass="pull-right"}
+		{icon name="clock-o" size=3 iclass="float-sm-right"}
 		<h4 class="mt-0 mb-4">{tr}Set the site time zone and format for displaying dates and times{/tr}.</h4>
 		<fieldset>
 			<legend>{tr}Date and Time options{/tr}</legend>

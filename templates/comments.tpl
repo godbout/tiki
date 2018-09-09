@@ -34,7 +34,7 @@
 						{tr}Moderator actions for selected topics{/tr}
 					</div>
 					<div class="card-body form-inline">
-						<span class="infos pull-right">
+						<span class="infos float-sm-right">
 							{if $reported > 0}
 								<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}</span></a>
 							{/if}

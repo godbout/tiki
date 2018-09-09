@@ -7,7 +7,7 @@
 			<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 		</span></div>
 	<div class="media-body">
-		{icon name="file-text-o" size=3 iclass="pull-right"}
+		{icon name="file-text-o" size=3 iclass="float-sm-right"}
 		<h4 class="mt-0 mb-4">{tr}Automatic table of contents for a wiki page{/tr}</h4>
 		<fieldset>
 			<legend>{tr}Auto TOC options{/tr}</legend>

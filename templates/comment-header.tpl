@@ -8,7 +8,7 @@
 	{/if}
 
 	{if $thread_style != 'commentStyle_headers' and $this_is_locked eq 'n' and isset($comment.threadId) and $comment.threadId > 0}
-		<div class="actions pull-right btn-group">
+		<div class="actions float-sm-right btn-group">
 			{actions}
 				{strip}
 					{if $comment.threadId eq $comments_parentId}
@@ -82,7 +82,7 @@
 				{/strip}
 			{/actions}
 			{if $category_watched eq 'y'}<br>
-				<div class="categbar pull-right">
+				<div class="categbar float-sm-right">
 					{tr}Watched by categories:{/tr}
 					{section name=i loop=$watching_categories}
 						<a href="tiki-browse_categories.php?parentId={$watching_categories[i].categId}">{$watching_categories[i].name|escape}</a>&nbsp;

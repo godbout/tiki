@@ -30,7 +30,7 @@
 			<input type="hidden" name="cat_categorize" value="on">
 			<div class="clearfix">
 				{if $tiki_p_admin_categories eq 'y'}
-					<div class="pull-right">
+					<div class="float-sm-right">
 						<a class="btn btn-link btn-sm tips" href="tiki-admin_categories.php" title=":{tr}Admin Categories{/tr}">
 							{icon name="cog"} {tr}Categories{/tr}
 						</a>
@@ -41,7 +41,7 @@
 		{else}
 			<div class="clearfix">
 				{if $tiki_p_admin_categories eq 'y'}
-					<div class="pull-right">
+					<div class="float-sm-right">
 						<a class="btn btn-link" href="tiki-admin_categories.php" title=":{tr}Admin Categories{/tr}">
 							{icon name="cog"} {tr}Categories{/tr}
 						</a>
