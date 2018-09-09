@@ -4,7 +4,7 @@
 -- --------------------------------------------------------
 
 ALTER DATABASE DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-SET FOREIGN_KEY_CHECKS = 0;   # tiki doesn't officially use foreign keys but sometimes they "appear", leading to table dropping errors
+SET FOREIGN_KEY_CHECKS = 0;  /* tiki doesn't officially use foreign keys but sometimes they "appear", leading to table dropping errors */
 
 DROP TABLE IF EXISTS `messu_messages`;
 CREATE TABLE `messu_messages` (
@@ -1730,7 +1730,7 @@ CREATE TABLE `tiki_modules` (
 ) ENGINE=MyISAM;
 
 INSERT INTO `tiki_modules` (name,position,ord,cache_time,params,groups) VALUES
-    ('menu','left',1,7200,'id=42&flip=y','a:1:{i:0;s:10:"Registered";}'),
+    ('menu','left',1,7200,'id=42&title=System+Menu','a:1:{i:0;s:10:"Registered";}'),
     ('logo','top',1,7200,'nobox=y','a:0:{}'),
     ('login_box','top',2,0,'mode=popup&nobox=y','a:0:{}'),
     ('rsslist','bottom',1,7200,'nobox=y','a:0:{}'),
