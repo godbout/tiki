@@ -598,7 +598,7 @@ div.drillshow {
   border: 1px solid #dee2e6; }
 
 .tiki .chosen-container-single .chosen-single {
-  height: calc(2.25rem + 2px);
+  height: 2.25rem;
   padding: 0.5rem 0.5rem;
   font-size: 1rem;
   line-height: 1.5; }
@@ -3113,7 +3113,7 @@ body.fullscreen.tiki.navbar-padding {
   flex: 0 0 100%;
   max-width: 100%; }
 
-.hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2 {
+.hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2, .hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2 {
   width: 100%;
   flex: 0 0 100%;
   max-width: 100%; }
@@ -4244,9 +4244,9 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
   border-bottom-left-radius: 0.25rem;
   color: #6c757d;
   display: block;
-  height: calc(2.25rem + 2px);
+  height: 2.25rem;
   overflow: hidden;
-  line-height: calc(2.25rem + 2px);
+  line-height: 2.25rem;
   padding: 0 0 0 0.75rem;
   position: relative;
   text-decoration: none;
@@ -4254,7 +4254,7 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
   .chosen-container-single .chosen-single abbr {
     display: inline-block;
     position: absolute;
-    top: 0.45rem;
+    top: 0.325rem;
     right: 2.5rem;
     width: 1.5rem;
     height: 1.5rem;
@@ -4283,7 +4283,7 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
   .chosen-container-single .chosen-single div:after {
     display: inline-block;
     position: relative;
-    top: 0.25rem;
+    top: 0.125rem;
     left: -1rem;
     width: 2rem;
     height: 2rem;
@@ -4362,7 +4362,7 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     background: transparent !important;
     border: 0 !important;
     color: #6c757d;
-    height: calc(2.25rem + 2px);
+    height: 2.25rem;
     margin: 0;
     padding: 0 0 0 0.75rem;
     outline: 0;
@@ -4423,7 +4423,7 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
   .chosen-container-active.chosen-with-drop .chosen-single div:after {
     display: inline-block;
     position: relative;
-    top: 0.25rem;
+    top: 0.125rem;
     left: -1rem;
     width: 2rem;
     height: 2rem;

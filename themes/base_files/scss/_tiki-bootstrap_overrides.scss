@@ -272,7 +272,8 @@ body.fullscreen.tiki.navbar-padding {
 }
 
 // Right col assigned off, left col toggled off
-.hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2 {
+.hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2,
+.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2{
   width: 100%;
   flex: 0 0 100%;
   max-width: 100%;
