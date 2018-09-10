@@ -27,6 +27,7 @@
 				<label for="keepOpenCbx">{tr}Keep gallery window open{/tr}</label>
 				<input type="checkbox" id="keepOpenCbx" checked="checked">
 			</span>
+			<div id="tikifeedback" class="col-sm-8 offset-2"></div>
 		{/if}
 	</div>
 {/if}
