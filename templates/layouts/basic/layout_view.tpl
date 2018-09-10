@@ -21,7 +21,7 @@
 {/if}
 
 	<div class="row row-middle" id="row-middle">
-		<div class="topbar" id="topbar" style="width: 100%;">
+		<div class="topbar bg-dark w-100" id="topbar">
 			{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 		</div>
 		{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
