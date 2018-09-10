@@ -37,6 +37,7 @@
 			</div>
 			{preference name='sitemap_enable'}
 			{preference name='feature_sefurl_routes'}
+			{preference name='fallbackBaseUrl'}
 			{preference name='wiki_make_ordered_list_items_display_unique_numbers'}
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
