@@ -3,7 +3,7 @@
 {tikimodule error=$module_error title=$tpl_module_title name=$tpl_module_name flip=$module_params.flip|default:null decorations=$module_params.decorations|default:null nobox=$module_params.nobox|default:null notitle=$module_params.notitle|default:null type=$module_type}
 	{if $module_params.bootstrap|default:null neq 'n'}
 		{if $module_params.type|default:null eq 'horiz' OR !empty($module_params.navbar_brand)}
-			<nav class="{if !empty($module_params.navbar_class)}{$module_params.navbar_class}{else}navbar navbar-expand-lg navbar-light bg-dark{/if}" role="navigation">
+			<nav class="{if !empty($module_params.navbar_class)}{$module_params.navbar_class}{else}navbar navbar-expand-lg navbar-dark bg-dark{/if}" role="navigation">
 				{if $module_params.navbar_brand neq ''}
 					<a class="navbar-brand" href="index.php">
 						<img id="logo-header" src="{$module_params.navbar_brand}" alt="Logo">
