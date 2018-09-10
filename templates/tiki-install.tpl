@@ -176,7 +176,7 @@
 							<div class="form-group row mt-4">
 								<label class="col-sm-2" for="email_test_to">{tr}Test email:{/tr}</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to}{/if}" placeholder="{tr}tiki@example.com{/tr}">
+									<input type="text" class="form-control" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to|escape}{/if}" placeholder="{tr}tiki@example.com{/tr}">
 								</div>
 								{if isset($email_test_err)}
 									<span class="attention"><em>{$email_test_err}</em></span>
