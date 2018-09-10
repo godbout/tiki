@@ -6,7 +6,7 @@
 				<a href="{$module_params.link}" title="{$module_params.title_attr|escape}">
 					<img src="{$module_params.src}" alt="{$module_params.alt_attr|escape}" style="max-width: 100%; height: auto">
 				</a>
-				{if $tiki_p_admin eq "y"}<a class="btn btn-outline-primary btn-sm bottom mb-2 ml-1 mr-1 mt-2 position-absolute opacity50 tips" href="tiki-admin.php?page=look&cookietab=2&highlight=sitelogo_src#feature_sitelogo_childcontainer" style="top: 0; right: 0" title="{tr}Change the logo{/tr}: {tr}Click to change or upload new logo{/tr}">{icon name="image"}</a>{/if}
+				{if $tiki_p_admin eq "y"}<a class="btn btn-primary btn-sm bottom mb-3 ml-1 mr-1 mt-3 position-absolute opacity50 tips" href="tiki-admin.php?page=look&cookietab=2&highlight=sitelogo_src#feature_sitelogo_childcontainer" style="top: 0; right: 0" title="{tr}Change the logo{/tr}: {tr}Click to change or upload new logo{/tr}">{icon name="image"}</a>{/if}
 			</div>
 		{/if}
 		{if !empty($module_params.sitetitle) or !empty($module_params.sitesubtitle)}
