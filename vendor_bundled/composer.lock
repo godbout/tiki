@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1af0b6362ba0735f0f989752c8c0a035",
+    "content-hash": "8632b5036d0cbf82c685899ca22fcd6a",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -1132,9 +1132,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1294,17 +1294,17 @@
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v3.3.4",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jcbrand/converse.js.git",
-                "reference": "8211ed8f700df1100778163936c77766d05a241d"
+                "url": "https://github.com/conversejs/converse.js.git",
+                "reference": "09bb6b494deb4de0c79f2f9c2b458b1f7f2cc4e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-8211ed8f700df1100778163936c77766d05a241d-zip-3565dd.zip",
-                "reference": "8211ed8f700df1100778163936c77766d05a241d",
-                "shasum": "5797a35efbd8e475108ced14b4364ee9e42ee84c"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-09bb6b494deb4de0c79f2f9c2b458b1f7f2cc4e2-zip-0a4e0d.zip",
+                "reference": "09bb6b494deb4de0c79f2f9c2b458b1f7f2cc4e2",
+                "shasum": "82863c674277ae5dfbcdd3719b157f56355fbad2"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1319,7 +1319,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2018-03-05T13:43:53+00:00"
+            "time": "2018-09-07T14:20:30+00:00"
         },
         {
             "name": "jquery-form/form",
