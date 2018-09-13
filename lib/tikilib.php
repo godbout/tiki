@@ -2490,10 +2490,39 @@ class TikiLib extends TikiDb_Bridge
 	 */
 	public function convertAbsoluteLinksToRelative($data)
 	{
-		global $prefs;
+		global $prefs, $tikilib;
 
 		if ($prefs['feature_absolute_to_relative_links'] != 'y' || $this->getMatchBaseUrlSchema($data) === null) {
 			return $data;
+		}
+
+		$from = 0;
+		$to = strlen($data);
+		$replace = [];
+		foreach ($this->getWikiMarkers() as $marker) {
+			while (false !== $open = $this->findText($data, $marker[0], $from, $to)) {
+				if (false !== $close = $this->findText($data, $marker[1], $open, $to)) {
+					$from = $close;
+					$size = ($close - $open) + strlen($marker[1]);
+					$markerBody = substr($data, $open, $size);
+					$key = "§" . md5($tikilib->genPass()) . "§" ;
+					$replace[$key] = $markerBody;
+					$data = str_replace($markerBody, $key, $data);
+				}
+			}
+		}
+
+		// convert absolute to relative links
+		$pluginMatches = WikiParser_PluginMatcher::match($data);
+		foreach ($pluginMatches as $pluginMatch) {
+			$pluginBody = $pluginMatch->getBody();
+			if (empty($pluginBody)) {
+				$pluginBody = $pluginMatch->getArguments();
+			}
+
+			$key = "§" . md5($tikilib->genPass()) . "§" ;
+			$replace[$key] = $pluginBody;
+			$data = str_replace($pluginBody, $key, $data);
 		}
 
 		// Detect tiki internal links
@@ -2534,6 +2563,28 @@ class TikiLib extends TikiDb_Bridge
 				$newLink = '[' . $newPath . $matches[3][$i] . ']';
 				$data = str_replace($matches[0][$i], $newLink, $data);
 			}
+		}
+
+		// Detect links outside wikiplugin or wiki markers
+		preg_match_all('/(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/', $data, $matches);
+
+		$counter = count($matches[0]);
+		for ($i = 0; $i < $counter; $i++) {
+			// Check if link part is valid url
+			if (filter_var($matches[0][$i], FILTER_VALIDATE_URL) === false) {
+				continue;
+			}
+
+			// Check if url matches tiki instance links
+			if ($url = $this->getMatchBaseUrlSchema($matches[0][$i])) {
+				$newPath = str_replace($url, '', $matches[0][$i]);
+				$newLink = '((' . $newPath . '))';
+				$data = str_replace($matches[0][$i], $newLink, $data);
+			}
+		}
+
+		foreach ($replace as $key => $body) {
+			$data = str_replace($key, $body, $data);
 		}
 
 		return $data;
@@ -6810,6 +6861,48 @@ JS;
 		$csv = stream_get_contents($fh);
 		fclose($fh);
 		return trim($csv);
+	}
+
+	/**
+	 * Find a text inside string range
+	 *
+	 * @param string $text
+	 * @param string $string
+	 * @param int $from
+	 * @param int $to
+	 * @return mixed
+	 */
+	public function findText($text, $string, $from, $to)
+	{
+		if ($from >= strlen($text)) {
+			return false;
+		}
+
+		$pos = strpos($text, $string, $from);
+
+		if ($pos === false || $pos + strlen($string) > $to) {
+			return false;
+		}
+
+		return $pos;
+	}
+
+	/**
+	 * Return wiki markers
+	 *
+	 * @return array
+	 */
+	public function getWikiMarkers()
+	{
+		$listMarkers = [
+			['~np~', '~/np~'],
+			['-+', '+-'],
+			['~pp~', '~/pp~'],
+			['~pre~', '~/pre~'],
+			['-=', '=-'],
+		];
+
+		return $listMarkers;
 	}
 }
 // end of class ------------------------------------------------------
