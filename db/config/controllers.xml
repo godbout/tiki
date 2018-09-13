@@ -30,6 +30,7 @@
 		<service id="tiki.controller.draw" class="Services_Draw_Controller"/>
 		<service id="tiki.controller.edit" class="Services_Edit_Controller"/>
 		<service id="tiki.controller.edit_semaphore" class="Services_Edit_SemaphoreController"/>
+		<service id="tiki.controller.export" class="Services_Export_Controller"/>
 		<service id="tiki.controller.favorite" class="Services_User_FavoriteController"/>
 		<service id="tiki.controller.forum" class="Services_Forum_Controller"/>
 		<service id="tiki.controller.goal" class="Services_Goal_Controller"/>

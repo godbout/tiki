@@ -47,6 +47,11 @@ class Tiki_Profile_Writer
 		$this->externalWriter->write($page . $ext, $content);
 	}
 
+	function getExternalWriter()
+	{
+		return $this->externalWriter;
+	}
+
 	function setPreference($name, $value)
 	{
 		$this->data['preferences'][$name] = $value;

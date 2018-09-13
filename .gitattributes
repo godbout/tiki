@@ -2732,6 +2732,7 @@ lib/core/Services/Exception/MissingValue.php -text
 lib/core/Services/Exception/NotAvailable.php -text
 lib/core/Services/Exception/NotFound.php -text
 lib/core/Services/Exception/index.php -text
+lib/core/Services/Export/Controller.php -text
 lib/core/Services/File/Controller.php -text
 lib/core/Services/File/FinderController.php -text
 lib/core/Services/File/Utilities.php -text
@@ -6065,6 +6066,7 @@ templates/tiki-admin_shoutbox_words.tpl -text
 templates/tiki-admin_structures.tpl -text
 templates/tiki-admin_survey_questions.tpl -text
 templates/tiki-admin_surveys.tpl -text
+templates/tiki-admin_sync.tpl -text
 templates/tiki-admin_system.tpl -text
 templates/tiki-admin_tokens.tpl -text
 templates/tiki-admin_toolbars.tpl -text
@@ -7960,6 +7962,7 @@ themes/yeti/templates/index.php -text
 /tiki-admin_structures.php -text
 /tiki-admin_survey_questions.php -text
 /tiki-admin_surveys.php -text
+/tiki-admin_sync.php -text
 /tiki-admin_system.php -text
 /tiki-admin_tokens.php -text
 /tiki-admin_toolbars.php -text
