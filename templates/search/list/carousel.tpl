@@ -6,12 +6,14 @@
 		{if $carousel and isset($carousel.pause)} data-pause="{$carousel.pause}"{/if}
 		{if $carousel and isset($carousel.wrap)} data-wrap="{$carousel.wrap}"{/if}
 >
-	{* Indicators *}
-	<ol class="carousel-indicators">
-		{foreach from=$results item=row}
-			<li data-target="#{$containerId}" data-slide-to="{$row@index}"{if $row@index eq 0} class="active"{/if}></li>
-		{/foreach}
-	</ol>
+	{if $carousel and (empty($carousel.indicators) or $carousel.indicators neq 'n')}
+		{* Indicators *}
+		<ol class="carousel-indicators">
+			{foreach from=$results item=row}
+				<li data-target="#{$containerId}" data-slide-to="{$row@index}"{if $row@index eq 0} class="active"{/if}></li>
+			{/foreach}
+		</ol>
+	{/if}
 
 	{* Wrapper for slides *}
 	<div class="carousel-inner">

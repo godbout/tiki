@@ -304,6 +304,12 @@ class Services_Edit_ListPluginHelper
 															'fade' => [],
 														],
 													],
+													'indicators' => [
+														'options' => [
+															'y' => [],
+															'n' => [],
+														],
+													],
 												],
 											],
 										],
