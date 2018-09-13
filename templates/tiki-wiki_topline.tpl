@@ -24,6 +24,7 @@
 
 {if !isset($versioned) and $print_page ne 'y' and (!isset($hide_page_header) or !$hide_page_header)}
 	<div class="wikiactions_wrapper">
+	{strip}
 		<div class="wikiactions float-sm-right">
 			<div class="btn-group ml-2">
 				{* Show language dropdown only if there is more than 1 language or user has right to edit *}
@@ -318,5 +319,6 @@
 				{/if}
 			</div>
 		</div> {* END of wikiactions *}
+	{/strip}
 	</div>
 {/if}
