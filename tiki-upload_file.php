@@ -226,6 +226,8 @@ include_once('tiki-section_options.php');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 
+$smarty->assign('category_jail', TikiLib::lib('tiki')->get_jail(false));
+
 // Display the template
 if ($prefs['javascript_enabled'] != 'y' or ! $isUpload || ! empty($_REQUEST['fileId'])) {
 	if ($prefs['file_galleries_use_jquery_upload'] !== 'y') {
