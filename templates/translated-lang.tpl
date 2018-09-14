@@ -1,6 +1,6 @@
 {* Display the list of available translations for an object and manage its translations *}
 {** Currently works for the following object types: 'article' and 'wiki page' **}
-
+{strip}
 {if empty($submenu) || $submenu neq 'y'}
 	<div class="btn-group">
 		{if $prefs.lang_available_translations_dropdown neq 'y' }
@@ -144,3 +144,4 @@
 	{/if}
 	</div>
 {/if}
+{/strip}
