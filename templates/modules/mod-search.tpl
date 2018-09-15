@@ -63,7 +63,7 @@
 								</button>
 							</div>
 
-							<div class="btn-group search_mod_buttons box" style="display:none;position:absolute;left:2.5em;top:2.5em;z-index:2;white-space:nowrap;">
+							<div class="btn-group search_mod_buttons box" style="display: none; position: absolute; right: 0; z-index: 2; white-space: nowrap;">{* TODO: move the style to themes/base_files/scss/_tiki-modules.scss *}
 							{else}
 								<div class="input-group-btn btn-group my-1">
 							{/if}
