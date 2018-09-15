@@ -398,7 +398,7 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="topicOrdering">{tr}Default order of topics{/tr}</label>
 							<div class="col-sm-8 checkbox-inline">
-								{html_options name=topicOrdering id=topicOrdering options=$topicOrdering_options selected=$topicOrdering}
+								{html_options name=topicOrdering id=topicOrdering class=form-control options=$topicOrdering_options selected=$topicOrdering}
 							</div>
 						</div>
 						<div class="form-group row">
