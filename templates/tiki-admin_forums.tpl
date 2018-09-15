@@ -262,7 +262,7 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="forum_use_password">{tr}Password protected{/tr}</label>
 							<div class="col-sm-4">
-								{html_options name=forum_use_password options=$forum_use_password_options selected=$forum_use_password class=form-control}
+								{html_options name=forum_use_password class=form-control options=$forum_use_password_options selected=$forum_use_password class=form-control}
 							</div>
 						</div>
 						<div class="form-group row">
@@ -471,19 +471,19 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="threadOrdering">{tr}Default ordering of threads{/tr}</label>
 							<div class="col-sm-8">
-								{html_options name=threadOrdering id=threadOrdering options=$threadOrdering_options selected=$threadOrdering}
+								{html_options name=threadOrdering id=threadOrdering class=form-control options=$threadOrdering_options selected=$threadOrdering}
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="threadStyle">{tr}Default style of threads{/tr}</label>
 							<div class="col-sm-8">
-								{html_options name=threadStyle id=threadStyle options=$threadStyle_options selected=$threadStyle}
+								{html_options name=threadStyle id=threadStyle class=form-control options=$threadStyle_options selected=$threadStyle}
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="commentsPerPage">{tr}Default number of comments per page{/tr}</label>
 							<div class="col-sm-8">
-								{html_options name=commentsPerPage id=commentsPerPage options=$commentsPerPage_options selected=$commentsPerPage}
+								{html_options name=commentsPerPage id=commentsPerPage class=form-control options=$commentsPerPage_options selected=$commentsPerPage}
 							</div>
 						</div>
 					</fieldset>
