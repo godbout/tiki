@@ -1,6 +1,8 @@
 <form action="{$smarty.server.PHP_SELF}?{query}" method="post" class="form-inline">
-	<div class="form-group row">
+	<div class="input-group">
 		<input type="text" class="form-control" name="{$wp_addfreetag|escape}">
-		<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add Tag{/tr}">
+		<div class="input-group-append">
+			<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add Tag{/tr}">
+		</div>
 	</div>
 </form>
