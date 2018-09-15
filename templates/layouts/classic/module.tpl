@@ -12,7 +12,7 @@
 		{/if}
 		{if !isset($moduleId)}{assign var=moduleId value=' '}{/if}
 		<div id="module_{$moduleId}"
-			 class="card card-primary box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
+			 class="clearfix card card-primary box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
 			{if $module_decorations ne 'n'}
 			<div class="card-header">
 				{if ($module_notitle ne 'y' && !empty($module_title)) || ($module_flip eq 'y' and $prefs.javascript_enabled ne 'n') || $prefs.menus_items_icons eq 'y'}
@@ -54,8 +54,8 @@
 					 class="clearfix card-body{if !empty($module_params.class)} {$module_params.class}{/if}">
 					{else}{* $module_nobox eq 'y' *}
 					<div id="module_{$moduleId}" style="{$module_params.style}{$tpl_module_style}"
-						 class="module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name}">
-						<div id="mod-{$smarty.capture.name}" class="">
+						 class="clearfix module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name}">
+						<div id="mod-{$smarty.capture.name}">
 							{/if}{* close $module_nobox *}
 							{$module_content}
 							{if $module_error}
@@ -65,34 +65,99 @@
 							{/if}
 							{if $module_nobox neq 'y'}
 						</div>{* close div id="mod-{$smarty.capture.name}" *}
-				{if $user and $prefs.user_assigned_modules == 'y' and $prefs.feature_modulecontrols eq 'y'}
-					<div class="card-footer">
-						<span class="modcontrols">
-						<a class="tips" title=":{tr}Move module up{/tr}"
-						   href="{$current_location|escape}{$mpchar|escape}mc_up={$module_name}">
-							{icon name="up" alt="{tr}Up{/tr}"}
-						</a>
-						<a class="tips" title=":{tr}Move module down{/tr}"
-					   		href="{$current_location|escape}{$mpchar|escape}mc_down={$module_name}">
-							{icon name="down" alt="{tr}Down{/tr}"}
-						</a>
-						<a class="tips" title=":{tr}Move module to opposite side{/tr}"
-					   		href="{$current_location|escape}{$mpchar|escape}mc_move={$module_name}">
-							{icon name="move" alt="{tr}Move to opposite side{/tr}"}
-						</a>
-						<a class="tips" title=":{tr}Unassign this module{/tr}"
-					   		href="{$current_location|escape}{$mpchar|escape}mc_unassign={$module_name}"
-					   		onclick='return confirmTheLink(this,"{tr}Are you sure you want to unassign this module?{/tr}")'>
-							{icon name="remove" alt="{tr}Unassign{/tr}"}
-						</a>
-					</span>
-				</div>
-			{/if}
-		</div>{* close div id="module_{$moduleId}" *}
-		{if $prefs.feature_layoutshadows eq 'y'}{$prefs.box_shadow_end}</div>{/if}
-		{else}{* $module_nobox eq 'y' *}
+						{* Module controls when module in a box *}
+						{if $user and $prefs.user_assigned_modules == 'y' and $prefs.feature_modulecontrols eq 'y' && ($module_position === 'left' || $module_position === 'right')}
+							<form action="{$current_location|escape}" method="post" class="modcontrols">
+								<input type="hidden" name="redirect" value="1">
+								<div class="pull-right">
+									<button
+										type="submit"
+										name="mc_up"
+										value="{$moduleId}"
+										class="tips btn btn-link"
+										title=":{tr}Move up{/tr}"
+									>
+										{icon name="up"}
+									</button>
+									<button
+										type="submit"
+										name="mc_down"
+										value="{$moduleId}"
+										class="tips btn btn-link"
+										title=":{tr}Move down{/tr}"
+									>
+										{icon name="down"}
+									</button>
+									<button
+										type="submit"
+										name="mc_move"
+										value="{$moduleId}"
+										class="tips btn btn-link"
+										title=":{tr}Move to opposite side{/tr}"
+									>
+										{icon name="move"}
+									</button>
+									<button
+										type="submit"
+										name="mc_unassign"
+										value="{$moduleId}"
+										class="tips btn btn-link"
+										title=":{tr}Unassign{/tr}"
+									>
+										{icon name="remove"}
+									</button>
+								</div>
+							</form>
+						{/if}
+					</div>{* close div id="module_{$moduleId}" *}
+					{if $prefs.feature_layoutshadows eq 'y'}{$prefs.box_shadow_end}</div>{/if}
+				{else}{* $module_nobox eq 'y' *}
+					{* Module controls when no module box *}
+					{if $user and $prefs.user_assigned_modules == 'y' and $prefs.feature_modulecontrols eq 'y' && ($module_position === 'left' || $module_position === 'right')}
+						<form action="{$current_location|escape}" method="post" class="modcontrols">
+							<input type="hidden" name="redirect" value="1">
+							<div class="pull-right">
+								<button
+									type="submit"
+									name="mc_up"
+									value="{$moduleId}"
+									class="tips btn btn-link"
+									title=":{tr}Move up{/tr}"
+								>
+									{icon name="up"}
+								</button>
+								<button
+									type="submit"
+									name="mc_down"
+									value="{$moduleId}"
+									class="tips btn btn-link"
+									title=":{tr}Move down{/tr}"
+								>
+									{icon name="down"}
+								</button>
+								<button
+									type="submit"
+									name="mc_move"
+									value="{$moduleId}"
+									class="tips btn btn-link"
+									title=":{tr}Move to opposite side{/tr}"
+								>
+									{icon name="move"}
+								</button>
+								<button
+									type="submit"
+									name="mc_unassign"
+									value="{$moduleId}"
+									class="tips btn btn-link"
+									title=":{tr}Unassign{/tr}"
+								>
+									{icon name="remove"}
+								</button>
+							</div>
+						</form>
+					{/if}
 		</div>{* close div id="mod-{$smarty.capture.name}" *}
-</div>{* close div id="module_{$moduleId}" *}
+	</div>{* close div id="module_{$moduleId}" *}
 {/if}{* close $module_nobox *}
 
 {if !empty($module_params.topclass)}</div>{/if}

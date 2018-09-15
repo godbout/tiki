@@ -53,7 +53,7 @@ if ($check_req) {
 	$url = preg_replace('/(.*)(\?|&){1}(mc_up|mc_down|mc_move|mc_unassign)=[^&]*/', '\1', $url);
 }
 // Fix locaton if parameter was removed...
-if ($url != $request_uri) {
+if ($url != $request_uri || isset($_POST['redirect'])) {
 	$access = TikiLib::lib('access');
 	$access->redirect($url);
 }
