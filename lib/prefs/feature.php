@@ -2005,6 +2005,7 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'help' => 'JQuery#UI',
 			'default' => 'y',				// include UI lib for more effects
+			'warning' => tra('This feature is required for the interface for many features to work properly.'),
 		],
 		'feature_jquery_ui_theme' => [
 			'name' => tra('jQuery UI theme'),
