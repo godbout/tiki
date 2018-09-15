@@ -22,7 +22,8 @@
 	{remarksbox type=warning title="{tr}The post has been reported and will be reviewed by a moderator.{/tr}"}{/remarksbox}
 {/if}
 <br>
-<div id="thread-breadcrumb" class="breadcrumb">
+<div id="thread-breadcrumb" class="breadcrumb d-flex justify-content-between mb-4">
+	<div>
 	<a class="link" href="{if $prefs.feature_sefurl eq 'y'}forums{else}tiki-forums.php{/if}">
 		{tr}Forums{/tr}
 	</a>
@@ -37,21 +38,22 @@
 	{/if}
 	{$prefs.site_crumb_seper}
 	{$thread_info.title|escape}
-</div>
-
-{block name=thread_actions}
-	<div class="text-right mb-4">
+	<div>
 		{if empty($thread_info.topic.threadId)}
 			<span>
-				{if ($prev_topic and $prev_topic ne $comments_parentId) or $next_topic}[ {if $prev_topic and $prev_topic ne $comments_parentId}<a href="tiki-view_forum_thread.php?comments_parentId={$prev_topic}&amp;topics_offset={$topics_prev_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}prev topic{/tr}</a>{if $next_topic} | {/if}{/if}
-				{if $next_topic}<a href="tiki-view_forum_thread.php?comments_parentId={$next_topic}&amp;topics_offset={$topics_next_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}next topic{/tr}</a>{/if} ]{/if}
+				{if ($prev_topic and $prev_topic ne $comments_parentId) or $next_topic}{if $prev_topic and $prev_topic ne $comments_parentId}<a href="tiki-view_forum_thread.php?comments_parentId={$prev_topic}&amp;topics_offset={$topics_prev_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{icon name="angle-left"}{tr}Previous topic{/tr}</a>{if $next_topic} | {/if}{/if}
+				{if $next_topic}<a href="tiki-view_forum_thread.php?comments_parentId={$next_topic}&amp;topics_offset={$topics_next_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}next topic{/tr}{icon name="angle-right"}</a>{/if}{/if}
 			</span>
 		{else}
 			<span>
 				{tr}You are viewing a reply to{/tr} <a class="link" href="tiki-view_forum_thread.php?comments_parentId={$thread_info.topic.threadId}{if $smarty.request.topics_offset}&amp;topics_offset={$smarty.request.topics_offset}{/if}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}">{$thread_info.topic.title}</a>
 			</span>
 		{/if}
-		&nbsp;
+	</div>
+	</div>
+	<div class="text-right">
+{block name=thread_actions}
+&nbsp;
 		<div class="btn-group">
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
@@ -116,7 +118,7 @@
 			</ul>
 			{if ! $js}</li></ul>{/if}
 		</div>
-
+	</div>
 	</div>
 {/block}
 
@@ -131,7 +133,7 @@
 	{if $prefs.feature_freetags eq 'y' and $tiki_p_view_freetags eq 'y' and $prefs.freetags_show_middle eq 'y'
 		and !$thread_info.topic.threadId}
 		{include file='freetag_list.tpl'}
-		<div class="text-right mb-3">
+		<div class="text-right mb-4">
 			{wikiplugin _name="addfreetag" object="forum post:$comments_parentId"}{/wikiplugin}
 		</div>
 	{/if}

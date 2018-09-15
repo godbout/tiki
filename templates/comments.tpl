@@ -29,17 +29,15 @@
 			{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 
 			{if $tiki_p_admin_forum eq 'y'}
-				<div class="card bg--primary form-group row">
-					<div class="card-header">
-						{tr}Moderator actions for selected topics{/tr}
-					</div>
+				<div class="card form-group row mx-0">
 					<div class="card-body form-inline">
+						{tr}Moderator actions for selected topics:{/tr}
 						<span class="infos float-sm-right">
 							{if $reported > 0}
-								<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}</span></a>
+								<a class="btn btn-primary btn-sm mx-2 tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}</span></a>
 							{/if}
 							{if $queued > 0}
-								<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge badge-secondary">{$queued}</span></a>
+								<a class="btn btn-primary btn-sm mx-2 tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge badge-secondary">{$queued}</span></a>
 							{/if}
 						</span>
 						{if $topics|@count > 1}
@@ -48,7 +46,7 @@
 								formaction="{bootstrap_modal controller=forum action=merge_topic}"
 								title=":{tr}Merge{/tr}"
 								form="comment-form"
-								class="btn btn-primary btn-sm tips"
+								class="btn btn-primary btn-sm mx-2 tips"
 								onclick="confirmAjax(event)"
 							>
 								{icon name="merge"}
@@ -59,7 +57,7 @@
 							formaction="{bootstrap_modal controller=forum action=delete_topic}"
 							title=":{tr}Delete{/tr}"
 							form="comment-form"
-							class="btn btn-danger btn-sm tips"
+							class="btn btn-danger btn-sm mx-2 tips"
 							onclick="confirmAjax(event)"
 						>
 							{icon name="remove"}
