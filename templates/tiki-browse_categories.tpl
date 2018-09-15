@@ -131,7 +131,7 @@
 </div>
 
 <form method="post" action="tiki-browse_categories.php" class="form-inline" role="form">
-	<div class="form-group row">
+	<div class="form-group row mx-0">
 		<label class="col-form-label sr-only" for="find">{tr}Find{/tr}</label>
 		<div class="input-group">
 			<div class="input-group-append">
