@@ -15,7 +15,7 @@
 
 <div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
-	<header class="page-header" id="page-header">
+	<header class="page-header mx--15px" id="page-header">
 		{modulelist zone=top class='top_modules d-flex justify-content-between'}
 	</header>
 {/if}
@@ -120,7 +120,7 @@
 
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	<footer class="footer main-footer" id="footer">
-		<div class="footer_liner">
+		<div class="footer_liner mx--15px">
 			{modulelist zone=bottom class='bottom_modules px-3'}
 		</div>
 	</footer>
