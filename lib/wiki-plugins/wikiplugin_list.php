@@ -27,6 +27,23 @@ function wikiplugin_list_info()
 				'description' => tra('Only include results marked as searchable in the index.'),
 				'filter' => 'digits',
 				'default' => '1',
+				'options' => [
+					['text' => tra(''), 'value' => ''],
+					['text' => tra('Yes'), 'value' => '1'],
+					['text' => tra('No'), 'value' => '0'],
+				],
+			],
+			'gui' => [
+				'required' => false,
+				'name' => tra('Use List GUI'),
+				'description' => tra('Use the graphical user interface for editing this list plugin.'),
+				'filter' => 'digits',
+				'default' => '1',
+				'options' => [
+					['text' => tra(''), 'value' => ''],
+					['text' => tra('Yes'), 'value' => '1'],
+					['text' => tra('No'), 'value' => '0'],
+				],
 			],
 		],
 	];
@@ -39,7 +56,11 @@ function wikiplugin_list($data, $params)
 	static $i;
 	$i++;
 
-	if ($prefs['wikiplugin_list_gui'] === 'y') {
+	if (! isset($params['gui'])) {
+		$params['gui'] = 1;
+	}
+
+	if ($prefs['wikiplugin_list_gui'] === 'y' && $params['gui']) {
 		TikiLib::lib('header')
 			->add_jsfile('lib/jquery_tiki/pluginedit_list.js')
 			->add_jsfile('vendor_bundled/vendor/jquery/plugins/nestedsortable/jquery.ui.nestedSortable.js');
