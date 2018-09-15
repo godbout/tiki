@@ -144,7 +144,7 @@
 {include file='comments.tpl'}
 
 	<form role="form" id='time_control' method="get" action="tiki-view_forum_thread.php">
-		<div class="form-group row">
+		<div class="form-group row mx-0">
 			<input type="hidden" name="comments_offset" value="0"><!--Reset offset to 0 when applying a new filter -->
 			<input type="hidden" name="comments_threadId" value="{$comments_threadId|escape}">
 			<input type="hidden" name="comments_parentId" value="{$comments_parentId|escape}">
