@@ -1123,9 +1123,6 @@ li.archivedate {
 #col1 .box-search input[type=submit], #col1 .box-search input[type=submit]:hover, #col2 .box-search input[type=submit], #col2 .box-search input[type=submit]:hover, #col3 .box-search input[type=submit], #col3 .box-search input[type=submit]:hover {
   margin: 0; }
 
-.search_mod_buttons {
-  min-width: 16em; }
-
 .box-search .form-group {
   padding: 0; }
 
