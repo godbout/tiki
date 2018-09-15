@@ -153,7 +153,10 @@ li.archivedate {
 
 // Modules with nobox=y should have same whitespace below as cards do.
 #col2 .module,
-#col3 .module { margin-bottom: 1.25rem; }
+#col3 .module,
+#pagetop_modules .module {
+	margin-bottom: 1.25rem;
+}
 
 .box-forums_most_read_topics .hits {
 	font-style: italic;

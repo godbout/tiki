@@ -1143,7 +1143,7 @@ li.archivedate {
   border-bottom-right-radius: 0.25rem;
   border-top-right-radius: 0.25rem; }
 
-#col2 .module, #col3 .module {
+#col2 .module, #col3 .module, #pagetop_modules .module {
   margin-bottom: 1.25rem; }
 
 .box-forums_most_read_topics .hits {
