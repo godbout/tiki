@@ -7140,3 +7140,556 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     color: #343a40; }
   .tiki .ui-widget-header a {
     color: #1174a5; }
+
+.tiki #converse-embedded-chat, .tiki #conversejs {
+  font-family: Lato, sans-serif;
+  color: #343a40; }
+  .tiki #converse-embedded-chat a, .tiki #conversejs a, .tiki #converse-embedded-chat a:visited, .tiki #conversejs a:visited {
+    color: #1174a5; }
+  .tiki #converse-embedded-chat input[type=text], .tiki #conversejs input[type=text], .tiki #converse-embedded-chat textarea, .tiki #conversejs textarea, .tiki #converse-embedded-chat select, .tiki #conversejs select {
+    background-color: #fff;
+    color: #495057;
+    border-color: #ced4da; }
+  .tiki #converse-embedded-chat form.pure-form input[type=text], .tiki #conversejs form.pure-form input[type=text], .tiki #converse-embedded-chat form.pure-form textarea, .tiki #conversejs form.pure-form textarea, .tiki #converse-embedded-chat form.pure-form select, .tiki #conversejs form.pure-form select {
+    background-color: #fff;
+    color: #495057;
+    border-color: #ced4da; }
+  .tiki #converse-embedded-chat form.pure-form.converse-form, .tiki #conversejs form.pure-form.converse-form {
+    background-color: inherit; }
+  .tiki #converse-embedded-chat form.pure-form.converse-form .form-help, .tiki #conversejs form.pure-form.converse-form .form-help, .tiki #converse-embedded-chat form.pure-form.converse-form .form-help:hover, .tiki #conversejs form.pure-form.converse-form .form-help:hover {
+    color: #343a40; }
+  .tiki #converse-embedded-chat .button-primary, .tiki #conversejs .button-primary {
+    color: #fff;
+    background: #1174a5 linear-gradient(180deg, #3589b3, #1174a5) repeat-x;
+    border-color: #1174a5;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); }
+  .tiki #converse-embedded-chat .button-primary:hover, .tiki #conversejs .button-primary:hover {
+    color: #fff;
+    background: #0d5c82 linear-gradient(180deg, #327495, #0d5c82) repeat-x;
+    border-color: #0c5377; }
+  .tiki #converse-embedded-chat .button-primary:focus, .tiki #conversejs .button-primary:focus, .tiki #converse-embedded-chat .button-primary.focus, .tiki #conversejs .button-primary.focus {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(17, 116, 165, 0.5); }
+  .tiki #converse-embedded-chat .button-primary.disabled, .tiki #conversejs .button-primary.disabled, .tiki #converse-embedded-chat .button-primary:disabled, .tiki #conversejs .button-primary:disabled {
+    color: #fff;
+    background-color: #1174a5;
+    border-color: #1174a5; }
+  .tiki #converse-embedded-chat .button-primary:not(:disabled):not(.disabled):active, .tiki #conversejs .button-primary:not(:disabled):not(.disabled):active, .tiki #converse-embedded-chat .button-primary:not(:disabled):not(.disabled).active, .tiki #conversejs .button-primary:not(:disabled):not(.disabled).active, .show > .tiki #converse-embedded-chat .button-primary.dropdown-toggle, .show > .tiki #conversejs .button-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #0c5377;
+    background-image: none;
+    border-color: #0b4b6b; }
+  .tiki #converse-embedded-chat .button-primary:not(:disabled):not(.disabled):active:focus, .tiki #conversejs .button-primary:not(:disabled):not(.disabled):active:focus, .tiki #converse-embedded-chat .button-primary:not(:disabled):not(.disabled).active:focus, .tiki #conversejs .button-primary:not(:disabled):not(.disabled).active:focus, .show > .tiki #converse-embedded-chat .button-primary.dropdown-toggle:focus, .show > .tiki #conversejs .button-primary.dropdown-toggle:focus {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(17, 116, 165, 0.5); }
+  .tiki #converse-embedded-chat .button-info, .tiki #conversejs .button-info {
+    color: #fff;
+    background: #4d3a7d linear-gradient(180deg, #685891, #4d3a7d) repeat-x;
+    border-color: #4d3a7d;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); }
+  .tiki #converse-embedded-chat .button-info:hover, .tiki #conversejs .button-info:hover {
+    color: #fff;
+    background: #3d2e63 linear-gradient(180deg, #5a4d7a, #3d2e63) repeat-x;
+    border-color: #382a5a; }
+  .tiki #converse-embedded-chat .button-info:focus, .tiki #conversejs .button-info:focus, .tiki #converse-embedded-chat .button-info.focus, .tiki #conversejs .button-info.focus {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(77, 58, 125, 0.5); }
+  .tiki #converse-embedded-chat .button-info.disabled, .tiki #conversejs .button-info.disabled, .tiki #converse-embedded-chat .button-info:disabled, .tiki #conversejs .button-info:disabled {
+    color: #fff;
+    background-color: #4d3a7d;
+    border-color: #4d3a7d; }
+  .tiki #converse-embedded-chat .button-info:not(:disabled):not(.disabled):active, .tiki #conversejs .button-info:not(:disabled):not(.disabled):active, .tiki #converse-embedded-chat .button-info:not(:disabled):not(.disabled).active, .tiki #conversejs .button-info:not(:disabled):not(.disabled).active, .show > .tiki #converse-embedded-chat .button-info.dropdown-toggle, .show > .tiki #conversejs .button-info.dropdown-toggle {
+    color: #fff;
+    background-color: #382a5a;
+    background-image: none;
+    border-color: #322651; }
+  .tiki #converse-embedded-chat .button-info:not(:disabled):not(.disabled):active:focus, .tiki #conversejs .button-info:not(:disabled):not(.disabled):active:focus, .tiki #converse-embedded-chat .button-info:not(:disabled):not(.disabled).active:focus, .tiki #conversejs .button-info:not(:disabled):not(.disabled).active:focus, .show > .tiki #converse-embedded-chat .button-info.dropdown-toggle:focus, .show > .tiki #conversejs .button-info.dropdown-toggle:focus {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(77, 58, 125, 0.5); }
+  .tiki #converse-embedded-chat .toggle-controlbox, .tiki #conversejs .toggle-controlbox {
+    background-color: #1174a5; }
+  .tiki #converse-embedded-chat .toggle-controlbox span, .tiki #conversejs .toggle-controlbox span {
+    color: #fff; }
+  .tiki #converse-embedded-chat #minimized-chats .chat-head-chatbox, .tiki #conversejs #minimized-chats .chat-head-chatbox {
+    background-color: #1174a5; }
+  .tiki #converse-embedded-chat #minimized-chats .chat-head-chatbox .restore-chat, .tiki #conversejs #minimized-chats .chat-head-chatbox .restore-chat, .tiki #converse-embedded-chat #minimized-chats .chat-head-chatbox .chatbox-btn, .tiki #conversejs #minimized-chats .chat-head-chatbox .chatbox-btn {
+    color: #fff; }
+  .tiki #converse-embedded-chat #minimized-chats .chat-head-chatroom, .tiki #conversejs #minimized-chats .chat-head-chatroom {
+    background-color: #4d3a7d; }
+  .tiki #converse-embedded-chat #minimized-chats .chat-head-chatroom .restore-chat, .tiki #conversejs #minimized-chats .chat-head-chatroom .restore-chat, .tiki #converse-embedded-chat #minimized-chats .chat-head-chatroom .chatbox-btn, .tiki #conversejs #minimized-chats .chat-head-chatroom .chatbox-btn {
+    color: #fff; }
+  .tiki #converse-embedded-chat #controlbox .box-flyout, .tiki #conversejs #controlbox .box-flyout, .tiki #converse-embedded-chat .chatbox .box-flyout, .tiki #conversejs .chatbox .box-flyout {
+    background-color: #fff; }
+  .tiki #converse-embedded-chat #controlbox .controlbox-head, .tiki #conversejs #controlbox .controlbox-head, .tiki #converse-embedded-chat #controlbox .controlbox-panes, .tiki #conversejs #controlbox .controlbox-panes, .tiki #converse-embedded-chat #controlbox .controlbox-pane, .tiki #conversejs #controlbox .controlbox-pane {
+    background-color: inherit; }
+  .tiki #converse-embedded-chat #controlbox .controlbox-head .chatbox-btn, .tiki #conversejs #controlbox .controlbox-head .chatbox-btn {
+    color: #343a40; }
+  .tiki #converse-embedded-chat #chatrooms .rooms-list .available-chatroom:hover, .tiki #conversejs #chatrooms .rooms-list .available-chatroom:hover {
+    background-color: inherit; }
+    .tiki #converse-embedded-chat #chatrooms .rooms-list .available-chatroom:hover a, .tiki #conversejs #chatrooms .rooms-list .available-chatroom:hover a {
+      color: #343a40; }
+  .tiki #converse-embedded-chat #fancy-xmpp-status-select, .tiki #conversejs #fancy-xmpp-status-select, .tiki #converse-embedded-chat .fancy-dropdown, .tiki #conversejs .fancy-dropdown {
+    color: #fff;
+    background: #4d3a7d linear-gradient(180deg, #685891, #4d3a7d) repeat-x;
+    border-color: #4d3a7d;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075); }
+  .tiki #converse-embedded-chat #fancy-xmpp-status-select:hover, .tiki #conversejs #fancy-xmpp-status-select:hover, .tiki #converse-embedded-chat .fancy-dropdown:hover, .tiki #conversejs .fancy-dropdown:hover {
+    color: #fff;
+    background: #3d2e63 linear-gradient(180deg, #5a4d7a, #3d2e63) repeat-x;
+    border-color: #382a5a; }
+  .tiki #converse-embedded-chat #fancy-xmpp-status-select:focus, .tiki #conversejs #fancy-xmpp-status-select:focus, .tiki #converse-embedded-chat .fancy-dropdown:focus, .tiki #conversejs .fancy-dropdown:focus, .tiki #converse-embedded-chat #fancy-xmpp-status-select.focus, .tiki #conversejs #fancy-xmpp-status-select.focus, .tiki #converse-embedded-chat .fancy-dropdown.focus, .tiki #conversejs .fancy-dropdown.focus {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(77, 58, 125, 0.5); }
+  .tiki #converse-embedded-chat #fancy-xmpp-status-select.disabled, .tiki #conversejs #fancy-xmpp-status-select.disabled, .tiki #converse-embedded-chat .fancy-dropdown.disabled, .tiki #conversejs .fancy-dropdown.disabled, .tiki #converse-embedded-chat #fancy-xmpp-status-select:disabled, .tiki #conversejs #fancy-xmpp-status-select:disabled, .tiki #converse-embedded-chat .fancy-dropdown:disabled, .tiki #conversejs .fancy-dropdown:disabled {
+    color: #fff;
+    background-color: #4d3a7d;
+    border-color: #4d3a7d; }
+  .tiki #converse-embedded-chat #fancy-xmpp-status-select:not(:disabled):not(.disabled):active, .tiki #conversejs #fancy-xmpp-status-select:not(:disabled):not(.disabled):active, .tiki #converse-embedded-chat .fancy-dropdown:not(:disabled):not(.disabled):active, .tiki #conversejs .fancy-dropdown:not(:disabled):not(.disabled):active, .tiki #converse-embedded-chat #fancy-xmpp-status-select:not(:disabled):not(.disabled).active, .tiki #conversejs #fancy-xmpp-status-select:not(:disabled):not(.disabled).active, .tiki #converse-embedded-chat .fancy-dropdown:not(:disabled):not(.disabled).active, .tiki #conversejs .fancy-dropdown:not(:disabled):not(.disabled).active, .show > .tiki #converse-embedded-chat #fancy-xmpp-status-select.dropdown-toggle, .show > .tiki #conversejs #fancy-xmpp-status-select.dropdown-toggle, .show > .tiki #converse-embedded-chat .fancy-dropdown.dropdown-toggle, .show > .tiki #conversejs .fancy-dropdown.dropdown-toggle {
+    color: #fff;
+    background-color: #382a5a;
+    background-image: none;
+    border-color: #322651; }
+  .tiki #converse-embedded-chat #fancy-xmpp-status-select:not(:disabled):not(.disabled):active:focus, .tiki #conversejs #fancy-xmpp-status-select:not(:disabled):not(.disabled):active:focus, .tiki #converse-embedded-chat .fancy-dropdown:not(:disabled):not(.disabled):active:focus, .tiki #conversejs .fancy-dropdown:not(:disabled):not(.disabled):active:focus, .tiki #converse-embedded-chat #fancy-xmpp-status-select:not(:disabled):not(.disabled).active:focus, .tiki #conversejs #fancy-xmpp-status-select:not(:disabled):not(.disabled).active:focus, .tiki #converse-embedded-chat .fancy-dropdown:not(:disabled):not(.disabled).active:focus, .tiki #conversejs .fancy-dropdown:not(:disabled):not(.disabled).active:focus, .show > .tiki #converse-embedded-chat #fancy-xmpp-status-select.dropdown-toggle:focus, .show > .tiki #conversejs #fancy-xmpp-status-select.dropdown-toggle:focus, .show > .tiki #converse-embedded-chat .fancy-dropdown.dropdown-toggle:focus, .show > .tiki #conversejs .fancy-dropdown.dropdown-toggle:focus {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(77, 58, 125, 0.5); }
+  .tiki #converse-embedded-chat #fancy-xmpp-status-select .choose-xmpp-status, .tiki #conversejs #fancy-xmpp-status-select .choose-xmpp-status, .tiki #converse-embedded-chat .fancy-dropdown .choose-xmpp-status, .tiki #conversejs .fancy-dropdown .choose-xmpp-status, .tiki #converse-embedded-chat #fancy-xmpp-status-select .toggle-xmpp-contact-form, .tiki #conversejs #fancy-xmpp-status-select .toggle-xmpp-contact-form, .tiki #converse-embedded-chat .fancy-dropdown .toggle-xmpp-contact-form, .tiki #conversejs .fancy-dropdown .toggle-xmpp-contact-form, .tiki #converse-embedded-chat #fancy-xmpp-status-select a.change-xmpp-status-message, .tiki #conversejs #fancy-xmpp-status-select a.change-xmpp-status-message, .tiki #converse-embedded-chat .fancy-dropdown a.change-xmpp-status-message, .tiki #conversejs .fancy-dropdown a.change-xmpp-status-message {
+    color: inherit;
+    text-shadow: none; }
+  .tiki #converse-embedded-chat #converse-roster .roster-filter-form .filter-type, .tiki #conversejs #converse-roster .roster-filter-form .filter-type {
+    border-color: #ced4da; }
+  .tiki #converse-embedded-chat #converse-roster .roster-filter-form .roster-filter, .tiki #conversejs #converse-roster .roster-filter-form .roster-filter {
+    background-color: #fff;
+    color: #495057;
+    border-color: #ced4da; }
+  .tiki #converse-embedded-chat #converse-roster .roster-contacts dt, .tiki #conversejs #converse-roster .roster-contacts dt {
+    color: #343a40; }
+    .tiki #converse-embedded-chat #converse-roster .roster-contacts dt a, .tiki #conversejs #converse-roster .roster-contacts dt a {
+      color: inherit; }
+    .tiki #converse-embedded-chat #converse-roster .roster-contacts dt:hover, .tiki #conversejs #converse-roster .roster-contacts dt:hover {
+      background-color: transparent; }
+  .tiki #converse-embedded-chat #converse-roster .roster-contacts dd, .tiki #conversejs #converse-roster .roster-contacts dd {
+    color: #1174a5;
+    background-color: transparent; }
+    .tiki #converse-embedded-chat #converse-roster .roster-contacts dd a, .tiki #conversejs #converse-roster .roster-contacts dd a, .tiki #converse-embedded-chat #converse-roster .roster-contacts dd span, .tiki #conversejs #converse-roster .roster-contacts dd span {
+      color: inherit;
+      text-shadow: none; }
+      .tiki #converse-embedded-chat #converse-roster .roster-contacts dd a:hover, .tiki #conversejs #converse-roster .roster-contacts dd a:hover, .tiki #converse-embedded-chat #converse-roster .roster-contacts dd span:hover, .tiki #conversejs #converse-roster .roster-contacts dd span:hover {
+        color: #343a40; }
+  .tiki #converse-embedded-chat #converse-register, .tiki #conversejs #converse-register {
+    background-color: transparent; }
+  .tiki #converse-embedded-chat #converse-register .form-help .url, .tiki #conversejs #converse-register .form-help .url {
+    color: #1174a5; }
+  .tiki #converse-embedded-chat #converse-register .form-help .url:hover, .tiki #conversejs #converse-register .form-help .url:hover {
+    color: #0a4360; }
+  .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar {
+    background-color: #1174a5;
+    border-top-color: #4d3a7d; }
+  .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar ul, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar ul {
+    background-color: #1174a5; }
+  .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .fa-paperclip, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .fa-paperclip, .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley, .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .unencrypted, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .unencrypted, .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-occupants, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-occupants {
+    color: #fff; }
+    .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .fa-paperclip:hover, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .fa-paperclip:hover, .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley:hover, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley:hover, .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .unencrypted:hover, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .unencrypted:hover, .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-occupants:hover, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-occupants:hover {
+      color: #fff; }
+  .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley ul li:hover, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley ul li:hover {
+    background-color: #1174a5; }
+    .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley ul li:hover a, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley ul li:hover a {
+      color: #fff; }
+  .tiki #converse-embedded-chat .chatbox form.sendXMPPMessage .chat-toolbar .chat-toolbar-text, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .chat-toolbar-text {
+    text-shadow: none; }
+  .tiki #converse-embedded-chat .chatbox .dropdown, .tiki #conversejs .chatbox .dropdown {
+    background-color: transparent; }
+  .tiki #converse-embedded-chat .chatbox .chat-head.chat-head-chatbox, .tiki #conversejs .chatbox .chat-head.chat-head-chatbox {
+    background-color: #1174a5; }
+  .tiki #converse-embedded-chat .chatbox .chat-head .chat-title, .tiki #conversejs .chatbox .chat-head .chat-title, .tiki #converse-embedded-chat .chatbox .chat-head .close-chatbox-button, .tiki #conversejs .chatbox .chat-head .close-chatbox-button, .tiki #converse-embedded-chat .chatbox .chat-head .toggle-chatbox-button, .tiki #conversejs .chatbox .chat-head .toggle-chatbox-button {
+    color: #fff; }
+  .tiki #converse-embedded-chat .chatbox .chat-body, .tiki #conversejs .chatbox .chat-body {
+    background-color: inherit; }
+  .tiki #converse-embedded-chat .chatbox .chat-body .chat-content, .tiki #conversejs .chatbox .chat-body .chat-content {
+    color: #343a40;
+    background-color: inherit; }
+  .tiki #converse-embedded-chat .chatbox .chat-body .chat-info, .tiki #conversejs .chatbox .chat-body .chat-info {
+    color: #1174a5; }
+  .tiki #converse-embedded-chat .chatbox .chat-body .chat-message span.chat-msg-me, .tiki #conversejs .chatbox .chat-body .chat-message span.chat-msg-me {
+    color: #fff; }
+  .tiki #converse-embedded-chat .chatbox .chat-body .chat-message span.chat-msg-them, .tiki #conversejs .chatbox .chat-body .chat-message span.chat-msg-them {
+    color: #fff; }
+  .tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom {
+    background-color: #4d3a7d; }
+    .tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .close-chatbox-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .close-chatbox-button, .tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .toggle-chatbox-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .toggle-chatbox-button, .tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .toggle-bookmark, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .toggle-bookmark, .tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .chat-title, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .chat-title, .tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .chatroom-description, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .chatroom-description, .tiki #converse-embedded-chat .chatroom .box-flyout .chat-head-chatroom .configure-chatroom-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .configure-chatroom-button {
+      color: #fff; }
+  .tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body p, .tiki #conversejs .chatroom .box-flyout .chatroom-body p {
+    color: #343a40; }
+    .tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .occupants, .tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants {
+      background-color: inherit;
+      border-left-color: #343a40; }
+      .tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .occupants ul li.moderator, .tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants ul li.moderator {
+        color: #1174a5; }
+      .tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .occupants ul li.occupant .occupant-status, .tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants ul li.occupant .occupant-status {
+        margin-left: 1px;
+        box-shadow: 0 0 1px 1px #444; }
+    .tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .chatroom-form-container, .tiki #conversejs .chatroom .box-flyout .chatroom-body .chatroom-form-container {
+      background-color: inherit;
+      color: #343a40; }
+    .tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .room-invite .invited-contact, .tiki #conversejs .chatroom .box-flyout .chatroom-body .room-invite .invited-contact {
+      border-color: #ced4da; }
+    .tiki #converse-embedded-chat .chatroom .box-flyout .chatroom-body .chat-area .new-msgs-indicator, .tiki #conversejs .chatroom .box-flyout .chatroom-body .chat-area .new-msgs-indicator {
+      background-color: #4d3a7d;
+      color: #fff; }
+
+.chosen-select, .chosen-select-deselect {
+  width: 100%; }
+
+.chosen-container {
+  display: inline-block;
+  position: relative;
+  width: 100% !important;
+  font-size: 1rem;
+  text-align: left;
+  vertical-align: middle; }
+  .chosen-container .chosen-drop {
+    background: #fff;
+    border: 1px solid #49b6ec;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.075), 0 2px 5px 0 0 0 0 0.2rem rgba(17, 116, 165, 0.25);
+    margin-top: -1px;
+    position: absolute;
+    top: 100%;
+    left: -9000px;
+    z-index: 1060; }
+  .chosen-container.chosen-with-drop .chosen-drop {
+    left: 0;
+    right: 0; }
+  .chosen-container .chosen-results {
+    margin: 0;
+    position: relative;
+    max-height: 15rem;
+    padding: 0.5rem 0 0 0;
+    color: #868e96;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; }
+  .chosen-container .chosen-results li {
+    display: none;
+    line-height: 1.5;
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem 0.25rem 0.25rem 1.5rem; }
+  .chosen-container .chosen-results li em {
+    font-style: normal;
+    color: #868e96; }
+  .chosen-container .chosen-results li.group-result {
+    display: list-item;
+    cursor: default;
+    padding-left: 0.75rem;
+    color: #adb5bd;
+    font-weight: normal;
+    text-transform: uppercase; }
+  .chosen-container .chosen-results li.group-option {
+    padding-left: 1.5rem; }
+  .chosen-container .chosen-results li.active-result {
+    cursor: pointer;
+    display: list-item; }
+  .chosen-container .chosen-results li.result-selected {
+    color: #495057; }
+  .chosen-container .chosen-results li.result-selected:before {
+    display: inline-block;
+    position: relative;
+    top: 0.3rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: -1.25rem;
+    content: "";
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#495057' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");
+    background-size: 1.25rem 1.25rem;
+    background-position: center center;
+    background-repeat: no-repeat; }
+  .chosen-container .chosen-results li.highlighted {
+    background-color: #1174a5;
+    background-image: none;
+    color: white; }
+  .chosen-container .chosen-results li.highlighted:before {
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>"); }
+  .chosen-container .chosen-results li.highlighted em {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8); }
+  .chosen-container .chosen-results li.disabled-result {
+    display: list-item;
+    color: #ced4da; }
+  .chosen-container .chosen-results .no-results {
+    display: list-item;
+    padding: 0.25rem 0 1rem 1.065rem;
+    color: #c3631f; }
+  .chosen-container .chosen-results-scroll {
+    background: white;
+    margin: 0 0.25rem;
+    position: absolute;
+    text-align: center;
+    width: 20rem;
+    z-index: 1; }
+  .chosen-container .chosen-results-scroll span {
+    display: inline-block;
+    height: 1.5;
+    text-indent: -5000px;
+    width: 0.5rem; }
+
+.chosen-container-single .chosen-single {
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  box-shadow: none;
+  color: #868e96;
+  display: block;
+  height: 2.25rem;
+  overflow: hidden;
+  line-height: 2.25rem;
+  padding: 0 0 0 0.75rem;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap; }
+  .chosen-container-single .chosen-single abbr {
+    display: inline-block;
+    position: absolute;
+    top: 0.325rem;
+    right: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#c3631f' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
+    background-size: 1.5rem 1.5rem;
+    background-position: center center;
+    background-repeat: no-repeat; }
+  .chosen-container-single .chosen-single abbr:hover {
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#6b3611' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>"); }
+  .chosen-container-single .chosen-single span {
+    display: block;
+    margin-right: 1.5rem;
+    text-overflow: ellipsis; }
+  .chosen-container-single .chosen-single.chosen-disabled .chosen-single abbr:hover {
+    background-position: right 2px; }
+  .chosen-container-single .chosen-single div {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2rem;
+    height: 100%;
+    padding-left: 0.5rem;
+    background-color: #fff; }
+  .chosen-container-single .chosen-single div:after {
+    display: inline-block;
+    position: relative;
+    top: 0.125rem;
+    left: -1rem;
+    width: 2rem;
+    height: 2rem;
+    content: "";
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#adb5bd' d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/></svg>");
+    background-size: 2rem 2rem;
+    background-position: center center;
+    background-repeat: no-repeat; }
+  .chosen-container-single .chosen-default {
+    color: #adb5bd; }
+  .chosen-container-single a:not([href]):not([tabindex]) {
+    color: #868e96 !important; }
+  .chosen-container-single a:not([href]):not([tabindex]).chosen-single:not(.chosen-default) {
+    color: #868e96 !important; }
+  .chosen-container-single .chosen-search-input {
+    display: none;
+    border: none; }
+  .chosen-container-single .chosen-search {
+    margin: 0;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    position: relative;
+    white-space: nowrap;
+    z-index: 1000; }
+  .chosen-container-single .chosen-search:after {
+    display: inline-block;
+    position: relative;
+    top: 0.365rem;
+    left: -1.75rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    content: "";
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#adb5bd' d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/></svg>");
+    background-size: 1.25rem 1.25rem;
+    background-position: center center;
+    background-repeat: no-repeat; }
+  .chosen-container-single .chosen-search input[type="text"] {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    outline: none;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    box-shadow: none;
+    padding: 0.25rem 1rem 0.25rem 0.5rem;
+    width: 100%; }
+  .chosen-container-single .chosen-drop {
+    margin-top: -1px;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    background-clip: padding-box; }
+
+.chosen-container-single-nosearch .chosen-search {
+  display: none; }
+
+.chosen-container-multi .chosen-choices {
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  box-shadow: none;
+  cursor: text;
+  height: auto !important;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative; }
+  .chosen-container-multi .chosen-choices li {
+    float: left;
+    list-style: none; }
+  .chosen-container-multi .chosen-choices .search-field {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap; }
+  .chosen-container-multi .chosen-choices .search-field input[type="text"] {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none;
+    color: #868e96;
+    height: 2.25rem;
+    margin: 0;
+    padding: 0 0 0 0.75rem;
+    outline: 0;
+    width: 100% !important; }
+  .chosen-container-multi .chosen-choices .search-field .default {
+    color: #ced4da; }
+  .chosen-container-multi .chosen-choices .search-choice {
+    background-clip: padding-box;
+    position: relative;
+    margin: 0.35rem 0 0 0.5rem;
+    padding: 0.25rem 1.5rem 0.25rem 0.25rem;
+    border: 1px solid #ced4da;
+    background-color: #f8f9fa;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    cursor: default;
+    font-size: 0.875rem;
+    line-height: 1;
+    color: #868e96; }
+  .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
+    display: inline-block;
+    position: absolute;
+    top: 0.2rem;
+    right: 0.125rem;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#c3631f' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
+    background-size: 1rem 1rem;
+    background-position: center center;
+    background-repeat: no-repeat; }
+  .chosen-container-multi .chosen-choices .search-choice .search-choice-close:hover {
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#6b3611' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>"); }
+  .chosen-container-multi .chosen-choices .search-choice-focus {
+    background: #dee2e6; }
+  .chosen-container-multi .chosen-choices .search-choice-focus .search-choice-close {
+    background-position: right -11px; }
+  .chosen-container-multi .chosen-drop .result-selected {
+    display: none; }
+
+.chosen-container-active .chosen-single {
+  border: 1px solid #49b6ec;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #49b6ec;
+  transition: border linear 0ms, box-shadow linear 0ms; }
+  @media screen and (prefers-reduced-motion: reduce) {
+    .chosen-container-active .chosen-single {
+      transition: none; } }
+  .chosen-container-active.chosen-with-drop .chosen-single {
+    background-color: #fff;
+    border: 1px solid #49b6ec;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #49b6ec;
+    transition: border linear 0ms, box-shadow linear 0ms; }
+  @media screen and (prefers-reduced-motion: reduce) {
+    .chosen-container-active.chosen-with-drop .chosen-single {
+      transition: none; } }
+  .chosen-container-active.chosen-with-drop .chosen-single div:after {
+    display: inline-block;
+    position: relative;
+    top: 0.125rem;
+    left: -1rem;
+    width: 2rem;
+    height: 2rem;
+    content: "";
+    background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#adb5bd' d='M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z'/></svg>");
+    background-size: 2rem 2rem;
+    background-position: center center;
+    background-repeat: no-repeat; }
+  .chosen-container-active .chosen-choices {
+    border: 1px solid #49b6ec;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #49b6ec;
+    transition: border linear 0ms, box-shadow linear 0ms; }
+  @media screen and (prefers-reduced-motion: reduce) {
+    .chosen-container-active .chosen-choices {
+      transition: none; } }
+  .chosen-container-active .chosen-choices .search-field input[type="text"] {
+    color: #868e96 !important; }
+  .chosen-container-active.chosen-with-drop .chosen-choices {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; }
+  .chosen-container-active.chosen-with-drop .chosen-search-input {
+    display: inline-block; }
+
+.chosen-disabled {
+  cursor: default;
+  opacity: 0.5 !important; }
+  .chosen-disabled .chosen-single {
+    cursor: default; }
+  .chosen-disabled .chosen-choices .search-choice .search-choice-close {
+    cursor: default; }
+
+.chosen-container-optgroup-clickable li.group-result {
+  text-transform: none !important; }
+  .chosen-container-optgroup-clickable li.group-result:hover {
+    background-color: #1174a5;
+    color: white;
+    cursor: pointer; }
+
+.chosen-container.is-valid .chosen-single, .chosen-container:valid .chosen-single, .chosen-container.is-valid .chosen-choices, .chosen-container:valid .chosen-choices, .chosen-container.is-valid .chosen-drop, .chosen-container:valid .chosen-drop {
+  border-color: #3fa533; }
+  .chosen-container.is-invalid .chosen-single, .chosen-container:invalid .chosen-single, .chosen-container.is-invalid .chosen-choices, .chosen-container:invalid .chosen-choices, .chosen-container.is-invalid .chosen-drop, .chosen-container:invalid .chosen-drop {
+    border-color: #c3631f; }
+
+input[type="text"].chosen-focus-input {
+  position: absolute;
+  top: -9000px;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none;
+  outline: 0; }
+
+.input-group:nth-of-type(1) .chosen-container .chosen-choices {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+  .input-group:not(:nth-of-type(1)) .chosen-container .chosen-choices {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+  .input-group:not(:nth-of-type(1)) .input-group-prepend .input-group-text {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem; }
+  .input-group .chosen-container {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1% !important; }

@@ -1,8 +1,15 @@
 // $Id$
-// Tiki overrides, adjustments, etc. for external libs and scripts that are added in vendor, etc. can be added here instead of having to be added to the theme Less file.
+// Tiki overrides, adjustments, etc. for external libs and scripts that are added in vendor, etc. can be added here
+// instead of having to be added to the theme SCSS file.
 
 @import "tablesorter-custom.scss";
 @import "tablesorter-tiki";
 @import "pivot-tiki";
 @import "jquery-ui-tiki";
-//@import "conversejs-tiki";
+@import "conversejs-tiki";
+
+@import "../../../vendor_bundled/vendor/haubek/bootstrap4c-chosen/src/scss/_component-variables.scss";
+@import "../../../vendor_bundled/vendor/haubek/bootstrap4c-chosen/src/scss/_component-chosen.scss";
+
+
+
