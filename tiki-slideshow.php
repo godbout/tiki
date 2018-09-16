@@ -214,7 +214,7 @@ $headerlib->add_cssfile(
 	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
-	'.reveal span{font-family: "FontAwesome";font-style: normal;} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;bottom:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;bottom:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:120% !important}}');
+	'.reveal span{font-family: "FontAwesome";font-style: normal;} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;bottom:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;bottom:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:135% !important}}');
 
 $headerlib->add_jq_onready(
 	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
@@ -265,6 +265,24 @@ $headerlib->add_jq_onready(
 
 ask_ticket('index-raw');
 
+
+$themesArr=[['black','Black:Black background, white text, blue links'],
+			['blood','Blood: Dark gray background, dark text, maroon links'],
+			['beige','Beige: Beige background, dark text, brown links'],
+			['league','League: Gray background, white text, blue links'],
+			['moon','Moon: Navy blue background, blue links'],
+			['night','Night: Black background, thick white text, orange links'],
+			['serif','Serif: Cappuccino background, gray text, brown links'],
+			['simple','Simple: White background, black text, blue links'],
+			['sky','Sky: Blue background, thin dark text, blue links'],
+			['solarized','Solarized: Cream-colored background, dark green text, blue links']];
+
+foreach($themesArr as $themeOption){
+	$themeOption[0]==$theme?$selected='selected="selected"':$selected='';
+	$themeOptions.='<option value="'.$themeOption[0].'" '.$selected.'>'.tra($themeOption[1]).'</option>';
+}
+
+$smarty->assign('themeOptions', $themeOptions);
 // Display the Index Template
 $smarty->assign('mid', 'tiki-show_page_raw.tpl');
 

@@ -29,16 +29,7 @@
 			<div class="p-2">
 				<select id="showtheme" class="form-control">
 					<option value="">{tr}Change Theme{/tr}</option>
-					<option value="black">{tr}Black: Black background, white text, blue links{/tr}</option>
-					<option value="blood">{tr}Blood: Dark gray background, dark text, maroon links{/tr}</option>
-					<option value="beige">{tr}Beige: Beige background, dark text, brown links{/tr}</option>
-					<option value="league">{tr}League: Gray background, white text, blue links{/tr}</option>
-					<option value="moon">{tr}Moon: Navy blue background, blue links{/tr}</option>
-					<option value="night">{tr}Night: Black background, thick white text, orange links{/tr}</option>
-					<option value="serif">{tr}Serif: Cappuccino background, gray text, brown links{/tr}</option>
-					<option value="simple">{tr}Simple: White background, black text, blue links{/tr}</option>
-					<option value="sky">{tr}Sky: Blue background, thin dark text, blue links{/tr}</option>
-					<option value="solarized">{tr}Solarized: Cream-colored background, dark green text, blue links{/tr}</option>
+					{$themeOptions}
 				</select>
 			</div>
 			<div class="p-2">

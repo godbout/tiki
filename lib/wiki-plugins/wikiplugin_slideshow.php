@@ -280,6 +280,9 @@ function wikiplugin_slideshow($data, $params)
 	$headerlib = TikiLib::lib('header');
 	if(!isset($_REQUEST['theme'])) {
 		$headerlib->add_cssfile('vendor_bundled/vendor/components/revealjs/css/theme/'.$params['theme'].'.css',1);
+		$headerlib->add_js(
+			'$( "#showtheme" ).val( "'.$params['theme'].'" );'
+		);
 	}
 	$headerlib->add_js(
 	"Reveal.configure({".$revealSettings."});
@@ -287,6 +290,4 @@ function wikiplugin_slideshow($data, $params)
 	var fragmentClass='".$params['fragmentClass']."';
 	var fragmentHighlightColor='highlight-".$params['fragmentHighlightColor']."';"
 	);
-
-
 }
