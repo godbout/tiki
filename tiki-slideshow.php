@@ -261,13 +261,8 @@ $headerlib->add_jq_onready(
 			}
 		});
 		//Append slide title with URL on slide change
-		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "slide_"+$(".present").children("h1").attr("id");});
-		$(function(){ 
-			if(window.location.hash.replace("slide_","")!="") {
-				location.hash =  window.location.hash.replace("slide_","");
-			}
-		}); //move to slide on page load
-');
+		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "/"+$(".present").children("h1").attr("id");});'
+);
 
 ask_ticket('index-raw');
 
