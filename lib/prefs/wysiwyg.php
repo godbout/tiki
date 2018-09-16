@@ -95,7 +95,6 @@ function prefs_wysiwyg_list()
 				'feature_wysiwyg',
 			],
 			'tags' => ['experimental'],
-			'warning' => tra('Currently not functioning properly.'),
 		],
 		'wysiwyg_extra_plugins' => [
 			'name' => tra('Extra plugins'),
