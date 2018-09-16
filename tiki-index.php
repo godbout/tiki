@@ -180,7 +180,7 @@ if (! empty($page_ref_id)) {
 
 $originalPageRequested = $page = $_REQUEST['page'];
 if ($prefs['wiki_url_scheme'] !== 'urlencode') {
-	$page = TikiLib::lib('wiki')->get_page_by_slug($page);
+	$page = $_REQUEST['page'] = TikiLib::lib('wiki')->get_page_by_slug($page);
 }
 $smarty->assign_by_ref('page', $page);
 
@@ -199,14 +199,12 @@ if ($prefs['tracker_wikirelation_redirectpage'] == 'y' && ! isset($_REQUEST['adm
 
 // Inline Ckeditor editor
 if ($prefs['wysiwyg_inline_editing'] == 'y' && $page &&
-		(	($tikilib->user_has_perm_on_object($user, $_REQUEST['page'], 'wiki page', 'edit')) ||
-			($tikilib->user_has_perm_on_object($user, $_REQUEST['page'], 'wiki page', 'edit_inline')) )) {
-	TikiLib::lib('wysiwyg')->setUpInlineEditor($_REQUEST['page']);		// init ckeditor
+		(	($tikilib->user_has_perm_on_object($user, $page, 'wiki page', 'edit')) ||
+			($tikilib->user_has_perm_on_object($user, $page, 'wiki page', 'edit_inline')) )) {
+	TikiLib::lib('wysiwyg')->setUpInlineEditor($page);		// init ckeditor
 } elseif (getCookie('wysiwyg_inline_edit', 'preview')) {
 	setCookieSection('wysiwyg_inline_edit', 0, 'preview');	// kill cookie if pref off or no perms
 }
-
-$page = $_REQUEST['page'] = $wikilib->get_page_by_slug($page);
 
 // Process page display options
 $wikilib->processPageDisplayOptions();
