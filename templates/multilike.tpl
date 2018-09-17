@@ -43,9 +43,9 @@
 					href="#"}
 				>
 					{if $button.selected eq '0'}
-						<i class="fa {$button.icon_unselected}"></i>
+						{icon name=$button.icon_unselected}
 					{else}
-						<i class="fa {$button.icon_selected}"></i>
+						{icon name=$button.icon_selected}
 					{/if}
 					{$button.label} {if $show_option_totals}<span class="count">({$button.count})</span>{/if}
 				</a>
