@@ -36,6 +36,20 @@ function smarty_function_multilike($params, $smarty)
 		$button['label'] = $label;
 		$button['relation'] = $params['relation_prefix'] . "." . $button['id'];
 
+		// check if there is an unselected icon else use default thumbs up open
+		if (! empty ($config['icon_unselected'][$key])) {
+			$button['icon_unselected'] = $config['icon_unselected'][$key];
+		} else {
+			$button['icon_unselected'] = "fa-thumbs-o-up";
+		}
+
+		// check if there is an selected icon else use default thumbs up
+		if (! empty ($config['icon_selected'][$key])) {
+			$button['icon_selected'] = $config['icon_selected'][$key];
+		} else {
+			$button['icon_selected'] = "fa-thumbs-o-up";
+		}
+
 		//get existing stats
 		$button['count'] = $relationlib->get_relation_count($button['relation'], $params['type'], $params['object']);
 		$totalCount += $button['count'];
@@ -102,6 +116,8 @@ function smarty_function_multilike($params, $smarty)
 	$smarty->assign("totalCount", $totalCount);
 	$smarty->assign("totalPoints", $totalPoints);
 	$smarty->assign("relation_prefix", $params['relation_prefix']);
+	$smarty->assign("icon_unselected", $params['icon_unselected']);
+	$smarty->assign("icon_selected", $params['icon_selected']);
 	$smarty->assign("multilike_many", $config['allow_multi']);
 
 	$smarty->assign("uses_values", isset($config['values']));
@@ -132,6 +148,8 @@ function get_multivalues_from_pref()
 			$config['values'] = array_map('trim', explode(',', $config['values']));
 		}
 		$config['labels'] = array_map('trim', explode(',', $config['labels']));
+		$config['icon_unselected'] = array_map('trim', explode(',', $config['icon_unselected']));
+		$config['icon_selected'] = array_map('trim', explode(',', $config['icon_selected']));
 		foreach ($config['labels'] as &$label) {
 			   $label = tra($label);
 		}
