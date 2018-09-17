@@ -139,7 +139,7 @@ class PrefsDoc extends TWVersion
 			$this->genPrefVersion("storage/prefsdoc/$version-$tabName.json");
 			$key ++;
 			if (isset($this->state->files->{$tabName}[$key])) {
-				$this->docTable .= "/////\n";
+				$this->docTable .= '/////';
 			}
 		}
 
