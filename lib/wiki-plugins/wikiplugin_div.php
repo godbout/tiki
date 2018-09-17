@@ -193,12 +193,6 @@ function wikiplugin_div_info()
 		],
 	];
 
-	if ($prefs['wiki_plugindiv_approvable'] != 'y') {
-		unset($info['validate']);
-		// If any other unsafe parameters are created, unset them here
-		unset($info['params']['style']);
-	}
-
 	return $info;
 }
 
@@ -207,10 +201,7 @@ function wikiplugin_div($content, $params)
 	global $prefs;
 
 	extract($params, EXTR_SKIP);
-	if ($prefs['wiki_plugindiv_approvable'] != 'y' || ! isset($style)) {
-		// If any other unsafe parameters are created, unset them here
-		$style = '';
-	}
+
 	$possibletypes = ['div','span','pre','b','i','tt','p','blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 	$t    = (isset($type) and in_array($type, $possibletypes)) ? "$type" : "div";
 	$c    = (isset($class)) ? " class='$class'" : "";

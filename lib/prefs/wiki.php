@@ -225,14 +225,6 @@ function prefs_wiki_list($partial = false)
 			'default' => 'y',
 			'tags' => ['basic'],
 		],
-		'wiki_plugindiv_approvable' => [
-			'name' => tra('Allow the Div plugin to use unsafe parameters such as "style"'),
-			'description' => tra('Make available more parameters that will require admin approval. If not set, the Div plugin is safe by default and using it doesn\'t require approval.'),
-			'hint' => tra('Caches must be cleared after this activation/deactivation.'),
-			'type' => 'flag',
-			'default' => 'n',
-			'tags' => ['advanced'],
-		],
 		'wiki_dynvar_style' => [
 			'name' => tra('Dynamic variables'),
 			'description' => tra('Global snippets of text that can be included in wiki pages and edited in place.'),
