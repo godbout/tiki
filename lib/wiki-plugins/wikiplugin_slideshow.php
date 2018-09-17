@@ -253,6 +253,14 @@ function wikiplugin_slideshow($data, $params)
 		}
 		return;
 	}
+
+	if($_REQUEST['pdf']==1){
+		global $pdfStyles;
+		if(isset($params['parallaxBackgroundImage'])) {
+			$pdfStyles='<style>@page,body{background-image-resize:0;
+			background-image:url("'.$params['parallaxBackgroundImage'].'");}</style>';
+		}
+	}
     $defaults = [];
     $plugininfo = wikiplugin_slideshow_info();
     foreach ($plugininfo['params'] as $key => $param) {

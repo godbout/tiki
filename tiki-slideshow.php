@@ -7,7 +7,7 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
-
+global $pdfStyles;
 $section = 'wiki page';
 require_once('tiki-setup.php');
 $tikilib = TikiLib::lib('tiki');
@@ -166,12 +166,12 @@ if (isset($_REQUEST['pdf'])) {
 				'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme
 				. '.css'
 			);
-			$customCSS .= '.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}';
+			$customCSS .= '.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}section{text-align:center;margin: auto;width:100%;}';
 			$pdata = '<div class="reveal">' . $pdata . '</div>';
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				'<style>' . $customCSS . '</style>' . $pdata
+				'<style>' . $customCSS . '</style>'.$pdfStyles. $pdata
 			);
 		}
 
