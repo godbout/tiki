@@ -116,8 +116,8 @@
 				{assign var="hasPageAction" value="0"}
 				{capture name="pageActions"}
 					{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
-							{tr}Page actions{/tr}
+					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
+						{icon name="cog"}
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right">
 						<li class="dropdown-item">
@@ -135,6 +135,10 @@
 						{/if}
 						{if $prefs.flaggedrev_approval neq 'y' or ! $revision_approval or $lastVersion eq $revision_displayed}
 							{if $editable and ($tiki_p_edit eq 'y' or $page|lower eq 'sandbox') and $beingEdited ne 'y' and $machine_translate_to_lang eq ''}
+								<li class="dropdown-item">
+									<a {ajax_href template="tiki-editpage.tpl"}tiki-editpage.php?page={$page|escape:"url"}{if !empty($page_ref_id) and (empty($needsStaging) or $needsStaging neq 'y')}&amp;page_ref_id={$page_ref_id}{/if}{/ajax_href}>
+										{icon name="edit"} {tr}Edit{/tr}
+										{assign var="hasPageAction" value="1"}</a></li>
 								{if $prefs.wiki_edit_icons_toggle eq 'y' and ($prefs.wiki_edit_plugin eq 'y' or $prefs.wiki_edit_section eq 'y')}
 									{jq}
 										$("#wiki_plugin_edit_view").click( function () {
