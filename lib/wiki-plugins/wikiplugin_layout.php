@@ -4,20 +4,20 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
-function wikiplugin_pagelayout_info()
+function wikiplugin_layout_info()
 {
 	return [
-		'name'          => tra('Page Layout'),
-		'documentation' => 'PluginPageLayout',
+		'name'          => tra('Layout'),
+		'documentation' => 'PluginLayout',
 		'description'   => tra(
 			'Plugin to control width/background/header and footer of individual page, helpful in creating landing pages for projects'
 		),
-		'prefs'         => ['wikiplugin_pagelayout'],
+		'prefs'         => ['wikiplugin_layout'],
 		'iconname'      => 'tv',
 		'introduced'    => 19,
 		'tags'          => 'basic',
 		'params'        => [
-			'pageHeader'       => [
+			'header'       => [
 				'required'    => false,
 				'name'        => tra('Display page header'),
 				'description' => tra('Set to No, to hide header on the page'),
@@ -30,7 +30,7 @@ function wikiplugin_pagelayout_info()
 
 				],
 			],
-			'pageFooter'       => [
+			'footer'       => [
 				'required'    => false,
 				'name'        => tra('Display Page Footer'),
 				'description' => tra('Set to No, to hide header on the page'),
@@ -42,7 +42,7 @@ function wikiplugin_pagelayout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
-			'pageLeftBar'      => [
+			'leftBar'      => [
 				'required'    => false,
 				'name'        => tra('Display Page Left Bar'),
 				'description' => tra('Set to No, to hide left on the page'),
@@ -54,7 +54,7 @@ function wikiplugin_pagelayout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
-			'pageRightBar'     => [
+			'rightBar'     => [
 				'required'    => false,
 				'name'        => tra('Display Page Right Bar'),
 				'description' => tra('Set to No, to hide right on the page'),
@@ -66,7 +66,7 @@ function wikiplugin_pagelayout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
-			'pageFullWidth'    => [
+			'fullWidth'    => [
 				'required'    => false,
 				'name'        => tra('Page Full Width'),
 				'description' => tra('100% Page width'),
@@ -78,7 +78,7 @@ function wikiplugin_pagelayout_info()
 					['text' => 'Yes', 'value' => 'y'],
 				],
 			],
-			'pageContentWidth' => [
+			'contentWidth' => [
 				'required'    => false,
 				'name'        => tra('Page Content Width'),
 				'description' => tra(
@@ -90,7 +90,7 @@ function wikiplugin_pagelayout_info()
 				'since'       => '19.0',
 			],
 
-			'pageBackgroundImage' => [
+			'bgImage' => [
 				'required'    => false,
 				'name'        => tra('Page Background Image URL'),
 				'description' => tra(
@@ -119,7 +119,7 @@ function wikiplugin_pagelayout_info()
 				'filter'      => 'striptags',
 				'default'     => '',
 			],
-			'pageContentPadding'  => [
+			'topMargin'  => [
 				'required'    => false,
 				'name'        => tra('Page Content Top Margin'),
 				'description' => tra(
@@ -130,7 +130,7 @@ function wikiplugin_pagelayout_info()
 				'advanced'    => true,
 				'since'       => '19.0',
 			],
-			'pageHeaderWidth'     => [
+			'headerWidth'     => [
 				'required'    => false,
 				'name'        => tra('Page Header Width'),
 				'description' => tra(
@@ -141,7 +141,7 @@ function wikiplugin_pagelayout_info()
 				'advanced'    => true,
 				'since'       => '19.0',
 			],
-			'pageFooterWidth'     => [
+			'footerWidth'     => [
 				'required'    => false,
 				'name'        => tra('Page Footer Width'),
 				'description' => tra(
@@ -152,7 +152,7 @@ function wikiplugin_pagelayout_info()
 				'advanced'    => true,
 				'since'       => '19.0',
 			],
-			'pageBackgroundColor' => [
+			'bgColor' => [
 				'required'    => false,
 				'name'        => tra('Page Background Color'),
 				'description' => tra(
@@ -194,7 +194,7 @@ function wikiplugin_pagelayout_info()
 				'default'     => '5',
 				'since'       => '19.0',
 			],
-			'pageActionButtons' => [
+			'actionButtons' => [
 				'required'    => false,
 				'name'        => tra('Display Page Action Buttons'),
 				'description' => tra(
@@ -214,60 +214,62 @@ function wikiplugin_pagelayout_info()
 	];
 }
 
-function wikiplugin_pagelayout($data, $params)
+function wikiplugin_layout($data, $params)
 {
 	$headerlib = TikiLib::lib('header');
-	if ($params['pageHeader'] == 'n') {
+	$headerlib->add_css("#col1{display:none}");
+	$headerlib->add_js('$( document ).ready(function() {$(\'#col1\').fadeIn(3000); });');
+	if ($params['header'] == 'n') {
 		$headerlib->add_css("#page-header{display:none}");
 	}
-	if ($params['pageFooter'] == 'n') {
+	if ($params['footer'] == 'n') {
 		$headerlib->add_css("#footer{display:none}");
 	}
-	if ($params['pageLeftBar'] == 'n') {
+	if ($params['leftBar'] == 'n') {
 		$headerlib->add_css("#col2{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-8" )) {$("#col1").removeClass("col-lg-8").addClass("col-lg-10");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
-	if ($params['pageRightBar'] == 'n') {
+	if ($params['rightBar'] == 'n') {
 		$headerlib->add_css("#col3{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-10" )) {$("#col1").removeClass("col-lg-10").addClass("col-lg-12");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
-	if ($params['pageActionButtons'] == 'n') {
+	if ($params['actionButtons'] == 'n') {
 		$headerlib->add_css("#page-bar{display:none}");
 	}
 
-	if (isset($params['pageBackgroundImage'])) {
+	if (isset($params['bgImage'])) {
 		$headerlib->add_css(
-			"body{background-image:  url(" . $params["pageBackgroundImage"]
+			"body{background-image:  url(" . $params["bgImage"]
 			. ");background-size:cover}"
 		);
 	}
-	if ($params['pageFullWidth'] == 'y') {
+	if ($params['fullWidth'] == 'y') {
 		$headerlib->add_js(
 			'$(".container").addClass("container-fluid").removeClass("container");'
 		);
 	}
-	if (isset($params['pageContentWidth'])
-		|| isset($params['pageContentPadding'])
+	if (isset($params['contentWidth'])
+		|| isset($params['topMargin'])
 	) {
 		$headerlib->add_css(
-			"#row-middle{width:" . $params["pageContentWidth"]
-			. ";margin:auto;margin-top:" . $params['pageContentPadding']
+			"#row-middle{width:" . $params["contentWidth"]
+			. ";margin:auto;margin-top:" . $params['topMargin']
 			. ";min-width:380px} #col1{min-width:380px;margin:auto}"
 		);
 
 	}
-	if (isset($params['pageHeaderWidth'])) {
+	if (isset($params['headerWidth'])) {
 		$headerlib->add_css(
-			"#page-header{width:" . $params["pageHeaderWidth"] . ";margin:auto}"
+			"#page-header{width:" . $params["headerWidth"] . ";margin:auto}"
 		);
 	}
-	if (isset($params['pageFooterWidth'])) {
+	if (isset($params['footerWidth'])) {
 		$headerlib->add_css(
-			"#footer{width:" . $params["pageFooterWidth"] . ";margin:auto}"
+			"#footer{width:" . $params["footerWidth"] . ";margin:auto}"
 		);
 	}
 	if (isset($params['fgalId']) || $params['fileIds']) {
@@ -339,9 +341,9 @@ function wikiplugin_pagelayout($data, $params)
 			. $params["contentTextColor"] . "}"
 		);
 	}
-	if (isset($params['pageBackgroundColor'])) {
+	if (isset($params['bgColor'])) {
 		$headerlib->add_css(
-			"body{background-color:" . $params["pageBackgroundColor"] . "}"
+			"body{background-color:" . $params["bgColor"] . "}"
 		);
 	}
 }

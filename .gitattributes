@@ -4853,6 +4853,7 @@ lib/wiki-plugins/wikiplugin_js.php -text
 lib/wiki-plugins/wikiplugin_kaltura.php -text
 lib/wiki-plugins/wikiplugin_lang.php -text
 lib/wiki-plugins/wikiplugin_lastmod.php -text
+lib/wiki-plugins/wikiplugin_layout.php -text
 lib/wiki-plugins/wikiplugin_like.php -text
 lib/wiki-plugins/wikiplugin_list.php -text
 lib/wiki-plugins/wikiplugin_listexecute.php -text
@@ -4877,7 +4878,6 @@ lib/wiki-plugins/wikiplugin_networkcondition.php -text
 lib/wiki-plugins/wikiplugin_now.php -text
 lib/wiki-plugins/wikiplugin_objecthits.php -text
 lib/wiki-plugins/wikiplugin_objectlink.php -text
-lib/wiki-plugins/wikiplugin_pagelayout.php -text
 lib/wiki-plugins/wikiplugin_pagetabs.php -text
 lib/wiki-plugins/wikiplugin_param.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
