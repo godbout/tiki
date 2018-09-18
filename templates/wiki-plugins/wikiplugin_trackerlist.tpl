@@ -20,7 +20,7 @@
 		{remarksbox type='errors' title="{tr}Field error{/tr}"}{$nonPublicFieldsWarning}{/remarksbox}
 	{/if}
 	{if $allowtableexpansion eq 'y'}
-		<button title="{tr}Expand table{/tr}" class="btn btn-primary btn-sm table-expand-toggle" type="button" ><span class="icon fa fa-caret-square-o-right fa-fw "></span></button>
+		<button title="{tr}Expand table{/tr}" class="btn btn-primary btn-sm table-expand-toggle" type="button" ><span class="icon far fa-caret-square-right fa-fw "></span></button>
 		{jq}
 			$(".table-expand-toggle").click(function(){
 				var $this = $(this);
@@ -31,7 +31,7 @@
 						$(this).removeClass('table-responsive').addClass('table');
 					}); // end each
 					$this.attr('title','{tr}Restore layout{/tr}');
-					$this.children('span').removeClass('fa-caret-square-o-right').addClass('fa-caret-square-o-left');
+					$this.children('span').removeClass('fa-caret-square-right').addClass('fa-caret-square-left');
 				}else{
 					$this.data('expandStatus','responsive');
 					var $parentdiv = $(this).parent('div');
@@ -39,7 +39,7 @@
 						$(this).addClass('table-responsive').removeClass('table');
 					}); // end each
 					$this.attr('title','{tr}Expand table{/tr}');
-					$this.children('span').removeClass('fa-caret-square-o-left').addClass('fa-caret-square-o-right');
+					$this.children('span').removeClass('fa-caret-square-left').addClass('fa-caret-square-right');
 				}
 			});
 		{/jq}

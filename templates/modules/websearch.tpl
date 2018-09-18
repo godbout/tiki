@@ -29,7 +29,7 @@ $(document).ready(function(){
                     {/foreach}
                  </select>
                <span> <a href="{$url_page_info_engines}" id="help" target="tikihelp" class="tikihelp" title="" data-original-title="Configuration Wizard">
-						<span class="icon icon-help fa fa-question-circle fa-fw "></span>
+						<span class="icon icon-help fas fa-question-circle fa-fw "></span>
 				</a></span>
 			</div>
 		</div>

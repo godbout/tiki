@@ -2,8 +2,8 @@
 
 <div class="media">
 	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
-		<i class="fa fa-arrow-circle-up fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
+		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
 	{tr}New permissions and action log settings{/tr}.
 	<br/><br/><br/>

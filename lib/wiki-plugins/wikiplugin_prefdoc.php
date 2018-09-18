@@ -263,25 +263,25 @@ class PrefsDoc extends TWVersion
 			if ($this->prefDescription) {					// new line if existing content
 				$this->prefDescription .= '<br>';
 			}
-			$this->prefDescription .= '<span class="fa fa-asterisk text-info" title="Detail"></span><i> ' . $param->detail . '</i>';
+			$this->prefDescription .= '<span class="fas fa-asterisk text-info" title="Detail"></span><i> ' . $param->detail . '</i>';
 		}
 		if ($param->hint) {
 			if ($this->prefDescription) {					// new line if existing content
 				$this->prefDescription .= '<br>';
 			}
-			$this->prefDescription .= '<span class="fa fa-hand-pointer-o text-info" title="Hint"></span><i> ' . $param->hint . '</i>';
+			$this->prefDescription .= '<span class="far fa-hand-pointer text-info" title="Hint"></span><i> ' . $param->hint . '</i>';
 		}
 		if ($param->shorthint) {
 			if ($this->prefDescription) {					// new line if existing content
 				$this->prefDescription .= '<br>';
 			}
-			$this->prefDescription .= '<span class="fa fa-hand-pointer-o text-info" title="Short Hint"></span><i> ' . $param->shorthint . '</i>';
+			$this->prefDescription .= '<span class="far fa-hand-pointer text-info" title="Short Hint"></span><i> ' . $param->shorthint . '</i>';
 		}
 		if ($param->warning) {
 			if ($this->prefDescription) {					// new line if existing content
 				$this->prefDescription .= '<br>';
 			}
-			$this->prefDescription .= '<span class="fa fa-exclamation-triangle text-warning" title="Warning"></span><i> ' . $param->warning . '</i>';
+			$this->prefDescription .= '<span class="fas fa-exclamation-triangle text-warning" title="Warning"></span><i> ' . $param->warning . '</i>';
 		}
 		// display list of options
 		if (! empty($param->options)) {
@@ -303,13 +303,13 @@ class PrefsDoc extends TWVersion
 				}
 				$options = $this->wikiConvert($options, true);											// sanitize special characters
 				$options = preg_replace('/\s+/', ' ', $options);			// replace all excess whitespace characters with a single space.
-				$this->prefDescription .= '<span class="small text-muted"><span class="fa fa-list-ul" title="Options"></span> ' . $options . '</span>';
+				$this->prefDescription .= '<span class="small text-muted"><span class="fas fa-list-ul" title="Options"></span> ' . $options . '</span>';
 			}
 		}
 		if (! empty($param->tags)) {
 			foreach ($param->tags as $tag) {
 				if ($tag === 'experimental') {
-					$this->prefDescription .= ' <span class="fa fa-flask text-danger" title="Experimental: may not work as intended"></span>';
+					$this->prefDescription .= ' <span class="fas fa-flask text-danger" title="Experimental: may not work as intended"></span>';
 				}
 			}
 		}

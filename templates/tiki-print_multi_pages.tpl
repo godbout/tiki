@@ -6,14 +6,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 	</head>
 	<body{html_body_attributes}>
-	<span id="nav-button" class="fa fa-list tocbutton" onclick="toggleNav()"></span>
+	<span id="nav-button" class="fas fa-list tocbutton" onclick="toggleNav()"></span>
 	<div class="" id="navcontainer">
 		<nav id="sidetoc"></nav>
 	</div>
 	<div class="container">
 		<div class="col-md-2 col-lg-2"></div>
 		<div id="tiki-clean" class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-			<span id="print-button" class="fa fa-print printstructure" style="float:right" onclick="window.print()"></span>
+			<span id="print-button" class="fas fa-print printstructure" style="float:right" onclick="window.print()"></span>
 			{section name=ix loop=$pages}
 				{if $prefs.feature_page_title ne 'n'}
 					<h{math equation="x+1" x=$pages[ix].h}>

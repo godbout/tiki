@@ -37,7 +37,7 @@
 							<div class="input-group">
 								<input type="text" name="lm_criteria" value="{$smarty.request.lm_criteria|escape}" class="form-control form-control-sm" placeholder="Search preferences...">
 								<button type="submit" class="btn btn-primary btn-sm input-group-append">
-									<span class="icon icon-search fa fa-search fa-fw "></span>
+									<span class="icon icon-search fas fa-search fa-fw "></span>
 								</button>
 							</div>
 						</form>

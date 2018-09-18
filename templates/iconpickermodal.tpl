@@ -20,7 +20,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="change-icon" class="btn btn-success">
-                    <span class="fa fa-check-circle-o"></span>
+                    <span class="far fa-check-circle"></span>
                     Use Selected Icon
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

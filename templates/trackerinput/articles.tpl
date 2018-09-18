@@ -4,7 +4,7 @@
 		<ul>
 			{foreach from=$data.labels item=label key=id}
 				<input type="hidden" name="{$field.ins_id|escape}[]" value={$id}>
-				<li>{object_link type="article" id=$id} <i class="fa fa-info-circle" data-toggle="tooltip" title="You cannot edit this article as it was generated automatically via the rss feed."></i></li>
+				<li>{object_link type="article" id=$id} <i class="fas fa-info-circle" data-toggle="tooltip" title="You cannot edit this article as it was generated automatically via the rss feed."></i></li>
 			{/foreach}
 		</ul>
 	{else}

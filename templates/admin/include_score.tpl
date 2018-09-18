@@ -20,22 +20,22 @@
 			<tr>
 				<td><b>{tr}Unique rule ID{/tr}</b>
 					<a href="http://doc.tiki.org/Score" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}Rule{/tr}" data-content="{tr}A label or ID to help identify which event was triggered to get points.{/tr}">
-						<span class="icon icon-help fa fa-question-circle fa-fw "></span>
+						<span class="icon icon-help fas fa-question-circle fa-fw "></span>
 					</a>
 				</td>
 				<td><b>{tr}Pts recipient type{/tr}</b>
 					<a href="http://doc.tiki.org/Score" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}Recipient Type{/tr}" data-content="{tr}The object type of the point recipient. Usually 'user' but can also be article, trackeritem, etc. Can also use '(eval type)' to get the type of the object being triggered by the event.{/tr}">
-						<span class="icon icon-help fa fa-question-circle fa-fw "></span>
+						<span class="icon icon-help fas fa-question-circle fa-fw "></span>
 					</a>
 				</td>
 				<td><b>{tr}Pts recipient{/tr}</b>
 					<a href="http://doc.tiki.org/Score" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}The ID of the points recipient{/tr}" data-content="{tr}This is the value for the ID of the recipient. It is retrieved by evaluating the event parameters. Using 'user' for example, would retrieve the user triggering the event. 'object' would retrieve the ID of the object on which the event is being triggered.{/tr}">
-						<span class="icon icon-help fa fa-question-circle fa-fw "></span>
+						<span class="icon icon-help fas fa-question-circle fa-fw "></span>
 					</a>
 				</td>
 				<td><b>{tr}Points{/tr}</b>
 					<a href="http://doc.tiki.org/Score" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}Points Given{/tr}" data-content="{tr}This is the numerical value of the points being given.{/tr}">
-						<span class="icon icon-help fa fa-question-circle fa-fw "></span>
+						<span class="icon icon-help fas fa-question-circle fa-fw "></span>
 					</a>
 				</td>
 				<td class="text-right"><b>{tr}Actions{/tr}</b></td>
@@ -83,7 +83,7 @@
 					<tr class="advanced-row {if $hide_advanced eq 1}hide{/if}">
 						<td class="text-right">{tr}Valid Triggering Object IDs{/tr}
 							<a href="http://doc.tiki.org/Score" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}Valid Object Ids{/tr}" data-content="{tr}This is a comma-separated list of object ids for which the event is valid{/tr}">
-								<span class="icon icon-help fa fa-question-circle fa-fw "></span>
+								<span class="icon icon-help fas fa-question-circle fa-fw "></span>
 							</a>
 						</td>
 						<td>
@@ -91,7 +91,7 @@
 						</td>
 						<td class="text-right">{tr}Min. Time Between Scoring{/tr}
 							<a href="http://doc.tiki.org/Score" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}Time between scoring{/tr}" data-content="{tr}This is the amount of time in seconds that a user must wait before again being able to get points for this event{/tr}">
-								<span class="icon icon-help fa fa-question-circle fa-fw "></span>
+								<span class="icon icon-help fas fa-question-circle fa-fw "></span>
 							</a>
 						</td>
 						<td>

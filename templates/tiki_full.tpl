@@ -24,7 +24,7 @@
 {$mid_data}
 {if $is_slideshow eq 'y'}
 	</div>
-		<div id="ss-settings-holder" title="Click for slideshow operations"><span class="fa fa-cogs" style="font-size:1.5rem;color:#666" id="ss-settings"></span></div>
+		<div id="ss-settings-holder" title="Click for slideshow operations"><span class="fas fa-cogs" style="font-size:1.5rem;color:#666" id="ss-settings"></span></div>
 		<div id="ss-options" class="d-flex flex-row justify-content-around align-content-end flex-wrap">
 			<div class="p-2">
 				<select id="showtheme" class="form-control">
@@ -44,11 +44,11 @@
 				</select>
 			</div>
 			{if $prefs.feature_slideshow_pdfexport eq 'y'}
-				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&landscape=1" target="_blank" id="exportPDF"><span class="fa fa-file-pdf-o"></span> {tr}Export PDF{/tr}</a></div>
-				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&printslides=1" target="_blank"><span class="fa fa-print"></span> {tr}Handouts{/tr}</a></div>
+				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&landscape=1" target="_blank" id="exportPDF"><span class="far fa-file-pdf"></span> {tr}Export PDF{/tr}</a></div>
+				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&printslides=1" target="_blank"><span class="fas fa-print"></span> {tr}Handouts{/tr}</a></div>
 			{/if}
 
-			<div class="p-2"><a href="tiki-index.php?page={$page}"><span class="fa fa-sign-out"></span> {tr}Exit{/tr}</a></div>
+			<div class="p-2"><a href="tiki-index.php?page={$page}"><span class="fas fa-sign-out-alt"></span> {tr}Exit{/tr}</a></div>
 		</div>
 {else}
 			</div>

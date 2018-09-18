@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8632b5036d0cbf82c685899ca22fcd6a",
+    "content-hash": "c0f19002315d86c0f7a8e1d0d116d23b",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -235,6 +235,22 @@
             "time": "2018-06-21T08:29:55+00:00"
         },
         {
+            "name": "bower-asset/fontawesome",
+            "version": "5.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "ff2853acce00085b5830a050a2afa328fd212562"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-ff2853acce00085b5830a050a2afa328fd212562-zip-35de3b.zip",
+                "reference": "ff2853acce00085b5830a050a2afa328fd212562",
+                "shasum": "ceb8a502172e5ddb5b7c20f638d0d201c90c20c0"
+            },
+            "type": "bower-asset"
+        },
+        {
             "name": "candy-chat/xmpp-prebind-php",
             "version": "dev-master",
             "source": {
@@ -308,17 +324,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.10.0",
+            "version": "4.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "485918a01ecac5bd286f169e831eddcc895f5132"
+                "reference": "e5999810955383eb4f72c03a5af7f2dfd59390a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-485918a01ecac5bd286f169e831eddcc895f5132-zip-64a91f.zip",
-                "reference": "485918a01ecac5bd286f169e831eddcc895f5132",
-                "shasum": "e2557830dc694c6ee5283bf15748f900ddcd7f53"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-e5999810955383eb4f72c03a5af7f2dfd59390a0-zip-fc9ef3.zip",
+                "reference": "e5999810955383eb4f72c03a5af7f2dfd59390a0",
+                "shasum": "19056b1a46c6365a50fa17475a43703b323ac862"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -345,7 +361,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2018-07-03T13:41:31+00:00"
+            "time": "2018-09-11T18:33:38+00:00"
         },
         {
             "name": "ckeditor/ckeditor/skins/bootstrapck",
@@ -901,54 +917,6 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
-            "name": "fortawesome/font-awesome",
-            "version": "v4.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "a8386aae19e200ddb0f6845b5feeee5eb7013687"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/fortawesome/font-awesome/fortawesome-font-awesome-a8386aae19e200ddb0f6845b5feeee5eb7013687-zip-157f5b.zip",
-                "reference": "a8386aae19e200ddb0f6845b5feeee5eb7013687",
-                "shasum": "7a0d64122e32fa2c364dd60cf3380b4c8c13bd89"
-            },
-            "require-dev": {
-                "jekyll": "1.0.2",
-                "lessc": "1.4.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.6.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "OFL-1.1",
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Gandy",
-                    "email": "dave@fontawesome.io",
-                    "homepage": "http://twitter.com/davegandy",
-                    "role": "Developer"
-                }
-            ],
-            "description": "The iconic font and CSS framework",
-            "homepage": "http://fontawesome.io/",
-            "keywords": [
-                "FontAwesome",
-                "awesome",
-                "bootstrap",
-                "font",
-                "icon"
-            ],
-            "time": "2016-10-24T15:52:54+00:00"
-        },
-        {
             "name": "fullcalendar/fullcalendar",
             "version": "v3.9.0",
             "source": {
@@ -1132,9 +1100,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
+                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
+                "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2187,16 +2155,16 @@
         },
         {
             "name": "nolimits4web/swiper",
-            "version": "v4.3.5",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nolimits4web/swiper.git",
-                "reference": "6f9f8e70734618c87e3f456ad21549c9ed253499"
+                "reference": "bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/6f9f8e70734618c87e3f456ad21549c9ed253499",
-                "reference": "6f9f8e70734618c87e3f456ad21549c9ed253499",
+                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
+                "reference": "bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
                 "shasum": ""
             },
             "type": "library",
@@ -2230,7 +2198,7 @@
                 "swiper",
                 "touch"
             ],
-            "time": "2018-07-31T12:43:09+00:00"
+            "time": "2018-09-14T16:51:56+00:00"
         },
         {
             "name": "npm-asset/popper.js",
@@ -2505,24 +2473,23 @@
         },
         {
             "name": "pear/net_socket",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Net_Socket.git",
-                "reference": "f31d75ac352d49908f8987bbb1496c02a409812a"
+                "reference": "bbe6a12bb4f7059dba161f6ddd43f369c0ec8d09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/pear/net_socket/pear-net_socket-f31d75ac352d49908f8987bbb1496c02a409812a-zip-bdd7f4.zip",
-                "reference": "f31d75ac352d49908f8987bbb1496c02a409812a",
-                "shasum": "cbc31c595b68f0d1a959cf70c37886c601d78d58"
+                "url": "https://composer.tiki.org/dist/pear/net_socket/pear-net_socket-bbe6a12bb4f7059dba161f6ddd43f369c0ec8d09-zip-190c82.zip",
+                "reference": "bbe6a12bb4f7059dba161f6ddd43f369c0ec8d09",
+                "shasum": "5b085324fab2f37403bf153dedd143add879de3d"
             },
             "require": {
-                "pear/pear_exception": "@stable",
-                "php": ">=5.4.0"
+                "pear/pear_exception": "*"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4"
+                "phpunit/phpunit": "*"
             },
             "type": "library",
             "autoload": {
@@ -2535,7 +2502,7 @@
                 "./"
             ],
             "license": [
-                "BSD-2-Clause"
+                "PHP License"
             ],
             "authors": [
                 {
@@ -2555,7 +2522,7 @@
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Net_Socket",
-            "time": "2017-04-06T15:16:38+00:00"
+            "time": "2015-03-22T15:48:19+00:00"
         },
         {
             "name": "pear/pear",
@@ -3006,17 +2973,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.40.1",
+            "version": "v1.41.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "06d1fc5eb5582db1f5d5365741659df57e4a3468"
+                "reference": "5fa493aca6d820580aca6986fb505d4aad729911"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-06d1fc5eb5582db1f5d5365741659df57e4a3468-zip-461094.zip",
-                "reference": "06d1fc5eb5582db1f5d5365741659df57e4a3468",
-                "shasum": "b9f187a37c5cfbf6bb3b40753c721bd4b1d4082b"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-5fa493aca6d820580aca6986fb505d4aad729911-zip-2e5f0b.zip",
+                "reference": "5fa493aca6d820580aca6986fb505d4aad729911",
+                "shasum": "7f91bf1e099e8eec432f0151fdeab09eed62a9dd"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3038,7 +3005,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2018-08-22T21:03:03+00:00"
+            "time": "2018-09-12T14:56:27+00:00"
         },
         {
             "name": "psr/container",
@@ -4789,9 +4756,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
+                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
+                "shasum": ""
             },
             "require": {
                 "ext-ldap": "*",

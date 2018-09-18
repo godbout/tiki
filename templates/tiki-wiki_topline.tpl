@@ -256,7 +256,9 @@
 								</a>
 							</li>
 						{/if}
-						{monitor_link type="wiki page" object=$page class="" linktext="{tr}Notification{/tr}" tag="li"}
+						<li class="dropdown-item">
+							{monitor_link type="wiki page" object=$page class="" linktext="{tr}Notification{/tr}"}
+						</li>
 						{if !empty($user) and $prefs.feature_user_watches eq 'y'}
 							{if $user_watching_page eq 'n'}
 								<li class="dropdown-item">

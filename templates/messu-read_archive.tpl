@@ -11,16 +11,16 @@
 		<div class="row">
 			<div class="col-xs-4 col-sm-2">
 				{if $prev}
-					<a class="btn btn-link" href="messu-read_archive.php?offset={$offset}&amp;msgId={$prev}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fa fa-arrow-left" aria-hidden="true"></i>{/tr}</a>
+					<a class="btn btn-link" href="messu-read_archive.php?offset={$offset}&amp;msgId={$prev}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fas fa-arrow-left" aria-hidden="true"></i>{/tr}</a>
 				{else}
-					<a class="btn btn-link disabled" href="messu-read_archive.php?offset={$offset}&amp;msgId={$prev}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fa fa-arrow-left" aria-hidden="true"></i>{/tr}</a>
+					<a class="btn btn-link disabled" href="messu-read_archive.php?offset={$offset}&amp;msgId={$prev}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fas fa-arrow-left" aria-hidden="true"></i>{/tr}</a>
 				{/if}
 			</div>
 			<div class="col-xs-4 col-sm-2">
 				{if $next}
-					<a class="btn btn-link" href="messu-read_archive.php?offset={$offset}&amp;msgId={$next}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fa fa-arrow-right" aria-hidden="true"></i>{/tr}</a>
+					<a class="btn btn-link" href="messu-read_archive.php?offset={$offset}&amp;msgId={$next}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fas fa-arrow-right" aria-hidden="true"></i>{/tr}</a>
 				{else}
-					<a class="btn btn-link disabled" href="messu-read_archive.php?offset={$offset}&amp;msgId={$next}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fa fa-arrow-right" aria-hidden="true"></i>{/tr}</a>
+					<a class="btn btn-link disabled" href="messu-read_archive.php?offset={$offset}&amp;msgId={$next}&amp;sort_mode={$sort_mode}&amp;find={$find|escape:"url"}&amp;flag={$flag}&amp;priority={$priority}&amp;flagval={$flagval}">{tr}<i class="fas fa-arrow-right" aria-hidden="true"></i>{/tr}</a>
 				{/if}
 			</div>
 			<div class="col-xs-4 col-sm-2">
@@ -37,12 +37,12 @@
 					{if $msg.isFlagged eq 'y'}
 						<input type="hidden" name="actionval" value="n">
 						<button type="submit" class="btn btn-link" onclick="checkTimeout()">
-							<i class="fa fa-flag tips" aria-hidden="true" title="{tr}Flagged:Click to unflag{/tr}"></i>
+							<i class="fas fa-flag tips" aria-hidden="true" title="{tr}Flagged:Click to unflag{/tr}"></i>
 						</button>
 					{else}
 						<input type="hidden" name="actionval" value="y">
 						<button type="submit" class="btn btn-link" onclick="checkTimeout()">
-							<i class="fa fa-flag-o tips" aria-hidden="true" title="{tr}Not flagged:Click to flag{/tr}"></i>
+							<i class="far fa-flag tips" aria-hidden="true" title="{tr}Not flagged:Click to flag{/tr}"></i>
 						</button>
 					{/if}
 				</form>

@@ -2,22 +2,22 @@
     <h2>Icons</h2>
     <div class="row">
         <div class="col-sm-8 col-md-9">
-            <span class="fa fa-file-text-o"></span>
-            <span class="fa fa-balance-scale"></span>
-            <span class="fa fa-shopping-cart"></span>
-            <span class="fa fa-gears"></span>
-            <span class="fa fa-laptop"></span>
-            <span class="fa fa-users"></span>
-            <span class="fa fa-mortar-board"></span>
-            <span class="fa fa-book"></span>
-            <span class="fa fa-tree"></span>
-            <span class="fa fa-dollar"></span>
-            <span class="fa fa-institution"></span>
-            <span class="fa fa-question"></span>
-            <span class="fa fa-facebook"></span>
-            <span class="fa fa-twitter"></span>
-            <span class="fa fa-google-plus"></span>
-            <span class="fa fa-linkedin"></span>
+            <span class="far fa-alt"></span>
+            <span class="fas fa-balance-scale"></span>
+            <span class="fas fa-shopping-cart"></span>
+            <span class="fas fa-cogs"></span>
+            <span class="fas fa-laptop"></span>
+            <span class="fas fa-users"></span>
+            <span class="fas fa-mortar-board"></span>
+            <span class="fas fa-book"></span>
+            <span class="fas fa-tree"></span>
+            <span class="fas fa-dollar"></span>
+            <span class="fas fa-institution"></span>
+            <span class="fas fa-question"></span>
+            <span class="fab fa-facebook"></span>
+            <span class="fab fa-twitter"></span>
+            <span class="fab fa-google-plus"></span>
+            <span class="fab fa-linkedin"></span>
         </div>
 
         <div class="col-sm-4 col-md-3">

@@ -103,16 +103,16 @@ class Tracker_Field_Header extends Tracker_Field_Abstract implements Tracker_Fie
 					$section.toggle();
 					var $i = $("i", this);
 					if ($i.hasClass("fa-chevron-right")) {
-						$i.replaceWith("<i class=\"fa fa-chevron-down\"></i>");
+						$i.replaceWith("<i class=\"fas fa-chevron-down\"></i>");
 					} else {
-						$i.replaceWith("<i class=\"fa fa-chevron-right\"></i>");
+						$i.replaceWith("<i class=\"fas fa-chevron-right\"></i>");
 					}
 				});
 				if (toggle === "c") {
-					$hdr.append("<small> <i class=\"fa fa-chevron-right\"></i></small>");
+					$hdr.append("<small> <i class=\"fas fa-chevron-right\"></i></small>");
 					$section.hide();
 				} else {
-					$hdr.append("<small> <i class=\"fa fa-chevron-down\"></i></small>");
+					$hdr.append("<small> <i class=\"fas fa-chevron-down\"></i></small>");
 				}
 			}
 			$div.replaceWith($hdr);

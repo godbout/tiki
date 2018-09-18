@@ -2,9 +2,9 @@
 	{if not $count_only}
 		<a class="like_button" data-type="{$type}" data-object="{$object}" href="#">
 			{if $has_relation}
-				<i class="fa fa-thumbs-up fa-lg"></i>
+				<i class="fas fa-thumbs-up fa-lg"></i>
 			{else}
-				<i class="fa fa-thumbs-o-up fa-lg"></i>
+				<i class="far fa-thumbs-up fa-lg"></i>
 			{/if}
 		</a><!--close anchor-->
 	{/if}
@@ -27,12 +27,12 @@
 			}
 			), function(data) {
 				if (data && data['relation_id']){ //if relation_id,
-					$(element).find("i").removeClass('fa-thumbs-o-up');
-					$(element).find("i").addClass('fa-thumbs-up');
+					$(element).find("i").removeClass('far');
+					$(element).find("i").addClass('fas');
 					$(element).parent().find('.numlikes').html(parseInt($('.numlikes').html(), 10)+1);
 				} else {
-					$(element).find("i").removeClass('fa-thumbs-up');
-					$(element).find("i").addClass('fa-thumbs-o-up');
+					$(element).find("i").removeClass('fas');
+					$(element).find("i").addClass('far');
 					$(element).parent().find('.numlikes').html(parseInt($('.numlikes').html(), 10)-1);
 				}
 			},

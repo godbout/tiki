@@ -62,7 +62,7 @@ if ($prefs['feature_fixed_width'] === 'y') {
 $headerlib->add_cssfile("themes/base_files/css/tiki_base.css");
 
 //3) Always add bundled font-awesome css for the default icon fonts
-$headerlib->add_cssfile('vendor_bundled/vendor/fortawesome/font-awesome/css/font-awesome.min.css');
+$headerlib->add_cssfile('vendor_bundled/vendor/bower-asset/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css');
 
 //4) Add Addon custom css first, so it can be overridden by themes
 foreach (TikiAddons::getPaths() as $path) {

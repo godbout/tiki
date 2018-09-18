@@ -330,11 +330,11 @@ class CleanVendors
 		//Remove extra files to keep the system tidy
 		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs');
 		$fs->remove($vendors . 'zendframework/zend-json/doc');
-		$fs->remove($vendors . 'fortawesome/font-awesome/src/_includes/examples');
-		$fs->remove($vendors . 'fortawesome/font-awesome/src/3.2.1/examples');
+		$fs->remove($vendors . 'bower-asset/fontawesome/advanced-options');
+		$fs->remove($vendors . 'bower-asset/fontawesome/svg-with-js');
+		$fs->remove($vendors . 'bower-asset/fontawesome/use-on-desktop');
 		$fs->remove($vendors . 'tijsverkoyen/css-to-inline-styles/TijsVerkoyen/CssToInlineStyles/tests/examples');
 		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs/examples');
-		$fs->remove($vendors . 'fortawesome/font-awesome/src/_includes/tests');
 		$fs->remove($vendors . 'tijsverkoyen/css-to-inline-styles/TijsVerkoyen/CssToInlineStyles/tests');
 		$fs->remove($vendors . 'twitter/bootstrap/js/tests');
 		$fs->remove($vendors . 'symfony/dependency-injection/Symfony/Component/DependencyInjection/Tests');

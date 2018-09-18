@@ -734,7 +734,7 @@ function wikiplugin_rr($data, $params)
 			}
 		}
 		if ($dbversion_tiki >= 13.0) {
-			$ret .= ' <a href="#" onclick="parentNode.submit();return false;" >' . '<span class="icon fa fa-refresh" Title="' . tr("Cached R output from %0. If you click, you will re-run all R scripts in this page", $cache_last_modif_readable) . '"></span></a> </form>';
+			$ret .= ' <a href="#" onclick="parentNode.submit();return false;" >' . '<span class="icon fas fa-sync" Title="' . tr("Cached R output from %0. If you click, you will re-run all R scripts in this page", $cache_last_modif_readable) . '"></span></a> </form>';
 		} else {
 			// Maybe this should be an input tag with maybe still the image
 			$ret .= ' <a href="#" onclick="parentNode.submit();return false;" >' . '<img src=img/icons/arrow_refresh.png alt=Refresh Title="' . tr("Cached R output from %0. If you click, you will re-run all R scripts in this page", $cache_last_modif_readable) . '"></a> </form>';

@@ -29,7 +29,7 @@
 		"cwspear/bootstrap-hover-dropdown": "^2.2.1",
 		"evert/sitemap-php": "^1.2",
 		"ezyang/htmlpurifier": "^4.8.0",
-		"fortawesome/font-awesome": "^4.6.3",
+		"bower-asset/fontawesome": "^5.3.1",
 		"fullcalendar/fullcalendar": "^3.9",
 		"haubek/bootstrap4c-chosen": "^1.0",
 		"harvesthq/chosen": "^1.8",
