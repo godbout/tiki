@@ -1835,6 +1835,7 @@ installer/schema/20111014_menu_feature_time_sheet_tiki.sql -text
 installer/schema/20111118_remove_versionOfPreferencesCache_tiki.sql -text
 installer/schema/20111210_add_blog_hits_tiki.sql -text
 installer/schema/20111217_on_value_tracker_tiki.sql -text
+installer/schema/20111231_change_datetime_defaults_to_null_tiki.sql -text
 installer/schema/20120115_remove_article_show_lang_tiki.sql -text
 installer/schema/20120118_remove_users_prefs_language_tiki.sql -text
 installer/schema/20120123_remove_column_from_tiki_user_reports_tiki.sql -text
