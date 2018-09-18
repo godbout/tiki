@@ -218,7 +218,7 @@ function wikiplugin_layout($data, $params)
 {
 	$headerlib = TikiLib::lib('header');
 	$headerlib->add_css("#col1{display:none}");
-	$headerlib->add_js('$( document ).ready(function() {$(\'#col1\').fadeIn(3000); });');
+	$headerlib->add_js('$( document ).ready(function() {$(\'#col1\').fadeIn(1000); });');
 	if ($params['header'] == 'n') {
 		$headerlib->add_css("#page-header{display:none}");
 	}
