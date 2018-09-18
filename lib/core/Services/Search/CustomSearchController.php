@@ -180,11 +180,7 @@ class Services_Search_CustomSearchController
 
 		$index = $unifiedsearchlib->getIndex();
 		$resultSet = $query->search($index);
-		$errors = Feedback::get();
-		if ($errors !== false) {
-			echo $errors;
-			return;
-		}
+
 		$resultSet->setTsSettings($builder->getTsSettings());
 		$resultSet->setId('wpcs-' . $id);
 		$resultSet->setTsOn($tsret['tsOn']);
