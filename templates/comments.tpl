@@ -298,7 +298,7 @@
 									}
 									needToConfirm=false;
 									});{/jq}
-								<input type="submit" class="btn btn-primary btn-sm" name="comments_cancelComment" value="{tr}Cancel{/tr}" onclick="hide('{$postclass}open'); return false">
+								<input type="submit" class="btn btn-secondary btn-sm" name="comments_cancelComment" value="{tr}Cancel{/tr}" onclick="hide('{$postclass}open'); return false">
 							</div>
 						</div>
 					</form>
