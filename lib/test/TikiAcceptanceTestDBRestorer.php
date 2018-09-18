@@ -36,8 +36,8 @@ abstract class TikiAcceptanceTestDBRestorer
 	protected $host = "localhost";
 	protected $tiki_test_db = "tiki_db_for_acceptance_tests";
 	protected $tiki_test_db_dump = "tiki_db_for_acceptance_tests_dump.sql";
-	protected $tiki_test_db_user = "tikiadmin";
-	protected $tiki_test_db_pwd = "tiki";
+	protected $tiki_test_db_user = "tiki_automated_test_user";
+	protected $tiki_test_db_pwd = "tiki_automated_test_user";
 	protected $mysql_data_dir = "";
 	protected $tiki_schema_file_start = "dump_schema_tiki_start.txt";
 	protected $tiki_restore_db_file_name = "tiki_testdb_restore_file.sql";
@@ -58,7 +58,7 @@ abstract class TikiAcceptanceTestDBRestorer
 	{
 		$conn = mysqli_connect($this->host, $this->tiki_test_db_user, $this->tiki_test_db_pwd) or die(mysqli_error($conn));
 		$result = mysqli_query($conn, "select @@datadir;");
-		while ($array = mysqli_fetch_array($conn, $result)) {
+		while ($array = mysqli_fetch_array($result)) {
 			$datadir = $array[0];
 		}
 		return $datadir;

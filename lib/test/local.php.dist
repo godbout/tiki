@@ -1,8 +1,25 @@
 <?php
-$db_tiki='mysql';
-$dbversion_tiki='12.0';
+/*
+If you run the following, you can use this file as-is to run tests:
+
+mysql -u root -p
+create database tiki_db_for_unit_tests;
+grant all privileges on tiki_db_for_unit_tests.* TO 'tiki_automated_test_user'@'localhost' identified by 'tiki_automated_test_user';
+flush privileges;
+\q
+ln -s lib/test/local.php.dist lib/test/local.php
+
+Note that acceptance tests do not use this filet, it's still hardcoded in TikiAcceptanceTestDBRestorer
+However, acceptance tests are currently skipped since they haven't been updated since 2010
+
+But they would require:
+create database tiki_db_for_acceptance_tests;
+grant all privileges on tiki_db_for_acceptance_tests.* TO 'tiki_automated_test_user'@'localhost' identified by 'tiki_automated_test_user';
+*/
+$db_tiki='mysqli';
+$dbversion_tiki='19.0';
 $host_tiki='localhost';
-$user_tiki='root';
-$pass_tiki='';
-$dbs_tiki='tiki_test';
+$user_tiki='tiki_automated_test_user';
+$pass_tiki='tiki_automated_test_user';
+$dbs_tiki='tiki_db_for_unit_tests';
 $client_charset='utf8';
