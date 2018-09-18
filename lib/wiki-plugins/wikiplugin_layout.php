@@ -217,8 +217,8 @@ function wikiplugin_layout_info()
 function wikiplugin_layout($data, $params)
 {
 	$headerlib = TikiLib::lib('header');
-	$headerlib->add_css("#col1{display:none}");
-	$headerlib->add_js('$( document ).ready(function() {$(\'#col1\').fadeIn(1000); });');
+	$headerlib->add_css("#row-middle{display:none} #show-errors-button{display:none}");
+	$headerlib->add_js('$( document ).ready(function() {$(\'#row-middle\').attr("style","display:flex").fadeIn(1000); });');
 	if ($params['header'] == 'n') {
 		$headerlib->add_css("#page-header{display:none}");
 	}
@@ -226,13 +226,13 @@ function wikiplugin_layout($data, $params)
 		$headerlib->add_css("#footer{display:none}");
 	}
 	if ($params['leftBar'] == 'n') {
-		$headerlib->add_css("#col2{display:none}");
+		$headerlib->add_css("#col2{display:none} .text-left.side-col-toggle{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-8" )) {$("#col1").removeClass("col-lg-8").addClass("col-lg-10");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
 	if ($params['rightBar'] == 'n') {
-		$headerlib->add_css("#col3{display:none}");
+		$headerlib->add_css("#col3{display:none} .text-right.side-col-toggle{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-10" )) {$("#col1").removeClass("col-lg-10").addClass("col-lg-12");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
