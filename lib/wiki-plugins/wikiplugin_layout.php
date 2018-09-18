@@ -42,7 +42,7 @@ function wikiplugin_layout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
-			'leftBar'      => [
+			'leftbar'      => [
 				'required'    => false,
 				'name'        => tra('Display Page Left Bar'),
 				'description' => tra('Set to No, to hide left on the page'),
@@ -54,7 +54,7 @@ function wikiplugin_layout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
-			'rightBar'     => [
+			'rightbar'     => [
 				'required'    => false,
 				'name'        => tra('Display Page Right Bar'),
 				'description' => tra('Set to No, to hide right on the page'),
@@ -66,7 +66,7 @@ function wikiplugin_layout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
-			'fullWidth'    => [
+			'fullwidth'    => [
 				'required'    => false,
 				'name'        => tra('Page Full Width'),
 				'description' => tra('100% Page width'),
@@ -78,7 +78,7 @@ function wikiplugin_layout_info()
 					['text' => 'Yes', 'value' => 'y'],
 				],
 			],
-			'contentWidth' => [
+			'contentwidth' => [
 				'required'    => false,
 				'name'        => tra('Page Content Width'),
 				'description' => tra(
@@ -90,7 +90,7 @@ function wikiplugin_layout_info()
 				'since'       => '19.0',
 			],
 
-			'bgImage' => [
+			'bgimage' => [
 				'required'    => false,
 				'name'        => tra('Page Background Image URL'),
 				'description' => tra(
@@ -119,7 +119,7 @@ function wikiplugin_layout_info()
 				'filter'      => 'striptags',
 				'default'     => '',
 			],
-			'topMargin'  => [
+			'topmargin'  => [
 				'required'    => false,
 				'name'        => tra('Page Content Top Margin'),
 				'description' => tra(
@@ -130,7 +130,7 @@ function wikiplugin_layout_info()
 				'advanced'    => true,
 				'since'       => '19.0',
 			],
-			'headerWidth'     => [
+			'headerwidth'     => [
 				'required'    => false,
 				'name'        => tra('Page Header Width'),
 				'description' => tra(
@@ -141,7 +141,7 @@ function wikiplugin_layout_info()
 				'advanced'    => true,
 				'since'       => '19.0',
 			],
-			'footerWidth'     => [
+			'footerwidth'     => [
 				'required'    => false,
 				'name'        => tra('Page Footer Width'),
 				'description' => tra(
@@ -152,7 +152,7 @@ function wikiplugin_layout_info()
 				'advanced'    => true,
 				'since'       => '19.0',
 			],
-			'bgColor' => [
+			'bgcolor' => [
 				'required'    => false,
 				'name'        => tra('Page Background Color'),
 				'description' => tra(
@@ -163,7 +163,7 @@ function wikiplugin_layout_info()
 				'advanced'    => true,
 				'since'       => '19.0',
 			],
-			'contentBg'           => [
+			'contentbg'           => [
 				'required'    => false,
 				'name'        => tra('Content Background Color'),
 				'description' => tra(
@@ -173,7 +173,7 @@ function wikiplugin_layout_info()
 				'default'     => '',
 				'since'       => '19.0',
 			],
-			'contentTextColor'    => [
+			'contenttextcolor'    => [
 				'required'    => false,
 				'name'        => tra('Content Text Color'),
 				'description' => tra(
@@ -184,7 +184,7 @@ function wikiplugin_layout_info()
 				'since'       => '19.0',
 			],
 
-			'transitionDelay'   => [
+			'transitiondelay'   => [
 				'required'    => false,
 				'name'        => tra('Transition Delay'),
 				'description' => tra(
@@ -194,11 +194,11 @@ function wikiplugin_layout_info()
 				'default'     => '5',
 				'since'       => '19.0',
 			],
-			'actionButtons' => [
+			'actionbuttons' => [
 				'required'    => false,
 				'name'        => tra('Display Page Action Buttons'),
 				'description' => tra(
-					'Set to No, to hide page action buttons displayed under page content'
+					'Set to No, to hide page action buttons, with and under content'
 				),
 				'filter'      => 'alpha',
 				'default'     => 'y',
@@ -209,6 +209,7 @@ function wikiplugin_layout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
+
 
 		],
 	];
@@ -225,51 +226,51 @@ function wikiplugin_layout($data, $params)
 	if ($params['footer'] == 'n') {
 		$headerlib->add_css("#footer{display:none}");
 	}
-	if ($params['leftBar'] == 'n') {
+	if ($params['leftbar'] == 'n') {
 		$headerlib->add_css("#col2{display:none} .text-left.side-col-toggle{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-8" )) {$("#col1").removeClass("col-lg-8").addClass("col-lg-10");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
-	if ($params['rightBar'] == 'n') {
+	if ($params['rightbar'] == 'n') {
 		$headerlib->add_css("#col3{display:none} .text-right.side-col-toggle{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-10" )) {$("#col1").removeClass("col-lg-10").addClass("col-lg-12");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
-	if ($params['actionButtons'] == 'n') {
-		$headerlib->add_css("#page-bar{display:none}");
+	if ($params['actionbuttons'] == 'n') {
+		$headerlib->add_css("#page-bar{display:none} .wikiactions_wrapper{display:none}");
 	}
 
-	if (isset($params['bgImage'])) {
+	if (isset($params['bgimage'])) {
 		$headerlib->add_css(
-			"body{background-image:  url(" . $params["bgImage"]
+			"body{background-image:  url(" . $params["bgimage"]
 			. ");background-size:cover}"
 		);
 	}
-	if ($params['fullWidth'] == 'y') {
+	if ($params['fullwidth'] == 'y') {
 		$headerlib->add_js(
 			'$(".container").addClass("container-fluid").removeClass("container");'
 		);
 	}
-	if (isset($params['contentWidth'])
-		|| isset($params['topMargin'])
+	if (isset($params['contentwidth'])
+		|| isset($params['topmargin'])
 	) {
 		$headerlib->add_css(
-			"#row-middle{width:" . $params["contentWidth"]
-			. ";margin:auto;margin-top:" . $params['topMargin']
+			"#row-middle{width:" . $params["contentwidth"]
+			. ";margin:auto;margin-top:" . $params['topmargin']
 			. ";min-width:380px} #col1{min-width:380px;margin:auto}"
 		);
 
 	}
-	if (isset($params['headerWidth'])) {
+	if (isset($params['headerwidth'])) {
 		$headerlib->add_css(
-			"#page-header{width:" . $params["headerWidth"] . ";margin:auto}"
+			"#page-header{width:" . $params["headerwidth"] . ";margin:auto}"
 		);
 	}
-	if (isset($params['footerWidth'])) {
+	if (isset($params['footerwidth'])) {
 		$headerlib->add_css(
-			"#footer{width:" . $params["footerWidth"] . ";margin:auto}"
+			"#footer{width:" . $params["footerwidth"] . ";margin:auto}"
 		);
 	}
 	if (isset($params['fgalId']) || $params['fileIds']) {
@@ -298,8 +299,8 @@ function wikiplugin_layout($data, $params)
 				. '&amp;display",';
 		}
 
-		$transitionDelay = (isset($params['transitionDelay'])
-			? $params['transitionDelay'] * 1000 : 5000);
+		$transitionDelay = (isset($params['transitiondelay'])
+			? $params['transitiondelay'] * 1000 : 5000);
 
 		$headerlib->add_css(
 			'.bgdiv{ 
@@ -335,15 +336,15 @@ function wikiplugin_layout($data, $params)
 		});'
 		);
 	}
-	if (isset($params['contentBg']) || isset($params['contentTextColor'])) {
+	if (isset($params['contentbg']) || isset($params['contenttextcolor'])) {
 		$headerlib->add_css(
-			"#row-middle{background-color:" . $params["contentBg"] . ";color:"
-			. $params["contentTextColor"] . "}"
+			"#row-middle{background-color:" . $params["contentbg"] . ";color:"
+			. $params["contenttextcolor"] . "}"
 		);
 	}
-	if (isset($params['bgColor'])) {
+	if (isset($params['bgcolor'])) {
 		$headerlib->add_css(
-			"body{background-color:" . $params["bgColor"] . "}"
+			"body{background-color:" . $params["bgcolor"] . "}"
 		);
 	}
 }
