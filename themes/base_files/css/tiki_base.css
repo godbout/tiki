@@ -738,6 +738,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   .btn-primary.btn-files:not(:disabled):not(.disabled):active:focus, .btn-primary.btn-files:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.btn-files.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(116, 0, 195, 0.5); }
 
+.tiki .mx--15px {
+  margin-left: -15px;
+  margin-right: -15px; }
+
 a {
   word-wrap: break-word; }
 
@@ -2977,7 +2981,7 @@ body:not(.fixed_width) .container {
 legend + * {
   margin-top: 20px; }
 
-.tiki .page-header {
+.page-header {
   border-bottom: none;
   margin: auto;
   padding-bottom: 0; }
@@ -3111,9 +3115,9 @@ body.fullscreen.tiki.navbar-padding {
     width: 100%; }
 
   .hide_zone_left .col1.col-lg-9 {
-    width: 75%;
-    flex: 0 0 75%;
-    max-width: 75%; }
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%; }
 
   .hide_zone_right .col1.col-lg-9 {
     width: 100%;

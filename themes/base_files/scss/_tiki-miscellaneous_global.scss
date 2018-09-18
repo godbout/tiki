@@ -17,6 +17,10 @@
 //   background: darken($state-danger-bg, 15%);
 // }
 
+.tiki .mx--15px {
+  margin-left: -15px;
+  margin-right: -15px;
+}
 
 // Avoid long URLs overflow and wrap them into several lines instead
 a {

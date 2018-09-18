@@ -23,7 +23,7 @@ legend + * {
 	margin-top: 20px;
 }
 
-.tiki .page-header {
+.page-header {
 	border-bottom: none;
 	margin: auto;
 	padding-bottom: 0;
@@ -245,9 +245,9 @@ body.fullscreen.tiki.navbar-padding {
 
 // Overrides in case of 2-col layout with no right column
 .hide_zone_left .col1.col-lg-9 {
-	width: 75%;
-	flex: 0 0 75%;
-	max-width: 75%;
+	width: 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
 }
 
 // Overrides in case of 2-col layout with no left column
