@@ -180,19 +180,22 @@ class Services_Search_CustomSearchController
 
 		$index = $unifiedsearchlib->getIndex();
 		$resultSet = $query->search($index);
+		if (! empty($_SESSION['tikifeedback']) && $_SESSION['tikifeedback'][0]['mes']['type'] === 'error') {
+			Feedback::send_headers();
+		} else {
+			$resultSet->setTsSettings($builder->getTsSettings());
+			$resultSet->setId('wpcs-' . $id);
+			$resultSet->setTsOn($tsret['tsOn']);
 
-		$resultSet->setTsSettings($builder->getTsSettings());
-		$resultSet->setId('wpcs-' . $id);
-		$resultSet->setTsOn($tsret['tsOn']);
+			$formatter = $builder->getFormatter();
+			$results = $formatter->format($resultSet);
 
-		$formatter = $builder->getFormatter();
-		$results = $formatter->format($resultSet);
+			$parserLib = TikiLib::lib('parser');
+			$results = $parserLib->searchFilePreview($results, true);
+			$results = $parserLib->parse_data($results, ['is_html' => true, 'skipvalidation' => true]);
 
-		$parserLib = TikiLib::lib('parser');
-		$results = $parserLib->searchFilePreview($results, true);
-		$results = $parserLib->parse_data($results, ['is_html' => true, 'skipvalidation' => true]);
-
-		return ['html' => $results];
+			return ['html' => $results];
+		}
 	}
 
 	private function cs_dataappend_language(Search_Query $query, $config, $value)
