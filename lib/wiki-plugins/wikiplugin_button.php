@@ -12,7 +12,7 @@ function wikiplugin_button_info()
 		'documentation' => 'PluginButton',
 		'description' => tra('Add a link formatted as a button'),
 		'prefs' => ['wikiplugin_button'],
-		'validate' => 'all', // Parameters allow XSS.
+		'validate' => 'arguments',
 		'extraparams' => false,
 		'iconname' => 'play',
 		'introduced' => 6.1,
@@ -26,6 +26,7 @@ function wikiplugin_button_info()
 				'since' => '6.1',
 				'filter' => 'url',
 				'default' => '',
+				'safe' => true,
 			],
 			'_text' => [
 				'required' => false,
@@ -34,6 +35,7 @@ function wikiplugin_button_info()
 				'since' => '6.1',
 				'filter' => 'text',
 				'default' => '',
+				'safe' => true,
 			],
 			'_icon_name' => [
 				'required' => false,
@@ -42,6 +44,7 @@ function wikiplugin_button_info()
 				'since' => '14.0',
 				'filter' => 'text',
 				'default' => '',
+				'safe' => true,
 			],
 			'_type' => [
 				'required' => false,
@@ -50,6 +53,7 @@ function wikiplugin_button_info()
 				'since' => '13.0',
 				'filter' => 'text',
 				'default' => '',
+				'safe' => true,
 				'options' => [
 					['text' => '', 'value' => ''],
 					['text' => tra('Danger'), 'value' => 'danger'],
@@ -68,6 +72,7 @@ function wikiplugin_button_info()
 				'since' => '6.1',
 				'filter' => 'text',
 				'default' => '',
+				'safe' => true,
 			],
 			'_style' => [
 				'required' => false,
@@ -85,6 +90,7 @@ function wikiplugin_button_info()
 				'since' => '7.0',
 				'filter' => 'text',
 				'default' => '',
+				'safe' => true,
 			],
 			'_auto_args' => [
 				'required' => false,
@@ -102,6 +108,7 @@ function wikiplugin_button_info()
 				'filter' => 'text',
 				'default' => '',
 				'advanced' => true,
+				'safe' => true,
 			],
 			'_flip_id' => [
 				'required' => false,
@@ -111,6 +118,7 @@ function wikiplugin_button_info()
 				'filter' => 'alpha',
 				'default' => '',
 				'advanced' => true,
+				'safe' => true,
 			],
 			'_flip_hide_text' => [
 				'required' => false,
@@ -121,6 +129,7 @@ function wikiplugin_button_info()
 				'filter' => 'alpha',
 				'default' => '',
 				'advanced' => true,
+				'safe' => true,
 				'options' => [
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
@@ -135,6 +144,7 @@ function wikiplugin_button_info()
 				'filter' => 'alpha',
 				'default' => '',
 				'advanced' => true,
+				'safe' => true,
 				'options' => [
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
@@ -149,6 +159,7 @@ function wikiplugin_button_info()
 				'filter' => 'alpha',
 				'default' => '',
 				'advanced' => true,
+				'safe' => true,
 				'options' => [
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
@@ -163,6 +174,7 @@ function wikiplugin_button_info()
 				'filter' => 'alpha',
 				'default' => '',
 				'advanced' => true,
+				'safe' => true,
 			],
 		],
 	];
