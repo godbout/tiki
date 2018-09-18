@@ -1663,6 +1663,7 @@
 		"blueimp/javascript-load-image": ">=1.14.0",
 		"blueimp/jquery-file-upload": ">=9.11.0",
 		"bombayworks/zendframework1": ">=1.12.3",
+		"bower-asset/fontawesome": ">=5.3.1",
 		"bower-asset/wodo.texteditor": "^0.5.9",
 		"candy-chat/xmpp-prebind-php": "dev-master",
 		"chartjs/Chart.js": ">=2.5.0",
