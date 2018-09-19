@@ -126,7 +126,7 @@ function iconset_default()
 				'id' => 'tag',
 			],
 			'admin_module' => [
-				'id' => 'cogs',
+				'id' => 'boxes',
 			],
 			'admin_payment' => [
 				'id' => 'credit-card',
