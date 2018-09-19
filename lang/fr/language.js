@@ -47,5 +47,5 @@ lang = {
 	"Browse Files" : "Parcourir la liste des fichiers",
 	"Page only allowed once in a structure" : "Page autorisée une seule fois dans une structure",
 	// remember the IE does not support ending comma on last item
-	"Bogus entry" : "bogus entry"
+	"Bogus entry" : "Entrée erronnée"
 };
