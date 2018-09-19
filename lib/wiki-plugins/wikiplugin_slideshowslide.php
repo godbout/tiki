@@ -85,6 +85,18 @@ function wikiplugin_slideshowslide_info()
 					['text' => 'Yes', 'value' => 'y'],
 				],
 			],
+			'videoLoop' => [
+				'required' => false,
+				'name' => tra('Loop Background Video'),
+				'description' => tra('Flags if the background video played in loop'),
+				'filter' => 'word',
+				'default' => 'y',
+				'since' => '19.0',
+				'options' => [
+					['text' => 'No', 'value' => 'n'],
+					['text' => 'Yes', 'value' => 'y'],
+				],
+			],
 			'transitionIn' => [
 				'required' => false,
 				'name' => tra('Transition In'),
@@ -187,8 +199,11 @@ function wikiplugin_slideshowslide($data, $params)
 	if($params['videoMuted']=='y') {
 		$slideSettings.=" data-background-video-muted";
 	}
+	if($params['videoLoop']=='y') {
+		$slideSettings.=" data-background-video-loop";
+	}
 	if($params['textColor']) {
 		$textColorStyle='style="color:'.$params['textColor'].'"';
 	}
-	return "<sslide data-plugin-slide ".$slideSettings." ".$textColorStyle.">".html_entity_decode(TikiLib::lib('parser')->parse_data(trim($data), ['is_html' => true, 'parse_wiki' => true])).'</sslide>';
+	return "<sslide id= data-plugin-slide ".$slideSettings." ".$textColorStyle.">".html_entity_decode(TikiLib::lib('parser')->parse_data(trim($data), ['is_html' => true, 'parse_wiki' => true])).'</sslide>';
 }
