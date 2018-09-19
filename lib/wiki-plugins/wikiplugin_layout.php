@@ -227,19 +227,20 @@ function wikiplugin_layout($data, $params)
 		$headerlib->add_css("#footer{display:none}");
 	}
 	if ($params['leftbar'] == 'n') {
-		$headerlib->add_css("#col2{display:none} .text-left.side-col-toggle{display:none}");
+		$headerlib->add_css("#col2{display:none} .toggle_zone.left{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-8" )) {$("#col1").removeClass("col-lg-8").addClass("col-lg-10");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
 	if ($params['rightbar'] == 'n') {
-		$headerlib->add_css("#col3{display:none} .text-right.side-col-toggle{display:none}");
+		$headerlib->add_css("#col3{display:none} .toggle_zone.right{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-10" )) {$("#col1").removeClass("col-lg-10").addClass("col-lg-12");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
 	if ($params['actionbuttons'] == 'n') {
-		$headerlib->add_css("#page-bar{display:none} .wikiactions_wrapper{display:none}");
+		$headerlib->add_css("#page-bar{display:none} ");
+		$headerlib->add_js("$('.page_actions a').removeClass('btn btn-primary dropdown-toggle');"); //making action toggle smaller
 	}
 
 	if (isset($params['bgimage'])) {
@@ -362,4 +363,5 @@ function wikiplugin_layout($data, $params)
 			"body{background-color:" . $params["bgcolor"] . "}"
 		);
 	}
+	return '';
 }
