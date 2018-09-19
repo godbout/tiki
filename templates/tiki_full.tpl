@@ -24,7 +24,7 @@
 {$mid_data}
 {if $is_slideshow eq 'y'}
 	</div>
-		<div id="ss-settings-holder" title="Click for slideshow operations"><span class="fas fa-cogs" style="font-size:1.5rem;color:#666" id="ss-settings"></span></div>
+		<div id="ss-settings-holder" title="Click for slideshow operations"><span class="fas fa-cogs" style="font-size:1rem;color:#666" id="ss-settings"></span></div>
 		<div id="ss-options" class="d-flex flex-row justify-content-around align-content-end flex-wrap">
 			<div class="p-2">
 				<select id="showtheme" class="form-control">
