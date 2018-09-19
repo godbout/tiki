@@ -1385,10 +1385,12 @@ function wikiplugin_img($data, $params)
 		$javaset = '';
 	}
 	// Set link to user setting or to image itself if thumb is set
+	$imgtarget = "";
 	if (! empty($imgdata['link']) || (! empty($imgdata['thumb']) && ! (isset($params['link']) && empty($params['link'])))) {
 		$mouseover = '';
 		if (! empty($imgdata['link'])) {
 			$link = $imgdata['link'];
+			$imgtarget = " target='_blank' ";
 		} elseif ((($imgdata['thumb'] == 'browse') || ($imgdata['thumb'] == 'browsepopup')) && ! empty($imgdata['id'])) {
 			$link = 'tiki-browse_image.php?imageId=' . $imgdata['id'];
 		} elseif ($javaset == 'true') {
@@ -1442,7 +1444,6 @@ function wikiplugin_img($data, $params)
 		}
 		// Set other link-related attributes
 		// target
-		$imgtarget = '';
 		if (($prefs['popupLinks'] == 'y' && (preg_match('#^([a-z0-9]+?)://#i', $link)
 			|| preg_match('#^www\.([a-z0-9\-]+)\.#i', $link))) || ($imgdata['thumb'] == 'popup')
 			|| ($imgdata['thumb'] == 'browsepopup')
