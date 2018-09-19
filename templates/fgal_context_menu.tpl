@@ -120,7 +120,7 @@
 		{/if}
 
 		<a href="{$file.id|sefurl:file}&display=true">
-			{icon name='eye' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Plain display{/tr}"}
+			{icon name='eye' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Browser display{/tr}"}
 		</a>
 
 		{if $gal_info.archives gt -1}

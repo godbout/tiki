@@ -42,7 +42,7 @@ function wikiplugin_file_info()
 				'default' => '',
 				'parentparam' => ['name' => 'type', 'value' => 'attachment'],
 			],
-			 'desc' => [
+			'desc' => [
 				'required' => false,
 				'name' => tra('Custom Description'),
 				'description' => tra('Custom text that will be used for the link instead of the file name or file description'),
@@ -50,7 +50,7 @@ function wikiplugin_file_info()
 				'parentparam' => ['name' => 'type', 'value' => 'attachment'],
 				'advanced' => true,
 				'default' => '',
-			 ],
+			],
 			'page' => [
 				'required' => false,
 				'name' => tra('Page'),
@@ -128,6 +128,21 @@ function wikiplugin_file_info()
 				],
 				'advanced' => true,
 			],
+			'browserdisplay' => [
+				'required' => false,
+				'name' => tra('Browser Display'),
+				'description' => tra('Display in different browser wiindow or tab instead of downloading.'),
+				'since' => '18.1',
+				'filter' => 'alpha',
+				'parentparam' => ['name' => 'type', 'value' => 'gallery'],
+				'default' => '',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				],
+				'advanced' => true,
+			],
 		]
 	];
 	if ($prefs['feature_file_galleries'] == 'y') {
@@ -181,10 +196,18 @@ function wikiplugin_file($data, $params)
 		if (empty($data)) { // to avoid problem with parsing
 			$data = empty($file_info['name']) ? $file_info['filename'] : $file_info['name'];
 		}
-		if (isset($params['showicon']) && $params['showicon'] == "y") {
-			return "{img src=tiki-download_file.php?fileId=$fileId&amp;thumbnail=y link=tiki-download_file.php?fileId=$fileId styleimage=max-width:32px responsive='n'} [tiki-download_file.php?fileId=$fileId|$data]";
+		if ( isset($params['browserdisplay']) && $params['browserdisplay'] == 'y' ) {
+			if (isset($params['showicon']) && $params['showicon'] == "y") {
+				return "{img src=tiki-download_file.php?fileId=$fileId&amp;thumbnail=y link=tiki-download_file.php?fileId=$fileId&display=y styleimage=max-width:32px responsive='n'} " . "<a class='wiki' href='tiki-download_file.php?fileId=$fileId&display=y' target='_blank' >" . $data . "</a>";
+			} else {
+				return "<a class='wiki' href='tiki-download_file.php?fileId=$fileId&display=y' target='_blank' >" . $data . "</a>";
+			}
 		} else {
-			return "[tiki-download_file.php?fileId=$fileId|$data]";
+			if (isset($params['showicon']) && $params['showicon'] == "y") {
+				return "{img src=tiki-download_file.php?fileId=$fileId&amp;thumbnail=y link=tiki-download_file.php?fileId=$fileId styleimage=max-width:32px responsive='n'} [tiki-download_file.php?fileId=$fileId|$data]";
+			} else {
+				return "[tiki-download_file.php?fileId=$fileId|$data]";
+			}
 		}
 	}
 
