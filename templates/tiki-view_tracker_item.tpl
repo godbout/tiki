@@ -87,6 +87,11 @@
 						{permission_link mode=text type=trackeritem id=$itemId permType=trackers parentId=$trackerId}
 					</li>
 				{/if}
+				<li>
+					{if $prefs.user_favorites eq 'y' and isset($itemId)}
+						{favorite button_classes="favorite-icon" label="{tr}Favorite{/tr}"  type="trackeritem" object=$itemId }
+					{/if}
+				</li>
 			</ul>
 			{if ! $js}</li></ul>{/if}
 		</div>
