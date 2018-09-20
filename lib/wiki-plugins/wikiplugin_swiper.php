@@ -523,8 +523,8 @@ function wikiplugin_swiper($data, $params)
 		$swiperCode='<div id="swiper-container'.$uid.'" class="swiper-container '.$thumbclass.'"> <div class="parallax-bg" style="background-image:url('.$params['parallaxBgImg'].')" data-swiper-parallax="-23%"></div> <div class="swiper-wrapper">'.$slidesHtml.'</div><!-- Add Pagination --><div class="swiper-pagination"></div>'.$navigationDiv.'</div>'.$thumbnails;
 		
 		if($params['sliderPosition']=='abovetopbar') {
-			echo $swiperCode;
-			return;
+			$headerlib->add_js('var container=$(".container").first();$("#swiper-container'.$uid.'").insertBefore( container );swiper'.$uid.'.init()');
+			return $swiperCode;
 		}
 		elseif($params['sliderPosition']=='undertopbar') {
 			$headerlib->add_js('$("#swiper-container'.$uid.'").insertAfter( "#page-header" );');
