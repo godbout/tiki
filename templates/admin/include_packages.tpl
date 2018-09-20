@@ -19,12 +19,13 @@
 {if not empty($composer_environment_warning)}
 	{remarksbox type="warning" title="{tr}Issues with composer environment{/tr}"}
 
-    <p>{tr}Issues with composer environment:{/tr}</p>
-    <ul>
-    {foreach item=entry from=$composer_environment_warning}
-        <li>{$entry}</li>
-    {/foreach}
-    </ul>
+        <p>{tr}Issues with composer environment:{/tr}</p>
+        <ul>
+            {foreach item=entry from=$composer_environment_warning}
+                <li>{$entry}</li>
+            {/foreach}
+        </ul>
+        <p>{tr _0='<code>sh setup.sh fix</code>' _1='<a href="https://doc.tiki.org/Packages">doc.tiki.org/Packages</a>'}Run %0 from a shell to try to fix this, see %1 for more info.{/tr}</p>
 	{/remarksbox}
 {/if}
 
@@ -179,7 +180,7 @@
                             <a href="https://doc.tiki.org/Composer">Composer</a> {tr}website.{/tr}
                         </p>
                         <p>
-                            {tr}The script <code>setup.sh</code> that is included in the Tiki distribution can be run to make sure composer is installed. In this case, composer will be installed as <code>temp/composer.phar</code>.{/tr}
+                            {tr}The script <code>setup.sh</code> that is included in the Tiki distribution can be run to make sure composer is installed and the file permissions are correctly applied. In this case, composer will be installed as <code>temp/composer.phar</code>.{/tr}
                             {tr}Below is an example of how to do this in a Linux-like operating system:{/tr}<br>
                             <code>bash ./setup.sh composer</code>
                         </p><br>
