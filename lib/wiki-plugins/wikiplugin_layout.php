@@ -100,6 +100,20 @@ function wikiplugin_layout_info()
 				'default'     => '',
 				'since'       => '19.0',
 			],
+			'bgrepeat'    => [
+				'required'    => false,
+				'name'        => tra('Background Repear'),
+				'description' => tra('Cover,Repeat,no-repeat'),
+				'filter'      => 'alpha',
+				'default'     => 'n',
+				'since'       => '19.0',
+				'options'     => [
+					['text' => 'Repeat', 'value' =>'repeat'],
+					['text' => 'Cover', 'value' =>'cover'],
+					['text' => 'No Repeat ', 'value' =>'norepeat'],
+				],
+			],
+
 			'fgalId'              => [
 				'required'          => false,
 				'name'              => tra('Page Background Sliding Images'),
@@ -183,6 +197,17 @@ function wikiplugin_layout_info()
 				'default'     => '',
 				'since'       => '19.0',
 			],
+			'contentradius'    => [
+				'required'    => false,
+				'name'        => tra('Content Border Radius'),
+				'description' => tra(
+					'To make content div round cornered, for example 10px'
+				),
+				'filter'      => 'text',
+				'advance'     => true,
+				'default'     => '',
+				'since'       => '19.0',
+			],
 
 			'transitiondelay'   => [
 				'required'    => false,
@@ -244,9 +269,15 @@ function wikiplugin_layout($data, $params)
 	}
 
 	if (isset($params['bgimage'])) {
+		$backgroundOption="background-size:cover";
+		if($params['bgrepeat']){
+			if($params['bgrepeat']=="repeat"){$backgroundOption="background-repeat:repeat";}
+			elseif($params['bgrepeat']=="norepeat"){$backgroundOption="background-repeat:no-repeat;background-position:center center;";}
+		}
+
 		$headerlib->add_css(
 			"body{background-image:  url(" . $params["bgimage"]
-			. ");background-size:cover}"
+			. ");".$backgroundOption."}"
 		);
 	}
 	if ($params['fullwidth'] == 'y') {
@@ -255,12 +286,12 @@ function wikiplugin_layout($data, $params)
 		);
 	}
 	if (isset($params['contentwidth'])
-		|| isset($params['topmargin'])
+		|| isset($params['topmargin']) || isset($params['contentradius'])
 	) {
 		$headerlib->add_css(
 			"#row-middle{width:" . $params["contentwidth"]
 			. ";margin:auto;margin-top:" . $params['topmargin']
-			. ";min-width:380px} #col1{min-width:380px;margin:auto}"
+			. ";min-width:380px;border-radius:".$params['contentradius']."} #col1{min-width:380px;margin:auto}"
 		);
 
 	}
