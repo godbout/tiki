@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: Lower.php 64622 2017-11-18 19:34:07Z rjsmelo $
+// $Id$
 
 class Math_Formula_Function_Clean extends Math_Formula_Function
 {

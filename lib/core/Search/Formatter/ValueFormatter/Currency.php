@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: Trackerrender.php 66105 2018-04-19 18:11:02Z luciash $
+// $Id$
 
 class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFormatter_Abstract
 {

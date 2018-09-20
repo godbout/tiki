@@ -6,7 +6,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: tiki-admin_sync.php 67341 2018-09-03 18:01:05Z kroky6 $
+// $Id$
 
 require_once('tiki-setup.php');
 
