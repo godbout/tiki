@@ -208,6 +208,17 @@ function wikiplugin_layout_info()
 				'default'     => '',
 				'since'       => '19.0',
 			],
+			'contentboxshadow'    => [
+				'required'    => false,
+				'name'        => tra('Content Border Shadow'),
+				'description' => tra(
+					'For shadow around content box, for example: 10px 10px 5px grey, 1px 2px 4px rgba(0, 0, 0, .5), 0 4px 8px 0 rgba(0, 0, 0, 0.2)'
+				),
+				'filter'      => 'text',
+				'advance'     => true,
+				'default'     => '',
+				'since'       => '19.0',
+			],
 
 			'transitiondelay'   => [
 				'required'    => false,
@@ -286,12 +297,12 @@ function wikiplugin_layout($data, $params)
 		);
 	}
 	if (isset($params['contentwidth'])
-		|| isset($params['topmargin']) || isset($params['contentradius'])
+		|| isset($params['topmargin']) || isset($params['contentradius']) || isset($params['contentboxshadow'])
 	) {
 		$headerlib->add_css(
 			"#row-middle{width:" . $params["contentwidth"]
 			. ";margin:auto;margin-top:" . $params['topmargin']
-			. ";min-width:380px;border-radius:".$params['contentradius']."} #col1{min-width:380px;margin:auto}"
+			. ";min-width:380px;border-radius:".$params['contentradius'].";box-shadow:".$params['contentboxshadow']."} #col1{min-width:380px;margin:auto}"
 		);
 
 	}
