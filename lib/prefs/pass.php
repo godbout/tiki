@@ -32,7 +32,7 @@ function prefs_pass_list()
 		],
 		'pass_blacklist' => [
 			'name' => tra('Prevent common passwords'),
-			'description' => tra('For improved security, prevent passwords in the password blacklist from being used.'),
+			'description' => tra('For improved security, prevent users from creating blacklisted passwords. Use default blacklist or create custom blacklists through Control Panel -> Log in -> Password Blacklist.'),
 			'help' => 'Password-Blacklists',
 			'type' => 'flag',
 			'default' => 'n',
