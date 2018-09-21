@@ -301,16 +301,16 @@ $headerlib->add_jq_onready(
 ask_ticket('index-raw');
 
 
-$themesArr=[['black','Black:Black background, white text, blue links'],
-			['blood','Blood: Dark gray background, dark text, maroon links'],
-			['beige','Beige: Beige background, dark text, brown links'],
-			['league','League: Gray background, white text, blue links'],
-			['moon','Moon: Navy blue background, blue links'],
-			['night','Night: Black background, thick white text, orange links'],
-			['serif','Serif: Cappuccino background, gray text, brown links'],
-			['simple','Simple: White background, black text, blue links'],
-			['sky','Sky: Blue background, dark text, blue links'],
-			['solarized','Solarized: Cream background, dark green text, blue links']];
+$themesArr=[['black','Black'],
+			['blood','Blood'],
+			['beige','Beige'],
+			['league','League'],
+			['moon','Moon'],
+			['night','Night'],
+			['serif','Serif'],
+			['simple','Simple'],
+			['sky','Sky'],
+			['solarized','Solarized']];
 
 foreach($themesArr as $themeOption){
 	$themeOption[0]==$theme?$selected='selected="selected"':$selected='';
