@@ -1,0 +1,453 @@
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_mixins.scss";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/_functions.scss";
+@import "../../default/scss/variables";
+
+
+
+/*
+==========================================================================
+Misc. Stuff
+==========================================================================
+*/
+
+footer { padding-bottom:50px; }
+.tiki .page-header { padding-bottom:20px; }
+
+.colorpicker-element {
+	.input-group-append i, .input-group-addon i {
+		display:inline-block;
+		width:20px;
+		height:20px;
+		vertical-align:sub;
+		cursor:pointer;
+	}
+}
+
+.input-group-append, .input-group-addon {
+	display:inline-block;
+	width:auto;
+	margin-left:5px;
+	padding:3px;
+	border:2px solid #aaa !important;
+	border-radius:3px !important;
+}
+
+.box-search {
+	.input-group-btn:last-child > .btn,
+	.input-group .form-control { z-index:0; }
+}
+
+
+
+/*
+==========================================================================
+Theme Customizer Main Styles
+==========================================================================
+*/
+
+.customizer {
+	h1, h2 {
+		margin-bottom:20px;
+		padding-bottom:10px;
+		font-weight:600;
+		border-bottom:1px solid #000;
+	}
+
+	h1 + p, > div { margin-bottom:40px; }
+	select { display:block !important; }
+	.chosen-container { display:none; }
+
+	.row {
+		margin:0 0 25px 0;
+		padding-bottom:20px;
+		border-bottom:1px solid #f0f0f0;
+	}
+
+	.row:last-child { border-bottom:none; }
+	.col-md-9 { padding-left:0; padding-right:30px; }
+	.col-md-3 { padding-left:0; padding-right:0; }
+
+	.input {
+		display:inline-block;
+
+		p {
+			margin-bottom:0.75em;
+			font-size:inherit !important;
+			font-weight:normal !important;
+			font-style:normal !important;
+			text-transform:none !important;
+		}
+
+		input, textarea, select {
+			width:80px;
+			padding:4px;
+			border-radius:3px;
+			border:1px solid #aaa;
+		}
+
+		input {
+			background-color:#fff; color:#000;
+
+			&[disabled] {
+				background-color:#ff0000;
+				border:1px solid #ff0000;
+				cursor:not-allowed;
+			}
+		}
+	}
+
+
+// colors section
+	.colors {
+		margin-bottom:80px;
+
+		p:first-child {
+			margin-bottom:0.5em;
+			font-size:1.5em !important;
+			line-height:1.1;
+		}
+
+		.input {
+			display:inline-table; margin:0 30px 25px 0;
+
+			span {
+				width:150px;
+				height:150px;
+				margin:0 0 0.75em;
+
+				i { width:100%; height:100%; }
+			}
+
+			input { display:block; }
+			.error:after { padding-right:0; text-align:left; }
+		}
+	}
+
+
+// fonts section
+	.fonts {
+		.h3a { font-size:1.5em; }
+
+		.input {
+			input { width:150px; }
+			label { width:94px; }
+
+			.check {
+				width:auto;
+				margin:0 5px 0 0;
+				vertical-align:middle;
+			}
+
+			.error:after { padding-right:0; }
+		}
+	}
+
+
+// headings section
+	.headings {
+		.h1, .h2, .h3, .h4, .h5, .h6 { text-decoration:underline; }
+
+		.input {
+			label { width:95px; }
+
+			.check {
+				width:auto;
+				margin:0 5px 0 0;
+				vertical-align:middle;
+			}
+
+			.error:not(.picker):after { padding-right:0px; }
+		}
+	}
+
+
+// tables section
+	.tables {
+		.col-md-9 > p { font-size:1.5em; line-height:1.1; }
+		.row:last-child .error:after { text-align:left; }
+		.row:last-child .picker.error:after { text-align:right; padding-right:88px; }
+
+		.input {
+			label { width:135px; }
+			.nocolor { width:200px; }
+		}
+	}
+
+
+// buttons section
+	.buttons {
+		button { margin-right:10px; }
+
+		.input {
+			label { width:95px; }
+		}
+	}
+
+
+// forms section
+	.forms {
+		span:not(.input-group-addon) { display:inline-block; width:85px; }
+
+		.col-md-9 {
+			label { display:block; }
+
+			.has-error {
+				input { margin:0; }
+				.label-warning { display:inline; }
+			}
+		}
+
+		.input {
+			label { width:95px; }
+			.error:after { text-align:right; padding-right:35px; }
+			p:last-child input { width:200px; }
+		}
+	}
+
+
+// lists section
+	.lists {
+		.input {
+			input { width:200px; }
+			label { width:125px; }
+			.error:after { text-align:left; padding-right:0; }
+		}
+	}
+
+
+// navbars section
+	.navbars {
+		min-height:300px;
+		ul { margin:0; list-style-type:none !important; }
+
+		.row { overflow:visible; }
+		.navbar-nav { padding:0 !important; }
+		.dropdown-menu { padding:5px 0 !important; }
+
+		.input {
+			label { width:95px; }
+		}
+	}
+
+
+// dropdowns section
+	.dropdowns {
+        margin-bottom:100px;
+		.dropdown-menu { display:block; padding:5px 0 !important; }
+
+		.input {
+			label { width:95px; }
+			.error:after { text-align:left; padding-right:0; }
+			.picker.error:after { text-align:right; padding-right:94px; }
+		}
+	}
+
+
+// tabs section
+	.tabs {
+		.input {
+			label { width:135px; }
+			.nocolor { width:140px; }
+			.error:after { text-align:left; padding-right:0; }
+		}
+	}
+
+
+// alerts section
+	.alerts {
+		> div { overflow:hidden; margin-bottom:30px; }
+
+		.input {
+			label { width:95px; }
+			.error:after { padding-right:40px; }
+		}
+	}
+
+
+// icons section
+	.icons {
+		.sample span {
+			display:inline-table;
+			min-width:32px;
+			min-height:32px;
+			margin:0 10px 10px 0;
+			padding:0.35em;
+			border-radius:50%;
+			color:#fff;
+			background:#337ab7;
+			text-align:center;
+			cursor:pointer;
+
+			&:before {
+				display:table-cell;
+				vertical-align:middle;
+			}
+		}
+
+		.input {
+			label { width:95px; }
+		}
+	}
+
+
+// unused stuff
+	.custom-css {
+		.input {
+			width:100%;
+
+			textarea {
+				width:100%; height:200px; margin:0;
+				resize:none; color:#000;
+				font-family:"Helvetica Neue";
+				font-size:14px;
+				background-color:#fff;
+			}
+
+			> span { display:none; }
+		}
+
+		.copy-custom-css { margin-left:10px; }
+		.delete-custom-css { float:right; }
+
+		.css-error {
+			position: relative;
+
+			textarea {
+				background-color:#f2dede;
+				border:1px solid #d43f3a;
+			}
+
+			> span {
+				position:absolute; display:block;
+				width:100px; top:5px; left:5px;
+				border-bottom:1px dotted red;
+			}
+		}
+	}
+
+	p.error {
+		input, textarea {
+			border-color:#d43f3a;
+			background-color:#f2dede !important;
+		}
+
+		&:after {
+			content:"invalid value";
+			display:block;
+			padding-right:35px;
+			color:#a94442;
+			font-size:0.85em;
+			text-align:right;
+		}
+	}
+}
+
+.tc-footer {
+	position:fixed; left:0; bottom:0; width:100%;
+	z-index:1000; background-color:#000;
+	span { color:#fff; }
+
+	.btn {
+		margin-right:12px;
+		padding:5px 10px;
+		color:#fff;
+		font-weight:600;
+		font-size:0.95em;
+	}
+
+	.keep-changes { margin:0 5px; vertical-align:middle; }
+	[id*="plugin-edit"] { display:none; }
+	.editplugin { position:absolute; left:5px; bottom:5px; }
+	.container { background-color:inherit; border:none; }
+	.footer-ui { float:left; padding:10px 0; }
+
+	.dropup {
+		float:right;
+		> a { display:block; padding:15px; color:#fff; }
+		&.open > a, > a:hover { background-color:lighten(#000, 15%); }
+		a:hover { text-decoration:none; }
+
+		.dropdown-menu {
+			left:-2px;
+			margin-bottom:-1px;
+			border-radius:4px 4px 0 0;
+		}
+	}
+}
+
+
+
+/*
+==========================================================================
+Theme Customizer Responsive Design Stuff
+==========================================================================
+*/
+
+// desktop
+@include media-breakpoint-down(lg) {
+	.customizer {
+		.tables, .navbars, .dropdowns {
+			.input label { display:block; }
+		}
+	}
+}
+
+
+// tablet
+@include media-breakpoint-down(md) {
+	footer { padding-bottom:75px; }
+
+	.customizer {
+		.colors .input span { width:110px; height:110px; }
+
+		.tabs, .tables, .navbars, .dropdowns {
+			.input label { display:block; }
+		}
+	}
+
+	.tc-footer {
+		.footer-ui > span { display:block; margin-top:7px; }
+		.keep-changes { margin-left:0; }
+		.icon { display:none; }
+	}
+}
+
+
+// mobile
+@include media-breakpoint-down(sm) {
+	footer { padding-bottom:124px; }
+
+	.customizer {
+		.col-md-3 { padding-left:0; }
+		.input { max-width:300px; padding-top:20px; }
+
+		.colors .input {
+			padding-top:0;
+			span { width:80px; height:80px; }
+		}
+
+		.buttons button { margin-bottom:5px; }
+		.navbars .navbar-form .form-control { width:auto; }
+		.dropdowns .input { padding-top:160px; }
+		.alerts .input { padding-top:0; }
+	}
+
+	.tc-footer {
+		.footer-ui > span {
+			position:absolute; display:table;
+			top:6px; right:10px; width:130px;
+
+			input, span { display:table-cell; }
+		}
+
+		.dropup {
+			position:absolute; bottom:0; right:10px;
+			> a { padding:10px; }
+		}
+
+		.btn { display:block; width:170px; margin-bottom:10px; padding:4px 10px; }
+		.icon { display:none; }
+		#generate-css { margin-bottom:0; }
+	}
+}
+

@@ -29,16 +29,16 @@
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
 				<p>
-					<label for="sg-ul-list-type">List style type:</label>
-					<input id="sg-ul-list-type" class="nocolor" data-selector=".style-guide ul" data-element="list-style-type" type="text">
+					<label for="tc-ul-list-type">List style type:</label>
+					<input id="tc-ul-list-type" class="nocolor" data-selector=".customizer ul" data-element="list-style-type" type="text">
 				</p>
 				<p>
-					<label for="sg-ul-padding">Padding (ul):</label>
-					<input id="sg-ul-padding" class="nocolor" data-selector=".style-guide ul" data-element="padding" type="text">
+					<label for="tc-ul-padding">Padding (ul):</label>
+					<input id="tc-ul-padding" class="nocolor" data-selector=".customizer ul" data-element="padding" type="text">
 				</p>
 				<p>
-					<label for="sg-li-padding">Padding (li):</label>
-					<input id="sg-li-padding" class="nocolor" data-selector=".style-guide li" data-element="padding" type="text">
+					<label for="tc-li-padding">Padding (li):</label>
+					<input id="tc-li-padding" class="nocolor" data-selector=".customizer li" data-element="padding" type="text">
 				</p>
 			</div>
 		</div>

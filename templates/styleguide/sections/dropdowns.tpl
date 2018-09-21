@@ -3,39 +3,34 @@
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
 			<div class="dropdown">
-				<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Dropdown
 				</button>
-				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					<li class="dropdown-item"><a href="javascript:void(0);">Action</a></li>
-					<li class="dropdown-item"><a href="javascript:void(0);">Another action</a></li>
-					<li class="dropdown-item"><a href="javascript:void(0);">Something else here</a></li>
-					<li role="separator" class="dropdown-divider"></li>
-					<li class="dropdown-item"><a href="javascript:void(0);">Separated link</a></li>
-				</ul>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<a class="dropdown-item" href="javascript:void(0);">Action</a>
+					<a class="dropdown-item" href="javascript:void(0);">Another action</a>
+					<a class="dropdown-item" href="javascript:void(0);">Something else here</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="javascript:void(0);">Separated link</a>
+				</div>
 			</div>
 		</div>
 
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
-				<p class="picker" data-selector=".style-guide .dropdown-menu" data-element="background-color">
-					<label for="sg-dropdown-bg-color">Background:</label>
-					<input id="sg-dropdown-bg-color" data-selector=".style-guide .dropdown-menu" data-element="background-color" data-var="@dropdown-bg" type="text">
-					<span class="input-group-append"><i></i></span>
+				<p class="picker" data-selector=".customizer .dropdown-menu" data-element="background-color">
+					<label for="tc-dropdown-bg-color">Background:</label>
+					<input id="tc-dropdown-bg-color" data-selector=".customizer .dropdown-menu" data-element="background-color" data-var="@dropdown-bg" type="text">
+					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".style-guide .dropdown-menu > li.dropdown-item > a" data-element="color">
-					<label for="sg-dropdown-text-color">Text color:</label>
-					<input id="sg-dropdown-text-color" data-selector=".style-guide .dropdown-menu > li.dropdown-item > a" data-element="color" data-var="@dropdown-link-color" type="text">
-					<span class="input-group-append"><i></i></span>
-				</p>
-				<p> </p>
-				<p>
-					<label for="sg-dropdown-border-radius">Border radius:</label>
-					<input id="sg-dropdown-border-radius" class="nocolor" data-selector=".style-guide .dropdown-menu" data-element="border-radius" type="text">
+				<p class="picker" data-selector=".customizer .dropdown-menu .dropdown-item" data-element="color">
+					<label for="tc-dropdown-text-color">Text color:</label>
+					<input id="tc-dropdown-text-color" data-selector=".customizer .dropdown-menu .dropdown-item" data-element="color" data-var="@dropdown-link-color" type="text">
+					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p>
-					<label for="sg-dropdown-box-shadow">Box shadow:</label>
-					<input id="sg-dropdown-box-shadow" class="nocolor" data-selector=".style-guide .dropdown-menu" data-element="box-shadow" type="text">
+					<label for="tc-dropdown-border-radius">Border radius:</label>
+					<input id="tc-dropdown-border-radius" class="nocolor" data-selector=".customizer .dropdown-menu" data-element="border-radius" type="text">
 				</p>
 			</div>
 		</div>

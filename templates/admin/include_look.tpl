@@ -193,7 +193,7 @@
 			</fieldset>
 			<fieldset>
 				<legend>{tr}Editing{/tr}</legend>
-				{preference name=theme_styleguide}
+				{preference name=theme_customizer}
 				{preference name=feature_editcss}
 				{preference name=feature_view_tpl}
 				{if $prefs.feature_view_tpl eq 'y'}

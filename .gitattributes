@@ -3450,8 +3450,8 @@ lib/jquery_tiki/pdf.js -text
 lib/jquery_tiki/pluginedit.js -text
 lib/jquery_tiki/pluginedit_list.js -text
 lib/jquery_tiki/social.js -text
-lib/jquery_tiki/style-guide.js -text
 lib/jquery_tiki/tablesorter.js -text
+lib/jquery_tiki/theme-customizer.js -text
 lib/jquery_tiki/tiki-admin.js -text
 lib/jquery_tiki/tiki-bootstrapmodalfix.js -text
 lib/jquery_tiki/tiki-confirm.js -text
@@ -6649,7 +6649,7 @@ themes/amelia/templates/index.php -text
 themes/base_files/css/newsletter.css -text
 themes/base_files/css/printpdf.css -text
 themes/base_files/css/printqueries.css -text
-themes/base_files/css/style-guide.css -text
+themes/base_files/css/theme-customizer.css -text
 themes/base_files/css/tiki_base.css -text
 themes/base_files/favicons/android-chrome-192x192.png -text
 themes/base_files/favicons/android-chrome-512x512.png -text
@@ -6691,6 +6691,7 @@ themes/base_files/scss/_jquery-ui-tiki.scss -text
 themes/base_files/scss/_pivot-tiki.scss -text
 themes/base_files/scss/_tablesorter-custom.scss -text
 themes/base_files/scss/_tablesorter-tiki.scss -text
+themes/base_files/scss/_theme-customizer.scss -text
 themes/base_files/scss/_tiki-admin.scss -text
 themes/base_files/scss/_tiki-articles.scss -text
 themes/base_files/scss/_tiki-blogs.scss -text
