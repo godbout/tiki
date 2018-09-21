@@ -214,7 +214,7 @@ $headerlib->add_cssfile(
 	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
-	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:135% !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}}');
+	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:200px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:135% !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover{color:#fff}');
 
 $headerlib->add_jq_onready(
 	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
@@ -246,6 +246,40 @@ $headerlib->add_jq_onready(
 				$("#ss-options").animate({left: \'-2000px\'});
 			}
 		});
+		
+		//reveal controls
+		$("body").delegate("#play","click", function () {
+			if($("#play").hasClass("fa-play-circle")) {
+				$("#play").switchClass("fa-play-circle","fa-pause-circle", 1000, "easeInOutQuad");
+				Reveal.configure({ autoSlide:10000 });
+				
+			}
+			else {
+				$("#play").switchClass("fa-pause-circle","fa-play-circle", 1000, "easeInOutQuad");
+				Reveal.configure({ autoSlide: 0 });
+			}
+		});
+		$("body").delegate("#firstSlide","click", function () {
+			Reveal.slide( 0, 0,0 ); //Reveal.slide( indexh, indexv, indexf );
+		});
+		$("body").delegate("#lastSlide","click", function () {
+			Reveal.slide( Reveal.getTotalSlides()-1, 0,0 ); //Reveal.slide( indexh, indexv, indexf );
+		});
+		$("body").delegate("#nextSlide","click", function () {
+			var currentSlide=Reveal.getIndices().h;
+			Reveal.slide(currentSlide+1,0,0); //Reveal.slide( indexh, indexv, indexf );
+		});
+		$("body").delegate("#prevSlide","click", function () {
+			var currentSlide=Reveal.getIndices().h;
+			if(currentSlide>0) {
+			Reveal.slide(currentSlide-1,0,0);
+			 } //Reveal.slide( indexh, indexv, indexf );
+		});
+		$("body").delegate("#listSlides","click", function () {
+			Reveal.toggleOverview();
+		});
+		//end of controls
+		
 		$( "#showtheme" ).change(function() {
 			var selectedCSS=$("#showtheme" ).val();
 			$("#themeCSS").attr("href","vendor_bundled/vendor/components/revealjs/css/theme/"+selectedCSS+".css");
@@ -275,8 +309,8 @@ $themesArr=[['black','Black:Black background, white text, blue links'],
 			['night','Night: Black background, thick white text, orange links'],
 			['serif','Serif: Cappuccino background, gray text, brown links'],
 			['simple','Simple: White background, black text, blue links'],
-			['sky','Sky: Blue background, thin dark text, blue links'],
-			['solarized','Solarized: Cream-colored background, dark green text, blue links']];
+			['sky','Sky: Blue background, dark text, blue links'],
+			['solarized','Solarized: Cream background, dark green text, blue links']];
 
 foreach($themesArr as $themeOption){
 	$themeOption[0]==$theme?$selected='selected="selected"':$selected='';
