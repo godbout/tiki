@@ -40,14 +40,14 @@ function smarty_function_multilike($params, $smarty)
 		if (! empty ($config['icon_unselected'][$key])) {
 			$button['icon_unselected'] = $config['icon_unselected'][$key];
 		} else {
-			$button['icon_unselected'] = "fa-thumbs-up";
+			$button['icon_unselected'] = "thumbs-o-up";
 		}
 
 		// check if there is an selected icon else use default thumbs up
 		if (! empty ($config['icon_selected'][$key])) {
 			$button['icon_selected'] = $config['icon_selected'][$key];
 		} else {
-			$button['icon_selected'] = "fa-thumbs-up";
+			$button['icon_selected'] = "thumbs-up";
 		}
 
 		//get existing stats
