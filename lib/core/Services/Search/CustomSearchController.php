@@ -180,7 +180,7 @@ class Services_Search_CustomSearchController
 
 		$index = $unifiedsearchlib->getIndex();
 		$resultSet = $query->search($index);
-		if (! empty($_SESSION['tikifeedback']) && $_SESSION['tikifeedback'][0]['mes']['type'] === 'error') {
+		if (! empty($_SESSION['tikifeedback']) && $_SESSION['tikifeedback'][0]['type'] === 'error') {
 			Feedback::send_headers();
 		} else {
 			$resultSet->setTsSettings($builder->getTsSettings());
