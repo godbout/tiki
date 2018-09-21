@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05476a2484d4ad5949e8adcdf83b66ca",
+    "content-hash": "c0f19002315d86c0f7a8e1d0d116d23b",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -926,9 +926,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/fullcalendar/fullcalendar/fullcalendar-fullcalendar-3ddb3c8d1461c6b841aed3487ba07d8ba338adb6-zip-38ef6e.zip",
+                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/3ddb3c8d1461c6b841aed3487ba07d8ba338adb6",
                 "reference": "3ddb3c8d1461c6b841aed3487ba07d8ba338adb6",
-                "shasum": "8c2a4de63c685f4f77239e1a1bf0924c0bcfdc48"
+                "shasum": ""
             },
             "require": {
                 "components/jquery": "2 - 3",
@@ -1262,17 +1262,17 @@
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "09bb6b494deb4de0c79f2f9c2b458b1f7f2cc4e2"
+                "reference": "11dd79f8cd5fae1eac8712cad37e35bda4583fe0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-09bb6b494deb4de0c79f2f9c2b458b1f7f2cc4e2-zip-0a4e0d.zip",
-                "reference": "09bb6b494deb4de0c79f2f9c2b458b1f7f2cc4e2",
-                "shasum": "82863c674277ae5dfbcdd3719b157f56355fbad2"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-11dd79f8cd5fae1eac8712cad37e35bda4583fe0-zip-04257e.zip",
+                "reference": "11dd79f8cd5fae1eac8712cad37e35bda4583fe0",
+                "shasum": "ade0b501c39c1722c27c9ef9ce665036fb9688ce"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1287,7 +1287,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2018-09-07T14:20:30+00:00"
+            "time": "2018-09-19T14:16:10+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -1629,9 +1629,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1",
@@ -3170,9 +3170,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
+                "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -4756,9 +4756,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
+                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": ""
+                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
             },
             "require": {
                 "ext-ldap": "*",
