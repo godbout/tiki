@@ -33,7 +33,7 @@
 							<h3>{tr}People{/tr}</h3>
 							{foreach $resultset as $row}
 								<div class="media">
-									<div class="pull-left">
+									<div class="float-left">
 										{$row.object_id|avatarize:'':'img/noavatar.png'}
 									</div>
 									<div class="media-body">

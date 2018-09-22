@@ -41,7 +41,7 @@
 					<b>{$fgal_listing_conf.$propname.name}</b>
 				</td>
 				<td style="padding-left:5px">
-					<span class="pull-left">{$propval}</span>
+					<span class="float-left">{$propval}</span>
 				</td>
 			</tr>
 		{/if}

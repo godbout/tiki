@@ -1,7 +1,7 @@
 <div id="title-div" style="display:none;">
 	<div class="container" id="title-container">
 		<div id="full_width_title">
-			<div class="pull-left title">
+			<div class="float-left title">
 				{if $iconsrc}
 					<img src="{$iconsrc}">
 				{/if}

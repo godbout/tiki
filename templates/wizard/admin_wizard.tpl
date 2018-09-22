@@ -26,7 +26,7 @@
 		{/remarksbox}
 
 		<div class="media mb-5">
-			<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Profiles Wizard{/tr}" title="{tr}Configuration Profiles Wizard{/tr}" >
+			<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Profiles Wizard{/tr}" title="{tr}Configuration Profiles Wizard{/tr}" >
 				<i class="fas fa-cubes fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="media mb-5">
-			<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Walkthrough{/tr}" title="Configuration Walkthrough">
+			<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Walkthrough{/tr}" title="Configuration Walkthrough">
 				<i class="fas fa-cog fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<div class="media mb-5">
-			<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
+			<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 				<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
@@ -85,7 +85,7 @@
 			</div>
 		</div>
 		<div class="media mb-5">
-			<img class="pull-left" src="img/icons/large/controlpanels48x48.png" alt="{tr}Control Panels{/tr}" />
+			<img class="float-left" src="img/icons/large/controlpanels48x48.png" alt="{tr}Control Panels{/tr}" />
 			<div class="media-body">
 				<p>{tr}Use the <b>Control Panels</b> to manually browse through the full list of preferences{/tr}.</p>
 

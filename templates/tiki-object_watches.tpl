@@ -55,11 +55,11 @@
 	<input type="hidden" name="referer" value="{$referer|escape}">
 	{ticket}
 	{if isset($referer)}
-		<div class="pull-left">
+		<div class="float-left">
 			{button href="$referer" _class="btn btn-primary btn-sm" _text="{tr}Back{/tr}"}
 		</div>
 	{/if}
-	<div class="pull-left mb-2"><input type="submit" class="btn btn-primary btn-sm" name="assign" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}"></div>
+	<div class="float-left mb-2"><input type="submit" class="btn btn-primary btn-sm" name="assign" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}"></div>
 	<div class="table-responsive">
 		<table class="table">
 			<tr>

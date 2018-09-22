@@ -227,7 +227,7 @@
 
 			<div class="articletrailer">
 				{if ($listpages[ix].size > 0) or (($prefs.feature_article_comments eq 'y') and ($listpages[ix].perms.tiki_p_read_comments eq 'y'))}
-				<ul class="list-inline pull-left">
+				<ul class="list-inline float-left">
 					{if ($listpages[ix].perms.tiki_p_read_article eq 'y' and $listpages[ix].heading_only ne 'y' and (!isset($fullbody) or $fullbody ne "y"))}
 						{if ($listpages[ix].size > 0 and !empty($listpages[ix].body))}
 

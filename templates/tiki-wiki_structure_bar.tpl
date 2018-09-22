@@ -1,6 +1,6 @@
 <div class="tocnav">
 	<div class="clearfix">
-		<div class="pull-left breadcrumb">
+		<div class="float-left breadcrumb">
 			{if $home_info}{if $home_info.page_alias}{assign var=icon_title value=$home_info.page_alias}{else}{assign var=icon_title value=$home_info.pageName}{/if}
 				{if $prefs.feature_wiki_structure_drilldownmenu eq 'y'}
 					<span class="dropdown">

@@ -14,7 +14,7 @@
 				<div class="col-md-{*6 commented out until second column, below, is used. *}12">
 					<div class="row">
 						<div class="col-md-6">
-							<img class="pull-left" src="img/icons/large/profile_debug_mode48x48.png" alt="{tr}Debug Mode Enabled{/tr}" />
+							<img class="float-left" src="img/icons/large/profile_debug_mode48x48.png" alt="{tr}Debug Mode Enabled{/tr}" />
 							<h4>{tr}Debug Mode Enabled{/tr}</h4>
 							(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Debug_Mode_Enabled&show_details_for=Debug_Mode_Enabled&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)<br/>
 						</div>

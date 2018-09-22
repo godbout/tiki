@@ -404,7 +404,7 @@
 			{tr}Moderator actions on selected topics{/tr}
 		</div>
 		<div class="card-body">
-			<div class="pull-left">
+			<div class="float-left">
 				{if $comments_coms|@count > 1}
 					<button
 						type="submit"

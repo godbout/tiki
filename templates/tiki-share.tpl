@@ -95,7 +95,7 @@
 		{/if}
 		<div class="card">
 			<div class="card-header radio">
-				<label for="do_email" class="col-form-label col-sm-3 pull-left">
+				<label for="do_email" class="col-form-label col-sm-3 float-left">
 					{icon name="admin_webmail"} {tr}Send email{/tr}
 				</label>
 				{if $report !='y'}

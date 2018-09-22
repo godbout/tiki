@@ -3,7 +3,7 @@
 
 <div class="t_navbar mb-4">
 	{if $tiki_p_create_blogs eq 'y' or $tiki_p_blog_admin eq 'y'}
-		<div class="pull-left">
+		<div class="float-left">
 			{button href="tiki-edit_blog.php" _icon_name="create" _text="{tr}Create Blog{/tr}" _type="link" class="btn btn-link"}
 			{if $tiki_p_read_blog eq 'y' and $tiki_p_blog_admin eq 'y'}
 				{button href="tiki-list_posts.php" _type="link" class="btn btn-link" _icon_name="list" _text="{tr}List Posts{/tr}"}

@@ -69,7 +69,7 @@
 						{if $user and $prefs.user_assigned_modules == 'y' and $prefs.feature_modulecontrols eq 'y' && ($module_position === 'left' || $module_position === 'right')}
 							<form action="{$current_location|escape}" method="post" class="modcontrols">
 								<input type="hidden" name="redirect" value="1">
-								<div class="pull-right">
+								<div class="float-right">
 									<button
 										type="submit"
 										name="mc_up"
@@ -116,7 +116,7 @@
 					{if $user and $prefs.user_assigned_modules == 'y' and $prefs.feature_modulecontrols eq 'y' && ($module_position === 'left' || $module_position === 'right')}
 						<form action="{$current_location|escape}" method="post" class="modcontrols">
 							<input type="hidden" name="redirect" value="1">
-							<div class="pull-right">
+							<div class="float-right">
 								<button
 									type="submit"
 									name="mc_up"
