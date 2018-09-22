@@ -43,7 +43,7 @@
 					<option value="">{tr}Off{/tr}</option>
 				</select>
 			</div>
-			<div class="p-2" id="reveal-controls"><span class="fas fa-fast-backward mr-1"  id="firstSlide" title="Go to First Slide"></span><span class="fas fa-step-backward mr-1" id="prevSlide" title="Go to Previous Slide"></span><span class="fas fa-play-circle mr-1" id="play"></span><span class="fas fa-step-forward mr-1"  id="nextSlide" title="Go to Next Slide"></span><span class="fas fa-fast-forward"  id="lastSlide" title="Go to Last Slide"></span></div>
+			<div class="p-2" id="reveal-controls"><span class="fas fa-fast-backward mr-1"  id="firstSlide" title="Go to First Slide"></span><span class="fas fa-step-backward mr-1" id="prevSlide" title="Go to Previous Slide"></span><span class="fas fa-play-circle mr-1" id="play"></span><span class="fas fa-undo mr-1 icon-inactive" id="loop" title="Auto-play in loop"></span><span class="fas fa-step-forward mr-1"  id="nextSlide" title="Go to Next Slide"></span><span class="fas fa-fast-forward"  id="lastSlide" title="Go to Last Slide"></span></div>
 			<div class="p-2" id="listSlides"><span class="fas fa-list mr-1"   title="List Slides"></span> List Slides</div>
 
 			{if $prefs.feature_slideshow_pdfexport eq 'y'}

@@ -214,7 +214,7 @@ $headerlib->add_cssfile(
 	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
-	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:200px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:135% !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover{color:#fff}');
+	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:200px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:135% !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover,#listSlides:hover{color:#fff}');
 
 $headerlib->add_jq_onready(
 	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
@@ -252,11 +252,13 @@ $headerlib->add_jq_onready(
 			if($("#play").hasClass("fa-play-circle")) {
 				$("#play").switchClass("fa-play-circle","fa-pause-circle", 1000, "easeInOutQuad");
 				Reveal.configure({ autoSlide:10000 });
+				$(this).attr("style","color:#fff");
 				
 			}
 			else {
 				$("#play").switchClass("fa-pause-circle","fa-play-circle", 1000, "easeInOutQuad");
 				Reveal.configure({ autoSlide: 0 });
+				$(this).attr("style","");
 			}
 		});
 		$("body").delegate("#firstSlide","click", function () {
@@ -277,6 +279,19 @@ $headerlib->add_jq_onready(
 		});
 		$("body").delegate("#listSlides","click", function () {
 			Reveal.toggleOverview();
+		});
+		$("body").delegate("#loop","click", function () {
+			if($("#loop").hasClass("icon-inactive")){
+				$("#loop").switchClass("icon-inactive","icon-active");
+				Reveal.configure({loop: true});
+				$(this).attr("style","color:#fff");
+			}
+			else{
+				$("#loop").switchClass("icon-active","icon-inactive");
+				Reveal.configure({loop: false});
+				$(this).attr("style","");
+			}
+			
 		});
 		//end of controls
 		
