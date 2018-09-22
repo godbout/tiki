@@ -36,9 +36,9 @@
 			<div class="topbar bg-dark" id="topbar">
 				{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 			</div>
-			<div class="row" id="row-middle">
+			<div class="row row-middle" id="row-middle">
 				{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
-					<div class="col1 col-md-12" id="col1">
+					<div class="col col1 col-md-12" id="col1">
 
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
@@ -58,7 +58,7 @@
 					</div>
 				{elseif zone_is_empty('left') or $prefs.feature_left_column eq 'n'}
 				{if $prefs.feature_right_column eq 'user'}
-					<div class="col-sm-12 d-none d-lg-block text-right side-col-toggle">
+					<div class="side-col-toggle-container justify-content-end">
 						{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
 						{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 					</div>
@@ -84,7 +84,7 @@
 					</div>
 				{elseif zone_is_empty('right') or $prefs.feature_right_column eq 'n'}
 				{if $prefs.feature_left_column eq 'user'}
-					<div class="col-sm-12 d-none d-lg-block text-left side-col-toggle">
+					<div class="side-col-toggle-container justify-content-start">
 						{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
 						{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 					</div>
@@ -109,18 +109,20 @@
 						{modulelist zone=left}
 					</div>
 				{else}
+				<div class="side-col-toggle-container d-flex">
 					{if $prefs.feature_left_column eq 'user'}
-						<div class="col-sm-6 d-none d-lg-block text-left side-col-toggle">
+						<div class="text-left side-col-toggle flex-fill">
 							{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
 							{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 						</div>
 					{/if}
 					{if $prefs.feature_right_column eq 'user'}
-						<div class="col-sm-6 d-none d-lg-block text-right side-col-toggle">
+						<div class="text-right side-col-toggle flex-fill">
 							{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
 							{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 						</div>
 					{/if}
+				</div>
 					<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2" id="col1">
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
