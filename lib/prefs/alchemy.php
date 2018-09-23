@@ -16,7 +16,6 @@ function prefs_alchemy_list()
 			'size' => '256',
 			'default' => '/usr/bin/ffmpeg',
 		],
-
 		'alchemy_ffprobe_path' => [
 			'name' => tra('ffprobe path'),
 			'description' => tra('Path to the location of the ffprobe binary'),

@@ -66,7 +66,7 @@ function wikiplugin_preview_info()
  */
 function wikiplugin_preview($data, $params)
 {
-	global $user, $prefs;
+	global $user, $prefs, $tikipath, $tikidomain;
 
 	if (! AlchemyLib::isLibraryAvailable()) {
 		return;
@@ -136,6 +136,11 @@ function wikiplugin_preview($data, $params)
 		return;
 	}
 
+	session_write_close(); // close the session in case of large transcode/downloads to enable further browsing
+	while (ob_get_level() > 1) {
+		ob_end_clean();
+	} // Be sure output buffering is turned off
+
 	/** @var Cachelib $cacheLib */
 	$cacheLib = TikiLib::lib('cache');
 
@@ -158,14 +163,38 @@ function wikiplugin_preview($data, $params)
 	if ($buildContent) {
 		$sourceNeedsClean = false;
 		if (empty($filePath)) {
-			$filePath = 'temp/source_' . $cacheType . $cacheName;
+			$filePath = $tikipath . DIRECTORY_SEPARATOR
+				. 'temp' . DIRECTORY_SEPARATOR
+				. 'cache' . DIRECTORY_SEPARATOR
+				. $tikidomain . DIRECTORY_SEPARATOR
+				. 'source_' . $cacheType . $cacheName;
 			file_put_contents($filePath, $info['data']);
 			$sourceNeedsClean = true;
 		}
-		$newFilePath = 'temp/target_' . $cacheType . $cacheName;
+		$newFilePath = $tikipath . DIRECTORY_SEPARATOR
+			. 'temp' . DIRECTORY_SEPARATOR
+			. 'cache' . DIRECTORY_SEPARATOR
+			. $tikidomain . DIRECTORY_SEPARATOR
+			. 'target_' . $cacheType . $cacheName . '.png';
+
+		// This will allow apps executed by Alchemy (like when converting doc to pdf) to have a writable home
+		// save existing ENV
+		$envHomeDefined = isset($_ENV) && array_key_exists('HOME', $_ENV);
+		if ($envHomeDefined) {
+			$envHomeCopy = $_ENV['HOME'];
+		}
+		// set a proper home folder
+		$_ENV['HOME'] = $tikipath . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $tikidomain;
 
 		$alchemy = new AlchemyLib();
 		$contentType = $alchemy->convertToImage($filePath, $newFilePath, $width, $height, $animation);
+
+		// Restore the environment
+		if ($envHomeDefined) {
+			$_ENV['HOME'] = $envHomeCopy;
+		} else {
+			unset($_ENV['HOME']);
+		}
 
 		if (file_exists($newFilePath)) {
 			$content = file_get_contents($newFilePath);
@@ -184,7 +213,6 @@ function wikiplugin_preview($data, $params)
 	}
 
 	// Compression of the stream may corrupt files on windows
-	ob_end_clean();
 	ini_set('zlib.output_compression', 'Off');
 
 	header("Expires: 0");
