@@ -68,7 +68,7 @@ function wikiplugin_tracker_info()
 					'Sets button style classes for action buttons. If multiple buttons have been set
 					in the %0 parameter, the same number of colon-separated styles must be set here. Example:',
 					'<code>action</code>'
-				) . "<code>btn btn-secondary:btn btn-success:btn btn-primary pull-right</code>",
+				) . "<code>btn btn-secondary:btn btn-success:btn btn-primary float-right</code>",
 				'since' => '14.1',
 				'separator' => ':',
 				'default' => 'btn btn-secondary'

@@ -235,7 +235,7 @@ function wikiplugin_convene($data, $params)
 		$editThisUser = $canAdmin || $user === $GLOBALS['user'];
 
 		if ($params['avatars'] === 'y') {
-			$avatar = " <div class='pull-right'>" . smarty_modifier_avatarize($user) . '</div>';
+			$avatar = " <div class='float-right'>" . smarty_modifier_avatarize($user) . '</div>';
 			$rightPadding = 'padding-right: 45px; max-width: 10em; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;';
 		} else {
 			$avatar = '';

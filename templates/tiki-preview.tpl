@@ -8,7 +8,7 @@
 				{self_link _icon_name="remove" _ajax="n" _class="tips" _title=":{tr}Close preview{/tr}" _onclick="$('#autosave_preview').hide();return false;"}
 				{/self_link}
 			</div>
-			<div class="pull-xsright" style="display:inline">
+			<div class="pull-xs-right" style="display:inline">
 				<select name="diff_style" id="preview_diff_style" class="form-control">
 					<option value="" {if empty($diff_style)}selected="selected"{/if}>{tr}Preview{/tr}</option>
 					<option value="htmldiff" {if isset($diff_style) && $diff_style == "htmldiff"}selected="selected"{/if}>{tr}HTML diff{/tr}</option>

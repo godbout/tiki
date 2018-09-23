@@ -41,9 +41,9 @@ foreach ($ctall as $c) {
 	$name = htmlentities($c['name'], ENT_QUOTES, 'UTF-8');
 	$perms = Perms::get('category', $c['categId']);
 
-	$add = $perms->add_object ? '<span class="control categ-add pull-right" style="cursor: pointer" data-ticket="'
+	$add = $perms->add_object ? '<span class="control categ-add float-right" style="cursor: pointer" data-ticket="'
 		. smarty_function_ticket(['mode' => 'get'], $smarty) . '"></span>' : '';
-	$remove = $perms->remove_object ? '<span class="control categ-remove pull-right" style="cursor: pointer" data-ticket="'
+	$remove = $perms->remove_object ? '<span class="control categ-remove float-right" style="cursor: pointer" data-ticket="'
 		. smarty_function_ticket(['mode' => 'get'], $smarty) . '"></span>' : '';
 
 	$body = <<<BODY
