@@ -235,14 +235,17 @@ $headerlib->add_jq_onready(
 	$("#ss-settings").click(function () {
 		var position = $("#ss-options").position();
 		if(position.left==0){
+			$("#ss-settings").switchClass("fa-times","fa-cogs");
 			$("#ss-options").animate({left: \'-2000px\'});
 		}
 		else {
+			$("#ss-settings").switchClass("fa-cogs","fa-times");
 			$("#ss-options").animate({left: \'0px\'});}
 		});
 		Reveal.addEventListener( \'slidechanged\', function( event ) {
 			var position = $("#ss-options").position();
 			if(position.left==0){
+				$("#ss-settings").switchClass("fa-times","fa-cogs");
 				$("#ss-options").animate({left: \'-2000px\'});
 			}
 		});
