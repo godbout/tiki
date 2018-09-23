@@ -59,11 +59,11 @@ function wikiplugin_diagram($data, $params)
 		$fileGalleryLib = TikiLib::lib('filegal');
 		$userLib = TikiLib::lib('user');
 		$info = $fileGalleryLib->get_file($fileId);
-		if (! $info || ! $userLib->user_has_perm_on_object($user, $info['fileId'], 'file', 'tiki_p_download_files')) {
+		$data = $fileGalleryLib->getFileData($info);
+
+		if ($data === false) {
 			return;
 		}
-
-		$data = $info['data'];
 	}
 
 	$smarty->assign('graph_data', $data);

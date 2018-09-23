@@ -2932,6 +2932,57 @@ class FileGalLib extends TikiLib
 	}
 
 	/**
+	 * Retrieves the file Data, based on the current configurations, and the file information.
+	 * Will return a false if the file data can't be retrieve
+	 *
+	 * @param array|int $input The file array returned from get_file, or the fileId to be retrieved
+	 * @return bool|string
+	 */
+	public function getFileData($input)
+	{
+		global $user, $prefs, $tiki_p_admin_file_galleries;
+
+		if (is_numeric($input)) {
+			$fileDetails = $this->get_file($input);
+		} elseif (is_array($input)) {
+			$fileDetails = $input;
+		} else {
+			return false;
+		}
+
+		if (! array_key_exists('data', $fileDetails) || ! array_key_exists('path', $fileDetails)) {
+			return false;
+		}
+
+		$userLib = TikiLib::lib('user');
+		if ($tiki_p_admin_file_galleries != 'y' && ! $userLib->user_has_perm_on_object(
+				$user,
+				$fileDetails['fileId'],
+				'file',
+				'tiki_p_download_files'
+			)) {
+			return false;
+		}
+
+		$content = &$fileDetails['data'];
+		if (! empty($fileDetails['path'])) {
+			if ($this->isPodCastGallery($fileDetails['galleryId'])) {
+				$filepath = $prefs['fgal_podcast_dir'] . $fileDetails['path'];
+			} else {
+				$filepath = $prefs['fgal_use_dir'] . $fileDetails['path'];
+			}
+			if (! is_readable($filepath)) {
+				return false;
+			}
+			return file_get_contents($filepath);
+		} elseif (empty($content)) {
+			return '';
+		}
+
+		return $content;
+	}
+
+	/**
 	 * Retrieve file draft
 	 *
 	 * @param int $id
