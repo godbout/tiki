@@ -92,11 +92,11 @@ class cssLib extends TikiLib
 				// hide layouts that are for internal use only
 				continue;
 			} elseif ($layoutName == 'basic') {
-				$selectable_layouts[$layoutName] = tra('Basic Bootstrap');
+				$selectable_layouts[$layoutName] = tra('Single Container');
 			} elseif ($layoutName == 'classic') {
 				$selectable_layouts[$layoutName] = tra('Classic Tiki (3 containers - header, middle, footer)');
 			} elseif ($layoutName == 'social') {
-				$selectable_layouts[$layoutName] = tra('Fixed top navbar 2 (uses site icon + "topbar" module zone)');
+				$selectable_layouts[$layoutName] = tra('Classic Bootstrap (fixed top navbar)');
 			} else {
 				$selectable_layouts[$layoutName] = $layoutLabel;
 			}
