@@ -779,7 +779,7 @@
 				{/remarksbox}
 				<form action="tiki-install.php" method="post">
 					<div class="clearfix">
-						<h4>{icon name="shield"} {tr}Subscribe to Tiki Releases newsletter{/tr} - {tr}Critical & Security update{/tr}</h4>
+						<h4>{icon name="shield-alt"} {tr}Subscribe to Tiki Releases newsletter{/tr} - {tr}Critical & Security update{/tr}</h4>
 						<p>{tr}It is highly recommended that you subscribe to the Tiki Releases newsletter, so that you receive important notices about new releases and critical security updates.{/tr}
 						{tr}We don't share subscribed emails and we send very few of these newsletters per year.{/tr}</p>
 						<p class="mb-4">{tr}Please use the following link and subscribe:{/tr} <a href="https://tiki.org/tiki-newsletters.php?nlId=8&info=1" title="Subscribe" target="_blank" class="text-danger">{tr}Tiki Releases newsletter{/tr}</a></p>
@@ -792,7 +792,7 @@
 						<p class="mb-4">{tr}You can modify the default filter choice at your own convenience to also display Advanced, Experimental or Unavailable preferences in Control Panels.{/tr}
 							{tr}You'll find the <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Preference+Filters'>Preference Filter</a> at the top of the Navigation Bar in the <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Control+Panels'>Control Panels</a> by clicking on the funnel icon ({icon name='filter'}) or use the search box provided.{/tr}<br />
 
-						<h4>{icon name="floppy-o"} {tr}Storing your uploaded files{/tr}</h4>
+						<h4>{icon name="hdd"} {tr}Storing your uploaded files{/tr}</h4>
 						<p>{tr}To ease the install process and first access, Tiki saves your uploaded files (office documents, images, pdf, etc. attached to wiki pages, forum posts, tracker items, file galleries, ...) by default in its database.{/tr}
 						{tr}This works perfectly in most cases but it is not the recommended setup if you need to save many thousands of files or more.{/tr}
 						<p class="mb-4">{tr}In that case, consider switching from "<strong>Store to database</strong>" to "<strong>Store to directory</strong>", which you will find in the <em>Configuration Wizard - Set up File Gallery & Attachments</em> or in the <em>Control Panels - File Galleries</em> where you will be able to migrate your currently uploaded files from one to the other.{/tr}</p>
