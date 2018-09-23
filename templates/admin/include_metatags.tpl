@@ -2,7 +2,7 @@
 	{tr}See also{/tr} <a class="alert-link" href="tiki-admin.php?page=sefurl">{tr}Search Engine Friendly URLs{/tr}</a>. {tr}Also{/tr} <a target="_blank" href="http://en.wikipedia.org/wiki/Geotagging#HTML_pages">{tr}here{/tr}</a> {tr}for more information on geo tagging.{/tr}
 {/remarksbox}
 
-<form action="tiki-admin.php?page=metatags" method="post">
+<form action="tiki-admin.php?page=metatags" method="post" class="admin">
 	{ticket}
 
 	<div class="row">

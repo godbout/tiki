@@ -13,7 +13,7 @@
 {/if}
 
 
-<form action="tiki-admin.php?page=search" method="post">
+<form action="tiki-admin.php?page=search" method="post" class="admin">
 	{ticket}
 
 	<div class="row">

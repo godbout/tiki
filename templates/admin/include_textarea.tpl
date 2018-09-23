@@ -3,7 +3,7 @@
 	{tr}Text area (that apply throughout many features){/tr}
 {/remarksbox}
 
-<form action="tiki-admin.php?page=textarea" method="post">
+<form action="tiki-admin.php?page=textarea" method="post" class="admin">
 	{ticket}
 
 	<div class="row">
