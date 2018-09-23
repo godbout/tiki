@@ -1775,7 +1775,7 @@
 		"npm-asset/pdfjs-dist": ">=2.0.487",
 		"npm-asset/popper.js": ">=1.14.3",
 		"npm-asset/punycode": ">=2.1.0",
-		"npm-asset/sass-svg-uri": ">=^1.0",
+		"npm-asset/sass-svg-uri": ">=1.0",
 		"npm-asset/schema-utils": ">=0.4.5",
 		"npm-asset/uri-js": ">=3.0.2",
 		"npm-asset/worker-loader": ">=1.1.1",
