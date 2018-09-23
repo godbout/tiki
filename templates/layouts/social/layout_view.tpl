@@ -121,7 +121,7 @@
 				</div>
 			{/if}
 		</div> {* row *}
-		{*</div>*} {* container *}
+	</div> {* container *}
 
 	{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 		<footer class="footer main-footer" id="footer">
