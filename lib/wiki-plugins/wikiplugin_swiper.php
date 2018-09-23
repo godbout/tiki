@@ -515,7 +515,7 @@ function wikiplugin_swiper($data, $params)
 	}
 	elseif($params['sliderPosition']=='undertopbar') {
 		$headerlib->add_css("#swiper-container".$uid."{visibility:hidden;}");
-		$headerlib->add_js('$("$( document ).ready(function() { $("#swiper-container'.$uid.'").insertAfter( "#page-header" );})');
+		$headerlib->add_js('$( document ).ready(function() { $("#swiper-container'.$uid.'").insertAfter( "#page-header" );})');
 	}
 	//delaying initialization till window is fully loaded
 	$swiperOpts.='setTimeout( function(){
