@@ -287,7 +287,7 @@ function wikiplugin_trackercalendar($data, $params)
 
 	$headerlib->add_cssfile('vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.css');
 	// Disable fullcalendar's force events to be one-line tall
-	$headerlib->add_css('.fc-day-grid-event > .fc-content { white-space: normal; }');
+	$headerlib->add_css('.fc-day-grid-event > .fc-content, .fc-timeline-event > .fc-content { white-space: normal; }');
 	$headerlib->add_cssfile('vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.css');
 	$headerlib->add_jsfile('vendor/moment/moment/min/moment.min.js', true);
 	$headerlib->add_jsfile('vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.js', true);
@@ -355,7 +355,7 @@ function wikiplugin_trackercalendar($data, $params)
 
 	// Define the default View (dView)
 	if (! empty($params['dView'])) {
-		$dView = $params['dView'];
+		$dView = $params['dView'] == 'resourceWeek' ? 'timelineWeek' : $params['dView'];
 	} else {
 		$dView = 'month';
 	}
