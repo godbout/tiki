@@ -27,6 +27,14 @@ function iconset_legacy()
 		'tag' => 'img',
 		'prepend' => 'img/icons/',
 		'append' => '.png',
+		'styles' => [
+			'default' => [
+				'name' => tr('Default'),
+				'description' => tr(''),
+				'prepend' => 'img/icons/',
+				'append' => '.png',
+			],
+		],
 		'icons' => [
 			'actions' => [
 				'id' => 'application_form',

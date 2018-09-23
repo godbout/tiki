@@ -87,6 +87,7 @@ class Iconset
 	private $append;
 	private $rotate;
 	private $class;
+	private $styles;
 
 	private $icons;
 	private $defaults;
@@ -104,6 +105,7 @@ class Iconset
 		$this->append = isset($data['append']) ? $data['append'] : null;
 		$this->rotate = isset($data['rotate']) ? $data['rotate'] : [];
 		$this->class = isset($data['class']) ? $data['class'] : null;
+		$this->styles = isset($data['styles']) ? $data['styles'] : null;
 		$this->icons = isset($data['icons']) ? $data['icons'] : [];
 		$this->defaults = isset($data['defaults']) ? $data['defaults'] : [];
 
@@ -151,6 +153,13 @@ class Iconset
 		}
 	}
 
+	/**
+	 * Get an icon definition by name
+	 *
+	 * @param string $name
+	 *
+	 * @return array|null
+	 */
 	function getIcon($name)
 	{
 		if (isset($this->icons[$name])) {
@@ -161,7 +170,15 @@ class Iconset
 			return [
 				'id' => $name,
 			];
+		} else if (preg_match('/-o[^A-z]*/', $name, $match) && isset($this->styles['outline'])) {
+			// keep support for outline style icons with -o in the name, e.g. thumbs-o-up
+			return [
+				'id' => preg_replace('/-o([^A-z]*)/', '$1', $name),
+				'prepend' => $this->styles['outline']['prepend'],
+				'append'  => $this->styles['outline']['append'],
+			];
 		} else {
+			trigger_error(tr('Icon not found: %0', $name));
 			return null;
 		}
 	}
@@ -203,10 +220,13 @@ class Iconset
 		global $prefs;
 		$params = new JitFilter($params);
 
+		$style = $params->style->word();
+		$style = empty($style) ? 'default' : $style;
+
 		if ($icon = $this->getIcon($name)) {
 			$tag = isset($icon['tag']) ? $icon['tag'] : $this->tag;
-			$prepend = isset($icon['prepend']) ? $icon['prepend'] : $this->prepend;
-			$append = isset($icon['append']) ? $icon['append'] : $this->append;
+			$prepend = isset($icon['prepend']) ? $icon['prepend'] : (isset($this->styles[$style]['prepend']) ? $this->styles[$style]['prepend'] : $this->prepend);
+			$append  = isset($icon['append'])  ? $icon['append']  : (isset($this->styles[$style]['append'])  ? $this->styles[$style]['append']  : $this->append);
 			$icon_class = isset($icon['class']) ? $icon['class'] : '';
 			$custom_class = isset($params['iclass']) ? $params->iclass->striptags() : '';
 			$title = isset($params['ititle']) ? 'title="' . $params->ititle->striptags() . '"' : '';

@@ -20,6 +20,32 @@ function iconset_default()
 		'tag' => 'span', // The default html tag for the icons in the icon set.
 		'prepend' => 'fas fa-',
 		'append' => ' fa-fw',
+		'styles' => [
+			'default' => [
+				'name' => tr('Solid'),
+				'description' => tr(''),
+				'prepend' => 'fas fa-',
+				'append' => '',
+			],
+			'outline' => [
+				'name' => tr('Outline'),
+				'description' => tr('Font Awesome Regular'),
+				'prepend' => 'far fa-',
+				'append' => '',
+			],
+			'light' => [
+				'name' => tr('Light'),
+				'description' => tr('Font Awesome Pro Only'),
+				'prepend' => 'fal fa-',
+				'append' => '',
+			],
+			'brands' => [
+				'name' => tr('Brands'),
+				'description' => tr(''),
+				'prepend' => 'fab fa-',
+				'append' => '',
+			],
+		],
 		'rotate' => [
 			// Rotate the icon (only values accepted by fontawesome)
 			'90' => ' fa-rotate-90',
@@ -251,6 +277,9 @@ function iconset_default()
 			],
 			'chart' => [
 				'id' => 'chart-area',
+			],
+			'close' => [
+				'id' => 'times',
 			],
 			//code in defaults
 			'code_file' => [
@@ -526,6 +555,9 @@ function iconset_default()
 			'pdf' => [
 				'id' => 'file-pdf',
 				'prepend' => 'far fa-'
+			],
+			'pencil' => [
+				'id' => 'pencil-alt',
 			],
 			'permission' => [
 				'id' => 'key',

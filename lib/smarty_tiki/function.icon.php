@@ -20,6 +20,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  *  - name: name of icon from themes/base_files/iconsets file, which allows for choosing different iconsets.
  *          Use instead of _id.
  *  - size:  size of icon when name is used
+ *  - style:  style supported by the current iconset, e.g. for FA5: default, outline, light (pro only), brands
  *  - class: set custom class (otherwise default classes are applied). When using icon sets, this class will apply to
  *          anchor element
  *  - iclass: set custom class for the icon itself (not the link)
