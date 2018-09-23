@@ -30,8 +30,11 @@
 				<i class="fas fa-cubes fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
-			<div class="media-body">
-				<p>{tr}You may start by applying some of our configuration templates through the <b>Configuration Profiles Wizard</b>{/tr}. {tr}They are like the <b>Macros</b> from many computer languages{/tr}.
+			<div class="media-body ml-4">
+				<legend>{tr}Configuration Profiles Wizard{/tr}</legend>
+				<p>{tr}You may start by applying some of our configuration templates through the <b>Configuration Profiles Wizard</b>{/tr}.
+					{tr}They are like the <b>Macros</b> from many computer languages{/tr}.
+					{tr}It is best to apply them from the start and you can always preview and reverse the process{/tr}.
 					<a href="http://doc.tiki.org/Profiles+Wizard" target="tikihelp" class="tikihelp" title="{tr}Configuration Profiles:{/tr}
 						{tr}Each of these provides a shrink-wrapped solution that meets most of the needs of a particular kind of community or site (Personal Blog space, Company Intranet, ...) or that extends basic setup with extra features configured for you{/tr}.</p>
 						<p>{tr}If you are new to Tiki administration, we recommend that you start with this approach{/tr}.</p>
@@ -49,10 +52,12 @@
 				<i class="fas fa-cog fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
-			<div class="media-body">
+			<div class="media-body ml-4">
+				<legend>{tr}Configuration Wizard{/tr}</legend>
 				<p>
 					{tr}Alternatively, you may use the <b>Configuration Wizard</b>{/tr}.
 					{tr}This will guide you through the most common preference settings in order to customize your site{/tr}.
+					{tr}You will easily be able to configure options like: languages, date and time, user login, theme, website title and logo, etc{/tr}.
 					<a href="http://doc.tiki.org/Admin+Wizard" target="tikihelp" class="tikihelp" title="{tr}Configuration Wizard:{/tr}
 						{tr}Use this wizard if none of the <b>Configuration Profiles</b> look like a good starting point, or if you need to customize your site further{/tr}"
 					>
@@ -67,7 +72,8 @@
 				<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
-			<div class="media-body">
+			<div class="media-body ml-4">
+				<legend>{tr}Upgrade Wizard{/tr}</legend>
 				<p>
 					{tr}Or you may use the <b>Upgrade Wizard</b>{/tr}.
 					{tr}This will guide you through the most common new settings and informations in order to upgrade your site{/tr}.
@@ -85,17 +91,38 @@
 			</div>
 		</div>
 		<div class="media mb-5">
-			<img class="float-left" src="img/icons/large/controlpanels48x48.png" alt="{tr}Control Panels{/tr}" />
-			<div class="media-body">
-				<p>{tr}Use the <b>Control Panels</b> to manually browse through the full list of preferences{/tr}.</p>
+			<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Control Panels{/tr}" title="Control Panels">
+				<i class="fas fa-sliders-h fa-stack-2x"></i>
+				<i class="fas fa-cogs fa-stack-2x ml-5"></i>
+			</span>
+			<div class="media-body ml-4">
+				<legend>{tr}Control Panels{/tr}</legend>
+				<p>
+					{tr}Use the <b>Control Panels</b> to manually browse through the full list of preferences{/tr}.
+					{tr}From the main administration page you'll be able to configure your Tiki, to enable features not set on by default and to change settings{/tr}.
+					{tr}To Avoid Getting Overwhelmed by the impressive number of settings as a Startup Tiki Admin we set a preferences filters for Basic and Advanced features to start with{/tr}.
+					<a href="https://doc.tiki.org/Admin-Home" target="tikihelp" class="tikihelp" title="{tr}Control Panels{/tr}" >{icon name="help"}</a>
+				</p>
 
 				{button href="tiki-admin.php" _text="{tr}Go to the Control Panels{/tr}"}
 			</div>
 		</div>
 		<div class="media mb-5">
-			<div class="media-body">
+			<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Control Panels{/tr}" title="Control Panels">
+				<i class="fas fa-heartbeat fa-stack-2x"></i>
+				<i class="fas fa-server fa-stack-2x ml-5"></i>
+			</span>
+			<div class="media-body ml-4">
 		<legend>{tr}Server Fitness{/tr}</legend>
-		{tr _0=$tiki_version}To check if your server meets the requirements for running Tiki version %0, please visit <a href="tiki-check.php" target="_blank">Tiki Server Compatibility Check</a>{/tr}.
+				<p>
+					{tr _0=$tiki_version}You can check if your server meets the requirements for running Tiki version %0{/tr}.
+					{tr}Using our home made standalone script for server environment settings diagnostics you can check that everything is ready to run properly your Tiki{/tr}.
+					{tr}It is very useful for any PHP app, as it checks over 50 different things and provides contextual feedback{/tr}.
+					<a href="https://doc.tiki.org/Server-Check" target="tikihelp" class="tikihelp" title="{tr}Server Fitness{/tr}">
+						{icon name="help"}
+					</a>
+				</p>
+				{button href="tiki-check.php" _text="{tr}Go to the Tiki Server Compatibility Check{/tr}"}
 			</div>
 		</div>
 	</fieldset>
