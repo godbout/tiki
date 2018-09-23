@@ -66,7 +66,14 @@ function wikiplugin_diagram($data, $params)
 		}
 	}
 
-	$smarty->assign('graph_data', $data);
+	if (function_exists('simplexml_load_string')) {
+		$doc = simplexml_load_string($data);
+		if (empty($data) || $doc === false || $doc->getName() != 'mxGraphModel') {
+			Feedback::error(tr("Tiki wasn't able to parse the Diagram. Please check the diagram XML data and structure."));
+			return;
+		}
+	}
+
 	$smarty->assign('graph_data', $data);
 	$data = $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl');
 
