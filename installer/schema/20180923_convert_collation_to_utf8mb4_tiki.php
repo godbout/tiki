@@ -97,6 +97,9 @@ SQL;
 	unset($dbs_tiki);
 	$results = $installer->fetchAll('SHOW TABLES');
 	foreach ($results as $table) {
+		if (substr(reset($table), 0, 6) == 'index_') {
+			continue;
+		}
 		$installer->query('ALTER TABLE ' . reset($table) . ' convert to character set DEFAULT COLLATE DEFAULT');
 	}
 
