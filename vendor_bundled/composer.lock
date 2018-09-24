@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0f19002315d86c0f7a8e1d0d116d23b",
+    "content-hash": "8dd7b64ddac91fa39cb04bc6417550dd",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -651,9 +651,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": ""
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -854,7 +854,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1100,9 +1100,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2112,17 +2112,17 @@
         },
         {
             "name": "nicolaskruchten/pivottable",
-            "version": "v2.21.0",
+            "version": "v2.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolaskruchten/pivottable.git",
-                "reference": "7c53d50d151d2b1a4156699866c48326644a3388"
+                "reference": "e3dd0d7843cc9220df00dde9f9e32d70eecfd747"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-7c53d50d151d2b1a4156699866c48326644a3388-zip-943f44.zip",
-                "reference": "7c53d50d151d2b1a4156699866c48326644a3388",
-                "shasum": "cb17d25840808e7a1fe4c3c4c4a2def399634f98"
+                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-e3dd0d7843cc9220df00dde9f9e32d70eecfd747-zip-2c335e.zip",
+                "reference": "e3dd0d7843cc9220df00dde9f9e32d70eecfd747",
+                "shasum": "c9b09c0393a7c5a1384f4dd5226cb80134927fcf"
             },
             "require": {
                 "components/jquery": ">=1.9"
@@ -2151,7 +2151,7 @@
                 "pivottable",
                 "table"
             ],
-            "time": "2018-06-18T13:53:33+00:00"
+            "time": "2018-09-22T02:10:34+00:00"
         },
         {
             "name": "nolimits4web/swiper",
@@ -2163,9 +2163,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
+                "url": "https://composer.tiki.org/dist/nolimits4web/swiper/nolimits4web-swiper-bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd-zip-506058.zip",
                 "reference": "bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
-                "shasum": ""
+                "shasum": "4b797f22f91cf0d5bb663baed6f44f4a1561a540"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2218,10 +2218,10 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz",
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
                 "reference": null,
-                "shasum": null
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -3161,6 +3161,33 @@
             "time": "2018-02-23T15:27:54+00:00"
         },
         {
+            "name": "robicch/jquery-gantt",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robicch/jQueryGantt.git",
+                "reference": "5ae79327423cf29102a0cf71c6d3bbcb8dc16b6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/robicch/jquery-gantt/robicch-jquery-gantt-5ae79327423cf29102a0cf71c6d3bbcb8dc16b6b-zip-4b6a88.zip",
+                "reference": "5ae79327423cf29102a0cf71c6d3bbcb8dc16b6b",
+                "shasum": "4208529f281ef22b21a0585cd97cb2277c7cf25d"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Twproject Gantt editor is a free online tool for creating and sharing Gantts",
+            "homepage": "https://github.com/robicch/jQueryGantt",
+            "keywords": [
+                "gantt",
+                "jquery"
+            ],
+            "time": "2018-05-03T10:48:13+00:00"
+        },
+        {
             "name": "robloach/component-installer",
             "version": "0.2.3",
             "source": {
@@ -3741,9 +3768,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-e3d826245268269cd66f8326bd8bc066687b4a19-zip-b18935.zip",
                 "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
-                "shasum": ""
+                "shasum": "fd7ab319a82c0036fbf48ae958f1f6ba1309bc5b"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -7387,17 +7414,17 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.3.1",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "628a481780561150481a9ec74709092b9759b3ec"
+                "reference": "6ad28354c04b364c3c71a34e4a18b629cc3b231e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-628a481780561150481a9ec74709092b9759b3ec-zip-2aa541.zip",
-                "reference": "628a481780561150481a9ec74709092b9759b3ec",
-                "shasum": "d1e5073b65a339236eb7e38e1d1dddab8e3336fa"
+                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-6ad28354c04b364c3c71a34e4a18b629cc3b231e-zip-0db50b.zip",
+                "reference": "6ad28354c04b364c3c71a34e4a18b629cc3b231e",
+                "shasum": "d7cc10809133e27cc5db6e8f54540411cd90347f"
             },
             "require": {
                 "ext-simplexml": "*",
@@ -7434,7 +7461,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-07-26T23:47:18+00:00"
+            "time": "2018-09-23T23:08:17+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -7545,6 +7572,7 @@
     "stability-flags": {
         "ahand/mobileesp": 20,
         "candy-chat/xmpp-prebind-php": 20,
+        "robicch/jquery-gantt": 20,
         "twbs/bootstrap": 10,
         "zendframework/zendsearch": 20,
         "bafs/testify": 20
