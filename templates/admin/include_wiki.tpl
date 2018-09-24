@@ -17,183 +17,192 @@
 	{tabset name="admin_wiki"}
 		{tab name="{tr}General Preferences{/tr}"}
 			<br>
-			<fieldset>
-				<legend>{tr}Activate the feature{/tr}</legend>
-				{preference name=feature_wiki visible="always"}
-				{preference name=wiki_url_scheme}
-			</fieldset>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Activate the feature{/tr}</legend>
+					{preference name=feature_wiki visible="always"}
+					{preference name=wikiHomePage}
+					{preference name=wiki_url_scheme}
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
 			<fieldset class="table">
-				<legend>{tr}Plugins{/tr}</legend>
-				{preference name=wikiplugin_author}
-				{preference name=wikiplugin_include}
-				<div class="adminoptionboxchild" id="wikiplugin_include_childcontainer">
-				  {preference name=wiki_plugin_include_link_original}
-				</div>
-				{preference name=wikiplugin_transclude}
-				{preference name=wikiplugin_randominclude}
-				{preference name=wikiplugin_slideshow}
-				{preference name=wikiplugin_attach}
-				{preference name=wikiplugin_backlinks}
-				{preference name=wikiplugin_listpages}
-				{preference name=wikiplugin_showpages}
-				{preference name=wikiplugin_titlesearch}
-				{preference name=wikiplugin_wantedpages}
-			</fieldset>
-			{preference name=wikiHomePage}
-			<fieldset>
-				<legend>{tr}Page display{/tr}</legend>
-				{preference name=feature_wiki_description label="{tr}Description{/tr}"}
-				{preference name=feature_page_title label="{tr}Display page name as page title{/tr}"}
-				{preference name=wiki_page_name_above label="{tr}Display page name above page{/tr}"}
-				{preference name=wiki_page_name_inside label="{tr}Display the page name inside the page content{/tr}"}
-				{preference name=feature_wiki_pageid label="{tr}Page ID{/tr}"}
-				{preference name=wiki_show_version label="{tr}Page version{/tr}"}
-				{preference name=wiki_authors_style label="{tr}List authors{/tr}"}
-				{preference name=wiki_authors_style_by_page label="{tr}Allow override per page{/tr}"}
-				{preference name=feature_wiki_show_hide_before}
-				{preference name=wiki_actions_bar}
-				{preference name=wiki_page_navigation_bar}
-				{preference name=wiki_topline_position}
-				{preference name=page_bar_position}
-				{preference name=wiki_encourage_contribution}
-				{preference name=wiki_page_hide_title}
-				{preference name=wiki_heading_links}
-			</fieldset>
-			<fieldset>
-				<legend>{tr}Automatic table of contents{/tr}</legend>
-				{preference name=wiki_auto_toc}
-				<div class="adminoptionbox clearfix" id="wiki_auto_toc_childcontainer">
-					{preference name=wiki_inline_auto_toc}
-					{preference name=wiki_toc_pos}
-					{preference name=wiki_toc_offset}
-				</div>
-			</fieldset>
-			<fieldset>
 				<legend>{tr}Page name{/tr}</legend>
-				{preference name=wiki_page_regex}
 				{preference name=wiki_badchar_prevent}
+				{preference name=wiki_page_regex}
 				{preference name=wiki_pagename_strip}
 			</fieldset>
-			<fieldset>
-				<legend>{tr}Editing{/tr}</legend>
-				{preference name=feature_wiki_templates}
-				<div class="adminoptionboxchild" id="feature_wiki_templates_childcontainer">
-					{preference name=lock_content_templates}
-				</div>
-				{preference name=feature_warn_on_edit}
-				{preference name=warn_on_edit_time}
-				{preference name=feature_wiki_undo}
-				{preference name=feature_wiki_footnotes}
-				{preference name=feature_wiki_allowhtml}
-				<div class="adminoptionboxchild" id="feature_wiki_allowhtml_childcontainer">
-					{preference name=wysiwyg_wiki_parsed}
-				</div>
-				{preference name=feature_wysiwyg}
-				{preference name=wiki_timeout_warning}
-				{preference name=wiki_edit_plugin}
-				{preference name=wiki_edit_section}
-				<div class="adminoptionboxchild" id="wiki_edit_section_childcontainer">
-					{preference name=wiki_edit_section_level}
-				</div>
-				{preference name=wiki_edit_icons_toggle}
-				{preference name=wiki_edit_minor}
-				{preference name=feature_wiki_mandatory_category}
-				{preference name=feature_actionlog_bytes}
-				{preference name=wiki_mandatory_edit_summary}
-				{preference name=wiki_freetags_edit_position}
-			</fieldset>
-			<fieldset>
-				<legend>
-					{tr}Sharing on social networks{/tr}{help url="Social+Networks#Using+ShareThis"}
-				</legend>
-				{preference name=feature_wiki_sharethis}
-				<div class="adminoptionboxchild" id="feature_wiki_sharethis_childcontainer">
-					{preference name=blog_sharethis_publisher}
-					{preference name=wiki_sharethis_encourage}
-				</div>
-			</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Page display{/tr}</legend>
+					{preference name=feature_page_title label="{tr}Display page name as page title{/tr}"}
+					{preference name=wiki_page_name_above label="{tr}Display page name above page{/tr}"}
+					{preference name=wiki_page_name_inside label="{tr}Display the page name inside the page content{/tr}"}
+					{preference name=wiki_page_hide_title}
+					{preference name=feature_wiki_description label="{tr}Description{/tr}"}
+					{preference name=feature_wiki_pageid label="{tr}Page ID{/tr}"}
+					{preference name=wiki_show_version label="{tr}Page version{/tr}"}
+					{preference name=wiki_authors_style label="{tr}List authors{/tr}"}
+					{preference name=wiki_authors_style_by_page label="{tr}Allow override per page{/tr}"}
+					{preference name=wiki_encourage_contribution}
+					{preference name=wiki_heading_links}
+					{preference name=feature_wiki_show_hide_before}
+					{preference name=wiki_actions_bar}
+					{preference name=wiki_page_navigation_bar}
+					{preference name=wiki_topline_position}
+					{preference name=page_bar_position}
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Editing{/tr}</legend>
+					{preference name=feature_wiki_undo}
+					{preference name=wiki_edit_minor}
+					{preference name=wiki_edit_plugin}
+					{preference name=wiki_edit_section}
+					<div class="adminoptionboxchild" id="wiki_edit_section_childcontainer">
+						{preference name=wiki_edit_icons_toggle}
+						{preference name=wiki_edit_section_level}
+					</div>
+					{preference name=feature_wiki_allowhtml}
+					{preference name=wiki_mandatory_edit_summary}
+					{preference name=feature_wiki_footnotes}
+					{preference name=wiki_freetags_edit_position}
+					{preference name=wiki_timeout_warning}
+					{preference name=feature_warn_on_edit}
+					{preference name=warn_on_edit_time}
+					<div class="adminoptionboxchild" id="feature_wiki_allowhtml_childcontainer">
+						{preference name=wysiwyg_wiki_parsed}
+					</div>
+					{preference name=feature_wysiwyg}
+					{preference name=feature_wiki_mandatory_category}
+					{preference name=feature_actionlog_bytes}
+					{preference name=feature_wiki_templates}
+					<div class="adminoptionboxchild" id="feature_wiki_templates_childcontainer">
+						{preference name=lock_content_templates}
+					</div>
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Automatic table of contents{/tr}</legend>
+					{preference name=wiki_auto_toc}
+					<div class="adminoptionbox clearfix" id="wiki_auto_toc_childcontainer">
+						{preference name=wiki_inline_auto_toc}
+						{preference name=wiki_toc_pos}
+						{preference name=wiki_toc_offset}
+					</div>
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Plugins{/tr}</legend>
+					{preference name=wikiplugin_attach}
+					{preference name=wikiplugin_author}
+					{preference name=wikiplugin_backlinks}
+					{preference name=wikiplugin_include}
+					<div class="adminoptionboxchild" id="wikiplugin_include_childcontainer">
+					  {preference name=wiki_plugin_include_link_original}
+					</div>
+					{preference name=wikiplugin_listpages}
+					{preference name=wikiplugin_randominclude}
+					{preference name=wikiplugin_showpages}
+					{preference name=wikiplugin_slideshow}
+					{preference name=wikiplugin_titlesearch}
+					{preference name=wikiplugin_transclude}
+					{preference name=wikiplugin_wantedpages}
+				</fieldset>
+			</div>
 		{/tab}
 		{tab name="{tr}Features{/tr}"}
 			<br>
-			{preference name=feature_sandbox}
-			{preference name=feature_references}
-			<div class="adminoptionboxchild" id="feature_references_childcontainer">
-				{preference name=feature_library_references}
-				{preference name=feature_references_popover}
-				{preference name=feature_references_style}
-			</div>
-			{preference name=wiki_pagination}
-			<div class="adminoptionboxchild" id="wiki_pagination_childcontainer">
-				{preference name=wiki_page_separator}
-			</div>
-			{preference name=feature_wiki_export}
-			<div class="adminoptionboxchild col-md-8 col-sm-offset-4" id="feature_wiki_export_childcontainer">
-				{button href="tiki-export_wiki_pages.php" _text="{tr}Export Wiki Pages{/tr}"}
-			</div>
-			{preference name=feature_wikiwords}
-			<div class="adminoptionboxchild" id="feature_wikiwords_childcontainer">
-				{preference name=feature_wikiwords_usedash}
-				{preference name=feature_wiki_plurals}
-			</div>
-			{preference name=feature_history}
-			<div class="adminoptionboxchild" id="feature_history_childcontainer">
-				{preference name=maxVersions}
-				{preference name=keep_versions}
-				{preference name=feature_wiki_history_ip}
-				{preference name=default_wiki_diff_style}
-				{preference name=feature_wiki_history_full}
-				{preference name=feature_page_contribution}
-			</div>
-			{preference name=feature_wiki_discuss}
-			<div class="adminoptionboxchild" id="feature_wiki_discuss_childcontainer">
-				{preference name=wiki_forum_id}
-				{preference name=wiki_discuss_visibility}
-			</div>
-			{preference name=feature_source}
-			{preference name=feature_wiki_ratings}
-			{preference name=wiki_simple_ratings}
-			<div class="adminoptionboxchild" id="wiki_simple_ratings_childcontainer">
-				{preference name=wiki_simple_ratings_options}
-			</div>
-			{preference name=feature_backlinks}
-			<div class="adminoptionboxchild" id="feature_backlinks_childcontainer">
-				{preference name=wiki_backlinks_name_len}
-                                {preference name=wiki_backlinks_show_forum_post}
-                                {preference name=wiki_backlinks_show_comment}
-                                {preference name=wiki_backlinks_show_post}
-                                {preference name=wiki_backlinks_show_article}
-                                {preference name=wiki_backlinks_show_trackeritem}
-                                {preference name=wiki_backlinks_show_tracker}
-                                {preference name=wiki_backlinks_show_trackerfield}
-                                {preference name=wiki_backlinks_show_calendar_event}
-			</div>
-			{preference name=feature_semantic}
-			{preference name=wiki_prefixalias_tokens}
-			{preference name=feature_likePages}
-			<div class="adminoptionboxchild" id="wiki_likepages_samelang_only">
-				{preference name=wiki_likepages_samelang_only}
-			</div>
-			{preference name=feature_wiki_1like_redirection}
-			{preference name=feature_wiki_pagealias}
-			{preference name=wiki_pagealias_tokens}
-			{preference name=feature_wiki_rankings}
-			{preference name=feature_wiki_import_html}
-			{preference name=feature_wiki_import_page}
-			{preference name=feature_wiki_use_date}
-			<div class="adminoptionboxchild" id="feature_wiki_use_date_links">
-				{preference name=feature_wiki_use_date_links}
-			</div>
-			{preference name=wiki_uses_slides}
-			{preference name=feature_wiki_userpage}
-			<div class="adminoptionboxchild" id="feature_wiki_userpage_childcontainer">
-				{preference name=feature_wiki_userpage_prefix}
-			</div>
-			{preference name=feature_wiki_usrlock}
-			{preference name=wiki_creator_admin}
-			{preference name=feature_wiki_mindmap}
-			{preference name=wiki_feature_copyrights}
 			<div class="adminoptionbox clearfix">
-				<fieldset>
+				<fieldset class="table">
+					<legend>{tr}General features{/tr}</legend>
+					{preference name=wiki_uses_slides}
+					{preference name=feature_backlinks}
+							<div class="adminoptionboxchild" id="feature_backlinks_childcontainer">
+								{preference name=wiki_backlinks_name_len}
+								{preference name=wiki_backlinks_show_article}
+								{preference name=wiki_backlinks_show_post}
+								{preference name=wiki_backlinks_show_calendar_event}
+								{preference name=wiki_backlinks_show_comment}
+								{preference name=wiki_backlinks_show_forum_post}
+								{preference name=wiki_backlinks_show_trackeritem}
+								{preference name=wiki_backlinks_show_tracker}
+								{preference name=wiki_backlinks_show_trackerfield}
+							</div>
+						{preference name=feature_wiki_discuss}
+							<div class="adminoptionboxchild" id="feature_wiki_discuss_childcontainer">
+								{preference name=wiki_forum_id}
+								{preference name=wiki_discuss_visibility}
+							</div>
+						{preference name=feature_wiki_export}
+							<div class="adminoptionboxchild col-md-8 col-sm-offset-4" id="feature_wiki_export_childcontainer">
+								{button href="tiki-export_wiki_pages.php" _text="{tr}Export Wiki Pages{/tr}"}
+							</div>
+						{preference name=geo_locate_wiki}
+						{preference name=feature_history}
+							<div class="adminoptionboxchild" id="feature_history_childcontainer">
+								{preference name=maxVersions}
+								{preference name=keep_versions}
+								{preference name=feature_page_contribution}
+								{preference name=feature_wiki_history_ip}
+								{preference name=default_wiki_diff_style}
+								{preference name=feature_wiki_history_full}
+							</div>
+						{preference name=feature_wiki_import_html}
+						{preference name=feature_wiki_import_page}
+						{preference name=wiki_keywords}
+						{preference name=wiki_creator_admin}
+						{preference name=feature_wiki_mindmap}
+						{preference name=feature_wiki_rankings}
+						{preference name=feature_wiki_ratings}
+						{preference name=feature_sandbox}
+						{preference name=feature_wiki_use_date}
+						<div class="adminoptionboxchild" id="feature_wiki_use_date_links">
+							{preference name=feature_wiki_use_date_links}
+						</div>
+						{preference name=feature_wiki_userpage}
+						<div class="adminoptionboxchild" id="feature_wiki_userpage_childcontainer">
+							{preference name=feature_wiki_userpage_prefix}
+						</div>
+						{preference name=feature_wiki_usrlock}
+						{preference name=feature_source}
+						{preference name=wiki_feature_copyrights}
+						{preference name=wiki_pagination}
+							<div class="adminoptionboxchild" id="wiki_pagination_childcontainer">
+								{preference name=wiki_page_separator}
+							</div>
+						{preference name=feature_references}
+							<div class="adminoptionboxchild" id="feature_references_childcontainer">
+								{preference name=feature_library_references}
+								{preference name=feature_references_popover}
+								{preference name=feature_references_style}
+							</div>
+						{preference name=wiki_simple_ratings}
+						<div class="adminoptionboxchild" id="wiki_simple_ratings_childcontainer">
+							{preference name=wiki_simple_ratings_options}
+						</div>
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Redirect and Similar{/tr}</legend>
+						{preference name=feature_wiki_1like_redirection}
+						{preference name=wiki_prefixalias_tokens}
+						{preference name=feature_semantic}
+						{preference name=feature_likePages}
+						<div class="adminoptionboxchild" id="wiki_likepages_samelang_only">
+							{preference name=wiki_likepages_samelang_only}
+						</div>
+						{preference name=feature_wiki_pagealias}
+						{preference name=wiki_pagealias_tokens}
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
 					<legend>{tr}Attachments{/tr}</legend>
 					{preference name=feature_wiki_attachments}
 					<div class="adminoptionboxchild" id="feature_wiki_attachments_childcontainer">
@@ -222,40 +231,40 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset>
+				<fieldset class="table">
 					<legend>{tr}Comments{/tr}</legend>
 					{preference name=feature_wiki_comments}
 					<div class="adminoptionboxchild" id="feature_wiki_comments_childcontainer">
-						{preference name=wiki_comments_displayed_default}
-						{preference name=wiki_comments_form_displayed_default}
-						{preference name=wiki_comments_per_page}
-						{preference name=wiki_comments_default_ordering}
 						{preference name=wiki_comments_allow_per_page}
+						{preference name=wiki_comments_displayed_default}
+						{preference name=wiki_comments_default_ordering}
+						{preference name=wiki_comments_form_displayed_default}
 						{preference name=wiki_watch_comments}
+						{preference name=wiki_comments_per_page}
 					</div>
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset>
+				<fieldset class="table">
 					<legend>{tr}Structures{/tr}{help url="Structures"}</legend>
 					{preference name=feature_wiki_structure}
 					<div class="adminoptionboxchild" id="feature_wiki_structure_childcontainer">
+						{preference name=wiki_structure_bar_position}
 						{preference name=feature_wiki_open_as_structure}
 						{preference name=feature_wiki_make_structure}
 						{preference name=feature_wiki_categorize_structure}
+						{preference name=feature_wiki_structure_drilldownmenu}
 						{preference name=lock_wiki_structures}
 						{preference name=feature_create_webhelp}
-						{preference name=feature_wiki_structure_drilldownmenu}
 						{preference name=page_n_times_in_a_structure}
 						{preference name=feature_listorphanStructure}
 						{preference name=feature_wiki_no_inherit_perms_structure}
-						{preference name=wiki_structure_bar_position}
 						{preference name=wikiplugin_toc}
 					</div>
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">
-				<fieldset>
+				<fieldset class="table">
 					<legend>{tr}Wiki watch{/tr}{help url="Watch"}</legend>
 					{preference name=wiki_watch_author}
 					{preference name=wiki_watch_editor}
@@ -263,55 +272,78 @@
 					{preference name=wiki_watch_minor}
 				</fieldset>
 			</div>
-			{preference name=wiki_keywords}
-			{preference name=geo_locate_wiki}
-			<fieldset>
-				<legend>{tr}Namespaces{/tr}{help url="Namespaces"}</legend>
-				{preference name=namespace_enabled}
-				<div class="adminoptionboxchild" id="namespace_enabled_childcontainer">
-					<div class="col-sm-offset-4 colsm-8">
-						{tr}The namespace separator should not{/tr}
-						<ul>
-							<li>{tr}contain any of the characters not allowed in wiki page names, typically{/tr} /?#[]@$&amp;+;=&lt;&gt;</li>
-							<li>{tr}conflict with wiki syntax tagging{/tr}</li>
-						</ul>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Namespaces{/tr}{help url="Namespaces"}</legend>
+					{preference name=namespace_enabled}
+					<div class="adminoptionboxchild" id="namespace_enabled_childcontainer">
+						<div class="col-sm-offset-4 colsm-8">
+							{tr}The namespace separator should not{/tr}
+							<ul>
+								<li>{tr}contain any of the characters not allowed in wiki page names, typically{/tr} /?#[]@$&amp;+;=&lt;&gt;</li>
+								<li>{tr}conflict with wiki syntax tagging{/tr}</li>
+							</ul>
+						</div>
+						{preference name=namespace_separator}
+						{preference name=namespace_indicator_in_structure}
+						{preference name=namespace_indicator_in_page_title}
+						<div class="col-sm-offset-4 colsm-8">
+							<p><strong>{tr}Settings that may be affected by the namespace separator{/tr}</strong></p>
+							{tr}To use :: as a separator, you should also use ::: as the wiki center tag syntax{/tr}.<br/>
+							{tr}Note: a conversion of :: to ::: for existing pages must be done manually.{/tr}<br/>
+						</div>
+						{preference name=feature_use_three_colon_centertag}
+						<div class="col-sm-offset-4 colsm-8">
+							{tr}If the page name display stripper conflicts with the namespace separator, the namespace is used and the page name display is not stripped.{/tr}
+						</div>
+						{preference name=wiki_pagename_strip}
+						{preference name=namespace_force_links}
 					</div>
-					{preference name=namespace_separator}
-					{preference name=namespace_indicator_in_structure}
-					{preference name=namespace_indicator_in_page_title}
-					<div class="col-sm-offset-4 colsm-8">
-						<p><strong>{tr}Settings that may be affected by the namespace separator{/tr}</strong></p>
-						{tr}To use :: as a separator, you should also use ::: as the wiki center tag syntax{/tr}.<br/>
-						{tr}Note: a conversion of :: to ::: for existing pages must be done manually.{/tr}<br/>
-					</div>
-					{preference name=feature_use_three_colon_centertag}
-					<div class="col-sm-offset-4 colsm-8">
-						{tr}If the page name display stripper conflicts with the namespace separator, the namespace is used and the page name display is not stripped.{/tr}
-					</div>
-					{preference name=wiki_pagename_strip}
-					{preference name=namespace_force_links}
-				</div>
-			</fieldset>
+				</fieldset>
+			</div>
 		{/tab}
 		{tab name="{tr}Flagged Revision{/tr}"}
 			<br>
-			<fieldset>
-				{preference name=flaggedrev_approval}
-				<div id="flaggedrev_approval_childcontainer">
-					{preference name=flaggedrev_approval_categories}
-				</div>
-			</fieldset>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					{preference name=flaggedrev_approval}
+					<div id="flaggedrev_approval_childcontainer">
+						{preference name=flaggedrev_approval_categories}
+					</div>
+				</fieldset>
+			</div>
 		{/tab}
 		{tab name="{tr}Page Listings{/tr}"}
 			<br>
-			{preference name=feature_listPages}
-			{preference name=feature_lastChanges}
-			{preference name=feature_listorphanPages}
-			{preference name=feature_listorphanStructure}
-			{preference name=gmap_page_list}
 			<div class="adminoptionbox clearfix">
-				<fieldset>
-					<legend>{tr}Configuration{/tr}</legend>
+				<fieldset class="table">
+				<legend>{tr}Options{/tr}</legend>
+					{preference name=feature_lastChanges}
+					{preference name=feature_listPages}
+					{preference name=feature_listorphanPages}
+					{preference name=feature_listorphanStructure}
+					{preference name=gmap_page_list}
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+				<legend>{tr}Configuration{/tr}</legend>
+					{preference name=wiki_list_backlinks}
+					{preference name=wiki_list_categories}
+					{preference name=wiki_list_categories_path}
+					{preference name=wiki_list_comment}
+					{preference name=wiki_list_creator}
+					{preference name=wiki_list_description}
+					<div class="adminoptionboxchild" id="wiki_list_description_childcontainer">
+						{preference name=wiki_list_description_len}
+					</div>
+					{preference name=wiki_list_hits}
+					{preference name=wiki_list_language}
+					{preference name=wiki_list_lastmodif}
+					{preference name=wiki_list_user}
+					{preference name=wiki_list_links}
+					{preference name=wiki_list_name}
+					{preference name=wiki_list_id}
 					<div class="adminoptionbox clearfix">
 						{tr}Select which items to display when listing pages:{/tr}
 					</div>
@@ -319,42 +351,25 @@
 					<div class="adminoptionboxchild">
 						{preference name=wiki_list_sortdirection}
 					</div>
-					{preference name=wiki_list_id}
-					{preference name=wiki_list_name}
 					<div class="adminoptionboxchild" id="wiki_list_name_childcontainer">
 						{preference name=wiki_list_name_len}
 					</div>
-					{preference name=wiki_list_hits}
-					{preference name=wiki_list_lastmodif}
-					{preference name=wiki_list_creator}
-					{preference name=wiki_list_user}
-					{preference name=wiki_list_lastver}
-					{preference name=wiki_list_comment}
 					<div class="adminoptionboxchild" id="wiki_list_comment_childcontainer">
 						{preference name=wiki_list_comment_len}
 					</div>
-					{preference name=wiki_list_description}
-					<div class="adminoptionboxchild" id="wiki_list_description_childcontainer">
-						{preference name=wiki_list_description_len}
-					</div>
-					{preference name=wiki_list_status}
-					{preference name=wiki_list_versions}
-					{preference name=wiki_list_links}
-					{preference name=wiki_list_backlinks}
 					{preference name=wiki_list_size}
-					{preference name=wiki_list_language}
-					{preference name=wiki_list_categories}
-					{preference name=wiki_list_categories_path}
 					{preference name=wiki_list_rating}
+					{preference name=wiki_list_status}
+					{preference name=wiki_list_lastver}
+					{preference name=wiki_list_versions}
 				</fieldset>
 			</div>
 		{/tab}
 		{tab name="{tr}Tools{/tr}"}
 			<br>
-
-				<div>
-					<h4>Database dumps & restores</h4>
-
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Database dumps and restores{/tr}</legend>
 					Create database archives of wiki pages for restoring at a later date.<br>
 					<label for="tagname">{tr}Name for dump{/tr}</label>
 					<input maxlength="20" size="20" type="text" name="newtagname" id="newtagname">
@@ -387,23 +402,30 @@
 						value="{tr}Remove{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}
 						onclick="checkTimeout()"
 					>
-					<h4>{tr}Dump files{/tr}</h4>
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Dump files{/tr}</legend>
 					{tr}Dump files archive wiki pages for various usages such as off-line browsing or distribution on optical disks.{/tr}
-					<h5>{tr}Warnings{/tr}</h5>
-					<ul>
-						<li>{tr}The HTML files generated may refer to files not included in the dump.{/tr} {tr}Dumps do not include files attached to wiki pages.{/tr}</li>
-						{if $isDump}<li>{tr}Dumping will overwrite the preexisting dump.{/tr}</li>{/if}
-					</ul>
-					<br><br>
-
+					{remarksbox type="warning" title="{tr}Warning{/tr}"}
+					{tr}The HTML files generated may refer to files not included in the dump.{/tr} {tr}Dumps do not include files attached to wiki pages.{/tr}
+					{if $isDump}<li>{tr}Dumping will overwrite the preexisting dump.{/tr}</li>{/if}
+					{/remarksbox}
 					<input type="submit" class="btn btn-primary btn-sm" name="createdump" value="{tr}Create Dump File{/tr}">
 					<input type="submit" class="btn btn-primary btn-sm" name="downloaddump" value="{tr}Download Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
 					<input type="submit" class="btn btn-primary btn-sm" name="removedump" data-target="_blank" value="{tr}Remove Dump File{/tr}" {if !$isDump} disabled="disabled"{/if}>
-				</div>
-			<br>
-			<h4><a href="tiki-search_replace.php">{tr}Mass search and replace{/tr}</a></h4>
-
-			<h4><a href="tiki-report_direct_object_perms.php">{tr}Report wiki pages with direct object permissions{/tr}</a></h4>
+			</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Mass replace and page permissions report{/tr}</legend>
+					<div class="adminoptionbox clearfix">
+						{button href="tiki-search_replace.php" _text="{tr}Mass search and replace{/tr}" _icon_name="exchange-alt" _type="primary"}
+						{button href="tiki-report_direct_object_perms.php" _text="{tr}Report wiki pages with direct object permissions{/tr}" _icon_name="paperclip" _type="primary"}
+					</div>
+				</fieldset>
+			</div>
 		{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}

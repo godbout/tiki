@@ -59,7 +59,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki' => [
 			'name' => tra('Wiki'),
-			'description' => tra('Collaboratively authored documents with edit history.'),
+			'description' => tra('Pages and collaboratively authored documents with edit history.'),
 			'type' => 'flag',
 			'help' => 'Wiki',
 			'default' => 'y',
