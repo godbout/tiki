@@ -14,9 +14,9 @@
 	/* IE6-9 */ }
 
 .middle_outer {
-	-webkit-box-shadow: inset 0 54px 0 0 #063035;
-	-moz-box-shadow: inset 0 54px 0 0 #063035;
-	box-shadow: inset 0 54px 0 0 #063035; }
+	-webkit-box-shadow: inset 0 24px 0 0 #063035;
+	-moz-box-shadow: inset 0 24px 0 0 #063035;
+	box-shadow: inset 0 24px 0 0 #063035; }
 
 .topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
 	background: #063035; }

@@ -10,9 +10,9 @@
 	background: #2c1c04 !important; }
 
 .middle_outer {
-	-webkit-box-shadow: inset 0 54px 0 0 #2c1c04;
-	-moz-box-shadow: inset 0 54px 0 0 #2c1c04;
-	box-shadow: inset 0 54px 0 0 #2c1c04; }
+	-webkit-box-shadow: inset 0 24px 0 0 #2c1c04;
+	-moz-box-shadow: inset 0 24px 0 0 #2c1c04;
+	box-shadow: inset 0 24px 0 0 #2c1c04; }
 
 .topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
 	background: #2c1c04; }
