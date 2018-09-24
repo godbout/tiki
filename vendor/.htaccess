@@ -14,7 +14,7 @@
 	# If you are adding a new vendor that needs browser access, adding a file
 	#  type exception will be required.
 	RewriteRule "^(bower-asset/wodo.texteditor/wodotexteditor/).*/.*\.(json|html)$" "-" [PT,L]
-	RewriteRule "^(xorti/mxgraph-editor/).*/.*xml$" "-" [PT,L]
+	RewriteRule "^(xorti/mxgraph-editor/).*/.*(xml|txt|html)$" "-" [PT,L]
 
 	# -- Deny Everything Not Matched Above -- #
 	RewriteRule "/*" "-" [F]

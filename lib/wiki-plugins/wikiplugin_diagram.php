@@ -33,7 +33,7 @@ function wikiplugin_diagram_info()
 function wikiplugin_diagram($data, $params)
 {
 
-	global $tikilib;
+	global $tikilib, $user, $page, $wikiplugin_included_page;
 
 	if (! file_exists('vendor/xorti/mxgraph-editor/mxClient.min.js')) {
 		Feedback::error(tr('To view diagrams Tiki needs the xorti/mxgraph-editor package. If you do not have permission to install this package, ask the site administrator.'));
@@ -43,15 +43,13 @@ function wikiplugin_diagram($data, $params)
 	$headerlib = $tikilib::lib('header');
 	$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
 
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/mxClient.min.js', true);
+	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/mxClient.js', true);
 	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/sanitizer/sanitizer.min.js', true);
 	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Graph.js', true);
 	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Format.js', true);
 	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Shapes.js', true);
 
 	$headerlib->add_css('.diagram hr {margin-top:0.5em;margin-bottom:0.5em}');
-
-	$smarty = TikiLib::lib('smarty');
 
 	$fileId = isset($params['fileId']) ? intval($params['fileId']) : 0;
 
@@ -74,8 +72,20 @@ function wikiplugin_diagram($data, $params)
 		}
 	}
 
-	$smarty->assign('graph_data', $data);
-	$data = $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl');
+	static $id = 0;
+	$id++;
 
-	return $data;
+	//checking if user can see edit button
+	if (! empty($wikiplugin_included_page)) {
+		$sourcepage = $wikiplugin_included_page;
+	} else {
+		$sourcepage = $page;
+	}
+
+	$smarty = TikiLib::lib('smarty');
+	$smarty->assign('index', $id);
+	$smarty->assign('graph_data', $data);
+	$smarty->assign('graph_data_base64', base64_encode($data));
+	$smarty->assign('sourcepage', $sourcepage);
+	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }

@@ -932,7 +932,7 @@ class WikiLib extends TikiLib
 			$bindvars = [];
 		}
 		$query = 'select `user`,`attId`,`page`,`filename`,`filesize`,`filetype`,`hits`,`created`,`comment`,`path` ';
-		$query .= ' from `tiki_wiki_attachments` $mid order by ' . $this->convertSortMode($sort_mode);
+		$query .= ' from `tiki_wiki_attachments` '. $mid .' order by ' . $this->convertSortMode($sort_mode);
 		$query_cant = "select count(*) from `tiki_wiki_attachments` $mid";
 		$result = $this->query($query, $bindvars, $maxRecords, $offset);
 		$cant = $this->getOne($query_cant, $bindvars);
