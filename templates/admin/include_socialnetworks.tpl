@@ -102,6 +102,16 @@
 			</div>
 		</div>
 	{/tab}
+	{tab name="{tr}Share This{/tr}"}
+		<br>
+		<div class="adminoptionbox">
+			{preference name=feature_wiki_sharethis}
+			<div class="adminoptionboxchild" id="feature_wiki_sharethis_childcontainer">
+				{preference name=blog_sharethis_publisher}
+				{preference name=wiki_sharethis_encourage}
+			</div>
+		</div>
+	{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}
 </form>
