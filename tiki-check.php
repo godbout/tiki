@@ -1397,17 +1397,17 @@ if ($connection || ! $standalone) {
 		$query = "SHOW VARIABLES LIKE 'character_set_" . $type . "';";
 		$result = query($query, $connection);
 		foreach ($result as $value) {
-			if ($value['Value'] == 'utf8') {
+			if ($value['Value'] == 'utf8mb4') {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('good'),
 					'setting' => $value['Value'],
-					'message' => tra('Tiki is fully UTF-8 and so should be every part of the stack.')
+					'message' => tra('Tiki is fully utf8mb4 and so should be every part of the stack.')
 				);
 			} else {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('ugly'),
 					'setting' => $value['Value'],
-					'message' => tra('On a fresh install everything should be set to UTF-8 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+					'message' => tra('On a fresh install everything should be set to utf8mb4 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
 				);
 			}
 		}
@@ -1418,17 +1418,17 @@ if ($connection || ! $standalone) {
 		$query = "SHOW VARIABLES LIKE 'collation_" . $type . "';";
 		$result = query($query, $connection);
 		foreach ($result as $value) {
-			if (substr($value['Value'], 0, 4) == 'utf8') {
+			if (substr($value['Value'], 0, 7) == 'utf8mb4') {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('good'),
 					'setting' => $value['Value'],
-					'message' => tra('Tiki is fully UTF-8 and so should be every part of the stack. utf8_unicode_ci is the default collation for Tiki.')
+					'message' => tra('Tiki is fully utf8mb4 and so should be every part of the stack. utf8mb4_unicode_ci is the default collation for Tiki.')
 				);
 			} else {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('ugly'),
 					'setting' => $value['Value'],
-					'message' => tra('On a fresh install everything should be set to UTF-8 to avoid unexpected results. utf8_unicode_ci is the default collation for Tiki. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+					'message' => tra('On a fresh install everything should be set to utf8mb4 to avoid unexpected results. utf8mb4_unicode_ci is the default collation for Tiki. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
 				);
 			}
 		}

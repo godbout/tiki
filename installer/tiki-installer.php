@@ -215,7 +215,7 @@ function write_local_php($dbb_tiki, $host_tiki, $user_tiki, $pass_tiki, $dbs_tik
 		$filetowrite .= "// \$noroute_url = './';\n";
 		$filetowrite .= "// If you experience text encoding issues after updating (e.g. apostrophes etc showing up as strange characters) \n";
 		$filetowrite .= "// \$client_charset='latin1';\n";
-		$filetowrite .= "// \$client_charset='utf8';\n";
+		$filetowrite .= "// \$client_charset='utf8mb4';\n";
 		$filetowrite .= "// See http://tiki.org/ReleaseNotes5.0#Known_Issues and http://doc.tiki.org/Understanding+Encoding for more info\n\n";
 		$filetowrite .= "// If your php installation does not not have pdo extension\n";
 		$filetowrite .= "// \$api_tiki = 'adodb';\n\n";
@@ -566,7 +566,7 @@ function initTikiDB(&$api, &$driver, $host, $user, $pass, $dbname, $client_chars
 			$dbcon = false;
 		} elseif ($dbcon) {
 			$error = '';
-			$sql = "CREATE DATABASE IF NOT EXISTS `$dbname_clean` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;";
+			$sql = "CREATE DATABASE IF NOT EXISTS `$dbname_clean` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
 			$dbTiki->queryError($sql, $error);
 			if (empty($error)) {
 				Feedback::success(tra("Database `%0` was created.", '', false, [$dbname_clean]));
@@ -639,10 +639,10 @@ function convert_database_to_utf8($dbname)
 	$db = TikiDb::get();
 
 	if ($result = $db->fetchAll('SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ?', $dbname)) {
-		$db->query("ALTER DATABASE `$dbname` CHARACTER SET utf8 COLLATE utf8_unicode_ci");
+		$db->query("ALTER DATABASE `$dbname` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 
 		foreach ($result as $row) {
-			$db->query("ALTER TABLE `{$row['TABLE_NAME']}` CONVERT TO CHARACTER SET utf8 COLLATE utf8_unicode_ci");
+			$db->query("ALTER TABLE `{$row['TABLE_NAME']}` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 		}
 	} else {
 		die('MySQL INFORMATION_SCHEMA not available. Your MySQL version is too old to perform this operation. (convert_database_to_utf8)');
@@ -661,7 +661,7 @@ function fix_double_encoding($dbname, $previous)
 
 	if ($text_fields) {
 		foreach ($text_fields as $field) {
-			$db->query("UPDATE `{$field['TABLE_NAME']}` SET `{$field['COLUMN_NAME']}` = CONVERT(CONVERT(CONVERT(CONVERT(`{$field['COLUMN_NAME']}` USING binary) USING utf8) USING $previous) USING binary)");
+			$db->query("UPDATE `{$field['TABLE_NAME']}` SET `{$field['COLUMN_NAME']}` = CONVERT(CONVERT(CONVERT(CONVERT(`{$field['COLUMN_NAME']}` USING binary) USING utf8mb4) USING $previous) USING binary)");
 		}
 	} else {
 		die('MySQL INFORMATION_SCHEMA not available. Your MySQL version is too old to perform this operation. (fix_double_encoding)');
@@ -914,7 +914,7 @@ if ((
 		Feedback::error(tra('No database name specified'));
 	} else {
 		if (isset($_POST['force_utf8'])) {
-			$client_charset = 'utf8';
+			$client_charset = 'utf8mb4';
 		} else {
 			$client_charset = '';
 		}
@@ -1364,8 +1364,8 @@ if ($install_step == '4') {
 	$smarty->assign('database_charset', $value);
 }
 
-if (((isset($value) && $value == 'utf8') || $install_step == '7') && $db = TikiDB::get()) {
-	$result = $db->fetchAll('SELECT TABLE_COLLATION FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND TABLE_COLLATION NOT LIKE "utf8%"', $dbs_tiki);
+if (((isset($value) && $value == 'utf8mb4') || $install_step == '7') && $db = TikiDB::get()) {
+	$result = $db->fetchAll('SELECT TABLE_COLLATION FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND TABLE_COLLATION NOT LIKE "utf8mb4%"', $dbs_tiki);
 	if (! empty($result)) {
 		$smarty->assign('legacy_collation', $result[0]['TABLE_COLLATION']);
 	}

@@ -345,7 +345,7 @@ class CheckSchemaUpgrade
 		$db = new PDO('mysql:host=' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
 		$db->query('DROP DATABASE IF EXISTS `' . $dbConfig['dbs'] . '`;');
 		$db->query(
-			'CREATE DATABASE `' . $dbConfig['dbs'] . '` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
+			'CREATE DATABASE `' . $dbConfig['dbs'] . '` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'
 		);
 		$db->query('USE `' . $dbConfig['dbs'] . '`');
 		return $db;

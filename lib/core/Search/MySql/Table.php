@@ -142,7 +142,7 @@ class Search_MySql_Table extends TikiDb_Table
 			"CREATE TABLE IF NOT EXISTS $table (
 				`id` INT NOT NULL AUTO_INCREMENT,
 				`object_type` VARCHAR(15) NOT NULL,
-				`object_id` VARCHAR(300) NOT NULL,
+				`object_id` VARCHAR(235) NOT NULL,
 				PRIMARY KEY(`id`),
 				INDEX (`object_type`, `object_id`(160))
 			) ENGINE=MyISAM"
@@ -170,8 +170,8 @@ class Search_MySql_Table extends TikiDb_Table
 		$escapedField = $this->escapeIdentifier($fieldName);
 
 		if ($currentType == 'TEXT' || $currentType == 'text') {
-			$this->schemaBuffer->push("MODIFY COLUMN $escapedField VARCHAR(300)");
-			$this->definition[$fieldName] = 'VARCHAR(300)';
+			$this->schemaBuffer->push("MODIFY COLUMN $escapedField VARCHAR(235)");
+			$this->definition[$fieldName] = 'VARCHAR(235)';
 		}
 
 		$this->schemaBuffer->push("ADD INDEX $escapedIndex ($escapedField)");
