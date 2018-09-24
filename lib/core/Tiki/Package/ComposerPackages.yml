@@ -54,7 +54,7 @@ Mpdf:
   name: mpdf/mpdf
   requiredBy:
     - "Tiki Print"
-  requiredVersion: ^7.0
+  requiredVersion: ^7.1
 mxGraph:
   licence: Apache-2.0
   licenceUrl: "https://github.com/jgraph/mxgraph/blob/master/README.md"
