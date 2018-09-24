@@ -205,8 +205,6 @@ dump/index.php -text
 /group_tracker_ajax.php -text
 /htaccess.sh -text
 img/.htaccess -text
-img/arrow-inverse-left.svg -text
-img/arrow-inverse-right.svg -text
 img/arrows-000000.png -text
 img/avatars/README -text
 img/avatars/index.php -text

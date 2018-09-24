@@ -1,7 +1,5 @@
 {* $Id$ *}
-<div class="actions" style="position: fixed;">
-	<div class="card-header" id="bottom-actions"></div>
-	<div class="container container-content">
+<div class="actions">
 	<input type="hidden" name="no_bl" value="y">
 	<input type="submit" class="wikiaction btn btn-info previewBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
 	{if $page|lower neq 'sandbox' or $tiki_p_admin eq 'y'}
@@ -22,5 +20,4 @@
 			<input type="submit" class="wikiaction btn btn-secondary" title="{tr}Cancel the edit (changes will be lost).{/tr}" name="cancel_edit" value="{tr}Cancel Edit{/tr}" onclick="needToConfirm=false;">
 		{/if}
 	{/if}
-	</div>
 </div>
