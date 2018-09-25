@@ -1,4 +1,4 @@
-<ul class="{if $bs_menu_class}{$bs_menu_class}{else}navbar-nav mr-auto{/if}">
+<ul class="{if $bs_menu_class}{$bs_menu_class}{else}navbar-nav mr-auto{if $prefs.jquery_supermenus_enable eq 'y'} sm{if not empty($prefs.jquery_supermenus_mode)} sm-{$prefs.jquery_supermenus_mode}{/if}{/if}{/if}">
 	{foreach from=$list item=item}
 		{if $item.children|default:null|count}
 			<li class="nav-item dropdown{if $item.selected|default:null} active{/if} {$item.class|escape}">
