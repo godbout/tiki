@@ -205,6 +205,8 @@ dump/index.php -text
 /group_tracker_ajax.php -text
 /htaccess.sh -text
 img/.htaccess -text
+img/arrow-inverse-left.svg -text
+img/arrow-inverse-right.svg -text
 img/arrows-000000.png -text
 img/avatars/README -text
 img/avatars/index.php -text
@@ -5083,6 +5085,7 @@ modules/index.php -text
 modules/mod-func-action_calendar.php -text
 modules/mod-func-action_similarcontent.php -text
 modules/mod-func-addon.php -text
+modules/mod-func-adminbar.php -text
 modules/mod-func-adsense.php -text
 modules/mod-func-article_archives.php -text
 modules/mod-func-article_topics.php -text
@@ -5713,6 +5716,7 @@ templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
 templates/modules/mod-action_similarcontent.tpl -text
 templates/modules/mod-addon.tpl -text
+templates/modules/mod-adminbar.tpl -text
 templates/modules/mod-adsense.tpl -text
 templates/modules/mod-article_archives.tpl -text
 templates/modules/mod-article_topics.tpl -text
