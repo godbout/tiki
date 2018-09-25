@@ -808,7 +808,7 @@ function iconset_default()
 			'android',
 			'angellist',
 			'angle-double-down',
-			'angle-double-left',
+			'ANGLE-double-left',
 			'angle-double-right',
 			'angle-double-up',
 			'angle-down',

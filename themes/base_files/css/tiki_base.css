@@ -2997,7 +2997,8 @@ body.tiki.navbar-padding {
   padding-top: 3.25rem; }
 
 body.layout_social.tiki.navbar-padding {
-  padding-top: 5.25rem; }
+  padding-top: 5.25rem;
+  padding-bottom: 0; }
 
 body.fullscreen.tiki.navbar-padding {
   padding-top: 0; }
