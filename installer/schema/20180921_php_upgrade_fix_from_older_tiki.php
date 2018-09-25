@@ -20,4 +20,3 @@ function upgrade_20180921_php_upgrade_fix_from_older_tiki($installer)
 		$installer->query('ALTER TABLE users_users DROP COLUMN challenge;');
 	}
 }
-
