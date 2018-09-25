@@ -1989,7 +1989,7 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Adds animation effects to CSS "Suckerfish" menus.'),
 			'type' => 'flag',
 			'help' => 'JQuery#Superfish',
-			'default' => 'y',		// Effects on CSS (Suckerfish) menus
+			'default' => 'n',		// Effects on CSS (Suckerfish) menus
 		],
 
 		'feature_jquery_reflection' => [
