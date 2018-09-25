@@ -6984,6 +6984,7 @@ themes/fivealive-lite/options/watermelon/images/watermelon.png -text
 themes/fivealive-lite/options/watermelon/scss/_variables.scss -text
 themes/fivealive-lite/options/watermelon/scss/watermelon.scss -text
 themes/fivealive-lite/scss/_bootstrap-scss-for-options.scss.txt -text
+themes/fivealive-lite/scss/_selectors-for-options.scss -text
 themes/fivealive-lite/scss/_tiki-selector-variables.scss -text
 themes/fivealive-lite/scss/_tiki-selectors-for-options.scss.txt -text
 themes/fivealive-lite/scss/_tiki-selectors.scss -text

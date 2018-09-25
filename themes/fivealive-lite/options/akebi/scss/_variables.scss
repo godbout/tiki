@@ -1,5 +1,12 @@
 // $Id$ Custom variables for the Akebi theme option of the FiveAlive and FiveAlive-lite themes
 
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$light: #18a3bb;
+
+$bg-light: #18a3bb !important;
+
+$link-color: #0b8a98;
+$link-hover-color: #18a3bb;
 $link-color: #0b8a98;
 $link-hover-color: #18a3bb;
 $btn-primary-color: #ffffff;
@@ -38,115 +45,89 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-disabled-hover-border: ;
 // $btn-secondary-badge-color: ;
 // $btn-secondary-badge-bg: ;
-$hr: #18a3bb;
+
+$navbar-dark-color: #fff;
+
+// navbar link hover colors
+$bg-dark-link-hover-color: #f2f2f2;
+$bg-dark-link-hover-bg: #003c4a;
+
+
+$hr-border-color: #18a3bb;
+
+$bg-dark: #117485;
+$bg-light: #0a8794;
+$card-border-color: #169FB6;
 $table-border-color: #1296a9;
-$table-striped-odd-bg: #f9f9f9;
-$table-hover-bg: #1296a9;
+$table-accent-bg: #f9f9f9;
+$table-hover-bg: #f5f5f5;
+
 $input-color: #555555;
-$input-bg: #f5f5f5;
-$input-border: #f8f9d4;
-$navbar-light-bg: #18a3bb;
-$navbar-light-brand-hover-color: #e6e6e6;
-$navbar-light-hover-color: #f9f9f9;
-$navbar-light-hover-bg: #14899e;
-$navbar-light-active-bg: #14899e;
-$navbar-light-toggle-border: #dddddd;
-$navbar-light-toggle-hover: #dddddd;
-$navbar-light-toggle-icon-bar-bg: #888888;
-$navbar-light-open-a-bg: #14899e;
-$navbar-light-open-dropdown-menu-li-link-hover: #f9f9f9;
-$navbar-light-open-dropdown-menu-li-bg-hover: #14899e;
-$navbar-light-open-dropdown-active-a-bg: #14899e;
-$navbar-light-link-hover-color: #f9f9f9;
-$navbar-dark-bg: #117485;
-$navbar-dark-border: #0b4c58;
-$navbar-dark-brand-color: #eeeeee;
-$navbar-dark-color: #eeeeee;
-$navbar-dark-link-color: #eeeeee;
-$navbar-dark-active-color: #0b4c58;
-$navbar-dark-disabled-color: #444444;
-$navbar-dark-toggle-border-color: #333333;
-$navbar-dark-toggle-hover-bg: #333333;
-$navbar-dark-collapse-border: #0d5865;
-$dropdown-bg: #18a3bb;
+$input-bg: #ddf8f9;
+$input-border: #b4f3fb;
+$input-border-top-color: #83c5ce;
+$input-border-right-color: #fff;
+$input-border-bottom-color: #fff;
+$input-border-left-color: #83c5ce;
+
+$dropdown-bg: #005064;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
+
+$dropdown-link-color: #ffffff;
 $dropdown-link-hover-color: #f2f2f2;
 $dropdown-link-hover-bg: #003c4a;
-$dropdown-link-active-color: #ffffff;
+$dropdown-link-active-color: red;
 $dropdown-link-active-bg: #0b8a98;
-$dropdown-link-disabled-color: #999999;
-$nav-pills-link-active-color: #ffffff;
-$nav-pills-active-link-hover-bg: #0b8a98;
+$dropdown-link-disabled-color: #f2f2f2;
+$dropdown-header-color: #ffffff;
+$dropdown-divider-bg: $dropdown-bg;
+
+$nav-tabs-link-color: #000;
+$nav-tabs-link-bg: $input-bg;
+$nav-tabs-link-active-color: #fff;
+$nav-tabs-link-active-bg: $dropdown-link-hover-bg;
+
+
+$nav-pills-link-active-bg: #0b8a98;
 $pagination-color: #0b8a98;
 $pagination-bg: #ffffff;
 $pagination-border-color: #dddddd;
 $pagination-hover-color: #18a3bb;
 $pagination-hover-bg: #eeeeee;
 $pagination-hover-border-color: #dddddd;
-$pagination-active-bg-color: #0b8a98;
+$pagination-active-bg: #0b8a98;
 $pagination-active-border-color: #0b8a98;
-$pagination-disabled-bg-color: #999999;
+$pagination-disabled-color: #999999;
 $pagination-disabled-bg: #ffffff;
-$pagination-disabled-border: #dddddd;
-$card-bg: #ffffff;
-$card-inner-border: transparent;
-$card-footer-bg: #f5f5f5;
-$card-inner-border: #dddddd;
+$pagination-disabled-border-color: #dddddd;
 
-$label-color: #ffffff;
-$label-link-hover-color: #ffffff;
-$label-primary-bg: #0b8a98;
-$label-primary-hover-bg: #085f68;
-$label-success-bg: #5cb85c;
-$label-success-hover-bg: #449d44;
-$label-info-bg: #5bc0de;
-$label-info-link-bg: #31b0d5;
-$label-warning-bg: #f0ad4e;
-$label-warning-hover-bg: #ec971f;
-$label-danger-bg: #d9534f;
-$label-danger-hover-bg: #c9302c;
-$middle-outer-shadow-color: #18a3bb;
-$topbar-bg: #18a3bb;
-$topbar-link-color: #ffffff;
-$navbar-collapse-in-bg: #18a3bb;
-$navbar-open-dropdown-bg: #19a5be;
-$cssmenu-ul-bg: #18a3bb;
-$cssmenu-ul-border: #cccccc;
-$cssmenu-ul-border-rgba: rgba(0, 0, 0, 0.15);
-$cssmenu-ul-shadow-color: rgba(0, 0, 0, 0.175);
-$cssmenu-ul-link-color: #ffffff;
-$cssmenu-ul-link-bg: #18a3bb;
-$cssmenu-li-selected-link-color: #003c4a;
-$cssmenu-li-link-hover-color: #f2f2f2;
-$cssmenu-li-link-hover-bg: #18a3bb;
-$topbar-cssmenu-li-link-hover-color: #14899e;
-$topbar-cssmenu-li-link-color: #ffffff;
-$sf-arrows-color: #0b8a98;
-$sf-arrows-ul-color: #ffffff;
-$sf-arrows-ul-li-color: #f2f2f2;
-$cssmenu-vert-sf-arrows-li-color: #f2f2f2;
-$header-outer-bg: #117485;
-$header-outer-border-bottom-color: #000000;
-$input-border-top: #b4f3fb;
-$input-border-right: #ffffff;
-$input-border-bottom: #ffffff;
-$input-order-left: #b4f3fb;
-$input-bg: #f8f9d4;
-$col2-card-header-border: #19a5be;
-$col2-card-header-link-color: #19a5be;
-$footer-bg: #000000;
-$footer-color: #ffffff;
-$footer-border-top-color: #19a5be;
-$footer-border-bottom-color: #19a5be;
-$footer-card-title-color: #ffffff;
-$footer-card-title-border: #19a5be;
-$footer-btn-primary-color: #e6e6e6;
-$postbody-title-card-title-a-color: #ffffff;
-$siteloginbar-popup-dropdown-li-color: #ffffff;
-$highlight-bg: #f2dede;
-$highlight-color: #a94442;
-$highlight-border: #ebccd1;
-$btn-primary-highlight-hover-bg: #dca7a7;
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
+$bg-light-alt: #117485 !important;
+
+$side-column-heading-color: #169FB6;
+
+$middle_outer-inset-shadow-bg: #063035;
+$footer_liner-card-inner-border: #19a5be;
+
+$footer-accent-color: #19a5be;
+$footer-btn-secondary-color: #f4f4f4;
+$footer_liner-border-color: $footer-accent-color;
+
+$autotoc-nav-bg: #005064;
+$autotoc-color: #ffffff;
+$autotoc-nav-link-hover-color: #f2f2f2;
+$autotoc-nav-link-hover-bg: #2e1f39;
+
+// - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
+
+.header_outer,
+.layout_basic #top_modules,
+.postbody-title,
+.tiki > .navbar.fixed-top.bg-light/*,
+.tiki > .fixed-top.bg-light*/ {
+}
+
 $chosen-container-multi-choices-bg: #ffffff;
 $chosen-container-multi-choices-color: #555555;
 $chosen-container-multi-choices-border: #b4f3fb;
@@ -162,3 +143,4 @@ $autotoc-nav-border: #19a5be;
 $autotoc-color: #0b8a98;
 $autotoc-nav-li-link-hover-color: #f2f2f2;
 $autotoc-nav-li-link-hover-bg: #003c4a;
+$middle_outer-inset-shadow-bg: #18a3bb;

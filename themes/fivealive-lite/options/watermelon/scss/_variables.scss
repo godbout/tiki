@@ -1,5 +1,6 @@
 // $Id$ Custom variables for the Watermelon theme option of the FiveAlive and FiveAlive-lite themes
 
+$bg-dark: #a51e37;
 $link-color: #c21e3b;
 $link-hover-color: #e10c7c;
 $btn-primary-color: #ffffff;
@@ -38,115 +39,99 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-disabled-hover-border: ;
 // $btn-secondary-badge-color: ;
 // $btn-secondary-badge-bg: ;
-$hr: #e10c7c;
-$table-border-color: #e7768a;
-$table-striped-odd-bg: #f9f9f9;
-$table-hover-bg: #e7768a;
+
+$navbar-dark-color: #fff;
+
+// navbar link hover colors
+$bg-dark-link-hover-color: #f2f2f2;
+$bg-dark-link-hover-bg: #003c4a;
+
+
+$hr-border-color: #f459ab;
+
+$bg-dark: #a51e37;
+$bg-light: #e71e40;
+$card-border-color: #49006c;
+$table-border-color: #f459ab;
+$table-accent-bg: #f9f9f9;
+$table-hover-bg: #f5f5f5;
+
 $input-color: #555555;
-$input-bg: #f5f5f5;
-$input-border: #f9dfe2;
-$navbar-light-bg: #e10c7c;
-$navbar-light-brand-hover-color: #e6e6e6;
-$navbar-light-hover-color: #f9f9f9;
-$navbar-light-hover-bg: #a61a32;
-$navbar-light-active-bg: #a61a32;
-$navbar-light-toggle-border: #dddddd;
-$navbar-light-toggle-hover: #dddddd;
-$navbar-light-toggle-icon-bar-bg: #888888;
-$navbar-light-open-a-bg: #a61a32;
-$navbar-light-open-dropdown-menu-li-link-hover: #f9f9f9;
-$navbar-light-open-dropdown-menu-li-bg-hover: #a61a32;
-$navbar-light-open-dropdown-active-a-bg: #a61a32;
-$navbar-light-link-hover-color: #f9f9f9;
-$navbar-dark-bg: #a51e37;
-$navbar-dark-border: #7a1629;
-$navbar-dark-brand-color: #eeeeee;
-$navbar-dark-color: #eeeeee;
-$navbar-dark-link-color: #eeeeee;
-$navbar-dark-active-color: #7a1629;
-$navbar-dark-disabled-color: #444444;
-$navbar-dark-toggle-border-color: #333333;
-$navbar-dark-toggle-hover-bg: #333333;
-$navbar-dark-collapse-border: #87192d;
-$dropdown-bg: #e10c7c;
+$input-bg: #f9dcec;
+$input-border: #fa9ccd;
+$input-border-top-color: #fa9ccd;
+$input-border-right-color: #fcf6f9;
+$input-border-bottom-color: #fcf6f9;
+$input-border-left-color: #fa9ccd;
+
+$dropdown-bg: #e60b7f; // #771437
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
-$dropdown-link-hover-color: #f2f2f2;
-$dropdown-link-hover-bg: #76142a;
+
+$dropdown-link-color: #ffffff;
+$dropdown-link-hover-color: #f9f9f9;
+$dropdown-link-hover-bg: #c6096e; // #61102d
 $dropdown-link-active-color: #ffffff;
-$dropdown-link-active-bg: #c21e3b;
-$dropdown-link-disabled-color: #999999;
-$nav-pills-link-active-color: #ffffff;
-$nav-pills-active-link-hover-bg: #c21e3b;
-$pagination-color: #c21e3b;
+$dropdown-link-active-bg: #c6096e; // #61102d
+$dropdown-link-disabled-color: #f2f2f2;
+$dropdown-header-color: #ffffff;
+$dropdown-divider-bg: $dropdown-bg;
+
+$nav-tabs-link-color: #000;
+$nav-tabs-link-bg: $input-bg;
+$nav-tabs-link-active-color: #fff;
+$nav-tabs-link-active-bg: $dropdown-link-hover-bg;
+
+$nav-pills-link-active-bg: #b51360;
+$pagination-color: #b51360;
 $pagination-bg: #ffffff;
 $pagination-border-color: #dddddd;
-$pagination-hover-color: #e10c7c;
+$pagination-hover-color: #b51360;
 $pagination-hover-bg: #eeeeee;
 $pagination-hover-border-color: #dddddd;
-$pagination-active-bg-color: #c21e3b;
-$pagination-active-border-color: #c21e3b;
-$pagination-disabled-bg-color: #999999;
+$pagination-active-bg: #b51360;
+$pagination-active-border-color: #b51360;
+$pagination-disabled-color: #999999;
 $pagination-disabled-bg: #ffffff;
-$pagination-disabled-border: #dddddd;
-$card-bg: #ffffff;
-$card-inner-border: transparent;
-$card-footer-bg: #f5f5f5;
-$card-inner-border: #dddddd;
+$pagination-disabled-border-color: #dddddd;
 
-$label-color: #ffffff;
-$label-link-hover-color: #ffffff;
-$label-primary-bg: #c21e3b;
-$label-primary-hover-bg: #96172e;
-$label-success-bg: #5cb85c;
-$label-success-hover-bg: #449d44;
-$label-info-bg: #5bc0de;
-$label-info-link-bg: #31b0d5;
-$label-warning-bg: #f0ad4e;
-$label-warning-hover-bg: #ec971f;
-$label-danger-bg: #d9534f;
-$label-danger-hover-bg: #c9302c;
-$middle-outer-shadow-color: #e10c7c;
-$topbar-bg: #e10c7c;
-$topbar-link-color: #ffffff;
-$navbar-collapse-in-bg: #e10c7c;
-$navbar-open-dropdown-bg: #e71e40;
-$cssmenu-ul-bg: #e10c7c;
-$cssmenu-ul-border: #cccccc;
-$cssmenu-ul-border-rgba: rgba(0, 0, 0, 0.15);
-$cssmenu-ul-shadow-color: rgba(0, 0, 0, 0.175);
-$cssmenu-ul-link-color: #ffffff;
-$cssmenu-ul-link-bg: #e10c7c;
-$cssmenu-li-selected-link-color: #76142a;
-$cssmenu-li-link-hover-color: #f2f2f2;
-$cssmenu-li-link-hover-bg: #e10c7c;
-$topbar-cssmenu-li-link-hover-color: #a61a32;
-$topbar-cssmenu-li-link-color: #ffffff;
-$sf-arrows-color: #c21e3b;
-$sf-arrows-ul-color: #ffffff;
-$sf-arrows-ul-li-color: #f2f2f2;
-$cssmenu-vert-sf-arrows-li-color: #f2f2f2;
-$header-outer-bg: #a51e37;
-$header-outer-border-bottom-color: #000000;
-$input-border-top: #fb999e;
-$input-border-right: #ffffff;
-$input-border-bottom: #ffffff;
-$input-order-left: #fb999e;
-$input-bg: #f9dfe2;
-$col2-card-header-border: #e71e40;
-$col2-card-header-link-color: #e71e40;
-$footer-bg: #000000;
-$footer-color: #ffffff;
-$footer-border-top-color: #e71e40;
-$footer-border-bottom-color: #e71e40;
-$footer-card-title-color: #ffffff;
-$footer-card-title-border: #e71e40;
-$footer-btn-primary-color: #e6e6e6;
-$postbody-title-card-title-a-color: #ffffff;
-$siteloginbar-popup-dropdown-li-color: #ffffff;
-$highlight-bg: #f2dede;
-$highlight-color: #a94442;
-$highlight-border: #ebccd1;
-$btn-primary-highlight-hover-bg: #dca7a7;
+$theme-colors: (
+		"light":			#e71e40,
+		"dark":				#a51e37
+);
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
+$bg-light-alt: #117485 !important;
+
+$side-column-heading-color: #49006c;
+
+$middle_outer-inset-shadow-bg: #35061d;
+$footer_liner-card-inner-border: #b51360;
+
+$footer-accent-color: #b51360;
+$footer-btn-secondary-color: #f4f4f4;
+$footer_liner-border-color: $footer-accent-color;
+
+$autotoc-nav-bg: #771437;
+$autotoc-color: #ffffff;
+$autotoc-nav-link-hover-color: #f2f2f2;
+$autotoc-nav-link-hover-bg: #61102d;
+
+// - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
+
+.header_outer,
+.layout_basic #top_modules,
+.postbody-title,
+.tiki > .navbar.fixed-top.bg-light/*,
+.tiki > .fixed-top.bg-light*/ {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b3135f+0,b61261+9,c21069+18,e70b80+69,ea0a81+100 */
+  background: #b3135f; /* Old browsers */
+  background: -moz-linear-gradient(left,  #b3135f 0%, #b61261 9%, #c21069 18%, #e70b80 69%, #ea0a81 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #b3135f 0%,#b61261 9%,#c21069 18%,#e70b80 69%,#ea0a81 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #b3135f 0%,#b61261 9%,#c21069 18%,#e70b80 69%,#ea0a81 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3135f', endColorstr='#ea0a81',GradientType=1 ); /* IE6-9 */
+}
+
+//.bg-dark {background: #35061d !important; }
 $chosen-container-multi-choices-bg: #ffffff;
 $chosen-container-multi-choices-color: #555555;
 $chosen-container-multi-choices-border: #fb999e;
@@ -162,4 +147,4 @@ $autotoc-nav-border: #e71e40;
 $autotoc-color: #c21e3b;
 $autotoc-nav-li-link-hover-color: #f2f2f2;
 $autotoc-nav-li-link-hover-bg: #76142a;
-
+$middle_outer-inset-shadow-bg: #e71e40;

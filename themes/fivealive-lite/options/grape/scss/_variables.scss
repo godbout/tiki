@@ -1,6 +1,13 @@
 // $Id$ Custom variables for the Kiwi theme option of the FiveAlive and FiveAlive-lite themes
 // These FiveAlive-lite Grape theme option variables are applied to fivealive-lite/scss/fivealive-lite_option_selectors.scss.
 
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$light: #a02871;
+
+$bg-light: #a02871 !important;
+
+$link-color: #a02871;
+$link-hover-color: #a02871;
 $link-color: #8e286a;
 $link-hover-color: #a02871;
 $btn-primary-color: #ffffff;
@@ -39,115 +46,97 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-disabled-hover-border: ;
 // $btn-secondary-badge-color: ;
 // $btn-secondary-badge-bg: ;
-$hr: #a02871;
+
+$navbar-dark-color: #fff;
+
+// navbar link hover colors
+$bg-dark-link-hover-color: #f2f2f2;
+$bg-dark-link-hover-bg: #003c4a;
+
+
+$hr-border-color: #a02871;
+
+$bg-dark: #8e286a;
+
+$card-border-color: #bc2f84;
+$bg-light: #f4dded;
 $table-border-color: #a82a76;
-$table-striped-odd-bg: #f9f9f9;
-$table-hover-bg: #a82a76;
-$input-color: #f5f5f5;
-$input-bg: #555555;
-$input-border: #f8f9d4;
-$navbar-light-bg: #a02871;
-$navbar-light-brand-hover-color: #e6e6e6;
-$navbar-light-hover-color: #f9f9f9;
-$navbar-light-hover-bg: #742157;
-$navbar-light-active-bg: #742157;
-$navbar-light-toggle-border: #dddddd;
-$navbar-light-toggle-hover: #dddddd;
-$navbar-light-toggle-icon-bar-bg: #888888;
-$navbar-light-open-a-bg: #742157;
-$navbar-light-open-dropdown-menu-li-link-hover: #f9f9f9;
-$navbar-light-open-dropdown-menu-li-bg-hover: #742157;
-$navbar-light-open-dropdown-active-a-bg: #742157;
-$navbar-light-link-hover-color: #f9f9f9;
-$navbar-dark-bg: #5e1b46;
-$navbar-dark-border: #360f29;
-$navbar-dark-brand-color: #eeeeee;
-$navbar-dark-color: #eeeeee;
-$navbar-dark-link-color: #eeeeee;
-$navbar-dark-active-color: #360f29;
-$navbar-dark-disabled-color: #444444;
-$navbar-dark-toggle-border-color: #333333;
-$navbar-dark-toggle-hover-bg: #333333;
-$navbar-dark-collapse-border: #421332;
+$table-accent-bg: #f9f9f9;
+$table-hover-bg: #f5f5f5;
+
+$input-color: #555555;
+$input-bg: #f4dded;
+$input-border: #e4afd3;
+$input-border-top-color: #e4afd3;
+$input-border-right-color: #fff;
+$input-border-bottom-color: #fff;
+$input-border-left-color: #e4afd3;
+
 $dropdown-bg: #a02871;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
-$dropdown-link-hover-color: #f2f2f2;
-$dropdown-link-hover-bg: #2e1f39;
-$dropdown-link-active-color: #ffffff;
-$dropdown-link-active-bg: #8e286a;
-$dropdown-link-disabled-color: #999999;
-$nav-pills-link-active-color: #ffffff;
-$nav-pills-active-link-hover-bg: #8e286a;
-$pagination-color: #8e286a;
+
+$dropdown-link-color: #ffffff;
+$dropdown-link-hover-color: #f9f9f9;
+$dropdown-link-hover-bg: #742157;
+$dropdown-link-active-color: red;
+$dropdown-link-active-bg: #742157;
+$dropdown-link-disabled-color: #f2f2f2;
+$dropdown-header-color: #ffffff;
+$dropdown-divider-bg: $dropdown-bg;
+
+$nav-tabs-link-color: #000;
+$nav-tabs-link-bg: $input-bg;
+$nav-tabs-link-active-color: #fff;
+$nav-tabs-link-active-bg: $dropdown-link-hover-bg;
+
+
+$nav-pills-link-active-bg: #a02871;
+$pagination-color: #a02871;
 $pagination-bg: #ffffff;
 $pagination-border-color: #dddddd;
 $pagination-hover-color: #a02871;
 $pagination-hover-bg: #eeeeee;
 $pagination-hover-border-color: #dddddd;
-$pagination-active-bg-color: #8e286a;
-$pagination-active-border-color: #8e286a;
-$pagination-disabled-bg-color: #999999;
+$pagination-active-bg: #a02871;
+$pagination-active-border-color: #a02871;
+$pagination-disabled-color: #999999;
 $pagination-disabled-bg: #ffffff;
-$pagination-disabled-border: #dddddd;
-$card-bg: #ffffff;
-$card-inner-border: transparent;
-$card-footer-bg: #f5f5f5;
-$card-inner-border: #dddddd;
+$pagination-disabled-border-color: #dddddd;
 
-$label-color: #ffffff;
-$label-link-hover-color: #ffffff;
-$label-primary-bg: #8e286a;
-$label-primary-hover-bg: #661d4c;
-$label-success-bg: #5cb85c;
-$label-success-hover-bg: #449d44;
-$label-info-bg: #5bc0de;
-$label-info-link-bg: #31b0d5;
-$label-warning-bg: #f0ad4e;
-$label-warning-hover-bg: #ec971f;
-$label-danger-bg: #d9534f;
-$label-danger-hover-bg: #c9302c;
-$middle-outer-shadow-color: #a02871;
-$topbar-bg: #a02871;
-$topbar-link-color: #ffffff;
-$navbar-collapse-in-bg: #a02871;
-$navbar-open-dropdown-bg: #8e286a;
-$cssmenu-ul-bg: #a02871;
-$cssmenu-ul-border: #cccccc;
-$cssmenu-ul-border-rgba: rgba(0, 0, 0, 0.15);
-$cssmenu-ul-shadow-color: rgba(0, 0, 0, 0.175);
-$cssmenu-ul-link-color: #ffffff;
-$cssmenu-ul-link-bg: #a02871;
-$cssmenu-li-selected-link-color: #2e1f39;
-$cssmenu-li-link-hover-color: #f2f2f2;
-$cssmenu-li-link-hover-bg: #a02871;
-$topbar-cssmenu-li-link-hover-color: #742157;
-$topbar-cssmenu-li-link-color: #ffffff;
-$sf-arrows-color: #8e286a;
-$sf-arrows-ul-color: #ffffff;
-$sf-arrows-ul-li-color: #f2f2f2;
-$cssmenu-vert-sf-arrows-li-color: #f2f2f2;
-$header-outer-bg: #5e1b46;
-$header-outer-border-bottom-color: #000000;
-$input-border-top: #e4afd3;
-$input-border-right: #ffffff;
-$input-border-bottom: #ffffff;
-$input-order-left: #e4afd3;
-$input-bg: #f4dded;
-$col2-card-header-border: #8e286a;
-$col2-card-header-link-color: #8e286a;
-$footer-bg: #000000;
-$footer-color: #ffffff;
-$footer-border-top-color: #8e286a;
-$footer-border-bottom-color: #8e286a;
-$footer-card-title-color: #ffffff;
-$footer-card-title-border: #8e286a;
-$footer-btn-primary-color: #e6e6e6;
-$postbody-title-card-title-a-color: #ffffff;
-$siteloginbar-popup-dropdown-li-color: #ffffff;
-$highlight-bg: #f2dede;
-$highlight-color: #a94442;
-$highlight-border: #ebccd1;
-$btn-primary-highlight-hover-bg: #dca7a7;
+$theme-colors: (
+		"light":			#ffffff,
+		"dark":				#261122
+);
+
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
+//$bg-light-alt: #117485 !important;
+
+$side-column-heading-color: #bc2f84;
+
+$middle_outer-inset-shadow-bg: #8e286a;
+$footer_liner-card-inner-border: #a52873;
+
+$footer-accent-color: $input-border;
+$footer-btn-secondary-color: #f4f4f4;
+$footer_liner-border-color: $footer-accent-color;
+
+$autotoc-nav-bg: #a02871;
+$autotoc-color: #ffffff;
+$autotoc-nav-link-hover-color: #f2f2f2;
+$autotoc-nav-link-hover-bg: #3b284a;
+
+// - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
+
+.header_outer,
+.layout_basic #top_modules,
+.postbody-title,
+.tiki > .navbar.fixed-top.bg-light/*,
+.tiki > .fixed-top.bg-light*/ {
+
+}
+
+$enable-gradients: true;
 $chosen-container-multi-choices-bg: #ffffff;
 $chosen-container-multi-choices-color: #555555;
 $chosen-container-multi-choices-border: #e4afd3;
@@ -163,3 +152,4 @@ $autotoc-nav-border: #8e286a;
 $autotoc-color: #8e286a;
 $autotoc-nav-li-link-hover-color: #f2f2f2;
 $autotoc-nav-li-link-hover-bg: #2e1f39;
+$middle_outer-inset-shadow-bg: #8e286a;
