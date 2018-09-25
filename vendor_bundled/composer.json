@@ -27,6 +27,7 @@
 		"cweagans/composer-patches": "^1.6",
 		"css-tricks/anythingslider-themes": "^1.4.1",
 		"cwspear/bootstrap-hover-dropdown": "^2.2.1",
+		"drmonty/smartmenus": ">=1.1.0",
 		"evert/sitemap-php": "^1.2",
 		"ezyang/htmlpurifier": "^4.8.0",
 		"bower-asset/fontawesome": "^5.3.1",

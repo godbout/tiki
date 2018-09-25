@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8dd7b64ddac91fa39cb04bc6417550dd",
+    "content-hash": "fec7f4564d6c1360d9e474ad3a6a38d0",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -824,6 +824,52 @@
                 "twitter"
             ],
             "time": "2015-12-01T23:35:57+00:00"
+        },
+        {
+            "name": "drmonty/smartmenus",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mrohnstock/smartmenus.git",
+                "reference": "0ae42a969723f09c6f53e90e9c8c112614856035"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/drmonty/smartmenus/drmonty-smartmenus-0ae42a969723f09c6f53e90e9c8c112614856035-zip-1e0661.zip",
+                "reference": "0ae42a969723f09c6f53e90e9c8c112614856035",
+                "shasum": "2f980d6831345bcd72d82aec519e31ab59248d8b"
+            },
+            "require": {
+                "components/jquery": ">=1.7.0"
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "js/*.js"
+                    ],
+                    "files": [
+                        "js/*.js",
+                        "css/*.css"
+                    ],
+                    "shim": {
+                        "deps": [
+                            "jquery"
+                        ]
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "jQuery website menu plugin. Responsive and accessible list-based website menus that work on all devices.",
+            "homepage": "http://www.smartmenus.org",
+            "keywords": [
+                "dropdown",
+                "ui"
+            ],
+            "time": "2017-09-18T08:01:28+00:00"
         },
         {
             "name": "evert/sitemap-php",
