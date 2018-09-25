@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS  `tiki_banning` (
   `date_to` timestamp NULL DEFAULT NULL,
   `use_dates` char(1)  DEFAULT NULL,
   `created` int(14) DEFAULT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci,
+  `message` text,
   PRIMARY KEY (`banId`),
   KEY `ban` (`use_dates`,`date_from`,`date_to`)
 ) ENGINE=MyISAM;
