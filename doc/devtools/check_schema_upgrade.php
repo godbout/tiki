@@ -553,16 +553,23 @@ class CheckSchemaUpgrade
 		// remove messages from action log (are not part of the schema)
 		$dbConnection->exec("DELETE FROM `tiki_actionlog`");
 
-		if ($whatDb == self::DB_OLD) {
-			// reload tiki_menu_options in the upgraded tiki to account for the case where an old entry is removed
-			$dbConnection->exec("CREATE TABLE  `tiki_menu_options_tmp` AS SELECT * FROM `tiki_menu_options` ORDER BY optionId ASC");
-			$dbConnection->exec("ALTER TABLE `tiki_menu_options_tmp` CHANGE COLUMN optionId optionId int NULL");
-			$dbConnection->exec("UPDATE  `tiki_menu_options_tmp` SET optionId=NULL");
-			$dbConnection->exec("DELETE FROM `tiki_menu_options`");
-			$dbConnection->exec("ALTER TABLE `tiki_menu_options` AUTO_INCREMENT = 1");
-			$dbConnection->exec("INSERT INTO `tiki_menu_options` SELECT * FROM `tiki_menu_options_tmp`");
-			$dbConnection->exec("DROP TABLE `tiki_menu_options_tmp`");
-		}
+		// reload tiki_menu_options in the upgraded tiki to account for the case where an old entry is removed
+		$dbConnection->exec("CREATE TABLE  `tiki_menu_options_tmp` AS SELECT * FROM `tiki_menu_options` ORDER BY menuId,type,name,url,position");
+		$dbConnection->exec("ALTER TABLE `tiki_menu_options_tmp` CHANGE COLUMN optionId optionId int NULL");
+		$dbConnection->exec("UPDATE  `tiki_menu_options_tmp` SET optionId=NULL");
+		$dbConnection->exec("DELETE FROM `tiki_menu_options`");
+		$dbConnection->exec("ALTER TABLE `tiki_menu_options` AUTO_INCREMENT = 1");
+		$dbConnection->exec("INSERT INTO `tiki_menu_options` SELECT * FROM `tiki_menu_options_tmp`");
+		$dbConnection->exec("DROP TABLE `tiki_menu_options_tmp`");
+
+		// reload tiki_actionlog_conf in the upgraded tiki to account for the case where an old entry is removed
+		$dbConnection->exec("CREATE TABLE  `tiki_actionlog_conf_tmp` AS SELECT * FROM `tiki_actionlog_conf` ORDER BY action,objectType,status");
+		$dbConnection->exec("ALTER TABLE `tiki_actionlog_conf_tmp` CHANGE COLUMN id id int NULL");
+		$dbConnection->exec("UPDATE  `tiki_actionlog_conf_tmp` SET id=NULL");
+		$dbConnection->exec("DELETE FROM `tiki_actionlog_conf`");
+		$dbConnection->exec("ALTER TABLE `tiki_actionlog_conf` AUTO_INCREMENT = 1");
+		$dbConnection->exec("INSERT INTO `tiki_actionlog_conf` SELECT * FROM `tiki_actionlog_conf_tmp`");
+		$dbConnection->exec("DROP TABLE `tiki_actionlog_conf_tmp`");
 	}
 
 	/**
