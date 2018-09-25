@@ -142,7 +142,6 @@ ALTER TABLE `tiki_page_footnotes` CHANGE `data` `data` text COLLATE utf8mb4_unic
 ALTER TABLE `tiki_pages` CHANGE `data` `data` mediumtext COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `tiki_pages` CHANGE `keywords` `keywords` text COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `tiki_payment_received` CHANGE `details` `details` text COLLATE utf8mb4_unicode_ci;
-ALTER TABLE `tiki_payment_requests` CHANGE `due_date` `due_date` datetime DEFAULT NULL;
 ALTER TABLE `tiki_payment_requests` CHANGE `actions` `actions` text COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `tiki_rss_modules` CHANGE `description` `description` text COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `tiki_scheduler` CHANGE `params` `params` text COLLATE utf8mb4_unicode_ci;
