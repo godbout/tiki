@@ -1687,6 +1687,7 @@
 		"desandro/masonry": ">=4.1.1",
 		"doctrine/instantiator": ">=1.0.5",
 		"dompdf/dompdf": ">=0.6.1",
+		"drmonty/smartmenus": ">=1.1.0",
 		"enygma/expose": "^3.0",
 		"evert/sitemap-php": ">=1.2.0",
 		"ezyang/htmlpurifier": ">=4.5.0",
