@@ -138,7 +138,7 @@
 		</ul>
 	</div>
 	{if $include != "list_sections"}
-		<div class="adminanchors card-body bg-light"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div>
+		<div class="adminanchors card"><div class="card-body"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div></div>
 	{/if}
 </nav>
 
