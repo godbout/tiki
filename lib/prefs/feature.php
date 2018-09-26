@@ -551,7 +551,7 @@ function prefs_feature_list($partial = false)
 			'tags' => ['basic'],
 		],
 		'feature_comments_post_as_anonymous' => [
-			'name' => tra('Allow logged-in users to post commments anonymously'),
+			'name' => tra('Allow logged-in users to post comments anonymously'),
 			'description' => tra('This can be used to encourage honest feedback without self-censorship, such as in a forum for brainstorming or feedback for improvement.'),
 			'help' => 'Comments',
 			'type' => 'flag',
