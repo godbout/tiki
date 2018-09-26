@@ -249,7 +249,7 @@ function wikiplugin_slideshow($data, $params)
 	if(strstr($_SERVER['PHP_SELF'],'tiki-slideshow.php')=='') {
 		if (strstr($_SERVER['PHP_SELF'], 'tiki-index.php')) {
 			return '<a class="btn btn-primary hidden-print" data-role="button" data-inline="true" title="Start Slideshow" href="./tiki-slideshow.php?page='
-				. $_REQUEST['page'] . '">Click here to start presentation</a>';
+				. $_REQUEST['page'] . '">'.tr('Click here to start presentation').'</a>';
 		}
 		return;
 	}
