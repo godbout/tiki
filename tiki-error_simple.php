@@ -19,7 +19,15 @@ if (! empty($_REQUEST['title'])) {
 	$title = 'Maintenance';
 }
 
-$login = '<form name="loginbox" action="tiki-login.php?page=tikiIndex" method="post"><table><tr><td>' . 'User:</td><td><input type="text" name="user"  size="20" /></td></tr><tr><td>' . 'Pass:</td><td><input type="password" name="pass" size="20" /></td></tr><tr><td style="text-align: center;" colspan="2"><input type="submit" name="login" value="login" class="btn btn-default" /></td></tr></table></form>';
+session_start();
+$ticket = strtr(str_replace('=', '', base64_encode(\phpseclib\Crypt\Random::string(32))), '+/', '-_');
+$_SESSION['tickets'][$ticket] = time();
+
+$login = '<form name="loginbox" action="tiki-login.php?page=tikiIndex" method="post"><table><tr><td>' .
+	'User:</td><td><input type="text" name="user"  size="20" /></td></tr><tr><td>' .
+	'Pass:</td><td><input type="password" name="pass" size="20" /></td></tr><tr><td style="text-align: center;" colspan="2">'.
+	'<input type="hidden" class="ticket" name="ticket" value="' . $ticket . '" /><input type="hidden" name="confirmForm" value="y" />'.
+	'<input type="submit" name="login" value="login" class="btn btn-default" /></td></tr></table></form>';
 
 $back = '<p><a href="javascript:history.back()">Go back</a></p>';
 
