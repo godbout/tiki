@@ -20,6 +20,11 @@ nav.fixed-top {
   border-bottom: 5px solid #000;
 }
 
+.navbar.navbar-dark.bg-dark.fixed-top,
+.navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {
+	background: $navbar-fixed-top-bg !important;
+}
+
 .bg-dark,
 .header_outer,
 .layout_basic .page-header > .top_modules,

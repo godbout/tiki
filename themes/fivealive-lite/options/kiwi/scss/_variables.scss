@@ -53,7 +53,8 @@ $bg-dark-link-hover-bg: #003c4a;
 
 $hr-border-color: #baba25;
 
-$bg-dark: #96a032;
+$navbar-fixed-top-bg: #96a032;
+$bg-dark: #96a032; .bg-dark { background: $bg-dark !important; }
 $bg-light: #baba25;
 $card-border-color: #cdbe23;
 $table-border-color: #dbd11a;

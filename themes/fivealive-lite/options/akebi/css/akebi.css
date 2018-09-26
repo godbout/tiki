@@ -10,11 +10,14 @@
 nav.fixed-top {
   border-bottom: 5px solid #000; }
 
+.navbar.navbar-dark.bg-dark.fixed-top, .navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {
+  background: #117485 !important; }
+
 .bg-dark, .header_outer, .layout_basic .page-header > .top_modules, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
   background: #18a3bb; }
 
 .bg-dark {
-  background-color: #117485 !important; }
+  background-color: #18a3bb !important; }
 
 a, .btn-link {
   color: #0b8a98; }
@@ -259,7 +262,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
   font-size: 20px; }
 
 .postbody .card-header {
-  background: #0a8794; }
+  background: #18a3bb; }
 
 .siteloginbar_popup .dropdown-menu > li > a {
   color: #fff; }
