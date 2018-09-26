@@ -231,7 +231,7 @@ if (jqueryTiki.no_cookie) {
 			{if $prefs.rememberme eq 'always'}
 				<input type="hidden" name="rme" id="login-remember-module-input_{$module_logo_instance}" value="on" />
 			{else}
-				<div class="form-group row mx-0">
+				<div class="form-check">
 					<div class="checkbox rme">
 						<label for="login-remember-module_{$module_logo_instance}"><input type="checkbox" class="form-check-input" name="rme" id="login-remember-module_{$module_logo_instance}" value="on" />
 							{tr}Remember me{/tr}
