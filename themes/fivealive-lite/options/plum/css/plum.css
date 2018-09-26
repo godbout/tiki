@@ -3,7 +3,7 @@
   background: #15001f !important; }
 
 body.layout_social.tiki.navbar-padding {
-  padding-top: 3.72rem;
+  padding-top: 2.72rem;
   padding-bottom: 0; }
 
 .middle_outer {
@@ -17,7 +17,7 @@ body.layout_social.tiki.navbar-padding {
 nav.fixed-top {
   border-bottom: 5px solid #000; }
 
-.navbar.navbar-dark.bg-dark.fixed-top {
+.navbar.navbar-dark.bg-dark.fixed-top, .navbar.navbar-dark.bg-dark.fixed-top .navbar {
   padding: 0; }
 
 .header_outer, .header_outer .navbar-dark.bg-dark, .navbar.navbar-dark.bg-dark.fixed-top, .navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {

@@ -8,7 +8,7 @@ $imagePath: "../images/";
 
 // This is reduced from the amount in tiki_base.css - maybe that needs to be changed, too.
 body.layout_social.tiki.navbar-padding {
-  padding-top: 3.72rem;
+  padding-top: 2.72rem;
   padding-bottom: 0;
 }
 
@@ -26,7 +26,8 @@ nav.fixed-top {
   border-bottom: 5px solid #000;
 }
 
-.navbar.navbar-dark.bg-dark.fixed-top { padding: 0; }
+.navbar.navbar-dark.bg-dark.fixed-top,
+.navbar.navbar-dark.bg-dark.fixed-top .navbar { padding: 0; }
 
 .header_outer,
 .header_outer .navbar-dark.bg-dark,
