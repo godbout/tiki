@@ -17,13 +17,13 @@ nav.fixed-top {
 .navbar.navbar-dark.bg-dark.fixed-top {
   padding: 0; }
 
-.navbar.navbar-dark.bg-dark.fixed-top, .navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {
+.header_outer, .header_outer .navbar-dark.bg-dark, .navbar.navbar-dark.bg-dark.fixed-top, .navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {
   background: #8e286a !important; }
 
 .navbar.navbar-dark.bg-dark.fixed-top a, .navbar.navbar-dark.bg-dark.fixed-top .btn-link {
   color: #fff; }
 
-.bg-dark, .header_outer, .layout_basic .page-header > .top_modules, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
+.bg-dark, .layout_basic .page-header > .top_modules, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
   background: #8e286a; }
 
 .bg-dark {

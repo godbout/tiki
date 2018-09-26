@@ -28,6 +28,8 @@ nav.fixed-top {
 
 .navbar.navbar-dark.bg-dark.fixed-top { padding: 0; }
 
+.header_outer,
+.header_outer .navbar-dark.bg-dark,
 .navbar.navbar-dark.bg-dark.fixed-top,
 .navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {
 	background: $navbar-fixed-top-bg !important;
@@ -39,7 +41,6 @@ nav.fixed-top {
 }
 
 .bg-dark,
-.header_outer,
 .layout_basic .page-header > .top_modules,
 .topbar .navbar-dark .navbar-nav > li,
 .topbar .nav > li {
