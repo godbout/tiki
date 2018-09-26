@@ -142,7 +142,7 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
-				{modulelist zone="topbar" id="topbar_modules_social" class="d-flex flex-fill justify-content-between"}
+				{modulelist zone="top" id="top_modules_social" class="d-flex flex-fill justify-content-between"}
 				<div class="flex">
 					<ul class="navbar-nav">
 						{if $user}

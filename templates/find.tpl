@@ -30,8 +30,9 @@
 	*                  {include file='find.tpl' find_show_languages='y' find_show_categories='y' find_show_num_rows='y'}
 *}
 
-<div class="find clearfix mb-4">
-	<form method="post" role="form" class="form-inline">
+<div class="find mb-4">
+	<form method="post" role="form" class="">
+		<div class="form-row align-items-center">
 	{if !isset($map_only) or $map_only ne 'y'}
 		{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager" value="{$filegals_manager|escape}">{/if}
 		{query _type='form_input' maxRecords='NULL' type='NULL' types='NULL' find='NULL' topic='NULL' lang='NULL' exact_match='NULL' categId='NULL' cat_categories='NULL' filegals_manager='NULL' save='NULL' offset=0 searchlist='NULL' searchmap='NULL'}
@@ -269,7 +270,8 @@
 		{/if}
 	</div>
 	{/if}
-		<button type="submit" class="btn btn-info ml-3" name="search">{tr}Find{/tr}</button>
+		<button type="submit" class="btn btn-info ml-3 mb-3" name="search">{tr}Find{/tr}</button>
+			</div>
 	</form>
 </div>
 <!-- End of find -->
