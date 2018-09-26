@@ -64,17 +64,17 @@ a:focus,
 .btn-primary {
   color: #fff;
   background-color: $btn-primary-bg;
-  border-color: $btn-primary-border-color;
+  border-color: $btn-primary-border;
 }
 
 .btn-primary:hover {
   color: #fff;
   background-color: $btn-primary-hover-bg;
-  border-color: $btn-primary-hover-border-color;
+  border-color: $btn-primary-hover-border;
 }
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: $btn-primary-disabled-bg;
+  background-color: $btn-primary-disabled-border;
   border-color: $btn-primary-disabled-border;
 }
 
@@ -84,11 +84,11 @@ a:focus,
   background-color: $btn-primary-active-bg;
   border-color: $btn-primary-active-border;
 }
-
+/*
 .btn-secondary {
   color: #fff;
   background-color: $btn-secondary-bg;
-  border-color: $btn-secondary-border-color;
+  border-color: $btn-secondary-border;
 }
 
 .btn-secondary:hover {
@@ -108,53 +108,10 @@ a:focus,
   color: #fff;
   background-color: $btn-secondary-active-bg;
   border-color: $btn-secondary-active-border;
-}
+}*/
 // Adding from bootstrap default end
 
 
-.btn-primary {
-  color: #ffffff;
-  background-color: $btn-primary-bg; //#18a3bb;
-  border-color: $btn-primary-border; //#77d6e5;
-}
-.btn-primary:focus,
-.btn-primary.focus {
-  color: #ffffff;
-  background-color: $btn-primary-focus-bg; //#127c8e;
-  border-color: $btn-primary-focus-border; // #23a5b9;
-}
-.btn-primary:hover {
-  color: #ffffff;
-  background-color: $btn-primary-hover-bg; //#127c8e;
-  border-color: $btn-primary-hover-border; //#44c7db;
-}
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-  color: #ffffff;
-  background-color: $btn-primary-active-bg; //#127c8e;
-  border-color: $btn-primary-active-border; //#44c7db;
-}
-.btn-primary:active:hover,
-.btn-primary.active:hover,
-.open > .dropdown-toggle.btn-primary:hover,
-.btn-primary:active:focus,
-.btn-primary.active:focus,
-.open > .dropdown-toggle.btn-primary:focus,
-.btn-primary:active.focus,
-.btn-primary.active.focus,
-.open > .dropdown-toggle.btn-primary.focus {
-  color: #ffffff;
-  background-color: $btn-primary-active-hover-bg; //#0e606e;
-  border-color: $btn-primary-active-hover-border; //#23a5b9;
-}
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-  background-image: none;
-}
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover,
 //fieldset[disabled] .btn-primary:hover,
 //.btn-primary.disabled:focus,
 //.btn-primary[disabled]:focus,
