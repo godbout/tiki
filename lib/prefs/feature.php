@@ -558,7 +558,7 @@ function prefs_feature_list($partial = false)
 			'default' => 'n',
 		],
 		'feature_wiki_description' => [
-			'name' => tra('Display page description'),
+			'name' => tra('Show the page description'),
 			'description' => tra('Display the wiki page description between the page title and the page content.'),
 			'type' => 'flag',
 			'default' => 'n',
@@ -572,7 +572,7 @@ function prefs_feature_list($partial = false)
 			'tags' => ['basic'],
 		],
 		'feature_wiki_pageid' => [
-			'name' => tra('Display page ID'),
+			'name' => tra('Show the page ID'),
 			'description' => tra('Each wiki page has a numeric ID and this can be displayed.'),
 			'type' => 'flag',
 			'default' => 'n',

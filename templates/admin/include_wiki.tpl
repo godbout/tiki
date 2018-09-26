@@ -36,17 +36,17 @@
 			<div class="adminoptionbox clearfix">
 				<fieldset class="table">
 					<legend>{tr}Page display{/tr}</legend>
-					{preference name=feature_page_title label="{tr}Display page name as page title{/tr}"}
-					{preference name=wiki_page_name_above label="{tr}Display page name above page{/tr}"}
-					{preference name=wiki_page_name_inside label="{tr}Display the page name inside the page content{/tr}"}
+					{preference name=feature_page_title}
+					{preference name=wiki_page_name_above}
+					{preference name=wiki_page_name_inside}
 					{preference name=wiki_page_hide_title}
-					{preference name=feature_wiki_description label="{tr}Description{/tr}"}
-					{preference name=feature_wiki_pageid label="{tr}Page ID{/tr}"}
-					{preference name=wiki_show_version label="{tr}Page version{/tr}"}
-					{preference name=wiki_authors_style label="{tr}List authors{/tr}"}
-					{preference name=wiki_authors_style_by_page label="{tr}Allow override per page{/tr}"}
-					{preference name=wiki_encourage_contribution}
 					{preference name=wiki_heading_links}
+					{preference name=feature_wiki_description}
+					{preference name=feature_wiki_pageid}
+					{preference name=wiki_show_version}
+					{preference name=wiki_authors_style}
+					{preference name=wiki_authors_style_by_page}
+					{preference name=wiki_encourage_contribution}
 					{preference name=feature_wiki_show_hide_before}
 					{preference name=wiki_actions_bar}
 					{preference name=wiki_page_navigation_bar}

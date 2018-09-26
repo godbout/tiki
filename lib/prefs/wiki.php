@@ -76,19 +76,19 @@ function prefs_wiki_list($partial = false)
 			'keywords' => 'slug manager',
 		],
 		'wiki_show_version' => [
-			'name' => tra('Display page version'),
+			'name' => tra('Show the page version'),
 			'description' => tra('Display the page version information when viewing the page.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'wiki_page_name_above' => [
-			'name' => tra('Display page name above page'),
+			'name' => tra('Display the page name above the page area'),
 			'description' => tra('Display the page name in small text at the top of each page (above the page\'s content).'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'wiki_page_name_inside' => [
-			'name' => tra('Display page name inside page'),
+			'name' => tra('Display the page name inside the page content'),
 			'description' => tra('Display the page name inside the page content.'),
 			'type' => 'flag',
 			'default' => 'n',
@@ -729,7 +729,7 @@ function prefs_wiki_list($partial = false)
 			],
 		],
 		'wiki_page_hide_title' => [
-			'name' => tr('Hide title per wiki page'),
+			'name' => tr('Add an option to hide the page title per wiki page'),
 			'description' => tr('Enable the page title to not be displayed, on a per-page basis.'),
 			'type' => 'flag',
 			'default' => 'y',
