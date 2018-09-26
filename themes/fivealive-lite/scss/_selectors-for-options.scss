@@ -41,7 +41,6 @@ nav.fixed-top {
   color: #fff;
 }
 
-.bg-dark,
 .layout_basic .page-header > .top_modules,
 .topbar .navbar-dark .navbar-nav > li,
 .topbar .nav > li {
@@ -49,7 +48,7 @@ nav.fixed-top {
 }
 
 .bg-dark {
-  background-color: $bg-dark !important;
+  background-color: $middle_outer-inset-shadow-bg !important;
 }
 
 //body.tiki > nav.navbar.fixed-top.bg-light { background-color: $bg-light-alt !important; }

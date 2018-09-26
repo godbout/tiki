@@ -23,7 +23,7 @@ nav.fixed-top {
 .navbar.navbar-dark.bg-dark.fixed-top a, .navbar.navbar-dark.bg-dark.fixed-top .btn-link {
   color: #fff; }
 
-.bg-dark, .layout_basic .page-header > .top_modules, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
+.layout_basic .page-header > .top_modules, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
   background: #8e286a; }
 
 .bg-dark {
