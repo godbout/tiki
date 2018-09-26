@@ -10,10 +10,10 @@
 		<div class="col-sm-10">
 			<div class="input-group">
 				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-addon1">{icon name="tags"} {tr}Tags{/tr}</span>
+					<span class="input-group-text" id="basic-addon1">{icon name="tags"}&nbsp;{tr}Tags{/tr}</span>
 				</div>
 				<input type="text" id="tagBox" class="form-control" name="tag" value="{$tagString|escape}">
-				<div class="input-group-btn">
+				<div class="input-group-append input-group-btn">
 					<input type="submit" class="btn btn-primary tips" value="{tr}Go{/tr}">
 				</div>
 			</div>
@@ -22,13 +22,17 @@
 			{button _class="btn-link tips" _onclick="clearTags(); return false;" _text="{tr}Clear{/tr}" _title=":{tr}Clear tags{/tr}"}
 		</div>
 	</div>
-	<div class="form-inline mb-4">
-		<input type="radio" name="broaden" class="radio" id="stopb1" value="n"{if $broaden eq 'n'} checked="checked"{/if}>
-		<label for="stopb1">{tr}With all selected tags{/tr}</label>
-		<input type="radio" name="broaden" class="radio" id="stopb2" value="y"{if $broaden eq 'y'} checked="checked"{/if}>
-		<label for="stopb2">{tr}With one selected tag{/tr}</label>
-		<input type="radio" name="broaden" class="radio" id="stopb3" value="last"{if $broaden eq 'last'} checked="checked"{/if}>
-		<label for="stopb3">{tr}With last selected tag{/tr}</label>
+	<div class="form-check">
+		<input class="form-check-input radio" type="radio" name="broaden" id="stopb1" value="n"{if $broaden eq 'n'} checked="checked"{/if}>
+		<label class="form-check-label" for="stopb1">{tr}With all selected tags{/tr}</label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input radio" type="radio" name="broaden" id="stopb2" value="y"{if $broaden eq 'y'} checked="checked"{/if}>
+		<label class="form-check-label" for="stopb2">{tr}With one selected tag{/tr}</label>
+	</div>
+	<div class="form-check mb-4">
+		<input class="form-check-input radio" type="radio" name="broaden" id="stopb3" value="last"{if $broaden eq 'last'} checked="checked"{/if}>
+		<label class="form-check-label" for="stopb3">{tr}With last selected tag{/tr}</label>
 	</div>
 
 	{if $prefs.freetags_browse_show_cloud eq 'y'}
@@ -41,7 +45,7 @@
 					document.getElementById('tagBox').value = '';
 				}
 		{/jq}
-		<div class="card">
+		<div class="card mb-4">
 			<div class="card-body freetaglist mb-4">
 				{foreach from=$most_popular_tags item=popular_tag}
 					{capture name=tagurl}{if (strstr($popular_tag.tag, ' '))}"{$popular_tag.tag}"{else}{$popular_tag.tag}{/if}{/capture}
@@ -64,7 +68,7 @@
 	{assign var=cpt value=0}
 	{capture name="browse"}
 		{if $type eq $objectType}
-			{assign var=thisclass value='highlight'}
+			{assign var=thisclass value='active'}
 		{else}
 			{assign var=thisclass value=''}
 		{/if}
@@ -73,14 +77,14 @@
 		{else}
 			{assign var=thisbroaden value=''}
 		{/if}
-		<div class="btn-group mb-4">
+		<div class="btn-group btn-toolbar mb-4">
 			{button _text="{tr}All{/tr}" _class=$thisclass href="tiki-browse_freetags.php?tag=$tagString$thisbroaden&amp;type="}
 			{foreach item=objectType from=$objects_with_freetags}
 				{foreach item=sect key=key from=$sections_enabled}
 					{if isset($sect.objectType) and $sect.objectType eq $objectType and $objectType neq 'blog post'}
 						{assign var=feature_label value=$objectType|ucwords}
 						{if $type eq $objectType}
-							{assign var=thisclass value='highlight'}
+							{assign var=thisclass value='active'}
 						{else}
 							{assign var=thisclass value=''}
 						{/if}
@@ -102,7 +106,7 @@
 							{assign var=feature_label value=$objectType|ucwords}
 						{/if}
 						{if $type eq $objectType}
-							{assign var=thisclass value='highlight'}
+							{assign var=thisclass value='active'}
 						{else}
 							{assign var=thisclass value=''}
 						{/if}
@@ -119,25 +123,28 @@
 				{/foreach}
 			{/foreach}
 		</div>
-		<div class="form-inline mb-4">
+		<div class="form-inline mb-4 row">
 			<div class="input-group col-sm-6">
 				<input type="text" name="find" value="{$find|escape}" class="form-control form-control-sm" placeholder="{tr}Find{/tr}...">
-				<div class="input-group-btn">
+				<div class="input-group-btn input-group-append">
 					<input type="submit" class="btn btn-info btn-sm" value="{tr}Filter{/tr}">
 				</div>
 			</div>
 			<input type="hidden" name="old_type" value="{$type|escape}">
 			{if !empty($blogs)}
-				<div class="form-group row">
-					<div id="blogs"{if $type ne 'blog post'} style="visibility:hidden"{/if}>
-						<select name="objectId" onchange="this.form.submit();" class="form-control">
+			<div class="col-sm-6">
+				<div class="input-group input-group-sm" id="blogs"{if $type ne 'blog post'} style="visibility:hidden"{/if}>
+					<div class="input-group-prepend">
+						<small class="input-group-text">{tr}Filter in{/tr}</small>
+					</div>
+					<select name="objectId" onchange="this.form.submit();" class="form-control">
 							<option value="">--{tr}All blogs{/tr}--</option>
 							{foreach item=blog from=$blogs}
 								<option value="{$blog.blogId|escape}"{if $blog.blogId eq $objectId} selected="selected"{/if}>{$blog.title|escape}</option>
 							{/foreach}
-						</select>
-					</div>
+					</select>
 				</div>
+			</div>
 			{/if}
 		</div>
 	{/capture}
