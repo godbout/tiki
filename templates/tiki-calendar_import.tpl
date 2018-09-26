@@ -2,7 +2,7 @@
 
 <div class="t_navbar">
 	{button class="btn btn-link" _type="text" _icon_name="calendar" _text="{tr}View Calendars{/tr}" href="tiki-calendar.php"}
-	{button class="btn btn-link" _type="text" _icon_name="gear" _text="{tr}Admin Calendars{/tr}" href="tiki-admin_calendars.php"}
+	{button class="btn btn-link" _type="text" _icon_name="cog" _text="{tr}Admin Calendars{/tr}" href="tiki-admin_calendars.php"}
 </div>
 
 {if isset($updated) and $updated eq 'y'}
