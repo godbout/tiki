@@ -1,13 +1,16 @@
 /*  The lemon theme option file for the FiveAlive-lite theme of Tiki Wiki CMS Groupware. */
 .middle_outer {
-  -webkit-box-shadow: inset 0 24px 0 0 #ffc506;
-  -moz-box-shadow: inset 0 24px 0 0 #ffc506;
-  box-shadow: inset 0 24px 0 0 #ffc506; }
+  -webkit-box-shadow: inset 0 28px 0 0 #ffc506;
+  -moz-box-shadow: inset 0 28px 0 0 #ffc506;
+  box-shadow: inset 0 28px 0 0 #ffc506; }
+
+.middle .topbar {
+  font-size: small; }
 
 nav.fixed-top {
   border-bottom: 5px solid #000; }
 
-.bg-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
+.bg-dark, .header_outer, .layout_basic .page-header > .top_modules, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
   background: #ffc506; }
 
 .bg-dark {
