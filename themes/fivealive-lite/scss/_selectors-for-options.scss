@@ -26,9 +26,16 @@ nav.fixed-top {
   border-bottom: 5px solid #000;
 }
 
+.navbar.navbar-dark.bg-dark.fixed-top { padding: 0; }
+
 .navbar.navbar-dark.bg-dark.fixed-top,
 .navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {
 	background: $navbar-fixed-top-bg !important;
+}
+
+.navbar.navbar-dark.bg-dark.fixed-top a,
+.navbar.navbar-dark.bg-dark.fixed-top .btn-link {
+  color: #fff;
 }
 
 .bg-dark,
