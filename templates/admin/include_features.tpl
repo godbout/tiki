@@ -160,9 +160,9 @@
 				{preference name=feature_jquery_media}
 				{preference name=feature_jquery_reflection}
 				{preference name=feature_jquery_superfish}
-				{preference name=jquery_supermenus_enable}
-				<div class="adminoptionboxchild" id="jquery_supermenus_enable_childcontainer">
-					{preference name=jquery_supermenus_mode}
+				{preference name=jquery_smartmenus_enable}
+				<div class="adminoptionboxchild" id="jquery_smartmenus_enable_childcontainer">
+					{preference name=jquery_smartmenus_mode}
 				</div>
 				{preference name=feature_jquery_tooltips}
 				{preference name=feature_jquery_tagcanvas}

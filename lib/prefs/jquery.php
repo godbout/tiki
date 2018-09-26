@@ -135,15 +135,15 @@ function prefs_jquery_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 		],
-		'jquery_supermenus_enable' => [
-			'name' => tra('Enable SuperMenus'),
-			'description' => tra('Add "SuperMenus" to Bootstrap menus. See smartmenus.org for more.'),
+		'jquery_smartmenus_enable' => [
+			'name' => tra('Enable SmartMenus'),
+			'description' => tra('Add "SmartMenus" to Bootstrap menus. See smartmenus.org for more.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['experimental'],
 		],
-		'jquery_supermenus_mode' => [
-			'name' => tra('SuperMenus Mode'),
+		'jquery_smartmenus_mode' => [
+			'name' => tra('SmartMenus Mode'),
 			'type' => 'list',
 			'options' => [
 				'' => tra('None'),
@@ -154,7 +154,7 @@ function prefs_jquery_list($partial = false)
 			],
 			'default' => '',
 			'dependencies' => [
-				'jquery_supermenus_enable',
+				'jquery_smartmenus_enable',
 			],
 		],
 	];

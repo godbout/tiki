@@ -507,13 +507,13 @@ if ($prefs['feature_jquery_superfish'] == 'y') {
 if ($prefs['feature_jquery_tooltips'] === 'y' || $prefs['feature_jquery_superfish'] === 'y') {
 	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/superfish/dist/js/hoverIntent.js');
 }
-if ($prefs['jquery_supermenus_enable'] == 'y') {
+if ($prefs['jquery_smartmenus_enable'] == 'y') {
 	$headerlib->add_jsfile('vendor_bundled/vendor/drmonty/smartmenus/js/jquery.smartmenus.js');
 	$headerlib->add_jsfile('vendor_bundled/vendor/drmonty/smartmenus/js/jquery.smartmenus.bootstrap-4.js');
 	$headerlib->add_cssfile('vendor_bundled/vendor/drmonty/smartmenus/css/sm-core-css.css');
-	if (! empty($prefs['jquery_supermenus_mode'])) {
+	if (! empty($prefs['jquery_smartmenus_mode'])) {
 		$headerlib->add_cssfile(
-			'vendor_bundled/vendor/drmonty/smartmenus/css/sm-' . $prefs['jquery_supermenus_mode'] . '.css'
+			'vendor_bundled/vendor/drmonty/smartmenus/css/sm-' . $prefs['jquery_smartmenus_mode'] . '.css'
 		);
 	}
 	$headerlib->add_js('$(function() {
