@@ -6855,6 +6855,9 @@ header.header .sitetitle, header.header .sitesubtitle, header.header a, header.h
 label a:hover {
   text-decoration: none; }
 
+.bg-dark {
+  background-color: #28aae1 !important; }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {

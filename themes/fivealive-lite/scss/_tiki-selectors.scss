@@ -288,3 +288,7 @@ header.header {
 }
 
 label a:hover { text-decoration: none; }
+
+.bg-dark {
+  background-color: $bg-dark !important;
+}
