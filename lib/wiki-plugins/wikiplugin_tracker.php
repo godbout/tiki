@@ -1518,7 +1518,7 @@ function wikiplugin_tracker($data, $params)
 		} elseif (! empty($itemId)) {
 			if (isset($fields) && empty($wiki) && empty($tpl)) {
 				$fl = $fields;
-				$filter = '';
+				$filter = [];
 				foreach ($flds['data'] as $f) {
 					if (in_array($f['fieldId'], $fl)) {
 						$filter[] = $f;
