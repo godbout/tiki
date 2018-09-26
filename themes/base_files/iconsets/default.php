@@ -286,6 +286,9 @@ function iconset_default()
 				'id' => 'file-code',
 				'prepend' => 'far fa-'
 			],
+			'code-fork' => [
+				'id' => 'code-branch',
+			],
 			'collapsed' => [
 				'id' => 'plus-square',
 				'prepend' => 'far fa-'
@@ -523,6 +526,9 @@ function iconset_default()
 			'module' => [
 				'id' => 'cogs',
 			],
+			'money' => [
+				'id' => 'money-bill',
+			],
 			'more' => [
 				'id' => 'ellipsis-h',
 			],
@@ -561,6 +567,9 @@ function iconset_default()
 			],
 			'permission' => [
 				'id' => 'key',
+			],
+			'pie-chart' => [
+				'id' => 'chart-pie',
 			],
 			//play in defaults
 			'plugin' => [
@@ -622,6 +631,9 @@ function iconset_default()
 				'prepend' => 'far fa-'
 			],
 			//sort in defaults
+			'sort-desc' => [
+				'id' => 'sort-down',
+			],
 			'sort-down' => [
 				'id' => 'sort-down',
 			],
