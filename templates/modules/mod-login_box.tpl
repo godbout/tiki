@@ -80,11 +80,10 @@ if (jqueryTiki.no_cookie) {
 										{tr}Email address or {/tr}
 									{/if}
 									{if $prefs.login_autogenerate eq 'y'}
-										{tr}User account ID{/tr}
+										{tr}User account ID:{/tr}
 									{else}
-										{tr}Username{/tr}
+										{tr}Username:{/tr}
 									{/if}
-									:
 								{/if}
 							</label>
 							<input type="hidden" name="su" value="1" class="form-control" />
@@ -206,11 +205,10 @@ if (jqueryTiki.no_cookie) {
 						{tr}Email address or {/tr}
 					{/if}
 					{if $prefs.login_autogenerate eq 'y'}
-						{tr}User account ID{/tr}
+						{tr}User account ID:{/tr}
 					{else}
-						{tr}Username{/tr}
+						{tr}Username:{/tr}
 					{/if}
-					:
 				{/if}
 			</label>
 			{if !isset($loginuser) or $loginuser eq ''}
@@ -295,7 +293,7 @@ if (jqueryTiki.no_cookie) {
 		{if $prefs.feature_show_stay_in_ssl_mode eq 'y' && $show_stay_in_ssl_mode eq 'y'}
 			<div class="form-check">
 				<input type="checkbox" class="form-check-input" name="stay_in_ssl_mode" id="login-stayssl_{$module_logo_instance}" {if $stay_in_ssl_mode eq 'y'}checked="checked"{/if} />
-				<label class="form-check-label" for="login-stayssl_{$module_logo_instance}">{tr}Stay in SSL mode:{/tr}</label>
+				<label class="form-check-label" for="login-stayssl_{$module_logo_instance}">{tr}Stay in SSL mode{/tr}</label>
 			</div>
 		{/if}
 		{* This is needed as unchecked checkboxes are not sent. The other way of setting hidden field with same name is potentially non-standard *}
