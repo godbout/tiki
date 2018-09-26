@@ -21,7 +21,7 @@
 		{/if} {*hide_page_header*}
 		{if $pdf_export eq 'y'}
 			<div class="wikiinfo float-left d-none" id="pdfinfo">
-				<div class="alert alert-info" style="width:500px"><h4><span class="icon icon-information fas fa-info-circle fa-fw "></span>&nbsp;<span class="rboxtitle">{tr}Please wait{/tr}</span></h4><div class="rboxcontent" style="display: inline"><span class="fas fa-circle-notch fa-spin" style="font-size:24px"></span>{tr}The PDF is being prepared, please wait..{/tr}</div></div>
+				<div class="alert alert-info" style="width:500px"><h4><span class="icon icon-information fas fa-info-circle fa-fw "></span>&nbsp;<span class="rboxtitle">{tr}Please wait{/tr}</span></h4><div class="rboxcontent" style="display: inline"><span class="fas fa-circle-notch fa-spin" style="font-size:24px"></span>{tr} The PDF is being prepared, please wait...{/tr}</div></div>
 			</div>
 		{/if}
 	</div> {* div.content *}
