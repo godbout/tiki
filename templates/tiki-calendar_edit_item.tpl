@@ -11,10 +11,10 @@
 		{if !$smarty.get.isModal}
 			<div class="t_navbar form-group row">
 				{if $tiki_p_view_calendar eq 'y'}
-					{button href="tiki-calendar.php" _text="{tr}View Calendars{/tr}" _icon_name="view"}
+					{button href="tiki-calendar.php" _type="link" _text="{tr}View Calendars{/tr}" _icon_name="view"}
 				{/if}
 				{if $tiki_p_admin_calendar eq 'y'}
-					{button href="tiki-admin_calendars.php?calendarId=$calendarId" _icon_name="edit" _text="{tr}Edit Calendar{/tr}"}
+					{button href="tiki-admin_calendars.php?calendarId=$calendarId" _type="link" _icon_name="edit" _text="{tr}Edit Calendar{/tr}"}
 				{/if}
 				{if $tiki_p_add_events eq 'y' and $id}
 					{button href="tiki-calendar_edit_item.php" _icon_name="add" _text="{tr}New event{/tr}"}
@@ -27,11 +27,11 @@
 					{/if}
 				{/if}
 				{if $tiki_p_admin_calendar eq 'y'}
-					{button href="tiki-admin_calendars.php" _icon_name="admin" _text="{tr}Admin Calendars{/tr}"}
+					{button href="tiki-admin_calendars.php" _icon_name="admin" _type="link" _text="{tr}Admin Calendars{/tr}"}
 				{/if}
 				{if $prefs.calendar_fullcalendar neq 'y' or not $edit}
 					{if $prefs.calendar_export_item == 'y' and $tiki_p_view_calendar eq 'y'}
-						{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _icon_name="export" _text="{tr}Export Event as iCal{/tr}"}
+						{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _icon_name="export" _type="link" _text="{tr}Export Event as iCal{/tr}"}
 					{/if}
 				{/if}
 			</div>
