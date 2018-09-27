@@ -82,10 +82,22 @@ function wikiplugin_diagram($data, $params)
 		$sourcepage = $page;
 	}
 
+	//checking if user has edit permissions on the wiki page using the current permission library to obey global/categ/object perms
+	$objectperms = Perms::get([ 'type' => 'wiki page', 'object' => $sourcepage ]);
+	if ($objectperms->edit) {
+		$allowEdit = true;
+	} else {
+		$allowEdit = false;
+	}
+
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('index', $id);
 	$smarty->assign('graph_data', $data);
 	$smarty->assign('graph_data_base64', base64_encode($data));
 	$smarty->assign('sourcepage', $sourcepage);
+	$smarty->assign('allow_edit', $allowEdit);
+	$smarty->assign('file_id', $fileId);
+	$smarty->assign('file_name', $info['name']);
+
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }

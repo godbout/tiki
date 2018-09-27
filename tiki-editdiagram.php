@@ -1,67 +1,47 @@
+<?php
 
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=5,IE=9" ><![endif]-->
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Grapheditor</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="vendor/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css">
-	<script type="text/javascript">
-		// Parses URL parameters. Supported parameters are:
-		// - lang=xy: Specifies the language of the user interface.
-		// - touch=1: Enables a touch-style user interface.
-		// - storage=local: Enables HTML5 local storage.
-		// - chrome=0: Chromeless mode.
-		var urlParams = (function(url)
-		{
-			var result = new Object();
-			var idx = url.lastIndexOf('?');
+require_once('tiki-setup.php');
 
-			if (idx > 0)
-			{
-				var params = url.substring(idx + 1).split('&');
+if (empty($_POST['xml'])) {
+	Feedback::error(tr('Invalid request'));
+	$smarty->display('tiki.tpl');
+	exit();
+}
 
-				for (var i = 0; i < params.length; i++)
-				{
-					idx = params[i].indexOf('=');
+$xmlDiagram = base64_decode($_POST['xml']);
+$access->setTicket();
+$ticket = $access->getTicket();
 
-					if (idx > 0)
-					{
-						result[params[i].substring(0, idx)] = params[i].substring(idx + 1);
-					}
-				}
-			}
+$fileId = isset($_POST['fileId']) ? $_POST['fileId'] : 0;
+$fileName = isset($_POST['fileName']) ? $_POST['fileName'] : 0;
 
-			return result;
-		})(window.location.href);
+$page = isset($_POST['page']) ? $_POST['page'] : null;
+$index = isset($_POST['index']) ? $_POST['index'] : null;
 
-		// Default resources are included in grapheditor resources
-		mxLoadResources = false;
-	</script>
-	<script type="text/javascript" src="vendor_bundled/vendor/components/jquery/jquery.js"></script>
-	<script type="text/javascript" src="lib/jquery_tiki/tiki-mxgraph.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Init.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/deflate/pako.min.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/deflate/base64.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/jscolor/jscolor.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/sanitizer/sanitizer.min.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/mxClient.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/EditorUi.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Editor.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Sidebar.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Graph.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Format.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Shapes.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Actions.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Menus.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Toolbar.js"></script>
-	<script type="text/javascript" src="vendor/xorti/mxgraph-editor/grapheditor/js/Dialogs.js"></script>
-</head>
-<body class="geEditor">
-<script type="text/javascript">
-	// Extends EditorUi to update I/O action states based on availability of backend
-	(function()
+$saveModal = $smarty->fetch('mxgraph/save_modal.tpl');
+
+$headerlib = $tikilib::lib('header');
+
+$headerlib->add_cssfile('vendor/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
+$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Init.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/pako.min.js', true);
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/base64.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/jscolor/jscolor.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/sanitizer/sanitizer.min.js', true);
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/mxClient.min.js', true);
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/EditorUi.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Editor.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Sidebar.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Graph.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Format.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Shapes.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Actions.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Menus.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Toolbar.js');
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Dialogs.js');
+
+$js = "(function()
 	{
 		var editorUiInit = EditorUi.prototype.init;
 
@@ -78,39 +58,70 @@
 			delete this.actions.actions.print;
 			delete this.actions.actions.pageSetup;
 
-			var editor = this.actions.editorUi.editor;
-
+			var editorUi = this.actions.editorUi;
+			var editor = editorUi.editor;
+			
 			this.actions.addAction('save', function() {
 
 				var content = mxUtils.getPrettyXml(editor.getGraphXml());
+				var fileId = {$fileId};
 
-				//calling ajax edit plugin function
+				var saveElem = $(`{$saveModal}`)[0];
+				editorUi.showDialog(saveElem, 400, 200, true, false, null, true);
+
+				if (fileId) {
+					var blob = new Blob([content]);
+					content = window.btoa(content);
+
+					var data = {
+						controller: 'file',
+						action: 'upload',
+						ticket: '{$ticket}',
+						name: '{$fileName}',
+						type: 'text/plain',
+						size: blob.size,
+						data: content,
+						fileId: '{$fileId}',
+					};
+				} else {
+					//calling ajax edit plugin function
+					var data = {
+						controller: 'plugin',
+						action: 'replace',
+						ticket: '{$ticket}',
+						page: '{$page}',
+						message: 'Modified by mxGraph',
+						type: 'diagram',
+						content: content,
+						index: '{$index}'
+					};
+				}
+
 				$.ajax({
 					type: 'POST',
 					url: 'tiki-ajax_services.php',
 					dataType: 'json',
-					data: {
-						controller: 'plugin',
-						action: 'replace',
-						ticket: `<?php echo $_POST['ticket']; ?>`,
-						page: `<?php echo $_POST['page']; ?>`,
-						message:"Modified by mxGraph",
-						type: 'diagram',
-						content: content,
-						index: `<?php echo $_POST['index']; ?>`
-					},
+					data: data,
 					success: function(){
 						editor.modified = false;
-						window.close();
-						window.opener.location.reload(false);
+						$('div.diagram-saving').hide();
+						$('div.diagram-saved').show();
+						setTimeout(function(){
+							window.close();
+							window.opener.location.reload(false);
+						}, 3000);
 					},
-					error: function() {
-						//@todo implement
+					error: function(xhr, status, message) {
+						$('div.diagram-saving').hide();
+						$('p.diagram-error-message').html(message);
+						
+						$('div.diagram-error button').on('click', function() {
+							editorUi.hideDialog();
+						});
+						
+						$('div.diagram-error').show();
 					}
 				});
-
-
-
 			}, null, null, Editor.ctrlKey + '+S');
 		};
 
@@ -132,7 +143,7 @@
 
 			// Main
 			var ui = new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
-			var xml = `<?php echo base64_decode($_POST['xml']);?>`;
+			var xml = `{$xmlDiagram}`;
 			var doc = mxUtils.parseXml(xml);
 
 			// Executes the layout
@@ -141,9 +152,11 @@
 
 		}, function()
 		{
-			document.body.innerHTML = '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
+			document.body.innerHTML = '<center style=\"margin-top:10%;\">Error loading resource files. Please check browser console.</center>';
 		});
-	})();
-</script>
-</body>
-</html>
+	})();";
+
+$headerlib->add_js($js);
+
+$smarty->assign('title', tr('Edit diagram'));
+$smarty->display('mxgraph/editor.tpl');
