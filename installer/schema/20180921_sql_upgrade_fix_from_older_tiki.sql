@@ -52,11 +52,6 @@ CREATE TABLE IF NOT EXISTS  `tiki_acct_journal` (
   PRIMARY KEY (`journalId`)
 ) ENGINE=MyISAM;
 
-DROP TABLE IF EXISTS `metrics_assigned`;
-DROP TABLE IF EXISTS `metrics_metric`;
-DROP TABLE IF EXISTS `metrics_tab`;
-DROP TABLE IF EXISTS `tiki_users_score`;
-
 DELETE FROM `tiki_object_scores` WHERE `id` = 1 AND `triggerObjectType` = 'legacy_score' AND `triggerObjectId` = '0' AND `triggerUser` = 'admin' AND `triggerEvent` = 'tiki.legacy.score' AND `ruleId` = 'Legacy Score' AND `recipientObjectType` = 'user' AND `recipientObjectId` = 'admin';
 
 ALTER TABLE `tiki_language` CHANGE `source` `source` text NOT NULL;

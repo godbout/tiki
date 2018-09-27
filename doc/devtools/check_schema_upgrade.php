@@ -530,9 +530,9 @@ class CheckSchemaUpgrade
 	 */
 	protected function scrubDbCleanThingsThatShouldChange($dbConnection, $dbConfig, $whatDb)
 	{
-		// clean index rebuild related tables
+		// clean index rebuild related tables and tables marked as unused
 		$statement = $dbConnection->prepare(
-			"SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = :db AND TABLE_NAME LIKE 'index_%'"
+			"SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = :db AND (TABLE_NAME LIKE 'index_%' OR TABLE_NAME LIKE 'zzz_unused_%')"
 		);
 		$result = $statement->execute([':db' => $dbConfig['dbs']]);
 		if ($result === false) {
