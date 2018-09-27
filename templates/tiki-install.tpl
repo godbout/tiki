@@ -414,12 +414,12 @@
 					{else}
 						{tr}A new install will populate the database.{/tr}
 					{/if}
-					{if ($database_charset neq 'utf8' or isset($legacy_collation)) and $tikidb_created}
+					{if ($database_charset neq 'utf8mb4' or isset($legacy_collation)) and $tikidb_created}
 						{remarksbox type=error title="{tr}Encoding Issue{/tr}" close="n"}
 							{if isset($legacy_collation)}
 								<strong style="color: red">Something is wrong with the database encoding.</strong> The database has UTF-8 as default encoding but some tables in the database have a different collation, {$legacy_collation}. Converting to UTF-8 may solve this but may also make matters worse. You should investigate what happened or only proceed with backups.
 							{else}
-								{tr _0=$database_charset}<p>Your database encoding is <strong>not</strong> in UTF-8.</p><p>Current encoding is <em>%0</em>. The languages that will be available for content on the site will be limited. If you plan on using languages not covered by the character set, you should re-create or alter the database so the default encoding is <em>utf8</em>.</p>{/tr}
+								{tr _0=$database_charset}<p>Your database encoding is <strong>not</strong> in UTF-8mb4.</p><p>Current encoding is <em>%0</em>. The languages that will be available for content on the site will be limited. If you plan on using languages not covered by the character set, you should re-create or alter the database so the default encoding is <em>utf8mb4</em>.</p>{/tr}
 							{/if}
 							<p><a href="https://doc.tiki.org/Understanding+Encoding" class="alert-link">{tr}More information{/tr}</a></p>
 							<form method="post" action="" role="form">
