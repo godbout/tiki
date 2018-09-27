@@ -130,6 +130,7 @@ if (isset($_REQUEST['save']) && ! isset($_REQUEST['preview']) && ! isset($_REQUE
 
 if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['changeCal'])) {
 	$save = $_POST['save'];
+	$save['allday'] = empty($_POST['allday']) ? 0 : 1;
 
 	if (! empty($save['description'])) {
 		$save['description'] = $tikilib->convertAbsoluteLinksToRelative($save['description']);
@@ -143,70 +144,17 @@ if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['c
 			$save['date_start'] = $save['date_start'] - $server_offset + $browser_offset;
 			$save['date_end'] = $save['date_end'] - $server_offset + $browser_offset;
 		}
-		$_REQUEST['start_date_Month'] = TikiLib::date_format("%m", $save['date_start']);
-		$_REQUEST['start_date_Day'] = TikiLib::date_format("%d", $save['date_start']);
-		$_REQUEST['start_date_Year'] = TikiLib::date_format("%Y", $save['date_start']);
-		$_REQUEST['end_date_Month'] = TikiLib::date_format("%m", $save['date_end']);
-		$_REQUEST['end_date_Day'] = TikiLib::date_format("%d", $save['date_end']);
-		$_REQUEST['end_date_Year'] = TikiLib::date_format("%Y", $save['date_end']);
 	}
 
-	$save['allday'] = (isset($_REQUEST['allday']) && $_REQUEST['allday'] == 'true') ? 1 : 0;
-	if (isset($_REQUEST['allday']) && $_REQUEST['allday'] == 'true') {
-		$save['start'] = $tikilib->make_time(
-			0,
-			0,
-			0,
-			$_REQUEST['start_date_Month'],
-			$_REQUEST['start_date_Day'],
-			$_REQUEST['start_date_Year']
-		);
-		if ($save['end_or_duration'] == 'duration') {
-			$save['duration'] = 86399;
-			$save['end'] = $save['start'] + $save['duration'];
-		} else {
-			$save['end'] = $tikilib->make_time(
-				23,
-				59,
-				59,
-				$_REQUEST['end_date_Month'],
-				$_REQUEST['end_date_Day'],
-				$_REQUEST['end_date_Year']
-			);
-			$save['duration'] = max(0, $save['end'] - $save['start']);
-		}
-	} else {
-		//Convert 12-hour clock hours to 24-hour scale to compute time
-		if (! empty($_REQUEST['start_Meridian'])) {
-			$_REQUEST['start_Hour'] = date('H', strtotime($_REQUEST['start_Hour'] . ':00 ' . $_REQUEST['start_Meridian']));
-		}
-		$save['start'] = $tikilib->make_time(
-			$_REQUEST['start_Hour'],
-			$_REQUEST['start_Minute'],
-			0,
-			$_REQUEST['start_date_Month'],
-			$_REQUEST['start_date_Day'],
-			$_REQUEST['start_date_Year']
-		);
+	$save['start'] = $save['date_start'];
 
-		if ($save['end_or_duration'] == 'duration') {
-			$save['duration'] = max(0, $_REQUEST['duration_Hour'] * 60 * 60 + $_REQUEST['duration_Minute'] * 60);
-			$save['end'] = $save['start'] + $save['duration'];
-		} else {
-			//Convert 12-hour clock hours to 24-hour scale to compute time
-			if (! empty($_REQUEST['end_Meridian'])) {
-				$_REQUEST['end_Hour'] = date('H', strtotime($_REQUEST['end_Hour'] . ':00 ' . $_REQUEST['end_Meridian']));
-			}
-			$save['end'] = $tikilib->make_time(
-				$_REQUEST['end_Hour'],
-				$_REQUEST['end_Minute'],
-				0,
-				$_REQUEST['end_date_Month'],
-				$_REQUEST['end_date_Day'],
-				$_REQUEST['end_date_Year']
-			);
-			$save['duration'] = max(0, $save['end'] - $save['start']);
-		}
+	if ($save['end_or_duration'] == 'duration') {
+		$save['duration'] = max(0, $_REQUEST['duration_Hour'] * 60 * 60 + $_REQUEST['duration_Minute'] * 60);
+		$save['end'] = $save['start'] + $save['duration'];
+	} else {
+
+		$save['end'] = $save['date_end'];
+		$save['duration'] = max(0, $save['end'] - $save['start']);
 	}
 }
 
@@ -229,8 +177,9 @@ if (isset($_POST['act'])) {
 		$save['user'] = $user;
 	}
 	$newcalid = $save['calendarId'];
-	if ((empty($save['calitemId']) and $caladd["$newcalid"]['tiki_p_add_events'] == 'y')
-	or (! empty($save['calitemId']) and $caladd["$newcalid"]['tiki_p_change_events'] == 'y')) {
+	if ((empty($save['calitemId']) and $caladd["$newcalid"]['tiki_p_add_events'] == 'y') ||
+			(! empty($save['calitemId']) and $caladd["$newcalid"]['tiki_p_change_events'] == 'y')) {
+
 		if (empty($save['name'])) {
 			$save['name'] = tra("event without name");
 		}
@@ -252,10 +201,9 @@ if (isset($_POST['act'])) {
 		}
 
 		if (array_key_exists('recurrent', $_POST) && ($_POST['recurrent'] == 1) && $_POST['affect'] != 'event') {
-			$impossibleDates = false;
-			if ($_POST['end_Hour'] < $_POST['start_Hour']) {
+			if ($save['end'] < $save['start']) {
 				$impossibleDates = true;
-			} elseif (($_POST['end_Hour'] == $_POST['start_Hour']) && ($_POST['end_Minute'] < $_POST['start_Minute'])) {
+			} elseif ($save['start'] + (24 * 60 * 60) < $save['end']) {	// more than a day?
 				$impossibleDates = true;
 			} else {
 				$impossibleDates = false;
@@ -263,8 +211,8 @@ if (isset($_POST['act'])) {
 			if (! $impossibleDates) {
 				$calRecurrence = new CalRecurrence(! empty($_POST['recurrenceId']) ? $_POST['recurrenceId'] : -1);
 				$calRecurrence->setCalendarId($save['calendarId']);
-				$calRecurrence->setStart($_POST['start_Hour'] . str_pad($_POST['start_Minute'], 2, '0', STR_PAD_LEFT));
-				$calRecurrence->setEnd($_POST['end_Hour'] . str_pad($_POST['end_Minute'], 2, '0', STR_PAD_LEFT));
+				$calRecurrence->setStart(strftime('%H%M', $save['start']));
+				$calRecurrence->setEnd(strftime('%H%M', $save['end']));
 				$calRecurrence->setAllday($save['allday']);
 				$calRecurrence->setLocationId($save['locationId']);
 				$calRecurrence->setCategoryId($save['categoryId']);
@@ -447,7 +395,7 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 	$calitem = $save;
 	$calendar = $calendarlib->get_calendar($calitem['calendarId']);
 	if (empty($save['calitemId'])) {
-		$calitem['allday'] = $calendar['allday'] == 'y' ? true : false;
+		$calitem['allday'] = $calendar['allday'] == 'y' ? 1 : 0;
 	}
 	$smarty->assign('edit', true);
 	$id = isset($save['calitemId']) ? $save['calitemId'] : 0;
@@ -531,7 +479,7 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 		'end' => $now_end,
 		'duration' => (60 * 60),
 		'recurrenceId' => 0,
-		'allday' => $calendar['allday'] == 'y' ? true : false
+		'allday' => $calendar['allday'] == 'y' ? 1 : 0
 		];
 	$hour_minmax = abs(ceil(($calendar['startday'] - 1) / (60 * 60))) . '-' . ceil(($calendar['endday']) / (60 * 60));
 	$id = 0;

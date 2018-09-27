@@ -405,21 +405,23 @@
 				</div> <!-- / .row -->
 			{/if}{* end recurrence *}
 			<div class="row mt-md-3">
-				<div class="form-group col-sm-6 date">
+				<div class="form-group col-lg-6 date">
 					<div class="row">
 						<label class="col-form-label col-sm-2">{tr}Start{/tr}</label>
 						{if $edit}
-							<div class="col-sm-5 start">
+							<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}5{/if} start">
 								{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-									{jscalendar id="start" date=$calitem.start fieldname="save[date_start]" align="Bc" showtime='n'}
+									{jscalendar id="start" date=$calitem.start fieldname="save[date_start]" showtime='y'}
 								{else}
 									{html_select_date prefix="start_date_" time=$calitem.start field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
 								{/if}
 							</div>
-							<div class="col-sm-3 start time">
-								{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
-							</div>
-							<label class="col-sm-2">
+							{if $prefs.feature_jscalendar eq 'n' or $prefs.javascript_enabled eq 'n'}
+								<div class="col-sm-3 start time">
+									{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
+								</div>
+							{/if}
+							<label class="col-sm-2 checkbox">
 								<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
 								{tr}All day{/tr}
 							</label>
@@ -440,22 +442,24 @@
 						{/if}
 					</div>
 				</div> <!-- / .form-group -->
-				<div class="form-group col-sm-6 date">
+				<div class="form-group col-lg-6 date">
 					<div class="row">
 						<label class="col-form-label col-sm-2">{tr}End{/tr}</label>
 						{if $edit}
 							<input type="hidden" name="save[end_or_duration]" value="end" id="end_or_duration">
-							<div class="col-sm-5 end ">
+							<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}4{/if} end ">
 									{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-										{jscalendar id="end" date=$calitem.end fieldname="save[date_end]" align="Bc" showtime='n'}
+										{jscalendar id="end" date=$calitem.end fieldname="save[date_end]" showtime='y'}
 									{else}
 										{html_select_date prefix="end_date_" time=$calitem.end field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
 									{/if}
 							</div>
-							<div class="col-sm-3 end time">
-								{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
-							</div>
-							<div class="col-sm-3 duration time" style="display:none;">
+							{if $prefs.feature_jscalendar eq 'n' or $prefs.javascript_enabled eq 'n'}
+								<div class="col-sm-3 end time">
+									{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
+								</div>
+							{/if}
+							<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}4{/if} duration time" style="display:none;">
 								{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_minute_interval class='form-control date nochosen'}
 							</div>
 							<div class="col-sm-2 time">
