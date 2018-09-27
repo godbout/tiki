@@ -10,10 +10,10 @@ $link-hover-color: #f9a013;
 
 $btn-primary-color: #ffffff;
 $btn-primary-bg: #f9a013;
-$btn-primary-border: #ffc506;
+$btn-primary-border: #f4bb06;
 $btn-primary-focus-color: #ffffff;
 $btn-primary-focus-bg: #d2a100;
-$btn-primary-border: #856600;
+$btn-primary-border: #ebba00;
 $btn-primary-hover-color: #ffffff;
 $btn-primary-hover-bg: #d2a100;
 $btn-primary-hover-border: #c89900;
@@ -45,11 +45,30 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-badge-color: ;
 // $btn-secondary-badge-bg: ;
 
+$btn-info-color: #282828;
+$btn-info-bg: #e5d7dc;
+$btn-info-border: #e5d0cf;
+// $btn-info-focus-color: ;
+// $btn-info-focus-bg: ;
+// $btn-info-focus-border: ;
+$btn-info-hover-color: $btn-info-color;
+$btn-info-hover-bg: lighten($btn-info-bg, 10%);
+$btn-info-hover-border: lighten($btn-info-border, 10%);
+// $btn-info-active-color: ;
+// $btn-info-active-bg: ;
+// $btn-info-active-border: ;
+// $btn-info-active-hover: ;
+// $btn-info-active-hover-border: ;
+// $btn-info-disabled-hover-color: ;
+// $btn-info-disabled-hover-border: ;
+// $btn-info-badge-color: ;
+// $btn-info-badge-bg: ;
+
 $navbar-dark-color: #fff;
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
-$bg-dark-link-hover-bg: #003c4a;
+$bg-dark-link-hover-bg: #4a2801;
 
 
 $hr-border-color: #ffc506;
@@ -58,17 +77,17 @@ $navbar-fixed-top-bg: #e4af00;
 $bg-dark: #ffc506;
 $bg-light: #ffc506;
 $card-border-color: #e4af00;
-$table-border-color: #1296a9;
+$table-border-color: #a99628;
 $table-accent-bg: #f9f9f9;
 $table-hover-bg: #f5f5f5;
 
 $input-color: #555555;
 $input-bg: #fdf1d0;
 $input-border: #fee194;
-$input-border-top-color: #83c5ce;
+$input-border-top-color: #ceb688;
 $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
-$input-border-left-color: #83c5ce;
+$input-border-left-color: #ceb688;
 
 $dropdown-bg: #c75a29;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);

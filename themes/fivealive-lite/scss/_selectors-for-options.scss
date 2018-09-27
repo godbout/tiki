@@ -6,6 +6,9 @@ $imagePath: "../images/";
 // body {
 //	background-image: url('#{$imagePath}bg.jpg');
 
+// Common values
+$btn-info-active-bg: darken($btn-info-bg, 5%);
+
 // This is reduced from the amount in tiki_base.css - maybe that needs to be changed, too.
 body.layout_social.tiki.navbar-padding {
   padding-top: 2.72rem;
@@ -51,22 +54,6 @@ nav.fixed-top {
   background-color: $middle_outer-inset-shadow-bg !important;
 }
 
-//body.tiki > nav.navbar.fixed-top.bg-light { background-color: $bg-light-alt !important; }
-
-//.topbar .cssmenu_horiz ul { background: #063035; }
-
-//.navbar-nav > li.dropdown {
-//  border-bottom: 1px solid #18a3bb;
-//}
-
-//.topbar .navbar-nav > li.dropdown {
-//  border-bottom: none;
-//}
-
-//#page-header .dropdown-menu,
-//.topbar .cssmenu_horiz ul {
-//  background: #18a3bb;
-//}
 
 a,
 .btn-link {
@@ -130,6 +117,23 @@ a:focus,
 }*/
 // Adding from bootstrap default end
 
+.btn-info {
+  color: $btn-info-color;
+  background-color: $btn-info-bg;
+  border-color: $btn-info-border;
+}
+
+.btn-info:hover {
+  color: $btn-info-hover-color;
+  background-color: $btn-info-hover-bg;
+  border-color: $btn-info-hover-border;
+}
+
+.btn-info:not(:disabled):not(.disabled):active,
+.btn-info:not(:disabled):not(.disabled).active,
+.show > .btn-info.dropdown-toggle {
+  background-color: $btn-info-active-bg;
+}
 
 //fieldset[disabled] .btn-primary:hover,
 //.btn-primary.disabled:focus,
@@ -202,6 +206,19 @@ a:focus,
 //  color: $btn-secondary-badge-color; //#18a3bb;
 //  background-color: $btn-secondary-bg-color; //#ffffff;
 //}
+
+.nav-tabs .nav-link {
+  color: $input-color;
+  background-color: $input-bg;
+  border-color: $input-border-top-color $input-border-left-color #fff;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: $btn-info-color;
+  background-color: $btn-info-active-bg;
+}
+
 hr {
   border-top: 1px solid $hr-border-color;
 }
@@ -241,17 +258,18 @@ hr {
   background-image: none;
   border: 1px solid $input-border;
 }
-.navbar-dark .navbar-brand {
+.navbar-dark .navbar-brand,
+.dropdown-item,
+.dropdown-item a {
   color: #ffffff;
 }
+
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus {
   color: #e6e6e6;
   background-color: transparent;
 }
-.navbar-default .navbar-text {
-  color: #ffffff;
-}
+
 //.bg-dark .navbar-nav .nav-link {
 //  color: #ffffff;
 //  &:hover,

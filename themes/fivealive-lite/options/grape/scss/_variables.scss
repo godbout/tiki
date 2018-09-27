@@ -47,6 +47,25 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-badge-color: ;
 // $btn-secondary-badge-bg: ;
 
+$btn-info-color: #282828;
+$btn-info-bg: #e5d7dc;
+$btn-info-border: #e5d0cf;
+// $btn-info-focus-color: ;
+// $btn-info-focus-bg: ;
+// $btn-info-focus-border: ;
+$btn-info-hover-color: $btn-info-color;
+$btn-info-hover-bg: lighten($btn-info-bg, 10%);
+$btn-info-hover-border: lighten($btn-info-border, 10%);
+// $btn-info-active-color: ;
+// $btn-info-active-bg: ;
+// $btn-info-active-border: ;
+// $btn-info-active-hover: ;
+// $btn-info-active-hover-border: ;
+// $btn-info-disabled-hover-color: ;
+// $btn-info-disabled-hover-border: ;
+// $btn-info-badge-color: ;
+// $btn-info-badge-bg: ;
+
 $navbar-dark-color: #fff;
 
 // navbar link hover colors
