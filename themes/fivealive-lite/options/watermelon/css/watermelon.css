@@ -91,7 +91,7 @@ a:hover, .btn-link:hover, a:focus, .btn-link:focus {
 
 .nav-tabs .nav-link {
   color: #555;
-  background-color: #f9e1e4;
+  background-color: #ffdace;
   border-color: #faada1 #faada1 #fff; }
 
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
@@ -127,7 +127,7 @@ hr {
 
 .form-control {
   color: #555;
-  background-color: #f9e1e4;
+  background-color: #ffdace;
   background-image: none;
   border: 1px solid #faada1; }
 
@@ -250,11 +250,11 @@ header.page-header a, header.page-header a.btn-link {
   color: #fff !important; }
 
 .form-control, select, input[type="text"], input[type="password"], input[type="file"], input[type="email"], input[type="search"], input[type="number"], input#login-pass, textarea, .adminoptionbox option {
-  background-color: #f9e1e4;
+  background-color: #ffdace;
   border-color: #faada1 #fcf6f9 #fcf6f9 #faada1; }
 
 input[type="checkbox"].preffilter-toggle-round:checked + label::before {
-  background: #f2bfc5; }
+  background: #ffbba5; }
 
 #footer {
   background: black;
@@ -277,7 +277,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
 
 .nav-tabs .nav-link {
   color: #000;
-  background-color: #f9e1e4;
+  background-color: #ffdace;
   border-color: #dee2e6 #dee2e6 #fff; }
 
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
@@ -324,17 +324,17 @@ header.header .sitetitle, header.header .sitesubtitle {
   color: #fff; }
 
 .chosen-container-multi .chosen-choices {
-  background-color: #f9e1e4;
+  background-color: #ffdace;
   color: #555;
   border: 1px solid #faada1; }
 
 .chosen-container-single .chosen-single, .chosen-container-active.chosen-with-drop .chosen-single, .chosen-container .chosen-drop, .chosen-container-multi .chosen-choices .search-choice {
-  background-color: #f9e1e4;
+  background-color: #ffdace;
   color: #555;
   border: 1px solid #faada1; }
 
 .chosen-container-single .chosen-search input[type="text"] {
-  background-color: #f9e1e4;
+  background-color: #ffdace;
   border: 1px solid #faada1; }
 
 .chosen-container .chosen-results li.highlighted {
