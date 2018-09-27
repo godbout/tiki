@@ -39,7 +39,7 @@ class Services_Edit_SemaphoreController
 		$object_id = $input->object_id->pagename();
 		$object_type = $input->object_type->pagename();
 		$object_type = $object_type ? $object_type : 'wiki page';
-		$value = $input->value->string();
+		$value = $input->value->none();
 		$value = $value ? $value : null;
 
 		$now = TikiLib::lib('tiki')->now;

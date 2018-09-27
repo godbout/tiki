@@ -40,16 +40,24 @@ function wikiplugin_together($data, $params)
 	}
 	TikiLib::lib('header')->add_jq_onready('
 if(! window.startTogetherJS) {
-	window.startTogetherJS = function() {
-		var script = document.createElement("script");
-		script.src = "https://togetherjs.com/togetherjs-min.js";
-		script.async = false;
-		document.getElementsByTagName("head")[0].appendChild(script);
-		window.waitForTogetherJS();
+	window.TogetherJSConfig_on_ready = function() {
+		if(m = window.location.href.match(/tiki-editpage.php\?page=([^&#]+)/)) {
+			var session = TogetherJS.require("session");
+			$.ajax({
+				url: "tiki-ajax_services.php",
+				dataType: "json",
+				data: {
+					controller: "edit_semaphore",
+					action: "set",
+					object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
+					value: session.shareId
+				}
+			});
+		}
 	}
-	window.waitForTogetherJS = function() {
+	window.startTogetherJS = function() {
 		if(typeof TogetherJS === "undefined") {
-			setTimeout(window.waitForTogetherJS, 300);
+			setTimeout(window.startTogetherJS, 300);
 		} else {
 			TogetherJS.config("getUserName", function () {
 				return jqueryTiki.userRealName || jqueryTiki.username;
@@ -58,26 +66,13 @@ if(! window.startTogetherJS) {
 				return jqueryTiki.userAvatar;
 			});
 			TogetherJS();
-			waitForTogetherJSsession();
 		}
 	}
-	window.waitForTogetherJSsession = function() {
-		if(!TogetherJS.require || !(session = TogetherJS.require("session")) || !session.shareId) {
-			setTimeout(window.waitForTogetherJSsession, 300);
-		} else {
-			if(m = window.location.href.match(/tiki-editpage.php\?page=([^&#]+)/)) {
-				$.ajax({
-					url: "tiki-ajax_services.php",
-					dataType: "json",
-					data: {
-						controller: "edit_semaphore",
-						action: "set",
-						object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
-						value: session.shareId
-					}
-				});
-			}
-		}
+	window.loadTogetherJS = function() {
+		var script = document.createElement("script");
+		script.src = "https://togetherjs.com/togetherjs-min.js";
+		script.async = false;
+		document.getElementsByTagName("head")[0].appendChild(script);
 	}
 }
 
@@ -91,15 +86,27 @@ if(m = window.location.href.match(/tiki-editpage.php\?page=([^&#]+)/)) {
 			object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
 		},
 		success: function(data) {
+			loadTogetherJS();
 			if(data) {
-				sessionStorage.removeItem("togetherjs-session.status");
-				window.location.hash = "&togetherjs="+data;
-				startTogetherJS();
+				var key = "togetherjs-session.status";
+				var status = sessionStorage.getItem(key);
+				if (status) {
+					status = JSON.parse(status);
+					if( !status.running || status.shareId != data ) {
+						sessionStorage.removeItem(key);
+					}
+				}
+				if (!sessionStorage.getItem(key)) {
+					window.location.hash = "&togetherjs="+data;
+					startTogetherJS();
+				}
 			}
 		}
 	});
+} else {
+	loadTogetherJS();
 }
 		');
 
-	return '<button onclick="window.startTogetherJS(this); return false;" class="btn btn-primary">' . $params['buttonname'] . '</button>';
+	return '<button onclick="window.startTogetherJS(); return false;" class="btn btn-primary">' . $params['buttonname'] . '</button>';
 }
