@@ -332,7 +332,7 @@
 							<br>
 							<fieldset>
 								<legend>{tr}Database user{/tr}</legend>
-								<p>{tr}Enter a database user with administrator permission for the Database.{/tr}</p>
+								<p>{tr}Enter a database user with administrator permission for the Tiki database.{/tr}</p>
 								<div style="padding:5px;">
 									<label for="user">{tr}User name:{/tr}</label> <input type="text" class=form-control id="user" name="user" value="{if (isset($smarty.request.user))}{$smarty.request.user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" maxlength="16" placeholder="{tr}Database username{/tr}">
 								</div>
@@ -347,14 +347,15 @@
 
 								<div style="padding:5px;">
 									<input type="checkbox" id="create-new-user" name="create_new_user" />
-									<label for="create-new-user">{tr}Create a new user just for this Tiki instance.{/tr}</label>&nbsp;
+									<label for="create-new-user">{tr}Create the above database user just for this Tiki database.{/tr}</label>&nbsp;
 								</div>
 							</fieldset>
 
 							<br/>
 							<fieldset id="new-user-fieldset" style="display: none;">
 								<legend>{tr}Administrative database user{/tr}</legend>
-								<p>{tr}Enter database administrator user name and password.{/tr}</p>
+								<p>{tr}Enter database administrator user name and password.{/tr}<br>
+								<em>{tr}This is a DB admin user which has permission to create new databases and new users.{/tr}</em></p>
 								<div style="padding:5px;">
 									<label for="user">{tr}DB admin user name:{/tr}</label> <input type="text" class=form-control id="root_user" name="root_user" value="{if (isset($smarty.request.root_user))}{$smarty.request.root_user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" placeholder="{tr}DB admin user name{/tr}">
 								</div>
