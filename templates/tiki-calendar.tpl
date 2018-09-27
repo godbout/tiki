@@ -206,7 +206,7 @@
 				allDayText: "{tr}all-day{/tr}",
 				firstDay: {{$firstDayofWeek}},
 				slotMinutes: {{$prefs.calendar_timespan}},
-				defaultView: {{if $prefs.calendar_view_mode === 'week'}}'agendaWeek'{{else if $prefs.calendar_view_mode === 'day'}}'agendaDay'{{else}}'month'{{/if}},
+				defaultView: {{if $prefs.calendar_view_mode === 'week'}}'agendaWeek'{{elseif $prefs.calendar_view_mode === 'day'}}'agendaDay'{{else}}'month'{{/if}},
 				eventAfterRender : function( event, element, view ) {
 					element.attr('title',event.title);
 					element.data('content', event.description);
