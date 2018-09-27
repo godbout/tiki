@@ -23,3 +23,4 @@ DROP TABLE IF EXISTS `tiki_page_drafts`;
 DROP TABLE IF EXISTS `metrics_assigned`;
 DROP TABLE IF EXISTS `metrics_metric`;
 DROP TABLE IF EXISTS `metrics_tab`;
+DROP TABLE IF EXISTS `tiki_users_score`;
