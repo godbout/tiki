@@ -414,7 +414,7 @@
 					{else}
 						{tr}A new install will populate the database.{/tr}
 					{/if}
-					{if ($database_charset neq 'utf8mb4' or isset($legacy_collation)) and $tikidb_created}
+					{if (($database_charset neq 'utf8mb4' and $database_charset neq 'utf8') or isset($legacy_collation)) and $tikidb_created}
 						{remarksbox type=error title="{tr}Encoding Issue{/tr}" close="n"}
 							{if isset($legacy_collation)}
 								<strong style="color: red">Something is wrong with the database encoding.</strong> The database has UTF-8 as default encoding but some tables in the database have a different collation, {$legacy_collation}. Converting to UTF-8 may solve this but may also make matters worse. You should investigate what happened or only proceed with backups.
