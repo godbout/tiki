@@ -383,9 +383,9 @@ class PdfGenerator
 				$backgroundImage = '';
 				$bgColor = "";
 				if ($pdfPage['background'] != '') {
-					$bgColor = "background-color:" . $pdfPage['background'];
+					$bgColor = "background: linear-gradient(top, ".$pdfPage['background'].", ".$pdfPage['background'].");";
 				}
-				$mpdf->WriteHTML('<html><body style="' . $bgColor . ';margin:0px;padding:0px;">' . $cssStyles);
+				$mpdf->WriteHTML('<html><body style="'.$bgColor.'-webkit-print-color-adjust: exact;margin:0px;padding:0px;">' . $cssStyles);
 				$pagesTotal += floor(strlen($pdfPage['pageContent']) / 3000);
 				//checking if page content is less than mPDF character limit, otherwise split it and loop to writeHTML
 				for ($charLimit = 0; $charLimit <= strlen($pdfPage['pageContent']); $charLimit += $pdfLimit) {
