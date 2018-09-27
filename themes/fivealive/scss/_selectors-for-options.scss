@@ -160,6 +160,19 @@ a:focus,
 //  color: $btn-secondary-badge-color; //#18a3bb;
 //  background-color: $btn-secondary-bg-color; //#ffffff;
 //}
+
+.nav-tabs .nav-link {
+  color: $input-color;
+  background-color: $input-bg;
+  border-color: $input-border-top-color $input-border-left-color #fff;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: $btn-info-color;
+  background-color: $btn-info-active-bg;
+}
+
 hr {
   border-top: 1px solid $hr-border-color;
 }
@@ -199,9 +212,12 @@ hr {
   background-image: none;
   border: 1px solid $input-border;
 }
-.navbar-dark .navbar-brand {
+.navbar-dark .navbar-brand,
+.dropdown-item,
+.dropdown-item a {
   color: #ffffff;
 }
+
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus {
   color: #e6e6e6;
@@ -499,7 +515,16 @@ header.page-header a,
 header.page-header a.btn-link {
   color: #ffffff !important;
 }
-.form-control {
+.form-control, select,
+input[type="text"],
+input[type="password"],
+input[type="file"],
+input[type="email"],
+input[type="search"],
+input[type="number"],
+input#login-pass,
+textarea,
+.adminoptionbox option {
   background-color: $input-bg; //#ddf8f9;
   border-color: $input-border-top-color $input-border-right-color $input-border-bottom-color $input-border-left-color; //#b4f3fb #ffffff #ffffff #b4f3fb;
 }
