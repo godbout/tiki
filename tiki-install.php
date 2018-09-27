@@ -57,6 +57,10 @@ if (file_exists($lockFile)) {
 	createPage($title, $content);
 }
 
+if (! $db->getOne("SELECT COUNT(*) FROM `information_schema`.`character_sets` WHERE `character_set_name` = 'utf8mb4';")) {
+	die(tr('Your database does not support the utf8mb4 character set required in Tiki19 and above. You need to upgrade your mysql or mariadb installation.'));
+}
+
 $tikiroot = str_replace('\\', '/', dirname($_SERVER['PHP_SELF']));
 $session_params = session_get_cookie_params();
 session_set_cookie_params($session_params['lifetime'], $tikiroot);

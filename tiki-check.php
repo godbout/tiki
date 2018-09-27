@@ -1391,6 +1391,23 @@ if ($connection || ! $standalone) {
 		);
 	}
 
+	// UTF-8 MB4 test (required for Tiki19+
+	$query = "SELECT COUNT(*) FROM `information_schema`.`character_sets` WHERE `character_set_name` = 'utf8mb4';";
+	$result = query($query, $connection);
+	if (! empty($result[0]['COUNT(*)'])) {
+		$mysql_properties['utf8mb4'] = array(
+			'fitness' => tra('good'),
+			'setting' => 'available',
+			'message' => tr('Your database supports the utf8mb4 character set required in Tiki19 and above.')
+		);
+	} else {
+		$mysql_properties['utf8mb4'] = array(
+			'fitness' => tra('bad'),
+			'setting' => 'not available',
+			'message' => tra('Your database does not support the utf8mb4 character set required in Tiki19 and above. You need to upgrade your mysql or mariadb installation.')
+		);
+	}
+
 	// UTF-8 Charset
 	$charset_types = "client connection database results server system";
 	foreach (explode(' ', $charset_types) as $type) {

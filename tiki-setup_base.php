@@ -88,6 +88,14 @@ if ($tikilib->query("SHOW TABLES LIKE 'tiki_preferences'")->numRows() == 0) {
 	header('location: tiki-install.php');
 	exit;
 }
+if (! $tikilib->getOne("SELECT COUNT(*) FROM `information_schema`.`character_sets` WHERE `character_set_name` = 'utf8mb4';")) {
+	if (PHP_SAPI === 'cli') {
+		die("\033[31mYour database does not support the utf8mb4 character set required in Tiki19 and above\033[0m\n");
+	} else {
+		die(tr('Your database does not support the utf8mb4 character set required in Tiki19 and above. You need to upgrade your mysql or mariadb installation.'));
+	}
+}
+
 $tikilib->get_preferences($needed_prefs, true, true);
 global $systemConfiguration;
 $prefs = $systemConfiguration->preference->toArray() + $prefs;
