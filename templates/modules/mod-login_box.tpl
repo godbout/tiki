@@ -116,7 +116,7 @@ if (jqueryTiki.no_cookie) {
 					<span class="sr-only">{tr}Toggle Dropdown{/tr}</span>
 				</button>
 				{if empty($module_params.menu_id)}
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu dropdown-menu-right">
 							<li class="dropdown-item">
 							<a href="tiki-user_information.php" title="{tr}My Account{/tr}">{if isset($module_params.show_user_name) && $module_params.show_user_name eq 'y'}{tr}My Account{/tr}{else}{tr}{$user|username|escape:"html"}{/tr}{/if}</a>
 							</li>
@@ -171,7 +171,7 @@ if (jqueryTiki.no_cookie) {
 				<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
 					{tr}Log in{/tr}
 				</button>
-				<div class="siteloginbar_poppedup dropdown-menu float-sm-right modal-sm"><div class="card-body">
+				<div class="siteloginbar_poppedup dropdown-menu dropdown-menu-right float-sm-right modal-sm"><div class="card-body">
 					{capture assign="close_tags"}</div></div></div>{$close_tags}{/capture}
 		{/if}
 
