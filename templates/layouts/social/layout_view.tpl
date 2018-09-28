@@ -143,44 +143,6 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				{modulelist zone="top" id="top_modules_social" class="d-flex flex-fill justify-content-between"}
-				<div class="flex">
-					<ul class="navbar-nav">
-						{if $user}
-							<li class="nav-item">
-								<a class="nav-link"
-								   href="{if $prefs.feature_sefurl eq 'y'}logout{else}tiki-logout.php{/if}">{tr}Log out{/tr}</a>
-							</li>
-						{else}
-							<li class="dropdown">
-								<a class="nav-link" href="#" class="dropdown-toggle"
-								   data-toggle="dropdown">{tr}Log in{/tr}</a>
-								<div class="dropdown-menu dropdown-login card-body">
-									<div class="dropdown-item">
-
-										{module
-										module=login_box
-										mode="module"
-										show_register=""
-										show_forgot=""
-										error=""
-										flip=""
-										decorations="n"
-										nobox="y"
-										notitle="y"
-										}
-
-									</div>
-								</div>
-							</li>
-							{if $prefs.allowRegister eq 'y'}
-								<li class="nav-item">
-									<a class="nav-link"
-									   href="{if $prefs.feature_sefurl eq 'y'}register{else}tiki-register.php{/if}">{tr}Register{/tr}</a>
-								</li>
-							{/if}
-						{/if}
-					</ul>
-				</div>
 			</div> {* navbar-collapse-social *}
 		</div> {* container *}
 
