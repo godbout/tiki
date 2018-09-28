@@ -365,7 +365,7 @@ class SvnUpCommand extends Command
 		$this->OutputErrors($logger, shell_exec("sh setup.sh $setupParams -n fix 2>&1"), 'Problem running setup.sh', $errors, ! $input->getOption('no-db'));   // 2>&1 suppresses all terminal output, but allows full capturing for logs & verbiage
 
 		if (! $input->getOption('no-db')) {
-			// generate a secbb database so when database:update is run, it also gets updated.
+			// generate a secdb database so when database:update is run, it also gets updated.
 			if (! $input->getOption('no-secdb')) {
 				require_once($tikiBase . '/doc/devtools/svntools.php');
 				$progress->setMessage('Updating secdb');
