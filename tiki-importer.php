@@ -11,6 +11,7 @@
 require_once('tiki-setup.php');
 require_once('lib/importer/tikiimporter.php');
 require_once('lib/importer/tikiimporter_wiki.php');
+require_once('lib/wiki/editlib.php');
 
 $access->check_permission('tiki_p_admin_importer');
 
