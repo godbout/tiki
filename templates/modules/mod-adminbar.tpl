@@ -32,7 +32,7 @@
 		'help' => 'Look and Feel'
 	],
 	"textarea" => [
-		'title' => tra('Editing and Plugins'),
+		'title' => tra('Editing & Plugins'),
 		'description' => tra('Text editing settings applicable to many areas. Plugin activation and plugin alias management'),
 		'help' => 'Text area'
 	],
@@ -336,7 +336,8 @@
 			border-bottom: 0; }
 		.sliding-panel-admin-bar .container-sliding-panel {
 			position: relative;
-			z-index: 1; }
+			z-index: 1;
+			max-width: 1140px;}
 		.sliding-panel-admin-bar .box-adminbar {
 			position: relative;
 			z-index: 1; }
